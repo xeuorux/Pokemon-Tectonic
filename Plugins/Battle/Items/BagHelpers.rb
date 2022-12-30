@@ -1,5 +1,5 @@
 class PokemonBag
-    def reassignPockets()
+    def reassignPockets
         hashOfAllItems = {}
         for i in 0..PokemonBag.numPockets
             @pockets[i].each do |item_element|
@@ -16,7 +16,7 @@ class PokemonBag
 
         hashOfAllItems.each do |key, value|
             echoln("Storing #{value} of #{key} back into the bag")
-            pbStoreItem(key,value)
+            pbStoreItem(key, value)
         end
     end
 end

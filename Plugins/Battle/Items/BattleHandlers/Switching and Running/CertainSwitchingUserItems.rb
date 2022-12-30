@@ -1,5 +1,5 @@
 BattleHandlers::CertainSwitchingUserItem.add(:SHEDSHELL,
-    proc { |item,battler,battle|
-      next true
+    proc { |_item, _battler, _battle|
+        next true
     }
-  )
+)

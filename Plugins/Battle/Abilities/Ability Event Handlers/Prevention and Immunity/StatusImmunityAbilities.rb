@@ -1,85 +1,85 @@
 BattleHandlers::StatusImmunityAbility.add(:FLOWERVEIL,
-  proc { |ability,battler,status|
-    next true if battler.pbHasType?(:GRASS)
+  proc { |_ability, battler, _status|
+      next true if battler.pbHasType?(:GRASS)
   }
 )
 
 BattleHandlers::StatusImmunityAbility.add(:IMMUNITY,
-  proc { |ability,battler,status|
-    next true if status == :POISON
+  proc { |_ability, _battler, status|
+      next true if status == :POISON
   }
 )
 
 BattleHandlers::StatusImmunityAbility.add(:INSOMNIA,
-  proc { |ability,battler,status|
-    next true if status == :SLEEP
+  proc { |_ability, _battler, status|
+      next true if status == :SLEEP
   }
 )
 
-BattleHandlers::StatusImmunityAbility.copy(:INSOMNIA,:SWEETVEIL,:VITALSPIRIT)
+BattleHandlers::StatusImmunityAbility.copy(:INSOMNIA, :SWEETVEIL, :VITALSPIRIT)
 
 BattleHandlers::StatusImmunityAbility.add(:LEAFGUARD,
-  proc { |ability,battler,status|
-    next true if battler.battle.sunny?
+  proc { |_ability, battler, _status|
+      next true if battler.battle.sunny?
   }
 )
 
 BattleHandlers::StatusImmunityAbility.add(:LIMBER,
-  proc { |ability,battler,status|
-    next true if status == :NUMB
+  proc { |_ability, _battler, status|
+      next true if status == :NUMB
   }
 )
 
 BattleHandlers::StatusImmunityAbility.add(:MAGMAARMOR,
-  proc { |ability,battler,status|
-    next true if status == :FROZEN
+  proc { |_ability, _battler, status|
+      next true if status == :FROZEN
   }
 )
 
 BattleHandlers::StatusImmunityAbility.add(:WATERVEIL,
-  proc { |ability,battler,status|
-    next true if status == :BURN
+  proc { |_ability, _battler, status|
+      next true if status == :BURN
   }
 )
 
 BattleHandlers::StatusImmunityAbility.add(:ENERGETIC,
-  proc { |ability,battler,status|
-	next true if status == :FROZEN || status == :NUMB || status == :POISON
+  proc { |_ability, _battler, status|
+      next true if %i[FROZEN NUMB POISON].include?(status)
   }
 )
 
 BattleHandlers::StatusImmunityAbility.add(:STABILITY,
-  proc { |ability,battler,status|
-	next true if status == :BURN || status == :FROSTBITE || status == :POISON
+  proc { |_ability, _battler, status|
+      next true if %i[BURN FROSTBITE POISON].include?(status)
   }
 )
 
 BattleHandlers::StatusImmunityAbility.add(:FAEVEIL,
-  proc { |ability,battler,status|
-    next true if status == :BURN || status == :FROSTBITE || status == :NUMB 
+  proc { |_ability, _battler, status|
+      next true if %i[BURN FROSTBITE NUMB].include?(status)
   }
 )
 
 BattleHandlers::StatusImmunityAllyAbility.add(:FAEVEIL,
-  proc { |ability,battler,status|
-    next true if status == :BURN || status == :FROSTBITE || status == :NUMB 
+  proc { |_ability, _battler, status|
+      next true if %i[BURN FROSTBITE NUMB].include?(status)
   }
 )
 
 BattleHandlers::StatusImmunityAbility.add(:CANDYVEIL,
-  proc { |ability,battler,status|
-    next true if status == :SLEEP || status == :DIZZY
+  proc { |_ability, _battler, status|
+      next true if %i[SLEEP DIZZY].include?(status)
   }
 )
 
 BattleHandlers::StatusImmunityAllyAbility.add(:CANDYVEIL,
-  proc { |ability,battler,status|
-    next true if status == :SLEEP || status == :DIZZY
+  proc { |_ability, _battler, status|
+      next true if %i[SLEEP DIZZY].include?(status)
   }
 )
 
 BattleHandlers::StatusImmunityAbility.add(:SLICKSURFACE,
-  proc { |ability,battler,status|
-    next true if status == :LEECHED
+  proc { |_ability, _battler, status|
+      next true if status == :LEECHED
   }
 )

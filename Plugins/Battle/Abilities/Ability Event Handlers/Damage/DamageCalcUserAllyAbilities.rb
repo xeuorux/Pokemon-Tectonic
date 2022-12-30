@@ -1,11 +1,11 @@
 BattleHandlers::DamageCalcUserAllyAbility.add(:POWERSPOT,
-    proc { |ability,user,target,move,mults,baseDmg,type,aiCheck|
-      mults[:final_damage_multiplier]*= 1.3
+    proc { |_ability, _user, _target, _move, mults, _baseDmg, _type, _aiCheck|
+        mults[:final_damage_multiplier] *= 1.3
     }
 )
 
 BattleHandlers::DamageCalcUserAllyAbility.add(:STEELYSPIRIT,
-  proc { |ability,user,target,move,mults,baseDmg,type,aiCheck|
-    mults[:base_damage_multiplier] *= 1.5 if type == :STEEL
+  proc { |_ability, _user, _target, _move, mults, _baseDmg, type, _aiCheck|
+      mults[:base_damage_multiplier] *= 1.5 if type == :STEEL
   }
 )

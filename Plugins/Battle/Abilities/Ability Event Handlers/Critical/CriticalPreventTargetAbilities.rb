@@ -1,8 +1,7 @@
 BattleHandlers::CriticalPreventTargetAbility.add(:BATTLEARMOR,
-  proc { |ability,user,target,battle|
-    next true
+  proc { |_ability, _user, _target, _battle|
+      next true
   }
 )
 
-
-BattleHandlers::CriticalPreventTargetAbility.copy(:BATTLEARMOR,:SHELLARMOR,:IMPERVIOUS,:STEELYSHELL)
+BattleHandlers::CriticalPreventTargetAbility.copy(:BATTLEARMOR, :SHELLARMOR, :IMPERVIOUS, :STEELYSHELL)

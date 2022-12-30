@@ -1,18 +1,17 @@
-
 BattleHandlers::TrappingTargetAbility.add(:ARENATRAP,
-    proc { |ability,switcher,bearer,battle|
-      next true if !switcher.airborne?
+    proc { |_ability, switcher, _bearer, _battle|
+        next true unless switcher.airborne?
     }
-  )
-  
-  BattleHandlers::TrappingTargetAbility.add(:MAGNETPULL,
-    proc { |ability,switcher,bearer,battle|
+)
+
+BattleHandlers::TrappingTargetAbility.add(:MAGNETPULL,
+  proc { |_ability, switcher, _bearer, _battle|
       next true if switcher.pbHasType?(:STEEL)
-    }
-  )
-  
-  BattleHandlers::TrappingTargetAbility.add(:SHADOWTAG,
-    proc { |ability,switcher,bearer,battle|
-      next true if !switcher.hasActiveAbility?(:SHADOWTAG)
-    }
-  )
+  }
+)
+
+BattleHandlers::TrappingTargetAbility.add(:SHADOWTAG,
+  proc { |_ability, switcher, _bearer, _battle|
+      next true unless switcher.hasActiveAbility?(:SHADOWTAG)
+  }
+)

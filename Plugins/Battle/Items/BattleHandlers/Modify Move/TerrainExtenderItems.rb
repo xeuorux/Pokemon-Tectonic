@@ -1,5 +1,5 @@
 BattleHandlers::TerrainExtenderItem.add(:TERRAINEXTENDER,
-    proc { |item,terrain,duration,battler,battle|
-      next 8
+    proc { |_item, _terrain, _duration, _battler, _battle|
+        next 8
     }
 )

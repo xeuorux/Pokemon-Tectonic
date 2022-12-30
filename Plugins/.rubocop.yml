@@ -11,16 +11,13 @@ Style:
   
 Metrics:
   Enabled: false
-   
-Layout:
-    IndentationWidth: 1
-
-Layout/IndentationWidth:
-  Width: 1
-   
+     
 Layout/IndentationStyle:
-  EnforcedStyle: tabs
-  IndentationWidth: 1
+  EnforcedStyle: spaces
+  IndentationWidth: 4
+  
+Layout/IndentationWidth:
+  Width: 4
     
 Layout/EmptyLineAfterGuardClause:
   Enabled: false
@@ -74,4 +71,13 @@ Layout/MultilineMethodCallBraceLayout:
   Enabled: false
   
 Layout/HashAlignment:
+  Enabled: false
+  
+Layout/ArgumentAlignment:
+  Enabled: false
+  
+Layout/FirstHashElementIndentation:
+  Enabled: false
+  
+Style/HashSyntax:
   Enabled: false

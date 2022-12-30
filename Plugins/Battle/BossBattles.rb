@@ -2,257 +2,249 @@
 BOSS_HP_BASED_EFFECT_RESISTANCE = 6
 
 def pbBigAvatarBattle(*args)
-	rule = "3v#{args.length}"
-	setBattleRule(rule)
-	pbAvatarBattleCore(*args)
+    rule = "3v#{args.length}"
+    setBattleRule(rule)
+    pbAvatarBattleCore(*args)
 end
 
 def pbSmallAvatarBattle(*args)
-	rule = "2v#{args.length}"
-	setBattleRule(rule)
-	pbAvatarBattleCore(*args)
+    rule = "2v#{args.length}"
+    setBattleRule(rule)
+    pbAvatarBattleCore(*args)
 end
 
 def avatarBattleAutoTest(*args)
-	loop do
-		setBattleRule("autotesting")
-		$game_variables[LEVEL_CAP_VAR] = 70
-		pbSmallAvatarBattle(*args)
-		pbHealAll
-	end
+    loop do
+        setBattleRule("autotesting")
+        $game_variables[LEVEL_CAP_VAR] = 70
+        pbSmallAvatarBattle(*args)
+        pbHealAll
+    end
 end
 
 def pbAvatarBattleCore(*args)
-  outcomeVar = $PokemonTemp.battleRules["outcomeVar"] || 1
-  canLose    = $PokemonTemp.battleRules["canLose"] || false
-  # Skip battle if the player has no able Pokémon, or if holding Ctrl in Debug mode
-  if $Trainer.able_pokemon_count == 0 || debugControl
-    pbMessage(_INTL("SKIPPING BATTLE...")) if $Trainer.pokemon_count > 0
-    pbSet(outcomeVar,1)   # Treat it as a win
+    outcomeVar = $PokemonTemp.battleRules["outcomeVar"] || 1
+    canLose = $PokemonTemp.battleRules["canLose"] || false
+    # Skip battle if the player has no able Pokémon, or if holding Ctrl in Debug mode
+    if $Trainer.able_pokemon_count == 0 || debugControl
+        pbMessage(_INTL("SKIPPING BATTLE...")) if $Trainer.pokemon_count > 0
+        pbSet(outcomeVar, 1) # Treat it as a win
+        $PokemonTemp.clearBattleRules
+        $PokemonGlobal.nextBattleBGM       = nil
+        $PokemonGlobal.nextBattleME        = nil
+        $PokemonGlobal.nextBattleCaptureME = nil
+        $PokemonGlobal.nextBattleBack      = nil
+        pbMEStop
+        return 1 # Treat it as a win
+    end
+    # Record information about party Pokémon to be used at the end of battle (e.g.
+    # comparing levels for an evolution check)
+    Events.onStartBattle.trigger(nil)
+    # Generate wild Pokémon based on the species and level
+    foeParty = []
+
+    respawnFollower = false
+    for arg in args
+        next unless arg.is_a?(Array)
+        for i in 0...arg.length / 2
+            speciesData = GameData::Species.get(arg[i * 2])
+            pkmn = pbGenerateWildPokemon(speciesData.species, arg[i * 2 + 1], true)
+            pkmn.forced_form = speciesData.form
+            pkmn.boss = true
+            pkmn.name += " " + speciesData.real_form_name if speciesData.form != 0
+            setAvatarProperties(pkmn)
+            foeParty.push(pkmn)
+        end
+    end
+    # Calculate who the trainers and their party are
+    playerTrainers    = [$Trainer]
+    playerParty       = $Trainer.party
+    playerPartyStarts = [0]
+    room_for_partner = (foeParty.length > 1)
+    if !room_for_partner && $PokemonTemp.battleRules["size"] &&
+       !%w[single 1v1 1v2 1v3].include?($PokemonTemp.battleRules["size"])
+        room_for_partner = true
+    end
+    if $PokemonGlobal.partner && !$PokemonTemp.battleRules["noPartner"] && room_for_partner
+        ally = NPCTrainer.new($PokemonGlobal.partner[1], $PokemonGlobal.partner[0])
+        ally.id    = $PokemonGlobal.partner[2]
+        ally.party = $PokemonGlobal.partner[3]
+        playerTrainers.push(ally)
+        playerParty = []
+        $Trainer.party.each { |pkmn| playerParty.push(pkmn) }
+        playerPartyStarts.push(playerParty.length)
+        ally.party.each { |pkmn| playerParty.push(pkmn) }
+        setBattleRule("double") unless $PokemonTemp.battleRules["size"]
+    end
+    # Create the battle scene (the visual side of it)
+    scene = pbNewBattleScene
+    # Create the battle class (the mechanics side of it)
+    battle = PokeBattle_Battle.new(scene, playerParty, foeParty, playerTrainers, nil)
+    battle.party1starts = playerPartyStarts
+    battle.bossBattle = true
+    # Set various other properties in the battle class
+    pbPrepareBattle(battle)
     $PokemonTemp.clearBattleRules
-    $PokemonGlobal.nextBattleBGM       = nil
-    $PokemonGlobal.nextBattleME        = nil
-    $PokemonGlobal.nextBattleCaptureME = nil
-    $PokemonGlobal.nextBattleBack      = nil
-    pbMEStop
-    return 1   # Treat it as a win
-  end
-  # Record information about party Pokémon to be used at the end of battle (e.g.
-  # comparing levels for an evolution check)
-  Events.onStartBattle.trigger(nil)
-  # Generate wild Pokémon based on the species and level
-  foeParty = []
-  
-  respawnFollower = false
-  for arg in args
-    if arg.is_a?(Array)
-		for i in 0...arg.length/2
-			speciesData = GameData::Species.get(arg[i*2])
-			pkmn = pbGenerateWildPokemon(speciesData.species,arg[i*2+1],true)
-			pkmn.forced_form = speciesData.form
-			pkmn.boss = true
-			pkmn.name += " " + speciesData.real_form_name if speciesData.form != 0
-			setAvatarProperties(pkmn)
-			foeParty.push(pkmn)
-		end
-	end
-  end
-  # Calculate who the trainers and their party are
-  playerTrainers    = [$Trainer]
-  playerParty       = $Trainer.party
-  playerPartyStarts = [0]
-  room_for_partner = (foeParty.length > 1)
-  if !room_for_partner && $PokemonTemp.battleRules["size"] &&
-     !["single", "1v1", "1v2", "1v3"].include?($PokemonTemp.battleRules["size"])
-    room_for_partner = true
-  end
-  if $PokemonGlobal.partner && !$PokemonTemp.battleRules["noPartner"] && room_for_partner
-    ally = NPCTrainer.new($PokemonGlobal.partner[1],$PokemonGlobal.partner[0])
-    ally.id    = $PokemonGlobal.partner[2]
-    ally.party = $PokemonGlobal.partner[3]
-    playerTrainers.push(ally)
-    playerParty = []
-    $Trainer.party.each { |pkmn| playerParty.push(pkmn) }
-    playerPartyStarts.push(playerParty.length)
-    ally.party.each { |pkmn| playerParty.push(pkmn) }
-    setBattleRule("double") if !$PokemonTemp.battleRules["size"]
-  end
-  # Create the battle scene (the visual side of it)
-  scene = pbNewBattleScene
-  # Create the battle class (the mechanics side of it)
-  battle = PokeBattle_Battle.new(scene,playerParty,foeParty,playerTrainers,nil)
-  battle.party1starts = playerPartyStarts
-  battle.bossBattle = true
-  # Set various other properties in the battle class
-  pbPrepareBattle(battle)
-  $PokemonTemp.clearBattleRules
-  # Perform the battle itself
-  decision = 0
-  if battle.autoTesting
-    decision = battle.pbStartBattle
-  else
-	pbBattleAnimation(pbGetAvatarBattleBGM(foeParty),(foeParty.length==1) ? 0 : 2,foeParty) {
-		pbSceneStandby {
-		  decision = battle.pbStartBattle
-		}
-		pbPokemonFollow(1) if decision != 1 && $game_switches[59] # In cave with Yezera
-		pbAfterBattle(decision,canLose)
-	}
-  end  
-  Input.update
-  # Save the result of the battle in a Game Variable (1 by default)
-  #    0 - Undecided or aborted
-  #    1 - Player won
-  #    2 - Player lost
-  #    3 - Player or wild Pokémon ran from battle, or player forfeited the match
-  #    4 - Wild Pokémon was caught
-  #    5 - Draw
-  pbSet(outcomeVar,decision)
-  return (decision==1)
+    # Perform the battle itself
+    decision = 0
+    if battle.autoTesting
+        decision = battle.pbStartBattle
+    else
+        pbBattleAnimation(pbGetAvatarBattleBGM(foeParty), (foeParty.length == 1) ? 0 : 2, foeParty) do
+            pbSceneStandby do
+                decision = battle.pbStartBattle
+            end
+            pbPokemonFollow(1) if decision != 1 && $game_switches[59] # In cave with Yezera
+            pbAfterBattle(decision, canLose)
+        end
+    end
+    Input.update
+    # Save the result of the battle in a Game Variable (1 by default)
+    #    0 - Undecided or aborted
+    #    1 - Player won
+    #    2 - Player lost
+    #    3 - Player or wild Pokémon ran from battle, or player forfeited the match
+    #    4 - Wild Pokémon was caught
+    #    5 - Draw
+    pbSet(outcomeVar, decision)
+    return (decision == 1)
 end
 
 def setAvatarProperties(pkmn)
-	avatar_data = GameData::Avatar.get_from_pokemon(pkmn)
+    avatar_data = GameData::Avatar.get_from_pokemon(pkmn)
 
-	pkmn.forced_form = avatar_data.form if avatar_data.form != 0
+    pkmn.forced_form = avatar_data.form if avatar_data.form != 0
 
-	pkmn.forget_all_moves()
-	avatar_data.moves1.each do |move|
-		pkmn.learn_move(move,true)
-	end
-	
-	pkmn.item = avatar_data.item
-	pkmn.ability = avatar_data.ability
-	pkmn.hpMult = avatar_data.hp_mult
-	pkmn.dmgMult = avatar_data.dmg_mult
-	pkmn.dmgResist = avatar_data.dmg_resist
-	pkmn.extraMovesPerTurn = avatar_data.num_turns - 1
-	
-	pkmn.calc_stats()
+    pkmn.forget_all_moves
+    avatar_data.moves1.each do |move|
+        pkmn.learn_move(move, true)
+    end
+
+    pkmn.item = avatar_data.item
+    pkmn.ability = avatar_data.ability
+    pkmn.hpMult = avatar_data.hp_mult
+    pkmn.dmgMult = avatar_data.dmg_mult
+    pkmn.dmgResist = avatar_data.dmg_resist
+    pkmn.extraMovesPerTurn = avatar_data.num_turns - 1
+
+    pkmn.calc_stats
 end
-
 
 def calcHPMult(pkmn)
-	hpMult = 1
-	if pkmn.boss
-		avatar_data = GameData::Avatar.get(pkmn.species.to_sym)
-		hpMult = avatar_data.hp_mult
-	end
-	return hpMult
+    hpMult = 1
+    if pkmn.boss
+        avatar_data = GameData::Avatar.get(pkmn.species.to_sym)
+        hpMult = avatar_data.hp_mult
+    end
+    return hpMult
 end
-		
 
 def pbPlayCrySpecies(species, form = 0, volume = 90, pitch = nil)
-  GameData::Species.play_cry_from_species(species, form, volume, pitch)
+    GameData::Species.play_cry_from_species(species, form, volume, pitch)
 end
 
 class Pokemon
-	attr_accessor :boss
-	
-	# @return [0, 1, 2] this Pokémon's gender (0 = male, 1 = female, 2 = genderless)
-	  def gender
-		return 2 if boss?
-		if !@gender
-		  gender_ratio = species_data.gender_ratio
-		  case gender_ratio
-		  when :AlwaysMale   then @gender = 0
-		  when :AlwaysFemale then @gender = 1
-		  when :Genderless   then @gender = 2
-		  else
-			female_chance = GameData::GenderRatio.get(gender_ratio).female_chance
-			@gender = ((@personalID & 0xFF) < female_chance) ? 1 : 0
-		  end
-		end
-		return @gender
-	  end
-	  
-	def boss?
-		return boss
-	end
+    attr_accessor :boss
+
+    # @return [0, 1, 2] this Pokémon's gender (0 = male, 1 = female, 2 = genderless)
+    def gender
+        return 2 if boss?
+        unless @gender
+            gender_ratio = species_data.gender_ratio
+            case gender_ratio
+            when :AlwaysMale   then @gender = 0
+            when :AlwaysFemale then @gender = 1
+            when :Genderless   then @gender = 2
+            else
+                female_chance = GameData::GenderRatio.get(gender_ratio).female_chance
+                @gender = ((@personalID & 0xFF) < female_chance) ? 1 : 0
+            end
+        end
+        return @gender
+    end
+
+    def boss?
+        return boss
+    end
 end
 
 def pbPlayerPartyMaxLevel(countFainted = false)
-  maxPlayerLevel = -100
-  $Trainer.party.each do |pkmn|
-    maxPlayerLevel = pkmn.level if pkmn.level > maxPlayerLevel && (!pkmn.fainted? || countFainted)
-  end
-  return maxPlayerLevel
+    maxPlayerLevel = -100
+    $Trainer.party.each do |pkmn|
+        maxPlayerLevel = pkmn.level if pkmn.level > maxPlayerLevel && (!pkmn.fainted? || countFainted)
+    end
+    return maxPlayerLevel
 end
 
-def pbGetAvatarBattleBGM(_wildParty)   # wildParty is an array of Pokémon objects
-	if $PokemonGlobal.nextBattleBGM
-		return $PokemonGlobal.nextBattleBGM.clone
-	end
-	ret = nil
+def pbGetAvatarBattleBGM(_wildParty) # wildParty is an array of Pokémon objects
+    return $PokemonGlobal.nextBattleBGM.clone if $PokemonGlobal.nextBattleBGM
+    ret = nil
 
-	legend = false
-	_wildParty.each do |p|
-		legend = true if isLegendary?(p.species)
-	end
+    legend = false
+    _wildParty.each do |p|
+        legend = true if isLegendary?(p.species)
+    end
 
-	# Check global metadata
-	music = legend ? GameData::Metadata.get.legendary_avatar_battle_BGM : GameData::Metadata.get.avatar_battle_BGM
-	ret = pbStringToAudioFile(music) unless music&.blank?
-	ret = pbStringToAudioFile("Battle wild") if ret.nil?
-	return ret
+    # Check global metadata
+    music = legend ? GameData::Metadata.get.legendary_avatar_battle_BGM : GameData::Metadata.get.avatar_battle_BGM
+    ret = pbStringToAudioFile(music) unless music&.blank?
+    ret = pbStringToAudioFile("Battle wild") if ret.nil?
+    return ret
 end
 
-def createBossSpritesAllSpeciesForms(overwriteExisting=true)
-	# Find all genders/forms of all species that have an avatar
-	avatarSpeciesIDs = []
-	  GameData::Avatar.each do |avatar_data|
-	  avatarSpeciesIDs.push(avatar_data.species)
-	end
-	GameData::Species.each do |sp|
-	  if avatarSpeciesIDs.include?(sp.species)
-		createBossGraphics(sp.id.to_s,1.5,1.5,overwriteExisting)
-	  end
-	end
+def createBossSpritesAllSpeciesForms(overwriteExisting = true)
+    # Find all genders/forms of all species that have an avatar
+    avatarSpeciesIDs = []
+    GameData::Avatar.each do |avatar_data|
+        avatarSpeciesIDs.push(avatar_data.species)
+    end
+    GameData::Species.each do |sp|
+        createBossGraphics(sp.id.to_s, 1.5, 1.5, overwriteExisting) if avatarSpeciesIDs.include?(sp.species)
+    end
 end
 
-def createBossGraphics(speciesForm,overworldMult=1.5,battleMult=1.5,overwriteExisting=true)
-	overworldPath = 'Graphics/Characters/zAvatar_'
-	battlePath = 'Graphics/Pokemon/Avatars/'
+def createBossGraphics(speciesForm, overworldMult = 1.5, battleMult = 1.5, overwriteExisting = true)
+    overworldPath = "Graphics/Characters/zAvatar_"
+    battlePath = "Graphics/Pokemon/Avatars/"
 
-	# Create the overworld sprite
-	PBDebug.logonerr {
-		filePath = overworldPath + speciesForm + '.png'
-		existingFile = pbResolveBitmap(filePath)
+    # Create the overworld sprite
+    PBDebug.logonerr do
+        filePath = overworldPath + speciesForm + ".png"
+        existingFile = pbResolveBitmap(filePath)
 
-		if existingFile.nil? || overwriteExisting
-			overworldBitmap = AnimatedBitmap.new('Graphics/Characters/Followers/' + speciesForm)
-			copiedOverworldBitmap = overworldBitmap.copy
-			bossifiedOverworld = bossify(copiedOverworldBitmap.bitmap,overworldMult)
-			bossifiedOverworld.to_file(filePath)
-		end
-	}
-	
-	# Create the in battle sprites
-	PBDebug.logonerr {
-		{
-			'Graphics/Pokemon/Front/' => '.png',
-			'Graphics/Pokemon/Back/' => '_back.png'
-		}.each do |folder, suffix|
-			avatarData = GameData::Avatar.get_from_species_form(speciesForm)
+        if existingFile.nil? || overwriteExisting
+            overworldBitmap = AnimatedBitmap.new("Graphics/Characters/Followers/" + speciesForm)
+            copiedOverworldBitmap = overworldBitmap.copy
+            bossifiedOverworld = bossify(copiedOverworldBitmap.bitmap, overworldMult)
+            bossifiedOverworld.to_file(filePath)
+        end
+    end
 
-			avatarData.getListOfPhaseTypes.each_with_index do |type,index|
-				filePath = battlePath + speciesForm
-				filePath += "_" + type.to_s.downcase if type
-				filePath += suffix
-				existingFile = pbResolveBitmap(filePath)
+    # Create the in battle sprites
+    PBDebug.logonerr do
+        {
+            "Graphics/Pokemon/Front/" => ".png",
+            "Graphics/Pokemon/Back/" => "_back.png",
+        }.each do |folder, suffix|
+            avatarData = GameData::Avatar.get_from_species_form(speciesForm)
 
-				if existingFile.nil? || overwriteExisting
-					battlebitmap = AnimatedBitmap.new(folder + speciesForm)
-					copiedBattleBitmap = battlebitmap.copy
-					bossifiedBattle = bossify(copiedBattleBitmap.bitmap,battleMult,type,index)
-					bossifiedBattle.to_file(filePath)
-				end
-			end
-		end
-	}
+            avatarData.getListOfPhaseTypes.each_with_index do |type, index|
+                filePath = battlePath + speciesForm
+                filePath += "_" + type.to_s.downcase if type
+                filePath += suffix
+                existingFile = pbResolveBitmap(filePath)
+
+                next unless existingFile.nil? || overwriteExisting
+                battlebitmap = AnimatedBitmap.new(folder + speciesForm)
+                copiedBattleBitmap = battlebitmap.copy
+                bossifiedBattle = bossify(copiedBattleBitmap.bitmap, battleMult, type, index)
+                bossifiedBattle.to_file(filePath)
+            end
+        end
+    end
 end
 
-BASE_RGB_ADD = [0,0,0]
+BASE_RGB_ADD = [0, 0, 0]
 BASE_AVATAR_HUE = 300.0 # Avatars are at base fairly Fuchsia
 BASE_AVATAR_HUE_WEIGHTING = 0.0
 BASE_AVATAR_SATURATION_SHIFT = 0
@@ -265,83 +257,85 @@ TYPE_LUMINOSITY_WEIGHTING = 0.3
 
 BASE_OPACITY = 120
 EXTRA_OPACITY_PER_PHASE = 30
- 
-def bossify(bitmap,scaleFactor=1.5,type=nil,phase=0)
-	# Calculate the opacity
-	opacity = BASE_OPACITY + phase * EXTRA_OPACITY_PER_PHASE
-	opacity = opacity.clamp(0,255)
 
-	# Figure out the color info that should be used for the given type, if any
-	applyType = false
-	if type
-		typeColor = GameData::Type.get(type).color
-		typeH, typeS, typeL = rgb_to_hsl(typeColor.red,typeColor.green,typeColor.blue)
-		typeHueWeight = BASE_TYPE_HUE_WEIGHTING + EXTRA_TYPE_HUE_WEIGHTING_PER_PHASE * phase
-		applyType = true if typeHueWeight > 0
-	end
+def bossify(bitmap, scaleFactor = 1.5, type = nil, phase = 0)
+    # Calculate the opacity
+    opacity = BASE_OPACITY + phase * EXTRA_OPACITY_PER_PHASE
+    opacity = opacity.clamp(0, 255)
 
-	# Create the new bitmap
-	copiedBitmap = Bitmap.new(bitmap.width * scaleFactor,bitmap.height * scaleFactor)
-	for x in 0..copiedBitmap.width
-		for y in 0..copiedBitmap.height
-		color = bitmap.get_pixel(x/scaleFactor,y/scaleFactor)
+    # Figure out the color info that should be used for the given type, if any
+    applyType = false
+    if type
+        typeColor = GameData::Type.get(type).color
+        typeH, typeS, typeL = rgb_to_hsl(typeColor.red, typeColor.green, typeColor.blue)
+        typeHueWeight = BASE_TYPE_HUE_WEIGHTING + EXTRA_TYPE_HUE_WEIGHTING_PER_PHASE * phase
+        applyType = true if typeHueWeight > 0
+    end
 
-		h,s,l = rgb_to_hsl(color.red,color.green,color.blue)
+    # Create the new bitmap
+    copiedBitmap = Bitmap.new(bitmap.width * scaleFactor, bitmap.height * scaleFactor)
+    for x in 0..copiedBitmap.width
+        for y in 0..copiedBitmap.height
+            color = bitmap.get_pixel(x / scaleFactor, y / scaleFactor)
 
-		# Hue
-		h = averageOfHues(h,BASE_AVATAR_HUE,BASE_AVATAR_HUE_WEIGHTING)
-		h = averageOfHues(h,typeH,typeHueWeight) if applyType
-		h += 360 if h < 0
+            h, s, l = rgb_to_hsl(color.red, color.green, color.blue)
 
-		# Saturation
-		s -= BASE_AVATAR_SATURATION_SHIFT
-		s = s * (1.0 - TYPE_SATURATION_WEIGHTING) + typeS * TYPE_SATURATION_WEIGHTING if applyType
-		s = s.clamp(0,100)
+            # Hue
+            h = averageOfHues(h, BASE_AVATAR_HUE, BASE_AVATAR_HUE_WEIGHTING)
+            h = averageOfHues(h, typeH, typeHueWeight) if applyType
+            h += 360 if h < 0
 
-		# Lightness
-		l += BASE_AVATAR_LIGHTNESS_SHIFT
-		l = l * (1.0 - TYPE_LUMINOSITY_WEIGHTING) + typeL * TYPE_LUMINOSITY_WEIGHTING if applyType
-		l = l.clamp(0,100)
+            # Saturation
+            s -= BASE_AVATAR_SATURATION_SHIFT
+            s = s * (1.0 - TYPE_SATURATION_WEIGHTING) + typeS * TYPE_SATURATION_WEIGHTING if applyType
+            s = s.clamp(0, 100)
 
-		color.red,color.green,color.blue = hsl_to_rgb(h,s,l)
+            # Lightness
+            l += BASE_AVATAR_LIGHTNESS_SHIFT
+            l = l * (1.0 - TYPE_LUMINOSITY_WEIGHTING) + typeL * TYPE_LUMINOSITY_WEIGHTING if applyType
+            l = l.clamp(0, 100)
 
-		# Add a base level of a certain color
-		color.red += BASE_RGB_ADD[0]
-		color.green += BASE_RGB_ADD[1]
-		color.blue += BASE_RGB_ADD[2]
+            color.red, color.green, color.blue = hsl_to_rgb(h, s, l)
 
-		# Add the transparency
-		color.alpha   = [color.alpha, opacity].min
+            # Add a base level of a certain color
+            color.red += BASE_RGB_ADD[0]
+            color.green += BASE_RGB_ADD[1]
+            color.blue += BASE_RGB_ADD[2]
 
-		# Round and clamp
-		color.red 	= color.red.round.clamp(0,255)
-		color.green = color.green.round.clamp(0,255)
-		color.blue 	= color.blue.round.clamp(0,255)
-		
-		copiedBitmap.set_pixel(x,y,color)
-		end
-	end
-	return copiedBitmap
+            # Add the transparency
+            color.alpha = [color.alpha, opacity].min
+
+            # Round and clamp
+            color.red	= color.red.round.clamp(0, 255)
+            color.green = color.green.round.clamp(0, 255)
+            color.blue 	= color.blue.round.clamp(0, 255)
+
+            copiedBitmap.set_pixel(x, y, color)
+        end
+    end
+    return copiedBitmap
 end
 
-def averageOfHues(valueA,valueB,weightingTowardsB=0.5)
-	radA = (valueA - 180) / 180.0 * Math::PI
-	radB = (valueB - 180) / 180.0 * Math::PI
+def averageOfHues(valueA, valueB, weightingTowardsB = 0.5)
+    radA = (valueA - 180) / 180.0 * Math::PI
+    radB = (valueB - 180) / 180.0 * Math::PI
 
-	ax,ay = Math.cos(radA),Math.sin(radA)
-	bx,by = Math.cos(radB),Math.sin(radB)
+    ax = Math.cos(radA)
+    ay = Math.sin(radA)
+    bx = Math.cos(radB)
+    by = Math.sin(radB)
 
-	cx = (ax * (1 - weightingTowardsB) + bx * weightingTowardsB)
-	cy = (ay * (1 - weightingTowardsB) + by * weightingTowardsB)
+    cx = (ax * (1 - weightingTowardsB) + bx * weightingTowardsB)
+    cy = (ay * (1 - weightingTowardsB) + by * weightingTowardsB)
 
-	radC = Math.atan2(cy,cx)
+    radC = Math.atan2(cy, cx)
 
-	degC = radC / Math::PI * 180.0 + 180.0
+    degC = radC / Math::PI * 180.0 + 180.0
 
-	return degC
+    return degC
 end
 
-def rgb_to_hsl(r,g,b)
+def rgb_to_hsl(r, g, b)
     r /= 255.0
     g /= 255.0
     b /= 255.0
@@ -351,163 +345,163 @@ def rgb_to_hsl(r,g,b)
     s = (max + min) / 2.0
     l = (max + min) / 2.0
 
-    if(max == min)
-      h = 0
-      s = 0 # achromatic
+    if max == min
+        h = 0
+        s = 0 # achromatic
     else
-      d = max - min;
-      s = l >= 0.5 ? d / (2.0 - max - min) : d / (max + min)
-      case max
-        when r 
-          h = (g - b) / d + (g < b ? 6.0 : 0)
-        when g 
-          h = (b - r) / d + 2.0
-        when b 
-          h = (r - g) / d + 4.0
-      end
-      h /= 6.0
+        d = max - min
+        s = l >= 0.5 ? d / (2.0 - max - min) : d / (max + min)
+        case max
+        when r
+            h = (g - b) / d + (g < b ? 6.0 : 0)
+        when g
+            h = (b - r) / d + 2.0
+        when b
+            h = (r - g) / d + 4.0
+        end
+        h /= 6.0
     end
-    return [(h*360), (s*100), (l*100)]
+    return [(h * 360), (s * 100), (l * 100)]
 end
 
 def hsl_to_rgb(h, s, l)
-	h = h/360.0
-	s = s/100.0
-	l = l/100.0
+    h /= 360.0
+    s /= 100.0
+    l /= 100.0
 
-	r = 0.0
-	g = 0.0
-	b = 0.0
-	
-	if(s == 0.0)
-		r = l.to_f
-		g = l.to_f
-		b = l.to_f #achromatic
-	else
-		q = l < 0.5 ? l * (1 + s) : l + s - l * s
-		p = 2 * l - q
-		r = hue_to_rgb(p, q, h + 1/3.0)
-		g = hue_to_rgb(p, q, h)
-		b = hue_to_rgb(p, q, h - 1/3.0)
-	end
+    r = 0.0
+    g = 0.0
+    b = 0.0
 
-	return [(r * 255), (g * 255), (b * 255)]
+    if s == 0.0
+        r = l.to_f
+        g = l.to_f
+        b = l.to_f # achromatic
+    else
+        q = l < 0.5 ? l * (1 + s) : l + s - l * s
+        p = 2 * l - q
+        r = hue_to_rgb(p, q, h + 1 / 3.0)
+        g = hue_to_rgb(p, q, h)
+        b = hue_to_rgb(p, q, h - 1 / 3.0)
+    end
+
+    return [(r * 255), (g * 255), (b * 255)]
 end
 
 def hue_to_rgb(p, q, t)
-	t += 1                                  if(t < 0) 
-	t -= 1                                  if(t > 1)
-	return (p + (q - p) * 6 * t)            if(t < 1/6.0) 
-	return q                                if(t < 1/2.0) 
-	return (p + (q - p) * (2/3.0 - t) * 6)  if(t < 2/3.0) 
-	return p
+    t += 1 if t < 0
+    t -= 1                                  if t > 1
+    return (p + (q - p) * 6 * t)            if t < 1 / 6.0
+    return q                                if t < 1 / 2.0
+    return (p + (q - p) * (2 / 3.0 - t) * 6) if t < 2 / 3.0
+    return p
 end
 
-
 class PokeBattle_Battle
-	SUMMON_MIN_HEALTH_LEVEL = 15
-	SUMMON_MAX_HEALTH_LEVEL = 50
+    SUMMON_MIN_HEALTH_LEVEL = 15
+    SUMMON_MAX_HEALTH_LEVEL = 50
 
-	def addAvatarBattler(species,level,sideIndex=1)
-		return if @autoTesting
+    def addAvatarBattler(species, level, sideIndex = 1)
+        return if @autoTesting
 
-		indexOnSide = @sideSizes[sideIndex]
-		if indexOnSide > 3
-			echoln("Cannot create new avatar battler on side #{sideIndex} since the side is already full!")
-			return false
-		end
+        indexOnSide = @sideSizes[sideIndex]
+        if indexOnSide > 3
+            echoln("Cannot create new avatar battler on side #{sideIndex} since the side is already full!")
+            return false
+        end
 
-		# Create the new pokemon
-		newPokemon = pbGenerateWildPokemon(species,level,true)
-		newPokemon.boss = true
-		setAvatarProperties(newPokemon)
+        # Create the new pokemon
+        newPokemon = pbGenerateWildPokemon(species, level, true)
+        newPokemon.boss = true
+        setAvatarProperties(newPokemon)
 
-		# Put the pokemon into the party
-		partyIndex = pbParty(sideIndex).length
-		pbParty(sideIndex)[partyIndex] = newPokemon
+        # Put the pokemon into the party
+        partyIndex = pbParty(sideIndex).length
+        pbParty(sideIndex)[partyIndex] = newPokemon
 
-		# Put the battler into the battle
-		battlerIndexNew = indexOnSide * 2 + sideIndex
-		if @battlers[battlerIndexNew].nil?
-			pbCreateBattler(battlerIndexNew,newPokemon,sideIndex)
-		else
-			@battlers[battlerIndexNew].pbInitialize(newPokemon,partyIndex)
-		end
-		newBattler = @battlers[battlerIndexNew]
-		sideSizes[sideIndex] += 1
+        # Put the battler into the battle
+        battlerIndexNew = indexOnSide * 2 + sideIndex
+        if @battlers[battlerIndexNew].nil?
+            pbCreateBattler(battlerIndexNew, newPokemon, sideIndex)
+        else
+            @battlers[battlerIndexNew].pbInitialize(newPokemon, partyIndex)
+        end
+        newBattler = @battlers[battlerIndexNew]
+        sideSizes[sideIndex] += 1
 
-		# Put the pokemon's party index into the party order tracker
-		partyOrder = [@party1order,@party2order]
-		partyOrder.insert(indexOnSide,partyIndex)
+        # Put the pokemon's party index into the party order tracker
+        partyOrder = [@party1order, @party2order]
+        partyOrder.insert(indexOnSide, partyIndex)
 
-		# Create any missing battler slots
-		0.upto(battlerIndexNew) do |idxBattler|
-			next unless @battlers[idxBattler].nil?
-			pbCreateBattler(idxBattler)
-			scene.pbCreatePokemonSprite(idxBattler)
-		end
+        # Create any missing battler slots
+        0.upto(battlerIndexNew) do |idxBattler|
+            next unless @battlers[idxBattler].nil?
+            pbCreateBattler(idxBattler)
+            scene.pbCreatePokemonSprite(idxBattler)
+        end
 
-		# Set the battler's starting health
-		if level >= SUMMON_MAX_HEALTH_LEVEL
-			healthPercent = 1.0
-		elsif level <= SUMMON_MIN_HEALTH_LEVEL
-			healthPercent = 0.5
-		else
-			healthPercent = 0.5 + (level - SUMMON_MIN_HEALTH_LEVEL) / (SUMMON_MAX_HEALTH_LEVEL - SUMMON_MIN_HEALTH_LEVEL).to_f
-			healthPercent = 1.0 if healthPercent > 1.0
-		end
-		newBattler.hp = (newBattler.totalhp * healthPercent).ceil
+        # Set the battler's starting health
+        if level >= SUMMON_MAX_HEALTH_LEVEL
+            healthPercent = 1.0
+        elsif level <= SUMMON_MIN_HEALTH_LEVEL
+            healthPercent = 0.5
+        else
+            healthPercent = 0.5 + (level - SUMMON_MIN_HEALTH_LEVEL) / (SUMMON_MAX_HEALTH_LEVEL - SUMMON_MIN_HEALTH_LEVEL).to_f
+            healthPercent = 1.0 if healthPercent > 1.0
+        end
+        newBattler.hp = (newBattler.totalhp * healthPercent).ceil
 
-		# Remake all the battle boxes
-		scene.deleteDataBoxes()
-		scene.createDataBoxes()
-		eachBattler do |b|
-			databox = scene.sprites["dataBox_#{b.index}"]
-			databox.visible = true
-		end
+        # Remake all the battle boxes
+        scene.deleteDataBoxes
+        scene.createDataBoxes
+        eachBattler do |b|
+            databox = scene.sprites["dataBox_#{b.index}"]
+            databox.visible = true
+        end
 
-		# Create a dummy sprite for the avatar
-		scene.pbCreatePokemonSprite(battlerIndexNew)
-		
-		# Recreate all the battle sprites
-		eachBattler do |b|
-			next unless b.index % 2 == sideIndex
-			battleSprite = scene.sprites["pokemon_#{b.index}"]
-			battleSprite.dispose
-			battleSprite.initialize(@scene.viewport,@sideSizes[sideIndex],b.index,@scene.animations)
-			scene.pbChangePokemon(b.index,b.pokemon)
-			battleSprite.visible = true
-		end
+        # Create a dummy sprite for the avatar
+        scene.pbCreatePokemonSprite(battlerIndexNew)
 
-		# Set the new avatars tone to be appropriate for entering the field
-		pkmnSprite = @scene.sprites["pokemon_#{battlerIndexNew}"]
-		pkmnSprite.tone    = Tone.new(-80,-80,-80)
+        # Recreate all the battle sprites
+        eachBattler do |b|
+            next unless b.index % 2 == sideIndex
+            battleSprite = scene.sprites["pokemon_#{b.index}"]
+            battleSprite.dispose
+            battleSprite.initialize(@scene.viewport, @sideSizes[sideIndex], b.index, @scene.animations)
+            scene.pbChangePokemon(b.index, b.pokemon)
+            battleSprite.visible = true
+        end
 
-		# Remake the targeting menu
-		@scene.sprites["targetWindow"] = TargetMenuDisplay.new(@scene.viewport,200,@sideSizes)
-		@scene.sprites["targetWindow"].visible = false
+        # Set the new avatars tone to be appropriate for entering the field
+        pkmnSprite = @scene.sprites["pokemon_#{battlerIndexNew}"]
+        pkmnSprite.tone = Tone.new(-80, -80, -80)
 
-		# Send it out into the battle
-		@scene.animateIntroNewAvatar(battlerIndexNew)
-		pbOnActiveOne(newBattler)
-		pbCalculatePriority
+        # Remake the targeting menu
+        @scene.sprites["targetWindow"] = TargetMenuDisplay.new(@scene.viewport, 200, @sideSizes)
+        @scene.sprites["targetWindow"].visible = false
 
-		return true
-	end
+        # Send it out into the battle
+        @scene.animateIntroNewAvatar(battlerIndexNew)
+        pbOnActiveOne(newBattler)
+        pbCalculatePriority
+
+        return true
+    end
 end
 
 class PokeBattle_Scene
-	attr_reader :animations
-	def animateIntroNewAvatar(battlerIndexNew)
-		# Animation of new pokemon appearing
-		dataBoxAnim = DataBoxAppearAnimation.new(@sprites,@viewport,battlerIndexNew)
-		@animations.push(dataBoxAnim)
-		# Set up wild Pokémon returning to normal colour and playing intro
-		# animations (including cry)
-		@animations.push(BattleIntroAnimationSolo.new(@sprites,@viewport,battlerIndexNew))
-		# Play all the animations
-		while inPartyAnimation?; pbUpdate; end
-	end
+    attr_reader :animations
+
+    def animateIntroNewAvatar(battlerIndexNew)
+        # Animation of new pokemon appearing
+        dataBoxAnim = DataBoxAppearAnimation.new(@sprites, @viewport, battlerIndexNew)
+        @animations.push(dataBoxAnim)
+        # Set up wild Pokémon returning to normal colour and playing intro
+        # animations (including cry)
+        @animations.push(BattleIntroAnimationSolo.new(@sprites, @viewport, battlerIndexNew))
+        # Play all the animations
+        pbUpdate while inPartyAnimation?
+    end
 end
 
 #===============================================================================
@@ -515,36 +509,36 @@ end
 # animation
 #===============================================================================
 class BattleIntroAnimationSolo < PokeBattle_Animation
-	def initialize(sprites,viewport,idxBattler)
-	  @idxBattler = idxBattler
-	  super(sprites,viewport)
-	end
-  
-	def createProcesses
-		battler = addSprite(@sprites["pokemon_#{@idxBattler}"],PictureOrigin::Bottom)
-		battler.moveTone(0,4,Tone.new(0,0,0,0))
-		battler.setCallback(0,[@sprites["pokemon_#{@idxBattler}"],:pbPlayIntroAnimation])
-	end
+    def initialize(sprites, viewport, idxBattler)
+        @idxBattler = idxBattler
+        super(sprites, viewport)
+    end
+
+    def createProcesses
+        battler = addSprite(@sprites["pokemon_#{@idxBattler}"], PictureOrigin::Bottom)
+        battler.moveTone(0, 4, Tone.new(0, 0, 0, 0))
+        battler.setCallback(0, [@sprites["pokemon_#{@idxBattler}"], :pbPlayIntroAnimation])
+    end
 end
 
 class PokeBattle_Battler
-	attr_accessor :choicesTaken
-	attr_accessor :lastMoveChosen
+    attr_accessor :choicesTaken
+    attr_accessor :lastMoveChosen
 
-	def assignMoveset(moves)
-		@moves = []
-		@pokemon.moves = []
-		moves.each do |m|
-			pokeMove = Pokemon::Move.new(m)
-			moveObject = PokeBattle_Move.from_pokemon_move(@battle,pokeMove)
-			@moves.push(moveObject)
-			@pokemon.moves.push(pokeMove)
-		end
-		@lastMoveChosen = nil
-	end
+    def assignMoveset(moves)
+        @moves = []
+        @pokemon.moves = []
+        moves.each do |m|
+            pokeMove = Pokemon::Move.new(m)
+            moveObject = PokeBattle_Move.from_pokemon_move(@battle, pokeMove)
+            @moves.push(moveObject)
+            @pokemon.moves.push(pokeMove)
+        end
+        @lastMoveChosen = nil
+    end
 
-	def pbChangeFormBoss(formID,formChangeMessage)
-		@pokemon.forced_form = formID
-		pbChangeForm(formID, formChangeMessage)
-	end
+    def pbChangeFormBoss(formID, formChangeMessage)
+        @pokemon.forced_form = formID
+        pbChangeForm(formID, formChangeMessage)
+    end
 end

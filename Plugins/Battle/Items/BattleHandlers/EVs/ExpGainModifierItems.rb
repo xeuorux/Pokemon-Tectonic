@@ -1,5 +1,5 @@
 BattleHandlers::ExpGainModifierItem.add(:LUCKYEGG,
-    proc { |item,battler,exp|
-      next exp*3/2
+    proc { |_item, _battler, exp|
+        next exp * 3 / 2
     }
-  )
+)

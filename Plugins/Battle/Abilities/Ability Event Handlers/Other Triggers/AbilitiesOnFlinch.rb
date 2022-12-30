@@ -1,5 +1,5 @@
 BattleHandlers::AbilityOnFlinch.add(:STEADFAST,
-    proc { |ability,battler,battle|
-      battler.tryRaiseStat(:SPEED,battler,showAbilitySplash: true)
+    proc { |_ability, battler, _battle|
+        battler.tryRaiseStat(:SPEED, battler, showAbilitySplash: true)
     }
 )

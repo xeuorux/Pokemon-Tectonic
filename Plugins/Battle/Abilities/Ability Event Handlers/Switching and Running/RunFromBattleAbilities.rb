@@ -1,6 +1,5 @@
 BattleHandlers::RunFromBattleAbility.add(:RUNAWAY,
-    proc { |ability,battler|
-      next true
+    proc { |_ability, _battler|
+        next true
     }
-  )
-  
+)
