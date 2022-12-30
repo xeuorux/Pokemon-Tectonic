@@ -399,7 +399,7 @@ Al estar helado, el Ataque Especial de un Pokémon se reduce un 33%, y pierde 1/
 When poisoned, a Pokémon loses 1/8th HP every turn--doubling every 3 turns until swapped. Poison- and Grass-types do the most poisoning. Poison/Steel are immune.
 Al ser envenenado, un Pokémon pierde 1/8 cada turno--duplicando cada 3 turnos hasta ser cambiado. Los tipo Veneno y Planta envenenan más seguido. Veneno/Acero son inmunes.
 When numbed, a Pokémon's Speed is halved, and it deals 25% less damage. Electric- and Fighting-types do the most numbing. Electric is immune.
-Al estar en shock, la Velocidad de un Pokémon se reduce a la mitad, y hace un 25% menos de daño. Los tipo Electrico y Lucha ponen en shock más seguido. Eléctrico es inmune.
+Al estar aturdido, la Velocidad de un Pokémon se reduce a la mitad, y hace un 25% menos de daño. Los tipo Electrico y Lucha aturden más seguido. Eléctrico es inmune.
 When dizzied, a Pokemon takes 25% more attack damage, and its ability doesn't function. Psychic- and Fairy-types do the most dizzying. Psychic is immune.
 Al ser mareado, un Pokémon reduce un 25% su daño, y su habilidad es anulada. Los tipo Psíquico y Hada marean más seguido. Psíquico es inmune.
 When leeched, a Pokémon loses 1/8th HP every turn, and each opponent gains that health. Bug- and Dark-types do the most leeching. Grass is immune.
@@ -546,3 +546,104 @@ Weather Synergies
 Sinergias de Clima
 Each weather has dozens of moves and abilities that benefit from that weather. Pokémon using these moves/abilities ignore the downsides of their favored weather!
 Cada clima tiene gran cantidad de movimientos y habilidades que se aprovechan de este. Un Pokémon que usa estos movimientos/habilidades ignora los efectos negativos del clima.
+{1} fell asleep!
+¡{1} se durmió!
+{1} was poisoned! {2}!
+¡{1} fue envenenado {2}!
+{1} was burned! {2}!
+¡{1} fue quemado! {2}!
+{1} is numbed! {2}!
+¡{1} fue aturdido! {2}!
+{1} was frostbitten! {2}!
+¡{1} fue helado! {2}!
+{1} is dizzy! {2}!
+¡{1} fue mareado! {2}!
+{1} became leeched! {2}!
+¡{1} fue infectado! {2}!
+But the uproar kept {1} awake!
+¡Pero el alboroto mantuvo a {1} despierto!
+{1}'s ability prevents being dizzied!
+¡La habilidad de {1} le previene de ser mareado!
+It doesn't affect {1} since it's an {2}-type...
+No le afecta a {1} al ser un tipo {2}…
+{1}'s team is protected by Safeguard!
+¡El equipo de {1} está protegido por Velo Sagrado!
+It doesn't affect {1} behind its substitute...
+No afecta a {1} detrás de su sustituto...
+{1} is already asleep!
+¡{1} ya está dormido!
+{1} is already poisoned!
+¡{1} ya está envenenado!
+{1} already has a burn!
+¡{1} ya está quemado!
+{1} is already numbed!
+¡{1} ya está aturdido!
+{1} is already frostbitten!
+¡{1} ya está helado!
+{1} is already dizzy!
+¡{1} ya está aturdido!
+{1} is already being leeched!
+¡{1} ya está infectado!
+{1} cannot have any more status problems...
+{1} no puede tener más problemas de estado… 
+{1} is fast asleep.
+{1} está dormido como un tronco.
+{1} was hurt by poison!
+¡{1} fue dañado por el veneno!
+{1} was badly hurt by poison!
+¡{1} fue gravemente dañado por el veneno!
+{1} was extremely hurt by poison!
+¡{1} fue extremadamente dañado por el veneno!
+{1} was brought to its knees entirely by poison!
+¡{1} fue doblegado enteramente por el veneno!
+The poison worsened! Its damage will be doubled until {1} leaves the field.
+¡El veneno empeoró! El daño será duplicado hasta que {1} deje el campo.
+The poison doubled yet again!
+¡El veneno empeoró una vez más!
+{1} was hurt by its burn!
+¡{1} fue dañado por su quemadura!
+{1} was hurt by frostbite!
+¡{1} fue dañado al estar helado!
+{1}'s health was sapped!
+¡La salud de {1} fue drenada!
+{1} woke up!
+¡{1} despertó!
+{1} was cured of its poisoning.
+{1} fue curado de su envenenamiento.
+{1}'s burn was healed.
+La quemadura de {1} fue curada. 
+{1}'s frostbite was healed.
+{1} ya no está helado.
+{1} is no longer numbed.
+{1} ya no está aturdido.
+{1} is no longer dizzy!
+¡{1} ya no está mareado!
+{1} is no longer being leeched!
+¡{1} ya no está infectado!
+Its physical damage is reduced by a third
+Su daño físico es reducido a un tercio
+The poison will worsen over time
+El veneno empeorará con el tiempo
+Its special damage is reduced by a third
+Su daño especial es reducido a un tercio
+Its Speed is halved, and it'll deal less damage
+Su Velocidad es reducida a la mitad, y causará menos daño 
+Its ability is supressed, and it'll take more damage
+Su habilidad fue anulada, y recibirá más daño
+Its HP will be siphoned by the opposing side
+Su PS será drenado por el lado contrario
+{1} survived the burn.\<<n>>The burn faded away!<<1>>
+{1} sobrevivió la quemadura.\<<n>>¡La quemadura se desvaneció!<<1>>
+{1} fainted...
+{1} se debilitó...
+{1} survived the poisoning.\<<n>>The poison faded away!<<1>>
+{1} sobrevivió el veneno.\<<n>>¡El veneno se desvaneció!<<1>>
+{1} survived the frostbite.\<<n>>The frostbite faded away!<<1>>
+{1} sobrevivió el estar helado.\<<n>>¡Ya no está helado!<<1>>
+{1} was burned.
+{1} fue quemado.
+{1} was frostbitten.
+{1} fue helado.
+{1} was poisoned.
+{1} fue envenenado.
+
