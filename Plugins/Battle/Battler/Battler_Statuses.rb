@@ -1,9 +1,9 @@
-BURNED_EXPLANATION = 'Its physical damage is reduced by a third'.freeze
-POISONED_EXPLANATION = 'The poison will worsen over time'.freeze
-FROSTBITE_EXPLANATION = 'Its special damage is reduced by a third'.freeze
-NUMBED_EXPLANATION = "Its Speed is halved, and it'll deal less damage".freeze
-DIZZY_EXPLANATION = "It's ability is supressed, and it'll take more damage".freeze
-LEECHED_EXPLANATION = "Its HP will be siphoned by the opposing side".freeze
+BURNED_EXPLANATION = _INTL("Its physical damage is reduced by a third")
+POISONED_EXPLANATION = _INTL("The poison will worsen over time")
+FROSTBITE_EXPLANATION = _INTL("Its special damage is reduced by a third")
+NUMBED_EXPLANATION = _INTL("Its Speed is halved, and it'll deal less damage")
+DIZZY_EXPLANATION = _INTL("It's ability is supressed, and it'll take more damage")
+LEECHED_EXPLANATION = _INTL("Its HP will be siphoned by the opposing side")
 
 class PokeBattle_Battler
 	def getStatuses
@@ -109,13 +109,13 @@ class PokeBattle_Battler
 			if showMessages
 				msg = ''
 				case status
-				when :SLEEP			then msg = _INTL('{1} is already asleep!', pbThis)
-				when :POISON		then msg = _INTL('{1} is already poisoned!', pbThis)
-				when :BURN			then msg = _INTL('{1} already has a burn!', pbThis)
-				when :NUMB			then msg = _INTL('{1} is already numbed!', pbThis)
-				when :FROSTBITE		then msg = _INTL('{1} is already frostbitten!', pbThis)
-				when :DIZZY			then msg = _INTL('{1} is already dizzy!', pbThis)
-				when :LEECHED		then msg = _INTL('{1} is already being leeched!', pbThis)
+				when :SLEEP			then msg = _INTL("{1} is already asleep!", pbThis)
+				when :POISON		then msg = _INTL("{1} is already poisoned!", pbThis)
+				when :BURN			then msg = _INTL("{1} already has a burn!", pbThis)
+				when :NUMB			then msg = _INTL("{1} is already numbed!", pbThis)
+				when :FROSTBITE		then msg = _INTL("{1} is already frostbitten!", pbThis)
+				when :DIZZY			then msg = _INTL("{1} is already dizzy!", pbThis)
+				when :LEECHED		then msg = _INTL("{1} is already being leeched!", pbThis)
 				end
 				@battle.pbDisplay(msg)
 			end
@@ -124,7 +124,7 @@ class PokeBattle_Battler
 		# Trying to give too many statuses
 		if !hasSpotsForStatus && !ignoreStatus && !selfInflicted
 			if showMessages
-				@battle.pbDisplay(_INTL('{1} cannot have any more status problems...', pbThis(false)))
+				@battle.pbDisplay(_INTL("{1} cannot have any more status problems...", pbThis(false)))
 			end
 			return false
 		end
@@ -141,14 +141,14 @@ class PokeBattle_Battler
 			when :Electric
 				if %i[SLEEP DIZZY].include?(newStatus)
 					if showMessages
-						@battle.pbDisplay(_INTL('{1} surrounds itself with electrified terrain!',pbThis(true)))
+						@battle.pbDisplay(_INTL("{1} surrounds itself with electrified terrain!",pbThis(true)))
 					end
 					return false
 				end
 			when :Fairy
 				if %i[POISON BURN FROSTBITE].include?(newStatus)
 					if showMessages
-						@battle.pbDisplay(_INTL('{1} surrounds itself with fairy terrain!', pbThis(true)))
+						@battle.pbDisplay(_INTL("{1} surrounds itself with fairy terrain!", pbThis(true)))
 					end
 					return false
 				end
@@ -353,21 +353,19 @@ class PokeBattle_Battler
 			else
 				case newStatus
 				when :SLEEP
-					@battle.pbDisplay(_INTL('{1} fell asleep!', pbThis))
+					@battle.pbDisplay(_INTL("{1} fell asleep!", pbThis))
 				when :POISON
-					@battle.pbDisplay(_INTL('{1} was poisoned! {2}!', pbThis, POISONED_EXPLANATION))
+					@battle.pbDisplay(_INTL("{1} was poisoned! {2}!", pbThis, POISONED_EXPLANATION))
 				when :BURN
-					@battle.pbDisplay(_INTL('{1} was burned! {2}!', pbThis, BURNED_EXPLANATION))
+					@battle.pbDisplay(_INTL("{1} was burned! {2}!", pbThis, BURNED_EXPLANATION))
 				when :NUMB
-					@battle.pbDisplay(_INTL('{1} is numbed! {2}!', pbThis, NUMBED_EXPLANATION))
-				when :FROZEN
-					@battle.pbDisplay(_INTL('{1} was chilled! {2}!', pbThis, CHILLED_EXPLANATION))
+					@battle.pbDisplay(_INTL("{1} is numbed! {2}!", pbThis, NUMBED_EXPLANATION))
 				when :FROSTBITE
-					@battle.pbDisplay(_INTL('{1} was frostbitten! {2}!', pbThis, FROSTBITE_EXPLANATION))
+					@battle.pbDisplay(_INTL("{1} was frostbitten! {2}!", pbThis, FROSTBITE_EXPLANATION))
 				when :DIZZY
-					@battle.pbDisplay(_INTL('{1} is dizzy! {2}!', pbThis, DIZZY_EXPLANATION))
+					@battle.pbDisplay(_INTL("{1} is dizzy! {2}!", pbThis, DIZZY_EXPLANATION))
 				when :LEECHED
-					@battle.pbDisplay(_INTL('{1} became leeched! {2}!', pbThis, LEECHED_EXPLANATION))
+					@battle.pbDisplay(_INTL("{1} became leeched! {2}!", pbThis, LEECHED_EXPLANATION))
 				end
 			end
 		end
@@ -646,13 +644,13 @@ class PokeBattle_Battler
 	def self.showStatusCureMessage(status, pokemonOrBattler, battle)
 		curedName = pokemonOrBattler.is_a?(PokeBattle_Battler) ? pokemonOrBattler.pbThis : pokemonOrBattler.name
 		case status
-		when :SLEEP			then battle.pbDisplay(_INTL('{1} woke up!', curedName))
-		when :POISON		then battle.pbDisplay(_INTL('{1} was cured of its poisoning.', curedName))
+		when :SLEEP			then battle.pbDisplay(_INTL("{1} woke up!", curedName))
+		when :POISON		then battle.pbDisplay(_INTL("{1} was cured of its poisoning.", curedName))
 		when :BURN			then battle.pbDisplay(_INTL("{1}'s burn was healed.", curedName))
 		when :FROSTBITE		then battle.pbDisplay(_INTL("{1}'s frostbite was healed.", curedName))
-		when :NUMB 			then battle.pbDisplay(_INTL('{1} is no longer numbed.', curedName))
-		when :DIZZY			then battle.pbDisplay(_INTL('{1} is no longer dizzy!', curedName))
-		when :LEECHED		then battle.pbDisplay(_INTL('{1} is no longer being leeched!', curedName))
+		when :NUMB 			then battle.pbDisplay(_INTL("{1} is no longer numbed.", curedName))
+		when :DIZZY			then battle.pbDisplay(_INTL("{1} is no longer dizzy!", curedName))
+		when :LEECHED		then battle.pbDisplay(_INTL("{1} is no longer being leeched!", curedName))
 		end
 	end
 end

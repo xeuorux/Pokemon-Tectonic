@@ -1,14 +1,14 @@
 class PokeBattle_Battler
 	def validateStat(stat)
 		if !stat.is_a?(Symbol)
-			raise _INTL("Given #{stat} is not a symbol!")
+			raise "Given #{stat} is not a symbol!"
 		end
 		statData = GameData::Stat.try_get(stat)
 		if !statData
-			raise _INTL("Symbol #{stat} is not a valid stat ID!")
+			raise "Symbol #{stat} is not a valid stat ID!"
 		end
 		if ![:main_battle, :battle].include?(statData.type)
-			raise _INTL("Symbol #{stat} is not a battle stat!")
+			raise "Symbol #{stat} is not a battle stat!"
 		end
 	end
 
@@ -20,7 +20,7 @@ class PokeBattle_Battler
 
 	def statMultiplierAtStage(stage)
 		if stage < -6 || stage > 6
-			raise _INTL("Given stat stage value #{stage} is not valid! Must be between -6 and 6, inclusive.")
+			raise "Given stat stage value #{stage} is not valid! Must be between -6 and 6, inclusive."
 		end
 		shiftedStage = stage + 6
 		mult = STAGE_MULTIPLIERS[shiftedStage].to_f / STAGE_DIVISORS[shiftedStage].to_f
@@ -179,11 +179,11 @@ class PokeBattle_Battler
 		end
 		if !user || user.index != @index # Not self-inflicted
 			if substituted? && !(move && move.ignoresSubstitute?(user))
-				@battle.pbDisplay(_INTL('{1} is protected by its substitute!', pbThis)) if showFailMsg
+				@battle.pbDisplay(_INTL("{1} is protected by its substitute!", pbThis)) if showFailMsg
 				return false
 			end
 			if pbOwnSide.effectActive?(:Mist) && !(user && user.hasActiveAbility?(:INFILTRATOR))
-				@battle.pbDisplay(_INTL('{1} is protected by Mist!', pbThis)) if showFailMsg
+				@battle.pbDisplay(_INTL("{1} is protected by Mist!", pbThis)) if showFailMsg
 				return false
 			end
 			unless ignoreAbilities
@@ -207,7 +207,7 @@ class PokeBattle_Battler
 		elsif hasActiveAbility?(:STUBBORN) && !@battle.moldBreaker && !ignoreAbilities
 			return false
 		elsif effectActive?(:EmpoweredFlowState)
-			@battle.pbDisplay(_INTL('{1} is in a state of total focus!', pbThis)) if showFailMsg
+			@battle.pbDisplay(_INTL("{1} is in a state of total focus!", pbThis)) if showFailMsg
 			return false
 		end
 		# Check the stat stage
@@ -351,7 +351,7 @@ class PokeBattle_Battler
 		return false if fainted?
 		# NOTE: Substitute intentially blocks Intimidate even if self has Contrary.
 		if substituted?
-			@battle.pbDisplay(_INTL('{1} is protected by its substitute!', pbThis))
+			@battle.pbDisplay(_INTL("{1} is protected by its substitute!", pbThis))
 			return false
 		end
 		if hasActiveAbility?(:INNERFOCUS)
@@ -391,7 +391,7 @@ class PokeBattle_Battler
 		return false if fainted?
 		# NOTE: Substitute intentially blocks Intimidate even if self has Contrary.
 		if substituted?
-			@battle.pbDisplay(_INTL('{1} is protected by its substitute!', pbThis))
+			@battle.pbDisplay(_INTL("{1} is protected by its substitute!", pbThis))
 			return false
 		end
 		if hasActiveAbility?(:INNERFOCUS)
@@ -431,7 +431,7 @@ class PokeBattle_Battler
 		return false if fainted?
 		# NOTE: Substitute intentially blocks Intimidate even if self has Contrary.
 		if substituted?
-			@battle.pbDisplay(_INTL('{1} is protected by its substitute!', pbThis))
+			@battle.pbDisplay(_INTL("{1} is protected by its substitute!", pbThis))
 			return false
 		end
 		if hasActiveAbility?(:INNERFOCUS)
@@ -475,7 +475,7 @@ class PokeBattle_Battler
 			@stages[stat] = -6
 			@battle.pbCommonAnimation('StatDown', self)
 			statName = GameData::Stat.get(stat).real_name
-			@battle.pbDisplay(_INTL('{1} minimized its {2}!', pbThis, statName))
+			@battle.pbDisplay(_INTL("{1} minimized its {2}!", pbThis, statName))
 			@battle.pbHideAbilitySplash(user) if showAbilitySplash
 		end
 	end
@@ -488,7 +488,7 @@ class PokeBattle_Battler
 			@stages[stat] = 6
 			@battle.pbCommonAnimation('StatUp', self)
 			statName = GameData::Stat.get(stat).real_name
-			@battle.pbDisplay(_INTL('{1} maximizes its {2}!', pbThis, statName))
+			@battle.pbDisplay(_INTL("{1} maximizes its {2}!", pbThis, statName))
 			@battle.pbHideAbilitySplash(user) if showAbilitySplash
 		end
 	end
