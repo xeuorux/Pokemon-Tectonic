@@ -96,15 +96,22 @@ module EffectHolder
     #################################################
 
 	def effectActive?(effect)
-        validateCorrectLocation(effect)
-		effectData = GameData::BattleEffect.get(effect)
+        if effect.is_a?(Array)
+            effect.each do |individualEffect|
+                return true if effectActive?(individualEffect)
+            end
+            return false
+        else
+            validateCorrectLocation(effect)
+            effectData = GameData::BattleEffect.get(effect)
 
-        if !@effects.has_key?(effect)
-            echoln(@effects.to_s)
-            raise _INTL("Cannot check if effect #{effectData.real_name} is active because it has no entry in the effect hash")
+            if !@effects.has_key?(effect)
+                echoln(@effects.to_s)
+                raise _INTL("Cannot check if effect #{effectData.real_name} is active because it has no entry in the effect hash")
+            end
+
+            return effectData.active_value?(@effects[effect])
         end
-
-		return effectData.active_value?(@effects[effect])
 	end
 
     def countEffect(effect)

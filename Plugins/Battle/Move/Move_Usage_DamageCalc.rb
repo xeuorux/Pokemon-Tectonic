@@ -236,7 +236,7 @@ class PokeBattle_Move
             end
         end
         # Partial protection moves
-        if target.effectActive?(:StunningCurl) || target.effectActive?(:RootShelter)
+        if target.effectActive?([:StunningCurl,:RootShelter,:VenomGuard])
             multipliers[:final_damage_multiplier] *= 0.5
         end
         if target.effectActive?(:EmpoweredDetect)

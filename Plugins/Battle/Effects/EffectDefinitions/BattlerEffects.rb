@@ -1328,6 +1328,12 @@ GameData::BattleEffect.register_effect(:Battler,{
 })
 
 GameData::BattleEffect.register_effect(:Battler,{
+	:id => :VenomGuard,
+	:real_name => "Venom Guard",
+	:resets_eor	=> true,
+})
+
+GameData::BattleEffect.register_effect(:Battler,{
 	:id => :RootShelter,
 	:real_name => "Root Shelter",
 	:resets_eor	=> true,

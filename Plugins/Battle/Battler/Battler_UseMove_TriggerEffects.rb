@@ -51,16 +51,24 @@ class PokeBattle_Battler
 			if target.effectActive?(:StunningCurl) && !user.numbed?
 				PBDebug.log("[Lingering effect] #{target.pbThis}'s Stunning Curl")
 				if user.canNumb?(target, false)
-					@battle.pbDisplay(_INTL("{1}'s stance causes the attack to bounce off akwardly!", target.pbThis))
+					@battle.pbDisplay(_INTL("{1}'s stance made {2}'s attack bounce off akwardly!", target.pbThis, user.pbThis(true)))
 					user.applyNumb(target)
 				end
 			end
-			# Stunning Curl
+			# Root Shelter
 			if target.effectActive?(:RootShelter) && !user.leeched?
 				PBDebug.log("[Lingering effect] #{target.pbThis}'s Root Shelter")
 				if user.canLeech?(target, false)
 					@battle.pbDisplay(_INTL("The roots guarding {1} dig into {2}!", target.pbThis(true), user.pbThis(true)))
 					user.applyLeeched(target)
+				end
+			end
+			# Venom Guard
+			if target.effectActive?(:VenomGuard) && !user.poisoned?
+				PBDebug.log("[Lingering effect] #{target.pbThis}'s Venom Guard")
+				if user.canPoison?(target, false)
+					@battle.pbDisplay(_INTL("{1} was stuck by {2}'s venom!", user.pbThis, user.pbThis(true)))
+					user.applyPoison(target)
 				end
 			end
 		end

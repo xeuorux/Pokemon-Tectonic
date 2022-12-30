@@ -2053,3 +2053,15 @@ class PokeBattle_Move_57E < PokeBattle_ProtectMove
 		return score
 	end
 end
+
+#===============================================================================
+# User is protected against moves with the "B" flag this round. If a Pokémon
+# attacks the user while this effect applies, that Pokémon becomes poisoned.
+# (Venom Guard)
+#===============================================================================
+class PokeBattle_Move_57F < PokeBattle_ProtectMove
+	def initialize(battle,move)
+	  super
+	  @effect = :VenomGuard
+	end
+  end
