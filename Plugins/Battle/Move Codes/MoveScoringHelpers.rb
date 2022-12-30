@@ -144,12 +144,22 @@ def getSleepEffectScore(user,target,policies=[])
 	return score
 end
 
-def getFlinchingEffectScore(baseScore,user,target)
+def userWillHitFirst?(user,target,move)
 	userSpeed = user.pbSpeed(true)
     targetSpeed = target.pbSpeed(true)
+
+	movePrio = user.battle.getMovePriority(move,user,[target])
+
+	return true if movePrio > 0
+	return false if movePrio < 0
+	return userSpeed > targetSpeed
+end
+
+def getFlinchingEffectScore(baseScore,user,target,move)
+	return 0 unless userWillHitFirst?(user,target,move)
     
     if target.hasActiveAbilityAI?(:INNERFOCUS) || target.substituted? ||
-          target.effectActive?(:FlinchedAlready) || targetSpeed > userSpeed
+          target.effectActive?(:FlinchedAlready)
       return 0
     end
 

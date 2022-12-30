@@ -2167,7 +2167,7 @@ class PokeBattle_Move_0C7 < PokeBattle_TwoTurnMove
   end
 
   def getEffectScore(user,target)
-    score = getFlinchingEffectScore(80,user,target)
+    score = getFlinchingEffectScore(80,user,target,self)
     return score
   end
 end

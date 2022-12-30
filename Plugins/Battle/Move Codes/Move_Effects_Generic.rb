@@ -209,7 +209,7 @@ class PokeBattle_FlinchMove < PokeBattle_Move
 
   def getEffectScore(user,target)
     baseScore = baseDamage * 10 / user.level
-    score = getFlinchingEffectScore(baseScore,user,target)
+    score = getFlinchingEffectScore(baseScore,user,target,self)
     return score
   end
 end
