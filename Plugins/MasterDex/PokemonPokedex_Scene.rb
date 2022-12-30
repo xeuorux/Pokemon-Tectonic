@@ -1797,7 +1797,7 @@ class PokemonPokedex_Scene
 					typesSearchInfo.each do |type,reversed|
 						effect = Effectiveness.calculate(type,item[6],item[7])
 								
-						case sectionSelection
+						case effectivenessSelection
 						when 0
 							survivesSearch = false if !Effectiveness.super_effective?(effect) ^ reversed
 						when 1
