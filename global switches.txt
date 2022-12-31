@@ -9,7 +9,9 @@
 64: Tournament Running
 65: Villain 1 Defeated
 
-67: Yezera Defeated
+66: Met Alessa
+67: Met Eifion
+68: Yezera Defeated
 
 70: Eleig Boating Dock Unlocked
 71: Sweetrock Dock Unlocked

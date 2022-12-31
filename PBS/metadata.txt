@@ -26,7 +26,7 @@ ShowArea = true
 Bicycle = false
 #-------------------------------
 [003]
-# The Shift
+# South Kilna Turf
 Outdoor = true
 ShowArea = true
 Bicycle = true
