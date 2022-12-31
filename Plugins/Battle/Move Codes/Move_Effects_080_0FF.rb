@@ -1895,29 +1895,20 @@ class PokeBattle_Move_0BC < PokeBattle_Move
 
     def pbFailsAgainstTarget?(user, target, show_message)
         if target.effectActive?(:Encore)
-            if show_message
-                @battle.pbDisplay(_INTL("But it failed, since #{target.pbThis(true)} is already locked into an encore!"))
-            end
+            @battle.pbDisplay(_INTL("But it failed, since #{target.pbThis(true)} is already locked into an encore!")) if show_message
             return true
         end
         unless target.lastRegularMoveUsed
-            if show_message
-                @battle.pbDisplay(_INTL("But it failed, since #{target.pbThis(true)} hasn't used a move yet!"))
-            end
+            @battle.pbDisplay(_INTL("But it failed, since #{target.pbThis(true)} hasn't used a move yet!")) if show_message
             return true
         end
         if @moveBlacklist.include?(GameData::Move.get(target.lastRegularMoveUsed).function_code)
-            if show_message
-                @battle.pbDisplay(_INTL("But it failed, since {1} can't be locked into {2}!",
-                  target.pbThis(true), GameData::Move.get(target.lastRegularMoveUsed).real_name))
-            end
-            return true
+            @battle.pbDisplay(_INTL("But it failed, since {1} can't be locked into {2}!",
+                  target.pbThis(true), GameData::Move.get(target.lastRegularMoveUsed).real_name)) if show_message
             return true
         end
         if target.effectActive?(:ShellTrap)
-            if show_message
-                @battle.pbDisplay(_INTL("But it failed, since #{target.pbThis(true)} is setting a Shell Trap!"))
-            end
+            @battle.pbDisplay(_INTL("But it failed, since #{target.pbThis(true)} is setting a Shell Trap!")) if show_message
             return true
         end
         return true if pbMoveFailedAromaVeil?(user, target, show_message)
@@ -1929,7 +1920,7 @@ class PokeBattle_Move_0BC < PokeBattle_Move
             break
         end
         unless canEncore
-            @battle.pbDisplay(_INTL("But it failed, since #{target.pbThis(true)} last used move has no more PP!"))
+            @battle.pbDisplay(_INTL("But it failed, since #{target.pbThis(true)} last used move has no more PP!")) if show_message
             return true
         end
         return false
