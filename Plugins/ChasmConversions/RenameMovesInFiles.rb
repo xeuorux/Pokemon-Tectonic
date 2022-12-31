@@ -16,43 +16,30 @@ end
 
 def renameAllSavedMovesInBatch(save_data,batch_number)
   move_renames = getRenamedMovesBatch(batch_number)
-  save_data[:player].party.each do |pokemon|
-    newMoves = []
+  eachPokemonInSave(save_data) do |pokemon|
     pokemon.moves.map! { |move|
       moveIDString = move.id.to_s
       if move_renames.has_key?(moveIDString)
-        echoln("Renaming #{move} on player's #{pokemon.name}")
+        echoln("Renaming #{moveIDString} on player's #{pokemon.name}")
         Pokemon::Move.new(move_renames[moveIDString][0].to_sym)
       else
         move
       end
     }
-  end 
-  storage = save_data[:storage_system]
-  
-  for i in -1...storage.maxBoxes
-    for j in 0...storage.maxPokemon(i)
-      pokemon = storage.boxes[i][j]
-      if pokemon
-        pokemon.moves.map! { |move|
-          moveIDString = move.id.to_s
-          if move_renames.has_key?(moveIDString)
-            echoln("Renaming #{moveIDString} on player's #{pokemon.name}")
-            Pokemon::Move.new(move_renames[moveIDString][0].to_sym)
-          else
-            move
-          end
-        }
-        pokemon.first_moves.map! { |move_id|
-          moveIDString = move_id.to_s
-          if move_renames.has_key?(moveIDString)
-            echoln("Renaming #{moveIDString} on player's #{pokemon.name}'s first moves array")
-            move_renames[moveIDString][0].to_sym
-          else
-            move_id
-          end
-        }
+    pokemon.first_moves.map! { |move_id|
+      moveIDString = move_id.to_s
+      if move_renames.has_key?(moveIDString)
+        echoln("Renaming #{moveIDString} on player's #{pokemon.name}'s first moves array")
+        move_renames[moveIDString][0].to_sym
+      else
+        move_id
       end
-    end
+    }
   end
+end
+
+def downgradeSaveTo20()
+  save_data = SaveData.get_data_from_file(SaveData::FILE_PATH)
+  save_data[:game_version] = "2.0.0"
+  File.open(SaveData::FILE_PATH, 'wb') { |file| Marshal.dump(save_data, file) }
 end
