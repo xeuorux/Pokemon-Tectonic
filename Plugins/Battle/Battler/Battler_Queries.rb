@@ -57,7 +57,7 @@ class PokeBattle_Battler
         return false if fainted? && !ignore_fainted
         return false if !ignore_gas && @battle.field.effectActive?(:NeutralizingGas)
         return false if effectActive?(:GastroAcid)
-        return false if dizzy?
+        return false if dizzy? && !%i[MARVELSCALE MARVELSKIN].include?(@ability_id)
         return true
     end
 
