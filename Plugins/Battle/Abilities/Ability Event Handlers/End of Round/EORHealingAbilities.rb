@@ -1,12 +1,12 @@
 BattleHandlers::EORHealingAbility.add(:SHEDSKIN,
     proc { |_ability, battler, battle|
-        next unless battler.hasAnyStatusNoTrigger
+        next unless battler.poisoned? || battler.burned? || battler.numbed? || battler.frostbitten? || battler.leeched?
         battle.pbShowAbilitySplash(battler)
-        battler.pbCureStatus(true, :POISON)
         battler.pbCureStatus(true, :BURN)
-        battler.pbCureStatus(true, :NUMB)
-        battler.pbCureStatus(true, :FROZEN)
         battler.pbCureStatus(true, :FROSTBITE)
+        battler.pbCureStatus(true, :POISON)
+        battler.pbCureStatus(true, :NUMB)
+        battler.pbCureStatus(true, :LEECHED)
         battle.pbHideAbilitySplash(battler)
     }
 )
