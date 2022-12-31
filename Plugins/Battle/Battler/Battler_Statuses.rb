@@ -113,9 +113,9 @@ class PokeBattle_Battler
                 when :POISON		then msg = _INTL("{1} is already poisoned!", pbThis)
                 when :BURN			then msg = _INTL("{1} already has a burn!", pbThis)
                 when :NUMB			then msg = _INTL("{1} is already numbed!", pbThis)
-                when :FROSTBITE	then msg = _INTL("{1} is already frostbitten!", pbThis)
-                when :DIZZY	then msg = _INTL("{1} is already dizzy!", pbThis)
-                when :LEECHED	then msg = _INTL("{1} is already being leeched!", pbThis)
+                when :FROSTBITE	    then msg = _INTL("{1} is already frostbitten!", pbThis)
+                when :DIZZY	        then msg = _INTL("{1} is already dizzy!", pbThis)
+                when :LEECHED	    then msg = _INTL("{1} is already being leeched!", pbThis)
                 end
                 @battle.pbDisplay(msg)
             end
@@ -252,10 +252,10 @@ immuneTypeRealName))
                 when :POISON		then msg = _INTL("{1} cannot be poisoned!", pbThis)
                 when :BURN			then msg = _INTL("{1} cannot be burned!", pbThis)
                 when :NUMB			then msg = _INTL("{1} cannot be numbed!", pbThis)
-                when :FROZEN	then msg = _INTL("{1} cannot be chilled!", pbThis)
-                when :FROSTBITE	then msg = _INTL("{1} cannot be frostbitten!", pbThis)
-                when :DIZZY	then msg = _INTL("{1} cannot be dizzied!", pbThis)
-                when :LEECHED	then msg = _INTL("{1} cannot become leeched!", pbThis)
+                when :FROZEN	    then msg = _INTL("{1} cannot be chilled!", pbThis)
+                when :FROSTBITE	    then msg = _INTL("{1} cannot be frostbitten!", pbThis)
+                when :DIZZY	        then msg = _INTL("{1} cannot be dizzied!", pbThis)
+                when :LEECHED	    then msg = _INTL("{1} cannot become leeched!", pbThis)
                 end
                 @battle.pbDisplay(msg)
                 @battle.pbHideAbilitySplash(immAlly || self)
@@ -640,11 +640,11 @@ pbThis(true)))
         case status
         when :SLEEP			then battle.pbDisplay(_INTL("{1} woke up!", curedName))
         when :POISON		then battle.pbDisplay(_INTL("{1} was cured of its poisoning.", curedName))
-        when :BURN	then battle.pbDisplay(_INTL("{1}'s burn was healed.", curedName))
-        when :FROSTBITE	then battle.pbDisplay(_INTL("{1}'s frostbite was healed.", curedName))
+        when :BURN	        then battle.pbDisplay(_INTL("{1}'s burn was healed.", curedName))
+        when :FROSTBITE	    then battle.pbDisplay(_INTL("{1}'s frostbite was healed.", curedName))
         when :NUMB 			then battle.pbDisplay(_INTL("{1} is no longer numbed.", curedName))
         when :DIZZY			then battle.pbDisplay(_INTL("{1} is no longer dizzy!", curedName))
-        when :LEECHED	then battle.pbDisplay(_INTL("{1} is no longer being leeched!", curedName))
+        when :LEECHED	    then battle.pbDisplay(_INTL("{1} is no longer being leeched!", curedName))
         end
     end
 end
