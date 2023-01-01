@@ -291,6 +291,15 @@ Pokemon = CAMERUPT,20
 ExtendsVersion = 0
 Policies = CURSE_STATUS_DOUBLED
 #-------------------------------
+[TEENAGERM,Jonas]
+Pokemon = PSYDUCK,19
+    AbilityIndex = 0
+Pokemon = ZIGZAGOON,19
+    AbilityIndex = 1
+    Item = ORANBERRY
+Pokemon = BERGMITE,20
+    AbilityIndex = 0
+#-------------------------------
 [LINEBACKER,Josh]
 Pokemon = GURDURR,21
     AbilityIndex = 0
