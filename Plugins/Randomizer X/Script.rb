@@ -207,7 +207,7 @@ module Randomizer
       :ENCOUNTERS => proc{ next Randomizer.randomizeEncounters },
       #:STATIC => proc{ next Randomizer.randomizeStatic },
       #:GIFTS => proc{ next Randomizer.randomizeStatic },
-      :ITEMS => proc{ next Randomizer.randomizeItems }
+      #:ITEMS => proc{ next Randomizer.randomizeItems }
     }
     # applies randomized data for specified rule sets
     for key in @@rules
