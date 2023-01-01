@@ -940,21 +940,6 @@ Pokemon = BEHEEYEM,35
 Pokemon = UNFEZANT,35
     AbilityIndex = 1
 #-------------------------------
-[TRAINER_Vincent,Vincent]
-Policies = RAIN_TEAM
-Pokemon = MURKROW,25
-    Name = Harbinger
-    AbilityIndex = 1
-Pokemon = FROGADIER,25
-    Name = Penumbra
-    AbilityIndex = 0
-Pokemon = KINGLER,26
-    Name = Aegis
-    AbilityIndex = 1
-Pokemon = QWILFISH,26
-    Name = Venenus
-    AbilityIndex = 1
-#-------------------------------
 [TRAINER_Lucile,Lucile]
 Pokemon = WHISMUR,18
     Name = Pippin
@@ -2331,6 +2316,7 @@ Pokemon = URSHIFU,70
     EV = 0,20,10,20,0,0
 #-------------------------------
 [FORMERCHAMP_Casey,Casey]
+Policies = SUN_TEAM
 Pokemon = CHERRIM,70
     Moves = SUNSHINE,MORNINGSUN,SOLARBEAM,FIREBLAST
     AbilityIndex = 0
@@ -3802,12 +3788,17 @@ Pokemon = GOLURK,65
     Item = GROUNDGEM
 #-------------------------------
 [FORMERCHAMP_Elise,Elise]
-Policies = PRESERVE_LAST_POKEMON
+Policies = PRESERVE_LAST_POKEMON,HAIL_TEAM
 Pokemon = FROSLASS,70
     Moves = SNOWYSORROWS,AURORAVEIL,HAIL,DESTINYBOND
     AbilityIndex = 0
     Item = FOCUSSASH
     EV = 0,20,0,20,20,10
+Pokemon = GOLURK,70
+    Moves = THUNDERPUNCH,FIREPUNCH,PHANTOMBREAK,EARTHQUAKE
+    AbilityIndex = 0
+    Item = SALACBERRY
+    EV = 10,20,0,10,0,10
 Pokemon = MAMOSWINE,70
     Moves = EARTHQUAKE,CRYSTALCRUSH,SUPERPOWER,STONEEDGE
     AbilityIndex = 1
@@ -3818,11 +3809,6 @@ Pokemon = DROMERUPT,70
     AbilityIndex = 1
     Item = NORMALGEM
     EV = 20,15,15,0,0,0
-Pokemon = GOLURK,70
-    Moves = THUNDERPUNCH,FIREPUNCH,PHANTOMBREAK,EARTHQUAKE
-    AbilityIndex = 0
-    Item = SALACBERRY
-    EV = 10,20,0,10,0,10
 Pokemon = CHIMECHO,70
     Moves = SHADOWBALL,DREAMABSORB,SIGNALBEAM,CHARGEBEAM
     AbilityIndex = 0
@@ -3868,6 +3854,16 @@ Pokemon = GRENINJA,70
     EV = 0,20,5,20,0,5
 #-------------------------------
 [FORMERCHAMP_Praveen,Praveen]
+Pokemon = ARCLAMOR,70
+    Moves = SLUDGEWAVE,RISINGVOLTAGE,HYPERVOICE,HEX
+    AbilityIndex = 1
+    Item = AIRBALLOON
+    EV = 0,20,0,20,20,0
+Pokemon = ARAICHU,70
+    Moves = RISINGVOLTAGE,VOLTSWITCH,HYDROPUMP,PSYCHIC
+    AbilityIndex = 1
+    Item = CHOICESPECS
+    EV = 20,20,0,10,20,0
 Pokemon = GIRAFARIG,70
     Moves = PSYCHICFANGS,BEATUP,REFLECT,LIGHTSCREEN
     AbilityIndex = 0
@@ -3883,21 +3879,11 @@ Pokemon = AGOLEM,70
     AbilityIndex = 1
     Item = ASSAULTVEST
     EV = 20,20,10,0,0,0
-Pokemon = ARCLAMOR,70
-    Moves = SLUDGEWAVE,RISINGVOLTAGE,HYPERVOICE,HEX
-    AbilityIndex = 1
-    Item = AIRBALLOON
-    EV = 0,20,0,20,20,0
 Pokemon = MGIGALITH,70
     Moves = DOUSE,ABERRANTMOTE,DIAMONDFORCE,BLOSSOM
     AbilityIndex = 0
     Item = LEFTOVERS
     EV = 20,0,15,0,0,15
-Pokemon = ARAICHU,70
-    Moves = RISINGVOLTAGE,VOLTSWITCH,HYDROPUMP,PSYCHIC
-    AbilityIndex = 1
-    Item = CHOICESPECS
-    EV = 20,20,0,10,20,0
 #-------------------------------
 [GUITARIST3,Mai]
 Policies = SUN_TEAM
@@ -4103,7 +4089,7 @@ Pokemon = GARDEVOIR,70
     Item = GRANDMASTERSCROLL
 #-------------------------------
 [FORMERCHAMP_Elise,Elise,1]
-Policies = PRESERVE_LAST_POKEMON
+Policies = PRESERVE_LAST_POKEMON,HAIL_TEAM
 Pokemon = FROSLASS,70
     Moves = SNOWYSORROWS,AURORAVEIL,HAIL,DESTINYBOND
     AbilityIndex = 0
