@@ -220,6 +220,8 @@
 217,SAILOR2,Sailor,32,,,SAILOR,Male,,,[]
 218,TUBER_M2,Tuber,4,,,TWINS,Male,,,[]
 219,TUBER_F2,Tuber,4,,,TWINS,Female,,,[]
+220,TEENAGERM,Teenager,20,,,ROUGHNECK,Male,,,[]
+221,TEENAGERF,Teenager,20,,,ROUGHNECK,Female,,,[]
 290,TRAINER_Eifion,Pokémon Trainer,100,,,,Male,,,[]
 291,TRAINER_Sang,Pokémon Trainer,100,,,,Male,,,[]
 292,TRAINER_Skyler,Pokémon Trainer,100,,,,Male,,,[]
