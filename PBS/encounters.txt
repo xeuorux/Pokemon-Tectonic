@@ -1,6 +1,6 @@
 ﻿# See the documentation on the wiki to learn how to edit this file.
 #-------------------------------
-[003] # The Shift
+[003] # Kilna Turf
 Land,20
     25,GROWLITHE,15,18
     25,RHYHORN,15,18
@@ -321,7 +321,7 @@ DarkCave,20
     25,LARVITAR,17,20
     25,TYNAMO,17,20
 #-------------------------------
-[121] # Skyward Ascent
+[121] # Kilna Ascent
 Land,20
     25,CUBCHOO,18,20
     25,PANCHAM,18,20

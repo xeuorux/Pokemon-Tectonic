@@ -26,7 +26,7 @@ ShowArea = true
 Bicycle = false
 #-------------------------------
 [003]
-# South Kilna Turf
+# Kilna Turf
 Outdoor = true
 ShowArea = true
 Bicycle = true
@@ -732,7 +732,7 @@ BattleBack = cave3
 Environment = Cave
 #-------------------------------
 [121]
-# Skyward Ascent
+# Kilna Ascent
 Outdoor = true
 ShowArea = true
 Bicycle = true
