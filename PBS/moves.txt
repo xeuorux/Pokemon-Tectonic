@@ -554,7 +554,7 @@
 553,TAILWHIP,Tail Whip,043,0,NORMAL,Status,100,25,0,AllNearFoes,0,bce,"The user wags its tail cutely, making opposing Pokémon less wary and lowering their Defense stat.",
 554,TEARFULLOOK,Tearful Look,13A,0,NORMAL,Status,0,15,0,NearOther,0,ce,"The user gets teary eyed. This lowers the target's Attack and Sp. Atk stats.",
 555,TEETERDANCE,Teeter Dance,401,0,NORMAL,Status,100,15,0,AllNearOthers,0,beo,"The user performs a wobbly dance that dizzies the Pokémon around it.",
-556,TICKLE,Tickle,04A,0,NORMAL,Status,100,15,0,NearOther,0,bce,"The user tickles the target into laughing, reducing its Attack and Defense stats.",
+556,TICKLE,Tickle,04A,0,NORMAL,Status,100,15,0,NearOther,0,bce,"The user tickles the target into laughing, reducing its Attack and Defense.",
 557,TRANSFORM,Transform,069,0,NORMAL,Status,0,10,0,NearOther,0,,"The user transforms into a copy of the target right down to having the same move set.",
 558,WHIRLWIND,Whirlwind,0EB,0,FLYING,Status,0,15,0,NearOther,-6,ceq,"The foe is forced to switch out, to be replaced at random. In the wild, the battle ends.",
 559,WISH,Wish,0D7,0,NORMAL,Status,0,10,0,User,0,d,"One turn after this move is used, the target's HP is restored by half the user's maximum HP.",
@@ -1088,3 +1088,4 @@
 1089,DRYHEAT,Dry Heat,57D,90,FIRE,Special,100,10,10,NearOther,0,bef,"The target is dried out and loses Water-type. Then, it bursts into flame from the heat.",
 1090,ICICLEARMOR,Icicle Armor,57E,0,ICE,Status,0,3,0,User,4,,"Protects the user from attacks. Also frostbites any attacker who physically attacks the user.",DEFENSECURL
 1091,VENOMGUARD,Venom Guard,57F,0,POISON,Status,0,3,0,User,4,,"Halves attack damage taken this turn. Also poisons any attacker who attacks the user.",DEFENSECURL
+1092,PRANK,Prank,560,0,NORMAL,Status,100,15,0,NearOther,0,bce,"The user pranks the target, surprising it and reducing its Sp. Atk and Sp. Def.",

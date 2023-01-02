@@ -1528,9 +1528,13 @@ class PokeBattle_Move_55F < PokeBattle_Move
 end
 
 #===============================================================================
-# #TODO: Currently unused
+# Decreases the target's Sp. Atk and Sp. Def by 1 stage each. (Prank)
 #===============================================================================
-class PokeBattle_Move_560 < PokeBattle_Move
+class PokeBattle_Move_560 < PokeBattle_TargetMultiStatDownMove
+    def initialize(battle, move)
+        super
+        @statDown = [:SPECIAL_ATTACK, 1, :SPECIAL_DEFENSE, 1]
+    end
 end
 
 #===============================================================================
