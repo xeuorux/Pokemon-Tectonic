@@ -86,7 +86,11 @@ module GameData
           @happiness             = hash[:happiness]             || 70
           @moves                 = hash[:moves]                 || []
           @tutor_moves           = hash[:tutor_moves]           || []
+          @tutor_moves.uniq!
+          @tutor_moves.sort_by!{|a| a.to_s}
           @egg_moves             = hash[:egg_moves]             || []
+          @egg_moves.uniq!
+          @egg_moves.sort_by!{|a| a.to_s}
           @abilities             = hash[:abilities]             || []
           @hidden_abilities      = hash[:hidden_abilities]      || []
           @wild_item_common      = hash[:wild_item_common]
