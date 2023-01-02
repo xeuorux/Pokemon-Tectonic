@@ -1088,5 +1088,5 @@
 1089,DRYHEAT,Dry Heat,57D,90,FIRE,Special,100,10,10,NearOther,0,bef,"The target is dried out and loses Water-type. Then, it bursts into flame from the heat.",
 1090,ICICLEARMOR,Icicle Armor,57E,0,ICE,Status,0,3,0,User,4,,"Protects the user from attacks. Also frostbites any attacker who physically attacks the user.",DEFENSECURL
 1091,VENOMGUARD,Venom Guard,57F,0,POISON,Status,0,3,0,User,4,,"Halves attack damage taken this turn. Also poisons any attacker who attacks the user.",DEFENSECURL
-1092,PRANK,Prank,560,0,NORMAL,Status,100,15,0,NearOther,0,bce,"The user pranks the target, surprising it and reducing its Sp. Atk and Sp. Def.",
-1093,GREYMIST,Grey Mist,587,0,NORMAL,Status,0,10,0,User,0,,"Stat changes are reset. For 5 turns, Pokemon on the user's side can't have their stats cut.",
+1092,PRANK,Prank,560,0,NORMAL,Status,100,15,0,NearOther,0,bce,"The user pranks the target, surprising it and reducing its Sp. Atk and Sp. Def.",SCARYFACE
+1093,GREYMIST,Grey Mist,587,0,POISON,Status,0,10,0,User,0,,"Stat changes are reset. For 5 turns, Pokemon on the user's side can't have their stats cut.",MIST

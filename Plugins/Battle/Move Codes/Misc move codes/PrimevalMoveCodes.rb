@@ -361,21 +361,13 @@ class PokeBattle_Move_625 < PokeBattle_HalfHealingMove
     end
 end
 
-# Empowered Gastro Acid
-class PokeBattle_Move_626 < PokeBattle_Move_068
+# Empowered Grey Mist
+class PokeBattle_Move_626 < PokeBattle_Move_587
     include EmpoweredMove
-
-    def pbFailsAgainstTarget?(user, target, show_message)
-        if target.unstoppableAbility? && !target.pbCanLowerStatStage?(:SPECIAL_DEFENSE, user, self)
-            @battle.pbDisplay(_INTL("But it failed!")) if show_message
-            return true
-        end
-        return false
-    end
 
     def pbEffectAgainstTarget(user, target)
         super
-        target.tryLowerStat(:SPECIAL_DEFENSE, user, move: self)
+        user.pbRaiseMultipleStatStages([:DEFENSE,1,:SPECIAL_DEFENSE,1],user, move: self)
 
         transformType(user, :POISON)
     end

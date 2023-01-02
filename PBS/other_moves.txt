@@ -56,7 +56,7 @@
 3023,PRIMEVALPSYCHICTERRAIN,Primeval Psychic Terrain,623,0,PSYCHIC,Status,0,1,0,BothSides,0,y,"Sets Psychic Terrain, resets lowered stats, and user becomes Psychic-type.",PSYCHICTERRAIN
 3024,PRIMEVALFAIRYTERRAIN,Primeval Fairy Terrain,624,0,FAIRY,Status,0,1,0,BothSides,0,y,"Sets Fairy Terrain, buffs all the attacking and defending stats of all allies, and user becomes Fairy-type.",FAIRYTERRAIN
 3025,PRIMEVALHEALORDER,Primeval Heal Order,625,0,BUG,Status,0,1,0,User,0,dy,"The user restores 1/8th of its HP, summons an allied Combee, and becomes Bug-type",HEALORDER
-3026,PRIMEVALGASTROACID,Primeval Gastro Acid,626,0,POISON,Status,100,1,0,AllNearFoes,0,bcey,"The user negates all enemy abilities, reduces their Sp. Def, and becomes Poison-type.",GASTROACID
+3026,PRIMEVALGREYMIST,Primeval Grey Mist,626,0,POISON,Status,100,1,0,User,0,d,"The user resets all stats, prevents stat changes, increases their defenses, and becomes Poison-type.",MIST
 3027,PRIMEVALROCKPOLISH,Primeval Rock Polish,627,0,ROCK,Status,0,1,0,User,0,dy,"The sharply raises its speed, gains an extra two moves per turn, and becomes Rock-type.",ROCKPOLISH
 3028,PRIMEVALWHIRLWIND,Primeval Whirlwind,628,0,FLYING,Status,0,1,0,AllNearFoes,-6,cey,"All near foes are forced to switch out, and the user becomes Flying-type.",WHIRLWIND
 3029,PRIMEVALEMBARGO,Primeval Embargo,629,0,DARK,Status,100,1,0,FoeSide,0,bcey,"The enemy side is prevented from using items for the rest of the battle, and the user becomes Dark-type.",EMBARGO
