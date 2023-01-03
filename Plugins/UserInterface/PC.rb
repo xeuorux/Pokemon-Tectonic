@@ -72,7 +72,7 @@ def pbPokeCenterPC
 end
 
 def pbPCItemStorage
-    pbSEPlay("GUI storage pick up")
+    pbSEPlay("Door enter",60,130)
     window = pbCreateMessageWindow()
     command = 0
     loop do
@@ -124,5 +124,5 @@ def pbPCItemStorage
       end
     end
     pbDisposeMessageWindow(window)
-    pbSEPlay("GUI storage put down")
+    pbSEPlay("Door enter",60,115)
 end
