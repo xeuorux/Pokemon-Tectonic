@@ -76,7 +76,7 @@ BattleHandlers::DamageCalcUserAbility.add(:OVERGROW,
 
 BattleHandlers::DamageCalcUserAbility.add(:RECKLESS,
   proc { |_ability, _user, _target, move, mults, _baseDmg, _type, _aiCheck|
-      mults[:base_damage_multiplier] *= 1.2 if move.recoilMove?
+      mults[:base_damage_multiplier] *= 1.3 if move.recoilMove?
   }
 )
 
@@ -391,5 +391,11 @@ BattleHandlers::DamageCalcUserAbility.add(:UNCANNYCOLD,
 BattleHandlers::DamageCalcUserAbility.add(:MARINEMENACE,
   proc { |_ability, _user, _target, move, mults, _baseDmg, _type|
       mults[:base_damage_multiplier] *= 1.5 if move.function == "0CB"
+  }
+)
+
+BattleHandlers::DamageCalcUserAbility.add(:RECKLESS,
+  proc { |_ability, _user, _target, move, mults, _baseDmg, _type, _aiCheck|
+      mults[:base_damage_multiplier] *= 2.0 if move.recoilMove?
   }
 )
