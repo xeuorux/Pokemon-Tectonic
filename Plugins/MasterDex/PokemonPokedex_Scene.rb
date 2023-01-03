@@ -1086,6 +1086,10 @@ class PokemonPokedex_Scene
   end
   
   def searchByEvolutionMethod()
+	  selections = [_INTL("Pre-Evolutions"),_INTL("Evolved Forms"),_INTL("Cancel")]
+	  relationSelection = pbMessage("Pre-evolutions, or evolved forms?",selections,selections.length)
+	  return if relationSelection == 2
+
 	  evoMethodTextInput = pbEnterText("Search method...", 0, 12)
 	  if evoMethodTextInput && evoMethodTextInput!=""
 		  reversed = evoMethodTextInput[0] == '-'
@@ -1094,8 +1098,11 @@ class PokemonPokedex_Scene
 		  dexlist = dexlist.find_all { |item|
 			next false if autoDisqualifyFromSearch(item[0])
 			anyContain = false
+
+			entries = relationSelection == 0 ? item[14] : item[15]
+
 			# Evolutions
-			item[14].each do |evomethod|
+			entries.each do |evomethod|
 				strippedActualDescription = describeEvolutionMethod(evomethod[1],evomethod[2]).downcase.delete(' ')
 				strippedInputString = evoMethodTextInput.downcase.delete(' ')
 				anyContain = true if strippedActualDescription.include?(strippedInputString)
