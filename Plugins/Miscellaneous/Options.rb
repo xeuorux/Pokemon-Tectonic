@@ -15,6 +15,7 @@ class PokemonSystem
   attr_accessor :status_effect_messages
   attr_accessor :nicknaming_prompt
   attr_accessor :color_shifts
+  attr_accessor :bag_sorting
 
   def bgmvolume
     return @bgmvolume / VOLUME_FAKERY_MULT
@@ -59,6 +60,7 @@ class PokemonSystem
     @status_effect_messages   = 0 # (0=true, 1=false)
     @nicknaming_prompt        = 0 # (0=true, 1=false)
     @show_trait_unlocks       = 0 # (0=true, 1=false)
+    @bag_sorting              = 0 # (0=none,1=alphabetical,2=ID)
   end
 end
 
@@ -216,6 +218,13 @@ class PokemonOption_Scene
 			      $PokemonSystem.followers = value
             pbToggleFollowingPokemon($PokemonSystem.followers == 0 ? "on" : "off",false)
          }
+      ),
+      EnumOption.new(_INTL("Bag Sorting"),[_INTL("Off"),_INTL("Name"),_INTL("Amount")],
+        proc { $PokemonSystem.bag_sorting },
+        proc { |value|
+            $PokemonSystem.bag_sorting = value
+            $PokemonBag.sortItems
+        }
       ),
     ]
 	  @PokemonOptions.push(EnumOption.new(_INTL("Skip Fades"),[_INTL("On"),_INTL("Off")],

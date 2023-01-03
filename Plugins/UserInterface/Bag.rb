@@ -167,3 +167,145 @@ class PokemonBagScreen
     return item
   end
 end
+
+class PokemonBag_Scene
+    # Called when the item screen wants an item to be chosen from the screen
+  def pbChooseItem
+    @sprites["helpwindow"].visible = false
+    itemwindow = @sprites["itemlist"]
+    thispocket = @bag.pockets[itemwindow.pocket]
+    swapinitialpos = -1
+    pbActivateWindow(@sprites,"itemlist") {
+      loop do
+        oldindex = itemwindow.index
+        Graphics.update
+        Input.update
+        pbUpdate
+        if itemwindow.sorting && itemwindow.index>=thispocket.length
+          itemwindow.index = (oldindex==thispocket.length-1) ? 0 : thispocket.length-1
+        end
+        if itemwindow.index!=oldindex
+          # Move the item being switched
+          if itemwindow.sorting
+            thispocket.insert(itemwindow.index,thispocket.delete_at(oldindex))
+          end
+          # Update selected item for current pocket
+          @bag.setChoice(itemwindow.pocket,itemwindow.index)
+          pbRefresh
+        end
+        if itemwindow.sorting
+          if Input.trigger?(Input::ACTION) ||
+             Input.trigger?(Input::USE)
+            itemwindow.sorting = false
+            pbPlayDecisionSE
+            pbRefresh
+          elsif Input.trigger?(Input::BACK)
+            thispocket.insert(swapinitialpos,thispocket.delete_at(itemwindow.index))
+            itemwindow.index = swapinitialpos
+            itemwindow.sorting = false
+            pbPlayCancelSE
+            pbRefresh
+          end
+        else
+          # Change pockets
+          if Input.trigger?(Input::LEFT)
+            newpocket = itemwindow.pocket
+            loop do
+              newpocket = (newpocket==1) ? PokemonBag.numPockets : newpocket-1
+              break if !@choosing || newpocket==itemwindow.pocket
+              if @filterlist
+                break if @filterlist[newpocket].length>0
+              else
+                break if @bag.pockets[newpocket].length>0
+              end
+            end
+            if itemwindow.pocket!=newpocket
+              itemwindow.pocket = newpocket
+              @bag.lastpocket   = itemwindow.pocket
+              thispocket = @bag.pockets[itemwindow.pocket]
+              pbPlayCursorSE
+              pbRefresh
+            end
+          elsif Input.trigger?(Input::RIGHT)
+            newpocket = itemwindow.pocket
+            loop do
+              newpocket = (newpocket==PokemonBag.numPockets) ? 1 : newpocket+1
+              break if !@choosing || newpocket==itemwindow.pocket
+              if @filterlist
+                break if @filterlist[newpocket].length>0
+              else
+                break if @bag.pockets[newpocket].length>0
+              end
+            end
+            if itemwindow.pocket!=newpocket
+              itemwindow.pocket = newpocket
+              @bag.lastpocket   = itemwindow.pocket
+              thispocket = @bag.pockets[itemwindow.pocket]
+              pbPlayCursorSE
+              pbRefresh
+            end
+          elsif Input.trigger?(Input::ACTION)   # Start switching the selected item
+            if !@choosing
+              if thispocket.length>1 && itemwindow.index<thispocket.length &&
+                  $PokemonSystem.bag_sorting == 0
+                itemwindow.sorting = true
+                swapinitialpos = itemwindow.index
+                pbPlayDecisionSE
+                pbRefresh
+              else
+                pbPlayBuzzerSE
+              end
+            end
+          elsif Input.trigger?(Input::BACK)   # Cancel the item screen
+            pbPlayCloseMenuSE
+            return nil
+          elsif Input.trigger?(Input::USE)   # Choose selected item
+            (itemwindow.item) ? pbPlayDecisionSE : pbPlayCloseMenuSE
+            return itemwindow.item
+          end
+        end
+      end
+    }
+  end
+end
+
+module ItemStorageHelper
+  def self.pbStoreItem(items, maxsize, maxPerSlot, item, qty, sorting = false)
+    raise "Invalid value for qty: #{qty}" if qty < 0
+    return true if qty == 0
+    itm = GameData::Item.try_get(item)
+    itemPocket = (itm) ? itm.pocket : 0
+    for i in 0...maxsize
+      itemslot = items[i]
+      if !itemslot
+        items[i] = [item, [qty, maxPerSlot].min]
+        qty -= items[i][1]
+        sortItems(items)
+        return true if qty == 0
+      elsif itemslot[0] == item && itemslot[1] < maxPerSlot
+        newamt = itemslot[1]
+        newamt = [newamt + qty, maxPerSlot].min
+        qty -= (newamt - itemslot[1])
+        itemslot[1] = newamt
+        return true if qty == 0
+      end
+    end
+    return false
+  end
+
+  def self.sortItems(items)
+    if $PokemonSystem.bag_sorting == 2
+      items.sort! { |a, b| b[1] <=> a[1] }
+    elsif $PokemonSystem.bag_sorting == 1
+      items.sort! { |a, b| GameData::Item.get(a[0]).real_name <=> GameData::Item.get(b[0]).real_name }
+    end
+  end
+end
+
+class PokemonBag
+  def sortItems
+    @pockets.each do |pocket|
+      ItemStorageHelper.sortItems(pocket)
+    end
+  end
+end
