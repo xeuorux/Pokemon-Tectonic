@@ -166,24 +166,17 @@ class PokeBattle_Move_586 < PokeBattle_Move
 end
 
 #===============================================================================
-# Resets stat changes, then creates Mist for 5 turns. (Grey Mist)
+# Resets all stat stages at end of turn and at the end of the next four turns. (Grey Mist)
 #===============================================================================
 class PokeBattle_Move_587 < PokeBattle_Move
     def pbEffectGeneral(_user)
-        anyEliminated = false
-        @battle.eachBattler { |b|
-            anyEliminated = true if b.hasAlteredStatStages?
-            b.pbResetStatStages
-        }
-        @battle.pbDisplay(_INTL("All stat changes were eliminated!")) if anyEliminated
-
-        user.pbOwnSide.applyEffect(:Mist, 5)
+        @battle.field.applyEffect(:GreyMist, 5)
     end
 
-    def pbMoveFailed?(user, _targets, show_message)
-        if user.pbOwnSide.effectActive?(:Mist)
+    def pbMoveFailed?(_user, _targets, show_message)
+        if @battle.field.effectActive?(:GreyMist)
             if show_message
-                @battle.pbDisplay(_INTL("But it failed, since #{user.pbTeam(true)} is already shrouded in mist!"))
+                @battle.pbDisplay(_INTL("But it failed, since the field is already shrouded in Grey Mist!"))
             end
             return true
         end

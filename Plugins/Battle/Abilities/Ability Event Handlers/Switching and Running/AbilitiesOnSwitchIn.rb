@@ -95,6 +95,12 @@ BattleHandlers::AbilityOnSwitchIn.add(:DRIZZLE,
   }
 )
 
+BattleHandlers::AbilityOnSwitchIn.add(:DRIFTINGMIST,
+  proc { |_ability, _battler, battle|
+      battle.field.applyEffect(:GreyMist, 3) unless battle.field.effectActive?(:GreyMist)
+  }
+)
+
 BattleHandlers::AbilityOnSwitchIn.add(:DROUGHT,
   proc { |_ability, battler, battle|
       pbBattleWeatherAbility(:Sun, battler, battle)

@@ -255,6 +255,8 @@ def getHealingEffectScore(user, target, magnitude = 5)
 end
 
 def getMultiStatUpEffectScore(statUpArray, user, target)
+    return 0 if user.battle.field.effectActive?(:GreyMist)
+
     score = 0
 
     for i in 0...statUpArray.length / 2
@@ -299,6 +301,8 @@ def getMultiStatUpEffectScore(statUpArray, user, target)
 end
 
 def getMultiStatDownEffectScore(statDownArray, user, target)
+    return 0 if user.battle.field.effectActive?(:GreyMist)
+
     score = 0
 
     for i in 0...statDownArray.length / 2
