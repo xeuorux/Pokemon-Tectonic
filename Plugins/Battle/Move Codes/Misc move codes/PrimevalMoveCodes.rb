@@ -9,8 +9,10 @@ module EmpoweredMove
         user.pbChangeTypes(type)
         typeName = GameData::Type.get(type).name
         @battle.pbAnimation(:CONVERSION, user, [user])
-        user.pokemon.bossType = type
-        @battle.scene.pbChangePokemon(user.index, user.pokemon)
+        if user.boss?
+            user.pokemon.bossType = type
+            @battle.scene.pbChangePokemon(user.index, user.pokemon)
+        end
         @battle.pbDisplay(_INTL("{1} transformed into the {2} type!", user.pbThis, typeName))
     end
 end
