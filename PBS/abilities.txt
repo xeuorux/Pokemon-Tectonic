@@ -419,7 +419,7 @@
 418,PUZZLINGAURA,Puzzling Aura,"Transforms the field to Puzzle Room for 5 turns on entering the battle, swapping Attack and Sp. Atk."
 419,DIREDIVERSION,Dire Diversion,"It can avoid being knocked out by sacrificing its held item."
 420,WALLNINJA,Wall Ninja,"The Pokémon's attacks are always critical if there is an active Room."
-421,RELUCTANTBLADE,Relucant Blade,"When hit with a physical move, hits back instantly with Leafage."
+421,RELUCTANTBLADE,Reluctant Blade,"When hit with a physical move, hits back instantly with Leafage."
 422,BRILLIANTFLURRY,Brilliant Flurry,"If an attack lowers its HP to half or less, lowers the attacker's Attack, Sp. Atk, and Speed."
 423,INDUSTRIALIZE,Industrialize,"Immune to Steel-type moves and raises Speed if hit by one."
 424,AQUASNEAK,Aqua Sneak,"On the first turn, its attacks are always critical, can't miss, and ignore protections."
