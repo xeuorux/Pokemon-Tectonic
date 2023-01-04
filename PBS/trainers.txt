@@ -3593,7 +3593,7 @@ Pokemon = GOLISOPOD,65
 [MASKEDVILLAIN2,Teal,1]
 ExtendsVersion = 0
 NameForHashing = Imogene
-Policies = CURSE_TYPE_WEAKENED
+Policies = CURSE_PERFECT_LUCK
 Pokemon = REGICE,65
     Item = ICEGEM
 Pokemon = GOTHITELLE,65
@@ -3629,7 +3629,7 @@ Pokemon = RILLABOOM,65
 [MASKEDVILLAIN2,Teal,3]
 ExtendsVersion = 2
 NameForHashing = Alessa
-Policies = CURSE_TYPE_WEAKENED
+Policies = CURSE_PERFECT_LUCK
 Pokemon = REGICE,65
     Item = ICEGEM
 Pokemon = PORYGONZ,65
@@ -3665,7 +3665,7 @@ Pokemon = PALMANTRA,65
 [MASKEDVILLAIN2,Teal,5]
 ExtendsVersion = 4
 NameForHashing = Skylar
-Policies = CURSE_TYPE_WEAKENED
+Policies = CURSE_PERFECT_LUCK
 Pokemon = REGICE,65
     Item = ICEGEM
 Pokemon = ABSOLUS,65
@@ -3701,7 +3701,7 @@ Pokemon = AGOLEM,65
 [MASKEDVILLAIN2,Teal,7]
 ExtendsVersion = 6
 NameForHashing = Keoni
-Policies = CURSE_TYPE_WEAKENED
+Policies = CURSE_PERFECT_LUCK
 Pokemon = REGICE,65
     Item = ICEGEM
 Pokemon = MPOLTEAGEIST,65
@@ -3737,7 +3737,7 @@ Pokemon = GIGANTEON,65
 [MASKEDVILLAIN2,Teal,9]
 ExtendsVersion = 8
 NameForHashing = Eifion
-Policies = CURSE_TYPE_WEAKENED
+Policies = CURSE_PERFECT_LUCK
 Pokemon = REGICE,65
     Item = ICEGEM
 Pokemon = HOUNDOMINUS,65
@@ -3777,7 +3777,7 @@ Pokemon = GOLURK,65
 [MASKEDVILLAIN2,Teal,11]
 ExtendsVersion = 10
 NameForHashing = Candy
-Policies = CURSE_TYPE_WEAKENED
+Policies = CURSE_PERFECT_LUCK
 Pokemon = REGICE,65
     Item = ICEGEM
 Pokemon = GRAPIDASH,65
