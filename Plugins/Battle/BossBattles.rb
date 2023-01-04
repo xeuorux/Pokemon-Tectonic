@@ -428,6 +428,8 @@ class PokeBattle_Battle
         end
         newBattler = @battlers[battlerIndexNew]
         sideSizes[sideIndex] += 1
+        @scene.lastMove[battlerIndexNew] = 0
+        @scene.lastCmd[battlerIndexNew] = 0
 
         # Put the pokemon's party index into the party order tracker
         partyOrder = [@party1order, @party2order]

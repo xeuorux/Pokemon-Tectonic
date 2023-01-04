@@ -1,4 +1,7 @@
 class PokeBattle_Scene
+  attr_accessor :lastCmd
+  attr_accessor :lastMove
+
   def pbStartBattle(battle)
     @battle   = battle
     @viewport = Viewport.new(0,0,Graphics.width,Graphics.height)
@@ -228,9 +231,9 @@ class PokeBattle_Scene
        _INTL("",@battle.battlers[idxBattler].name),
        _INTL("Fight"),
        _INTL("Dex"),
-	   _INTL("Ball"),
+	     _INTL("Ball"),
        _INTL("Pokémon"),
-	   _INTL("Info"),
+	     _INTL("Info"),
        (shadowTrainer) ? _INTL("Call") : (firstAction) ? _INTL("Run") : _INTL("Cancel"),
     ]
     wildBattle = !@battle.trainerBattle? && !@battle.bossBattle?
@@ -265,8 +268,6 @@ class PokeBattle_Scene
     initIndex = 0 if @lastCmd[idxBattler] == 3
     cw.setIndexAndMode(initIndex,mode)
     pbSelectBattler(idxBattler)
-    hasPokeballs = $PokemonBag.pockets()[3].any?{|itemrecord| itemrecord[1] > 0}
-	  onlyOneOpponent = @battle.pbOpposingBattlerCount == 1
     ret = -1
     loop do
       oldIndex = cw.index
@@ -295,33 +296,33 @@ class PokeBattle_Scene
         pbPlayDecisionSE
         ret = -2
         break
-	  elsif Input.pressex?(:NUMBER_1)
-		pbPlayDecisionSE
+	    elsif Input.pressex?(:NUMBER_1)
+		    pbPlayDecisionSE
         ret = 0
         @lastCmd[idxBattler] = 0
         break
-	  elsif Input.pressex?(:NUMBER_2)
-		pbPlayDecisionSE
+      elsif Input.pressex?(:NUMBER_2)
+		    pbPlayDecisionSE
         ret = 1
         @lastCmd[idxBattler] = 1
         break
-	  elsif Input.pressex?(:NUMBER_3)
-		pbPlayDecisionSE
+	    elsif Input.pressex?(:NUMBER_3)
+		    pbPlayDecisionSE
         ret = 2
         @lastCmd[idxBattler] = 2
         break
-	  elsif Input.pressex?(:NUMBER_4)
-		pbPlayDecisionSE
+	    elsif Input.pressex?(:NUMBER_4)
+		    pbPlayDecisionSE
         ret = 3
         @lastCmd[idxBattler] = 3
         break
-	  elsif Input.pressex?(:NUMBER_5)
-		pbPlayDecisionSE
+	    elsif Input.pressex?(:NUMBER_5)
+		    pbPlayDecisionSE
         ret = 4
         @lastCmd[idxBattler] = 4
         break
-	  elsif Input.pressex?(:NUMBER_6)
-		pbPlayDecisionSE
+	    elsif Input.pressex?(:NUMBER_6)
+		    pbPlayDecisionSE
         ret = 5
         @lastCmd[idxBattler] = 5
         break

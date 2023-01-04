@@ -122,7 +122,10 @@ class PokeBattle_Battle
         partyOrders = pbPartyOrder(idxBattler)
         idxStart, _idxEnd = pbTeamIndexRangeFromBattlerIndex(idxBattler)
         ret = []
-        eachInTeamFromBattlerIndex(idxBattler) { |pkmn, i| ret[partyOrders[i] - idxStart] = pkmn }
+        eachInTeamFromBattlerIndex(idxBattler) { |pkmn, i|
+            break if pkmn.boss?
+            ret[partyOrders[i] - idxStart] = pkmn
+        }
         return ret
     end
 

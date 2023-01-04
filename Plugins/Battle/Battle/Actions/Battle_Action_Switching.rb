@@ -45,6 +45,10 @@ class PokeBattle_Battle
     # NOTE: Messages are only shown while in the party screen when choosing a
     #       command for the next round.
     def pbCanSwitch?(idxBattler, idxParty = -1, partyScene = nil)
+        if @battlers[idxBattler].boss?
+            partyScene.pbDisplay(_INTL("Avatars can't be switched out!")) if partyScene
+            return false
+        end
         # Check whether party Pokémon can switch in
         return false unless pbCanSwitchLax?(idxBattler, idxParty, partyScene)
         # Make sure another battler isn't already choosing to switch to the party

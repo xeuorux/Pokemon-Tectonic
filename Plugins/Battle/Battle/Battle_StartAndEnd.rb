@@ -647,6 +647,11 @@ class PokeBattle_Battle
             @peer.pbOnLeavingBattle(self, pkmn, @usedInBattle[0][i], true) # Reset form
             pkmn.item = @initialItems[0][i]
         end
+        # Remove avatars from the trainer's party
+        pbParty(0).reject! { |pkmn|
+            pkmn.boss?
+        }
+        pbParty(0).compact!
         return @decision
     end
 
