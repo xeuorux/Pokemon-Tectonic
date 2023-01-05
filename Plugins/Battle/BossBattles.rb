@@ -401,6 +401,25 @@ class PokeBattle_Battle
     SUMMON_MIN_HEALTH_LEVEL = 15
     SUMMON_MAX_HEALTH_LEVEL = 50
 
+    def generateAvatarPokemon(species, level)
+        newPokemon = pbGenerateWildPokemon(species, level, true)
+        newPokemon.boss = true
+        setAvatarProperties(newPokemon)
+
+        # Set the pokemon's starting health
+        if level >= SUMMON_MAX_HEALTH_LEVEL
+            healthPercent = 1.0
+        elsif level <= SUMMON_MIN_HEALTH_LEVEL
+            healthPercent = 0.5
+        else
+            healthPercent = 0.5 + (level - SUMMON_MIN_HEALTH_LEVEL) / (SUMMON_MAX_HEALTH_LEVEL - SUMMON_MIN_HEALTH_LEVEL).to_f
+            healthPercent = 1.0 if healthPercent > 1.0
+        end
+        newPokemon.hp = (newPokemon.totalhp * healthPercent).ceil
+
+        return newPokemon
+    end
+
     def addAvatarBattler(species, level, sideIndex = 1)
         return if @autoTesting
 
@@ -411,13 +430,15 @@ class PokeBattle_Battle
         end
 
         # Create the new pokemon
-        newPokemon = pbGenerateWildPokemon(species, level, true)
-        newPokemon.boss = true
-        setAvatarProperties(newPokemon)
+        newPokemon = generateAvatarPokemon(species, level)
 
         # Put the pokemon into the party
         partyIndex = pbParty(sideIndex).length
         pbParty(sideIndex)[partyIndex] = newPokemon
+
+        # Put the pokemon's party index into the party order tracker
+        partyOrder = [@party1order, @party2order]
+        partyOrder.insert(indexOnSide, partyIndex)
 
         # Put the battler into the battle
         battlerIndexNew = indexOnSide * 2 + sideIndex
@@ -431,27 +452,12 @@ class PokeBattle_Battle
         @scene.lastMove[battlerIndexNew] = 0
         @scene.lastCmd[battlerIndexNew] = 0
 
-        # Put the pokemon's party index into the party order tracker
-        partyOrder = [@party1order, @party2order]
-        partyOrder.insert(indexOnSide, partyIndex)
-
         # Create any missing battler slots
         0.upto(battlerIndexNew) do |idxBattler|
             next unless @battlers[idxBattler].nil?
             pbCreateBattler(idxBattler)
             scene.pbCreatePokemonSprite(idxBattler)
         end
-
-        # Set the battler's starting health
-        if level >= SUMMON_MAX_HEALTH_LEVEL
-            healthPercent = 1.0
-        elsif level <= SUMMON_MIN_HEALTH_LEVEL
-            healthPercent = 0.5
-        else
-            healthPercent = 0.5 + (level - SUMMON_MIN_HEALTH_LEVEL) / (SUMMON_MAX_HEALTH_LEVEL - SUMMON_MIN_HEALTH_LEVEL).to_f
-            healthPercent = 1.0 if healthPercent > 1.0
-        end
-        newBattler.hp = (newBattler.totalhp * healthPercent).ceil
 
         # Remake all the battle boxes
         scene.deleteDataBoxes

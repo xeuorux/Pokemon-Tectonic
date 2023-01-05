@@ -3337,7 +3337,7 @@ Pokemon = TYRANITAR,65
 #-------------------------------
 [POKEMONTRAINER_Yezera,Yezera,9]
 ExtendsVersion = 8
-Policies = CURSE_TYPE_WEAKENED
+Policies = CURSE_AVATAR_GUARD,PRESERVE_LAST_POKEMON
 Pokemon = REGIDRAGO,65
     Item = DRAGONGEM
 Pokemon = REGIELEKI,65

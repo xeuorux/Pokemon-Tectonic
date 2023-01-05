@@ -300,6 +300,14 @@ class PokeBattle_Battle
         # Send out the new Pokémon
         pbSendOut([[idxBattler, party[idxParty]]])
         pbCalculatePriority(false, [idxBattler]) if Settings::RECALCULATE_TURN_ORDER_AFTER_SPEED_CHANGES
+        if @battlers[idxBattler].boss?
+            scene.deleteDataBoxes
+            scene.createDataBoxes
+            eachBattler do |b|
+                databox = scene.sprites["dataBox_#{b.index}"]
+                databox.visible = true
+            end
+        end
     end
 
     # Called from def pbReplace above and at the start of battle.
