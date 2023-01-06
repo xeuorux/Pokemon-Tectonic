@@ -542,7 +542,7 @@ Environment = Cave
 Outdoor = false
 ShowArea = false
 Bicycle = false
-HealingSpot = 25,13,17
+HealingSpot = 25,16,19
 #-------------------------------
 [083]
 # Chasm HQ Station
