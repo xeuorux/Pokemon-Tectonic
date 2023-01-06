@@ -455,24 +455,19 @@ class PokeBattle_Move_595 < PokeBattle_Move_024
 end
 
 #===============================================================================
-# Maximizes attack, minimizes Speed, target cannot escape. (Death Mark)
+# The target cannot escape and takes 50% more damage from all attacks. (Death Mark)
 #===============================================================================
 class PokeBattle_Move_596 < PokeBattle_Move
     def pbFailsAgainstTarget?(user, target, show_message)
-        if target.effectActive?(:MeanLook) && !user.pbCanRaiseStatStage?(:ATTACK) && !user.pbCanLowerStatStage?(:SPEED)
-            @battle.pbDisplay(_INTL("But it failed!")) if show_message
+        if target.effectActive?(:DeathMark)
+            @battle.pbDisplay(_INTL("But it failed, since the target is already marked for death!")) if show_message
             return true
         end
         return false
     end
 
     def pbEffectAgainstTarget(user, target)
-        target.pointAt(:MeanLook, user) unless target.effectActive?(:MeanLook)
-    end
-
-    def pbEffectGeneral(user)
-        user.pbMinimizeStatStage(:SPEED, user, self)
-        user.pbMaximizeStatStage(:ATTACK, user, self)
+        target.pointAt(:DeathMark, user) unless target.effectActive?(:DeathMark)
     end
 end
 

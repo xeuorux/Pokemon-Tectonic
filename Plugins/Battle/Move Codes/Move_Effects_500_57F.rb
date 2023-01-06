@@ -105,9 +105,15 @@ class PokeBattle_Move_507 < PokeBattle_TargetStatDownMove
 end
 
 #===============================================================================
-# (Not currently used)
+# Increases the user's Attack by 3 stages, but lowers its Speed by 3 stages.
+# (Patient Training)
 #===============================================================================
-class PokeBattle_Move_508 < PokeBattle_Move
+class PokeBattle_Move_508 < PokeBattle_StatUpDownMove
+    def initialize(battle, move)
+        super
+        @statUp   = [:ATTACK,3]
+        @statDown = [:SPEED,3]
+    end
 end
 
 #===============================================================================

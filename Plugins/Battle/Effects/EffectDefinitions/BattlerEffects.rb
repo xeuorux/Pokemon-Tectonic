@@ -536,6 +536,18 @@ GameData::BattleEffect.register_effect(:Battler, {
 })
 
 GameData::BattleEffect.register_effect(:Battler, {
+    :id => :DeathMark,
+    :real_name => "Marked for Death",
+    :type => :Position,
+    :trapping => true,
+    :others_lose_track => true,
+    :swaps_with_battlers => true,
+    :apply_proc => proc do |battle, battler, _value|
+        battle.pbDisplay(_INTL("{1} is marked for death! It cannot escape!", battler.pbThis))
+    end,
+})
+
+GameData::BattleEffect.register_effect(:Battler, {
     :id => :MeFirst,
     :real_name => "Me First",
 })

@@ -324,6 +324,10 @@ class PokeBattle_Move
             BattleHandlers.triggerDamageCalcTargetItem(target.item,
                 user,target,self,multipliers,baseDmg,type)
         end
+
+        if target.effectActive?(:DeathMark)
+            multipliers[:final_damage_multiplier] *= 1.5
+        end
         
         if aiChecking
             # Parental Bond
