@@ -44,10 +44,10 @@ class TribalBonus
         species = pokemon.species
         fSpecies = GameData::Species.get_species_form(species, form)
         tribes = fSpecies.tribes
-        tribes.each {|tribe|
-            next unless @tribeCounts[tribe] < 5
+        tribes.each { |tribe|
+            next unless @tribeCounts[tribe] >= 5
             GameData::Stat.each_main_battle do |stat|
-                tribeBonuses[stat] = 5 + (pokemon.level / 14).floor
+                tribeBonuses[stat.id] = 5 + (pokemon.level / 14).floor
             end
         }
 
