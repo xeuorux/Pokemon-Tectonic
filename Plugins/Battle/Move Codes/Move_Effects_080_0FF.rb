@@ -3538,7 +3538,7 @@ class PokeBattle_Move_0F5 < PokeBattle_Move
         return unless canIncinerateTargetsItem?(target)
         itemName = target.itemName
         target.pbRemoveItem
-        @battle.pbDisplay(_INTL("{1}'s {2} was incinerated!", target.pbThis, itemName))
+        @battle.pbDisplay(_INTL("{1}'s {2} was destroyed!", target.pbThis, itemName))
     end
 
     def getEffectScore(_user, target)
