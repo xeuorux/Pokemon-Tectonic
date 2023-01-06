@@ -2500,12 +2500,12 @@ class PokeBattle_Move_0D4 < PokeBattle_FixedDamageMove
         return false
     end
 
-    def pbOnStartUse(user, _targets)
-        @damagingTurn = (user.effects[:Bide] == 1) # If attack turn
+    def damagingTurn?(user)
+        return user.effects[:Bide] == 1
     end
 
     def pbDisplayUseMessage(user, targets)
-        if @damagingTurn # Attack turn
+        if damagingTurn?(user)
             @battle.pbDisplayBrief(_INTL("{1} unleashed energy!", user.pbThis))
         elsif user.effectActive?(:Bide)
             @battle.pbDisplayBrief(_INTL("{1} is storing energy!", user.pbThis))
@@ -2515,7 +2515,7 @@ class PokeBattle_Move_0D4 < PokeBattle_FixedDamageMove
     end
 
     def pbDamagingMove? # Stops damage being dealt in the charging turns
-        return false unless @damagingTurn
+        return false unless damagingTurn?(user)
         return super
     end
 
