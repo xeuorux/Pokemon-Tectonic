@@ -988,7 +988,7 @@ GameData::BattleEffect.register_effect(:Battler, {
 
 GameData::BattleEffect.register_effect(:Battler, {
     :id => :Truant,
-    :real_name => "Slacking Off",
+    :real_name => "Not Slacking Off",
 })
 
 GameData::BattleEffect.register_effect(:Battler, {
