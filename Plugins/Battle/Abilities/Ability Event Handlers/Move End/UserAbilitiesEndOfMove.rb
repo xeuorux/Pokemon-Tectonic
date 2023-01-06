@@ -185,6 +185,7 @@ BattleHandlers::UserAbilityEndOfMove.add(:POWERLIFTER,
   proc { |_ability, user, targets, move, battle, switchedBattlers|
       next if battle.futureSight
       next unless move.physicalMove?
+      battle.pbDisplay(_INTL("{1} lifts its foes out of the field!", user.pbThis))
       move.forceOutTargets(user, targets, switchedBattlers, true, false)
   }
 )
