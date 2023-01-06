@@ -31,12 +31,6 @@ BattleHandlers::PriorityChangeAbility.add(:FAUXLIAGE,
   }
 )
 
-BattleHandlers::PriorityChangeAbility.add(:LIGHTTRICK,
-  proc { |_ability, _battler, _move, _pri, targets = nil|
-      next 1 if targets && targets.length == 1 && targets[0].status != :NONE
-  }
-)
-
 BattleHandlers::PriorityChangeAbility.add(:DECEPTIVE,
   proc { |_ability, battler, move, _pri|
       if move.statusMove? && battler.battle.field.terrain == :Fairy

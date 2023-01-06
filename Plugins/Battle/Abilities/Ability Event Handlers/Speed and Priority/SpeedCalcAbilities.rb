@@ -98,3 +98,16 @@ BattleHandlers::SpeedCalcAbility.add(:LOCOMOTION,
       next mult * 1.5
   }
 )
+
+BattleHandlers::SpeedCalcAbility.add(:LIGHTTRICK,
+  proc { |_ability, battler, mult|
+      active = false
+      battler.eachOpposing do |b|
+          next unless b.pbHasAnyStatus?
+          active = true
+          break
+      end
+      mult *= 2 if active
+      next mult
+  }
+)

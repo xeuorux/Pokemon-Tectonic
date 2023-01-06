@@ -313,7 +313,7 @@
 312,LINGERINGDAZE,Lingering Daze,"Enemies which wake up have their Attack and Sp. Atk drastically lowered."
 313,SHIELDWALL,Shield Wall,"Hyper-effective attacks deal 50% less."
 314,MYSTICFIST,Mystic Fist,"Boosts the power of punching moves by 30%, and makes them special."
-315,LIGHTTRICK,Light Trick,"Moves used against a single statused target always go first."
+315,LIGHTTRICK,Light Trick,"Doubled speed if any enemy has a status condition."
 316,ASTRALBODY,Astral Body,"Heals by 1/8th of its max HP each turn if on Fairy Terrain."
 317,BIGTHORNS,Big Thorns,"Attack boosted 30% on Grassy Terrain."
 318,STORMFRONT,Storm Front,"Water-, Electric-, and Flying-type moves deal 30% more damage in rain."
