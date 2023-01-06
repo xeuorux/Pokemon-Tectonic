@@ -381,7 +381,7 @@ self) && !target.pbCanRaiseStatStage?(:SPECIAL_DEFENSE, user, self)
 
     def pbEffectAgainstTarget(user, target)
         return unless @buffing
-        target.pbRaiseMultipleStatStages([:SPEED, 1, :SPECIAL_DEFENSE, 1], user, move: self)
+        target.pbRaiseMultipleStatStages([:SPEED, 2], user, move: self)
     end
 
     def pbShowAnimation(id, user, targets, hitNum = 0, showAnimation = true)
