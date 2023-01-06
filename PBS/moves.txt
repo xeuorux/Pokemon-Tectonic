@@ -844,7 +844,7 @@
 844,RUIN,Ruin,000,100,NORMAL,Special,100,10,0,NearOther,0,bef,"The user brings down a ruinous power on the target, damaging it.",JUDGMENT
 845,HARDFEELINGS,Hard Feelings,07E,70,NORMAL,Special,100,12,0,NearOther,0,bef,"Doubles its power if the user has a status condition. Ignores frostbite Sp. Atk reduction.",
 846,SOULDRAIN,Soul Drain,52C,30,GHOST,Special,100,15,100,NearOther,0,bef,"The user absorbs the target's soul, lowering its Sp. Def and draining its life in the process.",NIGHTSHADE
-847,ABYSSALRESET,Abyssal Reset,52D,40,DARK,Special,100,12,0,AllNearOthers,0,bce,"Darkness rolls over the field, damaging all other Pokémon, ending weather, and healing statuses.",
+847,ABYSSALRESET,Abyssal Reset,52D,60,DARK,Special,100,12,0,AllNearOthers,0,bce,"Darkness rolls over the field, damaging all other Pokémon, ending weather, and healing statuses.",
 849,ECHOLOCATE,Echolocate,52E,0,FLYING,Status,0,12,0,AllNearFoes,0,cek,"Harshly lowers the target's Defense and evasion. This move can't miss and skips protections.",SUPERSONIC
 850,WINGSPANECLIPSE,Wingspan Eclipse,52F,0,DRAGON,Status,0,12,0,AllNearFoes,0,bce,"The Pokémon blots out the sky with huge wings, ending weather. It also lowers the opponent's Attack.",
 851,ALLERGY,Allergy,04D,70,BUG,Special,100,12,100,NearOther,0,bef,"The user makes the target have an allergic reaction. This harshly reduces its Speed.",
@@ -1070,7 +1070,7 @@
 1071,RIGHTEOUSKICK,Righteous Kick,54B,70,FIGHTING,Physical,100,20,100,NearOther,0,abef,"A kick that can also eliminate trapping and hazard moves. Also raises user's Speed.",
 1072,ROOTSHELTER,Root Shelter,5A5,0,GRASS,Status,0,3,0,User,4,,"Halves attack damage taken this turn. Also leeches any attacker who attacks the user.",VINEBIND
 1073,DREAMFEAST,Dream Feast,0DE,60,PSYCHIC,Physical,100,12,0,NearOther,0,abef,"The user assaults its foe's dreams. It absorbs half the damage caused to heal its HP and doubles in power if the foe is asleep.",ZENHEADBUTT
-1074,CRUELKISS,Cruel Kiss,402,50,FAIRY,Special,100,10,100,NearOther,0,bce,"Leeches the target by kissing them with its thin mouth.",DRAININGKISS
+1074,CRUELKISS,Cruel Kiss,402,65,FAIRY,Special,100,10,100,NearOther,0,bce,"Leeches the target by kissing them with its thin mouth.",DRAININGKISS
 1075,TYRANTSFIT,Tyrant's Fit,5A6,120,DRAGON,Physical,100,10,0,RandomNearFoe,0,abef,"The user throws a royal fit for three turns. Raises Speed if a target is knocked out by this move.",OUTRAGE
 1076,TRANSCENDENTENERGY,Transcendent Energy,5A7,0,DRAGON,Status,0,5,0,User,0,,"A two-turn move. The user channels insane amounts of energy the first turn, then transforms.",DAZZLINGGLEAM
 1077,TRASHTREASURE,Trash Treasure,5A8,0,POISON,Status,100,12,0,NearOther,0,bce,"The target is given a Black Sludge, replacing their item. Their Sp. Def is lowered.",
