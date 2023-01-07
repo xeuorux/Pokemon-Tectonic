@@ -123,6 +123,7 @@ class PokeBattle_Battle
     def forceUseMove(forcedMoveUser, moveIDOrIndex, target = -1, specialUsage = true, usageMessage = nil, moveUsageEffect = nil, showAbilitySplash = false)
         oldLastRoundMoved = forcedMoveUser.lastRoundMoved
         if specialUsage
+            @specialUsage = true
             # NOTE: Petal Dance being used shouldn't lock the
             #       battler into using that move, and shouldn't contribute to its
             #       turn counter if it's already locked into Petal Dance.
@@ -145,6 +146,7 @@ class PokeBattle_Battle
             forcedMoveUser.effects[:Outrage] = oldOutrageTurns
             forcedMoveUser.currentMove = oldCurrentMove
         end
+        @specialUsage = false
         pbJudge
         return if @decision > 0
     end

@@ -7,3 +7,13 @@ PokeBattle_AI::TrainerSendsOutPokemonDialogue.add(:RAFAEL,
       next dialogue_array
   }
 )
+
+PokeBattle_AI::TrainerAbilityTriggeredDialogue.add(:RAFAEL,
+  proc { |_policy, _battler, ability, trainer_speaking, dialogue_array|
+      if ability == :DANCER && !trainer_speaking.policyStates[:DancerGimmickComment]
+          dialogue_array.push("Call me gimmicky, but I ain't a one-trick pony.")
+          trainer_speaking.policyStates[:DancerGimmickComment] = true
+      end
+      next dialogue_array
+  }
+)

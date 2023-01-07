@@ -53,6 +53,7 @@ class PokeBattle_Battle
     def pbShowAbilitySplash(battler, delay = false, logTrigger = true, fakeName = nil)
         @knownAbilities[battler.pokemon.personalID] = true if battler.pbOwnedByPlayer?
         PBDebug.log("[Ability triggered] #{battler.pbThis}'s #{battler.abilityName}") if logTrigger
+        triggerAbilityTriggeredDialogue(battler, battler.ability)
         return unless showMessages?
         @scene.pbShowAbilitySplash(battler, fakeName)
         if delay

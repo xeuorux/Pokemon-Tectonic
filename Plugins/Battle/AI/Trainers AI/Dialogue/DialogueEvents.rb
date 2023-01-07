@@ -4,25 +4,27 @@ class TrainerDialogueHandlerHash < HandlerHash2
 end
 
 class PokeBattle_AI
-    TrainerChoseMoveDialogue = TrainerDialogueHandlerHash.new
-    PlayerChoseMoveDialogue	= TrainerDialogueHandlerHash.new
-    TrainerIsUsingMoveDialogue	= TrainerDialogueHandlerHash.new
-    PlayerIsUsingMoveDialogue	= TrainerDialogueHandlerHash.new
-    TrainerPokemonFaintedDialogue	= TrainerDialogueHandlerHash.new
-    PlayerPokemonFaintedDialogue	= TrainerDialogueHandlerHash.new
-    TrainerSendsOutPokemonDialogue	= TrainerDialogueHandlerHash.new
-    PlayerSendsOutPokemonDialogue	= TrainerDialogueHandlerHash.new
+    TrainerChoseMoveDialogue                    = TrainerDialogueHandlerHash.new
+    PlayerChoseMoveDialogue	                    = TrainerDialogueHandlerHash.new
+    TrainerIsUsingMoveDialogue	                = TrainerDialogueHandlerHash.new
+    PlayerIsUsingMoveDialogue	                = TrainerDialogueHandlerHash.new
+    TrainerPokemonFaintedDialogue	            = TrainerDialogueHandlerHash.new
+    PlayerPokemonFaintedDialogue	            = TrainerDialogueHandlerHash.new
+    TrainerSendsOutPokemonDialogue	            = TrainerDialogueHandlerHash.new
+    PlayerSendsOutPokemonDialogue	            = TrainerDialogueHandlerHash.new
     TrainerPokemonTookMoveDamageDialogue		= TrainerDialogueHandlerHash.new
     PlayerPokemonTookMoveDamageDialogue			= TrainerDialogueHandlerHash.new
     TrainerPokemonImmuneDialogue				= TrainerDialogueHandlerHash.new
     PlayerPokemonImmuneDialogue					= TrainerDialogueHandlerHash.new
-    TrainerPokemonDiesToDOTDialogue	= TrainerDialogueHandlerHash.new
-    PlayerPokemonDiesToDOTDialogue	= TrainerDialogueHandlerHash.new
+    TrainerPokemonDiesToDOTDialogue	            = TrainerDialogueHandlerHash.new
+    PlayerPokemonDiesToDOTDialogue	            = TrainerDialogueHandlerHash.new
     WeatherChangeDialogue						= TrainerDialogueHandlerHash.new
     TerrainChangeDialogue						= TrainerDialogueHandlerHash.new
-    BattleSurvivedDialogue	= TrainerDialogueHandlerHash.new
-    TrainerPokemonConsumesItemDialogue	= TrainerDialogueHandlerHash.new
-    PlayerPokemonConsumesItemDialogue	= TrainerDialogueHandlerHash.new
+    BattleSurvivedDialogue	                    = TrainerDialogueHandlerHash.new
+    TrainerPokemonConsumesItemDialogue	        = TrainerDialogueHandlerHash.new
+    PlayerPokemonConsumesItemDialogue	        = TrainerDialogueHandlerHash.new
+    TrainerAbilityTriggeredDialogue	            = TrainerDialogueHandlerHash.new
+    PlayerAbilityTriggeredDialogue	            = TrainerDialogueHandlerHash.new
 
     def self.triggerTrainerChoseMoveDialogue(policy, battler, move, target, trainer_speaking, dialogue_array)
         ret = TrainerChoseMoveDialogue.trigger(policy, battler, move, target, trainer_speaking, dialogue_array)
@@ -122,6 +124,16 @@ dialogue_array)
         ret = PlayerChoseMoveDialogue.trigger(policy, battler, item, trainer_speaking, dialogue_array)
         return !ret.nil? ? ret : dialogue_array
     end
+
+    def self.triggerTrainerAbilityTriggeredDialogue(policy, battler, ability, trainer_speaking, dialogue_array)
+        ret = TrainerAbilityTriggeredDialogue.trigger(policy, battler, ability, trainer_speaking, dialogue_array)
+        return !ret.nil? ? ret : dialogue_array
+    end
+
+    def self.triggerPlayerAbilityTriggeredDialogue(policy, battler, ability, trainer_speaking, dialogue_array)
+        ret = PlayerAbilityTriggeredDialogue.trigger(policy, battler, ability, trainer_speaking, dialogue_array)
+        return !ret.nil? ? ret : dialogue_array
+    end
 end
 
 class PokeBattle_Battle
@@ -212,6 +224,18 @@ trainer_speaking, dialogue)
 dialogue)
             else
                 PokeBattle_AI.triggerPlayerPokemonConsumesItemDialogue(policy, battler, item, trainer_speaking,
+dialogue)
+            end
+        end
+    end
+
+    def triggerAbilityTriggeredDialogue(battler, ability)
+        triggerDialogueOnBattlerAction(battler) do |isTrainerOwned, policy, trainer_speaking, dialogue|
+            if isTrainerOwned
+                PokeBattle_AI.triggerTrainerAbilityTriggeredDialogue(policy, battler, ability, trainer_speaking,
+dialogue)
+            else
+                PokeBattle_AI.triggerPlayerAbilityTriggeredDialogue(policy, battler, ability, trainer_speaking,
 dialogue)
             end
         end

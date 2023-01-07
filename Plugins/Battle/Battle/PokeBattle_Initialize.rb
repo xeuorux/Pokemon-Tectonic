@@ -41,6 +41,7 @@ class PokeBattle_Battle
     attr_accessor :lastMoveUser     # Last move user
     attr_reader   :switching        # True if during the switching phase of the round
     attr_accessor :futureSight      # True if Future Sight is hitting
+    attr_accessor :specialUsage     # True if a special usage is happening
     attr_reader   :endOfRound       # True during the end of round
     attr_accessor :moldBreaker      # True if Mold Breaker applies
     attr_reader   :struggle         # The Struggle move
@@ -125,6 +126,7 @@ class PokeBattle_Battle
         @lastMoveUser      = -1
         @switching         = false
         @futureSight       = false
+        @specialUsage      = false
         @endOfRound        = false
         @moldBreaker       = false
         @runCommand        = 0
