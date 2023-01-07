@@ -2442,6 +2442,12 @@ class PokeBattle_Move_16B < PokeBattle_Move
             end
             return true
         end
+        if @battle.getBattleMoveInstanceFromID(target.lastRegularMoveUsed).is_a?(PokeBattle_TwoTurnMove)
+            if show_message
+                @battle.pbDisplay(_INTL("But it failed, since #{target.pbThis(true)}'s last used move is a two-turn move!"))
+            end
+            return true
+        end
         idxMove = -1
         target.eachMoveWithIndex do |m, i|
             idxMove = i if m.id == target.lastRegularMoveUsed

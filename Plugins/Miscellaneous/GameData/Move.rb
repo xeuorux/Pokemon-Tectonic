@@ -43,9 +43,9 @@ module GameData
           return false if [
             "0D4",   # Bide
             "14B",   # King's Shield
-            "16B",   # Instruct (this move)
             # Struggle
             "002",   # Struggle
+            "158",   # Belch
             # Moves that affect the moveset
             "05C",   # Mimic
             "05D",   # Sketch
@@ -58,31 +58,20 @@ module GameData
             "0B4",   # Sleep Talk
             "0B5",   # Assist
             "0B6",   # Metronome
+            "16B",   # Instruct
+            "57A",   # Hive Mind
             # Moves that require a recharge turn
             "0C2",   # Hyper Beam
-            # Two-turn attacks
-            "0C3",   # Razor Wind
-            "0C4",   # Solar Beam, Solar Blade
-            "0C5",   # Freeze Shock
-            "0C6",   # Ice Burn
-            "0C7",   # Sky Attack
-            "0C8",   # Skull Bash
-            "0C9",   # Fly
-            "0CA",   # Dig
-            "0CB",   # Dive
-            "0CC",   # Bounce
-            "0CD",   # Shadow Force
-            "0CE",   # Sky Drop
-            "12E",   # Shadow Half
-            "14D",   # Phantom Force
-            "14E",   # Geomancy
             # Moves that start focussing at the start of the round
             "115",   # Focus Punch
             "171",   # Shell Trap
-            "172",    # Beak Blast
-            "57A",   # Hive Mind
+            "172",   # Beak Blast
+            # Counter moves
+            "071",   # Counter
+            "072",   # Mirror Coat
+            "073",   # Metal Burst
           ].include?(@function_code)
-         return true
+          return true
         end
     end
 end

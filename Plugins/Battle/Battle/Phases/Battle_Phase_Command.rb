@@ -346,27 +346,6 @@ class PokeBattle_Battle
                 b.pbHeldItemTriggerCheck
             end
         end
-        # @field.resetEffects if pbRandom(100) < resetChance
-        # if pbRandom(100) < resetChance
-        # 	endWeather
-        # else
-        # 	if pbRandom(100) < changeChance
-        # 		pbStartWeather(nil,[:Sun,:Rain,:Sandstorm,:Hail,:HarshSun,:HeavyRain].sample)
-        # 	end
-        # end
-        # if pbRandom(100) < resetChance
-        # 	endTerrain
-        # else
-        # 	if pbRandom(100) < changeChance
-        # 		pbStartTerrain(nil,[:Grassy,:Psychic,:Fairy,:Electric].sample)
-        # 	end
-        # end
-        # @sides.each do |side|
-        # 	side.resetEffects if pbRandom(100) < changeChance
-        # end
-        # @positions.each do |position|
-        # 	position.resetEffects if pbRandom(100) < changeChance
-        # end
     end
 
     def pbCommandPhaseLoop(isPlayer)

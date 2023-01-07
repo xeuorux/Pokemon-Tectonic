@@ -1557,124 +1557,39 @@ class PokeBattle_Move_0B6 < PokeBattle_Move
             "011",   # Snore
             "11D",   # After You
             "11E",   # Quash
-            "16C",   # Instruct
-            # Struggle, Chatter, Belch
-            "002",   # Struggle
-            "014",   # Chatter
-            "158",   # Belch
-            # Moves that affect the moveset
-            "05C",   # Mimic
-            "05D",   # Sketch
-            "069",   # Transform
-            # Counter moves
-            "071",   # Counter
-            "072",   # Mirror Coat
-            "073",   # Metal Burst                         # Not listed on Bulbapedia
-            # Helping Hand, Feint (always blacklisted together, don't know why)
             "09C",   # Helping Hand
-            "0AD",   # Feint
-            # Protection moves
-            "0AA",   # Detect, Protect
-            "0AB",   # Quick Guard
-            "0AC",   # Wide Guard
-            "0E8",   # Endure
-            "149",   # Mat Block
-            "14A",   # Crafty Shield
-            "14B",   # King's Shield
-            "14C",   # Spiky Shield
-            "168",   # Baneful Bunker
-            # Moves that call other moves
-            "0AE",   # Mirror Move
-            "0AF",   # Copycat
-            "0B0",   # Me First
-            "0B3",   # Nature Power
-            "0B4",   # Sleep Talk
-            "0B5",   # Assist
-            "0B6",   # Metronome
             # Move-redirecting and stealing moves
-            "0B1",   # Magic Coat                          # Not listed on Bulbapedia
+            "0B1",   # Magic Coat
             "0B2",   # Snatch
             "117",   # Follow Me, Rage Powder
             "16A",   # Spotlight
-            # Set up effects that trigger upon KO
-            "0E6",   # Grudge                              # Not listed on Bulbapedia
-            "0E7",   # Destiny Bond
             # Held item-moving moves
             "0F1",   # Covet, Thief
             "0F2",   # Switcheroo, Trick
             "0F3",   # Bestow
-            # Moves that start focussing at the start of the round
-            "115",   # Focus Punch
-            "171",   # Shell Trap
-            "172",   # Beak Blast
             # Event moves that do nothing
             "133", # Hold Hands
             "134", # Celebrate
             # Z-moves
             "Z000",
         ]
-        @moveBlacklistSignatures = [
-            :SNARL,
-            # Signature moves
-            :DIAMONDSTORM,     # Diancie (Gen 6)
-            :FLEURCANNON,      # Magearna (Gen 7)
-            :FREEZESHOCK,      # Black Kyurem (Gen 5)
-            :HYPERSPACEFURY,   # Hoopa Unbound (Gen 6)
-            :HYPERSPACEHOLE,   # Hoopa Confined (Gen 6)
-            :ICEBURN,          # White Kyurem (Gen 5)
-            :LIGHTOFRUIN,      # Eternal Flower Floette (Gen 6)
-            :MINDBLOWN,        # Blacephalon (Gen 7)
-            :PHOTONGEYSER,     # Necrozma (Gen 7)
-            :PLASMAFISTS,      # Zeraora (Gen 7)
-            :RELICSONG,        # Meloetta (Gen 5)
-            :SECRETSWORD,      # Keldeo (Gen 5)
-            :SPECTRALTHIEF,    # Marshadow (Gen 7)
-            :STEAMERUPTION,    # Volcanion (Gen 6)
-            :TECHNOBLAST,      # Genesect (Gen 5)
-            :THOUSANDARROWS,   # Zygarde (Gen 6)
-            :THOUSANDWAVES,    # Zygarde (Gen 6)
-            :VCREATE, # Victini (Gen 5)
-            :STRATOSPHERESCREAM, # Avatar of Rayquaza (Tectonic)
-        ]
-        @moveBlacklistCut = [
-            # Moves that have been cut from the game
-            :CHARM,
-            :SKYATTACK,
-            :CONFUSION,
-            :ROCKSMASH,
-            :DRAGONRUSH,
-            :SMARTSTRIKE,
-            :SWEETKISS,
-            :SONICBOOM,
-            :PRESENT,
-            :FairyTERRAIN,
-            :THUNDERWAVE,
-            :DREAMEATER,
-            :FURYATTACK,
-            :MAGNETICFLUX,
-            :SPITE,
-            :GRUDGE,
-            :CONSTRICT,
-            :WRAP,
-        ]
-    end
 
-    def getMetronomeMoves
-        metronomeMoves = []
+        @metronomeMoves = []
         GameData::Move::DATA.keys.each do |move_id|
             move_data = GameData::Move.get(move_id)
-            next if @moveBlacklist.include?(move_data.function_code)
-            next if @moveBlacklistSignatures.include?(move_data.id)
-            next if @moveBlacklistCut.include?(move_data.id)
+            break if move_data.id_number >= 2000
+            next if move_data.is_signature?
+            next unless move_data.can_be_forced?
             next if move_data.type == :SHADOW
-            next if GameData::Move.get(move_id).empoweredMove?
-            metronomeMoves.push(move_data.id)
+            next if @moveBlacklist.include?(move_data.function_code)
+            next if move_data.empoweredMove?
+            next if @battle.getBattleMoveInstanceFromID(move_id).is_a?(PokeBattle_ProtectMove)
+            @metronomeMoves.push(move_data.id)
         end
-        return metronomeMoves
     end
 
     def pbMoveFailed?(_user, _targets, show_message)
-        if getMetronomeMoves.length == 0
+        if @metronomeMoves.empty?
             @battle.pbDisplay(_INTL("But it failed, since there are no moves to use!")) if show_message
             return true
         end
@@ -1682,7 +1597,7 @@ class PokeBattle_Move_0B6 < PokeBattle_Move
     end
 
     def pbEffectGeneral(user)
-        choice = getMetronomeMoves.sample
+        choice = @metronomeMoves.sample
         user.pbUseMoveSimple(choice)
     end
 
