@@ -117,6 +117,9 @@ class PokeBattle_AI
             effectScore = 0
         end
 
+        # Account for some abilities
+        score = getAdditiveAbilityScore(score, move, user, target)
+
         # Adjust score based on how much damage it can deal
         if move.damagingMove?
             begin
@@ -186,10 +189,50 @@ class PokeBattle_AI
             score *= 0.66
         end
 
+        # Account for some abilities
+        score = getMultiplicativeAbilityScore(score, move, user, target)
+
         # Final adjustments t score
         score = score.to_i
         score = 0 if score < 0
         echoln("#{user.pbThis} scores the move #{move.id} against target #{target.pbThis(false)}: #{score}")
+        return score
+    end
+
+    # TODO
+    # Method that accounts for the target having triggered abilities on hit
+    # And similar contingencies
+    def getAdditiveAbilityScore(score, move, user, target)
+        return score
+    end
+
+    def getMultiplicativeAbilityScore(score, move, user, target)
+        if move.danceMove?
+            dancerBonus = 1.0
+            user.eachOther do |b|
+                next unless b.hasActiveAbilityAI?(:DANCER)
+                if b.opposes?(user)
+                    dancerBonus -= 0.8
+                else
+                    dancerBonus += 0.8
+                end
+            end
+            score *= dancerBonus
+        end
+
+        if move.soundMove?
+            dancerBonus = 1.0
+            user.eachOther do |b|
+                next unless b.hasActiveAbilityAI?(:ECHO)
+                if b.opposes?(user)
+                    dancerBonus -= 0.8
+                else
+                    dancerBonus += 0.8
+                end
+            end
+            score *= dancerBonus
+        end
+
         return score
     end
 

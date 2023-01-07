@@ -256,7 +256,7 @@ class PokeBattle_StatUpMove < PokeBattle_Move
     end
 
     def getEffectScore(user, target)
-        return getMultiStatUpEffectScore(@statUp, user, target)
+        return getMultiStatUpEffectScore(@statUp, user, user)
     end
 end
 
@@ -288,7 +288,7 @@ class PokeBattle_MultiStatUpMove < PokeBattle_Move
     end
 
     def getEffectScore(user, target)
-        return getMultiStatUpEffectScore(@statUp, user, target)
+        return getMultiStatUpEffectScore(@statUp, user, user)
     end
 end
 
