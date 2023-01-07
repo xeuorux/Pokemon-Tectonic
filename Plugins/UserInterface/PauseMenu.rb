@@ -174,7 +174,7 @@ class PokemonPauseMenu
 		cmdDebug    = -1
 		cmdQuit     = -1
 		cmdEndGame  = -1
-		if $Trainer.has_pokedex && $Trainer.pokedex.accessible_dexes.length > 0
+		if $Trainer.has_pokedex || $DEBUG
 		  commands[cmdPokedex = commands.length] = _INTL("MasterDex")
 		end
 		commands[cmdPokemon = commands.length]   = _INTL("Pokémon") if $Trainer.party_count > 0
