@@ -656,8 +656,8 @@ DarkCave,20
     20,EKANS,18,20
     20,GEODUDE,18,20
     20,MTANGELA,18,20
-    10,NIDORANmA,18,20
     10,NIDORANfE,18,20
+    10,NIDORANmA,18,20
 #-------------------------------
 [220] # Prizca Sewers East
 LandSparse,20

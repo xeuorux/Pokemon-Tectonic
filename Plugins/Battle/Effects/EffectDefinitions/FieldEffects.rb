@@ -202,9 +202,9 @@ GameData::BattleEffect.register_effect(:Field, {
     :real_name => "Grey Mist Turns",
     :type => :Integer,
     :ticks_down => true,
-    :apply_proc => proc do |battle, _value|
+    :apply_proc => proc do |battle, value|
         battle.pbDisplay(_INTL("A grey mist enveloped the field."))
-        battle.pbDisplay(_INTL("Stat changes will be reset each turn, for #{value - 1} more turns!", teamName))
+        battle.pbDisplay(_INTL("Stat changes will be reset each turn, for #{value - 1} more turns!"))
     end,
     :disable_proc => proc do |battle|
         battle.pbDisplay(_INTL("The grey mist dissipated."))
@@ -213,7 +213,7 @@ GameData::BattleEffect.register_effect(:Field, {
         battle.battlers.each do |b|
             next unless b.hasAlteredStatStages?
             b.pbResetStatStages
-            @battle.pbDisplay(_INTL("#{b.pbThis}'s stat changes were eliminated!"))
+            battle.pbDisplay(_INTL("#{b.pbThis}'s stat changes were eliminated!"))
         end
     end,
 })
