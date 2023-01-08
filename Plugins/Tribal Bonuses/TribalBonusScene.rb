@@ -6,7 +6,6 @@ class TribalBonusScene
         overlay = @sprites["overlay"].bitmap
         overlay.clear
 
-
         base = Color.new(219, 240, 240)
         shadow   = Color.new(88, 88, 80)
         pageTitle = PAGE_TITLES[@page-1]
@@ -26,19 +25,20 @@ class TribalBonusScene
         base = Color.new(88,88,88)
         shadow = Color.new(168,184,184)
         xLeft = 36
-        coordinateY = 34
     
         # Make sure arrows are hidden
         @sprites["scroll_arrow_up"].visible = false
         @sprites["scroll_arrow_down"].visible = false
 
         drewAny = false
+        index = 0
         $Tribal_Bonuses.tribeCounts.each {|tribe, count|
             if count > 0
                 tribeName = TribalBonus.getTribeName(tribe)
-                coordinateY += 30
-                drawTextEx(overlay, xLeft, coordinateY, 450, 1, _INTL("{1}: {2}", tribeName, count), base, shadow)
+                coordinateY = 64 + (index % 9) * 32
+                drawTextEx(overlay, xLeft + (index / 9) * 240, coordinateY, 450, 1, _INTL("{1}: {2}", tribeName, count), base, shadow)
                 drewAny = true
+                index += 1
             end
         }
         if !drewAny
@@ -54,7 +54,7 @@ class TribalBonusScene
         base = Color.new(88,88,88)
         shadow = Color.new(168,184,184)
         xLeft = 36
-        coordinateY = 64
+        coordinateY = 38
 
         @displayText[@offset..@offset+@linesToShow].each {|line|
             drawTextEx(overlay, xLeft, coordinateY += 30, 450, 1, line, base, shadow)
@@ -99,15 +99,15 @@ class TribalBonusScene
         # Used for Tribal Info page
         @displayText = []
         @offset = 0
-        @linesToShow = 7
+        @linesToShow = 8
         @sprites["scroll_arrow_up"] = AnimatedSprite.new("Graphics/Pictures/uparrow",8,28,40,2,@viewport1)
         @sprites["scroll_arrow_up"].x = (Graphics.width - 28) / 2
-        @sprites["scroll_arrow_up"].y = 64
+        @sprites["scroll_arrow_up"].y = 38
         @sprites["scroll_arrow_up"].visible = false
         @sprites["scroll_arrow_up"].play
         @sprites["scroll_arrow_down"] = AnimatedSprite.new("Graphics/Pictures/downarrow",8,28,40,2,@viewport1)
         @sprites["scroll_arrow_down"].x = (Graphics.width - 28) / 2
-        @sprites["scroll_arrow_down"].y = (Graphics.height - 64)
+        @sprites["scroll_arrow_down"].y = (Graphics.height - 60)
         @sprites["scroll_arrow_down"].visible = false
         @sprites["scroll_arrow_down"].play
 
