@@ -410,7 +410,7 @@ animationName, show_message) do
         # Skipped for bosses using damaging moves so that it can be calculated properly later
         if move.inherentImmunitiesPierced?(user, target)
             # Do nothing
-        elsif targetInherentlyImmune?(user, target, move, show_message)
+        elsif targetInherentlyImmune?(user, target, move, show_message, ai_check)
             return false
         elsif targetTypeModImmune?(user, target, move, typeMod, show_message)
             return false
@@ -439,8 +439,8 @@ animationName, show_message) do
         return false
     end
 
-    def targetInherentlyImmune?(user, target, move, showMessages = true)
-        if move.pbImmunityByAbility(user, target, showMessages)
+    def targetInherentlyImmune?(user, target, move, showMessages = true, aiChecking = false)
+        if move.pbImmunityByAbility(user, target, showMessages, aiChecking)
             @battle.triggerImmunityDialogue(user, target, true) if showMessages
             return true
         end

@@ -252,8 +252,8 @@ module BattleHandlers
         return !ret.nil? ? ret : false
     end
 
-    def self.triggerMoveImmunityTargetAbility(ability, user, target, move, type, battle, showMessages)
-        ret = MoveImmunityTargetAbility.trigger(ability, user, target, move, type, battle, showMessages)
+    def self.triggerMoveImmunityTargetAbility(ability, user, target, move, type, battle, showMessages, aiChecking)
+        ret = MoveImmunityTargetAbility.trigger(ability, user, target, move, type, battle, showMessages, aiChecking)
         return !ret.nil? ? ret : false
     end
 

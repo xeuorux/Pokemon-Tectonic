@@ -85,7 +85,7 @@ move, true, true)
     def moveWillFail(user, target, move)
         return true if target.protectedAgainst?(user, move)
         return true if invulnerableTwoTurnAttack?(target, move)
-        return true if move.pbImmunityByAbility(user, target, false)
+        return true if move.pbImmunityByAbility(user, target, false, true)
         return true if Effectiveness.ineffective_type?(move.type, target.type1, target.type2)
         return true unless move.pbAccuracyCheck(user, target)
         return false

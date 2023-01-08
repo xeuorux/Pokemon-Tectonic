@@ -175,12 +175,12 @@ checkingForAI) && pbDamagingMove? && !chargingTurnMove? && targets.length == 1
     #=============================================================================
     # Check if target is immune to the move because of its ability
     #=============================================================================
-    def pbImmunityByAbility(user, target, showMessages = true)
+    def pbImmunityByAbility(user, target, showMessages = true, aiChecking = false)
         return false if @battle.moldBreaker
         ret = false
         if target.abilityActive?
             ret = BattleHandlers.triggerMoveImmunityTargetAbility(target.ability, user, target, self, @calcType, @battle,
-showMessages)
+showMessages, aiChecking)
         end
         unless ret
             target.eachAlly do |b|
