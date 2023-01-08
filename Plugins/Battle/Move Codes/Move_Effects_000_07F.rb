@@ -531,7 +531,7 @@ end
 class PokeBattle_Move_023 < PokeBattle_Move
     def pbMoveFailed?(user, _targets, show_message)
         if user.effectAtMax?(:FocusEnergy)
-            @battle.pbDisplay(_INTL("But it failed, since it cannot bet any more pumped!")) if show_message
+            @battle.pbDisplay(_INTL("But it failed, since it cannot get any more pumped!")) if show_message
             return true
         end
         return false
