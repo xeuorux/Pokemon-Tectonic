@@ -249,7 +249,6 @@
 249,AERIALACE,Aerial Ace,0A5,60,FLYING,Physical,0,15,0,Other,0,aef,"The user confounds the foe with speed, then slashes. Can't miss and skips protections.",
 250,AIRCUTTER,Air Cutter,000,60,FLYING,Special,100,20,0,AllNearFoes,0,befhpq,"The user launches razor-like wind to slash the opposing team. Critical hits land more easily.",
 251,PLUCK,Pluck,0F4,60,FLYING,Physical,100,15,0,Other,0,abef,"The user pecks the target. If the target is holding a Berry, the user eats it and gains its effect.",
-252,SKYDROP,Sky Drop,0CE,60,FLYING,Physical,100,10,0,Other,0,abef,"The user takes the foe into the sky, then drops it on the next turn. The foe cannot attack while airborne.",
 253,WINGATTACK,Wing Attack,599,55,FLYING,Physical,100,30,0,Other,0,abef,"The target is struck with large, imposing wings. The user also takes 20% recoil.",
 254,ACROBATICS,Acrobatics,086,55,FLYING,Physical,100,12,0,Other,0,abef,"The user nimbly strikes the foe. This attack does more damage if the user is not holding an item.",
 255,GUST,Gust,403,40,FLYING,Special,100,30,0,Other,0,befq,"The user whips up a gust of wind at the target. This has a 10% chance to frostbite.",
