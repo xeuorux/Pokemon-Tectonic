@@ -1,7 +1,7 @@
 class PokemonPokedexInfo_Scene
 
 	SIGNATURE_COLOR = Color.new(211,175,44)
-	PAGE_TITLES = ["INFO", "ABILITIES", "STATS", "DEF. MATCHUPS", "ATK. MATCHUPS", "LEVEL UP MOVES", "TUTOR MOVES", "EVOLUTIONS", "AREA", "FORMS", "TRIBES", "ANALYSIS"]
+	PAGE_TITLES = ["INFO", "ABILITIES", "STATS", "DEF. MATCHUPS", "ATK. MATCHUPS", "LEVEL UP MOVES", "TUTOR MOVES", "EVOLUTIONS", "AREA", "FORMS", "ANALYSIS"]
 
   def pbStartScene(dexlist,index,region,battle=false,linksEnabled=false)
     @viewport = Viewport.new(0,0,Graphics.width,Graphics.height)
@@ -221,8 +221,7 @@ class PokemonPokedexInfo_Scene
     when 8; drawPageEvolution
 	when 9; drawPageArea
 	when 10; drawPageForms
-	when 11; drawPageTribes
-	when 12; drawPageDEBUG
+	when 11; drawPageDEBUG
     end
   end
 
@@ -377,12 +376,32 @@ class PokemonPokedexInfo_Scene
     shadow = Color.new(176,176,176)
 	baseStatNames = ["HP","Attack","Defense","Sp. Atk","Sp. Def", "Speed"]
     otherStatNames = ["Gender Rate", "Growth Rate", "Catch Dif.", "Exp. Grant", "PEHP / SEHP"]
+
+	# Everything else
+    if @available.length() >= 2 && @available[0][0] == "Male" && @available[1][0] == "Female"    # Only give me 1 element in the case where the 2 forms are only gender.
+        available = [@available[0]]
+    else
+        available = @available
+    end
+
+	tribes = []
+    for i in available
+        if i[2] == @form
+			speciesFormData = GameData::Species.get_species_form(@species, @form)
+			speciesFormData.tribes.each {|tribe|
+				tribes.push(TribalBonus.getTribeName(tribe))
+			}
+        end
+    end
+	tribesDescription = tribes.join(", ")
+
+
     for i in @available
       if i[2]==@form
         formname = i[0]
         fSpecies = GameData::Species.get_species_form(@species,i[2])
         
-		yBase = 100
+		yBase = 96
 
         #Base stats
         drawTextEx(overlay,30,yBase-40,450,1,"Base Stats",base,shadow)
@@ -449,6 +468,9 @@ class PokemonPokedexInfo_Scene
 		end
 		drawTextEx(overlay,230,yBase+174,450,1,"Wild Items",base,shadow)
 		drawTextEx(overlay,230,yBase+203,450,1,itemsString,base,shadow)
+
+		drawTextEx(overlay,30,yBase+244,450,1,_INTL("Tribes:", @title),base,shadow)
+		drawTextEx(overlay,120,yBase+244,800, 1, tribesDescription, base, shadow)
 	  end
     end
   end
@@ -1232,34 +1254,6 @@ class PokemonPokedexInfo_Scene
       end
     end
 	return nil
-  end
-
-  def drawPageTribes
-    @sprites["background"].setBitmap(_INTL("Graphics/Pictures/Pokedex/Rework/bg_evolution"))
-    overlay = @sprites["overlay"].bitmap
-    base = Color.new(88,88,88)
-    shadow = Color.new(168,184,184)
-    xLeft = 36
-    coordinateY = 54
-
-    # Title Text
-    drawTextEx(overlay, xLeft, coordinateY, 450, 1, _INTL("{1}'s Tribes:", @title), base, shadow)
-    
-    # Everything else
-    if @available.length() >= 2 && @available[0][0] == "Male" && @available[1][0] == "Female"    # Only give me 1 element in the case where the 2 forms are only gender.
-        available = [@available[0]]
-    else
-        available = @available
-    end
-
-    for i in available
-        if i[2] == @form
-			speciesFormData = GameData::Species.get_species_form(@species, @form)
-			speciesFormData.tribes.each {|tribe|
-				drawTextEx(overlay, xLeft, coordinateY += 30, 450, 1, _INTL(TribalBonus.getTribeName(tribe)), base, shadow)
-			}
-        end
-    end
   end
   
   def drawPageDEBUG
