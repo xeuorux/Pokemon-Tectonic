@@ -872,3 +872,26 @@ class PokeBattle_Move_5AC < PokeBattle_Move
         end
     end
 end
+#===============================================================================
+# Increases Attack, Defense and Crit Chance
+# (Martial Mastery)
+#===============================================================================
+class PokeBattle_Move_5AD < PokeBattle_MultiStatUpMove
+    def initialize(battle, move)
+        super
+        @statUp = [:ATTACK, 1, :DEFENSE, 1]
+	end
+	def pbMoveFailed?(user, _targets, show_message)
+        if user.effectAtMax?(:FocusEnergy) 
+            return super
+        end
+        return false
+    end
+	def pbEffectGeneral(user)
+		super
+		unless user.effectAtMax?(:FocusEnergy)
+			user.incrementEffect(:FocusEnergy, 1)
+			@battle.pbDisplay(_INTL("{1} is getting pumped!", user.pbThis))
+		end
+    end
+end
