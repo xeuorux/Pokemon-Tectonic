@@ -67,8 +67,9 @@ class PokeBattle_Battle
 
     def pbIsTrapped?(idxBattler, partyScene = nil)
         battler = @battlers[idxBattler]
+        
         # Ability effects that allow switching no matter what
-        if battler.abilityActive? && BattleHandlers.triggerCertainSwitchingUserAbility(battler.ability, battler, self)
+        if battler.abilityActive? && BattleHandlers.triggerCertainSwitchingUserAbility(battler.ability, battler, self, false)
             return false
         end
         # Item effects that allow switching no matter what

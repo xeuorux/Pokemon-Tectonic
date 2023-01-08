@@ -528,8 +528,8 @@ module BattleHandlers
 
     #=============================================================================
 
-    def self.triggerCertainSwitchingUserAbility(ability, switcher, battle)
-        ret = CertainSwitchingUserAbility.trigger(ability, switcher, battle)
+    def self.triggerCertainSwitchingUserAbility(ability, switcher, battle, trappingProc)
+        ret = CertainSwitchingUserAbility.trigger(ability, switcher, battle, trappingProc)
         return !ret.nil? ? ret : false
     end
 

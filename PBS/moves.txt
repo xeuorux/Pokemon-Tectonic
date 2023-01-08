@@ -1076,5 +1076,5 @@
 1091,VENOMGUARD,Venom Guard,57F,0,POISON,Status,0,3,0,User,4,,"Halves attack damage taken this turn. Also poisons any attacker who attacks the user.",DEFENSECURL
 1092,PRANK,Prank,560,0,NORMAL,Status,100,15,0,NearOther,0,bce,"The user pranks the target, surprising it and reducing its Sp. Atk and Sp. Def.",SCARYFACE
 1093,GREYMIST,Grey Mist,587,0,POISON,Status,0,10,0,User,0,,"A Grey Mist covers the battlefield. For 5 turns, stats are reset at the end of each turn.",MIST
-1094,PATIENTTRAINING,Patient Training,508,0,BUG,Status,0,12,0,User,0,d,"The user prepares to strike with ferocity, drastically raising its Attack but drastically lowering its Speed.",
+1094,PATIENTTRAINING,Patient Training,508,0,BUG,Status,0,12,0,User,0,d,"The user prepares its weapons, drastically raising Attack but drastically lowering Speed.",
 1095,MARTIALMASTERY,Martial Mastery,5AD,0,FIGHTING,Status,0,15,0,User,0,d,"The user tenses recalls martial techniques, boosting its Attack, Defense and critical strike chance.",

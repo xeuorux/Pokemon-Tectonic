@@ -17,6 +17,10 @@ class PokeBattle_Battler
             pbItemStatusCureCheck
             pbAbilityStatusCureCheck
         end
+
+        if getData(effect).trapping?
+            BattleHandlers.triggerCertainSwitchingUserAbility(ability, self, @battle, true)
+        end
     end
 
     def disableEffect(effect, ignoreFainted = false)

@@ -195,6 +195,9 @@ GameData::BattleEffect.register_effect(:Field, {
     :real_name => "Terrain Sealer",
     :type => :Position,
     :others_lose_track => true,
+    :disable_proc => proc do |battle|
+        battle.pbDisplay(_INTL("The terrain is no longer being sealed!"))
+    end,
 })
 
 GameData::BattleEffect.register_effect(:Field, {

@@ -533,6 +533,9 @@ GameData::BattleEffect.register_effect(:Battler, {
     :apply_proc => proc do |battle, battler, _value|
         battle.pbDisplay(_INTL("{1} can no longer escape!", battler.pbThis))
     end,
+    :disable_proc => proc do |battle, battler|
+        battle.pbDisplay(_INTL("{1} was freed!", battler.pbThis))
+    end,
 })
 
 GameData::BattleEffect.register_effect(:Battler, {
@@ -544,6 +547,9 @@ GameData::BattleEffect.register_effect(:Battler, {
     :swaps_with_battlers => true,
     :apply_proc => proc do |battle, battler, _value|
         battle.pbDisplay(_INTL("{1} is marked for death! It cannot escape!", battler.pbThis))
+    end,
+    :disable_proc => proc do |battle, battler|
+        battle.pbDisplay(_INTL("{1} was freed from the Death Mark!", battler.pbThis))
     end,
 })
 
@@ -1156,6 +1162,9 @@ GameData::BattleEffect.register_effect(:Battler, {
         battler.pbLowerMultipleStatStages([:DEFENSE, 1, :SPECIAL_DEFENSE, 1], octouser)
     end,
     :sub_effects => [:OctolockUser],
+    :disable_proc => proc do |battle, battler|
+        battle.pbDisplay(_INTL("{1} was freed from the tentacle hold!", battler.pbThis))
+    end,
 })
 
 GameData::BattleEffect.register_effect(:Battler, {
@@ -1281,6 +1290,9 @@ GameData::BattleEffect.register_effect(:Battler, {
     :trapping => true,
     :apply_proc => proc do |battle, battler, _value|
         battle.pbDisplay(_INTL("{1} is committed to the battle! It can't escape!", battler.pbThis))
+    end,
+    :disable_proc => proc do |battle, battler|
+        battle.pbDisplay(_INTL("{1} is now free to escape the battle!", battler.pbThis))
     end,
 })
 
@@ -1409,6 +1421,9 @@ GameData::BattleEffect.register_effect(:Battler, {
     :type => :Position,
     :others_lose_track => true,
     :trapping => true,
+    :disable_proc => proc do |battle, battler|
+        battle.pbDisplay(_INTL("{1} is no longer giving a Dragon Ride!", battler.pbThis))
+    end,
 })
 
 GameData::BattleEffect.register_effect(:Battler, {
