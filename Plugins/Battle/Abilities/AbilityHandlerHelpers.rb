@@ -1,6 +1,6 @@
 # For abilities that grant immunity to moves of a particular type, and heals the
 # ability's bearer by 1/4 of its total HP instead.
-def pbBattleMoveImmunityHealAbility(user, target, move, moveType, immuneType, battle, showMessages)
+def pbBattleMoveImmunityHealAbility(user, target, move, moveType, immuneType, battle, showMessages, aiChecking = false)
     return false if user.index == target.index
     return false if moveType != immuneType
     return true if aiChecking
