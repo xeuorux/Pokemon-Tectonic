@@ -4977,6 +4977,7 @@ Pokemon = KABUTOPS,70
     Item = WIDELENS
 #-------------------------------
 [SHADOWMAVIS,Mavis,1]
+ExtendsVersion = 0
 Pokemon = TITANIX,70
     Name = Notalones
     Gender = male

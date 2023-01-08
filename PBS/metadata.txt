@@ -612,7 +612,7 @@ ShowArea = false
 Bicycle = false
 #-------------------------------
 [104]
-# Raphael's House
+# Rafael's House
 Outdoor = false
 ShowArea = false
 Bicycle = true

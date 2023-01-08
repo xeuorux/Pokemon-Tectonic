@@ -12,9 +12,3 @@ PokeBattle_Battle::BattleStartApplyCurse.add(:CURSE_AVATAR_GUARD,
         next curses_array
     }
 )
-
-
-def testYezera5
-    setBattleRule("double")
-    cursedBattle(:POKEMONTRAINER_Yezera,"Yezera",8)
-end
