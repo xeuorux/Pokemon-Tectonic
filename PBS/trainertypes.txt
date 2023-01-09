@@ -253,6 +253,7 @@
 318,LEADER_Samorn_2,Gym Leader,100,Battle Gym Leader 2,Battle victory leader,,Female,,,[]
 319,MASKEDVILLAIN,Masked Villain,0,,,,Mixed,,,[]
 320,MASKEDVILLAIN2,Masked Villain,0,,,,Mixed,,,[]
+321,PROFESSOR_Tamarind,Professor,100,,Battle victory leader,,Female,,,[]
 350,FORMERCHAMP_Casey,Former Champion,100,Battle champion iris,Battle victory champion,,Male,,,[]
 351,FORMERCHAMP_Scilla,Former Champion,100,Battle champion iris,Battle victory champion,,Female,,,[]
 352,FORMERCHAMP_Chara,Former Champion,100,Battle champion iris,Battle victory champion,,Female,,,[]
