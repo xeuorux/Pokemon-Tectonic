@@ -1973,8 +1973,8 @@ Name = Poliwag
 InternalName = POLIWAG
 Type1 = WATER
 # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
-BaseStats = 40,50,40,90,40,40
-# Total = 300
+BaseStats = 40,50,50,90,40,40
+# Total = 310
 GenderRate = Female50Percent
 GrowthRate = Parabolic
 BaseEXP = 60
@@ -2041,7 +2041,7 @@ InternalName = POLIWRATH
 Type1 = WATER
 Type2 = FIGHTING
 # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
-BaseStats = 85,115,100,80,60,100
+BaseStats = 85,115,110,80,60,90
 # Total = 540
 GenderRate = Female50Percent
 GrowthRate = Parabolic
@@ -28437,8 +28437,8 @@ InternalName = CLOBBOPUS
 Type1 = FIGHTING
 Type2 = WATER
 # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
-BaseStats = 50,68,60,32,50,50
-# Total = 310
+BaseStats = 66,62,54,32,44,72
+# Total = 330
 GenderRate = Female50Percent
 GrowthRate = Parabolic
 BaseEXP = 62
@@ -28472,8 +28472,8 @@ InternalName = GRAPPLOCT
 Type1 = FIGHTING
 Type2 = WATER
 # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
-BaseStats = 95,118,105,42,70,85
-# Total = 515
+BaseStats = 105,98,85,52,70,115
+# Total = 525
 GenderRate = Female50Percent
 GrowthRate = Parabolic
 BaseEXP = 168
