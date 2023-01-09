@@ -5065,3 +5065,25 @@ Pokemon = GOLURK,70
     Name = Prometheus
     Moves = INFERNO,LAHAR,PROFANE,ZAPCANNON
     AbilityIndex = 1
+#-------------------------------
+[TRAINER_Imogene_A,Imogene,1]
+Pokemon = GOLISOPOD,70
+    Moves = FIRSTIMPRESSION,LATCHON,LIQUIDATION,XSCISSOR
+    AbilityIndex = 0
+Pokemon = CORVIKNIGHT,70
+    Moves = SWAGGER,TAILWIND,UTURN,ROOST
+    AbilityIndex = 1
+Pokemon = GLISCOR,70
+    Moves = EARTHQUAKE,ACROBATICS,TRICKYTOXINS,KNOCKOFF
+    AbilityIndex = 0
+Pokemon = MSEVIPER,70
+    Moves = MAGNETHRASH,VOLTTACKLE,SWORDSDANCE,ICEFANG
+    AbilityIndex = 1
+    Item = AIRBALLOON
+Pokemon = GOTHITELLE,70
+    Moves = CORECOLLAPSE,PLANTDOUBT,PSYCHIC,BLACKOUT
+    AbilityIndex = 0
+Pokemon = SHEDINJA,70
+    Moves = PHANTOMFORCE,XSCISSOR,PSYCHOBLADE,WILLOWISP
+    AbilityIndex = 0
+    Item = FOCUSSASH
