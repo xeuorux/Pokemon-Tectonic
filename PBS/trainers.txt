@@ -3035,14 +3035,14 @@ Pokemon = HAXORUS,55
     EV = 0,20,0,20,0,10
 #-------------------------------
 [BIRDKEEPER_F,Rachel]
-Pokemon = PELIPPER
-	AbilityIndex = 1
-Pokemon = SANDSLASH
-	AbilityIndex = 1
-Pokemon = EMBOAR
-	AbilityIndex = 1
-Pokemon = RIBOMBEE
-	AbilityIndex = 0
+Pokemon = PELIPPER,60
+    AbilityIndex = 1
+Pokemon = SANDSLASH,60
+    AbilityIndex = 1
+Pokemon = EMBOAR,60
+    AbilityIndex = 1
+Pokemon = RIBOMBEE,60
+    AbilityIndex = 0
 #-------------------------------
 [BUGCATCHER2,Rangsan]
 Pokemon = SCEPTILE,60
