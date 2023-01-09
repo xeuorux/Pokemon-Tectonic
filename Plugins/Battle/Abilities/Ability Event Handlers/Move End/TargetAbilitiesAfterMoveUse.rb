@@ -51,11 +51,11 @@ BattleHandlers::TargetAbilityAfterMoveUse.add(:STICKYMOLD,
   }
 )
 
-BattleHandlers::TargetAbilityAfterMoveUse.add(:TYRANTSWRATH,
+BattleHandlers::TargetAbilityAfterMoveUse.add(:WRATHINSTINCT,
   proc { |_ability, target, user, move, _switched, battle|
       next unless move.damagingMove?
       next unless target.knockedBelowHalf?
-      battle.forceUseMove(target, :TYRANTSFIT, user.index, false, nil, nil, true)
+      battle.forceUseMove(target, :DRAGONDANCE, user.index, true, nil, nil, true)
   }
 )
 
