@@ -15,6 +15,9 @@ end
 
 RECURRING_NPC_COUNT = 6
 
+NPC1_TRAITOR_SWITCH = 57
+NPC2_TRAITOR_SWITCH = 58
+
 class NPCRandomization
     attr_reader :chosenNPC1
     attr_reader :chosenNPC2
@@ -28,8 +31,8 @@ class NPCRandomization
             break if @chosenNPC2 != @chosenNPC1
         end
         echoln("The chosen random NPC ids are: #{@chosenNPC1} and #{chosenNPC2}")
-        @npc1Traitor = false
-        @npc2Traitor = false
+        $game_switches[NPC1_TRAITOR_SWITCH] = false
+        $game_switches[NPC2_TRAITOR_SWITCH] = false
     end
 
     def chosenNPC1=(value)
@@ -74,9 +77,9 @@ class NPCRandomization
 
     def traitorizeNPC(npcID)
         if @chosenNPC1 == npcID
-            @npc1Traitor = true
+            $game_switches[NPC1_TRAITOR_SWITCH] = true
         elsif @chosenNPC2 == npcID
-            @npc2Traitor = true
+            $game_switches[NPC2_TRAITOR_SWITCH] = true
         else
             pbMessage(_INTL("The submitted NPC ID could not be made traitor as it was not randomly selected on this playthrough: #{npcID}"))
             pbMessage(_INTL("This is a recoverable error. Please alert a programmer."))

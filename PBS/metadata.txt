@@ -1195,6 +1195,13 @@ MapPosition = 0,15,3
 BattleBack = wcave
 Environment = Cave
 #-------------------------------
+[210]
+# Crater Hermit's House
+Outdoor = false
+ShowArea = false
+Bicycle = false
+TeleportBlocked = true
+#-------------------------------
 [211]
 # Split Peaks
 Outdoor = true
@@ -1623,6 +1630,12 @@ MapPosition = 0,8,8
 BattleBack = field
 MapSize = 4,1111
 Environment = Grass
+#-------------------------------
+[302]
+# Sewage Maintenance
+Outdoor = false
+ShowArea = false
+Bicycle = true
 #-------------------------------
 [303]
 # Zygarde's Chamber

@@ -7,7 +7,7 @@ ItemHandlers::UseFromBag.add(:ABRAPORTER,proc { |item|
     next 0
   end
   if GameData::MapMetadata.get($game_map.map_id).teleport_blocked
-	pbMessage(_INTL("You are prevented from teleporting due to an unknown force."))
+	  pbMessage(_INTL("You are prevented from teleporting due to an unknown force."))
     next 0
   end
   healing = $PokemonGlobal.healingSpot

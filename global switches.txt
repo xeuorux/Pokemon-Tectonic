@@ -1,6 +1,8 @@
 51: Visited Underground River
 52: Visited Volcanic Shore
 
+57: NPC1 Traitor
+58: NPC2 Traitor
 59: Battling Avatars with Yezera
 60: Is in prototype
 61: Surfboard Call

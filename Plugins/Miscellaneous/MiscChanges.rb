@@ -372,6 +372,9 @@ end
 
 def globalMessageReplacements(message)
     message.gsub!("’","'")
+    message.gsub!("‘","'")
+    message.gsub!("“","\"")
+    message.gsub!("”","\"")
   	message.gsub!("…","...")
 	  message.gsub!("–","-")
 	  message.gsub!("Pokemon","Pokémon")
