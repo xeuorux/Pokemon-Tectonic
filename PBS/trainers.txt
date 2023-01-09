@@ -3034,6 +3034,16 @@ Pokemon = HAXORUS,55
     Item = CHOICESCARF
     EV = 0,20,0,20,0,10
 #-------------------------------
+[BIRDKEEPER_F,Rachel]
+Pokemon = PELIPPER
+	AbilityIndex = 1
+Pokemon = SANDSLASH
+	AbilityIndex = 1
+Pokemon = EMBOAR
+	AbilityIndex = 1
+Pokemon = RIBOMBEE
+	AbilityIndex = 0
+#-------------------------------
 [BUGCATCHER2,Rangsan]
 Pokemon = SCEPTILE,60
     AbilityIndex = 0
