@@ -665,7 +665,9 @@ class PokeBattle_Move_529 < PokeBattle_SleepMove
         return !target.canSleep?(user, true, self)
     end
 
-    def pbFailsAgainstTargetAI?(_user, _target); return false; end
+    def pbFailsAgainstTargetAI?(user, target)
+        return !target.canSleep?(user, true, self)
+    end
 
     def getEffectScore(user, target)
         userSpeed = user.pbSpeed(true)
