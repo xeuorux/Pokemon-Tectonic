@@ -6,6 +6,12 @@ class Pokemon
 	PERSONALITY_THRESHOLD_THREE = 200
 	PERSONALITY_THRESHOLD_FOUR = 255
 
+	attr_writer :Trait1
+	attr_writer :Trait2
+	attr_writer :Trait3
+	attr_writer :Like
+	attr_writer :Dislike
+
 	TRAITS =
 	[
 		"Abrasive",
@@ -144,10 +150,6 @@ class Pokemon
 		"Whimsical",
 		"Witty"
 	]
-
-	attr_writer :Trait1
-	attr_writer :Trait2
-	attr_writer :Trait3
 
 	def trait1
 		return nil if @happiness < PERSONALITY_THRESHOLD_ONE
