@@ -9715,8 +9715,8 @@ InternalName = NINJASK
 Type1 = BUG
 Type2 = DARK
 # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
-BaseStats = 71,125,75,80,50,80
-# Total = 481
+BaseStats = 71,115,75,140,50,80
+# Total = 531
 GenderRate = Female50Percent
 GrowthRate = Erratic
 BaseEXP = 160
