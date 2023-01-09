@@ -3797,6 +3797,16 @@ Pokemon = STARAPTOR,65
 Pokemon = GOLURK,65
     Item = GROUNDGEM
 #-------------------------------
+[TEENAGERF,Jamilah]
+Pokemon = MAROWAK,70
+    AbilityIndex = 0
+Pokemon = DRAGALGE,70
+    AbilityIndex = 0
+Pokemon = MASQUERAIN,70
+    AbilityIndex = 1
+Pokemon = XATU,70
+    AbilityIndex = 0
+#-------------------------------
 [FORMERCHAMP_Elise,Elise]
 Policies = PRESERVE_LAST_POKEMON,HAIL_TEAM
 Pokemon = FROSLASS,70
