@@ -145,6 +145,10 @@ class Pokemon
 		"Witty"
 	]
 
+	attr_writer :Trait1
+	attr_writer :Trait2
+	attr_writer :Trait3
+
 	def trait1
 		return nil if @happiness < PERSONALITY_THRESHOLD_ONE
 		while @Trait1.nil? || @Trait1 == @Trait2 || @Trait1 == @Trait3
