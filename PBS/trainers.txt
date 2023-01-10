@@ -5134,7 +5134,7 @@ Pokemon = SCEPTILE,70
     AbilityIndex = 0
 #-------------------------------
 [TRAINER_Alessa,Alessa,5]
-Pokemon = FORRETRESS,50
+Pokemon = FORRETRESS,55
     Moves = POISONSPIKES,STEALTHROCK,EXPLOSION
     AbilityIndex = 1
     Item = OCCABERRY
@@ -5142,16 +5142,16 @@ Pokemon = RATTATA,10
     Moves = QUICKATTACK,ENDEAVOR
     AbilityIndex = 0
     Item = FOCUSSASH
-Pokemon = PORYGONZ,50
+Pokemon = PORYGONZ,55
     Moves = HARDFEELINGS,CRITICALERROR,PHANTOMGATE,ICEBEAM
     AbilityIndex = 1
-Pokemon = HAXORUS,50
+Pokemon = HAXORUS,55
     Moves = CRUELTY,DRAGONDANCE,POISONJAB,FIRSTIMPRESSION
     AbilityIndex = 0
-Pokemon = RILLABOOM,50
+Pokemon = RILLABOOM,55
     Moves = GRASSYGLIDE,KNOCKOFF,SWORDSDANCE,ACROBATICS
     AbilityIndex = 1
-Pokemon = DIGNIPHITE,50
+Pokemon = DIGNIPHITE,55
     Moves = HEAVYSLAM,ROCKSLIDE,BRICKBREAK,BULLETTRAIN
     AbilityIndex = 0
 #-------------------------------
