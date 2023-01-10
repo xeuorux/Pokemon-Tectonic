@@ -82,11 +82,11 @@ class PokeBattle_Battler
     end
 
     def spatk
-        if puzzleRoom? && oddRoom?
+        if wonderRoom? && oddRoom?
             return base_defense
-        elsif puzzleRoom? && !oddRoom?
+        elsif wonderRoom? && !oddRoom?
             return base_attack
-        elsif oddRoom? && !puzzleRoom?
+        elsif oddRoom? && !wonderRoom?
             return base_special_defense
         else
             return base_special_attack
@@ -94,11 +94,11 @@ class PokeBattle_Battler
     end
 
     def spdef
-        if puzzleRoom? && oddRoom?
+        if wonderRoom? && oddRoom?
             return base_attack
-        elsif puzzleRoom? && !oddRoom?
+        elsif wonderRoom? && !oddRoom?
             return base_defense
-        elsif oddRoom? && !puzzleRoom?
+        elsif oddRoom? && !wonderRoom?
             return base_special_attack
         else
             return base_special_defense
