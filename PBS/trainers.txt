@@ -1219,7 +1219,7 @@ Pokemon = SLURPUFF,60
     Item = SITRUSBERRY
 #-------------------------------
 [NURSE,Joy]
-Pokemon = HAPPINY,18
+Pokemon = HAPPINY,20
     AbilityIndex = 1
 #-------------------------------
 [WAITRESS,Linnea]
@@ -2412,6 +2412,29 @@ Pokemon = GDARMANITAN,39
 Pokemon = ARATICATE,40
     AbilityIndex = 0
     Item = LEFTOVERS
+#-------------------------------
+[TRAINER_Keoni,Keoni,2]
+Policies = HAIL_TEAM
+Pokemon = MNOCTOWL,70
+    Moves = SNOWSTORM,AURORAVEIL,BLIZZARD,COLDFRONT
+    AbilityIndex = 1
+    Item = ICYROCK
+Pokemon = PERRSERKER,70
+    Moves = UTURN,SLAY,CLOSECOMBAT,POWERUPPUNCH
+    AbilityIndex = 0
+Pokemon = ANINETALES,70
+    Moves = FLEURCANNON,AURORAVEIL,HAIL,BLIZZARD
+    AbilityIndex = 0
+Pokemon = GDARMANITAN,70
+    Moves = ICEHAMMER,HAMMERARM,EARTHQUAKE,ZENHEADBUTT
+    AbilityIndex = 1
+Pokemon = MTANGROWTH,70
+    Moves = METEORBEAM,PETRIFY,SLUDGEWAVE,SNAPTRAP
+    AbilityIndex = 0
+    Item = POWERHERB
+Pokemon = MZANGOOSE,70
+    Moves = CLOSECOMBAT,SOULRIP,FIREPUNCH,SHADOWSNEAK
+    AbilityIndex = 1
 #-------------------------------
 [TRAINER_Alessa,Alessa]
 Pokemon = COTTONEE,19
