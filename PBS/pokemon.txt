@@ -14687,8 +14687,8 @@ InternalName = MIMEJR
 Type1 = PSYCHIC
 Type2 = FAIRY
 # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
-BaseStats = 50,40,60,65,70,45
-# Total = 330
+BaseStats = 75,45,70,70,80,50
+# Total = 390
 GenderRate = Female50Percent
 GrowthRate = Medium
 BaseEXP = 62
@@ -14714,7 +14714,7 @@ BattlerEnemyX = -1
 BattlerEnemyY = 14
 BattlerShadowX = 0
 BattlerShadowSize = 1
-Evolutions = MRMIME,Level,27,GMRMIME,Item,GALARICAWREATH
+Evolutions = MRMIME,Level,37,GMRMIME,Item,GALARICAWREATH
 Incense = ODDINCENSE
 #-------------------------------
 [440]
@@ -28897,8 +28897,8 @@ InternalName = MRRIME
 Type1 = ICE
 Type2 = PSYCHIC
 # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
-BaseStats = 85,70,75,85,110,100
-# Total = 525
+BaseStats = 90,75,80,90,110,100
+# Total = 545
 GenderRate = Female50Percent
 GrowthRate = Medium
 BaseEXP = 182
@@ -31969,8 +31969,8 @@ InternalName = GMRMIME
 Type1 = ICE
 Type2 = PSYCHIC
 # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
-BaseStats = 75,55,75,80,100,65
-# Total = 450
+BaseStats = 80,65,75,80,100,85
+# Total = 485
 GenderRate = Female50Percent
 GrowthRate = Medium
 BaseEXP = 161
