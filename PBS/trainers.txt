@@ -2464,6 +2464,7 @@ Pokemon = SUNKERN,27
     Item = HEATROCK
 #-------------------------------
 [TRAINER_Alessa,Alessa,2]
+NameForHashing = Zain
 Pokemon = WALREIN,44
     AbilityIndex = 0
     Item = ICEGEM
