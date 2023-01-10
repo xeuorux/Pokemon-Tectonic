@@ -4,6 +4,12 @@ BattleHandlers::UserAbilityOnHit.add(:POISONTOUCH,
   }
 )
 
+BattleHandlers::UserAbilityOnHit.add(:CHRONICCOLD,
+  proc { |_ability, user, target, move, battle|
+      randomStatusProcAbility(:FROSTBITE, 30, user, target, move, battle) if move.physicalMove?
+  }
+)
+
 BattleHandlers::UserAbilityOnHit.add(:SHOCKSTYLE,
   proc { |_ability, user, target, move, battle|
       randomStatusProcAbility(:NUMB, 50, user, target, move, battle) if move.type == :FIGHTING
