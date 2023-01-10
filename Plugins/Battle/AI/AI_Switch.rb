@@ -56,7 +56,7 @@ class PokeBattle_AI
             choices.each do |c|
                 maxScore = c[1] if c[1] > maxScore
             end
-            maxMoveScoreBiasChange = +5
+            maxMoveScoreBiasChange = +4
             maxMoveScoreBiasChange -= (maxScore / 25.0).round
             switchingBias += maxMoveScoreBiasChange
             PBDebug.log("[AI SWITCH] #{battler.pbThis} (#{battler.index}) max score among its #{choices.length} choices is #{maxScore} (#{maxMoveScoreBiasChange.to_change})")
