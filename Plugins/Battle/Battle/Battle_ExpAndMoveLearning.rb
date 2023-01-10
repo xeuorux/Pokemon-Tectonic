@@ -198,7 +198,7 @@ class PokeBattle_Battle
             if newLevel == level_cap
                 if expGained != 0
                     pbDisplayPaused(_INTL("{1} gained only {3} Exp. Points due to the level cap at level {2}.", pkmn.name,
-        level_cap, expGained))
+                    level_cap, expGained))
                 end
             elsif !pkmn.onHotStreak?
                 pbDisplayPaused(_INTL("{1} got {2} Exp. Points!", pkmn.name, expGained))
@@ -208,8 +208,8 @@ class PokeBattle_Battle
         end
         if newLevel < curLevel
             debugInfo = "Levels: #{curLevel}->#{newLevel} | Exp: #{pkmn.exp}->#{expFinal} | gain: #{expGained}"
-            raise _INTL("{1}'s new level is less than its\r\ncurrent level, which shouldn't happen.\r\n[Debug: {2}]",
-                pkmn.name, debugInfo)
+            pbDisplayPaused(_INTL("{1}'s new level is less than its\r\ncurrent level, which shouldn't happen.\r\n[Debug: {2}]",
+                pkmn.name, debugInfo))
         end
         if newLevel > level_cap
             raise _INTL("{1}'s new level is greater than the level cap, which shouldn't happen.\r\n[Debug: {2}]",
