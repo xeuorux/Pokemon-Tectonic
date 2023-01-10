@@ -5181,3 +5181,25 @@ Pokemon = HEATRAN,70
     Moves = MAGMASTORM,FLASHCANNON,EARTHPOWER,WILLOWISP
     AbilityIndex = 0
     Item = AIRBALLOON
+#-------------------------------
+[TRAINER_Skyler,Skyler]
+Pokemon = FLORGES,70
+    Moves = SYNTHESIS,AURATRICK,PETALTEMPEST,PSYCHIC
+    AbilityIndex = 0
+Pokemon = JIRACHI,70
+    Moves = LIFEDEW,METEORMASH,LIGHTSCREEN,REFLECT
+    AbilityIndex = 0
+Pokemon = ABSOLUS,70
+    Moves = INFINITEFORCE,FLEURCANNON,AIRSLASH,KNOCKOFF
+    AbilityIndex = 1
+Pokemon = SIGILYPH,70
+    Moves = PSYCHOSHIFT,TAILWIND,ROOST,COLDFRONT
+    AbilityIndex = 0
+    Item = FLAMEORB
+Pokemon = PALMANTRA,70
+    Moves = PSYCHIC,DRAINPUNCH,FAKEOUT,THRIVINGFORCE
+    AbilityIndex = 0
+Pokemon = MILLIBLAZE,70
+    Moves = FLAREUP,LEECHLIFE,POWERWHIP,SCALD
+    AbilityIndex = 0
+    Item = WATERGEM
