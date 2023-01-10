@@ -16365,6 +16365,7 @@ BattlerEnemyX = 0
 BattlerEnemyY = 26
 BattlerShadowX = 0
 BattlerShadowSize = 2
+Evolutions = MANAPHY,Item,ANCIENTSEAWATER
 #-------------------------------
 [490]
 Name = Manaphy
