@@ -1,7 +1,7 @@
 def phoneCallSE()
 	msgwindow = pbCreateMessageWindow()
 	3.times do
-		pbMessageDisplay(msgwindow,"\\se[Voltorb Flip level up]Ring ring...")
+		pbMessageDisplay(msgwindow,_INTL("\\se[Voltorb Flip level up]Ring ring..."))
 		pbWait(20)
 	end
 	pbDisposeMessageWindow(msgwindow)
