@@ -421,7 +421,7 @@
 420,WALLNINJA,Wall Ninja,"The Pokémon's attacks are always critical if there is an active Room."
 421,RELUCTANTBLADE,Reluctant Blade,"When hit with a physical move, hits back instantly with Leafage."
 422,BRILLIANTFLURRY,Brilliant Flurry,"If an attack lowers its HP to half or less, lowers the attacker's Attack, Sp. Atk, and Speed."
-423,INDUSTRIALIZE,Industrialize,"Immune to Steel-type moves and raises Speed if hit by one."
+423,INDUSTRIALIZE,Industrialize,"Immune to Steel-type moves and raises Sp. Def if hit by one."
 424,AQUASNEAK,Aqua Sneak,"On the first turn, its attacks are always critical, can't miss, and ignore protections."
 425,NEEDLEFUR,Needle Fur,"Attackers lose 1/10th of their HP. If the Pokémon is below half health, attackers lose 1/5th instead."
 426,WARMTHCYCLE,Warmth Cycle,"Each turn, sharply raises Speed and loses HP. If Speed was maxed, instead Speed and HP are reset."

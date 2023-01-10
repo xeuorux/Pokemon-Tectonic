@@ -50,7 +50,7 @@ BattleHandlers::MoveImmunityTargetAbility.add(:HEARTOFJUSTICE,
 
 BattleHandlers::MoveImmunityTargetAbility.add(:INDUSTRIALIZE,
   proc { |_ability, user, target, move, type, battle, showMessages, aiChecking|
-      next pbBattleMoveImmunityStatAbility(user, target, move, type, :STEEL, :SPEED, 1, battle, showMessages, aiChecking)
+      next pbBattleMoveImmunityStatAbility(user, target, move, type, :STEEL, :SPECIAL_DEFENSE, 1, battle, showMessages, aiChecking)
   }
 )
 
