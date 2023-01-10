@@ -5112,7 +5112,7 @@ Pokemon = SHEDINJA,70
     AbilityIndex = 0
     Item = FOCUSSASH
 #-------------------------------
-[TRAINER_Eifion,Eifion,1]
+[TRAINER_Eifion,Eifion,3]
 Pokemon = MANAPHY,70
     Moves = REST,MAELSTROM,ICEBEAM,MENDINGSPRING
     AbilityIndex = 0
