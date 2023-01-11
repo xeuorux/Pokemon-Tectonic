@@ -895,3 +895,14 @@ class PokeBattle_Move_5AD < PokeBattle_MultiStatUpMove
 		end
     end
 end
+
+#===============================================================================
+# User is protected against damaging moves this round. Decreases the Sp. Def of
+# the user of a stopped special move by 2 stages. (Reverb Ward)
+#===============================================================================
+class PokeBattle_Move_5AE < PokeBattle_ProtectMove
+    def initialize(battle, move)
+        super
+        @effect = :ReverbWard
+    end
+end

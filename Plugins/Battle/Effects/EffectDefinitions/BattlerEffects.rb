@@ -1528,6 +1528,16 @@ GameData::BattleEffect.register_effect(:Battler, {
 })
 
 GameData::BattleEffect.register_effect(:Battler, {
+    :id => :ReverbWard,
+    :real_name => "Reverb Ward",
+    :protection_info => {
+        :hit_proc => proc do |user, _target, move, _battle|
+            user.tryLowerStat(:SPECIAL_DEFENSE, user, increment: 2) if move.specialMove?
+        end,
+    },
+})
+
+GameData::BattleEffect.register_effect(:Battler, {
     :id => :BanefulBunker,
     :real_name => "Baneful Bunker",
     :resets_eor	=> true,
