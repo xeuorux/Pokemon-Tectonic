@@ -188,7 +188,10 @@ GameData::BattleEffect.register_effect(:Battler, {
         battler.applyEffect(:DisableMove, battler.lastRegularMoveUsed)
     end,
     :disable_proc => proc do |battle, battler|
-        battle.pbDisplay(_INTL("{1} is no longer disabled!", battler.pbThis))
+        battle.pbDisplay(_INTL("{1}'s broke out of the disable!", battler.pbThis))
+    end,
+    :expire_proc => proc do |battle, battler|
+        battle.pbDisplay(_INTL("{1}'s move is no longer disabled.", battler.pbThis))
     end,
     :is_mental => true,
     :sub_effects => [:DisableMove],
@@ -362,7 +365,10 @@ GameData::BattleEffect.register_effect(:Battler, {
         battle.pbDisplay(_INTL("{1} was prevented from healing!", battler.pbThis))
     end,
     :disable_proc => proc do |battle, battler|
-        battle.pbDisplay(_INTL("{1} Heal Block wore off!", battler.pbThis))
+        battle.pbDisplay(_INTL("{1} Heal Block was lifted!", battler.pbThis))
+    end,
+    :expire_proc => proc do |battle, battler|
+        battle.pbDisplay(_INTL("{1} Heal Block wore off.", battler.pbThis))
     end,
 })
 
@@ -612,11 +618,6 @@ GameData::BattleEffect.register_effect(:Battler, {
 })
 
 GameData::BattleEffect.register_effect(:Battler, {
-    :id => :MudSport,
-    :real_name => "Electric Resistant",
-})
-
-GameData::BattleEffect.register_effect(:Battler, {
     :id => :Nightmare,
     :real_name => "Nightmared",
     :apply_proc => proc do |battle, battler, _value|
@@ -796,6 +797,9 @@ GameData::BattleEffect.register_effect(:Battler, {
     :type => :Integer,
     :ticks_down => true,
     :disable_proc => proc do |battle, battler|
+        battle.pbDisplay(_INTL("{1} was forced out of its Slow Start!", battler.pbThis))
+    end,
+    :expire_proc => proc do |battle, battler|
         battle.pbDisplay(_INTL("{1} finally got its act together!", battler.pbThis))
     end,
 })
@@ -892,6 +896,9 @@ GameData::BattleEffect.register_effect(:Battler, {
         battle.pbDisplay(_INTL("{1} fell for the taunt!", battler.pbThis))
     end,
     :disable_proc => proc do |battle, battler|
+        battle.pbDisplay(_INTL("{1} broke free of the taunting!", battler.pbThis))
+    end,
+    :expire_proc => proc do |battle, battler|
         battle.pbDisplay(_INTL("{1} taunt wore off.", battler.pbThis))
     end,
 })
@@ -907,7 +914,10 @@ GameData::BattleEffect.register_effect(:Battler, {
         next value
     end,
     :disable_proc => proc do |battle, battler|
-        battle.pbDisplay(_INTL("{1} electromagnetism wore off!", battler.pbThis))
+        battle.pbDisplay(_INTL("{1} lost its electromagnetism!", battler.pbThis))
+    end,
+    :expire_proc => proc do |battle, battler|
+        battle.pbDisplay(_INTL("{1} electromagnetism wore off.", battler.pbThis))
     end,
 })
 
@@ -953,19 +963,23 @@ GameData::BattleEffect.register_effect(:Battler, {
         moveName = battler.getMoveData(:TrappingMove).name
         battle.pbDisplay(_INTL("{1} was freed from {2}!", battler.pbThis, moveName))
     end,
+    :expire_proc => proc do |battle, battler|
+        moveName = battler.getMoveData(:TrappingMove).name
+        battle.pbDisplay(_INTL("{1} is no longer trapped by {2}.", battler.pbThis, moveName))
+    end,
     :remain_proc => proc do |battle, battler, _value|
         moveName = battler.getMoveData(:TrappingMove).name
         case battler.effects[:TrappingMove]
-        when :BIND, :VINEBIND            then battle.pbCommonAnimation("Bind", battler)
-        when :CLAMP, :SLAMSHUT           then battle.pbCommonAnimation("Clamp", battler)
-        when :FIRESPIN, :CRIMSONSTORM    then battle.pbCommonAnimation("FireSpin", battler)
-        when :MAGMASTORM then battle.pbCommonAnimation("MagmaStorm", battler)
-        when :SANDTOMB, :SANDVORTEX then battle.pbCommonAnimation("SandTomb", battler)
-        when :INFESTATION then battle.pbCommonAnimation("Infestation", battler)
-        when :SNAPTRAP then battle.pbCommonAnimation("SnapTrap", battler)
-        when :THUNDERCAGE then battle.pbCommonAnimation("ThunderCage", battler)
-        when :WHIRLPOOL, :MAELSTROM then battle.pbCommonAnimation("Whirlpool", battler)
-        when :BEARHUG	then battle.pbCommonAnimation("BearHug", battler)
+        when :BIND, :VINEBIND               then battle.pbCommonAnimation("Bind", battler)
+        when :CLAMP, :SLAMSHUT              then battle.pbCommonAnimation("Clamp", battler)
+        when :FIRESPIN, :CRIMSONSTORM       then battle.pbCommonAnimation("FireSpin", battler)
+        when :MAGMASTORM                    then battle.pbCommonAnimation("MagmaStorm", battler)
+        when :SANDTOMB, :SANDVORTEX         then battle.pbCommonAnimation("SandTomb", battler)
+        when :INFESTATION                   then battle.pbCommonAnimation("Infestation", battler)
+        when :SNAPTRAP                      then battle.pbCommonAnimation("SnapTrap", battler)
+        when :THUNDERCAGE                   then battle.pbCommonAnimation("ThunderCage", battler)
+        when :WHIRLPOOL, :MAELSTROM         then battle.pbCommonAnimation("Whirlpool", battler)
+        when :BEARHUG	                    then battle.pbCommonAnimation("BearHug", battler)
         else battle.pbCommonAnimation("Wrap", battler)
         end
         if battler.takesIndirectDamage?
@@ -1049,14 +1063,11 @@ GameData::BattleEffect.register_effect(:Battler, {
         battle.pbDisplay(_INTL("{1} is making an uproar!", battler.pbThis))
     end,
     :disable_proc => proc do |battle, battler|
-        battle.pbDisplay(_INTL("{1} calmed down.", battler.pbThis))
         battler.currentMove = nil
     end,
-})
-
-GameData::BattleEffect.register_effect(:Battler, {
-    :id => :WaterSport,
-    :real_name => "Fire Resistant",
+    :expire_proc => proc do |battle, battler|
+        battler.currentMove = nil
+    end,
 })
 
 GameData::BattleEffect.register_effect(:Battler, {

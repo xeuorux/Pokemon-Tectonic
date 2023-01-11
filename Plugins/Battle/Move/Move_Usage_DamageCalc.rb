@@ -277,34 +277,10 @@ class PokeBattle_Move
             multipliers[:base_damage_multiplier] *= 2
         end
         
-        # Mud Sport
-        if type == :ELECTRIC
-            @battle.eachBattler do |b|
-                next if !b.effectActive?(:MudSport)
-                multipliers[:base_damage_multiplier] /= 3.0
-                break
-            end
-            if @battle.field.effectActive?(:MudSportField)
-                multipliers[:base_damage_multiplier] /= 3.0
-            end
-        end
-        
 		# Volatile Toxin
 		if target.effectActive?(:VolatileToxin) && (type == :GROUND)
 			multipliers[:base_damage_multiplier] *= 2
 		end
-
-        # Water Sport
-        if type == :FIRE
-            @battle.eachBattler do |b|
-                next if !b.effectActive?(:WaterSport)
-                multipliers[:base_damage_multiplier] /= 3.0
-                break
-            end
-            if @battle.field.effectActive?(:WaterSportField)
-                multipliers[:base_damage_multiplier] /= 3.0
-            end
-        end
     end
       
     def pbCalcDamageMultipliers(user,target,numTargets,type,baseDmg,multipliers,aiChecking=false)

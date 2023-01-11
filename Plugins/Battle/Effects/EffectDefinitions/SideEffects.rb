@@ -34,7 +34,10 @@ GameData::BattleEffect.register_effect(:Side, {
         battle.pbDisplay(_INTL("{1}'s Defense is raised! This will last for #{value - 1} more turns!", teamName))
     end,
     :disable_proc => proc do |battle, _side, teamName|
-        battle.pbDisplay(_INTL("{1}'s Reflect wore off!", teamName))
+        battle.pbDisplay(_INTL("{1}'s Reflect was broken!", teamName))
+    end,
+    :expire_proc => proc do |battle, _side, teamName|
+        battle.pbDisplay(_INTL("{1}'s Reflect wore off.", teamName))
     end,
 })
 
@@ -48,7 +51,10 @@ GameData::BattleEffect.register_effect(:Side, {
         battle.pbDisplay(_INTL("{1}'s Sp. Def is raised! This will last for #{value - 1} more turns!", teamName))
     end,
     :disable_proc => proc do |battle, _side, teamName|
-        battle.pbDisplay(_INTL("{1}'s Light Screen wore off!", teamName))
+        battle.pbDisplay(_INTL("{1}'s Light Screen was broken!", teamName))
+    end,
+    :expire_proc => proc do |battle, _side, teamName|
+        battle.pbDisplay(_INTL("{1}'s Light Screen wore off.", teamName))
     end,
 })
 
@@ -63,6 +69,9 @@ GameData::BattleEffect.register_effect(:Side, {
 teamName))
     end,
     :disable_proc => proc do |battle, _side, teamName|
+        battle.pbDisplay(_INTL("{1}'s Aurora Veil was broken!", teamName))
+    end,
+    :expire_proc => proc do |battle, _side, teamName|
         battle.pbDisplay(_INTL("{1}'s Aurora Veil wore off!", teamName))
     end,
 })
@@ -80,9 +89,13 @@ GameData::BattleEffect.register_effect(:Side, {
         battle.pbDisplay(_INTL("They'll be protected from critical hits for #{value - 1} more turns!", teamName))
     end,
     :disable_proc => proc do |battle, _side, teamName|
-        battle.pbDisplay(_INTL("{1}'s is no longer protected by Lucky Chant!", teamName))
+        battle.pbDisplay(_INTL("{1}'s Lucky Chant was broken!", teamName))
+    end,
+    :expire_proc => proc do |battle, _side, teamName|
+        battle.pbDisplay(_INTL("{1} is no longer protected by Lucky Chant.", teamName))
     end,
 })
+
 GameData::BattleEffect.register_effect(:Side, {
     :id => :Mist,
     :real_name => "Mist",
@@ -93,9 +106,13 @@ GameData::BattleEffect.register_effect(:Side, {
         battle.pbDisplay(_INTL("Their stats can't be lowered for #{value - 1} more turns!", teamName))
     end,
     :disable_proc => proc do |battle, _side, teamName|
-        battle.pbDisplay(_INTL("{1}'s is no longer protected by Mist!", teamName))
+        battle.pbDisplay(_INTL("{1}'s Mist was swept away!", teamName))
+    end,
+    :expire_proc => proc do |battle, _side, teamName|
+        battle.pbDisplay(_INTL("{1} is no longer protected by Mist.", teamName))
     end,
 })
+
 GameData::BattleEffect.register_effect(:Side, {
     :id => :Safeguard,
     :real_name => "Safeguard",
@@ -106,7 +123,10 @@ GameData::BattleEffect.register_effect(:Side, {
         battle.pbDisplay(_INTL("They'll be protected from status ailments for #{value - 1} more turns!", value))
     end,
     :disable_proc => proc do |battle, _side, teamName|
-        battle.pbDisplay(_INTL("{1}'s is no longer protected by Safeguard!", teamName))
+        battle.pbDisplay(_INTL("{1}'s Safeguard was removed!", teamName))
+    end,
+    :expire_proc => proc do |battle, _side, teamName|
+        battle.pbDisplay(_INTL("{1} is no longer protected by Safeguard.", teamName))
     end,
 })
 
@@ -178,7 +198,11 @@ GameData::BattleEffect.register_effect(:Side, {
     end,
     :disable_proc => proc do |battle, _side, teamName|
         teamName[0] = teamName[0].downcase
-        battle.pbDisplay(_INTL("The Rainbow on {1}'s side dissapeared!", teamName))
+        battle.pbDisplay(_INTL("The Rainbow on {1}'s side was sent away!", teamName))
+    end,
+    :expire_proc => proc do |battle, _side, teamName|
+        teamName[0] = teamName[0].downcase
+        battle.pbDisplay(_INTL("The Rainbow on {1}'s side dissapeared.", teamName))
     end,
 })
 GameData::BattleEffect.register_effect(:Side, {
@@ -202,7 +226,11 @@ GameData::BattleEffect.register_effect(:Side, {
     end,
     :disable_proc => proc do |battle, _side, teamName|
         teamName[0] = teamName[0].downcase
-        battle.pbDisplay(_INTL("The Sea of Fire on {1}'s side dissapeared!", teamName))
+        battle.pbDisplay(_INTL("The Sea of Fire on {1}'s side was sent away!", teamName))
+    end,
+    :expire_proc => proc do |battle, _side, teamName|
+        teamName[0] = teamName[0].downcase
+        battle.pbDisplay(_INTL("The Sea of Fire on {1}'s side dissapeared.", teamName))
     end,
 })
 GameData::BattleEffect.register_effect(:Side, {
@@ -216,7 +244,11 @@ GameData::BattleEffect.register_effect(:Side, {
     end,
     :disable_proc => proc do |battle, _side, teamName|
         teamName[0] = teamName[0].downcase
-        battle.pbDisplay(_INTL("The Swamp on {1}'s side dissapeared!", teamName))
+        battle.pbDisplay(_INTL("The Swamp on {1}'s side was sent away!", teamName))
+    end,
+    :expire_proc => proc do |battle, _side, teamName|
+        teamName[0] = teamName[0].downcase
+        battle.pbDisplay(_INTL("The Swamp on {1}'s side dissapeared.", teamName))
     end,
 })
 
@@ -388,7 +420,10 @@ GameData::BattleEffect.register_effect(:Side, {
         end
     end,
     :disable_proc => proc do |battle, _side, teamName|
-        battle.pbDisplay(_INTL("{1}'s Tailwind petered out!", teamName))
+        battle.pbDisplay(_INTL("{1}'s Tailwind was stopped!", teamName))
+    end,
+    :expire_proc => proc do |battle, _side, teamName|
+        battle.pbDisplay(_INTL("{1}'s Tailwind petered out.", teamName))
     end,
 })
 

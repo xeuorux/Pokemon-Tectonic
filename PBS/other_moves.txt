@@ -21,6 +21,8 @@
 2019,CONSTRICT,Constrict,0CF,10,NORMAL,Physical,100,30,10,NearOther,0,abef,"The user squeezes the target, trapping and damaging it for three turns.",
 2020,SKYDROP,Sky Drop,0CE,60,FLYING,Physical,100,10,0,Other,0,abef,"The user takes the foe into the sky, then drops it on the next turn. The foe cannot attack while airborne.",
 2021,MAGICROOM,Magic Room,0F9,0,PSYCHIC,Status,0,10,0,BothSides,0,e,"The user creates a bizarre area in which Pokémon's held items lose their effects for five turns.",
+2022,WATERSPORT,Water Sport,09E,0,WATER,Status,0,12,0,BothSides,0,,"The user soaks itself with water. The move weakens Fire-type moves while the user is in the battle.",
+2023,MUDSPORT,Mud Sport,09D,0,GROUND,Status,0,12,0,BothSides,0,,"The user covers itself with mud. It weakens Electric-type moves while the user is in the battle.",
 2500,BREAKNECKBLITZ,Breakneck Blitz,Z000,1,NORMAL,Physical,0,1,0,NearOther,0,fz,"The user builds up its momentum using its Z-Power and crashes into the target at full speed.",
 2501,ALLOUTPUMMELING,All-Out Pummeling,Z000,1,FIGHTING,Physical,0,1,0,NearOther,0,fz,"The user rams an energy orb created by its Z-Power into the target with full force.",
 2502,SUPERSONICSKYSTRIKE,Supersonic Skystrike,Z000,1,FLYING,Physical,0,1,0,NearOther,0,fz,"The user soars up with its Z-Power and plummets toward the target at full speed.",

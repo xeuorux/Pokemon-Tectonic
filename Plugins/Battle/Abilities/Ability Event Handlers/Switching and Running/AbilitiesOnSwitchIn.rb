@@ -413,16 +413,6 @@ BattleHandlers::AbilityOnSwitchIn.add(:BARRIERMAKER,
 # Room setting abilities
 ##########################################
 
-BattleHandlers::AbilityOnSwitchIn.add(:MYSTICAURA,
-  proc { |_ability, battler, battle|
-      unless battle.field.effectActive?(:MagicRoom)
-          battle.pbShowAbilitySplash(battler)
-          battle.field.applyEffect(:MagicRoom, battler.getRoomDuration)
-          battle.pbHideAbilitySplash(battler)
-      end
-  }
-)
-
 BattleHandlers::AbilityOnSwitchIn.add(:PUZZLINGAURA,
   proc { |_ability, battler, battle|
       unless battle.field.effectActive?(:PuzzleRoom)
