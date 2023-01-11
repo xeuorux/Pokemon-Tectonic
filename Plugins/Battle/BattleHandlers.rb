@@ -218,8 +218,8 @@ module BattleHandlers
 
     #=============================================================================
 
-    def self.triggerPriorityChangeAbility(ability, battler, move, pri, targets = [])
-        ret = PriorityChangeAbility.trigger(ability, battler, move, pri, targets)
+    def self.triggerPriorityChangeAbility(ability, battler, move, pri, targets = [], aiCheck)
+        ret = PriorityChangeAbility.trigger(ability, battler, move, pri, targets, aiCheck)
         return !ret.nil? ? ret : 0
     end
 

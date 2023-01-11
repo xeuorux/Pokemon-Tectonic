@@ -146,7 +146,7 @@ def userWillHitFirst?(user, target, move)
     userSpeed = user.pbSpeed(true)
     targetSpeed = target.pbSpeed(true)
 
-    movePrio = user.battle.getMovePriority(move, user, [target])
+    movePrio = user.battle.getMovePriority(move, user, [target], true)
 
     return true if movePrio > 0
     return false if movePrio < 0

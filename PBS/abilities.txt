@@ -157,7 +157,7 @@
 155,RATTLED,Rattled,"Bug-, Dark- and Ghost-type moves scare it and boost its Speed."
 156,MAGICBOUNCE,Magic Bounce,"Reflects enemy status moves that target the Pokémon or create hazards around it."
 157,SAPSIPPER,Sap Sipper,"Immune to Grass-type moves, and boosts Attack when hit by one."
-158,PRANKSTER,Prankster,"Gives priority to a status move."
+158,PRANKSTER,Prankster,"Gives priority to status moves, but makes Dark-types immune to them."
 159,SANDFORCE,Sand Force,"Boosts the power of Rock-, Ground-, and Steel-type moves by 30% in sandstorm."
 160,IRONBARBS,Iron Barbs,"Physical moves against it inflict 1/8th max HP damage to the foe."
 161,ZENMODE,Zen Mode,"Changes the Pokémon's shape when HP is halved."
