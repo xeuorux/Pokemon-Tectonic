@@ -5135,6 +5135,7 @@ Pokemon = SCEPTILE,70
     AbilityIndex = 0
 #-------------------------------
 [TRAINER_Alessa,Alessa,5]
+Policies = ALESSA_4
 Pokemon = FORRETRESS,55
     Moves = POISONSPIKES,STEALTHROCK,EXPLOSION
     AbilityIndex = 1
@@ -5157,6 +5158,7 @@ Pokemon = DIGNIPHITE,55
     AbilityIndex = 0
 #-------------------------------
 [TRAINER_Alessa,Alessa,6]
+Policies = ALESSA_5
 Pokemon = SALAMENCE,70
     Moves = DRAGONDANCE,OUTRAGE,EARTHQUAKE,HUNTDOWN
     AbilityIndex = 0
