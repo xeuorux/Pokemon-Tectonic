@@ -41,7 +41,7 @@ BattleHandlers::SpecialDefenseCalcUserAbility.add(:EXOADAPTION,
 )
 
 BattleHandlers::SpecialDefenseCalcUserAbility.add(:HEATVEIL,
-    proc { |_ability, _user, _battle, spDefMult|
+    proc { |_ability, _user, battle, spDefMult|
         spDefMult *= 2 if battle.pbWeather == :Sun
         next spDefMult
     }
