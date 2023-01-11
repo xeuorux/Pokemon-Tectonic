@@ -167,18 +167,18 @@ class PokeBattle_Battle
 
     def countDownPerishSong(priority)
         # Perish Song
-        perishSongUsers = []
+        fainters = []
         priority.each do |b|
-            next if b.fainted? || !b.effectActive?(:PerishSong)
-            b.effects[:PerishSong] -= 1
-            pbDisplay(_INTL("{1}'s perish count fell to {2}!", b.pbThis, b.effects[:PerishSong]))
-            perishSongUsers.push(b.effects[:PerishSongUser]) if b.tickDownAndProc(:PerishSong)
+            next if b.fainted?
+            next unless b.effectActive?(:PerishSong)
+            pbDisplay(_INTL("{1}'s perish count fell to {2}!", b.pbThis, b.effects[:PerishSong] - 1))
+            fainters.push(b.effects[:PerishSongUser]) if b.tickDownAndProc(:PerishSong)
         end
-        if perishSongUsers.length > 0 && ((perishSongUsers.find_all do |idxBattler|
+        if fainters.length > 0 && ((fainters.find_all do |idxBattler|
                                                opposes?(idxBattler)
-                                           end.length == perishSongUsers.length) ||
-               (perishSongUsers.find_all { |idxBattler| !opposes?(idxBattler) }.length == perishSongUsers.length))
-            pbJudgeCheckpoint(@battlers[perishSongUsers[0]])
+                                           end.length == fainters.length) ||
+               (fainters.find_all { |idxBattler| !opposes?(idxBattler) }.length == fainters.length))
+            pbJudgeCheckpoint(@battlers[fainters[0]])
         end
     end
 
