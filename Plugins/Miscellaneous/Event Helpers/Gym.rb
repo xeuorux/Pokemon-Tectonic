@@ -44,7 +44,7 @@ def earnBadge(badgeNum)
 
 	updateTotalBadgesVar()
 	
-	Events.onBadgeEarned.trigger(self,badgeNum-1,totalBadges,badgesEarnedArray)
+	Events.onBadgeEarned.trigger(self,badgeNum-1,$game_variables[BADGE_COUNT_VARIABLE],badgesEarnedArray)
 	
 	giveBattleReport()
 	
