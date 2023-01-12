@@ -334,8 +334,8 @@
 333,TM45,TM45,TM45s,4,6000,"Diving on the first turn, the user floats up and attacks on the next turn.",3,0,0,DIVE
 334,TM46,TM46,TM46s,4,6000,"This attack move varies in power and type depending on the weather.",3,0,0,WEATHERBALL
 335,TM47,TM47,TM47s,4,10000,"The user feigns crying to fluster the target, harshly lowering its Sp. Def stat.",3,0,0,FAKETEARS
-336,TM48,TM48,TM48s,4,10000,"Boulders are hurled at the target. It also lowers the target's Speed by preventing its movement.",3,0,0,STRAFE
-337,TM49,TM49,TM49s,4,10000,,3,0,0,SLICE
+336,TM48,TM48,TM48s,4,6000,"Boulders are hurled at the target. It also lowers the target's Speed by preventing its movement.",3,0,0,STRAFE
+337,TM49,TM49,TM49s,4,6000,,3,0,0,SLICE
 338,TM50,TM50,TM50s,4,6000,"The user forcefully shoots seeds at the target two to five times in a row.",3,0,0,BULLETSEED
 339,TM51,TM51,TM51s,4,6000,"The user launches sharp icicles at the target two to five times in a row.",3,0,0,ICECALIBUR
 340,TM52,TM52,TM52s,4,6000,"The user bounces up high, then drops on the foe on the second turn. It may also numb the foe.",3,0,0,BOUNCE
@@ -764,7 +764,7 @@
 764,TM172,TM172,TM172s,4,16000,"The user violently whirls its vines, tentacles, or the like to harshly lash the target.",3,0,0,POWERWHIP
 765,TM173,TM173,TM173s,4,16000,"The user shoots filthy garbage at the target to attack. This may also poison the target.",3,0,0,GUNKSHOT
 766,TM174,TM174,TM174s,4,6000,,3,0,0,BULLETTRAIN
-767,TM175,TM175,TM175s,4,16000,,3,0,0,ADAMANTINEPRESS
+767,TM175,TM175,TM175s,4,6000,,3,0,0,ADAMANTINEPRESS
 768,TM176,TM176,TM176s,4,6000,"The user lays a trap of levitating stones around the foe. The trap hurts foes that switch into battle.",3,0,0,STEALTHROCK
 769,TM177,TM177,TM177s,4,6000,"The user snares the target with grass and trips it. The heavier the target, the greater the damage.",3,0,0,GRASSKNOT
 770,TM178,TM178,TM178s,4,6000,,3,0,0,MIASMA
