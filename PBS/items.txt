@@ -314,7 +314,7 @@
 313,TM25,TM25,TM25s,4,10000,"It enables the user to evade all attacks. It fails if used in succession.",3,0,0,PROTECT
 314,TM26,TM26,TM26s,4,10000,"The user frightens the target with a scary face to harshly lower its Speed stat.",3,0,0,SCARYFACE
 315,TM27,TM27,TM27s,4,10000,"The user attacks with a gust of chilled air. This also lowers opposing Pokémon's Speed stats.",3,0,0,ICYWIND
-316,TM28,TM28,TM28s,4,6000,"A nutrient-draining attack. The user's HP is restored by half the damage taken by the target.",3,0,0,GIGADRAIN
+316,TM28,TM28,TM28s,4,6000,"A nutrient-draining attack. The user's HP is restored by half the damage taken by the target.",3,0,0,THRIVINGFORCE
 317,TM29,TM29,TM29s,4,10000,"The user pouts at the target. This harshly lowers its Attack stat.",3,0,0,POUT
 318,TM30,TM30,TM30s,4,10000,"The target is hit with wings of steel. This may also raise the user's Defense stat.",3,0,0,STEELWING
 319,TM31,TM31,TM31s,4,10000,"If it is the opposite gender of the user, the target becomes infatuated and less likely to attack.",3,0,0,ATTRACT
@@ -334,13 +334,13 @@
 333,TM45,TM45,TM45s,4,6000,"Diving on the first turn, the user floats up and attacks on the next turn.",3,0,0,DIVE
 334,TM46,TM46,TM46s,4,6000,"This attack move varies in power and type depending on the weather.",3,0,0,WEATHERBALL
 335,TM47,TM47,TM47s,4,10000,"The user feigns crying to fluster the target, harshly lowering its Sp. Def stat.",3,0,0,FAKETEARS
-336,TM48,TM48,TM48s,4,10000,"Boulders are hurled at the target. It also lowers the target's Speed by preventing its movement.",3,0,0,ROCKTOMB
-337,TM49,TM49,TM49s,4,10000,"The user traps the target inside a harshly raging sandstorm for four to five turns.",3,0,0,SANDTOMB
+336,TM48,TM48,TM48s,4,10000,"Boulders are hurled at the target. It also lowers the target's Speed by preventing its movement.",3,0,0,STRAFE
+337,TM49,TM49,TM49s,4,10000,,3,0,0,SLICE
 338,TM50,TM50,TM50s,4,6000,"The user forcefully shoots seeds at the target two to five times in a row.",3,0,0,BULLETSEED
-339,TM51,TM51,TM51s,4,6000,"The user launches sharp icicles at the target two to five times in a row.",3,0,0,ICICLESPEAR
+339,TM51,TM51,TM51s,4,6000,"The user launches sharp icicles at the target two to five times in a row.",3,0,0,ICECALIBUR
 340,TM52,TM52,TM52s,4,6000,"The user bounces up high, then drops on the foe on the second turn. It may also numb the foe.",3,0,0,BOUNCE
 341,TM53,TM53,TM53s,4,10000,"The user attacks by hurling a blob of mud at the target. This also lowers the target's Speed stat.",3,0,0,MUDSHOT
-342,TM54,TM54,TM54s,4,6000,"The user hurls hard rocks at the target. Two to five rocks are launched in a row.",3,0,0,ROCKBLAST
+342,TM54,TM54,TM54s,4,6000,,3,0,0,WAILINGBLOW
 343,TM55,TM55,TM55s,4,10000,"If the target's HP is half or less, this attack will hit with double the power.",3,0,0,BRINE
 344,TM56,TM56,TM56s,4,10000,"The user attacks in an uproar for three turns. During that time, no Pokémon can fall asleep.",3,0,0,UTURN
 345,TM57,TM57,TM57s,4,6000,"The user stores power, then attacks. If the user moves after the target, this attack's power will be doubled.",3,0,0,PAYBACK
@@ -373,7 +373,7 @@
 372,TM84,TM84,TM84s,4,10000,"The user attacks by striking the target with its hard tail. It hits the target two to five times in a row.",3,0,0,TAILSLAP
 373,TM85,TM85,TM85s,4,10000,"The user yells as if it's ranting about something, which lowers the Sp. Atk stats of opposing Pokémon.",3,0,0,SNARL
 374,TM86,TM86,TM86s,4,6000,"The user vanishes, then strikes the target on the next turn. This move hits even if the target protects itself.",3,0,0,PHANTOMFORCE
-375,TM87,TM87,TM87s,4,10000,"The user steals the target's HP with a kiss. The user's HP is restored by over half the damage inflicted.",3,0,0,DRAININGKISS
+375,TM87,TM87,TM87s,4,10000,,3,0,0,TRICKYTOXINS
 376,TM88,TM88,TM88s,4,5000,"For five turns, Grass-type moves are boosted, and grounded Pokémon restore HP every turn.",3,0,0,GRASSYTERRAIN
 377,TM89,TM89,TM89s,4,5000,"For five turns, Fairy-type moves are boosted, and grounded Pokémon can't be burned/poisoned.",3,0,0,FAIRYTERRAIN
 378,TM90,TM90,TM90s,4,5000,"For five turns, Electric-type moves are boosted, and grounded Pokémon can't sleep or be chilled.",3,0,0,ELECTRICTERRAIN
@@ -383,7 +383,7 @@
 382,TM94,TM94,TM94s,4,10000,"The user pouts, appearing cute before the target. The target's Attack is harshly lowered.",3,0,0,POUT
 383,TM200,TM200,TM200s,4,0,"The target is cut with a scythe or claw. It can also be used to cut down thin trees.",3,0,0,CUT
 384,TM201,TM201,TM201s,4,0,"The user soars, then strikes on the second turn. It can also be used to fly to any familiar town.",3,0,0,FLY
-385,TM202,TM202,TM202s,4,0,"It swamps the area around the user with a giant wave. It can also be used for crossing water.",3,0,0,SURF
+385,TM202,TM202,TM202s,4,0,"It swamps the area around the user with a giant wave. It can also be used for crossing water.",3,0,0,BUBBLEBLAST
 386,TM203,TM203,TM203s,4,0,"The target is slugged with a punch thrown at maximum power. This move can also be used to move boulders.",3,0,0,STRENGTH
 387,TM204,TM204,TM204s,4,0,"The user charges the target at an awesome speed. It can also be used to climb a waterfall.",3,0,0,WATERFALL
 389,CHERIBERRY,Cheri Berry,Cheri Berries,5,0,"It may be held by a Pokémon to recover from numbing.",0,0,5
@@ -618,7 +618,7 @@
 618,ABILITYCAPSULE,Ability Capsule,Ability Capsule,2,3000,"A capsule that allows a Pokémon with two Abilities to switch between these Abilities when it is used.",1,0,0
 619,DREAMBALL,Dream Ball,Dream Balls,3,300,"A somewhat different Poké Ball that makes it easier to catch wild Pokémon while they're asleep.",0,4,4
 620,BEASTBALL,Beast Ball,Beast Balls,3,1000,"A special Poké Ball designed to catch Ultra Beasts. It has a low success rate for catching others.",0,4,4
-621,TM95,TM95,TM95s,4,6000,"The user attacks with a blade of air that slices even the sky. This may also make the target flinch.",3,0,0,AIRSLASH
+621,TM95,TM95,TM95s,4,6000,,3,0,0,COLDFRONT
 622,TM96,TM96,TM96s,4,10000,"The user stabs the target with a sharp horn. This attack never misses.",3,0,0,SMARTHORN
 623,TM97,TM97,TM97s,4,10000,"The user swings its body around violently to inflict damage on everything in its vicinity.",3,0,0,BRUTALSWING
 624,TM98,TM98,TM98s,4,6000,"The user attacks frustratedly. If the user's previous move has failed, the power of this move doubles.",3,0,0,STOMPINGTANTRUM
@@ -736,7 +736,7 @@
 736,TM144,TM144,TM144s,4,4000,"The user absorbs a mystical power from space to raise its Defense and Sp. Def stats.",3,0,0,COSMICPOWER
 737,TM145,TM145,TM145s,4,50000,,3,0,0,ODDROOM
 738,TM146,TM146,TM146s,4,4000,"The user hardens its body's surface like iron, sharply raising its Defense stat.",3,0,0,IRONDEFENSE
-739,TM147,TM147,TM147s,4,6000,"The user slashes the target with huge sharp claws.",3,0,0,DRAGONCLAW
+739,TM147,TM147,TM147s,4,6000,"The user slashes the target with huge sharp claws.",3,0,0,CALAMITOUSSLASH
 740,TM148,TM148,TM148s,4,4000,"The user tenses its muscles to bulk up its body, raising both its Attack and Defense stats.",3,0,0,BULKUP
 741,TM149,TM149,TM149s,4,4000,"The user quietly focuses its mind and calms its spirit to raise its Sp. Atk and Sp. Def stats.",3,0,0,CALMMIND
 742,TM150,TM150,TM150s,4,6000,"The user handles a sharp leaf like a sword and attacks by cutting its target. Critical hits land more easily.",3,0,0,LEAFBLADE
@@ -747,7 +747,7 @@
 747,TM155,TM155,TM155s,4,16000,"The user cloaks itself in fire and charges at the foe. The user sustains serious damage, too.",3,0,0,FLAREBLITZ
 748,TM156,TM156,TM156s,4,6000,"The user looses a blast of aura power from deep within its body at the target. This attack never misses.",3,0,0,AURASPHERE
 749,TM157,TM157,TM157s,4,6000,"The target is stabbed with a tentacle, arm, or the like steeped in poison. This may also poison the target.",3,0,0,POISONJAB
-750,TM158,TM158,TM158s,4,6000,"The user releases a horrible aura imbued with dark thoughts. This may also make the target flinch.",3,0,0,DARKPULSE
+750,TM158,TM158,TM158s,4,6000,,3,0,0,DARKALLURE
 751,TM159,TM159,TM159s,4,6000,"The target is struck by a beam of negative energy. It has a 30% chance to chill.",3,0,0,REMOVALBEAM
 752,TM160,TM160,TM160s,4,6000,"The user slashes at the target by crossing its scythes or claws as if they were a pair of scissors.",3,0,0,XSCISSOR
 753,TM161,TM161,TM161s,4,6000,"The user generates a damaging sound wave by vibration. This may also lower the target's Sp. Def stat.",3,0,0,BUGBUZZ
@@ -758,16 +758,16 @@
 758,TM166,TM166,TM166s,4,16000,"The user tucks in its wings and charges from a low altitude. This also damages the user quite a lot.",3,0,0,BRAVEBIRD
 759,TM167,TM167,TM167s,4,6000,"The user makes the ground under the foe erupt with power. It may also lower the target's Sp. Def.",3,0,0,EARTHPOWER
 760,TM168,TM168,TM168s,4,4000,"The user enters a protective stance, boosting both its Defense and Sp. Atk stats.",3,0,0,VANGUARD
-761,TM169,TM169,TM169s,4,6000,"The user focuses its willpower to its head and attacks the target. This may also make the target flinch.",3,0,0,ZENHEADBUTT
+761,TM169,TM169,TM169s,4,6000,,3,0,0,PREDICTIONSTRIKE
 762,TM170,TM170,TM170s,4,6000,"The user gathers all its light energy and releases it all at once. This may also lower the target's Sp. Def stat.",3,0,0,FLASHCANNON
 763,TM171,TM171,TM171s,4,16000,"A storm of sharp leaves is whipped up. The attack's recoil sharply reduces the user's Sp. Atk stat.",3,0,0,LEAFSTORM
 764,TM172,TM172,TM172s,4,16000,"The user violently whirls its vines, tentacles, or the like to harshly lash the target.",3,0,0,POWERWHIP
 765,TM173,TM173,TM173s,4,16000,"The user shoots filthy garbage at the target to attack. This may also poison the target.",3,0,0,GUNKSHOT
-766,TM174,TM174,TM174s,4,6000,"The user slams the target with its steel-hard head. This may also make the target flinch.",3,0,0,IRONHEAD
-767,TM175,TM175,TM175s,4,16000,"The user stabs the target from below with sharpened stones. Critical hits land more easily.",3,0,0,STONEEDGE
+766,TM174,TM174,TM174s,4,6000,,3,0,0,BULLETTRAIN
+767,TM175,TM175,TM175s,4,16000,,3,0,0,ADAMANTINEPRESS
 768,TM176,TM176,TM176s,4,6000,"The user lays a trap of levitating stones around the foe. The trap hurts foes that switch into battle.",3,0,0,STEALTHROCK
 769,TM177,TM177,TM177s,4,6000,"The user snares the target with grass and trips it. The heavier the target, the greater the damage.",3,0,0,GRASSKNOT
-770,TM178,TM178,TM178s,4,6000,"It swamps the area around the user with a giant sludge wave. It may also poison those hit.",3,0,0,SLUDGEWAVE
+770,TM178,TM178,TM178s,4,6000,,3,0,0,MIASMA
 771,TM179,TM179,TM179s,4,6000,"The user slams with its heavy body. The more the user outweighs the target, the greater the move's power.",3,0,0,HEAVYSLAM
 772,TM180,TM180,TM180s,4,6000,"The user hurls an electric orb. The faster the user is than the foe, the greater the move's power.",3,0,0,ELECTROBALL
 773,TM181,TM181,TM181s,4,6000,"The user turns the foe's power against it. The higher the foe's Attack stat, the greater the damage.",3,0,0,FOULPLAY
@@ -775,13 +775,13 @@
 775,TM183,TM183,TM183s,4,4000,"The user teleports using a strange power and switches places with one of its allies.",3,0,0,ALLYSWITCH
 776,TM184,TM184,TM184s,4,6000,"The user shoots boiling hot water at its target. This may also leave the target with a burn.",3,0,0,SCALD
 777,TM185,TM185,TM185s,4,2000,"The user is roused, and its Attack and Sp. Atk stats increase.",3,0,0,WORKUP
-778,TM186,TM186,TM186s,4,6000,"The user shrouds itself in electricity and smashes into its foe. This also damages the user a little.",3,0,0,WILDCHARGE
-779,TM187,TM187,TM187s,4,6000,"The user crashes into its target while rotating its body like a drill. Critical hits land more easily.",3,0,0,DRILLRUN
+778,TM186,TM186,TM186s,4,6000,"The user shrouds itself in electricity and smashes into its foe. This also damages the user a little.",3,0,0,ELECTROSLASH
+779,TM187,TM187,TM187s,4,6000,,3,0,0,TRAMPLE
 780,TM188,TM188,TM188s,4,6000,"The user slams with its flaming body. The more the user outweighs the target, the greater the move's power.",3,0,0,HEATCRASH
 781,TM189,TM189,TM189s,4,16000,"The user attacks by wrapping its opponent in a fierce wind. This may also confuse the target.",3,0,0,HURRICANE
 782,TM190,TM190,TM190s,4,6000,"The user plays rough with the target and attacks it. This may also lower the target's Attack stat.",3,0,0,PLAYROUGH
 783,TM191,TM191,TM191s,4,4000,"Opponents are covered in odd poison goo. This lowers the Attack, Sp. Atk, and Speed stats of a poisoned target.",3,0,0,VENOMDRENCH
-784,TM192,TM192,TM192s,4,6000,"The user damages opposing Pokémon by emitting a powerful flash.",3,0,0,DAZZLINGGLEAM
+784,TM192,TM192,TM192s,4,6000,,3,0,0,MOONBLAST
 785,TM193,TM193,TM193s,4,6000,"Damage increases with the user's Sp. Def stat.",3,0,0,AURATRICK
 786,TM194,TM194,TM194s,4,6000,"The user fiercely attacks the target using its entire body.",3,0,0,SCORCHINGSANDS
 787,TM195,TM195,TM195s,4,6000,"The user attacks the target's throat, which prevents it from using moves that emit sound for two turns.",3,0,0,THROATCHOP

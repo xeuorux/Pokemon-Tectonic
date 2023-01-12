@@ -458,7 +458,7 @@ class PokemonPokedex_Scene
 
   def modifyTutorLearnability()
 	while true
-		moveNameInput = pbEnterText("Move name...", 0, 16)
+		moveNameInput = pbEnterText("Move name...", 0, 20)
 		if moveNameInput && moveNameInput!=""	
 			actualMoveID = nil
 			GameData::Move.each do |moveData|
@@ -948,7 +948,7 @@ class PokemonPokedex_Scene
 	  end
       
 	  while true
-		  moveNameInput = pbEnterText("Move name...", 0, 16)
+		  moveNameInput = pbEnterText("Move name...", 0, 20)
 		  if moveNameInput && moveNameInput!=""
 				reversed = moveNameInput[0] == '-'
 				moveNameInput = moveNameInput[1..-1] if reversed
