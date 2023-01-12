@@ -381,11 +381,11 @@
 380,TM92,TM92,TM92s,4,100000,"The user attacks by breathing a special, hot fire. This also lowers the target's Sp. Atk stat.",3,0,0,MYSTICALFIRE
 381,TM93,TM93,TM93s,4,10000,"The user's body generates an eerie impulse. This harshly lowers the target's Sp. Atk stat.",3,0,0,EERIEIMPULSE
 382,TM94,TM94,TM94s,4,10000,"The user pouts, appearing cute before the target. The target's Attack is harshly lowered.",3,0,0,POUT
-383,TM200,TM200,TM200s,4,0,"The target is cut with a scythe or claw. It can also be used to cut down thin trees.",3,0,0,CUT
-384,TM201,TM201,TM201s,4,0,"The user soars, then strikes on the second turn. It can also be used to fly to any familiar town.",3,0,0,FLY
-385,TM202,TM202,TM202s,4,0,"It swamps the area around the user with a giant wave. It can also be used for crossing water.",3,0,0,BUBBLEBLAST
-386,TM203,TM203,TM203s,4,0,"The target is slugged with a punch thrown at maximum power. This move can also be used to move boulders.",3,0,0,STRENGTH
-387,TM204,TM204,TM204s,4,0,"The user charges the target at an awesome speed. It can also be used to climb a waterfall.",3,0,0,WATERFALL
+383,TM200,TM200,TM200s,4,6000,"The target is cut with a scythe or claw. It can also be used to cut down thin trees.",3,0,0,CUT
+384,TM201,TM201,TM201s,4,6000,"The user soars, then strikes on the second turn. It can also be used to fly to any familiar town.",3,0,0,FLY
+385,TM202,TM202,TM202s,4,6000,"It swamps the area around the user with a giant wave. It can also be used for crossing water.",3,0,0,BUBBLEBLAST
+386,TM203,TM203,TM203s,4,6000,"The target is slugged with a punch thrown at maximum power. This move can also be used to move boulders.",3,0,0,STRENGTH
+387,TM204,TM204,TM204s,4,6000,"The user charges the target at an awesome speed. It can also be used to climb a waterfall.",3,0,0,WATERFALL
 389,CHERIBERRY,Cheri Berry,Cheri Berries,5,0,"It may be held by a Pokémon to recover from numbing.",0,0,5
 390,CHESTOBERRY,Chesto Berry,Chesto Berries,5,0,"It may be held by a Pokémon to recover from sleep.",0,0,5
 391,PECHABERRY,Pecha Berry,Pecha Berries,5,0,"It may be held by a Pokémon to recover from poison.",0,0,5
