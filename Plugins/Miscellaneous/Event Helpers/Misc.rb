@@ -57,6 +57,11 @@ def isBat?(species)
 	return array.include?(species)
 end
 
+def isSmart?(species)
+	array = [:ABRA,:KADABRA,:ALAKAZAM,:BELDUM,:METANG,:METAGROSS,:SOLOSIS,:DUOSION,:REUNICLUS,:ORBEETLE,:DOTTLER,:BLIPBUG,:GSLOWKING,:SLOWKING,:UXIE]
+	return array.include?(species)
+end
+
 def isKnight?(species)
 	array = [:CORVIKNIGHT,:GALLADE,:ESCAVALIER,:BISHARP,:SIRFETCHD,:SAMUROTT,:GOLURK,:ROSERADE]
 	return array.include?(species)

@@ -57,6 +57,10 @@ class PokeBattle_Battler
         return @battle.field.effectActive?(:OddRoom)
     end
 
+    def wonderRoom?
+        return @battle.field.effectActive?(:WonderRoom)
+    end
+
     def attack
         if puzzleRoom? && oddRoom?
             return base_special_defense
@@ -70,11 +74,11 @@ class PokeBattle_Battler
     end
 
     def defense
-        if puzzleRoom? && oddRoom?
+        if wonderRoom? && oddRoom?
             return base_special_attack
-        elsif puzzleRoom? && !oddRoom?
+        elsif wonderRoom? && !oddRoom?
             return base_special_defense
-        elsif oddRoom? && !puzzleRoom?
+        elsif oddRoom? && !wonderRoom?
             return base_attack
         else
             return base_defense
@@ -94,11 +98,11 @@ class PokeBattle_Battler
     end
 
     def spdef
-        if puzzleRoom? && oddRoom?
+        if wonderRoom? && oddRoom?
             return base_attack
-        elsif puzzleRoom? && !oddRoom?
+        elsif wonderRoom? && !oddRoom?
             return base_defense
-        elsif oddRoom? && !puzzleRoom?
+        elsif oddRoom? && !wonderRoom?
             return base_special_attack
         else
             return base_special_defense

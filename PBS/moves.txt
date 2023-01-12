@@ -348,7 +348,6 @@
 351,MUDSLAP,Mud-Slap,047,20,GROUND,Special,100,10,100,NearOther,0,bef,"The user hurls mud in the target's face to inflict damage and lower its accuracy.",
 352,FISSURE,Fissure,070,1,GROUND,Physical,30,5,0,NearOther,0,be,"The user opens up a fissure in the ground and drops the foe in. The target instantly faints if it hits.",
 353,MAGNITUDE,Magnitude,095,1,GROUND,Physical,100,25,0,AllNearOthers,0,bef,"The user looses a ground-shaking quake affecting everyone around. Its power varies greatly.",EARTHQUAKE
-354,MUDSPORT,Mud Sport,09D,0,GROUND,Status,0,12,0,BothSides,0,,"The user covers itself with mud. It weakens Electric-type moves while the user is in the battle.",
 355,ROTOTILLER,Rototiller,13E,0,GROUND,Status,0,10,0,UserAndAllies,0,,"The user tills the soil to encourage plant growth. This raises the Attack and Sp. Atk of Grass type allies.",
 356,SANDATTACK,Sand Attack,047,0,GROUND,Status,100,12,0,NearOther,0,bce,"Sand is hurled in the target's face, reducing its accuracy.",
 357,SHOREUP,Shore Up,16D,0,GROUND,Status,0,5,0,User,0,d,"The user regains up to half of its max HP. It restores more HP in a sandstorm.",
@@ -724,7 +723,6 @@
 732,AQUARING,Aqua Ring,0DA,0,WATER,Status,0,15,0,User,0,d,"The user envelops itself in a veil made of water. It regains 1/8 of its HP on every turn.",
 733,RAIN,Rain,100,0,WATER,Status,0,10,0,BothSides,0,,"Summons rain for five turns, boosting Water-type attacks and hindering most other attacks.",
 734,SOAK,Soak,061,0,WATER,Status,100,15,0,NearOther,0,bce,"The user shoots a torrent of water at the target and changes the target's type to Water.",
-735,WATERSPORT,Water Sport,09E,0,WATER,Status,0,12,0,BothSides,0,,"The user soaks itself with water. The move weakens Fire-type moves while the user is in the battle.",
 736,WITHDRAW,Withdraw,01D,0,WATER,Status,0,30,0,User,0,d,"The user withdraws its body into its hard shell, raising its Defense stat.",
 737,SNIPESHOT,Snipe Shot,182,80,WATER,Special,100,12,0,NearOther,0,befh,"Ignores all attempts at redirection, allowing this move to hit the chosen target. Critical hits land more easily.",
 738,FISHIOUSREND,Fishious Rend,178,85,WATER,Physical,100,10,0,NearOther,0,abefi,"Rends the target with its hard gills. Power doubles if the user moves before the target.",
@@ -974,7 +972,7 @@
 991,SANDTOSS,Sand Toss,00A,40,GROUND,Special,100,30,10,NearOther,0,bef,"The user tosses hot desert sand on the target. It has a 10% chance to burn.",SCORCHINGSANDS
 992,DUSTDEVIL,Dust Devil,00A,60,GROUND,Special,100,20,20,NearOther,0,befq,"The user whips up a hot desert twister to attack the target. It has a 20% chance to burn.",SCORCHINGSANDS
 993,SANDVORTEX,Sand Vortex,0CF,110,GROUND,Special,100,15,0,NearOther,0,bef,"The user sends the target into a giant pit, trapping and damaging it for three turns.",SANDTOMB
-994,PUZZLEROOM,Puzzle Room,51A,0,PSYCHIC,Status,0,10,0,BothSides,0,e,"The user creates a puzzling area in which Pokémon's Attack and Sp. Atk are swapped.",MAGICROOM
+994,PUZZLEROOM,Puzzle Room,51A,0,PSYCHIC,Status,0,10,0,BothSides,0,e,"The user creates a puzzling area in which Pokémon's base Attack and Sp. Atk are swapped.",MAGICROOM
 995,SHIVER,Shiver,403,0,GHOST,Status,100,12,0,NearOther,0,bce,"The user drains heat from the air around the target, afflicting it with frostbite.",
 996,FRIGIDJEALOUSY,Frigid Jealousy,537,70,ICE,Special,100,12,100,AllNearFoes,0,bef,"Attacks with emotion from jealousy. All opposing Pokémon with stat boosts get frostbitten.",
 997,CORECOLLAPSE,Core Collapse,0FC,120,PSYCHIC,Special,100,10,0,AllNearOthers,1,bef,"Astral energy explodes around the target. This move always goes first. The user also takes 50% recoil.",EXPANDINGFORCE
@@ -1074,5 +1072,6 @@
 1091,VENOMGUARD,Venom Guard,57F,0,POISON,Status,0,3,0,User,4,,"Halves attack damage taken this turn. Also poisons any attacker who attacks the user.",DEFENSECURL
 1092,PRANK,Prank,560,0,NORMAL,Status,100,15,0,NearOther,0,bce,"The user pranks the target, surprising it and reducing its Sp. Atk and Sp. Def.",SCARYFACE
 1093,GREYMIST,Grey Mist,587,0,POISON,Status,0,10,0,User,0,,"A Grey Mist covers the battlefield. For 5 turns, stats are reset at the end of each turn.",MIST
-1094,PATIENTTRAINING,Patient Training,508,0,BUG,Status,0,12,0,User,0,d,"The user prepares its weapons, drastically raising Attack but drastically lowering Speed.",
-1095,MARTIALMASTERY,Martial Mastery,5AD,0,FIGHTING,Status,0,15,0,User,0,d,"The user tenses recalls martial techniques, boosting its Attack, Defense and critical strike chance.",
+1094,PATIENTTRAINING,Patient Training,508,0,BUG,Status,0,12,0,User,0,d,"The user prepares its weapons, drastically raising Attack but drastically lowering Speed.",SWORDSDANCE
+1095,MARTIALMASTERY,Martial Mastery,5AD,0,FIGHTING,Status,0,15,0,User,0,d,"The user tenses recalls martial techniques, boosting its Attack, Defense and critical strike chance.",FOCUSENERGY
+1096,REVERBWARD,Reverb Ward,5AE,0,PSYCHIC,Status,0,3,0,User,4,,"Protects the user from all attacks. Special attacks harshly lower the attacker's Sp. Def stat.",PROTECT

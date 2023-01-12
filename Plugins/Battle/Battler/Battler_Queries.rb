@@ -140,7 +140,6 @@ class PokeBattle_Battler
         return false if fainted? && !ignoreFainted
         return false if effectActive?(:Embargo)
         return false if pbOwnSide.effectActive?(:EmpoweredEmbargo)
-        return false if @battle.field.effectActive?(:MagicRoom)
         return false if hasActiveAbility?(:KLUTZ, ignoreFainted)
         return true
     end

@@ -390,7 +390,7 @@
 390,CHESTOBERRY,Chesto Berry,Chesto Berries,5,0,"It may be held by a Pokémon to recover from sleep.",0,0,5
 391,PECHABERRY,Pecha Berry,Pecha Berries,5,0,"It may be held by a Pokémon to recover from poison.",0,0,5
 392,RAWSTBERRY,Rawst Berry,Rawst Berries,5,0,"It may be held by a Pokémon to recover from a burn.",0,0,5
-393,ASPEARBERRY,Aspear Berry,Aspear Berries,5,0,"It may be held by a Pokémon to unchill it.",0,0,5
+393,ASPEARBERRY,Aspear Berry,Aspear Berries,5,0,"It may be held by a Pokémon to recover from a frostbite.",0,0,5
 394,LEPPABERRY,Leppa Berry,Leppa Berries,5,0,"It may be held by a Pokémon to restore a move's PP by 10.",0,0,5
 395,ORANBERRY,Oran Berry,Oran Berries,5,0,"It may be held by a Pokémon to heal the user by 33% in a pinch.",0,0,5
 396,PERSIMBERRY,Persim Berry,Persim Berries,5,0,"It may be held by a Pokémon to recover from being dizzy.",0,0,5
@@ -541,7 +541,7 @@
 541,LUMINOUSMOSS,Luminous Moss,Luminous Mosses,5,4000,"An item to be held by a Pokémon. It boosts Sp. Def if hit by a Water-type attack once per battle.",0,0,0
 542,SNOWBALL,Snowball,Snowballs,5,4000,"An item to be held by a Pokémon. It boosts Attack if hit by an Ice-type attack once per battle.",0,0,0
 543,WEAKNESSPOLICY,Weakness Policy,Weakness Policies,5,1000,"An item to be held by a Pokémon. The holder's Attack and Sp. Atk sharply increase if hit by a move it's weak to.",0,0,0
-544,ADRENALINEORB,Adrenaline Orb,Adrenaline Orbs,5,4000,"An item to be held by a Pokémon. It boosts Speed when intimidated, fascinated, or frustrated once per battle.",0,0,0
+544,ADRENALINEORB,Adrenaline Orb,Adrenaline Orbs,5,4000,"When held, it boosts Speed when intimidated, fascinated, or frustrated once per battle.",0,0,0
 545,PIXIEPLATE,Pixie Plate,Pixie Plates,5,1000,"A stone tablet that boosts the power of Fairy-type moves.",0,0,0
 546,FAIRYGEM,Fairy Gem,Fairy Gems,5,1000,"A gem with an essence of the fey. Boosts the power of a Fairy-type move by 50% once per battle.",0,0,10
 547,FIREMEMORY,Fire Memory,Fire Memories,5,1000,"A memory disc containing Fire-type data. It changes the holder's type if held by a certain Pokémon.",0,0,0

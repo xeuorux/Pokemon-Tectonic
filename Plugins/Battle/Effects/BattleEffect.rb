@@ -246,7 +246,7 @@ module GameData
 
         def checkForInvalidDefinitions
             if @expire_proc && @disable_proc
-                raise _INTL("Battle effect #{@id} defines both an expire and disable proc.")
+                echoln _INTL("WARNING: Battle effect #{@id} defines both an expire and disable proc.")
             end
             if @type != :Integer
                 if @increment_proc

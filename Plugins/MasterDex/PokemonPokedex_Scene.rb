@@ -1188,7 +1188,7 @@ class PokemonPokedex_Scene
 			end
 		elsif
 			statSelectionComparison = pbMessage("Compare to which stat?",[_INTL("HP"),_INTL("Attack"),_INTL("Defense"),
-			_INTL("Sp. Atk"),_INTL("Sp. Def"),_INTL("Speed"),_INTL("Phys. EHP"),_INTL("Spec. EHP"),_INTL("Cancel")],9)
+				_INTL("Sp. Atk"),_INTL("Sp. Def"),_INTL("Speed"),_INTL("Phys. EHP"),_INTL("Spec. EHP"),_INTL("Cancel")],9)
 			return if statSelectionComparison == 8
 			
 			comparitorB = stats[statSelectionComparison]
@@ -1218,7 +1218,7 @@ class PokemonPokedex_Scene
 			
 			statToCompareB = 0
 			if comparitorB.is_a?(Symbol)
-				calced_stats = species_data.base_stats
+				calced_stats = species_data.base_stats.clone
 				calced_stats[:PEHP] = species_data.physical_ehp
 				calced_stats[:SEHP] = species_data.special_ehp
 				statToCompareB = calced_stats[comparitorB]

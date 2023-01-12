@@ -233,11 +233,11 @@ class PokeBattle_Battle
         end
     end
 
-    def getMovePriority(move, user, targets)
+    def getMovePriority(move, user, targets, aiCheck = false)
         priority = move.priority
         priority -= 1 if pbCheckGlobalAbility(:HONORAURA) && move.statusMove?
         if user.abilityActive?
-            abilityPriorityChange = BattleHandlers.triggerPriorityChangeAbility(user.ability, user, move, 0, targets)
+            abilityPriorityChange = BattleHandlers.triggerPriorityChangeAbility(user.ability, user, move, 0, targets, aiCheck)
             if abilityPriorityChange > 0
                 priority = [priority + abilityPriorityChange, 1].max
             elsif abilityPriorityChange < 0

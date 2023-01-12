@@ -15,18 +15,20 @@ DebugMenuCommands.register("setbadges", {
       break if badgecmd < 0
       if badgecmd == 0   # Give all
         8.times { |i|
-			$Trainer.badges[i] = true
-			$game_switches[4+i] = true
-		}
+          $Trainer.badges[i] = true
+          $game_switches[4+i] = true
+        }
       elsif badgecmd == 1   # Remove all
         8.times { |i|
-			$Trainer.badges[i] = false
-			$game_switches[4+i] = false
-		}
+          $Trainer.badges[i] = false
+          $game_switches[4+i] = false
+        }
       else
         $Trainer.badges[badgecmd - 2] = !$Trainer.badges[badgecmd - 2]
-		$game_switches[2+badgecmd] = $Trainer.badges[badgecmd - 2]
+		    $game_switches[2+badgecmd] = $Trainer.badges[badgecmd - 2]
       end
     end
+
+    updateTotalBadgesVar()
   }
 })

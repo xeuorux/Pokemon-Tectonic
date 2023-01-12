@@ -629,47 +629,15 @@ class PokeBattle_Move_09C < PokeBattle_Move
 end
 
 #===============================================================================
-# Weakens Electric attacks. (Mud Sport)
+# (Currently unused.)
 #===============================================================================
 class PokeBattle_Move_09D < PokeBattle_Move
-    def pbMoveFailed?(_user, _targets, show_message)
-        if @battle.field.effectActive?(:MudSportField)
-            @battle.pbDisplay(_INTL("But it failed, since Electricity's power is still weak!")) if show_message
-            return true
-        end
-        return false
-    end
-
-    def pbEffectGeneral(_user)
-        @battle.field.applyEffect(:MudSportField, 5)
-    end
-
-    def getEffectScore(_user, _target)
-        echoln("The AI will never use Mud Sport.")
-        return -1000
-    end
 end
 
 #===============================================================================
-# Weakens Fire attacks. (Water Sport)
+# (Currently unused.)
 #===============================================================================
 class PokeBattle_Move_09E < PokeBattle_Move
-    def pbMoveFailed?(_user, _targets, show_message)
-        if @battle.field.effectActive?(:WaterSportField)
-            @battle.pbDisplay(_INTL("But it failed, since Fire's power is still weak!")) if show_message
-            return true
-        end
-        return false
-    end
-
-    def pbEffectGeneral(_user)
-        @battle.field.applyEffect(:WaterSportField, 5)
-    end
-
-    def getEffectScore(_user, _target)
-        echoln("The AI will never use Water Sport.")
-        return -1000
-    end
 end
 
 #===============================================================================
@@ -3719,14 +3687,9 @@ class PokeBattle_Move_0F8 < PokeBattle_Move
 end
 
 #===============================================================================
-# For 5 rounds, all held items cannot be used in any way and have no effect.
-# Held items can still change hands, but can't be thrown. (Magic Room)
+# (Not Currently used.)
 #===============================================================================
-class PokeBattle_Move_0F9 < PokeBattle_RoomMove
-    def initialize(battle, move)
-        super
-        @roomEffect = :MagicRoom
-    end
+class PokeBattle_Move_0F9 < PokeBattle_Move
 end
 
 #===============================================================================

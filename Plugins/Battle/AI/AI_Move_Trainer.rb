@@ -180,7 +180,7 @@ class PokeBattle_AI
         end
 
         # Account for the value of priority
-        movePrio = @battle.getMovePriority(move, user, [target])
+        movePrio = @battle.getMovePriority(move, user, [target], true)
         if target.pbSpeed(true) > user.pbSpeed(true) && movePrio > 0
             echoln("#{user.pbThis} scores the move #{move.id} higher since its positive priority (#{movePrio}) when normally would be slower")
             score *= 1.5

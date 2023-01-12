@@ -56,6 +56,7 @@ module EffectHolder
         data = getData(effect)
         if effectActive?(effect)
             if tickDown(effect)
+                echoln("Effect #{data.real_name} expires after ticking down")
                 @expire_proc.call(data)
                 disableEffect(effect)
                 return false

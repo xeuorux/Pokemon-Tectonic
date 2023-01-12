@@ -106,7 +106,7 @@ Special,20
 #-------------------------------
 [032] # Novo Apartments
 Special
-    1,ESPURR,15
+    1,MVULPIX,15
 #-------------------------------
 [034] # Battle Plaza
 FloweryGrass,20
@@ -217,7 +217,7 @@ FloweryGrass2,20
     25,NICKIT,15,18
     25,PSYDUCK,15,18
 Special,20
-    1,MVULPIX,15
+    1,REMORAID,15
 #-------------------------------
 [056] # Novo Town
 FloweryGrass,20

@@ -36,22 +36,30 @@ def earnBadge(badgeNum)
 	$game_switches[3+badgeNum]=true # "Defeated Gym X" switch
 	pbWait(120)
 	
-	totalBadges = 0
 	badgesEarnedArray = []
 	$Trainer.badges.each_with_index do |hasBadge,index|
 		break if index >= TOTAL_BADGES
-		totalBadges += 1 if hasBadge
 		badgesEarnedArray.push(hasBadge)
 	end
-	
-	Events.onBadgeEarned.trigger(self,badgeNum-1,totalBadges,badgesEarnedArray)
-	
-	# Update the total badge count
-	$game_variables[BADGE_COUNT_VARIABLE] = totalBadges
 
+	updateTotalBadgesVar()
+	
+	Events.onBadgeEarned.trigger(self,badgeNum-1,$game_variables[BADGE_COUNT_VARIABLE],badgesEarnedArray)
+	
 	giveBattleReport()
 	
 	refreshMapEvents()
+end
+
+def updateTotalBadgesVar
+	totalBadges = 0
+	$Trainer.badges.each_with_index do |hasBadge,index|
+		break if index >= TOTAL_BADGES
+		totalBadges += 1 if hasBadge
+	end
+
+	# Update the total badge count
+	$game_variables[BADGE_COUNT_VARIABLE] = totalBadges
 end
 
 def giveBattleReport()
