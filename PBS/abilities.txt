@@ -416,7 +416,7 @@
 415,COLDRECEPTION,Cold Reception,"Immune to Ice-type moves, and raises Attack if hit by one."
 416,BITTER,Bitter,"Its attacks are critical against frostbitten targets."
 417,STABILITY,Stability,"Cannot be poisoned, burned, or frostbitten."
-418,PUZZLINGAURA,Puzzling Aura,"Transforms the field to Puzzle Room for 5 turns on entering the battle, swapping Attack and Sp. Atk."
+418,PUZZLINGAURA,Puzzling Aura,"Creates a Puzzle Room for 5 turns on entering the battle, swapping base Attack and Sp. Atk."
 419,DIREDIVERSION,Dire Diversion,"It can avoid being knocked out by sacrificing its held item."
 420,WALLNINJA,Wall Ninja,"The Pokémon's attacks are always critical if there is an active Room."
 421,RELUCTANTBLADE,Reluctant Blade,"When hit with a physical move, hits back instantly with Leafage."

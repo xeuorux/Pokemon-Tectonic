@@ -972,7 +972,7 @@
 991,SANDTOSS,Sand Toss,00A,40,GROUND,Special,100,30,10,NearOther,0,bef,"The user tosses hot desert sand on the target. It has a 10% chance to burn.",SCORCHINGSANDS
 992,DUSTDEVIL,Dust Devil,00A,60,GROUND,Special,100,20,20,NearOther,0,befq,"The user whips up a hot desert twister to attack the target. It has a 20% chance to burn.",SCORCHINGSANDS
 993,SANDVORTEX,Sand Vortex,0CF,110,GROUND,Special,100,15,0,NearOther,0,bef,"The user sends the target into a giant pit, trapping and damaging it for three turns.",SANDTOMB
-994,PUZZLEROOM,Puzzle Room,51A,0,PSYCHIC,Status,0,10,0,BothSides,0,e,"The user creates a puzzling area in which Pokémon's Attack and Sp. Atk are swapped.",MAGICROOM
+994,PUZZLEROOM,Puzzle Room,51A,0,PSYCHIC,Status,0,10,0,BothSides,0,e,"The user creates a puzzling area in which Pokémon's base Attack and Sp. Atk are swapped.",MAGICROOM
 995,SHIVER,Shiver,403,0,GHOST,Status,100,12,0,NearOther,0,bce,"The user drains heat from the air around the target, afflicting it with frostbite.",
 996,FRIGIDJEALOUSY,Frigid Jealousy,537,70,ICE,Special,100,12,100,AllNearFoes,0,bef,"Attacks with emotion from jealousy. All opposing Pokémon with stat boosts get frostbitten.",
 997,CORECOLLAPSE,Core Collapse,0FC,120,PSYCHIC,Special,100,10,0,AllNearOthers,1,bef,"Astral energy explodes around the target. This move always goes first. The user also takes 50% recoil.",EXPANDINGFORCE
