@@ -122,9 +122,9 @@ Events.onSpritesetCreate += proc { |_sender,e|
     elsif event.name[/^light\((\w+)\)$/i]
       filename = $~[1].to_s
       spriteset.addUserSprite(LightEffect_Basic.new(event,viewport,map,filename))
-    elsif event.name[/AvatarTotem/i]
+    elsif event.name[/AvatarTotem/i] || event.name.include?("goldenglow")
       spriteset.addUserSprite(LightEffect_Totem.new(event,viewport,map))
-    elsif event.name[/^light$/i]
+    elsif event.name[/^light$/i] || event.name.include?("lighteffect")
       spriteset.addUserSprite(LightEffect_Basic.new(event,viewport,map))
     end
   end
