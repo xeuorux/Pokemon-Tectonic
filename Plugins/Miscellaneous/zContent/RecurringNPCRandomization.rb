@@ -78,6 +78,7 @@ class NPCRandomization
     def traitorizeNPC(npcID)
         if @chosenNPC1 == npcID
             $game_switches[NPC1_TRAITOR_SWITCH] = true
+            $game_switches[65] = true # Make Crimson dissapear from Sweetrock Harbor
         elsif @chosenNPC2 == npcID
             $game_switches[NPC2_TRAITOR_SWITCH] = true
         else
