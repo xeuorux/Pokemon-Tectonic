@@ -2554,6 +2554,7 @@ class PokeBattle_Move_0DA < PokeBattle_Move
     end
 
     def getEffectScore(user, _target)
+        return 0 if user.effectActive?(:AquaRing)
         score = 70
         score += 30 if user.firstTurn?
         return score
