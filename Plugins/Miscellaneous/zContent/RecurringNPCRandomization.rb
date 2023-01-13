@@ -79,8 +79,10 @@ class NPCRandomization
         if @chosenNPC1 == npcID
             $game_switches[NPC1_TRAITOR_SWITCH] = true
             $game_switches[65] = true # Make Crimson dissapear from Sweetrock Harbor
+            $game_map.need_refresh = true
         elsif @chosenNPC2 == npcID
             $game_switches[NPC2_TRAITOR_SWITCH] = true
+            $game_map.need_refresh = true
         else
             pbMessage(_INTL("The submitted NPC ID could not be made traitor as it was not randomly selected on this playthrough: #{npcID}"))
             pbMessage(_INTL("This is a recoverable error. Please alert a programmer."))
