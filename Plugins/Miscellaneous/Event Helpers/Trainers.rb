@@ -108,17 +108,20 @@ def defeatDoubleTrainer(event1,event2)
 	setFollowerInactive(event2)
 end
 
-def rejectTooFewPokemon(dialogue)
-	if $Trainer.ablePokemonCount<=1
+def rejectTooFewPokemon(dialogue,movePlayer=true)
+	if $Trainer.ablePokemonCount <= 1
+		dialogue = "Unable to start double battle with only 1 able Pokemon." unless dialogue
 		pbMessage(dialogue)
-		new_move_route = RPG::MoveRoute.new
-		new_move_route.repeat    = false
-		new_move_route.skippable = false
-		new_move_route.list.clear
-		new_move_route.list.push(RPG::MoveCommand.new(13)) # Backwards
-		new_move_route.list.push(RPG::MoveCommand.new(0)) # End
-		get_player.force_move_route(new_move_route)
-		@move_route_waiting = true if !$game_temp.in_battle # Wait for move route completion
+		if movePlayer
+			new_move_route = RPG::MoveRoute.new
+			new_move_route.repeat    = false
+			new_move_route.skippable = false
+			new_move_route.list.clear
+			new_move_route.list.push(RPG::MoveCommand.new(13)) # Backwards
+			new_move_route.list.push(RPG::MoveCommand.new(0)) # End
+			get_player.force_move_route(new_move_route)
+			@move_route_waiting = true if !$game_temp.in_battle # Wait for move route completion
+		end
 		command_end # Exit event processing
 	end
 end
