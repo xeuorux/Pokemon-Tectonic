@@ -669,7 +669,7 @@
 679,SUNSTEELSTRIKE,Sunsteel Strike,163,100,STEEL,Physical,100,5,0,NearOther,0,abef,"The user slams into the target with the force of a meteor. Can't be stopped by the target's Ability.",
 680,METEORMASH,Meteor Mash,01C,90,STEEL,Physical,100,10,20,NearOther,0,abefj,"The target is hit with a hard punch fired like a meteor. It has a 20% chance to raise Attack.",
 681,ANCHORSHOT,Anchor Shot,0EF,80,STEEL,Physical,100,15,100,NearOther,0,abef,"The user entangles the target with its anchor chain. The target becomes unable to flee.",
-682,FLASHCANNON,Flash Cannon,046,80,STEEL,Special,100,10,10,NearOther,0,befm,"The user gathers all its light energy and releases it at once. It has a 10% chance to lower Sp. Def.",
+682,FLASHCANNON,Flash Cannon,046,90,STEEL,Special,100,10,10,NearOther,0,befm,"The user gathers all its light energy and releases it at once. It has a 10% chance to lower Sp. Def.",
 683,IRONHEAD,Iron Head,00F,80,STEEL,Physical,100,12,40,NearOther,0,abe,"The foe slams the target with its steel-hard head. It has a 40% chance to make the target flinch.",
 684,SMARTHORN,Smart Horn,0A5,70,STEEL,Physical,0,10,0,NearOther,0,aef,"The user stabs the target with a sharp horn. Can't miss and skips protections.",
 685,STEELWING,Steel Wing,01D,70,STEEL,Physical,100,20,30,NearOther,0,abef,"The target is hit with wings of steel. It has a 30% chance to raise Def.",
