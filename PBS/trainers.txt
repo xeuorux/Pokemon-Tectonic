@@ -2215,6 +2215,7 @@ Pokemon = WATCHOG,45
     AbilityIndex = 1
 #-------------------------------
 [BLACKBELT2,Riccardo]
+Policies = SAND_TEAM
 Pokemon = HIPPOWDON,53
     AbilityIndex = 1
     Item = SMOOTHROCK
@@ -5205,3 +5206,40 @@ Pokemon = MILLIBLAZE,70
     Moves = FLAREUP,LEECHLIFE,POWERWHIP,SCALD
     AbilityIndex = 0
     Item = WATERGEM
+#-------------------------------
+[FAIRYTALEGIRL,Madeline]
+Pokemon = FURFROU,61
+    AbilityIndex = 0
+Pokemon = PANGORO,62
+    AbilityIndex = 0
+    Item = ORANBERRY
+Pokemon = TOXAPEX,63
+    AbilityIndex = 0
+    Item = BLACKSLUDGE
+Pokemon = SLAKING,63
+    AbilityIndex = 0
+#-------------------------------
+[GARDENER,Larry]
+Pokemon = KABUTOPS,63
+    AbilityIndex = 1
+Pokemon = REAVOR,63
+    AbilityIndex = 1
+    Item = ORANBERRY
+Pokemon = MZANGOOSE,64
+    AbilityIndex = 0
+Pokemon = GARCHOMP,64
+    AbilityIndex = 0
+    Item = SHELLBELL
+#-------------------------------
+[BEAUTY5,Esme]
+Policies = SUN_TEAM
+Pokemon = SUNFLORA,63
+    AbilityIndex = 1
+    Item = HEATROCK
+Pokemon = ESPEON,64
+    AbilityIndex = 1
+Pokemon = XATU,64
+    AbilityIndex = 1
+    Item = WEAKNESSPOLICY
+Pokemon = RIBOMBEE,65
+    AbilityIndex = 1
