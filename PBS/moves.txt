@@ -571,7 +571,6 @@
 579,SMOG,Smog,005,30,POISON,Special,100,30,30,NearOther,0,bef,"The target is attacked with a discharge of filthy gases. It has a 30% chance to poison.",
 580,POISONSTING,Poison Sting,005,30,POISON,Physical,100,30,30,NearOther,0,bef,"The user stabs the target with a poisonous stinger. This has a 30% chance to poison.",
 581,ACIDARMOR,Acid Armor,02F,0,POISON,Status,0,15,0,User,0,d,"The user alters its cellular structure to liquefy itself, sharply raising its Defense stat.",
-582,BANEFULBUNKER,Baneful Bunker,168,0,POISON,Status,0,3,0,User,4,,"Protects the user from attacks. Also poisons any attacker physically attacks the user.",
 583,COIL,Coil,025,0,POISON,Status,0,15,0,User,0,d,"The user coils up and concentrates. This raises its Attack and Defense stats as well as its accuracy.",
 584,GASTROACID,Gastro Acid,068,0,POISON,Status,100,10,0,NearOther,0,bce,"The user hurls up its stomach acids on the foe. The fluid negates the effect of the target's Ability.",
 585,POISONGAS,Poison Gas,005,0,POISON,Status,100,30,0,NearFoe,0,bce,"A cloud of poison gas is sprayed in the face of opposing Pokémon. It poisons those hit.",
