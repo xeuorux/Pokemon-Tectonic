@@ -1,14 +1,14 @@
 BattleHandlers::AbilityOnStatLoss.add(:COMPETITIVE,
   proc { |_ability, battler, _stat, user|
       next if user && !user.opposes?(battler)
-      battler.tryRaiseStat(:SPECIAL_ATTACK, battler, showAbilitySplash: true)
+      battler.tryRaiseStat(:SPECIAL_ATTACK, battler, showAbilitySplash: true, increment: 2)
   }
 )
 
 BattleHandlers::AbilityOnStatLoss.add(:DEFIANT,
   proc { |_ability, battler, _stat, user|
       next if user && !user.opposes?(battler)
-      battler.tryRaiseStat(:ATTACK, battler, showAbilitySplash: true)
+      battler.tryRaiseStat(:ATTACK, battler, showAbilitySplash: true, increment: 2)
   }
 )
 
@@ -22,6 +22,6 @@ BattleHandlers::AbilityOnStatLoss.add(:BELLIGERENT,
 BattleHandlers::AbilityOnStatLoss.add(:IMPERIOUS,
   proc { |_ability, battler, _stat, user|
       next if user && !user.opposes?(battler)
-      battler.tryRaiseStat(:SPEED, battler, showAbilitySplash: true)
+      battler.tryRaiseStat(:SPEED, battler, showAbilitySplash: true, increment: 2)
   }
 )
