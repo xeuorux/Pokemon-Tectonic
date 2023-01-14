@@ -833,13 +833,13 @@ Land,20
     20,TORKOAL,17,20
     20,TURTONATOR,17,20
 #-------------------------------
-[349] # Svait Sauna Underground
+[349] # UB Portal
 Land,20
-    13,NIHILEGO,56,59
     13,BUZZWOLE,56,59
+    13,NIHILEGO,56,59
     13,PHEROMOSA,56,59
     13,XURKITREE,56,59
     12,CELESTEELA,56,59
-    12,KARTANA,56,59
     12,GUZZLORD,56,59
+    12,KARTANA,56,59
     12,POIPOLE,56,59
