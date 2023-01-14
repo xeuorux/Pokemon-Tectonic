@@ -365,7 +365,7 @@ class PokeBattle_TargetMultiStatDownMove < PokeBattle_Move
                 end
                 @battle.pbDisplay(_INTL("{1}'s stats won't go any lower!", user.pbThis)) if !canLower && show_message
             end
-            target.pbCanLowerStatStage?(@statDown[0], user, self, true) if canLower
+            target.pbCanLowerStatStage?(@statDown[0], user, self, true) if canLower && show_message
             return true
         end
         return false
