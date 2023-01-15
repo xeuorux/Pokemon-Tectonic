@@ -545,7 +545,7 @@ class PokeBattle_Battler
     def getWeatherSettingDuration(weatherType, baseDuration = 4, ignoreFainted = false)
         duration = baseDuration
         if duration > 0 && itemActive?(ignoreFainted)
-            duration = BattleHandlers.triggerWeatherExtenderItem(@item, weatherType, duration, self, @battle)
+            duration = BattleHandlers.triggerWeatherExtenderItem(item, weatherType, duration, self, @battle)
         end
         return duration
     end
