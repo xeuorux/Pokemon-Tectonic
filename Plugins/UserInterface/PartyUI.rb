@@ -219,7 +219,7 @@ class PokemonPartyScreen
       commands[cmdSwitch = commands.length]       = _INTL("Switch") if @party.length>1
       if !pkmn.egg?
 		    if $Trainer.has_pokedex
-          commands[cmdPokedex = commands.length]  = _INTL("Pokédex")
+          commands[cmdPokedex = commands.length]  = _INTL("MasterDex")
         end
 		    if !pkmn.shadowPokemon?
           commands[cmdRename = commands.length]   = _INTL("Rename")
@@ -428,11 +428,11 @@ class PokeBattle_Scene
       # Choose a command for the selected Pokémon
       cmdSwitch  = -1
       cmdSummary = -1
-	  cmdPokedex = -1
+	    cmdPokedex = -1
       commands = []
       commands[cmdSwitch  = commands.length] = _INTL("Switch In") if modParty[idxParty].able?
       commands[cmdSummary = commands.length] = _INTL("Summary")
-	  commands[cmdPokedex = commands.length] = _INTL("Pokédex") if !modParty[idxParty].egg? && $Trainer.has_pokedex
+	    commands[cmdPokedex = commands.length] = _INTL("MasterDex") if !modParty[idxParty].egg? && $Trainer.has_pokedex
       commands[commands.length]              = _INTL("Cancel")
       command = scene.pbShowCommands(_INTL("Do what with {1}?",modParty[idxParty].name),commands)
       if cmdSwitch>=0 && command==cmdSwitch        # Switch In

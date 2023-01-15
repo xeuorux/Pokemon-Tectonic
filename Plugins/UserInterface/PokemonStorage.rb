@@ -63,7 +63,7 @@ class PokemonStorageScreen
             commands[cmdOmniTutor=commands.length] = _INTL("OmniTutor") if tutoringPokemon &&
               $PokemonGlobal.omnitutor_active && getOmniMoves(tutoringPokemon).length != 0
             commands[cmdSummary=commands.length]  = _INTL("Summary")
-			      commands[cmdPokedex = commands.length]  = _INTL("Pokédex") if $Trainer.has_pokedex
+			      commands[cmdPokedex = commands.length]  = _INTL("MasterDex") if $Trainer.has_pokedex
             commands[cmdWithdraw=commands.length] = (selected[0]==-1) ? _INTL("Store") : _INTL("Withdraw")
             commands[cmdItem=commands.length]     = _INTL("Item")
             commands[cmdMark=commands.length]     = _INTL("Mark")
@@ -136,7 +136,7 @@ class PokemonStorageScreen
           commands = []
           commands[cmdWithdraw = commands.length] = _INTL("Withdraw")
           commands[cmdSummary = commands.length] = _INTL("Summary")
-          commands[cmdPokedex = commands.length] = _INTL("Pokedex") if $Trainer.has_pokedex
+          commands[cmdPokedex = commands.length] = _INTL("MasterDex") if $Trainer.has_pokedex
           commands[cmdMark = commands.length] = _INTL("Mark")
           commands[cmdRelease = commands.length] = _INTL("Release")
           commands.push(_INTL("Cancel"))
@@ -184,7 +184,7 @@ class PokemonStorageScreen
           commands = []
           commands[cmdStore = commands.length] = _INTL("Store")
           commands[cmdSummary = commands.length] = _INTL("Summary")
-          commands[cmdPokedex = commands.length] = _INTL("Pokedex") if $Trainer.has_pokedex
+          commands[cmdPokedex = commands.length] = _INTL("MasterDex") if $Trainer.has_pokedex
           commands[cmdMark = commands.length] = _INTL("Mark")
           commands[cmdRelease = commands.length] = _INTL("Release")
           commands.push(_INTL("Cancel"))
