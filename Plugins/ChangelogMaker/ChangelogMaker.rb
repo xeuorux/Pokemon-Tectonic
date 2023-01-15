@@ -167,9 +167,9 @@ def createChangeLogBetween(firstID,lastID,fileName = "changelog.txt")
 			
 			oldMovesLearned.each do |oldMove|
 				moveRename = MOVE_RENAMES[oldMove] || oldMove
-				if !newMovesLearned.include?(moveRename) && !CUT_FROM_EVERYONE.include?(moveRename)
-					cutMoves.push(oldMove)
-				end
+				next if newMovesLearned.include?(moveRename)
+				next if GameData::Move.get(moveRename).id_number >= 2000
+				cutMoves.push(oldMove)
 			end
 			
 			if cutMoves.length > 0
@@ -185,7 +185,8 @@ def createChangeLogBetween(firstID,lastID,fileName = "changelog.txt")
 			
 			newMovesLearned.each do |newMove|
 				moveRename = moveRenamesInverted[newMove] || newMove
-				newMoves.push(newMove) if !oldMovesLearned.include?(moveRename) && !ADDED_TO_EVERYONE.include?(moveRename)
+				next if oldMovesLearned.include?(moveRename)
+				newMoves.push(newMove)
 			end
 			
 			if newMoves.length > 0

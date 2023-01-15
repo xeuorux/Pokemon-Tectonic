@@ -8,10 +8,10 @@ Land,20
     25,YAMPER,15,18
 LandTall,20
     20,BLITZLE,15,18
+    20,NIDORANfE,15,18
+    20,NIDORANmA,15,18
     20,PONYTA,15,18
     20,POOCHYENA,15,18
-    20,NIDORANmA,15,18
-    20,NIDORANfE,15,18
 Special,20
     1,ELEKID,15
 #-------------------------------
