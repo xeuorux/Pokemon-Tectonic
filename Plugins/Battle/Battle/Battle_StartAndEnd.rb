@@ -388,7 +388,7 @@ class PokeBattle_Battle
             end
             PBDebug.log("")
 
-            # End of round phase
+            # Start of round phase
             PBDebug.logonerr { pbStartOfRoundPhase }
             break if @decision > 0
 
@@ -433,11 +433,27 @@ class PokeBattle_Battle
             # End of round phase
             PBDebug.logonerr { pbEndOfRoundPhase }
             break if @decision > 0
+
             @commandPhasesThisRound = 0
 
             useEmpoweredStatusMoves
 
             @turnCount += 1
+
+            # Extra fake turn
+            stretcher = pbCheckGlobalAbility(:TIMESTRETCH)
+            if stretcher
+                pbShowAbilitySplash(stretcher)
+                pbDisplay(_INTL("#{stretcher.pbThis} stalls for extra time!"))
+                pbHideAbilitySplash(stretcher)
+                # Start of round phase
+                PBDebug.logonerr { pbStartOfRoundPhase }
+                break if @decision > 0
+                # End of round phase
+                PBDebug.logonerr { pbEndOfRoundPhase }
+                break if @decision > 0
+                @turnCount += 1
+            end
         end
         pbEndOfBattle
     end
