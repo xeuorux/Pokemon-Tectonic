@@ -82,4 +82,63 @@ def pbAnimList(animations,canvas,animwin)
     helpwindow.dispose
     maxsizewindow.dispose
     cmdwin.dispose
+end
+
+def pbSelectAnim(canvas,animwin)
+  animfiles=[]
+  pbRgssChdir(File.join("Graphics", "Animations")) {
+     animfiles.concat(Dir.glob("*.png"))
+  }
+  cmdwin=pbListWindow(animfiles,320)
+  cmdwin.opacity=200
+  cmdwin.height=512
+  bmpwin=BitmapDisplayWindow.new(320,0,320,448)
+  ctlwin=ControlWindow.new(320,448,320,64)
+  cmdwin.viewport=canvas.viewport
+  bmpwin.viewport=canvas.viewport
+  ctlwin.viewport=canvas.viewport
+  ctlwin.addSlider(_INTL("Hue:"),0,359,0)
+  loop do
+    bmpwin.bitmapname=cmdwin.commands[cmdwin.index]
+    Graphics.update
+    Input.update
+    cmdwin.update
+    bmpwin.update
+    ctlwin.update
+    bmpwin.hue=ctlwin.value(0) if ctlwin.changed?(0)
+    if Input.trigger?(Input::USE) && animfiles.length>0
+      bitmap=AnimatedBitmap.new("Graphics/Animations/"+cmdwin.commands[cmdwin.index],ctlwin.value(0)).deanimate
+      canvas.animation.graphic=cmdwin.commands[cmdwin.index]
+      canvas.animation.hue=ctlwin.value(0)
+      canvas.animbitmap=bitmap
+      animwin.animbitmap=bitmap
+      break
+    end
+    if Input.trigger?(Input::SPECIAL)
+      text = pbEnterText("Enter selection.",0,20).downcase
+      if text.blank?
+          next
+      end
+      newIndex = -1
+      cmdwin.commands.each_with_index { |command, i|
+          next if i == cmdwin.index
+          if command.downcase.include?(text)
+              newIndex = i
+              break
+          end
+      }
+      if newIndex < 0
+          pbMessage(_INTL("Could not find a command entry matching that input."))
+      else
+          cmdwin.index = newIndex
+      end
+    end
+    if Input.trigger?(Input::BACK)
+      break
+    end
   end
+  bmpwin.dispose
+  cmdwin.dispose
+  ctlwin.dispose
+  return
+end
