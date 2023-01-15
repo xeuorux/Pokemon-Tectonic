@@ -7,11 +7,11 @@ Land,20
     25,SANDSHREW,15,18
     25,YAMPER,15,18
 LandTall,20
-    25,BLITZLE,15,18
-    25,PONYTA,15,18
-    25,POOCHYENA,15,18
-    13,NIDORANmA,15,18
-    12,NIDORANfE,15,18
+    20,BLITZLE,15,18
+    20,PONYTA,15,18
+    20,POOCHYENA,15,18
+    20,NIDORANmA,15,18
+    20,NIDORANfE,15,18
 Special,20
     1,ELEKID,15
 #-------------------------------
