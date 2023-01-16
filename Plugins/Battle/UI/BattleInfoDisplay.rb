@@ -118,7 +118,7 @@ class BattleInfoDisplay < SpriteWrapper
 	textToDraw.push([terrainMessage,256+24,weatherAndTerrainY,0,base,shadow])
 	
 	# Whole field effects
-	wholeFieldX = 328
+	wholeFieldX = 324
 	textToDraw.push([_INTL("Field Effects"),wholeFieldX+60,0,2,base,shadow])
 	
 	# Compile array of descriptors of each field effect
@@ -134,6 +134,8 @@ class BattleInfoDisplay < SpriteWrapper
 		end
 		fieldEffects.concat(thisSideEffects)
 	end
+
+	fieldEffects.concat($Tribal_Bonuses.getActiveBonusesList) if $Tribal_Bonuses
 	
 	# Render out the field effects
 	scrollingBoundYMin = 36
