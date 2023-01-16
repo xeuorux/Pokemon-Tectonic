@@ -32,17 +32,21 @@ class TribalBonusScene
 
         drewAny = false
         index = 0
-        $Tribal_Bonuses.tribeCounts.each {|tribe, count|
+        tribeCounts = $Tribal_Bonuses.tribeCounts.clone
+        tribeCounts = tribeCounts.sort_by { |k,v| -v}.to_h
+        tribeCounts.each {|tribe, count|
             if count > 0
                 tribeName = TribalBonus.getTribeName(tribe)
                 coordinateY = 64 + (index % 9) * 32
-                drawTextEx(overlay, xLeft + (index / 9) * 240, coordinateY, 450, 1, _INTL("{1}: {2}", tribeName, count), base, shadow)
+                tribeCountDesc = _INTL("{1}: {2}", tribeName, count)
+                tribeCountDesc = "<b>#{tribeCountDesc}</b>" if count >= TribalBonus::TRIBAL_BONUS_THRESHOLD
+                drawFormattedTextEx(overlay, xLeft + (index / 9) * 240, coordinateY, 450, tribeCountDesc, base, shadow)
                 drewAny = true
                 index += 1
             end
         }
         if !drewAny
-            drawTextEx(overlay, xLeft, coordinateY + 30, 450, 1, _INTL("None"), base, shadow)
+            drawTextEx(overlay, xLeft, 60, 450, 1, _INTL("None"), base, shadow)
         end
     end
 

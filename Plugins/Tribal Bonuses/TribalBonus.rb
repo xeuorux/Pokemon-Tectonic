@@ -1,6 +1,8 @@
 class TribalBonus
     attr_reader :tribeCounts
 
+    TRIBAL_BONUS_THRESHOLD = 5
+
     def initialize
         resetTribeCounts()
     end
@@ -29,6 +31,19 @@ class TribalBonus
         }
     end
 
+    def getActiveBonusesList
+        updateTribeCount()
+
+        list = []
+        GameData::Tribe.each do |tribeData|
+            echoln(@tribeCounts[tribeData.id])
+            next unless @tribeCounts[tribeData.id] >= TRIBAL_BONUS_THRESHOLD
+            list.push(_INTL("#{TribalBonus.getTribeName(tribeData.id)} Tribe Bonus"))
+        end
+
+        return list
+    end
+
     def getTribeBonuses(pokemon)
         # Returns a hash of all bonuses given the current pokemon
         tribeBonuses = {
@@ -45,7 +60,7 @@ class TribalBonus
         fSpecies = GameData::Species.get_species_form(species, form)
         tribes = fSpecies.tribes
         tribes.each { |tribe|
-            next unless @tribeCounts[tribe] >= 5
+            next unless @tribeCounts[tribe] >= TRIBAL_BONUS_THRESHOLD
             GameData::Stat.each_main_battle do |stat|
                 tribeBonuses[stat.id] = 5 + (pokemon.level / 14).floor
             end
