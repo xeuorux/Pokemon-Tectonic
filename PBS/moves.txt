@@ -810,7 +810,7 @@
 840,ENCHANTINGSONG,Enchanting Song,401,80,FAIRY,Special,100,12,30,AllNearOthers,0,befk,"An enchanting outcry. It has a 30% chance to dizzy every target.",SING
 841,KALEIDOSCOPE,Kaleidoscope,401,60,FAIRY,Special,100,15,30,NearOther,0,bef,"The target is bombarded by crazy colors. There's a 30% chance it becomes dizzy.",DAZZLINGGLEAM
 842,TRAMPLE,Trample,044,90,GROUND,Physical,100,12,15,NearOther,0,bef,"The user tramples the target. It has a 15% chance to lower the target's Speed stat.",STOMPINGTANTRUM
-843,DEMONSKISS,Demon's Kiss,526,0,DARK,Status,100,5,0,NearOther,0,bce,"By sacrificing half its HP, the user curses the target with a kiss, making it fall asleep.",LOVELYKISS
+843,DEMONSKISS,Demon's Kiss,526,0,DARK,Status,100,5,0,NearOther,0,bce,"By sacrificing half its HP, the user jinxes the target with a kiss, making it fall asleep.",LOVELYKISS
 844,RUIN,Ruin,000,100,NORMAL,Special,100,10,0,NearOther,0,bef,"The user brings down a ruinous power on the target, damaging it.",JUDGMENT
 845,HARDFEELINGS,Hard Feelings,07E,70,NORMAL,Special,100,12,0,NearOther,0,bef,"Doubles its power if the user has a status condition. Ignores frostbite Sp. Atk reduction.",
 846,SOULDRAIN,Soul Drain,52C,30,GHOST,Special,100,15,100,NearOther,0,bef,"The user absorbs the target's soul, lowering its Sp. Def and draining its life in the process.",NIGHTSHADE
