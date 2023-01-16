@@ -1,12 +1,12 @@
 CHASM_CREDITs = <<_END_
 
-Major Contributors
+Major Cnontributors
 Zeu<s>Agentbla
 Divock<s>Brickbat
 Wakarimasensei<s>ali760
 Drawingbox<s>LucaSantosSims
 lichenprincess<s>Jaggedthorn
-papper<s>IgnitedXSoul
+papper<s>IgitedXSoul
 
 Other Contributors
 Arenastellez<s>Zufaix
@@ -24,7 +24,7 @@ HairyHoopa<s>Robinzh
 Phyrol<s>dragonwarrior
 Tauxins<s>TheBreadDealer
 KickassKT<s>PandaNinjaPants
-Airiii<s>
+Airiii<s>TikiShades
 
 {INSERTS_PLUGIN_CREDITS_DO_NOT_REMOVE}
 
@@ -179,6 +179,9 @@ Based on MKXP by Ancurio et al.
 
 "RPG Maker XP" by:
 Enterbrain
+
+Misc. thanks to:
+DemIce
 
 Pokémon is owned by:
 The Pokémon Company

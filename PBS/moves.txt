@@ -313,7 +313,7 @@
 319,INGRAIN,Ingrain,0DB,0,GRASS,Status,0,15,0,User,0,d,"The user lays roots that restore its HP on every turn. Because it is rooted, it can't switch out.",
 320,LEECHSEED,Leech Seed,402,0,GRASS,Status,100,10,0,NearOther,0,bce,"A seed is planted on the target, causing it to become leeched.",
 322,SPIKYSHIELD,Spiky Shield,14C,0,GRASS,Status,0,3,0,User,4,,"Protects the user from attacks. Physical attackers take 1/8th HP damage.",
-323,SPORE,Spore,003,0,GRASS,Status,100,12,0,NearOther,-1,bcel,"The user scatters bursts of spores that induce sleep. This move always goes last.",
+323,SPORE,Spore,003,0,GRASS,Status,100,1,0,NearOther,0,bcel,"The user scatters bursts of spores that induce sleep. Only one use per battle.",
 324,STRENGTHSAP,Strength Sap,160,0,GRASS,Status,100,10,0,NearOther,0,bce,"Restores its own HP by the target's Attack stat amount, then lowers the target's Attack stat.",
 326,SYNTHESIS,Synthesis,0D8,0,GRASS,Status,0,5,0,User,0,d,"The user restores 1/2 of its HP, or 2/3rds in Sunshine.",
 327,WORRYSEED,Worry Seed,064,0,GRASS,Status,100,10,0,NearOther,0,bce,"A seed that causes worry is planted on the foe. It prevents sleep by making its Ability Insomnia.",
@@ -980,7 +980,7 @@
 1017,BLAZINGSPEED,Blazing Speed,000,65,FIRE,Physical,100,5,0,NearOther,2,abef,"The user charges the target at blazing-fast speed. This attack always goes before any other move.",FLAMECHARGE
 1018,ARCHAICDELUGE,Archaic Deluge,576,120,WATER,Special,100,5,0,Other,0,bef,"Summons rain for five turns on the first turn, then overwhelms the foe with water on the second.",SURF
 1019,SHIMMERINGHEAT,Shimmering Heat,577,90,FIRE,Special,100,10,0,AllNearFoes,0,befq,"The user attacks with heat, creating an obscuring wall of haze. The user takes 33% less damage this turn.",HEATWAVE
-1020,BREATHELIFE,Breathe Life,578,0,GRASS,Status,0,1,0,None,0,,"Restores a fainted Grass-type party member to full health.",GRASSYTERRAIN
+1020,BREATHELIFE,Breathe Life,578,0,GRASS,Status,0,1,0,None,0,,"Restores a fainted Grass-type party member to full HP. Only one use per battle.",GRASSYTERRAIN
 1021,SPECTRALTONGUE,Spectral Tongue,579,0,GHOST,Status,100,12,0,NearOther,0,abcef,"The user licks the target, numbing them, or cursing them if they're already numbed.",LICK
 1022,VICIOUSCLEANING,Vicious Cleaning,580,80,NORMAL,Special,100,10,0,NearOther,0,be,"The user flings the dirty oil on its fur. It transfers any status condition to the target.",ACIDSPRAY
 1023,SEDATINGDUST,Sedating Dust,581,0,BUG,Status,100,10,0,NearOther,0,bce,"If the user is faster than the target, puts the target to sleep, then minimizes the user's Speed stat.",POISONPOWDER
