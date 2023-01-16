@@ -147,7 +147,7 @@ def pokemonRaffle(species,level=10,cost=200,baseChance=5.0,chanceIncrease=1.5,di
 	$PokemonGlobal.raffleChancesTried = {} if $PokemonGlobal.raffleChancesTried.nil?
 	$PokemonGlobal.raffleChancesTried[species] = 0 if !$PokemonGlobal.raffleChancesTried.has_key?(species)
 	speciesName = GameData::Species.get(species).real_name
-	if pbConfirmMessageSerious(_INTL("We're running a raffle. Would you like to sepnd $#{cost} on a chance to win a #{speciesName}?"))
+	if pbConfirmMessageSerious(_INTL("We're running a raffle. Would you like to spend $#{cost} on a chance to win a #{speciesName}?"))
 		if $Trainer.money < cost
 			pbMessage(_INTL("I'm sorry, but you don't seem to have enough money."))
 		else
