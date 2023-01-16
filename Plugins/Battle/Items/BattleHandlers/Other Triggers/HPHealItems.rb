@@ -52,7 +52,7 @@ BattleHandlers::HPHealItem.add(:LANSATBERRY,
   proc { |item, battler, battle, forced|
       next false if !forced && !battler.canConsumePinchBerry?
       next false if battler.effectAtMax?(:FocusEnergy)
-      battle.pbCommonAnimation("EatBerry", battler) unless forced
+      battle.pbCommonAnimation("Nom", battler) unless forced
       battler.incrementEffect(:FocusEnergy, 2)
       itemName = GameData::Item.get(item).name
       if forced
@@ -81,7 +81,7 @@ BattleHandlers::HPHealItem.add(:MICLEBERRY,
   proc { |item, battler, battle, forced|
       next false if !forced && !battler.canConsumePinchBerry?
       next false unless battler.effectActive?(:MicleBerry)
-      battle.pbCommonAnimation("EatBerry", battler) unless forced
+      battle.pbCommonAnimation("Nom", battler) unless forced
       battler.applyEffect(:MicleBerry)
       itemName = GameData::Item.get(item).name
       if forced
@@ -99,7 +99,7 @@ BattleHandlers::HPHealItem.add(:ORANBERRY,
   proc { |item, battler, battle, forced|
       next false unless battler.canHeal?
       next false if !forced && !battler.canConsumePinchBerry?(true)
-      battle.pbCommonAnimation("EatBerry", battler) unless forced
+      battle.pbCommonAnimation("Nom", battler) unless forced
       healFromBerry(battler, 1.0 / 3.0, item, forced)
       next true
   }
@@ -121,7 +121,7 @@ BattleHandlers::HPHealItem.add(:SITRUSBERRY,
   proc { |item, battler, battle, forced|
       next false unless battler.canHeal?
       next false if !forced && !battler.canConsumePinchBerry?(false)
-      battle.pbCommonAnimation("EatBerry", battler) unless forced
+      battle.pbCommonAnimation("Nom", battler) unless forced
       healFromBerry(battler, 1.0 / 4.0, item, forced = false)
       next true
   }

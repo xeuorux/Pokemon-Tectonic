@@ -12,7 +12,7 @@ BattleHandlers::TargetItemOnHitPositiveBerry.add(:KEEBERRY,
         increment = 1
         increment *= 2 if battler.hasActiveAbility?(:RIPEN)
         unless forced
-            battle.pbCommonAnimation("EatBerry", battler)
+            battle.pbCommonAnimation("Nom", battler)
             next battler.pbRaiseStatStageByCause(:DEFENSE, increment, battler, itemName)
         end
         PBDebug.log("[Item triggered] #{battler.pbThis}'s #{itemName}")
@@ -28,7 +28,7 @@ BattleHandlers::TargetItemOnHitPositiveBerry.add(:MARANGABERRY,
       increment = 1
       increment *= 2 if battler.hasActiveAbility?(:RIPEN)
       unless forced
-          battle.pbCommonAnimation("EatBerry", battler)
+          battle.pbCommonAnimation("Nom", battler)
           next battler.pbRaiseStatStageByCause(:SPECIAL_DEFENSE, increment, battler, itemName)
       end
       PBDebug.log("[Item triggered] #{battler.pbThis}'s #{itemName}")
@@ -40,7 +40,7 @@ BattleHandlers::TargetItemOnHitPositiveBerry.add(:ENIGMABERRY,
   proc { |item, battler, battle, forced|
       next false unless battler.canHeal?
       next false if !forced && !battler.canConsumeBerry?
-      battle.pbCommonAnimation("EatBerry", battler) unless forced
+      battle.pbCommonAnimation("Nom", battler) unless forced
       healFromBerry(battler, 1.0 / 4.0, item, forced = false)
       next true
   }

@@ -24,7 +24,7 @@ BattleHandlers::TargetItemOnHit.add(:JABOCABERRY,
       next unless target.canConsumeBerry?
       next unless move.physicalMove?
       next unless user.takesIndirectDamage?
-      battle.pbCommonAnimation("EatBerry", target)
+      battle.pbCommonAnimation("Nom", target)
       battle.pbDisplay(_INTL("{1} consumed its {2} and hurt {3}!", target.pbThis,
          target.itemName, user.pbThis(true)))
       fraction = 1.0 / 8.0
@@ -39,7 +39,7 @@ BattleHandlers::TargetItemOnHit.add(:ROWAPBERRY,
       next unless target.canConsumeBerry?
       next unless move.specialMove?
       next unless user.takesIndirectDamage?
-      battle.pbCommonAnimation("EatBerry", target)
+      battle.pbCommonAnimation("Nom", target)
       battle.pbDisplay(_INTL("{1} consumed its {2} and hurt {3}!", target.pbThis,
          target.itemName, user.pbThis(true)))
       fraction = 1.0 / 8.0

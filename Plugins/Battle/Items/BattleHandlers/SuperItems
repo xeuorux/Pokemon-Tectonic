@@ -73,7 +73,7 @@ BattleHandlers::HPHealItem.add(:SITREONBERRY,
     proc { |item,battler,battle,forced|
       next false if !battler.canHeal?
       next false if !forced && !battler.canConsumePinchBerry?(false)
-      battle.pbCommonAnimation("EatBerry",battler) if !forced
+      battle.pbCommonAnimation("Nom",battler) if !forced
       healFromBerry(battler,1.0/2.0,item,forced=false)
       next true
     }
@@ -113,7 +113,7 @@ BattleHandlers::StatusCureItem.add(:LUNUSBERRY,
       next false if !battler.hasAnyStatusNoTrigger
       itemName = GameData::Item.get(item).name
       PBDebug.log("[Item triggered] #{battler.pbThis}'s #{itemName}") if forced
-      battle.pbCommonAnimation("EatBerry",battler) if !forced
+      battle.pbCommonAnimation("Nom",battler) if !forced
       battler.pbCureStatus
       battler.pbRaiseMultipleStatStages([:ATTACK,1,:DEFENSE,1,:SPECIAL_ATTACK,1,:SPECIAL_DEFENSE,1,:SPEED,1], user, item: item)
       next true

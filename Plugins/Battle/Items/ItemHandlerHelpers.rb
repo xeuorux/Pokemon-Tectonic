@@ -7,7 +7,7 @@ end
 def pbBattleConfusionBerry(battler, battle, item, forced, flavor, confuseMsg)
     return false if !forced && !battler.canHeal?
     return false if !forced && !battler.canConsumePinchBerry?(true)
-    battle.pbCommonAnimation("EatBerry", battler) unless forced
+    battle.pbCommonAnimation("Nom", battler) unless forced
     healFromBerry(battler, 1.0 / 3.0, item, forced)
     flavor_stat = %i[ATTACK DEFENSE SPEED SPECIAL_ATTACK SPECIAL_DEFENSE][flavor]
     battler.nature.stat_changes.each do |change|
@@ -28,7 +28,7 @@ def pbBattleStatIncreasingBerry(battler, battle, item, forced, stat, increment =
         PBDebug.log("[Item triggered] Forced consuming of #{itemName}")
         return battler.pbRaiseStatStage(stat, increment, battler)
     end
-    battle.pbCommonAnimation("EatBerry", battler)
+    battle.pbCommonAnimation("Nom", battler)
     return battler.pbRaiseStatStageByCause(stat, increment, battler, itemName)
 end
 
@@ -45,7 +45,7 @@ def pbBattleTypeWeakingBerry(type, moveType, target, mults, feast = false)
     else
         target.damageState.berryWeakened = true
     end
-    target.battle.pbCommonAnimation("EatBerry", target)
+    target.battle.pbCommonAnimation("Nom", target)
 end
 
 def pbBattleGem(user, type, move, mults, moveType, aiChecking = false)
