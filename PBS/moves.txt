@@ -551,7 +551,7 @@
 573,VENOSHOCK,Venoshock,07B,70,POISON,Special,100,10,0,NearOther,0,bef,"The user drenches the foe in a special poisonous liquid. Its power doubles if the target is poisoned.",
 574,CLEARSMOG,Clear Smog,050,50,POISON,Special,0,12,0,NearOther,0,bef,"The user attacks with a cloud of white smoke. All of the target's stat changes are returned to normal.",
 575,POISONFANG,Poison Fang,005,60,POISON,Physical,100,12,50,NearOther,0,abefi,"The user bites the target with toxic fangs with a 50% chance to poison.",
-576,POISONTAIL,Poison Tail,005,50,POISON,Physical,100,20,10,NearOther,0,abefh,"The user hits the target with its tail. It has a 10% chance to poison. Critical hits land more easily.",
+576,POISONTAIL,Poison Tail,005,60,POISON,Physical,100,20,10,NearOther,0,abefh,"The user hits the target with its tail. It has a 10% chance to poison. Critical hits land more easily.",
 577,ACID,Acid,046,40,POISON,Special,100,25,10,AllNearFoes,0,bef,"The foe is attacked with a spray of harsh acid. It has a 10% chance to lower Sp. Def.",
 578,ACIDSPRAY,Acid Spray,04F,40,POISON,Special,100,15,100,NearOther,0,befn,"The user spits fluid that works to melt the target. This harshly reduces the target's Sp. Def stat.",
 579,SMOG,Smog,005,30,POISON,Special,100,30,30,NearOther,0,bef,"The target is attacked with a discharge of filthy gases. It has a 30% chance to poison.",
