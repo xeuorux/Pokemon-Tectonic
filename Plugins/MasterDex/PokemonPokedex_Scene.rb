@@ -1495,12 +1495,13 @@ class PokemonPokedex_Scene
 			items.uniq!
 			items.compact!
 			
-			itemNames = []
+			containsText = false
 			items.each_with_index do |item,index|
-				itemNames.push(GameData::Item.get(item).real_name.downcase)
+				name = GameData::Item.get(item).real_name.downcase
+				containsText = true if name.include?(wildItemNameTextInput)
 			end
 			
-			next itemNames.include?(wildItemNameTextInput.downcase) ^ reversed # Boolean XOR
+			next containsText ^ reversed # Boolean XOR
 		}
 		return dexlist
 	end
