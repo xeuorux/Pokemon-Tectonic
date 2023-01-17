@@ -394,7 +394,7 @@ BattleHandlers::DamageCalcUserAbility.add(:MARINEMENACE,
   }
 )
 
-BattleHandlers::DamageCalcUserAbility.add(:RECKLESS,
+BattleHandlers::DamageCalcUserAbility.add(:LINEBACKER,
   proc { |_ability, _user, _target, move, mults, _baseDmg, _type, _aiCheck|
       mults[:base_damage_multiplier] *= 2.0 if move.recoilMove?
   }
