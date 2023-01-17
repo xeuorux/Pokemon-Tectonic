@@ -306,7 +306,7 @@ def getMultiStatUpEffectScore(statUpArray, user, target)
     end
 
     score *= -1 if target.hasActiveAbility?(:CONTRARY)
-    score *= -1 unless user.opposes?(target)
+    score *= -1 if user.opposes?(target)
 
     return score
 end
