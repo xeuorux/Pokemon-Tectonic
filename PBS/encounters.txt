@@ -284,7 +284,7 @@ Special,20
 #-------------------------------
 [090] # Employees' House
 Special,20
-    1,SKORUPI,15
+    1,SNUBBULL,15
 #-------------------------------
 [092] # Ice Rink Lodge F2 Left Room
 Special,1
