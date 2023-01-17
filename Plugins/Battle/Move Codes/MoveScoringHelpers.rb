@@ -28,7 +28,14 @@ def getStatusSettingEffectScore(statusApplying, user, target, ignoreCheck: false
     raise _INTL("Given status #{statusApplying} is not valid.")
 end
 
+def willHealStatus?(target)
+    return true if target.hasActiveAbilityAI?(:SHEDSKIN)
+    return true if target.hasActiveAbilityAI?(:HYDRATION) && target.battle.rainy?
+    return false
+end
+
 def getNumbEffectScore(user, target, ignoreCheck: false)
+    return 0 if willHealStatus?(target)
     if target && (ignoreCheck || target.canNumb?(user, false))
         score = 0
         score += 60 if target.hasDamagingAttack?
@@ -44,6 +51,7 @@ def getNumbEffectScore(user, target, ignoreCheck: false)
 end
 
 def getPoisonEffectScore(user, target, ignoreCheck: false)
+    return 0 if willHealStatus?(target)
     if target && (ignoreCheck || target.canPoison?(user, false))
         return 9999 if user.ownersPolicies.include?(:PRIORITIZEDOTS) && user.opposes?(target)
         score = 40
@@ -62,6 +70,7 @@ def getPoisonEffectScore(user, target, ignoreCheck: false)
 end
 
 def getBurnEffectScore(user, target, ignoreCheck: false)
+    return 0 if willHealStatus?(target)
     if target && (ignoreCheck || target.canBurn?(user, false))
         return 9999 if user.ownersPolicies.include?(:PRIORITIZEDOTS) && user.opposes?(target)
         score = 40
@@ -82,6 +91,7 @@ def getBurnEffectScore(user, target, ignoreCheck: false)
 end
 
 def getFrostbiteEffectScore(user, target, ignoreCheck: false)
+    return 0 if willHealStatus?(target)
     if target && (ignoreCheck || target.canFrostbite?(user, false))
         return 9999 if user.ownersPolicies.include?(:PRIORITIZEDOTS) && user.opposes?(target)
         score = 40
@@ -115,6 +125,7 @@ def getDizzyEffectScore(user, target, ignoreCheck: false)
 end
 
 def getLeechEffectScore(user, target, ignoreCheck: false)
+    return 0 if willHealStatus?(target)
     canLeech = target.canLeech?(user, false)
     if ignoreCheck || canLeech
         return 9999 if user.ownersPolicies.include?(:PRIORITIZEDOTS) && user.opposes?(target)
