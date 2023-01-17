@@ -266,7 +266,12 @@ def getHealingEffectScore(user, target, magnitude = 5)
 end
 
 def getMultiStatUpEffectScore(statUpArray, user, target)
-    return 0 if user.battle.field.effectActive?(:GreyMist)
+    echoln("[EFFECT SCORING] Scoring the effect of raising stats #{statUpArray.to_s} on target #{target.pbThis(true)}")
+    
+    if user.battle.field.effectActive?(:GreyMist)
+        echoln("[EFFECT SCORING] Grey Mist is active, scoring 0.")
+        return 0
+    end
 
     score = 0
 
@@ -275,8 +280,14 @@ def getMultiStatUpEffectScore(statUpArray, user, target)
         statIncreaseAmount = statUpArray[i * 2 + 1]
 
         # Give no extra points for attacking stats you can't use
-        next if statSymbol == :ATTACK && !target.hasPhysicalAttack?
-        next if statSymbol == :SPECIAL_ATTACK && !target.hasSpecialAttack?
+        if statSymbol == :ATTACK && !target.hasPhysicalAttack?
+            echoln("[EFFECT SCORING] Ignoring Attack changes, the target has no physical attacks")
+            next
+        end
+        if statSymbol == :SPECIAL_ATTACK && !target.hasSpecialAttack?
+            echoln("[EFFECT SCORING] Ignoring Sp. Atk changes, the target has no special attacks")
+            next
+        end
 
         # Increase the score more for boosting attacking stats
         if %i[ATTACK SPECIAL_ATTACK].include?(statSymbol)
@@ -289,6 +300,8 @@ def getMultiStatUpEffectScore(statUpArray, user, target)
         increase -= target.stages[statSymbol] * 10 # Reduce the score for each existing stage
 
         score += increase
+
+        echoln("[EFFECT SCORING] The change to #{statSymbol} by #{statIncreaseAmount} increases the score by #{increase}")
     end
 
     # Stat up moves tend to be strong on the first turn
@@ -305,14 +318,25 @@ def getMultiStatUpEffectScore(statUpArray, user, target)
         score *= 0.8
     end
 
-    score *= -1 if target.hasActiveAbility?(:CONTRARY)
-    score *= -1 if user.opposes?(target)
+    if target.hasActiveAbility?(:CONTRARY)
+        score *= -1
+        echoln("[EFFECT SCORING] The target has Contrary! Inverting the score.")
+    end
+    if user.opposes?(target)
+        score *= -1
+        echoln("[EFFECT SCORING] The target opposes the user! Inverting the score.")
+    end
 
     return score
 end
 
 def getMultiStatDownEffectScore(statDownArray, user, target)
-    return 0 if user.battle.field.effectActive?(:GreyMist)
+    echoln("[EFFECT SCORING] Scoring the effect of lowering stats #{statDownArray.to_s} on target #{target.pbThis(true)}")
+    
+    if user.battle.field.effectActive?(:GreyMist)
+        echoln("[EFFECT SCORING] Grey Mist is active, scoring 0.")
+        return 0
+    end
 
     score = 0
 
@@ -326,8 +350,14 @@ def getMultiStatDownEffectScore(statDownArray, user, target)
         end
 
         # Give no extra points for attacking stats you can't use
-        next if statSymbol == :ATTACK && !target.hasPhysicalAttack?
-        next if statSymbol == :SPECIAL_ATTACK && !target.hasSpecialAttack?
+        if statSymbol == :ATTACK && !target.hasPhysicalAttack?
+            echoln("[EFFECT SCORING] Ignoring Attack changes, the target has no physical attacks")
+            next
+        end
+        if statSymbol == :SPECIAL_ATTACK && !target.hasSpecialAttack?
+            echoln("[EFFECT SCORING] Ignoring Sp. Atk changes, the target has no special attacks")
+            next
+        end
 
         # Increase the score more for boosting attacking stats
         if %i[ATTACK SPECIAL_ATTACK].include?(statSymbol)
@@ -340,6 +370,8 @@ def getMultiStatDownEffectScore(statDownArray, user, target)
         scoreIncrease += target.stages[statSymbol] * 10 # Increase the score for each existing stage
 
         score += scoreIncrease
+        
+        echoln("[EFFECT SCORING] The change to #{statSymbol} by #{statDecreaseAmount} increases the score by #{scoreIncrease}")
     end
 
     # Stat up moves tend to be strong on the first turn
@@ -350,8 +382,14 @@ def getMultiStatDownEffectScore(statDownArray, user, target)
 
     score *= 2 if @battle.pbIsTrapped?(target.index)
 
-    score *= -1 if target.hasActiveAbility?(:CONTRARY)
-    score *= -1 unless user.opposes?(target)
+    if target.hasActiveAbility?(:CONTRARY)
+        score *= -1
+        echoln("[EFFECT SCORING] The target has Contrary! Inverting the score.")
+    end
+    unless user.opposes?(target)
+        score *= -1
+        echoln("[EFFECT SCORING] The target is an ally of the user! Inverting the score.")
+    end
 
     return score
 end
