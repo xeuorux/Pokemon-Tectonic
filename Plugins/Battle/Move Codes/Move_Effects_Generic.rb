@@ -640,8 +640,14 @@ class PokeBattle_ProtectMove < PokeBattle_Move
     def getEffectScore(user, _target)
         score = 0
         user.eachPotentialAttacker do |b|
+            if b.effectActive?(:TwoTurnAttack)
+                if b.inTwoTurnAttack?("0CD")
+                    next
+                else
+                    score += 50
+                end
+            end
             score += 50
-            score += 50 if b.effectActive?(:TwoTurnAttack)
             score += 50 if b.poisoned? || b.leeched?
             score += 30 if b.burned? || b.frostbitten?
         end
