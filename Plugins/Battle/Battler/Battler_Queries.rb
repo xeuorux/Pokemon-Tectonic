@@ -101,6 +101,7 @@ class PokeBattle_Battler
             :ASONEGHOST,
             # Abilities with undefined behaviour if they were replaced or moved around
             :STYLISH,
+            :FRIENDTOALL,
         ]
         return ability_blacklist.include?(abil.id)
     end
