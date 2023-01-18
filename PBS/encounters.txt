@@ -612,7 +612,7 @@ DarkCave,21
     25,ELGYEM,16,19
     25,MUNNA,16,19
 #-------------------------------
-[215] # Sky Walk Sketch
+[215] # Tempest Realm
 Cloud,60
     25,CASTFORM,52,54
     25,CRYOGONAL,52,54

@@ -722,7 +722,7 @@
 750,WIPEOUT,Wipeout,043,40,WATER,Physical,100,30,15,NearOther,0,abef,"The user rides a wave, then crashes into the target. Has a 15% chance to lower Defense.",AQUAJET
 751,SWOOP,Swoop,0C9,60,FLYING,Physical,100,25,0,Other,0,abef,"The user takes an advantageous airborne position, then strikes on the second turn.",FLY
 752,DIAMONDFORCE,Diamond Force,000,85,ROCK,Special,100,12,0,NearOther,0,befh,"The user calls up spikes of diamond. Critical hits land more easily.",DIAMONDSTORM
-753,CLASH,Clash,000,45,DRAGON,Physical,100,30,0,NearOther,0,abef,"The user harnesses inner battle instincts to strike at the target."
+753,CLASH,Clash,000,45,DRAGON,Physical,100,30,0,NearOther,0,abef,"The user harnesses inner battle instincts to strike at the target.",
 754,JOLT,Jolt,007,40,ELECTRIC,Physical,100,25,10,NearOther,0,abef,"The user strikes the enemy while coated with electricity. It has a 10% chance to numb.",SPARK
 755,ELECTROSLASH,Electroslash,000,90,ELECTRIC,Physical,100,12,0,NearOther,0,abefhp,"The user harnesses a blade of lightning and slices at the target. Critical hits land more easily.",SPARK
 756,CURRENTCRASH,Current Crash,599,55,ELECTRIC,Physical,100,25,0,NearOther,0,abef,"The user wraps their body in electricity and crashes into the target. The user also takes 20% recoil.",WILDCHARGE
@@ -732,7 +732,7 @@
 760,EAGERTICKLING,Eager Tickling,042,40,FAIRY,Physical,100,25,10,NearOther,0,abef,"The user tickles the target excessively, damaging it. This has a 10% chance to lower Attack.",PLAYROUGH
 761,TREADON,Tread On,044,40,GROUND,Physical,100,30,10,NearOther,0,abef,"The user attacks the opposing Pokémon by trampling it. It has a 10% chance to lower Speed.",STOMPINGTANTRUM
 762,RUMBLE,Rumble,076,45,GROUND,Physical,100,30,0,AllNearOthers,0,bef,"The user causes the earth to rumble, striking every Pokémon around it and underground.",EARTHQUAKE
-763,TREMOR,Tremor,076,65,GROUND,Physical,100,15,0,AllNearOthers,0,bef,"The user slams the earth, causing all the Pokémon around it and underground to tremble and take damage."
+763,TREMOR,Tremor,076,65,GROUND,Physical,100,15,0,AllNearOthers,0,bef,"The user slams the earth, causing all the Pokémon around it and underground to tremble and take damage.",
 764,COLDEMBRACE,Cold Embrace,403,40,ICE,Physical,100,30,10,NearOther,0,abef,"The user grabs the target in a chilly embrace. It has a 10% chance to frostbite.",ICEHAMMER
 765,STINKCLOUD,Stink Cloud,401,50,POISON,Special,100,20,20,NearOther,0,befq,"The user gives off a terrible stench towards the target. It has a 20% chance to dizzy.",
 766,BLINDSIDE,Blind Side,0A5,40,PSYCHIC,Physical,0,30,0,NearOther,0,aef,"The user skillfully attacks around the enemy's defenses. Can't miss and skips protections.",ZENHEADBUTT

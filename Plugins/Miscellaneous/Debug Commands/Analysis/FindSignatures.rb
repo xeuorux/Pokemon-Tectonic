@@ -23,9 +23,7 @@ DebugMenuCommands.register("getsignatureabilities", {
 	abilities = abilities.sort_by {|ability,weilder| GameData::Species.get(weilder).id_number}
 	File.open("signature_abilities.txt","wb") { |file|
 		abilities.each do |ability,weilder|
-			abilityData = GameData::Ability.get(ability)
-			weilderName = GameData::Species.get(weilder).real_name
-			abilityLine = "#{weilderName},#{abilityData.real_name},\"#{abilityData.description}\""
+			abilityLine = describeAbility(ability)
 			abilityLine += "\r\n"
 			file.write(abilityLine)
 		end
@@ -34,6 +32,17 @@ DebugMenuCommands.register("getsignatureabilities", {
 	pbMessage(_INTL("Printed out signature abilities to signature_abilities.txt"))
   }
 })
+
+def describeAbility(abilityID)
+	abilityData = GameData::Ability.get(abilityID)
+	abilityLine = "#{abilityData.real_name},\"#{abilityData.description}\""
+	if abilityData.is_signature?
+		weilderName = GameData::Species.get(abilityData.signature_of).real_name 
+		abilityLine += "," + weilderName
+	end
+
+	return abilityLine
+end
 
 DebugMenuCommands.register("countmoveuse", {
   "parent"      => "analysis",
