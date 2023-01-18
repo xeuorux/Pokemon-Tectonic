@@ -203,18 +203,21 @@ HPMult = 6.0
 Ability = DRIZZLE
 Moves1 = ORIGINPULSE,THUNDER,ICEBEAM,WATERSPOUT,LIQUIDATION
 HPMult = 8.0
+HealthBars = 3
 Item = BLUEORB
 #-------------------------------
 [GROUDON]
 Ability = DROUGHT
 Moves1 = PRECIPICEBLADES,ERUPTION,DRAGONCLAW,SOLARBEAM,FLAMETHROWER
 HPMult = 8.0
+HealthBars = 3
 Item = REDORB
 #-------------------------------
 [RAYQUAZA]
 Ability = AIRLOCK
 Moves1 = DRAGONASCENT,HYPERVOICE,TORNADO,METEORMASH,AIRSLASH,STRATOSPHERESCREAM
 HPMult = 10.0
+HealthBars = 3
 #-------------------------------
 [MAGNEZONE]
 Ability = NOGUARD
