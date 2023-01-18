@@ -181,6 +181,12 @@ def groudonDefeated(eventID)
 	weatherBossDefeated(eventID,50)
 end
 
+# Does a little scene where the cave darkens and the extreme wind dissapears
+def rayquazaDefeated(eventID)
+	defeatBoss
+	weatherBossDefeated(eventID,50)
+end
+
 def weatherBossDefeated(eventID,newFogOpacity)
 	pbSetSelfSwitch(eventID,'A',true)
 	pbWait(Graphics.frame_rate)

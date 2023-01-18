@@ -138,3 +138,8 @@ GameData::TerrainTag.register({
   :battle_environment     => :Water,
   :can_surf               => true
 })
+
+GameData::TerrainTag.register({
+  :id                     => :DarkCloud,
+  :id_number              => 34,
+})

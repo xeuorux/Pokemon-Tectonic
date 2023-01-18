@@ -6,6 +6,7 @@ WEATHER_TRANSITION_DELAY = 80
 
 SKIPPED_MAPS = [
     23, # Testing Map
+    215, # Tempest Realm
 ]
 
 ###########################

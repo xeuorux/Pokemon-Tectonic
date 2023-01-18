@@ -107,27 +107,29 @@ class PokemonEncounters
     else
       case current_terrain_id
       when :Mud
-      ret = :Mud
+        ret = :Mud
       when :TallGrass
-      ret = :LandTall
+        ret = :LandTall
       when :SparseGrass
-      ret = :LandSparse
+        ret = :LandSparse
       when :Puddle
-      ret = :Puddle
+        ret = :Puddle
       when :DarkCave
-      ret = :DarkCave
+        ret = :DarkCave
       when :Grass
-      ret = :Land
+        ret = :Land
       when :FloweryGrass
-      ret = :FloweryGrass
+        ret = :FloweryGrass
       when :FloweryGrass2
-      ret = :FloweryGrass2
+        ret = :FloweryGrass2
       when :TintedGrass
-      ret = :LandTinted
+        ret = :LandTinted
       when :SewerGrate
-      ret = :SewerWater
+        ret = :SewerWater
       when :SewerFloor
-      ret = :SewerFloor
+        ret = :SewerFloor
+      when :DarkCloud
+        ret = :Cloud
       end
     end
     return ret
