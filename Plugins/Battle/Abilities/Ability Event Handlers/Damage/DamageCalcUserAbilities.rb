@@ -240,8 +240,11 @@ BattleHandlers::DamageCalcUserAbility.add(:SCALDINGSMOKE,
   }
 )
 
-BattleHandlers::DamageCalcUserAbility.copy(:PUNKROCK, :LOUD)
-
+BattleHandlers::DamageCalcUserAbility.add(:LOUD,
+  proc { |_ability, _user, _target, move, mults, _baseDmg, _type, _aiCheck|
+      mults[:base_damage_multiplier] *= 1.3 if move.soundMove?
+  }
+)
 BattleHandlers::DamageCalcUserAbility.add(:SWORDSMAN,
   proc { |_ability, _user, _target, move, mults, _baseDmg, _type, _aiCheck|
       mults[:base_damage_multiplier] *= 1.5 if move.slashMove?
