@@ -22854,7 +22854,7 @@ Name = Swirlix
 InternalName = SWIRLIX
 Type1 = FAIRY
 # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
-BaseStats = 60,60,45,60,45,45
+BaseStats = 69,69,57,69,51,45
 # Total = 315
 GenderRate = Female50Percent
 GrowthRate = Medium
@@ -22881,14 +22881,14 @@ BattlerEnemyX = 1
 BattlerEnemyY = 33
 BattlerShadowX = 0
 BattlerShadowSize = 2
-Evolutions = SLURPUFF,Level,22
+Evolutions = SLURPUFF,Level,29
 #-------------------------------
 [685]
 Name = Slurpuff
 InternalName = SLURPUFF
 Type1 = FAIRY
 # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
-BaseStats = 100,100,75,100,75,75
+BaseStats = 100,100,85,100,75,65
 # Total = 525
 GenderRate = Female50Percent
 GrowthRate = Medium
@@ -28969,7 +28969,7 @@ Name = Milcery
 InternalName = MILCERY
 Type1 = FAIRY
 # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
-BaseStats = 55,50,50,44,60,71
+BaseStats = 55,50,71,44,60,50
 # Total = 330
 GenderRate = Female50Percent
 GrowthRate = Medium
@@ -29003,7 +29003,7 @@ Name = Alcremie
 InternalName = ALCREMIE
 Type1 = FAIRY
 # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
-BaseStats = 60,55,70,59,100,115
+BaseStats = 60,55,115,59,100,70
 # Total = 459
 GenderRate = Female50Percent
 GrowthRate = Medium
@@ -30644,7 +30644,7 @@ Name = Blasfemmie
 InternalName = BLASFEMMIE
 Type1 = FAIRY
 # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
-BaseStats = 70,65,80,69,120,131
+BaseStats = 70,65,131,69,120,80
 # Total = 535
 GenderRate = Female50Percent
 GrowthRate = Medium

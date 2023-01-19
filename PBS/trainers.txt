@@ -794,8 +794,8 @@ Pokemon = AVALUGG,37
 #-------------------------------
 [BAKER,Margerie]
 Pokemon = BLASFEMMIE,44
-    AbilityIndex = 0
-    Item = FLAMEORB
+    AbilityIndex = 1
+    Item = FAIRYGEM
 Pokemon = ARCANINE,45
     AbilityIndex = 1
     Item = SALACBERRY
@@ -2900,7 +2900,7 @@ Pokemon = HEATMOR,55
     AbilityIndex = 1
 Pokemon = BLASFEMMIE,55
     Moves = FAIRYTERRAIN,ENCHANTINGSONG,DARKALLURE,RECOVER
-    AbilityIndex = 0
+    AbilityIndex = 1
     Item = FAIRYSEED
 Pokemon = DONSTER,55
     AbilityIndex = 1
