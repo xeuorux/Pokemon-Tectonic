@@ -242,7 +242,7 @@
 244,BOUNCE,Bounce,0CC,85,FLYING,Physical,100,12,30,Other,0,abef,"The user bounces up high, then drops on the foe on the second turn. It has a 30% chance to numb.",
 245,DRILLPECK,Drill Peck,000,80,FLYING,Physical,100,15,0,Other,0,abef,"A corkscrewing attack with the sharp beak acting as a drill.",
 246,OBLIVIONWING,Oblivion Wing,14F,80,FLYING,Special,100,10,0,Other,0,bef,"The user absorbs its target's HP. The user's HP is restored by 75% of the damage dealt.",
-247,AIRSLASH,Air Slash,00F,80,FLYING,Special,100,12,30,Other,0,bepq,"The user attacks with a blade of air that slices even the sky. It has a 30% chance to flinch the target.",
+247,AIRSLASH,Air Slash,00F,80,FLYING,Special,100,12,40,Other,0,bepq,"The user attacks with a blade of air that slices even the sky. It has a 40% chance to flinch the target.",
 248,CHATTER,Chatter,401,65,FLYING,Special,100,15,100,Other,0,befk,"The user attacks using a sound wave based on words it has learned. It also dizzies the target.",
 249,AERIALACE,Aerial Ace,0A5,60,FLYING,Physical,0,15,0,Other,0,aef,"The user confounds the foe with speed, then slashes. Can't miss and skips protections.",
 250,AIRCUTTER,Air Cutter,000,60,FLYING,Special,100,20,0,AllNearFoes,0,befhpq,"The user launches razor-like wind to slash the opposing team. Critical hits land more easily.",

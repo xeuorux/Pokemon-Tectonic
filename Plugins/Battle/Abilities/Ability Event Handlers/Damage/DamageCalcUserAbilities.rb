@@ -402,3 +402,9 @@ BattleHandlers::DamageCalcUserAbility.add(:LINEBACKER,
       mults[:base_damage_multiplier] *= 2.0 if move.recoilMove?
   }
 )
+
+BattleHandlers::DamageCalcUserAbility.add(:RATTLEEM,
+  proc { |_ability, _user, target, move, mults, _baseDmg, _type, _aiCheck|
+      mults[:base_damage_multiplier] *= 1.5 if target.effectActive?(:FlinchedAlready)
+  }
+)

@@ -368,6 +368,8 @@ class PokeBattle_Move
         return 100 if !user.pbOwnedByPlayer? && @battle.curseActive?(:CURSE_PERFECT_LUCK)
         ret = effectChance > 0 ? effectChance : @effectChance
         return 100 if ret >= 100
+        ret *= 1.5 if flinchingMove? && user.hasActiveAbility?(:RATTLEEM)
+        ret *= 2 if flinchingMove? && user.hasActiveAbility?(:TERRORIZE)
         ret *= 2 if user.hasActiveAbility?(:SERENEGRACE)
         ret *= 2 if user.pbOwnSide.effectActive?(:Rainbow)
         ret *= 4 if windMove? && user.hasActiveAbility?(:FUMIGATE)
