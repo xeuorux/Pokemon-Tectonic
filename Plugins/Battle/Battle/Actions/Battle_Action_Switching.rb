@@ -231,6 +231,7 @@ class PokeBattle_Battle
             return -1 if choices.length == 0
             return choices[pbRandom(choices.length)]
         else
+            return -1 unless pbCanChooseNonActive?(idxBattler)
             return pbSwitchInBetween(idxBattler, true)
         end
     end
