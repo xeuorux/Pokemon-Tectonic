@@ -1141,6 +1141,7 @@ class PokeBattle_StatusSpikeMove < PokeBattle_Move
     end
 
     def getEffectScore(user, target)
+        return 0 if damagingMove? && target.pbOwnSide.effectAtMax?(@spikeEffect)
         score = 0
         side = damagingMove? ? target.pbOwnSide : user.pbOpposingSide
         score -= statusSpikesWeightOnSide(side, [@spikeEffect])
