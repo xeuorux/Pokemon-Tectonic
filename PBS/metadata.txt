@@ -1243,6 +1243,7 @@ Outdoor = true
 ShowArea = true
 Bicycle = true
 MapPosition = 0,11,9
+BattleBack = snow
 #-------------------------------
 [216]
 # Highland Lake

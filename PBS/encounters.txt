@@ -613,7 +613,7 @@ DarkCave,21
     25,MUNNA,16,19
 #-------------------------------
 [215] # Tempest Realm
-Cloud,60
+Cloud,20
     25,CASTFORM,52,54
     25,CRYOGONAL,52,54
     25,MINIOR,52,54

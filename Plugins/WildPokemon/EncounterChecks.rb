@@ -26,7 +26,7 @@ class PokemonEncounters
     terrain_tag_id = $game_map.terrain_tag($game_player.x, $game_player.y).id
     return [:Grass, :DarkCave, :Mud, :SparseGrass, :Puddle, :TallGrass,
 		:ActiveWater, :FloweryGrass, :FloweryGrass2, :TintedGrass,
-		:SewerWater, :SewerFloor, :FishingContest].include?(terrain_tag_id)
+		:SewerWater, :SewerFloor, :FishingContest, :DarkCloud].include?(terrain_tag_id)
   end
 
   # Returns whether a wild encounter should happen, based on its encounter
