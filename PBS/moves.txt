@@ -873,7 +873,7 @@
 905,TEASE,Tease,402,60,DARK,Special,100,20,20,NearOther,0,befk,"The user bullies the target, causing mental damage. This has a 20% chance to leech.",SNARL
 906,SCAM,Scam,15D,70,DARK,Special,100,10,0,NearOther,-1,abef,"The user scams the target of its stat boosts, and then attacks.",SNARL
 907,DARKALLURE,Dark Allure,402,90,DARK,Special,100,12,10,NearOther,0,bef,"The user strikes the target with dark energy. It has a 10% chance to leech.",SNARL
-908,PLANTDOUBT,Plant Doubt,402,20,DARK,Special,100,15,100,NearOther,0,bef,"The user entangles the target's mind with dark thoughts, leeching it.",TORMENT
+908,PLANTDOUBT,Plant Doubt,402,20,DARK,Special,100,15,100,NearOther,0,bef,"The user entangles the target's mind with dark thoughts, leeching it.",
 909,PROFANE,Profane,402,100,DARK,Special,50,5,100,NearOther,0,bef,"The user invades deep into the target's mind, leeching it.",SNARL
 910,SHRED,Shred,509,55,DRAGON,Physical,100,12,0,NearOther,0,abef,"The user attacks with overwhelming power, ignoring positive stat changes and abilities.",DRAGONCLAW
 911,ROLLINGBOULDER,Rolling Boulder,53F,140,ROCK,Physical,50,10,0,NearOther,0,bef,"The user rolls a large boulder towards the target. If it misses, the target may be forced to switch.",SMACKDOWN
