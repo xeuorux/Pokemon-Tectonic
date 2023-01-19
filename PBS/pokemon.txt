@@ -23890,7 +23890,7 @@ Type1 = FLYING
 Type2 = DRAGON
 # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
 BaseStats = 85,70,80,123,107,80
-# Total = 555
+# Total = 545
 GenderRate = Female50Percent
 GrowthRate = Medium
 BaseEXP = 187
