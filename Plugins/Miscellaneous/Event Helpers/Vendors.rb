@@ -249,3 +249,24 @@ def arenaVendor()
 		true
 	)
 end
+
+def styleFurfrou()
+	pbChoosePokemon(1,3,
+		proc { |poke|
+			!poke.egg? && poke.species == :FURFROU
+		}
+	)
+	return false if pbGet(1) < 0
+	pkmn = $Trainer.party[pbGet(1)]
+	possibleForms, possibleFormNames = getFormSelectionChoices(:FURFROU,pkmn.form)
+	choice = pbMessage("What style would you like me to give it?",possibleFormNames,possibleFormNames.length)
+	if choice < possibleForms.length
+		pbMessage("#{pkmn.name} swapped to #{possibleFormNames[choice]}!")
+		
+		showPokemonChanges(pkmn) {
+			pkmn.form = possibleForms[choice].form
+		}
+		return true
+	end
+	return false
+end
