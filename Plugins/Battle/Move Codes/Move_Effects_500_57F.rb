@@ -609,17 +609,11 @@ end
 #===============================================================================
 class PokeBattle_Move_527 < PokeBattle_Move_004
     def pbFailsAgainstTarget?(user, target, show_message)
-        fails = true
-        fails = false if !target.effectActive?(:Yawn) && target.canSleep?(user, true, self)
         if @battle.sunny? && (target.pbCanLowerStatStage?(:ATTACK, user, self) ||
                 target.pbCanLowerStatStage?(:SPECIAL_ATTACK, user, self))
-            fails = false
+            return false
         end
-        if fails
-            @battle.pbDisplay(_INTL("But it failed!")) if show_message
-            return true
-        end
-        return false
+        super
     end
 
     def pbEffectAgainstTarget(user, target)
@@ -647,7 +641,7 @@ class PokeBattle_Move_528 < PokeBattle_SleepMove
             @battle.pbDisplay(_INTL("But it failed, #{target.pbThis(true)} is above half health!")) if show_message
             return true
         end
-        return !target.canSleep?(user, true, self)
+        return !target.canSleep?(user, show_message, self)
     end
 end
 
@@ -662,7 +656,7 @@ class PokeBattle_Move_529 < PokeBattle_SleepMove
             end
             return true
         end
-        return !target.canSleep?(user, true, self)
+        return !target.canSleep?(user, show_message, self)
     end
 
     def pbFailsAgainstTargetAI?(user, target)
@@ -850,7 +844,7 @@ class PokeBattle_Move_534 < PokeBattle_SleepMove
             @battle.pbDisplay(_INTL("But it failed, since #{target.pbThis(true)} isn't dizzy!")) if show_message
             return true
         end
-        return !target.canSleep?(user, true, self, true)
+        return !target.canSleep?(user, show_message, self, true)
     end
 
     def pbEffectAgainstTarget(_user, target)
