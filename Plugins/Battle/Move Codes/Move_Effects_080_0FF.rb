@@ -3041,17 +3041,9 @@ class PokeBattle_Move_0EB < PokeBattle_Move
             @battle.pbDisplay(_INTL("But it failed!")) if show_message
             return true
         end
-        if @battle.trainerBattle?
-            canSwitch = false
-            @battle.eachInTeamFromBattlerIndex(target.index) do |_pkmn, i|
-                next unless @battle.pbCanSwitchLax?(target.index, i)
-                canSwitch = true
-                break
-            end
-            unless canSwitch
-                @battle.pbDisplay(_INTL("But it failed!")) if show_message
-                return true
-            end
+        if @battle.trainerBattle? && !@battle.pbCanChooseNonActive?(target.index)
+            @battle.pbDisplay(_INTL("But it failed!")) if show_message
+            return true
         end
         return false
     end

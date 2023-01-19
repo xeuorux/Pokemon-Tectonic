@@ -237,11 +237,7 @@ end
 
 def getForceOutEffectScore(_user, target)
     return 0 if target.substituted?
-    count = 0
-    @battle.pbParty(target.index).each_with_index do |_pkmn, i|
-        count += 1 if @battle.pbCanSwitchLax?(target.index, i)
-    end
-    return 0 if count
+    return 0 if target.battle.pbCanChooseNonActive?(target.index)
     return hazardWeightOnSide(target.pbOwnSide)
 end
 
