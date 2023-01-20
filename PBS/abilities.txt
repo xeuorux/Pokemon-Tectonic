@@ -441,7 +441,7 @@
 446,ROAST,Roast,"When the Pokémon eats a Berry, it raises its attacking stats."
 447,SOLARCELL,Solar Cell,"In sunshine, gets a 25% boost to Sp. Atk and Sp. Def."
 448,HARSHHUNTER,Harsh Hunter,"In sandstorm, Attack is boosted by 30%."
-449,AGGRAVATE,Aggravate,"HP-fraction-based damage effects deal double damage to opponents."
+449,AGGRAVATE,Aggravate,"HP-fraction-based damage effects deal 50% more damage to opponents."
 450,WIBBLEWOBBLE,Wibble Wobble,"When hit by a move, responds with Power Split."
 451,BLADETRAINED,Blade Trained,"Slashing attacks turn Fighting-type and are boosted by 50%."
 452,TUNNELMAKER,Tunnel Maker,"Powers up Ground-type moves by 50%."

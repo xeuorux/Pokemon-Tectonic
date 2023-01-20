@@ -62,7 +62,7 @@ def getPoisonEffectScore(user, target, ignoreCheck: false)
         score -= STATUS_UPSIDE_MALUS if target.hasActiveAbilityAI?(%i[TOXICBOOST
                                                                       POISONHEAL].concat(STATUS_UPSIDE_ABILITIES))
         score += STATUS_PUNISHMENT_BONUS if user.hasStatusPunishMove? || user.pbHasMoveFunction?("07B") # Venoshock
-        score *= 2 if user.hasActiveAbilityAI?(:AGGRAVATE)
+        score *= 1.5 if user.hasActiveAbilityAI?(:AGGRAVATE)
     else
         return 0
     end
@@ -83,7 +83,7 @@ def getBurnEffectScore(user, target, ignoreCheck: false)
         score -= STATUS_UPSIDE_MALUS if target.hasActiveAbilityAI?(%i[FLAREBOOST
                                                                       BURNHEAL].concat(STATUS_UPSIDE_ABILITIES))
         score += STATUS_PUNISHMENT_BONUS if user.hasStatusPunishMove? || user.pbHasMoveFunction?("50E") # Flare Up
-        score *= 2 if user.hasActiveAbilityAI?(:AGGRAVATE)
+        score *= 1.5 if user.hasActiveAbilityAI?(:AGGRAVATE)
     else
         return 0
     end
@@ -103,7 +103,7 @@ def getFrostbiteEffectScore(user, target, ignoreCheck: false)
         score += NON_ATTACKER_BONUS unless user.hasDamagingAttack?
         score -= STATUS_UPSIDE_MALUS if target.hasActiveAbilityAI?([:FROSTHEAL].concat(STATUS_UPSIDE_ABILITIES))
         score += STATUS_PUNISHMENT_BONUS if user.hasStatusPunishMove? || user.pbHasMoveFunction?("50C") # Ice Impact
-        score *= 2 if user.hasActiveAbilityAI?(:AGGRAVATE)
+        score *= 1.5 if user.hasActiveAbilityAI?(:AGGRAVATE)
     else
         return 0
     end
@@ -136,7 +136,7 @@ def getLeechEffectScore(user, target, ignoreCheck: false)
         score -= 30 if target.totalhp < user.totalhp / 2
         score -= STATUS_UPSIDE_MALUS if target.hasActiveAbilityAI?(STATUS_UPSIDE_ABILITIES)
         score += STATUS_PUNISHMENT_BONUS if user.hasStatusPunishMove?
-        score *= 4 if user.hasActiveAbilityAI?(:AGGRAVATE)
+        score *= 2 if user.hasActiveAbilityAI?(:AGGRAVATE)
         score *= 1.5 if user.hasActiveAbilityAI?(:ROOTED)
         score *= 1.3 if user.hasActiveItem?(:BIGROOT)
         score *= 2 if user.hasAlly?
@@ -432,6 +432,6 @@ end
 def getCurseEffectScore(user, target)
     score = 50
     score += 50 if target.aboveHalfHealth?
-    score *= 2 if user.hasActiveAbilityAI?(:AGGRAVATE)
+    score *= 1.5 if user.hasActiveAbilityAI?(:AGGRAVATE)
     return score
 end
