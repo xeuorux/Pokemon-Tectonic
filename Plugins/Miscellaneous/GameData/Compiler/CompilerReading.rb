@@ -551,7 +551,8 @@ module Compiler
 				# 		raise _INTL("The {1} entry has too many moves in PBS/avatars.txt section {2}.", key, avatar_species)
 				# 	end
         when "Ability"
-          if !speciesData.abilities.concat(speciesData.hidden_abilities).include?(contents["Ability"].to_sym)
+          if !speciesData.abilities.concat(speciesData.hidden_abilities).include?(contents["Ability"].to_sym) &&
+              !contents["Ability"].downcase.include?("primeval")
             echoln(_INTL("Ability {1} is not legal for the Avatar defined in PBS/avatars.txt section {2}.", contents["Ability"], avatar_species))
           end
         when "Aggression"

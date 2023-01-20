@@ -554,6 +554,46 @@ BattleHandlers::AbilityOnSwitchIn.add(:PRIMEVALSLOWSTART,
   }
 )
 
+BattleHandlers::AbilityOnSwitchIn.add(:PRIMEVALIMPOSTER,
+  proc { |_ability, battler, battle|
+      battle.pbShowAbilitySplash(battler, true)
+      battle.pbDisplay(_INTL("{1} transforms into a stronger version of your entire team!", battler.pbThis))
+      battler.boss = false
+      battle.bossBattle = false
+
+      trainerClone = NPCTrainer.cloneFromPlayer($Trainer)
+      battle.opponent = [trainerClone]
+
+      party = battle.pbParty(battler.index)
+      party.clear
+
+      # Give each cloned pokemon a stat boost to each stat
+      trainerClone.party.each do |partyMember|
+        party.push(partyMember)
+        partyMember.ev = partyMember.ev.each_with_object({}) do |(statID, evValue), evArray|
+          evArray[statID] = evValue + 10
+        end
+        partyMember.calc_stats   
+      end
+
+      partyOrder = battle.pbPartyOrder(battler.index)
+      partyOrder.clear
+      party.each do |partyMember,index|
+        partyOrder.push(index)
+      end
+
+      battler.pbInitialize(party[0],0)
+      if party.length > 1
+        battle.addBattlerSlot(party[1],1)
+      else
+        battle.remakeDataBoxes
+        battle.remakeBattleSpritesOnSide(battler.index % 2)
+      end
+
+      battle.pbHideAbilitySplash(battler)
+  }
+)
+
 BattleHandlers::AbilityOnSwitchIn.add(:REFRESHMENTS,
   proc { |_ability, battler, battle|
       next unless battle.sunny?
