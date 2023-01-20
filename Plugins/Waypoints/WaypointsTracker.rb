@@ -160,8 +160,9 @@ def accessWaypoint(waypointName,avatarSpecies=nil)
 				if $waypoints_tracker.summonPokemonFromWaypoint(avatarSpecies,waypointEvent)
 					pbMessage(_INTL("The totem returns to its original state."))
 					pbSetSelfSwitch(waypointEvent.id,'A',false)
+					return true
 				end
-				return
+				return false
 			end
 		end
 	end
