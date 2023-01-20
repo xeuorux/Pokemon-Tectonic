@@ -1734,6 +1734,13 @@ ShowArea = false
 Bicycle = true
 BattleBack = wcave
 #-------------------------------
+[331]
+# Frostflow Farms Center
+Outdoor = false
+ShowArea = false
+Bicycle = false
+HealingSpot = 186,34,15
+#-------------------------------
 [334]
 # The Present
 Outdoor = false
