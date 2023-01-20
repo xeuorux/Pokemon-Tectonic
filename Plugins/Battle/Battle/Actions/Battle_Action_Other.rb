@@ -149,6 +149,7 @@ class PokeBattle_Battle
         end
         pbCommonAnimation("MegaEvolution", battler)
         battler.pokemon.makeMega
+        battler.pokemon.forced_form = battler.pokemon.getMegaForm if battler.boss?
         battler.form = battler.pokemon.form
         battler.pbUpdate(true)
         @scene.pbChangePokemon(battler, battler.pokemon)
