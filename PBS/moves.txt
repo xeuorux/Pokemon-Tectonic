@@ -251,7 +251,7 @@
 251,PLUCK,Pluck,0F4,60,FLYING,Physical,100,15,0,Other,0,abef,"The user pecks the target. If the target is holding a Berry, the user eats it and gains its effect.",
 253,WINGATTACK,Wing Attack,599,55,FLYING,Physical,100,30,0,Other,0,abef,"The target is struck with large, imposing wings. The user also takes 20% recoil.",
 254,ACROBATICS,Acrobatics,086,55,FLYING,Physical,100,12,0,Other,0,abef,"The user nimbly strikes the foe. This attack does more damage if the user is not holding an item.",
-255,GUST,Gust,403,40,FLYING,Special,100,30,0,Other,0,befq,"The user whips up a gust of wind at the target. This has a 10% chance to frostbite.",
+255,GUST,Gust,403,40,FLYING,Special,100,30,0,Other,10,befq,"The user whips up a gust of wind at the target. This has a 10% chance to frostbite.",
 256,PECK,Peck,000,45,FLYING,Physical,100,30,0,Other,0,abef,"The target is jabbed with a sharply pointed beak or horn.",
 257,DEFOG,Defog,049,0,FLYING,Status,0,12,0,NearOther,0,bceq,"A strong wind blows away the foe's obstacles such as Light Screen. It also lowers their evasion.",
 258,FEATHERDANCE,Feather Dance,04B,0,FLYING,Status,100,12,0,NearOther,0,bceo,"The user covers the target's body with a mass of down that harshly lowers its Attack stat.",
