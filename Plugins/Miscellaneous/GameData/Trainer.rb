@@ -274,4 +274,15 @@ class NPCTrainer < Trainer
 		@policyStates = {}
 		@nameForHashing = nameForHashing || name
 	end
+
+	def self.cloneFromPlayer(playerObject)
+		trainerClone = NPCTrainer.new("Clone of " + playerObject.name, playerObject.trainer_type)
+		trainerClone.id = playerObject.id
+
+		playerObject.party.each do |partyMember|
+			trainerClone.party.push(partyMember.clone)
+		end
+
+		return trainerClone
+	end
 end
