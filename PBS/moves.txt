@@ -917,7 +917,7 @@
 952,DROPKICK,Drop Kick,0FA,80,FIGHTING,Physical,0,20,100,NearFoe,0,abef,"The user drops onto the target with a kick, dealing 25% recoil to self.",JUMPKICK
 953,MULTISTRIKE,Multi-strike,0C0,14,NORMAL,Physical,100,30,0,NearOther,0,abefj,"The target is hit two to five times in a row.",
 954,MOUNTAINCRUSH,Mountain Crush,0FC,200,ROCK,Physical,50,10,0,NearOther,0,abef,"The user slams itself into the target with the power to destroy a mountain, taking 50% recoil.",
-955,SMUSH,Smush,043,40,BUG,Physical,100,15,20,NearOther,0,abef,"The user crushes the target. It has a 20% chance to lower their Defense stat.",STEAMROLLER
+955,SMUSH,Smush,043,40,BUG,Physical,100,15,20,NearOther,0,abef,"Avenging bugs everywhere, the user crushes the target. It has a 20% chance to lower their Defense stat.",
 957,ACIDBATH,Acid Bath,03C,120,POISON,Special,100,5,0,NearOther,0,bef,"The user and target bathe in acid. Lowers the user's Defense and Sp. Def stats.",ACIDSPRAY
 958,STINGINGJEALOUSY,Stinging Jealousy,553,70,POISON,Physical,100,12,100,AllNearFoes,0,bef,"Attacks with energy from jealousy. All opposing Pokémon with stat boosts get poisoned.",POISONSTING
 959,STANDTOGETHER,Stand Together,554,0,FIGHTING,Status,0,30,0,User,0,d,"The user holds fast with its teammates, raising the Defense of itself and its allies.",
