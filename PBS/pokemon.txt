@@ -30865,9 +30865,9 @@ Pokedex = Its fluffiness, friendliness, and massive size make it beloved by near
 BattlerPlayerX = -1
 BattlerPlayerY = 7
 BattlerEnemyX = 0
-BattlerEnemyY = 20
+BattlerEnemyY = 10
 BattlerShadowX = 0
-BattlerShadowSize = 1
+BattlerShadowSize = 4
 #-------------------------------
 [926]
 Name = Gigachu

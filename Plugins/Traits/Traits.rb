@@ -471,7 +471,7 @@ class Pokemon
 					"Exercise",
 					"Babysitting",
 					"Loud Cars",
-					"Responsibilities",
+					"Responsibility",
 					"Cleaning",
 					"Spicy Food",
 					"Soda",
