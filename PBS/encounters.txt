@@ -650,7 +650,7 @@ DarkCave,20
     25,UNOWN,37,39
     25,WYNAUT,37,39
 #-------------------------------
-[219] # Crumbling Nest
+[219] # Crumbling Canyon
 DarkCave,20
     20,AXEW,18,20
     20,EKANS,18,20
@@ -658,6 +658,14 @@ DarkCave,20
     20,MTANGELA,18,20
     10,NIDORANfE,18,20
     10,NIDORANmA,18,20
+#-------------------------------
+[353] # Crumbling Canyon F2
+DarkCave,20
+    20,ONIX,56,59
+    20,RHYHORN,56,59
+    20,LUNATONE,56,59
+    20,SOLROCK,56,59
+    20,LARVITAR,56,59
 #-------------------------------
 [220] # Prizca Sewers East
 LandSparse,20
