@@ -100,7 +100,7 @@ class PokeBattle_Battler
         @battle.pbDisplay(recoilMessage) if showMessage
         pbReduceHP(damage, showDamageAnimation)
 
-        if cushionRecoil
+        if !cushionRecoil
             pbHealthLossChecks(oldHP)
         elsif pbEntryHealthLossChecks(oldHP)
             @battle.pbOnActiveOne(self)
