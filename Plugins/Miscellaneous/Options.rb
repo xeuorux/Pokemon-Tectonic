@@ -45,7 +45,7 @@ class PokemonSystem
     @runstyle    		          = 0 # Default movement speed (0=walk, 1=run)
     @bgmvolume  		          = 50 # Volume of background music and ME
     @sevolume    		          = 50 # Volume of sound effects
-    @textinput   		          = 1 # Text input mode (0=cursor, 1=keyboard)
+    @textinput   		          = System.platform.downcase[/android/] ? 0 : 1 # Text input mode (0=cursor, 1=keyboard)
     @followers   		          = 0	# Follower Pokemon enabled (0=true, 1=false)
     @autosave	 		            = 0	# Autosave enabled (0=true, 1=false)
     @color_shifts             = 0 # (0=true, 1=false)
