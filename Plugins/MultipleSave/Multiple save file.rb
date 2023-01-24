@@ -422,9 +422,9 @@ class PokemonLoadScreen
 			Game.start_new
 			return
 		  when cmd_survey
-			system("start /B https://forms.gle/49kb3i38AxMnD8RC7")
+			System.launch("https://forms.gle/49kb3i38AxMnD8RC7")
 		  when cmd_website
-			system("start /B https://www.tectonic-game.com/")
+			System.launch("https://www.tectonic-game.com/")
 		  when cmd_debug
 			pbFadeOutIn { pbDebugMenu(false) }
 		  when cmd_quit

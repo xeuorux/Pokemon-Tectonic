@@ -570,7 +570,7 @@
 595,PSYCHOBOOST,Psycho Boost,03F,130,PSYCHIC,Special,100,5,0,NearOther,0,bef,"The user attacks the target at full power. The attack harshly reduces the user's Sp. Atk stat.",
 596,FUTURESIGHT,Future Sight,111,140,PSYCHIC,Special,100,10,0,NearOther,0,,"Two turns after this move is used, a hunk of psychic energy attacks the target.",
 597,SYNCHRONOISE,Synchronoise,123,120,PSYCHIC,Special,100,10,0,AllNearOthers,0,befk,"Using an odd shock wave, the user damages any Pokémon of the same type as the user.",
-598,DREAMABSORB,Dream Absorb,0DE,60,PSYCHIC,Special,100,12,0,NearOther,0,bef,"The user eats its foe's dreams. It absorbs half the damage caused to heal its HP and doubles in power if the foe is asleep.",
+598,DREAMABSORB,Dream Absorb,0DE,60,PSYCHIC,Special,100,12,0,NearOther,0,bef,"Heals the user for 50% of the damage caused. Power doubles if the foe is asleep.",
 599,PHOTONGEYSER,Photon Geyser,164,100,PSYCHIC,Special,100,5,0,NearOther,0,bef,"The user attacks with a pillar of light. This move the higher of the user's Attack or Sp. Atk stat.",
 600,PSYSTRIKE,Psystrike,122,100,PSYCHIC,Special,100,10,0,NearOther,0,bef,"The user materializes an odd psychic wave to attack the target. This attack does physical damage.",
 601,PSYCHIC,Psychic,046,90,PSYCHIC,Special,100,10,10,NearOther,0,bef,"The target is hit by a strong telekinetic force. It has a 10% chance to lower Sp. Def.",
@@ -1057,3 +1057,4 @@
 1094,PATIENTTRAINING,Patient Training,508,0,BUG,Status,0,12,0,User,0,d,"The user prepares its weapons, drastically raising Attack but drastically lowering Speed.",SWORDSDANCE
 1095,MARTIALMASTERY,Martial Mastery,5AD,0,FIGHTING,Status,0,15,0,User,0,d,"The user tenses recalls martial techniques, boosting its Attack, Defense and critical strike chance.",FOCUSENERGY
 1096,REVERBWARD,Reverb Ward,5AE,0,PSYCHIC,Status,0,3,0,User,4,,"Protects the user from all attacks. Special attacks harshly lower the attacker's Sp. Def stat.",PROTECT
+1097,HEARTSTOP,Heart Stop,53A,90,DARK,Special,100,12,100,AllNearOthers,0,bef,"For the rest of the round, the healing of all damaged Pokemon is reversed.",GLARE
