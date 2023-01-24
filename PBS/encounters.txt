@@ -655,14 +655,6 @@ DarkCave,20
     10,NIDORANfE,18,20
     10,NIDORANmA,18,20
 #-------------------------------
-[353] # Crumbling Canyon F2
-DarkCave,20
-    20,ONIX,56,59
-    20,RHYHORN,56,59
-    20,LUNATONE,56,59
-    20,SOLROCK,56,59
-    20,LARVITAR,56,59
-#-------------------------------
 [220] # Prizca Sewers East
 LandSparse,20
     25,DRUDDIGON,34,36
@@ -843,9 +835,17 @@ Land,20
     13,NIHILEGO,56,59
     13,PHEROMOSA,56,59
     13,XURKITREE,56,59
+    12,BLACEPHALON,56,59
     12,CELESTEELA,56,59
     12,GUZZLORD,56,59
     12,KARTANA,56,59
     12,POIPOLE,56,59
-	12,BLACEPHALON,56,59
-	12,STAKATAKA,56,59
+    12,STAKATAKA,56,59
+#-------------------------------
+[353] # Crumbling Canyon F2
+DarkCave,20
+    20,LARVITAR,56,59
+    20,LUNATONE,56,59
+    20,ONIX,56,59
+    20,RHYHORN,56,59
+    20,SOLROCK,56,59
