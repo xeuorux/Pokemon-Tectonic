@@ -876,7 +876,7 @@
 908,PLANTDOUBT,Plant Doubt,402,20,DARK,Special,100,15,100,NearOther,0,bef,"The user entangles the target's mind with dark thoughts, leeching it.",
 909,PROFANE,Profane,402,100,DARK,Special,50,5,100,NearOther,0,bef,"The user invades deep into the target's mind, leeching it.",SNARL
 910,SHRED,Shred,509,55,DRAGON,Physical,100,12,0,NearOther,0,abef,"The user attacks with overwhelming power, ignoring positive stat changes and abilities.",DRAGONCLAW
-911,ROLLINGBOULDER,Rolling Boulder,53F,140,ROCK,Physical,50,10,0,NearOther,0,bef,"The user rolls a large boulder towards the target. If it misses, the target may be forced to switch.",SMACKDOWN
+911,ROLLINGBOULDER,Rolling Boulder,53F,140,ROCK,Physical,50,10,0,NearOther,-1,bef,"If this move misses, the target is forced to switch out. Always goes last.",SMACKDOWN
 912,MINDWARP,Mind Warp,401,80,PSYCHIC,Special,100,12,20,NearOther,0,bef,"The target's psyche is attacked directly. It has a 20% chance to dizzy.",PSYCHIC
 913,AIRDART,Air Dart,00F,60,FLYING,Special,100,12,30,Other,0,beq,"The user strikes the target with a sudden wind. It has a 40% chance to flinch the target.",
 914,MIASMA,Miasma,046,90,POISON,Special,100,12,10,NearOther,0,befq,"The user envelops the target in a foul wind. It has a 10% chance to lower Sp. Def.",ACIDSPRAY
