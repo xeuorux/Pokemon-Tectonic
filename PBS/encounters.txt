@@ -266,10 +266,6 @@ Special,20
 Special
     1,MAREANIE,15
 #-------------------------------
-[074] # Room 203
-Special
-    1,GYAMASK,15
-#-------------------------------
 [085] # Worried Man's House
 Special,20
     1,HORSEA,15
