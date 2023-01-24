@@ -474,7 +474,7 @@ class PokeBattle_Move_636 < PokeBattle_Move_01C
 end
 
 # Empowered Ice Beam
-class PokeBattle_Move_637 < PokeBattle_Move_51B
+class PokeBattle_Move_637 < PokeBattle_Move_403
     include EmpoweredMove
 end
 
