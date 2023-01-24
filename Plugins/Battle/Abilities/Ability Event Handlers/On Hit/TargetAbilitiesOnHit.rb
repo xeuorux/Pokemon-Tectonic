@@ -181,19 +181,9 @@ BattleHandlers::TargetAbilityOnHit.add(:STATIC,
   }
 )
 
-BattleHandlers::TargetAbilityOnHit.add(:STATIC,
-  proc { |_ability, user, target, move, battle|
-      next unless move.specialMove?
-      next if user.numbed? || battle.pbRandom(100) >= 30
-      battle.pbShowAbilitySplash(target)
-      user.applyNumb(target) if user.canNumb?(target, true)
-      battle.pbHideAbilitySplash(target)
-  }
-)
-
 BattleHandlers::TargetAbilityOnHit.add(:LIVEWIRE,
   proc { |_ability, user, target, move, battle|
-      next unless move.physicalMove?
+      next unless move.specialMove?
       next if user.numbed? || battle.pbRandom(100) >= 30
       battle.pbShowAbilitySplash(target)
       user.applyNumb(target) if user.canNumb?(target, true)
