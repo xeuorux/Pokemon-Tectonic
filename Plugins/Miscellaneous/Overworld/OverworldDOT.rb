@@ -85,6 +85,6 @@ def pbCheckAllFainted
     pbMessage(_INTL("You blacked out!"))
     pbBGMFade(1.0)
     pbBGSFade(1.0)
-    pbFadeOutIn { pbStartOver }
+    blackOut
   end
 end

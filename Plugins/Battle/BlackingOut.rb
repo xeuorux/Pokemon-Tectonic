@@ -40,8 +40,7 @@ def pbStartOver(_gameover = false)
         $PokemonGlobal.respawnPoint = nil
         mapName = pbGetMessage(MessageTypes::MapNames, $PokemonGlobal.pokecenterMapId)
         mapName.gsub!(/\\PN/, $Trainer.name) if $Trainer
-        pbMessage(_INTL(
-                      "\\w[]\\wm\\c[8]\\l[3]You scurry back to {1}, protecting your exhausted Pokémon from any further harm...", mapName))
+        pbMessage(_INTL("\\w[]\\wm\\c[12]\\l[3]You scurry back to {1}, protecting your exhausted Pokémon from any further harm...", mapName))
         pbCancelVehicles
         pbRemoveDependenciesExceptFollower
         pbToggleFollowingPokemon("off", false)
@@ -54,4 +53,8 @@ def pbStartOver(_gameover = false)
         $game_map.refresh
     end
     pbEraseEscapePoint
+end
+
+def blackOut
+    pbFadeOutIn { pbStartOver }
 end
