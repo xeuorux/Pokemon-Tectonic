@@ -9139,8 +9139,8 @@ InternalName = NUZLEAF
 Type1 = GRASS
 Type2 = DARK
 # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
-BaseStats = 80,65,60,60,85,60
-# Total = 410
+BaseStats = 80,65,70,60,85,65
+# Total = 425
 GenderRate = Female50Percent
 GrowthRate = Parabolic
 BaseEXP = 119
