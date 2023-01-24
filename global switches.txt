@@ -17,3 +17,8 @@
 
 70: Eleig Boating Dock Unlocked
 71: Sweetrock Dock Unlocked
+72: Regirock Freed
+73: Regice Freed
+74: Registeel Freed
+75: Regieleki Freed
+76: Regidrago Freed
