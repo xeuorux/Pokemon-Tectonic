@@ -7885,7 +7885,7 @@ BattlerEnemyX = -2
 BattlerEnemyY = 21
 BattlerShadowX = 0
 BattlerShadowSize = 2
-Evolutions = HITMONLEE,AttackGreater,25,HITMONCHAN,DefenseGreater,25,HITMONTOP,AtkDefEqual,25
+Evolutions = HITMONLEE,AttackGreater,28,HITMONCHAN,DefenseGreater,28,HITMONTOP,AtkDefEqual,28
 #-------------------------------
 [237]
 Name = Hitmontop
