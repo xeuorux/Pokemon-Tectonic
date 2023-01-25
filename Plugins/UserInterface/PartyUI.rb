@@ -182,11 +182,65 @@ class PokemonPartyPanel < SpriteWrapper
   end
 end
 
+class PokemonParty_Scene
+  def pbChoosePokemon(switching=false,initialsel=-1,canswitch=0)
+    for i in 0...Settings::MAX_PARTY_SIZE
+      @sprites["pokemon#{i}"].preselected = (switching && i==@activecmd)
+      @sprites["pokemon#{i}"].switching   = switching
+    end
+    @activecmd = initialsel if initialsel>=0
+    pbRefresh
+    loop do
+      Graphics.update
+      Input.update
+      self.update
+      oldsel = @activecmd
+      key = -1
+      key = Input::DOWN if Input.repeat?(Input::DOWN)
+      key = Input::RIGHT if Input.repeat?(Input::RIGHT)
+      key = Input::LEFT if Input.repeat?(Input::LEFT)
+      key = Input::UP if Input.repeat?(Input::UP)
+      if key>=0
+        @activecmd = pbChangeSelection(key,@activecmd)
+      end
+      if @activecmd!=oldsel   # Changing selection
+        pbPlayCursorSE
+        numsprites = Settings::MAX_PARTY_SIZE + ((@multiselect) ? 2 : 1)
+        for i in 0...numsprites
+          @sprites["pokemon#{i}"].selected = (i==@activecmd)
+        end
+      end
+      cancelsprite = Settings::MAX_PARTY_SIZE + ((@multiselect) ? 1 : 0)
+      if Input.trigger?(Input::ACTION) && canswitch==1 && @activecmd!=cancelsprite
+        pbPlayDecisionSE
+        return [1,@activecmd]
+      elsif Input.trigger?(Input::ACTION) && canswitch==2
+        return -1
+      elsif Input.trigger?(Input::BACK)
+        pbPlayCloseMenuSE if !switching
+        return -1
+      elsif Input.trigger?(Input::USE)
+        if @activecmd==cancelsprite
+          (switching) ? pbPlayDecisionSE : pbPlayCloseMenuSE
+          return -1
+        else
+          pbPlayDecisionSE
+          return @activecmd
+        end
+      elsif Input.trigger?(Input::SPECIAL)
+        pbFadeOutIn {
+					PokemonPartyShowcase_Scene.new($Trainer.party)
+				}
+      end
+    end
+  end
+end
+
 class PokemonPartyScreen
 	def pbPokemonScreen
-    @scene.pbStartScene(@party,(@party.length>1) ? _INTL("Choose a Pokémon.") : _INTL("Choose Pokémon or cancel."),nil)
+    @scene.pbStartScene(@party,(@party.length>1) ? _INTL("Choose a Pokémon. (D for Showcase)") : _INTL("Choose Pokémon or cancel."),nil)
     loop do
-      @scene.pbSetHelpText((@party.length>1) ? _INTL("Choose a Pokémon.") : _INTL("Choose Pokémon or cancel."))
+      @scene.pbSetHelpText((@party.length>1) ? _INTL("Choose a Pokémon. (D for Showcase)") : _INTL("Choose Pokémon or cancel."))
       pkmnid = @scene.pbChoosePokemon(false,-1,1)
       break if (pkmnid.is_a?(Numeric) && pkmnid<0) || (pkmnid.is_a?(Array) && pkmnid[1]<0)
       if pkmnid.is_a?(Array) && pkmnid[0]==1   # Switch

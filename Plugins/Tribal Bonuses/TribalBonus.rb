@@ -28,14 +28,16 @@ class TribalBonus
         }
     end
 
-    def getActiveBonusesList
+    def getActiveBonusesList(concat = true)
         updateTribeCount()
 
         list = []
         GameData::Tribe.each do |tribeData|
             echoln(@tribeCounts[tribeData.id])
             next unless @tribeCounts[tribeData.id] >= TRIBAL_BONUS_THRESHOLD
-            list.push(_INTL("#{TribalBonus.getTribeName(tribeData.id)} Tribe Bonus"))
+            description = TribalBonus.getTribeName(tribeData.id)
+            description += _INTL(" Tribe Bonus") if concat
+            list.push(description)
         end
 
         return list
