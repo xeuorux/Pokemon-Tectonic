@@ -7925,7 +7925,7 @@ Type1 = ICE
 Type2 = PSYCHIC
 # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
 BaseStats = 50,30,35,65,90,70
-# Total = 325
+# Total = 340
 GenderRate = AlwaysFemale
 GrowthRate = Medium
 BaseEXP = 61
