@@ -47,8 +47,25 @@ def earnBadge(badgeNum)
 	Events.onBadgeEarned.trigger(self,badgeNum-1,$game_variables[BADGE_COUNT_VARIABLE],badgesEarnedArray)
 	
 	giveBattleReport()
+
+	teamSnapshot(_INTL("Badge #{badgeNum} Team"))
 	
 	refreshMapEvents()
+end
+
+def teamSnapshot(label=nil)
+	pbMessage(_INTL("Taking team snapshot."))
+	PokemonPartyShowcase_Scene.new($Trainer.party,true,label)
+end
+
+def pbScreenCapture(label = nil)
+	t = pbGetTimeNow
+  	filestart = t.strftime("[%Y-%m-%d] %H_%M_%S.%L")
+	filestart = label + filestart if label
+  	Dir.mkdir(DIR_SCREENSHOTS) if !safeExists?(DIR_SCREENSHOTS)
+  	capturefile = sprintf("%s/%s.png", DIR_SCREENSHOTS, filestart)
+  	Graphics.screenshot(capturefile)
+  	pbSEPlay("Pkmn exp full") if FileTest.audio_exist?("Audio/SE/Pkmn exp full")
 end
 
 def updateTotalBadgesVar

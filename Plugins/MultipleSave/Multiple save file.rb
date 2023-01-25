@@ -997,12 +997,3 @@ class ScreenChooseFileSave
 		@viewport.dispose
 	end
 end
-
-def pbScreenCapture
-  t = pbGetTimeNow
-  filestart = t.strftime("[%Y-%m-%d] %H_%M_%S.%L")
-  Dir.mkdir(DIR_SCREENSHOTS) if !safeExists?(DIR_SCREENSHOTS)
-  capturefile = sprintf("%s/%s.png", DIR_SCREENSHOTS, filestart)
-  Graphics.screenshot(capturefile)
-  pbSEPlay("Pkmn exp full") if FileTest.audio_exist?("Audio/SE/Pkmn exp full")
-end

@@ -3,7 +3,7 @@ class PokemonPartyShowcase_Scene
     BASE_COLOR   = Color.new(80, 80, 88)
     SHADOW_COLOR = Color.new(160, 160, 168)
 
-    def initialize(party)
+    def initialize(party,snapshot = false,snapShotName=nil)
         @sprites = {}
         @party = party
         @viewport = Viewport.new(0,0,Graphics.width,Graphics.height)
@@ -36,6 +36,7 @@ class PokemonPartyShowcase_Scene
         drawFormattedTextEx(@overlay, 8, Graphics.height - 20, Graphics.width, fullDescription, BASE_COLOR, SHADOW_COLOR)
 
         pbFadeInAndShow(@sprites) { pbUpdate }
+        pbScreenCapture(snapShotName)
 
         loop do
             Graphics.update
@@ -51,17 +52,22 @@ class PokemonPartyShowcase_Scene
 
     def renderShowcaseInfo(index,pokemon)
         displayX =  ((index % 2) * (Graphics.width / 2)) + 4
-        displayY = (index / 2) * (Graphics.height / 3 - 8) + 8
+        displayY = (index / 2) * (Graphics.height / 3 - 8) + 4
 
+        mainIconY = displayY + 20
         newPokemonIcon = PokemonIconSprite.new(pokemon,@viewport)
         newPokemonIcon.x = displayX
-        newPokemonIcon.y = displayY
+        newPokemonIcon.y = mainIconY
         @sprites["pokemon#{index}"] = newPokemonIcon
+
+        # Display pokemon name
+        nameAndLevel = pokemon.name + " Lv. " + pokemon.level.to_s
+        drawTextEx(@overlay, displayX + 4, displayY, 200, 1, nameAndLevel, BASE_COLOR, SHADOW_COLOR)
 
         # Display item icon
         if pokemon.item
             itemX = displayX + POKEMON_ICON_SIZE - 8
-            itemY = displayY + POKEMON_ICON_SIZE - 8
+            itemY = mainIconY + POKEMON_ICON_SIZE - 8
             newItemIcon = ItemIconSprite.new(itemX,itemY,pokemon.item,@viewport)
             newItemIcon.zoom_x = 0.5
             newItemIcon.zoom_y = 0.5
@@ -71,12 +77,12 @@ class PokemonPartyShowcase_Scene
         # Display moves
         pokemon.moves.each_with_index do |pokemonMove,moveIndex|
             moveName = GameData::Move.get(pokemonMove.id).real_name
-            drawTextEx(@overlay, displayX + POKEMON_ICON_SIZE + 8, displayY + moveIndex * 16, 200, 1, moveName, BASE_COLOR, SHADOW_COLOR)
+            drawTextEx(@overlay, displayX + POKEMON_ICON_SIZE + 8, mainIconY + moveIndex * 16, 200, 1, moveName, BASE_COLOR, SHADOW_COLOR)
         end
 
         # Display ability name
         abilityName = pokemon.ability.real_name
-        drawTextEx(@overlay, displayX + 4, displayY + POKEMON_ICON_SIZE + 12, 200, 1, abilityName, BASE_COLOR, SHADOW_COLOR)
+        drawTextEx(@overlay, displayX + 4, mainIconY + POKEMON_ICON_SIZE + 8, 200, 1, abilityName, BASE_COLOR, SHADOW_COLOR)
     
         # Display style values
         styleValueX = displayX + 224
