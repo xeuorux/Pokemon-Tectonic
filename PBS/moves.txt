@@ -584,7 +584,7 @@
 609,PSYCHOCUT,Psycho Cut,000,70,PSYCHIC,Physical,100,15,0,NearOther,0,befhp,"The user tears at the target with blades formed by psychic power. Critical hits land more easily.",
 610,PSYBEAM,Psybeam,401,65,PSYCHIC,Special,100,15,10,NearOther,0,bef,"The target is attacked with a peculiar ray. It has a 10% chance to dizzy.",
 611,HEARTSTAMP,Heart Stamp,00F,60,PSYCHIC,Physical,100,20,50,NearOther,0,abe,"The user unleashes a vicious blow after a cute act. It has a 50% chance to cause flinching.",
-612,MINDWAVES,Mind Waves,401,40,PSYCHIC,Special,100,30,10,NearOther,0,bef,"The target is hit by a weak telekinetic force. It has a 10% chance to dizzy.",
+612,MINDWAVES,Mind Waves,401,40,PSYCHIC,Special,100,30,10,NearOther,0,bef,"The target is hit by a weak telekinetic force. It has a 10% chance to dizzy.",CONFUSION
 613,STOREDPOWER,Stored Power,08E,1,PSYCHIC,Special,100,10,0,NearOther,0,bef,"The user attacks with stored power. The more the user's stats are raised, the greater the damage.",
 614,MIRRORCOAT,Mirror Coat,072,1,PSYCHIC,Special,100,15,0,None,-5,bf,"A retaliation move that counters any special attack, inflicting double the damage taken.",
 615,PSYWAVE,Psywave,06F,1,PSYCHIC,Special,100,12,0,NearOther,0,bef,"The target is attacked with an odd psychic wave. The attack varies in intensity.",
@@ -870,7 +870,7 @@
 902,WHITERAY,White Ray,000,75,NORMAL,Special,100,20,0,NearOther,0,befm,"The user shoots a ray of bright white energy at the target.",STOREDPOWER
 903,RAPIDSTARS,Rapid Stars,0A5,95,NORMAL,Special,0,15,0,AllNearFoes,0,bef,"A barrage of star-shaped rays are shot at the opposing team, never missing.",SWIFT
 904,PILFER,Pilfer,539,40,DARK,Physical,100,25,0,NearOther,0,abef,"The user attacks and steals the foe's held Berry or Gem. It can't steal if the user holds an item.",THIEF
-905,TEASE,Tease,402,60,DARK,Special,100,20,20,NearOther,0,befk,"The user bullies the target, causing mental damage. This has a 20% chance to leech.",SNARL
+905,TEASE,Tease,402,60,DARK,Special,100,20,20,NearOther,0,befk,"The user bullies the target, causing mental damage. This has a 20% chance to leech.",
 906,SCAM,Scam,15D,70,DARK,Special,100,10,0,NearOther,-1,abef,"The user scams the target of its stat boosts, and then attacks.",SNARL
 907,DARKALLURE,Dark Allure,402,90,DARK,Special,100,12,10,NearOther,0,bef,"The user strikes the target with dark energy. It has a 10% chance to leech.",SNARL
 908,PLANTDOUBT,Plant Doubt,402,20,DARK,Special,100,15,100,NearOther,0,bef,"The user entangles the target's mind with dark thoughts, leeching it.",

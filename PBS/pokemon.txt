@@ -7924,7 +7924,7 @@ InternalName = SMOOCHUM
 Type1 = ICE
 Type2 = PSYCHIC
 # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
-BaseStats = 45,30,35,65,85,65
+BaseStats = 50,30,35,65,90,70
 # Total = 325
 GenderRate = AlwaysFemale
 GrowthRate = Medium
