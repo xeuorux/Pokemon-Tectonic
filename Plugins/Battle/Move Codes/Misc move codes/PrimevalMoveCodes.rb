@@ -367,9 +367,12 @@ end
 class PokeBattle_Move_626 < PokeBattle_Move_587
     include EmpoweredMove
 
-    def pbEffectAgainstTarget(user, target)
+    def pbEffectGeneral(user)
         super
-        user.pbRaiseMultipleStatStages([:DEFENSE,1,:SPECIAL_DEFENSE,1],user, move: self)
+
+        itemName = GameData::Item.get(:BLACKSLUDGE).real_name
+        @battle.pbDisplay(_INTL("{1} crafts itself a {2}!", user.pbThis, itemName))
+        user.item = :BLACKSLUDGE
 
         transformType(user, :POISON)
     end
