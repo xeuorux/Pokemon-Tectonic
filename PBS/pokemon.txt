@@ -28445,7 +28445,7 @@ InternalName = CLOBBOPUS
 Type1 = FIGHTING
 # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
 BaseStats = 76,62,54,32,44,72
-# Total = 330
+# Total = 340
 GenderRate = Female50Percent
 GrowthRate = Parabolic
 BaseEXP = 62
@@ -28479,7 +28479,7 @@ InternalName = GRAPPLOCT
 Type1 = FIGHTING
 # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
 BaseStats = 115,98,85,52,70,115
-# Total = 525
+# Total = 535
 GenderRate = Female50Percent
 GrowthRate = Parabolic
 BaseEXP = 168
