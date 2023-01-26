@@ -141,7 +141,6 @@ ringTypes = [:NORMAL,:FIRE,:WATER,:GRASS,:ELECTRIC,:ICE,:FIGHTING,:POISON,:GROUN
 ringTypes.each do |type_sym|
   ringSym = (type_sym.to_s + "RING").to_sym
   gemSym = (type_sym.to_s + "GEM").to_sym
-  echoln("#{ringSym},#{gemSym}")
   BattleHandlers::EORHealingItem.copy(:LEFTOVERS,ringSym)
   BattleHandlers::DamageCalcUserItem.copy(gemSym,ringSym)
   SUPER_ITEMS.push(ringSym)
@@ -174,10 +173,10 @@ BattleHandlers::EndOfMoveStatRestoreItem.add(:WHITEBOUGH,
 )
 
 # Lead Balloon
-BattleHandlers::ItemOnSwitchIn.add(:AIRBALLOON,:LEADBALLOON)
+BattleHandlers::ItemOnSwitchIn.copy(:AIRBALLOON,:LEADBALLOON)
 
 # Spell Bell
-BattleHandlers::UserItemAfterMoveUse.add(:SHELLBELL,:SPELLBELL)
+BattleHandlers::UserItemAfterMoveUse.copy(:SHELLBELL,:SPELLBELL)
 BattleHandlers::DamageCalcUserItem.copy(:SPELLTAG,:SPELLBELL)
 
 # Big Red Button
