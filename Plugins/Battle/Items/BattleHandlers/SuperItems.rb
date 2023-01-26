@@ -139,11 +139,12 @@ BattleHandlers::DamageCalcUserItem.add(:LUCENTGEM,
 ringTypes = [:NORMAL,:FIRE,:WATER,:GRASS,:ELECTRIC,:ICE,:FIGHTING,:POISON,:GROUND,:FLYING,:PSYCHIC,:BUG,:ROCK,:GHOST,:DARK,:DRAGON,:STEEL,:FAIRY]
 
 ringTypes.each do |type_sym|
-    ringSym = (type_sym.to_s + "RING").to_sym
-    gemSym = (type_sym.to_s + "GEM").to_sym
-    BattleHandlers::EORHealingItem.copy(:LEFTOVERS,ringSym)
-    BattleHandlers::DamageCalcUserItem.copy(gemSym,ringSym)
-    SUPER_ITEMS.push(ringSym)
+  ringSym = (type_sym.to_s + "RING").to_sym
+  gemSym = (type_sym.to_s + "GEM").to_sym
+  echoln("#{ringSym},#{gemSym}")
+  BattleHandlers::EORHealingItem.copy(:LEFTOVERS,ringSym)
+  BattleHandlers::DamageCalcUserItem.copy(gemSym,ringSym)
+  SUPER_ITEMS.push(ringSym)
 end
 
 # White Bough
