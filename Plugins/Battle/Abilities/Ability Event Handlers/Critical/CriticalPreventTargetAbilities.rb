@@ -4,4 +4,4 @@ BattleHandlers::CriticalPreventTargetAbility.add(:BATTLEARMOR,
   }
 )
 
-BattleHandlers::CriticalPreventTargetAbility.copy(:BATTLEARMOR, :SHELLARMOR, :IMPERVIOUS, :STEELYSHELL)
+BattleHandlers::CriticalPreventTargetAbility.copy(:BATTLEARMOR, :SHELLARMOR, :IMPERVIOUS, :STEELYSHELL, :HARSHTRAINING)
