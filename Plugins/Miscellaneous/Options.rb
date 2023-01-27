@@ -15,6 +15,7 @@ class PokemonSystem
   attr_accessor :status_effect_messages
   attr_accessor :nicknaming_prompt
   attr_accessor :color_shifts
+  attr_accessor :party_snapshots
   attr_accessor :bag_sorting
 
   def bgmvolume
@@ -60,6 +61,7 @@ class PokemonSystem
     @status_effect_messages   = 0 # (0=true, 1=false)
     @nicknaming_prompt        = 0 # (0=true, 1=false)
     @show_trait_unlocks       = 0 # (0=true, 1=false)
+    @party_snapshots          = 0 # (0=true, 1=false)
     @bag_sorting              = 0 # (0=none,1=alphabetical,2=ID)
   end
 end
@@ -180,6 +182,12 @@ class PokemonOption_Scene
        proc { $PokemonSystem.show_trait_unlocks },
        proc { |value|
         $PokemonSystem.show_trait_unlocks = value
+       }
+      ),
+      EnumOption.new(_INTL("Team Snapshots"),[_INTL("On"),_INTL("Off")],
+       proc { $PokemonSystem.party_snapshots },
+       proc { |value|
+        $PokemonSystem.party_snapshots = value
        }
       ),
       EnumOption.new(_INTL("Autosave"),[_INTL("On"),_INTL("Off")],
