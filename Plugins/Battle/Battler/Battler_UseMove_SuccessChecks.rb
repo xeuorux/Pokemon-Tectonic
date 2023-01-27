@@ -449,7 +449,13 @@ animationName, show_message) do
             return true
         end
         # Dark-type immunity to moves made faster by Prankster
-        if user.effectActive?(:Prankster) && target.pbHasType?(:DARK) && target.opposes?(user)
+        pranksterInEffect = false
+        if aiChecking
+            pranksterInEffect = true if user.hasActiveAbilityAI?(:PRANKSTER) && move.statusMove?
+        else
+            pranksterInEffect = true if user.effectActive?(:Prankster)
+        end
+        if pranksterInEffect && target.pbHasType?(:DARK) && target.opposes?(user)
             PBDebug.log("[Target immune] #{target.pbThis} is Dark-type and immune to Prankster-boosted moves")
             if showMessages
                 @battle.pbDisplay(_INTL("It doesn't affect {1} since Dark-types are immune to pranks...",
