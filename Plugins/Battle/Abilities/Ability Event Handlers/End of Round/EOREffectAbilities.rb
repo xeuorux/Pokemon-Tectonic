@@ -30,10 +30,20 @@ BattleHandlers::EOREffectAbility.add(:MOODY,
       if randomDown.length > 0
           r = battle.pbRandom(randomDown.length)
           randomDownStat = randomDown[r]
-          battler.tryRaiseStat(randomDownStat, battler)
+          battler.tryLowerStat(randomDownStat, battler)
       end
       battle.pbHideAbilitySplash(battler)
       battler.pbItemStatRestoreCheck if randomDown.length > 0
+  }
+)
+
+BattleHandlers::EOREffectAbility.add(:PERSISTENTGROWTH,
+  proc { |_ability, battler, _battle|
+      next unless battler.turnCount > 0
+      battle.pbShowAbilitySplash(battler)
+      battler.pbRaiseMultipleStatStages([:ATTACK,1,:DEFENSE,1,:SPECIAL_ATTACK,1,:SPECIAL_DEFENSE,1], battler)
+      battler.tryLowerStat(randomDownStat, battler)
+      battle.pbHideAbilitySplash(battler)
   }
 )
 
