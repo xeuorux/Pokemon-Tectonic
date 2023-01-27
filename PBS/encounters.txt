@@ -236,10 +236,10 @@ Land,20
     25,TIMBURR,14,17
 Puddle,21
     25,BARBOACH,14,17
+    25,BINACLE,14,17
     25,FEEBAS,14,17
     25,MAGIKARP,14,17
     25,TAILLOW,14,17
-	25,BINACLE,14,17
 Special
     1,CARVANHA,15
 #-------------------------------
