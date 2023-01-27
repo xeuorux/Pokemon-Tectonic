@@ -504,6 +504,7 @@
 510,FRIENDTOALL,FRIENDTOALL,"Counts as every tribe."
 511,RATTLEEM,Rattle 'Em,"Moves that can flinch are 50% more likely. Deals 50% more damage to Pokemon with flinch immunity."
 512,TERRORIZE,Terrorize,"Moves that can flinch are twice as likely to do so."
+550,PERSISTENTGROWTH,Persistent Growth,"At the end of each of its turns, Speed is lowered but every other stat is raised."
 1000,JUSTIFIED,Justified,"Raises Attack when hit by a Dark-type move."
 1001,ADAPTABILITY,Adaptability,"Powers up moves of the same type."
 1002,HUGEPOWER,Huge Power,"Raises the Pokémon's Attack stat."

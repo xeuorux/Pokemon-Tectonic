@@ -37,6 +37,16 @@ BattleHandlers::EOREffectAbility.add(:MOODY,
   }
 )
 
+BattleHandlers::EOREffectAbility.add(:PERSISTENTGROWTH,
+  proc { |_ability, battler, _battle|
+      next unless battler.turnCount > 0
+      battle.pbShowAbilitySplash(battler)
+      battler.pbRaiseMultipleStatStages([:ATTACK,1,:DEFENSE,1,:SPECIAL_ATTACK,1,:SPECIAL_DEFENSE,1], battler)
+      battler.tryLowerStat(randomDownStat, battler)
+      battle.pbHideAbilitySplash(battler)
+  }
+)
+
 BattleHandlers::EOREffectAbility.add(:SPEEDBOOST,
   proc { |_ability, battler, _battle|
       # A Pokémon's turnCount is 0 if it became active after the beginning of a
