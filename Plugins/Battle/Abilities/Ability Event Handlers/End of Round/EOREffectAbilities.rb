@@ -30,7 +30,7 @@ BattleHandlers::EOREffectAbility.add(:MOODY,
       if randomDown.length > 0
           r = battle.pbRandom(randomDown.length)
           randomDownStat = randomDown[r]
-          battler.tryRaiseStat(randomDownStat, battler)
+          battler.tryLowerStat(randomDownStat, battler)
       end
       battle.pbHideAbilitySplash(battler)
       battler.pbItemStatRestoreCheck if randomDown.length > 0
