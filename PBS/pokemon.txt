@@ -13815,7 +13815,7 @@ InternalName = WORMADAM
 Type1 = BUG
 Type2 = GRASS
 # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
-BaseStats = 90,80,94,66,80,94
+BaseStats = 90,80,95,66,80,95
 # Total = 504
 GenderRate = AlwaysFemale
 GrowthRate = Medium
