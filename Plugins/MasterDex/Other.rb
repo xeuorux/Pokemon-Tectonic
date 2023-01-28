@@ -89,7 +89,8 @@ def describeEvolutionMethod(method,parameter=0)
     when :TradeItem; return _INTL("when traded holding an #{GameData::Item.get(parameter).real_name}")
 	when :HasInParty; return _INTL("when leveled up while a #{GameData::Species.get(parameter).name} is also in the party")
 	when :Shedinja; return _INTL("also if you have an empty pokeball and party slot")
-    end
+    when :Originize; return _INTL("when a #{GameData::Item.get(:ORIGINORE).real_name} is used on it at level #{parameter}")
+	end
     return "via a method the programmer was too lazy to describe"
 end
 
