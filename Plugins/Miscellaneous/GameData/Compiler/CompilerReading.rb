@@ -1339,7 +1339,7 @@ module Compiler
             # All method based on leveling up to a certain level
             when :Level,:LevelDay,:LevelNight,:LevelMale,:LevelFemale,:LevelRain,
               :AttackGreater,:AtkDefEqual,:DefenseGreater,:LevelDarkInParty,
-              :Silcoon,:Cascoon,:Ninjask,:Shedinja
+              :Silcoon,:Cascoon,:Ninjask,:Shedinja,:Originize
               
               evoLevelThreshold = param
             # All methods based on holding a certain item or using a certain item on the pokemon

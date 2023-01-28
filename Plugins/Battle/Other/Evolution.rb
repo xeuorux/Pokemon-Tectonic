@@ -8,8 +8,10 @@ GameData::Evolution.register({
 
   GameData::Evolution.register({
     :id            => :Originize,
-    :parameter     => :Integer,
+    :parameter     => Integer,
     :use_item_proc => proc { |pkmn, parameter, item|
       next item == :ORIGINORE && pkmn.level >= parameter
-    }
+    },
   })
+
+  echoln("Registering new evo types!")
