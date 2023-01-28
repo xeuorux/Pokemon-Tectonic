@@ -175,7 +175,7 @@
 173,STRONGJAW,Strong Jaw,"Boosts the power of biting moves by 50%."
 174,REFRIGERATE,Refrigerate,"Normal-type moves become Ice-type and power up by 30%."
 175,SWEETVEIL,Sweet Veil,"Prevents itself and allies from falling asleep."
-176,STANCECHANGE,Stance Change,"Changes between Blade and Shield Forme with attacks."
+176,STANCECHANGE,Stance Change,"Changes between Blade and Shield Forme with attacks and King's Shield."
 177,GALEWINGS,Gale Wings,"Flying-type moves gain priority when its HP is full."
 178,MEGALAUNCHER,Mega Launcher,"Increases aura and pulse moves power by 50%."
 179,GRASSPELT,Grass Pelt,"Doubles Defense on Grassy Terrain."
