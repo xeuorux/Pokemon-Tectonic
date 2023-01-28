@@ -3347,7 +3347,7 @@ BattlerEnemyX = 0
 BattlerEnemyY = 27
 BattlerShadowX = 0
 BattlerShadowSize = 2
-Evolutions = ELECTRODE,Level,30
+Evolutions = ELECTRODE,Level,32
 #-------------------------------
 [101]
 Name = Electrode

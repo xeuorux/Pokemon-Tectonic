@@ -863,7 +863,7 @@
 898,DIVEBOMB,Dive Bomb,0C9,125,FLYING,Physical,100,10,0,Other,0,abef,"The user soars up high, then strikes on the second turn by dive bombing the target.",FLY
 899,STRAFE,Strafe,000,90,FLYING,Physical,100,12,0,NearOther,0,abef,"The user attacks the target while dashing skillfully past it.",ACROBATICS
 900,SWARMBURST,Swarm Burst,0E0,300,BUG,Physical,100,5,0,AllNearOthers,0,bef,"The user explodes to inflict damage on those around it. The user faints upon using this move.",EXPLOSION
-901,BEAM,Beam,000,45,NORMAL,Special,100,30,0,NearOther,0,befm,"The user shoots a beam of normal energy at the target.",STOREDPOWER
+901,BEAM,Beam,000,45,NORMAL,Special,100,30,0,NearOther,0,befm,"The user shoots a beam of normal energy at the target.",SIMPLEBEAM
 902,WHITERAY,White Ray,000,75,NORMAL,Special,100,20,0,NearOther,0,befm,"The user shoots a ray of bright white energy at the target.",STOREDPOWER
 903,RAPIDSTARS,Rapid Stars,0A5,95,NORMAL,Special,0,15,0,AllNearFoes,0,bef,"A barrage of star-shaped rays are shot at the opposing team, never missing.",SWIFT
 904,PILFER,Pilfer,539,40,DARK,Physical,100,25,0,NearOther,0,abef,"The user attacks and steals the foe's held Berry or Gem. It can't steal if the user holds an item.",THIEF
