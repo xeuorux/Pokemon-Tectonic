@@ -722,29 +722,25 @@ end
 #===============================================================================
 class PokeBattle_Move_5A8 < PokeBattle_Move
     def pbFailsAgainstTarget?(user, target, show_message)
-        if target.item == :BLACKSLUDGE
+        if target.item && !canRemoveItem?(user, target) && pbCanLowerStatStage?(:SPECIAL_DEFENSE,user,self)
             if show_message
-                @battle.pbDisplay(_INTL("But {1} is already holding a Black Sludge!",
-target.pbThis(true)))
+                @battle.pbDisplay(_INTL("But it failed!"))
             end
             return true
         end
-        return !canRemoveItem?(user, target)
-    end
-
-    def pbFailsAgainstTargetAI?(user, target)
-        return true if target.item == :BLACKSLUDGE
-        return !canRemoveItem?(user, target, true)
+        return false
     end
 
     def pbEffectAgainstTarget(user, target)
-        if target.item
-            itemName = target.itemName
-            removalMessage = _INTL("{1} dropped its {2}!", target.pbThis, itemName)
-            removeItem(user, target, false, removalMessage)
+        if target.item != :BLACKSLUDGE
+            if target.item
+                itemName = target.itemName
+                removalMessage = _INTL("{1} dropped its {2}!", target.pbThis, itemName)
+                removeItem(user, target, false, removalMessage)
+            end
+            target.item = :BLACKSLUDGE
+            @battle.pbDisplay(_INTL("{1} was forced to hold a {2}!", target.pbThis, target.itemName))
         end
-        target.item = :BLACKSLUDGE
-        @battle.pbDisplay(_INTL("{1} was forced to hold a {2}!", target.pbThis, target.itemName))
         target.tryLowerStat(:SPECIAL_DEFENSE, user, move: self)
     end
 end
