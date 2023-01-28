@@ -861,4 +861,5 @@
 905,CHAMBER6KEY,Chamber 6 Key,Chamber 6 Keys,8,0,"The key to the sixth chamber containing a powerful avatar.",0,0,6
 906,CHAMBER7KEY,Chamber 7 Key,Chamber 7 Keys,8,0,"The key to the seventh chamber containing a powerful avatar.",0,0,6
 907,CHAMBER8KEY,Chamber 8 Key,Chamber 8 Keys,8,0,"The key to the eighth chamber containing a powerful avatar.",0,0,6
+908,ORIGINORE,Origin Ore,Origin Ores,1,3000,"A peculiar ore that makes certain species of Pokémon evolve.",1,0,7
 1000,CASSBERRY,Cass Berry,Cass Berries,5,0,"If held by a Pokémon, it hangs on at 1 HP if it would be fainted from full health.",0,0,5
