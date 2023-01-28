@@ -10,15 +10,15 @@
 9,YELLOWSHARD,Yellow Shard,Yellow Shards,1,1000,"A small yellow shard. It appears to be from some sort of implement made long ago.",0,0,0
 10,BLUESHARD,Blue Shard,Blue Shards,1,1000,"A small blue shard. It appears to be from some sort of implement made long ago.",0,0,0
 11,GREENSHARD,Green Shard,Green Shards,1,1000,"A small green shard. It appears to be from some sort of implement made long ago.",0,0,0
-12,FIRESTONE,Fire Stone,Fire Stones,1,3000,"A peculiar stone that makes certain species of Pokémon evolve. It is colored orange.",1,0,7
-13,THUNDERSTONE,Thunder Stone,Thunder Stones,1,3000,"A peculiar stone that makes certain species of Pokémon evolve. It has a thunderbolt pattern.",1,0,7
-14,WATERSTONE,Water Stone,Water Stones,1,3000,"A peculiar stone that makes certain species of Pokémon evolve. It is a clear, light blue.",1,0,7
-15,LEAFSTONE,Leaf Stone,Leaf Stones,1,3000,"A peculiar stone that makes certain species of Pokémon evolve. It has a leaf pattern.",1,0,7
-16,MOONSTONE,Moon Stone,Moon Stones,1,3000,"A peculiar stone that makes certain species of Pokémon evolve. It is as black as the night sky.",1,0,7
-17,SUNSTONE,Sun Stone,Sun Stones,1,3000,"A peculiar stone that makes certain species of Pokémon evolve. It is as red as the sun.",1,0,7
-18,DUSKSTONE,Dusk Stone,Dusk Stones,1,3000,"A peculiar stone that makes certain species of Pokémon evolve. It is as dark as dark can be.",1,0,7
-19,DAWNSTONE,Dawn Stone,Dawn Stones,1,3000,"A peculiar stone that makes certain species of Pokémon evolve. It sparkles like eyes.",1,0,7
-20,SHINYSTONE,Shiny Stone,Shiny Stones,1,3000,"A peculiar stone that makes certain species of Pokémon evolve. It shines with a dazzling light.",1,0,7
+12,FIRESTONE,Fire Stone,Fire Stones,1,8000,"A peculiar stone that makes certain species of Pokémon evolve. It is colored orange.",1,0,7
+13,THUNDERSTONE,Thunder Stone,Thunder Stones,1,8000,"A peculiar stone that makes certain species of Pokémon evolve. It has a thunderbolt pattern.",1,0,7
+14,WATERSTONE,Water Stone,Water Stones,1,8000,"A peculiar stone that makes certain species of Pokémon evolve. It is a clear, light blue.",1,0,7
+15,LEAFSTONE,Leaf Stone,Leaf Stones,1,8000,"A peculiar stone that makes certain species of Pokémon evolve. It has a leaf pattern.",1,0,7
+16,MOONSTONE,Moon Stone,Moon Stones,1,8000,"A peculiar stone that makes certain species of Pokémon evolve. It is as black as the night sky.",1,0,7
+17,SUNSTONE,Sun Stone,Sun Stones,1,8000,"A peculiar stone that makes certain species of Pokémon evolve. It is as red as the sun.",1,0,7
+18,DUSKSTONE,Dusk Stone,Dusk Stones,1,8000,"A peculiar stone that makes certain species of Pokémon evolve. It is as dark as dark can be.",1,0,7
+19,DAWNSTONE,Dawn Stone,Dawn Stones,1,8000,"A peculiar stone that makes certain species of Pokémon evolve. It sparkles like eyes.",1,0,7
+20,SHINYSTONE,Shiny Stone,Shiny Stones,1,8000,"A peculiar stone that makes certain species of Pokémon evolve. It shines with a dazzling light.",1,0,7
 21,REDAPRICORN,Red Apricorn,Red Apricorns,1,20,"A red Apricorn. It assails your nostrils.",0,0,9
 22,YELLOWAPRICORN,Yellow Apricorn,Yellow Apricorns,1,20,"A yellow Apricorn. It has an invigorating scent.",0,0,9
 23,BLUEAPRICORN,Blue Apricorn,Blue Apricorns,1,20,"A blue Apricorn. It smells a bit like grass.",0,0,9
@@ -523,7 +523,7 @@
 523,REVEALGLASS,Reveal Glass,Reveal Glasses,8,0,"A glass that reveals the truth. It is a mysterious glass that returns a Pokémon back to its original shape.",5,0,6
 524,OVALCHARM,Oval Charm,Oval Charms,8,0,"An oval charm said to increase the chance of Eggs being found at the Day Care.",0,0,6
 525,SHINYCHARM,Shiny Charm,Shiny Charms,8,0,"A shiny charm which doubles the chance of finding a Shiny Pokémon.",0,0,6
-526,ICESTONE,Ice Stone,Ice Stones,1,3000,"A peculiar stone that makes certain species of Pokémon evolve. It has a snowflake pattern.",1,0,7
+526,ICESTONE,Ice Stone,Ice Stones,1,8000,"A peculiar stone that makes certain species of Pokémon evolve. It has a snowflake pattern.",1,0,7
 527,JAWFOSSIL,Jaw Fossil,Jaw Fossils,1,5000,"A fossil from a prehistoric Pokémon that once lived on the land. It appears to be part of a large jaw.",0,0,8
 528,SAILFOSSIL,Sail Fossil,Sail Fossils,1,5000,"A fossil from a prehistoric Pokémon that once lived on the land. It looks like the impression from a skin sail.",0,0,8
 529,REDNECTAR,Red Nectar,Red Nectars,1,300,"A flower nectar obtained at Ula'ula Meadow. It changes the form of certain species of Pokémon.",1,0,0
@@ -861,5 +861,5 @@
 905,CHAMBER6KEY,Chamber 6 Key,Chamber 6 Keys,8,0,"The key to the sixth chamber containing a powerful avatar.",0,0,6
 906,CHAMBER7KEY,Chamber 7 Key,Chamber 7 Keys,8,0,"The key to the seventh chamber containing a powerful avatar.",0,0,6
 907,CHAMBER8KEY,Chamber 8 Key,Chamber 8 Keys,8,0,"The key to the eighth chamber containing a powerful avatar.",0,0,6
-908,ORIGINORE,Origin Ore,Origin Ores,1,3000,"A peculiar ore that makes certain species of Pokémon evolve.",1,0,7
+908,ORIGINORE,Origin Ore,Origin Ores,1,8000,"A peculiar ore that makes certain species of Pokémon evolve.",1,0,7
 1000,CASSBERRY,Cass Berry,Cass Berries,5,0,"If held by a Pokémon, it hangs on at 1 HP if it would be fainted from full health.",0,0,5

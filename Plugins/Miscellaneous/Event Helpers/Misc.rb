@@ -183,7 +183,7 @@ end
 
 # Does a little scene where the cave darkens and the extreme wind dissapears
 def rayquazaDefeated(eventID)
-	defeatBoss
+	defeatBoss(:RELICCROWN)
 	weatherBossDefeated(eventID,50)
 end
 
