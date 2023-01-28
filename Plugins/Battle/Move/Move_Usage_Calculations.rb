@@ -352,7 +352,7 @@ class PokeBattle_Move
     # Additional effect chance
     #=============================================================================
     def canApplyAdditionalEffects?(user,target,showMessages=false)
-        if target.hasActiveAbility?(:SHIELDDUST) && !@battle.moldBreaker
+        if target.hasActiveAbility?([:SHIELDDUST,:HARSHTRAINING]) && !@battle.moldBreaker
             if showMessages
                 battle.pbShowAbilitySplash(target)
                 battle.pbHideAbilitySplash(target)

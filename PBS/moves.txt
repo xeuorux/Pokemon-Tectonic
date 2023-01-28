@@ -965,7 +965,7 @@
 1005,FRANTICFANG,Frantic Fang,571,60,NORMAL,Physical,100,10,0,NearOther,0,abei,"Channeling fear, the user bites the target. Deals double damage if the user is below half health.",HYPERFANG
 1006,TRANQUILTUNE,Tranquil Tune,572,0,FAIRY,Status,100,10,0,NearOther,0,befk,"The target is put to sleep, and the user's Attack is raised. Fails unless the target is at or below half health.",SING
 1007,SUGARBALL,Sugar Ball,08D,1,FAIRY,Special,100,5,0,NearOther,0,befn,"The user tackles the target with a sugary spin. The slower the user, the greater the damage.",
-1008,SILTSURGE,Silt Surge,044,75,WATER,Special,100,12,100,AllNearOthers,0,bef,"The user attacks with a wave of murky water, which hits everyone nearby and lowers their Speed.",MUDDYWATER
+1008,SILTSURGE,Silt Surge,044,80,WATER,Special,100,12,100,AllNearFoes,0,bef,"The user attacks with a wave of murky water, which hits all near foes and lowers their Speed.",MUDDYWATER
 1009,PLUNDER,Plunder,588,90,STEEL,Physical,100,15,0,NearOther,0,abef,"The user attacks the target with a sword. If it faints, lots of money is earned after the battle.",
 1010,ROYALTRIBUTE,Royal Tribute,109,90,DARK,Special,100,15,0,NearOther,0,bef,"The user demands tribute from their subjects. Money is earned after battle.",
 1011,SACREDLOTS,Sacred Lots,589,25,DRAGON,Physical,100,15,0,NearOther,0,abef,"The user makes an offering, then attacks two to five times. Money is earned for each hit.",
