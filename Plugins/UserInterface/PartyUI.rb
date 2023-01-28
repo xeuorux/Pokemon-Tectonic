@@ -263,6 +263,7 @@ class PokemonPartyScreen
       cmdPokedex = -1
 	    cmdSetDown = -1
       cmdSendPC  = -1
+      cmdEvolve  = -1
 
       canEditTeam = teamEditingAllowed?()
 
@@ -285,6 +286,11 @@ class PokemonPartyScreen
         end
       end
       commands[cmdSendPC = commands.length]       = _INTL("Send to PC") if @party.length>1
+
+      # Check for evolution
+      newspecies = pkmn.check_evolution_on_level_up
+      commands[cmdEvolve = commands.length]       = _INTL("Evolve") if newspecies
+
       commands[commands.length]                   = _INTL("Cancel")
       command = @scene.pbShowCommands(_INTL("Do what with {1}?",pkmn.name),commands)
       havecommand = false
@@ -364,6 +370,18 @@ class PokemonPartyScreen
           @party.compact!
           @scene.pbHardRefresh
           break
+        end
+      elsif cmdEvolve >= 0 && command == cmdEvolve
+        if !canEditTeam
+          showNoTeamEditingMessage()
+          next
+        end
+        pbFadeOutInWithMusic do
+          evo = PokemonEvolutionScene.new
+          evo.pbStartScreen(pkmn, newspecies)
+          evo.pbEvolution
+          evo.pbEndScreen
+          scene.pbRefresh
         end
       elsif cmdItem >= 0 && command == cmdItem
         if !canEditTeam
