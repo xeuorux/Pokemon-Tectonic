@@ -73,7 +73,7 @@ end
 
 class Pokemon
     def tribes
-        if @ability == :FRIENDTOALL
+        if @ability == :FRIENDTOALL || @item == :WILDCARD
             list = []
             GameData::Tribe.each do |tribeData|
                 list.push(tribeData.id)
