@@ -1057,3 +1057,7 @@
 1097,HEARTSTOP,Heart Stop,53A,90,DARK,Special,100,12,100,AllNearOthers,0,bef,"For the rest of the round, the healing of all damaged Pokemon is reversed.",GLARE
 1098,PSYSHIELDBASH,Psyshield Bash,01D,80,PSYCHIC,Physical,100,20,100,NearOther,0,abef,"Cloaking itself in psychic energy, the user slams into the target. This also boosts the user’s Defense stat.",ZENHEADBUTT
 1099,HEADLONGRUSH,Headlong Rush,03C,120,GROUND,Physical,100,5,0,NearOther,0,abef,"The user smashes into the target in a full-body tackle. This cuts the user's Defenses.",STOMPINGTANTRUM
+1100,PURIFYINGFLAME,Purifying Flame,5AA,80,FIRE,Special,100,10,0,NearOther,0,bef,"The user purifies the target with fire. This deals double damage and heals every battler's status condition if the target has one.",
+1101,CEASELESSEDGE,Ceaseless Edge,103,65,DARK,Physical,100,10,0,NearOther,0,abefp,"The user slashes its shell blade at the target. Shell splinters remain scattered under the target as spikes."
+1102,STONEAXE,Stone Axe,105,55,ROCK,Physical,100,10,0,NearOther,0,abefp,"The user swings its stone axes at the target. This leaves stone splinters floating around the target."
+1103,AURAARROWS,Aura Arrows,500,30,FIGHTING,Special,100,15,0,Other,0,befhn,"The user shoots three arrows made of Aura with extreme precision. Critical hits are more likely."

@@ -506,6 +506,8 @@
 512,TERRORIZE,Terrorize,"Moves that can flinch are twice as likely to do so."
 550,PERSISTENTGROWTH,Persistent Growth,"At the end of each of its turns, Speed is lowered but every other stat is raised."
 600,HARSHTRAINING,Harsh Training,"Blocks additional effects of attacks taken, and prevents critical hits."
+601,SUPERSTITIOUS,Superstitious,"Takes half damage from Psychic- and Ghost-type attacks."
+602,POORCONDUCT,Poor Conduct,"Upon switch out, lowers the foe's Attack and Sp. Atk stat by insulting them."
 1000,JUSTIFIED,Justified,"Raises Attack when hit by a Dark-type move."
 1001,ADAPTABILITY,Adaptability,"Powers up moves of the same type."
 1002,HUGEPOWER,Huge Power,"Raises the Pokémon's Attack stat."

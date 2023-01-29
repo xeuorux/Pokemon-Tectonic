@@ -902,3 +902,23 @@ class PokeBattle_Move_5AE < PokeBattle_ProtectMove
         @effect = :ReverbWard
     end
 end
+
+#===============================================================================
+# Move deals double damage but heals the status condition every active Pokémon 
+# if the target has a status condition (Purifying Flame)
+#===============================================================================
+class PokeBattle_Move_5AA
+
+end
+#===============================================================================
+# Damaging move that sets spikes. (Ceaseless Edge)
+#===============================================================================
+class PokeBattle_Move_5B0
+
+end
+#===============================================================================
+# Damaging move that sets stealth rock. (Stone Axe)
+#===============================================================================
+class PokeBattle_Move_5B1
+
+end
