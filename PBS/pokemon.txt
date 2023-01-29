@@ -7078,7 +7078,7 @@ BattlerEnemyX = 0
 BattlerEnemyY = 15
 BattlerShadowX = 0
 BattlerShadowSize = 2
-Evolutions = REAVOR,Level,49
+Evolutions = REAVOR,Level,49,KLEAVOR,Originize,49
 #-------------------------------
 [213]
 Name = Shuckle
@@ -7193,7 +7193,7 @@ Name = Teddiursa
 InternalName = TEDDIURSA
 Type1 = NORMAL
 # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
-BaseStats = 60,90,80,55,35,60
+BaseStats = 95,100,75,45,30,45
 # Total = 395
 GenderRate = Female50Percent
 GrowthRate = Medium
@@ -7228,7 +7228,7 @@ InternalName = URSARING
 Type1 = NORMAL
 Type2 = GROUND
 # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
-BaseStats = 100,110,75,55,40,65
+BaseStats = 110,115,90,55,40,50
 # Total = 460
 GenderRate = Female50Percent
 GrowthRate = Medium
@@ -32422,7 +32422,7 @@ InternalName = URSALUNA
 Type1 = NORMAL
 Type2 = GROUND
 # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
-BaseStats = 130,140,90,65,75,75
+BaseStats = 130,140,105,65,45,60
 # Total = 550
 GenderRate = Female50Percent
 GrowthRate = Medium
@@ -32448,6 +32448,39 @@ BattlerEnemyY = 10
 BattlerShadowX = 0
 BattlerShadowSize = 3
 Evolution = URSALUNA,Originize,42
+#-------------------------------
+[2039]
+Name = Kleavor
+InternalName = KLEAVOR
+Type1 = BUG
+Type2 = ROCK
+# HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
+BaseStats = 75,140,115,75,65,85
+# Total = 555
+GenderRate = Female50Percent
+GrowthRate = Medium
+BaseEXP = 75
+EffortPoints = 0,2,0,0,0,0
+Rareness = 25
+Happiness = 70
+Abilities = SHARPNESS,WEAKARMOR
+Moves 0,ADAMANTINEPRESS,1,ADAMANTINEPRESS,1,STEELWING,1,QUICKATTACK,1,LEER,4,FURYCUTTER,8,SWOOP,12,BULLETPUNCH,16,RAKE,20,FURYPECKS,24,METALCLAW,28,HONECLAWS,32,FLY,36,XSCISSOR,40,SWORDSDANCE,44,SKITTERSMACK,44,IRONHEAD,48,DUALWINGBEAT,52,LUNGE,56,BEDROCKBREAKER,60,DIVEBOMB
+TutorMoves = STONEEDGE,ROLLINGBOULDER,ROCKWRECKER,ROCKTOMB,ROCKSLIDE,SMACKDOWN,GRANITEHEAD,CRASH,ROCKTHROW,ROCKBLAST,ROCKWRECKER,ROLLINGBOULDER,ACROBATICS,AERIALACE,AGILITY,AIRSLASH,BATONPASS,BRICKBREAK,BRUTALSWING,BUGBITE,BUGBUZZ,BULLETTRAIN,COLDFRONT,COVET,CROSSPOISON,DEFOG,DUALWINGBEAT,ENDURE,FACADE,FALSESWIPE,FLASHCANNON,FLING,FOCUSENERGY,GIGAIMPACT,HYPERBEAM,INCISION,IRONDEFENSE,IRONHEAD,KNOCKOFF,LASERFOCUS,LIGHTSCREEN,PROTECT,PSYCHOCUT,RANSACK,REST,REVERSAL,ROOST,SAFEGUARD,SANDSTORM,SANDTOMB,SLEEPTALK,SMASH,SNORE,STEELBEAM,STEELWING,STRAFE,STRUGGLEBUG,SUBSTITUTE,SUPERPOWER,SWORDSDANCE,TAILWIND,UTURN,XSCISSOR
+Compatibility = Bug
+StepsToHatch = 6630
+Height = 2.2
+Weight = 142.0
+Color = Red
+Shape = Head
+Kind = Shears
+Pokedex = A violent creature that fells towering trees with its crude axes and shields itself with hard stone. If one should chance upon this Pokémon in the wilds, one's only recourse is to flee.
+BattlerPlayerX = 0
+BattlerPlayerY = 11
+BattlerEnemyX = 0
+BattlerEnemyY = 5
+BattlerShadowX = 0
+BattlerShadowSize = 2
+#-------------------------------
 [2040]
 Name = Basculegion
 InternalName = BASCULEGION
@@ -32480,6 +32513,7 @@ BattlerEnemyX = 0
 BattlerEnemyY = 34
 BattlerShadowX = 0
 BattlerShadowSize = 2
+#-------------------------------
 [2500]
 Name = M. Zangoose
 InternalName = MZANGOOSE
