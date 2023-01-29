@@ -683,8 +683,8 @@
 683,FOSSILIZEDFISH,Fossilized Fish,Fossilized Fishes,1,5000,"The fossil of an ancient Pokémon that once lived in the sea. What it looked like is a mystery.",0,0,8
 684,FOSSILIZEDDRAKE,Fossilized Drake,Fossilized Drakes,1,5000,"The fossil of an ancient Pokémon that once roamed the land. What it looked like is a mystery.",0,0,8
 685,FOSSILIZEDDINO,Fossilized Dino,Fossilized Dinos,1,5000,"The fossil of an ancient Pokémon that once lived in the sea. What it looked like is a mystery.",0,0,8
-686,RUSTEDSHIELD,Rusted Shield,Rusted Shields,1,0,"It is said that a hero used this shield to halt a terrible disaster in ancient times. But it's grown rusty and worn.",0,0,0
-687,RUSTEDSWORD,Rusted Sword,Rusted Swords,1,0,"It is said that a hero used this sword to halt a terrible disaster in ancient times. But it's grown rusty and worn.",0,0,0
+686,RUSTEDSHIELD,Rusted Shield,Rusted Shields,5,0,"It is said that a hero used this shield to halt a terrible disaster in ancient times. But it's grown rusty and worn.",0,0,0
+687,RUSTEDSWORD,Rusted Sword,Rusted Swords,5,0,"It is said that a hero used this sword to halt a terrible disaster in ancient times. But it's grown rusty and worn.",0,0,0
 688,REINSOFUNITY,Reins of Unity,Reins of Unity,8,0,"Reins that people presented to the king. They enable Calyrex to connect and communicate with its beloved steed.",5,0,6
 689,EXPCHARM,EXP Charm,EXP Charms,8,0,"A charm that increases the Exp. Points that Pokémon can get. A machine-like object is inside the charm.",0,0,6
 690,CATCHINGCHARM,Catching Charm,Catching Charms,8,0,"Holding it is said to increase the chance of getting a critical catch. Curiously, the charm doesn't shake much.",0,0,6
