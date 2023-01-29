@@ -1056,3 +1056,4 @@
 1096,REVERBWARD,Reverb Ward,5AE,0,PSYCHIC,Status,0,3,0,User,4,,"Protects the user from all attacks. Special attacks harshly lower the attacker's Sp. Def stat.",PROTECT
 1097,HEARTSTOP,Heart Stop,53A,90,DARK,Special,100,12,100,AllNearOthers,0,bef,"For the rest of the round, the healing of all damaged Pokemon is reversed.",GLARE
 1098,PSYSHIELDBASH,Psyshield Bash,01D,80,PSYCHIC,Physical,100,20,100,NearOther,0,abef,"Cloaking itself in psychic energy, the user slams into the target. This also boosts the user’s Defense stat.",ZENHEADBUTT
+1099,HEADLONGRUSH,Headlong Rush,03C,120,GROUND,Physical,100,5,0,NearOther,0,abef,"The user smashes into the target in a full-body tackle. This cuts the user's Defenses.",STOMPINGTANTRUM
