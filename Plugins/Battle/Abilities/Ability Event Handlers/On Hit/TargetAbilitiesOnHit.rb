@@ -255,6 +255,17 @@ BattleHandlers::TargetAbilityOnHit.add(:FLAMEBODY,
   }
 )
 
+BattleHandlers::TargetAbilityOnHit.add(:FIERYSPIRIT,
+  proc { |_ability, user, target, move, battle|
+      next unless move.specialMove?
+      next if user.burned? || battle.pbRandom(100) >= 30
+      battle.pbShowAbilitySplash(target)
+      user.applyBurn(target) if user.canBurn?(target, true)
+      battle.pbHideAbilitySplash(target)
+  }
+)
+
+
 BattleHandlers::TargetAbilityOnHit.add(:EFFECTSPORE,
   proc { |_ability, user, target, move, battle|
       # NOTE: This ability has a 30% chance of triggering, not a 30% chance of
