@@ -33,6 +33,7 @@ end
 #===============================================================================
 class PokeBattle_Move_103 < PokeBattle_Move
     def pbMoveFailed?(user, _targets, show_message)
+        return false if damagingMove?
         if user.pbOpposingSide.effectAtMax?(:Spikes)
             @battle.pbDisplay(_INTL("But it failed, since there is no room for more Spikes!")) if show_message
             return true
@@ -41,10 +42,18 @@ class PokeBattle_Move_103 < PokeBattle_Move
     end
 
     def pbEffectGeneral(user)
+        return if damagingMove?
         user.pbOpposingSide.incrementEffect(:Spikes)
     end
 
+    def pbEffectAgainstTarget(_user, target)
+        return unless damagingMove?
+        return if target.pbOwnSide.effectAtMax?(:Spikes)
+        target.pbOwnSide.applyEffect(:Spikes)
+    end
+
     def getEffectScore(user, target)
+        return 0 if damagingMove? && target.pbOwnSide.effectAtMax?(:Spikes)
         return getHazardSettingEffectScore(user, target)
     end
 end
@@ -65,6 +74,7 @@ end
 #===============================================================================
 class PokeBattle_Move_105 < PokeBattle_Move
     def pbMoveFailed?(user, _targets, show_message)
+        return false if damagingMove?
         if user.pbOpposingSide.effectActive?(:StealthRock)
             if show_message
                 @battle.pbDisplay(_INTL("But it failed, since pointed stones already float around the opponent!"))
@@ -75,12 +85,19 @@ class PokeBattle_Move_105 < PokeBattle_Move
     end
 
     def pbEffectGeneral(user)
+        return if damagingMove?
         user.pbOpposingSide.applyEffect(:StealthRock)
     end
 
+    def pbEffectAgainstTarget(_user, target)
+        return unless damagingMove?
+        return if target.pbOwnSide.effectActive?(:StealthRock)
+        target.pbOwnSide.applyEffect(:StealthRock)
+    end
+
     def getEffectScore(user, target)
-        score = getHazardSettingEffectScore(user, target)
-        return score
+        return 0 if damagingMove? && target.pbOwnSide.effectActive?(:StealthRock)
+        return getHazardSettingEffectScore(user, target)
     end
 end
 
@@ -567,11 +584,15 @@ class PokeBattle_Move_115 < PokeBattle_Move
     end
 
     def pbDisplayUseMessage(user, targets)
-        super if !user.effectActive?(:FocusPunch) || user.lastHPLost == 0
+        super unless focusLost?(user)
+    end
+
+    def focusLost?(user)
+        return user.effectActive?(:FocusPunch) && user.lastHPLost > 0 && !user.damageState.substitute
     end
 
     def pbMoveFailed?(user, _targets, show_message)
-        if user.effectActive?(:FocusPunch) && user.lastHPLost > 0
+        if focusLost?(user)
             @battle.pbDisplay(_INTL("{1} lost its focus and couldn't move!", user.pbThis)) if show_message
             return true
         end

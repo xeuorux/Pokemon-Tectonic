@@ -628,7 +628,7 @@
 658,HEADSMASH,Head Smash,0FC,120,ROCK,Physical,100,5,0,NearOther,0,abef,"The user attacks the foe with a hazardous, full-power headbutt. The user also takes 50% recoil.",
 659,ROCKWRECKER,Rock Wrecker,0C2,170,ROCK,Physical,100,5,0,NearOther,0,befn,"The user launches a huge boulder at the target to attack. It must rest on the next turn, however.",
 660,DIAMONDSTORM,Diamond Storm,136,95,ROCK,Physical,100,5,50,AllNearFoes,0,bef,"The user whips up a storm of diamonds to damage foes. This has a 50% to sharply raise Defense.",
-661,STONEEDGE,Stone Edge,000,100,ROCK,Physical,80,5,0,NearOther,0,befgh,"The user stabs the foe with sharpened stones from below. Critical hits land more easily.",
+661,STONEEDGE,Stone Edge,000,110,ROCK,Physical,85,5,0,NearOther,0,befgh,"The user stabs the foe with sharpened stones from below. Critical hits land more easily.",
 662,POWERGEM,Power Gem,000,90,ROCK,Special,100,15,0,NearOther,0,bef,"The user attacks with a ray of light that sparkles as if it were made of gemstones.",
 663,ROCKSLIDE,Rock Slide,00F,75,ROCK,Physical,100,10,30,AllNearFoes,0,be,"Large boulders are hurled at the foes to inflict damage. It has a 30% chance to cause flinching.",
 664,ANCIENTPOWER,Ancient Power,02D,60,ROCK,Special,100,12,10,NearOther,0,bef,"The user attacks with a prehistoric power. It has a 10% chance to raise all stats.",
@@ -790,7 +790,7 @@
 822,LAHAR,Lahar,51E,125,GROUND,Special,75,10,0,NearOther,0,bef,"The user causes a mud slide. If the move misses, it sharply raises the user's Speed.",
 823,STARFALL,Star Fall,520,50,ROCK,Special,100,12,100,NearOther,0,bef,"A star falls on the target. Witnessing this lucky star also increases the user's critical hit chance.",DOOMDESIRE
 824,BUBBLEBLAST,Bubble Blast,044,80,WATER,Special,100,12,30,NearOther,0,bef,"A blast of bubbles is shot at the target. It has a 30% chance to lower the target's Speed stat.",BUBBLEBEAM
-825,CHISTRIKE,Chi Strike,007,60,FIGHTING,Special,100,15,30,NearOther,0,bef,"The user shoots a blast of chi. This has a 30% chance to numb the target.",
+825,AURASTRIKE,Aura Strike,007,60,FIGHTING,Special,100,15,30,NearOther,0,bef,"The user shoots a blast of aura. This has a 30% chance to numb the target.",
 826,COURAGEBOLT,Courage Bolt,020,40,FIGHTING,Special,100,30,10,NearOther,0,bef,"The user manifests a bolt of pure courage. This has a 10% chance of raising the user's Sp. Atk.",AURASPHERE
 828,PSYCHICOVERLOAD,Psychic Overload,55F,120,PSYCHIC,Special,100,10,0,RandomNearFoe,0,abef,"The user overloads its mind to attack for three turns.",PSYCHOBOOST
 829,PSYPIERCE,Psypierce,046,70,PSYCHIC,Special,100,15,50,NearOther,0,bef,"The user manifests a piercing bolt of psychic energy. It has a 50% chance to lower Sp. Def.",PSYSHOCK
@@ -1056,3 +1056,8 @@
 1096,REVERBWARD,Reverb Ward,5AE,0,PSYCHIC,Status,0,3,0,User,4,,"Protects the user from all attacks. Special attacks harshly lower the attacker's Sp. Def stat.",PROTECT
 1097,HEARTSTOP,Heart Stop,53A,90,DARK,Special,100,12,100,AllNearOthers,0,bef,"For the rest of the round, the healing of all damaged Pokemon is reversed.",GLARE
 1098,PSYSHIELDBASH,Psyshield Bash,01D,80,PSYCHIC,Physical,100,20,100,NearOther,0,abef,"Cloaking itself in psychic energy, the user slams into the target. This also boosts the user’s Defense stat.",ZENHEADBUTT
+1099,HEADLONGRUSH,Headlong Rush,03C,120,GROUND,Physical,100,5,0,NearOther,0,abef,"The user smashes into the target in a full-body tackle. This cuts the user's Defenses.",STOMPINGTANTRUM
+1100,PURIFYINGFLAME,Purifying Flame,5AF,80,FIRE,Special,100,10,0,NearOther,0,bef,"If the target has a status condition, this deals double damage and heals every battler's status condition.",
+1101,CEASELESSEDGE,Ceaseless Edge,103,65,DARK,Physical,100,10,0,NearOther,0,abefp,"The user slashes its shell blade at the target. Shell splinters remain scattered under the target as spikes.",
+1102,STONEAXE,Stone Axe,105,55,ROCK,Physical,100,10,0,NearOther,0,abefp,"The user swings its stone axes at the target. This leaves stone splinters floating around the target.",
+1103,AURAARROWS,Aura Arrows,500,30,FIGHTING,Special,100,15,0,Other,0,befhn,"The user shoots three arrows made of Aura with extreme precision. Critical hits are more likely.",

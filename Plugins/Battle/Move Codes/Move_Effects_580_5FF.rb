@@ -772,7 +772,7 @@ end
 #===============================================================================
 # Reduce's the target's highest attacking stat. (Scale Glint)
 #===============================================================================
-class PokeBattle_Move_5AF < PokeBattle_TargetMultiStatDownMove
+class PokeBattle_Move_5AA < PokeBattle_TargetMultiStatDownMove
     def pbAdditionalEffect(user, target)
         if target.pbAttack > target.pbSpAtk
             target.pbLowerMultipleStatStages(:ATTACK, user, move: self)
@@ -900,5 +900,33 @@ class PokeBattle_Move_5AE < PokeBattle_ProtectMove
     def initialize(battle, move)
         super
         @effect = :ReverbWard
+    end
+end
+
+#===============================================================================
+# Move deals double damage but heals the status condition every active Pokémon
+# if the target has a status condition (Purifying Flame)
+#===============================================================================
+class PokeBattle_Move_5AF < PokeBattle_Move
+    def pbBaseDamage(baseDmg, _user, target)
+        baseDmg *= 2 if target.pbHasAnyStatus?
+        return baseDmg
+    end
+
+    def pbEffectWhenDealingDamage(user, target)
+        return unless target.pbHasAnyStatus?
+        @battle.battlers.each do |b|
+            healStatus(b)
+        end
+    end
+
+    def getEffectScore(_user, _target)
+        score = 0
+        @battle.battlers.each do |b|
+            pkmn = b.pokemon
+            next if !pkmn || !pkmn.able? || pkmn.status == :NONE
+            score += b.opposes? ? 30 : -30
+        end
+        return score
     end
 end

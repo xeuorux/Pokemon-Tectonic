@@ -27,3 +27,15 @@ BattleHandlers::AbilityOnSwitchOut.add(:REFUGE,
       battler.position.applyEffect(:Refuge, battler.pokemonIndex)
   }
 )
+
+BattleHandlers::AbilityOnSwitchOut.add(:POORCONDUCT,
+  proc { |_ability, battler, endOfBattle|
+      next if endOfBattle
+      battle.pbShowAbilitySplash(battler)
+      battle.eachOtherSideBattler(battler.index) do |b|
+          next unless b.near?(battler)
+          b.pbLowerMultipleStatStages([:ATTACK,1,:SPECIAL_ATTACK,1],battler,showFailMsg: true)
+      end
+      battle.pbHideAbilitySplash(battler)
+  }
+)

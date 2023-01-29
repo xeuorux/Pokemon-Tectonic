@@ -436,7 +436,7 @@ showMessages)
         end
         # Effectiveness message, for moves with 1 hit
         pbEffectivenessMessage(user, target, numTargets) if target.damageState.messagesPerHit
-        if target.damageState.substitute && target.substituted?
+        if target.damageState.substitute && !target.substituted? # Substitute ran out of HP
             target.disableEffect(:Substitute)
             @battle.pbDisplay(_INTL("{1}'s substitute faded!", target.pbThis))
         end
