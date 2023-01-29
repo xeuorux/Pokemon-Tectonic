@@ -177,7 +177,7 @@ GameData::BattleEffect.register_effect(:Side, {
     :id => :WideGuard,
     :real_name => "Wide Guard",
     :resets_eor => true,
-    :protection_effect => {
+    :protection_info => {
         :does_negate_proc => proc do |user, _target, move, _battle|
             move.pbTarget(user).num_targets > 1
         end,
@@ -205,6 +205,7 @@ GameData::BattleEffect.register_effect(:Side, {
         battle.pbDisplay(_INTL("The Rainbow on {1}'s side dissapeared.", teamName))
     end,
 })
+
 GameData::BattleEffect.register_effect(:Side, {
     :id => :SeaOfFire,
     :real_name => "Sea of Fire Turns",
