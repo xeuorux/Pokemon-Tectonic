@@ -584,11 +584,15 @@ class PokeBattle_Move_115 < PokeBattle_Move
     end
 
     def pbDisplayUseMessage(user, targets)
-        super if !user.effectActive?(:FocusPunch) || user.lastHPLost == 0
+        super unless focusLost?(user)
+    end
+
+    def focusLost?(user)
+        return user.effectActive?(:FocusPunch) && user.lastHPLost > 0 && !user.damageState.substitute
     end
 
     def pbMoveFailed?(user, _targets, show_message)
-        if user.effectActive?(:FocusPunch) && user.lastHPLost > 0
+        if focusLost?(user)
             @battle.pbDisplay(_INTL("{1} lost its focus and couldn't move!", user.pbThis)) if show_message
             return true
         end
