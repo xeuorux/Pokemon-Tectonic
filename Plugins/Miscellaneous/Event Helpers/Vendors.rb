@@ -270,3 +270,43 @@ def styleFurfrou()
 	end
 	return false
 end
+
+def canBeOriginized?(pokemon)
+	return %i[QWILFISH VOLTORB GROWLITHE SNEASEL ZORUA].include?(pokemon.species)
+end
+
+def transformToHisuian(pokemon)
+	unless canBeOriginized?(pokemon)
+		pbMessage("Despite my wishes, no spells of mine can be weaved on this one.")
+		return
+	end
+
+	speciesToHisuian = {
+		:QWILFISH => :HQWILFISH,
+		:VOLTORB => :HVOLTORB,
+		:GROWLITHE => :HGROWLITHE,
+		:SNEASEL => :HSNEASEL,
+		:ZORUA => :HZORUA,
+	}
+
+	species = speciesToHisuian[pokemon.species] || nil
+	
+	if species.nil?
+		pbMessage("Error! Could not determine how to transform the given species.")
+		return
+	end
+	item_data = GameData::Item.get(:ORIGINORE)
+	
+	pbMessage("\\PN hands over the #{item_data.name}.")
+	
+	pbMessage("Now just to work my magicks...")
+	
+	blackFadeOutIn(30) {
+		$PokemonBag.pbDeleteItem(:ORIGINORE)
+	}
+	
+	pbMessage("Poof! And so this one has been transformed!")
+	pbMessage("My hopes go with you. Be respectful of this relic which you now posess.")
+	
+	pokemon.species = species
+end
