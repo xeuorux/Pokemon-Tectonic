@@ -839,7 +839,7 @@ GameData::BattleEffect.register_effect(:Battler, {
     :id => :Stockpile,
     :real_name => "Stockpile Charges",
     :type => :Integer,
-    :maximum => 3,
+    :maximum => 2,
     :increment_proc => proc do |battle, battler, value, _increment|
         battle.pbDisplay(_INTL("{1} stockpiled {2}!", battler.pbThis, value))
         battler.incrementEffect(:StockpileDef)

@@ -467,7 +467,7 @@ end
 
 #===============================================================================
 # Increases the user's Defense and Special Defense by 1 stage each. Ups the
-# user's stockpile by 1 (max. 3). (Stockpile)
+# user's stockpile by 1 (max. 2). (Stockpile)
 #===============================================================================
 class PokeBattle_Move_112 < PokeBattle_MultiStatUpMove
     def initialize(battle, move)
@@ -497,7 +497,7 @@ class PokeBattle_Move_112 < PokeBattle_MultiStatUpMove
 end
 
 #===============================================================================
-# Power is 100 multiplied by the user's stockpile (X). Resets the stockpile to
+# Power is 150 multiplied by the user's stockpile (X). Resets the stockpile to
 # 0. Decreases the user's Defense and Special Defense by X stages each. (Spit Up)
 #===============================================================================
 class PokeBattle_Move_113 < PokeBattle_Move
@@ -510,7 +510,7 @@ class PokeBattle_Move_113 < PokeBattle_Move
     end
 
     def pbBaseDamage(_baseDmg, user, _target)
-        return 100 * user.countEffect(:Stockpile)
+        return 150 * user.countEffect(:Stockpile)
     end
 
     def pbEffectAfterAllHits(user, target)
@@ -551,8 +551,6 @@ class PokeBattle_Move_114 < PokeBattle_HealingMove
         when 1
             return 1.0 / 2.0
         when 2
-            return 2.0 / 3.0
-        when 3
             return 1.0
         end
         return 0.0
