@@ -1604,6 +1604,12 @@ Environment = Cave
 # Crescent Island Secret
 MapPosition = 0,19,4
 #-------------------------------
+[293]
+# Chasm Vacation Home
+Outdoor = false
+ShowArea = false
+Bicycle = false
+#-------------------------------
 [294]
 # Eden
 Outdoor = false
@@ -1611,6 +1617,12 @@ ShowArea = false
 Bicycle = true
 BattleBack = wcave
 TeleportBlocked = true
+#-------------------------------
+[295]
+# Chasm Vacation Home
+Outdoor = false
+ShowArea = false
+Bicycle = false
 #-------------------------------
 [299]
 # Fin Center
