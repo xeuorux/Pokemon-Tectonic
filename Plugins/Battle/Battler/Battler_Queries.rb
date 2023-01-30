@@ -204,7 +204,7 @@ class PokeBattle_Battler
     end
 
     def hasMoldBreaker?
-        return hasActiveAbility?(%i[MOLDBREAKER TERAVOLT TURBOBLAZE])
+        return hasActiveAbility?(%i[MOLDBREAKER TERAVOLT TURBOBLAZE CLEAVING])
     end
 
     def canChangeType?
@@ -549,5 +549,11 @@ class PokeBattle_Battler
             duration = BattleHandlers.triggerWeatherExtenderItem(item, weatherType, duration, self, @battle)
         end
         return duration
+    end
+
+    def ignoreScreens?(checkingForAI)
+        return true if user.shouldAbilityApply?(:INFILTRATOR,checkingForAI)
+        return true if user.shouldAbilityApply?(:CLEAVING,checkingForAI)
+        return false
     end
 end

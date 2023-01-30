@@ -214,7 +214,7 @@ class PokeBattle_Move
 
     def pbCalcProtectionsDamageMultipliers(user,target,multipliers,checkingForAI=false)
         # Aurora Veil, Reflect, Light Screen
-        if !ignoresReflect? && !target.damageState.critical && !user.shouldAbilityApply?(:INFILTRATOR,checkingForAI)
+        if !ignoresReflect? && !target.damageState.critical && !user.ignoreScreens?(checkingForAI)
             if target.pbOwnSide.effectActive?(:AuroraVeil)
                 if @battle.pbSideBattlerCount(target)>1
                     multipliers[:final_damage_multiplier] *= 2 / 3.0

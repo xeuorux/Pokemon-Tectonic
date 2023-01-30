@@ -949,11 +949,12 @@ class PokeBattle_Move_5B0 < PokeBattle_MultiStatUpMove
         super
     end
 end
+
 #===============================================================================
 # Removes entry hazards on user's side. 33% Recoil.
-# (ICEBREAKER)
+# (Icebreaker)
 #===============================================================================
-class PokeBattle_Move_5B0 < PokeBattle_RecoilMove
+class PokeBattle_Move_5B1 < PokeBattle_RecoilMove
     def recoilFactor;  return (1.0 / 3.0); end
 
     def pbEffectAfterAllHits(user, target)
