@@ -510,6 +510,7 @@
 602,POORCONDUCT,Poor Conduct,"Upon switch out, lowers the foe's Attack and Sp. Atk stat by insulting them."
 603,FEATHERCOAT,Feather Coat,"Takes half damage from Ice- and Flying-type attacks."
 604,FIERYSPIRIT,Fiery Spirit,"Special moves against the Pokémon have a 30% chance to burn the attacker."
+605,FIESTA,Fiesta,"Heals by 1/8th HP whenever a Pokémon uses a dance or sound move." 
 1000,JUSTIFIED,Justified,"Raises Attack when hit by a Dark-type move."
 1001,ADAPTABILITY,Adaptability,"Powers up moves of the same type."
 1002,HUGEPOWER,Huge Power,"Raises the Pokémon's Attack stat."

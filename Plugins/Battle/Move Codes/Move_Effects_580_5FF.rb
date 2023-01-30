@@ -930,3 +930,44 @@ class PokeBattle_Move_5AF < PokeBattle_Move
         return score
     end
 end
+
+#===============================================================================
+# All stats up, fails if the attack was not used the turn after a foe fainted. 
+# (Triumphant Dance)
+#===============================================================================
+class PokeBattle_Move_5B0 < PokeBattle_MultiStatUpMove
+		def initialize(battle, move)
+        super
+        @statUp = [:ATTACK, 1, :DEFENSE, 1, :SPECIAL_ATTACK, 1, :SPECIAL_DEFENSE, 1, :SPEED, 1]
+    end
+	
+	def pbMoveFailed?(user, targets, show_message)
+        unless user.pbOpposingSide.effects[:LastRoundFainted]
+            @battle.pbDisplay(_INTL("But it failed, since there was no victory to celebrate!")) if show_message
+            return true
+        end
+        super
+    end
+end
+#===============================================================================
+# Removes entry hazards on user's side. 33% Recoil.
+# (ICEBREAKER)
+#===============================================================================
+class PokeBattle_Move_5B0 < PokeBattle_RecoilMove
+    def recoilFactor;  return (1.0 / 3.0); end
+
+    def pbEffectAfterAllHits(user, target)
+        return if user.fainted? || target.damageState.unaffected
+        user.pbOwnSide.eachEffect(true) do |effect, _value, data|
+            next unless data.is_hazard?
+            user.pbOwnSide.disableEffect(effect)
+        end
+    end
+
+    def getEffectScore(user, target)
+        score = super
+        score += hazardWeightOnSide(user.pbOwnSide) if user.alliesInReserve?
+        return score
+    end
+end
+
