@@ -552,8 +552,8 @@ class PokeBattle_Battler
     end
 
     def ignoreScreens?(checkingForAI)
-        return true if user.shouldAbilityApply?(:INFILTRATOR,checkingForAI)
-        return true if user.shouldAbilityApply?(:CLEAVING,checkingForAI)
+        return true if shouldAbilityApply?(:INFILTRATOR,checkingForAI)
+        return true if shouldAbilityApply?(:CLEAVING,checkingForAI)
         return false
     end
 end
