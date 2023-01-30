@@ -620,6 +620,14 @@ targetBattler.pbThis(true))
         @battle.scene.pbRefresh
         # End of move usage
         pbEndTurn(choice)
+        moveSucceeded = !user.lastMoveFailed && realNumHits > 0 && !move.snatched && magicCoater < 0
+        # Fiesta
+        if moveSucceeded && @battle.pbCheckGlobalAbility(:FIESTA) && (move.soundMove? || move.danceMove?)
+            @battle.pbPriority(true).each do |b|
+                next unless b.index != user.index && b.hasActiveAbility?(:FIESTA)
+                b.applyFractionalHealing(1.0 / 8.0, showAbilitySplash: true)
+            end
+        end
         # Instruct
         @battle.eachBattler do |b|
             next if !b.effectActive?(:Instruct) || !b.lastMoveUsed
@@ -634,10 +642,9 @@ targetBattler.pbThis(true))
             usageMessage = _INTL("{1} used the move instructed by {2}!", b.pbThis, user.pbThis(true))
             preTarget = b.lastRegularMoveTarget
             @battle.forceUseMove(b, moveID, preTarget, false, usageMessage, :Instructed, false)
-        end
+        end  
         # Dancer
-        if !effectActive?(:Dancer) && !user.lastMoveFailed && realNumHits > 0 &&
-           !move.snatched && magicCoater < 0 && @battle.pbCheckGlobalAbility(:DANCER) && move.danceMove?
+        if !effectActive?(:Dancer) && moveSucceeded && @battle.pbCheckGlobalAbility(:DANCER) && move.danceMove?
             dancers = []
             @battle.pbPriority(true).each do |b|
                 dancers.push(b) if b.index != user.index && b.hasActiveAbility?(:DANCER)
@@ -650,8 +657,7 @@ targetBattler.pbThis(true))
             end
         end
         # Echo
-        if !effectActive?(:Echo) && !user.lastMoveFailed && realNumHits > 0 &&
-           !move.snatched && magicCoater < 0 && @battle.pbCheckGlobalAbility(:ECHO) && move.soundMove?
+        if !effectActive?(:Echo) && moveSucceeded && @battle.pbCheckGlobalAbility(:ECHO) && move.soundMove?
             echoers = []
             @battle.pbPriority(true).each do |b|
                 echoers.push(b) if b.index != user.index && b.hasActiveAbility?(:ECHO)
