@@ -648,7 +648,7 @@ end
 
 #===============================================================================
 # This round, user becomes the target of attacks that have single targets.
-# (Follow Me, Rage Powder)
+# (Follow Me)
 #===============================================================================
 class PokeBattle_Move_117 < PokeBattle_Move
     def pbEffectGeneral(user)
@@ -658,7 +658,6 @@ class PokeBattle_Move_117 < PokeBattle_Move
             maxFollowMe = b.effects[:FollowMe]
         end
         user.applyEffect(:FollowMe, maxFollowMe + 1)
-        user.applyEffect(:RagePowder) if @id == :RAGEPOWDER
     end
 
     def getEffectScore(user, _target)

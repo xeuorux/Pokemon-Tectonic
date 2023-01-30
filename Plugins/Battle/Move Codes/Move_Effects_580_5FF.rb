@@ -972,3 +972,21 @@ class PokeBattle_Move_5B1 < PokeBattle_RecoilMove
     end
 end
 
+#===============================================================================
+# This round, user becomes the target of attacks that have single targets.
+# All enemies attacks this turn become Electric-type.
+# (Zap Yapping)
+#===============================================================================
+class PokeBattle_Move_5B2 < PokeBattle_Move_117
+    def pbEffectGeneral(user)
+        super
+        user.eachOpposing do |b|
+            b.applyEffect(:Electrify)
+        end
+    end
+    
+    def getEffectScore(_user, _target)
+        score = super
+        return score + 40
+    end
+end

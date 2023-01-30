@@ -1064,3 +1064,4 @@
 1104,ESPERDIVE,Esper Dive,01F,80,PSYCHIC,Physical,100,10,100,NearOther,0,abef,"The user slashes the target with aura-enriched wings. This also boosts the user’s Speed stat.",
 1105,TRIUMPHANTDANCE,Triumphant Dance,5B0,0,FIGHTING,Status,100,5,0,User,0,do,"The user dances to celebrate victory. This aises all stats if a foe fainted last turn.",
 1106,ICEBREAKER,Icebreaker,5B1,120,ROCK,Physical,100,10,0,NearOther,0,abef,"The user charges at the target, sweeping away hazard moves in the process with its armored jaw. The user also takes 33% recoil.",HEADSMASH
+1107,ZAPYAPPING,Zap Yapping,5B2,0,ELECTRIC,Status,0,15,0,User,2,,"This turn, all Enemies attacks becomes Electric-type and can only target the user.",
