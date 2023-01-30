@@ -211,6 +211,35 @@ class PokeBattle_Battle
         pbCommandPhaseLoop(false) # AI chooses their actions
 
         return if @decision != 0 # Battle ended, stop choosing actions
+
+        if pbCheckGlobalAbility(:INVESTIGATOR)
+            # Each of the player's pokemon (or NPC allies)
+            eachSameSideBattler do |b|
+                next unless b.hasActiveAbility?(:INVESTIGATOR)
+                possibleInvestigation = []
+                b.eachOpposing do |bOpp|
+                    next if bOpp.fainted?
+                    possibleInvestigation.push(bOpp)
+                end
+                next if possibleInvestigation.length == 0
+                investigating = possibleInvestigation.sample
+                pbShowAbilitySplash(b)
+                choice = @choices[investigating.index]
+                case choice[0]
+                when :UseMove
+                    moveUsing = choice[2]
+                    if moveUsing.statusMove?
+                        pbDisplay(_INTL("{1} predicts that {2} will use a status move!", b.pbThis, investigating.pbThis(true)))
+                    else
+                        pbDisplay(_INTL("{1} predicts that {2} will use an attack!", b.pbThis, investigating.pbThis(true)))
+                    end
+                when :SwitchOut
+                    pbDisplay(_INTL("{1} predicts that {2} will switch out!", b.pbThis, investigating.pbThis(true)))
+                end
+                pbHideAbilitySplash(b)
+            end
+        end
+
         pbCommandPhaseLoop(true) # Player chooses their actions
 
         triggerAllChoicesDialogue
