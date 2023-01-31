@@ -351,6 +351,12 @@ BattleHandlers::DamageCalcUserAbility.add(:TUNNELMAKER,
 
 BattleHandlers::DamageCalcUserAbility.add(:GALEFORCE,
   proc { |_ability, _user, _target, move, mults, _baseDmg, _type, _aiCheck|
+      mults[:attack_multiplier] *= 1.5 if move.windMove?
+  }
+)
+
+BattleHandlers::DamageCalcUserAbility.add(:WINDY,
+  proc { |_ability, _user, _target, move, mults, _baseDmg, _type, _aiCheck|
       mults[:attack_multiplier] *= 1.3 if move.windMove?
   }
 )
