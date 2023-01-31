@@ -16,22 +16,14 @@ class PokeBattle_Battler
     def debuffedBySun?(checkingForAI = false)
         return false unless affectedByWeatherDownsides?(checkingForAI)
         return false if shouldTypeApply?(:FIRE, checkingForAI) || shouldTypeApply?(:GRASS, checkingForAI)
-        setterAbilities = %i[DROUGHT INNERLIGHT]
-        synergyAbilities = %i[CHLOROPHYLL SOLARPOWER LEAFGUARD FLOWERGIFT MIDNIGHTSUN HARVEST SUNCHASER HEATSAVOR
-                              BLINDINGLIGHT SOLARCELL ROAST FINESUGAR REFRESHMENTS HEATVEIL]
-        return false if shouldAbilityApply?(setterAbilities,
-checkingForAI) || shouldAbilityApply?(synergyAbilities, checkingForAI)
+        return false if shouldAbilityApply?(GameData::Ability::RAIN_ABILITIES, checkingForAI)
         return true
     end
 
     def debuffedByRain?(checkingForAI = false)
         return false unless affectedByWeatherDownsides?(checkingForAI)
         return false if shouldTypeApply?(:WATER, checkingForAI) || shouldTypeApply?(:ELECTRIC, checkingForAI)
-        setterAbilities = %i[DRIZZLE STORMBRINGER]
-        synergyAbilities = %i[SWIFTSWIM RAINDISH HYDRATION TIDALFORCE STORMFRONTRAINPRISM DREARYCLOUDS DRYSKIN
-                              RAINPRISM]
-        return false if shouldAbilityApply?(setterAbilities,
-checkingForAI) || shouldAbilityApply?(synergyAbilities, checkingForAI)
+        return false if shouldAbilityApply?(GameData::Ability::SUN_ABILITIES, checkingForAI)
         return true
     end
 
@@ -41,10 +33,7 @@ checkingForAI) || shouldAbilityApply?(synergyAbilities, checkingForAI)
         return false if hasActiveItem?(:SAFETYGOGGLES)
         return false if shouldTypeApply?(:GROUND,
 checkingForAI) || shouldTypeApply?(:ROCK,	checkingForAI) || shouldTypeApply?(:STEEL, checkingForAI)
-        setterAbilities = %i[SANDSTREAM SANDBURST]
-        synergyAbilities = %i[OVERCOAT SANDFORCE SANDRUSH SANDSHROUD DESERTSPIRITBURROWER SHRAPNELSTORM HARSHHUNTER]
-        return false if shouldAbilityApply?(setterAbilities,
-checkingForAI) || shouldAbilityApply?(synergyAbilities, checkingForAI)
+        return false if shouldAbilityApply?(GameData::Ability::SAND_ABILITIES, checkingForAI)
         return true
     end
 
@@ -54,10 +43,7 @@ checkingForAI) || shouldAbilityApply?(synergyAbilities, checkingForAI)
         return false if hasActiveItem?(:SAFETYGOGGLES)
         return false if shouldTypeApply?(:ICE,
 checkingForAI) || shouldTypeApply?(:GHOST,	checkingForAI) || shouldTypeApply?(:STEEL, checkingForAI)
-        setterAbilities = %i[SNOWWARNING FROSTSCATTER]
-        synergyAbilities = %i[OVERCOAT ICEBODY SNOWSHROUD BLIZZBOXER SLUSHRUSH ICEFACEBITTERCOLD ECTOPARTICLES]
-        return false if shouldAbilityApply?(setterAbilities,
-checkingForAI) || shouldAbilityApply?(synergyAbilities, checkingForAI)
+        return false if shouldAbilityApply?(GameData::Ability::HAIL_ABILITIES, checkingForAI)
         return true
     end
 
