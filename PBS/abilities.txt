@@ -70,7 +70,7 @@
 68,SWARM,Swarm,"Powers up Bug-type moves in a pinch."
 69,ROCKHEAD,Rock Head,"Protects the Pokémon from recoil damage."
 70,DROUGHT,Drought,"Turns the weather to sunshine for 4 turns when it enters battle."
-71,ARENATRAP,Arena Trap,"Prevents the foe from fleeing."
+71,ARENATRAP,Arena Trap,"Prevents the foe from fleeing unless it is airborne."
 72,VITALSPIRIT,Vital Spirit,"Prevents the Pokémon from falling asleep."
 73,WHITESMOKE,White Smoke,"Prevents other Pokémon from lowering its stats."
 74,PUREPOWER,Pure Power,"Raises the Pokémon's Attack stat by 50%."
