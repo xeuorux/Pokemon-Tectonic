@@ -393,8 +393,20 @@ end
 def getWeatherSettingEffectScore(weatherType, user, battle, duration = 4)
     return 0 if battle.primevalWeatherPresent? || battle.pbCheckGlobalAbility(:AIRLOCK) ||
                 battle.pbCheckGlobalAbility(:CLOUDNINE) || battle.pbWeather == @weatherType
-    score = 15 * user.getWeatherSettingDuration(weatherType, duration, true)
-    score += 20 if user.firstTurn?
+    score = 10 * user.getWeatherSettingDuration(weatherType, duration, true)
+    score += 10 if user.aboveHalfHealth?
+    weatherMatchesPolicy = false
+    case weatherType
+    when :Sun
+        weatherMatchesPolicy = true if user.ownersPolicies.include?(:SUN_TEAM)
+    when :Rain
+        weatherMatchesPolicy = true if user.ownersPolicies.include?(:RAIN_TEAM)
+    when :Sandstorm
+        weatherMatchesPolicy = true if user.ownersPolicies.include?(:SANDSTORM_TEAM)
+    when :Hail
+        weatherMatchesPolicy = true if user.ownersPolicies.include?(:HAIL_TEAM)
+    end
+    score *= 2 if weatherMatchesPolicy
     return score
 end
 
