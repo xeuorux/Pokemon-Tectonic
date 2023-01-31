@@ -1,5 +1,5 @@
 CASABA_VILLA_DOCK = _INTL("Casaba Villa")
-MAINLAND_DOCK = _INTL("Mainland Dock")
+MAINLAND_DOCK = _INTL("Feebas' Fin")
 ELEIG_BOATING_DOCK = _INTL("Eleig Boating Dock")
 SWEETROCK_DOCK = _INTL("Sweetrock Harbor")
 
