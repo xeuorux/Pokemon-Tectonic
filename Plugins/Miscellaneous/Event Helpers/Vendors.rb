@@ -275,38 +275,38 @@ def canBeOriginized?(pokemon)
 	return %i[QWILFISH VOLTORB GROWLITHE SNEASEL ZORUA].include?(pokemon.species)
 end
 
-def transformToHisuian(pokemon)
-	unless canBeOriginized?(pokemon)
-		pbMessage("Despite my wishes, no spells of mine can be weaved on this one.")
-		return
-	end
+def createHisuian
+	speciesArray = ["None","Hisuian Growlithe","Hisuian Voltorb","Hisuian Qwilfish","Hisuian Sneasel","Hisuian Zorua"]
+	actualSpecies = [nil,:HGROWLITHE,:HVOLTORB,:HQWILFISH,:HSNEASEL,:HZORUA]
+	
+	while true
+		result = pbShowCommands(nil,speciesArray)
 
-	speciesToHisuian = {
-		:QWILFISH => :HQWILFISH,
-		:VOLTORB => :HVOLTORB,
-		:GROWLITHE => :HGROWLITHE,
-		:SNEASEL => :HSNEASEL,
-		:ZORUA => :HZORUA,
-	}
+		if result == 0
+			pbMessage(_INTL("Ah, I was looking forward to flexing my skills today."))
+			break
+		else
+			chosenName = speciesArray[result]
+			chosenSpecies = actualSpecies[result]
 
-	species = speciesToHisuian[pokemon.species] || nil
-	
-	if species.nil?
-		pbMessage("Error! Could not determine how to transform the given species.")
-		return
+			choicesArray = ["View Pokedex", "Buy Pokemon", "Cancel"]
+			secondResult = pbShowCommands(nil,choicesArray,3)
+			case secondResult
+			when 1
+				item_data = GameData::Item.get(:ORIGINORE)
+				pbMessage("\\PN hands over the #{item_data.name}.")
+				pbMessage("Now just to work my magicks...")
+				blackFadeOutIn(30) {
+					$PokemonBag.pbDeleteItem(:ORIGINORE)
+				}
+				pbMessage("Poof! And so the impossible has been made possible!")
+				pbAddPokemon(chosenSpecies,10)
+				pbMessage("My hopes go with you. Be respectful of this relic which you now posess.")
+				break
+			when 0
+				openSingleDexScreen(chosenSpecies)
+			end
+			next
+		end
 	end
-	item_data = GameData::Item.get(:ORIGINORE)
-	
-	pbMessage("\\PN hands over the #{item_data.name}.")
-	
-	pbMessage("Now just to work my magicks...")
-	
-	blackFadeOutIn(30) {
-		$PokemonBag.pbDeleteItem(:ORIGINORE)
-	}
-	
-	pbMessage("Poof! And so this one has been transformed!")
-	pbMessage("My hopes go with you. Be respectful of this relic which you now posess.")
-	
-	pokemon.species = species
 end
