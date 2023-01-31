@@ -4126,7 +4126,7 @@ BattlerEnemyX = -9
 BattlerEnemyY = 12
 BattlerShadowX = 0
 BattlerShadowSize = 3
-Evolutions = SCIZOR,Level,29,KLEAVOR,Originize,49
+Evolutions = SCIZOR,Level,29,KLEAVOR,Originize,41
 #-------------------------------
 [124]
 Name = Jynx
