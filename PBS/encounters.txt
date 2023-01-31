@@ -184,7 +184,7 @@ Mud,40
     33,MAKUHITA,9,11
     33,MUDBRAY,9,11
 #-------------------------------
-[053] # Jungle Path
+[053] # The Shelf
 Land,20
     25,NATU,16,19
     25,PURRLOIN,16,19

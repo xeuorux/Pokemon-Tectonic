@@ -373,7 +373,7 @@ ShowArea = false
 Bicycle = false
 #-------------------------------
 [053]
-# Jungle Path
+# The Shelf
 Outdoor = true
 ShowArea = true
 Bicycle = true
