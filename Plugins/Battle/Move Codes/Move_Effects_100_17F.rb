@@ -1782,7 +1782,7 @@ end
 
 #===============================================================================
 # User is protected against damaging moves this round. Decreases the Attack of
-# the user of a stopped physical move by 2 stages. (King's Shield)
+# the user of a stopped physical move by 1 stage. (King's Shield)
 #===============================================================================
 class PokeBattle_Move_14B < PokeBattle_ProtectMove
     def initialize(battle, move)

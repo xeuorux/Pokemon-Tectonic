@@ -1065,3 +1065,7 @@
 1105,TRIUMPHANTDANCE,Triumphant Dance,5B0,0,FIGHTING,Status,100,5,0,User,0,do,"The user dances to celebrate victory. This aises all stats if a foe fainted last turn.",
 1106,ICEBREAKER,Icebreaker,5B1,120,ROCK,Physical,100,10,0,NearOther,0,abef,"The user charges at the target, sweeping away hazard moves in the process with its armored jaw. The user also takes 33% recoil.",HEADSMASH
 1107,ZAPYAPPING,Zap Yapping,5B2,0,ELECTRIC,Status,0,15,0,User,2,,"This turn, all Enemies attacks becomes Electric-type and can only target the user.",
+1108,RAGINGFURY,Raging Fury,55F,120,FIRE,Physical,100,10,0,RandomNearFoe,0,abef,"The user rampages and attacks while spewing flames for three turns.",FLAREBLITZ
+1109,CHLOROBLAST,Chloroblast,510,150,STEEL,Special,100,5,100,NearOther,0,bef,"The user launches its amassed chlorophyll to inflict damage on the target. The user loses half its current HP.",
+1110,DIRECLAW,Dire Claw,005,85,POISON,Physical,100,15,50,NearOther,0,abefh,"The user lashes out at the target with ruinous claws, aiming to land a critical hit. This has a 50% chance to poison.",
+1111,SHIELDSHELL,Shield Shell,5B3,0,STEEL,Status,0,3,0,User,4,,"Protects itself from damage. It also lowers the Sp. Atk of special attackers.",

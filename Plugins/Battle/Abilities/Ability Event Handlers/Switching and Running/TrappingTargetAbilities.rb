@@ -15,3 +15,9 @@ BattleHandlers::TrappingTargetAbility.add(:SHADOWTAG,
       next true unless switcher.hasActiveAbility?(:SHADOWTAG)
   }
 )
+
+BattleHandlers::TrappingTargetAbility.add(:CLINGY,
+  proc { |_ability, switcher, _bearer, _battle|
+      next true if switcher.pbHasAnyStatus?
+  }
+)

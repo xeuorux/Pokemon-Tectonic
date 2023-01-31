@@ -990,3 +990,24 @@ class PokeBattle_Move_5B2 < PokeBattle_Move_117
         return score + 40
     end
 end
+
+
+#===============================================================================
+# User is protected against damaging moves this round. Decreases the Sp. Atk of
+# the user of a stopped special move by 1 stage. (Shield Shell)
+#===============================================================================
+class PokeBattle_Move_5B3 < PokeBattle_ProtectMove
+    def initialize(battle, move)
+        super
+        @effect = :ShieldShell
+    end
+
+    def getEffectScore(user, target)
+        score = super
+        # Check only physical attackers
+        user.eachPotentialAttacker(1) do |_b|
+            score += 20
+        end
+        return score
+    end
+end

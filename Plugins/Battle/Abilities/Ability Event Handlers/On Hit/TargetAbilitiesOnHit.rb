@@ -130,6 +130,17 @@ BattleHandlers::TargetAbilityOnHit.add(:WEAKARMOR,
   }
 )
 
+BattleHandlers::TargetAbilityOnHit.add(:WEAKSPIRIT,
+    proc { |_ability, _user, target, move, battle|
+        next unless move.specialMove?
+        next unless target.pbCanLowerAnyOfStats?(%i[SPECIAL_DEFENSE SPEED], target)
+        battle.pbShowAbilitySplash(target)
+        target.tryLowerStat(:SPECIAL_DEFENSE, target)
+        target.tryRaiseStat(:SPEED, target, increment: 2)
+        battle.pbHideAbilitySplash(target)
+    }
+  )
+
 BattleHandlers::TargetAbilityOnHit.add(:AFTERMATH,
   proc { |_ability, user, target, move, battle|
       next unless target.fainted?

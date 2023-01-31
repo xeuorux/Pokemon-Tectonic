@@ -1538,6 +1538,17 @@ GameData::BattleEffect.register_effect(:Battler, {
 })
 
 GameData::BattleEffect.register_effect(:Battler, {
+    :id => :ShieldShell,
+    :real_name => "Shield Shell",
+    :resets_eor	=> true,
+    :protection_info => {
+        :hit_proc => proc do |user, _target, move, _battle|
+            user.tryLowerStat(:SPECIAL_ATTACK, user, increment: 1) if move.specialMove?
+        end,
+    },
+})
+
+GameData::BattleEffect.register_effect(:Battler, {
     :id => :Obstruct,
     :real_name => "Obstruct",
     :resets_eor	=> true,
