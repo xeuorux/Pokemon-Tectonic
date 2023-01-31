@@ -13,7 +13,7 @@ BattleHandlers::SpeedCalcItem.add(:CHOICECROWN,
 
 # Zenith Band
 BattleHandlers::AttackCalcUserItem.add(:ZENITHBAND,
-  proc { |item,user,target,move,mults,baseDmg,type|
+  proc { |_item, user, _battle, attackMult|
       attackMult *= 2.0
       next attackMult
   }
