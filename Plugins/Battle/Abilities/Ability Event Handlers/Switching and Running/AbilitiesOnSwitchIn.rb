@@ -653,3 +653,11 @@ BattleHandlers::AbilityOnSwitchIn.add(:ELECTRICSURGE,
       # NOTE: The ability splash is hidden again in def pbStartTerrain.
   }
 )
+
+BattleHandlers::AbilityOnSwitchIn.add(:PRECHARGED,
+  proc { |_ability, battler, battle|
+      battle.pbShowAbilitySplash(battler)
+      battler.applyEffect(:Charge)
+      battle.pbHideAbilitySplash(battler)
+  }
+)
