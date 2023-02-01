@@ -1067,7 +1067,7 @@
 1107,ZAPYAPPING,Zap Yapping,5B2,0,ELECTRIC,Status,0,15,0,User,2,,"This turn, all Enemies attacks becomes Electric-type and can only target the user.",
 1108,RAGINGFURY,Raging Fury,55F,120,FIRE,Physical,100,10,0,RandomNearFoe,0,abef,"The user rampages and attacks while spewing flames for three turns.",FLAREBLITZ
 1109,CHLOROBLAST,Chloroblast,510,150,STEEL,Special,100,5,100,NearOther,0,bef,"The user launches its amassed chlorophyll to inflict damage on the target. The user loses half its current HP.",
-1110,DIRECLAW,Dire Claw,005,85,POISON,Physical,100,15,50,NearOther,0,abefh,"The user lashes out at the target with ruinous claws, aiming to land a critical hit. This has a 50% chance to poison.",
+1110,DIRECLAW,Dire Claw,005,85,POISON,Physical,100,15,50,NearOther,0,abefh,"The user lashes out with ruinous claws. This has a 50% chance to poison and critical hits land more easily.",
 1111,SHIELDSHELL,Shield Shell,5B3,0,STEEL,Status,0,3,0,User,4,,"Protects itself from damage. It also lowers the Sp. Atk of special attackers.",
 1112,SPIKYBURST,Spiky Burst,5B4,300,DARK,Physical,100,5,0,NearFoe,0,bef,"Exlodes, dealing extra damage to all foes for each layer of spikes underneath them. The user faints.",
 1113,MALEFICPHANTOM,Malefic Phantom,0EE,70,GHOST,Special,100,15,0,NearOther,-1,bef,"The user swaps out using an illusion made from the hatred of their opponent. This move always goes last.",
