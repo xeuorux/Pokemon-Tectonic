@@ -1,5 +1,5 @@
 module Settings
-  GAME_VERSION = "2.0.2"
+  GAME_VERSION = "2.0.3"
 
   # The maximum level Pokémon can reach.
   MAXIMUM_LEVEL        = 71
