@@ -1,6 +1,7 @@
 class PokemonPokedexInfo_Scene
 
 	SIGNATURE_COLOR = Color.new(211,175,44)
+	SIGNATURE_COLOR_LIGHTER = Color.new(228,207,128)
 	PAGE_TITLES = ["INFO", "ABILITIES", "STATS", "DEF. MATCHUPS", "ATK. MATCHUPS", "LEVEL UP MOVES", "TUTOR MOVES", "EVOLUTIONS", "AREA", "FORMS", "ANALYSIS"]
 
   def pbStartScene(dexlist,index,region,battle=false,linksEnabled=false)
@@ -312,8 +313,8 @@ class PokemonPokedexInfo_Scene
 		  abilityNameShadow = shadow
 		  abilityNameText = ability1.real_name
 		  if ability1.is_signature?
-			abilityNameText = "<outln>" + abilityNameText + "</outln>"
-			abilityNameColor = SIGNATURE_COLOR
+			abilityNameText = "<outln2>" + abilityNameText + "</outln2>"
+			abilityNameColor = SIGNATURE_COLOR_LIGHTER
 			abilityNameShadow = base
 		  end
           drawFormattedTextEx(overlay,abilityTextX,ability1Y,450,abilityNameText,abilityNameColor,abilityNameShadow)
@@ -330,8 +331,8 @@ class PokemonPokedexInfo_Scene
 		  abilityNameShadow = shadow
 		  abilityNameText = ability2.real_name
 		  if ability2.is_signature?
-			abilityNameText = "<outln>" + abilityNameText + "</outln>"
-			abilityNameColor = SIGNATURE_COLOR
+			abilityNameText = "<outln2>" + abilityNameText + "</outln2>"
+			abilityNameColor = SIGNATURE_COLOR_LIGHTER
 			abilityNameShadow = base
 		  end
           drawFormattedTextEx(overlay,abilityTextX,ability2Y,450,abilityNameText,abilityNameColor,abilityNameShadow)
