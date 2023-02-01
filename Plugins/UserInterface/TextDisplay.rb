@@ -112,7 +112,7 @@ def pbMessageDisplay(msgwindow,message,letterbyletter=true,commandProc=nil)
   end
   text = textchunks.join("")
   signWaitCount = 0
-  case $PokemonSystem.textspeed
+  case ($PokemonSystem.textspeed rescue 4)
   when 0..2
     signWaitTime = Graphics.frame_rate/2
   when 3
