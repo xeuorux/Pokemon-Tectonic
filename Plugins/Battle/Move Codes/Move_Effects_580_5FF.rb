@@ -1011,3 +1011,17 @@ class PokeBattle_Move_5B3 < PokeBattle_ProtectMove
         return score
     end
 end
+
+#===============================================================================
+# User faints, even if the move does nothing else. (Mine Field)
+# Deals extra damage per "Spike" on the enemy side.
+#===============================================================================
+class PokeBattle_Move_5B4 < PokeBattle_Move_0E0
+    def pbBaseDamage(baseDmg, _user, target)
+        baseDmg += 50 * target.pbOwnSide.countEffect(:Spikes)
+        baseDmg += 50 * target.pbOwnSide.countEffect(:FrostSpikes)
+        baseDmg += 50 * target.pbOwnSide.countEffect(:FlameSpikes)
+        baseDmg += 50 * target.pbOwnSide.countEffect(:PoisonSpikes)
+        return baseDmg
+    end
+end
