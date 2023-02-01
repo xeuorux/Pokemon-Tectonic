@@ -112,7 +112,14 @@ def pbMessageDisplay(msgwindow,message,letterbyletter=true,commandProc=nil)
   end
   text = textchunks.join("")
   signWaitCount = 0
-  signWaitTime = Graphics.frame_rate/2
+  case $PokemonSystem.textspeed
+  when 0..2
+    signWaitTime = Graphics.frame_rate/2
+  when 3
+    signWaitTime = Graphics.frame_rate/3
+  when 4
+    signWaitTime = Graphics.frame_rate/4
+  end
   haveSpecialClose = false
   specialCloseSE = ""
   for i in 0...controls.length
