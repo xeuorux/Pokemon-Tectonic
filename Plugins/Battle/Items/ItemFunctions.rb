@@ -78,8 +78,31 @@ class PokemonGlobalMetadata
     attr_accessor :hadItemYet
 end
 
+def initializeItemHistory
+    $PokemonGlobal.hadItemYet = {
+        :POKEBALL => true,
+        :GREATBALL => true,
+        :ULTRABALL => true,
+        :POTION => true,
+        :SUPERPOTION => true,
+        :HYPERPOTION => true,
+        :MAXPOTION => true,
+        :FULLRESTORE => true,
+        :STATUSHEAL => true,
+        :REVIVE => true,
+        :MAXREVIVE => true,
+        :FRESHWATER => true,
+        :LEMONADE => true,
+        :MOOMOOMILK => true,
+        :MASTERBALL => true,
+        :REPEL => true,
+        :SUPERREPEL => true,
+        :MAXREPEL => true,
+    }
+end
+
 def showItemDescription(item)
-    $PokemonGlobal.hadItemYet = {} if $PokemonGlobal.hadItemYet.nil?
+    initializeItemHistory if $PokemonGlobal.hadItemYet.nil?
     unless $PokemonGlobal.hadItemYet[item]
         $PokemonGlobal.hadItemYet[item] = true
         if $PokemonSystem.show_item_descriptions == 0
