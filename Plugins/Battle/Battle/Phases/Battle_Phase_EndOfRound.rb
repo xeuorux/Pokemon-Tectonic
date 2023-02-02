@@ -152,12 +152,13 @@ class PokeBattle_Battle
         priority.each do |b|
             next if b.fainted?
             next unless b.leeched?
-            leechedHP = damageFromDOTStatus(b, :LEECHED)
-            next if leechedHP <= 0
             enemyCount = 0
             b.eachOpposing do |opposingBattler|
                 enemyCount += 1
             end
+            next if enemyCount == 0
+            leechedHP = damageFromDOTStatus(b, :LEECHED)
+            next if leechedHP <= 0
             healthRestore = leechedHP / enemyCount.to_f
             b.eachOpposing do |opposingBattler|
                 opposingBattler.pbRecoverHPFromDrain(healthRestore, b)
