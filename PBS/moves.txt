@@ -737,7 +737,7 @@
 768,KICKSTART,Kickstart,505,40,PSYCHIC,Physical,100,10,0,NearOther,1,abef,"The user encourages the target to attack right after the user. Always goes first.",DOUBLEKICK
 769,BOREALWIND,Boreal Wind,403,60,FLYING,Special,100,15,20,NearOther,0,befq,"The user whips up a cold north wind to attack the target. It has a 20% chance to frostbite.",
 770,COLDFRONT,Cold Front,403,90,FLYING,Special,100,12,10,NearOther,0,befq,"The user propels a gale-force wind at the target. It has a 10% chance to frostbite.",GUST
-771,UNDERMINE,Undermine,0CA,125,GROUND,Physical,100,10,0,NearOther,0,abef,"The user burrows deep, then attacks with devastating power on the second turn.",DIG
+771,UNDERMINE,Undermine,0CA,125,GROUND,Physical,100,10,0,NearOther,0,abef,"The user burrows deep, then attacks with devastating power on the second turn.",
 772,LEAPOUT,Leap Out,56A,50,GHOST,Physical,100,15,0,NearOther,1,abef,"The user attacks the target from a blind spot. Always goes first. Deals 50% more damage in a hailstorm.",
 773,SOULCLAW,Soul Claw,506,60,GHOST,Physical,100,20,0,NearOther,0,abef,"The user claws at the target's soul, dealing damage through their Sp. Def rather than their Defense.",SHADOWCLAW
 774,SOULRIP,Soul Rip,506,90,GHOST,Physical,100,12,0,NearOther,0,abef,"The user rips into the target's soul, dealing damage through their Sp. Def rather than their Defense.",SHADOWCLAW
