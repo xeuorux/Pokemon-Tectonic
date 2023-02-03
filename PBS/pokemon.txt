@@ -9106,8 +9106,8 @@ Name = Seedot
 InternalName = SEEDOT
 Type1 = GRASS
 # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
-BaseStats = 55,40,65,35,55,50
-# Total = 300
+BaseStats = 55,40,65,45,55,50
+# Total = 310
 GenderRate = Female50Percent
 GrowthRate = Parabolic
 BaseEXP = 44
@@ -9142,8 +9142,8 @@ InternalName = NUZLEAF
 Type1 = GRASS
 Type2 = DARK
 # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
-BaseStats = 80,65,70,60,85,65
-# Total = 425
+BaseStats = 80,65,70,75,85,65
+# Total = 440
 GenderRate = Female50Percent
 GrowthRate = Parabolic
 BaseEXP = 119
@@ -9176,8 +9176,8 @@ InternalName = SHIFTRY
 Type1 = GRASS
 Type2 = DARK
 # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
-BaseStats = 90,90,75,90,105,75
-# Total = 525
+BaseStats = 90,90,75,110,105,75
+# Total = 545
 GenderRate = Female50Percent
 GrowthRate = Parabolic
 BaseEXP = 216
