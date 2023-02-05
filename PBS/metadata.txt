@@ -20,7 +20,6 @@ ShowArea = false
 Bicycle = false
 #-------------------------------
 [002]
-# Panorama Test Map
 Outdoor = true
 ShowArea = true
 Bicycle = false
@@ -62,7 +61,7 @@ MapSize = 2,11
 Environment = None
 #-------------------------------
 [007]
-# Wet Walkways
+# Repora Forest
 Outdoor = true
 ShowArea = true
 Bicycle = true
@@ -373,7 +372,7 @@ ShowArea = false
 Bicycle = false
 #-------------------------------
 [053]
-# Jungle Path
+# The Shelf
 Outdoor = true
 ShowArea = true
 Bicycle = true
@@ -383,7 +382,7 @@ MapSize = 3,111
 Environment = Forest
 #-------------------------------
 [055]
-# Floral Rest
+# Eleig Delta
 Outdoor = true
 ShowArea = true
 Bicycle = true

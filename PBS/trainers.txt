@@ -368,6 +368,15 @@ Pokemon = ELEKID,23
     AbilityIndex = 1
     Item = SITRUSBERRY
 #-------------------------------
+[SCHOOLKID_M2,Branimir]
+Pokemon = ASANDSHREW,23
+    AbilityIndex = 0
+Pokemon = SPEAROW,23
+    AbilityIndex = 0
+    Item = NORMALGEM
+Pokemon = DROWZEE,24
+    AbilityIndex = 0
+#-------------------------------
 [MEDIUM,Theoni]
 Pokemon = SABLEYE,24
     AbilityIndex = 0
@@ -966,14 +975,32 @@ Pokemon = LAIRON,32
     AbilityIndex = 0
 #-------------------------------
 [SAGE,Imay]
-Pokemon = DOTTLER,25
+Pokemon = DOTTLER,26
     AbilityIndex = 1
     Item = SITRUSBERRY
-Pokemon = HERDIER,26
+Pokemon = HERDIER,27
     Moves = SEISMICTOSS,CHILL,POUT
     AbilityIndex = 1
-Pokemon = CHANSEY,26
+Pokemon = CHANSEY,27
     Moves = SEISMICTOSS,CHIBLOCK,ANGELSKISS
+    AbilityIndex = 0
+#-------------------------------
+[INFIELDER,Tajo]
+Pokemon = BISHARP,26
+    AbilityIndex = 1
+Pokemon = CUTIEFLY,26
+    AbilityIndex = 0
+Pokemon = BINACLE,26
+    AbilityIndex = 1
+    Item = SITRUSBERRY
+#-------------------------------
+[REPORTER,Helga]
+Pokemon = ELECTABUZZ,26
+    AbilityIndex = 1
+Pokemon = MUDBRAY,26
+    AbilityIndex = 0
+    Item = GROUNDGEM
+Pokemon = MBOLDORE,26
     AbilityIndex = 0
 #-------------------------------
 [PARASOLLADY,Clarissa]

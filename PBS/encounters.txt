@@ -26,7 +26,7 @@ FloweryGrass2,20
     25,SHINX,15,18
     25,SLOWPOKE,15,18
 #-------------------------------
-[007] # Wet Walkways
+[007] # Repora Forest
 Land,20
     25,CROAGUNK,18,20
     25,PHANTUMP,18,20
@@ -184,7 +184,7 @@ Mud,40
     33,MAKUHITA,9,11
     33,MUDBRAY,9,11
 #-------------------------------
-[053] # Jungle Path
+[053] # The Shelf
 Land,20
     25,NATU,16,19
     25,PURRLOIN,16,19
@@ -201,7 +201,7 @@ LandTall,20
     25,SPRITZEE,16,19
     25,VENONAT,16,19
 #-------------------------------
-[055] # Floral Rest
+[055] # Eleig Delta
 FloweryGrass,20
     25,BONSLY,15,18
     25,SHUPPET,15,18
