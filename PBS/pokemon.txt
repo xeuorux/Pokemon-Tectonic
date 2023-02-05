@@ -27387,7 +27387,7 @@ Name = Greedent
 InternalName = GREEDENT
 Type1 = NORMAL
 # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
-BaseStats = 148,96,95,20,55,96
+BaseStats = 138,96,95,30,55,96
 # Total = 510
 GenderRate = Female50Percent
 GrowthRate = Medium
