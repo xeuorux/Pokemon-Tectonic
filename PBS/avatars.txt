@@ -448,6 +448,12 @@ Moves1 = BOREALWIND,FOULPLAY,PRIMEVALRAIN
 Moves2 = WATERPULSE,HURRICANE
 HPMult = 6.0
 #-------------------------------
+[STUNFISK]
+Ability = DRIZZLE
+Moves1 = MUDSHOT,NUMB,THUNDERPUNCH,PRIMEVALRAIN
+Moves2 = WATERPULSE,THUNDER
+HPMult = 6.0
+#-------------------------------
 [PANSAGE]
 Ability = FRIENDGUARD
 Moves1 = SEEDBOMB
