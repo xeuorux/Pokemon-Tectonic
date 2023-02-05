@@ -498,3 +498,23 @@ class PokeBattle_AI_Mtangrowth < PokeBattle_AI_Boss
         spaceOutProtecting
     end
 end
+
+class PokeBattle_AI_Sawsbuck < PokeBattle_AI_Boss
+    FORM_0_MOVESET = %i[HEADBUTT PLAYROUGH]
+    FORM_1_MOVESET = %i[HEADBUTT HORNDRAIN]
+    FORM_2_MOVESET = %i[HEADBUTT TRAMPLE]
+    FORM_3_MOVESET = %i[HEADBUTT CRYSTALCRUSH]
+    MOVESETS = [FORM_0_MOVESET,FORM_1_MOVESET,FORM_2_MOVESET,FORM_3_MOVESET]
+
+    def initialize(user, battle)
+        super
+        @beginTurn.push(proc { |user, _battle, turnCount|
+            if turnCount != 0
+                newForm = (user.form + 1) % 4
+                formChangeMessage = _INTL("The season shifts!")
+                user.pbChangeFormBoss(newForm, formChangeMessage)
+                user.assignMoveset(MOVESETS[newForm])
+            end
+        })
+    end
+end

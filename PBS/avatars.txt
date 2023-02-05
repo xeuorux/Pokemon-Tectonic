@@ -182,10 +182,9 @@ HPMult = 6.0
 #-------------------------------
 [SAWSBUCK]
 Ability = SERENEGRACE
-Moves1 = DOUBLEEDGE,HORNDRAIN,PRIMEVALFLOWSTATE
-Moves2 = WATERFALL,CRASHDIVE
+Moves1 = HEADBUTT,PLAYROUGH
 HPMult = 6.0
-Form = 1
+HealthBars = 2
 #-------------------------------
 [LEAFEON]
 Ability = LEAFGUARD
