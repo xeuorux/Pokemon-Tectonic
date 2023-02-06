@@ -664,6 +664,7 @@ class PokeBattle_Move_529 < PokeBattle_SleepMove
     end
 
     def getEffectScore(user, target)
+        return 0 if hasBeenUsed?(user)
         userSpeed = user.pbSpeed(true)
         targetSpeed = target.pbSpeed(true)
         return 0 if userSpeed > targetSpeed

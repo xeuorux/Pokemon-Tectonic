@@ -313,9 +313,28 @@ class PokeBattle_Move_093 < PokeBattle_Move
         user.applyEffect(:Rage)
     end
 
-    def getEffectScore(user, _target)
+    def getEffectScore(user, target)
+        return 0 unless user.pbCanRaiseStatStage?(:ATTACK)
+
         score = 0
-        score += 30 if user.aboveHalfHealth?
+
+        user.eachPotentialAttacker do |b|
+            if b.effectActive?(:TwoTurnAttack)
+                if b.inTwoTurnAttack?("0CD")
+                    next
+                else
+                    score += 50
+                end
+            else
+                if hasBeenUsed?(user)
+                    score += 15
+                else
+                    score += 30
+                end
+            end
+        end
+        score *= 2 if user.aboveHalfHealth?
+
         return score
     end
 end

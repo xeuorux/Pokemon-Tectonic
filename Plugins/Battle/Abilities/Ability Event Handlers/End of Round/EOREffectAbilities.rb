@@ -38,11 +38,11 @@ BattleHandlers::EOREffectAbility.add(:MOODY,
 )
 
 BattleHandlers::EOREffectAbility.add(:PERSISTENTGROWTH,
-  proc { |_ability, battler, _battle|
+  proc { |_ability, battler, battle|
       next unless battler.turnCount > 0
       battle.pbShowAbilitySplash(battler)
       battler.pbRaiseMultipleStatStages([:ATTACK,1,:DEFENSE,1,:SPECIAL_ATTACK,1,:SPECIAL_DEFENSE,1], battler)
-      battler.tryLowerStat(randomDownStat, battler)
+      battler.tryLowerStat(:SPEED, battler)
       battle.pbHideAbilitySplash(battler)
   }
 )

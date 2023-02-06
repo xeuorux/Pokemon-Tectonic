@@ -115,7 +115,7 @@ BattleHandlers::StatusCureItem.add(:LUNUSBERRY,
       PBDebug.log("[Item triggered] #{battler.pbThis}'s #{itemName}") if forced
       battle.pbCommonAnimation("Nom",battler) if !forced
       battler.pbCureStatus
-      battler.pbRaiseMultipleStatStages([:ATTACK,1,:DEFENSE,1,:SPECIAL_ATTACK,1,:SPECIAL_DEFENSE,1,:SPEED,1], user, item: item)
+      battler.pbRaiseMultipleStatStages([:ATTACK,1,:DEFENSE,1,:SPECIAL_ATTACK,1,:SPECIAL_DEFENSE,1,:SPEED,1], battler, item: item)
       next true
     }
 )

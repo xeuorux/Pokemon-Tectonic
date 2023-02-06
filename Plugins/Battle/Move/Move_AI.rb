@@ -21,4 +21,8 @@ class PokeBattle_Move
     end
 
     def hasKOEffect?(_user, _target); return false; end
+
+    def hasBeenUsed?(user)
+        return user.movesUsed.include?(@id)
+    end
 end
