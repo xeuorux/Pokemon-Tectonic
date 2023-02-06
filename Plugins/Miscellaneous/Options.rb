@@ -269,7 +269,7 @@ class PokemonOption_Scene
 		when 3 then return -5
 		when 4 then return -20
 		end
-    return TEXT_SPEED || 4
+    return TEXT_SPEED || -20
   end
 end
 
