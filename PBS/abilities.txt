@@ -516,7 +516,7 @@
 608,WEAKSPIRIT,Weak Spirit,"Special attacks against this lower Sp. Def and raise Speed."
 609,CLINGY,Clingy,"Prevents foes with status conditions from fleeing."
 610,WINDY,Windy,"Boosts the power of wind-based moves by 30%."
-611,PRECHARGED,Pre-Charged,"Upon entry, powers up its next Electric-type move."
+611,PRECHARGED,Pre-Charged,"Upon entry, powers Electric-type moves on its next turn."
 612,TOXICATTITUDE,Toxic Attitude,"Powers up itself and ally Pokémon's Poison-type moves by 50%."
 1000,JUSTIFIED,Justified,"Raises Attack when hit by a Dark-type move."
 1001,ADAPTABILITY,Adaptability,"Powers up moves of the same type."

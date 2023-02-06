@@ -657,7 +657,7 @@ BattleHandlers::AbilityOnSwitchIn.add(:ELECTRICSURGE,
 BattleHandlers::AbilityOnSwitchIn.add(:PRECHARGED,
   proc { |_ability, battler, battle|
       battle.pbShowAbilitySplash(battler)
-      battler.applyEffect(:Charge)
+      battler.applyEffect(:Charge,2)
       battle.pbHideAbilitySplash(battler)
   }
 )
