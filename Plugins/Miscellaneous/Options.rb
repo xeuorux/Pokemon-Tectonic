@@ -260,8 +260,8 @@ class PokemonOption_Scene
  module MessageConfig
 	def self.pbSettingToTextSpeed(speed,slowed=false)
     modifiedSpeed = speed
-    modifiedSpeed -= 1 if slowed
-		case speed
+    modifiedSpeed -= 1 if speed && slowed
+		case modifiedSpeed
     when -1 then return 3
 		when 0 then return 2
 		when 1 then return 1
@@ -269,7 +269,7 @@ class PokemonOption_Scene
 		when 3 then return -5
 		when 4 then return -20
 		end
-    return TEXT_SPEED || 1
+    return TEXT_SPEED || 4
   end
 end
 
