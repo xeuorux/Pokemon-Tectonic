@@ -1168,6 +1168,10 @@ BattleBack = sand
 MapSize = 2,11
 Environment = Sand
 #-------------------------------
+[194]
+# Makyan Capital Building
+ShowArea = true
+#-------------------------------
 [195]
 # Prizca East Gym
 Outdoor = false
