@@ -9,3 +9,10 @@ BattleHandlers::DamageCalcUserAllyAbility.add(:STEELYSPIRIT,
       mults[:base_damage_multiplier] *= 1.5 if type == :STEEL
   }
 )
+
+BattleHandlers::DamageCalcUserAllyAbility.add(:TOXICATTITUDE,
+    proc { |_ability, _user, _target, _move, mults, _baseDmg, type, _aiCheck|
+        mults[:base_damage_multiplier] *= 1.5 if type == :POISON
+    }
+  )
+  

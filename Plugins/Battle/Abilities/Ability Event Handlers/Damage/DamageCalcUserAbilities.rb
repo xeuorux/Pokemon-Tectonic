@@ -391,6 +391,12 @@ BattleHandlers::DamageCalcUserAbility.add(:STEELYSPIRIT,
   }
 )
 
+BattleHandlers::DamageCalcUserAbility.add(:TOXICATTITUDE,
+  proc { |_ability, _user, _target, _move, mults, _baseDmg, type|
+      mults[:base_damage_multiplier] *= 1.5 if type == :POISON
+  }
+)
+
 BattleHandlers::DamageCalcUserAbility.add(:UNCANNYCOLD,
   proc { |_ability, _user, _target, _move, mults, _baseDmg, type|
       mults[:base_damage_multiplier] *= 1.5 if type == :ICE
