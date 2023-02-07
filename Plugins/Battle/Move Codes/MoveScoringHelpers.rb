@@ -53,7 +53,6 @@ end
 def getPoisonEffectScore(user, target, ignoreCheck: false)
     return 0 if willHealStatus?(target)
     if target && (ignoreCheck || target.canPoison?(user, false))
-        return 9999 if user.ownersPolicies.include?(:PRIORITIZEDOTS) && user.opposes?(target)
         score = 40
         score += 20 if target.hp == target.totalhp
         score += 20 if target.hp >= target.totalhp / 2 || target.hp <= target.totalhp / 8
@@ -63,6 +62,7 @@ def getPoisonEffectScore(user, target, ignoreCheck: false)
                                                                       POISONHEAL].concat(STATUS_UPSIDE_ABILITIES))
         score += STATUS_PUNISHMENT_BONUS if user.hasStatusPunishMove? || user.pbHasMoveFunction?("07B") # Venoshock
         score *= 1.5 if user.hasActiveAbilityAI?(:AGGRAVATE)
+        score *= 2 if user.ownersPolicies.include?(:PRIORITIZEDOTS) && user.opposes?(target)
     else
         return 0
     end
@@ -72,7 +72,6 @@ end
 def getBurnEffectScore(user, target, ignoreCheck: false)
     return 0 if willHealStatus?(target)
     if target && (ignoreCheck || target.canBurn?(user, false))
-        return 9999 if user.ownersPolicies.include?(:PRIORITIZEDOTS) && user.opposes?(target)
         score = 40
         if target.hasPhysicalAttack?
             score += 30
@@ -84,6 +83,7 @@ def getBurnEffectScore(user, target, ignoreCheck: false)
                                                                       BURNHEAL].concat(STATUS_UPSIDE_ABILITIES))
         score += STATUS_PUNISHMENT_BONUS if user.hasStatusPunishMove? || user.pbHasMoveFunction?("50E") # Flare Up
         score *= 1.5 if user.hasActiveAbilityAI?(:AGGRAVATE)
+        score *= 2 if user.ownersPolicies.include?(:PRIORITIZEDOTS) && user.opposes?(target)
     else
         return 0
     end
@@ -93,7 +93,6 @@ end
 def getFrostbiteEffectScore(user, target, ignoreCheck: false)
     return 0 if willHealStatus?(target)
     if target && (ignoreCheck || target.canFrostbite?(user, false))
-        return 9999 if user.ownersPolicies.include?(:PRIORITIZEDOTS) && user.opposes?(target)
         score = 40
         if target.hasSpecialAttack?
             score += 30
@@ -104,6 +103,7 @@ def getFrostbiteEffectScore(user, target, ignoreCheck: false)
         score -= STATUS_UPSIDE_MALUS if target.hasActiveAbilityAI?([:FROSTHEAL].concat(STATUS_UPSIDE_ABILITIES))
         score += STATUS_PUNISHMENT_BONUS if user.hasStatusPunishMove? || user.pbHasMoveFunction?("50C") # Ice Impact
         score *= 1.5 if user.hasActiveAbilityAI?(:AGGRAVATE)
+        score *= 2 if user.ownersPolicies.include?(:PRIORITIZEDOTS) && user.opposes?(target)
     else
         return 0
     end
@@ -128,7 +128,6 @@ def getLeechEffectScore(user, target, ignoreCheck: false)
     return 0 if willHealStatus?(target)
     canLeech = target.canLeech?(user, false)
     if ignoreCheck || canLeech
-        return 9999 if user.ownersPolicies.include?(:PRIORITIZEDOTS) && user.opposes?(target)
         score = 40
         score += NON_ATTACKER_BONUS * 2 unless user.hasDamagingAttack?
         score += 20 if target.hp >= target.totalhp / 2
@@ -139,7 +138,7 @@ def getLeechEffectScore(user, target, ignoreCheck: false)
         score *= 2 if user.hasActiveAbilityAI?(:AGGRAVATE)
         score *= 1.5 if user.hasActiveAbilityAI?(:ROOTED)
         score *= 1.3 if user.hasActiveItem?(:BIGROOT)
-        score *= 2 if user.hasAlly?
+        score *= 2 if user.ownersPolicies.include?(:PRIORITIZEDOTS) && user.opposes?(target)
     else
         return 0
     end
