@@ -649,10 +649,14 @@ end
 # attacks the user while this effect applies, that Pokémon become leeched.
 # (Root Haven)
 #===============================================================================
-class PokeBattle_Move_5A5 < PokeBattle_ProtectMove
+class PokeBattle_Move_5A5 < PokeBattle_HalfProtectMove
     def initialize(battle, move)
         super
         @effect = :RootShelter
+    end
+
+    def getOnHitEffectScore(user,target)
+        return getLeechEffectScore(user, target)
     end
 end
 

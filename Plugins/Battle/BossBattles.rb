@@ -441,13 +441,13 @@ class PokeBattle_Battle
         end
     end
 
-    def addBattlerSlot(newPokemon,sideIndex)
+    def addBattlerSlot(newPokemon,sideIndex,partyIndex)
         indexOnSide = @sideSizes[sideIndex]
 
         # Put the battler into the battle
         battlerIndexNew = indexOnSide * 2 + sideIndex
         if @battlers[battlerIndexNew].nil?
-            pbCreateBattler(battlerIndexNew, newPokemon, sideIndex)
+            pbCreateBattler(battlerIndexNew, newPokemon, partyIndex)
         else
             @battlers[battlerIndexNew].pbInitialize(newPokemon, partyIndex)
         end
@@ -505,7 +505,7 @@ class PokeBattle_Battle
         partyOrder = [@party1order, @party2order]
         partyOrder.insert(indexOnSide, partyIndex)
 
-        addBattlerSlot(newPokemon,sideIndex)
+        addBattlerSlot(newPokemon,sideIndex,partyIndex)
 
         return true
     end

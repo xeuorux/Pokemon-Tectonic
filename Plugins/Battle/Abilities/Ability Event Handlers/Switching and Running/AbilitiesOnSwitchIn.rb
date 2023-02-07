@@ -584,7 +584,7 @@ BattleHandlers::AbilityOnSwitchIn.add(:PRIMEVALIMPOSTER,
 
       battler.pbInitialize(party[0],0)
       if party.length > 1
-        battle.addBattlerSlot(party[1],1)
+        battle.addBattlerSlot(party[1],1,0)
       else
         battle.remakeDataBoxes
         battle.remakeBattleSpritesOnSide(battler.index % 2)

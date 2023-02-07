@@ -27,16 +27,17 @@ class PokeBattle_AI
         switchingBias = 0
         PBDebug.log("[AI SWITCH] #{battler.pbThis} (#{battler.index}) is determining whether it should switch out")
 
-        if battler.firstTurn? && @battle.turnCount != 0
-            switchingBias -= 1
-            PBDebug.log("[AI SWITCH] #{battler.pbThis} (#{battler.index}) is less likely to switch on its first turn after switching in (-1)")
-        end
+        # if battler.firstTurn? && @battle.turnCount != 0
+        #     switchingBias -= 1
+        #     PBDebug.log("[AI SWITCH] #{battler.pbThis} (#{battler.index}) is less likely to switch on its first turn after switching in (-1)")
+        # end
 
+        # Reactive matchup considerations
         # Ignore these protocols if this is an AI trainer helping you in a boss battle
-        unless @battle.bossBattle?
+        unless @battle.bossBattle? && !policies.include?(:PROACTIVE_MATCHUP_SWAPPER)
             # Figure out the effectiveness of the last move that hit it
             typeMod = battler.lastRoundHighestTypeModFromFoe
-            if typeMod >= 0 && !policies.include?(:PROACTIVE_MATCHUP_SWAPPER)
+            if typeMod >= 0
                 effectivenessSwitchBiasMod = 0
                 if Effectiveness.hyper_effective?(typeMod)
                     effectivenessSwitchBiasMod += 2
@@ -56,7 +57,7 @@ class PokeBattle_AI
             choices.each do |c|
                 maxScore = c[1] if c[1] > maxScore
             end
-            maxMoveScoreBiasChange = +4
+            maxMoveScoreBiasChange = 4
             maxMoveScoreBiasChange -= (maxScore / 25.0).round
             switchingBias += maxMoveScoreBiasChange
             PBDebug.log("[AI SWITCH] #{battler.pbThis} (#{battler.index}) max score among its #{choices.length} choices is #{maxScore} (#{maxMoveScoreBiasChange.to_change})")
@@ -94,23 +95,11 @@ class PokeBattle_AI
                 PBDebug.log("[AI SWITCH] #{battler.pbThis} (#{battler.index}) is seeded (+1)")
             end
 
-            # More likely to switch when poisoned, and especially the more that poison has worsened
+            # More likely to switch when poison has worsened
             if battler.poisoned?
                 poisonBias = 1 + battler.getPoisonDoublings * 2
                 switchingBias += poisonBias
                 PBDebug.log("[AI SWITCH] #{battler.pbThis} (#{battler.index}) is poisoned at count (#{battler.getStatusCount(:POISON)}) (+#{poisonBias})")
-            end
-
-            # More likely to swap when in danger of dieing to confusion
-            if battler.effects[:ConfusionChance] >= 1 && highDamageFromConfusion(battler)
-                switchingBias += 2
-                PBDebug.log("[AI SWITCH] #{battler.pbThis} (#{battler.index}) is likely to die to confusion (+2)")
-            end
-
-            # More likely to swap when in danger of dieing to charm
-            if battler.effects[:CharmChance] >= 1 && highDamageFromConfusion(battler, true)
-                switchingBias += 2
-                PBDebug.log("[AI SWITCH] #{battler.pbThis} (#{battler.index}) is likely to die to charm (+2)")
             end
         end
 
@@ -124,13 +113,7 @@ class PokeBattle_AI
         # Used for Cool Trainers
         if policies.include?(:PROACTIVE_MATCHUP_SWAPPER)
             unless sacrificing
-                matchups = []
-                battler.eachOpposing do |opposingBattler|
-                    matchup = rateMatchup(battler, battler.pokemon, opposingBattler,
-getRoughAttackingTypes(opposingBattler))
-                    matchups.push(matchup)
-                end
-                currentMatchupRating = matchups.min
+                currentMatchupRating = rateMatchupAgainstFoes(battler, battler.pokemon, battler.pokemonIndex)
                 switchingBias -= currentMatchupRating
                 PBDebug.log("[AI] #{battler.pbThis} (#{battler.index}) evaluates its current matchup (#{-currentMatchupRating.to_change})")
             end
@@ -143,9 +126,10 @@ getRoughAttackingTypes(opposingBattler))
         PBDebug.log("[AI SWITCH] #{battler.pbThis} (#{battler.index}) is trying to find a teammate to swap into. Its switching bias is #{switchingBias}.")
         list = pbGetPartyWithSwapRatings(idxBattler)
         listSwapOutCandidates(battler, list)
-        list.delete_if { |val| !@battle.pbCanSwitch?(idxBattler, val[0]) || (switchingBias + val[1] <= 1) }
 
         # Only considers swapping into pokemon whose rating would be at least a +2 upgrade
+        list.delete_if { |val| !@battle.pbCanSwitch?(idxBattler, val[0]) || (switchingBias + val[1] <= 1) }
+
         if list.length > 0
             partySlotNumber = list[0][0]
             if @battle.pbRegisterSwitch(idxBattler, partySlotNumber)
@@ -156,39 +140,6 @@ getRoughAttackingTypes(opposingBattler))
             PBDebug.log("[AI SWITCH] #{battler.pbThis} (#{battler.index}) fails to find any swap candidates.")
         end
         return false
-    end
-
-    def highDamageFromConfusion(battler, charm = false)
-        # Calculate the damage the confusionMove would do
-        confusionMove = charm ? PokeBattle_Charm.new(@battle, nil) : PokeBattle_Confusion.new(@battle, nil)
-        # Get the move's type
-        type = confusionMove.calcType
-        # Calcuate base power of move
-        baseDmg = confusionMove.pbBaseDamage(confusionMove.baseDamage, battler, battler)
-        # Calculate battler's attack stat
-        attacking_stat_holder, attacking_stat = confusionMove.pbAttackingStat(battler, battler)
-        defStage = attacking_stat_holder.stages[attacking_stat]
-        attack = battler.statAfterStage(attacking_stat, atkStage)
-        # Calculate battler's defense stat
-        defending_stat_holder, defending_stat = confusionMove.pbDefendingStat(battler, battler)
-        defStage = defending_stat_holder.stages[defending_stat]
-        defense = battler.statAfterStage(defending_stat, defStage)
-        # Calculate all multiplier effects
-        multipliers = {
-          :base_damage_multiplier  => 1.0,
-          :attack_multiplier       => 1.0,
-          :defense_multiplier      => 1.0,
-          :final_damage_multiplier => 1.0,
-        }
-        confusionMove.pbCalcDamageMultipliers(battler, battler, 1, type, baseDmg, multipliers)
-        # Main damage calculation
-        baseDmg = [(baseDmg * multipliers[:base_damage_multiplier]).round, 1].max
-        atk     = [(atk     * multipliers[:attack_multiplier]).round, 1].max
-        defense = [(defense * multipliers[:defense_multiplier]).round, 1].max
-        damage  = (((2.0 * battler.level / 5 + 2).floor * baseDmg * atk / defense).floor / 50).floor + 2
-        damage  = [(damage * multipliers[:final_damage_multiplier]).round, 1].max
-
-        return damage >= (battler.hp * 0.5).floor
     end
 
     def pbDefaultChooseNewEnemy(idxBattler, _party)
@@ -239,11 +190,14 @@ getRoughAttackingTypes(opposingBattler))
     # Rates every other Pokemon in the trainer's party and returns a sorted list of the indices and swap in rating
     def pbGetPartyWithSwapRatings(idxBattler)
         list = []
-        battler = @battle.battlers[idxBattler]
+        battlerSlot = @battle.battlers[idxBattler]
 
-        policies = battler.ownersPolicies
+        policies = battlerSlot.ownersPolicies
 
-        @battle.pbParty(idxBattler).each_with_index do |pkmn, i|
+        @battle.pbParty(idxBattler).each_with_index do |pkmn, partyIndex|
+            next unless pkmn.able?
+            next if battlerSlot.pokemonIndex == partyIndex
+
             switchScore = 0
 
             # Determine if the pokemon will be airborne
@@ -257,28 +211,28 @@ getRoughAttackingTypes(opposingBattler))
             entryDamage = 0
             if !airborne && pkmn.ability != :MAGICGUARD && pkmn.item != :HEAVYDUTYBOOTS
                 # Spikes
-                spikesCount = battler.pbOwnSide.countEffect(:Spikes)
+                spikesCount = battlerSlot.pbOwnSide.countEffect(:Spikes)
                 if spikesCount > 0
                     spikesDenom = [8, 6, 4][spikesCount - 1]
                     entryDamage += pkmn.totalhp / spikesDenom
                 end
 
                 # Stealth Rock
-                if battler.pbOwnSide.effectActive?(:StealthRock)
+                if battlerSlot.pbOwnSide.effectActive?(:StealthRock)
                     types = pkmn.types
                     stealthRockHPRatio = @battle.getTypedHazardHPRatio(:ROCK, types[0], types[1] || nil)
                     entryDamage += pkmn.totalhp * stealthRockHPRatio
                 end
 
                 # Feather Ward
-                if battler.pbOwnSide.effectActive?(:FeatherWard)
+                if battlerSlot.pbOwnSide.effectActive?(:FeatherWard)
                     types = pkmn.types
                     featherWardHPRatio = @battle.getTypedHazardHPRatio(:STEEL, types[0], types[1] || nil)
                     entryDamage += pkmn.totalhp * featherWardHPRatio
                 end
 
                 # Each of the status setting spikes
-                battler.pbOwnSide.eachEffect(true) do |_effect, value, data|
+                battlerSlot.pbOwnSide.eachEffect(true) do |_effect, value, data|
                     next unless data.is_status_hazard?
                     hazardInfo = data.type_applying_hazard
 
@@ -297,13 +251,15 @@ getRoughAttackingTypes(opposingBattler))
                 dieingOnEntry = true
             elsif willAbsorbSpikes
                 switchScore += 1
+            else
+                switchScore -= ((entryDamage / pkmn.totalhp.to_f) * 4).floor
             end
 
             # Analyze the player's active battlers to their susceptibility to being debuffed
             attackDebuffers = 0
             specialDebuffers = 0
             speedDebuffers = 0
-            battler.eachOpposing do |opposingBattler|
+            battlerSlot.eachOpposing do |opposingBattler|
                 next if opposingBattler.hasActiveAbilityAI?(:INNERFOCUS)
                 if opposingBattler.hasActiveAbilityAI?(:CONTRARY)
                     attackDebuffers -= 1
@@ -328,7 +284,7 @@ getRoughAttackingTypes(opposingBattler))
             settingRain = @battle.pbWeather != :Rain && policies.include?(:RAIN_TEAM)
             settingHail = @battle.pbWeather != :Hail && policies.include?(:HAIL_TEAM)
             settingSand = @battle.pbWeather != :Sandstorm && policies.include?(:SAND_TEAM)
-            alliesInReserve = battler.alliesInReserveCount
+            alliesInReserve = battlerSlot.alliesInReserveCount
 
             case pkmn.ability
             when :INTIMIDATE
@@ -350,63 +306,59 @@ getRoughAttackingTypes(opposingBattler))
             # Only matters if the pokemon will live
             unless dieingOnEntry
                 # Find the worst type matchup against the current player battlers
-                matchups = []
-                battler.eachOpposing do |opposingBattler|
-                    matchup = rateMatchup(battler, pkmn, opposingBattler, getRoughAttackingTypes(opposingBattler))
-                    matchups.push(matchup)
-                end
-                if matchups.length > 0
-                    worstTypeMatchup = matchups.min
-                    switchScore += worstTypeMatchup
-                end
+                switchScore += rateMatchupAgainstFoes(battlerSlot, pkmn, partyIndex)
             end
 
             # For preserving the pokemon placed in the last slot
-            if policies.include?(:PRESERVE_LAST_POKEMON) && i == @battle.pbParty(idxBattler).length - 1
+            if policies.include?(:PRESERVE_LAST_POKEMON) && partyIndex == @battle.pbParty(idxBattler).length - 1
                 switchScore = -99
             end
 
-            list.push([i, switchScore])
+            list.push([partyIndex, switchScore])
         end
         list.sort_by! { |entry| entry[1].nil? ? 9999 : -entry[1] }
         return list
     end
 
-    # Battler is the battler object for the slot being analyzed
-    def rateMatchup(_battler, partyPokemon, opposingBattler, attackingtypes = nil)
-        typeModDefensive = Effectiveness::NORMAL_EFFECTIVE
-        typeModOffensive = Effectiveness::NORMAL_EFFECTIVE
-
-        # Get the worse defensive type mod among any of the player pokemon's attacking types
-        typeModDefensive = pbCalcMaxOffensiveTypeMod(attackingtypes, partyPokemon) unless attackingtypes.nil?
-
-        # Get the best offensive type mod among any of the party pokemon's attacking types
-        unless opposingBattler.nil?
-            typeModOffensive = pbCalcMaxOffensiveTypeMod(getPartyMemberAttackingTypes(partyPokemon), opposingBattler)
+    # The pokemon passed in could be be the pokemon in the given battler slot, or somewhere in the party
+    def rateMatchupAgainstFoes(battlerSlot, pokemon, partyIndex)
+        matchups = []
+        battlerSlot.eachOpposing do |opposingBattler|
+            matchup = rateMatchup(battlerSlot, pokemon, pokemon, getRoughAttackingTypes(opposingBattler))
+            matchups.push(matchup)
         end
+        if matchups.empty?
+            return 0
+        else
+            return matchups.min
+        end
+    end
 
-        typeMatchupScore = 0
+    # The pokemon passed in could be be the pokemon in the given battler slot, or somewhere in the party
+    def rateMatchup(battlerSlot, pokemon, partyIndex, attackingtypes = nil)
+        typeModDefensive = Effectiveness::NORMAL_EFFECTIVE
+
+        # Get the worse defensive type mod among any of the given types
+        typeModDefensive = pbCalcMaxOffensiveTypeMod(attackingtypes, pokemon) unless attackingtypes.nil?
+
+        matchupScore = 0
         # Modify the type matchup score based on the defensive matchup
         if Effectiveness.ineffective?(typeModDefensive)
-            typeMatchupScore += 4
+            matchupScore += 4
         elsif Effectiveness.not_very_effective?(typeModDefensive)
-            typeMatchupScore += 2
+            matchupScore += 2
         elsif Effectiveness.hyper_effective?(typeModDefensive)
-            typeMatchupScore -= 4
+            matchupScore -= 4
         elsif Effectiveness.super_effective?(typeModDefensive)
-            typeMatchupScore -= 2
+            matchupScore -= 2
         end
-        # Modify the type matchup score based on the offensive matchup
-        if Effectiveness.ineffective?(typeModOffensive)
-            typeMatchupScore -= 2
-        elsif Effectiveness.not_very_effective?(typeModOffensive)
-            typeMatchupScore -= 1
-        elsif Effectiveness.hyper_effective?(typeModOffensive)
-            typeMatchupScore += 2
-        elsif Effectiveness.super_effective?(typeModOffensive)
-            typeMatchupScore += 1
-        end
-        return typeMatchupScore
+
+        maxScore = highestMoveScoreForHypotheticalBattle(battlerSlot,pokemon,partyIndex)
+        maxMoveScoreBiasChange = -4
+        maxMoveScoreBiasChange += (maxScore / 25.0).round
+        matchupScore += maxMoveScoreBiasChange
+
+        return matchupScore
     end
 
     def pbCalcMaxOffensiveTypeMod(attackingTypes, victimPokemon)
@@ -417,5 +369,17 @@ getRoughAttackingTypes(opposingBattler))
             maxTypeMod = mod if mod > maxTypeMod
         end
         return maxTypeMod
+    end
+
+    def highestMoveScoreForHypotheticalBattle(battlerSlot,pokemon,partyIndex)
+        fakeBattler = battlerSlot.clone
+        fakeBattler.pbInitPokemon(pokemon,partyIndex)
+        choices = pbGetBestTrainerMoveChoices(fakeBattler, fakeBattler.ownersPolicies)
+
+        maxScore = 0
+        choices.each do |c|
+            maxScore = c[1] if c[1] > maxScore
+        end
+        return maxScore
     end
 end

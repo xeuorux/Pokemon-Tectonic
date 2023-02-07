@@ -1319,10 +1319,14 @@ end
 # attacks the user while this effect applies, that Pokémon becomes numbed.
 # (Stunning Curl)
 #===============================================================================
-class PokeBattle_Move_550 < PokeBattle_ProtectMove
+class PokeBattle_Move_550 < PokeBattle_HalfProtectMove
     def initialize(battle, move)
         super
         @effect = :StunningCurl
+    end
+
+    def getOnHitEffectScore(user,target)
+        return getNumbEffectScore(user, target)
     end
 end
 
@@ -2051,9 +2055,13 @@ end
 # attacks the user while this effect applies, that Pokémon becomes poisoned.
 # (Venom Guard)
 #===============================================================================
-class PokeBattle_Move_57F < PokeBattle_ProtectMove
+class PokeBattle_Move_57F < PokeBattle_HalfProtectMove
     def initialize(battle, move)
         super
         @effect = :VenomGuard
+    end
+
+    def getOnHitEffectScore(user,target)
+        return getPoisonEffectScore(user, target)
     end
 end

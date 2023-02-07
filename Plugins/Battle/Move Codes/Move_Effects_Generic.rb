@@ -656,6 +656,37 @@ class PokeBattle_ProtectMove < PokeBattle_Move
 end
 
 #===============================================================================
+# Moves that protect the user from half damage this turn.
+#===============================================================================
+class PokeBattle_HalfProtectMove < PokeBattle_ProtectMove
+    def getOnHitEffectScore(user,target)
+        return 0
+    end
+
+    def getEffectScore(user, _target)
+        score = 0
+        user.eachPotentialAttacker do |b|
+            if b.effectActive?(:TwoTurnAttack)
+                if b.inTwoTurnAttack?("0CD")
+                    next
+                else
+                    score += 25
+                end
+            end
+            score += 25
+            score += 25 if b.poisoned? || b.leeched?
+            score += 25 if b.burned? || b.frostbitten?
+
+            # Calculate the expected value of the on-hit effect
+            onHitEffectScore = getOnHitEffectScore(user,b)
+            onHitEffectScore /= 2 if hasBeenUsed?(user)
+            score += onHitEffectScore
+        end
+        return score
+    end
+end
+
+#===============================================================================
 # Weather-inducing move.
 #===============================================================================
 class PokeBattle_WeatherMove < PokeBattle_Move
