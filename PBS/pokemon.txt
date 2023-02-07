@@ -20224,6 +20224,7 @@ BattlerShadowSize = 3
 Name = Elgyem
 InternalName = ELGYEM
 Type1 = PSYCHIC
+Type2 = STEEL
 # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
 BaseStats = 55,65,55,55,80,70
 # Total = 380
@@ -20258,6 +20259,7 @@ Evolutions = BEHEEYEM,Level,34
 Name = Beheeyem
 InternalName = BEHEEYEM
 Type1 = PSYCHIC
+Type2 = STEEL
 # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
 BaseStats = 75,90,75,70,105,95
 # Total = 510
