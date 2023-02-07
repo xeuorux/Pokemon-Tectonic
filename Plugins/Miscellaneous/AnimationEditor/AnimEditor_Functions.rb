@@ -280,6 +280,38 @@ def pbSetTone(cel,previewsprite)
   return
 end
 
+def pbSelectTone(previewsprite,startingValues = [0,0,0,0])
+  sliderwin2=ControlWindow.new(0,0,320,320)
+  sliderwin2.z=99999
+  sliderwin2.addSlider(_INTL("Red Offset:"),-255,255,startingValues[0])
+  sliderwin2.addSlider(_INTL("Green Offset:"),-255,255,startingValues[1])
+  sliderwin2.addSlider(_INTL("Blue Offset:"),-255,255,startingValues[2])
+  sliderwin2.addSlider(_INTL("Gray Tone:"),0,255,startingValues[3])
+  okbutton=sliderwin2.addButton(_INTL("OK"))
+  cancelbutton=sliderwin2.addButton(_INTL("Cancel"))
+  ret = startingValues
+  loop do
+    previewsprite&.tone.set(
+        sliderwin2.value(0),
+        sliderwin2.value(1),
+        sliderwin2.value(2),
+        sliderwin2.value(3)
+    )
+    Graphics.update
+    Input.update
+    sliderwin2.update
+    if sliderwin2.changed?(okbutton)
+      ret = [sliderwin2.value(0),sliderwin2.value(1),sliderwin2.value(2),sliderwin2.value(3)]
+      break
+    end
+    if sliderwin2.changed?(cancelbutton) || Input.trigger?(Input::BACK)
+      break
+    end
+  end
+  sliderwin2.dispose
+  return ret
+end
+
 def pbSetFlash(cel,previewsprite)
   sliderwin2=ControlWindow.new(0,0,320,320)
   sliderwin2.z=99999
@@ -922,14 +954,19 @@ def pbTweening(canvas)
 end
 
 def pbCellBatch(canvas)
-  sliderwin1=ControlWindow.new(0,0,300,32*5)
+  # Set up the first slider window
+  sliderwin1height = 32*5
+  sliderwin1=ControlWindow.new(0,0,300,sliderwin1height)
   sliderwin1.viewport=canvas.viewport
   sliderwin1.opacity=200
+
   s1set0=sliderwin1.addSlider(_INTL("First Frame:"),1,canvas.animation.length,1)
   s1set1=sliderwin1.addSlider(_INTL("Last Frame:"),1,canvas.animation.length,canvas.animation.length)
   s1set2=sliderwin1.addSlider(_INTL("First Cel:"),0,PBAnimation::MAX_SPRITES-1,0)
   s1set3=sliderwin1.addSlider(_INTL("Last Cel:"),0,PBAnimation::MAX_SPRITES-1,PBAnimation::MAX_SPRITES-1)
-  sliderwin2=ControlWindow.new(300,0,340,32*14)
+
+  # Set up the 2nd slider window
+  sliderwin2=ControlWindow.new(300,0,340,32*16)
   sliderwin2.viewport=canvas.viewport
   sliderwin2.opacity=200
   set0=sliderwin2.addOptionalSlider(_INTL("Pattern:"),-2,1000,0)
@@ -940,19 +977,58 @@ def pbCellBatch(canvas)
   set5=sliderwin2.addOptionalSlider(_INTL("Angle:"),0,359,0)
   set6=sliderwin2.addOptionalSlider(_INTL("Opacity:"),0,255,255)
   set7=sliderwin2.addOptionalSlider(_INTL("Blending:"),0,2,0)
-  set8=sliderwin2.addOptionalTextSlider(_INTL("Flip:"),[_INTL("False"),_INTL("True")],0)
+  set8=sliderwin2.addCheckbox(_INTL("Color Tone"))
+  toneButton = sliderwin2.addButton(_INTL("Set Color Tone"))
+  set9=sliderwin2.addOptionalTextSlider(_INTL("Flip:"),[_INTL("False"),_INTL("True")],0)
   prio=[_INTL("Back"),_INTL("Front"),_INTL("Behind focus"),_INTL("Above focus")]
-  set9=sliderwin2.addOptionalTextSlider(_INTL("Priority:"),prio,1)
+  set10=sliderwin2.addOptionalTextSlider(_INTL("Priority:"),prio,1)
   foc=[_INTL("User"),_INTL("Target"),_INTL("User and target"),_INTL("Screen")]
   curfoc=[3,1,0,2,3][canvas.animation.position || 4]
-  set10=sliderwin2.addOptionalTextSlider(_INTL("Focus:"),foc,curfoc)
+  set11=sliderwin2.addOptionalTextSlider(_INTL("Focus:"),foc,curfoc)
   okbutton=sliderwin2.addButton(_INTL("OK"))
   cancelbutton=sliderwin2.addButton(_INTL("Cancel"))
+
+  # Set up the preview sprite
+  cel=canvas.animation[canvas.currentframe][-2].clone
+  previewwiny = 320
+  previewwin=ControlWindow.new(96,previewwiny,192,192)
+  previewwin.viewport=canvas.viewport
+  previewsprite=Sprite.new(canvas.viewport)
+  previewsprite.bitmap=canvas.animbitmap
+  previewsprite.z=previewwin.z+1
+
+  cel[AnimFrame::X]=96 + 96
+  cel[AnimFrame::Y]=previewwiny + 96
+
+  canvas.setSpriteBitmap(previewsprite,cel)
+  pbSpriteSetAnimFrame(previewsprite,cel,nil,nil)
+  previewsprite.z = previewwin.z+1
+
+  toneSetting = [0,0,0,0]
+
   loop do
     Graphics.update
     Input.update
     sliderwin1.update
     sliderwin2.update
+    if sliderwin2.changed?(toneButton)
+      toneSetting = pbSelectTone(previewsprite,toneSetting)
+      pbSpriteSetAnimFrame(previewsprite,cel,nil,nil) unless sliderwin2.value(set8)
+      previewsprite.z = previewwin.z+1
+    end
+    if sliderwin2.changed?(set8)
+      if sliderwin2.value(set8)
+        previewsprite.tone.set(
+          toneSetting[0],
+          toneSetting[1],
+          toneSetting[2],
+          toneSetting[3],
+        )
+      else
+        pbSpriteSetAnimFrame(previewsprite,cel,nil,nil)
+        previewsprite.z = previewwin.z+1
+      end
+    end
     if sliderwin2.changed?(okbutton) || Input.trigger?(Input::USE)
       startframe=sliderwin1.value(s1set0)-1
       endframe=sliderwin1.value(s1set1)-1
@@ -970,9 +1046,15 @@ def pbCellBatch(canvas)
           cel[AnimFrame::ANGLE]=sliderwin2.value(set5) if sliderwin2.value(set5)
           cel[AnimFrame::OPACITY]=sliderwin2.value(set6) if sliderwin2.value(set6)
           cel[AnimFrame::BLENDTYPE]=sliderwin2.value(set7) if sliderwin2.value(set7)
-          cel[AnimFrame::MIRROR]=sliderwin2.value(set8) if sliderwin2.value(set8)
-          cel[AnimFrame::PRIORITY]=sliderwin2.value(set9) if sliderwin2.value(set9)
-          cel[AnimFrame::FOCUS]=[2,1,3,4][sliderwin2.value(set10)] if sliderwin2.value(set10)
+          cel[AnimFrame::MIRROR]=sliderwin2.value(set9) if sliderwin2.value(set9)
+          cel[AnimFrame::PRIORITY]=sliderwin2.value(set10) if sliderwin2.value(set10)
+          cel[AnimFrame::FOCUS]=[2,1,3,4][sliderwin2.value(set11)] if sliderwin2.value(set11)
+          if sliderwin2.value(set8)
+            cel[AnimFrame::TONERED] = toneSetting[0]
+            cel[AnimFrame::TONEGREEN] = toneSetting[1]
+            cel[AnimFrame::TONEBLUE] = toneSetting[2]
+            cel[AnimFrame::TONEGRAY] = toneSetting[3]
+          end
         end
       end
       canvas.invalidate
@@ -984,6 +1066,8 @@ def pbCellBatch(canvas)
   end
   sliderwin1.dispose
   sliderwin2.dispose
+  previewwin.dispose
+  previewsprite.dispose
 end
 
 def pbEntireSlide(canvas)
