@@ -403,7 +403,7 @@ class PokeBattle_Move_110 < PokeBattle_Move
 end
 
 #===============================================================================
-# Attacks 2 rounds in the future. (Doom Desire, Future Sight)
+# Attacks 2 rounds in the future. (Future Sight, etc.)
 #===============================================================================
 class PokeBattle_Move_111 < PokeBattle_Move
     def cannotRedirect?; return true; end
@@ -438,8 +438,7 @@ class PokeBattle_Move_111 < PokeBattle_Move
 
     def pbEffectAgainstTarget(user, target)
         return if @battle.futureSight # Attack is hitting
-        position =
-            count = 3
+        count = 2
         count -= 1 if user.hasActiveAbility?([:BADOMEN])
         target.position.applyEffect(:FutureSightCounter, count)
         target.position.applyEffect(:FutureSightMove, @id)
