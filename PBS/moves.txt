@@ -346,7 +346,7 @@
 355,ROTOTILLER,Rototiller,13E,0,GROUND,Status,0,10,0,UserAndAllies,0,,"The user tills the soil to encourage plant growth. This raises the Attack and Sp. Atk of Grass type allies.",
 356,SANDATTACK,Sand Attack,047,0,GROUND,Status,100,12,0,NearOther,0,bce,"Sand is hurled in the target's face, reducing its accuracy.",
 357,SHOREUP,Shore Up,16D,0,GROUND,Status,0,5,0,User,0,d,"The user regains up to half of its max HP. It restores more HP in a sandstorm.",
-358,SPIKES,Spikes,103,0,GROUND,Status,0,15,0,FoeSide,0,c,"The user lays a trap of spikes at the foe's feet. Foes that switch into battle are hurt a bit for each layer.",
+358,SPIKES,Spikes,103,0,GROUND,Status,0,15,0,FoeSide,0,c,"The user lays spikes at the foe's feet. Foes that switch into battle are hurt a bit for each layer.",
 359,SCORCHINGSANDS,Scorching Sands,00A,80,GROUND,Special,100,10,30,NearOther,0,abef,"Throws scorching sand at the target to attack. It has a 30% chance to burn.",
 360,FREEZESHOCK,Freeze Shock,0C5,140,ICE,Physical,100,5,30,NearOther,0,bef,"On the second turn, the user hits the foe with electrically charged ice. It has a 30% chance to numb.",
 361,ICEBURN,Ice Burn,0C6,140,ICE,Special,100,5,30,NearOther,0,bef,"On the second turn, an ultracold, freezing wind surrounds the foe. It has a 30% chance to burn.",
