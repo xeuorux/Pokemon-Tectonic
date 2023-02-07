@@ -853,6 +853,9 @@
 876,ANCIENTSEAWATER,Ancient Sea Water,Ancient Sea Water,1,50000,"A vial of shimmering ocean water. It makes a certain Pokemon evolve.",1,0,7
 877,CONDENSEDLIGHT,Condensed Light,Condensed Light,8,0,"A strange ball of light. You should gather these for a friend.",0,0,13
 878,WILDCARD,Wild Card,Wild Cards,5,6000,"An item to be held by a Pokémon. It counts as a member of every tribe.",0,0,0
+879,PROXYFIST,Proxy Fist,Proxy Fists,5,3000,"A held item. The holder doesn't trigger items, abilities, or effects of targets it hits.",0,0,0
+880,MIRRORHERB,Mirror Herb,Mirror Herbs,5,5000,"A held item. When a foe raises their stats, the herb is consumed to copy their raised stats.",0,0,0
+881,PARADOXHERB,Paradox Herb,Paradox Herbs,5,5000,"A held item. When a foe raises their stats, the herb is consumed to reset their raised stats.",0,0,0
 900,CHAMBER1KEY,Chamber 1 Key,Chamber 1 Keys,8,0,"The key to the first chamber containing a powerful avatar.",0,0,6
 901,CHAMBER2KEY,Chamber 2 Key,Chamber 2 Keys,8,0,"The key to the second chamber containing a powerful avatar.",0,0,6
 902,CHAMBER3KEY,Chamber 3 Key,Chamber 3 Keys,8,0,"The key to the third chamber containing a powerful avatar.",0,0,6

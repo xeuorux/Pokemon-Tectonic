@@ -5,7 +5,7 @@ class PokeBattle_Battler
     def pbEffectsOnMakingHit(move, user, target)
         if target.damageState.calcDamage > 0 && !target.damageState.substitute
             # Target's ability
-            if target.abilityActive?(true)
+            if target.abilityActive?(true) && !user.hasActiveItem?(:PROXYFIST)
                 oldHP = user.hp
                 BattleHandlers.triggerTargetAbilityOnHit(target.ability, user, target, move, @battle)
                 user.pbItemHPHealCheck if user.hp < oldHP
@@ -16,13 +16,13 @@ class PokeBattle_Battler
                 user.pbItemHPHealCheck
             end
             # Target's item
-            if target.itemActive?(true)
+            if target.itemActive?(true) && !user.hasActiveItem?(:PROXYFIST)
                 oldHP = user.hp
                 BattleHandlers.triggerTargetItemOnHit(target.item, user, target, move, @battle)
                 user.pbItemHPHealCheck if user.hp < oldHP
             end
         end
-        if target.opposes?(user)
+        if target.opposes?(user) && !user.hasActiveItem?(:PROXYFIST)
             # Rage
             if target.effectActive?(:Rage) && !target.fainted? && target.tryRaiseStat(:ATTACK, target)
                 @battle.pbDisplay(_INTL("{1}'s rage is building!", target.pbThis))

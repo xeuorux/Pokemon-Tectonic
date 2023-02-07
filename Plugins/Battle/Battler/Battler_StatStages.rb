@@ -95,8 +95,7 @@ class PokeBattle_Battler
     def pbRaiseStatStage(stat, increment, user = nil, showAnim = true, ignoreContrary = false)
         # Contrary
         if hasActiveAbility?(:CONTRARY) && !ignoreContrary && !@battle.moldBreaker
-            return pbLowerStatStage(stat, increment, user, showAnim,
-true)
+            return pbLowerStatStage(stat, increment, user, showAnim, true)
         end
         # Perform the stat stage change
         increment = pbRaiseStatStageBasic(stat, increment, ignoreContrary)
@@ -112,6 +111,10 @@ true)
         @battle.pbDisplay(arrStatTexts[[increment - 1, 2].min])
         # Trigger abilities upon stat gain
         BattleHandlers.triggerAbilityOnStatGain(ability, self, stat, user) if abilityActive?
+        eachOpposing do |b|
+            BattleHandlers.triggerAbilityOnEnemyStatGain(b.ability, b, stat, user, self) if b.abilityActive?
+            BattleHandlers.triggerItemOnEnemyStatGain(b.item, b, user, @battle, self) if b.itemActive?
+        end
         return true
     end
 
@@ -148,6 +151,10 @@ true)
         @battle.pbDisplay(arrStatTexts[[increment - 1, 2].min])
         # Trigger abilities upon stat gain
         BattleHandlers.triggerAbilityOnStatGain(ability, self, stat, user) if abilityActive?
+        eachOpposing do |b|
+            BattleHandlers.triggerAbilityOnEnemyStatGain(b.ability, b, stat, user, self) if b.abilityActive?
+            BattleHandlers.triggerItemOnEnemyStatGain(b.item, b, user, @battle, self) if b.itemActive?
+        end
         return true
     end
 
