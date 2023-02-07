@@ -4,7 +4,7 @@ DebugMenuCommands.register("bossifyspecies", {
   "description" => _INTL("Create bossified graphics for a given species"),
   "effect"      => proc { |sprites, viewport|
 	speciesGraphicName = pbEnterText(_INTL("Enter internal name."),0,20)
-	createBossGraphics(speciesGraphicName)
+	createBossGraphics(speciesGraphicName.to_sym)
   }
 })
 

@@ -209,11 +209,11 @@ def createBossGraphics(speciesForm, overworldMult = 1.5, battleMult = 1.5, overw
 
     # Create the overworld sprite
     PBDebug.logonerr do
-        filePath = overworldPath + speciesForm + ".png"
+        filePath = overworldPath + speciesForm.to_s + ".png"
         existingFile = pbResolveBitmap(filePath)
 
         if existingFile.nil? || overwriteExisting
-            overworldBitmap = AnimatedBitmap.new("Graphics/Characters/Followers/" + speciesForm)
+            overworldBitmap = AnimatedBitmap.new("Graphics/Characters/Followers/" + speciesForm.to_s)
             copiedOverworldBitmap = overworldBitmap.copy
             bossifiedOverworld = bossify(copiedOverworldBitmap.bitmap, overworldMult)
             bossifiedOverworld.to_file(filePath)
@@ -226,16 +226,16 @@ def createBossGraphics(speciesForm, overworldMult = 1.5, battleMult = 1.5, overw
             "Graphics/Pokemon/Front/" => ".png",
             "Graphics/Pokemon/Back/" => "_back.png",
         }.each do |folder, suffix|
-            avatarData = GameData::Avatar.get_from_species_form(speciesForm)
+            avatarData = GameData::Avatar.get_from_species_form(speciesForm.to_sym)
 
             avatarData.getListOfPhaseTypes.each_with_index do |type, index|
-                filePath = battlePath + speciesForm
+                filePath = battlePath + speciesForm.to_s
                 filePath += "_" + type.to_s.downcase if type
                 filePath += suffix
                 existingFile = pbResolveBitmap(filePath)
 
                 next unless existingFile.nil? || overwriteExisting
-                battlebitmap = AnimatedBitmap.new(folder + speciesForm)
+                battlebitmap = AnimatedBitmap.new(folder + speciesForm.to_s)
                 copiedBattleBitmap = battlebitmap.copy
                 bossifiedBattle = bossify(copiedBattleBitmap.bitmap, battleMult, type, index)
                 bossifiedBattle.to_file(filePath)
