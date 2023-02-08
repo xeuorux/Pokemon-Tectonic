@@ -2150,6 +2150,7 @@ Pokemon = POLTEAGEIST,43
 Pokemon = BIBAREL,44
     AbilityIndex = 0
     Item = NORMALGEM
+	Moves = YAWN,SWORDSDANCE,HYPERFANG,WATERFALL
 #-------------------------------
 [SWIMMER_F5,Shreya]
 Pokemon = QWILFISH,43
