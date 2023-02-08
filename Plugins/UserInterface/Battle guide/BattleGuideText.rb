@@ -102,7 +102,7 @@ STATUS_CONDITIONS_HASH = {
     _INTL("Poison") => _INTL("When poisoned, a Pokémon loses 1/8th HP every turn--doubling every 3 turns until swapped. Poison- and Grass-types do the most poisoning. Poison/Steel are immune."),
     _INTL("Numb") => _INTL("When numbed, a Pokémon's Speed is halved, and it deals 25% less damage. Electric- and Fighting-types do the most numbing. Electric is immune."),
     _INTL("Dizzy") => _INTL("When dizzied, a Pokemon takes 25% more attack damage, and its ability doesn't function. Psychic- and Fairy-types do the most dizzying. Psychic is immune."),
-    _INTL("Leeched") => _INTL("When leeched, it loses 1/8th HP every turn, and each opponent gains that health. Bug- and Dark-types do the most dizzying. Grass is immune."),
+    _INTL("Leeched") => _INTL("When leeched, it loses 1/8th HP every turn, and each opponent gains that health. Bug- and Dark-types do the most leeching. Grass is immune."),
     _INTL("Sleep") => _INTL("A rarer status that causes a Pokémon to be unable to do anything for 3 turns. Psychic- and Grass-types put Pokémon to sleep the most often."),
 }
 
