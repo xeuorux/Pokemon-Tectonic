@@ -683,8 +683,8 @@ HPMult = 6.0
 #-------------------------------
 [RAPIDASH]
 Ability = HARSH
-Moves1 = IGNITE,FLAMECHARGE,PRIMEVALLEECHSEED
-Moves2 = HORNDRAIN
+Moves1 = IGNITE,FIRELASH,PRIMEVALLEECHSEED
+Moves2 = HORNDRAIN,BLAZEKICK
 HPMult = 6.0
 #-------------------------------
 [KINGDRA]
