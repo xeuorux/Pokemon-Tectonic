@@ -460,11 +460,9 @@ class PokeBattle_Battle
         end
 
         # Proudfire and similar abilities
-        if @turnCount > 0
-            eachOtherSideBattler(battler.index) do |enemy|
-                if enemy.abilityActive?
-                    BattleHandlers.triggerAbilityOnEnemySwitchIn(enemy.ability, battler, enemy, self)
-                end
+        eachOtherSideBattler(battler.index) do |enemy|
+            if enemy.abilityActive?
+                BattleHandlers.triggerAbilityOnEnemySwitchIn(enemy.ability, battler, enemy, self)
             end
         end
 
