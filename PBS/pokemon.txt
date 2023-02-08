@@ -11372,7 +11372,7 @@ BattlerEnemyX = 0
 BattlerEnemyY = 26
 BattlerShadowX = 0
 BattlerShadowSize = 1
-Evolutions = WHISCASH,Level,50
+Evolutions = WHISCASH,Level,34
 #-------------------------------
 [340]
 Name = Whiscash
@@ -11380,8 +11380,8 @@ InternalName = WHISCASH
 Type1 = WATER
 Type2 = GROUND
 # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
-BaseStats = 110,100,85,80,95,105
-# Total = 575
+BaseStats = 105,95,80,75,90,100
+# Total = 545
 GenderRate = Female50Percent
 GrowthRate = Medium
 BaseEXP = 164
@@ -14049,6 +14049,7 @@ BattlerShadowSize = 2
 Name = Cherubi
 InternalName = CHERUBI
 Type1 = GRASS
+Type2 = FIRE
 # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
 BaseStats = 50,45,50,75,65,65
 # Total = 350
@@ -14084,6 +14085,7 @@ Evolutions = CHERRIM,Level,25
 Name = Cherrim
 InternalName = CHERRIM
 Type1 = GRASS
+Type2 = FIRE
 # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
 BaseStats = 85,60,70,100,95,90
 # Total = 500
