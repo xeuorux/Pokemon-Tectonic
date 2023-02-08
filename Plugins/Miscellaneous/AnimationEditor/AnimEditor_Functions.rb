@@ -989,7 +989,9 @@ def pbCellBatch(canvas)
   cancelbutton=sliderwin2.addButton(_INTL("Cancel"))
 
   # Set up the preview sprite
-  cel=canvas.animation[canvas.currentframe][-2].clone
+  baseCel = canvas.currentCel || canvas.animation[canvas.currentframe][-2] ||
+    canvas.animation[canvas.currentframe].first
+  cel = baseCel.clone
   previewwiny = 320
   previewwin=ControlWindow.new(96,previewwiny,192,192)
   previewwin.viewport=canvas.viewport
