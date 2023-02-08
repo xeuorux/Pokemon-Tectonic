@@ -346,7 +346,7 @@
 347,STORMBRINGER,Stormbringer,"Summons rain for 4 turns when hit by an attack."
 348,ELECTRICFENCE,Electric Fence,"Inflicts 1/6th max HP damage to the foe when damaged on Electric Terrain."
 349,HONORAURA,Honor Aura,"Lowers priority of status moves used by any Pokémon."
-350,GARGANTUAN,Gargantuan,"Completely protects allies from multi-target moves."
+350,GARGANTUAN,Gargantuan,"Completely protects allies from foes' multi-target moves."
 351,RUINOUS,Ruinous,"All Pokémon deal 20% more move damage."
 352,FORTIFIED,Fortified,"Take 20% less damage from attacks on turns when it hasn't moved yet."
 353,SCAVENGE,Scavenge,"The user takes items used up by opponents."
