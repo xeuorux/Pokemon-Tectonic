@@ -9879,8 +9879,8 @@ Name = Makuhita
 InternalName = MAKUHITA
 Type1 = FIGHTING
 # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
-BaseStats = 70,65,50,40,40,50
-# Total = 315
+BaseStats = 95,80,60,35,50,70
+# Total = 390
 GenderRate = Female25Percent
 GrowthRate = Fluctuating
 BaseEXP = 47
@@ -9907,14 +9907,14 @@ BattlerEnemyX = 0
 BattlerEnemyY = 19
 BattlerShadowX = 0
 BattlerShadowSize = 2
-Evolutions = HARIYAMA,Level,26
+Evolutions = HARIYAMA,Level,39
 #-------------------------------
 [297]
 Name = Hariyama
 InternalName = HARIYAMA
 Type1 = FIGHTING
 # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
-BaseStats = 130,110,70,50,80,70
+BaseStats = 140,120,85,50,70,100
 # Total = 510
 GenderRate = Female25Percent
 GrowthRate = Fluctuating
