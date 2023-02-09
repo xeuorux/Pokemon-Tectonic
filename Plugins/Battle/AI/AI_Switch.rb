@@ -324,7 +324,7 @@ class PokeBattle_AI
     def rateMatchupAgainstFoes(battlerSlot, pokemon, partyIndex)
         matchups = []
         battlerSlot.eachOpposing do |opposingBattler|
-            matchup = rateMatchup(battlerSlot, pokemon, pokemon, getRoughAttackingTypes(opposingBattler))
+            matchup = rateMatchup(battlerSlot, pokemon, partyIndex, getRoughAttackingTypes(opposingBattler))
             matchups.push(matchup)
         end
         if matchups.empty?
