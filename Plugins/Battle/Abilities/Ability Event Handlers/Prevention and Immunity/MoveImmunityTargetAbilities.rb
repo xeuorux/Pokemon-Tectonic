@@ -177,10 +177,12 @@ BattleHandlers::MoveImmunityTargetAbility.add(:FLASHFIRE,
       next false if user.index == target.index
       next false if type != :FIRE
       battle.pbShowAbilitySplash(target) if showMessages
-      if !target.effectActive?(:FlashFire)
-          target.applyEffect(:FlashFire)
-      elsif showMessages
-          battle.pbDisplay(_INTL("It doesn't affect {1}...", target.pbThis(true)))
+      unless aiChecking
+        if !target.effectActive?(:FlashFire)
+            target.applyEffect(:FlashFire)
+        elsif showMessages
+            battle.pbDisplay(_INTL("It doesn't affect {1}...", target.pbThis(true)))
+        end
       end
       battle.pbHideAbilitySplash(target)
       next true
