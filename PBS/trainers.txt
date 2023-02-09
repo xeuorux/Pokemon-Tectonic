@@ -1219,6 +1219,7 @@ Pokemon = MZANGOOSE,60
     Item = ASSAULTVEST
 #-------------------------------
 [ULTRALAINIE,Lainie]
+Policies = LAINIE
 Pokemon = SOLGALEO,65
     Moves = SUNSTEELSTRIKE,FLAREBLITZ,MORNINGSUN,PSYCHICFANGS
     AbilityIndex = 0
