@@ -501,7 +501,7 @@
 507,HEATVEIL,Heat Veil,"Doubled Sp. Def in Sun."
 508,CHRONICCOLD,Chronic Cold,"Physical moves have a 30% chance to frostbite targets."
 509,TIMESTRETCH,Time Stretch,"Between each turn there's another turn where no one moves."
-510,FRIENDTOALL,FRIENDTOALL,"Counts as every tribe."
+510,FRIENDTOALL,Friend to All,"Counts as every tribe."
 511,RATTLEEM,Rattle 'Em,"Moves that can flinch are 50% more likely. Deals 50% more damage to Pokemon with flinch immunity."
 512,TERRORIZE,Terrorize,"Moves that can flinch are twice as likely to do so."
 550,PERSISTENTGROWTH,Persistent Growth,"At the end of each of its turns, Speed is lowered but every other stat is raised."
