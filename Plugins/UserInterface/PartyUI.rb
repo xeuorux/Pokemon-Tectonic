@@ -340,10 +340,6 @@ class PokemonPartyScreen
       elsif cmdPokedex >=0 && command == cmdPokedex
         openSingleDexScreen(pkmn)
       elsif cmdSendPC >= 0 && command == cmdSendPC
-        if !canEditTeam
-          showNoTeamEditingMessage()
-          next
-        end
         if $Trainer.able_pokemon_count == 1 && pkmn.able?
           pbDisplay(_INTL("You can't send back your only able Pokémon!"))
         elsif pbConfirm(_INTL("Are you sure you'd like to send back #{pkmn.name}?"))
