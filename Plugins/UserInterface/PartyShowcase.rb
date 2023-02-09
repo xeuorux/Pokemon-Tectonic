@@ -34,6 +34,10 @@ class PokemonPartyShowcase_Scene
         end
         drawFormattedTextEx(@overlay, 8, Graphics.height - 20, Graphics.width, fullDescription, BASE_COLOR, SHADOW_COLOR)
 
+        # Show player name
+        playerName = "<ar>#{$Trainer.name}</ar>"
+        drawFormattedTextEx(@overlay, Graphics.width - 168, Graphics.height - 20, 160, playerName, BASE_COLOR, SHADOW_COLOR)
+
         pbFadeInAndShow(@sprites) { pbUpdate }
 
         pbScreenCapture(snapShotName) if snapshot
@@ -65,13 +69,24 @@ class PokemonPartyShowcase_Scene
         drawTextEx(@overlay, displayX + 14, displayY, 200, 1, nameAndLevel, BASE_COLOR, SHADOW_COLOR)
 
         # Display item icon
+        itemX = displayX + POKEMON_ICON_SIZE - 8
+        itemY = mainIconY + POKEMON_ICON_SIZE - 8
         if pokemon.item
-            itemX = displayX + POKEMON_ICON_SIZE - 8
-            itemY = mainIconY + POKEMON_ICON_SIZE - 8
             newItemIcon = ItemIconSprite.new(itemX,itemY,pokemon.item,@viewport)
             newItemIcon.zoom_x = 0.5
             newItemIcon.zoom_y = 0.5
             @sprites["item#{index}"] = newItemIcon
+        end
+
+        # Display gender
+        #genderX = displayX + 2
+        #genderY = itemY - 6
+        genderX = displayX + 196
+        genderY = displayY
+        if pokemon.male?
+            drawTextEx(@overlay, genderX, genderY, 80, 1, _INTL("♂"), Color.new(0,112,248), Color.new(120,184,232))
+        elsif pokemon.female?
+            drawTextEx(@overlay, genderX, genderY, 80, 1, _INTL("♀"), Color.new(232,32,16), Color.new(248,168,184))
         end
 
         # Display moves
@@ -89,7 +104,12 @@ class PokemonPartyShowcase_Scene
         styleHash = pokemon.ev
         styleValues = [styleHash[:HP],styleHash[:ATTACK],styleHash[:DEFENSE],styleHash[:SPECIAL_ATTACK],styleHash[:SPECIAL_DEFENSE],styleHash[:SPEED]]
         styleValues.each_with_index do |styleValue,styleIndex|
-            drawTextEx(@overlay, styleValueX, 4 + displayY + 16 * styleIndex, 80, 1, styleValue.to_s, BASE_COLOR, SHADOW_COLOR)
+            #styleOpacity = (0.5 + styleValue / 40.0) * 255
+            thisColor = BASE_COLOR.clone
+            thisColor.alpha = 120 if styleValue == 0
+            thisShadow = SHADOW_COLOR.clone
+            thisShadow.alpha = 120 if styleValue == 0
+            drawTextEx(@overlay, styleValueX, 2 + displayY + 18 * styleIndex, 80, 1, styleValue.to_s, thisColor, thisShadow)
         end
     end
 
