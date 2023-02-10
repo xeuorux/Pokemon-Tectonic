@@ -2149,9 +2149,9 @@ Pokemon = SALAZZLE,44
 Pokemon = POLTEAGEIST,43
     AbilityIndex = 0
 Pokemon = BIBAREL,44
+    Moves = YAWN,SWORDSDANCE,HYPERFANG,WATERFALL
     AbilityIndex = 0
     Item = NORMALGEM
-	Moves = YAWN,SWORDSDANCE,HYPERFANG,WATERFALL
 #-------------------------------
 [SWIMMER_F5,Shreya]
 Pokemon = QWILFISH,43

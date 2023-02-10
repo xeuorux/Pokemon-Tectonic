@@ -20,6 +20,7 @@ ShowArea = false
 Bicycle = false
 #-------------------------------
 [002]
+# MAP002
 Outdoor = true
 ShowArea = true
 Bicycle = false
@@ -382,7 +383,7 @@ MapSize = 3,111
 Environment = Forest
 #-------------------------------
 [055]
-# Eleig Delta
+# Lingering Delta
 Outdoor = true
 ShowArea = true
 Bicycle = true
@@ -1725,14 +1726,13 @@ ShowArea = false
 Bicycle = false
 #-------------------------------
 [326]
-# The Barrows
+# Carnation Graves
 Outdoor = false
 ShowArea = true
 Bicycle = true
 BattleBack = cave3
 #-------------------------------
 [327]
-# Royal Burial
 Outdoor = false
 ShowArea = true
 Bicycle = true

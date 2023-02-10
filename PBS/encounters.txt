@@ -201,7 +201,7 @@ LandTall,20
     25,SPRITZEE,16,19
     25,VENONAT,16,19
 #-------------------------------
-[055] # Eleig Delta
+[055] # Lingering Delta
 FloweryGrass,20
     25,BONSLY,15,18
     25,SHUPPET,15,18
@@ -815,7 +815,7 @@ Special
 Special
     1,WIMPOD,15
 #-------------------------------
-[326] # The Barrows
+[326] # Carnation Graves
 DarkCave,20
     25,CUBONE,17,20
     25,DUSKULL,17,20

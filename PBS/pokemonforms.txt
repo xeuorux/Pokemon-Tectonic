@@ -302,8 +302,6 @@ BattlerEnemyY = 27
 #-------------------------------
 [CHERRIM,1]
 FormName = Sun
-Type1 = GRASS
-Type2 = FIRE
 Color = Pink
 BattlerPlayerY = 29
 BattlerEnemyX = 1
