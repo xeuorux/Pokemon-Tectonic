@@ -117,7 +117,10 @@ def fadeSwitchOff(switchName = 'A')
 end
 
 def toggleSwitches(eventsArray,switchName="A")
+	mapid = $game_map.map_id
 	eventsArray.each do |eventID|
-		currentValue = $game_self_switches[[$game_map.map_id, eventID, switchName]]
+		currentValue = $game_self_switches[[mapid, eventID, switchName]]
+		$game_self_switches[[mapid, eventID, switchName]] = !currentValue
 	end
+	$MapFactory.getMap(mapid, false).need_refresh = true
 end

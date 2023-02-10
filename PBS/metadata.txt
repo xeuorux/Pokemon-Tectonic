@@ -20,10 +20,10 @@ ShowArea = false
 Bicycle = false
 #-------------------------------
 [002]
-# MAP002
-Outdoor = true
+# Sandstone System F2
+Outdoor = false
 ShowArea = true
-Bicycle = false
+Bicycle = true
 #-------------------------------
 [003]
 # Kilna Turf
@@ -107,6 +107,12 @@ MapPosition = 0,10,5
 BattleBack = forest
 MapSize = 1,111
 Environment = Forest
+#-------------------------------
+[012]
+# Chamber of Regieleki
+Outdoor = false
+ShowArea = false
+Bicycle = false
 #-------------------------------
 [013]
 # Svait Station
@@ -1096,7 +1102,7 @@ Environment = Grass
 TeleportBlocked = true
 #-------------------------------
 [183]
-# Circuit Cave
+# Sandstone System F1
 Outdoor = false
 ShowArea = true
 Bicycle = true
@@ -1276,7 +1282,7 @@ BattleBack = cave3
 Environment = Underwater
 #-------------------------------
 [219]
-# Crumbling Canyon
+# Crumbling Canyon F1
 Outdoor = false
 ShowArea = true
 Bicycle = true
@@ -1811,3 +1817,27 @@ Bicycle = false
 Outdoor = false
 ShowArea = true
 Bicycle = false
+#-------------------------------
+[353]
+# Crumbling Canyon F2
+Outdoor = false
+ShowArea = true
+Bicycle = true
+#-------------------------------
+[354]
+# Chamber of Regirock
+Outdoor = false
+ShowArea = false
+Bicycle = true
+#-------------------------------
+[355]
+# Chamber of Registeel
+Outdoor = false
+ShowArea = false
+Bicycle = true
+#-------------------------------
+[359]
+# Alloyed Thicket
+Outdoor = false
+ShowArea = true
+Bicycle = true
