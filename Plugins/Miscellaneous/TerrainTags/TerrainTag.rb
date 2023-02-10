@@ -2,6 +2,7 @@ module GameData
     class TerrainTag
       attr_reader :slows
       attr_reader :rock_climbable
+      attr_reader :push_direction
     
       def initialize(hash)
         @id                     = hash[:id]
@@ -23,8 +24,9 @@ module GameData
         @shows_reflections      = hash[:shows_reflections]      || false
         @must_walk              = hash[:must_walk]              || false
         @ignore_passability     = hash[:ignore_passability]     || false
-          @slows     			  = hash[:slows]     			  || false
-          @rock_climbable		  = hash[:rock_climbable]		  || false
+        @slows     			        = hash[:slows]     			        || false
+        @rock_climbable		      = hash[:rock_climbable]		      || false
+        @push_direction         = hash[:push_direction]
       end
     end
   end

@@ -1,4 +1,4 @@
-# Auto-move the player over waterfalls and ice
+# Auto-move the player over waterfalls, pushing water, and ice
 Events.onStepTakenFieldMovement += proc { |_sender, e|
   event = e[0]   # Get the event affected by field movement
   if $scene.is_a?(Scene_Map)
@@ -11,6 +11,8 @@ Events.onStepTakenFieldMovement += proc { |_sender, e|
         if !$PokemonGlobal.sliding
           pbSlideOnIce
         end
+      elsif currentTag.push_direction
+        pbPushedByWater
       else
         $PokemonGlobal.sliding = false
         $game_player.walk_anime = true
@@ -19,8 +21,24 @@ Events.onStepTakenFieldMovement += proc { |_sender, e|
   end
 }
 
-def slideDownTerrainTag(terrain)
-  return terrain.waterfall || terrain.waterfall_crest || terrain.id == :SouthConveyor
+def pbPushedByWater
+  $game_player.move_generic($game_player.pbTerrainTag.push_direction)
+  return if $game_player.check_event_trigger_here([1,2])
+  terrain = $game_player.pbFacingTerrainTag
+  return unless terrain.push_direction
+  oldthrough   = $game_player.through
+  $game_player.through    = true
+  loop do
+    $game_player.move_generic($game_player.pbTerrainTag.push_direction)
+    break if $game_player.check_event_trigger_here([1,2])
+    terrain = $game_player.pbTerrainTag
+    break unless terrain.push_direction
+  end
+  $game_player.through    = oldthrough
+end
+
+def slideDownTerrainTag(terrainTagData)
+  return terrainTagData.waterfall || terrainTagData.waterfall_crest || terrainTagData.id == :SouthConveyor
 end
 
 def pbDescendWaterfall

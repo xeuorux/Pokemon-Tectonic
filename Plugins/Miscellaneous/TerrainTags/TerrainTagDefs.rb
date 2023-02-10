@@ -136,10 +136,42 @@ GameData::TerrainTag.register({
   :id                     => :ActiveWater,
   :id_number              => 33,
   :battle_environment     => :Water,
-  :can_surf               => true
+  :can_surf               => true,
 })
 
 GameData::TerrainTag.register({
   :id                     => :DarkCloud,
   :id_number              => 34,
+})
+
+GameData::TerrainTag.register({
+  :id                     => :NorthWater,
+  :id_number              => 35,
+  :push_direction         => Up,
+  :battle_environment     => :Water,
+  :can_surf               => true,
+})
+
+GameData::TerrainTag.register({
+  :id                     => :SouthWater,
+  :id_number              => 36,
+  :push_direction         => Down,
+  :battle_environment     => :Water,
+  :can_surf               => true,
+})
+
+GameData::TerrainTag.register({
+  :id                     => :EastWater,
+  :id_number              => 37,
+  :push_direction         => Right,
+  :battle_environment     => :Water,
+  :can_surf               => true,
+})
+
+GameData::TerrainTag.register({
+  :id                     => :WestWater,
+  :id_number              => 38,
+  :push_direction         => Left,
+  :battle_environment     => :Water,
+  :can_surf               => true,
 })
