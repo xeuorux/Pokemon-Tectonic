@@ -748,7 +748,7 @@
 779,CRYSTALCRUSH,Crystal Crush,403,90,ICE,Physical,100,12,10,NearOther,0,abef,"Crushes the target with big chunk of ice. This has a 10% chance to frostbite.",ICEHAMMER
 780,VITALFORCE,Vital Force,08B,100,FIGHTING,Special,100,5,0,AllNearFoes,0,bef,"The user unleashes a vital energy wave. The lower the user's HP, the less powerful it becomes.",FOCUSBLAST
 781,CHIFLUX,Chi Flux,04C,50,FIGHTING,Special,100,20,100,NearOther,0,abef,"The user contorts the target's chi with a special technique, lowering its Defense.",AURASPHERE
-782,REND,Rend,509,80,DRAGON,Physical,100,12,0,NearOther,0,abef,"The user shreds through the opponent's defenses, ignoring positive stat changes and abilities.",DRAGONRUSH
+782,REND,Rend,509,80,DRAGON,Physical,100,12,0,NearOther,0,abef,"The user shreds through the opponent's defenses, ignoring positive stat changes and abilities.",
 783,CRIPPLINGBREATH,Crippling Breath,50A,70,DRAGON,Special,100,15,50,NearOther,0,bef,"Exhales magical fumes with a 50% chance to burn or frostbite the target depending on their stats.",DRAGONBREATH
 784,TORNADO,Tornado,00F,80,DRAGON,Special,100,12,30,AllNearFoes,0,beq,"The user whips up a tornado to tear at the enemy team. It has a 30% chance to make them flinch.",TWISTER
 785,HARSHVOICE,Harsh Voice,00F,40,DARK,Special,100,20,30,NearOther,0,bek,"The target is confronted with painful words. It has a 30% chance to make the target flinch.",
@@ -999,7 +999,7 @@
 1039,CULL,Cull,58F,40,DARK,Special,100,10,0,NearOther,0,bef,"The user tries to pick off a weak target. After damage, if the target is below 1/4 HP, they instantly faint.",NIGHTSLASH
 1040,TRIPLETHREAT,Triple Threat,017,80,DRAGON,Special,100,10,60,NearOther,0,bef,"The user strikes with a simultaneous three-beam attack. It has a 20% chance each to numb, burn, or frostbite.",TRIATTACK
 1041,ERODINGFOAM,Eroding Foam,590,80,WATER,Special,100,20,100,NearOther,0,bef,"The user spews alkaline bubbles that melt the target, drastically lowering their Defense.",BUBBLEBEAM
-1042,COCODROP,Coco Drop,591,1,GRASS,Physical,100,12,0,NearOther,0,abef,"The user drops a head from high up. The taller the user compared to the target, the greater the damage.",SEEDBOMB
+1042,COCODROP,Coco Drop,591,1,GRASS,Physical,100,12,0,NearOther,0,abef,"The user drops a head from high up. The taller the user compared to the target, the greater the damage.",
 1043,LIGHTNINGSPEAR,Lightning Spear,592,90,ELECTRIC,Special,100,12,0,NearOther,0,bef,"Shoots a damaging spear at enemies, or a sharply Speed-increasing electric charge at allies.",THUNDERBOLT
 1044,TARVOLLEY,Tar Volley,592,35,FIRE,Special,100,10,100,AllNearFoes,0,bef,"The user attacks twice with tar globs. If two targets, the hits spread. Reduces targets' Speed.",SMOKESCREEN
 1045,WAXINGWATER,Waxing Water,100,50,WATER,Special,0,10,0,NearFoe,0,bef,"Strikes the target with lunar tides, then summons rain for five turns.",SURF
