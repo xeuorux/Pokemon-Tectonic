@@ -192,7 +192,7 @@
 194,MATBLOCK,Mat Block,149,0,FIGHTING,Status,0,3,0,UserSide,0,d,"The user protects itself and allies from damaging moves. It only works the first turn the user is in battle.",
 195,QUICKGUARD,Quick Guard,0AB,0,FIGHTING,Status,0,12,0,UserSide,3,d,"The user protects itself and its allies from priority moves. It always fails if it is used in succession.",
 196,OCTOLOCK,Octolock,181,0,FIGHTING,Status,100,12,0,NearOther,0,be,"Locks the target in and prevents fleeing. Lowers target's Defense and Sp. Def every turn.",
-197,METEORASSAULT,Meteor Assault,0C2,170,FIGHTING,Physical,100,5,0,NearOther,0,bef,"Attacks wildly with its thick leek. The user can't move on the next turn.",
+197,METEORASSAULT,Meteor Assault,0C2,170,FIGHTING,Physical,100,5,0,NearOther,0,bef,"Attacks wildly with swords or fists. The user can't move on the next turn.",
 198,NORETREAT,No Retreat,17F,0,FIGHTING,Status,0,5,0,User,3,d,"This move raises all the user's stats but prevents the user from switching out or fleeing.",
 199,COACHING,Coaching,18E,0,FIGHTING,Status,0,10,0,NearAlly,0,,"The user properly coaches its ally Pokémon, boosting their Attack and Defense stats.",
 200,BODYPRESS,Body Press,177,80,FIGHTING,Physical,100,10,0,NearOther,0,abef,"The user slams into the opponent, dealing damage based on the user's Defense stat.",
