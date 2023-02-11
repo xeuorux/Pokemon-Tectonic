@@ -60,6 +60,12 @@ BattleHandlers::MoveImmunityTargetAbility.add(:STORMDRAIN,
   }
 )
 
+BattleHandlers::MoveImmunityTargetAbility.add(:FILTHYRAT,
+  proc { |_ability, user, target, move, type, battle, showMessages, aiChecking|
+      next pbBattleMoveImmunityStatAbility(user, target, move, type, :POISON, :ATTACK, 1, battle, showMessages, aiChecking)
+  }
+)
+
 # pbBattleMoveImmunityHealAbility
 
 BattleHandlers::MoveImmunityTargetAbility.add(:HEARTLESS,

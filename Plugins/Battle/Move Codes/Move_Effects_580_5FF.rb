@@ -1038,3 +1038,17 @@ class PokeBattle_Move_5B4 < PokeBattle_Move_0E0
         return baseDmg
     end
 end
+
+#===============================================================================
+# Halves the target's current HP. (Mouthful)
+# User gains half the HP it inflicts as damage.
+#===============================================================================
+class PokeBattle_Move_5B5 < PokeBattle_DrainMove
+    def drainFactor(_user, _target); return 0.5; end
+
+    def pbFixedDamage(_user, target)
+        damage = target.hp / 2.0
+        damage /= BOSS_HP_BASED_EFFECT_RESISTANCE if target.boss?
+        return damage.round
+    end
+end

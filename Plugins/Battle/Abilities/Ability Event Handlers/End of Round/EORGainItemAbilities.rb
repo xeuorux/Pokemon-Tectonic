@@ -40,3 +40,18 @@ BattleHandlers::EORGainItemAbility.add(:PICKUP,
       battler.pbHeldItemTriggerCheck
   }
 )
+
+BattleHandlers::EORGainItemAbility.add(:GOURMAND,
+    proc { |_ability, battler, battle|
+        next if battler.item
+        battle.pbShowAbilitySplash(battler)
+        battler.item =
+            %i[
+                ORANBERRY GANLONBERRY LANSATBERRY APICOTBERRY LIECHIBERRY
+                PETAYABERRY SALACBERRY STARFBERRY MICLEBERRY SITREONBERRY
+            ].sample
+        battle.pbDisplay(_INTL("{1} was delivered one {2}!", battler.pbThis, battler.itemName))
+        battle.pbHideAbilitySplash(battler)
+        battler.pbHeldItemTriggerCheck
+    }
+)
