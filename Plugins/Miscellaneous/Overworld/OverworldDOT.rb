@@ -5,6 +5,7 @@ Events.onStepTakenTransferPossible += proc { |_sender,e|
     flashed = false
 	  frontOfParty = $Trainer.first_able_pokemon
     $Trainer.able_party.each_with_index do |pokemon,index|
+      next if pokemon.hasAbility?(:MAGICGUARD)
       if pokemon.status == :BURN && !pokemon.hasAbility?(:BURNHEAL)
         if !flashed
 		      pbFlash(Color.new(255, 119, 0, 128), 4)
