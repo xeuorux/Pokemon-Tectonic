@@ -271,6 +271,14 @@ class PokeBattle_Battle
         return nil
     end
 
+    def pbCheckSameSideAbility(abil, idxBattler = 0, nearOnly = false)
+        eachSameSideBattler(idxBattler) do |b|
+            next if nearOnly && !b.near?(idxBattler)
+            return b if b.hasActiveAbility?(abil)
+        end
+        return nil
+    end
+
     def pbCheckOpposingAbility(abil, idxBattler = 0, nearOnly = false)
         eachOtherSideBattler(idxBattler) do |b|
             next if nearOnly && !b.near?(idxBattler)

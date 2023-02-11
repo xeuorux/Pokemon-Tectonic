@@ -356,6 +356,23 @@ true)
         return ret
     end
 
+    def blockAteAbilities(user)
+        if hasActiveAbility?(:INNERFOCUS)
+            @battle.pbShowAbilitySplash(self, true)
+            @battle.pbDisplay(_INTL("{1}'s {2} prevented {3}'s {4} from working!",
+                    pbThis, abilityName, user.pbThis(true), user.abilityName))
+            @battle.pbHideAbilitySplash(self)
+            return true
+        elsif @battle.pbCheckSameSideAbility(:HEARTENINGAROMA, @index)
+            aromaHolder = @battle.pbCheckSameSideAbility(:HEARTENINGAROMA, @index)
+            @battle.pbShowAbilitySplash(aromaHolder, true)
+            @battle.pbDisplay(_INTL("{1}'s {2} prevented {3}'s {4} from working!",
+                aromaHolder.pbThis, aromaHolder.abilityName, user.pbThis(true), user.abilityName))
+            @battle.pbHideAbilitySplash(aromaHolder)
+        end
+        return false
+    end
+
     def pbLowerAttackStatStageIntimidate(user)
         return false if fainted?
         # NOTE: Substitute intentially blocks Intimidate even if self has Contrary.
@@ -363,42 +380,8 @@ true)
             @battle.pbDisplay(_INTL("{1} is protected by its substitute!", pbThis))
             return false
         end
-        if hasActiveAbility?(:INNERFOCUS)
-            @battle.pbShowAbilitySplash(self, true)
-            @battle.pbDisplay(_INTL("{1}'s {2} prevented {3}'s {4} from working!",
-                    pbThis, abilityName, user.pbThis(true), user.abilityName))
-            @battle.pbHideAbilitySplash(self)
-            return false
-        end
+        return false if blockAteAbilities(user)
         return pbLowerStatStageByAbility(:ATTACK, 1, user, false)
-        # NOTE: These checks exist to ensure appropriate messages are shown if
-        #       Intimidate is blocked somehow (i.e. the messages should mention the
-        #       Intimidate ability by name).
-        unless hasActiveAbility?(:CONTRARY)
-            if pbOwnSide.effectActive?(:Mist)
-                @battle.pbDisplay(_INTL("{1} is protected from {2}'s {3} by Mist!", pbThis, user.pbThis(true),
-user.abilityName))
-                return false
-            end
-            if abilityActive? && (BattleHandlers.triggerStatLossImmunityAbility(ability, self, :ATTACK, @battle,
-false) ||
-                        BattleHandlers.triggerStatLossImmunityAbilityNonIgnorable(ability, self, :ATTACK, @battle,
-false))
-                @battle.pbDisplay(_INTL("{1}'s {2} prevented {3}'s {4} from working!", pbThis, abilityName, user.pbThis(true),
-user.abilityName))
-                return false
-            end
-            eachAlly do |b|
-                next unless b.abilityActive?
-                if BattleHandlers.triggerStatLossImmunityAllyAbility(b.ability, b, self, :ATTACK, @battle,	false)
-                    @battle.pbDisplay(_INTL("{1} is protected from {2}'s {3} by {4}'s {5}!",	pbThis, user.pbThis(true),
-user.abilityName, b.pbThis(true), b.abilityName))
-                    return false
-                end
-            end
-        end
-        return false unless pbCanLowerStatStage?(:ATTACK, user)
-        return pbLowerStatStageByCause(:ATTACK, 1, user, user.abilityName)
     end
 
     def pbLowerSpecialAttackStatStageFascinate(user)
@@ -408,43 +391,8 @@ user.abilityName, b.pbThis(true), b.abilityName))
             @battle.pbDisplay(_INTL("{1} is protected by its substitute!", pbThis))
             return false
         end
-        if hasActiveAbility?(:INNERFOCUS)
-            @battle.pbShowAbilitySplash(self, true)
-            @battle.pbDisplay(_INTL("{1}'s {2} prevented {3}'s {4} from working!",
-                    pbThis, abilityName, user.pbThis(true), user.abilityName))
-            @battle.pbHideAbilitySplash(self)
-            return false
-        end
+        return false if blockAteAbilities(user)
         return pbLowerStatStageByAbility(:SPECIAL_ATTACK, 1, user, false)
-        # NOTE: These checks exist to ensure appropriate messages are shown if
-        #       Intimidate is blocked somehow (i.e. the messages should mention the
-        #       Intimidate ability by name).
-        unless hasActiveAbility?(:CONTRARY)
-            if pbOwnSide.effectActive?(:Mist)
-                @battle.pbDisplay(_INTL("{1} is protected from {2}'s {3} by Mist!", pbThis, user.pbThis(true),
-user.abilityName))
-                return false
-            end
-            if abilityActive? && (BattleHandlers.triggerStatLossImmunityAbility(ability, self, :SPECIAL_ATTACK,
-@battle, false) ||
-                        BattleHandlers.triggerStatLossImmunityAbilityNonIgnorable(ability, self, :SPECIAL_ATTACK,
-@battle, false))
-                @battle.pbDisplay(_INTL("{1}'s {2} prevented {3}'s {4} from working!", pbThis, abilityName, user.pbThis(true),
-user.abilityName))
-                return false
-            end
-            eachAlly do |b|
-                next unless b.abilityActive?
-                if BattleHandlers.triggerStatLossImmunityAllyAbility(b.ability, b, self, :SPECIAL_ATTACK,	@battle,
-false)
-                    @battle.pbDisplay(_INTL("{1} is protected from {2}'s {3} by {4}'s {5}!",	pbThis, user.pbThis(true),
-user.abilityName, b.pbThis(true), b.abilityName))
-                    return false
-                end
-            end
-        end
-        return false unless pbCanLowerStatStage?(:SPECIAL_ATTACK, user)
-        return pbLowerStatStageByCause(:SPECIAL_ATTACK, 1, user, user.abilityName)
     end
 
     def pbLowerSpeedStatStageFrustrate(user)
@@ -454,42 +402,8 @@ user.abilityName, b.pbThis(true), b.abilityName))
             @battle.pbDisplay(_INTL("{1} is protected by its substitute!", pbThis))
             return false
         end
-        if hasActiveAbility?(:INNERFOCUS)
-            @battle.pbShowAbilitySplash(self, true)
-            @battle.pbDisplay(_INTL("{1}'s {2} prevented {3}'s {4} from working!",
-                    pbThis, abilityName, user.pbThis(true), user.abilityName))
-            @battle.pbHideAbilitySplash(self)
-            return false
-        end
+        return false if blockAteAbilities(user)
         return pbLowerStatStageByAbility(:SPEED, 1, user, false)
-        # NOTE: These checks exist to ensure appropriate messages are shown if
-        #       Intimidate is blocked somehow (i.e. the messages should mention the
-        #       Intimidate ability by name).
-        unless hasActiveAbility?(:CONTRARY)
-            if pbOwnSide.effectActive?(:Mist)
-                @battle.pbDisplay(_INTL("{1} is protected from {2}'s {3} by Mist!", pbThis, user.pbThis(true),
-user.abilityName))
-                return false
-            end
-            if abilityActive? && (BattleHandlers.triggerStatLossImmunityAbility(ability, self, :SPEED, @battle,
-false) ||
-                        BattleHandlers.triggerStatLossImmunityAbilityNonIgnorable(ability, self, :SPEED, @battle,
-false))
-                @battle.pbDisplay(_INTL("{1}'s {2} prevented {3}'s {4} from working!", pbThis, abilityName, user.pbThis(true),
-user.abilityName))
-                return false
-            end
-            eachAlly do |b|
-                next unless b.abilityActive?
-                if BattleHandlers.triggerStatLossImmunityAllyAbility(b.ability, b, self, :SPEED, @battle,	false)
-                    @battle.pbDisplay(_INTL("{1} is protected from {2}'s {3} by {4}'s {5}!",	pbThis, user.pbThis(true),
-user.abilityName, b.pbThis(true), b.abilityName))
-                    return false
-                end
-            end
-        end
-        return false unless pbCanLowerStatStage?(:SPEED, user)
-        return pbLowerStatStageByCause(:SPEED, 1, user, user.abilityName)
     end
 
     def pbMinimizeStatStage(stat, user = nil, move = nil, ignoreContrary = false, showAbilitySplash = false)
