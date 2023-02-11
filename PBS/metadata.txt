@@ -1739,6 +1739,7 @@ Bicycle = true
 BattleBack = cave3
 #-------------------------------
 [327]
+# Chamber of Regidrago
 Outdoor = false
 ShowArea = true
 Bicycle = true
