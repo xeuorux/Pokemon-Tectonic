@@ -54,25 +54,7 @@ def pbSelectAnim(canvas,animwin)
       animwin.animbitmap=bitmap
       break
     end
-    if Input.trigger?(Input::SPECIAL)
-      text = pbEnterText("Enter selection.",0,20).downcase
-      if text.blank?
-          next
-      end
-      newIndex = -1
-      cmdwin.commands.each_with_index { |command, i|
-          next if i == cmdwin.index
-          if command.downcase.include?(text)
-              newIndex = i
-              break
-          end
-      }
-      if newIndex < 0
-          pbMessage(_INTL("Could not find a command entry matching that input."))
-      else
-          cmdwin.index = newIndex
-      end
-    end
+    searchListWindow(cmdwin) if Input.trigger?(Input::SPECIAL)
     if Input.trigger?(Input::BACK)
       break
     end
@@ -190,25 +172,7 @@ def pbAnimList(animations,canvas,animwin)
         end
       end
     end
-    if Input.trigger?(Input::SPECIAL)
-      text = pbEnterText("Enter selection.",0,20).downcase
-      if text.blank?
-          next
-      end
-      newIndex = -1
-      cmdwin.commands.each_with_index { |command, i|
-          next if i == cmdwin.index
-          if command.downcase.include?(text)
-              newIndex = i
-              break
-          end
-      }
-      if newIndex < 0
-          pbMessage(_INTL("Could not find a command entry matching that input."))
-      else
-          cmdwin.index = newIndex
-      end
-    end
+    searchListWindow(cmdwin) if Input.trigger?(Input::SPECIAL)
     if Input.trigger?(Input::BACK)
       break
     end
@@ -632,6 +596,7 @@ def pbSelectSE(canvas,audio)
     if maxsizewindow.changed?(6) # Cancel
       break
     end
+    searchListWindow(cmdwin) if Input.trigger?(Input::SPECIAL)
     if Input.trigger?(Input::USE) && animfiles.length>0
       filename=(cmdwin.index==0) ? "" : cmdwin.commands[cmdwin.index]
       displayname=(filename!="") ? filename : _INTL("<user's cry>")
@@ -695,6 +660,7 @@ def pbSelectBG(canvas,timing)
     if maxsizewindow.changed?(9) # Cancel
       break
     end
+    searchListWindow(cmdwin) if Input.trigger?(Input::SPECIAL)
     if Input.trigger?(Input::USE) && animfiles.length>0
       filename=(cmdwin.index==cmdErase) ? "" : cmdwin.commands[cmdwin.index]
       maxsizewindow.controls[0].text=_INTL("File: \"{1}\"",filename)
@@ -1355,4 +1321,23 @@ def pbAnimationEditor
   Graphics.resize_screen(Settings::SCREEN_WIDTH, Settings::SCREEN_HEIGHT)
   pbSetResizeFactor($PokemonSystem.screensize)
   $game_map.autoplay if $game_map
+end
+
+
+def searchListWindow(cmdwin)
+  text = pbEnterText("Enter selection.",0,30).downcase
+  return if text.blank?
+  newIndex = -1
+  cmdwin.commands.each_with_index { |command, i|
+      next if i == cmdwin.index
+      if command.downcase.include?(text)
+          newIndex = i
+          break
+      end
+  }
+  if newIndex < 0
+      pbMessage(_INTL("Could not find a command entry matching that input."))
+  else
+      cmdwin.index = newIndex
+  end
 end
