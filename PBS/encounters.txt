@@ -458,7 +458,7 @@ Special,1
 Special,1
     1,GFARFETCHD,40
 #-------------------------------
-[183] # Circuit Cave
+[183] # Sandstone System F1
 DarkCave,21
     25,ELEKID,38
     25,MINUN,38
@@ -647,7 +647,7 @@ DarkCave,20
     25,UNOWN,37,39
     25,WYNAUT,37,39
 #-------------------------------
-[219] # Crumbling Canyon
+[219] # Crumbling Canyon F1
 DarkCave,20
     20,AXEW,18,20
     20,EKANS,18,20

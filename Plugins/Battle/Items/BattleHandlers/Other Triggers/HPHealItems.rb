@@ -1,20 +1,9 @@
-BattleHandlers::HPHealItem.add(:AGUAVBERRY,
-    proc { |item, battler, battle, forced|
-        next pbBattleConfusionBerry(battler, battle, item, forced, 4,
-           _INTL("For {1}, the {2} was too bitter!", battler.pbThis(true), GameData::Item.get(item).name))
-    }
-)
-
-BattleHandlers::HPHealItem.add(:APICOTBERRY,
-  proc { |item, battler, battle, forced|
-      next pbBattleStatIncreasingBerry(battler, battle, item, forced, :SPECIAL_DEFENSE)
-  }
-)
-
 BattleHandlers::HPHealItem.add(:BERRYJUICE,
-  proc { |item, battler, battle, forced|
+  proc { |item, battler, battle, forced, filchedFrom|
       next false unless battler.canHeal?
       next false if !forced && battler.aboveHalfHealth?
+      battle.pbShowAbilitySplash(battler) if filchedFrom
+      battle.pbDisplay(_INTL("#{battler.pbThis} filched #{filchedFrom.pbThis(true)}'s #{item}!"))
       itemName = GameData::Item.get(item).name
       PBDebug.log("[Item triggered] Forced consuming of #{itemName}") if forced
       battle.pbCommonAnimation("UseItem", battler) unless forced
@@ -24,34 +13,48 @@ BattleHandlers::HPHealItem.add(:BERRYJUICE,
       else
           battle.pbDisplay(_INTL("{1} restored its health using its {2}!", battler.pbThis, itemName))
       end
+      battle.pbHideAbilitySplash(battler) if filchedFrom
       next true
   }
 )
 
-BattleHandlers::HPHealItem.add(:FIGYBERRY,
-  proc { |item, battler, battle, forced|
-      next pbBattleConfusionBerry(battler, battle, item, forced, 0,
-         _INTL("For {1}, the {2} was too spicy!", battler.pbThis(true), GameData::Item.get(item).name))
-  }
-)
 
 BattleHandlers::HPHealItem.add(:GANLONBERRY,
-  proc { |item, battler, battle, forced|
-      next pbBattleStatIncreasingBerry(battler, battle, item, forced, :DEFENSE)
+  proc { |item, battler, battle, forced, filchedFrom|
+      next pbBattleStatIncreasingBerry(battler, battle, item, forced, :DEFENSE, 1, true, filchedFrom)
   }
 )
 
-BattleHandlers::HPHealItem.add(:IAPAPABERRY,
-  proc { |item, battler, battle, forced|
-      next pbBattleConfusionBerry(battler, battle, item, forced, 1,
-         _INTL("For {1}, the {2} was too sour!", battler.pbThis(true), GameData::Item.get(item).name))
+BattleHandlers::HPHealItem.add(:APICOTBERRY,
+  proc { |item, battler, battle, forced, filchedFrom|
+      next pbBattleStatIncreasingBerry(battler, battle, item, forced, :SPECIAL_DEFENSE, 1, true, filchedFrom)
+  }
+)
+
+BattleHandlers::HPHealItem.add(:LIECHIBERRY,
+  proc { |item, battler, battle, forced, filchedFrom|
+      next pbBattleStatIncreasingBerry(battler, battle, item, forced, :ATTACK, 1, true, filchedFrom)
+  }
+)
+
+BattleHandlers::HPHealItem.add(:PETAYABERRY,
+  proc { |item, battler, battle, forced, filchedFrom|
+      next pbBattleStatIncreasingBerry(battler, battle, item, forced, :SPECIAL_ATTACK, 1, true, filchedFrom)
+  }
+)
+
+BattleHandlers::HPHealItem.add(:SALACBERRY,
+  proc { |item, battler, battle, forced, filchedFrom|
+      next pbBattleStatIncreasingBerry(battler, battle, item, forced, :SPEED, 1, true, filchedFrom)
   }
 )
 
 BattleHandlers::HPHealItem.add(:LANSATBERRY,
-  proc { |item, battler, battle, forced|
+  proc { |item, battler, battle, forced, filchedFrom|
       next false if !forced && !battler.canConsumePinchBerry?
       next false if battler.effectAtMax?(:FocusEnergy)
+      battle.pbShowAbilitySplash(battler) if filchedFrom
+      battle.pbDisplay(_INTL("#{battler.pbThis} filched #{filchedFrom.pbThis(true)}'s #{item}!"))
       battle.pbCommonAnimation("Nom", battler) unless forced
       battler.incrementEffect(:FocusEnergy, 2)
       itemName = GameData::Item.get(item).name
@@ -60,27 +63,17 @@ BattleHandlers::HPHealItem.add(:LANSATBERRY,
       else
           battle.pbDisplay(_INTL("{1} used its {2} to get pumped!", battler.pbThis, itemName))
       end
+      battle.pbHideAbilitySplash(battler) if filchedFrom
       next true
   }
 )
 
-BattleHandlers::HPHealItem.add(:LIECHIBERRY,
-  proc { |item, battler, battle, forced|
-      next pbBattleStatIncreasingBerry(battler, battle, item, forced, :ATTACK)
-  }
-)
-
-BattleHandlers::HPHealItem.add(:MAGOBERRY,
-  proc { |item, battler, battle, forced|
-      next pbBattleConfusionBerry(battler, battle, item, forced, 2,
-         _INTL("For {1}, the {2} was too sweet!", battler.pbThis(true), GameData::Item.get(item).name))
-  }
-)
-
 BattleHandlers::HPHealItem.add(:MICLEBERRY,
-  proc { |item, battler, battle, forced|
+  proc { |item, battler, battle, forced, filchedFrom|
       next false if !forced && !battler.canConsumePinchBerry?
       next false unless battler.effectActive?(:MicleBerry)
+      battle.pbShowAbilitySplash(battler) if filchedFrom
+      battle.pbDisplay(_INTL("#{battler.pbThis} filched #{filchedFrom.pbThis(true)}'s #{item}!"))
       battle.pbCommonAnimation("Nom", battler) unless forced
       battler.applyEffect(:MicleBerry)
       itemName = GameData::Item.get(item).name
@@ -91,55 +84,35 @@ BattleHandlers::HPHealItem.add(:MICLEBERRY,
           battle.pbDisplay(_INTL("{1} boosted the accuracy of its next move using its {2}!",
              battler.pbThis, itemName))
       end
+      attle.pbHideAbilitySplash(battler) if filchedFrom
       next true
   }
 )
 
 BattleHandlers::HPHealItem.add(:ORANBERRY,
-  proc { |item, battler, battle, forced|
+  proc { |item, battler, battle, forced, filchedFrom|
       next false unless battler.canHeal?
       next false if !forced && !battler.canConsumePinchBerry?(true)
-      battle.pbCommonAnimation("Nom", battler) unless forced
-      healFromBerry(battler, 1.0 / 3.0, item, forced)
+      healFromBerry(battler, 1.0 / 3.0, item, forced, filchedFrom)
       next true
   }
 )
 
-BattleHandlers::HPHealItem.add(:PETAYABERRY,
-  proc { |item, battler, battle, forced|
-      next pbBattleStatIncreasingBerry(battler, battle, item, forced, :SPECIAL_ATTACK)
-  }
-)
-
-BattleHandlers::HPHealItem.add(:SALACBERRY,
-  proc { |item, battler, battle, forced|
-      next pbBattleStatIncreasingBerry(battler, battle, item, forced, :SPEED)
-  }
-)
-
 BattleHandlers::HPHealItem.add(:SITRUSBERRY,
-  proc { |item, battler, battle, forced|
+  proc { |item, battler, battle, forced, filchedFrom|
       next false unless battler.canHeal?
       next false if !forced && !battler.canConsumePinchBerry?(false)
-      battle.pbCommonAnimation("Nom", battler) unless forced
-      healFromBerry(battler, 1.0 / 4.0, item, forced = false)
+      healFromBerry(battler, 1.0 / 4.0, item, forced, filchedFrom)
       next true
   }
 )
 
 BattleHandlers::HPHealItem.add(:STARFBERRY,
-  proc { |item, battler, battle, forced|
+  proc { |item, battler, battle, forced, filchedFrom|
       stats = []
       GameData::Stat.each_main_battle { |s| stats.push(s.id) if battler.pbCanRaiseStatStage?(s.id, battler) }
       next false if stats.length == 0
       stat = stats[battle.pbRandom(stats.length)]
-      next pbBattleStatIncreasingBerry(battler, battle, item, forced, stat, 2)
-  }
-)
-
-BattleHandlers::HPHealItem.add(:WIKIBERRY,
-  proc { |item, battler, battle, forced|
-      next pbBattleConfusionBerry(battler, battle, item, forced, 3,
-         _INTL("For {1}, the {2} was too dry!", battler.pbThis(true), GameData::Item.get(item).name))
+      next pbBattleStatIncreasingBerry(battler, battle, item, forced, stat, 2, true, filchedFrom)
   }
 )

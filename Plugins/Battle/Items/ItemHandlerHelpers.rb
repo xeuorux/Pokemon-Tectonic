@@ -1,27 +1,17 @@
-def healFromBerry(battler, ratio, item, forced = false)
+def healFromBerry(battler, ratio, item, forced = false, filchedFrom = nil)
+    battle.pbShowAbilitySplash(battler) if filchedFrom
+    battle.pbDisplay(_INTL("#{battler.pbThis} filched #{filchedFrom.pbThis(true)}'s #{item}!"))
+    battler.battle.pbCommonAnimation("Nom", battler) unless forced
     ratio *= 2.0 if battler.hasActiveAbility?(:RIPEN)
     itemToPass = forced ? nil : item
     battler.applyFractionalHealing(ratio, item: itemToPass)
 end
 
-def pbBattleConfusionBerry(battler, battle, item, forced, flavor, confuseMsg)
-    return false if !forced && !battler.canHeal?
-    return false if !forced && !battler.canConsumePinchBerry?(true)
-    battle.pbCommonAnimation("Nom", battler) unless forced
-    healFromBerry(battler, 1.0 / 3.0, item, forced)
-    flavor_stat = %i[ATTACK DEFENSE SPEED SPECIAL_ATTACK SPECIAL_DEFENSE][flavor]
-    battler.nature.stat_changes.each do |change|
-        next if change[1] > 0 || change[0] != flavor_stat
-        battle.pbDisplay(confuseMsg)
-        battler.pbConfuse if battler.pbCanConfuseSelf?(false)
-        break
-    end
-    return true
-end
-
-def pbBattleStatIncreasingBerry(battler, battle, item, forced, stat, increment = 1, checkGluttony = true)
+def pbBattleStatIncreasingBerry(battler, battle, item, forced, stat, increment = 1, checkGluttony = true, filchedFrom = nil)
     return false if !forced && !battler.canConsumePinchBerry?(checkGluttony)
     return false unless battler.pbCanRaiseStatStage?(stat, battler)
+    battle.pbShowAbilitySplash(battler) if filchedFrom
+    battle.pbDisplay(_INTL("#{battler.pbThis} filched #{filchedFrom.pbThis(true)}'s #{item}!"))
     itemName = GameData::Item.get(item).name
     increment *= 2 if battler.hasActiveAbility?(:RIPEN)
     if forced
@@ -29,7 +19,9 @@ def pbBattleStatIncreasingBerry(battler, battle, item, forced, stat, increment =
         return battler.pbRaiseStatStage(stat, increment, battler)
     end
     battle.pbCommonAnimation("Nom", battler)
-    return battler.pbRaiseStatStageByCause(stat, increment, battler, itemName)
+    result = battler.pbRaiseStatStageByCause(stat, increment, battler, itemName)
+    battle.pbHideAbilitySplash(battler) if filchedFrom
+    return result
 end
 
 def pbBattleTypeWeakingBerry(type, moveType, target, mults, feast = false)

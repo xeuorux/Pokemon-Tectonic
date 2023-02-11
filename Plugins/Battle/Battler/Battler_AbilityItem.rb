@@ -242,10 +242,28 @@ fling)
         end
     end
 
+    def getItemConsumer(itemID)
+        return self if !itemID
+        if GameData::Item.get(itemID).is_berry?
+            @battle.eachBattler { |b|
+                next if b.index == @index
+                next unless hasActiveAbility?(:GREEDYGUTS)
+                return b
+            }
+        end
+        return self
+    end
+
     def pbItemHPHealCheck(item_to_use = nil, fling = false)
         return if !item_to_use && !itemActive?
         itm = item_to_use || item
-        if BattleHandlers.triggerHPHealItem(itm, self, @battle, !item_to_use.nil?)
+        eater = self
+        filchedFrom = nil
+        unless item_to_use
+            eater = getItemConsumer(itm)
+            filchedFrom = self
+        end
+        if BattleHandlers.triggerHPHealItem(itm, eater, @battle, !item_to_use.nil?, filchedFrom)
             pbHeldItemTriggered(itm, item_to_use.nil?, fling)
         elsif !item_to_use
             pbItemTerrainStatBoostCheck
