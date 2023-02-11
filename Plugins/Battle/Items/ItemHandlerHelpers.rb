@@ -1,6 +1,6 @@
 def healFromBerry(battler, ratio, item, forced = false, filchedFrom = nil)
-    battle.pbShowAbilitySplash(battler) if filchedFrom
-    battle.pbDisplay(_INTL("#{battler.pbThis} filched #{filchedFrom.pbThis(true)}'s #{item}!"))
+    battler.battle.pbShowAbilitySplash(battler) if filchedFrom
+    battler.battle.pbDisplay(_INTL("#{battler.pbThis} filched #{filchedFrom.pbThis(true)}'s #{item}!"))
     battler.battle.pbCommonAnimation("Nom", battler) unless forced
     ratio *= 2.0 if battler.hasActiveAbility?(:RIPEN)
     itemToPass = forced ? nil : item
