@@ -15,3 +15,15 @@ MultipleForms.register(:GYARADOS, {
       next 0 if pkmn.form == 1 && (pkmn.fainted? || endBattle)
   },
 })
+
+MultipleForms.register(:PUMPKABOO, {
+  "getFormOnLeavingBattle" => proc { |pkmn, _battle, _usedInBattle, endBattle|
+      next 0 if pkmn.fainted? || endBattle
+  },
+})
+
+MultipleForms.register(:GOURGEIST, {
+  "getFormOnLeavingBattle" => proc { |pkmn, _battle, _usedInBattle, endBattle|
+      next 0 if pkmn.fainted? || endBattle
+  },
+})

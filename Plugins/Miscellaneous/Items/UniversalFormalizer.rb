@@ -3,7 +3,7 @@ ItemHandlers::UseOnPokemon.add(:UNIVERSALFORMALIZER,proc { |item,pkmn,scene|
 	if [:DEOXYS,:ORICORIO,:LYCANROC,:ROTOM,
 			:DARMANITAN,:GDARMANITAN,:BURMY,:WORMADAM,
 			:DEERLING,:SAWSBUCK,:TORNADUS,:THUNDURUS,:LANDORUS,
-			:PUMPKABOO,:GOURGEIST,:URSHIFU].include?(species)
+			:URSHIFU].include?(species)
 			possibleForms, possibleFormNames = getFormSelectionChoices(species,pkmn.form)
 			choice = scene.pbMessage("Which form shall the Pokemon take?",	possibleFormNames,possibleFormNames.length)
 			if choice < possibleForms.length
