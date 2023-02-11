@@ -785,13 +785,13 @@ BattlerEnemyY = 13
 #-------------------------------
 [PUMPKABOO,1]
 FormName = Average Size
-BaseStats = 49,44,70,51,66,55
+BaseStats = 77,56,63,77,70,63
 Pokedex = Spirits that wander this world are placed into Pumpkaboo's body. They're then moved on to the afterlife.
 BattlerEnemyY = 33
 #-------------------------------
 [PUMPKABOO,2]
 FormName = Large Size
-BaseStats = 54,44,70,46,66,55
+BaseStats = 77,63,70,63,77,70
 Height = 0.5
 Weight = 7.5
 Pokedex = When taking spirits to the afterlife, large Pumpkaboo prefer the spirits of adults to those of children.
@@ -800,7 +800,7 @@ BattlerEnemyY = 32
 #-------------------------------
 [PUMPKABOO,3]
 FormName = Super Size
-BaseStats = 59,44,70,41,66,55
+BaseStats = 77,70,77,49,84,77
 Height = 0.8
 Weight = 15.0
 Pokedex = Massive Pumpkaboo are said to be the product of areas where a great number of lost souls lingered.
@@ -812,13 +812,13 @@ BattlerEnemyY = 31
 #-------------------------------
 [GOURGEIST,1]
 FormName = Average Size
-BaseStats = 65,58,122,84,90,75
+BaseStats = 105,80,85,100,100,85
 Pokedex = Eerie cries emanate from its body in the dead of night. The sounds are said to be the wails of spirits who are suffering in the afterlife.
 BattlerEnemyY = 16
 #-------------------------------
 [GOURGEIST,2]
 FormName = Large Size
-BaseStats = 75,58,122,69,95,75
+BaseStats = 105,90,95,80,110,95
 Height = 1.1
 Weight = 14.0
 Pokedex = Large Gourgeist put on the guise of adults, taking the hands of children to lead them to the afterlife.
@@ -826,13 +826,10 @@ BattlerEnemyY = 14
 #-------------------------------
 [GOURGEIST,3]
 FormName = Super Size
-BaseStats = 85,58,122,54,105,75
+BaseStats = 105,100,105,60,120,105
 Height = 1.7
 Weight = 39.0
 Pokedex = Supersized Gourgeist aren't picky. They will forcefully drag anyone off to the afterlife.
-WildItemCommon = MIRACLESEED
-WildItemUncommon = MIRACLESEED
-WildItemRare = MIRACLESEED
 BattlerEnemyY = 12
 #-------------------------------
 [XERNEAS,1]

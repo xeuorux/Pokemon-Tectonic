@@ -123,6 +123,9 @@ class PokeBattle_Battler
             :SHIELDSDOWN,
             :STANCECHANGE,
             :ZENMODE,
+            :SEALORD,
+            :DUNEPREDATOR,
+            :GROWUP,
             # Appearance-changing abilities
             :ILLUSION,
             :IMPOSTER,

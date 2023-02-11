@@ -135,3 +135,18 @@ BattleHandlers::EOREffectAbility.add(:TENDERIZE,
       end
   }
 )
+
+BattleHandlers::EOREffectAbility.add(:GROWUP,
+  proc { |_ability, battler, _battle|
+      # A Pokémon's turnCount is 0 if it became active after the beginning of a
+      # round
+      next if battler.turnCount == 0
+      next unless %i[PUMPKABOO GOURGEIST].include?(user.species)
+      next if battler.form == 3
+      battle.pbShowAbilitySplash(user)
+      formChangeMessage = _INTL("#{user.pbThis} grows one size bigger!")
+      user.pbChangeForm(battler.form + 1, formChangeMessage, user.pbThis)
+      battle.pbDisplay(_INTL("#{user.pbThis} is fully grown!")) if battler.form == 3
+      battle.pbHideAbilitySplash(user)
+  }
+)
