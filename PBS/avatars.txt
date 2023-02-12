@@ -662,7 +662,7 @@ HPMult = 6.0
 [PHIONE]
 Ability = HYDRATION
 Moves1 = MENDINGSPRING,DOUSE
-HPMult = 6.0
+HPMult = 3.0
 #-------------------------------
 [DEOXYS]
 Ability = PRESSURE
