@@ -9,8 +9,8 @@ def pbStartOver(_gameover = false)
     $Trainer.heal_party
     respawnedYet = false
     unless $PokemonGlobal.respawnPoint.nil?
-        if pbConfirmMessage(_INTL("\\w[]\\wm\\c[8]\\l[3]You feel the pull of the nearby Avatar Totem. Would you like it to revive you?"))
-            pbMessage(_INTL("\\w[]\\wm\\c[8]\\l[3]By the power of the Avatar Totem, your team is revived."))
+        if pbConfirmMessage(_INTL("\\w[]\\wm\\c[12]\\l[3]You feel the pull of the nearby Avatar Totem. Would you like it to revive you?"))
+            pbMessage(_INTL("\\w[]\\wm\\c[12]\\l[3]By the power of the Avatar Totem, your team is revived."))
             pbCancelVehicles
             pbRemoveDependenciesExceptFollower
             $game_temp.player_new_map_id = $game_map.map_id
