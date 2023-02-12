@@ -1,17 +1,24 @@
 def healFromBerry(battler, ratio, item, forced = false, filchedFrom = nil)
-    battler.battle.pbShowAbilitySplash(battler) if filchedFrom
-    battler.battle.pbDisplay(_INTL("#{battler.pbThis} filched #{filchedFrom.pbThis(true)}'s #{item}!"))
+    if filchedFrom
+        battler.battle.pbShowAbilitySplash(battler)
+        itemName = GameData::Item.get(item).real_name
+        battler.battle.pbDisplay(_INTL("#{battler.pbThis} filched #{filchedFrom.pbThis(true)}'s #{itemName}!"))
+    end
     battler.battle.pbCommonAnimation("Nom", battler) unless forced
     ratio *= 2.0 if battler.hasActiveAbility?(:RIPEN)
     itemToPass = forced ? nil : item
     battler.applyFractionalHealing(ratio, item: itemToPass)
+    battle.pbHideAbilitySplash(battler) if filchedFrom
 end
 
 def pbBattleStatIncreasingBerry(battler, battle, item, forced, stat, increment = 1, checkGluttony = true, filchedFrom = nil)
     return false if !forced && !battler.canConsumePinchBerry?(checkGluttony)
     return false unless battler.pbCanRaiseStatStage?(stat, battler)
-    battle.pbShowAbilitySplash(battler) if filchedFrom
-    battle.pbDisplay(_INTL("#{battler.pbThis} filched #{filchedFrom.pbThis(true)}'s #{item}!"))
+    if filchedFrom
+        battle.pbShowAbilitySplash(battler)
+        itemName = GameData::Item.get(item).real_name
+        battle.pbDisplay(_INTL("#{battler.pbThis} filched #{filchedFrom.pbThis(true)}'s #{itemName}!"))
+    end
     itemName = GameData::Item.get(item).name
     increment *= 2 if battler.hasActiveAbility?(:RIPEN)
     if forced

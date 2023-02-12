@@ -209,8 +209,7 @@ class PokeBattle_Battler
     def pbHeldItemTriggered(item_to_use, own_item = true, fling = false)
         # Cheek Pouch and similar abilities
         if GameData::Item.get(item_to_use).is_berry? && abilityActive?
-            BattleHandlers.triggerOnBerryConsumedAbility(ability, self, item_to_use, own_item,
-@battle)
+            BattleHandlers.triggerOnBerryConsumedAbility(ability, self, item_to_use, own_item, @battle)
         end
         pbConsumeItem if own_item
         pbSymbiosis if !own_item && !fling # Bug Bite/Pluck users trigger Symbiosis
@@ -242,28 +241,30 @@ fling)
         end
     end
 
-    def getItemConsumer(itemID)
-        return self if !itemID
-        if GameData::Item.get(itemID).is_berry?
-            @battle.eachBattler { |b|
-                next if b.index == @index
-                next unless hasActiveAbility?(:GREEDYGUTS)
-                return b
-            }
-        end
-        return self
-    end
-
     def pbItemHPHealCheck(item_to_use = nil, fling = false)
         return if !item_to_use && !itemActive?
         itm = item_to_use || item
-        eater = self
-        filchedFrom = nil
-        unless item_to_use
-            eater = getItemConsumer(itm)
-            filchedFrom = self
+
+        # Check for berry filching
+        if item && !item_to_use && GameData::Item.get(item).is_berry?
+            filcher = nil
+
+            @battle.eachBattler { |b|
+                next if b.index == @index
+                next unless hasActiveAbility?(:GREEDYGUTS)
+                filcher = b
+                break
+            }
+
+            # If the berry is being filched
+            if filcher && BattleHandlers.triggerHPHealItem(itm, filcher, @battle, false, self)
+                filcher.pbHeldItemTriggered(itm, false)
+                pbConsumeItem
+            end
         end
-        if BattleHandlers.triggerHPHealItem(itm, eater, @battle, !item_to_use.nil?, filchedFrom)
+
+        # Check for user
+        if BattleHandlers.triggerHPHealItem(itm, self, @battle, !item_to_use.nil?, nil)
             pbHeldItemTriggered(itm, item_to_use.nil?, fling)
         elsif !item_to_use
             pbItemTerrainStatBoostCheck
