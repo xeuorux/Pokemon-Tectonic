@@ -619,11 +619,12 @@ module Compiler
         raise _INTL("Trainer type ID '{1}' is used twice.\r\n{2}", type_symbol, FileLineData.linereport)
       end
       policies_array = []
-      if !line[10].nil?
-        policies_string_array = line[10].gsub!('[','').gsub!(']','').split(',')
+      if line[10]
+        policies_string_array = line[10].gsub('[','').gsub(']','').split(',')
         policies_string_array.each do |policy_string|
           policies_array.push(policy_string.to_sym)
-          end
+          echoln("#{policy_string}")
+        end
       end
       # Construct trainer type hash
       type_hash = {
