@@ -598,7 +598,7 @@ class PokeBattle_Move_115 < PokeBattle_Move
 
     def pbMoveFailedAI?(user, _targets)
         return false if user.substituted?
-        if user.ownersPolicies.include?(:PREDICTS_MOVES)
+        if user.ownersPolicies.include?(:PREDICTS_PLAYER)
             user.eachPredictedAttacker do |_b|
                 return true
             end
@@ -628,18 +628,14 @@ class PokeBattle_Move_116 < PokeBattle_Move
         return false
     end
 
-    def pbFailsAgainstTargetAI?(_user, _target); return false; end
-
-    def getEffectScore(user, target)
-        return 0 unless target.hasDamagingAttack?
-        return 0 if hasBeenUsed?(user)
-        score = 0
-        if user.belowHalfHealth?
-            score -= 20
+    def pbFailsAgainstTargetAI?(user, target)
+        if user.ownersPolicies.include?(:PREDICTS_PLAYER)
+            return !@battle.aiPredictsAttack?(user,target)
         else
-            score += 20
+            return true unless target.hasDamagingAttack?
+            return true if hasBeenUsed?(user)
+            return false
         end
-        return score
     end
 end
 
