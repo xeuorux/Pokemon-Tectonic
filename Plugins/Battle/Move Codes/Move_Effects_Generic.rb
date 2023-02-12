@@ -639,17 +639,12 @@ class PokeBattle_ProtectMove < PokeBattle_Move
 
     def getEffectScore(user, _target)
         score = 0
-        user.eachPotentialAttacker do |b|
-            if b.effectActive?(:TwoTurnAttack)
-                if b.inTwoTurnAttack?("0CD")
-                    next
-                else
-                    score += 50
-                end
-            end
-            score += 50
-            score += 50 if b.poisoned? || b.leeched?
-            score += 30 if b.burned? || b.frostbitten?
+        user.eachPredictedProtectHitter do |b|
+            score += 50 if user.hasAlly?
+            score += 50 if b.poisoned?
+            score += 50 if b.leeched?
+            score += 30 if b.burned?
+            score += 30 if b.frostbitten?
         end
         return score
     end
@@ -665,22 +660,15 @@ class PokeBattle_HalfProtectMove < PokeBattle_ProtectMove
 
     def getEffectScore(user, _target)
         score = 0
-        user.eachPotentialAttacker do |b|
-            if b.effectActive?(:TwoTurnAttack)
-                if b.inTwoTurnAttack?("0CD")
-                    next
-                else
-                    score += 25
-                end
-            end
-            score += 25
-            score += 25 if b.poisoned? || b.leeched?
-            score += 25 if b.burned? || b.frostbitten?
+        user.eachPredictedAttacker do |b|
+            score += 25 if user.hasAlly?
+            score += 25 if b.poisoned?
+            score += 25 if b.leeched?
+            score += 15 if b.burned?
+            score += 15 if b.frostbitten?
 
             # Calculate the expected value of the on-hit effect
-            onHitEffectScore = getOnHitEffectScore(user,b)
-            onHitEffectScore /= 2 if hasBeenUsed?(user)
-            score += onHitEffectScore
+            score += getOnHitEffectScore(user,b)
         end
         return score
     end

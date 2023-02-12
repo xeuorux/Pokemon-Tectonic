@@ -9,28 +9,22 @@ class Integer
 end
 
 class PokeBattle_AI
-    #=============================================================================
-    # Decide whether the opponent should switch Pokémon
-    #=============================================================================
-    def pbEnemyShouldWithdraw?(idxBattler, choices = [])
-        return pbEnemyShouldWithdrawEx?(idxBattler, choices)
-    rescue StandardError => exception
-        echoln("FAILURE ENCOUNTERED IN pbEnemyShouldWidthdraw FOR BATTLER INDEX #{idxBattler}")
+    def pbEnemyShouldWithdraw?(idxBattler,choices=[])
+        chosenPartyIndex = pbDetermineSwitch(idxBattler,choices)
+        if chosenPartyIndex >= 0
+            @battle.pbRegisterSwitch(idxBattler,chosenPartyIndex)
+            return true
+        end
         return false
     end
 
-    def pbEnemyShouldWithdrawEx?(idxBattler, choices = [])
+    def pbDetermineSwitch(idxBattler, choices = [])
         battler = @battle.battlers[idxBattler]
         owner = @battle.pbGetOwnerFromBattlerIndex(idxBattler)
         policies = owner.policies || []
 
         switchingBias = 0
         PBDebug.log("[AI SWITCH] #{battler.pbThis} (#{battler.index}) is determining whether it should switch out")
-
-        # if battler.firstTurn? && @battle.turnCount != 0
-        #     switchingBias -= 1
-        #     PBDebug.log("[AI SWITCH] #{battler.pbThis} (#{battler.index}) is less likely to switch on its first turn after switching in (-1)")
-        # end
 
         # Reactive matchup considerations
         # Ignore these protocols if this is an AI trainer helping you in a boss battle
@@ -119,7 +113,7 @@ class PokeBattle_AI
             end
         elsif switchingBias <= 0
             PBDebug.log("[AI SWITCH] #{battler.pbThis} decides it doesn't have any reason to switch (final switching bias: #{switchingBias})")
-            return false
+            return -1
         end
 
         # Determine who to swap into if at all
@@ -132,14 +126,17 @@ class PokeBattle_AI
 
         if list.length > 0
             partySlotNumber = list[0][0]
-            if @battle.pbRegisterSwitch(idxBattler, partySlotNumber)
+            if @battle.pbCanSwitch?(idxBattler, partySlotNumber)
                 PBDebug.log("[AI SWITCH] #{battler.pbThis} (#{idxBattler}) will switch with #{@battle.pbParty(idxBattler)[partySlotNumber].name}")
-                return true
+                return partySlotNumber
             end
         else
             PBDebug.log("[AI SWITCH] #{battler.pbThis} (#{battler.index}) fails to find any swap candidates.")
         end
-        return false
+        return -1
+    rescue StandardError => exception
+        echoln("FAILURE ENCOUNTERED IN pbDetermineSwitch FOR BATTLER INDEX #{idxBattler}")
+        return -1
     end
 
     def pbDefaultChooseNewEnemy(idxBattler, _party)

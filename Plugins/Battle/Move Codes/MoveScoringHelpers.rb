@@ -198,9 +198,9 @@ def getHazardSettingEffectScore(user, _target)
         break
     end
     return 0 unless canChoose # Opponent can't switch in any Pokemon
-    score = 0
-    score += 20 * user.enemiesInReserveCount
-    score += 20 * user.alliesInReserveCount
+    score = 20
+    score += 15 * user.enemiesInReserveCount
+    score += 10 * user.alliesInReserveCount
     return score
 end
 
@@ -215,7 +215,7 @@ def statusSpikesWeightOnSide(side, excludeEffects = [])
     hazardWeight += 20 * side.countEffect(:PoisonSpikes) unless excludeEffects.include?(:PoisonSpikes)
     hazardWeight += 20 * side.countEffect(:FlameSpikes) unless excludeEffects.include?(:FlameSpikes)
     hazardWeight += 20 * side.countEffect(:FrostSpikes) unless excludeEffects.include?(:FrostSpikes)
-    return 0
+    return hazardWeight
 end
 
 def hazardWeightOnSide(side, excludeEffects = [])
@@ -298,18 +298,18 @@ def getMultiStatUpEffectScore(statUpArray, user, target)
         echoln("[EFFECT SCORING] The change to #{statSymbol} by #{statIncreaseAmount} increases the score by #{increase}")
     end
 
-    # Stat up moves tend to be strong on the first turn
+    # Stat ups tend to be stronger on the first turn
     score *= 1.2 if target.firstTurn?
 
-    # Stat up moves tend to be strong when you have HP to use
+    # Stat ups tend to be stronger when the target has HP to use
     score *= 1.2 if target.hp > target.totalhp / 2
 
-    # Stat up moves tend to be strong when you are protected by a substitute
+    # Stat ups tend to be stronger when the target is protected by a substitute
     score *= 1.2 if target.substituted?
 
     # Feel more free to use the move the fewer pokemon that can attack the buff receiver this turn
-    target.eachPotentialAttacker do |_b|
-        score *= 0.8
+    target.eachPredictedAttacker do |_b|
+        score *= 0.7
     end
 
     if target.hasActiveAbility?(:CONTRARY)
@@ -368,18 +368,20 @@ def getMultiStatDownEffectScore(statDownArray, user, target)
         echoln("[EFFECT SCORING] The change to #{statSymbol} by #{statDecreaseAmount} increases the score by #{scoreIncrease}")
     end
 
-    # Stat up moves tend to be strong on the first turn
+    # Stat downs tend to be stronger when the target has HP to use
     score *= 1.2 if target.firstTurn?
 
-    # Stat up moves tend to be strong when you have HP to use
+    # Stat downs tend to be stronger when the target has HP to use
     score *= 1.2 if target.hp > target.totalhp / 2
 
-    score *= 2 if @battle.pbIsTrapped?(target.index)
+    # Stat downs tend to be weaker when the target is able to swap out
+    score /= 2 if user.battle.pbCanSwitch?(target.index)
 
     if target.hasActiveAbility?(:CONTRARY)
         score *= -1
         echoln("[EFFECT SCORING] The target has Contrary! Inverting the score.")
     end
+
     unless user.opposes?(target)
         score *= -1
         echoln("[EFFECT SCORING] The target is an ally of the user! Inverting the score.")
@@ -461,5 +463,6 @@ def getCurseEffectScore(user, target)
     score = 50
     score += 50 if target.aboveHalfHealth?
     score *= 1.5 if user.hasActiveAbilityAI?(:AGGRAVATE)
+    score /= 2 if user.battle.pbCanSwitch?(target.index)
     return score
 end

@@ -418,7 +418,7 @@ class PokeBattle_Move_593 < PokeBattle_ProtectMove
     def getEffectScore(user, target)
         score = super
         # Check only special attackers
-        user.eachPotentialAttacker(1) do |_b|
+        user.eachPredictedProtectHitter(1) do |_b|
             score += 20
         end
         return score
@@ -1004,7 +1004,6 @@ class PokeBattle_Move_5B2 < PokeBattle_Move_117
     end
 end
 
-
 #===============================================================================
 # User is protected against damaging moves this round. Decreases the Sp. Atk of
 # the user of a stopped special move by 1 stage. (Shield Shell)
@@ -1017,9 +1016,9 @@ class PokeBattle_Move_5B3 < PokeBattle_ProtectMove
 
     def getEffectScore(user, target)
         score = super
-        # Check only physical attackers
-        user.eachPotentialAttacker(1) do |_b|
-            score += 20
+        # Check only special attackers
+        user.eachPredictedProtectHitter(1) do |b|
+            score += getMultiStatDownEffectScore([:SPECIAL_ATTACK,1],user,b)
         end
         return score
     end

@@ -68,7 +68,7 @@ class PokeBattle_AI
             @battle.pbRegisterMove(idxBattler, pbAIRandom(user.moves.length), false)
         else
             bestMoveChoices = pbGetBestTrainerMoveChoices(user, user.ownersPolicies)
-            return if pbEnemyShouldWithdraw?(idxBattler, bestMoveChoices)
+            return if pbEnemyShouldWithdraw?(idxBattler,bestMoveChoices)
             pbChooseMovesTrainer(idxBattler, bestMoveChoices)
         end
     end
@@ -83,5 +83,17 @@ class PokeBattle_AI
             logMsg += ", " if i < choices.length - 1
         end
         PBDebug.log(logMsg)
+    end
+
+    def pbPredictChoiceByPlayer(idxBattler)
+        user = @battle.battlers[idxBattler]
+        bestMoveChoices = pbGetBestTrainerMoveChoices(user, user.ownersPolicies)
+        return [:None, 0, nil, -1] if bestMoveChoices.empty?
+        switchChoice = pbDetermineSwitch(idxBattler, bestMoveChoices)
+        return [:SwitchOut, switchChoice, -1] if switchChoice > -1
+        bestMoveChoices.sort_by! { |choice| -choice[1] }
+        moveChoice = bestMoveChoices[0]
+        moveIndex = moveChoice[0]
+        return [:UseMove,moveIndex,user.moves[moveIndex],moveChoice[2]]
     end
 end

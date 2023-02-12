@@ -1640,9 +1640,8 @@ class PokeBattle_Move_567 < PokeBattle_ProtectMove
     def getEffectScore(user, target)
         score = super
         # Check only special attackers
-        user.eachPotentialAttacker(true) do |b|
-            next unless b.hasSpecialAttack?
-            score += getBurnEffectScore(user, b) * 0.75
+        user.eachPredictedProtectHitter(1) do |b|
+            score += getBurnEffectScore(user, b)
         end
         return score
     end
@@ -2041,10 +2040,9 @@ class PokeBattle_Move_57E < PokeBattle_ProtectMove
 
     def getEffectScore(user, target)
         score = super
-        # Check only special attackers
-        user.eachPotentialAttacker(true) do |b|
-            next unless b.hasPhysicalAttack?
-            score += getBurnEffectScore(user, b) * 0.75
+        # Check only physical attackers
+        user.eachPredictedProtectHitter(0) do |b|
+            score += getFrostbiteEffectScore(user, b)
         end
         return score
     end

@@ -193,4 +193,26 @@ class PokeBattle_Battler
             yield b
         end
     end
+
+    def eachPredictedAttacker(categoryOnly = -1)
+        eachPotentialAttacker(categoryOnly) do |b|
+            next unless @battle.aiPredictsAttack?(self,b.index,true,categoryOnly)
+            yield b
+        end
+    end
+
+    def eachPredictedTargeter(categoryOnly = -1)
+        eachPotentialAttacker(categoryOnly) do |b|
+            next unless @battle.aiPredictsAttack?(self,b.index,true,categoryOnly) ||
+                        @battle.aiPredictsStatus?(self,b.index,true)
+            yield b
+        end
+    end
+
+    def eachPredictedProtectHitter(categoryOnly = -1)
+        eachPredictedTargeter(categoryOnly) do |b|
+            next if b.inTwoTurnAttack?("0CD")
+            yield b
+        end
+    end
 end

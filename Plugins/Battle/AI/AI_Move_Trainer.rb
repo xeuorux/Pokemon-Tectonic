@@ -10,7 +10,6 @@ class PokeBattle_AI
         # If there are valid choices, pick among them
         if choices.length > 0
             # Determine the most preferred move
-            preferredChoice = nil
             sortedChoices = choices.sort_by { |choice| -choice[1] }
             preferredChoice = sortedChoices[0]
             PBDebug.log("[AI] #{user.pbThis} (#{user.index}) thinks #{user.moves[preferredChoice[0]].name} is the highest rated choice")
@@ -181,12 +180,14 @@ class PokeBattle_AI
 
         # Account for the value of priority
         movePrio = @battle.getMovePriority(move, user, [target], true)
-        if target.pbSpeed(true) > user.pbSpeed(true) && movePrio > 0
-            echoln("#{user.pbThis} scores the move #{move.id} higher since its positive priority (#{movePrio}) when normally would be slower")
-            score *= 1.5
-        elsif target.pbSpeed(true) < user.pbSpeed(true) && movePrio < 0
-            echoln("#{user.pbThis} scores the move #{move.id} lower since its negative priority (#{movePrio}) when normally would be faster")
-            score *= 0.66
+        unless @battle.aiPredictsSwitch?(user,target.index,true) # Priority doesn't matter if they are switching out
+            if target.pbSpeed(true) > user.pbSpeed(true) && movePrio > 0
+                echoln("#{user.pbThis} scores the move #{move.id} higher since its positive priority (#{movePrio}) when normally would be slower")
+                score *= 1.5
+            elsif target.pbSpeed(true) < user.pbSpeed(true) && movePrio < 0
+                echoln("#{user.pbThis} scores the move #{move.id} lower since its negative priority (#{movePrio}) when normally would be faster")
+                score *= 0.66
+            end
         end
 
         # Account for some abilities

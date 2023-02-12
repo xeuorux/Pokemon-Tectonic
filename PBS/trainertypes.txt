@@ -235,7 +235,7 @@
 297,TRAINER_Imogene_A,Pokémon Trainer,100,,,,Female,,,[]
 298,TRAINER_Zain,Your Brother,100,,,,Male,,,[]
 299,ARCHFRIEND_Lainie,Archfriend,100,Battle champion iris,Battle victory champion,,Female,,,[]
-300,POKEMONTRAINER_Yezera,Pokémon Trainer,100,,,,Female,,,[]
+300,POKEMONTRAINER_Yezera,Pokémon Trainer,100,,,,Female,,,[PREDICTS_SWITCHES,PREDICTS_MOVES]
 301,LEADER_Lambert,Gym Leader,100,Battle Gym Leader 1,Battle victory leader,,Male,,,[]
 302,LEADER_Lambert_2,Gym Leader,100,Battle Gym Leader 2,Battle victory leader,,Male,,,[]
 303,LEADER_Eko,Gym Leader,100,Battle Gym Leader 1,Battle victory leader,,Male,,,[]

@@ -167,9 +167,9 @@ class PokeBattle_Move_088 < PokeBattle_Move
         return baseDmg
     end
 
-    def getEffectScore(_user, target)
-        return 0 if @battle.pbIsTrapped?(target.index)
-        return 20
+    def pbBaseDamageAI(baseDmg, user, target)
+        baseDmg *= 2 if @battle.aiPredictsSwitch?(user,target.index)
+        return baseDmg
     end
 end
 
@@ -1764,7 +1764,7 @@ class PokeBattle_Move_0BB < PokeBattle_Move
     def getEffectScore(_user, target)
         return 0 if target.hasActiveAbilityAI?(:MENTALBLOCK)
         return 0 unless target.hasHealingMove?
-        return 100
+        return 40
     end
 end
 
@@ -2988,6 +2988,8 @@ end
 # User flees from battle. Switches out, in trainer battles. (Teleport)
 #===============================================================================
 class PokeBattle_Move_0EA < PokeBattle_Move
+    def switchOutMove?; return true; end
+
     def pbMoveFailed?(user, _targets, show_message)
         if @battle.wildBattle? && !@battle.bossBattle?
             unless @battle.pbCanRun?(user.index)
@@ -3110,6 +3112,8 @@ end
 # replacement. (Baton Pass)
 #===============================================================================
 class PokeBattle_Move_0ED < PokeBattle_Move
+    def switchOutMove?; return true; end
+
     def pbMoveFailed?(user, _targets, show_message)
         unless @battle.pbCanChooseNonActive?(user.index)
             if show_message
@@ -3152,6 +3156,8 @@ end
 # (U-turn, Volt Switch)
 #===============================================================================
 class PokeBattle_Move_0EE < PokeBattle_Move
+    def switchOutMove?; return true; end
+
     def pbEndOfMoveUsageEffect(user, targets, numHits, switchedBattlers)
         return if user.fainted? || numHits == 0
         targetSwitched = true

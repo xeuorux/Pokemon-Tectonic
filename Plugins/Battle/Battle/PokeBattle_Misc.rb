@@ -183,4 +183,51 @@ class PokeBattle_Battle
     def aiKnowsAbility?(pokemon)
         return @knownAbilities[pokemon.personalID]
     end
+
+    def aiPredictsSwitch?(user,idxBattler,ignoreSwitchMoves = false)
+        return false unless user.ownersPolicies.include?(:PREDICTS_SWITCHES)
+        return false unless @battlers[idxBattler].pbOwnedByPlayer?
+        return false unless @predictedActions[idxBattler]
+        predictedAction = @predictedActions[idxBattler]
+        return true if predictedAction[0] == :SwitchOut
+        return true if !ignoreSwitchMoves && predictedAction[0] == :UseMove && predictedAction[2].switchOutMove?
+        return false
+    end
+
+    def actionTargets?(user,action,battler)
+        return false if action[0] != :UseMove
+        target_data = action[2].pbTarget(user)
+        if target_data.num_targets > 1
+            return pbMoveCanTarget?(user.index, battler.index, target_data)
+        elsif target_data.num_targets == 0
+            return false
+        else
+            return action[3] == battler.index
+        end
+    end
+
+    def aiPredictsAttack?(predictor,idxBattler,againstPredictor=false,categoryOnly = -1)
+        # AI will assume attacking unless has policy to predict
+        return true unless predictor.ownersPolicies.include?(:PREDICTS_MOVES)
+        return false unless @battlers[idxBattler].pbOwnedByPlayer?
+        return false unless @predictedActions[idxBattler]
+        predictedAction = @predictedActions[idxBattler]
+        return false unless predictedAction[0] == :UseMove
+        return false unless predictedAction[2].damagingMove?
+        return false if againstPredictor && !actionTargets?(@battlers[idxBattler],predictedAction,predictor)
+        return false if categoryOnly != -1 && predictedAction[2].calculated_category != categoryOnly
+        return true
+    end
+
+    def aiPredictsStatus?(predictor,idxBattler,againstPredictor=false)
+        # AI will assume attacking unless has policy to predict
+        return false unless predictor.ownersPolicies.include?(:PREDICTS_MOVES)
+        return false unless @battlers[idxBattler].pbOwnedByPlayer?
+        return false unless @predictedActions[idxBattler]
+        predictedAction = @predictedActions[idxBattler]
+        return false unless predictedAction[0] == :UseMove
+        return false if predictedAction[2].damagingMove?
+        return false if againstPredictor && !actionTargets?(@battlers[idxBattler],predictedAction,predictor)
+        return true
+    end
 end

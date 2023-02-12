@@ -24,27 +24,6 @@ Events.onMapChange += proc { |_sender,e|
   $game_switches[99] = true
 }
 
-module GameData
-	class Trainer
-		def initialize(hash)
-		  @id             = hash[:id]
-		  @id_number      = hash[:id_number]
-		  @trainer_type   = hash[:trainer_type]
-		  @real_name      = hash[:name]         || "Unnamed"
-		  @version        = hash[:version]      || 0
-		  @items          = hash[:items]        || []
-		  @real_lose_text = hash[:lose_text]    || ""
-		  @pokemon        = hash[:pokemon]      || []
-		  @pokemon.each do |pkmn|
-			GameData::Stat.each_main do |s|
-			  pkmn[:iv][s.id] ||= 0 if pkmn[:iv]
-			  pkmn[:ev][s.id] ||= 0 if pkmn[:ev]
-			end
-		  end
-		end
-	end
-end
-
 DebugMenuCommands.register("autopositionbacksprites", {
   "parent"      => "editorsmenu",
   "name"        => _INTL("Auto-Position Back Sprites"),

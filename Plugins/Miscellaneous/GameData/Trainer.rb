@@ -258,19 +258,27 @@ end
 
 class Trainer
 	attr_reader   :nameForHashing
+	attr_accessor :policies
 
 	def wild?;           return GameData::TrainerType.get(@trainer_type).wild?;     end
+
+	def initialize(name, trainer_type)
+		@trainer_type = trainer_type
+		@name         = name
+		@id           = rand(2 ** 16) | rand(2 ** 16) << 16
+		@language     = pbGetLanguage
+		@party        = []
+		@policies 	  = []
+	end
 end
 
 class NPCTrainer < Trainer
-	attr_accessor :policies
 	attr_accessor :policyStates
 
 	def initialize(name, trainer_type, nameForHashing = nil)
 		super(name, trainer_type)
 		@items     = []
 		@lose_text = nil
-		@policies  = []
 		@policyStates = {}
 		@nameForHashing = nameForHashing || name
 	end

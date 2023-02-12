@@ -33,7 +33,6 @@ class TribalBonus
 
         list = []
         GameData::Tribe.each do |tribeData|
-            echoln(@tribeCounts[tribeData.id])
             next unless @tribeCounts[tribeData.id] >= TRIBAL_BONUS_THRESHOLD
             description = TribalBonus.getTribeName(tribeData.id)
             description += _INTL(" Tribe Bonus") if concat

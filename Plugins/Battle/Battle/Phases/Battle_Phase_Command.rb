@@ -187,6 +187,21 @@ class PokeBattle_Battle
     #=============================================================================
     # Command phase
     #=============================================================================
+    def describeAction(actor,action)
+        case action[0]
+        when :None
+            return "do nothing"
+        when :SwitchOut
+            return "switch with #{actor.ownerParty[action[1]].name}"
+        when :UseMove
+            if action[3] == -1
+                return "use #{action[2].name}"
+            else
+                return "use #{action[2].name} on #{@battlers[action[3]].pbThis(true)}"
+            end
+        end
+    end
+
     def pbCommandPhase
         @scene.pbBeginCommandPhase
 
@@ -205,9 +220,25 @@ class PokeBattle_Battle
 
         preSelectionAlerts
 
-        # SWAPPED THE ORDER HERE OF PLAYER VS AI
-
         # Choose actions for the round (AI first, then player)
+
+        # AI predicts the players actions
+        @predictedActions = {}
+
+        # Each of the player's pokemon (or NPC allies)
+        echoln("[PLAYER PREDICTION]")
+        eachSameSideBattler do |b|
+            next unless b.pbOwnedByPlayer?
+            predictedPlayerAction = @battleAI.pbPredictChoiceByPlayer(b.index)
+            @predictedActions[b.index] = predictedPlayerAction
+        end
+
+        eachSameSideBattler do |b|
+            next unless b.pbOwnedByPlayer?
+            describedPlayerAction = describeAction(b,@predictedActions[b.index])
+            echoln("[PLAYER PREDICTION] The AI predicts that #{b.pbThis} will #{describedPlayerAction}!")
+        end
+
         pbCommandPhaseLoop(false) # AI chooses their actions
 
         return if @decision != 0 # Battle ended, stop choosing actions
