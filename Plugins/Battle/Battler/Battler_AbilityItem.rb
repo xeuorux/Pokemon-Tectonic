@@ -251,7 +251,7 @@ fling)
 
             @battle.eachBattler { |b|
                 next if b.index == @index
-                next unless hasActiveAbility?(:GREEDYGUTS)
+                next unless b.hasActiveAbility?(:GREEDYGUTS)
                 filcher = b
                 break
             }

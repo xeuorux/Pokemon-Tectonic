@@ -2,8 +2,11 @@ BattleHandlers::HPHealItem.add(:BERRYJUICE,
   proc { |item, battler, battle, forced, filchedFrom|
       next false unless battler.canHeal?
       next false if !forced && battler.aboveHalfHealth?
-      battle.pbShowAbilitySplash(battler) if filchedFrom
-      battle.pbDisplay(_INTL("#{battler.pbThis} filched #{filchedFrom.pbThis(true)}'s #{item}!"))
+      if filchedFrom
+        battle.pbShowAbilitySplash(battler)
+        itemName = GameData::Item.get(item).real_name
+        battle.pbDisplay(_INTL("#{battler.pbThis} filched #{filchedFrom.pbThis(true)}'s #{itemName}!"))
+      end
       itemName = GameData::Item.get(item).name
       PBDebug.log("[Item triggered] Forced consuming of #{itemName}") if forced
       battle.pbCommonAnimation("UseItem", battler) unless forced
@@ -53,8 +56,11 @@ BattleHandlers::HPHealItem.add(:LANSATBERRY,
   proc { |item, battler, battle, forced, filchedFrom|
       next false if !forced && !battler.canConsumePinchBerry?
       next false if battler.effectAtMax?(:FocusEnergy)
-      battle.pbShowAbilitySplash(battler) if filchedFrom
-      battle.pbDisplay(_INTL("#{battler.pbThis} filched #{filchedFrom.pbThis(true)}'s #{item}!"))
+      if filchedFrom
+        battle.pbShowAbilitySplash(battler)
+        itemName = GameData::Item.get(item).real_name
+        battle.pbDisplay(_INTL("#{battler.pbThis} filched #{filchedFrom.pbThis(true)}'s #{itemName}!"))
+      end
       battle.pbCommonAnimation("Nom", battler) unless forced
       battler.incrementEffect(:FocusEnergy, 2)
       itemName = GameData::Item.get(item).name
@@ -72,8 +78,11 @@ BattleHandlers::HPHealItem.add(:MICLEBERRY,
   proc { |item, battler, battle, forced, filchedFrom|
       next false if !forced && !battler.canConsumePinchBerry?
       next false unless battler.effectActive?(:MicleBerry)
-      battle.pbShowAbilitySplash(battler) if filchedFrom
-      battle.pbDisplay(_INTL("#{battler.pbThis} filched #{filchedFrom.pbThis(true)}'s #{item}!"))
+      if filchedFrom
+        battle.pbShowAbilitySplash(battler)
+        itemName = GameData::Item.get(item).real_name
+        battle.pbDisplay(_INTL("#{battler.pbThis} filched #{filchedFrom.pbThis(true)}'s #{itemName}!"))
+      end
       battle.pbCommonAnimation("Nom", battler) unless forced
       battler.applyEffect(:MicleBerry)
       itemName = GameData::Item.get(item).name
