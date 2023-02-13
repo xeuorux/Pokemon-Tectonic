@@ -145,7 +145,7 @@ BattleHandlers::EOREffectAbility.add(:GROWUP,
       next if battler.form == 3
       battle.pbShowAbilitySplash(battler)
       formChangeMessage = _INTL("#{battler.pbThis} grows one size bigger!")
-      battler.pbChangeForm(battler.form + 1, formChangeMessage, battler.pbThis)
+      battler.pbChangeForm(battler.form + 1, formChangeMessage)
       battle.pbDisplay(_INTL("#{battler.pbThis} is fully grown!")) if battler.form == 3
       battle.pbHideAbilitySplash(battler)
   }
