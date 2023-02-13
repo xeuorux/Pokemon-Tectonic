@@ -190,9 +190,16 @@ BattleHandlers::UserAbilityEndOfMove.add(:POWERLIFTER,
 )
 
 BattleHandlers::UserAbilityEndOfMove.add(:FLUSTERFLOCK,
-  proc { |_ability, user, _targets, move, battle, _switchedBattlers|
+  proc { |_ability, user, targets, move, battle, _switchedBattlers|
       next if battle.futureSight
       next unless move.pbDamagingMove?
+      hitAnything = false
+      targets.each do |b|
+        next if b.damageState.unaffected
+        hitAnything = true
+        break
+      end
+      next unless hitAnything
       battle.pbShowAbilitySplash(user)
       user.applyDizzy(user)
       battle.pbHideAbilitySplash(user)
