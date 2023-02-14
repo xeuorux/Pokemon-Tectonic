@@ -604,6 +604,7 @@ ShowArea = false
 Bicycle = false
 BattleBack = distortion
 Environment = None
+TeleportBlocked = true
 #-------------------------------
 [102]
 # Velenz Center
