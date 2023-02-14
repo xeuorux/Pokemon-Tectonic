@@ -161,7 +161,7 @@ class AbilitySplashAppearAnimation < PokeBattle_Animation
     bar = addSprite(@sprites["abilityBar_#{@side}"])
     bar.setVisible(0,true)
     dir = (@side==0) ? 1 : -1
-	  duration = $PokemonSystem.textspeed >= 2 ? 4 : 8
+	  duration = textFast? ? 4 : 8
     bar.moveDelta(0,duration,dir*Graphics.width/2,0)
   end
 end
@@ -181,8 +181,12 @@ class AbilitySplashDisappearAnimation < PokeBattle_Animation
     return if !@sprites["abilityBar_#{@side}"]
     bar = addSprite(@sprites["abilityBar_#{@side}"])
     dir = (@side==0) ? -1 : 1
-	duration = $PokemonSystem.textspeed >= 2 ? 4 : 8
+	  duration = textFast? ? 4 : 8
     bar.moveDelta(0,duration,dir*Graphics.width/2,0)
     bar.setVisible(duration,false)
   end
+end
+
+def textFast?
+  return $PokemonSystem.textspeed > 2
 end

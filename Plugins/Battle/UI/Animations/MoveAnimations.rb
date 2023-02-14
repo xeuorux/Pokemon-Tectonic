@@ -113,6 +113,20 @@ class PokeBattle_Scene
       end
     }
   end
+
+  # Plays a common animation.
+  def pbCommonAnimation(animName,user=nil,target=nil)
+    return if nil_or_empty?(animName)
+    target = target[0] if target && target.is_a?(Array)
+    animations = pbLoadBattleAnimations
+    return if !animations
+    speedMult = [1,2,1][$PokemonSystem.battlescene]
+    animations.each do |a|
+      next if !a || a.name!="Common:"+animName
+      pbAnimationCore(a,user,(target!=nil) ? target : user,false,speedMult)
+      return
+    end
+  end
   
   def pbAnimationCore(animation,user,target,oppMove=false,speedMult=1)
     return if !animation

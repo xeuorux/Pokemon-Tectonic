@@ -109,7 +109,7 @@ class PokemonDataBox < SpriteWrapper
 		minInc = (rangeHP*4)/(@hpBarBitmap.width*HP_BAR_CHANGE_TIME*Graphics.frame_rate)
 		@hpIncPerFrame = [@hpIncPerFrame,minInc].max
 		if fastAnimation
-			@hpIncPerFrame *= 6
+			@hpIncPerFrame *= 4
 		end
 		@animatingHP   = true
 	end

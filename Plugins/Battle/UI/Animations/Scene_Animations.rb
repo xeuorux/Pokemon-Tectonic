@@ -1,9 +1,9 @@
 class PokeBattle_Scene
-    def pbDamageAnimation(battler,effectiveness=0)
+    def pbDamageAnimation(battler,effectiveness=0,fastAnimation=false)
         return if @battle.autoTesting
         @briefMessage = false
         # Damage animation
-        damageAnim = BattlerDamageAnimation.new(@sprites,@viewport,battler.index,effectiveness,battler)
+        damageAnim = BattlerDamageAnimation.new(@sprites,@viewport,battler.index,effectiveness,battler,fastAnimation)
         loop do
           damageAnim.update
           pbUpdate

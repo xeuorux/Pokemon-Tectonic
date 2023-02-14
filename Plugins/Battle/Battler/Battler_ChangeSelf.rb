@@ -60,7 +60,7 @@ class PokeBattle_Battler
         end
         if showDamageAnimation
             @damageState.displayedDamage = reduction
-            @battle.scene.pbDamageAnimation(self)
+            @battle.scene.pbDamageAnimation(self,0,true)
         end
         reduction = @hp if reduction > @hp
         pbReduceHP(reduction, false)

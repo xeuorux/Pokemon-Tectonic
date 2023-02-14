@@ -104,11 +104,8 @@ class BattlerDamageAnimation < PokeBattle_Animation
 			battler.setSE(delay, "Battle damage hyper")
 		end
 
-		if @fastHitAnimation
-			flashesCount = 1
-		else
-			flashesCount = $PokemonSystem.battlescene == 1 ? flashesCount = 2 : 4
-		end
+		flashesCount = $PokemonSystem.battlescene == 1 ? flashesCount = 2 : 4
+		flashesCount /= 2 if @fastHitAnimation
 		flashesCount.times do   # 4 flashes, each lasting 0.2 (4/20) seconds
 		  battler.setVisible(delay,false)
 		  shadow.setVisible(delay,false)
