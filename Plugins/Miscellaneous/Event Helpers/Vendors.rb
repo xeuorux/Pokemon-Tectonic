@@ -1,8 +1,8 @@
-def payMoney(cost)
+def payMoney(cost, showMessage = true)
 	raise _INTL("A money cost can't be negative!") if cost < 0
 	if $Trainer.money >= cost
 		$Trainer.money = $Trainer.money - cost
-		pbMessage(_INTL("You hand over $#{cost}."))
+		pbMessage(_INTL("You hand over $#{cost}.")) if showMessage
 		return true
 	else
 		return false
@@ -309,4 +309,42 @@ def createHisuian
 			next
 		end
 	end
+end
+
+def shinifyPokemonVendor
+	unless pbHasItem?(:GLEAMPOWDER)
+		pbMessage(_INTL("Don't try to trick me with some knock-off, you don't have any powder!"))
+		return
+	end
+
+	pbChoosePokemon(1,3,
+		proc { |poke|
+			!poke.egg? && !poke.shiny?
+		}
+	)
+	if pbGet(1) < 0
+		pbMessage(_INTL("No suitable canvases?"))
+		return
+	end
+
+	pkmn = $Trainer.party[pbGet(1)]
+
+	unless payMoney(30_000, false)
+		pbMessage(_INTL("I'm surprised, you look like you'd have more money, but you can't afford me."))
+		return
+	end
+
+	gleamPowderRealName = GameData::Item.get(:GLEAMPOWDER).real_name
+	pbMessage(_INTL("\\PN hands over the #{gleamPowderRealName}, $30,000, and #{pkmn.name}."))
+
+	pbMessage("And so my work begins!")
+	blackFadeOutIn(30) {
+		$PokemonBag.pbDeleteItem(:GLEAMPOWDER)
+		pkmn.shiny = true
+	}
+	pbMessage("Now, bask in the beautiful glow of your shiny #{pkmn.speciesName}!")
+	pbMessage("No need to thank me, its beauty is reward enough.")
+	pbMessage("The money isn't bad either...")
+
+	return false
 end
