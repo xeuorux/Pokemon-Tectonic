@@ -65,6 +65,7 @@ WesleyFG<s>Shawn Frost
 NSora-96<s>Minorthreat0987
 DarkDragonn<s>rafa-cac
 Newtiteuf<s>moca
+Jaggedthorn
 
 Charsets
 DiegoWT<s>PurpleZaffre
