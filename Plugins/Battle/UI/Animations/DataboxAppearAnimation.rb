@@ -13,7 +13,7 @@ class DataBoxAppearAnimation < PokeBattle_Animation
       box.setVisible(0,true)
       dir = ((@idxBox%2)==0) ? 1 : -1
       box.setDelta(0,dir*Graphics.width/2,0)
-      duration = textFast? ? 5 : 8
+      duration = fastTransitions? ? 5 : 8
       box.moveDelta(0,duration,-dir*Graphics.width/2,0)
     end
 end

@@ -8,7 +8,7 @@ class BattleIntroAnimation < PokeBattle_Animation
     end
   
     def createProcesses
-      appearTime = textFast? ? 12 : 20   # This is in 1/20 seconds
+      appearTime = fastTransitions? ? 16 : 20   # This is in 1/20 seconds
       # Background
       if @sprites["battle_bg2"]
         makeSlideSprite("battle_bg",0.5,appearTime)

@@ -11,7 +11,7 @@ class DataBoxDisappearAnimation < PokeBattle_Animation
     return if !@sprites["dataBox_#{@idxBox}"] || !@sprites["dataBox_#{@idxBox}"].visible
     box = addSprite(@sprites["dataBox_#{@idxBox}"])
     dir = ((@idxBox%2)==0) ? 1 : -1
-    duration = textFast? ? 5 : 8
+    duration = fastTransitions? ? 5 : 8
     box.moveDelta(0,duration,dir*Graphics.width/2,0)
     box.setVisible(duration,false)
   end

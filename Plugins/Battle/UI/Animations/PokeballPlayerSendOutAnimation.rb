@@ -4,17 +4,47 @@
 #===============================================================================
 class PokeballPlayerSendOutAnimation < PokeBattle_Animation
     include PokeBattle_BallAnimationMixin
-  
+
     def initialize(sprites,viewport,idxTrainer,battler,startBattle,idxOrder=0)
       @idxTrainer     = idxTrainer
       @battler        = battler
       @showingTrainer = startBattle
       @idxOrder       = idxOrder
       @trainer        = @battler.battle.pbGetOwnerFromBattlerIndex(@battler.index)
-      sprites["pokemon_#{battler.index}"].visible = false
-      @shadowVisible = sprites["shadow_#{battler.index}"].visible
-      sprites["shadow_#{battler.index}"].visible = false
-      super(sprites,viewport)
+      @shadowVisible  = sprites["shadow_#{battler.index}"].visible
+      @sprites        = sprites
+      @viewport       = viewport
+      @pictureEx      = []   # For all the PictureEx
+      @pictureSprites = []   # For all the sprites
+      @tempSprites    = []   # For sprites that exist only for this animation
+      @animDone       = false
+      if @trainer.wild? || ($PokemonTemp.dependentEvents.can_refresh? && battler.index == 0 && startBattle)
+        createFollowerProcesses
+      else
+        createProcesses
+      end
+    end
+  
+    def createFollowerProcesses
+      delay = 0
+      delay = 5 if @showingTrainer
+      batSprite = @sprites["pokemon_#{@battler.index}"]
+      shaSprite = @sprites["shadow_#{@battler.index}"]
+      battlerY = batSprite.y
+      battler = addSprite(batSprite,PictureOrigin::Bottom)
+      battler.setVisible(delay,true)
+      battler.setZoomXY(delay,100,100)
+      battler.setColor(delay,Color.new(0,0,0,0))
+      battler.setDelta(0,-240,0)
+      battler.moveDelta(delay,12,240,0)
+      secondaryDelay = fastTransitions? ? 6 : 12
+      battler.setCallback(delay + secondaryDelay,[batSprite,:pbPlayIntroAnimation])
+      if @shadowVisible
+        shadow = addSprite(shaSprite,PictureOrigin::Center)
+        shadow.setVisible(delay,@shadowVisible)
+        shadow.setDelta(0,-Graphics.width/2,0)
+        shadow.setDelta(delay,secondaryDelay,Graphics.width/2,0)
+      end
     end
   
     def createProcesses
@@ -51,7 +81,7 @@ class PokeballPlayerSendOutAnimation < PokeBattle_Animation
       createBallTrajectory(ball,delay,12,
          ballStartX,ballStartY,ballMidX,ballMidY,battlerStartX,battlerStartY-18)
       ball.setZ(9,batSprite.z-1)
-      if textFast?
+      if fastTransitions?
         delay = ball.totalDuration + 2
         delay += 6 * @idxOrder   # Stagger appearances if multiple Pokémon are sent out at once
       else

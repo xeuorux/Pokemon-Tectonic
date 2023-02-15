@@ -17,6 +17,7 @@ class PokemonSystem
   attr_accessor :color_shifts
   attr_accessor :party_snapshots
   attr_accessor :bag_sorting
+  attr_accessor :battle_transitions
 
   def bgmvolume
     return @bgmvolume / VOLUME_FAKERY_MULT
@@ -35,8 +36,9 @@ class PokemonSystem
   end
 
   def initialize
-    @textspeed   		          = 1 # Text speed (0=slow, 1=normal, 2=fast, 3=rapid)
-    @battlescene 		          = 0 # Battle effects (animations) (0=on, 1=fast, 2=off)
+    @textspeed   		          = $DEBUG ? 4 : 2 # Text speed (0=slow, 1=normal, 2=fast, 3=rapid, 4=instant)
+    @battlescene 		          = 1 # Battle effects (animations) (0=on, 1=fast, 2=off)
+    @battle_transitions       = $DEBUG ? 1 : 0 # (0=standard, 1=fast)
     @battlestyle 		          = 1 # Battle style (0=switch, 1=set)
     @frame      		          = 0 # Default window frame (see also Settings::MENU_WINDOWSKINS)
     @textskin    		          = 0 # Speech frame
@@ -53,15 +55,15 @@ class PokemonSystem
     @particle_effects 	      = 0 # (0=true, 1=false)
     @screenshake              = 0 # (0=true, 1=false)
     @skip_fades 		          = 1 # (0=true, 1=false)
-    @gendered_look 		        = 0 # (0 = Masc, 1 = Fem)
+    @gendered_look 		        = 0 # (0 = Masc, 1 = Fem, 2 = Andro)
     @damage_numbers 	        = 0 # (0=true, 1=false)
-    @show_item_descriptions   = 0 # (0=true, 1=false)
+    @show_item_descriptions   = $DEBUG ? 1 : 0 # (0=true, 1=false)
     @effectiveness_messages   = 0 # (0=true, 1=false)
     @weather_messages         = 0 # (0=true, 1=false)
     @status_effect_messages   = 0 # (0=true, 1=false)
     @nicknaming_prompt        = 0 # (0=true, 1=false)
-    @show_trait_unlocks       = 0 # (0=true, 1=false)
-    @party_snapshots          = 0 # (0=true, 1=false)
+    @show_trait_unlocks       = $DEBUG ? 1 : 0 # (0=true, 1=false)
+    @party_snapshots          = $DEBUG ? 1 : 0 # (0=true, 1=false)
     @bag_sorting              = 0 # (0=none,1=alphabetical,2=ID)
   end
 end
@@ -119,6 +121,10 @@ class PokemonOption_Scene
        EnumOption.new(_INTL("Battle Effects"),[_INTL("Standard"),_INTL("Fast"),_INTL("Off")],
          proc { $PokemonSystem.battlescene },
          proc { |value| $PokemonSystem.battlescene = value }
+       ),
+       EnumOption.new(_INTL("Battle Transitions"),[_INTL("Standard"),_INTL("Fast")],
+         proc { $PokemonSystem.battlescene },
+         proc { |value| $PokemonSystem.battle_transitions = value }
        ),
        EnumOption.new(_INTL("Default Movement"),[_INTL("Walking"),_INTL("Running")],
          proc { $PokemonSystem.runstyle },

@@ -36,7 +36,7 @@ class PokeballTrainerSendOutAnimation < PokeBattle_Animation
     ball.setZ(0,batSprite.z-1)
     # Poké Ball animation
     createBallTrajectory(ball,battlerStartX,battlerStartY)
-    if textFast?
+    if fastTransitions?
         delay = ball.totalDuration+2
         delay += 10 if @showingTrainer   # Give time for trainer to slide off screen
         delay += 6 * @idxOrder   # Stagger appearances if multiple Pokémon are sent out at once
