@@ -1858,7 +1858,7 @@ class PokeBattle_Move_575 < PokeBattle_Move
 
     def pbEffectAgainstTarget(user, target)
         target.applyEffect(:OnDragonRide)
-        target.applyEffect(:GivingDragonRideTo, target.index)
+        user.applyEffect(:GivingDragonRideTo, target.index)
         @battle.pbDisplay(_INTL("{1} gives {2} a ride on its back!", user.pbThis, target.pbThis(true)))
     end
 

@@ -55,7 +55,7 @@ module GameData
         # When a battler has this effect, and this effect points at another battler
         # and that battler leaves the battlefield, disable the effects in the array stored in disable_effecs_on_exit
         # Only used for :Position type effects
-        attr_reader :disable_effecs_on_other_exit
+        attr_reader :disable_effects_on_other_exit
 
         attr_reader :protection_info
 
@@ -227,7 +227,7 @@ module GameData
 
             @others_lose_track = hash[:others_lose_track] || false
 
-            @disable_effecs_on_other_exit = hash[:disable_effecs_on_other_exit] || []
+            @disable_effects_on_other_exit = hash[:disable_effects_on_other_exit] || []
             @sub_effects	= hash[:sub_effects] || []
 
             @protection_effect	= hash[:protection_effect] || false

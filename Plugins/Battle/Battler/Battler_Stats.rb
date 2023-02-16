@@ -190,7 +190,7 @@ attackMult)
         attackMult = BattleHandlers.triggerAttackCalcUserItem(item, self, battle, attackMult) if itemActive?
 
         # Dragon Ride
-        attackMult *= 1.5 if effectActive?(:OnDragonRide)
+        attackMult *= 2.0 if effectActive?(:OnDragonRide)
 
         # Calculation
         return [(attack * attackMult).round, 1].max

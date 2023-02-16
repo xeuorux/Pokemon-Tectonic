@@ -495,7 +495,7 @@ GameData::BattleEffect.register_effect(:Battler, {
     :real_name => "Locked On To",
     :type => :Position,
     :baton_passed => true,
-    :disable_effecs_on_other_exit => [:LockOn],
+    :disable_effects_on_other_exit => [:LockOn],
     :swaps_with_battlers => true,
 })
 
@@ -678,7 +678,7 @@ GameData::BattleEffect.register_effect(:Battler, {
     :real_name => "Perish Singer",
     :type => :Position,
     :baton_passed => true,
-    :disable_effecs_on_other_exit => [:PerishSong],
+    :disable_effects_on_other_exit => [:PerishSong],
 })
 
 GameData::BattleEffect.register_effect(:Battler, {
@@ -1002,7 +1002,7 @@ GameData::BattleEffect.register_effect(:Battler, {
     :id => :TrappingUser,
     :real_name => "Trapped By",
     :type => :Position,
-    :disable_effecs_on_other_exit => [:Trapping],
+    :disable_effects_on_other_exit => [:Trapping],
 })
 
 GameData::BattleEffect.register_effect(:Battler, {
@@ -1149,7 +1149,7 @@ GameData::BattleEffect.register_effect(:Battler, {
     :info_displayed => false,
     :type => :Position,
     :baton_passed => true,
-    :disable_effecs_on_other_exit => [:JawLock],
+    :disable_effects_on_other_exit => [:JawLock],
 })
 
 GameData::BattleEffect.register_effect(:Battler, {
@@ -1181,7 +1181,7 @@ GameData::BattleEffect.register_effect(:Battler, {
     :id => :OctolockUser,
     :real_name => "Octolocked By",
     :type => :Position,
-    :disable_effecs_on_other_exit => [:Octolock],
+    :disable_effects_on_other_exit => [:Octolock],
 })
 
 GameData::BattleEffect.register_effect(:Battler, {
@@ -1430,7 +1430,6 @@ GameData::BattleEffect.register_effect(:Battler, {
     :real_name => "Carrying",
     :type => :Position,
     :others_lose_track => true,
-    :trapping => true,
     :disable_proc => proc do |battle, battler|
         battle.pbDisplay(_INTL("{1} is no longer giving a Dragon Ride!", battler.pbThis))
     end,
@@ -1439,6 +1438,9 @@ GameData::BattleEffect.register_effect(:Battler, {
 GameData::BattleEffect.register_effect(:Battler, {
     :id => :OnDragonRide,
     :real_name => "Riding Dragon",
+    :disable_proc => proc do |battle, battler|
+        battle.pbDisplay(_INTL("{1} is no longer being given a Dragon Ride!", battler.pbThis))
+    end,
 })
 
 GameData::BattleEffect.register_effect(:Battler, {

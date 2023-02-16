@@ -146,6 +146,11 @@ class PokeBattle_Battler
     end
 
     def pbInitEffects(batonPass)
+        # Dragon ride ends
+        if effectActive?(:GivingDragonRideTo)
+            getBattlerPointsTo(:GivingDragonRideTo).disableEffect(:OnDragonRide)
+        end
+        
         # Reset values, accounting for baton pass
         GameData::BattleEffect.each_battler_effect do |effectData|
             effectID = effectData.id
@@ -181,7 +186,7 @@ class PokeBattle_Battler
             b.eachEffect(true) do |_effect, value, data|
                 next if data.type != :Position
                 next if value != @index
-                data.disable_effecs_on_other_exit.each do |effectToDisable|
+                data.disable_effects_on_other_exit.each do |effectToDisable|
                     echoln("[BATTLER EFFECT] Effect #{effectToDisable} is disabled on #{b.name} due to #{name} (#{@index}) exiting")
                     b.disableEffect(effectToDisable)
                 end
