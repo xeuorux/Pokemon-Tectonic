@@ -1,13 +1,14 @@
 BattleHandlers::MoveBlockingAbility.add(:DAZZLING,
   proc { |_ability, bearer, user, targets, _move, battle|
-      next false if battle.choices[user.index][4] <= 0
-      next false unless bearer.opposes?(user)
-      ret = false
-      targets.each do |b|
-          next unless b.opposes?(user)
-          ret = true
-      end
-      next ret
+        priority = battle.choices[user.index][4] || nil
+        next false unless priority && priority > 0
+        next false unless bearer.opposes?(user)
+        ret = false
+        targets.each do |b|
+            next unless b.opposes?(user)
+            ret = true
+        end
+        next ret
   }
 )
 
