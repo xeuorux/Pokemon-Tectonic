@@ -1,4 +1,4 @@
-def teleportLeaveAnimation
+def teleportLeaveAnimation(soundEffect = true)
 	stowFollowerIfActive()
 	player = get_player
 
@@ -7,7 +7,9 @@ def teleportLeaveAnimation
 	while frame <= 16
 		opac = 255 * (1-frame/16.0)
 		new_move_route.list.push(RPG::MoveCommand.new(PBMoveRoute::Opacity,[opac]))
-		new_move_route.list.push(RPG::MoveCommand.new(PBMoveRoute::PlaySE,[RPG::AudioFile.new("Player jump"),120])) if frame % 4 == 0
+		if frame % 4 == 0 && soundEffect
+			new_move_route.list.push(RPG::MoveCommand.new(PBMoveRoute::PlaySE,[RPG::AudioFile.new("Player jump"),120]))
+		end
 		new_move_route.list.push(RPG::MoveCommand.new(PBMoveRoute::Wait,[1]))
 		frame += 1
 	end
@@ -18,13 +20,15 @@ def teleportLeaveAnimation
 	get_player.force_move_route(new_move_route)
 end
 
-def teleportArriveAnimation
+def teleportArriveAnimation(soundEffect = true)
 	new_move_route = getNewMoveRoute()
 	frame = 0
 	while frame <= 16
 		opac = 255 * (frame/16.0)
 		new_move_route.list.push(RPG::MoveCommand.new(PBMoveRoute::Opacity,[opac]))
-		new_move_route.list.push(RPG::MoveCommand.new(PBMoveRoute::PlaySE,[RPG::AudioFile.new("Player jump"),120])) if frame % 4 == 0
+		if frame % 4 == 0 && soundEffect
+			new_move_route.list.push(RPG::MoveCommand.new(PBMoveRoute::PlaySE,[RPG::AudioFile.new("Player jump"),120]))
+		end
 		new_move_route.list.push(RPG::MoveCommand.new(PBMoveRoute::Wait,[1]))
 		frame += 1
 	end

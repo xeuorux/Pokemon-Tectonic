@@ -1787,6 +1787,12 @@ ShowArea = false
 Bicycle = false
 Weather = Fog,100
 #-------------------------------
+[336]
+# Chamber of Regice
+Outdoor = false
+ShowArea = false
+Bicycle = true
+#-------------------------------
 [337]
 # Deep Station Backroom
 Outdoor = false
@@ -1836,6 +1842,12 @@ Bicycle = true
 # Chamber of Registeel
 Outdoor = false
 ShowArea = false
+Bicycle = true
+#-------------------------------
+[356]
+# Mirror Tundra
+Outdoor = false
+ShowArea = true
 Bicycle = true
 #-------------------------------
 [359]
