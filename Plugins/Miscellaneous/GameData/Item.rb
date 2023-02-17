@@ -49,5 +49,34 @@ module GameData
             end
         end
         
+        def unlosable?(species, ability)
+          return false if species == :ARCEUS && ability != :MULTITYPE
+          return false if species == :SILVALLY && ability != :RKSSYSTEM
+          combos = {
+             :ARCEUS   => [:FISTPLATE,   :FIGHTINIUMZ,
+                           :SKYPLATE,    :FLYINIUMZ,
+                           :TOXICPLATE,  :POISONIUMZ,
+                           :EARTHPLATE,  :GROUNDIUMZ,
+                           :STONEPLATE,  :ROCKIUMZ,
+                           :INSECTPLATE, :BUGINIUMZ,
+                           :SPOOKYPLATE, :GHOSTIUMZ,
+                           :IRONPLATE,   :STEELIUMZ,
+                           :FLAMEPLATE,  :FIRIUMZ,
+                           :SPLASHPLATE, :WATERIUMZ,
+                           :MEADOWPLATE, :GRASSIUMZ,
+                           :ZAPPLATE,    :ELECTRIUMZ,
+                           :MINDPLATE,   :PSYCHIUMZ,
+                           :ICICLEPLATE, :ICIUMZ,
+                           :DRACOPLATE,  :DRAGONIUMZ,
+                           :DREADPLATE,  :DARKINIUMZ,
+                           :PIXIEPLATE,  :FAIRIUMZ],
+             :SILVALLY => [:MEMORYDISC],
+             :GIRATINA => [:GRISEOUSORB],
+             :GENESECT => [:BURNDRIVE, :CHILLDRIVE, :DOUSEDRIVE, :SHOCKDRIVE],
+             :KYOGRE   => [:BLUEORB],
+             :GROUDON  => [:REDORB]
+          }
+          return combos[species] && combos[species].include?(@id)
+        end
     end
 end

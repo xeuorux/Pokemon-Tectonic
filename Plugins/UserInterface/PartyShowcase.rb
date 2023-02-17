@@ -75,6 +75,7 @@ class PokemonPartyShowcase_Scene
             newItemIcon = ItemIconSprite.new(itemX,itemY,pokemon.item,@viewport)
             newItemIcon.zoom_x = 0.5
             newItemIcon.zoom_y = 0.5
+            newItemIcon.type = pokemon.itemTypeChosen
             @sprites["item#{index}"] = newItemIcon
         end
 

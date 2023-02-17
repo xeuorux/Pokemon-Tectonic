@@ -5,6 +5,7 @@ class Pokemon
 	attr_accessor :battlingStreak
   attr_accessor :extraMovesPerTurn
   attr_accessor :bossType
+  attr_accessor :itemTypeChosen
 	
   # Creates a new Pokémon object.
   # @param species [Symbol, String, Integer] Pokémon species
@@ -93,6 +94,17 @@ class Pokemon
   def nature
     @nature = GameData::Nature.get(0).id # ALWAYS RETURN NEUTRAL
     return GameData::Nature.try_get(@nature)
+  end
+
+  def itemTypeChosen
+    @itemTypeChosen = :NORMAL if @itemTypeChosen.nil?
+    return @itemTypeChosen
+  end
+
+  def canSetItemType?
+    return true if hasItem?(:MEMORYSET)
+    return true if hasItem?(:PRISMATICPLATE)
+    return false
   end
   
   # Recalculates this Pokémon's stats.

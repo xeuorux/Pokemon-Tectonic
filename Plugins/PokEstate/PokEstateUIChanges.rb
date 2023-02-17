@@ -31,6 +31,7 @@ class PokemonSummaryScreen
       @sprites["pokeicon"].y       = 92
       @sprites["pokeicon"].visible = false
       @sprites["itemicon"] = ItemIconSprite.new(30,320,@pokemon.item_id,@viewport)
+      @sprites["itemicon"].type = @pokemon.itemTypeChosen
       @sprites["itemicon"].blankzero = true
       @sprites["overlay"] = BitmapSprite.new(Graphics.width,Graphics.height,@viewport)
       pbSetSystemFont(@sprites["overlay"].bitmap)

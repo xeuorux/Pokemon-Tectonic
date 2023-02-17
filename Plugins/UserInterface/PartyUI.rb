@@ -264,6 +264,7 @@ class PokemonPartyScreen
 	    cmdSetDown = -1
       cmdSendPC  = -1
       cmdEvolve  = -1
+      cmdSetItemType = -1
 
       canEditTeam = teamEditingAllowed?()
 
@@ -290,6 +291,8 @@ class PokemonPartyScreen
       # Check for evolution
       newspecies = pkmn.check_evolution_on_level_up
       commands[cmdEvolve = commands.length]       = _INTL("Evolve") if newspecies
+
+      commands[cmdSetItemType = commands.length]       = _INTL("Set Item Type") if pkmn.canSetItemType?
 
       commands[commands.length]                   = _INTL("Cancel")
       command = @scene.pbShowCommands(_INTL("Do what with {1}?",pkmn.name),commands)
@@ -378,6 +381,25 @@ class PokemonPartyScreen
           evo.pbEvolution
           evo.pbEndScreen
           scene.pbRefresh
+        end
+      elsif cmdSetItemType >= 0 && command == cmdSetItemType
+        if !canEditTeam
+          showNoTeamEditingMessage()
+          next
+        end
+        typesArray = []
+        typeCommands = []
+        GameData::Type.each do |typeData|
+          next if typeData.pseudo_type
+          typesArray.push(typeData.id)
+          typeCommands.push(typeData.real_name)
+        end
+        typeCommands.push("Cancel")
+        existingIndex = typesArray.find_index(pkmn.itemTypeChosen)
+        chosenNumber = @scene.pbShowCommands(_INTL("What type should #{pkmn.name} become?"),typeCommands,existingIndex)
+        if chosenNumber < typesArray.length
+          pbDisplay(_INTL("#{pkmn.name} changed its #{pkmn.item.name} to #{typeCommands[chosenNumber]}-type!"))
+          pkmn.itemTypeChosen = typesArray[chosenNumber]
         end
       elsif cmdItem >= 0 && command == cmdItem
         if !canEditTeam

@@ -856,6 +856,8 @@
 879,PROXYFIST,Proxy Fist,Proxy Fists,5,3000,"A held item. The holder doesn't trigger items, abilities, or effects of targets it hits.",0,0,0
 880,MIRRORHERB,Mirror Herb,Mirror Herbs,5,5000,"A held item. When a foe raises their stats, the herb is consumed to copy their raised stats.",0,0,0
 881,PARADOXHERB,Paradox Herb,Paradox Herbs,5,5000,"A held item. When a foe raises their stats, the herb is consumed to reset their raised stats.",0,0,0
+882,MEMORYSET,Memory Set,Memory Sets,5,0,"A set of memory discs, one for each type. If held by a Silvally, you can change its type between battles.",0,0,0
+883,PRISMATICPLATE,Prismatic Plate,Prismatic Plates,5,0,"A tablet that boosts moves of the user's type by 20%. If held by Arceus, you can change its type between battles.",0,0,0
 900,CHAMBER1KEY,Chamber 1 Key,Chamber 1 Keys,8,0,"The key to the first chamber containing a powerful avatar.",0,0,6
 901,CHAMBER2KEY,Chamber 2 Key,Chamber 2 Keys,8,0,"The key to the second chamber containing a powerful avatar.",0,0,6
 902,CHAMBER3KEY,Chamber 3 Key,Chamber 3 Keys,8,0,"The key to the third chamber containing a powerful avatar.",0,0,6

@@ -299,3 +299,9 @@ BattleHandlers::DamageCalcUserItem.add(:WATERGEM,
       pbBattleGem(user, :WATER, move, mults, type, aiChecking)
   }
 )
+
+BattleHandlers::DamageCalcUserItem.add(:PRISMATICPLATE,
+  proc { |_item, user, target, _move, mults, _baseDmg, type, _aiChecking|
+      mults[:final_damage_multiplier] *= 1.2 if user.pbHasType?(type)
+  }
+)

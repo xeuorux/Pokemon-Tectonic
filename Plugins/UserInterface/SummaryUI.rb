@@ -23,6 +23,7 @@ class PokemonSummary_Scene
 		@sprites["pokeicon"].y       = 92
 		@sprites["pokeicon"].visible = false
 		@sprites["itemicon"] = ItemIconSprite.new(30,320,@pokemon.item_id,@viewport)
+		@sprites["itemicon"].type = @pokemon.itemTypeChosen
 		@sprites["itemicon"].blankzero = true
 		@sprites["overlay"] = BitmapSprite.new(Graphics.width,Graphics.height,@viewport)
 		pbSetSystemFont(@sprites["overlay"].bitmap)
@@ -91,6 +92,7 @@ class PokemonSummary_Scene
 		@sprites["pokeicon"].y       = 92
 		@sprites["pokeicon"].visible = false
 		@sprites["itemicon"] = ItemIconSprite.new(30,320,@pokemon.item_id,@viewport)
+		@sprites["itemicon"].type = @pokemon.itemTypeChosen
 		@sprites["itemicon"].blankzero = true
 		@sprites["movesel"] = MoveSelectionSprite.new(@viewport,!move_to_learn.nil?)
 		@sprites["movesel"].visible = false
@@ -112,6 +114,7 @@ class PokemonSummary_Scene
 		end
 		@sprites["itemicon"].visible = true
 		@sprites["itemicon"].item = @pokemon.item_id
+		@sprites["itemicon"].type = @pokemon.itemTypeChosen
 		overlay = @sprites["overlay"].bitmap
 		overlay.clear
 		base   = Color.new(248,248,248)
