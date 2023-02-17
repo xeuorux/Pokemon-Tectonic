@@ -25,6 +25,7 @@ def takeDragonFlame(triggerEventID = -1)
             return
         end
     end
+    pbSEPlay("Anim/PRSFX- Spirit Shackle3", 100, 150)
     invertMySwitch('A')
     createDragonFlameGraphic
     $PokemonGlobal.dragonFlamesCount += 1
@@ -36,6 +37,7 @@ def giveDragonFlame(triggerEventID = -1)
         pbMessage(_INTL("It looks like it could hold a magical flame."))
         return
     end
+    pbSEPlay("Anim/PRSFX- Spirit Shackle3", 100, 120)
     invertMySwitch('A')
     removeDragonFlameGraphic
     $PokemonGlobal.dragonFlamesCount -= 1
