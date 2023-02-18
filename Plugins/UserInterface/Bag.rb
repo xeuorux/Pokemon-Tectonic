@@ -280,7 +280,7 @@ module ItemStorageHelper
       if !itemslot
         items[i] = [item, [qty, maxPerSlot].min]
         qty -= items[i][1]
-        sortItems(items)
+        sortItems(items) if sorting
         return true if qty == 0
       elsif itemslot[0] == item && itemslot[1] < maxPerSlot
         newamt = itemslot[1]
@@ -303,6 +303,15 @@ module ItemStorageHelper
 end
 
 class PokemonBag
+  def pbStoreItem(item, qty = 1, sort = true)
+    item = GameData::Item.get(item)
+    pocket = item.pocket
+    maxsize = maxPocketSize(pocket)
+    maxsize = @pockets[pocket].length + 1 if maxsize < 0
+    return ItemStorageHelper.pbStoreItem(
+       @pockets[pocket], maxsize, Settings::BAG_MAX_PER_SLOT, item.id, qty, sort)
+  end
+
   def sortItems
     @pockets.each do |pocket|
       ItemStorageHelper.sortItems(pocket)

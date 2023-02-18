@@ -29,6 +29,6 @@ SaveData.register_conversion(:spawning_regis_21) do
       end
     end
     
-    bag.pbStoreItem(:MEMORYSET) if hasAnyMemory
+    bag.pbStoreItem(:MEMORYSET, 1, false) if hasAnyMemory
   end
 end
