@@ -61,14 +61,22 @@ class ResetTracker
     return if @respawns_tutorialized
     return if @respawn_tutorial <= 0
     if @respawn_tutorial == 1
-      pbWait(10)
-      pbMessage(_INTL("\\wmAfter healing at a bed or Pokecenter, defeated enemy trainers will become battle ready again!\\wtnp[80]\1"))
-      pbMessage(_INTL("\\wmTrainers who fled don't come back, however.\\wtnp[80]\1"))
-      pbWait(10)
+      playRespawningTutorial
       @respawns_tutorialized = true
     end
     @respawn_tutorial -= 1
   end
+end
+
+def playRespawningTutorial
+  currentBGM = $game_system.playing_bgm
+  pbBGMFade(1.0)
+  pbWait(Graphics.frame_rate)
+  pbSEPlay("Voltorb Flip tile",150,100)
+  pbMessage(_INTL("\\wmAfter a full party heal, defeated enemy trainers will be battle ready again!\\wtnp[80]\1"))
+  pbMessage(_INTL("\\wmFor example, healing at a Pokemon Center triggers this.\\wtnp[80]\1"))
+  pbMessage(_INTL("\\wmTrainers who fled won't come back, however.\\wtnp[80]\1"))
+  pbBGMPlay(currentBGM)
 end
 
 def pbRespawnTrainers
