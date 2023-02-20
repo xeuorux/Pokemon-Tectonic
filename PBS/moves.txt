@@ -789,7 +789,7 @@
 821,ROCKAPULT,Rockapult,51F,140,ROCK,Special,50,10,0,NearOther,0,bef,"The user throws a large rock at the target. If it misses, the user's accuracy is raised.",ROCKTHROW
 822,LAHAR,Lahar,51E,125,GROUND,Special,75,10,0,NearOther,0,bef,"The user causes a mud slide. If the move misses, it sharply raises the user's Speed.",
 823,STARFALL,Star Fall,520,50,ROCK,Special,100,12,100,NearOther,0,bef,"A star falls on the target. Witnessing this lucky star also increases the user's critical hit chance.",DOOMDESIRE
-824,BUBBLEBLAST,Bubble Blast,044,80,WATER,Special,100,12,30,NearOther,0,bef,"A blast of bubbles is shot at the target. It has a 30% chance to lower the target's Speed stat.",BUBBLEBEAM
+824,BUBBLEBLAST,Bubble Blast,044,80,WATER,Special,100,12,30,NearOther,0,bef,"A blast of bubbles is shot at the target. It has a 30% chance to lower the target's Speed stat.",
 825,AURASTRIKE,Aura Strike,007,60,FIGHTING,Special,100,15,30,NearOther,0,bef,"The user shoots a blast of aura. This has a 30% chance to numb the target.",
 826,COURAGEBOLT,Courage Bolt,020,40,FIGHTING,Special,100,30,10,NearOther,0,bef,"The user manifests a bolt of pure courage. This has a 10% chance of raising the user's Sp. Atk.",AURASPHERE
 828,PSYCHICOVERLOAD,Psychic Overload,55F,120,PSYCHIC,Special,100,10,0,RandomNearFoe,0,abef,"The user overloads its mind to attack for three turns.",PSYCHOBOOST
