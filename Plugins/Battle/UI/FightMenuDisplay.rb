@@ -207,7 +207,7 @@ class FightMenuDisplay < BattleMenuBase
           shouldShade = move.shouldShade?(@battler,nil)
         else
           shouldShade = true
-          @battler.eachOther do |otherBattler|
+          @battler.battle.eachBattler do |otherBattler|
             next unless @battler.battle.pbMoveCanTarget?(@battler.index,otherBattler.index,targetingData)
             next if move.shouldShade?(@battler,otherBattler)
             shouldShade = false
