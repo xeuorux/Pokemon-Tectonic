@@ -1,15 +1,24 @@
 class PokemonGlobalMetadata
     attr_writer :noWildEXPTutorialized
+
+    def noWildEXPTutorialized
+        @noWildEXPTutorialized = false if @noWildEXPTutorialized.nil?
+        return @noWildEXPTutorialized
+    end
 end
 
 def playWildEXPTutorial
+    $PokemonGlobal.noWildEXPTutorialized = true
+    if $DEBUG
+        echoln("Skipping EXP changes tutorial message.")
+        return
+    end
     pbBGMFade(1.0)
     pbWait(Graphics.frame_rate)
     pbSEPlay("Voltorb Flip tile",150,100)
     pbMessage(_INTL("\\wmWild Pokemon don't give experience in Pokemon Tectonic.\\wtnp[80]\1"))
     pbMessage(_INTL("\\wmDon't worry, there's an abundance of experience to gain in other ways.\\wtnp[80]\1"))
     pbMessage(_INTL("\\wmIf you encounter a Pokemon you don't want, run away. It's guaranteed!\\wtnp[80]\1"))
-    $PokemonGlobal.noWildEXPTutorialized = true
 end
 
 class PokeBattle_Battle
@@ -35,7 +44,7 @@ class PokeBattle_Battle
                 b.boss = false
             end
         elsif wildBattle?
-            unless defined?($PokemonGlobal.noWildEXPTutorialized) && $PokemonGlobal.noWildEXPTutorialized
+            unless $PokemonGlobal.noWildEXPTutorialized
                 @battlers.each do |b|
                     next unless b && b.opposes? # Can only gain Exp from fainted foes
                     next if b.participants.length == 0

@@ -69,6 +69,10 @@ class ResetTracker
 end
 
 def playRespawningTutorial
+  if $DEBUG
+    echoln("Skipping Trainer Respawning tutorial message.")
+    return
+  end
   currentBGM = $game_system.playing_bgm
   pbBGMFade(1.0)
   pbWait(Graphics.frame_rate)
