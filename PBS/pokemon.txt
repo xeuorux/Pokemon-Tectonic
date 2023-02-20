@@ -33478,6 +33478,7 @@ BattlerShadowSize = 2
 Name = M. Wurmple
 InternalName = MWURMPLE
 Type1 = BUG
+Type2 = NORMAL
 # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
 BaseStats = 55,40,45,25,40,35
 # Total = 240
