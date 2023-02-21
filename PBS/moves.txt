@@ -721,7 +721,7 @@
 752,DIAMONDFORCE,Diamond Force,000,85,ROCK,Special,100,12,0,NearOther,0,befh,"The user calls up spikes of diamond. Critical hits land more easily.",DIAMONDSTORM
 753,CLASH,Clash,000,45,DRAGON,Physical,100,30,0,NearOther,0,abef,"The user harnesses inner battle instincts to strike at the target.",
 754,JOLT,Jolt,007,40,ELECTRIC,Physical,100,25,10,NearOther,0,abef,"The user strikes the enemy while coated with electricity. It has a 10% chance to numb.",SPARK
-755,ELECTROSLASH,Electroslash,000,90,ELECTRIC,Physical,100,12,0,NearOther,0,abefhp,"The user harnesses a blade of lightning and slices at the target. Critical hits land more easily.",SPARK
+755,ELECTROSLASH,Electroslash,000,90,ELECTRIC,Physical,100,12,0,NearOther,0,abefhp,"The user harnesses a blade of lightning and slices at the target. Critical hits land more easily.",
 756,CURRENTCRASH,Current Crash,599,55,ELECTRIC,Physical,100,25,0,NearOther,0,abef,"The user wraps their body in electricity and crashes into the target. The user also takes 20% recoil.",WILDCHARGE
 757,FAVOR,Favor,089,9,NORMAL,Special,100,15,0,NearOther,0,bef,"A full-power special attack that grows more powerful the more the user likes its Trainer.",RETURN
 758,ESSENCEARROW,Essence Arrow,020,40,GRASS,Special,100,30,10,NearOther,0,befn,"The user fires a small bolt of energy at the target. It has a 10% chance to raise user's Sp. Atk.",ENERGYBALL
