@@ -14,9 +14,9 @@ end
 Events.onStepTaken += proc {
   $PokemonGlobal.happinessSteps = 0 if !$PokemonGlobal.happinessSteps
   $PokemonGlobal.happinessSteps += 1
-  if $PokemonGlobal.happinessSteps>=128
+  if $PokemonGlobal.happinessSteps >= 32
     for pkmn in $Trainer.able_party
-      pkmn.changeHappiness("walking") if rand(2)==0
+      pkmn.changeHappiness("walking") if rand(8) == 0
     end
     $PokemonGlobal.happinessSteps = 0
   end
