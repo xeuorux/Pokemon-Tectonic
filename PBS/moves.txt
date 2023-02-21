@@ -1073,3 +1073,8 @@
 1113,MALEFICPHANTOM,Malefic Phantom,0EE,70,GHOST,Special,100,15,0,NearOther,-1,bef,"The user swaps out using an illusion made from the hatred of their opponent. This move always goes last.",
 1114,CONTRADICT,Contradict,401,60,PSYCHIC,Special,100,12,0,NearOther,0,bce,"The user questions the existence of the enemy Pokemon, dealing psychic damage and dizzying them.",
 1115,MOUTHFUL,Mouthful,5B5,1,DARK,Physical,100,10,0,NearOther,0,abef,"The user chomps hard, cutting the target's HP by half, and healing for half of that.",
+1116,GOLEMGUARD,Golem Guard,5B6,0,ROCK,Status,0,5,0,User,3,d,"The user and its allies are protected from wide-ranging attacks this turn, and enemies can only target the user. Fails if used in succession.",
+1117,FREEZERAY,Freeze Ray,5B7,70,ICE,Special,100,10,100,NearOther,0,bef,"The user freezes the target in place, dealing damage and minimizing their Speed and Evasiveness.",
+1118,WARPEDSTRIKE,Warped Strike,5B8,80,STEEL,Physical,100,15,100,NearOther,0,abefj,"Inflicts physical or special damage, whichever deals more. Then, raises the Attacking stat which wasn't used.",
+1119,OPTIMIZEDACTION,Optimized Action,5B9,0,ELECTRIC,Status,0,15,0,User,0,,"The user finds the highest base power move among your able party members, and uses it.",
+1120,DRAGONASPECT,Dragon Aspect,5BA,0,DRAGON,Status,0,5,0,User,0,,"Invokes the aspects of multiple dragons, striking with two fitting moves in a row.",

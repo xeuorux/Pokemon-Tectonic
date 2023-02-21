@@ -1051,3 +1051,246 @@ class PokeBattle_Move_5B5 < PokeBattle_DrainMove
         return damage.round
     end
 end
+
+#===============================================================================
+# User's side is protected against moves that target multiple battlers this round.
+# This round, user becomes the target of attacks that have single targets.
+# (Golem Guard)
+#===============================================================================
+class PokeBattle_Move_5B6 < PokeBattle_ProtectMove
+    def initialize(battle, move)
+        super
+        @effect      = :WideGuard
+        @sidedEffect = true
+    end
+
+    def pbEffectGeneral(user)
+        super
+        maxFollowMe = 0
+        user.eachAlly do |b|
+            next if b.effects[:FollowMe] <= maxFollowMe
+            maxFollowMe = b.effects[:FollowMe]
+        end
+        user.applyEffect(:FollowMe, maxFollowMe + 1)
+    end
+
+    def getEffectScore(user, _target)
+        score = 0
+        user.eachPredictedProtectHitter do |b|
+            score += 50 if user.hasAlly?
+            score += 50 if b.poisoned?
+            score += 50 if b.leeched?
+            score += 30 if b.burned?
+            score += 30 if b.frostbitten?
+        end
+        score /= 2
+        if user.hasAlly?
+            score += 50
+            score += 25 if user.aboveHalfHealth?
+        end
+        return score
+    end
+end
+
+#===============================================================================
+# Minimizes the target's Speed and Evasiveness. (Freeze Ray)
+#===============================================================================
+class PokeBattle_Move_5B7 < PokeBattle_Move
+    def pbAdditionalEffect(user, target)
+        target.pbMinimizeStatStage(:SPEED, user, self)
+        target.pbMinimizeStatStage(:EVASION, user, self)
+    end
+
+    def getEffectScore(user, target)
+        return getMultiStatDownEffectScore([:SPEED,3,:EVASION,3], user, target)
+    end
+end
+
+#===============================================================================
+# Changes Category based on which will deal more damage. (Warped Strike)
+# Raises the stat that wasn't selected to be used.
+#===============================================================================
+class PokeBattle_Move_5B8 < PokeBattle_Move
+    def initialize(battle, move)
+        super
+        @calculated_category = 1
+    end
+
+    def calculateCategory(user, targets)
+        return selectBestCategory(user, targets[0])
+    end
+
+    def pbAdditionalEffect(user, _target)
+        if @calculated_category == 0
+            return user.tryRaiseStat(:SPECIAL_ATTACK, user, increment: 1, move: self)
+        else
+            return user.tryRaiseStat(:ATTACK, user, increment: 1, move: self)
+        end
+    end
+
+    def getEffectScore(user, target)
+        expectedCategory = selectBestCategory(user, target)
+        if expectedCategory == 0
+            return getMultiStatUpEffectScore([:SPECIAL_ATTACK, 1], user, user)
+        else
+            return getMultiStatUpEffectScore([:ATTACK, 1], user, user)
+        end
+    end
+end
+
+#===============================================================================
+# Uses the highest base-power move known by any non-user Pokémon in the user's party. (Optimized Action)
+#===============================================================================
+class PokeBattle_Move_5B9 < PokeBattle_Move
+    def callsAnotherMove?; return true; end
+
+    def initialize(battle, move)
+        super
+        @moveBlacklist = [
+            # Struggle, Chatter, Belch
+            "002",   # Struggle
+            "014",   # Chatter
+            "158",   # Belch
+            # Moves that affect the moveset
+            "05C",   # Mimic
+            "05D",   # Sketch
+            "069",   # Transform
+            # Counter moves
+            "071",   # Counter
+            "072",   # Mirror Coat
+            "073",   # Metal Burst                         # Not listed on Bulbapedia
+            # Helping Hand, Feint (always blacklisted together, don't know why)
+            "09C",   # Helping Hand
+            "0AD",   # Feint
+            # Protection moves
+            "0AA",   # Detect, Protect
+            "0AB",   # Quick Guard                         # Not listed on Bulbapedia
+            "0AC",   # Wide Guard                          # Not listed on Bulbapedia
+            "0E8",   # Endure
+            "149",   # Mat Block
+            "14A",   # Crafty Shield                       # Not listed on Bulbapedia
+            "14B",   # King's Shield
+            "14C",   # Spiky Shield
+            "168",   # Baneful Bunker
+            # Moves that call other moves
+            "0AE",   # Mirror Move
+            "0AF",   # Copycat
+            "0B0",   # Me First
+            #       "0B3",   # Nature Power                                      # See below
+            "0B4",   # Sleep Talk
+            "0B5",   # Assist
+            "0B6",   # Metronome
+            # Move-redirecting and stealing moves
+            "0B1",   # Magic Coat                          # Not listed on Bulbapedia
+            "0B2",   # Snatch
+            "117",   # Follow Me, Rage Powder
+            "16A",   # Spotlight
+            # Set up effects that trigger upon KO
+            "0E6",   # Grudge                              # Not listed on Bulbapedia
+            "0E7",   # Destiny Bond
+            # Target-switching moves
+            #       "0EB",   # Roar, Whirlwind                                    # See below
+            "0EC", # Circle Throw, Dragon Tail
+            "53F", # Rolling Boulder
+            # Held item-moving moves
+            "0F1",   # Covet, Thief
+            "0F2",   # Switcheroo, Trick
+            "0F3",   # Bestow
+            # Moves that start focussing at the start of the round
+            "115",   # Focus Punch
+            "171",   # Shell Trap
+            "172",   # Beak Blast
+            # Event moves that do nothing
+            "133", # Hold Hands
+            "134", # Celebrate
+            # Moves that call other moves
+            "0B3", # Nature Power
+            # Two-turn attacks
+            "0C3",   # Razor Wind                        # Not listed on Bulbapedia
+            "0C4",   # Solar Beam, Solar Blade           # Not listed on Bulbapedia
+            "0C5",   # Freeze Shock                      # Not listed on Bulbapedia
+            "0C6",   # Ice Burn                          # Not listed on Bulbapedia
+            "0C7",   # Sky Attack                        # Not listed on Bulbapedia
+            "0C8",   # Skull Bash                        # Not listed on Bulbapedia
+            "0C9",   # Fly
+            "0CA",   # Dig
+            "0CB",   # Dive
+            "0CC",   # Bounce
+            "0CD",   # Shadow Force
+            "0CE",   # Sky Drop
+            "12E",   # Shadow Half
+            "14D",   # Phantom Force
+            "14E",   # Geomancy                          # Not listed on Bulbapedia
+            # Target-switching moves
+            "0EB", # Roar, Whirlwind
+        ]
+    end
+
+    def getOptimizedMove(user)
+        optimizedMove = nil
+        optimizedBP = -1
+        @battle.pbParty(user.index).each_with_index do |pkmn, i|
+            next if !pkmn || i == user.pokemonIndex
+            next unless pkmn.able?
+            pkmn.moves.each do |move|
+                next if @moveBlacklist.include?(move.function_code)
+                next if move.type == :SHADOW
+                next if move.category == 2
+                next unless move.base_damage > optimizedBP
+                optimizedMove = move.id
+                optimizedBP = move.base_damage
+            end
+        end
+        return optimizedMove
+    end
+
+    def pbMoveFailed?(user, _targets, show_message)
+        unless getOptimizedMove(user)
+            if show_message
+                @battle.pbDisplay(_INTL("But it failed, since there are no moves #{user.pbThis(true)} can use!"))
+            end
+            return true
+        end
+        return false
+    end
+
+    def pbEffectGeneral(user)
+        user.pbUseMoveSimple(getOptimizedMove(user))
+    end
+end
+
+#===============================================================================
+# Uses a random special Dragon-themed move, then a random physical Dragon-themed move. (Dragon Invocation)
+#===============================================================================
+class PokeBattle_Move_5BA < PokeBattle_Move
+    def callsAnotherMove?; return true; end
+
+    def initialize(battle, move)
+        super
+        @invocationMovesPhysical = [
+            :DRAGONCLAW,
+            :DRAGONCLAW,
+            :CRUNCH,
+            :EARTHQUAKE,
+            :DUALWINGBEAT,
+        ]
+
+        @invocationMovesSpecial = [
+            :DRAGONBREATH,
+            :DRAGONBREATH,
+            :FLAMETHROWER,
+            :MIASMA,
+            :FROSTBREATH,
+        ]
+    end
+
+    def pbEffectGeneral(user)
+        user.pbUseMoveSimple(@invocationMovesSpecial.sample)
+        user.pbUseMoveSimple(@invocationMovesPhysical.sample)
+    end
+
+    def getEffectScore(_user, _target)
+        echoln("The AI will never use Dragon Invocation")
+        return -1000
+    end
+end
