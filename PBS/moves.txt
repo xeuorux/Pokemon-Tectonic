@@ -618,7 +618,7 @@
 657,FREEZINGGLARE,Freezing Glare,403,90,PSYCHIC,Special,100,10,20,NearOther,0,ef,"The user shoots its psychic power from its eyes to attack. It has a 20% chance to frostbite.",
 658,HEADSMASH,Head Smash,0FC,120,ROCK,Physical,100,5,0,NearOther,0,abef,"The user attacks the foe with a hazardous, full-power headbutt. The user also takes 50% recoil.",
 659,ROCKWRECKER,Rock Wrecker,0C2,170,ROCK,Physical,100,5,0,NearOther,0,befn,"The user launches a huge boulder at the target to attack. It must rest on the next turn, however.",
-660,DIAMONDSTORM,Diamond Storm,136,95,ROCK,Physical,100,5,50,AllNearFoes,0,bef,"The user whips up a storm of diamonds to damage foes. This has a 50% to sharply raise Defense.",
+660,DIAMONDSTORM,Diamond Storm,01D,95,ROCK,Physical,100,5,100,AllNearFoes,0,bef,"The user whips up a storm of diamonds to damage foes, raising its Defense.",
 661,STONEEDGE,Stone Edge,000,110,ROCK,Physical,85,5,0,NearOther,0,befgh,"The user stabs the foe with sharpened stones from below. Critical hits land more easily.",
 662,POWERGEM,Power Gem,000,90,ROCK,Special,100,15,0,NearOther,0,bef,"The user attacks with a ray of light that sparkles as if it were made of gemstones.",
 663,ROCKSLIDE,Rock Slide,00F,75,ROCK,Physical,100,10,30,AllNearFoes,0,be,"Large boulders are hurled at the foes to inflict damage. It has a 30% chance to cause flinching.",
