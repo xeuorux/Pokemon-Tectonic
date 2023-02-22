@@ -82,7 +82,10 @@ def weatherTMSell()
 		[:TM32,
 		:TM33,
 		:TM34,
-		:TM35],
+		:TM35,
+		:TM196,
+		:TM197,
+		],
 		"Care to buy some?"
 	)
 end

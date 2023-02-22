@@ -785,8 +785,8 @@
 785,TM193,TM193,TM193s,4,6000,"Damage increases with the user's Sp. Def stat.",3,0,0,AURATRICK
 786,TM194,TM194,TM194s,4,6000,"The user fiercely attacks the target using its entire body.",3,0,0,SCORCHINGSANDS
 787,TM195,TM195,TM195s,4,6000,"The user attacks the target's throat, which prevents it from using moves that emit sound for two turns.",3,0,0,THROATCHOP
-788,TM196,TM196,TM196s,4,6000,"The user attacks with an exploding pollen puff. If the target is an ally, it restores its HP instead.",3,0,0,POLLENPUFF
-789,TM197,TM197,TM197s,4,6000,"The user bites the target with its psychic capabilities. This can also destroy Light Screen and Reflect.",3,0,0,PSYCHICFANGS
+788,TM196,TM196,TM196s,4,5000,"",3,0,0,MOONGLOW
+789,TM197,TM197,TM197s,4,5000,"",3,0,0,ECLIPSE
 790,TM198,TM198,TM198s,4,6000,"The user slams into the target using a full-force blast of water. This may also lower the target's Defense stat.",3,0,0,LIQUIDATION
 791,TM199,TM199,TM199s,4,6000,"Damage increases with the user's Defense stat.",3,0,0,BODYPRESS
 792,DYNAMITESTICK,Dynamite Stick,Dynamite Sticks,1,0,"A stick of dynamite, perfectly suited to destroying small bits of rock.",2,0,13
