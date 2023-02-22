@@ -477,4 +477,30 @@ module Compiler
       csvQuote(move_name)
     ))
   end
+
+  #=============================================================================
+  # Save ability data to PBS file
+  #=============================================================================
+  def write_abilities
+    File.open("PBS/abilities.txt", "wb") { |f|
+      add_PBS_header_to_file(f)
+      f.write("\#-------------------------------\r\n")
+      abilityIndex = 0
+      GameData::Ability.each do |a|
+        if a.id_number >= 1000 && abilityIndex < 1000
+          abilityIndex = 1000
+        else
+          abilityIndex += 1
+        end
+        f.write(sprintf("%d,%s,%s,%s\r\n",
+          abilityIndex,
+          csvQuote(a.id.to_s),
+          csvQuote(a.real_name),
+          csvQuoteAlways(a.real_description)
+        ))
+        
+      end
+    }
+    Graphics.update
+  end
 end
