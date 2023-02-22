@@ -148,3 +148,23 @@ GameData::BattleEffect.register_effect(:Position, {
     :real_name => "Ally Cushioning Amount",
     :type => :Integer,
 })
+
+GameData::BattleEffect.register_effect(:Position, {
+    :id => :InfiniteSource,
+    :real_name => "Infinite Source",
+    :type => :PartyPosition,
+    :swaps_with_battlers => true,
+    :entry_proc => proc do |battle, _index, position, battler|
+        sourceMaker = battle.pbThisEx(battler.index, position.effects[:InfiniteSource])
+        battle.pbDisplay(_INTL("{1}'s Infinite Source fuels {2}!", sourceMaker, battler.pbThis(true)))
+        battler.tryRaiseStat(:SPEED, showFailMsg: true)
+        anyPPRestored = false
+        battler.pokemon.moves.each_with_index do |m, i|
+            next if m.total_pp <= 0 || m.pp == m.total_pp
+            m.pp = m.total_pp
+            battler.moves[i].pp = m.total_pp
+            anyPPRestored = true
+        end
+        battle.pbDisplay(_INTL("{1}'s PP was restored!", sourceMaker, battler.pbThis(true))) if anyPPRestored
+    end,
+})

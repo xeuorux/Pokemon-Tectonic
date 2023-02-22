@@ -39,3 +39,11 @@ BattleHandlers::AbilityOnSwitchOut.add(:POORCONDUCT,
       battle.pbHideAbilitySplash(battler)
   }
 )
+
+BattleHandlers::AbilityOnSwitchOut.add(:INFINITESOURCE,
+  proc { |_ability, battler, endOfBattle|
+      next if endOfBattle
+      PBDebug.log("[Ability triggered] #{battler.pbThis}'s #{battler.abilityName}")
+      battler.position.applyEffect(:InfiniteSource, battler.pokemonIndex)
+  }
+)

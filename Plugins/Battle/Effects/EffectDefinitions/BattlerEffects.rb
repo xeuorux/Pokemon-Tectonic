@@ -1510,6 +1510,15 @@ battler.pbThis(true)))
     end,
 })
 
+GameData::BattleEffect.register_effect(:Battler, {
+    :id => :MorphingGuard,
+    :real_name => "Morphing Guard",
+    :type => :Type,
+    :apply_proc => proc do |battle, battler, value|
+        battle.pbDisplay(_INTL("{1} is now immune to #{value}-type!", battler.pbThis(true)))
+    end,
+})
+
 
 #######################################################
 # Protection effects
