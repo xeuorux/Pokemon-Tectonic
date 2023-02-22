@@ -605,5 +605,6 @@
 1005,PUNKROCK,Punk Rock,"Boosts power and resistance of sound moves."
 1006,MISTYSURGE,Misty Surge,"Turns the ground into Fairy Terrain for 5 turns when entering battle."
 1007,SANDSPIT,Sand Spit,"Summons a sandstorm for 4 turns when hit by an attack."
+1008,ANCESTRALDANCE,Ancestral Dance,"Raises Sp. Def whenever a Pokémon uses a dance move."
 2000,PRIMEVALSLOWSTART,Primeval Slow Start,"Attack and Speed are halved."
 2001,PRIMEVALIMPOSTER,Primeval Imposter,"Transforms into the entire enemy team, except buffed!"

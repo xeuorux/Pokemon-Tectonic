@@ -210,7 +210,7 @@
 216,HEATWAVE,Heat Wave,00A,80,FIRE,Special,100,10,10,AllNearFoes,0,befq,"The user attacks by exhaling hot breath on the opposing team. It has a 10% chance to burn.",
 217,FLAMETHROWER,Flamethrower,00A,90,FIRE,Special,100,12,10,NearOther,0,bef,"The target is scorched with an intense blast of fire. It has a 10% chance to burn.",
 218,BLAZEKICK,Blaze Kick,00A,85,FIRE,Physical,100,10,10,NearOther,0,abefh,"The user launches a kick that lands a critical hit more easily. It has a 10% chance to burn.",
-219,FIERYDANCE,Fiery Dance,020,80,FIRE,Special,100,10,50,NearOther,0,befo,"Cloaked in flames, the user dances rhythmically. It has a 50% chance to the user's Sp. Atk.",
+219,FIERYDANCE,Fiery Dance,020,80,FIRE,Special,100,10,50,NearOther,0,befo,"Cloaked in flames, the user dances rhythmically. It has a 50% chance to raise its Sp. Atk.",
 220,FIRELASH,Fire Lash,043,80,FIRE,Physical,100,12,100,NearOther,0,abef,"The user strikes the target with a burning lash. This also lowers the target's Defense stat.",
 221,FIREPLEDGE,Fire Pledge,107,80,FIRE,Special,100,10,0,NearOther,0,bef,"A column of fire hits opposing Pokémon. When used with its Grass equivalent, it makes a sea of fire.",
 222,LAVAPLUME,Lava Plume,00A,80,FIRE,Special,100,12,30,AllNearOthers,0,bef,"An inferno of scarlet flames torches everything around the user. It has a 30% chance to burn.",
@@ -459,7 +459,7 @@
 488,DISABLE,Disable,0B9,0,GHOST,Status,100,15,0,NearOther,0,bce,"For four turns, this move prevents the target from using the move it last used.",
 490,ENCORE,Encore,0BC,0,NORMAL,Status,100,5,0,NearOther,0,bce,"The user compels the target to keep using only the move it last used for three turns.",
 491,ENDURE,Endure,0E8,0,NORMAL,Status,0,10,0,User,4,,"The user endures any attack with at least 1 HP. It always fails if it is used in succession.",
-492,ENTRAINMENT,Entrainment,066,0,NORMAL,Status,100,12,0,NearOther,0,bce,"The user dances to compel the target to mimic it, making the target's Ability the same as the user's.",
+492,ENTRAINMENT,Entrainment,066,0,NORMAL,Status,100,12,0,NearOther,0,bceo,"The user dances to compel the target to mimic it, making the target's Ability the same as the user's.",
 493,FLASH,Flash,047,0,NORMAL,Status,100,15,0,NearOther,0,bce,"The user flashes a light that cuts the target's accuracy. It can also be used to illuminate caves.",
 494,FOCUSENERGY,Focus Energy,023,0,NORMAL,Status,0,25,0,User,0,d,"The user takes a deep breath and focuses so that critical hits land four times more likely.",
 495,FOLLOWME,Follow Me,117,0,NORMAL,Status,0,15,0,User,2,,"The user draws attention to itself, making all targets take aim only at the user.",
@@ -1080,3 +1080,6 @@
 1130,WARPEDSTRIKE,Warped Strike,5C1,80,STEEL,Physical,100,15,100,NearOther,0,abefj,"Inflicts physical or special damage, whichever deals more. Then, raises the Attacking stat which wasn't used.",
 1131,OPTIMIZEDACTION,Optimized Action,5C2,0,ELECTRIC,Status,0,15,0,User,0,,"The user finds the highest base power move among your able party members, and uses it.",
 1132,DRAGONASPECT,Dragon Aspect,5C3,0,DRAGON,Status,0,5,0,User,0,,"Invokes the aspects of multiple dragons, striking with two fitting moves in a row.",
+1133,CAPOEIRA,Capoeira,01F,50,FIGHTING,Physical,100,10,100,NearOther,0,befo,"Combining dance and martial art, the user strikes the target and raises its speeed.".
+1134,FLAMEDANCE,Flame Dance,020,50,FIRE,Special,100,10,100,NearOther,0,befo,"Cloaked in flames, the user dances rhythmically, raising its Sp. Atk.",
+1135,AQUAWALTZ,Aqua Waltz,0da,65,WATER,PHYSICAL,100,10,100,NearOther,0,befo,"The user attacks the target using graceful fluid movements, also healing themselves by 1/8th max HP each turn after."

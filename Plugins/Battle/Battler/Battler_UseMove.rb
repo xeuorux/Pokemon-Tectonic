@@ -630,6 +630,13 @@ user.pbThis))
                 b.applyFractionalHealing(1.0 / 8.0, showAbilitySplash: true)
             end
         end
+		if moveSucceeded && (move.danceMove?)
+            if @battle.pbCheckGlobalAbility(:ANCESTRALDANCE)
+				@battle.pbPriority(true).each do |b|
+				next unless b.index != user.index && b.hasActiveAbility?(:ANCESTRALDANCE)
+                b.tryRaiseStat(:DEFENSE, user, increment: 1)
+			end
+        end
         # Instruct
         @battle.eachBattler do |b|
             next if !b.effectActive?(:Instruct) || !b.lastMoveUsed
