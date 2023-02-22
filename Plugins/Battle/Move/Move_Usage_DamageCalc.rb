@@ -38,6 +38,8 @@ class PokeBattle_Move
         # Main damage calculation
         finalCalculatedDamage = calcDamageWithMultipliers(baseDmg,attack,defense,user.level,multipliers)
 
+        finalCalculatedDamage = flatDamageReductions(finalCalculatedDamage,user,target,aiChecking)
+
         return finalCalculatedDamage
     end
 
@@ -363,5 +365,15 @@ class PokeBattle_Move
 
         # Move-specific final damage modifiers
         multipliers[:final_damage_multiplier] = pbModifyDamage(multipliers[:final_damage_multiplier], user, target)
+    end
+
+    def flatDamageReductions(finalCalculatedDamage,user,target,aiChecking = false)
+        if target.shouldAbilityApply?(:DRAGONSCALES,aiChecking)
+            finalCalculatedDamage -= target.level
+        end
+
+        finalCalculatedDamage = 0 if finalCalculatedDamage < 0
+
+        return finalCalculatedDamage
     end
 end

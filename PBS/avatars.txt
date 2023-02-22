@@ -668,6 +668,7 @@ HPMult = 3.0
 Ability = PRESSURE
 Moves1 = PSYCHIC,SPIKES
 HPMult = 12.0
+HealthBars = 3
 #-------------------------------
 [LANTURN]
 Ability = RADIATE

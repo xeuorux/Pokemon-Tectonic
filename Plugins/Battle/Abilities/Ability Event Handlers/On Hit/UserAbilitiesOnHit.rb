@@ -88,3 +88,9 @@ BattleHandlers::UserAbilityOnHit.add(:BURNOUT,
       randomStatusProcAbility(:BURN, 30, user, target, move, battle) if move.physicalMove?
   }
 )
+
+BattleHandlers::UserAbilityOnHit.add(:ROCKCYCLE,
+  proc { |_ability, user, target, move, battle|
+    user.pbOwnSide.applyEffect(:ErodedRock) if move.physicalMove?
+  }
+)

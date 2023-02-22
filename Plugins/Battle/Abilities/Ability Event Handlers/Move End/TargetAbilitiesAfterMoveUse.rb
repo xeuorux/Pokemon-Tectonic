@@ -78,3 +78,13 @@ BattleHandlers::TargetAbilityAfterMoveUse.add(:EXOADAPTION,
       target.applyFractionalHealing(1.0 / 4.0, showAbilitySplash: true, customMessage: healingMessage)
   }
 )
+
+BattleHandlers::TargetAbilityAfterMoveUse.add(:MORPHINGGUARD,
+  proc { |_ability, target, user, move, _switched, _battle|
+      next unless move.pbDamagingMove?
+      battle.pbShowAbilitySplash(target)
+      target.disableEffect(:MorphingGuard)
+      target.applyEffect(:MorphingGuard,move.calcType)
+      battle.pbHideAbilitySplash(target)
+  }
+)

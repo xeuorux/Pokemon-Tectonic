@@ -441,3 +441,16 @@ GameData::BattleEffect.register_effect(:Side, {
     :real_name => "Bulwark",
     :resets_eor => true,
 })
+
+GameData::BattleEffect.register_effect(:Side, {
+    :id => :ErodedRock,
+    :real_name => "Eroded Rocks",
+    :type => :Integer,
+    :maximum => 4,
+    :apply_proc => proc do |battle, _side, teamName, value|
+        battle.pbDisplay(_INTL("A rock lands on the ground around {1}.", teamName))
+    end,
+    :disable_proc => proc do |battle, _side, teamName|
+        battle.pbDisplay(_INTL("Each rock on the ground around {1} was absorbed!", teamName))
+    end,
+})

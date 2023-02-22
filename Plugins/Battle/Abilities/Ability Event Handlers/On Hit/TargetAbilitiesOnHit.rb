@@ -596,3 +596,15 @@ BattleHandlers::TargetAbilityOnHit.add(:SPINTENSITY,
       battle.pbHideAbilitySplash(target)
   }
 )
+
+BattleHandlers::TargetAbilityOnHit.add(:TOTALMIRROR,
+    proc { |_ability, user, target, move, battle|
+        battle.forceUseMove(target, move.id, user.index, true, nil, nil, true) if move.specialMove? && !target.fainted?
+    }
+)
+
+BattleHandlers::TargetAbilityOnHit.add(:ROCKCYCLE,
+    proc { |_ability, target, battler, _move, battle|
+        target.pbOwnSide.applyEffect(:ErodedRock) if move.physicalMove?
+    }
+)
