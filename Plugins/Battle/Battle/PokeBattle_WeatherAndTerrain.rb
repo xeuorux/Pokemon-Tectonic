@@ -244,10 +244,12 @@ class PokeBattle_Battle
         threshold = SPECIAL_EFFECT_WAIT_TURNS
         threshold /= 2 if weatherSpedUp?
 
+        showWeatherMessages = $PokemonSystem.weather_messages == 0
+
         if (@field.specialTimer + 1) >= threshold
             case curWeather
             when :Eclipse
-                pbDisplay(_INTL("The Total Eclipse arrives!"))
+                pbDisplay(_INTL("The Total Eclipse arrives!")) if showWeatherMessages
                 pbCommonAnimation("Eclipse")
                 anyAffected = false
                 priority.each do |b|
@@ -258,13 +260,13 @@ class PokeBattle_Battle
                     b.pbLowerMultipleStatStages(allStats, b)
                     anyAffected = true
                 end
-                pbDisplay(_INTL("But no one was panicked.")) unless anyAffected
+                pbDisplay(_INTL("But no one was panicked.")) if showWeatherMessages && !anyAffected
                 @battlers.each do |b|
                     next unless b.abilityActive?
                     BattleHandlers.triggerTotalEclipseAbility(b.ability, b, self)
                 end
             when :Moonglow
-                pbDisplay(_INTL("The Full Moon rises!"))
+                pbDisplay(_INTL("The Full Moon rises!")) if showWeatherMessages
                 pbAnimation(:Moonglow, @battlers[0], [])
                 anyAffected = false
                 priority.each do |b|
@@ -274,7 +276,7 @@ class PokeBattle_Battle
                     b.pbFlinch
                     anyAffected = true
                 end
-                pbDisplay(_INTL("But no one was moon struck.")) unless anyAffected
+                pbDisplay(_INTL("But no one was moon struck.")) if showWeatherMessages && !anyAffected
                 @battlers.each do |b|
                     next unless b.abilityActive?
                     BattleHandlers.triggerFullMoonAbility(b.ability, b, self)
@@ -284,6 +286,16 @@ class PokeBattle_Battle
             @field.specialWeatherEffect = true
         else
             @field.specialWeatherEffect = false
+
+            # Special effect happening next turn
+            if @field.specialTimer + 2 == threshold && @field.weatherDuration > 1
+                case curWeather
+                when :Eclipse
+                    pbDisplay(_INTL("The Total Eclipse is approaching.")) if showWeatherMessages
+                when :Moonglow
+                    pbDisplay(_INTL("The Full Moon is approaching.")) if showWeatherMessages
+                end
+            end
         end
     end
 
