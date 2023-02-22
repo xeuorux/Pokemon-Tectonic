@@ -726,10 +726,10 @@ BattleHandlers::AbilityOnSwitchIn.add(:WHIRLER,
 
       battle.pbShowAbilitySplash(battler)
       battler.eachOpposing do |b|
-        next if target.effectActive?(:Trapping)
-        target.applyEffect(:Trapping, trappingDuration)
-        target.applyEffect(:TrappingMove, :WHIRLPOOL)
-        target.pointAt(:TrappingUser, battler)
+        next if b.effectActive?(:Trapping)
+        b.applyEffect(:Trapping, trappingDuration)
+        b.applyEffect(:TrappingMove, :WHIRLPOOL)
+        b.pointAt(:TrappingUser, battler)
         battle.pbDisplay(_INTL("{1} became trapped in the vortex!", b.pbThis))
       end
       battle.pbHideAbilitySplash(battler)

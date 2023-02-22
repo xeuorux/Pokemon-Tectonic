@@ -424,13 +424,13 @@ BattleHandlers::DamageCalcUserAbility.add(:TIDALFORCE,
   }
 )
 BattleHandlers::DamageCalcUserAbility.add(:RATTLEEM,
-  proc { |_ability, _user, target, move, mults, _baseDmg, _type, _aiCheck|
+  proc { |_ability, _user, target, _move, mults, _baseDmg, _type, _aiCheck|
       mults[:base_damage_multiplier] *= 1.5 if target.effectActive?(:FlinchedAlready)
   }
 )
 
 BattleHandlers::DamageCalcUserAbility.add(:TAIGATRECKER,
-  proc { |_ability, _user, _target, _move, mults, _baseDmg, type|
+  proc { |_ability, user, _target, _move, mults, _baseDmg, type|
       mults[:base_damage_multiplier] *= 1.5 if user.battle.pbWeather == :Hail && type == :GRASS
   }
 )
