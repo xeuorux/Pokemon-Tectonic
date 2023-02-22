@@ -149,8 +149,11 @@ WEATHERS_HASH = {
     _INTL("Weather Duration") => _INTL("Weathers last a certain number of turns. The length differs depending on what move or ability summoned the weather. The duration can be extended by certain items."),
     _INTL("Sun") => _INTL("Sun lowers attack damage by 15% and prevents attacks from critting. Fire and Grass-type moves/Pokémon are immune to this. Fire-type attacks are boosted by 30%."),
     _INTL("Rain") => _INTL("Rain lowers attack damage by 15% and makes added effects half as likely. Water and Electric-type moves/Pokémon are immune to this. Water-type attacks are boosted by 30%."),
-    _INTL("Sandstorm") => _INTL("Sandstorm deals damage to all Pokémon at the end of each turn. Rock, Ground, and Steel-types are immune to this. Additionally, Rock-types get +50% Special Defense."),
-    _INTL("Hail") => _INTL("Hail deals damage to all Pokémon at the end of each turn. Ice, Ghost, and Steel-types are immune to this. Additionally, Ice-types get +50% Defense."),
+    _INTL("Sandstorm") => _INTL("Sandstorm deals damage to all Pokémon at the end of each turn. Rock and Ground-Steel-types are immune to this. Additionally, Rock-types get +50% Special Defense."),
+    _INTL("Hail") => _INTL("Hail deals damage to all Pokémon at the end of each turn. Ice and Ghost-types are immune to this. Additionally, Ice-types get +50% Defense."),
+    _INTL("Eclipse") => _INTL("Eclipse lowers all stats of all Pokémon every 4 turns. Psychic and Ghost-types are immune to this. Additionally, Psychic-type attacks are boosted by 30%."),
+    _INTL("Moonglow") => _INTL("Moonglow flinches all Pokémon every 4 turns. Fairy and Dark-types are immune to this. Additionally, Fairy-type attacks are boosted by 30%."),
+    _INTL("Weather Downsides") => _INTL("Each weather has both an upside and a downside. There are items and abilities that make your Pokemon immune to these downsides regardless of type."),
     _INTL("Weather Areas") => _INTL("Certain areas in the game experience intense weather. That weather will also be present in the battles of that area. Simple daily weather will not do this."),
     _INTL("Weather Synergies") => _INTL("Each weather has dozens of moves and abilities that benefit from that weather. Pokémon using these moves/abilities ignore the downsides of their favored weather!"),
 }
