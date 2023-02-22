@@ -80,7 +80,7 @@ BattleHandlers::TargetAbilityAfterMoveUse.add(:EXOADAPTION,
 )
 
 BattleHandlers::TargetAbilityAfterMoveUse.add(:MORPHINGGUARD,
-  proc { |_ability, target, user, move, _switched, _battle|
+  proc { |_ability, target, _user, move, _switched, battle|
       next unless move.pbDamagingMove?
       battle.pbShowAbilitySplash(target)
       target.disableEffect(:MorphingGuard)
