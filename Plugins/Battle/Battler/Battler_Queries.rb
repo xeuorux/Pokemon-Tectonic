@@ -219,7 +219,6 @@ class PokeBattle_Battler
         return false if effectActive?(:Ingrain)
         return false if effectActive?(:SmackDown)
         return false if @battle.field.effectActive?(:Gravity)
-        return false if @battle.field.terrain == :Grassy && shouldAbilityApply?(:NESTING, checkingForAI)
         return true if shouldTypeApply?(:FLYING, checkingForAI)
         return true if hasLevitate?(checkingForAI) && !@battle.moldBreaker
         return true if hasActiveItem?(LEVITATION_ITEMS)
@@ -269,6 +268,7 @@ class PokeBattle_Battler
     def canHeal?
         return false if fainted? || @hp >= @totalhp
         return false if effectActive?(:HealBlock)
+        return false if hasActiveAbility?(:ONEDGE) && @battle.pbWeather == :Moonglow
         return true
     end
 
@@ -411,6 +411,7 @@ class PokeBattle_Battler
         ret = 5
         ret += 3 if hasActiveItem?(:LIGHTCLAY)
         ret += 6 if hasActiveItem?(:BRIGHTCLAY)
+        ret *= 2 if hasActiveAbility?(:RESONANCE) && @battle.pbWeather == :Eclipse
         return ret
     end
 
@@ -558,5 +559,19 @@ class PokeBattle_Battler
         return true if shouldAbilityApply?(:INFILTRATOR,checkingForAI)
         return true if shouldAbilityApply?(:CLEAVING,checkingForAI)
         return false
+    end
+
+    def canBeDisabled?(show_messages = false, move = nil)
+        return false if move&.pbMoveFailedAromaVeil?(nil, self, show_messages)
+        return false if fainted?
+        return false if effectActive?(:Disable)
+        regularMove = nil
+        eachMove do |m|
+            next if m.id != @lastRegularMoveUsed
+            regularMove = m
+            break
+        end
+        return false unless regularMove && (regularMove.pp == 0 && regularMove.total_pp > 0)
+        return true
     end
 end

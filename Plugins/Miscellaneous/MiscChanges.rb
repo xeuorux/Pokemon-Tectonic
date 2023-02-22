@@ -11,19 +11,6 @@ module PBDebug
   end
 end
 
-# Setting the "off screen events" flags
-Events.onMapChange += proc { |_sender,e|
-  old_map_ID = e[0] # previous map ID, 0 if no map ID
-  
-  if old_map_ID == 0 || old_map_ID == $game_map.map_id
-    echoln("Skipping off screen events check on this map because of some unknown error.\n")
-    next
-  end
-
-  $game_switches[98] = true
-  $game_switches[99] = true
-}
-
 DebugMenuCommands.register("autopositionbacksprites", {
   "parent"      => "editorsmenu",
   "name"        => _INTL("Auto-Position Back Sprites"),

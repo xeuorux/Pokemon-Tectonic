@@ -40,6 +40,12 @@ BattleHandlers::SpeedCalcAbility.add(:SWIFTSWIM,
   }
 )
 
+BattleHandlers::SpeedCalcAbility.add(:AQUAPROPULSION,
+  proc { |_ability, battler, mult|
+      next mult * 1.25 if battler.battle.rainy?
+  }
+)
+
 BattleHandlers::SpeedCalcAbility.add(:UNBURDEN,
   proc { |_ability, battler, mult|
       next mult * 2 if battler.effectActive?(:ItemLost) && !battler.item
@@ -109,5 +115,59 @@ BattleHandlers::SpeedCalcAbility.add(:LIGHTTRICK,
       end
       mult *= 2 if active
       next mult
+  }
+)
+
+BattleHandlers::SpeedCalcAbility.add(:ANARCHIC,
+  proc { |_ability, battler, mult|
+      next mult * 2 if battler.battle.pbWeather == :Eclipse
+  }
+)
+
+BattleHandlers::SpeedCalcAbility.add(:NIGHTLIFE,
+  proc { |_ability, battler, mult|
+      next mult * 2 if battler.battle.pbWeather == :Moonglow
+  }
+)
+
+BattleHandlers::SpeedCalcAbility.add(:NIGHTVISION,
+  proc { |_ability, battler, mult|
+      next mult * 1.5 if battler.battle.pbWeather == :Moonglow
+  }
+)
+
+BattleHandlers::SpeedCalcAbility.add(:SANDDRILLING,
+  proc { |_ability, battler, mult|
+      next mult * 1.5 if battler.battle.pbWeather == :Sandstorm
+  }
+)
+
+BattleHandlers::SpeedCalcAbility.add(:NIGHTOWL,
+  proc { |_ability, battler, mult|
+      next mult * 1.5 if battler.battle.pbWeather == :Moonglow
+  }
+)
+
+BattleHandlers::SpeedCalcAbility.add(:SANDSNIPER,
+  proc { |_ability, battler, mult|
+      next mult * 1.5 if battler.battle.pbWeather == :Sandstorm
+  }
+)
+
+BattleHandlers::SpeedCalcAbility.add(:TAIGATRECKER,
+  proc { |_ability, battler, mult|
+      next mult * 1.5 if battler.battle.pbWeather == :Hail
+  }
+)
+
+BattleHandlers::SpeedCalcAbility.add(:POLARHUNTER,
+  proc { |_ability, battler, mult|
+      next mult * 1.25 if battler.battle.pbWeather == :Hail
+  }
+)
+
+BattleHandlers::SpeedCalcAbility.add(:LIGHTNINGRIDE,
+  proc { |_ability, battler, mult|
+      next mult * 2.0 if battler.effectActive?(:Charge)
   }
 )

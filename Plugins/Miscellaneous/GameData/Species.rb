@@ -120,6 +120,22 @@ module GameData
           @notes                 = hash[:notes]                 || ""
           @earliest_available    = nil
           @tribes                = hash[:tribes]                || []
+
+          @moves.each do |entry|
+            moveID = entry[1]
+            next if GameData::Move.get(moveID).id_number < 2000
+            raise _INTL("Cut or inaccessible move #{moveID} is learnable by species #{@id}!")
+          end
+
+          @egg_moves.each do |moveID|
+            next if GameData::Move.get(moveID).id_number < 2000
+            raise _INTL("Cut or inaccessible move #{moveID} is learnable by species #{@id}!")
+          end
+
+          @tutor_moves.each do |moveID|
+            next if GameData::Move.get(moveID).id_number < 2000
+            raise _INTL("Cut or inaccessible move #{moveID} is learnable by species #{@id}!")
+          end
       end
   
       def notes

@@ -8,21 +8,9 @@ BattleHandlers::TargetAbilityOnHit.add(:SEEDSCATTER,
     }
 )
 
-BattleHandlers::TargetAbilityOnHit.add(:THUNDERSTRUCK,
-    proc { |_ability, _target, battler, _move, battle|
-        terrainSetAbility(:Electric, battler, battle)
-    }
-)
-
 BattleHandlers::TargetAbilityOnHit.add(:MISTCRAFT,
     proc { |_ability, _target, battler, _move, battle|
         terrainSetAbility(:Fairy, battler, battle)
-    }
-)
-
-BattleHandlers::TargetAbilityOnHit.add(:CLEVERRESPONSE,
-    proc { |_ability, _target, battler, _move, battle|
-        terrainSetAbility(:Psychic, battler, battle)
     }
 )
 
@@ -54,21 +42,27 @@ BattleHandlers::TargetAbilityOnHit.add(:FROSTSCATTER,
     }
 )
 
-BattleHandlers::TargetAbilityOnHit.add(:SWARMMOUTH,
+BattleHandlers::TargetAbilityOnHit.add(:SUNEATER,
     proc { |_ability, _target, battler, _move, battle|
-        pbBattleWeatherAbility(:Swarm, battler, battle, false, true)
+        pbBattleWeatherAbility(:Eclipse, battler, battle, false, true)
     }
 )
 
-BattleHandlers::TargetAbilityOnHit.add(:ACIDBODY,
+BattleHandlers::TargetAbilityOnHit.add(:LUNARLOYALTY,
     proc { |_ability, _target, battler, _move, battle|
-        pbBattleWeatherAbility(:AcidRain, battler, battle, false, true)
+        pbBattleWeatherAbility(:Moonglow, battler, battle, false, true)
     }
 )
 
 #########################################
 # Other
 #########################################
+
+BattleHandlers::TargetAbilityOnHit.add(:THUNDERSTRUCK,
+    proc { |_ability, _target, battler, _move, battle|
+        battler.applyEffect(:Charge,2)
+    }
+)
 
 BattleHandlers::TargetAbilityOnHit.add(:ANGERPOINT,
   proc { |_ability, _user, target, _move, battle|
@@ -204,22 +198,9 @@ BattleHandlers::TargetAbilityOnHit.add(:LIVEWIRE,
 
 BattleHandlers::TargetAbilityOnHit.add(:CURSEDBODY,
   proc { |_ability, user, target, move, battle|
-      next if user.fainted?
-      next if user.effectActive?(:Disable)
-      regularMove = nil
-      user.eachMove do |m|
-          next if m.id != user.lastRegularMoveUsed
-          regularMove = m
-          break
-      end
-      next unless regularMove && (regularMove.pp == 0 && regularMove.total_pp > 0)
-      next if battle.pbRandom(100) >= 60
+      next if user.fainted? || user.effectActive?(:Disable) 
       battle.pbShowAbilitySplash(target)
-      unless move.pbMoveFailedAromaVeil?(target, user, true)
-          user.applyEffect(:Disable, 3)
-          battle.pbHideAbilitySplash(target)
-          user.pbItemStatusCureCheck
-      end
+      user.applyEffect(:Disable, 3) if user.canBeDisabled?
       battle.pbHideAbilitySplash(target)
   }
 )
@@ -516,10 +497,9 @@ BattleHandlers::TargetAbilityOnHit.add(:QUILLERINSTINCT,
   }
 )
 
-BattleHandlers::TargetAbilityOnHit.add(:ELECTRICFENCE,
+BattleHandlers::TargetAbilityOnHit.add(:ARCCONDUCTOR,
   proc { |_ability, user, target, _move, battle|
-      echoln target.battle.field.terrain == :Electric
-      next unless target.battle.field.terrain == :Electric
+      next unless battle.rainy?
       battle.pbShowAbilitySplash(target)
       if user.takesIndirectDamage?(true)
           battle.pbDisplay(_INTL("{1} is hurt!", user.pbThis))

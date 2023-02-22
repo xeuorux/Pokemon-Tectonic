@@ -92,15 +92,6 @@ BattleHandlers::DamageCalcUserAbility.add(:RIVALRY,
   }
 )
 
-BattleHandlers::DamageCalcUserAbility.add(:SANDFORCE,
-  proc { |_ability, user, _target, _move, mults, _baseDmg, type, _aiCheck|
-      if user.battle.pbWeather == :Sandstorm &&
-         %i[ROCK GROUND STEEL].include?(type)
-          mults[:base_damage_multiplier] *= 1.3
-      end
-  }
-)
-
 BattleHandlers::DamageCalcUserAbility.add(:SHEERFORCE,
   proc { |_ability, _user, _target, move, mults, _baseDmg, _type, _aiCheck|
       mults[:base_damage_multiplier] *= 1.3 if move.effectChance > 0
@@ -214,6 +205,12 @@ BattleHandlers::DamageCalcUserAbility.add(:MIDNIGHTSUN,
   }
 )
 
+BattleHandlers::DamageCalcUserAbility.add(:SANDDEMON,
+  proc { |_ability, user, _target, _move, mults, _baseDmg, type, _aiCheck|
+      mults[:base_damage_multiplier] *= 1.5 if user.battle.pbWeather == :Sandstorm && type == :DARK
+  }
+)
+
 BattleHandlers::DamageCalcUserAbility.add(:RAINPRISM,
   proc { |_ability, user, _target, _move, mults, _baseDmg, type, _aiCheck|
       mults[:base_damage_multiplier] *= 1.5 if user.battle.pbWeather == :Rain && type == :FAIRY
@@ -285,7 +282,7 @@ BattleHandlers::DamageCalcUserAbility.add(:ARMORPIERCING,
 
 BattleHandlers::DamageCalcUserAbility.add(:TERRITORIAL,
   proc { |_ability, _user, target, _move, mults, _baseDmg, _type, _aiCheck|
-      mults[:attack_multiplier] *= 1.3 if target.battle.field.terrain != :None
+      mults[:attack_multiplier] *= 1.2 if target.battle.pbWeather != :None
   }
 )
 
@@ -415,9 +412,26 @@ BattleHandlers::DamageCalcUserAbility.add(:LINEBACKER,
   }
 )
 
+BattleHandlers::DamageCalcUserAbility.add(:WORLDQUAKE,
+  proc { |_ability, user, _target, _move, mults, _baseDmg, type, _aiCheck|
+      mults[:base_damage_multiplier] *= 1.5 if user.battle.pbWeather == :Eclipse && type == :GROUND
+  }
+)
+
+BattleHandlers::DamageCalcUserAbility.add(:TIDALFORCE,
+  proc { |_ability, user, _target, _move, mults, _baseDmg, type, _aiCheck|
+      mults[:base_damage_multiplier] *= 1.5 if user.battle.pbWeather == :Moonglow && type == :WATER
+  }
+)
 BattleHandlers::DamageCalcUserAbility.add(:RATTLEEM,
   proc { |_ability, _user, target, move, mults, _baseDmg, _type, _aiCheck|
       mults[:base_damage_multiplier] *= 1.5 if target.effectActive?(:FlinchedAlready)
+  }
+)
+
+BattleHandlers::DamageCalcUserAbility.add(:TAIGATRECKER,
+  proc { |_ability, _user, _target, _move, mults, _baseDmg, type|
+      mults[:base_damage_multiplier] *= 1.5 if user.battle.pbWeather == :Hail && type == :GRASS
   }
 )
 

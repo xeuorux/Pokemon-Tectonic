@@ -60,6 +60,12 @@ BattleHandlers::MoveImmunityTargetAbility.add(:STORMDRAIN,
   }
 )
 
+BattleHandlers::MoveImmunityTargetAbility.add(:ROCKCLIMBER,
+  proc { |_ability, user, target, move, type, battle, showMessages, aiChecking|
+      next pbBattleMoveImmunityStatAbility(user, target, move, type, :ROCK, :SPEED, 1, battle, showMessages, aiChecking)
+    }
+)
+
 BattleHandlers::MoveImmunityTargetAbility.add(:FILTHY,
   proc { |_ability, user, target, move, type, battle, showMessages, aiChecking|
       next pbBattleMoveImmunityStatAbility(user, target, move, type, :POISON, :ATTACK, 1, battle, showMessages, aiChecking)
@@ -203,6 +209,14 @@ BattleHandlers::MoveImmunityTargetAbility.add(:SOUNDPROOF,
           battle.pbDisplay(_INTL("It doesn't affect {1}...", target.pbThis(true)))
           battle.pbHideAbilitySplash(target)
       end
+      next true
+  }
+)
+
+BattleHandlers::MoveImmunityTargetAbility.add(:WINTERINSULATION,
+  proc { |_ability, _user, target, move, type, battle, showMessages|
+      next false unless battle.pbWeather == :Hail
+      next false unless %i[FIRE ELECTRIC].include?(type)
       next true
   }
 )

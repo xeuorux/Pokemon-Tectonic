@@ -9,7 +9,19 @@ BattleHandlers::StatLossImmunityAbility.add(:CLEARBODY,
   }
 )
 
-BattleHandlers::StatLossImmunityAbility.copy(:CLEARBODY, :WHITESMOKE, :STUBBORN, :FULLMETALBODY)
+BattleHandlers::StatLossImmunityAbility.copy(:CLEARBODY, :WHITESMOKE, :STUBBORN, :FULLMETALBODY, :METALCOVER)
+
+BattleHandlers::StatLossImmunityAbility.add(:ANCIENTSCALES,
+  proc { |_ability, battler, _stat, battle, showMessages|
+      next false unless @battle.pbWeather == :Eclipse
+      if showMessages
+          battle.pbShowAbilitySplash(battler)
+          battle.pbDisplay(_INTL("{1}'s stats cannot be lowered!", battler.pbThis))
+          battle.pbHideAbilitySplash(battler)
+      end
+      next true
+  }
+)
 
 BattleHandlers::StatLossImmunityAbility.add(:FLOWERVEIL,
   proc { |_ability, battler, _stat, battle, showMessages|

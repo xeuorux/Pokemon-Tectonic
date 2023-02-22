@@ -126,6 +126,17 @@ BattleHandlers::UserAbilityEndOfMove.add(:DAUNTLESS,
   }
 )
 
+BattleHandlers::UserAbilityEndOfMove.add(:CALAMITY,
+  proc { |_ability, user, targets, _move, battle, _switchedBattlers|
+      next unless battle.pbWeather == :Eclipse
+      next if battle.pbAllFainted?(user.idxOpposingSide)
+      numFainted = 0
+      targets.each { |b| numFainted += 1 if b.damageState.fainted }
+      next if numFainted == 0
+      user.pbRaiseMultipleStatStages([:ATTACK, numFainted, :SPECIAL_ATTACK, numFainted], user, showAbilitySplash: true)
+  }
+)
+
 BattleHandlers::UserAbilityEndOfMove.add(:SPACEINTERLOPER,
   proc { |_ability, battler, targets, _move, _battle|
       battler.pbRecoverHPFromMultiDrain(targets, 0.25)
@@ -207,6 +218,61 @@ BattleHandlers::UserAbilityEndOfMove.add(:FLUSTERFLOCK,
 )
 
 BattleHandlers::UserAbilityEndOfMove.copy(:FLUSTERFLOCK, :HEADACHE)
+
+BattleHandlers::UserAbilityEndOfMove.add(:GENERATOR,
+  proc { |_ability, user, _targets, move, battle, _switchedBattlers|
+      next if battle.futureSight
+      next if move.pbDamagingMove?
+      battle.pbShowAbilitySplash(user)
+      user.applyEffect(:Charge, 2)
+      battle.pbHideAbilitySplash(user)
+  }
+)
+
+BattleHandlers::UserAbilityEndOfMove.add(:HEALINGHOPE,
+  proc { |_ability, user, targets, _move, battle, _switchedBattlers|
+      next if battle.pbAllFainted?(user.idxOpposingSide)
+      numFainted = 0
+      targets.each { |b| numFainted += 1 if b.damageState.fainted }
+      next if numFainted == 0
+      battle.forceUseMove(user, :WISH, user.index, true, nil, nil, true)
+  }
+)
+
+BattleHandlers::UserAbilityEndOfMove.add(:MIDNIGHTOIL,
+  proc { |_ability, user, _targets, move, battle, _switchedBattlers|
+      next if battle.futureSight
+      next if move.pbDamagingMove?
+      next unless battle.pbWeather == :Moonglow
+      battle.pbShowAbilitySplash(user)
+      battle.extendWeather(1)
+      battle.pbHideAbilitySplash(user)
+  }
+)
+
+BattleHandlers::UserAbilityEndOfMove.add(:ICEQUEEN,
+  proc { |_ability, user, _targets, move, battle, _switchedBattlers|
+      next if battle.futureSight
+      next unless move.pbDamagingMove?
+      next unless battle.pbWeather == :Hail
+      battle.pbShowAbilitySplash(user)
+      battler.pbRecoverHPFromMultiDrain(targets, 0.50)
+      battle.pbHideAbilitySplash(user)
+  }
+)
+
+BattleHandlers::UserAbilityEndOfMove.add(:ETERNALWINTER,
+  proc { |_ability, user, targets, _move, battle, _switchedBattlers|
+      next if battle.pbAllFainted?(user.idxOpposingSide)
+      next unless battle.pbWeather == :Hail
+      numFainted = 0
+      targets.each { |b| numFainted += 1 if b.damageState.fainted }
+      next if numFainted == 0
+      battle.pbShowAbilitySplash(user)
+      battle.extendWeather(numFainted)
+      battle.pbHideAbilitySplash(user)
+  }
+)
 
 BattleHandlers::UserAbilityEndOfMove.add(:ROCKCYCLE,
   proc { |_ability, user, targets, move, battle, _switchedBattlers|

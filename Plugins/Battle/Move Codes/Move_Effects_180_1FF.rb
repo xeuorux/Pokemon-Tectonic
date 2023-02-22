@@ -248,32 +248,23 @@ class PokeBattle_Move_18B < PokeBattle_JealousyMove
 end
 
 #===============================================================================
-# Move has increased Priority in Grassy Terrain (Grassy Glide)
+# Move has increased Priority in sunshine (Solar Glide)
 #===============================================================================
 class PokeBattle_Move_18C < PokeBattle_Move
     def priorityModification(_user, _targets)
-        return 1 if @battle.field.terrain == :Grassy
-        return 0
-    end
-
-    def getEffectScore(_user, _target)
-        return 50 if @battle.field.terrain == :Grassy
+        return 1 if @battle.sunny?
         return 0
     end
 
     def shouldHighlight?(_user, _target)
-        return @battle.field.terrain == :Grassy
+        return @battle.sunny?
     end
 end
 
 #===============================================================================
-# Power Doubles onn Electric Terrain (Rising Voltage)
+# (Not currently used.)
 #===============================================================================
 class PokeBattle_Move_18D < PokeBattle_Move
-    def pbBaseDamage(baseDmg, _user, target)
-        baseDmg *= 2 if @battle.field.terrain == :Electric && !target.airborne?
-        return baseDmg
-    end
 end
 
 #===============================================================================
@@ -317,7 +308,7 @@ end
 #===============================================================================
 class PokeBattle_Move_190 < PokeBattle_Move
     def pbBaseDamage(baseDmg, _user, _target)
-        baseDmg *= 1.5 if @battle.field.terrain == :Psychic
+        baseDmg *= 1.5 if @battle.pbWeather == :Eclipse
         return baseDmg
     end
 end
@@ -411,11 +402,11 @@ class PokeBattle_Move_195 < PokeBattle_Move
 end
 
 #===============================================================================
-# User loses half their max health. Boosted Damage when on Misty Terrain (Misty Explosion)
+# User loses half their max health. Boosted Damage in Moonglow (Moon Burst)
 #===============================================================================
 class PokeBattle_Move_196 < PokeBattle_Move_0E0
     def pbBaseDamage(baseDmg, user, _target)
-        baseDmg = (baseDmg * 1.5).round if @battle.field.terrain == :Fairy && !user.airborne?
+        baseDmg = (baseDmg * 1.5).round if @battle.pbWeather == :Moonglow
         return baseDmg
     end
 

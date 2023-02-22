@@ -295,31 +295,34 @@ class PokeBattle_Move_620 < PokeBattle_MultiStatUpMove
     end
 end
 
-# Empowered Grassy Terrain
-class PokeBattle_Move_621 < PokeBattle_Move_155
+# Empowered Aromatherapy
+class PokeBattle_Move_621 < PokeBattle_Move_019
     include EmpoweredMove
 
     def pbEffectGeneral(user)
+        # Double supers here is intentional
+        super
         super
         user.pbRaiseMultipleStatStages([:ATTACK, 1, :SPECIAL_ATTACK, 1], user, move: self)
         transformType(user, :GRASS)
     end
 end
 
-# Empowered Electric Terrain
-class PokeBattle_Move_622 < PokeBattle_Move_154
+# Empowered Numb
+class PokeBattle_Move_622 < PokeBattle_Move
     include EmpoweredMove
 
     def pbEffectGeneral(user)
         super
-        @battle.pbAnimation(:CHARGE, user, [user])
-        user.applyEffect(:Charge, 2)
+        @battle.eachOtherSideBattler(user) do |b|
+            b.applyNumb(user) if b.canNumb?(user, true, self)
+        end
         transformType(user, :ELECTRIC)
     end
 end
 
-# Empowered Psychic Terrain
-class PokeBattle_Move_623 < PokeBattle_Move_173
+# Empowered Eclipse
+class PokeBattle_Move_623 < PokeBattle_Move_09D
     include EmpoweredMove
 
     def pbEffectGeneral(user)
@@ -330,8 +333,8 @@ class PokeBattle_Move_623 < PokeBattle_Move_173
     end
 end
 
-# Empowered Fairy Terrain
-class PokeBattle_Move_624 < PokeBattle_Move_156
+# Empowered Moonglow
+class PokeBattle_Move_624 < PokeBattle_Move_09D
     include EmpoweredMove
 
     def pbEffectGeneral(user)

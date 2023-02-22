@@ -7,7 +7,7 @@ class PokeBattle_Battler
 
     def affectedByWeatherDownsides?(checkingForAI = false)
         return false if inTwoTurnAttack?("0CA", "0CB")   # Dig, Dive
-        return false if shouldAbilityApply?(%i[STOUT WEATHERSENSES NORMALIZE], checkingForAI)
+        return false if shouldAbilityApply?(%i[STOUT WEATHERSENSES TERRITORIAL METALCOVER], checkingForAI)
         return false if hasActiveItem?(:UTILITYUMBRELLA)
         return false if @battle.pbCheckAlliedAbility(:HIGHRISE, @index)
         return true
@@ -16,23 +16,22 @@ class PokeBattle_Battler
     def debuffedBySun?(checkingForAI = false)
         return false unless affectedByWeatherDownsides?(checkingForAI)
         return false if shouldTypeApply?(:FIRE, checkingForAI) || shouldTypeApply?(:GRASS, checkingForAI)
-        return false if shouldAbilityApply?(GameData::Ability::RAIN_ABILITIES, checkingForAI)
+        return false if shouldAbilityApply?(GameData::Ability::SUN_ABILITIES, checkingForAI)
         return true
     end
 
     def debuffedByRain?(checkingForAI = false)
         return false unless affectedByWeatherDownsides?(checkingForAI)
         return false if shouldTypeApply?(:WATER, checkingForAI) || shouldTypeApply?(:ELECTRIC, checkingForAI)
-        return false if shouldAbilityApply?(GameData::Ability::SUN_ABILITIES, checkingForAI)
+        return false if shouldAbilityApply?(GameData::Ability::RAIN_ABILITIES, checkingForAI)
         return true
-    end
+    end  
 
     def takesSandstormDamage?(checkingForAI = false)
         return false unless affectedByWeatherDownsides?(checkingForAI)
         return false unless takesIndirectDamage?
         return false if hasActiveItem?(:SAFETYGOGGLES)
-        return false if shouldTypeApply?(:GROUND,
-checkingForAI) || shouldTypeApply?(:ROCK,	checkingForAI) || shouldTypeApply?(:STEEL, checkingForAI)
+        return false if shouldTypeApply?(:GROUND,checkingForAI) || shouldTypeApply?(:ROCK,checkingForAI)
         return false if shouldAbilityApply?(GameData::Ability::SAND_ABILITIES, checkingForAI)
         return true
     end
@@ -41,21 +40,23 @@ checkingForAI) || shouldTypeApply?(:ROCK,	checkingForAI) || shouldTypeApply?(:ST
         return false unless affectedByWeatherDownsides?(checkingForAI)
         return false unless takesIndirectDamage?
         return false if hasActiveItem?(:SAFETYGOGGLES)
-        return false if shouldTypeApply?(:ICE,
-checkingForAI) || shouldTypeApply?(:GHOST,	checkingForAI) || shouldTypeApply?(:STEEL, checkingForAI)
+        return false if shouldTypeApply?(:ICE,checkingForAI) || shouldTypeApply?(:GHOST,checkingForAI)
         return false if shouldAbilityApply?(GameData::Ability::HAIL_ABILITIES, checkingForAI)
         return true
     end
 
-    def takesAcidRainDamage?(checkingForAI = false)
+    def debuffedByEclipse?(checkingForAI = false)
         return false unless affectedByWeatherDownsides?(checkingForAI)
-        return false unless takesIndirectDamage?
-        return false if hasActiveItem?(:SAFETYGOGGLES)
-        return false if shouldTypeApply?(:POISON,	checkingForAI) || shouldTypeApply?(:DARK, checkingForAI)
-        setterAbilities = %i[POLLUTION ACIDBODY]
-        synergyAbilities = [:OVERCOAT]
-        return false if shouldAbilityApply?(setterAbilities,
-checkingForAI) || shouldAbilityApply?(synergyAbilities, checkingForAI)
+        return false if shouldTypeApply?(:PSYCHIC, checkingForAI) || shouldTypeApply?(:DRAGON, checkingForAI)
+        return false if shouldAbilityApply?(GameData::Ability::ECLIPSE_ABILITIES, checkingForAI)
+        return true
+    end
+
+    def flinchedByMoonglow?(checkingForAI = false)
+        return false if shouldAbilityApply?(:INNERFOCUS, checkingForAI)
+        return false unless affectedByWeatherDownsides?(checkingForAI)
+        return false if shouldTypeApply?(:FAIRY, checkingForAI) || shouldTypeApply?(:DARK, checkingForAI)
+        return false if shouldAbilityApply?(GameData::Ability::MOONGLOW_ABILITIES, checkingForAI)
         return true
     end
 

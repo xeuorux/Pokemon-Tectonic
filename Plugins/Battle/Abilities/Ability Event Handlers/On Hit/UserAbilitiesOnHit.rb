@@ -4,6 +4,12 @@ BattleHandlers::UserAbilityOnHit.add(:POISONTOUCH,
   }
 )
 
+BattleHandlers::UserAbilityOnHit.add(:TOXICCLOUD,
+  proc { |_ability, user, target, move, battle|
+      randomStatusProcAbility(:POISON, 30, user, target, move, battle) if move.specialMove?
+  }
+)
+
 BattleHandlers::UserAbilityOnHit.add(:CHRONICCOLD,
   proc { |_ability, user, target, move, battle|
       randomStatusProcAbility(:FROSTBITE, 30, user, target, move, battle) if move.physicalMove?
@@ -65,6 +71,13 @@ BattleHandlers::UserAbilityOnHit.add(:DAWNBURST,
   }
 )
 
+BattleHandlers::UserAbilityOnHit.add(:FLASHFREEZE,
+  proc { |_ability, user, target, move, battle|
+      next if user.turnCount > 1
+      randomStatusProcAbility(:FROSTBITE, 100, user, target, move, battle)
+  }
+)
+
 BattleHandlers::UserAbilityOnHit.add(:BRAINSCRAMBLE,
   proc { |_ability, user, target, move, battle|
       randomStatusProcAbility(:DIZZY, 30, user, target, move, battle) if move.specialMove?
@@ -86,6 +99,22 @@ BattleHandlers::UserAbilityOnHit.add(:SWARMIMPACT,
 BattleHandlers::UserAbilityOnHit.add(:BURNOUT,
   proc { |_ability, user, target, move, battle|
       randomStatusProcAbility(:BURN, 30, user, target, move, battle) if move.physicalMove?
+  }
+)
+
+BattleHandlers::UserAbilityOnHit.add(:NUMBINGTOUCH,
+  proc { |_ability, user, target, move, battle|
+      randomStatusProcAbility(:NUMB, 30, user, target, move, battle) if move.physicalMove?
+  }
+)
+
+BattleHandlers::UserAbilityOnHit.add(:MENTALDAMAGE,
+  proc { |_ability, user, target, move, battle|
+    next if target.fainted? || target.effectActive?(:Disable)
+    next unless move.canApplyAdditionalEffects?(user, target)
+    battle.pbShowAbilitySplash(user)
+    target.applyEffect(:Disable,3) if target.canBeDisabled?(true, move)
+    battle.pbHideAbilitySplash(user)
   }
 )
 

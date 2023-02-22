@@ -87,8 +87,8 @@ BattleHandlers::EOREffectAbility.add(:HUNGERSWITCH,
 
 BattleHandlers::EOREffectAbility.add(:ASTRALBODY,
   proc { |_ability, battler, battle|
-      next unless battle.field.terrain == :Fairy
-      healingMessage = battle.pbDisplay(_INTL("{1} absorbs magic from the fae mist.", battler.pbThis))
+      next unless battle.pbWeather == :Moonglow
+      healingMessage = battle.pbDisplay(_INTL("{1} absorbs magic from the starry sky.", battler.pbThis))
       battler.applyFractionalHealing(1.0 / 8.0, showAbilitySplash: true, customMessage: healingMessage)
   }
 )
@@ -134,6 +134,27 @@ BattleHandlers::EOREffectAbility.add(:TENDERIZE,
           b.pbLowerMultipleStatStages([:DEFENSE, 1, :SPECIAL_DEFENSE, 1], battler, showAbilitySplash: true)
       end
   }
+)
+
+BattleHandlers::EOREffectAbility.add(:LIVINGARMOR,
+  proc { |_ability, battler, battle|
+      battler.applyFractionalHealing(1.0 / 16.0, showAbilitySplash: true)
+  }
+)
+
+BattleHandlers::EOREffectAbility.add(:VITALRHYTHM,
+  proc { |_ability, battler, battle|
+      canHealAny = false
+      battler.eachAlly do |b|
+        canHealAny = true if b.canHeal?
+      end
+      next unless canHealAny
+      battle.pbShowAbilitySplash(battler)
+      battler.applyFractionalHealing(1.0 / 16.0)
+      battler.eachAlly do |b|
+        b.applyFractionalHealing(1.0 / 16.0)
+      end
+    }
 )
 
 BattleHandlers::EOREffectAbility.add(:GROWUP,

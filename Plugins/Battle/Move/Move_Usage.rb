@@ -29,7 +29,10 @@ class PokeBattle_Move
         end
     end
 
-    def calculateCategory(_user, _targets); return -1; end
+    def calculateCategory(user, targets)
+        return selectBestCategory(user, targets[0]) if user.hasActiveAbility?(:MYSTICFIST)
+        return -1
+    end
 
     #=============================================================================
     # Methods for displaying stuff when the move is used
@@ -106,8 +109,12 @@ target.pbThis(true)))
     def pbDamagingMove?; return damagingMove?; end
 
     def canParentalBond?(user, targets, checkingForAI = false)
-        return user.shouldAbilityApply?(:PARENTALBOND,
-checkingForAI) && pbDamagingMove? && !chargingTurnMove? && targets.length == 1
+        return false unless pbDamagingMove?
+        return false if chargingTurnMove?
+        return false unless targets.length == 1
+        return true if user.shouldAbilityApply?(:PARENTALBOND,checkingForAI)
+        return true if user.shouldAbilityApply?(:STRIKESTWICE,checkingForAI) && @battle.rainy?
+        return false
     end
 
     def numberOfHits(user, targets, checkingForAI = false)

@@ -917,10 +917,117 @@ class PokeBattle_Move_5AE < PokeBattle_ProtectMove
 end
 
 #===============================================================================
+# Target becomes trapped. Summons Eclipse for 6 turns.
+# (Captivating Sight)
+#===============================================================================
+class PokeBattle_Move_5AF < PokeBattle_Move_0EF
+    def pbFailsAgainstTarget?(_user, target, show_message)
+        return false unless @battle.primevalWeatherPresent?(false)
+        super
+    end
+
+    def pbEffectGeneral(user)
+        @battle.pbStartWeather(user, :Eclipse, 6, false) unless @battle.primevalWeatherPresent?
+    end
+end
+
+#===============================================================================
+# Target becomes trapped. Summons Moonglow for 6 turns.
+# (Midnight Hunt)
+#===============================================================================
+class PokeBattle_Move_5B0 < PokeBattle_Move_0EF
+    def pbFailsAgainstTarget?(_user, target, show_message)
+        return false unless @battle.primevalWeatherPresent?(false)
+        super
+    end
+
+    def pbEffectGeneral(user)
+        @battle.pbStartWeather(user, :Moonglow, 6, false) unless @battle.primevalWeatherPresent?
+    end
+end
+
+#===============================================================================
+# Target is frostbitten if in moonglow. (Night Chill)
+#===============================================================================
+class PokeBattle_Move_5B1 < PokeBattle_FrostbiteMove
+    def pbAdditionalEffect(user, target)
+        return unless @battle.pbWeather == :Moonglow
+        super
+    end
+
+    def getEffectScore(user, target)
+        return 0 unless @battle.pbWeather == :Moonglow
+        super
+    end
+end
+
+#===============================================================================
+# Target is burned if in eclipse. (Calamitous Slash)
+#===============================================================================
+class PokeBattle_Move_5B2 < PokeBattle_FrostbiteMove
+    def pbAdditionalEffect(user, target)
+        return unless @battle.pbWeather == :Moonglow
+        super
+    end
+
+    def getEffectScore(user, target)
+        return 0 unless @battle.pbWeather == :Moonglow
+        super
+    end
+end
+
+#===============================================================================
+# Heals user by 1/2 of their HP.
+# In any weather, increases the duration of the weather by 1. (Take Shelter)
+#===============================================================================
+class PokeBattle_Move_5B3 < PokeBattle_HalfHealingMove
+    def pbEffectGeneral(user)
+        super
+        if @battle.pbWeather != :None
+            @battle.extendWeather(1)
+        end
+    end
+end
+
+#===============================================================================
+# Target falls asleep. Can only be used during the Full Moon. (Bedtime)
+#===============================================================================
+class PokeBattle_Move_5B4 < PokeBattle_SleepMove
+    def pbMoveFailed?(user, _targets, show_message)
+        unless @battle.fullMoon?
+            @battle.pbDisplay(_INTL("But it failed, since it isn't a Full Moon!")) if show_message
+            return true
+        end
+        return false
+    end
+end
+
+#===============================================================================
+# Removes all Weather. Fails if there is no Terrain (Sky Fall)
+#===============================================================================
+class PokeBattle_Move_5B5 < PokeBattle_Move
+    def pbMoveFailed?(_user, _targets, show_message)
+        if @battle.pbWeather == :None
+            @battle.pbDisplay(_INTL("But it failed, since there is no active weather!")) if show_message
+            return true
+        end
+        return false
+    end
+
+    def pbEffectGeneral(user)
+       @battle.endWeather
+    end
+
+    def getEffectScore(_user, _target)
+        return 20
+    end
+end
+
+#===============================================================================
 # Move deals double damage but heals the status condition every active Pokémon
 # if the target has a status condition (Purifying Flame)
 #===============================================================================
-class PokeBattle_Move_5AF < PokeBattle_Move
+class PokeBattle_Move_5B6 < PokeBattle_Move
     def pbBaseDamage(baseDmg, _user, target)
         baseDmg *= 2 if target.pbHasAnyStatus?
         return baseDmg
@@ -948,7 +1055,7 @@ end
 # All stats up, fails if the attack was not used the turn after a foe fainted. 
 # (Triumphant Dance)
 #===============================================================================
-class PokeBattle_Move_5B0 < PokeBattle_MultiStatUpMove
+class PokeBattle_Move_5B7 < PokeBattle_MultiStatUpMove
 		def initialize(battle, move)
         super
         @statUp = [:ATTACK, 1, :DEFENSE, 1, :SPECIAL_ATTACK, 1, :SPECIAL_DEFENSE, 1, :SPEED, 1]
@@ -967,7 +1074,7 @@ end
 # Removes entry hazards on user's side. 33% Recoil.
 # (Icebreaker)
 #===============================================================================
-class PokeBattle_Move_5B1 < PokeBattle_RecoilMove
+class PokeBattle_Move_5B8 < PokeBattle_RecoilMove
     def recoilFactor;  return (1.0 / 3.0); end
 
     def pbEffectAfterAllHits(user, target)
@@ -990,7 +1097,7 @@ end
 # All enemies attacks this turn become Electric-type.
 # (Zap Yapping)
 #===============================================================================
-class PokeBattle_Move_5B2 < PokeBattle_Move_117
+class PokeBattle_Move_5B9 < PokeBattle_Move_117
     def pbEffectGeneral(user)
         super
         user.eachOpposing do |b|
@@ -1005,10 +1112,33 @@ class PokeBattle_Move_5B2 < PokeBattle_Move_117
 end
 
 #===============================================================================
+# Increases the user's Attack and Sp. Attack by 1 stage each.
+# In moonglow, also increases the user's Speed. (Scheme)
+#===============================================================================
+class PokeBattle_Move_5BA < PokeBattle_MultiStatUpMove
+    def initialize(battle, move)
+        super
+        @statUp = [:ATTACK, 1, :SPECIAL_ATTACK, 1]
+    end
+
+    def pbOnStartUse(_user, _targets)
+        if @battle.pbWeather == :Moonglow
+            @statUp = [:ATTACK, 1, :SPECIAL_ATTACK, 1, :SPEED, 1]
+        else
+            @statUp = [:ATTACK, 1, :SPECIAL_ATTACK, 1]
+        end
+    end
+
+    def shouldHighlight?(_user, _target)
+        return @battle.pbWeather == :Moonglow
+    end
+end
+
+#===============================================================================
 # User is protected against damaging moves this round. Decreases the Sp. Atk of
 # the user of a stopped special move by 1 stage. (Shield Shell)
 #===============================================================================
-class PokeBattle_Move_5B3 < PokeBattle_ProtectMove
+class PokeBattle_Move_5BB < PokeBattle_ProtectMove
     def initialize(battle, move)
         super
         @effect = :ShieldShell
@@ -1028,7 +1158,7 @@ end
 # User faints, even if the move does nothing else. (Mine Field)
 # Deals extra damage per "Spike" on the enemy side.
 #===============================================================================
-class PokeBattle_Move_5B4 < PokeBattle_Move_0E0
+class PokeBattle_Move_5BC < PokeBattle_Move_0E0
     def pbBaseDamage(baseDmg, _user, target)
         baseDmg += 50 * target.pbOwnSide.countEffect(:Spikes)
         baseDmg += 50 * target.pbOwnSide.countEffect(:FrostSpikes)
@@ -1039,10 +1169,24 @@ class PokeBattle_Move_5B4 < PokeBattle_Move_0E0
 end
 
 #===============================================================================
+# Sets stealth rock and sandstorm for 5 turns. (Stone Signal)
+#===============================================================================
+class PokeBattle_Move_5BD < PokeBattle_Move_105
+    def pbMoveFailed?(user, _targets, show_message)
+        return false
+    end
+
+    def pbEffectGeneral(user)
+        super
+        @battle.pbStartWeather(user, :Sandstorm, 5, false) unless @battle.primevalWeatherPresent?
+    end
+end
+
+#===============================================================================
 # Halves the target's current HP. (Mouthful)
 # User gains half the HP it inflicts as damage.
 #===============================================================================
-class PokeBattle_Move_5B5 < PokeBattle_DrainMove
+class PokeBattle_Move_5BE < PokeBattle_DrainMove
     def drainFactor(_user, _target); return 0.5; end
 
     def pbFixedDamage(_user, target)
@@ -1057,7 +1201,7 @@ end
 # This round, user becomes the target of attacks that have single targets.
 # (Golem Guard)
 #===============================================================================
-class PokeBattle_Move_5B6 < PokeBattle_ProtectMove
+class PokeBattle_Move_5BF < PokeBattle_ProtectMove
     def initialize(battle, move)
         super
         @effect      = :WideGuard
@@ -1095,7 +1239,7 @@ end
 #===============================================================================
 # Minimizes the target's Speed and Evasiveness. (Freeze Ray)
 #===============================================================================
-class PokeBattle_Move_5B7 < PokeBattle_Move
+class PokeBattle_Move_5C0 < PokeBattle_Move
     def pbAdditionalEffect(user, target)
         target.pbMinimizeStatStage(:SPEED, user, self)
         target.pbMinimizeStatStage(:EVASION, user, self)
@@ -1110,7 +1254,7 @@ end
 # Changes Category based on which will deal more damage. (Warped Strike)
 # Raises the stat that wasn't selected to be used.
 #===============================================================================
-class PokeBattle_Move_5B8 < PokeBattle_Move
+class PokeBattle_Move_5C1 < PokeBattle_Move
     def initialize(battle, move)
         super
         @calculated_category = 1
@@ -1141,7 +1285,7 @@ end
 #===============================================================================
 # Uses the highest base-power move known by any non-user Pokémon in the user's party. (Optimized Action)
 #===============================================================================
-class PokeBattle_Move_5B9 < PokeBattle_Move
+class PokeBattle_Move_5C2 < PokeBattle_Move
     def callsAnotherMove?; return true; end
 
     def initialize(battle, move)
@@ -1262,7 +1406,7 @@ end
 #===============================================================================
 # Uses a random special Dragon-themed move, then a random physical Dragon-themed move. (Dragon Invocation)
 #===============================================================================
-class PokeBattle_Move_5BA < PokeBattle_Move
+class PokeBattle_Move_5C3 < PokeBattle_Move
     def callsAnotherMove?; return true; end
 
     def initialize(battle, move)

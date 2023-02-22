@@ -31,3 +31,13 @@ BattleHandlers::EORHealingAbility.add(:HEALER,
         end
     }
 )
+
+BattleHandlers::EORHealingAbility.add(:OXYGENATION,
+    proc { |_ability, battler, battle|
+        next unless battler.hasAnyStatusNoTrigger
+        next unless battle.sunny?
+        battle.pbShowAbilitySplash(battler)
+        battler.pbCureStatus
+        battle.pbHideAbilitySplash(battler)
+    }
+)

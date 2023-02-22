@@ -1641,3 +1641,12 @@ GameData::BattleEffect.register_effect(:Battler, {
         end,
     },
 })
+
+GameData::BattleEffect.register_effect(:Battler, {
+    :id => :VolatileToxin,
+    :real_name => "Volatile Toxin",
+    :apply_proc => proc do |battle, battler, _value|
+        battle.pbDisplay(_INTL("The next Ground-type attack against {1} will deal double damage!",
+battler.pbThis(true)))
+    end,
+})

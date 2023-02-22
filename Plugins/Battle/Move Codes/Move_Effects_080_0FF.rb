@@ -115,15 +115,15 @@ class PokeBattle_Move_086 < PokeBattle_Move
 end
 
 #===============================================================================
-# Power is doubled in weather. Type changes depending on the weather. (Weather Ball)
+# Type changes depending on the weather. (Weather Burst)
+# Changes category based on your better attacking stat.
 #===============================================================================
 class PokeBattle_Move_087 < PokeBattle_Move
     def immuneToRainDebuff?; return true; end
     def immuneToSunDebuff?; return true; end
-
-    def pbBaseDamage(baseDmg, _user, _target)
-        baseDmg *= 2 if @battle.pbWeather != :None
-        return baseDmg
+    
+    def shouldHighlight?(_user, _target)
+        return @battle.pbWeather != :None
     end
 
     def pbBaseType(_user)
@@ -137,6 +137,10 @@ class PokeBattle_Move_087 < PokeBattle_Move
             ret = :ROCK if GameData::Type.exists?(:ROCK)
         when :Hail
             ret = :ICE if GameData::Type.exists?(:ICE)
+        when :Eclipse
+            ret = :PSYCHIC if GameData::Type.exists?(:PSYCHIC)
+        when :Moonglow
+            ret = :FAIRY if GameData::Type.exists?(:FAIRY)
         end
         return ret
     end
@@ -648,15 +652,23 @@ class PokeBattle_Move_09C < PokeBattle_Move
 end
 
 #===============================================================================
-# (Currently unused.)
+# Starts eclipse weather. (Eclipse)
 #===============================================================================
-class PokeBattle_Move_09D < PokeBattle_Move
+class PokeBattle_Move_09D < PokeBattle_WeatherMove
+    def initialize(battle, move)
+        super
+        @weatherType = :Eclipse
+    end
 end
 
 #===============================================================================
-# (Currently unused.)
+# Starts moonlight weather. (Moon)
 #===============================================================================
-class PokeBattle_Move_09E < PokeBattle_Move
+class PokeBattle_Move_09E < PokeBattle_WeatherMove
+    def initialize(battle, move)
+        super
+        @weatherType = :Moonglow
+    end
 end
 
 #===============================================================================
@@ -2485,8 +2497,7 @@ class PokeBattle_Move_0D7 < PokeBattle_Move
 end
 
 #===============================================================================
-# Heals user by an amount depending on the weather. (Moonlight, Morning Sun,
-# Synthesis)
+# Heals user by an amount depending on the weather. (Morning Sun, Synthesis)
 #===============================================================================
 class PokeBattle_Move_0D8 < PokeBattle_HealingMove
     def healRatio(_user)
@@ -2711,6 +2722,17 @@ class PokeBattle_Move_0E0 < PokeBattle_Move
 
     def pbSelfKO(user)
         return if user.fainted?
+
+        if user.hasActiveAbility?(:SPINESPLOSION)
+            spikesCount = user.pbOpposingSide.incrementEffect(:Spikes, GameData::BattleEffect.get(:Spikes).maximum)
+            
+            if spikesCount > 0
+                @battle.pbShowAbilitySplash(user)
+                @battle.pbDisplay(_INTL("#{spikesCount} layers of Spikes were scattered all around #{user.pbOpposingTeam(true)}'s feet!"))
+                @battle.pbHideAbilitySplash(user)
+            end
+        end
+
         if user.bunkeringDown?
             @battle.pbShowAbilitySplash(user)
             @battle.pbDisplay(_INTL("{1}'s {2} barely saves it!", user.pbThis, @name))
@@ -3476,7 +3498,7 @@ class PokeBattle_Move_0F7 < PokeBattle_Move
         # 10 => all Berries
         @flingPowers = {
           130 => [:IRONBALL],
-          100 => [:HARDSTONE, :RAREBONE,
+          100 => [:HARDSTONE, :RAREBONE, :PEARLOFFATE,
                   # Fossils
                   :ARMORFOSSIL, :CLAWFOSSIL, :COVERFOSSIL, :DOMEFOSSIL, :HELIXFOSSIL,
                   :JAWFOSSIL, :OLDAMBER, :PLUMEFOSSIL, :ROOTFOSSIL, :SAILFOSSIL,
@@ -3649,6 +3671,8 @@ class PokeBattle_Move_0F7 < PokeBattle_Move
             target.applyNumb(user) if target.canNumb?(user, false, self)
         when :KINGSROCK, :RAZORFANG
             target.pbFlinch(user)
+        when :PEARLOFFATE
+            target.applyDizzy(user) if target.canDizzy?(user, false, self)
         else
             target.pbHeldItemTriggerCheck(user.item, true)
         end
@@ -3689,9 +3713,20 @@ class PokeBattle_Move_0F8 < PokeBattle_Move
 end
 
 #===============================================================================
-# (Not Currently used.)
+# Heals user by an amount depending on the weather. (Moon Bask)
 #===============================================================================
-class PokeBattle_Move_0F9 < PokeBattle_Move
+class PokeBattle_Move_0F9 < PokeBattle_HealingMove
+    def healRatio(_user)
+        if @battle.pbWeather == :Moonglow
+            return 2.0 / 3.0
+        else
+            return 1.0 / 2.0
+        end
+    end
+
+    def shouldHighlight?(_user, _target)
+        return @battle.pbWeather == :Moonglow
+    end
 end
 
 #===============================================================================

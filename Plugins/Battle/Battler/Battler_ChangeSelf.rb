@@ -114,6 +114,7 @@ class PokeBattle_Battler
         end
         raise _INTL("Told to recover a negative amount") if amt.negative?
         amt *= 1.5 if hasActiveAbility?(:ROOTED)
+        amt *= 2.0 if hasActiveAbilityAI?(:GLOWSHROOM) && @battle.pbWeather == :Moonglow
         amt = amt.round
         amt = @totalhp - @hp if amt > @totalhp - @hp
         amt = 1 if amt < 1 && @hp < @totalhp
@@ -549,4 +550,18 @@ class PokeBattle_Battler
     end
 
     def pbHyperMode; end
+
+    def getSubLife
+        subLife = @totalhp / 4
+        subLife = 1 if subLife < 1
+        return subLife.floor
+    end
+
+    def createSubstitute
+        subLife = getSubLife
+        pbReduceHP(subLife, false, false)
+        pbItemHPHealCheck
+        disableEffect(:Trapping)
+        applyEffect(:Substitute, subLife)
+    end
 end

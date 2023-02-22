@@ -77,6 +77,11 @@ class PokeBattle_Move
     def damageCalcStats(user,target,aiChecking=false)
         # Calculate user's attack stat
         attacking_stat_holder, attacking_stat = pbAttackingStat(user,target)
+
+        if user.shouldAbilityApply?(:MALICIOUSGLOW,aiChecking) && @battle.pbWeather == :Moonglow
+            attacking_stat_holder = target
+        end
+
         attack_stage = attacking_stat_holder.stages[attacking_stat]
         critical = target.damageState.critical
         critical = false if aiChecking
@@ -173,7 +178,7 @@ class PokeBattle_Move
         when :Sandstorm
             if target.shouldTypeApply?(:ROCK,checkingForAI) && specialMove? && @function != "122"   # Psyshock/Psystrike
                 defenseAddition = 0.5
-                defenseAddition *= 2 if @battle.pbCheckGlobalAbility(:SHRAPNELSTORM)
+                defenseAddition *= 2 if @battle.pbCheckGlobalAbility(:IRONSTORM)
                 defenseAddition *= 2 if @battle.curseActive?(:CURSE_BOOSTED_SAND)
                 multipliers[:defense_multiplier] *= (1 + defenseAddition)
             end
@@ -183,6 +188,20 @@ class PokeBattle_Move
                 defenseAddition *= 2 if @battle.pbCheckGlobalAbility(:BITTERCOLD)
                 defenseAddition *= 2 if @battle.curseActive?(:CURSE_BOOSTED_HAIL)
                 multipliers[:defense_multiplier] *= (1 + defenseAddition)
+            end
+        when :Eclipse
+            if type == :PSYCHIC
+                damageBonus = 0.3
+                multipliers[:final_damage_multiplier] *= (1 + damageBonus)
+            end
+
+            if @battle.pbCheckOpposingAbility(:DISTRESSING,user.index)
+                multipliers[:final_damage_multiplier] *= 0.8
+            end
+        when :Moonglow
+            if type == :FAIRY
+                damageBonus = 0.3
+                multipliers[:final_damage_multiplier] *= (1 + damageBonus)
             end
         end
     end
@@ -309,7 +328,7 @@ class PokeBattle_Move
         
         if aiChecking
             # Parental Bond
-            if user.hasActiveAbility?(:PARENTALBOND)
+            if user.hasActiveAbility?(:PARENTALBOND) || (user.hasActiveAbility?(:STRIKESTWICE) && @battle.rainy?)
                 multipliers[:base_damage_multiplier] *= 1.25
             end
         else
@@ -337,7 +356,11 @@ class PokeBattle_Move
 
         # Multi-targeting attacks
         if numTargets > 1
-            multipliers[:final_damage_multiplier] *= 0.75
+            if user.shouldAbilityApply?(:VIBRATIONAL,aiChecking)
+                multipliers[:final_damage_multiplier] *= 1.25
+            else
+                multipliers[:final_damage_multiplier] *= 0.75
+            end
         end
 
         # Battler properites

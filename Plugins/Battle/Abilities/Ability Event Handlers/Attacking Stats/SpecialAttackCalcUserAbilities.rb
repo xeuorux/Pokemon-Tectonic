@@ -53,9 +53,9 @@ BattleHandlers::SpecialAttackCalcUserAbility.add(:ARCANEFINALE,
   }
 )
 
-BattleHandlers::SpecialAttackCalcUserAbility.add(:TIDALFORCE,
+BattleHandlers::SpecialAttackCalcUserAbility.add(:AQUAPROPULSION,
   proc { |_ability, _user, battle, spAtkMult|
-      spAtkMult *= 1.3 if battle.rainy?
+      spAtkMult *= 1.2 if battle.rainy?
       next spAtkMult
   }
 )
@@ -79,6 +79,41 @@ BattleHandlers::SpecialAttackCalcUserAbility.copy(:RADIATE, :ARCANE)
 BattleHandlers::SpecialAttackCalcUserAbility.add(:BALANCEOFPOWER,
   proc { |_ability, user, _battle, spAtkMult|
       spAtkMult *= 1.5 if user.lastRoundMoveCategory == 0
+      next spAtkMult
+  }
+)
+
+BattleHandlers::SpecialAttackCalcUserAbility.add(:SHATTERING,
+  proc { |_ability, _user, battle, spAtkMult|
+      spAtkMult *= 1.3 if battle.pbWeather == :Eclipse
+      next spAtkMult
+  }
+)
+
+BattleHandlers::SpecialAttackCalcUserAbility.add(:NIGHTLIGHT,
+  proc { |_ability, _user, battle, spAtkMult|
+      spAtkMult *= 1.3 if battle.pbWeather == :Moonglow
+      next spAtkMult
+  }
+)
+
+BattleHandlers::SpecialAttackCalcUserAbility.add(:SANDPOWER,
+  proc { |_ability, _user, battle, spAtkMult|
+      spAtkMult *= 1.3 if battle.pbWeather == :Sandstorm
+      next spAtkMult
+  }
+)
+
+BattleHandlers::SpecialAttackCalcUserAbility.add(:OVERWHELM,
+  proc { |_ability, _user, battle, spAtkMult|
+      spAtkMult *= 1.3 if battle.rainy?
+      next spAtkMult
+  }
+)
+
+BattleHandlers::SpecialAttackCalcUserAbility.add(:WINTERWISDOM,
+  proc { |_ability, _user, battle, spAtkMult|
+      spAtkMult *= 1.3 if battle.pbWeather == :Hail
       next spAtkMult
   }
 )

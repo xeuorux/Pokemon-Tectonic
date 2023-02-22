@@ -237,6 +237,7 @@ GameData::Move.get(@effects[:GorillaTactics]).name)
                 return false
             end
         end
+
         # Flinching
         if effectActive?(:Flinch)
             if effectActive?(:FlinchedAlready)

@@ -16,6 +16,12 @@ BattleHandlers::StatusImmunityAbility.add(:INSOMNIA,
   }
 )
 
+BattleHandlers::StatusImmunityAbility.add(:ONEDGE,
+  proc { |_ability, battler, status|
+      next true if status == :SLEEP && battler.battle.pbWeather == :Moonglow
+  }
+)
+
 BattleHandlers::StatusImmunityAbility.copy(:INSOMNIA, :SWEETVEIL, :VITALSPIRIT)
 
 BattleHandlers::StatusImmunityAbility.add(:LEAFGUARD,
@@ -81,5 +87,11 @@ BattleHandlers::StatusImmunityAllyAbility.add(:CANDYVEIL,
 BattleHandlers::StatusImmunityAbility.add(:SLICKSURFACE,
   proc { |_ability, _battler, status|
       next true if status == :LEECHED
+  }
+)
+
+BattleHandlers::StatusImmunityAbility.add(:STABILITY,
+  proc { |_ability, battler, status|
+      next true if battler.battle.pbWeather == :Eclipse
   }
 )

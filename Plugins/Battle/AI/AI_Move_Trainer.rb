@@ -240,6 +240,11 @@ class PokeBattle_AI
     def aiPredictsFailure?(move, user, target)
         fails = false
 
+        if user.effectActive?(:Flinch) && !user.effectActive?(:FlinchedAlready)
+            echoln("#{user.pbThis} rejects the move #{move.id} due to it being predicted to flinch (Moonglow?)")
+            return true
+        end
+
         # Falsify the turn count so that the AI is calculated as though we are actually
         # in the midst of performing the move (turnCount is incremented as the attack phase begins)
         user.turnCount += 1

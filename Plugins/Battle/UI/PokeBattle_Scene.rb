@@ -135,11 +135,6 @@ class PokeBattle_Scene
 			pkmnSprite.visible = true
 		  end
 		end
-		
-		weatherState = @battle.pbWeather
-		areaUIpoint = Graphics.height/4
-		indicator_Y = Graphics.height/3
-		indicator_X = Graphics.width/30
   end
 
   # Databoxes get closer together the more battlers on a side

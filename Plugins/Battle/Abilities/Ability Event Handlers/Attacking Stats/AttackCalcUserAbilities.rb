@@ -79,7 +79,7 @@ BattleHandlers::AttackCalcUserAbility.add(:DEEPSTING,
 
 BattleHandlers::AttackCalcUserAbility.add(:BIGTHORNS,
   proc { |_ability, _user, battle, attackMult|
-      attackMult *= 1.3 if battle.field.terrain == :Grassy
+      attackMult *= 1.3 if battle.sunny?
       next attackMult
   }
 )
@@ -98,14 +98,35 @@ BattleHandlers::AttackCalcUserAbility.add(:BLIZZBOXER,
   }
 )
 
-BattleHandlers::AttackCalcUserAbility.add(:STRANGESTRENGTH,
+BattleHandlers::AttackCalcUserAbility.add(:LUNATIC,
   proc { |_ability, _user, battle, attackMult|
-      attackMult *= 2.0 if battle.field.terrain == :Fairy
+      attackMult *= 1.3 if battle.field.terrain == :Moonglow
       next attackMult
   }
 )
 
-BattleHandlers::AttackCalcUserAbility.add(:HARSHHUNTER,
+BattleHandlers::AttackCalcUserAbility.add(:NIGHTSTALKER,
+  proc { |_ability, _user, battle, attackMult|
+      attackMult *= 1.5 if battle.field.terrain == :Moonglow
+      next attackMult
+  }
+)
+
+BattleHandlers::AttackCalcUserAbility.add(:FULLMOONBLADE,
+  proc { |_ability, _user, battle, attackMult|
+      attackMult *= 2.0 if battle.fullMoon?
+      next attackMult
+  }
+)
+
+BattleHandlers::AttackCalcUserAbility.add(:ONEDGE,
+  proc { |_ability, _user, battle, attackMult|
+      attackMult *= 1.5 if battle.field.terrain == :Moonglow
+      next attackMult
+  }
+)
+
+BattleHandlers::AttackCalcUserAbility.add(:SANDSTRENGTH,
   proc { |_ability, _user, battle, attackMult|
       attackMult *= 1.3 if battle.pbWeather == :Sandstorm
       next attackMult
@@ -129,6 +150,26 @@ BattleHandlers::AttackCalcUserAbility.add(:ROBUST,
 BattleHandlers::AttackCalcUserAbility.add(:BALANCEOFPOWER,
   proc { |_ability, user, _battle, attackMult|
       attackMult *= 1.5 if user.lastRoundMoveCategory == 1
+      next attackMult
+  }
+)
+
+BattleHandlers::AttackCalcUserAbility.add(:SERVEDCOLD,
+  proc { |_ability, user, battle, attackMult|
+      if battle.pbWeather == :Hail
+        if user.belowHalfHealth?
+          attackMult *= 1.4
+        else
+          attackMult *= 1.2
+        end
+      end
+      next attackMult
+  }
+)
+
+BattleHandlers::AttackCalcUserAbility.add(:POLARHUNTER,
+  proc { |_ability, user, battle, attackMult|
+      attackMult *= 1.25 if battle.pbWeather == :Hail
       next attackMult
   }
 )

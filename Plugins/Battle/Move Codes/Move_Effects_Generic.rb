@@ -1045,6 +1045,7 @@ class PokeBattle_DrainMove < PokeBattle_Move
     def getEffectScore(user, target)
         score = 40 * drainFactor(user, target)
         score *= 1.5 if user.hasActiveAbilityAI?(:ROOTED)
+        score *= 2.0 if user.hasActiveAbilityAI?(:GLOWSHROOM) && user.battle.pbWeather == :Moonglow
         score *= 1.3 if user.hasActiveItem?(:BIGROOT)
         score *= 2 if user.belowHalfHealth?
         score *= -1 if target.hasActiveAbilityAI?(:LIQUIDOOZE) || user.effectActive?(:NerveBreak)

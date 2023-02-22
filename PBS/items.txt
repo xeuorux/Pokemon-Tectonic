@@ -736,7 +736,7 @@
 736,TM144,TM144,TM144s,4,4000,"The user absorbs a mystical power from space to raise its Defense and Sp. Def stats.",3,0,0,COSMICPOWER
 737,TM145,TM145,TM145s,4,50000,,3,0,0,ODDROOM
 738,TM146,TM146,TM146s,4,4000,"The user hardens its body's surface like iron, sharply raising its Defense stat.",3,0,0,IRONDEFENSE
-739,TM147,TM147,TM147s,4,6000,"The user slashes the target with huge sharp claws.",3,0,0,CALAMITOUSSLASH
+739,TM147,TM147,TM147s,4,6000,,3,0,0,REND
 740,TM148,TM148,TM148s,4,4000,"The user tenses its muscles to bulk up its body, raising both its Attack and Defense stats.",3,0,0,BULKUP
 741,TM149,TM149,TM149s,4,4000,"The user quietly focuses its mind and calms its spirit to raise its Sp. Atk and Sp. Def stats.",3,0,0,CALMMIND
 742,TM150,TM150,TM150s,4,6000,"The user handles a sharp leaf like a sword and attacks by cutting its target. Critical hits land more easily.",3,0,0,LEAFBLADE
@@ -852,12 +852,15 @@
 875,UBCONTAINMENTKEY,UB Containment Key,UB Containment Keys,8,0,"Unlocks the UB Containment Room at Novo Academy.",0,0,6
 876,ANCIENTSEAWATER,Ancient Sea Water,Ancient Sea Water,1,50000,"A vial of shimmering ocean water. It makes a certain Pokemon evolve.",1,0,7
 877,CONDENSEDLIGHT,Condensed Light,Condensed Light,8,0,"A strange ball of light. You should gather these for a friend.",0,0,13
-878,WILDCARD,Wild Card,Wild Cards,5,6000,"An item to be held by a Pokémon. It counts as a member of every tribe.",0,0,0
-879,PROXYFIST,Proxy Fist,Proxy Fists,5,3000,"A held item. The holder doesn't trigger items, abilities, or effects of targets it hits.",0,0,0
-880,MIRRORHERB,Mirror Herb,Mirror Herbs,5,5000,"A held item. When a foe raises their stats, the herb is consumed to copy their raised stats.",0,0,0
-881,PARADOXHERB,Paradox Herb,Paradox Herbs,5,5000,"A held item. When a foe raises their stats, the herb is consumed to reset their raised stats.",0,0,0
-882,MEMORYSET,Memory Set,Memory Sets,5,0,"A set of memory discs, one for each type. If held by a Silvally, you can change its type between battles.",0,0,0
-883,PRISMATICPLATE,Prismatic Plate,Prismatic Plates,5,0,"A tablet that boosts moves of the user's type by 20%. If held by Arceus, you can change its type between battles.",0,0,0
+878,PINPOINTROCK,Pin-Point Rock,Pin-Point Rocks,5,4000,"A Pokémon held item. When the holder summons Eclipse, it lasts twice as long.",0,0,0
+879,MIRROREDROCK,Mirrored Rock,Mirrored Rocks,5,4000,"A Pokémon held item. When the holder summons Moonlight, it lasts twice as long.",0,0,0
+880,PEARLOFFATE,Pearl of Fate,Pearls of Fate,5,0,"User heals 1/16th HP every turn. Will sacrifice itself to cure the user of status.",0,0,0
+881,WILDCARD,Wild Card,Wild Cards,5,6000,"An item to be held by a Pokémon. It counts as a member of every tribe.",0,0,0
+882,PROXYFIST,Proxy Fist,Proxy Fists,5,3000,"A held item. The holder doesn't trigger items, abilities, or effects of targets it hits.",0,0,0
+883,MIRRORHERB,Mirror Herb,Mirror Herbs,5,5000,"A held item. When a foe raises their stats, the herb is consumed to copy their raised stats.",0,0,0
+884,PARADOXHERB,Paradox Herb,Paradox Herbs,5,5000,"A held item. When a foe raises their stats, the herb is consumed to reset their raised stats.",0,0,0
+885,MEMORYSET,Memory Set,Memory Sets,5,0,"A set of memory discs, one for each type. If held by a Silvally, you can change its type between battles.",0,0,0
+886,PRISMATICPLATE,Prismatic Plate,Prismatic Plates,5,0,"A tablet that boosts moves of the user's type by 20%. If held by Arceus, you can change its type between battles.",0,0,0
 900,CHAMBER1KEY,Chamber 1 Key,Chamber 1 Keys,8,0,"The key to the first chamber containing a powerful avatar.",0,0,6
 901,CHAMBER2KEY,Chamber 2 Key,Chamber 2 Keys,8,0,"The key to the second chamber containing a powerful avatar.",0,0,6
 902,CHAMBER3KEY,Chamber 3 Key,Chamber 3 Keys,8,0,"The key to the third chamber containing a powerful avatar.",0,0,6

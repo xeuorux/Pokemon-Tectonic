@@ -1,4 +1,6 @@
 class PokeBattle_Battle
+    SPECIAL_EFFECT_WAIT_TURNS = 4
+
     def defaultWeather=(value)
         @field.defaultWeather = value
         @field.weather         = value
@@ -29,6 +31,8 @@ class PokeBattle_Battle
             @field.weatherDuration = duration
         end
 
+        @field.resetSpecialEffect unless resetExisting
+
         # Show animation, if desired
         weather_data = GameData::BattleWeather.try_get(@field.weather)
         pbCommonAnimation(weather_data.animation) if showAnim && weather_data
@@ -45,7 +49,9 @@ class PokeBattle_Battle
             if @field.weatherDuration < 0
                 pbDisplay(_INTL("It'll last indefinitely!"))
             else
-                pbDisplay(_INTL("It'll last for {1} more turns!", @field.weatherDuration - 1))
+                moreTurns = @field.weatherDuration
+                moreTurns -= 1 unless @turnCount == 0
+                pbDisplay(_INTL("It'll last for {1} more turns!", moreTurns))
             end
         end
         pbHideAbilitySplash(user) if user
@@ -60,8 +66,8 @@ class PokeBattle_Battle
         when :Sandstorm   then pbDisplay(_INTL("The sandstorm returns to full strength!"))
         when :Hail        then pbDisplay(_INTL("The hail keeps coming!"))
         when :ShadowSky   then pbDisplay(_INTL("The darkened sky darkens even further!"))
-        when :AcidRain    then pbDisplay(_INTL("The acid rain won't quit!"))
-        when :Swarm       then pbDisplay(_INTL("The bugs insatiable, and keep swarming!"))
+        when :Eclipse     then pbDisplay(_INTL("The eclipse extends unnaturally!"))
+        when :Moonglow   then pbDisplay(_INTL("The bright moon doesn't wane!"))
         end
     end
 
@@ -75,8 +81,8 @@ class PokeBattle_Battle
         when :HeavyRain   then pbDisplay(_INTL("A heavy rain began to fall!"))
         when :StrongWinds then pbDisplay(_INTL("Mysterious strong winds are protecting Flying-type Pokémon!"))
         when :ShadowSky   then pbDisplay(_INTL("A shadow sky appeared!"))
-        when :AcidRain    then pbDisplay(_INTL("Acidic rain began to fall!"))
-        when :Swarm       then pbDisplay(_INTL("A swarm of bugs gathers!"))
+        when :Eclipse     then pbDisplay(_INTL("An eclipse covers the sun!"))
+        when :Moonglow   then pbDisplay(_INTL("The light of the moon shines down!"))
         end
     end
 
@@ -88,8 +94,8 @@ class PokeBattle_Battle
         when :Sandstorm   then pbDisplay(_INTL("The sandstorm subsided."))
         when :Hail        then pbDisplay(_INTL("The hail stopped."))
         when :ShadowSky   then pbDisplay(_INTL("The shadow sky faded."))
-        when :AcidRain    then pbDisplay(_INTL("The acid rain stopped."))
-        when :Swarm       then pbDisplay(_INTL("The swarm dissipates."))
+        when :Eclipse     then pbDisplay(_INTL("The eclipse ended."))
+        when :Moonglow   then pbDisplay(_INTL("The moonlight faded."))
         when :HeavyRain   then pbDisplay(_INTL("The heavy rain has lifted!"))
         when :HarshSun    then pbDisplay(_INTL("The harsh sunlight faded!"))
         when :StrongWinds then pbDisplay(_INTL("The mysterious air current has dissipated!"))
@@ -97,6 +103,7 @@ class PokeBattle_Battle
         oldWeather = @field.weather
         @field.weather	= :None
         @field.weatherDuration = 0
+        @field.resetSpecialEffect
         triggerWeatherChangeDialogue(oldWeather, :None)
     end
 
@@ -125,6 +132,17 @@ class PokeBattle_Battle
             eachBattler { |b| b.pbCheckFormOnWeatherChange }
             # Start up the default weather
             pbStartWeather(nil, @field.defaultWeather) if @field.defaultWeather != :None
+        end
+    end
+
+    def extendWeather(numTurns = 1)
+        return if pbWeather == :None
+        @field.weatherDuration += numTurns
+        weatherName = GameData::BattleWeather.get(pbWeather).real_name
+        if numTurns == 1
+            pbDisplay(_INTL("The {1} extends by a turn!",weatherName))
+        else
+            pbDisplay(_INTL("The {1} extends by {2} turns!",weatherName,numTurns))
         end
     end
 
@@ -215,15 +233,67 @@ class PokeBattle_Battle
     end
 
     #=============================================================================
-    # End Of Round weather
+    # Start Of Round weather
     #=============================================================================
-    def pbEORWeather(priority)
-        PBDebug.log("[DEBUG] Counting down weathers")
 
+    def pbSORWeather(priority)
+        curWeather = pbWeather
+
+        @field.specialTimer += 1
+
+        threshold = SPECIAL_EFFECT_WAIT_TURNS
+        threshold /= 2 if weatherSpedUp?
+
+        if (@field.specialTimer + 1) >= threshold
+            case curWeather
+            when :Eclipse
+                pbDisplay(_INTL("The Total Eclipse arrives!"))
+                pbCommonAnimation("Eclipse")
+                anyAffected = false
+                priority.each do |b|
+                    next if b.fainted?
+                    next unless b.debuffedByEclipse?
+                    pbDisplay(_INTL("{1} is panicked!", b.pbThis))
+                    allStats = [:ATTACK, 1, :DEFENSE, 1, :SPECIAL_ATTACK, 1, :SPECIAL_DEFENSE, 1, :SPEED, 1]
+                    b.pbLowerMultipleStatStages(allStats, b)
+                    anyAffected = true
+                end
+                pbDisplay(_INTL("But no one was panicked.")) unless anyAffected
+                @battlers.each do |b|
+                    next unless b.abilityActive?
+                    BattleHandlers.triggerTotalEclipseAbility(b.ability, b, self)
+                end
+            when :Moonglow
+                pbDisplay(_INTL("The Full Moon rises!"))
+                pbAnimation(:Moonglow, @battlers[0], [])
+                anyAffected = false
+                priority.each do |b|
+                    next if b.fainted?
+                    next unless b.flinchedByMoonglow?
+                    pbDisplay(_INTL("{1} is moonstruck! It'll flinch this turn!", b.pbThis))
+                    b.pbFlinch
+                    anyAffected = true
+                end
+                pbDisplay(_INTL("But no one was moon struck.")) unless anyAffected
+                @battlers.each do |b|
+                    next unless b.abilityActive?
+                    BattleHandlers.triggerFullMoonAbility(b.ability, b, self)
+                end
+            end
+            @field.specialTimer = 0
+            @field.specialWeatherEffect = true
+        else
+            @field.specialWeatherEffect = false
+        end
+    end
+
+    # Returns true if the weather went away
+    def tickDownWeather
         # NOTE: Primordial weather doesn't need to be checked here, because if it
         #       could wear off here, it will have worn off already.
         # Count down weather duration
         @field.weatherDuration -= 1 if @field.weatherDuration > 0
+
         # Weather wears off
         if @field.weatherDuration == 0
             endWeather
@@ -234,13 +304,34 @@ class PokeBattle_Battle
             pbStartWeather(nil, @field.defaultWeather) if @field.defaultWeather != :None
             return if @field.weather == :None
         end
+    end
+
+    def weatherSpedUp?
+        return true if pbWeather == :Eclipse && pbCheckGlobalAbility(:EPHEMERATE)
+        return true if pbWeather == :Moonglow && pbCheckGlobalAbility(:SOLSTICE)
+        return false
+    end
+
+    #=============================================================================
+    # End Of Round weather
+    #=============================================================================
+    def pbEORWeather(priority)
+        PBDebug.log("[DEBUG] Counting down weathers")
+
+        return if tickDownWeather
+
+        # Tick down twice if weathers are being sped up
+        return if weatherSpedUp? && tickDownWeather
+
         # Weather continues
         weather_data = GameData::BattleWeather.try_get(@field.weather)
-        pbCommonAnimation(weather_data.animation) if weather_data
+        pbCommonAnimation(weather_data.animation) if weather_data && @field.specialTimer < SPECIAL_EFFECT_WAIT_TURNS - 1
+
         # Effects due to weather
         curWeather = pbWeather
         showWeatherMessages = $PokemonSystem.weather_messages == 0
         hailDamage = 0
+        sandstormDamage = 0
         priority.each do |b|
             # Weather-related abilities
             if b.abilityActive?
@@ -253,10 +344,10 @@ class PokeBattle_Battle
             case curWeather
             when :Sandstorm
                 next unless b.takesSandstormDamage?
-                damageDoubled = pbCheckGlobalAbility(:SHRAPNELSTORM)
+                damageDoubled = pbCheckGlobalAbility(:IRONSTORM)
                 if showWeatherMessages
                     if damageDoubled
-                        pbDisplay(_INTL("{1} is shredded by the razor-sharp shrapnel!", b.pbThis))
+                        pbDisplay(_INTL("{1} is shredded by the iron-infused sandstorm!", b.pbThis))
                     else
                         pbDisplay(_INTL("{1} is buffeted by the sandstorm!", b.pbThis))
                     end
@@ -264,7 +355,7 @@ class PokeBattle_Battle
                 fraction = 1.0 / 16.0
                 fraction *= 2 if damageDoubled
                 fraction *= 2 if curseActive?(:CURSE_BOOSTED_SAND)
-                b.applyFractionalDamage(fraction)
+                sandstormDamage += b.applyFractionalDamage(fraction)
             when :Hail
                 next unless b.takesHailDamage?
                 damageDoubled = pbCheckGlobalAbility(:BITTERCOLD)
@@ -284,16 +375,26 @@ class PokeBattle_Battle
                 pbDisplay(_INTL("{1} is hurt by the shadow sky!", b.pbThis)) if showWeatherMessages
                 fraction = 1.0 / 16.0
                 b.applyFractionalDamage(fraction)
-            when :AcidRain
-                if !b.takesAcidRainDamage?
-                    pbDisplay(_INTL("{1} is hurt by the acid rain!", b.pbThis)) if showWeatherMessages
-                    fraction = 1.0 / 16.0
-                    b.applyFractionalDamage(fraction)
-                elsif b.pbHasType?(:POISON) || b.hasActiveAbility?(:POISONHEAL)
-                    healingMessage = _INTL("{1} absorbs the acid rain!", b.pbThis)
-                    battler.applyFractionalHealing(1.0 / 16.0, showAbilitySplash: statusEffectMessages,
-        showMessage: statusEffectMessages, customMessage: healingMessage)
-                end
+            when :Moonglow
+                # if b.pbHasType?(:FAIRY)
+                #     healingMessage = _INTL("{1} absorbs the moonlight!", b.pbThis)
+                #     healingAmount = b.applyFractionalHealing(1.0 / 16.0, showMessage: showWeatherMessages, customMessage: healingMessage)
+                #     if healingAmount > 0 && b.hasActiveAbility?(:NIGHTLINE)
+                #         potentialHeals = []
+                #         @battle.pbParty(b.index).each_with_index do |pkmn,index|
+                #             next if pkmn.fainted?
+                #             next if pkmn.hp == pkmn.totalhp
+                #             potentialHeals.push(pkmn)
+                #         end
+                #         unless potentialHeals.empty?
+                #             healTarget = potentialHeals.sample
+                #             pbDisplay(_INTL("{1} shares the healing with #{healTarget.name}!"))
+                #             newHP = pkmn.hp + healingAmount
+                #             newHP = pkmn.totalhp if newHP > pkmn.totalhp
+                #             pkmn.hp = newHP
+                #         end
+                #     end
+                # end
             end
         end
         # Ectoparticles
@@ -303,6 +404,16 @@ class PokeBattle_Battle
                 pbShowAbilitySplash(b)
                 healingMessage = _INTL("{1} absorbs the suffering from the hailstorm.", b.pbThis)
                 b.pbRecoverHP(hailDamage, true, true, true, healingMessage)
+                pbHideAbilitySplash(b)
+            end
+        end
+        # Desert Scavenger
+        if sandstormDamage > 0
+            priority.each do |b|
+                next unless b.hasActiveAbility?(:DESERTSCAVENGER)
+                pbShowAbilitySplash(b)
+                healingMessage = _INTL("{1} absorbs the suffering from the sandstorm", b.pbThis)
+                b.pbRecoverHP(sandstormDamage, true, true, true, healingMessage)
                 pbHideAbilitySplash(b)
             end
         end
@@ -337,20 +448,10 @@ class PokeBattle_Battle
             next if b.fainted?
             next unless b.affectedByTerrain?
             PBDebug.log("[Lingering effect] Grassy Terrain affects #{b.pbThis(true)}")
-            if pbCheckOpposingAbility(:SNAKEPIT, b.index)
-                pbDisplay(_INTL("{1} is lashed at by the pit of snakes!", b.pbThis))
-                b.applyFractionalDamage(1.0 / 16.0)
-            else
-                fraction = 1.0 / 16.0
-                healingMessage = _INTL("{1} is healed by the Grassy Terrain.", b.pbThis)
-                if b.hasActiveAbility?(:NESTING)
-                    pbShowAbilitySplash(b)
-                    fraction *= 4.0
-                    healingMessage = _INTL("{1} nests within the Grassy Terrain.", b.pbThis)
-                end
-                b.applyFractionalHealing(fraction, customMessage: healingMessage)
-                pbHideAbilitySplash(b) if b.hasActiveAbility?(:NESTING)
-            end
+            fraction = 1.0 / 16.0
+            healingMessage = _INTL("{1} is healed by the Grassy Terrain.", b.pbThis)
+            b.applyFractionalHealing(fraction, customMessage: healingMessage)
+            pbHideAbilitySplash(b) if b.hasActiveAbility?(:NESTING)
         end
     end
 
@@ -360,5 +461,21 @@ class PokeBattle_Battle
 
     def rainy?
         return %i[Rain HeavyRain].include?(pbWeather)
+    end
+
+    def partialEclipse?
+        return pbWeather == :Eclipse && !@field.specialWeatherEffect
+    end
+
+    def totalEclipse?
+        return pbWeather == :Eclipse && @field.specialWeatherEffect
+    end
+
+    def waxingMoon?
+        return pbWeather == :Moonglow && !@field.specialWeatherEffect
+    end
+
+    def fullMoon?
+        return pbWeather == :Moonglow && @field.specialWeatherEffect
     end
 end

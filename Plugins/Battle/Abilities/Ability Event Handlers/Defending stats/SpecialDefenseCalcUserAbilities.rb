@@ -42,7 +42,21 @@ BattleHandlers::SpecialDefenseCalcUserAbility.add(:EXOADAPTION,
 
 BattleHandlers::SpecialDefenseCalcUserAbility.add(:HEATVEIL,
     proc { |_ability, _user, battle, spDefMult|
-        spDefMult *= 2 if battle.pbWeather == :Sun
+        spDefMult *= 2 if battle.sunny?
+        next spDefMult
+    }
+)
+
+BattleHandlers::SpecialDefenseCalcUserAbility.add(:WARPINGEFFECT,
+    proc { |_ability, _user, battle, spDefMult|
+        spDefMult *= 2 if battle.pbWeather == :Eclipse
+        next spDefMult
+    }
+)
+
+BattleHandlers::SpecialDefenseCalcUserAbility.add(:ICEMIRROR,
+    proc { |_ability, _user, battle, spDefMult|
+        spDefMult *= 2 if battle.pbWeather == :Hail
         next spDefMult
     }
 )

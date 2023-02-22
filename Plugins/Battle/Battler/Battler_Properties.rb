@@ -94,6 +94,7 @@ class PokeBattle_Battler
         return 0 if @pokemon.nil?
         val = @pokemon.extraMovesPerTurn || 0
         val += @effects[:ExtraTurns]
+        val += 1 if hasActiveAbility?(:HEAVENSCROWN) && @battle.totalEclipse?
         return val
     end
 

@@ -22,6 +22,20 @@ BattleHandlers::TargetAbilityAfterMoveUse.add(:PICKPOCKET,
   }
 )
 
+BattleHandlers::TargetAbilityAfterMoveUse.add(:MOONLIGHTER,
+  proc { |_ability, target, user, move, switched, battle|
+      next if switched.include?(user.index)
+      next unless move.pbDamagingMove?
+      next if battle.futureSight
+      next unless battle.pbWeather == :Moonglow
+      if move.canStealItem?(user,target)
+        move.stealItem(target, user, true)
+      else
+        move.removeItem(target, user, true)
+      end
+  }
+)
+
 BattleHandlers::TargetAbilityAfterMoveUse.add(:VENGEANCE,
   proc { |_ability, target, user, move, _switched, battle|
       next unless move.damagingMove?
@@ -36,7 +50,7 @@ BattleHandlers::TargetAbilityAfterMoveUse.add(:BRILLIANTFLURRY,
   proc { |_ability, target, user, move, _switched, _battle|
       next unless move.damagingMove?
       next unless target.knockedBelowHalf?
-      user.pbLowerMultipleStatStages([:ATTACK, 1, :SPECIAL_ATTACK, 1, :SPEED, 1], user, showAbilitySplash: true)
+      user.pbLowerMultipleStatStages([:ATTACK, 2, :SPECIAL_ATTACK, 2, :SPEED, 2], user, showAbilitySplash: true)
   }
 )
 

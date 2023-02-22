@@ -16,3 +16,10 @@ BattleHandlers::EORHealingItem.add(:LEFTOVERS,
       battler.applyFractionalHealing(1.0 / 16.0, item: item)
   }
 )
+
+BattleHandlers::EORHealingItem.add(:PEARLOFFATE,
+    proc { |item, battler, _battle|
+        next unless battler.canLeftovers?
+        battler.applyFractionalHealing(1.0 / 16.0, item: item)
+    }
+)

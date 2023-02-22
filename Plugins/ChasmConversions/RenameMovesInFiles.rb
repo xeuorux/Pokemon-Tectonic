@@ -14,28 +14,38 @@ SaveData.register_conversion(:move_renaming_0) do
   end
 end
 
+def renameMovesOnPokemon(pokemon, renameHash)
+  pokemon.moves.map! { |move|
+    moveIDString = move.id.to_s
+    if renameHash.has_key?(moveIDString)
+      echoln("Renaming #{moveIDString} on player's #{pokemon.name}")
+      Pokemon::Move.new(renameHash[moveIDString][0].to_sym)
+    else
+      move
+    end
+  }
+  pokemon.first_moves.map! { |move_id|
+    moveIDString = move_id.to_s
+    if renameHash.has_key?(moveIDString)
+      echoln("Renaming #{moveIDString} on player's #{pokemon.name}'s first moves array")
+      renameHash[moveIDString][0].to_sym
+    else
+      move_id
+    end
+  }
+end
+
 def renameAllSavedMovesInBatch(save_data,batch_number)
   move_renames = getRenamedMovesBatch(batch_number)
   eachPokemonInSave(save_data) do |pokemon|
-    pokemon.moves.map! { |move|
-      moveIDString = move.id.to_s
-      if move_renames.has_key?(moveIDString)
-        echoln("Renaming #{moveIDString} on player's #{pokemon.name}")
-        Pokemon::Move.new(move_renames[moveIDString][0].to_sym)
-      else
-        move
-      end
-    }
-    pokemon.first_moves.map! { |move_id|
-      moveIDString = move_id.to_s
-      if move_renames.has_key?(moveIDString)
-        echoln("Renaming #{moveIDString} on player's #{pokemon.name}'s first moves array")
-        move_renames[moveIDString][0].to_sym
-      else
-        move_id
-      end
-    }
+    renameMovesOnPokemon(pokemon, move_renames)
   end
+end
+
+def renameMoveInSave(prename,rename)
+  save_data = SaveData.get_data_from_file(SaveData::FILE_PATH)
+  rename_hash = [prename,[rename]]
+  renameAllSavedMovesInBatch(save_data)
 end
 
 def downgradeSaveTo20()

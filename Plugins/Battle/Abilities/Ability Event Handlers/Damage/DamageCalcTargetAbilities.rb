@@ -170,7 +170,13 @@ BattleHandlers::DamageCalcTargetAbility.add(:FINESUGAR,
 
 BattleHandlers::DamageCalcTargetAbility.add(:MISTBLANKET,
   proc { |_ability, user, _target, _move, mults, _baseDmg, _type|
-      mults[:final_damage_multiplier] *= 0.75 if user.battle.field.terrain == :Fairy
+      mults[:final_damage_multiplier] *= 0.75 if user.battle.pbWeather == :Moonglow
+  }
+)
+
+BattleHandlers::DamageCalcTargetAbility.add(:APPREHENSIVE,
+  proc { |_ability, user, _target, _move, mults, _baseDmg, _type|
+      mults[:final_damage_multiplier] *= 0.7 if user.battle.partialEclipse?
   }
 )
 

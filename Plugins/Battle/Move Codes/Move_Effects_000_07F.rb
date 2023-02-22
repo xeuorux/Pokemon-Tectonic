@@ -1074,7 +1074,6 @@ class PokeBattle_Move_049 < PokeBattle_TargetStatDownMove
         eachDefoggable(ourSide, true) do |_effect, _data|
             return false
         end
-        return false if @battle.field.terrain != :None
         return super
     end
 
@@ -1096,7 +1095,6 @@ class PokeBattle_Move_049 < PokeBattle_TargetStatDownMove
         eachDefoggable(ourSide, true) do |effect, data|
             blowAwayEffect(user, ourSide, effect, data)
         end
-        @battle.endTerrain
     end
 
     def getEffectScore(user, target)
@@ -1108,7 +1106,6 @@ class PokeBattle_Move_049 < PokeBattle_TargetStatDownMove
         target.pbOwnSide.eachEffect(true) do |effect, _value, data|
             score += 25 if data.is_screen? || @miscEffects.include?(effect)
         end
-        score += 30 if @battle.field.terrain != :None
         return score
     end
 end

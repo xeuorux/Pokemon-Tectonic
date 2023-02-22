@@ -318,7 +318,6 @@ class PokeBattle_Move
     def ignoresDefensiveStageBoosts?(user,target);           return false;       end
   
     def forcedSpecial?(user,target,checkingForAI=false)
-        return true if user.shouldAbilityApply?(:MYSTICFIST,checkingForAI) && punchingMove?
         return true if user.shouldAbilityApply?([:TIMEINTERLOPER,:SPACEINTERLOPER],checkingForAI)
         return false
     end
@@ -365,6 +364,7 @@ class PokeBattle_Move
 
     def pbAdditionalEffectChance(user,target,type,effectChance=0)
         return 0 if !canApplyAdditionalEffects?(user,target)
+        return 100 if user.hasActiveAbility?(:STARSALIGN) && @battle.pbWeather == :Eclipse
         return 100 if !user.pbOwnedByPlayer? && @battle.curseActive?(:CURSE_PERFECT_LUCK)
         ret = effectChance > 0 ? effectChance : @effectChance
         return 100 if ret >= 100

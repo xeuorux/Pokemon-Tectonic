@@ -1,8 +1,53 @@
+#######################################################
+# Terrain setting abilities
+#######################################################
+
+BattleHandlers::AbilityOnSwitchIn.add(:GRASSYSURGE,
+  proc { |_ability, battler, battle|
+      next if battle.field.terrain == :Grassy
+      battle.pbShowAbilitySplash(battler)
+      battle.pbStartTerrain(battler, :Grassy)
+      # NOTE: The ability splash is hidden again in def pbStartTerrain.
+  }
+)
+
+BattleHandlers::AbilityOnSwitchIn.add(:PSYCHICSURGE,
+  proc { |_ability, battler, battle|
+      next if battle.field.terrain == :Psychic
+      battle.pbShowAbilitySplash(battler)
+      battle.pbStartTerrain(battler, :Psychic)
+      # NOTE: The ability splash is hidden again in def pbStartTerrain.
+  }
+)
+
+BattleHandlers::AbilityOnSwitchIn.add(:FAIRYSURGE,
+  proc { |_ability, battler, battle|
+      next if battle.field.terrain == :Fairy
+      battle.pbShowAbilitySplash(battler)
+      battle.pbStartTerrain(battler, :Fairy)
+      # NOTE: The ability splash is hidden again in def pbStartTerrain.
+  }
+)
+
+BattleHandlers::AbilityOnSwitchIn.add(:ELECTRICSURGE,
+  proc { |_ability, battler, battle|
+      next if battle.field.terrain == :Electric
+      battle.pbShowAbilitySplash(battler)
+      battle.pbStartTerrain(battler, :Electric)
+      # NOTE: The ability splash is hidden again in def pbStartTerrain.
+  }
+)
+
+#######################################################
+# Other abilities
+#######################################################
+
 BattleHandlers::AbilityOnSwitchIn.add(:AIRLOCK,
   proc { |_ability, battler, battle|
       battle.pbShowAbilitySplash(battler)
       battle.pbDisplay(_INTL("The effects of the weather disappeared."))
       battle.pbHideAbilitySplash(battler)
+      battle.field.specialTimer = 0
   }
 )
 
@@ -86,6 +131,18 @@ BattleHandlers::AbilityOnSwitchIn.add(:DOWNLOAD,
       end
       stat = (oDef < oSpDef) ? :ATTACK : :SPECIAL_ATTACK
       battler.tryRaiseStat(stat, battler, showAbilitySplash: true)
+  }
+)
+
+BattleHandlers::AbilityOnSwitchIn.add(:MOONGAZE,
+  proc { |_ability, battler, battle|
+      pbBattleWeatherAbility(:Moonglow, battler, battle)
+  }
+)
+
+BattleHandlers::AbilityOnSwitchIn.add(:HARBINGER,
+  proc { |_ability, battler, battle|
+      pbBattleWeatherAbility(:Eclipse, battler, battle)
   }
 )
 
@@ -347,6 +404,30 @@ BattleHandlers::AbilityOnSwitchIn.add(:NEUTRALIZINGGAS,
   }
 )
 
+BattleHandlers::AbilityOnSwitchIn.add(:DRAMATICLIGHTING,
+  proc { |_ability, battler, battle|
+      next unless battle.pbWeather == :Eclipse
+      battle.pbShowAbilitySplash(battler)
+      battle.eachOtherSideBattler(battler.index) do |b|
+          next unless b.near?(battler)
+          b.pbLowerMultipleStatStages([:ATTACK,1,:SPECIAL_ATTACK,1],battler,showFailMsg: true)
+      end
+      battle.pbHideAbilitySplash(battler)
+  }
+)
+
+BattleHandlers::AbilityOnSwitchIn.add(:CRAGTERROR,
+  proc { |_ability, battler, battle|
+      next unless battle.pbWeather == :Sandstorm
+      battle.pbShowAbilitySplash(battler)
+      battle.eachOtherSideBattler(battler.index) do |b|
+          next unless b.near?(battler)
+          b.pbLowerMultipleStatStages([:ATTACK,1,:SPECIAL_ATTACK,1],battler,showFailMsg: true)
+      end
+      battle.pbHideAbilitySplash(battler)
+  }
+)
+
 BattleHandlers::AbilityOnSwitchIn.add(:FASCINATE,
   proc { |_ability, battler, battle|
       battle.pbShowAbilitySplash(battler)
@@ -534,18 +615,6 @@ BattleHandlers::AbilityOnSwitchIn.add(:CONVICTION,
   }
 )
 
-BattleHandlers::AbilityOnSwitchIn.add(:SWARMCALL,
-  proc { |_ability, battler, battle|
-      pbBattleWeatherAbility(:Swarm, battler, battle)
-  }
-)
-
-BattleHandlers::AbilityOnSwitchIn.add(:POLLUTION,
-  proc { |_ability, battler, battle|
-      pbBattleWeatherAbility(:AcidRain, battler, battle)
-  }
-)
-
 BattleHandlers::AbilityOnSwitchIn.add(:PRIMEVALSLOWSTART,
   proc { |_ability, battler, battle|
       battle.pbShowAbilitySplash(battler, true)
@@ -616,48 +685,107 @@ BattleHandlers::AbilityOnSwitchIn.add(:REFRESHMENTS,
   }
 )
 
-BattleHandlers::AbilityOnSwitchIn.add(:GRASSYSURGE,
+BattleHandlers::AbilityOnSwitchIn.add(:MENDINGTONES,
   proc { |_ability, battler, battle|
-      next if battle.field.terrain == :Grassy
+      next unless battle.pbWeather == :Eclipse
+      lowestId = battler.index
+      lowestPercent = battler.hp / battler.totalhp.to_f
+      battler.eachAlly do |b|
+          thisHP = b.hp / b.totalhp.to_f
+          if (thisHP < lowestPercent) && b.canHeal?
+              lowestId = b.index
+              lowestPercent = thisHP
+          end
+      end
+      lowestIdBattler = battle.battlers[lowestId]
+      next unless lowestIdBattler.canHeal?
+      served = (lowestId == battler.index ? "itself" : lowestIdBattler.pbThis)
       battle.pbShowAbilitySplash(battler)
-      battle.pbStartTerrain(battler, :Grassy)
-      # NOTE: The ability splash is hidden again in def pbStartTerrain.
+      battle.pbDisplay(_INTL("{1} mended {2} with soothing sounds!", battler.pbThis, served))
+      lowestIdBattler.pbRecoverHP(lowestIdBattler.totalhp / 2.0)
+      battle.pbHideAbilitySplash(battler)
   }
 )
 
-BattleHandlers::AbilityOnSwitchIn.add(:PSYCHICSURGE,
+BattleHandlers::AbilityOnSwitchIn.add(:PEARLSEEKER,
   proc { |_ability, battler, battle|
-      next if battle.field.terrain == :Psychic
+      next unless battle.pbWeather == :Eclipse
+      next if battler.item
       battle.pbShowAbilitySplash(battler)
-      battle.pbStartTerrain(battler, :Psychic)
-      # NOTE: The ability splash is hidden again in def pbStartTerrain.
+      itemData = GameData::Item(:PEARLOFFATE)
+      battle.pbDisplay(_INTL("{1} discovers the {2}!", battler.pbThis, itemData.name))
+      battler.item = :PEARLOFFATE
+      battle.pbHideAbilitySplash(battler)
   }
 )
 
-BattleHandlers::AbilityOnSwitchIn.add(:FairySURGE,
+BattleHandlers::AbilityOnSwitchIn.add(:WHIRLER,
   proc { |_ability, battler, battle|
-      next if battle.field.terrain == :Fairy
+      trappingDuration = 3
+      trappingDuration *= 2 if battler.hasActiveItem?(:GRIPCLAW)
+
       battle.pbShowAbilitySplash(battler)
-      battle.pbStartTerrain(battler, :Fairy)
-      # NOTE: The ability splash is hidden again in def pbStartTerrain.
+      battler.eachOpposing do |b|
+        next if target.effectActive?(:Trapping)
+        target.applyEffect(:Trapping, trappingDuration)
+        target.applyEffect(:TrappingMove, :WHIRLPOOL)
+        target.pointAt(:TrappingUser, battler)
+        battle.pbDisplay(_INTL("{1} became trapped in the vortex!", b.pbThis))
+      end
+      battle.pbHideAbilitySplash(battler)
   }
 )
 
-BattleHandlers::AbilityOnSwitchIn.copy(:FairySURGE, :FAIRYSURGE)
-
-BattleHandlers::AbilityOnSwitchIn.add(:ELECTRICSURGE,
+BattleHandlers::AbilityOnSwitchIn.add(:SUSTAINABLE,
   proc { |_ability, battler, battle|
-      next if battle.field.terrain == :Electric
-      battle.pbShowAbilitySplash(battler)
-      battle.pbStartTerrain(battler, :Electric)
-      # NOTE: The ability splash is hidden again in def pbStartTerrain.
+    next if battler.item
+    next if !battler.recycleItem || !GameData::Item.get(battler.recycleItem).is_berry?
+    next unless battle.sunny?
+    battle.pbShowAbilitySplash(battler)
+    battler.item = battler.recycleItem
+    battler.setRecycleItem(nil)
+    battler.setInitialItem(battler.item) unless battler.initialItem
+    battle.pbDisplay(_INTL("{1} regrew one {2}!", battler.pbThis, battler.itemName))
+    battle.pbHideAbilitySplash(battler)
+    battler.pbHeldItemTriggerCheck
   }
+)
+
+BattleHandlers::AbilityOnSwitchIn.add(:COTTONDECOY,
+  proc { |_ability, battler, battle|
+    next if battler.substituted?
+    next unless battler.hp > battler.totalhp / 4
+    battler.createSubstitute
+  }
+)
+
+BattleHandlers::AbilityOnSwitchIn.add(:KLEPTOMANIAC,
+  proc { |_ability, battler, battle|
+      battle.forceUseMove(battler, :SNATCH, -1, true, nil, nil, true)
+  }
+)
+
+BattleHandlers::AbilityOnSwitchIn.add(:ASSISTANT,
+  proc { |_ability, battler, battle|
+      battle.forceUseMove(battler, :ASSIST, -1, true, nil, nil, true)
+    }
 )
 
 BattleHandlers::AbilityOnSwitchIn.add(:PRECHARGED,
   proc { |_ability, battler, battle|
       battle.pbShowAbilitySplash(battler)
       battler.applyEffect(:Charge,2)
+      battle.pbHideAbilitySplash(battler)
+  }
+)
+
+BattleHandlers::AbilityOnSwitchIn.add(:LOOSESHELL,
+  proc { |_ability, battler, battle|
+      next unless battle.pbWeather == :Sandstorm
+      next unless battler.form == 0
+      battle.pbShowAbilitySplash(battler)
+      pbChangeForm(1, _INTL("{1} scrapped its meteor shell!", pbThis))
+      battler.pbOpposingSide.applyEffect(:StealthRock)
       battle.pbHideAbilitySplash(battler)
   }
 )

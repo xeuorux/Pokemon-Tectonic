@@ -64,6 +64,8 @@ module GameData
 		  @dmg_resist		= hash[:dmg_resist] || 0
 		  @aggression		= hash[:aggression] || PokeBattle_AI_Boss::DEFAULT_BOSS_AGGRESSION
 
+		  raise _INTL("The Avatar definition for #{@id} has no firt moves defined!") if @moves1.nil?
+
 		  @num_phases = 1
 		  if @moves2.length > 0 && @moves2.sort != @moves1.sort
 			@num_phases += 1

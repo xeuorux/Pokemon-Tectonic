@@ -333,9 +333,18 @@ class PokeBattle_Move_515 < PokeBattle_Move
 end
 
 #===============================================================================
-# (Not currenly used)
+# Dizzies the target. Accuracy perfect in moonglow. Hits some
+# semi-invulnerable targets. (Moon Impact)
 #===============================================================================
-class PokeBattle_Move_516 < PokeBattle_Move
+class PokeBattle_Move_516 < PokeBattle_DizzyMove
+    def pbBaseAccuracy(user, target)
+        return 0 if @battle.pbWeather == :Moonglow
+        return super
+    end
+
+    def shouldHighlight?(_user, _target)
+        return @battle.pbWeather == :Moonglow
+    end
 end
 
 #===============================================================================
@@ -907,29 +916,42 @@ class PokeBattle_Move_537 < PokeBattle_JealousyMove
 end
 
 #===============================================================================
-# Removes all Terrain. Does not fail if there is no Terrain (Terraform)
+# Removes all hazards on both sides. (Terraform)
 #===============================================================================
 class PokeBattle_Move_538 < PokeBattle_Move
-    def pbEffectGeneral(_user)
-        case @battle.field.terrain
-        when :Electric
-            @battle.pbDisplay(_INTL("The electric current disappeared from the battlefield!"))
-        when :Grassy
-            @battle.pbDisplay(_INTL("The grass disappeared from the battlefield!"))
-        when :Fairy
-            @battle.pbDisplay(_INTL("The fae mist disappeared from the battlefield!"))
-        when :Psychic
-            @battle.pbDisplay(_INTL("The weirdness disappeared from the battlefield!"))
+    def eachHazard(side, isOurSide)
+        side.eachEffect(true) do |effect, _value, data|
+            next unless data.is_hazard?
+            yield effect, data
         end
-        @battle.endTerrain
     end
 
-    def getEffectScore(_user, _target)
-        if @battle.field.terrain == :None
-            return 0
-        else
-            return 30
+    def removeEffect(user, side, effect, data)
+        side.disableEffect(effect)
+        if data.is_hazard?
+            hazardName = data.real_name
+            @battle.pbDisplay(_INTL("{1} destroyed {2}!", user.pbThis, hazardName)) unless data.has_expire_proc?
         end
+    end
+
+    def pbEffectGeneral(user)
+        targetSide = user.pbOpposingSide
+        ourSide = user.pbOwnSide
+        eachHazard(targetSide, false) do |effect, data|
+            removeEffect(user, targetSide, effect, data)
+        end
+        eachHazard(ourSide, true) do |effect, data|
+            removeEffect(user, ourSide, effect, data)
+        end
+    end
+
+    def getEffectScore(user, target)
+        score = 0
+        # Dislike removing hazards that affect the enemy
+        score -= hazardWeightOnSide(user.pbOpposingSide)
+        # Like removing hazards that affect us
+        score += hazardWeightOnSide(user.pbOwnSide)
+        return score
     end
 end
 

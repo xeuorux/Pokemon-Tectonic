@@ -224,7 +224,7 @@ class PokeBattle_Move_10C < PokeBattle_Move
             return true
         end
 
-        if user.hp <= getSubLife(user)
+        if user.hp <= user.getSubLife
             if show_message
                 @battle.pbDisplay(_INTL("But it failed, since #{user.pbThis(true)} does not have enough HP left to make a substitute!"))
             end
@@ -233,18 +233,8 @@ class PokeBattle_Move_10C < PokeBattle_Move
         return false
     end
 
-    def getSubLife(battler)
-        subLife = battler.totalhp / 4
-        subLife = 1 if subLife < 1
-        return subLife.floor
-    end
-
     def pbEffectGeneral(user)
-        subLife = getSubLife(user)
-        user.pbReduceHP(subLife, false, false)
-        user.pbItemHPHealCheck
-        user.disableEffect(:Trapping)
-        user.applyEffect(:Substitute, subLife)
+        user.createSubstitute
     end
 
     def getEffectScore(user, _target)
@@ -2516,7 +2506,7 @@ end
 
 # TODO: create a "targeting healing move" parent class
 #===============================================================================
-# Heals target by 1/2 of its max HP, or 2/3 of its max HP in Grassy Terrain.
+# Heals target by 1/2 of its max HP, or 2/3 of its max HP in moonglow.
 # (Floral Healing)
 #===============================================================================
 class PokeBattle_Move_16E < PokeBattle_Move
@@ -2534,7 +2524,7 @@ class PokeBattle_Move_16E < PokeBattle_Move
     end
 
     def pbEffectAgainstTarget(_user, target)
-        if @battle.field.terrain == :Grassy
+        if @battle.pbWeather == :Moonglow
             ratio = 2.0 / 3.0
         else
             ratio = 1.0 / 2.0
@@ -2544,7 +2534,7 @@ class PokeBattle_Move_16E < PokeBattle_Move
 
     def getEffectScore(user, target)
         magnitude = 3
-        magnitude = 6 if @battle.field.terrain == :Grassy
+        magnitude = 5 if @battle.pbWeather == :Moonglow
         return getHealingEffectScore(user, target, magnitude)
     end
 
