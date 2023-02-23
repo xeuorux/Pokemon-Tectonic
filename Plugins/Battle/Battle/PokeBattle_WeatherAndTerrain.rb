@@ -262,7 +262,7 @@ class PokeBattle_Battle
                 end
                 pbDisplay(_INTL("But no one was panicked.")) if showWeatherMessages && !anyAffected
                 @battlers.each do |b|
-                    next unless b.abilityActive?
+                    next unless b&.abilityActive?
                     BattleHandlers.triggerTotalEclipseAbility(b.ability, b, self)
                 end
             when :Moonglow
@@ -278,7 +278,7 @@ class PokeBattle_Battle
                 end
                 pbDisplay(_INTL("But no one was moon struck.")) if showWeatherMessages && !anyAffected
                 @battlers.each do |b|
-                    next unless b.abilityActive?
+                    next unless b&.abilityActive?
                     BattleHandlers.triggerFullMoonAbility(b.ability, b, self)
                 end
             end
