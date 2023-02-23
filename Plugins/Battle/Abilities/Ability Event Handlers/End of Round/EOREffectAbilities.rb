@@ -154,6 +154,7 @@ BattleHandlers::EOREffectAbility.add(:VITALRHYTHM,
       battler.eachAlly do |b|
         b.applyFractionalHealing(1.0 / 16.0)
       end
+      battle.pbHideAbilitySplash(battler)
     }
 )
 
