@@ -33,7 +33,7 @@
 34,CRUNCH,Crunch,043,80,DARK,Physical,100,12,20,NearOther,0,abefi,"The user crunches up the target with sharp fangs. It has a 20% chance to lower Defense.",
 35,DARKPULSE,Dark Pulse,00F,80,DARK,Special,100,12,40,Other,0,bem,"The user releases an aura imbued with dark thoughts. It has a 40% chance to flinch the target.",
 36,THROATCHOP,Throat Chop,16C,80,DARK,Physical,100,12,100,NearOther,0,abef,"The user attacks the target's throat. The target cannot use sound-based moves for two turns.",
-37,DARKSLASH,Dark Slash,5B0,70,DARK,Physical,100,12,0,NearOther,0,abefhp,"The user slashes the target the instant an opportunity arises. Critical hits land more easily.",NIGHTSLASH
+37,DARKSLASH,Dark Slash,000,70,DARK,Physical,100,12,0,NearOther,0,abefhp,"The user slashes the target the instant an opportunity arises. Critical hits land more easily.",NIGHTSLASH
 38,SUCKERPUNCH,Sucker Punch,116,70,DARK,Physical,100,5,0,NearOther,1,abef,"This move enables the user to attack first. It fails if the target is not readying an attack, however.",
 39,KNOCKOFF,Knock Off,0F0,65,DARK,Physical,100,15,0,NearOther,0,abef,"The user slaps down the target's held item, preventing that item from being used in the battle.",
 40,ASSURANCE,Assurance,082,60,DARK,Physical,100,10,0,NearOther,0,abef,"If the target has already taken some damage in the same turn, this attack's power is doubled.",

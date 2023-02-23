@@ -63,7 +63,7 @@
 2061,DOUBLESLAP,Double Slap,0C0,15,NORMAL,Physical,85,10,0,NearOther,0,abef,"The target is slapped repeatedly, back and forth, two to five times in a row.",
 2062,TAILSLAP,Tail Slap,0C0,25,NORMAL,Physical,85,10,0,NearOther,0,abef,"The user attacks by striking the target with its hard tail. It hits the Pokémon two to five times in a row.",
 2063,COMETPUNCH,Comet Punch,0C0,18,NORMAL,Physical,85,12,0,NearOther,0,abefj,"The target is hit with a flurry of punches that strike two to five times in a row.",
-2064,NIGHTSLASH,Night Slash,5B0,70,DARK,Physical,100,12,0,NearOther,0,abefhp,"The user slashes the target the instant an opportunity arises. Critical hits land more easily.",
+2064,NIGHTSLASH,Night Slash,000,70,DARK,Physical,100,12,0,NearOther,0,abefhp,"The user slashes the target the instant an opportunity arises. Critical hits land more easily.",
 2065,FIERYDANCE,Fiery Dance,020,80,FIRE,Special,100,10,50,NearOther,0,befo,"Cloaked in flames, the user dances rhythmically. It has a 50% chance to raise its Sp. Atk.",
 2066,MAGNETBOMB,Magnet Bomb,0A5,50,STEEL,Physical,0,15,0,NearOther,0,efn,"The user launches steel bombs that stick to the target. Can't miss and skips protections.",
 2067,MAGNETHRASH,Magnethrash,0A5,90,STEEL,Physical,0,12,0,NearOther,0,abef,"The user generates an intense magnetic connection between it and the target, striking it without fail.",METALCLAW
