@@ -548,7 +548,7 @@ user.pbThis))
                     end
                 end
             end
-            # Magic Coat's bouncing back (move has targets)
+            # Magic Coat/Magic Bounce's bouncing back (move has targets)
             targets.each do |b|
                 next if b.fainted?
                 next if !b.damageState.magicCoat && !b.damageState.magicBounce
@@ -559,12 +559,30 @@ user.pbThis))
                 newChoice[3] = user.index
                 newTargets = pbFindTargets(newChoice, move, b)
                 newTargets = pbChangeTargets(move, b, newTargets)
-                success = pbProcessMoveHit(move, b, newTargets, 0, false, multiHitAesthetics)
+
+                # Check to see if the bounced move should fail
+                success = false
+                unless move.pbMoveFailed?(b, newTargets, true)
+                    newTargets.each_with_index do |newTarget, idx|
+                        typeMod = move.pbCalcTypeMod(move.calcType, user, b)
+                        b.damageState.typeMod = typeMod
+
+                        showFailMessages = move.pbShowFailMessages?(targets)
+                        if pbSuccessCheckAgainstTarget(move, b, newTarget, typeMod, showFailMessages)
+                            success = true
+                            next
+                        end
+                        newTargets[idx] = nil
+                    end
+                    newTargets.compact!
+                end
+                pbProcessMoveHit(move, b, newTargets, 0, false, multiHitAesthetics) if success
+
                 b.lastMoveFailed = true unless success
                 targets.each { |otherB| otherB.pbFaint if otherB && otherB.fainted? }
                 user.pbFaint if user.fainted?
             end
-            # Magic Coat and Magic Bounce's bouncing back (move has no targets)
+            # Magic Coat/Magic Bounce's bouncing back (move has no targets)
             if magicCoater >= 0 || magicBouncer >= 0
                 mc = @battle.battlers[(magicCoater >= 0) ? magicCoater : magicBouncer]
                 unless mc.fainted?
@@ -572,7 +590,10 @@ user.pbThis))
                     @battle.pbShowAbilitySplash(mc) if magicBouncer >= 0
                     @battle.pbDisplay(_INTL("{1} bounced the {2} back!", mc.pbThis, move.name))
                     @battle.pbHideAbilitySplash(mc) if magicBouncer >= 0
-                    success = pbProcessMoveHit(move, mc, [], 0, false, multiHitAesthetics)
+                    success = false
+                    unless move.pbMoveFailed?(mc, [], true)
+                        success = pbProcessMoveHit(move, mc, [], 0, false, multiHitAesthetics)
+                    end
                     mc.lastMoveFailed = true unless success
                     targets.each { |b| b.pbFaint if b && b.fainted? }
                     user.pbFaint if user.fainted?
