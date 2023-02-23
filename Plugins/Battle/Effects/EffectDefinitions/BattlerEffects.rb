@@ -1025,7 +1025,7 @@ GameData::BattleEffect.register_effect(:Battler, {
     :info_displayed => false,
     :apply_proc => proc do |battle, battler, value|
         typeName = GameData::Type.get(value).name
-        battle.pbDisplay(_INTL("{1} gainted the {2} type!", battler.pbThis, typeName))
+        battle.pbDisplay(_INTL("{1} gained the {2} type!", battler.pbThis, typeName))
         battle.scene.pbRefresh
     end,
 })
