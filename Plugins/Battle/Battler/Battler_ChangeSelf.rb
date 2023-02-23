@@ -82,16 +82,19 @@ class PokeBattle_Battler
         if !cushionRecoil && hasActiveAbility?(:ALLYCUSHION)
             @battle.pbShowAbilitySplash(self)
             @battle.pbDisplay(_INTL("{1} looks for an ally to help in avoiding the recoil!", pbThis))
-            allyCushionAmount = (damage / 2.0).round
-            allyCushionAmount = 1 if allyCushionAmount < 1
-            position.applyEffect(:AllyCushion, @pokemonIndex)
-            position.applyEffect(:AllyCushionAmount, allyCushionAmount)
-            @battle.pbHideAbilitySplash(self)
-            if @battle.triggeredSwitchOut(@index, false)
-                pbEffectsOnSwitchIn(true)
+
+            # Can be replaced
+            if @battle.pbCanSwitch?(@index) && @battle.pbCanChooseNonActive?(@index)
+                allyCushionAmount = (damage / 2.0).round
+                allyCushionAmount = 1 if allyCushionAmount < 1
+                applyEffect(:AllyCushionSwap)
+                position.applyEffect(:AllyCushion, @pokemonIndex)
+                position.applyEffect(:AllyCushionAmount, allyCushionAmount)
+                @battle.pbHideAbilitySplash(self)
                 return
             else
                 @battle.pbDisplay(_INTL("But it couldn't swap into anybody!"))
+                @battle.pbHideAbilitySplash(self)
             end
         end
 

@@ -1519,6 +1519,11 @@ GameData::BattleEffect.register_effect(:Battler, {
     end,
 })
 
+GameData::BattleEffect.register_effect(:Battler, {
+    :id => :AllyCushionSwap,
+    :real_name => "Swapping to Cushion",
+})
+
 
 #######################################################
 # Protection effects

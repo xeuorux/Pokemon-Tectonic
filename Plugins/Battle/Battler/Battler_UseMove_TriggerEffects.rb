@@ -131,12 +131,21 @@ switchedBattlers)
         else
             pbEffectsAfterMove2(user, targets, move, numHits, switchedBattlers)
         end
+        # Ally Cushion
+        if user.effectActive?(:AllyCushionSwap) && !switchedBattlers.include?(user.index)
+            if @battle.triggeredSwitchOut(user.index, false)
+                user.pbEffectsOnSwitchIn(true)
+                switchedBattlers.push(user.index)
+            else
+                user.disableEffect(:AllyCushionSwap)
+                user.position.disableEffect(:AllyCushion)
+            end
+        end
         # Some move effects that need to happen here, i.e. U-turn/Volt Switch
         # switching, Baton Pass switching, Parting Shot switching, Relic Song's form
         # changing, Fling/Natural Gift consuming item.
         unless switchedBattlers.include?(user.index)
-            move.pbEndOfMoveUsageEffect(user, targets, numHits,
-switchedBattlers)
+            move.pbEndOfMoveUsageEffect(user, targets, numHits, switchedBattlers)
         end
         @battle.eachBattler { |b| b.pbItemEndOfMoveCheck } if numHits > 0
     end
