@@ -229,8 +229,8 @@ def hazardWeightOnSide(side, excludeEffects = [])
 end
 
 def getSwitchOutEffectScore(user, _target)
-    score = 30
-    score += 30 if user.ownersPolicies.include?(:PRIORITIZEUTURN)
+    score = user.alliesInReserveCount * 5
+    score *= 1.5 if user.ownersPolicies.include?(:PRIORITIZEUTURN)
     score -= hazardWeightOnSide(user.pbOwnSide)
     return score
 end
