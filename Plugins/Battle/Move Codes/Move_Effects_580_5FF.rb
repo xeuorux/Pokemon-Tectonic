@@ -1438,3 +1438,21 @@ class PokeBattle_Move_5C3 < PokeBattle_Move
         return -1000
     end
 end
+
+#===============================================================================
+# Two turn attack. Sets sun first turn, attacks second turn.
+# (Absolute Radiance)
+#===============================================================================
+class PokeBattle_Move_5C4 < PokeBattle_TwoTurnMove
+    def pbChargingTurnMessage(user, _targets)
+        @battle.pbDisplay(_INTL("{1} petitions the sun!", user.pbThis))
+    end
+
+    def pbChargingTurnEffect(user, _target)
+        @battle.pbStartWeather(user, :Sun, 5, false)
+    end
+
+    def getEffectScore(user, _target)
+        return getWeatherSettingEffectScore(:Sun, user, battle, 5)
+    end
+end

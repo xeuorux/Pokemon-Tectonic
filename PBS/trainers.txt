@@ -1169,7 +1169,7 @@ Pokemon = AMAROWAK,30
     AbilityIndex = 1
 Pokemon = ORICORIO,30
     Form = 3
-    Moves = FEATHERDANCE,TEETERDANCE,LIGHTNINGDANCE,FIERYDANCE
+    Moves = FEATHERDANCE,TEETERDANCE,LIGHTNINGDANCE,FLAMEDANCE
     AbilityIndex = 1
 #-------------------------------
 [LEADER_Rafael_2,Rafael]
@@ -1181,7 +1181,7 @@ Pokemon = MISDREAVUS,30
     AbilityIndex = 1
     Item = LIFEORB
 Pokemon = BELLOSSOM,30
-    Moves = MEGADRAIN,FIERYDANCE,POISONSPIKES,SOLARGLIDE
+    Moves = MEGADRAIN,FLAMEDANCE,POISONSPIKES,SOLARGLIDE
     AbilityIndex = 1
     Item = SITRUSBERRY
 #-------------------------------

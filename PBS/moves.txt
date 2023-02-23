@@ -210,7 +210,6 @@
 216,HEATWAVE,Heat Wave,00A,80,FIRE,Special,100,10,10,AllNearFoes,0,befq,"The user attacks by exhaling hot breath on the opposing team. It has a 10% chance to burn.",
 217,FLAMETHROWER,Flamethrower,00A,90,FIRE,Special,100,12,10,NearOther,0,bef,"The target is scorched with an intense blast of fire. It has a 10% chance to burn.",
 218,BLAZEKICK,Blaze Kick,00A,85,FIRE,Physical,100,10,10,NearOther,0,abefh,"The user launches a kick that lands a critical hit more easily. It has a 10% chance to burn.",
-219,FIERYDANCE,Fiery Dance,020,80,FIRE,Special,100,10,50,NearOther,0,befo,"Cloaked in flames, the user dances rhythmically. It has a 50% chance to raise its Sp. Atk.",
 220,FIRELASH,Fire Lash,043,80,FIRE,Physical,100,12,100,NearOther,0,abef,"The user strikes the target with a burning lash. This also lowers the target's Defense stat.",
 221,FIREPLEDGE,Fire Pledge,107,80,FIRE,Special,100,10,0,NearOther,0,bef,"A column of fire hits opposing Pokémon. When used with its Grass equivalent, it makes a sea of fire.",
 222,LAVAPLUME,Lava Plume,00A,80,FIRE,Special,100,12,30,AllNearOthers,0,bef,"An inferno of scarlet flames torches everything around the user. It has a 30% chance to burn.",
@@ -1082,4 +1081,9 @@
 1132,DRAGONASPECT,Dragon Aspect,5C3,0,DRAGON,Status,0,5,0,User,0,,"Invokes the aspects of multiple dragons, striking with two fitting moves in a row.",
 1133,CAPOEIRA,Capoeira,01F,50,FIGHTING,Physical,100,10,100,NearOther,0,befo,"Combining dance and martial art, the user strikes the target and raises its speed.",
 1134,FLAMEDANCE,Flame Dance,020,50,FIRE,Special,100,10,100,NearOther,0,befo,"Cloaked in flames, the user dances rhythmically, raising its Sp. Atk.",
-1135,AQUAWALTZ,Aqua Waltz,0da,65,WATER,Physical,100,10,100,NearOther,0,befo,"The user attacks the target using graceful fluid movements, also healing themselves by 1/8th max HP each turn after.",
+1135,AQUAWALTZ,Aqua Waltz,0DA,65,WATER,Physical,100,10,100,NearOther,0,befo,"The user attacks the target using graceful fluid movements, also healing themselves by 1/8th max HP each turn after.",
+1136,ABSOLUTERADIANCE,Absolute Radiance,576,120,FIRE,Special,100,5,0,Other,0,bef,"Summons sun for five turns on the first turn, then overwhelms the foe with fiery light on the second.",SURF
+1137,MAGNETIZE,Magnetize,0CF,50,STEEL,Physical,100,15,0,NearOther,0,bef,"The user strikes the target while magnetizing it, trapping and damaging it for three turns.",MAGNETBOMB
+1138,MAGNETPRISON,Magnet Prison,0CF,75,STEEL,Physical,100,15,0,NearOther,0,bef,"Giant magnets slam into the target from all sides, trapping and damaging it for three turns.",MAGNETBOMB
+1139,MAGICHAND,Magic Hand,0CF,50,PSYCHIC,Physical,100,15,0,NearOther,0,bef,"The user grabs the target with a conjured hand, trapping and damaging it for three turns.",CRUSHGRIP
+1140,KINETICGRIP,Magnet Prison,0CF,75,PSYCHIC,Physical,100,15,0,NearOther,0,bef,"The user conjures a giant fist to crush the target, trapping and damaging it for three turns.",CRUSHGRIP

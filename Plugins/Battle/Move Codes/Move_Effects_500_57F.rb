@@ -2085,3 +2085,21 @@ class PokeBattle_Move_57F < PokeBattle_HalfProtectMove
         return getPoisonEffectScore(user, target)
     end
 end
+
+#===============================================================================
+# Two turn attack. Sets rain first turn, attacks second turn.
+# (Archaic Deluge)
+#===============================================================================
+class PokeBattle_Move_576 < PokeBattle_TwoTurnMove
+    def pbChargingTurnMessage(user, _targets)
+        @battle.pbDisplay(_INTL("{1} begins the flood!", user.pbThis))
+    end
+
+    def pbChargingTurnEffect(user, _target)
+        @battle.pbStartWeather(user, :Rain, 5, false)
+    end
+
+    def getEffectScore(user, _target)
+        return getWeatherSettingEffectScore(:Rain, user, battle, 5)
+    end
+end

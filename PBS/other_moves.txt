@@ -64,6 +64,7 @@
 2062,TAILSLAP,Tail Slap,0C0,25,NORMAL,Physical,85,10,0,NearOther,0,abef,"The user attacks by striking the target with its hard tail. It hits the Pokémon two to five times in a row.",
 2063,COMETPUNCH,Comet Punch,0C0,18,NORMAL,Physical,85,12,0,NearOther,0,abefj,"The target is hit with a flurry of punches that strike two to five times in a row.",
 2064,NIGHTSLASH,Night Slash,5B0,70,DARK,Physical,100,12,0,NearOther,0,abefhp,"The user slashes the target the instant an opportunity arises. Critical hits land more easily.",
+2065,FIERYDANCE,Fiery Dance,020,80,FIRE,Special,100,10,50,NearOther,0,befo,"Cloaked in flames, the user dances rhythmically. It has a 50% chance to raise its Sp. Atk.",
 2500,BREAKNECKBLITZ,Breakneck Blitz,Z000,1,NORMAL,Physical,0,1,0,NearOther,0,fz,"The user builds up its momentum using its Z-Power and crashes into the target at full speed.",
 2501,ALLOUTPUMMELING,All-Out Pummeling,Z000,1,FIGHTING,Physical,0,1,0,NearOther,0,fz,"The user rams an energy orb created by its Z-Power into the target with full force.",
 2502,SUPERSONICSKYSTRIKE,Supersonic Skystrike,Z000,1,FLYING,Physical,0,1,0,NearOther,0,fz,"The user soars up with its Z-Power and plummets toward the target at full speed.",
