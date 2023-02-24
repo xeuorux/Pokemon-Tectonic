@@ -2825,13 +2825,13 @@ Policies = CURSE_VENGEANT
 #-------------------------------
 [TRAINER_Sang,Sang]
 Pokemon = EXPLOUD,47
-    Gender = female
     Name = Egret Ash
+    Gender = female
     Moves = HYPERVOICE,FLAMETHROWER,SHADOWBALL,PROTECT
     AbilityIndex = 1
 Pokemon = SEISMITOAD,47
-    Gender = female
     Name = Ibis Veil
+    Gender = female
     Moves = HYPERVOICE,SLUDGEWAVE,EARTHQUAKE,BUBBLEBLAST
     AbilityIndex = 1
 Pokemon = WIGGLYTUFF,47

@@ -3713,7 +3713,7 @@ class PokeBattle_Move_0F8 < PokeBattle_Move
 end
 
 #===============================================================================
-# Heals user by an amount depending on the weather. (Moon Bask)
+# Heals user by an amount depending on the weather. (Power Nap)
 #===============================================================================
 class PokeBattle_Move_0F9 < PokeBattle_HealingMove
     def healRatio(_user)
