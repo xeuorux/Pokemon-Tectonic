@@ -212,6 +212,10 @@ class PokemonParty_Scene
       end
       cancelsprite = Settings::MAX_PARTY_SIZE + ((@multiselect) ? 1 : 0)
       if Input.trigger?(Input::ACTION) && canswitch==1 && @activecmd!=cancelsprite
+        if !teamEditingAllowed?()
+          showNoTeamEditingMessage()
+          next
+        end
         pbPlayDecisionSE
         return [1,@activecmd]
       elsif Input.trigger?(Input::ACTION) && canswitch==2

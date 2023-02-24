@@ -127,7 +127,8 @@ end
 def promptForTournamentCommitment()
     unless $DEBUG
         pbMessage(_INTL("The waiting room for tournament entrants is ahead."))
-        pbMessage(_INTL("Once you enter, you will not be able to save or change your team in any way until the tournament is complete."))
+        pbMessage(_INTL("Once you enter, you will not be able to save or interact with your team in any way until the tournament is complete."))
+        pbMessage(_INTL("This means swapping Pokemon, moves, abilities, or items, or even changing your team order."))
         pbMessage(_INTL("A nurse is provided, however, for healing between matches."))
     end
     return pbConfirmMessageSerious(_INTL("Enter and begin the tournament?"))
