@@ -47,7 +47,7 @@ BattleHandlers::AbilityOnSwitchIn.add(:AIRLOCK,
       battle.pbShowAbilitySplash(battler)
       battle.pbDisplay(_INTL("The effects of the weather disappeared."))
       battle.pbHideAbilitySplash(battler)
-      battle.field.specialTimer = 0
+      battle.field.specialTimer = 1
   }
 )
 

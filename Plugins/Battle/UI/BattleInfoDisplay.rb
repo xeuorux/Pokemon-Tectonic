@@ -104,7 +104,7 @@ class BattleInfoDisplay < SpriteWrapper
 		weatherDuration = @battle.field.weatherDuration
 		weatherDuration = "Infinite" if weatherDuration < 0
 		if [:Eclipse,:Moonglow].include?(@battle.field.weather)
-			turnsTillActivation = PokeBattle_Battle::SPECIAL_EFFECT_WAIT_TURNS - @battle.field.specialTimer - 1
+			turnsTillActivation = PokeBattle_Battle::SPECIAL_EFFECT_WAIT_TURNS - @battle.field.specialTimer
 			weatherMessage = _INTL("{1} ({2},{3})",weatherName,weatherDuration,turnsTillActivation)
 		else
 			weatherMessage = _INTL("{1} ({2})",weatherName,weatherDuration)

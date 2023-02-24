@@ -246,7 +246,7 @@ class PokeBattle_Battle
 
         showWeatherMessages = $PokemonSystem.weather_messages == 0
 
-        if (@field.specialTimer + 1) >= threshold
+        if @field.specialTimer >= threshold
             case curWeather
             when :Eclipse
                 pbDisplay(_INTL("The Total Eclipse arrives!")) if showWeatherMessages
@@ -276,7 +276,7 @@ class PokeBattle_Battle
                     b.pbFlinch
                     anyAffected = true
                 end
-                pbDisplay(_INTL("But no one was moon struck.")) if showWeatherMessages && !anyAffected
+                pbDisplay(_INTL("But no one was moonstruck.")) if showWeatherMessages && !anyAffected
                 @battlers.each do |b|
                     next unless b&.abilityActive?
                     BattleHandlers.triggerFullMoonAbility(b.ability, b, self)
@@ -288,7 +288,7 @@ class PokeBattle_Battle
             @field.specialWeatherEffect = false
 
             # Special effect happening next turn
-            if @field.specialTimer + 2 == threshold && @field.weatherDuration > 1
+            if @field.specialTimer + 1 == threshold && @field.weatherDuration > 1
                 case curWeather
                 when :Eclipse
                     pbDisplay(_INTL("The Total Eclipse is approaching.")) if showWeatherMessages

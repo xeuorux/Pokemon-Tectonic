@@ -11,7 +11,7 @@ class PokeBattle_ActiveField
         @defaultTerrain  = :None
         @terrain         = :None
         @terrainDuration = 0
-        @specialTimer    = 0
+        @specialTimer    = 1
         @specialWeatherEffect = false
         @battle = battle
 
@@ -53,7 +53,7 @@ class PokeBattle_ActiveField
     end
 
     def resetSpecialEffect
-        @specialTimer = 0
+        @specialTimer = 1
         @specialWeatherEffect = false
     end
 end
