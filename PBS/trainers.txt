@@ -4172,9 +4172,9 @@ Pokemon = INDEEDEE,70
 Pokemon = PERSIAN,70
     Item = CLARITYSASH
 Pokemon = MIMIKYU,70
-    Item = GRANDMASTERSCROLL
+    Item = LUNUSBERRY
 Pokemon = GARDEVOIR,70
-    Item = GRANDMASTERSCROLL
+    Item = DEATHORB
 #-------------------------------
 [FORMERCHAMP_Elise,Elise,1]
 Policies = PRESERVE_LAST_POKEMON,HAIL_TEAM
@@ -4367,7 +4367,7 @@ Pokemon = JUMPLUFF,70
 Pokemon = HAWLUCHA,70
     Item = CLARITYSASH
 Pokemon = PALMANTRA,70
-    Item = GRANDMASTERSCROLL
+    Item = BUGRING
 Pokemon = DRAGONITE,70
     Moves = ROOST,DRAGONDANCE,OUTRAGE,ZEPHYRWING
     Item = LUNCHBOX
