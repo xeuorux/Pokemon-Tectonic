@@ -2723,7 +2723,7 @@ class PokeBattle_Move_0E0 < PokeBattle_Move
     def pbSelfKO(user)
         return if user.fainted?
 
-        if user.hasActiveAbility?(:SPINESPLOSION)
+        if user.hasActiveAbility?(:SPINESPLODE)
             spikesCount = user.pbOpposingSide.incrementEffect(:Spikes, GameData::BattleEffect.get(:Spikes).maximum)
             
             if spikesCount > 0
@@ -2748,6 +2748,18 @@ class PokeBattle_Move_0E0 < PokeBattle_Move
             end
             user.pbReduceHP(reduction, false)
             @battle.pbHideAbilitySplash(user) if unbreakable
+            if user.hasActiveAbility?(:SELFMENDING,true)
+                @battle.pbShowAbilitySplash(user)
+                @battle.pbDisplay(_INTL("{1} will revive in 3 turns!", user.pbThis))
+                if user.pbOwnSide.effectActive?(:SelfMending)
+                    user.pbOwnSide.effects[:SelfMending][user.pokemonIndex] = 4
+                else
+                    user.pbOwnSide.effects[:SelfMending] = {
+                        user.pokemonIndex => 4,
+                    }
+                end
+                @battle.pbHideAbilitySplash(user)
+            end
         end
         user.pbItemHPHealCheck
     end

@@ -447,10 +447,32 @@ GameData::BattleEffect.register_effect(:Side, {
     :real_name => "Eroded Rocks",
     :type => :Integer,
     :maximum => 4,
-    :apply_proc => proc do |battle, _side, teamName, value|
+    :apply_proc => proc do |battle, _side, teamName, _value|
         battle.pbDisplay(_INTL("A rock lands on the ground around {1}.", teamName))
     end,
     :disable_proc => proc do |battle, _side, teamName|
         battle.pbDisplay(_INTL("Each rock on the ground around {1} was absorbed!", teamName))
+    end,
+})
+
+GameData::BattleEffect.register_effect(:Side, {
+    :id => :SelfMending,
+    :real_name => "Self Mending",
+    :type => :Hash,
+    :eor_proc => proc do |battle, side, _teamName, value|
+        value.each_key do |key|
+            value[key] -= 1
+            pkmn = battle.pbParty(side.index)[key]
+            if value[key] <= 0
+                # Revive the pokemon
+                pkmn.heal_HP
+                pkmn.heal_status
+                battle.pbDisplay(_INTL("{1} recovered all the way to full health!", pkmn.name))
+                value[key] = nil
+            else
+                battle.pbDisplay(_INTL("{1} is mending.", pkmn.name))
+            end
+        end
+        value.compact!
     end,
 })

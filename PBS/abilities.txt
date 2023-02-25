@@ -599,6 +599,7 @@
 597,EROSIONCYCLE,Erosion Cycle,"Whenever this hits with/by a physical move, leaves a rock on the field. Status moves collect them, healing by 1/4th each."
 598,ANCESTRALDANCE,Ancestral Dance,"Raises Sp. Def whenever a Pokémon uses a dance move."
 599,NINJUTSU,Ninjutsu,"Slips past hazards. Deals double damage to a target's replacement."
+600,SELFMENDING,Self Mending,"After fainting from exploding, revives after 3 turns."
 1000,JUSTIFIED,Justified,"Raises Attack when hit by a Dark-type move."
 1001,ADAPTABILITY,Adaptability,"Powers up moves of the same type."
 1002,HUGEPOWER,Huge Power,"Raises the Pokémon's Attack stat."
