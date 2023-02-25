@@ -55,7 +55,7 @@ class PokeBattle_Battler
     #       the item - the code existing is enough to cause the loop).
     def abilityActive?(ignore_fainted = false, ignore_gas = false)
         return false if fainted? && !ignore_fainted
-        return false if !ignore_gas && @battle.field.effectActive?(:NeutralizingGas)
+        return false if !ignore_gas && @battle.abilitiesNeutralized?
         return false if effectActive?(:GastroAcid)
         return false if dizzy? && !%i[MARVELSCALE MARVELSKIN].include?(@ability_id)
         return true
@@ -574,4 +574,10 @@ class PokeBattle_Battler
         return false unless regularMove && (regularMove.pp == 0 && regularMove.total_pp > 0)
         return true
     end
+
+    def ignoresHazards?
+        return hasActiveAbility?(HAZARD_IMMUNITY_ABILITIES)
+    end
 end
+
+HAZARD_IMMUNITY_ABILITIES = %i[AQUASNEAK NINJUTSU]

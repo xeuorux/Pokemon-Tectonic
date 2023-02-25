@@ -79,6 +79,10 @@ class PokeBattle_Battle
         end
     end
 
+    def abilitiesNeutralized?
+        return @field.effectActive?(:NeutralizingGas)
+    end
+
     def pbCheckAlliedAbility(abil, idxBattler = 0, nearOnly = false)
         eachSameSideBattler(idxBattler) do |b|
             next if nearOnly && !b.near?(idxBattler)

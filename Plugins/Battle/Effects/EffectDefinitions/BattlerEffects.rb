@@ -1309,8 +1309,17 @@ GameData::BattleEffect.register_effect(:Battler, {
 GameData::BattleEffect.register_effect(:Battler, {
     :id => :NerveBreak,
     :real_name => "Healing Reversed",
+    :resets_eor => true,
     :apply_proc => proc do |battle, battler, _value|
         battle.pbDisplay(_INTL("{1}'s nerves are strained!", battler.pbThis))
+    end,
+})
+
+GameData::BattleEffect.register_effect(:Battler, {
+    :id => :IcyInjection,
+    :real_name => "Healing Halved",
+    :apply_proc => proc do |battle, battler, _value|
+        battle.pbDisplay(_INTL("{1}'s is filled with ice!", battler.pbThis))
     end,
 })
 

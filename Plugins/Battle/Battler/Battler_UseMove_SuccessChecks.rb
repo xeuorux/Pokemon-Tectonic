@@ -354,7 +354,6 @@ target.pbThis))
         # Ability effects that ignore protection
         protectionIgnoredByAbility = false
         protectionIgnoredByAbility = true if user.ability == :UNSEENFIST && move.physicalMove?
-        protectionIgnoredByAbility = true if user.ability == :AQUASNEAK && user.turnCount <= 1
 
         # Only check the target's side if the target is not the self
         holdersToCheck = [target]

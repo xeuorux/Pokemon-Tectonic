@@ -1080,8 +1080,10 @@
 1133,CAPOEIRA,Capoeira,01F,50,FIGHTING,Physical,100,10,100,NearOther,0,befo,"Combining dance and martial art, the user strikes the target and raises its speed.",
 1134,FLAMEDANCE,Flame Dance,020,50,FIRE,Special,100,10,100,NearOther,0,befo,"Cloaked in flames, the user dances rhythmically, raising its Sp. Atk.",
 1135,AQUAWALTZ,Aqua Waltz,0DA,65,WATER,Physical,100,10,100,NearOther,0,befo,"The user attacks the target using graceful fluid movements, also healing themselves by 1/8th max HP each turn after.",
-1136,ABSOLUTERADIANCE,Absolute Radiance,576,120,FIRE,Special,100,5,0,Other,0,bef,"Summons sun for five turns on the first turn, then overwhelms the foe with fiery light on the second.",SURF
+1136,ABSOLUTERADIANCE,Absolute Radiance,5C4,120,FIRE,Special,100,5,0,Other,0,bef,"Summons sun for five turns on the first turn, then overwhelms the foe with fiery light on the second.",SURF
 1137,MAGNETIZE,Magnetize,0CF,50,STEEL,Physical,100,15,0,NearOther,0,bef,"The user strikes the target while magnetizing it, trapping and damaging it for three turns.",MAGNETBOMB
 1138,MAGNETPRISON,Magnet Prison,0CF,75,STEEL,Physical,100,15,0,NearOther,0,bef,"Giant magnets slam into the target from all sides, trapping and damaging it for three turns.",MAGNETBOMB
 1139,MAGICHAND,Magic Hand,0CF,50,PSYCHIC,Physical,100,15,0,NearOther,0,bef,"The user grabs the target with a conjured hand, trapping and damaging it for three turns.",CRUSHGRIP
 1140,KINETICGRIP,Kinetic Grip,0CF,75,PSYCHIC,Physical,100,15,0,NearOther,0,bef,"The user conjures a giant fist to crush the target, trapping and damaging it for three turns.",CRUSHGRIP
+1141,LIFTOFF,Liftoff,5C5,160,FIRE,Physical,100,10,0,Other,0,abef,"The user launches up high, then explodes down on the second turn, taking 33% recoil.",FLY
+1142,ICYINJECTION,Ice Injection,5C6,90,ICE,Special,100,12,100,NearOther,0,bef,"Injects supercold liquid into the target, damaging them and halving all future healing.",

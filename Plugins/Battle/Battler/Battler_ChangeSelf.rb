@@ -118,6 +118,7 @@ class PokeBattle_Battler
         raise _INTL("Told to recover a negative amount") if amt.negative?
         amt *= 1.5 if hasActiveAbility?(:ROOTED)
         amt *= 2.0 if hasActiveAbilityAI?(:GLOWSHROOM) && @battle.pbWeather == :Moonglow
+        amt *= 0.5 if effectActive?(:IcyInjection)
         amt = amt.round
         amt = @totalhp - @hp if amt > @totalhp - @hp
         amt = 1 if amt < 1 && @hp < @totalhp

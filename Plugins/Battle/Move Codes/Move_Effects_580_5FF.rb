@@ -1456,3 +1456,34 @@ class PokeBattle_Move_5C4 < PokeBattle_TwoTurnMove
         return getWeatherSettingEffectScore(:Sun, user, battle, 5)
     end
 end
+
+#===============================================================================
+# Two turn attack. Skips first turn, attacks second turn. (Fly)
+# (Handled in Battler's pbSuccessCheckPerHit): Is semi-invulnerable during use.
+#===============================================================================
+class PokeBattle_Move_5C5 < PokeBattle_Move_0C9
+    include Recoilable
+
+    def recoilFactor; return 0.33; end
+end
+
+#===============================================================================
+# The target's healing is cut in half until they switch out (Icy Injection)
+#===============================================================================
+class PokeBattle_Move_5C6 < PokeBattle_Move
+    def pbAdditionalEffect(_user, target)
+        return if target.fainted? || target.damageState.substitute
+        target.applyEffect(:IcyInjection)
+    end
+
+    def getEffectScore(_user, target)
+        if target.hasHealingMove?
+            if target.belowHalfHealth?
+                return 45
+            else
+                return 30
+            end
+        end
+        return 0
+    end
+end

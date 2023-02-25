@@ -63,8 +63,8 @@ Land,20
 Puddle,21
     25,BIDOOF,17,20
     25,BUIZEL,17,20
+    25,LUVDISC,17,20
     25,SKRELP,17,20
-	25,LUVDISC,17,20
 #-------------------------------
 [019] # Reading Ribombee Café
 Special,20

@@ -197,59 +197,62 @@ class PokeBattle_AI
 
             switchScore = 0
 
-            # Determine if the pokemon will be airborne
-            airborne = pkmn.hasType?(:FLYING) || pkmn.hasAbility?(:LEVITATE) || LEVITATION_ITEMS.include?(pkmn.item)
-            airborne = false if @battle.field.effectActive?(:Gravity)
-            airborne = false if pkmn.item == :IRONBALL
+            # Account for hazards
+            unless HAZARD_IMMUNITY_ABILITIES.include?(pkmn.ability) && !@battle.abilitiesNeutralized?
+                # Determine if the pokemon will be airborne
+                airborne = pkmn.hasType?(:FLYING) || pkmn.hasAbility?(:LEVITATE) || LEVITATION_ITEMS.include?(pkmn.item)
+                airborne = false if @battle.field.effectActive?(:Gravity)
+                airborne = false if pkmn.item == :IRONBALL
 
-            willAbsorbSpikes = false
+                willAbsorbSpikes = false
 
-            # Calculate how much damage the pokemon is likely to take from entry hazards
-            entryDamage = 0
-            if !airborne && pkmn.ability != :MAGICGUARD && pkmn.item != :HEAVYDUTYBOOTS
-                # Spikes
-                spikesCount = battlerSlot.pbOwnSide.countEffect(:Spikes)
-                if spikesCount > 0
-                    spikesDenom = [8, 6, 4][spikesCount - 1]
-                    entryDamage += pkmn.totalhp / spikesDenom
-                end
+                # Calculate how much damage the pokemon is likely to take from entry hazards
+                entryDamage = 0
+                if !airborne && pkmn.ability != :MAGICGUARD && pkmn.item != :HEAVYDUTYBOOTS
+                    # Spikes
+                    spikesCount = battlerSlot.pbOwnSide.countEffect(:Spikes)
+                    if spikesCount > 0
+                        spikesDenom = [8, 6, 4][spikesCount - 1]
+                        entryDamage += pkmn.totalhp / spikesDenom
+                    end
 
-                # Stealth Rock
-                if battlerSlot.pbOwnSide.effectActive?(:StealthRock)
-                    types = pkmn.types
-                    stealthRockHPRatio = @battle.getTypedHazardHPRatio(:ROCK, types[0], types[1] || nil)
-                    entryDamage += pkmn.totalhp * stealthRockHPRatio
-                end
+                    # Stealth Rock
+                    if battlerSlot.pbOwnSide.effectActive?(:StealthRock)
+                        types = pkmn.types
+                        stealthRockHPRatio = @battle.getTypedHazardHPRatio(:ROCK, types[0], types[1] || nil)
+                        entryDamage += pkmn.totalhp * stealthRockHPRatio
+                    end
 
-                # Feather Ward
-                if battlerSlot.pbOwnSide.effectActive?(:FeatherWard)
-                    types = pkmn.types
-                    featherWardHPRatio = @battle.getTypedHazardHPRatio(:STEEL, types[0], types[1] || nil)
-                    entryDamage += pkmn.totalhp * featherWardHPRatio
-                end
+                    # Feather Ward
+                    if battlerSlot.pbOwnSide.effectActive?(:FeatherWard)
+                        types = pkmn.types
+                        featherWardHPRatio = @battle.getTypedHazardHPRatio(:STEEL, types[0], types[1] || nil)
+                        entryDamage += pkmn.totalhp * featherWardHPRatio
+                    end
 
-                # Each of the status setting spikes
-                battlerSlot.pbOwnSide.eachEffect(true) do |_effect, value, data|
-                    next unless data.is_status_hazard?
-                    hazardInfo = data.type_applying_hazard
+                    # Each of the status setting spikes
+                    battlerSlot.pbOwnSide.eachEffect(true) do |_effect, value, data|
+                        next unless data.is_status_hazard?
+                        hazardInfo = data.type_applying_hazard
 
-                    if hazardInfo[:absorb_proc].call(pkmn)
-                        willAbsorbSpikes = true
-                    else
-                        statusSpikesDenom = [16, 4][value - 1]
-                        entryDamage += pkmn.totalhp / statusSpikesDenom
+                        if hazardInfo[:absorb_proc].call(pkmn)
+                            willAbsorbSpikes = true
+                        else
+                            statusSpikesDenom = [16, 4][value - 1]
+                            entryDamage += pkmn.totalhp / statusSpikesDenom
+                        end
                     end
                 end
-            end
 
-            # Try not to swap in pokemon who will die to entry hazard damage
-            if pkmn.hp <= entryDamage
-                switchScore -= 4
-                dieingOnEntry = true
-            elsif willAbsorbSpikes
-                switchScore += 1
-            else
-                switchScore -= ((entryDamage / pkmn.totalhp.to_f) * 4).floor
+                # Try not to swap in pokemon who will die to entry hazard damage
+                if pkmn.hp <= entryDamage
+                    switchScore -= 4
+                    dieingOnEntry = true
+                elsif willAbsorbSpikes
+                    switchScore += 1
+                else
+                    switchScore -= ((entryDamage / pkmn.totalhp.to_f) * 4).floor
+                end
             end
 
             # Analyze the player's active battlers to their susceptibility to being debuffed

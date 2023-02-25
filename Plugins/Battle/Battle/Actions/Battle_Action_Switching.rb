@@ -391,71 +391,73 @@ class PokeBattle_Battle
             position.battlerEntry(effect) if data.has_entry_proc?
         end
 
-        # Stealth Rock
-        if battler.pbOwnSide.effectActive?(:StealthRock) && battler.takesIndirectDamage? && !battler.immuneToHazards? && GameData::Type.exists?(:ROCK)
-            bTypes = battler.pbTypes(true)
-            getTypedHazardHPRatio = getTypedHazardHPRatio(:ROCK, bTypes[0], bTypes[1], bTypes[2])
-            if getTypedHazardHPRatio > 0
-                pbDisplay(_INTL("Pointed stones dug into {1}!", battler.pbThis(true)))
-                if battler.applyFractionalDamage(getTypedHazardHPRatio, true, false, true)
-                    return pbOnActiveOne(battler) # For replacement battler
-                end
-            end
-        end
-
-        # Feather Ward
-        if battler.pbOwnSide.effectActive?(:FeatherWard) && battler.takesIndirectDamage? && !battler.immuneToHazards? && GameData::Type.exists?(:STEEL)
-            bTypes = battler.pbTypes(true)
-            getTypedHazardHPRatio = getTypedHazardHPRatio(:STEEL, bTypes[0], bTypes[1], bTypes[2])
-            if getTypedHazardHPRatio > 0
-                pbDisplay(_INTL("Sharp feathers dug into {1}!", battler.pbThis(true)))
-                if battler.applyFractionalDamage(getTypedHazardHPRatio, true, false, true)
-                    return pbOnActiveOne(battler) # For replacement battler
-                end
-            end
-        end
-
-        # Ground-based hazards
-        if !battler.fainted? && !battler.immuneToHazards? && !battler.airborne?
-            # Spikes
-            if battler.pbOwnSide.effectActive?(:Spikes) && battler.takesIndirectDamage?
-                spikesIndex = battler.pbOwnSide.countEffect(:Spikes) - 1
-                spikesDiv = [8, 4][spikesIndex]
-                # spikesDiv = [8,6,4][spikesIndex]
-                spikesHPRatio = 1.0 / spikesDiv.to_f
-                layerLabel = ["layer", "2 layers", "3 layers"][spikesIndex]
-                pbDisplay(_INTL("{1} is hurt by the {2} of spikes!", battler.pbThis, layerLabel))
-                battler.pbItemHPHealCheck
-                if battler.applyFractionalDamage(spikesHPRatio, true, false, true)
-                    return pbOnActiveOne(battler) # For replacement battler
-                end
-            end
-
-            # Type applying spike hazards
-            battler.pbOwnSide.eachEffect(true) do |effect, _value, data|
-                next unless data.is_status_hazard?
-                hazardInfo = data.type_applying_hazard
-                status = hazardInfo[:status]
-
-                if hazardInfo[:absorb_proc].call(battler)
-                    battler.pbOwnSide.disableEffect(effect)
-                    pbDisplay(_INTL("{1} absorbed the {2}!", battler.pbThis, data.real_name))
-                elsif battler.pbCanInflictStatus?(status, nil, false)
-                    if battler.pbOwnSide.countEffect(effect) >= 2
-                        battler.pbInflictStatus(status)
-                    elsif battler.takesIndirectDamage?
-                        pbDisplay(_INTL("{1} was hurt by the thin layer of {2}!", battler.pbThis, data.real_name))
-                        if battler.applyFractionalDamage(1.0 / 16.0, true, false, true)
-                            return pbOnActiveOne(battler) # For replacement battler
-                        end
+        unless battler.ignoresHazards?
+            # Stealth Rock
+            if battler.pbOwnSide.effectActive?(:StealthRock) && battler.takesIndirectDamage? && !battler.immuneToHazards? && GameData::Type.exists?(:ROCK)
+                bTypes = battler.pbTypes(true)
+                getTypedHazardHPRatio = getTypedHazardHPRatio(:ROCK, bTypes[0], bTypes[1], bTypes[2])
+                if getTypedHazardHPRatio > 0
+                    pbDisplay(_INTL("Pointed stones dug into {1}!", battler.pbThis(true)))
+                    if battler.applyFractionalDamage(getTypedHazardHPRatio, true, false, true)
+                        return pbOnActiveOne(battler) # For replacement battler
                     end
                 end
             end
 
-            # Sticky Web
-            if battler.pbOwnSide.effectActive?(:StickyWeb)
-                pbDisplay(_INTL("{1} was caught in a sticky web!", battler.pbThis))
-                battler.pbItemStatRestoreCheck if battler.tryLowerStat(:SPEED, nil)
+            # Feather Ward
+            if battler.pbOwnSide.effectActive?(:FeatherWard) && battler.takesIndirectDamage? && !battler.immuneToHazards? && GameData::Type.exists?(:STEEL)
+                bTypes = battler.pbTypes(true)
+                getTypedHazardHPRatio = getTypedHazardHPRatio(:STEEL, bTypes[0], bTypes[1], bTypes[2])
+                if getTypedHazardHPRatio > 0
+                    pbDisplay(_INTL("Sharp feathers dug into {1}!", battler.pbThis(true)))
+                    if battler.applyFractionalDamage(getTypedHazardHPRatio, true, false, true)
+                        return pbOnActiveOne(battler) # For replacement battler
+                    end
+                end
+            end
+
+            # Ground-based hazards
+            if !battler.fainted? && !battler.immuneToHazards? && !battler.airborne?
+                # Spikes
+                if battler.pbOwnSide.effectActive?(:Spikes) && battler.takesIndirectDamage?
+                    spikesIndex = battler.pbOwnSide.countEffect(:Spikes) - 1
+                    spikesDiv = [8, 4][spikesIndex]
+                    # spikesDiv = [8,6,4][spikesIndex]
+                    spikesHPRatio = 1.0 / spikesDiv.to_f
+                    layerLabel = ["layer", "2 layers", "3 layers"][spikesIndex]
+                    pbDisplay(_INTL("{1} is hurt by the {2} of spikes!", battler.pbThis, layerLabel))
+                    battler.pbItemHPHealCheck
+                    if battler.applyFractionalDamage(spikesHPRatio, true, false, true)
+                        return pbOnActiveOne(battler) # For replacement battler
+                    end
+                end
+
+                # Type applying spike hazards
+                battler.pbOwnSide.eachEffect(true) do |effect, _value, data|
+                    next unless data.is_status_hazard?
+                    hazardInfo = data.type_applying_hazard
+                    status = hazardInfo[:status]
+
+                    if hazardInfo[:absorb_proc].call(battler)
+                        battler.pbOwnSide.disableEffect(effect)
+                        pbDisplay(_INTL("{1} absorbed the {2}!", battler.pbThis, data.real_name))
+                    elsif battler.pbCanInflictStatus?(status, nil, false)
+                        if battler.pbOwnSide.countEffect(effect) >= 2
+                            battler.pbInflictStatus(status)
+                        elsif battler.takesIndirectDamage?
+                            pbDisplay(_INTL("{1} was hurt by the thin layer of {2}!", battler.pbThis, data.real_name))
+                            if battler.applyFractionalDamage(1.0 / 16.0, true, false, true)
+                                return pbOnActiveOne(battler) # For replacement battler
+                            end
+                        end
+                    end
+                end
+
+                # Sticky Web
+                if battler.pbOwnSide.effectActive?(:StickyWeb)
+                    pbDisplay(_INTL("{1} was caught in a sticky web!", battler.pbThis))
+                    battler.pbItemStatRestoreCheck if battler.tryLowerStat(:SPEED, nil)
+                end
             end
         end
 

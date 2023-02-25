@@ -547,7 +547,7 @@ end
 #===============================================================================
 # Recoil move.
 #===============================================================================
-class PokeBattle_RecoilMove < PokeBattle_Move
+module Recoilable
     def recoilMove?; return true; end
 
     def recoilFactor; return 0.0; end
@@ -572,6 +572,10 @@ class PokeBattle_RecoilMove < PokeBattle_Move
     def getEffectScore(user, _target)
         return -50 * finalRecoilFactor(user, true)
     end
+end
+
+class PokeBattle_RecoilMove < PokeBattle_Move
+    include Recoilable
 end
 
 #===============================================================================
