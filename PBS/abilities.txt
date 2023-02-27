@@ -547,7 +547,7 @@
 545,EPHEMERATE,Ephemerate,"Eclipse counts down twice as quickly."
 546,DESSICATE,Dessicate,"Prevents Water or Grass-type moves during sandstorm."
 547,HEAVENSCROWN,HEAVENSCROWN,"Moves twice during a Total Eclipse turn."
-548,NIGHTLINE,Night-line,"Whenever it heals from Moonglow, shares that healing with a party member."
+548,NIGHTLINE,Night-line,"At the end of each turn in Moonglow, heals self and a random party member by 1/12th of its max HP."
 549,LUNARCLEANSING,Lunar Cleansing,"Prevents Bug or Poison-type moves during moonglow."
 550,ROCKBODY,Rock Body,"Heals 1/8th of its max HP each turn during sandstorm."
 551,FRIENDTOALL,FRIENDTOALL,"Counts as every tribe."
