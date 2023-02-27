@@ -32,7 +32,7 @@ def takeDragonFlame(triggerEventID = -1)
     fadeInDarknessBlock(triggerEventID) if triggerEventID > 0
 end
 
-def giveDragonFlame(triggerEventID = -1)
+def giveDragonFlame(triggerEventID = -1, otherCandles = [])
     if $PokemonGlobal.dragonFlamesCount == 0
         pbMessage(_INTL("It looks like it could hold a magical flame."))
         return
@@ -41,7 +41,13 @@ def giveDragonFlame(triggerEventID = -1)
     invertMySwitch('A')
     removeDragonFlameGraphic
     $PokemonGlobal.dragonFlamesCount -= 1
-    fadeOutDarknessBlock(triggerEventID, false) if triggerEventID > 0
+    if triggerEventID > 0
+        otherFlamesMatch = true
+        otherCandles.each do |candleEventID|
+            otherFlamesMatch = false if pbGetSelfSwitch(candleEventID,'A') != getMySwitch('A')
+        end
+        fadeOutDarknessBlock(triggerEventID, false) if otherFlamesMatch
+    end
 end
 
 def createDragonFlameGraphic(spriteset = nil)
