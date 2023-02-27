@@ -20,7 +20,7 @@ ShowArea = false
 Bicycle = false
 #-------------------------------
 [002]
-# Sandstone System F2
+# Sandstone System
 Outdoor = false
 ShowArea = true
 Bicycle = true
@@ -1103,7 +1103,7 @@ Environment = Grass
 TeleportBlocked = true
 #-------------------------------
 [183]
-# Sandstone System F1
+# Circuit Cave
 Outdoor = false
 ShowArea = true
 Bicycle = true
@@ -1560,9 +1560,9 @@ Bicycle = false
 Environment = None
 #-------------------------------
 [282]
-# The Catacombs
+# The Catacombs B1
 Outdoor = false
-ShowArea = false
+ShowArea = true
 Bicycle = true
 BattleBack = cave2
 #-------------------------------
@@ -1852,6 +1852,18 @@ Bicycle = true
 #-------------------------------
 [359]
 # Alloyed Thicket
+Outdoor = false
+ShowArea = true
+Bicycle = true
+#-------------------------------
+[361]
+# The Catacombs B2
+Outdoor = false
+ShowArea = true
+Bicycle = true
+#-------------------------------
+[362]
+# The Catacombs B3
 Outdoor = false
 ShowArea = true
 Bicycle = true
