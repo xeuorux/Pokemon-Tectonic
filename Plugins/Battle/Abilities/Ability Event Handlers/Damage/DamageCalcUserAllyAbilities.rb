@@ -10,6 +10,12 @@ BattleHandlers::DamageCalcUserAllyAbility.add(:STEELYSPIRIT,
   }
 )
 
+BattleHandlers::DamageCalcUserAllyAbility.add(:GRASSYSPIRIT,
+    proc { |_ability, _user, _target, _move, mults, _baseDmg, type, _aiCheck|
+        mults[:base_damage_multiplier] *= 1.5 if type == :GRASS
+    }
+  )
+
 BattleHandlers::DamageCalcUserAllyAbility.add(:TOXICATTITUDE,
     proc { |_ability, _user, _target, _move, mults, _baseDmg, type, _aiCheck|
         mults[:base_damage_multiplier] *= 1.5 if type == :POISON

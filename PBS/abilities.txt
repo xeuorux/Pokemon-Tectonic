@@ -600,6 +600,7 @@
 598,ANCESTRALDANCE,Ancestral Dance,"Raises Sp. Def whenever a Pokémon uses a dance move."
 599,NINJUTSU,Ninjutsu,"Slips past hazards. Deals double damage to a target's replacement." 
 600,SELFMENDING,Self Mending,"After fainting from exploding, revives after 3 turns."
+601,GRASSYSPIRIT,Grassy Spirit,"Powers up itself and ally Pokémon's Grass-type moves by 50%."
 1000,JUSTIFIED,Justified,"Raises Attack when hit by a Dark-type move."
 1001,ADAPTABILITY,Adaptability,"Powers up moves of the same type."
 1002,HUGEPOWER,Huge Power,"Raises the Pokémon's Attack stat."
