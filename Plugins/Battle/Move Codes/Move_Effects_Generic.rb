@@ -1015,20 +1015,10 @@ class PokeBattle_RoomMove < PokeBattle_Move
     end
 
     def pbEffectGeneral(user)
-        if @battle.field.effectActive?(@roomEffect)
-            @battle.field.disableEffect(@roomEffect)
-        else
-            @battle.field.applyEffect(@roomEffect, user.getRoomDuration)
-        end
-    end
-
-    def pbShowAnimation(id, user, targets, hitNum = 0, showAnimation = true)
-        return if @battle.field.effectActive?(@roomEffect)
-        super
+        @battle.pbStartRoom(@roomEffect, user)
     end
 
     def getEffectScore(user, _target)
-        return -100 if @battle.field.effectActive?(@roomEffect)
         return 5 * user.getRoomDuration
     end
 end

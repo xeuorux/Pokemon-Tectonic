@@ -226,17 +226,19 @@ class PokeBattle_Battle
         @predictedActions = {}
 
         # Each of the player's pokemon (or NPC allies)
-        echoln("[PLAYER PREDICTION]")
-        eachSameSideBattler do |b|
-            next unless b.pbOwnedByPlayer?
-            predictedPlayerAction = @battleAI.pbPredictChoiceByPlayer(b.index)
-            @predictedActions[b.index] = predictedPlayerAction
-        end
+        unless @autoTesting
+            echoln("[PLAYER PREDICTION]")
+            eachSameSideBattler do |b|
+                next unless b.pbOwnedByPlayer?
+                predictedPlayerAction = @battleAI.pbPredictChoiceByPlayer(b.index)
+                @predictedActions[b.index] = predictedPlayerAction
+            end
 
-        eachSameSideBattler do |b|
-            next unless b.pbOwnedByPlayer?
-            describedPlayerAction = describeAction(b,@predictedActions[b.index])
-            echoln("[PLAYER PREDICTION] The AI predicts that #{b.pbThis} will #{describedPlayerAction}!")
+            eachSameSideBattler do |b|
+                next unless b.pbOwnedByPlayer?
+                describedPlayerAction = describeAction(b,@predictedActions[b.index])
+                echoln("[PLAYER PREDICTION] The AI predicts that #{b.pbThis} will #{describedPlayerAction}!")
+            end
         end
 
         pbCommandPhaseLoop(false) # AI chooses their actions

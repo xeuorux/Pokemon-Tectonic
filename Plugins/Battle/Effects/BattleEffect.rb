@@ -246,13 +246,9 @@ module GameData
         end
 
         def checkForInvalidDefinitions
-            if @expire_proc && @disable_proc
-                echoln _INTL("WARNING: Battle effect #{@id} defines both an expire and disable proc.")
-            end
             if @type != :Integer
-                if @increment_proc
-                    raise _INTL("Battle effect #{@id} defines an increment proc when its not an integer.")
-                end
+                raise _INTL("Battle effect #{@id} defines increment proc when its not an integer.") if @increment_proc
+                raise _INTL("Battle effect #{@id} defines expire proc when its not an integer.") if @expire_proc
                 raise _INTL("Battle effect #{@id} is set to down down, but its not an integer.") if @ticks_down
                 raise _INTL("Battle effect #{@id} was given a maximum, but its not an integer.") unless @maximum.nil?
             end

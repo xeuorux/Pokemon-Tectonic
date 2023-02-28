@@ -496,33 +496,39 @@ BattleHandlers::AbilityOnSwitchIn.add(:BARRIERMAKER,
 
 BattleHandlers::AbilityOnSwitchIn.add(:PUZZLINGAURA,
   proc { |_ability, battler, battle|
-      unless battle.field.effectActive?(:PuzzleRoom)
-          battle.pbShowAbilitySplash(battler)
-          battle.field.applyEffect(:PuzzleRoom, battler.getRoomDuration)
-          battle.pbHideAbilitySplash(battler)
-      end
+    battle.pbShowAbilitySplash(battler)
+    battle.pbStartRoom(:PuzzleRoom, battler)
+    battle.pbHideAbilitySplash(battler)
   }
 )
 
-BattleHandlers::AbilityOnSwitchIn.add(:TRICKSTER,
+BattleHandlers::AbilityOnSwitchIn.add(:TRICKSTERAURA,
   proc { |_ability, battler, battle|
-      unless battle.field.effectActive?(:TrickRoom)
-          battle.pbShowAbilitySplash(battler)
-          battle.field.applyEffect(:TrickRoom, battler.getRoomDuration)
-          battle.pbHideAbilitySplash(battler)
-      end
+    battle.pbShowAbilitySplash(battler)
+    battle.pbStartRoom(:TrickRoom, battler)
+    battle.pbHideAbilitySplash(battler)
   }
 )
 
 BattleHandlers::AbilityOnSwitchIn.add(:ODDAURA,
   proc { |_ability, battler, battle|
-      unless battle.field.effectActive?(:OddRoom)
-          battle.pbShowAbilitySplash(battler)
-          battle.field.applyEffect(:OddRoom, battler.getRoomDuration)
-          battle.pbHideAbilitySplash(battler)
-      end
+    battle.pbShowAbilitySplash(battler)
+    battle.pbStartRoom(:OddRoom, battler)
+    battle.pbHideAbilitySplash(battler)
   }
 )
+
+BattleHandlers::AbilityOnSwitchIn.add(:WONDROUSAURA,
+  proc { |_ability, battler, battle|
+    battle.pbShowAbilitySplash(battler)
+    battle.pbStartRoom(:WonderRoom, battler)
+    battle.pbHideAbilitySplash(battler)
+  }
+)
+
+##########################################
+# Misc
+##########################################
 
 BattleHandlers::AbilityOnSwitchIn.add(:GARLANDGUARDIAN,
   proc { |_ability, battler, battle|

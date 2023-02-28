@@ -97,7 +97,7 @@ GameData::BattleEffect.register_effect(:Field, {
 
 GameData::BattleEffect.register_effect(:Field, {
     :id => :TrickRoom,
-    :real_name => "Trick Room Turns",
+    :real_name => "Trick Room",
     :type => :Integer,
     :ticks_down => true,
     :is_room => true,
@@ -114,7 +114,7 @@ GameData::BattleEffect.register_effect(:Field, {
 
 GameData::BattleEffect.register_effect(:Field, {
     :id => :WonderRoom,
-    :real_name => "Wonder Room Turns",
+    :real_name => "Wonder Room",
     :type => :Integer,
     :ticks_down => true,
     :is_room => true,
@@ -131,7 +131,7 @@ GameData::BattleEffect.register_effect(:Field, {
 
 GameData::BattleEffect.register_effect(:Field, {
     :id => :PuzzleRoom,
-    :real_name => "Puzzle Room Turns",
+    :real_name => "Puzzle Room",
     :type => :Integer,
     :ticks_down => true,
     :is_room => true,
@@ -148,7 +148,7 @@ GameData::BattleEffect.register_effect(:Field, {
 
 GameData::BattleEffect.register_effect(:Field, {
     :id => :OddRoom,
-    :real_name => "Odd Room Turns",
+    :real_name => "Odd Room",
     :type => :Integer,
     :ticks_down => true,
     :is_room => true,
