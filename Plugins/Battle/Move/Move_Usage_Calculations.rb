@@ -359,6 +359,7 @@ class PokeBattle_Move
             return false
         end
         return false if target.effectActive?(:Enlightened)
+        return false if target.itemActive?(:COVERTCLOAK) && user.opposes?(target)
         return true
     end
 
