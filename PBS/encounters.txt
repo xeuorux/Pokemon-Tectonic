@@ -1,6 +1,6 @@
 ﻿# See the documentation on the wiki to learn how to edit this file.
 #-------------------------------
-[002] # Sandstone System F2
+[002] # Sandstone System
 DarkCave,21
     20,EELEKTROSS,53,55
     20,GYARADOS,53,55
@@ -242,7 +242,7 @@ Special
 [059] # Feebas' Fin
 Land,20
     25,CHINGLING,14,17
-    25,SCATTERBUG,14,17
+    25,MWURMPLE,14,17
     25,TAILLOW,14,17
     25,TIMBURR,14,17
 Puddle,21
@@ -264,7 +264,7 @@ LandTall,20
     25,DIGLETT,14,17
     25,PIKIPEK,14,17
     25,PINECO,14,17
-    25,SNOM,14,17
+    25,SCATTERBUG,14,17
 #-------------------------------
 [065] # Novo Mart
 Special,1
@@ -331,10 +331,11 @@ DarkCave,20
 #-------------------------------
 [121] # Kilna Ascent
 Land,20
-    25,CUBCHOO,18,20
-    25,PANCHAM,18,20
-    25,SNOVER,18,20
-    25,SPEAROW,18,20
+    20,CUBCHOO,18,20
+    20,PANCHAM,18,20
+    20,SNOM,18,20
+    20,SNOVER,18,20
+    20,SPEAROW,18,20
 Special,20
     1,HAPPINY,15
 #-------------------------------
@@ -470,7 +471,7 @@ Special,1
 Special,1
     1,GFARFETCHD,40
 #-------------------------------
-[183] # Sandstone System F1
+[183] # Circuit Cave
 DarkCave,21
     25,ELEKID,38
     25,MINUN,38
@@ -760,7 +761,7 @@ Land,20
     25,PICHU,43,45
     25,ROOKIDEE,43,45
 #-------------------------------
-[282] # The Catacombs
+[282] # The Catacombs B1
 LandSparse,20
     20,AEGISLASH,53,55
     20,DRUDDIGON,34,36
