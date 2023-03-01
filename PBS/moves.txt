@@ -223,7 +223,7 @@
 230,EMBER,Ember,00A,40,FIRE,Special,100,20,10,NearOther,0,bef,"The target is attacked with small flames. It has a 10% chance to burn.",
 231,FIRESPIN,Fire Spin,0CF,50,FIRE,Special,100,15,0,NearOther,0,bef,"The user engulfs the target in fierce flames, trapping and damaging it for three turns.",
 232,HEATCRASH,Heat Crash,09B,1,FIRE,Physical,100,10,0,NearOther,0,abef,"The user slams the foe with its flaming body. The heavier the user is, the greater the damage.",
-233,SUNSHINE,Sunshine,0FF,0,FIRE,Status,0,10,0,BothSides,0,,"Summons sunshine for five turns, boosting Fire-type attacks and hindering most other attacks.",
+233,SUNSHINE,Sunshine,0FF,0,FIRE,Status,0,10,0,BothSides,0,,"Summons sunshine for eight turns, boosting Fire-type attacks and hindering most other attacks.",
 234,WILLOWISP,Will-O-Wisp,00A,0,GHOST,Status,100,12,0,NearOther,0,bce,"The user shoots a sinister, bluish-white flame at the target to inflict a burn.",
 235,PYROBALL,Pyro Ball,00A,120,FIRE,Physical,80,5,10,NearOther,0,bef,"Attacks by igniting a small stone and launching it as a fiery ball. It has a 10% chance to burn.",
 236,BURNINGJEALOUSY,Burning Jealousy,18B,70,FIRE,Special,100,12,100,AllNearFoes,0,bef,"Attacks with energy from jealousy. All opposing Pokémon with stat boosts get burned.",
@@ -360,7 +360,7 @@
 377,ICICLESPEAR,Icicle Spear,0C0,25,ICE,Physical,100,25,0,NearOther,0,bef,"The user launches sharp icicles at the target. It strikes two to five times in a row.",
 378,SHEERCOLD,Sheer Cold,070,1,ICE,Special,30,5,0,NearOther,0,be,"The foe is attacked with a blast of absolute-zero cold. The target instantly faints if it hits.",
 379,AURORAVEIL,Aurora Veil,167,0,ICE,Status,0,15,0,UserSide,0,d,"This move reduces damage from attacks for five turns. This can be used only in a hailstorm.",
-380,HAIL,Hail,102,0,ICE,Status,0,10,0,BothSides,0,,"Summons hail for five turns. Damages non-Ice, non-Ghost-types every turn.",
+380,HAIL,Hail,102,0,ICE,Status,0,10,0,BothSides,0,,"Summons hail for eight turns. Damages non-Ice, non-Ghost-types every turn.",
 383,TRIPLEAXEL,Triple Axel,0BF,20,ICE,Physical,100,10,0,NearOther,0,abef,"A consecutive three-kick attack that becomes more powerful with each successful hit.",
 384,GLACIALLANCE,Glacial Lance,000,130,ICE,Physical,100,5,0,NearOther,0,bef,"The user attacks by hurling a blizzard-cloaked icicle lance at opposing Pokémon.",
 385,EXPLOSION,Explosion,0E0,350,NORMAL,Physical,100,5,0,AllNearOthers,0,bef,"The user explodes to inflict damage on those around it. The user faints upon using this move.",
@@ -629,7 +629,7 @@
 669,ROCKROLL,Rock Roll,544,30,ROCK,Physical,100,30,0,NearOther,0,abef,"The user rolls into the target. Its power doubles if it hits in succession.",
 670,ROCKBLAST,Rock Blast,0C0,25,ROCK,Physical,100,10,0,NearOther,0,befn,"The user hurls hard rocks at the target. Two to five rocks are launched in quick succession.",
 671,ROCKPOLISH,Rock Polish,030,0,ROCK,Status,0,15,0,User,0,d,"The user polishes its body to reduce drag. It can sharply raise the Speed stat.",
-672,SANDSTORM,Sandstorm,101,0,ROCK,Status,0,10,0,BothSides,0,,"Summons sandstorm for five turns. Damages non-Rock, non-Ground Pokemon every turn.",
+672,SANDSTORM,Sandstorm,101,0,ROCK,Status,0,10,0,BothSides,0,,"Summons sandstorm for eight turns. Damages non-Rock, non-Ground Pokemon every turn.",
 673,STEALTHROCK,Stealth Rock,105,0,ROCK,Status,0,15,0,FoeSide,0,c,"The user lays a trap of levitating stones around the foe. The trap hurts foes that switch into battle.",
 674,WIDEGUARD,Wide Guard,0AC,0,ROCK,Status,0,10,0,UserSide,3,d,"The user and its allies are protected from wide-ranging attacks for a turn. Always fails if used in succession.",
 675,TARSHOT,Tar Shot,186,0,ROCK,Status,0,12,0,NearOther,3,bce,"Pours sticky tar over the target, lowering its Speed stat and making it weak to Fire.",
@@ -688,7 +688,7 @@
 730,WHIRLPOOL,Whirlpool,0CF,50,WATER,Special,100,15,0,NearOther,0,bef,"The user swirls the target in a whirlpool, trapping and damaging it for three turns.",
 731,WATERSHURIKEN,Water Shuriken,0C0,15,WATER,Special,100,15,0,NearOther,1,bef,"The user hits the target with throwing stars 2-5 times in a row. This move always goes first.",
 732,AQUARING,Aqua Ring,0DA,0,WATER,Status,0,15,0,User,0,d,"The user envelops itself in a veil made of water. It regains 1/8 of its HP on every turn.",
-733,RAIN,Rain,100,0,WATER,Status,0,10,0,BothSides,0,,"Summons rain for five turns, boosting Water-type attacks and hindering most other attacks.",
+733,RAIN,Rain,100,0,WATER,Status,0,10,0,BothSides,0,,"Summons rain for eight turns, boosting Water-type attacks and hindering most other attacks.",
 734,SOAK,Soak,061,0,WATER,Status,100,15,0,NearOther,0,bce,"The user shoots a torrent of water at the target and changes the target's type to Water.",
 736,WITHDRAW,Withdraw,01D,0,WATER,Status,0,30,0,User,0,d,"The user withdraws its body into its hard shell, raising its Defense stat.",
 737,SNIPESHOT,Snipe Shot,182,80,WATER,Special,100,12,0,NearOther,0,befh,"Ignores all attempts at redirection, allowing this move to hit the chosen target. Critical hits land more easily.",
@@ -1041,10 +1041,10 @@
 1094,PATIENTTRAINING,Patient Training,508,0,BUG,Status,0,12,0,User,0,d,"The user prepares its weapons, drastically raising Attack but drastically lowering Speed.",SWORDSDANCE
 1095,MARTIALMASTERY,Martial Mastery,5AD,0,FIGHTING,Status,0,15,0,User,0,d,"The user tenses recalls martial techniques, boosting its Attack, Defense and critical strike chance.",FOCUSENERGY
 1096,REVERBWARD,Reverb Ward,5AE,0,PSYCHIC,Status,0,3,0,User,4,,"Protects the user from all attacks. Special attacks harshly lower the attacker's Sp. Def stat.",PROTECT
-1097,MOONGLOW,Moon Glow,09E,0,FAIRY,Status,0,10,0,BothSides,0,,"Summons moonglow for five turns, boosting Fairy-type attacks and heralding the Full Moon.",
-1098,ECLIPSE,Eclipse,09D,0,PSYCHIC,Status,0,10,0,BothSides,0,,"Summons eclipse for five turns, boosting Psychic-type attacks and heralding the Total Eclipse.",
-1099,CAPTIVATINGSIGHT,Captivating Sight,59F,0,PSYCHIC,Status,0,5,0,NearFoe,0,,"Summons eclipse for six turns. The target becomes obsessed with the sky, trapping it.",
-1100,MIDNIGHTHUNT,Midnight Hunt,5B0,0,DARK,Status,0,5,0,NearFoe,0,,"Summons moonglow for six turns. The target is terrorized by howls, trapping it.",
+1097,MOONGLOW,Moon Glow,09E,0,FAIRY,Status,0,10,0,BothSides,0,,"Summons moonglow for eight turns, boosting Fairy-type attacks and heralding the Full Moon.",
+1098,ECLIPSE,Eclipse,09D,0,PSYCHIC,Status,0,10,0,BothSides,0,,"Summons eclipse for eight turns, boosting Psychic-type attacks and heralding the Total Eclipse.",
+1099,CAPTIVATINGSIGHT,Captivating Sight,59F,0,PSYCHIC,Status,0,5,0,NearFoe,0,,"Summons eclipse for eight turns. The target becomes obsessed with the sky, trapping it.",
+1100,MIDNIGHTHUNT,Midnight Hunt,5B0,0,DARK,Status,0,5,0,NearFoe,0,,"Summons moonglow for eight turns. The target is terrorized by howls, trapping it.",
 1101,NIGHTCHILL,Night Chill,5B1,80,DARK,Special,100,12,100,NearOther,0,bef,"Damages the target's life force directly. During moonglow, the target also becomes frostbitten.",DARKVOID
 1102,CALAMITOUSSLASH,Calamitous Slash,5B2,80,DRAGON,Physical,100,10,100,NearOther,0,abefp,"The user slashes the foe while menacing. During eclipse, the target also becomes burned.",DRAGONCLAW
 1103,TAKESHELTER,Take Shelter,5B3,0,STEEL,Status,0,10,0,User,0,d,"The user heals itself for 1/2 of its max HP, and extends the current weather by 1 turn.",

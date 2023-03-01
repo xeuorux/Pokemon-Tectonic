@@ -1364,13 +1364,9 @@ class PokeBattle_Move_551 < PokeBattle_StatusSpikeMove
 end
 
 #===============================================================================
-# Starts acid rain weather. (Acid Rain)
+# (Currently unused)
 #===============================================================================
-class PokeBattle_Move_552 < PokeBattle_WeatherMove
-    def initialize(battle, move)
-        super
-        @weatherType = :AcidRain
-    end
+class PokeBattle_Move_552 < PokeBattle_Move
 end
 
 #===============================================================================
@@ -1404,13 +1400,9 @@ class PokeBattle_Move_555 < PokeBattle_TeamStatBuffMove
 end
 
 #===============================================================================
-# Starts swarm weather. (Swarm)
+# (Currently unused)
 #===============================================================================
-class PokeBattle_Move_556 < PokeBattle_WeatherMove
-    def initialize(battle, move)
-        super
-        @weatherType = :Swarm
-    end
+class PokeBattle_Move_556 < PokeBattle_Move
 end
 
 #===============================================================================

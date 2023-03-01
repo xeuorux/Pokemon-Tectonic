@@ -662,7 +662,7 @@ class PokeBattle_Move_09D < PokeBattle_WeatherMove
 end
 
 #===============================================================================
-# Starts moonlight weather. (Moon)
+# Starts moonlight weather. (Moonglow)
 #===============================================================================
 class PokeBattle_Move_09E < PokeBattle_WeatherMove
     def initialize(battle, move)
