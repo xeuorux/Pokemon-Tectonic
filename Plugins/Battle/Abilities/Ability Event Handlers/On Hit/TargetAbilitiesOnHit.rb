@@ -588,3 +588,10 @@ BattleHandlers::TargetAbilityOnHit.add(:ROCKCYCLE,
         target.pbOwnSide.applyEffect(:ErodedRock) if move.physicalMove?
     }
 )
+
+BattleHandlers::TargetAbilityOnHit.add(:ABOVEITALL,
+  proc { |_ability, user, target, _move, battle|
+      next if target.fainted?
+      battle.forceUseMove(target, :PARTINGSHOT, user.index, true, nil, nil, true)
+  }
+)

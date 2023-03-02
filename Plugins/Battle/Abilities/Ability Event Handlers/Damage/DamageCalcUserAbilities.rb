@@ -446,3 +446,9 @@ BattleHandlers::DamageCalcUserAbility.add(:HOOLIGAN,
       mults[:base_damage_multiplier] *= 1.3 if move.recoilMove? || move.soundMove?
   }
 )
+
+BattleHandlers::DamageCalcUserAbility.add(:NORMALIZE,
+  proc { |_ability, _user, _target, _move, mults, _baseDmg, _type, _aiCheck|
+      mults[:attack_multiplier] *= 1.4
+  }
+)
