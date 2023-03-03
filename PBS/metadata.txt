@@ -1676,6 +1676,10 @@ Bicycle = true
 BattleBack = wcave
 Environment = Cave
 #-------------------------------
+[309]
+# Cave of Hatching F2
+BattleBack = rocky
+#-------------------------------
 [315]
 # Path of Genesis
 Outdoor = false

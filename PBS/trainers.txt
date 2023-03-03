@@ -2072,7 +2072,7 @@ Pokemon = RAPIDASH,47
 [JUGGLER,Mikael]
 Pokemon = GARCHOMP,48
     AbilityIndex = 1
-Pokemon = URSARING,48
+Pokemon = URSALUNA,48
     AbilityIndex = 1
     Item = ROCKYHELMET
 Pokemon = OCTILLERY,47
