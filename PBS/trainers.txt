@@ -2154,7 +2154,7 @@ Pokemon = BIBAREL,44
     Item = NORMALGEM
 #-------------------------------
 [SWIMMER_F5,Shreya]
-Pokemon = QWILFISH,43
+Pokemon = OVERQWIL,43
     AbilityIndex = 0
 Pokemon = MIGHTYENA,44
     AbilityIndex = 0
@@ -2644,7 +2644,7 @@ Pokemon = HITMONCHAN,55
     Item = MUSCLEBAND
 #-------------------------------
 [SCIENTIST_F3,Nkechi]
-Pokemon = URSARING,55
+Pokemon = URSALUNA,55
     AbilityIndex = 0
     Item = ORANBERRY
 Pokemon = AMUK,55
@@ -3165,7 +3165,7 @@ Pokemon = TALONFLAME,50
 Pokemon = GIGALITH,51
     AbilityIndex = 1
     Item = ROCKGEM
-Pokemon = STANTLER,50
+Pokemon = WYRDEER,50
     AbilityIndex = 0
 #-------------------------------
 [SWIMMER_M3,Diego]
