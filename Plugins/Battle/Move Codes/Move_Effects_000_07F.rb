@@ -380,7 +380,7 @@ class PokeBattle_Move_01A < PokeBattle_Move
     end
 
     def pbEffectGeneral(user)
-        user.pbOwnSide.applyEffect(:Safeguard, 5)
+        user.pbOwnSide.applyEffect(:Safeguard, 10)
     end
 
     def getEffectScore(user, _target)

@@ -533,7 +533,7 @@ BattleHandlers::AbilityOnSwitchIn.add(:WONDROUSAURA,
 BattleHandlers::AbilityOnSwitchIn.add(:GARLANDGUARDIAN,
   proc { |_ability, battler, battle|
       battle.pbShowAbilitySplash(battler)
-      battler.pbOwnSide.applyEffect(:Safeguard, 5)
+      battler.pbOwnSide.applyEffect(:Safeguard, 10)
       battle.pbHideAbilitySplash(battler)
   }
 )
@@ -576,7 +576,7 @@ BattleHandlers::AbilityOnSwitchIn.add(:HONORAURA,
 BattleHandlers::AbilityOnSwitchIn.add(:CLOVERSONG,
   proc { |_ability, battler, battle|
       battle.pbShowAbilitySplash(battler)
-      battler.pbOwnSide.applyEffect(:LuckyChant, 5)
+      battler.pbOwnSide.applyEffect(:LuckyChant, 10)
       battle.pbHideAbilitySplash(battler)
   }
 )

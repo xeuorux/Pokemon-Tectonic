@@ -756,7 +756,7 @@ class PokeBattle_Move_0A1 < PokeBattle_Move
     end
 
     def pbEffectGeneral(user)
-        user.pbOwnSide.applyEffect(:LuckyChant, 5)
+        user.pbOwnSide.applyEffect(:LuckyChant, 10)
     end
 
     def getEffectScore(_user, _target)
