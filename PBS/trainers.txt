@@ -1521,7 +1521,7 @@ Pokemon = GWEEZING,39
     AbilityIndex = 1
 Pokemon = OBSTAGOON,40
     AbilityIndex = 1
-    Item = FLAMEORB
+    Item = SHELLBELL
 Pokemon = SIRFETCHD,40
     AbilityIndex = 0
 Pokemon = GSLOWKING,40
@@ -5288,8 +5288,42 @@ Pokemon = SUNFLORA,63
     Item = HEATROCK
 Pokemon = ESPEON,64
     AbilityIndex = 1
-Pokemon = XATU,64
-    AbilityIndex = 1
+Pokemon = HOUNDOMINUS,64
+    AbilityIndex = 0
     Item = WEAKNESSPOLICY
 Pokemon = RIBOMBEE,65
     AbilityIndex = 1
+#-------------------------------
+[HEXMANIAC,Juno]
+Pokemon = OBSTAGOON,50
+    AbilityIndex = 1
+    Item = EJECTBUTTON
+Pokemon = TORTERRA,51
+    AbilityIndex = 1
+    Item = LEFTOVERS
+Pokemon = MIENSHAO,52
+    AbilityIndex = 1
+Pokemon = MDUSTOX,53
+    AbilityIndex = 0
+#-------------------------------
+[ARTIST3,Alicynthia]
+Pokemon = ALAKAZAM,52
+    AbilityIndex = 1
+    Item = REINFORCINGROD
+Pokemon = SCEPTILE,52
+    AbilityIndex = 1 
+Pokemon = HYDREIGON,53
+    AbilityIndex = 1
+    Item = PINPOINTROCK
+Pokemon = REUNICLUS,54
+    AbilityIndex = 0
+#-------------------------------
+[SCHOOLKID_F2,Honesty]
+Pokemon = ZOROARK,53
+    AbilityIndex = 0
+Pokemon = NINETALES,53
+    AbilityIndex = 1
+Pokemon = CHANDELURE,55
+    AbilityIndex = 0
+Pokemon = RIOJIN,54
+    AbilityIndex = 0

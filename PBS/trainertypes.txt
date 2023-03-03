@@ -225,6 +225,7 @@
 222,FAIRYTALEGIRL,Fairy Tale Girl,8,,,TWINS,Female,,,[]
 223,GARDENER,Gardener,32,,,GAMBLER,Male,,,[]
 224,PSYCHIC,Psychic,32,,,PSYCHIC,Male,,,[]
+225,HEXMANIAC,Hex Maniac,32,,,PSYCHIC,Female,,,[]
 290,TRAINER_Eifion,Pokémon Trainer,100,,,,Male,,,[]
 291,TRAINER_Sang,Pokémon Trainer,100,,,,Male,,,[]
 292,TRAINER_Skyler,Pokémon Trainer,100,,,,Male,,,[]
