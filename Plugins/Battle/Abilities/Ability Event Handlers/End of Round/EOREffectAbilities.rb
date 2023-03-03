@@ -85,18 +85,10 @@ BattleHandlers::EOREffectAbility.add(:HUNGERSWITCH,
   }
 )
 
-BattleHandlers::EOREffectAbility.add(:ASTRALBODY,
-  proc { |_ability, battler, battle|
-      next unless battle.pbWeather == :Moonglow
-      healingMessage = battle.pbDisplay(_INTL("{1} absorbs magic from the starry sky.", battler.pbThis))
-      battler.applyFractionalHealing(1.0 / 8.0, showAbilitySplash: true, customMessage: healingMessage)
-  }
-)
-
 BattleHandlers::EOREffectAbility.add(:LUXURYTASTE,
   proc { |_ability, battler, battle|
       next unless battler.hasActiveItem?(CLOTHING_ITEMS)
-      healingMessage = battle.pbDisplay(_INTL("{1} luxuriated in its fine clothing.", battler.pbThis))
+      healingMessage = _INTL("{1} luxuriated in its fine clothing.", battler.pbThis)
       battler.applyFractionalHealing(1.0 / 8.0, showAbilitySplash: true, customMessage: healingMessage)
   }
 )
