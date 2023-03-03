@@ -505,7 +505,7 @@
 503,DISTRESSING,Distressing,"Enemies deal 20% less damage during eclipse."
 504,SHAKYCODE,Shaky Code,"During eclipse, changes the Pokémon's type to the type of the move it's using."
 505,ROCKCLIMBER,Rock Climber,"Immune to Rock-type moves, and raises Speed whenever hit by one."
-506,MYTHICSCALES,Mythic Scales,"During eclipse, immune to status conditions and having its stats lowered by enemies."
+506,PLOTARMOR,Plot Armor,"During eclipse, immune to status conditions and having its stats lowered by enemies."
 507,SHATTERING,Shattering,"During eclipse, gets a 30% boost to Sp. Atk."
 508,WARPINGEFFECT,Warping Effect,"Double Sp. Def in eclipse."
 509,STARSALIGN,Stars Align,"During eclipse, can't miss and always activates its moves additional effects."

@@ -579,6 +579,20 @@ class PokeBattle_Move_649 < PokeBattle_Move_111
     include EmpoweredMove
 end
 
+# Empowered Dragon Darts
+class PokeBattle_Move_650 < PokeBattle_Move_17C
+    include EmpoweredMove
+
+    def pbEffectGeneral(user)
+        super
+
+        if @battle.pbSideSize(user.index) < 3
+            @battle.pbDisplay(_INTL("One of the Dreepys joins the fray!", user.pbThis))
+            @battle.addAvatarBattler(:DREEPY, user.level, user.index % 2)
+        end
+    end
+end
+
 ########################################################
 ### Specific avatar only moves
 ########################################################

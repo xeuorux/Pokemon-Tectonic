@@ -134,4 +134,5 @@
 3047,PRIMEVALPOWERGEM,Primeval Power Gem,647,120,ROCK,Special,100,15,100,NearOther,0,befy,"The user attacks with a sparkling gem-like ray, dizzying the target.",POWERGEM
 3048,PRIMEVALBULLETSEED,Primeval Bullet Seed,648,35,GRASS,Physical,100,15,0,AllNearFoes,0,abefy,"The user forcefully shoots 6 seeds in rapid succession, spread among nearby enemies.",BULLETSEED
 3049,PRIMEVALFUTURESIGHT,Primeval Future Sight,649,280,PSYCHIC,Special,100,10,0,NearOther,0,y,"Two turns after this move is used, a hunk of psychic energy attacks the target.",FUTURESIGHT
+3050,PRIMEVALDRAGONDARTS,Primeval Dragon Darts,17C,100,DRAGON,Physical,100,10,0,AllNearFoes,0,bef,"The user attacks twice using Dreepy, spreading the hits. One of the Dreepys is summoned as an ally.",
 4000,STRATOSPHERESCREAM,Stratosphere Scream,700,100,FLYING,Special,0,5,0,AllNearFoes,0,befk,"A move that only the avatar of Rayquaza can use. All enemies struck lose their flinch immunity.",SCREECH

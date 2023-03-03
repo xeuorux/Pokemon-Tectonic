@@ -518,3 +518,24 @@ class PokeBattle_AI_Sawsbuck < PokeBattle_AI_Boss
         })
     end
 end
+class PokeBattle_AI_Rotom < PokeBattle_AI_Boss
+    FORM_1_MOVESET = %i[HEATWAVE DISCHARGE]
+    FORM_2_MOVESET = %i[FROSTBREATH THUNDERBOLT]
+    FORM_3_MOVESET = %i[SURF DISCHARGE]
+    FORM_4_MOVESET = %i[AIRSLASH THUNDERBOLT]
+    FORM_5_MOVESET = %i[PETALTEMPEST DISCHARGE]
+    MOVESETS = [FORM_1_MOVESET,FORM_2_MOVESET,FORM_3_MOVESET,FORM_4_MOVESET,FORM_5_MOVESET]
+
+    def initialize(user, battle)
+        super
+        @beginTurn.push(proc { |user, _battle, turnCount|
+            if turnCount != 0
+                newForm = user.form + 1
+                newForm = 1 if newForm > 5
+                formChangeMessage = _INTL("The avatar swaps machines!")
+                user.pbChangeFormBoss(newForm, formChangeMessage)
+                user.assignMoveset(MOVESETS[newForm-1])
+            end
+        })
+    end
+end
