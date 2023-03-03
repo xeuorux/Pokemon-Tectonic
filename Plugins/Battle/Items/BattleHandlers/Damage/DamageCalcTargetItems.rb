@@ -1,36 +1,36 @@
 BattleHandlers::DamageCalcTargetItem.add(:BABIRIBERRY,
-    proc { |_item, _user, target, _move, mults, _baseDmg, type|
-        pbBattleTypeWeakingBerry(:STEEL, type, target, mults)
+    proc { |_item, _user, target, _move, mults, _baseDmg, type, aiChecking|
+        pbBattleTypeWeakingBerry(:STEEL, type, target, mults, false, aiChecking)
     }
 )
 
 BattleHandlers::DamageCalcTargetItem.add(:CHARTIBERRY,
-  proc { |_item, _user, target, _move, mults, _baseDmg, type|
-      pbBattleTypeWeakingBerry(:ROCK, type, target, mults)
+  proc { |_item, _user, target, _move, mults, _baseDmg, type, aiChecking|
+      pbBattleTypeWeakingBerry(:ROCK, type, target, mults, false, aiChecking)
   }
 )
 
 BattleHandlers::DamageCalcTargetItem.add(:CHILANBERRY,
-  proc { |_item, _user, target, _move, mults, _baseDmg, type|
-      pbBattleTypeWeakingBerry(:NORMAL, type, target, mults)
+  proc { |_item, _user, target, _move, mults, _baseDmg, type, aiChecking|
+      pbBattleTypeWeakingBerry(:NORMAL, type, target, mults, false, aiChecking)
   }
 )
 
 BattleHandlers::DamageCalcTargetItem.add(:CHOPLEBERRY,
-  proc { |_item, _user, target, _move, mults, _baseDmg, type|
-      pbBattleTypeWeakingBerry(:FIGHTING, type, target, mults)
+  proc { |_item, _user, target, _move, mults, _baseDmg, type, aiChecking|
+      pbBattleTypeWeakingBerry(:FIGHTING, type, target, mults, false, aiChecking)
   }
 )
 
 BattleHandlers::DamageCalcTargetItem.add(:COBABERRY,
-  proc { |_item, _user, target, _move, mults, _baseDmg, type|
-      pbBattleTypeWeakingBerry(:FLYING, type, target, mults)
+  proc { |_item, _user, target, _move, mults, _baseDmg, type, aiChecking|
+      pbBattleTypeWeakingBerry(:FLYING, type, target, mults, false, aiChecking)
   }
 )
 
 BattleHandlers::DamageCalcTargetItem.add(:COLBURBERRY,
-  proc { |_item, _user, target, _move, mults, _baseDmg, type|
-      pbBattleTypeWeakingBerry(:DARK, type, target, mults)
+  proc { |_item, _user, target, _move, mults, _baseDmg, type, aiChecking|
+      pbBattleTypeWeakingBerry(:DARK, type, target, mults, false, aiChecking)
   }
 )
 
@@ -51,20 +51,20 @@ BattleHandlers::DamageCalcTargetItem.add(:EVIOLITE,
 )
 
 BattleHandlers::DamageCalcTargetItem.add(:HABANBERRY,
-  proc { |_item, _user, target, _move, mults, _baseDmg, type|
-      pbBattleTypeWeakingBerry(:DRAGON, type, target, mults)
+  proc { |_item, _user, target, _move, mults, _baseDmg, type, aiChecking|
+      pbBattleTypeWeakingBerry(:DRAGON, type, target, mults, false, aiChecking)
   }
 )
 
 BattleHandlers::DamageCalcTargetItem.add(:KASIBBERRY,
-  proc { |_item, _user, target, _move, mults, _baseDmg, type|
-      pbBattleTypeWeakingBerry(:GHOST, type, target, mults)
+  proc { |_item, _user, target, _move, mults, _baseDmg, type, aiChecking|
+      pbBattleTypeWeakingBerry(:GHOST, type, target, mults, false, aiChecking)
   }
 )
 
 BattleHandlers::DamageCalcTargetItem.add(:KEBIABERRY,
-  proc { |_item, _user, target, _move, mults, _baseDmg, type|
-      pbBattleTypeWeakingBerry(:POISON, type, target, mults)
+  proc { |_item, _user, target, _move, mults, _baseDmg, type, aiChecking|
+      pbBattleTypeWeakingBerry(:POISON, type, target, mults, false, aiChecking)
   }
 )
 
@@ -75,38 +75,38 @@ BattleHandlers::DamageCalcTargetItem.add(:METALPOWDER,
 )
 
 BattleHandlers::DamageCalcTargetItem.add(:OCCABERRY,
-  proc { |_item, _user, target, _move, mults, _baseDmg, type|
-      pbBattleTypeWeakingBerry(:FIRE, type, target, mults)
+  proc { |_item, _user, target, _move, mults, _baseDmg, type, aiChecking|
+      pbBattleTypeWeakingBerry(:FIRE, type, target, mults, false, aiChecking)
   }
 )
 
 BattleHandlers::DamageCalcTargetItem.add(:PASSHOBERRY,
-  proc { |_item, _user, target, _move, mults, _baseDmg, type|
-      pbBattleTypeWeakingBerry(:WATER, type, target, mults)
+  proc { |_item, _user, target, _move, mults, _baseDmg, type, aiChecking|
+      pbBattleTypeWeakingBerry(:WATER, type, target, mults, false, aiChecking)
   }
 )
 
 BattleHandlers::DamageCalcTargetItem.add(:PAYAPABERRY,
-  proc { |_item, _user, target, _move, mults, _baseDmg, type|
-      pbBattleTypeWeakingBerry(:PSYCHIC, type, target, mults)
+  proc { |_item, _user, target, _move, mults, _baseDmg, type, aiChecking|
+      pbBattleTypeWeakingBerry(:PSYCHIC, type, target, mults, false, aiChecking)
   }
 )
 
 BattleHandlers::DamageCalcTargetItem.add(:RINDOBERRY,
-  proc { |_item, _user, target, _move, mults, _baseDmg, type|
-      pbBattleTypeWeakingBerry(:GRASS, type, target, mults)
+  proc { |_item, _user, target, _move, mults, _baseDmg, type, aiChecking|
+      pbBattleTypeWeakingBerry(:GRASS, type, target, mults, false, aiChecking)
   }
 )
 
 BattleHandlers::DamageCalcTargetItem.add(:ROSELIBERRY,
-  proc { |_item, _user, target, _move, mults, _baseDmg, type|
-      pbBattleTypeWeakingBerry(:FAIRY, type, target, mults)
+  proc { |_item, _user, target, _move, mults, _baseDmg, type, aiChecking|
+      pbBattleTypeWeakingBerry(:FAIRY, type, target, mults, false, aiChecking)
   }
 )
 
 BattleHandlers::DamageCalcTargetItem.add(:SHUCABERRY,
-  proc { |_item, _user, target, _move, mults, _baseDmg, type|
-      pbBattleTypeWeakingBerry(:GROUND, type, target, mults)
+  proc { |_item, _user, target, _move, mults, _baseDmg, type, aiChecking|
+      pbBattleTypeWeakingBerry(:GROUND, type, target, mults, false, aiChecking)
   }
 )
 
@@ -119,19 +119,19 @@ BattleHandlers::DamageCalcTargetItem.add(:SOULDEW,
 )
 
 BattleHandlers::DamageCalcTargetItem.add(:TANGABERRY,
-  proc { |_item, _user, target, _move, mults, _baseDmg, type|
-      pbBattleTypeWeakingBerry(:BUG, type, target, mults)
+  proc { |_item, _user, target, _move, mults, _baseDmg, type, aiChecking|
+      pbBattleTypeWeakingBerry(:BUG, type, target, mults, false, aiChecking)
   }
 )
 
 BattleHandlers::DamageCalcTargetItem.add(:WACANBERRY,
-  proc { |_item, _user, target, _move, mults, _baseDmg, type|
-      pbBattleTypeWeakingBerry(:ELECTRIC, type, target, mults)
+  proc { |_item, _user, target, _move, mults, _baseDmg, type, aiChecking|
+      pbBattleTypeWeakingBerry(:ELECTRIC, type, target, mults, false, aiChecking)
   }
 )
 
 BattleHandlers::DamageCalcTargetItem.add(:YACHEBERRY,
-  proc { |_item, _user, target, _move, mults, _baseDmg, type|
-      pbBattleTypeWeakingBerry(:ICE, type, target, mults)
+  proc { |_item, _user, target, _move, mults, _baseDmg, type, aiChecking|
+      pbBattleTypeWeakingBerry(:ICE, type, target, mults, false, aiChecking)
   }
 )

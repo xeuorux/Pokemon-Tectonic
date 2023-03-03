@@ -84,7 +84,7 @@ BattleHandlers::EORHealingItem.copy(:LEFTOVERS,:ROSELIFEAST)
 
 BattleHandlers::DamageCalcTargetItem.add(:ROSELIFEAST,
     proc { |item,user,target,move,mults,baseDmg,type,aiChecking|
-      pbBattleTypeWeakingBerry(:FAIRY,type,target,mults,true)
+      pbBattleTypeWeakingBerry(:FAIRY,type,target,mults,true,aiChecking)
     }
 )
 
@@ -93,7 +93,7 @@ BattleHandlers::EORHealingItem.copy(:LEFTOVERS,:OCCAFEAST)
 
 BattleHandlers::DamageCalcTargetItem.add(:OCCAFEAST,
     proc { |item,user,target,move,mults,baseDmg,type,aiChecking|
-      pbBattleTypeWeakingBerry(:FIRE,type,target,mults,true)
+      pbBattleTypeWeakingBerry(:FIRE,type,target,mults,true,aiChecking)
     }
 )
 
@@ -102,7 +102,7 @@ BattleHandlers::EORHealingItem.copy(:LEFTOVERS,:RINDOFEAST)
 
 BattleHandlers::DamageCalcTargetItem.add(:RINDOFEAST,
     proc { |item,user,target,move,mults,baseDmg,type,aiChecking|
-      pbBattleTypeWeakingBerry(:GRASS,type,target,mults,true)
+      pbBattleTypeWeakingBerry(:GRASS,type,target,mults,true,aiChecking)
     }
 )
 

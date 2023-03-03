@@ -31,7 +31,7 @@ def pbBattleStatIncreasingBerry(battler, battle, item, forced, stat, increment =
     return result
 end
 
-def pbBattleTypeWeakingBerry(type, moveType, target, mults, feast = false)
+def pbBattleTypeWeakingBerry(type, moveType, target, mults, feast = false, aiChecking = false)
     return if moveType != type
     return if Effectiveness.resistant?(target.damageState.typeMod) && moveType != :NORMAL
     if target.hasActiveAbility?(:RIPEN)
@@ -44,7 +44,7 @@ def pbBattleTypeWeakingBerry(type, moveType, target, mults, feast = false)
     else
         target.damageState.berryWeakened = true
     end
-    target.battle.pbCommonAnimation("Nom", target)
+    target.battle.pbCommonAnimation("Nom", target) unless aiChecking
 end
 
 def pbBattleGem(user, type, move, mults, moveType, aiChecking = false)

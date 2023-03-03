@@ -329,8 +329,8 @@ module BattleHandlers
         DamageCalcTargetAllyAbility.trigger(ability, user, target, move, mults, baseDmg, type)
     end
 
-    def self.triggerDamageCalcTargetItem(item, user, target, move, mults, baseDmg, type)
-        DamageCalcTargetItem.trigger(item, user, target, move, mults, baseDmg, type)
+    def self.triggerDamageCalcTargetItem(item, user, target, move, mults, baseDmg, type, aiChecking)
+        DamageCalcTargetItem.trigger(item, user, target, move, mults, baseDmg, type, aiChecking)
     end
 
     #=============================================================================

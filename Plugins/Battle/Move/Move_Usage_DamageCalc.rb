@@ -319,7 +319,7 @@ class PokeBattle_Move
         end
         if target.itemActive?
             BattleHandlers.triggerDamageCalcTargetItem(target.item,
-                user,target,self,multipliers,baseDmg,type)
+                user,target,self,multipliers,baseDmg,type, aiChecking)
         end
 
         if target.effectActive?(:DeathMark)

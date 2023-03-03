@@ -351,7 +351,7 @@ class PokeBattle_Move
     # Additional effect chance
     #=============================================================================
     def canApplyAdditionalEffects?(user,target,showMessages=false)
-        if target.hasActiveAbility?([:SHIELDDUST,:HARSHTRAINING]) && !@battle.moldBreaker
+        if target.hasActiveAbility?(%i[SHIELDDUST HARSHTRAINING]) && !@battle.moldBreaker
             if showMessages
                 battle.pbShowAbilitySplash(target)
                 battle.pbHideAbilitySplash(target)
@@ -359,12 +359,12 @@ class PokeBattle_Move
             return false
         end
         return false if target.effectActive?(:Enlightened)
-        return false if target.itemActive?(:COVERTCLOAK) && user.opposes?(target)
+        return false if target.hasActiveItem?(:COVERTCLOAK) && user.opposes?(target)
         return true
     end
 
     def pbAdditionalEffectChance(user,target,type,effectChance=0)
-        return 0 if !canApplyAdditionalEffects?(user,target)
+        return 0 unless canApplyAdditionalEffects?(user,target)
         return 100 if user.hasActiveAbility?(:STARSALIGN) && @battle.pbWeather == :Eclipse
         return 100 if !user.pbOwnedByPlayer? && @battle.curseActive?(:CURSE_PERFECT_LUCK)
         ret = effectChance > 0 ? effectChance : @effectChance
