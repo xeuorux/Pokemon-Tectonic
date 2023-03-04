@@ -1362,6 +1362,8 @@ Pokemon = STUFFUL,25
     AbilityIndex = 0
 #-------------------------------
 [DRAGONTAMER,Georgius,1]
+Pokemon = MARSHADOW,55
+    Moves = FAKEOUT,SHADOWPUNCH,DRAINPUNCH
 Pokemon = DRUDDIGON,55
     Moves = STANDTOGETHER,FLAMETHROWER
     AbilityIndex = 0
