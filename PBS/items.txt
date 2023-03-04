@@ -92,7 +92,7 @@
 91,BIGROOT,Big Root,Big Roots,5,4000,"A Pokémon held item that boosts the power of HP-stealing moves to let the holder recover more HP.",0,0,0
 92,BLACKSLUDGE,Black Sludge,Black Sludges,5,4000,"A held item that gradually restores the HP of Poison-type Pokémon. It inflicts damage on all other types.",0,0,0
 93,LEFTOVERS,Leftovers,Leftovers,5,10000,"A held item. The holder's HP is restored by 1/16th at the end of each turn.",0,0,0
-94,SHELLBELL,Shell Bell,Shell Bells,5,4000,"An item to be held by a Pokémon. The holder's HP is restored a little every time it inflicts damage.",0,0,0
+94,SHELLBELL,Shell Bell,Shell Bells,5,4000,"An item to be held by a Pokémon. The holder restores 1/6th HP of the damage it deals with moves.",0,0,0
 95,MENTALHERB,Mental Herb,Mental Herbs,5,8000,"An item to be held by a Pokémon. It snaps the holder out of a variety of mental warping effects.",0,0,0
 96,WHITEHERB,White Herb,White Herbs,5,8000,"An item to be held by a Pokémon. It restores any lowered stat in battle.",0,0,0
 97,POWERHERB,Power Herb,Power Herbs,5,8000,"A single-use item to be held by a Pokémon. It allows the immediate use of a move that charges up first.",0,0,0
