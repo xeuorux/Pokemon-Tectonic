@@ -1107,7 +1107,7 @@ module Compiler
             if property_value[atkIndex] != property_value[spAtkIndex]
               attackingStatsValue = [property_value[atkIndex],property_value[spAtkIndex]].max
               property_value[atkIndex] = attackingStatsValue
-              property_value[spAtkIndex]
+              property_value[spAtkIndex] = attackingStatsValue
             end
           end
           ev_total = 0
@@ -1118,6 +1118,9 @@ module Compiler
           end
           if ev_total > Pokemon::EV_LIMIT
             raise _INTL("Total EVs are greater than allowed ({1}).\r\n{2}", Pokemon::EV_LIMIT, FileLineData.linereport)
+          end
+          if ev_total < Pokemon::EV_LIMIT
+            raise _INTL("Total EVs are less than required ({1}).\r\n{2}", Pokemon::EV_LIMIT, FileLineData.linereport)
           end
         when "Happiness"
           if property_value > 255
