@@ -1,8 +1,9 @@
 PokeBattle_Battle::BattleStartApplyCurse.add(:CURSE_STATUS_DOUBLED,
     proc { |curse_policy, battle, curses_array|
-        battle.amuletActivates("Statuses Doubled")
-        battle.pbDisplaySlower(_INTL("The negative effects of status conditions on your Pokémon are doubled!"))
-        battle.pbDisplaySlower(_INTL("Also, status condition immunities by effects are ignored."))
+        battle.amuletActivates(
+            _INTL("Pyres raised\nHere we meet\nSpirits razed\nReduced to meat"),
+            _INTL("Status conditions affect your Pokemon twice as much!")
+        )
         curses_array.push(curse_policy)
         next curses_array
     }

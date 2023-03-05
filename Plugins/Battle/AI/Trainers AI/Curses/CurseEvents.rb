@@ -40,8 +40,43 @@ class PokeBattle_Battle
         return ret || true
     end
 
-    def amuletActivates(curseName)
-        pbDisplaySlower(_INTL("The Tarot Amulet glows with power!"))
-        pbDisplaySlower(_INTL("You have been afflicted with the curse: #{curseName}"))
+    def hideDataboxes
+        eachBattler do |b|
+            databox = scene.sprites["dataBox_#{b.index}"]
+            databox.visible = false
+        end
+    end
+
+    def showDataboxes
+        eachBattler do |b|
+            databox = scene.sprites["dataBox_#{b.index}"]
+            databox.visible = true
+        end
+    end
+
+    def amuletActivates(curseName, explanation = nil)
+        echoln("Amulet actives!")
+        pbDisplaySlower(_INTL("\\i[TAROTAMULET]The Tarot Amulet glows with power!"))
+
+        hideDataboxes
+
+        # Show the curse name in a big bold way
+        pbSEPlay("Anim/PRSFX- Spectral Thief2", 300, 20)
+        pbSEPlay("Anim/PRSFX- Telekinesis", 100, 120)
+
+        msgwindow = pbCreateMessageWindow
+        waitTime = 40
+        waitTime /= 2 if fastTransitions?
+        fontSize = 48
+        msgwindow.lineHeight(48)
+        curseName = _INTL("\\ts[]<c3=4C0D0D,FFFFFF22><b><outln2><ac><fs={1}>\\w[]\\wu\\l[12]{2}</fs></ac></outln2></b></c3>\\wt[{3}]",fontSize,curseName,waitTime)
+        curseName = "<fn=Didact Gothic>" + curseName + "</fn>"
+        pbMessageDisplay(msgwindow,curseName)
+
+        pbDisplaySlower(explanation) if explanation
+        pbDisposeMessageWindow(msgwindow)
+        Input.update
+
+        showDataboxes
     end
 end

@@ -1,7 +1,9 @@
 PokeBattle_Battle::BattleStartApplyCurse.add(:CURSE_TYPE_WEAKENED,
     proc { |curse_policy, battle, curses_array|
-        battle.amuletActivates("Type Weakened")
-        battle.pbDisplaySlower(_INTL("Your Pokemon's Super Effective attacks are instead Not Very Effective."))
+        battle.amuletActivates(
+            _INTL("Thy Inimitability, Incapable Imposture. My Immanence, Inconceivable Immaculacy."),
+            _INTL("Your Super Effective attacks become Not Very Effective.")
+        )
         curses_array.push(curse_policy)
         next curses_array
     }

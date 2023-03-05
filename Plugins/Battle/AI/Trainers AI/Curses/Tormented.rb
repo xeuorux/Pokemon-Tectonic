@@ -1,7 +1,9 @@
 PokeBattle_Battle::BattleStartApplyCurse.add(:CURSE_TORMENTED,
     proc { |curse_policy, battle, curses_array|
-        battle.amuletActivates("Tormented")
-        battle.pbDisplaySlower(_INTL("Your Pokemon gain the \"Tormented\" status when they enter battle."))
+        battle.amuletActivates(
+            _INTL("Lucid? Lose it. Lunacy looms lucent. Let loose."),
+            _INTL("Your Pokemon are Tormented on entry.")
+        )
         curses_array.push(curse_policy)
         next curses_array
     }

@@ -1,7 +1,9 @@
 PokeBattle_Battle::BattleStartApplyCurse.add(:CURSE_SELF_DEBUFFING,
     proc { |curse_policy, battle, curses_array|
-        battle.amuletActivates("Self Debuffing")
-        battle.pbDisplaySlower(_INTL("When your Pokemon use damaging moves, their Attack is lowered if that move is physical, and their Sp. Atk is lowered if that move was special. This ignores Contrary."))
+        battle.amuletActivates(
+            _INTL("Every Beat Betrays the Beast's Burden"),
+            _INTL("After your Pokemon attack, the attacking stat that was used is lowered.")
+        )
         curses_array.push(curse_policy)
         next curses_array
     }

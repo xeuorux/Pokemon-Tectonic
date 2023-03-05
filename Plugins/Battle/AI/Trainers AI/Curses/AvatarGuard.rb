@@ -1,7 +1,9 @@
 PokeBattle_Battle::BattleStartApplyCurse.add(:CURSE_AVATAR_GUARD,
     proc { |curse_policy, battle, curses_array|
-        battle.amuletActivates("Avatar Guard")
-        battle.pbDisplaySlower(_INTL("An Avatar has been inserted into Yezera's party!"))
+        battle.amuletActivates(
+            _INTL("Escorted by, Enthroned upon, Ensconced within this Empty Eminence"),
+            _INTL("An Avatar has been inserted into Yezera's party!")
+        )
 
         # Insert the avatar
         newPokemon = battle.generateAvatarPokemon(:LINOONE,65)
