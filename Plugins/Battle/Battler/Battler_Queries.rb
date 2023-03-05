@@ -293,7 +293,7 @@ class PokeBattle_Battler
     end
 
     def semiInvulnerable?
-        return inTwoTurnAttack?("0C9", "0CA", "0CB", "0CC", "0CD", "0CE", "14D")
+        return inTwoTurnAttack?("0C9", "0CA", "0CB", "0CC", "0CD", "0CE", "14D", "5C5")
     end
 
     def pbEncoredMoveIndex
