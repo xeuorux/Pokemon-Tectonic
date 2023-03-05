@@ -37,11 +37,12 @@ class PokeBattle_Move
         return (user.boss? || target.boss?) && damagingMove?
     end
 
-    def canRemoveItem?(user, target, checkingForAI = false)
-        if @battle.wildBattle? && user.opposes? && !user.boss
+    def canRemoveItem?(user, target, checkingForAI = false, ignoreTargetFainted = false)
+        if @battle.wildBattle? && user.opposes? && !user.boss # Wild Pokémon can't knock off, but bosses can
             return false
-        end   # Wild Pokémon can't knock off, but bosses can
-        return false if user.fainted? || target.fainted?
+        end
+        return false if user.fainted?
+        return false if target.fainted? && !ignoreTargetFainted
         if checkingForAI
             return false if target.substituted?
         elsif target.damageState.unaffected || target.damageState.substitute
@@ -52,8 +53,8 @@ class PokeBattle_Move
         return true
     end
 
-    def canStealItem?(user, target, _checkingForAI = false)
-        return false unless canRemoveItem?(user, target)
+    def canStealItem?(user, target, checkingForAI = false)
+        return false unless canRemoveItem?(user, target, checkingForAI, true)
         return false if user.item && @battle.trainerBattle?
         return false if user.unlosableItem?(target.item)
         return true
