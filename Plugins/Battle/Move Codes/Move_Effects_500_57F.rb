@@ -449,9 +449,10 @@ end
 #===============================================================================
 class PokeBattle_Move_51D < PokeBattle_Move
     def pbFailsAgainstTarget?(_user, target, show_message)
+        return false if damagingMove?
         if target.effectActive?(:CreepOut)
             if show_message
-                @battle.pbDisplay(_INTL("But it failed, since #{target.pbThis(true)} is already afraid of bug type moves!"))
+                @battle.pbDisplay(_INTL("But it failed, since #{target.pbThis(true)} is already afraid of Bug-type moves!"))
             end
             return true
         end
@@ -463,7 +464,8 @@ class PokeBattle_Move_51D < PokeBattle_Move
     end
 
     def getEffectScore(_user, target)
-        score = 60
+        return 0 if target.effectActive?(:CreepOut)
+        score = 40
         score += 40 if target.aboveHalfHealth?
         return score
     end
