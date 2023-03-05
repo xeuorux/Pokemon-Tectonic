@@ -1,6 +1,6 @@
 SaveData.register_conversion(:spawning_regis_21) do
   game_version '2.1.0'
-  display_title 'Setting the global switches for regi freedom in 2.1'
+  display_title 'Setting the global switches for regi freedom and larpers in 2.1'
   to_all do |save_data|
     globalSwitches = save_data[:switches]
     selfSwitches = save_data[:self_switches]
@@ -16,5 +16,8 @@ SaveData.register_conversion(:spawning_regis_21) do
 
     # Regieleki and regidrago are freed when yezera 5 is defeated
     globalSwitches[75] = globalSwitches[76] = selfSwitches[[258, 17, 'B']]
+
+    # Larpers are defeated in the vibrant cave
+    globalSwitches[53] = selfSwitches[[126, 6, 'D']]
   end
 end

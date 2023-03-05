@@ -145,7 +145,7 @@ class PokeBattle_Move_609 < PokeBattle_Move_02C
 end
 
 # Empowered String Shot
-class PokeBattle_Move_610 < PokeBattle_TargetMultiStatDownMove
+class PokeBattle_Move_60A < PokeBattle_TargetMultiStatDownMove
     include EmpoweredMove
 
     def initialize(battle, move)
@@ -159,7 +159,7 @@ class PokeBattle_Move_610 < PokeBattle_TargetMultiStatDownMove
 end
 
 # Empowered Sandstorm
-class PokeBattle_Move_611 < PokeBattle_Move_101
+class PokeBattle_Move_60B < PokeBattle_Move_101
     include EmpoweredMove
 
     def pbEffectGeneral(user)
@@ -170,7 +170,7 @@ class PokeBattle_Move_611 < PokeBattle_Move_101
 end
 
 # Empowered Curse
-class PokeBattle_Move_612 < PokeBattle_Move
+class PokeBattle_Move_60C < PokeBattle_Move
     include EmpoweredMove
 
     def pbEffectGeneral(user)
@@ -183,7 +183,7 @@ class PokeBattle_Move_612 < PokeBattle_Move
 end
 
 # Empowered Dragon Dance
-class PokeBattle_Move_613 < PokeBattle_MultiStatUpMove
+class PokeBattle_Move_60D < PokeBattle_MultiStatUpMove
     include EmpoweredMove
 
     def initialize(battle, move)
@@ -198,7 +198,7 @@ class PokeBattle_Move_613 < PokeBattle_MultiStatUpMove
 end
 
 # Empowered Torment
-class PokeBattle_Move_614 < PokeBattle_Move_0B7
+class PokeBattle_Move_60E < PokeBattle_Move_0B7
     include EmpoweredMove
 
     def pbEffectGeneral(user)
@@ -213,7 +213,7 @@ class PokeBattle_Move_614 < PokeBattle_Move_0B7
 end
 
 # Empowered Laser Focus
-class PokeBattle_Move_615 < PokeBattle_Move
+class PokeBattle_Move_60F < PokeBattle_Move
     include EmpoweredMove
 
     def pbEffectGeneral(user)
@@ -223,7 +223,7 @@ class PokeBattle_Move_615 < PokeBattle_Move
 end
 
 # Empowered Moonlight
-class PokeBattle_Move_616 < PokeBattle_HalfHealingMove
+class PokeBattle_Move_610 < PokeBattle_HalfHealingMove
     include EmpoweredMove
 
     def pbEffectGeneral(user)
@@ -240,7 +240,7 @@ class PokeBattle_Move_616 < PokeBattle_HalfHealingMove
 end
 
 # Empowered Poison Gas
-class PokeBattle_Move_617 < PokeBattle_Move
+class PokeBattle_Move_611 < PokeBattle_Move
     include EmpoweredMove
 
     def pbEffectGeneral(user)
@@ -254,7 +254,7 @@ class PokeBattle_Move_617 < PokeBattle_Move
 end
 
 # Empowered Endure
-class PokeBattle_Move_618 < PokeBattle_Move
+class PokeBattle_Move_612 < PokeBattle_Move
     include EmpoweredMove
 
     def pbEffectGeneral(user)
@@ -265,7 +265,7 @@ class PokeBattle_Move_618 < PokeBattle_Move
 end
 
 # Empowered Ignite
-class PokeBattle_Move_619 < PokeBattle_Move
+class PokeBattle_Move_613 < PokeBattle_Move
     include EmpoweredMove
 
     def pbEffectGeneral(user)
@@ -278,7 +278,7 @@ class PokeBattle_Move_619 < PokeBattle_Move
 end
 
 # Empowered Flow State
-class PokeBattle_Move_620 < PokeBattle_MultiStatUpMove
+class PokeBattle_Move_614 < PokeBattle_MultiStatUpMove
     include EmpoweredMove
 
     def initialize(battle, move)
@@ -296,7 +296,7 @@ class PokeBattle_Move_620 < PokeBattle_MultiStatUpMove
 end
 
 # Empowered Aromatherapy
-class PokeBattle_Move_621 < PokeBattle_Move_019
+class PokeBattle_Move_615 < PokeBattle_Move_019
     include EmpoweredMove
 
     def pbEffectGeneral(user)
@@ -309,7 +309,7 @@ class PokeBattle_Move_621 < PokeBattle_Move_019
 end
 
 # Empowered Numb
-class PokeBattle_Move_622 < PokeBattle_Move
+class PokeBattle_Move_616 < PokeBattle_Move
     include EmpoweredMove
 
     def pbEffectGeneral(user)
@@ -322,7 +322,7 @@ class PokeBattle_Move_622 < PokeBattle_Move
 end
 
 # Empowered Eclipse
-class PokeBattle_Move_623 < PokeBattle_Move_09D
+class PokeBattle_Move_617 < PokeBattle_Move_09D
     include EmpoweredMove
 
     def pbEffectGeneral(user)
@@ -334,7 +334,7 @@ class PokeBattle_Move_623 < PokeBattle_Move_09D
 end
 
 # Empowered Moonglow
-class PokeBattle_Move_624 < PokeBattle_Move_09D
+class PokeBattle_Move_618 < PokeBattle_Move_09D
     include EmpoweredMove
 
     def pbEffectGeneral(user)
@@ -349,7 +349,7 @@ class PokeBattle_Move_624 < PokeBattle_Move_09D
 end
 
 # Empowered Heal Order
-class PokeBattle_Move_625 < PokeBattle_HalfHealingMove
+class PokeBattle_Move_619 < PokeBattle_HalfHealingMove
     include EmpoweredMove
 
     def healingMove?; return true; end
@@ -367,7 +367,7 @@ class PokeBattle_Move_625 < PokeBattle_HalfHealingMove
 end
 
 # Empowered Grey Mist
-class PokeBattle_Move_626 < PokeBattle_Move_587
+class PokeBattle_Move_61A < PokeBattle_Move_587
     include EmpoweredMove
 
     def pbEffectGeneral(user)
@@ -382,7 +382,7 @@ class PokeBattle_Move_626 < PokeBattle_Move_587
 end
 
 # Empowered Rock Polish
-class PokeBattle_Move_627 < PokeBattle_Move_030
+class PokeBattle_Move_61B < PokeBattle_Move_030
     include EmpoweredMove
 
     def pbEffectGeneral(user)
@@ -393,7 +393,7 @@ class PokeBattle_Move_627 < PokeBattle_Move_030
 end
 
 # Empowered Whirlwind
-class PokeBattle_Move_628 < PokeBattle_Move_0EB
+class PokeBattle_Move_61C < PokeBattle_Move_0EB
     include EmpoweredMove
 
     def pbEffectGeneral(user)
@@ -402,7 +402,7 @@ class PokeBattle_Move_628 < PokeBattle_Move_0EB
 end
 
 # Empowered Embargo
-class PokeBattle_Move_629 < PokeBattle_Move
+class PokeBattle_Move_61D < PokeBattle_Move
     include EmpoweredMove
 
     def pbEffectGeneral(user)
@@ -412,7 +412,7 @@ class PokeBattle_Move_629 < PokeBattle_Move
 end
 
 # Empowered Chill
-class PokeBattle_Move_630 < PokeBattle_Move
+class PokeBattle_Move_61E < PokeBattle_Move
     include EmpoweredMove
 
     def pbEffectGeneral(user)
@@ -425,7 +425,7 @@ class PokeBattle_Move_630 < PokeBattle_Move
 end
 
 # Empowered Destiny Bond
-class PokeBattle_Move_631 < PokeBattle_Move
+class PokeBattle_Move_61F < PokeBattle_Move
     include EmpoweredMove
 
     def pbEffectGeneral(user)
@@ -436,7 +436,7 @@ class PokeBattle_Move_631 < PokeBattle_Move
 end
 
 # Empowered Shore Up
-class PokeBattle_Move_632 < PokeBattle_HalfHealingMove
+class PokeBattle_Move_620 < PokeBattle_HalfHealingMove
     include EmpoweredMove
 
     def pbEffectGeneral(user)
@@ -449,7 +449,7 @@ class PokeBattle_Move_632 < PokeBattle_HalfHealingMove
 end
 
 # Empowered Loom Over
-class PokeBattle_Move_633 < PokeBattle_Move_522
+class PokeBattle_Move_621 < PokeBattle_Move_522
     include EmpoweredMove
 
     def pbEffectGeneral(user)
@@ -460,13 +460,43 @@ class PokeBattle_Move_633 < PokeBattle_Move_522
 end
 
 # Empowered Detect
-class PokeBattle_Move_634 < PokeBattle_Move
+class PokeBattle_Move_622 < PokeBattle_Move
     include EmpoweredMove
 
     def pbEffectGeneral(user)
         super
         user.applyEffect(:EmpoweredDetect, 3)
         transformType(user, :FIGHTING)
+    end
+end
+
+# Empowered Quiver Dance
+class PokeBattle_Move_623 < PokeBattle_MultiStatUpMove
+    include EmpoweredMove
+
+    def initialize(battle, move)
+        super
+        @statUp = [:SPECIAL_ATTACK, 2, :SPECIAL_DEFENSE, 2, :SPEED, 2]
+    end
+
+    def pbEffectGeneral(user)
+        super
+        transformType(user, :BUG)
+    end
+end
+
+# Empowered Shiver Dance
+class PokeBattle_Move_624 < PokeBattle_MultiStatUpMove
+    include EmpoweredMove
+
+    def initialize(battle, move)
+        super
+        @statUp = [:ATTACK, 2, :DEFENSE, 2, :SPEED, 2]
+    end
+
+    def pbEffectGeneral(user)
+        super
+        transformType(user, :ICE)
     end
 end
 

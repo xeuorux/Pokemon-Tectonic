@@ -1331,7 +1331,7 @@ Pokemon = MANDIBUZZ,35
 [DRAGONTAMER,Georgius]
 Pokemon = DRUDDIGON,25
     Moves = STANDTOGETHER,CRIPPLINGBREATH
-    AbilityIndex = 0
+    AbilityIndex = 1
 Pokemon = NOIBAT,25
     Moves = MEGADRAIN,BOREALWIND
     AbilityIndex = 1
@@ -1367,12 +1367,9 @@ Pokemon = MARSHADOW,55
     AbilityIndex = 0
 Pokemon = DRUDDIGON,55
     Moves = STANDTOGETHER,FLAMETHROWER
-    AbilityIndex = 0
+    AbilityIndex = 1
 Pokemon = NOIVERN,55
     Moves = GIGADRAIN,AIRSLASH
-    AbilityIndex = 1
-Pokemon = TYRANTRUM,55
-    Moves = BEDROCKBREAKER,CRUNCH
     AbilityIndex = 1
 #-------------------------------
 [SAGE,Rennyo,1]
