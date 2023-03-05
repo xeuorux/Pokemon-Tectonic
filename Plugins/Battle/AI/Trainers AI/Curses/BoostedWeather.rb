@@ -43,7 +43,7 @@ PokeBattle_Battle::BattleStartApplyCurse.add(:CURSE_BOOSTED_SAND,
     proc { |curse_policy, battle, curses_array|
         battle.amuletActivates(
             _INTL("A Sky Scoured of Star and Sun"),
-            _INTL(The battle begins with Sandstorm. The effects of Sandstorm are doubled."")
+            _INTL("The battle begins with Sandstorm. The effects of Sandstorm are doubled.")
         )
         curses_array.push(curse_policy)
         battle.pbStartWeather(nil, :Sandstorm)
