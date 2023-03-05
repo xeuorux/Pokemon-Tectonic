@@ -1,6 +1,6 @@
 LARPER_COUNT_VAR = 29
 
-def encounterLarper
+def rescueLarper
     $game_variables[29] += 1
     if $game_variables[29] >= 3
         
