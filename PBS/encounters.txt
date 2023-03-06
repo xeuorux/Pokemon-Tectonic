@@ -393,8 +393,8 @@ FloweryGrass,20
 Special,1
     1,DARUMAKA,10
 #-------------------------------
-[135] # Ancient Meteorite
-DarkCave,20
+[135] # Nebula Ruins
+Cloud,20
     25,CLEFFA,20,23
     25,MINIOR,20,23
     25,STONJOURNER,20,23
