@@ -3126,7 +3126,7 @@ Pokemon = FLYGON,60
     Item = YACHEBERRY
 Pokemon = TOWERPODA,60
     Moves = TAKESHELTER,CRIPPLINGBREATH,SNARL,SANDSTORM
-    AbilityIndex = 0
+    AbilityIndex = 1
 Pokemon = GARCHOMP,60
     Moves = OUTRAGE,BRICKBREAK,UNDERMINE,STEALTHROCK
     AbilityIndex = 1
@@ -3143,7 +3143,6 @@ Pokemon = SAURENAID,60
 [LEADER_Samorn_2,Samorn]
 Extends = LEADER_Samorn,Samorn,0
 Pokemon = TOWERPODA,60
-    AbilityIndex = 0
     Item = SMOOTHROCK
 Pokemon = REAVOR,60
     Moves = BULLETPUNCH,DUALWINGBEAT,BUGBITE,BULLETTRAIN
