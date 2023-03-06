@@ -1364,34 +1364,34 @@ Pokemon = STUFFUL,25
 [DRAGONTAMER,Georgius,1]
 Pokemon = MARSHADOW,55
     Moves = FAKEOUT,SHADOWPUNCH,DRAINPUNCH
-    AbilityIndex = 0
+    AbilityIndex = 1
 Pokemon = DRUDDIGON,55
-    Moves = STANDTOGETHER,FLAMETHROWER
+    Moves = STANDTOGETHER,FLAMETHROWER,CRUELTY
     AbilityIndex = 1
 Pokemon = NOIVERN,55
-    Moves = GIGADRAIN,AIRSLASH
-    AbilityIndex = 1
+    Moves = GIGADRAIN,AIRSLASH,TORNADO
+    AbilityIndex = 0
 #-------------------------------
 [SAGE,Rennyo,1]
 Pokemon = GARDEVOIR,55
-    Moves = LIFEDEW,HELPINGHAND
-    AbilityIndex = 0
+    Moves = LIFEDEW,HELPINGHAND,MOONBLAST
+    AbilityIndex = 1
 Pokemon = XATU,55
-    Moves = HEALPULSE,HELPINGHAND
+    Moves = REFLECT,HELPINGHAND,LIGHTSCREEN
     AbilityIndex = 0
 Pokemon = DELIBIRD,55
-    Moves = TAILWIND,PACKAGE
+    Moves = TAILWIND,PACKAGE,CHILL
     AbilityIndex = 1
 #-------------------------------
 [HARLEQUIN,Vincenzi,1]
 Pokemon = LEAVANNY,55
-    Moves = STRINGSHOT,LEAFBLADE
-    AbilityIndex = 0
+    Moves = XSCISSOR,LEAFBLADE,SUMMERSUNDER
+    AbilityIndex = 1
 Pokemon = PRIMARINA,55
-    Moves = GROWL,SPARKLINGARIA
+    Moves = GROWL,HYPERVOICE,WATERSPIRAL
     AbilityIndex = 0
 Pokemon = BEWEAR,55
-    Moves = LEER,BODYSLAM
+    Moves = WIDEGUARD,BODYSLAM,HAMMERARM
     AbilityIndex = 0
 #-------------------------------
 [BOARDER,Alex]
