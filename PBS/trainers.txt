@@ -3273,17 +3273,17 @@ Pokemon = MANDIBUZZ,65
 Pokemon = NINETALES,65
     Moves = CRIMSONSTORM,AURATRICK,REFLECT,HEX
     AbilityIndex = 0
-    Item = GHOSTGEM
+    Item = UTILITYUMBRELLA
     EV = 20,10,20,0,10,0
 Pokemon = EXCADRILL,65
     Moves = SWORDSDANCE,DRILLRUN,IRONHEAD,POISONJAB
     AbilityIndex = 1
-    Item = ORANBERRY
+    Item = SHELLBELL
     EV = 10,20,0,10,20,10
 Pokemon = PYUKUMUKU,65
     Moves = SPELLBIND,LATCHON,TAUNT,LIFEDEW
     AbilityIndex = 0
-    Item = LEFTOVERS
+    Item = UTILITYUMBRELLA
     EV = 20,0,20,0,0,10
 #-------------------------------
 [ABSOL,Absol]
