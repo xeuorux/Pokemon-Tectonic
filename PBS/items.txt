@@ -530,7 +530,7 @@
 530,YELLOWNECTAR,Yellow Nectar,Yellow Nectars,1,300,"A flower nectar obtained at Melemele Meadow. It changes the form of certain species of Pokémon.",1,0,0
 531,PINKNECTAR,Pink Nectar,Pink Nectars,1,300,"A flower nectar obtained from shrubs on Royal Avenue. It changes the form of certain species of Pokémon.",1,0,0
 532,PURPLENECTAR,Purple Nectar,Purple Nectars,1,300,"A flower nectar obtained at Poni Meadow. It changes the form of certain species of Pokémon.",1,0,0
-533,ASSAULTVEST,Assault Vest,Assault Vests,5,10000,"An item to be held by a Pokémon. This offensive vest raises Sp. Def but prevents the use of status moves.",0,0,0
+533,ASSAULTVEST,Assault Vest,Assault Vests,5,10000,"An item to be held by a Pokémon. It raises Sp. Def by 50% but prevents the use of status moves.",0,0,0
 534,SAFETYGOGGLES,Safety Goggles,Safety Goggles,5,4000,"An item to be held by a Pokémon. They protect the holder from weather-related damage and powder.",0,0,0
 535,PROTECTIVEPADS,Protective Pads,Protective Pads,5,4000,"An item to be held by a Pokémon. They protect the holder from effects caused by making contact.",0,0,0
 536,TERRAINEXTENDER,Terrain Extender,Terrain Extenders,5,4000,"An item to be held by a Pokémon. It extends the duration of the terrain caused by the holder.",0,0,0
@@ -805,7 +805,7 @@
 805,KITEXPANSION,Kit Expansion,Kit Expansion,2,0,"A pack which can be attached to your Aid Kit to increase its number of use charges.",2,0,0
 806,MEDICALUPGRADE,Medical Upgrade,Medical Upgrades,2,0,"A suite of medicines which can be added to your Aid Kit to increase its healing.",2,0,0
 807,CLIMBINGGEAR,Climbing Gear,Climbing Gears,8,0,"A set of climbing gear, allowing you to climb on white rocks.",0,0,6
-808,STRIKEVEST,Strike Vest,Strike Vests,5,10000,"An item to be held by a Pokémon. This offensive vest raises Defense but prevents the use of status moves.",0,0,0
+808,STRIKEVEST,Strike Vest,Strike Vests,5,10000,"An item to be held by a Pokémon. It raises Defense by 50% but prevents the use of status moves.",0,0,0
 809,GRASSTOKEN,Grass Token,Grass Tokens,1,10000,"A token which can be exchanged for a Grass-type at the Starter Store.",0,0,0
 810,WATERTOKEN,Water Token,Water Tokens,1,10000,"A token which can be exchanged for a Water-type at the Starter Store.",0,0,0
 811,FIRETOKEN,Fire Token,Fire Tokens,1,10000,"A token which can be exchanged for a Fire-type at the Starter Store.",0,0,0
