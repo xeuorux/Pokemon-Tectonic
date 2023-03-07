@@ -225,8 +225,15 @@ class PokeBattle_Battle
         # AI predicts the players actions
         @predictedActions = {}
 
+        anyCanPredict = false
+        @opponent.each do |opposingTrainer|
+            next unless opposingTrainer.policies.include?(:PREDICTS_PLAYER)
+            anyCanPredict = true
+            break
+        end
+
         # Each of the player's pokemon (or NPC allies)
-        unless @autoTesting
+        if anyCanPredict && !@autoTesting
             echoln("[PLAYER PREDICTION]")
             eachSameSideBattler do |b|
                 next unless b.pbOwnedByPlayer?
