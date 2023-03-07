@@ -226,25 +226,27 @@ class PokeBattle_Battle
         @predictedActions = {}
 
         anyCanPredict = false
-        @opponent.each do |opposingTrainer|
-            next unless opposingTrainer.policies.include?(:PREDICTS_PLAYER)
-            anyCanPredict = true
-            break
-        end
-
-        # Each of the player's pokemon (or NPC allies)
-        if anyCanPredict && !@autoTesting
-            echoln("[PLAYER PREDICTION]")
-            eachSameSideBattler do |b|
-                next unless b.pbOwnedByPlayer?
-                predictedPlayerAction = @battleAI.pbPredictChoiceByPlayer(b.index)
-                @predictedActions[b.index] = predictedPlayerAction
+        if @opponent
+            @opponent.each do |opposingTrainer|
+                next unless opposingTrainer.policies.include?(:PREDICTS_PLAYER)
+                anyCanPredict = true
+                break
             end
 
-            eachSameSideBattler do |b|
-                next unless b.pbOwnedByPlayer?
-                describedPlayerAction = describeAction(b,@predictedActions[b.index])
-                echoln("[PLAYER PREDICTION] The AI predicts that #{b.pbThis} will #{describedPlayerAction}!")
+            # Each of the player's pokemon (or NPC allies)
+            if anyCanPredict && !@autoTesting
+                echoln("[PLAYER PREDICTION]")
+                eachSameSideBattler do |b|
+                    next unless b.pbOwnedByPlayer?
+                    predictedPlayerAction = @battleAI.pbPredictChoiceByPlayer(b.index)
+                    @predictedActions[b.index] = predictedPlayerAction
+                end
+
+                eachSameSideBattler do |b|
+                    next unless b.pbOwnedByPlayer?
+                    describedPlayerAction = describeAction(b,@predictedActions[b.index])
+                    echoln("[PLAYER PREDICTION] The AI predicts that #{b.pbThis} will #{describedPlayerAction}!")
+                end
             end
         end
 
