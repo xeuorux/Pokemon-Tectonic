@@ -406,12 +406,12 @@ class Particle_Engine::CircleStarField < ParticleEffect_Event
 
     def changeOpacity(i)
         if @particles[i].state == 0
-            @opacity[i] += rand(2)
+            @opacity[i] += rand(3)
             if @opacity[i] >= 250
                 @particles[i].state = 1
             end
         else
-            @opacity[i] -= rand(2)
+            @opacity[i] -= rand(3)
         end
     end
 
