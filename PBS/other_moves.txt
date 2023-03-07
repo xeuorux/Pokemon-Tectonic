@@ -118,7 +118,7 @@
 3030,PRIMEVALCHILL,Primeval Chill,61E,0,ICE,Status,100,1,0,AllNearFoes,0,bey,"The user inflicts frostbite on all nearby foes. User becomes an Ice-type.",CHILL
 3031,PRIMEVALDESTINYBOND,Primeval Destiny Bond,61F,0,GHOST,Status,0,1,0,User,0,y,"Attackers against the user suffer recoil for the rest of the battle. User becomes a Ghost-type.",DESTINYBOND
 3032,PRIMEVALSHOREUP,Primeval Shore Up,620,0,GROUND,Status,0,1,0,User,0,dy,"The user restores 1/8th of its HP, TODO, and becomes Ground-type.",
-3033,PRIMEVALLOOMOVER,Primeval Loom Over,621,0,DRAGON,Status,0,1,0,AllNearFoes,0,ey,"The user harshly lowers each near foes best stat, and becomes Dragon-type.",SCARYFACE
+3033,PRIMEVALLOOMOVER,Primeval Loom Over,621,0,DRAGON,Status,0,1,0,AllNearFoes,0,ey,"The user harshly lowers each near foes best stat, and becomes Dragon-type.",LOOMOVER
 3034,PRIMEVALDETECT,Primeval Detect,622,0,FIGHTING,Status,0,1,0,User,4,y,"The user takes 50% less attack damage for 3 turns, and becomes Fighting-type.",
 3035,PRIMEVALQUIVERDANCE,Primeval Quiver Dance,623,0,BUG,Status,0,15,0,User,0,doy,"The user sharply boosts their Sp. Atk, Sp. Def, and Speed, and becomes Bug-type.",
 3036,PRIMEVALSHIVERDANCE,Primeval Shiver Dance,624,0,ICE,Status,0,15,0,User,0,doy,"The user sharply boosts their Attack, Defense, and Speed, and becomes Ice-type.",

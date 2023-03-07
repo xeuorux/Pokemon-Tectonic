@@ -1353,6 +1353,7 @@ Outdoor = false
 ShowArea = false
 Bicycle = false
 HealingSpot = 187,55,37
+MapPosition = 0,15,4
 #-------------------------------
 [239]
 # Ocean Fishing Contest
@@ -1565,7 +1566,8 @@ Outdoor = false
 ShowArea = true
 Bicycle = true
 MapPosition = 0,14,2
-BattleBack = cave2
+BattleBack = distortion
+TeleportBlocked = true
 #-------------------------------
 [284]
 # Gamer's House
@@ -1866,9 +1868,13 @@ Bicycle = true
 Outdoor = false
 ShowArea = true
 Bicycle = true
+BattleBack = distortion
+TeleportBlocked = true
 #-------------------------------
 [362]
 # The Catacombs B3
 Outdoor = false
 ShowArea = true
 Bicycle = true
+BattleBack = distortion
+TeleportBlocked = true
