@@ -926,7 +926,7 @@
 979,BLACKOUT,Blackout,562,90,DARK,Special,100,12,0,NearOther,0,bef,"The user removes the energy and light around the target. Super effective vs Electric-types.",DARKVOID
 980,HOLLYCHARM,Holly Charm,563,90,GRASS,Special,100,12,0,NearOther,0,bef,"The user attacks the target with the power of a warding charm. Super effective vs Ghost-types.",MAGICALLEAF
 981,MUTUAL,Mutual,599,55,FIGHTING,Physical,100,25,0,NearOther,0,abef,"The user grabs the target, slamming both of them into the ground. The user takes 20% recoil.",SUBMISSION
-982,BEDFELLOWS,Bedfellows,564,0,NORMAL,Status,0,5,0,NearFoe,0,bce,"The user and the target both fall sleep, fully restoring their HP and healing any status conditions.",REST
+982,BEDFELLOWS,Bedfellows,564,0,NORMAL,Status,0,5,0,NearFoe,0,bce,"The user and the target both fall asleep, fully restoring their HP and healing any status conditions.",REST
 983,LOUNGE,Lounge,565,0,NORMAL,Status,0,5,0,User,-1,d,"The user lounges around with decadent laziness, restoring its HP by 66%. This move always goes last.",SLACKOFF
 984,THUNDERCLAP,Thunderclap,00F,80,ELECTRIC,Physical,100,15,40,NearOther,0,abe,"The user jabs the target with electric charges. It has a 40% chance to make the target flinch.",SPARK
 985,SINISTERSPINES,Sinister Spines,116,70,GRASS,Physical,100,5,0,NearOther,1,abef,"This move enables the user to attack first. It fails if the target is not readying an attack, however.",SPIKECANNON
@@ -1087,4 +1087,4 @@
 1140,KINETICGRIP,Kinetic Grip,0CF,75,PSYCHIC,Physical,100,15,0,NearOther,0,bef,"The user conjures a giant fist to crush the target, trapping and damaging it for three turns.",CRUSHGRIP
 1141,LIFTOFF,Liftoff,5C5,160,FIRE,Physical,100,10,0,Other,0,abef,"The user launches up high, then explodes down on the second turn, taking 33% recoil.",FLY
 1142,ICYINJECTION,Ice Injection,5C6,90,ICE,Physical,100,12,100,NearOther,0,bef,"Injects supercold liquid into the target, damaging them and halving all future healing.",
-1143,DIVINATION,Divination,5C7,0,DARK,Status,0,5,0,User,0,d,"The user restores 1/3 of their HP and raises their Defense, Sp. Defense, and critical hit chance.",COSMICPOWER
+1143,DIVINATION,Divination,5C7,0,DARK,Status,0,5,0,User,0,d,"The user restores 1/3 of their HP and raises their Defense, Sp. Def, and critical hit chance.",COSMICPOWER
