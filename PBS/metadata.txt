@@ -813,7 +813,7 @@ Environment = None
 TeleportBlocked = true
 #-------------------------------
 [135]
-# Ancient Meteorite
+# Nebula Ruins
 Outdoor = false
 ShowArea = true
 Bicycle = true
@@ -1744,6 +1744,7 @@ Bicycle = false
 Outdoor = false
 ShowArea = true
 Bicycle = true
+MapPosition = 0,16,8
 BattleBack = cave3
 #-------------------------------
 [327]

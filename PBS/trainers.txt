@@ -1493,12 +1493,12 @@ Pokemon = AEXEGGUTOR,37
 [BIKER2,Chuck]
 Pokemon = MUK,37
     AbilityIndex = 0 # Corrosion
-Pokemon = MAGMAR,37
+Pokemon = MAGMORTAR,37
     AbilityIndex = 0 # Burn Skill
     Item = FIREGEM
-Pokemon = NUZLEAF,37
-    AbilityIndex = 0 # Cloud Nine
-Pokemon = PORYGON2,38
+Pokemon = SHIFTRY,37
+    AbilityIndex = 0 # Delta Stream
+Pokemon = PORYGONZ,38
     AbilityIndex = 0 # Realist
     Item = SITRUSBERRY
 #-------------------------------
