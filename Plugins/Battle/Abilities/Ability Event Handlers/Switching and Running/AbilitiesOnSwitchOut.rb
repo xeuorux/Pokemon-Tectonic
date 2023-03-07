@@ -47,3 +47,10 @@ BattleHandlers::AbilityOnSwitchOut.add(:INFINITESOURCE,
       battler.position.applyEffect(:InfiniteSource, battler.pokemonIndex)
   }
 )
+
+BattleHandlers::AbilityOnSwitchOut.add(:MOTHBURGLAR,
+  proc { |_ability, battler, endOfBattle|
+      next if endOfBattle
+      battler.battle.forceUseMove(battler, :THIEF, -1, true, nil, nil, true)
+  }
+)

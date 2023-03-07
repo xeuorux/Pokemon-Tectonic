@@ -602,6 +602,7 @@
 600,GRASSYSPIRIT,Grassy Spirit,"Powers up itself and ally Pokémon's Grass-type moves by 50%."
 601,WONDROUSAURA,Wondrous Aura,"Upon entry, creates a Wonder Room for 5 turns, swapping base Def. and Sp. Def."
 602,ABOVEITALL,Above It All,"When hit by a move, uses Parting Shot to switch out."
+603,MOTHBURGLAR,Moth Burglar,"Hits opponent with Thief when withdrawn from battle."
 1000,JUSTIFIED,Justified,"Raises Attack when hit by a Dark-type move."
 1001,ADAPTABILITY,Adaptability,"Powers up moves of the same type."
 1002,HUGEPOWER,Huge Power,"Raises the Pokémon's Attack stat."
