@@ -1487,3 +1487,34 @@ class PokeBattle_Move_5C6 < PokeBattle_Move
         return 0
     end
 end
+
+#===============================================================================
+# Heals user by 1/3, raises Defense, Sp. Defense, Crit Chance. (Divination)
+#===============================================================================
+class PokeBattle_Move_5C7 < PokeBattle_HealingMove
+    def healRatio(_user)
+        return 1.0 / 3.0
+    end
+
+    def pbMoveFailed?(user, _targets, show_message)
+        if user.effectAtMax?(:FocusEnergy) 
+            return super
+        end
+        return false
+    end
+
+    def pbEffectGeneral(user)
+        super
+        user.pbRaiseMultipleStatStages([:DEFENSE, 1, :SPECIAL_DEFENSE, 1], user, move: self)
+        unless user.effectAtMax?(:FocusEnergy)
+			user.incrementEffect(:FocusEnergy, 1)
+			@battle.pbDisplay(_INTL("{1} is getting pumped!", user.pbThis))
+		end
+    end
+
+    def getEffectScore(user, target)
+        score = super
+        score += getMultiStatUpEffectScore([:DEFENSE, 1, :SPECIAL_DEFENSE, 1], user, target) * 0.5
+        return score
+    end
+end
