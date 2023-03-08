@@ -19,7 +19,7 @@ class Game_Map
 			# Ignore bridge tiles if not on a bridge
 			next if terrain.bridge && $PokemonGlobal.bridge == 0
 			# Make water tiles passable if player is surfing or has the surfboard
-			return true if terrain.can_surf && !terrain.waterfall && ($PokemonGlobal.surfing || $PokemonBag.pbHasItem?(:SURFBOARD))
+			return true if terrain.can_surf && !terrain.waterfall && ($PokemonGlobal.surfing || playerCanSurf?)
 			return true if terrain.rock_climbable && $PokemonBag.pbHasItem?(:CLIMBINGGEAR)
 			# Prevent cycling in really tall grass/on ice
 			return false if $PokemonGlobal.bicycle && terrain.must_walk
@@ -36,6 +36,14 @@ class Game_Map
 		end
 		return true
 	  end
+end
+
+def playerCanSurf?
+	if hasDragonFlame?
+		pbMessage(_INTL("Your flame would go out if you surfed now!"))
+		return false
+	end
+	return $PokemonBag.pbHasItem?(:SURFBOARD)
 end
 
 
