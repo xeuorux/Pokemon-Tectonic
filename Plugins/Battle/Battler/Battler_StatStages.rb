@@ -245,8 +245,7 @@ true)
 
     def pbLowerStatStage(stat, increment, user = nil, showAnim = true, ignoreContrary = false, ignoreMirrorArmor = false)
         # Mirror Armor, only if not self inflicted
-        mirrored = hasActiveAbility?(:MIRRORARMOR) || (hasActiveAbility?(:MOONMIRROR) && @battle.pbWeather == :Moonglow)
-        if !ignoreMirrorArmor && mirrored && (!user || user.index != @index) &&
+        if !ignoreMirrorArmor && hasActiveAbility?(:MIRRORARMOR) && (!user || user.index != @index) &&
            !@battle.moldBreaker && pbCanLowerStatStage?(stat)
             battle.pbShowAbilitySplash(self)
             @battle.pbDisplay(_INTL("{1}'s Mirror Armor activated!", pbThis))
@@ -254,8 +253,8 @@ true)
                 battle.pbHideAbilitySplash(self)
                 return false
             end
-            if !mirrored && user.pbCanLowerStatStage?(stat, nil, nil, true)
-                user.pbLowerStatStageByAbility(stat, increment, user, splashAnim = false)
+            if user.pbCanLowerStatStage?(stat, nil, nil, true)
+                user.pbLowerStatStageByAbility(stat, increment, user, false)
                 # Trigger user's abilities upon stat loss
                 BattleHandlers.triggerAbilityOnStatLoss(user.ability, user, stat, self) if user.abilityActive?
             end
@@ -291,17 +290,16 @@ true)
 
     def pbLowerStatStageByCause(stat, increment, user, cause, showAnim = true, ignoreContrary = false, ignoreMirrorArmor = false)
         # Mirror Armor
-        mirrored = hasActiveAbility?(:MIRRORARMOR) || (hasActiveAbility?(:MOONMIRROR) && @battle.pbWeather == :Moonglow)
-        if !ignoreMirrorArmor && mirrored && (!user || user.index != @index) &&
-           !@battle.moldBreaker && pbCanLowerStatStage?(stat)
+        if !ignoreMirrorArmor && hasActiveAbility?(:MIRRORARMOR) && (!user || user.index != @index) &&
+                !@battle.moldBreaker && pbCanLowerStatStage?(stat)
             battle.pbShowAbilitySplash(self)
             @battle.pbDisplay(_INTL("{1}'s Mirror Armor activated!", pbThis))
             unless user
                 battle.pbHideAbilitySplash(self)
                 return false
             end
-            if !mirrored && user.pbCanLowerStatStage?(stat, nil, nil, true)
-                user.pbLowerStatStageByAbility(stat, increment, user, splashAnim = false)
+            if user.pbCanLowerStatStage?(stat, nil, nil, true)
+                user.pbLowerStatStageByAbility(stat, increment, user, false)
                 # Trigger user's abilities upon stat loss
                 BattleHandlers.triggerAbilityOnStatLoss(user.ability, user, stat, self) if user.abilityActive?
             end
