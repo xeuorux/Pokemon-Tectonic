@@ -370,7 +370,7 @@
 368,NERVENUMBER,Nerve Number,"Special moves have a 30% chance to numb targets."
 369,VENGEANCE,Vengeance,"Deals 1/4 of the attacker's HP if a hit makes the Pokémon's HP half or less."
 370,IRONSTORM,Iron Storm,"While on the field, double the damage and Sp. Def increase from Sandstorm."
-371,BITTERCOLD,Bitter Cold,"While on the field, double the damage and Defense increase from Hail."
+371,BITTERCOLD,Bitter Cold,"While on the field, double the damage and Defense increase from Hail from 1.5x to 2.0x."
 372,EPICHERO,Epic Hero,"Draws in moves from foes with base power 100 or more."
 373,ENVY,Envy,"The Pokémon's moves have priority against single targets with increased stats."
 374,SNAKEPIT,Snake Pit,"Grassy Terrain harms opponents rather than healing them."
