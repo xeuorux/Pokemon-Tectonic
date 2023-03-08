@@ -19,6 +19,8 @@ class PokeBattle_Move_580 < PokeBattle_Move
                     target.applyFrostbite(user)
                 when :DIZZY
                     target.applyDizzy(user)
+                when :LEECHED
+                    target.applyLeeched(user)
                 end
             else
                 statusData = GameData::Status.get(status)
