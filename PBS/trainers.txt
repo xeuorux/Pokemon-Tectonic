@@ -5354,3 +5354,27 @@ Pokemon = WATCHOG,58
 Pokemon = SYLVEON,59
     AbilityIndex = 1 # Dragon Slayer
     Item = STRIKEVEST
+#-------------------------------
+[BIKER,Knoxx]
+Pokemon = SCRAFTY,55
+    AbilityIndex = 0 # Shed Skin
+Pokemon = MEOWSTIC,56
+    AbilityIndex = 0 # Prankster
+    Item = FOCUSSASH
+Pokemon = TITANIX,57
+    AbilityIndex = 1 # Schadenfreude
+    Item = LEFTOVERS
+Pokemon = MANERGETIC,57
+    AbilityIndex = 1 # Fascinate
+#-------------------------------
+[GUITARIST3,Athena]
+Pokemon = MSEVIPER,58
+    AbilityIndex = 1 # Envy
+Pokemon = SAURENAID,58
+    AbilityIndex = 0 # Frost Song
+Pokemon = KRICKETUNE,60
+    AbilityIndex = 1 # Maestro
+    Item = THROATSPRAY
+Pokemon = NIDOKING,59
+    AbilityIndex = 0 # Sheer Force
+    Item = MUSCLEBAND
