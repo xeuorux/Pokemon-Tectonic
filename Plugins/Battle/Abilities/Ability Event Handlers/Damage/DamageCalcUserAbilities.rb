@@ -27,7 +27,7 @@ BattleHandlers::DamageCalcUserAbility.add(:BLADETRAINED,
 )
 
 BattleHandlers::DamageCalcUserAbility.add(:NORMALIZE,
-  proc { |_ability, _user, _target, _move, mults, _baseDmg, type, aiCheck|
+  proc { |_ability, _user, _target, move, mults, _baseDmg, type, aiCheck|
       if aiCheck
           mults[:base_damage_multiplier] *= 1.4 if type != :NORMAL
       elsif move.powerBoost

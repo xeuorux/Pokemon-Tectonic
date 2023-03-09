@@ -7,9 +7,9 @@ BattleHandlers::TotalEclipseAbility.add(:TOTALGRASP,
 
 BattleHandlers::TotalEclipseAbility.add(:TOLLDANGER,
     proc { |_ability, battler, battle|
-        battler.pbShowAbilitySplash(battler)
+        battle.pbShowAbilitySplash(battler)
         battler.applyFractionalHealing(1.0/2.0)
         battle.forceUseMove(battler, :HEALBELL)
-        battler.pbHideAbilitySplash(battler)
+        battle.pbHideAbilitySplash(battler)
     }
 )
