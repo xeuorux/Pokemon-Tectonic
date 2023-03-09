@@ -2762,7 +2762,7 @@ Pokemon = FLORGES,53
 Pokemon = DRAGONITE,54
     AbilityIndex = 1 # Multiscale
 Pokemon = GIGANTEON,55
-    AbilityIndex = 1 # FRIENDTOALL
+    AbilityIndex = 1 # Friend to All
     Item = NORMALGEM
 Pokemon = SOLROCK,55
     AbilityIndex = 0 # Levitate
@@ -3921,7 +3921,7 @@ Pokemon = SWAMPERT,70
     EV = 20,20,0,10,20,0
 Pokemon = THIEVUL,70
     Moves = RAIN,FLATTER,SLACKOFF,YAWN
-    AbilityIndex = 0 # Moonlighter
+    AbilityIndex = 1 # Sentry
     Item = LEFTOVERS
     EV = 20,0,15,0,0,15
 Pokemon = GYARADOS,70
@@ -5176,7 +5176,7 @@ Pokemon = MANERGETIC,70
     Item = ICEGEM
 Pokemon = GIGANTEON,70
     Moves = DOUBLEEDGE,HEALBELL,YAWN,SHADOWBALL
-    AbilityIndex = 1 # FRIENDTOALL
+    AbilityIndex = 1 # Friend to All
 Pokemon = OCTILLERY,70
     Moves = TARVOLLEY,BUBBLEBLAST,THRIVINGFORCE,CHARGEBEAM
     AbilityIndex = 0 # Armor Piercing
@@ -5328,3 +5328,29 @@ Pokemon = CHANDELURE,55
 Pokemon = RIOJIN,54
     AbilityIndex = 0 # Honor Aura
     Item = PAYAPABERRY
+#-------------------------------
+[RICHBOY3,Ryan]
+Pokemon = ELDEGOSS,56
+    AbilityIndex = 1 # On the Wind
+    Item = EJECTBUTTON
+Pokemon = ZEBSTRIKA,56
+    AbilityIndex = 1 # Reckless
+    Item = SHELLBELL
+Pokemon = HZOROARK,57
+    AbilityIndex = 1 # Sealing Body
+Pokemon = SALAZZLE,58
+    AbilityIndex = 1 # Multiscale
+#-------------------------------
+[CAMERAMAN2,Octavio]
+Pokemon = SKARMORY,57
+    AbilityIndex = 0 # Mental Block
+Pokemon = CRABOMINABLE,58
+    AbilityIndex = 0 # Sturdy
+    Item = ORANBERRY
+#-------------------------------
+[IDOL,Teagan]
+Pokemon = WATCHOG,58
+    AbilityIndex = 1 # Paranoid
+Pokemon = SYLVEON,59
+    AbilityIndex = 1 # Dragon Slayer
+    Item = STRIKEVEST
