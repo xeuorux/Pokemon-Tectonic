@@ -2872,8 +2872,10 @@ class PokeBattle_Move_17C < PokeBattle_Move_0BD
     def pbModifyTargets(targets, user)
         return if targets.length != 1
         choices = []
-        targets[0].allAllies.each { |b| user.pbAddTarget(choices, user, b, self) }
-        return if choices.length == 0
+        targets[0].eachAlly do |b|
+            user.pbAddTarget(choices, user, b, self)
+        end
+        return if choices.empty?
         idxChoice = (choices.length > 1) ? @battle.pbRandom(choices.length) : 0
         user.pbAddTarget(targets, user, choices[idxChoice], self, !pbTarget(user).can_choose_distant_target?)
     end
@@ -2900,7 +2902,7 @@ class PokeBattle_Move_17C < PokeBattle_Move_0BD
                 indexThisHit = 1
             end
         end
-        return [valid_targets[1]] if indexThisHit = 1 && valid_targets[1]
+        return [valid_targets[1]] if indexThisHit == 1 && valid_targets[1]
         return [valid_targets[0]]
     end
 end
