@@ -59,8 +59,7 @@ def giveDragonFlame(triggerEventID = -1, otherCandles = [])
         fadeOutDarknessBlock(triggerEventID, false) if otherFlamesMatch
 
         if candlePuzzlesCompleted?($game_map.map_id)
-            pbSEPlay("Anim/PRSFX- DiamondStorm6", 100, 75)
-            pbWait(20)
+            lockInCatacombs
         end
     end
 end
@@ -128,6 +127,33 @@ def resetCatacombs(mapID = -1)
         end
     end
     echoln("Reset map #{mapID}'s #{count} dragon flame puzzle events")
+end
+
+def disableCatacombs(mapID = -1)
+    mapID = $game_map.map_id if mapID == -1
+    map = $MapFactory.getMapNoAdd(mapID)
+    count = 0
+    map.events.each_value do |event|
+        eventName = event.name.downcase
+        if eventName.include?("darkblock") || eventName.include?("dragoncandlelit")
+            pbSetSelfSwitch(event.id,"A",true,mapID)
+            count += 1
+        elsif eventName.include?("dragoncandleunlit")
+            pbSetSelfSwitch(event.id,"A",false,mapID)
+            count += 1
+        end
+    end
+    echoln("Disabled map #{mapID}'s #{count} dragon flame puzzle events")
+end
+
+def lockInCatacombs
+    pbWait(20)
+    pbSEPlay("Anim/PRSFX- Hypnosis", 120, 80)
+    $game_screen.start_shake(5, 5, 2 * Graphics.frame_rate)
+    pbWait(2 * Graphics.frame_rate)
+    pbSEPlay("Anim/PRSFX- DiamondStorm6", 150, 80)
+    disableCatacombs
+    pbWait(20)
 end
 
 def hasDragonFlame?
