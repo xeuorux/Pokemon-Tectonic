@@ -5378,3 +5378,15 @@ Pokemon = KRICKETUNE,60
 Pokemon = NIDOKING,59
     AbilityIndex = 0 # Sheer Force
     Item = MUSCLEBAND
+#-------------------------------
+[DELINQUENT,Jeralyn]
+Pokemon = DITTO,60
+    AbilityIndex = 0 # Imposter
+    Item = SEVENLEAGUEBOOTS
+Pokemon = ELECTRODE,61
+    AbilityIndex = 0 # Bunker Down
+Pokemon = GRIMMSNARL,62
+    AbilityIndex = 1 # Ruinous
+Pokemon = GREEDENT,62
+    AbilityIndex = 0 # Cheek Pouch
+    Item = ORANBERRY

@@ -229,6 +229,7 @@
 226,RICHBOY3,Rich Boy,160,,,YOUNGSTER2,Male,,,[]
 227,RICHBOY4,Rich Boy,160,,,YOUNGSTER2,Male,,,[]
 228,CAMERAMAN2,Cameraman,32,,,ELITETRAINER,Male,,,[]
+229,DELINQUENT,Delinquent,32,,,GAMBLER,Male,,,[]
 290,TRAINER_Eifion,Pokémon Trainer,100,,,,Male,,,[]
 291,TRAINER_Sang,Pokémon Trainer,100,,,,Male,,,[]
 292,TRAINER_Skyler,Pokémon Trainer,100,,,,Male,,,[]
