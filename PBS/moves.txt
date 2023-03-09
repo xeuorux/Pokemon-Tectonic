@@ -896,7 +896,7 @@
 947,REMOVALBEAM,Removal Beam,007,85,NORMAL,Special,100,12,30,Other,0,befm,"The target is struck by a beam of negative energy. It has a 30% chance to numb.",WEATHERBALL
 948,SLAY,Slay,54F,90,STEEL,Physical,100,12,0,NearOther,0,abefhp,"The user slashes at the target with a steel blade. Super effective versus Dragon-types.",SACREDSWORD
 949,CHIBLOCK,Chi Block,007,0,FIGHTING,Status,100,12,0,NearOther,0,abcef,"The user strikes the target's pressure points, numbing it.",
-950,STUNNINGCURL,Stunning Curl,550,0,BUG,Status,0,3,0,User,4,,"Halves attack damage taken this turn. Also numbs any attacker who attacks the user.",DEFENSECURL
+950,STUNNINGCURL,Stunning Curl,550,0,BUG,Status,0,3,0,User,4,,"Halves attack damage taken this turn. Numbs any attackers. Fails if used successively.",DEFENSECURL
 951,FLAMESPIKES,Flame Spikes,551,0,FIRE,Status,0,15,0,FoeSide,0,c,"The user lays burning spikes on the foe's side. One layer hurts switched in foes, two layers burns.",
 952,DROPKICK,Drop Kick,0FA,80,FIGHTING,Physical,0,20,100,NearFoe,0,abef,"The user drops onto the target with a kick, dealing 25% recoil to self.",JUMPKICK
 953,MULTISTRIKE,Multi-strike,0C0,14,NORMAL,Physical,100,30,0,NearOther,0,abefj,"The target is hit two to five times in a row.",
@@ -987,7 +987,7 @@
 1040,TRIPLETHREAT,Triple Threat,017,80,DRAGON,Special,100,10,60,NearOther,0,bef,"The user strikes with a simultaneous three-beam attack. It has a 20% chance each to numb, burn, or frostbite.",TRIATTACK
 1041,ERODINGFOAM,Eroding Foam,590,80,WATER,Special,100,20,100,NearOther,0,bef,"The user spews alkaline bubbles that melt the target, drastically lowering their Defense.",BUBBLEBEAM
 1042,COCODROP,Coco Drop,591,1,GRASS,Physical,100,12,0,NearOther,0,abef,"The user drops a head from high up. The taller the user compared to the target, the greater the damage.",
-1043,LIGHTNINGSPEAR,Lightning Spear,592,90,ELECTRIC,Special,100,12,0,NearOther,0,bef,"Shoots a damaging spear at enemies, or a sharply Speed-increasing electric charge at allies.",THUNDERBOLT
+1043,LIGHTNINGSPEAR,Lightning Spear,5C8,90,ELECTRIC,Special,100,12,0,NearOther,0,bef,"Shoots a damaging spear at enemies, or a sharply Speed-increasing electric charge at allies.",THUNDERBOLT
 1044,TARVOLLEY,Tar Volley,592,35,FIRE,Special,100,10,100,AllNearFoes,0,bef,"The user attacks twice with tar globs. If two targets, the hits spread. Reduces targets' Speed.",SMOKESCREEN
 1045,WAXINGWATER,Waxing Water,100,50,WATER,Special,0,10,0,NearFoe,0,bef,"Strikes the target with lunar tides, then summons rain for five turns.",SURF
 1046,HEATGYRE,Heat Gyre,0FF,50,FIRE,Physical,0,10,0,NearFoe,0,abef,"Spins into the target while emitting heat, then summons sunshine for five turns.",FLAMEWHEEL
@@ -1016,7 +1016,7 @@
 1069,RAZORPLUNGE,Razor Plunge,5A3,125,WATER,Physical,100,10,0,NearOther,0,abef,"The user plunges its sharp fangs deep into the target. This sharply lowers the user's Speed.",LIQUIDATION
 1070,VOLATILETOXIN,Volatile Toxin,5A4,75,POISON,Physical,100,12,0,NearOther,0,abef,"The user injects an unstable toxin into the target. The next Ground-type attack they take deals double damage.",POISONJAB
 1071,RIGHTEOUSKICK,Righteous Kick,54B,70,FIGHTING,Physical,100,20,100,NearOther,0,abef,"A kick that can also eliminate trapping and hazard moves. Also raises user's Speed.",
-1072,ROOTSHELTER,Root Shelter,5A5,0,GRASS,Status,0,3,0,User,4,,"Halves attack damage taken this turn. Also leeches any attacker who attacks the user.",VINEBIND
+1072,ROOTSHELTER,Root Shelter,5A5,0,GRASS,Status,0,3,0,User,4,,"Halves attack damage taken this turn. Leeches any attackers. Fails if used successively.",VINEBIND
 1073,DREAMFEAST,Dream Feast,0DE,60,PSYCHIC,Physical,100,12,0,NearOther,0,abef,"The user assaults its foe's dreams. It absorbs half the damage dealt, and doubles in power if the foe is asleep.",
 1074,CRUELKISS,Cruel Kiss,402,65,FAIRY,Special,100,10,100,NearOther,0,bce,"Leeches the target by kissing them with its thin mouth.",DRAININGKISS
 1075,TYRANTSFIT,Tyrant's Fit,5A6,120,DRAGON,Physical,100,10,0,RandomNearFoe,0,abef,"The user throws a royal fit for three turns. Raises Speed if a target is knocked out by this move.",OUTRAGE
@@ -1035,7 +1035,7 @@
 1088,LONGSHOT,Long Shot,57C,90,NORMAL,Physical,75,25,0,User,0,bef,"Inflicts physical or special damage based on the user's stats. However, its likely to miss.",
 1089,DRYHEAT,Dry Heat,57D,90,FIRE,Special,100,10,10,NearOther,0,bef,"The target is dried out and loses Water-type. Then, it bursts into flame from the heat.",
 1090,ICICLEARMOR,Icicle Armor,57E,0,ICE,Status,0,3,0,User,4,,"Protects the user from attacks. Also frostbites any attacker who physically attacks the user.",DEFENSECURL
-1091,VENOMGUARD,Venom Guard,57F,0,POISON,Status,0,3,0,User,4,,"Halves attack damage taken this turn. Also poisons any attacker who attacks the user.",DEFENSECURL
+1091,VENOMGUARD,Venom Guard,57F,0,POISON,Status,0,3,0,User,4,,"Halves attack damage taken this turn. Poisons any attackers. Fails if used successively.",DEFENSECURL
 1092,PRANK,Prank,560,0,NORMAL,Status,100,15,0,NearOther,0,bce,"The user pranks the target, surprising it and reducing its Sp. Atk and Sp. Def.",SCARYFACE
 1093,GREYMIST,Grey Mist,587,0,POISON,Status,0,10,0,User,0,,"A Grey Mist covers the battlefield. For 5 turns, stats are reset at the end of each turn.",MIST
 1094,PATIENTTRAINING,Patient Training,508,0,BUG,Status,0,12,0,User,0,d,"The user prepares its weapons, drastically raising Attack but drastically lowering Speed.",SWORDSDANCE
