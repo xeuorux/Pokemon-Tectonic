@@ -1,7 +1,7 @@
 # None!
 
 BattleHandlers::FullMoonAbility.add(:WEREWOLF,
-    proc { |_ability, battler, _battle|
+    proc { |_ability, battler, battle|
         next unless battler.species == :LYCANROC
         next unless battler.form == 0
         battle.pbShowAbilitySplash(battler)
