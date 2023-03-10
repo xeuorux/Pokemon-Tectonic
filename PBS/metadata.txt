@@ -1567,7 +1567,6 @@ ShowArea = true
 Bicycle = true
 MapPosition = 0,14,2
 BattleBack = distortion
-TeleportBlocked = true
 #-------------------------------
 [284]
 # Gamer's House
@@ -1870,7 +1869,6 @@ Outdoor = false
 ShowArea = true
 Bicycle = true
 BattleBack = distortion
-TeleportBlocked = true
 #-------------------------------
 [362]
 # The Catacombs B3
@@ -1878,4 +1876,3 @@ Outdoor = false
 ShowArea = true
 Bicycle = true
 BattleBack = distortion
-TeleportBlocked = true
