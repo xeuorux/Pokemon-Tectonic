@@ -5065,12 +5065,12 @@ Pokemon = LUXRAY,70
     Moves = PHOTONEDGE,SUCKERPUNCH,PSYCHICFANGS,SEVER
     AbilityIndex = 1 # Intimidate
     Item = STRIKEVEST
-Pokemon = KABUTOPS,70
+Pokemon = BASCULEGION,70
     Name = Brokenribs
     Gender = male
-    Moves = HYDROSCYTHE,SUBSTITUTE,STONEEDGE,LEECHLIFE
-    AbilityIndex = 0 # Super Luck
-    Item = WIDELENS
+    Moves = POLTERGEIST,CRASHDIVE,INFERNOCHARGE,LEAPOUT
+    AbilityIndex = 1 # Adapted
+    Item = SITRUSBERRY
 #-------------------------------
 [SHADOWMAVIS,Mavis,1]
 ExtendsVersion = 0
