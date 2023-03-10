@@ -50,7 +50,6 @@ Pokemon = SEEDOT,8
 #-------------------------------
 [LASS2,Sienna]
 Pokemon = PICHU,8
-    Moves = THUNDERSHOCK,GROWL,SHOUT
     AbilityIndex = 0 # Audacity
 Pokemon = PONYTA,8
     AbilityIndex = 0 # Sun Chaser
@@ -253,7 +252,7 @@ Pokemon = CARKOL,20
     Moves = FLAMECHARGE,HEADBANG,RAPIDSPIN,IGNITE
     AbilityIndex = 1 # Flame Body
 Pokemon = KOFFING,20
-    Moves = POISONGAS,BOREALWIND,SLUDGE,CLEARSMOG
+    Moves = POISONGAS,BOREALWIND,DAZZLE,CLEARSMOG
     AbilityIndex = 1 # Fumigate
 Pokemon = SLUGMA,20
     AbilityIndex = 1 # Flame Body
@@ -550,7 +549,7 @@ Pokemon = JIGGLYPUFF,20
     Item = LEFTOVERS
     EV = 0,10,20,0,10,20
 Pokemon = SKIPLOOM,20
-    Moves = POISONPOLLEN,SYNTHESIS,MAGICALLEAF,REFLECT
+    Moves = BOREALWIND,SYNTHESIS,AUTUMNBLAST,REFLECT
     AbilityIndex = 0 # Aerodynamic
     Item = LEFTOVERS
     EV = 20,20,0,10,20,0
@@ -717,7 +716,7 @@ Pokemon = SANDACONDA,25
     AbilityIndex = 1 # Disorienting
     Item = LEFTOVERS
 Pokemon = DARTRIX,25
-    Moves = SHADOWSNEAK,STITCHUP,RAZORLEAF,PLUCK
+    Moves = SHADOWSNEAK,MEANLOOK,RAZORLEAF,PLUCK
     AbilityIndex = 1 # Trapper
     Item = GHOSTGEM
 #-------------------------------
@@ -986,7 +985,7 @@ Pokemon = CHANSEY,27
     AbilityIndex = 0 # Serene Grace
 #-------------------------------
 [INFIELDER,Tajo]
-Pokemon = BISHARP,26
+Pokemon = PAWNIARD,26
     AbilityIndex = 1 # Sturdy
 Pokemon = CUTIEFLY,26
     AbilityIndex = 0 # Candy Veil
@@ -1970,15 +1969,15 @@ Extends = LEADER_Zoe,Zoé,0
 #-------------------------------
 [TRAINER_Zain,Zain]
 Policies = ZAIN
-Pokemon = LIEPARD,42
+Pokemon = LIEPARD,43
     Moves = STAREDOWN,SCAM,TAUNT,KNOCKOFF
     AbilityIndex = 0 # Dauntless
     Item = NORMALGEM
-Pokemon = HARIYAMA,42
+Pokemon = HARIYAMA,43
     Moves = BULKUP,BRICKBREAK,FAKEOUT,KNOCKOFF
     AbilityIndex = 1 # Burn Heal
     Item = FLAMEORB
-Pokemon = FROSMOTH,43
+Pokemon = FROSMOTH,44
     Moves = BLIZZARD,SILVERWIND,BUGBUZZ,DAZZLINGGLEAM
     AbilityIndex = 1 # Bitter
 Pokemon = DONPHAN,43
@@ -3086,7 +3085,7 @@ Pokemon = INCINEROAR,55
     Item = SITRUSBERRY
     EV = 20,20,5,0,20,5
 Pokemon = ARIADOS,55
-    Moves = STICKYWEB,TOXICTHREAD,SWAGGER,FELLSTINGER
+    Moves = STICKYWEB,TOXICTHREAD,FLATTER,FELLSTINGER
     AbilityIndex = 1 # Sentry
     Item = LEFTOVERS
     EV = 20,0,10,0,0,20
@@ -3356,7 +3355,7 @@ Pokemon = SKUNTANK,60
     Item = ENERGYLOCK
     EV = 0,20,0,20,20,10
 Pokemon = VAPOREON,60
-    Moves = FLIPTURN,ICEBEAM,SURF,WEATHERBURST
+    Moves = FLIPTURN,SCALD,SHADOWBALL,WEATHERBURST
     AbilityIndex = 1 # Aqua Sneak
     Item = UTILITYUMBRELLA
     EV = 10,20,20,0,20,0
@@ -3385,7 +3384,7 @@ Pokemon = KLAWSAR,58
 #-------------------------------
 [POKEMONTRAINER_Yezera,Yezera,8]
 Pokemon = REGIDRAGO,65
-    Moves = DRAGONENERGY,DRAGONBLOOD,HAMMERARM,CRUNCH
+    Moves = DRAGONENERGY,RECOVER,HAMMERARM,CRUNCH
     AbilityIndex = 1 # Dragon Scales
 Pokemon = REGIELEKI,65
     Moves = ELECTROWEB,ELECTROBALL,LIGHTSCREEN,REFLECT
@@ -4451,11 +4450,11 @@ Pokemon = MAMOSWINE,70
 [TRAINER_Sang,Sang,5]
 ExtendsVersion = 4
 Policies = CURSE_PERISH_SONGED
-Pokemon = EXPLOUD,47
+Pokemon = EXPLOUD,70
     Item = STRIKEVEST
-Pokemon = SEISMITOAD,47
+Pokemon = SEISMITOAD,70
     Item = LIFEORB
-Pokemon = MAMOSWINE,47
+Pokemon = MAMOSWINE,70
     Item = LEFTOVERS
 #-------------------------------
 [ANOTHERPOSSIBLEZAIN,Zain]
