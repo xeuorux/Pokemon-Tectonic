@@ -5390,3 +5390,15 @@ Pokemon = GRIMMSNARL,62
 Pokemon = GREEDENT,62
     AbilityIndex = 0 # Cheek Pouch
     Item = ORANBERRY
+#-------------------------------
+[CAMPER_M,Nick]
+Pokemon = ARATICATE,56
+    AbilityIndex = 1 # Gourmand
+Pokemon = REAVOR,57
+    AbilityIndex = 1 # Exo-Adaption
+    Item = ASSAULTVEST
+Pokemon = PTEROFLYTE,58
+    AbilityIndex = 0 # Rock Head
+Pokemon = FLORGES,57
+    AbilityIndex = 0 # Clover Song
+    Item = ORANBERRY
