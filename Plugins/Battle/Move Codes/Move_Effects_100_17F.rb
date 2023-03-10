@@ -620,7 +620,7 @@ class PokeBattle_Move_116 < PokeBattle_Move
 
     def pbFailsAgainstTargetAI?(user, target)
         if user.ownersPolicies.include?(:PREDICTS_PLAYER)
-            return !@battle.aiPredictsAttack?(user,target)
+            return !@battle.aiPredictsAttack?(user,target.index)
         else
             return true unless target.hasDamagingAttack?
             return true if hasBeenUsed?(user)
