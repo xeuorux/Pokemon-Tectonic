@@ -1522,3 +1522,12 @@ self) && !target.pbCanRaiseStatStage?(:SPECIAL_DEFENSE, user, self)
         end
     end
 end
+
+#===============================================================================
+# Big Hit. Sleep After. (Extreme Effort)
+#===============================================================================
+class PokeBattle_Move_5C9 < PokeBattle_Move
+    def pbEffectGeneral(user)
+	user.applyEffect(:ExtremeEffort, 2)
+    end
+end
