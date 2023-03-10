@@ -419,6 +419,14 @@ def getWeatherSettingEffectScore(weatherType, user, battle, duration = 4)
         weatherMatchesPolicy = true if user.ownersPolicies.include?(:HAIL_TEAM)
         hasSynergyAbility = true if user.hasActiveAbilityAI?(GameData::Ability::HAIL_ABILITIES)
         hasSynergisticType = true if user.pbHasTypeAI?(:ICE)
+    when :Moonglow
+        weatherMatchesPolicy = true if user.ownersPolicies.include?(:MOONGLOW_TEAM)
+        hasSynergyAbility = true if user.hasActiveAbilityAI?(GameData::Ability::MOONGLOW_ABILITIES)
+        hasSynergisticType = true if user.pbHasAttackingType?(:FAIRY)
+    when :Eclipse
+        weatherMatchesPolicy = true if user.ownersPolicies.include?(:ECLIPSE_TEAM)
+        hasSynergyAbility = true if user.hasActiveAbilityAI?(GameData::Ability::ECLIPSE_ABILITIES)
+        hasSynergisticType = true if user.pbHasAttackingType?(:PSYCHIC)
     end
     return 300 if weatherMatchesPolicy
 

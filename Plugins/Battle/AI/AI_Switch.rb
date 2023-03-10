@@ -284,6 +284,8 @@ class PokeBattle_AI
             settingRain = @battle.pbWeather != :Rain && policies.include?(:RAIN_TEAM)
             settingHail = @battle.pbWeather != :Hail && policies.include?(:HAIL_TEAM)
             settingSand = @battle.pbWeather != :Sandstorm && policies.include?(:SAND_TEAM)
+            settingEclipse = @battle.pbWeather != :Eclipse && policies.include?(:ECLIPSE_TEAM)
+            settingMoonglow = @battle.pbWeather != :Moonglow && policies.include?(:MOONGLOW_TEAM)
             alliesInReserve = battlerSlot.alliesInReserveCount
 
             case pkmn.ability
@@ -301,6 +303,10 @@ class PokeBattle_AI
                 switchScore += alliesInReserve if settingHail
             when :SANDSTREAM, :SANDBURST
                 switchScore += alliesInReserve if settingSand
+            when :MOONGAZE, :LUNARLOYALTY
+                switchScore += alliesInReserve if settingMoonglow
+            when :HARBINGER, :SUNEATER
+                switchScore += alliesInReserve if settingEclipse
             end
 
             # Only matters if the pokemon will live
