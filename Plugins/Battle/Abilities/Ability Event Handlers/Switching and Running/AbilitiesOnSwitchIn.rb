@@ -718,9 +718,8 @@ BattleHandlers::AbilityOnSwitchIn.add(:PEARLSEEKER,
       next unless battle.pbWeather == :Eclipse
       next if battler.item
       battle.pbShowAbilitySplash(battler)
-      itemData = GameData::Item(:PEARLOFFATE)
-      battle.pbDisplay(_INTL("{1} discovers the {2}!", battler.pbThis, itemData.name))
       battler.item = :PEARLOFFATE
+      battle.pbDisplay(_INTL("{1} discovers the {2}!", battler.pbThis, battler.itemName))
       battle.pbHideAbilitySplash(battler)
   }
 )

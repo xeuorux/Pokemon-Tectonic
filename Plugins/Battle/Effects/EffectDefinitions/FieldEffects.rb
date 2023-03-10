@@ -189,7 +189,7 @@ GameData::BattleEffect.register_effect(:Field, {
         battle.pbDisplay(_INTL("The grey mist dissipated."))
     end,
     :eor_proc => proc do |battle, value|
-        battle.battlers.each do |b|
+        battle.eachBattler do |b|
             next unless b.hasAlteredStatStages?
             b.pbResetStatStages
             battle.pbDisplay(_INTL("#{b.pbThis}'s stat changes were eliminated!"))

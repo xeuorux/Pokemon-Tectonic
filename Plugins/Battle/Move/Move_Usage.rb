@@ -476,8 +476,7 @@ showMessages)
             @battle.pbDisplay(_INTL("{1} blocked the hit with its item! It barely hung on!", target.pbThis))
             target.pbConsumeItem
         elsif target.damageState.endureBerry
-            itemName = GameData::Item.get(target.item).real_name
-            @battle.pbDisplay(_INTL("{1} hung on by consuming its {2}!", target.pbThis, itemName))
+            @battle.pbDisplay(_INTL("{1} hung on by consuming its {2}!", target.pbThis, target.itemName))
             target.pbConsumeItem
         end
     end
