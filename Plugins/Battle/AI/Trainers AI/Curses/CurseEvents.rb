@@ -41,30 +41,62 @@ class PokeBattle_Battle
     end
 
     def hideDataboxes
-        eachBattler do |b|
-            databox = scene.sprites["dataBox_#{b.index}"]
-            databox.visible = false
+        numFrames = (Graphics.frame_rate*0.4).floor
+        alphaDiff = (255.0/numFrames).ceil
+        for j in 0..numFrames
+            opacity = (numFrames - j) * alphaDiff
+            databoxes.each do |dataBox|
+                next if dataBox.disposed?
+                dataBox.opacity = opacity
+                dataBox.update
+            end
+            yield opacity if block_given?
+            Graphics.update
         end
     end
 
-    def showDataboxes
+    def returnDataboxes
+        numFrames = (Graphics.frame_rate*0.4).floor
+        alphaDiff = (255.0/numFrames).ceil
+        for j in 0..numFrames
+            opacity = j * alphaDiff
+            databoxes.each do |dataBox|
+                next if dataBox.disposed?
+                dataBox.opacity = opacity
+                dataBox.update
+            end
+            yield opacity if block_given?
+            Graphics.update
+        end
+    end
+
+    def databoxes
+        boxes = []
         eachBattler do |b|
             databox = scene.sprites["dataBox_#{b.index}"]
-            databox.visible = true
+            boxes.push(databox)
         end
+        return boxes
     end
 
     def amuletActivates(curseName, explanation = nil)
         echoln("Amulet actives!")
         pbDisplaySlower(_INTL("\\i[TAROTAMULET]The Tarot Amulet glows with power!"))
 
-        hideDataboxes
+        curseBG = scene.pbAddSprite("curseBG",0,0,"Graphics/Pictures/cursebg",@viewport)
+        curseBG.visible = true
+        curseBG.z = 100_000
+
+        hideDataboxes { |opacity|
+            curseBG.opacity = (255 - opacity) / 2
+        }
 
         # Show the curse name in a big bold way
         pbSEPlay("Anim/PRSFX- Spectral Thief2", 300, 20)
         pbSEPlay("Anim/PRSFX- Telekinesis", 100, 120)
 
         msgwindow = pbCreateMessageWindow
+        msgwindow.z = 100_001
         waitTime = 40
         waitTime /= 2 if fastTransitions?
         fontSize = 48
@@ -77,6 +109,9 @@ class PokeBattle_Battle
         pbDisposeMessageWindow(msgwindow)
         Input.update
 
-        showDataboxes
+        returnDataboxes { |opacity|
+            curseBG.opacity = (255 - opacity) / 2
+        }
+        curseBG.visible = false
     end
 end
