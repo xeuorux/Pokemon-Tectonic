@@ -1091,3 +1091,4 @@
 1144,WINTEROPS,Winter Ops,0C1,1,ICE,Physical,100,10,0,NearOther,0,befh,"The user hunts with its allies. The more party Pokémon, the more damage. Critical hits are more likely.",
 1145,PREYMARK,Prey Mark,402,60,BUG,Physical,100,15,100,NearOther,0,abef,"The user marks the target as eternal prey, leeching it.",
 1146,GRIMVISIONS,Grim Visions,043,90,DARK,Special,100,10,100,NearOther,0,bef,"The user attacks with dark illusions. This also lowers the target's Defense stat.",
+1147,SILKBLADE,Silk Blade,03C,120,BUG,Physical,100,5,0,NearOther,0,abefhp,"The user slashes using its woven silk, cutting the user's Defenses. Critical hits are more likely.",XSCISSOR
