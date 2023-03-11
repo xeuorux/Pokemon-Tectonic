@@ -346,6 +346,7 @@ def globalMessageReplacements(message)
 	  message.gsub!("Pokemon","Pokémon")
 	  message.gsub!("Pokedex","Pokédex")
     message.gsub!("Poke ball","Poké Ball")
+    message.gsub!("Poke Ball","Poké Ball")
     message.gsub!("Pokeball","Poké Ball")
     message.gsub!("PokEstate","PokÉstate")
 

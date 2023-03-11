@@ -1012,7 +1012,7 @@
 1065,SHEDCOAT,Shed Coat,5A2,0,ICE,Status,0,12,0,User,0,d,"The user sheds excess covering, sharply raising Speed, raising Sp. Atk, and lowering Sp. Def.",
 1066,FEATHERWARD,Feather Ward,5A1,0,STEEL,Status,0,15,0,FoeSide,0,c,"The user lays a trap of sharp feathers around the foe. It hurts foes that switch into battle.",FEATHERDANCE
 1067,HYPERJET,Hyper Jet,000,80,WATER,Physical,100,5,0,NearOther,2,abef,"The user swims at the target at blinding speed. This attack always goes before any other move.",AQUAJET
-1068,SANDASSAULT,Sand Assault,000,120,GROUND,Special,100,5,0,AllNearOthers,0,bef,"The whips up a flurry of dirt and sand, damaging everything around it.",SCORCHINGSANDS
+1068,SANDASSAULT,Sand Assault,000,120,GROUND,Special,100,5,0,AllNearOthers,0,bef,"The user whips up a flurry of dirt and sand, damaging everything around it.",SCORCHINGSANDS
 1069,RAZORPLUNGE,Razor Plunge,5A3,125,WATER,Physical,100,10,0,NearOther,0,abef,"The user plunges its sharp fangs deep into the target. This sharply lowers the user's Speed.",LIQUIDATION
 1070,VOLATILETOXIN,Volatile Toxin,5A4,75,POISON,Physical,100,12,0,NearOther,0,abef,"The user injects an unstable toxin into the target. The next Ground-type attack they take deals double damage.",POISONJAB
 1071,RIGHTEOUSKICK,Righteous Kick,54B,70,FIGHTING,Physical,100,20,100,NearOther,0,abef,"A kick that can also eliminate trapping and hazard moves. Also raises user's Speed.",
