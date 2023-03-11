@@ -743,6 +743,7 @@ GameData::BattleEffect.register_effect(:Battler, {
 GameData::BattleEffect.register_effect(:Battler, {
     :id => :Pursuit,
     :real_name => "Pursuit",
+    :resets_eor	=> true,
 })
 
 GameData::BattleEffect.register_effect(:Battler, {
