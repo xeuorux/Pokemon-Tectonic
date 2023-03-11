@@ -55,7 +55,7 @@ end
 
 def teamSnapshot(label=nil)
 	return if $PokemonSystem.party_snapshots == 1
-	pbMessage(_INTL("Taking team snapshot."))
+	pbMessage(_INTL("\\wmTaking team snapshot."))
 	PokemonPartyShowcase_Scene.new($Trainer.party,true,label)
 end
 
