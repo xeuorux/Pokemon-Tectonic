@@ -31965,7 +31965,6 @@ Color = Purple
 Shape = Head
 Kind = Bone Keeper
 Pokedex = Its custom is to mourn its lost companions. Mounds of dirt by the side of the road mark the graves of the Marowak
-WildItemUncommon = THICKCLUB
 BattlerPlayerX = 0
 BattlerPlayerY = 12
 BattlerEnemyX = 2
