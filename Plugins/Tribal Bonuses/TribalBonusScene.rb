@@ -170,7 +170,7 @@ class TribalBonusScene
                 dorefresh = true
             end
             returnIndex = @page + @offset
-        elsif Input.repeat?(Input::BACK)
+        elsif Input.trigger?(Input::BACK)
             returnIndex = -1
         else
             returnIndex = @page
