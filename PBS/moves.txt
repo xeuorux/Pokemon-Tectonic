@@ -626,7 +626,7 @@
 666,ROCKTHROW,Rock Throw,000,45,ROCK,Physical,100,12,0,NearOther,0,bef,"The user picks up and throws a small rock at the target to attack.",
 667,SMACKDOWN,Smack Down,11C,50,ROCK,Physical,100,12,0,NearOther,0,bef,"The user throws a stone or projectile to attack. A flying Pokémon will fall to the ground when hit.",
 668,ACCELEROCK,Accelerock,000,40,ROCK,Physical,100,15,0,NearOther,1,abef,"The user smashes into the target at high speed. This move always goes first.",
-669,ROCKROLL,Rock Roll,544,30,ROCK,Physical,100,30,0,NearOther,0,abef,"The user rolls into the target. Its power doubles if it hits in succession.",
+669,ROCKROLL,Rock Roll,544,30,ROCK,Physical,100,30,0,NearOther,0,abef,"The user rolls into the target. Its power doubles if it hits in succession.",ROLLOUT
 670,ROCKBLAST,Rock Blast,0C0,25,ROCK,Physical,100,10,0,NearOther,0,befn,"The user hurls hard rocks at the target. Two to five rocks are launched in quick succession.",
 671,ROCKPOLISH,Rock Polish,030,0,ROCK,Status,0,15,0,User,0,d,"The user polishes its body to reduce drag. It can sharply raise the Speed stat.",
 672,SANDSTORM,Sandstorm,101,0,ROCK,Status,0,10,0,BothSides,0,,"Summons sandstorm for eight turns. Damages non-Rock, non-Ground Pokemon every turn.",
