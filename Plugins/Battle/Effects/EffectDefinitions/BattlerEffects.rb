@@ -1534,6 +1534,18 @@ GameData::BattleEffect.register_effect(:Battler, {
     :real_name => "Swapping to Cushion",
 })
 
+GameData::BattleEffect.register_effect(:Battler, {
+    :id => :ExtremeEffort,
+    :real_name => "Exhaustion",
+    :type => :Integer,
+    :ticks_down => true,
+    :multi_turn_tracker => true,
+    :apply_proc => proc do |battle, battler, _value|
+        battle.pbDisplay(_INTL("{1} is exhausted. They must rest next turn.", battler.pbThis))
+        battler.currentMove = :REST 
+    end,
+})
+
 
 #######################################################
 # Protection effects
@@ -1665,3 +1677,4 @@ GameData::BattleEffect.register_effect(:Battler, {
 battler.pbThis(true)))
     end,
 })
+
