@@ -740,7 +740,7 @@ HPMult = 6.0
 #-------------------------------
 [STONJOURNER]
 Ability = POWERSPOT
-Moves1 = HELPINGHAND,ADAMANTINEPRESS,PRIMEVALEMBARGO
+Moves1 = PRANK,ADAMANTINEPRESS,PRIMEVALEMBARGO
 Moves2 = NIGHTCHILL,ROCKSLIDE
 HPMult = 6.0
 #-------------------------------
