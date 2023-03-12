@@ -60,10 +60,10 @@ class PokeBattle_Battler
 
     def resetStatusCount(statusOfConcern = nil)
         if statusOfConcern.nil?
-            @statusCount = 0
+            self.statusCount = 0
             @bossStatusCount = 0
         elsif @status == statusOfConcern
-            @statusCount = 0
+            self.statusCount = 0
         elsif @bossStatus == statusOfConcern
             @bossStatusCount = 0
         end
@@ -71,10 +71,10 @@ class PokeBattle_Battler
 
     def reduceStatusCount(statusOfConcern = nil)
         if statusOfConcern.nil?
-            @statusCount -= 1
+            self.statusCount -= 1
             @bossStatusCount -= 1
         elsif @status == statusOfConcern
-            @statusCount -= 1
+            self.statusCount -= 1
         elsif @bossStatus == statusOfConcern
             @bossStatusCount -= 1
         end
@@ -82,10 +82,10 @@ class PokeBattle_Battler
 
     def increaseStatusCount(statusOfConcern = nil)
         if statusOfConcern.nil?
-            @statusCount += 1
+            self.statusCount += 1
             @bossStatusCount += 1
         elsif @status == statusOfConcern
-            @statusCount += 1
+            self.statusCount += 1
         elsif @bossStatus == statusOfConcern
             @bossStatusCount += 1
         end
