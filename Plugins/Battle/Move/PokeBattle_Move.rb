@@ -144,6 +144,7 @@ class PokeBattle_Move
     def empoweredMove?;     return @flags[/y/]; end
   
     def nonLethal?(user,_target); return false; end   # For False Swipe
+    def switchOutMove?; return false; end
   
     def ignoresSubstitute?(user)   # user is the Pokémon using this move
       return true if soundMove?
