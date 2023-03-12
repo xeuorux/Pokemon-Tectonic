@@ -481,8 +481,8 @@ HPMult = 2.5
 #-------------------------------
 [ARBOK]
 Ability = CONSTRICTOR
-Moves1 = POISONFANG,FEINTATTACK,PRIMEVALSUNSHINE
-Moves2 = FIREFANG
+Moves1 = POISONFANG,CRUNCH,PRIMEVALSUNSHINE
+Moves2 = FIREFANG,ACIDBATH
 HPMult = 6.0
 #-------------------------------
 [MARACTUS]
