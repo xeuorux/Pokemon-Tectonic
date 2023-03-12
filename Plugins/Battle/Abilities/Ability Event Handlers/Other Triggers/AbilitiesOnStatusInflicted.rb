@@ -5,7 +5,7 @@ BattleHandlers::AbilityOnStatusInflicted.add(:SYNCHRONIZE,
         case status
         when :POISON
             battler.battle.pbShowAbilitySplash(battler)
-            user.applyPoison(battler, nil, (battler.getStatusCount(:POISON) > 0))
+            user.applyPoison(battler)
             battler.battle.pbHideAbilitySplash(battler)
         when :BURN
             battler.battle.pbShowAbilitySplash(battler)
