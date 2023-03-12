@@ -8846,7 +8846,7 @@ BaseEXP = 56
 EffortPoints = 1,0,0,0,0,0
 Rareness = 255
 Happiness = 70
-Abilities = SHEDSKIN
+Abilities = EXPERTISE,SHIELDDUST
 Moves = 1,SLURP,1,STRINGSHOT,3,POISONSTING,6,GUST,9,CLACKACLACK,12,PARAPOLLEN,15,BUGBITE,18,MORNINGSUN
 TutorMoves = ABSORB,BUGBITE,COLDFRONT,DEADEND,ELECTROWEB,HARDFEELINGS,MEGADRAIN,TERADRAIN,THRIVINGFORCE
 Compatibility = Bug
@@ -8867,7 +8867,7 @@ BattlerEnemyX = -2
 BattlerEnemyY = 20
 BattlerShadowX = 0
 BattlerShadowSize = 1
-Evolutions = SILCOON,Silcoon,18,CASCOON,Cascoon,18
+Evolutions = SILCOON,Ability0,18,CASCOON,Ability1,18
 #-------------------------------
 [266]
 Name = Silcoon
@@ -33494,7 +33494,7 @@ BaseEXP = 56
 EffortPoints = 1,0,0,0,0,0
 Rareness = 255
 Happiness = 70
-Abilities = SHIELDDUST
+Abilities = SUDDENCHILL,FLAMEBODY
 Moves = 1,SLURP,1,STRINGSHOT,4,COLDEMBRACE,4,FIERYTOUCH,8,HARDEN,12,CLACKACLACK,16,BUGBITE
 EggMoves = LUNGE,PINMISSILE,SKITTERSMACK,SMUSH,UTURN
 Compatibility = Bug
@@ -33515,7 +33515,7 @@ BattlerEnemyX = -2
 BattlerEnemyY = 20
 BattlerShadowX = 0
 BattlerShadowSize = 1
-Evolutions = MSILCOON,Silcoon,18,MCASCOON,Cascoon,18
+Evolutions = MSILCOON,Ability0,18,MCASCOON,Ability1,18
 #-------------------------------
 [2511]
 Name = M. Silcoon
