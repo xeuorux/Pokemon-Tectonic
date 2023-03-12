@@ -148,7 +148,7 @@
 154,FOCUSPUNCH,Focus Punch,115,150,FIGHTING,Physical,100,15,0,NearOther,-3,abfj,"The user focuses its mind before launching a punch. It will fail if the user is hit before it is used.",
 155,HIGHJUMPKICK,High Jump Kick,10B,130,FIGHTING,Physical,85,10,0,NearOther,0,abef,"The target is attacked with a knee kick from a jump. If it misses, the user is hurt instead.",
 156,CLOSECOMBAT,Close Combat,03C,120,FIGHTING,Physical,100,5,0,NearOther,0,abef,"The user fights the foe up close without guarding itself. This cuts the user's Defenses.",
-157,FOCUSBLAST,Focus Blast,046,120,FIGHTING,Special,75,5,10,NearOther,0,befn,"The user heightens its mental focus and unleashes its power. It has a 10% chance to Sp. Def.",
+157,FOCUSBLAST,Focus Blast,046,120,FIGHTING,Special,75,5,10,NearOther,0,befn,"The user heightens its mental focus and unleashes its power. It has a 10% chance to lower Sp. Def.",
 158,SUPERPOWER,Superpower,03B,120,FIGHTING,Physical,100,5,0,NearOther,0,abef,"The user attacks the target with great power. However, it also lowers the user's Attack and Defense.",
 159,CROSSCHOP,Cross Chop,000,90,FIGHTING,Physical,100,12,0,NearOther,0,abefh,"The user delivers a double chop with its forearms crossed. Critical hits land more easily.",
 160,DYNAMICPUNCH,Dynamic Punch,401,100,FIGHTING,Physical,50,5,100,NearOther,0,abefj,"The user punches the target with full, concentrated power. It dizzies the target if it hits.",
