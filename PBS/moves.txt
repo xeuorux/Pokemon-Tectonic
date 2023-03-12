@@ -1010,7 +1010,7 @@
 1063,FEVERISHGAS,Feverish Gas,5A0,100,FIRE,Special,100,10,0,NearOther,0,bef,"The user breathes a pheromonal nerve-chilling agent. This move is also Ice-type.",SMOG
 1064,SNOWSTORM,Snowstorm,102,50,ICE,Special,100,10,0,NearFoe,0,bef,"Hits the target with a frigid blast, then summons hail for five turns.",HAIL
 1065,SHEDCOAT,Shed Coat,5A2,0,ICE,Status,0,12,0,User,0,d,"The user sheds excess covering, sharply raising Speed, raising Sp. Atk, and lowering Sp. Def.",
-1066,FEATHERWARD,Feather Ward,5A1,0,STEEL,Status,0,15,0,FoeSide,0,c,"The user lays a trap of sharp feathers around the foe. It hurts foes that switch into battle.",FEATHERDANCE
+1066,FEATHERWARD,Feather Ward,5A1,0,STEEL,Status,0,15,0,FoeSide,0,c,"The user lays a trap of sharp feathers around the foe. It hurts foes that switch into battle.",
 1067,HYPERJET,Hyper Jet,000,80,WATER,Physical,100,5,0,NearOther,2,abef,"The user swims at the target at blinding speed. This attack always goes before any other move.",AQUAJET
 1068,SANDASSAULT,Sand Assault,000,120,GROUND,Special,100,5,0,AllNearOthers,0,bef,"The user whips up a flurry of dirt and sand, damaging everything around it.",SCORCHINGSANDS
 1069,RAZORPLUNGE,Razor Plunge,5A3,125,WATER,Physical,100,10,0,NearOther,0,abef,"The user plunges its sharp fangs deep into the target. This sharply lowers the user's Speed.",LIQUIDATION
