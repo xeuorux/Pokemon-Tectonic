@@ -184,7 +184,7 @@ GameData::Move.get(@effects[:GorillaTactics]).name)
     # to have been used (even if it then fails for whatever reason).
     #=============================================================================
     def pbTryUseMove(choice, move, specialUsage, skipAccuracyCheck)
-        return true if move.empoweredMove?
+        return true if move.empoweredMove? && move.statusMove?
         
         # Check whether it's possible for self to use the given move
         # NOTE: Encore has already changed the move being used, no need to have a

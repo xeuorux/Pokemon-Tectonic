@@ -54,7 +54,6 @@ class PokeBattle_AI
             if guaranteedChoices.length == 0
                 if empoweredDamagingChoices.length > 0
                     preferredChoice = empoweredDamagingChoices[0]
-                    user.primevalTimer = 0
                     PBDebug.log("[BOSS AI] #{user.pbThis} (#{user.index}) will use a primeval attacking move since there exists at least one, and the timer is high enough")
                 else
                     # Disallow targeted moves that would target a different category than the moves used before in the turn
@@ -159,7 +158,6 @@ class PokeBattle_AI
 
         if empoweredAttack || bossAI.moveIsDangerous?(move, user, targets, @battle)
             extraAggro = true
-            user.primevalTimer = 0
         end
 
         user.extraMovesPerTurn = 0 if empoweredAttack || bossAI.takesUpWholeTurn?(move, user, targets, @battle)

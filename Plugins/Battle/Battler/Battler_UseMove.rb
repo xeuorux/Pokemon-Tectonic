@@ -276,6 +276,7 @@ class PokeBattle_Battler
         @battle.lastMoveUsed = move.id # For Copycat
         @battle.lastMoveUser = @index # For "self KO" battle clause to avoid draws
         @battle.successStates[@index].useState = 1 # Battle Arena - assume failure
+        @primevalTimer = 0 if move.empoweredMove?
         # Find the default user (self or Snatcher) and target(s)
         user = pbFindUser(choice, move)
         user = pbChangeUser(choice, move, user)
