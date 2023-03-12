@@ -332,7 +332,7 @@
 331,TM43,TM43,TM43s,4,6000,"The user attacks with a swift chop. It can also break barriers, such as Light Screen and Reflect.",3,0,0,BRICKBREAK
 332,TM44,TM44,TM44s,4,100000,"If opposing Pokémon know any move also known by the user, they are prevented from using it.",3,0,0,IMPRISON
 333,TM45,TM45,TM45s,4,6000,"Diving on the first turn, the user floats up and attacks on the next turn.",3,0,0,DIVE
-334,TM46,TM46,TM46s,4,6000,"This attack move varies in power and type depending on the weather.",3,0,0,WEATHERBALL
+334,TM46,TM46,TM46s,4,6000,"This attack move varies in power and type depending on the weather.",3,0,0,WEATHERBURST
 335,TM47,TM47,TM47s,4,10000,"The user feigns crying to fluster the target, harshly lowering its Sp. Def stat.",3,0,0,FAKETEARS
 336,TM48,TM48,TM48s,4,6000,"Boulders are hurled at the target. It also lowers the target's Speed by preventing its movement.",3,0,0,STRAFE
 337,TM49,TM49,TM49s,4,6000,,3,0,0,SLICE
