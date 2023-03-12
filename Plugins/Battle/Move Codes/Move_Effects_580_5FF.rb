@@ -929,14 +929,14 @@ end
 #===============================================================================
 # Target is burned if in eclipse. (Calamitous Slash)
 #===============================================================================
-class PokeBattle_Move_5B2 < PokeBattle_FrostbiteMove
+class PokeBattle_Move_5B2 < PokeBattle_BurnMove
     def pbAdditionalEffect(user, target)
-        return unless @battle.pbWeather == :Moonglow
+        return unless @battle.pbWeather == :Eclipse
         super
     end
 
     def getEffectScore(user, target)
-        return 0 unless @battle.pbWeather == :Moonglow
+        return 0 unless @battle.pbWeather == :Eclipse
         super
     end
 end
