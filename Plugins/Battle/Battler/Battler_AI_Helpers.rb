@@ -181,6 +181,7 @@ class PokeBattle_Battler
 
     def ownersPolicies
         return [] if pbOwnedByPlayer?
+        return [] if @battle.wildBattle? && @battle.opposes?(@index)
         return @battle.pbGetOwnerFromBattlerIndex(@index).policies
     end
 
