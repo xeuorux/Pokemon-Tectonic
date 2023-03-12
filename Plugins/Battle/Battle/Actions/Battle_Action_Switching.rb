@@ -391,6 +391,27 @@ class PokeBattle_Battle
             position.battlerEntry(effect) if data.has_entry_proc?
         end
 
+        # Type applying spike hazards
+        battler.pbOwnSide.eachEffect(true) do |effect, _value, data|
+            next unless data.is_status_hazard?
+            hazardInfo = data.type_applying_hazard
+            status = hazardInfo[:status]
+
+            if hazardInfo[:absorb_proc].call(battler)
+                battler.pbOwnSide.disableEffect(effect)
+                pbDisplay(_INTL("{1} absorbed the {2}!", battler.pbThis, data.real_name))
+            elsif battler.pbCanInflictStatus?(status, nil, false) && !battler.ignoresHazards? && !battler.immuneToHazards?
+                if battler.pbOwnSide.countEffect(effect) >= 2
+                    battler.pbInflictStatus(status)
+                elsif battler.takesIndirectDamage?
+                    pbDisplay(_INTL("{1} was hurt by the thin layer of {2}!", battler.pbThis, data.real_name))
+                    if battler.applyFractionalDamage(1.0 / 16.0, true, false, true)
+                        return pbOnActiveOne(battler) # For replacement battler
+                    end
+                end
+            end
+        end
+
         unless battler.ignoresHazards?
             # Stealth Rock
             if battler.pbOwnSide.effectActive?(:StealthRock) && battler.takesIndirectDamage? && !battler.immuneToHazards? && GameData::Type.exists?(:ROCK)
@@ -429,27 +450,6 @@ class PokeBattle_Battle
                     battler.pbItemHPHealCheck
                     if battler.applyFractionalDamage(spikesHPRatio, true, false, true)
                         return pbOnActiveOne(battler) # For replacement battler
-                    end
-                end
-
-                # Type applying spike hazards
-                battler.pbOwnSide.eachEffect(true) do |effect, _value, data|
-                    next unless data.is_status_hazard?
-                    hazardInfo = data.type_applying_hazard
-                    status = hazardInfo[:status]
-
-                    if hazardInfo[:absorb_proc].call(battler)
-                        battler.pbOwnSide.disableEffect(effect)
-                        pbDisplay(_INTL("{1} absorbed the {2}!", battler.pbThis, data.real_name))
-                    elsif battler.pbCanInflictStatus?(status, nil, false)
-                        if battler.pbOwnSide.countEffect(effect) >= 2
-                            battler.pbInflictStatus(status)
-                        elsif battler.takesIndirectDamage?
-                            pbDisplay(_INTL("{1} was hurt by the thin layer of {2}!", battler.pbThis, data.real_name))
-                            if battler.applyFractionalDamage(1.0 / 16.0, true, false, true)
-                                return pbOnActiveOne(battler) # For replacement battler
-                            end
-                        end
                     end
                 end
 
