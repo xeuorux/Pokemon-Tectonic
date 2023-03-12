@@ -185,6 +185,7 @@ GameData::Move.get(@effects[:GorillaTactics]).name)
     #=============================================================================
     def pbTryUseMove(choice, move, specialUsage, skipAccuracyCheck)
         return true if move.empoweredMove?
+        
         # Check whether it's possible for self to use the given move
         # NOTE: Encore has already changed the move being used, no need to have a
         #       check for it here.
@@ -192,6 +193,7 @@ GameData::Move.get(@effects[:GorillaTactics]).name)
             @lastMoveFailed = true
             return false
         end
+
         # Check whether it's possible for self to do anything at all
         if effectActive?(:SkyDrop) # Intentionally no message here
             PBDebug.log("[Move failed] #{pbThis} can't use #{move.name} because of being Sky Dropped")
@@ -205,8 +207,10 @@ GameData::Move.get(@effects[:GorillaTactics]).name)
             @battle.pbDisplay(_INTL("{1} appears incapable of using its power!", pbThis))
             return false
         end
+
         # Skip checking all applied effects that could make self fail doing something
         return true if skipAccuracyCheck
+
         # Check status problems and continue their effects/cure them
         if pbHasStatus?(:SLEEP)
             reduceStatusCount(:SLEEP)
@@ -220,8 +224,10 @@ GameData::Move.get(@effects[:GorillaTactics]).name)
                 end
             end
         end
+
         # Obedience check
         return false unless pbObedienceCheck?(choice)
+
         # Truant
         if hasActiveAbility?(:TRUANT)
             if effectActive?(:Truant)
@@ -248,47 +254,6 @@ GameData::Move.get(@effects[:GorillaTactics]).name)
                 BattleHandlers.triggerAbilityOnFlinch(@ability, self, @battle) if abilityActive?
                 @lastMoveFailed = true
                 applyEffect(:FlinchedAlready)
-                return false
-            end
-        end
-        # Confusion
-        if effectActive?(:Confusion) && !user.tickDownAndProc(:Confusion)
-            @battle.pbCommonAnimation("Confusion", self)
-            @battle.pbDisplay(_INTL("{1} is confused!", pbThis))
-            threshold = 50 * @effects[:ConfusionChance]
-            if (@battle.pbRandom(100) < threshold) || debugControl
-                superEff = @battle.pbCheckOpposingAbility(:BRAINSCRAMBLE, @index)
-                pbConfusionDamage(_INTL("It hurt itself in its confusion!"), false, superEff)
-                applyEffect(:ConfusionChance, -999)
-                @lastMoveFailed = true
-                return false
-            else
-                incrementEffect(:ConfusionChance)
-            end
-        end
-        # Charm
-        if effectActive?(:Charm) && !user.tickDownAndProc(:Charm)
-            @battle.pbAnimation(:LUCKYCHANT, self, nil)
-            @battle.pbDisplay(_INTL("{1} is charmed!", pbThis))
-            threshold = 50 * @effects[:CharmChance]
-            if (@battle.pbRandom(100) < threshold) || debugControl
-                superEff = @battle.pbCheckOpposingAbility(:BRAINSCRAMBLE, @index)
-                pbConfusionDamage(_INTL("It's energy went wild due to the charm!"), true, superEff)
-                applyEffect(:CharmChance, -999)
-                @lastMoveFailed = true
-                return false
-            else
-                incrementEffect(:CharmChance)
-            end
-        end
-        # Infatuation
-        if effectActive?(:Attract)
-            @battle.pbCommonAnimation("Attract", self)
-            otherBattler = @battle.battlers[@effects[:Attract]]
-            @battle.pbDisplay(_INTL("{1} is in love with {2}!", pbThis, otherBattler.pbThis(true)))
-            if @battle.pbRandom(100) < 50
-                @battle.pbDisplay(_INTL("{1} is immobilized by love!", pbThis))
-                @lastMoveFailed = true
                 return false
             end
         end

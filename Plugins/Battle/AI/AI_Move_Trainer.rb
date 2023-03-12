@@ -249,9 +249,20 @@ class PokeBattle_AI
         # in the midst of performing the move (turnCount is incremented as the attack phase begins)
         user.turnCount += 1
 
+        # Move blocking abilities make the move fail here
+        @battle.pbPriority(true).each do |b|
+            next unless b
+            next unless b.abilityActive?
+            next unless b.aiKnowsAbility?
+            next unless BattleHandlers.triggerMoveBlockingAbility(b.ability, b, user, [target], move, @battle)
+            fails = true
+            echoln("#{user.pbThis} rejects #{move.id} -- thinks will be blocked by an ability.")
+            break
+        end
+
         if move.pbMoveFailedAI?(user, [target])
             fails = true
-            echoln("#{user.pbThis} rejects the move #{move.id} due to it being predicted to fail.")
+            echoln("#{user.pbThis} rejects #{move.id} -- thinks will fail.")
         end
 
         # Don't prefer moves that are ineffective because of abilities or effects
@@ -259,7 +270,7 @@ class PokeBattle_AI
         typeMod = pbCalcTypeModAI(type, user, target, move)
         unless user.pbSuccessCheckAgainstTarget(move, user, target, typeMod, false, true)
             fails = true
-            echoln("#{user.pbThis} rejects the move #{move.id} due to it being predicted to fail or be ineffective against target #{target.pbThis(false)}.")
+            echoln("#{user.pbThis} rejects #{move.id} -- thinks will fail against #{target.pbThis(false)}.")
         end
 
         user.turnCount -= 1

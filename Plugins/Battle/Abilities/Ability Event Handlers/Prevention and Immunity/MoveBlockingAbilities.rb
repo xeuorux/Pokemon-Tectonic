@@ -1,6 +1,6 @@
 BattleHandlers::MoveBlockingAbility.add(:DAZZLING,
-  proc { |_ability, bearer, user, targets, _move, battle|
-        priority = battle.choices[user.index][4] || nil
+  proc { |_ability, bearer, user, targets, move, battle|
+        priority = battle.choices[user.index][4] || move.priority || nil
         next false unless priority && priority > 0
         next false unless bearer.opposes?(user)
         ret = false
@@ -26,7 +26,7 @@ BattleHandlers::MoveBlockingAbility.add(:BADINFLUENCE,
     }
 )
 
-BattleHandlers::MoveBlockingAbility.add(:DESSICATE,
+BattleHandlers::MoveBlockingAbility.add(:DESICCATE,
     proc { |_ability, _bearer, _user, _targets, move, battle|
         next [:GRASS,:WATER].include?(move.calcType) && battle.pbWeather == :Sandstorm
     }

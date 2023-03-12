@@ -542,7 +542,7 @@
 540,MOONBUBBLE,Moon Bubble,"Doubles Defense in moonglow."
 541,ICEQUEEN,Ice Queen,"During hail, it restores its HP by half the damage it deals with attacks."
 542,EPHEMERATE,Ephemerate,"Eclipse counts down twice as quickly."
-543,DESSICATE,Dessicate,"Prevents Water- or Grass-type moves during sandstorm."
+543,DESICCATE,Desiccate,"Prevents Water- or Grass-type moves during sandstorm."
 544,HEAVENSCROWN,Heaven's Crown,"Moves twice during a Total Eclipse turn."
 545,NIGHTLINE,Night-line,"At the end of each turn in Moonglow, heals self and a random party member by 1/12th of its max HP."
 546,LUNARCLEANSING,Lunar Cleansing,"Prevents Bug- or Poison-type moves during moonglow."
