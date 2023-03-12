@@ -353,6 +353,7 @@ true)
         @battle.pbShowAbilitySplash(user) if splashAnim
         ret = pbLowerStatStage(stat, increment, user) if pbCanLowerStatStage?(stat, user, nil, true)
         @battle.pbHideAbilitySplash(user) if splashAnim
+        handleStatLossItem(nil, user) if ret
         return ret
     end
 
@@ -416,6 +417,18 @@ true)
             statName = GameData::Stat.get(stat).real_name
             @battle.pbDisplay(_INTL("{1} minimized its {2}!", pbThis, statName))
             @battle.pbHideAbilitySplash(user) if showAbilitySplash
+
+            # Trigger abilities upon stat loss
+            BattleHandlers.triggerAbilityOnStatLoss(ability, self, stat, user) if abilityActive?
+            handleStatLossItem(move, user)
+        end
+    end
+
+    def handleStatLossItem(move, user)
+        if move
+            applyEffect(:StatsDropped)
+        elsif itemActive?
+            BattleHandlers.triggerItemOnStatLoss(item, self, user, move, [], @battle)
         end
     end
 

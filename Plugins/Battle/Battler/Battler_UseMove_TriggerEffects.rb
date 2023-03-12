@@ -163,8 +163,7 @@ switchedBattlers)
             BattleHandlers.triggerTargetItemAfterMoveUse(b.item, b, user, move, switchByItem, @battle)
             # Eject Pack
             if b.effectActive?(:StatsDropped)
-                BattleHandlers.triggerItemOnStatLoss(b.item, b, user, move, switchByItem,
-@battle)
+                BattleHandlers.triggerItemOnStatLoss(b.item, b, user, move, switchByItem, @battle)
             end
         end
         @battle.moldBreaker = false if switchByItem.include?(user.index)
@@ -199,6 +198,16 @@ switchedBattlers)
         if !switchedBattlers.include?(user.index) && move.damagingMove?
             hpNow = user.hp if user.hp < hpNow   # In case HP was lost because of Life Orb
             if user.pbAbilitiesOnDamageTaken(user.initialHP, hpNow)
+                @battle.moldBreaker = false
+                user.pbEffectsOnSwitchIn(true)
+                switchedBattlers.push(user.index)
+            end
+        end
+        # User's item (Eject Pack)
+        if !switchedBattlers.include?(user.index) && effectActive?(:StatsDropped)
+            ejectPacked = []
+            BattleHandlers.triggerItemOnStatLoss(item, self, user, move, ejectPacked, @battle)
+            if ejectPacked.include?(user.index)
                 @battle.moldBreaker = false
                 user.pbEffectsOnSwitchIn(true)
                 switchedBattlers.push(user.index)
