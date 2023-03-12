@@ -13804,7 +13804,7 @@ BaseEXP = 45
 EffortPoints = 0,0,0,0,0,1
 Rareness = 120
 Happiness = 70
-Abilities = STOUT
+Abilities = FRUSTRATE,STOUT
 Moves = 1,PROTECT,1,TACKLE,10,BUGBITE,15,HIDDENPOWER,20,MINDWAVES
 TutorMoves = ABSORB,AMBUSH,BUGBITE,COLDFRONT,DEADEND,ELECTROWEB,HARDFEELINGS,MEGADRAIN,PROTECT,SPELLBIND,TERADRAIN,THRIVINGFORCE
 Compatibility = Bug
@@ -13823,7 +13823,7 @@ BattlerEnemyX = 0
 BattlerEnemyY = 24
 BattlerShadowX = 0
 BattlerShadowSize = 2
-Evolutions = WORMADAM,LevelFemale,28,MOTHIM,LevelMale,28
+Evolutions = WORMADAM,Ability1,28,MOTHIM,Ability0,28
 #-------------------------------
 [413]
 Name = Wormadam
