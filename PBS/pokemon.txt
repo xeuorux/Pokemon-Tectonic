@@ -25226,7 +25226,7 @@ BattlerEnemyX = -2
 BattlerEnemyY = 28
 BattlerShadowX = 0
 BattlerShadowSize = 1
-Evolutions = LURANTIS,Level,29
+Evolutions = LURANTIS,Level,37
 #-------------------------------
 [754]
 Name = Lurantis
