@@ -411,7 +411,7 @@ HPMult = 6.0
 #-------------------------------
 [BEARTIC]
 Ability = CHRONICCOLD
-Moves1 = COLDSNOT,VENOMDRENCH,PRIMEVALSPIKES
+Moves1 = ICEFANG,VENOMDRENCH,PRIMEVALSPIKES
 Moves2 = VENOMDRENCH,BULLDOZE
 HPMult = 6.0
 #-------------------------------
