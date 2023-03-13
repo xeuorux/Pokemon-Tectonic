@@ -2291,7 +2291,7 @@ class PokeBattle_Move_070 < PokeBattle_FixedDamageMove
             @battle.pbDisplay(_INTL("{1} is unaffected, since it's an Avatar!", target.pbThis)) if show_message
             return true
         end
-        if target.hasActiveAbility?(:STURDY) && !@battle.moldBreaker
+        if target.hasActiveAbility?([:STURDY,:DANGERSENSE]) && !@battle.moldBreaker
             if show_message
                 @battle.pbShowAbilitySplash(target)
                 @battle.pbDisplay(_INTL("But it failed to affect {1}!", target.pbThis(true)))
