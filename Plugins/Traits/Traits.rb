@@ -594,7 +594,8 @@ class Pokemon
 					"Nerds",
 					"Pop Music",
 					"Anime",
-					"Exams"
+					"Exams",
+					"Mondays"
 				]
 
 	def dislike
