@@ -20,6 +20,7 @@ class PokeBattle_DamageState
 	attr_accessor :focusBand       # Focus Band used
 	attr_accessor :focusSash       # Focus Sash used
 	attr_accessor :sturdy          # Sturdy ability used
+	attr_accessor :dangerSense     # Danger Sense ability used
 	attr_accessor :disguise        # Disguise ability used
 	attr_accessor :endured         # Damage was endured
 	attr_accessor :berryWeakened   # Whether a type-resisting berry was used
@@ -54,6 +55,7 @@ class PokeBattle_DamageState
 		@focusBand     		= false
 		@focusSash     		= false
 		@sturdy        		= false
+		@dangerSense		= false
 		@disguise      		= false
 		@endured       		= false
 		@berryWeakened 		= false
