@@ -59,8 +59,10 @@ class PokeBattle_Battler
 
     def pbRaiseStatStageBasic(stat, increment, ignoreContrary = false)
         unless @battle.moldBreaker
-            # Contrary
-            return pbLowerStatStageBasic(stat, increment, true) if hasActiveAbility?(:CONTRARY) && !ignoreContrary
+            if hasActiveAbility?(:CONTRARY) && !ignoreContrary
+                aiSeesAbility
+                return pbLowerStatStageBasic(stat, increment, true)
+            end
             # Simple
             increment *= 2 if hasActiveAbility?(:SIMPLE)
         end
@@ -95,6 +97,7 @@ class PokeBattle_Battler
     def pbRaiseStatStage(stat, increment, user = nil, showAnim = true, ignoreContrary = false)
         # Contrary
         if hasActiveAbility?(:CONTRARY) && !ignoreContrary && !@battle.moldBreaker
+            aiSeesAbility
             return pbLowerStatStage(stat, increment, user, showAnim, true)
         end
         # Perform the stat stage change
@@ -121,8 +124,8 @@ class PokeBattle_Battler
     def pbRaiseStatStageByCause(stat, increment, user, cause, showAnim = true, ignoreContrary = false)
         # Contrary
         if hasActiveAbility?(:CONTRARY) && !ignoreContrary && !@battle.moldBreaker
-            return pbLowerStatStageByCause(stat, increment, user, cause, showAnim,
-true)
+            aiSeesAbility
+            return pbLowerStatStageByCause(stat, increment, user, cause, showAnim, true)
         end
         # Perform the stat stage change
         increment = pbRaiseStatStageBasic(stat, increment, ignoreContrary)
@@ -227,8 +230,10 @@ true)
 
     def pbLowerStatStageBasic(stat, increment, ignoreContrary = false)
         unless @battle.moldBreaker
-            # Contrary
-            return pbRaiseStatStageBasic(stat, increment, true) if hasActiveAbility?(:CONTRARY) && !ignoreContrary
+            if hasActiveAbility?(:CONTRARY) && !ignoreContrary
+                aiSeesAbility
+                return pbRaiseStatStageBasic(stat, increment, true)
+            end
             # Simple
             increment *= 2 if hasActiveAbility?(:SIMPLE)
         end
@@ -263,8 +268,8 @@ true)
         end
         # Contrary
         if hasActiveAbility?(:CONTRARY) && !ignoreContrary && !@battle.moldBreaker
-            return pbRaiseStatStage(stat, increment, user, showAnim,
-true)
+            aiSeesAbility
+            return pbRaiseStatStage(stat, increment, user, showAnim, true)
         end
         # Stubborn
         return false if hasActiveAbility?(:STUBBORN) && !@battle.moldBreaker
@@ -308,8 +313,8 @@ true)
         end
         # Contrary
         if hasActiveAbility?(:CONTRARY) && !ignoreContrary && !@battle.moldBreaker
-            return pbRaiseStatStageByCause(stat, increment, user, cause, showAnim,
-true)
+            aiSeesAbility
+            return pbRaiseStatStageByCause(stat, increment, user, cause, showAnim, true)
         end
         # Stubborn
         return false if hasActiveAbility?(:STUBBORN) && !@battle.moldBreaker
@@ -358,6 +363,12 @@ true)
     end
 
     def blockAteAbilities(user)
+        return true if fainted?
+        # NOTE: Substitute intentially blocks Intimidate even if self has Contrary.
+        if substituted?
+            @battle.pbDisplay(_INTL("{1} is protected by its substitute!", pbThis))
+            return true
+        end
         if hasActiveAbility?(:INNERFOCUS)
             @battle.pbShowAbilitySplash(self, true)
             @battle.pbDisplay(_INTL("{1}'s {2} prevented {3}'s {4} from working!",
@@ -375,40 +386,23 @@ true)
     end
 
     def pbLowerAttackStatStageIntimidate(user)
-        return false if fainted?
-        # NOTE: Substitute intentially blocks Intimidate even if self has Contrary.
-        if substituted?
-            @battle.pbDisplay(_INTL("{1} is protected by its substitute!", pbThis))
-            return false
-        end
         return false if blockAteAbilities(user)
         return pbLowerStatStageByAbility(:ATTACK, 1, user, false)
     end
 
     def pbLowerSpecialAttackStatStageFascinate(user)
-        return false if fainted?
-        # NOTE: Substitute intentially blocks Intimidate even if self has Contrary.
-        if substituted?
-            @battle.pbDisplay(_INTL("{1} is protected by its substitute!", pbThis))
-            return false
-        end
         return false if blockAteAbilities(user)
         return pbLowerStatStageByAbility(:SPECIAL_ATTACK, 1, user, false)
     end
 
     def pbLowerSpeedStatStageFrustrate(user)
-        return false if fainted?
-        # NOTE: Substitute intentially blocks Intimidate even if self has Contrary.
-        if substituted?
-            @battle.pbDisplay(_INTL("{1} is protected by its substitute!", pbThis))
-            return false
-        end
         return false if blockAteAbilities(user)
         return pbLowerStatStageByAbility(:SPEED, 1, user, false)
     end
 
     def pbMinimizeStatStage(stat, user = nil, move = nil, ignoreContrary = false, showAbilitySplash = false)
         if hasActiveAbility?(:CONTRARY) && !ignoreContrary
+            aiSeesAbility
             pbMaximizeStatStage(stat, user, move, true, showAbilitySplash)
         elsif pbCanLowerStatStage?(stat, user, move, true, ignoreContrary)
             @battle.pbShowAbilitySplash(user) if showAbilitySplash
@@ -434,6 +428,7 @@ true)
 
     def pbMaximizeStatStage(stat, user = nil, move = nil, ignoreContrary = false, showAbilitySplash = false)
         if hasActiveAbility?(:CONTRARY) && !ignoreContrary
+            aiSeesAbility
             pbMinimizeStatStage(stat, user, move, true, showAbilitySplash)
         elsif pbCanRaiseStatStage?(stat, user, move, true, ignoreContrary)
             @battle.pbShowAbilitySplash(user) if showAbilitySplash

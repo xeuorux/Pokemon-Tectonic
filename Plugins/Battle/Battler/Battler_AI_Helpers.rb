@@ -1,4 +1,8 @@
 class PokeBattle_Battler
+    def aiSeesAbility
+        @battle.aiSeesAbility(self)
+    end
+
     def hasPhysicalAttack?
         eachMove do |m|
             next unless m.physicalMove?(m.type)
