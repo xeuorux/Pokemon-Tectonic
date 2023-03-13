@@ -747,7 +747,7 @@
 790,CHIBURST,Chi Burst,03F,130,FIGHTING,Special,100,5,0,NearOther,0,bef,"The user attacks with a burst of inner energy. This sharply reduces the user's Sp. Atk stat.",AURASPHERE
 791,TRAINEDOUTBURST,Trained Outburst,08E,1,FIGHTING,Special,100,10,0,NearOther,0,befk,"The user attacks with focus. The more the user's stats are raised, the greater the damage.",
 792,BEARHUG,Bear Hug,0CF,85,FIGHTING,Physical,100,12,0,NearOther,0,bef,"The user hugs the target intensely, trapping and damaging it for three turns.",
-793,INFERNOCHARGE,Inferno Charge,01F,90,FIRE,Physical,100,15,30,NearOther,0,abef,"The user cloaks itself in an inferno of flame and attacks. It has a 30% chance to raise Speed.",FLAMECHARGE
+793,INFERNOCHARGE,Inferno Charge,01F,90,FIRE,Physical,100,15,30,NearOther,0,abef,"The user cloaks itself in an inferno of flame and attacks. It has a 30% chance to raise Speed.",
 794,FLAREUP,Flare Up,50E,70,FIRE,Physical,100,10,0,NearOther,0,bef,"The user targets the opponents soft spots with a fiery strike. Its power doubles if the target is burned.",FIREPUNCH
 795,PERFUMEDPUNCH,Perfumed Punch,0A5,60,FAIRY,Physical,0,20,0,NearOther,0,aef,"The user throws a sweet-smelling punch. Can't miss and skips protections.",SPIRITBREAK
 796,INFINITEFORCE,Infinite Force,50F,130,FAIRY,Physical,100,10,0,NearOther,0,abef,"The user wields an exaggerated power to strike the target. Sharply reduces the user's Attack stat.",SPIRITBREAK
