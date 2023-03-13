@@ -575,9 +575,12 @@ def pbSelectSE(canvas,audio)
     Input.update
     cmdwin.update
     maxsizewindow.update
-    if maxsizewindow.changed?(3) && animfiles.length>0 # Play Sound
-      fname = (cmdwin.index==0) ? "Cries/001Cry" : "Anim/"+filename
-      pbSEPlay(RPG::AudioFile.new(fname,maxsizewindow.value(1),maxsizewindow.value(2)))
+    if maxsizewindow.changed?(3) && animfiles.length > 0 # Play Sound
+      if cmdwin.index == 0
+        pbSEPlay(RPG::AudioFile.new("Cries/001Cry",maxsizewindow.value(1),maxsizewindow.value(2)))
+      elsif !filename.blank?
+        pbSEPlay(RPG::AudioFile.new("Anim/" + filename,maxsizewindow.value(1),maxsizewindow.value(2)))
+      end
     end
     if maxsizewindow.changed?(4) && animfiles.length>0 # Stop Sound
       pbSEStop
