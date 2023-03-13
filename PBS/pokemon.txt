@@ -26107,7 +26107,6 @@ Color = Pink
 Shape = Head
 Kind = Gnash Teeth
 Pokedex = It burrows beneath the sand, radiating psychic power from the protuberance on its head. It waits for prey as it surveys the area.
-WildItemUncommon = RAZORFANG
 BattlerPlayerX = 0
 BattlerPlayerY = 28
 BattlerEnemyX = 0
