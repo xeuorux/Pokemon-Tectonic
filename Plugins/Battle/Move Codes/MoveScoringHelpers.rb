@@ -397,7 +397,7 @@ def getWeatherSettingEffectScore(weatherType, user, battle, duration = 4)
     return 0 if battle.primevalWeatherPresent? || battle.pbCheckGlobalAbility(:AIRLOCK) ||
                 battle.pbCheckGlobalAbility(:CLOUDNINE) || battle.pbWeather == @weatherType
 
-    score = 10 * user.getWeatherSettingDuration(weatherType, duration, true)
+    score = 5 * user.getWeatherSettingDuration(weatherType, duration, true)
 
     weatherMatchesPolicy = false
     hasSynergyAbility = false
@@ -428,7 +428,10 @@ def getWeatherSettingEffectScore(weatherType, user, battle, duration = 4)
         hasSynergyAbility = true if user.hasActiveAbilityAI?(GameData::Ability::ECLIPSE_ABILITIES)
         hasSynergisticType = true if user.pbHasAttackingType?(:PSYCHIC)
     end
-    return 300 if weatherMatchesPolicy
+    
+    score *= 2 if weatherMatchesPolicy
+
+    hasSynergyAbility = true if user.hasActiveAbilityAI?(GameData::Ability::GENERAL_WEATHER_ABILITIES)
 
     score += 20 if hasSynergisticType
     score += 40 if hasSynergyAbility

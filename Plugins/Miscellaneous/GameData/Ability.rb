@@ -28,6 +28,8 @@ module GameData
                               FULLMOONBLADE MOONBUBBLE MIDNIGHTTOIL MOONBASKING NIGHTOWL
         ]
 
+        GENERAL_WEATHER_ABILITIES = %i[STOUT TERRITORIAL NESTING]
+
         attr_reader :signature_of
 
         # The highest evolution of a line
