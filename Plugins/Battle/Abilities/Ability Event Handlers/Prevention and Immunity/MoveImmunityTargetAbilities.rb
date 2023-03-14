@@ -50,7 +50,7 @@ BattleHandlers::MoveImmunityTargetAbility.add(:HEARTOFJUSTICE,
 
 BattleHandlers::MoveImmunityTargetAbility.add(:INDUSTRIALIZE,
   proc { |_ability, user, target, move, type, battle, showMessages, aiChecking|
-      next pbBattleMoveImmunityStatAbility(user, target, move, type, :STEEL, :SPECIAL_DEFENSE, 1, battle, showMessages, aiChecking)
+      next pbBattleMoveImmunityStatAbility(user, target, move, type, :STEEL, :SPEED, 1, battle, showMessages, aiChecking)
   }
 )
 
@@ -69,6 +69,12 @@ BattleHandlers::MoveImmunityTargetAbility.add(:ROCKCLIMBER,
 BattleHandlers::MoveImmunityTargetAbility.add(:FILTHY,
   proc { |_ability, user, target, move, type, battle, showMessages, aiChecking|
       next pbBattleMoveImmunityStatAbility(user, target, move, type, :POISON, :ATTACK, 1, battle, showMessages, aiChecking)
+  }
+)
+
+BattleHandlers::MoveImmunityTargetAbility.add(:GLASSFIRING,
+  proc { |_ability, user, target, move, type, battle, showMessages, aiChecking|
+      next pbBattleMoveImmunityStatAbility(user, target, move, type, :FIRE, [:DEFENSE, 1, :SPECIAL_DEFENSE, 1], nil, battle, showMessages, aiChecking)
   }
 )
 
