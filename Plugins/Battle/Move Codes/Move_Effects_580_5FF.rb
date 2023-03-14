@@ -1530,7 +1530,7 @@ end
 #===============================================================================
 class PokeBattle_Move_5C9 < PokeBattle_Move
     def pbEffectGeneral(user)
-	user.applyEffect(:ExtremeEffort, 2)
+	    user.applyEffect(:ExtremeEffort, 2)
     end
 end
 
@@ -1538,7 +1538,7 @@ end
 # Increases Sp. Atk, Sp. Def and Crit Chance
 # (Tranquil Prayer)
 #===============================================================================
-class PokeBattle_Move_5C0 < PokeBattle_MultiStatUpMove
+class PokeBattle_Move_5CA < PokeBattle_MultiStatUpMove
     def initialize(battle, move)
         super
         @statUp = [:SPECIAL_ATTACK, 1, :SPECIAL_DEFENSE, 1]
@@ -1557,5 +1557,51 @@ class PokeBattle_Move_5C0 < PokeBattle_MultiStatUpMove
 			user.incrementEffect(:FocusEnergy, 1)
 			@battle.pbDisplay(_INTL("{1} is getting pumped!", user.pbThis))
 		end
+    end
+end
+
+#===============================================================================
+# Type changes depending on rotom's form. (Machinate)
+# Additional effect changes depending on rotom's form. Only usable by rotom.
+#===============================================================================
+class PokeBattle_Move_5CB < PokeBattle_Move
+    def pbMoveFailed?(user, _targets, show_message)
+        unless user.countsAs?(:ROTOM)
+            @battle.pbDisplay(_INTL("But {1} can't use the move!", user.pbThis(true))) if show_message
+            return true
+        end
+        return false
+    end
+
+    def pbBaseType(user)
+        ret = :GHOST
+        case user.form
+        when 1
+            ret = :FIRE if GameData::Type.exists?(:FIRE)
+        when 2
+            ret = :WATER if GameData::Type.exists?(:WATER)
+        when 3
+            ret = :ICE if GameData::Type.exists?(:ICE)
+        when 4
+            ret = :FLYING if GameData::Type.exists?(:FLYING)
+        when 5
+            ret = :GRASS if GameData::Type.exists?(:GRASS)
+        end
+        return ret
+    end
+
+    def pbAdditionalEffect(user, target)
+        case user.form
+        when 1
+            target.applyBurn(user) if target.canBurn?(user, true, self)
+        when 2
+            target.applyNumb(user) if target.canNumb?(user, true, self)
+        when 3
+            target.applyFrostbite(user) if target.canFrostbite?(user, true, self)
+        when 4
+            target.applyDizzy(user) if target.canDizzy?(user, true, self)
+        when 5
+            target.applyLeeched(user) if target.canLeech?(user, true, self)
+        end
     end
 end

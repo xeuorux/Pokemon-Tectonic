@@ -1093,4 +1093,5 @@
 1146,GRIMVISIONS,Grim Visions,043,90,DARK,Special,100,10,100,NearOther,0,bef,"The user attacks with dark illusions. This also lowers the target's Defense stat.",
 1147,SILKBLADE,Silk Blade,03C,120,BUG,Physical,100,5,0,NearOther,0,abefhp,"The user slashes using its woven silk, cutting the user's Defenses. Critical hits are more likely.",XSCISSOR
 1148,EXTREMEEFFORT,Extreme Effort,5C9,150,NORMAL,Physical,100,5,0,NearOther,0,bef,"The user uses all their might to attack their opponent, causing them to rest on their next turn.",
-1149,TRANQUILPRAYER,Tranquil Prayer,5C0,0,FAIRY,Status,0,15,0,User,0,d,"The user focuses its mind on a prayer, boosting its Sp. Atk, Sp. Def and critical strike chance.",FOCUSENERGY
+1149,TRANQUILPRAYER,Tranquil Prayer,5CA,0,FAIRY,Status,0,15,0,User,0,d,"The user focuses its mind on a prayer, boosting its Sp. Atk, Sp. Def and critical strike chance.",FOCUSENERGY
+1150,MACHINATE,Machinate,5CB,90,GHOST,Special,100,12,30,NearOther,0,befn,"Changes type based on machine haunted. 30% chance of extra effect based on machine haunted.",SHADOWBALL
