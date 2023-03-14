@@ -1629,3 +1629,14 @@ class PokeBattle_Move_5CC < PokeBattle_Move
         return getForceOutEffectScore(user, target)
     end
 end
+
+#===============================================================================
+# Power doubles if the target is the last alive on their team.
+# (Checkmate)
+#===============================================================================
+class PokeBattle_Move_5CD < PokeBattle_Move
+    def pbBaseDamage(baseDmg, _user, target)
+        baseDmg *= 2 if target.isLastAlive?
+        return baseDmg
+    end
+end
