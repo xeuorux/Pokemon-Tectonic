@@ -800,7 +800,7 @@
 800,DIAMONDTIARA,Diamond Tiara,Diamond Tiaras,1,50000,"A glimmering tiara made of diamonds. It makes a certain Pokemon evolve.",1,0,7
 801,KNIGHTHELMET,Knight Helmet,Knight Helmets,1,3000,"A shining helmet. It makes a certain Pokemon evolve.",1,0,7
 802,NINJASCARF,Ninja Scarf,Ninja Scarves,1,3000,"A cool scarf. It makes a certain Pokemon evolve.",1,0,7
-803,EXPEZDISPENSER,EXP-EZ Dispenser,EXP-EZ Dispensers,8,0,"A mysterious machine that is able to create candies from experience.",2,0,6
+803,EXPEZDISPENSER,EXP-EZ Dispenser,EXP-EZ Dispensers,8,0,"A machine that stores excess EXP. You can activate it to turn that stored EXP into candies.",2,0,6
 804,AIDKIT,Aid Kit,Aid Kits,8,0,"Heals your whole team a limited number of times. Restocked at PokeCenters and after resting.",2,0,6
 805,KITEXPANSION,Kit Expansion,Kit Expansion,2,0,"A pack which can be attached to your Aid Kit to increase its number of use charges.",2,0,0
 806,MEDICALUPGRADE,Medical Upgrade,Medical Upgrades,2,0,"A suite of medicines which can be added to your Aid Kit to increase its healing.",2,0,0
