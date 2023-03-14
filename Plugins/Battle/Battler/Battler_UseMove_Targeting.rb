@@ -154,15 +154,13 @@ move, true, true)
         end
         # Bad Luck
         if move.statusMove? && !user.pbHasAnyStatus?
-            targets = pbChangeTargetByAbility(:BADLUCK, move, user, targets, priority,
-nearOnly)
+            targets = pbChangeTargetByAbility(:BADLUCK, move, user, targets, priority, nearOnly)
         end
         # Epic Hero
-        maxBaseDamage = 0
-        targets.each do |_target|
-            maxBaseDamage = move.baseDamage if move.baseDamage > maxBaseDamage
+        if move.damagingMove? && move.baseDamage >= 100
+            targets = pbChangeTargetByAbility(:EPICHERO, move, user, targets, priority, nearOnly)
         end
-        targets = pbChangeTargetByAbility(:EPICHERO, move, user, targets, priority, nearOnly) if maxBaseDamage >= 100
+        # Tantalizing
         if move.damagingMove? && user.belowHalfHealth?
             targets = pbChangeTargetByAbility(:TANTALIZING, move, user, targets, priority, nearOnly)
         end
@@ -175,6 +173,7 @@ nearOnly)
             next if b.index == user.index || b.index == targets[0].index
             next unless b.hasActiveAbility?(drawingAbility)
             next if nearOnly && !b.near?(user)
+            next unless b.opposes?(user)
             @battle.pbShowAbilitySplash(b)
             targets.clear
             pbAddTarget(targets, user, b, move, nearOnly)

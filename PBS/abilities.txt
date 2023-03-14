@@ -362,7 +362,7 @@
 360,ENERGETIC,Energetic,"Can't be numbed, poisoned, or have its Speed reduced."
 361,STRATAGEM,Stratagem,"Powers up Rock-type moves by 50%."
 362,ARMORPIERCING,Armor Piercing,"Deals double damage against raised Defense or Sp. Def."
-363,BADLUCK,Bad Luck,"When free from status, non-damaging moves are drawn in."
+363,BADLUCK,Bad Luck,"When free from status, non-damaging moves by foes are drawn in."
 364,BROODING,Brooding,"Deals 5% more damage and takes 5% less damage for each other Dragon on team."
 365,SOULREAD,Soul Read,"Double damage to targets who don't share a type with their last move."
 366,SURFSUP,Surf's Up,"Powers up Water-type moves by 50%."
