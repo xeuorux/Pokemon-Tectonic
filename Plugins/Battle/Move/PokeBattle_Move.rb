@@ -142,6 +142,8 @@ class PokeBattle_Move
     def slashMove?;         return @flags[/p/]; end
     def windMove?;          return @flags[/q/]; end
     def empoweredMove?;     return @flags[/y/]; end
+
+    def turnsBetweenUses(); return 0; end
   
     def nonLethal?(user,_target); return false; end   # For False Swipe
     def switchOutMove?; return false; end
