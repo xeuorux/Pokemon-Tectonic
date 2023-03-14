@@ -644,8 +644,8 @@ class PokeBattle_Move_700 < PokeBattle_Move
     def pbEffectAfterAllHits(_user, target)
         return if target.fainted?
         return if target.damageState.unaffected
-        if target.effectActive?(:FlinchedAlready)
-            target.disableEffect(:FlinchedAlready)
+        if target.effectActive?(:FlinchImmunity)
+            target.disableEffect(:FlinchImmunity)
             @battle.pbDisplay(_INTL("#{target.pbThis} is newly afraid. It can be flinched again!"))
         end
     end

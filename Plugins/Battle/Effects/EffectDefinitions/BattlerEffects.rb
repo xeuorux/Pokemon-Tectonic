@@ -1223,8 +1223,16 @@ GameData::BattleEffect.register_effect(:Battler, {
 })
 
 GameData::BattleEffect.register_effect(:Battler, {
-    :id => :FlinchedAlready,
+    :id => :FlinchImmunity,
+    :type => :Integer,
+    :ticks_down => true,
     :real_name => "Flinch Immune",
+    :expire_proc => proc do |battle, battler|
+        battle.pbDisplay(_INTL("{1} is no longer flinch immune!", battler.pbThis))
+    end,
+    :apply_proc => proc do |battle, battler, value|
+        battle.pbDisplay(_INTL("{1} will be flinch immune for {2} more turns!", battler.pbThis, value-1))
+    end,
 })
 
 GameData::BattleEffect.register_effect(:Battler, {
