@@ -441,7 +441,7 @@ BattleHandlers::DamageCalcUserAbility.add(:TIDALFORCE,
 )
 BattleHandlers::DamageCalcUserAbility.add(:RATTLEEM,
   proc { |_ability, _user, target, _move, mults, _baseDmg, _type, _aiCheck|
-      mults[:base_damage_multiplier] *= 1.5 if target.effectActive?(:FlinchedAlready)
+      mults[:base_damage_multiplier] *= 1.5 if target.effectActive?(:FlinchImmunity)
   }
 )
 

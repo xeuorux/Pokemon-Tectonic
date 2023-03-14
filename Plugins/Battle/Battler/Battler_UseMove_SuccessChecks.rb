@@ -246,14 +246,14 @@ GameData::Move.get(@effects[:GorillaTactics]).name)
 
         # Flinching
         if effectActive?(:Flinch)
-            if effectActive?(:FlinchedAlready)
-                @battle.pbDisplay("#{pbThis} has gotten used to the fear, so didn't flinch!")
+            if effectActive?(:FlinchImmunity)
+                @battle.pbDisplay("#{pbThis} would have flinched, but its immune now!")
                 disableEffect(:Flinch)
             else
                 @battle.pbDisplay(_INTL("{1} flinched and couldn't move!", pbThis))
                 BattleHandlers.triggerAbilityOnFlinch(@ability, self, @battle) if abilityActive?
                 @lastMoveFailed = true
-                applyEffect(:FlinchedAlready)
+                applyEffect(:FlinchImmunity,4)
                 return false
             end
         end
