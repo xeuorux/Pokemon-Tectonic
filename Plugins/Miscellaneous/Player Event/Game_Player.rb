@@ -57,8 +57,8 @@ class Game_Player < Game_Character
     end
 
     def perform_move_generic(dir)
-        x_offset = (dir == 4) ? -1 : (dir == 6) ? 1 : 0
-        y_offset = (dir == 8) ? -1 : (dir == 2) ? 1 : 0
+        x_offset = xOffsetFromDir(dir)
+        y_offset = yOffsetFromDir(dir)
         return if pbLedge(x_offset, y_offset)
         return if pbEndSurf(x_offset, y_offset)
         turn_generic(dir, true)
@@ -144,8 +144,8 @@ class Game_Player < Game_Character
     def pbFacingEvent(ignoreInterpreter=false)
       return nil if $game_system.map_interpreter.running? && !ignoreInterpreter
       # Check the tile in front of the player for events
-      new_x = @x + (@direction == 6 ? 1 : @direction == 4 ? -1 : 0)
-      new_y = @y + (@direction == 2 ? 1 : @direction == 8 ? -1 : 0)
+      new_x = @x + xOffsetFromDir(@direction)
+      new_y = @y + yOffsetFromDir(@direction)
       return nil if !$game_map.valid?(new_x, new_y)
       for event in $game_map.events.values
         next if !event.at_coordinate?(new_x, new_y)
@@ -154,8 +154,8 @@ class Game_Player < Game_Character
       end
       # If the tile in front is a counter, check one tile beyond that for events
       if $game_map.counter?(new_x, new_y)
-        new_x += (@direction == 6 ? 1 : @direction == 4 ? -1 : 0)
-        new_y += (@direction == 2 ? 1 : @direction == 8 ? -1 : 0)
+        new_x += xOffsetFromDir(@direction)
+        new_y += yOffsetFromDir(@direction)
         for event in $game_map.events.values
           next if !event.at_coordinate?(new_x, new_y)
           next if event.jumping? || event.over_trigger?
@@ -181,8 +181,8 @@ class Game_Player < Game_Character
     #-----------------------------------------------------------------------------
     def passable?(x, y, d, strict = false)
       # Get new coordinates
-      new_x = x + (d == 6 ? 1 : d == 4 ? -1 : 0)
-      new_y = y + (d == 2 ? 1 : d == 8 ? -1 : 0)
+      new_x = x + xOffsetFromDir(d)
+      new_y = y + yOffsetFromDir(d)
       # If coordinates are outside of map
       return false if !$game_map.validLax?(new_x, new_y)
       if !$game_map.valid?(new_x, new_y)
@@ -267,16 +267,15 @@ class Game_Player < Game_Character
     # * Front Event Starting Determinant
     #-----------------------------------------------------------------------------
     def check_event_trigger_there(triggers)
-      result = false
       # If event is running
-      return result if $game_system.map_interpreter.running?
+      return false if $game_system.map_interpreter.running?
       # Calculate front event coordinates
-      new_x = @x + (@direction == 6 ? 1 : @direction == 4 ? -1 : 0)
-      new_y = @y + (@direction == 2 ? 1 : @direction == 8 ? -1 : 0)
+      new_x = @x + xOffsetFromDir(@direction)
+      new_y = @y + yOffsetFromDir(@direction)
       return false if !$game_map.valid?(new_x, new_y)
       # All event loops
+      result = false
       for event in $game_map.events.values
-        # If event coordinates and triggers are consistent
         next if !event.at_coordinate?(new_x, new_y)
         next if !triggers.include?(event.trigger)
         # If starting determinant is front event (other than jumping)
@@ -289,8 +288,8 @@ class Game_Player < Game_Character
         # If front tile is a counter
         if $game_map.counter?(new_x, new_y)
           # Calculate coordinates of 1 tile further away
-          new_x += (@direction == 6 ? 1 : @direction == 4 ? -1 : 0)
-          new_y += (@direction == 2 ? 1 : @direction == 8 ? -1 : 0)
+          new_x += xOffsetFromDir(@direction)
+          new_y += yOffsetFromDir(@direction)
           return false if !$game_map.valid?(new_x, new_y)
           # All event loops
           for event in $game_map.events.values
@@ -314,8 +313,8 @@ class Game_Player < Game_Character
         result = 0
         return result if $game_system.map_interpreter.running?
         # All event loops
-        x_offset = (dir == 4) ? -1 : (dir == 6) ? 1 : 0
-        y_offset = (dir == 8) ? -1 : (dir == 2) ? 1 : 0
+        x_offset = xOffsetFromDir(dir)
+        y_offset = yOffsetFromDir(dir)
         for event in $game_map.events.values
             next if ![1, 2].include?(event.trigger)   # Player touch, event touch
             # If event coordinates and triggers are consistent
@@ -420,6 +419,26 @@ class Game_Player < Game_Character
         # Same position and front event determinant
         check_event_trigger_here([0])
         check_event_trigger_there([0,2])
+      end
+    end
+
+    def xOffsetFromDir(direction)
+      if direction == 6
+        return 1
+      elsif direction == 4
+        return -1
+      else
+        return 0
+      end
+    end
+
+    def yOffsetFromDir(direction)
+      if direction == 2
+        return 1
+      elsif direction == 8
+        return -1
+      else
+        return 0
       end
     end
 end
