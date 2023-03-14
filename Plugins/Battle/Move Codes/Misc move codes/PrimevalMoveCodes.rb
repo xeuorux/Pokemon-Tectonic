@@ -334,7 +334,7 @@ class PokeBattle_Move_617 < PokeBattle_Move_09D
 end
 
 # Empowered Moonglow
-class PokeBattle_Move_618 < PokeBattle_Move_09D
+class PokeBattle_Move_618 < PokeBattle_Move_09E
     include EmpoweredMove
 
     def pbEffectGeneral(user)
