@@ -240,7 +240,7 @@ class PokeBattle_AI
     def aiPredictsFailure?(move, user, target)
         fails = false
 
-        if user.effectActive?(:Flinch) && !user.effectActive?(:FlinchedAlready)
+        if user.effectActive?(:Flinch) && !user.effectActive?(:FlinchImmunity)
             echoln("#{user.pbThis} rejects the move #{move.id} due to it being predicted to flinch (Moonglow?)")
             return true
         end

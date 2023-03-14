@@ -168,7 +168,7 @@ def getFlinchingEffectScore(baseScore, user, target, move)
     return 0 unless userWillHitFirst?(user, target, move)
     return 0 if target.hasActiveAbilityAI?(:INNERFOCUS)
     return 0 if target.substituted?
-    return 0 if target.effectActive?(:FlinchedAlready)
+    return 0 if target.effectActive?(:FlinchImmunity)
     return 0 if target.battle.pbCheckSameSideAbility(:HEARTENINGAROMA,target.index)
 
     score = baseScore
