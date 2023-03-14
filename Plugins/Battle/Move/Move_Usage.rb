@@ -57,8 +57,9 @@ class PokeBattle_Move
         @battle.pbDisplay(_INTL("{1} unleashed its full force Z-Move!", user.pbThis))
     end
 
-    def displayDamagingMoveMessages(user, calcType, targets = [])
+    def displayDamagingMoveMessages(user, calcType, calcCategory, targets = [])
         displayBPAdjustmentMessage(user, targets) unless multiHitMove?
+        displayCategoryChangeMessage(calcCategory) unless calcCategory == -1
         # Display messages letting the player know that weather is debuffing a move (if it is)
         displayWeatherDebuffMessages(user, calcType) if $PokemonSystem.weather_messages == 0
     end
@@ -74,6 +75,14 @@ class PokeBattle_Move
 target.pbThis(true)))
                 end
             end
+        end
+    end
+
+    def displayCategoryChangeMessage(calcCategory)
+        if calcCategory == 0
+            @battle.pbDisplayBrief(_INTL("It became physical!"))
+        elsif calcCategory == 1
+            @battle.pbDisplayBrief(_INTL("It became special!"))
         end
     end
 
