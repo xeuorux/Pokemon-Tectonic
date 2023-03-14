@@ -341,9 +341,10 @@ class PokeBattle_Battler
         # Perform set-up actions
         move.pbOnStartUse(user, targets)
         # Calculate move category (calculateCategory may return)
-        move.calculated_category = move.calculateCategory(user, targets)
+        newCategory = move.calculateCategory(user, targets)
+        move.calculated_category = newCategory
         # Display messages about BP adjustment and weather debuffing
-        move.displayDamagingMoveMessages(self, move.calcType, targets) if move.damagingMove?
+        move.displayDamagingMoveMessages(self, move.calcType, newCategory, targets) if move.damagingMove?
         # Powder
         if user.effectActive?(:Powder) && move.calcType == :FIRE
             @battle.pbCommonAnimation("Powder", user)
