@@ -1156,6 +1156,8 @@ class PokeBattle_Move_0AF < PokeBattle_Move
             # Target-switching moves
             "0EB", # Roar, Whirlwind
             "0EC", # Circle Throw, Dragon Tail
+            "5CC", # Dragon's Roar
+            "53F", # Rolling Boulder
         ]
     end
 
@@ -1466,8 +1468,10 @@ class PokeBattle_Move_0B5 < PokeBattle_Move
             "0E6",   # Grudge                              # Not listed on Bulbapedia
             "0E7",   # Destiny Bond
             # Target-switching moves
-            #       "0EB",   # Roar, Whirlwind                                    # See below
+            "0EB",   # Roar, Whirlwind                                    # See below
             "0EC", # Circle Throw, Dragon Tail
+            "5CC", # Dragon's Roar
+            "53F", # Rolling Boulder
             # Held item-moving moves
             "0F1",   # Covet, Thief
             "0F2",   # Switcheroo, Trick
@@ -3108,7 +3112,7 @@ end
 #===============================================================================
 # In wild battles, makes target flee. Fails if target is a higher level than the
 # user.
-# In trainer battles, target switches out.
+# In trainer battles, target switches out, to be replaced at random.
 # For damaging moves. (Circle Throw, Dragon Tail)
 #===============================================================================
 class PokeBattle_Move_0EC < PokeBattle_Move

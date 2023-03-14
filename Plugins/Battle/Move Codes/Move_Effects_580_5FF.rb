@@ -1299,8 +1299,9 @@ class PokeBattle_Move_5C2 < PokeBattle_Move
             "0E6",   # Grudge                              # Not listed on Bulbapedia
             "0E7",   # Destiny Bond
             # Target-switching moves
-            #       "0EB",   # Roar, Whirlwind                                    # See below
+            "0EB",   # Roar, Whirlwind                                    # See below
             "0EC", # Circle Throw, Dragon Tail
+            "5CC", # Dragon's Roar
             "53F", # Rolling Boulder
             # Held item-moving moves
             "0F1",   # Covet, Thief
@@ -1603,5 +1604,28 @@ class PokeBattle_Move_5CB < PokeBattle_Move
         when 5
             target.applyLeeched(user) if target.canLeech?(user, true, self)
         end
+    end
+end
+
+#===============================================================================
+# In wild battles, makes target flee. Fails if target is a higher level than the
+# user.
+# In trainer battles, target switches out, to be replaced manually. (Dragon's Roar)
+#===============================================================================
+class PokeBattle_Move_5CC < PokeBattle_Move
+    def pbEffectAgainstTarget(user, target)
+        if @battle.wildBattle? && target.level <= user.level && @battle.canRun &&
+           (target.substituted? || ignoresSubstitute?(user)) && !target.boss
+            @battle.decision = 3
+        end
+    end
+
+    def pbSwitchOutTargetsEffect(user, targets, numHits, switchedBattlers)
+        return if numHits == 0
+        forceOutTargets(user, targets, switchedBattlers, false)
+    end
+
+    def getEffectScore(user, target)
+        return getForceOutEffectScore(user, target)
     end
 end
