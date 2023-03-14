@@ -145,13 +145,17 @@ class PokeBattle_Move_087 < PokeBattle_Move
         return ret
     end
 
-    def pbShowAnimation(id, user, targets, hitNum = 0, showAnimation = true)
-        t = pbBaseType(user)
-        hitNum = 1 if t == :FIRE # Type-specific anims
-        hitNum = 2 if t == :WATER
-        hitNum = 3 if t == :ROCK
-        hitNum = 4 if t == :ICE
-        super
+    # def pbShowAnimation(id, user, targets, hitNum = 0, showAnimation = true)
+    #     t = pbBaseType(user)
+    #     hitNum = 1 if t == :FIRE # Type-specific anims
+    #     hitNum = 2 if t == :WATER
+    #     hitNum = 3 if t == :ROCK
+    #     hitNum = 4 if t == :ICE
+    #     super
+    # end
+
+    def calculateCategory(user, _targets)
+        return selectBestCategory(user)
     end
 end
 
