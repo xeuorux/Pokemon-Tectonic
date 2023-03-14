@@ -39,7 +39,6 @@ Policies = REMARKONSTARTER
 Pokemon = KRICKETOT,8
     AbilityIndex = 0 # Fascinate
 Pokemon = MVULPIX,9
-    Moves = PLANTDOUBT,DAZZLE,DIRGE
     AbilityIndex = 0 # Gild
 #-------------------------------
 [YOUNGSTER,Harvey]
