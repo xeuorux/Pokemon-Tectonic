@@ -1039,7 +1039,7 @@
 1092,PRANK,Prank,560,0,NORMAL,Status,100,15,0,NearOther,0,bce,"The user pranks the target, surprising it and reducing its Sp. Atk and Sp. Def.",SCARYFACE
 1093,GREYMIST,Grey Mist,587,0,POISON,Status,0,10,0,User,0,,"A Grey Mist covers the battlefield. For 5 turns, stats are reset at the end of each turn.",MIST
 1094,PATIENTTRAINING,Patient Training,508,0,BUG,Status,0,12,0,User,0,d,"The user prepares its weapons, drastically raising Attack but drastically lowering Speed.",SWORDSDANCE
-1095,MARTIALMASTERY,Martial Mastery,5AD,0,FIGHTING,Status,0,15,0,User,0,d,"The user tenses recalls martial techniques, boosting its Attack, Defense and critical strike chance.",FOCUSENERGY
+1095,MARTIALMASTERY,Martial Mastery,5AD,0,FIGHTING,Status,0,15,0,User,0,d,"The user recalls martial techniques, boosting its Attack, Defense and critical strike chance.",FOCUSENERGY
 1096,REVERBWARD,Reverb Ward,5AE,0,PSYCHIC,Status,0,3,0,User,4,,"Protects the user from all attacks. Special attacks harshly lower the attacker's Sp. Def stat.",PROTECT
 1097,MOONGLOW,Moon Glow,09E,0,FAIRY,Status,0,10,0,BothSides,0,,"Summons moonglow for eight turns, boosting Fairy-type attacks and heralding the Full Moon.",
 1098,ECLIPSE,Eclipse,09D,0,PSYCHIC,Status,0,10,0,BothSides,0,,"Summons eclipse for eight turns, boosting Psychic-type attacks and heralding the Total Eclipse.",
@@ -1093,3 +1093,4 @@
 1146,GRIMVISIONS,Grim Visions,043,90,DARK,Special,100,10,100,NearOther,0,bef,"The user attacks with dark illusions. This also lowers the target's Defense stat.",
 1147,SILKBLADE,Silk Blade,03C,120,BUG,Physical,100,5,0,NearOther,0,abefhp,"The user slashes using its woven silk, cutting the user's Defenses. Critical hits are more likely.",XSCISSOR
 1148,EXTREMEEFFORT,Extreme Effort,5C9,150,NORMAL,Physical,100,5,0,NearOther,0,bef,"The user uses all their might to attack their opponent, causing them to rest on their next turn.",
+1149,TRANQUILPRAYER,Tranquil Prayer,5C0,0,FAIRY,Status,0,15,0,User,0,d,"The user focuses its mind on a prayer, boosting its Sp. Atk, Sp. Def and critical strike chance.",FOCUSENERGY

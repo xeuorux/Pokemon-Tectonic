@@ -846,6 +846,7 @@ class PokeBattle_Move_5AC < PokeBattle_Move
         end
     end
 end
+
 #===============================================================================
 # Increases Attack, Defense and Crit Chance
 # (Martial Mastery)
@@ -1530,5 +1531,31 @@ end
 class PokeBattle_Move_5C9 < PokeBattle_Move
     def pbEffectGeneral(user)
 	user.applyEffect(:ExtremeEffort, 2)
+    end
+end
+
+#===============================================================================
+# Increases Sp. Atk, Sp. Def and Crit Chance
+# (Tranquil Prayer)
+#===============================================================================
+class PokeBattle_Move_5C0 < PokeBattle_MultiStatUpMove
+    def initialize(battle, move)
+        super
+        @statUp = [:SPECIAL_ATTACK, 1, :SPECIAL_DEFENSE, 1]
+	end
+    
+	def pbMoveFailed?(user, _targets, show_message)
+        if user.effectAtMax?(:FocusEnergy) 
+            return super
+        end
+        return false
+    end
+    
+	def pbEffectGeneral(user)
+		super
+		unless user.effectAtMax?(:FocusEnergy)
+			user.incrementEffect(:FocusEnergy, 1)
+			@battle.pbDisplay(_INTL("{1} is getting pumped!", user.pbThis))
+		end
     end
 end
