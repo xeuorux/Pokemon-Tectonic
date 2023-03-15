@@ -288,21 +288,21 @@ class PokeBattle_AI
         if bossAI.rejectMove?(move, user, target, @battle)
             PBDebug.log(addTargetIfPresent(
                             "[BOSS AI] #{user.pbThis} (#{user.index}) custom AI rejects move #{move.name}", target))
-            return 0
+            return -99_999
         end
 
         # Rejecting moves based on failure
 
         # Don't use a move that would fail against the target
         if !target.nil? && move.pbFailsAgainstTargetAI?(user, target)
-            PBDebug.log("[BOSS AI] Scoring #{move.name} a 0 due to being predicted to fail against the target against target #{target.pbThis(true)}")
-            return 0
+            PBDebug.log("[BOSS AI] rejects move #{move.name} due to being predicted to fail against the target against target #{target.pbThis(true)}")
+            return -99_999
         end
 
         # Don't use a move that would fail outright
         if move.pbMoveFailedAI?(user, [target])
-            PBDebug.log("[BOSS AI] Scoring #{move.name} a 0 due to being predicted to fail entirely")
-            return 0
+            PBDebug.log("[BOSS AI] rejects move #{move.name} due to being predicted to fail entirely")
+            return -99_999
         end
 
         if bossAI.requireMove?(move, user, target, @battle)
