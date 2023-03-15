@@ -113,7 +113,7 @@ BattleHandlers::EORWeatherAbility.add(:NIGHTLINE,
 
         if healingAmount > 0
             potentialHeals = []
-            battle.pbParty(b.index).each_with_index do |pkmn,index|
+            battle.pbParty(battler.index).each_with_index do |pkmn,_index|
                 next if pkmn.fainted?
                 next if pkmn.hp == pkmn.totalhp
                 potentialHeals.push(pkmn)
