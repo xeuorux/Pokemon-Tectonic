@@ -350,21 +350,31 @@ class PokeBattle_Move
     #=============================================================================
     # Additional effect chance
     #=============================================================================
-    def canApplyAdditionalEffects?(user,target,showMessages=false)
-        if target.hasActiveAbility?(%i[SHIELDDUST HARSHTRAINING]) && !@battle.moldBreaker
+    def canApplyAdditionalEffects?(user,target,showMessages=false,aiChecking=false)
+        if target.shouldAbilityApply?(%i[SHIELDDUST HARSHTRAINING],aiChecking) && !@battle.moldBreaker
             if showMessages
                 battle.pbShowAbilitySplash(target)
+                battle.pbDisplay(_INTL("#{target.pbThis} prevents the additional effect!"))
                 battle.pbHideAbilitySplash(target)
             end
             return false
         end
-        return false if target.effectActive?(:Enlightened)
-        return false if target.hasActiveItem?(:COVERTCLOAK) && user.opposes?(target)
+        if target.effectActive?(:Enlightened)
+            if showMessages
+                battle.pbDisplay(_INTL("#{target.pbThis} is enlightened, and so ignores the additional effect!"))
+            end
+            return false
+        end
+        if target.hasActiveItem?(:COVERTCLOAK) && user.opposes?(target)
+            if showMessages
+                battle.pbDisplay(_INTL("#{target.pbThis}'s #{target.itemName} protects it from the additional effect!"))
+            end
+            return false
+        end
         return true
     end
 
     def pbAdditionalEffectChance(user,target,type,effectChance=0)
-        return 0 unless canApplyAdditionalEffects?(user,target)
         return 100 if user.hasActiveAbility?(:STARSALIGN) && @battle.pbWeather == :Eclipse
         return 100 if !user.pbOwnedByPlayer? && @battle.curseActive?(:CURSE_PERFECT_LUCK)
         ret = effectChance > 0 ? effectChance : @effectChance
@@ -383,7 +393,6 @@ class PokeBattle_Move
     #       not here.
     def pbFlinchChance(user,target)
         return 0 if flinchingMove?
-        return 0 if !canApplyAdditionalEffects?(user,target)
         ret = 0
         if user.hasActiveAbility?(:STENCH,true)
             ret = 50

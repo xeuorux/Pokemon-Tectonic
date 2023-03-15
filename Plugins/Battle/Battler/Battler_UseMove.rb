@@ -870,11 +870,10 @@ move.name))
                 if @battle.pbRandom(100) < chance
                     if b.hasActiveAbility?(:RUGGEDSCALES)
                         @battle.pbShowAbilitySplash(b)
-                        @battle.pbDisplay(_INTL("The added effect of {1}'s {2} is deflected, harming it!",
-pbThis(true), move.name))
+                        @battle.pbDisplay(_INTL("The added effect of {1}'s {2} is deflected, harming it!", pbThis(true), move.name))
                         user.applyFractionalDamage(1.0 / 6.0, true)
                         @battle.pbHideAbilitySplash(b)
-                    else
+                    elsif move.canApplyAdditionalEffects?(user,b,true)
                         move.pbAdditionalEffect(user, b)
                     end
                 end
@@ -886,10 +885,10 @@ pbThis(true), move.name))
             next if b.damageState.calcDamage == 0 || b.damageState.substitute
             chance = move.pbFlinchChance(user, b)
             next if chance <= 0
-            if @battle.pbRandom(100) < chance
-                PBDebug.log("[Item/ability triggered] #{user.pbThis}'s King's Rock/Razor Fang or Stench")
-                b.pbFlinch(user)
-            end
+            next unless @battle.pbRandom(100) < chance
+            PBDebug.log("[Item/ability triggered] #{user.pbThis}'s King's Rock/Razor Fang or Stench")
+            next unless canApplyAdditionalEffects?(user, target, true)
+            b.pbFlinch(user)
         end
         # Message for and consuming of type-weakening berries
         # NOTE: The "consume held item" animation for type-weakening berries occurs

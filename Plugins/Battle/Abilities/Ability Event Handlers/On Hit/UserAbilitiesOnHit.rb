@@ -111,7 +111,7 @@ BattleHandlers::UserAbilityOnHit.add(:NUMBINGTOUCH,
 BattleHandlers::UserAbilityOnHit.add(:MENTALDAMAGE,
   proc { |_ability, user, target, move, battle|
     next if target.fainted? || target.effectActive?(:Disable)
-    next unless move.canApplyAdditionalEffects?(user, target)
+    next unless move.canApplyAdditionalEffects?(user, target, true)
     battle.pbShowAbilitySplash(user)
     target.applyEffect(:Disable,3) if target.canBeDisabled?(true, move)
     battle.pbHideAbilitySplash(user)

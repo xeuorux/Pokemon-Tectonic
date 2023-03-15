@@ -106,8 +106,12 @@ class PokeBattle_Move_009 < PokeBattle_Move
         return if target.damageState.substitute
         chance = pbAdditionalEffectChance(user, target, @calcType, 10)
         return if chance == 0
-        target.applyNumb(user) if @battle.pbRandom(100) < chance && target.canNumb?(user, false, self)
-        target.pbFlinch(user) if @battle.pbRandom(100) < chance
+        if @battle.pbRandom(100) < chance && target.canNumb?(user, false, self) && canApplyAdditionalEffects?(user,target,true)
+            target.applyNumb(user)
+        end 
+        if @battle.pbRandom(100) < chance && canApplyAdditionalEffects?(user,target,true)
+            target.pbFlinch(user)
+        end
     end
 
     def getEffectScore(user, target)
@@ -134,8 +138,12 @@ class PokeBattle_Move_00B < PokeBattle_Move
         return if target.damageState.substitute
         chance = pbAdditionalEffectChance(user, target, @calcType, 10)
         return if chance == 0
-        target.applyBurn(user) if @battle.pbRandom(100) < chance && target.canBurn?(user, false, self)
-        target.pbFlinch(user) if @battle.pbRandom(100) < chance
+        if @battle.pbRandom(100) < chance && target.canBurn?(user, false, self) && canApplyAdditionalEffects?(user,target,true)
+            target.applyBurn(user)
+        end 
+        if @battle.pbRandom(100) < chance && canApplyAdditionalEffects?(user,target,true)
+            target.pbFlinch(user)
+        end
     end
 
     def getEffectScore(user, target)
@@ -172,8 +180,12 @@ class PokeBattle_Move_00E < PokeBattle_Move
         return if target.damageState.substitute
         chance = pbAdditionalEffectChance(user, target, @calcType, 10)
         return if chance == 0
-        target.applyFrostbite if @battle.pbRandom(100) < chance && target.canFrostbite?(user, false, self)
-        target.pbFlinch(user) if @battle.pbRandom(100) < chance
+        if @battle.pbRandom(100) < chance && target.canFrostbite?(user, false, self) && canApplyAdditionalEffects?(user,target,true)
+            target.applyFrostbite(user)
+        end 
+        if @battle.pbRandom(100) < chance && canApplyAdditionalEffects?(user,target,true)
+            target.pbFlinch(user)
+        end
     end
 
     def getEffectScore(user, target)
