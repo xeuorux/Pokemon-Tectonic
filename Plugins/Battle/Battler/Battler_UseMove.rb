@@ -887,7 +887,7 @@ move.name))
             next if chance <= 0
             next unless @battle.pbRandom(100) < chance
             PBDebug.log("[Item/ability triggered] #{user.pbThis}'s King's Rock/Razor Fang or Stench")
-            next unless canApplyAdditionalEffects?(user, target, true)
+            next unless canApplyAdditionalEffects?(user, b, true)
             b.pbFlinch(user)
         end
         # Message for and consuming of type-weakening berries
