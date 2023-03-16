@@ -558,7 +558,7 @@ Bicycle = false
 HealingSpot = 214,21,15
 #-------------------------------
 [084]
-# Jirachi's Chamber
+# Meloetta's Chamber
 Outdoor = false
 ShowArea = false
 Bicycle = true

@@ -401,3 +401,4 @@
 1400,DRAGONSROAR,Dragons Roar,5CC,75,DRAGON,Special,100,10,0,NearOther,-1,bef,"The user roars with explosive ferocity, forcing the target to switch out.",
 1401,CHECKMATE,Checkmate,5CD,80,DARK,Physical,100,10,0,NearOther,0,abef,"If the target is the last able member of their party, this attack's power is doubled.",
 1402,WEATHERBURST,Weather Burst,087,100,NORMAL,Physical,100,10,0,NearOther,0,bef,"Type based on weather. Inflicts physical or special damage based on the user's stats",WEATHERBALL
+1403,SHINESHOT,Shine Shot,046,60,STEEL,Special,100,10,30,NearOther,0,bef,"The user looses a flash of energy from its polished body. It has a 30% chance to lower Sp. Def.",
