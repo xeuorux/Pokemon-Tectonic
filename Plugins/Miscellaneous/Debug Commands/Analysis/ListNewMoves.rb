@@ -6,8 +6,7 @@ DebugMenuCommands.register("listnewmoves", {
 	
 	moveDataSorted = []
 	GameData::Move.each do |moveData|
-		next unless moveData.id_number >= 742
-		break if moveData.id_number >= 2000
+		next unless moveData.tectonic_new
 		moveDataSorted.push(moveData)
 	end
 

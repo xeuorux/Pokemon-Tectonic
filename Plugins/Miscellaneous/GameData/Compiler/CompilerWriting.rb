@@ -210,17 +210,41 @@ module Compiler
   end
 
   def write_moves
-    File.open("PBS/moves.txt", "wb") { |f|
+    File.open("PBS/moves_new.txt", "wb") { |f|
       add_PBS_header_to_file(f)
       GameData::Move.each do |m|
-        break if m.id_number >= 2000
+        next unless m.tectonic_new
         write_move(f,m)
       end
     }
-    File.open("PBS/other_moves.txt", "wb") { |f|
+    File.open("PBS/moves_cut.txt", "wb") { |f|
       add_PBS_header_to_file(f)
       GameData::Move.each do |m|
-        next if m.id_number < 2000
+        next unless m.cut
+        write_move(f,m)
+      end
+    }
+    File.open("PBS/moves_z.txt", "wb") { |f|
+      add_PBS_header_to_file(f)
+      GameData::Move.each do |m|
+        next unless m.zmove
+        write_move(f,m)
+      end
+    }
+    File.open("PBS/moves_primeval.txt", "wb") { |f|
+      add_PBS_header_to_file(f)
+      GameData::Move.each do |m|
+        next unless m.primeval
+        write_move(f,m)
+      end
+    }
+    File.open("PBS/moves.txt", "wb") { |f|
+      add_PBS_header_to_file(f)
+      GameData::Move.each do |m|
+        next if m.tectonic_new
+        next if m.cut
+        next if m.zmove
+        next if m.primeval
         write_move(f,m)
       end
     }

@@ -123,18 +123,21 @@ module GameData
 
           @moves.each do |entry|
             moveID = entry[1]
-            next if GameData::Move.get(moveID).id_number < 2000
-            raise _INTL("Cut or inaccessible move #{moveID} is learnable by species #{@id}!")
+            moveData = GameData::Move.get(moveID)
+            next if moveData.learnable?
+            raise _INTL("Cut or nonstandard move #{moveID} is learnable by species #{@id}!")
           end
 
           @egg_moves.each do |moveID|
-            next if GameData::Move.get(moveID).id_number < 2000
-            raise _INTL("Cut or inaccessible move #{moveID} is learnable by species #{@id}!")
+            moveData = GameData::Move.get(moveID)
+            next if moveData.learnable?
+            raise _INTL("Cut or nonstandard move #{moveID} is learnable by species #{@id}!")
           end
 
           @tutor_moves.each do |moveID|
-            next if GameData::Move.get(moveID).id_number < 2000
-            raise _INTL("Cut or inaccessible move #{moveID} is learnable by species #{@id}!")
+            moveData = GameData::Move.get(moveID)
+            next if moveData.learnable?
+            raise _INTL("Cut or nonstandard move #{moveID} is learnable by species #{@id}!")
           end
       end
   

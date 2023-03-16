@@ -112,12 +112,12 @@ def describeMove(move)
 			tag = "Wind"
 		end
 	end
-	procChanceLabel = (moveData.effect_chance == 0 || moveData.effect_chance == 100) ? "-" : moveData.effect_chance.to_s
-	moveLine = "#{moveData.real_name},#{typeName},\"#{moveData.description}\",#{moveData.base_damage},#{categoryDescriptor},"
-	moveLine += "#{accuracyLabel},#{moveData.total_pp},#{moveData.target},#{priorityLabel},#{procChanceLabel},#{tag}"
+	weilderName = ""
 	if moveData.is_signature?
 		weilderName = GameData::Species.get(moveData.signature_of).real_name
-		moveLine += "," + weilderName
 	end
+	procChanceLabel = (moveData.effect_chance == 0 || moveData.effect_chance == 100) ? "-" : moveData.effect_chance.to_s
+	moveLine = "#{moveData.real_name},#{weilderName},#{typeName},\"#{moveData.description}\",#{moveData.base_damage},#{categoryDescriptor},"
+	moveLine += "#{accuracyLabel},#{moveData.total_pp},#{moveData.target},#{priorityLabel},#{procChanceLabel},#{tag}"
 	return moveLine
 end

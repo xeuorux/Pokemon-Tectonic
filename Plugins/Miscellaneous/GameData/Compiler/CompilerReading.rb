@@ -163,14 +163,21 @@ module Compiler
     GameData::Move::DATA.clear
     move_names        = []
     move_descriptions = []
-    ["PBS/moves.txt","PBS/other_moves.txt"].each do |path|
+    idBase = 0
+    ["PBS/moves.txt","PBS/moves_new.txt","PBS/moves_primeval.txt","PBS/moves_z.txt","PBS/moves_cut.txt"].each do |path|
+      idNumber = idBase
+      primeval = path == "PBS/moves_primeval.txt"
+      cut = path == "PBS/moves_cut.txt"
+      tectonic_new = path == "PBS/moves_new.txt"
+      zmove = path == "PBS/moves_z.txt"
       # Read each line of moves.txt at a time and compile it into an move
       pbCompilerEachPreppedLine(path) { |line, line_no|
+        idNumber += 1
         line = pbGetCsvRecord(line, line_no, [0, "vnssueeuuueissN",
           nil, nil, nil, nil, nil, :Type, ["Physical", "Special", "Status"],
           nil, nil, nil, :Target, nil, nil, nil, nil
         ])
-        move_number = line[0]
+        move_number = idNumber
         move_symbol = line[1].to_sym
         if GameData::Move::DATA[move_number]
           raise _INTL("Move ID number '{1}' is used twice.\r\n{2}", move_number, FileLineData.linereport)
@@ -201,13 +208,18 @@ module Compiler
           :priority         => line[11],
           :flags            => line[12],
           :description      => line[13],
-          :animation_move   => animation_move
+          :animation_move   => animation_move,
+          :primeval         => primeval,
+          :cut              => cut,
+          :tectonic_new     => tectonic_new,
+          :zmove            => zmove,
         }
         # Add move's data to records
         GameData::Move.register(move_hash)
         move_names[move_number]        = move_hash[:name]
         move_descriptions[move_number] = move_hash[:description]
       }
+      idBase += 1000
     end
     # Save all data
     GameData::Move.save

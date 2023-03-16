@@ -2,6 +2,10 @@ module GameData
     class Move
         attr_reader :animation_move
         attr_reader :signature_of
+        attr_reader :primeval
+        attr_reader :zmove
+        attr_reader :cut
+        attr_reader :tectonic_new
 
         def initialize(hash)
           @id                 = hash[:id]
@@ -20,6 +24,10 @@ module GameData
           @real_description   = hash[:description] || "???"
           @animation_move     = hash[:animation_move]
           @signature_of       = nil
+          @primeval           = hash[:primeval] || false
+          @zmove              = hash[:zmove] || false
+          @cut                = hash[:cut] || false
+          @tectonic_new       = hash[:tectonic_new] || false
         end
 
         def damaging?
@@ -71,6 +79,13 @@ module GameData
             "072",   # Mirror Coat
             "073",   # Metal Burst
           ].include?(@function_code)
+          return true
+        end
+
+        def learnable?
+          return false if @cut
+          return false if @primeval
+          return false if @zmove
           return true
         end
     end

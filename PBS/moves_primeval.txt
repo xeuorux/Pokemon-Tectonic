@@ -1,0 +1,54 @@
+﻿# See the documentation on the wiki to learn how to edit this file.
+2001,PRIMEVALHEALBELL,Primeval Heal Bell,600,0,NORMAL,Status,0,1,0,UserAndAllies,0,dky,"The user heals itself and allies and removes their statuses, and becomes Normal-type.",HEALBELL
+2002,PRIMEVALSUNSHINE,Primeval Sunshine,601,0,FIRE,Status,0,1,0,BothSides,0,y,"The user summons sunshine for 5 turns, boosts its Atk. and Sp. Atk, and becomes Fire-type.",SUNSHINE
+2003,PRIMEVALRAIN,Primeval Rain,602,0,WATER,Status,0,1,0,BothSides,0,y,"The user summons rain for 5 turns, surrounds itself with healing water, and becomes Water-type.",RAIN
+2004,PRIMEVALLEECHSEED,Primeval Leech Seed,603,0,GRASS,Status,100,1,0,AllNearFoes,0,bey,"Plants seeds on all near foes, draining HP each turn. User becomes Grass-type.",LEECHSEED
+2005,PRIMEVALLIGHTNINGDANCE,Primeval Lightning Dance,604,0,ELECTRIC,Status,0,1,0,User,0,doy,"The user sharply boosts its Sp. Atk and Speed stats, and becomes Electric-type.",LIGHTNINGDANCE
+2006,PRIMEVALHAIL,Primeval Hail,605,0,ICE,Status,0,1,0,BothSides,0,y,"The user summons a hail storm for 5 turns, harshly reduces the speed of all enemies, and becomes Ice-type.",HAIL
+2007,PRIMEVALBULKUP,Primeval Bulk Up,606,0,FIGHTING,Status,0,1,0,User,0,dy,"The user boosts its Attack and Defense, gains a lot of weight, and becomes Fighting-type.",BULKUP
+2008,PRIMEVALSPIKES,Primeval Spikes,607,0,GROUND,Status,0,1,0,FoeSide,0,y,"The user lays 3 layers of spike traps at the foe's feet, and becomes Ground-type.",SPIKES
+2009,PRIMEVALTAILWIND,Primeval Tailwind,608,0,FLYING,Status,0,1,0,UserSide,0,dy,"The user ups the Speed and attack count of itself and allies, and becomes Flying-type.",TAILWIND
+2010,PRIMEVALCALMMIND,Primeval Calm Mind,609,0,PSYCHIC,Status,0,1,0,User,0,dy,"The user raises its Sp. Atk and Sp. Def, drastically raises its accuracy, and becomes Psychic-type.",CALMMIND
+2011,PRIMEVALSTRINGSHOT,Primeval String Shot,60A,0,BUG,Status,100,1,0,AllNearFoes,0,bey,"Nearby foes are bound with silk, sharply lowering their Speed, Atk., and Sp. Atk User also becomes Bug-type.",STRINGSHOT
+2012,PRIMEVALSANDSTORM,Primeval Sandstorm,60B,0,ROCK,Status,0,1,0,BothSides,0,y,"The user summons a sandstorm for 5 turns, boosts its Def. and Sp. Def, and becomes Rock-type.",SANDSTORM
+2013,PRIMEVALCURSE,Primeval Curse,60C,0,GHOST,Status,100,1,0,AllNearFoes,0,bey,"The user applies a damaging curse to all nearby foes. User becomes a Ghost-type.",CURSE
+2014,PRIMEVALDRAGONDANCE,Primeval Dragon Dance,60D,0,DRAGON,Status,0,1,0,User,0,doy,"The user sharply boosts its Attack and Speed, and becomes Dragon-type.",DRAGONDANCE
+2015,PRIMEVALTORMENT,Primeval Torment,60E,0,DARK,Status,100,1,0,AllNearFoes,0,bey,"The user torments and enrages the foe, making it incapable of using the same move twice in a row.",TORMENT
+2016,PRIMEVALLASERFOCUS,Primeval Laser Focus,60F,0,STEEL,Status,0,1,0,User,0,dy,"The user focuses intently, making every future attack critical. The user becomes a Steel-type.",LASERFOCUS
+2017,PRIMEVALMOONBASK,Primeval Moonbask,610,0,FAIRY,Status,0,1,0,User,0,dy,"The user restores its HP, swaps its Attack stats, swaps its Defense stats, and becomes Fairy-type.",MOONLIGHT
+2018,PRIMEVALPOISONGAS,Primeval Poison Gas,611,0,POISON,Status,100,1,0,AllNearFoes,0,bey,"A cloud of poison gas is sprayed at all nearby foes, poisoning them. User becomes a Poison-type.",POISONGAS
+2019,PRIMEVALENDURE,Primeval Endure,612,0,NORMAL,Status,0,1,0,User,4,y,"The user endures the next three hits which would faint it. User becomes a Normal-type.",ENDURE
+2020,PRIMEVALIGNITE,Primeval Ignite,613,0,FIRE,Status,100,1,0,AllNearFoes,0,bey,"The user inflicts burns on all nearby foes. User becomes a Fire-type.",IGNITE
+2021,PRIMEVALFLOWSTATE,Primeval Flow State,614,0,WATER,Status,100,1,100,User,0,dy,"The user TODO, boosts its Atk. and Sp. Def, and becomes a Water-type.",FLOWSTATE
+2022,PRIMEVALAROMATHERAPY,Primeval Aromatherapy,615,0,GRASS,Status,0,1,0,BothSides,0,y,"The user raises its offensive stats, heals statuses of itself and allies, and becomes Grass-type.",AROMATHERAPY
+2023,PRIMEVALNUMB,Primeval Numb,616,0,ELECTRIC,Status,0,1,0,BothSides,0,y,"The user inflicts numb on all nearby foes. User becomes an Electric-type.",NUMB
+2024,PRIMEVALECLIPSE,Primeval Eclipse,617,0,PSYCHIC,Status,0,1,0,BothSides,0,y,"Summons eclipse for 5 turns, resets lowered stats, and user becomes Psychic-type.",ECLIPSE
+2025,PRIMEVALMOONGLOW,Primeval Moonglow,618,0,FAIRY,Status,0,1,0,BothSides,0,y,"Summons moonglow for 5 turns, buffs the defending stats of all allies, and user becomes Fairy-type.",MOONGLOW
+2026,PRIMEVALHEALORDER,Primeval Heal Order,619,0,BUG,Status,0,1,0,User,0,dy,"The user restores 1/8th of its HP, summons an allied Combee, and becomes Bug-type",HEALORDER
+2027,PRIMEVALGREYMIST,Primeval Grey Mist,61A,0,POISON,Status,100,1,0,User,0,dy,"The user resets all stats, prevents stat changes, increases their defenses, and becomes Poison-type.",MIST
+2028,PRIMEVALROCKPOLISH,Primeval Rock Polish,61B,0,ROCK,Status,0,1,0,User,0,dy,"The sharply raises its speed, gains an extra two moves per turn, and becomes Rock-type.",ROCKPOLISH
+2029,PRIMEVALWHIRLWIND,Primeval Whirlwind,61C,0,FLYING,Status,0,1,0,AllNearFoes,-6,ey,"All near foes are forced to switch out, and the user becomes Flying-type.",WHIRLWIND
+2030,PRIMEVALEMBARGO,Primeval Embargo,61D,0,DARK,Status,100,1,0,FoeSide,0,bey,"The enemy side is prevented from using items for the rest of the battle, and the user becomes Dark-type.",EMBARGO
+2031,PRIMEVALCHILL,Primeval Chill,61E,0,ICE,Status,100,1,0,AllNearFoes,0,bey,"The user inflicts frostbite on all nearby foes. User becomes an Ice-type.",CHILL
+2032,PRIMEVALDESTINYBOND,Primeval Destiny Bond,61F,0,GHOST,Status,0,1,0,User,0,y,"Attackers against the user suffer recoil for the rest of the battle. User becomes a Ghost-type.",DESTINYBOND
+2033,PRIMEVALSHOREUP,Primeval Shore Up,620,0,GROUND,Status,0,1,0,User,0,dy,"The user restores 1/8th of its HP, TODO, and becomes Ground-type.",
+2034,PRIMEVALLOOMOVER,Primeval Loom Over,621,0,DRAGON,Status,0,1,0,AllNearFoes,0,ey,"The user harshly lowers each near foes best stat, and becomes Dragon-type.",LOOMOVER
+2035,PRIMEVALDETECT,Primeval Detect,622,0,FIGHTING,Status,0,1,0,User,4,y,"The user takes 50% less attack damage for 3 turns, and becomes Fighting-type.",
+2036,PRIMEVALQUIVERDANCE,Primeval Quiver Dance,623,0,BUG,Status,0,15,0,User,0,doy,"The user sharply boosts their Sp. Atk, Sp. Def, and Speed, and becomes Bug-type.",
+2037,PRIMEVALSHIVERDANCE,Primeval Shiver Dance,624,0,ICE,Status,0,15,0,User,0,doy,"The user sharply boosts their Attack, Defense, and Speed, and becomes Ice-type.",
+2038,PRIMEVALMETEORMASH,Primeval Meteor Mash,636,160,STEEL,Physical,100,10,100,NearOther,0,abefjy,"The target is obliterated by a meteoric strike, which raises the user's attack.",METEORMASH
+2039,PRIMEVALICEBEAM,Primeval Ice Beam,637,160,ICE,Special,100,10,100,NearOther,0,befy,"The target is struck with an absolute zero beam of energy, frostbiting it.",ICEBEAM
+2040,PRIMEVALROCKTOMB,Primeval Rock Tomb,638,90,ROCK,Physical,100,10,100,AllNearFoes,0,befy,"Boulders are hurled at all near enemies, harshly lowering their Speed by preventing their movement.",ROCKTOMB
+2041,PRIMEVALANCIENTPOWER,Primeval Ancient Power,639,80,ROCK,Special,100,10,100,NearOther,0,befy,"The user attacks with a prehistoric power which raises all its stats",ANCIENTPOWER
+2042,PRIMEVALTHUNDERBOLT,Primeval Thunderbolt,640,160,ELECTRIC,Special,100,1,100,NearOther,0,befy,"A powerful electric blast is let loose on the target, numbing it.",THUNDERBOLT
+2043,PRIMEVALFLAREBLITZ,Primeval Flare Blitz,641,200,FIRE,Physical,100,10,0,NearOther,0,abefy,"The user cloaks itself in fire and charges at the foe. The user also takes 33% recoil.",FLAREBLITZ
+2044,PRIMEVALMETALCLAW,Primeval Metal Claw,642,60,STEEL,Physical,100,30,100,NearOther,0,abefy,"The target is raked with steel claws twice. The user raises its attack after each hit.",METALCLAW
+2045,PRIMEVALSLASH,Primeval Slash,643,120,NORMAL,Physical,100,15,0,NearOther,0,abefpy,"The target is attacked with a slash of claws or blades, always critting.",SLASH
+2046,PRIMEVALBRICKBREAK,Primeval Brick Break,644,140,FIGHTING,Physical,100,12,100,NearOther,0,abefy,"The user attacks with a swift chop, destroying barriers, and drastically reducing the target's defense.",BRICKBREAK
+2047,PRIMEVALCROSSPOISON,Primeval Cross Poison,645,70,POISON,Physical,100,10,10,AllNearFoes,0,abefpy,"The user slashes all near foes with with poisonous blades or edges. Will be critical against poisoned targets.",CROSSPOISON
+2048,PRIMEVALSOLARBEAM,Primeval Solar Beam,646,170,GRASS,Special,100,10,0,AllNearFoes,0,befy,"A two-turn attack. The user gathers light, then blasts all near foes on the second turn.",SOLARBEAM
+2049,PRIMEVALPOWERGEM,Primeval Power Gem,647,120,ROCK,Special,100,15,100,NearOther,0,befy,"The user attacks with a sparkling gem-like ray, dizzying the target.",POWERGEM
+2050,PRIMEVALBULLETSEED,Primeval Bullet Seed,648,35,GRASS,Physical,100,15,0,AllNearFoes,0,abefy,"The user forcefully shoots 6 seeds in rapid succession, spread among nearby enemies.",BULLETSEED
+2051,PRIMEVALFUTURESIGHT,Primeval Future Sight,649,280,PSYCHIC,Special,100,10,0,NearOther,0,y,"Two turns after this move is used, a hunk of psychic energy attacks the target.",FUTURESIGHT
+2052,PRIMEVALDRAGONDARTS,Primeval Dragon Darts,650,100,DRAGON,Physical,100,10,0,AllNearFoes,0,befy,"The user attacks twice using Dreepy, spreading the hits. One of the Dreepys is summoned as an ally.",
+2053,STRATOSPHERESCREAM,Stratosphere Scream,700,100,FLYING,Special,0,5,0,AllNearFoes,0,befk,"A move that only the avatar of Rayquaza can use. All enemies struck lose their flinch immunity.",SCREECH
