@@ -20,7 +20,7 @@
 1019,EAGERTICKLING,Eager Tickling,042,40,FAIRY,Physical,100,25,10,NearOther,0,abef,"The user tickles the target excessively, damaging it. This has a 10% chance to lower Attack.",PLAYROUGH
 1020,TREADON,Tread On,044,40,GROUND,Physical,100,30,10,NearOther,0,abef,"The user attacks the opposing Pokémon by trampling it. It has a 10% chance to lower Speed.",STOMPINGTANTRUM
 1021,RUMBLE,Rumble,076,45,GROUND,Physical,100,30,0,AllNearOthers,0,bef,"The user causes the earth to rumble, striking every Pokémon around it and underground.",EARTHQUAKE
-1022,TREMOR,Tremor,076,65,GROUND,Physical,100,15,0,AllNearOthers,0,bef,"The user slams the earth, causing all the Pokémon around it and underground to tremble and take damage.",
+1022,TREMOR,Tremor,076,65,GROUND,Physical,100,15,0,AllNearOthers,0,bef,"The user slams the earth, damaging all Pokémon around it and underground.",
 1023,COLDEMBRACE,Cold Embrace,403,40,ICE,Physical,100,30,10,NearOther,0,abef,"The user grabs the target in a chilly embrace. It has a 10% chance to frostbite.",ICEHAMMER
 1024,STINKCLOUD,Stink Cloud,401,50,POISON,Special,100,20,20,NearOther,0,befq,"The user gives off a terrible stench towards the target. It has a 20% chance to dizzy.",
 1025,BLINDSIDE,Blind Side,0A5,40,PSYCHIC,Physical,0,30,0,NearOther,0,aef,"The user skillfully attacks around the enemy's defenses. Can't miss and skips protections.",ZENHEADBUTT
@@ -112,7 +112,7 @@
 1111,INURE,Inure,531,0,ICE,Status,0,10,0,User,0,d,"The user inures themselves to a harsh environment, shedding their type weaknesses.",
 1112,BREAKDANCE,Breakdance,532,0,FIGHTING,Status,0,15,0,User,0,do,"The user improvises a dance, sharply raising its weakest stat, and raising its second weakest stat.",WORKUP
 1113,SHIVERDANCE,Shiver Dance,525,0,ICE,Status,0,15,0,User,0,do,"The user shivers rhythmically. It boosts the user's Attack, Defense, and Speed stats.",
-1114,AMBUSH,Ambush,516,110,DARK,Physical,70,10,0,NearOther,2,abef,"The user tries to surprise-attack the target. Cannot miss in Moonglow. Critical hits land more easily.",NIGHTSLASH
+1114,AMBUSH,Ambush,516,110,DARK,Physical,70,10,0,NearOther,2,abef,"The user tries to surprise-attack the target. Cannot miss in moonglow. Critical hits land more easily.",NIGHTSLASH
 1115,STITCHUP,Stitch Up,524,0,GHOST,Status,0,5,0,User,0,d,"The user restores two thirds of its own HP. Then, this move is disabled.",RECOVER
 1116,PHANTOMBREAK,Phantom Break,523,120,GHOST,Physical,100,5,0,NearOther,0,abef,"Although this move has great power, it disables itself after use.",SHADOWPUNCH
 1117,LOOMOVER,Loom Over,522,0,DRAGON,Status,0,12,0,NearOther,0,ce,"The user looms over the target with awful menace, causing their best stat to drop harshly.",
@@ -168,7 +168,7 @@
 1167,AIRDART,Air Dart,00F,60,FLYING,Special,100,12,30,Other,0,beq,"The user strikes the target with a sudden wind. It has a 40% chance to flinch the target.",
 1168,MIASMA,Miasma,046,90,POISON,Special,100,12,10,NearOther,0,befq,"The user envelops the target in a foul wind. It has a 10% chance to lower Sp. Def.",ACIDSPRAY
 1169,VENOMORTAR,Venomortar,005,100,POISON,Physical,50,5,100,NearOther,0,bef,"The user blasts a bundle of venom at the target, poisoning it.",
-1170,MOONIMPACT,Moon Impact,516,110,FAIRY,Physical,85,12,0,NearOther,0,abef,"Cannot miss in Moonglow. 30% chance to dizzy the target.",SPIRITBREAK
+1170,MOONIMPACT,Moon Impact,516,110,FAIRY,Physical,85,12,0,NearOther,0,abef,"Cannot miss in moonglow. 30% chance to dizzy the target.",SPIRITBREAK
 1171,AURATRICK,Aura Trick,540,80,FAIRY,Special,100,10,0,NearOther,0,bef,"The user attacks with its aura, dealing damage based on the user's Sp. Def stat.",FAIRYWIND
 1172,DISTORT,Distort,043,40,FIGHTING,Special,100,30,10,NearOther,0,abef,"The user distorts the target's aura, damaging it. This has a 10% chance of reducing the target's Defense.",VACUUMWAVE
 1173,ADRENALASH,Adrenalash,020,90,FIGHTING,Special,100,12,20,NearOther,0,bef,"The user forms their excitement into a lash with a 10% chance of raising the user's Sp. Atk.",FOCUSBLAST
@@ -364,7 +364,7 @@
 1363,TRIUMPHANTDANCE,Triumphant Dance,5B0,0,FIGHTING,Status,100,5,0,User,0,do,"The user dances to celebrate victory. This raises all stats if a foe fainted last turn.",
 1364,ICEBREAKER,Icebreaker,5B1,120,ROCK,Physical,100,10,0,NearOther,0,abef,"The user charges at the target, sweeping away hazards in the with its armored jaw. The user also takes 33% recoil.",HEADSMASH
 1365,ZAPYAPPING,Zap Yapping,5B9,0,ELECTRIC,Status,0,15,0,User,2,,"This turn, all Enemies attacks becomes Electric-type and can only target the user.",
-1366,SCHEME,Scheme,5BA,0,NORMAL,Status,0,25,0,User,0,d,"The user schemes to increase its Attack and Sp. Atk. During Moonglow, also raises Speed.",
+1366,SCHEME,Scheme,5BA,0,NORMAL,Status,0,25,0,User,0,d,"The user schemes to increase its Attack and Sp. Atk. During moonglow, also raises Speed.",
 1367,RAGINGFURY,Raging Fury,55F,120,FIRE,Physical,100,10,0,RandomNearFoe,0,abef,"The user rampages and attacks while spewing flames for three turns.",FLAREBLITZ
 1368,CHLOROBLAST,Chloroblast,510,150,GRASS,Special,100,5,100,NearOther,0,bef,"The user launches its amassed chlorophyll to inflict damage on the target. The user loses half its current HP.",
 1369,DIRECLAW,Dire Claw,005,85,POISON,Physical,100,15,50,NearOther,0,abefh,"The user lashes out at the target with ruinous claws, aiming to land a critical hit. This has a 50% chance to poison.",
@@ -394,7 +394,7 @@
 1393,WINTEROPS,Winter Ops,0C1,1,ICE,Physical,100,10,0,NearOther,0,befh,"The user hunts with its allies. The more party Pokémon, the more damage. Critical hits are more likely.",
 1394,PREYMARK,Prey Mark,402,60,BUG,Physical,100,15,100,NearOther,0,abef,"The user marks the target as eternal prey, leeching it.",
 1395,GRIMVISIONS,Grim Visions,043,90,DARK,Special,100,10,100,NearOther,0,bef,"The user attacks with dark illusions. This also lowers the target's Defense stat.",
-1396,SILKBLADE,Silk Blade,03C,120,BUG,Physical,100,5,0,NearOther,0,abefhp,"The user slashes using its woven silk, cutting the user's Defenses. Critical hits are more likely.",XSCISSOR
+1396,SILKBLADE,Silk Blade,03C,120,BUG,Physical,100,5,0,NearOther,0,abefhp,"The user slashes using its woven silk, cutting the user's defenses. Critical hits are more likely.",XSCISSOR
 1397,EXTREMEEFFORT,Extreme Effort,5C9,150,NORMAL,Physical,100,5,0,NearOther,0,bef,"The user uses all their might to attack their opponent, causing them to rest on their next turn.",
 1398,TRANQUILPRAYER,Tranquil Prayer,5CA,0,FAIRY,Status,0,15,0,User,0,d,"The user focuses its mind on a prayer, boosting its Sp. Atk, Sp. Def and critical strike chance.",FOCUSENERGY
 1399,MACHINATE,Machinate,5CB,90,GHOST,Special,100,12,30,NearOther,0,befn,"Changes type based on machine haunted. 30% chance of extra effect based on machine haunted.",SHADOWBALL
