@@ -67,15 +67,15 @@ Events.OnTalkToFollower += proc {|pkmn,x,y,random_val|
   when :POISON
     $scene.spriteset.addUserAnimation(FollowerSettings::Emo_Poison,x,y)
     pbWait(72)
-    pbMessage(_INTL("{1} is shivering with the effects of being poisoned.",pkmn.name))
+    pbMessage(_INTL("{1} is suffering the effects of being poisoned.",pkmn.name))
   when :BURN
     $scene.spriteset.addUserAnimation(FollowerSettings::Emo_Hate,x,y)
     pbWait(72)
     pbMessage(_INTL("{1}'s burn looks painful.",pkmn.name))
   when :FROSTBITE
-    $scene.spriteset.addUserAnimation(FollowerSettings::Emo_Normal,x,y)
+    $scene.spriteset.addUserAnimation(FollowerSettings::Emo_Hate,x,y)
     pbWait(72)
-    pbMessage(_INTL("{1} seems very cold. It's frostbitten!",pkmn.name))
+    pbMessage(_INTL("{1} frostbite looks painful.",pkmn.name))
   when :SLEEP
     $scene.spriteset.addUserAnimation(FollowerSettings::Emo_Normal, x, y)
     pbWait(72)
@@ -88,10 +88,10 @@ Events.OnTalkToFollower += proc {|pkmn,x,y,random_val|
     $scene.spriteset.addUserAnimation(4,x,y)
     pbWait(72)
     pbMessage(_INTL("{1} looks dazed and confused.",pkmn.name))
-  when :FROZEN
+  when :LEECHED
     $scene.spriteset.addUserAnimation(FollowerSettings::Emo_Normal,x,y)
     pbWait(72)
-    pbMessage(_INTL("{1} seems very cold. It's frozen solid!",pkmn.name))
+    pbMessage(_INTL("{1} energy is slowly being leeched away.",pkmn.name))
   end
   next true if pkmn.status != :NONE
 }
