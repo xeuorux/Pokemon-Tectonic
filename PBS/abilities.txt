@@ -613,3 +613,5 @@
 1007,SANDSPIT,Sand Spit,"Summons a sandstorm for 4 turns when hit by an attack."
 1008,PRIMEVALSLOWSTART,Primeval Slow Start,"Attack and Speed are halved."
 1009,PRIMEVALIMPOSTER,Primeval Imposter,"Transforms into the entire enemy team, except buffed!"
+1010,FEELTHEBURN,Feel the Burn,"Boosts Attack by 75%, but the Pokemon becomes Burned after attacking."
+1011,COLDCALCULATION,Cold Calculation,"Boosts Attack by 75%, but the Pokemon becomes Burned after attacking."

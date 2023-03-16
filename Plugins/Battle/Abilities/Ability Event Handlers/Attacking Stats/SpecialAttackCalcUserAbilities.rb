@@ -117,3 +117,10 @@ BattleHandlers::SpecialAttackCalcUserAbility.add(:WINTERWISDOM,
       next spAtkMult
   }
 )
+
+BattleHandlers::SpecialAttackCalcUserAbility.add(:COLDCALCULATION,
+  proc { |_ability, _user, _battle, spAtkMult|
+      spAtkMult *= 1.75
+      next spAtkMult
+  }
+)

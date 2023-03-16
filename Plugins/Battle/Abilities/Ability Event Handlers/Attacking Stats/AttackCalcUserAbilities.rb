@@ -173,3 +173,10 @@ BattleHandlers::AttackCalcUserAbility.add(:POLARHUNTER,
       next attackMult
   }
 )
+
+BattleHandlers::AttackCalcUserAbility.add(:FEELTHEBURN,
+  proc { |_ability, user, battle, attackMult|
+      attackMult *= 1.75
+      next attackMult
+  }
+)

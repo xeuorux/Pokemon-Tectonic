@@ -285,3 +285,39 @@ BattleHandlers::UserAbilityEndOfMove.add(:ROCKCYCLE,
       battle.pbHideAbilitySplash(user)
   }
 )
+
+BattleHandlers::UserAbilityEndOfMove.add(:FEELTHEBURN,
+  proc { |_ability, user, targets, move, battle, _switchedBattlers|
+      next if battle.futureSight
+      next unless move.pbDamagingMove?
+      next if user.burned?
+      hitAnything = false
+      targets.each do |b|
+        next if b.damageState.unaffected
+        hitAnything = true
+        break
+      end
+      next unless hitAnything
+      battle.pbShowAbilitySplash(user)
+      user.applyBurn(user)
+      battle.pbHideAbilitySplash(user)
+  }
+)
+
+BattleHandlers::UserAbilityEndOfMove.add(:COLDCALCULATION,
+  proc { |_ability, user, targets, move, battle, _switchedBattlers|
+      next if battle.futureSight
+      next unless move.pbDamagingMove?
+      next if user.frostbitten?
+      hitAnything = false
+      targets.each do |b|
+        next if b.damageState.unaffected
+        hitAnything = true
+        break
+      end
+      next unless hitAnything
+      battle.pbShowAbilitySplash(user)
+      user.applyFrostbite(user)
+      battle.pbHideAbilitySplash(user)
+  }
+)
