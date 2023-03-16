@@ -123,3 +123,15 @@ BattleHandlers::UserAbilityOnHit.add(:ROCKCYCLE,
     user.pbOwnSide.applyEffect(:ErodedRock) if move.physicalMove?
   }
 )
+
+BattleHandlers::UserAbilityOnHit.add(:GUARDBREAK,
+  proc { |_ability, user, target, move, battle|
+    target.tryLowerStat(:DEFENSE, user, showAbilitySplash: true) if move.physicalMove?
+  }
+)
+
+BattleHandlers::UserAbilityOnHit.add(:WILLBREAK,
+  proc { |_ability, user, target, move, battle|
+    target.tryLowerStat(:SPECIAL_DEFENSE, user, showAbilitySplash: true) if move.physicalMove?
+  }
+)
