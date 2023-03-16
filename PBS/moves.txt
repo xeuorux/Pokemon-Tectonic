@@ -107,7 +107,7 @@
 106,THUNDERFANG,Thunder Fang,009,65,ELECTRIC,Physical,100,12,100,NearOther,0,abei,"The user bites with electrified fangs. It has a 10% chance to flinch and a 10% chance to numb.",
 107,SHOCKWAVE,Shock Wave,0A5,60,ELECTRIC,Special,0,15,0,NearOther,0,ef,"The user strikes the target with a quick jolt of electricity. Can't miss and skips protections.",
 108,ELECTROWEB,Electroweb,044,55,ELECTRIC,Special,100,12,100,AllNearFoes,0,bef,"The user captures and attacks foes by using an electric net, which lowers their Speed stat.",
-109,CHARGEBEAM,Charge Beam,020,50,ELECTRIC,Special,100,10,70,NearOther,0,bef,"The user fires a concentrated bundle of electricity. It has a 70% chance to also raise the user's Sp. Atk stat.",
+109,CHARGEBEAM,Charge Beam,020,40,ELECTRIC,Special,100,10,100,NearOther,0,bef,"The user fires a concentrated bundle of electricity, raising the user's Sp. Atk stat.",
 110,THUNDERSHOCK,Thunder Shock,007,40,ELECTRIC,Special,100,25,10,NearOther,0,bef,"A jolt of electricity is hurled at the foe to inflict damage. It has a 10% chance to numb.",
 111,NUZZLE,Nuzzle,007,20,ELECTRIC,Physical,100,15,100,NearOther,0,abef,"The user nuzzles its electrified cheeks against the target. This also leaves the target numbed.",
 112,ELECTROBALL,Electro Ball,099,1,ELECTRIC,Special,100,10,0,NearOther,0,befn,"The user hurls an electric orb at the foe. It does more damage the faster the user is.",

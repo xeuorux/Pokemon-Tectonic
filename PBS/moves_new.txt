@@ -61,7 +61,7 @@
 1060,GRANITEHEAD,Granite Head,0FB,85,ROCK,Physical,100,12,0,NearOther,0,abef,"The user charges into the target with its stony body. The user also takes 33% recoil.",HEADSMASH
 1061,BEDROCKBREAKER,Bedrock Breaker,0FB,120,ROCK,Physical,100,10,0,NearOther,0,abef,"The user smashes its rock-hard head into the target. The user also takes 33% recoil.",HEADSMASH
 1062,TEMPEST,Tempest,401,100,FLYING,Special,50,10,100,Other,0,befq,"Chaotic winds push the target around, dizzying it.",HURRICANE
-1063,BLUSTER,Bluster,020,50,FLYING,Special,100,10,60,NearOther,0,befq,"The user fires a stormy gust at the target. It has a 60% chance to also raise the user's Sp. Atk.",GUST
+1063,BLUSTER,Bluster,020,40,FLYING,Special,100,10,100,NearOther,0,befq,"The user fires a stormy gust at the target. This also raises the user's Sp. Atk.",GUST
 1064,SHREDSHOT,Shred Shot,511,55,STEEL,Special,100,30,100,NearOther,0,befn,"The user shreads off bits of its own body to launch at the target. This also damages the user.",SPIKECANNON
 1065,SHARDS,Shards,511,90,STEEL,Special,100,10,100,NearOther,0,bef,"The user shoots shards of its own body at the target. This also damages the user.",SPIKECANNON
 1066,SPITEFULCHANT,Spiteful Chant,521,70,GHOST,Special,100,15,100,NearOther,0,befk,"The user unleashes its grudge, damaging the target and cutting 4 PP from the move last used by it.",NIGHTSHADE
@@ -129,7 +129,7 @@
 1128,COMETSMASH,Comet Smash,01C,95,NORMAL,Physical,100,10,20,NearOther,0,abefj,"The user throws a comet-like punch. It has a 20% chance to raise Attack.",MEGAPUNCH
 1129,DOUBLEPUNCH,Double Punch,0BD,45,NORMAL,Physical,100,10,0,NearOther,0,abefj,"The user punches the target twice in quick succession.",MEGAPUNCH
 1130,PULVERIZE,Pulverize,01C,100,NORMAL,Physical,80,5,10,NearOther,0,abefj,"The user pulverizes the target with both its fists. It has a 50% chance to raise Attack.",MEGAPUNCH
-1131,PUMMEL,Pummel,01C,60,NORMAL,Physical,100,15,50,NearOther,0,abefj,"The user warms up by treating the target as a punching bag. This has a 50% chance to raise Attack.",MEGAPUNCH
+1131,PUMMEL,Pummel,01C,40,NORMAL,Physical,100,15,100,NearOther,0,abefj,"The user warms up by treating the target as a punching bag, damaging them and raising Attack.",MEGAPUNCH
 1132,SLICE,Slice,000,95,NORMAL,Physical,100,12,0,NearOther,0,abefhp,"The target is cut by a clean slice. Critical hits land more easily.",SLASH
 1133,FURY,Fury,093,60,NORMAL,Physical,100,12,0,NearOther,0,abef,"As long as this move is in use, the user's Attack rises each time the user is hit in battle.",RAGE
 1134,SPELLBIND,Spellbind,401,0,FAIRY,Status,100,10,0,NearOther,0,bce,"Dizzies the target by putting them under a magical spell.",CHARM
@@ -139,7 +139,7 @@
 1138,RAKE,Rake,000,65,BUG,Physical,100,20,0,NearOther,0,abefp,"The user rakes the target with sharp claws.",FURYCUTTER
 1139,WATERSPIRAL,Water Spiral,16F,85,WATER,Special,100,12,0,NearOther,0,befn,"Fires a spiral of water at enemies, or a HP-restoring one at allies.",WATERPULSE
 1140,SPATTERINGRAM,Spattering Ram,043,60,WATER,Physical,100,20,30,NearOther,0,abef,"The user rams the target like a ship. It has a 30% chance to lower Defense.",
-1141,BLOSSOM,Blossom,020,50,GRASS,Special,100,30,70,NearOther,0,befn,"Flowers blooms underneath, dealing damage. It has a 70% chance to raise user's Sp. Atk.",GRASSPLEDGE
+1141,BLOSSOM,Blossom,020,40,GRASS,Special,100,30,100,NearOther,0,befn,"Flowers blooms with intensity, damaging the target and raising the user's Sp. Atk.",GRASSPLEDGE
 1142,THRIVINGFORCE,Thriving Force,020,90,GRASS,Special,100,12,10,NearOther,0,befn,"The user attacks with the bursting power of nature. It has a 10% chance to raise user's Sp. Atk.",ENERGYBALL
 1143,TERADRAIN,Tera Drain,14F,100,GRASS,Special,50,12,0,NearOther,0,befh,"A nutrient-draining attack. The user's HP is restored by 75% of the damage taken by the target.",GIGADRAIN
 1144,MENDINGSPRING,Mending Spring,0DA,40,WATER,Special,100,12,0,NearOther,0,bef,"The user opens a spring to blast the target, also healing themselves by 1/8th max HP each turn after.",WATERGUN
