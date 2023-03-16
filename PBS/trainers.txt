@@ -1930,6 +1930,8 @@ Pokemon = ARCHEOPS,40
 Extends = LEADER_Bence,Bence,0
 RemovePokemon = DREDNAW,40
 RemovePokemon = ARCHEOPS,40
+Pokemon = STONJOURNER,40
+	AbilityIndex = 0 # Power Spot
 #-------------------------------
 [LEADER_Bence_2,Bence,1]
 Extends = LEADER_Bence,Bence,0
