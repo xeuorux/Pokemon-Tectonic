@@ -484,7 +484,7 @@
 482,LONGODDS,Long Odds,"Multi-hit moves can hit up to twice as many times."
 483,MARINEMENACE,Marine Menace,"Dive and Depth Charge deal 50% more damage."
 484,MOONBLANKET,Moon Blanket,"User and allies take 25% less move damage during moonglow."
-485,EXOADAPTION,Exo-Adaption,"Boosts Sp. Def by 25%, and heals user by 25% after taking a Special attack."
+485,EXOADAPTION,Exo-Adaption,"Boosts Sp. Def by 25%. User heals by 25% after taking a Special attack."
 486,LOCOMOTION,Locomotion,"Boosts Speed by 50% but the user is locked into the first move they use."
 487,TANTALIZING,Tantalizing,"Draws in attacks from enemies with below half health."
 488,UNBREAKABLE,Unbreakable,"Prevents half the self-damage from recoil and Self-Destruct/Explosion."
