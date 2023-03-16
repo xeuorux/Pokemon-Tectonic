@@ -364,61 +364,40 @@ class PokeBattle_Battle
     def autoTestingBattlerSpeciesChange(b)
         b.pokemon.level = 1 + pbRandom(69).ceil
         b.pokemon.calc_stats
+        b.pokemon.name = nil
         b.pbInitPokemon(b.pokemon, b.pokemonIndex)
         @scene.pbChangePokemon(b.index, b.pokemon)
     end
 
     def changesForAutoTesting
-        statuses = %i[POISON BURN NUMB FROSTBITE DIZZY LEECHED SLEEP]
-
-        changeChance = 10
-        resetChance = 5
-        speciesChangeChance = 5
-
         # Change all party members
         unless @bossBattle
             [@party1, @party2].each_with_index do |party, partyIndex|
                 party.each_with_index do |pokemon, i|
-                    next if pokemon.nil? || !pokemon.able?
+                    next unless pokemon&.able?
                     next if pbFindBattler(i, partyIndex) # Skip Pokémon in battle
                     pokemon.species = GameData::Species::DATA.keys.sample
+                    pokemon.name = nil
                     pokemon.level = 1 + pbRandom(69).ceil
                     pokemon.calc_stats
+                    pokemon.item = GameData::Item::DATA.values.sample
                 end
             end
         end
 
         # Change all battlers
         @battlers.each do |b|
-            next if b.nil? || b.pokemon.nil?
-
-            if !b.boss? && (pbRandom(100) < speciesChangeChance || @turnCount == 0)
-                b.pokemon.species = GameData::Species::DATA.keys.sample
-                autoTestingBattlerSpeciesChange(b)
-            end
-
-            b.hp = b.totalhp * [0.25, 0.5, 0.75, 1.0, 1.0, 1.0, 1.0, 1.0].sample
-            b.hp = 1 if b.hp < 1
-            if pbRandom(100) < changeChance
-                b.pbInflictStatus(statuses.sample)
-            elsif pbRandom(100) < resetChance
-                b.pbCureStatus(false)
-            end
-
-            if pbRandom(100) < changeChance
-                b.pbEffectsOnSwitchIn
-            end
-            if pbRandom(100) < changeChance
-                b.item = GameData::Item::DATA.values.sample
-                b.pbHeldItemTriggerCheck
-            end
+            next if b.nil? || b.pokemon.nil? || b.boss?
+            b.pokemon.species = GameData::Species::DATA.keys.sample
+            autoTestingBattlerSpeciesChange(b)
         end
     end
 
     def pbCommandPhaseLoop(isPlayer)
         # NOTE: Doing some things (e.g. running, throwing a Poké Ball) takes up all
         #       your actions in a round.
-        changesForAutoTesting if @autoTesting
+
+        changesForAutoTesting if @autoTesting && @turnCount == 0
 
         actioned = []
         idxBattler = -1

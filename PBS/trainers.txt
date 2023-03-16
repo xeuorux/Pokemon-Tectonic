@@ -67,7 +67,7 @@ Pokemon = CHEWTLE,10
 #-------------------------------
 [NINJABOY,Matthew]
 Pokemon = BONSLY,12
-    AbilityIndex = 0 # Dessicate
+    AbilityIndex = 0 # Desiccate
 Pokemon = NINCADA,12
     AbilityIndex = 0 # Swarm
 #-------------------------------
@@ -1893,7 +1893,7 @@ Pokemon = BRIONNE,70
 Pokemon = FERALIGATR,70
     AbilityIndex = 1 # Strong Jaw
 Pokemon = PACHIRISU,70
-    AbilityIndex = 0 # Lightning Rod
+    AbilityIndex = 0 # Bad Luck
 Pokemon = TORTERRA,70
     AbilityIndex = 0 # Refuge
 Pokemon = HONCHKROW,70
@@ -2822,6 +2822,7 @@ ExtendsVersion = 0
 Policies = CURSE_VENGEANT
 #-------------------------------
 [TRAINER_Sang,Sang]
+Policies = EQ_PROTECT
 Pokemon = EXPLOUD,47
     Name = Egret Ash
     Gender = female
@@ -3190,6 +3191,7 @@ Pokemon = NINJASK,52
     Item = LIFEORB
 #-------------------------------
 [TRAINER_Sang,Sang,2]
+Policies = EQ_PROTECT
 Pokemon = REGISTEEL,60
     Moves = HAMMERARM,DISCHARGE,WARPEDSTRIKE,STEALTHROCK
     AbilityIndex = 1 # Morphing Guard
@@ -4412,6 +4414,7 @@ Pokemon = MGIGALITH,70
     Item = ASSAULTCORSET
 #-------------------------------
 [TRAINER_Sang,Sang,4]
+Policies = EQ_PROTECT
 Pokemon = EXPLOUD,70
     Name = Egret Ash
     Gender = female

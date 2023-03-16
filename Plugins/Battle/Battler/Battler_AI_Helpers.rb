@@ -219,5 +219,35 @@ class PokeBattle_Battler
             next if b.inTwoTurnAttack?("0CD")
             yield b
         end
+
+        if ownersPolicies.include?(:EQ_PROTECT)
+            eachAlly(true) do |b|
+                next unless b.canChooseFullSpreadMove?(categoryOnly)
+                yield b
+            end
+        end
+    end
+
+    def canChooseProtect?
+        eachMoveWithIndex do |move, i|
+            next unless move.is_a?(PokeBattle_ProtectMove)
+            next unless @battle.pbCanChooseMove?(index, i, false)
+            next if @battle.battleAI.aiPredictsFailure?(move, self, self)
+            return true
+        end
+        return false
+    end
+
+    def canChooseFullSpreadMove?(categoryOnly = -1)
+        eachMoveWithIndex do |move, i|
+            next if categoryOnly == 0 && !move.physicalMove?
+            next if categoryOnly == 1 && !move.specialMove?
+            next if categoryOnly == 2 && !move.statusMove?
+            next unless @battle.pbCanChooseMove?(index, i, false)
+            target_data = move.pbTarget(self)
+            next unless target_data.id == :AllNearOthers
+            return true
+        end
+        return false
     end
 end

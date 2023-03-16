@@ -644,11 +644,14 @@ class PokeBattle_ProtectMove < PokeBattle_Move
     def getEffectScore(user, _target)
         score = 0
         user.eachPredictedProtectHitter do |b|
-            score += 50 if user.hasAlly?
-            score += 50 if b.poisoned?
-            score += 50 if b.leeched?
-            score += 30 if b.burned?
-            score += 30 if b.frostbitten?
+            score += 30 if user.hasAlly?
+        end
+        score *= 2 if user.belowHalfHealth?
+        user.eachOpposing do |b|
+            score += 30 if b.poisoned?
+            score += 30 if b.leeched?
+            score += 20 if b.burned?
+            score += 20 if b.frostbitten?
         end
         return score
     end

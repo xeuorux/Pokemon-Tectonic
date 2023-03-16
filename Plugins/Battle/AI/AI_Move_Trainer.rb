@@ -71,7 +71,14 @@ class PokeBattle_AI
             end
             targets.each do |b|
                 score = pbGetMoveScore(move, user, b, policies, targets.length)
-                totalScore += (user.opposes?(b) ? score : -score)
+                if user.opposes?(b)
+                    totalScore += score
+                else
+                    if policies.include?(:EQ_PROTECT) && b.canChooseProtect?
+                        next
+                    end
+                    totalScore -= score
+                end
             end
             if targets.length > 1
                 totalScore *= targets.length / (targets.length.to_f + 1.0)
