@@ -1,7 +1,7 @@
-DebugMenuCommands.register("listnewmoves", {
+DebugMenuCommands.register("listcutmoves", {
   "parent"      => "analysis",
-  "name"        => _INTL("List new moves"),
-  "description" => _INTL("List all new moves added to the game."),
+  "name"        => _INTL("List cut moves"),
+  "description" => _INTL("List all moves cut from canon."),
   "effect"      => proc { |sprites, viewport|
 	
 	moveDataSorted = []
