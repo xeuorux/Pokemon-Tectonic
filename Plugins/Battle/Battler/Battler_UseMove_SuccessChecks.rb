@@ -115,6 +115,14 @@ GameData::Move.get(@effects[:GorillaTactics]).name)
             echoln(msg)
             return false
         end
+        if hasActiveAbility?(:ECCENTRIC) && pbHasType?(move.type)
+            msg = _INTL("{1} cannot use moves of their own type!", pbThis)
+            if showMessages
+                commandPhase ? @battle.pbDisplayPaused(msg) : @battle.pbDisplay(msg)
+            end
+            echoln(msg)
+            return false
+        end
         # Belch
         return false unless move.pbCanChooseMove?(self, commandPhase, showMessages)
         return true

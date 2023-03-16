@@ -456,3 +456,9 @@ BattleHandlers::DamageCalcUserAbility.add(:HOOLIGAN,
       mults[:base_damage_multiplier] *= 1.3 if move.recoilMove? || move.soundMove?
   }
 )
+
+BattleHandlers::DamageCalcUserAbility.add(:ECCENTRIC,
+  proc { |_ability, _user, _target, _move, mults, _baseDmg, type|
+      mults[:base_damage_multiplier] *= 1.5 if type != _user.pbHasType?(type)
+  }
+)
