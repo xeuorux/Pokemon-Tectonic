@@ -204,19 +204,19 @@ class PokeBattle_AI_Deoxys < PokeBattle_AI_Boss
                 if user.hp < user.totalhp * 0.25
                     if user.form != 1
                         formChangeMessage = _INTL("The avatar of Deoxys turns to Attack Form!")
-                        user.pbChangeFormBoss(1, formChangeMessage)
+                        user.pbChangeForm(1, formChangeMessage)
                         user.assignMoveset(ATTACK_FORM_MOVESET)
                     end
                 elsif user.hp < user.totalhp * 0.5
                     if user.form != 2
                         formChangeMessage = _INTL("The avatar of Deoxys turns to Defense Form!")
-                        user.pbChangeFormBoss(2, formChangeMessage)
+                        user.pbChangeForm(2, formChangeMessage)
                         user.assignMoveset(DEFENSE_FORM_MOVESET)
                     end
                 elsif user.hp < user.totalhp * 0.75
                     if user.form != 3
                         formChangeMessage = _INTL("The avatar of Deoxys turns to Speed Form!")
-                        user.pbChangeFormBoss(3, formChangeMessage)
+                        user.pbChangeForm(3, formChangeMessage)
                         user.assignMoveset(SPEED_FORM_MOVESET)
                     end
                 end
@@ -242,12 +242,12 @@ percentStrength.to_s))
 
                 if percentStrength == 50
                     formChangeMessage = _INTL("{1} transforms into its 50 percent form!", user.pbThis)
-                    user.pbChangeFormBoss(0, formChangeMessage)
+                    user.pbChangeForm(0, formChangeMessage)
                     user.ability = :AURABREAK
                     user.assignMoveset(FIFTY_PERCENT_MOVESET)
                 elsif percentStrength == 100
                     formChangeMessage = _INTL("{1} transforms into its 100 percent form!", user.pbThis)
-                    user.pbChangeFormBoss(2, formChangeMessage)
+                    user.pbChangeForm(2, formChangeMessage)
                     user.ability = :AURABREAK
                     battle.pbDisplayBossNarration(_INTL("{1} completely regenerates!", user.pbThis))
                     user.pbRecoverHP(user.totalhp - user.hp)
@@ -512,12 +512,13 @@ class PokeBattle_AI_Sawsbuck < PokeBattle_AI_Boss
             if turnCount != 0
                 newForm = (user.form + 1) % 4
                 formChangeMessage = _INTL("The season shifts!")
-                user.pbChangeFormBoss(newForm, formChangeMessage)
+                user.pbChangeForm(newForm, formChangeMessage)
                 user.assignMoveset(MOVESETS[newForm])
             end
         })
     end
 end
+
 class PokeBattle_AI_Rotom < PokeBattle_AI_Boss
     FORM_1_MOVESET = %i[HEATWAVE DISCHARGE]
     FORM_2_MOVESET = %i[FROSTBREATH THUNDERBOLT]
@@ -533,9 +534,27 @@ class PokeBattle_AI_Rotom < PokeBattle_AI_Boss
                 newForm = user.form + 1
                 newForm = 1 if newForm > 5
                 formChangeMessage = _INTL("The avatar swaps machines!")
-                user.pbChangeFormBoss(newForm, formChangeMessage)
+                user.pbChangeForm(newForm, formChangeMessage)
                 user.assignMoveset(MOVESETS[newForm-1])
             end
         })
+    end
+end
+
+class PokeBattle_AI_Meloetta < PokeBattle_AI_Boss
+    def initialize(user, battle)
+        super
+        @useMoveIFF.add(:RELICSONG, proc { |_move, user, _target, battle|
+            next battle.turnCount % 2 == 1 && user.lastTurnThisRound?
+        })
+        @rejectMovesIf.push( proc { |move, user, _target, battle|
+            if user.form == 0
+                next true if %i[DOUBLEHIT CAPOEIRA].include?(move.id)
+            else
+                next true if %i[PSYBEAM ROUND].include?(move.id)
+            end
+            next false
+        }
+        )
     end
 end

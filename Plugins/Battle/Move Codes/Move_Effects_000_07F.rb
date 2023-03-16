@@ -2531,9 +2531,9 @@ class PokeBattle_Move_077 < PokeBattle_SleepMove
 end
 
 #===============================================================================
-# Has a chance to put the target to sleep. Swaps form if the user is Meloetta.
+# Swaps form if the user is Meloetta. (Relic Song)
 #===============================================================================
-class PokeBattle_Move_078 < PokeBattle_SleepMove
+class PokeBattle_Move_078 < PokeBattle_Move
     def pbEndOfMoveUsageEffect(user, _targets, numHits, _switchedBattlers)
         return if numHits == 0
         return if user.fainted? || user.transformed?

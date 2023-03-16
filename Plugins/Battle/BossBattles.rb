@@ -558,9 +558,4 @@ class PokeBattle_Battler
         end
         @lastMoveChosen = nil
     end
-
-    def pbChangeFormBoss(formID, formChangeMessage)
-        @pokemon.forced_form = formID
-        pbChangeForm(formID, formChangeMessage)
-    end
 end

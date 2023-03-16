@@ -390,7 +390,7 @@
 409,RAZORWIND,Razor Wind,0C3,80,FLYING,Special,100,10,0,AllNearFoes,0,befpq,"A two-turn attack. Blades of wind hit the foe on the second turn. Critical hits land more easily.",
 412,TRIATTACK,Tri Attack,017,80,NORMAL,Special,100,10,33,NearOther,0,bef,"The user strikes with a simultaneous three-beam attack. It has a 11% chance each to numb, burn, or frostbite.",
 413,CRUSHCLAW,Crush Claw,043,75,NORMAL,Physical,100,10,100,NearOther,0,abef,"The user slashes the target with hard and sharp claws. It also lowers the target's Defense.",
-414,RELICSONG,Relic Song,078,75,NORMAL,Special,100,10,10,AllNearFoes,0,befk,"An ancient song appeals to the hearts of those listening. It has a 10% chance to induce sleep.",
+414,RELICSONG,Relic Song,078,75,NORMAL,Special,100,10,10,AllNearFoes,0,befk,"An ancient song appeals to the hearts of those listening. Switches Meloetta's form.",
 415,CHIPAWAY,Chip Away,0A9,70,NORMAL,Physical,100,15,0,NearOther,0,abef,"Seeking an opening, the user strikes continually. The foe's stat changes don't affect the damage.",
 416,DIZZYPUNCH,Dizzy Punch,401,85,NORMAL,Physical,100,10,20,NearOther,0,abefj,"The target is hit with rhythmically launched punches that have a 20% chance to dizzy.",
 417,FACADE,Facade,07E,70,NORMAL,Physical,100,15,0,NearOther,0,abef,"Doubles its power if the user has a status condition. Ignores burn Attack reduction.",

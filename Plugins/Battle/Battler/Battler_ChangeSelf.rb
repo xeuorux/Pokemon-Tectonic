@@ -369,6 +369,7 @@ class PokeBattle_Battler
         oldForm = @form
         oldDmg = @totalhp - @hp
         self.form = newForm
+        pokemon.forced_form = newForm if boss?
         pbUpdate(true)
         @hp = @totalhp - oldDmg
         @hp = 1 if @hp < 1
