@@ -8,7 +8,7 @@ def healFromBerry(battler, ratio, item, forced = false, filchedFrom = nil)
     ratio *= 2.0 if battler.hasActiveAbility?(:RIPEN)
     itemToPass = forced ? nil : item
     battler.applyFractionalHealing(ratio, item: itemToPass)
-    battle.pbHideAbilitySplash(battler) if filchedFrom
+    battler.battle.pbHideAbilitySplash(battler) if filchedFrom
 end
 
 def pbBattleStatIncreasingBerry(battler, battle, item, forced, stat, increment = 1, checkGluttony = true, filchedFrom = nil)
