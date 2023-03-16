@@ -240,18 +240,12 @@ class BattleInfoDisplay < SpriteWrapper
 		# Stat stage
 		stage = battler.stages[stat]
 		if stage != 0 && battler.boss?
-			stage = (stage/2.0).round(1)
+			stage = (stage/2.0).round(2)
 		end
 		statValuesArray.push(stage)
 
-		#Percentages
-		stageMul = statData.type == :battle ? stageMulBattleStat : stageMulMainStat
-		stageDiv = statData.type == :battle ? stageDivBattleStat : stageDivMainStat
-		adjustedStage = stage + 6
-		mult = stageMul[adjustedStage].to_f/stageDiv[adjustedStage].to_f
-		mult = (1.0+mult)/2.0 if battler.boss?
-		
-		statValuesArray.push(mult)
+		# Multiplier
+		statValuesArray.push(battler.statMultiplierAtStage(battler.stages[stat]))
 
 		# Draw the final stat value label
 		if stat == :ACCURACY || stat == :EVASION
@@ -314,7 +308,7 @@ class BattleInfoDisplay < SpriteWrapper
 		textToDraw.push([stageLabel,x,y,0,base,shadow])
 
 		# Display the stat multiplier
-		multLabel = statMult.round(2).to_s + "x"
+		multLabel = statMult.round(2).to_s
 		textToDraw.push([multLabel,statMultX,y,0,base,shadow])
 
 		# Display the final calculated stat
