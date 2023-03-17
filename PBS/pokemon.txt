@@ -20709,7 +20709,7 @@ Name = Mienfoo
 InternalName = MIENFOO
 Type1 = FIGHTING
 # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
-BaseStats = 45,80,50,65,80,50
+BaseStats = 48,66,42,75,90,69
 # Total = 370
 GenderRate = Female50Percent
 GrowthRate = Parabolic
