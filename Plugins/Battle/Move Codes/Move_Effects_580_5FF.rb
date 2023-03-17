@@ -1650,3 +1650,39 @@ class PokeBattle_Move_5CE < PokeBattle_TargetMultiStatUpMove
         @statUp = [:SPECIAL_ATTACK, 1, :SPECIAL_DEFENSE, 1]
     end
 end
+
+#===============================================================================
+# For 5 rounds, disables the last move the target used. (Gem Seal)
+#===============================================================================
+class PokeBattle_Move_5CF < PokeBattle_Move
+    def ignoresSubstitute?(_user); return true; end
+
+    def pbFailsAgainstTarget?(user, target, show_message)
+        unless target.canBeDisabled?(true, self)
+            if show_message
+                @battle.pbDisplay(_INTL("But it failed!"))
+            end
+            return true
+        end
+        return false
+    end
+
+    def pbEffectAgainstTarget(_user, target)
+        target.applyEffect(:Disable, 5)
+        target.eachMove do |m|
+            next if m.id != target.lastRegularMoveUsed
+            reduction = [4, m.pp].min
+            target.pbSetPP(m, m.pp - reduction)
+            @battle.pbDisplay(_INTL("It reduced the PP of {1}'s {2} by {3}!",
+               target.pbThis(true), m.name, reduction))
+            break
+        end
+    end
+
+    def getEffectScore(_user, target)
+        return 0 if target.hasActiveAbilityAI?(:MENTALBLOCK)
+        score = 90
+        score += 30 if @battle.pbIsTrapped?(target.index)
+        return score
+    end
+end

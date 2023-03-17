@@ -404,3 +404,4 @@
 1403,SHINESHOT,Shine Shot,046,60,STEEL,Special,100,10,30,NearOther,0,bef,"The user looses a flash of energy from its polished body. It has a 30% chance to lower Sp. Def.",
 1404,TUTELAGE,Tutelage,5CE,0,PSYCHIC,Status,0,10,0,NearAlly,0,,"The user imparts knowledge on its ally Pokémon, boosting their Sp. Atk and Sp. Def stats.",
 1405,POWERNAP,Power Nap,0F9,0,DARK,Status,0,5,0,User,0,d,"The user restores 1/2 of its HP, or 2/3rds in moonglow.",
+1406,GEMSEAL,Gem Seal,5CF,0,GHOST,Status,100,15,0,NearOther,0,bce,"Disables the targets last used move for 4 turns, and cuts 4 PP from it.",
