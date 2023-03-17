@@ -457,7 +457,7 @@ BattleHandlers::DamageCalcUserAbility.add(:HOOLIGAN,
   }
 )
 
-BattleHandlers::DamageCalcUserAbility.add(:ECCENTRIC,
+BattleHandlers::DamageCalcUserAbility.add(:AURORAPRISM,
   proc { |_ability, user, _target, _move, mults, _baseDmg, type|
       mults[:base_damage_multiplier] *= 1.5 unless user.pbHasType?(type)
   }

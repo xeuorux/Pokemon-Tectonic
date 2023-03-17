@@ -605,7 +605,9 @@
 603,GLASSFIRING,Glass Firing,"Immune to Fire-type moves and raises both defenses if hit by one."
 604,GUARDBREAK,Guard Break,"Its physical attacks reduce the target's Defense."
 605,WILLBREAK,Will Break,"Its special attacks reduce the target's Sp. Def."
-606,ECCENTRIC,Eccentric,"Moves this Pokémon uses that don't share a type with it are boosted by 50%. Cannot use moves of its own type."
+606,AURORAPRISM,Aurora Prism,"Moves this Pokémon uses that don't share a type with it are boosted by 50%. Cannot use moves of its own type."
+607,FEELTHEBURN,Feel the Burn,"Boosts Attack by 75%, but the Pokemon becomes burned after attacking."
+608,COLDCALCULATION,Cold Calculation,"Boosts Sp. Attack by 75%, but the Pokemon becomes frostbitten after attacking."
 1000,JUSTIFIED,Justified,"Raises Attack when hit by a Dark-type move."
 1001,ADAPTABILITY,Adaptability,"Powers up moves of the same type."
 1002,HUGEPOWER,Huge Power,"Raises the Pokémon's Attack stat."
@@ -615,6 +617,4 @@
 1006,MISTYSURGE,Misty Surge,"Turns the ground into Fairy Terrain for 5 turns when entering battle."
 1007,SANDSPIT,Sand Spit,"Summons a sandstorm for 4 turns when hit by an attack."
 1008,PRIMEVALSLOWSTART,Primeval Slow Start,"Attack and Speed are halved."
-1009,PRIMEVALIMPOSTER,Primeval Imposter,"Transforms into the entire enemy team, except buffed!"
-1010,FEELTHEBURN,Feel the Burn,"Boosts Attack by 75%, but the Pokemon becomes burned after attacking."
-1011,COLDCALCULATION,Cold Calculation,"Boosts Sp. Attack by 75%, but the Pokemon becomes frostbitten after attacking."
+1009,PRIMEVALIMPOSTER,Primeval Imposter,"Transforms into the entire enemy team, except buffed!
