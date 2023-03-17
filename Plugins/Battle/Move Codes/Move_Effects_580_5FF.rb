@@ -1640,3 +1640,13 @@ class PokeBattle_Move_5CD < PokeBattle_Move
         return baseDmg
     end
 end
+
+#===============================================================================
+# Boosts Targets' Sp. Atk and Sp. Def (Tutelage)
+#===============================================================================
+class PokeBattle_Move_5CE < PokeBattle_TargetMultiStatUpMove
+    def initialize(battle, move)
+        super
+        @statUp = [:SPECIAL_ATTACK, 1, :SPECIAL_DEFENSE, 1]
+    end
+end
