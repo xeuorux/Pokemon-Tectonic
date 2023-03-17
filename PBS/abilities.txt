@@ -608,6 +608,7 @@
 606,AURORAPRISM,Aurora Prism,"Moves this Pokémon uses that don't share a type with it are boosted by 50%. Cannot use moves of its own type."
 607,FEELTHEBURN,Feel the Burn,"Boosts Attack by 75%, but the Pokemon becomes burned after attacking."
 608,COLDCALCULATION,Cold Calculation,"Boosts Sp. Attack by 75%, but the Pokemon becomes frostbitten after attacking."
+609,GRAVITATIONAL,Gravitational,"Upon entry, intensifies Gravity for 5 turns."
 1000,JUSTIFIED,Justified,"Raises Attack when hit by a Dark-type move."
 1001,ADAPTABILITY,Adaptability,"Powers up moves of the same type."
 1002,HUGEPOWER,Huge Power,"Raises the Pokémon's Attack stat."

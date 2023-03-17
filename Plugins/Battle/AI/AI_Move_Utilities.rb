@@ -154,7 +154,7 @@ class PokeBattle_AI
                modifiers, user, target, move, type)
         end
         # Other effects, inc. ones that set accuracy_multiplier or evasion_stage to specific values
-        modifiers[:accuracy_multiplier] *= 5 / 3.0 if @battle.field.effectActive?(:Gravity)
+        modifiers[:accuracy_multiplier] *= 2.0 if @battle.field.effectActive?(:Gravity)
         modifiers[:accuracy_multiplier] *= 1.2 if user.effectActive?(:MicleBerry)
         modifiers[:evasion_stage] = 0 if target.effectActive?(:MiracleEye) && modifiers[:evasion_stage] > 0
         modifiers[:evasion_stage] = 0 if target.effectActive?(:Foresight) && modifiers[:evasion_stage] > 0

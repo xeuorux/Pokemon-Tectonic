@@ -574,7 +574,7 @@
 573,BARRIER,Barrier,02F,0,PSYCHIC,Status,0,15,0,User,0,d,"The user throws up a sturdy wall that sharply raises its Defense stat.",
 574,CALMMIND,Calm Mind,02C,0,PSYCHIC,Status,0,15,0,User,0,d,"The user quietly focuses its mind and calms its spirit to raise its Sp. Atk and Sp. Def stats.",
 575,COSMICPOWER,Cosmic Power,02A,0,PSYCHIC,Status,0,15,0,User,0,d,"The user absorbs a mystical power from space to raise its Defense and Sp. Def stats.",
-576,GRAVITY,Gravity,118,0,GROUND,Status,0,5,0,BothSides,0,,"Gravity is intensified for five turns, making moves involving flying unusable and negating Levitation.",
+576,GRAVITY,Gravity,118,0,GROUND,Status,0,5,0,BothSides,0,,"Gravity is intensified for five turns, forcing Pokemon down from the air and doubling all move accuracy.",
 577,GUARDSPLIT,Guard Split,059,0,PSYCHIC,Status,0,10,0,NearOther,0,b,"The user employs its psychic power to average its Defense and Sp. Def stats with those of its target.",
 578,GUARDSWAP,Guard Swap,053,0,PSYCHIC,Status,0,10,0,NearOther,0,be,"The user employs its psychic power to switch changes to its Defense and Sp. Def with the target.",
 579,HEALBLOCK,Heal Block,0BB,0,PSYCHIC,Status,100,12,0,AllNearFoes,0,bce,"For five turns, the foe is prevented from using any moves, Abilities, or held items that recover HP.",
