@@ -153,6 +153,7 @@ Land,20
     25,EXEGGCUTE,7,9
     25,HOUNDOUR,7,9
     25,TOXEL,7,9
+    25,WINGULL,7,9
 LandSparse,20
     25,GRUBBIN,7,9
     25,HONEDGE,7,9
@@ -163,7 +164,7 @@ Puddle,20
     20,CLOBBOPUS,7,9
     20,HORSEA,7,9
     20,INKAY,7,9
-    20,WINGULL,7,9
+    20,MGOLDEEN,7,9
 Special,20
     1,SPHEAL,15
 #-------------------------------
