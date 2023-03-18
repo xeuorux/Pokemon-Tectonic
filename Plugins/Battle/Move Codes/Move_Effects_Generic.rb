@@ -293,7 +293,7 @@ class PokeBattle_MultiStatUpMove < PokeBattle_Move
 end
 
 class PokeBattle_StatDownMove < PokeBattle_Move
-    def pbEffectAfterAllHits(user, target)
+    def pbEffectWhenDealingDamage(user, target)
         return if @battle.pbAllFainted?(target.idxOwnSide)
         user.pbLowerMultipleStatStages(@statDown, user, move: self)
     end
