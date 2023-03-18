@@ -726,7 +726,7 @@ end
 class PokeBattle_Move_52D < PokeBattle_Move
     def pbEffectGeneral(_user)
         @battle.endWeather
-        @battle.battlers.each do |b|
+        @battle.eachBattler do |b|
             healStatus(b)
         end
     end
@@ -734,7 +734,7 @@ class PokeBattle_Move_52D < PokeBattle_Move
     def getEffectScore(_user, _target)
         score = 0
         score += 30 if @battle.field.weather != :None
-        @battle.battlers.each do |b|
+        @battle.eachBattler do |b|
             pkmn = b.pokemon
             next if !pkmn || !pkmn.able? || pkmn.status == :NONE
             score += b.opposes? ? 30 : -30
@@ -763,14 +763,9 @@ class PokeBattle_Move_52F < PokeBattle_Move_042
         @battle.endWeather if @battle.field.weather != :None
     end
 
-    def getEffectScore(user, _target)
-        score = 0
-        score += 30 if @battle.field.weather != :None
-        @battle.battlers.each do |b|
-            pkmn = b.pokemon
-            next if !pkmn || !pkmn.able? || b.opposes?
-            score += getMultiStatDownEffectScore([:ATTACK, 1], user, b)
-        end
+    def getEffectScore(user, target)
+        score = super
+        score += 20 if @battle.field.weather != :None
         return score
     end
 end

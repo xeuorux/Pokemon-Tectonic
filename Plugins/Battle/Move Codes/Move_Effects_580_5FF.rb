@@ -1001,14 +1001,14 @@ class PokeBattle_Move_5B6 < PokeBattle_Move
 
     def pbEffectWhenDealingDamage(user, target)
         return unless target.pbHasAnyStatus?
-        @battle.battlers.each do |b|
+        @battle.eachBattler do |b|
             healStatus(b)
         end
     end
 
     def getEffectScore(_user, _target)
         score = 0
-        @battle.battlers.each do |b|
+        @battle.eachBattler do |b|
             pkmn = b.pokemon
             next if !pkmn || !pkmn.able? || pkmn.status == :NONE
             score += b.opposes? ? 30 : -30

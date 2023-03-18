@@ -874,7 +874,7 @@ class PokeBattle_Move_11E < PokeBattle_Move
         end
         # Target is already maximally Quashed and will move last anyway
         highestQuash = 0
-        @battle.battlers.each do |b|
+        @battle.eachBattler do |b|
             next if b.effects[:Quash] <= highestQuash
             highestQuash = b.effects[:Quash]
         end
@@ -892,7 +892,7 @@ class PokeBattle_Move_11E < PokeBattle_Move
 
     def pbEffectAgainstTarget(_user, target)
         highestQuash = 0
-        @battle.battlers.each do |b|
+        @battle.eachBattler do |b|
             next if b.effects[:Quash] <= highestQuash
             highestQuash = b.effects[:Quash]
         end
