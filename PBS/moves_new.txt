@@ -127,7 +127,7 @@
 1126,ADAMANTINEPRESS,Adamantine Press,000,95,ROCK,Physical,100,10,0,NearOther,0,abef,"The user slams the target with their rock-hard body.",HEADSMASH
 1127,CLAMOR,Clamor,0D1,75,NORMAL,Special,100,10,0,RandomNearFoe,0,befk,"The user attacks in an uproar for three turns. Over that time, no one can fall asleep.",UPROAR
 1128,COMETSMASH,Comet Smash,01C,95,NORMAL,Physical,100,10,20,NearOther,0,abefj,"The user throws a comet-like punch. It has a 20% chance to raise Attack.",MEGAPUNCH
-1129,DOUBLEPUNCH,Double Punch,0BD,45,NORMAL,Physical,100,10,0,NearOther,0,abefj,"The user punches the target twice in quick succession.",MEGAPUNCH
+1129,DOUBLEPUNCH,Double Punch,0BD,45,NORMAL,Physical,100,10,0,NearOther,0,abefj,"The user punches the target twice in quick succession.",
 1130,PULVERIZE,Pulverize,01C,100,NORMAL,Physical,80,5,10,NearOther,0,abefj,"The user pulverizes the target with both its fists. It has a 50% chance to raise Attack.",MEGAPUNCH
 1131,PUMMEL,Pummel,01C,40,NORMAL,Physical,100,15,100,NearOther,0,abefj,"The user warms up by treating the target as a punching bag, damaging them and raising Attack.",MEGAPUNCH
 1132,SLICE,Slice,000,95,NORMAL,Physical,100,12,0,NearOther,0,abefhp,"The target is cut by a clean slice. Critical hits land more easily.",SLASH
