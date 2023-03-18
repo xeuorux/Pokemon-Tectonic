@@ -7,7 +7,7 @@ GameData::BattleEffect.register_effect(:Battler, {
     end,
     :eor_proc => proc do |_battle, battler, _value|
         next unless battler.canHeal?
-        fraction = 1.0 / 8.0
+        fraction = 1.0 / 10.0
         fraction *= 1.3 if battler.hasActiveItem?(:BIGROOT)
         healMessage = _INTL("The ring of water restored {1}'s HP!", battler.pbThis(true))
         battler.applyFractionalHealing(fraction, customMessage: healMessage)
