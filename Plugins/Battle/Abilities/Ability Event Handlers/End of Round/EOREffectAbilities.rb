@@ -80,6 +80,7 @@ BattleHandlers::EOREffectAbility.add(:HUNGERSWITCH,
           battler.pbUpdate(true)
           battle.scene.pbChangePokemon(battler, battler.pokemon)
           battle.pbDisplay(_INTL("{1} transformed!", battler.pbThis))
+          battler.refreshDataBox
           battle.pbHideAbilitySplash(battler)
       end
   }
