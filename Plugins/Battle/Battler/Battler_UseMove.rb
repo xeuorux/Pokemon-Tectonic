@@ -838,15 +838,30 @@ move.name))
             # Animate battlers fainting (checks all battlers rather than just targets
             # because Flame Burst's splash damage affects non-targets)
             @battle.pbPriority(true).each { |b| b.pbFaint if b && b.fainted? }
-        elsif !user.poisoned?
-            targets.each do |target|
-                next if target.damageState.unaffected
-                next unless target.hasActiveAbility?(:SECRETIONSECRET) && user.opposes?(target)
-                battle.pbShowAbilitySplash(target)
-                user.applyPoison(target, nil) if user.canPoison?(target, true)
-                battle.pbHideAbilitySplash(target)
+        else
+            if !user.poisoned?
+                # Secretion Secret
+                targets.each do |target|
+                    next if target.damageState.unaffected
+                    next unless target.hasActiveAbility?(:SECRETIONSECRET) && user.opposes?(target)
+                    battle.pbShowAbilitySplash(target)
+                    user.applyPoison(target, nil) if user.canPoison?(target, true)
+                    battle.pbHideAbilitySplash(target)
+                end
             end
-            # Secretion Secret
+
+            # Single targeted status move
+            if targets.length == 1 && user.opposes?(targets[0]) && !targets[0].damageState.unaffected
+                # Unassuming
+                if user.hasActiveAbility?(:UNASSUMING)
+                    target.tryLowerStat(:DEFENSE, user, move, showFailMsg: true, showAbilitySplash: true)
+                end
+
+                # Recon
+                if user.hasActiveAbility?(:RECON)
+                    target.tryLowerStat(:SPECIAL_DEFENSE, user, move, showFailMsg: true, showAbilitySplash: true)
+                end
+            end
         end
         @battle.pbJudgeCheckpoint(user, move)
         # Main effect (recoil/drain, etc.)

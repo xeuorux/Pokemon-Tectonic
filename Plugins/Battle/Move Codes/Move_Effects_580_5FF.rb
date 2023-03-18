@@ -1686,3 +1686,58 @@ class PokeBattle_Move_5CF < PokeBattle_Move
         return score
     end
 end
+
+#===============================================================================
+# Restores health by half and gains an Aqua Ring. (River Rest)
+#===============================================================================
+class PokeBattle_Move_5D0 < PokeBattle_HalfHealingMove
+    def pbMoveFailed?(user, _targets, show_message)
+        if super(user, _targets, false) && user.effectActive?(:AquaRing)
+            @battle.pbDisplay(_INTL("But it failed!")) if show_message
+            return true
+        end
+        return false
+    end
+
+    def pbEffectGeneral(user)
+        super
+        user.applyEffect(:AquaRing)
+    end
+
+    def getEffectScore(user, target)
+        score = super
+        score += 40 unless user.effectActive?(:AquaRing)
+        return score
+    end
+end
+
+#===============================================================================
+# Heals the party of status conditions and gains an Aqua Ring. (Whale Song)
+#===============================================================================
+class PokeBattle_Move_5D1 < PokeBattle_Move_019
+    def worksWithNoTargets?; return true; end
+
+    def pbMoveFailed?(user, _targets, show_message)
+        if super(user, _targets, false) && user.effectActive?(:AquaRing)
+            @battle.pbDisplay(_INTL("But it failed!")) if show_message
+            return true
+        end
+        return false
+    end
+
+    def pbEffectGeneral(user)
+        super
+        user.applyEffect(:AquaRing)
+    end
+
+    def pbShowAnimation(id, user, targets, hitNum = 0, showAnimation = true)
+        super
+        @battle.pbDisplay(_INTL("Majestic whale sounds reverberate!"))
+    end
+
+    def getEffectScore(user, _target)
+        score = super
+        score += 40 unless user.effectActive?(:AquaRing)
+        return score
+    end
+end
