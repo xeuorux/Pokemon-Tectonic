@@ -23,7 +23,7 @@ class PokeBattle_Battler
         ret[:SPECIAL_DEFENSE] = spdef
         ret[:SPEED]           = speed
         if owner
-            tribalStatBonuses = owner.tribalBonus.getTribeBonuses(pokemon.level)
+            tribalStatBonuses = owner.tribalBonus.getTribeBonusStats(pokemon.level)
             ret[:ATTACK_TRIBAL] = tribalStatBonuses[:ATTACK]
             ret[:DEFENSE_TRIBAL] = tribalStatBonuses[:DEFENSE]
             ret[:SPECIAL_ATTACK_TRIBAL] = tribalStatBonuses[:SPECIAL_ATTACK]
@@ -41,7 +41,7 @@ class PokeBattle_Battler
 
     def tribalBonusForStat(stat)
         return 0 unless owner
-        return owner.tribalBonus.getTribeBonuses(pokemon.level)[stat]
+        return owner.tribalBonus.getTribeBonusStats(pokemon.level)[stat]
     end
 
     def puzzleRoom?
@@ -229,6 +229,7 @@ defenseMult)
             end
         end
         defenseMult = BattleHandlers.triggerDefenseCalcUserItem(item, self, battle, defenseMult) if itemActive?
+        defenseMult *= 1.1 if hasTribeBonus?(:SCRAPPER)
 
         # Calculation
         return [(defense * defenseMult).round, 1].max
@@ -251,6 +252,7 @@ spDefMult)
             end
         end
         spDefMult = BattleHandlers.triggerSpecialDefenseCalcUserItem(item, self, battle, spDefMult) if itemActive?
+        spDefMult *= 1.1 if hasTribeBonus?(:SHIMMERING)
 
         # Calculation
         return [(special_defense * spDefMult).round, 1].max

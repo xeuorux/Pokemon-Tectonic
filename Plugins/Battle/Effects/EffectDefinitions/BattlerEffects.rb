@@ -1201,8 +1201,15 @@ GameData::BattleEffect.register_effect(:Battler, {
 })
 
 GameData::BattleEffect.register_effect(:Battler, {
-    :id => :Sentry,
-    :real_name => "Sentry",
+    :id => :ChoseStatus,
+    :real_name => "Chose Status",
+    :resets_eor	=> true,
+    :info_displayed => false,
+})
+
+GameData::BattleEffect.register_effect(:Battler, {
+    :id => :ChoseAttack,
+    :real_name => "Chose Attack",
     :resets_eor	=> true,
     :info_displayed => false,
 })
@@ -1688,3 +1695,9 @@ battler.pbThis(true)))
     end,
 })
 
+GameData::BattleEffect.register_effect(:Battler, {
+    :id => :SwitchedIn,
+    :real_name => "Switched In",
+    :resets_battlers_eot => true,
+    :info_displayed => false,
+})

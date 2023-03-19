@@ -250,4 +250,10 @@ class PokeBattle_Battler
         end
         return false
     end
+
+    def hasGem?
+        return false unless item
+        return false unless itemActive?
+        return item.is_gem?
+    end
 end

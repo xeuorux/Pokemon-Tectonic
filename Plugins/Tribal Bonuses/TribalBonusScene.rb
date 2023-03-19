@@ -1,5 +1,5 @@
 class TribalBonusScene
-	PAGE_TITLES = ["TRIBES", "TRIBE INFO"]
+	PAGE_TITLES = ["TRIBES COUNT", "BONUS INFO"]
 
     def drawPage()
         # Draw page title

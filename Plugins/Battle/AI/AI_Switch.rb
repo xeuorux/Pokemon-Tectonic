@@ -122,7 +122,9 @@ class PokeBattle_AI
         listSwapOutCandidates(battler, list)
 
         # Only considers swapping into pokemon whose rating would be at least a +2 upgrade
-        list.delete_if { |val| !@battle.pbCanSwitch?(idxBattler, val[0]) || (switchingBias + val[1] <= 1) }
+        upgradeThreshold = 2
+        upgradeThreshold -= 1 if owner.tribalBonus.hasTribeBonus?(:CHARMER)
+        list.delete_if { |val| !@battle.pbCanSwitch?(idxBattler, val[0]) || (switchingBias + val[1] < upgradeThreshold) }
 
         if list.length > 0
             partySlotNumber = list[0][0]

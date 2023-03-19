@@ -303,6 +303,62 @@ class PokeBattle_Move
 			multipliers[:base_damage_multiplier] *= 2
 		end
     end
+
+    def pbCalcTribeBasedDamageMultipliers(user,target,type,multipliers,checkingForAI=false)
+        # Bushwacker tribe
+        if user.hasTribeBonus?(:BUSHWACKER)
+            if aiChecking
+                expectedTypeMod = @battleAI.pbCalcTypeModAI(type, user, target, self)
+                mults[:final_damage_multiplier] *= 1.5 if Effectiveness.resistant?(expectedTypeMod)
+            else
+                mults[:final_damage_multiplier] *= 1.5 if Effectiveness.resistant?(target.damageState.typeMod)
+            end
+        end
+
+        # Assassin tribe
+        if user.hasTribeBonus?(:ASSASSIN) && user.firstTurn?
+            mults[:final_damage_multiplier] *= 1.1
+        end
+
+        # Artillery tribe
+        if user.hasTribeBonus?(:ARTILLERY) && !user.firstTurn?
+            mults[:final_damage_multiplier] *= 1.1
+        end
+
+        # Mystic tribe
+        if user.hasTribeBonus?(:MYSTIC) && user.lastRoundMoveCategory == 2 # Status
+            mults[:final_damage_multiplier] *= 1.2
+        end
+
+        # Warrior tribe
+        if user.hasTribeBonus?(:WARRIOR)
+            mults[:final_damage_multiplier] *= 1.05
+        end      
+
+        # Noble tribe
+        if user.hasTribeBonus?(:NOBLE)
+            if aiChecking
+                mults[:final_damage_multiplier] *= 1.2 if user.hasGem?
+            else
+                mults[:final_damage_multiplier] *= 1.2 if user.effectActive?(:GemConsumed)
+            end
+        end
+
+        # Harmonic tribe
+        if target.hasTribeBonus?(:HARMONIC)
+            mults[:final_damage_multiplier] *= 0.95
+        end
+
+        # Charmer tribe
+        if target.hasTribeBonus?(:CHARMER) && target.effectActive?(:SwitchedIn)
+            mults[:final_damage_multiplier] *= 0.85
+        end
+
+        # Stampede tribe
+        if target.hasTribeBonus?(:STAMPEDE) && target.effectActive?(:ChoseAttack)
+            mults[:final_damage_multiplier] *= 0.9
+        end
+    end
       
     def pbCalcDamageMultipliers(user,target,numTargets,type,baseDmg,multipliers,aiChecking=false)
         pbCalcAbilityDamageMultipliers(user,target,type,baseDmg,multipliers,aiChecking)
@@ -311,6 +367,7 @@ class PokeBattle_Move
         pbCalcStatusesDamageMultipliers(user,target,multipliers,aiChecking)
         pbCalcProtectionsDamageMultipliers(user,target,multipliers,aiChecking)
         pbCalcTypeBasedDamageMultipliers(user,target,type,multipliers,aiChecking)
+        pbCalcTribeBasedDamageMultipliers(user,target,type,multipliers,aiChecking)
 
         # Item effects that alter damage
         if user.itemActive?
@@ -325,6 +382,7 @@ class PokeBattle_Move
         if target.effectActive?(:DeathMark)
             multipliers[:final_damage_multiplier] *= 1.5
         end
+        
         
         if aiChecking
             # Parental Bond

@@ -54,10 +54,12 @@ class PokeBattle_Battler
         fraction /= BOSS_HP_BASED_EFFECT_RESISTANCE if boss?
         fraction *= 1.5 if @battle.pbCheckOpposingAbility(:AGGRAVATE, @index)
         if basedOnCurrentHP
-            reduction = (@hp * fraction).ceil
+            reduction = @hp * fraction
         else
-            reduction = (@totalhp * fraction).ceil
+            reduction = @totalhp * fraction
         end
+        reduction /= 2.0 if hasTribeBonus?(:ANIMATED)
+        reduction = reduction.ceil
         if showDamageAnimation
             @damageState.displayedDamage = reduction
             @battle.scene.pbDamageAnimation(self,0,true)
@@ -77,6 +79,7 @@ class PokeBattle_Battler
         return unless takesIndirectDamage?
         return if hasActiveAbility?(:ROCKHEAD)
         # return if @battle.pbAllFainted?(@idxOpposingSide)
+        damage /= 2.0 if hasTribeBonus?(:ANIMATED)
         damage = damage.round
         damage = 1 if damage < 1
         if !cushionRecoil && hasActiveAbility?(:ALLYCUSHION)

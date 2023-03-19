@@ -194,6 +194,7 @@ class PokeBattle_Battle
             # pbDisplayPaused(_INTL("{1} benefits from its Hot Streak!",pkmn.name))
             exp = (exp * 1.3).floor
         end
+        exp  = (exp * 1.1).floor if playerTribalBonus.hasTribeBonus?(:LOYAL)
         # Modify Exp gain based on pkmn's held item
         i = BattleHandlers.triggerExpGainModifierItem(pkmn.item, pkmn, exp)
         i = BattleHandlers.triggerExpGainModifierItem(@initialItems[0][idxParty], pkmn, exp) if i < 0

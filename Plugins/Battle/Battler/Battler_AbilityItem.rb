@@ -28,6 +28,8 @@ class PokeBattle_Battler
     #=============================================================================
     def pbAbilitiesOnSwitchOut
         BattleHandlers.triggerAbilityOnSwitchOut(ability, self, false) if abilityActive?
+        # Caretaker bonus
+        pbRecoverHP(battler.totalhp / 16.0, false, false, false) if hasTribeBonus?(:CARETAKER)
         # Reset form
         @battle.peer.pbOnLeavingBattle(@battle, @pokemon, @battle.usedInBattle[idxOwnSide][@index / 2])
         # Treat self as fainted
@@ -46,6 +48,12 @@ class PokeBattle_Battler
         @battle.pbPriority(true).each do |b|
             next if !b || !b.abilityActive?
             BattleHandlers.triggerAbilityOnBattlerFainting(b.ability, b, self, @battle)
+        end
+        @battle.pbPriority(true).each do |b|
+            next if !b
+            next unless b.hasTribeBonus?(:SCOURGE)
+            scoureHealingMsg = _INTL("#{b.pbThis} takes joy in #{pbThis(true)}'s pain!")
+            b.applyFractionalHealing(1/10.0, customMessage: scoureHealingMsg)
         end
     end
 
@@ -93,8 +101,15 @@ class PokeBattle_Battler
     # Ability curing
     #=============================================================================
     # Cures status conditions, confusion and infatuation.
+    #=============================================================================
     def pbAbilityStatusCureCheck
         BattleHandlers.triggerStatusCureAbility(ability, self) if abilityActive?
+
+        if hasAnyStatusNoTrigger? && hasTribeBonus?(:TYRANICAL) && !pbOwnSide.effectActive?(:TyranicalImmunity)
+            @battle.pbDisplay(_INTL("{1} refuses to be statused!", pbThis))
+            pbCureStatus(true)
+            pbOwnSide.applyEffect(:TyranicalImmunity)
+        end
     end
 
     #=============================================================================

@@ -72,7 +72,7 @@ class PokeBattle_Battler
         @primevalTimer += 1 if boss?
 
         @lastRoundMove 			= @lastMoveUsed
-        @lastRoundMoveType	= @lastMoveUsedType
+        @lastRoundMoveType	    = @lastMoveUsedType
         @lastRoundMoveCategory	= @lastMoveUsedCategory
     end
 end

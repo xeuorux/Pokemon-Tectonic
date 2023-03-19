@@ -260,6 +260,7 @@ class PokeBattle_Move
 
     def isRandomCrit?(user,target,rate)
         return false if user.boss?
+        return false if target.hasTribeBonus?(:TACTICIAN)
 
         # Calculation
         ratios = [16,8,4,2,1]
@@ -379,12 +380,14 @@ class PokeBattle_Move
         return 100 if !user.pbOwnedByPlayer? && @battle.curseActive?(:CURSE_PERFECT_LUCK)
         ret = effectChance > 0 ? effectChance : @effectChance
         return 100 if ret >= 100
+        ret += 20 if user.hasTribeBonus?(:FORTUNE)
         ret *= 1.5 if flinchingMove? && user.hasActiveAbility?(:RATTLEEM)
         ret *= 2 if flinchingMove? && user.hasActiveAbility?(:TERRORIZE)
         ret *= 2 if user.hasActiveAbility?(:SERENEGRACE)
         ret *= 2 if user.pbOwnSide.effectActive?(:Rainbow)
         ret *= 4 if windMove? && user.hasActiveAbility?(:FUMIGATE)
         ret /= 2 if applyRainDebuff?(user,type)
+        ret /= 2 if target.hasTribeBonus?(:SERENE)
         ret = 100 if debugControl
         return ret
     end

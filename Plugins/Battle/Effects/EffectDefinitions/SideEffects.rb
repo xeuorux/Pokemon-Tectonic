@@ -404,6 +404,13 @@ GameData::BattleEffect.register_effect(:Side, {
     :court_changed => false,
 })
 
+GameData::BattleEffect.register_effect(:Side, {
+    :id => :TyranicalImmunity,
+    :real_name => "Spent Tyranical Immunity",
+    :info_displayed => false,
+    :court_changed => false,
+})
+
 ##########################################
 # Other
 ##########################################

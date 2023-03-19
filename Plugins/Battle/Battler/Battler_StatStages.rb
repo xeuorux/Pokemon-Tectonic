@@ -212,6 +212,14 @@ class PokeBattle_Battler
                     end
                 end
             end
+            if hasTribeBonus?(:SCRAPPER) && stat == :DEFENSE
+                @battle.pbDisplay(_INTL("{1}'s scrapper attitude prevents its Defense from lowering!", pbThis)) if showFailMsg
+                return false
+            end
+            if hasTribeBonus?(:SHIMMERING) && stat == :SPECIAL_DEFENSE
+                @battle.pbDisplay(_INTL("The shimmer around {1} prevents its Sp. Def from lowering!", pbThis(true))) if showFailMsg
+                return false
+            end
         elsif hasActiveAbility?(:STUBBORN) && !@battle.moldBreaker && !ignoreAbilities
             return false
         elsif effectActive?(:EmpoweredFlowState)

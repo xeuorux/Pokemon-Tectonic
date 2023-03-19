@@ -257,6 +257,9 @@ GameData::Move.get(@effects[:GorillaTactics]).name)
             if effectActive?(:FlinchImmunity)
                 @battle.pbDisplay("#{pbThis} would have flinched, but its immune now!")
                 disableEffect(:Flinch)
+            elsif hasTribeBonus?(:TYRANICAL) && !pbOwnSide.effectActive?(:TyranicalImmunity)
+                @battle.pbDisplay(_INTL("{1} refuses to flinch!", pbThis))
+                pbOwnSide.applyEffect(:TyranicalImmunity)
             else
                 @battle.pbDisplay(_INTL("{1} flinched and couldn't move!", pbThis))
                 BattleHandlers.triggerAbilityOnFlinch(@ability, self, @battle) if abilityActive?

@@ -508,6 +508,7 @@ class PokeBattle_Battle
         moneyMult *= 2 if @field.effectActive?(:AmuletCoin)
         moneyMult *= 2 if @field.effectActive?(:HappyHour)
         moneyMult *= 2 if @field.effectActive?(:Fortune)
+        moneyMult *= 1.1 if tplayerTribalBonus.hasTribeBonus?(:INDUSTRIOUS)
 
         # Money rewarded from opposing trainers
         if trainerBattle?

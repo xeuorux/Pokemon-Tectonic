@@ -38,8 +38,6 @@ class TribalBonus
     end
 
     def getActiveBonusesList(concat = true, foe = false)
-        #updateTribeCount()
-
         list = []
         @tribesGivingBonus.each do |tribeID|
             description = TribalBonus.getTribeName(tribeID)
@@ -63,17 +61,27 @@ class TribalBonus
         return newBonusHash
     end
 
-    def getTribeBonuses(level)
+    def getTribeBonusStats(level)
         # Returns a hash of all bonuses given the current pokemon
         tribeBonuses = TribalBonus.initStatBonusHash
 
-        @tribesGivingBonus.each do |tribeID|
+        if hasTribeBonus?(:LOYAL)
+            GameData::Stat.each_main_battle do |stat|
+                tribeBonuses[stat.id] = 5 + (level / 14).floor
+            end
+        end
+
+        if hasTribeBonus?(:INDUSTRIOUS) && @trainer.money >= 100_000
             GameData::Stat.each_main_battle do |stat|
                 tribeBonuses[stat.id] = 5 + (level / 14).floor
             end
         end
 
         return tribeBonuses
+    end
+
+    def hasTribeBonus?(tribeID)
+        return @tribesGivingBonus.include?(tribeID)
     end
 
     def self.getTribeName(tribe_id)
@@ -98,11 +106,7 @@ class Pokemon
 end
 
 def playerTribalBonus()
-    unless $Trainer.tribalBonus
-        $Trainer.tribalBonus = TribalBonus.new($Trainer)
-    end
-    unless $Trainer.tribalBonus.trainer
-        $Trainer.tribalBonus.trainer = $Trainer
-    end
+    $Trainer.tribalBonus = TribalBonus.new($Trainer) unless $Trainer.tribalBonus
+    $Trainer.tribalBonus.trainer = $Trainer unless $Trainer.tribalBonus.trainer
     return $Trainer.tribalBonus
 end

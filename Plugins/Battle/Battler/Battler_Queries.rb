@@ -532,6 +532,11 @@ class PokeBattle_Battler
         return @battle.pbParty(@index)
     end
 
+    def hasTribeBonus?(tribeID)
+        return false unless owner
+        return owner.tribalBonus.hasTribeBonus?(tribeID)
+    end
+
     def partyIndex
         return @index % 2
     end

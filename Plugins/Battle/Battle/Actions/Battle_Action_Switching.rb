@@ -362,6 +362,7 @@ class PokeBattle_Battle
     # Called when a Pokémon switches in (entry effects, entry hazards).
     def pbOnActiveOne(battler)
         return false if battler.fainted?
+        
         # Introduce Shadow Pokémon
         if battler.opposes? && battler.shadowPokemon?
             pbCommonAnimation("Shadow", battler)
@@ -384,6 +385,9 @@ class PokeBattle_Battle
 
         # Update battlers' participants (who will gain Exp/EVs when a battler faints)
         eachBattler { |b| b.pbUpdateParticipants }
+
+        # Note its switching in this turn
+        battler.applyEffect(:SwitchedIn)
 
         # Perform procs from battlers entering into a position
         position = @positions[battler.index]
