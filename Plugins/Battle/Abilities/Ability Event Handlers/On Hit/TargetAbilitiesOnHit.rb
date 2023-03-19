@@ -210,7 +210,6 @@ BattleHandlers::TargetAbilityOnHit.add(:MUMMY,
       next unless move.physicalMove?
       next if user.fainted?
       next if user.unstoppableAbility? || user.ability == ability
-      oldAbil = nil
       battle.pbShowAbilitySplash(target) if user.opposes?(target)
       oldAbil = user.ability
       battle.pbShowAbilitySplash(user, true, false) if user.opposes?(target)
@@ -595,3 +594,22 @@ BattleHandlers::TargetAbilityOnHit.add(:ABOVEITALL,
       battle.forceUseMove(target, :PARTINGSHOT, user.index, true, nil, nil, true)
   }
 )
+
+BattleHandlers::TargetAbilityOnHit.add(:INFECTED,
+    proc { |ability, user, target, move, battle|
+        next unless move.physicalMove?
+        next if user.fainted?
+        next if user.unstoppableAbility? || user.ability == ability
+        next unless user.canChangeType?
+        battle.pbShowAbilitySplash(target) if user.opposes?(target)
+        oldAbil = user.ability
+        battle.pbShowAbilitySplash(user, true, false) if user.opposes?(target)
+        user.ability = ability
+        battle.pbReplaceAbilitySplash(user) if user.opposes?(target)
+        battle.pbDisplay(_INTL("{1}'s Ability became {2}!", user.pbThis, user.abilityName))
+        user.applyEffect(:Type3,:GRASS) unless user.pbHasType?(:GRASS)
+        battle.pbHideAbilitySplash(user) if user.opposes?(target)
+        battle.pbHideAbilitySplash(target) if user.opposes?(target)
+        user.pbOnAbilityChanged(oldAbil) unless oldAbil.nil?
+    }
+  )

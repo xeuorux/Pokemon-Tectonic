@@ -802,3 +802,11 @@ BattleHandlers::AbilityOnSwitchIn.add(:GRAVITATIONAL,
       battle.pbHideAbilitySplash(battler)
   }
 )
+
+BattleHandlers::AbilityOnSwitchIn.add(:INFECTED,
+  proc { |_ability, battler, battle|
+      battle.pbShowAbilitySplash(battler)
+      battler.applyEffect(:Type3,:GRASS)
+      battle.pbHideAbilitySplash(battler)
+  }
+)

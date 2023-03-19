@@ -198,7 +198,7 @@ Pokemon = ABRA,15
     AbilityIndex = 1 # Wondrous Aura
     Item = PSYCHICGEM
 Pokemon = IMPIDIMP,16
-    AbilityIndex = 0 # Prankster
+    AbilityIndex = 0 # Unassuming
 Pokemon = RUFFLET,15
     AbilityIndex = 1 # Blizz Boxer
 #-------------------------------
@@ -678,7 +678,7 @@ Pokemon = TURTONATOR,40
     EV = 20,0,20,0,0,10
 Pokemon = PARASECT,40
     Moves = BUGBITE,SPORE,SWORDSDANCE,SOULCLAW
-    AbilityIndex = 0 # Comatose
+    AbilityIndex = 0 # Infected
     Item = LIFEORB
     EV = 20,20,10,0,20,0
 Pokemon = EXCADRILL,40
@@ -834,7 +834,7 @@ Pokemon = MINIOR,53
 [VETERANM_2,Roy]
 Policies = HAIL_TEAM
 Pokemon = AURORUS,55
-    AbilityIndex = 1 # Aurora Prism
+    AbilityIndex = 1 # Snow Warning
     Item = ICYROCK
 Pokemon = DECIDUEYE,54
     AbilityIndex = 0 # Snow Shroud
@@ -1103,7 +1103,7 @@ Pokemon = FLOATZEL,27
 Pokemon = STEENEE,28
     AbilityIndex = 1 # Royal Majesty
 Pokemon = WATCHOG,28
-    AbilityIndex = 0 # Sentry
+    AbilityIndex = 0 # Recon
 Pokemon = SHEDINJA,29
     AbilityIndex = 1 # Wonder Guard
 #-------------------------------
