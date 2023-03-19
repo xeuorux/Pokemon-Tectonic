@@ -1205,6 +1205,9 @@ GameData::BattleEffect.register_effect(:Battler, {
     :real_name => "Chose Status",
     :resets_eor	=> true,
     :info_displayed => false,
+    :apply_proc => proc do |battle, battler, _value|
+        echoln(_INTL("{1} is considered to have chosen a status move this turn.", battler.pbThis))
+    end,
 })
 
 GameData::BattleEffect.register_effect(:Battler, {
@@ -1212,6 +1215,9 @@ GameData::BattleEffect.register_effect(:Battler, {
     :real_name => "Chose Attack",
     :resets_eor	=> true,
     :info_displayed => false,
+    :apply_proc => proc do |battle, battler, _value|
+        echoln(_INTL("{1} is considered to have chosen an attacking move this turn.", battler.pbThis))
+    end,
 })
 
 GameData::BattleEffect.register_effect(:Battler, {

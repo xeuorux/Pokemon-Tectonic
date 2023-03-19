@@ -183,13 +183,8 @@ class PokeBattle_Battle
             end
             b.disableEffect(:Rage) unless pbChoseMoveFunctionCode?(i, "093") # Rage
             b.disableEffect(:Enlightened) unless pbChoseMoveFunctionCode?(i, "515") # Enlightened Hit
-            if @choices[i][0] == :UseMove && @choices[i][2]
-                if @choices[i][2].statusMove?
-                    b.applyEffect(:ChoseStatus)
-                else
-                    b.applyEffect(:ChoseAttack)
-                end
-            end
+            b.applyEffect(:ChoseAttack) if b.usingAttackThisTurn?
+            b.applyEffect(:ChoseStatus) if b.usingStatusThisTurn?
             b.lastRoundHighestTypeModFromFoe = -1
         end
     end

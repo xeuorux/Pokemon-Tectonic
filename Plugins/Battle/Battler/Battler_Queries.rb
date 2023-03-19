@@ -285,6 +285,20 @@ class PokeBattle_Battler
         return false
     end
 
+    def usingAttackThisTurn?
+        if usingMultiTurnAttack? && @currentMove
+            return PokeBattle_Move.from_pokemon_move(@battle, Pokemon::Move.new(@currentMove)).damagingMove?
+        end
+        return @battle.choices[@index][0] == :UseMove && @battle.choices[@index][2].damagingMove?
+    end
+
+    def usingStatusThisTurn?
+        if usingMultiTurnAttack? && @currentMove
+            return PokeBattle_Move.from_pokemon_move(@battle, Pokemon::Move.new(@currentMove)).statusMove?
+        end
+        return @battle.choices[@index][0] == :UseMove && @battle.choices[@index][2].statusMove?
+    end
+
     def inTwoTurnAttack?(*arg)
         return false unless effectActive?(:TwoTurnAttack)
         ttaFunction = GameData::Move.get(@effects[:TwoTurnAttack]).function_code
