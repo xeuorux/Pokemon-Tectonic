@@ -270,10 +270,7 @@ class PokeBattle_Battle
         ableBeforeFight = $Trainer.able_pokemon_count # Record the number of able party members, for perfecting
 
         # Update tribe counts
-        playerTribalBonus().updateTribeCount
-        @opponent&.each do |opponentTrainer|
-            opponentTrainer.tribalBonus.updateTribeCount
-        end
+        updateTribeCounts()
 
         pbEnsureParticipants
         begin
@@ -314,6 +311,13 @@ class PokeBattle_Battle
             end
         end
         return @decision
+    end
+
+    def updateTribeCounts
+        playerTribalBonus().updateTribeCount
+        @opponent&.each do |opponentTrainer|
+            opponentTrainer.tribalBonus.updateTribeCount
+        end
     end
 
     def pbStartBattleCore
@@ -508,7 +512,7 @@ class PokeBattle_Battle
         moneyMult *= 2 if @field.effectActive?(:AmuletCoin)
         moneyMult *= 2 if @field.effectActive?(:HappyHour)
         moneyMult *= 2 if @field.effectActive?(:Fortune)
-        moneyMult *= 1.1 if tplayerTribalBonus.hasTribeBonus?(:INDUSTRIOUS)
+        moneyMult *= 1.1 if playerTribalBonus.hasTribeBonus?(:INDUSTRIOUS)
 
         # Money rewarded from opposing trainers
         if trainerBattle?

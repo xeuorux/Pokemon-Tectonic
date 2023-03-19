@@ -238,10 +238,20 @@ class PokeBattle_Move
 
         if crit && target.abilityActive? && !@battle.moldBreaker &&
                 BattleHandlers.triggerCriticalPreventTargetAbility(target.ability,user,target,@battle)
-            if !checkingForAI
+            unless checkingForAI
                 battle.pbShowAbilitySplash(target)
                 battle.pbDisplay(_INTL("#{target.pbThis} prevents the hit from being critical!"))
                 battle.pbHideAbilitySplash(target)
+            end
+            crit = false
+            forced = true
+        end
+
+        if crit && !forced && target.hasTribeBonus?(:TACTICIAN)
+            unless checkingForAI
+                battle.pbShowTribeSplash(target,:TACTICIAN)
+                battle.pbDisplay(_INTL("#{target.pbThis} prevents the hit from being critical!"))
+                battle.pbHideTribeSplash(target)
             end
             crit = false
             forced = true
@@ -260,7 +270,6 @@ class PokeBattle_Move
 
     def isRandomCrit?(user,target,rate)
         return false if user.boss?
-        return false if target.hasTribeBonus?(:TACTICIAN)
 
         # Calculation
         ratios = [16,8,4,2,1]

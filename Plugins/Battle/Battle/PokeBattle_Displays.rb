@@ -62,7 +62,7 @@ class PokeBattle_Battle
         @scene.pbShowAbilitySplash(battler, fakeName)
         if delay
             frames = Graphics.frame_rate # Default 1 second
-            frames /= 2 if $PokemonSystem.battlescene > 0
+            frames /= 2 if fastTransitions?
             frames.times { @scene.pbUpdate }
         end
     end
@@ -75,5 +75,21 @@ class PokeBattle_Battle
     def pbReplaceAbilitySplash(battler)
         return unless showMessages?
         @scene.pbReplaceAbilitySplash(battler)
+    end
+
+    def pbShowTribeSplash(side, tribe, delay = false)
+        return unless showMessages?
+        tribe = TribalBonus.getTribeName(tribe) if tribe.is_a?(Symbol)
+        @scene.pbShowTribeSplash(side, tribe)
+        if delay
+            frames = Graphics.frame_rate # Default 1 second
+            frames /= 2 if fastTransitions?
+            frames.times { @scene.pbUpdate }
+        end
+    end
+
+    def pbHideTribeSplash(side)
+        return unless showMessages?
+        @scene.pbHideTribeSplash(side)
     end
 end

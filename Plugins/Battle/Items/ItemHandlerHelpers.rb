@@ -6,7 +6,11 @@ def healFromBerry(battler, ratio, item, forced = false, filchedFrom = nil)
     end
     battler.battle.pbCommonAnimation("Nom", battler) unless forced
     ratio *= 2.0 if battler.hasActiveAbility?(:RIPEN)
-    ratio *= 1.5 if battler.hasTribeBonus?(:SCAVENGER)
+    if battler.hasTribeBonus?(:SCAVENGER)
+        battler.battle.pbShowTribeSplash(battler,:SCAVENGER)
+        ratio *= 1.5
+        battler.battle.pbHideTribeSplash(battler)
+    end
     itemToPass = forced ? nil : item
     battler.applyFractionalHealing(ratio, item: itemToPass)
     battler.battle.pbHideAbilitySplash(battler) if filchedFrom

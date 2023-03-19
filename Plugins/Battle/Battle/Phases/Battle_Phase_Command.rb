@@ -391,6 +391,8 @@ class PokeBattle_Battle
             b.pokemon.species = GameData::Species::DATA.keys.sample
             autoTestingBattlerSpeciesChange(b)
         end
+
+        updateTribeCounts
     end
 
     def pbCommandPhaseLoop(isPlayer)

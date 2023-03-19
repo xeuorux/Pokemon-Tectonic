@@ -775,8 +775,19 @@ user.pbThis))
             # NOTE: The consume animation and message for Gems are shown now, but the
             #       actual removal of the item happens in def pbEffectsAfterMove.
             @battle.pbCommonAnimation("UseItem", user)
-            @battle.pbDisplay(_INTL("The {1} strengthened {2}'s power!", GameData::Item.get(user.effects[:GemConsumed]).name,
-move.name))
+            if user.hasTribeBonus?(:NOBLE)
+                @battle.pbShowTribeSplash(user,:NOBLE)
+                @battle.pbDisplay(_INTL("The {1} majorly strengthened {2}'s power!", GameData::Item.get(user.effects[:GemConsumed]).name, move.name))
+                @battle.pbHideTribeSplash(user)
+            else
+                @battle.pbDisplay(_INTL("The {1} strengthened {2}'s power!", GameData::Item.get(user.effects[:GemConsumed]).name, move.name))
+            end
+        end
+        # Mystic tribe
+        if hasTribeBonus?(:MYSTIC) && user.lastRoundMoveCategory == 2 # Status
+            @battle.pbShowTribeSplash(user,:MYSTIC)
+            @battle.pbDisplay(_INTL("{1}'s patience pays off!", user.pbThis))
+            @battle.pbHideTribeSplash(user)
         end
         # Volatile Toxin proc message
         if move.pbDamagingMove?

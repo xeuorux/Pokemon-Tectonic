@@ -104,8 +104,11 @@ class PokeBattle_Scene
         ball.visible = false
 		  end
 		  # Ability splash bars
-      newBar = AbilitySplashBar.new(side,@viewport)
-		  @sprites["abilityBar_#{side}"] = newBar
+      newAbilityBar = AbilitySplashBar.new(side,@viewport)
+		  @sprites["abilityBar_#{side}"] = newAbilityBar
+      # Tribe splash bars
+      newTribeBar = TribeSplashBar.new(side,@viewport)
+      @sprites["tribeBar_#{side}"] = newTribeBar
 		end
 		# Player's and partner trainer's back sprite
 		@battle.player.each_with_index do |p,i|

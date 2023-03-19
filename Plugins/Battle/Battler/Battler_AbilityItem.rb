@@ -53,7 +53,9 @@ class PokeBattle_Battler
             next if !b
             next unless b.hasTribeBonus?(:SCOURGE)
             scoureHealingMsg = _INTL("#{b.pbThis} takes joy in #{pbThis(true)}'s pain!")
+            pbShowTribeSplash(b.pbOwnSide,:SCOURGE)
             b.applyFractionalHealing(1/10.0, customMessage: scoureHealingMsg)
+            pbHideTribeSplash(b.pbOwnSide)
         end
     end
 
@@ -106,8 +108,10 @@ class PokeBattle_Battler
         BattleHandlers.triggerStatusCureAbility(ability, self) if abilityActive?
 
         if hasAnyStatusNoTrigger? && hasTribeBonus?(:TYRANICAL) && !pbOwnSide.effectActive?(:TyranicalImmunity)
+            @battle.pbShowTribeSplash(self,:TYRANICAL)
             @battle.pbDisplay(_INTL("{1} refuses to be statused!", pbThis))
             pbCureStatus(true)
+            @battle.pbHideTribeSplash(self)
             pbOwnSide.applyEffect(:TyranicalImmunity)
         end
     end

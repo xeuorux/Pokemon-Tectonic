@@ -137,4 +137,43 @@ class PokeBattle_Scene
     end
     abilitySplashAnim.dispose
   end
+
+  #=============================================================================
+  # Tribe splash bar animations
+  #=============================================================================
+  def pbShowTribeSplash(side,tribeName,trainerName = nil)
+    return unless PokeBattle_SceneConstants::USE_ABILITY_SPLASH
+    if side.is_a?(PokeBattle_Battler)
+      trainerName = side.owner.name unless trainerName
+      sideIndex = side.index % 2
+    elsif side.is_a?(PokeBattle_ActiveSide)
+      sideIndex = side.index
+    else
+      sideIndex = side
+    end
+    pbHideTribeSplash(sideIndex) if @sprites["tribeBar_#{sideIndex}"].visible
+    @sprites["tribeBar_#{sideIndex}"].tribeName = tribeName
+    @sprites["tribeBar_#{sideIndex}"].trainerName = trainerName
+    abilitySplashAnim = TribeSplashAppearAnimation.new(@sprites,@viewport,sideIndex)
+    loop do
+      abilitySplashAnim.update
+      pbUpdate
+      break if abilitySplashAnim.animDone?
+    end
+    abilitySplashAnim.dispose
+  end
+
+  def pbHideTribeSplash(side)
+    return unless PokeBattle_SceneConstants::USE_ABILITY_SPLASH
+    sideIndex = side.index % 2 if side.is_a?(PokeBattle_Battler)
+    sideIndex = side.index if side.is_a?(PokeBattle_ActiveSide)
+    return unless @sprites["tribeBar_#{sideIndex}"].visible
+    abilitySplashAnim = TribeSplashDisappearAnimation.new(@sprites,@viewport,sideIndex)
+    loop do
+      abilitySplashAnim.update
+      pbUpdate
+      break if abilitySplashAnim.animDone?
+    end
+    abilitySplashAnim.dispose
+  end
 end
