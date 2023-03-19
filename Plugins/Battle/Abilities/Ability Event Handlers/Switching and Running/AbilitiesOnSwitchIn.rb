@@ -798,7 +798,7 @@ BattleHandlers::AbilityOnSwitchIn.add(:LOOSESHELL,
 BattleHandlers::AbilityOnSwitchIn.add(:GRAVITATIONAL,
   proc { |_ability, battler, battle|
       battle.pbShowAbilitySplash(battler)
-      battler.pbOwnSide.applyEffect(:Gravity, 5)
+      battle.field.applyEffect(:Gravity, 5)
       battle.pbHideAbilitySplash(battler)
   }
 )

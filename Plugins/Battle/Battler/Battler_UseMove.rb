@@ -863,14 +863,16 @@ user.pbThis))
 
             # Single targeted status move
             if targets.length == 1 && user.opposes?(targets[0]) && !targets[0].damageState.unaffected
+                target = targets[0]
+
                 # Unassuming
                 if user.hasActiveAbility?(:UNASSUMING)
-                    target.tryLowerStat(:DEFENSE, user, move, showFailMsg: true, showAbilitySplash: true)
+                    target.tryLowerStat(:DEFENSE, user, move: move, showFailMsg: true, showAbilitySplash: true)
                 end
 
                 # Recon
                 if user.hasActiveAbility?(:RECON)
-                    target.tryLowerStat(:SPECIAL_DEFENSE, user, move, showFailMsg: true, showAbilitySplash: true)
+                    target.tryLowerStat(:SPECIAL_DEFENSE, user, move: move, showFailMsg: true, showAbilitySplash: true)
                 end
             end
         end
@@ -913,7 +915,7 @@ user.pbThis))
             next if chance <= 0
             next unless @battle.pbRandom(100) < chance
             PBDebug.log("[Item/ability triggered] #{user.pbThis}'s King's Rock/Razor Fang or Stench")
-            next unless canApplyAdditionalEffects?(user, b, true)
+            next unless move.canApplyAdditionalEffects?(user, b, true)
             b.pbFlinch(user)
         end
         # Message for and consuming of type-weakening berries
