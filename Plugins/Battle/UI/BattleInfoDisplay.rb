@@ -140,7 +140,10 @@ class BattleInfoDisplay < SpriteWrapper
 		fieldEffects.concat(thisSideEffects)
 	end
 
-	fieldEffects.concat($Tribal_Bonuses.getActiveBonusesList) if $Tribal_Bonuses
+	fieldEffects.concat($Trainer.tribalBonus.getActiveBonusesList(true,false))
+	@battle.opponent&.each do |opponent|
+		fieldEffects.concat(opponent.tribalBonus.getActiveBonusesList(true,true))
+	end
 	
 	# Render out the field effects
 	scrollingBoundYMin = 36
@@ -177,7 +180,6 @@ class BattleInfoDisplay < SpriteWrapper
   
   def drawIndividualBattlerInfo(battler)
 	base   = Color.new(88,88,80)
-	bossBase = Color.new(50,115,50)
     shadow = Color.new(168,184,184)
 	textToDraw = []
 	
@@ -188,12 +190,6 @@ class BattleInfoDisplay < SpriteWrapper
 		battlerName += " [#{speciesData.real_form_name}]" if speciesData.form != 0
 	end
 	textToDraw.push([battlerName,256,0,2,base,shadow])
-	
-	stageMulMainStat = [2,2,2,2,2,2, 2, 3,4,5,6,7,8]
-	stageDivMainStat = [8,7,6,5,4,3, 2, 2,2,2,2,2,2]
-	
-	stageMulBattleStat = [3,3,3,3,3,3, 3, 4,5,6,7,8,9]
-    stageDivBattleStat = [9,8,7,6,5,4, 3, 3,3,3,3,3,3]
 	
 	# Stat Stages
 	statStagesSectionTopY = 52
@@ -216,9 +212,6 @@ class BattleInfoDisplay < SpriteWrapper
 		:ACCURACY => "Acc",
 		:EVASION => "Evade"
 	}
-
-	tribalBonus = TribalBonus.new
-	pokemonTribalBonus = tribalBonus.getTribeBonuses(battler.pokemon)
 
 	# Hash containing info about each stat
 	# Each key is a symbol of a stat

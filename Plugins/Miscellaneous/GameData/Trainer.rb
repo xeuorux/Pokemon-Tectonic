@@ -61,7 +61,6 @@ module GameData
 		# @return [Array] all information about a trainer in a usable form
 		def to_trainer
 			parentTrainer = nil
-			parentTrainerData = nil
 			extending = false
 			if @extendsVersion > -1
 				parentTrainerData = GameData::Trainer.get(@extendsClass || @trainer_type, @extendsName || @real_name, @extendsVersion)
@@ -126,7 +125,6 @@ module GameData
 				nickname = pkmn_data[:name] if pkmn_data[:name] && !pkmn_data[:name].empty?
 
 				pkmn = nil
-				matchedOnNickname = false
 				if extending
 					trainer.party.each do |existingPokemon|
 						next if existingPokemon.species != species
@@ -144,8 +142,6 @@ module GameData
 				if pkmn.nil?
 					pkmn = Pokemon.new(species, level, trainer, false)
 					trainer.party.push(pkmn)
-				else
-					#echoln("Pokemon #{pkmn.name} in entry #{@id.to_s} inherits from entry #{parentTrainerData.id.to_s}")
 				end
 
 				# Set Pokémon's properties if defined
@@ -212,8 +208,6 @@ module GameData
 				next memberA.assignedPosition <=> memberB.assignedPosition
 			}
 
-			#echoln(trainer.party.to_s)
-
 			return trainer
 		end
 	end
@@ -257,8 +251,9 @@ class Pokemon
 end
 
 class Trainer
-	attr_reader   :nameForHashing
-	attr_accessor :policies
+	attr_reader   	:nameForHashing
+	attr_accessor 	:policies
+	attr_accessor	:tribalBonus
 
 	def wild?;           return GameData::TrainerType.get(@trainer_type).wild?;     end
 
@@ -269,6 +264,7 @@ class Trainer
 		@language     = pbGetLanguage
 		@party        = []
 		@policies 	  = []
+		@tribalBonus  = TribalBonus.new(self)
 	end
 end
 

@@ -267,8 +267,14 @@ class PokeBattle_Battle
         logMsg += "#{@opponent.length} trainer(s))" if trainerBattle?
         PBDebug.log(logMsg)
         $game_switches[94] = false
-        ableBeforeFight = $Trainer.able_pokemon_count # Record the number of fainted
-        $Tribal_Bonuses.updateTribeCount
+        ableBeforeFight = $Trainer.able_pokemon_count # Record the number of able party members, for perfecting
+
+        # Update tribe counts
+        playerTribalBonus().updateTribeCount
+        @opponent&.each do |opponentTrainer|
+            opponentTrainer.tribalBonus.updateTribeCount
+        end
+
         pbEnsureParticipants
         begin
             pbStartBattleCore

@@ -32,7 +32,7 @@ class TribalBonusScene
 
         drewAny = false
         index = 0
-        tribeCounts = $Tribal_Bonuses.tribeCounts.clone
+        tribeCounts = playerTribalBonus().tribeCounts.clone
         tribeCounts = tribeCounts.sort_by { |k,v| -v}.to_h
         tribeCounts.each {|tribe, count|
             if count > 0
@@ -85,7 +85,7 @@ class TribalBonusScene
     end
 
     def pbStartScene
-        $Tribal_Bonuses.updateTribeCount()
+        playerTribalBonus().updateTribeCount()
         @page = 1
 
         # Set up the two viewports to hold UI elements

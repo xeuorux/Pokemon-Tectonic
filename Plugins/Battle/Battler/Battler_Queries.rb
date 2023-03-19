@@ -523,6 +523,11 @@ class PokeBattle_Battler
         return @battle.battlers[(@index ^ 1)]
     end
 
+    def owner
+        return nil if @battle.wildBattle? && @battle.opposes?(@index)
+        return @battle.pbGetOwnerFromBattlerIndex(@index)
+    end
+
     def ownerParty
         return @battle.pbParty(@index)
     end

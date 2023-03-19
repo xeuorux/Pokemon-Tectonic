@@ -23,7 +23,7 @@ class PokemonPartyShowcase_Scene
 
         # Draw tribal bonus info at the bottom
         fullDescription = ""
-        $Tribal_Bonuses.getActiveBonusesList(false).each_with_index do |label,index|
+        $Trainer.tribalBonus.getActiveBonusesList(false).each_with_index do |label,index|
             fullDescription += "," unless index == 0
             fullDescription += label
         end

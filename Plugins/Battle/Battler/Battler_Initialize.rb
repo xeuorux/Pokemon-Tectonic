@@ -66,7 +66,6 @@ class PokeBattle_Battler
         @indicesTargetedThisRound	= []
         @dmgMult = 1
         @dmgResist = 0
-        @tribalBonuses = {}
         @bossAI = nil
     end
 
@@ -100,7 +99,6 @@ class PokeBattle_Battler
         @dummy = true
         @dmgMult   = 1
         @dmgResist = 0
-        @tribalBonuses = $Tribal_Bonuses.getTribeBonuses(pkmn)
     end
 
     def pbInitPokemon(pkmn, idxParty)
@@ -123,9 +121,9 @@ class PokeBattle_Battler
         @speed        = pkmn.speed
         @status       = pkmn.status
         @statusCount  = pkmn.statusCount
-        @dmgMult = pkmn.dmgMult
-        @dmgResist = pkmn.dmgResist
-        @boss = pkmn.boss
+        @dmgMult      = pkmn.dmgMult
+        @dmgResist    = pkmn.dmgResist
+        @boss         = pkmn.boss
         @pokemon      = pkmn
         @pokemonIndex = idxParty
         @participants = [] # Participants earn Exp. if this battler is defeated
@@ -135,7 +133,6 @@ class PokeBattle_Battler
         end
         @iv = {}
         GameData::Stat.each_main { |s| @iv[s.id] = pkmn.iv[s.id] }
-        @tribalBonuses = $Tribal_Bonuses.getTribeBonuses(pkmn)
         @bossAI = PokeBattle_AI_Boss.from_boss_battler(self) if @pokemon.boss?
     end
 

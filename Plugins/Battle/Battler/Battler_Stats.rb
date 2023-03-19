@@ -22,12 +22,13 @@ class PokeBattle_Battler
         ret[:SPECIAL_ATTACK]  = spatk
         ret[:SPECIAL_DEFENSE] = spdef
         ret[:SPEED]           = speed
-        if getsTribalBonuses?
-            ret[:ATTACK_TRIBAL] = @tribalBonuses[:ATTACK]
-            ret[:DEFENSE_TRIBAL] = @tribalBonuses[:DEFENSE]
-            ret[:SPECIAL_ATTACK_TRIBAL] = @tribalBonuses[:SPECIAL_ATTACK]
-            ret[:SPECIAL_DEFENSE_TRIBAL] = @tribalBonuses[:SPECIAL_DEFENSE]
-            ret[:SPEED_TRIBAL] = @tribalBonuses[:SPEED]
+        if owner
+            tribalStatBonuses = owner.tribalBonus.getTribeBonuses(pokemon.level)
+            ret[:ATTACK_TRIBAL] = tribalStatBonuses[:ATTACK]
+            ret[:DEFENSE_TRIBAL] = tribalStatBonuses[:DEFENSE]
+            ret[:SPECIAL_ATTACK_TRIBAL] = tribalStatBonuses[:SPECIAL_ATTACK]
+            ret[:SPECIAL_DEFENSE_TRIBAL] = tribalStatBonuses[:SPECIAL_DEFENSE]
+            ret[:SPEED_TRIBAL] = tribalStatBonuses[:SPEED]
         else
             ret[:ATTACK_TRIBAL] = 0
             ret[:DEFENSE_TRIBAL] = 0
@@ -39,14 +40,8 @@ class PokeBattle_Battler
     end
 
     def tribalBonusForStat(stat)
-        return 0 unless getsTribalBonuses?
-        return @tribalBonuses[stat]
-    end
-
-    def getsTribalBonuses?
-        return false unless defined?(TribalBonus)
-        return false unless pbOwnedByPlayer?
-        return true
+        return 0 unless owner
+        return owner.tribalBonus.getTribeBonuses(pokemon.level)[stat]
     end
 
     def puzzleRoom?
