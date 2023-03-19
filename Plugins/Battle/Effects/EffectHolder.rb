@@ -82,10 +82,12 @@ module EffectHolder
     def disableEffect(effect)
         validateCorrectLocation(effect)
         effectData = GameData::BattleEffect.get(effect)
-        return unless effectData.active_value?(@effects[effect])
-        @effects[effect] = effectData.default
-        @disable_proc.call(effectData)
+        if effectData.active_value?(@effects[effect])
+            @effects[effect] = effectData.default
+            @disable_proc.call(effectData)
+        end
         effectData.each_sub_effect(true) do |otherEffect, otherData|
+            next unless otherData.active_value?(@effects[otherEffect])
             @effects[otherEffect] = otherData.default
             @disable_proc.call(otherData)
         end
