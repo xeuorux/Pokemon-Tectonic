@@ -392,21 +392,23 @@ class PokeBattle_Battle
         end
 
         # Type applying spike hazards
-        battler.pbOwnSide.eachEffect(true) do |effect, _value, data|
-            next unless data.is_status_hazard?
-            hazardInfo = data.type_applying_hazard
-            status = hazardInfo[:status]
+        unless battler.airborne?
+            battler.pbOwnSide.eachEffect(true) do |effect, _value, data|
+                next unless data.is_status_hazard?
+                hazardInfo = data.type_applying_hazard
+                status = hazardInfo[:status]
 
-            if hazardInfo[:absorb_proc].call(battler)
-                battler.pbOwnSide.disableEffect(effect)
-                pbDisplay(_INTL("{1} absorbed the {2}!", battler.pbThis, data.real_name))
-            elsif battler.pbCanInflictStatus?(status, nil, false) && !battler.ignoresHazards? && !battler.immuneToHazards?
-                if battler.pbOwnSide.countEffect(effect) >= 2
-                    battler.pbInflictStatus(status)
-                elsif battler.takesIndirectDamage?
-                    pbDisplay(_INTL("{1} was hurt by the thin layer of {2}!", battler.pbThis, data.real_name))
-                    if battler.applyFractionalDamage(1.0 / 16.0, true, false, true)
-                        return pbOnActiveOne(battler) # For replacement battler
+                if hazardInfo[:absorb_proc].call(battler)
+                    battler.pbOwnSide.disableEffect(effect)
+                    pbDisplay(_INTL("{1} absorbed the {2}!", battler.pbThis, data.real_name))
+                elsif battler.pbCanInflictStatus?(status, nil, false) && !battler.ignoresHazards? && !battler.immuneToHazards?
+                    if battler.pbOwnSide.countEffect(effect) >= 2
+                        battler.pbInflictStatus(status)
+                    elsif battler.takesIndirectDamage?
+                        pbDisplay(_INTL("{1} was hurt by the thin layer of {2}!", battler.pbThis, data.real_name))
+                        if battler.applyFractionalDamage(1.0 / 16.0, true, false, true)
+                            return pbOnActiveOne(battler) # For replacement battler
+                        end
                     end
                 end
             end
