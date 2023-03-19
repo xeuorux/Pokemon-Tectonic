@@ -39,7 +39,7 @@ class TribalBonusScene
                 tribeName = TribalBonus.getTribeName(tribe)
                 coordinateY = 64 + (index % 9) * 32
                 tribeCountDesc = _INTL("{1}: {2}", tribeName, count)
-                tribeCountDesc = "<b>#{tribeCountDesc}</b>" if count >= TribalBonus::TRIBAL_BONUS_THRESHOLD
+                tribeCountDesc = "<b>#{tribeCountDesc}</b>" if count >= GameData::Tribe.get(tribe).threshold
                 drawFormattedTextEx(overlay, xLeft + (index / 9) * 240, coordinateY, 450, tribeCountDesc, base, shadow)
                 drewAny = true
                 index += 1
@@ -61,7 +61,7 @@ class TribalBonusScene
         coordinateY = 38
 
         @displayText[@offset..@offset+@linesToShow].each {|line|
-            drawTextEx(overlay, xLeft, coordinateY += 30, 450, 1, line, base, shadow)
+            drawFormattedTextEx(overlay, xLeft, coordinateY += 30, 450, line, base, shadow)
         }
     end
 
@@ -117,11 +117,12 @@ class TribalBonusScene
 
         GameData::Tribe.each { |tribe|
             tribeName = TribalBonus.getTribeName(tribe.id)
-            @displayText << tribeName + ":"
-            bonusDescription = "5 battlers in this category will get a bonus to each main battle stat"
+            @displayText << "<b>#{tribeName}</b> (#{tribe.threshold})"
+            bonusDescription = tribe.description
             break_string(bonusDescription, 40).each {|line|
                 @displayText << line
             }
+            @displayText << "\n"
         }
 
         pbFadeInAndShow(@sprites) { pbUpdate }
@@ -202,4 +203,4 @@ class TribalBonusScreen
         end
         @scene.pbEndScene
     end
-  end
+end

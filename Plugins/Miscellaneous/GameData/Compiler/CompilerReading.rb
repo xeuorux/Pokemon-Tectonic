@@ -489,10 +489,12 @@ module Compiler
 	  GameData::Tribe::DATA.clear
     # Read each line of tribes.txt at a time and compile it
     pbCompilerEachCommentedLine(path) { |line, line_no|
-
-    tribe_number = 1
-	  line = pbGetCsvRecord(line, line_no, [0, "*n"])
+      tribeSchema = [0, "*nis"]
+      tribe_number = 1
+      line = pbGetCsvRecord(line, line_no, tribeSchema)
       tribe_symbol = line[0].to_sym
+      tribe_threshold = line[1].to_i
+      tribe_description = line[2]
       if GameData::Tribe::DATA[tribe_symbol]
         raise _INTL("Tribe ID '{1}' is used twice.\r\n{2}", tribe_symbol, FileLineData.linereport)
       end
@@ -501,6 +503,8 @@ module Compiler
       tribe_hash = {
         :id          => tribe_symbol,
         :id_number   => tribe_number,
+        :threshold   => tribe_threshold,
+        :description => tribe_description,
       }
       # Add trainer policy's data to records
       GameData::Tribe.register(tribe_hash)

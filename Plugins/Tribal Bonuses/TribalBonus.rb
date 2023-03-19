@@ -3,8 +3,6 @@ class TribalBonus
     attr_reader :tribesGivingBonus
     attr_accessor :trainer
 
-    TRIBAL_BONUS_THRESHOLD = 5
-
     def initialize(trainer)
         @trainer = trainer
         updateTribeCount
@@ -32,7 +30,7 @@ class TribalBonus
         }
         
         GameData::Tribe.each do |tribeData|
-            next unless @tribeCounts[tribeData.id] >= TRIBAL_BONUS_THRESHOLD
+            next unless @tribeCounts[tribeData.id] >= tribeData.threshold
             @tribesGivingBonus.push(tribeData.id)
         end
     end
@@ -73,7 +71,7 @@ class TribalBonus
 
         if hasTribeBonus?(:INDUSTRIOUS) && @trainer.money >= 100_000
             GameData::Stat.each_main_battle do |stat|
-                tribeBonuses[stat.id] = 5 + (level / 14).floor
+                tribeBonuses[stat.id] = 8 + (level / 10).floor
             end
         end
 
