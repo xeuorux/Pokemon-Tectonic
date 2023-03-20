@@ -2015,7 +2015,7 @@ end
 # This move is physical if user's Attack is higher than its Special Attack (Long Shot)
 # (after applying stat stages)
 #===============================================================================
-class PokeBattle_Move_57C < PokeBattle_Move_005
+class PokeBattle_Move_57C < PokeBattle_Move
     def initialize(battle, move)
         super
         @calculated_category = 1
