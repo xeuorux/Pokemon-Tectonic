@@ -1,6 +1,6 @@
 CHASM_CREDITs = <<_END_
 
-Major Cnontributors
+Major Contributors
 Zeu<s>Agentbla
 Divock<s>Brickbat
 Wakarimasensei<s>ali760
@@ -14,8 +14,10 @@ Fbarbarosa<s>ctWizard
 Slaynoir<s>Maddie
 FurretKnight<s>Dtp81390
 Gabs<s>derrondad
-BlueObelisk<s>Dark?
+BlueObelisk<s>SimplyDark
 MrPanda1<s>Angelcake
+Mikomii<s>Lmorgan89
+Valrex<s>Avery
 
 Playtesters
 Splitmoon<s>Sets
