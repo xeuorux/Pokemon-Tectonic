@@ -152,7 +152,18 @@ class PokeBattle_Battle
             knownAlready = false
             knownAlready = true if pokemon.getAbilityList.length == 1
             @knownAbilities[pokemon.personalID] = knownAlready
-            echoln("Player's side pokemon #{pokemon.name}'s ability is known by the AI at the start? #{knownAlready}")
+            echoln("Player's side pokemon #{pokemon.name}'s ability is known by the AI at the start") if knownAlready
+        end
+        @knownMoves = {}
+        @party1.each do |pokemon|
+            knownMovesArray = []
+            @knownMoves[pokemon.personalID] = knownMovesArray
+            pokemon.moves.each do |move|
+                next unless pokemon.types.include?(move.type) # Don't know off-type moves
+                next if move.category == 2 # Don't know status moves
+                knownMovesArray.push(move.id)
+                echoln("Player's side pokemon #{pokemon.name}'s move #{move.name} is known by the AI at the start")
+            end
         end
     end
 end

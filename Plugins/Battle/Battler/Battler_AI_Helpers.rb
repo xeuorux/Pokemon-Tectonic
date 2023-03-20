@@ -9,8 +9,30 @@ class PokeBattle_Battler
     # Understanding the battler's moves
     ###############################################################################
 
+    def aiSeesMove(move)
+        @battle.aiSeesMove(self,move)
+    end
+
+    def eachAIKnownMove
+        return if effectActive?(:Illusion) && pbOwnedByPlayer?
+        knownMoveIDs = @battle.aiKnownMoves(@pokemon)
+        @moves.each do |move|
+            next if pbOwnedByPlayer? && !knownMoveIDs.include?(move.id)
+            yield move
+        end
+    end
+
+    def eachAIKnownMoveWithIndex
+        return if effectActive?(:Illusion) && pbOwnedByPlayer?
+        knownMoveIDs = @battle.aiKnownMoves(@pokemon)
+        @moves.each do |move, index|
+            next if pbOwnedByPlayer? && !knownMoveIDs.include?(move.id)
+            yield move, index
+        end
+    end
+
     def hasPhysicalAttack?
-        eachMove do |m|
+        eachAIKnownMove do |m|
             next unless m.physicalMove?(m.type)
             return true
         end
@@ -18,7 +40,7 @@ class PokeBattle_Battler
     end
 
     def hasSpecialAttack?
-        eachMove do |m|
+        eachAIKnownMove do |m|
             next unless m.specialMove?(m.type)
             return true
         end
@@ -26,7 +48,7 @@ class PokeBattle_Battler
     end
 
     def hasDamagingAttack?
-        eachMove do |m|
+        eachAIKnownMove do |m|
             next unless m.damagingMove?
             return true
         end
@@ -34,7 +56,7 @@ class PokeBattle_Battler
     end
 
     def hasStatusMove?
-        eachMove do |m|
+        eachAIKnownMove do |m|
             next unless m.statusMove?
             return true
         end
@@ -42,7 +64,7 @@ class PokeBattle_Battler
     end
 
     def hasSleepAttack?
-        eachMove do |m|
+        eachAIKnownMove do |m|
             battleMove = @battle.getBattleMoveInstanceFromID(m.id)
             next unless battleMove.usableWhenAsleep?
             return true
@@ -51,7 +73,7 @@ class PokeBattle_Battler
     end
 
     def hasSoundMove?
-        eachMove do |m|
+        eachAIKnownMove do |m|
             next unless m.soundMove?
             return true
         end
@@ -63,7 +85,7 @@ class PokeBattle_Battler
     end
 
     def hasHealingMove?
-        eachMove do |m|
+        eachAIKnownMove do |m|
             battleMove = @battle.getBattleMoveInstanceFromID(m.id)
             next unless battleMove.healingMove?
             return true
@@ -72,7 +94,7 @@ class PokeBattle_Battler
     end
 
     def hasInaccurateMove?
-        eachMove do |m|
+        eachAIKnownMove do |m|
             next unless m.accuracy <= 85
             return true
         end
@@ -80,7 +102,7 @@ class PokeBattle_Battler
     end
 
     def hasLowAccuracyMove?
-        eachMove do |m|
+        eachAIKnownMove do |m|
             next unless m.accuracy <= 65
             return true
         end
@@ -88,7 +110,7 @@ class PokeBattle_Battler
     end
 
     def hasHighCritAttack?
-        eachMove do |m|
+        eachAIKnownMove do |m|
             next unless m.highCriticalRate?
             return true
         end
@@ -98,12 +120,14 @@ class PokeBattle_Battler
     def pbHasAttackingType?(check_type)
         return false unless check_type
         check_type = GameData::Type.get(check_type).id
-        eachMove { |m| return true if m.type == check_type && m.damagingMove? }
+        eachAIKnownMove do |m|
+            return true if m.type == check_type && m.damagingMove?
+        end
         return false
     end
 
     def hasForceSwitchMove?
-        eachMove do |m|
+        eachAIKnownMove do |m|
             next unless m.forceSwitchMove?
             return true
         end
@@ -111,7 +135,7 @@ class PokeBattle_Battler
     end
 
     def canChooseProtect?
-        eachMoveWithIndex do |move, i|
+        eachAIKnownMoveWithIndex do |move, i|
             next unless move.is_a?(PokeBattle_ProtectMove)
             next unless @battle.pbCanChooseMove?(index, i, false)
             next if @battle.battleAI.aiPredictsFailure?(move, self, self)
@@ -121,7 +145,7 @@ class PokeBattle_Battler
     end
 
     def canChooseFullSpreadMove?(categoryOnly = -1)
-        eachMoveWithIndex do |move, i|
+        eachAIKnownMoveWithIndex do |move, i|
             next if categoryOnly == 0 && !move.physicalMove?
             next if categoryOnly == 1 && !move.specialMove?
             next if categoryOnly == 2 && !move.statusMove?

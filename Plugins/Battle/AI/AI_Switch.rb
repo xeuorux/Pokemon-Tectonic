@@ -80,7 +80,7 @@ class PokeBattle_AI
             if battler.effects[:PerishSong] == 1
                 switchingBias += 20
                 switchingBias += 20 if user.aboveHalfHealth?
-                PBDebug.log("[AI SWITCH] #{battler.pbThis} (#{battler.index}) is to die to perish song (+2)")
+                PBDebug.log("[AI SWITCH] #{battler.pbThis} (#{battler.index}) is to die to perish song (+20)")
             end
 
             # More likely to switch when poison has worsened
@@ -93,21 +93,16 @@ class PokeBattle_AI
 
         # More likely to switch when drowsy
         if battler.effectActive?(:Yawn)
-            switchingBias += 10
-            PBDebug.log("[AI SWITCH] #{battler.pbThis} (#{battler.index}) is drowsy (+1)")
+            switchingBias += 15
+            PBDebug.log("[AI SWITCH] #{battler.pbThis} (#{battler.index}) is drowsy (+15)")
         end
         
         # Less likely to switch when any opponent has a force switch out move
         # Even less likely if the opponent just used such a mvoe
-        battler.eachOpposing do |opposingBattler|
-            if opposingBattler.hasForceSwitchMove?
-                switchingBias -= 5
-                PBDebug.log("[AI SWITCH] #{battler.pbThis} (#{battler.index}) has an opponent that can force swaps (-5)")
-            end
-            next unless opposingBattler.lastMoveUsed
-            if @battle.getBattleMoveInstanceFromID(opposingBattler.lastMoveUsed).forceSwitchMove?
-                switchingBias -= 5
-                PBDebug.log("[AI SWITCH] #{battler.pbThis} (#{battler.index}) has an opponent that used a force switch move last turn (-5)")
+        battler.eachOpposing do |b|
+            if b.hasForceSwitchMove?
+                switchingBias -= 10
+                PBDebug.log("[AI SWITCH] #{battler.pbThis} (#{battler.index}) has an opponent that can force swaps (-10)")
             end
         end
 

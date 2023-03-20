@@ -1488,8 +1488,9 @@ class PokeBattle_Move_0B5 < PokeBattle_Move
             pkmn.moves.each do |move|
                 next if @moveBlacklist.include?(move.function_code)
                 next if move.type == :SHADOW
-                next if move.forceSwitchMove?
-                next if move.is_a?(PokeBattle_TwoTurnMove)
+                battleMoveInstance = @battle.getBattleMoveInstanceFromID(move.id)
+                next if battleMoveInstance.forceSwitchMove?
+                next if battleMoveInstance.is_a?(PokeBattle_TwoTurnMove)
                 assistMoves.push(move.id)
             end
         end

@@ -183,8 +183,23 @@ class PokeBattle_Battle
         return @commandPhasesThisRound.zero?
     end
 
+    def aiSeesAbility(battler)
+        @knownAbilities[battler.pokemon.personalID] = true if battler.pbOwnedByPlayer?
+    end
+
     def aiKnowsAbility?(pokemon)
         return @knownAbilities[pokemon.personalID]
+    end
+
+    def aiSeesMove(battler, moveID)
+        return unless battler.pbOwnedByPlayer?
+        moveID = moveID.id if moveID.is_a?(PokeBattle_Move)
+        array = @knownMoves[battler.pokemon.personalID]
+        array.push(moveID) unless array.include?(moveID)
+    end
+
+    def aiKnownMoves(pokemon)
+        return @knownMoves[pokemon.personalID]
     end
 
     def actionTargets?(user,action,battler)

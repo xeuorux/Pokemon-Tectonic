@@ -50,10 +50,6 @@ class PokeBattle_Battle
         @scene.pbCommonAnimation(name, user, targets) if @showAnims
     end
 
-    def aiSeesAbility(battler)
-        @knownAbilities[battler.pokemon.personalID] = true if battler.pbOwnedByPlayer?
-    end
-
     def pbShowAbilitySplash(battler, delay = false, logTrigger = true, fakeName = nil)
         aiSeesAbility(battler)
         PBDebug.log("[Ability triggered] #{battler.pbThis}'s #{battler.abilityName}") if logTrigger

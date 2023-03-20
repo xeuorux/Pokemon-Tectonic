@@ -265,6 +265,7 @@ class PokeBattle_Battler
             end
         end
         # Record move as having been used
+        aiSeesMove(move) # Enemy trainers now know of this move's existence
         @lastMoveUsed     = move.id
         @lastMoveUsedType = move.calcType # For Conversion 2
         @lastMoveUsedCategory = move.calculatedCategory

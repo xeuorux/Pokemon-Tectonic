@@ -1325,8 +1325,9 @@ class PokeBattle_Move_5C2 < PokeBattle_Move
                 next if move.type == :SHADOW
                 next if move.category == 2
                 next unless move.base_damage > optimizedBP
-                next if move.forceSwitchMove?
-                next if move.is_?(PokeBattle_TwoTurnMove)
+                battleMove = @battle.getBattleMoveInstanceFromID(move.id)
+                next if battleMove.forceSwitchMove?
+                next if battleMove.is_?(PokeBattle_TwoTurnMove)
                 optimizedMove = move.id
                 optimizedBP = move.base_damage
             end
