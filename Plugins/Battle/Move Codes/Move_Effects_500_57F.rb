@@ -1508,7 +1508,7 @@ class PokeBattle_Move_55D < PokeBattle_Move
     end
 
     def getEffectScore(user, target)
-        score = 140
+        score = 120
         score -= getMultiStatUpEffectScore([:ATTACK, 2], user, target)
         return score
     end
@@ -1525,7 +1525,7 @@ selfHitBasePower(target.level))
     end
 
     def getEffectScore(user, target)
-        score = 140
+        score = 120
         score -= getMultiStatUpEffectScore([:SPECIAL_ATTACK, 2], user, target)
         return score
     end
