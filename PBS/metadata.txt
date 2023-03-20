@@ -1503,7 +1503,7 @@ Environment = Cave
 Outdoor = false
 ShowArea = false
 Bicycle = false
-TeleportBlocked = true
+TeleportBlocked = false
 #-------------------------------
 [275]
 # Sweetrock Harbor Gym Tour
