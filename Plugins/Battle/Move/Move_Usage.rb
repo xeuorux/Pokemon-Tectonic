@@ -30,7 +30,7 @@ class PokeBattle_Move
     end
 
     def calculateCategory(user, targets)
-        return selectBestCategory(user, targets[0]) if user.hasActiveAbility?(:MYSTICFIST)
+        return selectBestCategory(user, targets[0]) if punchingMove? && user.hasActiveAbility?(:MYSTICFIST)
         return -1
     end
 
