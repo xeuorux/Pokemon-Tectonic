@@ -16,7 +16,7 @@ TYRANNICAL,5,"Ignore the first time one of your team members would flinch or get
 BUSHWHACKER,5,"Your 'Not Very Effective' or 'Barely Effective' moves deal 50% more damage."
 CHARMER,5,"Your team takes 15% less move damage on the turns they enter."
 WARRIOR,5,"Your team deals 5% more move damage."
-SHIMMERING,5,"10% increased Sp. Def. Foes can't lower your team's Sp. Def."
+SHIMMERING,5,,"Your team has 10% increased Sp. Def. Foes can't lower your team's Sp. Def."
 SERENE,5,"Enemy Pokemon's chance to activate their additional effects against your team members is halved."
 SCAVENGER,5,"Your team members berries heal them for 50% more (multiplicative)."
 TACTICIAN,5,"Protects your team members from random critical hits."
