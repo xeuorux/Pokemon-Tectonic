@@ -42,8 +42,7 @@ class PokeBattle_Battle
     end
 
     def roomActive?
-        @field.effects.each do |effect, _value|
-            effectData = GameData::BattleEffect.get(effect)
+        @field.eachEffect(true) do |effect, _value, effectData|
             return true if effectData.is_room?
         end
         return false
