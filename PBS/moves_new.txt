@@ -400,7 +400,7 @@
 1399,MACHINATE,Machinate,5CB,90,GHOST,Special,100,12,30,NearOther,0,befn,"Changes type based on machine haunted. 30% chance of extra effect based on machine haunted.",SHADOWBALL
 1400,DRAGONSROAR,Dragons Roar,5CC,75,DRAGON,Special,100,10,0,NearOther,-1,bef,"The user roars with explosive ferocity, forcing the target to switch out.",
 1401,CHECKMATE,Checkmate,5CD,80,DARK,Physical,100,10,0,NearOther,0,abef,"If the target is the last able member of their party, this attack's power is doubled.",
-1402,WEATHERBURST,Weather Burst,087,100,NORMAL,Physical,100,10,0,NearOther,0,bef,"Type based on weather. Inflicts physical or special damage based on the user's stats",WEATHERBALL
+1402,WEATHERBURST,Weather Burst,087,100,NORMAL,Physical,100,10,0,NearOther,0,bef,"Type based on weather. Inflicts physical or special damage based on the user's stats.",WEATHERBALL
 1403,SHINESHOT,Shine Shot,046,60,STEEL,Special,100,10,30,NearOther,0,bef,"The user looses a flash of energy from its polished body. It has a 30% chance to lower Sp. Def.",
 1404,TUTELAGE,Tutelage,5CE,0,PSYCHIC,Status,0,10,0,NearAlly,0,,"The user imparts knowledge on its ally Pokémon, boosting their Sp. Atk and Sp. Def stats.",
 1405,POWERNAP,Power Nap,0F9,0,DARK,Status,0,5,0,User,0,d,"The user restores 1/2 of its HP, or 2/3rds in moonglow.",
