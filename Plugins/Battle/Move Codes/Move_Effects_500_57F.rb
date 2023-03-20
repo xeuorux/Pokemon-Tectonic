@@ -1038,6 +1038,8 @@ end
 # If the move misses, all targets are forced to switch out. (Rolling Boulder)
 #===============================================================================
 class PokeBattle_Move_53F < PokeBattle_Move
+    def forceSwitchMove?; return true; end
+
     # This method is called if a move fails to hit all of its targets
     def pbAllMissed(user, targets)
         return if @battle.wildBattle?

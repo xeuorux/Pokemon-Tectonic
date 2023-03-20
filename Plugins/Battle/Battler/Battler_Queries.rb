@@ -602,6 +602,12 @@ class PokeBattle_Battler
     def ignoresHazards?
         return hasActiveAbility?(HAZARD_IMMUNITY_ABILITIES)
     end
+
+    def hasGem?
+        return false unless item
+        return false unless itemActive?
+        return item.is_gem?
+    end
 end
 
 HAZARD_IMMUNITY_ABILITIES = %i[AQUASNEAK NINJUTSU DANGERSENSE]

@@ -34,13 +34,13 @@ class PokeBattle_AI
             if typeMod >= 0
                 effectivenessSwitchBiasMod = 0
                 if Effectiveness.hyper_effective?(typeMod)
-                    effectivenessSwitchBiasMod += 2
+                    effectivenessSwitchBiasMod += 20
                 elsif Effectiveness.super_effective?(typeMod)
-                    effectivenessSwitchBiasMod += 1
+                    effectivenessSwitchBiasMod += 10
                 elsif Effectiveness.not_very_effective?(typeMod)
-                    effectivenessSwitchBiasMod -= 1
+                    effectivenessSwitchBiasMod -= 10
                 elsif Effectiveness.ineffective?(typeMod)
-                    effectivenessSwitchBiasMod -= 2
+                    effectivenessSwitchBiasMod -= 20
                 end
                 switchingBias += effectivenessSwitchBiasMod
                 PBDebug.log("[AI SWITCH] #{battler.pbThis} (#{battler.index}) takes into account the effectiveness of its last hit taken (#{effectivenessSwitchBiasMod.to_change})")
@@ -51,8 +51,8 @@ class PokeBattle_AI
             choices.each do |c|
                 maxScore = c[1] if c[1] > maxScore
             end
-            maxMoveScoreBiasChange = 4
-            maxMoveScoreBiasChange -= (maxScore / 25.0).round
+            maxMoveScoreBiasChange = 40
+            maxMoveScoreBiasChange -= (maxScore / 2.5).round
             switchingBias += maxMoveScoreBiasChange
             PBDebug.log("[AI SWITCH] #{battler.pbThis} (#{battler.index}) max score among its #{choices.length} choices is #{maxScore} (#{maxMoveScoreBiasChange.to_change})")
 
@@ -61,8 +61,8 @@ class PokeBattle_AI
             if @battle.pbSideSize(battler.index + 1) == 1 && !battler.pbDirectOpposing.fainted?
                 opposingBattler = battler.pbDirectOpposing
                 unless opposingBattler.canActThisTurn?
-                    switchingBias -= 2
-                    PBDebug.log("[AI SWITCH] #{battler.pbThis} (#{battler.index}) thinks the opposing battler can't act this turn (-2)")
+                    switchingBias -= 20
+                    PBDebug.log("[AI SWITCH] #{battler.pbThis} (#{battler.index}) thinks the opposing battler can't act this turn (-20)")
                 end
             end
         end
@@ -70,28 +70,22 @@ class PokeBattle_AI
         # "Sacrificed Not Swaps" policy
         sacrificing = false
         if policies.include?(:SACS_NOT_SWAPS) && battler.hp <= battler.totalhp / 4
-            switchingBias -= 1
+            switchingBias -= 10
             sacrificing = true
-            PBDebug.log("[AI SWITCH] #{battler.pbThis} (#{battler.index}) at or below 25% HP, so values saccing itself for tempo (-1)")
+            PBDebug.log("[AI SWITCH] #{battler.pbThis} (#{battler.index}) at or below 25% HP, so values saccing itself for tempo (-10)")
             PBDebug.log("[AI SWITCH] #{battler.pbThis} (#{battler.index}) will ignore switch evaluation checks about avoiding death")
         else # Check effects that put the pokemon in danger
 
             # Pokémon is about to faint because of Perish Song
             if battler.effects[:PerishSong] == 1
-                switchingBias += 2
-                switchingBias += 2 if user.aboveHalfHealth?
+                switchingBias += 20
+                switchingBias += 20 if user.aboveHalfHealth?
                 PBDebug.log("[AI SWITCH] #{battler.pbThis} (#{battler.index}) is to die to perish song (+2)")
-            end
-
-            # More likely to switch when leech seeded
-            if battler.effectActive?(:LeechSeed)
-                switchingBias += 1
-                PBDebug.log("[AI SWITCH] #{battler.pbThis} (#{battler.index}) is seeded (+1)")
             end
 
             # More likely to switch when poison has worsened
             if battler.poisoned?
-                poisonBias = 1 + battler.getPoisonDoublings * 2
+                poisonBias = 5 + battler.getPoisonDoublings * 20
                 switchingBias += poisonBias
                 PBDebug.log("[AI SWITCH] #{battler.pbThis} (#{battler.index}) is poisoned at count (#{battler.getStatusCount(:POISON)}) (+#{poisonBias})")
             end
@@ -99,8 +93,22 @@ class PokeBattle_AI
 
         # More likely to switch when drowsy
         if battler.effectActive?(:Yawn)
-            switchingBias += 1
+            switchingBias += 10
             PBDebug.log("[AI SWITCH] #{battler.pbThis} (#{battler.index}) is drowsy (+1)")
+        end
+        
+        # Less likely to switch when any opponent has a force switch out move
+        # Even less likely if the opponent just used such a mvoe
+        battler.eachOpposing do |opposingBattler|
+            if opposingBattler.hasForceSwitchMove?
+                switchingBias -= 5
+                PBDebug.log("[AI SWITCH] #{battler.pbThis} (#{battler.index}) has an opponent that can force swaps (-5)")
+            end
+            next unless opposingBattler.lastMoveUsed
+            if @battle.getBattleMoveInstanceFromID(opposingBattler.lastMoveUsed).forceSwitchMove?
+                switchingBias -= 5
+                PBDebug.log("[AI SWITCH] #{battler.pbThis} (#{battler.index}) has an opponent that used a force switch move last turn (-5)")
+            end
         end
 
         # Tries to determine if its in a good or bad type matchup
@@ -121,9 +129,9 @@ class PokeBattle_AI
         list = pbGetPartyWithSwapRatings(idxBattler)
         listSwapOutCandidates(battler, list)
 
-        # Only considers swapping into pokemon whose rating would be at least a +2 upgrade
-        upgradeThreshold = 2
-        upgradeThreshold -= 1 if owner.tribalBonus.hasTribeBonus?(:CHARMER)
+        # Only considers swapping into pokemon whose rating would be at least a +25 upgrade
+        upgradeThreshold = 25
+        upgradeThreshold -= 10 if owner.tribalBonus.hasTribeBonus?(:CHARMER)
         list.delete_if { |val| !@battle.pbCanSwitch?(idxBattler, val[0]) || (switchingBias + val[1] < upgradeThreshold) }
 
         if list.length > 0
@@ -248,12 +256,12 @@ class PokeBattle_AI
 
                 # Try not to swap in pokemon who will die to entry hazard damage
                 if pkmn.hp <= entryDamage
-                    switchScore -= 4
+                    switchScore -= 80
                     dieingOnEntry = true
                 elsif willAbsorbSpikes
-                    switchScore += 1
+                    switchScore += 30
                 else
-                    switchScore -= ((entryDamage / pkmn.totalhp.to_f) * 4).floor
+                    switchScore -= ((entryDamage / pkmn.totalhp.to_f) * 80).floor
                 end
             end
 
@@ -292,23 +300,23 @@ class PokeBattle_AI
 
             case pkmn.ability
             when :INTIMIDATE
-                switchScore += attackDebuffers
+                switchScore += attackDebuffers * 10
             when :FASCINATE
-                switchScore += specialDebuffers
+                switchScore += specialDebuffers * 10
             when :FRUSTRATE
-                switchScore += speedDebuffers
+                switchScore += speedDebuffers * 10
             when :DROUGHT, :INNERLIGHT
-                switchScore += alliesInReserve if settingSun
+                switchScore += alliesInReserve * 8 if settingSun
             when :DRIZZLE, :STORMBRINGER
-                switchScore += alliesInReserve if settingRain
+                switchScore += alliesInReserve * 8 if settingRain
             when :SNOWWARNING, :FROSTSCATTER
-                switchScore += alliesInReserve if settingHail
+                switchScore += alliesInReserve * 8 if settingHail
             when :SANDSTREAM, :SANDBURST
-                switchScore += alliesInReserve if settingSand
+                switchScore += alliesInReserve * 8 if settingSand
             when :MOONGAZE, :LUNARLOYALTY
-                switchScore += alliesInReserve if settingMoonglow
+                switchScore += alliesInReserve * 8 if settingMoonglow
             when :HARBINGER, :SUNEATER
-                switchScore += alliesInReserve if settingEclipse
+                switchScore += alliesInReserve * 8 if settingEclipse
             end
 
             # Only matters if the pokemon will live
@@ -319,12 +327,12 @@ class PokeBattle_AI
 
             # For preserving the pokemon placed in the last slot
             if policies.include?(:PRESERVE_LAST_POKEMON) && partyIndex == @battle.pbParty(idxBattler).length - 1
-                switchScore = -99
+                switchScore = -1000
             end
 
             list.push([partyIndex, switchScore])
         end
-        list.sort_by! { |entry| entry[1].nil? ? 9999 : -entry[1] }
+        list.sort_by! { |entry| entry[1].nil? ? 99999 : -entry[1] }
         return list
     end
 
@@ -352,18 +360,18 @@ class PokeBattle_AI
         matchupScore = 0
         # Modify the type matchup score based on the defensive matchup
         if Effectiveness.ineffective?(typeModDefensive)
-            matchupScore += 4
+            matchupScore += 40
         elsif Effectiveness.not_very_effective?(typeModDefensive)
-            matchupScore += 2
+            matchupScore += 20
         elsif Effectiveness.hyper_effective?(typeModDefensive)
-            matchupScore -= 4
+            matchupScore -= 40
         elsif Effectiveness.super_effective?(typeModDefensive)
-            matchupScore -= 2
+            matchupScore -= 20
         end
 
         maxScore = highestMoveScoreForHypotheticalBattle(battlerSlot,pokemon,partyIndex)
-        maxMoveScoreBiasChange = -4
-        maxMoveScoreBiasChange += (maxScore / 25.0).round
+        maxMoveScoreBiasChange = -40
+        maxMoveScoreBiasChange += (maxScore / 2.5).round
         matchupScore += maxMoveScoreBiasChange
 
         return matchupScore

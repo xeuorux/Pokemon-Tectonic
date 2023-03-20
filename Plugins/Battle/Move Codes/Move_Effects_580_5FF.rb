@@ -1298,11 +1298,6 @@ class PokeBattle_Move_5C2 < PokeBattle_Move
             # Set up effects that trigger upon KO
             "0E6",   # Grudge                              # Not listed on Bulbapedia
             "0E7",   # Destiny Bond
-            # Target-switching moves
-            "0EB",   # Roar, Whirlwind                                    # See below
-            "0EC", # Circle Throw, Dragon Tail
-            "5CC", # Dragon's Roar
-            "53F", # Rolling Boulder
             # Held item-moving moves
             "0F1",   # Covet, Thief
             "0F2",   # Switcheroo, Trick
@@ -1316,24 +1311,6 @@ class PokeBattle_Move_5C2 < PokeBattle_Move
             "134", # Celebrate
             # Moves that call other moves
             "0B3", # Nature Power
-            # Two-turn attacks
-            "0C3",   # Razor Wind                        # Not listed on Bulbapedia
-            "0C4",   # Solar Beam, Solar Blade           # Not listed on Bulbapedia
-            "0C5",   # Freeze Shock                      # Not listed on Bulbapedia
-            "0C6",   # Ice Burn                          # Not listed on Bulbapedia
-            "0C7",   # Sky Attack                        # Not listed on Bulbapedia
-            "0C8",   # Skull Bash                        # Not listed on Bulbapedia
-            "0C9",   # Fly
-            "0CA",   # Dig
-            "0CB",   # Dive
-            "0CC",   # Bounce
-            "0CD",   # Shadow Force
-            "0CE",   # Sky Drop
-            "12E",   # Shadow Half
-            "14D",   # Phantom Force
-            "14E",   # Geomancy                          # Not listed on Bulbapedia
-            # Target-switching moves
-            "0EB", # Roar, Whirlwind
         ]
     end
 
@@ -1348,6 +1325,8 @@ class PokeBattle_Move_5C2 < PokeBattle_Move
                 next if move.type == :SHADOW
                 next if move.category == 2
                 next unless move.base_damage > optimizedBP
+                next if move.forceSwitchMove?
+                next if move.is_?(PokeBattle_TwoTurnMove)
                 optimizedMove = move.id
                 optimizedBP = move.base_damage
             end
@@ -1613,6 +1592,8 @@ end
 # In trainer battles, target switches out, to be replaced manually. (Dragon's Roar)
 #===============================================================================
 class PokeBattle_Move_5CC < PokeBattle_Move
+    def forceSwitchMove?; return true; end
+
     def pbEffectAgainstTarget(user, target)
         if @battle.wildBattle? && target.level <= user.level && @battle.canRun &&
            (target.substituted? || ignoresSubstitute?(user)) && !target.boss

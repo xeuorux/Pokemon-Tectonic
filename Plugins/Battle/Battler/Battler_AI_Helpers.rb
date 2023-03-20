@@ -1,7 +1,13 @@
 class PokeBattle_Battler
-    def aiSeesAbility
-        @battle.aiSeesAbility(self)
+    def ownersPolicies
+        return [] if pbOwnedByPlayer?
+        return owner.policies if owner
+        return []
     end
+
+    ###############################################################################
+    # Understanding the battler's moves
+    ###############################################################################
 
     def hasPhysicalAttack?
         eachMove do |m|
@@ -96,6 +102,41 @@ class PokeBattle_Battler
         return false
     end
 
+    def hasForceSwitchMove?
+        eachMove do |m|
+            next unless m.forceSwitchMove?
+            return true
+        end
+        return false
+    end
+
+    def canChooseProtect?
+        eachMoveWithIndex do |move, i|
+            next unless move.is_a?(PokeBattle_ProtectMove)
+            next unless @battle.pbCanChooseMove?(index, i, false)
+            next if @battle.battleAI.aiPredictsFailure?(move, self, self)
+            return true
+        end
+        return false
+    end
+
+    def canChooseFullSpreadMove?(categoryOnly = -1)
+        eachMoveWithIndex do |move, i|
+            next if categoryOnly == 0 && !move.physicalMove?
+            next if categoryOnly == 1 && !move.specialMove?
+            next if categoryOnly == 2 && !move.statusMove?
+            next unless @battle.pbCanChooseMove?(index, i, false)
+            target_data = move.pbTarget(self)
+            next unless target_data.id == :AllNearOthers
+            return true
+        end
+        return false
+    end
+
+    ###############################################################################
+    # Understanding the battler's allies and party.
+    ###############################################################################
+
     def hasAlly?
         eachAlly do |_b|
             return true
@@ -117,6 +158,14 @@ class PokeBattle_Battler
 
     def enemiesInReserve?
         return enemiesInReserveCount != 0
+    end
+
+    ###############################################################################
+    # Understanding the battler's ability
+    ###############################################################################
+
+    def aiSeesAbility
+        @battle.aiSeesAbility(self)
     end
 
     def ignoreAbilityInAI?(aiChecking)
@@ -144,6 +193,10 @@ class PokeBattle_Battler
         return false if aiKnowsAbility?
         return hasActiveAbility?(check_ability, ignore_fainted)
     end
+
+    ###############################################################################
+    # Understanding the battler's type
+    ###############################################################################
 
     # Returns the active types of this Pokémon. The array should not include the
     # same type more than once, and should not include any invalid type numbers (e.g. -1).
@@ -183,11 +236,9 @@ class PokeBattle_Battler
         return activeTypes.include?(GameData::Type.get(type).id)
     end
 
-    def ownersPolicies
-        return [] if pbOwnedByPlayer?
-        return owner.policies if owner
-        return []
-    end
+    ###############################################################################
+    # Understanding the battler's opponents
+    ###############################################################################
 
     def eachPotentialAttacker(categoryOnly = -1)
         eachOpposing(true) do |b|
@@ -226,34 +277,5 @@ class PokeBattle_Battler
                 yield b
             end
         end
-    end
-
-    def canChooseProtect?
-        eachMoveWithIndex do |move, i|
-            next unless move.is_a?(PokeBattle_ProtectMove)
-            next unless @battle.pbCanChooseMove?(index, i, false)
-            next if @battle.battleAI.aiPredictsFailure?(move, self, self)
-            return true
-        end
-        return false
-    end
-
-    def canChooseFullSpreadMove?(categoryOnly = -1)
-        eachMoveWithIndex do |move, i|
-            next if categoryOnly == 0 && !move.physicalMove?
-            next if categoryOnly == 1 && !move.specialMove?
-            next if categoryOnly == 2 && !move.statusMove?
-            next unless @battle.pbCanChooseMove?(index, i, false)
-            target_data = move.pbTarget(self)
-            next unless target_data.id == :AllNearOthers
-            return true
-        end
-        return false
-    end
-
-    def hasGem?
-        return false unless item
-        return false unless itemActive?
-        return item.is_gem?
     end
 end
