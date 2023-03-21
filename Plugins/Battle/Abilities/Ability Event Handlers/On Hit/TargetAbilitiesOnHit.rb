@@ -196,7 +196,7 @@ BattleHandlers::TargetAbilityOnHit.add(:LIVEWIRE,
   }
 )
 
-BattleHandlers::TargetAbilityOnHit.add(:CURSEDBODY,
+BattleHandlers::TargetAbilityOnHit.add(:SEALINGBODY,
   proc { |_ability, user, target, move, battle|
       next if user.fainted? || user.effectActive?(:Disable) 
       battle.pbShowAbilitySplash(target)
