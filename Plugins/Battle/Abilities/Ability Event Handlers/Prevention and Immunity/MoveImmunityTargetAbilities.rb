@@ -110,6 +110,12 @@ BattleHandlers::MoveImmunityTargetAbility.add(:WATERABSORB,
   }
 )
 
+BattleHandlers::MoveImmunityTargetAbility.add(:STEELABSORB,
+  proc { |_ability, user, target, move, type, battle, showMessages, aiChecking|
+    next pbBattleMoveImmunityHealAbility(user, target, move, type, :STEEL, battle, showMessages, aiChecking)
+  }
+)
+
 BattleHandlers::MoveImmunityTargetAbility.copy(:WATERABSORB, :DRYSKIN)
 
 # Other immunities
@@ -242,11 +248,5 @@ BattleHandlers::MoveImmunityTargetAbility.add(:MORPHINGGUARD,
           battle.pbHideAbilitySplash(target)
       end
       next true
-  }
-)
-
-BattleHandlers::MoveImmunityTargetAbility.add(:STEELSTICKER,
-  proc { |_ability, user, target, move, type, battle, showMessages, aiChecking|
-      next pbBattleMoveImmunityStatAbility(user, target, move, type, :STEEL, :ATTACK, 1, battle, showMessages, aiChecking)
   }
 )
