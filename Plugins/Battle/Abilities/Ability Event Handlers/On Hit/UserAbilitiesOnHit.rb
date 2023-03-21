@@ -120,7 +120,7 @@ BattleHandlers::UserAbilityOnHit.add(:MENTALDAMAGE,
 
 BattleHandlers::UserAbilityOnHit.add(:ROCKCYCLE,
   proc { |_ability, user, target, move, battle|
-    user.pbOwnSide.applyEffect(:ErodedRock) if move.physicalMove?
+    user.pbOwnSide.incrementEffect(:ErodedRock) if move.physicalMove?
   }
 )
 

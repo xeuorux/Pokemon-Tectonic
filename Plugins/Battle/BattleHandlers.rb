@@ -436,7 +436,11 @@ module BattleHandlers
     #=============================================================================
 
     def self.triggerTargetAbilityOnHit(ability, user, target, move, battle)
-        TargetAbilityOnHit.trigger(ability, user, target, move, battle)
+        TargetAbilityOnHit.trigger(ability, user, target, move, battle, false, 0)
+    end
+
+    def self.triggerTargetAbilityOnHitAI(ability, user, target, move, battle, aiNumHits)
+        return TargetAbilityOnHit.trigger(ability, user, target, move, battle, true, aiNumHits) || 0
     end
 
     def self.triggerUserAbilityOnHit(ability, user, target, move, battle)

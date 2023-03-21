@@ -123,16 +123,29 @@ class PokeBattle_AI
             effectScore = 0
         end
 
-        # Account for some abilities
-        score = getAdditiveAbilityScore(score, move, user, target)
-
         # Adjust score based on how much damage it can deal
         if move.damagingMove?
+            # Adjust the score based on the move dealing damage
+            # and perhaps a percent chance to actually benefit from its effect score
             begin
                 score = pbGetMoveScoreDamage(effectScore, move, user, target, numTargets)
             rescue StandardError => exception
                 pbPrintException($!) if $DEBUG
             end
+
+            # Account for the ability of the target
+            if target.aiKnowsAbility?
+                begin
+                    numHits = move.numberOfHits(user, [target], true)
+                    scoreModifierTargetAbility = 
+                        BattleHandlers.triggerTargetAbilityOnHitAI(ability, user, target, move, battle, aiNumHits)
+                    score += scoreModifierTargetAbility
+                    echoln("[MOVE SCORING] #{user.pbThis}'s #{numHits} hits against #{target.pbThis(false)} adjusts the score by #{scoreModifierTargetAbility} due to the target's ability") if scoreModifierTargetAbility != 0
+                rescue StandardError => exception
+                    pbPrintException($!) if $DEBUG
+                end
+            end
+
             score *= 0.75 if policies.include?(:DISLIKEATTACKING)
         else
             score = effectScore
@@ -142,7 +155,7 @@ class PokeBattle_AI
 
         # Don't prefer targeting the target if they'd be semi-invulnerable
         if move.accuracy > 0 && (target.semiInvulnerable? || target.effectActive?(:SkyDrop))
-            echoln("#{user.pbThis} scores the move #{move.id} differently against target #{target.pbThis(false)} due to the target being semi-invulnerable.")
+            echoln("[MOVE SCORING] #{user.pbThis} scores the move #{move.id} differently against target #{target.pbThis(false)} due to the target being semi-invulnerable.")
             canHitAnyways = false
             # Knows what can get past semi-invulnerability
             if target.effectActive?(:SkyDrop)
@@ -169,7 +182,7 @@ class PokeBattle_AI
 
         # Pick a good move for the Choice items
         if user.hasActiveItem?(CHOICE_LOCKING_ITEMS) || user.hasActiveAbilityAI?(CHOICE_LOCKING_ABILITIES)
-            echoln("#{user.pbThis} scores the move #{move.id} differently due to choice locking.")
+            echoln("[MOVE SCORING] #{user.pbThis} scores the move #{move.id} differently due to choice locking.")
             if move.damagingMove?
                 score *= 1.5
             else
@@ -182,17 +195,17 @@ class PokeBattle_AI
         score *= accuracy / 100.0
 
         if accuracy < 100
-            echoln("#{user.pbThis} predicts the move #{move.id} against target #{target.pbThis(false)} will have an accuracy of #{accuracy}")
+            echoln("[MOVE SCORING] #{user.pbThis} predicts the move #{move.id} against target #{target.pbThis(false)} will have an accuracy of #{accuracy}")
         end
 
         # Account for the value of priority
         movePrio = @battle.getMovePriority(move, user, [target], true)
         unless @battle.aiPredictsSwitch?(user,target.index,true) # Priority doesn't matter if they are switching out
             if target.pbSpeed(true) > user.pbSpeed(true) && movePrio > 0
-                echoln("#{user.pbThis} scores the move #{move.id} higher since its positive priority (#{movePrio}) when normally would be slower")
+                echoln("[MOVE SCORING] #{user.pbThis} scores the move #{move.id} higher since its positive priority (#{movePrio}) when normally would be slower")
                 score *= 1.5
             elsif target.pbSpeed(true) < user.pbSpeed(true) && movePrio < 0
-                echoln("#{user.pbThis} scores the move #{move.id} lower since its negative priority (#{movePrio}) when normally would be faster")
+                echoln("[MOVE SCORING] #{user.pbThis} scores the move #{move.id} lower since its negative priority (#{movePrio}) when normally would be faster")
                 score *= 0.66
             end
         end
@@ -203,14 +216,7 @@ class PokeBattle_AI
         # Final adjustments t score
         score = score.to_i
         score = 0 if score < 0
-        echoln("#{user.pbThis} scores the move #{move.id} against target #{target.pbThis(false)}: #{score}")
-        return score
-    end
-
-    # TODO
-    # Method that accounts for the target having triggered abilities on hit
-    # And similar contingencies
-    def getAdditiveAbilityScore(score, move, user, target)
+        echoln("[MOVE SCORING] #{user.pbThis} scores the move #{move.id} against target #{target.pbThis(false)}: #{score}")
         return score
     end
 
@@ -303,12 +309,12 @@ class PokeBattle_AI
             realProcChance = move.pbAdditionalEffectChance(user, target, type)
             realProcChance = 0 unless move.canApplyAdditionalEffects?(user,target,false,true)
             factor = (realProcChance / 100.0)
-            echoln("#{user.pbThis} multiplies #{move.id}'s effect score of #{effectScore} by a factor of #{factor} based on its predicted additional effect chance (against target #{target.pbThis(false)})")
+            echoln("[MOVE SCORING] #{user.pbThis} multiplies #{move.id}'s effect score of #{effectScore} by a factor of #{factor} based on its predicted additional effect chance (against target #{target.pbThis(false)})")
             effectScore *= factor
         end
 
         damageScore = (damagePercentage * 2.0).to_i
-        echoln("#{user.pbThis} gives #{move.id} an effect score of #{effectScore} and a damage score of #{damageScore} (against target #{target.pbThis(false)})")
+        echoln("[MOVE SCORING] #{user.pbThis} gives #{move.id} an effect score of #{effectScore} and a damage score of #{damageScore} (against target #{target.pbThis(false)})")
 
         return effectScore + damageScore
     end
@@ -319,13 +325,13 @@ class PokeBattle_AI
 
         if playerTribalBonus.hasTribeBonus?(:DECEIVER)
             realDamage *= 1.2
-            echoln("#{user.pbThis} is overestimating its damage by 20% due to the deceiver tribal bonus")
+            echoln("[MOVE SCORING] #{user.pbThis} is overestimating its damage by 20% due to the deceiver tribal bonus")
         end
 
         # Convert damage to percentage of target's remaining HP
         damagePercentage = realDamage * 100.0 / target.hp
 
-        echoln("#{user.pbThis} thinks that move #{move.id} will deal #{realDamage} damage -- #{damagePercentage.round(1)} percent of #{target.pbThis(false)}'s HP")
+        echoln("[MOVE SCORING] #{user.pbThis} thinks that move #{move.id} will deal #{realDamage} damage -- #{damagePercentage.round(1)} percent of #{target.pbThis(false)}'s HP")
 
         return damagePercentage
     end
