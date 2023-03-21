@@ -191,3 +191,9 @@ BattleHandlers::DamageCalcTargetAbility.add(:FEATHERCOAT,
       mults[:base_damage_multiplier] /= 2 if %i[ICE FLYING].include?(type)
   }
 )
+
+BattleHandlers::DamageCalcTargetAbility.add(:UNCONCERED,
+  proc { |_ability, _user, target, _move, mults, _baseDmg, _type|
+      mults[:final_damage_multiplier] *= 0.8 if Effectiveness.normal?(target.damageState.typeMod)
+  }
+)
