@@ -244,3 +244,9 @@ BattleHandlers::MoveImmunityTargetAbility.add(:MORPHINGGUARD,
       next true
   }
 )
+
+BattleHandlers::MoveImmunityTargetAbility.add(:STEELSTICKER,
+  proc { |_ability, user, target, move, type, battle, showMessages, aiChecking|
+      next pbBattleMoveImmunityStatAbility(user, target, move, type, :STEEL, :ATTACK, 1, battle, showMessages, aiChecking)
+  }
+)

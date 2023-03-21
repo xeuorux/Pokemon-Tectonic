@@ -990,7 +990,7 @@ Pokemon = PAWNIARD,26
 Pokemon = CUTIEFLY,26
     AbilityIndex = 0 # Candy Veil
 Pokemon = BINACLE,26
-    AbilityIndex = 1 # Pickpocket
+    AbilityIndex = 1 # Steel Sticker
     Item = SITRUSBERRY
 #-------------------------------
 [REPORTER,Helga]
