@@ -274,7 +274,7 @@ BattleHandlers::UserAbilityEndOfMove.add(:ETERNALWINTER,
   }
 )
 
-BattleHandlers::UserAbilityEndOfMove.add(:ROCKCYCLE,
+BattleHandlers::UserAbilityEndOfMove.add(:EROSIONCYCLE,
   proc { |_ability, user, targets, move, battle, _switchedBattlers|
       next if move.pbDamagingMove?
       next unless user.pbOwnSide.effectActive?(:ErodedRock)
