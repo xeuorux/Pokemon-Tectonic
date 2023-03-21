@@ -3,37 +3,37 @@
 #########################################
 
 BattleHandlers::TargetAbilityOnHit.add(:SANDBURST,
-    proc { |_ability, _user, target, _move, battle, aiChecking, aiNumHits|
+    proc { |_ability, user, target, move, battle, aiChecking, aiNumHits|
         next pbBattleWeatherAbility(:Sandstorm, target, battle, false, true, aiChecking)
     }
 )
 
 BattleHandlers::TargetAbilityOnHit.add(:INNERLIGHT,
-    proc { |_ability, _user, target, _move, battle, aiChecking, aiNumHits|
+    proc { |_ability, user, target, move, battle, aiChecking, aiNumHits|
         next pbBattleWeatherAbility(:Sun, target, battle, false, true, aiChecking)
     }
 )
 
 BattleHandlers::TargetAbilityOnHit.add(:STORMBRINGER,
-    proc { |_ability, _user, target, _move, battle, aiChecking, aiNumHits|
+    proc { |_ability, user, target, move, battle, aiChecking, aiNumHits|
         next pbBattleWeatherAbility(:Rain, target, battle, false, true, aiChecking)
     }
 )
 
 BattleHandlers::TargetAbilityOnHit.add(:FROSTSCATTER,
-    proc { |_ability, _user, target, _move, battle, aiChecking, aiNumHits|
+    proc { |_ability, user, target, move, battle, aiChecking, aiNumHits|
         next pbBattleWeatherAbility(:Hail, target, battle, false, true, aiChecking)
     }
 )
 
 BattleHandlers::TargetAbilityOnHit.add(:SUNEATER,
-    proc { |_ability, _user, battltargeter, _move, battle, aiChecking, aiNumHits|
+    proc { |_ability, user, target, move, battle, aiChecking, aiNumHits|
         next pbBattleWeatherAbility(:Eclipse, target, battle, false, true, aiChecking)
     }
 )
 
 BattleHandlers::TargetAbilityOnHit.add(:LUNARLOYALTY,
-    proc { |_ability, _user, target, _move, battle, aiChecking, aiNumHits|
+    proc { |_ability, user, target, move, battle, aiChecking, aiNumHits|
         next pbBattleWeatherAbility(:Moonglow, target, battle, false, true, aiChecking)
     }
 )
@@ -48,7 +48,7 @@ BattleHandlers::TargetAbilityOnHit.add(:GOOEY,
         if aiChecking
             ret = 0
             aiNumHits.times do |i|
-                ret += getMultiStatDownEffectScore([:SPEED,1], target, user, i)
+                ret -= getMultiStatDownEffectScore([:SPEED,1], target, user, i)
             end
             next ret
         end
@@ -59,15 +59,23 @@ BattleHandlers::TargetAbilityOnHit.add(:GOOEY,
 BattleHandlers::TargetAbilityOnHit.copy(:GOOEY, :TANGLINGHAIR)
 
 BattleHandlers::TargetAbilityOnHit.add(:COTTONDOWN,
-    proc { |_ability, _user, target, _move, battle, aiChecking, aiNumHits|
-        battle.pbShowAbilitySplash(target)
-        target.eachOpposing do |b|
-            b.tryLowerStat(:SPEED, target)
+    proc { |_ability, user, target, move, battle, aiChecking, aiNumHits|
+        if aiChecking
+            ret = 0
+            aiNumHits.times do |i|
+                ret -= getMultiStatDownEffectScore([:SPEED,1], target, user, i)
+            end
+            next ret
+        else
+            battle.pbShowAbilitySplash(target)
+            target.eachOpposing do |b|
+                b.tryLowerStat(:SPEED, target)
+            end
+            target.eachAlly do |b|
+                b.tryLowerStat(:SPEED, target)
+            end
+            battle.pbHideAbilitySplash(target)
         end
-        target.eachAlly do |b|
-            b.tryLowerStat(:SPEED, target)
-        end
-        battle.pbHideAbilitySplash(target)
     }
   )
 
@@ -77,7 +85,7 @@ BattleHandlers::TargetAbilityOnHit.add(:RATTLED,
         if aiChecking
             ret = 0
             aiNumHits.times do |i|
-                ret += getMultiStatUpEffectScore([:SPEED,1], user, target, i)
+                ret -= getMultiStatUpEffectScore([:SPEED,1], target, user, i)
             end
             next ret
         end
@@ -86,11 +94,11 @@ BattleHandlers::TargetAbilityOnHit.add(:RATTLED,
 )
 
 BattleHandlers::TargetAbilityOnHit.add(:STAMINA,
-  proc { |_ability, user, target, _move, _battle, aiChecking, aiNumHits|
+  proc { |_ability, user, target, move, _battle, aiChecking, aiNumHits|
         if aiChecking
             ret = 0
             aiNumHits.times do |i|
-                ret += getMultiStatUpEffectScore([:DEFENSE,1], user, target, i)
+                ret -= getMultiStatUpEffectScore([:DEFENSE,1], target, user, i)
             end
             next ret
         end
@@ -99,11 +107,11 @@ BattleHandlers::TargetAbilityOnHit.add(:STAMINA,
 )
 
 BattleHandlers::TargetAbilityOnHit.add(:GRIT,
-    proc { |_ability, _user, target, _move, _battle, aiChecking, aiNumHits|
+    proc { |_ability, user, target, move, _battle, aiChecking, aiNumHits|
         if aiChecking
             ret = 0
             aiNumHits.times do |i|
-                ret += getMultiStatUpEffectScore([:SPECIAL_DEFENSE,1], user, target, i)
+                ret -= getMultiStatUpEffectScore([:SPECIAL_DEFENSE,1], target, user, i)
             end
             next ret
         end
@@ -112,7 +120,7 @@ BattleHandlers::TargetAbilityOnHit.add(:GRIT,
 )
 
 BattleHandlers::TargetAbilityOnHit.add(:ADAPTIVESKIN,
-    proc { |_ability, _user, target, move, _battle, aiChecking, aiNumHits|
+    proc { |_ability, user, target, move, _battle, aiChecking, aiNumHits|
         statToRaise = nil
         if move.physicalMove?
             statToRaise = :DEFENSE
@@ -122,7 +130,7 @@ BattleHandlers::TargetAbilityOnHit.add(:ADAPTIVESKIN,
         if aiChecking
             ret = 0
             aiNumHits.times do |i|
-                ret += getMultiStatUpEffectScore([statToRaise,1], user, target, i)
+                ret -= getMultiStatUpEffectScore([statToRaise,1], target, user, i)
             end
             next ret
         end
@@ -134,8 +142,8 @@ BattleHandlers::TargetAbilityOnHit.add(:WEAKARMOR,
   proc { |_ability, user, target, move, battle, aiChecking, aiNumHits|
         next unless move.physicalMove?
         if aiChecking
-            ret = getMultiStatDownEffectScore([:DEFENSE, 1], user, target)
-            ret += getMultiStatUpEffectScore([:SPEED, 2], user, target)
+            ret = getMultiStatDownEffectScore([:DEFENSE, 1], target, user)
+            ret -= getMultiStatUpEffectScore([:SPEED, 2], target, user)
             next ret
         else
             battle.pbShowAbilitySplash(target)
@@ -147,11 +155,11 @@ BattleHandlers::TargetAbilityOnHit.add(:WEAKARMOR,
 )
 
 BattleHandlers::TargetAbilityOnHit.add(:WEAKSPIRIT,
-    proc { |_ability, _user, target, move, battle, aiChecking, aiNumHits|
+    proc { |_ability, user, target, move, battle, aiChecking, aiNumHits|
         next unless move.specialMove?
         if aiChecking
-            ret = getMultiStatDownEffectScore([:SPECIAL_DEFENSE, 1], user, target)
-            ret += getMultiStatUpEffectScore([:SPEED, 2], user, target)
+            ret = getMultiStatDownEffectScore([:SPECIAL_DEFENSE, 1], target, user)
+            ret -= getMultiStatUpEffectScore([:SPEED, 2], ustargeter, user)
             next ret
         else
             battle.pbShowAbilitySplash(target)
@@ -163,12 +171,12 @@ BattleHandlers::TargetAbilityOnHit.add(:WEAKSPIRIT,
 )
 
 BattleHandlers::TargetAbilityOnHit.add(:STEAMENGINE,
-    proc { |_ability, _user, target, move, _battle, aiChecking, aiNumHits|
+    proc { |_ability, user, target, move, _battle, aiChecking, aiNumHits|
         next if move.calcType != :FIRE && move.calcType != :WATER
         if aiChecking
             ret = 0
             aiNumHits.times do |i|
-                ret += getMultiStatUpEffectScore([:SPEED,6], user, target, i*6)
+                ret -= getMultiStatUpEffectScore([:SPEED,6], target, user, i*6)
             end
             next ret
         end
@@ -177,16 +185,19 @@ BattleHandlers::TargetAbilityOnHit.add(:STEAMENGINE,
 )
 
 BattleHandlers::TargetAbilityOnHit.add(:FORCEREVERSAL,
-    proc { |_ability, _user, target, _move, _battle, aiChecking, aiNumHits|
-        next unless Effectiveness.resistant?(target.damageState.typeMod)
+    proc { |_ability, user, target, move, battle, aiChecking, aiNumHits|
         if aiChecking
+            expectedTypeMod = battle.battleAI.pbCalcTypeModAI(move.calcType, user, target, move)
+            next 0 unless Effectiveness.resistant?(target.damageState.typeMod)
             ret = 0
             aiNumHits.times do |i|
-                ret += getMultiStatUpEffectScore([:ATTACK, 1, :SPECIAL_ATTACK, 1], user, target, i)
+                ret -= getMultiStatUpEffectScore([:ATTACK, 1, :SPECIAL_ATTACK, 1], target, user, i)
             end
             next ret
+        else
+            next unless Effectiveness.resistant?(target.damageState.typeMod)
+            target.pbRaiseMultipleStatStages([:ATTACK, 1, :SPECIAL_ATTACK, 1], target, showAbilitySplash: true)
         end
-        target.pbRaiseMultipleStatStages([:ATTACK, 1, :SPECIAL_ATTACK, 1], target, showAbilitySplash: true)
     }
 )
 
@@ -197,7 +208,7 @@ BattleHandlers::TargetAbilityOnHit.add(:FORCEREVERSAL,
 BattleHandlers::TargetAbilityOnHit.add(:IRONBARBS,
   proc { |_ability, user, target, move, battle, aiChecking, aiNumHits|
       next unless move.physicalMove?
-      next -5 * aiNumHits if aiChecking && user.takesIndirectDamage?
+      next -10 * aiNumHits if aiChecking && user.takesIndirectDamage?
       battle.pbShowAbilitySplash(target)
       if user.takesIndirectDamage?(true)
           battle.pbDisplay(_INTL("{1} is hurt!", user.pbThis))
@@ -212,7 +223,7 @@ BattleHandlers::TargetAbilityOnHit.copy(:IRONBARBS, :ROUGHSKIN)
 BattleHandlers::TargetAbilityOnHit.add(:FEEDBACK,
     proc { |_ability, user, target, move, battle, aiChecking, aiNumHits|
         next unless move.specialMove?(user)
-        next -5 * aiNumHits if aiChecking && user.takesIndirectDamage?
+        next -10 * aiNumHits if aiChecking && user.takesIndirectDamage?
         battle.pbShowAbilitySplash(target)
         if user.takesIndirectDamage?(true)
             battle.pbDisplay(_INTL("{1} is hurt!", user.pbThis))
@@ -223,9 +234,9 @@ BattleHandlers::TargetAbilityOnHit.add(:FEEDBACK,
 )
   
 BattleHandlers::TargetAbilityOnHit.add(:ARCCONDUCTOR,
-    proc { |_ability, user, target, _move, battle, aiChecking, aiNumHits|
+    proc { |_ability, user, target, move, battle, aiChecking, aiNumHits|
         next unless battle.rainy?
-        next -5 * aiNumHits if aiChecking && user.takesIndirectDamage?
+        next -10 * aiNumHits if aiChecking && user.takesIndirectDamage?
         battle.pbShowAbilitySplash(target)
         if user.takesIndirectDamage?(true)
             battle.pbDisplay(_INTL("{1} is hurt!", user.pbThis))
@@ -236,7 +247,7 @@ BattleHandlers::TargetAbilityOnHit.add(:ARCCONDUCTOR,
 )
 
 BattleHandlers::TargetAbilityOnHit.add(:SPINTENSITY,
-    proc { |_ability, user, target, _move, battle, aiChecking, aiNumHits|
+    proc { |_ability, user, target, move, battle, aiChecking, aiNumHits|
         next unless target.stages[:SPEED] > 0
         next -5 * target.stages[:SPEED] if aiChecking && user.takesIndirectDamage?
         battle.pbShowAbilitySplash(target)
@@ -253,19 +264,21 @@ BattleHandlers::TargetAbilityOnHit.add(:SPINTENSITY,
 # Move usage abilities
 #########################################
 
-# TODO: AI checks from this point forward
+# TODO: Make the checks here more detailed
 
 BattleHandlers::TargetAbilityOnHit.add(:RELUCTANTBLADE,
   proc { |_ability, user, target, move, battle, aiChecking, aiNumHits|
         next unless move.physicalMove?
         next if target.fainted?
+        next -30 * aiNumHits if aiChecking
         battle.forceUseMove(target, :LEAFAGE, user.index, true, nil, nil, true)
   }
 )
 
 BattleHandlers::TargetAbilityOnHit.add(:WIBBLEWOBBLE,
-  proc { |_ability, user, target, _move, battle, aiChecking, aiNumHits|
+  proc { |_ability, user, target, move, battle, aiChecking, aiNumHits|
         next if target.fainted?
+        next -40 if aiChecking
         battle.forceUseMove(target, :POWERSPLIT, user.index, true, nil, nil, true)
   }
 )
@@ -274,6 +287,7 @@ BattleHandlers::TargetAbilityOnHit.add(:CONSTRICTOR,
   proc { |_ability, user, target, move, battle, aiChecking, aiNumHits|
         next unless move.physicalMove?
         next if target.fainted?
+        next -(10 + 20 * aiNumHits) if aiChecking
         battle.forceUseMove(target, :BIND, user.index, true, nil, nil, true)
   }
 )
@@ -282,13 +296,15 @@ BattleHandlers::TargetAbilityOnHit.add(:TOTALMIRROR,
     proc { |_ability, user, target, move, battle, aiChecking, aiNumHits|
         next unless move.specialMove?
         next if target.fainted?
+        next -60 if aiChecking
         battle.forceUseMove(target, move.id, user.index, true, nil, nil, true)
     }
 )
 
 BattleHandlers::TargetAbilityOnHit.add(:ABOVEITALL,
-  proc { |_ability, user, target, _move, battle, aiChecking, aiNumHits|
+  proc { |_ability, user, target, move, battle, aiChecking, aiNumHits|
         next if target.fainted?
+        next -40 if aiChecking
         battle.forceUseMove(target, :PARTINGSHOT, user.index, true, nil, nil, true)
   }
 )
@@ -300,136 +316,90 @@ BattleHandlers::TargetAbilityOnHit.add(:ABOVEITALL,
 BattleHandlers::TargetAbilityOnHit.add(:STATIC,
     proc { |_ability, user, target, move, battle, aiChecking, aiNumHits|
         next unless move.physicalMove?
-        next if user.numbed? || battle.pbRandom(100) >= 30
-        battle.pbShowAbilitySplash(target)
-        user.applyNumb(target) if user.canNumb?(target, true)
-        battle.pbHideAbilitySplash(target)
+        randomStatusProcTargetAbility(:NUMB, 30, user, target, move, battle, aiChecking, aiNumHits)
     }
 )
   
 BattleHandlers::TargetAbilityOnHit.add(:LIVEWIRE,
     proc { |_ability, user, target, move, battle, aiChecking, aiNumHits|
         next unless move.specialMove?
-        next if user.numbed? || battle.pbRandom(100) >= 30
-        battle.pbShowAbilitySplash(target)
-        user.applyNumb(target) if user.canNumb?(target, true)
-        battle.pbHideAbilitySplash(target)
+        randomStatusProcTargetAbility(:NUMB, 30, user, target, move, battle, aiChecking, aiNumHits)
     }
 )
 
 BattleHandlers::TargetAbilityOnHit.add(:PETRIFYING,
-    proc { |_ability, user, target, _move, battle, aiChecking, aiNumHits|
-        next if user.numbed? || battle.pbRandom(100) >= 30
-        battle.pbShowAbilitySplash(target)
-        user.applyNumb(target) if user.canNumb?(target, true)
-        battle.pbHideAbilitySplash(target)
+    proc { |_ability, user, target, move, battle, aiChecking, aiNumHits|
+         randomStatusProcTargetAbility(:NUMB, 30, user, target, move, battle, aiChecking, aiNumHits)
     }
 )
 
 BattleHandlers::TargetAbilityOnHit.add(:POISONPOINT,
     proc { |_ability, user, target, move, battle, aiChecking, aiNumHits|
         next unless move.physicalMove?
-        next if user.poisoned? || battle.pbRandom(100) >= 30
-        battle.pbShowAbilitySplash(target)
-        user.applyPoison(target) if user.canPoison?(target, true)
-        battle.pbHideAbilitySplash(target)
+        randomStatusProcTargetAbility(:POISON, 30, user, target, move, battle, aiChecking, aiNumHits)
     }
   )
 
 BattleHandlers::TargetAbilityOnHit.add(:POISONPUNISH,
     proc { |_ability, user, target, move, battle, aiChecking, aiNumHits|
         next unless move.specialMove?
-        next if battle.pbRandom(100) >= 30
-        next if user.poisoned?
-        battle.pbShowAbilitySplash(target)
-        user.applyPoison(target) if user.canPoison?(target, true)
-        battle.pbHideAbilitySplash(target)
+        randomStatusProcTargetAbility(:POISON, 30, user, target, move, battle, aiChecking, aiNumHits)
     }
 )
 
 BattleHandlers::TargetAbilityOnHit.add(:SUDDENCHILL,
     proc { |_ability, user, target, move, battle, aiChecking, aiNumHits|
         next unless move.specialMove?
-        next if battle.pbRandom(100) >= 30
-        next if user.frostbitten?
-        battle.pbShowAbilitySplash(target)
-        user.applyFrostbite(target) if user.canFrostbite?(target, true)
-        battle.pbHideAbilitySplash(target)
+        randomStatusProcTargetAbility(:FROSTBITE, 30, user, target, move, battle, aiChecking, aiNumHits)
     }
 )
 
 BattleHandlers::TargetAbilityOnHit.add(:CHILLEDBODY,
     proc { |_ability, user, target, move, battle, aiChecking, aiNumHits|
         next unless move.physicalMove?
-        next if battle.pbRandom(100) >= 30
-        next if user.frostbitten?
-        battle.pbShowAbilitySplash(target)
-        user.applyFrostbite(target) if user.canFrostbite?(target, true)
-        battle.pbHideAbilitySplash(target)
+        randomStatusProcTargetAbility(:FROSTBITE, 30, user, target, move, battle, aiChecking, aiNumHits)
     }
 )
 
 BattleHandlers::TargetAbilityOnHit.add(:BEGUILING,
     proc { |_ability, user, target, move, battle, aiChecking, aiNumHits|
-        next if target.fainted?
-        next if move.physicalMove?
-        next if battle.pbRandom(100) >= 30
-        next if user.dizzy?
-        battle.pbShowAbilitySplash(target)
-        user.applyDizzy(target) if user.canDizzy?(target, true)
-        battle.pbHideAbilitySplash(target)
+        next unless move.specialMove?
+        randomStatusProcTargetAbility(:DIZZY, 30, user, target, move, battle, aiChecking, aiNumHits)
     }
 )
 
 BattleHandlers::TargetAbilityOnHit.add(:DISORIENT,
     proc { |_ability, user, target, move, battle, aiChecking, aiNumHits|
-        next if target.fainted?
         next unless move.physicalMove?
-        next if battle.pbRandom(100) >= 30
-        next if user.dizzy?
-        battle.pbShowAbilitySplash(target)
-        user.applyDizzy(target) if user.canDizzy?(target, true)
-        battle.pbHideAbilitySplash(target)
+        randomStatusProcTargetAbility(:DIZZY, 30, user, target, move, battle, aiChecking, aiNumHits)
     }
 )
 
 BattleHandlers::TargetAbilityOnHit.add(:KELPLINK,
     proc { |_ability, user, target, move, battle, aiChecking, aiNumHits|
         next unless move.physicalMove?
-        next if user.leeched? || battle.pbRandom(100) >= 30
-        battle.pbShowAbilitySplash(target)
-        user.applyLeeched(target) if user.canLeech?(target, true)
-        battle.pbHideAbilitySplash(target)
+        randomStatusProcTargetAbility(:LEECHED, 30, user, target, move, battle, aiChecking, aiNumHits)
     }
 )
 
 BattleHandlers::TargetAbilityOnHit.add(:PLAYVICTIM,
     proc { |_ability, user, target, move, battle, aiChecking, aiNumHits|
         next unless move.specialMove?
-        next if user.leeched? || battle.pbRandom(100) >= 30
-        battle.pbShowAbilitySplash(target)
-        user.applyLeeched(target) if user.canLeech?(target, true)
-        battle.pbHideAbilitySplash(target)
+        randomStatusProcTargetAbility(:LEECHED, 30, user, target, move, battle, aiChecking, aiNumHits)
     }
 )
 
 BattleHandlers::TargetAbilityOnHit.add(:FLAMEBODY,
     proc { |_ability, user, target, move, battle, aiChecking, aiNumHits|
         next unless move.physicalMove?
-        next if user.burned? || battle.pbRandom(100) >= 30
-        battle.pbShowAbilitySplash(target)
-        user.applyBurn(target) if user.canBurn?(target, true)
-        battle.pbHideAbilitySplash(target)
+        randomStatusProcTargetAbility(:BURN, 30, user, target, move, battle, aiChecking, aiNumHits)
     }
 )
 
 BattleHandlers::TargetAbilityOnHit.add(:FIERYSPIRIT,
     proc { |_ability, user, target, move, battle, aiChecking, aiNumHits|
         next unless move.specialMove?
-        next if user.burned? || battle.pbRandom(100) >= 30
-        battle.pbShowAbilitySplash(target)
-        user.applyBurn(target) if user.canBurn?(target, true)
-        battle.pbHideAbilitySplash(target)
+        randomStatusProcTargetAbility(:BURN, 30, user, target, move, battle, aiChecking, aiNumHits)
     }
 )
 
@@ -440,7 +410,9 @@ BattleHandlers::TargetAbilityOnHit.add(:FIERYSPIRIT,
 BattleHandlers::TargetAbilityOnHit.add(:CURSEDTAIL,
     proc { |_ability, user, target, move, battle, aiChecking, aiNumHits|
         next unless move.physicalMove?
-        next if user.effectActive?(:Curse) || battle.pbRandom(100) >= 30
+        next if user.effectActive?(:Curse)
+        next -10 * aiNumHits if aiChecking
+        next if battle.pbRandom(100) >= 30
         battle.pbShowAbilitySplash(target)
         user.applyEffect(:Curse)
         battle.pbHideAbilitySplash(target)
@@ -449,9 +421,11 @@ BattleHandlers::TargetAbilityOnHit.add(:CURSEDTAIL,
 
 BattleHandlers::TargetAbilityOnHit.add(:SEALINGBODY,
     proc { |_ability, user, target, move, battle, aiChecking, aiNumHits|
-        next if user.fainted? || user.effectActive?(:Disable) 
+        next if user.fainted?
+        next if user.effectActive?(:Disable)
+        next -15 if aiChecking
         battle.pbShowAbilitySplash(target)
-        user.applyEffect(:Disable, 3) if user.canBeDisabled?
+        user.applyEffect(:Disable, 3) if user.canBeDisabled?(true)
         battle.pbHideAbilitySplash(target)
     }
 )
@@ -460,6 +434,7 @@ BattleHandlers::TargetAbilityOnHit.add(:PERISHBODY,
     proc { |_ability, user, target, move, battle, aiChecking, aiNumHits|
         next unless move.physicalMove?
         next if user.effectActive?(:PerishSong)
+        next -5 if aiChecking
         battle.pbShowAbilitySplash(target)
         battle.pbDisplay(_INTL("Both Pokémon will faint in three turns!"))
         user.applyEffect(:PerishSong, 3)
@@ -473,27 +448,28 @@ BattleHandlers::TargetAbilityOnHit.add(:PERISHBODY,
 #########################################
 
 BattleHandlers::TargetAbilityOnHit.add(:INNARDSOUT,
-    proc { |_ability, user, target, _move, battle, aiChecking, aiNumHits|
-            next unless target.fainted? || user.dummy
-            if aiChecking
-                if user.takesIndirectDamage?
-                    next target.aboveHalfHealth? ? 50 : 25
-                else
-                    next 0
-                end
+    proc { |_ability, user, target, move, battle, aiChecking, aiNumHits|
+        next if user.dummy
+        if aiChecking
+            if user.takesIndirectDamage?
+                next -50 / aiNumHits
+            else
+                next 0
             end
-            battle.pbShowAbilitySplash(target)
-            if user.takesIndirectDamage?(true)
-                battle.pbDisplay(_INTL("{1} is hurt!", user.pbThis))
-                oldHP = user.hp
-                damageTaken = target.damageState.hpLost
-                damageTaken /= 4 if target.boss?
-                user.damageState.displayedDamage = damageTaken
-                battle.scene.pbDamageAnimation(user)
-                user.pbReduceHP(damageTaken, false)
-                user.pbHealthLossChecks(oldHP)
-            end
-            battle.pbHideAbilitySplash(target)
+        end
+        next unless target.fainted?
+        battle.pbShowAbilitySplash(target)
+        if user.takesIndirectDamage?(true)
+            battle.pbDisplay(_INTL("{1} is hurt!", user.pbThis))
+            oldHP = user.hp
+            damageTaken = target.damageState.hpLost
+            damageTaken /= 4 if target.boss?
+            user.damageState.displayedDamage = damageTaken
+            battle.scene.pbDamageAnimation(user)
+            user.pbReduceHP(damageTaken, false)
+            user.pbHealthLossChecks(oldHP)
+        end
+        battle.pbHideAbilitySplash(target)
     }
 )
   
@@ -502,6 +478,7 @@ BattleHandlers::TargetAbilityOnHit.add(:MUMMY,
         next unless move.physicalMove?
         next if user.fainted?
         next if user.unstoppableAbility? || user.ability == ability
+        next -5 if aiChecking
         battle.pbShowAbilitySplash(target) if user.opposes?(target)
         oldAbil = user.ability
         battle.pbShowAbilitySplash(user, true, false) if user.opposes?(target)
@@ -520,6 +497,7 @@ BattleHandlers::TargetAbilityOnHit.add(:INFECTED,
         next if user.fainted?
         next if user.unstoppableAbility? || user.ability == ability
         next unless user.canChangeType?
+        next -5 if aiChecking
         battle.pbShowAbilitySplash(target) if user.opposes?(target)
         oldAbil = user.ability
         battle.pbShowAbilitySplash(user, true, false) if user.opposes?(target)
@@ -534,21 +512,31 @@ BattleHandlers::TargetAbilityOnHit.add(:INFECTED,
 )
 
 BattleHandlers::TargetAbilityOnHit.add(:THUNDERSTRUCK,
-    proc { |_ability, _user, target, _move, battle, aiChecking, aiNumHits|
+    proc { |_ability, user, target, move, battle, aiChecking, aiNumHits|
         if aiChecking
-            return target.pbHasAttackingType?(:ELECTRIC) ? -40 : 0
+            next target.pbHasAttackingType?(:ELECTRIC) ? -40 : 0
         else
-            target.applyEffect(:Charge,2)
+            target.applyEffect(:Charge)
         end
     }
 )
 
 BattleHandlers::TargetAbilityOnHit.add(:GULPMISSILE,
-    proc { |_ability, user, target, _move, battle, aiChecking, aiNumHits|
+    proc { |_ability, user, target, move, battle, aiChecking, aiNumHits|
         next if target.form == 0
-        if target.species == :CRAMORANT
+        next unless target.species == :CRAMORANT
+        gulpform = target.form
+        if aiChecking
+            score = 0
+            score -= 20 if user.takesIndirectDamage?
+            if gulpform == 1
+                score -= getMultiStatDownEffectScore([:DEFENSE,1], target, user)
+            elsif gulpform == 2
+                score -= getNumbEffectScore(target, user)
+            end
+            next score
+        else
             battle.pbShowAbilitySplash(target)
-            gulpform = target.form
             target.form = 0
             battle.scene.pbChangePokemon(target, target.pokemon)
             battle.scene.pbDamageAnimation(user)
@@ -565,7 +553,7 @@ BattleHandlers::TargetAbilityOnHit.add(:GULPMISSILE,
 )
   
 BattleHandlers::TargetAbilityOnHit.add(:ILLUSION,
-    proc { |_ability, _user, target, _move, battle, aiChecking, aiNumHits|
+    proc { |_ability, user, target, move, battle, aiChecking, aiNumHits|
         next 10 if aiChecking
         # NOTE: This intentionally doesn't show the ability splash.
         next unless target.illusion?
@@ -577,6 +565,7 @@ BattleHandlers::TargetAbilityOnHit.add(:ILLUSION,
   
 BattleHandlers::TargetAbilityOnHit.add(:WANDERINGSPIRIT,
     proc { |_ability, user, target, move, battle, aiChecking, aiNumHits|
+        next if aiChecking
         next unless move.physicalMove?
         next if user.fainted?
         abilityBlacklist = [
@@ -623,13 +612,23 @@ BattleHandlers::TargetAbilityOnHit.add(:WANDERINGSPIRIT,
 
 BattleHandlers::TargetAbilityOnHit.add(:EROSIONCYCLE,
     proc { |_ability, target, battler, move, battle, aiChecking, aiNumHits|
-        target.pbOwnSide.incrementEffect(:ErodedRock) if move.physicalMove?
+        next unless move.physicalMove?
+        next if target.pbOpposingSide.effectAtMax?(:ErodedRock)
+        if aiChecking
+            next (target.aboveHalfHealth? ? -10 : 0) * aiNumHits
+        end
+        target.pbOwnSide.incrementEffect(:ErodedRock)
     }
 )
 
 BattleHandlers::TargetAbilityOnHit.add(:QUILLERINSTINCT,
-    proc { |_ability, _user, target, _move, battle, aiChecking, aiNumHits|
+    proc { |_ability, user, target, move, battle, aiChecking, aiNumHits|
         next if target.pbOpposingSide.effectAtMax?(:Spikes)
+        if aiChecking
+            layerSlots = GameData::BattleEffect.get(:Spikes).maximum - target.pbOpposingSide.countEffect(:Spikes)
+            aiNumHits = [aiNumHits,layerSlots].min
+            next -getHazardSettingEffectScore(target, user) * aiNumHits
+        end
         battle.pbShowAbilitySplash(target)
         target.pbOpposingSide.incrementEffect(:Spikes)
         battle.pbHideAbilitySplash(target)
@@ -639,8 +638,11 @@ BattleHandlers::TargetAbilityOnHit.add(:QUILLERINSTINCT,
 # Only does stuff for the AI
 BattleHandlers::TargetAbilityOnHit.add(:MULTISCALE,
     proc { |_ability, user, target, move, _battle, aiChecking, aiNumHits|
-        if aiChecking && target.hp == target.totalhp
-            return 20
+        next unless target.hp == target.totalhp
+        if aiChecking
+            next 20
+        else
+            target.aiSeesAbility
         end
     }
 )

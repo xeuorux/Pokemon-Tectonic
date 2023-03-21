@@ -1327,7 +1327,7 @@ class PokeBattle_Move_5C2 < PokeBattle_Move
                 next unless move.base_damage > optimizedBP
                 battleMove = @battle.getBattleMoveInstanceFromID(move.id)
                 next if battleMove.forceSwitchMove?
-                next if battleMove.is_?(PokeBattle_TwoTurnMove)
+                next if battleMove.is_a?(PokeBattle_TwoTurnMove)
                 optimizedMove = move.id
                 optimizedBP = move.base_damage
             end

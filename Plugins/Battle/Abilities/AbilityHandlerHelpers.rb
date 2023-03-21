@@ -33,7 +33,7 @@ def pbBattleWeatherAbility(weather, battler, battle, ignorePrimal = false, ignor
     return if !ignorePrimal && %i[HarshSun HeavyRain StrongWinds].include?(battle.field.weather)
     baseWeatherAbilityDuration = 4
     if aiChecking
-        duration = user.getWeatherSettingDuration(weather, baseWeatherAbilityDuration, ignoreFainted)
+        duration = battler.getWeatherSettingDuration(weather, baseWeatherAbilityDuration, ignoreFainted)
         duration -= battle.field.weatherDuration if battle.field.weather == weather
         ret = -getWeatherSettingEffectScore(weather, battler, battle, duration, false)
         return ret
@@ -50,12 +50,37 @@ def terrainSetAbility(terrain, battler, battle, _ignorePrimal = false)
     # NOTE: The ability splash is hidden again in def pbStartTerrain.
 end
 
-def randomStatusProcAbility(status, chance, user, target, move, battle)
-    return if battle.pbRandom(100) >= chance
+def randomStatusProcUserAbility(status, chance, user, target, move, battle, aiChecking = false, aiNumHits = 1)
     return if target.pbHasStatus?(status)
     return if target.fainted?
-    return unless move.canApplyAdditionalEffects?(user, target, true)
-    battle.pbShowAbilitySplash(user)
-    target.pbInflictStatus(status, 0, nil, user) if target.pbCanInflictStatus?(status, user, true, move)
-    battle.pbHideAbilitySplash(user)
+    if aiChecking
+        chanceOfActivating = 1 - (((100 - chance) / 100)**aiNumHits)
+        ret = getStatusSettingEffectScore(status, target, user)
+        ret *= chanceOfActivating
+        ret = ret.round(-1)
+        return ret
+    else
+        return if battle.pbRandom(100) >= chance
+        return unless move.canApplyAdditionalEffects?(user, target, true)
+        battle.pbShowAbilitySplash(user)
+        target.pbInflictStatus(status, 0, nil, user) if target.pbCanInflictStatus?(status, user, true, move)
+        battle.pbHideAbilitySplash(user)
+    end
+end
+
+def randomStatusProcTargetAbility(status, chance, user, target, move, battle, aiChecking = false, aiNumHits = 1)
+    return if user.pbHasStatus?(status)
+    return if user.fainted?
+    if aiChecking
+        chanceOfActivating = 1 - (((100 - chance) / 100)**aiNumHits)
+        ret = -getStatusSettingEffectScore(status, target, user)
+        ret *= chanceOfActivating
+        ret = ret.round(-1)
+        return ret
+    else
+        return if battle.pbRandom(100) >= chance
+        battle.pbShowAbilitySplash(target)
+        user.pbInflictStatus(status, 0, nil, target) if user.pbCanInflictStatus?(status, target, true, move)
+        battle.pbHideAbilitySplash(target)
+    end
 end

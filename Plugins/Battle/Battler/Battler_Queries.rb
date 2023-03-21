@@ -608,6 +608,10 @@ class PokeBattle_Battler
         return false unless itemActive?
         return item.is_gem?
     end
+
+    def trapped?
+        return @battle.pbIsTrapped?(@index)
+    end
 end
 
 HAZARD_IMMUNITY_ABILITIES = %i[AQUASNEAK NINJUTSU DANGERSENSE]

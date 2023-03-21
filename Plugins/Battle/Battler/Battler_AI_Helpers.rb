@@ -198,7 +198,9 @@ class PokeBattle_Battler
     end
 
     def aiKnowsAbility?
-        return false if effectActive?(:Illusion) && pbOwnedByPlayer?
+        return true unless pbOwnedByPlayer?
+        return false if effectActive?(:Illusion)
+        return true if @ability_id != @pokemon.ability_id
         return @battle.aiKnowsAbility?(@pokemon)
     end
 

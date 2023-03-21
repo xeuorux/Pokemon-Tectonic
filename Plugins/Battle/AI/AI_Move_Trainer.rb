@@ -133,12 +133,24 @@ class PokeBattle_AI
                 pbPrintException($!) if $DEBUG
             end
 
-            # Account for the ability of the target
-            if target.aiKnowsAbility?
+            numHits = move.numberOfHits(user, [target], true).ceil
+            # Account for the ability of the user
+            if user.abilityActive? && user.aiKnowsAbility?
                 begin
-                    numHits = move.numberOfHits(user, [target], true)
+                    scoreModifierUserAbility = 
+                        BattleHandlers.triggerUserAbilityOnHitAI(target.ability, user, target, move, @battle, numHits)
+                    score += scoreModifierUserAbility
+                    echoln("[MOVE SCORING] #{user.pbThis}'s #{numHits} hits against #{target.pbThis(false)} adjusts the score by #{scoreModifierUserAbility} due to the user's ability") if scoreModifierUserAbility != 0
+                rescue StandardError => exception
+                    pbPrintException($!) if $DEBUG
+                end
+            end
+
+            # Account for the ability of the target
+            if target.abilityActive? && target.aiKnowsAbility? && !user.hasActiveItem?(:PROXYFIST)
+                begin
                     scoreModifierTargetAbility = 
-                        BattleHandlers.triggerTargetAbilityOnHitAI(ability, user, target, move, battle, aiNumHits)
+                        BattleHandlers.triggerTargetAbilityOnHitAI(target.ability, user, target, move, @battle, numHits)
                     score += scoreModifierTargetAbility
                     echoln("[MOVE SCORING] #{user.pbThis}'s #{numHits} hits against #{target.pbThis(false)} adjusts the score by #{scoreModifierTargetAbility} due to the target's ability") if scoreModifierTargetAbility != 0
                 rescue StandardError => exception

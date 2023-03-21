@@ -56,7 +56,7 @@ def getPoisonEffectScore(user, target, ignoreCheck: false)
         score = 40
         score += 20 if target.hp == target.totalhp
         score += 20 if target.hp >= target.totalhp / 2 || target.hp <= target.totalhp / 8
-        score += 60 if @battle.pbIsTrapped?(target.index)
+        score += 30 if target.trapped?
         score += NON_ATTACKER_BONUS unless user.hasDamagingAttack?
         score -= STATUS_UPSIDE_MALUS if target.hasActiveAbilityAI?(%i[TOXICBOOST
                                                                       POISONHEAL].concat(STATUS_UPSIDE_ABILITIES))
