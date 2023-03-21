@@ -863,6 +863,7 @@
 886,PRISMATICPLATE,Prismatic Plate,Prismatic Plates,5,0,"A tablet that boosts moves of the user's type by 20%. If held by Arceus, you can change its type between battles.",0,0,0
 887,COVERTCLOAK,Covert Cloak,Covert Cloaks,5,3000,"A held item. The holder is protected from the additional effects of enemy attacks.",0,0,0
 888,POCKETTOTEM,Pocket Totem,Pocket Totems,8,0,"A miniature Avatar Totem. Use it to teleport to any unlocked Avatar Totems throughout Makya.",2,0,6
+889,HIVISJACKET,Hi-Viz Jacket,Hi-Viz Jackets,5,4000,"Damages attackers for 1/6th of their HP when they hit the holder with special attacks.",0,0,0
 900,CHAMBER1KEY,Chamber 1 Key,Chamber 1 Keys,8,0,"The key to the first chamber containing a powerful avatar.",0,0,6
 901,CHAMBER2KEY,Chamber 2 Key,Chamber 2 Keys,8,0,"The key to the second chamber containing a powerful avatar.",0,0,6
 902,CHAMBER3KEY,Chamber 3 Key,Chamber 3 Keys,8,0,"The key to the third chamber containing a powerful avatar.",0,0,6

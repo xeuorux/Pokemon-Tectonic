@@ -47,7 +47,7 @@ BattleHandlers::TargetItemOnHit.copy(:ROCKYHELMET,:ASSAULTCORSET)
 
 # Strike Corset
 BattleHandlers::DefenseCalcUserItem.copy(:STRIKEVEST,:STRIKECORSET)
-BattleHandlers::TargetItemOnHit.copy(:BUSTEDRADIO,:STRIKECORSET)
+BattleHandlers::TargetItemOnHit.copy(:HIVISJACKET,:STRIKECORSET)
 
 # Jagged Helmet
 BattleHandlers::TargetItemOnHit.add(:JAGGEDHELMET,
