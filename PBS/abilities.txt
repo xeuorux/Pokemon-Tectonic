@@ -611,7 +611,7 @@
 609,GRAVITATIONAL,Gravitational,"Upon entry, intensifies Gravity for 5 turns."
 610,UNASSUMING,Unassuming,"Before using a status move against a single foe, lowers that foes Defense."
 611,RECON,Recon,"Before using a status move against a single foe, lowers that foes Sp. Def."
-612,INFECTED,Infected,"This is also Grass-type. When foes hit this with a physical move, they become infected too."
+612,INFECTED,Infected,"This is also Grass-type. When this is hit with a physical move, the attacker is also infected."
 613,STEELABSORB,Steel Sticker,"Immune to Steel-type moves, and raises Attack if hit by one."
 1000,JUSTIFIED,Justified,"Raises Attack when hit by a Dark-type move."
 1001,ADAPTABILITY,Adaptability,"Powers up moves of the same type."
