@@ -20837,7 +20837,7 @@ BattlerEnemyX = 2
 BattlerEnemyY = 23
 BattlerShadowX = 0
 BattlerShadowSize = 2
-Evolutions = GOLURK,Level,25
+Evolutions = GOLURK,Level,33
 #-------------------------------
 [623]
 Name = Golurk
