@@ -658,7 +658,7 @@
 658,HEAVYDUTYBOOTS,Heavy-Duty Boots,Heavy-Duty Boots,5,4000,"These boots prevent the effects of traps set on the battlefield.",0,0,0
 659,ROOMSERVICE,Room Service,Room Services,5,4000,"An item to be held by a Pokémon. Sharply lowers Speed when Trick Room takes effect.",0,0,0
 660,THROATSPRAY,Throat Spray,Throat Sprays,5,4000,"Raises Sp. Atk when the Pokémon uses a sound-based move.",0,0,0
-661,UTILITYUMBRELLA,Utility Umbrella,Utility Umbrellas,5,4000,"An item to be held by a Pokémon. It protects the holder from the negative effects of weather.",0,0,0
+661,UTILITYUMBRELLA,Utility Umbrella,Utility Umbrellas,5,4000,"A held item. The holder takes 10% less move damage, and is protected from the negative effects of weather. .",0,0,0
 662,EXPCANDYXS,Exp. Candy XS,Exp. Candies XS,2,20,"A candy that is packed with energy. When consumed, it will grant a single Pokémon 250 Exp. Points.",1,0,0
 663,EXPCANDYS,Exp. Candy S,Exp. Candies S,2,240,"A candy that is packed with energy. When consumed, it will grant a single Pokémon 1000 Exp. Points.",1,0,0
 664,EXPCANDYM,Exp. Candy M,Exp. Candies M,2,1000,"A candy that is packed with energy. When consumed, it will grant a single Pokémon 4,000 Exp. Points.",1,0,0
@@ -863,6 +863,7 @@
 886,PRISMATICPLATE,Prismatic Plate,Prismatic Plates,5,0,"A tablet that boosts moves of the user's type by 20%. If held by Arceus, you can change its type between battles.",0,0,0
 887,COVERTCLOAK,Covert Cloak,Covert Cloaks,5,3000,"A held item. The holder is protected from the additional effects of enemy attacks.",0,0,0
 888,POCKETTOTEM,Pocket Totem,Pocket Totems,8,0,"A miniature Avatar Totem. Use it to teleport to any unlocked Avatar Totems throughout Makya.",2,0,6
+889,HIVISJACKET,Hi-Viz Jacket,Hi-Viz Jackets,5,4000,"Damages attackers for 1/6th of their HP when they hit the holder with special attacks.",0,0,0
 900,CHAMBER1KEY,Chamber 1 Key,Chamber 1 Keys,8,0,"The key to the first chamber containing a powerful avatar.",0,0,6
 901,CHAMBER2KEY,Chamber 2 Key,Chamber 2 Keys,8,0,"The key to the second chamber containing a powerful avatar.",0,0,6
 902,CHAMBER3KEY,Chamber 3 Key,Chamber 3 Keys,8,0,"The key to the third chamber containing a powerful avatar.",0,0,6

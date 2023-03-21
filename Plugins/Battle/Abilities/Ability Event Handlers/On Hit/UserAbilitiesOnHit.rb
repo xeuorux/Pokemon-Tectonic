@@ -118,7 +118,7 @@ BattleHandlers::UserAbilityOnHit.add(:MENTALDAMAGE,
   }
 )
 
-BattleHandlers::UserAbilityOnHit.add(:ROCKCYCLE,
+BattleHandlers::UserAbilityOnHit.add(:EROSIONCYCLE,
   proc { |_ability, user, target, move, battle|
     user.pbOwnSide.incrementEffect(:ErodedRock) if move.physicalMove?
   }

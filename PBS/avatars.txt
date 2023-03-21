@@ -430,7 +430,7 @@ HPMult = 6.0
 Item = LIFEORB
 #-------------------------------
 [PARASECT]
-Ability = COMATOSE
+Ability = INFECTED
 Moves1 = SOULRIP,XSCISSOR,SPORE
 HPMult = 6.0
 Item = MUSCLEBAND

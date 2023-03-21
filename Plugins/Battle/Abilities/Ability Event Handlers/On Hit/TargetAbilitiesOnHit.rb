@@ -621,7 +621,7 @@ BattleHandlers::TargetAbilityOnHit.add(:WANDERINGSPIRIT,
     }
 )
 
-BattleHandlers::TargetAbilityOnHit.add(:ROCKCYCLE,
+BattleHandlers::TargetAbilityOnHit.add(:EROSIONCYCLE,
     proc { |_ability, target, battler, move, battle, aiChecking, aiNumHits|
         target.pbOwnSide.incrementEffect(:ErodedRock) if move.physicalMove?
     }

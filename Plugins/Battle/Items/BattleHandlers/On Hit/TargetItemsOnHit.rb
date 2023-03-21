@@ -58,7 +58,7 @@ BattleHandlers::TargetItemOnHit.add(:ROCKYHELMET,
   }
 )
 
-BattleHandlers::TargetItemOnHit.add(:BUSTEDRADIO,
+BattleHandlers::TargetItemOnHit.add(:HIVISJACKET,
   proc { |_item, user, target, move, battle|
       next if move.physicalMove?
       next unless user.takesIndirectDamage?

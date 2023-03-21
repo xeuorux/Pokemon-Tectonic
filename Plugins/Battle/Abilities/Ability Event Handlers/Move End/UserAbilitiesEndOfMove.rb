@@ -224,7 +224,7 @@ BattleHandlers::UserAbilityEndOfMove.add(:GENERATOR,
       next if battle.futureSight
       next if move.pbDamagingMove?
       battle.pbShowAbilitySplash(user)
-      user.applyEffect(:Charge, 2)
+      user.applyEffect(:Charge)
       battle.pbHideAbilitySplash(user)
   }
 )
@@ -274,7 +274,7 @@ BattleHandlers::UserAbilityEndOfMove.add(:ETERNALWINTER,
   }
 )
 
-BattleHandlers::UserAbilityEndOfMove.add(:ROCKCYCLE,
+BattleHandlers::UserAbilityEndOfMove.add(:EROSIONCYCLE,
   proc { |_ability, user, targets, move, battle, _switchedBattlers|
       next if move.pbDamagingMove?
       next unless user.pbOwnSide.effectActive?(:ErodedRock)

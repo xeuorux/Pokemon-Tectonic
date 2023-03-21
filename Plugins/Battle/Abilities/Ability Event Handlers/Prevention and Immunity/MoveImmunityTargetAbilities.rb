@@ -110,6 +110,12 @@ BattleHandlers::MoveImmunityTargetAbility.add(:WATERABSORB,
   }
 )
 
+BattleHandlers::MoveImmunityTargetAbility.add(:STEELABSORB,
+  proc { |_ability, user, target, move, type, battle, showMessages, aiChecking|
+    next pbBattleMoveImmunityHealAbility(user, target, move, type, :STEEL, battle, showMessages, aiChecking)
+  }
+)
+
 BattleHandlers::MoveImmunityTargetAbility.copy(:WATERABSORB, :DRYSKIN)
 
 # Other immunities

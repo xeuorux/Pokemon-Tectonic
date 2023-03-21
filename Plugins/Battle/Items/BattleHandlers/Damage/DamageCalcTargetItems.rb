@@ -135,3 +135,9 @@ BattleHandlers::DamageCalcTargetItem.add(:YACHEBERRY,
       pbBattleTypeWeakingBerry(:ICE, type, target, mults, false, aiChecking)
   }
 )
+
+BattleHandlers::DamageCalcTargetItem.add(:UTILITYUMBRELLA,
+  proc { |_item, _user, _target, _move, mults, _baseDmg, _type|
+      mults[:final_damage_multiplier] *= 0.9
+  }
+)

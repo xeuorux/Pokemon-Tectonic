@@ -779,7 +779,7 @@ BattleHandlers::AbilityOnSwitchIn.add(:ASSISTANT,
 BattleHandlers::AbilityOnSwitchIn.add(:PRECHARGED,
   proc { |_ability, battler, battle|
       battle.pbShowAbilitySplash(battler)
-      battler.applyEffect(:Charge,2)
+      battler.applyEffect(:Charge)
       battle.pbHideAbilitySplash(battler)
   }
 )

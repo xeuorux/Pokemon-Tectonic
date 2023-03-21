@@ -799,6 +799,10 @@ user.pbThis))
                 @battle.pbDisplay(_INTL("The {1} burst, causing {2} to deal double damage!", effectName, move.name))
             end
         end
+        # Volatile Toxin proc message
+        if user.effectActive?(:ChargeExpended) && hitNum == 0
+            @battle.pbDisplay(_INTL("{1} expended its charge to empower {2}!", user.pbThis, move.name))
+        end
         # Messages about missed target(s) (relevant for multi-target moves only)
         unless move.pbRepeatHit?
             targets.each do |b|

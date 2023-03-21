@@ -296,6 +296,7 @@ class PokeBattle_Move
         # Charge
         if user.effectActive?(:Charge) && type == :ELECTRIC
             multipliers[:base_damage_multiplier] *= 2
+            user.applyEffect(:ChargeExpended) unless checkingForAI
         end
         
 		# Volatile Toxin
