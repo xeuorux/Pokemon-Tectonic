@@ -87,11 +87,15 @@ GameData::BattleEffect.register_effect(:Battler, {
 GameData::BattleEffect.register_effect(:Battler, {
     :id => :Charge,
     :real_name => "Charged",
-    :type => :Integer,
-    :ticks_down => true,
     :apply_proc => proc do |battle, battler, _value|
         battle.pbDisplay(_INTL("{1} began charging power!", battler.pbThis))
     end,
+})
+
+GameData::BattleEffect.register_effect(:Battler, {
+    :id => :ChargeExpended,
+    :real_name => "Charge Expended",
+    :resets_battlers_eot => true,
 })
 
 GameData::BattleEffect.register_effect(:Battler, {

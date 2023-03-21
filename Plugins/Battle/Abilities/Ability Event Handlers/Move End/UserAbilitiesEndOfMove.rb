@@ -224,7 +224,7 @@ BattleHandlers::UserAbilityEndOfMove.add(:GENERATOR,
       next if battle.futureSight
       next if move.pbDamagingMove?
       battle.pbShowAbilitySplash(user)
-      user.applyEffect(:Charge, 2)
+      user.applyEffect(:Charge)
       battle.pbHideAbilitySplash(user)
   }
 )

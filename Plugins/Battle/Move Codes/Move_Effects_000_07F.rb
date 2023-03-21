@@ -506,7 +506,7 @@ class PokeBattle_Move_021 < PokeBattle_StatUpMove
     end
 
     def pbEffectGeneral(user)
-        user.applyEffect(:Charge, 2)
+        user.applyEffect(:Charge)
         super
     end
 

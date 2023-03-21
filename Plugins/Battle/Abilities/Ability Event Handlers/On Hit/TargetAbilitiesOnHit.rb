@@ -60,7 +60,7 @@ BattleHandlers::TargetAbilityOnHit.add(:LUNARLOYALTY,
 
 BattleHandlers::TargetAbilityOnHit.add(:THUNDERSTRUCK,
     proc { |_ability, _target, battler, _move, battle|
-        battler.applyEffect(:Charge,2)
+        battler.applyEffect(:Charge)
     }
 )
 
