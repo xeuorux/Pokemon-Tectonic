@@ -58,8 +58,10 @@ class PokeBattle_Move
     end
 
     def displayDamagingMoveMessages(user, calcType, calcCategory, targets = [])
-        displayBPAdjustmentMessage(user, targets) unless multiHitMove?
-        displayCategoryChangeMessage(calcCategory) unless calcCategory == -1
+        if $PokemonSystem.move_clarifying_messages == 0
+            displayBPAdjustmentMessage(user, targets) unless multiHitMove?
+            displayCategoryChangeMessage(calcCategory) unless calcCategory == -1
+        end
         # Display messages letting the player know that weather is debuffing a move (if it is)
         displayWeatherDebuffMessages(user, calcType) if $PokemonSystem.weather_messages == 0
     end

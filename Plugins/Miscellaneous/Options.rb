@@ -61,6 +61,7 @@ class PokemonSystem
     @effectiveness_messages   = 0 # (0=true, 1=false)
     @weather_messages         = 0 # (0=true, 1=false)
     @status_effect_messages   = 0 # (0=true, 1=false)
+    @move_clarifying_messages = 0 # (0=true, 1=false)
     @nicknaming_prompt        = 0 # (0=true, 1=false)
     @show_trait_unlocks       = $DEBUG ? 1 : 0 # (0=true, 1=false)
     @party_snapshots          = $DEBUG ? 1 : 0 # (0=true, 1=false)
@@ -170,6 +171,12 @@ class PokemonOption_Scene
         proc { $PokemonSystem.status_effect_messages },
         proc { |value|
           $PokemonSystem.status_effect_messages = value
+        }
+      ),
+      EnumOption.new(_INTL("Move Clarifying Msgs"),[_INTL("On"),_INTL("Off")],
+        proc { $PokemonSystem.move_clarifying_messages },
+        proc { |value|
+          $PokemonSystem.move_clarifying_messages = value
         }
       ),
       EnumOption.new(_INTL("Nicknaming Prompt"),[_INTL("On"),_INTL("Off")],
