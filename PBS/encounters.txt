@@ -318,10 +318,11 @@ Special,20
 #-------------------------------
 [117] # Ice Cave
 Land,20
-    25,BERGMITE,16,19
-    25,SNEASEL,16,19
-    25,SNORUNT,16,19
-    25,SWINUB,16,19
+    20,BERGMITE,16,19
+    20,SNEASEL,16,19
+    20,SNORUNT,16,19
+    20,SWINUB,16,19
+	20,PANCHAM,18,20
 #-------------------------------
 [120] # Hollowed Layer
 DarkCave,20
@@ -333,10 +334,10 @@ DarkCave,20
 [121] # Kilna Ascent
 Land,20
     20,CUBCHOO,18,20
-    20,PANCHAM,18,20
     20,SNOM,18,20
     20,SNOVER,18,20
     20,SPEAROW,18,20
+	20,MPETILIL,18,20
 Special,20
     1,HAPPINY,15
 #-------------------------------
