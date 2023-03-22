@@ -248,6 +248,7 @@ end
 # Change a Pokémon's level
 #===============================================================================
 def pbChangeLevel(pkmn, newlevel, scene)
+    oldLevel = pkmn.level
     newlevel = newlevel.clamp(1, GameData::GrowthRate.max_level)
     if pkmn.level == newlevel
         pbMessage(_INTL("{1}'s level remained unchanged.", pkmn.name))
@@ -300,7 +301,8 @@ def pbChangeLevel(pkmn, newlevel, scene)
         # Learn new moves upon level up
         movelist = pkmn.getMoveList
         for i in movelist
-            next if i[0] != pkmn.level
+            next unless i[0] > oldLevel
+            next unless i[0] <= pkmn.level
             pbLearnMove(pkmn, i[1], true)
         end
         # Check for evolution
