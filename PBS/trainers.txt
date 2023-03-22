@@ -1293,11 +1293,9 @@ Pokemon = WEAVILE,35
     AbilityIndex = 1 # Lunatic
 Pokemon = HYPNO,35
     AbilityIndex = 1 # Inner Focus
-Pokemon = GUMSHOOS,35
-    AbilityIndex = 0 # Investigator
-    Item = SITRUSBERRY
 Pokemon = ALTARIA,35
     AbilityIndex = 0 # Levitate
+	Item = SITRUSBERRY
 #-------------------------------
 [ROUGHNECK,Randall]
 Pokemon = GLACEON,35
@@ -1400,19 +1398,15 @@ Pokemon = HITMONTOP,35
 Pokemon = NINJASK,35
     AbilityIndex = 0 # Speed Boost
     Item = LIFEORB
-Pokemon = GMRMIME,35
-    AbilityIndex = 1 # Screen Cleaner
+Pokemon = GWEEZING,35
+    AbilityIndex = 1
 Pokemon = ARAICHU,35
     AbilityIndex = 1 # Surf's Up
-Pokemon = GOLDUCK,35
-    AbilityIndex = 1 # Feedback
 #-------------------------------
 [JOGGER,Georgio]
 Pokemon = BISHARP,35
     AbilityIndex = 1 # Sturdy
     Item = WEAKNESSPOLICY
-Pokemon = GWEEZING,35
-    AbilityIndex = 0 # Midnight Oil
 Pokemon = AEXEGGUTOR,35
     AbilityIndex = 0 # Realist
 Pokemon = FURRET,35
@@ -1420,6 +1414,8 @@ Pokemon = FURRET,35
     Item = CHESTOBERRY
 Pokemon = BEAUTIFLY,35
     AbilityIndex = 0 # Expertise
+Pokemon = NIDOKING,35
+	AbilityIndex = 1
 #-------------------------------
 [TWINS2,Bella and Meghan]
 Pokemon = EXCADRILL,35
