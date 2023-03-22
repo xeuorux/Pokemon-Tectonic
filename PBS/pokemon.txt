@@ -23853,7 +23853,7 @@ BattlerEnemyX = 0
 BattlerEnemyY = 31
 BattlerShadowX = 0
 BattlerShadowSize = 2
-Evolutions = AVALUGG,Level,34,Level,Originize,34
+Evolutions = AVALUGG,Level,34,HAVALUGG,Originize,34
 #-------------------------------
 [713]
 Name = Avalugg
