@@ -393,24 +393,24 @@ class PokemonPokedex_Scene
       end
       
       def searchByMisc()
-          miscSearches 			= []
-          cmdTribe				= -1
-          cmdMapFound 			= -1
+          miscSearches 			    = []
+          cmdCollecting				= -1
+          cmdMapFound 			    = -1
           cmdZooSection 			= -1
-          cmdWildItem 			= -1
-          cmdIsQuarantined 		= -1
+          cmdWildItem 			    = -1
+          cmdIsQuarantined 		    = -1
           cmdIsLegendary 			= -1
           cmdMovesetConformance 	= -1
           cmdOneAbility 			= -1
-          cmdHasSignatureMove 	= -1
+          cmdHasSignatureMove 	    = -1
           cmdHasSignatureAbility 	= -1
-          cmdHasSignature 		= -1
-          cmdAvatarData			= -1
+          cmdHasSignature 		    = -1
+          cmdAvatarData			    = -1
           cmdOneAbility 			= -1
           cmdHasCoverageType		= -1
-          cmdMultipleForms		= -1
-          cmdInvertList			= -1
-          miscSearches[cmdTribe = miscSearches.length] = _INTL("Tribe")
+          cmdMultipleForms		    = -1
+          cmdInvertList			    = -1
+          miscSearches[cmdCollecting = miscSearches.length] = _INTL("Collecting")
           miscSearches[cmdMapFound = miscSearches.length] = _INTL("Map Found")
           miscSearches[cmdWildItem = miscSearches.length] = _INTL("Wild Items")
           miscSearches[cmdIsQuarantined = miscSearches.length] = _INTL("Quarantined") if $DEBUG
@@ -427,8 +427,8 @@ class PokemonPokedex_Scene
           miscSearches[cmdInvertList = miscSearches.length] = _INTL("Invert Current")
           miscSearches.push(_INTL("Cancel"))
           searchSelection = pbMessage("Which search?",miscSearches,miscSearches.length)
-          if cmdTribe > -1 && searchSelection == cmdTribe
-              return searchByTribe() 
+          if cmdCollecting > -1 && searchSelection == cmdCollecting
+              return searchByCollecting() 
           elsif cmdMapFound > -1 && searchSelection == cmdMapFound
               return searchByMapFound() 
           elsif cmdZooSection > -1 && searchSelection == cmdZooSection

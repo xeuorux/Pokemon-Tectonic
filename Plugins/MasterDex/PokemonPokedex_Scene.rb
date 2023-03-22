@@ -675,7 +675,7 @@ class PokemonPokedex_Scene
 	xLeft2 += 4
 	page2textpos = [
 	   [_INTL("Choose a Search"),Graphics.width/2,-2,2,shadow,base],
-       [_INTL("Collecting"),xLeft,68,0,base,shadow],
+       [_INTL("Tribe"),xLeft,68,0,base,shadow],
 	   [_INTL("Matchups"),xLeft2,68,0,base,shadow],
        [_INTL("Stats"),xLeft,164,0,base,shadow],
 	   [_INTL("Stat Sort"),xLeft2,164,0,base,shadow],
@@ -762,7 +762,7 @@ class PokemonPokedex_Scene
 		  }
 		when 6
 		  searchChanged = acceptSearchResults2 {
-			searchByCollecting()
+			searchByTribe()
 		  }
 		when 7
 		  searchChanged = acceptSearchResults2 {
