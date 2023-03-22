@@ -297,9 +297,21 @@ GameData::BattleEffect.register_effect(:Battler, {
     :id => :FocusEnergy,
     :real_name => "Crit Chance Up",
     :type => :Integer,
-    :maximum => 6,
+    :maximum => 4,
     :baton_passed => true,
     :critical_rate_buff => true,
+    :increment_proc => proc do |battle, battler, _value, increment|
+        case increment
+        when 1
+            @battle.pbDisplay(_INTL("{1}'s critical hit chance was doubled!", battler.pbThis))
+        when 2
+            @battle.pbDisplay(_INTL("{1}'s critical hit chance was quadrupled!", battler.pbThis))
+        when 3
+            @battle.pbDisplay(_INTL("{1}'s is now 8 times more likely to get a crticial hit!", battler.pbThis))
+        when 4
+            @battle.pbDisplay(_INTL("{1}'s is now 16 times more likely to get a crticial hit!", battler.pbThis))
+        end
+    end,
 })
 
 GameData::BattleEffect.register_effect(:Battler, {

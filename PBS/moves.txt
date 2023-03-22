@@ -446,7 +446,7 @@
 445,ENCORE,Encore,0BC,0,NORMAL,Status,100,5,0,NearOther,0,bce,"The user compels the target to keep using only the move it last used for three turns.",
 446,ENDURE,Endure,0E8,0,NORMAL,Status,0,10,0,User,4,,"The user endures any attack with at least 1 HP. It always fails if it is used in succession.",
 447,ENTRAINMENT,Entrainment,066,0,NORMAL,Status,100,12,0,NearOther,0,bceo,"The user dances to compel the target to mimic it, making the target's Ability the same as the user's.",
-448,FOCUSENERGY,Focus Energy,023,0,NORMAL,Status,0,25,0,User,0,d,"The user takes a deep breath and focuses so that critical hits land four times more likely.",
+448,FOCUSENERGY,Focus Energy,023,0,NORMAL,Status,0,25,0,User,0,d,"The user focuses intensely on the fight, quadrupling its critical hit chance.",
 449,FOLLOWME,Follow Me,117,0,NORMAL,Status,0,15,0,User,2,,"The user draws attention to itself, making all targets take aim only at the user.",
 450,FORESIGHT,Foresight,0A7,0,NORMAL,Status,0,30,0,NearOther,0,bce,"Enables the user to hit a Ghost type with any kind of move. It also enables the user to hit an evasive foe.",
 451,GLARE,Glare,007,0,NORMAL,Status,100,12,0,NearOther,0,bce,"The user intimidates the target by staring at it to cause numbing.",

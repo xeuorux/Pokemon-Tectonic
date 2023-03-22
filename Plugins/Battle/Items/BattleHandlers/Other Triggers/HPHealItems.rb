@@ -63,12 +63,6 @@ BattleHandlers::HPHealItem.add(:LANSATBERRY,
       end
       battle.pbCommonAnimation("Nom", battler) unless forced
       battler.incrementEffect(:FocusEnergy, 2)
-      itemName = GameData::Item.get(item).name
-      if forced
-          battle.pbDisplay(_INTL("{1} got pumped from the {2}!", battler.pbThis, itemName))
-      else
-          battle.pbDisplay(_INTL("{1} used its {2} to get pumped!", battler.pbThis, itemName))
-      end
       battle.pbHideAbilitySplash(battler) if filchedFrom
       next true
   }

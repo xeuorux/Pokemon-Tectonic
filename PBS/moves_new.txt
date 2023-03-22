@@ -407,3 +407,4 @@
 1406,GEMSEAL,Gem Seal,5CF,0,GHOST,Status,100,15,0,NearOther,0,bce,"Disables the targets last used move for 4 turns, and cuts 4 PP from it.",
 1407,RIVERREST,River Rest,5D0,0,WATER,Status,0,10,0,User,0,d,"The user resets in a riverbed, restoring its HP by half of max, and forming an Aqua Ring around itself.",
 1408,WHALESONG,Whale Song,5D1,0,WATER,Status,0,5,0,UserAndAllies,0,dk,"The user's song heals the status problems of all the party Pokémon, and forms an Aqua Ring around itself.",
+1409,DEEPBREATHING,Deep Breathing,5AD,0,FIGHTING,Status,0,15,0,User,0,d,"The user breathes deeply, boosting its Speed and quadrupling its critical hit chance.",FOCUSENERGY

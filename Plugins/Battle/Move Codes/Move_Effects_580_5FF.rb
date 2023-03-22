@@ -866,7 +866,6 @@ class PokeBattle_Move_5AD < PokeBattle_MultiStatUpMove
 		super
 		unless user.effectAtMax?(:FocusEnergy)
 			user.incrementEffect(:FocusEnergy, 1)
-			@battle.pbDisplay(_INTL("{1} is getting pumped!", user.pbThis))
 		end
     end
 end
@@ -1455,7 +1454,6 @@ class PokeBattle_Move_5C7 < PokeBattle_HealingMove
         user.pbRaiseMultipleStatStages([:DEFENSE, 1, :SPECIAL_DEFENSE, 1], user, move: self)
         unless user.effectAtMax?(:FocusEnergy)
 			user.incrementEffect(:FocusEnergy, 1)
-			@battle.pbDisplay(_INTL("{1} is getting pumped!", user.pbThis))
 		end
     end
 
@@ -1536,7 +1534,6 @@ class PokeBattle_Move_5CA < PokeBattle_MultiStatUpMove
 		super
 		unless user.effectAtMax?(:FocusEnergy)
 			user.incrementEffect(:FocusEnergy, 1)
-			@battle.pbDisplay(_INTL("{1} is getting pumped!", user.pbThis))
 		end
     end
 end
@@ -1721,5 +1718,28 @@ class PokeBattle_Move_5D1 < PokeBattle_Move_019
         score = super
         score += 40 unless user.effectActive?(:AquaRing)
         return score
+    end
+end
+
+#===============================================================================
+# Increases Speed by 1 stage and Crit Chance by 2 stages. (Deep Breathing)
+#===============================================================================
+class PokeBattle_Move_5D2 < PokeBattle_StatUpMove
+
+    def initialize(battle, move)
+        super
+        @statUp = [:SPEED, 1]
+    end
+
+    def pbMoveFailed?(user, _targets, show_message)
+        if user.effectAtMax?(:FocusEnergy) 
+            return super
+        end
+        return false
+    end
+
+    def pbEffectGeneral(user)
+        super
+        user.incrementEffect(:FocusEnergy, 2)
     end
 end

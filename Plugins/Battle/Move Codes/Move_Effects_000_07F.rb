@@ -551,7 +551,6 @@ class PokeBattle_Move_023 < PokeBattle_Move
 
     def pbEffectGeneral(user)
         user.incrementEffect(:FocusEnergy, 2)
-        @battle.pbDisplay(_INTL("{1} is getting pumped!", user.pbThis))
     end
 
     def getEffectScore(user, _target)
