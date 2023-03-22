@@ -93,11 +93,11 @@ BattleHandlers::UserAbilityEndOfMove.copy(:MOXIE, :CHILLINGNEIGH)
 BattleHandlers::UserAbilityEndOfMove.copy(:HUBRIS, :GRIMNEIGH)
 
 BattleHandlers::UserAbilityEndOfMove.add(:SCHADENFREUDE,
-  proc { |_ability, battler, targets, _move, _battle|
+  proc { |_ability, user, targets, _move, _battle|
       numFainted = 0
       targets.each { |b| numFainted += 1 if b.damageState.fainted }
       next if numFainted == 0
-      battler.applyFractionalHealing(1.0 / 4.0, showAbilitySplash: true)
+      user.applyFractionalHealing(1.0 / 4.0, showAbilitySplash: true)
   }
 )
 
@@ -138,8 +138,8 @@ BattleHandlers::UserAbilityEndOfMove.add(:CALAMITY,
 )
 
 BattleHandlers::UserAbilityEndOfMove.add(:SPACEINTERLOPER,
-  proc { |_ability, battler, targets, _move, _battle|
-      battler.pbRecoverHPFromMultiDrain(targets, 0.25)
+  proc { |_ability, user, targets, _move, _battle|
+    user.pbRecoverHPFromMultiDrain(targets, 0.25)
   }
 )
 
@@ -256,7 +256,7 @@ BattleHandlers::UserAbilityEndOfMove.add(:ICEQUEEN,
       next unless move.pbDamagingMove?
       next unless battle.pbWeather == :Hail
       battle.pbShowAbilitySplash(user)
-      battler.pbRecoverHPFromMultiDrain(targets, 0.50)
+      user.pbRecoverHPFromMultiDrain(targets, 0.50)
       battle.pbHideAbilitySplash(user)
   }
 )
