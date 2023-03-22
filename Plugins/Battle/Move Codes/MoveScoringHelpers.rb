@@ -56,7 +56,7 @@ def getPoisonEffectScore(user, target, ignoreCheck: false)
         score = 40
         score += 20 if target.hp == target.totalhp
         score += 20 if target.hp >= target.totalhp / 2 || target.hp <= target.totalhp / 8
-        score += 60 if @battle.pbIsTrapped?(target.index)
+        score += 30 if target.trapped?
         score += NON_ATTACKER_BONUS unless user.hasDamagingAttack?
         score -= STATUS_UPSIDE_MALUS if target.hasActiveAbilityAI?(%i[TOXICBOOST
                                                                       POISONHEAL].concat(STATUS_UPSIDE_ABILITIES))
@@ -262,7 +262,7 @@ def getHealingEffectScore(user, target, magnitude = 5)
     return score
 end
 
-def getMultiStatUpEffectScore(statUpArray, user, target)
+def getMultiStatUpEffectScore(statUpArray, user, target, fakeStageModifier = 0)
     echoln("[EFFECT SCORING] Scoring the effect of raising stats #{statUpArray.to_s} on target #{target.pbThis(true)}")
     
     if user.battle.field.effectActive?(:GreyMist)
@@ -294,11 +294,13 @@ def getMultiStatUpEffectScore(statUpArray, user, target)
         end
 
         increase *= statIncreaseAmount
-        increase -= target.stages[statSymbol] * 10 # Reduce the score for each existing stage
+        stage = target.stages[statSymbol] + fakeStageModifier
+        increase -= stage * 10 # Reduce the score for each existing stage
+        increase = 0 if increase < 0
 
         score += increase
 
-        echoln("[EFFECT SCORING] The change to #{statSymbol} by #{statIncreaseAmount} increases the score by #{increase}")
+        echoln("[EFFECT SCORING] The change to #{statSymbol} by #{statIncreaseAmount} at stage #{stage} increases the score by #{increase}")
     end
 
     # Stat ups tend to be stronger on the first turn
@@ -319,6 +321,7 @@ def getMultiStatUpEffectScore(statUpArray, user, target)
         score *= -1
         echoln("[EFFECT SCORING] The target has Contrary! Inverting the score.")
     end
+
     if user.opposes?(target)
         score *= -1
         echoln("[EFFECT SCORING] The target opposes the user! Inverting the score.")
@@ -327,7 +330,7 @@ def getMultiStatUpEffectScore(statUpArray, user, target)
     return score
 end
 
-def getMultiStatDownEffectScore(statDownArray, user, target)
+def getMultiStatDownEffectScore(statDownArray, user, target, fakeStageModifier = 0)
     echoln("[EFFECT SCORING] Scoring the effect of lowering stats #{statDownArray.to_s} on target #{target.pbThis(true)}")
     
     if user.battle.field.effectActive?(:GreyMist)
@@ -364,11 +367,13 @@ def getMultiStatDownEffectScore(statDownArray, user, target)
         end
 
         scoreIncrease *= statDecreaseAmount
-        scoreIncrease += target.stages[statSymbol] * 10 # Increase the score for each existing stage
+        stage = target.stages[statSymbol] + fakeStageModifier
+        scoreIncrease += stage * 10 # Increase the score for each existing stage
+        scoreIncrease = 0 if scoreIncrease < 0
 
         score += scoreIncrease
         
-        echoln("[EFFECT SCORING] The change to #{statSymbol} by #{statDecreaseAmount} increases the score by #{scoreIncrease}")
+        echoln("[EFFECT SCORING] The change to #{statSymbol} by #{statDecreaseAmount} at stage #{stage} increases the score by #{scoreIncrease}")
     end
 
     # Stat downs tend to be stronger when the target has HP to use
@@ -393,11 +398,13 @@ def getMultiStatDownEffectScore(statDownArray, user, target)
     return score
 end
 
-def getWeatherSettingEffectScore(weatherType, user, battle, duration = 4)
+def getWeatherSettingEffectScore(weatherType, user, battle, duration = 4, checkExtensions = true)
     return 0 if battle.primevalWeatherPresent? || battle.pbCheckGlobalAbility(:AIRLOCK) ||
                 battle.pbCheckGlobalAbility(:CLOUDNINE) || battle.pbWeather == @weatherType
 
-    score = 5 * user.getWeatherSettingDuration(weatherType, duration, true)
+    duration = user.getWeatherSettingDuration(weatherType, duration, true) if checkExtensions
+
+    score = 5 * duration
 
     weatherMatchesPolicy = false
     hasSynergyAbility = false

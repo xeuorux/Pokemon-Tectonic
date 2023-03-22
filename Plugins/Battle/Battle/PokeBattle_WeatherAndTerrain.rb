@@ -7,9 +7,16 @@ class PokeBattle_Battle
         @field.weatherDuration = -1
     end
 
+    def weatherSuppressed?
+        eachBattler do |b|
+            return true if b.hasActiveAbility?(%i[CLOUDNINE AIRLOCK])
+        end
+        return false
+    end
+
     # Returns the effective weather (note that weather effects can be negated)
     def pbWeather
-        eachBattler { |b| return :None if b.hasActiveAbility?(%i[CLOUDNINE AIRLOCK]) }
+        return :None if weatherSuppressed?
         return @field.weather
     end
 
@@ -24,6 +31,8 @@ class PokeBattle_Battle
         @field.weather = newWeather
         duration = user.getWeatherSettingDuration(newWeather, duration, ignoreFainted) if duration > 0 && user
 
+        noChange = resetExisting && duration == @field.weatherDuration
+
         # If we're resetting an existing weather, don't set the duration to lower than it was before
         if resetExisting
             @field.weatherDuration = duration if duration > @field.weatherDuration
@@ -34,18 +43,21 @@ class PokeBattle_Battle
         @field.resetSpecialEffect unless resetExisting
 
         # Show animation, if desired
-        weather_data = GameData::BattleWeather.try_get(@field.weather)
-        pbCommonAnimation(weather_data.animation) if showAnim && weather_data
+        unless noChange
+            weather_data = GameData::BattleWeather.try_get(@field.weather)
+            pbCommonAnimation(weather_data.animation) if showAnim && weather_data
+        end
 
         if resetExisting
-            displayResetWeatherMessage
+            displayResetWeatherMessage unless noChange
         else
-            displayFreshWeatherMessage
+            displayFreshWeatherMessage unless noChange
             # Check for end of primordial weather, and weather-triggered form changes
             eachBattler { |b| b.pbCheckFormOnWeatherChange }
             pbEndPrimordialWeather
         end
-        if $PokemonSystem.weather_messages == 0
+        
+        if $PokemonSystem.weather_messages == 0 && !noChange
             if @field.weatherDuration < 0
                 pbDisplay(_INTL("It'll last indefinitely!"))
             else

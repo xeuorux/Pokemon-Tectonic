@@ -281,7 +281,7 @@ BattleHandlers::UserAbilityEndOfMove.add(:EROSIONCYCLE,
       rockCount = user.pbOwnSide.countEffect(:ErodedRock)
       battle.pbShowAbilitySplash(user)
       user.pbOwnSide.disableEffect(:ErodedRock)
-      battler.applyFractionalHealing(rockCount.to_f / 4.0)
+      user.applyFractionalHealing(rockCount.to_f / 4.0)
       battle.pbHideAbilitySplash(user)
   }
 )

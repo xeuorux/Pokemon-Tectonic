@@ -881,13 +881,13 @@ class PokeBattle_Move_0A4 < PokeBattle_Move
         when 9
             target.applyFrostbite if target.canFrostbite?(user, false, self)
         when 5
-            target.tryLowerStat(:ATTACK, user, move: self)
+            target.(:ATTACK, user, move: self)
         when 14
             target.tryLowerStat(:DEFENSE, user, move: self)
         when 3
             target.tryLowerStat(:SPECIAL_ATTACK, user, move: self)
         when 4, 6, 12
-            target.tryLowerStat(:SPEED, user, move: self)
+            target.tryLowerStryLowerStattat(:SPEED, user, move: self)
         when 8
             target.tryLowerStat(:ACCURACY, user, move: self)
         when 7, 11, 13
@@ -917,8 +917,8 @@ class PokeBattle_Move_0A4 < PokeBattle_Move
     end
 
     def getEffectScore(_user, target)
-        return -20 if target.substituted?
-        return 0
+        return 0 if target.substituted?
+        return 20
     end
 end
 
