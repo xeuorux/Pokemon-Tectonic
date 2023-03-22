@@ -226,7 +226,7 @@ Pokemon = SMEARGLE,17
     Moves = SKETCH,HEALPULSE,LIGHTSCREEN,COTTONSPORE
     AbilityIndex = 0 # Mental Block
 Pokemon = PARAS,17
-    AbilityIndex = 0 # Swarm
+    AbilityIndex = 0 # Infected
 #-------------------------------
 [HIKER2,Jude]
 Pokemon = ROGGENROLA,17
