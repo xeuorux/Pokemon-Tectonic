@@ -72,6 +72,7 @@ class NewDexNav
 		displaySpecies.push(species_data)
 
         @pkmnsprite[iconIndex] = PokemonSpeciesIconSprite.new(species,@viewport2)
+		@pkmnsprite[iconIndex].z = -1
 		
 		if !$Trainer.pokedex.seen?(species)
 			@pkmnsprite[iconIndex].silhouette = true
