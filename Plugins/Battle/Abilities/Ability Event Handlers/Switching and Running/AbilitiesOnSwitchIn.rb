@@ -205,24 +205,6 @@ BattleHandlers::AbilityOnSwitchIn.add(:FOREWARN,
   }
 )
 
-BattleHandlers::AbilityOnSwitchIn.add(:FRISK,
-  proc { |_ability, battler, battle|
-      next unless battler.pbOwnedByPlayer?
-      foes = []
-      battle.eachOtherSideBattler(battler.index) do |b|
-          foes.push(b) if b.item
-      end
-      if foes.length > 0
-          battle.pbShowAbilitySplash(battler)
-          foes.each do |b|
-              battle.pbDisplay(_INTL("{1} frisked {2} and found its {3}!",
-                  battler.pbThis, b.pbThis(true), b.itemName))
-          end
-          battle.pbHideAbilitySplash(battler)
-      end
-  }
-)
-
 BattleHandlers::AbilityOnSwitchIn.add(:IMPOSTER,
   proc { |_ability, battler, battle|
       next if battler.transformed?

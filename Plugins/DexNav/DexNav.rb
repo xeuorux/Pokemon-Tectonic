@@ -359,12 +359,12 @@ Events.onMapChanging +=proc {|_sender,e|
 }
 
 unless defined?(generateWildHeldItem)
-	def generateWildHeldItem(pokemon,friskActive=false)
+	def generateWildHeldItem(pokemon,increasedChance=false)
 		item = nil
 		items = pokemon.wildHoldItems
 		chances = [50,5,1]
 		itemrnd = rand(100)
-		itemrnd = [itemrnd-20,0].max if friskActive
+		itemrnd = [itemrnd-20,0].max if increasedChance
 		if (items[0]==items[1] && items[1]==items[2]) || itemrnd<chances[0]
 		item = items[0]
 		elsif itemrnd<(chances[0]+chances[1])
@@ -393,7 +393,8 @@ Events.onWildPokemonCreate += proc {|sender,e|
 			pokemon.form = species_data.form
 			pokemon.reset_moves
 			pokemon.learn_move($currentDexSearch[1]) if $currentDexSearch[1]
-			pokemon.item = generateWildHeldItem(pokemon,$Trainer.first_pokemon.hasAbility?(:FRISK))
+			
+			pokemon.item = generateWildHeldItem(pokemon,herdingActive?)
 			# There is a higher chance for shininess
 			pokemon.shinyRerolls *= 2
 			$currentDexSearch = nil

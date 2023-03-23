@@ -8,7 +8,7 @@ def pbGenerateWildPokemon(species,level,ignoreCap = false)
   level = [getLevelCap(),level].min unless ignoreCap
   genwildpoke = Pokemon.new(species,level)
   # Give the wild Pokémon a held item
-  item = generateWildHeldItem(genwildpoke,$Trainer.first_pokemon.hasAbility?(:FRISK))
+  item = generateWildHeldItem(genwildpoke,herdingActive?)
   genwildpoke.item = item
   # Shiny Charm makes shiny Pokémon more likely to generate
   if GameData::Item.exists?(:SHINYCHARM) && $PokemonBag.pbHasItem?(:SHINYCHARM)
@@ -28,12 +28,12 @@ def pbGenerateWildPokemon(species,level,ignoreCap = false)
   return genwildpoke
 end
 
-def generateWildHeldItem(pokemon,friskActive=false)
+def generateWildHeldItem(pokemon,increasedChance=false)
   item = nil
   items = pokemon.wildHoldItems
   chances = [50,5,1]
   itemrnd = rand(100)
-  itemrnd = [itemrnd-20,0].max if friskActive
+  itemrnd = [itemrnd-20,0].max if increasedChance
   if (items[0]==items[1] && items[1]==items[2]) || itemrnd<chances[0]
     item = items[0]
   elsif itemrnd<(chances[0]+chances[1])
@@ -46,4 +46,12 @@ end
 
 class Pokemon
 	attr_accessor :shinyRerolls
+end
+
+def herdingActive?
+  $Trainer.party.each do |partyMember|
+    next unless partyMember
+    return true if partyMember.hasAbility?(:HERDING)
+  end
+  return false
 end

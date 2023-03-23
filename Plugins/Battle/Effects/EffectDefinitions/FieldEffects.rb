@@ -196,3 +196,8 @@ GameData::BattleEffect.register_effect(:Field, {
         end
     end,
 })
+
+GameData::BattleEffect.register_effect(:Field, {
+    :id => :Bliss,
+    :real_name => "Bliss",
+})

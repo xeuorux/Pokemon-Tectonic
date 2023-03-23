@@ -380,6 +380,9 @@ class PokeBattle_Battle
         # Record money-doubling effect of Fortune ability
         @field.applyEffect(:Fortune) if !battler.opposes? && battler.hasActiveAbility?(:FORTUNE)
 
+        # Record money-doubling effect of Bliss ability
+        @field.applyEffect(:Bliss) if !battler.opposes? && battler.hasActiveAbility?(:BLISS)
+
         # Reset poison ticking up
         battler.resetStatusCount(:POISON)
 
