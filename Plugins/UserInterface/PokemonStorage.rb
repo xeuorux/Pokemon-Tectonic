@@ -397,13 +397,13 @@ class PokemonStorageScreen
   end
 
   def candiesFromReleasing(lifetimeEXP)
-    lifetimeEXP /= 2
+    lifetimeEXP *= 0.7
     if lifetimeEXP > 0
       xsCandyTotal, sCandyTotal, mCandyTotal, _lCandyTotal = calculateCandySplitForEXP(lifetimeEXP)
       if (xsCandyTotal + sCandyTotal + mCandyTotal) == 0
         pbDisplay(_INTL("It didn't earn enough XP for you to earn any candies back."))
       else
-        pbDisplay(_INTL("You are reimbursed for half the EXP it earned."))
+        pbDisplay(_INTL("You are reimbursed for 70% of the EXP it earned."))
         pbReceiveItem(:EXPCANDYM,mCandyTotal) if mCandyTotal > 0
         pbReceiveItem(:EXPCANDYS,sCandyTotal) if sCandyTotal > 0
         pbReceiveItem(:EXPCANDYXS,xsCandyTotal) if xsCandyTotal > 0
