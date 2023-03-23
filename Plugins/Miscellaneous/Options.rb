@@ -13,6 +13,7 @@ class PokemonSystem
 	attr_accessor :effectiveness_messages
   attr_accessor :weather_messages
   attr_accessor :status_effect_messages
+  attr_accessor :move_clarifying_messages
   attr_accessor :nicknaming_prompt
   attr_accessor :color_shifts
   attr_accessor :party_snapshots
