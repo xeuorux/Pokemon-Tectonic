@@ -990,7 +990,7 @@ Pokemon = PAWNIARD,26
 Pokemon = CUTIEFLY,26
     AbilityIndex = 0 # Candy Veil
 Pokemon = BINACLE,26
-    AbilityIndex = 1 # Steel Sticker
+    AbilityIndex = 1 # Steel Absorb
     Item = SITRUSBERRY
 #-------------------------------
 [REPORTER,Helga]
@@ -1295,7 +1295,7 @@ Pokemon = HYPNO,35
     AbilityIndex = 1 # Inner Focus
 Pokemon = ALTARIA,35
     AbilityIndex = 0 # Levitate
-	Item = SITRUSBERRY
+    Item = SITRUSBERRY
 #-------------------------------
 [ROUGHNECK,Randall]
 Pokemon = GLACEON,35
@@ -1399,7 +1399,7 @@ Pokemon = NINJASK,35
     AbilityIndex = 0 # Speed Boost
     Item = LIFEORB
 Pokemon = GWEEZING,35
-    AbilityIndex = 1
+    AbilityIndex = 1 # Industrialize
 Pokemon = ARAICHU,35
     AbilityIndex = 1 # Surf's Up
 #-------------------------------
@@ -1415,7 +1415,7 @@ Pokemon = FURRET,35
 Pokemon = BEAUTIFLY,35
     AbilityIndex = 0 # Expertise
 Pokemon = NIDOKING,35
-	AbilityIndex = 1
+    AbilityIndex = 1 # Poison Point
 #-------------------------------
 [TWINS2,Bella and Meghan]
 Pokemon = EXCADRILL,35
