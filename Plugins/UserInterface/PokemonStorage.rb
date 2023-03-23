@@ -67,7 +67,7 @@ class PokemonStorageScreen
             commands[cmdWithdraw=commands.length] = (selected[0]==-1) ? _INTL("Store") : _INTL("Withdraw")
             commands[cmdItem=commands.length]     = _INTL("Item")
             commands[cmdMark=commands.length]     = _INTL("Mark")
-            commands[cmdRelease=commands.length]  = _INTL("Release")
+            commands[cmdRelease=commands.length]  = _INTL("Candy Exchange")
             commands[cmdDebug=commands.length]    = _INTL("Debug") if $DEBUG
             commands[cmdCancel=commands.length]   = _INTL("Cancel")
             command=pbShowCommands(helptext,commands)
@@ -138,7 +138,7 @@ class PokemonStorageScreen
           commands[cmdSummary = commands.length] = _INTL("Summary")
           commands[cmdPokedex = commands.length] = _INTL("MasterDex") if $Trainer.has_pokedex
           commands[cmdMark = commands.length] = _INTL("Mark")
-          commands[cmdRelease = commands.length] = _INTL("Release")
+          commands[cmdRelease = commands.length] = _INTL("Candy Exchange")
           commands.push(_INTL("Cancel"))
           command = pbShowCommands(_INTL("{1} is selected.",pokemon.name),commands)
           if cmdWithdraw > -1 && command == cmdWithdraw
@@ -186,7 +186,7 @@ class PokemonStorageScreen
           commands[cmdSummary = commands.length] = _INTL("Summary")
           commands[cmdPokedex = commands.length] = _INTL("MasterDex") if $Trainer.has_pokedex
           commands[cmdMark = commands.length] = _INTL("Mark")
-          commands[cmdRelease = commands.length] = _INTL("Release")
+          commands[cmdRelease = commands.length] = _INTL("Candy Exchange")
           commands.push(_INTL("Cancel"))
           command = pbShowCommands(_INTL("{1} is selected.",pokemon.name),commands)
           if cmdStore > -1 && command == cmdStore
@@ -358,6 +358,59 @@ class PokemonStorageScreen
     @heldpkmn = tmp
     @scene.pbRefresh
     return true
+  end
+
+  def pbRelease(selected,heldpoke)
+    box = selected[0]
+    index = selected[1]
+    pokemon = (heldpoke) ? heldpoke : @storage[box,index]
+    return if !pokemon
+    if pokemon.egg?
+      pbDisplay(_INTL("You can't release an Egg."))
+      return false
+    elsif pokemon.mail
+      pbDisplay(_INTL("Please remove the mail."))
+      return false
+    end
+    if box==-1 && pbAbleCount<=1 && pbAble?(pokemon) && !heldpoke
+      pbPlayBuzzerSE
+      pbDisplay(_INTL("That's your last Pokémon!"))
+      return
+    end
+    command = pbShowCommands(_INTL("Release this Pokémon in exchange for Candies?"),[_INTL("No"),_INTL("Yes")])
+    if command==1
+      pkmnname = pokemon.name
+      lifetimeEXP = pokemon.exp - pokemon.growth_rate.minimum_exp_for_level(pokemon.obtain_level)
+      @scene.pbRelease(selected,heldpoke)
+      if heldpoke
+        @heldpkmn = nil
+      else
+        @storage.pbDelete(box,index)
+      end
+      @scene.pbRefresh
+      pbDisplay(_INTL("{1} was released.",pkmnname))
+      pbDisplay(_INTL("Bye-bye, {1}!",pkmnname))
+      @scene.pbRefresh
+      candiesFromReleasing(lifetimeEXP)
+    end
+    return
+  end
+
+  def candiesFromReleasing(lifetimeEXP)
+    lifetimeEXP /= 2
+    if lifetimeEXP > 0
+      xsCandyTotal, sCandyTotal, mCandyTotal, _lCandyTotal = calculateCandySplitForEXP(lifetimeEXP)
+      if (xsCandyTotal + sCandyTotal + mCandyTotal) == 0
+        pbDisplay(_INTL("It didn't earn enough XP for you to earn any candies back."))
+      else
+        pbDisplay(_INTL("You are reimbursed for half the EXP it earned."))
+        pbReceiveItem(:EXPCANDYM,mCandyTotal) if mCandyTotal > 0
+        pbReceiveItem(:EXPCANDYS,sCandyTotal) if sCandyTotal > 0
+        pbReceiveItem(:EXPCANDYXS,xsCandyTotal) if xsCandyTotal > 0
+      end
+    else
+      pbDisplay(_INTL("It never gained any EXP, so no candies are awarded."))
+    end
   end
   
   def tryTakeItem(pokemon)

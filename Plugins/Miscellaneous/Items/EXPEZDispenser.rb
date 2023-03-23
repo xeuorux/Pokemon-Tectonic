@@ -21,28 +21,9 @@ ItemHandlers::UseInField.add(:EXPEZDISPENSER,proc { |item|
 def useEXPEZ()
 	$PokemonGlobal.expJAR = 0 if $PokemonGlobal.expJAR.nil?
 	$PokemonGlobal.expJARUpgraded = false if $PokemonGlobal.expJARUpgraded.nil?
-	candyTotal = 0
 	pbMessage(_INTL("You have {1} EXP stored in the EXP-EZ Dispenser.",$PokemonGlobal.expJAR))
 
-	xsCandyTotal = 0
-	sCandyTotal = 0
-	mCandyTotal = 0
-	lCandyTotal = 0
-
-	# Calculate how many of each candy size could be given
-	if !$PokemonGlobal.expJARUpgraded
-		xsCandyTotal = $PokemonGlobal.expJAR / EXP_PER_EXTRA_SMALL
-		sCandyTotal = xsCandyTotal / 4
-		xsCandyTotal = xsCandyTotal % 4
-	else
-		sCandyTotal = $PokemonGlobal.expJAR / (EXP_PER_EXTRA_SMALL * 4)
-	end
-	mCandyTotal = sCandyTotal / 4
-	sCandyTotal = sCandyTotal % 4
-	if $PokemonGlobal.expJARUpgraded
-		lCandyTotal = mCandyTotal / 4
-		mCandyTotal = mCandyTotal % 4
-	end
+	xsCandyTotal, sCandyTotal, mCandyTotal, lCandyTotal = calculateCandySplitForEXP($PokemonGlobal.expJAR,$PokemonGlobal.expJARUpgraded)
 
 	# Prompt the player to make the candies
 	if sCandyTotal > 0 || xsCandyTotal > 0 || mCandyTotal > 0 || lCandyTotal > 0
@@ -66,4 +47,25 @@ def useEXPEZ()
 		return 0
 	end
 	return 1
+end
+
+
+def calculateCandySplitForEXP(expAmount, biggerSized = false)
+	# Calculate how many of each candy size could be given
+	if !biggerSized
+		xsCandyTotal = expAmount / EXP_PER_EXTRA_SMALL
+		sCandyTotal = xsCandyTotal / 4
+		xsCandyTotal = xsCandyTotal % 4
+	else
+		sCandyTotal = expAmount / (EXP_PER_EXTRA_SMALL * 4)
+	end
+	mCandyTotal = sCandyTotal / 4
+	sCandyTotal = sCandyTotal % 4
+	if biggerSized
+		lCandyTotal = mCandyTotal / 4
+		mCandyTotal = mCandyTotal % 4
+	else
+		lCandyTotal = 0
+	end
+	return xsCandyTotal,sCandyTotal,mCandyTotal,lCandyTotal
 end
