@@ -1,68 +1,63 @@
 class TribalBonusScene
-	PAGE_TITLES = ["TRIBES COUNT", "BONUS INFO"]
+    def pbStartScene
+        playerTribalBonus().updateTribeCount()
 
-    def drawPage()
-        # Draw page title
-        overlay = @sprites["overlay"].bitmap
-        overlay.clear
+        # Set up the two viewports to hold UI elements
+        @viewport1 = Viewport.new(0, 0, Graphics.width, Graphics.height)
+        @viewport1.z = 99999
+        @sprites = {}
 
-        base = Color.new(219, 240, 240)
-        shadow   = Color.new(88, 88, 80)
-        pageTitle = PAGE_TITLES[@page-1]
-        drawFormattedTextEx(overlay, 50, 2, Graphics.width, "<outln2>#{pageTitle}</outln2>", base, shadow, 18)
-        xPos = 240
-        drawFormattedTextEx(overlay, xPos, 2, Graphics.width, "<outln2>[#{@page}/#{PAGE_TITLES.length()}]</outln2>", base, shadow, 18)
+        # Set up all the sprites
+        @sprites["background"] = IconSprite.new(0,0,@viewport1)
+        @sprites["background"].setBitmap(_INTL("Graphics/Pictures/bg_tribes"))
 
-        # Draw page-specific information
-        case @page
-        when 1; displayTribalBonuses()
-        when 2; displayTribalInfo()
-        end
-    end
+        @sprites["overlay"] = BitmapSprite.new(Graphics.width,Graphics.height,@viewport1)
+        pbSetSystemFont(@sprites["overlay"].bitmap)
 
-    def displayTribalBonuses()
-        overlay = @sprites["overlay"].bitmap
-        base = Color.new(88,88,88)
-        shadow = Color.new(168,184,184)
-        xLeft = 36
-    
-        # Make sure arrows are hidden
+        # Used for Tribal Info page
+        @displayText = []
+        @offset = 0
+        @linesToShow = 9
+        @sprites["scroll_arrow_up"] = AnimatedSprite.new("Graphics/Pictures/uparrow",8,28,40,2,@viewport1)
+        @sprites["scroll_arrow_up"].x = (Graphics.width - 28) / 2
+        @sprites["scroll_arrow_up"].y = 38
         @sprites["scroll_arrow_up"].visible = false
+        @sprites["scroll_arrow_up"].play
+        @sprites["scroll_arrow_down"] = AnimatedSprite.new("Graphics/Pictures/downarrow",8,28,40,2,@viewport1)
+        @sprites["scroll_arrow_down"].x = (Graphics.width - 28) / 2
+        @sprites["scroll_arrow_down"].y = (Graphics.height - 44)
         @sprites["scroll_arrow_down"].visible = false
+        @sprites["scroll_arrow_down"].play
+        @sprites["scroll_bar"] = IconSprite.new(0,0,@viewport1)
+        @sprites["scroll_bar"].setBitmap("Graphics/Pictures/scroll_bar")
+        @sprites["scroll_bar"].x = Graphics.width - 32
+        @sprites["scroll_bar"].y = 48
+        @sprites["scroll_bar"].visible = true
 
-        drewAny = false
-        index = 0
+        pbFadeInAndShow(@sprites) { pbUpdate }
+
         tribeCounts = playerTribalBonus().tribeCounts.clone
         tribeCounts = tribeCounts.sort_by { |k,v| -v}.to_h
-        tribeCounts.each {|tribe, count|
-            if count > 0
-                tribeName = TribalBonus.getTribeName(tribe)
-                coordinateY = 64 + (index % 9) * 32
-                tribeCountDesc = _INTL("{1}: {2}", tribeName, count)
-                tribeCountDesc = "<b>#{tribeCountDesc}</b>" if count >= GameData::Tribe.get(tribe).threshold
-                drawFormattedTextEx(overlay, xLeft + (index / 9) * 240, coordinateY, 450, tribeCountDesc, base, shadow)
-                drewAny = true
-                index += 1
-            end
+        tribeCounts.each {|tribeID, count, index|
+            tribeName = TribalBonus.getTribeName(tribeID)
+            tribeData = GameData::Tribe.get(tribeID)
+            titleText = "<u>#{tribeName} (#{count}/#{tribeData.threshold})</u>"
+            titleText = "<b>#{titleText}</b>" if count >= tribeData.threshold
+            @displayText << titleText
+            bonusDescription = tribeData.description
+            break_string(bonusDescription, 40).each {|line|
+                @displayText << line
+            }
+            @displayText << "\n" unless index == tribeCounts.size - 1
         }
-        if !drewAny
-            drawTextEx(overlay, xLeft, 60, 450, 1, _INTL("None"), base, shadow)
-        end
-    end
 
-    def displayTribalInfo()
-        @sprites["scroll_arrow_up"].visible = @offset > 0
-        @sprites["scroll_arrow_down"].visible = @offset < @displayText.length - @linesToShow
+        @base = Color.new(88,88,88)
+        @shadow = Color.new(168,184,184)
+
+        @titlebase = Color.new(219, 240, 240)
+        @titleshadow   = Color.new(88, 88, 80)
         
-        overlay = @sprites["overlay"].bitmap
-        base = Color.new(88,88,88)
-        shadow = Color.new(168,184,184)
-        xLeft = 36
-        coordinateY = 38
-
-        @displayText[@offset..@offset+@linesToShow].each {|line|
-            drawFormattedTextEx(overlay, xLeft, coordinateY += 30, 450, line, base, shadow)
-        }
+        drawPage()
     end
 
     def break_string(str, n)
@@ -80,53 +75,29 @@ class TribalBonusScene
         end
     end
 
-    def pbUpdate
-        pbUpdateSpriteHash(@sprites)
-    end
+    def drawPage()
+        # Draw page title
+        overlay = @sprites["overlay"].bitmap
+        overlay.clear
 
-    def pbStartScene
-        playerTribalBonus().updateTribeCount()
-        @page = 1
+        drawFormattedTextEx(overlay, 50, 4, Graphics.width, "<outln2>Tribal Bonus Info</outln2>", @titlebase, @titleshadow, 18)
 
-        # Set up the two viewports to hold UI elements
-        @viewport1 = Viewport.new(0, 0, Graphics.width, Graphics.height)
-        @viewport1.z = 99999
-        @sprites = {}
+        @sprites["scroll_arrow_up"].visible = @offset > 0
+        @sprites["scroll_arrow_down"].visible = @offset < @displayText.length - @linesToShow
+        
+        overlay = @sprites["overlay"].bitmap
+        xLeft = 36
+        coordinateY = 32
 
-        # Set up all the sprites
-        @sprites["background"] = IconSprite.new(0,0,@viewport1)
-        @sprites["background"].setBitmap(_INTL("Graphics/Pictures/Pokedex/Rework/bg_evolution"))
-
-        @sprites["overlay"] = BitmapSprite.new(Graphics.width,Graphics.height,@viewport1)
-        pbSetSystemFont(@sprites["overlay"].bitmap)
-
-        # Used for Tribal Info page
-        @displayText = []
-        @offset = 0
-        @linesToShow = 8
-        @sprites["scroll_arrow_up"] = AnimatedSprite.new("Graphics/Pictures/uparrow",8,28,40,2,@viewport1)
-        @sprites["scroll_arrow_up"].x = (Graphics.width - 28) / 2
-        @sprites["scroll_arrow_up"].y = 38
-        @sprites["scroll_arrow_up"].visible = false
-        @sprites["scroll_arrow_up"].play
-        @sprites["scroll_arrow_down"] = AnimatedSprite.new("Graphics/Pictures/downarrow",8,28,40,2,@viewport1)
-        @sprites["scroll_arrow_down"].x = (Graphics.width - 28) / 2
-        @sprites["scroll_arrow_down"].y = (Graphics.height - 60)
-        @sprites["scroll_arrow_down"].visible = false
-        @sprites["scroll_arrow_down"].play
-
-        GameData::Tribe.each { |tribe|
-            tribeName = TribalBonus.getTribeName(tribe.id)
-            @displayText << "<b>#{tribeName}</b> (#{tribe.threshold})"
-            bonusDescription = tribe.description
-            break_string(bonusDescription, 40).each {|line|
-                @displayText << line
-            }
-            @displayText << "\n"
+        @displayText[@offset..@offset+@linesToShow].each {|line|
+            drawFormattedTextEx(overlay, xLeft, coordinateY += 30, 450, line, @base, @shadow)
         }
 
-        pbFadeInAndShow(@sprites) { pbUpdate }
-        drawPage()
+        @sprites["scroll_bar"].y = 48 + (Graphics.width - 192) * (@offset / @displayText.length.to_f)
+    end    
+
+    def pbUpdate
+        pbUpdateSpriteHash(@sprites)
     end
 
     def pbEndScene
@@ -136,45 +107,47 @@ class TribalBonusScene
     end
 
     def pbScene
-        returnIndex = -1
+        returnIndex = 0
 
         Graphics.update
         Input.update
         pbUpdate
         dorefresh = false
+
+        offsetMax = @displayText.length - @linesToShow
         
-        if Input.repeat?(Input::LEFT)
-            # Go to previous page if not already on the first page
-            if @page > 1
-                @page -= 1
-                dorefresh = true
-            end
-            returnIndex = @page
-        elsif Input.repeat?(Input::RIGHT)
-            # Go to next page if not already on the last page
-            if @page < PAGE_TITLES.length()
-                @page += 1
-                dorefresh = true
-            end
-            returnIndex = @page
-        elsif Input.repeat?(Input::UP)
+        if Input.repeat?(Input::UP)
             # Scroll up on the Tribal Info page if not already at the top
             if @offset > 0
                 @offset = @offset - 1
                 dorefresh = true
-            end
-            returnIndex = @page + @offset
-        elsif Input.repeat?(Input::DOWN)
-            # Scroll down on the Tribal Info page if not already at the bottom
-            if @offset < @displayText.length - @linesToShow
-                @offset = @offset + 1
+            elsif Input.trigger?(Input::UP)
+                @offset = offsetMax
                 dorefresh = true
             end
-            returnIndex = @page + @offset
+        elsif Input.repeat?(Input::DOWN)
+            # Scroll down on the Tribal Info page if not already at the bottom
+            if @offset < offsetMax
+                @offset = @offset + 1
+                dorefresh = true
+            elsif Input.trigger?(Input::DOWN)
+                @offset = 0
+                dorefresh = true
+            end
+        elsif Input.repeat?(Input::JUMPUP) # Jump multiple lines
+            if @offset > 0
+                @offset = @offset - @linesToShow
+                @offset = 0 if @offset < 0
+                dorefresh = true
+            end
+        elsif Input.repeat?(Input::JUMPDOWN)
+            if @offset < offsetMax
+                @offset = @offset + @linesToShow
+                @offset = offsetMax if @offset > offsetMax
+                dorefresh = true
+            end
         elsif Input.trigger?(Input::BACK)
             returnIndex = -1
-        else
-            returnIndex = @page
         end
         
         # If the page has changed, redraw the page
@@ -199,7 +172,7 @@ class TribalBonusScreen
         @scene.pbStartScene()
         loop do
             cmd = @scene.pbScene
-            break if cmd<0   # Cancel/Exit
+            break if cmd < 0   # Cancel/Exit
         end
         @scene.pbEndScene
     end
