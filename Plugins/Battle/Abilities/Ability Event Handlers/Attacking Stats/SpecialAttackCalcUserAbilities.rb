@@ -124,3 +124,10 @@ BattleHandlers::SpecialAttackCalcUserAbility.add(:COLDCALCULATION,
       next spAtkMult
   }
 )
+
+BattleHandlers::SpecialAttackCalcUserAbility.add(:EXTREMEENERGY,
+  proc { |_ability, _user, _battle, spAtkMult|
+      spAtkMult *= 1.5
+      next spAtkMult
+  }
+)

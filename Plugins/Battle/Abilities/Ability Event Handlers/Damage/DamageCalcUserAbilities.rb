@@ -368,12 +368,6 @@ BattleHandlers::DamageCalcUserAbility.add(:WINDY,
   }
 )
 
-BattleHandlers::DamageCalcUserAbility.add(:EXTREMEHEAT,
-  proc { |_ability, _user, _target, _move, mults, _baseDmg, _type, _aiCheck|
-      mults[:attack_multiplier] *= 1.5
-  }
-)
-
 BattleHandlers::DamageCalcUserAbility.add(:SPACEINTERLOPER,
   proc { |_ability, _user, _target, _move, mults, _baseDmg, _type, _aiCheck|
       mults[:attack_multiplier] *= 0.5

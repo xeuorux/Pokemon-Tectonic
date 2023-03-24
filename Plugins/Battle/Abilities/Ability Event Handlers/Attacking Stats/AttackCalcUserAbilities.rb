@@ -180,3 +180,10 @@ BattleHandlers::AttackCalcUserAbility.add(:FEELTHEBURN,
       next attackMult
   }
 )
+
+BattleHandlers::AttackCalcUserAbility.add(:EXTREMEPOWER,
+  proc { |_ability, _user, _battle, attackMult|
+      attackMult *= 1.5
+      next attackMult
+  }
+)

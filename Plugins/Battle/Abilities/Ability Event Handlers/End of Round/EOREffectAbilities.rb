@@ -112,13 +112,15 @@ BattleHandlers::EOREffectAbility.add(:WARMTHCYCLE,
   }
 )
 
-BattleHandlers::EOREffectAbility.add(:EXTREMEHEAT,
+BattleHandlers::EOREffectAbility.add(:EXTREMEPOWER,
   proc { |_ability, battler, battle|
       battle.pbShowAbilitySplash(battler)
       battler.applyFractionalDamage(1.0 / 10.0, false)
       battle.pbHideAbilitySplash(battler)
   }
 )
+
+BattleHandlers::EOREffectAbility.copy(:EXTREMEPOWER,:EXTREMEENERGY)
 
 BattleHandlers::EOREffectAbility.add(:TENDERIZE,
   proc { |_ability, battler, _battle|

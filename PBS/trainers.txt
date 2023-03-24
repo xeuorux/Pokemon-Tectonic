@@ -49,7 +49,7 @@ Pokemon = SEEDOT,8
 #-------------------------------
 [LASS2,Sienna]
 Pokemon = PICHU,8
-    AbilityIndex = 0 # Audacity
+    AbilityIndex = 0 # Extreme Energy
 Pokemon = PONYTA,8
     AbilityIndex = 0 # Sun Chaser
 #-------------------------------
@@ -554,8 +554,8 @@ Pokemon = SKIPLOOM,20
     EV = 20,20,0,10,20,0
 Pokemon = PIKACHU,20
     Moves = ELECTROBALL,NUZZLE,DRAININGKISS,SHOUT
-    AbilityIndex = 0 # Audacity
-    Item = FROSTORB
+    AbilityIndex = 0 # Extreme Energy
+    Item = LIFEORB
     EV = 0,20,10,20,20,0
 Pokemon = BUTTERFREE,20
     Moves = GUST,ELECTROWEB,CLACKACLACK,PSYBEAM
@@ -886,7 +886,7 @@ Pokemon = EXCADRILL,66
 [ELDER,Logun]
 Pokemon = RAICHU,70
     Moves = THUNDERBOLT,SURF,FOCUSBLAST,GRASSKNOT
-    AbilityIndex = 0 # Audacity
+    AbilityIndex = 1 # Breakthrough
     Item = SITRUSBERRY
 Pokemon = CORVIKNIGHT,70
     AbilityIndex = 0 # Mirror Armor
