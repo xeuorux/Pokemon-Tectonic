@@ -431,7 +431,8 @@ Item = LIFEORB
 #-------------------------------
 [PARASECT]
 Ability = INFECTED
-Moves1 = SOULRIP,XSCISSOR,SPORE
+Moves1 = SOULRIP,XSCISSOR,SPORE,PRIMEVALSANDSTORM
+Moves2 = ROCKSLIDE,LEECHLIFE
 HPMult = 6.0
 Item = MUSCLEBAND
 #-------------------------------
