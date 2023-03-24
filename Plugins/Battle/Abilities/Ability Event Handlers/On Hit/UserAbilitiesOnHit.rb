@@ -172,6 +172,20 @@ BattleHandlers::UserAbilityOnHit.add(:WILLBREAK,
   }
 )
 
+BattleHandlers::UserAbilityOnHit.add(:RENDINGCLAWS,
+  proc { |ability, user, target, move, battle, aiChecking, aiNumHits|
+    next unless target.damageState.critical
+    if aiChecking
+      ret = 0
+      aiNumHits.times do |i|
+          ret += getMultiStatDownEffectScore([:ATTACK,2,:SPECIAL_ATTACK,2], target, user, i)
+      end
+      next ret
+    end
+    target.pbLowerMultipleStatStages([:ATTACK,2,:SPECIAL_ATTACK,2], user, showAbilitySplash: true)
+  }
+)
+
 #########################################
 # Other Abilities
 #########################################

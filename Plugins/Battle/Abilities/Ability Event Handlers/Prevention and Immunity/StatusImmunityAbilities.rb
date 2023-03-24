@@ -95,3 +95,21 @@ BattleHandlers::StatusImmunityAbility.add(:STABILITY,
       next true if battler.battle.pbWeather == :Eclipse
   }
 )
+
+BattleHandlers::StatusImmunityAbility.add(:FIGHTINGVIGOR,
+  proc { |_ability, _battler, status|
+      next true if status == :NUMB
+  }
+)
+
+BattleHandlers::StatusImmunityAbility.add(:GROTESQUEVITALS,
+  proc { |_ability, _battler, status|
+      next true if status == :POISON
+  }
+)
+
+BattleHandlers::StatusImmunityAbility.add(:WELLSUPPLIED,
+  proc { |_ability, _battler, status|
+      next true if %i[BURN FROSTBITE].include?(status)
+  }
+)
