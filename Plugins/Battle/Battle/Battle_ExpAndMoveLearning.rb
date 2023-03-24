@@ -195,7 +195,7 @@ class PokeBattle_Battle
             exp = (exp * 1.3).floor
         end
         exp  = (exp * 1.1).floor if playerTribalBonus.hasTribeBonus?(:LOYAL)
-        exp  = (exp * 1.5).floor if @field.effectActive?(:BLISS)
+        exp  = (exp * 1.5).floor if @field.effectActive?(:Bliss)
         # Modify Exp gain based on pkmn's held item
         i = BattleHandlers.triggerExpGainModifierItem(pkmn.item, pkmn, exp)
         i = BattleHandlers.triggerExpGainModifierItem(@initialItems[0][idxParty], pkmn, exp) if i < 0
