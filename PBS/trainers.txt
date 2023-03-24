@@ -979,7 +979,7 @@ Pokemon = DOTTLER,26
     Item = SITRUSBERRY
 Pokemon = HERDIER,27
     Moves = SEISMICTOSS,CHILL,POUT
-    AbilityIndex = 1 # Break Through
+    AbilityIndex = 0 # Breakthrough
 Pokemon = CHANSEY,27
     Moves = SEISMICTOSS,CHIBLOCK,ANGELSKISS
     AbilityIndex = 0 # Serene Grace
@@ -1248,7 +1248,7 @@ Pokemon = SLURPUFF,60
 #-------------------------------
 [NURSE,Joy]
 Pokemon = HAPPINY,20
-    AbilityIndex = 1 # Serene Grace
+    AbilityIndex = 0 # Serene Grace
 #-------------------------------
 [WAITRESS,Linnea]
 Pokemon = COMBEE,15
@@ -2694,7 +2694,7 @@ Pokemon = ZANGOOSE,53
 #-------------------------------
 [CYCLIST_F2,Lukka]
 Pokemon = BLISSEY,51
-    AbilityIndex = 1 # Serene Grace
+    AbilityIndex = 0 # Serene Grace
 Pokemon = CONKELDURR,52
     AbilityIndex = 1 # Quick Build
     Item = MUSCLEBAND
