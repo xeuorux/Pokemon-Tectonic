@@ -612,6 +612,7 @@
 610,BLISS,Bliss,"Increase the EXP gained from battles in which it participates by 50%."
 611,HERDING,Herding,"Wild Pokemon are more likely to hold items and to be species you've never caught before."
 612,EXTREMEENERGY,Extreme Energy,"Increases Sp. Atk by 50%, but loses 1/10 HP every turn."
+613,STRESSFUL,Stressful,"Makes the foe stressed and unable to eat Berries or activate Gems."
 1000,JUSTIFIED,Justified,"Raises Attack when hit by a Dark-type move."
 1001,ADAPTABILITY,Adaptability,"Powers up moves of the same type."
 1002,HUGEPOWER,Huge Power,"Raises the Pokémon's Attack stat."

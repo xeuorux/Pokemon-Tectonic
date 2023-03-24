@@ -57,6 +57,7 @@ def pbBattleGem(user, type, move, mults, moveType, aiChecking = false)
     # Pledge moves never consume Gems
     return if move.is_a?(PokeBattle_PledgeMove)
     return if moveType != type
+    return unless user.canConsumeGem?
     user.applyEffect(:GemConsumed, user.item_id) unless aiChecking
     mults[:base_damage_multiplier] *= 1.5
 end

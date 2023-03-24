@@ -2044,8 +2044,8 @@ Pokemon = SCIZOR,47
 #-------------------------------
 [WORKER3,Seamus]
 Pokemon = TYRANITAR,47
-    AbilityIndex = 1 # Burn Heal
-    Item = FLAMEORB
+    AbilityIndex = 0 # Sand Burst
+    Item = SMOOTHROCK
 Pokemon = TOGEDEMARU,46
     AbilityIndex = 0 # Iron Barbs
 Pokemon = ARBOK,46
@@ -2628,8 +2628,8 @@ Pokemon = BRELOOM,55
     AbilityIndex = 0 # Technician
     Item = COBABERRY
 Pokemon = TYRANITAR,55
-    AbilityIndex = 1 # Burn Heal
-    Item = FLAMEORB
+    AbilityIndex = 1 # Stressful
+    Item = CHOPLEBERRY
 Pokemon = ALAKAZAM,55
     AbilityIndex = 0 # Warping Effect
     Item = FOCUSSASH
@@ -3410,7 +3410,7 @@ Pokemon = CHANDELURE,65
 Pokemon = TYRANITAR,65
     Name = Autochthon
     Moves = CRUNCH,ROCKSLIDE,EARTHQUAKE,IRONTAIL
-    AbilityIndex = 1 # Burn Heal
+    AbilityIndex = 1 # Stressful
 #-------------------------------
 [POKEMONTRAINER_Yezera,Yezera,9]
 ExtendsVersion = 8
@@ -5009,8 +5009,8 @@ Pokemon = TYRANITAR,70
     Name = Autochthon
     Gender = male
     Moves = ROCKSLIDE,LASHOUT,STOMPINGTANTRUM,ROCKPOLISH
-    AbilityIndex = 1 # Burn Heal
-    Item = FLAMEORB
+    AbilityIndex = 1 # Stressful
+    Item = LEFTOVERS
 Pokemon = TOGEKISS,70
     Name = Artemisia
     Gender = female
