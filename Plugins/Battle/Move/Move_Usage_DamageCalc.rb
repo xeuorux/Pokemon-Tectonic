@@ -337,11 +337,11 @@ class PokeBattle_Move
         end      
 
         # Noble tribe
-        if user.hasTribeBonus?(:NOBLE)
+        if user.hasTribeBonus?(:SCAVENGER)
             if aiChecking
-                multipliers[:final_damage_multiplier] *= 1.2 if user.hasGem?
+                multipliers[:final_damage_multiplier] *= 1.1 if user.hasGem?
             else
-                multipliers[:final_damage_multiplier] *= 1.2 if user.effectActive?(:GemConsumed)
+                multipliers[:final_damage_multiplier] *= 1.1 if user.effectActive?(:GemConsumed)
             end
         end
 
@@ -357,7 +357,12 @@ class PokeBattle_Move
 
         # Stampede tribe
         if target.hasTribeBonus?(:STAMPEDE) && target.effectActive?(:ChoseAttack)
-            multipliers[:final_damage_multiplier] *= 0.9
+            multipliers[:final_damage_multiplier] *= 0.92
+        end
+
+        # Noble tribe
+        if target.hasTribeBonus?(:NOBLE) && target.effectActive?(:ChoseStatus)
+            multipliers[:final_damage_multiplier] *= 0.92
         end
     end
       

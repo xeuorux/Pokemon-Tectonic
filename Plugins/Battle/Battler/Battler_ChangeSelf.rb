@@ -58,7 +58,7 @@ class PokeBattle_Battler
         else
             reduction = @totalhp * fraction
         end
-        reduction /= 2.0 if hasTribeBonus?(:ANIMATED)
+        reduction *= 0.66 if hasTribeBonus?(:ANIMATED)
         reduction = reduction.ceil
         if showDamageAnimation
             @damageState.displayedDamage = reduction
@@ -79,7 +79,7 @@ class PokeBattle_Battler
         return unless takesIndirectDamage?
         return if hasActiveAbility?(:ROCKHEAD)
         # return if @battle.pbAllFainted?(@idxOpposingSide)
-        damage /= 2.0 if hasTribeBonus?(:ANIMATED)
+        damage *= 0.66 if hasTribeBonus?(:ANIMATED)
         damage = damage.round
         damage = 1 if damage < 1
         if !cushionRecoil && hasActiveAbility?(:ALLYCUSHION)
