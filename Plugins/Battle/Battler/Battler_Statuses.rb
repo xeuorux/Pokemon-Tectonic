@@ -545,7 +545,7 @@ immuneTypeRealName))
     #=============================================================================
     def pbFlinch(_user = nil)
         unless @battle.moldBreaker
-            return if hasActiveAbility?(:INNERFOCUS)
+            return if hasActiveAbility?(%i[INNERFOCUS JUGGERNAUT])
             return if @battle.pbCheckSameSideAbility(:HEARTENINGAROMA,@index)
         end
         applyEffect(:Flinch)

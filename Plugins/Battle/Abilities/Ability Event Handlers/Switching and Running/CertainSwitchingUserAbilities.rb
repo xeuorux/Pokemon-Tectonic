@@ -8,3 +8,5 @@ BattleHandlers::CertainSwitchingUserAbility.add(:SLICKSURFACE,
         next true
     }
 )
+
+BattleHandlers::CertainSwitchingUserAbility.copy(:SLICKSURFACE, :JUGGERNAUT)

@@ -133,7 +133,7 @@ BattleHandlers::EOREffectAbility.add(:TENDERIZE,
 
 BattleHandlers::EOREffectAbility.add(:LIVINGARMOR,
   proc { |_ability, battler, battle|
-      battler.applyFractionalHealing(1.0 / 16.0, showAbilitySplash: true)
+      battler.applyFractionalHealing(1.0 / 10.0, showAbilitySplash: true)
   }
 )
 
@@ -165,5 +165,23 @@ BattleHandlers::EOREffectAbility.add(:GROWUP,
       battler.pbChangeForm(battler.form + 1, formChangeMessage)
       battle.pbDisplay(_INTL("#{battler.pbThis} is fully grown!")) if battler.form == 3
       battle.pbHideAbilitySplash(battler)
+  }
+)
+
+BattleHandlers::EOREffectAbility.add(:FIGHTINGVIGOR,
+  proc { |_ability, battler, _battle|
+      battler.applyFractionalHealing(1.0 / 12.0, showAbilitySplash: true)
+  }
+)
+
+BattleHandlers::EOREffectAbility.add(:GROTESQUEVITALS,
+  proc { |_ability, battler, _battle|
+      battler.applyFractionalHealing(1.0 / 12.0, showAbilitySplash: true)
+  }
+)
+
+BattleHandlers::EOREffectAbility.add(:WELLSUPPLIED,
+  proc { |_ability, battler, _battle|
+      battler.applyFractionalHealing(1.0 / 12.0, showAbilitySplash: true)
   }
 )

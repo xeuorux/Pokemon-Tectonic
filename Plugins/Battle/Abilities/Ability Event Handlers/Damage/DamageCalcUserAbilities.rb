@@ -412,7 +412,7 @@ BattleHandlers::DamageCalcUserAbility.add(:UNCANNYCOLD,
 
 BattleHandlers::DamageCalcUserAbility.add(:MARINEMENACE,
   proc { |_ability, _user, _target, move, mults, _baseDmg, _type|
-      mults[:base_damage_multiplier] *= 1.5 if move.function == "0CB"
+      mults[:base_damage_multiplier] *= 1.5 if move.function == "0CB" # Dive, # Depth Charge
   }
 )
 
@@ -454,5 +454,11 @@ BattleHandlers::DamageCalcUserAbility.add(:HOOLIGAN,
 BattleHandlers::DamageCalcUserAbility.add(:AURORAPRISM,
   proc { |_ability, user, _target, _move, mults, _baseDmg, type|
       mults[:base_damage_multiplier] *= 1.5 unless user.pbHasType?(type)
+  }
+)
+
+BattleHandlers::DamageCalcUserAbility.add(:STEEPFLYING,
+  proc { |_ability, _user, _target, move, mults, _baseDmg, _type|
+      mults[:base_damage_multiplier] *= 1.5 if move.function == "0C9" # Fly, Divebomb
   }
 )

@@ -22,3 +22,15 @@ BattleHandlers::AbilityOnStatusInflicted.add(:SYNCHRONIZE,
         end
     }
 )
+
+BattleHandlers::AbilityOnStatusInflicted.add(:DARING,
+    proc { |_ability, battler, _user, _status|
+        battler.tryRaiseStat(:ATTACK, battler, increment: 2, showAbilitySplash: true)
+    }
+)
+
+BattleHandlers::AbilityOnStatusInflicted.add(:IMPULSIVE,
+    proc { |_ability, battler, _user, _status|
+        battler.tryRaiseStat(:SPECIAL_ATTACK, battler, increment: 2, showAbilitySplash: true)
+    }
+)
