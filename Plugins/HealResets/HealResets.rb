@@ -77,9 +77,10 @@ def playRespawningTutorial
   pbBGMFade(1.0)
   pbWait(Graphics.frame_rate)
   pbSEPlay("Voltorb Flip tile",150,100)
-  pbMessage(_INTL("\\wmAfter a full party heal, defeated enemy trainers will be battle ready again!\\wtnp[80]\1"))
-  pbMessage(_INTL("\\wmFor example, healing at a Pokemon Center triggers this.\\wtnp[80]\1"))
-  pbMessage(_INTL("\\wmTrainers who fled won't come back, however.\\wtnp[80]\1"))
+  dur = tutorialMessageDuration
+  pbMessage(_INTL("\\wmAfter a full party heal, defeated enemy trainers will be battle ready again!\\wtnp[#{dur}]\1"))
+  pbMessage(_INTL("\\wmFor example, healing at a Pokemon Center triggers this.\\wtnp[#{dur}]\1"))
+  pbMessage(_INTL("\\wmTrainers who fled won't come back, however.\\wtnp[#{dur}]\1"))
   pbBGMPlay(currentBGM)
 end
 

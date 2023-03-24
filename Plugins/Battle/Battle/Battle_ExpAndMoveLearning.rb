@@ -16,9 +16,10 @@ def playWildEXPTutorial
     pbBGMFade(1.0)
     pbWait(Graphics.frame_rate)
     pbSEPlay("Voltorb Flip tile",150,100)
-    pbMessage(_INTL("\\wmWild Pokemon don't give experience in Pokemon Tectonic.\\wtnp[80]\1"))
-    pbMessage(_INTL("\\wmDon't worry, there's an abundance of experience to gain in other ways.\\wtnp[80]\1"))
-    pbMessage(_INTL("\\wmIf you encounter a Pokemon you don't want, run away. It's guaranteed!\\wtnp[80]\1"))
+    dur = tutorialMessageDuration
+    pbMessage(_INTL("\\wmWild Pokemon don't give experience in Pokemon Tectonic.\\wtnp[#{dur}]\1"))
+    pbMessage(_INTL("\\wmDon't worry, there's an abundance of experience to gain in other ways.\\wtnp[#{dur}]\1"))
+    pbMessage(_INTL("\\wmIf you encounter a Pokemon you don't want, run away. It's guaranteed!\\wtnp[#{dur}]\1"))
 end
 
 class PokeBattle_Battle
