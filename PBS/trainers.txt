@@ -1462,16 +1462,17 @@ Pokemon = CHATOT,40
     Item = SITRUSBERRY
 #-------------------------------
 [SWIMMER_M,Stannis]
-Pokemon = ALOMOMOLA,33
-    AbilityIndex = 0 # Slick Surface
-Pokemon = HAKAMOO,31
-    AbilityIndex = 1 # Plot Armor
-    Item = DRAGONGEM
-Pokemon = LUNATONE,32
-    AbilityIndex = 1 # Night Light
-Pokemon = EMOLGA,33
-    AbilityIndex = 0 # Overwhelm
+Policies = MOONGLOW_TEAM
+Pokemon = ALOMOMOLA,35
+    AbilityIndex = 1 # Moon Gaze
+Pokemon = THIEVUL,35
+    AbilityIndex = 0 # Plot Armor
     Item = SITRUSBERRY
+Pokemon = LUNATONE,36
+    AbilityIndex = 1 # Night Light
+Pokemon = EMOLGA,36
+    AbilityIndex = 1 # FLYBY
+    Item = EJECTBUTTON
 #-------------------------------
 [WAITRESS,Carmilla]
 Pokemon = DURANT,37
