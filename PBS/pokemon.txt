@@ -25597,7 +25597,6 @@ Color = Green
 Shape = Head
 Kind = Posy Picker
 Pokedex = It stretches sticky vines out from its head and picks flowers to adorn itself with. When it doesn't have any flowers, it feels uneasy.
-WildItemUncommon = FAIRYSEED
 BattlerPlayerX = 0
 BattlerPlayerY = 21
 BattlerEnemyX = 0
