@@ -979,7 +979,7 @@ Pokemon = DOTTLER,26
     Item = SITRUSBERRY
 Pokemon = HERDIER,27
     Moves = SEISMICTOSS,CHILL,POUT
-    AbilityIndex = 0 # Breakthrough
+    AbilityIndex = 0 # Break Through
 Pokemon = CHANSEY,27
     Moves = SEISMICTOSS,CHIBLOCK,ANGELSKISS
     AbilityIndex = 0 # Serene Grace
@@ -1220,7 +1220,7 @@ Pokemon = MZANGOOSE,60
 [ULTRALAINIE,Lainie]
 Policies = LAINIE
 Pokemon = SOLGALEO,65
-    Moves = SUNSTEELSTRIKE,FLAREBLITZ,MORNINGSUN,PSYCHICFANGS
+    Moves = SUNSTEELSTRIKE,FLAREBLITZ,SYNTHESIS,PSYCHICFANGS
     AbilityIndex = 0 # Full Metal Body
     Item = LEFTOVERS
 Pokemon = LUNALA,65
@@ -2346,7 +2346,7 @@ Pokemon = URSHIFU,70
 [FORMERCHAMP_Casey,Casey]
 Policies = SUN_TEAM
 Pokemon = CHERRIM,70
-    Moves = SUNSHINE,MORNINGSUN,SOLARBEAM,FIREBLAST
+    Moves = SUNSHINE,SYNTHESIS,SOLARBEAM,FIREBLAST
     AbilityIndex = 0 # Flower Gift
     Item = HEATROCK
     EV = 0,20,0,20,20,10
