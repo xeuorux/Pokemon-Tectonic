@@ -194,7 +194,7 @@ HPMult = 6.0
 #-------------------------------
 [LEAFEON]
 Ability = RELUCTANTBLADE
-Moves1 = RAZORLEAF,BODYSLAM,PRIMEVALMOONBASK
+Moves1 = RAZORLEAF,BODYSLAM,PRIMEVALPUZZLEROOM
 Moves2 = AURATRICK,HYPERVOICE
 HPMult = 6.0
 #-------------------------------
@@ -300,7 +300,7 @@ HPMult = 2.0
 #-------------------------------
 [POOCHYENA]
 Ability = INTIMIDATE
-Moves1 = BITE,TAKEDOWN,PRIMEVALMOONBASK
+Moves1 = BITE,TAKEDOWN,PRIMEVALPUZZLEROOM
 Moves2 = DISARMINGVOICE
 HPMult = 6.0
 #-------------------------------
@@ -593,7 +593,7 @@ Item = WIDELENS
 #-------------------------------
 [RUBARIOR]
 Ability = MAGICBOUNCE
-Moves1 = FOULPLAY,CURSE,PRIMEVALMOONBASK
+Moves1 = FOULPLAY,CURSE,PRIMEVALPUZZLEROOM
 Moves2 = TRICKYTOXINS,MISTBURST
 HPMult = 6.0
 Item = LEFTOVERS

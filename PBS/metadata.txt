@@ -716,7 +716,7 @@ Environment = None
 # Ice Cave
 Outdoor = false
 ShowArea = true
-Bicycle = false
+Bicycle = true
 Weather = Blizzard,100
 MapPosition = 0,7,7
 BattleBack = cave1
@@ -1360,7 +1360,6 @@ MapPosition = 0,15,4
 Outdoor = true
 ShowArea = true
 Bicycle = false
-Weather = HeavyRain,100
 BattleBack = water
 #-------------------------------
 [241]

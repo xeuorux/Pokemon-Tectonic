@@ -15,7 +15,7 @@
 2014,PRIMEVALDRAGONDANCE,Primeval Dragon Dance,60D,0,DRAGON,Status,0,1,0,User,0,doy,"The user sharply boosts its Attack and Speed, and becomes Dragon-type.",DRAGONDANCE
 2015,PRIMEVALTORMENT,Primeval Torment,60E,0,DARK,Status,100,1,0,AllNearFoes,0,bey,"The user torments and enrages the foe, making it incapable of using the same move twice in a row.",TORMENT
 2016,PRIMEVALLASERFOCUS,Primeval Laser Focus,60F,0,STEEL,Status,0,1,0,User,0,dy,"The user focuses intently, making every future attack critical. The user becomes a Steel-type.",LASERFOCUS
-2017,PRIMEVALMOONBASK,Primeval Moonbask,610,0,FAIRY,Status,0,1,0,User,0,dy,"The user restores its HP, swaps its Attack stats, swaps its Defense stats, and becomes Fairy-type.",MOONLIGHT
+2017,PRIMEVALPUZZLEROOM,Primeval Puzzle Room,610,0,FAIRY,Status,0,1,0,User,0,dy,"The user creates a Puzzle Room for 5 turns, raises both of its Attacking stats, and becomes Fairy-type.",PUZZLEROOM
 2018,PRIMEVALPOISONGAS,Primeval Poison Gas,611,0,POISON,Status,100,1,0,AllNearFoes,0,bey,"A cloud of poison gas is sprayed at all nearby foes, poisoning them. User becomes a Poison-type.",POISONGAS
 2019,PRIMEVALENDURE,Primeval Endure,612,0,NORMAL,Status,0,1,0,User,4,y,"The user endures the next three hits which would faint it. User becomes a Normal-type.",ENDURE
 2020,PRIMEVALIGNITE,Primeval Ignite,613,0,FIRE,Status,100,1,0,AllNearFoes,0,bey,"The user inflicts burns on all nearby foes. User becomes a Fire-type.",IGNITE

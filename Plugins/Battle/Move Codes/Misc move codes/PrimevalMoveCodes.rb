@@ -222,19 +222,13 @@ class PokeBattle_Move_60F < PokeBattle_Move
     end
 end
 
-# Empowered Moonlight
-class PokeBattle_Move_610 < PokeBattle_HalfHealingMove
+# Empowered Puzzle Room
+class PokeBattle_Move_610 < PokeBattle_Move_51A
     include EmpoweredMove
 
     def pbEffectGeneral(user)
         super
-        user.attack, user.spatk = user.spatk, user.attack
-        @battle.pbDisplay(_INTL("{1} switched its Attack and Sp. Atk!", user.pbThis))
-
-        user.defense, user.spdef = user.spdef, user.defense
-        @battle.pbDisplay(_INTL("{1} switched its Defense and Sp. Def!", user.pbThis))
-        user.effects[:EmpoweredMoonlight] = !user.effects[:EmpoweredMoonlight]
-
+        user.pbRaiseMultipleStatStages([:ATTACK, 1, :SPECIAL_ATTACK, 1], user, move: self)
         transformType(user, :FAIRY)
     end
 end
