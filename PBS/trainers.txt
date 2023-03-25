@@ -2007,11 +2007,11 @@ Pokemon = METAGROSS,45
     Moves = METEORMASH,BULLETPUNCH,BODYPRESS,PSYCHOCUT
     AbilityIndex = 1 # Heavy Metal
 Pokemon = LUNATONE,45
-    Moves = PSYCHIC,SIGNALBEAM,MOONBLAST,METEORBEAM
+    Moves = PSYCHIC,THUNDERBOLT,MOONBLAST,METEORBEAM
     AbilityIndex = 0 # Levitate
     Item = POWERHERB
 Pokemon = CRABOMINABLE,45
-    Moves = ENLIGHTENEDHIT,ICEHAMMER,BRICKBREAK,THUNDERPUNCH
+    Moves = ENLIGHTENEDHIT,ICEHAMMER,BRICKBREAK,KNOCKOFF
     AbilityIndex = 0 # Sturdy
 Pokemon = GLALIE,45
     Moves = CRYSTALCRUSH,CRUNCH,BULLDOZE,ICESHARD
@@ -2021,7 +2021,7 @@ Pokemon = GLALIE,45
 [LEADER_Noel_2,Noel]
 Extends = LEADER_Noel,Noel,0
 Pokemon = GIRAFARIG,45
-    Moves = FOULPLAY,PSYCHICFANGS,FLING,THIEF
+    Moves = FOULPLAY,PSYCHICFANGS,FLING,IRONHEAD
     AbilityIndex = 0 # Trickster Aura
     Item = IRONBALL
 Pokemon = METAGROSS,45
@@ -2029,7 +2029,7 @@ Pokemon = METAGROSS,45
 #-------------------------------
 [LEADER_Noel_2,Noel,1]
 ExtendsVersion = 0
-Policies = CURSE_DELEVELED
+Policies = CURSE_EXTRA_TYPES
 #-------------------------------
 [SWIMMER_F3,Bree]
 Pokemon = SCARODON,46
