@@ -785,11 +785,10 @@ LandSparse,20
 #-------------------------------
 [301] # County Park
 Land,20
-    20,BUNEARY,14,17
-    20,BUNNELBY,14,17
-    20,FLETCHLING,14,17
-    20,HATENNA,14,17
-    20,KRICKETOT,14,17
+    25,BUNNELBY,14,17
+    25,FLETCHLING,14,17
+    25,HATENNA,14,17
+    25,KRICKETOT,14,17
 FloweryGrass,20
     25,LEDYBA,14,17
     25,SUNKERN,14,17
