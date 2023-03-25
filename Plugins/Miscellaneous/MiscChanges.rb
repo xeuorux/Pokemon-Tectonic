@@ -306,6 +306,7 @@ end
 
 def pbStartTrade(pokemonIndex,newpoke,nickname,trainerName,trainerGender=0)
   myPokemon = $Trainer.party[pokemonIndex]
+  pbTakeItemFromPokemon(myPokemon) if myPokemon.hasItem?
   opponent = NPCTrainer.new(trainerName,trainerGender)
   opponent.id = $Trainer.make_foreign_ID
   yourPokemon = nil
