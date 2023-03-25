@@ -308,7 +308,7 @@ class PokeBattle_Move
     def pbCalcTribeBasedDamageMultipliers(user,target,type,multipliers,checkingForAI=false)
         # Bushwacker tribe
         if user.hasTribeBonus?(:BUSHWACKER)
-            if aiChecking
+            if checkingForAI
                 expectedTypeMod = @battleAI.pbCalcTypeModAI(type, user, target, self)
                 multipliers[:final_damage_multiplier] *= 1.5 if Effectiveness.resistant?(expectedTypeMod)
             else
@@ -338,7 +338,7 @@ class PokeBattle_Move
 
         # Noble tribe
         if user.hasTribeBonus?(:SCAVENGER)
-            if aiChecking
+            if checkingForAI
                 multipliers[:final_damage_multiplier] *= 1.1 if user.hasGem?
             else
                 multipliers[:final_damage_multiplier] *= 1.1 if user.effectActive?(:GemConsumed)
