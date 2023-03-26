@@ -1338,7 +1338,7 @@ Environment = None
 Outdoor = false
 ShowArea = false
 Bicycle = false
-HealingSpot = 130,12,28
+HealingSpot = 130,15,28
 #-------------------------------
 [235]
 # Renovated House
