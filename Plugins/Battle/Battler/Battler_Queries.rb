@@ -182,7 +182,7 @@ class PokeBattle_Battler
 
     def items
         itemArray = @item_id.nil? ? [] : [@item_id]
-        itemArray.push(@battle.getRandomHeldItem)
+        itemArray.push(@battle.getRandomHeldItem) if TESTING_DOUBLE_QUALITIES
         return itemArray
     end
 
