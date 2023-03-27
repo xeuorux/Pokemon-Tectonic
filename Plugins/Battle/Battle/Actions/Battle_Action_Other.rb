@@ -127,7 +127,7 @@ class PokeBattle_Battle
         return if !battler.hasMega? || battler.mega?
         # Break Illusion
         if battler.hasActiveAbility?(:ILLUSION)
-            BattleHandlers.triggerTargetAbilityOnHit(battler.ability, nil, battler, nil, self)
+            BattleHandlers.triggerTargetAbilityOnHit(:ILLUSION, nil, battler, nil, self)
         end
         # Mega Evolve
         if !battler.boss
@@ -137,7 +137,7 @@ class PokeBattle_Battle
                 pbDisplay(_INTL("{1}'s fervent wish has reached {2}!", trainerName, battler.pbThis))
             else
                 pbDisplay(_INTL("{1}'s {2} is reacting to {3}'s {4}!",
-                battler.pbThis, battler.itemName, trainerName, pbGetMegaRingName(idxBattler)))
+                battler.pbThis, getItemName(battler.baseItem), trainerName, pbGetMegaRingName(idxBattler)))
             end
         else
             case battler.pokemon.megaMessage

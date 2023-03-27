@@ -172,8 +172,10 @@ class PokeBattle_Battle
         old_terrain = @field.terrain
         @field.terrain = newTerrain
         duration = fixedDuration ? 5 : -1
-        if duration > 0 && user && user.itemActive?
-            duration = BattleHandlers.triggerTerrainExtenderItem(user.item, newTerrain, duration, user, self)
+        if duration > 0 && user
+            user.eachActiveItem do |item|
+                duration = BattleHandlers.triggerTerrainExtenderItem(item, newTerrain, duration, user, self)
+            end
         end
         @field.terrainDuration = duration
         terrain_data = GameData::BattleTerrain.try_get(@field.terrain)
@@ -199,7 +201,7 @@ class PokeBattle_Battle
         eachBattler do |b|
             b.pbItemTerrainStatBoostCheck
             if user == b && b.hasActiveItem?(:TERRAINSEALANT)
-                pbDisplay(_INTL("{1}'s {2} keeps the terrain from expiring!", b.pbThis, b.itemName))
+                pbDisplay(_INTL("{1}'s {2} keeps the terrain from expiring!", b.pbThis, getItemName(b.baseItem)))
                 @field.pointAt(:TerrainSealant, b)
             end
         end
@@ -273,9 +275,10 @@ class PokeBattle_Battle
                     anyAffected = true
                 end
                 pbDisplay(_INTL("But no one was panicked.")) if showWeatherMessages && !anyAffected
-                @battlers.each do |b|
-                    next unless b&.abilityActive?
-                    BattleHandlers.triggerTotalEclipseAbility(b.ability, b, self)
+                eachBattler do |b|
+                    b.eachActiveAbility do |ability|
+                        BattleHandlers.triggerTotalEclipseAbility(ability, b, self)
+                    end
                 end
             when :Moonglow
                 pbDisplay(_INTL("The Full Moon rises!")) if showWeatherMessages
@@ -289,9 +292,10 @@ class PokeBattle_Battle
                     anyAffected = true
                 end
                 pbDisplay(_INTL("But no one was moonstruck.")) if showWeatherMessages && !anyAffected
-                @battlers.each do |b|
-                    next unless b&.abilityActive?
-                    BattleHandlers.triggerFullMoonAbility(b.ability, b, self)
+                eachBattler do |b|
+                    b.eachActiveAbility do |ability|
+                        BattleHandlers.triggerFullMoonAbility(ability, b, self)
+                    end
                 end
             end
             @field.specialTimer = 0
@@ -358,10 +362,10 @@ class PokeBattle_Battle
         sandstormDamage = 0
         priority.each do |b|
             # Weather-related abilities
-            if b.abilityActive?
+            b.eachActiveAbility do |ability|
                 oldHP = b.hp
-                BattleHandlers.triggerEORWeatherAbility(b.ability, curWeather, b, self)
-                b.pbHealthLossChecks(oldHP)
+                BattleHandlers.triggerEORWeatherAbility(ability, curWeather, b, self)
+                break if b.pbHealthLossChecks(oldHP)
             end
             # Weather damage
             # NOTE:
@@ -425,7 +429,7 @@ class PokeBattle_Battle
         if hailDamage > 0
             priority.each do |b|
                 next unless b.hasActiveAbility?(:ECTOPARTICLES)
-                pbShowAbilitySplash(b)
+                pbShowAbilitySplash(b, :ECTOPARTICLES)
                 healingMessage = _INTL("{1} absorbs the suffering from the hailstorm.", b.pbThis)
                 b.pbRecoverHP(hailDamage, true, true, true, healingMessage)
                 pbHideAbilitySplash(b)
@@ -435,7 +439,7 @@ class PokeBattle_Battle
         if sandstormDamage > 0
             priority.each do |b|
                 next unless b.hasActiveAbility?(:DESERTSCAVENGER)
-                pbShowAbilitySplash(b)
+                pbShowAbilitySplash(b, :DESERTSCAVENGER)
                 healingMessage = _INTL("{1} absorbs the suffering from the sandstorm", b.pbThis)
                 b.pbRecoverHP(sandstormDamage, true, true, true, healingMessage)
                 pbHideAbilitySplash(b)

@@ -691,7 +691,7 @@ end
 #===============================================================================
 class PokeBattle_Move_5A8 < PokeBattle_Move
     def pbFailsAgainstTarget?(user, target, show_message)
-        if target.item && !canRemoveItem?(user, target) && target.pbCanLowerStatStage?(:SPECIAL_DEFENSE,user,self)
+        if target.baseItem && !canRemoveItem?(user, target) && target.pbCanLowerStatStage?(:SPECIAL_DEFENSE,user,self)
             if show_message
                 @battle.pbDisplay(_INTL("But it failed!"))
             end
@@ -701,14 +701,14 @@ class PokeBattle_Move_5A8 < PokeBattle_Move
     end
 
     def pbEffectAgainstTarget(user, target)
-        if target.item != :BLACKSLUDGE
-            if target.item
-                itemName = target.itemName
+        if target.hasItem?(:BLACKSLUDGE)
+            if target.baseItem
+                itemName = getItemName(target.baseItem)
                 removalMessage = _INTL("{1} dropped its {2}!", target.pbThis, itemName)
-                removeItem(user, target, false, removalMessage)
+                removeItem(user, target, removalMessage)
             end
             target.item = :BLACKSLUDGE
-            @battle.pbDisplay(_INTL("{1} was forced to hold a {2}!", target.pbThis, target.itemName))
+            @battle.pbDisplay(_INTL("{1} was forced to hold a {2}!", target.pbThis, getItemName(target.baseItem)))
         end
         target.tryLowerStat(:SPECIAL_DEFENSE, user, move: self)
     end

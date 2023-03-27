@@ -957,12 +957,14 @@ end
 #===============================================================================
 class PokeBattle_Move_539 < PokeBattle_Move
     def pbEffectAfterAllHits(user, target)
-        return unless target.item&.is_berry? || target.item&.is_gem?
+        return unless target.baseItem
+        return unless target.baseItem.is_berry? || target.baseItem.is_gem?
         stealItem(user, target)
     end
 
     def getEffectScore(user, target)
-        return 0 unless canStealItem?(user, target, true) && (target.item&.is_berry? || target.item&.is_gem?)
+        return 0 unless canStealItem?(user, target, true)
+        return 0 unless target.baseItem.is_berry? || target.baseItem.is_gem?
         return 60
     end
 end
@@ -1086,15 +1088,15 @@ end
 class PokeBattle_Move_541 < PokeBattle_Move
     def pbEffectWhenDealingDamage(_user, target)
         return if target.damageState.substitute
-        return unless target.item
-        return unless CLOTHING_ITEMS.include?(target.item.id)
-        itemName = target.itemName
+        return unless target.baseItem
+        return unless CLOTHING_ITEMS.include?(target.baseItem.id)
+        itemName = getItemName(target.baseItem)
         target.pbRemoveItem
         @battle.pbDisplay(_INTL("{1}'s {2} went up in flames!", target.pbThis, itemName))
     end
 
     def getEffectScore(user, target)
-        return 30 if canRemoveItem?(user, target, true) && CLOTHING_ITEMS.include?(target.item.id)
+        return 30 if canRemoveItem?(user, target, true) && CLOTHING_ITEMS.include?(target.baseItem.id)
         return 0
     end
 end

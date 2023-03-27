@@ -1,7 +1,7 @@
 BattleHandlers::CertainSwitchingUserAbility.add(:SLICKSURFACE,
-    proc { |_ability, switcher, battle, trappingProc|
+    proc { |ability, switcher, battle, trappingProc|
         if trappingProc
-            battle.pbShowAbilitySplash(switcher)
+            battle.pbShowAbilitySplash(switcher, ability)
             battle.pbDisplay(_INTL("#{switcher.pbThis} can switch out regardless!"))
             battle.pbHideAbilitySplash(switcher)
         end

@@ -303,13 +303,13 @@ GameData::BattleEffect.register_effect(:Battler, {
     :increment_proc => proc do |battle, battler, _value, increment|
         case increment
         when 1
-            @battle.pbDisplay(_INTL("{1}'s critical hit chance was doubled!", battler.pbThis))
+            battle.pbDisplay(_INTL("{1}'s critical hit chance was doubled!", battler.pbThis))
         when 2
-            @battle.pbDisplay(_INTL("{1}'s critical hit chance was quadrupled!", battler.pbThis))
+            battle.pbDisplay(_INTL("{1}'s critical hit chance was quadrupled!", battler.pbThis))
         when 3
-            @battle.pbDisplay(_INTL("{1}'s is now 8 times more likely to get a crticial hit!", battler.pbThis))
+            battle.pbDisplay(_INTL("{1}'s is now 8 times more likely to get a crticial hit!", battler.pbThis))
         when 4
-            @battle.pbDisplay(_INTL("{1}'s is now 16 times more likely to get a crticial hit!", battler.pbThis))
+            battle.pbDisplay(_INTL("{1}'s is now 16 times more likely to get a crticial hit!", battler.pbThis))
         end
     end,
 })
@@ -352,7 +352,9 @@ GameData::BattleEffect.register_effect(:Battler, {
     :apply_proc => proc do |battle, battler, _value|
         battle.pbDisplay(_INTL("{1}'s Ability was suppressed!", battler.pbThis))
         battler.disableEffect(:Truant)
-        battler.pbOnAbilityChanged(battler.ability)
+        battler.eachAbility do |ability|
+            battler.pbOnAbilityChanged(ability)
+        end
     end,
 })
 
@@ -745,6 +747,7 @@ GameData::BattleEffect.register_effect(:Battler, {
 GameData::BattleEffect.register_effect(:Battler, {
     :id => :PriorityAbility,
     :real_name => "Priority Ability",
+    :type => :Ability,
     :resets_eor	=> true,
     :info_displayed => false,
 })
@@ -752,6 +755,7 @@ GameData::BattleEffect.register_effect(:Battler, {
 GameData::BattleEffect.register_effect(:Battler, {
     :id => :PriorityItem,
     :real_name => "Priority Item",
+    :type => :Item,
     :resets_eor	=> true,
     :info_displayed => false,
 })
@@ -1055,7 +1059,7 @@ GameData::BattleEffect.register_effect(:Battler, {
     :info_displayed => false,
     :apply_proc => proc do |battle, battler, _value|
         if battler.hasActiveAbility?(:UNBURDEN)
-            battle.pbShowAbilitySplash(battler)
+            battle.pbShowAbilitySplash(battler, :UNBURDEN)
             battle.pbDisplay(_INTL("{1} is unburdened of its item. Its Speed doubled!", battler.pbThis))
             battle.pbHideAbilitySplash(battler)
         end
@@ -1305,7 +1309,7 @@ GameData::BattleEffect.register_effect(:Battler, {
     :baton_passed => true,
     :is_mental => true,
     :apply_proc => proc do |battle, battler, _value|
-        battle.battle.pbAnimation(:LUCKYCHANT, battler, nil)
+        battle.pbAnimation(:LUCKYCHANT, battler, nil)
         battle.pbDisplay(_INTL("{1} became charmed! It will hit itself with its own Sp. Atk!", battler.pbThis))
     end,
     :disable_proc => proc do |battle, battler|

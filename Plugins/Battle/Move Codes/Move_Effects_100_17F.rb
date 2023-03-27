@@ -2211,7 +2211,7 @@ class PokeBattle_Move_160 < PokeBattle_Move
         target.tryLowerStat(:ATTACK, user, move: self)
         # Heal user
         if target.hasActiveAbility?(:LIQUIDOOZE)
-            @battle.pbShowAbilitySplash(target)
+            @battle.pbShowAbilitySplash(target, :LIQUIDOOZE)
             user.pbReduceHP(healAmount)
             @battle.pbDisplay(_INTL("{1} sucked up the liquid ooze!", user.pbThis))
             @battle.pbHideAbilitySplash(target)
@@ -2603,7 +2603,7 @@ class PokeBattle_Move_170 < PokeBattle_Move
             bearer = @battle.pbCheckGlobalAbility(:DAMP)
             unless bearer.nil?
                 if show_message
-                    @battle.pbShowAbilitySplash(bearer)
+                    @battle.pbShowAbilitySplash(bearer, :DAMP)
                     @battle.pbDisplay(_INTL("{1} cannot use {2}!", user.pbThis, @name))
                     @battle.pbHideAbilitySplash(bearer)
                 end

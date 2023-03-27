@@ -13,7 +13,7 @@ BattleHandlers::SpeedCalcItem.add(:CHOICECROWN,
 
 # Zenith Band
 BattleHandlers::AttackCalcUserItem.add(:ZENITHBAND,
-  proc { |_item, user, _battle, attackMult|
+  proc { |item, user, _battle, attackMult|
       attackMult *= 2.0
       next attackMult
   }
@@ -54,7 +54,7 @@ BattleHandlers::TargetItemOnHit.add(:JAGGEDHELMET,
     proc { |item,user,target,move,battle|
         next unless move.physicalMove?
         next if !user.takesIndirectDamage?
-        battle.pbDisplay(_INTL("{1} was badly hurt by the {2}!",user.pbThis,target.itemName))
+        battle.pbDisplay(_INTL("{1} was badly hurt by the {2}!",user.pbThis,getItemName(target.baseItem)))
         user.applyFractionalDamage(1.0/3.0)
     }
 )
@@ -63,7 +63,7 @@ BattleHandlers::TargetItemOnHit.add(:RUPTUREDRADIO,
     proc { |item,user,target,move,battle|
         next unless move.specialMove?
         next if !user.takesIndirectDamage?
-        battle.pbDisplay(_INTL("{1} was badly hurt by the {2}!",user.pbThis,target.itemName))
+        battle.pbDisplay(_INTL("{1} was badly hurt by the {2}!",user.pbThis,getItemName(target.baseItem)))
         user.applyFractionalDamage(1.0/3.0)
     }
 )
@@ -84,7 +84,7 @@ BattleHandlers::EORHealingItem.copy(:LEFTOVERS,:ROSELIFEAST)
 
 BattleHandlers::DamageCalcTargetItem.add(:ROSELIFEAST,
     proc { |item,user,target,move,mults,baseDmg,type,aiChecking|
-      pbBattleTypeWeakingBerry(:FAIRY,type,target,mults,true,aiChecking)
+      pbBattleTypeWeakingBerry(item, :FAIRY,type,target,mults,true,aiChecking)
     }
 )
 
@@ -93,7 +93,7 @@ BattleHandlers::EORHealingItem.copy(:LEFTOVERS,:OCCAFEAST)
 
 BattleHandlers::DamageCalcTargetItem.add(:OCCAFEAST,
     proc { |item,user,target,move,mults,baseDmg,type,aiChecking|
-      pbBattleTypeWeakingBerry(:FIRE,type,target,mults,true,aiChecking)
+      pbBattleTypeWeakingBerry(item, :FIRE,type,target,mults,true,aiChecking)
     }
 )
 
@@ -102,7 +102,7 @@ BattleHandlers::EORHealingItem.copy(:LEFTOVERS,:RINDOFEAST)
 
 BattleHandlers::DamageCalcTargetItem.add(:RINDOFEAST,
     proc { |item,user,target,move,mults,baseDmg,type,aiChecking|
-      pbBattleTypeWeakingBerry(:GRASS,type,target,mults,true,aiChecking)
+      pbBattleTypeWeakingBerry(item, :GRASS,type,target,mults,true,aiChecking)
     }
 )
 
@@ -112,7 +112,6 @@ BattleHandlers::StatusCureItem.add(:LUNUSBERRY,
       next false if !forced && !battler.canConsumeBerry?
       next false if !battler.hasAnyStatusNoTrigger
       itemName = GameData::Item.get(item).name
-      PBDebug.log("[Item triggered] #{battler.pbThis}'s #{itemName}") if forced
       battle.pbCommonAnimation("Nom",battler) if !forced
       battler.pbCureStatus
       battler.pbRaiseMultipleStatStages([:ATTACK,1,:DEFENSE,1,:SPECIAL_ATTACK,1,:SPECIAL_DEFENSE,1,:SPEED,1], battler, item: item)
@@ -130,7 +129,7 @@ BattleHandlers::HPHealItem.add(:ZALAKABERRY,
 # Lucent Gem
 BattleHandlers::DamageCalcUserItem.add(:LUCENTGEM,
     proc { |item,user,target,move,mults,baseDmg,type,aiChecking|
-        user.applyEffect(:GemConsumed,user.item_id) unless aiChecking
+        user.applyEffect(:GemConsumed,item) unless aiChecking
         mults[:base_damage_multiplier] *= 1.5
     }
 )
@@ -157,7 +156,6 @@ BattleHandlers::EndOfMoveStatRestoreItem.add(:WHITEBOUGH,
     end
     next false if !reducedStats
     itemName = GameData::Item.get(item).name
-    PBDebug.log("[Item triggered] #{battler.pbThis}'s #{itemName}") if forced
     battle.pbCommonAnimation("UseItem",battler) if !forced
     if forced
       battle.pbDisplay(_INTL("{1}'s status returned to normal!",battler.pbThis))
@@ -185,8 +183,8 @@ BattleHandlers::TargetItemAfterMoveUse.add(:EJECTBUTTON,
     next if battle.pbAllFainted?(battler.idxOpposingSide)
     next if !battle.pbCanChooseNonActive?(battler.index)
     battle.pbCommonAnimation("UseItem",battler)
-    battle.pbDisplay(_INTL("{1} pressed its {2}!",battler.pbThis,battler.itemName))
-    battler.pbConsumeItem(true,false)
+    battle.pbDisplay(_INTL("{1} pressed its {2}!",battler.pbThis,getItemName(battler.baseItem)))
+    battler.pbConsumeItem(item, true, false)
     user.pbOwnSide.incrementEffect(:Spikes)
     newPkmn = battle.pbGetReplacementPokemonIndex(battler.index)   # Owner chooses
     next if newPkmn<0
@@ -216,7 +214,7 @@ BattleHandlers::UserItemAfterMoveUse.add(:DEATHORB,
     next if totalDamage<=0
     healAmount = (totalDamage / 3.0)
     healAmount = 1 if healAmount < 1
-    recoverMessage = _INTL("{1} restored HP using its {2}!", user.pbThis,user.itemName)
+    recoverMessage = _INTL("{1} restored HP using its {2}!", user.pbThis,getItemName(item))
     user.pbRecoverHP(healAmount,true,true,true,recoverMessage)
   }
 )
@@ -225,7 +223,7 @@ BattleHandlers::UserItemAfterMoveUse.add(:DEATHORB,
 BattleHandlers::EORHealingItem.add(:LUNCHBOX,
   proc { |item,battler,battle|
       next if !battler.canLeftovers?
-      healMessage =_INTL("{1} restored HP using its {2}!",battler.pbThis,battler.itemName)
+      healMessage =_INTL("{1} restored HP using its {2}!",battler.pbThis,getItemName(battler.baseItem))
       battler.applyFractionalHealing(1.0/8.0, customMessage: healMessage, item: item)
   }
 )
@@ -239,6 +237,6 @@ BattleHandlers::DamageCalcTargetItem.add(:LUNCHBOX,
 # Grandmaster Scroll
 BattleHandlers::ItemOnSwitchIn.add(:GRANDMASTERSCROLL,
   proc { |item,battler,battle|
-    battle.pbDisplay(_INTL("{1} holds the {2}! It deals double effectiveness!",battler.pbThis,battler.itemName))
+    battle.pbDisplay(_INTL("{1} holds the {2}! It deals double effectiveness!",battler.pbThis,getItemName(battler.baseItem)))
   }
 )

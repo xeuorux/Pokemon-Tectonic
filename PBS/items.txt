@@ -113,8 +113,8 @@
 112,QUICKCLAW,Quick Claw,Quick Claws,5,4000,"An item to be held by a Pokémon. A light, sharp claw that lets the bearer move first occasionally.",0,0,0
 113,FOCUSBAND,Focus Band,Focus Bands,5,4000,"An item to be held by a Pokémon. The holder may endure a potential KO attack, leaving it with just 1 HP.",0,0,0
 114,FOCUSSASH,Focus Sash,Focus Sashes,5,4000,"An item to be held by a Pokémon. If it has full HP, the holder will endure one potential KO attack, leaving 1 HP.",0,0,0
-115,FLAMEORB,Flame Orb,Flame Orbs,5,4000,"A bizarre orb that inflicts a burn on the holder in battle, or when used on a Pokémon.",5,0,0
-116,POISONORB,Poison Orb,Poison Orbs,5,4000,"A bizarre orb that poisons the holder in battle, or when used on a Pokémon.",5,0,0
+115,FLAMEORB,Flame Orb,Flame Orbs,5,4000,"An item to be held by a Pokémon. A bizarre orb that inflicts burn on the holder at the end of a turn.",5,0,0
+116,POISONORB,Poison Orb,Poison Orbs,5,4000,"An item to be held by a Pokémon. A bizarre orb that inflicts poison on the holder at the end of a turn.",5,0,0
 117,STICKYBARB,Sticky Barb,Sticky Barbs,5,4000,"A held item that damages the holder on every turn. It may latch on to Pokémon that touch the holder.",0,0,0
 118,IRONBALL,Iron Ball,Iron Balls,5,4000,"A Pokémon held item that cuts Speed. It makes Flying-type and levitating holders susceptible to Ground moves.",0,0,0
 119,RINGTARGET,Ring Target,Ring Targets,5,4000,"Moves that would otherwise have no effect will land on the Pokémon that holds it.",0,0,0
@@ -839,7 +839,7 @@
 862,PERFORMANCEANALYZER,Performance Analyzer,Performance Analyzers,8,0,"A hi-tech recording device which increases your Pokemon's experience gained from Trainer battles by 20%.",0,0,6
 863,PERFORMANCEANALYZER2,Performance Analyzer 2,Performance Analyzers 2,8,0,"An upgraded, hi-tech recording device which increases the experience gained from Trainer battles by 25%.",0,0,6
 864,BATTLEREPORT,Battle Report,Battle Reports,1,0,"A detailed report on how to improve as a trainer. Read it to raise your level cap by 5.",2,0,13
-865,FROSTORB,Frost Orb,Frost Orbs,5,4000,"A bizarre orb that inflicts frostbite on the holder in battle, or when used on a Pokémon.",5,0,0
+865,FROSTORB,Frost Orb,Frost Orbs,5,4000,"An item to be held by a Pokémon. A bizarre orb that inflicts frostbite on the holder at the end of a turn.",5,0,0
 866,REINFORCINGROD,Reinforcing Rod,Reinforcing Rods,5,4000,"An item to be held by a Pokémon. It extends the duration of Rooms created by the holder.",0,0,0
 867,CHASMIDCARD,Chasm ID Card,Chasm ID Cards,8,0,"An ID card which unlocks Team Chasm gates and doors, giving access to dangers and rewards.",0,0,6
 868,SIGILLEFTHALF,Sigil Left Half,Sigils Left Half,8,0,"The left half of the sigil of an ancient order of knights.",5,0,6

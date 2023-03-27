@@ -3,12 +3,11 @@ BattleHandlers::HPHealItem.add(:BERRYJUICE,
       next false unless battler.canHeal?
       next false if !forced && battler.aboveHalfHealth?
       if filchedFrom
-        battle.pbShowAbilitySplash(battler)
+        battle.pbShowAbilitySplash(battler, ability)
         itemName = GameData::Item.get(item).real_name
         battle.pbDisplay(_INTL("#{battler.pbThis} filched #{filchedFrom.pbThis(true)}'s #{itemName}!"))
       end
       itemName = GameData::Item.get(item).name
-      PBDebug.log("[Item triggered] Forced consuming of #{itemName}") if forced
       battle.pbCommonAnimation("UseItem", battler) unless forced
       battler.pbRecoverHP(20)
       if forced
@@ -57,7 +56,7 @@ BattleHandlers::HPHealItem.add(:LANSATBERRY,
       next false if !forced && !battler.canConsumePinchBerry?
       next false if battler.effectAtMax?(:FocusEnergy)
       if filchedFrom
-        battle.pbShowAbilitySplash(battler)
+        battle.pbShowAbilitySplash(battler, ability)
         itemName = GameData::Item.get(item).real_name
         battle.pbDisplay(_INTL("#{battler.pbThis} filched #{filchedFrom.pbThis(true)}'s #{itemName}!"))
       end
@@ -73,7 +72,7 @@ BattleHandlers::HPHealItem.add(:MICLEBERRY,
       next false if !forced && !battler.canConsumePinchBerry?
       next false unless battler.effectActive?(:MicleBerry)
       if filchedFrom
-        battle.pbShowAbilitySplash(battler)
+        battle.pbShowAbilitySplash(battler, ability)
         itemName = GameData::Item.get(item).real_name
         battle.pbDisplay(_INTL("#{battler.pbThis} filched #{filchedFrom.pbThis(true)}'s #{itemName}!"))
       end
@@ -81,7 +80,6 @@ BattleHandlers::HPHealItem.add(:MICLEBERRY,
       battler.applyEffect(:MicleBerry)
       itemName = GameData::Item.get(item).name
       if forced
-          PBDebug.log("[Item triggered] Forced consuming of #{itemName}")
           battle.pbDisplay(_INTL("{1} boosted the accuracy of its next move!", battler.pbThis))
       else
           battle.pbDisplay(_INTL("{1} boosted the accuracy of its next move using its {2}!",

@@ -721,25 +721,37 @@ Pokemon = DARTRIX,25
 #-------------------------------
 [POKEMONTRAINER_Yezera,Yezera,4]
 Policies = YEZERA
-Pokemon = VOLBEAT,35
-    AbilityIndex = 1 # Competitive
-    Item = SITRUSBERRY
-Pokemon = HYPNO,35
-    AbilityIndex = 1 # Inner Focus
+Pokemon = RHYDON,35
+    Moves = GRANITEHEAD,STEALTHROCK,BULLDOZE,BRICKBREAK
+    AbilityIndex = 0 # Reckless
+    Item = SHELLBELL
+Pokemon = ILLUMISE,35
+    Moves = WISH,STRUGGLEBUG,REFLECT,UTURN
+    AbilityIndex = 0 # Prankster
+    Item = MENTALHERB
 Pokemon = MALAMAR,35
+    Moves = BLINDSIDE,PLUCK,INCISION,SPELLBIND
     AbilityIndex = 0 # Contrary
-Pokemon = MILTANK,35
-    AbilityIndex = 0 # Thick Fat
-    Item = LEFTOVERS
-Pokemon = EISCUE,35
-    AbilityIndex = 0 # Ice Face
+Pokemon = SKIPLOOM,35
+    Moves = AUTUMNBLAST,BOREALWIND,BULLETSEED,DAZZLINGGLEAM
+    AbilityIndex = 0 # Aerodynamic
+Pokemon = FLAAFFY,35
+    Moves = VANGUARD,RECOVER,DRAGONPULSE,DISCHARGE
+    AbilityIndex = 0 # Static
 #-------------------------------
 [POKEMONTRAINER_Yezera,Yezera,5]
 ExtendsVersion = 4
-Policies = CURSE_TYPE_WEAKENED
-Pokemon = RHYDON,35
-    AbilityIndex = 0 # Reckless
-    Item = ROCKGEM
+Policies = CURSE_DOUBLE_ABILITIES
+Pokemon = MILTANK,35
+    Moves = POUT,HEADBUTT,MILKDRINK,BULLDOZE
+    AbilityIndex = 0 # Thick Fat
+    Item = LEFTOVERS
+Pokemon = MALAMAR,35
+    Item = LIFEORB
+Pokemon = FLAAFFY,35
+    Item = LUMBERRY
+Pokemon = SKIPLOOM,35
+    Item = LOADEDDICE
 #-------------------------------
 [SCHOOLKID_M,Louis]
 Pokemon = DUCKLETT,19

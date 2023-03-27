@@ -57,21 +57,59 @@ class PokeBattle_Battler
         return false if fainted? && !ignore_fainted
         return false if !ignore_gas && @battle.abilitiesNeutralized?
         return false if effectActive?(:GastroAcid)
-        return false if dizzy? && !%i[MARVELSCALE MARVELSKIN].include?(@ability_id)
+        return false if dizzy?
         return true
     end
 
-    def hasActiveAbility?(check_ability, ignore_fainted = false, checkingForAI = false)
-        return hasActiveAbilityAI?(check_ability, ignore_fainted) if checkingForAI
-        return false unless abilityActive?(ignore_fainted)
-        return check_ability.include?(@ability_id) if check_ability.is_a?(Array)
-        return false if ability.nil?
-        return check_ability == ability.id
+    def abilities
+        abil = []
+        abil.push(@ability_id)
+
+        # Even with the curse, don't add extra abilities if ability was overwritten during battle
+        return abil unless @pokemon.hasAbility?(@ability_id)
+        
+        if (@battle.curseActive?(:CURSE_DOUBLE_ABILITIES) && opposing?) || (TESTING_DOUBLE_QUALITIES && !boss?)
+            @pokemon.species_data.abilities.each do |legalAbility|
+                abil.push(legalAbility) unless abil.include?(legalAbility)
+            end
+        end
+        return abil
+    end
+
+    def eachAbility
+        abilities.each do |abilityID|
+            yield abilityID
+        end
+    end
+
+    def eachActiveAbility(ignore_fainted = false, ignoreGas: false)
+        return unless abilityActive?(ignore_fainted, ignoreGas)
+        abilities.each do |abilityID|
+            yield abilityID
+        end
+    end
+
+    def hasAbility?(checkable)
+        abilities.each do |ability|
+            if checkable.is_a?(Array)
+                return ability if checkable.include?(ability)
+            else
+                return ability if checkable == ability
+            end
+        end
+        return false
+    end
+
+    def hasActiveAbility?(checkable, ignore_fainted = false, checkingForAI = false, ignoreGas: false)
+        return hasActiveAbilityAI?(checkable, ignore_fainted) if checkingForAI
+        return false unless abilityActive?(ignore_fainted, ignoreGas)
+        return hasAbility?(checkable)
     end
     alias hasWorkingAbility hasActiveAbility?
 
     def hasActiveNeutralizingGas?(ignore_fainted = false)
-        return @ability_id == :NEUTRALIZINGGAS && abilityActive?(ignore_fainted, true)
+        return false unless abilities.include?(:NEUTRALIZINGGAS)
+        return abilityActive?(ignore_fainted, true)
     end
 
     alias hasType? pbHasType?
@@ -140,6 +178,32 @@ class PokeBattle_Battler
         return ability_blacklist.include?(abil.id)
     end
 
+    TESTING_DOUBLE_QUALITIES = false
+
+    def items
+        itemArray = @item_id.nil? ? [] : [@item_id]
+        itemArray.push(@battle.getRandomHeldItem) if TESTING_DOUBLE_QUALITIES
+        return itemArray
+    end
+
+    def activeItems(ignoreFainted = false)
+        return [] unless itemActive?(ignoreFainted)
+        return items
+    end
+
+    def eachItem
+        items.each do |itemID|
+            yield itemID
+        end
+    end
+
+    def eachActiveItem(ignoreFainted = false)
+        return unless itemActive?(ignoreFainted)
+        items.each do |itemID|
+            yield itemID
+        end
+    end
+
     def itemActive?(ignoreFainted = false)
         return false if fainted? && !ignoreFainted
         return false if effectActive?(:Embargo)
@@ -148,33 +212,50 @@ class PokeBattle_Battler
         return true
     end
 
-    def hasActiveItem?(check_item, ignore_fainted = false)
+    def hasAnyItem?
+        return !items.empty?
+    end
+
+    def hasItem?(checkitem)
+        items.each do |effectiveItem|
+            if checkitem.is_a?(Array)
+                return true if checkitem.include?(effectiveItem)
+            else
+                return true if checkitem == effectiveItem
+            end
+        end
+        return false
+    end
+
+    def hasActiveItem?(checkitem, ignore_fainted = false)
         return false unless itemActive?(ignore_fainted)
-        return check_item.include?(@item_id) if check_item.is_a?(Array)
-        return check_item == @item_id
+        return hasItem?(checkitem)
     end
     alias hasWorkingItem hasActiveItem?
 
     # Returns whether the specified item will be unlosable for this Pokémon.
-    def unlosableItem?(check_item, showMessages = false)
-        return false unless check_item
-        return true if GameData::Item.get(check_item).is_mail?
+    def unlosableItem?(checkitem, showMessages = false)
+        return false unless checkitem
+        return true if GameData::Item.get(checkitem).is_mail?
         return false if effectActive?(:Transform)
         # Items that change a Pokémon's form
         if mega? # Check if item was needed for this Mega Evolution
-            return true if @pokemon.species_data.mega_stone == check_item
+            return true if @pokemon.species_data.mega_stone == checkitem
         else # Check if item could cause a Mega Evolution
             GameData::Species.each do |data|
                 next if data.species != @species || data.unmega_form != @form
-                return true if data.mega_stone == check_item
+                return true if data.mega_stone == checkitem
             end
         end
-        if check_item == :LUNCHBOX
+        if checkitem == :LUNCHBOX
             @battle.pbDisplay(_INTL("But #{pbThis(false)} hold's tightly onto its Lunch Box!")) if showMessages
             return true
         end
         # Other unlosable items
-        return GameData::Item.get(check_item).unlosable?(@species, ability)
+        eachAbility do |ability|
+            return true if GameData::Item.get(checkitem).unlosable?(@species, ability)
+        end
+        return false
     end
 
     def eachMove(&block)
@@ -235,7 +316,7 @@ class PokeBattle_Battler
         return false if fainted?
         if hasActiveAbility?(:MAGICGUARD)
             if showMsg
-                @battle.pbShowAbilitySplash(self)
+                @battle.pbShowAbilitySplash(self, :MAGICGUARD)
                 @battle.pbDisplay(_INTL("{1} is unaffected!", pbThis))
                 @battle.pbHideAbilitySplash(self)
             end
@@ -252,14 +333,14 @@ class PokeBattle_Battler
         end
         if hasActiveAbility?(:OVERCOAT) && !@battle.moldBreaker
             if showMsg
-                @battle.pbShowAbilitySplash(self)
+                @battle.pbShowAbilitySplash(self, :OVERCOAT)
                 @battle.pbDisplay(_INTL("{1} is unaffected!", pbThis))
                 @battle.pbHideAbilitySplash(self)
             end
             return false
         end
         if hasActiveItem?(:SAFETYGOGGLES)
-            @battle.pbDisplay(_INTL("{1} is unaffected because of its {2}!", pbThis, itemName)) if showMsg
+            @battle.pbDisplay(_INTL("{1} is unaffected because of its {2}!", pbThis, getItemName(:SAFETYGOGGLES))) if showMsg
             return false
         end
         return true
@@ -573,8 +654,10 @@ class PokeBattle_Battler
 
     def getWeatherSettingDuration(weatherType, baseDuration = 4, ignoreFainted = false)
         duration = baseDuration
-        if duration > 0 && itemActive?(ignoreFainted)
-            duration = BattleHandlers.triggerWeatherExtenderItem(item, weatherType, duration, self, @battle)
+        if duration > 0
+            eachActiveItem(true) do |item|
+                duration = BattleHandlers.triggerWeatherExtenderItem(item, weatherType, duration, self, @battle)
+            end
         end
         return duration
     end

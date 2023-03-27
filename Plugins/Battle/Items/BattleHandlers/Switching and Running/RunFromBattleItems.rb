@@ -1,5 +1,5 @@
 BattleHandlers::RunFromBattleItem.add(:SMOKEBALL,
-    proc { |_item, _battler|
+    proc { |item, _battler|
         next true
     }
 )

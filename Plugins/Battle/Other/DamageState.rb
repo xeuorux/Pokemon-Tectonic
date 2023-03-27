@@ -58,8 +58,8 @@ class PokeBattle_DamageState
 		@dangerSense		= false
 		@disguise      		= false
 		@endured       		= false
-		@berryWeakened 		= false
-		@feastWeakened		= false
+		@berryWeakened 		= nil
+		@feastWeakened		= nil
 		@iceface       		= false
 		@forced_critical	= false
 		@direDiversion		= false

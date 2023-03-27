@@ -157,7 +157,7 @@ GameData::BattleEffect.register_effect(:Position, {
     :entry_proc => proc do |battle, _index, position, battler|
         sourceMaker = battle.pbThisEx(battler.index, position.effects[:InfiniteSource])
         battle.pbDisplay(_INTL("{1}'s Infinite Source fuels {2}!", sourceMaker, battler.pbThis(true)))
-        battler.tryRaiseStat(:SPEED, showFailMsg: true)
+        battler.tryRaiseStat(:SPEED, battler, showFailMsg: true)
         anyPPRestored = false
         battler.pokemon.moves.each_with_index do |m, i|
             next if m.total_pp <= 0 || m.pp == m.total_pp

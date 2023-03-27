@@ -15,7 +15,6 @@ BattleHandlers::TargetItemOnHitPositiveBerry.add(:KEEBERRY,
             battle.pbCommonAnimation("Nom", battler)
             next battler.pbRaiseStatStageByCause(:DEFENSE, increment, battler, itemName)
         end
-        PBDebug.log("[Item triggered] #{battler.pbThis}'s #{itemName}")
         next battler.pbRaiseStatStage(:DEFENSE, increment, battler)
     }
 )
@@ -31,7 +30,6 @@ BattleHandlers::TargetItemOnHitPositiveBerry.add(:MARANGABERRY,
           battle.pbCommonAnimation("Nom", battler)
           next battler.pbRaiseStatStageByCause(:SPECIAL_DEFENSE, increment, battler, itemName)
       end
-      PBDebug.log("[Item triggered] #{battler.pbThis}'s #{itemName}")
       next battler.pbRaiseStatStage(:SPECIAL_DEFENSE, increment, battler)
   }
 )

@@ -48,7 +48,7 @@ class PokeBattle_Battler
         if effectActive?(:ChoiceBand)
             if hasActiveItem?(CHOICE_LOCKING_ITEMS) && pbHasMove?(@effects[:ChoiceBand])
                 if move.id != @effects[:ChoiceBand] && move.id != :STRUGGLE
-                    msg = _INTL("{1} allows the use of only {2}!", itemName,
+                    msg = _INTL("{1} allows the use of only {2}!", getItemName(baseItem),
 GameData::Move.get(@effects[:ChoiceBand]).name)
                     if showMessages
                         commandPhase ? @battle.pbDisplayPaused(msg) : @battle.pbDisplay(msg)
@@ -64,7 +64,7 @@ GameData::Move.get(@effects[:ChoiceBand]).name)
         if effectActive?(:GorillaTactics)
             if hasActiveAbility?(CHOICE_LOCKING_ABILITIES)
                 if move.id != @effects[:GorillaTactics]
-                    msg = _INTL("{1} allows the use of only {2}!", abilityName,
+                    msg = _INTL("{1} allows the use of only {2}!", getAbilityName(baseAbility),
 GameData::Move.get(@effects[:GorillaTactics]).name)
                     if showMessages
                         commandPhase ? @battle.pbDisplayPaused(msg) : @battle.pbDisplay(msg)
@@ -107,13 +107,16 @@ GameData::Move.get(@effects[:GorillaTactics]).name)
         end
         # Assault Vest and Strike Vest (prevents choosing status moves but doesn't prevent
         # executing them)
-        if hasActiveItem?(STATUS_PREVENTING_ITEMS) && move.statusMove? && commandPhase
-            msg = _INTL("The effects of the {1} prevent status moves from being used!", itemName)
-            if showMessages
-                commandPhase ? @battle.pbDisplayPaused(msg) : @battle.pbDisplay(msg)
+        if move.statusMove? && commandPhase
+            statusPreventingItem = hasActiveItem?(STATUS_PREVENTING_ITEMS)
+                if statusPreventingItem
+                msg = _INTL("The effects of the {1} prevent status moves from being used!", getItemName(statusPreventingItem))
+                if showMessages
+                    commandPhase ? @battle.pbDisplayPaused(msg) : @battle.pbDisplay(msg)
+                end
+                echoln(msg)
+                return false
             end
-            echoln(msg)
-            return false
         end
         if hasActiveAbility?(:AURORAPRISM) && pbHasType?(move.type)
             msg = _INTL("{1} cannot use moves of their own types!", pbThis)
@@ -244,7 +247,7 @@ GameData::Move.get(@effects[:GorillaTactics]).name)
                 applyEffect(:Truant)
             end
             if !effectActive?(:Truant) && move.id != :SLACKOFF # True means loafing, but was just inverted
-                @battle.pbShowAbilitySplash(self)
+                @battle.pbShowAbilitySplash(self, :TRUANT)
                 @battle.pbDisplay(_INTL("{1} is loafing around!", pbThis))
                 @lastMoveFailed = true
                 @battle.pbHideAbilitySplash(self)
@@ -264,7 +267,9 @@ GameData::Move.get(@effects[:GorillaTactics]).name)
                 pbOwnSide.applyEffect(:TyranicalImmunity)
             else
                 @battle.pbDisplay(_INTL("{1} flinched and couldn't move!", pbThis))
-                BattleHandlers.triggerAbilityOnFlinch(@ability, self, @battle) if abilityActive?
+                eachActiveAbility do |ability|
+                    BattleHandlers.triggerAbilityOnFlinch(ability, self, @battle)
+                end
                 @lastMoveFailed = true
                 applyEffect(:FlinchImmunity,4)
                 return false
@@ -331,7 +336,7 @@ target.pbThis))
         ###	Protect Style Moves
         # Ability effects that ignore protection
         protectionIgnoredByAbility = false
-        protectionIgnoredByAbility = true if user.ability == :UNSEENFIST && move.physicalMove?
+        protectionIgnoredByAbility = true if user.shouldAbilityApply?(:UNSEENFIST, ai_check) && move.physicalMove?
 
         # Only check the target's side if the target is not the self
         holdersToCheck = [target]
@@ -375,7 +380,7 @@ animationName, show_message) do
                 unless ai_check
                     target.damageState.protected = true
                     if show_message
-                        @battle.pbShowAbilitySplash(target)
+                        @battle.pbShowAbilitySplash(target, :MAGICSHIELD)
                         @battle.pbDisplay(_INTL("{1} shielded itself from the {2}!", target.pbThis, move.name))
                         @battle.pbHideAbilitySplash(target)
                     end
@@ -450,7 +455,7 @@ target.pbThis(true)))
         if move.damagingMove? && move.calcType == :GROUND && target.airborne? && !move.hitsFlyingTargets?
             if target.hasLevitate? && !@battle.moldBreaker
                 if showMessages
-                    @battle.pbShowAbilitySplash(target)
+                    @battle.pbShowAbilitySplash(target, :LEVITATE)
                     @battle.pbDisplay(_INTL("{1} avoided the attack!", target.pbThis))
                     @battle.pbHideAbilitySplash(target)
                     @battle.triggerImmunityDialogue(user, target, true)
@@ -459,7 +464,7 @@ target.pbThis(true)))
             end
             if target.hasActiveItem?(LEVITATION_ITEMS)
                 if showMessages
-                    @battle.pbDisplay(_INTL("{1}'s {2} makes Ground moves miss!", target.pbThis, target.itemName))
+                    @battle.pbDisplay(_INTL("{1}'s {2} makes Ground moves miss!", target.pbThis, getItemName(target.baseItem)))
                     @battle.triggerImmunityDialogue(user, target, false)
                 end
                 return true

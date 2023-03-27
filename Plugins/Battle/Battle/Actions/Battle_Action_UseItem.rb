@@ -2,7 +2,7 @@ class PokeBattle_Battle
     #=============================================================================
     # Choosing to use an item
     #=============================================================================
-    def pbCanUseItemOnPokemon?(_item, pkmn, battler, scene, showMessages = true)
+    def pbCanUseItemOnPokemon?(item, pkmn, battler, scene, showMessages = true)
         if !pkmn || pkmn.egg?
             scene.pbDisplay(_INTL("It won't have any effect.")) if showMessages
             return false

@@ -195,20 +195,15 @@ target.pbThis(true)))
     #=============================================================================
     def pbImmunityByAbility(user, target, showMessages = true, aiChecking = false)
         return false if @battle.moldBreaker
-        ret = false
-        if target.abilityActive?
-            ret = BattleHandlers.triggerMoveImmunityTargetAbility(target.ability, user, target, self, @calcType, @battle,
-showMessages, aiChecking)
+        target.eachActiveAbility do |ability|
+            return true if BattleHandlers.triggerMoveImmunityTargetAbility(ability, user, target, self, @calcType, @battle, showMessages, aiChecking)
         end
-        unless ret
-            target.eachAlly do |b|
-                next unless b.abilityActive?
-                ret = BattleHandlers.triggerMoveImmunityAllyAbility(b.ability, user, target, self, @calcType, @battle, b,
-showMessages)
-                break if ret
+        target.eachAlly do |b|
+            b.eachActiveAbility do |ability|
+                return true if BattleHandlers.triggerMoveImmunityAllyAbility(ability, user, target, self, @calcType, @battle, b, showMessages)
             end
         end
-        return ret
+        return false
     end
 
     #=============================================================================
@@ -257,7 +252,7 @@ showMessages)
         return false if @battle.moldBreaker
         if target.hasActiveAbility?(:AROMAVEIL)
             if showMessage
-                @battle.pbShowAbilitySplash(target)
+                @battle.pbShowAbilitySplash(target, ability)
                 @battle.pbDisplay(_INTL("{1} is unaffected!", target.pbThis))
                 @battle.pbHideAbilitySplash(target)
             end
@@ -266,7 +261,7 @@ showMessages)
         target.eachAlly do |b|
             next unless b.hasActiveAbility?(:AROMAVEIL)
             if showMessage
-                @battle.pbShowAbilitySplash(target)
+                @battle.pbShowAbilitySplash(target, ability)
                 @battle.pbDisplay(_INTL("{1} is unaffected!", target.pbThis))
                 @battle.pbHideAbilitySplash(target)
             end
@@ -285,12 +280,12 @@ showMessages)
             return
         end
         # Disguise will take the damage
-        if !@battle.moldBreaker && target.isSpecies?(:MIMIKYU) && target.form == 0 && target.ability == :DISGUISE
+        if !@battle.moldBreaker && target.isSpecies?(:MIMIKYU) && target.form == 0 && target.hasActiveAbility?(:DISGUISE)
             target.damageState.disguise = true
             return
         end
         # Ice Face will take the damage
-        if !@battle.moldBreaker && target.species == :EISCUE && target.form == 0 && target.ability == :ICEFACE && physicalMove?
+        if !@battle.moldBreaker && target.species == :EISCUE && target.form == 0 && target.hasActiveAbility?(:ICEFACE) && physicalMove?
             target.damageState.iceface = true
             return
         end
@@ -334,7 +329,7 @@ showMessages)
                 damage -= 1
                 damageAdjusted = true
                 target.tickDownAndProc(:EmpoweredEndure)
-            elsif target.hasActiveAbility?(:DIREDIVERSION) && !target.item.nil? && target.itemActive? && !@battle.moldBreaker
+            elsif target.hasActiveAbility?(:DIREDIVERSION) && !target.hasAnyItem? && target.itemActive? && !@battle.moldBreaker
                 target.damageState.direDiversion = true
                 damage -= 1
                 damageAdjusted = true
@@ -466,37 +461,37 @@ showMessages)
 
     def pbEndureKOMessage(target)
         if target.damageState.disguise
-            @battle.pbShowAbilitySplash(target)
+            @battle.pbShowAbilitySplash(target, :DISGUISE)
             @battle.pbDisplay(_INTL("Its disguise served it as a decoy!"))
             @battle.pbHideAbilitySplash(target)
             target.pbChangeForm(1, _INTL("{1}'s disguise was busted!", target.pbThis))
         elsif target.damageState.iceface
-            @battle.pbShowAbilitySplash(target)
+            @battle.pbShowAbilitySplash(target, :ICEFACE)
             target.pbChangeForm(1, _INTL("{1} transformed!", target.pbThis))
             @battle.pbHideAbilitySplash(target)
         elsif target.damageState.endured
             @battle.pbDisplay(_INTL("{1} endured the hit!", target.pbThis))
         elsif target.damageState.sturdy
-            @battle.pbShowAbilitySplash(target)
+            @battle.pbShowAbilitySplash(target, :STURDY)
             @battle.pbDisplay(_INTL("{1} endured the hit!", target.pbThis))
             @battle.pbHideAbilitySplash(target)
         elsif target.damageState.dangerSense
-            @battle.pbShowAbilitySplash(target)
+            @battle.pbShowAbilitySplash(target, :DANGERSENSE)
             @battle.pbDisplay(_INTL("{1} avoided taking the full hit!", target.pbThis))
             @battle.pbHideAbilitySplash(target)
         elsif target.damageState.focusSash
             @battle.pbCommonAnimation("UseItem", target)
-            @battle.pbDisplay(_INTL("{1} hung on using its {2}!", target.pbThis, target.itemName))
-            target.pbConsumeItem
+            @battle.pbDisplay(_INTL("{1} hung on using its {2}!", target.pbThis, getItemName(:FOCUSSASH)))
+            target.pbConsumeItem(:FOCUSSASH)
         elsif target.damageState.focusBand
             @battle.pbCommonAnimation("UseItem", target)
             @battle.pbDisplay(_INTL("{1} hung on using its Focus Band!", target.pbThis))
         elsif target.damageState.direDiversion
             @battle.pbDisplay(_INTL("{1} blocked the hit with its item! It barely hung on!", target.pbThis))
-            target.pbConsumeItem
+            target.pbConsumeItem(target.baseItem)
         elsif target.damageState.endureBerry
-            @battle.pbDisplay(_INTL("{1} hung on by consuming its {2}!", target.pbThis, target.itemName))
-            target.pbConsumeItem
+            @battle.pbDisplay(_INTL("{1} hung on by consuming its {2}!", target.pbThis, getItemName(:CASSBERRY)))
+            target.pbConsumeItem(:CASSBERRY)
         end
     end
 

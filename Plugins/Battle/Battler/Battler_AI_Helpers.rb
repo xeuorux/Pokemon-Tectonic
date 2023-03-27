@@ -205,19 +205,19 @@ class PokeBattle_Battler
     end
 
     # A helper method that diverts to an AI-based check or a true calculation check as appropriate
-    def shouldAbilityApply?(check_ability, checkingForAI)
+    def shouldAbilityApply?(checkability, checkingForAI)
         if checkingForAI
-            return hasActiveAbilityAI?(check_ability)
+            return hasActiveAbilityAI?(checkability)
         else
-            return hasActiveAbility?(check_ability)
+            return hasActiveAbility?(checkability)
         end
     end
 
     # An ability check method that is fooled by Illusion
     # May in the future be extended to having the AI be ignorant about the player's abilities until they are revealed
-    def hasActiveAbilityAI?(check_ability, ignore_fainted = false)
+    def hasActiveAbilityAI?(checkability, ignore_fainted = false)
         return false if aiKnowsAbility?
-        return hasActiveAbility?(check_ability, ignore_fainted)
+        return hasActiveAbility?(checkability, ignore_fainted)
     end
 
     ###############################################################################

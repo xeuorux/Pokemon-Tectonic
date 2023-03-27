@@ -19,7 +19,9 @@ class PokeBattle_Battler
         end
 
         if getData(effect).trapping?
-            BattleHandlers.triggerCertainSwitchingUserAbility(ability, self, @battle, true)
+            eachActiveAbility do |ability|
+                BattleHandlers.triggerCertainSwitchingUserAbility(ability, self, @battle, true)
+            end
         end
     end
 

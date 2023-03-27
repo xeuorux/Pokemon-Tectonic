@@ -5,21 +5,25 @@ class PokeBattle_Battler
     def pbEffectsOnMakingHit(move, user, target)
         if target.damageState.calcDamage > 0 && !target.damageState.substitute
             # Target's ability
-            if target.abilityActive?(true) && !user.hasActiveItem?(:PROXYFIST)
-                oldHP = user.hp
-                BattleHandlers.triggerTargetAbilityOnHit(target.ability, user, target, move, @battle)
-                user.pbItemHPHealCheck if user.hp < oldHP
+            unless user.hasActiveItem?(:PROXYFIST)
+                target.eachActiveAbility(true) do |ability|
+                    oldHP = user.hp
+                    BattleHandlers.triggerTargetAbilityOnHit(ability, user, target, move, @battle)
+                    user.pbItemHPHealCheck if user.hp < oldHP
+                end
             end
             # User's ability
-            if user.abilityActive?(true)
-                BattleHandlers.triggerUserAbilityOnHit(user.ability, user, target, move, @battle)
+            user.eachActiveAbility(true) do |ability|
+                BattleHandlers.triggerUserAbilityOnHit(ability, user, target, move, @battle)
                 user.pbItemHPHealCheck
             end
             # Target's item
-            if target.itemActive?(true) && !user.hasActiveItem?(:PROXYFIST)
-                oldHP = user.hp
-                BattleHandlers.triggerTargetItemOnHit(target.item, user, target, move, @battle)
-                user.pbItemHPHealCheck if user.hp < oldHP
+            unless user.hasActiveItem?(:PROXYFIST)
+                target.eachActiveItem(true) do |item|
+                    oldHP = user.hp
+                    BattleHandlers.triggerTargetItemOnHit(item, user, target, move, @battle)
+                    user.pbItemHPHealCheck if user.hp < oldHP
+                end
             end
         end
         if target.opposes?(user) && !user.hasActiveItem?(:PROXYFIST)
@@ -93,29 +97,14 @@ user.pbThis(true)))
         end
         # User's ability
         switchedBattlers = []
-        if user.abilityActive?
-            BattleHandlers.triggerUserAbilityEndOfMove(user.ability, user, targets, move, @battle,
-switchedBattlers)
-        end
-        # Greninja - Battle Bond
-        if !user.fainted? && !effectActive?(:Transform) &&
-           user.isSpecies?(:GRENINJA) && user.ability == :BATTLEBOND && (!@battle.pbAllFainted?(user.idxOpposingSide) &&
-                        !@battle.battleBond[user.index & 1][user.pokemonIndex])
-            numFainted = 0
-            targets.each { |b| numFainted += 1 if b.damageState.fainted }
-            if numFainted > 0 && user.form == 1
-                @battle.battleBond[user.index & 1][user.pokemonIndex] = true
-                @battle.pbDisplay(_INTL("{1} became fully charged due to its bond with its Trainer!", user.pbThis))
-                @battle.pbShowAbilitySplash(user, true)
-                @battle.pbHideAbilitySplash(user)
-                user.pbChangeForm(2, _INTL("{1} became Ash-Greninja!", user.pbThis))
-            end
+        user.eachActiveAbility do |ability|
+            BattleHandlers.triggerUserAbilityEndOfMove(ability, user, targets, move, @battle, switchedBattlers)
         end
         # Consume user's Gem
         if user.effectActive?(:GemConsumed)
             # NOTE: The consume animation and message for Gems are shown immediately
             #       after the move's animation, but the item is only consumed now.
-            user.pbConsumeItem
+            user.pbConsumeItem(user.effects[:GemConsumed])
         end
         # Consume Volatile Toxin
         if move.pbDamagingMove?
@@ -137,7 +126,7 @@ switchedBattlers)
         end
         # Ally Cushion
         if user.effectActive?(:AllyCushionSwap) && !switchedBattlers.include?(user.index)
-            if @battle.triggeredSwitchOut(user.index, false)
+            if @battle.triggeredSwitchOut(user.index)
                 user.pbEffectsOnSwitchIn(true)
                 switchedBattlers.push(user.index)
             else
@@ -163,11 +152,14 @@ switchedBattlers)
             next unless targets.any? { |targetB| targetB.index == b.index }
             next if b.damageState.unaffected || b.damageState.calcDamage == 0 ||
                     switchedBattlers.include?(b.index)
-            next unless b.itemActive?
-            BattleHandlers.triggerTargetItemAfterMoveUse(b.item, b, user, move, switchByItem, @battle)
+            b.eachActiveItem do |item|
+                BattleHandlers.triggerTargetItemAfterMoveUse(item, b, user, move, switchByItem, @battle)
+            end
             # Eject Pack
             if b.effectActive?(:StatsDropped)
-                BattleHandlers.triggerItemOnStatLoss(b.item, b, user, move, switchByItem, @battle)
+                b.eachActiveItem do |item|
+                    BattleHandlers.triggerItemOnStatLoss(item, b, user, move, switchByItem, @battle)
+                end
             end
         end
         @battle.moldBreaker = false if switchByItem.include?(user.index)
@@ -176,17 +168,19 @@ switchedBattlers)
         end
         switchByItem.each { |idxB| switchedBattlers.push(idxB) }
         # User's held item (Life Orb, Shell Bell)
-        if !switchedBattlers.include?(user.index) && user.itemActive?
-            BattleHandlers.triggerUserItemAfterMoveUse(user.item, user, targets, move, numHits,
-@battle)
+        if !switchedBattlers.include?(user.index)
+            user.eachActiveItem do |item|
+                BattleHandlers.triggerUserItemAfterMoveUse(item, user, targets, move, numHits, @battle)
+            end
         end
         # Target's ability (Berserk, Color Change, Emergency Exit, Pickpocket, Wimp Out)
         switchWimpOut = []
         @battle.pbPriority(true).each do |b|
             next unless targets.any? { |targetB| targetB.index == b.index }
             next if b.damageState.unaffected || switchedBattlers.include?(b.index)
-            next unless b.abilityActive?
-            BattleHandlers.triggerTargetAbilityAfterMoveUse(b.ability, b, user, move, switchedBattlers, @battle)
+            b.eachActiveAbility do |ability|
+                BattleHandlers.triggerTargetAbilityAfterMoveUse(ability, b, user, move, switchedBattlers, @battle)
+            end
             next unless !switchedBattlers.include?(b.index) && move.damagingMove?
             if b.pbAbilitiesOnDamageTaken(b.damageState.initialHP)
                 switchWimpOut.push(b.index)
@@ -210,7 +204,9 @@ switchedBattlers)
         # User's item (Eject Pack)
         if !switchedBattlers.include?(user.index) && effectActive?(:StatsDropped)
             ejectPacked = []
-            BattleHandlers.triggerItemOnStatLoss(item, self, user, move, ejectPacked, @battle)
+            user.eachActiveItem do |item|
+                BattleHandlers.triggerItemOnStatLoss(item, self, user, move, ejectPacked, @battle)
+            end
             if ejectPacked.include?(user.index)
                 @battle.moldBreaker = false
                 user.pbEffectsOnSwitchIn(true)
