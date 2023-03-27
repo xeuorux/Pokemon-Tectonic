@@ -16553,8 +16553,8 @@ Name = Snivy
 InternalName = SNIVY
 Type1 = GRASS
 # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
-BaseStats = 45,45,45,63,55,55
-# Total = 308
+BaseStats = 54,45,54,54,54,45
+# Total = 306
 GenderRate = Female50Percent
 GrowthRate = Parabolic
 BaseEXP = 62
@@ -16588,8 +16588,8 @@ InternalName = SERVINE
 Type1 = GRASS
 Type2 = DRAGON
 # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
-BaseStats = 60,60,60,83,75,75
-# Total = 413
+BaseStats = 75,60,75,72,75,60
+# Total = 417
 GenderRate = Female50Percent
 GrowthRate = Parabolic
 BaseEXP = 145
@@ -16621,7 +16621,7 @@ InternalName = SERPERIOR
 Type1 = GRASS
 Type2 = DRAGON
 # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
-BaseStats = 75,75,75,113,95,95
+BaseStats = 95,75,95,93,95,75
 # Total = 528
 GenderRate = Female50Percent
 GrowthRate = Parabolic
