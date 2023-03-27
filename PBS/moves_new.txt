@@ -6,7 +6,7 @@
 1005,CLACKACLACK,Clackaclack,045,40,BUG,Special,100,30,10,AllNearFoes,0,befk,"The user attacks with a horrible clattering noise. It has a 10% chance to lower Sp. Atk.",BUGBUZZ
 1006,LIGHTNINGDANCE,Lightning Dance,503,0,ELECTRIC,Status,0,15,0,User,0,do,"The user dances with the speed of lightning, boosting its Sp. Atk and Speed stats.",
 1007,CRASHDIVE,Crash Dive,0FB,120,WATER,Physical,100,12,0,Other,0,abef,"The user dives like a submarine at the target. The user also takes 33% recoil.",WATERFALL
-1008,SHOTPUT,Shotput,000,45,STEEL,Physical,100,20,0,NearOther,0,bef,"The user hurls a metal ball at the target.",MAGNETBOMB
+1008,SHOTPUT,Shotput,000,45,STEEL,Physical,100,20,0,NearOther,0,bef,"The user hurls a metal ball at the target.",
 1009,WIPEOUT,Wipeout,043,40,WATER,Physical,100,30,15,NearOther,0,abef,"The user rides a wave, then crashes into the target. Has a 15% chance to lower Defense.",AQUAJET
 1010,SWOOP,Swoop,0C9,60,FLYING,Physical,100,25,0,Other,0,abef,"The user takes an advantageous airborne position, then strikes on the second turn.",FLY
 1011,DIAMONDFORCE,Diamond Force,000,85,ROCK,Special,100,12,0,NearOther,0,befh,"The user calls up spikes of diamond. Critical hits land more easily.",DIAMONDSTORM
@@ -400,7 +400,7 @@
 1399,MACHINATE,Machinate,5CB,90,GHOST,Special,100,12,30,NearOther,0,befn,"Changes type based on machine haunted. 30% chance of extra effect based on machine haunted.",SHADOWBALL
 1400,DRAGONSROAR,Dragons Roar,5CC,75,DRAGON,Special,100,10,0,NearOther,-1,bef,"The user roars with explosive ferocity, forcing the target to switch out.",
 1401,CHECKMATE,Checkmate,5CD,80,DARK,Physical,100,10,0,NearOther,0,abef,"If the target is the last able member of their party, this attack's power is doubled.",
-1402,WEATHERBURST,Weather Burst,087,100,NORMAL,Physical,100,10,0,NearOther,0,bef,"Type based on weather. Inflicts physical or special damage based on the user's stats.",WEATHERBALL
+1402,WEATHERBURST,Weather Burst,087,100,NORMAL,Physical,100,10,0,NearOther,0,bef,"Type based on weather. Inflicts physical or special damage based on the user's stats.",
 1403,SHINESHOT,Shine Shot,046,60,STEEL,Special,100,10,30,NearOther,0,bef,"The user looses a flash of energy from its polished body. It has a 30% chance to lower Sp. Def.",
 1404,TUTELAGE,Tutelage,5CE,0,PSYCHIC,Status,0,10,0,NearAlly,0,,"The user imparts knowledge on its ally Pokémon, boosting their Sp. Atk and Sp. Def stats.",
 1405,POWERNAP,Power Nap,0F9,0,DARK,Status,0,5,0,User,0,d,"The user restores 1/2 of its HP, or 2/3rds in moonglow.",
