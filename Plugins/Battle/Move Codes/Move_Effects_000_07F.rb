@@ -1893,14 +1893,8 @@ class PokeBattle_Move_063 < PokeBattle_Move
         return false
     end
 
-    def pbEffectAgainstTarget(_user, target)
-        @battle.pbShowAbilitySplash(target, target.baseAbility, true, false)
-        oldAbil = target.baseAbility
-        target.ability = :SIMPLE
-        @battle.pbReplaceAbilitySplash(target, :SIMPLE)
-        @battle.pbDisplay(_INTL("{1} acquired {2}!", target.pbThis, getAbilityName(:SIMPLE)))
-        @battle.pbHideAbilitySplash(target)
-        target.pbOnAbilityChanged(oldAbil)
+    def pbEffectAgainstTarget(user, target)
+        target.replaceAbility(:SIMPLE)
     end
 
     def getEffectScore(user, target)
@@ -1939,13 +1933,7 @@ class PokeBattle_Move_064 < PokeBattle_Move
     end
 
     def pbEffectAgainstTarget(_user, target)
-        @battle.pbShowAbilitySplash(target, target.baseAbility, true, false)
-        oldAbil = target.baseAbility
-        target.ability = :INSOMNIA
-        @battle.pbReplaceAbilitySplash(target, :INSOMNIA)
-        @battle.pbDisplay(_INTL("{1} acquired {2}!", target.pbThis, getAbilityName(:INSOMNIA)))
-        @battle.pbHideAbilitySplash(target)
-        target.pbOnAbilityChanged(oldAbil)
+        target.replaceAbility(:INSOMNIA)
     end
 
     def getEffectScore(user, target)
@@ -1970,19 +1958,19 @@ class PokeBattle_Move_065 < PokeBattle_Move
     end
 
     def pbFailsAgainstTarget?(user, target, show_message)
-        unless target.baseAbility
+        unless target.firstAbility
             if show_message
                 @battle.pbDisplay(_INTL("But it failed, since #{target.pbThis(true)} doesn't have an ability!"))
             end
             return true
         end
-        if user.baseAbility == target.baseAbility
+        if user.firstAbility == target.firstAbility
             if show_message
                 @battle.pbDisplay(_INTL("But it failed, since the #{target.pbThis(true)} and #{user.pbThis(true)} have the same ability!"))
             end
             return true
         end
-        if target.ungainableAbility? || %i[POWEROFALCHEMY RECEIVER TRACE WONDERGUARD].include?(target.baseAbility.id)
+        if user.ungainableAbility?(target.firstAbility) || %i[POWEROFALCHEMY RECEIVER TRACE WONDERGUARD].include?(target.firstAbility)
             if show_message
                 @battle.pbDisplay(_INTL("But it failed, since #{target.pbThis(true)}'s ability can't be copied!"))
             end
@@ -1992,15 +1980,9 @@ class PokeBattle_Move_065 < PokeBattle_Move
     end
 
     def pbEffectAgainstTarget(user, target)
-        @battle.pbShowAbilitySplash(user, user.baseAbility, true, false)
-        oldAbil = user.baseAbility
-        user.ability = target.baseAbility
-        @battle.pbReplaceAbilitySplash(user, user.baseAbility)
-        @battle.pbDisplay(_INTL("{1} copied {2}'s {3}!",
-           user.pbThis, target.pbThis(true), getAbilityName(target.baseAbility)))
-        @battle.pbHideAbilitySplash(user)
-        user.pbOnAbilityChanged(oldAbil)
-        user.pbEffectsOnSwitchIn
+        replacementMsg = _INTL("{1} copied {2}'s {3}!",
+            user.pbThis, target.pbThis(true), getAbilityName(target.firstAbility))
+        user.replaceAbility(target.firstAbility, replacementMsg: replacementMsg)
     end
 
     def getEffectScore(user, target)
@@ -2015,12 +1997,12 @@ end
 #===============================================================================
 class PokeBattle_Move_066 < PokeBattle_Move
     def pbMoveFailed?(user, _targets, _show_message)
-        unless user.baseAbility
+        unless user.firstAbility
             @battle.pbDisplay(_INTL("But it failed, since #{user.pbThis(true)} doesn't have an ability!"))
             return true
         end
-        if user.ungainableAbility? ||
-           %i[POWEROFALCHEMY RECEIVER TRACE].include?(user.baseAbility.id)
+        if user.ungainableAbility?(user.firstAbility) ||
+           %i[POWEROFALCHEMY RECEIVER TRACE].include?(user.firstAbility)
             @battle.pbDisplay(_INTL("But it failed, since #{user.pbThis(true)}'s ability cannot be copied!"))
             return true
         end
@@ -2038,14 +2020,8 @@ class PokeBattle_Move_066 < PokeBattle_Move
     end
 
     def pbEffectAgainstTarget(user, target)
-        oldAbil = target.baseAbility
-        @battle.pbShowAbilitySplash(target, oldAbil, true, false)
-        target.ability = user.baseAbility
-        @battle.pbReplaceAbilitySplash(target, target.baseAbility)
-        @battle.pbDisplay(_INTL("{1} acquired {2}!", target.pbThis, getAbilityName(user.baseAbility)))
-        @battle.pbHideAbilitySplash(target)
-        target.pbOnAbilityChanged(oldAbil)
-        target.pbEffectsOnSwitchIn
+        replacementMsg = _INTL("{1} acquired {2}!", target.pbThis, getAbilityName(user.firstAbility))
+        user.replaceAbility(target.firstAbility, replacementMsg: replacementMsg)
     end
 
     def getEffectScore(user, target)
@@ -2068,43 +2044,37 @@ class PokeBattle_Move_067 < PokeBattle_Move
     def ignoresSubstitute?(_user); return true; end
 
     def pbMoveFailed?(user, _targets, _show_message)
-        unless user.baseAbility
+        unless user.firstAbility
             @battle.pbDisplay(_INTL("But it failed, since #{user.pbThis(true)} doesn't have an ability!"))
             return true
         end
-        if user.unstoppableAbility?
+        if user.unstoppableAbility?(user.firstAbility)
             @battle.pbDisplay(_INTL("But it failed, since #{user.pbThis(true)}'s ability cannot be changed!"))
             return true
         end
-        if user.ungainableAbility? || user.baseAbility == :WONDERGUARD
+        if user.ungainableAbility?(user.firstAbility) || user.firstAbility == :WONDERGUARD
             @battle.pbDisplay(_INTL("But it failed, since #{user.pbThis(true)}'s ability cannot be copied!"))
             return true
         end
         return false
     end
 
-    def pbFailsAgainstTarget?(_user, target, show_message)
-        unless target.baseAbility
+    def pbFailsAgainstTarget?(user, target, show_message)
+        unless target.firstAbility
             if show_message
                 @battle.pbDisplay(_INTL("But it failed, since #{target.pbThis(true)} doesn't have an ability!"))
             end
             return true
         end
-        if target.unstoppableAbility?
+        if target.unstoppableAbility?(target.firstAbility)
             if show_message
                 @battle.pbDisplay(_INTL("But it failed, since #{target.pbThis(true)}'s ability can't be supressed!"))
             end
             return true
         end
-        if target.ungainableAbility?
+        if target.ungainableAbility?(target.firstAbility) || target.firstAbility == :WONDERGUARD
             if show_message
-                @battle.pbDisplay(_INTL("But it failed, since #{target.pbThis(true)}'s ability can't be copied!"))
-            end
-            return true
-        end
-        if target.baseAbility == :WONDERGUARD
-            if show_message
-                @battle.pbDisplay(_INTL("But it failed, since #{target.pbThis(true)}'s ability is #{getAbilityName(:WONDERGUARD)}"))
+                @battle.pbDisplay(_INTL("But it failed, since #{user.pbThis(true)}'s ability can't be copied!"))
             end
             return true
         end
@@ -2112,27 +2082,12 @@ class PokeBattle_Move_067 < PokeBattle_Move
     end
 
     def pbEffectAgainstTarget(user, target)
-        if user.opposes?(target)
-            @battle.pbShowAbilitySplash(user, user.baseAbility, false, false)
-            @battle.pbShowAbilitySplash(target, target.baseAbility, true, false)
-        end
-        oldUserAbil   = user.baseAbility
-        oldTargetAbil = target.baseAbility
-        user.ability   = oldTargetAbil
-        target.ability = oldUserAbil
-        if user.opposes?(target)
-            @battle.pbReplaceAbilitySplash(user, oldTargetAbil)
-            @battle.pbReplaceAbilitySplash(target, oldUserAbil)
-        end
-        @battle.pbDisplay(_INTL("{1} swapped Abilities with its target!", user.pbThis))
-        if user.opposes?(target)
-            @battle.pbHideAbilitySplash(user)
-            @battle.pbHideAbilitySplash(target)
-        end
-        user.pbOnAbilityChanged(oldUserAbil)
-        target.pbOnAbilityChanged(oldTargetAbil)
-        user.pbEffectsOnSwitchIn
-        target.pbEffectsOnSwitchIn
+        showSplashes = user.opposes?(target)
+        oldUserAbil   = user.firstAbility
+        oldTargetAbil = target.firstAbility
+        replacementMsg = _INTL("{1} swapped Abilities with its target!", user.pbThis)
+        target.replaceAbility(oldUserAbil, showSplashes, user, replacementMsg: replacementMsg)
+        user.replaceAbility(oldTargetAbil, showSplashes, target, replacementMsg: replacementMsg)
     end
 
     def getEffectScore(user, target)

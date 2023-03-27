@@ -121,9 +121,9 @@ BattleHandlers::EORWeatherAbility.add(:NIGHTLINE,
             unless potentialHeals.empty?
                 healTarget = potentialHeals.sample
                 battle.pbDisplay(_INTL("{1} sends out a signal, healing #{healTarget.name}!"))
-                newHP = pkmn.hp + healingAmount
-                newHP = pkmn.totalhp if newHP > pkmn.totalhp
-                pkmn.hp = newHP
+                newHP = healTarget.hp + healingAmount
+                newHP = healTarget.totalhp if newHP > healTarget.totalhp
+                healTarget.hp = newHP
             end
         end
     }

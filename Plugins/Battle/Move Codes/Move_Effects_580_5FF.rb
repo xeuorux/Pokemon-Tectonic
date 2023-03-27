@@ -707,10 +707,10 @@ class PokeBattle_Move_5A8 < PokeBattle_Move
         else
             removedAny = false
             target.eachItemWithName do |item, itemName|
-                next if target.unlosableItem?(item)
                 next if item == :BLACKSLUDGE
-                removalMessage = _INTL("{1} dropped its {2}!", target.pbThis, itemName)
-                knockOffItems(user, target, item, removalMessage)
+                next unless canRemoveItem?(user, target, item)
+                target.removeItem(item)
+                @battle.pbDisplay(_INTL("{1} dropped its {2}!", target.pbThis, itemName))
                 removedAny = true
                 break
             end

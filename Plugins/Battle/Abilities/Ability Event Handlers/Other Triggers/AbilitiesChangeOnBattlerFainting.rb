@@ -4,7 +4,7 @@ BattleHandlers::AbilityChangeOnBattlerFainting.add(:POWEROFALCHEMY,
         next if fainted.ungainableAbility? ||
            %i[POWEROFALCHEMY RECEIVER TRACE WONDERGUARD].include?(fainted.ability_id)
         battle.pbShowAbilitySplash(battler, ability, true)
-        stolenAbility = fainted.baseAbility
+        stolenAbility = fainted.firstAbility
         battler.ability = stolenAbility
         battle.pbReplaceAbilitySplash(battler, stolenAbility)
         battle.pbDisplay(_INTL("{1}'s {2} was taken over!", fainted.pbThis, getAbilityName(stolenAbility)))

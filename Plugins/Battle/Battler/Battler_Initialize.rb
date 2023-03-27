@@ -44,7 +44,7 @@ class PokeBattle_Battler
         @level          = 0
         @hp = @totalhp  = 0
         @type1 = @type2 = nil
-        @ability_id     = nil
+        @ability_ids     = []
         @item_ids       = []
         @gender         = 0
         @attack = @defense = @spatk = @spdef = @speed = 0
@@ -111,7 +111,13 @@ class PokeBattle_Battler
         @hp           = pkmn.hp
         @type1        = pkmn.type1
         @type2        = pkmn.type2
-        @ability_id   = pkmn.ability_id
+        @ability_ids  = []
+        @ability_ids.push(pkmn.ability_id) if pkmn.ability_id
+        if (@battle.curseActive?(:CURSE_DOUBLE_ABILITIES) && opposing?) || (TESTING_DOUBLE_QUALITIES && !boss?)
+            pkmn.species_data.abilities.each do |legalAbility|
+                @ability_ids.push(legalAbility) unless @ability_ids.include?(legalAbility)
+            end
+        end
         @item_ids     = []
         @item_ids.push(pkmn.item_id) if pkmn.item_id
         @item_ids.push(@battle.getRandomHeldItem) if TESTING_DOUBLE_QUALITIES

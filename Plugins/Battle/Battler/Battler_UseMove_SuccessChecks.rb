@@ -68,9 +68,10 @@ GameData::Move.get(@effects[:ChoiceBand]).name)
         end
         # Gorilla Tactics
         if effectActive?(:GorillaTactics)
-            if hasActiveAbility?(CHOICE_LOCKING_ABILITIES)
+            choiceLockingAbility = hasActiveAbility?(CHOICE_LOCKING_ABILITIES)
+            if choiceLockingAbility
                 if move.id != @effects[:GorillaTactics]
-                    msg = _INTL("{1} allows the use of only {2}!", getAbilityName(baseAbility),
+                    msg = _INTL("{1} allows the use of only {2}!", getAbilityName(choiceLockingAbility),
 GameData::Move.get(@effects[:GorillaTactics]).name)
                     if showMessages
                         commandPhase ? @battle.pbDisplayPaused(msg) : @battle.pbDisplay(msg)

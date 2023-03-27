@@ -477,17 +477,10 @@ BattleHandlers::TargetAbilityOnHit.add(:MUMMY,
     proc { |ability, user, target, move, battle, aiChecking, aiNumHits|
         next unless move.physicalMove?
         next if user.fainted?
-        next if user.unstoppableAbility? || user.hasAbility?(ability)
-        next -5 if aiChecking
-        battle.pbShowAbilitySplash(target, ability) if user.opposes?(target)
-        oldAbil = user.baseAbility
-        battle.pbShowAbilitySplash(user, oldAbil, true, false) if user.opposes?(target)
-        user.ability = ability
-        battle.pbReplaceAbilitySplash(user, ability) if user.opposes?(target)
-        battle.pbDisplay(_INTL("{1}'s Ability became {2}!", user.pbThis, getAbilityName(ability)))
-        battle.pbHideAbilitySplash(user) if user.opposes?(target)
-        battle.pbHideAbilitySplash(target) if user.opposes?(target)
-        user.pbOnAbilityChanged(oldAbil) unless oldAbil.nil?
+        next if user.unstoppableAbility?
+        next if user.hasAbility?(ability)
+        next -10 if aiChecking
+        user.replaceAbility(ability, user.opposes?(target))
     }
 )
   
@@ -495,19 +488,26 @@ BattleHandlers::TargetAbilityOnHit.add(:INFECTED,
     proc { |ability, user, target, move, battle, aiChecking, aiNumHits|
         next unless move.physicalMove?
         next if user.fainted?
-        next if user.unstoppableAbility? || user.hasAbility?(ability)
+        next if user.unstoppableAbility?
+        next if user.hasAbility?(ability)
         next unless user.canChangeType?
-        next -5 if aiChecking
-        battle.pbShowAbilitySplash(target, ability) if user.opposes?(target)
-        oldAbil = user.baseAbility
-        battle.pbShowAbilitySplash(user, oldAbil, true, false) if user.opposes?(target)
-        user.ability = ability
-        battle.pbReplaceAbilitySplash(user, ability) if user.opposes?(target)
-        battle.pbDisplay(_INTL("{1}'s Ability became {2}!", user.pbThis, getAbilityName(ability)))
+        next -15 if aiChecking
+        user.replaceAbility(ability, user.opposes?(target), target)
         user.applyEffect(:Type3,:GRASS) unless user.pbHasType?(:GRASS)
-        battle.pbHideAbilitySplash(user) if user.opposes?(target)
-        battle.pbHideAbilitySplash(target) if user.opposes?(target)
-        user.pbOnAbilityChanged(oldAbil) unless oldAbil.nil?
+    }
+)
+
+BattleHandlers::TargetAbilityOnHit.add(:WANDERINGSPIRIT,
+    proc { |ability, user, target, move, battle, aiChecking, aiNumHits|
+        next unless move.physicalMove?
+        next if user.fainted?
+        next if user.unstoppableAbility?
+        next if user.hasAbility?(ability)
+        oldAbil = user.firstAbility
+        next unless oldAbil
+        next -5 if aiChecking
+        target.replaceAbility(oldAbil, user.opposes?(target))
+        user.replaceAbility(ability, user.opposes?(target))
     }
 )
 
@@ -560,52 +560,6 @@ BattleHandlers::TargetAbilityOnHit.add(:ILLUSION,
         target.disableEffect(:Illusion)
         battle.scene.pbChangePokemon(target, target.pokemon)
         battle.pbSetSeen(target)
-    }
-)
-  
-BattleHandlers::TargetAbilityOnHit.add(:WANDERINGSPIRIT,
-    proc { |ability, user, target, move, battle, aiChecking, aiNumHits|
-        next if aiChecking
-        next unless move.physicalMove?
-        next if user.fainted?
-        abilityBlacklist = [
-            :DISGUISE,
-            :FLOWERGIFT,
-            :GULPMISSILE,
-            :ICEFACE,
-            :IMPOSTER,
-            :RECEIVER,
-            :RKSSYSTEM,
-            :SCHOOLING,
-            :STANCECHANGE,
-            :WONDERGUARD,
-            :ZENMODE,
-            # Abilities that are plain old blocked.
-            :NEUTRALIZINGGAS,
-        ]
-        failed = false
-        abilityBlacklist.each do |abil|
-            next if user.baseAbility != abil
-            failed = true
-            break
-        end
-        next if failed
-        battle.pbShowAbilitySplash(target, ability) if user.opposes?(target)
-        oldAbil = user.baseAbility
-        battle.pbShowAbilitySplash(user, oldAbil, true, false) if user.opposes?(target)
-        user.ability = :WANDERINGSPIRIT
-        target.ability = oldAbil
-        if user.opposes?(target)
-            battle.pbReplaceAbilitySplash(user, user.baseAbility)
-            battle.pbReplaceAbilitySplash(target, target.baseAbility)
-        end
-        battle.pbDisplay(_INTL("{1}'s Ability became {2}!", user.pbThis, getAbilityName(ability)))
-        battle.pbHideAbilitySplash(user)
-        battle.pbHideAbilitySplash(target) if user.opposes?(target)
-        if oldAbil
-            user.pbOnAbilityChanged(oldAbil)
-            target.pbOnAbilityChanged(:WANDERINGSPIRIT)
-        end
     }
 )
 

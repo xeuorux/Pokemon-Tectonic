@@ -62,18 +62,15 @@ class PokeBattle_Battler
     end
 
     def abilities
-        abil = []
-        abil.push(@ability_id)
+        return @ability_ids
+    end
 
-        # Even with the curse, don't add extra abilities if ability was overwritten during battle
-        return abil unless @pokemon.hasAbility?(@ability_id)
-        
-        if (@battle.curseActive?(:CURSE_DOUBLE_ABILITIES) && opposing?) || (TESTING_DOUBLE_QUALITIES && !boss?)
-            @pokemon.species_data.abilities.each do |legalAbility|
-                abil.push(legalAbility) unless abil.include?(legalAbility)
-            end
-        end
-        return abil
+    def firstAbility
+        return @ability_ids.empty? ? nil : @ability_ids[0]
+    end
+
+    def firstAbilityData
+        return GameData::Ability.try_get(firstAbility)
     end
 
     def eachAbility
@@ -117,9 +114,6 @@ class PokeBattle_Battler
     # Applies to both losing self's ability (i.e. being replaced by another) and
     # having self's ability be negated.
     def unstoppableAbility?(abil = nil)
-        abil ||= @ability_id
-        abil = GameData::Ability.try_get(abil)
-        return false unless abil
         ability_blacklist = [
             # Form-changing abilities
             :BATTLEBOND,
@@ -141,7 +135,16 @@ class PokeBattle_Battler
             :STYLISH,
             :FRIENDTOALL,
         ]
-        return ability_blacklist.include?(abil.id)
+
+        if abil
+            abil = GameData::Ability.try_get(abil)
+            return ability_blacklist.include?(abil.id)
+        else
+            eachAbility do |ability|
+                return ability if ability_blacklist.include?(ability)
+            end
+            return false
+        end
     end
 
     # Applies to gaining the ability.
@@ -178,7 +181,7 @@ class PokeBattle_Battler
         return ability_blacklist.include?(abil.id)
     end
 
-    TESTING_DOUBLE_QUALITIES = false
+    TESTING_DOUBLE_QUALITIES = true
 
     def canAddItem?(item = nil)
         return false if fainted?

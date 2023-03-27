@@ -1,7 +1,7 @@
 class PokeBattle_Battler
     # Fundamental to this object
     attr_reader   :battle
-    attr_accessor :index, :pokemonIndex, :species, :type1, :type2, :ability_id, :item_ids, :moves, :turnCount
+    attr_accessor :index, :pokemonIndex, :species, :type1, :type2, :ability_ids, :item_ids, :moves, :turnCount
     attr_accessor  :gender, :iv, :attack, :spatk, :speed, :stages, :captured, :effects, :boss, :avatarPhase
     attr_accessor  :extraMovesPerTurn, :primevalTimer, :indicesTargetedThisRound, :indicesTargetedLastRound, :dmgMult,
 :dmgResist
@@ -33,13 +33,13 @@ class PokeBattle_Battler
         @pokemon.form = value if @pokemon
     end
 
-    def baseAbility
-        return GameData::Ability.try_get(@ability_id)
+    def partyAbility
+        return GameData::Ability.try_get(@pokemon.ability)
     end
 
-    def ability=(value)
+    def setAbility(value)
         newability = GameData::Ability.try_get(value)
-        @ability_id = newability ? newability.id : nil
+        @ability_ids = newability ? [newability.id] : []
     end
 
     def partyItem

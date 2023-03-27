@@ -535,7 +535,7 @@ class PokeBattle_Battler
         applyEffect(:Transform)
         applyEffect(:TransformSpecies, target.species)
         pbChangeTypes(target)
-        self.ability = target.baseAbility
+        setAbility(target.firstAbility)
         @attack = target.attack
         @defense = target.defense
         @spatk = target.spatk
@@ -571,5 +571,24 @@ class PokeBattle_Battler
         pbItemHPHealCheck
         disableEffect(:Trapping)
         applyEffect(:Substitute, subLife)
+    end
+
+    #=============================================================================
+    # Changing ability
+    #=============================================================================
+
+    def replaceAbility(newAbility, showSplashes = true, swapper = nil, replacementMsg: nil)
+        return if hasAbility?(newAbility)
+        @battle.pbShowAbilitySplash(swapper, newAbility) if showSplashes && swapper
+        oldAbil = firstAbility
+        @battle.pbShowAbilitySplash(self, oldAbil, true, false) if showSplashes
+        setAbility(newAbility)
+        @battle.pbReplaceAbilitySplash(self, newAbility) if showSplashes
+        replacementMsg ||= _INTL("{1}'s Ability became {2}!", pbThis, getAbilityName(newAbility))
+        @battle.pbDisplay(replacementMsg)
+        @battle.pbHideAbilitySplash(self) if showSplashes
+        @battle.pbHideAbilitySplash(swapper) if showSplashes && swapper
+        pbOnAbilityChanged(oldAbil) unless oldAbil.nil?
+        pbEffectsOnSwitchIn
     end
 end

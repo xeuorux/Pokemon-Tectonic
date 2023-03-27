@@ -174,9 +174,10 @@ class PokeBattle_Battler
                 end
             end
             # Downside abilities
-            if unstoppableAbility?
+            unstoppableAbility = unstoppableAbility?
+            if unstoppableAbility
                 if showMessages
-                    @battle.pbShowAbilitySplash(self, baseAbility)
+                    @battle.pbShowAbilitySplash(self, unstoppableAbility)
                     @battle.pbDisplay(_INTL("{1}'s ability can't be prevented, so it can't be dizzied!", pbThis))
                     @battle.pbHideAbilitySplash(self)
                 end
