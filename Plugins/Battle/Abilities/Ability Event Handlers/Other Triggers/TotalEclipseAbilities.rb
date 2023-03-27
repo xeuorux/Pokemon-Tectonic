@@ -1,13 +1,13 @@
 BattleHandlers::TotalEclipseAbility.add(:TOTALGRASP,
-    proc { |_ability, battler, _battle|
+    proc { |ability, battler, _battle|
         battler.pbRaiseMultipleStatStages([:ATTACK,1,:DEFENSE,1,:SPECIAL_ATTACK,1,:SPECIAL_DEFENSE,1,:SPEED,1],battler,
-             showAbilitySplash: true)
+             ability: ability)
     }
 )
 
 BattleHandlers::TotalEclipseAbility.add(:TOLLDANGER,
-    proc { |_ability, battler, battle|
-        battle.pbShowAbilitySplash(battler)
+    proc { |ability, battler, battle|
+        battle.pbShowAbilitySplash(battler, ability)
         battler.applyFractionalHealing(1.0/2.0)
         battle.forceUseMove(battler, :HEALBELL)
         battle.pbHideAbilitySplash(battler)

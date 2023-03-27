@@ -75,9 +75,12 @@ class PokeBattle_Battle
                             chosenBattler = battler
                             break
                         end
+
                         # Handle the chosen pokemon leaving battle, if it was in battle
-                        if !chosenBattler.nil? && chosenBattler.abilityActive?
-                            BattleHandlers.triggerAbilityOnSwitchOut(chosenBattler.ability, chosenBattler, true)
+                        if !chosenBattler.nil?
+                            chosenBattler.eachActiveAbility do |ability|
+                                BattleHandlers.triggerAbilityOnSwitchOut(ability, chosenBattler, true)
+                            end
                         end
 
                         chosenPokemon.item = @initialItems[0][chosen]

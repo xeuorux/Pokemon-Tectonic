@@ -3,7 +3,6 @@ BattleHandlers::StatusCureItem.add(:ASPEARBERRY,
       next false if !forced && !battler.canConsumeBerry?
       next false unless battler.hasStatusNoTrigger(:FROZEN)
       itemName = GameData::Item.get(item).name
-      PBDebug.log("[Item triggered] #{battler.pbThis}'s #{itemName}") if forced
       battle.pbCommonAnimation("Nom", battler) unless forced
       battler.pbCureStatus(forced, :FROZEN)
       battle.pbDisplay(_INTL("{1}'s {2} unchilled it!", battler.pbThis, itemName)) unless forced
@@ -16,7 +15,6 @@ BattleHandlers::StatusCureItem.add(:CHERIBERRY,
       next false if !forced && !battler.canConsumeBerry?
       next false unless battler.hasStatusNoTrigger(:NUMB)
       itemName = GameData::Item.get(item).name
-      PBDebug.log("[Item triggered] #{battler.pbThis}'s #{itemName}") if forced
       battle.pbCommonAnimation("Nom", battler) unless forced
       battler.pbCureStatus(forced, :NUMB)
       battle.pbDisplay(_INTL("{1}'s {2} cured its numb!", battler.pbThis, itemName)) unless forced
@@ -29,7 +27,6 @@ BattleHandlers::StatusCureItem.add(:CHESTOBERRY,
       next false if !forced && !battler.canConsumeBerry?
       next false unless battler.hasStatusNoTrigger(:SLEEP)
       itemName = GameData::Item.get(item).name
-      PBDebug.log("[Item triggered] #{battler.pbThis}'s #{itemName}") if forced
       battle.pbCommonAnimation("Nom", battler) unless forced
       battler.pbCureStatus(forced, :SLEEP)
       battle.pbDisplay(_INTL("{1}'s {2} woke it up!", battler.pbThis, itemName)) unless forced
@@ -42,7 +39,6 @@ BattleHandlers::StatusCureItem.add(:PECHABERRY,
       next false if !forced && !battler.canConsumeBerry?
       next false unless battler.hasStatusNoTrigger(:POISON)
       itemName = GameData::Item.get(item).name
-      PBDebug.log("[Item triggered] #{battler.pbThis}'s #{itemName}") if forced
       battle.pbCommonAnimation("Nom", battler) unless forced
       battler.pbCureStatus(forced, :POISON)
       battle.pbDisplay(_INTL("{1}'s {2} cured its poisoning!", battler.pbThis, itemName)) unless forced
@@ -55,7 +51,6 @@ BattleHandlers::StatusCureItem.add(:RAWSTBERRY,
       next false if !forced && !battler.canConsumeBerry?
       next false unless battler.hasStatusNoTrigger(:BURN)
       itemName = GameData::Item.get(item).name
-      PBDebug.log("[Item triggered] #{battler.pbThis}'s #{itemName}") if forced
       battle.pbCommonAnimation("Nom", battler) unless forced
       battler.pbCureStatus(forced, :BURN)
       battle.pbDisplay(_INTL("{1}'s {2} healed its burn!", battler.pbThis, itemName)) unless forced
@@ -68,7 +63,6 @@ BattleHandlers::StatusCureItem.add(:LUMBERRY,
       next false if !forced && !battler.canConsumeBerry?
       next false unless battler.hasAnyStatusNoTrigger
       itemName = GameData::Item.get(item).name
-      PBDebug.log("[Item triggered] #{battler.pbThis}'s #{itemName}") if forced
       battle.pbCommonAnimation("Nom", battler) unless forced
       battler.pbCureStatus
       next true
@@ -80,7 +74,6 @@ BattleHandlers::StatusCureItem.add(:PEARLOFFATE,
       next false if !forced && !battler.canConsumeBerry?
       next false unless battler.hasAnyStatusNoTrigger
       itemName = GameData::Item.get(item).name
-      PBDebug.log("[Item triggered] #{battler.pbThis}'s #{itemName}") if forced
       battle.pbDisplay(_INTL("The {1} sacrificed itself to cure {2}!", itemName, battler.pbThis(true))) unless forced
       battler.pbCureStatus
       next true
@@ -92,7 +85,6 @@ BattleHandlers::StatusCureItem.add(:PERSIMBERRY,
       next false if !forced && !battler.canConsumeBerry?
       next false unless battler.hasStatusNoTrigger(:DIZZY)
       itemName = GameData::Item.get(item).name
-      PBDebug.log("[Item triggered] #{battler.pbThis}'s #{itemName}") if forced
       battle.pbCommonAnimation("Nom", battler) unless forced
       battler.pbCureStatus(forced, :DIZZY)
       battle.pbDisplay(_INTL("{1}'s {2} made it no longer dizzy!", battler.pbThis, itemName)) unless forced
@@ -105,7 +97,6 @@ BattleHandlers::StatusCureItem.add(:SPELONBERRY,
       next false if !forced && !battler.canConsumeBerry?
       next false unless battler.hasStatusNoTrigger(:LEECHED)
       itemName = GameData::Item.get(item).name
-      PBDebug.log("[Item triggered] #{battler.pbThis}'s #{itemName}") if forced
       battle.pbCommonAnimation("Nom", battler) unless forced
       battler.pbCureStatus(forced, :LEECHED)
       battle.pbDisplay(_INTL("{1}'s {2} made it no longer leeched!", battler.pbThis, itemName)) unless forced
@@ -126,7 +117,6 @@ BattleHandlers::StatusCureItem.add(:MENTALHERB,
       next false unless activate
 
       itemName = GameData::Item.get(item).name
-      PBDebug.log("[Item triggered] #{battler.pbThis}'s #{itemName}")
       battle.pbCommonAnimation("UseItem", battler) unless forced
 
       # Disable all mental effects

@@ -7,10 +7,12 @@ class PokeBattle_Battle
         battler = @battlers[idxBattler]
         return false if !@canRun && !battler.opposes?
         return true if battler.pbHasType?(:GHOST) && Settings::MORE_TYPE_EFFECTS
-        return true if battler.abilityActive? &&
-                       BattleHandlers.triggerRunFromBattleAbility(battler.ability, battler)
-        return true if battler.itemActive? &&
-                       BattleHandlers.triggerRunFromBattleItem(battler.item, battler)
+        battler.eachActiveAbility do |ability|
+            return true if BattleHandlers.triggerRunFromBattleAbility(ability, battler)
+        end   
+        battler.eachActiveItem do |item|
+            return true if BattleHandlers.triggerRunFromBattleItem(item, battler)
+        end                       
         battler.eachEffectAllLocations(true) do |_effect, _value, data|
             return false if data.trapping?
         end
@@ -63,54 +65,6 @@ class PokeBattle_Battle
         unless @canRun
             pbDisplayPaused(_INTL("You can't escape!"))
             return 0
-        end
-        unless duringBattle
-            if battler.pbHasType?(:GHOST)
-                pbSEPlay("Battle flee")
-                pbDisplayPaused(_INTL("Your Pokémon uses its ghostly powers to escape!"))
-                @decision = 3
-                return 1
-            end
-            # Abilities that guarantee escape
-            if battler.abilityActive? && BattleHandlers.triggerRunFromBattleAbility(battler.ability, battler)
-                pbShowAbilitySplash(battler, true)
-                pbHideAbilitySplash(battler)
-                pbSEPlay("Battle flee")
-                pbDisplayPaused(_INTL("You got away safely!"))
-                @decision = 3
-                return 1
-            end
-            # Held items that guarantee escape
-            if battler.itemActive? && BattleHandlers.triggerRunFromBattleItem(battler.item, battler)
-                pbSEPlay("Battle flee")
-                pbDisplayPaused(_INTL("{1} fled using its {2}!",
-                   battler.pbThis, battler.itemName))
-                @decision = 3
-                return 1
-            end
-            # Any effect that could keep a battler trapped
-            battler.eachEffectAllLocations(true) do |_effect, _value, data|
-                if data.trapping?
-                    echoln("[EFFECT] #{battler.pbThis} is trapped by effect #{data.real_name}")
-                    pbDisplayPaused(_INTL("You can't escape!"))
-                    return 0
-                end
-            end
-            # Trapping abilities/items
-            eachOtherSideBattler(idxBattler) do |b|
-                next unless b.abilityActive?
-                if BattleHandlers.triggerTrappingTargetAbility(b.ability, battler, b, self)
-                    pbDisplayPaused(_INTL("{1} prevents escape with {2}!", b.pbThis, b.abilityName))
-                    return 0
-                end
-            end
-            eachOtherSideBattler(idxBattler) do |b|
-                next unless b.itemActive?
-                if BattleHandlers.triggerTrappingTargetItem(b.item, battler, b, self)
-                    pbDisplayPaused(_INTL("{1} prevents escape with {2}!", b.pbThis, b.itemName))
-                    return 0
-                end
-            end
         end
 
         pbSEPlay("Battle flee")

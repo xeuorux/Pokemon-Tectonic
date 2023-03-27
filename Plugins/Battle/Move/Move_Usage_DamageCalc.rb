@@ -115,24 +115,26 @@ class PokeBattle_Move
             multipliers[:base_damage_multiplier] *= 1.2
         end
         # Ability effects that alter damage
-        if user.abilityActive?
-            BattleHandlers.triggerDamageCalcUserAbility(user.ability,user,target,self,multipliers,baseDmg,type,aiChecking)
+        user.eachActiveAbility do |ability|
+            BattleHandlers.triggerDamageCalcUserAbility(ability,user,target,self,multipliers,baseDmg,type,aiChecking)
         end
-        if !@battle.moldBreaker
-            # NOTE: It's odd that the user's Mold Breaker prevents its partner's
-            #       beneficial abilities (e.g. Power Spot), but that's how it works.
-            user.eachAlly do |b|
-                next if !b.abilityActive?
-                BattleHandlers.triggerDamageCalcUserAllyAbility(b.ability,user,target,self,multipliers,baseDmg,type,aiChecking)
+        user.eachAlly do |b|
+            b.eachActiveAbility do |ability|
+                BattleHandlers.triggerDamageCalcUserAllyAbility(ability,user,target,self,multipliers,baseDmg,type,aiChecking)
             end
+        end
+        target.eachActiveAbility do |ability|
+            BattleHandlers.triggerDamageCalcTargetAbilityNonIgnorable(ability,user,target,self,multipliers,baseDmg,type)
+        end
+        unless @battle.moldBreaker
             # TODO: AI-Check discrepency for targets abilities
-            if target.abilityActive?
-                BattleHandlers.triggerDamageCalcTargetAbility(target.ability,user,target,self,multipliers,baseDmg,type) if !@battle.moldBreaker
-                BattleHandlers.triggerDamageCalcTargetAbilityNonIgnorable(target.ability,user,target,self,multipliers,baseDmg,type)
+            target.eachActiveAbility do |ability|
+                BattleHandlers.triggerDamageCalcTargetAbility(ability,user,target,self,multipliers,baseDmg,type)
             end
             target.eachAlly do |b|
-                next if !b.abilityActive?
-                BattleHandlers.triggerDamageCalcTargetAllyAbility(b.ability,user,target,self,multipliers,baseDmg,type)
+                b.eachActiveAbility do |ability|
+                    BattleHandlers.triggerDamageCalcTargetAllyAbility(ability,user,target,self,multipliers,baseDmg,type)
+                end
             end
         end
     end
@@ -376,19 +378,16 @@ class PokeBattle_Move
         pbCalcTribeBasedDamageMultipliers(user,target,type,multipliers,aiChecking)
 
         # Item effects that alter damage
-        if user.itemActive?
-            BattleHandlers.triggerDamageCalcUserItem(user.item,
-                user,target,self,multipliers,baseDmg,type,aiChecking)
+        user.eachActiveItem do |item|
+            BattleHandlers.triggerDamageCalcUserItem(item,user,target,self,multipliers,baseDmg,type,aiChecking)
         end
-        if target.itemActive?
-            BattleHandlers.triggerDamageCalcTargetItem(target.item,
-                user,target,self,multipliers,baseDmg,type, aiChecking)
+        target.eachActiveItem do |item|
+            BattleHandlers.triggerDamageCalcTargetItem(item,user,target,self,multipliers,baseDmg,type,aiChecking)
         end
 
         if target.effectActive?(:DeathMark)
             multipliers[:final_damage_multiplier] *= 1.5
         end
-        
         
         if aiChecking
             # Parental Bond

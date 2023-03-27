@@ -131,27 +131,31 @@ class PokeBattle_AI
     def pbCalcAccuracyModifiers(user, target, modifiers, move, type)
         moldBreaker = false
         moldBreaker = true if target.hasMoldBreaker?
-        if user.abilityActive?
-            BattleHandlers.triggerAccuracyCalcUserAbility(user.ability,
-               modifiers, user, target, move, type)
+        # User's abilities
+        user.eachActiveAbility do |ability|
+            BattleHandlers.triggerAccuracyCalcUserAbility(ability,
+            modifiers, user, target, move, type)
         end
-        user.eachAlly do |b|
-            next unless b.abilityActive?
-            BattleHandlers.triggerAccuracyCalcUserAllyAbility(b.ability,
-               modifiers, user, target, move, type)
+        # User's ally's abilities
+        user.eachAlly do |ally|
+            ally.eachActiveAbility do |ability|
+                BattleHandlers.triggerAccuracyCalcUserAllyAbility(ability,
+                    modifiers, user, target, move, type)
+            end
         end
-        if target.abilityActive? && !moldBreaker
-            BattleHandlers.triggerAccuracyCalcTargetAbility(target.ability,
-               modifiers, user, target, move, type)
+        # Target's abilities
+        unless moldBreaker
+            target.eachActiveAbility do |ability|
+                BattleHandlers.triggerAccuracyCalcTargetAbility(ability,
+                    modifiers, user, target, move, type)
+            end
         end
         # Item effects that alter accuracy calculation
-        if user.itemActive?
-            BattleHandlers.triggerAccuracyCalcUserItem(user.item,
-               modifiers, user, target, move, type)
+        user.eachActiveItem do |item|
+            BattleHandlers.triggerAccuracyCalcUserItem(item, modifiers, user, target, move, type)
         end
-        if target.itemActive?
-            BattleHandlers.triggerAccuracyCalcTargetItem(target.item,
-               modifiers, user, target, move, type)
+        target.eachActiveItem do |item|
+            BattleHandlers.triggerAccuracyCalcTargetItem(item, modifiers, user, target, move, type)
         end
         # Other effects, inc. ones that set accuracy_multiplier or evasion_stage to specific values
         modifiers[:accuracy_multiplier] *= 2.0 if @battle.field.effectActive?(:Gravity)

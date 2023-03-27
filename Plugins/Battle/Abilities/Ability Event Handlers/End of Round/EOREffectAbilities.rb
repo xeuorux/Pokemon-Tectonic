@@ -1,8 +1,8 @@
 BattleHandlers::EOREffectAbility.add(:BADDREAMS,
-  proc { |_ability, battler, battle|
+  proc { |ability, battler, battle|
       battle.eachOtherSideBattler(battler.index) do |b|
           next if !b.near?(battler) || !b.asleep?
-          battle.pbShowAbilitySplash(battler)
+          battle.pbShowAbilitySplash(battler, ability)
           next unless b.takesIndirectDamage?(true)
           battle.pbDisplay(_INTL("{1} is pained by its dreams!", b.pbThis))
           b.applyFractionalDamage(1.0 / 8.0, false)
@@ -12,7 +12,7 @@ BattleHandlers::EOREffectAbility.add(:BADDREAMS,
 )
 
 BattleHandlers::EOREffectAbility.add(:MOODY,
-  proc { |_ability, battler, battle|
+  proc { |ability, battler, battle|
       randomUp = []
       randomDown = []
       GameData::Stat.each_main_battle do |s|
@@ -20,7 +20,7 @@ BattleHandlers::EOREffectAbility.add(:MOODY,
           randomDown.push(s.id) if battler.pbCanLowerStatStage?(s.id, battler)
       end
       next if randomUp.length == 0 && randomDown.length == 0
-      battle.pbShowAbilitySplash(battler)
+      battle.pbShowAbilitySplash(battler, ability)
       if randomUp.length > 0
           r = battle.pbRandom(randomUp.length)
           randomUpStat = randomUp[r]
@@ -38,9 +38,9 @@ BattleHandlers::EOREffectAbility.add(:MOODY,
 )
 
 BattleHandlers::EOREffectAbility.add(:PERSISTENTGROWTH,
-  proc { |_ability, battler, battle|
+  proc { |ability, battler, battle|
       next unless battler.turnCount > 0
-      battle.pbShowAbilitySplash(battler)
+      battle.pbShowAbilitySplash(battler, ability)
       battler.pbRaiseMultipleStatStages([:ATTACK,1,:DEFENSE,1,:SPECIAL_ATTACK,1,:SPECIAL_DEFENSE,1], battler)
       battler.tryLowerStat(:SPEED, battler)
       battle.pbHideAbilitySplash(battler)
@@ -48,23 +48,23 @@ BattleHandlers::EOREffectAbility.add(:PERSISTENTGROWTH,
 )
 
 BattleHandlers::EOREffectAbility.add(:SPEEDBOOST,
-  proc { |_ability, battler, _battle|
+  proc { |ability, battler, _battle|
       # A Pokémon's turnCount is 0 if it became active after the beginning of a
       # round
-      battler.tryRaiseStat(:SPEED, battler, showAbilitySplash: true) if battler.turnCount > 0
+      battler.tryRaiseStat(:SPEED, battler, ability: ability) if battler.turnCount > 0
   }
 )
 
 BattleHandlers::EOREffectAbility.copy(:SPEEDBOOST, :SPINTENSITY)
 
 BattleHandlers::EOREffectAbility.add(:BALLFETCH,
-  proc { |_ability, battler, battle|
+  proc { |ability, battler, battle|
       if battler.effectActive?(:BallFetch) && battler.item <= 0
           ball = battler.effects[:BallFetch]
           battler.item = ball
           battler.setInitialItem(battler.item)
-          PBDebug.log("[Ability triggered] #{battler.pbThis}'s Ball Fetch found #{PBItems.getName(ball)}")
-          battle.pbShowAbilitySplash(battler)
+
+          battle.pbShowAbilitySplash(battler, ability)
           battle.pbDisplay(_INTL("{1} found a {2}!", battler.pbThis, PBItems.getName(ball)))
           battler.disableEffect(:BallFetch)
           battle.pbHideAbilitySplash(battler)
@@ -73,9 +73,9 @@ BattleHandlers::EOREffectAbility.add(:BALLFETCH,
 )
 
 BattleHandlers::EOREffectAbility.add(:HUNGERSWITCH,
-  proc { |_ability, battler, battle|
+  proc { |ability, battler, battle|
       if battler.species == :MORPEKO
-          battle.pbShowAbilitySplash(battler)
+          battle.pbShowAbilitySplash(battler, ability)
           battler.form = (battler.form == 0) ? 1 : 0
           battler.pbUpdate(true)
           battle.scene.pbChangePokemon(battler, battler.pokemon)
@@ -87,16 +87,16 @@ BattleHandlers::EOREffectAbility.add(:HUNGERSWITCH,
 )
 
 BattleHandlers::EOREffectAbility.add(:LUXURYTASTE,
-  proc { |_ability, battler, battle|
+  proc { |ability, battler, battle|
       next unless battler.hasActiveItem?(CLOTHING_ITEMS)
       healingMessage = _INTL("{1} luxuriated in its fine clothing.", battler.pbThis)
-      battler.applyFractionalHealing(1.0 / 8.0, showAbilitySplash: true, customMessage: healingMessage)
+      battler.applyFractionalHealing(1.0 / 8.0, ability: ability, customMessage: healingMessage)
   }
 )
 
 BattleHandlers::EOREffectAbility.add(:WARMTHCYCLE,
-  proc { |_ability, battler, battle|
-      battle.pbShowAbilitySplash(battler)
+  proc { |ability, battler, battle|
+      battle.pbShowAbilitySplash(battler, ability)
       if !battler.statStageAtMax?(:SPEED)
           if battler.tryRaiseStat(:SPEED, battler, increment: 2)
               battler.applyFractionalDamage(1.0 / 8.0, false)
@@ -113,8 +113,8 @@ BattleHandlers::EOREffectAbility.add(:WARMTHCYCLE,
 )
 
 BattleHandlers::EOREffectAbility.add(:EXTREMEPOWER,
-  proc { |_ability, battler, battle|
-      battle.pbShowAbilitySplash(battler)
+  proc { |ability, battler, battle|
+      battle.pbShowAbilitySplash(battler, ability)
       battler.applyFractionalDamage(1.0 / 10.0, false)
       battle.pbHideAbilitySplash(battler)
   }
@@ -123,28 +123,28 @@ BattleHandlers::EOREffectAbility.add(:EXTREMEPOWER,
 BattleHandlers::EOREffectAbility.copy(:EXTREMEPOWER,:EXTREMEENERGY)
 
 BattleHandlers::EOREffectAbility.add(:TENDERIZE,
-  proc { |_ability, battler, _battle|
+  proc { |ability, battler, _battle|
       battler.eachOther do |b|
           next unless b.numbed?
-          b.pbLowerMultipleStatStages([:DEFENSE, 1, :SPECIAL_DEFENSE, 1], battler, showAbilitySplash: true)
+          b.pbLowerMultipleStatStages([:DEFENSE, 1, :SPECIAL_DEFENSE, 1], battler, ability: ability)
       end
   }
 )
 
 BattleHandlers::EOREffectAbility.add(:LIVINGARMOR,
-  proc { |_ability, battler, battle|
-      battler.applyFractionalHealing(1.0 / 10.0, showAbilitySplash: true)
+  proc { |ability, battler, battle|
+      battler.applyFractionalHealing(1.0 / 10.0, ability: ability)
   }
 )
 
 BattleHandlers::EOREffectAbility.add(:VITALRHYTHM,
-  proc { |_ability, battler, battle|
+  proc { |ability, battler, battle|
       canHealAny = false
       battler.eachAlly do |b|
         canHealAny = true if b.canHeal?
       end
       next unless canHealAny
-      battle.pbShowAbilitySplash(battler)
+      battle.pbShowAbilitySplash(battler, ability)
       battler.applyFractionalHealing(1.0 / 16.0)
       battler.eachAlly do |b|
         b.applyFractionalHealing(1.0 / 16.0)
@@ -154,13 +154,13 @@ BattleHandlers::EOREffectAbility.add(:VITALRHYTHM,
 )
 
 BattleHandlers::EOREffectAbility.add(:GROWUP,
-  proc { |_ability, battler, battle|
+  proc { |ability, battler, battle|
       # A Pokémon's turnCount is 0 if it became active after the beginning of a
       # round
       next if battler.turnCount == 0
       next unless %i[PUMPKABOO GOURGEIST].include?(battler.species)
       next if battler.form == 3
-      battle.pbShowAbilitySplash(battler)
+      battle.pbShowAbilitySplash(battler, ability)
       formChangeMessage = _INTL("#{battler.pbThis} grows one size bigger!")
       battler.pbChangeForm(battler.form + 1, formChangeMessage)
       battle.pbDisplay(_INTL("#{battler.pbThis} is fully grown!")) if battler.form == 3
@@ -169,19 +169,19 @@ BattleHandlers::EOREffectAbility.add(:GROWUP,
 )
 
 BattleHandlers::EOREffectAbility.add(:FIGHTINGVIGOR,
-  proc { |_ability, battler, _battle|
-      battler.applyFractionalHealing(1.0 / 12.0, showAbilitySplash: true)
+  proc { |ability, battler, _battle|
+      battler.applyFractionalHealing(1.0 / 12.0, ability: ability)
   }
 )
 
 BattleHandlers::EOREffectAbility.add(:GROTESQUEVITALS,
-  proc { |_ability, battler, _battle|
-      battler.applyFractionalHealing(1.0 / 12.0, showAbilitySplash: true)
+  proc { |ability, battler, _battle|
+      battler.applyFractionalHealing(1.0 / 12.0, ability: ability)
   }
 )
 
 BattleHandlers::EOREffectAbility.add(:WELLSUPPLIED,
-  proc { |_ability, battler, _battle|
-      battler.applyFractionalHealing(1.0 / 12.0, showAbilitySplash: true)
+  proc { |ability, battler, _battle|
+      battler.applyFractionalHealing(1.0 / 12.0, ability: ability)
   }
 )

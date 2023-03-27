@@ -173,16 +173,18 @@ class PokeBattle_Battler
         attackMult = 1.0
 
         if !ignoreAbilityInAI?(aiChecking) || AI_CHEATS_FOR_STAT_ABILITIES
-            if abilityActive?
-                attackMult = BattleHandlers.triggerAttackCalcUserAbility(ability, self, @battle,
-attackMult)
+            eachActiveAbility do |ability|
+                attackMult = BattleHandlers.triggerAttackCalcUserAbility(ability, self, @battle, attackMult)
             end
             eachAlly do |ally|
-                next unless ally.abilityActive?
-                attackMult = BattleHandlers.triggerAttackCalcAllyAbility(ally.ability, self, @battle, attackMult)
+                ally.eachActiveAbility do |ability|
+                    attackMult = BattleHandlers.triggerAttackCalcAllyAbility(ability, self, @battle, attackMult)
+                end
             end
         end
-        attackMult = BattleHandlers.triggerAttackCalcUserItem(item, self, battle, attackMult) if itemActive?
+        eachActiveItem do |item|
+            attackMult = BattleHandlers.triggerAttackCalcUserItem(item, self, battle, attackMult)
+        end
 
         # Dragon Ride
         attackMult *= 2.0 if effectActive?(:OnDragonRide)
@@ -197,17 +199,18 @@ attackMult)
         spAtkMult = 1.0
 
         if !ignoreAbilityInAI?(aiChecking) || AI_CHEATS_FOR_STAT_ABILITIES
-            if abilityActive?
-                spAtkMult = BattleHandlers.triggerSpecialAttackCalcUserAbility(ability, self, @battle,
-spAtkMult)
+            eachActiveAbility do |ability|
+                spAtkMult = BattleHandlers.triggerSpecialAttackCalcUserAbility(ability, self, @battle, spAtkMult)
             end
             eachAlly do |ally|
-                next unless ally.abilityActive?
-                spAtkMult = BattleHandlers.triggerSpecialAttackCalcAllyAbility(ally.ability, self, @battle,
-spAtkMult)
+                ally.eachActiveAbility do |ability|
+                    spAtkMult = BattleHandlers.triggerSpecialAttackCalcAllyAbility(ability, self, @battle, spAtkMult)
+                end
             end
         end
-        spAtkMult = BattleHandlers.triggerSpecialAttackCalcUserItem(item, self, battle, spAtkMult) if itemActive?
+        eachActiveItem do |item|
+            spAtkMult = BattleHandlers.triggerSpecialAttackCalcUserItem(item, self, battle, spAtkMult)
+        end
 
         # Calculation
         return [(special_attack * spAtkMult).round, 1].max
@@ -219,16 +222,19 @@ spAtkMult)
         defenseMult = 1.0
 
         if !ignoreAbilityInAI?(aiChecking) || AI_CHEATS_FOR_STAT_ABILITIES
-            if abilityActive?
-                defenseMult = BattleHandlers.triggerDefenseCalcUserAbility(ability, self, @battle,
-defenseMult)
+            eachActiveAbility do |ability|
+                defenseMult = BattleHandlers.triggerDefenseCalcUserAbility(ability, self, @battle, defenseMult)
             end
             eachAlly do |ally|
-                next unless ally.abilityActive?
-                defenseMult = BattleHandlers.triggerDefenseCalcAllyAbility(ally.ability, self, @battle, defenseMult)
+                ally.eachActiveAbility do |ability|
+                    defenseMult = BattleHandlers.triggerDefenseCalcAllyAbility(ability, self, @battle, defenseMult)
+                end
             end
         end
-        defenseMult = BattleHandlers.triggerDefenseCalcUserItem(item, self, battle, defenseMult) if itemActive?
+        eachActiveItem do |item|
+            defenseMult = BattleHandlers.triggerDefenseCalcUserItem(item, self, battle, defenseMult)
+        end
+        
         defenseMult *= 1.1 if hasTribeBonus?(:SCRAPPER)
 
         # Calculation
@@ -241,17 +247,19 @@ defenseMult)
         spDefMult = 1.0
 
         if !ignoreAbilityInAI?(aiChecking) || AI_CHEATS_FOR_STAT_ABILITIES
-            if abilityActive?
-                spDefMult = BattleHandlers.triggerSpecialDefenseCalcUserAbility(ability, self, @battle,
-spDefMult)
+            eachActiveAbility do |ability|
+                spDefMult = BattleHandlers.triggerSpecialDefenseCalcUserAbility(ability, self, @battle, spDefMult)
             end
             eachAlly do |ally|
-                next unless ally.abilityActive?
-                spDefMult = BattleHandlers.triggerSpecialDefenseCalcAllyAbility(ally.ability, self, @battle,
-spDefMult)
+                ally.eachActiveAbility do |ability|
+                    spDefMult = BattleHandlers.triggerSpecialDefenseCalcAllyAbility(ability, self, @battle, spDefMult)
+                end
             end
         end
-        spDefMult = BattleHandlers.triggerSpecialDefenseCalcUserItem(item, self, battle, spDefMult) if itemActive?
+        eachActiveItem do |item|
+            spDefMult = BattleHandlers.triggerSpecialDefenseCalcUserItem(item, self, battle, spDefMult)
+        end
+        
         spDefMult *= 1.1 if hasTribeBonus?(:SHIMMERING)
 
         # Calculation
@@ -262,12 +270,15 @@ spDefMult)
         return 1 if fainted?
         speed = statAfterStage(:SPEED, stage)
         speedMult = 1.0
-        if (!ignoreAbilityInAI?(aiChecking) || AI_CHEATS_FOR_STAT_ABILITIES) && (abilityActive? && !ignoreAbilityInAI?(aiChecking))
-            speedMult = BattleHandlers.triggerSpeedCalcAbility(ability, self,
-speedMult)
+        if (!ignoreAbilityInAI?(aiChecking) || AI_CHEATS_FOR_STAT_ABILITIES)
+            eachActiveAbility do |ability|
+                speedMult = BattleHandlers.triggerSpeedCalcAbility(ability, self, speedMult)
+            end
         end
         # Item effects that alter calculated Speed
-        speedMult = BattleHandlers.triggerSpeedCalcItem(item, self, speedMult) if itemActive?
+        eachActiveItem do |item|
+            speedMult = BattleHandlers.triggerSpeedCalcItem(item, self, speedMult)
+        end
         # Other effects
         speedMult *= 2 if pbOwnSide.effectActive?(:Tailwind)
         speedMult /= 2 if pbOwnSide.effectActive?(:Swamp)

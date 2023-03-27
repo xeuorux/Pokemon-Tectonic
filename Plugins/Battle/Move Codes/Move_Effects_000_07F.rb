@@ -1180,7 +1180,7 @@ class PokeBattle_Move_04E < PokeBattle_TargetStatDownMove
         end
         if target.hasActiveAbility?(:OBLIVIOUS) && !@battle.moldBreaker
             if show_message
-                @battle.pbShowAbilitySplash(target)
+                @battle.pbShowAbilitySplash(target, ability)
                 @battle.pbDisplay(_INTL("{1} is unaffected!", target.pbThis))
                 @battle.pbHideAbilitySplash(target)
             end
@@ -1884,9 +1884,9 @@ class PokeBattle_Move_063 < PokeBattle_Move
             end
             return true
         end
-        if target.ability == :SIMPLE
+        if target.hasAbility?(:SIMPLE)
             if show_message
-                @battle.pbDisplay(_INTL("But it failed, since #{target.pbThis(true)}'s ability is already #{target.abilityName}!"))
+                @battle.pbDisplay(_INTL("But it failed, since #{target.pbThis(true)} already has the ability #{getAbilityName(:SIMPLE)}!"))
             end
             return true
         end
@@ -1894,11 +1894,11 @@ class PokeBattle_Move_063 < PokeBattle_Move
     end
 
     def pbEffectAgainstTarget(_user, target)
-        @battle.pbShowAbilitySplash(target, true, false)
-        oldAbil = target.ability
+        @battle.pbShowAbilitySplash(target, target.baseAbility, true, false)
+        oldAbil = target.baseAbility
         target.ability = :SIMPLE
-        @battle.pbReplaceAbilitySplash(target)
-        @battle.pbDisplay(_INTL("{1} acquired {2}!", target.pbThis, target.abilityName))
+        @battle.pbReplaceAbilitySplash(target, :SIMPLE)
+        @battle.pbDisplay(_INTL("{1} acquired {2}!", target.pbThis, getAbilityName(:SIMPLE)))
         @battle.pbHideAbilitySplash(target)
         target.pbOnAbilityChanged(oldAbil)
     end
@@ -1929,9 +1929,9 @@ class PokeBattle_Move_064 < PokeBattle_Move
             end
             return true
         end
-        if target.ability == :INSOMNIA
+        if target.hasAbility?(:INSOMNIA)
             if show_message
-                @battle.pbDisplay(_INTL("But it failed, since #{target.pbThis(true)}'s ability is already #{target.abilityName}!"))
+                @battle.pbDisplay(_INTL("But it failed, since #{target.pbThis(true)}'s ability is already #{getAbilityName(:INSOMNIA)}!"))
             end
             return true
         end
@@ -1939,11 +1939,11 @@ class PokeBattle_Move_064 < PokeBattle_Move
     end
 
     def pbEffectAgainstTarget(_user, target)
-        @battle.pbShowAbilitySplash(target, true, false)
-        oldAbil = target.ability
+        @battle.pbShowAbilitySplash(target, target.baseAbility, true, false)
+        oldAbil = target.baseAbility
         target.ability = :INSOMNIA
-        @battle.pbReplaceAbilitySplash(target)
-        @battle.pbDisplay(_INTL("{1} acquired {2}!", target.pbThis, target.abilityName))
+        @battle.pbReplaceAbilitySplash(target, :INSOMNIA)
+        @battle.pbDisplay(_INTL("{1} acquired {2}!", target.pbThis, getAbilityName(:INSOMNIA)))
         @battle.pbHideAbilitySplash(target)
         target.pbOnAbilityChanged(oldAbil)
     end
@@ -1970,19 +1970,19 @@ class PokeBattle_Move_065 < PokeBattle_Move
     end
 
     def pbFailsAgainstTarget?(user, target, show_message)
-        unless target.ability
+        unless target.baseAbility
             if show_message
                 @battle.pbDisplay(_INTL("But it failed, since #{target.pbThis(true)} doesn't have an ability!"))
             end
             return true
         end
-        if user.ability == target.ability
+        if user.baseAbility == target.baseAbility
             if show_message
                 @battle.pbDisplay(_INTL("But it failed, since the #{target.pbThis(true)} and #{user.pbThis(true)} have the same ability!"))
             end
             return true
         end
-        if target.ungainableAbility? || %i[POWEROFALCHEMY RECEIVER TRACE WONDERGUARD].include?(target.ability_id)
+        if target.ungainableAbility? || %i[POWEROFALCHEMY RECEIVER TRACE WONDERGUARD].include?(target.baseAbility.id)
             if show_message
                 @battle.pbDisplay(_INTL("But it failed, since #{target.pbThis(true)}'s ability can't be copied!"))
             end
@@ -1992,12 +1992,12 @@ class PokeBattle_Move_065 < PokeBattle_Move
     end
 
     def pbEffectAgainstTarget(user, target)
-        @battle.pbShowAbilitySplash(user, true, false)
-        oldAbil = user.ability
-        user.ability = target.ability
-        @battle.pbReplaceAbilitySplash(user)
+        @battle.pbShowAbilitySplash(user, user.baseAbility, true, false)
+        oldAbil = user.baseAbility
+        user.ability = target.baseAbility
+        @battle.pbReplaceAbilitySplash(user, user.baseAbility)
         @battle.pbDisplay(_INTL("{1} copied {2}'s {3}!",
-           user.pbThis, target.pbThis(true), target.abilityName))
+           user.pbThis, target.pbThis(true), getAbilityName(target.baseAbility)))
         @battle.pbHideAbilitySplash(user)
         user.pbOnAbilityChanged(oldAbil)
         user.pbEffectsOnSwitchIn
@@ -2015,12 +2015,12 @@ end
 #===============================================================================
 class PokeBattle_Move_066 < PokeBattle_Move
     def pbMoveFailed?(user, _targets, _show_message)
-        unless user.ability
+        unless user.baseAbility
             @battle.pbDisplay(_INTL("But it failed, since #{user.pbThis(true)} doesn't have an ability!"))
             return true
         end
         if user.ungainableAbility? ||
-           %i[POWEROFALCHEMY RECEIVER TRACE].include?(user.ability_id)
+           %i[POWEROFALCHEMY RECEIVER TRACE].include?(user.baseAbility.id)
             @battle.pbDisplay(_INTL("But it failed, since #{user.pbThis(true)}'s ability cannot be copied!"))
             return true
         end
@@ -2038,11 +2038,11 @@ class PokeBattle_Move_066 < PokeBattle_Move
     end
 
     def pbEffectAgainstTarget(user, target)
-        @battle.pbShowAbilitySplash(target, true, false)
-        oldAbil = target.ability
-        target.ability = user.ability
-        @battle.pbReplaceAbilitySplash(target)
-        @battle.pbDisplay(_INTL("{1} acquired {2}!", target.pbThis, target.abilityName))
+        oldAbil = target.baseAbility
+        @battle.pbShowAbilitySplash(target, oldAbil, true, false)
+        target.ability = user.baseAbility
+        @battle.pbReplaceAbilitySplash(target, target.baseAbility)
+        @battle.pbDisplay(_INTL("{1} acquired {2}!", target.pbThis, getAbilityName(user.baseAbility)))
         @battle.pbHideAbilitySplash(target)
         target.pbOnAbilityChanged(oldAbil)
         target.pbEffectsOnSwitchIn
@@ -2068,7 +2068,7 @@ class PokeBattle_Move_067 < PokeBattle_Move
     def ignoresSubstitute?(_user); return true; end
 
     def pbMoveFailed?(user, _targets, _show_message)
-        unless user.ability
+        unless user.baseAbility
             @battle.pbDisplay(_INTL("But it failed, since #{user.pbThis(true)} doesn't have an ability!"))
             return true
         end
@@ -2076,7 +2076,7 @@ class PokeBattle_Move_067 < PokeBattle_Move
             @battle.pbDisplay(_INTL("But it failed, since #{user.pbThis(true)}'s ability cannot be changed!"))
             return true
         end
-        if user.ungainableAbility? || user.ability == :WONDERGUARD
+        if user.ungainableAbility? || user.baseAbility == :WONDERGUARD
             @battle.pbDisplay(_INTL("But it failed, since #{user.pbThis(true)}'s ability cannot be copied!"))
             return true
         end
@@ -2084,7 +2084,7 @@ class PokeBattle_Move_067 < PokeBattle_Move
     end
 
     def pbFailsAgainstTarget?(_user, target, show_message)
-        unless target.ability
+        unless target.baseAbility
             if show_message
                 @battle.pbDisplay(_INTL("But it failed, since #{target.pbThis(true)} doesn't have an ability!"))
             end
@@ -2102,9 +2102,9 @@ class PokeBattle_Move_067 < PokeBattle_Move
             end
             return true
         end
-        if target.ability == :WONDERGUARD
+        if target.baseAbility == :WONDERGUARD
             if show_message
-                @battle.pbDisplay(_INTL("But it failed, since #{target.pbThis(true)}'s ability is #{target.abilityName}"))
+                @battle.pbDisplay(_INTL("But it failed, since #{target.pbThis(true)}'s ability is #{getAbilityName(:WONDERGUARD)}"))
             end
             return true
         end
@@ -2113,16 +2113,16 @@ class PokeBattle_Move_067 < PokeBattle_Move
 
     def pbEffectAgainstTarget(user, target)
         if user.opposes?(target)
-            @battle.pbShowAbilitySplash(user, false, false)
-            @battle.pbShowAbilitySplash(target, true, false)
+            @battle.pbShowAbilitySplash(user, user.baseAbility, false, false)
+            @battle.pbShowAbilitySplash(target, target.baseAbility, true, false)
         end
-        oldUserAbil   = user.ability
-        oldTargetAbil = target.ability
+        oldUserAbil   = user.baseAbility
+        oldTargetAbil = target.baseAbility
         user.ability   = oldTargetAbil
         target.ability = oldUserAbil
         if user.opposes?(target)
-            @battle.pbReplaceAbilitySplash(user)
-            @battle.pbReplaceAbilitySplash(target)
+            @battle.pbReplaceAbilitySplash(user, oldTargetAbil)
+            @battle.pbReplaceAbilitySplash(target, oldUserAbil)
         end
         @battle.pbDisplay(_INTL("{1} swapped Abilities with its target!", user.pbThis))
         if user.opposes?(target)
@@ -2302,13 +2302,17 @@ class PokeBattle_Move_070 < PokeBattle_FixedDamageMove
             @battle.pbDisplay(_INTL("{1} is unaffected, since it's an Avatar!", target.pbThis)) if show_message
             return true
         end
-        if target.hasActiveAbility?([:STURDY,:DANGERSENSE]) && !@battle.moldBreaker
-            if show_message
-                @battle.pbShowAbilitySplash(target)
-                @battle.pbDisplay(_INTL("But it failed to affect {1}!", target.pbThis(true)))
-                @battle.pbHideAbilitySplash(target)
+        unless @battle.moldBreaker
+            %i[STURDY DANGERSENSE].each do |ability|
+                if target.hasActiveAbility?(ability)
+                    if show_message
+                        @battle.pbShowAbilitySplash(target, ability)
+                        @battle.pbDisplay(_INTL("But it failed to affect {1}!", target.pbThis(true)))
+                        @battle.pbHideAbilitySplash(target)
+                    end
+                    return true
+                end
             end
-            return true
         end
         return false
     end

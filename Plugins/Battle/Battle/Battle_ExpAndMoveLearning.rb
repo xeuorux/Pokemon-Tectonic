@@ -105,37 +105,6 @@ class PokeBattle_Battle
         end
     end
 
-    def pbGainEVsOne(idxParty, defeatedBattler)
-        pkmn = pbParty(0)[idxParty] # The Pokémon gaining EVs from defeatedBattler
-        evYield = defeatedBattler.pokemon.evYield
-        # Num of effort points pkmn already has
-        evTotal = 0
-        GameData::Stat.each_main { |s| evTotal += pkmn.ev[s.id] }
-        # Modify EV yield based on pkmn's held item
-        unless BattleHandlers.triggerEVGainModifierItem(pkmn.item, pkmn, evYield)
-            BattleHandlers.triggerEVGainModifierItem(@initialItems[0][idxParty], pkmn, evYield)
-        end
-        # Double EV gain because of Pokérus
-        evYield.each_key { |stat| evYield[stat] *= 2 } if pkmn.pokerusStage >= 1 # Infected or cured
-        # Gain EVs for each stat in turn
-        if pkmn.shadowPokemon? && pkmn.saved_ev
-            pkmn.saved_ev.each_value { |e| evTotal += e }
-            GameData::Stat.each_main do |s|
-                evGain = evYield[s.id].clamp(0, Pokemon::EV_STAT_LIMIT - pkmn.ev[s.id] - pkmn.saved_ev[s.id])
-                evGain = evGain.clamp(0, Pokemon::EV_LIMIT - evTotal)
-                pkmn.saved_ev[s.id] += evGain
-                evTotal += evGain
-            end
-        else
-            GameData::Stat.each_main do |s|
-                evGain = evYield[s.id].clamp(0, Pokemon::EV_STAT_LIMIT - pkmn.ev[s.id])
-                evGain = evGain.clamp(0, Pokemon::EV_LIMIT - evTotal)
-                pkmn.ev[s.id] += evGain
-                evTotal += evGain
-            end
-        end
-    end
-
     def pbGainExpOne(idxParty, defeatedBattler, numPartic, expShare, expAll, hasExpJAR, showMessages = true)
         pkmn = pbParty(0)[idxParty] # The Pokémon gaining exp from defeatedBattler
         growth_rate = pkmn.growth_rate
@@ -197,7 +166,6 @@ class PokeBattle_Battle
         end
         exp  = (exp * 1.1).floor if playerTribalBonus.hasTribeBonus?(:LOYAL)
         exp  = (exp * 1.5).floor if @field.effectActive?(:Bliss)
-        # Modify Exp gain based on pkmn's held item
         i = BattleHandlers.triggerExpGainModifierItem(pkmn.item, pkmn, exp)
         i = BattleHandlers.triggerExpGainModifierItem(@initialItems[0][idxParty], pkmn, exp) if i < 0
         exp = i if i >= 0

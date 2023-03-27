@@ -33,7 +33,7 @@ class PokeBattle_AI_Entei < PokeBattle_AI_Boss
         super
         @warnedIFFMove.add(:INCINERATE, {
             :condition => proc { |_move, _user, target, _battle|
-                next target.item && (target.item.is_berry? || target.item.is_gem?)
+                next target.hasAnyItem? && (target.baseItem.is_berry? || target.baseItem.is_gem?)
             },
             :warning => proc { |_move, user, _targets, _battle|
                 _INTL("#{user.pbThis} notices a flammable item amongst your Pokémon!")
@@ -395,11 +395,11 @@ class PokeBattle_AI_Linoone < PokeBattle_AI_Boss
         super
         @warnedIFFMove.add(:COVET, {
             :condition => proc { |_move, user, target, _battle|
-                next user.item.nil? && !target.item.nil?
+                next user.baseItem.nil? && !target.baseItem.nil?
             },
             :warning => proc { |_move, user, targets, _battle|
                 target = targets[0]
-                _INTL("#{user.pbThis} eyes #{target.pbThis(true)}'s #{GameData::Item.get(target.item).real_name} with jealousy!")
+                _INTL("#{user.pbThis} eyes #{target.pbThis(true)}'s #{getItemName(target.baseItem)} with jealousy!")
             },
         })
     end

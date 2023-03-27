@@ -4,8 +4,10 @@ class PokeBattle_Move
     #=============================================================================
     def pbBaseType(user)
       ret = @type
-      if ret && user.abilityActive?
-        ret = BattleHandlers.triggerMoveBaseTypeModifierAbility(user.ability,user,self,ret)
+      if ret
+        user.eachActiveAbility do |ability|
+            ret = BattleHandlers.triggerMoveBaseTypeModifierAbility(ability,user,self,ret)
+        end
       end
       return ret
     end
@@ -167,40 +169,38 @@ class PokeBattle_Move
     end
   
     def pbCalcAccuracyModifiers(user,target,modifiers)
-      # Ability effects that alter accuracy calculation
-      if user.abilityActive?
-        BattleHandlers.triggerAccuracyCalcUserAbility(user.ability,
-           modifiers,user,target,self,@calcType)
-      end
-      user.eachAlly do |b|
-        next if !b.abilityActive?
-        BattleHandlers.triggerAccuracyCalcUserAllyAbility(b.ability,
-           modifiers,user,target,self,@calcType)
-      end
-      if target.abilityActive? && !@battle.moldBreaker
-        BattleHandlers.triggerAccuracyCalcTargetAbility(target.ability,
-           modifiers,user,target,self,@calcType)
-      end
-      # Item effects that alter accuracy calculation
-      if user.itemActive?
-        BattleHandlers.triggerAccuracyCalcUserItem(user.item,
-           modifiers,user,target,self,@calcType)
-      end
-      if target.itemActive?
-        BattleHandlers.triggerAccuracyCalcTargetItem(target.item,
-           modifiers,user,target,self,@calcType)
-      end
-      # Other effects, inc. ones that set accuracy_multiplier or evasion_stage to
-      # specific values
-      if @battle.field.effectActive?(:Gravity)
-        modifiers[:accuracy_multiplier] *= 5 / 3.0
-      end
-      if user.effectActive?(:MicleBerry)
-        user.disableEffect(:MicleBerry)
-        modifiers[:accuracy_multiplier] *= 1.2
-      end
-      modifiers[:evasion_stage] = 0 if target.effectActive?(:Foresight) && modifiers[:evasion_stage] > 0
-      modifiers[:evasion_stage] = 0 if target.effectActive?(:MiracleEye) && modifiers[:evasion_stage] > 0
+        # Ability effects that alter accuracy calculation
+        user.eachActiveAbility do |ability|
+            BattleHandlers.triggerAccuracyCalcUserAbility(ability,modifiers,user,target,self,@calcType)
+        end
+        user.eachAlly do |b|
+            b.eachActiveAbility do |ability|
+                BattleHandlers.triggerAccuracyCalcUserAllyAbility(ability,modifiers,user,target,self,@calcType)
+            end
+        end
+        unless @battle.moldBreaker
+            target.eachActiveAbility do |ability|
+                BattleHandlers.triggerAccuracyCalcTargetAbility(ability,modifiers,user,target,self,@calcType)
+            end
+        end
+        # Item effects that alter accuracy calculation
+        user.eachActiveItem do |item|
+            BattleHandlers.triggerAccuracyCalcUserItem(item,modifiers,user,target,self,@calcType)
+        end
+        target.eachActiveItem do |item|
+            BattleHandlers.triggerAccuracyCalcTargetItem(item,modifiers,user,target,self,@calcType)
+        end
+        # Other effects, inc. ones that set accuracy_multiplier or evasion_stage to
+        # specific values
+        if @battle.field.effectActive?(:Gravity)
+            modifiers[:accuracy_multiplier] *= 5 / 3.0
+        end
+        if user.effectActive?(:MicleBerry)
+            user.disableEffect(:MicleBerry)
+            modifiers[:accuracy_multiplier] *= 1.2
+        end
+        modifiers[:evasion_stage] = 0 if target.effectActive?(:Foresight) && modifiers[:evasion_stage] > 0
+        modifiers[:evasion_stage] = 0 if target.effectActive?(:MiracleEye) && modifiers[:evasion_stage] > 0
     end
   
     #=============================================================================
@@ -236,25 +236,32 @@ class PokeBattle_Move
             forced = false
         end
 
-        if crit && target.abilityActive? && !@battle.moldBreaker &&
-                BattleHandlers.triggerCriticalPreventTargetAbility(target.ability,user,target,@battle)
-            unless checkingForAI
-                battle.pbShowAbilitySplash(target)
-                battle.pbDisplay(_INTL("#{target.pbThis} prevents the hit from being critical!"))
-                battle.pbHideAbilitySplash(target)
+        # Critical prevention effects
+        if crit
+            unless @battle.moldBreaker
+                target.eachActiveAbility do |ability|
+                    next unless BattleHandlers.triggerCriticalPreventTargetAbility(ability,user,target,@battle)
+                    unless checkingForAI
+                        battle.pbShowAbilitySplash(target,ability)
+                        battle.pbDisplay(_INTL("#{target.pbThis} prevents the hit from being critical!"))
+                        battle.pbHideAbilitySplash(target)
+                    end
+                    crit = false
+                    forced = true
+                    break
+                end
             end
-            crit = false
-            forced = true
-        end
 
-        if crit && !forced && target.hasTribeBonus?(:TACTICIAN)
-            unless checkingForAI
-                battle.pbShowTribeSplash(target,:TACTICIAN)
-                battle.pbDisplay(_INTL("#{target.pbThis} prevents the hit from being critical!"))
-                battle.pbHideTribeSplash(target)
+            # Tactician tribe prevents random crits
+            if !forced && target.hasTribeBonus?(:TACTICIAN)
+                unless checkingForAI
+                    battle.pbShowTribeSplash(target,:TACTICIAN)
+                    battle.pbDisplay(_INTL("#{target.pbThis} prevents the hit from being critical!"))
+                    battle.pbHideTribeSplash(target)
+                end
+                crit = false
+                forced = true
             end
-            crit = false
-            forced = true
         end
 
         if checkingForAI
@@ -280,18 +287,20 @@ class PokeBattle_Move
     def criticalHitRate(user,target)
         c = 0
         # Ability effects that alter critical hit rate
-        if user.abilityActive?
-            c = BattleHandlers.triggerCriticalCalcUserAbility(user.ability,user,target,self,c)
+        user.eachActiveAbility do |ability|
+            c = BattleHandlers.triggerCriticalCalcUserAbility(ability,user,target,self,c)
         end
-        if target.abilityActive? && !@battle.moldBreaker
-            c = BattleHandlers.triggerCriticalCalcTargetAbility(target.ability,user,target,c)
+        unless @battle.moldBreaker
+            target.eachActiveAbility do |ability|
+                c = BattleHandlers.triggerCriticalCalcTargetAbility(ability,user,target,c)
+            end
         end
         # Item effects that alter critical hit rate
-        if user.itemActive?
-            c = BattleHandlers.triggerCriticalCalcUserItem(user.item,user,target,c)
+        user.eachActiveAbility do |item|
+            c = BattleHandlers.triggerCriticalCalcUserItem(item,user,target,c)
         end
-        if target.itemActive?
-            c = BattleHandlers.triggerCriticalCalcTargetItem(target.item,user,target,c)
+        target.eachActiveItem do |item|
+            c = BattleHandlers.triggerCriticalCalcTargetItem(item,user,target,c)
         end
 
         c += 1 if highCriticalRate?
@@ -312,7 +321,9 @@ class PokeBattle_Move
 	def guaranteedCrit?(user,target)
         return true if user.effectActive?(:LaserFocus) || user.effectActive?(:EmpoweredLaserFocus)
         return true if pbCriticalOverride(user,target) > 0
-        return true if user.abilityActive? && BattleHandlers.triggerGuaranteedCriticalUserAbility(user.ability,user,target,@battle)
+        user.eachActiveAbility do |ability|
+            return true if BattleHandlers.triggerGuaranteedCriticalUserAbility(ability,user,target,@battle)
+        end
         return false
     end
 
@@ -361,14 +372,19 @@ class PokeBattle_Move
     # Additional effect chance
     #=============================================================================
     def canApplyAdditionalEffects?(user,target,showMessages=false,aiChecking=false)
-        if target.shouldAbilityApply?(%i[SHIELDDUST HARSHTRAINING],aiChecking) && !@battle.moldBreaker
-            if showMessages
-                battle.pbShowAbilitySplash(target)
-                battle.pbDisplay(_INTL("#{target.pbThis} prevents the additional effect!"))
-                battle.pbHideAbilitySplash(target)
+        unless @battle.moldBreaker
+            %i[SHIELDDUST HARSHTRAINING].each do |ability|
+                if target.shouldAbilityApply?(ability,aiChecking)
+                    if showMessages
+                        battle.pbShowAbilitySplash(target,ability)
+                        battle.pbDisplay(_INTL("#{target.pbThis} prevents the additional effect!"))
+                        battle.pbHideAbilitySplash(target)
+                    end
+                    return false
+                end
             end
-            return false
         end
+        
         if target.effectActive?(:Enlightened)
             if showMessages
                 battle.pbDisplay(_INTL("#{target.pbThis} is enlightened, and so ignores the additional effect!"))
@@ -377,7 +393,7 @@ class PokeBattle_Move
         end
         if target.hasActiveItem?(:COVERTCLOAK) && user.opposes?(target)
             if showMessages
-                battle.pbDisplay(_INTL("#{target.pbThis}'s #{target.itemName} protects it from the additional effect!"))
+                battle.pbDisplay(_INTL("#{target.pbThis}'s #{getItemName(target.baseItem)} protects it from the additional effect!"))
             end
             return false
         end

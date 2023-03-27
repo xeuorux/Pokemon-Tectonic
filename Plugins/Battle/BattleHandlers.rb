@@ -609,8 +609,8 @@ module BattleHandlers
 
     #=============================================================================
 
-    def self.triggerOnBerryConsumedAbility(ability, user, berry, own_item, battle)
-        ret = OnBerryConsumedAbility.trigger(ability, user, berry, own_item, battle)
+    def self.triggerOnBerryConsumedAbility(ability, user, berry, ownitem, battle)
+        ret = OnBerryConsumedAbility.trigger(ability, user, berry, ownitem, battle)
         return !ret.nil? ? ret : false
     end
 

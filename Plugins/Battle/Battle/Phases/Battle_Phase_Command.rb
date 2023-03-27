@@ -265,7 +265,7 @@ class PokeBattle_Battle
                 end
                 next if possibleInvestigation.length == 0
                 investigating = possibleInvestigation.sample
-                pbShowAbilitySplash(b)
+                pbShowAbilitySplash(b, :INVESTIGATOR)
                 choice = @choices[investigating.index]
                 case choice[0]
                 when :UseMove
@@ -295,7 +295,7 @@ class PokeBattle_Battle
             battler.eachOpposing do |opponent|
                 next if opponent.lastMoveUsedType.nil?
                 next if opponent.pbTypes(true).include?(opponent.lastMoveUsedType)
-                pbShowAbilitySplash(battler)
+                pbShowAbilitySplash(battler, :SOULREAD)
                 pbDisplay(_INTL("{1} reads {2}'s guilty soul!", battler.pbThis, opponent.pbThis(true)))
                 pbHideAbilitySplash(battler)
             end
@@ -341,8 +341,10 @@ class PokeBattle_Battle
     end
 
     def chooseAutoTestingTrainer(idxBattler)
-        moveData = GameData::Move::DATA.values.sample
-        return if moveData.nil? || moveData.zMove?
+        moveData = nil
+        while moveData.nil? || moveData.zMove? || moveData.cut
+            moveData = GameData::Move::DATA.values.sample
+        end
         moveId = moveData.id
 
         user = @battlers[idxBattler]
@@ -369,6 +371,14 @@ class PokeBattle_Battle
         @scene.pbChangePokemon(b.index, b.pokemon)
     end
 
+    def getRandomHeldItem
+        heldItemData = nil
+        while heldItemData.nil? || heldItemData.pocket != 5 || heldItemData.is_mega_stone?
+            heldItemData = GameData::Item::DATA.values.sample
+        end
+        return heldItemData.id
+    end
+
     def changesForAutoTesting
         # Change all party members
         unless @bossBattle
@@ -380,7 +390,7 @@ class PokeBattle_Battle
                     pokemon.name = nil
                     pokemon.level = 1 + pbRandom(69).ceil
                     pokemon.calc_stats
-                    pokemon.item = GameData::Item::DATA.values.sample
+                    pokemon.item = getRandomHeldItem
                 end
             end
         end

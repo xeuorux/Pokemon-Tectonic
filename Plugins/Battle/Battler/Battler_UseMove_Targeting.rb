@@ -174,7 +174,7 @@ move, true, true)
             next unless b.hasActiveAbility?(drawingAbility)
             next if nearOnly && !b.near?(user)
             next unless b.opposes?(user)
-            @battle.pbShowAbilitySplash(b)
+            @battle.pbShowAbilitySplash(b, drawingAbility)
             targets.clear
             pbAddTarget(targets, user, b, move, nearOnly)
             @battle.pbDisplay(_INTL("{1} took the attack!", b.pbThis))

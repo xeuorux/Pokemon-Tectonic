@@ -9,7 +9,6 @@ BattleHandlers::EndOfMoveItem.add(:LEPPABERRY,
         end
         next false if found.length == 0
         itemName = GameData::Item.get(item).name
-        PBDebug.log("[Item triggered] #{battler.pbThis}'s #{itemName}") if forced
         battle.pbCommonAnimation("Nom", battler) unless forced
         choice = found[battle.pbRandom(found.length)]
         pkmnMove = battler.pokemon.moves[choice]

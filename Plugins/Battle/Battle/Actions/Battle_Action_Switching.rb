@@ -69,12 +69,12 @@ class PokeBattle_Battle
         battler = @battlers[idxBattler]
         
         # Ability effects that allow switching no matter what
-        if battler.abilityActive? && BattleHandlers.triggerCertainSwitchingUserAbility(battler.ability, battler, self, false)
-            return false
+        battler.eachActiveAbility do |ability|
+            return false if BattleHandlers.triggerCertainSwitchingUserAbility(ability, battler, self, false)
         end
         # Item effects that allow switching no matter what
-        if battler.itemActive? && BattleHandlers.triggerCertainSwitchingUserItem(battler.item, battler, self)
-            return false
+        battler.eachActiveItem do |item|
+            return false if BattleHandlers.triggerCertainSwitchingUserItem(item, battler, self)
         end
 
         # Other certain trapping effects
@@ -86,23 +86,25 @@ class PokeBattle_Battle
 
         # Trapping abilities/items
         eachOtherSideBattler(idxBattler) do |b|
-            next unless b.abilityActive?
-            if BattleHandlers.triggerTrappingTargetAbility(b.ability, battler, b, self)
-                if partyScene
-                    partyScene.pbDisplay(_INTL("{1}'s {2} prevents switching!",
-                       b.pbThis, b.abilityName))
+            b.eachActiveAbility do |ability|
+                if BattleHandlers.triggerTrappingTargetAbility(ability, battler, b, self)
+                    if partyScene
+                        partyScene.pbDisplay(_INTL("{1}'s {2} prevents switching!",
+                            b.pbThis, getAbilityName(ability)))
+                    end
+                    return true
                 end
-                return true
             end
         end
         eachOtherSideBattler(idxBattler) do |b|
-            next unless b.itemActive?
-            if BattleHandlers.triggerTrappingTargetItem(b.item, battler, b, self)
-                if partyScene
-                    partyScene.pbDisplay(_INTL("{1}'s {2} prevents switching!",
-                       b.pbThis, b.itemName))
+            b.eachActiveItem do |item|
+                if BattleHandlers.triggerTrappingTargetItem(item, battler, b, self)
+                    if partyScene
+                        partyScene.pbDisplay(_INTL("{1}'s {2} prevents switching!",
+                           b.pbThis, getItemName(b.baseItem)))
+                    end
+                    return true
                 end
-                return true
             end
         end
         return false
@@ -151,12 +153,12 @@ class PokeBattle_Battle
         return @battleAI.pbDefaultChooseNewEnemy(idxBattler, pbParty(idxBattler))
     end
 
-    def triggeredSwitchOut(idxBattler, showSplash = true)
+    def triggeredSwitchOut(idxBattler, ability: nil)
         battler = @battlers[idxBattler]
         return false unless pbCanSwitch?(idxBattler) # Battler can't switch out
         return false unless pbCanChooseNonActive?(idxBattler) # No Pokémon can switch in
-        if showSplash
-            pbShowAbilitySplash(battler, true)
+        if ability
+            pbShowAbilitySplash(battler, ability)
             pbHideAbilitySplash(battler)
         end
         pbDisplay(_INTL("{1} went back to {2}!",
@@ -470,10 +472,10 @@ class PokeBattle_Battle
             end
         end
 
-        # Proudfire and similar abilities
+        # None, currently
         eachOtherSideBattler(battler.index) do |enemy|
-            if enemy.abilityActive?
-                BattleHandlers.triggerAbilityOnEnemySwitchIn(enemy.ability, battler, enemy, self)
+            enemy.eachActiveAbility do |ability|
+                BattleHandlers.triggerAbilityOnEnemySwitchIn(ability, battler, enemy, self)
             end
         end
 

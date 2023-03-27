@@ -234,7 +234,7 @@ class PokeBattle_Battler
             return
         end
         # Stance Change
-        if isSpecies?(:AEGISLASH) && ability == :STANCECHANGE
+        if isSpecies?(:AEGISLASH) && hasAbility?(:STANCECHANGE)
             if move.damagingMove?
                 pbChangeForm(1, _INTL("{1} changed to Blade Forme!", pbThis))
             elsif move.id == :KINGSSHIELD
@@ -287,29 +287,29 @@ class PokeBattle_Battler
         unless specialUsage
             targets.each do |b|
                 next unless b.opposes?(user) && b.hasActiveAbility?(:PRESSURE)
-                PBDebug.log("[Ability triggered] #{b.pbThis}'s #{b.abilityName}")
                 user.pbReducePP(move)
             end
             if move.pbTarget(user).affects_foe_side
                 @battle.eachOtherSideBattler(user) do |b|
                     next unless b.hasActiveAbility?(:PRESSURE)
-                    PBDebug.log("[Ability triggered] #{b.pbThis}'s #{b.abilityName}")
                     user.pbReducePP(move)
                 end
             end
         end
         # Move blocking abilities make the move fail here
         @battle.pbPriority(true).each do |b|
-            next if !b || !b.abilityActive?
-            next unless BattleHandlers.triggerMoveBlockingAbility(b.ability, b, user, targets, move, @battle)
-            @battle.pbDisplayBrief(_INTL("{1} tried to use {2}!", user.pbThis, move.name))
-            @battle.pbShowAbilitySplash(b)
-            @battle.pbDisplay(_INTL("But, {1} cannot use {2}!", user.pbThis, move.name))
-            @battle.pbHideAbilitySplash(b)
-            user.lastMoveFailed = true
-            pbCancelMoves
-            pbEndTurn(choice)
-            return
+            next unless b
+            b.eachActiveAbility do |ability|
+                next unless BattleHandlers.triggerMoveBlockingAbility(ability, b, user, targets, move, @battle)
+                @battle.pbDisplayBrief(_INTL("{1} tried to use {2}!", user.pbThis, move.name))
+                @battle.pbShowAbilitySplash(b, ability)
+                @battle.pbDisplay(_INTL("But, {1} cannot use {2}!", user.pbThis, move.name))
+                @battle.pbHideAbilitySplash(b)
+                user.lastMoveFailed = true
+                pbCancelMoves
+                pbEndTurn(choice)
+                return
+            end
         end
         # "X used Y!" message
         # Can be different for Bide, Fling, Focus Punch and Future Sight
@@ -383,11 +383,13 @@ class PokeBattle_Battler
             end
         end
         # Protean
-        proteans = user.hasActiveAbility?(:PROTEAN) || user.hasActiveAbility?(:LIBERO) ||
-            (user.hasActiveAbility?(:SHAKYCODE) && @battle.pbWeather == :Eclipse)
-        if proteans && !move.callsAnotherMove? &&
+        proteanAbility = nil
+        proteanAbility = :PROTEAN if user.hasActiveAbility?(:PROTEAN)
+        proteanAbility = :LIBERO if user.hasActiveAbility?(:LIBERO)
+        proteanAbility = :SHAKYCODE if user.hasActiveAbility?(:SHAKYCODE) && @battle.pbWeather == :Eclipse
+        if proteanAbility && !move.callsAnotherMove? &&
            !move.snatched && user.pbHasOtherType?(move.calcType) && !GameData::Type.get(move.calcType).pseudo_type
-            @battle.pbShowAbilitySplash(user)
+            @battle.pbShowAbilitySplash(user, proteanAbility)
             user.pbChangeTypes(move.calcType)
             typeName = GameData::Type.get(move.calcType).name
             @battle.pbDisplay(_INTL("{1} transformed into the {2} type!", user.pbThis, typeName))
@@ -404,7 +406,7 @@ class PokeBattle_Battler
         # Shifting Fist
         if user.hasActiveAbility?(:SHIFTINGFIST) && !move.callsAnotherMove? && !move.snatched &&
            user.pbHasOtherType?(move.calcType) && !GameData::Type.get(move.calcType).pseudo_type && move.punchingMove?
-            @battle.pbShowAbilitySplash(user)
+            @battle.pbShowAbilitySplash(user, :SHIFTINGFIST)
             user.applyEffect(:Type3, move.calcType)
             typeName = GameData::Type.get(move.calcType).name
             @battle.pbDisplay(_INTL("{1} shifted into a {2} stance!", user.pbThis, typeName))
@@ -450,7 +452,7 @@ class PokeBattle_Battler
                         break
                     elsif b.hasActiveAbility?(:MAGICSHIELD) && !@battle.moldBreaker
                         magicShielder = b.index
-                        @battle.pbShowAbilitySplash(b)
+                        @battle.pbShowAbilitySplash(b, :MAGICSHIELD)
                         @battle.pbDisplay(_INTL("{1} shielded its side from the {2}!", b.pbThis, move.name))
                         @battle.pbHideAbilitySplash(b)
                         user.lastMoveFailed = true
@@ -463,7 +465,7 @@ class PokeBattle_Battler
                 targets.each do |b|
                     next if b.damageState.unaffected
                     next unless b.hasActiveAbility?(:NEEDLEFUR)
-                    @battle.pbShowAbilitySplash(b)
+                    @battle.pbShowAbilitySplash(b, :NEEDLEFUR)
                     if user.takesIndirectDamage?(true)
                         @battle.scene.pbDamageAnimation(user)
                         upgradedNeedleFur = b.hp < b.totalhp / 2
@@ -555,7 +557,7 @@ user.pbThis))
             targets.each do |b|
                 next if b.fainted?
                 next if !b.damageState.magicCoat && !b.damageState.magicBounce
-                @battle.pbShowAbilitySplash(b) if b.damageState.magicBounce
+                @battle.pbShowAbilitySplash(b, :MAGICBOUNCE) if b.damageState.magicBounce
                 @battle.pbDisplay(_INTL("{1} bounced the {2} back!", b.pbThis, move.name))
                 @battle.pbHideAbilitySplash(b) if b.damageState.magicBounce
                 newChoice = choice.clone
@@ -590,7 +592,7 @@ user.pbThis))
                 mc = @battle.battlers[(magicCoater >= 0) ? magicCoater : magicBouncer]
                 unless mc.fainted?
                     user.lastMoveFailed = true
-                    @battle.pbShowAbilitySplash(mc) if magicBouncer >= 0
+                    @battle.pbShowAbilitySplash(mc, :MAGICBOUNCE) if magicBouncer >= 0
                     @battle.pbDisplay(_INTL("{1} bounced the {2} back!", mc.pbThis, move.name))
                     @battle.pbHideAbilitySplash(mc) if magicBouncer >= 0
                     success = false
@@ -651,7 +653,7 @@ user.pbThis))
         if moveSucceeded && @battle.pbCheckGlobalAbility(:FIESTA) && (move.soundMove? || move.danceMove?)
             @battle.pbPriority(true).each do |b|
                 next unless b.index != user.index && b.hasActiveAbility?(:FIESTA)
-                b.applyFractionalHealing(1.0 / 8.0, showAbilitySplash: true)
+                b.applyFractionalHealing(1.0 / 8.0, ability: :FIESTA)
 			end
         end
 		if moveSucceeded && (move.danceMove?)
@@ -675,7 +677,7 @@ user.pbThis))
             moveID = b.lastMoveUsed
             usageMessage = _INTL("{1} used the move instructed by {2}!", b.pbThis, user.pbThis(true))
             preTarget = b.lastRegularMoveTarget
-            @battle.forceUseMove(b, moveID, preTarget, false, usageMessage, :Instructed, false)
+            @battle.forceUseMove(b, moveID, preTarget, false, usageMessage, :Instructed)
         end  
         # Dancer
         if !effectActive?(:Dancer) && moveSucceeded && @battle.pbCheckGlobalAbility(:DANCER) && move.danceMove?
@@ -687,7 +689,7 @@ user.pbThis))
                 nextUser = dancers.pop
                 preTarget = choice[3]
                 preTarget = user.index if nextUser.opposes?(user) || !nextUser.opposes?(preTarget)
-                @battle.forceUseMove(nextUser, move.id, preTarget, true, nil, :Dancer, true)
+                @battle.forceUseMove(nextUser, move.id, preTarget, true, nil, :Dancer, ability: :DANCER)
             end
         end
         # Echo
@@ -700,7 +702,7 @@ user.pbThis))
                 nextUser = echoers.pop
                 preTarget = choice[3]
                 preTarget = user.index if nextUser.opposes?(user) || !nextUser.opposes?(preTarget)
-                @battle.forceUseMove(nextUser, move.id, preTarget, true, nil, :Echo, true)
+                @battle.forceUseMove(nextUser, move.id, preTarget, true, nil, :Echo, ability: :ECHO)
             end
         end
     end
@@ -860,7 +862,7 @@ user.pbThis))
                 targets.each do |target|
                     next if target.damageState.unaffected
                     next unless target.hasActiveAbility?(:SECRETIONSECRET) && user.opposes?(target)
-                    battle.pbShowAbilitySplash(target)
+                    battle.pbShowAbilitySplash(target, :SECRETIONSECRET)
                     user.applyPoison(target, nil) if user.canPoison?(target, true)
                     battle.pbHideAbilitySplash(target)
                 end
@@ -872,12 +874,12 @@ user.pbThis))
 
                 # Unassuming
                 if user.hasActiveAbility?(:UNASSUMING)
-                    target.tryLowerStat(:DEFENSE, user, move: move, showFailMsg: true, showAbilitySplash: true)
+                    target.tryLowerStat(:DEFENSE, user, move: move, showFailMsg: true, ability: :UNASSUMING)
                 end
 
                 # Recon
                 if user.hasActiveAbility?(:RECON)
-                    target.tryLowerStat(:SPECIAL_DEFENSE, user, move: move, showFailMsg: true, showAbilitySplash: true)
+                    target.tryLowerStat(:SPECIAL_DEFENSE, user, move: move, showFailMsg: true, ability: :RECON)
                 end
             end
         end
@@ -902,7 +904,7 @@ user.pbThis))
                 next if chance <= 0
                 if @battle.pbRandom(100) < chance
                     if b.hasActiveAbility?(:RUGGEDSCALES)
-                        @battle.pbShowAbilitySplash(b)
+                        @battle.pbShowAbilitySplash(b, :RUGGEDSCALES)
                         @battle.pbDisplay(_INTL("The added effect of {1}'s {2} is deflected, harming it!", pbThis(true), move.name))
                         user.applyFractionalDamage(1.0 / 6.0, true)
                         @battle.pbHideAbilitySplash(b)
@@ -929,10 +931,11 @@ user.pbThis))
         #       message about it only shows here.
         targets.each do |b|
             next if b.damageState.unaffected
-            next unless b.damageState.berryWeakened || b.damageState.feastWeakened
-            name = b.itemName
+            itemTriggered = b.damageState.berryWeakened || b.damageState.feastWeakened
+            next unless itemTriggered
+            name = GameData::Item.get(itemTriggered).real_name
             @battle.pbDisplay(_INTL("The {1} weakened the damage to {2}!", name, b.pbThis(true)))
-            b.pbHeldItemTriggered(b.item) if b.item && b.damageState.berryWeakened
+            b.pbHeldItemTriggered(itemTriggered) if b.hasItem?(itemTriggered) && b.damageState.berryWeakened
         end
         targets.each { |b| b.pbFaint if b && b.fainted? }
         user.pbFaint if user.fainted?

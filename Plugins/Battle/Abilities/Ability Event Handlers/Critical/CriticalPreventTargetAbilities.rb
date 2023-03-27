@@ -1,5 +1,5 @@
 BattleHandlers::CriticalPreventTargetAbility.add(:BATTLEARMOR,
-  proc { |_ability, _user, _target, _battle|
+  proc { |ability, _user, _target, _battle|
       next true
   }
 )

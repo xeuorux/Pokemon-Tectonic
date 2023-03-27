@@ -6,13 +6,11 @@ class AbilitySplashBar < SpriteWrapper
     SPECIES_ICON_Y_POS = 0
     SPECIES_IRON_OPACITY_MULT = 0.6 # Between 0 and 1, 1 meaning fully opaque
 
-    attr_accessor :fakeName
-
     def initialize(side,viewport=nil)
         super(viewport)
         @side    = side
         @battler = nil
-        @fakeName = nil
+        @abilityName = nil
         # Create sprite wrapper that displays background graphic
         @bgBitmap = AnimatedBitmap.new(_INTL("Graphics/Pictures/Battle/ability_bar"))
         @bgPrimevalBitmap = AnimatedBitmap.new(_INTL("Graphics/Pictures/Battle/ability_bar_primeval"))
@@ -59,12 +57,18 @@ class AbilitySplashBar < SpriteWrapper
         if !@battler.opposes?
             @speciesIcon.mirror = true
         end
-        if GameData::Ability.get(@battler.ability).is_primeval?
+        positionBar
+        refresh
+    end
+
+    def ability=(value)
+        abilityData = GameData::Ability.get(value)
+        if abilityData.is_primeval?
             setBGSprite(@bgPrimevalBitmap)
         else
             setBGSprite(@bgBitmap)
         end
-        positionBar
+        @abilityName = abilityData.real_name
         refresh
     end
 
@@ -110,15 +114,14 @@ class AbilitySplashBar < SpriteWrapper
 
     def refresh
         self.bitmap.clear
-        return if !@battler
+        return if !@battler || !@abilityName
         textPos = []
         textX = (@side==0) ? 10 : self.bitmap.width-8
         # Draw Pokémon's name
         textPos.push([_INTL("{1}'s",@battler.name),textX,-4,@side==1,
            TEXT_BASE_COLOR,TEXT_SHADOW_COLOR,true])
         # Draw Pokémon's ability
-        nameToShow = @fakeName ? @fakeName : @battler.abilityName
-        textPos.push([nameToShow,textX,26,@side==1,
+        textPos.push([@abilityName,textX,26,@side==1,
            TEXT_BASE_COLOR,TEXT_SHADOW_COLOR,true])
         pbDrawTextPositions(self.bitmap,textPos)
     end

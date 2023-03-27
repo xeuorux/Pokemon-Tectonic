@@ -7,8 +7,8 @@ module GameData
         # The locations are :Battler, :Side, :Field, :Position
         attr_reader :location
 
-        # The types are :Boolean, :Integer, :Position, :Type, :Pokemon, :Move, :Item, :Species, :PartyPosition
-        # And Hash
+        # The types are :Boolean, :Integer, :Position, :Type, :Pokemon, :Move, :Item,
+        # :Species, :PartyPosition, :Ability, and #Hash
         # If the type isn't included in an effect definition, its assumed to be a boolean
         attr_reader :type
 
@@ -275,7 +275,7 @@ module GameData
                     active = value > 0
                 when :Position, :PartyPosition
                     active = value >= 0
-                when :Type, :Pokemon, :Move, :Item, :Hash
+                when :Type, :Pokemon, :Move, :Item, :Ability, :Hash
                     active = !value.nil?
                 end
             end
@@ -302,6 +302,8 @@ module GameData
                 return value.nil? || GameData::Move.exists?(value)
             when :Item
                 return value.nil? || GameData::Item.exists?(value)
+            when :Ability
+                return value.nil? || GameData::Ability.exists?(value)
             when :Hash
                 return value.nil? || value.is_a?(Hash)
             end
@@ -325,6 +327,8 @@ module GameData
                     return GameData::Move.get(value).real_name
                 when :Item
                     return GameData::Item.get(value).real_name
+                when :Ability
+                    return GameData::Ability.get(value).real_name
                 end
             rescue StandardError
                 return "ERROR"

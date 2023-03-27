@@ -31,6 +31,7 @@ end
 def willHealStatus?(target)
     return true if target.hasActiveAbilityAI?(:SHEDSKIN)
     return true if target.hasActiveAbilityAI?(:HYDRATION) && target.battle.rainy?
+    return true if target.hasActiveAbilityAI?(:OXYGENATION) && target.battle.sunny?
     return false
 end
 

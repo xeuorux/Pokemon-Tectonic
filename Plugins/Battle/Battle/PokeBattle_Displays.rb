@@ -50,12 +50,11 @@ class PokeBattle_Battle
         @scene.pbCommonAnimation(name, user, targets) if @showAnims
     end
 
-    def pbShowAbilitySplash(battler, delay = false, logTrigger = true, fakeName = nil)
+    def pbShowAbilitySplash(battler, ability, delay = false, logTrigger = true)
         aiSeesAbility(battler)
-        PBDebug.log("[Ability triggered] #{battler.pbThis}'s #{battler.abilityName}") if logTrigger
-        triggerAbilityTriggeredDialogue(battler, battler.ability)
+        triggerAbilityTriggeredDialogue(battler, ability)
         return unless showMessages?
-        @scene.pbShowAbilitySplash(battler, fakeName)
+        @scene.pbShowAbilitySplash(battler, ability)
         if delay
             frames = Graphics.frame_rate # Default 1 second
             frames /= 2 if fastTransitions?
@@ -68,9 +67,9 @@ class PokeBattle_Battle
         @scene.pbHideAbilitySplash(battler)
     end
 
-    def pbReplaceAbilitySplash(battler)
+    def pbReplaceAbilitySplash(battler, ability, delay = false, logTrigger = true)
         return unless showMessages?
-        @scene.pbReplaceAbilitySplash(battler)
+        pbShowAbilitySplash(battler, ability, delay, logTrigger)
     end
 
     def pbShowTribeSplash(side, tribe, delay = false)

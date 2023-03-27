@@ -55,18 +55,18 @@ end
 #===============================================================================
 class PokeBattle_Move_183 < PokeBattle_Move
     def pbEffectGeneral(user)
-        if !user.item || !user.item.is_berry?
+        if !user.baseItem || !user.baseItem.is_berry?
             @battle.pbDisplay("But it failed!")
             return -1
         end
         user.tryRaiseStat(:DEFENSE, user, increment: 2, move: self)
-        user.pbHeldItemTriggerCheck(user.item, false)
-        user.pbConsumeItem(true, true, false) if user.item
+        user.pbHeldItemTriggerCheck(user.baseItem, false)
+        user.pbConsumeItem(user.baseItem, true, true, false) if user.baseItem
     end
 
     def getEffectScore(user, target)
         score = getMultiStatUpEffectScore([:DEFENSE, 2], user, target)
-        score += 40 if user.item&.is_berry?
+        score += 40 if user.baseItem&.is_berry?
         return score
     end
 end
@@ -79,7 +79,7 @@ class PokeBattle_Move_184 < PokeBattle_Move
     def ignoresSubstitute?(_user); return true; end
 
     def isValidTarget?(target)
-        return target.item && target.item.is_berry? && !target.semiInvulnerable?
+        return target.baseItem && target.baseItem.is_berry? && !target.semiInvulnerable?
     end
 
     def pbMoveFailed?(_user, _targets, show_message)
@@ -99,8 +99,8 @@ class PokeBattle_Move_184 < PokeBattle_Move
     end
 
     def pbEffectAgainstTarget(_user, target)
-        target.pbHeldItemTriggerCheck(target.item, false)
-        target.pbConsumeItem(true, true, false) if target.item.is_berry?
+        target.pbHeldItemTriggerCheck(target.baseItem, false)
+        target.pbConsumeItem(target.baseItem, true, true, false) if target.baseItem.is_berry?
     end
 
     def getEffectScore(_user, _target)
@@ -282,19 +282,19 @@ end
 #===============================================================================
 class PokeBattle_Move_18F < PokeBattle_Move
     def removalMessageForTarget(target)
-        itemName = target.itemName
+        itemName = getItemName(target.baseItem)
         return _INTL("{1}'s {2} became unusuable, so it dropped it!", target.pbThis, itemName)
     end
 
     def pbEffectAgainstTarget(user, target)
         return if damagingMove?
         return unless canRemoveItem?(user, target)
-        removeItem(user, target, false, removalMessageForTarget(target))
+        removeItem(user, target, removalMessageForTarget(target))
     end
 
     def pbEffectWhenDealingDamage(user, target)
         return unless canRemoveItem?(user, target)
-        removeItem(user, target, false, removalMessageForTarget(target))
+        removeItem(user, target, removalMessageForTarget(target))
     end
 
     def getEffectScore(user, target)
@@ -331,10 +331,9 @@ end
 #===============================================================================
 class PokeBattle_Move_192 < PokeBattle_Move
     def pbFailsAgainstTarget?(_user, target, show_message)
-        if target.item
+        if target.hasAnyItem?
             if show_message
-                @battle.pbDisplay(_INTL("{1} is about to be attacked by its {2}!", target.pbThis,
-    target.itemName))
+                @battle.pbDisplay(_INTL("{1} is about to be attacked by its {2}!", target.pbThis, getItemName(target.baseItem)))
             end
             return false
         end

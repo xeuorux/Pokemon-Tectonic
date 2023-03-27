@@ -165,23 +165,24 @@ class PokeBattle_Battle
                     #       triggers, regardless of Stall.
                     subPri = 0
                     # Abilities (Stall)
-                    if b.abilityActive?
-                        newSubPri = BattleHandlers.triggerPriorityBracketChangeAbility(b.ability,
-                         b, subPri, self)
+                    b.eachActiveAbility do |ability|
+                        newSubPri = BattleHandlers.triggerPriorityBracketChangeAbility(ability,
+                            b, subPri, self)
                         if subPri != newSubPri
                             subPri = newSubPri
-                            b.applyEffect(:PriorityAbility)
+                            b.applyEffect(:PriorityAbility, ability)
                             b.disableEffect(:PriorityItem)
+                            break
                         end
                     end
                     # Items (Quick Claw, Custap Berry, Lagging Tail, Full Incense)
-                    if b.itemActive?
-                        newSubPri = BattleHandlers.triggerPriorityBracketChangeItem(b.item,
-                           b, subPri, self)
+                    b.eachActiveItem do |item|
+                        newSubPri = BattleHandlers.triggerPriorityBracketChangeItem(item, b, subPri, self)
                         if subPri != newSubPri
                             subPri = newSubPri
                             b.disableEffect(:PriorityAbility)
-                            b.applyEffect(:PriorityItem)
+                            b.applyEffect(:PriorityItem, item)
+                            break
                         end
                     end
                     bArray[2] = subPri
@@ -236,8 +237,8 @@ class PokeBattle_Battle
     def getMovePriority(move, user, targets, aiCheck = false)
         priority = move.priority
         priority -= 1 if pbCheckGlobalAbility(:HONORAURA) && move.statusMove?
-        if user.abilityActive?
-            abilityPriorityChange = BattleHandlers.triggerPriorityChangeAbility(user.ability, user, move, 0, targets, aiCheck)
+        user.eachActiveAbility do |ability|
+            abilityPriorityChange = BattleHandlers.triggerPriorityChangeAbility(ability, user, move, 0, targets, aiCheck)
             if abilityPriorityChange > 0
                 priority = [priority + abilityPriorityChange, 1].max
             elsif abilityPriorityChange < 0

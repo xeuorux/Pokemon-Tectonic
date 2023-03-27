@@ -11,13 +11,18 @@ class PokeBattle_Battler
         pbContinualAbilityChecks(true)
         # Abilities that trigger upon switching in
         if (!fainted? && unstoppableAbility?) || abilityActive?
-            BattleHandlers.triggerAbilityOnSwitchIn(ability, self,
-@battle)
+            eachAbility do |ability|
+                BattleHandlers.triggerAbilityOnSwitchIn(ability, self, @battle)
+            end
         end
         # Check for end of primordial weather
         @battle.pbEndPrimordialWeather
         # Items that trigger upon switching in (Air Balloon message)
-        BattleHandlers.triggerItemOnSwitchIn(item, self, @battle) if switchIn && itemActive?
+        if switchIn
+            eachActiveItem do |item|
+                BattleHandlers.triggerItemOnSwitchIn(item, self, @battle)
+            end
+        end
         # Berry check, status-curing ability check
         pbHeldItemTriggerCheck if switchIn
         pbAbilityStatusCureCheck
@@ -27,9 +32,11 @@ class PokeBattle_Battler
     # Ability effects
     #=============================================================================
     def pbAbilitiesOnSwitchOut
-        BattleHandlers.triggerAbilityOnSwitchOut(ability, self, false) if abilityActive?
+        eachActiveAbility do |ability|
+            BattleHandlers.triggerAbilityOnSwitchOut(ability, self, false)
+        end
         # Caretaker bonus
-        pbRecoverHP(battler.totalhp / 16.0, false, false, false) if hasTribeBonus?(:CARETAKER)
+        pbRecoverHP(@totalhp / 16.0, false, false, false) if hasTribeBonus?(:CARETAKER)
         # Reset form
         @battle.peer.pbOnLeavingBattle(@battle, @pokemon, @battle.usedInBattle[idxOwnSide][@index / 2])
         # Treat self as fainted
@@ -42,15 +49,19 @@ class PokeBattle_Battler
     def pbAbilitiesOnFainting
         # Self fainted; check all other battlers to see if their abilities trigger
         @battle.pbPriority(true).each do |b|
-            next if !b || !b.abilityActive?
-            BattleHandlers.triggerAbilityChangeOnBattlerFainting(b.ability, b, self, @battle)
+            next unless b
+            b.eachActiveAbility do |ability|
+                BattleHandlers.triggerAbilityChangeOnBattlerFainting(ability, b, self, @battle)
+            end
         end
         @battle.pbPriority(true).each do |b|
-            next if !b || !b.abilityActive?
-            BattleHandlers.triggerAbilityOnBattlerFainting(b.ability, b, self, @battle)
+            next unless b
+            b.eachActiveAbility do |ability|
+                BattleHandlers.triggerAbilityOnBattlerFainting(ability, b, self, @battle)
+            end
         end
         @battle.pbPriority(true).each do |b|
-            next if !b
+            next unless b
             next unless b.hasTribeBonus?(:SCOURGE)
             scoureHealingMsg = _INTL("#{b.pbThis} takes joy in #{pbThis(true)}'s pain!")
             pbShowTribeSplash(b.pbOwnSide,:SCOURGE)
@@ -61,10 +72,12 @@ class PokeBattle_Battler
 
     # Used for Emergency Exit/Wimp Out.
     def pbAbilitiesOnDamageTaken(oldHP, newHP = -1)
-        return false unless abilityActive?
         newHP = @hp if newHP < 0
         return false if oldHP < @totalhp / 2 || newHP >= @totalhp / 2 # Didn't drop below half
-        ret = BattleHandlers.triggerAbilityOnHPDroppedBelowHalf(ability, self, @battle)
+        ret = false
+        eachActiveAbility(true) do |ability|
+            ret = true if BattleHandlers.triggerAbilityOnHPDroppedBelowHalf(ability, self, @battle)
+        end
         return ret # Whether self has switched out
     end
 
@@ -87,13 +100,15 @@ class PokeBattle_Battler
             end
             if choices.length > 0
                 choice = choices[@battle.pbRandom(choices.length)]
-                @battle.pbShowAbilitySplash(self)
-                self.ability = choice.ability
-                @battle.pbDisplay(_INTL("{1} traced {2}'s {3}!", pbThis, choice.pbThis(true), choice.abilityName))
+                @battle.pbShowAbilitySplash(self, :TRACE)
+                stolenAbility = choice.ability
+                self.ability = stolenAbility
+                @battle.pbDisplay(_INTL("{1} traced {2}'s {3}!", pbThis, choice.pbThis(true), getAbilityName(stolenAbility)))
                 @battle.pbHideAbilitySplash(self)
                 if !onSwitchIn && (unstoppableAbility? || abilityActive?)
-                    BattleHandlers.triggerAbilityOnSwitchIn(ability, self,
-@battle)
+                    eachAbility do |ability|
+                        BattleHandlers.triggerAbilityOnSwitchIn(ability, self, @battle)
+                    end
                 end
             end
         end
@@ -105,7 +120,9 @@ class PokeBattle_Battler
     # Cures status conditions, confusion and infatuation.
     #=============================================================================
     def pbAbilityStatusCureCheck
-        BattleHandlers.triggerStatusCureAbility(ability, self) if abilityActive?
+        eachActiveAbility do |ability|
+            BattleHandlers.triggerStatusCureAbility(ability, self)
+        end
 
         if hasAnyStatusNoTrigger? && hasTribeBonus?(:TYRANICAL) && !pbOwnSide.effectActive?(:TyranicalImmunity)
             @battle.pbShowTribeSplash(self,:TYRANICAL)
@@ -129,7 +146,7 @@ class PokeBattle_Battler
             end
         end
         disableEffect(:GastroAcid) if unstoppableAbility?
-        disableEffect(:SlowStart) if ability != :SLOWSTART
+        disableEffect(:SlowStart) unless hasAbility?(:SLOWSTART)
         # Revert form if Flower Gift/Forecast was lost
         pbCheckFormOnWeatherChange
         # Check for end of primordial weather
@@ -166,77 +183,60 @@ class PokeBattle_Battler
     def pbRemoveItem(permanent = true)
         permanent = false # Items respawn after battle always!!
         disableEffect(:ChoiceBand)
-        applyEffect(:ItemLost) if item
-        setInitialItem(nil) if permanent && item == initialItem
+        applyEffect(:ItemLost) if baseItem
+        setInitialItem(nil) if permanent && baseItem == initialItem
         self.item = nil
     end
 
     #=========================================
     # Also handles SCAVENGE
     #=========================================
-    def pbConsumeItem(recoverable = true, symbiosis = true, belch = true, scavenge = true)
+    def pbConsumeItem(item, recoverable = true, symbiosis = true, belch = true, scavenge = true)
         if item.nil?
-            PBDebug.log("[Item not consumed] #{pbThis} could not consume its held #{itemName} because it was already missing")
+            PBDebug.log("[Item not consumed] #{pbThis} could not consume a #{item} because it was already missing")
             return
         end
+        itemData = GameData::Item.get(item)
+        itemName = itemData.name
         PBDebug.log("[Item consumed] #{pbThis} consumed its held #{itemName}")
-        @battle.triggerBattlerConsumedItemDialogue(self, @item_id)
+        @battle.triggerBattlerConsumedItemDialogue(self, item)
         if recoverable
-            setRecycleItem(@item_id)
-            applyEffect(:PickupItem, @item_id)
+            setRecycleItem(item)
+            applyEffect(:PickupItem, item)
             applyEffect(:PickupUse, @battle.nextPickupUse)
         end
-        setBelched if belch && item.is_berry?
-        pbScavenge if scavenge
+        setBelched if belch && itemData.is_berry?
         pbRemoveItem
-        pbSymbiosis if symbiosis
+        pbSymbiosis(item) if symbiosis
     end
 
-    def pbScavenge
+    def pbSymbiosis(item)
         return if fainted?
-        return if @battle.curseActive?(:CURSE_SUPER_ITEMS) && pbOwnedByPlayer?
-        # return if self.item
-        @battle.pbPriority(true).each do |b|
-            next if b.idxOwnSide == idxOwnSide
-            next unless b.hasActiveAbility?(:SCAVENGE)
-            next if b.item || b.unlosableItem?(b.item)
-            next if unlosableItem?(b.item)
-            @battle.pbShowAbilitySplash(b)
-            @battle.pbDisplay(_INTL("{1} scavenged {2}'s {3}!", b.pbThis, pbThis(true), b.itemName))
-            b.item = item
-            @battle.pbHideAbilitySplash(b)
-            break
-        end
-    end
-
-    def pbSymbiosis
-        return if fainted?
-        return unless item
         @battle.pbPriority(true).each do |b|
             next if b.opposes?
             next unless b.hasActiveAbility?(:SYMBIOSIS)
-            next if !b.item || b.unlosableItem?(b.item)
-            next if unlosableItem?(b.item)
-            @battle.pbShowAbilitySplash(b)
-            @battle.pbDisplay(_INTL("{1} shared its {2} with {3}!", b.pbThis, b.itemName, pbThis(true)))
-            self.item = b.item
-            b.item = nil
-            applyEffect(:ItemLost)
+            next if !b.baseItem || b.unlosableItem?(b.baseItem)
+            next if unlosableItem?(b.baseItem)
+            @battle.pbShowAbilitySplash(b, :SYMBIOSIS)
+            @battle.pbDisplay(_INTL("{1} copies its {2} to {3}!", b.pbThis, getItemName(baseItem), pbThis(true)))
+            self.item = b.baseItem
             @battle.pbHideAbilitySplash(b)
             pbHeldItemTriggerCheck
             break
         end
     end
 
-    # item_to_use is an item ID or GameData::Item object. own_item is whether the
+    # item_to_use is an item ID or GameData::Item object. ownitem is whether the
     # item is held by self. fling is for Fling only.
-    def pbHeldItemTriggered(item_to_use, own_item = true, fling = false)
+    def pbHeldItemTriggered(item_to_use, ownitem = true, fling = false)
         # Cheek Pouch and similar abilities
-        if GameData::Item.get(item_to_use).is_berry? && abilityActive?
-            BattleHandlers.triggerOnBerryConsumedAbility(ability, self, item_to_use, own_item, @battle)
+        if GameData::Item.get(item_to_use).is_berry?
+            eachActiveAbility do |ability|
+                BattleHandlers.triggerOnBerryConsumedAbility(ability, self, item_to_use, ownitem, @battle)
+            end
         end
-        pbConsumeItem if own_item
-        pbSymbiosis if !own_item && !fling # Bug Bite/Pluck users trigger Symbiosis
+        pbConsumeItem(item_to_use) if ownitem
+        pbSymbiosis(item_to_use) if !ownitem && !fling # Bug Bite/Pluck users trigger Symbiosis
     end
 
     #=============================================================================
@@ -249,50 +249,52 @@ class PokeBattle_Battler
     # fling is for Fling only.
     def pbHeldItemTriggerCheck(item_to_use = nil, fling = false)
         return if fainted?
-        return if !item_to_use && !itemActive?
         pbItemHPHealCheck(item_to_use, fling)
         pbItemStatusCureCheck(item_to_use, fling)
         pbItemEndOfMoveCheck(item_to_use, fling)
         # For Enigma Berry, Kee Berry and Maranga Berry, which have their effects
         # when forcibly consumed by Pluck/Fling.
         if item_to_use
-            itm = item_to_use || item
-            if BattleHandlers.triggerTargetItemOnHitPositiveBerry(itm, self, @battle,
-true)
-                pbHeldItemTriggered(itm, false,
-fling)
+            if BattleHandlers.triggerTargetItemOnHitPositiveBerry(item_to_use, self, @battle, true)
+                pbHeldItemTriggered(item_to_use, false, fling)
             end
         end
     end
 
     def pbItemHPHealCheck(item_to_use = nil, fling = false)
-        return if !item_to_use && !itemActive?
-        itm = item_to_use || item
-
         # Check for berry filching
-        if item && !item_to_use && GameData::Item.get(item).is_berry?
-            filcher = nil
+        unless item_to_use
+            eachActiveItem do |item|
+                next unless GameData::Item.get(item).is_berry?
+                filcher = nil
 
-            @battle.eachBattler { |b|
-                next if b.index == @index
-                next unless b.hasActiveAbility?(:GREEDYGUTS)
-                filcher = b
-                break
-            }
-
-            # If the berry is being filched
-            if filcher && BattleHandlers.triggerHPHealItem(itm, filcher, @battle, false, self)
-                filcher.pbHeldItemTriggered(itm, false)
-                pbConsumeItem
+                @battle.eachBattler { |b|
+                    next if b.index == @index
+                    next unless b.hasActiveAbility?(:GREEDYGUTS)
+                    filcher = b
+                    break
+                }
+    
+                # If the berry is being filched
+                if filcher && BattleHandlers.triggerHPHealItem(item, filcher, @battle, false, self)
+                    filcher.pbHeldItemTriggered(item, false)
+                    pbConsumeItem(item)
+                end
             end
         end
 
-        # Check for user
-        if BattleHandlers.triggerHPHealItem(itm, self, @battle, !item_to_use.nil?, nil)
-            pbHeldItemTriggered(itm, item_to_use.nil?, fling)
-        elsif !item_to_use
-            pbItemTerrainStatBoostCheck
-            pbItemFieldEffectCheck
+        forced = !item_to_use.nil?
+
+        itemsToCheck = forced ? [item_to_use] : activeItems
+        itemsToCheck.each do |item|
+            # Check for user
+            if BattleHandlers.triggerHPHealItem(item, self, @battle, forced, nil)
+                pbHeldItemTriggered(item, !forced, fling)
+                break
+            elsif !forced
+                pbItemTerrainStatBoostCheck
+                pbItemFieldEffectCheck
+            end
         end
     end
 
@@ -302,12 +304,15 @@ fling)
     # fling is for Fling only.
     def pbItemStatusCureCheck(item_to_use = nil, fling = false)
         return if fainted?
-        return if !item_to_use && !itemActive?
-        itm = item_to_use || item
-        if BattleHandlers.triggerStatusCureItem(itm, self, @battle,
-!item_to_use.nil?)
-            pbHeldItemTriggered(itm, item_to_use.nil?,
-fling)
+
+        forced = !item_to_use.nil?
+
+        itemsToCheck = forced ? [item_to_use] : activeItems
+        itemsToCheck.each do |item|
+            if BattleHandlers.triggerStatusCureItem(item, self, @battle, forced)
+                pbHeldItemTriggered(item, !forced, fling)
+                break
+            end
         end
     end
 
@@ -316,12 +321,18 @@ fling)
     # fling is for Fling only.
     def pbItemEndOfMoveCheck(item_to_use = nil, fling = false)
         return if fainted?
-        return if !item_to_use && !itemActive?
-        itm = item_to_use || item
-        if BattleHandlers.triggerEndOfMoveItem(itm, self, @battle, !item_to_use.nil?)
-            pbHeldItemTriggered(itm, item_to_use.nil?, fling)
-        elsif BattleHandlers.triggerEndOfMoveStatRestoreItem(itm, self, @battle, !item_to_use.nil?)
-            pbHeldItemTriggered(itm, item_to_use.nil?, fling)
+
+        forced = !item_to_use.nil?
+
+        itemsToCheck = forced ? [item_to_use] : activeItems
+        itemsToCheck.each do |item|
+            if BattleHandlers.triggerEndOfMoveItem(item, self, @battle, forced)
+                pbHeldItemTriggered(item, !forced, fling)
+                break
+            elsif BattleHandlers.triggerEndOfMoveStatRestoreItem(item, self, @battle, forced)
+                pbHeldItemTriggered(item, !forced, fling)
+                break
+            end
         end
     end
 
@@ -332,30 +343,37 @@ fling)
     # fling is for Fling only.
     def pbItemStatRestoreCheck(item_to_use = nil, fling = false)
         return if fainted?
-        return if !item_to_use && !itemActive?
-        itm = item_to_use || item
-        if BattleHandlers.triggerEndOfMoveStatRestoreItem(itm, self,
-@battle, !item_to_use.nil?)
-            pbHeldItemTriggered(itm, item_to_use.nil?,
-fling)
+
+        forced = !item_to_use.nil?
+
+        itemsToCheck = forced ? [item_to_use] : activeItems
+
+        itemsToCheck.each do |item|
+            if BattleHandlers.triggerEndOfMoveStatRestoreItem(item, self, @battle, forced)
+                pbHeldItemTriggered(item, !forced, fling)
+                break
+            end
         end
     end
 
     # Called when the battle terrain changes and when a Pokémon loses HP.
     def pbItemTerrainStatBoostCheck
-        return unless itemActive?
-        pbHeldItemTriggered(item) if BattleHandlers.triggerTerrainStatBoostItem(item, self, @battle)
+        eachActiveItem do |item|
+            pbHeldItemTriggered(item) if BattleHandlers.triggerTerrainStatBoostItem(item, self, @battle)
+        end
     end
 
     def pbItemFieldEffectCheck
-        return unless itemActive?
-        pbHeldItemTriggered(item) if BattleHandlers.triggerFieldEffectItem(item, self, @battle)
+        eachActiveItem do |item|
+            pbHeldItemTriggered(item) if BattleHandlers.triggerFieldEffectItem(item, self, @battle)
+        end
     end
 
     # Used for Adrenaline Orb. Called when Intimidate is triggered (even if
     # Intimidate has no effect on the Pokémon).
     def pbItemOnIntimidatedCheck
-        return unless itemActive?
-        pbHeldItemTriggered(item) if BattleHandlers.triggerItemOnIntimidated(item, self, @battle)
+        eachActiveItem do |item|
+            pbHeldItemTriggered(item) if BattleHandlers.triggerItemOnIntimidated(item, self, @battle)
+        end
     end
 end

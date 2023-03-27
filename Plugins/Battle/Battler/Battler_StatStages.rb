@@ -113,10 +113,16 @@ class PokeBattle_Battler
         ]
         @battle.pbDisplay(arrStatTexts[[increment - 1, 2].min])
         # Trigger abilities upon stat gain
-        BattleHandlers.triggerAbilityOnStatGain(ability, self, stat, user) if abilityActive?
+        eachActiveAbility do |ability|
+            BattleHandlers.triggerAbilityOnStatGain(ability, self, stat, user)
+        end
         eachOpposing do |b|
-            BattleHandlers.triggerAbilityOnEnemyStatGain(b.ability, b, stat, user, self) if b.abilityActive?
-            BattleHandlers.triggerItemOnEnemyStatGain(b.item, b, user, @battle, self) if b.itemActive?
+            b.eachActiveAbility do |ability|
+                BattleHandlers.triggerAbilityOnEnemyStatGain(ability, b, stat, user, self)
+            end
+            b.eachActiveItem do |item|
+                BattleHandlers.triggerItemOnEnemyStatGain(item, b, user, @battle, self)
+            end
         end
         return true
     end
@@ -153,21 +159,27 @@ class PokeBattle_Battler
         end
         @battle.pbDisplay(arrStatTexts[[increment - 1, 2].min])
         # Trigger abilities upon stat gain
-        BattleHandlers.triggerAbilityOnStatGain(ability, self, stat, user) if abilityActive?
+        eachActiveAbility do |ability|
+            BattleHandlers.triggerAbilityOnStatGain(ability, self, stat, user)
+        end
         eachOpposing do |b|
-            BattleHandlers.triggerAbilityOnEnemyStatGain(b.ability, b, stat, user, self) if b.abilityActive?
-            BattleHandlers.triggerItemOnEnemyStatGain(b.item, b, user, @battle, self) if b.itemActive?
+            b.eachActiveAbility do |ability|
+                BattleHandlers.triggerAbilityOnEnemyStatGain(ability, b, stat, user, self)
+            end
+            b.eachActiveItem do |item|
+                BattleHandlers.triggerItemOnEnemyStatGain(item, b, user, @battle, self)
+            end
         end
         return true
     end
 
-    def pbRaiseStatStageByAbility(stat, increment, user, splashAnim = true, showAnimation = true)
+    def pbRaiseStatStageByAbility(stat, increment, user, ability: nil)
         return false if fainted?
         return false if statStageAtMax?(stat)
         ret = false
-        @battle.pbShowAbilitySplash(user) if splashAnim
-        ret = pbRaiseStatStage(stat, increment, user, showAnimation) if pbCanRaiseStatStage?(stat, user, nil, true)
-        @battle.pbHideAbilitySplash(user) if splashAnim
+        @battle.pbShowAbilitySplash(user, ability) if ability
+        ret = pbRaiseStatStage(stat, increment, user) if pbCanRaiseStatStage?(stat, user, nil, true)
+        @battle.pbHideAbilitySplash(user) if ability
         return ret
     end
 
@@ -195,20 +207,18 @@ class PokeBattle_Battler
                 return false
             end
             unless ignoreAbilities
-                if abilityActive?
-                    return false if !@battle.moldBreaker && BattleHandlers.triggerStatLossImmunityAbility(
-                        ability, self, stat, @battle, showFailMsg
-                    )
-                    return false if BattleHandlers.triggerStatLossImmunityAbilityNonIgnorable(
-                        ability, self, stat, @battle, showFailMsg
-                    )
+                eachActiveAbility do |ability|
+                    return false if BattleHandlers.triggerStatLossImmunityAbilityNonIgnorable(ability, self, stat, @battle, showFailMsg)
                 end
                 unless @battle.moldBreaker
+                    eachActiveAbility do |ability|
+                        return false if BattleHandlers.triggerStatLossImmunityAbility(ability, self, stat, @battle, showFailMsg)
+                    end
+
                     eachAlly do |b|
-                        next unless b.abilityActive?
-                        return false if BattleHandlers.triggerStatLossImmunityAllyAbility(
-                            b.ability, b, self, stat, @battle, showFailMsg
-                        )
+                        b.eachActiveAbility do |ability|
+                            return false if BattleHandlers.triggerStatLossImmunityAllyAbility(ability, b, self, stat, @battle, showFailMsg)
+                        end
                     end
                 end
             end
@@ -268,16 +278,18 @@ class PokeBattle_Battler
         # Mirror Armor, only if not self inflicted
         if !ignoreMirrorArmor && hasActiveAbility?(:MIRRORARMOR) && (!user || user.index != @index) &&
            !@battle.moldBreaker && pbCanLowerStatStage?(stat)
-            battle.pbShowAbilitySplash(self)
+            battle.pbShowAbilitySplash(self, :MIRRORARMOR)
             @battle.pbDisplay(_INTL("{1}'s Mirror Armor activated!", pbThis))
             unless user
                 battle.pbHideAbilitySplash(self)
                 return false
             end
             if user.pbCanLowerStatStage?(stat, nil, nil, true)
-                user.pbLowerStatStageByAbility(stat, increment, user, false)
+                user.pbLowerStatStageByAbility(stat, increment, user)
                 # Trigger user's abilities upon stat loss
-                BattleHandlers.triggerAbilityOnStatLoss(user.ability, user, stat, self) if user.abilityActive?
+                eachActiveAbility do |ability|
+                    BattleHandlers.triggerAbilityOnStatLoss(ability, user, stat, self)
+                end
             end
             battle.pbHideAbilitySplash(self)
             return false
@@ -304,7 +316,9 @@ class PokeBattle_Battler
         ]
         @battle.pbDisplay(arrStatTexts[[increment - 1, 2].min])
         # Trigger abilities upon stat loss
-        BattleHandlers.triggerAbilityOnStatLoss(ability, self, stat, user) if abilityActive?
+        eachActiveAbility do |ability|
+            BattleHandlers.triggerAbilityOnStatLoss(ability, self, stat, user)
+        end
         applyEffect(:StatsDropped)
         return true
     end
@@ -313,16 +327,18 @@ class PokeBattle_Battler
         # Mirror Armor
         if !ignoreMirrorArmor && hasActiveAbility?(:MIRRORARMOR) && (!user || user.index != @index) &&
                 !@battle.moldBreaker && pbCanLowerStatStage?(stat)
-            battle.pbShowAbilitySplash(self)
+            battle.pbShowAbilitySplash(self, :MIRRORARMOR)
             @battle.pbDisplay(_INTL("{1}'s Mirror Armor activated!", pbThis))
             unless user
                 battle.pbHideAbilitySplash(self)
                 return false
             end
             if user.pbCanLowerStatStage?(stat, nil, nil, true)
-                user.pbLowerStatStageByAbility(stat, increment, user, false)
+                user.pbLowerStatStageByAbility(stat, increment, user)
                 # Trigger user's abilities upon stat loss
-                BattleHandlers.triggerAbilityOnStatLoss(user.ability, user, stat, self) if user.abilityActive?
+                eachActiveAbility do |ability|
+                    BattleHandlers.triggerAbilityOnStatLoss(ability, user, stat, self)
+                end
             end
             battle.pbHideAbilitySplash(self)
             return false
@@ -362,23 +378,25 @@ class PokeBattle_Battler
         end
         @battle.pbDisplay(arrStatTexts[[increment - 1, 2].min])
         # Trigger abilities upon stat loss
-        BattleHandlers.triggerAbilityOnStatLoss(ability, self, stat, user) if abilityActive?
+        eachActiveAbility do |ability|
+            BattleHandlers.triggerAbilityOnStatLoss(ability, self, stat, user)
+        end
         applyEffect(:StatsDropped)
         return true
     end
 
-    def pbLowerStatStageByAbility(stat, increment, user, splashAnim = true)
+    def pbLowerStatStageByAbility(stat, increment, user, ability: nil)
         return false if fainted?
         return false if statStageAtMin?(stat)
         ret = false
-        @battle.pbShowAbilitySplash(user) if splashAnim
+        @battle.pbShowAbilitySplash(user, ability) if ability
         ret = pbLowerStatStage(stat, increment, user) if pbCanLowerStatStage?(stat, user, nil, true)
-        @battle.pbHideAbilitySplash(user) if splashAnim
+        @battle.pbHideAbilitySplash(user) if ability
         handleStatLossItem(nil, user) if ret
         return ret
     end
 
-    def blockAteAbilities(user)
+    def blockAteAbilities(user,ability)
         return true if fainted?
         # NOTE: Substitute intentially blocks Intimidate even if self has Contrary.
         if substituted?
@@ -388,48 +406,35 @@ class PokeBattle_Battler
         if hasActiveAbility?(:INNERFOCUS)
             @battle.pbShowAbilitySplash(self, true)
             @battle.pbDisplay(_INTL("{1}'s {2} prevented {3}'s {4} from working!",
-                    pbThis, abilityName, user.pbThis(true), user.abilityName))
+                    pbThis, getAbilityName(:INNERFOCUS), user.pbThis(true), getAbilityName(ability)))
             @battle.pbHideAbilitySplash(self)
             return true
         elsif @battle.pbCheckSameSideAbility(:HEARTENINGAROMA, @index)
             aromaHolder = @battle.pbCheckSameSideAbility(:HEARTENINGAROMA, @index)
             @battle.pbShowAbilitySplash(aromaHolder, true)
             @battle.pbDisplay(_INTL("{1}'s {2} prevented {3}'s {4} from working!",
-                aromaHolder.pbThis, aromaHolder.abilityName, user.pbThis(true), user.abilityName))
+                aromaHolder.pbThis, getAbilityName(:HEARTENINGAROMA), user.pbThis(true), getAbilityName(ability)))
             @battle.pbHideAbilitySplash(aromaHolder)
         end
         return false
     end
 
-    def pbLowerAttackStatStageIntimidate(user)
-        return false if blockAteAbilities(user)
-        return pbLowerStatStageByAbility(:ATTACK, 1, user, false)
-    end
-
-    def pbLowerSpecialAttackStatStageFascinate(user)
-        return false if blockAteAbilities(user)
-        return pbLowerStatStageByAbility(:SPECIAL_ATTACK, 1, user, false)
-    end
-
-    def pbLowerSpeedStatStageFrustrate(user)
-        return false if blockAteAbilities(user)
-        return pbLowerStatStageByAbility(:SPEED, 1, user, false)
-    end
-
-    def pbMinimizeStatStage(stat, user = nil, move = nil, ignoreContrary = false, showAbilitySplash = false)
+    def pbMinimizeStatStage(stat, user = nil, move = nil, ignoreContrary = false, ability: nil)
         if hasActiveAbility?(:CONTRARY) && !ignoreContrary
             aiSeesAbility
-            pbMaximizeStatStage(stat, user, move, true, showAbilitySplash)
+            pbMaximizeStatStage(stat, user, move, true, ability: ability)
         elsif pbCanLowerStatStage?(stat, user, move, true, ignoreContrary)
-            @battle.pbShowAbilitySplash(user) if showAbilitySplash
+            @battle.pbShowAbilitySplash(user, ability) if ability
             @stages[stat] = -6
             @battle.pbCommonAnimation("StatDown", self)
             statName = GameData::Stat.get(stat).real_name
             @battle.pbDisplay(_INTL("{1} minimized its {2}!", pbThis, statName))
-            @battle.pbHideAbilitySplash(user) if showAbilitySplash
+            @battle.pbHideAbilitySplash(user) if ability
 
             # Trigger abilities upon stat loss
-            BattleHandlers.triggerAbilityOnStatLoss(ability, self, stat, user) if abilityActive?
+            eachActiveAbility do |ability|
+                BattleHandlers.triggerAbilityOnStatLoss(ability, self, stat, user)
+            end
             handleStatLossItem(move, user)
         end
     end
@@ -438,30 +443,32 @@ class PokeBattle_Battler
         if move
             applyEffect(:StatsDropped)
         elsif itemActive?
-            BattleHandlers.triggerItemOnStatLoss(item, self, user, move, [], @battle)
+            eachActiveItem do |item|
+                BattleHandlers.triggerItemOnStatLoss(item, self, user, move, [], @battle)
+            end
         end
     end
 
-    def pbMaximizeStatStage(stat, user = nil, move = nil, ignoreContrary = false, showAbilitySplash = false)
+    def pbMaximizeStatStage(stat, user = nil, move = nil, ignoreContrary = false, ability: nil)
         if hasActiveAbility?(:CONTRARY) && !ignoreContrary
             aiSeesAbility
-            pbMinimizeStatStage(stat, user, move, true, showAbilitySplash)
+            pbMinimizeStatStage(stat, user, move, true, ability: ability)
         elsif pbCanRaiseStatStage?(stat, user, move, true, ignoreContrary)
-            @battle.pbShowAbilitySplash(user) if showAbilitySplash
+            @battle.pbShowAbilitySplash(user, ability) if ability
             @stages[stat] = 6
             @battle.pbCommonAnimation("StatUp", self)
             statName = GameData::Stat.get(stat).real_name
             @battle.pbDisplay(_INTL("{1} maximizes its {2}!", pbThis, statName))
-            @battle.pbHideAbilitySplash(user) if showAbilitySplash
+            @battle.pbHideAbilitySplash(user) if ability
         end
     end
 
     # Fails silently
-    def tryRaiseStat(stat, user, move: nil, increment: 1, showFailMsg: false, showAnim: true, showAbilitySplash: false, cause: nil, item: nil)
+    def tryRaiseStat(stat, user, move: nil, increment: 1, showFailMsg: false, showAnim: true, ability: nil, cause: nil, item: nil)
         return false if increment <= 0
         lowered = false
         if pbCanRaiseStatStage?(stat, user, move, showFailMsg)
-            @battle.pbShowAbilitySplash(user) if showAbilitySplash
+            @battle.pbShowAbilitySplash(user, ability) if ability
             if item
                 cause = GameData::Item.get(item).name
                 @battle.pbCommonAnimation("UseItem", user)
@@ -472,16 +479,16 @@ class PokeBattle_Battler
                 lowered = true
             end
         end
-        @battle.pbHideAbilitySplash(user) if showAbilitySplash
+        @battle.pbHideAbilitySplash(user) if ability
         return lowered
     end
 
     # Fails silently
-    def tryLowerStat(stat, user, move: nil, increment: 1, showFailMsg: false, showAnim: true, showAbilitySplash: false, cause: nil, item: nil)
+    def tryLowerStat(stat, user, move: nil, increment: 1, showFailMsg: false, showAnim: true, ability: nil, cause: nil, item: nil)
         return false if increment <= 0
         lowered = false
         if pbCanLowerStatStage?(stat, user, move, showFailMsg)
-            @battle.pbShowAbilitySplash(user) if showAbilitySplash
+            @battle.pbShowAbilitySplash(user, ability) if ability
             if item
                 cause = GameData::Item.get(item).name
                 @battle.pbCommonAnimation("UseItem", user)
@@ -492,7 +499,7 @@ class PokeBattle_Battler
                 lowered = true
             end
         end
-        @battle.pbHideAbilitySplash(user) if showAbilitySplash
+        @battle.pbHideAbilitySplash(user) if ability
         return lowered
     end
 
@@ -512,9 +519,9 @@ class PokeBattle_Battler
 
     # Pass in array of form
     # [statToRaise, stagesToRaise, statToRaise2, stagesToRaise2, ...]
-    def pbRaiseMultipleStatStages(statArray, user, move: nil, showFailMsg: false, showAnim: true, showAbilitySplash: false, item: nil)
+    def pbRaiseMultipleStatStages(statArray, user, move: nil, showFailMsg: false, showAnim: true, ability: nil, item: nil)
         return unless pbCanRaiseAnyOfStats?(statArray, user, move: move, showFailMsg: showFailMsg)
-        @battle.pbShowAbilitySplash(user) if showAbilitySplash
+        @battle.pbShowAbilitySplash(user, ability) if ability
 
         cause = nil
         if item
@@ -528,18 +535,18 @@ class PokeBattle_Battler
             increment = statArray[i * 2 + 1]
             next if increment <= 0
             raisedAnyStages = true if tryRaiseStat(stat, user, move: move, increment: increment, showFailMsg: showFailMsg,
-showAnim: showAnim, showAbilitySplash: false, cause: cause)
+showAnim: showAnim, ability: nil, cause: cause)
             showAnim = false if raisedAnyStages
         end
-        @battle.pbHideAbilitySplash(user) if showAbilitySplash
+        @battle.pbHideAbilitySplash(user) if ability
         return raisedAnyStages
     end
 
     # Pass in array of form
     # [statToRaise, stagesToRaise, statToRaise2, stagesToRaise2, ...]
-    def pbLowerMultipleStatStages(statArray, user, move: nil, showFailMsg: false, showAnim: true, showAbilitySplash: false, item: nil)
+    def pbLowerMultipleStatStages(statArray, user, move: nil, showFailMsg: false, showAnim: true, ability: nil, item: nil)
         return unless pbCanLowerAnyOfStats?(statArray, user, move: move, showFailMsg: showFailMsg)
-        @battle.pbShowAbilitySplash(user) if showAbilitySplash
+        @battle.pbShowAbilitySplash(user, ability) if ability
 
         cause = nil
         if item
@@ -553,10 +560,10 @@ showAnim: showAnim, showAbilitySplash: false, cause: cause)
             increment = statArray[i * 2 + 1]
             next if increment <= 0
             raisedAnyStages = true if tryLowerStat(stat, user, move: move, increment: increment, showFailMsg: showFailMsg,
-showAnim: showAnim, showAbilitySplash: false, cause: cause)
+showAnim: showAnim, ability: nil, cause: cause)
             showAnim = false if raisedAnyStages
         end
-        @battle.pbHideAbilitySplash(user) if showAbilitySplash
+        @battle.pbHideAbilitySplash(user) if ability
         return loweredAnyStages
     end
 
