@@ -4,9 +4,6 @@ end
 
 PokeBattle_Battle::BattleStartApplyCurse.add(:CURSE_DELEVELED,
     proc { |curse_policy, battle, curses_array|
-        battle.amuletActivates("Deleveled")
-        battle.pbDisplaySlower(_INTL(""))
-
         battle.amuletActivates(
             _INTL("Forevers Traversed yet Ever No Better"),
             _INTL("Your Pokemon lose 10 levels for this fight. EXP goes to the Dispenser.")
