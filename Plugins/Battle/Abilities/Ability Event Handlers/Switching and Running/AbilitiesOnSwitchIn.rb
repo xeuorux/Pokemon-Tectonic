@@ -229,7 +229,7 @@ BattleHandlers::AbilityOnSwitchIn.add(:INTIMIDATE,
       battle.eachOtherSideBattler(battler.index) do |b|
         next unless b.near?(battler)
         next if b.blockAteAbilities(battler, ability)
-        next unless b.tryLowerStat(:ATTACK, battler, ability: ability)
+        next unless b.tryLowerStat(:ATTACK, battler)
         b.pbItemOnIntimidatedCheck
       end
       battle.pbHideAbilitySplash(battler)
@@ -243,7 +243,7 @@ BattleHandlers::AbilityOnSwitchIn.add(:FASCINATE,
       battle.eachOtherSideBattler(battler.index) do |b|
         next unless b.near?(battler)
         next if b.blockAteAbilities(battler, ability)
-        next unless b.tryLowerStat(:SPECIAL_ATTACK, battler, ability: ability)
+        next unless b.tryLowerStat(:SPECIAL_ATTACK, battler)
         b.pbItemOnIntimidatedCheck
       end
       battle.pbHideAbilitySplash(battler)
@@ -256,7 +256,7 @@ BattleHandlers::AbilityOnSwitchIn.add(:FRUSTRATE,
       battle.eachOtherSideBattler(battler.index) do |b|
           next unless b.near?(battler)
           next if b.blockAteAbilities(battler, ability)
-          next unless b.tryLowerStat(:SPEED, battler, ability: ability)
+          next unless b.tryLowerStat(:SPEED, battler)
           b.pbItemOnIntimidatedCheck
       end
       battle.pbHideAbilitySplash(battler)
