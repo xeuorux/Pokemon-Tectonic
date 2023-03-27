@@ -486,7 +486,7 @@ class PokeBattle_Battle
     end
 
     def addAvatarBattler(species, level, sideIndex = 1)
-        return if @autoTesting
+        #return if @autoTesting
 
         indexOnSide = @sideSizes[sideIndex]
         if indexOnSide > 3

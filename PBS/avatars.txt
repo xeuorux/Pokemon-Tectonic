@@ -3,7 +3,12 @@
 [COMBEE]
 Ability = HONEYGATHER
 Moves1 = HELPINGHAND,SMUSH,CREEPOUT
-HPMult = 2.5
+HPMult = 2.0
+#-------------------------------
+[DREEPY]
+Ability = CLEARBODY
+Moves1 = EERIEIMPULSE,SHRED
+HPMult = 2.0
 #-------------------------------
 [VIGOROTH]
 Ability = VITALSPIRIT

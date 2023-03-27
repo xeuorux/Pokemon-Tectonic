@@ -531,7 +531,7 @@ class PokeBattle_Battler
     end
 
     def pbTransform(target)
-        oldAbil = @ability_id
+        oldAbilities = abilities.clone
         applyEffect(:Transform)
         applyEffect(:TransformSpecies, target.species)
         pbChangeTypes(target)
@@ -554,7 +554,7 @@ class PokeBattle_Battler
         @effects[:WeightChange] = target.effects[:WeightChange]
         refreshDataBox
         @battle.pbDisplay(_INTL("{1} transformed into {2}!", pbThis, target.pbThis(true)))
-        pbOnAbilityChanged(oldAbil)
+        pbOnAbilityChanged(oldAbilities)
     end
 
     def pbHyperMode; end
@@ -581,6 +581,7 @@ class PokeBattle_Battler
         return if hasAbility?(newAbility)
         @battle.pbShowAbilitySplash(swapper, newAbility) if showSplashes && swapper
         oldAbil = firstAbility
+        oldAbilities = abilities.clone
         @battle.pbShowAbilitySplash(self, oldAbil, true, false) if showSplashes
         setAbility(newAbility)
         @battle.pbReplaceAbilitySplash(self, newAbility) if showSplashes
@@ -588,7 +589,7 @@ class PokeBattle_Battler
         @battle.pbDisplay(replacementMsg)
         @battle.pbHideAbilitySplash(self) if showSplashes
         @battle.pbHideAbilitySplash(swapper) if showSplashes && swapper
-        pbOnAbilityChanged(oldAbil) unless oldAbil.nil?
+        pbOnAbilityChanged(oldAbilities) unless oldAbil.nil?
         pbEffectsOnSwitchIn
     end
 end

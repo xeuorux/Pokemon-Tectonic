@@ -149,9 +149,6 @@ class PokeBattle_Battler
 
     # Applies to gaining the ability.
     def ungainableAbility?(abil = nil)
-        abil ||= @ability_id
-        abil = GameData::Ability.try_get(abil)
-        return false unless abil
         ability_blacklist = [
             # Form-changing abilities
             :BATTLEBOND,
@@ -178,10 +175,19 @@ class PokeBattle_Battler
             # Abilities with undefined behaviour if they were replaced or moved around
             :STYLISH,
         ]
-        return ability_blacklist.include?(abil.id)
+
+        if abil
+            abil = GameData::Ability.try_get(abil)
+            return ability_blacklist.include?(abil.id)
+        else
+            eachAbility do |ability|
+                return ability if ability_blacklist.include?(ability)
+            end
+            return false
+        end
     end
 
-    TESTING_DOUBLE_QUALITIES = true
+    TESTING_DOUBLE_QUALITIES = false
 
     def canAddItem?(item = nil)
         return false if fainted?

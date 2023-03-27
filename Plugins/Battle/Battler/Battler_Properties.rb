@@ -15,7 +15,7 @@ class PokeBattle_Battler
     attr_reader :pokemon
     attr_reader :fainted # Boolean to mark whether self has fainted properly
     attr_reader :totalhp, :dummy, :form, :hp, :status, :statusCount, :bossStatus, :bossStatusCount, :itemSlots
-    attr_accessor :bossAI
+    attr_accessor :bossAI, :abilityChanged
 
     #=============================================================================
     # Complex accessors
@@ -40,6 +40,7 @@ class PokeBattle_Battler
     def setAbility(value)
         newability = GameData::Ability.try_get(value)
         @ability_ids = newability ? [newability.id] : []
+        @abilityChanged = true
     end
 
     def partyItem

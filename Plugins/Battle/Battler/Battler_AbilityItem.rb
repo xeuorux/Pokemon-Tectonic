@@ -94,8 +94,8 @@ class PokeBattle_Battler
             #       whenever it can even in the old battle mechanics.
             choices = []
             @battle.eachOtherSideBattler(@index) do |b|
-                next if b.ungainableAbility? ||
-                        %i[POWEROFALCHEMY RECEIVER TRACE].include?(b.ability_id)
+                next if b.ungainableAbility?(b.firstAbility) ||
+                        %i[POWEROFALCHEMY RECEIVER TRACE].include?(b.firstAbility)
                 choices.push(b)
             end
             if choices.length > 0
@@ -136,12 +136,12 @@ class PokeBattle_Battler
     #=============================================================================
     # Ability change
     #=============================================================================
-    def pbOnAbilityChanged(oldAbil)
-        if illusion? && oldAbil == :ILLUSION
+    def pbOnAbilityChanged(oldAbilities)
+        if illusion? && oldAbilities.include?(:ILLUSION)
             disableEffect(:Illusion)
             unless effectActive?(:Transform)
                 @battle.scene.pbChangePokemon(self, @pokemon)
-                @battle.pbDisplay(_INTL("{1}'s {2} wore off!", pbThis, GameData::Ability.get(oldAbil).name))
+                @battle.pbDisplay(_INTL("{1}'s {2} wore off!", pbThis, getAbilityName(:ILLUSION)))
                 @battle.pbSetSeen(self)
             end
         end

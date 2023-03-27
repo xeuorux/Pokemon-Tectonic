@@ -1,8 +1,8 @@
 BattleHandlers::AbilityChangeOnBattlerFainting.add(:POWEROFALCHEMY,
     proc { |ability, battler, fainted, battle|
         next if battler.opposes?(fainted)
-        next if fainted.ungainableAbility? ||
-           %i[POWEROFALCHEMY RECEIVER TRACE WONDERGUARD].include?(fainted.ability_id)
+        next if fainted.ungainableAbility?(firstAbility) ||
+           %i[POWEROFALCHEMY RECEIVER TRACE WONDERGUARD].include?(fainted.firstAbility)
         battle.pbShowAbilitySplash(battler, ability, true)
         stolenAbility = fainted.firstAbility
         battler.ability = stolenAbility

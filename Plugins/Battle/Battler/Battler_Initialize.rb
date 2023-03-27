@@ -45,6 +45,7 @@ class PokeBattle_Battler
         @hp = @totalhp  = 0
         @type1 = @type2 = nil
         @ability_ids     = []
+        @abilityChanged = false
         @item_ids       = []
         @gender         = 0
         @attack = @defense = @spatk = @spdef = @speed = 0
@@ -118,6 +119,7 @@ class PokeBattle_Battler
                 @ability_ids.push(legalAbility) unless @ability_ids.include?(legalAbility)
             end
         end
+        @abilityChanged = false
         @item_ids     = []
         @item_ids.push(pkmn.item_id) if pkmn.item_id
         @item_ids.push(@battle.getRandomHeldItem) if TESTING_DOUBLE_QUALITIES

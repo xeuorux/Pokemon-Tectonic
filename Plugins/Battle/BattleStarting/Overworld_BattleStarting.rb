@@ -373,6 +373,10 @@ end
 def battleAutoTest(trainerID, trainerName)
   loop do
     setBattleRule("autotesting")
+    side1Size = rand(3) + 1
+    side2Size = rand(3) + 1
+    sideSizeRuleDescriptor = "#{side1Size}v#{side2Size}"
+    setBattleRule(sideSizeRuleDescriptor)
     $game_variables[LEVEL_CAP_VAR] = 70
     pbTrainerBattle(trainerID, trainerName)
     pbHealAll

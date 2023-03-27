@@ -5352,7 +5352,7 @@ Pokemon = ZEBSTRIKA,56
     AbilityIndex = 1 # Reckless
     Item = SHELLBELL
 Pokemon = HZOROARK,57
-    AbilityIndex = 1 # Sealing Body
+    AbilityIndex = 1 # Mental Block
 Pokemon = SALAZZLE,58
     AbilityIndex = 1 # Multiscale
 #-------------------------------

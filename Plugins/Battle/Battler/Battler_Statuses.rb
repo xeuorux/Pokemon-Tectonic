@@ -393,7 +393,7 @@ immuneTypeRealName))
             @battle.eachBattler do |b|
                 next if b.nil?
                 next unless b.hasActiveAbility?(:DREAMWEAVER)
-                b.tryRaiseStat(:SPECIAL_ATTACK, b, ability: ability)
+                b.tryRaiseStat(:SPECIAL_ATTACK, b, ability: :DREAMWEAVER)
             end
         end
         # Form change check
