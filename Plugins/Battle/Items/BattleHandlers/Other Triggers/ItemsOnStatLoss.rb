@@ -4,8 +4,8 @@ BattleHandlers::ItemOnStatLoss.add(:EJECTPACK,
       next unless battle.pbCanChooseNonActive?(battler.index)
       next if move&.switchOutMove?
       battle.pbCommonAnimation("UseItem", battler)
-      battle.pbDisplay(_INTL("{1} is switched out with the {2}!", battler.pbThis, getItemName(battler.baseItem)))
-      battler.pbConsumeItem(item, true, false)
+      battle.pbDisplay(_INTL("{1} is switched out with the {2}!", battler.pbThis, getItemName(item)))
+      battler.consumeItem(item)
       newPkmn = battle.pbGetReplacementPokemonIndex(battler.index) # Owner chooses
       next if newPkmn < 0
       battle.pbRecallAndReplace(battler.index, newPkmn)

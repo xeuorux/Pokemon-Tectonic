@@ -393,7 +393,7 @@ class PokeBattle_Move
         end
         if target.hasActiveItem?(:COVERTCLOAK) && user.opposes?(target)
             if showMessages
-                battle.pbDisplay(_INTL("#{target.pbThis}'s #{getItemName(target.baseItem)} protects it from the additional effect!"))
+                battle.pbDisplay(_INTL("#{target.pbThis}'s #{getItemName(:COVERTCLOAK)} protects it from the additional effect!"))
             end
             return false
         end

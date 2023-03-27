@@ -54,7 +54,7 @@ BattleHandlers::TargetItemOnHit.add(:JAGGEDHELMET,
     proc { |item,user,target,move,battle|
         next unless move.physicalMove?
         next if !user.takesIndirectDamage?
-        battle.pbDisplay(_INTL("{1} was badly hurt by the {2}!",user.pbThis,getItemName(target.baseItem)))
+        battle.pbDisplay(_INTL("{1} was badly hurt by the {2}!",user.pbThis,getItemName(item)))
         user.applyFractionalDamage(1.0/3.0)
     }
 )
@@ -63,7 +63,7 @@ BattleHandlers::TargetItemOnHit.add(:RUPTUREDRADIO,
     proc { |item,user,target,move,battle|
         next unless move.specialMove?
         next if !user.takesIndirectDamage?
-        battle.pbDisplay(_INTL("{1} was badly hurt by the {2}!",user.pbThis,getItemName(target.baseItem)))
+        battle.pbDisplay(_INTL("{1} was badly hurt by the {2}!",user.pbThis,getItemName(item)))
         user.applyFractionalDamage(1.0/3.0)
     }
 )
@@ -183,8 +183,8 @@ BattleHandlers::TargetItemAfterMoveUse.add(:EJECTBUTTON,
     next if battle.pbAllFainted?(battler.idxOpposingSide)
     next if !battle.pbCanChooseNonActive?(battler.index)
     battle.pbCommonAnimation("UseItem",battler)
-    battle.pbDisplay(_INTL("{1} pressed its {2}!",battler.pbThis,getItemName(battler.baseItem)))
-    battler.pbConsumeItem(item, true, false)
+    battle.pbDisplay(_INTL("{1} pressed its {2}!",battler.pbThis,getItemName(item)))
+    battler.consumeItem(item)
     user.pbOwnSide.incrementEffect(:Spikes)
     newPkmn = battle.pbGetReplacementPokemonIndex(battler.index)   # Owner chooses
     next if newPkmn<0
@@ -223,7 +223,7 @@ BattleHandlers::UserItemAfterMoveUse.add(:DEATHORB,
 BattleHandlers::EORHealingItem.add(:LUNCHBOX,
   proc { |item,battler,battle|
       next if !battler.canLeftovers?
-      healMessage =_INTL("{1} restored HP using its {2}!",battler.pbThis,getItemName(battler.baseItem))
+      healMessage =_INTL("{1} restored HP using its {2}!",battler.pbThis,getItemName(item))
       battler.applyFractionalHealing(1.0/8.0, customMessage: healMessage, item: item)
   }
 )
@@ -237,6 +237,6 @@ BattleHandlers::DamageCalcTargetItem.add(:LUNCHBOX,
 # Grandmaster Scroll
 BattleHandlers::ItemOnSwitchIn.add(:GRANDMASTERSCROLL,
   proc { |item,battler,battle|
-    battle.pbDisplay(_INTL("{1} holds the {2}! It deals double effectiveness!",battler.pbThis,getItemName(battler.baseItem)))
+    battle.pbDisplay(_INTL("{1} holds the {2}! It deals double effectiveness!",battler.pbThis,getItemName(item)))
   }
 )

@@ -1,24 +1,3 @@
-BattleHandlers::TargetItemOnHit.add(:ABSORBBULB,
-  proc { |item, _user, target, move, _battle|
-      next if move.calcType != :WATER
-      target.pbHeldItemTriggered(item) if target.tryRaiseStat(:SPECIAL_ATTACK, target, item: target.baseItem)
-  }
-)
-
-BattleHandlers::TargetItemOnHit.add(:CELLBATTERY,
-  proc { |item, _user, target, move, _battle|
-      next if move.calcType != :ELECTRIC
-      target.pbHeldItemTriggered(item) if target.tryRaiseStat(:ATTACK, target, item: target.baseItem)
-  }
-)
-
-BattleHandlers::TargetItemOnHit.add(:LUMINOUSMOSS,
-  proc { |item, _user, target, move, _battle|
-      next if move.calcType != :WATER
-      target.pbHeldItemTriggered(item) if target.tryRaiseStat(:SPECIAL_DEFENSE, target, item: target.baseItem)
-  }
-)
-
 BattleHandlers::TargetItemOnHit.add(:JABOCABERRY,
   proc { |item, user, target, move, battle|
       next unless target.canConsumeBerry?
@@ -26,7 +5,7 @@ BattleHandlers::TargetItemOnHit.add(:JABOCABERRY,
       next unless user.takesIndirectDamage?
       battle.pbCommonAnimation("Nom", target)
       battle.pbDisplay(_INTL("{1} consumed its {2} and hurt {3}!", target.pbThis,
-         getItemName(target.baseItem), user.pbThis(true)))
+         getItemName(item), user.pbThis(true)))
       fraction = 1.0 / 8.0
       fraction *= 2 if target.hasActiveAbility?(:RIPEN)
       user.applyFractionalDamage(fraction)
@@ -41,7 +20,7 @@ BattleHandlers::TargetItemOnHit.add(:ROWAPBERRY,
       next unless user.takesIndirectDamage?
       battle.pbCommonAnimation("Nom", target)
       battle.pbDisplay(_INTL("{1} consumed its {2} and hurt {3}!", target.pbThis,
-         getItemName(target.baseItem), user.pbThis(true)))
+         getItemName(item), user.pbThis(true)))
       fraction = 1.0 / 8.0
       fraction *= 2 if target.hasActiveAbility?(:RIPEN)
       user.applyFractionalDamage(fraction)
@@ -53,7 +32,7 @@ BattleHandlers::TargetItemOnHit.add(:ROCKYHELMET,
   proc { |item, user, target, move, battle|
       next unless move.physicalMove?
       next unless user.takesIndirectDamage?
-      battle.pbDisplay(_INTL("{1} was hurt by the {2}!", user.pbThis, getItemName(target.baseItem)))
+      battle.pbDisplay(_INTL("{1} was hurt by the {2}!", user.pbThis, getItemName(item)))
       user.applyFractionalDamage(1.0 / 6.0)
   }
 )
@@ -62,7 +41,7 @@ BattleHandlers::TargetItemOnHit.add(:HIVISJACKET,
   proc { |item, user, target, move, battle|
       next if move.physicalMove?
       next unless user.takesIndirectDamage?
-      battle.pbDisplay(_INTL("{1} was hurt by the {2}!", user.pbThis, getItemName(target.baseItem)))
+      battle.pbDisplay(_INTL("{1} was hurt by the {2}!", user.pbThis, getItemName(item)))
       user.applyFractionalDamage(1.0 / 6.0)
   }
 )
@@ -79,9 +58,8 @@ BattleHandlers::TargetItemOnHit.add(:ENIGMABERRY,
 
 BattleHandlers::TargetItemOnHit.add(:AIRBALLOON,
   proc { |item, _user, target, _move, battle|
-      battle.pbDisplay(_INTL("{1}'s {2} popped!", target.pbThis, getItemName(target.baseItem)))
-      target.pbConsumeItem(item, false, true)
-      target.pbSymbiosis(item)
+      battle.pbDisplay(_INTL("{1}'s {2} popped!", target.pbThis, getItemName(item)))
+      target.consumeItem(item, recoverable: false)
   }
 )
 
@@ -109,7 +87,7 @@ BattleHandlers::TargetItemOnHit.add(:WEAKNESSPOLICY,
       next unless Effectiveness.super_effective?(target.damageState.typeMod)
       next if !target.pbCanRaiseStatStage?(:ATTACK, target) &&
               !target.pbCanRaiseStatStage?(:SPECIAL_ATTACK, target)
-      if target.pbRaiseMultipleStatStages([:ATTACK, 1, :SPECIAL_ATTACK, 1], target, item: target.baseItem)
+      if target.pbRaiseMultipleStatStages([:ATTACK, 1, :SPECIAL_ATTACK, 1], target, item: item)
           target.pbHeldItemTriggered(item)
       end
   }
@@ -118,22 +96,10 @@ BattleHandlers::TargetItemOnHit.add(:WEAKNESSPOLICY,
 BattleHandlers::TargetItemOnHit.add(:STICKYBARB,
   proc { |item, user, target, move, battle|
       next unless move.physicalMove?
-      next if user.fainted? || user.baseItem
-      user.item = target.baseItem
-      target.item = nil
-      target.applyEffect(:ItemLost)
-      if battle.wildBattle? && !user.opposes? && (!user.initialItem && target.initialItem == user.baseItem)
-          user.setInitialItem(user.baseItem)
-          target.setInitialItem(nil)
-      end
+      next unless user.canAddItem?
+      user.giveItem(item)
+      target.removeItem(item)
       battle.pbDisplay(_INTL("{1}'s {2} was transferred to {3}!",
          target.pbThis, getItemName(item), user.pbThis(true)))
-  }
-)
-
-BattleHandlers::TargetItemOnHit.add(:SNOWBALL,
-  proc { |item, _user, target, move, _battle|
-      next if move.calcType != :ICE
-      target.pbHeldItemTriggered(item) if target.tryRaiseStat(:ATTACK, target, item: target.baseItem)
   }
 )

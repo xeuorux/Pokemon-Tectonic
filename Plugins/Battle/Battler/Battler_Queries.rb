@@ -180,10 +180,33 @@ class PokeBattle_Battler
 
     TESTING_DOUBLE_QUALITIES = false
 
+    def canAddItem?(item = nil)
+        return false if fainted?
+        return hasEmptyItemSlots?
+    end
+
+    def hasEmptyItemSlots?
+        return @item_ids.length < @itemSlots
+    end
+
     def items
-        itemArray = @item_id.nil? ? [] : [@item_id]
-        itemArray.push(@battle.getRandomHeldItem) if TESTING_DOUBLE_QUALITIES
-        return itemArray
+        return @item_ids
+    end
+
+    def itemCountD
+        if items.length <= 1
+            return "item"
+        else
+            return "items"
+        end
+    end
+
+    def firstItem
+        return items.empty? ? nil : items[0]
+    end
+
+    def firstItemData
+        return GameData::Item.try_get(firstItem)
     end
 
     def activeItems(ignoreFainted = false)
@@ -194,6 +217,12 @@ class PokeBattle_Battler
     def eachItem
         items.each do |itemID|
             yield itemID
+        end
+    end
+
+    def eachItemWithName
+        items.each do |itemID|
+            yield itemID,getItemName(itemID)
         end
     end
 
@@ -214,6 +243,20 @@ class PokeBattle_Battler
 
     def hasAnyItem?
         return !items.empty?
+    end
+
+    def hasAnyBerry?
+        items.each do |item|
+            return true if GameData::Item.get(item).is_berry?
+        end
+        return false
+    end
+
+    def hasAnyGem?
+        items.each do |item|
+            return true if GameData::Item.get(item).is_gem?
+        end
+        return false
     end
 
     def hasItem?(checkitem)
@@ -410,7 +453,7 @@ class PokeBattle_Battler
         @battle.initialItems[@index & 1][@pokemonIndex] = newItem
     end
 
-    def recycleItem
+    def recyclableItem
         return @battle.recycleItems[@index & 1][@pokemonIndex]
     end
 

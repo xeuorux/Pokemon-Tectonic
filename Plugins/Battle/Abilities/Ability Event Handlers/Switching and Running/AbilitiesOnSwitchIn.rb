@@ -710,10 +710,10 @@ BattleHandlers::AbilityOnSwitchIn.add(:MENDINGTONES,
 BattleHandlers::AbilityOnSwitchIn.add(:PEARLSEEKER,
   proc { |ability, battler, battle|
       next unless battle.pbWeather == :Eclipse
-      next if battler.baseItem
+      next if battler.canAddItem?(:PEARLOFFATE)
       battle.pbShowAbilitySplash(battler, ability)
-      battler.item = :PEARLOFFATE
-      battle.pbDisplay(_INTL("{1} discovers the {2}!", battler.pbThis, getItemName(battler.baseItem)))
+      battler.giveItem(:PEARLOFFATE)
+      battle.pbDisplay(_INTL("{1} discovers the {2}!", battler.pbThis, getItemName(:PEARLOFFATE)))
       battle.pbHideAbilitySplash(battler)
   }
 )
@@ -737,16 +737,12 @@ BattleHandlers::AbilityOnSwitchIn.add(:WHIRLER,
 
 BattleHandlers::AbilityOnSwitchIn.add(:SUSTAINABLE,
   proc { |ability, battler, battle|
-    next if battler.baseItem
-    next if !battler.recycleItem || !GameData::Item.get(battler.recycleItem).is_berry?
+    next unless battler.recyclableItem
+    next unless GameData::Item.get(battler.recyclableItem).is_berry?
+    next if battler.hasItem?(battler.recyclableItem)
     next unless battle.sunny?
-    battle.pbShowAbilitySplash(battler, ability)
-    battler.item = battler.recycleItem
-    battler.setRecycleItem(nil)
-    battler.setInitialItem(battler.baseItem) unless battler.initialItem
-    battle.pbDisplay(_INTL("{1} regrew one {2}!", battler.pbThis, getItemName(battler.baseItem)))
-    battle.pbHideAbilitySplash(battler)
-    battler.pbHeldItemTriggerCheck
+    recyclingMsg = _INTL("{1} regrew one {2}!", battler.pbThis, getItemName(battler.recyclableItem))
+    battler.recycleItem(recyclingMsg: recyclingMsg, ability: ability)
   }
 )
 

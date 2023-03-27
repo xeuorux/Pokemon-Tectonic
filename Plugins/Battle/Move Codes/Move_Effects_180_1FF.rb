@@ -54,19 +54,27 @@ end
 # Consumes berry and raises the user's Defense by 2 stages. (Stuff Cheeks)
 #===============================================================================
 class PokeBattle_Move_183 < PokeBattle_Move
+    def pbMoveFailed?(user, _targets, show_message)
+        return false if user.hasAnyBerry?
+        @battle.pbDisplay(_INTL("But it failed, because #{user.pbThis(true)} has no berries!")) if show_message
+        return true
+    end
+
     def pbEffectGeneral(user)
-        if !user.baseItem || !user.baseItem.is_berry?
-            @battle.pbDisplay("But it failed!")
-            return -1
-        end
         user.tryRaiseStat(:DEFENSE, user, increment: 2, move: self)
-        user.pbHeldItemTriggerCheck(user.baseItem, false)
-        user.pbConsumeItem(user.baseItem, true, true, false) if user.baseItem
+        user.eachItem do |item|
+            next unless GameData::Item.get(item).is_berry?
+            user.pbHeldItemTriggerCheck(item, false)
+            user.consumeItem(item)
+        end
     end
 
     def getEffectScore(user, target)
         score = getMultiStatUpEffectScore([:DEFENSE, 2], user, target)
-        score += 40 if user.baseItem&.is_berry?
+        user.eachItem do |item|
+            next unless GameData::Item.get(item).is_berry?
+            score += 40
+        end
         return score
     end
 end
@@ -79,7 +87,7 @@ class PokeBattle_Move_184 < PokeBattle_Move
     def ignoresSubstitute?(_user); return true; end
 
     def isValidTarget?(target)
-        return target.baseItem && target.baseItem.is_berry? && !target.semiInvulnerable?
+        return target.hasAnyBerry? && !target.semiInvulnerable?
     end
 
     def pbMoveFailed?(_user, _targets, show_message)
@@ -99,8 +107,11 @@ class PokeBattle_Move_184 < PokeBattle_Move
     end
 
     def pbEffectAgainstTarget(_user, target)
-        target.pbHeldItemTriggerCheck(target.baseItem, false)
-        target.pbConsumeItem(target.baseItem, true, true, false) if target.baseItem.is_berry?
+        target.eachItem do |item|
+            next unless GameData::Item.get(item).is_berry?
+            target.pbHeldItemTriggerCheck(item, false)
+            target.consumeItem(item)
+        end
     end
 
     def getEffectScore(_user, _target)
@@ -278,28 +289,30 @@ class PokeBattle_Move_18E < PokeBattle_TargetMultiStatUpMove
 end
 
 #===============================================================================
-# Renders item unusable (Corrosive Gas)
+# Renders item unusable (Slime Ball)
 #===============================================================================
 class PokeBattle_Move_18F < PokeBattle_Move
-    def removalMessageForTarget(target)
-        itemName = getItemName(target.baseItem)
-        return _INTL("{1}'s {2} became unusuable, so it dropped it!", target.pbThis, itemName)
-    end
-
     def pbEffectAgainstTarget(user, target)
         return if damagingMove?
-        return unless canRemoveItem?(user, target)
-        removeItem(user, target, removalMessageForTarget(target))
+        return unless canknockOffItems?(user, target)
+        knockOffItems(user, target) do |_item, itemName|
+            @battle.pbDisplay(_INTL("{1}'s {2} became unusuable, so it dropped it!", target.pbThis, itemName))
+        end
     end
 
     def pbEffectWhenDealingDamage(user, target)
-        return unless canRemoveItem?(user, target)
-        removeItem(user, target, removalMessageForTarget(target))
+        return unless canknockOffItems?(user, target)
+        knockOffItems(user, target) do |_item, itemName|
+            @battle.pbDisplay(_INTL("{1}'s {2} became unusuable, so it dropped it!", target.pbThis, itemName))
+        end
     end
 
     def getEffectScore(user, target)
-        return 30 if canRemoveItem?(user, target)
-        return 0
+        score = 0
+        target.eachItem do |item|
+            score += 30 if canRemoveItem?(user, target, item, checkingForAI: true)
+        end
+        return score
     end
 end
 
@@ -333,7 +346,7 @@ class PokeBattle_Move_192 < PokeBattle_Move
     def pbFailsAgainstTarget?(_user, target, show_message)
         if target.hasAnyItem?
             if show_message
-                @battle.pbDisplay(_INTL("{1} is about to be attacked by its {2}!", target.pbThis, getItemName(target.baseItem)))
+                @battle.pbDisplay(_INTL("{1} is about to be attacked by its {2}!", target.pbThis, target.itemCountD))
             end
             return false
         end

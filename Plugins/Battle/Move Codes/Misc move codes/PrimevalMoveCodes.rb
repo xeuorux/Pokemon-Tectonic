@@ -369,7 +369,7 @@ class PokeBattle_Move_61A < PokeBattle_Move_587
 
         itemName = GameData::Item.get(:BLACKSLUDGE).real_name
         @battle.pbDisplay(_INTL("{1} crafts itself a {2}!", user.pbThis, itemName))
-        user.item = :BLACKSLUDGE
+        user.giveItem(:BLACKSLUDGE)
 
         transformType(user, :POISON)
     end

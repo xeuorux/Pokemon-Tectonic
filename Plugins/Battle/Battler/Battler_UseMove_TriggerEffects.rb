@@ -104,7 +104,7 @@ user.pbThis(true)))
         if user.effectActive?(:GemConsumed)
             # NOTE: The consume animation and message for Gems are shown immediately
             #       after the move's animation, but the item is only consumed now.
-            user.pbConsumeItem(user.effects[:GemConsumed])
+            user.consumeItem(user.effects[:GemConsumed])
         end
         # Consume Volatile Toxin
         if move.pbDamagingMove?

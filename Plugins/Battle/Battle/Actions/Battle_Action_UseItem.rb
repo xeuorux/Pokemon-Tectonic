@@ -34,14 +34,14 @@ class PokeBattle_Battle
         @choices[idxBattler][3] = idxMove     # Index of move to recharge (Ethers)
         # Delete the item from the Bag. If it turns out it will have no effect, it
         # will be re-added to the Bag later.
-        pbConsumeItemInBag(item, idxBattler)
+        consumeItemInBag(item, idxBattler)
         return true
     end
 
     #=============================================================================
     # Using an item
     #=============================================================================
-    def pbConsumeItemInBag(item, idxBattler)
+    def consumeItemInBag(item, idxBattler)
         return unless item
         useType = GameData::Item.get(item).battle_use
         return if useType == 0 || (useType >= 6 && useType <= 10)   # Not consumed upon use

@@ -9,7 +9,7 @@ def healFromBerry(battler, ratio, item, forced = false, filchedFrom = nil)
     if battler.hasTribeBonus?(:SCAVENGER)
         ratio *= 1.25
         battler.battle.pbShowTribeSplash(battler,:SCAVENGER)
-        battler.battle.pbDisplay(_INTL("#{battler.pbThis} got a bit extra out of their #{getItemName(battler.baseItem)}!"))
+        battler.battle.pbDisplay(_INTL("#{battler.pbThis} got a bit extra out of their #{getItemName(item)}!"))
         battler.battle.pbHideTribeSplash(battler)
     end
     itemToPass = forced ? nil : item

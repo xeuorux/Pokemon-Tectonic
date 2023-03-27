@@ -54,7 +54,7 @@ class PokeBattle_Scene
       ],4)
     end
   
-    def pbConsumeItemInBag(_item,_idxBattler)
+    def consumeItemInBag(_item,_idxBattler)
       @ballCount -= 1 if @ballCount>0
     end
   

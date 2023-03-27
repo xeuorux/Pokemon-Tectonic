@@ -404,6 +404,8 @@ class PokeBattle_Battle
 
             @commandPhasesThisRound = 0
 
+            resetMoveUsageState
+
             # Command phase
             PBDebug.logonerr { pbCommandPhase }
             break if @decision > 0
@@ -428,6 +430,9 @@ class PokeBattle_Battle
                         next unless b
                         @lastRoundMoved = 0
                     end
+
+                    resetMoveUsageState
+
                     # Command phase
                     PBDebug.logonerr { pbExtraCommandPhase }
                     break if @decision > 0
@@ -741,6 +746,15 @@ class PokeBattle_Battle
             @decision = 2
         elsif fainted2
             @decision = 1
+        end
+    end
+
+    def resetMoveUsageState
+        # Reset the state of all moves
+        pbPriority.each do |b|
+            b.moves.each do |move|
+                move.resetMoveUsageState
+            end
         end
     end
 end

@@ -17,7 +17,7 @@ BattleHandlers::TargetAbilityAfterMoveUse.add(:PICKPOCKET,
       next unless move.pbDamagingMove?
       next unless move.physicalMove?
       next if battle.futureSight
-      move.stealItem(target, user, ability: ability)
+      move.stealItem(target, user, target.firstItem, ability: ability)
   }
 )
 
@@ -27,10 +27,11 @@ BattleHandlers::TargetAbilityAfterMoveUse.add(:MOONLIGHTER,
       next unless move.pbDamagingMove?
       next if battle.futureSight
       next unless battle.pbWeather == :Moonglow
-      if move.canStealItem?(user,target)
-        move.stealItem(target, user, ability: ability)
+      item = target.firstItem
+      if move.canStealItem?(user,target, item)
+        move.stealItem(target, user, item, ability: ability)
       else
-        move.removeItem(target, user, ability: ability)
+        move.knockOffItems(target, user, ability: ability, firstItemOnly: true)
       end
   }
 )

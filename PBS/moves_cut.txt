@@ -91,3 +91,4 @@
 4090,MIRACLEEYE,Miracle Eye,0A8,0,PSYCHIC,Status,0,30,0,NearOther,0,bce,"Enables the user to hit a Dark type with any type of move. It also enables the user to hit an evasive foe.",
 4091,ODORSLEUTH,Odor Sleuth,0A7,0,NORMAL,Status,0,30,0,NearOther,0,bce,"Enables the user to hit a Ghost type with any type of move. It also enables the user to hit an evasive foe.",
 4092,MORNINGSUN,Morning Sun,0D8,0,NORMAL,Status,0,5,0,User,0,d,"The user restores 1/2 of its HP, or 2/3rds in Sunshine.",
+535,CORROSIVEGAS,Corrosive Gas,18F,0,POISON,Status,100,30,0,AllNearOthers,0,,"The user surrounds everything around it with highly acidic gas and melts away items they hold.",

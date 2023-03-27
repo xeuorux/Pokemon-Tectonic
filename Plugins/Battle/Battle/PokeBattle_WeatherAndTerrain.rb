@@ -196,16 +196,6 @@ class PokeBattle_Battle
         end
         pbHideAbilitySplash(user) if user
 
-        # Check for terrain seeds that boost stats in a terrain
-        # And terrain sealant
-        eachBattler do |b|
-            b.pbItemTerrainStatBoostCheck
-            if user == b && b.hasActiveItem?(:TERRAINSEALANT)
-                pbDisplay(_INTL("{1}'s {2} keeps the terrain from expiring!", b.pbThis, getItemName(b.baseItem)))
-                @field.pointAt(:TerrainSealant, b)
-            end
-        end
-
         triggerTerrainChangeDialogue(old_terrain, newTerrain)
     end
 

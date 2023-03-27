@@ -686,12 +686,12 @@ class PokeBattle_Move_5A7 < PokeBattle_TwoTurnMove
 end
 
 #===============================================================================
-# Target drops its item and is forced to hold a Black Sludge. (Trash Treasure)
+# Target is forced to hold a Black Sludge, dropping its item if neccessary. (Trash Treasure)
 # Also lower's the target's Sp. Def.
 #===============================================================================
 class PokeBattle_Move_5A8 < PokeBattle_Move
     def pbFailsAgainstTarget?(user, target, show_message)
-        if target.baseItem && !canRemoveItem?(user, target) && target.pbCanLowerStatStage?(:SPECIAL_DEFENSE,user,self)
+        if !target.hasEmptyItemSlots? && !canRemoveItem?(user, target, target.firstItem) && target.pbCanLowerStatStage?(:SPECIAL_DEFENSE,user,self)
             if show_message
                 @battle.pbDisplay(_INTL("But it failed!"))
             end
@@ -701,15 +701,28 @@ class PokeBattle_Move_5A8 < PokeBattle_Move
     end
 
     def pbEffectAgainstTarget(user, target)
-        if target.hasItem?(:BLACKSLUDGE)
-            if target.baseItem
-                itemName = getItemName(target.baseItem)
+        giveSludge = false
+        if target.hasEmptyItemSlots?
+            giveSludge = true
+        else
+            removedAny = false
+            target.eachItemWithName do |item, itemName|
+                next if target.unlosableItem?(item)
+                next if item == :BLACKSLUDGE
                 removalMessage = _INTL("{1} dropped its {2}!", target.pbThis, itemName)
-                removeItem(user, target, removalMessage)
+                knockOffItems(user, target, item, removalMessage)
+                removedAny = true
+                break
             end
-            target.item = :BLACKSLUDGE
-            @battle.pbDisplay(_INTL("{1} was forced to hold a {2}!", target.pbThis, getItemName(target.baseItem)))
+
+            giveSludge = true if removedAny
         end
+
+        if giveSludge
+            @battle.pbDisplay(_INTL("{1} was forced to hold a {2}!", target.pbThis, getItemName(:BLACKSLUDGE)))
+            target.giveItem(:BLACKSLUDGE)
+        end
+        
         target.tryLowerStat(:SPECIAL_DEFENSE, user, move: self)
     end
 end

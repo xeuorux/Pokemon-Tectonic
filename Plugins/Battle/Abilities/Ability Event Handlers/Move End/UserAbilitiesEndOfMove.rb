@@ -31,7 +31,9 @@ BattleHandlers::UserAbilityEndOfMove.add(:MAGICIAN,
       next if battle.futureSight
       next unless move.pbDamagingMove?
       targets.each do |b|
-          break if move.stealItem(user, b, ability: ability)
+          b.eachItem do |item|
+            move.stealItem(user, b, item)
+          end
       end
   }
 )
@@ -107,9 +109,10 @@ BattleHandlers::UserAbilityEndOfMove.add(:GILD,
       next unless move.pbDamagingMove?
       targets.each do |b|
           next unless b.hasAnyItem?
-          removeMessage = _INTL("{1} turned {2}'s {3} into gold!", user.pbThis, b.pbThis(true), getItemName(b.baseItem))
-          next unless move.removeItem(user, b, removeMessage, ability: ability)
-          battle.field.incrementEffect(:PayDay, 5 * user.level) if user.pbOwnedByPlayer?
+          next unless move.knockOffItems(user, b, ability: ability) do |itemRemoved, itemName|
+            battle.pbDisplay(_INTL("{1} turned {2}'s {3} into gold!", user.pbThis, b.pbThis(true), itemName))
+            battle.field.incrementEffect(:PayDay, 5 * user.level) if user.pbOwnedByPlayer?
+          end
           break
       end
   }

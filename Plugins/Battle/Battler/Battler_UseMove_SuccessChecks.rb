@@ -46,9 +46,15 @@ class PokeBattle_Battler
         end
         # Choice Items
         if effectActive?(:ChoiceBand)
-            if hasActiveItem?(CHOICE_LOCKING_ITEMS) && pbHasMove?(@effects[:ChoiceBand])
+            choiceItem = nil
+            CHOICE_LOCKING_ITEMS.each do |choiceLockItem|
+                next unless hasActiveItem?(choiceLockItem)
+                choiceItem = choiceLockItem
+                break
+            end
+            if choiceItem && pbHasMove?(@effects[:ChoiceBand])
                 if move.id != @effects[:ChoiceBand] && move.id != :STRUGGLE
-                    msg = _INTL("{1} allows the use of only {2}!", getItemName(baseItem),
+                    msg = _INTL("{1} allows the use of only {2}!", getItemName(choiceItem),
 GameData::Move.get(@effects[:ChoiceBand]).name)
                     if showMessages
                         commandPhase ? @battle.pbDisplayPaused(msg) : @battle.pbDisplay(msg)
@@ -462,12 +468,14 @@ target.pbThis(true)))
                 end
                 return true
             end
-            if target.hasActiveItem?(LEVITATION_ITEMS)
-                if showMessages
-                    @battle.pbDisplay(_INTL("{1}'s {2} makes Ground moves miss!", target.pbThis, getItemName(target.baseItem)))
-                    @battle.triggerImmunityDialogue(user, target, false)
+            LEVITATION_ITEMS.each do |levitationItem|
+                if target.hasActiveItem?(levitationItem)
+                    if showMessages
+                        @battle.pbDisplay(_INTL("{1}'s {2} makes Ground moves miss!", target.pbThis, getItemName(levitationItem)))
+                        @battle.triggerImmunityDialogue(user, target, false)
+                    end
+                    return true
                 end
-                return true
             end
             if target.effectActive?(:MagnetRise)
                 if showMessages

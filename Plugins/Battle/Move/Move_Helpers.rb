@@ -37,7 +37,12 @@ class PokeBattle_Move
         return (user.boss? || target.boss?) && damagingMove?
     end
 
-    def canRemoveItem?(user, target, checkingForAI = false, ignoreTargetFainted = false)
+    def canRemoveItem?(user, target, item, checkingForAI: false)
+        return false unless canknockOffItems?(user, target, checkingForAI)
+        return target.unlosableItem?(item)
+    end
+
+    def canknockOffItems?(user, target, checkingForAI = false, ignoreTargetFainted = false)
         if @battle.wildBattle? && user.opposes? && !user.boss # Wild Pokémon can't knock off, but bosses can
             return false
         end
@@ -48,42 +53,52 @@ class PokeBattle_Move
         elsif target.damageState.unaffected || target.damageState.substitute
             return false
         end
-        return false if !target.hasAnyItem?
-        return false if target.unlosableItem?(target.baseItem, !checkingForAI)
+        return false unless target.hasAnyItem?
         return false if target.shouldAbilityApply?(:STICKYHOLD, checkingForAI) && !@battle.moldBreaker
         return true
     end
 
-    def canStealItem?(user, target, checkingForAI = false)
-        return false unless canRemoveItem?(user, target, checkingForAI, true)
-        return false if user.baseItem && @battle.trainerBattle?
-        return false if user.unlosableItem?(target.baseItem)
+    def canStealItem?(user, target, item, checkingForAI: false)
+        return false if item.nil?
+        return false unless canknockOffItems?(user, target, checkingForAI, true)
+        return false if target.unlosableItem?(item, !checkingForAI)
+        return false if !user.canAddItem? && @battle.trainerBattle?
+        return false if user.unlosableItem?(item)
         return true
     end
 
     # Returns whether the item was removed
-    def removeItem(remover, victim, removeMessage = nil, ability: nil)
-        return false unless canRemoveItem?(remover, victim)
+    # Can pass a block to overwrite the removal message and do other effects at the same time
+    def knockOffItems(remover, victim, ability: nil, firstItemOnly: false)
+        return false unless canknockOffItems?(remover, victim)
         battle.pbShowAbilitySplash(remover, ability) if ability
         if victim.hasActiveAbility?(:STICKYHOLD)
             battle.pbShowAbilitySplash(victim, :STICKYHOLD) if remover.opposes?(victim)
-            battle.pbDisplay(_INTL("{1}'s item cannot be removed!", victim.pbThis))
+            battle.pbDisplay(_INTL("{1}'s {2} cannot be removed!", victim.pbThis, user.itemCountD))
             battle.pbHideAbilitySplash(victim) if remover.opposes?(victim)
             battle.pbHideAbilitySplash(remover) if ability
             return false
         end
-        itemName = getItemName(victim.baseItem)
-        victim.pbRemoveItem(false)
-        removeMessage ||= _INTL("{1} forced {2} to drop their {3}!", remover.pbThis,
-              victim.pbThis(true), itemName)
-        battle.pbDisplay(removeMessage)
+        victim.eachItemWithName do |item, itemName|
+            unless victim.unlosableItem?(item)
+                victim.removeItem(item)
+                if block_given?
+                    yield item
+                else
+                    removeMessage = _INTL("{1} forced {2} to drop their {3}!", remover.pbThis,
+                        victim.pbThis(true), itemName)
+                    battle.pbDisplay(removeMessage)
+                end
+            end
+            break if firstItemOnly
+        end
         battle.pbHideAbilitySplash(remover) if ability
         return true
     end
 
     # Returns whether the item was removed
-    def stealItem(stealer, victim, ability: nil)
-        return false unless canStealItem?(stealer, victim)
+    def stealItem(stealer, victim, item, ability: nil)
+        return false unless canStealItem?(stealer, victim, item)
         @battle.pbShowAbilitySplash(stealer, ability) if ability
         if victim.hasActiveAbility?(:STICKYHOLD)
             @battle.pbShowAbilitySplash(victim, :STICKYHOLD) if stealer.opposes?(victim)
@@ -92,9 +107,8 @@ class PokeBattle_Move
             @battle.pbHideAbilitySplash(stealer) if ability
             return false
         end
-        oldVictimItem = victim.baseItem
-        oldVictimItemName = getItemName(oldVictimItem)
-        victim.pbRemoveItem
+        oldVictimItemName = getItemName(item)
+        victim.removeItem(item)
         if @battle.curseActive?(:CURSE_SUPER_ITEMS)
             @battle.pbDisplay(_INTL("{1}'s {2} turned to dust.", victim.pbThis, oldVictimItemName))
             @battle.pbHideAbilitySplash(stealer) if ability
@@ -104,12 +118,12 @@ class PokeBattle_Move
             # Permanently steal items from wild pokemon
             if @battle.wildBattle? && victim.opposes? && !@battle.bossBattle?
                 victim.setInitialItem(nil)
-                pbReceiveItem(oldVictimItem)
+                pbReceiveItem(item)
                 @battle.pbHideAbilitySplash(stealer) if ability
             else
-                stealer.item = oldVictimItem
-                @battle.pbHideAbilitySplash(stealer)
-                stealer.pbHeldItemTriggerCheck if ability
+                stealer.giveItem(item)
+                @battle.pbHideAbilitySplash(stealer) if ability
+                stealer.pbHeldItemTriggerCheck
             end
         end
         return true

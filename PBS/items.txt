@@ -96,8 +96,6 @@
 95,MENTALHERB,Mental Herb,Mental Herbs,5,8000,"An item to be held by a Pokémon. It snaps the holder out of a variety of mental warping effects.",0,0,0
 96,WHITEHERB,White Herb,White Herbs,5,8000,"An item to be held by a Pokémon. It restores any lowered stat in battle.",0,0,0
 97,POWERHERB,Power Herb,Power Herbs,5,8000,"A single-use item to be held by a Pokémon. It allows the immediate use of a move that charges up first.",0,0,0
-98,ABSORBBULB,Absorb Bulb,Absorb Bulbs,5,4000,"A consumable bulb. If the holder is hit by a Water-type move, its Sp. Atk will rise.",0,0,0
-99,CELLBATTERY,Cell Battery,Cell Batteries,5,4000,"A consumable battery. If the holder is hit by an Electric-type move, its Attack will rise.",0,0,0
 100,LIFEORB,Life Orb,Life Orbs,5,10000,"A held item. It boosts the power of moves by 30%, but at the cost of 10% HP on each hit.",0,0,0
 101,EXPERTBELT,Expert Belt,Expert Belts,5,4000,"A well-worn belt that boosts the holder's supereffective moves by 20%.",0,0,0
 102,METRONOME,Metronome,Metronomes,5,4000,"A Pokémon held item that boosts a move used consecutively. Its effect is reset if another move is used.",0,0,0
@@ -107,8 +105,6 @@
 106,SCOPELENS,Scope Lens,Scope Lenses,5,4000,"An item to be held by a Pokémon. It is a lens that boosts the holder's critical-hit ratio.",0,0,0
 107,WIDELENS,Wide Lens,Wide Lenses,5,4000,"An item to be held by a Pokémon. It is a magnifying lens that boosts the accuracy of moves by 35%.",0,0,0
 108,ZOOMLENS,Zoom Lens,Zoom Lenses,5,4000,"An item to be held by a Pokémon. If the holder moves after its target, its accuracy will be boosted.",0,0,0
-109,KINGSROCK,King's Rock,King's Rocks,5,5000,"An item to be held by a Pokémon. When the holder inflicts damage, the target may flinch.",0,0,0
-110,RAZORFANG,Razor Fang,Razor Fangs,5,5000,"An item to be held by a Pokémon. It may make foes and allies flinch when the holder inflicts damage.",0,0,0
 111,LAGGINGTAIL,Lagging Tail,Lagging Tails,5,4000,"An item to be held by a Pokémon. It is tremendously heavy and makes the holder move slower than usual.",0,0,0
 112,QUICKCLAW,Quick Claw,Quick Claws,5,4000,"An item to be held by a Pokémon. A light, sharp claw that lets the bearer move first occasionally.",0,0,0
 113,FOCUSBAND,Focus Band,Focus Bands,5,4000,"An item to be held by a Pokémon. The holder may endure a potential KO attack, leaving it with just 1 HP.",0,0,0
@@ -526,20 +522,9 @@
 526,ICESTONE,Ice Stone,Ice Stones,1,8000,"A peculiar stone that makes certain species of Pokémon evolve. It has a snowflake pattern.",1,0,7
 527,JAWFOSSIL,Jaw Fossil,Jaw Fossils,1,5000,"A fossil from a prehistoric Pokémon that once lived on the land. It appears to be part of a large jaw.",0,0,8
 528,SAILFOSSIL,Sail Fossil,Sail Fossils,1,5000,"A fossil from a prehistoric Pokémon that once lived on the land. It looks like the impression from a skin sail.",0,0,8
-529,REDNECTAR,Red Nectar,Red Nectars,1,300,"A flower nectar obtained at Ula'ula Meadow. It changes the form of certain species of Pokémon.",1,0,0
-530,YELLOWNECTAR,Yellow Nectar,Yellow Nectars,1,300,"A flower nectar obtained at Melemele Meadow. It changes the form of certain species of Pokémon.",1,0,0
-531,PINKNECTAR,Pink Nectar,Pink Nectars,1,300,"A flower nectar obtained from shrubs on Royal Avenue. It changes the form of certain species of Pokémon.",1,0,0
-532,PURPLENECTAR,Purple Nectar,Purple Nectars,1,300,"A flower nectar obtained at Poni Meadow. It changes the form of certain species of Pokémon.",1,0,0
 533,ASSAULTVEST,Assault Vest,Assault Vests,5,10000,"An item to be held by a Pokémon. It raises Sp. Def by 50% but prevents the use of status moves.",0,0,0
 534,SAFETYGOGGLES,Safety Goggles,Safety Goggles,5,4000,"An item to be held by a Pokémon. They protect the holder from weather-related damage and powder.",0,0,0
 535,PROTECTIVEPADS,Protective Pads,Protective Pads,5,4000,"An item to be held by a Pokémon. They protect the holder from effects caused by making contact.",0,0,0
-536,TERRAINEXTENDER,Terrain Extender,Terrain Extenders,5,4000,"An item to be held by a Pokémon. It extends the duration of the terrain caused by the holder.",0,0,0
-537,ELECTRICSEED,Electric Seed,Electric Seeds,5,4000,"An item to be held by a Pokémon. It boosts Defense on Electric Terrain once per battle.",0,0,0
-538,PSYCHICSEED,Psychic Seed,Psychic Seeds,5,4000,"An item to be held by a Pokémon. It boosts Sp. Def on Psychic Terrain once per battle.",0,0,0
-539,FAIRYSEED,Fairy Seed,Fairy Seeds,5,4000,"An item to be held by a Pokémon. It boosts Sp. Def on Fairy Terrain once per battle.",0,0,0
-540,GRASSYSEED,Grassy Seed,Grassy Seeds,5,4000,"An item to be held by a Pokémon. It boosts Defense on Grassy Terrain once per battle.",0,0,0
-541,LUMINOUSMOSS,Luminous Moss,Luminous Mosses,5,4000,"An item to be held by a Pokémon. It boosts Sp. Def if hit by a Water-type attack once per battle.",0,0,0
-542,SNOWBALL,Snowball,Snowballs,5,4000,"An item to be held by a Pokémon. It boosts Attack if hit by an Ice-type attack once per battle.",0,0,0
 543,WEAKNESSPOLICY,Weakness Policy,Weakness Policies,5,1000,"An item to be held by a Pokémon. The holder's Attack and Sp. Atk sharply increase if hit by a move it's weak to.",0,0,0
 544,ADRENALINEORB,Adrenaline Orb,Adrenaline Orbs,5,4000,"When held, it boosts Speed when intimidated, fascinated, or frustrated once per battle.",0,0,0
 545,PIXIEPLATE,Pixie Plate,Pixie Plates,5,1000,"A stone tablet that boosts the power of Fairy-type moves.",0,0,0
@@ -874,3 +859,18 @@
 907,CHAMBER8KEY,Chamber 8 Key,Chamber 8 Keys,8,0,"The key to the eighth chamber containing a powerful avatar.",0,0,6
 908,ORIGINORE,Origin Ore,Origin Ores,1,8000,"A peculiar ore that makes certain species of Pokémon evolve.",1,0,7
 1000,CASSBERRY,Cass Berry,Cass Berries,5,0,"If held by a Pokémon, it hangs on at 1 HP if it would be fainted from full health.",0,0,5
+1001,ABSORBBULB,Absorb Bulb,Absorb Bulbs,5,4000,"A consumable bulb. If the holder is hit by a Water-type move, its Sp. Atk will rise.",0,0,0
+1002,CELLBATTERY,Cell Battery,Cell Batteries,5,4000,"A consumable battery. If the holder is hit by an Electric-type move, its Attack will rise.",0,0,0
+1003,LUMINOUSMOSS,Luminous Moss,Luminous Mosses,5,4000,"An item to be held by a Pokémon. It boosts Sp. Def if hit by a Water-type attack once per battle.",0,0,0
+1004,TERRAINEXTENDER,Terrain Extender,Terrain Extenders,5,4000,"An item to be held by a Pokémon. It extends the duration of the terrain caused by the holder.",0,0,0
+1005,ELECTRICSEED,Electric Seed,Electric Seeds,5,4000,"An item to be held by a Pokémon. It boosts Defense on Electric Terrain once per battle.",0,0,0
+1006,PSYCHICSEED,Psychic Seed,Psychic Seeds,5,4000,"An item to be held by a Pokémon. It boosts Sp. Def on Psychic Terrain once per battle.",0,0,0
+1007,FAIRYSEED,Fairy Seed,Fairy Seeds,5,4000,"An item to be held by a Pokémon. It boosts Sp. Def on Fairy Terrain once per battle.",0,0,0
+1008,GRASSYSEED,Grassy Seed,Grassy Seeds,5,4000,"An item to be held by a Pokémon. It boosts Defense on Grassy Terrain once per battle.",0,0,0
+1009,KINGSROCK,King's Rock,King's Rocks,5,5000,"An item to be held by a Pokémon. When the holder inflicts damage, the target may flinch.",0,0,0
+1010,RAZORFANG,Razor Fang,Razor Fangs,5,5000,"An item to be held by a Pokémon. It may make foes and allies flinch when the holder inflicts damage.",0,0,0
+1011,REDNECTAR,Red Nectar,Red Nectars,1,300,"A flower nectar obtained at Ula'ula Meadow. It changes the form of certain species of Pokémon.",1,0,0
+1012,YELLOWNECTAR,Yellow Nectar,Yellow Nectars,1,300,"A flower nectar obtained at Melemele Meadow. It changes the form of certain species of Pokémon.",1,0,0
+1013,PINKNECTAR,Pink Nectar,Pink Nectars,1,300,"A flower nectar obtained from shrubs on Royal Avenue. It changes the form of certain species of Pokémon.",1,0,0
+1014,PURPLENECTAR,Purple Nectar,Purple Nectars,1,300,"A flower nectar obtained at Poni Meadow. It changes the form of certain species of Pokémon.",1,0,0
+1015,SNOWBALL,Snowball,Snowballs,5,4000,"An item to be held by a Pokémon. It boosts Attack if hit by an Ice-type attack once per battle.",0,0,0

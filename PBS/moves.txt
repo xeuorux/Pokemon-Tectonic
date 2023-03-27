@@ -533,7 +533,6 @@
 532,PURIFY,Purify,15B,0,POISON,Status,0,5,0,NearOther,0,bce,"The user heals the target's status condition. If so, it also restores the user's own HP. ",
 533,TOXICTHREAD,Toxic Thread,159,0,POISON,Status,100,15,0,NearOther,0,bce,"The user shoots poisonous threads to poison the target and lower the target's Speed stat.",
 534,VENOMDRENCH,Venom Drench,140,0,POISON,Status,100,15,0,AllNearFoes,0,bc,"Foes are drenched in an odd liquid that lowers the Attack, Sp. Atk, and Speed of poisoned Pokémon.",
-535,CORROSIVEGAS,Corrosive Gas,18F,0,POISON,Status,100,30,0,AllNearOthers,0,,"The user surrounds everything around it with highly acidic gas and melts away items they hold.",
 536,SHELLSIDEARM,Shell Side Arm,187,90,POISON,Special,100,10,25,NearOther,0,bef,"Inflicts physical or special damage, whichever will be more effective. This has a 25% chance to poison.",
 537,PRISMATICLASER,Prismatic Laser,0C2,170,PSYCHIC,Special,100,10,0,NearOther,0,bef,"The user shoots powerful lasers using the power of a prism. The user can't move on the next turn.",
 538,PSYCHOBOOST,Psycho Boost,03F,130,PSYCHIC,Special,100,5,0,NearOther,0,bef,"The user attacks the target at full power. The attack harshly reduces the user's Sp. Atk stat.",

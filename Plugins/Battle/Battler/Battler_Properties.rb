@@ -1,7 +1,7 @@
 class PokeBattle_Battler
     # Fundamental to this object
     attr_reader   :battle
-    attr_accessor :index, :pokemonIndex, :species, :type1, :type2, :ability_id, :item_id, :moves, :turnCount
+    attr_accessor :index, :pokemonIndex, :species, :type1, :type2, :ability_id, :item_ids, :moves, :turnCount
     attr_accessor  :gender, :iv, :attack, :spatk, :speed, :stages, :captured, :effects, :boss, :avatarPhase
     attr_accessor  :extraMovesPerTurn, :primevalTimer, :indicesTargetedThisRound, :indicesTargetedLastRound, :dmgMult,
 :dmgResist
@@ -14,7 +14,7 @@ class PokeBattle_Battler
     # The Pokémon and its properties
     attr_reader :pokemon
     attr_reader :fainted # Boolean to mark whether self has fainted properly
-    attr_reader :totalhp, :dummy, :form, :hp, :status, :statusCount, :bossStatus, :bossStatusCount
+    attr_reader :totalhp, :dummy, :form, :hp, :status, :statusCount, :bossStatus, :bossStatusCount, :itemSlots
     attr_accessor :bossAI
 
     #=============================================================================
@@ -42,16 +42,8 @@ class PokeBattle_Battler
         @ability_id = newability ? newability.id : nil
     end
 
-    def baseItem
-        return GameData::Item.try_get(@item_id)
-    end
-
-    def item=(value)
-        newitem = GameData::Item.try_get(value)
-        @item_id = newitem ? newitem.id : nil
-        disableEffect(:ItemLost) if newitem
-        @pokemon.item = @item_id if @pokemon
-        refreshDataBox
+    def partyItem
+        return GameData::Item.try_get(@pokemon.item)
     end
 
     def hp=(value)

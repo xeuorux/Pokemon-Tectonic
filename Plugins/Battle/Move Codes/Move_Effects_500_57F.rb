@@ -953,19 +953,24 @@ class PokeBattle_Move_538 < PokeBattle_Move
 end
 
 #===============================================================================
-# Steals the targets item if its a berry or gem. (Pilfer)
+# Steals the targets first stealable berry or gem. (Pilfer)
 #===============================================================================
 class PokeBattle_Move_539 < PokeBattle_Move
     def pbEffectAfterAllHits(user, target)
-        return unless target.baseItem
-        return unless target.baseItem.is_berry? || target.baseItem.is_gem?
-        stealItem(user, target)
+        return unless target.hasAnyBerry? || target.hasAnyItem?
+        target.eachItem do |item|
+            next unless GameData::Item.get(item).is_berry? || GameData::Item.get(item).is_gem?
+            stealItem(user, target, item)
+        end
     end
 
     def getEffectScore(user, target)
-        return 0 unless canStealItem?(user, target, true)
-        return 0 unless target.baseItem.is_berry? || target.baseItem.is_gem?
-        return 60
+        score = 0
+        target.eachItem do |item|
+            next unless GameData::Item.get(item).is_berry? || GameData::Item.get(item).is_gem?
+            score += 50 if canStealItem?(user, target, item)
+        end
+        return score
     end
 end
 
@@ -1086,18 +1091,34 @@ end
 # Target's "clothing items" are destroyed. (Up In Flames)
 #===============================================================================
 class PokeBattle_Move_541 < PokeBattle_Move
-    def pbEffectWhenDealingDamage(_user, target)
-        return if target.damageState.substitute
-        return unless target.baseItem
-        return unless CLOTHING_ITEMS.include?(target.baseItem.id)
-        itemName = getItemName(target.baseItem)
-        target.pbRemoveItem
-        @battle.pbDisplay(_INTL("{1}'s {2} went up in flames!", target.pbThis, itemName))
+    def canIncinerateTargetsItem?(target, checkingForAI = false)
+        if checkingForAI
+            return false if target.substituted?
+        elsif target.damageState.substitute
+            return false
+        end
+        return true
+    end
+
+    def pbEffectWhenDealingDamage(user, target)
+        return unless canIncinerateTargetsItem?(target)
+        target.eachItemWithName do |item, itemName|
+            next unless canRemoveItem?(user, target, item)
+            next unless CLOTHING_ITEMS.include?(item)
+            target.removeItem(item)
+            @battle.pbDisplay(_INTL("{1}'s {2} went up in flames!", target.pbThis, itemName))
+        end
     end
 
     def getEffectScore(user, target)
-        return 30 if canRemoveItem?(user, target, true) && CLOTHING_ITEMS.include?(target.baseItem.id)
-        return 0
+        return 0 unless canIncinerateTargetsItem?(target)
+        score = 0
+        target.eachItemWithName do |item, itemName|
+            next unless canRemoveItem?(user, target, item, checkingForAI: true)
+            next unless CLOTHING_ITEMS.include?(item)
+            score += 30
+        end
+        return score
     end
 end
 

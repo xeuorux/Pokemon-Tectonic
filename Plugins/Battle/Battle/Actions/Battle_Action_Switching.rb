@@ -101,7 +101,7 @@ class PokeBattle_Battle
                 if BattleHandlers.triggerTrappingTargetItem(item, battler, b, self)
                     if partyScene
                         partyScene.pbDisplay(_INTL("{1}'s {2} prevents switching!",
-                           b.pbThis, getItemName(b.baseItem)))
+                           b.pbThis, getItemName(item)))
                     end
                     return true
                 end
@@ -377,7 +377,7 @@ class PokeBattle_Battle
         end
 
         # Record money-doubling effect of Amulet Coin/Luck Incense
-        @field.applyEffect(:AmuletCoin) if !battler.opposes? && %i[AMULETCOIN LUCKINCENSE].include?(battler.item_id)
+        @field.applyEffect(:AmuletCoin) if !battler.opposes? && battler.hasItem?(%i[AMULETCOIN LUCKINCENSE])
 
         # Record money-doubling effect of Fortune ability
         @field.applyEffect(:Fortune) if !battler.opposes? && battler.hasActiveAbility?(:FORTUNE)

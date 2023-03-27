@@ -460,7 +460,7 @@ class PokeBattle_TwoTurnMove < PokeBattle_Move
                 # for it
                 @battle.pbCommonAnimation("UseItem", user) unless %w[0C9 0CA 0CB 0CC 0CD 0CE 14D].include?(@function)
                 @battle.pbDisplay(_INTL("{1} became fully charged due to its Power Herb!", user.pbThis))
-                user.pbConsumeItem(:POWERHERB)
+                user.consumeItem(:POWERHERB)
             end
         end
         pbAttackingTurnMessage(user, targets) if @damagingTurn

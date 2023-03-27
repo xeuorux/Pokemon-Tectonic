@@ -137,7 +137,7 @@ class PokeBattle_Battle
                 pbDisplay(_INTL("{1}'s fervent wish has reached {2}!", trainerName, battler.pbThis))
             else
                 pbDisplay(_INTL("{1}'s {2} is reacting to {3}'s {4}!",
-                battler.pbThis, getItemName(battler.baseItem), trainerName, pbGetMegaRingName(idxBattler)))
+                    battler.pbThis, getItemName(battler.pokemon.item), trainerName, pbGetMegaRingName(idxBattler)))
             end
         else
             case battler.pokemon.megaMessage

@@ -4,7 +4,7 @@ BattleHandlers::EORHealingItem.add(:BLACKSLUDGE,
             battler.applyFractionalHealing(1.0 / 16.0, item: item)
         elsif battler.takesIndirectDamage?
             battle.pbCommonAnimation("UseItem", battler)
-            battle.pbDisplay(_INTL("{1} is hurt by its {2}!", battler.pbThis, getItemName(battler.baseItem)))
+            battle.pbDisplay(_INTL("{1} is hurt by its {2}!", battler.pbThis, getItemName(item)))
             battler.applyFractionalDamage(1.0 / 8.0)
         end
     }

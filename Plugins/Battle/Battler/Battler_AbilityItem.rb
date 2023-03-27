@@ -154,6 +154,31 @@ class PokeBattle_Battler
     end
 
     #=============================================================================
+    # Held item adding or gifting
+    #=============================================================================
+    def giveItem(item)
+        return unless canAddItem?
+        item = GameData::Item.get(item).id
+        disableEffect(:ItemLost)
+        @pokemon.item = @item_id if @pokemon && items.length == 0
+        items.push(item)
+        refreshDataBox
+    end
+
+    def recycleItem(recyclingMsg: nil, ability: nil)
+        return unless canAddItem?
+        return unless @recyclableItem
+        @battle.pbShowAbilitySplash(self, ability)
+        itemToRecycle = @recyclableItem
+        giveItem(itemToRecycle)
+        setRecycleItem(nil)
+        recyclingMsg ||= _INTL("{1} recycled one {2}!", pbThis, getItemName(itemToRecycle))
+        battle.pbDisplay(recyclingMsg)
+        @battle.pbHideAbilitySplash(self)
+        pbHeldItemTriggerCheck
+    end
+
+    #=============================================================================
     # Held item consuming/removing
     #=============================================================================
     def canConsumeBerry?
@@ -178,20 +203,22 @@ class PokeBattle_Battler
         return false
     end
 
-    # permanent is whether the item is lost even after battle. Is false for Knock
-    # Off.
-    def pbRemoveItem(permanent = true)
-        permanent = false # Items respawn after battle always!!
-        disableEffect(:ChoiceBand)
-        applyEffect(:ItemLost) if baseItem
-        setInitialItem(nil) if permanent && baseItem == initialItem
-        self.item = nil
+
+    def removeItem(item)
+        itemIndex = items.index(item)
+        unless itemIndex
+            raise _INTL("Error: Asked to remove item #{item} from #{pbThis(true)}, but it doesn't have that item")
+        end
+        disableEffect(:ChoiceBand) if CHOICE_LOCKING_ITEMS.include?(item)
+        items.delete_at(itemIndex)
+        applyEffect(:ItemLost) if items.length == 0
     end
+    alias removeItem removeItem
 
     #=========================================
     # Also handles SCAVENGE
     #=========================================
-    def pbConsumeItem(item, recoverable = true, symbiosis = true, belch = true, scavenge = true)
+    def consumeItem(item, recoverable: true, belch: true)
         if item.nil?
             PBDebug.log("[Item not consumed] #{pbThis} could not consume a #{item} because it was already missing")
             return
@@ -206,24 +233,7 @@ class PokeBattle_Battler
             applyEffect(:PickupUse, @battle.nextPickupUse)
         end
         setBelched if belch && itemData.is_berry?
-        pbRemoveItem
-        pbSymbiosis(item) if symbiosis
-    end
-
-    def pbSymbiosis(item)
-        return if fainted?
-        @battle.pbPriority(true).each do |b|
-            next if b.opposes?
-            next unless b.hasActiveAbility?(:SYMBIOSIS)
-            next if !b.baseItem || b.unlosableItem?(b.baseItem)
-            next if unlosableItem?(b.baseItem)
-            @battle.pbShowAbilitySplash(b, :SYMBIOSIS)
-            @battle.pbDisplay(_INTL("{1} copies its {2} to {3}!", b.pbThis, getItemName(baseItem), pbThis(true)))
-            self.item = b.baseItem
-            @battle.pbHideAbilitySplash(b)
-            pbHeldItemTriggerCheck
-            break
-        end
+        removeItem(item)
     end
 
     # item_to_use is an item ID or GameData::Item object. ownitem is whether the
@@ -235,8 +245,7 @@ class PokeBattle_Battler
                 BattleHandlers.triggerOnBerryConsumedAbility(ability, self, item_to_use, ownitem, @battle)
             end
         end
-        pbConsumeItem(item_to_use) if ownitem
-        pbSymbiosis(item_to_use) if !ownitem && !fling # Bug Bite/Pluck users trigger Symbiosis
+        consumeItem(item_to_use) if ownitem
     end
 
     #=============================================================================
@@ -278,7 +287,7 @@ class PokeBattle_Battler
                 # If the berry is being filched
                 if filcher && BattleHandlers.triggerHPHealItem(item, filcher, @battle, false, self)
                     filcher.pbHeldItemTriggered(item, false)
-                    pbConsumeItem(item)
+                    consumeItem(item)
                 end
             end
         end

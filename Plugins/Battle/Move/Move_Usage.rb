@@ -19,6 +19,8 @@ class PokeBattle_Move
     def priorityModification(_user, _target); return 0; end # Checks whether the move should have modified priority
     def moveFailed(user, targets); end
 
+    def resetMoveUsageState; end
+
     # Reset move usage counters (child classes can increment them).
     def pbChangeUsageCounters(user, _specialUsage)
         [user, @battle.field].each do |effectHolder|
@@ -482,16 +484,16 @@ target.pbThis(true)))
         elsif target.damageState.focusSash
             @battle.pbCommonAnimation("UseItem", target)
             @battle.pbDisplay(_INTL("{1} hung on using its {2}!", target.pbThis, getItemName(:FOCUSSASH)))
-            target.pbConsumeItem(:FOCUSSASH)
+            target.consumeItem(:FOCUSSASH) if target.hasItem?(:FOCUSSASH)
         elsif target.damageState.focusBand
             @battle.pbCommonAnimation("UseItem", target)
             @battle.pbDisplay(_INTL("{1} hung on using its Focus Band!", target.pbThis))
         elsif target.damageState.direDiversion
             @battle.pbDisplay(_INTL("{1} blocked the hit with its item! It barely hung on!", target.pbThis))
-            target.pbConsumeItem(target.baseItem)
+            target.consumeItem(target.items[0], belch: false)
         elsif target.damageState.endureBerry
             @battle.pbDisplay(_INTL("{1} hung on by consuming its {2}!", target.pbThis, getItemName(:CASSBERRY)))
-            target.pbConsumeItem(:CASSBERRY)
+            target.consumeItem(:CASSBERRY) if target.hasItem?(:CASSBERRY)
         end
     end
 
