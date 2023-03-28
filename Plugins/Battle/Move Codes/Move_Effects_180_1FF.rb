@@ -386,7 +386,7 @@ end
 #===============================================================================
 # (Not currently used.)
 #===============================================================================
-class PokeBattle_Move_196 < PokeBattle_Mov
+class PokeBattle_Move_196 < PokeBattle_Move
 
 end
 
