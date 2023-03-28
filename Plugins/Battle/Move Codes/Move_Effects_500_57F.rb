@@ -307,11 +307,13 @@ end
 class PokeBattle_Move_514 < PokeBattle_Move
     def pbEffectAfterAllHits(user, target)
         return if target.damageState.unaffected
+        return if user.poisoned?
         user.applyPoison(nil, _INTL("{1} is poisoned by the grime! {2}",
            user.pbThis, POISONED_EXPLANATION), false)
     end
 
     def getEffectScore(user, _target)
+        return 0 if user.poisoned?
         return -getPoisonEffectScore(user, user, ignoreCheck: true)
     end
 end
