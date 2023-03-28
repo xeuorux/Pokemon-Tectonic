@@ -427,7 +427,7 @@
 426,SHOUT,Shout,000,40,NORMAL,Special,100,25,0,NearOther,1,befk,"The user shouts with force at the target. This move always hits first.",
 427,SPITUP,Spit Up,113,1,NORMAL,Special,100,10,0,NearOther,0,bf,"The power stored using the move Stockpile is released all at once in an attack.",
 428,SUPERFANG,Super Fang,06C,1,NORMAL,Physical,100,10,0,NearOther,0,abef,"The user chomps hard on the target with its sharp front fangs. It cuts the target's HP to half.",
-429,TRUMPCARD,Trump Card,097,1,NORMAL,Special,0,5,0,NearOther,0,abef,"The fewer PP this move has, the greater its attack power.",
+429,TRUMPCARD,Trump Card,097,40,NORMAL,Special,0,5,0,NearOther,0,abef,"Has 40 more base power for each PP missing.",
 430,WRINGOUT,Wring Out,08C,1,NORMAL,Special,100,5,0,NearOther,0,abef,"The user powerfully wrings the foe. The more HP the foe has, the greater this attack's power.",
 431,ACUPRESSURE,Acupressure,037,0,NORMAL,Status,0,25,0,UserOrNearAlly,0,,"The user applies pressure to stress points, sharply boosting one of its stats.",
 432,AFTERYOU,After You,11D,0,NORMAL,Status,0,12,0,NearOther,0,,"The user helps the target and makes it use its move right after the user.",

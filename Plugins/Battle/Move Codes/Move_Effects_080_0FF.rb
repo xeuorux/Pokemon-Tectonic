@@ -565,7 +565,7 @@ end
 #===============================================================================
 class PokeBattle_Move_097 < PokeBattle_Move
     def pbBaseDamage(_baseDmg, _user, _target)
-        dmgs = [200, 80, 60, 50, 40]
+        dmgs = [200, 160, 120, 80, 40]
         ppLeft = [@pp, dmgs.length - 1].min # PP is reduced before the move is used
         return dmgs[ppLeft]
     end
