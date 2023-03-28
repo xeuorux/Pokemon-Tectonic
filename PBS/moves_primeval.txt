@@ -52,3 +52,5 @@
 2051,PRIMEVALFUTURESIGHT,Primeval Future Sight,649,280,PSYCHIC,Special,100,10,0,NearOther,0,y,"Two turns after this move is used, a hunk of psychic energy attacks the target.",FUTURESIGHT
 2052,PRIMEVALDRAGONDARTS,Primeval Dragon Darts,650,100,DRAGON,Physical,100,10,0,AllNearFoes,0,befy,"The user attacks twice using Dreepy, spreading the hits. One of the Dreepys is summoned as an ally.",
 2053,STRATOSPHERESCREAM,Stratosphere Scream,700,100,FLYING,Special,0,5,0,AllNearFoes,0,befk,"A move that only the avatar of Rayquaza can use. All enemies struck lose their flinch immunity.",SCREECH
+2054,SEVENSEASEDICT,Seven Seas Edict,701,0,WATER,Status,0,3,0,None,0,d,"A move that only the avatar of Kyogre can use. The user commands a Luvdisc avatar and a Remoraid avatar to join it.",
+2055,WARPINGCORE,Warping Core,702,0,GROUND,Status,0,3,0,BothSides,0,,"A move that only the avatar of Groudon can use. Gravity is intensified for five turns and enemy Pokemon have their weight doubled.",

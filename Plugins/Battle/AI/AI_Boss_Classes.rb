@@ -1,31 +1,4 @@
 ##################################################
-# Summons
-##################################################
-class PokeBattle_AI_Combee < PokeBattle_AI_Boss
-    def initialize(user, battle)
-        super
-        @firstTurnOnly.push(:HELPINGHAND)
-
-        case user.level
-        when 1..24
-            @fallback.push(:SMUSH)
-        when 25..39
-            @fallback.push(:STEAMROLLER)
-        when 40..70
-            @fallback.push(:BUGBUZZ)
-        end
-
-        if user.level >= 25
-            @useMoveIFF.add(:CREEPOUT, proc { |_move, user, _target, _battle|
-                next user.nthTurnThisRound?(1)
-            })
-        else
-            @rejectedMoves.push(:CREEPOUT)
-        end
-    end
-end
-
-##################################################
 # Legendary Beasts
 ##################################################
 class PokeBattle_AI_Entei < PokeBattle_AI_Boss
@@ -86,23 +59,32 @@ end
 class PokeBattle_AI_Groudon < PokeBattle_AI_Boss
     def initialize(user, battle)
         super
-        @wholeRound += %i[ERUPTION PRECIPICEBLADES]
+        @wholeRound += %i[ERUPTION PRECIPICEBLADES WARPINGCORE]
 
         @warnedIFFMove.add(:ERUPTION, {
             :condition => proc { |_move, _user, _target, battle|
                 next battle.turnCount == 0
             },
             :warning => proc { |_move, user, _targets, _battle|
-                _INTL("#{user.pbThis} is clearly preparing a massive opening attack!")
+                _INTL("#{user.pbThis} is gathering energy for a massive attack!")
             },
         })
 
         @warnedIFFMove.add(:PRECIPICEBLADES, {
             :condition => proc { |_move, _user, _target, battle|
-                next battle.turnCount > 0 && battle.turnCount % 4 == 0
+                next battle.turnCount % 3 == 0
             },
             :warning => proc { |_move, user, _targets, _battle|
-                _INTL("#{user.pbThis} is gathering energy for a big attack!")
+                _INTL("#{user.pbThis} is gathering energy for an attack!")
+            },
+        })
+
+        @warnedIFFMove.add(:WARPINGCORE, {
+            :condition => proc { |_move, user, _target, _battle|
+                next true
+            },
+            :warning => proc { |_move, user, _targets, _battle|
+                _INTL("You feel the ground begin to bend towards #{user.pbThis}.")
             },
         })
     end
@@ -111,23 +93,32 @@ end
 class PokeBattle_AI_Kyogre < PokeBattle_AI_Boss
     def initialize(user, battle)
         super
-        @wholeRound += %i[WATERSPOUT ORIGINPULSE]
+        @wholeRound += %i[WATERSPOUT ORIGINPULSE SEVENSEASEDICT]
 
         @warnedIFFMove.add(:WATERSPOUT, {
             :condition => proc { |_move, _user, _target, battle|
                 next battle.turnCount == 0
             },
             :warning => proc { |_move, user, _targets, _battle|
-                _INTL("#{user.pbThis} is clearly preparing a massive opening attack!")
+                _INTL("#{user.pbThis} is gathering energy for a massive attack!")
             },
         })
 
         @warnedIFFMove.add(:ORIGINPULSE, {
             :condition => proc { |_move, _user, _target, battle|
-                next battle.turnCount > 0 && battle.turnCount % 4 == 0
+                next battle.turnCount % 3 == 0
             },
             :warning => proc { |_move, user, _targets, _battle|
-                _INTL("#{user.pbThis} is gathering energy for a big attack!")
+                _INTL("#{user.pbThis} is gathering energy for an attack!")
+            },
+        })
+
+        @warnedIFFMove.add(:SEVENSEASEDICT, {
+            :condition => proc { |_move, _user, _target, battle|
+                next true
+            },
+            :warning => proc { |_move, user, _targets, _battle|
+                _INTL("An air of authority surrounds #{user.pbThis}.")
             },
         })
     end
@@ -140,7 +131,7 @@ class PokeBattle_AI_Rayquaza < PokeBattle_AI_Boss
             user.battle.pbMegaEvolve(user.index)
         })
 
-        @wholeRound += %i[DRAGONASCENT STRATOSPHERESCREAM]
+        @wholeRound += %i[DRAGONASCENT STRATOSPHERESCREAM DIVEBOMB]
 
         @warnedIFFMove.add(:DRAGONASCENT, {
             :condition => proc { |_move, _user, _target, battle|
@@ -153,7 +144,7 @@ class PokeBattle_AI_Rayquaza < PokeBattle_AI_Boss
 
         @warnedIFFMove.add(:STRATOSPHERESCREAM, {
             :condition => proc { |_move, _user, _target, battle|
-                next battle.turnCount > 0 && battle.turnCount % 4 == 0
+                next battle.turnCount > 0 && battle.turnCount % 3 == 0
             },
             :warning => proc { |_move, user, _targets, _battle|
                 _INTL("#{user.pbThis}'s rage is at at its peak!")

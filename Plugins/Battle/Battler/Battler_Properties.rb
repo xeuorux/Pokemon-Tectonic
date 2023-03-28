@@ -218,6 +218,7 @@ class PokeBattle_Battler
         @effects[:Refurbished].times do
             ret /= 2.0
         end
+        ret *= 2 if effectActive?(:WarpingCore)
         ret = ret.round
         ret = 1 if ret < 1
         unless @battle.moldBreaker

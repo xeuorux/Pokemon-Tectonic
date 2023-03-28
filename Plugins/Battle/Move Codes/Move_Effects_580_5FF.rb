@@ -981,7 +981,7 @@ class PokeBattle_Move_5B4 < PokeBattle_SleepMove
 end
 
 #===============================================================================
-# Removes all Weather. Fails if there is no Terrain (Sky Fall)
+# Removes all Weather. Fails if there is no Weather (Sky Fall)
 #===============================================================================
 class PokeBattle_Move_5B5 < PokeBattle_Move
     def pbMoveFailed?(_user, _targets, show_message)
