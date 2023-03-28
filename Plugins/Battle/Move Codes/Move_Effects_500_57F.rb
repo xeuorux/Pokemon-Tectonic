@@ -250,7 +250,7 @@ class PokeBattle_Move_50F < PokeBattle_StatDownMove
 end
 
 #===============================================================================
-# User loses half their hp in recoil. (Steel Beam)
+# User loses half their hp in recoil. (Steel Beam, Mist Burst)
 #===============================================================================
 class PokeBattle_Move_510 < PokeBattle_Move
     def pbEffectAfterAllHits(user, target)

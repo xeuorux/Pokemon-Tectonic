@@ -213,39 +213,9 @@ class PokeBattle_Move_189 < PokeBattle_Move
 end
 
 #===============================================================================
-# Changes type and base power based on Battle Terrain (Terrain Pulse)
+# (Not currently used)
 #===============================================================================
 class PokeBattle_Move_18A < PokeBattle_Move
-    def pbBaseDamage(baseDmg, user, _target)
-        baseDmg *= 2 if @battle.field.terrain != :None && !user.airborne?
-        return baseDmg
-    end
-
-    def pbBaseType(user)
-        ret = :NORMAL
-        unless user.airborne?
-            case @battle.field.terrain
-            when :Electric
-                ret = :ELECTRIC || ret
-            when :Grassy
-                ret = :GRASS || ret
-            when :Fairy
-                ret = :FAIRY || ret
-            when :Psychic
-                ret = :PSYCHIC || ret
-            end
-        end
-        return ret
-    end
-
-    def pbShowAnimation(id, user, targets, hitNum = 0, showAnimation = true)
-        t = pbBaseType(user)
-        hitNum = 1 if t == :ELECTRIC
-        hitNum = 2 if t == :GRASS
-        hitNum = 3 if t == :FAIRY
-        hitNum = 4 if t == :PSYCHIC
-        super
-    end
 end
 
 #===============================================================================
@@ -317,7 +287,7 @@ class PokeBattle_Move_18F < PokeBattle_Move
 end
 
 #===============================================================================
-# Power is boosted on Psychic Terrain (Expanding Force)
+# Power is boosted on Psychic Terrain (Shattered Energy)
 #===============================================================================
 class PokeBattle_Move_190 < PokeBattle_Move
     def pbBaseDamage(baseDmg, _user, _target)
@@ -414,22 +384,10 @@ class PokeBattle_Move_195 < PokeBattle_Move
 end
 
 #===============================================================================
-# User loses half their max health. Boosted Damage in Moonglow (Moon Burst)
+# (Not currently used.)
 #===============================================================================
-class PokeBattle_Move_196 < PokeBattle_Move_0E0
-    def pbBaseDamage(baseDmg, user, _target)
-        baseDmg = (baseDmg * 1.5).round if @battle.pbWeather == :Moonglow
-        return baseDmg
-    end
+class PokeBattle_Move_196 < PokeBattle_Mov
 
-    def getEffectScore(user, _target)
-        return getHPLossEffectScore(user, 0.5)
-    end
-
-    def pbSelfKO(user)
-        return if user.fainted?
-        user.applyFractionalDamage(1.0 / 2.0, false)
-    end
 end
 
 #===============================================================================
