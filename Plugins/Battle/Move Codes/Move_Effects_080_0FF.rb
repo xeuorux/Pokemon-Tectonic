@@ -228,7 +228,7 @@ end
 
 #===============================================================================
 # Power increases with the user's positive stat changes (ignores negative ones).
-# (Power Trip, Stored Powe, Trained Outburst)
+# (Power Trip, Stored Power, Trained Outburst)
 #===============================================================================
 class PokeBattle_Move_08E < PokeBattle_Move
     def pbBaseDamage(_baseDmg, user, _target)
