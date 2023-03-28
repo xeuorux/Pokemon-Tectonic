@@ -262,6 +262,7 @@ GameData::BattleEffect.register_effect(:Side, {
     :type => :Integer,
     :maximum => 2,
     :is_hazard => true,
+    :is_spike => true,
     :increment_proc => proc do |battle, _side, teamName, _value, increment|
         if increment == 1
             battle.pbDisplay(_INTL("Spikes were scattered all around {1}'s feet!", teamName))
@@ -281,6 +282,7 @@ GameData::BattleEffect.register_effect(:Side, {
     :real_name => "Poison Spikes",
     :type => :Integer,
     :maximum => 2,
+    :is_spike => true,
     :type_applying_hazard => {
         :status => :POISON,
         :absorb_proc => proc do |pokemonOrBattler|
@@ -306,6 +308,7 @@ GameData::BattleEffect.register_effect(:Side, {
     :real_name => "Flame Spikes",
     :type => :Integer,
     :maximum => 2,
+    :is_spike => true,
     :type_applying_hazard => {
         :status => :BURN,
         :absorb_proc => proc do |pokemonOrBattler|
@@ -331,6 +334,7 @@ GameData::BattleEffect.register_effect(:Side, {
     :real_name => "Frost Spikes",
     :type => :Integer,
     :maximum => 2,
+    :is_spike => true,
     :is_hazard => true,
     :type_applying_hazard => {
         :status => :FROSTBITE,

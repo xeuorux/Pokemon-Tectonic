@@ -105,6 +105,11 @@ module GameData
             return @is_hazard || is_status_hazard?
         end
 
+        # Spikes, etc.
+        def is_spike?
+            return @is_spike
+        end
+
         # Cured by Mental Herb or similar
         def is_mental?
             return @is_mental
@@ -241,6 +246,7 @@ module GameData
             @is_screen				= hash[:is_screen] || false
             @is_hazard				= hash[:is_hazard] || false
             @is_mental				= hash[:is_mental] || false
+            @is_spike				= hash[:is_spike] || false
 
             checkForInvalidDefinitions
         end
