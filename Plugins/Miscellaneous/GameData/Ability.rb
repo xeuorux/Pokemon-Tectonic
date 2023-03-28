@@ -30,6 +30,8 @@ module GameData
 
         GENERAL_WEATHER_ABILITIES = %i[STOUT TERRITORIAL NESTING]
 
+        MULTI_ITEM_ABILITIES = %i[BERRYBUNCH FASHIONABLE JEWELER HANDY]
+
         attr_reader :signature_of
 
         # The highest evolution of a line

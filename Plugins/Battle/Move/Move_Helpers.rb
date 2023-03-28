@@ -62,7 +62,7 @@ class PokeBattle_Move
         return false if item.nil?
         return false unless canknockOffItems?(user, target, checkingForAI, true)
         return false if target.unlosableItem?(item, !checkingForAI)
-        return false if !user.canAddItem? && @battle.trainerBattle?
+        return false if !user.canAddItem?(item, true) && @battle.trainerBattle?
         return false if user.unlosableItem?(item)
         return true
     end

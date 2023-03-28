@@ -663,7 +663,7 @@ Pokemon = EELEKTROSS,45
 [COOLTRAINER_F7,Blaire]
 Pokemon = AMBIPOM,40
     Moves = FLING,COVET,STEALTHROCK,SANDTOMB
-    AbilityIndex = 0 # Technician
+    AbilityIndex = 0 # Handy
     Item = IRONBALL
     EV = 20,0,0,20,0,10
 Pokemon = MACHAMP,40
@@ -1742,7 +1742,7 @@ Pokemon = BOLTUND,40
 Pokemon = YANMEGA,40
     AbilityIndex = 0 # Speed Boost
 Pokemon = AROMATISSE,40
-    AbilityIndex = 0 # Toxic Cloud
+    AbilityIndex = 0 # Fashionable
 #-------------------------------
 [DEVJUGGLER,Brickbat]
 Pokemon = WIGGLYTUFF,70
@@ -2984,7 +2984,7 @@ Pokemon = TOGEKISS,55
 #-------------------------------
 [SCIENTIST_M5,Sonatane]
 Pokemon = AROMATISSE,55
-    AbilityIndex = 0 # Toxic Cloud
+    AbilityIndex = 0 # Fashionable
 Pokemon = KLEFKI,55
     AbilityIndex = 0 # Prankster
     Item = LEFTOVERS

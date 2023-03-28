@@ -582,6 +582,7 @@ class PokeBattle_Battler
         @battle.pbShowAbilitySplash(swapper, newAbility) if showSplashes && swapper
         oldAbil = firstAbility
         oldAbilities = abilities.clone
+        oldAbilities.delete(newAbility)
         @battle.pbShowAbilitySplash(self, oldAbil, true, false) if showSplashes
         setAbility(newAbility)
         @battle.pbReplaceAbilitySplash(self, newAbility) if showSplashes

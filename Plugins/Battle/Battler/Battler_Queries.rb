@@ -189,8 +189,26 @@ class PokeBattle_Battler
 
     TESTING_DOUBLE_QUALITIES = false
 
-    def canAddItem?(item = nil)
+    def canAddItem?(item = nil, stolen = false)
         return false if fainted?
+        
+        if hasActiveAbility?(:HANDY) && stolen
+            return @item_ids.length < 2
+        end
+
+        # Disallow certain items as 2nd
+        if itemCount == 1 && item
+            return false if firstItem == item
+            itemData = GameData::Item.get(item)
+            return false if hasActiveAbility?(:JEWELER) && !itemData.is_gem?
+            return false if hasActiveAbility?(:BERRYBUNCH) && !itemData.is_berry?
+            if hasActiveAbility?(:FASHIONABLE)
+                clothingA = CLOTHING_ITEMS.include?(firstItem)
+                clothingB = CLOTHING_ITEMS.include?(item)
+                return false if clothingA == clothingB
+            end
+        end
+
         return hasEmptyItemSlots?
     end
 
@@ -200,6 +218,10 @@ class PokeBattle_Battler
 
     def items
         return @item_ids
+    end
+
+    def itemCount
+        return items.length
     end
 
     def itemCountD

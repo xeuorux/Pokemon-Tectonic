@@ -96,7 +96,7 @@ BattleHandlers::TargetItemOnHit.add(:WEAKNESSPOLICY,
 BattleHandlers::TargetItemOnHit.add(:STICKYBARB,
   proc { |item, user, target, move, battle|
       next unless move.physicalMove?
-      next unless user.canAddItem?
+      next unless user.canAddItem?(item)
       user.giveItem(item)
       target.removeItem(item)
       battle.pbDisplay(_INTL("{1}'s {2} was transferred to {3}!",

@@ -169,13 +169,25 @@ class PokeBattle_Battler
         pbCheckFormOnWeatherChange
         # Check for end of primordial weather
         @battle.pbEndPrimordialWeather
+        
+        if items.length > 1
+            droppedItems = false
+            MULTI_ITEM_ABILITIES.each do |doubleItemAbility|
+                next unless oldAbilities.include?(doubleItemAbility)
+                itemKept = @item_ids[0]
+                @item_ids = [itemKept]
+                @battle.pbDisplay(_INTL("{1} dropped all of its items except {2}!", pbThis, getItemName(itemKept)))
+                droppedItems = true
+                break
+            end
+        end
     end
 
     #=============================================================================
     # Held item adding or gifting
     #=============================================================================
     def giveItem(item)
-        return unless canAddItem?
+        return unless canAddItem?(item)
         item = GameData::Item.get(item).id
         disableEffect(:ItemLost)
         @pokemon.item = @item_id if @pokemon && items.length == 0
@@ -184,10 +196,10 @@ class PokeBattle_Battler
     end
 
     def recycleItem(recyclingMsg: nil, ability: nil)
-        return unless canAddItem?
         return unless @recyclableItem
-        @battle.pbShowAbilitySplash(self, ability)
         itemToRecycle = @recyclableItem
+        return unless canAddItem?(itemToRecycle)
+        @battle.pbShowAbilitySplash(self, ability)
         giveItem(itemToRecycle)
         setRecycleItem(nil)
         recyclingMsg ||= _INTL("{1} recycled one {2}!", pbThis, getItemName(itemToRecycle))

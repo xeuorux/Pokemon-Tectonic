@@ -402,12 +402,15 @@ immuneTypeRealName))
         eachActiveAbility do |ability|
             BattleHandlers.triggerAbilityOnStatusInflicted(ability, self, user, newStatus)
         end
+
         # Status cures
         pbItemStatusCureCheck
         pbAbilityStatusCureCheck
 
         # Rampaging moves get cancelled immediately by falling asleep
         disableEffect(:Outrage) if newStatus == :SLEEP
+
+        pbOnAbilityChanged(abilities) if dizzy?
     end
 
     #=============================================================================

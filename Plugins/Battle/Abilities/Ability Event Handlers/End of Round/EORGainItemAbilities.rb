@@ -19,15 +19,21 @@ BattleHandlers::EORGainItemAbility.add(:LARDER,
     }
 )
 
+PINCH_BERRIES =
+    %i[
+        ORANBERRY GANLONBERRY LANSATBERRY APICOTBERRY LIECHIBERRY
+        PETAYABERRY SALACBERRY STARFBERRY MICLEBERRY SITREONBERRY
+    ]
+
 BattleHandlers::EORGainItemAbility.add(:GOURMAND,
     proc { |ability, battler, battle|
-        next unless battler.canAddItem?
+        itemsCanAdd = []
+        PINCH_BERRIES.each do |pinch|
+            itemsCanAdd.push(pinch) if battler.canAddItem?(pinch)
+        end
+        next if itemsCanAdd.length == 0
         battle.pbShowAbilitySplash(battler, ability)
-        itemToAdd =
-            %i[
-                ORANBERRY GANLONBERRY LANSATBERRY APICOTBERRY LIECHIBERRY
-                PETAYABERRY SALACBERRY STARFBERRY MICLEBERRY SITREONBERRY
-            ].sample
+        itemToAdd = itemsCanAdd.sample
         battler.giveItem(itemToAdd)
         battle.pbDisplay(_INTL("{1} was delivered one {2}!", battler.pbThis, getItemName(itemToAdd)))
         battle.pbHideAbilitySplash(battler)
