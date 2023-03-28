@@ -60,13 +60,12 @@ class PokeBattle_Battler
                 BattleHandlers.triggerAbilityOnBattlerFainting(ability, b, self, @battle)
             end
         end
-        @battle.pbPriority(true).each do |b|
-            next unless b
+        eachOpposing do |b|
             next unless b.hasTribeBonus?(:SCOURGE)
             scoureHealingMsg = _INTL("#{b.pbThis} takes joy in #{pbThis(true)}'s pain!")
-            pbShowTribeSplash(b.pbOwnSide,:SCOURGE)
+            @battle.pbShowTribeSplash(b,:SCOURGE)
             b.applyFractionalHealing(1/8.0, customMessage: scoureHealingMsg)
-            pbHideTribeSplash(b.pbOwnSide)
+            @battle.pbHideTribeSplash(b)
         end
     end
 
