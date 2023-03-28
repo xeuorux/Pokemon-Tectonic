@@ -621,20 +621,10 @@ end
 # Power increases the heavier the target is. (Grass Knot, Low Kick)
 #===============================================================================
 class PokeBattle_Move_09A < PokeBattle_Move
-    def pbBaseDamage(_baseDmg, _user, target)
-        ret = 20
-        weight = target.pbWeight
-        if weight >= 2000
-            ret = 120
-        elsif weight >= 1000
-            ret = 100
-        elsif weight >= 500
-            ret = 80
-        elsif weight >= 250
-            ret = 60
-        elsif weight >= 100
-            ret = 40
-        end
+    def pbBaseDamage(_baseDmg, user, target)
+        ret = 15
+        weight = [target.pbWeight,2000].min
+        ret += ((3 * (weight**0.5)) / 5).floor * 5
         return ret
     end
 end
