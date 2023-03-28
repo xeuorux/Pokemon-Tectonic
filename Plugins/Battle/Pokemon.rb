@@ -169,6 +169,18 @@ class Pokemon
     # Delete the first known move if self now knows more moves than it should
     @moves.shift if numMoves > MAX_MOVES && !ignoreMax
   end
+
+  # Heals this Pokemon's HP by an amount
+  def healBy(amount)
+    return if egg?
+    @hp += amount
+    @hp = @totalhp if @hp > @totalhp
+  end
+
+  # Heals this Pokemon's HP by an amount
+  def healByFraction(fraction)
+    healBy((@totalhp * fraction).ceil)
+  end
 end
 
 class Pokemon

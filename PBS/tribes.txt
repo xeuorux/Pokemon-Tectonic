@@ -1,7 +1,7 @@
 MYSTIC,5,"Whenever a member of your team uses a status move, they'll deal 20% more move damage next turn."
 LOYAL,5,"Your team members gain 10% more EXP in battles and get a small bonus to all stats."
 NOBLE,5,"Your team members take 8% less move damage if they're using a status move this turn."
-SCOURGE,5,"Your active battlers heal for 1/8th HP whenever a foe faints."
+SCOURGE,5,"Your able party members and battlers heal for 1/12th HP whenever a foe faints."
 ANIMATED,5,"Your team members take one third less damage from sources that aren't attacks."
 STAMPEDE,5,"Your team members take 8% less move damage if they're using an attack this turn."
 HARMONIC,5,"Your team take 5% less move damage."

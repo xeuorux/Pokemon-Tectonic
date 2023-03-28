@@ -60,12 +60,31 @@ class PokeBattle_Battler
                 BattleHandlers.triggerAbilityOnBattlerFainting(ability, b, self, @battle)
             end
         end
-        eachOpposing do |b|
-            next unless b.hasTribeBonus?(:SCOURGE)
-            scoureHealingMsg = _INTL("#{b.pbThis} takes joy in #{pbThis(true)}'s pain!")
-            @battle.pbShowTribeSplash(b,:SCOURGE)
-            b.applyFractionalHealing(1/8.0, customMessage: scoureHealingMsg)
-            @battle.pbHideTribeSplash(b)
+
+        # Scoure tribal bonus
+        opposingIndex = (@index + 1) % 2
+        opposingSide = @battle.sides[opposingIndex]
+        trainerGroup = opposingIndex == 0 ? @battle.player : @battle.opponent
+
+        trainerGroup&.each do |trainer|
+            trainerName = trainer.name
+            if trainer.tribalBonus.hasTribeBonus?(:SCOURGE)
+                healingMessage = _INTL("#{trainerName}'s team takes joy in #{pbThis(true)}'s pain!")
+                healingMessage = "The opposing #{healingMessage}" if opposingIndex == 1
+                @battle.pbShowTribeSplash(opposingSide, :SCOURGE, trainerName: trainerName)
+                @battle.pbDisplay(healingMessage)
+                trainer.party.each_with_index do |partyMember, index|
+                    next if partyMember.fainted?
+                    next if partyMember.hp == partyMember.totalhp
+                    battler = @battle.pbFindBattler(index, opposingIndex)
+                    if battler
+                        battler.applyFractionalHealing(1/12.0)
+                    else
+                        partyMember.healByFraction(1/12.0)
+                    end
+                end
+                @battle.pbHideTribeSplash(opposingSide)
+            end
         end
     end
 
