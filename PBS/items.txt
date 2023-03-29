@@ -66,7 +66,7 @@
 65,ODDKEYSTONE,Odd Keystone,Odd Keystones,1,2100,"A vital item that is needed to keep a stone tower from collapsing. Voices can be heard from it occasionally.",0,0,0
 66,AIRBALLOON,Air Balloon,Air Balloons,5,4000,"An item to be held by a Pokémon. The holder will float in the air until hit. Once hit, this item will burst.",0,0,0
 67,BRIGHTPOWDER,Bright Powder,Bright Powders,5,4000,"An item to be held by a Pokémon. It casts a tricky glare that lowers the opponent's accuracy.",0,0,0
-68,EVIOLITE,Eviolite,Eviolites,5,8000,"When held, it raises the Defense and Sp. Def if the holder can still evolve. Prevents evolution.",0,0,0
+68,EVIOLITE,Eviolite,Eviolites,5,4000,"When held, it raises the Defense and Sp. Def if the holder can still evolve. Prevents evolution.",0,0,0
 69,FLOATSTONE,Float Stone,Float Stones,5,4000,"A very light stone. It reduces the weight of a Pokémon when held.",0,0,0
 70,DESTINYKNOT,Destiny Knot,Destiny Knots,5,4000,"A long, thin, bright-red string to be held by a Pokémon. If the holder becomes infatuated, so does the foe.",0,0,0
 71,ROCKYHELMET,Rocky Helmet,Rocky Helmets,5,4000,"Damages attackers for 1/6th of their HP when they hit the holder with physical attacks.",0,0,0
@@ -93,9 +93,9 @@
 92,BLACKSLUDGE,Black Sludge,Black Sludges,5,4000,"A held item that gradually restores the HP of Poison-type Pokémon. It inflicts damage on all other types.",0,0,0
 93,LEFTOVERS,Leftovers,Leftovers,5,10000,"A held item. The holder's HP is restored by 1/16th at the end of each turn.",0,0,0
 94,SHELLBELL,Shell Bell,Shell Bells,5,4000,"An item to be held by a Pokémon. The holder restores 1/6th HP of the damage it deals with moves.",0,0,0
-95,MENTALHERB,Mental Herb,Mental Herbs,5,8000,"An item to be held by a Pokémon. It snaps the holder out of a variety of mental warping effects.",0,0,0
-96,WHITEHERB,White Herb,White Herbs,5,8000,"An item to be held by a Pokémon. It restores any lowered stat in battle.",0,0,0
-97,POWERHERB,Power Herb,Power Herbs,5,8000,"A single-use item to be held by a Pokémon. It allows the immediate use of a move that charges up first.",0,0,0
+95,MENTALHERB,Mental Herb,Mental Herbs,5,4000,"An item to be held by a Pokémon. It snaps the holder out of a variety of mental warping effects.",0,0,0
+96,WHITEHERB,White Herb,White Herbs,5,4000,"An item to be held by a Pokémon. It restores any lowered stat in battle.",0,0,0
+97,POWERHERB,Power Herb,Power Herbs,5,4000,"A single-use item to be held by a Pokémon. It allows the immediate use of a move that charges up first.",0,0,0
 100,LIFEORB,Life Orb,Life Orbs,5,10000,"A held item. It boosts the power of moves by 30%, but at the cost of 10% HP on each hit.",0,0,0
 101,EXPERTBELT,Expert Belt,Expert Belts,5,4000,"A well-worn belt that boosts the holder's supereffective moves by 20%.",0,0,0
 102,METRONOME,Metronome,Metronomes,5,4000,"A Pokémon held item that boosts a move used consecutively. Its effect is reset if another move is used.",0,0,0
@@ -525,7 +525,7 @@
 533,ASSAULTVEST,Assault Vest,Assault Vests,5,10000,"An item to be held by a Pokémon. It raises Sp. Def by 50% but prevents the use of status moves.",0,0,0
 534,SAFETYGOGGLES,Safety Goggles,Safety Goggles,5,4000,"An item to be held by a Pokémon. They protect the holder from weather-related damage and powder.",0,0,0
 535,PROTECTIVEPADS,Protective Pads,Protective Pads,5,4000,"An item to be held by a Pokémon. They protect the holder from effects caused by making contact.",0,0,0
-543,WEAKNESSPOLICY,Weakness Policy,Weakness Policies,5,1000,"An item to be held by a Pokémon. The holder's Attack and Sp. Atk sharply increase if hit by a move it's weak to.",0,0,0
+543,WEAKNESSPOLICY,Weakness Policy,Weakness Policies,5,3000,"An item to be held by a Pokémon. The holder's Attack and Sp. Atk sharply increase if hit by a move it's weak to.",0,0,0
 544,ADRENALINEORB,Adrenaline Orb,Adrenaline Orbs,5,4000,"When held, it boosts Speed when intimidated, fascinated, or frustrated once per battle.",0,0,0
 545,PIXIEPLATE,Pixie Plate,Pixie Plates,5,1000,"A stone tablet that boosts the power of Fairy-type moves.",0,0,0
 546,FAIRYGEM,Fairy Gem,Fairy Gems,5,1000,"A gem with an essence of the fey. Boosts the power of a Fairy-type move by 50% once per battle.",0,0,10
@@ -651,7 +651,7 @@
 666,EXPCANDYXL,Exp. Candy XL,Exp. Candies XL,2,10000,"A candy that is packed with energy. When consumed, it will grant a single Pokémon 50,000 Exp. Points.",1,0,0
 667,ABILITYPATCH,Ability Patch,Ability Patches,2,20000,"A patch that allows a Pokémon with a regular Ability to have a rare Ability.",1,0,0
 668,GALARICACUFF,Galarica Cuff,Galarica Cuffs,1,3000,"A cuff made from woven-together Galarica Twigs. Giving it to Galarian Slowpoke makes the Pokémon very happy.",1,0,7
-669,GALARICAWREATH,Galarica Wreath,Galarica Wreaths,1,1500,"A wreath made from woven- Galarica Twigs. It makes certain species of Pokémon evolve.",1,0,7
+669,GALARICAWREATH,Galarica Wreath,Galarica Wreaths,1,5000,"A wreath made from woven- Galarica Twigs. It makes certain species of Pokémon evolve.",1,0,7
 670,SWEETAPPLE,Sweet Apple,Sweet Apples,1,2200,"A peculiar apple that can make a certain species of Pokémon evolve. It's exceptionally sweet.",1,0,7
 671,TARTAPPLE,Sweet Apple,Sweet Apples,1,2200,"A peculiar apple that can make a certain species of Pokémon evolve. It's exceptionally tart.",1,0,7
 672,CRACKEDPOT,Cracked Pot,Cracked Pot,1,1600,"A peculiar teapot that can make a certain species of Pokémon evolve. It may be cracked, but tea poured from it is delicious.",1,0,7
@@ -776,7 +776,7 @@
 791,TM199,TM199,TM199s,4,6000,"Damage increases with the user's Defense stat.",3,0,0,BODYPRESS
 792,DYNAMITESTICK,Dynamite Stick,Dynamite Sticks,1,0,"A stick of dynamite, perfectly suited to destroying small bits of rock.",2,0,13
 793,MEGAUPGRADER,Mega Upgrader,Mega Upgraders,1,0,"A peculiar stone that makes certain species of Pokémon evolve.",1,0,7
-794,ALOLANWREATH,Alolan Wreath,Alolan Wreathes,1,1500,"A beautiful floral wreath from Alola that makes certain species of Pokémon evolve.",1,0,7
+794,ALOLANWREATH,Alolan Wreath,Alolan Wreathes,1,5000,"A beautiful floral wreath from Alola that makes certain species of Pokémon evolve.",1,0,7
 795,SURFBOARD,Surf Board,Surf Boards,8,0,"A surf board, allowing you to surf on water.",0,0,6
 796,ABRAPORTER,Abraporter,Abraporters,8,0,"A teleporter which brings you to your last safe spot using the power of Abras.",2,0,6
 797,REMATERIALIZER,Rematerializer,Rematerializers,8,0,"A 3D printer which automatically copies consumed held items after battles.",0,0,6
@@ -840,10 +840,10 @@
 878,PINPOINTROCK,Pin-Point Rock,Pin-Point Rocks,5,4000,"A Pokémon held item. When the holder summons Eclipse, it lasts twice as long.",0,0,0
 879,MIRROREDROCK,Mirrored Rock,Mirrored Rocks,5,4000,"A Pokémon held item. When the holder summons Moonglow, it lasts twice as long.",0,0,0
 880,PEARLOFFATE,Pearl of Fate,Pearls of Fate,5,0,"User heals 1/16th HP every turn. Will sacrifice itself to cure the user of status.",0,0,0
-881,WILDCARD,Wild Card,Wild Cards,5,6000,"An item to be held by a Pokémon. It counts as a member of every tribe.",0,0,0
+881,WILDCARD,Wild Card,Wild Cards,5,10000,"An item to be held by a Pokémon. It counts as a member of every tribe.",0,0,0
 882,PROXYFIST,Proxy Fist,Proxy Fists,5,3000,"A held item. The holder doesn't trigger items, abilities, or effects of targets it hits.",0,0,0
-883,MIRRORHERB,Mirror Herb,Mirror Herbs,5,5000,"A held item. When a foe raises their stats, the herb is consumed to copy their raised stats.",0,0,0
-884,PARADOXHERB,Paradox Herb,Paradox Herbs,5,5000,"A held item. When a foe raises their stats, the herb is consumed to reset their raised stats.",0,0,0
+883,MIRRORHERB,Mirror Herb,Mirror Herbs,5,4000,"A held item. When a foe raises their stats, the herb is consumed to copy their raised stats.",0,0,0
+884,PARADOXHERB,Paradox Herb,Paradox Herbs,5,4000,"A held item. When a foe raises their stats, the herb is consumed to reset their raised stats.",0,0,0
 885,MEMORYSET,Memory Set,Memory Sets,5,0,"A set of memory discs, one for each type. If held by a Silvally, you can change its type between battles.",0,0,0
 886,PRISMATICPLATE,Prismatic Plate,Prismatic Plates,5,0,"A tablet that boosts moves of the user's type by 20%. If held by Arceus, you can change its type between battles.",0,0,0
 887,COVERTCLOAK,Covert Cloak,Covert Cloaks,5,3000,"A held item. The holder is protected from the additional effects of enemy attacks.",0,0,0

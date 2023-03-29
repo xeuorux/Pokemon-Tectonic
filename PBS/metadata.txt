@@ -1059,7 +1059,7 @@ BattleBack = wcave
 Environment = Cave
 #-------------------------------
 [177]
-# Battle Plaza Market
+# Evolution Market
 Outdoor = false
 ShowArea = false
 Bicycle = false

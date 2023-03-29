@@ -9,8 +9,12 @@ def payMoney(cost, showMessage = true)
 	end
 end
 
+######################################################
+# Pokemon vendors
+######################################################
+
 def purchaseStarters(type,price=0)
-	return unless [:GRASS,:FIRE,:WATER].include?(type)
+	return unless %i[GRASS FIRE WATER].include?(type)
 	typeName = GameData::Type.get(type).real_name
 	
 	token = (type.to_s + "TOKEN").to_sym
@@ -55,7 +59,7 @@ def purchaseStarters(type,price=0)
 			starterChosenName = starterArray[result]
 			starterSpecies = starterChosenName.upcase.to_sym
 
-			choicesArray = ["View Pokedex", "Buy Pokemon", "Cancel"]
+			choicesArray = [_INTL("View Pokedex"), _INTL("Buy Pokemon"), _INTL("Cancel")]
 			secondResult = pbShowCommands(nil,choicesArray,3)
 			case secondResult
 			when 1
@@ -77,73 +81,13 @@ def purchaseStarters(type,price=0)
 	end
 end
 
-def weatherTMSell()
-	pbPokemonMart(
-		[:TM32,
-		:TM33,
-		:TM34,
-		:TM35,
-		:TM196,
-		:TM197,
-		],
-		"Care to buy some?"
-	)
-end
-
-def terrainTMSell()
-	pbPokemonMart(
-		[:TM88,
-		:TM89,
-		:TM90,
-		:TM91],
-		"Care to buy some?"
-	)
-end
-
-def spikesTMSell()
-	pbPokemonMart(
-		[:TM123,
-		:TM134,
-		:TM151,
-		:TM154],
-		"Care to buy some?"
-	)
-end
-
-def fossilSell()
-	pbPokemonMart(
-		[:HELIXFOSSIL,
-		:DOMEFOSSIL,
-		:OLDAMBER,
-		:ROOTFOSSIL,
-		:CLAWFOSSIL,
-		:SKULLFOSSIL,
-		:ARMORFOSSIL,
-		:COVERFOSSIL,
-		:PLUMEFOSSIL,
-		:JAWFOSSIL,
-		:SAILFOSSIL],
-		"Do you like anything you see?"
-	)
-end
-
-def malasadaVendor()
-	pbPokemonMart(
-		[:BIGMALASADA,
-		:BERRYJUICE,
-		:SODAPOP],
-		"Take a look, it's all delicious!",
-		true
-	)
-end
-
 def isMixFossil?(item_symbol)
-	[:FOSSILIZEDBIRD,:FOSSILIZEDDRAKE,:FOSSILIZEDFISH,:FOSSILIZEDDINO].include?(item_symbol)
+	%i[FOSSILIZEDBIRD FOSSILIZEDDRAKE FOSSILIZEDFISH FOSSILIZEDDINO].include?(item_symbol)
 end
 
 def reviveFossil(fossil)
 	if isMixFossil?(fossil)
-		pbMessage("My apologies, I don't know what to do with this type of fossil.")
+		pbMessage(_INTL("My apologies, I don't know what to do with this type of fossil."))
 		return
 	end
 
@@ -164,36 +108,36 @@ def reviveFossil(fossil)
 	species = fossilsToSpecies[fossil] || nil
 	
 	if species.nil?
-		pbMessage("Error! Could not determine how to revive the given fossil.")
+		pbMessage(_INTL("Error! Could not determine how to revive the given fossil."))
 		return
 	end
 	item_data = GameData::Item.get(fossil)
 	
-	pbMessage("\\PN hands over the #{item_data.name} and $3000.")
+	pbMessage(_INTL("\\PN hands over the #{item_data.name} and $3000."))
 	
-	pbMessage("The procedure has started, now just to wait...")
+	pbMessage(_INTL("The procedure has started, now just to wait..."))
 	
 	blackFadeOutIn(30) {
 		$Trainer.money = $Trainer.money - 3000
 		$PokemonBag.pbDeleteItem(fossil)
 	}
 	
-	pbMessage("It's done! Here is your newly revived Pokemon!")
+	pbMessage(_INTL("It's done! Here is your newly revived Pokemon!"))
 	
 	pbAddPokemon(species,15)
 end
 
 def reviveMixFossils(fossil1,fossil2)
 	if fossil1 == fossil2
-		pbMessage("The fossils can't be the same!")
+		pbMessage(_INTL("The fossils can't be the same!"))
 		return
 	end
 
 	fossilsToSpecies = {
-		[:FOSSILIZEDBIRD,:FOSSILIZEDDRAKE] => :DRACOZOLT,
-		[:FOSSILIZEDBIRD,:FOSSILIZEDDINO] => :ARCTOZOLT,
-		[:FOSSILIZEDFISH,:FOSSILIZEDDRAKE] => :DRACOVISH,
-		[:FOSSILIZEDFISH,:FOSSILIZEDDINO] => :ARCTOVISH
+		%i[FOSSILIZEDBIRD FOSSILIZEDDRAKE] => :DRACOZOLT,
+		%i[FOSSILIZEDBIRD FOSSILIZEDDINO] => :ARCTOZOLT,
+		%i[FOSSILIZEDFISH FOSSILIZEDDRAKE] => :DRACOVISH,
+		%i[FOSSILIZEDFISH FOSSILIZEDDINO] => :ARCTOVISH
 	}
 
 	chosenSpecies = nil
@@ -205,18 +149,18 @@ def reviveMixFossils(fossil1,fossil2)
 	end
 
 	if chosenSpecies.nil?
-		pbMessage("Error! Could not determine how to revive the given fossils.")
+		pbMessage(_INTL("Error! Could not determine how to revive the given fossils."))
 		return
 	end
 
-	pbMessage("The procedure has started, now just to wait...")
+	pbMessage(_INTL("The procedure has started, now just to wait..."))
 	
 	blackFadeOutIn(30) {
 		$PokemonBag.pbDeleteItem(fossil1)
 		$PokemonBag.pbDeleteItem(fossil2)
 	}
 	
-	pbMessage("It's done! Here is your newly revived Pokemon!")
+	pbMessage(_INTL("It's done! Here is your newly revived Pokemon!"))
 	
 	pbAddPokemon(chosenSpecies,15)
 end
@@ -226,7 +170,7 @@ def pbChooseMixFossilHead(var = 0)
 	pbFadeOutIn {
 	  scene = PokemonBag_Scene.new
 	  screen = PokemonBagScreen.new(scene,$PokemonBag)
-	  ret = screen.pbChooseItemScreen(Proc.new { |item| [:FOSSILIZEDBIRD,:FOSSILIZEDFISH].include?(item) })
+	  ret = screen.pbChooseItemScreen(Proc.new { |item| %i[FOSSILIZEDBIRD FOSSILIZEDFISH].include?(item) })
 	}
 	$game_variables[var] = ret || :NONE if var > 0
 	return ret
@@ -237,20 +181,10 @@ def pbChooseMixFossilBody(var = 0)
 	pbFadeOutIn {
 	  scene = PokemonBag_Scene.new
 	  screen = PokemonBagScreen.new(scene,$PokemonBag)
-	  ret = screen.pbChooseItemScreen(Proc.new { |item| [:FOSSILIZEDDRAKE,:FOSSILIZEDDINO].include?(item) })
+	  ret = screen.pbChooseItemScreen(Proc.new { |item| %i[FOSSILIZEDDRAKE FOSSILIZEDDINO].include?(item) })
 	}
 	$game_variables[var] = ret || :NONE if var > 0
 	return ret
-end
-
-def arenaVendor()
-	pbPokemonMart(
-		[:VANILLATULUMBA,
-		:LEMONADE,
-		:SODAPOP],
-		"Grab a Tulumba, a Makyan specialty!",
-		true
-	)
 end
 
 def styleFurfrou()
@@ -262,9 +196,9 @@ def styleFurfrou()
 	return false if pbGet(1) < 0
 	pkmn = $Trainer.party[pbGet(1)]
 	possibleForms, possibleFormNames = getFormSelectionChoices(:FURFROU,pkmn.form)
-	choice = pbMessage("What style would you like me to give it?",possibleFormNames,possibleFormNames.length)
+	choice = pbMessage(_INTL("What style would you like me to give it?",possibleFormNames,possibleFormNames.length))
 	if choice < possibleForms.length
-		pbMessage("#{pkmn.name} swapped to #{possibleFormNames[choice]}!")
+		pbMessage(_INTL("#{pkmn.name} swapped to #{possibleFormNames[choice]}!"))
 		
 		showPokemonChanges(pkmn) {
 			pkmn.form = possibleForms[choice].form
@@ -292,19 +226,19 @@ def createHisuian
 			chosenName = speciesArray[result]
 			chosenSpecies = actualSpecies[result]
 
-			choicesArray = ["View Pokedex", "Buy Pokemon", "Cancel"]
+			choicesArray = [_INTL("View Pokedex"), _INTL("Buy Pokemon"), _INTL("Cancel")]
 			secondResult = pbShowCommands(nil,choicesArray,3)
 			case secondResult
 			when 1
 				item_data = GameData::Item.get(:ORIGINORE)
-				pbMessage("\\PN hands over the #{item_data.name}.")
-				pbMessage("Now just to work my magicks...")
+				pbMessage(_INTL("\\PN hands over the #{item_data.name}."))
+				pbMessage(_INTL("Now just to work my magicks..."))
 				blackFadeOutIn(30) {
 					$PokemonBag.pbDeleteItem(:ORIGINORE)
 				}
-				pbMessage("Poof! And so the impossible has been made possible!")
+				pbMessage(_INTL("Poof! And so the impossible has been made possible!"))
 				pbAddPokemon(chosenSpecies,10)
-				pbMessage("My hopes go with you. Be respectful of this relic which you now posess.")
+				pbMessage(_INTL("My hopes go with you. Be respectful of this relic which you now posess."))
 				break
 			when 0
 				openSingleDexScreen(chosenSpecies)
@@ -316,7 +250,7 @@ end
 
 def shinifyPokemonVendor
 	unless pbHasItem?(:GLEAMPOWDER)
-		pbMessage(_INTL("Don't try to trick me with some knock-off, you don't have any powder!"))
+		pbMessage(_INTL("Don't try to trick me with some knock-off, you don't have any Gleam Powder!"))
 		return
 	end
 
@@ -345,9 +279,312 @@ def shinifyPokemonVendor
 		$PokemonBag.pbDeleteItem(:GLEAMPOWDER)
 		pkmn.shiny = true
 	}
-	pbMessage("Now, bask in the beautiful glow of your shiny #{pkmn.speciesName}!")
-	pbMessage("No need to thank me, its beauty is reward enough.")
-	pbMessage("The money isn't bad either...")
+	pbMessage(_INTL("Now, bask in the beautiful glow of your shiny #{pkmn.speciesName}!"))
+	pbMessage(_INTL("No need to thank me, its beauty is reward enough."))
+	pbMessage(_INTL("The money isn't bad either..."))
 
 	return false
+end
+
+######################################################
+# Useful item vendors
+######################################################
+
+CAN_SELL_IN_VENDORS = true
+
+def weatherTMSell()
+	weatherTMStock = %i[
+		TM32
+		TM33
+		TM34
+		TM35
+		TM196
+		TM197
+	]
+	pbPokemonMart(
+		weatherTMStock,
+		_INTL("Care to buy some?"),
+		!CAN_SELL_IN_VENDORS
+	)
+end
+
+def spikesTMSell()
+	spikeTMStock = %i[
+		TM123
+		TM134
+		TM151
+		TM154
+	]
+	pbPokemonMart(
+		spikeTMStock,
+		_INTL("Care to buy some?"),
+		!CAN_SELL_IN_VENDORS
+	)
+end
+
+def fossilSell()
+	fossilStock = %i[
+		HELIXFOSSIL
+		DOMEFOSSIL
+		OLDAMBER
+		ROOTFOSSIL
+		CLAWFOSSIL
+		SKULLFOSSIL
+		ARMORFOSSIL
+		COVERFOSSIL
+		PLUMEFOSSIL
+		JAWFOSSIL
+		SAILFOSSIL
+	]
+	pbPokemonMart(
+		fossilStock,
+		_INTL("Do you like anything you see?"),
+		!CAN_SELL_IN_VENDORS
+	)
+end
+
+def eastEndExclusives(postTourney = false)
+	stock = %i[
+		GRASSTOKEN WATERTOKEN FIRETOKEN
+		CHOICEBAND CHOICESPECS CHOICESCARF
+		LEFTOVERS
+		ASSAULTVEST STRIKEVEST
+		LIFEORB
+	]
+
+	postTourneyStock = %i[
+		ORIGINORE
+		DIAMONDTIARA
+		RUSTEDSHIELD RUSTEDSWORD
+		REINSOFUNITY
+	]
+	stock = postTourneyStock.concat(stock) if postTourney
+
+	setPrice(:RUSTEDSWORD,20_000)
+	setPrice(:RUSTEDSHIELD,20_000)
+	setPrice(:REINSOFUNITY,20_000)
+
+	if postTourney
+		message = _INTL("Ohoh! I'm honored that you would pay my store a visit, champion.")
+	else
+		message = _INTL("Welcome, trainer. I shall give you limited access to my stock.")
+	end
+
+	pbPokemonMart(
+		stock,
+		message,
+		!CAN_SELL_IN_VENDORS
+	)
+end
+
+def tmShop
+	tmsStock = %i[
+		TM49 TM142
+		TM141 TM102
+		TM198 TM202
+		TM150 TM28
+		TM186 TM108
+		TM51 TM105
+		TM43 TM156
+		TM157 TM178
+		TM110 TM167
+		TM48 TM95
+		TM169 TM111
+		TM160 TM161
+		TM175 TM163
+		TM54 TM133
+		TM147 TM162
+		TM132 TM158
+		TM174 TM170
+		TM190 TM192
+	]
+
+	pbPokemonMart(
+		tmsStock,
+		_INTL("One-Stop Tech Shop, for all your electronic need."),
+		!CAN_SELL_IN_VENDORS
+	)
+end
+
+def naturesGallery
+	stock = %i[
+		HEATROCK DAMPROCK SMOOTHROCK ICYROCK MIRROREDROCK PINPOINTROCK
+		LIGHTCLAY
+		FLOATSTONE
+		BIGROOT
+		WHITEHERB POWERHERB MENTALHERB MIRRORHERB PARADOXHERB
+		LUCKYEGG
+		GALARICAWREATH
+		ALOLANWREATH
+	]
+
+	pbPokemonMart(
+		stock,
+		_INTL("Nature's Gallery, your gateway to nature's beauty."),
+		!CAN_SELL_IN_VENDORS
+	)
+end
+
+def heldItemShop
+	stock = %i[
+		POWERLOCK ENERGYLOCK
+		UTILITYUMBRELLA ROOMSERVICE
+		BLACKSLUDGE
+		GRIPCLAW BINDINGBAND
+		REDCARD EJECTBUTTON EJECTPACK
+		AIRBALLOON EXPERTBELT
+		EVIOLITE
+		THROATSPRAY
+		METRONOME
+		MUSCLEBAND WISEGLASSES
+		SCOPELENS WIDELENS
+		LAGGINGTAIL SEVENLEAGUEBOOTS
+		HEAVYDUTYBOOTS
+		FOCUSSASH
+		STICKYBARB
+		IRONBALL
+		ADRENALINEORB
+		WEAKNESSPOLICY
+		REINFORCINGROD
+		LOADEDDICE
+		ROCKYHELMET HIVISJACKET
+		PROXYFIST COVERTCLOAK
+	]	
+
+	pbPokemonMart(
+		stock,
+		_INTL("Welcome to Emma's Empolorium! What're you looking for today?"),
+		!CAN_SELL_IN_VENDORS
+	)
+end
+
+def diegosWares
+	castleStock = %i[
+		KNIGHTHELMET NINJASCARF
+		FIREGEM WATERGEM ELECTRICGEM GRASSGEM ICEGEM FIGHTINGGEM POISONGEM GROUNDGEM FLYINGGEM
+		PSYCHICGEM BUGGEM ROCKGEM GHOSTGEM DRAGONGEM DARKGEM STEELGEM NORMALGEM FAIRYGEM
+	]
+
+	pbPokemonMart(
+		castleStock,
+		_INTL("Welcome to Diego's Wares! Please, come look through our goods."),
+		!CAN_SELL_IN_VENDORS
+	)
+end
+
+def basicBallVendor
+	basicBallStock = %i[
+		GREATBALL
+		REPEATBALL
+		NESTBALL
+		TIMERBALL
+		QUICKBALL
+	]
+	pbPokemonMart(
+		basicBallStock,
+		_INTL("Welcome to the PokeBall Depot! How may I serve you?"),
+		!CAN_SELL_IN_VENDORS
+	)
+end
+
+def weirdBallsVendor
+	weirdBallStock = %i[
+		ULTRABALL
+		NETBALL DUSKBALL
+		LEVELBALL
+		FASTBALL  HEAVYBALL
+		MOONBALL
+		DREAMBALL
+		LOVEBALL
+		LUXURYBALL FRIENDBALL HEALBALL
+	]
+	pbPokemonMart(
+		[],
+		_INTL("Custom Pokéballs, made to order! You won't find these in a mart!"),
+		!CAN_SELL_IN_VENDORS
+	)
+end
+
+def evoStoneVendor(expanded = false)
+	stock = %i[
+		FIRESTONE
+		THUNDERSTONE
+		WATERSTONE
+		LEAFSTONE
+		DAWNSTONE
+		DUSKSTONE
+		MOONSTONE
+		SUNSTONE
+		ICESTONE
+	]
+
+	expandedStock = %i[
+		SHINYSTONE
+	]
+	stock = expandedStock.concat(stock) if expanded
+
+	if postTourney
+		message = _INTL("Regrettably, you are restricted from purchasing any Shiny Stones. Otherwise, how may I serve you?")
+	else
+		message = _INTL("How can we help to empower your Pokemon?")
+	end
+
+	pbPokemonMart(
+		stock,
+		message,
+		!CAN_SELL_IN_VENDORS
+	)
+end
+
+def berryVendor
+	setPrice(:ORANBERRY,1000)
+	setPrice(:SITRUSBERRY,1000)
+	setPrice(:LUMBERRY,1000)
+	setPrice(:LEPPABERRY,500)
+	
+	setPrice(:RAWSTBERRY,500)
+	setPrice(:ASPEARBERRY,500)
+	setPrice(:PECHABERRY,500)
+	setPrice(:PERSIMBERRY,500)
+	setPrice(:CHERIBERRY,500)
+	setPrice(:CHESTOBERRY,500)
+	setPrice(:SPELONBERRY,500)
+
+	berryStock = %i[
+		ORANBERRY SITRUSBERRY
+		LUMBERRY
+		LEPPABERRY
+		RAWSTBERRY ASPEARBERRY
+		PECHABERRY
+		PERSIMBERRY
+		CHERIBERRY
+		CHESTOBERRY
+		SPELONBERRY
+	]
+
+	pbPokemonMart(
+		berryStock,
+		_INTL("Care to buy some of our extra berry harvest?"),
+		!CAN_SELL_IN_VENDORS
+	)
+end
+
+######################################################
+# Minor food vendors
+######################################################
+
+def malasadaVendor()
+	pbPokemonMart(
+		%i[BIGMALASADA BERRYJUICE],
+		_INTL("Take a look, it's all delicious!"),
+		true
+	)
+end
+
+def arenaVendor()
+	pbPokemonMart(
+		[:VANILLATULUMBA],
+		_INTL("Grab a Tulumba, a Makyan specialty!"),
+		true
+	)
 end
