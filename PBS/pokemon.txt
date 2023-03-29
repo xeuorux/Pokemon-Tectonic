@@ -21316,7 +21316,7 @@ InternalName = VOLCARONA
 Type1 = BUG
 Type2 = FIRE
 # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
-BaseStats = 85,60,65,100,135,105
+BaseStats = 85,70,65,100,125,105
 # Total = 550
 GenderRate = Female50Percent
 GrowthRate = Slow
