@@ -611,6 +611,7 @@
 609,FASHIONABLE,Fashionable,"Can hold two different items, if one is clothing and the other is not."
 610,JEWELER,Jeweler,"Can hold two different items, if both are Gems."
 611,HANDY,Handy,"Can hold a 2nd item by stealing it."
+612,UNAFRAID,Unafraid,"Takes half damage from Dark- and Bug-type moves."
 1000,JUSTIFIED,Justified,"Raises Attack when hit by a Dark-type move."
 1001,ADAPTABILITY,Adaptability,"Powers up moves of the same type."
 1002,HUGEPOWER,Huge Power,"Raises the Pokémon's Attack stat."

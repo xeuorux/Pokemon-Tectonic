@@ -36,6 +36,12 @@ BattleHandlers::DamageCalcTargetAbility.add(:THICKFAT,
   }
 )
 
+BattleHandlers::DamageCalcTargetAbility.add(:UNAFRAID,
+  proc { |ability, _user, _target, _move, mults, _baseDmg, type|
+      mults[:base_damage_multiplier] /= 2 if %i[BUG DARK].include?(type)
+  }
+)
+
 BattleHandlers::DamageCalcTargetAbility.add(:WATERBUBBLE,
   proc { |ability, _user, _target, _move, mults, _baseDmg, type|
       mults[:final_damage_multiplier] /= 2 if type == :FIRE
