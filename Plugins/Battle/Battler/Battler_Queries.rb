@@ -291,11 +291,11 @@ class PokeBattle_Battler
     end
 
     def hasItem?(checkitem)
-        items.each do |effectiveItem|
+        items.each do |item|
             if checkitem.is_a?(Array)
-                return true if checkitem.include?(effectiveItem)
+                return item if checkitem.include?(item)
             else
-                return true if checkitem == effectiveItem
+                return item if checkitem == item
             end
         end
         return false
@@ -752,7 +752,8 @@ class PokeBattle_Battler
             regularMove = m
             break
         end
-        return false unless regularMove && (regularMove.pp == 0 && regularMove.total_pp > 0)
+        return false unless regularMove
+        return false if regularMove.pp == 0 && regularMove.total_pp > 0
         return true
     end
 

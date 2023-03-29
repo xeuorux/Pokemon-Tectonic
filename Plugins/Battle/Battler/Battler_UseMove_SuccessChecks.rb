@@ -116,7 +116,7 @@ GameData::Move.get(@effects[:GorillaTactics]).name)
         # executing them)
         if move.statusMove? && commandPhase
             statusPreventingItem = hasActiveItem?(STATUS_PREVENTING_ITEMS)
-                if statusPreventingItem
+            if statusPreventingItem
                 msg = _INTL("The effects of the {1} prevent status moves from being used!", getItemName(statusPreventingItem))
                 if showMessages
                     commandPhase ? @battle.pbDisplayPaused(msg) : @battle.pbDisplay(msg)

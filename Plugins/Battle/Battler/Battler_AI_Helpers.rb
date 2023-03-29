@@ -25,7 +25,7 @@ class PokeBattle_Battler
     def eachAIKnownMoveWithIndex
         return if effectActive?(:Illusion) && pbOwnedByPlayer?
         knownMoveIDs = @battle.aiKnownMoves(@pokemon)
-        @moves.each do |move, index|
+        @moves.each_with_index do |move, index|
             next if pbOwnedByPlayer? && !knownMoveIDs.include?(move.id)
             yield move, index
         end
