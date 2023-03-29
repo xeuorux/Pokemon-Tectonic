@@ -114,6 +114,7 @@ class PokeBattle_Battler
         @type2        = pkmn.type2
         @ability_ids  = []
         @ability_ids.push(pkmn.ability_id) if pkmn.ability_id
+        @ability_ids.concat(pkmn.extraAbilities)
         if (@battle.curseActive?(:CURSE_DOUBLE_ABILITIES) && index.odd?) || (TESTING_DOUBLE_QUALITIES && !boss?)
             pkmn.species_data.abilities.each do |legalAbility|
                 @ability_ids.push(legalAbility) unless @ability_ids.include?(legalAbility)
@@ -262,8 +263,10 @@ class PokeBattle_Battler
             @spdef        = @pokemon.spdef
             @speed        = @pokemon.speed
             if fullChange
-                @type1 = @pokemon.type1
-                @type2      = @pokemon.type2
+                unless bossType
+                    @type1 = @pokemon.type1
+                    @type2 = @pokemon.type2
+                end
                 @ability_id = @pokemon.ability_id
             end
         end

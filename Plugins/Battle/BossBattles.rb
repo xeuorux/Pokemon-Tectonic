@@ -121,7 +121,11 @@ def setAvatarProperties(pkmn)
     end
 
     pkmn.item = avatar_data.item
-    pkmn.ability = avatar_data.ability
+    pkmn.ability = avatar_data.abilities[0]
+    avatar_data.abilities.each_with_index do |ability, index|
+        next if index == 0
+        pkmn.addExtraAbility(ability)
+    end
     pkmn.hpMult = avatar_data.hp_mult
     pkmn.dmgMult = avatar_data.dmg_mult
     pkmn.dmgResist = avatar_data.dmg_resist

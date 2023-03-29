@@ -444,11 +444,12 @@ HPMult = 6.0
 Item = SITRUSBERRY
 #-------------------------------
 [GYARADOS]
-Ability = INTIMIDATE
+Ability = INTIMIDATE,SEALORD
 Moves1 = REND,WATERFALL,PRIMEVALTORMENT
 Moves2 = CRUNCH,SURF
 HPMult = 6.0
 Item = LIFEORB
+Aggression = 8
 #-------------------------------
 [PARASECT]
 Ability = INFECTED

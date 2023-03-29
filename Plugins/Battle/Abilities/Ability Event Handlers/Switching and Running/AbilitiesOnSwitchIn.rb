@@ -559,6 +559,14 @@ BattleHandlers::AbilityOnSwitchIn.add(:RUINOUS,
   }
 )
 
+BattleHandlers::AbilityOnSwitchIn.add(:SEALORD,
+  proc { |ability, battler, battle|
+      battle.pbShowAbilitySplash(battler, ability)
+      battle.pbDisplay(_INTL("{1} is hungry for destruction!", battler.pbThis))
+      battle.pbHideAbilitySplash(battler)
+  }
+)
+
 BattleHandlers::AbilityOnSwitchIn.add(:HONORAURA,
   proc { |ability, battler, battle|
       battle.pbShowAbilitySplash(battler, ability)

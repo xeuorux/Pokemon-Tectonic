@@ -26,6 +26,7 @@ class Pokemon
     @shiny            = nil
     @ability_index    = nil
     @ability          = nil
+    @extraAbilities   = []
     @nature           = nil
     @nature_for_stats = nil
     @item             = nil
@@ -180,6 +181,15 @@ class Pokemon
   # Heals this Pokemon's HP by an amount
   def healByFraction(fraction)
     healBy((@totalhp * fraction).ceil)
+  end
+
+  def addExtraAbility(ability)
+    @extraAbilities.push(ability) unless @extraAbilities.include?(ability)
+  end
+
+  def extraAbilities
+    @extraAbilities = [] if @extraAbilities.nil?
+    return @extraAbilities
   end
 end
 

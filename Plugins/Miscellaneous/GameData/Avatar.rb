@@ -11,7 +11,7 @@ module GameData
 		attr_reader :moves4
 		attr_reader :moves5
 		attr_reader :post_prime_moves
-		attr_reader :ability
+		attr_reader :abilities
 		attr_reader :item
 		attr_reader :size_mult
 		attr_reader :hp_mult
@@ -32,7 +32,7 @@ module GameData
 		  "Moves3"      		=> [:moves3,			"*E", :Move],
 		  "Moves4"      		=> [:moves4,			"*E", :Move],
 		  "Moves5"      		=> [:moves5,			"*E", :Move],
-		  "Ability"      		=> [:ability,       	"s"],
+		  "Ability"      		=> [:abilities,       	"*e", :Ability],
 		  "Item"         		=> [:item,          	"e", :Item],
 		  "HPMult"				=> [:hp_mult,			"f"],
 		  "SizeMult" 			=> [:size_mult,     	"F"],
@@ -56,7 +56,7 @@ module GameData
 		  @moves3 			= hash[:moves3] || []
 		  @moves4 			= hash[:moves4] || []
 		  @moves5 			= hash[:moves5] || []
-		  @ability          = hash[:ability]
+		  @abilities        = hash[:abilities]
 		  @item             = hash[:item]
 		  @size_mult		= hash[:size_mult] || 1.3
 		  @hp_mult			= hash[:hp_mult] || 4.0

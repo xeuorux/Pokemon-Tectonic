@@ -397,7 +397,7 @@ module Compiler
         Graphics.update if avatar.id_number % 20 == 0
         f.write("\#-------------------------------\r\n")
         f.write(sprintf("[%s]\r\n", avatar.id))
-        f.write(sprintf("Ability = %s\r\n", avatar.ability))
+        f.write(sprintf("Ability = %s\r\n", avatar.abilities.join(",")))
         f.write(sprintf("Moves1 = %s\r\n", avatar.moves1.join(",")))
         f.write(sprintf("Moves2 = %s\r\n", avatar.moves2.join(","))) if !avatar.moves2.nil? && avatar.num_phases >= 2
         f.write(sprintf("Moves3 = %s\r\n", avatar.moves3.join(","))) if !avatar.moves3.nil? && avatar.num_phases >= 3
