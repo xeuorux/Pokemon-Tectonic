@@ -130,6 +130,17 @@ class PokeBattle_Battle
             next unless b.poisoned?
             healFromStatusAbility(:POISONHEAL, b, :POISON, 4) if b.hasActiveAbility?(:POISONHEAL)
             damageFromDOTStatus(b, :POISON)
+
+            # Venom Gorger
+            if b.getStatusCount(:POISON) % 3 == 0
+                b.eachOpposing do |opposingB|
+                    next unless opposingB.hasActiveAbility?(:VENOMGORGER)
+                    healingMessage = _INTL("{1} slurped up venom leaking from #{b.pbThis(true)}.")
+                    fraction = 1.0 / 3.0
+                    fraction *= b.getPoisonDoublings
+                    opposingB.applyFractionalHealing(fraction, ability: :VENOMGORGER, customMessage: healingMessage)
+                end
+            end
         end
         # Damage from burn
         priority.each do |b|

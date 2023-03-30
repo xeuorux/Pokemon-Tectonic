@@ -203,3 +203,9 @@ BattleHandlers::DamageCalcTargetAbility.add(:UNCONCERED,
       mults[:final_damage_multiplier] *= 0.8 if Effectiveness.normal?(target.damageState.typeMod)
   }
 )
+
+BattleHandlers::DamageCalcTargetAbility.add(:BULLY,
+  proc { |ability, _user, target, _move, mults, _baseDmg, _type|
+      mults[:base_damage_multiplier] *= 0.7 if target.pbHeight < user.pbHeight
+  }
+)

@@ -462,3 +462,16 @@ BattleHandlers::DamageCalcUserAbility.add(:STEEPFLYING,
       mults[:base_damage_multiplier] *= 1.5 if move.function == "0C9" # Fly, Divebomb
   }
 )
+
+BattleHandlers::DamageCalcUserAbility.add(:FIRSTSTRIKE,
+  proc { |ability, user, _target, move, mults, _baseDmg, _type|
+      priority = user.battle.choices[user.index][4] || move.priority || nil
+      mults[:base_damage_multiplier] *= 1.3 if priority > 0
+  }
+)
+
+BattleHandlers::DamageCalcUserAbility.add(:HARDFALL,
+  proc { |ability, user, target, move, mults, _baseDmg, _type|
+      mults[:base_damage_multiplier] *= 1.3 if target.pbHeight > user.pbHeight
+  }
+)
