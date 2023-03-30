@@ -908,10 +908,6 @@ Color = Purple
 Pokedex = It summons the dead with its dreamy dancing. From their malice, it draws power with which to curse its enemies.
 BattlerEnemyY = 24
 #-------------------------------
-[ROCKRUFF,2]
-FormName = Dusk
-Abilities = MENTALBLOCK
-#-------------------------------
 [LYCANROC,1]
 FormName = Midnight
 Type1 = ROCK
