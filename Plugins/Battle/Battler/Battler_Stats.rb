@@ -118,6 +118,7 @@ class PokeBattle_Battler
     end
 
     def base_attack
+        return @effects[:BaseAttack] if effectActive?(:BaseAttack)
         attack_bonus = tribalBonusForStat(:ATTACK)
         if hasActiveItem?(%i[POWERLOCK POWERKEY])
             return recalcStat(:ATTACK, OFFENSIVE_LOCK_STAT) + attack_bonus
@@ -127,6 +128,7 @@ class PokeBattle_Battler
     end
 
     def base_defense
+        return @effects[:BaseDefense] if effectActive?(:BaseDefense)
         defense_bonus = tribalBonusForStat(:DEFENSE)
         if hasActiveItem?(:GUARDLOCK)
             return recalcStat(:DEFENSE, DEFENSIVE_LOCK_STAT) + defense_bonus
@@ -138,6 +140,7 @@ class PokeBattle_Battler
     end
 
     def base_special_attack
+        return @effects[:BaseSpecialAttack] if effectActive?(:BaseSpecialAttack)
         spatk_bonus = tribalBonusForStat(:SPECIAL_ATTACK)
         if hasActiveItem?(%i[ENERGYLOCK ENERGYKEY])
             return recalcStat(:SPECIAL_ATTACK, OFFENSIVE_LOCK_STAT) + spatk_bonus
@@ -147,6 +150,7 @@ class PokeBattle_Battler
     end
 
     def base_special_defense
+        return @effects[:BaseSpecialDefense] if effectActive?(:BaseSpecialDefense)
         spdef_bonus = tribalBonusForStat(:SPECIAL_DEFENSE)
         if hasActiveItem?(:WILLLOCK)
             return recalcStat(:SPECIAL_DEFENSE, DEFENSIVE_LOCK_STAT) + spdef_bonus
@@ -158,6 +162,7 @@ class PokeBattle_Battler
     end
 
     def base_speed
+        return @effects[:BaseSpeed] if effectActive?(:BaseSpeed)
         speed_bonus = tribalBonusForStat(:SPEED)
         return @speed + speed_bonus
     end

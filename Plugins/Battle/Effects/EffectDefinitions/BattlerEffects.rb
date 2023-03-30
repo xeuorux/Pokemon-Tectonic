@@ -731,9 +731,42 @@ GameData::BattleEffect.register_effect(:Battler, {
     :id => :PowerTrick,
     :real_name => "Power Tricked",
     :baton_passed => true,
-    :apply_proc => proc do |_battle, battler, _value|
-        battler.attack, battler.defense = battler.defense, battler.attack
-    end,
+})
+
+GameData::BattleEffect.register_effect(:Battler, {
+    :id => :EnergyTrick,
+    :real_name => "Energy Tricked",
+    :baton_passed => true,
+})
+
+GameData::BattleEffect.register_effect(:Battler, {
+    :id => :BaseAttack,
+    :real_name => "Base Attack Set",
+    :baton_passed => true,
+})
+
+GameData::BattleEffect.register_effect(:Battler, {
+    :id => :BaseSpecialAttack,
+    :real_name => "Base Sp. Atk Set",
+    :baton_passed => true,
+})
+
+GameData::BattleEffect.register_effect(:Battler, {
+    :id => :BaseSpecialAttack,
+    :real_name => "Base Sp. Atk Set",
+    :baton_passed => true,
+})
+
+GameData::BattleEffect.register_effect(:Battler, {
+    :id => :BaseSpecialDefense,
+    :real_name => "Base Sp. Def Set",
+    :baton_passed => true,
+})
+
+GameData::BattleEffect.register_effect(:Battler, {
+    :id => :BaseSpeed,
+    :real_name => "Base Speed Set",
+    :baton_passed => true,
 })
 
 GameData::BattleEffect.register_effect(:Battler, {

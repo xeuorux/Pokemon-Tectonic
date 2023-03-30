@@ -373,6 +373,7 @@ class PokeBattle_Battler
         oldDmg = @totalhp - @hp
         self.form = newForm
         pokemon.forced_form = newForm if boss?
+        disableBaseStatEffects
         pbUpdate(true)
         @hp = @totalhp - oldDmg
         @hp = 1 if @hp < 1
@@ -530,6 +531,14 @@ class PokeBattle_Battler
         end
     end
 
+    def disableBaseStatEffects
+        disableEffect(:BaseAttack)
+        disableEffect(:BaseSpecialAttack)
+        disableEffect(:BaseDefense)
+        disableEffect(:BaseSpecialDefense)
+        disableEffect(:BaseSpeed)
+    end
+
     def pbTransform(target)
         oldAbilities = abilities.clone
         applyEffect(:Transform)
@@ -551,6 +560,7 @@ class PokeBattle_Battler
             @moves[i] = PokeBattle_Move.from_pokemon_move(@battle, Pokemon::Move.new(m.id))
         end
         disableEffect(:Disable)
+        disableBaseStatEffects
         @effects[:WeightChange] = target.effects[:WeightChange]
         refreshDataBox
         @battle.pbDisplay(_INTL("{1} transformed into {2}!", pbThis, target.pbThis(true)))

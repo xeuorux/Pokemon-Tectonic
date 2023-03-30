@@ -1616,7 +1616,7 @@ Pokemon = NIDOQUEEN,43
 Pokemon = ELECTIVIRE,42
     AbilityIndex = 1 # Adrenaline Rush
 Pokemon = KABUTOPS,43
-    AbilityIndex = 1 # Impervious
+    AbilityIndex = 1 # Unafraid
     Item = MUSCLEBAND
 #-------------------------------
 [BIRDKEEPER_M,Kendall]
@@ -1890,7 +1890,7 @@ Pokemon = BUNEARY,70
 Pokemon = WOOLOO,70
     AbilityIndex = 0 # Fluffy
 Pokemon = BUNEARY,70
-    AbilityIndex = 0 # Break Through
+    AbilityIndex = 0 # Unafraid
 Pokemon = PIKACHU,70
     Form = 14
     AbilityIndex = 1 # Break Through
@@ -2611,7 +2611,7 @@ Pokemon = MILLIBLAZE,42
 #-------------------------------
 [WORKER2,Hugo]
 Pokemon = COFAGRIGUS,41
-    AbilityIndex = 1 # Heart of Justice
+    AbilityIndex = 1 # Unafraid
 Pokemon = ASANDSLASH,41
     AbilityIndex = 1 # Ice Scales
 Pokemon = TAUROS,42
@@ -5285,7 +5285,7 @@ Pokemon = SLAKING,63
 #-------------------------------
 [GARDENER,Larry]
 Pokemon = KABUTOPS,63
-    AbilityIndex = 1 # Impervious
+    AbilityIndex = 1 # Unafraid
 Pokemon = REAVOR,63
     AbilityIndex = 1 # Exo-Adaption
     Item = ORANBERRY

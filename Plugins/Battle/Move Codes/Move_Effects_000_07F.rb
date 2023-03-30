@@ -1366,37 +1366,33 @@ class PokeBattle_Move_055 < PokeBattle_Move
 
     def getEffectScore(user, target)
         score = 0
-        equal = true
         GameData::Stat.each_battle do |s|
             stagediff = target.stages[s.id] - user.stages[s.id]
             score += stagediff * 10
-            equal = false if stagediff != 0
         end
-        score = 0 if equal
         return score
     end
 end
 
 #===============================================================================
-# For 10 rounds, user's and ally's stat stages cannot be lowered by foes. (Mist)
+# Swaps the user's Sp Attack and Sp Def stats. (Energy Trick)
 #===============================================================================
 class PokeBattle_Move_056 < PokeBattle_Move
-    def pbMoveFailed?(user, _targets, show_message)
-        if user.pbOwnSide.effectActive?(:Mist)
-            if show_message
-                @battle.pbDisplay(_INTL("But it failed, since #{user.pbTeam(true)} is already shrouded in mist!"))
-            end
-            return true
-        end
-        return false
-    end
-
     def pbEffectGeneral(user)
-        user.pbOwnSide.applyEffect(:Mist, 10)
+        baseSpAtk = user.base_special_attack
+        baseSpDef = user.base_special_defense
+        user.effects[:BaseSpecialAttack] = baseSpDef
+        user.effects[:BaseSpecialDefense] = baseSpAtk
+        user.effects[:EnergyTrick] = !user.effects[:EnergyTrick]
+        @battle.pbDisplay(_INTL("{1} switched its base Sp. Atk and Sp. Def!", user.pbThis))
     end
 
-    def getEffectScore(_user, _target)
-        return 50
+    def getEffectScore(user, _target)
+        return 0 if user.effectActive?(:EnergyTrick) # No flip-flopping
+        baseSpAtk = user.base_special_attack
+        baseSpDef = user.base_special_defense
+        return 100 if baseSpDef > baseSpAtk # Prefer a higher Attack
+        return 0
     end
 end
 
@@ -1405,46 +1401,46 @@ end
 #===============================================================================
 class PokeBattle_Move_057 < PokeBattle_Move
     def pbEffectGeneral(user)
-        user.attack, user.defense = user.defense, user.attack
+        baseAttack = user.base_attack
+        baseDefense = user.base_defense
+        user.effects[:BaseAttack] = baseDefense
+        user.effects[:BaseDefense] = baseAttack
         user.effects[:PowerTrick] = !user.effects[:PowerTrick]
-        @battle.pbDisplay(_INTL("{1} switched its Attack and Defense!", user.pbThis))
+        @battle.pbDisplay(_INTL("{1} switched its base Attack and Defense!", user.pbThis))
     end
 
     def getEffectScore(user, _target)
-        score = 0
-        aatk = user.pbAttack(true)
-        adef = user.pbDefense(true)
-        if aatk == adef || user.effectActive?(:PowerTrick) # No flip-flopping
-            return 0
-        elsif adef > aatk # Prefer a higher Attack
-            return 100
-        else
-            return 0
-        end
+        return 0 if user.effectActive?(:PowerTrick) # No flip-flopping
+        baseAttack = user.base_attack
+        baseDefense = user.base_defense
+        return 100 if baseDefense > baseAttack # Prefer a higher Attack
+        return 0
     end
 end
 
 #===============================================================================
-# Averages the user's and target's Attack.
-# Averages the user's and target's Special Attack. (Power Split)
+# Averages the user's and target's base Attack.
+# Averages the user's and target's base Special Attack. (Power Split)
 #===============================================================================
 class PokeBattle_Move_058 < PokeBattle_Move
     def pbEffectAgainstTarget(user, target)
-        newatk   = ((user.attack + target.attack) / 2).floor
-        newspatk = ((user.spatk + target.spatk) / 2).floor
-        user.attack = target.attack = newatk
-        user.spatk  = target.spatk  = newspatk
-        @battle.pbDisplay(_INTL("{1} shared its power with the target!", user.pbThis))
+        newAtk   = ((user.base_attack + target.base_attack) / 2).floor
+        newSpAtk = ((user.base_special_attack + target.base_special_attack) / 2).floor
+        user.applyEffect(:BaseAttack,newAtk)
+        target.applyEffect(:BaseAttack,newAtk)
+        user.applyEffect(:BaseSpecialAttack,newSpAtk)
+        target.applyEffect(:BaseSpecialAttack,newSpAtk)
+        @battle.pbDisplay(_INTL("{1} averaged its base attacking stats with the target!", user.pbThis))
     end
 
     def getEffectScore(user, target)
-        aatk = user.pbAttack(true)
-        aspatk = user.pbSpAtk(true)
-        oatk = target.pbAttack(true)
-        ospatk = target.pbSpAtk(true)
-        if aatk < oatk && aspatk < ospatk
-            return 100
-        elsif aatk + aspatk < oatk + ospatk
+        userAttack = user.base_attack
+        userSpAtk = user.base_special_attack
+        targetAttack = target.base_attack
+        targetSpAtk = target.base_special_attack
+        if userAttack < targetAttack && userSpAtk < targetSpAtk
+            return 120
+        elsif userAttack + userSpAtk < targetAttack + targetSpAtk
             return 80
         else
             return 0
@@ -1453,26 +1449,28 @@ class PokeBattle_Move_058 < PokeBattle_Move
 end
 
 #===============================================================================
-# Averages the user's and target's Defense.
-# Averages the user's and target's Special Defense. (Guard Split)
+# Averages the user's and target's base Defense.
+# Averages the user's and target's base Special Defense. (Guard Split)
 #===============================================================================
 class PokeBattle_Move_059 < PokeBattle_Move
     def pbEffectAgainstTarget(user, target)
-        newdef   = ((user.defense + target.defense) / 2).floor
-        newspdef = ((user.spdef + target.spdef) / 2).floor
-        user.defense = target.defense = newdef
-        user.spdef   = target.spdef   = newspdef
-        @battle.pbDisplay(_INTL("{1} shared its guard with the target!", user.pbThis))
+        newDef   = ((user.base_defense + target.base_defense) / 2).floor
+        newSpDef = ((user.base_special_defense + target.base_special_defense) / 2).floor
+        user.applyEffect(:BaseDefense,newDef)
+        target.applyEffect(:BaseDefense,newDef)
+        user.applyEffect(:BaseSpecialDefense,newSpDef)
+        target.applyEffect(:BaseSpecialDefense,newSpDef)
+        @battle.pbDisplay(_INTL("{1} averaged its base defensive stats with the target!", user.pbThis))
     end
 
     def getEffectScore(user, target)
-        adef = user.pbDefense(true)
-        aspdef = user.pbSpDef(true)
-        odef = target.pbDefense(true)
-        ospdef = target.pbSpDef(true)
-        if adef < odef && aspdef < ospdef
-            return 100
-        elsif adef + aspdef < odef + ospdef
+        userDefense = user.base_defense
+        userSpDef = user.base_special_defense
+        targetDefense = target.base_defense
+        targetSpDef = target.base_special_defense
+        if userDefense < targetDefense && userSpDef < targetSpDef
+            return 120
+        elsif userDefense + userSpDef < targetDefense + targetSpDef
             return 80
         else
             return 0
