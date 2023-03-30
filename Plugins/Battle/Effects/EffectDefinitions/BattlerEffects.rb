@@ -752,8 +752,8 @@ GameData::BattleEffect.register_effect(:Battler, {
 })
 
 GameData::BattleEffect.register_effect(:Battler, {
-    :id => :BaseSpecialAttack,
-    :real_name => "Base Sp. Atk Set",
+    :id => :BaseDefense,
+    :real_name => "Base Defense Set",
     :baton_passed => true,
 })
 
