@@ -1,7 +1,7 @@
 ﻿# See the documentation on the wiki to learn how to edit this file.
 #-------------------------------
 [0]
-Name = Makya
+Name = 
 Filename = mapRegion2.png
 Point = 22,18,Casaba Villa,,,,,
 Point = 22,17,Scenic Trail,,,,,
@@ -64,7 +64,7 @@ Point = 16,7,Canal Desert,,,,,
 Point = 15,7,Canal Desert,,,,,
 Point = 15,6,Eleig Stretch,,,,,
 Point = 14,6,Eleig Stretch,,,,,
-Point = 13,6,Eleig Stretch,,,,,
+Point = 13,6,Riverside Houses,,,,,
 Point = 10,6,Eleig River Crossing,,,,,
 Point = 10,7,Eleig River Crossing,,,,,
 Point = 10,5,Eleig River Crossing,,,,,
@@ -102,3 +102,4 @@ Point = 9,11,Ruins Digsite,,,,,
 Point = 5,12,Barren Crater,,,,,
 Point = 18,13,,,,,,
 Point = 16,8,Carnation Graves,,,,,
+Point = 14,2,Prizca Castle,,,,,
