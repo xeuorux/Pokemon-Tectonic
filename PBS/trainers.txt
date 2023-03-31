@@ -1337,6 +1337,26 @@ Pokemon = MANDIBUZZ,35
     AbilityIndex = 0 # Impervious
     Item = LEFTOVERS
 #-------------------------------
+[BATTLEGIRL3,Kryska]
+Pokemon = GOGOAT,35
+    AbilityIndex = 1 # Rock Climber
+Pokemon = WARTORTLE,35
+    AbilityIndex = 1 # Mega Launcher
+Pokemon = PINCURCHIN,35
+    AbilityIndex = 1 # Spinesplode
+Pokemon = HQWILFISH,35
+    AbilityIndex = 1 # Venom Gorger
+#-------------------------------
+[PSYCHIC_M3,Boban]
+Pokemon = SWOOBAT,35
+    AbilityIndex = 0 # Defiant
+Pokemon = LOMBRE,35
+    AbilityIndex = 0 # Fiesta
+Pokemon = LUCARIO,35
+    AbilityIndex = 1 # Inner Focus
+Pokemon = HAVALUGG,35
+    AbilityIndex = 1 # Follow Through
+#-------------------------------
 [DRAGONTAMER,Georgius]
 Pokemon = DRUDDIGON,25
     Moves = STANDTOGETHER,CRIPPLINGBREATH
