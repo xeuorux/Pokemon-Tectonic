@@ -452,7 +452,11 @@ module BattleHandlers
     end
 
     def self.triggerTargetItemOnHit(item, user, target, move, battle)
-        TargetItemOnHit.trigger(item, user, target, move, battle)
+        TargetItemOnHit.trigger(item, user, target, move, battle, false)
+    end
+
+    def self.triggerTargetItemOnHitAI(item, user, target, move, battle, numHits)
+        return TargetItemOnHit.trigger(item, user, target, move, battle, true, numHits) || 0
     end
 
     def self.triggerTargetItemOnHitPositiveBerry(item, battler, battle, forced)

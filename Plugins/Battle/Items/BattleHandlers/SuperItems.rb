@@ -51,7 +51,7 @@ BattleHandlers::TargetItemOnHit.copy(:HIVISJACKET,:STRIKECORSET)
 
 # Jagged Helmet
 BattleHandlers::TargetItemOnHit.add(:JAGGEDHELMET,
-    proc { |item,user,target,move,battle|
+    proc { |item,user,target,move,battle,aiChecking,aiNumHits|
         next unless move.physicalMove?
         next if !user.takesIndirectDamage?
         battle.pbDisplay(_INTL("{1} was badly hurt by the {2}!",user.pbThis,getItemName(item)))
@@ -59,8 +59,8 @@ BattleHandlers::TargetItemOnHit.add(:JAGGEDHELMET,
     }
 )
   
-BattleHandlers::TargetItemOnHit.add(:RUPTUREDRADIO,
-    proc { |item,user,target,move,battle|
+BattleHandlers::TargetItemOnHit.add(:LUSTROUSJACKET,
+    proc { |item,user,target,move,battle,aiChecking,aiNumHits|
         next unless move.specialMove?
         next if !user.takesIndirectDamage?
         battle.pbDisplay(_INTL("{1} was badly hurt by the {2}!",user.pbThis,getItemName(item)))

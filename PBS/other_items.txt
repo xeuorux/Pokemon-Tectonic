@@ -7,8 +7,8 @@
 2006,ALLPURPOSEVEST,All-Purpose Vest,All-Purpose Vests,5,0,"An item to be held by a Pokémon. The holder's defenses are raised 50% but it can't use status moves.",0,0,0
 2007,STRIKECORSET,Strike Corset,Strike Corsets,5,0,"The holder's Defense is raised 50%, and it harms those who use special attacks against it for 1/6th HP.",0,0,0
 2008,ASSAULTCORSET,Assault Corset,Assault Corsets,5,0,"The holder's Sp. Def is raised 50%, and it harms those who use physical attacks against it for 1/6th HP.",0,0,0
-2009,JAGGEDHELMET,Jagged Helmet,Jagged Helmets,5,0,"Damages attackers for 1/3th of their HP when they hit the holder with physical attacks.",0,0,0
-2010,RUPTUREDRADIO,Ruptured Radio,Ruptured Radios,5,0,"Damages attackers for 1/3th of their HP when they hit the holder with special attacks.",0,0,0
+2009,JAGGEDHELMET,Jagged Helmet,Jagged Helmets,5,0,"Damages attackers for 1/3rd of their HP when they hit the holder with physical attacks.",0,0,0
+2010,LUSTROUSJACKET,Lustrous Radio,Lustrous Radios,5,0,"Damages attackers for 1/3rd of their HP when they hit the holder with special attacks.",0,0,0
 2011,SITREONBERRY,Sitreon Berry,Sitreon Berries,5,0,"If held by a Pokémon, it heals its HP by 50% at half health.",0,0,5
 2012,ROSELIFEAST,Roseli Feast,Roseli Feasts,5,0,"Halves the damage from one supereffective Fairy-type attack. Holder heals 1/16th HP each turn.",0,0,5
 2013,OCCAFEAST,Occa Feast,Occa Feasts,5,0,"Halves the damage from one supereffective Fire-type attack. Holder heals 1/16th HP each turn.",0,0,5

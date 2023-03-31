@@ -134,7 +134,8 @@ class PokeBattle_AI
             end
 
             numHits = move.numberOfHits(user, [target], true).ceil
-            # Account for the ability of the user
+
+            # Account for triggered abilities of the user
             if user.aiKnowsAbility?
                 begin
                     scoreModifierUserAbility = 0
@@ -143,13 +144,13 @@ class PokeBattle_AI
                             BattleHandlers.triggerUserAbilityOnHitAI(ability, user, target, move, @battle, numHits)
                     end
                     score += scoreModifierUserAbility
-                    echoln("[MOVE SCORING] #{user.pbThis}'s #{numHits} hits against #{target.pbThis(false)} adjusts the score by #{scoreModifierUserAbility} due to the user's ability") if scoreModifierUserAbility != 0
+                    echoln("[MOVE SCORING] #{user.pbThis}'s #{numHits} hits against #{target.pbThis(false)} adjusts the score by #{scoreModifierUserAbility} due to the user's abilities") if scoreModifierUserAbility != 0
                 rescue StandardError => exception
                     pbPrintException($!) if $DEBUG
                 end
             end
 
-            # Account for the ability of the target
+            # Account for the triggered abilities of the target
             if target.aiKnowsAbility? && !user.hasActiveItem?(:PROXYFIST)
                 begin
                     scoreModifierTargetAbility = 0
@@ -158,10 +159,23 @@ class PokeBattle_AI
                             BattleHandlers.triggerTargetAbilityOnHitAI(ability, user, target, move, @battle, numHits)
                     end
                     score += scoreModifierTargetAbility
-                    echoln("[MOVE SCORING] #{user.pbThis}'s #{numHits} hits against #{target.pbThis(false)} adjusts the score by #{scoreModifierTargetAbility} due to the target's ability") if scoreModifierTargetAbility != 0
+                    echoln("[MOVE SCORING] #{user.pbThis}'s #{numHits} hits against #{target.pbThis(false)} adjusts the score by #{scoreModifierTargetAbility} due to the target's abilities") if scoreModifierTargetAbility != 0
                 rescue StandardError => exception
                     pbPrintException($!) if $DEBUG
                 end
+            end
+
+            # Account for the items of the target
+            begin
+                scoreModifierTargetItem = 0
+                target.eachActiveItem do |item|
+                    scoreModifierTargetItem += 
+                        BattleHandlers.triggerTargetItemOnHitAI(item, user, target, move, @battle, numHits)
+                end
+                score += scoreModifierTargetItem
+                echoln("[MOVE SCORING] #{user.pbThis}'s #{numHits} hits against #{target.pbThis(false)} adjusts the score by #{scoreModifierTargetAbility} due to the target's items") if scoreModifierTargetAbility != 0
+            rescue StandardError => exception
+                pbPrintException($!) if $DEBUG
             end
 
             score *= 0.75 if policies.include?(:DISLIKEATTACKING)
