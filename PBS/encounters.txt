@@ -845,6 +845,14 @@ Land,20
     20,TORKOAL,17,20
     20,TURTONATOR,17,20
 #-------------------------------
+[342] # Carnation Tower F1
+LandSparse,20
+    20,ABSOL,32,34
+    20,FALINKS,32,34
+    20,FLABEBE_4,32,34
+    20,KARRABLAST,32,34
+    20,SHELMET,32,34
+#-------------------------------
 [349] # UB Portal
 Land,20
     13,BUZZWOLE,56,59

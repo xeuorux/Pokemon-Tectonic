@@ -68,10 +68,19 @@ def pbReceiveItem(item, quantity = 1)
     showItemDescription(item.id)
     if $PokemonBag.pbStoreItem(item, quantity) # If item can be added
         pbMessage(_INTL("You put the {1} away\\nin the <icon=bagPocket{2}>\\c[1]{3} Pocket\\c[0].",
-           itemname, pocket, PokemonBag.pocketNames[pocket]))
+                itemname, pocket, PokemonBag.pocketNames[pocket]))
         return true
     end
     return false # Can't add the item
+end
+
+def combineSigil
+    if pbHasItem?(:SIGILLEFTHALF) && pbHasItem?(:SIGILRIGHTHALF)
+        pbMessage(_INTL("You combine the #{getItemName(:SIGILLEFTHALF)} and the #{getItemName(:SIGILRIGHTHALF)}."))
+        pbReceiveItem(:CARNATIONSIGIL)
+        $PokemonBag.pbDeleteItem(:SIGILLEFTHALF)
+        $PokemonBag.pbDeleteItem(:SIGILRIGHTHALF)
+    end
 end
 
 class PokemonGlobalMetadata

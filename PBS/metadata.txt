@@ -1820,6 +1820,12 @@ Bicycle = true
 MapPosition = 0,14,11
 BattleBack = wcave
 #-------------------------------
+[342]
+# Carnation Tower F1
+Outdoor = false
+ShowArea = true
+Bicycle = true
+#-------------------------------
 [351]
 # Lainie's Mansion
 Outdoor = false
@@ -1875,3 +1881,15 @@ Outdoor = false
 ShowArea = true
 Bicycle = true
 BattleBack = distortion
+#-------------------------------
+[363]
+# Carnation Tower F2
+Outdoor = false
+ShowArea = true
+Bicycle = true
+#-------------------------------
+[364]
+# Carnation Tower F3
+Outdoor = false
+ShowArea = true
+Bicycle = true

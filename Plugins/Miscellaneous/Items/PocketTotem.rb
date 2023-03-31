@@ -29,6 +29,6 @@ ItemHandlers::ConfirmUseInField.add(:POCKETTOTEM,proc { |item|
 })
 
 ItemHandlers::UseInField.add(:POCKETTOTEM,proc { |item|
-  $waypoints_tracker.warpByWaypoints
+  $waypoints_tracker.warpByWaypoints(true)
   next 1
 })

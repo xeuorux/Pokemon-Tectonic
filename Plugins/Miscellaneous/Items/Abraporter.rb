@@ -1,40 +1,32 @@
-ItemHandlers::UseFromBag.add(:ABRAPORTER,proc { |item|
+def canTeleport?(showMessage = false)
   if $game_player.pbHasDependentEvents?
-    pbMessage(_INTL("It can't be used when you have someone with you."))
-    next 0
+    pbMessage(_INTL("It can't be used when you have someone with you.")) if showMessage
+    return false
   end
-  if !GameData::MapMetadata.exists?($game_map.map_id)
-    next 0
+  if GameData::MapMetadata.get($game_map.map_id)&.teleport_blocked
+    pbMessage(_INTL("You are prevented from teleporting due to an unknown force.")) if showMessage
+    return false
   end
-  if GameData::MapMetadata.get($game_map.map_id).teleport_blocked
-	  pbMessage(_INTL("You are prevented from teleporting due to an unknown force."))
-    next 0
-  end
+  return true
+end
+
+ItemHandlers::UseFromBag.add(:ABRAPORTER,proc { |item|
+  next 0 unless canTeleport?(true)
   healing = $PokemonGlobal.healingSpot
   healing = GameData::Metadata.get.home if !healing   # Home
-  if !healing
-    pbMessage(_INTL("Can't use that here."))
+  unless healing
+    pbMessage(_INTL("You have nowhere to teleport to!"))
     next 0
   end
   next 2
 })
 
 ItemHandlers::ConfirmUseInField.add(:ABRAPORTER,proc { |item|
-  if $game_player.pbHasDependentEvents?
-    pbMessage(_INTL("It can't be used when you have someone with you."))
-    next false
-  end
-  if !GameData::MapMetadata.exists?($game_map.map_id)
-    next false
-  end
-  if GameData::MapMetadata.get($game_map.map_id).teleport_blocked
-	pbMessage(_INTL("You are prevented from teleporting due to an unknown force."))
-    next false
-  end
+  next false unless canTeleport?(true)
   healing = $PokemonGlobal.healingSpot
   healing = GameData::Metadata.get.home if !healing   # Home
-  if !healing
-    pbMessage(_INTL("Can't use that here."))
+  unless healing
+    pbMessage(_INTL("You have nowhere to teleport to!"))
     next false
   end
   
@@ -45,7 +37,7 @@ ItemHandlers::ConfirmUseInField.add(:ABRAPORTER,proc { |item|
 ItemHandlers::UseInField.add(:ABRAPORTER,proc { |item|
   healing = $PokemonGlobal.healingSpot
   healing = GameData::Metadata.get.home if !healing   # Home
-  if !healing
+  unless healing
     pbMessage(_INTL("Can't use that here."))
     next 0
   end

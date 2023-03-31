@@ -92,7 +92,7 @@ class WaypointsTracker
 		end
 	end
 
-	def warpByWaypoints()
+	def warpByWaypoints(skipMessage = false)
 		if @activeWayPoints.length == 0
 			pbMessage(_INTL("#{NO_WAYPOINTS_MESSAGE}"))
 			return
@@ -112,7 +112,7 @@ class WaypointsTracker
 				chosenLocation = @activeWayPoints[chosenLocationName]
 			end
 		else
-			pbMessage(_INTL("#{WAYPOINT_CHOOSE_MESSAGE}"))
+			pbMessage(_INTL("#{WAYPOINT_CHOOSE_MESSAGE}")) unless skipMessage
 			chosenTotem = nil
 			pbFadeOutIn {
 				scene = PokemonRegionMap_Scene.new(-1,false)
