@@ -263,7 +263,7 @@ class PokeBattle_Battler
             @spdef        = @pokemon.spdef
             @speed        = @pokemon.speed
             if fullChange
-                unless bossType
+                unless @pokemon.bossType
                     @type1 = @pokemon.type1
                     @type2 = @pokemon.type2
                 end

@@ -71,7 +71,7 @@ BattleHandlers::TargetItemOnHit.add(:AIRBALLOON,
 
 BattleHandlers::TargetItemOnHit.add(:KEEBERRY,
   proc { |item, user, target, move, battle, aiChecking, aiNumHits|
-      next multiStatUpEffectScore([:DEFENSE, target.hasActiveAbilityAI?(:RIPEN) ? 4 : 2], user, target) if aiChecking
+      next getMultiStatUpEffectScore([:DEFENSE, target.hasActiveAbilityAI?(:RIPEN) ? 4 : 2], user, target) if aiChecking
       next unless move.physicalMove?
       if BattleHandlers.triggerTargetItemOnHitPositiveBerry(item, target, battle, false)
           target.pbHeldItemTriggered(item)
@@ -81,7 +81,7 @@ BattleHandlers::TargetItemOnHit.add(:KEEBERRY,
 
 BattleHandlers::TargetItemOnHit.add(:MARANGABERRY,
   proc { |item, user, target, move, battle, aiChecking, aiNumHits|
-      next multiStatUpEffectScore([:SPECIAL_DEFENSE, target.hasActiveAbilityAI?(:RIPEN) ? 4 : 2], user, target) if aiChecking
+      next getMultiStatUpEffectScore([:SPECIAL_DEFENSE, target.hasActiveAbilityAI?(:RIPEN) ? 4 : 2], user, target) if aiChecking
       next unless move.specialMove?
       if BattleHandlers.triggerTargetItemOnHitPositiveBerry(item, target, battle, false)
           target.pbHeldItemTriggered(item)
@@ -92,7 +92,7 @@ BattleHandlers::TargetItemOnHit.add(:MARANGABERRY,
 BattleHandlers::TargetItemOnHit.add(:WEAKNESSPOLICY,
   proc { |item, user, target, move, battle, aiChecking, aiNumHits|
       statUp = [:ATTACK, 2, :SPECIAL_ATTACK, 2]
-      next multiStatUpEffectScore(statUp, user, target) if aiChecking
+      next getMultiStatUpEffectScore(statUp, user, target) if aiChecking
       next if target.damageState.disguise || target.damageState.iceface
       next unless Effectiveness.super_effective?(target.damageState.typeMod)
       next if !target.pbCanRaiseStatStage?(:ATTACK, target) &&
