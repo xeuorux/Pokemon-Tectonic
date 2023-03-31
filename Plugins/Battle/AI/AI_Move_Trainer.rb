@@ -375,7 +375,7 @@ class PokeBattle_AI
 
         if playerTribalBonus.hasTribeBonus?(:DECEIVER)
             realDamage *= 1.2
-            echoln("[MOVE SCORING] #{user.pbThis} is overestimating its damage by 20% due to the deceiver tribal bonus")
+            echoln("[MOVE SCORING] #{user.pbThis} is overestimating its damage by 20 percent due to the deceiver tribal bonus")
         end
 
         # Convert damage to percentage of target's remaining HP
