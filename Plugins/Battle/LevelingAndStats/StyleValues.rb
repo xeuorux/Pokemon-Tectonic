@@ -34,9 +34,15 @@ class StyleValueScene
         UIHelper.pbConfirm(@sprites["msgwindow"], msg) { pbUpdate }
     end
 
+    def pbShowCommands(helptext,commands,initcmd=0)
+        UIHelper.pbShowCommands(@sprites["msgwindow"], helptext, commands, initcmd) { pbUpdate }
+    end
+
     def pbUpdate
         pbUpdateSpriteHash(@sprites)
     end
+
+    BASE_X = 48
 
     def pbStartScene(pokemon)
         @pokemon = pokemon
@@ -60,11 +66,11 @@ class StyleValueScene
         # Create the left and right arrow sprites which surround the selected index
         @index = 0
         @sprites["leftarrow"] = AnimatedSprite.new("Graphics/Pictures/leftarrow", 8, 40, 28, 2, @viewport)
-        @sprites["leftarrow"].x       = 76
+        @sprites["leftarrow"].x       = BASE_X + 2
         @sprites["leftarrow"].y       = 78
         @sprites["leftarrow"].play
         @sprites["rightarrow"] = AnimatedSprite.new("Graphics/Pictures/rightarrow", 8, 40, 28, 2, @viewport)
-        @sprites["rightarrow"].x       = 232
+        @sprites["rightarrow"].x       = BASE_X + 158
         @sprites["rightarrow"].y       = 78
         @sprites["rightarrow"].play
 
@@ -82,90 +88,113 @@ class StyleValueScene
         base = Color.new(248, 248, 248)
         shadow = Color.new(104, 104, 104)
 
-        styleValueLabelX = 112
+        subtleBase = Color.new(200,200,200)
+        subtleShadow = Color.new(140,140,140)
+
+        styleValueLabelX = BASE_X + 38
         styleValueX = styleValueLabelX + 120
         styleValueY = 52
 
         # Place the pokemon's name
         textpos = []
-        # textpos = [[_INTL("{1}", @pokemon.name),styleValueLabelX,2,0,Color.new(88,88,80),Color.new(168,184,184)]]
+        textpos.push([_INTL("Adjust {1}'s Style", @pokemon.name),Graphics.width / 2,0,2,Color.new(88,88,80),Color.new(168,184,184)])
 
         # Place the pokemon's style values (stored as EVs)
+        numberBase = Color.new(64, 64, 64)
+        numberShadow = Color.new(176, 176, 176)
         textpos.concat([
                            [_INTL("Style Values"), styleValueLabelX, styleValueY, 0, base, shadow],
                            [_INTL("HP"), styleValueLabelX, styleValueY + 40, 0, base, shadow],
-                           [format("%d", @pokemon.ev[:HP]), styleValueX, styleValueY + 40, 1, Color.new(64, 64, 64),
-                            Color.new(176, 176, 176),],
+                           [format("%d", @pokemon.ev[:HP]), styleValueX, styleValueY + 40, 1, numberBase,
+                            numberShadow,],
                            [_INTL("Attack"), styleValueLabelX, styleValueY + 40 + 32 * 1, 0, base, shadow],
-                           [format("%d", @pokemon.ev[:ATTACK]), styleValueX, styleValueY + 40 + 32 * 1, 1, Color.new(64, 64, 64),
-                            Color.new(176, 176, 176),],
+                           [format("%d", @pokemon.ev[:ATTACK]), styleValueX, styleValueY + 40 + 32 * 1, 1, numberBase,
+                            numberShadow,],
                            [_INTL("Defense"), styleValueLabelX, styleValueY + 40 + 32 * 2, 0, base, shadow],
-                           [format("%d", @pokemon.ev[:DEFENSE]), styleValueX, styleValueY + 40 + 32 * 2, 1, Color.new(64, 64, 64),
-                            Color.new(176, 176, 176),],
+                           [format("%d", @pokemon.ev[:DEFENSE]), styleValueX, styleValueY + 40 + 32 * 2, 1, numberBase,
+                            numberShadow,],
                            [_INTL("Sp. Atk"), styleValueLabelX, styleValueY + 40 + 32 * 3, 0, base, shadow],
-                           [format("%d", @pokemon.ev[:SPECIAL_ATTACK]), styleValueX, styleValueY + 40 + 32 * 3, 1, Color.new(64, 64, 64),
-                            Color.new(176, 176, 176),],
+                           [format("%d", @pokemon.ev[:SPECIAL_ATTACK]), styleValueX, styleValueY + 40 + 32 * 3, 1, numberBase,
+                            numberShadow,],
                            [_INTL("Sp. Def"), styleValueLabelX, styleValueY + 40 + 32 * 4, 0, base, shadow],
-                           [format("%d", @pokemon.ev[:SPECIAL_DEFENSE]), styleValueX, styleValueY + 40 + 32 * 4, 1, Color.new(64, 64, 64),
-                            Color.new(176, 176, 176),],
+                           [format("%d", @pokemon.ev[:SPECIAL_DEFENSE]), styleValueX, styleValueY + 40 + 32 * 4, 1, numberBase,
+                            numberShadow,],
                            [_INTL("Speed"), styleValueLabelX, styleValueY + 40 + 32 * 5, 0, base, shadow],
-                           [format("%d", @pokemon.ev[:SPEED]), styleValueX, styleValueY + 40 + 32 * 5, 1, Color.new(64, 64, 64),
-                            Color.new(176, 176, 176),],
+                           [format("%d", @pokemon.ev[:SPEED]), styleValueX, styleValueY + 40 + 32 * 5, 1, numberBase,
+                           numberShadow,],
                        ])
 
         # Place the "reset all" button
         red = Color.new(250, 120, 120)
-        resetAndConfirmY = 296
+        resetAndConfirmY = 298
         textpos.push([_INTL("Free All"), styleValueLabelX - 52, resetAndConfirmY, 0, @index == 6 ? red : base,
                       shadow,])
-        textpos.push([_INTL("Confirm"), styleValueLabelX - 52, resetAndConfirmY + 40, 0, @index == 7 ? red : base,
+        textpos.push([_INTL("Confirm"), styleValueLabelX - 52, resetAndConfirmY + 38, 0, @index == 7 ? red : base,
                       shadow,])
 
         # Place the pokemon's final resultant stats
-        finalStatLabelX = styleValueLabelX + 208
-        finalStatX	= finalStatLabelX + 120
+        finalStatLabelX = styleValueLabelX + 200
+        finalStatX	= finalStatLabelX + 132
         finalStatY = 52
         textpos.concat([
                            [_INTL("Final Stats"), finalStatLabelX, finalStatY, 0, base, shadow],
                            [_INTL("HP"), finalStatLabelX, finalStatY + 40 + 32 * 0, 0, base, shadow],
-                           [format("%d", @pokemon.totalhp), finalStatX, finalStatY + 40 + 32 * 0, 1, Color.new(64, 64, 64),
-                            Color.new(176, 176, 176),],
+                           [format("%d", @pokemon.totalhp), finalStatX, finalStatY + 40 + 32 * 0, 1, numberBase,
+                            numberShadow,],
                            [_INTL("Attack"), finalStatLabelX, finalStatY + 40 + 32 * 1, 0, base, shadow],
-                           [format("%d", @pokemon.attack), finalStatX, finalStatY + 40 + 32 * 1, 1, Color.new(64, 64, 64),
-                            Color.new(176, 176, 176),],
+                           [format("%d", @pokemon.attack), finalStatX, finalStatY + 40 + 32 * 1, 1, numberBase,
+                            numberShadow,],
                            [_INTL("Defense"), finalStatLabelX, finalStatY + 40 + 32 * 2, 0, base, shadow],
-                           [format("%d", @pokemon.defense), finalStatX, finalStatY + 40 + 32 * 2, 1, Color.new(64, 64, 64),
-                            Color.new(176, 176, 176),],
+                           [format("%d", @pokemon.defense), finalStatX, finalStatY + 40 + 32 * 2, 1, numberBase,
+                            numberShadow,],
                            [_INTL("Sp. Atk"), finalStatLabelX, finalStatY + 40 + 32 * 3, 0, base, shadow],
-                           [format("%d", @pokemon.spatk), finalStatX, finalStatY + 40 + 32 * 3, 1, Color.new(64, 64, 64),
-                            Color.new(176, 176, 176),],
+                           [format("%d", @pokemon.spatk), finalStatX, finalStatY + 40 + 32 * 3, 1, numberBase,
+                            numberShadow,],
                            [_INTL("Sp. Def"), finalStatLabelX, finalStatY + 40 + 32 * 4, 0, base, shadow],
-                           [format("%d", @pokemon.spdef), finalStatX, finalStatY + 40 + 32 * 4, 1, Color.new(64, 64, 64),
-                            Color.new(176, 176, 176),],
+                           [format("%d", @pokemon.spdef), finalStatX, finalStatY + 40 + 32 * 4, 1, numberBase,
+                            numberShadow,],
                            [_INTL("Speed"), finalStatLabelX, finalStatY + 40 + 32 * 5, 0, base, shadow],
-                           [format("%d", @pokemon.speed), finalStatX, finalStatY + 40 + 32 * 5, 1, Color.new(64, 64, 64),
-                            Color.new(176, 176, 176),],
+                           [format("%d", @pokemon.speed), finalStatX, finalStatY + 40 + 32 * 5, 1, numberBase,
+                            numberShadow,],
+                       ])
+
+        # Place the pokemon's final effective HP stats (EHP)
+        ehpLabelX = finalStatLabelX + 160
+        pehp = (@pokemon.totalhp * @pokemon.defense) / 100
+        sehp = (@pokemon.totalhp * @pokemon.spdef) / 100
+        textpos.concat([
+                           [_INTL("EHP"), ehpLabelX, finalStatY, 0, subtleBase, subtleShadow],
+                           [format("%d", pehp), ehpLabelX, finalStatY + 40 + 32 * 2, 0, subtleBase,
+                            subtleShadow,],
+                           [format("%d", sehp), ehpLabelX, finalStatY + 40 + 32 * 4, 0, subtleBase,
+                            subtleShadow,],
                        ])
 
         # Place the style value pool
-        poolXLeft = finalStatLabelX - 116
-        poolY = 296
+        poolXLeft = BASE_X + 140
+        poolY = resetAndConfirmY
         textpos.concat([
                            [_INTL("Pool"), poolXLeft, poolY, 0, base, shadow],
-                           [format("%d", @pool), poolXLeft, poolY + 40, 0, Color.new(64, 64, 64),
-                            Color.new(176, 176, 176),],
+                           [format("%d", @pool), poolXLeft, poolY + 40, 0, numberBase,
+                            numberShadow,],
                        ])
 
         # Place the style name
         styleXLeft = finalStatLabelX
-        styleNameY = 296
-        styleName = "Balanced"
+        styleNameY = resetAndConfirmY
         styleName = getStyleName(@pokemon.ev)
         textpos.concat([
                            [_INTL("Style"), styleXLeft, styleNameY, 0, base, shadow],
-                           [styleName, styleXLeft, styleNameY + 40, 0, Color.new(64, 64, 64),
-                            Color.new(176, 176, 176),],
+                           [styleName, styleXLeft, styleNameY + 40, 0, numberBase,
+                            numberShadow,],
                        ])
+
+        # Place the quick set helper
+        helperX = styleXLeft + 80
+        textpos.concat([
+                            [_INTL("ACTION/Z for"), helperX, poolY + 4, 0, subtleBase, subtleShadow],
+                            [_INTL("quick set"), helperX, poolY + 36, 0, subtleBase, subtleShadow],
+                        ])
 
         # Draw all the previously placed texts
         pbDrawTextPositions(overlay, textpos)
@@ -201,93 +230,93 @@ class StyleValueScene
         if largeStats.length == 1
             case largeStats[0]
             when :HP
-                return "Stocky"
+                return _INTL("Stocky")
             when :ATTACK
-                return "Aggressive"
+                return _INTL("Aggressive")
             when :DEFENSE
-                return "Defensive"
+                return _INTL("Defensive")
             when :SPECIAL_ATTACK
-                return "Cunning"
+                return _INTL("Cunning")
             when :SPECIAL_DEFENSE
-                return "Suspicious"
+                return _INTL("Suspicious")
             when :SPEED
-                return "Quick"
+                return _INTL("Quick")
             end
         elsif largeStats.length == 2
             case largeStats
             when %i[HP ATTACK]
-                return "Brutish"
+                return _INTL("Brutish")
             when %i[HP DEFENSE]
-                return "Armored"
+                return _INTL("Armored")
             when %i[HP SPECIAL_ATTACK]
-                return "Attuned"
+                return _INTL("Attuned")
             when %i[HP SPECIAL_DEFENSE]
-                return "Guarded"
+                return _INTL("Guarded")
             when %i[HP SPEED]
-                return "Unyielding"
+                return _INTL("Unyielding")
             when %i[ATTACK DEFENSE]
-                return "Bulky"
+                return _INTL("Bulky")
             when %i[ATTACK SPECIAL_ATTACK]
-                return "Variable"
+                return _INTL("Variable")
             when %i[ATTACK SPECIAL_DEFENSE]
-                return "Flowing"
+                return _INTL("Flowing")
             when %i[ATTACK SPEED]
-                return "Hunting"
+                return _INTL("Hunting")
             when %i[DEFENSE SPECIAL_ATTACK]
-                return "Vanguard"
+                return _INTL("Vanguard")
             when %i[DEFENSE SPECIAL_DEFENSE]
-                return "Prepared"
+                return _INTL("Prepared")
             when %i[DEFENSE SPEED]
-                return "Steady"
+                return _INTL("Steady")
             when %i[SPECIAL_ATTACK SPECIAL_DEFENSE]
-                return "Calm"
+                return _INTL("Calm")
             when %i[SPECIAL_ATTACK SPEED]
-                return "Striking"
+                return _INTL("Striking")
             when %i[SPECIAL_DEFENSE SPEED]
-                return "Spirited"
+                return _INTL("Spirited")
             end
         elsif largeStats.length == 3
             case largeStats
             when %i[HP ATTACK DEFENSE]
-                return "Blunt"
+                return _INTL("Blunt")
             when %i[HP ATTACK SPECIAL_ATTACK]
-                return "Forceful"
+                return _INTL("Forceful")
             when %i[HP ATTACK SPECIAL_DEFENSE]
-                return "Smooth"
+                return _INTL("Smooth")
             when %i[HP ATTACK SPEED]
-                return "Blitzing"
+                return _INTL("Blitzing")
             when %i[HP DEFENSE SPECIAL_ATTACK]
-                return "Fortified"
+                return _INTL("Fortified")
             when %i[HP DEFENSE SPECIAL_DEFENSE]
-                return "Precautionary"
+                return _INTL("Precautionary")
             when %i[HP DEFENSE SPEED]
-                return "Carefree"
+                return _INTL("Carefree")
             when %i[HP SPECIAL_DEFENSE SPEED]
-                return "Crafty"
+                return _INTL("Crafty")
             when %i[HP SPECIAL_ATTACK SPECIAL_DEFENSE]
-                return "Serene"
+                return _INTL("Serene")
             when %i[HP SPECIAL_ATTACK SPEED]
-                return "Energetic"
+                return _INTL("Energetic")
             when %i[ATTACK DEFENSE SPECIAL_ATTACK]
-                return "Deliberate"
+                return _INTL("Deliberate")
             when %i[ATTACK DEFENSE SPECIAL_DEFENSE]
-                return "Patient"
+                return _INTL("Patient")
             when %i[ATTACK DEFENSE SPEED]
-                return "Flanking"
+                return _INTL("Flanking")
             when %i[ATTACK SPECIAL_ATTACK SPECIAL_DEFENSE]
-                return "Strategic"
+                return _INTL("Strategic")
             when %i[ATTACK SPECIAL_ATTACK SPEED]
-                return "Opportunistic"
+                return _INTL("Opportunistic")
             when %i[ATTACK SPECIAL_DEFENSE SPEED]
-                return "Determined"
+                return _INTL("Determined")
             when %i[DEFENSE SPECIAL_ATTACK SPECIAL_DEFENSE]
-                return "Calculating"
+                return _INTL("Calculating")
             when %i[DEFENSE SPECIAL_ATTACK SPEED]
-                return "Tactical"
+                return _INTL("Tactical")
             when %i[DEFENSE SPECIAL_DEFENSE SPEED]
-                return "Protective"
+                return _INTL("Protective")
             when %i[SPECIAL_ATTACK SPECIAL_DEFENSE SPEED]
-                return "Elegant"
+                return _INTL("Elegant")
             end
         elsif largeStats.length >= 4
             echoln("This shouldn't be possible.")
@@ -431,6 +460,38 @@ class StyleValueScreen
                 elsif Input.time?(Input::LEFT) < 20_000
                     pbPlayBuzzerSE
                 end
+            elsif Input.trigger?(Input::ACTION)
+                if COMBINE_ATTACKING_STATS
+                    choices = {
+                        _INTL("Fast Attacker") => [10,20,0,20,0,20],
+                        _INTL("Physical Tank") => [10,20,20,20,0,0],
+                        _INTL("Special Tank") => [10,20,0,20,20,0],
+                        _INTL("Physical Wall") => [20,0,20,0,10,0],
+                        _INTL("Special Wall") => [20,0,10,0,20,0],
+                    }
+                else
+                    choices = {
+                        _INTL("Physical Attacker") => [10,20,0,0,0,20],
+                        _INTL("Special Attacker") => [10,0,0,20,0,20],
+                        _INTL("Physical Tank") => [10,20,20,0,0,0],
+                        _INTL("Special Tank") => [10,0,0,20,20,0],
+                        _INTL("Physical Wall") => [20,0,20,0,10,0],
+                        _INTL("Special Wall") => [20,0,10,0,20,0],
+                    }
+                end
+                windowChoices = [_INTL("Cancel")].concat(choices.keys)
+                choice = @scene.pbShowCommands(nil, windowChoices)
+                next if choice <= 0
+                statsArray = choices.values[choice-1]
+
+                statIDOrder = [:HP,:ATTACK,:DEFENSE,:SPECIAL_ATTACK,:SPECIAL_DEFENSE,:SPEED]
+                statsArray.each_with_index do |value, index|
+                    id = statIDOrder[index]
+                    pkmn.ev[id] = value
+                end
+                @pool = 0
+                @scene.pool = 0
+                updateStats(pkmn)
             end
         end
     end
