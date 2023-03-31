@@ -1179,8 +1179,7 @@ sp.form) && !Settings::DEX_SHOWS_ALL_FORMS
                     pbPlayCursorSE
                     @scroll -= 1
                     doRefresh = true
-                else
-                    Input.trigger?(Input::UP)
+                elsif Input.trigger?(Input::UP)
                     pbPlayCursorSE
                     @scroll = @scrollableLists[@horizontalScroll].length - 1
                     doRefresh = true
@@ -1190,8 +1189,7 @@ sp.form) && !Settings::DEX_SHOWS_ALL_FORMS
                     pbPlayCursorSE
                     @scroll += 1
                     doRefresh = true
-                else
-                    Input.trigger?(Input::DOWN)
+                elsif Input.trigger?(Input::DOWN)
                     pbPlayCursorSE
                     @scroll = 0
                     doRefresh = true
@@ -1200,22 +1198,24 @@ sp.form) && !Settings::DEX_SHOWS_ALL_FORMS
                 if @horizontalScroll > 0
                     pbPlayCursorSE
                     @horizontalScroll -= 1
+                    @scroll = 0
                     doRefresh = true
-                else
-                    Input.trigger?(Input::LEFT)
+                elsif Input.trigger?(Input::LEFT)
                     pbPlayCursorSE
                     @horizontalScroll = @scrollableLists.length - 1
+                    @scroll = 0
                     doRefresh = true
                 end
             elsif Input.repeat?(Input::RIGHT)
                 if @horizontalScroll < @scrollableLists.length - 1
                     pbPlayCursorSE
                     @horizontalScroll += 1
+                    @scroll = 0
                     doRefresh = true
-                else
-                    Input.trigger?(Input::RIGHT)
+                elsif Input.trigger?(Input::RIGHT)
                     pbPlayCursorSE
                     @horizontalScroll = 0
+                    @scroll = 0
                     doRefresh = true
                 end
             elsif Input.trigger?(Input::BACK)
