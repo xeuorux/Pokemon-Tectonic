@@ -175,7 +175,7 @@ class PokeBattle_Battle
             return
         end
         # Make sure Exp doesn't exceed the maximum
-        level_cap = LEVEL_CAPS_USED ? $game_variables[26] : growth_rate.max_level
+        level_cap = LEVEL_CAPS_USED ? getLevelCap : growth_rate.max_level
         expFinal = growth_rate.add_exp(pkmn.exp, exp)
         expLeftovers = expFinal.clamp(0, growth_rate.minimum_exp_for_level(level_cap))
         # Calculates if there is excess exp and if it can be stored

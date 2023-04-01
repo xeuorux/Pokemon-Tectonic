@@ -39,7 +39,7 @@ class PokemonGameInfoMenu < PokemonPauseMenu
 		infoCommands[cmdMainQuestHelp = infoCommands.length] = _INTL("What Next?") if defined?($main_quest_tracker)
 		infoCommands[cmdBattleGlossary = infoCommands.length] = _INTL("Battle Guide")
 		infoCommands[cmdTrainer = infoCommands.length] = _INTL("#{$Trainer.name}'s Card")
-		infoCommands[cmdLevelCap = infoCommands.length] = _INTL("Level Cap") if LEVEL_CAPS_USED && $game_variables[26] > 0 && $Trainer.party_count > 0
+		infoCommands[cmdLevelCap = infoCommands.length] = _INTL("Level Cap") if LEVEL_CAPS_USED && getLevelCap > 0 && $Trainer.party_count > 0
 		loop do
 			infoCommand = @scene.pbShowCommands(infoCommands)
 			if cmdTrainer >= 0 && infoCommand == cmdTrainer
@@ -51,7 +51,7 @@ class PokemonGameInfoMenu < PokemonPauseMenu
 					@scene.pbRefresh
 				}
 			elsif cmdLevelCap > -1 && infoCommand == cmdLevelCap
-				cap = $game_variables[26]
+				cap = getLevelCap
 				msgwindow = pbCreateMessageWindow
 				pbMessageDisplay(msgwindow, _INTL("The current level cap is {1}.", cap))
 				pbMessageDisplay(msgwindow, _INTL("Once at level {1}, your Pokémon cannot gain experience or have Candies used on them.", cap))

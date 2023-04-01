@@ -166,7 +166,7 @@ end
 def pbEXPAdditionItem(pkmn, exp, item, scene)
     current_lvl = pkmn.level
     current_exp = pkmn.exp
-    level_cap = LEVEL_CAPS_USED ? $game_variables[26] : growth_rate.max_level
+    level_cap = LEVEL_CAPS_USED ? getLevelCap : growth_rate.max_level
 
     # Do nothing if the pokemon's already at the level cap
     if pkmn.level >= level_cap || pkmn.shadowPokemon?

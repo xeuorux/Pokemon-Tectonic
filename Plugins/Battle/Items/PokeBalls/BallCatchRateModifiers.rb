@@ -143,13 +143,13 @@ BallHandlers::ModifyCatchRate.add(:BEASTBALL, proc { |_ball, catchRate, _battle,
 })
 
 BallHandlers::ModifyCatchRate.add(:NESTBALL, proc { |_ball, catchRate, _battle, battler, _ultraBeast|
-                                                 if LEVEL_CAPS_USED
-                                                     baseLevel = $game_variables[26] - 5
-                                                     if battler.level <= baseLevel
-                                                         catchRate *= [(11 + baseLevel - battler.level) / 10.0, 1].max
-                                                     end
-                                                 elsif battler.level <= 30
-                                                     catchRate *= [(41 - battler.level) / 10.0, 1].max
-                                                 end
-                                                 next catchRate
-                                             })
+    if LEVEL_CAPS_USED
+        baseLevel = getLevelCap - 5
+        if battler.level <= baseLevel
+            catchRate *= [(11 + baseLevel - battler.level) / 10.0, 1].max
+        end
+    elsif battler.level <= 30
+        catchRate *= [(41 - battler.level) / 10.0, 1].max
+    end
+    next catchRate
+})

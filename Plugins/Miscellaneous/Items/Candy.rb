@@ -7,13 +7,13 @@ def pbLevelGivingItem(pkmn, item, scene)
   if pkmn.level >= GameData::GrowthRate.max_level || pkmn.shadowPokemon?
     scene.pbDisplay(_INTL("It won't have any effect."))
     return false
-  elsif LEVEL_CAPS_USED && (pkmn.level + 1) > $game_variables[26]
-      scene.pbDisplay(_INTL("It won't have any effect due to the level cap at #{$game_variables[26]}."))
+  elsif LEVEL_CAPS_USED && (pkmn.level + 1) > getLevelCap
+      scene.pbDisplay(_INTL("It won't have any effect due to the level cap at #{getLevelCap}."))
       return false
   end
 
   # Ask the player how many they'd like to apply
-  level_cap = LEVEL_CAPS_USED ? $game_variables[26] : growth_rate.max_level
+  level_cap = LEVEL_CAPS_USED ? getLevelCap : growth_rate.max_level
   maxLevelIncrease = level_cap - pkmn.level
   maximum = [maxLevelIncrease, $PokemonBag.pbQuantity(item)].min # Max items which can be used
   if maximum > 1

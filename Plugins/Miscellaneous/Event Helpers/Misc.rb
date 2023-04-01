@@ -3,7 +3,7 @@ def debugControl
 end
 
 def pbReceiveRandomPokemon(level)
-	$game_variables[26] = level if level > $game_variables[26]
+	getLevelCap = level if level > getLevelCap
 	possibleSpecies = []
 	GameData::Species.each do |species_data|
 		next if species_data.get_evolutions.length > 0

@@ -29,3 +29,4 @@
 27: Badge count
 28: Tournament win count
 29: Larpers encounters
+30: Swords of justice defeated

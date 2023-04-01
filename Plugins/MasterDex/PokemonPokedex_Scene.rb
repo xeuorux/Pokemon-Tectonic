@@ -396,22 +396,22 @@ class PokemonPokedex_Scene
 			if debugControl
 				@dexlist.each do |dexlist_entry|
 					entrySpecies = dexlist_entry[0]
-					pbAddPokemonSilent(entrySpecies,$game_variables[26])
+					pbAddPokemonSilent(entrySpecies,getLevelCap)
 				end
 				pbMessage("Added every species on the current list!")
 			else
-				pbAddPokemonSilent(@sprites["pokedex"].species,$game_variables[26])
+				pbAddPokemonSilent(@sprites["pokedex"].species,getLevelCap)
 				pbMessage("Added #{@sprites["pokedex"].species}")
 			end
 		elsif Input.pressex?(0x57) && $DEBUG # W, for Wild Pokemon
-			pbWildBattle(@sprites["pokedex"].species, $game_variables[26])
+			pbWildBattle(@sprites["pokedex"].species, getLevelCap)
 		elsif Input.pressex?(0x42) && $DEBUG # B, for Boss
 			begin
 				species = @sprites["pokedex"].species
 				if isLegendary?(species)
-					pbBigAvatarBattle([species.to_sym, $game_variables[26]])
+					pbBigAvatarBattle([species.to_sym, getLevelCap])
 				else
-					pbSmallAvatarBattle([species.to_sym, $game_variables[26]])
+					pbSmallAvatarBattle([species.to_sym, getLevelCap])
 				end
 			rescue
 				pbMessage(_INTL("Unable to start Avatar battle."))

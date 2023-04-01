@@ -65,7 +65,8 @@ class WaypointsTracker
 		$PokemonGlobal.respawnPoint = waypointEvent.id
 		speciesDisplayName = GameData::Species.get(avatarSpecies).name
 		pbMessage(_INTL("By the power of Regigigas, a #{speciesDisplayName} was created!"))
-		if pbWildBattleCore(avatarSpecies, 50) == 4 # Caught
+		level = [50,getLevelCap].min
+		if pbWildBattleCore(avatarSpecies, level) == 4 # Caught
 			$PokemonGlobal.respawnPoint = nil
 			return true
 		end
