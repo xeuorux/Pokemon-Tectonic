@@ -855,7 +855,7 @@ Pokemon = AMOONGUSS,55
     AbilityIndex = 0 # Regenerator
     Item = ROCKYHELMET
 Pokemon = GOTHITELLE,55
-    AbilityIndex = 1 # Shadow Tag
+    AbilityIndex = 1 # Clingy
     Item = UTILITYUMBRELLA
 Pokemon = GIGALITH,56
     AbilityIndex = 1 # Unburden
@@ -2412,7 +2412,7 @@ Pokemon = BLAZIKEN,70
 #-------------------------------
 [TRAINER_Imogene_A,Imogene]
 Pokemon = GOTHORITA,27
-    AbilityIndex = 1 # Shadow Tag
+    AbilityIndex = 1 # Clingy
     Item = ORANBERRY
 Pokemon = SHEDINJA,27
     AbilityIndex = 0 # Wonder Guard
