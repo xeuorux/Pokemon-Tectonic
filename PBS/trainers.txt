@@ -2277,7 +2277,7 @@ Pokemon = WATCHOG,45
 [BLACKBELT2,Riccardo]
 Policies = SAND_TEAM
 Pokemon = HIPPOWDON,53
-    AbilityIndex = 1 # Sand Stream
+    AbilityIndex = 1 # Glass Firing
     Item = SMOOTHROCK
 Pokemon = MANDIBUZZ,53
     AbilityIndex = 1 # Stout
@@ -3026,7 +3026,7 @@ Pokemon = CURSOLA,47
 #-------------------------------
 [POKEMONRANGER_M3,Grant]
 Pokemon = HIPPOWDON,49
-    AbilityIndex = 1 # Sand Stream
+    AbilityIndex = 1 # Glass Firing
     Item = EJECTBUTTON
 Pokemon = CACTURNE,50
     AbilityIndex = 0 # Heartless
