@@ -338,6 +338,14 @@ immuneTypeRealName))
     # Generalised infliction of status problem
     #=============================================================================
     def pbInflictStatus(newStatus, newStatusCount = 0, msg = nil, user = nil)
+        if hasTribeBonus?(:TYRANNICAL) && !pbOwnSide.effectActive?(:TyrannicalImmunity)
+            @battle.pbShowTribeSplash(self,:TYRANNICAL)
+            @battle.pbDisplay(_INTL("{1} refuses to gain a status condition!", pbThis))
+            @battle.pbHideTribeSplash(self)
+            pbOwnSide.applyEffect(:TyrannicalImmunity)
+            return
+        end
+
         newStatusCount = sleepDuration if newStatusCount <= 0 && newStatus == :SLEEP
 
         statusCheck = false

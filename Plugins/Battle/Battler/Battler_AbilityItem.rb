@@ -141,14 +141,6 @@ class PokeBattle_Battler
         eachActiveAbility do |ability|
             BattleHandlers.triggerStatusCureAbility(ability, self)
         end
-
-        if hasAnyStatusNoTrigger? && hasTribeBonus?(:TYRANICAL) && !pbOwnSide.effectActive?(:TyranicalImmunity)
-            @battle.pbShowTribeSplash(self,:TYRANICAL)
-            @battle.pbDisplay(_INTL("{1} refuses to be statused!", pbThis))
-            pbCureStatus(true)
-            @battle.pbHideTribeSplash(self)
-            pbOwnSide.applyEffect(:TyranicalImmunity)
-        end
     end
 
     #=============================================================================
