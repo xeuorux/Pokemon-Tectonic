@@ -32,6 +32,8 @@ module GameData
 
         MULTI_ITEM_ABILITIES = %i[BERRYBUNCH FASHIONABLE JEWELER HANDY]
 
+        FLINCH_IMMUNITY_ABILITIES = %i[INNERFOCUS JUGGERNAUT MENTALBLOCK]
+
         attr_reader :signature_of
 
         # The highest evolution of a line
