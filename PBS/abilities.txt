@@ -591,7 +591,7 @@
 589,UNASSUMING,Unassuming,"Before using a status move against a single foe, lowers that foes Defense."
 590,RECON,Recon,"Before using a status move against a single foe, lowers that foes Sp. Def."
 591,INFECTED,Infected,"This is also Grass-type. When this is hit with a physical move, the attacker is also infected."
-592,STEELABSORB,Steel Absorb,"Immune to Steel-type moves, and raises Attack if hit by one."
+592,STEELABSORB,Steel Absorb,"Immune to Steel-type moves and restores HP if hit by one."
 593,SEEDSOWING,Seed Sowing,"Special moves have a 30% chance to leech targets."
 594,UNCONCERNED,Unconcerned,"Takes 20% less damage from neutral attacks."
 595,BLISS,Bliss,"Increase the EXP gained from battles in which it participates by 50%."
