@@ -11,5 +11,5 @@ BallHandlers::OnFailCatch.add(:POTIONBALL, proc { |_ball, _battle, battler|
 })
 
 BallHandlers::OnFailCatch.add(:DISABLEBALL, proc { |_ball, _battle, battler|
-    battler.applyEffect(:Disable) if target.canBeDisabled?(true)
+    battler.applyEffect(:Disable,10) if target.canBeDisabled?(true)
 })
