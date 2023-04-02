@@ -834,6 +834,7 @@
 888,POCKETTOTEM,Pocket Totem,Pocket Totems,8,0,"A miniature Avatar Totem. Use it to teleport to any unlocked Avatar Totems throughout Makya.",2,0,6
 889,HIVISJACKET,Hi-Viz Jacket,Hi-Viz Jackets,5,4000,"Damages attackers for 1/6th of their HP when they hit the holder with special attacks.",0,0,0
 890,CARNATIONSIGIL,Carnation Sigil,Carnation Sigil,8,0,"An ancient sigil of the Carnation Knights. You feel it pulling you towards another place.",2,0,6
+891,SLICEBALL,Slice Ball,Slice Balls,3,200,"A sharp Poké Ball that damages the Pokemon for 1/4th of its HP if it fails to catch it.",0,4,4
 900,CHAMBER1KEY,Chamber 1 Key,Chamber 1 Keys,8,0,"The key to the first chamber containing a powerful avatar.",0,0,6
 901,CHAMBER2KEY,Chamber 2 Key,Chamber 2 Keys,8,0,"The key to the second chamber containing a powerful avatar.",0,0,6
 902,CHAMBER3KEY,Chamber 3 Key,Chamber 3 Keys,8,0,"The key to the third chamber containing a powerful avatar.",0,0,6
