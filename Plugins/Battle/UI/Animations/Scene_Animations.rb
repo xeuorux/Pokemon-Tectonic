@@ -173,4 +173,19 @@ class PokeBattle_Scene
     end
     abilitySplashAnim.dispose
   end
+
+  #=============================================================================
+  # Animates throwing a Poké Ball at a Pokémon in an attempt to catch it
+  #=============================================================================
+  def pbThrow(ball,shakes,critical,targetBattler,showPlayer=false,velocityMult = 1.0)
+    @briefMessage = false
+    captureAnim = PokeballThrowCaptureAnimation.new(@sprites,@viewport,
+       ball,shakes,critical,@battle.battlers[targetBattler],showPlayer,velocityMult)
+    loop do
+      captureAnim.update
+      pbUpdate
+      break if captureAnim.animDone? && !inPartyAnimation?
+    end
+    captureAnim.dispose
+  end
 end

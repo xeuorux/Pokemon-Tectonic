@@ -129,9 +129,10 @@ class PokeBattle_Battle
                 break
             end
         end
+        launching = ball == :BALLLAUNCHER
         # Messages
         itemName = GameData::Item.get(ball).name
-        if ball == :BALLLAUNCHER
+        if launching
             pbDisplayBrief(_INTL("{1} used the {2}!", pbPlayer.name, itemName))
         elsif itemName.starts_with_vowel?
             pbDisplayBrief(_INTL("{1} threw an {2}!", pbPlayer.name, itemName))
@@ -155,7 +156,8 @@ class PokeBattle_Battle
         numShakes = pbCaptureCalc(pkmn, battler, catch_rate, ball)
         # PBDebug.log("[Threw Poké Ball] #{itemName}, #{numShakes} shakes (4=capture)")
         # Animation of Ball throw, absorb, shake and capture/burst out
-        @scene.pbThrow(ball, numShakes, @criticalCapture, battler.index, showPlayer)
+        velocityMult = launching ? 2.0 : 1.0
+        @scene.pbThrow(ball, numShakes, @criticalCapture, battler.index, showPlayer, velocityMult)
         # Outcome message
         case numShakes
         when 0
