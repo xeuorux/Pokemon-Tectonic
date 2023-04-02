@@ -952,9 +952,7 @@ end
 class PokeBattle_Move_5B3 < PokeBattle_HalfHealingMove
     def pbEffectGeneral(user)
         super
-        if @battle.pbWeather != :None
-            @battle.extendWeather(1)
-        end
+        @battle.extendWeather(1) unless @battle.pbWeather == :None
     end
 end
 
@@ -1729,7 +1727,6 @@ end
 # Increases Speed by 1 stage and Crit Chance by 2 stages. (Deep Breathing)
 #===============================================================================
 class PokeBattle_Move_5D2 < PokeBattle_StatUpMove
-
     def initialize(battle, move)
         super
         @statUp = [:SPEED, 1]
@@ -1745,5 +1742,20 @@ class PokeBattle_Move_5D2 < PokeBattle_StatUpMove
     def pbEffectGeneral(user)
         super
         user.incrementEffect(:FocusEnergy, 2)
+    end
+end
+
+#===============================================================================
+# For 6 rounds, doubles the Speed of all battlers on the user's side. (Sustained Wind)
+#===============================================================================
+class PokeBattle_Move_5D3 < PokeBattle_Move_05B
+    def pbEffectGeneral(user)
+        user.pbOwnSide.applyEffect(:Tailwind, 6)
+    end
+
+    def getEffectScore(user, _target)
+        score = super
+        score = (score * 1.5).round
+        return score
     end
 end
