@@ -479,7 +479,7 @@
 477,ANARCHIC,Anarchic,"Doubles Speed in eclipse."
 478,EXTREMOPHILE,Extremophile,"Heals by 1/8th of its max HP each turn if in eclipse."
 479,WORLDQUAKE,World Quake,"Ground-type moves deal 50% more damage in eclipse."
-480,RESONANCE,Resonance,"Sets Reflect and Light Screen for twice as long during eclipse."
+480,RESONANCE,Resonance,"Sets Screens for twice as long during eclipse."
 481,SHAKYCODE,Shaky Code,"During eclipse, changes the Pokémon's type to the type of the move it's using."
 482,ROCKCLIMBER,Rock Climber,"Immune to Rock-type moves, and raises Speed whenever hit by one."
 483,PLOTARMOR,Plot Armor,"During eclipse, immune to status conditions and having its stats lowered by enemies."

@@ -1759,3 +1759,18 @@ class PokeBattle_Move_5D3 < PokeBattle_Move_05B
         return score
     end
 end
+
+#===============================================================================
+# Heals user by 1/2 of their HP.
+# Extends the duration of any screens affecting the user's side by 1. (Stabilize)
+#===============================================================================
+class PokeBattle_Move_5D4 < PokeBattle_HalfHealingMove
+    def pbEffectGeneral(user)
+        super
+        pbOwnSide.eachEffect(true) do |effect, value, data|
+            next unless data.is_screen?
+            pbOwnSide.effects[effect] += 1
+            @battle.pbDisplay(_INTL("{1}'s {2} was extended 1 turn!", pbTeam, data.real_name))
+        end
+    end
+end
