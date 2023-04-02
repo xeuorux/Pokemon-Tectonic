@@ -131,7 +131,7 @@ class PokeBattle_Battler
             @battle.eachOtherSideBattler(@index) do |b|
                 anyCopyables = false
                 b.eachLegalAbility do |abilityID|
-                    next if b.ungainableAbility?(abilityID) || UNCOPYABLE_ABILITIES.include?(abilityID)
+                    next if b.ungainableAbility?(abilityID) || GameData::Ability::UNCOPYABLE_ABILITIES.include?(abilityID)
                     anyCopyables = true
                     break
                 end

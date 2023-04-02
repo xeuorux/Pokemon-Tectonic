@@ -203,7 +203,7 @@ class PokeBattle_AI
             switchScore = 0
 
             # Account for hazards
-            unless HAZARD_IMMUNITY_ABILITIES.include?(pkmn.ability) && !@battle.abilitiesNeutralized?
+            unless GameData::Ability::HAZARD_IMMUNITY_ABILITIES.include?(pkmn.ability) && !@battle.abilitiesNeutralized?
                 # Determine if the pokemon will be airborne
                 airborne = pkmn.hasType?(:FLYING) || pkmn.hasAbility?(:LEVITATE) || LEVITATION_ITEMS.include?(pkmn.item)
                 airborne = false if @battle.field.effectActive?(:Gravity)

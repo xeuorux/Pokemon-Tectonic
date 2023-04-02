@@ -758,7 +758,7 @@ class PokeBattle_Battler
     end
 
     def ignoresHazards?
-        return hasActiveAbility?(HAZARD_IMMUNITY_ABILITIES)
+        return hasActiveAbility?(GameData::Ability::HAZARD_IMMUNITY_ABILITIES)
     end
 
     def hasGem?

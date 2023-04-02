@@ -28,13 +28,14 @@ class PokeBattle_Battle
             return
         end
 
+        # Reset the echoed voice counter unless anyone used echoed voice this turn
+        @sides.each do |side|
+            side.disableEffect(:EchoedVoiceCounter) unless side.effectActive?(:EchoedVoiceUsed)
+        end
+
         # Tick down or reset battle effects
         allEffectHolders do |effectHolder|
             effectHolder.processEffectsEOR
-        end
-
-        @sides.each do |side|
-            side.disableEffect(:EchoedVoiceCounter) unless side.effectActive?(:EchoedVoiceUsed)
         end
 
         # End of terrains

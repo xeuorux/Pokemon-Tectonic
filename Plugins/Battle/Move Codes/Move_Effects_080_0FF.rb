@@ -303,13 +303,14 @@ end
 class PokeBattle_Move_092 < PokeBattle_Move
     def pbChangeUsageCounters(user, specialUsage)
         oldCount = user.pbOwnSide.effects[:EchoedVoiceCounter]
-        super
-        # If this is the first time the move is being used this turn
+        super # Reset all other counters
+
+        # If this is the first time the move is being used on this side this turn
         unless user.pbOwnSide.effectActive?(:EchoedVoiceUsed)
-            data = GameData::BattleEffect.get(:EchoedVoiceCounter)
-            user.pbOwnSide.effects[:EchoedVoiceCounter] = [oldCount + 1, data.maximum].min
+            user.pbOwnSide.effects[:EchoedVoiceCounter] = oldCount
+            user.pbOwnSide.incrementEffect(:EchoedVoiceCounter)
         end
-        user.pbOwnSide.effects[:EchoedVoiceUsed] = true
+        user.pbOwnSide.applyEffect(:EchoedVoiceUsed)
     end
 
     def pbBaseDamage(baseDmg, user, _target)
