@@ -450,7 +450,7 @@
 448,WRATHINSTINCT,Wrath Instinct,"Uses Dragon Dance if an attack lowers its HP to half or below."
 449,DUNEPREDATOR,Dune Predator,"When it attacks from underground in sandstorm, it'll transform into Reaper form."
 450,SEALORD,Sea Lord,"After knocking out any Pokémon, transforms into its Hullbreaker form. Ability becomes Mold Breaker."
-451,BALANCEOFPOWER,Balance of Power,"Attack boosted by 50% if used a Special move last, and vice-versa."
+451,BALANCEOFPOWER,Balance of Power,"Boosts Attack by 50% if used a Special move last turn, or boosts Sp. Atk if Physical."
 452,STEELYSHELL,Steely Shell,"Defense is raised by 25%, immune to crits, and Steel-type attacks deal 50% more damage."
 453,LIVEWIRE,Live Wire,"Special attacks against the Pokémon has a 30% chance to cause numbing."
 454,MYSTICTAP,Mystic Tap,"Gets double healing from all sources during moonglow."
