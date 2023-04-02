@@ -588,3 +588,63 @@ def arenaVendor()
 		true
 	)
 end
+
+
+def vendingMachine
+	return unless $game_player.direction == Up
+	pbMessage(_INTL("It's a vending machine."))
+
+	freshWaterCost = 200
+	sodePopCost = 300
+	lemonadeCost = 350
+
+	choices = []
+	freshWaterCommand = -1
+	sodaPopCommand = -1
+	lemonadeCommand = -1
+	cancelCommand = -1
+	choices[freshWaterCommand = choices.length] = _INTL("Fresh Water - $#{freshWaterCost}")
+	choices[sodaPopCommand = choices.length] = _INTL("Soda Pop - $#{freshWaterCost}")
+	choices[lemonadeCommand = choices.length] = _INTL("Lemonade - $#{lemonadeCost}")
+	choices[cancelCommand = choices.length] = _INTL("Cancel")
+	loop do
+		chosen = pbMessage("Which drink would you like?\\G", choices, choices.length)
+		if chosen == freshWaterCommand && freshWaterCommand > -1
+			unless $PokemonBag.pbCanStore?(:FRESHWATER)
+				pbMessage(_INTL("\\GYou have no room left in the Bag."))
+				next
+			end
+			if payMoney(freshWaterCost, false)
+				$PokemonBag.pbStoreItem(:FRESHWATER)
+				pbMessage(_INTL("\\GA Fresh Water dropped down!"))
+			else
+				pbMessage(_INTL("You don't have enough money."))
+			end
+		elsif chosen == sodaPopCommand && sodaPopCommand > -1
+			unless $PokemonBag.pbCanStore?(:SODAPOP)
+				pbMessage(_INTL("\\GYou have no room left in the Bag."))
+				next
+			end
+			if payMoney(sodePopCost, false)
+				$PokemonBag.pbStoreItem(:SODAPOP)
+				pbMessage(_INTL("\\GA Soda Pop dropped down!"))
+			else
+				pbMessage(_INTL("You don't have enough money."))
+			end
+		elsif chosen == lemonadeCommand && lemonadeCommand > -1
+			unless $PokemonBag.pbCanStore?(:LEMONADE)
+				pbMessage(_INTL("\\GYou have no room left in the Bag."))
+				next
+			end
+			if payMoney(freshWaterCost, false)
+				$PokemonBag.pbStoreItem(:LEMONADE)
+				pbMessage(_INTL("\\GA Lemonade dropped down!"))
+			else
+				pbMessage(_INTL("You don't have enough money."))
+			end
+		elsif chosen == cancelCommand && cancelCommand > -1
+			pbMessage(_INTL("\\GDecided not to buy a drink."))
+			break
+		end
+	end
+end
