@@ -38,9 +38,20 @@ class PokeBattle_Battler
     end
 
     def setAbility(value)
-        newability = GameData::Ability.try_get(value)
-        @ability_ids = newability ? [newability.id] : []
-        @abilityChanged = true
+        if value.is_a?(Array)
+            validAbilities = []
+            value.each do |newAbility|
+                validAbilities.push(GameData::Ability.try_get(value).id)
+            end
+            if validAbilities.length > 0
+                @ability_ids = validAbilities
+                @abilityChanged = true
+            end
+        else
+            newability = GameData::Ability.try_get(value)
+            @ability_ids = newability ? [newability.id] : []
+            @abilityChanged = true
+        end
     end
 
     def partyItem

@@ -34,6 +34,10 @@ module GameData
 
         FLINCH_IMMUNITY_ABILITIES = %i[INNERFOCUS JUGGERNAUT MENTALBLOCK]
 
+        UNCOPYABLE_ABILITIES = %i[TRACE RECEIVER POWEROFALCHEMY OVERACTING]
+
+        HAZARD_IMMUNITY_ABILITIES = %i[AQUASNEAK NINJUTSU DANGERSENSE]
+
         attr_reader :signature_of
 
         # The highest evolution of a line

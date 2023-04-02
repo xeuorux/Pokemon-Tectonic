@@ -104,24 +104,48 @@ class PokeBattle_Battler
     def pbContinualAbilityChecks(onSwitchIn = false)
         # Check for end of primordial weather
         @battle.pbEndPrimordialWeather
+
         # Trace
         if hasActiveAbility?(:TRACE)
-            # NOTE: In Gen 5 only, Trace only triggers upon the Trace bearer switching
-            #       in and not at any later times, even if a traceable ability turns
-            #       up later. Essentials ignores this, and allows Trace to trigger
-            #       whenever it can even in the old battle mechanics.
             choices = []
             @battle.eachOtherSideBattler(@index) do |b|
-                next if b.ungainableAbility?(b.firstAbility) ||
-                        %i[POWEROFALCHEMY RECEIVER TRACE].include?(b.firstAbility)
+                next if b.ungainableAbility?(b.firstAbility) || UNCOPYABLE_ABILITIES.include?(b.firstAbility)
                 choices.push(b)
             end
-            if choices.length > 0
-                choice = choices[@battle.pbRandom(choices.length)]
+            unless choices.empty?
+                choice = choices.sample
                 @battle.pbShowAbilitySplash(self, :TRACE)
                 stolenAbility = choice.ability
-                self.ability = stolenAbility
+                setAbility(stolenAbility)
                 @battle.pbDisplay(_INTL("{1} traced {2}'s {3}!", pbThis, choice.pbThis(true), getAbilityName(stolenAbility)))
+                @battle.pbHideAbilitySplash(self)
+                if !onSwitchIn && (unstoppableAbility?(stolenAbility) || abilityActive?)
+                    BattleHandlers.triggerAbilityOnSwitchIn(stolenAbility, self, @battle)
+                end
+                return
+            end
+        end
+        # Over-Acting
+        if hasActiveAbility?(:OVERACTING)
+            choices = []
+            @battle.eachOtherSideBattler(@index) do |b|
+                anyCopyables = false
+                b.eachLegalAbility do |abilityID|
+                    next if b.ungainableAbility?(abilityID) || UNCOPYABLE_ABILITIES.include?(abilityID)
+                    anyCopyables = true
+                    break
+                end
+                choices.push(b) if anyCopyables
+            end
+            unless choices.empty?
+                choice = choices.sample
+                @battle.pbShowAbilitySplash(self, :OVERACTING)
+                @battle.pbDisplay(_INTL("{1} is acting like a {2}!", pbThis, GameData::Species.get(choice.species).real_name))
+                legalAbilities = choice.legalAbilities
+                setAbility(legalAbilities)
+                legalAbilities.each do |legalAbility|
+                    @battle.pbDisplay(_INTL("{1} mimicked the ability {2}!", pbThis, choice.pbThis(true), getAbilityName(legalAbility)))
+                end
                 @battle.pbHideAbilitySplash(self)
                 if !onSwitchIn && (unstoppableAbility? || abilityActive?)
                     eachAbility do |ability|

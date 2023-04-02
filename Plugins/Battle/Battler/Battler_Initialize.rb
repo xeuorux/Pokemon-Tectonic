@@ -116,7 +116,7 @@ class PokeBattle_Battler
         @ability_ids.push(pkmn.ability_id) if pkmn.ability_id
         @ability_ids.concat(pkmn.extraAbilities)
         if (@battle.curseActive?(:CURSE_DOUBLE_ABILITIES) && index.odd?) || (TESTING_DOUBLE_QUALITIES && !boss?)
-            pkmn.species_data.abilities.each do |legalAbility|
+            eachLegalAbility do |legalAbility|
                 @ability_ids.push(legalAbility) unless @ability_ids.include?(legalAbility)
             end
         end

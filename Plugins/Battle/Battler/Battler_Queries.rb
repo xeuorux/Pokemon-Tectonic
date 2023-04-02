@@ -770,6 +770,10 @@ class PokeBattle_Battler
     def trapped?
         return @battle.pbIsTrapped?(@index)
     end
-end
 
-HAZARD_IMMUNITY_ABILITIES = %i[AQUASNEAK NINJUTSU DANGERSENSE]
+    def eachLegalAbility
+        pkmn.species_data.abilities.each do |abilityID|
+            yield abilityID
+        end
+    end
+end

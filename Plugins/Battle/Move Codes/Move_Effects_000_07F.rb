@@ -1968,7 +1968,8 @@ class PokeBattle_Move_065 < PokeBattle_Move
             end
             return true
         end
-        if user.ungainableAbility?(target.firstAbility) || %i[POWEROFALCHEMY RECEIVER TRACE WONDERGUARD].include?(target.firstAbility)
+        if user.ungainableAbility?(target.firstAbility) || UNCOPYABLE_ABILITIES.include?(target.firstAbility) ||
+                target.firstAbility == :WONDERGUARD
             if show_message
                 @battle.pbDisplay(_INTL("But it failed, since #{target.pbThis(true)}'s ability can't be copied!"))
             end
@@ -1999,8 +2000,7 @@ class PokeBattle_Move_066 < PokeBattle_Move
             @battle.pbDisplay(_INTL("But it failed, since #{user.pbThis(true)} doesn't have an ability!"))
             return true
         end
-        if user.ungainableAbility?(user.firstAbility) ||
-           %i[POWEROFALCHEMY RECEIVER TRACE].include?(user.firstAbility)
+        if user.ungainableAbility?(user.firstAbility) || UNCOPYABLE_ABILITIES.include?(user.firstAbility)
             @battle.pbDisplay(_INTL("But it failed, since #{user.pbThis(true)}'s ability cannot be copied!"))
             return true
         end
