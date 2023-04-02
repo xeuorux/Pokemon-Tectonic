@@ -838,6 +838,7 @@
 892,LEECHBALL,Leech Ball,Leech Balls,3,200,"A parasitic Poké Ball that leeches the Pokémon if it fails to catch it.",0,4,4
 893,POTIONBALL,Potion Ball,Potion Balls,3,200,"A medicinal Poké Ball that heals the Pokémon for 1/4th of its HP if it fails to catch it.",0,4,4
 894,DISABLEBALL,Disable Ball,Disable Balls,3,200,"A mentally disrupting Poké Ball that disables the Pokemon's last used move for 10 turns if it fails to catch it.",0,4,4
+895,ROYALBALL,Royal Ball,Royal Balls,3,1000,"A ball whose striking appearance makes it popular despite its poor performance.",0,4,4
 900,CHAMBER1KEY,Chamber 1 Key,Chamber 1 Keys,8,0,"The key to the first chamber containing a powerful avatar.",0,0,6
 901,CHAMBER2KEY,Chamber 2 Key,Chamber 2 Keys,8,0,"The key to the second chamber containing a powerful avatar.",0,0,6
 902,CHAMBER3KEY,Chamber 3 Key,Chamber 3 Keys,8,0,"The key to the third chamber containing a powerful avatar.",0,0,6

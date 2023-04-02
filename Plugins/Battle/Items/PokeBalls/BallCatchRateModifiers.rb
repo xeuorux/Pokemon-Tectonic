@@ -153,3 +153,7 @@ BallHandlers::ModifyCatchRate.add(:NESTBALL, proc { |_ball, catchRate, _battle, 
     end
     next catchRate
 })
+
+BallHandlers::ModifyCatchRate.add(:ROYALBALL, proc { |_ball, catchRate, _battle, _battler, _ultraBeast|
+    next catchRate * 0.5
+})

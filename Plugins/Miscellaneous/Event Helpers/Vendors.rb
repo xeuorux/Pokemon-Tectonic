@@ -499,6 +499,7 @@ def weirdBallsVendor
 		LOVEBALL
 		LUXURYBALL FRIENDBALL
 		HEALBALL
+		ROYALBALL
 	]
 	pbPokemonMart(
 		[],
