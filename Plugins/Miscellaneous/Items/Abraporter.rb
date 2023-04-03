@@ -3,7 +3,7 @@ def canTeleport?(showMessage = false)
     pbMessage(_INTL("It can't be used when you have someone with you.")) if showMessage
     return false
   end
-  if GameData::MapMetadata.get($game_map.map_id)&.teleport_blocked
+  if GameData::MapMetadata.try_get($game_map.map_id)&.teleport_blocked
     pbMessage(_INTL("You are prevented from teleporting due to an unknown force.")) if showMessage
     return false
   end
