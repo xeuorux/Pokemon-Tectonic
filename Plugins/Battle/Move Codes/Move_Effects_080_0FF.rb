@@ -109,7 +109,7 @@ class PokeBattle_Move_086 < PokeBattle_Move
     end
 
     def pbBaseDamageAI(baseDmg, user, _target)
-        baseDmg *= 2 if user.hasAnyItem? || user.hasActiveItem?(:FLYINGGEM)
+        baseDmg *= 2 if !user.hasAnyItem? || user.hasActiveItem?(:FLYINGGEM)
         return baseDmg
     end
 end

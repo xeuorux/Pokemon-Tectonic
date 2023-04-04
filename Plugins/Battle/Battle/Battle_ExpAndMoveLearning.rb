@@ -166,8 +166,11 @@ class PokeBattle_Battle
         end
         exp  = (exp * 1.1).floor if playerTribalBonus.hasTribeBonus?(:LOYAL)
         exp  = (exp * 1.5).floor if @field.effectActive?(:Bliss)
-        i = BattleHandlers.triggerExpGainModifierItem(pkmn.item, pkmn, exp)
-        exp = i if i >= 0
+        modifiedEXP = exp
+        pkmn.items.each do |item|
+            modifiedEXP = BattleHandlers.triggerExpGainModifierItem(item, pkmn, modifiedEXP)
+        end
+        exp = modifiedEXP if modifiedEXP >= 0
         # If EXP in this battle is capped, store all XP instead of granting it
         if @expCapped
             @expStored += (exp * 0.7).floor
