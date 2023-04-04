@@ -186,14 +186,16 @@ class PokeBattle_Move_587 < PokeBattle_Move
     end
 
     def getEffectScore(user, _target)
-        score = 50
+        score = 20
         @battle.eachBattler do |b|
             totalStages = 0
             GameData::Stat.each_battle { |s| totalStages += b.stages[s.id] }
             if b.opposes?(user)
                 score += totalStages * 20
+                score += getSetupLikelihoodScore(user)
             else
                 score -= totalStages * 20
+                score -= getSetupLikelihoodScore(user)
             end
         end
         return score
@@ -549,6 +551,9 @@ end
 # Entry hazard. Lays Feather Ward on the opposing side. (Feather Ward)
 #===============================================================================
 class PokeBattle_Move_5A1 < PokeBattle_Move
+    def hazardMove?; return true; end
+    def aiAutoKnows?(pokemon); return true; end
+
     def pbMoveFailed?(user, _targets, show_message)
         if user.pbOpposingSide.effectActive?(:FeatherWard)
             if show_message

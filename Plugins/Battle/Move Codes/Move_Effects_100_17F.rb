@@ -32,6 +32,9 @@ end
 # Entry hazard. Lays spikes on the opposing side. (Spikes)
 #===============================================================================
 class PokeBattle_Move_103 < PokeBattle_Move
+    def hazardMove?; return true; end
+    def aiAutoKnows?(pokemon); return true; end
+
     def pbMoveFailed?(user, _targets, show_message)
         return false if damagingMove?
         if user.pbOpposingSide.effectAtMax?(:Spikes)
@@ -73,6 +76,9 @@ end
 # Entry hazard. Lays stealth rocks on the opposing side. (Stealth Rock)
 #===============================================================================
 class PokeBattle_Move_105 < PokeBattle_Move
+    def hazardMove?; return true; end
+    def aiAutoKnows?(pokemon); return true; end
+
     def pbMoveFailed?(user, _targets, show_message)
         return false if damagingMove?
         if user.pbOpposingSide.effectActive?(:StealthRock)
@@ -1938,9 +1944,12 @@ class PokeBattle_Move_152 < PokeBattle_Move
 end
 
 #===============================================================================
-# Entry hazard. Lays stealth rocks on the opposing side. (Sticky Web)
+# Entry hazard. Lays a Speed reducing web on the opposing side. (Sticky Web)
 #===============================================================================
 class PokeBattle_Move_153 < PokeBattle_Move
+    def hazardMove?; return true; end
+    def aiAutoKnows?(pokemon); return true; end
+
     def pbMoveFailed?(user, _targets, show_message)
         if user.pbOpposingSide.effectActive?(:StickyWeb)
             @battle.pbDisplay(_INTL("But it failed, since a Sticky Web is already laid out!")) if show_message

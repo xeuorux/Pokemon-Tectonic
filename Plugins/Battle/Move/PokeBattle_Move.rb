@@ -144,6 +144,8 @@ class PokeBattle_Move
     def empoweredMove?;     return @flags[/y/]; end
 
     def turnsBetweenUses(); return 0; end
+    def aiAutoKnows?(pokemon); return false; end
+    def statUp; return []; end
   
     def nonLethal?(user,_target); return false; end   # For False Swipe
     def switchOutMove?; return false; end

@@ -39,6 +39,8 @@ end
 # Increases the user's Sp. Atk and Speed by 1 stage each. (Lightning Dance)
 #===============================================================================
 class PokeBattle_Move_503 < PokeBattle_MultiStatUpMove
+    def aiAutoKnows?(pokemon); return true; end
+
     def initialize(battle, move)
         super
         @statUp = [:SPECIAL_ATTACK, 1, :SPEED, 1]
@@ -597,6 +599,8 @@ end
 # (Shiver Dance)
 #===============================================================================
 class PokeBattle_Move_525 < PokeBattle_MultiStatUpMove
+    def aiAutoKnows?(pokemon); return true; end
+
     def initialize(battle, move)
         super
         @statUp = [:ATTACK, 1, :DEFENSE, 1, :SPEED, 1]

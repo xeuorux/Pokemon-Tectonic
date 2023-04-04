@@ -1739,7 +1739,14 @@ class PokeBattle_Move_0BA < PokeBattle_Move
     def getEffectScore(_user, target)
         return 0 if target.hasActiveAbilityAI?(:MENTALBLOCK) || target.substituted?
         return 0 unless target.hasStatusMove?
-        return 100
+        score = 20
+        score += getSetupLikelihoodScore(target) { |move|
+            next !move.statusMove?
+        }
+        score += getHazardLikelihoodScore(target) { |move|
+            next !move.statusMove?
+        }
+        return score
     end
 end
 
@@ -2330,7 +2337,7 @@ class PokeBattle_Move_0CF < PokeBattle_Move
 end
 
 #===============================================================================
-# For 2 rounds, disables the target's non-damaging moves. (Taunt)
+# For 2 rounds, disables the target's non-damaging moves. (Docile Mask)
 #===============================================================================
 class PokeBattle_Move_0D0 < PokeBattle_Move_0BA
     def initialize(battle, move)

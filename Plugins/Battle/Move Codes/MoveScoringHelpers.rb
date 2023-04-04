@@ -277,6 +277,8 @@ def getMultiStatUpEffectScore(statUpArray, user, target, fakeStageModifier = 0)
         statSymbol = statUpArray[i * 2]
         statIncreaseAmount = statUpArray[i * 2 + 1]
 
+        statIncreaseAmount = [6,statIncreaseAmount * 2] if target.hasActiveAbilityAI?(:SIMPLE)
+
         # Give no extra points for attacking stats you can't use
         if statSymbol == :ATTACK && !target.hasPhysicalAttack?
             echoln("[EFFECT SCORING] Ignoring Attack changes, the target has no physical attacks")
@@ -318,7 +320,7 @@ def getMultiStatUpEffectScore(statUpArray, user, target, fakeStageModifier = 0)
         score *= 0.7
     end
 
-    if target.hasActiveAbility?(:CONTRARY)
+    if target.hasActiveAbilityAI?(:CONTRARY)
         score *= -1
         echoln("[EFFECT SCORING] The target has Contrary! Inverting the score.")
     end
@@ -344,6 +346,8 @@ def getMultiStatDownEffectScore(statDownArray, user, target, fakeStageModifier =
     for i in 0...statDownArray.length / 2
         statSymbol = statDownArray[i * 2]
         statDecreaseAmount = statDownArray[i * 2 + 1]
+
+        statDecreaseAmount = [6,statDecreaseAmount * 2] if target.hasActiveAbilityAI?(:SIMPLE)
 
         if statSymbol == :ACCURACY
             echoln("The AI will never use a move that reduces accuracy.")
@@ -386,7 +390,7 @@ def getMultiStatDownEffectScore(statDownArray, user, target, fakeStageModifier =
     # Stat downs tend to be weaker when the target is able to swap out
     score /= 2 if user.battle.pbCanSwitch?(target.index)
 
-    if target.hasActiveAbility?(:CONTRARY)
+    if target.hasActiveAbilityAI?(:CONTRARY)
         score *= -1
         echoln("[EFFECT SCORING] The target has Contrary! Inverting the score.")
     end
@@ -487,4 +491,28 @@ def getCurseEffectScore(user, target)
     score *= 1.5 if user.hasActiveAbilityAI?(:AGGRAVATE)
     score /= 2 if user.battle.pbCanSwitch?(target.index)
     return score
+end
+
+def getMovesLikelihoodScore(battler)
+    score = 0
+    battler.eachAIKnownMove do |move|
+        next unless yield move
+        thisMoveScore = move.getEffectScore(battler,battler)
+        score = thisMoveScore if thisMoveScore > score
+    end
+    return score
+end
+
+def getSetupLikelihoodScore(battler,&block)
+    return getMovesLikelihoodScore(battler) { |move|
+        next false if block&.call(move) == false
+        next !move.statUp.empty?
+    }
+end
+
+def getHazardLikelihoodScore(battler,&block)
+    return getMovesLikelihoodScore(battler) { |move|
+        next false if block&.call(move) == false
+        next move.hazardMove? && !move.statusMove?
+    }
 end

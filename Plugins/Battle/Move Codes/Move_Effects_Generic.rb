@@ -241,6 +241,8 @@ end
 # Generic user's stat increase classe.
 #===============================================================================
 class PokeBattle_StatUpMove < PokeBattle_Move
+    def statUp; return @statUp; end
+
     def pbMoveFailed?(user, _targets, show_message)
         return false if damagingMove?
         return !user.pbCanRaiseStatStage?(@statUp[0], user, self, show_message)
@@ -262,6 +264,8 @@ end
 
 class PokeBattle_MultiStatUpMove < PokeBattle_Move
     # Each subclass of this must initialize a @statUp in its initialization method
+
+    def statUp; return @statUp; end
 
     def pbMoveFailed?(user, _targets, show_message)
         return false if damagingMove?
@@ -1118,6 +1122,9 @@ end
 # If a status move, sets the hazard on the side of the user's opponent
 #===============================================================================
 class PokeBattle_StatusSpikeMove < PokeBattle_Move
+    def hazardMove?; return true; end
+    def aiAutoKnows?(pokemon); return true; end
+
     # Every subclass of this needs to assign something to @spikeEffect, and then call super
     def initialize(battle, move)
         super
@@ -1178,6 +1185,8 @@ end
 
 # Each subclass must define a @statUp and @statDown array in their initialization method
 class PokeBattle_StatUpDownMove < PokeBattle_Move
+    def statUp; return @statUp; end
+
     def pbMoveFailed?(user, _targets, show_message)
         return false if user.pbCanRaiseAnyOfStats?(@statUp, user, move: self)
         return false if user.pbCanRaiseAnyOfStats?(@statDown, user, move: self)

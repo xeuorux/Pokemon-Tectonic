@@ -156,20 +156,24 @@ class PokeBattle_Battle
         end
         @knownMoves = {}
         @party1.each do |pokemon|
-            initializeKnowMoves(pokemon)
+            initializeKnownMoves(pokemon)
         end
     end
 
-    def initializeKnowMoves(pokemon)
+    def initializeKnownMoves(pokemon)
         knownMovesArray = []
         @knownMoves[pokemon.personalID] = knownMovesArray
         pokemon.moves.each do |move|
-            unless pokemon.boss?
-                next unless pokemon.types.include?(move.type) # Don't know off-type moves
-                next if move.category == 2 # Don't know status moves
-            end
+            next unless pokemon.boss? || aiAutoKnowsMove?(move,pokemon)
             knownMovesArray.push(move.id)
             echoln("Pokemon #{pokemon.name}'s move #{move.name} is known by the AI")
         end
+    end
+
+    def aiAutoKnowsMove?(move,pokemon)
+        return true if getBattleMoveInstanceFromID(move.id).aiAutoKnows?(pokemon)
+        return false unless pokemon.types.include?(move.type) # Don't know off-type moves
+        return false unless move.category == 2 # Don't know status moves
+        return true
     end
 end

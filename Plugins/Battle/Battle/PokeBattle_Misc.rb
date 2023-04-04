@@ -202,7 +202,7 @@ class PokeBattle_Battle
     end
 
     def aiKnownMoves(pokemon)
-        initializeKnowMoves(pokemon) unless @knownMoves.include?(pokemon.personalID)
+        initializeKnownMoves(pokemon) unless @knownMoves.include?(pokemon.personalID)
         return @knownMoves[pokemon.personalID]
     end
 

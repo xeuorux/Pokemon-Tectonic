@@ -582,6 +582,8 @@ end
 # Increases the user's Attack and Speed by 1 stage each. (Dragon Dance)
 #===============================================================================
 class PokeBattle_Move_026 < PokeBattle_MultiStatUpMove
+    def aiAutoKnows?(pokemon); return true; end
+
     def initialize(battle, move)
         super
         @statUp = [:ATTACK, 1, :SPEED, 1]
@@ -645,6 +647,8 @@ end
 # (Quiver Dance)
 #===============================================================================
 class PokeBattle_Move_02B < PokeBattle_MultiStatUpMove
+    def aiAutoKnows?(pokemon); return true; end
+
     def initialize(battle, move)
         super
         @statUp = [:SPECIAL_ATTACK, 1, :SPECIAL_DEFENSE, 1, :SPEED, 1]
@@ -842,6 +846,8 @@ end
 # (Belly Drum)
 #===============================================================================
 class PokeBattle_Move_03A < PokeBattle_Move
+    def statUp; return [:ATTACK,12]; end
+
     def pbMoveFailed?(user, _targets, show_message)
         hpLoss = [user.totalhp / 2, 1].max
         if user.hp <= hpLoss
