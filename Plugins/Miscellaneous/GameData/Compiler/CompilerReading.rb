@@ -242,7 +242,7 @@ module Compiler
     item_names        = []
     item_names_plural = []
     item_descriptions = []
-    ["PBS/items.txt","PBS/other_items.txt"].each do |path|
+    ["PBS/items.txt","PBS/items_super.txt"].each do |path|
       # Read each line of items.txt at a time and compile it into an item
       pbCompilerEachCommentedLine(path) { |line, line_no|
         line = pbGetCsvRecord(line, line_no, [0, "vnssuusuuUN"])
