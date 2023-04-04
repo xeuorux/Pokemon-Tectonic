@@ -627,8 +627,8 @@ class Pokemon
     end
 
     def canHaveMultipleItems?(inBattle = false)
-      return true if @ability == :HANDY && inBattle
-      return %i[JEWELER BERRYBUNCH FASHIONABLE].include?(@ability)
+      return true if @ability == :STICKYFINGERS && inBattle
+      return %i[ALLTHATGLITTERS BERRYBUNCH FASHIONABLE].include?(@ability)
     end
 
 	  def canHaveItem?(itemCheck = nil, showMessages = false)
@@ -648,13 +648,13 @@ class Pokemon
         return false
       end
 
-      if %i[JEWELER BERRYBUNCH FASHIONABLE].include?(@ability) && itemSet.length > 2
+      if %i[ALLTHATGLITTERS BERRYBUNCH FASHIONABLE].include?(@ability) && itemSet.length > 2
         pbMessage(_INTL("#{name} can't hold more than two items!")) if showMessages
         return false
       end
 
-      # Jeweler
-      if @ability == :JEWELER
+      # All That Glitters
+      if @ability == :ALLTHATGLITTERS
           allGems = true
           itemSet.each do |item|
               next if GameData::Item.get(item).is_gem?

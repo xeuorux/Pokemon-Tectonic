@@ -339,7 +339,7 @@ Pokemon = YANMA,22
 #-------------------------------
 [GAMBLER,Gregor]
 Pokemon = MEOWTH,21
-    AbilityIndex = 1 # Jeweler
+    AbilityIndex = 1 # All That Glitters
     Item = NORMALGEM
 Pokemon = AMEOWTH,22
     AbilityIndex = 0 # Fur Coat
@@ -663,7 +663,7 @@ Pokemon = EELEKTROSS,45
 [COOLTRAINER_F7,Blaire]
 Pokemon = AMBIPOM,40
     Moves = FLING,COVET,STEALTHROCK,SANDTOMB
-    AbilityIndex = 0 # Handy
+    AbilityIndex = 0 # Sticky Fingers
     Item = IRONBALL
     EV = 20,0,0,20,0,10
 Pokemon = MACHAMP,40
@@ -4184,7 +4184,7 @@ Pokemon = INDEEDEE,70
     AbilityIndex = 1 # Fascinate
 Pokemon = PERSIAN,70
     Moves = FAKEOUT,CHACHING,SWORDSDANCE,AERIALACE
-    AbilityIndex = 1 # Jeweler
+    AbilityIndex = 1 # All That Glitters
 Pokemon = MIMIKYU,70
     Moves = SHADOWSNEAK,SWORDSDANCE,TANTRUM,PHANTOMFORCE
     AbilityIndex = 0 # Disguise

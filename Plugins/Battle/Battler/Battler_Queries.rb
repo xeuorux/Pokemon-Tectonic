@@ -192,7 +192,7 @@ class PokeBattle_Battler
     def canAddItem?(item = nil, stolen = false)
         return false if fainted?
         
-        if hasActiveAbility?(:HANDY) && stolen
+        if hasActiveAbility?(:STICKYFINGERS) && stolen
             return items.length < 2
         end
 
@@ -200,7 +200,7 @@ class PokeBattle_Battler
         if itemCount == 1 && item
             return false if firstItem == item
             itemData = GameData::Item.get(item)
-            if hasActiveAbility?(:JEWELER)
+            if hasActiveAbility?(:ALLTHATGLITTERS)
                 return false if !firstItemData.is_gem? || itemData.is_gem?
                 return true
             end
