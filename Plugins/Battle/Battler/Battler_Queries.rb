@@ -249,19 +249,20 @@ class PokeBattle_Battler
 
     def eachItem
         items.each do |itemID|
+            next unless itemID
             yield itemID
         end
     end
 
     def eachItemWithName
-        items.each do |itemID|
+        eachItem do |itemID|
             yield itemID,getItemName(itemID)
         end
     end
 
     def eachActiveItem(ignoreFainted = false)
         return unless itemActive?(ignoreFainted)
-        items.each do |itemID|
+        eachItem do |itemID|
             yield itemID
         end
     end

@@ -40,14 +40,14 @@ MultipleForms.register(:LYCANROC, {
 
 MultipleForms.register(:ZAMAZENTA,{
   "getForm" => proc { |pkmn|
-    next 1 if pkmn.item == :RUSTEDSHIELD
+    next 1 if pkmn.hasItem?(:RUSTEDSHIELD)
     next 0
   }
 })
 
 MultipleForms.register(:ZACIAN,{
   "getForm" => proc { |pkmn|
-    next 1 if pkmn.item == :RUSTEDSWORD
+    next 1 if pkmn.hasItem?(:RUSTEDSWORD)
     next 0
   }
 })
