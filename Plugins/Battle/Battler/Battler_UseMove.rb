@@ -219,6 +219,8 @@ class PokeBattle_Battler
         end
         move = choice[2] # In case disobedience changed the move to be used
         return unless move # if move was not chosen somehow
+        # Make extra move choices
+        move.resolutionChoice(self)
         # Subtract PP
         if !specialUsage && !pbReducePP(move)
             @battle.pbDisplay(_INTL("{1} used {2}!", pbThis, move.name))

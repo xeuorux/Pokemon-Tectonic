@@ -43,7 +43,7 @@
 42,PAYBACK,Payback,084,50,DARK,Physical,100,10,0,NearOther,0,abef,"If the user moves after the target, this attack's power will be doubled.",
 43,PURSUIT,Pursuit,088,40,DARK,Physical,100,15,0,NearOther,0,abef,"Inflicts double damage on a target that is switching out.",
 44,BEATUP,Beat Up,0C1,1,DARK,Physical,100,10,0,NearOther,0,bef,"The user gets all the party Pokémon to attack the foe. The more party Pokémon, the more damage.",
-45,FLING,Fling,0F7,1,DARK,Physical,100,10,0,NearOther,0,bef,"The user flings its held item at the target to attack. Its power and effects depend on the item.",
+45,FLING,Fling,0F7,60,DARK,Physical,100,10,0,NearOther,0,bef,"The user throws its held item at the target. Some items deal more damage or have extra effects.",
 46,POWERTRIP,Power Trip,08E,20,DARK,Physical,100,10,0,NearOther,0,abef,"The user boasts of its strength. Power increases the more the user's stats are raised.",
 47,PUNISHMENT,Punishment,08F,80,DARK,Physical,100,5,0,NearOther,0,abef,"This attack's power increases the more the target has powered up with stat changes.",
 48,DARKVOID,Dark Void,077,0,DARK,Status,100,1,0,AllNearFoes,-1,bce,"Targets are dragged into a world of total darkness that makes them sleep. This move always goes last.",

@@ -3519,187 +3519,102 @@ end
 class PokeBattle_Move_0F7 < PokeBattle_Move
     def initialize(battle, move)
         super
-        # 80 => all Mega Stones
-        # 10 => all Berries
-        @flingPowers = {
-          130 => [:IRONBALL],
-          100 => [:HARDSTONE, :RAREBONE, :PEARLOFFATE,
-                  # Fossils
-                  :ARMORFOSSIL, :CLAWFOSSIL, :COVERFOSSIL, :DOMEFOSSIL, :HELIXFOSSIL,
-                  :JAWFOSSIL, :OLDAMBER, :PLUMEFOSSIL, :ROOTFOSSIL, :SAILFOSSIL,
-                  :SKULLFOSSIL,],
-            90 => [:DEEPSEATOOTH, :GRIPCLAW, :THICKCLUB,
-                   # Plates
-                   :DRACOPLATE, :DREADPLATE, :EARTHPLATE, :FISTPLATE, :FLAMEPLATE,
-                   :ICICLEPLATE, :INSECTPLATE, :IRONPLATE, :MEADOWPLATE, :MINDPLATE,
-                   :PIXIEPLATE, :SKYPLATE, :SPLASHPLATE, :SPOOKYPLATE, :STONEPLATE,
-                   :TOXICPLATE, :ZAPPLATE,],
-            80 => %i[DAWNSTONE DUSKSTONE ELECTIRIZER MAGMARIZER
-                     ODDKEYSTONE OVALSTONE PROTECTOR QUICKCLAW RAZORCLAW SACHET
-                     SAFETYGOGGLES SHINYSTONE STICKYBARB WEAKNESSPOLICY
-                     WHIPPEDDREAM],
-            70 => [:DRAGONFANG, :POISONBARB,
-                   # EV-training items (Macho Brace is 60)
-                   :POWERANKLET, :POWERBAND, :POWERBELT, :POWERBRACER, :POWERLENS,
-                   :POWERWEIGHT,
-                   # Drives
-                   :BURNDRIVE, :CHILLDRIVE, :DOUSEDRIVE, :SHOCKDRIVE,],
-            60 => %i[ADAMANTORB DAMPROCK GRISEOUSORB HEATROCK LUSTROUSORB
-                     MACHOBRACE ROCKYHELMET STICK TERRAINEXTENDER],
-            50 => [:DUBIOUSDISC, :SHARPBEAK,
-                   # Memories
-                   :BUGMEMORY, :DARKMEMORY, :DRAGONMEMORY, :ELECTRICMEMORY, :FAIRYMEMORY,
-                   :FIGHTINGMEMORY, :FIREMEMORY, :FLYINGMEMORY, :GHOSTMEMORY,
-                   :GRASSMEMORY, :GROUNDMEMORY, :ICEMEMORY, :POISONMEMORY,
-                   :PSYCHICMEMORY, :ROCKMEMORY, :STEELMEMORY, :WATERMEMORY,],
-            40 => %i[EVIOLITE ICYROCK LUCKYPUNCH],
-            30 => [:ABSORBBULB, :ADRENALINEORB, :AMULETCOIN, :BINDINGBAND, :BLACKBELT,
-                   :BLACKGLASSES, :BLACKSLUDGE, :BOTTLECAP, :CELLBATTERY, :CHARCOAL,
-                   :CLEANSETAG, :DEEPSEASCALE, :DRAGONSCALE, :EJECTBUTTON, :ESCAPEROPE,
-                   :EXPSHARE, :FLAMEORB, :POISONORB, :FROSTORB, :FLOATSTONE, :FLUFFYTAIL, :GOLDBOTTLECAP,
-                   :HEARTSCALE, :HONEY, :KINGSROCK, :LIFEORB, :LIGHTBALL, :LIGHTCLAY,
-                   :LUCKYEGG, :LUMINOUSMOSS, :MAGNET, :METALCOAT, :METRONOME,
-                   :MIRACLESEED, :MYSTICWATER, :NEVERMELTICE, :PASSORB, :POKEDOLL,
-                   :POKETOY, :PRISMSCALE, :PROTECTIVEPADS, :RAZORFANG, :SACREDASH,
-                   :SCOPELENS, :SHELLBELL, :SHOALSALT, :SHOALSHELL, :SMOKEBALL, :SNOWBALL,
-                   :SOULDEW, :SPELLTAG, :TWISTEDSPOON, :UPGRADE,
-                   # Healing items
-                   :ANTIDOTE, :AWAKENING, :BERRYJUICE, :BIGMALASADA, :BLUEFLUTE,
-                   :BURNHEAL, :CASTELIACONE, :ELIXIR, :ENERGYPOWDER, :ENERGYROOT, :ETHER,
-                   :FRESHWATER, :FULLHEAL, :FULLRESTORE, :HEALPOWDER, :HYPERPOTION,
-                   :ICEHEAL, :LAVACOOKIE, :LEMONADE, :LUMIOSEGALETTE, :MAXELIXIR,
-                   :MAXETHER, :MAXPOTION, :MAXREVIVE, :MOOMOOMILK, :OLDGATEAU,
-                   :PARALYZEHEAL, :PARLYZHEAL, :PEWTERCRUNCHIES, :POTION, :RAGECANDYBAR,
-                   :REDFLUTE, :REVIVALHERB, :REVIVE, :SHALOURSABLE, :SODAPOP,
-                   :SUPERPOTION, :SWEETHEART, :YELLOWFLUTE,
-                   # Battle items
-                   :XACCURACY, :XACCURACY2, :XACCURACY3, :XACCURACY6,
-                   :XATTACK, :XATTACK2, :XATTACK3, :XATTACK6,
-                   :XDEFEND, :XDEFEND2, :XDEFEND3, :XDEFEND6,
-                   :XDEFENSE, :XDEFENSE2, :XDEFENSE3, :XDEFENSE6,
-                   :XSPATK, :XSPATK2, :XSPATK3, :XSPATK6,
-                   :XSPECIAL, :XSPECIAL2, :XSPECIAL3, :XSPECIAL6,
-                   :XSPDEF, :XSPDEF2, :XSPDEF3, :XSPDEF6,
-                   :XSPEED, :XSPEED2, :XSPEED3, :XSPEED6,
-                   :DIREHIT, :DIREHIT2, :DIREHIT3,
-                   :ABILITYURGE, :GUARDSPEC, :ITEMDROP, :ITEMURGE, :RESETURGE,
-                   # Vitamins
-                   :CALCIUM, :CARBOS, :HPUP, :IRON, :PPUP, :PPMAX, :PROTEIN, :ZINC,
-                   :RARECANDY,
-                   # Most evolution stones (see also 80)
-                   :EVERSTONE, :FIRESTONE, :ICESTONE, :LEAFSTONE, :MOONSTONE, :SUNSTONE,
-                   :THUNDERSTONE, :WATERSTONE,
-                   # Repels
-                   :MAXREPEL, :REPEL, :SUPERREPEL,
-                   # Mulches
-                   :AMAZEMULCH, :BOOSTMULCH, :DAMPMULCH, :GOOEYMULCH, :GROWTHMULCH,
-                   :RICHMULCH, :STABLEMULCH, :SURPRISEMULCH,
-                   # Shards
-                   :BLUESHARD, :GREENSHARD, :REDSHARD, :YELLOWSHARD,
-                   # Valuables
-                   :BALMMUSHROOM, :BIGMUSHROOM, :BIGNUGGET, :BIGPEARL, :COMETSHARD,
-                   :NUGGET, :PEARL, :PEARLSTRING, :RELICBAND, :RELICCOPPER, :RELICCROWN,
-                   :RELICGOLD, :RELICSILVER, :RELICSTATUE, :RELICVASE, :STARDUST,
-                   :STARPIECE, :STRANGESOUVENIR, :TINYMUSHROOM,],
-            20 => [ # Wings
-                :CLEVERWING, :GENIUSWING, :HEALTHWING, :MUSCLEWING, :PRETTYWING,
-                :RESISTWING, :SWIFTWING,
-            ],
-            10 => [:BIGROOT, :BRIGHTPOWDER, :DESTINYKNOT, :DISCOUNTCOUPON, :EXPERTBELT, :FOCUSBAND,
-                   :LAGGINGTAIL, :LEFTOVERS, :MENTALHERB, :METALPOWDER,
-                   :MUSCLEBAND, :POWERHERB, :QUICKPOWDER, :REAPERCLOTH, :REDCARD,
-                   :RINGTARGET, :SHEDSHELL, :SILKSCARF, :SILVERPOWDER, :SMOOTHROCK,
-                   :SOFTSAND, :SOOTHEBELL, :WHITEHERB, :WIDELENS, :WISEGLASSES, :ZOOMLENS,
-                   # Terrain seeds
-                   :ELECTRICSEED, :GRASSYSEED, :FairySEED, :PSYCHICSEED,
-                   # Nectar
-                   :PINKNECTAR, :PURPLENECTAR, :REDNECTAR, :YELLOWNECTAR,
-                   # Incenses
-                   :FULLINCENSE, :LAXINCENSE, :LUCKINCENSE, :ODDINCENSE, :PUREINCENSE,
-                   :ROCKINCENSE, :ROSEINCENSE, :SEAINCENSE, :WAVEINCENSE,
-                   # Scarves
-                   :BLUESCARF, :GREENSCARF, :PINKSCARF, :REDSCARF, :YELLOWSCARF,],
-        }
-        @flingPowers[80].concat(STATUS_PREVENTING_ITEMS)
-        @flingPowers[10].concat(CHOICE_LOCKING_ITEMS)
-        @flingPowers[10].concat(LEVITATION_ITEMS)
-        @flingPowers[10].concat(FULL_ENDURE_ITEMS)
+        @flingPowers = {}
+
+        # Highest BP
+        category1 = %i[IRONBALL PEARLOFFATE]
+
+        # Middle BP
+        category2 = []
+        category2.concat(CHOICE_LOCKING_ITEMS)
+        category2.concat(WEATHER_ROCK_ITEMS)
+        category2.concat(RECOIL_ITEMS)
+
+        @flingPowers[150] = category1
+        @flingPowers[100] = category2
     end
 
-    def canFling?(user, show_message)
-        unless user.firstItem
-            @battle.pbDisplay(_INTL("But it failed, since #{user.pbThis(true)} doesn't have an item!")) if show_message
+    def validItem(user,item)
+        return !(user.unlosableItem?(item) || GameData::Item.get(item).is_mega_stone?)
+    end
+
+    def pbCanChooseMove?(user, commandPhase, show_message)
+        unless user.hasAnyItem?
+            if show_message
+                msg = _INTL("#{user.pbThis} doesn't have an item to fling!")
+                commandPhase ? @battle.pbDisplayPaused(msg) : @battle.pbDisplay(msg)
+            end
             return false
         end
         unless user.itemActive?
-            @battle.pbDisplay(_INTL("But it failed, since #{user.pbThis(true)} can't use its item!")) if show_message
-            return false
-        end
-        if user.unlosableItem?(user.firstItem)
-            @battle.pbDisplay(_INTL("But it failed, since #{user.pbThis(true)} can't lose its item!")) if show_message
-            return false
-        end
-        if user.firstItemData.is_berry? && !user.canConsumeBerry?
             if show_message
-                @battle.pbDisplay(_INTL("But it failed, since #{user.pbThis(true)} can't use berries right now!"))
+                msg = _INTL("#{user.pbThis} can't use items!")
+                commandPhase ? @battle.pbDisplayPaused(msg) : @battle.pbDisplay(msg)
             end
             return false
         end
-        if user.firstItemData.is_mega_stone?
+        allItemsInvalid = true
+        user.items.each do |item|
+            next unless validItem(user, item)
+            allItemsInvalid = false
+            break
+        end
+        if allItemsInvalid
             if show_message
-                @battle.pbDisplay(_INTL("But it failed, since #{user.pbThis(true)} can't fling a Mega Stone!"))
+                msg = _INTL("#{user.pbThis} can't lose any of its items!")
+                commandPhase ? @battle.pbDisplayPaused(msg) : @battle.pbDisplay(msg)
             end
             return false
         end
-        @flingPowers.each do |_power, items|
-            return true if items.include?(user.firstItem)
-        end
-        if show_message
-            @battle.pbDisplay(_INTL("But it failed, since #{user.pbThis(true)} can't fling a #{getItemName(user.firstItem)}!"))
-        end
-        return false
+        return true
     end
 
-    def pbMoveFailed?(user, _targets, show_message)
-        return !canFling?(user, show_message)
+    def resolutionChoice(user)
+        validItems = []
+        validItemNames = []
+        user.items.each do |item|
+            next unless validItem(user,item)
+            validItems.push(item)
+            validItemNames.push(getItemName(item))
+        end
+        if validItems.length == 1
+            @chosenItem = validItems[0]
+        elsif validItems.length > 1
+            chosenIndex = @battle.scene.pbShowCommands(_INTL("Which item should #{user.pbThis(true)} fling?"),validItemNames,0)
+            @chosenItem = validItems[chosenIndex]
+        end
     end
 
     def pbDisplayUseMessage(user, targets)
         super
-        @battle.pbDisplay(_INTL("{1} flung its {2}!", user.pbThis, getItemName(user.firstItem))) if canFling?(user, false)
+        @battle.pbDisplay(_INTL("{1} flung its {2}!", user.pbThis, getItemName(@chosenItem)))
     end
 
     def pbNumHits(_user, _targets, _checkingForAI = false); return 1; end
 
     def pbBaseDamage(_baseDmg, user, _target)
-        return 10 if user.firstItemData&.is_berry?
-        return 80 if user.firstItemData&.is_mega_stone?
         @flingPowers.each do |power, items|
-            return power if items.include?(user.firstItem)
+            return power if items.include?(@chosenItem)
         end
-        return 10
+        return 75
     end
 
     def pbEffectAgainstTarget(user, target)
         return if target.damageState.substitute
         return unless canApplyAdditionalEffects?(user, target, true)
-        case user.firstItem
-        when :POISONBARB
-            target.applyPoison(user) if target.canPoison?(user, false, self)
+        case @chosenItem
         when :POISONORB
             target.applyPoison(user) if target.canPoison?(user, false, self)
         when :FLAMEORB
             target.applyBurn(user) if target.canBurn?(user, false, self)
         when :FROSTORB
             target.applyFrostbite(user) if target.canFrostbite?(user, false, self)
-        when :LIGHTBALL
-            target.applyNumb(user) if target.canNumb?(user, false, self)
-        when :KINGSROCK, :RAZORFANG
-            target.pbFlinch(user)
-        when :PEARLOFFATE
-            target.applyDizzy(user) if target.canDizzy?(user, false, self)
+        when :BIGROOT
+            target.applyLeeched(user) if target.canLeech?(user, false, self)
+        when :BINDINGBAND
+            target.applyLeeched(user) if target.canLeech?(user, false, self)
         else
-            target.pbHeldItemTriggerCheck(user.firstItem, true)
+            target.pbHeldItemTriggerCheck(@chosenItem, true)
         end
     end
 
@@ -3708,7 +3623,11 @@ class PokeBattle_Move_0F7 < PokeBattle_Move
         #       missed. The item is not consumed if the target was switched out by
         #       an effect like a target's Red Card.
         # NOTE: There is no item consumption animation.
-        user.consumeItem(user.firstItem, belch: false) if user.firstItem
+        user.consumeItem(@chosenItem, belch: false) if user.hasItem?(@chosenItem)
+    end
+
+    def resetMoveUsageState
+        @chosenItem = nil
     end
 end
 

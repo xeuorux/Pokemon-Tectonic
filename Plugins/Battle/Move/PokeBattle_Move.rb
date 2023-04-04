@@ -123,7 +123,7 @@ class PokeBattle_Move
     def triggersHyperMode?;      return false; end
     def immuneToRainDebuff?;     return false; end
     def immuneToSunDebuff?;      return false; end
-    def setsARoom?();            return false; end
+    def setsARoom?;              return false; end
 
     def canProtectAgainst?; return @flags[/b/]; end
     def canMagicCoat?;      return @flags[/c/]; end

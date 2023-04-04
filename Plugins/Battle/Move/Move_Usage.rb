@@ -36,6 +36,8 @@ class PokeBattle_Move
         return -1
     end
 
+    def resolutionChoice(user); end
+
     #=============================================================================
     # Methods for displaying stuff when the move is used
     #=============================================================================
