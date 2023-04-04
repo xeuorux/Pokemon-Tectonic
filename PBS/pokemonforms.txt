@@ -481,7 +481,6 @@ BattlerEnemyY = 16
 FormName = Blue-Striped
 Abilities = ROCKHEAD,ADAPTED
 Pokedex = Even Basculin, which devours everything it can with its huge jaws, is nothing more than food to organisms stronger than itself.
-WildItemUncommon = DEEPSEASCALE
 BattlerEnemyY = 37
 #-------------------------------
 [DEERLING,1]

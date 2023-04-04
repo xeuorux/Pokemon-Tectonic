@@ -130,3 +130,76 @@
 3000,TOXICORB,MISSINGNO Orb,MISSINGNO Orbs,1,0,"An item that shouldn't exist.",0,0,0
 3001,MISTYSEED,MISSINGNO Orb,MISSINGNO Orbs,1,0,"An item that shouldn't exist.",0,0,0
 3002,ABILITYTRANSFORMER,MISSINGNO Orb,MISSINGNO Orbs,1,0,"An item that shouldn't exist.",0,0,0
+249,PPUP,PP Up,PP Ups,2,10000,"It slightly raises the maximum PP of a selected move that has been learned by the target Pokémon.",1,0,0
+250,PPMAX,PP Max,PP Maxes,2,10000,"It maximally raises the top PP of a selected move that has been learned by the target Pokémon.",1,0,0
+251,HPUP,HP Up,HP Ups,2,10000,"A nutritious drink for Pokémon. It raises the base HP of a single Pokémon.",1,0,0
+252,PROTEIN,Protein,Proteins,2,10000,"A nutritious drink for Pokémon. It raises the base Attack stat of a single Pokémon.",1,0,0
+253,IRON,Iron,Irons,2,10000,"A nutritious drink for Pokémon. It raises the base Defense stat of a single Pokémon.",1,0,0
+254,CALCIUM,Calcium,Calciums,2,10000,"A nutritious drink for Pokémon. It raises the base Sp. Atk (Special Attack) stat of a single Pokémon.",1,0,0
+255,ZINC,Zinc,Zincs,2,10000,"A nutritious drink for Pokémon. It raises the base Sp. Def (Special Defense) stat of a single Pokémon.",1,0,0
+256,CARBOS,Carbos,Carbos,2,10000,"A nutritious drink for Pokémon. It raises the base Speed stat of a single Pokémon.",1,0,0
+257,HEALTHWING,Health Wing,Health Wings,2,300,"An item for use on a Pokémon. It slightly increases the base HP of a single Pokémon.",1,0,0
+258,MUSCLEWING,Muscle Wing,Muscle Wings,2,300,"An item for use on a Pokémon. It slightly increases the base Attack stat of a single Pokémon.",1,0,0
+259,RESISTWING,Resist Wing,Resist Wings,2,300,"An item for use on a Pokémon. It slightly increases the base Defense stat of a single Pokémon.",1,0,0
+260,GENIUSWING,Genius Wing,Genius Wings,2,300,"An item for use on a Pokémon. It slightly increases the base Sp. Atk stat of a single Pokémon.",1,0,0
+261,CLEVERWING,Clever Wing,Clever Wings,2,300,"An item for use on a Pokémon. It slightly increases the base Sp. Def stat of a single Pokémon.",1,0,0
+262,SWIFTWING,Swift Wing,Swift Wings,2,300,"An item for use on a Pokémon. It slightly increases the base Speed stat of a single Pokémon.",1,0,0
+547,FIREMEMORY,Fire Memory,Fire Memories,5,1000,"A memory disc containing Fire-type data. It changes the holder's type if held by a certain Pokémon.",0,0,0
+548,WATERMEMORY,Water Memory,Water Memories,5,1000,"A memory disc containing Water-type data. It changes the holder's type if held by a certain Pokémon.",0,0,0
+549,ELECTRICMEMORY,Electric Memory,Electric Memories,5,1000,"A memory disc containing Electric-type data. It changes the holder's type if held by a certain Pokémon.",0,0,0
+550,GRASSMEMORY,Grass Memory,Grass Memories,5,1000,"A memory disc containing Grass-type data. It changes the holder's type if held by a certain Pokémon.",0,0,0
+551,ICEMEMORY,Ice Memory,Ice Memories,5,1000,"A memory disc containing Ice-type data. It changes the holder's type if held by a certain Pokémon.",0,0,0
+552,FIGHTINGMEMORY,Fighting Memory,Fighting Memories,5,1000,"A memory disc containing Fighting-type data. It changes the holder's type if held by a certain Pokémon.",0,0,0
+553,POISONMEMORY,Poison Memory,Poison Memories,5,1000,"A memory disc containing Poison-type data. It changes the holder's type if held by a certain Pokémon.",0,0,0
+554,GROUNDMEMORY,Ground Memory,Ground Memories,5,1000,"A memory disc containing Ground-type data. It changes the holder's type if held by a certain Pokémon.",0,0,0
+555,FLYINGMEMORY,Flying Memory,Flying Memories,5,1000,"A memory disc containing Flying-type data. It changes the holder's type if held by a certain Pokémon.",0,0,0
+556,PSYCHICMEMORY,Psychic Memory,Psychic Memories,5,1000,"A memory disc containing Psychic-type data. It changes the holder's type if held by a certain Pokémon.",0,0,0
+557,BUGMEMORY,Bug Memory,Bug Memories,5,1000,"A memory disc containing Bug-type data. It changes the holder's type if held by a certain Pokémon.",0,0,0
+558,ROCKMEMORY,Rock Memory,Rock Memories,5,1000,"A memory disc containing Rock-type data. It changes the holder's type if held by a certain Pokémon.",0,0,0
+559,GHOSTMEMORY,Ghost Memory,Ghost Memories,5,1000,"A memory disc containing Ghost-type data. It changes the holder's type if held by a certain Pokémon.",0,0,0
+560,DRAGONMEMORY,Dragon Memory,Dragon Memories,5,1000,"A memory disc containing Dragon-type data. It changes the holder's type if held by a certain Pokémon.",0,0,0
+561,DARKMEMORY,Dark Memory,Dark Memories,5,1000,"A memory disc containing Dark-type data. It changes the holder's type if held by a certain Pokémon.",0,0,0
+562,STEELMEMORY,Steel Memory,Steel Memories,5,1000,"A memory disc containing Steel-type data. It changes the holder's type if held by a certain Pokémon.",0,0,0
+563,FAIRYMEMORY,Fairy Memory,Fairy Memories,5,1000,"A memory disc containing Fairy-type data. It changes the holder's type if held by a certain Pokémon.",0,0,0
+153,FLAMEPLATE,Flame Plate,Flame Plates,5,1000,"A stone tablet that boosts the holder's Fire-type moves.",0,0,0
+154,SPLASHPLATE,Splash Plate,Splash Plates,5,1000,"A stone tablet that boosts the holder's Water-type moves.",0,0,0
+155,ZAPPLATE,Zap Plate,Zap Plates,5,1000,"A stone tablet that boosts the holder's Electric-type moves.",0,0,0
+156,MEADOWPLATE,Meadow Plate,Meadow Plates,5,1000,"A stone tablet that boosts the holder's Grass-type moves.",0,0,0
+157,ICICLEPLATE,Icicle Plate,Icicle Plates,5,1000,"A stone tablet that boosts the holder's Ice-type moves.",0,0,0
+158,FISTPLATE,Fist Plate,Fist Plates,5,1000,"A stone tablet that boosts the holder's Fighting-type moves.",0,0,0
+159,TOXICPLATE,Toxic Plate,Toxic Plates,5,1000,"A stone tablet that boosts the holder's Poison-type moves.",0,0,0
+160,EARTHPLATE,Earth Plate,Earth Plates,5,1000,"A stone tablet that boosts the holder's Ground-type moves.",0,0,0
+161,SKYPLATE,Sky Plate,Sky Plates,5,1000,"A stone tablet that boosts the holder's Flying-type moves.",0,0,0
+162,MINDPLATE,Mind Plate,Mind Plates,5,1000,"A stone tablet that boosts the holder's Psychic-type moves.",0,0,0
+163,INSECTPLATE,Insect Plate,Insect Plates,5,1000,"A stone tablet that boosts the holder's Bug-type moves.",0,0,0
+164,STONEPLATE,Stone Plate,Stone Plates,5,1000,"A stone tablet that boosts the holder's Rock-type moves.",0,0,0
+165,SPOOKYPLATE,Spooky Plate,Spooky Plates,5,1000,"A stone tablet that boosts the holder's Ghost-type moves.",0,0,0
+166,DRACOPLATE,Draco Plate,Draco Plates,5,1000,"A stone tablet that boosts the holder's Dragon-type moves.",0,0,0
+167,DREADPLATE,Dread Plate,Dread Plates,5,1000,"A stone tablet that boosts the holder's Dark-type moves.",0,0,0
+168,IRONPLATE,Iron Plate,Iron Plates,5,1000,"A stone tablet that boosts the holder's Steel-type moves.",0,0,0
+545,PIXIEPLATE,Pixie Plate,Pixie Plates,5,1000,"A stone tablet that boosts the power of Fairy-type moves.",0,0,0
+504,FISHINGROD,Fishing Rod,Fishing Rods,8,0,"An old, well worn fishing rod. Use it by any body of water to fish for wild aquatic Pokémon.",2,0,6
+505,GOODROD,Good Rod,Good Rods,8,0,"A new, good-quality fishing rod. Use it by any body of water to fish for wild aquatic Pokémon.",2,0,6
+506,SUPERROD,Super Rod,Super Rods,8,0,"An awesome, high-tech fishing rod. Use it by any body of water to fish for wild aquatic Pokémon.",2,0,6
+112,QUICKCLAW,Quick Claw,Quick Claws,5,4000,"An item to be held by a Pokémon. A light, sharp claw that lets the bearer move first occasionally.",0,0,0
+113,FOCUSBAND,Focus Band,Focus Bands,5,4000,"An item to be held by a Pokémon. The holder may endure a potential KO attack, leaving it with just 1 HP.",0,0,0
+186,LIGHTBALL,Light Ball,Light Balls,5,1000,"An item to be held by Pikachu. It is a puzzling orb that raises the Attack and Sp. Atk stat.",0,0,0
+187,LUCKYPUNCH,Lucky Punch,Lucky Punches,5,1000,"An item to be held by Chansey. It is a pair of gloves that boosts Chansey's critical-hit ratio.",0,0,0
+188,METALPOWDER,Metal Powder,Metal Powders,5,1000,"An item to be held by Ditto. Extremely fine yet hard, this odd powder boosts the Defense stat.",0,0,0
+189,QUICKPOWDER,Quick Powder,Quick Powders,5,1000,"An item to be held by Ditto. Extremely fine yet hard, this odd powder boosts the Speed stat.",0,0,0
+190,THICKCLUB,Thick Club,Thick Clubs,5,1000,"An item to be held by Cubone or Marowak. It is a hard bone of some sort that boosts the Attack stat.",0,0,0
+193,DEEPSEATOOTH,Deep Sea Tooth,Deep Sea Teeth,5,2000,"An item to be held by Clamperl. A fang that gleams a sharp silver, it raises the Sp. Atk stat.",0,0,0
+194,DEEPSEASCALE,Deep Sea Scale,Deep Sea Scales,5,2000,"An item to be held by Clamperl. A scale that shines a faint pink, it raises the Sp. Def stat.",0,0,0
+191,LEEK,Leek,Leeks,5,1000,"An item to be held by Farfetch'd. It is a very long and stiff stalk of leek that boosts the critical-hit ratio.",0,0,0
+210,PRISMSCALE,Prism Scale,Prism Scales,5,2000,"A mysterious scale that evolves certain Pokémon. It shines in rainbow colors.",0,0,0
+211,OVALSTONE,Oval Stone,Oval Stones,5,2000,"A peculiar stone that makes certain species of Pokémon evolve. It is shaped like an egg.",0,0,0
+212,REDSCARF,Red Scarf,Red Scarves,5,100,"An item to be held by a Pokémon. It boosts the Cool aspect of the holder in a Contest.",0,0,0
+213,BLUESCARF,Blue Scarf,Blue Scarves,5,100,"An item to be held by a Pokémon. It boosts the Beauty aspect of the holder in a Contest.",0,0,0
+214,PINKSCARF,Pink Scarf,Pink Scarves,5,100,"An item to be held by a Pokémon. It boosts the Cute aspect of the holder in a Contest.",0,0,0
+215,GREENSCARF,Green Scarf,Green Scarves,5,100,"An item to be held by a Pokémon. It boosts the Smart aspect of the holder in a Contest.",0,0,0
+216,YELLOWSCARF,Yellow Scarf,Yellow Scarves,5,100,"An item to be held by a Pokémon. It boosts the Tough aspect of the holder in a Contest.",0,0,0
+223,AWAKENING,Awakening,Awakenings,2,100,"A spray-type medicine. It awakens a Pokémon from the clutches of sleep.",1,0,0
+224,ANTIDOTE,Antidote,Antidotes,2,200,"A spray-type medicine. It lifts the effect of poison from one Pokémon.",1,0,0
+225,BURNHEAL,Burn Heal,Burn Heals,2,300,"A spray-type medicine. It heals a single Pokémon that is suffering from a burn.",1,0,0
+226,PARALYZEHEAL,Paralyze Heal,Paralyze Heals,2,300,"A spray-type medicine. It eliminates paralysis from a single Pokémon.",1,0,0
+227,ICEHEAL,Ice Heal,Ice Heals,2,100,"A spray-type medicine. It defrosts a Pokémon that has been frozen solid.",1,0,0
