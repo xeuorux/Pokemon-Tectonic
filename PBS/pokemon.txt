@@ -19961,8 +19961,8 @@ InternalName = FERROSEED
 Type1 = GRASS
 Type2 = STEEL
 # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
-BaseStats = 54,55,91,10,24,86
-# Total = 320
+BaseStats = 48,66,90,15,45,81
+# Total = 345
 GenderRate = Female50Percent
 GrowthRate = Medium
 BaseEXP = 61
@@ -19997,8 +19997,8 @@ InternalName = FERROTHORN
 Type1 = GRASS
 Type2 = STEEL
 # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
-BaseStats = 74,94,131,20,54,116
-# Total = 489
+BaseStats = 69,94,131,20,64,116
+# Total = 494
 GenderRate = Female50Percent
 GrowthRate = Medium
 BaseEXP = 171
