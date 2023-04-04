@@ -642,8 +642,6 @@ user.pbThis))
         @battle.pbGainExp
         # Battle Arena only - update skills
         @battle.eachBattler { |b| @battle.successStates[b.index].updateSkill }
-        # Shadow Pokémon triggering Hyper Mode
-        pbHyperMode if @battle.choices[@index][0] != :None # Not if self is replaced
         # Refresh the scene to account for changes to pokemon status
         @battle.scene.pbRefresh
         # End of move usage

@@ -235,7 +235,7 @@ class DependentEvents
     end
     change_sprite([first_pkmn.species, first_pkmn.form,
           first_pkmn.gender, first_pkmn.shiny?,
-          first_pkmn.shadowPokemon?]) if ret
+          false]) if ret
     if ret
       $PokemonTemp.dependentEvents.start_stepping
     else

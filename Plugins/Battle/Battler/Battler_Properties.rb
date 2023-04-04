@@ -1,7 +1,7 @@
 class PokeBattle_Battler
     # Fundamental to this object
     attr_reader   :battle
-    attr_accessor :index, :pokemonIndex, :species, :type1, :type2, :ability_ids, :item_ids, :moves, :turnCount
+    attr_accessor :index, :pokemonIndex, :species, :type1, :type2, :ability_ids, :moves, :turnCount
     attr_accessor  :gender, :iv, :attack, :spatk, :speed, :stages, :captured, :effects, :boss, :avatarPhase
     attr_accessor  :extraMovesPerTurn, :primevalTimer, :indicesTargetedThisRound, :indicesTargetedLastRound, :dmgMult,
 :dmgResist

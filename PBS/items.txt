@@ -78,7 +78,7 @@
 77,EXPSHARE,Exp. Share,Exp. Shares,5,3000,"An item to be held by a Pokémon. The holder gets a share of a battle's Exp. Points without battling.",0,0,0
 78,AMULETCOIN,Amulet Coin,Amulet Coins,5,10000,"An item to be held by a Pokémon. It doubles a battle's prize money if the holding Pokémon joins in.",0,0,0
 79,SOOTHEBELL,Soothe Bell,Soothe Bells,5,4000,"An item to be held by a Pokémon. The comforting chime of this bell calms the holder, making it friendly.",0,0,0
-80,CLEANSETAG,Cleanse Tag,Cleanse Tags,5,5000,"An item to be held by a Pokémon. It helps keep wild Pokémon away if the holder is the first one in the party.",0,0,0
+80,CLEANSETAG,Cleanse Tag,Cleanse Tags,5,5000,"An item to be held by a Pokémon. It prevents wild Pokémon encounters if the holder is the first one in the party.",0,0,0
 81,CHOICEBAND,Choice Band,Choice Bands,5,10000,"Held item which ups Attack by 33%, but allows the use of only one move.",0,0,0
 82,CHOICESPECS,Choice Specs,Choice Specs,5,10000,"Held item which ups Sp. Atk by 33%, but allows the use of only one move.",0,0,0
 83,CHOICESCARF,Choice Scarf,Choice Scarves,5,10000,"Held item which boosts Speed by 33% but allows the use of only one move.",0,0,0
@@ -430,56 +430,6 @@
 450,CUSTAPBERRY,Custap Berry,Custap Berries,5,0,"If held by a Pokémon, it gets to move first just once in a pinch.",0,0,5
 451,JABOCABERRY,Jaboca Berry,Jaboca Berries,5,0,"If held by a Pokémon and a physical attack lands, the attacker takes 1/4th HP  damage.",0,0,5
 452,ROWAPBERRY,Rowap Berry,Rowap Berries,5,0,"If held by a Pokémon and a special attack lands, the attacker takes 1/4th HP damage.",0,0,5
-453,GRASSMAIL,Grass Mail,Grass Mail,6,50,"Stationery featuring a print of a refreshingly green field. Let a Pokémon hold it for delivery.",0,0,2
-454,FLAMEMAIL,Flame Mail,Flame Mail,6,50,"Stationery featuring a print of flames in blazing red. Let a Pokémon hold it for delivery.",0,0,2
-455,BUBBLEMAIL,Bubble Mail,Bubble Mail,6,50,"Stationery featuring a print of a blue world underwater. Let a Pokémon hold it for delivery.",0,0,2
-456,BLOOMMAIL,Bloom Mail,Bloom Mail,6,50,"Stationery featuring a print of pretty floral patterns. Let a Pokémon hold it for delivery.",0,0,2
-457,TUNNELMAIL,Tunnel Mail,Tunnel Mail,6,50,"Stationery featuring a print of a dimly lit coal mine. Let a Pokémon hold it for delivery.",0,0,2
-458,STEELMAIL,Steel Mail,Steel Mail,6,50,"Stationery featuring a print of cool mechanical designs. Let a Pokémon hold it for delivery.",0,0,2
-459,HEARTMAIL,Heart Mail,Heart Mail,6,50,"Stationery featuring a print of giant heart patterns. Let a Pokémon hold it for delivery.",0,0,2
-460,SNOWMAIL,Snow Mail,Snow Mail,6,50,"Stationery featuring a print of a chilly, snow-covered world. Let a Pokémon hold it for delivery.",0,0,2
-461,SPACEMAIL,Space Mail,Space Mail,6,50,"Stationery featuring a print depicting the huge expanse of space. Let a Pokémon hold it for delivery.",0,0,2
-462,AIRMAIL,Air Mail,Air Mail,6,50,"Stationery featuring a print of colorful letter sets. Let a Pokémon hold it for delivery.",0,0,2
-463,MOSAICMAIL,Mosaic Mail,Mosaic Mail,6,50,"Stationery featuring a print of a vivid rainbow pattern. Let a Pokémon hold it for delivery.",0,0,2
-464,BRICKMAIL,Brick Mail,Brick Mail,6,50,"Stationery featuring a print of a tough-looking brick pattern. Let a Pokémon hold it for delivery.",0,0,2
-465,XATTACK,X Attack,X Attacks,7,1000,"An item that sharply boosts the Attack stat of a Pokémon while it remains in battle.",0,3,0
-466,XATTACK2,X Attack 2,X Attack 2s,7,0,"It sharply raises the Attack stat of a Pokémon in battle. It wears off if the Pokémon is withdrawn.",0,3,0
-467,XATTACK3,X Attack 3,X Attack 3s,7,0,"It drastically raises the Attack stat of a Pokémon in battle. It wears off if the Pokémon is withdrawn.",0,3,0
-468,XATTACK6,X Attack 6,X Attack 6s,7,0,"It raises the Attack stat of a Pokémon in battle immensely. It wears off if the Pokémon is withdrawn.",0,3,0
-469,XDEFENSE,X Defense,X Defenses,7,2000,"An item that sharply boosts the Defense of a Pokémon while it remains in battle.",0,3,0
-470,XDEFENSE2,X Defense 2,X Defense 2s,7,0,"It sharply raises the Defense stat of a Pokémon in battle. It wears off if the Pokémon is withdrawn.",0,3,0
-471,XDEFENSE3,X Defense 3,X Defense 3s,7,0,"It drastically raises the Defense stat of a Pokémon in battle. It wears off if the Pokémon is withdrawn.",0,3,0
-472,XDEFENSE6,X Defense 6,X Defense 6s,7,0,"It raises the Defense stat of a Pokémon in battle immensely. It wears off if the Pokémon is withdrawn.",0,3,0
-473,XSPATK,X Sp. Atk,X Sp. Atks,7,1000,"An item that sharply boosts the Sp. Atk stat of a Pokémon while it remains in battle.",0,3,0
-474,XSPATK2,X Sp. Atk 2,X Sp. Atk 2s,7,0,"It sharply raises the Sp. Atk stat of a Pokémon in battle. It wears off if the Pokémon is withdrawn.",0,3,0
-475,XSPATK3,X Sp. Atk 3,X Sp. Atk 3s,7,0,"It drastically raises the Sp. Atk stat of a Pokémon in battle. It wears off if the Pokémon is withdrawn.",0,3,0
-476,XSPATK6,X Sp. Atk 6,X Sp. Atk 6s,7,0,"It raises the Sp. Atk stat of a Pokémon in battle immensely. It wears off if the Pokémon is withdrawn.",0,3,0
-477,XSPDEF,X Sp. Def,X Sp. Defs,7,2000,"An item that sharply boosts the Sp. Def stat of a Pokémon while it remains in battle.",0,3,0
-478,XSPDEF2,X Sp. Def 2,X Sp. Def 2s,7,0,"It sharply raises the Sp. Def stat of a Pokémon in battle. It wears off if the Pokémon is withdrawn.",0,3,0
-479,XSPDEF3,X Sp. Def 3,X Sp. Def 3s,7,0,"It drastically raises the Sp. Def stat of a Pokémon in battle. It wears off if the Pokémon is withdrawn.",0,3,0
-480,XSPDEF6,X Sp. Def 6,X Sp. Def 6s,7,0,"It raises the Sp. Def stat of a Pokémon in battle immensely. It wears off if the Pokémon is withdrawn.",0,3,0
-481,XSPEED,X Speed,X Speeds,7,1000,"An item that sharply boosts the Speed stat of a Pokémon while it remains in battle.",0,3,0
-482,XSPEED2,X Speed 2,X Speed 2s,7,0,"It sharply raises the Speed stat of a Pokémon in battle. It wears off if the Pokémon is withdrawn.",0,3,0
-483,XSPEED3,X Speed 3,X Speed 3s,7,0,"It drastically raises the Speed stat of a Pokémon in battle. It wears off if the Pokémon is withdrawn.",0,3,0
-484,XSPEED6,X Speed 6,X Speed 6s,7,0,"It raises the Speed stat of a Pokémon in battle immensely. It wears off if the Pokémon is withdrawn.",0,3,0
-485,XACCURACY,X Accuracy,X Accuracies,7,1000,"An item that sharply boosts the accuracy of a Pokémon while it remains in battle.",0,3,0
-486,XACCURACY2,X Accuracy 2,X Accuracy 2s,7,0,"It sharply raises the accuracy of a Pokémon in battle. It wears off if the Pokémon is withdrawn.",0,3,0
-487,XACCURACY3,X Accuracy 3,X Accuracy 3s,7,0,"It drastically raises the accuracy of a Pokémon in battle. It wears off if the Pokémon is withdrawn.",0,3,0
-488,XACCURACY6,X Accuracy 6,X Accuracy 6s,7,0,"It raises the accuracy of a Pokémon in battle immensely. It wears off if the Pokémon is withdrawn.",0,3,0
-489,DIREHIT,Dire Hit,Dire Hits,7,1000,"An item that raises the critical-hit ratio greatly. It wears off if the Pokémon is withdrawn.",0,3,0
-490,DIREHIT2,Dire Hit 2,Dire Hit 2s,7,0,"It sharply raises the critical-hit ratio. It wears off if the Pokémon is withdrawn.",0,3,0
-491,DIREHIT3,Dire Hit 3,Dire Hit 3s,7,0,"It greatly raises the critical-hit ratio. It wears off if the Pokémon is withdrawn.",0,3,0
-492,GUARDSPEC,Guard Spec.,Guard Specs.,7,1500,"An item that prevents stat reduction among the Trainer's party Pokémon for five turns after use.",0,5,0
-493,RESETURGE,Reset Urge,Reset Urges,7,0,"When used, it restores any stat changes of an ally Pokémon.",0,0,0
-494,ABILITYURGE,Ability Urge,Ability Urges,7,0,"When used, it activates the Ability of an ally Pokémon.",0,0,0
-495,ITEMURGE,Item Urge,Item Urges,7,0,"When used, it causes an ally Pokémon to use its held item.",0,0,0
-496,ITEMDROP,Item Drop,Item Drops,7,0,"When used, it causes an ally Pokémon to drop a held item.",0,0,0
-497,BLUEFLUTE,Blue Flute,Blue Flutes,7,100,"A blue flute made from blown glass. Its melody awakens a single Pokémon from sleep.",5,0,0
-498,YELLOWFLUTE,Yellow Flute,Yellow Flutes,7,300,"A yellow flute made from blown glass. Its melody snaps a single Pokémon out of confusion.",0,0,0
-499,REDFLUTE,Red Flute,Red Flutes,7,200,"A red flute made from blown glass. Its melody snaps a single Pokémon out of infatuation.",0,0,0
-500,POKEDOLL,Poké Doll,Poké Dolls,7,100,"A doll that attracts Pokémon. Use it to flee from any battle with a wild Pokémon.",0,0,0
-501,FLUFFYTAIL,Fluffy Tail,Fluffy Tails,7,100,"An item that attracts Pokémon. Use it to flee from any battle with a wild Pokémon.",0,0,0
-502,POKETOY,Poké Toy,Poké Toys,7,100,"An item that attracts Pokémon. Use it to flee from any battle with a wild Pokémon.",0,0,0
 503,BICYCLE,Bicycle,Bicycles,8,0,"A folding Bicycle that enables much faster movement than the Running Shoes.",2,0,6
 504,FISHINGROD,Fishing Rod,Fishing Rods,8,0,"An old, well worn fishing rod. Use it by any body of water to fish for wild aquatic Pokémon.",2,0,6
 505,GOODROD,Good Rod,Good Rods,8,0,"A new, good-quality fishing rod. Use it by any body of water to fish for wild aquatic Pokémon.",2,0,6
@@ -530,53 +480,6 @@
 561,DARKMEMORY,Dark Memory,Dark Memories,5,1000,"A memory disc containing Dark-type data. It changes the holder's type if held by a certain Pokémon.",0,0,0
 562,STEELMEMORY,Steel Memory,Steel Memories,5,1000,"A memory disc containing Steel-type data. It changes the holder's type if held by a certain Pokémon.",0,0,0
 563,FAIRYMEMORY,Fairy Memory,Fairy Memories,5,1000,"A memory disc containing Fairy-type data. It changes the holder's type if held by a certain Pokémon.",0,0,0
-564,VENUSAURITE,Venusaurite,Venusaurites,5,0,"One of a variety of mysterious Mega Stones. Have Venusaur hold it, and it will be able to Mega Evolve.",0,0,12
-565,CHARIZARDITEX,Charizardite X,Charizardites X,5,0,"One of a variety of mysterious Mega Stones. Have Charizard hold it, and it will be able to Mega Evolve.",0,0,12
-566,CHARIZARDITEY,Charizardite Y,Charizardites Y,5,0,"One of a variety of mysterious Mega Stones. Have Charizard hold it, and it will be able to Mega Evolve.",0,0,12
-567,BLASTOISINITE,Blastoisinite,Blastoisinites,5,0,"One of a variety of mysterious Mega Stones. Have Blastoise hold it, and it will be able to Mega Evolve.",0,0,12
-568,BEEDRILLITE,Beedrillite,Beedrillites,5,0,"One of a variety of mysterious Mega Stones. Have Beedrill hold it, and it will be able to Mega Evolve.",0,0,12
-569,PIDGEOTITE,Pidgeotite,Pidgeotites,5,0,"One of a variety of mysterious Mega Stones. Have Pidgeot hold it, and it will be able to Mega Evolve.",0,0,12
-570,ALAKAZITE,Alakazite,Alakazites,5,0,"One of a variety of mysterious Mega Stones. Have Alakazam hold it, and it will be able to Mega Evolve.",0,0,12
-571,SLOWBRONITE,Slowbronite,Slowbronites,5,0,"One of a variety of mysterious Mega Stones. Have Slowbro hold it, and it will be able to Mega Evolve.",0,0,12
-572,GENGARITE,Gengarite,Gengarites,5,0,"One of a variety of mysterious Mega Stones. Have Gengar hold it, and it will be able to Mega Evolve.",0,0,12
-573,KANGASKHANITE,Kangaskhanite,Kangaskhanites,5,0,"One of a variety of mysterious Mega Stones. Have Kangaskhan hold it, and it will be able to Mega Evolve.",0,0,12
-574,PINSIRITE,Pinsirite,Pinsirites,5,0,"One of a variety of mysterious Mega Stones. Have Pinsir hold it, and it will be able to Mega Evolve.",0,0,12
-575,GYARADOSITE,Gyaradosite,Gyaradosites,5,0,"One of a variety of mysterious Mega Stones. Have Gyarados hold it, and it will be able to Mega Evolve.",0,0,12
-576,AERODACTYLITE,Aerodactylite,Aerodactylites,5,0,"One of a variety of mysterious Mega Stones. Have Aerodactyl hold it, and it will be able to Mega Evolve.",0,0,12
-577,MEWTWONITEX,Mewtwonite X,Mewtwonites X,5,0,"One of a variety of mysterious Mega Stones. Have Mewtwo hold it, and it will be able to Mega Evolve.",0,0,12
-578,MEWTWONITEY,Mewtwonite Y,Mewtwonites Y,5,0,"One of a variety of mysterious Mega Stones. Have Mewtwo hold it, and it will be able to Mega Evolve.",0,0,12
-579,AMPHAROSITE,Ampharosite,Ampharosites,5,0,"One of a variety of mysterious Mega Stones. Have Ampharos hold it, and it will be able to Mega Evolve.",0,0,12
-580,STEELIXITE,Steelixite,Steelixites,5,0,"One of a variety of mysterious Mega Stones. Have Steelix hold it, and it will be able to Mega Evolve.",0,0,12
-581,SCIZORITE,Scizorite,Scizorites,5,0,"One of a variety of mysterious Mega Stones. Have Scizor hold it, and it will be able to Mega Evolve.",0,0,12
-582,HERACRONITE,Heracronite,Heracronites,5,0,"One of a variety of mysterious Mega Stones. Have Heracross hold it, and it will be able to Mega Evolve.",0,0,12
-583,HOUNDOOMINITE,Houndoominite,Houndoominites,5,0,"One of a variety of mysterious Mega Stones. Have Houndoom hold it, and it will be able to Mega Evolve.",0,0,12
-584,TYRANITARITE,Tyranitarite,Tyranitarites,5,0,"One of a variety of mysterious Mega Stones. Have Tyranitar hold it, and it will be able to Mega Evolve.",0,0,12
-585,SCEPTILITE,Sceptilite,Sceptilites,5,0,"One of a variety of mysterious Mega Stones. Have Sceptile hold it, and it will be able to Mega Evolve.",0,0,12
-586,BLAZIKENITE,Blazikenite,Blazikenites,5,0,"One of a variety of mysterious Mega Stones. Have Blaziken hold it, and it will be able to Mega Evolve.",0,0,12
-587,SWAMPERTITE,Swampertite,Swampertites,5,0,"One of a variety of mysterious Mega Stones. Have Swampert hold it, and it will be able to Mega Evolve.",0,0,12
-588,GARDEVOIRITE,Gardevoirite,Gardevoirites,5,0,"One of a variety of mysterious Mega Stones. Have Gardevoir hold it, and it will be able to Mega Evolve.",0,0,12
-589,SABLENITE,Sablenite,Sablenites,5,0,"One of a variety of mysterious Mega Stones. Have Sableye hold it, and it will be able to Mega Evolve.",0,0,12
-590,MAWILITE,Mawilite,Mawilites,5,0,"One of a variety of mysterious Mega Stones. Have Mawile hold it, and it will be able to Mega Evolve.",0,0,12
-591,AGGRONITE,Aggronite,Aggronites,5,0,"One of a variety of mysterious Mega Stones. Have Aggron hold it, and it will be able to Mega Evolve.",0,0,12
-592,MEDICHAMITE,Medichamite,Medichamites,5,0,"One of a variety of mysterious Mega Stones. Have Medicham hold it, and it will be able to Mega Evolve.",0,0,12
-593,MANECTITE,Manectite,Manectites,5,0,"One of a variety of mysterious Mega Stones. Have Manectric hold it, and it will be able to Mega Evolve.",0,0,12
-594,SHARPEDONITE,Sharpedonite,Sharpedonites,5,0,"One of a variety of mysterious Mega Stones. Have Sharpedo hold it, and it will be able to Mega Evolve.",0,0,12
-595,CAMERUPTITE,Cameruptite,Cameruptites,5,0,"One of a variety of mysterious Mega Stones. Have Camerupt hold it, and it will be able to Mega Evolve.",0,0,12
-596,ALTARIANITE,Altarianite,Altarianites,5,0,"One of a variety of mysterious Mega Stones. Have Altaria hold it, and it will be able to Mega Evolve.",0,0,12
-597,BANETTITE,Banettite,Banettites,5,0,"One of a variety of mysterious Mega Stones. Have Banette hold it, and it will be able to Mega Evolve.",0,0,12
-598,ABSOLITE,Absolite,Absolites,5,0,"One of a variety of mysterious Mega Stones. Have Absol hold it, and it will be able to Mega Evolve.",0,0,12
-599,GLALITITE,Glalitite,Glalitites,5,0,"One of a variety of mysterious Mega Stones. Have Glalie hold it, and it will be able to Mega Evolve.",0,0,12
-600,SALAMENCITE,Salamencite,Salamencites,5,0,"One of a variety of mysterious Mega Stones. Have Salamence hold it, and it will be able to Mega Evolve.",0,0,12
-601,METAGROSSITE,Metagrossite,Metagrossites,5,0,"One of a variety of mysterious Mega Stones. Have Metagross hold it, and it will be able to Mega Evolve.",0,0,12
-602,LATIASITE,Latiasite,Latiasites,5,0,"One of a variety of mysterious Mega Stones. Have Latias hold it, and it will be able to Mega Evolve.",0,0,12
-603,LATIOSITE,Latiosite,Latiosites,5,0,"One of a variety of mysterious Mega Stones. Have Latios hold it, and it will be able to Mega Evolve.",0,0,12
-604,LOPUNNITE,Lopunnite,Lopunnites,5,0,"One of a variety of mysterious Mega Stones. Have Lopunny hold it, and it will be able to Mega Evolve.",0,0,12
-605,GARCHOMPITE,Garchompite,Garchompites,5,0,"One of a variety of mysterious Mega Stones. Have Garchomp hold it, and it will be able to Mega Evolve.",0,0,12
-606,LUCARIONITE,Lucarionite,Lucarionites,5,0,"One of a variety of mysterious Mega Stones. Have Lucario hold it, and it will be able to Mega Evolve.",0,0,12
-607,ABOMASITE,Abomasite,Abomasites,5,0,"One of a variety of mysterious Mega Stones. Have Abomasnow hold it, and it will be able to Mega Evolve.",0,0,12
-608,GALLADITE,Galladite,Galladites,5,0,"One of a variety of mysterious Mega Stones. Have Gallade hold it, and it will be able to Mega Evolve.",0,0,12
-609,AUDINITE,Audinite,Audinites,5,0,"One of a variety of mysterious Mega Stones. Have Audino hold it, and it will be able to Mega Evolve.",0,0,12
-610,DIANCITE,Diancite,Diancites,5,0,"One of a variety of mysterious Mega Stones. Have Diancie hold it, and it will be able to Mega Evolve.",0,0,12
 611,REDORB,Red Orb,Red Orbs,5,0,"A shiny red orb that is said to have a legend tied to it. It's known to be connected with the Hoenn region.",0,0,0
 612,BLUEORB,Blue Orb,Blue Orbs,5,0,"A shiny blue orb that is said to have a legend tied to it. It's known to be connected with the Hoenn region.",0,0,0
 613,WHIPPEDDREAM,Whipped Dream,Whipped Dreams,1,2000,"A soft and sweet treat made of fluffy, puffy and whirled cream. It's loved by a certain Pokémon.",0,0,0
@@ -839,6 +742,7 @@
 893,POTIONBALL,Potion Ball,Potion Balls,3,200,"A medicinal Poké Ball that heals the Pokémon for 1/4th of its HP if it fails to catch it.",0,4,4
 894,DISABLEBALL,Disable Ball,Disable Balls,3,200,"A mentally disrupting Poké Ball that disables the Pokemon's last used move for 10 turns if it fails to catch it.",0,4,4
 895,ROYALBALL,Royal Ball,Royal Balls,3,1000,"A ball whose striking appearance makes it popular despite its poor performance.",0,4,4
+896,ORIGINORE,Origin Ore,Origin Ores,1,8000,"A peculiar ore that makes certain species of Pokémon evolve.",1,0,7
 900,CHAMBER1KEY,Chamber 1 Key,Chamber 1 Keys,8,0,"The key to the first chamber containing a powerful avatar.",0,0,6
 901,CHAMBER2KEY,Chamber 2 Key,Chamber 2 Keys,8,0,"The key to the second chamber containing a powerful avatar.",0,0,6
 902,CHAMBER3KEY,Chamber 3 Key,Chamber 3 Keys,8,0,"The key to the third chamber containing a powerful avatar.",0,0,6
@@ -847,36 +751,3 @@
 905,CHAMBER6KEY,Chamber 6 Key,Chamber 6 Keys,8,0,"The key to the sixth chamber containing a powerful avatar.",0,0,6
 906,CHAMBER7KEY,Chamber 7 Key,Chamber 7 Keys,8,0,"The key to the seventh chamber containing a powerful avatar.",0,0,6
 907,CHAMBER8KEY,Chamber 8 Key,Chamber 8 Keys,8,0,"The key to the eighth chamber containing a powerful avatar.",0,0,6
-908,ORIGINORE,Origin Ore,Origin Ores,1,8000,"A peculiar ore that makes certain species of Pokémon evolve.",1,0,7
-1000,CASSBERRY,Cass Berry,Cass Berries,5,0,"If held by a Pokémon, it hangs on at 1 HP if it would be fainted from full health.",0,0,5
-1001,ABSORBBULB,Absorb Bulb,Absorb Bulbs,5,4000,"A consumable bulb. If the holder is hit by a Water-type move, its Sp. Atk will rise.",0,0,0
-1002,CELLBATTERY,Cell Battery,Cell Batteries,5,4000,"A consumable battery. If the holder is hit by an Electric-type move, its Attack will rise.",0,0,0
-1003,LUMINOUSMOSS,Luminous Moss,Luminous Mosses,5,4000,"An item to be held by a Pokémon. It boosts Sp. Def if hit by a Water-type attack once per battle.",0,0,0
-1004,TERRAINEXTENDER,Terrain Extender,Terrain Extenders,5,4000,"An item to be held by a Pokémon. It extends the duration of the terrain caused by the holder.",0,0,0
-1005,ELECTRICSEED,Electric Seed,Electric Seeds,5,4000,"An item to be held by a Pokémon. It boosts Defense on Electric Terrain once per battle.",0,0,0
-1006,PSYCHICSEED,Psychic Seed,Psychic Seeds,5,4000,"An item to be held by a Pokémon. It boosts Sp. Def on Psychic Terrain once per battle.",0,0,0
-1007,FAIRYSEED,Fairy Seed,Fairy Seeds,5,4000,"An item to be held by a Pokémon. It boosts Sp. Def on Fairy Terrain once per battle.",0,0,0
-1008,GRASSYSEED,Grassy Seed,Grassy Seeds,5,4000,"An item to be held by a Pokémon. It boosts Defense on Grassy Terrain once per battle.",0,0,0
-1009,KINGSROCK,King's Rock,King's Rocks,5,5000,"An item to be held by a Pokémon. When the holder inflicts damage, the target may flinch.",0,0,0
-1010,RAZORFANG,Razor Fang,Razor Fangs,5,5000,"An item to be held by a Pokémon. It may make foes and allies flinch when the holder inflicts damage.",0,0,0
-1011,REDNECTAR,Red Nectar,Red Nectars,1,300,"A flower nectar obtained at Ula'ula Meadow. It changes the form of certain species of Pokémon.",1,0,0
-1012,YELLOWNECTAR,Yellow Nectar,Yellow Nectars,1,300,"A flower nectar obtained at Melemele Meadow. It changes the form of certain species of Pokémon.",1,0,0
-1013,PINKNECTAR,Pink Nectar,Pink Nectars,1,300,"A flower nectar obtained from shrubs on Royal Avenue. It changes the form of certain species of Pokémon.",1,0,0
-1014,PURPLENECTAR,Purple Nectar,Purple Nectars,1,300,"A flower nectar obtained at Poni Meadow. It changes the form of certain species of Pokémon.",1,0,0
-1015,SNOWBALL,Snowball,Snowballs,5,4000,"An item to be held by a Pokémon. It boosts Attack if hit by an Ice-type attack once per battle.",0,0,0
-1016,MACHOBRACE,Macho Brace,Macho Braces,5,3000,"An item to be held by a Pokémon. It is a stiff, heavy brace that promotes strong growth but lowers Speed.",0,0,0
-1017,POWERWEIGHT,Power Weight,Power Weights,5,3000,"A Pokémon held item that promotes HP gain on leveling, but reduces the Speed stat.",0,0,0
-1018,POWERBRACER,Power Bracer,Power Bracers,5,3000,"A Pokémon held item that promotes Attack gain on leveling, but reduces the Speed stat.",0,0,0
-1019,POWERBELT,Power Belt,Power Belts,5,3000,"A Pokémon held item that promotes Defense gain on leveling, but reduces the Speed stat.",0,0,0
-1020,POWERLENS,Power Lens,Power Lenses,5,3000,"A Pokémon held item that promotes Sp. Atk gain on leveling, but reduces the Speed stat.",0,0,0
-1021,POWERBAND,Power Band,Power Bands,5,3000,"A Pokémon held item that promotes Sp. Def gain on leveling, but reduces the Speed stat.",0,0,0
-1022,POWERANKLET,Power Anklet,Power Anklets,5,3000,"A Pokémon held item that promotes Speed gain on leveling, but reduces the Speed stat.",0,0,0
-1023,LAXINCENSE,Lax Incense,Lax Incenses,5,5000,"An item to be held by a Pokémon. The tricky aroma of this incense may make attacks miss the holder.",0,0,0
-1024,FULLINCENSE,Full Incense,Full Incenses,5,5000,"An item to be held by a Pokémon. This exotic-smelling incense makes the holder bloated and slow moving.",0,0,0
-1025,LUCKINCENSE,Luck Incense,Luck Incenses,5,11000,"An item to be held by a Pokémon. It doubles a battle's prize money if the holding Pokémon joins in.",0,0,0
-1026,PUREINCENSE,Pure Incense,Pure Incenses,5,6000,"An item to be held by a Pokémon. It helps keep wild Pokémon away if the holder is the first one in the party.",0,0,0
-1027,SEAINCENSE,Sea Incense,Sea Incenses,5,2000,"An item to be held by a Pokémon. It has a curious aroma that boosts the power of Water-type moves.",0,0,0
-1028,WAVEINCENSE,Wave Incense,Wave Incenses,5,2000,"An item to be held by a Pokémon. It has a curious aroma that boosts the power of Water-type moves.",0,0,0
-1029,ROSEINCENSE,Rose Incense,Rose Incenses,5,2000,"An item to be held by a Pokémon. This exotic-smelling incense boosts the power of Grass-type moves.",0,0,0
-1030,ODDINCENSE,Odd Incense,Odd Incenses,5,2000,"An item to be held by a Pokémon. This exotic-smelling incense boosts the power of Psychic-type moves.",0,0,0
-1031,ROCKINCENSE,Rock Incense,Rock Incenses,5,2000,"An item to be held by a Pokémon. This exotic-smelling incense boosts the power of Rock-type moves.",0,0,0

@@ -48,7 +48,7 @@ end
 
 class Pokemon
 	def can_omni_tutor?
-		return false if egg? || shadowPokemon?
+		return false if egg?
 		return !getOmniMoves(self).empty?
 	end
 end

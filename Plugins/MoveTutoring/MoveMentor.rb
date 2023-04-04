@@ -55,7 +55,7 @@ end
 
 class Pokemon
 	def can_mentor_move?
-		return false if egg? || shadowPokemon?
+		return false if egg?
 		return !getMentorableMoves(self).empty?
 	end
 end

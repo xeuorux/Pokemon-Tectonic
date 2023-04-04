@@ -1,6 +1,6 @@
 class PokeBattle_Battler
     #=============================================================================
-    # Mega Evolution, Primal Reversion, Shadow Pokémon
+    # Mega Evolution, Primal Reversion
     #=============================================================================
     def hasMega?
         return false if effectActive?(:Transform)
@@ -21,11 +21,6 @@ class PokeBattle_Battler
         return @pokemon&.primal?
     end
     alias isPrimal? primal?
-
-    def shadowPokemon?
-        return false
-    end
-    alias isShadow? shadowPokemon?
 
     def inHyperMode?
         return false

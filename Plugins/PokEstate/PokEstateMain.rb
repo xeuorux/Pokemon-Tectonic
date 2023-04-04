@@ -507,12 +507,7 @@ class PokEstate
 			break
 		end
 	
-		if pokemon.hasItem?
-			itemName = GameData::Item.get(pokemon.item).real_name
-			if pbConfirmMessageSerious(_INTL("{1} is holding an {2}. Would you like to take it before transferring?", pokemon.name, itemName))
-				pbTakeItemFromPokemon(pokemon)
-			end
-		end
+		promptToTakeItems(pokemon)
 		
 		# Put the pokemon into an event on the current map
 		events = $game_map.events.values.shuffle()

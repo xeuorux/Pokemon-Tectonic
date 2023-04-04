@@ -31,8 +31,6 @@ class PokeBattle_FakeBattler
   
     def fainted?;       return false; end
     alias isFainted? fainted?
-    def shadowPokemon?; return false; end
-    alias isShadow? shadowPokemon?
     def hasMega?;       return false; end
     def mega?;          return false; end
     alias isMega? mega?

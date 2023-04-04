@@ -394,7 +394,7 @@ Events.onWildPokemonCreate += proc {|sender,e|
 			pokemon.reset_moves
 			pokemon.learn_move($currentDexSearch[1]) if $currentDexSearch[1]
 			
-			pokemon.item = generateWildHeldItem(pokemon,herdingActive?)
+			pokemon.giveItem(generateWildHeldItem(pokemon,herdingActive?))
 			# There is a higher chance for shininess
 			pokemon.shinyRerolls *= 2
 			$currentDexSearch = nil

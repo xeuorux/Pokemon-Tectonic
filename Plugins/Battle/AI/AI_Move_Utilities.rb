@@ -29,16 +29,8 @@ class PokeBattle_AI
         tTypes = target.pbTypesAI(true)
         # Get effectivenesses
         typeMods = [Effectiveness::NORMAL_EFFECTIVE_ONE] * 3 # 3 types max
-        if moveType == :SHADOW
-            if target.shadowPokemon?
-                typeMods[0] = Effectiveness::NOT_VERY_EFFECTIVE_ONE
-            else
-                typeMods[0] = Effectiveness::SUPER_EFFECTIVE_ONE
-            end
-        else
-            tTypes.each_with_index do |defType, i|
-                typeMods[i] = move.pbCalcTypeModSingle(moveType, defType, user, target)
-            end
+        tTypes.each_with_index do |defType, i|
+            typeMods[i] = move.pbCalcTypeModSingle(moveType, defType, user, target)
         end
         # Multiply all effectivenesses together
         ret = 1

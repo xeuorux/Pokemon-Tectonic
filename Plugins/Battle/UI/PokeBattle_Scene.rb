@@ -790,6 +790,60 @@ class PokeBattle_Scene
     cmdBarBG = pbAddSprite("cmdBar_bg",0,Graphics.height-96,messageBG,@viewport)
     cmdBarBG.z = 180
   end
+
+  #=============================================================================
+  # Opens the party screen to choose a Pokémon to switch in (or just view its
+  # summary screens)
+  #=============================================================================
+  def pbPartyScreen(idxBattler,canCancel=false)
+    # Fade out and hide all sprites
+    visibleSprites = pbFadeOutAndHide(@sprites)
+    # Get player's party
+    partyPos = @battle.pbPartyOrder(idxBattler)
+    partyStart, _partyEnd = @battle.pbTeamIndexRangeFromBattlerIndex(idxBattler)
+    modParty = @battle.pbPlayerDisplayParty(idxBattler)
+    # Start party screen
+    scene = PokemonParty_Scene.new
+    switchScreen = PokemonPartyScreen.new(scene,modParty)
+    switchScreen.pbStartScene(_INTL("Choose a Pokémon."),@battle.pbNumPositions(0,0))
+    # Loop while in party screen
+    loop do
+      # Select a Pokémon
+      scene.pbSetHelpText(_INTL("Choose a Pokémon."))
+      idxParty = switchScreen.pbChoosePokemon
+      if idxParty<0
+        next if !canCancel
+        break
+      end
+      # Choose a command for the selected Pokémon
+      cmdSwitch  = -1
+      cmdSummary = -1
+	    cmdPokedex = -1
+      commands = []
+      commands[cmdSwitch  = commands.length] = _INTL("Switch In") if modParty[idxParty].able?
+      commands[cmdSummary = commands.length] = _INTL("Summary")
+	    commands[cmdPokedex = commands.length] = _INTL("MasterDex") if !modParty[idxParty].egg? && $Trainer.has_pokedex
+      commands[commands.length]              = _INTL("Cancel")
+      command = scene.pbShowCommands(_INTL("Do what with {1}?",modParty[idxParty].name),commands)
+      if cmdSwitch>=0 && command==cmdSwitch        # Switch In
+        idxPartyRet = -1
+        partyPos.each_with_index do |pos,i|
+          next if pos!=idxParty+partyStart
+          idxPartyRet = i
+          break
+        end
+        break if yield idxPartyRet, switchScreen
+      elsif cmdSummary>=0 && command==cmdSummary   # Summary
+        scene.pbSummary(idxParty,true)
+	  elsif cmdPokedex && command==cmdPokedex
+        openSingleDexScreen(modParty[idxParty])
+      end
+    end
+    # Close party screen
+    switchScreen.pbEndScene
+    # Fade back into battle screen
+    pbFadeInAndShow(@sprites,visibleSprites)
+  end
 end
 
 module PokeBattle_SceneConstants
@@ -825,3 +879,4 @@ module PokeBattle_SceneConstants
     return ret
   end
 end
+

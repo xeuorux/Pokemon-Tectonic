@@ -275,25 +275,6 @@ def pbCommandsSortable(cmdwindow,commands,cmdIfCancel,defaultindex=-1,sortable=f
   return ret
 end
 
-class Pokemon
-	def form
-		return @forced_form if !@forced_form.nil?
-		return @form if $game_temp.in_battle
-		calc_form = MultipleForms.call("getForm", self)
-		self.form = calc_form if calc_form != nil && calc_form != @form
-		return @form
-	end
-
-	def form=(value)
-		oldForm = @form
-		@form = value
-		@ability = nil
-		MultipleForms.call("onSetForm", self, value, oldForm)
-		calc_stats
-		$Trainer.pokedex.register(self) if $Trainer
-	end
-end
-
 def pbChangePlayer(id)
   return false if id < 0 || id >= 8
   meta = GameData::Metadata.get_player(id)
@@ -306,7 +287,7 @@ end
 
 def pbStartTrade(pokemonIndex,newpoke,nickname,trainerName,trainerGender=0)
   myPokemon = $Trainer.party[pokemonIndex]
-  pbTakeItemFromPokemon(myPokemon) if myPokemon.hasItem?
+  pbTakeItemsFromPokemon(myPokemon) if myPokemon.hasItem?
   opponent = NPCTrainer.new(trainerName,trainerGender)
   opponent.id = $Trainer.make_foreign_ID
   yourPokemon = nil

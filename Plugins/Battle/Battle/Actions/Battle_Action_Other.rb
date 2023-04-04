@@ -26,36 +26,6 @@ class PokeBattle_Battle
     end
 
     #=============================================================================
-    # Calling at a battler
-    #=============================================================================
-    def pbRegisterCall(idxBattler)
-        @choices[idxBattler][0] = :Call
-        @choices[idxBattler][1] = 0
-        @choices[idxBattler][2] = nil
-        return true
-    end
-
-    def pbCall(idxBattler)
-        battler = @battlers[idxBattler]
-        trainerName = pbGetOwnerName(idxBattler)
-        pbDisplay(_INTL("{1} called {2}!", trainerName, battler.pbThis(true)))
-        pbDisplay(_INTL("{1}!", battler.name))
-        if battler.shadowPokemon?
-            if battler.inHyperMode?
-                battler.pokemon.hyper_mode = false
-                battler.pokemon.adjustHeart(-300)
-                pbDisplay(_INTL("{1} came to its senses from the Trainer's call!", battler.pbThis))
-            else
-                pbDisplay(_INTL("But nothing happened!"))
-            end
-        elsif battler.status == :SLEEP
-            battler.pbCureStatus
-        else
-            pbDisplay(_INTL("But nothing happened!")) unless battler.tryRaiseStat(:ACCURACY, battler)
-        end
-    end
-
-    #=============================================================================
     # Choosing to Mega Evolve a battler
     #=============================================================================
     def pbHasMegaRing?(idxBattler)

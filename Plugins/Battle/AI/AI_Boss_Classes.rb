@@ -304,7 +304,7 @@ DOUSEDRIVE: weakToWater, }
             else
                 battle.pbDisplayBossNarration(_INTL("#{user.pbThis} loads a {1}!",
 GameData::Item.get(chosenItem).real_name))
-                user.item = chosenItem
+                user.giveItem(chosenItem)
             end
         })
     end

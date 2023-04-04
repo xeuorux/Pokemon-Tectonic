@@ -34,9 +34,6 @@ class PokemonFetchingMinigame
                 if pokemon.egg?
                     pbDisplay(_INTL("You can't donate an Egg."))
                     return
-                elsif pokemon.mail
-                    pbDisplay(_INTL("Please remove the Pokemon's mail."))
-                    return
                 end
                 return unless pbConfirmMessageSerious(_INTL("Are you sure you want to donate {1}?",chosenPokemon.name))
             end

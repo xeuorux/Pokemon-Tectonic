@@ -1,6 +1,6 @@
 class Pokemon
     def can_tutor_move?
-        return false if egg? || shadowPokemon?
+        return false if egg?
         species_data = GameData::Species.get(@species)
         species_data.tutor_moves.each { |m| 
             return true if !hasMove?(m)
@@ -10,7 +10,7 @@ class Pokemon
 end
 
 def pbTutorMoveScreen(pkmn)
-    return [] if !pkmn || pkmn.egg? || pkmn.shadowPokemon?
+    return [] if !pkmn || pkmn.egg?
     moves = []
     species_data = GameData::Species.get(pkmn.species)
     species_data.tutor_moves.each do |m|

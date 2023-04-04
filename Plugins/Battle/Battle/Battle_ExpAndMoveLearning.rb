@@ -75,7 +75,7 @@ class PokeBattle_Battle
                 unless expAll
                     eachInTeam(0, 0) do |pkmn, i|
                         next unless pkmn.able?
-                        next if !pkmn.hasItem?(:EXPSHARE) && GameData::Item.try_get(@initialItems[0][i]) != :EXPSHARE
+                        next unless pkmn.hasItem?(:EXPSHARE)
                         expShare.push(i)
                     end
                 end
@@ -167,7 +167,6 @@ class PokeBattle_Battle
         exp  = (exp * 1.1).floor if playerTribalBonus.hasTribeBonus?(:LOYAL)
         exp  = (exp * 1.5).floor if @field.effectActive?(:Bliss)
         i = BattleHandlers.triggerExpGainModifierItem(pkmn.item, pkmn, exp)
-        i = BattleHandlers.triggerExpGainModifierItem(@initialItems[0][idxParty], pkmn, exp) if i < 0
         exp = i if i >= 0
         # If EXP in this battle is capped, store all XP instead of granting it
         if @expCapped
@@ -217,11 +216,6 @@ class PokeBattle_Battle
         if newLevel > level_cap
             raise _INTL("{1}'s new level is greater than the level cap, which shouldn't happen.\r\n[Debug: {2}]",
                 pkmn.name, debugInfo)
-        end
-        # Give Exp
-        if pkmn.shadowPokemon?
-            pkmn.exp += expGained
-            return
         end
         tempExp1 = pkmn.exp
         battler = pbFindBattler(idxParty)

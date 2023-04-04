@@ -169,7 +169,7 @@ def pbEXPAdditionItem(pkmn, exp, item, scene)
     level_cap = LEVEL_CAPS_USED ? getLevelCap : growth_rate.max_level
 
     # Do nothing if the pokemon's already at the level cap
-    if pkmn.level >= level_cap || pkmn.shadowPokemon?
+    if pkmn.level >= level_cap
         scene.pbDisplay(_INTL("It won't have any effect."))
         return false
     end

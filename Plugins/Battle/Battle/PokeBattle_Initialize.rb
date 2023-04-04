@@ -114,8 +114,8 @@ class PokeBattle_Battle
             [-1] * (@opponent ? @opponent.length : 1),
         ]
         @initialItems = [
-            Array.new(@party1.length) { |i| (@party1[i]) ? @party1[i].item_id : nil },
-            Array.new(@party2.length) { |i| (@party2[i]) ? @party2[i].item_id : nil },
+            Array.new(@party1.length) { |i| (@party1[i]) ? @party1[i].items.clone : nil },
+            Array.new(@party2.length) { |i| (@party2[i]) ? @party2[i].items.clone : nil },
         ]
         @recycleItems      = [Array.new(@party1.length, nil),   Array.new(@party2.length, nil)]
         @belch             = [Array.new(@party1.length, false), Array.new(@party2.length, false)]

@@ -35,6 +35,7 @@ class PokemonEncounters
     if !enc_type || !GameData::EncounterType.exists?(enc_type)
       raise ArgumentError.new(_INTL("Encounter type {1} does not exist", enc_type))
     end
+    return false if $Trainer.first_pokemon&.hasItem?(:CLEANSETAG)
     return false if $game_system.encounter_disabled
     return false if !$Trainer
     return false if debugControl
@@ -49,17 +50,6 @@ class PokemonEncounters
       encounter_chance += @chance_accumulator / 200
       encounter_chance *= 0.8 if $PokemonGlobal.bicycle
     end
-    first_pkmn = $Trainer.first_pokemon
-    if first_pkmn
-      case first_pkmn.item_id
-      when :CLEANSETAG
-        encounter_chance *= 2.0 / 3
-        min_steps_needed *= 4 / 3.0
-      when :PUREINCENSE
-        encounter_chance *= 2.0 / 3
-        min_steps_needed *= 4 / 3.0
-	    end
-    end 
     # Wild encounters are much less likely to happen for the first few steps
     # after a previous wild encounter
     if triggered_by_step && @step_count < min_steps_needed

@@ -390,7 +390,7 @@ class PokeBattle_Battle
                     pokemon.name = nil
                     pokemon.level = 1 + pbRandom(69).ceil
                     pokemon.calc_stats
-                    pokemon.item = getRandomHeldItem
+                    pokemon.giveItem(getRandomHeldItem)
                 end
             end
         end

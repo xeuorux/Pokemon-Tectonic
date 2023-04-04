@@ -14,7 +14,7 @@ ItemHandlers::UseOnPokemon.add(:ABILITYCAPSULE,proc { |item,pkmn,scene|
     newabilname = newabil.name
     if scene.pbConfirm(_INTL("Would you like to change {1}'s Ability to {2}?", pkmn.name,newabilname))
       pkmn.ability_index = newabilindex
-        pkmn.ability = newabil
+      pkmn.ability = newabil
       scene.pbRefresh
       scene.pbDisplay(_INTL("{1}'s Ability changed to {2}!",pkmn.name,newabilname))
       pkmn.calc_stats

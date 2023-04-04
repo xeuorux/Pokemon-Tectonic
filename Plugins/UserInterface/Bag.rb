@@ -54,8 +54,6 @@ class PokemonBagScreen
       cmdDebug    = -1
       commands = []
       # Generate command list
-      commands[cmdRead = commands.length]       = _INTL("Read") if itm.is_mail?
-
       canUseAsTM = itm.is_machine? && $Trainer.party.length > 0
       if ItemHandlers.hasOutHandler(item) || canUseAsTM
         if ItemHandlers.hasUseText(item)
@@ -76,11 +74,7 @@ class PokemonBagScreen
       # Show commands generated above
       itemname = itm.name
       command = @scene.pbShowCommands(_INTL("{1} is selected.",itemname),commands)
-      if cmdRead>=0 && command==cmdRead   # Read mail
-        pbFadeOutIn {
-          pbDisplayMail(Mail.new(item, "", ""))
-        }
-      elsif cmdUse>=0 && command==cmdUse   # Use item
+      if cmdUse>=0 && command==cmdUse   # Use item
         if (ItemHandlers.hasUseOnPokemon(item) || canUseAsTM) && !teamEditingAllowed?()
           showNoTeamEditingMessage()
           next

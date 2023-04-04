@@ -2236,8 +2236,8 @@ class PokeBattle_Move_161 < PokeBattle_Move
     def ignoresSubstitute?(_user); return true; end
 
     def pbEffectAgainstTarget(user, target)
-        userSpeed = user.baseSpeed
-        targetSpeed = target.baseSpeed
+        userSpeed = user.base_speed
+        targetSpeed = target.base_speed
         user.applyEffect(:BaseSpeed,targetSpeed)
         target.applyEffect(:BaseSpeed,userSpeed)
         @battle.pbDisplay(_INTL("{1} switched base Speed with its target!", user.pbThis))

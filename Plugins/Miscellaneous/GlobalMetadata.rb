@@ -18,7 +18,6 @@ class PokemonGlobalMetadata
     @startTime            = Time.now
     @stepcount            = 0
     @pcItemStorage        = nil
-    @mailbox              = nil
     @phoneNumbers         = []
     @phoneTime            = 0
     @partner              = nil

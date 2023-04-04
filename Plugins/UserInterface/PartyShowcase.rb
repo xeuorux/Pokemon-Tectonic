@@ -70,14 +70,19 @@ class PokemonPartyShowcase_Scene
         drawTextEx(@overlay, displayX + 14, displayY, 200, 1, nameAndLevel, BASE_COLOR, SHADOW_COLOR)
 
         # Display item icon
-        itemX = displayX + POKEMON_ICON_SIZE - 8
-        itemY = mainIconY + POKEMON_ICON_SIZE - 8
-        if pokemon.item
-            newItemIcon = ItemIconSprite.new(itemX,itemY,pokemon.item,@viewport)
-            newItemIcon.zoom_x = 0.5
-            newItemIcon.zoom_y = 0.5
-            newItemIcon.type = pokemon.itemTypeChosen
-            @sprites["item#{index}"] = newItemIcon
+        if pokemon.hasItem?
+            pixelsBetweenItems = 20
+            itemX = displayX + POKEMON_ICON_SIZE - 8 - pixelsBetweenItems * (pokemon.items.length - 1)
+            itemY = mainIconY + POKEMON_ICON_SIZE - 8
+            pokemon.items.each_with_index do |item, itemIndex|
+                newItemIcon = ItemIconSprite.new(itemX,itemY,item,@viewport)
+                newItemIcon.zoom_x = 0.5
+                newItemIcon.zoom_y = 0.5
+                newItemIcon.type = pokemon.itemTypeChosen
+                @sprites["item_#{index}_#{itemIndex}"] = newItemIcon
+
+                itemX += pixelsBetweenItems
+            end
         end
 
         # Display gender

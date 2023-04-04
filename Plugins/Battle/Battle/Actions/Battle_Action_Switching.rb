@@ -364,12 +364,6 @@ class PokeBattle_Battle
     # Called when a Pokémon switches in (entry effects, entry hazards).
     def pbOnActiveOne(battler)
         return false if battler.fainted?
-        
-        # Introduce Shadow Pokémon
-        if battler.opposes? && battler.shadowPokemon?
-            pbCommonAnimation("Shadow", battler)
-            pbDisplay(_INTL("Oh!\nA Shadow Pokémon!"))
-        end
 
         # Trigger enter the field curses
         curses.each do |curse|

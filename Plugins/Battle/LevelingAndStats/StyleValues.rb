@@ -2,14 +2,6 @@ COMBINE_ATTACKING_STATS = true
 STYLE_VALUE_TOTAL = 50
 DEFAULT_STYLE_VALUE = 10
 
-# Style value adjustments
-class Pokemon
-    # Max total EVs
-    EV_LIMIT      = 50
-    # Max EVs that a single stat can have
-    EV_STAT_LIMIT = 20
-end
-
 def pbStyleValueScreen(pkmn)
     unless teamEditingAllowed?
         showNoTeamEditingMessage

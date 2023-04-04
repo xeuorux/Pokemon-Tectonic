@@ -205,15 +205,15 @@ class PokeBattle_AI
             # Account for hazards
             unless GameData::Ability::HAZARD_IMMUNITY_ABILITIES.include?(pkmn.ability) && !@battle.abilitiesNeutralized?
                 # Determine if the pokemon will be airborne
-                airborne = pkmn.hasType?(:FLYING) || pkmn.hasAbility?(:LEVITATE) || LEVITATION_ITEMS.include?(pkmn.item)
+                airborne = pkmn.hasType?(:FLYING) || pkmn.hasAbility?(:LEVITATE) || pkmn.hasItem?(LEVITATION_ITEMS)
                 airborne = false if @battle.field.effectActive?(:Gravity)
-                airborne = false if pkmn.item == :IRONBALL
+                airborne = false if pkmn.hasItem?(:IRONBALL)
 
                 willAbsorbSpikes = false
 
                 # Calculate how much damage the pokemon is likely to take from entry hazards
                 entryDamage = 0
-                if !airborne && pkmn.ability != :MAGICGUARD && pkmn.item != :HEAVYDUTYBOOTS
+                if !airborne && pkmn.ability != :MAGICGUARD && pkmn.hasItem?(:HEAVYDUTYBOOTS)
                     # Spikes
                     spikesCount = battlerSlot.pbOwnSide.countEffect(:Spikes)
                     if spikesCount > 0

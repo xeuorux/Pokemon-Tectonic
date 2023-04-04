@@ -682,7 +682,7 @@ end
 #===============================================================================
 class PokeBattle_Move_5A8 < PokeBattle_Move
     def pbFailsAgainstTarget?(user, target, show_message)
-        if !target.hasEmptyItemSlots? && !canRemoveItem?(user, target, target.firstItem) && target.pbCanLowerStatStage?(:SPECIAL_DEFENSE,user,self)
+        if !target.canAddItem?(:BLACKSLUDGE) && !canRemoveItem?(user, target, target.firstItem) && target.pbCanLowerStatStage?(:SPECIAL_DEFENSE,user,self)
             if show_message
                 @battle.pbDisplay(_INTL("But it failed!"))
             end
@@ -693,7 +693,7 @@ class PokeBattle_Move_5A8 < PokeBattle_Move
 
     def pbEffectAgainstTarget(user, target)
         giveSludge = false
-        if target.hasEmptyItemSlots?
+        if target.canAddItem?(:BLACKSLUDGE)
             giveSludge = true
         else
             removedAny = false

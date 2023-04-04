@@ -4,7 +4,7 @@ ItemHandlers::UseOnPokemon.add(:RARECANDY,proc { |item,pkmn,scene|
 
 
 def pbLevelGivingItem(pkmn, item, scene)
-  if pkmn.level >= GameData::GrowthRate.max_level || pkmn.shadowPokemon?
+  if pkmn.level >= GameData::GrowthRate.max_level
     scene.pbDisplay(_INTL("It won't have any effect."))
     return false
   elsif LEVEL_CAPS_USED && (pkmn.level + 1) > getLevelCap

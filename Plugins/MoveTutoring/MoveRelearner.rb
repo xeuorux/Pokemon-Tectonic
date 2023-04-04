@@ -55,7 +55,7 @@ end
 
 class Pokemon
 	def can_relearn_move?
-		return false if egg? || shadowPokemon?
+		return false if egg?
 		return !getRelearnableMoves(self).empty?
 	end
 end

@@ -59,10 +59,4 @@ class PokeBattle_Battler
         return false if shouldAbilityApply?(GameData::Ability::MOONGLOW_ABILITIES, checkingForAI)
         return true
     end
-
-    def takesShadowSkyDamage?
-        return false if fainted?
-        return false if shadowPokemon?
-        return true
-    end
 end

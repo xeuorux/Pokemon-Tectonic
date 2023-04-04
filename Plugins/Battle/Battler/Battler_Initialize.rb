@@ -46,7 +46,6 @@ class PokeBattle_Battler
         @type1 = @type2 = nil
         @ability_ids     = []
         @abilityChanged = false
-        @item_ids       = []
         @gender         = 0
         @attack = @defense = @spatk = @spdef = @speed = 0
         @status         = :NONE
@@ -121,14 +120,6 @@ class PokeBattle_Battler
             end
         end
         @abilityChanged = false
-        @item_ids     = []
-        @item_ids.push(pkmn.item_id) if pkmn.item_id
-        if TESTING_DOUBLE_QUALITIES
-            @item_ids.push(@battle.getRandomHeldItem) 
-            @itemSlots    = 2
-        else
-            @itemSlots = 1
-        end
         @gender       = pkmn.gender
         @attack       = pkmn.attack
         @defense      = pkmn.defense

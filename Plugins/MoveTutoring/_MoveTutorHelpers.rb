@@ -1,5 +1,5 @@
 def moveLearningScreen(pkmn,moves)
-	return [] if !pkmn || pkmn.egg? || pkmn.shadowPokemon?
+	return [] if !pkmn || pkmn.egg?
 
 	if !teamEditingAllowed?()
 		showNoTeamEditingMessage()

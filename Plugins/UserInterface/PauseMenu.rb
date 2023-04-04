@@ -174,11 +174,11 @@ class PokemonPauseMenu
 		cmdDebug    = -1
 		cmdQuit     = -1
 		cmdEndGame  = -1
-		if $Trainer.has_pokedex || $DEBUG
-		  commands[cmdPokedex = commands.length] = _INTL("MasterDex")
-		end
 		commands[cmdPokemon = commands.length]   = _INTL("Pokémon") if $Trainer.party_count > 0
 		commands[cmdBag = commands.length]       = _INTL("Bag") if !pbInBugContest?
+		if $Trainer.has_pokedex || $DEBUG
+			commands[cmdPokedex = commands.length] = _INTL("MasterDex")
+		  end
 		commands[cmdPokegear = commands.length]  = _INTL("Pokégear") if $Trainer.has_pokegear
 		commands[cmdDexnav = commands.length]	 = _INTL("DexNav")
 		commands[cmdTribalBonus = commands.length]	 = _INTL("Tribal Bonus") if defined?(TribalBonus)

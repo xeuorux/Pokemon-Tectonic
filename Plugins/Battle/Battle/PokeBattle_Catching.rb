@@ -8,7 +8,7 @@ class PokeBattle_Battle
         storedBox = @peer.pbStorePokemon(pbPlayer, pkmn)
         if storedBox < 0
             pbDisplayPaused(_INTL("{1} has been added to your party.", pkmn.name))
-            @initialItems[0][pbPlayer.party.length - 1] = pkmn.item_id if @initialItems
+            @initialItems[0][pbPlayer.party.length - 1] = pkmn.items.clone if @initialItems
             return
         end
         # Messages saying the Pokémon was stored in a PC box
@@ -31,7 +31,9 @@ class PokeBattle_Battle
             # Let the player know info about the individual pokemon they caught
             pbDisplayPaused(_INTL("You check {1}, and discover that its ability is {2}!", pkmn.name, pkmn.ability.name))
 
-            pbDisplayPaused(_INTL("The {1} is holding an {2}!", pkmn.name, pkmn.item.name)) if pkmn.hasItem?
+            pkmn.items.each do |item|
+                pbDisplayPaused(_INTL("The {1} is holding an {2}!", pkmn.name, getItemName(item)))
+            end
 
             # Record the Pokémon's species as owned in the Pokédex
             unless pbPlayer.owned?(pkmn.species)
@@ -42,15 +44,13 @@ class PokeBattle_Battle
                     @scene.pbShowPokedex(pkmn.species)
                 end
             end
-            # Record a Shadow Pokémon's species as having been caught
-            pbPlayer.pokedex.set_shadow_pokemon_owned(pkmn.species) if pkmn.shadowPokemon?
 
             # Increase the caught count for the global metadata
             incrementDexNavCounts(true)
 
-            # Nickname the Pokémon (unless it's a Shadow Pokémon)
-            if !pkmn.shadowPokemon? && (!defined?($PokemonSystem.nicknaming_prompt) || $PokemonSystem.nicknaming_prompt == 0) && pbDisplayConfirm(_INTL(
-                                                                                                                                                      "Would you like to give a nickname to {1}?", pkmn.name))
+            # Nickname the Pokémon
+            showPrompt = (!defined?($PokemonSystem.nicknaming_prompt) || $PokemonSystem.nicknaming_prompt == 0)
+            if showPrompt && pbDisplayConfirm(_INTL("Would you like to give a nickname to {1}?", pkmn.name))
                 nickname = @scene.pbNameEntry(_INTL("{1}'s nickname?", pkmn.speciesName), pkmn)
                 pkmn.name = nickname
             end
@@ -62,11 +62,11 @@ class PokeBattle_Battle
                     pbDisplay(_INTL("Choose which Pokemon will be sent back to the PC."))
                     # if Y, select pokemon to store instead
                     pbChoosePokemon(1, 3)
-                    chosen = $game_variables[1]
+                    chosenIndex = $game_variables[1]
                     # Didn't cancel
-                    if chosen != -1
-                        chosenPokemon = $Trainer.party[chosen]
-                        @peer.pbOnLeavingBattle(self, chosenPokemon, @usedInBattle[0][chosen], true) # Reset form
+                    if chosenIndex != -1
+                        chosenPokemon = $Trainer.party[chosenIndex]
+                        @peer.pbOnLeavingBattle(self, chosenPokemon, @usedInBattle[0][chosenIndex], true) # Reset form
 
                         # Find the battler which matches with the chosen pokemon
                         chosenBattler = nil
@@ -83,19 +83,13 @@ class PokeBattle_Battle
                             end
                         end
 
-                        chosenPokemon.item = @initialItems[0][chosen]
-                        @initialItems[0][chosen] = pkmn.item
+                        chosenPokemon.setItems(@initialItems[0][chosenIndex])
+                        @initialItems[0][chosenIndex] = pkmn.items
 
-                        if chosenPokemon.hasItem?
-                            itemName = GameData::Item.get(chosenPokemon.item).real_name
-                            if pbConfirmMessageSerious(_INTL("{1} is holding an {2}. Would you like to take it before transferring?",
-            chosenPokemon.name, itemName))
-                                pbTakeItemFromPokemon(chosenPokemon)
-                            end
-                        end
+                        promptToTakeItems(chosenPokemon)
 
                         pbStorePokemon(chosenPokemon)
-                        $Trainer.party[chosen] = pkmn
+                        $Trainer.party[chosenIndex] = pkmn
                     else
                         # Store caught Pokémon if cancelled
                         pbStorePokemon(pkmn)
@@ -143,9 +137,8 @@ class PokeBattle_Battle
             pbDisplay(_INTL("But there was no target..."))
             return
         end
-        # Animation of opposing trainer blocking Poké Balls (unless it's a Snag Ball
-        # at a Shadow Pokémon)
-        if trainerBattle? && !(GameData::Item.get(ball).is_snag_ball? && battler.shadowPokemon?)
+        # Animation of opposing trainer blocking Poké Balls
+        if trainerBattle?
             @scene.pbThrowAndDeflect(ball, 1)
             pbDisplay(_INTL("The Trainer blocked your Poké Ball! Don't be a thief!"))
             return
@@ -192,7 +185,6 @@ class PokeBattle_Battle
             pkmn.poke_ball = ball
             pkmn.makeUnmega if pkmn.mega?
             pkmn.makeUnprimal
-            pkmn.update_shadow_moves if pkmn.shadowPokemon?
             pkmn.record_first_moves
             # Reset form
             pkmn.forced_form = nil if MultipleForms.hasFunction?(pkmn.species, "getForm")

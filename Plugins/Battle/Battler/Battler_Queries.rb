@@ -193,31 +193,33 @@ class PokeBattle_Battler
         return false if fainted?
         
         if hasActiveAbility?(:HANDY) && stolen
-            return @item_ids.length < 2
+            return items.length < 2
         end
 
         # Disallow certain items as 2nd
         if itemCount == 1 && item
             return false if firstItem == item
             itemData = GameData::Item.get(item)
-            return false if hasActiveAbility?(:JEWELER) && !itemData.is_gem?
-            return false if hasActiveAbility?(:BERRYBUNCH) && !itemData.is_berry?
+            if hasActiveAbility?(:JEWELER)
+                return false if !firstItemData.is_gem? || itemData.is_gem?
+                return true
+            end
+            if hasActiveAbility?(:BERRYBUNCH)
+                return false if !firstItemData.is_berry? || itemData.is_berry?
+                return true
+            end
             if hasActiveAbility?(:FASHIONABLE)
                 clothingA = CLOTHING_ITEMS.include?(firstItem)
                 clothingB = CLOTHING_ITEMS.include?(item)
-                return false if clothingA == clothingB
+                return clothingA != clothingB
             end
         end
 
-        return hasEmptyItemSlots?
-    end
-
-    def hasEmptyItemSlots?
-        return @item_ids.length < @itemSlots
+        return false
     end
 
     def items
-        return @item_ids
+        return @pokemon.items
     end
 
     def itemCount
@@ -310,7 +312,6 @@ class PokeBattle_Battler
     # Returns whether the specified item will be unlosable for this Pokémon.
     def unlosableItem?(checkitem, showMessages = false)
         return false unless checkitem
-        return true if GameData::Item.get(checkitem).is_mail?
         return false if effectActive?(:Transform)
         # Items that change a Pokémon's form
         if mega? # Check if item was needed for this Mega Evolution

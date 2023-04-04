@@ -167,9 +167,9 @@ module GameData
         species = GameData::Species.get(species).species   # Just to be sure it's a symbol
         return self.egg_sprite_bitmap(species, pkmn.form) if pkmn.egg?
         if back
-          ret = self.back_sprite_bitmap(species, pkmn.form, pkmn.gender, pkmn.shiny?, pkmn.shadowPokemon?)
+          ret = self.back_sprite_bitmap(species, pkmn.form, pkmn.gender, pkmn.shiny?, false)
         else
-          ret = self.front_sprite_bitmap(species, pkmn.form, pkmn.gender, pkmn.shiny?, pkmn.shadowPokemon?)
+          ret = self.front_sprite_bitmap(species, pkmn.form, pkmn.gender, pkmn.shiny?, false)
         end
         
         if ret && pkmn.boss?

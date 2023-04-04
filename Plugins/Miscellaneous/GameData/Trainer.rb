@@ -154,7 +154,7 @@ module GameData
 					pkmn.form_simple = pkmn_data[:form]
 				end
 
-				pkmn.item = pkmn_data[:item] if !pkmn_data[:item].nil?
+				pkmn.giveItem(pkmn_data[:item]) if !pkmn_data[:item].nil?
 
 				if pkmn_data[:moves] && pkmn_data[:moves].length > 0
 					pkmn.forget_all_moves
@@ -213,43 +213,6 @@ module GameData
 	end
 end
 
-class Pokemon
-	attr_accessor :assignedPosition
-
-	def reset_moves(assignedLevel=-1,forceSignatures=false)
-		if assignedLevel == -1
-			assignedLevel = self.level
-		end
-		# Find all level-up moves that self could have learned
-		moveset = self.getMoveList
-		knowable_moves = []
-		signature_moves = []
-		moveset.each { |m| 
-			moveID = m[1]
-			moveData = GameData::Move.get(moveID)
-			# Forces signature moves if they're learnable by the pokemon's level
-			if moveData.is_signature? && forceSignatures && m[0] <= self.level
-				signature_moves.push(moveID)
-			# Allows other moves only if they're learnable by the given level (which is still usually the pokemon's level)
-			elsif m[0] <= assignedLevel
-				knowable_moves.push(moveID)
-			end
-		}
-		# Remove duplicates (retaining the latest copy of each move)
-		knowable_moves = knowable_moves.concat(signature_moves)
-		knowable_moves = knowable_moves.reverse
-		knowable_moves |= []
-		knowable_moves = knowable_moves.reverse
-		# Add all moves
-		@moves.clear
-		first_move_index = knowable_moves.length - MAX_MOVES
-		first_move_index = 0 if first_move_index < 0
-		for i in first_move_index...knowable_moves.length
-			@moves.push(Pokemon::Move.new(knowable_moves[i]))
-		end
-	end
-end
-
 class Trainer
 	attr_reader   	:nameForHashing
 	attr_accessor 	:policies
@@ -289,4 +252,8 @@ class NPCTrainer < Trainer
 
 		return trainerClone
 	end
+end
+
+class Pokemon
+	attr_accessor :assignedPosition
 end

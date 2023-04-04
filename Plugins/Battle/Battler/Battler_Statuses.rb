@@ -584,7 +584,7 @@ immuneTypeRealName))
     #=============================================================================
     def pbFlinch(_user = nil)
         unless @battle.moldBreaker
-            return if hasActiveAbility?(%i[FLINCH_IMMUNITY_ABILITIES])
+            return if hasActiveAbility?(GameData::Ability::FLINCH_IMMUNITY_ABILITIES)
             return if @battle.pbCheckSameSideAbility(:HEARTENINGAROMA,@index)
         end
         applyEffect(:Flinch)

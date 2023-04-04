@@ -121,7 +121,7 @@ class PokeBattle_Move
                 pbReceiveItem(item)
                 @battle.pbHideAbilitySplash(stealer) if ability
             else
-                stealer.giveItem(item)
+                stealer.giveItem(item,true)
                 @battle.pbHideAbilitySplash(stealer) if ability
                 stealer.pbHeldItemTriggerCheck
             end

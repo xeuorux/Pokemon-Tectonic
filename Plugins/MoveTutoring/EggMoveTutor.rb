@@ -1,6 +1,6 @@
 class Pokemon
 	def can_egg_move?
-		return false if egg? || shadowPokemon?
+		return false if egg?
 		firstSpecies = GameData::Species.get(@species)
 		while GameData::Species.get(firstSpecies.get_previous_species()) != firstSpecies do
 			firstSpecies = GameData::Species.get(firstSpecies.get_previous_species())
