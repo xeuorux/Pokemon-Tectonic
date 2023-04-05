@@ -444,7 +444,7 @@ end
 
 #===============================================================================
 # Power and type depend on the user's held berry. Destroys the berry.
-# (Natural Gift)
+# (Natural Gift, Seed Surprise)
 #===============================================================================
 class PokeBattle_Move_096 < PokeBattle_Move
     def initialize(battle, move)
@@ -469,43 +469,66 @@ class PokeBattle_Move_096 < PokeBattle_Move
             :STEEL    => %i[RAZZBERRY PAMTREBERRY BABIRIBERRY],
             :FAIRY    => %i[ROSELIBERRY KEEBERRY],
         }
-        @damageArray = {
-            80 => %i[CHERIBERRY CHESTOBERRY PECHABERRY RAWSTBERRY ASPEARBERRY
-                     LEPPABERRY ORANBERRY PERSIMBERRY LUMBERRY SITRUSBERRY
-                     FIGYBERRY WIKIBERRY MAGOBERRY AGUAVBERRY IAPAPABERRY
-                     RAZZBERRY OCCABERRY PASSHOBERRY WACANBERRY RINDOBERRY
-                     YACHEBERRY CHOPLEBERRY KEBIABERRY SHUCABERRY COBABERRY
-                     PAYAPABERRY TANGABERRY CHARTIBERRY KASIBBERRY HABANBERRY
-                     COLBURBERRY BABIRIBERRY CHILANBERRY ROSELIBERRY],
-            90 => %i[BLUKBERRY NANABBERRY WEPEARBERRY PINAPBERRY POMEGBERRY
-                     KELPSYBERRY QUALOTBERRY HONDEWBERRY GREPABERRY TAMATOBERRY
-                     CORNNBERRY MAGOSTBERRY RABUTABERRY NOMELBERRY SPELONBERRY
-                     PAMTREBERRY],
-            100 => %i[WATMELBERRY DURINBERRY BELUEBERRY LIECHIBERRY GANLONBERRY
-                      SALACBERRY PETAYABERRY APICOTBERRY LANSATBERRY STARFBERRY
-                      ENIGMABERRY MICLEBERRY CUSTAPBERRY JABOCABERRY ROWAPBERRY
-                      KEEBERRY MARANGABERRY CASSBERRY],
-        }
-        @berryBeingConsumed = nil
+        @chosenItem = nil
     end
 
-    def pbMoveFailed?(user, _targets, show_message)
-        # NOTE: Unnerve does not stop a Pokémon using this move.
-        if !user.hasAnyItem?
-            @battle.pbDisplay(_INTL("But it failed, since #{user.pbThis(true)} doesn't have an items!")) if show_message
-            return true
-        elsif !user.hasAnyBerry?
-            @battle.pbDisplay(_INTL("But it failed, since #{user.pbThis(true)} isn't holding a berry!")) if show_message
-            return true
-        elsif !user.itemActive?
-            @battle.pbDisplay(_INTL("But it failed, since #{user.pbThis(true)} can't use its item!")) if show_message
-            return true
+    def validItem(user,item)
+        return false if user.unlosableItem?(item)
+        return GameData::Item.get(item).is_berry?
+    end
+
+    def pbCanChooseMove?(user, commandPhase, show_message)
+        unless user.itemActive?
+            if show_message
+                msg = _INTL("#{user.pbThis} can't use items!")
+                commandPhase ? @battle.pbDisplayPaused(msg) : @battle.pbDisplay(msg)
+            end
+            return false
         end
-        return false
+        allItemsInvalid = true
+        user.items.each do |item|
+            next unless validItem(user, item)
+            allItemsInvalid = false
+            break
+        end
+        if allItemsInvalid
+            if show_message
+                msg = _INTL("#{user.pbThis} can't use any of its items!")
+                commandPhase ? @battle.pbDisplayPaused(msg) : @battle.pbDisplay(msg)
+            end
+            return false
+        end
+        return true
     end
 
-    def pbOnStartUse(user, _targets)
-        @berryBeingConsumed = firstBerry(user)
+    def resolutionChoice(user)
+        validItems = []
+        validItemNames = []
+        user.items.each do |item|
+            next unless validItem(user,item)
+            validItems.push(item)
+            validItemNames.push(getItemName(item))
+        end
+        if validItems.length == 1
+            @chosenItem = validItems[0]
+        elsif validItems.length > 1
+            if @battle.autoTesting
+                @chosenItem = validItems.sample
+            elsif !user.pbOwnedByPlayer? # Trainer AI
+                @chosenItem = validItems[0]
+            else
+                chosenIndex = @battle.scene.pbShowCommands(_INTL("Which item should #{user.pbThis(true)} use?"),validItemNames,0)
+                @chosenItem = validItems[chosenIndex]
+            end
+        end
+    end
+
+    def pbDisplayUseMessage(user, targets)
+        super
+        if @chosenItem
+            typeName = GameData::Type.get(pbBaseType(user)).real_name
+            @battle.pbDisplay(_INTL("The {1} turned the attack {2}-type!", getItemName(@chosenItem), typeName))
+        end
     end
 
     # NOTE: The AI calls this method via pbCalcType, but it involves user.item
@@ -513,7 +536,7 @@ class PokeBattle_Move_096 < PokeBattle_Move
     #       the AI won't want to use it if the user has no item anyway, perhaps
     #       this is good enough.
     def pbBaseType(user)
-        item = @berryBeingConsumed || firstBerry(user)
+        item = @chosenItem
         ret = :NORMAL
         unless item.nil?
             @typeArray.each do |type, items|
@@ -525,45 +548,16 @@ class PokeBattle_Move_096 < PokeBattle_Move
         return ret
     end
 
-    # This is a separate method so that the AI can use it as well
-    def pbNaturalGiftBaseDamage(heldItem)
-        @damageArray.each do |dmg, items|
-            next unless items.include?(heldItem)
-            return dmg
-        end
-        return 1
-    end
-
-    def pbBaseDamage(_baseDmg, user, _target)
-        pbNaturalGiftBaseDamage(@berryBeingConsumed)
-    end
-
-    def pbBaseDamageAI(_baseDmg, user, _target)
-        if !user.itemActive? || !user.hasAnyBerry?
-            return 1
-        else
-            pbNaturalGiftBaseDamage(firstBerry(user))
-        end
-    end
-
-    def firstBerry(battler)
-        battler.eachItem do |item|
-            next unless GameData::Item.get(item).is_berry?
-            return item
-        end
-        return nil
-    end
-
     def pbEndOfMoveUsageEffect(user, _targets, _numHits, _switchedBattlers)
         # NOTE: The item is consumed even if this move was Protected against or it
         #       missed. The item is not consumed if the target was switched out by
         #       an effect like a target's Red Card.
         # NOTE: There is no item consumption animation.
-        user.consumeItem(@berryBeingConsumed, belch: false) if user.hasItem?(@berryBeingConsumed)
+        user.consumeItem(@chosenItem, belch: false) if user.hasItem?(@chosenItem)
     end
 
     def resetMoveUsageState
-        @berryBeingConsumed = nil
+        @chosenItem = nil
     end
 end
 
@@ -2000,7 +1994,7 @@ end
 #===============================================================================
 class PokeBattle_Move_0C2 < PokeBattle_Move
     def pbEffectGeneral(user)
-        if user.hasActiveItem?(:ENERGHERB)
+        if user.hasActiveItem?(:ENERGYHERB)
             @battle.pbCommonAnimation("UseItem", user)
             @battle.pbDisplay(_INTL("{1} skipped exhaustion due to its Energy Herb!", user.pbThis))
             user.consumeItem(:ENERGYHERB)
@@ -3600,6 +3594,8 @@ class PokeBattle_Move_0F7 < PokeBattle_Move
         elsif validItems.length > 1
             if @battle.autoTesting
                 @chosenItem = validItems.sample
+            elsif !user.pbOwnedByPlayer? # Trainer AI
+                @chosenItem = validItems[0]
             else
                 chosenIndex = @battle.scene.pbShowCommands(_INTL("Which item should #{user.pbThis(true)} fling?"),validItemNames,0)
                 @chosenItem = validItems[chosenIndex]

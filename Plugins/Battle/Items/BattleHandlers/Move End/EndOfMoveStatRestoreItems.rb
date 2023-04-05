@@ -26,7 +26,7 @@ BattleHandlers::EndOfMoveStatRestoreItem.add(:BLACKHERB,
         GameData::Stat.each_battle do |s|
             next if battler.stages[s.id] >= 0
             statDown.push(s.id)
-            statDown.push(battler.stages[s.id])
+            statDown.push(battler.stages[s.id].abs)
             reducedStats = true
         end
         next false unless reducedStats

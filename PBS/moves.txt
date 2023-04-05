@@ -420,7 +420,7 @@
 419,FLAIL,Flail,098,1,NORMAL,Physical,100,12,0,NearOther,0,abef,"The user flails about aimlessly to attack. It becomes more powerful the less HP the user has.",
 420,GUILLOTINE,Guillotine,070,1,NORMAL,Physical,30,5,0,NearOther,0,abe,"A vicious, tearing attack with big pincers. The target will faint instantly if this attack hits.",
 421,HORNDRILL,Horn Drill,070,1,NORMAL,Physical,30,5,0,NearOther,0,abe,"The user stabs the foe with a horn that rotates like a drill. If it hits, the target faints instantly.",
-422,NATURALGIFT,Natural Gift,096,1,NORMAL,Physical,100,12,0,NearOther,0,bef,"The user draws power to attack by using its held Berry. The Berry determines its type and power.",
+422,NATURALGIFT,Natural Gift,096,120,NORMAL,Physical,100,12,0,NearOther,0,bef,"The user draws power to attack by using a held Berry. The Berry used determines its type.",
 423,PACKAGE,Package,16F,90,ICE,Special,100,10,0,NearOther,0,befn,"The user throws an exploding package at enemies, or one filled with healing treats at allies.",PRESENT
 424,SHOUT,Shout,000,40,NORMAL,Special,100,25,0,NearOther,1,befk,"The user shouts with force at the target. This move always hits first.",
 425,SPITUP,Spit Up,113,1,NORMAL,Special,100,10,0,NearOther,0,bf,"The power stored using the move Stockpile is released all at once in an attack.",

@@ -684,7 +684,7 @@ class Pokemon
       end
 
       # Herbalist
-      if @ability == :BERRYBUNCH
+      if @ability == :HERBALIST
         allHerbs = true
         itemSet.each do |item|
             next if HERB_ITEMS.include?(item)
@@ -696,7 +696,7 @@ class Pokemon
             return false
         end
         return true
-    end
+      end
 
       # Fashionable
       if @ability == :FASHIONABLE
