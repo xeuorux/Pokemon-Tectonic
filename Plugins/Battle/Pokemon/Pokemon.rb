@@ -628,7 +628,7 @@ class Pokemon
 
     def canHaveMultipleItems?(inBattle = false)
       return true if @ability == :STICKYFINGERS && inBattle
-      return %i[ALLTHATGLITTERS BERRYBUNCH FASHIONABLE].include?(@ability)
+      return %i[ALLTHATGLITTERS BERRYBUNCH FASHIONABLE HERBALIST].include?(@ability)
     end
 
 	  def canHaveItem?(itemCheck = nil, showMessages = false)
@@ -648,7 +648,7 @@ class Pokemon
         return false
       end
 
-      if %i[ALLTHATGLITTERS BERRYBUNCH FASHIONABLE].include?(@ability) && itemSet.length > 2
+      if %i[ALLTHATGLITTERS BERRYBUNCH FASHIONABLE HERBALIST].include?(@ability) && itemSet.length > 2
         pbMessage(_INTL("#{name} can't hold more than two items!")) if showMessages
         return false
       end
@@ -682,6 +682,21 @@ class Pokemon
           end
           return true
       end
+
+      # Herbalist
+      if @ability == :BERRYBUNCH
+        allHerbs = true
+        itemSet.each do |item|
+            next if HERB_ITEMS.include?(item)
+            allHerbs = false
+            break
+        end
+        unless allHerbs
+            pbMessage(_INTL("For #{name} to have two items, both must be Herbs!")) if showMessages
+            return false
+        end
+        return true
+    end
 
       # Fashionable
       if @ability == :FASHIONABLE

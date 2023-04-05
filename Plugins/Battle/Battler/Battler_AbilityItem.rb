@@ -393,7 +393,7 @@ class PokeBattle_Battler
         end
     end
 
-    # Used for White Herb (restore lowered stats). Only called by Moody and Sticky
+    # Used for White Herb / Black Herb. Only called by Moody and Sticky
     # Web, as all other stat reduction happens because of/during move usage and
     # this handler is also called at the end of each move's usage.
     # item_to_use is an item ID for Bug Bite/Pluck and Fling, and nil otherwise.

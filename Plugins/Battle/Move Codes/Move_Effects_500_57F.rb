@@ -1516,9 +1516,10 @@ end
 # Two turn attack. Attacks first turn, skips second turn unless the target fainted.
 # TODO: Currently unused
 #===============================================================================
-class PokeBattle_Move_55C < PokeBattle_Move
+class PokeBattle_Move_55C < PokeBattle_Move_0C2
     def pbEffectAfterAllHits(user, target)
-        user.applyEffect(:HyperBeam, 2) unless target.damageState.fainted
+        return if target.damageState.fainted
+        super
     end
 end
 

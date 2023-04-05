@@ -208,6 +208,11 @@ class PokeBattle_Battler
                 return false if !firstItemData.is_berry? || itemData.is_berry?
                 return true
             end
+            if hasActiveAbility?(:HERBALIST)
+                return false if !HERB_ITEMS.include?(firstItem)
+                return false if !HERB_ITEMS.include?(item)
+                return true
+            end
             if hasActiveAbility?(:FASHIONABLE)
                 clothingA = CLOTHING_ITEMS.include?(firstItem)
                 clothingB = CLOTHING_ITEMS.include?(item)

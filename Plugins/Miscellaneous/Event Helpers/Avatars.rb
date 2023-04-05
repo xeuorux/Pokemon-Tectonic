@@ -16,12 +16,19 @@ def defeatBoss(item=nil,count=1,opacityStart=180,opacityTarget=0)
 	setMySwitch('A',true)
 
 	if item != nil
-		if count == 1
-			pbMessage("It left behind an item!")
-			pbReceiveItem(item)
-		elsif count > 1
+		if item.is_a?(Array)
 			pbMessage("It left behind some items!")
-			pbReceiveItem(item,count)
+			item.each do |actualItem|
+				pbReceiveItem(actualItem)
+			end
+		else
+			if count == 1
+				pbMessage("It left behind an item!")
+				pbReceiveItem(item)
+			elsif count > 1
+				pbMessage("It left behind some items!")
+				pbReceiveItem(item,count)
+			end
 		end
 	end
 

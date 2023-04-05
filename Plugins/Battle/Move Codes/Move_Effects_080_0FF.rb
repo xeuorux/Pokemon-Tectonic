@@ -1996,7 +1996,13 @@ end
 #===============================================================================
 class PokeBattle_Move_0C2 < PokeBattle_Move
     def pbEffectGeneral(user)
-        user.applyEffect(:HyperBeam, 2)
+        if user.hasActiveItem?(:ENERGHERB)
+            @battle.pbCommonAnimation("UseItem", user)
+            @battle.pbDisplay(_INTL("{1} skipped exhaustion due to its Energy Herb!", user.pbThis))
+            user.consumeItem(:ENERGYHERB)
+        else
+            user.applyEffect(:HyperBeam, 2)
+        end
     end
 
     def getEffectScore(_user, _target)
