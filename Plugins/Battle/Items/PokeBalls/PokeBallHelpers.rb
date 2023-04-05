@@ -27,6 +27,10 @@ $BallTypes = {
   25 => :BEASTBALL,
   26 => :BALLLAUNCHER,
   27 => :SLICEBALL,
+  28 => :ROYALBALL,
+  29 => :LEECHBALL,
+  30 => :POTIONBALL,
+  31 => :DISABLEBALL,
 }
 
 def pbBallTypeToItem(ball_type)
