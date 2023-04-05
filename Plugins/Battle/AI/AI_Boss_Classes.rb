@@ -386,11 +386,11 @@ class PokeBattle_AI_Linoone < PokeBattle_AI_Boss
         super
         @warnedIFFMove.add(:COVET, {
             :condition => proc { |_move, user, target, _battle|
-                next user.hasAnyItem?
+                next target.hasAnyItem?
             },
             :warning => proc { |_move, user, targets, _battle|
                 target = targets[0]
-                _INTL("#{user.pbThis} eyes #{target.pbThis(true)}'s #{item.itemCountD} with jealousy!")
+                _INTL("#{user.pbThis} eyes #{target.pbThis(true)}'s #{target.itemCountD} with jealousy!")
             },
         })
     end
