@@ -656,8 +656,12 @@ class PokeBattle_Move_09C < PokeBattle_Move
     def ignoresSubstitute?(_user); return true; end
 
     def pbFailsAgainstTarget?(_user, target, show_message)
-        if target.fainted? || target.effectActive?(:HelpingHand)
-            @battle.pbDisplay(_INTL("But it failed!")) if show_message
+        if target.fainted?
+            @battle.pbDisplay(_INTL("But it failed, since the receiver of the help is gone!")) if show_message
+            return true
+        end
+        if target.effectActive?(:HelpingHand)
+            @battle.pbDisplay(_INTL("But it failed, since #{arget.pbThis(true)} is already being helped!")) if show_message
             return true
         end
         return true if pbMoveFailedTargetAlreadyMoved?(target, show_message)
@@ -3090,16 +3094,20 @@ class PokeBattle_Move_0EB < PokeBattle_Move
             @battle.pbDisplay(_INTL("{1} anchored itself with its roots!", target.pbThis)) if show_message
             return true
         end
-        unless @battle.canRun
-            @battle.pbDisplay(_INTL("But it failed!")) if show_message
+        if @battle.wildBattle? && !@battle.canRun
+            @battle.pbDisplay(_INTL("But it failed, since the battle can't be run from!")) if show_message
             return true
         end
-        if @battle.wildBattle? && (target.level > user.level || target.boss)
-            @battle.pbDisplay(_INTL("But it failed!")) if show_message
+        if @battle.wildBattle? && (target.level > user.level)
+            @battle.pbDisplay(_INTL("But it failed, since #{target.pbThis(true)}'s level is greater than #{user.pbThis(true)}'s!")) if show_message
+            return true
+        end
+        if @battle.wildBattle? && target.boss
+            @battle.pbDisplay(_INTL("But it failed, since #{target.pbThis(true)} is an Avatar!")) if show_message
             return true
         end
         if @battle.trainerBattle? && !@battle.pbCanChooseNonActive?(target.index)
-            @battle.pbDisplay(_INTL("But it failed!")) if show_message
+            @battle.pbDisplay(_INTL("But it failed, since #{target.pbThis(true)} cannot be replaced!")) if show_message
             return true
         end
         return false
@@ -3386,20 +3394,24 @@ class PokeBattle_Move_0F3 < PokeBattle_Move
     def ignoresSubstitute?(_user); return true; end
 
     def pbMoveFailed?(user, _targets, show_message)
-        unless user.firstItem
-            @battle.pbDisplay(_INTL("But it failed, since #{user.pbThis(true)} doesn't have an item!")) if show_message
+        unless user.hasAnyItem?
+            @battle.pbDisplay(_INTL("But it failed, since #{user.pbThis(true)} doesn't have any items!")) if show_message
             return true
         end
         if user.unlosableItem?(user.firstItem)
-            @battle.pbDisplay(_INTL("But it failed, since #{user.pbThis(true)} can't lose its item!")) if show_message
+            @battle.pbDisplay(_INTL("But it failed, since #{user.pbThis(true)} can't lose its #{getItemName(user.firstItem)}!")) if show_message
             return true
         end
         return false
     end
 
     def pbFailsAgainstTarget?(user, target, show_message)
-        if target.firstItem || target.unlosableItem?(user.firstItem)
-            @battle.pbDisplay(_INTL("But it failed!")) if show_message
+        if target.canAddItem?(user.firstItem)
+            @battle.pbDisplay(_INTL("But it failed, since #{target.pbThis(true)} doesn't have room for a new item!")) if show_message
+            return true
+        end
+        if target.unlosableItem?(user.firstItem)
+            @battle.pbDisplay(_INTL("But it failed, since #{target.pbThis(true)} can't accept an #{getItemName(user.firstItem)}!")) if show_message
             return true
         end
         return false
@@ -3586,8 +3598,12 @@ class PokeBattle_Move_0F7 < PokeBattle_Move
         if validItems.length == 1
             @chosenItem = validItems[0]
         elsif validItems.length > 1
-            chosenIndex = @battle.scene.pbShowCommands(_INTL("Which item should #{user.pbThis(true)} fling?"),validItemNames,0)
-            @chosenItem = validItems[chosenIndex]
+            if @battle.autoTesting
+                @chosenItem = validItems.sample
+            else
+                chosenIndex = @battle.scene.pbShowCommands(_INTL("Which item should #{user.pbThis(true)} fling?"),validItemNames,0)
+                @chosenItem = validItems[chosenIndex]
+            end
         end
     end
 

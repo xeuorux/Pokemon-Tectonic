@@ -606,10 +606,12 @@ class PokeBattle_ProtectMove < PokeBattle_Move
         elsif user.effectActive?(@effect)
             shouldFail = true
         end
-        shouldFail = true if user.effectActive?(:ProtectFailure)
-
         if shouldFail
-            @battle.pbDisplay(_INTL("But it failed!")) if show_message
+            @battle.pbDisplay(_INTL("But it failed, since the effect is already active!")) if show_message
+            return true
+        end
+        if user.effectActive?(:ProtectFailure)
+            @battle.pbDisplay(_INTL("But it failed, since #{user.pbThis(true)} used a protection move last turn!")) if show_message
             return true
         end
         return false
@@ -1068,7 +1070,7 @@ class PokeBattle_InvokeMove < PokeBattle_Move
     def pbFailsAgainstTarget?(user, target, show_message)
         if @battle.primevalWeatherPresent?(false) && target.pbCanInflictStatus?(@statusToApply, user, false,
 self) && show_message
-            @battle.pbDisplay(_INTL("But it failed!"))
+            @battle.pbDisplay(_INTL("But it failed, since #{target.pbThis(true)} can't gain the status and the weather can't be set!"))
         end
     end
 
@@ -1264,7 +1266,7 @@ class PokeBattle_TeamStatBuffMove < PokeBattle_Move
             break unless failed
         end
         if failed
-            @battle.pbDisplay(_INTL("But it failed!")) if show_message
+            @battle.pbDisplay(_INTL("But it failed, since neither #{user.pbThis(true)} nor any of its allies can receive the stat improvements!")) if show_message
             return true
         end
         return false

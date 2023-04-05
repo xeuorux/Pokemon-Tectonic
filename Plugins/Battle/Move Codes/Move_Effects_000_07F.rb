@@ -338,7 +338,7 @@ class PokeBattle_Move_019 < PokeBattle_Move
         @battle.pbParty(user.index).each do |pkmn|
             return false if validPokemon(pkmn)
         end
-        @battle.pbDisplay(_INTL("But it failed!")) if show_message
+        @battle.pbDisplay(_INTL("But it failed, since there are no status conditions in the party!")) if show_message
         return true
     end
 
@@ -938,7 +938,7 @@ class PokeBattle_Move_040 < PokeBattle_Move
             break
         end
         if failed
-            @battle.pbDisplay(_INTL("But it failed!")) if show_message
+            @battle.pbDisplay(_INTL("But it failed, since #{target.pbThis(true)} can't be confused or have its Sp. Atk raised!")) if show_message
             return true
         end
         return false
@@ -970,7 +970,7 @@ class PokeBattle_Move_041 < PokeBattle_Move
             break
         end
         if failed
-            @battle.pbDisplay(_INTL("But it failed!")) if show_message
+            @battle.pbDisplay(_INTL("But it failed, since #{target.pbThis(true)} can't be confused or have its Attack raised!")) if show_message
             return true
         end
         return false
@@ -1488,9 +1488,13 @@ end
 # Averages the user's and target's current HP. (Pain Split)
 #===============================================================================
 class PokeBattle_Move_05A < PokeBattle_Move
-    def pbFailsAgainstTarget?(_user, target, show_message)
+    def pbFailsAgainstTarget?(user, target, show_message)
         if target.boss?
-            @battle.pbDisplay(_INTL("But it failed!")) if show_message
+            @battle.pbDisplay(_INTL("But it failed, since the target is an avatar!")) if show_message
+            return true
+        end
+        if user.boss?
+            @battle.pbDisplay(_INTL("But it failed, since the user is an avatar!")) if show_message
             return true
         end
         return false
@@ -1568,8 +1572,12 @@ class PokeBattle_Move_05C < PokeBattle_Move
     end
 
     def pbMoveFailed?(user, _targets, show_message)
-        if user.transformed? || !user.pbHasMove?(@id)
-            @battle.pbDisplay(_INTL("But it failed!")) if show_message
+        if user.transformed?
+            @battle.pbDisplay(_INTL("But it failed, since #{user.pbThis(true)} is transformed!")) if show_message
+            return true
+        end
+        unless user.pbHasMove?(@id)
+            @battle.pbDisplay(_INTL("But it failed, since #{user.pbThis(true)} doesn't know Mimic!")) if show_message
             return true
         end
         return false
@@ -1577,11 +1585,16 @@ class PokeBattle_Move_05C < PokeBattle_Move
 
     def pbFailsAgainstTarget?(user, target, show_message)
         lastMoveData = GameData::Move.try_get(target.lastRegularMoveUsed)
-        if !lastMoveData ||
-           user.pbHasMove?(target.lastRegularMoveUsed) ||
-           @moveBlacklist.include?(lastMoveData.function_code) ||
-           lastMoveData.type == :SHADOW
-            @battle.pbDisplay(_INTL("But it failed!")) if show_message
+        if !lastMoveData
+            @battle.pbDisplay(_INTL("But it failed, since #{target.pbThis(true)} hasn't used a move!")) if show_message
+            return true
+        end
+        if user.pbHasMove?(target.lastRegularMoveUsed)
+             @battle.pbDisplay(_INTL("But it failed, since #{user.pbThis(true)} already knows #{target.pbThis(true)}'s most recent move!")) if show_message
+             return true
+        end
+        if @moveBlacklist.include?(lastMoveData.function_code)
+            @battle.pbDisplay(_INTL("But it failed, #{target.pbThis(true)}'s most recent move can't be Mimicked!")) if show_message
             return true
         end
         return false
@@ -1616,8 +1629,12 @@ class PokeBattle_Move_05D < PokeBattle_Move
     end
 
     def pbMoveFailed?(user, _targets, show_message)
-        if user.transformed? || !user.pbHasMove?(@id)
-            @battle.pbDisplay(_INTL("But it failed!")) if show_message
+        if user.transformed?
+            @battle.pbDisplay(_INTL("But it failed, since #{user.pbThis(true)} is transformed!")) if show_message
+            return true
+        end
+        if !user.pbHasMove?(@id)
+            @battle.pbDisplay(_INTL("But it failed, since #{user.pbThis(true)} doesn't know Sketch!")) if show_message
             return true
         end
         return false
@@ -1625,11 +1642,16 @@ class PokeBattle_Move_05D < PokeBattle_Move
 
     def pbFailsAgainstTarget?(user, target, show_message)
         lastMoveData = GameData::Move.try_get(target.lastRegularMoveUsed)
-        if !lastMoveData ||
-           user.pbHasMove?(target.lastRegularMoveUsed) ||
-           @moveBlacklist.include?(lastMoveData.function_code) ||
-           lastMoveData.type == :SHADOW
-            @battle.pbDisplay(_INTL("But it failed!")) if show_message
+        if !lastMoveData
+            @battle.pbDisplay(_INTL("But it failed, since #{target.pbThis(true)} hasn't used a move!")) if show_message
+            return true
+        end
+        if user.pbHasMove?(target.lastRegularMoveUsed)
+             @battle.pbDisplay(_INTL("But it failed, since #{user.pbThis(true)} already knows #{target.pbThis(true)}'s most recent move!")) if show_message
+             return true
+        end
+        if @moveBlacklist.include?(lastMoveData.function_code)
+            @battle.pbDisplay(_INTL("But it failed, #{target.pbThis(true)}'s most recent move can't be Sketched!")) if show_message
             return true
         end
         return false
@@ -1669,7 +1691,7 @@ class PokeBattle_Move_05E < PokeBattle_Move
             @newTypes.push(m.type) unless @newTypes.include?(m.type)
         end
         if @newTypes.length == 0
-            @battle.pbDisplay(_INTL("But it failed!")) if show_message
+            @battle.pbDisplay(_INTL("But it failed, since there are no valid types for it to choose!")) if show_message
             return true
         end
         return false
@@ -1814,9 +1836,16 @@ end
 #===============================================================================
 class PokeBattle_Move_061 < PokeBattle_Move
     def pbFailsAgainstTarget?(_user, target, show_message)
-        if !target.canChangeType? || !GameData::Type.exists?(:WATER) ||
-           !target.pbHasOtherType?(:WATER)
-            @battle.pbDisplay(_INTL("But it failed!")) if show_message
+        unless GameData::Type.exists?(:WATER)
+            @battle.pbDisplay(_INTL("But it failed, since the Water-type doesn't exist!")) if show_message
+            return true
+        end
+        unless target.canChangeType?
+            @battle.pbDisplay(_INTL("But it failed, since #{target.pbThis(true)} can't change their type!")) if show_message
+            return true
+        end
+        unless target.pbHasOtherType?(:WATER)
+            @battle.pbDisplay(_INTL("But it failed, since #{target.pbThis(true)} is already only Water-type!")) if show_message
             return true
         end
         return false
@@ -1852,11 +1881,11 @@ class PokeBattle_Move_062 < PokeBattle_Move
     def pbFailsAgainstTarget?(user, target, show_message)
         newTypes = target.pbTypes(true)
         if newTypes.length == 0 # Target has no type to copy
-            @battle.pbDisplay(_INTL("But it failed!")) if show_message
+            @battle.pbDisplay(_INTL("But it failed, since #{target.pbThis(true)} has no types!")) if show_message
             return true
         end
         if user.pbTypes == target.pbTypes && user.effects[:Type3] == target.effects[:Type3]
-            @battle.pbDisplay(_INTL("But it failed!")) if show_message
+            @battle.pbDisplay(_INTL("But it failed, since #{user.pbThis(true)} && #{target.pbThis(true)} share the exact same types!")) if show_message
             return true
         end
         return false

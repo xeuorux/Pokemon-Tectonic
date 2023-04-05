@@ -277,7 +277,7 @@ def getMultiStatUpEffectScore(statUpArray, user, target, fakeStageModifier = 0)
         statSymbol = statUpArray[i * 2]
         statIncreaseAmount = statUpArray[i * 2 + 1]
 
-        statIncreaseAmount = [6,statIncreaseAmount * 2] if target.hasActiveAbilityAI?(:SIMPLE)
+        statIncreaseAmount = [6,statIncreaseAmount * 2].min if target.hasActiveAbilityAI?(:SIMPLE)
 
         # Give no extra points for attacking stats you can't use
         if statSymbol == :ATTACK && !target.hasPhysicalAttack?
@@ -347,7 +347,7 @@ def getMultiStatDownEffectScore(statDownArray, user, target, fakeStageModifier =
         statSymbol = statDownArray[i * 2]
         statDecreaseAmount = statDownArray[i * 2 + 1]
 
-        statDecreaseAmount = [6,statDecreaseAmount * 2] if target.hasActiveAbilityAI?(:SIMPLE)
+        statDecreaseAmount = [6,statDecreaseAmount * 2].min if target.hasActiveAbilityAI?(:SIMPLE)
 
         if statSymbol == :ACCURACY
             echoln("The AI will never use a move that reduces accuracy.")

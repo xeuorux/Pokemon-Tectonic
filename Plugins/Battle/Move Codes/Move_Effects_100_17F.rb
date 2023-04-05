@@ -276,7 +276,7 @@ class PokeBattle_Move_10D < PokeBattle_Move
         if !user.pbCanLowerStatStage?(:SPEED, user, self) &&
            !user.pbCanRaiseStatStage?(:ATTACK, user, self) &&
            !user.pbCanRaiseStatStage?(:DEFENSE, user, self)
-            @battle.pbDisplay(_INTL("But it failed!")) if show_message
+            @battle.pbDisplay(_INTL("But it failed, since #{user.pbThis(true)} can't raise their Attack or Defense and can't lower their Speed!")) if show_message
             return true
         end
         return false
@@ -611,14 +611,14 @@ end
 class PokeBattle_Move_116 < PokeBattle_Move
     def pbFailsAgainstTarget?(_user, target, show_message)
         if @battle.choices[target.index][0] != :UseMove
-            @battle.pbDisplay(_INTL("But it failed!")) if show_message
+            @battle.pbDisplay(_INTL("But it failed, since #{target.pbThis(true)} didn't choose to attack!")) if show_message
             return true
         end
         oppMove = @battle.choices[target.index][2]
         if !oppMove ||
            (oppMove.function != "0B0" && # Me First
            (target.movedThisRound? || oppMove.statusMove?))
-            @battle.pbDisplay(_INTL("But it failed!")) if show_message
+            @battle.pbDisplay(_INTL("But it failed, since #{target.pbThis(true)} already moved this turn!")) if show_message
             return true
         end
         return false
@@ -735,38 +735,9 @@ class PokeBattle_Move_119 < PokeBattle_Move
 end
 
 #===============================================================================
-# For 3 rounds, target becomes airborne and can always be hit. (Telekinesis)
+# (Not currently used)
 #===============================================================================
 class PokeBattle_Move_11A < PokeBattle_Move
-    def unusableInGravity?; return true; end
-
-    def pbFailsAgainstTarget?(_user, target, show_message)
-        if target.effectActive?(:Ingrain)
-            target.effectActive?(:SmackDown)
-            target.effectActive?(:Telekinesis)
-            @battle.pbDisplay(_INTL("But it failed!")) if show_message
-            return true
-        end
-        if target.isSpecies?(:DIGLETT) ||
-           target.isSpecies?(:DUGTRIO) ||
-           target.isSpecies?(:SANDYGAST) ||
-           target.isSpecies?(:PALOSSAND) ||
-           (target.isSpecies?(:GENGAR) && target.mega?)
-            @battle.pbDisplay(_INTL("But it failed!")) if show_message
-            return true
-        end
-        return false
-    end
-
-    def pbEffectAgainstTarget(_user, target)
-        target.applyEffect(:Telekinesis, 3)
-        @battle.pbDisplay(_INTL("{1} was hurled into the air!", target.pbThis))
-    end
-
-    def getEffectScore(user, target)
-        return 0 unless user.opposes?(target)
-        return 40 # Move is very bad
-    end
 end
 
 #===============================================================================
@@ -836,13 +807,13 @@ class PokeBattle_Move_11D < PokeBattle_Move
         return true if pbMoveFailedTargetAlreadyMoved?(target, show_message)
         # Target was going to move next anyway (somehow)
         if target.effectActive?(:MoveNext)
-            @battle.pbDisplay(_INTL("But it failed!")) if show_message
+            @battle.pbDisplay(_INTL("But it failed, since #{target.pbThis(true)} is already being forced to move next!")) if show_message
             return true
         end
         # Target didn't choose to use a move this round
         oppMove = @battle.choices[target.index][2]
         unless oppMove
-            @battle.pbDisplay(_INTL("But it failed!")) if show_message
+            @battle.pbDisplay(_INTL("But it failed. since #{target.pbThis(true)} isn't using a move this turn!")) if show_message
             return true
         end
         return false
@@ -875,7 +846,7 @@ class PokeBattle_Move_11E < PokeBattle_Move
         # Target isn't going to use a move
         oppMove = @battle.choices[target.index][2]
         unless oppMove
-            @battle.pbDisplay(_INTL("But it failed!")) if show_message
+            @battle.pbDisplay(_INTL("But it failed, since #{target.pbThis(true)} isn't using a move this turn!")) if show_message
             return true
         end
         # Target is already maximally Quashed and will move last anyway
@@ -890,7 +861,7 @@ class PokeBattle_Move_11E < PokeBattle_Move
         end
         # Target was already going to move last
         if highestQuash == 0 && @battle.pbPriority.last.index == target.index
-            @battle.pbDisplay(_INTL("But it failed!")) if show_message
+            @battle.pbDisplay(_INTL("But it failed, since #{target.pbThis(true)} was already forced to move last!")) if show_message
             return true
         end
         return false
@@ -1220,46 +1191,15 @@ class PokeBattle_Move_132 < PokeBattle_Move
 end
 
 #===============================================================================
-# Does absolutely nothing. (Hold Hands)
+# (Not currently used.)
 #===============================================================================
 class PokeBattle_Move_133 < PokeBattle_Move
-    def ignoresSubstitute?(_user); return true; end
-
-    def pbMoveFailed?(user, _targets, show_message)
-        hasAlly = false
-        user.eachAlly do |_b|
-            hasAlly = true
-            break
-        end
-        unless hasAlly
-            @battle.pbDisplay(_INTL("But it failed!")) if show_message
-            return true
-        end
-        return false
-    end
-
-    def getEffectScore(user, target)
-        echoln("The AI will never use Hold Hands.")
-        super
-    end
 end
 
 #===============================================================================
-# Does absolutely nothing. Shows a special message. (Celebrate)
+# (Not currently used.)
 #===============================================================================
 class PokeBattle_Move_134 < PokeBattle_Move
-    def pbEffectGeneral(user)
-        if @battle.wildBattle? && user.opposes?
-            @battle.pbDisplay(_INTL("Congratulations from {1}!", user.pbThis(true)))
-        else
-            @battle.pbDisplay(_INTL("Congratulations, {1}!", @battle.pbGetOwnerName(user.index)))
-        end
-    end
-
-    def pbEffectGeneral(_user)
-        echoln("The AI will never use Celebrate.")
-        return 0
-    end
 end
 
 #===============================================================================
@@ -2045,13 +1985,13 @@ class PokeBattle_Move_158 < PokeBattle_Move
 end
 
 #===============================================================================
-# Poisons the target and decreases its Speed by 1 stage. (Toxic Thread)
+# Poisons the target and decreases its Speed by 2 stage. (Toxic Thread)
 #===============================================================================
 class PokeBattle_Move_159 < PokeBattle_Move
     def pbFailsAgainstTarget?(user, target, show_message)
         if !target.canPoison?(user, false, self) &&
            !target.pbCanLowerStatStage?(:SPEED, user, self)
-            @battle.pbDisplay(_INTL("But it failed!")) if show_message
+            @battle.pbDisplay(_INTL("But it failed, since #{target.pbThis(true)} can't be poisoned or have its Speed lowered!")) if show_message
             return true
         end
         return false
@@ -2059,7 +1999,7 @@ class PokeBattle_Move_159 < PokeBattle_Move
 
     def pbEffectAgainstTarget(user, target)
         target.applyPoison(user) if target.canPoison?(user, false, self)
-        target.tryLowerStat(:SPEED, user, move: self)
+        target.tryLowerStat(:SPEED, user, increment: 2, move: self)
     end
 end
 
@@ -2657,7 +2597,7 @@ class PokeBattle_Move_171 < PokeBattle_Move
 
     def pbMoveFailed?(user, _targets, show_message)
         unless user.effectActive?(:ShellTrap)
-            @battle.pbDisplay(_INTL("But it failed!")) if show_message
+            @battle.pbDisplay(_INTL("But it failed, since the effect wore off somehow!")) if show_message
             return true
         end
         unless user.tookPhysicalHit

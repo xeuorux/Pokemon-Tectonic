@@ -84,8 +84,8 @@ class PokeBattle_Move_583 < PokeBattle_HealingMove
     end
 
     def pbMoveFailed?(user, _targets, show_message)
-        if user.hp == user.totalhp && !user.pbCanRaiseStatStage?(:SPEED, user, self, true)
-            @battle.pbDisplay(_INTL("But it failed!")) if show_message
+        if !user.canHeal? && !user.pbCanRaiseStatStage?(:SPEED, user, self, true)
+            @battle.pbDisplay(_INTL("But it failed, since #{user.pbThis(true)} can't heal or raise its Speed!")) if show_message
             return true
         end
     end
@@ -145,7 +145,7 @@ end
 class PokeBattle_Move_585 < PokeBattle_Move
     def pbMoveFailed?(user, _targets, show_message)
         if user.effectActive?(:FlareWitch) && !user.pbCanRaiseStatStage?(:SPECIAL_ATTACK, user, self, true)
-            @battle.pbDisplay(_INTL("But it failed!")) if show_message
+            @battle.pbDisplay(_INTL("But it failed, since #{user.pbThis(true)} can't raise its Sp. Atk and already activated its witch powers!")) if show_message
             return true
         end
         return false
@@ -688,9 +688,7 @@ end
 class PokeBattle_Move_5A8 < PokeBattle_Move
     def pbFailsAgainstTarget?(user, target, show_message)
         if !target.canAddItem?(:BLACKSLUDGE) && !canRemoveItem?(user, target, target.firstItem) && target.pbCanLowerStatStage?(:SPECIAL_DEFENSE,user,self)
-            if show_message
-                @battle.pbDisplay(_INTL("But it failed!"))
-            end
+            @battle.pbDisplay(_INTL("But it failed, since #{target.pbThis} can't be given a Black Sludge or have its Sp. Def lowered!")) if show_message
             return true
         end
         return false
@@ -775,9 +773,9 @@ end
 #===============================================================================
 class PokeBattle_Move_5AB < PokeBattle_HealingMove
     def pbMoveFailed?(user, _targets, show_message)
-        if user.hp == user.totalhp && !user.pbCanRaiseStatStage?(:DEFENSE, user, self) &&
+        if !user.canHeal? && !user.pbCanRaiseStatStage?(:DEFENSE, user, self) &&
            !user.pbCanRaiseStatStage?(:SPECIAL_DEFENSE, user, self)
-            @battle.pbDisplay(_INTL("But it failed!")) if show_message
+            @battle.pbDisplay(_INTL("But it failed, since #{user.pbThis(true)} can't heal or raise either of its defensive stats!}!")) if show_message
             return true
         end
         return false
@@ -1472,8 +1470,8 @@ class PokeBattle_Move_5C7 < PokeBattle_HealingMove
 end
 
 #===============================================================================
-# Damages target if target is a foe, or buff's the target's Speed and
-# Sp. Def is it's an ally. (Lightning Spear)
+# Damages target if target is a foe, or buff's the target's Speed
+# by two stages if it's an ally. (Lightning Spear)
 #===============================================================================
 class PokeBattle_Move_5C8 < PokeBattle_Move
     def pbOnStartUse(user, targets)
@@ -1483,12 +1481,7 @@ class PokeBattle_Move_5C8 < PokeBattle_Move
 
     def pbFailsAgainstTarget?(user, target, show_message)
         return false unless @buffing
-        if !target.pbCanRaiseStatStage?(:SPEED, user,
-self) && !target.pbCanRaiseStatStage?(:SPECIAL_DEFENSE, user, self)
-            @battle.pbDisplay(_INTL("But it failed!")) if show_message
-            return true
-        end
-        return false
+        return !target.pbCanRaiseStatStage?(:SPEED, user, self, true)
     end
 
     def pbDamagingMove?
@@ -1645,9 +1638,7 @@ class PokeBattle_Move_5CF < PokeBattle_Move
 
     def pbFailsAgainstTarget?(user, target, show_message)
         unless target.canBeDisabled?(true, self)
-            if show_message
-                @battle.pbDisplay(_INTL("But it failed!"))
-            end
+            @battle.pbDisplay(_INTL("But it failed, since the target can't be disabled!")) if show_message
             return true
         end
         return false
@@ -1679,7 +1670,7 @@ end
 class PokeBattle_Move_5D0 < PokeBattle_HalfHealingMove
     def pbMoveFailed?(user, _targets, show_message)
         if super(user, _targets, false) && user.effectActive?(:AquaRing)
-            @battle.pbDisplay(_INTL("But it failed!")) if show_message
+            @battle.pbDisplay(_INTL("But it failed, since #{user.pbThis} can't heal and already has a veil of water!")) if show_message
             return true
         end
         return false
@@ -1705,7 +1696,7 @@ class PokeBattle_Move_5D1 < PokeBattle_Move_019
 
     def pbMoveFailed?(user, _targets, show_message)
         if super(user, _targets, false) && user.effectActive?(:AquaRing)
-            @battle.pbDisplay(_INTL("But it failed!")) if show_message
+            @battle.pbDisplay(_INTL("But it failed, since #{user.pbThis(true)} already has a veil of water and none of its party members have a status condition!")) if show_message
             return true
         end
         return false

@@ -237,7 +237,7 @@ target.pbThis(true)))
             break
         end
         unless unmoved
-            @battle.pbDisplay(_INTL("But it failed!")) if showMessage
+            @battle.pbDisplay(_INTL("But it failed, since everyone else already acted this turn!")) if showMessage
             return true
         end
         return false
@@ -245,9 +245,13 @@ target.pbThis(true)))
 
     def pbMoveFailedTargetAlreadyMoved?(target, showMessage = true)
         if (@battle.choices[target.index][0] != :UseMove &&
-           @battle.choices[target.index][0] != :Shift) || target.movedThisRound?
-            @battle.pbDisplay(_INTL("But it failed!")) if showMessage
+           @battle.choices[target.index][0] != :Shift)
+            @battle.pbDisplay(_INTL("But it failed, since #{target.pbThis(true)} didn't choose to use a move!")) if showMessage
             return true
+        end
+        if target.movedThisRound?
+             @battle.pbDisplay(_INTL("But it failed, since #{target.pbThis(true)} already move this turn!")) if showMessage
+             return true
         end
         return false
     end

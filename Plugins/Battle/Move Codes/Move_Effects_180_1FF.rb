@@ -141,7 +141,7 @@ end
 class PokeBattle_Move_186 < PokeBattle_Move
     def pbFailsAgainstTarget?(_user, target, show_message)
         if !target.pbCanLowerStatStage?(:SPEED, target, self) && target.effectActive?(:TarShot)
-            @battle.pbDisplay(_INTL("But it failed!")) if show_message
+            @battle.pbDisplay(_INTL("But it failed, since #{target.pbThis(true)} is already covered in tar and can't have their Speed lowered!")) if show_message
             return true
         end
         return false
@@ -196,7 +196,7 @@ class PokeBattle_Move_189 < PokeBattle_Move
             jglheal += 1 if (targets[i].hp == targets[i].totalhp || !targets[i].canHeal?) && targets[i].status == :NONE
         end
         if jglheal == targets.length
-            @battle.pbDisplay(_INTL("But it failed!")) if show_message
+            @battle.pbDisplay(_INTL("But it failed, since none of #{user.pbThis(true)} or its allies can be healed or have their status conditions removed!")) if show_message
             return true
         end
         return false
@@ -320,7 +320,7 @@ class PokeBattle_Move_192 < PokeBattle_Move
             end
             return false
         end
-        @battle.pbDisplay(_INTL("But it failed!")) if show_message
+        @battle.pbDisplay(_INTL("But it failed, since #{target.pbThis(true)} doesn't have any items!")) if show_message
         return true
     end
 end
