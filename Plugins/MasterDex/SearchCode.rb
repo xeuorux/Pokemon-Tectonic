@@ -694,7 +694,7 @@ class PokemonPokedex_Scene
               containsText = false
               items.each_with_index do |item,index|
                   name = GameData::Item.get(item).real_name.downcase
-                  containsText = true if name.include?(wildItemNameTextInput)
+                  containsText = true if name.include?(wildItemNameTextInput.downcase)
               end
               
               next containsText ^ reversed # Boolean XOR
