@@ -3385,43 +3385,83 @@ class PokeBattle_Move_0F2 < PokeBattle_Move
 end
 
 #===============================================================================
-# User gives its first item to the target. The item remains given after wild battles.
-# (Bestow)
+# User gives one of its items to the target. (Bestow)
 #===============================================================================
 class PokeBattle_Move_0F3 < PokeBattle_Move
     def ignoresSubstitute?(_user); return true; end
 
-    def pbMoveFailed?(user, _targets, show_message)
+    def validItem(user,item)
+        return !(user.unlosableItem?(item) || GameData::Item.get(item).is_mega_stone?)
+    end
+
+    def pbCanChooseMove?(user, commandPhase, show_message)
         unless user.hasAnyItem?
-            @battle.pbDisplay(_INTL("But it failed, since #{user.pbThis(true)} doesn't have any items!")) if show_message
-            return true
+            if show_message
+                msg = _INTL("#{user.pbThis} doesn't have an item to give away!")
+                commandPhase ? @battle.pbDisplayPaused(msg) : @battle.pbDisplay(msg)
+            end
+            return false
         end
-        if user.unlosableItem?(user.firstItem)
-            @battle.pbDisplay(_INTL("But it failed, since #{user.pbThis(true)} can't lose its #{getItemName(user.firstItem)}!")) if show_message
-            return true
+        allItemsInvalid = true
+        user.items.each do |item|
+            next unless validItem(user, item)
+            allItemsInvalid = false
+            break
         end
-        return false
+        if allItemsInvalid
+            if show_message
+                msg = _INTL("#{user.pbThis} can't lose any of its items!")
+                commandPhase ? @battle.pbDisplayPaused(msg) : @battle.pbDisplay(msg)
+            end
+            return false
+        end
+        return true
+    end
+
+    def resolutionChoice(user)
+        validItems = []
+        validItemNames = []
+        user.items.each do |item|
+            next unless validItem(user,item)
+            validItems.push(item)
+            validItemNames.push(getItemName(item))
+        end
+        if validItems.length == 1
+            @chosenItem = validItems[0]
+        elsif validItems.length > 1
+            if @battle.autoTesting
+                @chosenItem = validItems.sample
+            elsif !user.pbOwnedByPlayer? # Trainer AI
+                @chosenItem = validItems[0]
+            else
+                chosenIndex = @battle.scene.pbShowCommands(_INTL("Which item should #{user.pbThis(true)} give away?"),validItemNames,0)
+                @chosenItem = validItems[chosenIndex]
+            end
+        end
     end
 
     def pbFailsAgainstTarget?(user, target, show_message)
-        if target.canAddItem?(user.firstItem)
+        unless target.canAddItem?(@chosenItem)
             @battle.pbDisplay(_INTL("But it failed, since #{target.pbThis(true)} doesn't have room for a new item!")) if show_message
             return true
         end
-        if target.unlosableItem?(user.firstItem)
-            @battle.pbDisplay(_INTL("But it failed, since #{target.pbThis(true)} can't accept an #{getItemName(user.firstItem)}!")) if show_message
+        if target.unlosableItem?(@chosenItem)
+            @battle.pbDisplay(_INTL("But it failed, since #{target.pbThis(true)} can't accept an #{getItemName(@chosenItem)}!")) if show_message
             return true
         end
         return false
     end
 
     def pbEffectAgainstTarget(user, target)
-        itemBestowing = user.firstItem
-        target.giveItem(itemBestowing)
-        user.removeItem(itemBestowing)
-        itemName = getItemName(itemBestowing)
+        target.giveItem(@chosenItem)
+        user.removeItem(@chosenItem)
+        itemName = getItemName(@chosenItem)
         @battle.pbDisplay(_INTL("{1} received {2} from {3}!", target.pbThis, itemName, user.pbThis(true)))
         target.pbHeldItemTriggerCheck
+    end
+
+    def resetMoveUsageState
+        @chosenItem = nil
     end
 
     def getEffectScore(user, target)
