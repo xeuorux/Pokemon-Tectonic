@@ -321,3 +321,18 @@ BattleHandlers::UserAbilityEndOfMove.add(:COLDCALCULATION,
       battle.pbHideAbilitySplash(user)
   }
 )
+
+BattleHandlers::UserAbilityEndOfMove.add(:IRREFUTABLE,
+  proc { |ability, user, targets, move, battle, _switchedBattlers|
+      next if battle.futureSight
+      next unless move.pbDamagingMove?
+      nveHits = 0
+      targets.each do |b|
+        next if b.damageState.unaffected
+        next unless Effectiveness.not_very_effective?(b.damageState.typemod)
+        nveHits += 1
+      end
+      next unless nveHits > 0
+      user.tryRaiseStat(:ATTACK, user, increment: nveHits, ability: ability)
+  }
+)

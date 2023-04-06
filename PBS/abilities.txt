@@ -618,6 +618,7 @@
 616,OVERACTING,Over Acting,"At the first chance, copies an opponent's species' legal abilities."
 617,HERBALIST,Herbalist,"Can hold two different items, if both are Herbs."
 618,TRAUMATIZING,Traumatizing,"Foes whose stats are lowered by this keep those lowered stats even after switching."
+619,IRREFUTABLE,Irrefutable,"Raises Attack after hitting anything for not very effective or barely effective damage."
 1000,JUSTIFIED,Justified,"Raises Attack when hit by a Dark-type move."
 1001,ADAPTABILITY,Adaptability,"Powers up moves of the same type."
 1002,HUGEPOWER,Huge Power,"Raises the Pokémon's Attack stat."
