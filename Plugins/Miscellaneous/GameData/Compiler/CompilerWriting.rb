@@ -479,7 +479,7 @@ module Compiler
                 write_item(f,i)
         end
     }
-    File.open("PBS/other_items.txt", "wb") { |f|
+    File.open("PBS/items_super.txt", "wb") { |f|
         add_PBS_header_to_file(f)
         GameData::Item.each do |i|
             next if i.id_number < 2000

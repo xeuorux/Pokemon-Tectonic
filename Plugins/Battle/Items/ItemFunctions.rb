@@ -48,7 +48,7 @@ end
 def pbReceiveItem(item, quantity = 1)
     item = GameData::Item.get(item)
     return false if !item || quantity < 1
-    raise _INTL("Player cannot receive a Super Item!") if SUPER_ITEMS.include?(item.id) # && !$DEBUG
+    raise _INTL("Player cannot receive a Super Item!") if SUPER_ITEMS.include?(item.id)
     itemname = (quantity > 1) ? item.name_plural : item.name
     pocket = item.pocket
     move = item.move
