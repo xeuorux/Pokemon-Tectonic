@@ -2320,7 +2320,7 @@ class PokeBattle_Move_0CF < PokeBattle_Move
             msg = _INTL("{1} clamped {2}!", user.pbThis, target.pbThis(true))
         when :FIRESPIN, :CRIMSONSTORM
             msg = _INTL("{1} was trapped in the fiery vortex!", target.pbThis)
-        when :INFESTATION
+        when :INFESTATION,:TERRORSWARM
             msg = _INTL("{1} has been afflicted with an infestation by {2}!", target.pbThis, user.pbThis(true))
         when :MAGMASTORM
             msg = _INTL("{1} became trapped by Magma Storm!", target.pbThis)
