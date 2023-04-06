@@ -16,7 +16,14 @@ def pbGiveItemToPokemon(item,pkmn,scene)
 
     # If the pokemon can have multiple items due to an ability, check for legality thereof
     if pkmn.canHaveMultipleItems?
-        moveItemFromBagToPokemon(item,pkmn,scene) if pkmn.canHaveItem?(item, true)
+        if pkmn.canHaveItem?(item, true)
+            moveItemFromBagToPokemon(item,pkmn,scene)
+            return true
+        elsif scene.pbConfirm(_INTL("Swap its items with the #{newitemname}?"))
+            pbTakeItemsFromPokemon(pkmn)
+            moveItemFromBagToPokemon(item,pkmn,scene) unless pkmn.hasItem?
+            return true
+        end
     # Otherwise, allow the player to swap the one held item for another
     else
         alreadyHoldingAlert(pkmn,pkmn.firstItem,scene)
@@ -84,10 +91,10 @@ end
 def pbTakeItemsFromPokemon(pkmn)
     if pkmn.items.empty?
         pbMessage(_INTL("{1} isn't holding anything.", pkmn.name))
-        return false
+        return 0
     end
 
-    ret = false
+    itemsTaken = 0
     itemsToRemove = []
     pkmn.items.each do |item|
         if !$PokemonBag.pbCanStore?(item)
@@ -96,11 +103,11 @@ def pbTakeItemsFromPokemon(pkmn)
             $PokemonBag.pbStoreItem(item)
             pbMessage(_INTL("Received the {1} from {2}.", getItemName(item), pkmn.name))
             itemsToRemove.push(item)
-            ret = true
+            itemsTaken += 1
         end
     end
     itemsToRemove.each do |itemToRemove|
         pkmn.removeItem(itemToRemove)
     end
-    return ret
+    return itemsTaken
 end

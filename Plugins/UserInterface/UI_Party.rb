@@ -1296,7 +1296,7 @@ end
                 end
               end
             elsif cmdTakeItems>=0 && command==cmdTakeItems   # Take/ Take All
-              if pbTakeItemsFromPokemon(pkmn)
+              if pbTakeItemsFromPokemon(pkmn) > 0
                 pbRefreshSingle(pkmnid)
               end
             elsif cmdTakeOneItem>=0 && command==cmdTakeOneItem # Take One

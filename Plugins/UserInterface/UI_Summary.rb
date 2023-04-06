@@ -1254,7 +1254,7 @@ class PokemonSummary_Scene
 					showNoTeamEditingMessage()
 					next
 				end
-				dorefresh = pbTakeItemsFromPokemon(@pokemon)
+				dorefresh = pbTakeItemsFromPokemon(@pokemon) > 0
 			elsif cmdPokedex>=0 && command==cmdPokedex
 				openSingleDexScreen(@pokemon)
 				dorefresh = true

@@ -1935,11 +1935,11 @@ class PokemonBoxIcon < IconSprite
   
     def pbGiveItem(pokemon)
       item = scene.pbChooseItem($PokemonBag)
-      @scene.pbHardRefresh if item && pbGiveItemToPokemon(item,pokemon)
+      @scene.pbHardRefresh if item && pbGiveItemToPokemon(item,pokemon,scene)
     end
 
     def pbTakeItem(pokemon)
-        @scene.pbHardRefresh if pbTakeItemsFromPokemon(pokemon)
+        @scene.pbHardRefresh if pbTakeItemsFromPokemon(pokemon) > 0
     end
   
     def pbBoxCommands
