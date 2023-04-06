@@ -3335,6 +3335,10 @@ class PokeBattle_Move_0F2 < PokeBattle_Move
             @battle.pbDisplay(_INTL("But it failed!")) if show_message
             return true
         end
+        if user.firstItem == :PEARLOFFATE || target.firstItem == :PEARLOFFATE
+             @battle.pbDisplay(_INTL("But it failed, since the Pearl of Fate cannot be exchanged!")) if show_message
+            return true
+        end
         if target.hasActiveAbility?(:STICKYHOLD) && !@battle.moldBreaker
             if show_message
                 @battle.pbShowAbilitySplash(target, ability)

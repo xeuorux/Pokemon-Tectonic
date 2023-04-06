@@ -193,7 +193,7 @@ class PokeBattle_Battler
         return false if fainted?
         
         if hasActiveAbility?(:STICKYFINGERS) && stolen
-            return items.length < 2
+            return itemCount < 2
         end
 
         # Disallow certain items as 2nd
@@ -220,7 +220,7 @@ class PokeBattle_Battler
             end
         end
 
-        return false
+        return itemCount == 0
     end
 
     def items

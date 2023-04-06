@@ -718,7 +718,7 @@ BattleHandlers::AbilityOnSwitchIn.add(:MENDINGTONES,
 BattleHandlers::AbilityOnSwitchIn.add(:PEARLSEEKER,
   proc { |ability, battler, battle|
       next unless battle.pbWeather == :Eclipse
-      next if battler.canAddItem?(:PEARLOFFATE)
+      next unless battler.canAddItem?(:PEARLOFFATE)
       battle.pbShowAbilitySplash(battler, ability)
       battler.giveItem(:PEARLOFFATE)
       battle.pbDisplay(_INTL("{1} discovers the {2}!", battler.pbThis, getItemName(:PEARLOFFATE)))

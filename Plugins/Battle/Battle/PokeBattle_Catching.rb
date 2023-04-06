@@ -31,8 +31,19 @@ class PokeBattle_Battle
             # Let the player know info about the individual pokemon they caught
             pbDisplayPaused(_INTL("You check {1}, and discover that its ability is {2}!", pkmn.name, pkmn.ability.name))
 
+            itemsToRemove = []
             pkmn.items.each do |item|
-                pbDisplayPaused(_INTL("The {1} is holding an {2}!", pkmn.name, getItemName(item)))
+                if SUPER_ITEMS.include?(item)
+                    itemsToRemove.push(item)
+                else
+                    pbDisplayPaused(_INTL("The {1} is holding an {2}!", pkmn.name, getItemName(item)))
+                end
+            end
+
+            itemsToRemove.each do |itemToRemove|
+                pbDisplayPaused(_INTL("The {1} is holding an {2}!", pkmn.name, getItemName(itemToRemove)))
+                pbDisplayPaused(_INTL("But it mysteriously crumbled to ash..."))
+                pkmn.removeItem(itemToRemove)
             end
 
             # Record the Pokémon's species as owned in the Pokédex
