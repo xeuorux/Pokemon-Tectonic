@@ -20,6 +20,7 @@ module GameData
               "Moves"             => [0, "*ue", nil, :Move],
               "TutorMoves"        => [0, "*e", :Move],
               "EggMoves"          => [0, "*e", :Move],
+              "LineMoves"         => [0, "*e", :Move],
               "Abilities"         => [0, "*e", :Ability],
               "HiddenAbility"     => [0, "*e", :Ability],
               "WildItemCommon"    => [0, "e", :Item],
@@ -88,7 +89,7 @@ module GameData
           @tutor_moves           = hash[:tutor_moves]           || []
           @tutor_moves.uniq!
           @tutor_moves.sort_by!{|a| a.to_s}
-          @egg_moves             = hash[:egg_moves]             || []
+          @egg_moves             = hash[:line_moves] || hash[:egg_moves] || []
           @egg_moves.uniq!
           @egg_moves.sort_by!{|a| a.to_s}
           @abilities             = hash[:abilities]             || []

@@ -46,6 +46,7 @@ DebugMenuCommands.register("consolidateeggmoves", {
 
     GameData::Species.save
     Compiler.write_pokemon
+    Compiler.write_pokemon_forms
 
     pbMessage(_INTL("Tutor moves consolidated!"))
   }

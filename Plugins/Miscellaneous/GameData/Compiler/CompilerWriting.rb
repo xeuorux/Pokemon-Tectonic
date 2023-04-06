@@ -49,7 +49,7 @@ module Compiler
           f.write(sprintf("TutorMoves = %s\r\n", species.tutor_moves.join(",")))
         end
         if species.egg_moves.length > 0
-          f.write(sprintf("EggMoves = %s\r\n", species.egg_moves.join(",")))
+          f.write(sprintf("LineMoves = %s\r\n", species.egg_moves.join(",")))
         end
         if species.egg_groups.length > 0
           f.write(sprintf("Compatibility = %s\r\n", species.egg_groups.join(",")))
@@ -153,7 +153,7 @@ module Compiler
           f.write(sprintf("TutorMoves = %s\r\n", species.tutor_moves.join(",")))
         end
         if species.egg_moves.length > 0 && species.egg_moves != base_species.egg_moves
-          f.write(sprintf("EggMoves = %s\r\n", species.egg_moves.join(",")))
+          f.write(sprintf("LineMoves = %s\r\n", species.egg_moves.join(",")))
         end
         if species.egg_groups.length > 0 && species.egg_groups != base_species.egg_groups
           f.write(sprintf("Compatibility = %s\r\n", species.egg_groups.join(",")))

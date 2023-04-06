@@ -736,7 +736,7 @@ module Compiler
             move_array.sort! { |a, b| (a[0] == b[0]) ? a[2] <=> b[2] : a[0] <=>b [0] }
             move_array.each { |arr| arr.pop }
             contents[key] = move_array
-          when "TutorMoves", "EggMoves", "Abilities", "HiddenAbility", "Compatibility"
+          when "TutorMoves", "EggMoves", "LineMoves", "Abilities", "HiddenAbility", "Compatibility"
             contents[key] = [contents[key]] if !contents[key].is_a?(Array)
             contents[key].compact!
           when "Evolutions"
@@ -768,6 +768,7 @@ module Compiler
           :moves                 => contents["Moves"],
           :tutor_moves           => contents["TutorMoves"],
           :egg_moves             => contents["EggMoves"],
+          :line_moves            => contents["LineMoves"],
           :abilities             => contents["Abilities"],
           :hidden_abilities      => contents["HiddenAbility"],
           :wild_item_common      => contents["WildItemCommon"],
@@ -917,7 +918,7 @@ module Compiler
             move_array.sort! { |a, b| (a[0] == b[0]) ? a[2] <=> b[2] : a[0] <=>b [0] }
             move_array.each { |arr| arr.pop }
             contents[key] = move_array
-          when "TutorMoves", "EggMoves", "Abilities", "HiddenAbility", "Compatibility"
+          when "TutorMoves", "EggMoves", "LineMoves", "Abilities", "HiddenAbility", "Compatibility"
             contents[key] = [contents[key]] if !contents[key].is_a?(Array)
             contents[key].compact!
           when "Evolutions"
@@ -971,6 +972,7 @@ module Compiler
           :moves                 => moves,
           :tutor_moves           => contents["TutorMoves"] || base_data.tutor_moves.clone,
           :egg_moves             => contents["EggMoves"] || base_data.egg_moves.clone,
+          :egg_moves             => contents["LineMoves"] || base_data.egg_moves.clone,
           :abilities             => contents["Abilities"] || base_data.abilities.clone,
           :hidden_abilities      => contents["HiddenAbility"] || base_data.hidden_abilities.clone,
           :wild_item_common      => contents["WildItemCommon"] || base_data.wild_item_common,
