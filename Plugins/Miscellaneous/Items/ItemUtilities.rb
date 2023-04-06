@@ -1,51 +1,51 @@
 #===============================================================================
-# Give an item to a Pokémon to hold, and take a held item from a Pokémon
+# Give an item to a Pokémon to hold from the bag, swapping out existing items if needed
 #===============================================================================
-def pbGiveItemToPokemon(item,pkmn,scene)
+def pbGiveItemToPokemon(item,pkmn,scene,fromBag=true)
     newitemname = GameData::Item.get(item).name
+
     if pkmn.egg?
-      scene.pbDisplay(_INTL("Eggs can't hold items."))
-      return false
+        scene.pbDisplay(_INTL("Eggs can't hold items."))
+        return false
     end
 
     # If they don't have an item, just give them it
-    unless pkmn.hasItem?
-        moveItemFromBagToPokemon(item,pkmn,scene)
-        return true
-    end
-
+    if !pkmn.hasItem?
+        giveItem = true
     # If the pokemon can have multiple items due to an ability, check for legality thereof
-    if pkmn.canHaveMultipleItems?
+    elsif pkmn.canHaveMultipleItems?
         if pkmn.canHaveItem?(item, true)
-            moveItemFromBagToPokemon(item,pkmn,scene)
-            return true
+            giveItem = true
         elsif scene.pbConfirm(_INTL("Swap its items with the #{newitemname}?"))
             pbTakeItemsFromPokemon(pkmn)
-            moveItemFromBagToPokemon(item,pkmn,scene) unless pkmn.hasItem?
-            return true
+            giveItem = !pkmn.hasItem? # If somehow one of the items couldn't be taken
         end
     # Otherwise, allow the player to swap the one held item for another
     else
         alreadyHoldingAlert(pkmn,pkmn.firstItem,scene)
         if scene.pbConfirm(_INTL("Would you like to switch the two items?"))
-            $PokemonBag.pbDeleteItem(item)
-            if !$PokemonBag.pbStoreItem(pkmn.firstItem)
-                raise _INTL("Could't re-store deleted item in Bag somehow") unless $PokemonBag.pbStoreItem(item)
+            $PokemonBag.pbDeleteItem(item) if fromBag
+            unless $PokemonBag.pbStoreItem(pkmn.firstItem)
+                if fromBag && !$PokemonBag.pbStoreItem(item)
+                    raise _INTL("Could't re-store deleted item in Bag somehow")
+                end
                 scene.pbDisplay(_INTL("The Bag is full. The Pokémon's item could not be removed."))
+                return false
             else
-                pkmn.setItems(item)
                 scene.pbDisplay(_INTL("Took the {1} from {2} and gave it the {3}.",getItemName(pkmn.firstItem),pkmn.name,newitemname))
+                pkmn.setItems(item)
                 return true
             end
         end
     end
-    return false
-end
 
-def moveItemFromBagToPokemon(item,pkmn,scene = nil)
-    $PokemonBag.pbDeleteItem(item)
-    pkmn.giveItem(item)
-    scene&.pbDisplay(_INTL("{1} is now holding the {2}.",pkmn.name,getItemName(item)))
+    if giveItem
+        $PokemonBag.pbDeleteItem(item) if fromBag
+        pkmn.giveItem(item)
+        scene&.pbDisplay(_INTL("{1} is now holding the {2}.",pkmn.name,getItemName(item)))
+    end
+
+    return giveItem
 end
 
 def alreadyHoldingAlert(pkmn,itemID,scene)

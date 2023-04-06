@@ -1319,7 +1319,7 @@ end
                 break if pkmnid<0
                 newpkmn = @party[pkmnid]
                 break if pkmnid==oldpkmnid
-                if pbGiveItemToPokemon(item,newpkmn,self)
+                if pbGiveItemToPokemon(item,newpkmn,self,false)
                   pkmn.removeItem(item)
                   @scene.pbClearSwitching
                   pbRefresh
