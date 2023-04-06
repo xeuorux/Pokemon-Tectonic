@@ -617,6 +617,7 @@
 615,VENOMGORGER,Venom Gorger,"Whenever a foe's poison worsens, heal for 33% for each level of worsening."
 616,OVERACTING,Over Acting,"At the first chance, copies an opponent's species' legal abilities."
 617,HERBALIST,Herbalist,"Can hold two different items, if both are Herbs."
+618,TRAUMATIZING,Traumatizing,"Foes whose stats are lowered by this keep those lowered stats even after switching."
 1000,JUSTIFIED,Justified,"Raises Attack when hit by a Dark-type move."
 1001,ADAPTABILITY,Adaptability,"Powers up moves of the same type."
 1002,HUGEPOWER,Huge Power,"Raises the Pokémon's Attack stat."

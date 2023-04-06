@@ -487,3 +487,28 @@ GameData::BattleEffect.register_effect(:Side, {
         value.compact!
     end,
 })
+
+GameData::BattleEffect.register_effect(:Side, {
+    :id => :Traumatized,
+    :real_name => "Traumatized",
+    :info_displayed => false,
+    :type => :Hash,
+    :entry_proc => proc do |battle, battlerIndex, side, battler, value|
+        echoln(value.to_s)
+        if value.key?(battler.pokemonIndex)
+            statHash = value[battler.pokemonIndex]
+            echoln(statHash.to_s)
+            statDown = []
+            statHash.each do |key, value|
+                next unless value > 0
+                statDown.push(key)
+                statDown.push(value)
+            end
+            echoln(statDown.to_s)
+            unless statDown.empty?
+                battle.pbDisplay(_INTL("#{battler.pbThis} remembers its fears!"))
+                battler.pbLowerMultipleStatStages(statDown, nil)
+            end
+        end
+    end,
+})

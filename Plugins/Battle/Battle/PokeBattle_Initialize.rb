@@ -173,7 +173,7 @@ class PokeBattle_Battle
     def aiAutoKnowsMove?(move,pokemon)
         return true if getBattleMoveInstanceFromID(move.id).aiAutoKnows?(pokemon)
         return false unless pokemon.types.include?(move.type) # Don't know off-type moves
-        return false unless move.category == 2 # Don't know status moves
+        return false if move.category == 2 # Don't know status moves
         return true
     end
 end

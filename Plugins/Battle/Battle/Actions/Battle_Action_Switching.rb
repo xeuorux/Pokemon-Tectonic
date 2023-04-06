@@ -394,6 +394,12 @@ class PokeBattle_Battle
             position.battlerEntry(effect) if data.has_entry_proc?
         end
 
+        # Perform procs from battlers entering into a side
+        side = @sides[battler.index % 2]
+        side.eachEffect(true) do |effect, _value, data|
+            side.battlerEntry(effect, battler.index % 2) if data.has_entry_proc?
+        end
+
         # Type applying spike hazards
         unless battler.airborne?
             battler.pbOwnSide.eachEffect(true) do |effect, _value, data|

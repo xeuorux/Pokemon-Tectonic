@@ -306,7 +306,10 @@ class PokeBattle_Battler
         # Perform the stat stage change
         increment = pbLowerStatStageBasic(stat, increment, ignoreContrary)
         return false if increment <= 0
+
         # Stat down animation and message
+        trauma = user&.hasActiveAbility?(:TRAUMATIZING)
+        @battle.pbShowAbilitySplash(user, :TRAUMATIZING) if trauma
         @battle.pbCommonAnimation("StatDown", self) if showAnim
         arrStatTexts = [
             _INTL("{1}'s {2}{3} fell!", pbThis, GameData::Stat.get(stat).name, boss? ? " slightly" : ""),
@@ -315,6 +318,31 @@ class PokeBattle_Battler
                                     boss? ? " severely" : " badly"),
         ]
         @battle.pbDisplay(arrStatTexts[[increment - 1, 2].min])
+
+        # Traumatizing
+        if trauma
+            @battle.pbDisplay(_INTL("It'll last the whole battle!"))
+
+            # Initialize entire hash if needed
+            pbOwnSide.applyEffect(:Traumatized, {}) unless pbOwnSide.effectActive?(:Traumatized)
+
+            # Initialize individual pokemon array if needed
+            unless pbOwnSide.effects[:Traumatized].key?(@pokemonIndex)
+                newStatHash = {}
+                pbOwnSide.effects[:Traumatized][@pokemonIndex] = newStatHash
+                GameData::Stat.each_battle do |statData|
+                    newStatHash[statData.id] = 0
+                end
+            end
+
+            # Increment relevant array element
+            existingValue = pbOwnSide.effects[:Traumatized][@pokemonIndex][stat]
+            newValue = [6,existingValue+increment].min
+            pbOwnSide.effects[:Traumatized][@pokemonIndex][stat] = newValue
+
+            @battle.pbHideAbilitySplash(user)
+        end
+
         # Trigger abilities upon stat loss
         eachActiveAbility do |ability|
             BattleHandlers.triggerAbilityOnStatLoss(ability, self, stat, user)

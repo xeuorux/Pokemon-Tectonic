@@ -214,7 +214,7 @@ module GameData
             # Called whenever the event value is incremented (for integers)
             @increment_proc	= hash[:increment_proc]
 
-            # Called whenever a battler enters the position
+            # Called whenever a battler enters the position or the side
             @entry_proc	= hash[:entry_proc]
 
             # If the effect needs custom logic to determing if it should be active or not
@@ -258,8 +258,8 @@ module GameData
                 raise _INTL("Battle effect #{@id} is set to down down, but its not an integer.") if @ticks_down
                 raise _INTL("Battle effect #{@id} was given a maximum, but its not an integer.") unless @maximum.nil?
             end
-            if @location != :Position && @entry_proc
-                raise _INTL("Battle effect #{@id} defines an entry proc when its not a position-located effect.")
+            if @entry_proc && @location != :Position && @location != :Side
+                raise _INTL("Battle effect #{@id} defines an entry proc when its not a position or side effect.")
             end
         end
 
@@ -487,12 +487,22 @@ module GameData
         end
 
         ### Battler entering
-        def entry_position(battle, index)
-            position = battle.positions[index]
-            battler = battle.battlers[index]
+        def entry_position(battle, battlerIndex)
+            return unless @entry_proc
+            position = battle.positions[battlerIndex]
+            battler = battle.battlers[battlerIndex]
             return if battler.nil? || battler.fainted?
             value = battler.effects[@id]
-            @entry_proc.call(battle, index, position, battler, value) if @entry_proc
+            @entry_proc.call(battle, battlerIndex, position, battler, value)
+        end
+
+        def entry_side(battle, battlerIndex, sideIndex)
+            return unless @entry_proc
+            side = battle.sides[sideIndex]
+            battler = battle.battlers[battlerIndex]
+            return if battler.nil? || battler.fainted?
+            value = side.effects[@id]
+            @entry_proc.call(battle, battlerIndex, side, battler, value)
         end
 
         ### Baton passing

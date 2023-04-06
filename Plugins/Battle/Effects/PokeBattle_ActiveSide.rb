@@ -44,4 +44,8 @@ class PokeBattle_ActiveSide
         super(effect, value)
         echoln("[SIDE EFFECT] Effect #{getName(effect)} applied to side #{index}")
     end
+
+    def battlerEntry(effect,battlerIndex)
+        getData(effect).entry_side(@battle, battlerIndex, @index)
+    end
 end
