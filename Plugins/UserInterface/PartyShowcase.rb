@@ -103,7 +103,7 @@ class PokemonPartyShowcase_Scene
         end
 
         # Display ability name
-        abilityName = pokemon.ability.real_name || "No Ability"
+        abilityName = pokemon.ability&.real_name || "No Ability"
         drawTextEx(@overlay, displayX + 4, mainIconY + POKEMON_ICON_SIZE + 8, 200, 1, abilityName, BASE_COLOR, SHADOW_COLOR)
     
         # Display style values
