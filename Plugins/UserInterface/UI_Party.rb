@@ -1259,11 +1259,19 @@ end
             itemcommands = []
             cmdUseItem   = -1
             cmdGiveItem  = -1
-            cmdTakeItem  = -1
+            cmdTakeItems  = -1
+            cmdTakeOneItem = -1
             cmdMoveItem  = -1
             # Build the commands
             itemcommands[cmdGiveItem=itemcommands.length] = _INTL("Give")
-            itemcommands[cmdTakeItem=itemcommands.length] = _INTL("Take") if pkmn.hasItem?
+            if pkmn.hasItem?
+              if pkmn.hasMultipleItems?
+                itemcommands[cmdTakeOneItem=itemcommands.length] = _INTL("Take One")
+                itemcommands[cmdTakeItems=itemcommands.length] = _INTL("Take All")
+              else
+                itemcommands[cmdTakeItems=itemcommands.length] = _INTL("Take") 
+              end
+            end
             itemcommands[cmdMoveItem=itemcommands.length] = _INTL("Move") if pkmn.hasItem? && !pkmn.hasMultipleItems?
             itemcommands[cmdUseItem=itemcommands.length]  = _INTL("Use")
             itemcommands[itemcommands.length]             = _INTL("Cancel")
@@ -1285,8 +1293,12 @@ end
                   pbRefreshSingle(pkmnid)
                 end
               end
-            elsif cmdTakeItem>=0 && command==cmdTakeItem   # Take
-              if pbTakeItemsFromPokemon(pkmn,self)
+            elsif cmdTakeItems>=0 && command==cmdTakeItems   # Take/ Take All
+              if pbTakeItemsFromPokemon(pkmn)
+                pbRefreshSingle(pkmnid)
+              end
+            elsif cmdTakeOneItem>=0 && command==cmdTakeOneItem # Take One
+              if pbTakeOneItemFromPokemon(pkmn)
                 pbRefreshSingle(pkmnid)
               end
             elsif cmdMoveItem>=0 && command==cmdMoveItem   # Move

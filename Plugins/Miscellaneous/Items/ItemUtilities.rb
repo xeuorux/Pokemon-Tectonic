@@ -52,7 +52,36 @@ def alreadyHoldingAlert(pkmn,itemID,scene)
     end
 end
 
-def pbTakeItemsFromPokemon(pkmn, _scene = nil)
+def pbTakeOneItemFromPokemon(pkmn)
+    if pkmn.items.empty?
+        pbMessage(_INTL("{1} isn't holding anything.", pkmn.name))
+        return false
+    end
+
+    commands = []
+    pkmn.items.each do |item|
+        commands.push(getItemName(item))
+    end
+    
+    commands[commandCancel = commands.length] = _INTL("Cancel")
+
+    selection = pbMessage(_INTL("Take which item?"),commands,commandCancel+1)
+
+    return false if selection == commandCancel
+
+    selectedItem = pkmn.items[selection]
+    if !$PokemonBag.pbCanStore?(selectedItem)
+        pbMessage(_INTL("The Bag is full. The Pokémon's {1} could not be removed.",getItemName(item)))
+        return false
+    else
+        $PokemonBag.pbStoreItem(selectedItem)
+        pbMessage(_INTL("Received the {1} from {2}.", getItemName(selectedItem), pkmn.name))
+        pkmn.removeItem(selectedItem)
+        return true
+    end
+end
+
+def pbTakeItemsFromPokemon(pkmn)
     if pkmn.items.empty?
         pbMessage(_INTL("{1} isn't holding anything.", pkmn.name))
         return false
