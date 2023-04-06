@@ -1261,6 +1261,7 @@ end
             cmdGiveItem  = -1
             cmdTakeItems  = -1
             cmdTakeOneItem = -1
+            cmdSwapItemOrder = -1
             cmdMoveItem  = -1
             # Build the commands
             itemcommands[cmdGiveItem=itemcommands.length] = _INTL("Give")
@@ -1268,11 +1269,12 @@ end
               if pkmn.hasMultipleItems?
                 itemcommands[cmdTakeOneItem=itemcommands.length] = _INTL("Take One")
                 itemcommands[cmdTakeItems=itemcommands.length] = _INTL("Take All")
+                itemcommands[cmdSwapItemOrder=itemcommands.length] = _INTL("Swap Order") if pkmn.itemCount == 2
               else
-                itemcommands[cmdTakeItems=itemcommands.length] = _INTL("Take") 
+                itemcommands[cmdTakeItems=itemcommands.length] = _INTL("Take")
+                itemcommands[cmdMoveItem=itemcommands.length] = _INTL("Move")
               end
             end
-            itemcommands[cmdMoveItem=itemcommands.length] = _INTL("Move") if pkmn.hasItem? && !pkmn.hasMultipleItems?
             itemcommands[cmdUseItem=itemcommands.length]  = _INTL("Use")
             itemcommands[itemcommands.length]             = _INTL("Cancel")
             command = @scene.pbShowCommands(_INTL("Do what with an item?"),itemcommands)
@@ -1301,6 +1303,12 @@ end
               if pbTakeOneItemFromPokemon(pkmn)
                 pbRefreshSingle(pkmnid)
               end
+            elsif cmdSwapItemOrder>=0 && command==cmdSwapItemOrder # Swap Item Order
+              pkmn.setItems(pkmn.items.reverse)
+              firstItemName = getItemName(pkmn.items[0])
+              secondItemName = getItemName(pkmn.items[1])
+              pbDisplay(_INTL("{1}'s {2} and {3} swapped order.",pkmn.name,firstItemName,secondItemName))
+              pbRefreshSingle(pkmnid)
             elsif cmdMoveItem>=0 && command==cmdMoveItem   # Move
               item = pkmn.firstItem
               @scene.pbSetHelpText(_INTL("Move {1} to where?",getItemName(item)))

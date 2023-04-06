@@ -609,7 +609,7 @@
 607,BERRYBUNCH,Berry Bunch,"Can hold two different items, if both are Berries."
 608,FASHIONABLE,Fashionable,"Can hold two different items, if one is clothing and the other is not."
 609,ALLTHATGLITTERS,All That Glitters,"Can hold two different items, if both are Gems."
-610,STICKYFINGERS,Sticky Fingers,"Can hold a 2nd item by stealing it."
+610,STICKYFINGERS,Sticky Fingers,"Can hold a second item by stealing it."
 611,UNAFRAID,Unafraid,"Takes half damage from Dark- and Bug-type moves."
 612,FIRSTSTRIKE,First Strike,"Powers up priority moves by 30%."
 613,HARDFALL,Hard Fall,"Deals 30% more move damage to Pokemon that are taller than it."

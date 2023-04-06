@@ -564,7 +564,10 @@ class Pokemon
       return @items
     end
 
-    # @return [GameData::Item, nil] an Item object corresponding to this Pokémon's item
+    def itemCount
+      return items.length
+    end
+
     def firstItem
       return nil if items.empty?
       return items[0]
