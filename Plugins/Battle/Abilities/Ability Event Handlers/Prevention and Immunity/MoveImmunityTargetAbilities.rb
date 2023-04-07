@@ -180,7 +180,13 @@ BattleHandlers::MoveImmunityTargetAbility.add(:TELEPATHY,
 BattleHandlers::MoveImmunityTargetAbility.add(:WONDERGUARD,
   proc { |ability, _user, target, move, type, battle, showMessages, aiChecking|
       next false if move.statusMove?
-      next false if !type || Effectiveness.super_effective?(target.damageState.typeMod)
+      next false if !type
+      if aiChecking
+        typeMod = battle.battleAI.pbCalcTypeModAI(type, user, target, move)
+      else
+        typeMod = target.damageState.typeMod
+      end
+      next false if Effectiveness.super_effective?(typeMod)
       if showMessages
           battle.pbShowAbilitySplash(target, ability)
           battle.pbDisplay(_INTL("It doesn't affect {1}...", target.pbThis(true)))
