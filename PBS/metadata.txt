@@ -1893,3 +1893,9 @@ Bicycle = true
 Outdoor = false
 ShowArea = true
 Bicycle = true
+#-------------------------------
+[367]
+# Prizca Great Hall
+Outdoor = false
+ShowArea = true
+Bicycle = false
