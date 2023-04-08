@@ -854,7 +854,7 @@ LandSparse,20
     20,SHELMET,32,34
 #-------------------------------
 [349] # UB Portal
-Land,20
+DarkCave,20
     13,BUZZWOLE,56,59
     13,NIHILEGO,56,59
     13,PHEROMOSA,56,59

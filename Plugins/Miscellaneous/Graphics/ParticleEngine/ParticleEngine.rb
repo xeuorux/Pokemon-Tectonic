@@ -29,6 +29,7 @@ class Particle_Engine
            
            # By Zeu
            "starfield"    => Particle_Engine::CircleStarField,
+           "wormhole"     => Particle_Engine::Wormhole,
         }
     end
 end
@@ -70,7 +71,7 @@ class ParticleEffect_Event
 
     def setParameters(params)
         @randomhue,@fade,
-        @maxparticless,@hue,@slowdown,
+        @max_particles,@hue,@slowdown,
         @ytop,@ybottom,@xleft,@xright,
         @xgravity,@ygravity,@xoffset,@yoffset,
         @opacityvar,@originalopacity = params
@@ -86,7 +87,7 @@ class ParticleEffect_Event
         return bitmap
     end
 
-    def initParticles(filename,opacity,zOffset=0,blendtype=1)
+    def initParticles(filename,opacity=255,zOffset=0,blendtype=1)
         @particles = []
         @particlex = []
         @particley = []
@@ -102,7 +103,7 @@ class ParticleEffect_Event
         @bmwidth   = 32
         @bmheight  = 32
         @opacityMult = 1.0
-        for i in 0...@maxparticless
+        for i in 0...@max_particles
           @particles[i] = ParticleSprite.new(@viewport)
           @particles[i].bitmap = loadBitmap(filename, @hue) if filename
           if i==0 && @particles[i].bitmap
@@ -111,16 +112,17 @@ class ParticleEffect_Event
           end
           @particles[i].blend_type = blendtype
           @particles[i].z = self.z + zOffset
+          @opacity[i] = opacity
 
           resetParticle(i)
-          setInitialOpacity(i)
+          initializeParticle(i)
           
           @particles[i].opacity = @opacity[i]
           @particles[i].update
         end
     end
 
-    def setInitialOpacity(i)
+    def initializeParticle(i)
         @opacity[i] = rand(opacity/4)
     end
 
@@ -182,7 +184,7 @@ class ParticleEffect_Event
         particleZ = selfZ + @zoffset
 
         # Update all particles
-        for i in 0...@maxparticless
+        for i in 0...@max_particles
           updateParticle(i,particleZ)
         end
     end
@@ -287,11 +289,18 @@ class ParticleEffect_Event
         @particles.clear
         @bitmaps.clear
     end
+
+    def clampHue(hue)
+        hue -= 360 while hue >= 360
+        hue += 360 while hue < 0
+        return hue
+    end
 end
 
 class ParticleSprite
-    attr_accessor :x, :y, :z, :ox, :oy, :opacity, :blend_type, :state
+    attr_accessor :x, :y, :z, :ox, :oy, :opacity, :blend_type, :state, :angle, :zoom_x, :zoom_y
     attr_reader :bitmap
+    attr_reader :sprite
   
     def initialize(viewport)
       @viewport   = viewport
@@ -307,6 +316,9 @@ class ParticleSprite
       @minleft    = 0
       @mintop     = 0
       @state      = 0
+      @angle      = 0
+      @zoom_x     = 1.0
+      @zoom_y     = 1.0
     end
   
     def dispose
@@ -334,17 +346,20 @@ class ParticleSprite
         @sprite = nil
       end
       if @sprite
-        @sprite.x          = @x if @sprite.x!=@x
-        @sprite.x          -= @ox
-        @sprite.y          = @y if @sprite.y!=@y
-        @sprite.y          -= @oy
-        @sprite.z          = @z if @sprite.z!=@z
-        @sprite.opacity    = @opacity if @sprite.opacity!=@opacity
-        @sprite.blend_type = @blend_type if @sprite.blend_type!=@blend_type
-        @sprite.bitmap     = @bitmap if @sprite.bitmap!=@bitmap
+        @sprite.x          = @x if @sprite.x != @x
+        @sprite.ox         = @ox if @sprite.ox != @ox
+        @sprite.y          = @y if @sprite.y != @y
+        @sprite.oy         = @oy if @sprite.oy != @oy
+        @sprite.z          = @z if @sprite.z != @z
+        @sprite.zoom_x     = @zoom_x if @sprite.zoom_x != @zoom_x
+        @sprite.zoom_y     = @zoom_y if @sprite.zoom_y != @zoom_y
+        @sprite.angle      = @angle if @sprite.angle != @angle
+        @sprite.opacity    = @opacity if @sprite.opacity != @opacity
+        @sprite.blend_type = @blend_type if @sprite.blend_type != @blend_type
+        @sprite.bitmap     = @bitmap if @sprite.bitmap != @bitmap
       end
     end
-  end
+end
 
 class Particle_Engine::CircleStarField < ParticleEffect_Event
     def initialize(event,viewport)
@@ -400,7 +415,7 @@ class Particle_Engine::CircleStarField < ParticleEffect_Event
         @particles[i].state = 0
     end
 
-    def setInitialOpacity(i)
+    def initializeParticle(i)
         @opacity[i] = rand(249)
     end
 
@@ -421,5 +436,74 @@ class Particle_Engine::CircleStarField < ParticleEffect_Event
 
     def yExtent
         return @radius
+    end
+end
+
+class Particle_Engine::Wormhole < ParticleEffect_Event
+    def initialize(event,viewport)
+        super
+        setParameters([
+            0, # Random hue
+            0, # fade
+            6, # max particles
+            0, # hue
+            5, # slowdown
+            0, # ytop
+            0, # ybottom
+            0, # xleft
+            0, # xright
+            0, # xgravity
+            0, # ygravity
+            0, # xoffset
+            0, # yoffset
+            3, # opacity var
+            5 # original opacity
+            ])
+        @opacityMult = 0.2
+        @cullOffscreen = false
+        @movesleftright = false
+        @movesupdown = false
+
+        initParticles("wormhole_portal")
+    end
+
+    def resetOpacity(i)
+        return
+    end
+
+    def initializeParticle(i)
+        particleSprite = @particles[i]
+
+        particleSprite.ox = @bmwidth / 2
+        particleSprite.oy = @bmheight / 2
+        particleSprite.angle = 360 * i / @max_particles.to_f
+
+        particleSprite.zoom_x = 2.5
+
+        hue = @hue + 360 * i / @max_particles.to_f
+        hue = clampHue(hue)
+        echoln(hue)
+        particleSprite.bitmap = loadBitmap(@filename, hue)
+    end
+
+    def changeOpacity(i)
+        return
+    end
+
+    def xExtent
+        return 50
+    end
+
+    def yExtent
+        return 50
+    end
+
+    def updateParticle(i,particleZ)
+        if i % 2 == 0
+            @particles[i].angle += 1
+        else
+            @particles[i].angle -= 1
+        end
+        super
     end
 end
