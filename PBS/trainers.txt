@@ -571,8 +571,8 @@ Pokemon = WHIRLIPEDE,25
     EV = 20,0,10,0,0,20
 Pokemon = PIDGEOTTO,25
     Moves = BOREALWIND,TAILWIND,ROOST,DUSTDEVIL
-    AbilityIndex = 1 # Audacity
-    Item = FROSTORB
+    AbilityIndex = 1 # Wind Buffer
+    Item = LEFTOVERS
     EV = 10,20,0,15,20,5
 Pokemon = HAUNTER,25
     Moves = WILLOWISP,HEX,CLEARSMOG,SUBSTITUTE
@@ -1694,7 +1694,7 @@ Pokemon = MAGCARGO,40
 #-------------------------------
 [LADY3,Kristiane]
 Pokemon = PIDGEOT,40
-    AbilityIndex = 1 # Audacity
+    AbilityIndex = 1 # Wind Buffer
     Item = FOCUSSASH
 Pokemon = MINIOR,40
     AbilityIndex = 0 # Shields Down
