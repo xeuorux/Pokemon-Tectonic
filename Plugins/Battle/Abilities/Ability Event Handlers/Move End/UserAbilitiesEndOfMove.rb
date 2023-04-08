@@ -161,6 +161,12 @@ BattleHandlers::UserAbilityEndOfMove.add(:SOUNDBARRIER,
   }
 )
 
+BattleHandlers::UserAbilityEndOfMove.add(:WINDBUFFER,
+  proc { |ability, user, _targets, move, _battle, _switchedBattlers|
+      user.tryRaiseStat(:SPECIAL_DEFENSE, user, ability: ability) if move.windMove?
+  }
+)
+
 BattleHandlers::UserAbilityEndOfMove.add(:SEALORD,
   proc { |ability, user, targets, _move, battle, _switchedBattlers|
       next unless user.species == :GYARADOS

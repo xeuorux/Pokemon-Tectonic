@@ -30,7 +30,7 @@ BattleHandlers::AccuracyCalcUserAbility.add(:UNAWARE,
 
 BattleHandlers::AccuracyCalcUserAbility.add(:VICTORYSTAR,
   proc { |ability, mults, _user, _target, _move, _type|
-      mults[:accuracy_multiplier] *= 1.1
+      mults[:accuracy_multiplier] *= 2.0
   }
 )
 

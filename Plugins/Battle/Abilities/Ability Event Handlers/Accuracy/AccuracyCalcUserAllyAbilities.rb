@@ -1,6 +1,6 @@
 BattleHandlers::AccuracyCalcUserAllyAbility.add(:VICTORYSTAR,
   proc { |ability, mods, _user, _target, _move, _type|
-      mods[:accuracy_multiplier] *= 1.1
+      mods[:accuracy_multiplier] *= 2.0
   }
 )
 
