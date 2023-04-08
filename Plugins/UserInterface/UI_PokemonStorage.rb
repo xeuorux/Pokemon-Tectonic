@@ -1897,7 +1897,7 @@ class PokemonBoxIcon < IconSprite
     end
 
     def candiesFromReleasing(lifetimeEXP)
-        lifetimeEXP *= 0.7
+        lifetimeEXP *= 0.8
         if lifetimeEXP > 0
           xsCandyTotal, sCandyTotal, mCandyTotal, _lCandyTotal = calculateCandySplitForEXP(lifetimeEXP)
           if (xsCandyTotal + sCandyTotal + mCandyTotal) == 0
