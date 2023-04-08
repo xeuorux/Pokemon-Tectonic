@@ -94,3 +94,4 @@
 4093,CORROSIVEGAS,Corrosive Gas,18F,0,POISON,Status,100,30,0,AllNearOthers,0,,"The user surrounds everything around it with highly acidic gas and melts away items they hold.",
 4094,TELEKINESIS,Telekinesis,11A,0,PSYCHIC,Status,0,12,0,NearOther,0,bce,"The user makes the target float with its psychic power. The target is easier to hit for three turns.",
 4095,DRAGONBLOOD,Dragon Blood,51C,0,DRAGON,Status,0,5,0,User,0,d,"The user restores its own HP. The user then raises its Sp. Atk unless it was fully healed in the process.",
+4096,ACUPRESSURE,Acupressure,037,0,NORMAL,Status,0,25,0,UserOrNearAlly,0,,"The user applies pressure to stress points, sharply boosting one of its stats.",
