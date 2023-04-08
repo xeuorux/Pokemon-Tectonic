@@ -224,7 +224,7 @@
 295,TM07,TM07,TM07s,4,10000,"The user crushes the target with evil intent. This deals double damage if the target has a status condition.",3,0,0,CRUELTY
 296,TM08,TM08,TM08s,4,50000,"The target is attacked with a powerful beam. The user can't move on the next turn.",3,0,0,HYPERBEAM
 297,TM09,TM09,TM09s,4,50000,"The user charges at the target using every bit of its power. The user can't move on the next turn.",3,0,0,GIGAIMPACT
-298,TM10,TM10,TM10s,4,10000,"The user scatters curious leaves that chase the target. This attack never misses.",3,0,0,MAGICALLEAF
+298,TM10,TM10,TM10s,4,10000,"",3,0,0,GREYMIST
 299,TM11,TM11,TM11s,4,10000,"In this two-turn attack, the user gathers light, then blasts a bundled beam on the next turn.",3,0,0,SOLARBEAM
 300,TM12,TM12,TM12s,4,10000,,3,0,0,FOLLOWME
 301,TM13,TM13,TM13s,4,10000,"The target becomes trapped within a fierce vortex of fire that rages for four to five turns.",3,0,0,FIRESPIN
