@@ -99,10 +99,10 @@ STATUS_CONDITIONS_HASH = {
     _INTL("Status Immunity") => _INTL("Type immunities do not prevent status moves. However, some types give immunities to certain status conditions. Don't confuse these two!"),
     _INTL("Burn") => _INTL("When burned, a Pokémon's Attack is reduced by 33%, and loses 1/8th HP every turn. Fire- and Ghost-types do the most burning. Fire is immune."),
     _INTL("Frostbite") => _INTL("When frostbitten, a Pokémon's Sp. Atk is reduced by 33%, and loses 1/8th HP every turn. Ice- and Flying-types do the most frostbiting. Ice is immune."),
-    _INTL("Poison") => _INTL("When poisoned, a Pokémon loses 1/8th HP every turn--doubling every 3 turns until swapped. Poison- and Grass-types do the most poisoning. Poison/Steel are immune."),
+    _INTL("Poison") => _INTL("When poisoned, a Pokémon loses 1/8th HP every turn. This doubles every 3 turns. Poison- and Grass-types do the most poisoning. Poison/Steel are immune."),
     _INTL("Numb") => _INTL("When numbed, a Pokémon's Speed is halved, and it deals 25% less damage. Electric- and Fighting-types do the most numbing. Electric is immune."),
     _INTL("Dizzy") => _INTL("When dizzied, a Pokemon takes 25% more attack damage, and its ability doesn't function. Psychic- and Fairy-types do the most dizzying. Psychic is immune."),
-    _INTL("Leeched") => _INTL("When leeched, it loses 1/8th HP every turn, and each opponent gains that health. Bug- and Dark-types do the most leeching. Grass is immune."),
+    _INTL("Leeched") => _INTL("When leeched, a Pokemon loses 1/8th HP every turn, and its opponent(s) split that health. Bug- and Dark-types do the most leeching. Grass is immune."),
     _INTL("Sleep") => _INTL("A rarer status that causes a Pokémon to be unable to do anything for 3 turns. Psychic- and Grass-types put Pokémon to sleep the most often."),
 }
 
@@ -149,7 +149,7 @@ WEATHERS_HASH = {
     _INTL("Weather Duration") => _INTL("Weathers last a certain number of turns. The length differs depending on what move or ability summoned the weather. The duration can be extended by certain items."),
     _INTL("Sunshine") => _INTL("Sunshine lowers attack damage by 15% and prevents attacks from critting. Fire and Grass-type moves/Pokémon are immune to this. Fire-type attacks are boosted by 30%."),
     _INTL("Rain") => _INTL("Rain lowers attack damage by 15% and makes added effects half as likely. Water and Electric-type moves/Pokémon are immune to this. Water-type attacks are boosted by 30%."),
-    _INTL("Sandstorm") => _INTL("Sandstorm deals damage to all Pokémon at the end of each turn. Rock and Ground-Steel-types are immune to this. Additionally, Rock-types get +50% Special Defense."),
+    _INTL("Sandstorm") => _INTL("Sandstorm deals damage to all Pokémon at the end of each turn. Rock and Ground-types are immune to this. Additionally, Rock-types get +50% Special Defense."),
     _INTL("Hail") => _INTL("Hail deals damage to all Pokémon at the end of each turn. Ice and Ghost-types are immune to this. Additionally, Ice-types get +50% Defense."),
     _INTL("Eclipse") => _INTL("Eclipse lowers all stats of all Pokémon every 4 turns. Psychic and Dragon-types are immune to this. Additionally, Psychic-type attacks are boosted by 30%."),
     _INTL("Moonglow") => _INTL("Moonglow flinches all Pokémon every 4 turns. Fairy and Dark-types are immune to this. Additionally, Fairy-type attacks are boosted by 30%."),
