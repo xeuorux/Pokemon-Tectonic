@@ -273,17 +273,12 @@ class PokemonPauseMenu
 			  @scene.pbRefresh
 			}
 		  elsif cmdDexnav >= 0 && command == cmdDexnav
-			if !$catching_minigame.active?
-				pbPlayDecisionSE
-				pbFadeOutIn {
-					dexnavScene = NewDexNav.new
-					@scene.pbEndScene
-					return
-				}
-			else
-				pbPlayBuzzerSE
-				pbMessage(_INTL("The features of the DexNav are unavailable during this minigame."))
-			end
+			pbPlayDecisionSE
+			pbFadeOutIn {
+				dexnavScene = NewDexNav.new
+				@scene.pbEndScene
+				return
+			}
 		  elsif cmdTribalBonus >= 0 && command == cmdTribalBonus
 			pbFadeOutIn {
 					scene = TribalBonusScene.new

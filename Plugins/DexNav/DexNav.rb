@@ -155,7 +155,12 @@ class NewDexNav
 				navMon += 1
 				pbPlayCursorSE
 			end
-		  elsif Input.trigger?(Input::C)
+		  elsif Input.trigger?(Input::USE)
+			if $catching_minigame.active?
+				pbPlayBuzzerSE
+				pbMessage(_INTL("This feature of the DexNav is unavailable during this minigame."))
+				next
+			end
 			if !($Trainer.pokedex.owned?(highlightedSpecies) || debugControl)
 			    pbMessage(_INTL("You cannot search for this Pokémon, because you haven't owned one yet!"))
 			    next
@@ -174,7 +179,7 @@ class NewDexNav
 				$search_overlay = DexNav_SearchOverlay.new
 				break
 			end
-		  elsif Input.trigger?(Input::B)
+		  elsif Input.trigger?(Input::BACK)
 			navMon = -1
 			break
 		  else
