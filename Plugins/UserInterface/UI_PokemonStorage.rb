@@ -1903,7 +1903,7 @@ class PokemonBoxIcon < IconSprite
           if (xsCandyTotal + sCandyTotal + mCandyTotal) == 0
             pbDisplay(_INTL("It didn't earn enough XP for you to earn any candies back."))
           else
-            pbDisplay(_INTL("You are reimbursed for 70% of the EXP it earned."))
+            pbDisplay(_INTL("You are reimbursed for 80% of the EXP it earned."))
             pbReceiveItem(:EXPCANDYM,mCandyTotal) if mCandyTotal > 0
             pbReceiveItem(:EXPCANDYS,sCandyTotal) if sCandyTotal > 0
             pbReceiveItem(:EXPCANDYXS,xsCandyTotal) if xsCandyTotal > 0
