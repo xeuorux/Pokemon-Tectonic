@@ -1770,3 +1770,38 @@ class PokeBattle_Move_5D4 < PokeBattle_HalfHealingMove
         end
     end
 end
+
+#===============================================================================
+# Target's Herb items are destroyed. (Blight Touch)
+#===============================================================================
+class PokeBattle_Move_5D5 < PokeBattle_Move
+    def canBlightTargetsItem?(target, checkingForAI = false)
+        if checkingForAI
+            return false if target.substituted?
+        elsif target.damageState.substitute
+            return false
+        end
+        return true
+    end
+
+    def pbEffectWhenDealingDamage(user, target)
+        return unless canBlightTargetsItem?(target)
+        target.eachItemWithName do |item, itemName|
+            next unless canRemoveItem?(user, target, item)
+            next unless HERB_ITEMS.include?(item)
+            target.removeItem(item)
+            @battle.pbDisplay(_INTL("{1}'s {2} was blighted!", target.pbThis, itemName))
+        end
+    end
+
+    def getEffectScore(user, target)
+        return 0 unless canBlightTargetsItem?(target)
+        score = 0
+        target.eachItemWithName do |item, itemName|
+            next unless canRemoveItem?(user, target, item, checkingForAI: true)
+            next unless HERB_ITEMS.include?(item)
+            score += 30
+        end
+        return score
+    end
+end
