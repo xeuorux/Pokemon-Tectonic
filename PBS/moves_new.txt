@@ -372,7 +372,7 @@
 1371,MALEFICPHANTOM,Malefic Phantom,0EE,70,GHOST,Special,100,15,0,NearOther,-1,bef,"The user swaps out using an illusion made from the hatred of their opponent. This move always goes last.",PURSUIT
 1372,HAIRCURL,Hair Curl,0CF,80,STEEL,Special,100,15,0,NearOther,0,abef,"The user curls its metal hair around the target, trapping and damaging it for three turns.",BIND
 1373,STONESIGNAL,Stone Signal,5BD,0,ROCK,Status,0,10,0,FoeSide,0,c,"The user calls all rocks to join it, summoning sandstorm for 5 turns and laying a trap of levitating stones around the target.",STEALTHROCK
-1374,CONTRADICT,Contradict,401,60,PSYCHIC,Special,100,12,0,NearOther,0,bce,"The user questions the existence of the target, dealing psychic damage and dizzying them.",AMNESIA
+1374,CONTRADICT,Contradict,401,60,PSYCHIC,Special,100,12,100,NearOther,0,bce,"The user questions the existence of the target, dealing psychic damage and dizzying them.",AMNESIA
 1375,MOUTHFUL,Mouthful,5BE,1,DARK,Physical,100,10,0,NearOther,0,abef,"The user chomps hard, cutting the target's HP by half, and healing for half of that.",SUPERFANG
 1376,GOLEMGUARD,Golem Guard,5BF,0,ROCK,Status,0,5,0,User,3,d,"The user and its allies are protected from wide-ranging attacks this turn, and enemies can only target the user. Fails if used in succession.",WIDEGUARD
 1377,FREEZERAY,Freeze Ray,5C0,70,ICE,Special,100,10,100,NearOther,0,bef,"The user freezes the target in place, dealing damage and minimizing their Speed and evasiveness.",ICEBEAM
@@ -416,3 +416,5 @@
 1415,TERRORSWARM,Terror Swarm,0CF,75,BUG,Special,100,15,0,NearOther,0,abef,"The user summons bugs to terrorize the target, trapping and damaging it for three turns.",INFESTATION
 1416,BLIGHTTOUCH,Blight Touch,5D5,80,POISON,Physical,100,10,0,NearOther,0,bef,"The user infects the target with a touch and also destroys any Herbs its holding.",POISONJAB
 1417,DETACHMENT,Detachment,086,55,FIGHTING,Special,100,12,0,Other,0,abef,"The user, free from earthly attachments, attacks with aura. Doubles in damage if the user has no item.",AURASPHERE
+1418,SWARMORDER,Attack Order,000,90,BUG,Physical,100,12,0,NearOther,0,befh,"The user calls out its underlings to pummel the target. Skips and destroys protections.",INFESTATION
+1419,NOISEORDER,Noise Order,401,60,BUG,Special,100,12,100,NearOther,0,bce,"The user calls out its underlings to annoy the target with buzzing sounds, dizzying it.",BUGBUZZ
