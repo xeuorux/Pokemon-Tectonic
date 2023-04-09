@@ -19,7 +19,7 @@
 18,TWINEEDLE,Twineedle,0BE,25,BUG,Physical,100,15,20,NearOther,0,bef,"The foe is stabbed twice by a pair of stingers. Each stinger has a 20% chance to poison.",
 19,INFESTATION,Infestation,0CF,50,BUG,Special,100,15,0,NearOther,0,abef,"The user summons bugs to swarm the target, trapping and damaging it for three turns.",
 20,DEFENDORDER,Defend Order,02A,0,BUG,Status,0,10,0,User,0,d,"The user calls out its underlings to shield its body, raising its Defense and Sp. Def stats.",
-21,HEALORDER,Heal Order,0D5,0,BUG,Status,0,10,0,User,0,d,"The user calls out its underlings to heal it. The user regains up to half of its max HP.",
+21,HEALORDER,Heal Order,5D6,0,BUG,Status,0,10,0,User,0,d,"The user calls out its underlings to heal it. The user regains 3/5ths of its max HP.",
 22,QUIVERDANCE,Quiver Dance,02B,0,BUG,Status,0,15,0,User,0,do,"The user performs a beautiful dance. It boosts the user's Sp. Atk, Sp. Def, and Speed stats.",
 23,STICKYWEB,Sticky Web,153,0,BUG,Status,0,15,0,FoeSide,0,c,"Weaves a sticky net around the opposing team, which lowers their Speed stats upon switching in.",
 24,STRINGSHOT,String Shot,04D,0,BUG,Status,100,30,0,AllNearFoes,0,bce,"The foe is bound with silk blown from the user's mouth. This silk reduces the target's Speed.",

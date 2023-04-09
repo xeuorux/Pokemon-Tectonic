@@ -1805,3 +1805,12 @@ class PokeBattle_Move_5D5 < PokeBattle_Move
         return score
     end
 end
+
+#===============================================================================
+# User heals for 3/5ths of their HP. (Heal Order)
+#===============================================================================
+class PokeBattle_Move_5D6 < PokeBattle_HealingMove
+    def healRatio(_user)
+        return 3.0 / 5.0
+    end
+end
