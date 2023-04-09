@@ -71,7 +71,7 @@ BattleHandlers::StatusCureItem.add(:LUMBERRY,
 
 BattleHandlers::StatusCureItem.add(:PEARLOFFATE,
   proc { |item, battler, battle, forced|
-      next false if !forced && !battler.canConsumeBerry?
+      next false if !forced
       next false unless battler.hasAnyStatusNoTrigger
       itemName = GameData::Item.get(item).name
       battle.pbDisplay(_INTL("The {1} sacrificed itself to cure {2}!", itemName, battler.pbThis(true))) unless forced
