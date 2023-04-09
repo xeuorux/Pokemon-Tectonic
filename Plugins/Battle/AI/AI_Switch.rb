@@ -89,6 +89,12 @@ class PokeBattle_AI
                 switchingBias += poisonBias
                 PBDebug.log("[AI SWITCH] #{battler.pbThis} (#{battler.index}) is poisoned at count (#{battler.getStatusCount(:POISON)}) (+#{poisonBias})")
             end
+
+            # More likely to switch when cursed
+            if battler.effectActive?(:Curse)
+                switchingBias += 15
+                PBDebug.log("[AI SWITCH] #{battler.pbThis} (#{battler.index}) is cursed (+15)")
+            end
         end
 
         # More likely to switch when drowsy
