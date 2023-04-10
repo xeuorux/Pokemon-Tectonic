@@ -264,4 +264,41 @@ class PokeBattle_Battle
         end
         return ret
     end
+
+    # Returns a hash assigning each unfainted battler a number which explains in what order the battlers
+    # are expected to move this turn, accounting for only speed and trick room
+    # Pokemon with speed ties are assigned the same number
+    def pbTurnOrderDisplayed
+        pbCalculatePriority(true)
+        
+        speedHash = {}
+
+        @priority.each do |pArray|
+            battler = pArray[0]
+            next if battler.fainted?
+            speed = pArray[1]
+            if speedHash.key?(speed)
+                speedHash[speed].push(battler)
+            else
+                speedHash[speed] = [battler]
+            end
+        end
+
+        trickRoom = @field.effectActive?(:TrickRoom)
+
+        sortedSpeedKeys = speedHash.keys.sort do |speedA, speedB|
+            val = speedB <=> speedA
+            val *= -1 if trickRoom
+            next val
+        end
+
+        battlerTurnOrderHash = {}
+        speedHash.each_pair do |key, value|
+            value.each do |battlerWithSpeed|
+                battlerTurnOrderHash[battlerWithSpeed.index] = sortedSpeedKeys.index(key) + 1
+            end
+        end
+
+        return battlerTurnOrderHash
+    end
 end

@@ -32,6 +32,8 @@ class BattleInfoDisplay < SpriteWrapper
 	
 	@battlerScrollingValue = 0
 	@fieldScrollingValue = 0
+
+	@turnOrder = @battle.pbTurnOrderDisplayed
 	
 	self.z = z
     refresh
@@ -71,17 +73,19 @@ class BattleInfoDisplay < SpriteWrapper
 	textToDraw = []
 	
 	# Draw the
-	battlerNameX = 24
-	battlerCursorX = 160
+	battlerNameX = 16
+	battlerCursorX = 152
 	yPos = 8
 	battlerIndex = 0
 
 	# Entries for allies
 	@battle.eachSameSideBattler do |b|
-		next if !b
+		next if b.nil?
 		textToDraw.push([b.name,battlerNameX,yPos + 4,0,base,shadow])
 		cursorX = @selected == battlerIndex ? @statusCursorBitmap.width/2 : 0
 		self.bitmap.blt(battlerCursorX,yPos,@statusCursorBitmap.bitmap,Rect.new(cursorX,0,@statusCursorBitmap.width/2,@statusCursorBitmap.height))
+		textToDraw.push([@turnOrder[b.index].to_s,battlerCursorX + 140,yPos + 4,0,base,shadow]) if @turnOrder.key?(b.index)
+		
 		yPos += 52
 		battlerIndex += 1
 	end
@@ -89,10 +93,12 @@ class BattleInfoDisplay < SpriteWrapper
 	# Entries for enemies
 	yPos = 180
 	@battle.eachOtherSideBattler do |b|
-		next if !b
+		next if b.nil?
 		textToDraw.push([b.name,battlerNameX,yPos + 4,0,base,shadow])
 		cursorX = @selected == battlerIndex ? @statusCursorBitmap.width/2 : 0
 		self.bitmap.blt(battlerCursorX,yPos,@statusCursorBitmap.bitmap,Rect.new(cursorX,0,@statusCursorBitmap.width/2,@statusCursorBitmap.height))
+		textToDraw.push([@turnOrder[b.index].to_s,battlerCursorX + 140,yPos + 4,0,base,shadow]) if @turnOrder.key?(b.index)
+		
 		yPos += 52
 		battlerIndex += 1
 	end
