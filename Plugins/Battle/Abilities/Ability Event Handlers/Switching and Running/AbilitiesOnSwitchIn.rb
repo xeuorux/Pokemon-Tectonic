@@ -785,9 +785,9 @@ BattleHandlers::AbilityOnSwitchIn.add(:PRECHARGED,
 BattleHandlers::AbilityOnSwitchIn.add(:LOOSESHELL,
   proc { |ability, battler, battle|
       next unless battle.pbWeather == :Sandstorm
-      next unless battler.form == 0
+      next if battler.pbOpposingSide.effectActive?(:StealthRock)
       battle.pbShowAbilitySplash(battler, ability)
-      pbChangeForm(1, _INTL("{1} scrapped its meteor shell!", pbThis))
+      battle.pbDisplay(_INTL("{1} shoots out parts of its discarded shell!", pbThis))
       battler.pbOpposingSide.applyEffect(:StealthRock)
       battle.pbHideAbilitySplash(battler)
   }
