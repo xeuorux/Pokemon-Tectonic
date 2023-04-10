@@ -863,17 +863,21 @@ class PokeBattle_Move_5AD < PokeBattle_MultiStatUpMove
         super
         @statUp = [:ATTACK, 1, :DEFENSE, 1]
 	end
+
 	def pbMoveFailed?(user, _targets, show_message)
-        if user.effectAtMax?(:FocusEnergy) 
-            return super
-        end
+        return super if user.effectAtMax?(:FocusEnergy) 
         return false
     end
+
 	def pbEffectGeneral(user)
 		super
-		unless user.effectAtMax?(:FocusEnergy)
-			user.incrementEffect(:FocusEnergy, 1)
-		end
+		user.incrementEffect(:FocusEnergy, 1) unless user.effectAtMax?(:FocusEnergy)
+    end
+
+    def getEffectScore(user, _target)
+        score = super
+        score += getCriticalRateBuffEffectScore(user, 2)
+        return score
     end
 end
 
@@ -1022,11 +1026,11 @@ class PokeBattle_Move_5B6 < PokeBattle_Move
 end
 
 #===============================================================================
-# All stats up, fails if the attack was not used the turn after a foe fainted. 
+# All stats up, fails if the attack was not used the turn after a foe fainted.
 # (Triumphant Dance)
 #===============================================================================
 class PokeBattle_Move_5B7 < PokeBattle_MultiStatUpMove
-		def initialize(battle, move)
+	def initialize(battle, move)
         super
         @statUp = [:ATTACK, 1, :DEFENSE, 1, :SPECIAL_ATTACK, 1, :SPECIAL_DEFENSE, 1, :SPEED, 1]
     end
@@ -1448,7 +1452,8 @@ class PokeBattle_Move_5C7 < PokeBattle_HealingMove
     end
 
     def pbMoveFailed?(user, _targets, show_message)
-        if user.effectAtMax?(:FocusEnergy) 
+        if user.effectAtMax?(:FocusEnergy) && !user.pbCanRaiseStatStage?(:DEFENSE, user, self) && 
+                !user.pbCanRaiseStatStage?(:SPECIAL_DEFENSE, user, self)
             return super
         end
         return false
@@ -1457,14 +1462,13 @@ class PokeBattle_Move_5C7 < PokeBattle_HealingMove
     def pbEffectGeneral(user)
         super
         user.pbRaiseMultipleStatStages([:DEFENSE, 1, :SPECIAL_DEFENSE, 1], user, move: self)
-        unless user.effectAtMax?(:FocusEnergy)
-			user.incrementEffect(:FocusEnergy, 1)
-		end
+		user.incrementEffect(:FocusEnergy, 1) unless user.effectAtMax?(:FocusEnergy)
     end
 
     def getEffectScore(user, target)
         score = super
-        score += getMultiStatUpEffectScore([:DEFENSE, 1, :SPECIAL_DEFENSE, 1], user, target) * 0.5
+        score += getMultiStatUpEffectScore([:DEFENSE, 1, :SPECIAL_DEFENSE, 1], user, target)
+        score += getCriticalRateBuffEffectScore(user, 1)
         return score
     end
 end
@@ -1511,6 +1515,10 @@ class PokeBattle_Move_5C9 < PokeBattle_Move
     def pbEffectGeneral(user)
 	    user.applyEffect(:ExtremeEffort, 2)
     end
+
+    def getEffectScore(user, _target)
+        return -getSleepEffectScore(nil, user) / 2
+    end
 end
 
 #===============================================================================
@@ -1524,17 +1532,19 @@ class PokeBattle_Move_5CA < PokeBattle_MultiStatUpMove
 	end
     
 	def pbMoveFailed?(user, _targets, show_message)
-        if user.effectAtMax?(:FocusEnergy) 
-            return super
-        end
+        return super if user.effectAtMax?(:FocusEnergy)
         return false
     end
     
 	def pbEffectGeneral(user)
 		super
-		unless user.effectAtMax?(:FocusEnergy)
-			user.incrementEffect(:FocusEnergy, 1)
-		end
+		user.incrementEffect(:FocusEnergy, 1) unless user.effectAtMax?(:FocusEnergy)
+    end
+
+    def getEffectScore(user, _target)
+        score = super
+        score += getCriticalRateBuffEffectScore(user, 1)
+        return score
     end
 end
 
@@ -1581,6 +1591,22 @@ class PokeBattle_Move_5CB < PokeBattle_Move
         when 5
             target.applyLeeched(user) if target.canLeech?(user, true, self)
         end
+    end
+
+    def getEffectScore(user, target)
+        case user.form
+        when 1
+            return getBurnEffectScore(user, target)
+        when 2
+            return getNumnEffectScore(user, target)
+        when 3
+            return getFrostbiteEffectScore(user, target)
+        when 4
+            return getDizzyEffectScore(user, target)
+        when 5
+            return getLeechEffectScore(user, target)
+        end
+        return 0
     end
 end
 
@@ -1631,7 +1657,7 @@ class PokeBattle_Move_5CE < PokeBattle_TargetMultiStatUpMove
 end
 
 #===============================================================================
-# For 5 rounds, disables the last move the target used. (Gem Seal)
+# For 5 rounds, disables the last move the target used. Also, remove 4 PP from it. (Gem Seal)
 #===============================================================================
 class PokeBattle_Move_5CF < PokeBattle_Move
     def ignoresSubstitute?(_user); return true; end
@@ -1729,7 +1755,7 @@ class PokeBattle_Move_5D2 < PokeBattle_StatUpMove
     end
 
     def pbMoveFailed?(user, _targets, show_message)
-        if user.effectAtMax?(:FocusEnergy) 
+        if user.effectAtMax?(:FocusEnergy)
             return super
         end
         return false
@@ -1738,6 +1764,12 @@ class PokeBattle_Move_5D2 < PokeBattle_StatUpMove
     def pbEffectGeneral(user)
         super
         user.incrementEffect(:FocusEnergy, 2)
+    end
+
+    def getEffectScore(user, _target)
+        score = super
+        score += getCriticalRateBuffEffectScore(user, 2)
+        return score
     end
 end
 
@@ -1768,6 +1800,15 @@ class PokeBattle_Move_5D4 < PokeBattle_HalfHealingMove
             pbOwnSide.effects[effect] += 1
             @battle.pbDisplay(_INTL("{1}'s {2} was extended 1 turn!", pbTeam, data.real_name))
         end
+    end
+
+    def getEffectScore(user, target)
+        score = super
+        pbOwnSide.eachEffect(true) do |effect, value, data|
+            next unless data.is_screen?
+            score += 30
+        end
+        return score
     end
 end
 

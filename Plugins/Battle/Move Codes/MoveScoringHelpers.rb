@@ -150,7 +150,7 @@ end
 def getSleepEffectScore(user, target, _policies = [])
     score = 200
     score -= 100 if target.hasSleepAttack?
-    score += STATUS_PUNISHMENT_BONUS if user.hasStatusPunishMove?
+    score += STATUS_PUNISHMENT_BONUS if user&.hasStatusPunishMove?
     return score
 end
 
@@ -455,6 +455,7 @@ def getWeatherSettingEffectScore(weatherType, user, battle, duration = 4, checkE
 end
 
 def getCriticalRateBuffEffectScore(user, stages = 1)
+    return 0 if user.effectAtMax?(:FocusEnergy)
     score = 20
     score += 15 if user.firstTurn?
     score += 30 if user.hasActiveAbilityAI?(%i[SUPERLUCK SNIPER])
