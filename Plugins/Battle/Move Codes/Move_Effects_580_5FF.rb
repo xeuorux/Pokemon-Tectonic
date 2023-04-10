@@ -1855,3 +1855,63 @@ class PokeBattle_Move_5D6 < PokeBattle_HealingMove
         return 3.0 / 5.0
     end
 end
+
+#===============================================================================
+# Target becomes your choice of Dragon, Fairy, or Steel type. (Regalia)
+#===============================================================================
+class PokeBattle_Move_5D7 < PokeBattle_Move
+    def resolutionChoice(user)
+        validTypes = %i[DRAGON FAIRY STEEL]
+        validTypeNames = []
+        validTypes.each do |typeID|
+            validTypeNames.push(GameData::Type.get(typeID).real_namne)
+        end
+        if validTypes.length == 1
+            @chosenType = validTypes[0]
+        elsif validTypes.length > 1
+            if @battle.autoTesting
+                @chosenType = validTypes.sample
+            elsif !user.pbOwnedByPlayer? # Trainer AI
+                @chosenType = validTypes[0]
+            else
+                chosenIndex = @battle.scene.pbShowCommands(_INTL("Which type should #{user.pbThis(true)} gift?"),validTypeNames,0)
+                @chosenType = validItems[chosenIndex]
+            end
+        end
+    end
+
+    def pbFailsAgainstTarget?(_user, target, show_message)
+        unless GameData::Type.exists?(@chosenType)
+            @battle.pbDisplay(_INTL("But it failed, since the chosen type doesn't exist!")) if show_message
+            return true
+        end
+        unless target.canChangeType?
+            @battle.pbDisplay(_INTL("But it failed, since #{target.pbThis(true)} can't change their type!")) if show_message
+            return true
+        end
+        unless target.pbHasOtherType?(@chosenType)
+            @battle.pbDisplay(_INTL("But it failed, since #{target.pbThis(true)} is already only the chosen type!")) if show_message
+            return true
+        end
+        return false
+    end
+
+    def pbFailsAgainstTargetAI?(_user, target)
+        @chosenType = :DRAGON
+        return pbFailsAgainstTarget?(_user, target, false)
+    end
+
+    def pbEffectAgainstTarget(_user, target)
+        target.pbChangeTypes(@chosenType)
+        typeName = GameData::Type.get(@chosenType).name
+        @battle.pbDisplay(_INTL("{1} transformed into the {2} type!", target.pbThis, typeName))
+    end
+
+    def resetMoveUsageState
+        @chosenType = nil
+    end
+
+    def getEffectScore(_user, _target)
+        return 80
+    end
+end
