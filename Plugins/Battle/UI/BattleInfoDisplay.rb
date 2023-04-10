@@ -119,14 +119,17 @@ class BattleInfoDisplay < SpriteWrapper
 	
 	textToDraw.push([weatherMessage,24,weatherAndTerrainY,0,base,shadow])
 
-	terrainMessage = "No Terrain"
-	if @battle.field.terrain != :None
-		terrainName = GameData::BattleTerrain.get(@battle.field.terrain).real_name
-		terrainDuration = @battle.field.terrainDuration
-		terrainDuration = "Inf." if terrainDuration < 0
-		terrainMessage = _INTL("{1} Terrain ({2})",terrainName, terrainDuration)
-	end
-	textToDraw.push([terrainMessage,256+24,weatherAndTerrainY,0,base,shadow])
+	# terrainMessage = "No Terrain"
+	# if @battle.field.terrain != :None
+	# 	terrainName = GameData::BattleTerrain.get(@battle.field.terrain).real_name
+	# 	terrainDuration = @battle.field.terrainDuration
+	# 	terrainDuration = "Inf." if terrainDuration < 0
+	# 	terrainMessage = _INTL("{1} Terrain ({2})",terrainName, terrainDuration)
+	# end
+	# textToDraw.push([terrainMessage,256+24,weatherAndTerrainY,0,base,shadow])
+
+	turnCountMessage = "Turn Count: #{(@battle.turnCount + 1).to_s}"
+	textToDraw.push([turnCountMessage,256+24,weatherAndTerrainY,0,base,shadow])
 	
 	# Whole field effects
 	wholeFieldX = 324
