@@ -5,8 +5,9 @@ SaveData.register_conversion(:replace_busted_radio_220) do
     bag = save_data[:bag]
     bag.pbChangeItem(:BUSTEDRADIO,:HIVISJACKET)
     eachPokemonInSave(save_data) do |pokemon|
-      next unless pokemon.item == :BUSTEDRADIO
-      pokemon.item = :HIVISJACKET
+      next unless pokemon.hasItem?(:BUSTEDRADIO)
+      pokemon.removeItem(:BUSTEDRADIO)
+      pokemon.giveItem(:HIVISJACKET)
     end
   end
 end
