@@ -280,6 +280,7 @@ def pbTrainerBattle(trainerID, trainerName, endSpeech=nil,
     pbMapInterpreter.pbSetSelfSwitch($PokemonTemp.waitingTrainer[1], "A", true)
   end
   $PokemonTemp.waitingTrainer = nil
+  $game_switches[77] = decision == 6 # Mark if the battle was a time-out victory
   # Return true if the player won the battle, and false if any other result
   return (decision == 1 || decision == 6)
 end

@@ -23,6 +23,10 @@
 74: Registeel Freed
 75: Regieleki Freed
 76: Regidrago Freed
+77: Battle timed out
+
+79: Saving not allowed
+94: Perfected battle
 
 # Global Variables
 26: Level cap
