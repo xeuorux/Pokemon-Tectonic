@@ -16,7 +16,7 @@ class MainQuestTracker
 		oldStage = @mainQuestState
 		newStage = MAIN_QUEST_STAGES.keys[newStage] if newStage.is_a?(Integer)
 		if !MAIN_QUEST_STAGES.has_key?(newStage)
-			pbMessage("A recoverable error has occured: #{newStage} is an invalid Main Quest Stage key. The \"What Next?\" will be inaccurate until the next Main Quest update. Please let a programmer know you saw this error, and where.")
+			pbMessage("\\wmA recoverable error has occured: #{newStage} is an invalid Main Quest Stage key. The \"What Next?\" will be inaccurate until the next Main Quest update. Please let a programmer know you saw this error, and where.")
 			return
 		end
 		@mainQuestState = newStage
