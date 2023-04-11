@@ -63,3 +63,11 @@ ITEMS_AVAILABLE_BY_CAP = {
 }
 
 SURFING_LEVEL = 35
+
+HIDDEN_MAPS = {
+	193 => 52, # Volcanic Shore
+	196 => 52, # Boiling Cave
+	288 => 51, # Underground River
+	218 => 51, # Absysal Cavern
+	215 => 50, # Tempest Realm
+}
