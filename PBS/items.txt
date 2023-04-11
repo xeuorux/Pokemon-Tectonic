@@ -671,6 +671,7 @@
 896,ORIGINORE,Origin Ore,Origin Ores,1,8000,"A peculiar ore that makes certain species of Pokémon evolve.",1,0,7
 897,BLACKHERB,Black Herb,Black Herbs,5,4000,"An item to be held by a Pokémon. Lowered stats on the holder are also applied to foes.",0,0,0
 898,ENERGYHERB,Energy Herb,Energy Herbs,5,4000,"A single-use item to be held by a Pokémon. It allows user to skip the recharging turn of an exhausting move.",0,0,0
+899,AGILITYHERB,Agility Herb,Agility Herbs,5,4000,"An item to be held by a Pokémon. Doubles the speed of the holder's move once per battle.",0,0,0
 900,CHAMBER1KEY,Chamber 1 Key,Chamber 1 Keys,8,0,"The key to the first chamber containing a powerful avatar.",0,0,6
 901,CHAMBER2KEY,Chamber 2 Key,Chamber 2 Keys,8,0,"The key to the second chamber containing a powerful avatar.",0,0,6
 902,CHAMBER3KEY,Chamber 3 Key,Chamber 3 Keys,8,0,"The key to the third chamber containing a powerful avatar.",0,0,6
@@ -679,3 +680,5 @@
 905,CHAMBER6KEY,Chamber 6 Key,Chamber 6 Keys,8,0,"The key to the sixth chamber containing a powerful avatar.",0,0,6
 906,CHAMBER7KEY,Chamber 7 Key,Chamber 7 Keys,8,0,"The key to the seventh chamber containing a powerful avatar.",0,0,6
 907,CHAMBER8KEY,Chamber 8 Key,Chamber 8 Keys,8,0,"The key to the eighth chamber containing a powerful avatar.",0,0,6
+908,STRENGTHHERB,Strength Herb,Strength Herbs,5,4000,"An item to be held by a Pokémon. Boosts the power of a physical move by 30% once per battle.",0,0,0
+909,INTELLECTHERB,Intellect Herb,Intellect Herbs,5,4000,"An item to be held by a Pokémon. Boosts the power of a physical move by 30% once per battle.",0,0,0

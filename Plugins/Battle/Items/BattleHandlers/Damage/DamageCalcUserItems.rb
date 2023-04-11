@@ -305,3 +305,19 @@ BattleHandlers::DamageCalcUserItem.add(:PRISMATICPLATE,
       mults[:final_damage_multiplier] *= 1.2 if user.pbHasType?(type)
   }
 )
+
+BattleHandlers::DamageCalcUserItem.add(:STRENGTHHERB,
+  proc { |item, user, target, move, mults, _baseDmg, type, aiChecking|
+      next unless move.physicalMove?
+      user.applyEffect(:HerbConsumed, item) unless aiChecking
+      mults[:final_damage_multiplier] *= 1.33
+  }
+)
+
+BattleHandlers::DamageCalcUserItem.add(:INTELLECTHERB,
+  proc { |item, user, target, move, mults, _baseDmg, type, aiChecking|
+      next unless move.specialMove?
+      user.applyEffect(:HerbConsumed, item) unless aiChecking
+      mults[:final_damage_multiplier] *= 1.33
+  }
+)

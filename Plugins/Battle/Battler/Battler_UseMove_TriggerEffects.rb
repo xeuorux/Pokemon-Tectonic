@@ -100,11 +100,21 @@ user.pbThis(true)))
         user.eachActiveAbility do |ability|
             BattleHandlers.triggerUserAbilityEndOfMove(ability, user, targets, move, @battle, switchedBattlers)
         end
+        # Consume user's agility herb
+        if user.effectActive?(:AgilityHerb)
+            user.consumeItem(:AGILITYHERB)
+        end
         # Consume user's Gem
         if user.effectActive?(:GemConsumed)
             # NOTE: The consume animation and message for Gems are shown immediately
             #       after the move's animation, but the item is only consumed now.
             user.consumeItem(user.effects[:GemConsumed])
+        end
+        # Consume user's Herb
+        if user.effectActive?(:HerbConsumed)
+            # NOTE: The consume animation and message for Herbs are shown immediately
+            #       after the move's animation, but the item is only consumed now.
+            user.consumeItem(user.effects[:HerbConsumed])
         end
         # Consume Volatile Toxin
         if move.pbDamagingMove?

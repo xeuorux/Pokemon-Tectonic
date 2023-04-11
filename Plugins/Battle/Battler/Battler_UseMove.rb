@@ -780,11 +780,18 @@ user.pbThis))
             @battle.pbCommonAnimation("UseItem", user)
             if user.hasTribeBonus?(:SCAVENGER)
                 @battle.pbShowTribeSplash(user,:SCAVENGER)
-                @battle.pbDisplay(_INTL("The {1} majorly strengthened {2}'s power!", GameData::Item.get(user.effects[:GemConsumed]).name, move.name))
+                @battle.pbDisplay(_INTL("The {1} majorly strengthened {2}'s power!", getItemName(user.effects[:GemConsumed]), move.name))
                 @battle.pbHideTribeSplash(user)
             else
-                @battle.pbDisplay(_INTL("The {1} strengthened {2}'s power!", GameData::Item.get(user.effects[:GemConsumed]).name, move.name))
+                @battle.pbDisplay(_INTL("The {1} strengthened {2}'s power!", getItemName(user.effects[:GemConsumed]), move.name))
             end
+        end
+        # Attack/Sp. Atk boosting Herb consume animation/message
+        if effectActive?(:HerbConsumed) && hitNum == 0
+            # NOTE: The consume animation and message for Herbs are shown now, but the
+            #       actual removal of the item happens in def pbEffectsAfterMove.
+            @battle.pbCommonAnimation("UseItem", user)
+            @battle.pbDisplay(_INTL("The {1} supplemented {2}'s power!", getItemName(user.effects[:HerbConsumed]), move.name))
         end
         # Mystic tribe
         if hasTribeBonus?(:MYSTIC) && user.lastRoundMoveCategory == 2 # Status

@@ -364,6 +364,13 @@ GameData::BattleEffect.register_effect(:Battler, {
 })
 
 GameData::BattleEffect.register_effect(:Battler, {
+    :id => :HerbConsumed,
+    :real_name => "Herb Consumed",
+    :type => :Item,
+    :resets_battlers_eot => true,
+})
+
+GameData::BattleEffect.register_effect(:Battler, {
     :id => :Grudge,
     :real_name => "Grudge",
     :resets_battlers_sot => true,
@@ -772,6 +779,12 @@ GameData::BattleEffect.register_effect(:Battler, {
     :real_name => "Base Speed Set",
     :type => :Integer,
     :baton_passed => true,
+})
+
+GameData::BattleEffect.register_effect(:Battler, {
+    :id => :AgilityHerb,
+    :real_name => "Agility Herb",
+    :resets_eor	=> true,
 })
 
 GameData::BattleEffect.register_effect(:Battler, {

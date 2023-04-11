@@ -4,21 +4,6 @@ BattleHandlers::SpeedCalcItem.add(:CHOICESCARF,
     }
 )
 
-BattleHandlers::SpeedCalcItem.add(:MACHOBRACE,
-  proc { |item, _battler, mult|
-      next mult / 2
-  }
-)
-
-BattleHandlers::SpeedCalcItem.copy(:MACHOBRACE, :POWERANKLET, :POWERBAND, :POWERBELT, :POWERBRACER, :POWERLENS,
-:POWERWEIGHT)
-
-BattleHandlers::SpeedCalcItem.add(:QUICKPOWDER,
-  proc { |item, battler, mult|
-      next mult * 2 if battler.isSpecies?(:DITTO) && !battler.transformed?
-  }
-)
-
 BattleHandlers::SpeedCalcItem.add(:IRONBALL,
   proc { |item, _battler, mult|
       next mult / 2
@@ -30,3 +15,14 @@ BattleHandlers::SpeedCalcItem.add(:SEVENLEAGUEBOOTS,
       next mult * 1.1
   }
 )
+
+BattleHandlers::SpeedCalcItem.add(:AGILITYHERB,
+  proc { |item, battler, mult|
+      if battler.effectActive?(:AgilityHerb)
+        next mult * 2.0
+      else
+        next mult
+      end
+  }
+)
+

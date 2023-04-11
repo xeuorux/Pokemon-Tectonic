@@ -165,11 +165,24 @@ class PokeBattle_Battle
         @scene.pbBeginAttackPhase
         resetAttackPhaseEffects
         PBDebug.log("")
+        speedAffectingTriggers
         # Calculate move order for this round
         pbCalculatePriority(true)
         # Perform actions
         return if attackPhaseNonMoveActions
         pbAttackPhaseMoves
+    end
+
+    def speedAffectingTriggers
+        eachBattler do |b|
+            next unless @choices[b.index][0] == :UseMove || @choices[b.index][0] == :Shift
+            if b.hasActiveItem?(:AGILITYHERB)
+                b.applyEffect(:AgilityHerb)
+                pbCommonAnimation("UseItem", b)
+                pbDisplay(_INTL("{1} moves at doubled speed thanks to its {2}!", b.pbThis, getItemName(:AGILITYHERB)))
+            end
+        end
+        pbCalculatePriority
     end
 
     def resetAttackPhaseEffects

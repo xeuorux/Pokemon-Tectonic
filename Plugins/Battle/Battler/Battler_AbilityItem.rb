@@ -273,6 +273,10 @@ class PokeBattle_Battler
             PBDebug.log("[Item not consumed] #{pbThis} could not consume a #{item} because it was already missing")
             return
         end
+        unless hasItem?(item)
+            PBDebug.log("[Item not consumed] #{pbThis} could not consume a #{item} because it didn't have one")
+            return
+        end
         itemData = GameData::Item.get(item)
         itemName = itemData.name
         PBDebug.log("[Item consumed] #{pbThis} consumed its held #{itemName}")
