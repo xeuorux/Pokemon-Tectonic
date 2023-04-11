@@ -242,7 +242,9 @@ end
 
 # Save screen
 class PokemonSaveScreen
-	def pbSaveScreen(quitting = false)
+	
+	# Returns whether the player decided to quit the game
+	def pbSaveScreen(quitting = false, deleting = true)
 		if !savingAllowed?()
 			showSaveBlockMessage()
 			return
@@ -254,19 +256,17 @@ class PokemonSaveScreen
 		# Start
 		saveCommand = -1
 		deleteCommand = -1
-		quitCancelCommand = -1
+		quitCommand = -1
+		cancelCommand = -1
 		cmds = []
-		cmds[saveCommand = cmds.length] = _INTL("Save")
-		if quitting
-			cmds[quitCancelCommand = cmds.length] = _INTL("Quit")
-		else
-			cmds[deleteCommand = cmds.length] = _INTL("Delete")
-			cmds[quitCancelCommand = cmds.length] = _INTL("Cancel")
-		end
-		saveDeleteSelection = pbCustomMessageForSave(_INTL("What do you want to do?"),cmds,cmds.length)
-		return false if quitCancelCommand >= 0 && saveDeleteSelection == quitCancelCommand
-		return inGameSaveScreen(count) if saveCommand >= 0 && saveDeleteSelection == saveCommand
-		return inGameDeleteScreen(count) if deleteCommand >= 0 && saveDeleteSelection == deleteCommand
+		cmds[saveCommand = cmds.length] = _INTL("Just Save")
+		cmds[quitCommand = cmds.length] = _INTL("Save Quit") if quitting
+		cmds[deleteCommand = cmds.length] = _INTL("Delete") if deleting
+		cmds[cancelCommand = cmds.length] = _INTL("Cancel")
+		saveChoice = pbCustomMessageForSave(_INTL("What do you want to do?"),cmds,cmds.length)
+		return inGameSaveScreen(count) if quitCommand >= 0 && saveChoice == quitCommand
+		inGameSaveScreen(count) if saveCommand >= 0 && saveChoice == saveCommand
+		inGameDeleteScreen(count) if deleteCommand >= 0 && saveChoice == deleteCommand
 		return false
 	end
 	
@@ -289,7 +289,7 @@ class PokemonSaveScreen
 				pbMessage(_INTL("\\se[]{1} saved the game.\\me[GUI save game]\\wtnp[30]", $Trainer.name))
 				ret = true
 			else
-				pbMessage(_INTL("\\se[]Save fa iled.\\wtnp[30]"))
+				pbMessage(_INTL("\\se[]Save failed.\\wtnp[30]"))
 				ret = false
 			end
 			# Change the stored save file to what you just created

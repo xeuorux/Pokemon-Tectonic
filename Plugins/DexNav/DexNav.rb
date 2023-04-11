@@ -333,6 +333,11 @@ class DexNav_SearchOverlay
 	end
 end
 
+def dexNavActive?
+	encounters = getDexNavEncounterDataForMap
+	return encounters && encounters.length > 0
+end
+
 def getDexNavEncounterDataForMap(mapid = -1)
     mapid = $game_map.map_id if mapid == -1
     encounters = GameData::Encounter.get(mapid, $PokemonGlobal.encounter_version)
