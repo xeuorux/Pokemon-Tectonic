@@ -97,3 +97,4 @@
 4096,ACUPRESSURE,Acupressure,037,0,NORMAL,Status,0,25,0,UserOrNearAlly,0,,"The user applies pressure to stress points, sharply boosting one of its stats.",
 4097,ATTACKORDER,Attack Order,000,90,BUG,Physical,100,12,0,NearOther,0,befh,"The user calls out its underlings to pummel the target. Critical hits land more easily.",
 4098,BREACH,Breach,174,90,WATER,Physical,100,10,0,NearOther,2,abef,"Only works on the first turn the user is in battle. This move always goes first.",DIVE
+4099,PREYMARK,Prey Mark,402,60,BUG,Physical,100,15,100,NearOther,0,abef,"The user marks the target as eternal prey, leeching it.",MEANLOOK
