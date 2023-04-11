@@ -285,7 +285,6 @@ class PokemonPauseMenu_Scene
 			else
 				tileSprite.color = buttonActive?(buttonID) ? ACTIVE_UNSELECTED_COLOR : INACTIVE_UNSELECTED_COLOR
 			end
-			
 		end
 		@buttonNameOverlay.bitmap.clear
 		buttonNamePositions = []
@@ -330,9 +329,6 @@ class PokemonPauseMenu_Scene
 		return @pauseMenuButtons[buttonID][:press_proc].call(self) == true
 	end
 
-	
-	
-
 	def promptButtons
 		loop do
 			Graphics.update
@@ -373,7 +369,7 @@ class PokemonPauseMenu_Scene
 				end
 			end
 
-			if @buttonSelectionIndex >= @pauseMenuButtons.keys.length || 
+			if @buttonSelectionIndex >= @pauseMenuButtons.keys.length
 				@buttonSelectionIndex -= @pauseMenuButtons.keys.length
 			elsif @buttonSelectionIndex < 0
 				@buttonSelectionIndex += @pauseMenuButtons.keys.length
