@@ -260,7 +260,8 @@ class PokeBattle_AI_Genesect < PokeBattle_AI_Boss
                 ai = user.battle.battleAI
                 next ai.getDamagePercentageAI(move, user, target, 100) >= 100
             },
-            :warning => proc { |_move, user, _targets, _battle|
+            :warning => proc { |_move, user, targets, _battle|
+                target = targets[0]
                 _INTL("#{user.pbThis} aims its stinger at #{target.pbThis(false)}!")
             },
         })
