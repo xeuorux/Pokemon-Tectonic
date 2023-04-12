@@ -23,7 +23,9 @@ module Effectiveness
 	end
 
 	def modify_boss_effectiveness(effectiveness, user, target)
+		if AVATAR_DILUTED_EFFECTIVENESS && (target.boss? || user.boss?) && effectiveness != 0
+			return (1.0 + effectiveness) / 2.0
+		end
 		return effectiveness
-		#return (1.0 + effectiveness) / 2.0 if target.boss? || user.boss?
 	end
 end
