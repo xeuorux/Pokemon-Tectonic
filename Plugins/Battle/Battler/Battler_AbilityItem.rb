@@ -170,7 +170,7 @@ class PokeBattle_Battler
     #=============================================================================
     # Ability change
     #=============================================================================
-    def pbOnAbilityChanged(oldAbilities)
+    def pbOnAbilitiesLost(oldAbilities)
         if illusion? && oldAbilities.include?(:ILLUSION)
             disableEffect(:Illusion)
             unless effectActive?(:Transform)
@@ -181,8 +181,10 @@ class PokeBattle_Battler
         end
         disableEffect(:GastroAcid) if unstoppableAbility?
         disableEffect(:SlowStart) unless hasAbility?(:SLOWSTART)
+        
         # Revert form if Flower Gift/Forecast was lost
         pbCheckFormOnWeatherChange
+
         # Check for end of primordial weather
         @battle.pbEndPrimordialWeather
         

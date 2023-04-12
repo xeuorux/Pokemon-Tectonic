@@ -288,8 +288,7 @@ class PokeBattle_Battler
         end
 
         # Reset form
-        @battle.peer.pbOnLeavingBattle(@battle, @pokemon,
-                                                                                                                                    @battle.usedInBattle[idxOwnSide][@index / 2])
+        @battle.peer.pbOnLeavingBattle(@battle, @pokemon, @battle.usedInBattle[idxOwnSide][@index / 2])
         @pokemon.makeUnmega if mega?
         @pokemon.makeUnprimal if primal?
 
@@ -564,7 +563,9 @@ class PokeBattle_Battler
         @effects[:WeightChange] = target.effects[:WeightChange]
         refreshDataBox
         @battle.pbDisplay(_INTL("{1} transformed into {2}!", pbThis, target.pbThis(true)))
-        pbOnAbilityChanged(oldAbilities)
+        pbOnAbilitiesLost(oldAbilities)
+        # Trigger abilities
+        pbEffectsOnSwitchIn
     end
 
     def pbHyperMode; end
@@ -600,7 +601,7 @@ class PokeBattle_Battler
         @battle.pbDisplay(replacementMsg)
         @battle.pbHideAbilitySplash(self) if showSplashes
         @battle.pbHideAbilitySplash(swapper) if showSplashes && swapper
-        pbOnAbilityChanged(oldAbilities) unless oldAbil.nil?
+        pbOnAbilitiesLost(oldAbilities) unless oldAbil.nil?
         pbEffectsOnSwitchIn
     end
 end

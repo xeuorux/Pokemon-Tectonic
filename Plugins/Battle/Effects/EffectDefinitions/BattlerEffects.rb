@@ -352,7 +352,7 @@ GameData::BattleEffect.register_effect(:Battler, {
     :apply_proc => proc do |battle, battler, _value|
         battle.pbDisplay(_INTL("{1}'s Ability was suppressed!", battler.pbThis))
         battler.disableEffect(:Truant)
-        battler.pbOnAbilityChanged(battler.abilities)
+        battler.pbOnAbilitiesLost(battler.abilities)
     end,
 })
 

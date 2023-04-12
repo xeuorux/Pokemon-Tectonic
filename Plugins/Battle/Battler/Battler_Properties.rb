@@ -31,10 +31,27 @@ class PokeBattle_Battler
     def form=(value)
         @form = value
         @pokemon.form = value if @pokemon
+        resetAbilities
     end
 
     def partyAbility
         return GameData::Ability.try_get(@pokemon.ability)
+    end
+    
+    def resetAbilities(initialization = false)
+        prevAbilities = @ability_ids
+        @ability_ids  = []
+        @ability_ids.push(@pokemon.ability_id) if @pokemon.ability_id
+        @ability_ids.concat(@pokemon.extraAbilities)
+        if (@battle.curseActive?(:CURSE_DOUBLE_ABILITIES) && index.odd?) || (TESTING_DOUBLE_QUALITIES && !boss?)
+            eachLegalAbility do |legalAbility|
+                @ability_ids.push(legalAbility) unless @ability_ids.include?(legalAbility)
+            end
+        end
+        @abilityChanged = false
+        unless initialization
+            pbOnAbilitiesLost(prevAbilities)
+        end
     end
 
     def setAbility(value)
