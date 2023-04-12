@@ -25,6 +25,7 @@
 75: Regieleki Freed
 76: Regidrago Freed
 77: Battle timed out
+78: Time traveling
 
 79: Saving not allowed
 94: Perfected battle
