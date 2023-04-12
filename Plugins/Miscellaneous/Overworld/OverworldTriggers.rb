@@ -14,9 +14,17 @@ end
 Events.onStepTaken += proc {
   $PokemonGlobal.happinessSteps = 0 if !$PokemonGlobal.happinessSteps
   $PokemonGlobal.happinessSteps += 1
-  if $PokemonGlobal.happinessSteps >= 32
-    for pkmn in $Trainer.able_party
-      pkmn.changeHappiness("walking") if rand(8) == 0
+  threshold = 35 - $Trainer.able_pokemon_count * 3
+  if $PokemonGlobal.happinessSteps >= threshold
+    if $Trainer.able_pokemon_count > 0
+      chosenPokemon = nil
+      # If player has a follower pokemon, be more likely to choose them
+      if rand(3) == 0 && $PokemonSystem.followers == 0
+        chosenPokemon = $Trainer.first_able_pokemon
+      else
+        chosenPokemon = $Trainer.able_party.sample
+      end
+      chosenPokemon.changeHappiness("walking")
     end
     $PokemonGlobal.happinessSteps = 0
   end

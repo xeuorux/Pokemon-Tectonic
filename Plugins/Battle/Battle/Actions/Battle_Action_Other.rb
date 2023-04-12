@@ -160,5 +160,7 @@ class PokeBattle_Battle
             pbCommonAnimation("PrimalGroudon2", battler)
         end
         pbDisplay(_INTL("{1}'s Primal Reversion!\nIt reverted to its primal form!", battler.pbThis))
+        # Trigger ability
+        battler.pbEffectsOnSwitchIn
     end
 end

@@ -198,7 +198,7 @@ BattleHandlers::DamageCalcTargetAbility.add(:FEATHERCOAT,
   }
 )
 
-BattleHandlers::DamageCalcTargetAbility.add(:UNCONCERED,
+BattleHandlers::DamageCalcTargetAbility.add(:UNCONCERNED,
   proc { |ability, _user, target, _move, mults, _baseDmg, _type|
       mults[:final_damage_multiplier] *= 0.8 if Effectiveness.normal?(target.damageState.typeMod)
   }
@@ -207,5 +207,11 @@ BattleHandlers::DamageCalcTargetAbility.add(:UNCONCERED,
 BattleHandlers::DamageCalcTargetAbility.add(:BULLY,
   proc { |ability, user, target, _move, mults, _baseDmg, _type|
       mults[:base_damage_multiplier] *= 0.7 if target.pbHeight < user.pbHeight
+  }
+)
+
+BattleHandlers::DamageCalcTargetAbility.add(:LIMINAL,
+  proc { |ability, _user, target, _move, mults, _baseDmg, _type|
+      mults[:final_damage_multiplier] *= 0.5 if target.effectActive?(:SwitchedIn)
   }
 )

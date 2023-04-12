@@ -2109,7 +2109,7 @@ Pokemon = OCTILLERY,47
     AbilityIndex = 1 # Double Check
     Item = EXPERTBELT
 Pokemon = MEOWSTIC,47
-    AbilityIndex = 1 # Conviction
+    AbilityIndex = 1 # Liminal
 #-------------------------------
 [DANDY,Jules]
 Pokemon = CHARIZARD,47

@@ -413,10 +413,10 @@ class PokemonPokedex_Scene
           miscSearches[cmdCollecting = miscSearches.length] = _INTL("Collecting")
           miscSearches[cmdMapFound = miscSearches.length] = _INTL("Map Found")
           miscSearches[cmdWildItem = miscSearches.length] = _INTL("Wild Items")
-          miscSearches[cmdIsQuarantined = miscSearches.length] = _INTL("Quarantined") if $DEBUG
+          miscSearches[cmdIsQuarantined = miscSearches.length] = _INTL("Quarantined (D)") if $DEBUG
           miscSearches[cmdIsLegendary = miscSearches.length] = _INTL("Legendary")
-          miscSearches[cmdMovesetConformance = miscSearches.length] = _INTL("Moveset Noncomfority") if $DEBUG
-          miscSearches[cmdOneAbility = miscSearches.length] = _INTL("One Ability") if $DEBUG
+          miscSearches[cmdMovesetConformance = miscSearches.length] = _INTL("Moveset Noncomfority (D)") if $DEBUG
+          miscSearches[cmdOneAbility = miscSearches.length] = _INTL("One Ability (D)") if $DEBUG
           miscSearches[cmdHasSignatureMove = miscSearches.length] = _INTL("Signature Move")
           miscSearches[cmdHasSignatureAbility = miscSearches.length] = _INTL("Signature Ability")
           miscSearches[cmdHasSignature = miscSearches.length] = _INTL("Signature (D)") if $DEBUG

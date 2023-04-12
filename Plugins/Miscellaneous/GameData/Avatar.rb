@@ -1,3 +1,9 @@
+DEFAULT_BOSS_TURNS = 2
+DEFAULT_BOSS_HP_MULT = 6.0
+DEFAULT_BOSS_DAMAGE_MULT = 1.0
+AVATAR_STATUS_NERF = true
+AVATAR_DILUTED_EFFECTIVENESS = false
+
 module GameData
 	class Avatar
 		attr_reader :id
@@ -13,7 +19,6 @@ module GameData
 		attr_reader :post_prime_moves
 		attr_reader :abilities
 		attr_reader :item
-		attr_reader :size_mult
 		attr_reader :hp_mult
 		attr_reader :dmg_mult
 		attr_reader :dmg_resist
@@ -35,7 +40,6 @@ module GameData
 		  "Ability"      		=> [:abilities,       	"*e", :Ability],
 		  "Item"         		=> [:item,          	"e", :Item],
 		  "HPMult"				=> [:hp_mult,			"f"],
-		  "SizeMult" 			=> [:size_mult,     	"F"],
 		  "DMGMult"				=> [:dmg_mult,			"F"],
 		  "DMGResist"			=> [:dmg_resist,		"F"],
 		  "HealthBars"			=> [:health_bars,		"U"],
@@ -48,7 +52,7 @@ module GameData
 		def initialize(hash)
 		  @id               = hash[:id]
 		  @id_number        = hash[:id_number]
-		  @num_turns        = hash[:turns] || 2
+		  @num_turns        = hash[:turns] || DEFAULT_BOSS_TURNS
 		  @species			= @id.to_s.split('_')[0].to_sym
 		  @form             = hash[:form] || 0
 		  @moves1        	= hash[:moves1]
@@ -58,9 +62,8 @@ module GameData
 		  @moves5 			= hash[:moves5] || []
 		  @abilities        = hash[:abilities]
 		  @item             = hash[:item]
-		  @size_mult		= hash[:size_mult] || 1.3
-		  @hp_mult			= hash[:hp_mult] || 4.0
-		  @dmg_mult 		= hash[:dmg_mult] || 1
+		  @hp_mult			= hash[:hp_mult] || DEFAULT_BOSS_HP_MULT
+		  @dmg_mult 		= hash[:dmg_mult] || DEFAULT_BOSS_DAMAGE_MULT
 		  @dmg_resist		= hash[:dmg_resist] || 0
 		  @aggression		= hash[:aggression] || PokeBattle_AI_Boss::DEFAULT_BOSS_AGGRESSION
 

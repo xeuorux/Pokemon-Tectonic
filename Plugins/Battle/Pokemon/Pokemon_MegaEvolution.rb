@@ -69,6 +69,7 @@ class Pokemon
     def makePrimal
       v = MultipleForms.call("getPrimalForm", self)
       self.form = v if !v.nil?
+      @forced_form = nil
     end
   
     def makeUnprimal

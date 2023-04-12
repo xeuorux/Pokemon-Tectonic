@@ -35,19 +35,9 @@ class PokeBattle_AI
         # Multiply all effectivenesses together
         ret = 1
         typeMods.each { |m| ret *= m }
+        # Modify effectiveness for bosses
+        ret = Effectiveness.modify_boss_effectiveness(ret, user, target)
         return ret
-    end
-
-    # For switching. Determines the effectiveness of a potential switch-in against
-    # an opposing battler.
-    def pbCalcTypeModPokemon(battlerThis, _battlerOther)
-        mod1 = Effectiveness.calculate(battlerThis.type1, _battlerOther.type1, _battlerOther.type2)
-        mod2 = Effectiveness::NORMAL_EFFECTIVE
-        if battlerThis.type1 != battlerThis.type2
-            mod2 = Effectiveness.calculate(battlerThis.type2, _battlerOther.type1, _battlerOther.type2)
-            mod2 = mod2.to_f / Effectiveness::NORMAL_EFFECTIVE
-        end
-        return mod1 * mod2
     end
 
     def moveFailureAlert(move, user, target, failureMessage)

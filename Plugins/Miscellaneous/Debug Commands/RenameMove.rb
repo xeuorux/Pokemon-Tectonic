@@ -324,7 +324,6 @@ def renameMoves(renamingHash)
       :item		 		        => avatar_data.item,
       :hp_mult	 		      => avatar_data.hp_mult,
       :dmg_mult			      => avatar_data.dmg_mult,
-      :size_mult	 		    => avatar_data.size_mult,
     }
     GameData::Avatar::DATA.delete(avatar_data.id)
     GameData::Avatar::DATA.delete(avatar_data.id_number)

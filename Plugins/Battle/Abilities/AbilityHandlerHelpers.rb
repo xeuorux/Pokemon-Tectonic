@@ -29,17 +29,21 @@ def pbBattleMoveImmunityStatAbility(ability, user, target, move, moveType, immun
     return true
 end
 
-def pbBattleWeatherAbility(ability, weather, battler, battle, ignorePrimal = false, ignoreFainted = false, aiChecking = false)
-    return if !ignorePrimal && %i[HarshSun HeavyRain StrongWinds].include?(battle.field.weather)
-    baseWeatherAbilityDuration = 4
+def pbBattleWeatherAbility(ability, weather, battler, battle, ignorePrimal = false, ignoreFainted = false, aiChecking = false, baseDuration: 4)
+    return 0 if battle.pbWeather == weather && battle.field.weatherDuration == -1
+    return 0 if !ignorePrimal && battle.primevalWeatherPresent?(!aiChecking)
     if aiChecking
-        duration = battler.getWeatherSettingDuration(weather, baseWeatherAbilityDuration, ignoreFainted)
-        duration -= battle.field.weatherDuration if battle.field.weather == weather
+        if baseDuration < 0 # infinite
+            duration = 20 - battle.turnCount
+        else
+            duration = battler.getWeatherSettingDuration(weather, baseDuration, ignoreFainted)
+            duration -= battle.field.weatherDuration if battle.field.weather == weather
+        end
         ret = -getWeatherSettingEffectScore(weather, battler, battle, duration, false)
         return ret
     else
         battle.pbShowAbilitySplash(battler, ability) # NOTE: The ability splash is hidden again in def pbStartWeather.
-        battle.pbStartWeather(battler, weather, baseWeatherAbilityDuration, true, ignoreFainted)
+        battle.pbStartWeather(battler, weather, baseDuration, true, ignoreFainted)
     end
 end
 

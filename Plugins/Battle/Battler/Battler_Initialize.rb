@@ -111,15 +111,6 @@ class PokeBattle_Battler
         @hp           = pkmn.hp
         @type1        = pkmn.type1
         @type2        = pkmn.type2
-        @ability_ids  = []
-        @ability_ids.push(pkmn.ability_id) if pkmn.ability_id
-        @ability_ids.concat(pkmn.extraAbilities)
-        if (@battle.curseActive?(:CURSE_DOUBLE_ABILITIES) && index.odd?) || (TESTING_DOUBLE_QUALITIES && !boss?)
-            eachLegalAbility do |legalAbility|
-                @ability_ids.push(legalAbility) unless @ability_ids.include?(legalAbility)
-            end
-        end
-        @abilityChanged = false
         @gender       = pkmn.gender
         @attack       = pkmn.attack
         @defense      = pkmn.defense
@@ -132,6 +123,7 @@ class PokeBattle_Battler
         @dmgResist    = pkmn.dmgResist
         @boss         = pkmn.boss
         @pokemon      = pkmn
+        resetAbilities(true)
         @pokemonIndex = idxParty
         @participants = [] # Participants earn Exp. if this battler is defeated
         @moves        = []

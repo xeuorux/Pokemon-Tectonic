@@ -427,7 +427,7 @@ class PokemonSummary_Scene
         pbDrawImagePositions(overlay, imagepos)
         # Write various bits of text
         pagename = [_INTL("INFO"),
-                    _INTL("TRAINER MEMO"),
+                    _INTL("PERSONALITY"),
                     _INTL("SKILLS"),
                     _INTL("MOVES"),
                     _INTL("RIBBONS"),][page - 1]
@@ -484,40 +484,21 @@ class PokemonSummary_Scene
         dexNumBase   = @pokemon.shiny? ? Color.new(248, 56, 32) : Color.new(64, 64, 64)
         dexNumShadow = @pokemon.shiny? ? Color.new(224, 152, 144) : Color.new(176, 176, 176)
         # Write various bits of text
+        infoTextLabelX = 238
+        infoTextInsertedX = 435
+        infoLabelBaseY = 74
         textpos = [
-            [_INTL("Dex No."), 238, 74, 0, base, shadow],
-            [_INTL("Species"), 238, 106, 0, base, shadow],
-            [@pokemon.speciesName, 435, 106, 2, Color.new(64, 64, 64), Color.new(176, 176, 176)],
-            [_INTL("Type"), 238, 138, 0, base, shadow],
-            [_INTL("OT"), 238, 170, 0, base, shadow],
-            [_INTL("ID No."), 238, 202, 0, base, shadow],
+            [_INTL("Species"), infoTextLabelX, infoLabelBaseY, 0, base, shadow],
+            [@pokemon.speciesName, infoTextInsertedX, infoLabelBaseY, 2, Color.new(64, 64, 64), Color.new(176, 176, 176)],
+            [_INTL("Type"), infoTextLabelX, infoLabelBaseY + 32, 0, base, shadow],
+            [_INTL("OT"), infoTextLabelX, infoLabelBaseY + 32 * 2, 0, base, shadow],
+            [_INTL("ID No."), infoTextLabelX, infoLabelBaseY + 32 * 3, 0, base, shadow],
+            [_INTL("Obtain Lv."), infoTextLabelX, infoLabelBaseY + 32 * 4, 0, base, shadow],
         ]
-        # Write the Regional/National Dex number
-        dexnum = GameData::Species.get(@pokemon.species).id_number
-        dexnumshift = false
-        if $Trainer.pokedex.unlocked?(-1) # National Dex is unlocked
-            dexnumshift = true if Settings::DEXES_WITH_OFFSETS.include?(-1)
-        else
-            dexnum = 0
-            for i in 0...$Trainer.pokedex.dexes_count - 1
-                next unless $Trainer.pokedex.unlocked?(i)
-                num = pbGetRegionalNumber(i, @pokemon.species)
-                next if num <= 0
-                dexnum = num
-                dexnumshift = true if Settings::DEXES_WITH_OFFSETS.include?(i)
-                break
-            end
-        end
-        if dexnum <= 0
-            textpos.push(["???", 435, 74, 2, dexNumBase, dexNumShadow])
-        else
-            dexnum -= 1 if dexnumshift
-            textpos.push([format("%03d", dexnum), 435, 74, 2, dexNumBase, dexNumShadow])
-        end
         # Write Original Trainer's name and ID number
         if @pokemon.owner.name.empty?
-            textpos.push([_INTL("RENTAL"), 435, 170, 2, Color.new(64, 64, 64), Color.new(176, 176, 176)])
-            textpos.push(["?????", 435, 202, 2, Color.new(64, 64, 64), Color.new(176, 176, 176)])
+            textpos.push([_INTL("RENTAL"), infoTextInsertedX, infoLabelBaseY + 32 * 2, 2, Color.new(64, 64, 64), Color.new(176, 176, 176)])
+            textpos.push(["?????", infoTextInsertedX, infoLabelBaseY + 32 * 3, 2, Color.new(64, 64, 64), Color.new(176, 176, 176)])
         else
             ownerbase   = Color.new(64, 64, 64)
             ownershadow = Color.new(176, 176, 176)
@@ -529,10 +510,14 @@ class PokemonSummary_Scene
                 ownerbase = Color.new(248, 56, 32)
                 ownershadow = Color.new(224, 152, 144)
             end
-            textpos.push([@pokemon.owner.name, 435, 170, 2, ownerbase, ownershadow])
-            textpos.push([format("%05d", @pokemon.owner.public_id), 435, 202, 2, Color.new(64, 64, 64),
+            textpos.push([@pokemon.owner.name, infoTextInsertedX, infoLabelBaseY + 32 * 2, 2, ownerbase, ownershadow])
+            textpos.push([format("%05d", @pokemon.owner.public_id), infoTextInsertedX, infoLabelBaseY + 32 * 3, 2, Color.new(64, 64, 64),
                           Color.new(176, 176, 176),])
         end
+        # Write the Pokemon's original level of obtaining
+        textpos.push([@pokemon.obtain_level.to_s, infoTextInsertedX, infoLabelBaseY + 32 * 4, 1, Color.new(64, 64, 64),
+            Color.new(176, 176, 176),])
+        # Write experience point info
         endexp = @pokemon.growth_rate.minimum_exp_for_level(@pokemon.level + 1)
         textpos.push([_INTL("Exp. Points"), 238, 234, 0, base, shadow])
         textpos.push([@pokemon.exp.to_s_formatted, 488, 266, 1, Color.new(64, 64, 64), Color.new(176, 176, 176)])
@@ -547,10 +532,10 @@ class PokemonSummary_Scene
         type1rect = Rect.new(0, type1_number * 28, 64, 28)
         type2rect = Rect.new(0, type2_number * 28, 64, 28)
         if @pokemon.type1 == @pokemon.type2
-            overlay.blt(402, 146, @typebitmap.bitmap, type1rect)
+            overlay.blt(402, infoLabelBaseY + 32 + 8, @typebitmap.bitmap, type1rect)
         else
-            overlay.blt(370, 146, @typebitmap.bitmap, type1rect)
-            overlay.blt(436, 146, @typebitmap.bitmap, type2rect)
+            overlay.blt(370, infoLabelBaseY + 32 + 8, @typebitmap.bitmap, type1rect)
+            overlay.blt(436, infoLabelBaseY + 32 + 8, @typebitmap.bitmap, type2rect)
         end
         # Draw Exp bar
         if @pokemon.level < GameData::GrowthRate.max_level
@@ -636,57 +621,60 @@ class PokemonSummary_Scene
 
         # Traits
         memo += _INTL("<c3=F83820,E09890>Traits:<c3=404040,B0B0B0>")
-        memo += _INTL("<r><c3=F83820,E09890>Likes:<c3=404040,B0B0B0>")
         memo += "\n"
         memo += _INTL("<c3=404040{2},B0B0B0>{1}", @pokemon.trait1 || "Unknown", @pokemon.trait1 ? "FF" : "77")
-        memo += _INTL("<r><c3=404040{2},B0B0B0>{1}", @pokemon.like || "Unknown", @pokemon.like ? "FF" : "77")
         memo += "\n"
         memo += _INTL("<c3=404040{2},B0B0B0>{1}", @pokemon.trait2 || "Unknown", @pokemon.trait2 ? "FF" : "77")
-        memo += _INTL("<r><c3=F83820,E09890>Dislikes:<c3=404040,B0B0B0>")
         memo += "\n"
         memo += _INTL("<c3=404040{2},B0B0B0>{1}", @pokemon.trait3 || "Unknown", @pokemon.trait3 ? "FF" : "77")
-        memo += _INTL("<r><c3=404040{2},B0B0B0>{1}", @pokemon.dislike || "Unknown",
-@pokemon.dislike ? "FF" : "77")
         memo += "\n"
+        memo += "\n"
+        memo += _INTL("<c3=F83820,E09890>Likes:<c3=404040,B0B0B0>")
+        memo += "\n"
+        memo += _INTL("<c3=404040{2},B0B0B0>{1}", @pokemon.like || "Unknown", @pokemon.like ? "FF" : "77")
+        memo += "\n"
+        memo += _INTL("<c3=F83820,E09890>Dislikes:<c3=404040,B0B0B0>")
+        memo += "\n"
+        memo += _INTL("<c3=404040{2},B0B0B0>{1}", @pokemon.dislike || "Unknown", @pokemon.dislike ? "FF" : "77")
         memo += "\n"
 
-        # Write date received
-        if @pokemon.timeReceived
-            date  = @pokemon.timeReceived.day
-            month = pbGetMonthName(@pokemon.timeReceived.mon)
-            year  = @pokemon.timeReceived.year
-            memo += _INTL("<c3=404040,B0B0B0>{1} {2}, {3}\n", date, month, year)
-        end
+        # # Write date received
+        # if @pokemon.timeReceived
+        #     date  = @pokemon.timeReceived.day
+        #     month = pbGetMonthName(@pokemon.timeReceived.mon)
+        #     year  = @pokemon.timeReceived.year
+        #     memo += _INTL("<c3=404040,B0B0B0>{1} {2}, {3}\n", date, month, year)
+        # end
 
         # Write map name Pokémon was received on
-        mapname = pbGetMapNameFromId(@pokemon.obtain_map)
-        mapname = @pokemon.obtain_text if @pokemon.obtain_text && !@pokemon.obtain_text.empty?
-        mapname = _INTL("Faraway place") if !mapname || mapname == ""
-        memo += format("<c3=F83820,E09890>%s\n", mapname)
+        # mapname = pbGetMapNameFromId(@pokemon.obtain_map)
+        # mapname = @pokemon.obtain_text if @pokemon.obtain_text && !@pokemon.obtain_text.empty?
+        # mapname = _INTL("Faraway place") if !mapname || mapname == ""
+        # memo += format("<c3=F83820,E09890>%s\n", mapname)
 
         # Write how Pokémon was obtained
-        mettext = [_INTL("Met at Lv. {1}.", @pokemon.obtain_level),
-                   _INTL("Egg received."),
-                   _INTL("Traded at Lv. {1}.", @pokemon.obtain_level),
-                   "",
-                   _INTL("Had a fateful encounter at Lv. {1}.", @pokemon.obtain_level),][@pokemon.obtain_method]
-        memo += format("<c3=404040,B0B0B0>%s\n", mettext) if mettext && mettext != ""
+        # mettext = [_INTL("Met at Lv. {1}.", @pokemon.obtain_level),
+        #            _INTL("Egg received."),
+        #            _INTL("Traded at Lv. {1}.", @pokemon.obtain_level),
+        #            "",
+        #            _INTL("Had a fateful encounter at Lv. {1}.", @pokemon.obtain_level),][@pokemon.obtain_method]
+        # memo += format("<c3=404040,B0B0B0>%s\n", mettext) if mettext && mettext != ""
 
-        # If Pokémon was hatched, write when and where it hatched
-        if @pokemon.obtain_method == 1
-            if @pokemon.timeEggHatched
-                date  = @pokemon.timeEggHatched.day
-                month = pbGetMonthName(@pokemon.timeEggHatched.mon)
-                year  = @pokemon.timeEggHatched.year
-                memo += _INTL("<c3=404040,B0B0B0>{1} {2}, {3}\n", date, month, year)
-            end
-            mapname = pbGetMapNameFromId(@pokemon.hatched_map)
-            mapname = _INTL("Faraway place") if !mapname || mapname == ""
-            memo += format("<c3=F83820,E09890>%s\n", mapname)
-            memo += _INTL("<c3=404040,B0B0B0>Egg hatched.\n")
-        else
-            memo += "\n" # Empty line
-        end
+        # # If Pokémon was hatched, write when and where it hatched
+        # if @pokemon.obtain_method == 1
+        #     if @pokemon.timeEggHatched
+        #         date  = @pokemon.timeEggHatched.day
+        #         month = pbGetMonthName(@pokemon.timeEggHatched.mon)
+        #         year  = @pokemon.timeEggHatched.year
+        #         memo += _INTL("<c3=404040,B0B0B0>{1} {2}, {3}\n", date, month, year)
+        #     end
+        #     mapname = pbGetMapNameFromId(@pokemon.hatched_map)
+        #     mapname = _INTL("Faraway place") if !mapname || mapname == ""
+        #     memo += format("<c3=F83820,E09890>%s\n", mapname)
+        #     memo += _INTL("<c3=404040,B0B0B0>Egg hatched.\n")
+        # else
+        #     memo += "\n" # Empty line
+        # end
 
         # Write all text
         drawFormattedTextEx(overlay, 232, 82, 268, memo)

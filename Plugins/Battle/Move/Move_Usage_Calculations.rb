@@ -108,12 +108,14 @@ class PokeBattle_Move
         # Creep Out
         ret *= 2 if target.effectActive?(:CreepOut) && moveType == :BUG
 
-        ret *= 2 if user.hasActiveItem?(:GRANDMASTERSCROLL)
+        # Modify effectiveness for bosses
+        ret = Effectiveness.modify_boss_effectiveness(ret, user, target)
 
         # Type effectiveness changing curses
         @battle.curses.each do |curse|
             ret = @battle.triggerEffectivenessChangeCurseEffect(curse,moveType,user,target,ret)
         end
+        
         return ret
     end
   

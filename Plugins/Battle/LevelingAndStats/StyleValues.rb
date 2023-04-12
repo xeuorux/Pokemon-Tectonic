@@ -182,10 +182,10 @@ class StyleValueScene
                        ])
 
         # Place the quick set helper
-        helperX = styleXLeft + 80
+        helperX = styleXLeft + 216
         textpos.concat([
-                            [_INTL("ACTION/Z for"), helperX, poolY + 4, 0, subtleBase, subtleShadow],
-                            [_INTL("quick set"), helperX, poolY + 36, 0, subtleBase, subtleShadow],
+                            [_INTL("ACTION/Z for"), helperX, poolY + 4, 1, subtleBase, subtleShadow],
+                            [_INTL("quick set"), helperX, poolY + 36, 1, subtleBase, subtleShadow],
                         ])
 
         # Draw all the previously placed texts

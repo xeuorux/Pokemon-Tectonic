@@ -1,4 +1,62 @@
 #######################################################
+# Weather setting abilities
+#######################################################
+
+BattleHandlers::AbilityOnSwitchIn.add(:DRIZZLE,
+  proc { |ability, battler, battle|
+      pbBattleWeatherAbility(ability, :Rain, battler, battle)
+  }
+)
+
+BattleHandlers::AbilityOnSwitchIn.add(:DROUGHT,
+  proc { |ability, battler, battle|
+      pbBattleWeatherAbility(ability, :Sun, battler, battle)
+  }
+)
+
+BattleHandlers::AbilityOnSwitchIn.add(:SANDSTREAM,
+  proc { |ability, battler, battle|
+      pbBattleWeatherAbility(ability, :Sandstorm, battler, battle)
+  }
+)
+
+BattleHandlers::AbilityOnSwitchIn.add(:SNOWWARNING,
+  proc { |ability, battler, battle|
+      pbBattleWeatherAbility(ability, :Hail, battler, battle)
+  }
+)
+
+BattleHandlers::AbilityOnSwitchIn.add(:HARBINGER,
+  proc { |ability, battler, battle|
+      pbBattleWeatherAbility(ability, :Eclipse, battler, battle)
+  }
+)
+
+BattleHandlers::AbilityOnSwitchIn.add(:MOONGAZE,
+  proc { |ability, battler, battle|
+      pbBattleWeatherAbility(ability, :Moonglow, battler, battle)
+  }
+)
+
+BattleHandlers::AbilityOnSwitchIn.add(:PRIMORDIALSEA,
+  proc { |ability, battler, battle|
+      pbBattleWeatherAbility(ability, :HeavyRain, battler, battle, true, baseDuration: -1)
+  }
+)
+
+BattleHandlers::AbilityOnSwitchIn.add(:DESOLATELAND,
+  proc { |ability, battler, battle|
+      pbBattleWeatherAbility(ability, :HarshSun, battler, battle, true, baseDuration: -1)
+  }
+)
+
+BattleHandlers::AbilityOnSwitchIn.add(:DELTASTREAM,
+  proc { |ability, battler, battle|
+      pbBattleWeatherAbility(ability, :StrongWinds, battler, battle, true, baseDuration: -1)
+  }
+)
+
+#######################################################
 # Terrain setting abilities
 #######################################################
 
@@ -110,18 +168,6 @@ BattleHandlers::AbilityOnSwitchIn.add(:DARKAURA,
   }
 )
 
-BattleHandlers::AbilityOnSwitchIn.add(:DELTASTREAM,
-  proc { |ability, battler, battle|
-      pbBattleWeatherAbility(ability, :StrongWinds, battler, battle, true)
-  }
-)
-
-BattleHandlers::AbilityOnSwitchIn.add(:DESOLATELAND,
-  proc { |ability, battler, battle|
-      pbBattleWeatherAbility(ability, :HarshSun, battler, battle, true)
-  }
-)
-
 BattleHandlers::AbilityOnSwitchIn.add(:DOWNLOAD,
   proc { |ability, battler, battle|
       oDef = oSpDef = 0
@@ -134,33 +180,9 @@ BattleHandlers::AbilityOnSwitchIn.add(:DOWNLOAD,
   }
 )
 
-BattleHandlers::AbilityOnSwitchIn.add(:MOONGAZE,
-  proc { |ability, battler, battle|
-      pbBattleWeatherAbility(ability, :Moonglow, battler, battle)
-  }
-)
-
-BattleHandlers::AbilityOnSwitchIn.add(:HARBINGER,
-  proc { |ability, battler, battle|
-      pbBattleWeatherAbility(ability, :Eclipse, battler, battle)
-  }
-)
-
-BattleHandlers::AbilityOnSwitchIn.add(:DRIZZLE,
-  proc { |ability, battler, battle|
-      pbBattleWeatherAbility(ability, :Rain, battler, battle)
-  }
-)
-
 BattleHandlers::AbilityOnSwitchIn.add(:DRIFTINGMIST,
   proc { |ability, _battler, battle|
       battle.field.applyEffect(:GreyMist, 3) unless battle.field.effectActive?(:GreyMist)
-  }
-)
-
-BattleHandlers::AbilityOnSwitchIn.add(:DROUGHT,
-  proc { |ability, battler, battle|
-      pbBattleWeatherAbility(ability, :Sun, battler, battle)
   }
 )
 
@@ -276,24 +298,6 @@ BattleHandlers::AbilityOnSwitchIn.add(:PRESSURE,
       battle.pbShowAbilitySplash(battler, ability)
       battle.pbDisplay(_INTL("{1} is exerting its pressure!", battler.pbThis))
       battle.pbHideAbilitySplash(battler)
-  }
-)
-
-BattleHandlers::AbilityOnSwitchIn.add(:PRIMORDIALSEA,
-  proc { |ability, battler, battle|
-      pbBattleWeatherAbility(ability, :HeavyRain, battler, battle, true)
-  }
-)
-
-BattleHandlers::AbilityOnSwitchIn.add(:SANDSTREAM,
-  proc { |ability, battler, battle|
-      pbBattleWeatherAbility(ability, :Sandstorm, battler, battle)
-  }
-)
-
-BattleHandlers::AbilityOnSwitchIn.add(:SNOWWARNING,
-  proc { |ability, battler, battle|
-      pbBattleWeatherAbility(ability, :Hail, battler, battle)
   }
 )
 
@@ -614,12 +618,6 @@ BattleHandlers::AbilityOnSwitchIn.add(:AQUASNEAK,
       battle.pbShowAbilitySplash(battler, ability)
       battle.pbDisplay(_INTL("{1} snuck into the water!", battler.pbThis))
       battle.pbHideAbilitySplash(battler)
-  }
-)
-
-BattleHandlers::AbilityOnSwitchIn.add(:CONVICTION,
-  proc { |ability, battler, battle|
-      battle.forceUseMove(battler, :ENDURE, -1, ability: ability)
   }
 )
 

@@ -319,6 +319,7 @@ end
 
 
 def globalMessageReplacements(message)
+    return message if message.frozen?
     message.gsub!("’","'")
     message.gsub!("‘","'")
     message.gsub!("“","\"")
