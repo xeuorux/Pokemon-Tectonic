@@ -277,6 +277,7 @@ class PokeBattle_Battler
         return false if effectActive?(:Embargo)
         return false if pbOwnSide.effectActive?(:EmpoweredEmbargo)
         return false if hasActiveAbility?(:KLUTZ, ignoreFainted)
+        return false if @battle.pbCheckOpposingAbility(%i[STRESSFUL], @index)
         return true
     end
 

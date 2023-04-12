@@ -328,7 +328,7 @@ BattleHandlers::AbilityOnSwitchIn.add(:UNNERVE,
 BattleHandlers::AbilityOnSwitchIn.add(:STRESSFUL,
   proc { |ability, battler, battle|
       battle.pbShowAbilitySplash(battler, ability)
-      battle.pbDisplay(_INTL("{1} is too nervous to eat Berries or use Gems!", battler.pbOpposingTeam))
+      battle.pbDisplay(_INTL("{1} is too stressed to use their items!", battler.pbOpposingTeam))
       battle.pbHideAbilitySplash(battler)
   }
 )

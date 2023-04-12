@@ -234,7 +234,7 @@ class PokeBattle_Battler
     # Held item consuming/removing
     #=============================================================================
     def canConsumeBerry?
-        return false if @battle.pbCheckOpposingAbility(%i[UNNERVE ASONEICE ASONEGHOST STRESSFUL], @index)
+        return false if @battle.pbCheckOpposingAbility(%i[UNNERVE ASONEICE ASONEGHOST], @index)
         return true
     end
 
@@ -244,7 +244,6 @@ class PokeBattle_Battler
     end
 
     def canConsumeGem?
-        return false if @battle.pbCheckOpposingAbility(%i[STRESSFUL], @index)
         return true
     end
 

@@ -213,7 +213,7 @@ Pokemon = SPHEAL,17
 #-------------------------------
 [DANCER,Isai]
 Pokemon = TYROGUE,17
-    AbilityIndex = 0 # Guts
+    AbilityIndex = 0 # Energetic
     Item = FIGHTINGGEM
 Pokemon = COMBUSKEN,16
     Moves = PECK,SMASH,FIERYTOUCH
@@ -824,7 +824,7 @@ Pokemon = STOUTLAND,46
     AbilityIndex = 0 # Break Through
     Item = ORANBERRY
 Pokemon = VESPIQUEN,47
-    AbilityIndex = 1 # Unnerve
+    AbilityIndex = 1 # Stressful
     Item = SHELLBELL
 #-------------------------------
 [PILOT,Charlie]
@@ -1826,7 +1826,7 @@ Pokemon = DRAGONITE,70
 Pokemon = KLAWSAR,70
     AbilityIndex = 1 # Steely Shell
 Pokemon = VESPIQUEN,70
-    AbilityIndex = 1 # Unnerve
+    AbilityIndex = 1 # Stressful
 Pokemon = SCRAFTY,70
     AbilityIndex = 0 # Shed Skin
 Pokemon = PRIMARINA,70
@@ -2584,7 +2584,7 @@ Pokemon = ABSOL,37
 #-------------------------------
 [SCIENTIST_F,Zofia]
 Pokemon = VESPIQUEN,35
-    AbilityIndex = 1 # Unnerve
+    AbilityIndex = 1 # Stressful
     Item = ORANBERRY
 Pokemon = LANTURN,36
     AbilityIndex = 0 # Volt Absorb

@@ -342,3 +342,13 @@ BattleHandlers::UserAbilityEndOfMove.add(:IRREFUTABLE,
       user.tryRaiseStat(:ATTACK, user, increment: nveHits, ability: ability)
   }
 )
+
+BattleHandlers::UserAbilityEndOfMove.add(:ENERGYABSORB,
+  proc { |ability, user, targets, _move, battle, _switchedBattlers|
+      next if battle.pbAllFainted?(user.idxOpposingSide)
+      numFainted = 0
+      targets.each { |b| numFainted += 1 if b.damageState.fainted }
+      next if numFainted == 0
+      user.applyEffect(:Charge)
+  }
+)
