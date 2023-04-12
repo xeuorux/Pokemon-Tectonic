@@ -1864,7 +1864,7 @@ class PokeBattle_Move_5D7 < PokeBattle_Move
         validTypes = %i[DRAGON FAIRY STEEL]
         validTypeNames = []
         validTypes.each do |typeID|
-            validTypeNames.push(GameData::Type.get(typeID).real_namne)
+            validTypeNames.push(GameData::Type.get(typeID).real_name)
         end
         if validTypes.length == 1
             @chosenType = validTypes[0]
@@ -1875,7 +1875,7 @@ class PokeBattle_Move_5D7 < PokeBattle_Move
                 @chosenType = validTypes[0]
             else
                 chosenIndex = @battle.scene.pbShowCommands(_INTL("Which type should #{user.pbThis(true)} gift?"),validTypeNames,0)
-                @chosenType = validItems[chosenIndex]
+                @chosenType = validTypes[chosenIndex]
             end
         end
     end
