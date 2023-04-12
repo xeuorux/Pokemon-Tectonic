@@ -689,7 +689,7 @@ class PokeBattle_Move_702 < PokeBattle_Move
 
     def pbEffectGeneral(user)
         @battle.field.applyEffect(:Gravity, 5)
-        eachOtherSideBattler do |b|
+        @battle.eachOtherSideBattler(user) do |b|
             b.applyEffect(:WarpingCore)
         end
     end

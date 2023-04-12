@@ -211,25 +211,29 @@ class PokeBattle_Move
     def pbCalcStatusesDamageMultipliers(user,target,multipliers,checkingForAI=false)
         # Burn
         if user.burned? && physicalMove? && damageReducedByBurn? && !user.shouldAbilityApply?(:GUTS,checkingForAI) && !user.shouldAbilityApply?(:BURNHEAL,checkingForAI)
-            damageReduction = user.boss? ? (1.0/5.0) : (1.0/3.0)
+            damageReduction = (1.0/3.0)
+            damageReduction = (1.0/5.0) if user.boss? && AVATAR_STATUS_NERF
             damageReduction *= 2 if user.pbOwnedByPlayer? && @battle.curseActive?(:CURSE_STATUS_DOUBLED)
             multipliers[:final_damage_multiplier] *= (1.0 - damageReduction)
         end
         # Frostbite
         if user.frostbitten? && specialMove? && damageReducedByBurn? && !user.shouldAbilityApply?(:AUDACITY,checkingForAI) && !user.shouldAbilityApply?(:FROSTHEAL,checkingForAI)
-            damageReduction = user.boss? ? (1.0/5.0) : (1.0/3.0)
+            damageReduction = (1.0/3.0)
+            damageReduction = (1.0/5.0) if user.boss? && AVATAR_STATUS_NERF
             damageReduction *= 2 if user.pbOwnedByPlayer? && @battle.curseActive?(:CURSE_STATUS_DOUBLED)
             multipliers[:final_damage_multiplier] *= (1.0 - damageReduction)
         end
         # Numb
         if user.numbed?
-            damageReduction = user.boss? ? (3.0/20.0) : (1.0/4.0)
+            damageReduction = (1.0/4.0)
+            damageReduction = (3.0/20.0) if user.boss? && AVATAR_STATUS_NERF
             damageReduction *= 2 if user.pbOwnedByPlayer? && @battle.curseActive?(:CURSE_STATUS_DOUBLED)
             multipliers[:final_damage_multiplier] *= (1.0 - damageReduction)
         end
         # Dizzy
         if target.dizzy? && !target.shouldAbilityApply?([:MARVELSKIN,:MARVELSCALE],checkingForAI)
-            damageIncrease = target.boss? ? (3.0/20.0) : (1.0/4.0)
+            damageIncrease = (1.0/4.0)
+            damageIncrease = (3.0/20.0) if target.boss? && AVATAR_STATUS_NERF
             damageIncrease *= 2 if target.pbOwnedByPlayer? && @battle.curseActive?(:CURSE_STATUS_DOUBLED)
             multipliers[:final_damage_multiplier] *= (1.0 + damageIncrease)
         end

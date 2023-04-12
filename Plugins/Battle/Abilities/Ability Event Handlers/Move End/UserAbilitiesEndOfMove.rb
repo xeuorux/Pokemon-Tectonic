@@ -335,7 +335,7 @@ BattleHandlers::UserAbilityEndOfMove.add(:IRREFUTABLE,
       nveHits = 0
       targets.each do |b|
         next if b.damageState.unaffected
-        next unless Effectiveness.not_very_effective?(b.damageState.typemod)
+        next unless Effectiveness.not_very_effective?(b.damageState.typeMod)
         nveHits += 1
       end
       next unless nveHits > 0

@@ -595,7 +595,6 @@ module Compiler
 				:abilities	 		    => contents["Ability"],
 				:item		 		        => contents["Item"],
 				:hp_mult	 		      => contents["HPMult"],
-        :size_mult	 		    => contents["SizeMult"],
 				:dmg_mult			      => contents["DMGMult"],
         :dmg_resist			    => contents["DMGResist"],
 				:health_bars	 		  => contents["HealthBars"],

@@ -21,4 +21,9 @@ module Effectiveness
 		value = calculate(attack_type, target_type1, target_type2, target_type3)
 		return barely_effective?(value)
 	end
+
+	def modify_boss_effectiveness(effectiveness, user, target)
+		return effectiveness
+		#return (1.0 + effectiveness) / 2.0 if target.boss? || user.boss?
+	end
 end
