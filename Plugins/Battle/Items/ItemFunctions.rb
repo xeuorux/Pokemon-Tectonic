@@ -203,7 +203,6 @@ display_exp))
     else
         scene.pbDisplay(_INTL("{1} gained {2} Exp. Points!", pkmn.name, display_exp))
     end
-    pkmn.changeHappiness("vitamin")
     scene.pbRefresh
 
     # Leave if didn't level up
@@ -248,6 +247,10 @@ display_exp))
             evo.pbEndScreen
             scene.pbRefresh
         end
+    end
+
+    (new_level - current_lvl).times do
+        pkmn.changeHappiness("levelup")
     end
 
     return true
@@ -325,7 +328,9 @@ def pbChangeLevel(pkmn, newlevel, scene)
                 scene.pbRefresh if scene.is_a?(PokemonPartyScreen)
             end
         end
-        pkmn.changeHappiness("vitamin")
+        (newlevel - oldLevel).times do
+            pkmn.changeHappiness("levelup")
+        end
     end
 end
 

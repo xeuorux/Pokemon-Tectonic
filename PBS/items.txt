@@ -77,7 +77,7 @@
 76,LUCKYEGG,Lucky Egg,Lucky Eggs,5,10000,"An item to be held by a Pokémon. It is an egg filled with happiness that earns extra Exp. Points in battle.",0,0,0
 77,EXPSHARE,Exp. Share,Exp. Shares,5,3000,"An item to be held by a Pokémon. The holder gets a share of a battle's Exp. Points without battling.",0,0,0
 78,AMULETCOIN,Amulet Coin,Amulet Coins,5,10000,"An item to be held by a Pokémon. It doubles a battle's prize money if the holding Pokémon joins in.",0,0,0
-79,SOOTHEBELL,Soothe Bell,Soothe Bells,5,4000,"An item to be held by a Pokémon. The comforting chime of this bell calms the holder, making it friendly.",0,0,0
+79,SOOTHEBELL,Soothe Bell,Soothe Bells,5,4000,"An item to be held by a Pokémon. The comforting chime of this bell makes it gain happiness twice as fast.",0,0,0
 80,CLEANSETAG,Cleanse Tag,Cleanse Tags,5,5000,"An item to be held by a Pokémon. It prevents wild Pokémon encounters if the holder is the first one in the party.",0,0,0
 81,CHOICEBAND,Choice Band,Choice Bands,5,10000,"Held item which ups Attack by 33%, but allows the use of only one move.",0,0,0
 82,CHOICESPECS,Choice Specs,Choice Specs,5,10000,"Held item which ups Sp. Atk by 33%, but allows the use of only one move.",0,0,0
@@ -201,7 +201,7 @@
 272,NESTBALL,Nest Ball,Nest Balls,3,400,"A somewhat different Poké Ball that works better the lower the Pokémon's level is below your level cap.",0,4,4
 273,REPEATBALL,Repeat Ball,Repeat Balls,3,400,"A somewhat different Poké Ball that works at 3.5x strength on Pokémon species that were previously caught.",0,4,4
 274,TIMERBALL,Timer Ball,Timer Balls,3,400,"A somewhat different Ball that becomes up to 4x better the more turns there are in a battle.",0,4,4
-275,LUXURYBALL,Luxury Ball,Luxury Balls,3,800,"A comfortable Poké Ball that makes a caught wild Pokémon quickly grow friendly.",0,4,4
+275,LUXURYBALL,Luxury Ball,Luxury Balls,3,800,"A comfortable Poké Ball that makes a caught wild Pokémon gain happiness twice as quickly.",0,4,4
 276,PREMIERBALL,Premier Ball,Premier Balls,3,20,"A somewhat rare Poké Ball that has been specially made to commemorate an event of some sort.",0,4,4
 277,DUSKBALL,Dusk Ball,Dusk Balls,3,400,"A somewhat different Poké Ball which has 3x strength at night or in dark places like caves.",0,4,4
 278,HEALBALL,Heal Ball,Heal Balls,3,400,"A remedial Poké Ball that restores the caught Pokémon's HP and eliminates any status problem.",0,4,4

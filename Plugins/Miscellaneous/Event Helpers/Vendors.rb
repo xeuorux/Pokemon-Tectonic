@@ -203,6 +203,7 @@ def styleFurfrou()
 		showPokemonChanges(pkmn) {
 			pkmn.form = possibleForms[choice].form
 		}
+		pkmn.changeHappiness("groom")
 		return true
 	end
 	return false
