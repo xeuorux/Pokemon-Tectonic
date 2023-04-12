@@ -1840,8 +1840,8 @@ class Pokemon
         stylish = ability_id == :STYLISH
         GameData::Stat.each_main do |s|
             if s.id == :HP
-                stats[s.id] = calcHPGlobal(base_stats[s.id], this_level, @ev[s.id], stylish)
-                stats[s.id] *= hpMult
+                hpValue = calcHPGlobal(base_stats[s.id], this_level, @ev[s.id], stylish)
+                stats[s.id] = (hpValue * hpMult).ceil
             elsif (s.id == :ATTACK) || (s.id == :SPECIAL_ATTACK)
                 stats[s.id] = calcStatGlobal(base_stats[s.id], this_level, @ev[s.id], stylish)
             else
