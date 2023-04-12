@@ -137,12 +137,12 @@ class CatchingMinigame
 end
 
 class CatchingMinigameBattle < PokeBattle_Battle
-  #=============================================================================
-  # Store caught Pokémon
-  #=============================================================================
-  def pbStorePokemon(pkmn)
+  def pbRecordAndStoreCaughtPokemon
+    caughtPokemon = @caughtPokemon.clone
     super
-    $catching_minigame.submitForScoring(pkmn)
+    caughtPokemon.each do |pkmn|
+      $catching_minigame.submitForScoring(pkmn)
+    end
   end
 
   def pbCommandPhaseLoop(isPlayer)
