@@ -1781,6 +1781,6 @@ battler.pbThis(true)))
 GameData::BattleEffect.register_effect(:Battler, {
     :id => :SwitchedIn,
     :real_name => "Switched In",
-    :resets_battlers_eot => true,
+    :resets_eor => true,
     :info_displayed => false,
 })

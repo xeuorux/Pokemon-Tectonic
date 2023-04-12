@@ -209,3 +209,9 @@ BattleHandlers::DamageCalcTargetAbility.add(:BULLY,
       mults[:base_damage_multiplier] *= 0.7 if target.pbHeight < user.pbHeight
   }
 )
+
+BattleHandlers::DamageCalcTargetAbility.add(:LIMINAL,
+  proc { |ability, _user, target, _move, mults, _baseDmg, _type|
+      mults[:final_damage_multiplier] *= 0.5 if target.effectActive?(:SwitchedIn)
+  }
+)

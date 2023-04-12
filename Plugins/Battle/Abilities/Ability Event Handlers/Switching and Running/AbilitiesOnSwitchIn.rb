@@ -617,12 +617,6 @@ BattleHandlers::AbilityOnSwitchIn.add(:AQUASNEAK,
   }
 )
 
-BattleHandlers::AbilityOnSwitchIn.add(:CONVICTION,
-  proc { |ability, battler, battle|
-      battle.forceUseMove(battler, :ENDURE, -1, ability: ability)
-  }
-)
-
 BattleHandlers::AbilityOnSwitchIn.add(:PRIMEVALSLOWSTART,
   proc { |ability, battler, battle|
       battle.pbShowAbilitySplash(battler, ability, true)

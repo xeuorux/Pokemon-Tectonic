@@ -116,7 +116,13 @@ BattleHandlers::DamageCalcUserAbility.add(:SNIPER,
 
 BattleHandlers::DamageCalcUserAbility.add(:STAKEOUT,
   proc { |ability, _user, target, _move, mults, _baseDmg, _type, aiCheck|
-      mults[:attack_multiplier] *= 2 if !aiCheck && (target.battle.choices[target.index][0] == :SwitchOut)
+      mults[:attack_multiplier] *= 2 if target.effectActive?(:SwitchedIn)
+  }
+)
+
+BattleHandlers::DamageCalcUserAbility.add(:LIMINAL,
+  proc { |ability, _user, target, _move, mults, _baseDmg, _type, aiCheck|
+      mults[:attack_multiplier] *= 1.5 if target.effectActive?(:SwitchedIn)
   }
 )
 
