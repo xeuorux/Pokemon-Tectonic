@@ -154,7 +154,7 @@ BattleHandlers::MoveImmunityTargetAbility.add(:PECKINGORDER,
 
 BattleHandlers::MoveImmunityTargetAbility.add(:SLICKSURFACE,
   proc { |ability, _user, target, move, _type, battle, showMessages|
-      next false unless move.healingMove?
+      next false unless move.healingMove? && move.damagingMove?
       if showMessages
           battle.pbShowAbilitySplash(target, ability)
           battle.pbDisplay(_INTL("It doesn't affect {1}...", target.pbThis(true)))

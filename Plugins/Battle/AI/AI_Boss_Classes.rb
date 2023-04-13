@@ -84,7 +84,7 @@ class PokeBattle_AI_Groudon < PokeBattle_AI_Boss
                 next true
             },
             :warning => proc { |_move, user, _targets, _battle|
-                _INTL("You feel the ground begin to bend towards #{user.pbThis}.")
+                _INTL("You feel the ground begin to bend towards #{user.pbThis(true)}.")
             },
         })
     end
@@ -118,7 +118,7 @@ class PokeBattle_AI_Kyogre < PokeBattle_AI_Boss
                 next true
             },
             :warning => proc { |_move, user, _targets, _battle|
-                _INTL("An air of authority surrounds #{user.pbThis}.")
+                _INTL("An air of authority surrounds #{user.pbThis(true)}.")
             },
         })
     end
