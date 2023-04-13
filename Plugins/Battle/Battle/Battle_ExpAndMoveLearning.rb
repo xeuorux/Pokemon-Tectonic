@@ -297,7 +297,7 @@ class PokeBattle_Battle
                 pbDisplay(_INTL("{1} learned {2}!", pkmnName, moveName)) { pbSEPlay("Pkmn move learnt") }
                 battler.pbCheckFormOnMovesetChange if battler
                 break
-            elsif pbDisplayConfirm(_INTL("Give up on learning {1}?", moveName))
+            else
                 pbDisplay(_INTL("{1} did not learn {2}.", pkmnName, moveName))
                 break
             end
