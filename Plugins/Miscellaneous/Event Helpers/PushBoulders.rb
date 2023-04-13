@@ -1,12 +1,30 @@
 class Interpreter
     # Used in boulder events. Allows an event to be pushed.
-    def pbPushThisEvent
+    def pbPushThisEvent(checkForHoles = false)
         event = get_self
         old_x  = event.x
         old_y  = event.y
+        holeEvent = nil
+        # check for pluggable holes in that direction
+        if checkForHoles
+            new_x = old_x + xOffsetFromDir($game_player.direction)
+            new_y = old_y + yOffsetFromDir($game_player.direction)
+
+            $game_map.events.values.each do |otherEvent|
+                next if event == otherEvent
+                next unless otherEvent.at_coordinate?(new_x, new_y)
+                next unless otherEvent.name[/boulderhole/]
+                next if pbGetSelfSwitch(otherEvent.id,'A')
+                
+                holeEvent = otherEvent
+                holeEvent.through = true
+                event.always_on_top = true
+                break
+            end
+        end
         # Apply strict version of passable, which treats tiles that are passable
         # only from certain directions as fully impassible
-        unless event.can_move_in_direction?($game_player.direction, true)
+        unless !holeEvent || event.can_move_in_direction?($game_player.direction, true)
             $game_player.bump_into_object
             return
         end
@@ -18,14 +36,25 @@ class Interpreter
         end
         $PokemonMap.addMovedEvent(@event_id) if $PokemonMap
         if old_x != event.x || old_y != event.y
-        $game_player.lock
-        loop do
-            Graphics.update
-            Input.update
-            pbUpdateSceneMap
-            break if !event.moving?
+            $game_player.lock
+            loop do
+                Graphics.update
+                Input.update
+                pbUpdateSceneMap
+                break if !event.moving?
+            end
+            $game_player.unlock
         end
-        $game_player.unlock
+
+        if holeEvent
+            pbSEPlay("Anim/Earth3",70,100)
+            pbWait(10)
+            pbSetSelfSwitch(event.id,'A')
+            pbSetSelfSwitch(holeEvent.id,'A')
         end
     end
+end
+
+class Game_Character
+    attr_accessor :always_on_top
 end

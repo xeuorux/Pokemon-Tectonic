@@ -421,24 +421,24 @@ class Game_Player < Game_Character
         check_event_trigger_there([0,2])
       end
     end
+end
 
-    def xOffsetFromDir(direction)
-      if direction == 6
-        return 1
-      elsif direction == 4
-        return -1
-      else
-        return 0
-      end
-    end
+def xOffsetFromDir(direction)
+  if direction == 6
+    return 1
+  elsif direction == 4
+    return -1
+  else
+    return 0
+  end
+end
 
-    def yOffsetFromDir(direction)
-      if direction == 2
-        return 1
-      elsif direction == 8
-        return -1
-      else
-        return 0
-      end
-    end
+def yOffsetFromDir(direction)
+  if direction == 2
+    return 1
+  elsif direction == 8
+    return -1
+  else
+    return 0
+  end
 end
