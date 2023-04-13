@@ -252,8 +252,8 @@ BattleHandlers::MoveImmunityTargetAbility.add(:WINTERINSULATION,
 
 BattleHandlers::MoveImmunityTargetAbility.add(:MORPHINGGUARD,
   proc { |ability, user, target, _move, type, battle, showMessages|
-      next false unless user.effectActive?(:MorphingGuard)
-      next false unless user.effects[:MorphingGuard] == type
+      next false unless target.effectActive?(:MorphingGuard)
+      next false unless target.effects[:MorphingGuard] == type
       if showMessages
           battle.pbShowAbilitySplash(target, ability)
           battle.pbDisplay(_INTL("It doesn't affect {1}...", target.pbThis(true)))
