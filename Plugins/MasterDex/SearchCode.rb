@@ -1118,7 +1118,7 @@ class PokemonPokedex_Scene
               elsif cmdSortByWeight > -1 && selection == cmdSortByWeight
                   next -speciesData.weight
               elsif cmdSortByGrowthRate > -1 && selection == cmdSortByGrowthRate
-                  next -GameData::GrowthRate.get(speciesData.growth_rate).id
+                  next GameData::GrowthRate.get(speciesData.growth_rate).id.to_s
               elsif cmdSortByCatchDifficulty > -1 && selection == cmdSortByCatchDifficulty
                   next -speciesData.catch_rate
               elsif cmdSortByExperienceGrant > -1 && selection == cmdSortByExperienceGrant
