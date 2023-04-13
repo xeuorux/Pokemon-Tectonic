@@ -681,4 +681,4 @@
 906,CHAMBER7KEY,Chamber 7 Key,Chamber 7 Keys,8,0,"The key to the seventh chamber containing a powerful avatar.",0,0,6
 907,CHAMBER8KEY,Chamber 8 Key,Chamber 8 Keys,8,0,"The key to the eighth chamber containing a powerful avatar.",0,0,6
 908,STRENGTHHERB,Strength Herb,Strength Herbs,5,4000,"An item to be held by a Pokémon. Boosts the power of a physical move by 30% once per battle.",0,0,0
-909,INTELLECTHERB,Intellect Herb,Intellect Herbs,5,4000,"An item to be held by a Pokémon. Boosts the power of a physical move by 30% once per battle.",0,0,0
+909,INTELLECTHERB,Intellect Herb,Intellect Herbs,5,4000,"An item to be held by a Pokémon. Boosts the power of a special move by 30% once per battle.",0,0,0
