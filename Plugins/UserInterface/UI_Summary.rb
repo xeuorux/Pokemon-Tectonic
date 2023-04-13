@@ -448,12 +448,8 @@ class PokemonSummary_Scene
 		# Write the held item's name
         unless page == 3
 			itemText = []
-            if @pokemon.hasItem?
-                itemName = ""
-                @pokemon.items.each_with_index do |item, index|
-                    itemName += ", " unless index == 0
-                    itemName += getItemName(item)
-                end
+            if @pokemon.hasItem?  
+                itemName = @pokemon.itemsName
 				itemNameY = 346
 				itemNameY += 2 if @pokemon.hasMultipleItems?
                 itemText.push([itemName, 16, itemNameY, 0, Color.new(64, 64, 64), Color.new(176, 176, 176)])

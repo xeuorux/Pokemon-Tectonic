@@ -231,12 +231,8 @@ class PokeBattle_Battler
         return items.length
     end
 
-    def itemCountD
-        if items.length <= 1
-            return "item"
-        else
-            return "items"
-        end
+    def itemCountD(uppercase = false)
+        return @pokemon.itemCountD(uppercase)
     end
 
     def firstItem

@@ -570,6 +570,23 @@ class Pokemon
       return items.length
     end
 
+    def itemCountD(uppercase = false)
+      if items.length <= 1
+          return uppercase ? "Item" : "item"
+      else
+          return uppercase ? "Items" : "items"
+      end
+    end
+
+    def itemsName
+      itemName = ""
+      items.each_with_index do |item, index|
+        itemName += ", " unless index == 0
+        itemName += getItemName(item)
+      end
+      return itemName
+    end
+
     def firstItem
       return nil if items.empty?
       return items[0]
