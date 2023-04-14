@@ -2831,7 +2831,7 @@ Pokemon = VANILLUXE,55
     Item = OCCABERRY
 Pokemon = HYMNUS,55
     Moves = CALAMITOUSSLASH,PLAYROUGH,DRAGONDANCE,EARTHQUAKE
-    AbilityIndex = 1 # Rain Prism
+    AbilityIndex = 0 # Levitate
 #-------------------------------
 [LEADER_Victoire_2,Victoire]
 Extends = LEADER_Victoire,Victoire,0
@@ -2847,6 +2847,8 @@ Pokemon = TOGEDEMARU,55
     Item = AIRBALLOON
 Pokemon = AGGRON,55
     Item = FOCUSSASH
+Pokemon = HYMNUS,55
+    AbilityIndex = 1 # Rain Prism
 RemovePokemon = VANILLUXE,55
 #-------------------------------
 [LEADER_Victoire_2,Victoire,1]
@@ -3163,7 +3165,7 @@ Pokemon = GARCHOMP,60
     AbilityIndex = 1 # Dune Predator
 Pokemon = VOLCARONA,60
     Moves = QUIVERDANCE,GIGADRAIN,BUGBUZZ,FLAMETHROWER
-    AbilityIndex = 0 # Solar Power
+    AbilityIndex = 1 # Dawn Burst
 Pokemon = SAURENAID,60
     Name = Maxie
     Gender = male
