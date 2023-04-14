@@ -23,10 +23,7 @@ class PokemonEncounters
   # Returns whether the player's current location allows wild encounters to
   # trigger upon taking a step.
   def encounter_possible_here?
-    terrain_tag_id = $game_map.terrain_tag($game_player.x, $game_player.y).id
-    return [:Grass, :DarkCave, :Mud, :SparseGrass, :Puddle, :TallGrass,
-		:ActiveWater, :FloweryGrass, :FloweryGrass2, :TintedGrass,
-		:SewerWater, :SewerFloor, :FishingContest, :DarkCloud].include?(terrain_tag_id)
+    return !$game_map.encounter_terrain_tag($game_player.x, $game_player.y).nil?
   end
 
   # Returns whether a wild encounter should happen, based on its encounter
@@ -81,9 +78,8 @@ class PokemonEncounters
   # Returns the encounter method that the current encounter should be generated
   # from, depending on the player's current location.
   def encounter_type
-    time = pbGetTimeNow
     ret = nil
-	  current_terrain_id = $game_map.terrain_tag($game_player.x, $game_player.y).id
+	  current_terrain_id = $game_map.encounter_terrain_tag($game_player.x, $game_player.y).id
     if $PokemonGlobal.surfing
       # Active water encounters
       case current_terrain_id

@@ -3,6 +3,7 @@ module GameData
       attr_reader :slows
       attr_reader :rock_climbable
       attr_reader :push_direction
+      attr_reader :encounter_tile
     
       def initialize(hash)
         @id                     = hash[:id]
@@ -27,6 +28,7 @@ module GameData
         @slows     			        = hash[:slows]     			        || false
         @rock_climbable		      = hash[:rock_climbable]		      || false
         @push_direction         = hash[:push_direction]
+        @encounter_tile         = hash[:encounter_tile]         || false
       end
     end
   end
