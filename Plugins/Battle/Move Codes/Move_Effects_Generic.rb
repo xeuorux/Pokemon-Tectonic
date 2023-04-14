@@ -65,14 +65,16 @@ class PokeBattle_Struggle < PokeBattle_Move
         @calcType   = nil
         @powerBoost = false
         @snatched   = false
+        @calculated_category = 0
     end
 
-    def physicalMove?(_thisType = nil); return true;  end
-    def specialMove?(_thisType = nil);  return false; end
+    def calculateCategory(user, _targets)
+        return selectBestCategory(user)
+    end
 
     def pbEffectAfterAllHits(user, target)
         return if target.damageState.unaffected
-        user.applyFractionalDamage(1.0 / 4.0, false)
+        user.applyFractionalDamage(1.0 / 4.0, false, struggle: true)
         @battle.pbDisplay(_INTL("{1} was damaged by recoil!", user.pbThis))
     end
 end

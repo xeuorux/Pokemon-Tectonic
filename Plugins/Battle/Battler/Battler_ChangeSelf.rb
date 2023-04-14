@@ -48,17 +48,17 @@ class PokeBattle_Battler
     # Applies damage effects that are based on a fraction of the battler's total HP
     # Returns how much damage ended up dealt
     # Accounts for bosses taking reduced fractional damage
-    def applyFractionalDamage(fraction, showDamageAnimation = true, basedOnCurrentHP = false, entryCheck = false)
-        return 0 unless takesIndirectDamage?
+    def applyFractionalDamage(fraction, showDamageAnimation = true, basedOnCurrentHP = false, entryCheck = false, struggle: false)
+        return 0 unless takesIndirectDamage? || struggle
         oldHP = @hp
         fraction /= BOSS_HP_BASED_EFFECT_RESISTANCE if boss?
-        fraction *= 1.5 if @battle.pbCheckOpposingAbility(:AGGRAVATE, @index)
+        fraction *= 1.5 if @battle.pbCheckOpposingAbility(:AGGRAVATE, @index) && !struggle
         if basedOnCurrentHP
             reduction = @hp * fraction
         else
             reduction = @totalhp * fraction
         end
-        reduction *= 0.66 if hasTribeBonus?(:ANIMATED)
+        reduction *= 0.66 if hasTribeBonus?(:ANIMATED) && !struggle
         reduction = reduction.ceil
         if showDamageAnimation
             @damageState.displayedDamage = reduction
