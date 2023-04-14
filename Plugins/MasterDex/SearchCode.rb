@@ -426,7 +426,7 @@ class PokemonPokedex_Scene
           miscSearches[cmdMultipleForms = miscSearches.length] = _INTL("Multiple Forms")
           miscSearches[cmdInvertList = miscSearches.length] = _INTL("Invert Current")
           miscSearches.push(_INTL("Cancel"))
-          searchSelection = pbMessage("Which search?",miscSearches,miscSearches.length)
+          searchSelection = pbMessage("Which search?",miscSearches,miscSearches.length+1)
           if cmdCollecting > -1 && searchSelection == cmdCollecting
               return searchByCollecting() 
           elsif cmdMapFound > -1 && searchSelection == cmdMapFound
@@ -1082,7 +1082,7 @@ class PokemonPokedex_Scene
           selections[cmdSortByCoverageTypesCount = selections.length] = _INTL("Coverage Count (D)") if $DEBUG
           selections.push(_INTL("Cancel"))
           selection = pbMessage("Sort by what?",selections,selections.length+1)
-          return if selection == selections.length
+          return if selection >= selections.length - 1
           dexlist = @dexlist
   
           typesCount = 0
