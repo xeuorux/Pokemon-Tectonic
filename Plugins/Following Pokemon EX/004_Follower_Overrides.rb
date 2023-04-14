@@ -395,56 +395,55 @@ class DependentEvents
   def findMapTilesForConnectedMaps(follower,leader,facings)
 	  mapTile = nil
 	  bestRelativePos = -1
-      oldthrough = follower.through
-      follower.through = false
-      for i in 0...facings.length
-        facing = facings[i]
-        tile = $MapFactory.getFacingTile(facing,leader)
-		    # Check for staircase shenanigans
-        if GameData::TerrainTag.exists?(:StairLeft)
-          currentTag = $game_player.pbTerrainTag
-          if tile[1] > $game_player.x
-            tile[2] -= 1 if currentTag == :StairLeft
-          elsif tile[1] < $game_player.x
-            tile[2] += 1 if currentTag == :StairLeft
-          end
-          if tile[1] > $game_player.x
-            tile[2] += 1 if currentTag == :StairRight
-          elsif tile[1] < $game_player.x
-            tile[2] -= 1 if currentTag == :StairRight
-          end
+    oldthrough = follower.through
+    follower.through = false
+    for i in 0...facings.length
+      facing = facings[i]
+      tile = $MapFactory.getFacingTile(facing,leader)
+      # Check for staircase shenanigans
+      if GameData::TerrainTag.exists?(:StairLeft)
+        currentTag = $game_player.pbTerrainTag
+        if tile[1] > $game_player.x
+          tile[2] -= 1 if currentTag == :StairLeft
+        elsif tile[1] < $game_player.x
+          tile[2] += 1 if currentTag == :StairLeft
         end
-        assumedTerrainTag = $MapFactory.getTerrainTag(tile[0],tile[1],tile[2])
-
-        # Assumes leader is 1x1 tile in size
-        passable = false
-        if tile
-          passable = true if $MapFactory.isPassable?(tile[0],tile[1],tile[2],follower)
-          passable = true if assumedTerrainTag.ice
-          passable = true if defined?(assumedTerrainTag.rock_climbable) && assumedTerrainTag.rock_climbable
-        end
-        passable = true if $PokemonGlobal.bridge > 0
-
-        # If the tile isn't passable and the tile is a ledge,
-        # get tile from further behind
-        if i == 0 && !passable && tile && assumedTerrainTag.ledge
-          tile = $MapFactory.getFacingTileFromPos(tile[0],tile[1],tile[2],facing)
-          passable = tile && $MapFactory.isPassable?(tile[0],tile[1],tile[2],follower)
-        end
-
-        if passable
-          relativePos = $MapFactory.getThisAndOtherPosRelativePos(
-             follower,tile[0],tile[1],tile[2])
-          # Assumes follower is 1x1 tile in size
-          distance = Math.sqrt(relativePos[0] * relativePos[0] + relativePos[1] * relativePos[1])
-          if bestRelativePos > distance || bestRelativePos == -1
-            bestRelativePos = distance
-            mapTile = tile
-          end
-          break if i == 0 && distance <= 1 # Prefer behind if tile can move up to 1 space
+        if tile[1] > $game_player.x
+          tile[2] += 1 if currentTag == :StairRight
+        elsif tile[1] < $game_player.x
+          tile[2] -= 1 if currentTag == :StairRight
         end
       end
-      follower.through = oldthrough
+      assumedTerrainTag = $MapFactory.getTerrainTag(tile[0],tile[1],tile[2])
+
+      # Assumes leader is 1x1 tile in size
+      passable = false
+      if tile
+        passable = true if $MapFactory.isPassable?(tile[0],tile[1],tile[2],follower)
+        passable = true if assumedTerrainTag.ice
+        passable = true if defined?(assumedTerrainTag.rock_climbable) && assumedTerrainTag.rock_climbable
+      end
+      passable = true if $PokemonGlobal.bridge > 0
+
+      # If the tile isn't passable and the tile is a ledge,
+      # get tile from further behind
+      if i == 0 && !passable && tile && assumedTerrainTag.ledge
+        tile = $MapFactory.getFacingTileFromPos(tile[0],tile[1],tile[2],facing)
+        passable = tile && $MapFactory.isPassable?(tile[0],tile[1],tile[2],follower)
+      end
+
+      if passable
+        relativePos = $MapFactory.getThisAndOtherPosRelativePos(follower,tile[0],tile[1],tile[2])
+        # Assumes follower is 1x1 tile in size
+        distance = Math.sqrt(relativePos[0] * relativePos[0] + relativePos[1] * relativePos[1])
+        if bestRelativePos > distance || bestRelativePos == -1
+          bestRelativePos = distance
+          mapTile = tile
+        end
+        break if i == 0 && distance <= 1 # Prefer behind if tile can move up to 1 space
+      end
+    end
+    follower.through = oldthrough
 	  return mapTile
   end
   
@@ -466,48 +465,41 @@ class DependentEvents
       newX = mapTile[1]
       newY = mapTile[2]
       if defined?(leader.on_stair?) && leader.on_stair?
-        newX = leader.x + (leader.direction == 4 ? 1 : leader.direction == 6 ? -1 : 0)
+        newX = leader.x + -1 * xOffsetFromDir(leader.direction)
         if leader.on_middle_of_stair?
-          newY = leader.y + (leader.direction == 8 ? 1 : leader.direction == 2 ? -1 : 0)
+          newY = leader.y + -1 * yOffsetFromDir(leader.direction)
         else
           if follower.on_middle_of_stair?
             newY = follower.stair_start_y - follower.stair_y_position
           else
-            newY = leader.y + (leader.direction == 8 ? 1 : leader.direction == 2 ? -1 : 0)
+            newY = leader.y + -1 * yOffsetFromDir(leader.direction)
           end
         end
       end
-      deltaX = (leader.direction == 6 ? -1 : leader.direction == 4 ? 1 : 0)
-      deltaY = (leader.direction == 2 ? -1 : leader.direction == 8 ? 1 : 0)
+      deltaX = -1 * xOffsetFromDir(leader.direction)
+      deltaY = -1 * yOffsetFromDir(leader.direction)
       posX = newX + deltaX
       posY = newY + deltaY
+
       follower.move_speed = leader.move_speed # sync movespeed
-      if (follower.x - newX == -1 && follower.y == newY) ||
-         (follower.x - newX == 1  && follower.y == newY) ||
-         (follower.y - newY == -1 && follower.x == newX) ||
-         (follower.y - newY == 1  && follower.x == newX)
+      distance = maxDistanceBetween(follower.x, follower.y, newX, newY)
+
+      if distance > 0
         if instant
           follower.moveto(newX,newY)
-        else
+        elsif distance <= 2
           pbFancyMoveTo(follower,newX,newY,leader)
-        end
-      elsif (follower.x - newX == -2 && follower.y == newY) ||
-            (follower.x - newX == 2  && follower.y == newY) ||
-            (follower.y - newY == -2 && follower.x == newX) ||
-            (follower.y - newY == 2  && follower.x == newX)
-        if instant
-          follower.moveto(newX,newY)
-        else
-          pbFancyMoveTo(follower,newX,newY,leader)
-        end
-      elsif follower.x != posX || follower.y != posY
-        if instant
-          follower.moveto(newX,newY)
         else
           pbFancyMoveTo(follower,posX,posY,leader)
           pbFancyMoveTo(follower,newX,newY,leader)
         end
       end
+  end
+
+  def maxDistanceBetween(x1,y1,x2,y2)
+    xDistance = (x1 - x2).abs
+    yDistance = (y1 - y2).abs
+    return [xDistance,yDistance].max
   end
   
   def moveFollowerToNearbySpot(follower,leader,mapTile)

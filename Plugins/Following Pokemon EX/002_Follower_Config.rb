@@ -31,9 +31,9 @@ def floatingSpecies?(species,form=0)
 		exception = FollowerSettings::SURFING_FOLLOWERS_EXCEPTIONS.any?{|s| s == species || s.to_s == "#{species}_#{form}" }
 		return !exception
 	end
-    return true if species_data.abilities.include?(:LEVITATE)
+  return true if species_data.abilities.include?(:LEVITATE)
 	return true if species_data.abilities.include?(:DESERTSPIRIT)
-    return true if FollowerSettings::SURFING_FOLLOWERS.any?{|s| s == species || s.to_s == "#{species}_#{form}" }
+  return true if FollowerSettings::SURFING_FOLLOWERS.any?{|s| s == species || s.to_s == "#{species}_#{form}" }
 	return false
 end
 

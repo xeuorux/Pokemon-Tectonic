@@ -57,7 +57,9 @@ module FollowerSettings
     :MAGEARNA, :POIPOLE, :NAGANADEL,
     # Gen 8
     :ORBEETLE, :FLAPPLE, :SINISTEA, :POLTEAGEIST, :FROSMOTH, :DREEPY, :DRAKLOAK,
-    :DRAGAPULT, :ETERNATUS, :REGIELEKI, :REGIDRAGO, :CALYREX
+    :DRAGAPULT, :ETERNATUS, :REGIELEKI, :REGIDRAGO, :CALYREX,
+    # Tectonic original
+    :MGOLDEEN, :MSEAKING
   ]
 
   # List of Pokemon that will not appear behind the player when surfing,
