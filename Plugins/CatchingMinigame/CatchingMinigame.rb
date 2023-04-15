@@ -346,7 +346,7 @@ alias minigame_pbStartOver pbStartOver
 def pbStartOver(gameover=false)
   if $catching_minigame.active?
     $Trainer.heal_party
-    $catching_minigame.end
+    $catching_minigame.endMinigame
   else
    minigame_pbStartOver(gameover)
   end
