@@ -31,26 +31,30 @@
 2030,PRIMEVALEMBARGO,Primeval Embargo,61D,0,DARK,Status,100,1,0,FoeSide,0,bey,"The enemy side is prevented from using items for the rest of the battle, and the user becomes Dark-type.",EMBARGO
 2031,PRIMEVALCHILL,Primeval Chill,61E,0,ICE,Status,100,1,0,AllNearFoes,0,bey,"The user inflicts frostbite on all nearby foes. User becomes an Ice-type.",CHILL
 2032,PRIMEVALDESTINYBOND,Primeval Destiny Bond,61F,0,GHOST,Status,0,1,0,User,0,y,"Attackers against the user suffer recoil for the rest of the battle. User becomes a Ghost-type.",DESTINYBOND
-2033,PRIMEVALSHOREUP,Primeval Shore Up,620,0,GROUND,Status,0,1,0,User,0,dy,"The user restores 1/8th of its HP, TODO, and becomes Ground-type.",
+2033,PRIMEVALSHOREUP,Primeval Shore Up,620,0,GROUND,Status,0,1,0,User,0,dy,"The user restores 1/8th of its HP, TODO, and becomes Ground-type.",SHOREUP
 2034,PRIMEVALLOOMOVER,Primeval Loom Over,621,0,DRAGON,Status,0,1,0,AllNearFoes,0,ey,"The user harshly lowers each near foes best stat, and becomes Dragon-type.",LOOMOVER
-2035,PRIMEVALDETECT,Primeval Detect,622,0,FIGHTING,Status,0,1,0,User,4,y,"The user takes 50% less attack damage for 3 turns, and becomes Fighting-type.",
-2036,PRIMEVALQUIVERDANCE,Primeval Quiver Dance,623,0,BUG,Status,0,15,0,User,0,doy,"The user sharply boosts their Sp. Atk, Sp. Def, and Speed, and becomes Bug-type.",
-2037,PRIMEVALSHIVERDANCE,Primeval Shiver Dance,624,0,ICE,Status,0,15,0,User,0,doy,"The user sharply boosts their Attack, Defense, and Speed, and becomes Ice-type.",
-2038,PRIMEVALMETEORMASH,Primeval Meteor Mash,636,160,STEEL,Physical,100,10,100,NearOther,0,abefjy,"The target is obliterated by a meteoric strike, which raises the user's attack.",METEORMASH
-2039,PRIMEVALICEBEAM,Primeval Ice Beam,637,160,ICE,Special,100,10,100,NearOther,0,befy,"The target is struck with an absolute zero beam of energy, frostbiting it.",ICEBEAM
-2040,PRIMEVALROCKTOMB,Primeval Rock Tomb,638,90,ROCK,Physical,100,10,100,AllNearFoes,0,befy,"Boulders are hurled at all near enemies, harshly lowering their Speed by preventing their movement.",ROCKTOMB
-2041,PRIMEVALANCIENTPOWER,Primeval Ancient Power,639,80,ROCK,Special,100,10,100,NearOther,0,befy,"The user attacks with a prehistoric power which raises all its stats",ANCIENTPOWER
-2042,PRIMEVALTHUNDERBOLT,Primeval Thunderbolt,640,160,ELECTRIC,Special,100,1,100,NearOther,0,befy,"A powerful electric blast is let loose on the target, numbing it.",THUNDERBOLT
-2043,PRIMEVALFLAREBLITZ,Primeval Flare Blitz,641,200,FIRE,Physical,100,10,0,NearOther,0,abefy,"The user cloaks itself in fire and charges at the foe. The user also takes 33% recoil.",FLAREBLITZ
-2044,PRIMEVALMETALCLAW,Primeval Metal Claw,642,60,STEEL,Physical,100,30,100,NearOther,0,abefy,"The target is raked with steel claws twice. The user raises its attack after each hit.",METALCLAW
-2045,PRIMEVALSLASH,Primeval Slash,643,120,NORMAL,Physical,100,15,0,NearOther,0,abefpy,"The target is attacked with a slash of claws or blades, always critting.",SLASH
-2046,PRIMEVALBRICKBREAK,Primeval Brick Break,644,140,FIGHTING,Physical,100,12,100,NearOther,0,abefy,"The user attacks with a swift chop, destroying barriers, and drastically reducing the target's defense.",BRICKBREAK
-2047,PRIMEVALCROSSPOISON,Primeval Cross Poison,645,70,POISON,Physical,100,10,10,AllNearFoes,0,abefpy,"The user slashes all near foes with with poisonous blades or edges. Will be critical against poisoned targets.",CROSSPOISON
-2048,PRIMEVALSOLARBEAM,Primeval Solar Beam,646,170,GRASS,Special,100,10,0,AllNearFoes,0,befy,"A two-turn attack. The user gathers light, then blasts all near foes on the second turn.",SOLARBEAM
-2049,PRIMEVALPOWERGEM,Primeval Power Gem,647,120,ROCK,Special,100,15,100,NearOther,0,befy,"The user attacks with a sparkling gem-like ray, dizzying the target.",POWERGEM
-2050,PRIMEVALBULLETSEED,Primeval Bullet Seed,648,35,GRASS,Physical,100,15,0,AllNearFoes,0,abefy,"The user forcefully shoots 6 seeds in rapid succession, spread among nearby enemies.",BULLETSEED
-2051,PRIMEVALFUTURESIGHT,Primeval Future Sight,649,280,PSYCHIC,Special,100,10,0,NearOther,0,y,"Two turns after this move is used, a hunk of psychic energy attacks the target.",FUTURESIGHT
-2052,PRIMEVALDRAGONDARTS,Primeval Dragon Darts,650,100,DRAGON,Physical,100,10,0,AllNearFoes,0,befy,"The user attacks twice using Dreepy, spreading the hits. One of the Dreepys is summoned as an ally.",
-2053,STRATOSPHERESCREAM,Stratosphere Scream,700,100,FLYING,Special,0,5,0,AllNearFoes,0,befk,"A move that only the avatar of Rayquaza can use. All enemies struck lose their flinch immunity.",SCREECH
-2054,SEVENSEASEDICT,Seven Seas Edict,701,0,WATER,Status,0,3,0,None,0,d,"A move that only the avatar of Kyogre can use. The user commands a Luvdisc avatar and a Remoraid avatar to join it.",
-2055,WARPINGCORE,Warping Core,702,0,GROUND,Status,0,3,0,BothSides,0,,"A move that only the avatar of Groudon can use. Gravity is intensified for five turns and enemy Pokemon have their weight doubled.",
+2035,PRIMEVALDETECT,Primeval Detect,622,0,FIGHTING,Status,0,1,0,User,4,y,"The user takes 50% less attack damage for 3 turns, and becomes Fighting-type.",DETECT
+2036,PRIMEVALQUIVERDANCE,Primeval Quiver Dance,623,0,BUG,Status,0,15,0,User,0,doy,"The user sharply boosts their Sp. Atk, Sp. Def, and Speed, and becomes Bug-type.",QUIVERDANCE
+2037,PRIMEVALSHIVERDANCE,Primeval Shiver Dance,624,0,ICE,Status,0,15,0,User,0,doy,"The user sharply boosts their Attack, Defense, and Speed, and becomes Ice-type.",SHIVERDANCE
+2038,PRIMEVALIRONDEFENSE,Primeval Iron Defense,625,0,STEEL,Status,0,1,0,User,0,dy,"The user sharply boosts its Defense, gains the ability Filter, and becomes Steel-type.",IRONDEFENSE
+2039,PRIMEVALAMNESIA,Primeval Amnesia,626,0,PSYCHIC,Status,0,1,0,User,0,dy,"The user sharply boosts its Sp. Def, gains the ability Unaware, and becomes Psychic-type.",AMNESIA
+2040,PRIMEVALHOWL,Primeval Howl,627,0,DARK,Status,0,1,0,User,0,dy,"The user summons an allied Poochyena, raises the Attack stat of itself and its allies, and becomes Dark-type.",
+2041,PRIMEVALMINDLINK,Primeval Mind Link,628,0,PSYCHIC,Status,0,1,0,User,0,dy,"The user summons an allied Abra, raises the Sp. Atk stat of itself and its allies, and becomes Psychic-type.",
+2042,PRIMEVALMETEORMASH,Primeval Meteor Mash,636,160,STEEL,Physical,100,10,100,NearOther,0,abefjy,"The target is obliterated by a meteoric strike, which raises the user's attack.",METEORMASH
+2043,PRIMEVALICEBEAM,Primeval Ice Beam,637,160,ICE,Special,100,10,100,NearOther,0,befy,"The target is struck with an absolute zero beam of energy, frostbiting it.",ICEBEAM
+2044,PRIMEVALROCKTOMB,Primeval Rock Tomb,638,90,ROCK,Physical,100,10,100,AllNearFoes,0,befy,"Boulders are hurled at all near enemies, harshly lowering their Speed by preventing their movement.",ROCKTOMB
+2045,PRIMEVALANCIENTPOWER,Primeval Ancient Power,639,80,ROCK,Special,100,10,100,NearOther,0,befy,"The user attacks with a prehistoric power which raises all its stats",ANCIENTPOWER
+2046,PRIMEVALTHUNDERBOLT,Primeval Thunderbolt,640,160,ELECTRIC,Special,100,1,100,NearOther,0,befy,"A powerful electric blast is let loose on the target, numbing it.",THUNDERBOLT
+2047,PRIMEVALFLAREBLITZ,Primeval Flare Blitz,641,200,FIRE,Physical,100,10,0,NearOther,0,abefy,"The user cloaks itself in fire and charges at the foe. The user also takes 33% recoil.",FLAREBLITZ
+2048,PRIMEVALMETALCLAW,Primeval Metal Claw,642,60,STEEL,Physical,100,30,100,NearOther,0,abefy,"The target is raked with steel claws twice. The user raises its attack after each hit.",METALCLAW
+2049,PRIMEVALSLASH,Primeval Slash,643,120,NORMAL,Physical,100,15,0,NearOther,0,abefpy,"The target is attacked with a slash of claws or blades, always critting.",SLASH
+2050,PRIMEVALBRICKBREAK,Primeval Brick Break,644,140,FIGHTING,Physical,100,12,100,NearOther,0,abefy,"The user attacks with a swift chop, destroying barriers, and drastically reducing the target's defense.",BRICKBREAK
+2051,PRIMEVALCROSSPOISON,Primeval Cross Poison,645,70,POISON,Physical,100,10,10,AllNearFoes,0,abefpy,"The user slashes all near foes with with poisonous blades or edges. Will be critical against poisoned targets.",CROSSPOISON
+2052,PRIMEVALSOLARBEAM,Primeval Solar Beam,646,170,GRASS,Special,100,10,0,AllNearFoes,0,befy,"A two-turn attack. The user gathers light, then blasts all near foes on the second turn.",SOLARBEAM
+2053,PRIMEVALPOWERGEM,Primeval Power Gem,647,120,ROCK,Special,100,15,100,NearOther,0,befy,"The user attacks with a sparkling gem-like ray, dizzying the target.",POWERGEM
+2054,PRIMEVALBULLETSEED,Primeval Bullet Seed,648,35,GRASS,Physical,100,15,0,AllNearFoes,0,abefy,"The user forcefully shoots 6 seeds in rapid succession, spread among nearby enemies.",BULLETSEED
+2055,PRIMEVALFUTURESIGHT,Primeval Future Sight,649,280,PSYCHIC,Special,100,10,0,NearOther,0,y,"Two turns after this move is used, a hunk of psychic energy attacks the target.",FUTURESIGHT
+2056,PRIMEVALDRAGONDARTS,Primeval Dragon Darts,650,100,DRAGON,Physical,100,10,0,AllNearFoes,0,befy,"The user attacks twice using Dreepy, spreading the hits. One of the Dreepys is summoned as an ally.",
+2057,STRATOSPHERESCREAM,Stratosphere Scream,700,100,FLYING,Special,0,5,0,AllNearFoes,0,befk,"A move that only the avatar of Rayquaza can use. All enemies struck lose their flinch immunity.",SCREECH
+2058,SEVENSEASEDICT,Seven Seas Edict,701,0,WATER,Status,0,3,0,None,0,d,"A move that only the avatar of Kyogre can use. The user commands a Luvdisc avatar and a Remoraid avatar to join it.",
+2059,WARPINGCORE,Warping Core,702,0,GROUND,Status,0,3,0,BothSides,0,,"A move that only the avatar of Groudon can use. Gravity is intensified for five turns and enemy Pokemon have their weight doubled.",

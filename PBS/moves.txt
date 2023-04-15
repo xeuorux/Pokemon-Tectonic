@@ -451,7 +451,7 @@
 450,HARDEN,Harden,01D,0,NORMAL,Status,0,25,0,User,0,d,"The user stiffens all the muscles in its body to raise its Defense stat.",
 451,HEALBELL,Heal Bell,019,0,NORMAL,Status,0,5,0,UserAndAllies,0,dk,"The user makes a soothing bell chime to heal the status problems of all the party Pokémon.",
 452,HELPINGHAND,Helping Hand,09C,0,NORMAL,Status,0,15,0,NearAlly,5,,"The user assists an ally by boosting the power of its attack.",
-453,HOWL,Howl,530,0,NORMAL,Status,0,30,0,User,0,d,"The user howls loudly to raise the Attack stat of itself and its allies.",
+453,HOWL,Howl,530,0,DARK,Status,0,30,0,User,0,d,"The user howls loudly to raise the Attack stat of itself and its allies.",
 454,LASERFOCUS,Laser Focus,15E,0,STEEL,Status,0,25,0,User,0,d,"The user focuses intensely. The attack on the next turn always results in a critical hit.",
 455,LEER,Leer,043,0,NORMAL,Status,100,25,0,AllNearFoes,0,bce,"The user leers at nearby foes with sharp eyes. Their Defense stat is reduced.",
 456,LOCKON,Lock-On,0A6,0,NORMAL,Status,0,5,0,NearOther,0,be,"The user takes sure aim at the target. This ensures the next attack does not miss the target.",

@@ -15,6 +15,14 @@ module EmpoweredMove
         end
         @battle.pbDisplay(_INTL("{1} transformed into the {2} type!", user.pbThis, typeName))
     end
+
+    def summonAvatar(user,species,summonMessage = nil)
+        if @battle.pbSideSize(user.index) < 3
+            summonMessage ||= _INTL("#{user.pbThis} summons another Avatar!")
+            @battle.pbDisplay(summonMessage)
+            @battle.addAvatarBattler(species, user.level, user.index % 2)
+        end
+    end
 end
 
 # Empowered Heal Bell
@@ -351,10 +359,7 @@ class PokeBattle_Move_619 < PokeBattle_HalfHealingMove
     def pbEffectGeneral(user)
         super
 
-        if @battle.pbSideSize(user.index) < 3
-            @battle.pbDisplay(_INTL("{1} summons a helper!", user.pbThis))
-            @battle.addAvatarBattler(:COMBEE, user.level, user.index % 2)
-        end
+        summonAvatar(user, :COMBEE, _INTL("{1} summons a helper!", user.pbThis))
 
         transformType(user, :BUG)
     end
@@ -494,6 +499,50 @@ class PokeBattle_Move_624 < PokeBattle_MultiStatUpMove
     end
 end
 
+# Empowered Iron Defense
+class PokeBattle_Move_625 < PokeBattle_Move_02F
+    include EmpoweredMove
+
+    def pbEffectGeneral(user)
+        super
+        user.addAbility(:FILTER,true)
+        transformType(user, :STEEL)
+    end
+end
+
+# Empowered Amnesia
+class PokeBattle_Move_626 < PokeBattle_Move_033
+    include EmpoweredMove
+
+    def pbEffectGeneral(user)
+        super
+        user.addAbility(:UNAWARE,true)
+        transformType(user, :PSYCHIC)
+    end
+end
+
+# Empowered Howl
+class PokeBattle_Move_627 < PokeBattle_Move_530
+    include EmpoweredMove
+
+    def pbEffectGeneral(user)
+        summonAvatar(user, :POOCHYENA, _INTL("#{user.pbThis} calls out to the pack!"))
+        super
+        transformType(user, :DARK)
+    end
+end
+
+# Empowered Mind Link
+class PokeBattle_Move_628 < PokeBattle_Move_549
+    include EmpoweredMove
+
+    def pbEffectGeneral(user)
+        summonAvatar(user, :ABRA, _INTL("#{user.pbThis} gathers an new mind!"))
+        super
+        transformType(user, :PSYCHIC)
+    end
+end
+
 ########################################################
 ### DAMAGING MOVES
 ########################################################
@@ -610,10 +659,7 @@ class PokeBattle_Move_650 < PokeBattle_Move_17C
     def pbEffectGeneral(user)
         super
 
-        if @battle.pbSideSize(user.index) < 3
-            @battle.pbDisplay(_INTL("One of the Dreepys joins the fray!", user.pbThis))
-            @battle.addAvatarBattler(:DREEPY, user.level, user.index % 2)
-        end
+        summonAvatar(user, :DREEPY, _INTL("One of the Dreepys joins the fray!"))
     end
 end
 
