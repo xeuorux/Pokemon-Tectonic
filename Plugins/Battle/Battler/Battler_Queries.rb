@@ -174,6 +174,7 @@ class PokeBattle_Battler
             :HUNGERSWITCH,
             # Abilities with undefined behaviour if they were replaced or moved around
             :STYLISH,
+            :FRIENDTOALL,
         ]
 
         if abil
@@ -199,6 +200,7 @@ class PokeBattle_Battler
         # Disallow certain items as 2nd
         if itemCount == 1 && item
             return false if firstItem == item
+            return true if hasActiveAbility?(:KLUMSYKINESIS)
             itemData = GameData::Item.get(item)
             if hasActiveAbility?(:ALLTHATGLITTERS)
                 return false if !firstItemData.is_gem? || itemData.is_gem?
@@ -233,6 +235,19 @@ class PokeBattle_Battler
 
     def itemCountD(uppercase = false)
         return @pokemon.itemCountD(uppercase)
+    end
+
+    def loseableItems
+        losableItems = []
+        items.each do |item|
+            next if unlosableItem?(item)
+            losableItems.push(item)
+        end
+        return losableItems
+    end
+
+    def losableItemCount
+        return loseableItems.length
     end
 
     def firstItem

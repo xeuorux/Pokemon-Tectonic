@@ -587,8 +587,8 @@ module BattleHandlers
         return !ret.nil? ? ret : false
     end
 
-    def self.triggerAbilityOnSwitchOut(ability, battler, endOfBattle)
-        AbilityOnSwitchOut.trigger(ability, battler, endOfBattle)
+    def self.triggerAbilityOnSwitchOut(ability, battler, battle, endOfBattle)
+        AbilityOnSwitchOut.trigger(ability, battler, battle, endOfBattle)
     end
 
     def self.triggerAbilityChangeOnBattlerFainting(ability, battler, fainted, battle)

@@ -803,7 +803,7 @@ Pokemon = HOUNDOOM,35
     AbilityIndex = 0 # Midnight Sun
     Item = EVIOLITE
 Pokemon = SWOOBAT,35
-    AbilityIndex = 0 # Defiant
+    AbilityIndex = 1 # Simple
 Pokemon = DRAKLOAK,36
     AbilityIndex = 1 # Infiltrator
     Item = LUMBERRY
@@ -1349,7 +1349,7 @@ Pokemon = HQWILFISH,35
 #-------------------------------
 [PSYCHIC_M3,Boban]
 Pokemon = SWOOBAT,35
-    AbilityIndex = 0 # Defiant
+    AbilityIndex = 1 # Simple
 Pokemon = LOMBRE,35
     AbilityIndex = 0 # Fiesta
 Pokemon = LUCARIO,35

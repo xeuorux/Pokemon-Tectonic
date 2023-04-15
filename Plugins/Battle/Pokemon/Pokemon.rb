@@ -650,7 +650,7 @@ class Pokemon
 
     def canHaveMultipleItems?(inBattle = false)
       return true if @ability == :STICKYFINGERS && inBattle
-      return %i[ALLTHATGLITTERS BERRYBUNCH FASHIONABLE HERBALIST].include?(@ability)
+      return GameData::Ability::MULTI_ITEM_ABILITIES.include?(@ability)
     end
 
 	  def canHaveItem?(itemCheck = nil, showMessages = false)
@@ -670,7 +670,7 @@ class Pokemon
         return false
       end
 
-      if %i[ALLTHATGLITTERS BERRYBUNCH FASHIONABLE HERBALIST].include?(@ability) && itemSet.length > 2
+      if GameData::Ability::MULTI_ITEM_ABILITIES.include?(@ability) && itemSet.length > 2
         pbMessage(_INTL("#{name} can't hold more than two items!")) if showMessages
         return false
       end
@@ -737,6 +737,9 @@ class Pokemon
           end
           return true
       end
+
+      # Klumsy Kinesis
+      return true if @ability == :KLUMSYKINESIS
     end
 
     def removeInvalidItems

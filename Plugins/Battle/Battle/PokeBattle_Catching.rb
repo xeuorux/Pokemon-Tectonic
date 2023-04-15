@@ -90,7 +90,7 @@ class PokeBattle_Battle
                         # Handle the chosen pokemon leaving battle, if it was in battle
                         if !chosenBattler.nil?
                             chosenBattler.eachActiveAbility do |ability|
-                                BattleHandlers.triggerAbilityOnSwitchOut(ability, chosenBattler, true)
+                                BattleHandlers.triggerAbilityOnSwitchOut(ability, chosenBattler, self, true)
                             end
                         end
 

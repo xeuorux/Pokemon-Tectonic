@@ -33,7 +33,7 @@ class PokeBattle_Battler
     #=============================================================================
     def pbAbilitiesOnSwitchOut
         eachActiveAbility do |ability|
-            BattleHandlers.triggerAbilityOnSwitchOut(ability, self, false)
+            BattleHandlers.triggerAbilityOnSwitchOut(ability, self, @battle, false)
         end
         # Caretaker bonus
         pbRecoverHP(@totalhp / 16.0, false, false, false) if hasTribeBonus?(:CARETAKER)
@@ -168,7 +168,7 @@ class PokeBattle_Battler
     end
 
     #=============================================================================
-    # Ability change
+    # Ability removed
     #=============================================================================
     def pbOnAbilitiesLost(oldAbilities)
         if illusion? && oldAbilities.include?(:ILLUSION)
@@ -188,7 +188,7 @@ class PokeBattle_Battler
         # Check for end of primordial weather
         @battle.pbEndPrimordialWeather
         
-        if items.length > 1 && hasAbility?(GameData::Ability::MULTI_ITEM_ABILITIES)
+        if items.length > 1
             droppedItems = false
             GameData::Ability::MULTI_ITEM_ABILITIES.each do |doubleItemAbility|
                 next unless oldAbilities.include?(doubleItemAbility)
