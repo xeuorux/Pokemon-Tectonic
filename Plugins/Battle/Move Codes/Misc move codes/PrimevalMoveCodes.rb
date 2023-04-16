@@ -25,20 +25,20 @@ module EmpoweredMove
     end
 end
 
-# Empowered Heal Bell
-class PokeBattle_Move_600 < PokeBattle_Move_019
-    include EmpoweredMove
+# # Empowered Heal Bell
+# class PokeBattle_Move_600 < PokeBattle_Move_019
+#     include EmpoweredMove
 
-    def pbEffectGeneral(user)
-        # Double supers here is intentional
-        super
-        super
-        @battle.eachSameSideBattler(user) do |b|
-            b.applyFractionalHealing(1.0 / 2.0)
-        end
-        transformType(user, :NORMAL)
-    end
-end
+#     def pbEffectGeneral(user)
+#         # Double supers here is intentional
+#         super
+#         super
+#         @battle.eachSameSideBattler(user) do |b|
+#             b.applyFractionalHealing(1.0 / 2.0)
+#         end
+#         transformType(user, :NORMAL)
+#     end
+# end
 
 # Empowered Sunshine
 class PokeBattle_Move_601 < PokeBattle_Move_0FF
@@ -568,6 +568,28 @@ class PokeBattle_Move_628 < PokeBattle_Move_549
         summonAvatar(user, :ABRA, _INTL("#{user.pbThis} gathers an new mind!"))
         super
         transformType(user, :PSYCHIC)
+    end
+end
+
+# Empowered Growl
+class PokeBattle_Move_629 < PokeBattle_Move_042
+    include EmpoweredMove
+
+    def pbEffectGeneral(user)
+        super
+        user.tryRaiseStat(:ATTACK, user, move: self, increment: 2)
+        transformType(user, :NORMAL)
+    end
+end
+
+# Empowered Dazzle
+class PokeBattle_Move_630 < PokeBattle_Move_045
+    include EmpoweredMove
+
+    def pbEffectGeneral(user)
+        super
+        user.tryRaiseStat(:SPECIAL_ATTACK, user, move: self, increment: 2)
+        transformType(user, :NORMAL)
     end
 end
 
