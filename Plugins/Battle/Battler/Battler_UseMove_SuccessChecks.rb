@@ -289,7 +289,7 @@ GameData::Move.get(@effects[:GorillaTactics]).name)
         if move.canProtectAgainst? && !protectionIgnoredByAbility
             @battle.pbCommonAnimation(animationName, target) unless animationName.nil?
             @battle.pbDisplay(_INTL("{1} protected {2}!", effectDisplayName, target.pbThis(true))) if showMessages
-            if user.boss?
+            if user.boss? && AVATARS_PIERCE_PROTECT
                 target.damageState.partiallyProtected = true
                 yield if block_given?
                 if showMessages

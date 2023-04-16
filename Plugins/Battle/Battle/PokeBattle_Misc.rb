@@ -104,15 +104,16 @@ class PokeBattle_Battle
                 next if move.damagingMove?
                 next unless move.empoweredMove?
                 next if move.pp < 1
-                pbDisplayBossNarration(_INTL("A great energy rises up from inside {1}!", b.pbThis(true)))
-                b.lastRoundMoved = 0
-                b.pbUseMove([:UseMove, index, move, -1, 0])
-                if b.pbHasAnyStatus? || b.hasLoweredStatStages?
-                    pbCommonAnimation("Refresh")
+                if PRIMEVAL_MOVES_RESET_DEBUFFS && (b.pbHasAnyStatus? || b.hasLoweredStatStages?)
+                    pbAnimation(:REFRESH,b,b)
+                    pbDisplayBossNarration(_INTL("{1} wiped the slate clean.", b.pbThis))
                     b.pbCureStatus
                     b.pbCureStatus
                     b.pbResetLoweredStatStages(true)
                 end
+                pbDisplayBossNarration(_INTL("A great energy rises up from inside {1}!", b.pbThis(true)))
+                b.lastRoundMoved = 0
+                b.pbUseMove([:UseMove, index, move, -1, 0])
                 usedEmpoweredMove = true
             end
             # Swap to post-empowerment moveset
