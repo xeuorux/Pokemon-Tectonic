@@ -241,7 +241,7 @@ class BattleInfoDisplay < SpriteWrapper
 		
 		# Stat stage
 		stage = battler.stages[stat]
-		if stage != 0 && battler.boss?
+		if stage != 0 && battler.boss? && AVATAR_DILUTED_STAT_STAGES
 			stage = (stage/2.0).round(2)
 		end
 		statValuesArray.push(stage)

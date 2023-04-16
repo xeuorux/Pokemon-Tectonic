@@ -456,6 +456,23 @@ GameData::BattleEffect.register_effect(:Battler, {
 })
 
 GameData::BattleEffect.register_effect(:Battler, {
+    :id => :EmpoweredIngrain,
+    :real_name => "Deeply Ingrained",
+    :type => :Integer,
+    :ticks_down => true,
+    :apply_proc => proc do |battle, battler, _value|
+        battle.pbDisplay(_INTL("{1} dug its roots deep into the earth! It can't be moved!", battler.pbThis))
+    end,
+    :eor_proc => proc do |_battle, battler, _value|
+        next unless battler.canHeal?
+        ratio = 1.0 / 4.0
+        ratio *= 1.3 if battler.hasActiveItem?(:BIGROOT)
+        healMessage = _INTL("{1} consumed tons of nutrients with its roots!", battler.pbThis)
+        battler.applyFractionalHealing(ratio, customMessage: healMessage)
+    end,
+})
+
+GameData::BattleEffect.register_effect(:Battler, {
     :id => :Instruct,
     :real_name => "Instruct",
 })

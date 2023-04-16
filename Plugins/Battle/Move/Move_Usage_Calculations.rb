@@ -149,11 +149,11 @@ class PokeBattle_Move
         accuracy = 100.0 * stageMul[accStage].to_f / stageDiv[accStage].to_f
         evasion  = 100.0 * stageMul[evaStage].to_f / stageDiv[evaStage].to_f
         accuracy = (accuracy.to_f * modifiers[:accuracy_multiplier].to_f).round
-        if user.boss?
+        if user.boss? && AVATAR_DILUTED_STAT_STAGES
             accuracy = (accuracy.to_f + 100.0) / 2.0
         end
         evasion  = (evasion.to_f  * modifiers[:evasion_multiplier].to_f).round
-        if target.boss?
+        if target.boss? && AVATAR_DILUTED_STAT_STAGES
             evasion = (evasion.to_f + 100.0) / 2.0
         end
         evasion = 1 if evasion < 1

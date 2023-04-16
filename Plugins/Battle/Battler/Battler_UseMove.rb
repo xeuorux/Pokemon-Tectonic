@@ -472,7 +472,7 @@ class PokeBattle_Battler
                         @battle.scene.pbDamageAnimation(user)
                         upgradedNeedleFur = b.hp < b.totalhp / 2
                         reduction = user.totalhp / 10
-                        reduction /= 4 if user.boss?
+                        reduction /= BOSS_HP_BASED_EFFECT_RESISTANCE if user.boss?
                         reduction *= 2 if upgradedNeedleFur
                         oldHP = user.hp
                         user.pbReduceHP(reduction, false)

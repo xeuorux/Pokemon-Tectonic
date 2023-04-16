@@ -18,7 +18,7 @@ class PokeBattle_Battler
         end
         shiftedStage = stage + 6
         mult = STAGE_MULTIPLIERS[shiftedStage].to_f / STAGE_DIVISORS[shiftedStage].to_f
-        mult = (mult + 1.0) / 2.0 if boss?
+        mult = (mult + 1.0) / 2.0 if boss? && AVATAR_DILUTED_STAT_STAGES
         return mult
     end
 
@@ -105,11 +105,11 @@ class PokeBattle_Battler
         return false if increment <= 0
         # Stat up animation and message
         @battle.pbCommonAnimation("StatUp", self) if showAnim
+        diluted = boss? && AVATAR_DILUTED_STAT_STAGES
         arrStatTexts = [
-            _INTL("{1}'s {2} rose{3}!", pbThis, GameData::Stat.get(stat).name, boss? ? " slightly" : ""),
-            _INTL("{1}'s {2} rose{3}!", pbThis, GameData::Stat.get(stat).name, boss? ? "" : " sharply"),
-            _INTL("{1}'s {2} rose{3}!", pbThis, GameData::Stat.get(stat).name,
-                                    boss? ? " greatly" : " drastically"),
+            _INTL("{1}'s {2} rose{3}!", pbThis, GameData::Stat.get(stat).name, diluted ? " slightly" : ""),
+            _INTL("{1}'s {2} rose{3}!", pbThis, GameData::Stat.get(stat).name, diluted ? "" : " sharply"),
+            _INTL("{1}'s {2} rose{3}!", pbThis, GameData::Stat.get(stat).name, diluted ? " greatly" : " drastically"),
         ]
         @battle.pbDisplay(arrStatTexts[[increment - 1, 2].min])
         # Trigger abilities upon stat gain
@@ -138,23 +138,24 @@ class PokeBattle_Battler
         return false if increment <= 0
         # Stat up animation and message
         @battle.pbCommonAnimation("StatUp", self) if showAnim
+        diluted = boss? && AVATAR_DILUTED_STAT_STAGES
         if user.index == @index
             arrStatTexts = [
                 _INTL("{1}'s {2}{4} raised its {3}!", pbThis, cause, GameData::Stat.get(stat).name,
-                           boss? ? " slightly" : ""),
+                        diluted ? " slightly" : ""),
                 _INTL("{1}'s {2}{4} raised its {3}!", pbThis, cause, GameData::Stat.get(stat).name,
-                        boss? ? "" : " sharply"),
+                        diluted ? "" : " sharply"),
                 _INTL("{1}'s {2}{4} raised its {3}!", pbThis, cause, GameData::Stat.get(stat).name,
-                        boss? ? " greatly" : " drastically"),
+                        diluted ? " greatly" : " drastically"),
             ]
         else
             arrStatTexts = [
                 _INTL("{1}'s {2}{5} raised {3}'s {4}!", user.pbThis, cause, pbThis(true),
-                           GameData::Stat.get(stat).name, boss? ? " slightly" : ""),
+                           GameData::Stat.get(stat).name, diluted ? " slightly" : ""),
                 _INTL("{1}'s {2}{5} raised {3}'s {4}!", user.pbThis, cause, pbThis(true),
-                        GameData::Stat.get(stat).name, boss? ? "" : " sharply"),
+                        GameData::Stat.get(stat).name, diluted ? "" : " sharply"),
                 _INTL("{1}'s {2}{5} raised {3}'s {4}!", user.pbThis, cause, pbThis(true),
-                        GameData::Stat.get(stat).name, boss? ? " greatly" : " drastically"),
+                        GameData::Stat.get(stat).name, diluted ? " greatly" : " drastically"),
             ]
         end
         @battle.pbDisplay(arrStatTexts[[increment - 1, 2].min])
@@ -311,11 +312,11 @@ class PokeBattle_Battler
         trauma = user&.hasActiveAbility?(:TRAUMATIZING)
         @battle.pbShowAbilitySplash(user, :TRAUMATIZING) if trauma
         @battle.pbCommonAnimation("StatDown", self) if showAnim
+        diluted = boss? && AVATAR_DILUTED_STAT_STAGES
         arrStatTexts = [
-            _INTL("{1}'s {2}{3} fell!", pbThis, GameData::Stat.get(stat).name, boss? ? " slightly" : ""),
-            _INTL("{1}'s {2}{3} fell!", pbThis, GameData::Stat.get(stat).name, boss? ? "" : " harshly"),
-            _INTL("{1}'s {2}{3} fell!", pbThis, GameData::Stat.get(stat).name,
-                                    boss? ? " severely" : " badly"),
+            _INTL("{1}'s {2}{3} fell!", pbThis, GameData::Stat.get(stat).name, diluted ? " slightly" : ""),
+            _INTL("{1}'s {2}{3} fell!", pbThis, GameData::Stat.get(stat).name, diluted ? "" : " harshly"),
+            _INTL("{1}'s {2}{3} fell!", pbThis, GameData::Stat.get(stat).name, diluted ? " severely" : " badly"),
         ]
         @battle.pbDisplay(arrStatTexts[[increment - 1, 2].min])
 
@@ -385,23 +386,24 @@ class PokeBattle_Battler
         return false if increment <= 0
         # Stat down animation and message
         @battle.pbCommonAnimation("StatDown", self) if showAnim
+        diluted = boss? && AVATAR_DILUTED_STAT_STAGES
         if user.index == @index
             arrStatTexts = [
                 _INTL("{1}'s {2}{4} lowered its {3}!", pbThis, cause, GameData::Stat.get(stat).name,
-                           boss? ? " slightly" : ""),
+                    diluted ? " slightly" : ""),
                 _INTL("{1}'s {2}{4} lowered its {3}!", pbThis, cause, GameData::Stat.get(stat).name,
-                        boss? ? "" : " harshly"),
+                    diluted ? "" : " harshly"),
                 _INTL("{1}'s {2}{4} lowered its {3}!", pbThis, cause, GameData::Stat.get(stat).name,
-                        boss? ? " severely" : " badly"),
+                    diluted ? " severely" : " badly"),
             ]
         else
             arrStatTexts = [
                 _INTL("{1}'s {2}{5} lowered {3}'s {4}!", user.pbThis, cause, pbThis(true),
-                           GameData::Stat.get(stat).name, boss? ? " slightly" : ""),
+                    GameData::Stat.get(stat).name, diluted ? " slightly" : ""),
                 _INTL("{1}'s {2}{5} lowered {3}'s {4}!", user.pbThis, cause, pbThis(true),
-                        GameData::Stat.get(stat).name, boss? ? "" : " harshly"),
+                    GameData::Stat.get(stat).name, diluted ? "" : " harshly"),
                 _INTL("{1}'s {2}{5} lowered {3}'s {4}!", user.pbThis, cause, pbThis(true),
-                        GameData::Stat.get(stat).name, boss? ? " severely" : " badly"),
+                    GameData::Stat.get(stat).name, diluted ? " severely" : " badly"),
             ]
         end
         @battle.pbDisplay(arrStatTexts[[increment - 1, 2].min])
@@ -622,5 +624,15 @@ showAnim: showAnim, ability: nil, cause: cause)
 
     def pbResetStatStages
         GameData::Stat.each_battle { |s| @stages[s.id] = 0 }
+    end
+    
+    def pbResetLoweredStatStages(showMessage = false)
+        anyReset = false
+        GameData::Stat.each_battle { |s|
+            next unless @stages[s.id] < 0
+            @stages[s.id] = 0
+            anyReset = true
+        }
+        @battle.pbDisplay(_INTL("{1}'s negative stat changes were eliminated!", pbThis)) if showMessage && anyReset
     end
 end

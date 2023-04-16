@@ -467,7 +467,8 @@ immuneTypeRealName))
 
     def sleepDuration(duration = -1)
         duration = 4 if duration <= 0
-        duration = 2 if hasActiveAbility?(:EARLYBIRD) || boss
+        duration = 2 if hasActiveAbility?(:EARLYBIRD)
+        duration -= 1 if boss?
         return duration
     end
 

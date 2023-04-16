@@ -292,7 +292,7 @@
 291,COTTONGUARD,Cotton Guard,038,0,GRASS,Status,0,10,0,User,0,d,"The user protects itself by wrapping its body in soft cotton, drastically raising its Defense stat.",
 292,COTTONSPORE,Cotton Spore,04D,0,GRASS,Status,100,30,0,AllNearFoes,0,bce,"The user releases cotton-like spores that cling to the foe, harshly reducing its Speed stat.",
 293,FORESTSCURSE,Forest's Curse,143,0,GRASS,Status,100,15,0,NearOther,0,bce,"The user puts a forest curse on the target. The target is now Grass type as well.",
-294,INGRAIN,Ingrain,0DB,0,GRASS,Status,0,15,0,User,0,d,"The user lays roots that restore its HP on every turn. Because it is rooted, it can't switch out.",
+294,INGRAIN,Ingrain,0DB,0,GRASS,Status,0,15,0,User,0,d,"The user lays roots that restore 1/8th HP on every turn. Because it is rooted, it can't switch out.",
 295,LEECHSEED,Leech Seed,402,0,GRASS,Status,100,10,0,NearOther,0,bce,"A seed is planted on the target, causing it to become leeched.",
 296,SPIKYSHIELD,Spiky Shield,14C,0,GRASS,Status,0,3,0,User,4,,"Protects the user from attacks. Physical attackers take 1/8th HP damage.",
 297,SPORE,Spore,003,0,GRASS,Status,100,1,0,NearOther,0,bcel,"The user scatters bursts of spores that induce sleep. Only one use per battle.",

@@ -33,7 +33,7 @@ class PokeBattle_Battle
     end
 
     def pbDisplayBossNarration(msg)
-        pbDisplaySlower(msg)
+        pbDisplaySlower(_INTL("\\w[speech avatar]#{msg}"))
     end
 
     def pbShowCommands(msg, commands, canCancel = true)
