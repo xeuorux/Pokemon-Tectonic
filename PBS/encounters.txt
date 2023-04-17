@@ -119,10 +119,11 @@ Special
 #-------------------------------
 [034] # Battle Plaza
 FloweryGrass,20
-    25,AUDINO,31,33
-    25,HAPPINY,31,33
-    25,SKITTY,31,33
-    25,SNUBBULL,31,33
+    20,AUDINO,31,33
+    20,HAPPINY,31,33
+    20,SKITTY,31,33
+    20,SNUBBULL,31,33
+    20,LILLIPUP,31,33
 #-------------------------------
 [035] # Impromptu Lab
 Special,20
@@ -397,10 +398,11 @@ Special,1
 #-------------------------------
 [135] # Nebula Ruins
 Cloud,20
-    25,CLEFFA,20,23
-    25,MINIOR,20,23
-    25,STONJOURNER,20,23
-    25,WOOBAT,20,23
+    20,CLEFFA,20,23
+    20,MINIOR,20,23
+    20,STONJOURNER,20,23
+    20,WOOBAT,20,23
+    20,BLIPBUG,20,23
 #-------------------------------
 [136] # Casaba Villa
 Land,20
@@ -530,7 +532,7 @@ Land,20
     25,LAPRAS,36,38
     25,PINCURCHIN,36,38
 LandSparse,20
-    34,DARUMAKA,36,38
+    34,MAGBY,36,38
     33,KECLEON,36,38
     33,SLUGMA,36,38
 #-------------------------------
@@ -621,10 +623,11 @@ DarkCave,21
 #-------------------------------
 [215] # Tempest Realm
 Cloud,20
-    25,CASTFORM,52,54
-    25,CRYOGONAL,52,54
-    25,MINIOR,52,54
-    25,WAILMER,52,54
+    20,CASTFORM,52,54
+    20,CRYOGONAL,52,54
+    20,MINIOR,52,54
+    20,WAILMER,52,54
+    20,DRIFLOON,52,54
 #-------------------------------
 [216] # Highland Lake
 Land,20
