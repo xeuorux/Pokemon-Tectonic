@@ -121,9 +121,9 @@ Special
 FloweryGrass,20
     20,AUDINO,31,33
     20,HAPPINY,31,33
+    20,LILLIPUP,31,33
     20,SKITTY,31,33
     20,SNUBBULL,31,33
-    20,LILLIPUP,31,33
 #-------------------------------
 [035] # Impromptu Lab
 Special,20
@@ -398,11 +398,11 @@ Special,1
 #-------------------------------
 [135] # Nebula Ruins
 Cloud,20
+    20,BLIPBUG,20,23
     20,CLEFFA,20,23
     20,MINIOR,20,23
     20,STONJOURNER,20,23
     20,WOOBAT,20,23
-    20,BLIPBUG,20,23
 #-------------------------------
 [136] # Casaba Villa
 Land,20
@@ -625,9 +625,9 @@ DarkCave,21
 Cloud,20
     20,CASTFORM,52,54
     20,CRYOGONAL,52,54
+    20,DRIFLOON,52,54
     20,MINIOR,52,54
     20,WAILMER,52,54
-    20,DRIFLOON,52,54
 #-------------------------------
 [216] # Highland Lake
 Land,20
@@ -900,3 +900,13 @@ Land,20
     20,DURANT,53,55
     20,FERROTHORN,53,55
     20,REAVOR,53,55
+#-------------------------------
+[366] # Far Beach
+Land,20
+    25,APPLIN,8,10
+    25,KRABBY,8,10
+    25,NUMEL,8,10
+    6,ORICORIO,8,10
+    6,ORICORIO_1,8,10
+    6,ORICORIO_2,8,10
+    6,ORICORIO_3,8,10
