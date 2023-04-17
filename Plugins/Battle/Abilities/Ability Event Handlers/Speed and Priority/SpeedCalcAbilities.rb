@@ -171,3 +171,9 @@ BattleHandlers::SpeedCalcAbility.add(:LIGHTNINGRIDE,
       next mult * 2.0 if battler.effectActive?(:Charge)
   }
 )
+
+BattleHandlers::SpeedCalcAbility.add(:METEORIC,
+  proc { |ability, battler, mult|
+      next mult * 1.5 if %i[Sandstorm Hail].include?(battler.battle.pbWeather)
+  }
+)

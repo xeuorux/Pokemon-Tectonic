@@ -682,4 +682,4 @@
 907,CHAMBER8KEY,Chamber 8 Key,Chamber 8 Keys,8,0,"The key to the eighth chamber containing a powerful avatar.",0,0,6
 908,STRENGTHHERB,Strength Herb,Strength Herbs,5,4000,"An item to be held by a Pokémon. Boosts the power of a physical move by 30% once per battle.",0,0,0
 909,INTELLECTHERB,Intellect Herb,Intellect Herbs,5,4000,"An item to be held by a Pokémon. Boosts the power of a special move by 30% once per battle.",0,0,0
-910,CRYSTALVEIL,Crystal Veil,Crystal Veils,5,6000,"An item to be held by a Pokemon which changes its type in battle. You can change which type between battles.",0,0,0
+910,CRYSTALVEIL,Crystal Veil,Crystal Veils,5,6000,"An item to be held by a Pokemon. It changes the holder's type in battle. You can change which type between battles.",0,0,0

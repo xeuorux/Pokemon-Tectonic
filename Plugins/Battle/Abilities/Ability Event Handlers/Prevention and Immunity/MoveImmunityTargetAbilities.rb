@@ -38,7 +38,7 @@ BattleHandlers::MoveImmunityTargetAbility.add(:COLDRECEPTION,
 
 BattleHandlers::MoveImmunityTargetAbility.add(:CHALLENGER,
   proc { |ability, user, target, move, type, battle, showMessages, aiChecking|
-      next pbBattleMoveImmunityStatAbility(ability, user, target, move, type, :FIGHTING, :ATTACK, 1, battle, showMessages, aiChecking)
+      next pbBattleMoveImmunityStatAbility(ability, user, target, move, type, :FIGHTING, :SPEED, 1, battle, showMessages, aiChecking)
   }
 )
 
@@ -81,6 +81,12 @@ BattleHandlers::MoveImmunityTargetAbility.add(:GLASSFIRING,
 BattleHandlers::MoveImmunityTargetAbility.add(:VENOMDETTA,
   proc { |ability, user, target, move, type, battle, showMessages, aiChecking|
       next pbBattleMoveImmunityStatAbility(ability, user, target, move, type, :POISON, :ATTACK, 1, battle, showMessages, aiChecking)
+  }
+)
+
+BattleHandlers::MoveImmunityTargetAbility.add(:FOOLHARDY,
+  proc { |ability, user, target, move, type, battle, showMessages, aiChecking|
+      next pbBattleMoveImmunityStatAbility(ability, user, target, move, type, :PSYCHIC, :SPEED, 1, battle, showMessages, aiChecking)
   }
 )
 
