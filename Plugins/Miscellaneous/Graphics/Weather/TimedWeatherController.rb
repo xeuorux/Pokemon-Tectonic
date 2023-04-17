@@ -148,7 +148,8 @@ def weatherRNGByHour(totalHours)
 end
 
 def applyOutdoorEffects()
-    return if !playerIsOutdoors?
+    return unless $PokemonSystem.overworld_weather == 0
+    return unless playerIsOutdoors?
 
     map_id = $game_map.map_id
     weather_metadata = GameData::MapMetadata.try_get(map_id).weather

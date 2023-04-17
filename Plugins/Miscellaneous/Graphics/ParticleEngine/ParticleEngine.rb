@@ -133,6 +133,15 @@ class ParticleEffect_Event
     def z; return ScreenPosHelper.pbScreenZ(@event); end
 
     def update
+        if $PokemonSystem.particle_effects == 1 # particle effects disabled
+            @particles.each do |particle|
+                next if particle.opacity == 0
+                particle.opacity = 0
+                particle.update
+            end
+            return
+        end
+
         # Don't update particle events whose viewports are off screen
         if @viewport && (@viewport.rect.x >= Graphics.width || @viewport.rect.y >= Graphics.height)
             return

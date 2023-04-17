@@ -4,6 +4,7 @@ class PokemonSystem
 	attr_accessor :followers
 	attr_accessor :autosave
 	attr_accessor :particle_effects
+  attr_writer   :overworld_weather
   attr_accessor :screenshake
 	attr_accessor :skip_fades
 	attr_accessor :gendered_look
@@ -36,6 +37,11 @@ class PokemonSystem
     @sevolume = value
   end
 
+  def overworld_weather
+    @overworld_weather = 0 unless @overworld_weather
+    return @overworld_weather
+  end
+
   def initialize
     @textspeed   		          = $DEBUG ? 4 : 2 # Text speed (0=slow, 1=normal, 2=fast, 3=rapid, 4=instant)
     @battlescene 		          = 1 # Battle effects (animations) (0=on, 1=fast, 2=off)
@@ -54,6 +60,7 @@ class PokemonSystem
     @autosave	 		            = 0	# Autosave enabled (0=true, 1=false)
     @color_shifts             = 0 # (0=true, 1=false)
     @particle_effects 	      = 0 # (0=true, 1=false)
+    @overworld_weather        = 0 # (0=true, 1=false)
     @screenshake              = 0 # (0=true, 1=false)
     @skip_fades 		          = 1 # (0=true, 1=false)
     @gendered_look 		        = 0 # (0 = Masc, 1 = Fem, 2 = Andro)
@@ -226,6 +233,17 @@ class PokemonOption_Scene
         proc { $PokemonSystem.screenshake },
         proc { |value|
             $PokemonSystem.screenshake = value
+        }
+      ),
+      EnumOption.new(_INTL("World Weather (Adv.)"),[_INTL("On"),_INTL("Off")],
+        proc { $PokemonSystem.overworld_weather },
+        proc { |value|
+            $PokemonSystem.overworld_weather = value
+            if value == 0
+              applyOutdoorEffects
+            else
+              $game_screen.resetWeather
+            end
         }
       ),
       EnumOption.new(_INTL("Look"),[_INTL("M"),_INTL("F"), _INTL("A")],
