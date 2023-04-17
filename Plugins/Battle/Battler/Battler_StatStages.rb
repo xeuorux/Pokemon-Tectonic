@@ -17,8 +17,8 @@ class PokeBattle_Battler
     # Calculate stats based on stat stages.
     #=============================================================================
     STAT_STAGE_BOUND = 12
-    STAGE_MULTIPLIERS = [2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 3, 3.5, 4, 4.5, 5, 5.5, 6, 6.5, 7, 7.5, 8].freeze
-    STAGE_DIVISORS    = [8, 7.5, 7, 6.5, 6, 5.5, 5, 4.5, 4, 3.5, 3, 2.5, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2].freeze
+    STAGE_MULTIPLIERS = [2, 2,   2, 2,   2, 2,   2, 2,   2, 2,   2, 2,   2, 2.5, 3, 3.5, 4, 4.5, 5, 5.5, 6, 6.5, 7, 7.5, 8].freeze
+    STAGE_DIVISORS    = [8, 7.5, 7, 6.5, 6, 5.5, 5, 4.5, 4, 3.5, 3, 2.5, 2, 2,   2, 2,   2, 2,   2, 2,   2, 2,   2, 2,   2].freeze
 
     def statMultiplierAtStage(stage)
         if stage < -STAT_STAGE_BOUND || stage > STAT_STAGE_BOUND
