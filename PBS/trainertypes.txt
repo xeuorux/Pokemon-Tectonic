@@ -287,3 +287,4 @@
 414,ANOTHERPOSSIBLETAMARIND,Another Possible,80,,,,Female,,,[]
 415,ANOTHERPOSSIBLEALESSA,Another Possible,80,,,,Female,,,[]
 416,SHADOWMAVIS,Shadow,80,,,,Female,,,[]
+417,ANCIENTMAKYAN,Ancient Makyan,0,,,,Mixed,,,[]

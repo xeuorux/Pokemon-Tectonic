@@ -5439,3 +5439,23 @@ Pokemon = PTEROFLYTE,58
 Pokemon = FLORGES,57
     AbilityIndex = 0 # Clover Song
     Item = ORANBERRY
+#-------------------------------
+[ANCIENTMAKYAN,Chestibor]
+Pokemon = SHIINOTIC,60
+    AbilityIndex = 1 # Fascinate
+Pokemon = MTANGROWTH,60
+    AbilityIndex = 0 # Petrifying
+Pokemon = MFURRET,60
+    AbilityIndex = 0 # Soul Read
+Pokemon = ARCANINE,60
+    AbilityIndex = 0 # Intimidate
+#-------------------------------
+[ANCIENTMAKYAN,Dobromil]
+Pokemon = MSEAKING,60
+    AbilityIndex = 0 # Irrefutable
+Pokemon = VILEPLUME,60
+    AbilityIndex = 0 # Stench
+Pokemon = QUAGSIRE,60
+    AbilityIndex = 0 # Unaware
+Pokemon = MBEAUTIFLY,60
+    AbilityIndex = 1 # Mental Block
