@@ -17,6 +17,7 @@ class PokeBattle_Battler
             ret = [@type1]
             ret.push(@type2) if @type2 != @type1
         end
+        ret = [pkmn.itemTypeChosen] if hasItem?(:CRYSTALVEIL)
         # Burn Up erases the Fire-type.
         ret.delete(:FIRE) if effectActive?(:BurnUp)
         # Cold Conversion erases the Ice-type.

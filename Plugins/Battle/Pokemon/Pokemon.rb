@@ -645,6 +645,7 @@ class Pokemon
     def canSetItemType?
         return true if hasItem?(:MEMORYSET)
         return true if hasItem?(:PRISMATICPLATE)
+        return true if hasItem?(:CRYSTALVEIL)
         return false
     end
 
@@ -662,6 +663,10 @@ class Pokemon
     end
 
     def legalItems?(itemSet, showMessages = false)
+      if itemSet.include?(:CRYSTALVEIL) && hasAbility?(:WONDERGUARD)
+        pbMessage(_INTL("#{name} can't hold a #{getItemName(:CRYSTALVEIL)}!")) if showMessages
+        return false
+      end
       return true unless itemSet.length > 1
 
       # Item set contains duplicates
