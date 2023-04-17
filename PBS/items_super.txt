@@ -13,7 +13,7 @@
 2012,ROSELIFEAST,Roseli Feast,Roseli Feasts,5,0,"Halves the damage from one supereffective Fairy-type attack. Holder heals 1/16th HP each turn.",0,0,5
 2013,OCCAFEAST,Occa Feast,Occa Feasts,5,0,"Halves the damage from one supereffective Fire-type attack. Holder heals 1/16th HP each turn.",0,0,5
 2014,RINDOFEAST,Rindo Feast,Rindo Feasts,5,0,"Halves the damage from one supereffective Ground-type attack. Holder heals 1/16th HP each turn.",0,0,5
-2015,LUNUSBERRY,Lunus Berry,Lunus Berries,5,0,"Held to recover from a status problem once per battle. Then, all of the holder's stats are raised.",0,0,5
+2015,LUNUSBERRY,Lunus Berry,Lunus Berries,5,0,"Held to recover from a status problem once per battle. Then, all of the holder's stats are raised by 2 stages.",0,0,5
 2016,ZALAKABERRY,Zalaka Berry,Zalaka Berries,5,0,"If held by a Pokémon which goes below 50% health, it maximizes its Speed stat.",0,0,5
 2017,LUCENTGEM,Lucent Gem,Lucent Gems,5,0,"A brilliant gem. Boosts the power of an attacking move by 50% once per battle.",0,0,10
 2018,NORMALRING,Normal Ring,Normal Rings,5,0,"Boosts the power of a Normal move by 50% once per battle. Holder heals 1/16th HP each round.",0,0,10

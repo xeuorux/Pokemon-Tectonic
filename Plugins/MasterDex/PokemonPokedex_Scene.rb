@@ -532,13 +532,22 @@ class PokemonPokedex_Scene
 					speciesEdited += 1
 				end
 			elsif tutorActionSelection == 1
-				echoln("Deleting #{actualMoveID} from tutor movesets:")
+				echoln("Deleting #{actualMoveID} from tutor/line movesets:")
 				speciesToEdit.each do |species|
 					speciesData = GameData::Species.get(species)
-					next if !speciesData.tutor_moves.include?(actualMoveID)
-					speciesData.tutor_moves.delete(actualMoveID)
-					echoln(species)
-					speciesEdited += 1
+					edited = false
+					if speciesData.tutor_moves.include?(actualMoveID)
+						speciesData.tutor_moves.delete(actualMoveID)
+						edited = true
+					end
+					if speciesData.egg_moves.include?(actualMoveID)
+						speciesData.egg_moves.delete(actualMoveID)
+						edited = true
+					end
+					if edited
+						echoln(species)
+						speciesEdited += 1
+					end
 				end
 			elsif tutorActionSelection == 2
 				echoln("Replacing #{actualMoveID} in tutor movesets with #{replacementActualMoveID}:")

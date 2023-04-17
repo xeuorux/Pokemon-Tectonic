@@ -46,7 +46,7 @@ class PokeBattle_Move_601 < PokeBattle_Move_0FF
 
     def pbEffectGeneral(user)
         super
-        user.pbRaiseMultipleStatStages([:ATTACK, 1, :SPECIAL_ATTACK, 1], user, move: self)
+        user.pbRaiseMultipleStatStages(ATTACKING_STATS_1, user, move: self)
         transformType(user, :FIRE)
     end
 end
@@ -146,7 +146,7 @@ class PokeBattle_Move_609 < PokeBattle_Move_02C
     include EmpoweredMove
 
     def pbEffectGeneral(user)
-        user.tryRaiseStat(:ACCURACY, user, increment: 3, move: self)
+        user.pbMaximizeStatStage(:ACCURACY, user, move: self)
         super
         transformType(user, :PSYCHIC)
     end
@@ -172,12 +172,12 @@ class PokeBattle_Move_60B < PokeBattle_Move_101
 
     def pbEffectGeneral(user)
         super
-        user.pbRaiseMultipleStatStages([:DEFENSE, 1, :SPECIAL_DEFENSE, 1], user, move: self)
+        user.pbRaiseMultipleStatStages(DEFENDING_STATS_1, user, move: self)
         transformType(user, :ROCK)
     end
 end
 
-# Empowered Curse
+# Empowered Cursed Oath
 class PokeBattle_Move_60C < PokeBattle_Move
     include EmpoweredMove
 
@@ -216,7 +216,7 @@ class PokeBattle_Move_60E < PokeBattle_Move_0B7
 
     def pbEffectAgainstTarget(user, target)
         target.applyEffect(:Torment)
-        target.pbLowerMultipleStatStages([:ATTACK, 1, :SPECIAL_ATTACK, 1], user, move: self)
+        target.pbLowerMultipleStatStages(ATTACKING_STATS_1, user, move: self)
     end
 end
 
@@ -236,7 +236,7 @@ class PokeBattle_Move_610 < PokeBattle_Move_51A
 
     def pbEffectGeneral(user)
         super
-        user.pbRaiseMultipleStatStages([:ATTACK, 1, :SPECIAL_ATTACK, 1], user, move: self)
+        user.pbRaiseMultipleStatStages(ATTACKING_STATS_1, user, move: self)
         transformType(user, :FAIRY)
     end
 end
@@ -371,7 +371,7 @@ class PokeBattle_Move_618 < PokeBattle_Move_09E
         super
 
         @battle.eachSameSideBattler(user) do |b|
-            b.pbRaiseMultipleStatStages([:DEFENSE, 1, :SPECIAL_DEFENSE, 1], user, move: self)
+            b.pbRaiseMultipleStatStages(DEFENDING_STATS_1, user, move: self)
         end
 
         transformType(user, :FAIRY)
@@ -628,7 +628,7 @@ class PokeBattle_Move_641 < PokeBattle_Move_0FB
 end
 
 # Empowered Metal Claw
-class PokeBattle_Move_642 < PokeBattle_Move_01C
+class PokeBattle_Move_642 < PokeBattle_Move_5D8
     include EmpoweredMove
 
     def multiHitMove?; return true; end
@@ -662,7 +662,7 @@ class PokeBattle_Move_644 < PokeBattle_TargetStatDownMove
 
     def initialize(battle, move)
         super
-        @statDown = [:DEFENSE, 3]
+        @statDown = [:DEFENSE, 5]
     end
 end
 

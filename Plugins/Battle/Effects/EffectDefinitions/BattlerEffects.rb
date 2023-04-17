@@ -1266,7 +1266,7 @@ GameData::BattleEffect.register_effect(:Battler, {
     end,
     :eor_proc => proc do |battle, battler, _value|
         octouser = battle.battlers[battler.effects[:OctolockUser]]
-        battler.pbLowerMultipleStatStages([:DEFENSE, 1, :SPECIAL_DEFENSE, 1], octouser)
+        battler.pbLowerMultipleStatStages(DEFENDING_STATS_2, octouser)
     end,
     :sub_effects => [:OctolockUser],
     :disable_proc => proc do |battle, battler|
@@ -1613,8 +1613,8 @@ GameData::BattleEffect.register_effect(:Battler, {
         battle.pbDisplay(_INTL("{1} began eroding!", battler.pbThis))
     end,
     :eor_proc => proc do |_battle, battler, _value|
-        battler.pbLowerMultipleStatStages([:DEFENSE, 1, :SPECIAL_DEFENSE, 1], battler)
-        battler.pbRaiseMultipleStatStages([:ATTACK, 1, :SPECIAL_ATTACK, 1], battler)
+        battler.pbLowerMultipleStatStages(DEFENDING_STATS_1, battler)
+        battler.pbRaiseMultipleStatStages(ATTACKING_STATS_1, battler)
         battler.pbItemStatRestoreCheck
     end,
 })
@@ -1687,7 +1687,7 @@ GameData::BattleEffect.register_effect(:Battler, {
     :resets_eor	=> true,
     :protection_info => {
         :hit_proc => proc do |user, _target, move, _battle|
-            user.tryLowerStat(:ATTACK, user, increment: 1) if move.physicalMove?
+            user.tryLowerStat(:ATTACK, user, increment: 2) if move.physicalMove?
         end,
     },
 })
@@ -1698,7 +1698,7 @@ GameData::BattleEffect.register_effect(:Battler, {
     :resets_eor	=> true,
     :protection_info => {
         :hit_proc => proc do |user, _target, move, _battle|
-            user.tryLowerStat(:SPECIAL_ATTACK, user, increment: 1) if move.specialMove?
+            user.tryLowerStat(:SPECIAL_ATTACK, user, increment: 2) if move.specialMove?
         end,
     },
 })
@@ -1709,7 +1709,7 @@ GameData::BattleEffect.register_effect(:Battler, {
     :resets_eor	=> true,
     :protection_info => {
         :hit_proc => proc do |user, _target, move, _battle|
-            user.tryLowerStat(:DEFENSE, user, increment: 2) if move.physicalMove?
+            user.tryLowerStat(:DEFENSE, user, increment: 4) if move.physicalMove?
         end,
     },
 })
@@ -1720,7 +1720,7 @@ GameData::BattleEffect.register_effect(:Battler, {
     :resets_eor	=> true,
     :protection_info => {
         :hit_proc => proc do |user, _target, move, _battle|
-            user.tryLowerStat(:SPECIAL_DEFENSE, user, increment: 2) if move.specialMove?
+            user.tryLowerStat(:SPECIAL_DEFENSE, user, increment: 4) if move.specialMove?
         end,
     },
 })

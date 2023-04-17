@@ -622,7 +622,7 @@ class PokeBattle_Battler
     end
 
     def addAbility(newAbility,showcase = false)
-        newAbility = GameData::Ability.try_get(value).id
+        newAbility = GameData::Ability.try_get(newAbility).id
         @ability_ids.push(newAbility)
         @abilityChanged = true
 

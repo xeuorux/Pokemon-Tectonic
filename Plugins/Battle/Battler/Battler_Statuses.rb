@@ -401,7 +401,7 @@ immuneTypeRealName))
             @battle.eachBattler do |b|
                 next if b.nil?
                 next unless b.hasActiveAbility?(:DREAMWEAVER)
-                b.tryRaiseStat(:SPECIAL_ATTACK, b, ability: :DREAMWEAVER)
+                b.tryRaiseStat(:SPECIAL_ATTACK, b, ability: :DREAMWEAVER, increment: 2)
             end
         end
         # Form change check
@@ -670,7 +670,7 @@ pbThis(true)))
             next unless oldStatus == :SLEEP
             @battle.eachOtherSideBattler(@index) do |b|
                 if b.hasActiveAbility?(:LINGERINGDAZE)
-                    pbLowerMultipleStatStages([:ATTACK, 2, :SPECIAL_ATTACK, 2], b, ability: :LINGERINGDAZE)
+                    pbLowerMultipleStatStages(ALL_STATS_2, b, ability: :LINGERINGDAZE)
                 end
             end
         end

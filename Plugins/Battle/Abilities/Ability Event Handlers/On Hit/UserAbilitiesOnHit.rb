@@ -185,11 +185,11 @@ BattleHandlers::UserAbilityOnHit.add(:RENDINGCLAWS,
     if aiChecking
       ret = 0
       aiNumHits.times do |i|
-          ret += getMultiStatDownEffectScore([:ATTACK,2,:SPECIAL_ATTACK,2], target, user, i)
+          ret += getMultiStatDownEffectScore(ALL_STATS_1, target, user, i)
       end
       next ret
     end
-    target.pbLowerMultipleStatStages([:ATTACK,2,:SPECIAL_ATTACK,2], user, ability: ability)
+    target.pbLowerMultipleStatStages(ALL_STATS_1, user, ability: ability)
   }
 )
 

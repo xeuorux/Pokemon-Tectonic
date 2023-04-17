@@ -23,31 +23,31 @@ BattleHandlers::HPHealItem.add(:BERRYJUICE,
 
 BattleHandlers::HPHealItem.add(:GANLONBERRY,
   proc { |item, battler, battle, forced, filchedFrom|
-      next pbBattleStatIncreasingBerry(battler, battle, item, forced, :DEFENSE, 1, true, filchedFrom)
+      next pbBattleStatIncreasingBerry(battler, battle, item, forced, :DEFENSE, 2, true, filchedFrom)
   }
 )
 
 BattleHandlers::HPHealItem.add(:APICOTBERRY,
   proc { |item, battler, battle, forced, filchedFrom|
-      next pbBattleStatIncreasingBerry(battler, battle, item, forced, :SPECIAL_DEFENSE, 1, true, filchedFrom)
+      next pbBattleStatIncreasingBerry(battler, battle, item, forced, :SPECIAL_DEFENSE, 2, true, filchedFrom)
   }
 )
 
 BattleHandlers::HPHealItem.add(:LIECHIBERRY,
   proc { |item, battler, battle, forced, filchedFrom|
-      next pbBattleStatIncreasingBerry(battler, battle, item, forced, :ATTACK, 1, true, filchedFrom)
+      next pbBattleStatIncreasingBerry(battler, battle, item, forced, :ATTACK, 2, true, filchedFrom)
   }
 )
 
 BattleHandlers::HPHealItem.add(:PETAYABERRY,
   proc { |item, battler, battle, forced, filchedFrom|
-      next pbBattleStatIncreasingBerry(battler, battle, item, forced, :SPECIAL_ATTACK, 1, true, filchedFrom)
+      next pbBattleStatIncreasingBerry(battler, battle, item, forced, :SPECIAL_ATTACK, 2, true, filchedFrom)
   }
 )
 
 BattleHandlers::HPHealItem.add(:SALACBERRY,
   proc { |item, battler, battle, forced, filchedFrom|
-      next pbBattleStatIncreasingBerry(battler, battle, item, forced, :SPEED, 1, true, filchedFrom)
+      next pbBattleStatIncreasingBerry(battler, battle, item, forced, :SPEED, 2, true, filchedFrom)
   }
 )
 
@@ -114,6 +114,6 @@ BattleHandlers::HPHealItem.add(:STARFBERRY,
       GameData::Stat.each_main_battle { |s| stats.push(s.id) if battler.pbCanRaiseStatStage?(s.id, battler) }
       next false if stats.length == 0
       stat = stats[battle.pbRandom(stats.length)]
-      next pbBattleStatIncreasingBerry(battler, battle, item, forced, stat, 2, true, filchedFrom)
+      next pbBattleStatIncreasingBerry(battler, battle, item, forced, stat, 3, true, filchedFrom)
   }
 )

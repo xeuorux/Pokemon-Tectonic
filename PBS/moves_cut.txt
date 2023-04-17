@@ -98,3 +98,18 @@
 4097,ATTACKORDER,Attack Order,000,90,BUG,Physical,100,12,0,NearOther,0,befh,"The user calls out its underlings to pummel the target. Critical hits land more easily.",
 4098,BREACH,Breach,174,90,WATER,Physical,100,10,0,NearOther,2,abef,"Only works on the first turn the user is in battle. This move always goes first.",DIVE
 4099,PREYMARK,Prey Mark,402,60,BUG,Physical,100,15,100,NearOther,0,abef,"The user marks the target as eternal prey, leeching it.",MEANLOOK
+4100,WITHDRAW,Withdraw,01D,0,WATER,Status,0,30,0,User,0,d,"The user withdraws its body into its hard shell, raising its Defense stat.",
+4101,BARRIER,Barrier,02F,0,PSYCHIC,Status,0,15,0,User,0,d,"The user throws up a sturdy wall that sharply raises its Defense stat.",
+4102,ACIDARMOR,Acid Armor,02F,0,POISON,Status,0,15,0,User,0,d,"The user alters its cellular structure to liquefy itself, sharply raising its Defense stat.",
+4103,NASTYPLOT,Nasty Plot,032,0,DARK,Status,0,15,0,User,0,d,"The user stimulates its brain by thinking bad thoughts. It raises the user's Sp. Atk by 4 stages.",
+4104,GEARUP,Gear Up,15C,0,STEEL,Status,0,15,0,UserAndAllies,0,d,"The user engages its gears to raise the Attack and Sp. Atk of allies with the Plus or Minus Ability.",
+4105,ROTOTILLER,Rototiller,13E,0,GROUND,Status,0,10,0,UserAndAllies,0,,"The user tills the soil to encourage plant growth. This raises the Attack and Sp. Atk of Grass type allies.",
+4106,FLOWERSHIELD,Flower Shield,13F,0,FAIRY,Status,0,10,0,UserAndAllies,0,,"The user raises the Defense and Sp. Def of all Grass-type Pokémon on its side.",
+4107,CURSE,Curse,10D,0,GHOST,Status,0,10,0,User,0,,"Curses the target if user is Ghost type. Otherwise, lowers Spe. and raises Atk. and Def.",
+4108,TAILWHIP,Tail Whip,043,0,NORMAL,Status,100,25,0,AllNearFoes,0,bce,"The user wags its tail cutely, making opposing Pokémon less wary and lowering their Defense stat.",
+4109,ENERGYBALL,Energy Ball,046,90,GRASS,Special,100,10,10,NearOther,0,befn,"The user draws power from nature and fires it at the target. It has a 10% chance to lower Sp. Def.",
+4110,GRAVAPPLE,Grav Apple,185,80,GRASS,Physical,100,10,100,NearOther,0,bef,"Inflicts damage by dropping an apple from high above. Lowers the target's Defense stat.",
+4111,APPLEACID,Apple Acid,046,80,GRASS,Special,100,10,100,NearOther,0,bef,"Attacks with an acidic liquid created from tart apples. Lowers the target's Sp. Def stat.",
+4112,SWEETSCENT,Sweet Scent,048,0,GRASS,Status,100,15,0,AllNearFoes,0,bce,"A sweet scent that lowers the foe's evasiveness. It also lures wild Pokémon if used in grass, etc.",
+4113,PLAYNICE,Play Nice,139,0,FAIRY,Status,0,15,0,NearOther,0,ce,"The user and target become friends. The target loses its will to fight, lowering its Attack stat.",
+4114,CAPTIVATE,Captivate,13D,0,FAIRY,Status,100,15,0,AllNearFoes,0,bce,"The target is charmed into harshly lowering its Sp. Atk stat.",

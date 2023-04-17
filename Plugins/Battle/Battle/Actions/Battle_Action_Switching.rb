@@ -467,7 +467,7 @@ class PokeBattle_Battle
                 # Sticky Web
                 if battler.pbOwnSide.effectActive?(:StickyWeb)
                     pbDisplay(_INTL("{1} was caught in a sticky web!", battler.pbThis))
-                    battler.pbItemStatRestoreCheck if battler.tryLowerStat(:SPEED, nil)
+                    battler.pbItemStatRestoreCheck if battler.tryLowerStat(:SPEED, nil, increment: 2)
                 end
             end
         end

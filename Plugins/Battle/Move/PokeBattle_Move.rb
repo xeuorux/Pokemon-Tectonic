@@ -150,6 +150,7 @@ class PokeBattle_Move
     def nonLethal?(user,_target); return false; end   # For False Swipe
     def switchOutMove?; return false; end
     def forceSwitchMove?; return false; end
+    def hazardMove?; return false; end
   
     def ignoresSubstitute?(user)   # user is the Pokémon using this move
       return true if soundMove?

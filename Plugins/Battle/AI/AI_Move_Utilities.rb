@@ -94,12 +94,11 @@ class PokeBattle_AI
         modifiers[:evasion_multiplier]  = 1.0
         pbCalcAccuracyModifiers(user, target, modifiers, move, type)
         # Calculation
-        accStage = [[modifiers[:accuracy_stage], -6].max, 6].min + 6
-        evaStage = [[modifiers[:evasion_stage], -6].max, 6].min + 6
-        stageMul = [3, 3, 3, 3, 3, 3, 3, 4, 5, 6, 7, 8, 9]
-        stageDiv = [9, 8, 7, 6, 5, 4, 3, 3, 3, 3, 3, 3, 3]
-        accuracy = 100.0 * stageMul[accStage] / stageDiv[accStage]
-        evasion  = 100.0 * stageMul[evaStage] / stageDiv[evaStage]
+        statBoundary = PokeBattle_Battler::STAT_STAGE_BOUND
+        accStage = modifiers[:accuracy_stage].clamp(-statBoundary, statBoundary)
+        evaStage = modifiers[:evasion_stage].clamp(-statBoundary, statBoundary)
+        accuracy = 100.0 * user.statMultiplierAtStage(accStage)
+        evasion  = 100.0 * user.statMultiplierAtStage(evaStage)
         accuracy = (accuracy * modifiers[:accuracy_multiplier]).round
         evasion  = (evasion  * modifiers[:evasion_multiplier]).round
         evasion = 1 if evasion < 1

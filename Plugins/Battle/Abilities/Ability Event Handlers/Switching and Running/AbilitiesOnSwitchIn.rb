@@ -176,7 +176,7 @@ BattleHandlers::AbilityOnSwitchIn.add(:DOWNLOAD,
           oSpDef += b.spdef
       end
       stat = (oDef < oSpDef) ? :ATTACK : :SPECIAL_ATTACK
-      battler.tryRaiseStat(stat, battler, ability: ability)
+      battler.tryRaiseStat(stat, battler, ability: ability, increment: 2)
   }
 )
 
@@ -251,13 +251,12 @@ BattleHandlers::AbilityOnSwitchIn.add(:INTIMIDATE,
       battle.eachOtherSideBattler(battler.index) do |b|
         next unless b.near?(battler)
         next if b.blockAteAbilities(battler, ability)
-        next unless b.tryLowerStat(:ATTACK, battler)
+        next unless b.tryLowerStat(:ATTACK, battler, increment: 2)
         b.pbItemOnIntimidatedCheck
       end
       battle.pbHideAbilitySplash(battler)
   }
 )
-
 
 BattleHandlers::AbilityOnSwitchIn.add(:FASCINATE,
   proc { |ability, battler, battle|
@@ -265,7 +264,7 @@ BattleHandlers::AbilityOnSwitchIn.add(:FASCINATE,
       battle.eachOtherSideBattler(battler.index) do |b|
         next unless b.near?(battler)
         next if b.blockAteAbilities(battler, ability)
-        next unless b.tryLowerStat(:SPECIAL_ATTACK, battler)
+        next unless b.tryLowerStat(:SPECIAL_ATTACK, battler, increment: 2)
         b.pbItemOnIntimidatedCheck
       end
       battle.pbHideAbilitySplash(battler)
@@ -278,7 +277,7 @@ BattleHandlers::AbilityOnSwitchIn.add(:FRUSTRATE,
       battle.eachOtherSideBattler(battler.index) do |b|
           next unless b.near?(battler)
           next if b.blockAteAbilities(battler, ability)
-          next unless b.tryLowerStat(:SPEED, battler)
+          next unless b.tryLowerStat(:SPEED, battler, increment: 2)
           b.pbItemOnIntimidatedCheck
       end
       battle.pbHideAbilitySplash(battler)
@@ -432,7 +431,7 @@ BattleHandlers::AbilityOnSwitchIn.add(:DRAMATICLIGHTING,
       battle.pbShowAbilitySplash(battler, ability)
       battle.eachOtherSideBattler(battler.index) do |b|
           next unless b.near?(battler)
-          b.pbLowerMultipleStatStages([:ATTACK,1,:SPECIAL_ATTACK,1],battler,showFailMsg: true)
+          b.pbLowerMultipleStatStages([:ATTACK,2,:SPECIAL_ATTACK,2],battler,showFailMsg: true)
       end
       battle.pbHideAbilitySplash(battler)
   }
@@ -444,7 +443,7 @@ BattleHandlers::AbilityOnSwitchIn.add(:CRAGTERROR,
       battle.pbShowAbilitySplash(battler, ability)
       battle.eachOtherSideBattler(battler.index) do |b|
           next unless b.near?(battler)
-          b.pbLowerMultipleStatStages([:ATTACK,1,:SPECIAL_ATTACK,1],battler,showFailMsg: true)
+          b.pbLowerMultipleStatStages([:ATTACK,2,:SPECIAL_ATTACK,2],battler,showFailMsg: true)
       end
       battle.pbHideAbilitySplash(battler)
   }
@@ -541,7 +540,7 @@ BattleHandlers::AbilityOnSwitchIn.add(:FREERIDE,
       next unless battler.hasAlly?
       battle.pbShowAbilitySplash(battler, ability)
       battler.eachAlly do |b|
-          b.tryRaiseStat(:SPEED, battler)
+          b.tryRaiseStat(:SPEED, battler, increment: 2)
       end
       battle.pbHideAbilitySplash(battler)
   }

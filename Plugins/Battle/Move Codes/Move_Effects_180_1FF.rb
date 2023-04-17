@@ -51,7 +51,7 @@ class PokeBattle_Move_182 < PokeBattle_Move
 end
 
 #===============================================================================
-# Consumes berry and raises the user's Defense by 2 stages. (Stuff Cheeks)
+# Consumes berry and raises the user's Defense and Sp. Def by 3 stages. (Stuff Cheeks)
 #===============================================================================
 class PokeBattle_Move_183 < PokeBattle_Move
     def pbMoveFailed?(user, _targets, show_message)
@@ -61,7 +61,7 @@ class PokeBattle_Move_183 < PokeBattle_Move
     end
 
     def pbEffectGeneral(user)
-        user.tryRaiseStat(:DEFENSE, user, increment: 2, move: self)
+        user.pbRaiseMultipleStatStages([:DEFENSE, 3, :SPECIAL_DEFENSE, 3], user, move: self)
         user.eachItem do |item|
             next unless GameData::Item.get(item).is_berry?
             user.pbHeldItemTriggerCheck(item, false)
@@ -70,7 +70,7 @@ class PokeBattle_Move_183 < PokeBattle_Move
     end
 
     def getEffectScore(user, target)
-        score = getMultiStatUpEffectScore([:DEFENSE, 2], user, target)
+        score = getMultiStatUpEffectScore([:DEFENSE, 3, :SPECIAL_DEFENSE, 3], user, target)
         user.eachItem do |item|
             next unless GameData::Item.get(item).is_berry?
             score += 40
@@ -120,23 +120,13 @@ class PokeBattle_Move_184 < PokeBattle_Move
 end
 
 #===============================================================================
-# Decreases Opponent's Defense by 1 stage. Does Double Damage under gravity
-# (Grav Apple)
+# (Not currently used)
 #===============================================================================
-class PokeBattle_Move_185 < PokeBattle_TargetStatDownMove
-    def initialize(battle, move)
-        super
-        @statDown = [:DEFENSE, 1]
-    end
-
-    def pbBaseDamage(baseDmg, _user, _target)
-        baseDmg *= 1.5 if @battle.field.effectActive?(:Gravity)
-        return baseDmg
-    end
+class PokeBattle_Move_185 < PokeBattle_Move
 end
 
 #===============================================================================
-# Decrease 1 stage of speed and weakens target to fire moves. (Tar Shot)
+# Decrease 3 stages of speed and weakens target to fire moves. (Tar Shot)
 #===============================================================================
 class PokeBattle_Move_186 < PokeBattle_Move
     def pbFailsAgainstTarget?(_user, target, show_message)
@@ -148,14 +138,14 @@ class PokeBattle_Move_186 < PokeBattle_Move
     end
 
     def pbEffectAgainstTarget(user, target)
-        target.tryLowerStat(:SPEED, user, move: self)
+        target.tryLowerStat(:SPEED, user, move: self, increment: 3)
         target.applyEffect(:TarShot)
     end
 
     def getEffectScore(user, target)
         score = 0
-        score += getMultiStatDownEffectScore([:SPEED, 1], user, target)
-        score += 60 unless target.effectActive?(:TarShot)
+        score += getMultiStatDownEffectScore([:SPEED, 3], user, target)
+        score += 50 unless target.effectActive?(:TarShot)
         return score
     end
 end
@@ -249,12 +239,12 @@ class PokeBattle_Move_18D < PokeBattle_Move
 end
 
 #===============================================================================
-# Boosts Targets' Attack and Defense (Coaching)
+# Boosts Targets' Attack and Defense by 2 stages each. (Coaching)
 #===============================================================================
 class PokeBattle_Move_18E < PokeBattle_TargetMultiStatUpMove
     def initialize(battle, move)
         super
-        @statUp = [:ATTACK, 1, :DEFENSE, 1]
+        @statUp = [:ATTACK, 2, :DEFENSE, 2]
     end
 end
 
@@ -305,7 +295,7 @@ class PokeBattle_Move_191 < PokeBattle_TwoTurnMove
     end
 
     def pbChargingTurnEffect(user, _target)
-        user.tryRaiseStat(:SPECIAL_ATTACK, user, move: self)
+        user.tryRaiseStat(:SPECIAL_ATTACK, user, move: self, increment: 3)
     end
 end
 
@@ -326,20 +316,9 @@ class PokeBattle_Move_192 < PokeBattle_Move
 end
 
 #===============================================================================
-# Reduces Defense and Raises Speed after all hits (Scale Shot)
+# (Not currently used.)
 #===============================================================================
-class PokeBattle_Move_193 < PokeBattle_Move_0C0
-    def pbEffectAfterAllHits(user, _target)
-        user.tryLowerStat(:DEFENSE, user, move: self)
-        user.tryRaiseStat(:SPEED, user, move: self)
-    end
-
-    def getEffectScore(user, target)
-        score = super
-        score += getMultiStatUpEffectScore([:SPEED, 1], user, target)
-        score -= getMultiStatDownEffectScore([:DEFENSE, 1], user, target)
-        return score
-    end
+class PokeBattle_Move_193 < PokeBattle_Move
 end
 
 #===============================================================================

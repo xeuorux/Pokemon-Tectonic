@@ -142,20 +142,15 @@ class PokeBattle_Move
         # Check if move can't miss
         return true if modifiers[:base_accuracy] == 0
         # Calculation
-        accStage = [[modifiers[:accuracy_stage], -6].max, 6].min + 6
-        evaStage = [[modifiers[:evasion_stage], -6].max, 6].min + 6
-        stageMul = [3,3,3,3,3,3, 3, 4,5,6,7,8,9]
-        stageDiv = [9,8,7,6,5,4, 3, 3,3,3,3,3,3]
-        accuracy = 100.0 * stageMul[accStage].to_f / stageDiv[accStage].to_f
-        evasion  = 100.0 * stageMul[evaStage].to_f / stageDiv[evaStage].to_f
+        statBoundary = PokeBattle_Battler::STAT_STAGE_BOUND
+        accStage = modifiers[:accuracy_stage].clamp(-statBoundary, statBoundary)
+        evaStage = modifiers[:evasion_stage].clamp(-statBoundary, statBoundary)
+        accuracy = 100.0 * user.statMultiplierAtStage(accStage)
+        evasion  = 100.0 * user.statMultiplierAtStage(evaStage)
         accuracy = (accuracy.to_f * modifiers[:accuracy_multiplier].to_f).round
-        if user.boss? && AVATAR_DILUTED_STAT_STAGES
-            accuracy = (accuracy.to_f + 100.0) / 2.0
-        end
         evasion  = (evasion.to_f  * modifiers[:evasion_multiplier].to_f).round
-        if target.boss? && AVATAR_DILUTED_STAT_STAGES
-            evasion = (evasion.to_f + 100.0) / 2.0
-        end
+        accuracy = (accuracy.to_f + 100.0) / 2.0 if user.boss? && AVATAR_DILUTED_STAT_STAGES
+        evasion = (evasion.to_f + 100.0) / 2.0 if target.boss? && AVATAR_DILUTED_STAT_STAGES
         evasion = 1 if evasion < 1
         # Calculation
         calc = accuracy.to_f / evasion.to_f

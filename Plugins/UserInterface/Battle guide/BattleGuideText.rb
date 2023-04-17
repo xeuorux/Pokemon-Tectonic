@@ -68,7 +68,7 @@ STATS_HASH = {
     _INTL("Leveling and Evolution") => _INTL("Your Pokémon's stats will increase every time they level up. When Pokémon evolve, their stats change (almost always they increase)."),
     _INTL("Accuracy and Evasion") => _INTL("Accuracy and Evasion are two stats which are only active in battle, starting at 100% each. They are only modified by in-battle changing effects."),
     _INTL("Stat Stages") => _INTL("Effects can modify a Pokémon's stats during battle. These are called 'stat stages'. Stat stages multiply or divide the Pokémon's listed stat value."),
-    _INTL("Bounds of Stat Stages") => _INTL("Stat stages start at 0, and can increase up to +6 (4x) and down to -6 (.25x). Stat stages are reset if you swap the Pokémon out or it faints."),
+    _INTL("Bounds of Stat Stages") => _INTL("Stat stages start at 0, and can increase up to +12 (4x) and down to -12 (.25x). Stat stages are reset if you swap the Pokémon out or it faints."),
     _INTL("Checking Stat Stages") => _INTL("You can check the current stat stages of each Pokémon on the battlefield using the Info button. It lists the numerical stage as well as resultant multiplier."),
 }
 
@@ -151,7 +151,7 @@ WEATHERS_HASH = {
     _INTL("Rain") => _INTL("Rain lowers attack damage by 15% and makes added effects half as likely. Water and Electric-type moves/Pokémon are immune to this. Water-type attacks are boosted by 30%."),
     _INTL("Sandstorm") => _INTL("Sandstorm deals damage to all Pokémon at the end of each turn. Rock and Ground-types are immune to this. Additionally, Rock-types get +50% Special Defense."),
     _INTL("Hail") => _INTL("Hail deals damage to all Pokémon at the end of each turn. Ice and Ghost-types are immune to this. Additionally, Ice-types get +50% Defense."),
-    _INTL("Eclipse") => _INTL("Eclipse lowers all stats of all Pokémon every 4 turns. Psychic and Dragon-types are immune to this. Additionally, Psychic-type attacks are boosted by 30%."),
+    _INTL("Eclipse") => _INTL("Eclipse lowers all stats of all Pokémon every 4 turns (by 2 stages). Psychic and Dragon-types are immune to this. Additionally, Psychic-type attacks are boosted by 30%."),
     _INTL("Moonglow") => _INTL("Moonglow flinches all Pokémon every 4 turns. Fairy and Dark-types are immune to this. Additionally, Fairy-type attacks are boosted by 30%."),
     _INTL("Weather Downsides") => _INTL("Each weather has both an upside and a downside. There are items and abilities that make your Pokemon immune to these downsides regardless of type."),
     _INTL("Weather Areas") => _INTL("Certain areas in the game experience intense weather. That weather will also be present in the battles of that area. Simple daily weather will not do this."),

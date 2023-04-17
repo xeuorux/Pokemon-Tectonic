@@ -22,14 +22,14 @@ BattleHandlers::AbilityOnHPDroppedBelowHalf.copy(:EMERGENCYEXIT, :WIMPOUT)
 
 BattleHandlers::AbilityOnHPDroppedBelowHalf.add(:BERSERK,
   proc { |ability, battler, _battle|
-      battler.pbRaiseMultipleStatStages([:ATTACK, 1, :SPECIAL_ATTACK, 1], battler, ability: ability)
+      battler.pbRaiseMultipleStatStages(ATTACKING_STATS_2, battler, ability: ability)
       next false
   }
 )
 
 BattleHandlers::AbilityOnHPDroppedBelowHalf.add(:ADRENALINERUSH,
   proc { |ability, battler, _battle|
-      battler.tryRaiseStat(:SPEED, battler, increment: 2, ability: ability)
+      battler.tryRaiseStat(:SPEED, battler, increment: 4, ability: ability)
       next false
   }
 )

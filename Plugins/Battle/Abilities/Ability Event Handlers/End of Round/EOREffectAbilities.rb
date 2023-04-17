@@ -24,7 +24,7 @@ BattleHandlers::EOREffectAbility.add(:MOODY,
       if randomUp.length > 0
           r = battle.pbRandom(randomUp.length)
           randomUpStat = randomUp[r]
-          battler.tryRaiseStat(randomUpStat, battler, increment: 2)
+          battler.tryRaiseStat(randomUpStat, battler, increment: 3)
           randomDown.delete(randomUp[r])
       end
       if randomDown.length > 0
@@ -51,11 +51,17 @@ BattleHandlers::EOREffectAbility.add(:SPEEDBOOST,
   proc { |ability, battler, _battle|
       # A Pokémon's turnCount is 0 if it became active after the beginning of a
       # round
-      battler.tryRaiseStat(:SPEED, battler, ability: ability) if battler.turnCount > 0
+      battler.tryRaiseStat(:SPEED, battler, ability: ability, increment: 2) if battler.turnCount > 0
   }
 )
 
-BattleHandlers::EOREffectAbility.copy(:SPEEDBOOST, :SPINTENSITY)
+BattleHandlers::EOREffectAbility.add(:SPINTENSITY,
+  proc { |ability, battler, _battle|
+      # A Pokémon's turnCount is 0 if it became active after the beginning of a
+      # round
+      battler.tryRaiseStat(:SPEED, battler, ability: ability) if battler.turnCount > 0
+  }
+)
 
 BattleHandlers::EOREffectAbility.add(:BALLFETCH,
   proc { |ability, battler, battle|
@@ -98,13 +104,13 @@ BattleHandlers::EOREffectAbility.add(:WARMTHCYCLE,
   proc { |ability, battler, battle|
       battle.pbShowAbilitySplash(battler, ability)
       if !battler.statStageAtMax?(:SPEED)
-          if battler.tryRaiseStat(:SPEED, battler, increment: 2)
+          if battler.tryRaiseStat(:SPEED, battler, increment: 3)
               battler.applyFractionalDamage(1.0 / 8.0, false)
               battle.pbDisplay(_INTL("{1} warmed up!", battler.pbThis))
           end
       else
           battle.pbDisplay(_INTL("{1} vents its accumulated heat!", battler.pbThis))
-          battler.tryLowerStat(:SPEED, battler, increment: 6)
+          battler.stages[:SPEED] = 0
           battler.pbRecoverHP(battler.totalhp - battler.hp)
       end
 
@@ -126,7 +132,7 @@ BattleHandlers::EOREffectAbility.add(:TENDERIZE,
   proc { |ability, battler, _battle|
       battler.eachOther do |b|
           next unless b.numbed?
-          b.pbLowerMultipleStatStages([:DEFENSE, 1, :SPECIAL_DEFENSE, 1], battler, ability: ability)
+          b.pbLowerMultipleStatStages(DEFENDING_STATS_2, battler, ability: ability)
       end
   }
 )

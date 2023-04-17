@@ -839,40 +839,29 @@ class PokeBattle_Move_0A4 < PokeBattle_Move
     def pbOnStartUse(_user, _targets)
         # NOTE: This is Gen 7's list plus some of Gen 6 plus a bit of my own.
         @secretPower = 0 # Body Slam, numb
-        case @battle.field.terrain
-        when :Electric
-            @secretPower = 1   # Thunder Shock, numb
-        when :Grassy
-            @secretPower = 2   # Vine Whip, sleep
-        when :Fairy
-            @secretPower = 3   # Fairy Wind, lower Sp. Atk by 1
-        when :Psychic
-            @secretPower = 4   # Confusion, lower Speed by 1
-        else
-            case @battle.environment
-            when :Grass, :TallGrass, :Forest, :ForestGrass
-                @secretPower = 2    # (Same as Grassy Terrain)
-            when :MovingWater, :StillWater, :Underwater
-                @secretPower = 5    # Water Pulse, lower Attack by 1
-            when :Puddle
-                @secretPower = 6    # Mud Shot, lower Speed by 1
-            when :Cave
-                @secretPower = 7    # Rock Throw, flinch
-            when :Rock, :Sand
-                @secretPower = 8    # Mud-Slap, lower Acc by 1
-            when :Snow, :Ice
-                @secretPower = 9    # Ice Shard, freeze
-            when :Volcano
-                @secretPower = 10   # Incinerate, burn
-            when :Graveyard
-                @secretPower = 11   # Shadow Sneak, flinch
-            when :Sky
-                @secretPower = 12   # Gust, lower Speed by 1
-            when :Space
-                @secretPower = 13   # Swift, flinch
-            when :UltraSpace
-                @secretPower = 14   # Psywave, lower Defense by 1
-            end
+        case @battle.environment
+        when :Grass, :TallGrass, :Forest, :ForestGrass
+            @secretPower = 2    # (Same as Grassy Terrain)
+        when :MovingWater, :StillWater, :Underwater
+            @secretPower = 5    # Water Pulse, lower Attack by 1
+        when :Puddle
+            @secretPower = 6    # Mud Shot, lower Speed by 1
+        when :Cave
+            @secretPower = 7    # Rock Throw, flinch
+        when :Rock, :Sand
+            @secretPower = 8    # Dust Devil, burn
+        when :Snow, :Ice
+            @secretPower = 9    # Ice Shard, freeze
+        when :Volcano
+            @secretPower = 10   # Incinerate, burn
+        when :Graveyard
+            @secretPower = 11   # Shadow Sneak, flinch
+        when :Sky
+            @secretPower = 12   # Gust, lower Speed by 1
+        when :Space
+            @secretPower = 13   # Swift, flinch
+        when :UltraSpace
+            @secretPower = 14   # Psywave, lower Defense by 1
         end
     end
 
@@ -889,22 +878,20 @@ class PokeBattle_Move_0A4 < PokeBattle_Move
         case @secretPower
         when 2
             target.applySleep if target.canSleep?(user, false, self)
-        when 10
+        when 8, 10
             target.applyBurn(user) if target.canBurn?(user, false, self)
         when 0, 1
             target.applyNumb(user) if target.canNumb?(user, false, self)
         when 9
             target.applyFrostbite if target.canFrostbite?(user, false, self)
         when 5
-            target.(:ATTACK, user, move: self)
+            target.tryLowerStat(:ATTACK, user, move: self)
         when 14
-            target.tryLowerStat(:DEFENSE, user, move: self)
+            target.tryLowerStat(:DEFENSE, user, move: self, increment: 2)
         when 3
-            target.tryLowerStat(:SPECIAL_ATTACK, user, move: self)
+            target.tryLowerStat(:SPECIAL_ATTACK, user, move: self, increment: 2)
         when 4, 6, 12
-            target.tryLowerStryLowerStattat(:SPEED, user, move: self)
-        when 8
-            target.tryLowerStat(:ACCURACY, user, move: self)
+            target.tryLowerStryLowerStattat(:SPEED, user, move: self, increment: 2)
         when 7, 11, 13
             target.pbFlinch(user)
         end
@@ -916,7 +903,7 @@ class PokeBattle_Move_0A4 < PokeBattle_Move
         when 1  then id = :THUNDERSHOCK if GameData::Move.exists?(:THUNDERSHOCK)
         when 2  then id = :VINEWHIP if GameData::Move.exists?(:VINEWHIP)
         when 3  then id = :FAIRYWIND if GameData::Move.exists?(:FAIRYWIND)
-        when 4  then id = :CONFUSIO if GameData::Move.exists?(:CONFUSION)
+        when 4  then id = :MINDWAVES if GameData::Move.exists?(:MINDWAVES)
         when 5  then id = :WATERPULSE if GameData::Move.exists?(:WATERPULSE)
         when 6  then id = :MUDSHOT if GameData::Move.exists?(:MUDSHOT)
         when 7  then id = :ROCKTHROW if GameData::Move.exists?(:ROCKTHROW)
@@ -2110,7 +2097,7 @@ class PokeBattle_Move_0C7 < PokeBattle_TwoTurnMove
 end
 
 #===============================================================================
-# Two turn attack. Ups user's Defense by 2 stages first turn, attacks second turn.
+# Two turn attack. Ups user's Defense by 4 stages first turn, attacks second turn.
 # (Skull Bash)
 #===============================================================================
 class PokeBattle_Move_0C8 < PokeBattle_TwoTurnMove
@@ -2119,7 +2106,7 @@ class PokeBattle_Move_0C8 < PokeBattle_TwoTurnMove
     end
 
     def pbChargingTurnEffect(user, _target)
-        user.tryRaiseStat(:DEFENSE, user, increment: 2, move: self)
+        user.tryRaiseStat(:DEFENSE, user, increment: 4, move: self)
     end
 
     def getEffectScore(user, target)
@@ -2817,32 +2804,9 @@ class PokeBattle_Move_0E1 < PokeBattle_FixedDamageMove
 end
 
 #===============================================================================
-# Decreases the target's Attack and Special Attack by 2 stages each. (Memento)
-# User faints (if successful).
+# (Not currently used.)
 #===============================================================================
-class PokeBattle_Move_0E2 < PokeBattle_TargetMultiStatDownMove
-    def initialize(battle, move)
-        super
-        @statDown = [:ATTACK, 2, :SPECIAL_ATTACK, 2]
-    end
-
-    # NOTE: The user faints even if the target's stats cannot be changed, so this
-    #       method must always return false to allow the move's usage to continue.
-    def pbFailsAgainstTarget?(_user, _target, _show_message)
-        return false
-    end
-
-    def pbSelfKO(user)
-        return if user.fainted?
-        user.pbReduceHP(user.hp, false)
-        user.pbItemHPHealCheck
-    end
-
-    def getEffectScore(user, target)
-        score = super
-        score += getSelfKOMoveScore(user, target)
-        return score
-    end
+class PokeBattle_Move_0E2 < PokeBattle_Move
 end
 
 #===============================================================================

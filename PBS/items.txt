@@ -366,13 +366,13 @@
 438,COLBURBERRY,Colbur Berry,Colbur Berries,5,0,"Weakens a supereffective Dark-type attack against the holding Pokémon.",0,0,5
 439,BABIRIBERRY,Babiri Berry,Babiri Berries,5,0,"Weakens a supereffective Steel-type attack against the holding Pokémon.",0,0,5
 440,CHILANBERRY,Chilan Berry,Chilan Berries,5,0,"Weakens a Normal-type attack against the Pokémon holding this berry.",0,0,5
-441,LIECHIBERRY,Liechi Berry,Liechi Berries,5,0,"If held by a Pokémon, it raises its Attack stat in a pinch.",0,0,5
-442,GANLONBERRY,Ganlon Berry,Ganlon Berries,5,0,"If held by a Pokémon, it raises its Defense stat in a pinch.",0,0,5
-443,SALACBERRY,Salac Berry,Salac Berries,5,0,"If held by a Pokémon, it raises its Speed stat in a pinch.",0,0,5
-444,PETAYABERRY,Petaya Berry,Petaya Berries,5,0,"If held by a Pokémon, it raises its Sp. Atk stat in a pinch.",0,0,5
-445,APICOTBERRY,Apicot Berry,Apicot Berries,5,0,"If held by a Pokémon, it raises its Sp. Def stat in a pinch.",0,0,5
+441,LIECHIBERRY,Liechi Berry,Liechi Berries,5,0,"If held by a Pokémon, it raises its Attack by 2 stages in a pinch.",0,0,5
+442,GANLONBERRY,Ganlon Berry,Ganlon Berries,5,0,"If held by a Pokémon, it raises its Defense by 2 stages in a pinch.",0,0,5
+443,SALACBERRY,Salac Berry,Salac Berries,5,0,"If held by a Pokémon, it raises its Speed by 2 stages in a pinch.",0,0,5
+444,PETAYABERRY,Petaya Berry,Petaya Berries,5,0,"If held by a Pokémon, it raises its Sp. Atk by 2 stages in a pinch.",0,0,5
+445,APICOTBERRY,Apicot Berry,Apicot Berries,5,0,"If held by a Pokémon, it raises its Sp. Def by 2 stages in a pinch.",0,0,5
 446,LANSATBERRY,Lansat Berry,Lansat Berries,5,0,"If held by a Pokémon, it raises its critical-hit ratio in a pinch.",0,0,5
-447,STARFBERRY,Starf Berry,Starf Berries,5,0,"If held by a Pokémon, it sharply raises one of its stats in a pinch.",0,0,5
+447,STARFBERRY,Starf Berry,Starf Berries,5,0,"If held by a Pokémon, it raises one of its stats by 3 stages in a pinch.",0,0,5
 448,ENIGMABERRY,Enigma Berry,Enigma Berries,5,0,"If held by a Pokémon, it restores its HP if it is hit by any supereffective attack.",0,0,5
 449,MICLEBERRY,Micle Berry,Micle Berries,5,0,"If held by a Pokémon, it raises the accuracy of a move just once in a pinch.",0,0,5
 450,CUSTAPBERRY,Custap Berry,Custap Berries,5,0,"If held by a Pokémon, it gets to move first just once in a pinch.",0,0,5
@@ -404,8 +404,8 @@
 533,ASSAULTVEST,Assault Vest,Assault Vests,5,10000,"An item to be held by a Pokémon. It raises Sp. Def by 50% but prevents the use of status moves.",0,0,0
 534,SAFETYGOGGLES,Safety Goggles,Safety Goggles,5,4000,"An item to be held by a Pokémon. They protect the holder from weather-related damage and powder.",0,0,0
 535,PROTECTIVEPADS,Protective Pads,Protective Pads,5,4000,"An item to be held by a Pokémon. They protect the holder from effects caused by making contact.",0,0,0
-543,WEAKNESSPOLICY,Weakness Policy,Weakness Policies,5,3000,"An item to be held by a Pokémon. The holder's Attack and Sp. Atk sharply increase if hit by a move it's weak to.",0,0,0
-544,ADRENALINEORB,Adrenaline Orb,Adrenaline Orbs,5,4000,"When held, it boosts Speed when intimidated, fascinated, or frustrated once per battle.",0,0,0
+543,WEAKNESSPOLICY,Weakness Policy,Weakness Policies,5,3000,"An item to be held by a Pokémon. Its Attack and Sp. Atk raise by 4 stages if hit by a move it's weak to.",0,0,0
+544,ADRENALINEORB,Adrenaline Orb,Adrenaline Orbs,5,4000,"When held, it boosts Speed by 2 stages when intimidated, fascinated, or frustrated once per battle.",0,0,0
 546,FAIRYGEM,Fairy Gem,Fairy Gems,5,1000,"A gem with an essence of the fey. Boosts the power of a Fairy-type move by 50% once per battle.",0,0,10
 611,REDORB,Red Orb,Red Orbs,5,0,"A shiny red orb that is said to have a legend tied to it. It's known to be connected with the Hoenn region.",0,0,0
 612,BLUEORB,Blue Orb,Blue Orbs,5,0,"A shiny blue orb that is said to have a legend tied to it. It's known to be connected with the Hoenn region.",0,0,0
@@ -423,8 +423,8 @@
 624,TM98,TM98,TM98s,4,6000,"The user attacks frustratedly. If the user's previous move has failed, the power of this move doubles.",3,0,0,STOMPINGTANTRUM
 625,TM99,TM99,TM99s,4,10000,"The user swings its tough tail wildly at the opposing Pokémon. This also lowers their Attack stats.",3,0,0,BREAKINGSWIPE
 626,ROSELIBERRY,Roseli Berry,Roseli Berries,5,20,"If held by a Pokémon, this Berry will lessen the damage taken from one supereffective Fairy-type attack.",0,0,5
-627,KEEBERRY,Kee Berry,Kee Berries,5,20,"If held by a Pokémon, this Berry will sharply increase the holder's Defense if it's hit with a physical move.",0,0,5
-628,MARANGABERRY,Maranga Berry,Maranga Berries,5,20,"If held by a Pokémon, this Berry will sharply increase the holder's Sp. Def if it's hit with a special move.",0,0,5
+627,KEEBERRY,Kee Berry,Kee Berries,5,20,"If held by a Pokémon, this Berry will increase the holder's Defense by 4 stages if it's hit with a physical move.",0,0,5
+628,MARANGABERRY,Maranga Berry,Maranga Berries,5,20,"If held by a Pokémon, this Berry will increase the holder's Sp. Def by 4 stages if it's hit with a special move.",0,0,5
 629,SPRINKLOTAD,Sprinklotad,Sprinklotads,8,0,"A watering can shaped like a Lotad. It helps promote the healthy growth of any Berries planted in soft soil.",0,0,6
 630,PRISONBOTTLE,Prison Bottle,Prison Bottles,8,0,"A bottle believed to have been used to seal away the power of a certain Pokémon long, long ago.",5,0,6
 631,NSOLARIZER,N-Solarizer,N-Solarizers,8,0,"A machine to fuse Necrozma, which needs light, and Solgaleo.",5,0,6
@@ -455,8 +455,8 @@
 656,BLUNDERPOLICY,Blunder Policy,Blunder Policy,5,4000,"Raises Speed sharply when a Pokémon misses with a move because of accuracy.",0,0,0
 657,EJECTPACK,Eject Pack,Eject Packs,5,4000,"An item to be held by a Pokémon. When the holder's stats are lowered, it will be switched out of battle.",0,0,0
 658,HEAVYDUTYBOOTS,Heavy-Duty Boots,Heavy-Duty Boots,5,4000,"These boots prevent the effects of traps set on the battlefield.",0,0,0
-659,ROOMSERVICE,Room Service,Room Services,5,4000,"An item to be held by a Pokémon. Sharply lowers Speed when Trick Room takes effect.",0,0,0
-660,THROATSPRAY,Throat Spray,Throat Sprays,5,4000,"Raises Sp. Atk when the Pokémon uses a sound-based move.",0,0,0
+659,ROOMSERVICE,Room Service,Room Services,5,4000,"An item to be held by a Pokémon. Lowers Speed by 4 stages when Trick Room takes effect.",0,0,0
+660,THROATSPRAY,Throat Spray,Throat Sprays,5,4000,"Raises Sp. Atk by 2 stages when the Pokémon uses a sound-based move.",0,0,0
 661,UTILITYUMBRELLA,Utility Umbrella,Utility Umbrellas,5,4000,"A held item. The holder takes 10% less move damage, and is protected from the negative effects of weather. .",0,0,0
 662,EXPCANDYXS,Exp. Candy XS,Exp. Candies XS,2,20,"A candy that is packed with energy. When consumed, it will grant a single Pokémon 250 Exp. Points.",1,0,0
 663,EXPCANDYS,Exp. Candy S,Exp. Candies S,2,240,"A candy that is packed with energy. When consumed, it will grant a single Pokémon 1000 Exp. Points.",1,0,0
@@ -682,4 +682,4 @@
 907,CHAMBER8KEY,Chamber 8 Key,Chamber 8 Keys,8,0,"The key to the eighth chamber containing a powerful avatar.",0,0,6
 908,STRENGTHHERB,Strength Herb,Strength Herbs,5,4000,"An item to be held by a Pokémon. Boosts the power of a physical move by 30% once per battle.",0,0,0
 909,INTELLECTHERB,Intellect Herb,Intellect Herbs,5,4000,"An item to be held by a Pokémon. Boosts the power of a special move by 30% once per battle.",0,0,0
-910,CRYSTALVEIL,Crystal Veil,Crystal Veils,5,6000,"An item to be held by a Pokemon which changes its type in battle. You can change which type between battles."
+910,CRYSTALVEIL,Crystal Veil,Crystal Veils,5,6000,"An item to be held by a Pokemon which changes its type in battle. You can change which type between battles.",0,0,0

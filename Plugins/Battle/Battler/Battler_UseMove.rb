@@ -652,15 +652,15 @@ user.pbThis))
         # Fiesta
         if moveSucceeded && @battle.pbCheckGlobalAbility(:FIESTA) && (move.soundMove? || move.danceMove?)
             @battle.pbPriority(true).each do |b|
-                next unless b.index != user.index && b.hasActiveAbility?(:FIESTA)
+                next unless b.hasActiveAbility?(:FIESTA)
                 b.applyFractionalHealing(1.0 / 8.0, ability: :FIESTA)
 			end
         end
 		if moveSucceeded && (move.danceMove?)
             if @battle.pbCheckGlobalAbility(:ANCESTRALDANCE)
 				@battle.pbPriority(true).each do |b|
-					next unless b.index != user.index && b.hasActiveAbility?(:ANCESTRALDANCE)
-					b.tryRaiseStat(:DEFENSE, user, increment: 1)
+					next unless b.hasActiveAbility?(:ANCESTRALDANCE)
+					b.pbRaiseMultipleStatStages(DEFENDING_STATS_1, user, ability: :ANCESTRALDANCE)
 				end
 			end
         end
@@ -881,12 +881,12 @@ user.pbThis))
 
                 # Unassuming
                 if user.hasActiveAbility?(:UNASSUMING)
-                    target.tryLowerStat(:DEFENSE, user, move: move, showFailMsg: true, ability: :UNASSUMING)
+                    target.tryLowerStat(:DEFENSE, user, move: move, showFailMsg: true, ability: :UNASSUMING, increment: 2)
                 end
 
                 # Recon
                 if user.hasActiveAbility?(:RECON)
-                    target.tryLowerStat(:SPECIAL_DEFENSE, user, move: move, showFailMsg: true, ability: :RECON)
+                    target.tryLowerStat(:SPECIAL_DEFENSE, user, move: move, showFailMsg: true, ability: :RECON, increment: 2)
                 end
             end
         end

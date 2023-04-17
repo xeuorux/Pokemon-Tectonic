@@ -1,3 +1,10 @@
+ALL_STATS_1 = [:ATTACK, 1, :SPECIAL_ATTACK, 1, :DEFENSE, 1, :SPECIAL_DEFENSE, 1, :SPEED, 1].freeze
+ALL_STATS_2 = [:ATTACK, 2, :SPECIAL_ATTACK, 2, :DEFENSE, 2, :SPECIAL_DEFENSE, 2, :SPEED, 2].freeze
+ATTACKING_STATS_1 = [:ATTACK, 1, :SPECIAL_ATTACK, 2].freeze
+ATTACKING_STATS_2 = [:ATTACK, 2, :SPECIAL_ATTACK, 2].freeze
+DEFENDING_STATS_1 = [:DEFENSE, 1, :SPECIAL_DEFENSE, 2].freeze
+DEFENDING_STATS_2 = [:DEFENSE, 2, :SPECIAL_DEFENSE, 2].freeze
+
 class PokeBattle_Battler
     def validateStat(stat)
         raise "Given #{stat} is not a symbol!" unless stat.is_a?(Symbol)
@@ -9,14 +16,15 @@ class PokeBattle_Battler
     #=============================================================================
     # Calculate stats based on stat stages.
     #=============================================================================
-    STAGE_MULTIPLIERS = [2, 2, 2, 2, 2, 2, 2, 3, 4, 5, 6, 7, 8].freeze
-    STAGE_DIVISORS    = [8, 7, 6, 5, 4, 3, 2, 2, 2, 2, 2, 2, 2].freeze
+    STAT_STAGE_BOUND = 12
+    STAGE_MULTIPLIERS = [2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 3, 3.5, 4, 4.5, 5, 5.5, 6, 6.5, 7, 7.5, 8].freeze
+    STAGE_DIVISORS    = [8, 7.5, 7, 6.5, 6, 5.5, 5, 4.5, 4, 3.5, 3, 2.5, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2].freeze
 
     def statMultiplierAtStage(stage)
-        if stage < -6 || stage > 6
-            raise "Given stat stage value #{stage} is not valid! Must be between -6 and 6, inclusive."
+        if stage < -STAT_STAGE_BOUND || stage > STAT_STAGE_BOUND
+            raise "Given stat stage value #{stage} is not valid! Must be between -#{STAT_STAGE_BOUND} and #{STAT_STAGE_BOUND}, inclusive."
         end
-        shiftedStage = stage + 6
+        shiftedStage = stage + STAT_STAGE_BOUND
         mult = STAGE_MULTIPLIERS[shiftedStage].to_f / STAGE_DIVISORS[shiftedStage].to_f
         mult = (mult + 1.0) / 2.0 if boss? && AVATAR_DILUTED_STAT_STAGES
         return mult
@@ -54,7 +62,7 @@ class PokeBattle_Battler
     # Increase stat stages
     #=============================================================================
     def statStageAtMax?(stat)
-        return @stages[stat] >= 6
+        return @stages[stat] >= STAT_STAGE_BOUND
     end
 
     def pbRaiseStatStageBasic(stat, increment, ignoreContrary = false)
@@ -67,7 +75,7 @@ class PokeBattle_Battler
             increment *= 2 if hasActiveAbility?(:SIMPLE)
         end
         # Change the stat stage
-        increment = [increment, 6 - @stages[stat]].min
+        increment = [increment, STAT_STAGE_BOUND - @stages[stat]].min
         if increment.positive?
             stat_name = GameData::Stat.get(stat).name
             new = @stages[stat] + increment
@@ -105,13 +113,13 @@ class PokeBattle_Battler
         return false if increment <= 0
         # Stat up animation and message
         @battle.pbCommonAnimation("StatUp", self) if showAnim
-        diluted = boss? && AVATAR_DILUTED_STAT_STAGES
-        arrStatTexts = [
-            _INTL("{1}'s {2} rose{3}!", pbThis, GameData::Stat.get(stat).name, diluted ? " slightly" : ""),
-            _INTL("{1}'s {2} rose{3}!", pbThis, GameData::Stat.get(stat).name, diluted ? "" : " sharply"),
-            _INTL("{1}'s {2} rose{3}!", pbThis, GameData::Stat.get(stat).name, diluted ? " greatly" : " drastically"),
-        ]
-        @battle.pbDisplay(arrStatTexts[[increment - 1, 2].min])
+        increment /= 2.0 if boss? && AVATAR_DILUTED_STAT_STAGES
+        if increment == 1
+            raiseMessage = _INTL("{1}'s {2} rose!", pbThis, GameData::Stat.get(stat).name)
+        else
+            raiseMessage = _INTL("{1}'s {2} rose by {3} stages!", pbThis, GameData::Stat.get(stat).name, increment)
+        end
+        @battle.pbDisplay(raiseMessage)
         # Trigger abilities upon stat gain
         eachActiveAbility do |ability|
             BattleHandlers.triggerAbilityOnStatGain(ability, self, stat, user)
@@ -138,27 +146,21 @@ class PokeBattle_Battler
         return false if increment <= 0
         # Stat up animation and message
         @battle.pbCommonAnimation("StatUp", self) if showAnim
-        diluted = boss? && AVATAR_DILUTED_STAT_STAGES
+        increment /= 2.0 if boss? && AVATAR_DILUTED_STAT_STAGES
         if user.index == @index
-            arrStatTexts = [
-                _INTL("{1}'s {2}{4} raised its {3}!", pbThis, cause, GameData::Stat.get(stat).name,
-                        diluted ? " slightly" : ""),
-                _INTL("{1}'s {2}{4} raised its {3}!", pbThis, cause, GameData::Stat.get(stat).name,
-                        diluted ? "" : " sharply"),
-                _INTL("{1}'s {2}{4} raised its {3}!", pbThis, cause, GameData::Stat.get(stat).name,
-                        diluted ? " greatly" : " drastically"),
-            ]
+            if increment == 1
+                raiseMessage = _INTL("{1}'s {2} raised its {3}!", pbThis, cause, GameData::Stat.get(stat).name)
+            else
+                raiseMessage = _INTL("{1}'s {2} raised its {3} by {4} stages!", pbThis, cause, GameData::Stat.get(stat).name, increment)
+            end
         else
-            arrStatTexts = [
-                _INTL("{1}'s {2}{5} raised {3}'s {4}!", user.pbThis, cause, pbThis(true),
-                           GameData::Stat.get(stat).name, diluted ? " slightly" : ""),
-                _INTL("{1}'s {2}{5} raised {3}'s {4}!", user.pbThis, cause, pbThis(true),
-                        GameData::Stat.get(stat).name, diluted ? "" : " sharply"),
-                _INTL("{1}'s {2}{5} raised {3}'s {4}!", user.pbThis, cause, pbThis(true),
-                        GameData::Stat.get(stat).name, diluted ? " greatly" : " drastically"),
-            ]
+            if increment == 1
+                raiseMessage = _INTL("{1}'s {2} raised {3}'s {4}!", pbThis, cause, pbThis(true), GameData::Stat.get(stat).name)
+            else
+                raiseMessage = _INTL("{1}'s {2} raised {3}'s {4} by {5} stages!", pbThis, cause, pbThis(true), GameData::Stat.get(stat).name, increment)
+            end
         end
-        @battle.pbDisplay(arrStatTexts[[increment - 1, 2].min])
+        @battle.pbDisplay(raiseMessage)
         # Trigger abilities upon stat gain
         eachActiveAbility do |ability|
             BattleHandlers.triggerAbilityOnStatGain(ability, self, stat, user)
@@ -188,7 +190,7 @@ class PokeBattle_Battler
     # Decrease stat stages
     #=============================================================================
     def statStageAtMin?(stat)
-        return @stages[stat] <= -6
+        return @stages[stat] <= -STAT_STAGE_BOUND
     end
 
     def pbCanLowerStatStage?(stat, user = nil, move = nil, showFailMsg = false, ignoreContrary = false, ignoreAbilities: false)
@@ -265,7 +267,7 @@ class PokeBattle_Battler
             increment *= 2 if hasActiveAbility?(:SIMPLE)
         end
         # Change the stat stage
-        increment = [increment, 6 + @stages[stat]].min
+        increment = [increment, STAT_STAGE_BOUND + @stages[stat]].min
         if increment.positive?
             stat_name = GameData::Stat.get(stat).name
             new = @stages[stat] - increment
@@ -312,14 +314,13 @@ class PokeBattle_Battler
         trauma = user&.hasActiveAbility?(:TRAUMATIZING)
         @battle.pbShowAbilitySplash(user, :TRAUMATIZING) if trauma
         @battle.pbCommonAnimation("StatDown", self) if showAnim
-        diluted = boss? && AVATAR_DILUTED_STAT_STAGES
-        arrStatTexts = [
-            _INTL("{1}'s {2}{3} fell!", pbThis, GameData::Stat.get(stat).name, diluted ? " slightly" : ""),
-            _INTL("{1}'s {2}{3} fell!", pbThis, GameData::Stat.get(stat).name, diluted ? "" : " harshly"),
-            _INTL("{1}'s {2}{3} fell!", pbThis, GameData::Stat.get(stat).name, diluted ? " severely" : " badly"),
-        ]
-        @battle.pbDisplay(arrStatTexts[[increment - 1, 2].min])
-
+        increment /= 2.0 if boss? && AVATAR_DILUTED_STAT_STAGES
+        if increment == 1
+            lowerMessage = _INTL("{1}'s {2} fell!", pbThis, GameData::Stat.get(stat).name)
+        else
+            lowerMessage = _INTL("{1}'s {2} fell by {3} stages!", pbThis, GameData::Stat.get(stat).name, increment)
+        end
+        @battle.pbDisplay(lowerMessage)
         # Traumatizing
         if trauma
             @battle.pbDisplay(_INTL("It'll last the whole battle!"))
@@ -338,7 +339,7 @@ class PokeBattle_Battler
 
             # Increment relevant array element
             existingValue = pbOwnSide.effects[:Traumatized][@pokemonIndex][stat]
-            newValue = [6,existingValue+increment].min
+            newValue = [STAT_STAGE_BOUND,existingValue+increment].min
             pbOwnSide.effects[:Traumatized][@pokemonIndex][stat] = newValue
 
             @battle.pbHideAbilitySplash(user)
@@ -386,27 +387,21 @@ class PokeBattle_Battler
         return false if increment <= 0
         # Stat down animation and message
         @battle.pbCommonAnimation("StatDown", self) if showAnim
-        diluted = boss? && AVATAR_DILUTED_STAT_STAGES
+        increment /= 2.0 if boss? && AVATAR_DILUTED_STAT_STAGES
         if user.index == @index
-            arrStatTexts = [
-                _INTL("{1}'s {2}{4} lowered its {3}!", pbThis, cause, GameData::Stat.get(stat).name,
-                    diluted ? " slightly" : ""),
-                _INTL("{1}'s {2}{4} lowered its {3}!", pbThis, cause, GameData::Stat.get(stat).name,
-                    diluted ? "" : " harshly"),
-                _INTL("{1}'s {2}{4} lowered its {3}!", pbThis, cause, GameData::Stat.get(stat).name,
-                    diluted ? " severely" : " badly"),
-            ]
+            if increment == 1
+                lowerMessage = _INTL("{1}'s {2} lowered its {3}!", pbThis, cause, GameData::Stat.get(stat).name)
+            else
+                lowerMessage = _INTL("{1}'s {2} lowered its {3} by {4} stages!", pbThis, cause, GameData::Stat.get(stat).name, increment)
+            end
         else
-            arrStatTexts = [
-                _INTL("{1}'s {2}{5} lowered {3}'s {4}!", user.pbThis, cause, pbThis(true),
-                    GameData::Stat.get(stat).name, diluted ? " slightly" : ""),
-                _INTL("{1}'s {2}{5} lowered {3}'s {4}!", user.pbThis, cause, pbThis(true),
-                    GameData::Stat.get(stat).name, diluted ? "" : " harshly"),
-                _INTL("{1}'s {2}{5} lowered {3}'s {4}!", user.pbThis, cause, pbThis(true),
-                    GameData::Stat.get(stat).name, diluted ? " severely" : " badly"),
-            ]
+            if increment == 1
+                lowerMessage = _INTL("{1}'s {2} lowered {3}'s {4}!", pbThis, cause, pbThis(true), GameData::Stat.get(stat).name)
+            else
+                lowerMessage = _INTL("{1}'s {2} lowered {3}'s {4} by {5} stages!", pbThis, cause, pbThis(true), GameData::Stat.get(stat).name, increment)
+            end
         end
-        @battle.pbDisplay(arrStatTexts[[increment - 1, 2].min])
+        @battle.pbDisplay(lowerMessage)
         # Trigger abilities upon stat loss
         eachActiveAbility do |ability|
             BattleHandlers.triggerAbilityOnStatLoss(ability, self, stat, user)
@@ -455,7 +450,7 @@ class PokeBattle_Battler
             pbMaximizeStatStage(stat, user, move, true, ability: ability)
         elsif pbCanLowerStatStage?(stat, user, move, true, ignoreContrary)
             @battle.pbShowAbilitySplash(user, ability) if ability
-            @stages[stat] = -6
+            @stages[stat] = -STAT_STAGE_BOUND
             @battle.pbCommonAnimation("StatDown", self)
             statName = GameData::Stat.get(stat).real_name
             @battle.pbDisplay(_INTL("{1} minimized its {2}!", pbThis, statName))
@@ -485,7 +480,7 @@ class PokeBattle_Battler
             pbMinimizeStatStage(stat, user, move, true, ability: ability)
         elsif pbCanRaiseStatStage?(stat, user, move, true, ignoreContrary)
             @battle.pbShowAbilitySplash(user, ability) if ability
-            @stages[stat] = 6
+            @stages[stat] = STAT_STAGE_BOUND
             @battle.pbCommonAnimation("StatUp", self)
             statName = GameData::Stat.get(stat).real_name
             @battle.pbDisplay(_INTL("{1} maximizes its {2}!", pbThis, statName))

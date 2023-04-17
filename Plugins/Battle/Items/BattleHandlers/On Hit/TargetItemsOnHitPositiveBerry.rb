@@ -9,7 +9,7 @@ BattleHandlers::TargetItemOnHitPositiveBerry.add(:KEEBERRY,
         next false if !forced && !battler.canConsumeBerry?
         next false unless battler.pbCanRaiseStatStage?(:DEFENSE, battler)
         itemName = GameData::Item.get(item).name
-        increment = 2
+        increment = 4
         increment *= 2 if battler.hasActiveAbility?(:RIPEN)
         unless forced
             battle.pbCommonAnimation("Nom", battler)
@@ -24,7 +24,7 @@ BattleHandlers::TargetItemOnHitPositiveBerry.add(:MARANGABERRY,
       next false if !forced && !battler.canConsumeBerry?
       next false unless battler.pbCanRaiseStatStage?(:SPECIAL_DEFENSE, battler)
       itemName = GameData::Item.get(item).name
-      increment = 2
+      increment = 4
       increment *= 2 if battler.hasActiveAbility?(:RIPEN)
       unless forced
           battle.pbCommonAnimation("Nom", battler)

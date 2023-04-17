@@ -135,7 +135,7 @@ BattleHandlers::UserAbilityEndOfMove.add(:CALAMITY,
       numFainted = 0
       targets.each { |b| numFainted += 1 if b.damageState.fainted }
       next if numFainted == 0
-      user.pbRaiseMultipleStatStages([:ATTACK, numFainted, :SPECIAL_ATTACK, numFainted], user, ability: ability)
+      user.pbRaiseMultipleStatStages([:ATTACK, numFainted * 2, :SPECIAL_ATTACK, numFainted * 2], user, ability: ability)
   }
 )
 
@@ -151,19 +151,21 @@ BattleHandlers::UserAbilityEndOfMove.add(:FOLLOWTHROUGH,
       numFainted = 0
       targets.each { |b| numFainted += 1 if b.damageState.fainted }
       next if numFainted == 0
-      user.tryRaiseStat(:SPEED, user, increment: numFainted, ability: ability)
+      user.tryRaiseStat(:SPEED, user, increment: numFainted * 2, ability: ability)
   }
 )
 
 BattleHandlers::UserAbilityEndOfMove.add(:SOUNDBARRIER,
   proc { |ability, user, _targets, move, _battle, _switchedBattlers|
-      user.tryRaiseStat(:DEFENSE, user, ability: ability) if move.soundMove?
+      next unless move.soundMove?
+      user.pbRaiseMultipleStatStages(DEFENDING_STATS_1, user, ability: ability)
   }
 )
 
 BattleHandlers::UserAbilityEndOfMove.add(:WINDBUFFER,
   proc { |ability, user, _targets, move, _battle, _switchedBattlers|
-      user.tryRaiseStat(:SPECIAL_DEFENSE, user, ability: ability) if move.windMove?
+    next unless move.windMove?
+    user.pbRaiseMultipleStatStages(DEFENDING_STATS_1, user, ability: ability)
   }
 )
 
@@ -339,7 +341,7 @@ BattleHandlers::UserAbilityEndOfMove.add(:IRREFUTABLE,
         nveHits += 1
       end
       next unless nveHits > 0
-      user.tryRaiseStat(:ATTACK, user, increment: nveHits, ability: ability)
+      user.tryRaiseStat(:ATTACK, user, increment: nveHits * 2, ability: ability)
   }
 )
 
