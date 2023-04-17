@@ -5,6 +5,9 @@ DebugMenuCommands.register("analyzedistribution", {
   "effect"      => proc { |sprites, viewport|
 	move_counts = {}
 	GameData::Move.each do |move|
+		next if move.primeval
+		next if move.cut
+		next if move.zmove
 		move_counts[move.id] = [0,0,0,0]
 		# 0 = Species learn by level up
 		# 1 = Species learn by Tutor
