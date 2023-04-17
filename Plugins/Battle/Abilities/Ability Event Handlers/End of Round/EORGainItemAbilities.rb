@@ -19,17 +19,13 @@ BattleHandlers::EORGainItemAbility.add(:LARDER,
     }
 )
 
-PINCH_BERRIES =
-    %i[
-        ORANBERRY GANLONBERRY LANSATBERRY APICOTBERRY LIECHIBERRY
-        PETAYABERRY SALACBERRY STARFBERRY MICLEBERRY SITREONBERRY
-    ]
-
 BattleHandlers::EORGainItemAbility.add(:GOURMAND,
     proc { |ability, battler, battle|
         itemsCanAdd = []
         PINCH_BERRIES.each do |pinch|
-            itemsCanAdd.push(pinch) if battler.canAddItem?(pinch)
+            next if SUPER_ITEMS.include?(pinch)
+            next unless battler.canAddItem?(pinch)
+            itemsCanAdd.push(pinch) 
         end
         next if itemsCanAdd.length == 0
         battle.pbShowAbilitySplash(battler, ability)
