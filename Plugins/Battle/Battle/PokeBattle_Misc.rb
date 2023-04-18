@@ -261,11 +261,13 @@ class PokeBattle_Battle
 end
 
 def getAbilityName(ability)
-    abilityData = GameData::Ability.get(ability)
+    abilityData = GameData::Ability.try_get(ability)
+    return "ERROR" if abilityData.nil?
     return abilityData.real_name
 end
 
 def getItemName(item)
-    itemData = GameData::Item.get(item)
+    itemData = GameData::Item.try_get(item)
+    return "ERROR" if itemData.nil?
     return itemData.real_name
 end

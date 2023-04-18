@@ -563,6 +563,7 @@ class Pokemon
         @items = []
         @items.push(@item) if @item
       end
+      @items.compact!
       return @items
     end
 
