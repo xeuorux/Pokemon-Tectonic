@@ -74,7 +74,7 @@ class CatchingMinigame
         transferPlayer(@cutSceneLocation)
         pbWait(20)
         if @currentMaxScorePokemon.nil?
-            pbMessage(_INTL("You caught no Pokemon."))
+            pbMessage(_INTL("You caught no Pokemon worth any points."))
         else
             pbMessage(_INTL("Your best catch was a level #{@currentMaxScorePokemon.level} " + 
                 "#{GameData::Species.get(currentMaxScorePokemon.species).real_name}, which gives you a score of #{@currentMaxScore}."))

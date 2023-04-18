@@ -432,6 +432,7 @@ class Pokemon
     # @param value [Integer, nil] forced ability index (nil if none is set)
     def ability_index=(value)
       @ability_index = value
+      recalculateAbilityFromIndex
       removeInvalidItems
     end
   
@@ -451,7 +452,6 @@ class Pokemon
       abil_index = ability_index
       if abil_index >= 2   # Hidden ability
         @ability = sp_data.hidden_abilities[abil_index - 2]
-        abil_index = (@personalID & 1) if !@ability
       else
         @ability = sp_data.abilities[abil_index] || sp_data.abilities[0]
       end
@@ -1863,7 +1863,7 @@ class Pokemon
         this_IV    = calcIV
         # Calculate stats
         stats = {}
-        stylish = ability_id == :STYLISH
+        stylish = hasAbility?(:STYLISH)
         GameData::Stat.each_main do |s|
             if s.id == :HP
                 hpValue = calcHPGlobal(base_stats[s.id], this_level, @ev[s.id], stylish)

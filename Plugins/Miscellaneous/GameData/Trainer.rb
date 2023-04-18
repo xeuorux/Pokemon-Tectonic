@@ -165,9 +165,10 @@ module GameData
 					pkmn.reset_moves([pkmn.level,50].min,true)
 				end
 
-				if !pkmn_data[:ability].nil? || !pkmn_data[:ability_index].nil?
-					pkmn.ability = pkmn_data[:ability]
+				if !pkmn_data[:ability_index].nil?
 					pkmn.ability_index = pkmn_data[:ability_index]
+				elsif !pkmn_data[:ability].nil?
+					pkmn.ability = pkmn_data[:ability]
 				end
 				
 				pkmn.gender = pkmn_data[:gender] || ((trainer.male?) ? 0 : 1)
