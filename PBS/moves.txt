@@ -560,7 +560,7 @@
 559,POWERTRICK,Power Trick,057,0,PSYCHIC,Status,0,10,0,User,0,d,"The user employs psychic power to switch its base Attack with its base Defense stat.",
 560,PSYCHOSHIFT,Psycho Shift,01B,0,PSYCHIC,Status,100,10,0,NearOther,0,be,"Using its psychic power of suggestion, the user transfers its status problems to the target.",
 561,REFLECT,Reflect,0A2,0,PSYCHIC,Status,0,15,0,UserSide,0,d,"A wondrous wall of light is put up to suppress damage from physical attacks for five turns.",
-562,REST,Rest,0D9,0,PSYCHIC,Status,0,5,0,User,0,d,"The user goes to sleep for two turns. It fully restores the user's HP and heals any status problem.",
+562,REST,Rest,0D9,0,PSYCHIC,Status,0,5,0,User,0,d,"The user goes to sleep to fully restore their HP and heal any status conditions.",
 563,ROLEPLAY,Role Play,065,0,PSYCHIC,Status,0,10,0,NearOther,0,,"The user mimics the target completely, copying the target's natural Ability.",
 564,SKILLSWAP,Skill Swap,067,0,PSYCHIC,Status,0,10,0,NearOther,0,be,"The user employs its psychic power to exchange Abilities with the target.",
 565,SPEEDSWAP,Speed Swap,161,0,PSYCHIC,Status,0,10,0,NearOther,0,be,"The user exchanges base Speed stats with the target.",
