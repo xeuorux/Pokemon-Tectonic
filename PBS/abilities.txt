@@ -433,7 +433,7 @@
 431,DUNEPREDATOR,Dune Predator,"When it attacks from underground in sandstorm, it'll transform into Reaper form."
 432,SEALORD,Sea Lord,"After knocking out any Pokémon, transforms into its Hullbreaker form. Ability becomes Mold Breaker."
 433,BALANCEOFPOWER,Balance of Power,"Boosts Attack by 50% if used a Special move last turn, or boosts Sp. Atk if Physical."
-434,STEELYSHELL,Steely Shell,"Defense is raised by 25%, immune to crits, and Steel-type attacks deal 50% more damage."
+434,STEELYSHELL,Steely Shell,"Steel-type attacks deal 50% more damage, and the Pokemon is protected from critical hits."
 435,LIVEWIRE,Live Wire,"Special attacks against the Pokémon has a 30% chance to cause numbing."
 436,MYSTICTAP,Mystic Tap,"Gets double healing from all sources during moonglow."
 437,SPINTENSITY,Spintensity,"Speed is raised each turn. Speed is reset when hit, but the attacker takes 1/8th HP damage for each stage lost."

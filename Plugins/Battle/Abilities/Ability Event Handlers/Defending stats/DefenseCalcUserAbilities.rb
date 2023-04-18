@@ -12,13 +12,6 @@ BattleHandlers::DefenseCalcUserAbility.add(:FURCOAT,
     }
 )
 
-BattleHandlers::DefenseCalcUserAbility.add(:STEELYSHELL,
-    proc { |ability, _user, _battle, defenseMult|
-        defenseMult *= 1.25
-        next defenseMult
-    }
-)
-
 BattleHandlers::DefenseCalcUserAbility.add(:MARVELSCALE,
     proc { |ability, user, _battle, defenseMult|
         defenseMult *= 1.5 if user.pbHasAnyStatus?
