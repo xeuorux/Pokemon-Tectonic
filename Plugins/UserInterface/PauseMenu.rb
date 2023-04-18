@@ -176,8 +176,8 @@ class PokemonPauseMenu_Scene
 	ACTIVE_UNSELECTED_COLOR = Color.new(60, 120, 120, 20)
 	INACTIVE_UNSELECTED_COLOR = Color.new(80, 80, 80, 80)
 
-	ACTIVE_SELECTED_COLOR = Color.new(140, 80, 60, 40)
-	INACTIVE_SELECTED_COLOR = Color.new(60, 60, 60, 120)
+	ACTIVE_SELECTED_COLOR = Color.new(60, 120, 120, 20)
+	INACTIVE_SELECTED_COLOR = Color.new(80, 80, 80, 90)
 
 	BASE_COLOR         = Color.new(72,72,72)
 	INACTIVE_BASE_COLOR = Color.new(110,110,110)
@@ -202,6 +202,9 @@ class PokemonPauseMenu_Scene
 		@sprites["bg_fade"].visible = true
 		@sprites["bg_fade"].opacity = 20
 		@sprites["bg_fade"].z = -1
+		@cursorBitmap = AnimatedBitmap.new(_INTL("Graphics/Pictures/Pause/cursor_pause"))
+		@sprites["cursor"] = SpriteWrapper.new(@viewport)
+		@sprites["cursor"].bitmap = @cursorBitmap.bitmap
 		@tileBitmap = AnimatedBitmap.new(_INTL("Graphics/Pictures/Pause/pause_menu_tile"))
 		@buttonNameOverlay = BitmapSprite.new(Graphics.width,Graphics.height,@viewport)
 		@buttonNameOverlay.z = 1
@@ -276,6 +279,7 @@ class PokemonPauseMenu_Scene
 		@viewport.dispose
 		@tileBitmap.dispose
 		@bgBitmap.dispose
+		@cursorBitmap.dispose
 	end
   
 	def pbRefresh
@@ -329,8 +333,14 @@ class PokemonPauseMenu_Scene
 		return @pauseMenuButtons[buttonID][:press_proc].call(self) == true
 	end
 
+	def moveCursorToButton(buttonIndex)
+		@sprites["cursor"].x = xFromIndex(buttonIndex) - 4
+		@sprites["cursor"].y = yFromIndex(buttonIndex) - 4
+	end
+
 	def promptButtons
 		loop do
+			moveCursorToButton(@buttonSelectionIndex)
 			Graphics.update
 			Input.update
 			prevButtonSelectionIndex = @buttonSelectionIndex
