@@ -99,8 +99,8 @@ class PokeBattle_AI
 
         # More likely to switch when drowsy
         if battler.effectActive?(:Yawn)
-            switchingBias += 15
-            PBDebug.log("[AI SWITCH] #{battler.pbThis} (#{battler.index}) is drowsy (+15)")
+            switchingBias += 25
+            PBDebug.log("[AI SWITCH] #{battler.pbThis} (#{battler.index}) is drowsy (+25)")
         end
         
         # Less likely to switch when any opponent has a force switch out move

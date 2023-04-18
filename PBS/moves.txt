@@ -488,7 +488,7 @@
 487,WHIRLWIND,Whirlwind,0EB,0,FLYING,Status,0,15,0,NearOther,-6,ceq,"The foe is forced to switch out to a random ally. Always goes last. Ends wild battles.",
 488,WISH,Wish,0D7,0,NORMAL,Status,0,10,0,User,0,d,"One turn after this move is used, the target's HP is restored by half the user's maximum HP.",
 489,WORKUP,Work Up,027,0,NORMAL,Status,0,25,0,User,0,d,"The user is roused, raising its Attack and Sp. Atk by two stages each.",
-490,YAWN,Yawn,004,0,NORMAL,Status,0,10,0,NearOther,0,bce,"The user yawns, making the target drowsy. They'll fall asleep at end of turn next.",
+490,YAWN,Yawn,004,0,NORMAL,Status,0,8,0,NearOther,0,bce,"The user yawns, making the target drowsy. They'll fall asleep at end of turn next.",
 491,COURTCHANGE,Court Change,17A,0,NORMAL,Status,100,10,0,BothSides,0,e,"With its mysterious power, the user swaps the effects on either side of the field.",
 492,STUFFCHEEKS,Stuff Cheeks,183,0,NORMAL,Status,100,10,0,User,0,e,"The user eats its held Berry, then  raises both its defensive stats by three stages.",
 493,TEATIME,Teatime,184,0,NORMAL,Status,0,10,0,AllBattlers,0,,"The user has teatime with all the Pokémon in the battle. Each Pokémon eats its held Berry.",

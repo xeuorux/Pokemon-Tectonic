@@ -114,7 +114,7 @@
 1113,STITCHUP,Stitch Up,524,0,GHOST,Status,0,5,0,User,0,d,"The user restores two thirds of its own HP. Then, this move is disabled.",RECOVER
 1114,PHANTOMBREAK,Phantom Break,523,120,GHOST,Physical,100,5,0,NearOther,0,abef,"Although this move has great power, it disables itself after use.",SHADOWPUNCH
 1115,LOOMOVER,Loom Over,522,0,DRAGON,Status,0,12,0,NearOther,0,ce,"The user looms over the target with awful menace, lowering their highest stat by four stages.",
-1116,SUMMERDAZE,Summer Daze,527,0,GRASS,Status,100,12,0,NearOther,0,bcek,"The user plays a melody, making the target drowsy. In Sunlight, lowers the target's Attack and Sp. Atk by two stages.",GRASSWHISTLE
+1116,SUMMERDAZE,Summer Daze,527,0,GRASS,Status,100,8,0,NearOther,0,bcek,"The user plays a melody, making the target drowsy. In Sunlight, lowers the target's Attack and Sp. Atk by two stages.",GRASSWHISTLE
 1117,PACIFY,Pacify,534,0,PSYCHIC,Status,100,15,0,NearOther,0,bce,"The user employs hypnotic suggestion to make a dizzy target fall into a deep sleep.",HYPNOSIS
 1118,LULLABY,Lullaby,528,0,NORMAL,Status,100,12,0,NearOther,0,bcek,"A lullaby is sung in a calming voice that puts the target with half its HP or less left into a deep sleep.",SING
 1119,PUFFBALL,Puffball,529,0,GRASS,Status,100,12,0,NearOther,0,bce,"The user bursts a ball of sleep-inducing powder. It fails unless the target hit the user this turn.",SLEEPPOWDER
