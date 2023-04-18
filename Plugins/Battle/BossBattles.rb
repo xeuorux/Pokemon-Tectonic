@@ -481,38 +481,6 @@ class PokeBattle_Battle
     end
 end
 
-class PokeBattle_Scene
-    attr_reader :animations
-
-    def animateIntroNewAvatar(battlerIndexNew)
-        # Animation of new pokemon appearing
-        dataBoxAnim = DataBoxAppearAnimation.new(@sprites, @viewport, battlerIndexNew)
-        @animations.push(dataBoxAnim)
-        # Set up wild Pokémon returning to normal colour and playing intro
-        # animations (including cry)
-        @animations.push(BattleIntroAnimationSolo.new(@sprites, @viewport, battlerIndexNew))
-        # Play all the animations
-        pbUpdate while inPartyAnimation?
-    end
-end
-
-#===============================================================================
-# Shows a single wild Pokémon fading back to its normal color, and triggers their intro
-# animation
-#===============================================================================
-class BattleIntroAnimationSolo < PokeBattle_Animation
-    def initialize(sprites, viewport, idxBattler)
-        @idxBattler = idxBattler
-        super(sprites, viewport)
-    end
-
-    def createProcesses
-        battler = addSprite(@sprites["pokemon_#{@idxBattler}"], PictureOrigin::Bottom)
-        battler.moveTone(0, 4, Tone.new(0, 0, 0, 0))
-        battler.setCallback(0, [@sprites["pokemon_#{@idxBattler}"], :pbPlayIntroAnimation])
-    end
-end
-
 class PokeBattle_Battler
     attr_accessor :choicesTaken
     attr_accessor :lastMoveChosen

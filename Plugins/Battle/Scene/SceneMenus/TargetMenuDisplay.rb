@@ -1,11 +1,24 @@
+#===============================================================================
+# Target menu (choose a move's target)
+# NOTE: Unlike the command and fight menus, this one doesn't have a textbox-only
+#       version.
+#===============================================================================
 class TargetMenuDisplay < BattleMenuBase
-	attr_accessor :dexSelect
-	
-	def dexSelect=(value)
-		dexSelect = value
-		@dexReminder.visible = value
-	end
-	
+    attr_accessor :mode
+    attr_accessor :dexSelect
+  
+    # Lists of which button graphics to use in different situations/types of battle.
+    MODES = [
+       [0,2,1,3],   # 0 = Regular battle
+       [0,2,1,9],   # 1 = Regular battle with "Cancel" instead of "Run"
+       [0,2,1,4],   # 2 = Regular battle with "Call" instead of "Run"
+       [5,7,6,3],   # 3 = Safari Zone
+       [0,8,1,3]    # 4 = Bug Catching Contest
+    ]
+    CMD_BUTTON_WIDTH_SMALL = 170
+    TEXT_BASE_COLOR   = Color.new(240,248,224)
+    TEXT_SHADOW_COLOR = Color.new(64,64,64)
+  
 	def initialize(viewport,z,sideSizes)
 		super(viewport)
 		@dexSelext = false
@@ -61,10 +74,58 @@ class TargetMenuDisplay < BattleMenuBase
 		self.z = z
 		refresh
 	end
-
+  
 	def dispose
 		super
 		@buttonBitmap.dispose if @buttonBitmap
 		@dexReminderBitmap.dispose if @dexReminderBitmap
 	end
+  
+    def z=(value)
+      super
+      @overlay.z += 5 if @overlay
+    end
+
+    def dexSelect=(value)
+		dexSelect = value
+		@dexReminder.visible = value
+	end
+  
+    def setDetails(texts,mode)
+      @texts = texts
+      @mode  = mode
+      refresh
+    end
+  
+    def refreshButtons
+      # Choose appropriate button graphics and z positions
+      @buttons.each_with_index do |button,i|
+        next if !button
+        sel = false
+        buttonType = 0
+        if @texts[i]
+          sel ||= (@mode==0 && i==@index)
+          sel ||= (@mode==1)
+          buttonType = ((i%2)==0) ? 1 : 2
+        end
+        buttonType = 2*buttonType + ((@smallButtons) ? 1 : 0)
+        button.src_rect.x = (sel) ? @buttonBitmap.width/2 : 0
+        button.src_rect.y = buttonType*BUTTON_HEIGHT
+        button.z          = self.z + ((sel) ? 3 : 2)
+      end
+      # Draw target names onto overlay
+      @overlay.bitmap.clear
+      textpos = []
+      @buttons.each_with_index do |button,i|
+        next if !button || nil_or_empty?(@texts[i])
+        x = button.x-self.x+button.src_rect.width/2
+        y = button.y-self.y+2
+        textpos.push([@texts[i],x,y,2,TEXT_BASE_COLOR,TEXT_SHADOW_COLOR])
+      end
+      pbDrawTextPositions(@overlay.bitmap,textpos)
+    end
+  
+    def refresh
+      refreshButtons
+    end
 end

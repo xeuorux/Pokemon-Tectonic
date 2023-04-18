@@ -1,4 +1,9 @@
 class AbilitySplashBar < SpriteWrapper
+    attr_reader :battler
+
+    TEXT_BASE_COLOR   = Color.new(0,0,0)
+    TEXT_SHADOW_COLOR = Color.new(248,248,248)
+
     SPECIES_ICON_SRC_Y = 8
     SPECIES_ICON_SRC_HEIGHT = 76
     SPECIES_ICON_X_POS_OWN = 180
@@ -125,5 +130,10 @@ class AbilitySplashBar < SpriteWrapper
         textPos.push([@abilityName,textX,26,@side==1,
            TEXT_BASE_COLOR,TEXT_SHADOW_COLOR,true])
         pbDrawTextPositions(self.bitmap,textPos)
+    end
+
+    def update
+        super
+        @bgSprite.update
     end
 end

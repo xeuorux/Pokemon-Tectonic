@@ -1,7 +1,3 @@
-module Input
-  BALL	   = B
-end
-
 # Create the targeting category used for the Info button
 GameData::Target.register({
   :id               => :UserOrOther,
@@ -9,7 +5,7 @@ GameData::Target.register({
   :name             => _INTL("User Or Other"),
   :targets_foe      => true,
   :long_range       => true,
-  :num_targets      => 1
+  :num_targets      => 1,
 })
 
 class PokeBattle_Battle

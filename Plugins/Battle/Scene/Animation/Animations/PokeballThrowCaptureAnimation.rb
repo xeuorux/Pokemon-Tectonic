@@ -168,4 +168,4 @@ class PokeballThrowCaptureAnimation < PokeBattle_Animation
       end
       super
     end
-  end
+end

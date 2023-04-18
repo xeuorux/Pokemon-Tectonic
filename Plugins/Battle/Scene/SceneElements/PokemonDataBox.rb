@@ -1,17 +1,29 @@
+#===============================================================================
+# Data box for regular battles
+#===============================================================================
 class PokemonDataBox < SpriteWrapper
-
+	attr_reader   :battler
+	attr_accessor :selected
+	attr_reader   :animatingHP
+	attr_reader   :animatingExp
+	attr_accessor :showTypes
+  
 	# Time in seconds to fully fill the Exp bar (from empty).
 	EXP_BAR_FILL_TIME  = 0.5
 	# Maximum time in seconds to make a change to the HP bar.
 	HP_BAR_CHANGE_TIME = 0.5
-	
-	TYPE_ICON_HEIGHT = 18
-	TYPE_ICON_THIN_HEIGHT = 20
-	NAME_BASE_COLOR = Color.new(255,255,255)
-	NAME_SHADOW_COLOR       = Color.new(136,136,136)
 
-	attr_accessor :showTypes
-	
+	STATUS_ICON_HEIGHT = 16
+	NAME_BASE_COLOR 		= Color.new(255,255,255)
+	NAME_SHADOW_COLOR       = Color.new(136,136,136)
+	MALE_BASE_COLOR         = Color.new(48,96,216)
+	MALE_SHADOW_COLOR       = NAME_SHADOW_COLOR
+	FEMALE_BASE_COLOR       = Color.new(248,88,40)
+	FEMALE_SHADOW_COLOR     = NAME_SHADOW_COLOR
+
+	TYPE_ICON_HEIGHT 		= 18
+	TYPE_ICON_THIN_HEIGHT 	= 20
+  
 	def initialize(battler,sideSize,viewport=nil,verticalShift = 0)
 		super(viewport)
 		@battler      = battler
@@ -38,6 +50,7 @@ class PokemonDataBox < SpriteWrapper
 		initializeOtherGraphics(viewport)
 		refresh
 	end
+  
 	
 	def initializeDataBoxGraphic(sideSize)
 		onPlayerSide = ((@battler.index%2)==0)
@@ -91,11 +104,171 @@ class PokemonDataBox < SpriteWrapper
 			end
 		end
 	end
+	  
+	def initializeOtherGraphics(viewport)
+		# Create other bitmaps
+		@numbersBitmap = AnimatedBitmap.new(_INTL("Graphics/Pictures/Battle/icon_numbers_white"))
+		@hpBarBitmap   = AnimatedBitmap.new(_INTL("Graphics/Pictures/Battle/overlay_hp"))
+		@expBarBitmap  = AnimatedBitmap.new(_INTL("Graphics/Pictures/Battle/overlay_exp"))
+		typeIconFileName = @thinBox ? "Graphics/Pictures/Battle/icon_types_thin" : "Graphics/Pictures/Battle/icon_types"
+		@typeBitmap    = AnimatedBitmap.new(_INTL(typeIconFileName))
+	
+		# Create sprite to draw HP numbers on
+		@hpNumbers = BitmapSprite.new(124,16,viewport)
+		pbSetSmallFont(@hpNumbers.bitmap)
+		@sprites["hpNumbers"] = @hpNumbers
+	
+		# Create sprite wrappers that displays HP bars
+		@hpBarWidth = @hpBarBitmap.width.to_f
+	
+		hpBarNum = 0
+		@numHPBars.times do
+			newBar = SpriteWrapper.new(viewport)
+			newBar.bitmap = @hpBarBitmap.bitmap
+			newBar.src_rect.height = @hpBarBitmap.height/3
+			newBar.src_rect.width = @hpBarWidth
+			@sprites["hpBar_#{hpBarNum}"] = newBar
+			@hpBars.push(newBar)
+			hpBarNum += 1
+		end
+		
+		# Create sprite wrapper that displays Exp bar
+		@expBar = SpriteWrapper.new(viewport)
+		@expBar.bitmap = @expBarBitmap.bitmap
+		@sprites["expBar"] = @expBar
+	
+		# Create the type icons
+		[1,2,3].each do |i|
+			newIcon = SpriteWrapper.new(viewport)
+			newIcon.bitmap = @typeBitmap.bitmap
+			newIcon.src_rect.height = @thinBox ? TYPE_ICON_THIN_HEIGHT : TYPE_ICON_HEIGHT
+			@sprites["type_icon_#{i}"] = newIcon
+			@typeIcons.push(newIcon)
+		end
+	
+		# Create sprite wrapper that displays everything except the above
+		@contents = BitmapWrapper.new(@databoxBitmap.width,@databoxBitmap.height)
+		self.bitmap  = @contents
+		self.visible = false
+		self.z       = 150+((@battler.index)/2)*5
+		
+		pbSetSystemFont(self.bitmap)
+		
+	end
+  
+	def disposeBitmaps()
+		@databoxBitmap.dispose
+		@numbersBitmap.dispose
+		@hpBarBitmap.dispose
+		@expBarBitmap.dispose
+		@typeBitmap.dispose
+		@contents.dispose
+	end
+	
+	def dispose
+		pbDisposeSpriteHash(@sprites)
+		disposeBitmaps
+		super
+	end
+	def x=(value)
+		super
+		@hpBars.each_with_index do |bar,index|
+			bar.x     = value + @spriteBaseX + 102
+		end
+	
+		@expBar.x    = value+@spriteBaseX+2
+		@hpNumbers.x = value+@spriteBaseX+80
+	
+		@typeIcons.each_with_index do |icon, index|
+			icon.x = value + @spriteBaseX
+			if @thinBox
+				icon.x += @databoxBitmap.width - 22
+				icon.x += @databoxBitmap.width * (index/2)
+			else
+				icon.x += 4
+				icon.x += 48 * index
+			end
+		end
+	  end
+	
+	def y=(value)
+		super
+	
+		finalBarY = 0
+		@hpBars.each_with_index do |bar,index|
+			bar.y     = value + 40 + index * 12
+			finalBarY = bar.y
+		end
+	
+		@expBar.y    = finalBarY + 34
+	
+		@hpNumbers.y = value+52
+	
+		@typeIcons.each_with_index do |icon, index|
+			icon.y = value
+			if @thinBox
+				icon.y += 8
+				icon.y += (index % 2) * TYPE_ICON_THIN_HEIGHT
+			else
+				icon.y += @databoxBitmap.height - TYPE_ICON_HEIGHT
+			end
+		end
+	end
+	
+	def z=(value)
+		super
+		@hpBars.each_with_index do |bar,index|
+			bar.z = value + 1
+		end
+		@expBar.z    = value+1
+		@hpNumbers.z = value+2
+	
+		@typeIcons.each_with_index do |icon, index|
+			icon.z = value
+		end
+	end
+  
+	def opacity=(value)
+	  super
+	  for i in @sprites
+		i[1].opacity = value if !i[1].disposed?
+	  end
+	end
+  
+	def visible=(value)
+		super
+		for i in @sprites
+		  i[1].visible = value if !i[1].disposed?
+		end
+		@expBar.visible = (value && @showExp)
+		
+		refreshTypeIcons()
+	end
+  
+	def color=(value)
+	  super
+	  for i in @sprites
+		i[1].color = value if !i[1].disposed?
+	  end
+	end
+  
+	def battler=(b)
+	  @battler = b
+	  self.visible = (@battler && !@battler.fainted?)
+	end
 
 	def getHeight
 		return @databoxBitmap.height
 	end
-	  
+  
+	def hp
+	  return (@animatingHP) ? @currentHP : @battler.hp
+	end
+  
+	def exp_fraction
+	  return (@animatingExp) ? @currentExp.to_f/@rangeExp : @battler.pokemon.exp_fraction
+	end
+  
 	def animateHP(oldHP,newHP,rangeHP,fastAnimation=false)
 		@currentHP   = oldHP
 		@endHP       = newHP
@@ -113,7 +286,7 @@ class PokemonDataBox < SpriteWrapper
 		end
 		@animatingHP   = true
 	end
-	
+  
 	def animateExp(oldExp,newExp,rangeExp)
 		@currentExp     = oldExp
 		@endExp         = newExp
@@ -126,7 +299,19 @@ class PokemonDataBox < SpriteWrapper
 			pbSEPlay("Pkmn exp gain",nil,100)
 		end
 	end
-
+  
+	def pbDrawNumber(number,btmp,startX,startY,align=0)
+	  # -1 means draw the / character
+	  n = (number == -1) ? [10] : number.to_i.digits.reverse
+	  charWidth  = @numbersBitmap.width/11
+	  charHeight = @numbersBitmap.height
+	  startX -= charWidth*n.length if align==1
+	  n.each do |i|
+		btmp.blt(startX,startY,@numbersBitmap.bitmap,Rect.new(i*charWidth,0,charWidth,charHeight))
+		startX += charWidth
+	  end
+	end
+  
 	def refresh
 		self.bitmap.clear
 		return if !@battler.pokemon
@@ -225,7 +410,7 @@ class PokemonDataBox < SpriteWrapper
 			end
 		end
 	end
-	
+  
 	def refreshHP
 		@hpNumbers.bitmap.clear
 		return if !@battler.pokemon
@@ -262,176 +447,90 @@ class PokemonDataBox < SpriteWrapper
 			bar.src_rect.y = hpColor * @hpBarBitmap.height / 3
 		end
 	end
-	  
-  def initializeOtherGraphics(viewport)
-    # Create other bitmaps
-    @numbersBitmap = AnimatedBitmap.new(_INTL("Graphics/Pictures/Battle/icon_numbers_white"))
-    @hpBarBitmap   = AnimatedBitmap.new(_INTL("Graphics/Pictures/Battle/overlay_hp"))
-    @expBarBitmap  = AnimatedBitmap.new(_INTL("Graphics/Pictures/Battle/overlay_exp"))
-	typeIconFileName = @thinBox ? "Graphics/Pictures/Battle/icon_types_thin" : "Graphics/Pictures/Battle/icon_types"
-	@typeBitmap    = AnimatedBitmap.new(_INTL(typeIconFileName))
-
-    # Create sprite to draw HP numbers on
-    @hpNumbers = BitmapSprite.new(124,16,viewport)
-    pbSetSmallFont(@hpNumbers.bitmap)
-    @sprites["hpNumbers"] = @hpNumbers
-
-    # Create sprite wrappers that displays HP bars
-	@hpBarWidth = @hpBarBitmap.width.to_f
-
-	hpBarNum = 0
-	@numHPBars.times do
-		newBar = SpriteWrapper.new(viewport)
-		newBar.bitmap = @hpBarBitmap.bitmap
-		newBar.src_rect.height = @hpBarBitmap.height/3
-		newBar.src_rect.width = @hpBarWidth
-		@sprites["hpBar_#{hpBarNum}"] = newBar
-		@hpBars.push(newBar)
-		hpBarNum += 1
-	end
-	
-    # Create sprite wrapper that displays Exp bar
-    @expBar = SpriteWrapper.new(viewport)
-    @expBar.bitmap = @expBarBitmap.bitmap
-    @sprites["expBar"] = @expBar
-
-	# Create the type icons
-	[1,2,3].each do |i|
-		newIcon = SpriteWrapper.new(viewport)
-		newIcon.bitmap = @typeBitmap.bitmap
-		newIcon.src_rect.height = @thinBox ? TYPE_ICON_THIN_HEIGHT : TYPE_ICON_HEIGHT
-		@sprites["type_icon_#{i}"] = newIcon
-		@typeIcons.push(newIcon)
-	end
-
-    # Create sprite wrapper that displays everything except the above
-    @contents = BitmapWrapper.new(@databoxBitmap.width,@databoxBitmap.height)
-    self.bitmap  = @contents
-    self.visible = false
-    self.z       = 150+((@battler.index)/2)*5
-	
-    pbSetSystemFont(self.bitmap)
-	
-  end
   
-  def disposeBitmaps()
-	@databoxBitmap.dispose
-    @numbersBitmap.dispose
-    @hpBarBitmap.dispose
-    @expBarBitmap.dispose
-	@typeBitmap.dispose
-    @contents.dispose
-  end
-
-  def dispose
-    pbDisposeSpriteHash(@sprites)
-    disposeBitmaps
-    super
-  end
-  
-  def x=(value)
-    super
-	@hpBars.each_with_index do |bar,index|
-		bar.x     = value + @spriteBaseX + 102
+	def refreshExp
+	  return if !@showExp
+	  w = exp_fraction * @expBarBitmap.width
+	  # NOTE: The line below snaps the bar's width to the nearest 2 pixels, to
+	  #       fit in with the rest of the graphics which are doubled in size.
+	  w = ((w/2).round)*2
+	  @expBar.src_rect.width = w
 	end
-
-    @expBar.x    = value+@spriteBaseX+2
-    @hpNumbers.x = value+@spriteBaseX+80
-
-	@typeIcons.each_with_index do |icon, index|
-		icon.x = value + @spriteBaseX
-		if @thinBox
-			icon.x += @databoxBitmap.width - 22
-			icon.x += @databoxBitmap.width * (index/2)
+  
+	def updateHPAnimation
+	  return if !@animatingHP
+	  if @currentHP<@endHP      # Gaining HP
+		@currentHP += @hpIncPerFrame
+		@currentHP = @endHP if @currentHP>=@endHP
+	  elsif @currentHP>@endHP   # Losing HP
+		@currentHP -= @hpIncPerFrame
+		@currentHP = @endHP if @currentHP<=@endHP
+	  end
+	  # Refresh the HP bar/numbers
+	  refreshHP
+	  @animatingHP = false if @currentHP==@endHP
+	end
+  
+	def updateExpAnimation
+		return if !@animatingExp
+		if !@showExp   # Not showing the Exp bar, no need to waste time animating it
+		  @currentExp = @endExp
+		  @animatingExp = false
+		  return
+		end
+		if @currentExp<@endExp   # Gaining Exp
+		  @currentExp += @expIncPerFrame
+		  @currentExp = @endExp if @currentExp>=@endExp
+		elsif @currentExp>@endExp   # Losing Exp
+		  @currentExp -= @expIncPerFrame
+		  @currentExp = @endExp if @currentExp<=@endExp
+		end
+		# Refresh the Exp bar
+		refreshExp
+		return if @currentExp!=@endExp   # Exp bar still has more to animate
+		# Exp bar is completely filled, level up with a flash and sound effect
+		if @currentExp>=@rangeExp
+		  if @expFlash==0
+			pbSEStop
+			@expFlash = Graphics.frame_rate/5
+			pbSEPlay("Pkmn exp full",nil,100)
+			self.flash(Color.new(64,200,248,192),@expFlash)
+			for i in @sprites
+			  i[1].flash(Color.new(64,200,248,192),@expFlash) if !i[1].disposed?
+			end
+		  else
+			@expFlash -= 1
+			@animatingExp = false if @expFlash==0
+		  end
 		else
-			icon.x += 4
-			icon.x += 48 * index
+		  pbSEStop
+		  # Exp bar has finished filling, end animation
+		  @animatingExp = false
 		end
 	end
-  end
-
-  def y=(value)
-    super
-
-	finalBarY = 0
-	@hpBars.each_with_index do |bar,index|
-		bar.y     = value + 40 + index * 12
-		finalBarY = bar.y
-	end
-
-	@expBar.y    = finalBarY + 34
-
-    @hpNumbers.y = value+52
-
-	@typeIcons.each_with_index do |icon, index|
-		icon.y = value
-		if @thinBox
-			icon.y += 8
-			icon.y += (index % 2) * TYPE_ICON_THIN_HEIGHT
-		else
-			icon.y += @databoxBitmap.height - TYPE_ICON_HEIGHT
+  
+	QUARTER_ANIM_PERIOD = Graphics.frame_rate*3/20
+  
+	def updatePositions(frameCounter)
+	  self.x = @spriteX
+	  self.y = @spriteY
+	  # Data box bobbing while Pokémon is selected
+	  if @selected==1 || @selected==2   # Choosing commands/targeted or damaged
+		case (frameCounter/QUARTER_ANIM_PERIOD).floor
+		when 1 then self.y = @spriteY-2
+		when 3 then self.y = @spriteY+2
 		end
+	  end
 	end
-  end
-
-  def z=(value)
-    super
-	@hpBars.each_with_index do |bar,index|
-		bar.z = value + 1
-	end
-    @expBar.z    = value+1
-    @hpNumbers.z = value+2
-
-	@typeIcons.each_with_index do |icon, index|
-		icon.z = value
-	end
-  end
   
-  def visible=(value)
-    super
-    for i in @sprites
-      i[1].visible = value if !i[1].disposed?
-    end
-    @expBar.visible = (value && @showExp)
-	
-	refreshTypeIcons()
-  end
-  
-  def updateExpAnimation
-    return if !@animatingExp
-    if !@showExp   # Not showing the Exp bar, no need to waste time animating it
-      @currentExp = @endExp
-      @animatingExp = false
-      return
-    end
-    if @currentExp<@endExp   # Gaining Exp
-      @currentExp += @expIncPerFrame
-      @currentExp = @endExp if @currentExp>=@endExp
-    elsif @currentExp>@endExp   # Losing Exp
-      @currentExp -= @expIncPerFrame
-      @currentExp = @endExp if @currentExp<=@endExp
-    end
-    # Refresh the Exp bar
-    refreshExp
-    return if @currentExp!=@endExp   # Exp bar still has more to animate
-    # Exp bar is completely filled, level up with a flash and sound effect
-    if @currentExp>=@rangeExp
-      if @expFlash==0
-        pbSEStop
-        @expFlash = Graphics.frame_rate/5
-		pbSEPlay("Pkmn exp full",nil,100)
-        self.flash(Color.new(64,200,248,192),@expFlash)
-        for i in @sprites
-          i[1].flash(Color.new(64,200,248,192),@expFlash) if !i[1].disposed?
-        end
-      else
-        @expFlash -= 1
-        @animatingExp = false if @expFlash==0
-      end
-    else
-      pbSEStop
-      # Exp bar has finished filling, end animation
-      @animatingExp = false
-    end
-  end
+	def update(frameCounter=0)
+	  super()
+	  # Animate HP bar
+	  updateHPAnimation
+	  # Animate Exp bar
+	  updateExpAnimation
+	  # Update coordinates of the data box
+	  updatePositions(frameCounter)
+	  pbUpdateSpriteHash(@sprites)
+	end
 end
