@@ -25,16 +25,17 @@ def pbGiveItemToPokemon(item,pkmn,scene,fromBag=true)
         alreadyHoldingAlert(pkmn,pkmn.firstItem,scene)
         if scene.pbConfirm(_INTL("Would you like to switch the two items?"))
             $PokemonBag.pbDeleteItem(item) if fromBag
-            unless $PokemonBag.pbStoreItem(pkmn.firstItem)
+            if $PokemonBag.pbStoreItem(pkmn.firstItem)
+                scene.pbDisplay(_INTL("Took the {1} from {2} and gave it the {3}.",getItemName(pkmn.firstItem),pkmn.name,newitemname))
+                pocketAlert(pkmn.firstItem)
+                pkmn.setItems(item)
+                return true
+            else
                 if fromBag && !$PokemonBag.pbStoreItem(item)
                     raise _INTL("Could't re-store deleted item in Bag somehow")
                 end
                 scene.pbDisplay(_INTL("The Bag is full. The Pokémon's item could not be removed."))
                 return false
-            else
-                scene.pbDisplay(_INTL("Took the {1} from {2} and gave it the {3}.",getItemName(pkmn.firstItem),pkmn.name,newitemname))
-                pkmn.setItems(item)
-                return true
             end
         end
     end
@@ -46,6 +47,12 @@ def pbGiveItemToPokemon(item,pkmn,scene,fromBag=true)
     end
 
     return giveItem
+end
+
+def pocketAlert(item)
+    item = GameData::Item.get(item)
+    pbMessage(_INTL("You put the {1} away\\nin the <icon=bagPocket{2}>\\c[1]{3} Pocket\\c[0].",
+        item.real_name,item.pocket,PokemonBag.pocketNames()[item.pocket]))
 end
 
 def alreadyHoldingAlert(pkmn,itemID,scene)
