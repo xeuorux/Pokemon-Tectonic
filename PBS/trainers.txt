@@ -2739,15 +2739,15 @@ Pokemon = TOWERPODA,53
 #-------------------------------
 [RUINMANIAC,Matteo]
 Pokemon = ARCTOZOLT,52
-    AbilityIndex = 1 # Static
+    AbilityIndex = 1 # Adrenaline Rush
     Item = ROCKYHELMET
 Pokemon = DRACOZOLT,53
-    AbilityIndex = 1 # Hustle
+    AbilityIndex = 1 # Challenger
 Pokemon = DRACOVISH,53
-    AbilityIndex = 1 # Strong Jaw
+    AbilityIndex = 1 # Schadenfreude
     Item = DRAGONGEM
 Pokemon = ARCTOVISH,52
-    AbilityIndex = 1 # Impervious
+    AbilityIndex = 1 # Analytic
 #-------------------------------
 [BACKPACKER_F,Mia]
 Pokemon = SAWSBUCK,52
@@ -4003,9 +4003,9 @@ Pokemon = CRADILY,70
     Item = LEFTOVERS
     EV = 20,0,15,0,0,15
 Pokemon = DRACOZOLT,70
-    Moves = BOLTBEAK,CALAMITOUSSLASH,TRAMPLE,AERIALACE
-    AbilityIndex = 0 # Hustle
-    Item = WIDELENS
+    Moves = BOLTBEAK,DRACOMETEOR,LUNARJUSTICE,TRAMPLE
+    AbilityIndex = 0 # Foolhardy
+    Item = WHITEHERB
     EV = 10,20,0,20,20,0
 #-------------------------------
 [GUITARIST3,Mai]
