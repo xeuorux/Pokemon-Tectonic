@@ -771,6 +771,13 @@ BattleHandlers::AbilityOnSwitchIn.add(:ASSISTANT,
     }
 )
 
+BattleHandlers::AbilityOnSwitchIn.add(:ROLLIN,
+  proc { |ability, battler, battle|
+      battle.forceUseMove(battler, :RAPIDSPIN, -1, ability: ability)
+  }
+)
+
+
 BattleHandlers::AbilityOnSwitchIn.add(:PRECHARGED,
   proc { |ability, battler, battle|
       battle.pbShowAbilitySplash(battler, ability)

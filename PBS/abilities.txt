@@ -608,6 +608,7 @@
 606,KLUMSYKINESIS,Klumsy Kinesis,"Can hold two items, but drops one when swapping out."
 607,FOOLHARDY,Foolhardy,"Immune to Psychic-type moves, and boosts Speed when hit by one."
 608,METEORIC,Meteoric,"Boosts Speed by 50% in Sandstorm or Hail."
+609,ROLLIN,Roll In,"Uses Rapid Spin upon entry. Clears hazards, raises speed, and deals damage."
 1000,JUSTIFIED,Justified,"Raises Attack when hit by a Dark-type move."
 1001,ADAPTABILITY,Adaptability,"Powers up moves of the same type."
 1002,HUGEPOWER,Huge Power,"Raises the Pokémon's Attack stat."
