@@ -307,6 +307,19 @@ BattleHandlers::TargetAbilityOnHit.add(:ABOVEITALL,
   }
 )
 
+BattleHandlers::TargetAbilityOnHit.add(:SHOCKRESPONSE,
+    proc { |ability, user, target, move, battle, aiChecking, aiNumHits|
+          next if target.fainted?
+          next unless move.baseDamage >= 100
+          if aiChecking
+            score = -5
+            score -= getNumbEffectScore(target, user)
+            next score
+          end
+          battle.forceUseMove(target, :NUZZLE, target.index, ability: ability)
+    }
+  )
+
 #########################################
 # Status inducing abilities
 #########################################
