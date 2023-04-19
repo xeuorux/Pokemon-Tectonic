@@ -610,6 +610,7 @@
 608,METEORIC,Meteoric,"Boosts Speed by 50% in Sandstorm or Hail."
 609,ROLLIN,Roll In,"Uses Rapid Spin upon entry. Clears hazards, raises speed, and deals damage."
 610,HUGGABLE,Huggable,"When hit by a move with 100 or more base power, hits back instantly with Nuzzle."
+611,PLASMABALL,Plasma Ball,"Attacks against the Pokémon deal 50% more damage, but the attacker takes 100% recoil."
 1000,JUSTIFIED,Justified,"Raises Attack when hit by a Dark-type move."
 1001,ADAPTABILITY,Adaptability,"Powers up moves of the same type."
 1002,HUGEPOWER,Huge Power,"Raises the Pokémon's Attack stat."

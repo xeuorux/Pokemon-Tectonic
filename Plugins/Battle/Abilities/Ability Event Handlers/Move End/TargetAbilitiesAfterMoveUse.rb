@@ -102,3 +102,21 @@ BattleHandlers::TargetAbilityAfterMoveUse.add(:MORPHINGGUARD,
       battle.pbHideAbilitySplash(target)
   }
 )
+
+BattleHandlers::TargetAbilityAfterMoveUse.add(:PLASMABALL,
+  proc { |ability, target, user, move, _switched, battle|
+      next unless move.pbDamagingMove?
+      next if target.damageState.unaffected
+      next if target.damageState.totalHPLost <= 0
+      battle.pbShowAbilitySplash(target, ability)
+      unless user.takesIndirectDamage?(true)
+        battle.pbHideAbilitySplash(target)
+        next
+      end
+      user.pbReduceHP(target.damageState.totalHPLost, false)
+      battle.pbDisplay(_INTL("{1} is damaged by recoil!", user.pbThis))
+      user.pbItemHPHealCheck
+      user.pbFaint if user.fainted?
+      battle.pbHideAbilitySplash(target)
+  }
+)

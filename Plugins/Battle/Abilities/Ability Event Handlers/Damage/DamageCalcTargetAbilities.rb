@@ -215,3 +215,9 @@ BattleHandlers::DamageCalcTargetAbility.add(:LIMINAL,
       mults[:final_damage_multiplier] *= 0.5 if target.effectActive?(:SwitchedIn)
   }
 )
+
+BattleHandlers::DamageCalcTargetAbility.add(:PLASMABALL,
+  proc { |ability, _user, target, _move, mults, _baseDmg, _type|
+      mults[:final_damage_multiplier] *= 1.5
+  }
+)
