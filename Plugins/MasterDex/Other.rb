@@ -53,15 +53,6 @@ def unlockDex
   $Trainer.pokedex.refresh_accessible_dexes()
 end
 
-class PokeBattle_Scene
-  #=============================================================================
-  # Shows the Pokédex entry screen for a newly caught Pokémon
-  #=============================================================================
-  def pbShowPokedex(species)
-	openSingleDexScreen(species)
-  end
-end
-
 def describeEvolutionMethod(method,parameter=0)
     case method
     when :Level,:Ninjask; return _INTL("at level #{parameter}")
