@@ -428,3 +428,4 @@
 1427,MINDSAP,Mind Sap,5E5,0,GRASS,Status,100,10,0,NearOther,0,bce,"Restores its own HP by the target's Attack stat amount, then lowers the target's Attack stat.",
 1428,APPLESURPRISE,Apple Surprise,5F2,45,GRASS,Special,100,10,100,NearOther,1,bef,"An apple falls from high up to strike the foe. Always goes first. Deals double damage in intense Gravity.",
 1429,STARDANCE,Star Dance,5F3,0,PSYCHIC,Status,100,15,0,AllNearFoes,0,bceo,"The user covers the target's body with a mass of down that lowers its Sp. Atk stat by five stages.",
+1430,AMPUP,Amp Up,09C,0,ELECTRIC,Status,0,15,0,NearAlly,0,,"The user assists an ally's next move, boosting its power by 50% and letting it move right after the user.",

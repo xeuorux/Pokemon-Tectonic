@@ -2228,3 +2228,48 @@ class PokeBattle_Move_5F3 < PokeBattle_TargetStatDownMove
         @statDown = [:SPECIAL_ATTACK, 5]
     end
 end
+
+#===============================================================================
+# Target moves immediately after the user and deals 50% more damage. (Amp Up)
+#===============================================================================
+class PokeBattle_Move_5F4 < PokeBattle_Move
+    def ignoresSubstitute?(_user); return true; end
+
+    def pbFailsAgainstTarget?(_user, target, show_message)
+        if target.fainted?
+            @battle.pbDisplay(_INTL("But it failed, since the receiver is gone!")) if show_message
+            return true
+        end
+        # Target has already moved this round
+        return true if pbMoveFailedTargetAlreadyMoved?(target, show_message)
+        # Target was going to move next anyway (somehow)
+        if target.effectActive?(:MoveNext)
+            @battle.pbDisplay(_INTL("But it failed, since #{target.pbThis(true)} is already being forced to move next!")) if show_message
+            return true
+        end
+        # Target didn't choose to use a move this round
+        oppMove = @battle.choices[target.index][2]
+        unless oppMove
+            @battle.pbDisplay(_INTL("But it failed. since #{target.pbThis(true)} isn't using a move this turn!")) if show_message
+            return true
+        end
+        return false
+    end
+
+    def pbEffectAgainstTarget(_user, target)
+        target.applyEffect(:HelpingHand)
+        @battle.pbDisplay(_INTL("{1} is ready to help {2}!", user.pbThis, target.pbThis(true)))
+        target.applyEffect(:MoveNext)
+        @battle.pbDisplay(_INTL("{1} is amped up!", target.pbThis))
+    end
+
+    def pbFailsAgainstTargetAI?(_user, _target); return false; end
+
+    def getEffectScore(user, target)
+        return 0 if user.opposes?(target)
+        userSpeed = user.pbSpeed(true)
+        targetSpeed = target.pbSpeed(true)
+        return 0 if targetSpeed > userSpeed
+        return 120
+    end
+end

@@ -791,9 +791,7 @@ class PokeBattle_Move_11D < PokeBattle_Move
         userSpeed = user.pbSpeed(true)
         targetSpeed = target.pbSpeed(true)
         return 0 if targetSpeed > userSpeed
-
-        # TODO: This can be improved
-        return score
+        return 60
     end
 end
 
