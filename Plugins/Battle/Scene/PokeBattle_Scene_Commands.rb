@@ -687,5 +687,21 @@ class PokeBattle_Scene
             end
         end
     end
+
+    #=============================================================================
+    # Shows the large turn count readout at the top of the screen
+    #=============================================================================
+    def pbShowTurnCountReminder
+      @sprites["turnCountReminder"].visible = true
+    end
+
+    def pbHideTurnCountReminder
+      @sprites["turnCountReminder"].visible = false
+    end
+
+    def updateTurnCountReminder(turnCount)
+      @sprites["turnCountReminder"].turnCount = turnCount
+      pbShowTurnCountReminder
+    end
 end
   

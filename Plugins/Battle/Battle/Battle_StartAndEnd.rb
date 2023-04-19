@@ -476,10 +476,13 @@ class PokeBattle_Battle
     def pbStartOfRoundPhase
         # The battle is a draw if the player survives a certain number of turns
         # In survival battles
-        if @turnsToSurvive > 0 && @turnCount > @turnsToSurvive
-            triggerBattleSurvivedDialogue
-            @decision = 6
-            return
+        if @turnsToSurvive > 0
+            @scene.updateTurnCountReminder(@turnsToSurvive - @turnCount + 1)
+            if @turnCount > @turnsToSurvive
+                triggerBattleSurvivedDialogue
+                @decision = 6
+                return
+            end
         end
 
         # Bosses begin the battle

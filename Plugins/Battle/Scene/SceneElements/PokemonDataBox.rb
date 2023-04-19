@@ -170,6 +170,7 @@ class PokemonDataBox < SpriteWrapper
 		disposeBitmaps
 		super
 	end
+	
 	def x=(value)
 		super
 		@hpBars.each_with_index do |bar,index|

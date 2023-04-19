@@ -146,6 +146,7 @@ class CatchingMinigameBattle < PokeBattle_Battle
   end
 
   def pbCommandPhaseLoop(isPlayer)
+    @scene.updateTurnCountReminder($catching_minigame.turnsLeft)
     $catching_minigame.spendTurn() if isPlayer
     super(isPlayer)
   end
@@ -155,17 +156,18 @@ class CatchingMinigameBattle < PokeBattle_Battle
     if $catching_minigame.turnsLeft == 0
       @decision = 3
     else
-      pbDisplay("You have #{$catching_minigame.turnsLeft} turns left in the contest.")
+      @scene.updateTurnCountReminder($catching_minigame.turnsLeft)
     end
   end
 
   def pbEndOfBattle
+    @scene.updateTurnCountReminder($catching_minigame.turnsLeft)
     super
     if $catching_minigame.turnsLeft == 0
       pbMessage(_INTL("You've ran out of turns!"))
       @decision = 3
     else
-      pbMessage("You have #{$catching_minigame.turnsLeft} turns left in the contest.")
+      #pbMessage("You have #{$catching_minigame.turnsLeft} turns left in the contest.")
     end
   end
 end

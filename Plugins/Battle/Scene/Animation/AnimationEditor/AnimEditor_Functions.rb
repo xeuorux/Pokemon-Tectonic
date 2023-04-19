@@ -8,8 +8,6 @@ class MiniBattler
   def initialize(index); self.index=index; end
 end
 
-
-
 class MiniBattle
   attr_accessor :battlers
 
@@ -18,8 +16,6 @@ class MiniBattle
     for i in 0...4; @battlers[i]=MiniBattler.new(i); end
   end
 end
-
-
 
 ################################################################################
 # Pop-up menus for buttons in bottom menu

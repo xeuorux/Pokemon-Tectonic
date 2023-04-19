@@ -92,6 +92,10 @@ class PokeBattle_Scene
         pkmnSprite.visible = true
         end
       end
+      
+      @sprites["turnCountReminder"] = TurnCountReminder.new(-1,@viewport)
+      @sprites["turnCountReminder"].x = Graphics.width / 2 + 20
+      @sprites["turnCountReminder"].visible = false
     end
 
     def getDisplayBallCount(side)

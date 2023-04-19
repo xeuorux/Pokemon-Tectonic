@@ -5,6 +5,7 @@ PokeBattle_Battle::BattleStartApplyCurse.add(:CURSE_FIGHT_EXTENDED,
             _INTL("Yezera won't leave the battle early. This is a true fight!")
         )
         battle.turnsToSurvive = -1
+        battle.scene.pbHideTurnCountReminder
         curses_array.push(curse_policy)
         next curses_array
     }
