@@ -6,13 +6,13 @@ class PokeBattle_AI
         case move.function
         #---------------------------------------------------------------------------
         when "13A" # Noble Roar
-            avg	= target.stages[:ATTACK] * 10
-            avg += target.stages[:SPECIAL_ATTACK] * 10
+            avg	= target.steps[:ATTACK] * 10
+            avg += target.steps[:SPECIAL_ATTACK] * 10
             score += avg / 2
         #---------------------------------------------------------------------------
         when "151" # Parting Shot
-            avg	= target.stages[:ATTACK] * 10
-            avg += target.stages[:SPECIAL_ATTACK] * 10
+            avg	= target.steps[:ATTACK] * 10
+            avg += target.steps[:SPECIAL_ATTACK] * 10
             score += avg / 2
         #---------------------------------------------------------------------------
         else

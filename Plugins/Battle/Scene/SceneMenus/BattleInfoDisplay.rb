@@ -200,17 +200,17 @@ class BattleInfoDisplay < SpriteWrapper
 	end
 	textToDraw.push([battlerName,256,0,2,base,shadow])
 	
-	# Stat Stages
-	statStagesSectionTopY = 52
+	# Stat Steps
+	statStepsSectionTopY = 52
 	statLabelX = 20
-	statStageX = 116
+	statStepX = 116
 	statMultX = 172
 	statValueX = 232
 	battlerEffectsX = 308
-	textToDraw.push(["Stat",statLabelX,statStagesSectionTopY,0,base,shadow])
-	textToDraw.push(["Stage",statStageX-16,statStagesSectionTopY,0,base,shadow])
-	textToDraw.push(["Mult",statMultX,statStagesSectionTopY,0,base,shadow])
-	textToDraw.push(["Value",statValueX,statStagesSectionTopY,0,base,shadow])
+	textToDraw.push(["Stat",statLabelX,statStepsSectionTopY,0,base,shadow])
+	textToDraw.push(["Step",statStepX-16,statStepsSectionTopY,0,base,shadow])
+	textToDraw.push(["Mult",statMultX,statStepsSectionTopY,0,base,shadow])
+	textToDraw.push(["Value",statValueX,statStepsSectionTopY,0,base,shadow])
 	
 	statsToNames = {
 		:ATTACK => "Atk",
@@ -224,7 +224,7 @@ class BattleInfoDisplay < SpriteWrapper
 
 	# Hash containing info about each stat
 	# Each key is a symbol of a stat
-	# Each value is an array of [statName, statStage, statMult, statFinalValue]
+	# Each value is an array of [statName, statStep, statMult, statFinalValue]
 	calculatedStatInfo = {}
 	
 	# Display the info about each stat
@@ -239,15 +239,15 @@ class BattleInfoDisplay < SpriteWrapper
 		statData = GameData::Stat.get(stat)
 		statValuesArray.push(name)
 		
-		# Stat stage
-		stage = battler.stages[stat]
-		if stage != 0 && battler.boss? && AVATAR_DILUTED_STAT_STAGES
-			stage = (stage/2.0).round(2)
+		# Stat step
+		step = battler.steps[stat]
+		if step != 0 && battler.boss? && AVATAR_DILUTED_STAT_STEPS
+			step = (step/2.0).round(2)
 		end
-		statValuesArray.push(stage)
+		statValuesArray.push(step)
 
 		# Multiplier
-		statValuesArray.push(battler.statMultiplierAtStage(battler.stages[stat]))
+		statValuesArray.push(battler.statMultiplierAtStep(battler.steps[stat]))
 
 		# Draw the final stat value label
 		if stat == :ACCURACY || stat == :EVASION
@@ -276,12 +276,12 @@ class BattleInfoDisplay < SpriteWrapper
 	index = 0
 	calculatedStatInfo.each do |stat,calculatedInfo|
 		name 		= calculatedInfo[0]
-		stage 		= calculatedInfo[1]
+		step 		= calculatedInfo[1]
 		statMult 	= calculatedInfo[2]
 		statValue 	= calculatedInfo[3]
 
 		# Calculate text display info
-		y = statStagesSectionTopY + 40 + 40 * index
+		y = statStepsSectionTopY + 40 + 40 * index
 		statValueAddendum = ""
 		if stat == highestStat
 			finalStatColor = HIGHEST_STAT_BASE
@@ -302,12 +302,12 @@ class BattleInfoDisplay < SpriteWrapper
 		end
 		textToDraw.push([name,statLabelX,y,0,statNameColor,shadow])
 
-		# Display the stat stage
-		x = statStageX
-		x -= 12 if stage != 0
-		stageLabel = stage.to_s
-		stageLabel = "+" + stageLabel if stage > 0
-		textToDraw.push([stageLabel,x,y,0,base,shadow])
+		# Display the stat step
+		x = statStepX
+		x -= 12 if step != 0
+		stepLabel = step.to_s
+		stepLabel = "+" + stepLabel if step > 0
+		textToDraw.push([stepLabel,x,y,0,base,shadow])
 
 		# Display the stat multiplier
 		multLabel = statMult.round(2).to_s
@@ -320,7 +320,7 @@ class BattleInfoDisplay < SpriteWrapper
 	end
 	
 	# Effects
-	textToDraw.push(["Battler Effects",battlerEffectsX,statStagesSectionTopY,0,base,shadow])
+	textToDraw.push(["Battler Effects",battlerEffectsX,statStepsSectionTopY,0,base,shadow])
 	
 	# Compile a descriptor for each effect on the battler or its position
 	battlerEffects = []
@@ -338,7 +338,7 @@ class BattleInfoDisplay < SpriteWrapper
 		for repeat in 0...repeats
 			battlerEffects.each do |effectName|
 				index += 1
-				calcedY = statStagesSectionTopY + 4 + 32 * index
+				calcedY = statStepsSectionTopY + 4 + 32 * index
 				calcedY -= @battlerScrollingValue if scrolling
 				next if calcedY < scrollingBoundYMin || calcedY > scrollingBoundYMax
 				distanceFromFade = [calcedY - scrollingBoundYMin,scrollingBoundYMax - calcedY].min
@@ -349,7 +349,7 @@ class BattleInfoDisplay < SpriteWrapper
 			end
 		end
 	else
-		textToDraw.push(["None",battlerEffectsX,statStagesSectionTopY + 36,0,base,shadow])
+		textToDraw.push(["None",battlerEffectsX,statStepsSectionTopY + 36,0,base,shadow])
 	end
 	
 	# Reset the scrolling once its scrolled through the entire list once

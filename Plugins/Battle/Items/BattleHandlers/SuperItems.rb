@@ -114,7 +114,7 @@ BattleHandlers::StatusCureItem.add(:LUNUSBERRY,
       itemName = GameData::Item.get(item).name
       battle.pbCommonAnimation("Nom",battler) if !forced
       battler.pbCureStatus
-      battler.pbRaiseMultipleStatStages([:ATTACK,2,:DEFENSE,2,:SPECIAL_ATTACK,2,:SPECIAL_DEFENSE,2,:SPEED,2], battler, item: item)
+      battler.pbRaiseMultipleStatSteps([:ATTACK,2,:DEFENSE,2,:SPECIAL_ATTACK,2,:SPECIAL_DEFENSE,2,:SPEED,2], battler, item: item)
       next true
     }
 )
@@ -150,8 +150,8 @@ BattleHandlers::EndOfMoveStatRestoreItem.add(:WHITEBOUGH,
   proc { |item,battler,battle,forced|
     reducedStats = false
     GameData::Stat.each_battle do |s|
-      next if battler.stages[s.id] >= 0
-      battler.stages[s.id] = 0
+      next if battler.steps[s.id] >= 0
+      battler.steps[s.id] = 0
       reducedStats = true
     end
     next false if !reducedStats

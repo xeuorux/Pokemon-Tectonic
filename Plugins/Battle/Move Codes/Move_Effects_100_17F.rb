@@ -421,7 +421,7 @@ class PokeBattle_Move_111 < PokeBattle_Move
 end
 
 #===============================================================================
-# Increases the user's Defense and Special Defense by 1 stage each. Ups the
+# Increases the user's Defense and Special Defense by 1 step each. Ups the
 # user's stockpile by 1 (max. 2). (Stockpile)
 #===============================================================================
 class PokeBattle_Move_112 < PokeBattle_MultiStatUpMove
@@ -453,7 +453,7 @@ end
 
 #===============================================================================
 # Power is 150 multiplied by the user's stockpile (X). Resets the stockpile to
-# 0. Decreases the user's Defense and Special Defense by X stages each. (Spit Up)
+# 0. Decreases the user's Defense and Special Defense by X steps each. (Spit Up)
 #===============================================================================
 class PokeBattle_Move_113 < PokeBattle_Move
     def pbMoveFailed?(user, _targets, show_message)
@@ -487,7 +487,7 @@ end
 
 #===============================================================================
 # Heals user depending on the user's stockpile (X). Resets the stockpile to 0.
-# Decreases the user's Defense and Special Defense by X stages each. (Swallow)
+# Decreases the user's Defense and Special Defense by X steps each. (Swallow)
 #===============================================================================
 class PokeBattle_Move_114 < PokeBattle_HealingMove
     def healingMove?; return true; end
@@ -1101,7 +1101,7 @@ class PokeBattle_Move_137 < PokeBattle_Move
 end
 
 #===============================================================================
-# Increases target's Defense and Special Defense by 3 stages. (Aromatic Mist)
+# Increases target's Defense and Special Defense by 3 steps. (Aromatic Mist)
 #===============================================================================
 class PokeBattle_Move_138 < PokeBattle_TargetMultiStatUpMove
     def ignoresSubstitute?(_user); return true; end
@@ -1119,7 +1119,7 @@ class PokeBattle_Move_139 < PokeBattle_Move
 end
 
 #===============================================================================
-# Decreases the target's Attack and Special Attack by 2 stages each. Always hits.
+# Decreases the target's Attack and Special Attack by 2 steps each. Always hits.
 # (Noble Roar)
 #===============================================================================
 class PokeBattle_Move_13A < PokeBattle_TargetMultiStatDownMove
@@ -1134,7 +1134,7 @@ class PokeBattle_Move_13A < PokeBattle_TargetMultiStatDownMove
 end
 
 #===============================================================================
-# Decreases the user's Defense by 1 stage. Always hits. Ends target's
+# Decreases the user's Defense by 1 step. Always hits. Ends target's
 # protections immediately. (Hyperspace Fury)
 #===============================================================================
 class PokeBattle_Move_13B < PokeBattle_StatDownMove
@@ -1170,7 +1170,7 @@ class PokeBattle_Move_13C < PokeBattle_Move
 end
 
 #===============================================================================
-# Decreases the target's Special Attack by 4 stages. (Eerie Impulse)
+# Decreases the target's Special Attack by 4 steps. (Eerie Impulse)
 #===============================================================================
 class PokeBattle_Move_13D < PokeBattle_TargetStatDownMove
     def initialize(battle, move)
@@ -1193,7 +1193,7 @@ end
 
 #===============================================================================
 # Decreases the Attack, Special Attack and Speed of all nearby poisoned foes
-# by 3 stages each. (Venom Drench)
+# by 3 steps each. (Venom Drench)
 #===============================================================================
 class PokeBattle_Move_140 < PokeBattle_Move
     def initialize(battle, move)
@@ -1212,9 +1212,9 @@ class PokeBattle_Move_140 < PokeBattle_Move
     def isValidTarget?(user, target)
         return false if target.fainted?
         return false unless target.poisoned?
-        return false if !target.pbCanLowerStatStage?(:ATTACK, user, self) &&
-                        !target.pbCanLowerStatStage?(:SPECIAL_ATTACK, user, self) &&
-                        !target.pbCanLowerStatStage?(:SPEED, user, self)
+        return false if !target.pbCanLowerStatStep?(:ATTACK, user, self) &&
+                        !target.pbCanLowerStatStep?(:SPECIAL_ATTACK, user, self) &&
+                        !target.pbCanLowerStatStep?(:SPEED, user, self)
         return true
     end
 
@@ -1223,7 +1223,7 @@ class PokeBattle_Move_140 < PokeBattle_Move
     end
 
     def pbEffectAgainstTarget(user, target)
-        target.pbLowerMultipleStatStages(@statDown, user, move: self)
+        target.pbLowerMultipleStatSteps(@statDown, user, move: self)
     end
 
     def getEffectScore(user, target)
@@ -1239,7 +1239,7 @@ class PokeBattle_Move_141 < PokeBattle_Move
     def pbFailsAgainstTarget?(_user, target, show_message)
         failed = true
         GameData::Stat.each_battle do |s|
-            next if target.stages[s.id] == 0
+            next if target.steps[s.id] == 0
             failed = false
             break
         end
@@ -1251,20 +1251,20 @@ class PokeBattle_Move_141 < PokeBattle_Move
     end
 
     def pbEffectAgainstTarget(_user, target)
-        GameData::Stat.each_battle { |s| target.stages[s.id] *= -1 }
+        GameData::Stat.each_battle { |s| target.steps[s.id] *= -1 }
         @battle.pbDisplay(_INTL("{1}'s stats were reversed!", target.pbThis))
     end
 
     def getEffectScore(user, target)
         score = 0
-        netStages = 0
+        netSteps = 0
         GameData::Stat.each_battle do |s|
-            netStages += target.stages[s.id]
+            netSteps += target.steps[s.id]
         end
         if user.opposes?(target)
-            score += netStages * 10
+            score += netSteps * 10
         else
-            score -= netStages * 10
+            score -= netSteps * 10
         end
         return score
     end
@@ -1503,7 +1503,7 @@ end
 
 #===============================================================================
 # User is protected against damaging moves this round. Decreases the Attack of
-# the user of a stopped physical move by 1 stage. (King's Shield)
+# the user of a stopped physical move by 1 step. (King's Shield)
 #===============================================================================
 class PokeBattle_Move_14B < PokeBattle_ProtectMove
     def initialize(battle, move)
@@ -1551,7 +1551,7 @@ end
 
 #===============================================================================
 # Two turn attack. Skips first turn, and increases the user's Special Attack,
-# Special Defense and Speed by 2 stages each in the second turn. (Geomancy)
+# Special Defense and Speed by 2 steps each in the second turn. (Geomancy)
 #===============================================================================
 class PokeBattle_Move_14E < PokeBattle_TwoTurnMove
     def initialize(battle, move)
@@ -1561,9 +1561,9 @@ class PokeBattle_Move_14E < PokeBattle_TwoTurnMove
 
     def pbMoveFailed?(user, _targets, show_message)
         return false if user.effectActive?(:TwoTurnAttack) # Charging turn
-        if !user.pbCanRaiseStatStage?(:SPECIAL_ATTACK, user, self) &&
-           !user.pbCanRaiseStatStage?(:SPECIAL_DEFENSE, user, self) &&
-           !user.pbCanRaiseStatStage?(:SPEED, user, self)
+        if !user.pbCanRaiseStatStep?(:SPECIAL_ATTACK, user, self) &&
+           !user.pbCanRaiseStatStep?(:SPECIAL_DEFENSE, user, self) &&
+           !user.pbCanRaiseStatStep?(:SPEED, user, self)
             @battle.pbDisplay(_INTL("{1}'s stats won't go any higher!", user.pbThis)) if show_message
             return true
         end
@@ -1576,7 +1576,7 @@ class PokeBattle_Move_14E < PokeBattle_TwoTurnMove
 
     def pbEffectGeneral(user)
         return unless @damagingTurn
-        user.pbRaiseMultipleStatStages(@statUp, user, move: self)
+        user.pbRaiseMultipleStatSteps(@statUp, user, move: self)
     end
 
     def getEffectScore(user, target)
@@ -1594,13 +1594,13 @@ class PokeBattle_Move_14F < PokeBattle_DrainMove
 end
 
 #===============================================================================
-# If this move KO's the target, increases the user's Attack by 5 stages.
+# If this move KO's the target, increases the user's Attack by 5 steps.
 # (Fell Stinger)
 #===============================================================================
 class PokeBattle_Move_150 < PokeBattle_Move
     # Used to modify the AI elsewhere
     def hasKOEffect?(user, _target)
-        return false unless user.pbCanRaiseStatStage?(:ATTACK, user, self)
+        return false unless user.pbCanRaiseStatStep?(:ATTACK, user, self)
         return true
     end
 
@@ -1611,7 +1611,7 @@ class PokeBattle_Move_150 < PokeBattle_Move
 end
 
 #===============================================================================
-# Decreases the target's Attack and Special Attack by 1 stage each. Then, user
+# Decreases the target's Attack and Special Attack by 1 step each. Then, user
 # switches out. Ignores trapping moves. (Parting Shot)
 #===============================================================================
 class PokeBattle_Move_151 < PokeBattle_TargetMultiStatDownMove
@@ -1774,12 +1774,12 @@ class PokeBattle_Move_158 < PokeBattle_Move
 end
 
 #===============================================================================
-# Poisons the target and decreases its Speed by 4 stages. (Toxic Thread)
+# Poisons the target and decreases its Speed by 4 steps. (Toxic Thread)
 #===============================================================================
 class PokeBattle_Move_159 < PokeBattle_Move
     def pbFailsAgainstTarget?(user, target, show_message)
         if !target.canPoison?(user, false, self) &&
-           !target.pbCanLowerStatStage?(:SPEED, user, self)
+           !target.pbCanLowerStatStep?(:SPEED, user, self)
             @battle.pbDisplay(_INTL("But it failed, since #{target.pbThis(true)} can't be poisoned or have its Speed lowered!")) if show_message
             return true
         end
@@ -1856,25 +1856,25 @@ class PokeBattle_Move_15C < PokeBattle_Move
 end
 
 #===============================================================================
-# User gains stat stages equal to each of the target's positive stat stages,
-# and target's positive stat stages become 0, before damage calculation.
+# User gains stat steps equal to each of the target's positive stat steps,
+# and target's positive stat steps become 0, before damage calculation.
 # (Spectral Thief)
 #===============================================================================
 class PokeBattle_Move_15D < PokeBattle_Move
     def ignoresSubstitute?(_user); return true; end
 
     def pbCalcDamage(user, target, numTargets = 1)
-        if target.hasRaisedStatStages?
-            pbShowAnimation(@id, user, target, 1) # Stat stage-draining animation
+        if target.hasRaisedStatSteps?
+            pbShowAnimation(@id, user, target, 1) # Stat step-draining animation
             @battle.pbDisplay(_INTL("{1} stole the target's boosted stats!", user.pbThis))
             showAnim = true
             GameData::Stat.each_battle do |s|
-                next if target.stages[s.id] <= 0
-                if user.pbCanRaiseStatStage?(s.id, user,
-self) && user.pbRaiseStatStage(s.id, target.stages[s.id], user, showAnim)
+                next if target.steps[s.id] <= 0
+                if user.pbCanRaiseStatStep?(s.id, user,
+self) && user.pbRaiseStatStep(s.id, target.steps[s.id], user, showAnim)
                     showAnim = false
                 end
-                target.stages[s.id] = 0
+                target.steps[s.id] = 0
             end
         end
         super
@@ -1883,14 +1883,14 @@ self) && user.pbRaiseStatStage(s.id, target.stages[s.id], user, showAnim)
     def getEffectScore(_user, target)
         score = 0
         GameData::Stat.each_battle do |s|
-            next if target.stages[s.id] <= 0
-            score += target.stages[s.id] * 20
+            next if target.steps[s.id] <= 0
+            score += target.steps[s.id] * 20
         end
         return score
     end
 
     def shouldHighlight?(_user, target)
-        return target.hasRaisedStatStages?
+        return target.hasRaisedStatSteps?
     end
 end
 
@@ -1911,7 +1911,7 @@ class PokeBattle_Move_15E < PokeBattle_Move
 end
 
 #===============================================================================
-# Decreases the user's Defense by 3 stages. (Clanging Scales)
+# Decreases the user's Defense by 3 steps. (Clanging Scales)
 #===============================================================================
 class PokeBattle_Move_15F < PokeBattle_StatDownMove
     def initialize(battle, move)
@@ -1921,7 +1921,7 @@ class PokeBattle_Move_15F < PokeBattle_StatDownMove
 end
 
 #===============================================================================
-# Decreases the target's Attack by 1 stage. Heals user by an amount equal to the
+# Decreases the target's Attack by 1 step. Heals user by an amount equal to the
 # target's Attack stat. (Strength Sap)
 #===============================================================================
 class PokeBattle_Move_160 < PokeBattle_Move
@@ -1929,17 +1929,17 @@ class PokeBattle_Move_160 < PokeBattle_Move
 
     def pbFailsAgainstTarget?(_user, target, show_message)
         # NOTE: The official games appear to just check whether the target's Attack
-        #       stat stage is -6 and fail if so, but I've added the "fail if target
+        #       stat step is -6 and fail if so, but I've added the "fail if target
         #       has Contrary and is at +6" check too for symmetry. This move still
-        #       works even if the stat stage cannot be changed due to an ability or
+        #       works even if the stat step cannot be changed due to an ability or
         #       other effect.
         if !@battle.moldBreaker && target.hasActiveAbility?(:CONTRARY) &&
-           target.statStageAtMax?(:ATTACK)
+           target.statStepAtMax?(:ATTACK)
             if show_message
                 @battle.pbDisplay(_INTL("But it failed, since #{target.pbThis(true)}'s Attack can't go any higher!"))
             end
             return true
-        elsif target.statStageAtMin?(:ATTACK)
+        elsif target.statStepAtMin?(:ATTACK)
             if show_message
                 @battle.pbDisplay(_INTL("But it failed, since #{target.pbThis(true)}'s Attack can't go any lower!"))
             end
@@ -1973,7 +1973,7 @@ class PokeBattle_Move_160 < PokeBattle_Move
 end
 
 #===============================================================================
-# User and target swap their Speed stats (not their stat stages). (Speed Swap)
+# User and target swap their Speed stats (not their stat steps). (Speed Swap)
 #===============================================================================
 class PokeBattle_Move_161 < PokeBattle_Move
     def ignoresSubstitute?(_user); return true; end
@@ -2031,7 +2031,7 @@ end
 #===============================================================================
 # Ignores all abilities that alter this move's success or damage. This move is
 # physical if user's Attack is higher than its Special Attack (after applying
-# stat stages), and special otherwise. (Photon Geyser)
+# stat steps), and special otherwise. (Photon Geyser)
 #===============================================================================
 class PokeBattle_Move_164 < PokeBattle_Move_163
     def initialize(battle, move)
@@ -2512,7 +2512,7 @@ class PokeBattle_Move_178 < PokeBattle_Move
 end
 
 #===============================================================================
-# Raises all user's stats by 2 stages in exchange for the user losing 1/3 of its
+# Raises all user's stats by 2 steps in exchange for the user losing 1/3 of its
 # maximum HP, rounded down. Fails if the user would faint. (Clangorous Soul)
 #===============================================================================
 class PokeBattle_Move_179 < PokeBattle_MultiStatUpMove
@@ -2575,7 +2575,7 @@ class PokeBattle_Move_17A < PokeBattle_Move
 end
 
 #===============================================================================
-# The user raises the target's Attack and Sp. Atk by 5 stages by decorating
+# The user raises the target's Attack and Sp. Atk by 5 steps by decorating
 # the target. (Decorate)
 #===============================================================================
 class PokeBattle_Move_17B < PokeBattle_TargetMultiStatUpMove
@@ -2721,7 +2721,7 @@ class PokeBattle_Move_17E < PokeBattle_Move
 end
 
 #===============================================================================
-# Increases each stat by 1 stage. Prevents user from fleeing. (No Retreat)
+# Increases each stat by 1 step. Prevents user from fleeing. (No Retreat)
 #===============================================================================
 class PokeBattle_Move_17F < PokeBattle_MultiStatUpMove
     def initialize(battle, move)

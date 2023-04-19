@@ -660,7 +660,7 @@ user.pbThis))
             if @battle.pbCheckGlobalAbility(:ANCESTRALDANCE)
 				@battle.pbPriority(true).each do |b|
 					next unless b.hasActiveAbility?(:ANCESTRALDANCE)
-					b.pbRaiseMultipleStatStages(DEFENDING_STATS_1, user, ability: :ANCESTRALDANCE)
+					b.pbRaiseMultipleStatSteps(DEFENDING_STATS_1, user, ability: :ANCESTRALDANCE)
 				end
 			end
         end

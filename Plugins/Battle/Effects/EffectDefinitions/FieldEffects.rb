@@ -190,8 +190,8 @@ GameData::BattleEffect.register_effect(:Field, {
     end,
     :eor_proc => proc do |battle, value|
         battle.eachBattler do |b|
-            next unless b.hasAlteredStatStages?
-            b.pbResetStatStages
+            next unless b.hasAlteredStatSteps?
+            b.pbResetStatSteps
             battle.pbDisplay(_INTL("#{b.pbThis}'s stat changes were eliminated!"))
         end
     end,

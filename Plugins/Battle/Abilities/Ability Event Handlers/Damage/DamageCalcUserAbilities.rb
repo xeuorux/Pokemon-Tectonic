@@ -292,7 +292,7 @@ BattleHandlers::DamageCalcUserAbility.add(:STRATAGEM,
 
 BattleHandlers::DamageCalcUserAbility.add(:ARMORPIERCING,
   proc { |ability, _user, target, _move, mults, _baseDmg, _type, _aiCheck|
-      mults[:base_damage_multiplier] *= 2.0 if target.stages[:DEFENSE] > 0 || target.stages[:SPECIAL_DEFENSE] > 0
+      mults[:base_damage_multiplier] *= 2.0 if target.steps[:DEFENSE] > 0 || target.steps[:SPECIAL_DEFENSE] > 0
   }
 )
 

@@ -16,8 +16,8 @@ BattleHandlers::EOREffectAbility.add(:MOODY,
       randomUp = []
       randomDown = []
       GameData::Stat.each_main_battle do |s|
-          randomUp.push(s.id) if battler.pbCanRaiseStatStage?(s.id, battler)
-          randomDown.push(s.id) if battler.pbCanLowerStatStage?(s.id, battler)
+          randomUp.push(s.id) if battler.pbCanRaiseStatStep?(s.id, battler)
+          randomDown.push(s.id) if battler.pbCanLowerStatStep?(s.id, battler)
       end
       next if randomUp.length == 0 && randomDown.length == 0
       battle.pbShowAbilitySplash(battler, ability)
@@ -41,7 +41,7 @@ BattleHandlers::EOREffectAbility.add(:PERSISTENTGROWTH,
   proc { |ability, battler, battle|
       next unless battler.turnCount > 0
       battle.pbShowAbilitySplash(battler, ability)
-      battler.pbRaiseMultipleStatStages([:ATTACK,1,:DEFENSE,1,:SPECIAL_ATTACK,1,:SPECIAL_DEFENSE,1], battler)
+      battler.pbRaiseMultipleStatSteps([:ATTACK,1,:DEFENSE,1,:SPECIAL_ATTACK,1,:SPECIAL_DEFENSE,1], battler)
       battler.tryLowerStat(:SPEED, battler)
       battle.pbHideAbilitySplash(battler)
   }
@@ -103,14 +103,14 @@ BattleHandlers::EOREffectAbility.add(:LUXURYTASTE,
 BattleHandlers::EOREffectAbility.add(:WARMTHCYCLE,
   proc { |ability, battler, battle|
       battle.pbShowAbilitySplash(battler, ability)
-      if !battler.statStageAtMax?(:SPEED)
+      if !battler.statStepAtMax?(:SPEED)
           if battler.tryRaiseStat(:SPEED, battler, increment: 3)
               battler.applyFractionalDamage(1.0 / 8.0, false)
               battle.pbDisplay(_INTL("{1} warmed up!", battler.pbThis))
           end
       else
           battle.pbDisplay(_INTL("{1} vents its accumulated heat!", battler.pbThis))
-          battler.stages[:SPEED] = 0
+          battler.steps[:SPEED] = 0
           battler.pbRecoverHP(battler.totalhp - battler.hp)
       end
 
@@ -132,7 +132,7 @@ BattleHandlers::EOREffectAbility.add(:TENDERIZE,
   proc { |ability, battler, _battle|
       battler.eachOther do |b|
           next unless b.numbed?
-          b.pbLowerMultipleStatStages(DEFENDING_STATS_2, battler, ability: ability)
+          b.pbLowerMultipleStatSteps(DEFENDING_STATS_2, battler, ability: ability)
       end
   }
 )

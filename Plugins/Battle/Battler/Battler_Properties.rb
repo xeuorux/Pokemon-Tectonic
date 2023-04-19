@@ -2,7 +2,7 @@ class PokeBattle_Battler
     # Fundamental to this object
     attr_reader   :battle
     attr_accessor :index, :pokemonIndex, :species, :type1, :type2, :ability_ids, :moves, :turnCount
-    attr_accessor  :gender, :iv, :attack, :spatk, :speed, :stages, :captured, :effects, :boss, :avatarPhase
+    attr_accessor  :gender, :iv, :attack, :spatk, :speed, :steps, :captured, :effects, :boss, :avatarPhase
     attr_accessor  :extraMovesPerTurn, :primevalTimer, :indicesTargetedThisRound, :indicesTargetedLastRound, :dmgMult,
 :dmgResist
     attr_accessor  :participants, :lastAttacker, :lastFoeAttacker, :lastHPLost, :lastHPLostFromFoe
@@ -99,10 +99,6 @@ class PokeBattle_Battler
 
     def nature
         return @pokemon ? @pokemon.nature : 0
-    end
-
-    def pokerusStage
-        return @pokemon ? @pokemon.pokerusStage : 0
     end
 
     def boss?

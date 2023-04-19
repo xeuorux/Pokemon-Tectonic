@@ -549,7 +549,7 @@ class PokeBattle_Battler
         @spatk = target.spatk
         @spdef = target.spdef
         @speed = target.speed
-        GameData::Stat.each_battle { |s| @stages[s.id] = target.stages[s.id] }
+        GameData::Stat.each_battle { |s| @steps[s.id] = target.steps[s.id] }
         # Copy critical hit chance raising effects
         target.eachEffect do |effect, value, data|
             @effects[effect] = value if data.critical_rate_buff?

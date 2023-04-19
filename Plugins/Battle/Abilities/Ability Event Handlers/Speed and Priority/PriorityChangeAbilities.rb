@@ -41,7 +41,7 @@ BattleHandlers::PriorityChangeAbility.add(:NEERDOWELL,
 
 BattleHandlers::PriorityChangeAbility.add(:ENVY,
   proc { |ability, _battler, _move, _pri, targets = nil, _aiCheck = false|
-      next 1 if targets && targets.length == 1 && targets[0].hasRaisedStatStages?
+      next 1 if targets && targets.length == 1 && targets[0].hasRaisedStatSteps?
   }
 )
 

@@ -15,7 +15,7 @@ BattleHandlers::AbilityOnStatLoss.add(:DEFIANT,
 BattleHandlers::AbilityOnStatLoss.add(:BELLIGERENT,
   proc { |ability, battler, _stat, user|
       next if user && !user.opposes?(battler)
-      battler.pbRaiseMultipleStatStages([:ATTACK, 3, :SPECIAL_ATTACK, 3], battler, ability: ability)
+      battler.pbRaiseMultipleStatSteps([:ATTACK, 3, :SPECIAL_ATTACK, 3], battler, ability: ability)
   }
 )
 

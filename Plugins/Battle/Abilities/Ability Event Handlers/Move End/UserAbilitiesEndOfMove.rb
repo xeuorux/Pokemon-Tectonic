@@ -43,9 +43,9 @@ BattleHandlers::UserAbilityEndOfMove.add(:ASONEICE,
       next if battle.pbAllFainted?(user.idxOpposingSide)
       numFainted = 0
       targets.each { |b| numFainted += 1 if b.damageState.fainted }
-      next if numFainted == 0 || !user.pbCanRaiseStatStage?(:ATTACK, user) || user.fainted?
+      next if numFainted == 0 || !user.pbCanRaiseStatStep?(:ATTACK, user) || user.fainted?
       battle.pbShowAbilitySplash(user, :CHILLINGNEIGH)
-      user.pbRaiseStatStage(:ATTACK, numFainted, user)
+      user.pbRaiseStatStep(:ATTACK, numFainted, user)
       battle.pbHideAbilitySplash(user)
   }
 )
@@ -55,9 +55,9 @@ BattleHandlers::UserAbilityEndOfMove.add(:ASONEGHOST,
       next if battle.pbAllFainted?(user.idxOpposingSide)
       numFainted = 0
       targets.each { |b| numFainted += 1 if b.damageState.fainted }
-      next if numFainted == 0 || !user.pbCanRaiseStatStage?(:ATTACK, user) || user.fainted?
+      next if numFainted == 0 || !user.pbCanRaiseStatStep?(:ATTACK, user) || user.fainted?
       battle.pbShowAbilitySplash(user, :GRIMNEIGH)
-      user.pbRaiseStatStage(:SPECIAL_ATTACK, numFainted, user)
+      user.pbRaiseStatStep(:SPECIAL_ATTACK, numFainted, user)
       battle.pbHideAbilitySplash(user)
   }
 )
@@ -124,7 +124,7 @@ BattleHandlers::UserAbilityEndOfMove.add(:DAUNTLESS,
       numFainted = 0
       targets.each { |b| numFainted += 1 if b.damageState.fainted }
       next if numFainted == 0
-      user.pbRaiseMultipleStatStages([:ATTACK, numFainted, :SPECIAL_ATTACK, numFainted], user, ability: ability)
+      user.pbRaiseMultipleStatSteps([:ATTACK, numFainted, :SPECIAL_ATTACK, numFainted], user, ability: ability)
   }
 )
 
@@ -135,7 +135,7 @@ BattleHandlers::UserAbilityEndOfMove.add(:CALAMITY,
       numFainted = 0
       targets.each { |b| numFainted += 1 if b.damageState.fainted }
       next if numFainted == 0
-      user.pbRaiseMultipleStatStages([:ATTACK, numFainted * 2, :SPECIAL_ATTACK, numFainted * 2], user, ability: ability)
+      user.pbRaiseMultipleStatSteps([:ATTACK, numFainted * 2, :SPECIAL_ATTACK, numFainted * 2], user, ability: ability)
   }
 )
 
@@ -158,14 +158,14 @@ BattleHandlers::UserAbilityEndOfMove.add(:FOLLOWTHROUGH,
 BattleHandlers::UserAbilityEndOfMove.add(:SOUNDBARRIER,
   proc { |ability, user, _targets, move, _battle, _switchedBattlers|
       next unless move.soundMove?
-      user.pbRaiseMultipleStatStages(DEFENDING_STATS_1, user, ability: ability)
+      user.pbRaiseMultipleStatSteps(DEFENDING_STATS_1, user, ability: ability)
   }
 )
 
 BattleHandlers::UserAbilityEndOfMove.add(:WINDBUFFER,
   proc { |ability, user, _targets, move, _battle, _switchedBattlers|
     next unless move.windMove?
-    user.pbRaiseMultipleStatStages(DEFENDING_STATS_1, user, ability: ability)
+    user.pbRaiseMultipleStatSteps(DEFENDING_STATS_1, user, ability: ability)
   }
 )
 
@@ -189,14 +189,14 @@ BattleHandlers::UserAbilityEndOfMove.add(:VICTORYMOLT,
       numFainted = 0
       targets.each { |b| numFainted += 1 if b.damageState.fainted }
       next if numFainted == 0
-      next unless user.pbHasAnyStatus? || user.hasAlteredStatStages?
+      next unless user.pbHasAnyStatus? || user.hasAlteredStatSteps?
       battle.pbShowAbilitySplash(user, ability)
       user.pbChangeForm(1, _INTL("{1} molts into a new shell!", user.pbThis))
       battle.pbAnimation(:REFRESH, user, nil)
       user.pbCureStatus(true)
-      if user.hasAlteredStatStages?
+      if user.hasAlteredStatSteps?
           battle.pbDisplay(_INTL("{1}'s stat changes were removed!", user.pbThis))
-          user.pbResetStatStages
+          user.pbResetStatSteps
       end
       battle.pbHideAbilitySplash(user)
   }

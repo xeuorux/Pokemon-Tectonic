@@ -260,7 +260,7 @@ class PokeBattle_Battle
                     next if b.fainted?
                     next unless b.debuffedByEclipse?
                     pbDisplay(_INTL("{1} is panicked!", b.pbThis))
-                    b.pbLowerMultipleStatStages(ALL_STATS_2, b)
+                    b.pbLowerMultipleStatSteps(ALL_STATS_2, b)
                     anyAffected = true
                 end
                 pbDisplay(_INTL("But no one was panicked.")) if showWeatherMessages && !anyAffected

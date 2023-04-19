@@ -111,7 +111,7 @@ BattleHandlers::HPHealItem.add(:SITRUSBERRY,
 BattleHandlers::HPHealItem.add(:STARFBERRY,
   proc { |item, battler, battle, forced, filchedFrom|
       stats = []
-      GameData::Stat.each_main_battle { |s| stats.push(s.id) if battler.pbCanRaiseStatStage?(s.id, battler) }
+      GameData::Stat.each_main_battle { |s| stats.push(s.id) if battler.pbCanRaiseStatStep?(s.id, battler) }
       next false if stats.length == 0
       stat = stats[battle.pbRandom(stats.length)]
       next pbBattleStatIncreasingBerry(battler, battle, item, forced, stat, 3, true, filchedFrom)

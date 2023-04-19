@@ -52,7 +52,7 @@ BattleHandlers::TargetAbilityOnHit.add(:GOOEY,
             end
             next ret
         end
-        user.pbLowerMultipleStatStages([:ATTACK,1,:SPEED,1], target, ability: ability)
+        user.pbLowerMultipleStatSteps([:ATTACK,1,:SPEED,1], target, ability: ability)
   }
 )
 
@@ -178,7 +178,7 @@ BattleHandlers::TargetAbilityOnHit.add(:STEAMENGINE,
             end
             next ret
         end
-        target.pbMaximizeStatStage(:SPEED, target, target, ability: ability)
+        target.pbMaximizeStatStep(:SPEED, target, target, ability: ability)
     }
 )
 
@@ -194,7 +194,7 @@ BattleHandlers::TargetAbilityOnHit.add(:FORCEREVERSAL,
             next ret
         else
             next unless Effectiveness.resistant?(target.damageState.typeMod)
-            target.pbRaiseMultipleStatStages(ATTACKING_STATS_2, target, ability: ability)
+            target.pbRaiseMultipleStatSteps(ATTACKING_STATS_2, target, ability: ability)
         end
     }
 )
@@ -246,14 +246,14 @@ BattleHandlers::TargetAbilityOnHit.add(:ARCCONDUCTOR,
 
 BattleHandlers::TargetAbilityOnHit.add(:SPINTENSITY,
     proc { |ability, user, target, move, battle, aiChecking, aiNumHits|
-        next unless target.stages[:SPEED] > 0
-        next -5 * target.stages[:SPEED] if aiChecking && user.takesIndirectDamage?
+        next unless target.steps[:SPEED] > 0
+        next -5 * target.steps[:SPEED] if aiChecking && user.takesIndirectDamage?
         battle.pbShowAbilitySplash(target, ability)
         battle.pbDisplay(_INTL("#{user.pbThis} catches the full force of #{target.pbThis(true)}'s Speed!"))
-        oldStage = target.stages[:SPEED]
-        user.applyFractionalDamage(oldStage / 8.0)
+        oldStep = target.steps[:SPEED]
+        user.applyFractionalDamage(oldStep / 8.0)
         battle.pbCommonAnimation("StatDown", target)
-        target.stages[:SPEED] = 0
+        target.steps[:SPEED] = 0
         battle.pbHideAbilitySplash(target)
     }
 )

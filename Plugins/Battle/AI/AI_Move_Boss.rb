@@ -122,7 +122,7 @@ class PokeBattle_AI
         # if there is somehow still no choice, choose to use Struggle
         if @battle.choices[idxBattler][2].nil?
             PBDebug.log("[BOSS AI] #{user.pbThis} (#{user.index}) AI protocols have failed, picking struggle")
-            print _INTL("Boss using struggle!") if @battle.autoTesting
+            #print _INTL("Boss using struggle!") if @battle.autoTesting
             @battle.choices[idxBattler][0] = :UseMove    # "Use move"
             @battle.choices[idxBattler][1] = -1          # Index of move to be used
             @battle.choices[idxBattler][2] = @battle.struggle # Struggle PokeBattle_Move object

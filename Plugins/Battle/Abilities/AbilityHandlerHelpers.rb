@@ -19,7 +19,7 @@ def pbBattleMoveImmunityStatAbility(ability, user, target, move, moveType, immun
     return true if aiChecking
     battle.pbShowAbilitySplash(target, ability) if showMessages
     if stat.is_a?(Array)
-        target.pbRaiseMultipleStatStages(stat, target, move: move)
+        target.pbRaiseMultipleStatSteps(stat, target, move: move)
     else
         if !target.tryRaiseStat(stat, target, increment: increment) && showMessages
             battle.pbDisplay(_INTL("It doesn't affect {1}...", target.pbThis(true)))

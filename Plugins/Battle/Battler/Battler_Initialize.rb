@@ -7,7 +7,7 @@ class PokeBattle_Battler
         @index       = idxBattler
         @captured    = false
         @dummy       = false
-        @stages      = {}
+        @steps      = {}
         @effects     = {}
         @damageState = PokeBattle_DamageState.new
         pbInitBlank
@@ -192,13 +192,13 @@ class PokeBattle_Battler
         if batonPass
             # Don't reset stats
         else
-            @stages[:ATTACK] = 0
-            @stages[:DEFENSE]         = 0
-            @stages[:SPEED]           = 0
-            @stages[:SPECIAL_ATTACK]  = 0
-            @stages[:SPECIAL_DEFENSE] = 0
-            @stages[:ACCURACY]        = 0
-            @stages[:EVASION]         = 0
+            @steps[:ATTACK] = 0
+            @steps[:DEFENSE]         = 0
+            @steps[:SPEED]           = 0
+            @steps[:SPECIAL_ATTACK]  = 0
+            @steps[:SPECIAL_DEFENSE] = 0
+            @steps[:ACCURACY]        = 0
+            @steps[:EVASION]         = 0
         end
 
         @fainted               = @hp.zero?

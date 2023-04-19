@@ -507,7 +507,7 @@ GameData::BattleEffect.register_effect(:Side, {
             echoln(statDown.to_s)
             unless statDown.empty?
                 battle.pbDisplay(_INTL("#{battler.pbThis} remembers its fears!"))
-                battler.pbLowerMultipleStatStages(statDown, nil)
+                battler.pbLowerMultipleStatSteps(statDown, nil)
             end
         end
     end,

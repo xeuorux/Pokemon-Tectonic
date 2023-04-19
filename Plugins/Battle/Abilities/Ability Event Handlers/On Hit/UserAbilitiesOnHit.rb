@@ -189,7 +189,7 @@ BattleHandlers::UserAbilityOnHit.add(:RENDINGCLAWS,
       end
       next ret
     end
-    target.pbLowerMultipleStatStages(ALL_STATS_1, user, ability: ability)
+    target.pbLowerMultipleStatSteps(ALL_STATS_1, user, ability: ability)
   }
 )
 

@@ -2,8 +2,8 @@ BattleHandlers::EndOfMoveStatRestoreItem.add(:WHITEHERB,
     proc { |item, battler, battle, forced|
         reducedStats = false
         GameData::Stat.each_battle do |s|
-            next if battler.stages[s.id] >= 0
-            battler.stages[s.id] = 0
+            next if battler.steps[s.id] >= 0
+            battler.steps[s.id] = 0
             reducedStats = true
         end
         next false unless reducedStats
@@ -24,9 +24,9 @@ BattleHandlers::EndOfMoveStatRestoreItem.add(:BLACKHERB,
         reducedStats = false
         statDown = []
         GameData::Stat.each_battle do |s|
-            next if battler.stages[s.id] >= 0
+            next if battler.steps[s.id] >= 0
             statDown.push(s.id)
-            statDown.push(battler.stages[s.id].abs)
+            statDown.push(battler.steps[s.id].abs)
             reducedStats = true
         end
         next false unless reducedStats
@@ -39,7 +39,7 @@ BattleHandlers::EndOfMoveStatRestoreItem.add(:BLACKHERB,
                battler.pbThis, itemName))
         end
         battler.eachOpposing do |oppBattler|
-            oppBattler.pbLowerMultipleStatStages(statDown,battler,item: item)
+            oppBattler.pbLowerMultipleStatSteps(statDown,battler,item: item)
         end
         next true
     }

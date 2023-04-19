@@ -255,15 +255,15 @@ def getHealingEffectScore(user, target, magnitude = 5)
 
     score *= -1 if target.effectActive?(:NerveBreak)
 
-    score *= 1 + (target.stages[:DEFENSE] / 5)
-    score *= 1 + (target.stages[:SPECIAL_DEFENSE] / 5)
+    score *= 1 + (target.steps[:DEFENSE] / 5)
+    score *= 1 + (target.steps[:SPECIAL_DEFENSE] / 5)
 
     score *= -1 if user.opposes?(target)
 
     return score
 end
 
-def getMultiStatUpEffectScore(statUpArray, user, target, fakeStageModifier = 0)
+def getMultiStatUpEffectScore(statUpArray, user, target, fakeStepModifier = 0)
     echoln("[EFFECT SCORING] Scoring the effect of raising stats #{statUpArray.to_s} on target #{target.pbThis(true)}")
     
     if user.battle.field.effectActive?(:GreyMist)
@@ -297,13 +297,13 @@ def getMultiStatUpEffectScore(statUpArray, user, target, fakeStageModifier = 0)
         end
 
         increase *= statIncreaseAmount
-        stage = target.stages[statSymbol] + fakeStageModifier
-        increase -= stage * 10 # Reduce the score for each existing stage
+        step = target.steps[statSymbol] + fakeStepModifier
+        increase -= step * 10 # Reduce the score for each existing step
         increase = 0 if increase < 0
 
         score += increase
 
-        echoln("[EFFECT SCORING] The change to #{statSymbol} by #{statIncreaseAmount} at stage #{stage} increases the score by #{increase}")
+        echoln("[EFFECT SCORING] The change to #{statSymbol} by #{statIncreaseAmount} at step #{step} increases the score by #{increase}")
     end
 
     # Stat ups tend to be stronger on the first turn
@@ -333,7 +333,7 @@ def getMultiStatUpEffectScore(statUpArray, user, target, fakeStageModifier = 0)
     return score
 end
 
-def getMultiStatDownEffectScore(statDownArray, user, target, fakeStageModifier = 0)
+def getMultiStatDownEffectScore(statDownArray, user, target, fakeStepModifier = 0)
     echoln("[EFFECT SCORING] Scoring the effect of lowering stats #{statDownArray.to_s} on target #{target.pbThis(true)}")
     
     if user.battle.field.effectActive?(:GreyMist)
@@ -372,13 +372,13 @@ def getMultiStatDownEffectScore(statDownArray, user, target, fakeStageModifier =
         end
 
         scoreIncrease *= statDecreaseAmount
-        stage = target.stages[statSymbol] + fakeStageModifier
-        scoreIncrease += stage * 10 # Increase the score for each existing stage
+        step = target.steps[statSymbol] + fakeStepModifier
+        scoreIncrease += step * 10 # Increase the score for each existing step
         scoreIncrease = 0 if scoreIncrease < 0
 
         score += scoreIncrease
         
-        echoln("[EFFECT SCORING] The change to #{statSymbol} by #{statDecreaseAmount} at stage #{stage} increases the score by #{scoreIncrease}")
+        echoln("[EFFECT SCORING] The change to #{statSymbol} by #{statDecreaseAmount} at step #{step} increases the score by #{scoreIncrease}")
     end
 
     # Stat downs tend to be stronger when the target has HP to use
@@ -454,13 +454,13 @@ def getWeatherSettingEffectScore(weatherType, user, battle, duration = 4, checkE
     return score
 end
 
-def getCriticalRateBuffEffectScore(user, stages = 1)
+def getCriticalRateBuffEffectScore(user, steps = 1)
     return 0 if user.effectAtMax?(:FocusEnergy)
     score = 20
     score += 15 if user.firstTurn?
     score += 30 if user.hasActiveAbilityAI?(%i[SUPERLUCK SNIPER])
     score += 15 if user.hasHighCritAttack?
-    score *= stages
+    score *= steps
     return score
 end
 

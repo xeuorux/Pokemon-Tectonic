@@ -7,30 +7,30 @@
 BattleHandlers::TargetItemOnHitPositiveBerry.add(:KEEBERRY,
     proc { |item, battler, battle, forced|
         next false if !forced && !battler.canConsumeBerry?
-        next false unless battler.pbCanRaiseStatStage?(:DEFENSE, battler)
+        next false unless battler.pbCanRaiseStatStep?(:DEFENSE, battler)
         itemName = GameData::Item.get(item).name
         increment = 4
         increment *= 2 if battler.hasActiveAbility?(:RIPEN)
         unless forced
             battle.pbCommonAnimation("Nom", battler)
-            next battler.pbRaiseStatStageByCause(:DEFENSE, increment, battler, itemName)
+            next battler.pbRaiseStatStepByCause(:DEFENSE, increment, battler, itemName)
         end
-        next battler.pbRaiseStatStage(:DEFENSE, increment, battler)
+        next battler.pbRaiseStatStep(:DEFENSE, increment, battler)
     }
 )
 
 BattleHandlers::TargetItemOnHitPositiveBerry.add(:MARANGABERRY,
   proc { |item, battler, battle, forced|
       next false if !forced && !battler.canConsumeBerry?
-      next false unless battler.pbCanRaiseStatStage?(:SPECIAL_DEFENSE, battler)
+      next false unless battler.pbCanRaiseStatStep?(:SPECIAL_DEFENSE, battler)
       itemName = GameData::Item.get(item).name
       increment = 4
       increment *= 2 if battler.hasActiveAbility?(:RIPEN)
       unless forced
           battle.pbCommonAnimation("Nom", battler)
-          next battler.pbRaiseStatStageByCause(:SPECIAL_DEFENSE, increment, battler, itemName)
+          next battler.pbRaiseStatStepByCause(:SPECIAL_DEFENSE, increment, battler, itemName)
       end
-      next battler.pbRaiseStatStage(:SPECIAL_DEFENSE, increment, battler)
+      next battler.pbRaiseStatStep(:SPECIAL_DEFENSE, increment, battler)
   }
 )
 

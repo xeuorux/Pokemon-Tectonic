@@ -943,7 +943,7 @@ GameData::BattleEffect.register_effect(:Battler, {
             statArray.push(battler.countEffect(:StockpileSpDef))
         end
 
-        battler.pbLowerMultipleStatStages(statArray, battler)
+        battler.pbLowerMultipleStatSteps(statArray, battler)
     end,
     :sub_effects => %i[StockpileDef StockpileSpDef],
 })
@@ -1266,7 +1266,7 @@ GameData::BattleEffect.register_effect(:Battler, {
     end,
     :eor_proc => proc do |battle, battler, _value|
         octouser = battle.battlers[battler.effects[:OctolockUser]]
-        battler.pbLowerMultipleStatStages(DEFENDING_STATS_2, octouser)
+        battler.pbLowerMultipleStatSteps(DEFENDING_STATS_2, octouser)
     end,
     :sub_effects => [:OctolockUser],
     :disable_proc => proc do |battle, battler|
@@ -1613,8 +1613,8 @@ GameData::BattleEffect.register_effect(:Battler, {
         battle.pbDisplay(_INTL("{1} began eroding!", battler.pbThis))
     end,
     :eor_proc => proc do |_battle, battler, _value|
-        battler.pbLowerMultipleStatStages(DEFENDING_STATS_1, battler)
-        battler.pbRaiseMultipleStatStages(ATTACKING_STATS_1, battler)
+        battler.pbLowerMultipleStatSteps(DEFENDING_STATS_1, battler)
+        battler.pbRaiseMultipleStatSteps(ATTACKING_STATS_1, battler)
         battler.pbItemStatRestoreCheck
     end,
 })

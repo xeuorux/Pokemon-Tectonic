@@ -6,6 +6,6 @@ BattleHandlers::OnBerryConsumedAbility.add(:CHEEKPOUCH,
 
 BattleHandlers::OnBerryConsumedAbility.add(:ROAST,
     proc { |ability, user, _berry, _own_item, _battle|
-        user.pbRaiseMultipleStatStages(ATTACKING_STATS_2, user, ability: ability)
+        user.pbRaiseMultipleStatSteps(ATTACKING_STATS_2, user, ability: ability)
     }
 )

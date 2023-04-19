@@ -95,9 +95,9 @@ BattleHandlers::TargetItemOnHit.add(:WEAKNESSPOLICY,
       next getMultiStatUpEffectScore(statUp, user, target) if aiChecking
       next if target.damageState.disguise || target.damageState.iceface
       next unless Effectiveness.super_effective?(target.damageState.typeMod)
-      next if !target.pbCanRaiseStatStage?(:ATTACK, target) &&
-              !target.pbCanRaiseStatStage?(:SPECIAL_ATTACK, target)
-      if target.pbRaiseMultipleStatStages(statUp, target, item: item)
+      next if !target.pbCanRaiseStatStep?(:ATTACK, target) &&
+              !target.pbCanRaiseStatStep?(:SPECIAL_ATTACK, target)
+      if target.pbRaiseMultipleStatSteps(statUp, target, item: item)
           target.pbHeldItemTriggered(item)
       end
   }

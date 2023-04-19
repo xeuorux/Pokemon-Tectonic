@@ -1,6 +1,6 @@
 #===============================================================================
 # User is protected against damaging moves this round. Decreases the Defense of
-# the user of a stopped physical move by 2 stages. (Obstruct)
+# the user of a stopped physical move by 2 steps. (Obstruct)
 #===============================================================================
 class PokeBattle_Move_180 < PokeBattle_ProtectMove
     def initialize(battle, move)
@@ -10,7 +10,7 @@ class PokeBattle_Move_180 < PokeBattle_ProtectMove
 end
 
 #===============================================================================
-# Lowers target's Defense and Special Defense by 1 stage at the end of each
+# Lowers target's Defense and Special Defense by 1 step at the end of each
 # turn. Prevents target from retreating. (Octolock)
 #===============================================================================
 class PokeBattle_Move_181 < PokeBattle_Move
@@ -51,7 +51,7 @@ class PokeBattle_Move_182 < PokeBattle_Move
 end
 
 #===============================================================================
-# Consumes berry and raises the user's Defense and Sp. Def by 3 stages. (Stuff Cheeks)
+# Consumes berry and raises the user's Defense and Sp. Def by 3 steps. (Stuff Cheeks)
 #===============================================================================
 class PokeBattle_Move_183 < PokeBattle_Move
     def pbMoveFailed?(user, _targets, show_message)
@@ -61,7 +61,7 @@ class PokeBattle_Move_183 < PokeBattle_Move
     end
 
     def pbEffectGeneral(user)
-        user.pbRaiseMultipleStatStages([:DEFENSE, 3, :SPECIAL_DEFENSE, 3], user, move: self)
+        user.pbRaiseMultipleStatSteps([:DEFENSE, 3, :SPECIAL_DEFENSE, 3], user, move: self)
         user.eachItem do |item|
             next unless GameData::Item.get(item).is_berry?
             user.pbHeldItemTriggerCheck(item, false)
@@ -126,11 +126,11 @@ class PokeBattle_Move_185 < PokeBattle_Move
 end
 
 #===============================================================================
-# Decrease 3 stages of speed and weakens target to fire moves. (Tar Shot)
+# Decrease 3 steps of speed and weakens target to fire moves. (Tar Shot)
 #===============================================================================
 class PokeBattle_Move_186 < PokeBattle_Move
     def pbFailsAgainstTarget?(_user, target, show_message)
-        if !target.pbCanLowerStatStage?(:SPEED, target, self) && target.effectActive?(:TarShot)
+        if !target.pbCanLowerStatStep?(:SPEED, target, self) && target.effectActive?(:TarShot)
             @battle.pbDisplay(_INTL("But it failed, since #{target.pbThis(true)} is already covered in tar and can't have their Speed lowered!")) if show_message
             return true
         end
@@ -239,7 +239,7 @@ class PokeBattle_Move_18D < PokeBattle_Move
 end
 
 #===============================================================================
-# Boosts Targets' Attack and Defense by 2 stages each. (Coaching)
+# Boosts Targets' Attack and Defense by 2 steps each. (Coaching)
 #===============================================================================
 class PokeBattle_Move_18E < PokeBattle_TargetMultiStatUpMove
     def initialize(battle, move)

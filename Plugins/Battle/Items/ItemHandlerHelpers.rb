@@ -19,7 +19,7 @@ end
 
 def pbBattleStatIncreasingBerry(battler, battle, item, forced, stat, increment = 1, checkGluttony = true, filchedFrom = nil)
     return false if !forced && !battler.canConsumePinchBerry?(checkGluttony)
-    return false unless battler.pbCanRaiseStatStage?(stat, battler)
+    return false unless battler.pbCanRaiseStatStep?(stat, battler)
     if filchedFrom
         battle.pbShowAbilitySplash(battler, ability)
         itemName = GameData::Item.get(item).real_name
@@ -28,10 +28,10 @@ def pbBattleStatIncreasingBerry(battler, battle, item, forced, stat, increment =
     itemName = GameData::Item.get(item).name
     increment *= 2 if battler.hasActiveAbility?(:RIPEN)
     if forced
-        return battler.pbRaiseStatStage(stat, increment, battler)
+        return battler.pbRaiseStatStep(stat, increment, battler)
     end
     battle.pbCommonAnimation("Nom", battler)
-    result = battler.pbRaiseStatStageByCause(stat, increment, battler, itemName)
+    result = battler.pbRaiseStatStepByCause(stat, increment, battler, itemName)
     battle.pbHideAbilitySplash(battler) if filchedFrom
     return result
 end

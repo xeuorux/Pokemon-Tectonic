@@ -58,7 +58,6 @@ class PokemonGlobalMetadata
     @mapTrail             = []
     # Counters
     @happinessSteps       = 0
-    @pokerusTime          = nil
     # Save file
     @safesave             = false
     @expJAR				  = 0

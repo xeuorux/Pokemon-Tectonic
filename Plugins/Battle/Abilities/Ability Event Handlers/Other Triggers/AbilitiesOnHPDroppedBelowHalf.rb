@@ -22,7 +22,7 @@ BattleHandlers::AbilityOnHPDroppedBelowHalf.copy(:EMERGENCYEXIT, :WIMPOUT)
 
 BattleHandlers::AbilityOnHPDroppedBelowHalf.add(:BERSERK,
   proc { |ability, battler, _battle|
-      battler.pbRaiseMultipleStatStages(ATTACKING_STATS_2, battler, ability: ability)
+      battler.pbRaiseMultipleStatSteps(ATTACKING_STATS_2, battler, ability: ability)
       next false
   }
 )
@@ -50,7 +50,7 @@ BattleHandlers::AbilityOnHPDroppedBelowHalf.add(:BOULDERNEST,
 
 BattleHandlers::AbilityOnHPDroppedBelowHalf.add(:REAWAKENEDPOWER,
   proc { |ability, battler, _battle|
-      battler.pbMaximizeStatStage(:SPECIAL_ATTACK, battler, self, ability: ability)
+      battler.pbMaximizeStatStep(:SPECIAL_ATTACK, battler, self, ability: ability)
       next false
   }
 )

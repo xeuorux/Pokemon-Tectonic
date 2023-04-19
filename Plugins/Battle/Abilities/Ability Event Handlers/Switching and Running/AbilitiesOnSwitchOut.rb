@@ -31,7 +31,7 @@ BattleHandlers::AbilityOnSwitchOut.add(:POORCONDUCT,
       battle.pbShowAbilitySplash(battler, ability)
       battle.eachOtherSideBattler(battler.index) do |b|
           next unless b.near?(battler)
-          b.pbLowerMultipleStatStages([:ATTACK,1,:SPECIAL_ATTACK,1],battler,showFailMsg: true)
+          b.pbLowerMultipleStatSteps([:ATTACK,1,:SPECIAL_ATTACK,1],battler,showFailMsg: true)
       end
       battle.pbHideAbilitySplash(battler)
   }

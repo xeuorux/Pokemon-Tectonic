@@ -104,12 +104,12 @@ class PokeBattle_Battle
                 next if move.damagingMove?
                 next unless move.empoweredMove?
                 next if move.pp < 1
-                if PRIMEVAL_MOVES_RESET_DEBUFFS && (b.pbHasAnyStatus? || b.hasLoweredStatStages?)
+                if PRIMEVAL_MOVES_RESET_DEBUFFS && (b.pbHasAnyStatus? || b.hasLoweredStatSteps?)
                     pbAnimation(:REFRESH,b,b)
                     pbDisplayBossNarration(_INTL("{1} wiped the slate clean.", b.pbThis))
                     b.pbCureStatus
                     b.pbCureStatus
-                    b.pbResetLoweredStatStages(true)
+                    b.pbResetLoweredStatSteps(true)
                 end
                 pbDisplayBossNarration(_INTL("A great energy rises up from inside {1}!", b.pbThis(true)))
                 b.lastRoundMoved = 0

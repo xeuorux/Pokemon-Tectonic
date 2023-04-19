@@ -6,7 +6,7 @@ BattleHandlers::CriticalCalcUserAbility.add(:SUPERLUCK,
 
 BattleHandlers::CriticalCalcUserAbility.add(:STAMPEDE,
   proc { |ability, user, _target, _move, c|
-      next c + user.stages[:SPEED]
+      next c + user.steps[:SPEED]
   }
 )
 

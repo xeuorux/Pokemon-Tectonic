@@ -36,8 +36,6 @@ class Pokemon
     attr_accessor :ribbons
     # @return [Integer] contest stats
     attr_accessor :cool, :beauty, :cute, :smart, :tough, :sheen
-    # @return [Integer] the Pokérus strain and infection time
-    attr_accessor :pokerus
     # @return [Integer] this Pokémon's current happiness (an integer between 0 and 255)
     attr_accessor :happiness
     # @return [Symbol] the item ID of the Poké Ball this Pokémon is in
@@ -965,48 +963,6 @@ class Pokemon
     # Removes all ribbons from this Pokémon.
     def clearAllRibbons
       @ribbons.clear
-    end
-  
-    #=============================================================================
-    # Pokérus
-    #=============================================================================
-  
-    # @return [Integer] the Pokérus infection stage for this Pokémon
-    def pokerusStrain
-      return @pokerus / 16
-    end
-  
-    # Returns the Pokérus infection stage for this Pokémon. The possible stages are
-    # 0 (not infected), 1 (infected) and 2 (cured)
-    # @return [0, 1, 2] current Pokérus infection stage
-    def pokerusStage
-      return 0 if @pokerus == 0
-      return ((@pokerus % 16) == 0) ? 2 : 1
-    end
-  
-    # Gives this Pokémon Pokérus (either the specified strain or a random one).
-    # @param strain [Integer] Pokérus strain to give
-    def givePokerus(strain = 0)
-      return if self.pokerusStage == 2   # Can't re-infect a cured Pokémon
-      strain = rand(1..16) if strain <= 0 || strain >= 16
-      time = 1 + (strain % 4)
-      @pokerus = time
-      @pokerus |= strain << 4
-    end
-  
-    # Resets the infection time for this Pokémon's Pokérus (even if cured).
-    def resetPokerusTime
-      return if @pokerus == 0
-      strain = @pokerus % 16
-      time = 1 + (strain % 4)
-      @pokerus = time
-      @pokerus |= strain << 4
-    end
-  
-    # Reduces the time remaining for this Pokémon's Pokérus (if infected).
-    def lowerPokerusCount
-      return if self.pokerusStage != 1
-      @pokerus -= 1
     end
   
     #=============================================================================
@@ -1990,7 +1946,6 @@ class Pokemon
       @smart            = 0
       @tough            = 0
       @sheen            = 0
-      @pokerus          = 0
       @name             = nil
       @happiness        = species_data.happiness
       @poke_ball        = :POKEBALL

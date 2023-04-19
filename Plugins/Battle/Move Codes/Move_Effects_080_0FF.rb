@@ -239,7 +239,7 @@ end
 class PokeBattle_Move_08E < PokeBattle_Move
     def pbBaseDamage(_baseDmg, user, _target)
         mult = 1
-        GameData::Stat.each_battle { |s| mult += user.stages[s.id] if user.stages[s.id] > 0 }
+        GameData::Stat.each_battle { |s| mult += user.steps[s.id] if user.steps[s.id] > 0 }
         return 20 * mult
     end
 end
@@ -251,7 +251,7 @@ end
 class PokeBattle_Move_08F < PokeBattle_Move
     def pbBaseDamage(_baseDmg, _user, target)
         mult = 3
-        GameData::Stat.each_battle { |s| mult += target.stages[s.id] if target.stages[s.id] > 0 }
+        GameData::Stat.each_battle { |s| mult += target.steps[s.id] if target.steps[s.id] > 0 }
         return [20 * mult, 200].min
     end
 end
@@ -321,7 +321,7 @@ end
 #===============================================================================
 # User rages until the start of a round in which they don't use this move. (Rage)
 # (Handled in Battler's pbProcessMoveAgainstTarget): Ups rager's Attack by 1
-# stage each time it loses HP due to a move.
+# step each time it loses HP due to a move.
 #===============================================================================
 class PokeBattle_Move_093 < PokeBattle_Move
     def pbEffectGeneral(user)
@@ -329,7 +329,7 @@ class PokeBattle_Move_093 < PokeBattle_Move
     end
 
     def getEffectScore(user, target)
-        return 0 unless user.pbCanRaiseStatStage?(:ATTACK)
+        return 0 unless user.pbCanRaiseStatStep?(:ATTACK)
 
         score = 0
 
@@ -969,7 +969,7 @@ class PokeBattle_Move_0A7 < PokeBattle_Move
     def getEffectScore(_user, target)
         score = 0
         score += 40 if target.pbHasTypeAI?(:GHOST)
-        score += 20 * target.stages[:EVASION]
+        score += 20 * target.steps[:EVASION]
         return score
     end
 end
@@ -996,7 +996,7 @@ class PokeBattle_Move_0A8 < PokeBattle_Move
     def getEffectScore(_user, target)
         score = 0
         score += 40 if target.pbHasTypeAI?(:DARK)
-        score += 20 * target.stages[:EVASION]
+        score += 20 * target.steps[:EVASION]
         return score
     end
 end
@@ -1008,13 +1008,13 @@ end
 class PokeBattle_Move_0A9 < PokeBattle_Move
     def pbCalcAccuracyMultipliers(user, target, multipliers)
         super
-        modifiers[:evasion_stage] = 0
+        modifiers[:evasion_step] = 0
     end
 
-    def ignoresDefensiveStageBoosts?(_user, _target); return true; end
+    def ignoresDefensiveStepBoosts?(_user, _target); return true; end
 
     def shouldHighlight?(_user, target)
-        return target.hasRaisedDefenseStages?
+        return target.hasRaisedDefenseSteps?
     end
 end
 
@@ -2097,7 +2097,7 @@ class PokeBattle_Move_0C7 < PokeBattle_TwoTurnMove
 end
 
 #===============================================================================
-# Two turn attack. Ups user's Defense by 4 stages first turn, attacks second turn.
+# Two turn attack. Ups user's Defense by 4 steps first turn, attacks second turn.
 # (Skull Bash)
 #===============================================================================
 class PokeBattle_Move_0C8 < PokeBattle_TwoTurnMove
@@ -3144,7 +3144,7 @@ class PokeBattle_Move_0ED < PokeBattle_Move
 
     def getEffectScore(user, target)
         total = 0
-        GameData::Stat.each_battle { |s| total += user.stages[s.id] }
+        GameData::Stat.each_battle { |s| total += user.steps[s.id] }
         return 0 if total <= 0 || user.firstTurn?
         score = 0
         score += total * 20

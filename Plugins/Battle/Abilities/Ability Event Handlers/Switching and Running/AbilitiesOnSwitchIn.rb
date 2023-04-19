@@ -404,8 +404,8 @@ BattleHandlers::AbilityOnSwitchIn.add(:CURIOUSMEDICINE,
   proc { |ability, battler, battle|
       done = false
       battler.eachAlly do |b|
-          next unless b.hasAlteredStatStages?
-          b.pbResetStatStages
+          next unless b.hasAlteredStatSteps?
+          b.pbResetStatSteps
           done = true
       end
       if done
@@ -431,7 +431,7 @@ BattleHandlers::AbilityOnSwitchIn.add(:DRAMATICLIGHTING,
       battle.pbShowAbilitySplash(battler, ability)
       battle.eachOtherSideBattler(battler.index) do |b|
           next unless b.near?(battler)
-          b.pbLowerMultipleStatStages([:ATTACK,2,:SPECIAL_ATTACK,2],battler,showFailMsg: true)
+          b.pbLowerMultipleStatSteps([:ATTACK,2,:SPECIAL_ATTACK,2],battler,showFailMsg: true)
       end
       battle.pbHideAbilitySplash(battler)
   }
@@ -443,7 +443,7 @@ BattleHandlers::AbilityOnSwitchIn.add(:CRAGTERROR,
       battle.pbShowAbilitySplash(battler, ability)
       battle.eachOtherSideBattler(battler.index) do |b|
           next unless b.near?(battler)
-          b.pbLowerMultipleStatStages([:ATTACK,2,:SPECIAL_ATTACK,2],battler,showFailMsg: true)
+          b.pbLowerMultipleStatSteps([:ATTACK,2,:SPECIAL_ATTACK,2],battler,showFailMsg: true)
       end
       battle.pbHideAbilitySplash(battler)
   }

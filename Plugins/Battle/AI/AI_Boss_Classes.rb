@@ -34,7 +34,7 @@ class PokeBattle_AI_Raikou < PokeBattle_AI_Boss
         super
         @warnedIFFMove.add(:LIGHTNINGSHRIEK, {
             :condition => proc { |_move, user, _target, _battle|
-                next user.stages[:SPEED] < 2
+                next user.steps[:SPEED] < 2
             },
             :warning => proc { |_move, user, _targets, _battle|
                 _INTL("#{user.pbThis} opens its mouth up wide!")

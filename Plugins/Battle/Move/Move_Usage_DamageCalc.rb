@@ -28,7 +28,7 @@ class PokeBattle_Move
     def calculateDamageForHit(user,target,type,baseDmg,numTargets,aiChecking=false)
         echoln("[DAMAGE CALC] Calcing damage based on given base power #{baseDmg} and type #{type}") if DAMAGE_CALC_DEBUG
         
-        # Get the relevant attacking and defending stat values (after stages)
+        # Get the relevant attacking and defending stat values (after steps)
         attack, defense = damageCalcStats(user,target,aiChecking)
 
         # Calculate all multiplier effects
@@ -82,21 +82,21 @@ class PokeBattle_Move
             attacking_stat_holder = target
         end
 
-        attack_stage = attacking_stat_holder.stages[attacking_stat]
+        attack_step = attacking_stat_holder.steps[attacking_stat]
         critical = target.damageState.critical
         critical = false if aiChecking
-        attack_stage = 0 if critical && attack_stage < 0
-        attack_stage = 0 if target.hasActiveAbility?(:UNAWARE) && !@battle.moldBreaker
-        attack = attacking_stat_holder.getFinalStat(attacking_stat, aiChecking, attack_stage)
+        attack_step = 0 if critical && attack_step < 0
+        attack_step = 0 if target.hasActiveAbility?(:UNAWARE) && !@battle.moldBreaker
+        attack = attacking_stat_holder.getFinalStat(attacking_stat, aiChecking, attack_step)
         # Calculate target's defense stat
         defending_stat_holder, defending_stat = pbDefendingStat(user,target)
-        defense_stage = defending_stat_holder.stages[defending_stat]
-        if defense_stage > 0 &&
-                (ignoresDefensiveStageBoosts?(user,target) || user.hasActiveAbility?(:INFILTRATOR) || critical)
-            defense_stage = 0
+        defense_step = defending_stat_holder.steps[defending_stat]
+        if defense_step > 0 &&
+                (ignoresDefensiveStepBoosts?(user,target) || user.hasActiveAbility?(:INFILTRATOR) || critical)
+            defense_step = 0
         end
-        defense_stage = 0 if user.hasActiveAbility?(:UNAWARE)
-        defense = defending_stat_holder.getFinalStat(defending_stat, aiChecking, defense_stage)
+        defense_step = 0 if user.hasActiveAbility?(:UNAWARE)
+        defense = defending_stat_holder.getFinalStat(defending_stat, aiChecking, defense_step)
         echoln("[DAMAGE CALC] Calcing damage based on #{attacking_stat_holder.pbThis(true)}'s final #{attacking_stat} of #{attack} and #{defending_stat_holder.pbThis(true)}'s final #{defending_stat} of #{defense}") if DAMAGE_CALC_DEBUG
         return attack, defense
     end

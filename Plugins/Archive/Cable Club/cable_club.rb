@@ -605,7 +605,6 @@ module CableClub
     writer.str(pkmn.name)
     writer.sym(pkmn.poke_ball)
     writer.int(pkmn.steps_to_hatch)
-    writer.int(pkmn.pokerus)
     writer.int(pkmn.obtain_method)
     writer.int(pkmn.obtain_map)
     writer.nil_or(:str,pkmn.obtain_text)
@@ -717,7 +716,6 @@ module CableClub
     pkmn.name = record.str
     pkmn.poke_ball = record.sym
     pkmn.steps_to_hatch = record.int
-    pkmn.pokerus = record.int
     pkmn.obtain_method = record.int
     pkmn.obtain_map = record.int
     pkmn.obtain_text = record.nil_or(:str)

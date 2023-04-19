@@ -46,7 +46,7 @@ class PokeBattle_Move_601 < PokeBattle_Move_0FF
 
     def pbEffectGeneral(user)
         super
-        user.pbRaiseMultipleStatStages(ATTACKING_STATS_1, user, move: self)
+        user.pbRaiseMultipleStatSteps(ATTACKING_STATS_1, user, move: self)
         transformType(user, :FIRE)
     end
 end
@@ -146,7 +146,7 @@ class PokeBattle_Move_609 < PokeBattle_Move_02C
     include EmpoweredMove
 
     def pbEffectGeneral(user)
-        user.pbMaximizeStatStage(:ACCURACY, user, move: self)
+        user.pbMaximizeStatStep(:ACCURACY, user, move: self)
         super
         transformType(user, :PSYCHIC)
     end
@@ -172,7 +172,7 @@ class PokeBattle_Move_60B < PokeBattle_Move_101
 
     def pbEffectGeneral(user)
         super
-        user.pbRaiseMultipleStatStages(DEFENDING_STATS_1, user, move: self)
+        user.pbRaiseMultipleStatSteps(DEFENDING_STATS_1, user, move: self)
         transformType(user, :ROCK)
     end
 end
@@ -216,7 +216,7 @@ class PokeBattle_Move_60E < PokeBattle_Move_0B7
 
     def pbEffectAgainstTarget(user, target)
         target.applyEffect(:Torment)
-        target.pbLowerMultipleStatStages(ATTACKING_STATS_1, user, move: self)
+        target.pbLowerMultipleStatSteps(ATTACKING_STATS_1, user, move: self)
     end
 end
 
@@ -236,7 +236,7 @@ class PokeBattle_Move_610 < PokeBattle_Move_51A
 
     def pbEffectGeneral(user)
         super
-        user.pbRaiseMultipleStatStages(ATTACKING_STATS_1, user, move: self)
+        user.pbRaiseMultipleStatSteps(ATTACKING_STATS_1, user, move: self)
         transformType(user, :FAIRY)
     end
 end
@@ -305,7 +305,7 @@ end
 #         # Double supers here is intentional
 #         super
 #         super
-#         user.pbRaiseMultipleStatStages([:ATTACK, 1, :SPECIAL_ATTACK, 1], user, move: self)
+#         user.pbRaiseMultipleStatSteps([:ATTACK, 1, :SPECIAL_ATTACK, 1], user, move: self)
 #         transformType(user, :GRASS)
 #     end
 # end
@@ -358,7 +358,7 @@ class PokeBattle_Move_617 < PokeBattle_Move_09D
 
     def pbEffectGeneral(user)
         super
-        user.pbRaiseMultipleStatStages([:ATTACK, 1, :SPECIAL_ATTACK, 1], user, move: self)
+        user.pbRaiseMultipleStatSteps([:ATTACK, 1, :SPECIAL_ATTACK, 1], user, move: self)
         transformType(user, :PSYCHIC)
     end
 end
@@ -371,7 +371,7 @@ class PokeBattle_Move_618 < PokeBattle_Move_09E
         super
 
         @battle.eachSameSideBattler(user) do |b|
-            b.pbRaiseMultipleStatStages(DEFENDING_STATS_1, user, move: self)
+            b.pbRaiseMultipleStatSteps(DEFENDING_STATS_1, user, move: self)
         end
 
         transformType(user, :FAIRY)

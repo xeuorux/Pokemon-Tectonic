@@ -658,22 +658,6 @@ class PokeBattle_Battle
         pbRecordAndStoreCaughtPokemon
         # Collect Pay Day money in a wild battle that ended in a capture
         pbGainMoney if @decision == 4
-        # Pass on Pokérus within the party
-        if @internalBattle
-            infected = []
-            $Trainer.party.each_with_index do |pkmn, i|
-                infected.push(i) if pkmn.pokerusStage == 1
-            end
-            infected.each do |idxParty|
-                strain = $Trainer.party[idxParty].pokerusStrain
-                if idxParty > 0 && $Trainer.party[idxParty - 1].pokerusStage == 0 && (rand(3) == 0)
-                    $Trainer.party[idxParty - 1].givePokerus(strain) # 33%
-                end
-                if idxParty < $Trainer.party.length - 1 && $Trainer.party[idxParty + 1].pokerusStage == 0 && (rand(3) == 0)
-                    $Trainer.party[idxParty + 1].givePokerus(strain) # 33%
-                end
-            end
-        end
         pbDisplayPaused(_INTL("{1} exp was stored in the EXP-EZ Dispenser this battle.", @expStored)) if @expStored > 0
         # Clean up battle stuff
         @scene.pbEndBattle(@decision)

@@ -154,21 +154,21 @@ class PokeBattle_ZMove < PokeBattle_Move
         # Effects for status Z-Moves that boost the stats of the user.
         #---------------------------------------------------------------------------
         if GameData::PowerMove.stat_booster?(move) || curseZMoveNonGhost
-            stats, stage = GameData::PowerMove.stat_with_stage(move)
+            stats, step = GameData::PowerMove.stat_with_step(move)
             if curseZMoveNonGhost
                 stats = [:ATTACK]
-                stage = 1
+                step = 1
             end
             statname = (stats.length > 1) ? "stats" : GameData::Stat.get(stats[0]).name
-            case stage
+            case step
             when 3 then boost = " drastically"
             when 2 then boost = " sharply"
             else; boost = ""
             end
             showAnim = true
             for i in 0...stats.length
-                next unless attacker.pbCanRaiseStatStage?(stats[i], attacker)
-                attacker.pbRaiseStatStageBasic(stats[i], stage)
+                next unless attacker.pbCanRaiseStatStep?(stats[i], attacker)
+                attacker.pbRaiseStatStepBasic(stats[i], step)
                 if showAnim
                     battle.pbCommonAnimation("StatUp", attacker)
                     battle.pbDisplay(_INTL("{1} boosted its {2}{3} using its Z-Power!", attacker.pbThis, statname,
@@ -185,8 +185,8 @@ class PokeBattle_ZMove < PokeBattle_Move
         #---------------------------------------------------------------------------
         # Effect for status Z-Moves that resets the user's lowered stats.
         #---------------------------------------------------------------------------
-        elsif GameData::PowerMove.resets_stats?(move) && attacker.hasLoweredStatStages?
-            attacker.pbResetStatStages
+        elsif GameData::PowerMove.resets_stats?(move) && attacker.hasLoweredStatSteps?
+            attacker.pbResetStatSteps
             battle.pbDisplay(_INTL("{1} returned its decreased stats to normal using its Z-Power!", attacker.pbThis))
         #---------------------------------------------------------------------------
         # Effects for status Z-Moves that heal HP.

@@ -12,7 +12,7 @@ BattleHandlers::AccuracyCalcUserAbility.add(:HUSTLE,
 
 BattleHandlers::AccuracyCalcUserAbility.add(:KEENEYE,
   proc { |ability, mults, _user, _target, _move, _type|
-      mults[:evasion_stage] = 0 if mults[:evasion_stage] > 0
+      mults[:evasion_step] = 0 if mults[:evasion_step] > 0
   }
 )
 
@@ -24,7 +24,7 @@ BattleHandlers::AccuracyCalcUserAbility.add(:NOGUARD,
 
 BattleHandlers::AccuracyCalcUserAbility.add(:UNAWARE,
   proc { |ability, mults, _user, _target, move, _type|
-      mults[:evasion_stage] = 0 if move.damagingMove?
+      mults[:evasion_step] = 0 if move.damagingMove?
   }
 )
 

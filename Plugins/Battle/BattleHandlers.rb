@@ -16,7 +16,7 @@ module BattleHandlers
     AbilityOnStatusInflicted            = AbilityHandlerHash.new   # Synchronize
     StatusCureItem                      = ItemHandlerHash.new
     StatusCureAbility                   = AbilityHandlerHash.new
-    # Battler's stat stages
+    # Battler's stat steps
     StatLossImmunityAbility             = AbilityHandlerHash.new
     StatLossImmunityAbilityNonIgnorable = AbilityHandlerHash.new   # Full Metal Body
     StatLossImmunityAllyAbility         = AbilityHandlerHash.new   # Flower Veil

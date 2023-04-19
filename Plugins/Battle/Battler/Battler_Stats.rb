@@ -168,13 +168,13 @@ class PokeBattle_Battler
     end
 
     #=============================================================================
-    # Query about stats after room modification, stages, abilities and item modifiers.
+    # Query about stats after room modification, steps, abilities and item modifiers.
     #=============================================================================
     AI_CHEATS_FOR_STAT_ABILITIES = true
 
-    def pbAttack(aiChecking = false, stage = -1)
+    def pbAttack(aiChecking = false, step = -1)
         return 1 if fainted?
-        attack = statAfterStage(:ATTACK, stage)
+        attack = statAfterStep(:ATTACK, step)
         attackMult = 1.0
 
         if !ignoreAbilityInAI?(aiChecking) || AI_CHEATS_FOR_STAT_ABILITIES
@@ -198,9 +198,9 @@ class PokeBattle_Battler
         return [(attack * attackMult).round, 1].max
     end
 
-    def pbSpAtk(aiChecking = false, stage = -1)
+    def pbSpAtk(aiChecking = false, step = -1)
         return 1 if fainted?
-        special_attack = statAfterStage(:SPECIAL_ATTACK, stage)
+        special_attack = statAfterStep(:SPECIAL_ATTACK, step)
         spAtkMult = 1.0
 
         if !ignoreAbilityInAI?(aiChecking) || AI_CHEATS_FOR_STAT_ABILITIES
@@ -221,9 +221,9 @@ class PokeBattle_Battler
         return [(special_attack * spAtkMult).round, 1].max
     end
 
-    def pbDefense(aiChecking = false, stage = -1)
+    def pbDefense(aiChecking = false, step = -1)
         return 1 if fainted?
-        defense = statAfterStage(:DEFENSE, stage)
+        defense = statAfterStep(:DEFENSE, step)
         defenseMult = 1.0
 
         if !ignoreAbilityInAI?(aiChecking) || AI_CHEATS_FOR_STAT_ABILITIES
@@ -246,9 +246,9 @@ class PokeBattle_Battler
         return [(defense * defenseMult).round, 1].max
     end
 
-    def pbSpDef(aiChecking = false, stage = -1)
+    def pbSpDef(aiChecking = false, step = -1)
         return 1 if fainted?
-        special_defense = statAfterStage(:SPECIAL_DEFENSE, stage)
+        special_defense = statAfterStep(:SPECIAL_DEFENSE, step)
         spDefMult = 1.0
 
         if !ignoreAbilityInAI?(aiChecking) || AI_CHEATS_FOR_STAT_ABILITIES
@@ -271,9 +271,9 @@ class PokeBattle_Battler
         return [(special_defense * spDefMult).round, 1].max
     end
 
-    def pbSpeed(aiChecking = false, stage = -1)
+    def pbSpeed(aiChecking = false, step = -1)
         return 1 if fainted?
-        speed = statAfterStage(:SPEED, stage)
+        speed = statAfterStep(:SPEED, step)
         speedMult = 1.0
         if (!ignoreAbilityInAI?(aiChecking) || AI_CHEATS_FOR_STAT_ABILITIES)
             eachActiveAbility do |ability|
@@ -299,18 +299,18 @@ class PokeBattle_Battler
         return [(speed * speedMult).round, 1].max
     end
 
-    def getFinalStat(stat, aiChecking = false, stage = -1)
+    def getFinalStat(stat, aiChecking = false, step = -1)
         case stat
         when :ATTACK
-            return pbAttack(aiChecking, stage)
+            return pbAttack(aiChecking, step)
         when :DEFENSE
-            return pbDefense(aiChecking, stage)
+            return pbDefense(aiChecking, step)
         when :SPECIAL_ATTACK
-            return pbSpAtk(aiChecking, stage)
+            return pbSpAtk(aiChecking, step)
         when :SPECIAL_DEFENSE
-            return pbSpDef(aiChecking, stage)
+            return pbSpDef(aiChecking, step)
         when :SPEED
-            return pbSpeed(aiChecking, stage)
+            return pbSpeed(aiChecking, step)
         end
         return -1
     end

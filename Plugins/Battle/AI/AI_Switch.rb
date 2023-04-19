@@ -277,13 +277,13 @@ class PokeBattle_AI
                     specialDebuffers -= 1
                     speedDebuffers -= 1
                 else
-                    if opposingBattler.hasPhysicalAttack? && opposingBattler.stages[:ATTACK] > -2 && opposingBattler.pbCanLowerStatStage?(:ATTACK)
+                    if opposingBattler.hasPhysicalAttack? && opposingBattler.steps[:ATTACK] > -2 && opposingBattler.pbCanLowerStatStep?(:ATTACK)
                         attackDebuffers += 1
                     end
-                    if opposingBattler.hasSpecialAttack? && opposingBattler.stages[:SPECIAL_ATTACK] > -2 && opposingBattler.pbCanLowerStatStage?(:SPECIAL_ATTACK)
+                    if opposingBattler.hasSpecialAttack? && opposingBattler.steps[:SPECIAL_ATTACK] > -2 && opposingBattler.pbCanLowerStatStep?(:SPECIAL_ATTACK)
                         specialDebuffers += 1
                     end
-                    if opposingBattler.pbSpeed > pkmn.speed && opposingBattler.pbCanLowerStatStage?(:SPEED)
+                    if opposingBattler.pbSpeed > pkmn.speed && opposingBattler.pbCanLowerStatStep?(:SPEED)
                         speedDebuffers += 1
                     end
                 end

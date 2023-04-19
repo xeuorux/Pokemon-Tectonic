@@ -134,23 +134,23 @@ class PokeBattle_Move
         # Calculate all multiplier effects
         modifiers = {}
         modifiers[:base_accuracy]  = baseAcc
-        modifiers[:accuracy_stage] = user.stages[:ACCURACY]
-        modifiers[:evasion_stage]  = target.stages[:EVASION]
+        modifiers[:accuracy_step] = user.steps[:ACCURACY]
+        modifiers[:evasion_step]  = target.steps[:EVASION]
         modifiers[:accuracy_multiplier] = 1.0
         modifiers[:evasion_multiplier]  = 1.0
         pbCalcAccuracyModifiers(user,target,modifiers)
         # Check if move can't miss
         return true if modifiers[:base_accuracy] == 0
         # Calculation
-        statBoundary = PokeBattle_Battler::STAT_STAGE_BOUND
-        accStage = modifiers[:accuracy_stage].clamp(-statBoundary, statBoundary)
-        evaStage = modifiers[:evasion_stage].clamp(-statBoundary, statBoundary)
-        accuracy = 100.0 * user.statMultiplierAtStage(accStage)
-        evasion  = 100.0 * user.statMultiplierAtStage(evaStage)
+        statBoundary = PokeBattle_Battler::STAT_STEP_BOUND
+        accStep = modifiers[:accuracy_step].clamp(-statBoundary, statBoundary)
+        evaStep = modifiers[:evasion_step].clamp(-statBoundary, statBoundary)
+        accuracy = 100.0 * user.statMultiplierAtStep(accStep)
+        evasion  = 100.0 * user.statMultiplierAtStep(evaStep)
         accuracy = (accuracy.to_f * modifiers[:accuracy_multiplier].to_f).round
         evasion  = (evasion.to_f  * modifiers[:evasion_multiplier].to_f).round
-        accuracy = (accuracy.to_f + 100.0) / 2.0 if user.boss? && AVATAR_DILUTED_STAT_STAGES
-        evasion = (evasion.to_f + 100.0) / 2.0 if target.boss? && AVATAR_DILUTED_STAT_STAGES
+        accuracy = (accuracy.to_f + 100.0) / 2.0 if user.boss? && AVATAR_DILUTED_STAT_STEPS
+        evasion = (evasion.to_f + 100.0) / 2.0 if target.boss? && AVATAR_DILUTED_STAT_STEPS
         evasion = 1 if evasion < 1
         # Calculation
         calc = accuracy.to_f / evasion.to_f
@@ -179,7 +179,7 @@ class PokeBattle_Move
         target.eachActiveItem do |item|
             BattleHandlers.triggerAccuracyCalcTargetItem(item,modifiers,user,target,self,@calcType)
         end
-        # Other effects, inc. ones that set accuracy_multiplier or evasion_stage to
+        # Other effects, inc. ones that set accuracy_multiplier or evasion_step to
         # specific values
         if @battle.field.effectActive?(:Gravity)
             modifiers[:accuracy_multiplier] *= 5 / 3.0
@@ -188,8 +188,8 @@ class PokeBattle_Move
             user.disableEffect(:MicleBerry)
             modifiers[:accuracy_multiplier] *= 1.2
         end
-        modifiers[:evasion_stage] = 0 if target.effectActive?(:Foresight) && modifiers[:evasion_stage] > 0
-        modifiers[:evasion_stage] = 0 if target.effectActive?(:MiracleEye) && modifiers[:evasion_stage] > 0
+        modifiers[:evasion_step] = 0 if target.effectActive?(:Foresight) && modifiers[:evasion_step] > 0
+        modifiers[:evasion_step] = 0 if target.effectActive?(:MiracleEye) && modifiers[:evasion_step] > 0
     end
   
     #=============================================================================
@@ -325,7 +325,7 @@ class PokeBattle_Move
     # Or the damage mult is ugly and will result in weird display BP
     def pbModifyDamage(damageMult,user,target);         return damageMult; end
 
-    def ignoresDefensiveStageBoosts?(user,target);           return false;       end
+    def ignoresDefensiveStepBoosts?(user,target);           return false;       end
   
     def forcedSpecial?(user,target,checkingForAI=false)
         return true if user.shouldAbilityApply?([:TIMEINTERLOPER,:SPACEINTERLOPER],checkingForAI)

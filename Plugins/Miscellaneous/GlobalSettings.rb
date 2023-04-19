@@ -3,8 +3,6 @@ module Settings
 
   # The maximum level Pokémon can reach.
   MAXIMUM_LEVEL        = 71
-  # The odds of a wild Pokémon/bred egg having Pokérus (out of 65536).
-  POKERUS_CHANCE       = 0
   # Whether poisoned Pokémon will lose HP while walking around in the field.
   POISON_IN_FIELD       = true
   # Whether poisoned Pokémon will faint while walking around in the field

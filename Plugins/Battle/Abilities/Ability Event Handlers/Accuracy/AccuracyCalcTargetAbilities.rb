@@ -18,7 +18,7 @@ BattleHandlers::AccuracyCalcTargetAbility.add(:STORMDRAIN,
 
 BattleHandlers::AccuracyCalcTargetAbility.add(:UNAWARE,
   proc { |ability, mults, _user, _target, move, _type|
-      mults[:accuracy_stage] = 0 if move.damagingMove?
+      mults[:accuracy_step] = 0 if move.damagingMove?
   }
 )
 

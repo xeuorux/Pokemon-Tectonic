@@ -1,6 +1,6 @@
 BattleHandlers::TotalEclipseAbility.add(:TOTALGRASP,
     proc { |ability, battler, _battle|
-        battler.pbRaiseMultipleStatStages([:ATTACK,2,:DEFENSE,2,:SPECIAL_ATTACK,2,:SPECIAL_DEFENSE,2,:SPEED,2], battler, ability: ability)
+        battler.pbRaiseMultipleStatSteps([:ATTACK,2,:DEFENSE,2,:SPECIAL_ATTACK,2,:SPECIAL_DEFENSE,2,:SPEED,2], battler, ability: ability)
     }
 )
 

@@ -1,11 +1,11 @@
 ﻿# See the documentation on the wiki to learn how to edit this file.
-2001,PRIMEVALGROWL,Primeval Growl,629,0,NORMAL,Status,0,1,0,AllNearFoes,0,bey,"The user lowers each foe's Attack by two stages, raises its own Attack by two stages, and becomes Normal-type.",GROWL
-2002,PRIMEVALDAZZLE,Primeval Dazzle,630,0,NORMAL,Status,0,1,0,AllNearFoes,0,bey,"The user lowers each foe's Sp. Atk by two stages, raises its own Sp. Atk by two stages, and becomes Normal-type.",DAZZLE
+2001,PRIMEVALGROWL,Primeval Growl,629,0,NORMAL,Status,0,1,0,AllNearFoes,0,bey,"The user lowers each foe's Attack by two steps, raises its own Attack by two steps, and becomes Normal-type.",GROWL
+2002,PRIMEVALDAZZLE,Primeval Dazzle,630,0,NORMAL,Status,0,1,0,AllNearFoes,0,bey,"The user lowers each foe's Sp. Atk by two steps, raises its own Sp. Atk by two steps, and becomes Normal-type.",DAZZLE
 2003,PRIMEVALSUNSHINE,Primeval Sunshine,601,0,FIRE,Status,0,1,0,BothSides,0,y,"The user summons sunshine for 5 turns, boosts its Atk. and Sp. Atk, and becomes Fire-type.",SUNSHINE
 2004,PRIMEVALRAIN,Primeval Rain,602,0,WATER,Status,0,1,0,BothSides,0,y,"The user summons rain for 5 turns, surrounds itself with healing water, and becomes Water-type.",RAIN
 2005,PRIMEVALLEECHSEED,Primeval Leech Seed,603,0,GRASS,Status,100,1,0,AllNearFoes,0,bey,"Plants seeds on all near foes, draining HP each turn. User becomes Grass-type.",LEECHSEED
-2006,PRIMEVALLIGHTNINGDANCE,Primeval Lightning Dance,604,0,ELECTRIC,Status,0,1,0,User,0,doy,"The user raises its Sp. Atk and Speed by two stages, and becomes Electric-type.",LIGHTNINGDANCE
-2007,PRIMEVALHAIL,Primeval Hail,605,0,ICE,Status,0,1,0,BothSides,0,y,"The user summons a hail storm for 5 turns, reduces the speed of all enemies by two stages, and becomes Ice-type.",HAIL
+2006,PRIMEVALLIGHTNINGDANCE,Primeval Lightning Dance,604,0,ELECTRIC,Status,0,1,0,User,0,doy,"The user raises its Sp. Atk and Speed by two steps, and becomes Electric-type.",LIGHTNINGDANCE
+2007,PRIMEVALHAIL,Primeval Hail,605,0,ICE,Status,0,1,0,BothSides,0,y,"The user summons a hail storm for 5 turns, reduces the speed of all enemies by two steps, and becomes Ice-type.",HAIL
 2008,PRIMEVALBULKUP,Primeval Bulk Up,606,0,FIGHTING,Status,0,1,0,User,0,dy,"The user boosts its Attack and Defense, gains a lot of weight, and becomes Fighting-type.",BULKUP
 2009,PRIMEVALSPIKES,Primeval Spikes,607,0,GROUND,Status,0,1,0,FoeSide,0,y,"The user lays 3 layers of spike traps at the foe's feet, and becomes Ground-type.",SPIKES
 2010,PRIMEVALTAILWIND,Primeval Tailwind,608,0,FLYING,Status,0,1,0,UserSide,0,dy,"The user ups the Speed and attack count of itself and allies, and becomes Flying-type.",TAILWIND
@@ -13,7 +13,7 @@
 2012,PRIMEVALSTRINGSHOT,Primeval String Shot,60A,0,BUG,Status,100,1,0,AllNearFoes,0,bey,"Nearby foes are bound with silk, sharply lowering their Speed, Atk., and Sp. Atk User also becomes Bug-type.",STRINGSHOT
 2013,PRIMEVALSANDSTORM,Primeval Sandstorm,60B,0,ROCK,Status,0,1,0,BothSides,0,y,"The user summons a sandstorm for 5 turns, boosts its Def. and Sp. Def, and becomes Rock-type.",SANDSTORM
 2014,PRIMEVALCURSEDOATH,Primeval Cursed Oath,60C,0,GHOST,Status,100,1,0,AllNearFoes,0,bey,"The user applies a damaging curse to all nearby foes. User becomes a Ghost-type.",CURSE
-2015,PRIMEVALDRAGONDANCE,Primeval Dragon Dance,60D,0,DRAGON,Status,0,1,0,User,0,doy,"The user raises its Attack and Speed by two stages, and becomes Dragon-type.",DRAGONDANCE
+2015,PRIMEVALDRAGONDANCE,Primeval Dragon Dance,60D,0,DRAGON,Status,0,1,0,User,0,doy,"The user raises its Attack and Speed by two steps, and becomes Dragon-type.",DRAGONDANCE
 2016,PRIMEVALTORMENT,Primeval Torment,60E,0,DARK,Status,100,1,0,AllNearFoes,0,bey,"The user torments and enrages the foe, making it incapable of using the same move twice in a row.",TORMENT
 2017,PRIMEVALLASERFOCUS,Primeval Laser Focus,60F,0,STEEL,Status,0,1,0,User,0,dy,"The user focuses intently, making every future attack critical. The user becomes a Steel-type.",LASERFOCUS
 2018,PRIMEVALPUZZLEROOM,Primeval Puzzle Room,610,0,FAIRY,Status,0,1,0,User,0,dy,"The user creates a Puzzle Room for 5 turns, raises both of its Attacking stats, and becomes Fairy-type.",PUZZLEROOM
@@ -41,7 +41,7 @@
 2040,PRIMEVALAMNESIA,Primeval Amnesia,626,0,PSYCHIC,Status,0,1,0,User,0,dy,"The user sharply boosts its Sp. Def, gains the ability Unaware, and becomes Psychic-type.",AMNESIA
 2041,PRIMEVALHOWL,Primeval Howl,627,0,DARK,Status,0,1,0,User,0,dy,"The user summons an allied Poochyena, raises the Attack stat of itself and its allies, and becomes Dark-type.",
 2042,PRIMEVALMINDLINK,Primeval Mind Link,628,0,PSYCHIC,Status,0,1,0,User,0,dy,"The user summons an allied Abra, raises the Sp. Atk stat of itself and its allies, and becomes Psychic-type.",
-2043,EMPOWEREDMETEORMASH,Empowered Meteor Mash,636,180,STEEL,Physical,100,10,100,NearOther,0,abefjy,"The target is obliterated by a meteoric strike, which raises the user's attack by two stages.",METEORMASH
+2043,EMPOWEREDMETEORMASH,Empowered Meteor Mash,636,180,STEEL,Physical,100,10,100,NearOther,0,abefjy,"The target is obliterated by a meteoric strike, which raises the user's attack by two steps.",METEORMASH
 2044,EMPOWEREDICEBEAM,Empowered Ice Beam,637,180,ICE,Special,100,10,100,NearOther,0,befy,"The target is struck with an absolute zero beam of energy, frostbiting it.",ICEBEAM
 2045,EMPOWEREDROCKTOMB,Empowered Rock Tomb,638,120,ROCK,Physical,100,10,100,AllNearFoes,0,befy,"Boulders are hurled at all near enemies, harshly lowering their Speed by preventing their movement.",ROCKTOMB
 2046,EMPOWEREDANCIENTPOWER,Empowered Ancient Power,639,120,ROCK,Special,100,10,100,NearOther,0,befy,"The user attacks with a prehistoric power which raises all its stats",ANCIENTPOWER
@@ -49,7 +49,7 @@
 2048,EMPOWEREDFLAREBLITZ,Empowered Flare Blitz,641,240,FIRE,Physical,100,10,0,NearOther,0,abefy,"The user cloaks itself in fire and charges at the foe. The user also takes 33% recoil.",FLAREBLITZ
 2049,EMPOWEREDMETALCLAW,Empowered Metal Claw,642,80,STEEL,Physical,100,30,100,NearOther,0,abefy,"The target is raked with steel claws twice. The user raises its attack after each hit.",METALCLAW
 2050,EMPOWEREDSLASH,Empowered Slash,643,150,NORMAL,Physical,100,15,0,NearOther,0,abefpy,"The target is attacked with a slash of claws or blades, always critting.",SLASH
-2051,EMPOWEREDBRICKBREAK,Empowered Brick Break,644,160,FIGHTING,Physical,100,12,100,NearOther,0,abefy,"The user attacks with a swift chop, destroying barriers, and reducing the target's defense by five stages.",BRICKBREAK
+2051,EMPOWEREDBRICKBREAK,Empowered Brick Break,644,160,FIGHTING,Physical,100,12,100,NearOther,0,abefy,"The user attacks with a swift chop, destroying barriers, and reducing the target's defense by five steps.",BRICKBREAK
 2052,EMPOWEREDCROSSPOISON,Empowered Cross Poison,645,90,POISON,Physical,100,10,10,AllNearFoes,0,abefpy,"The user slashes all near foes with with poisonous blades or edges. Will be critical against poisoned targets.",CROSSPOISON
 2053,EMPOWEREDSOLARBEAM,Empowered Solar Beam,646,220,GRASS,Special,100,10,0,AllNearFoes,0,befy,"A two-turn attack. The user gathers light, then blasts all near foes on the second turn.",SOLARBEAM
 2054,EMPOWEREDPOWERGEM,Empowered Power Gem,647,180,ROCK,Special,100,15,100,NearOther,0,befy,"The user attacks with a sparkling gem-like ray, dizzying the target.",POWERGEM
