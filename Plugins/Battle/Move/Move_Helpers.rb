@@ -39,7 +39,7 @@ class PokeBattle_Move
 
     def canRemoveItem?(user, target, item, checkingForAI: false)
         return false unless canknockOffItems?(user, target, checkingForAI)
-        return target.unlosableItem?(item)
+        return !target.unlosableItem?(item)
     end
 
     def canknockOffItems?(user, target, checkingForAI = false, ignoreTargetFainted = false)
