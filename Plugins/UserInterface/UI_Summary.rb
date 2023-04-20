@@ -217,7 +217,7 @@ class PokemonSummary_Scene
         @pokemon    = pokemon
         @inbattle   = false
         @page = 1
-        @typebitmap    = AnimatedBitmap.new(_INTL("Graphics/Pictures/types"))
+        @typebitmap    = AnimatedBitmap.new("Graphics/Pictures/types")
         @markingbitmap = AnimatedBitmap.new("Graphics/Pictures/Summary/markings")
         @sprites = {}
         @sprites["background"] = IconSprite.new(0, 0, @viewport)
@@ -274,10 +274,16 @@ class PokemonSummary_Scene
     end
 
     def createItemIcons
+        @itemBackground = AnimatedBitmap.new("Graphics/Pictures/Summary/item_bg")
+        @itemBackground2 = AnimatedBitmap.new("Graphics/Pictures/Summary/item_bg2")
+        @sprites["itembackground"] = IconSprite.new(0, 0, @viewport)
+        @sprites["itembackground"].bitmap = @itemBackground.bitmap
+        @sprites["itembackground"].y = Graphics.height - @itemBackground.bitmap.height
+        @sprites["itembackground"].visible = true
         @sprites["itemicon"] = ItemIconSprite.new(30, 320, @pokemon.items[0], @viewport)
         @sprites["itemicon"].type = @pokemon.itemTypeChosen
         @sprites["itemicon"].blankzero = true
-        @sprites["itemicon2"] = ItemIconSprite.new(162, 320, @pokemon.items[1], @viewport)
+        @sprites["itemicon2"] = ItemIconSprite.new(166, 320, @pokemon.items[1], @viewport)
         @sprites["itemicon2"].type = @pokemon.itemTypeChosen
         @sprites["itemicon2"].blankzero = true
     end
@@ -289,6 +295,8 @@ class PokemonSummary_Scene
         @extraReminderBitmap.dispose if @extraReminderBitmap
         @markingbitmap.dispose if @markingbitmap
         @viewport.dispose
+        @itemBackground.dispose if @itemBackground
+        @itemBackground2.dispose if @itemBackground2
     end
 
     def pbDisplay(text)
@@ -384,6 +392,25 @@ class PokemonSummary_Scene
         @sprites["itemicon2"].visible = true if setVisible
         @sprites["itemicon2"].item = @pokemon.items[1]
         @sprites["itemicon2"].type = @pokemon.itemTypeChosen
+
+        @sprites["itembackground"].visible = true if setVisible
+        if @pokemon.itemCount > 1
+            @sprites["itembackground"].bitmap = @itemBackground2.bitmap
+        else
+            @sprites["itembackground"].bitmap = @itemBackground.bitmap
+        end
+    end
+
+    def showItems
+        @sprites["itemicon"]&.visible = true
+        @sprites["itemicon2"]&.visible = true
+        @sprites["itembackground"]&.visible = true
+    end
+
+    def hideItems
+        @sprites["itemicon"]&.visible = false
+        @sprites["itemicon2"]&.visible = false
+        @sprites["itembackground"]&.visible = false
     end
 
     def drawPage(page)
@@ -459,8 +486,6 @@ class PokemonSummary_Scene
 			pbDrawTextPositions(overlay, itemText)
 			pbSetSystemFont(overlay)
         end
-        # Draw the Pokémon's markings
-        drawMarkings(overlay,84,292) if page != 3
         # Draw page-specific information
         case page
         when 1 then drawPageOne
@@ -539,6 +564,8 @@ class PokemonSummary_Scene
                                      ["Graphics/Pictures/Summary/overlay_exp", 362, 372, 0, 0, w, 6],
                                  ])
         end
+        # Draw the Pokémon's markings
+        drawMarkings(overlay,104,24)
     end
 
     def drawPageOneEgg
@@ -675,8 +702,7 @@ class PokemonSummary_Scene
     end
 
     def drawPageThree
-        @sprites["itemicon"].visible = false
-        @sprites["itemicon2"].visible = false
+        hideItems
         overlay = @sprites["overlay"].bitmap
         base   = Color.new(248, 248, 248)
         shadow = Color.new(104, 104, 104)
@@ -768,8 +794,7 @@ class PokemonSummary_Scene
                     Color.new(136, 48, 48),] # Zero PP
         @sprites["pokemon"].visible = true
         @sprites["pokeicon"].visible = false
-        @sprites["itemicon"].visible = true
-        @sprites["itemicon2"].visible = true
+        showItems
         textpos  = []
         imagepos = []
         # Write move names, types and PP amounts for each known move
@@ -895,8 +920,7 @@ class PokemonSummary_Scene
         @sprites["pokeicon"].pokemon = @pokemon
         @sprites["pokeicon"].visible = true
         @sprites["pokeicon"].visible = false if @forget
-        @sprites["itemicon"].visible = false if @sprites["itemicon"]
-        @sprites["itemicon2"].visible = false if @sprites["itemicon2"]
+        hideItems
         textpos = []
         # Write power and accuracy values for selected move
         case selected_move.base_damage
@@ -1307,8 +1331,7 @@ class PokemonSummary_Scene
         selmove = 0
         maxmove = new_move ? Pokemon::MAX_MOVES : Pokemon::MAX_MOVES - 1
         @sprites["pokemon"].visible = true unless @forget
-        @sprites["itemicon"].visible = false
-        @sprites["itemicon2"].visible = false
+        hideItems
         loop do
             Graphics.update
             Input.update
@@ -1341,8 +1364,7 @@ class PokemonSummary_Scene
                     @sprites["overlay"].bitmap.clear
                     pbTemporaryStatsScreen
                     @sprites["movesel"].visible = false
-                    @sprites["itemicon"].visible = false
-                    @sprites["itemicon2"].visible = false
+                    hideItems
                     @sprites["extraReminder"].visible = false
                     @sprites["pokemon"].visible = true
                 end
@@ -1355,8 +1377,7 @@ class PokemonSummary_Scene
                     end
                 end
                 @sprites["movesel"].visible = true
-                @sprites["itemicon"].visible = true
-                @sprites["itemicon2"].visible = true
+                showItems
                 @sprites["extraReminder"].visible = true
                 @sprites["pokemon"].visible = false
                 drawSelectedMove(new_move, @pokemon.moves[0])
