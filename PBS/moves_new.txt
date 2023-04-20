@@ -101,7 +101,7 @@
 1100,SOULDRAIN,Soul Drain,52C,65,GHOST,Special,100,15,100,NearOther,0,bef,"The user absorbs the target's soul, lowering its Sp. Def and draining its life in the process.",NIGHTSHADE
 1101,ABYSSALRESET,Abyssal Reset,52D,60,DARK,Special,100,12,0,AllNearOthers,0,bce,"Darkness rolls over the field, damaging all other Pokémon, ending weather, and healing statuses.",
 1102,ECHOLOCATE,Echolocate,52E,0,FLYING,Status,0,12,0,AllNearFoes,0,cek,"Lowers the target's Defense and evasion by two steps each. Can't miss and skips protections.",SUPERSONIC
-1103,WINGSPANECLIPSE,Wingspan Eclipse,52F,0,DRAGON,Status,0,12,0,AllNearFoes,0,bce,"The Pokémon blots out the sky with huge wings, ending weather. It also lowers the opponent's Attack.",
+1103,WINGSPANECLIPSE,Wingspan Eclipse,52F,0,DRAGON,Status,0,12,0,BothSides,0,bce,"The Pokémon blots out the sky, summoning Eclipse for 8 turns and lowering each opponent's Attack by 2 steps.",
 1104,ALLERGY,Allergy,5EB,75,BUG,Special,100,12,100,NearOther,0,bef,"The user makes the target have an allergic reaction. This reduces their Speed by three steps.",
 1105,LIGHTNINGSHRIEK,Lightning Shriek,030,60,ELECTRIC,Special,100,5,100,NearOther,0,bef,"The user lets out an electric roar, raising the user's Speed by four steps.",ROAR
 1106,IGNITE,Ignite,00A,0,FIRE,Status,100,12,0,NearOther,0,bce,"The user sets the target on fire, inflicting a burn.",EMBER

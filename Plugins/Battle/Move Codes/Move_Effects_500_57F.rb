@@ -748,13 +748,13 @@ end
 # Resets weather and reduces the Attack of all enemies. (Wingspan Eclipse)
 #===============================================================================
 class PokeBattle_Move_52F < PokeBattle_Move_042
-    def pbEffectGeneral(_user)
-        @battle.endWeather if @battle.field.weather != :None
+    def pbEffectGeneral(user)
+        @battle.pbStartWeather(user, :ECLIPSE, 8, false) unless @battle.primevalWeatherPresent?
     end
 
     def getEffectScore(user, target)
         score = super
-        score += 20 if @battle.field.weather != :None
+        score += getWeatherSettingEffectScore(:ECLIPSE, user, @battle, 8)
         return score
     end
 end
