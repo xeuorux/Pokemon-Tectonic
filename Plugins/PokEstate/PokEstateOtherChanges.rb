@@ -16,14 +16,3 @@ class PokemonStorage
     ]
   end
 end
-
-class Game_Temp
-  def setup_sames=(value)
-    @setup_sames = value
-  end
-
-  def setup_sames
-    @setup_sames = false if @setup_sames.nil?
-    return @setup_sames
-  end
-end

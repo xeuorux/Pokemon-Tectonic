@@ -1686,7 +1686,7 @@ class Pokemon
       @happiness = (@happiness + gain).clamp(0, MAX_HAPPINESS)
       actualGain = @happiness - prevHappiness
 
-      echoln("Changing #{name}'s happiness by #{actualGain}") if actualGain != 0
+      #echoln("Changing #{name}'s happiness by #{actualGain}") if actualGain != 0
 
       return if $PokemonSystem.show_trait_unlocks == 1
       

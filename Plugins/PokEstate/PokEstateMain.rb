@@ -69,7 +69,6 @@ class PokEstate
 		# Transfer the player to the new spot
 		echoln("Transferring player to estate or box number #{boxNum}")
 		$game_temp.player_transferring = true
-		$game_temp.setup_sames = true
 		$game_temp.player_new_map_id    = 	newMap
 		if entrance == -1
 			position = [$game_player.x, $game_player.y, $game_player.direction]
@@ -259,7 +258,7 @@ class PokEstate
 		  unusedBoxPokes.push(pokemon)
 		end
 		
-		# Find the feeding bowl, if  any
+		# Find the feeding bowl, if any
 		feedingBowl = nil
 		for event in $game_map.events.values
 			if event.name.downcase.include?("feedingbowl")
@@ -566,6 +565,7 @@ Events.onMapSceneChange += proc { |_sender, e|
 	mapChanged = e[1]
 	next if !scene || !scene.spriteset
 	next unless $PokEstate.isInEstate?
+	$PokEstate.load_estate_box
 	boxName = $PokemonStorage[$PokEstate.estate_box].name
 	label = _INTL("PokÉstate #{$PokEstate.estate_box +  1}")
 	label += " - #{boxName}" if !boxName.eql?("Box #{$PokEstate.estate_box +  1}")
