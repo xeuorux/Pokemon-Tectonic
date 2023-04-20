@@ -35,9 +35,9 @@ def useAidKit()
 	else
 		$PokemonGlobal.teamHealerCurrentUses -= 1
 		healAmount = AID_KIT_BASE_HEALING + HEALING_UPGRADE_AMOUNT * $PokemonGlobal.teamHealerUpgrades
+		playerTribalBonus.updateTribeCount
+		healAmount = (healAmount * 1.25).ceil if playerTribalBonus.hasTribeBonus?(:CARETAKER)
 		pbMessage(_INTL("Healing your entire team by {1}.",healAmount))
-		charges = $PokemonGlobal.teamHealerCurrentUses
-		#pbMessage(_INTL("You have {1} #{charges == 1 ? "charge" : "charges"} left.", charges))
 		fullyHealed = true
 		$Trainer.party.each do |p|
 			next if p.egg?
