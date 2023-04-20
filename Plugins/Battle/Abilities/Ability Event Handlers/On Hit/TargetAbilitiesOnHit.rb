@@ -443,14 +443,14 @@ BattleHandlers::TargetAbilityOnHit.add(:SEALINGBODY,
 
 BattleHandlers::TargetAbilityOnHit.add(:PERISHBODY,
     proc { |ability, user, target, move, battle, aiChecking, aiNumHits|
-        next unless move.physicalMove?
-        next if user.effectActive?(:PerishSong)
         next if target.boss?
+        next if user.effectActive?(:PerishSong)
+        next if target.effectActive?(:PerishSong)
         next -5 if aiChecking
         battle.pbShowAbilitySplash(target, ability)
         battle.pbDisplay(_INTL("Both Pokémon will faint in three turns!"))
-        user.applyEffect(:PerishSong, 3)
-        target.applyEffect(:PerishSong, 3) unless target.effectActive?(:PerishSong)
+        target.applyEffect(:PerishSong, 3)
+        target.pointAt(:PerishSongUser, user)
         battle.pbHideAbilitySplash(target)
     }
 )
