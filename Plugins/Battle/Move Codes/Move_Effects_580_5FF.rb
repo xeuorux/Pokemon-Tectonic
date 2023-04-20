@@ -2273,3 +2273,13 @@ class PokeBattle_Move_5F4 < PokeBattle_Move
         return 120
     end
 end
+
+#===============================================================================
+# Increases the user's Attack and Sp. Attack by 4 step eachs.
+#===============================================================================
+class PokeBattle_Move_5F5 < PokeBattle_MultiStatUpMove
+    def initialize(battle, move)
+        super
+        @statUp = [:ATTACK, 4, :SPECIAL_ATTACK, 4]
+    end
+end

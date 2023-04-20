@@ -113,3 +113,4 @@
 4112,SWEETSCENT,Sweet Scent,048,0,GRASS,Status,100,15,0,AllNearFoes,0,bce,"A sweet scent that lowers the foe's evasiveness. It also lures wild Pokémon if used in grass, etc.",
 4113,PLAYNICE,Play Nice,139,0,FAIRY,Status,0,15,0,NearOther,0,ce,"The user and target become friends. The target loses its will to fight, lowering its Attack stat.",
 4114,CAPTIVATE,Captivate,13D,0,FAIRY,Status,100,15,0,AllNearFoes,0,bce,"The target is charmed into harshly lowering its Sp. Atk stat.",
+4115,MEDITATE,Meditate,027,0,PSYCHIC,Status,0,30,0,User,0,d,"The user meditates, raising both its Attack and Sp. Atk stats.",
