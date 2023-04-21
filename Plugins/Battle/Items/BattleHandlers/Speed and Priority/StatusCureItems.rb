@@ -1,10 +1,10 @@
 BattleHandlers::StatusCureItem.add(:ASPEARBERRY,
   proc { |item, battler, battle, forced|
       next false if !forced && !battler.canConsumeBerry?
-      next false unless battler.hasStatusNoTrigger(:FROZEN)
+      next false unless battler.hasStatusNoTrigger(:FROSTBITE)
       itemName = GameData::Item.get(item).name
       battle.pbCommonAnimation("Nom", battler) unless forced
-      battler.pbCureStatus(forced, :FROZEN)
+      battler.pbCureStatus(forced, :FROSTBITE)
       battle.pbDisplay(_INTL("{1}'s {2} unchilled it!", battler.pbThis, itemName)) unless forced
       next true
   }
