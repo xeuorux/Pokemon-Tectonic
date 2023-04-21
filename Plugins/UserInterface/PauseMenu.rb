@@ -130,7 +130,7 @@ class PokemonPauseMenu_Scene
 				},
 			},
 			:SAVE => {
-				:label => _INTL("Save / Quit"),
+				:label => _INTL("Save/Quit"),
 				:active_proc => Proc.new {
 					next !$game_system.nil? && !$game_system.save_disabled
 				},
@@ -173,16 +173,13 @@ class PokemonPauseMenu_Scene
 	BUTTON_STARTING_Y = 36
 	BUTTON_ROW_HEIGHT = 80
 
-	ACTIVE_UNSELECTED_COLOR = Color.new(60, 120, 120, 20)
-	INACTIVE_UNSELECTED_COLOR = Color.new(80, 80, 80, 80)
+	INACTIVE_BUTTON_COLOR = Color.new(80, 80, 80, 80)
 
-	ACTIVE_SELECTED_COLOR = Color.new(60, 120, 120, 20)
-	INACTIVE_SELECTED_COLOR = Color.new(80, 80, 80, 90)
+	BASE_TEXT_COLOR         = Color.new(60,60,60)
+  	SHADOW_TEXT_COLOR       = Color.new(200,200,200)
 
-	BASE_COLOR         = Color.new(72,72,72)
-	INACTIVE_BASE_COLOR = Color.new(110,110,110)
-  	SHADOW_COLOR       = Color.new(184,184,184)
-	INACTIVE_SHADOW_COLOR = Color.new(150,150,150)
+	INACTIVE_BASE_TEXT_COLOR = Color.new(105,105,105)
+	INACTIVE_SHADOW_TEXT_COLOR = Color.new(130,130,130)
 	
 	def pbStartScene
 		initializePauseMenuButtons
@@ -284,11 +281,8 @@ class PokemonPauseMenu_Scene
   
 	def pbRefresh
 		@tiles.each_pair do |buttonID, tileSprite|
-			if selectedButton?(buttonID)
-				tileSprite.color = buttonActive?(buttonID) ? ACTIVE_SELECTED_COLOR : INACTIVE_SELECTED_COLOR
-			else
-				tileSprite.color = buttonActive?(buttonID) ? ACTIVE_UNSELECTED_COLOR : INACTIVE_UNSELECTED_COLOR
-			end
+			next if buttonActive?(buttonID)
+			tileSprite.color =  INACTIVE_BUTTON_COLOR
 		end
 		@buttonNameOverlay.bitmap.clear
 		buttonNamePositions = []
@@ -296,20 +290,14 @@ class PokemonPauseMenu_Scene
 			label = @pauseMenuButtons[buttonID][:label] || "ERROR"
 			x = xFromIndex(index)+8
 			y = yFromIndex(index)+8
-			outlined = false
-			if selectedButton?(buttonID)
-				outlined = true
-				y += 4
-			end
 			if buttonActive?(buttonID)
-				baseColor = BASE_COLOR
-				shadowColor = SHADOW_COLOR
+				baseColor = BASE_TEXT_COLOR
+				shadowColor = SHADOW_TEXT_COLOR
 			else
-				baseColor = INACTIVE_BASE_COLOR
-				shadowColor = INACTIVE_SHADOW_COLOR
-				outlined = false
+				baseColor = INACTIVE_BASE_TEXT_COLOR
+				shadowColor = INACTIVE_SHADOW_TEXT_COLOR
 			end
-			buttonNamePositions.push([label,x,y,false,baseColor,shadowColor,outlined])
+			buttonNamePositions.push([label,x,y,false,baseColor,shadowColor,false])
 		end
 		pbDrawTextPositions(@buttonNameOverlay.bitmap,buttonNamePositions)
 	end
