@@ -354,3 +354,18 @@ BattleHandlers::UserAbilityEndOfMove.add(:ENERGYABSORB,
       user.applyEffect(:Charge)
   }
 )
+
+BattleHandlers::UserAbilityEndOfMove.add(:JASPERCHARGE,
+  proc { |ability, user, targets, move, battle, _switchedBattlers|
+      next if battle.futureSight
+      next unless move.specialMove?
+      hitAnything = false
+      targets.each do |b|
+        next if b.damageState.unaffected
+        hitAnything = true
+        break
+      end
+      next unless hitAnything
+      user.tryLowerStat(:SPECIAL_ATTACK, user, ability: ability)
+  }
+)

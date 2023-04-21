@@ -76,6 +76,13 @@ BattleHandlers::SpecialAttackCalcUserAbility.add(:RADIATE,
 
 BattleHandlers::SpecialAttackCalcUserAbility.copy(:RADIATE, :ARCANE)
 
+BattleHandlers::SpecialAttackCalcUserAbility.add(:JASPERCHARGE,
+  proc { |ability, _user, _battle, spAtkMult|
+      spAtkMult *= 1.3
+      next spAtkMult
+  }
+)
+
 BattleHandlers::SpecialAttackCalcUserAbility.add(:BALANCEOFPOWER,
   proc { |ability, user, _battle, spAtkMult|
       spAtkMult *= 1.5 if user.lastRoundMoveCategory == 0
