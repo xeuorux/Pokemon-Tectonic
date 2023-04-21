@@ -48,9 +48,14 @@ class PokeBattle_Battler
     end
 
     def fainted?
-        return @hp <= 0
+        return @hp <= 0 || afraid?
     end
     alias isFainted? fainted?
+
+    def afraid?
+        return false unless @pokemon
+        return @pokemon.afraid?
+    end
 
     def status=(value)
         disableEffect(:Truant) if @status == :SLEEP && value != :SLEEP

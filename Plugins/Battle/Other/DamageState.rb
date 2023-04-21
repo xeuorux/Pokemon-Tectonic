@@ -28,6 +28,7 @@ class PokeBattle_DamageState
 	attr_accessor :direDiversion   # Dire Diversion ability activated
 	attr_accessor :endureBerry	   # Cass Berry activated
 	attr_accessor :feastWeakened   # Whether a type-resisting feast was used (wont be consumed)
+	attr_accessor :fear			   # The hit caused fear in the pokemon
 
 	def initialize; reset; end
 
@@ -42,6 +43,7 @@ class PokeBattle_DamageState
 		@fainted            = false
 		@messagesPerHit		= true
 		@partiallyProtected	= false
+		@fear				= false
 		resetPerHit
 	end
 

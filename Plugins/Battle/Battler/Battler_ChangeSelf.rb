@@ -221,6 +221,8 @@ class PokeBattle_Battler
                 else
                     @battle.pbDisplayBrief(_INTL("{1} was destroyed!", pbThis))
                 end
+            elsif afraid?
+                @battle.pbDisplayBrief(_INTL("{1} flees in fear!", pbThis))
             else
                 @battle.pbDisplayBrief(_INTL("{1} fainted!", pbThis))
             end

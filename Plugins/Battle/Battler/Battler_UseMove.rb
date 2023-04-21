@@ -555,6 +555,15 @@ user.pbThis))
                     end
                 end
             end
+            # Fear save message
+            if move.damagingMove?
+                targets.each do |b|
+                    next unless b.damageState.fear
+                    @battle.pbDisplay(_INTL("#{user.pbThis} showed mercy on #{b.pbThis(true)}!", realNumHits))
+                    @battle.pbDisplay(_INTL("However, the near-faint has left it Afraid!"))
+                    b.pokemon.becomeAfraid
+                end
+            end
             # Magic Coat/Magic Bounce's bouncing back (move has targets)
             targets.each do |b|
                 next if b.fainted?

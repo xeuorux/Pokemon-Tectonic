@@ -25,8 +25,11 @@ class PokeBattle_Battle
         end
         if party[idxParty].fainted?
             if partyScene
-                partyScene.pbDisplay(_INTL("{1} has no energy left to battle!",
-                   party[idxParty].name))
+                if party[idxParty].afraid?
+                    partyScene.pbDisplay(_INTL("{1} is too afraid to battle!", party[idxParty].name))
+                else
+                    partyScene.pbDisplay(_INTL("{1} has no energy left to battle!", party[idxParty].name))
+                end
             end
             return false
         end

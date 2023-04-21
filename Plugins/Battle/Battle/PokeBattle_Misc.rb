@@ -113,6 +113,13 @@ class PokeBattle_Battle
                 pbDisplayBossNarration(_INTL("A great energy rises up from inside {1}!", b.pbThis(true)))
                 b.lastRoundMoved = 0
                 b.pbUseMove([:UseMove, index, move, -1, 0])
+
+                # Reset fear
+                pbParty(0).each_with_index do |pkmn, i|
+                    next unless pkmn
+                    pkmn.removeFear(self) if pkmn.afraid?
+                end
+
                 usedEmpoweredMove = true
             end
             # Swap to post-empowerment moveset

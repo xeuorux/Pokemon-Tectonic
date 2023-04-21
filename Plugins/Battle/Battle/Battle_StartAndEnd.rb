@@ -654,30 +654,38 @@ class PokeBattle_Battle
         when 4
             @scene.pbWildBattleSuccess unless Settings::GAIN_EXP_FOR_CAPTURE
         end
+        
         # Register captured Pokémon in the Pokédex, and store them
         pbRecordAndStoreCaughtPokemon
+
         # Collect Pay Day money in a wild battle that ended in a capture
         pbGainMoney if @decision == 4
         pbDisplayPaused(_INTL("{1} exp was stored in the EXP-EZ Dispenser this battle.", @expStored)) if @expStored > 0
+        
         # Clean up battle stuff
         @scene.pbEndBattle(@decision)
-        @battlers.each do |b|
-            next unless b
+        eachBattler do |b|
             pbCancelChoice(b.index) # Restore unused items to Bag
             b.eachActiveAbility do |ability|
                 BattleHandlers.triggerAbilityOnSwitchOut(ability, b, self, true)
             end
         end
+
+        # Reset some aspects of party pokemon
         pbParty(0).each_with_index do |pkmn, i|
             next unless pkmn
+            pkmn.removeFear(self) if pkmn.afraid?
             @peer.pbOnLeavingBattle(self, pkmn, @usedInBattle[0][i], true) # Reset form
         end
+
         restoreInitialItems
+
         # Remove avatars from the trainer's party
         pbParty(0).reject! { |pkmn|
             pkmn.boss?
         }
         pbParty(0).compact!
+
         return @decision
     end
 

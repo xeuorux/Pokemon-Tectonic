@@ -434,7 +434,9 @@ class PokemonSummary_Scene
         imagepos.push([ballimage, 14, 60])
         # Show status/fainted/Pokérus infected icon
         status = 0
-        if @pokemon.fainted?
+        if @pokemon.afraid?
+            status = GameData::Status::DATA.keys.length / 2 + 1
+        elsif @pokemon.fainted?
             status = GameData::Status::DATA.keys.length / 2
         elsif @pokemon.status != :NONE
             status = GameData::Status.get(@pokemon.status).id_number

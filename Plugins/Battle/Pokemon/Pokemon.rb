@@ -85,6 +85,7 @@ class Pokemon
     attr_accessor :bossType
     attr_accessor :itemTypeChosen
     attr_accessor :shiny_variant
+    attr_reader :afraid
   
     # Max total IVs
     IV_STAT_LIMIT = 31
@@ -269,7 +270,7 @@ class Pokemon
   
     # @return [Boolean] whether the Pokémon is fainted
     def fainted?
-      return !egg? && @hp <= 0
+      return !egg? && @hp <= 0 || @afraid
     end
   
     # Heals all HP of this Pokémon.
@@ -316,6 +317,22 @@ class Pokemon
       heal_HP
       heal_status
       heal_PP
+    end
+
+    def afraid?
+      return @afraid
+    end
+
+    def becomeAfraid
+      @afraid = true
+      @status = :NONE
+      @statusCount = 0
+    end
+
+    def removeFear(battle = nil)
+      @afraid = false
+      @hp = (@totalhp / 2).floor
+      battle.pbDisplayPaused(_INTL("#{name} is no longer Afraid! It healed to half health.")) if battle
     end
   
     #=============================================================================

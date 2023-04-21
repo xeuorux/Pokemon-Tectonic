@@ -19,19 +19,24 @@ class BattlerFaintAnimation < PokeBattle_Animation
       cropY = PokeBattle_SceneConstants.pbBattlerPosition(@idxBattler,
          @battle.pbSideSize(@idxBattler))[1]
       cropY += 8
-      duration = (cropY-battlerTop)/8
-      duration = 10 if duration<10   # Min 0.5 seconds
+      duration = (cropY - battlerTop)/8
+      duration = 10 if duration < 10   # Min 0.5 seconds
       # Animation
       # Play cry
       delay = 10
       cry = GameData::Species.cry_filename_from_pokemon(batSprite.pkmn)
       if cry
-        battler.setSE(0, cry, nil, 75)   # 75 is pitch
+        pitch = batSprite.pkmn.afraid? ? 110 : 75
+        battler.setSE(0, cry, nil, pitch)
         delay = GameData::Species.cry_length(batSprite.pkmn) * 20 / Graphics.frame_rate
       end
       # Sprite drops down
       shadow.setVisible(delay,false)
-      battler.setSE(delay,"Pkmn faint")
+      if batSprite.pkmn.afraid?
+        battler.setSE(delay-3,"Battle flee", nil, 120)
+      else
+        battler.setSE(delay,"Pkmn faint")
+      end
       battler.moveOpacity(delay,duration,0)
       battler.moveDelta(delay,duration,0,cropY-battlerTop)
       battler.setCropBottom(delay,cropY)

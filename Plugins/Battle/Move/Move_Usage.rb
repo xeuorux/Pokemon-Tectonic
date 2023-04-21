@@ -320,6 +320,7 @@ target.pbThis(true)))
             target.damageState.displayedDamage = 0
             return
         end
+
         # Target takes the damage
         damageAdjusted = false
         if damage >= target.hp
@@ -364,7 +365,15 @@ target.pbThis(true)))
                     damageAdjusted = true
                 end
             end
+
+            # Bosses show mercy
+            if AVATARS_FEAR_NOT_FAINT && !damageAdjusted && user.boss? && !target.boss?
+                target.damageState.fear = true
+                damage -= 1
+                damageAdjusted = true
+            end
         end
+
         target.damageState.displayedDamage = damage if damageAdjusted
         damage = 0 if damage < 0
         target.damageState.displayedDamage = 0 if target.damageState.displayedDamage < 0

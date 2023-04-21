@@ -180,23 +180,15 @@ end
         self.y = 16 * (index % 2) + 96 * (index / 2)
         @panelbgsprite = ChangelingSprite.new(0,0,viewport)
         @panelbgsprite.z = self.z
-        if @active   # Rounded panel
-          @panelbgsprite.addBitmap("able","Graphics/Pictures/Party/panel_round")
-          @panelbgsprite.addBitmap("ablesel","Graphics/Pictures/Party/panel_round_sel")
-          @panelbgsprite.addBitmap("fainted","Graphics/Pictures/Party/panel_round_faint")
-          @panelbgsprite.addBitmap("faintedsel","Graphics/Pictures/Party/panel_round_faint_sel")
-          @panelbgsprite.addBitmap("swap","Graphics/Pictures/Party/panel_round_swap")
-          @panelbgsprite.addBitmap("swapsel","Graphics/Pictures/Party/panel_round_swap_sel")
-          @panelbgsprite.addBitmap("swapsel2","Graphics/Pictures/Party/panel_round_swap_sel2")
-        else   # Rectangular panel
-          @panelbgsprite.addBitmap("able","Graphics/Pictures/Party/panel_rect")
-          @panelbgsprite.addBitmap("ablesel","Graphics/Pictures/Party/panel_rect_sel")
-          @panelbgsprite.addBitmap("fainted","Graphics/Pictures/Party/panel_rect_faint")
-          @panelbgsprite.addBitmap("faintedsel","Graphics/Pictures/Party/panel_rect_faint_sel")
-          @panelbgsprite.addBitmap("swap","Graphics/Pictures/Party/panel_rect_swap")
-          @panelbgsprite.addBitmap("swapsel","Graphics/Pictures/Party/panel_rect_swap_sel")
-          @panelbgsprite.addBitmap("swapsel2","Graphics/Pictures/Party/panel_rect_swap_sel2")
-        end
+        @panelbgsprite.addBitmap("able","Graphics/Pictures/Party/panel_rect")
+        @panelbgsprite.addBitmap("ablesel","Graphics/Pictures/Party/panel_rect_sel")
+        @panelbgsprite.addBitmap("fainted","Graphics/Pictures/Party/panel_rect_faint")
+        @panelbgsprite.addBitmap("faintedsel","Graphics/Pictures/Party/panel_rect_faint_sel")
+        @panelbgsprite.addBitmap("afraid","Graphics/Pictures/Party/panel_rect_afraid")
+        @panelbgsprite.addBitmap("afraidsel","Graphics/Pictures/Party/panel_rect_afraid_sel")
+        @panelbgsprite.addBitmap("swap","Graphics/Pictures/Party/panel_rect_swap")
+        @panelbgsprite.addBitmap("swapsel","Graphics/Pictures/Party/panel_rect_swap_sel")
+        @panelbgsprite.addBitmap("swapsel2","Graphics/Pictures/Party/panel_rect_swap_sel2")
         @hpbgsprite = ChangelingSprite.new(0,0,viewport)
         @hpbgsprite.z = self.z+1
         @hpbgsprite.addBitmap("able","Graphics/Pictures/Party/overlay_hp_back")
@@ -314,11 +306,13 @@ end
           if self.selected
             if self.preselected;     @panelbgsprite.changeBitmap("swapsel2")
             elsif @switching;        @panelbgsprite.changeBitmap("swapsel")
+            elsif @pokemon.afraid?;  @panelbgsprite.changeBitmap("afraidsel")
             elsif @pokemon.fainted?; @panelbgsprite.changeBitmap("faintedsel")
             else;                    @panelbgsprite.changeBitmap("ablesel")
             end
           else
             if self.preselected;     @panelbgsprite.changeBitmap("swap")
+            elsif @pokemon.afraid?;  @panelbgsprite.changeBitmap("afraid")
             elsif @pokemon.fainted?; @panelbgsprite.changeBitmap("fainted")
             else;                    @panelbgsprite.changeBitmap("able")
             end
@@ -389,7 +383,9 @@ end
               end
               # Draw status
               status = 0
-              if @pokemon.fainted?
+              if @pokemon.afraid?
+                status = GameData::Status::DATA.keys.length / 2 + 1
+              elsif @pokemon.fainted?
                 status = GameData::Status::DATA.keys.length / 2
               elsif @pokemon.status != :NONE
                 status = GameData::Status.get(@pokemon.status).id_number
