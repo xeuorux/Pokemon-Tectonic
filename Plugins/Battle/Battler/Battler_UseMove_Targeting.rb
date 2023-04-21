@@ -114,7 +114,7 @@ move, true, true)
         return targets if move.cannotRedirect?
         return targets if !target_data.can_target_one_foe? || targets.length != 1
         move.pbModifyTargets(targets, user) # For Dragon Darts, etc.
-        return targets if user.hasActiveAbility?(:STALWART) || user.hasActiveAbility?(:PROPELLERTAIL)
+        return targets if user.hasActiveAbility?(%i[STALWART PROPELLERTAIL STRAIGHTAHEAD])
         priority = @battle.pbPriority(true)
         nearOnly = !target_data.can_choose_distant_target?
         # Spotlight (takes priority over Follow Me/Rage Powder or redirection abilities)

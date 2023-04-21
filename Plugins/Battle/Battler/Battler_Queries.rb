@@ -382,7 +382,7 @@ class PokeBattle_Battler
     end
 
     def hasMoldBreaker?
-        return hasActiveAbility?(%i[MOLDBREAKER TERAVOLT TURBOBLAZE CLEAVING])
+        return hasActiveAbility?(%i[MOLDBREAKER TERAVOLT TURBOBLAZE CLEAVING STRAIGHTAHEAD])
     end
 
     def canChangeType?
