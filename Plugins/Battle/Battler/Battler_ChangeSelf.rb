@@ -412,7 +412,7 @@ class PokeBattle_Battler
                 when :Hail             then newForm = 3
                 end
                 if @form != newForm
-                    @battle.pbShowAbilitySplash(self, true)
+                    @battle.pbShowAbilitySplash(self, :FORECAST, true)
                     @battle.pbHideAbilitySplash(self)
                     pbChangeForm(newForm, _INTL("{1} transformed!", pbThis))
                 end
@@ -426,7 +426,7 @@ class PokeBattle_Battler
                 newForm = 0
                 newForm = 1 if %i[Sun HarshSun].include?(@battle.pbWeather)
                 if @form != newForm
-                    @battle.pbShowAbilitySplash(self, true)
+                    @battle.pbShowAbilitySplash(self, :FLOWERGIFT, true)
                     @battle.pbHideAbilitySplash(self)
                     pbChangeForm(newForm, _INTL("{1} transformed!", pbThis))
                 end
@@ -436,7 +436,7 @@ class PokeBattle_Battler
         end
         # Eiscue - Ice Face
         if @species == :EISCUE && hasActiveAbility?(:ICEFACE) && @battle.pbWeather == :Hail && (@form == 1)
-            @battle.pbShowAbilitySplash(self, true)
+            @battle.pbShowAbilitySplash(self, :ICEFACE, true)
             @battle.pbHideAbilitySplash(self)
             pbChangeForm(0, _INTL("{1} transformed!", pbThis))
         end
@@ -457,7 +457,7 @@ class PokeBattle_Battler
             end
             if pbTypes != newTypes
                 pbChangeTypes(newTypes)
-                @battle.pbShowAbilitySplash(self, true)
+                @battle.pbShowAbilitySplash(self, :MIMICRY, true)
                 @battle.pbHideAbilitySplash(self)
                 if newTypes == originalTypes
                     @battle.pbDisplay(_INTL("{1} returned back to normal!", pbThis))

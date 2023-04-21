@@ -429,7 +429,7 @@ class PokeBattle_Battler
             return true
         end
         if hasActiveAbility?(:INNERFOCUS)
-            @battle.pbShowAbilitySplash(self, true)
+            @battle.pbShowAbilitySplash(self, :INNERFOCUS, true)
             @battle.pbDisplay(_INTL("{1}'s {2} prevented {3}'s {4} from working!",
                     pbThis, getAbilityName(:INNERFOCUS), user.pbThis(true), getAbilityName(ability)))
             @battle.pbHideAbilitySplash(self)
