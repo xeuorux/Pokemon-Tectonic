@@ -97,8 +97,7 @@ class PokeBattle_Battle
             next unless b.boss?
             avatarData = GameData::Avatar.get(b.species.to_sym)
             next if b.avatarPhase == avatarData.num_phases
-            hpFraction = 1 - (b.avatarPhase.to_f / avatarData.num_phases.to_f)
-            next if b.hp > b.totalhp * hpFraction
+            next if b.hp > b.avatarPhaseLowerHealthBound
             usedEmpoweredMove = false
             b.eachMoveWithIndex do |move, index|
                 next if move.damagingMove?

@@ -623,6 +623,16 @@ class PokeBattle_Battler
         return true
     end
 
+    def avatarData
+        return GameData::Avatar.get_from_pokemon(@pokemon)
+    end
+
+    def avatarPhaseLowerHealthBound
+        raise _INTL("#{@name} isn't an avatar, but something is requesting its Phase Lower Health Bound!") unless boss?
+        hpFraction = 1 - (@avatarPhase / avatarData.num_phases.to_f)
+        return (@totalhp * hpFraction).floor
+    end
+
     #=============================================================================
     # Methods relating to this battler's position on the battlefield
     #=============================================================================

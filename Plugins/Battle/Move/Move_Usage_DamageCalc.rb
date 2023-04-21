@@ -40,6 +40,18 @@ class PokeBattle_Move
 
         finalCalculatedDamage = flatDamageReductions(finalCalculatedDamage,user,target,aiChecking)
 
+        if target.boss?
+            # All damage up to the phase lower health bound is unmodified
+            unmodifiedDamage = [target.hp - target.avatarPhaseLowerHealthBound,finalCalculatedDamage].min
+            unmodifiedDamage = 0 if unmodifiedDamage < 0
+
+            # All further damage is reduced
+            modifiedDamage = finalCalculatedDamage - unmodifiedDamage
+            modifiedDamage = (modifiedDamage * (1 - AVATAR_OVERKILL_RESISTANCE)).floor
+
+            finalCalculatedDamage = unmodifiedDamage + modifiedDamage
+        end
+
         return finalCalculatedDamage
     end
 
