@@ -2275,11 +2275,25 @@ class PokeBattle_Move_5F4 < PokeBattle_Move
 end
 
 #===============================================================================
-# Increases the user's Attack and Sp. Attack by 4 step eachs.
+# Increases the user's Attack and Sp. Attack by 4 step eachs. (True Senses)
 #===============================================================================
 class PokeBattle_Move_5F5 < PokeBattle_MultiStatUpMove
     def initialize(battle, move)
         super
         @statUp = [:ATTACK, 4, :SPECIAL_ATTACK, 4]
+    end
+end
+
+#===============================================================================
+# User takes recoil damage equal to 1/3 of the damage this move dealt. (Undying Rush)
+# But can't faint from that recoil damage.
+#===============================================================================
+class PokeBattle_Move_5F6 < PokeBattle_RecoilMove
+    def recoilFactor;  return (1.0 / 3.0); end
+    
+    def pbRecoilDamage(user, target)
+        damage = (target.damageState.totalHPLost * finalRecoilFactor(user)).round
+        damage = [damage,(user.hp - 1)].max
+        return damage
     end
 end

@@ -430,3 +430,4 @@
 1429,STARDANCE,Star Dance,5F3,0,PSYCHIC,Status,100,15,0,AllNearFoes,0,bceo,"The user covers the target's body with a mass of down that lowers its Sp. Atk stat by five steps.",
 1430,AMPUP,Amp Up,09C,0,ELECTRIC,Status,0,15,0,NearAlly,0,,"The user assists an ally's next move, boosting its power by 50% and letting it move right after the user.",
 1431,TRUESENSES,True Senses,5F5,0,PSYCHIC,Status,0,30,0,User,0,d,"The user meditates, raising both its Attack and Sp. Atk stats.",
+1432,UNDYINGRUSH,Undying Rush,5F6,120,GHOST,Physical,100,12,0,Other,0,abef,"Clad in souls, the user crashes into the target. The user takes 33% recoil, but can't faint from it.",WATERFALL
