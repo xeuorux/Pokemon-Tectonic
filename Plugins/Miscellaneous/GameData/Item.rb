@@ -1,5 +1,8 @@
 module GameData
     class Item
+        attr_reader :super
+        attr_reader :cut
+
         def self.icon_filename(item)
             return "Graphics/Items/back" if item.nil?
             item_data = self.try_get(item)
@@ -29,6 +32,22 @@ module GameData
               end
             end
             return "Graphics/Items/000"
+        end
+
+        def initialize(hash)
+          @id               = hash[:id]
+          @id_number        = hash[:id_number]   || -1
+          @real_name        = hash[:name]        || "Unnamed"
+          @real_name_plural = hash[:name_plural] || "Unnamed"
+          @pocket           = hash[:pocket]      || 1
+          @price            = hash[:price]       || 0
+          @real_description = hash[:description] || "???"
+          @field_use        = hash[:field_use]   || 0
+          @battle_use       = hash[:battle_use]  || 0
+          @type             = hash[:type]        || 0
+          @move             = hash[:move]
+          @super            = hash[:super]       || false
+          @cut              = hash[:cut]       || false
         end
 
         def can_hold?;           return !is_important? && @pocket == 5; end

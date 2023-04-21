@@ -1850,7 +1850,7 @@ Pokemon = RILLABOOM,70
 #-------------------------------
 [DEVARTIST3,Drawingbox]
 Pokemon = ESPEON,70
-    AbilityIndex = 0 # Magic Bounce
+    AbilityIndex = 0 # Jasper Charge
 Pokemon = GOTHITELLE,70
     AbilityIndex = 0 # Moon Basking
 Pokemon = BEHEEYEM,70

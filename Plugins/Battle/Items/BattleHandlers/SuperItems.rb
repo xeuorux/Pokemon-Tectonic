@@ -142,7 +142,6 @@ ringTypes.each do |type_sym|
   gemSym = (type_sym.to_s + "GEM").to_sym
   BattleHandlers::EORHealingItem.copy(:LEFTOVERS,ringSym)
   BattleHandlers::DamageCalcUserItem.copy(gemSym,ringSym)
-  SUPER_ITEMS.push(ringSym)
 end
 
 # White Bough

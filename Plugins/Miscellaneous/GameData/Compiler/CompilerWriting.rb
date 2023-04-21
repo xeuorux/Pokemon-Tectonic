@@ -473,18 +473,25 @@ module Compiler
   #=============================================================================
   def write_items
     File.open("PBS/items.txt", "wb") { |f|
-        add_PBS_header_to_file(f)
-        GameData::Item.each do |i|
-                break if i.id_number >= 2000
-                write_item(f,i)
-        end
+      add_PBS_header_to_file(f)
+      GameData::Item.each do |i|
+        break if i.cut || i.super
+        write_item(f,i)
+      end
     }
     File.open("PBS/items_super.txt", "wb") { |f|
-        add_PBS_header_to_file(f)
-        GameData::Item.each do |i|
-            next if i.id_number < 2000
-            write_item(f,i)
-        end
+      add_PBS_header_to_file(f)
+      GameData::Item.each do |i|
+        next unless i.super
+        write_item(f,i)
+      end
+    }
+    File.open("PBS/items_cut.txt", "wb") { |f|
+      add_PBS_header_to_file(f)
+      GameData::Item.each do |i|
+        next unless i.cut
+        write_item(f,i)
+      end
     }
     Graphics.update
   end

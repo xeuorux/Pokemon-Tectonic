@@ -355,7 +355,7 @@ class PokemonDataBox < SpriteWrapper
 		  itemX = (@battler.opposes?(0)) ? 204 : -8   # Foe's/player's
 		  itemX = itemX + 8 * itemIndex
 		  itemY = 36 + 8 * itemIndex
-		  itemIconFileName = SUPER_ITEMS.include?(itemID) ? "Graphics/Pictures/Battle/icon_item_super" : "Graphics/Pictures/Battle/icon_item"
+		  itemIconFileName = GameData::Item.get(itemID).super ? "Graphics/Pictures/Battle/icon_item_super" : "Graphics/Pictures/Battle/icon_item"
 		  imagePos.push([itemIconFileName,@spriteBaseX+itemX,itemY])
 		  itemIndex += 1
 		end

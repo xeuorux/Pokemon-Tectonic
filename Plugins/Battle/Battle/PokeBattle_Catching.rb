@@ -33,7 +33,7 @@ class PokeBattle_Battle
 
             itemsToRemove = []
             pkmn.items.each do |item|
-                if SUPER_ITEMS.include?(item)
+                if GameData::Item.get(item).super
                     itemsToRemove.push(item)
                 else
                     pbDisplayPaused(_INTL("The {1} is holding an {2}!", pkmn.name, getItemName(item)))

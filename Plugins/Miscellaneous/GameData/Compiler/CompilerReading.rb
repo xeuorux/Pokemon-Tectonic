@@ -159,7 +159,7 @@ module Compiler
   #=============================================================================
   # Compile move data
   #=============================================================================
-  def compile_moves()
+  def compile_moves
     GameData::Move::DATA.clear
     move_names        = []
     move_descriptions = []
@@ -237,16 +237,19 @@ module Compiler
   #=============================================================================
   # Compile item data
   #=============================================================================
-  def compile_items()
+  def compile_items
     GameData::Item::DATA.clear
     item_names        = []
     item_names_plural = []
     item_descriptions = []
-    ["PBS/items.txt","PBS/items_super.txt"].each do |path|
+    idBase = 0
+    ["PBS/items.txt","PBS/items_super.txt","PBS/items_cut.txt"].each do |path|
+      idNumber = idBase
       # Read each line of items.txt at a time and compile it into an item
       pbCompilerEachCommentedLine(path) { |line, line_no|
+        idNumber += 1
         line = pbGetCsvRecord(line, line_no, [0, "vnssuusuuUN"])
-        item_number = line[0]
+        item_number = idNumber
         item_symbol = line[1].to_sym
         if GameData::Item::DATA[item_number]
           raise _INTL("Item ID number '{1}' is used twice.\r\n{2}", item_number, FileLineData.linereport)
@@ -264,7 +267,9 @@ module Compiler
           :description => line[6],
           :field_use   => line[7],
           :battle_use  => line[8],
-          :type        => line[9]
+          :type        => line[9],
+          :cut         => path == "PBS/items_cut.txt",
+          :super       => path == "PBS/items_super.txt",
         }
         item_hash[:move] = parseMove(line[10]) if !nil_or_empty?(line[10])
         # Add item's data to records
@@ -273,6 +278,7 @@ module Compiler
         item_names_plural[item_number] = item_hash[:name_plural]
         item_descriptions[item_number] = item_hash[:description]
       }
+      idBase += 1000
     end
     # Save all data
     GameData::Item.save
