@@ -66,6 +66,11 @@ class PokeBattle_AI_Boss
 
         # A hash, where the key is a move ID and the value is a proc which provides a score for the given move
         @scoreMove = {}
+
+        # Arrays of condition procs, that can evaluate multiple moves
+        @scoreMoves = {}
+
+        setUniversalBehaviours
     end
 
     def self.from_boss_battler(battler)

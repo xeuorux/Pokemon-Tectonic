@@ -3,7 +3,7 @@ class PokeBattle_Battler
     attr_reader   :battle
     attr_accessor :index, :pokemonIndex, :species, :type1, :type2, :ability_ids, :moves, :turnCount
     attr_accessor  :gender, :iv, :attack, :spatk, :speed, :steps, :captured, :effects, :boss, :avatarPhase
-    attr_accessor  :extraMovesPerTurn, :primevalTimer, :indicesTargetedThisRound, :indicesTargetedLastRound, :dmgMult,
+    attr_accessor  :extraMovesPerTurn, :empoweredTimer, :indicesTargetedThisRound, :indicesTargetedLastRound, :dmgMult,
 :dmgResist
     attr_accessor  :participants, :lastAttacker, :lastFoeAttacker, :lastHPLost, :lastHPLostFromFoe
     attr_accessor  :lastMoveUsed, :lastMoveUsedType, :lastMoveUSedCategory

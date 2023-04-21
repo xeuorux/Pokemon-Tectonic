@@ -5,7 +5,7 @@ class PokeBattle_AI
 
         targetWeak = false
 
-        if user.firstTurnThisRound?
+        if AVATARS_RANDOMLY_PRIORITIZE_FAINTING && user.firstTurnThisRound?
             bossAggro = GameData::Avatar.get_from_pokemon(user).aggression
             bossAggro += 2 if user.hp < user.totalhp
             targetWeak = pbAIRandom(PokeBattle_AI_Boss::MAX_BOSS_AGGRESSION) < bossAggro
@@ -22,7 +22,7 @@ class PokeBattle_AI
         choices = []
         targetingSizeLastRound = user.indicesTargetedLastRound.length
         targetingSizeLastRound = 2 if targetingSizeLastRound > 2
-        PBDebug.log("[BOSS AI] #{user.pbThis} (#{user.index}) values moves with targeting size other than #{targetingSizeLastRound}")
+        PBDebug.log("[BOSS AI] #{user.pbThis} (#{user.index}) values moves with targeting size other than #{targetingSizeLastRound}") if AVATARS_DIVERSIFY_TARGETING_BETWEEN_ROUNDS
         user.eachMoveWithIndex do |move, i|
             move.pp = move.total_pp if @battle.autoTesting
             unless @battle.pbCanChooseMove?(idxBattler, i, false)
@@ -49,15 +49,15 @@ class PokeBattle_AI
                 PBDebug.log("[BOSS AI] #{user.pbThis} (#{user.index}) has more than one guarenteed choices! THIS IS BAD")
             end
 
-            empoweredDamagingChoices.reject! { |choice| user.primevalTimer < user.moves[choice[0]].turnsBetweenUses }
+            empoweredDamagingChoices.reject! { |choice| user.empoweredTimer < user.moves[choice[0]].turnsBetweenUses }
 
             if guaranteedChoices.length == 0
                 if empoweredDamagingChoices.length > 0
                     preferredChoice = empoweredDamagingChoices[0]
-                    PBDebug.log("[BOSS AI] #{user.pbThis} (#{user.index}) will use a primeval attacking move since there exists at least one, and the timer is high enough")
+                    PBDebug.log("[BOSS AI] #{user.pbThis} (#{user.index}) will use an empowered move since there exists at least one, and the timer is high enough")
                 else
                     # Disallow targeted moves that would target a different category than the moves used before in the turn
-                    if !user.firstTurnThisRound? && regularChoices.length >= 2
+                    if AVATARS_CANT_CHANGE_TARGETING && !user.firstTurnThisRound? && regularChoices.length >= 2
                         targetingSize = user.indicesTargetedThisRound.length
                         targetingSize = 2 if targetingSize > 2
                         regularChoices.reject! do |regular_choice|
@@ -69,8 +69,8 @@ class PokeBattle_AI
                         logMoveChoices(user, regularChoices)
                     end
 
-                    # Don't use the same move in a row if possible
-                    unless user.lastMoveChosen.nil?
+                    # Don't use the same move in a row if possible+
+                    if AVATARS_DISLIKE_REPEATING_SAME_MOVE && !user.lastMoveChosen.nil?
                         if regularChoices.length >= 2
                             regularChoices.reject! do |regular_choice|
                                 user.moves[regular_choice[0]].id == user.lastMoveChosen
@@ -106,7 +106,7 @@ class PokeBattle_AI
             end
         end
 
-        # if there is somehow still no choice, choose to use Struggle
+        # if there is no choice, try to find a backup move
         if @battle.choices[idxBattler][2].nil?
             PBDebug.log("[BOSS AI] #{user.pbThis} (#{user.index}) AI protocols have fallen through, trying to find a backup move")
             fallbackMove = bossAI.getFallbackMove
@@ -163,7 +163,7 @@ class PokeBattle_AI
         user.extraMovesPerTurn = 0 if empoweredAttack || bossAI.takesUpWholeTurn?(move, user, targets, @battle)
 
         # Put the aggro cursors onto the right targets
-        if @battle.commandPhasesThisRound == 0
+        if @battle.commandPhasesThisRound == 0 && (extraAggro || AVATARS_TELEGRAPH_REGULAR_ATTACKS)
             # Set the avatar aggro cursors on the targets of the choice
             targets.each do |target|
                 next unless target.opposes?(user)
@@ -196,19 +196,18 @@ class PokeBattle_AI
                     next unless @battle.pbMoveCanTarget?(user.index, b.index, target_data)
                     next unless user.opposes?(b)
                     targets.push(b)
-                    score = pbGetMoveScoreBoss(move, user, b, bossAI)
-                    hpMod = 0.5 * b.hp.to_f / b.totalhp.to_f
-                    hpMod *= -1 if targetWeak
-                    score += hpMod
+                end
+                targets.each do |target|
+                    score = pbGetMoveScoreBoss(move, user, target, targets.length, bossAI, targetWeak)
                     totalScore += score
                 end
-                if targets.length != 0
-                    totalScore /= targets.length.to_f
-                else
+                if targets.empty?
                     totalScore = 0
+                else
+                    totalScore /= targets.length.to_f
                 end
             else
-                totalScore = pbGetMoveScoreBoss(move, user, nil, bossAI)
+                totalScore = pbGetMoveScoreBoss(move, user, nil, 0, bossAI)
             end
             totalScore = totalScore.round
             if totalScore > 0
@@ -218,7 +217,7 @@ class PokeBattle_AI
             end
         elsif target_data.num_targets == 0
             # If move has no targets, affects the user, a side or the whole field
-            score = pbGetMoveScoreBoss(move, user, user, bossAI)
+            score = pbGetMoveScoreBoss(move, user, user, 1, bossAI)
             choices.push([idxMove, score, -1])
         else
             # If move affects one battler and you have to choose which one
@@ -226,12 +225,7 @@ class PokeBattle_AI
             @battle.eachBattler do |b|
                 next unless @battle.pbMoveCanTarget?(user.index, b.index, target_data)
                 next if target_data.targets_foe && !user.opposes?(b)
-                score = pbGetMoveScoreBoss(move, user, b, bossAI)
-                if move.damagingMove?
-                    hpMod = 50 * b.hp.to_f / b.totalhp.to_f
-                    hpMod *= -1 if targetWeak
-                    score += hpMod
-                end
+                score = pbGetMoveScoreBoss(move, user, b, 1, bossAI, targetWeak)
                 score = score.round
                 if score > 0
                     scoresAndTargets.push([score, b.index])
@@ -241,8 +235,9 @@ class PokeBattle_AI
             end
             if scoresAndTargets.length >= 1
                 chosenST = nil
+
                 # Try to target the same pokemon as before in the same turn
-                if scoresAndTargets.length >= 2 && @battle.commandPhasesThisRound >= 1
+                if AVATARS_PRIORITIZE_SAME_TURN_TARGETS && scoresAndTargets.length >= 2 && @battle.commandPhasesThisRound >= 1
                     chosenST = scoresAndTargets.find do |scoreAndTarget|
                         target = scoreAndTarget[1]
                         if user.indicesTargetedThisRound.include?(target)
@@ -268,10 +263,14 @@ class PokeBattle_AI
             numTargets = moveForChoice.pbTarget(user).num_targets
 
             # Value moves that have a different targeting size than last turn
-            choice[1] += 30 if numTargets != 0 && numTargets != targetingSizeLastRound
+            if AVATARS_DIVERSIFY_TARGETING_BETWEEN_ROUNDS && numTargets != 0 && numTargets != targetingSizeLastRound
+                choice[1] += 30
+            end
 
             # Value moves that are STAB on the first turn of the battle or of a phase
-            choice[1] += 30 if user.primevalTimer == 0 && user.pbHasType?(moveForChoice.type)
+            if AVATARS_START_WITH_STAB && user.empoweredTimer == 0 && user.pbHasType?(moveForChoice.type)
+                choice[1] += 30
+            end
         end
 
         return choice
@@ -282,8 +281,8 @@ class PokeBattle_AI
         return string
     end
 
-    def pbGetMoveScoreBoss(move, user, target, bossAI)
-        score = 100
+    def pbGetMoveScoreBoss(move, user, target, numTargets, bossAI, targetWeak = false)
+        score = 50
 
         if bossAI.rejectMove?(move, user, target, @battle)
             PBDebug.log(addTargetIfPresent(
@@ -309,6 +308,24 @@ class PokeBattle_AI
             PBDebug.log(addTargetIfPresent(
                             "[BOSS AI] #{user.pbThis} (#{user.index}) custom AI requires move #{move.name}", target))
             return 99_999
+        end
+
+        if move.damagingMove?
+            if AVATARS_CALCULATE_DAMAGE_DEALT
+                # Calculate how much damage the move will do (roughly)
+                realDamage = pbTotalDamageAI(move, user, target, numTargets)
+
+                # Convert damage to percentage of target's remaining HP
+                damagePercentage = realDamage * 100.0 / target.totalhp
+
+                damageMod = AVATAR_DAMAGE_SCORE_MAX * damagePercentage
+                damageMod = AVATAR_DAMAGE_SCORE_MAX - damageMod if targetWeak
+                score += damageMod
+            else
+                hpMod = AVATAR_DAMAGE_SCORE_MAX * target.hp.to_f / target.totalhp.to_f
+                hpMod = AVATAR_DAMAGE_SCORE_MAX - hpMod if targetWeak
+                score += hpMod
+            end
         end
 
         return score

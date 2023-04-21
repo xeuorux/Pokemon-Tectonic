@@ -163,7 +163,7 @@ class PokeBattle_AI_Jirachi < PokeBattle_AI_Boss
             next battle.turnCount % 3 == 0 && user.lastTurnThisRound?
         })
 
-        @warnedIFFMove.add(:LIFEDEW, {
+        @warnedIFFMove.add(:RECOVER, {
             :condition => proc { |_move, user, _target, battle|
                 next battle.turnCount % 3 == 1 && user.belowHalfHealth?
             },
@@ -234,12 +234,12 @@ percentStrength.to_s))
                 if percentStrength == 50
                     formChangeMessage = _INTL("{1} transforms into its 50 percent form!", user.pbThis)
                     user.pbChangeForm(0, formChangeMessage)
-                    user.ability = :AURABREAK
+                    user.setAbility(:AURABREAK)
                     user.assignMoveset(FIFTY_PERCENT_MOVESET)
                 elsif percentStrength == 100
                     formChangeMessage = _INTL("{1} transforms into its 100 percent form!", user.pbThis)
                     user.pbChangeForm(2, formChangeMessage)
-                    user.ability = :AURABREAK
+                    user.setAbility(:AURABREAK)
                     battle.pbDisplayBossNarration(_INTL("{1} completely regenerates!", user.pbThis))
                     user.pbRecoverHP(user.totalhp - user.hp)
                     user.assignMoveset(ONE_HUNDRED_PERCENT_MOVESET)
@@ -410,7 +410,7 @@ class PokeBattle_AI_Parasect < PokeBattle_AI_Boss
                 next !anyAsleep
             },
             :warning => proc { |_move, user, _targets, _battle|
-                _INTL("#{user.pbThis}'s shroom stalks perked up!")
+                _INTL("#{user.pbThis}'s shroom stalks perk up!")
             },
         })
     end
@@ -450,12 +450,12 @@ class PokeBattle_AI_Greedent < PokeBattle_AI_Boss
 
         @useMoveIFF.add(:SPITUP, proc { |_move, user, _target, _battle|
             next @lastUsedMove == :SWALLOW && user.firstTurnThisRound? &&
-                user.countEffect(:Stockpile) >= 2 && user.primevalTimer < 3
+                user.countEffect(:Stockpile) >= 2 && user.empoweredTimer < 3
         })
 
         @useMoveIFF.add(:SWALLOW, proc { |_move, user, _target, _battle|
             next @lastUsedMove == :SPITUP && user.firstTurnThisRound? &&
-                user.countEffect(:Stockpile) >= 2 && user.primevalTimer < 3
+                user.countEffect(:Stockpile) >= 2 && user.empoweredTimer < 3
         })
     end
 end
@@ -477,20 +477,6 @@ class PokeBattle_AI_Wailord < PokeBattle_AI_Boss
     end
 end
 
-class PokeBattle_AI_Maractus < PokeBattle_AI_Boss
-    def initialize(user, battle)
-        super
-        spaceOutProtecting
-    end
-end
-
-class PokeBattle_AI_Mtangrowth < PokeBattle_AI_Boss
-    def initialize(user, battle)
-        super
-        spaceOutProtecting
-    end
-end
-
 class PokeBattle_AI_Sawsbuck < PokeBattle_AI_Boss
     FORM_0_MOVESET = %i[HEADBUTT PLAYROUGH]
     FORM_1_MOVESET = %i[HEADBUTT HORNDRAIN]
@@ -501,7 +487,7 @@ class PokeBattle_AI_Sawsbuck < PokeBattle_AI_Boss
     def initialize(user, battle)
         super
         @beginTurn.push(proc { |user, _battle, turnCount|
-            if turnCount != 0
+            if turnCount != 0 && turnCount % 2 == 1
                 newForm = (user.form + 1) % 4
                 formChangeMessage = _INTL("The season shifts!")
                 user.pbChangeForm(newForm, formChangeMessage)
@@ -522,7 +508,7 @@ class PokeBattle_AI_Rotom < PokeBattle_AI_Boss
     def initialize(user, battle)
         super
         @beginTurn.push(proc { |user, _battle, turnCount|
-            if turnCount != 0
+            if turnCount != 0 && turnCount % 2 == 1
                 newForm = user.form + 1
                 newForm = 1 if newForm > 5
                 formChangeMessage = _INTL("The avatar swaps machines!")

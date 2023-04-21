@@ -146,7 +146,7 @@ class PokeBattle_Move_609 < PokeBattle_Move_02C
     include EmpoweredMove
 
     def pbEffectGeneral(user)
-        user.pbMaximizeStatStep(:ACCURACY, user, move: self)
+        user.pbMaximizeStatStep(:ACCURACY, user, self)
         super
         transformType(user, :PSYCHIC)
     end

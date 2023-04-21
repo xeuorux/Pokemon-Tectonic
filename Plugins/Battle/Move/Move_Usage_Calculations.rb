@@ -102,7 +102,11 @@ class PokeBattle_Move
 
         # Explain to the player what is happening
         if immunityPierced && !uiOnlyCheck
-            @battle.pbDisplay(_INTL("Near the avatar, immunities are resistances!"))
+            if AVATARS_REGULAR_ATTACKS_PIERCE_IMMUNITIES
+                @battle.pbDisplay(_INTL("Near the avatar, immunities are resistances!"))
+            else
+                @battle.pbDisplay(_INTL("The Empowered attack pierced the immunity!"))
+            end
         end
 
         # Creep Out

@@ -180,7 +180,7 @@ end
 class PokeBattle_Move_189 < PokeBattle_Move
     def healingMove?; return true; end
 
-    def pbMoveFailed?(_user, targets, show_message)
+    def pbMoveFailed?(user, targets, show_message)
         jglheal = 0
         for i in 0...targets.length
             jglheal += 1 if (targets[i].hp == targets[i].totalhp || !targets[i].canHeal?) && targets[i].status == :NONE

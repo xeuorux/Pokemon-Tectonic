@@ -71,7 +71,7 @@ class PokeBattle_Battler
         @lastFoeAttacker.clear
         @indicesTargetedLastRound = @indicesTargetedThisRound.clone
         @indicesTargetedThisRound.clear
-        @primevalTimer += 1 if boss?
+        @empoweredTimer += 1 if boss?
 
         @lastRoundMove 			= @lastMoveUsed
         @lastRoundMoveType	    = @lastMoveUsedType

@@ -34,7 +34,7 @@ class PokeBattle_Move
     end
 
     def inherentImmunitiesPierced?(user, target)
-        return (user.boss? || target.boss?) && damagingMove?
+        return user.boss? && damagingMove? && (empoweredMove? || AVATARS_REGULAR_ATTACKS_PIERCE_IMMUNITIES)
     end
 
     def canRemoveItem?(user, target, item, checkingForAI: false)

@@ -1,4 +1,9 @@
 class PokeBattle_AI_Boss
+    def setUniversalBehaviours
+        spaceOutProtecting
+        rejectExtraSetUp
+    end
+
     def rejectPoisonMovesIfBelched
         @rejectMovesIf.push(proc { |move, user, _battle|
             next true if user.belched? && move.type == :POISON && move.id != :BELCH
@@ -18,6 +23,25 @@ class PokeBattle_AI_Boss
                     next -1
                 end
             end
+        })
+    end
+
+    def rejectExtraSetUp
+        @rejectMovesIf.push(proc { |move, user, _battle|
+            next false if move.statUp.empty?
+            anyPositive = false
+            for i in 0...move.statUp.length / 2
+                statSym = move.statUp[i * 2]
+                anyPositive = true if user.steps[statSym].positive?
+            end
+            next true if anyPositive
+        })
+    end
+
+    def scoreSetUp
+        @scoreMoves.push(proc { |move, user, target, _battle|
+            next nil if move.statUp.empty?
+            next 50
         })
     end
 end
