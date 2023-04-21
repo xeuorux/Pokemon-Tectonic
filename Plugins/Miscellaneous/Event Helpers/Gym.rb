@@ -60,7 +60,7 @@ def teamSnapshot(label=nil)
 end
 
 def pbScreenCapture(label = nil)
-	t = pbGetTimeNow
+	t = Time.now
   	filestart = t.strftime("[%Y-%m-%d] %H_%M_%S.%L")
 	filestart = label + filestart if label
   	Dir.mkdir(DIR_SCREENSHOTS) if !safeExists?(DIR_SCREENSHOTS)
