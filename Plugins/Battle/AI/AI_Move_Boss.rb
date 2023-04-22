@@ -316,9 +316,16 @@ class PokeBattle_AI
                 # Calculate how much damage the move will do (roughly)
                 realDamage = pbTotalDamageAI(move, user, target, numTargets)
 
+                if realDamage >= target.hp
+                    willFaint = true 
+                    realDamage = target.hp  # Cap damage out at their current HP total
+                end
+
                 damageMod = (AVATAR_DAMAGE_SCORE_MAX * realDamage / target.totalhp.to_f).floor
                 damageMod = AVATAR_DAMAGE_SCORE_MAX - damageMod if targetWeak
                 score += damageMod
+
+                score += 15 if willFaint
             else
                 hpMod = AVATAR_DAMAGE_SCORE_MAX * target.hp.to_f / target.totalhp.to_f
                 hpMod = AVATAR_DAMAGE_SCORE_MAX - hpMod if targetWeak
