@@ -477,7 +477,7 @@
 476,SPLASH,Splash,001,0,WATER,Status,0,30,0,User,0,,"The user just flops and splashes around to no effect at all...",
 477,SPOTLIGHT,Spotlight,16A,0,NORMAL,Status,0,12,0,NearOther,3,bc,"The user shines a spotlight on the target so that only it will be attacked during the turn.",
 478,STOCKPILE,Stockpile,112,0,NORMAL,Status,0,15,0,User,0,d,"The user charges up power and raises both its Defense and Sp. Def. The move can be used three times.",
-479,SUBSTITUTE,Substitute,10C,0,NORMAL,Status,0,10,0,User,0,d,"The user makes a copy of itself using some of its HP. The copy serves as the user's decoy.",
+479,SUBSTITUTE,Substitute,10C,0,NORMAL,Status,0,10,0,User,0,d,"The user spends 25% HP to create a doll which protects it from most moves until destroyed.",
 480,SUPERSONIC,Supersonic,401,0,NORMAL,Status,100,12,0,NearOther,0,bcek,"The user generates odd sound waves from its body. The target becomes dizzy.",
 481,SWALLOW,Swallow,114,0,NORMAL,Status,0,10,0,User,0,d,"The power stored using the move Stockpile is absorbed by the user to heal its HP.",
 482,SWORDSDANCE,Swords Dance,02E,0,STEEL,Status,0,10,0,User,0,do,"A frenetic dance to uplift the fighting spirit. It raises the user's Attack stat by four steps.",
