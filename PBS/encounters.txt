@@ -871,10 +871,10 @@ DarkCave,20
 #-------------------------------
 [353] # Crumbling Canyon F2
 DarkCave,20
-    20,LARVITAR,56,59
+    20,TYRANITAR,56,59
     20,LUNATONE,56,59
-    20,ONIX,56,59
-    20,RHYHORN,56,59
+    20,TITANIX,56,59
+    20,RHYPERIOR,56,59
     20,SOLROCK,56,59
 #-------------------------------
 [356] # Mirror Tundra
