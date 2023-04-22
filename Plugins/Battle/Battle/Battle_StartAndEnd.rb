@@ -674,7 +674,7 @@ class PokeBattle_Battle
         # Reset some aspects of party pokemon
         pbParty(0).each_with_index do |pkmn, i|
             next unless pkmn
-            pkmn.removeFear(self) if pkmn.afraid?
+            pkmn.removeFear if pkmn.afraid?
             @peer.pbOnLeavingBattle(self, pkmn, @usedInBattle[0][i], true) # Reset form
         end
 

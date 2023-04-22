@@ -417,7 +417,7 @@ HPMult = 2.0
 [ARBOK]
 Ability = CONSTRICTOR
 Moves1 = POISONFANG,CRUNCH,PRIMEVALSUNSHINE
-Moves2 = FIREFANG,ACIDBATH
+Moves2 = FIREFANG,SOLARGLIDE
 #-------------------------------
 [MARACTUS]
 Ability = GRIT

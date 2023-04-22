@@ -201,7 +201,7 @@ class PokeBattle_Battler
             @steps[:EVASION]         = 0
         end
 
-        @fainted               = @hp.zero?
+        @fainted               = @hp.zero? || @pokemon.afraid?
         @initialHP             = 0
         @lastAttacker          = []
         @lastFoeAttacker       = []
