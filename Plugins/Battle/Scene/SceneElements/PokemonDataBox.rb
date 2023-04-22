@@ -125,7 +125,7 @@ class PokemonDataBox < SpriteWrapper
 		@numHPBars.times do
 			newBar = SpriteWrapper.new(viewport)
 			newBar.bitmap = @hpBarBitmap.bitmap
-			newBar.src_rect.height = @hpBarBitmap.height/3
+			newBar.src_rect.height = @hpBarBitmap.height/4
 			newBar.src_rect.width = @hpBarWidth
 			@sprites["hpBar_#{hpBarNum}"] = newBar
 			@hpBars.push(newBar)
@@ -445,7 +445,8 @@ class PokemonDataBox < SpriteWrapper
 			hpColor = 0                                  # Green bar
 			hpColor = 1 if self.hp <= @battler.totalhp * (index * 4 + 2) / (4 * healthBarTotal)
 			hpColor = 2 if self.hp <= @battler.totalhp * (index * 4 + 1) / (4 * healthBarTotal)
-			bar.src_rect.y = hpColor * @hpBarBitmap.height / 3
+			hpColor = 3 if @battler.boss? && AVATAR_OVERKILL_RESISTANCE >= 0.25 && (@numHPBars - index) > @battler.avatarPhase
+			bar.src_rect.y = hpColor * @hpBarBitmap.height / 4
 		end
 	end
   

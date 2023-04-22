@@ -61,6 +61,7 @@ class PokeBattle_Scene
         @sprites["dataBox_#{i}"].update(@frameCounter) if @sprites["dataBox_#{i}"]
         @sprites["pokemon_#{i}"].update(@frameCounter) if @sprites["pokemon_#{i}"]
         @sprites["shadow_#{i}"].update(@frameCounter) if @sprites["shadow_#{i}"]
+        @sprites["aggro_cursor_#{i}"].update(@frameCounter) if @sprites["aggro_cursor_#{i}"]
       end
     end
   

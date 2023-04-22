@@ -8,6 +8,8 @@ class AggroCursor < IconSprite
         @sideSize     = sideSize
         @frame        = 0
         @extraAggro   = false
+        @xOffset = 0
+        @yOffset = 0
         setBitmap("Graphics/Pictures/Battle/aggro_cursor")
         refresh
     end
@@ -24,8 +26,22 @@ class AggroCursor < IconSprite
     def refresh
         battlerPos = PokeBattle_SceneConstants.pbBattlerPosition(@battler.index,@sideSize)
         battlerSprite = @battler.battle.scene.sprites["pokemon_#{@battler.index}"]
-        self.x = battlerPos[0] - battlerSprite.width / 2 - 20
-        self.y = battlerPos[1] - battlerSprite.height / 2 - 100
+        @battlerX = battlerPos[0] - battlerSprite.width / 2 - 20
+        @battlerY = battlerPos[1] - 100
+        self.x = @battlerX
+        self.y = @battlerY
         self.z = 100
+    end
+
+    def update(frameCounter=0)
+        if frameCounter % 3 == 0
+            if frameCounter < 12
+                @yOffset += 1
+            else
+                @yOffset -= 1
+            end
+        end
+        self.x = @battlerX + @xOffset
+        self.y = @battlerY + @yOffset
     end
 end
