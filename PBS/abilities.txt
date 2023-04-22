@@ -19,7 +19,7 @@
 17,ROUGHSKIN,Rough Skin,"Physical moves against it inflict 1/8th max HP damage to the foe."
 18,WONDERGUARD,Wonder Guard,"Only super-effective moves will hit."
 19,LEVITATE,Levitate,"Gives full immunity to all Ground-type moves."
-20,SYNCHRONIZE,Synchronize,"Passes a burn, poison, numbing, or frostbite to the foe."
+20,SYNCHRONIZE,Synchronize,"When the Pokémon is given a status condition by another Pokémon, they also get that condition."
 21,CLEARBODY,Clear Body,"Prevents other Pokémon from lowering its stat steps."
 22,NATURALCURE,Natural Cure,"All status problems heal when it switches out."
 23,LIGHTNINGROD,Lightning Rod,"Draws in Electric-type moves, is immune to them, and boosts Sp. Atk when hit."
