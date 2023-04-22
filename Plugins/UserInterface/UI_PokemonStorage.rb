@@ -1896,14 +1896,17 @@ class PokemonBoxIcon < IconSprite
         return
     end
 
+    CANDY_EXCHANGE_EFFICIENCY = 0.8
+
     def candiesFromReleasing(lifetimeEXP)
-        lifetimeEXP *= 0.8
+        lifetimeEXP = (lifetimeEXP * CANDY_EXCHANGE_EFFICIENCY).floor
         if lifetimeEXP > 0
           xsCandyTotal, sCandyTotal, mCandyTotal, _lCandyTotal = calculateCandySplitForEXP(lifetimeEXP)
           if (xsCandyTotal + sCandyTotal + mCandyTotal) == 0
             pbDisplay(_INTL("It didn't earn enough XP for you to earn any candies back."))
           else
-            pbDisplay(_INTL("You are reimbursed for 80% of the EXP it earned."))
+            percentile = (CANDY_EXCHANGE_EFFICIENCY * 100).to_i
+            pbDisplay(_INTL("You are reimbursed for #{percentile}% of the EXP it earned."))
             pbReceiveItem(:EXPCANDYM,mCandyTotal) if mCandyTotal > 0
             pbReceiveItem(:EXPCANDYS,sCandyTotal) if sCandyTotal > 0
             pbReceiveItem(:EXPCANDYXS,xsCandyTotal) if xsCandyTotal > 0
