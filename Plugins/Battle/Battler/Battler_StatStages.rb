@@ -68,7 +68,7 @@ class PokeBattle_Battler
     def pbRaiseStatStepBasic(stat, increment, ignoreContrary = false)
         unless @battle.moldBreaker
             if hasActiveAbility?(:CONTRARY) && !ignoreContrary
-                aiSeesAbility
+                aiLearnsAbility(:CONTRARY)
                 return pbLowerStatStepBasic(stat, increment, true)
             end
             # Simple
@@ -105,7 +105,7 @@ class PokeBattle_Battler
     def pbRaiseStatStep(stat, increment, user = nil, showAnim = true, ignoreContrary = false)
         # Contrary
         if hasActiveAbility?(:CONTRARY) && !ignoreContrary && !@battle.moldBreaker
-            aiSeesAbility
+            aiLearnsAbility(:CONTRARY)
             return pbLowerStatStep(stat, increment, user, showAnim, true)
         end
         # Perform the stat step change
@@ -138,7 +138,7 @@ class PokeBattle_Battler
     def pbRaiseStatStepByCause(stat, increment, user, cause, showAnim = true, ignoreContrary = false)
         # Contrary
         if hasActiveAbility?(:CONTRARY) && !ignoreContrary && !@battle.moldBreaker
-            aiSeesAbility
+            aiLearnsAbility(:CONTRARY)
             return pbLowerStatStepByCause(stat, increment, user, cause, showAnim, true)
         end
         # Perform the stat step change
@@ -260,7 +260,7 @@ class PokeBattle_Battler
     def pbLowerStatStepBasic(stat, increment, ignoreContrary = false)
         unless @battle.moldBreaker
             if hasActiveAbility?(:CONTRARY) && !ignoreContrary
-                aiSeesAbility
+                aiLearnsAbility(:CONTRARY)
                 return pbRaiseStatStepBasic(stat, increment, true)
             end
             # Simple
@@ -299,7 +299,7 @@ class PokeBattle_Battler
         end
         # Contrary
         if hasActiveAbility?(:CONTRARY) && !ignoreContrary && !@battle.moldBreaker
-            aiSeesAbility
+            aiLearnsAbility(:CONTRARY)
             return pbRaiseStatStep(stat, increment, user, showAnim, true)
         end
         # Stubborn
@@ -375,7 +375,7 @@ class PokeBattle_Battler
         end
         # Contrary
         if hasActiveAbility?(:CONTRARY) && !ignoreContrary && !@battle.moldBreaker
-            aiSeesAbility
+            aiLearnsAbility(:CONTRARY)
             return pbRaiseStatStepByCause(stat, increment, user, cause, showAnim, true)
         end
         # Stubborn
@@ -446,7 +446,7 @@ class PokeBattle_Battler
 
     def pbMinimizeStatStep(stat, user = nil, move = nil, ignoreContrary = false, ability: nil)
         if hasActiveAbility?(:CONTRARY) && !ignoreContrary
-            aiSeesAbility
+            aiLearnsAbility(:CONTRARY)
             pbMaximizeStatStep(stat, user, move, true, ability: ability)
         elsif pbCanLowerStatStep?(stat, user, move, true, ignoreContrary)
             @battle.pbShowAbilitySplash(user, ability) if ability
@@ -476,7 +476,7 @@ class PokeBattle_Battler
 
     def pbMaximizeStatStep(stat, user = nil, move = nil, ignoreContrary = false, ability: nil)
         if hasActiveAbility?(:CONTRARY) && !ignoreContrary
-            aiSeesAbility
+            aiLearnsAbility(:CONTRARY)
             pbMinimizeStatStep(stat, user, move, true, ability: ability)
         elsif pbCanRaiseStatStep?(stat, user, move, true, ignoreContrary)
             @battle.pbShowAbilitySplash(user, ability) if ability

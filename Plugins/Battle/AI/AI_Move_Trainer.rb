@@ -136,25 +136,23 @@ class PokeBattle_AI
             numHits = move.numberOfHits(user, [target], true).ceil
 
             # Account for triggered abilities of the user
-            if user.aiKnowsAbility?
-                begin
-                    scoreModifierUserAbility = 0
-                    user.eachActiveAbility do |ability|
-                        scoreModifierUserAbility += 
-                            BattleHandlers.triggerUserAbilityOnHitAI(ability, user, target, move, @battle, numHits)
-                    end
-                    score += scoreModifierUserAbility
-                    echoln("[MOVE SCORING] #{user.pbThis}'s #{numHits} hits against #{target.pbThis(false)} adjusts the score by #{scoreModifierUserAbility} due to the user's abilities") if scoreModifierUserAbility != 0
-                rescue StandardError => exception
-                    pbPrintException($!) if $DEBUG
+            begin
+                scoreModifierUserAbility = 0
+                user.eachAIKnownActiveAbility do |ability|
+                    scoreModifierUserAbility += 
+                        BattleHandlers.triggerUserAbilityOnHitAI(ability, user, target, move, @battle, numHits)
                 end
+                score += scoreModifierUserAbility
+                echoln("[MOVE SCORING] #{user.pbThis}'s #{numHits} hits against #{target.pbThis(false)} adjusts the score by #{scoreModifierUserAbility} due to the user's abilities") if scoreModifierUserAbility != 0
+            rescue StandardError => exception
+                pbPrintException($!) if $DEBUG
             end
 
             # Account for the triggered abilities of the target
-            if target.aiKnowsAbility? && !user.hasActiveItem?(:PROXYFIST)
+            unless user.hasActiveItem?(:PROXYFIST)
                 begin
                     scoreModifierTargetAbility = 0
-                    target.eachActiveAbility do |ability|
+                    target.eachAIKnownActiveAbility do |ability|
                         scoreModifierTargetAbility += 
                             BattleHandlers.triggerTargetAbilityOnHitAI(ability, user, target, move, @battle, numHits)
                     end
@@ -297,9 +295,8 @@ class PokeBattle_AI
         # Move blocking abilities make the move fail here
         @battle.pbPriority(true).each do |b|
             next unless b
-            next unless b.aiKnowsAbility?
             abilityBlocked = false
-            b.eachActiveAbility do |ability|
+            b.eachAIKnownActiveAbility do |ability|
                 next unless BattleHandlers.triggerMoveBlockingAbility(ability, b, user, [target], move, @battle)
                 abilityBlocked = true
                 break

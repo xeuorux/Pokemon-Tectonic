@@ -196,13 +196,15 @@ class PokeBattle_Battle
         return @commandPhasesThisRound.zero?
     end
 
-    def aiSeesAbility(battler)
-        @knownAbilities[battler.pokemon.personalID] = true if battler.pbOwnedByPlayer?
-        echoln("[AI LEARNING] The AI is now aware of #{battler.pbThis(true)}'s abilities")
+    def aiLearnsAbility(battler, ability)
+        return unless battler.pbOwnedByPlayer?
+        return if @knownAbilities[battler.pokemon.personalID].include?(ability)
+        @knownAbilities[battler.pokemon.personalID].push(ability)
+        echoln("[AI LEARNING] The AI is now aware of #{battler.pbThis(true)}'s ability #{ability}")
     end
 
-    def aiKnowsAbility?(pokemon)
-        return @knownAbilities[pokemon.personalID]
+    def aiKnowsAbility?(pokemon,checkAbility)
+        return @knownAbilities[pokemon.personalID]&.include?(checkAbility)
     end
 
     def aiSeesMove(battler, moveID)

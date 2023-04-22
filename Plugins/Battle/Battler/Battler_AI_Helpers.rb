@@ -188,36 +188,41 @@ class PokeBattle_Battler
     # Understanding the battler's ability
     ###############################################################################
 
-    def aiSeesAbility
-        @battle.aiSeesAbility(self)
+    def aiLearnsAbility(abilityID)
+        @battle.aiLearnsAbility(self,abilityID)
     end
 
-    def ignoreAbilityInAI?(aiChecking)
-        return false unless aiChecking
-        return aiKnowsAbility?
-    end
-
-    def aiKnowsAbility?
-        return true unless pbOwnedByPlayer?
-        return false if effectActive?(:Illusion)
-        return true if @abilityChanged
-        return @battle.aiKnowsAbility?(@pokemon)
-    end
-
-    # A helper method that diverts to an AI-based check or a true calculation check as appropriate
-    def shouldAbilityApply?(checkability, checkingForAI)
-        if checkingForAI
-            return hasActiveAbilityAI?(checkability)
-        else
-            return hasActiveAbility?(checkability)
+    def eachAIKnownActiveAbility
+        eachActiveAbility do |abilityID|
+            next unless aiKnowsAbility?(abilityID)
+            yield abilityID
         end
     end
 
-    # An ability check method that is fooled by Illusion
-    # May in the future be extended to having the AI be ignorant about the player's abilities until they are revealed
-    def hasActiveAbilityAI?(checkability, ignore_fainted = false)
-        return false if aiKnowsAbility?
-        return hasActiveAbility?(checkability, ignore_fainted)
+    def ignoreAbilityInAI?(checkAbility,aiChecking)
+        return false unless aiChecking
+        return aiKnowsAbility?(checkAbility)
+    end
+
+    def aiKnowsAbility?(checkAbility)
+        return true unless pbOwnedByPlayer?
+        return false if effectActive?(:Illusion)
+        return true if @addedAbilities.include?(checkAbility)
+        return @battle.aiKnowsAbility?(@pokemon,checkAbility)
+    end
+
+    # A helper method that diverts to an AI-based check or a true calculation check as appropriate
+    def shouldAbilityApply?(checkAbility, checkingForAI)
+        if checkingForAI
+            return hasActiveAbilityAI?(checkAbility)
+        else
+            return hasActiveAbility?(checkAbility)
+        end
+    end
+
+    def hasActiveAbilityAI?(checkAbility, ignore_fainted = false)
+        return false unless aiKnowsAbility?(checkAbility)
+        return hasActiveAbility?(checkAbility, ignore_fainted)
     end
 
     ###############################################################################

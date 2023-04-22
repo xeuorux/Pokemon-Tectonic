@@ -177,16 +177,17 @@ class PokeBattle_Battler
         attack = statAfterStep(:ATTACK, step)
         attackMult = 1.0
 
-        if !ignoreAbilityInAI?(aiChecking) || AI_CHEATS_FOR_STAT_ABILITIES
-            eachActiveAbility do |ability|
-                attackMult = BattleHandlers.triggerAttackCalcUserAbility(ability, self, @battle, attackMult)
-            end
-            eachAlly do |ally|
-                ally.eachActiveAbility do |ability|
-                    attackMult = BattleHandlers.triggerAttackCalcAllyAbility(ability, self, @battle, attackMult)
-                end
+        eachActiveAbility do |ability|
+            next if ignoreAbilityInAI?(ability,aiChecking) && !AI_CHEATS_FOR_STAT_ABILITIES
+            attackMult = BattleHandlers.triggerAttackCalcUserAbility(ability, self, @battle, attackMult)
+        end
+        eachAlly do |ally|
+            ally.eachActiveAbility do |ability|
+                next if ally.ignoreAbilityInAI?(ability,aiChecking) && !AI_CHEATS_FOR_STAT_ABILITIES
+                attackMult = BattleHandlers.triggerAttackCalcAllyAbility(ability, self, @battle, attackMult)
             end
         end
+
         eachActiveItem do |item|
             attackMult = BattleHandlers.triggerAttackCalcUserItem(item, self, battle, attackMult)
         end
@@ -203,16 +204,17 @@ class PokeBattle_Battler
         special_attack = statAfterStep(:SPECIAL_ATTACK, step)
         spAtkMult = 1.0
 
-        if !ignoreAbilityInAI?(aiChecking) || AI_CHEATS_FOR_STAT_ABILITIES
-            eachActiveAbility do |ability|
-                spAtkMult = BattleHandlers.triggerSpecialAttackCalcUserAbility(ability, self, @battle, spAtkMult)
-            end
-            eachAlly do |ally|
-                ally.eachActiveAbility do |ability|
-                    spAtkMult = BattleHandlers.triggerSpecialAttackCalcAllyAbility(ability, self, @battle, spAtkMult)
-                end
+        eachActiveAbility do |ability|
+            next if ignoreAbilityInAI?(ability,aiChecking) && !AI_CHEATS_FOR_STAT_ABILITIES
+            spAtkMult = BattleHandlers.triggerSpecialAttackCalcUserAbility(ability, self, @battle, spAtkMult)
+        end
+        eachAlly do |ally|
+            ally.eachActiveAbility do |ability|
+                next if ally.ignoreAbilityInAI?(ability,aiChecking) && !AI_CHEATS_FOR_STAT_ABILITIES
+                spAtkMult = BattleHandlers.triggerSpecialAttackCalcAllyAbility(ability, self, @battle, spAtkMult)
             end
         end
+
         eachActiveItem do |item|
             spAtkMult = BattleHandlers.triggerSpecialAttackCalcUserItem(item, self, battle, spAtkMult)
         end
@@ -226,16 +228,17 @@ class PokeBattle_Battler
         defense = statAfterStep(:DEFENSE, step)
         defenseMult = 1.0
 
-        if !ignoreAbilityInAI?(aiChecking) || AI_CHEATS_FOR_STAT_ABILITIES
-            eachActiveAbility do |ability|
-                defenseMult = BattleHandlers.triggerDefenseCalcUserAbility(ability, self, @battle, defenseMult)
-            end
-            eachAlly do |ally|
-                ally.eachActiveAbility do |ability|
-                    defenseMult = BattleHandlers.triggerDefenseCalcAllyAbility(ability, self, @battle, defenseMult)
-                end
+        eachActiveAbility do |ability|
+            next if ignoreAbilityInAI?(ability,aiChecking) && !AI_CHEATS_FOR_STAT_ABILITIES
+            defenseMult = BattleHandlers.triggerDefenseCalcUserAbility(ability, self, @battle, defenseMult)
+        end
+        eachAlly do |ally|
+            ally.eachActiveAbility do |ability|
+                next if ally.ignoreAbilityInAI?(ability,aiChecking) && !AI_CHEATS_FOR_STAT_ABILITIES
+                defenseMult = BattleHandlers.triggerDefenseCalcAllyAbility(ability, self, @battle, defenseMult)
             end
         end
+
         eachActiveItem do |item|
             defenseMult = BattleHandlers.triggerDefenseCalcUserItem(item, self, battle, defenseMult)
         end
@@ -251,16 +254,16 @@ class PokeBattle_Battler
         special_defense = statAfterStep(:SPECIAL_DEFENSE, step)
         spDefMult = 1.0
 
-        if !ignoreAbilityInAI?(aiChecking) || AI_CHEATS_FOR_STAT_ABILITIES
-            eachActiveAbility do |ability|
-                spDefMult = BattleHandlers.triggerSpecialDefenseCalcUserAbility(ability, self, @battle, spDefMult)
-            end
-            eachAlly do |ally|
-                ally.eachActiveAbility do |ability|
-                    spDefMult = BattleHandlers.triggerSpecialDefenseCalcAllyAbility(ability, self, @battle, spDefMult)
-                end
+        eachActiveAbility do |ability|
+            next if ignoreAbilityInAI?(ability,aiChecking) && !AI_CHEATS_FOR_STAT_ABILITIES
+            spDefMult = BattleHandlers.triggerSpecialDefenseCalcUserAbility(ability, self, @battle, spDefMult)
+        end
+        eachAlly do |ally|
+            ally.eachActiveAbility do |ability|
+                spDefMult = BattleHandlers.triggerSpecialDefenseCalcAllyAbility(ability, self, @battle, spDefMult)
             end
         end
+
         eachActiveItem do |item|
             spDefMult = BattleHandlers.triggerSpecialDefenseCalcUserItem(item, self, battle, spDefMult)
         end
@@ -275,15 +278,17 @@ class PokeBattle_Battler
         return 1 if fainted?
         speed = statAfterStep(:SPEED, step)
         speedMult = 1.0
-        if (!ignoreAbilityInAI?(aiChecking) || AI_CHEATS_FOR_STAT_ABILITIES)
-            eachActiveAbility do |ability|
-                speedMult = BattleHandlers.triggerSpeedCalcAbility(ability, self, speedMult)
-            end
+
+        eachActiveAbility do |ability|
+            next if ignoreAbilityInAI?(ability,aiChecking) && !AI_CHEATS_FOR_STAT_ABILITIES
+            speedMult = BattleHandlers.triggerSpeedCalcAbility(ability, self, speedMult)
         end
+
         # Item effects that alter calculated Speed
         eachActiveItem do |item|
             speedMult = BattleHandlers.triggerSpeedCalcItem(item, self, speedMult)
         end
+        
         # Other effects
         speedMult *= 2 if pbOwnSide.effectActive?(:Tailwind)
         speedMult /= 2 if pbOwnSide.effectActive?(:Swamp)

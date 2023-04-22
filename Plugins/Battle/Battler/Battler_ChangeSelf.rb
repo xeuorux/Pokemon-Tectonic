@@ -600,7 +600,7 @@ class PokeBattle_Battler
                 @ability_ids.push(legalAbility) unless @ability_ids.include?(legalAbility)
             end
         end
-        @abilityChanged = false
+        @addedAbilities.clear
         unless initialization
             pbOnAbilitiesLost(prevAbilities)
         end
@@ -614,20 +614,20 @@ class PokeBattle_Battler
             end
             if validAbilities.length > 0
                 @ability_ids = validAbilities
-                @abilityChanged = true
+                @addedAbilities = @ability_ids.clone
             end
         else
             newability = GameData::Ability.try_get(value)
             @ability_ids = newability ? [newability.id] : []
-            @abilityChanged = true
+            @addedAbilities = @ability_ids.clone
         end
     end
 
     def addAbility(newAbility,showcase = false)
+        return if @ability_ids.include?(newAbility)
         newAbility = GameData::Ability.try_get(newAbility).id
         @ability_ids.push(newAbility)
-        @abilityChanged = true
-
+        @addedAbilities.push(newAbility)
         if showcase
             @battle.pbShowAbilitySplash(self, newAbility)
             @battle.pbDisplay(_INTL("{1} gained the Ability {2}!", pbThis, getAbilityName(newAbility)))

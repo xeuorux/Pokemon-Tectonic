@@ -2,6 +2,8 @@ HIGHEST_STAT_BASE = Color.new(139,52,34)
 LOWEST_STAT_BASE = Color.new(60,55,112)
 TRIBAL_BOOSTED_BASE = Color.new(70, 130, 76)
 
+FADED_EFFECT_BASE = Color.new(120,120,120)
+
 DEBUGGING_EFFECT_DISPLAY = false
 
 class BattleInfoDisplay < SpriteWrapper
@@ -69,7 +71,7 @@ class BattleInfoDisplay < SpriteWrapper
   
   def drawWholeBattleInfo()
 	base   = Color.new(88,88,80)
-    shadow = Color.new(168,184,184)
+	shadow = Color.new(168,184,184)
 	textToDraw = []
 	
 	# Draw the
@@ -105,7 +107,9 @@ class BattleInfoDisplay < SpriteWrapper
 	
 	weatherAndTerrainY = 336
 	weatherMessage = "No Weather"
+	weatherColor = FADED_EFFECT_BASE
 	if @battle.field.weather != :None
+		weatherColor = base
 		weatherName = GameData::BattleWeather.get(@battle.field.weather).real_name
 		weatherDuration = @battle.field.weatherDuration
 		weatherDuration = "Infinite" if weatherDuration < 0
@@ -117,7 +121,7 @@ class BattleInfoDisplay < SpriteWrapper
 		end
 	end
 	
-	textToDraw.push([weatherMessage,24,weatherAndTerrainY,0,base,shadow])
+	textToDraw.push([weatherMessage,24,weatherAndTerrainY,0,weatherColor,shadow])
 
 	# terrainMessage = "No Terrain"
 	# if @battle.field.terrain != :None
@@ -178,7 +182,7 @@ class BattleInfoDisplay < SpriteWrapper
 			end
 		end
 	else
-		textToDraw.push(["None",wholeFieldX,44,0,base,shadow])
+		textToDraw.push(["None",wholeFieldX,44,0,FADED_EFFECT_BASE,shadow])
 	end
 	
 	# Reset the scrolling once its scrolled through the entire list once
@@ -326,6 +330,11 @@ class BattleInfoDisplay < SpriteWrapper
 	battlerEffects = []
 	pushEffectDescriptorsToArray(battler,battlerEffects)
 	pushEffectDescriptorsToArray(@battle.positions[battler.index],battlerEffects)
+
+	# List abilities that were added by effects
+	battler.addedAbilities.each do |abilityID|
+		battlerEffects.push("New Ability: #{getAbilityName(abilityID)}")
+	end
 	
 	scrolling = true if battlerEffects.length > 8
 	
@@ -349,7 +358,7 @@ class BattleInfoDisplay < SpriteWrapper
 			end
 		end
 	else
-		textToDraw.push(["None",battlerEffectsX,statStepsSectionTopY + 36,0,base,shadow])
+		textToDraw.push(["None",battlerEffectsX,statStepsSectionTopY + 36,0,FADED_EFFECT_BASE,shadow])
 	end
 	
 	# Reset the scrolling once its scrolled through the entire list once

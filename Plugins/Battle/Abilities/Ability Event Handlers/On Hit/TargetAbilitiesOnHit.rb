@@ -607,7 +607,7 @@ BattleHandlers::TargetAbilityOnHit.add(:MULTISCALE,
         if aiChecking
             next 20
         else
-            target.aiSeesAbility
+            target.aiLearnsAbility(ability)
         end
     }
 )

@@ -505,7 +505,7 @@ class Pokemon
       return ability_index >= 2
     end
   
-    # @return [Array<Array<Symbol,Integer>>] the abilities this Pokémon can have,
+    # @return [Array<Array<Symbol,Integer>>] the abilities this Pokémon's species can have,
     #   where every element is [ability ID, ability index]
     def getAbilityList
       ret = []

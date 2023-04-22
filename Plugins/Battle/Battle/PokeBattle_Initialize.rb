@@ -151,8 +151,10 @@ class PokeBattle_Battle
         @party1.each do |pokemon|
             knownAlready = false
             knownAlready = true if pokemon.getAbilityList.length == 1
-            @knownAbilities[pokemon.personalID] = knownAlready
-            echoln("Player's side pokemon #{pokemon.name}'s ability is known by the AI") if knownAlready
+            @knownAbilities[pokemon.personalID] = []
+            abilityToKnow = pokemon.getAbilityList[1]
+            @knownAbilities[pokemon.personalID].push(abilityToKnow)
+            echoln("Player's side pokemon #{pokemon.name}'s ability #{abilityToKnow} is known by the AI") if knownAlready
         end
         @knownMoves = {}
         @party1.each do |pokemon|
