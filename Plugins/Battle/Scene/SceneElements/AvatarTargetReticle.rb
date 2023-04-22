@@ -30,16 +30,16 @@ class AvatarTargetReticle < IconSprite
         @battlerY = battlerPos[1] - battlerSprite.height / 2 - 100
         self.x = @battlerX
         self.y = @battlerY
-        self.z = 10_000
+        self.z = 100
     end
 
+    QUARTER_ANIM_PERIOD = Graphics.frame_rate*3/20
+
     def update(frameCounter=0)
-        if frameCounter % 3 == 0
-            if frameCounter < 12
-                @yOffset += 1
-            else
-                @yOffset -= 1
-            end
+        @yOffset = 0
+        case (frameCounter/QUARTER_ANIM_PERIOD).floor
+        when 1 then @yOffset = -2
+        when 3 then @yOffset = +2
         end
         self.x = @battlerX + @xOffset
         self.y = @battlerY + @yOffset
