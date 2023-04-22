@@ -204,3 +204,91 @@
 2203,BURNHEAL,Burn Heal,Burn Heals,2,300,"A spray-type medicine. It heals a single Pokémon that is suffering from a burn.",1,0,0
 2204,PARALYZEHEAL,Paralyze Heal,Paralyze Heals,2,300,"A spray-type medicine. It eliminates paralysis from a single Pokémon.",1,0,0
 2205,ICEHEAL,Ice Heal,Ice Heals,2,100,"A spray-type medicine. It defrosts a Pokémon that has been frozen solid.",1,0,0
+2206,SUPERREPEL,Super Repel,Super Repels,1,700,"An item that prevents wild Pokémon from appearing for 200 steps after its use.",2,0,0
+2207,MAXREPEL,Max Repel,Max Repels,1,900,"An item that prevents wild Pokémon from appearing for 250 steps after its use.",2,0,0
+2208,BLACKFLUTE,Black Flute,Black Flutes,1,400,"A black flute made from blown glass. Its melody makes wild Pokémon less likely to appear.",2,0,0
+2209,WHITEFLUTE,White Flute,White Flutes,1,500,"A white flute made from blown glass. Its melody makes wild Pokémon more likely to appear.",2,0,0
+2210,ESCAPEROPE,Escape Rope,Escape Ropes,1,1000,"A long, durable rope. Use it to escape instantly from a cave or a dungeon.",2,0,0
+2211,REDSHARD,Red Shard,Red Shards,1,1000,"A small red shard. It appears to be from some sort of implement made long ago.",0,0,0
+2212,YELLOWSHARD,Yellow Shard,Yellow Shards,1,1000,"A small yellow shard. It appears to be from some sort of implement made long ago.",0,0,0
+2213,BLUESHARD,Blue Shard,Blue Shards,1,1000,"A small blue shard. It appears to be from some sort of implement made long ago.",0,0,0
+2214,GREENSHARD,Green Shard,Green Shards,1,1000,"A small green shard. It appears to be from some sort of implement made long ago.",0,0,0
+2215,REDAPRICORN,Red Apricorn,Red Apricorns,1,20,"A red Apricorn. It assails your nostrils.",0,0,9
+2216,YELLOWAPRICORN,Yellow Apricorn,Yellow Apricorns,1,20,"A yellow Apricorn. It has an invigorating scent.",0,0,9
+2217,BLUEAPRICORN,Blue Apricorn,Blue Apricorns,1,20,"A blue Apricorn. It smells a bit like grass.",0,0,9
+2218,GREENAPRICORN,Green Apricorn,Green Apricorns,1,20,"A green Apricorn. It has a mysterious, aromatic scent.",0,0,9
+2219,PINKAPRICORN,Pink Apricorn,Pink Apricorns,1,20,"A pink Apricorn. It has a nice, sweet scent.",0,0,9
+2220,WHITEAPRICORN,White Apricorn,White Apricorns,1,20,"A white Apricorn. It doesn't smell like anything.",0,0,9
+2221,BLACKAPRICORN,Black Apricorn,Black Apricorns,1,20,"A black Apricorn. It has an indescribable scent.",0,0,9
+2222,HEARTSCALE,Heart Scale,Heart Scales,6,100,"A pretty, heart-shaped scale that is extremely rare. It glows faintly in the colors of the rainbow.",0,0,0
+2223,GROWTHMULCH,Growth Mulch,Growth Mulch,1,200,"A fertilizer to be spread on soft soil in regions where Berries are grown. A maniac will buy it for a high price.",0,0,11
+2224,DAMPMULCH,Damp Mulch,Damp Mulch,1,200,"A fertilizer to be spread on soft soil in regions where Berries are grown. A maniac will buy it for a high price.",0,0,11
+2225,STABLEMULCH,Stable Mulch,Stable Mulch,1,200,"A fertilizer to be spread on soft soil in regions where Berries are grown. A maniac will buy it for a high price.",0,0,11
+2226,GOOEYMULCH,Gooey Mulch,Gooey Mulch,1,200,"A fertilizer to be spread on soft soil in regions where Berries are grown. A maniac will buy it for a high price.",0,0,11
+2227,SHOALSALT,Shoal Salt,Shoal Salts,1,20,"Pure salt that can be discovered deep inside the Shoal Cave. A maniac will buy it for a high price.",0,0,0
+2228,SHOALSHELL,Shoal Shell,Shoal Shells,1,20,"A pretty seashell that can be found deep inside the Shoal Cave. A maniac will buy it for a high price.",0,0,0
+2229,ODDKEYSTONE,Odd Keystone,Odd Keystones,1,2100,"A vital item that is needed to keep a stone tower from collapsing. Voices can be heard from it occasionally.",0,0,0
+2230,DESTINYKNOT,Destiny Knot,Destiny Knots,5,4000,"A long, thin, bright-red string to be held by a Pokémon. If the holder becomes infatuated, so does the foe.",0,0,0
+2231,EXPSHARE,Exp. Share,Exp. Shares,5,3000,"An item to be held by a Pokémon. The holder gets a share of a battle's Exp. Points without battling.",0,0,0
+2232,RAZORCLAW,Razor Claw,Razor Claws,5,5000,"An item to be held by a Pokémon. It is a sharply hooked claw that ups the holder's critical-hit ratio.",0,0,0
+2233,RINGTARGET,Ring Target,Ring Targets,5,4000,"Moves that would otherwise have no effect will land on the Pokémon that holds it.",0,0,0
+2234,DRAGONSCALE,Dragon Scale,Dragon Scales,5,2000,"A thick and tough scale. Dragon-type Pokémon may be holding this item when caught.",0,0,0
+2235,UPGRADE,Upgrade,Upgrades,5,2000,"A transparent device filled with all sorts of data. It was produced by Silph Co.",0,0,0
+2236,DUBIOUSDISC,Dubious Disc,Dubious Discs,5,2000,"A transparent device overflowing with dubious data.  Its producer is unknown.",0,0,0
+2237,PROTECTOR,Protector,Protectors,5,2000,"A protective item of some sort. It is extremely stiff and heavy. It is loved by a certain Pokémon.",0,0,0
+2238,ELECTIRIZER,Electirizer,Electirizers,5,2000,"A box packed with a tremendous amount of electric energy. It is loved by a certain Pokémon.",0,0,0
+2239,MAGMARIZER,Magmarizer,Magmarizers,5,2000,"A box packed with a tremendous amount of magma energy. It is loved by a certain Pokémon.",0,0,0
+2240,ETHER,Ether,Ethers,2,1200,"It restores the PP of a Pokémon's selected move by a maximum of 10 points.",1,0,0
+2241,MAXETHER,Max Ether,Max Ethers,2,2000,"It fully restores the PP of a single selected move that has been learned by the target Pokémon.",1,0,0
+2242,ELIXIR,Elixir,Elixirs,2,3000,"It restores the PP of all the moves learned by the targeted Pokémon by 10 points each.",1,0,0
+2243,MAXELIXIR,Max Elixir,Max Elixirs,2,4500,"It fully restores the PP of all the moves learned by the targeted Pokémon.",1,0,0
+2244,NETBALL,Net Ball,Net Balls,3,400,"A somewhat different Poké Ball that works at 3.5x strength on Water- and Bug-type Pokémon.",0,4,4
+2245,DIVEBALL,Dive Ball,Dive Balls,3,400,"A somewhat different Poké Ball that works at a 3.5x strength on Pokémon that live underwater.",0,4,4
+2246,DUSKBALL,Dusk Ball,Dusk Balls,3,400,"A somewhat different Poké Ball which has 3x strength at night or in dark places like caves.",0,4,4
+2247,FASTBALL,Fast Ball,Fast Balls,3,300,"A Poké Ball with 4x strength against Pokémon species with 100 or more base Speed.",0,4,4
+2248,LEVELBALL,Level Ball,Level Balls,3,300,"A Poké Ball with much higher strength the higher your Pokémon's level is above the target.",0,4,4
+2249,LUREBALL,Lure Ball,Lure Balls,3,300,"A Poké Ball with 5x strength against Pokémon encountered through fishing.",0,4,4
+2250,HEAVYBALL,Heavy Ball,Heavy Balls,3,300,"A Poké Ball whose strength varies with the Pokémon's weight.",0,4,4
+2251,LOVEBALL,Love Ball,Love Balls,3,300,"A Poké Ball with 8x strength against Pokémon that are the opposite gender, but same species, as yours.",0,4,4
+2252,MOONBALL,Moon Ball,Moon Balls,3,300,"A Poké Ball with 4x strength against Pokémon evolve with or from using a Moon Stone.",0,4,4
+2253,FIGYBERRY,Figy Berry,Figy Berries,5,0,"If held by a Pokémon, it restores the user's HP in a pinch, but will cause confusion if it hates the taste.",0,0,5
+2254,WIKIBERRY,Wiki Berry,Wiki Berries,5,0,"If held by a Pokémon, it restores the user's HP in a pinch, but will cause confusion if it hates the taste.",0,0,5
+2255,MAGOBERRY,Mago Berry,Mago Berries,5,0,"If held by a Pokémon, it restores the user's HP in a pinch, but will cause confusion if it hates the taste.",0,0,5
+2256,AGUAVBERRY,Aguav Berry,Aguav Berries,5,0,"If held by a Pokémon, it restores the user's HP in a pinch, but will cause confusion if it hates the taste.",0,0,5
+2257,IAPAPABERRY,Iapapa Berry,Iapapa Berries,5,0,"If held by a Pokémon, it restores the user's HP in a pinch, but will cause confusion if it hates the taste.",0,0,5
+2258,RAZZBERRY,Razz Berry,Razz Berries,5,0,"In the Sinnoh region, they like to make sweets known as Poffins with this Berry.",0,0,5
+2259,BLUKBERRY,Bluk Berry,Bluk Berries,5,0,"In the Sinnoh region, they like to make sweets known as Poffins with this Berry.",0,0,5
+2260,NANABBERRY,Nanab Berry,Nanab Berries,5,0,"In the Sinnoh region, they like to make sweets known as Poffins with this Berry.",0,0,5
+2261,WEPEARBERRY,Wepear Berry,Wepear Berries,5,0,"In the Sinnoh region, they like to make sweets known as Poffins with this Berry.",0,0,5
+2262,PINAPBERRY,Pinap Berry,Pinap Berries,5,0,"In the Sinnoh region, they like to make sweets known as Poffins with this Berry.",0,0,5
+2263,POMEGBERRY,Pomeg Berry,Pomeg Berries,5,0,"Using it on a Pokémon makes it more friendly, but it also lowers its base HP.",1,0,5
+2264,KELPSYBERRY,Kelpsy Berry,Kelpsy Berries,5,0,"Using it on a Pokémon makes it more friendly, but it also lowers its base Attack stat.",1,0,5
+2265,QUALOTBERRY,Qualot Berry,Qualot Berries,5,0,"Using it on a Pokémon makes it more friendly, but it also lowers its base Defense stat.",1,0,5
+2266,HONDEWBERRY,Hondew Berry,Hondew Berries,5,0,"Using it on a Pokémon makes it more friendly, but it also lowers its base Sp. Atk stat.",1,0,5
+2267,GREPABERRY,Grepa Berry,Grepa Berries,5,0,"Using it on a Pokémon makes it more friendly, but it also lowers its base Sp. Def stat.",1,0,5
+2268,TAMATOBERRY,Tamato Berry,Tamato Berries,5,0,"Using it on a Pokémon makes it more friendly, but it also lowers its base Speed stat.",1,0,5
+2269,CORNNBERRY,Cornn Berry,Cornn Berries,5,0,"In the Sinnoh region, they like to make sweets known as Poffins with this Berry.",0,0,5
+2270,MAGOSTBERRY,Magost Berry,Magost Berries,5,0,"In the Sinnoh region, they like to make sweets known as Poffins with this Berry.",0,0,5
+2271,RABUTABERRY,Rabuta Berry,Rabuta Berries,5,0,"In the Sinnoh region, they like to make sweets known as Poffins with this Berry.",0,0,5
+2272,NOMELBERRY,Nomel Berry,Nomel Berries,5,0,"In the Sinnoh region, they like to make sweets known as Poffins with this Berry.",0,0,5
+2273,PAMTREBERRY,Pamtre Berry,Pamtre Berries,5,0,"In the Sinnoh region, they like to make sweets known as Poffins with this Berry.",0,0,5
+2274,WATMELBERRY,Watmel Berry,Watmel Berries,5,0,"In the Sinnoh region, they like to make sweets known as Poffins with this Berry.",0,0,5
+2275,DURINBERRY,Durin Berry,Durin Berries,5,0,"In the Sinnoh region, they like to make sweets known as Poffins with this Berry.",0,0,5
+2276,BELUEBERRY,Belue Berry,Belue Berries,5,0,"In the Sinnoh region, they like to make sweets known as Poffins with this Berry.",0,0,5
+2277,ITEMFINDER,Itemfinder,Itemfinders,8,0,"A device used for finding items. If there is a hidden item nearby when it is used, it emits a signal.",2,0,6
+2278,DOWSINGMACHINE,Dowsing Machine,Dowsing Machines,8,0,"It checks for unseen items in the area and makes noise and lights when it finds something.",2,0,6
+2279,POKERADAR,Poké Radar,Poké Radars,8,0,"A tool that can search out Pokémon that are hiding in grass. Its battery is recharged as you walk.",2,0,6
+2280,POKEFLUTE,Poké Flute,Poké Flutes,8,0,"A flute that is said to instantly awaken any Pokémon. It has a lovely tone.",5,0,6
+2281,COINCASE,Coin Case,Coin Cases,8,0,"A case for holding coins obtained at the Game Corner. It holds up to 50,000 coins.",2,0,6
+2282,SOOTSACK,Soot Sack,Soot Sacks,8,0,"A sack used to gather and hold volcanic ash.",0,0,6
+2283,SILPHSCOPE,Silph Scope,Silph Scopes,8,0,"A scope that makes unseeable Pokémon visible. It is made by Silph Co.",0,0,6
+2284,DEVONSCOPE,Devon Scope,Devon Scopes,8,0,"A device by Devon that signals any unseeable Pokémon.",0,0,6
+2285,SQUIRTBOTTLE,Squirt Bottle,Squirt Bottles,8,0,"A watering can shaped like a Squirtle. It helps promote healthy growth of Berries planted in soft soil.",0,0,6
+2286,SPRAYDUCK,Sprayduck,Sprayducks,8,0,"A watering can shaped like a Psyduck. It helps promote healthy growth of Berries planted in soft soil.",0,0,6
+2287,WAILMERPAIL,Wailmer Pail,Wailmer Pails,8,0,"A nifty watering pail. Use it to promote strong growth in Berries planted in soft soil.",0,0,6
+2288,OVALCHARM,Oval Charm,Oval Charms,8,0,"An oval charm said to increase the chance of Eggs being found at the Day Care.",0,0,6
+2289,SAFETYGOGGLES,Safety Goggles,Safety Goggles,5,4000,"An item to be held by a Pokémon. They protect the holder from weather-related damage and powder.",0,0,0
+2290,PROTECTIVEPADS,Protective Pads,Protective Pads,5,4000,"An item to be held by a Pokémon. They protect the holder from effects caused by making contact.",0,0,0
+2291,BUSTEDRADIO,Busted Radio,Busted Radios,5,4000,"Damages attackers for 1/6th of their HP when they hit the holder with special attacks.",0,0,0
+2292,GUARDLOCK,Guard Lock,Guard Locks,5,4000,"A held item. In battles, it sets the holder's base Defense stat to 95.",0,0,0
+2293,WILLLOCK,Will Lock,Will Locks,5,4000,"A held item. In battles, it sets the holder's base Sp. Def stat to 95.",0,0,0

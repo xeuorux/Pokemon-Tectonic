@@ -8,53 +8,66 @@ module GameData
 		attr_reader :nameForHashing
 	
 		SCHEMA = {
-		  "Items"        => [:items,         "*e", :Item],
-		  "LoseText"     => [:lose_text,     "s"],
-		  "Policies"	 => [:policies,		 "*e", :Policy],
-		  "Pokemon"      => [:pokemon,       "ev", :Species],   # Species, level
-		  "RemovePokemon"=> [:removed_pokemon,       "ev", :Species],   # Species, level
-		  "Form"         => [:form,          "u"],
-		  "Name"         => [:name,          "s"],
-		  "NameForHashing"   => [:name_for_hashing,   "s"],
-		  "Moves"        => [:moves,         "*e", :Move],
-		  "Ability"      => [:ability,       "s"],
-		  "AbilityIndex" => [:ability_index, "u"],
-		  "Item"         => [:item,          "e", :Item],
-		  "Gender"       => [:gender,        "e", { "M" => 0, "m" => 0, "Male" => 0, "male" => 0, "0" => 0,
+		  "Items"        		=> [:items,         "*e", :Item],
+		  "LoseText"     		=> [:lose_text,     "s"],
+		  "Policies"	 		=> [:policies,		 "*e", :Policy],
+		  "Pokemon"      		=> [:pokemon,       "ev", :Species],   # Species, level
+		  "RemovePokemon"		=> [:removed_pokemon,       "ev", :Species],   # Species, level
+		  "Form"         		=> [:form,          "u"],
+		  "Name"         		=> [:name,          "s"],
+		  "NameForHashing"   	=> [:name_for_hashing,   "s"],
+		  "Moves"        		=> [:moves,         "*e", :Move],
+		  "Ability"      		=> [:ability,       "s"],
+		  "AbilityIndex" 		=> [:ability_index, "u"],
+		  "Item"         		=> [:item,          "e", :Item],
+		  "Gender"       		=> [:gender,        "e", { "M" => 0, "m" => 0, "Male" => 0, "male" => 0, "0" => 0,
 													"F" => 1, "f" => 1, "Female" => 1, "female" => 1, "1" => 1 }],
-		  "Nature"       => [:nature,        "e", :Nature],
-		  "IV"           => [:iv,            "uUUUUU"],
-		  "EV"           => [:ev,            "uUUUUU"],
-		  "Happiness"    => [:happiness,     "u"],
-		  "Shiny"        => [:shininess,     "b"],
-		  "Shadow"       => [:shadowness,    "b"],
-		  "Ball"         => [:poke_ball,     "s"],
-		  "ExtendsVersion" => [:extends_version, "u"],
-		  "Extends"		 => [:extends,		 "esu", :TrainerType],
-		  "Position"	 => [:assigned_position, "u"],
+		  "Nature"       		=> [:nature,        "e", :Nature],
+		  "IV"           		=> [:iv,            "uUUUUU"],
+		  "EV"           		=> [:ev,            "uUUUUU"],
+		  "Happiness"   		=> [:happiness,     "u"],
+		  "Shiny"        		=> [:shininess,     "b"],
+		  "Shadow"       		=> [:shadowness,    "b"],
+		  "Ball"         		=> [:poke_ball,     "s"],
+		  "ExtendsVersion" 		=> [:extends_version, "u"],
+		  "Extends"		 		=> [:extends,		 "esu", :TrainerType],
+		  "Position"	 		=> [:assigned_position, "u"],
 		}
 		
 		def initialize(hash)
-		  @id             = hash[:id]
-		  @id_number      = hash[:id_number]
-		  @trainer_type   = hash[:trainer_type]
-		  @real_name      = hash[:name]         || "Unnamed"
-		  @nameForHashing = hash[:name_for_hashing]
-		  @version        = hash[:version]      || 0
-		  @items          = hash[:items]        || []
-		  @real_lose_text = hash[:lose_text]    || "..."
-		  @pokemon        = hash[:pokemon]      || []
-		  @pokemon.each do |pkmn|
-			GameData::Stat.each_main do |s|
-			  pkmn[:iv][s.id] ||= 0 if pkmn[:iv]
-			  pkmn[:ev][s.id] ||= 0 if pkmn[:ev]
+			@id             = hash[:id]
+			@id_number      = hash[:id_number]
+			@trainer_type   = hash[:trainer_type]
+			@real_name      = hash[:name]         || "Unnamed"
+			@nameForHashing = hash[:name_for_hashing]
+			@version        = hash[:version]      || 0
+			@items          = hash[:items]        || []
+			@real_lose_text = hash[:lose_text]    || "..."
+			@pokemon        = hash[:pokemon]      || []
+			@pokemon.each do |pkmn|
+				GameData::Stat.each_main do |s|
+				pkmn[:iv][s.id] ||= 0 if pkmn[:iv]
+				pkmn[:ev][s.id] ||= 0 if pkmn[:ev]
+				end
 			end
-		  end
-		  @removedPokemon = hash[:removed_pokemon] || []
-		  @policies		  = hash[:policies]		|| []
-		  @extendsClass	  = hash[:extends_class]
-		  @extendsName	  = hash[:extends_name]
-		  @extendsVersion = hash[:extends_version] || -1
+			@removedPokemon = hash[:removed_pokemon] || []
+			@policies		  = hash[:policies]		|| []
+			@extendsClass	  = hash[:extends_class]
+			@extendsName	  = hash[:extends_name]
+			@extendsVersion = hash[:extends_version] || -1
+
+			@pokemon.each do |partyEntry|
+				trainerName = "#{@trainer_type} #{@real_name}"
+				partyEntry[:moves]&.each do |moveID|
+					moveData = GameData::Move.get(moveID)
+					next if moveData.learnable?
+					raise _INTL("Cut or nonstandard move #{moveID} learnable by a party member of trainer #{trainerName}!")
+				end
+
+				if partyEntry[:item] && !GameData::Item.get(partyEntry[:item]).allowed?
+					raise _INTL("Cut or nonstandard item #{partyEntry[:item]} learnable by a party member of trainer #{trainerName}!")
+				end
+			end
 		end
 	
 		# Creates a battle-ready version of a trainer's data.

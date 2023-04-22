@@ -97,5 +97,10 @@ module GameData
           }
           return combos[species] && combos[species].include?(@id)
         end
+
+        def allowed?
+          return false if @cut
+          return true
+        end
     end
 end

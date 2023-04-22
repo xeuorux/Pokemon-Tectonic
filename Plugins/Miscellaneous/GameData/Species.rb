@@ -140,6 +140,12 @@ module GameData
             next if moveData.learnable?
             raise _INTL("Cut or nonstandard move #{moveID} is learnable by species #{@id}!")
           end
+
+          [@wild_item_common,@wild_item_uncommon,@wild_item_rare].each do |itemID|
+            next unless itemID
+            next if GameData::Item.get(itemID).allowed?
+            raise _INTL("Cut or nonstandard item #{itemID} is a wild item of species #{@id}!")
+          end
       end
   
       def notes
