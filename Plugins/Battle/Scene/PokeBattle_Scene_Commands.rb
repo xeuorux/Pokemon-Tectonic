@@ -594,17 +594,17 @@ class PokeBattle_Scene
     #=============================================================================
     # Enable the cursors which display where an avatar is targeting
     #=============================================================================
-    def setAggroCursorsOff
+    def setAvatarTargetReticlesOff
       @battle.battlers.each_with_index do |b,i|
         next if b.nil?
         if @sprites["aggro_cursor_#{i}"].nil?
-          createAggroCursor(b,i)
+          createAvatarTargetReticle(b,i)
         end
         @sprites["aggro_cursor_#{i}"].visible = false
       end
     end
   
-    def setAggroCursorOnIndex(index,extraAggro = false)
+    def setAvatarTargetReticleOnIndex(index,extraAggro = false)
       @sprites["aggro_cursor_#{index}"].visible = true
       @sprites["aggro_cursor_#{index}"].extraAggro = extraAggro
     end

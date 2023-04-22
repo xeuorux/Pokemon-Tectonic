@@ -79,7 +79,7 @@ class PokeBattle_Scene
         @battle.battlers.each_with_index do |b,i|
         next if !b
           pbCreatePokemonSprite(i)
-          createAggroCursor(b,i)
+          createAvatarTargetReticle(b,i)
         end
 
       # Wild battle, so set up the Pokémon sprite(s) accordingly
@@ -256,8 +256,8 @@ class PokeBattle_Scene
       @sprites["shadow_#{idxBattler}"] = shaSprite
     end
 
-    def createAggroCursor(battler,index)
-      cursor = AggroCursor.new(battler,@battle.pbSideSize(index),@viewport)
+    def createAvatarTargetReticle(battler,index)
+      cursor = AvatarTargetReticle.new(battler,@battle.pbSideSize(index),@viewport)
       @sprites["aggro_cursor_#{index}"] = cursor
       cursor.visible = false
     end

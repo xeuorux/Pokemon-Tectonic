@@ -168,7 +168,8 @@ class PokeBattle_AI
             targets.each do |target|
                 next unless target.opposes?(user)
                 index = target.index
-                @battle.scene.setAggroCursorOnIndex(index, extraAggro)
+                echoln("aSDojabsdflhigbsihgbsihj")
+                @battle.scene.setAvatarTargetReticleOnIndex(index, extraAggro)
 
                 user.indicesTargetedThisRound.push(index)
             end
@@ -315,10 +316,7 @@ class PokeBattle_AI
                 # Calculate how much damage the move will do (roughly)
                 realDamage = pbTotalDamageAI(move, user, target, numTargets)
 
-                # Convert damage to percentage of target's remaining HP
-                damagePercentage = realDamage * 100.0 / target.totalhp
-
-                damageMod = AVATAR_DAMAGE_SCORE_MAX * damagePercentage
+                damageMod = (AVATAR_DAMAGE_SCORE_MAX * realDamage / target.totalhp.to_f).floor
                 damageMod = AVATAR_DAMAGE_SCORE_MAX - damageMod if targetWeak
                 score += damageMod
             else

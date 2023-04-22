@@ -296,7 +296,7 @@ class PokeBattle_Scene
     #=============================================================================
     def pbBeginCommandPhase
         @sprites["messageWindow"].text = ""
-        setAggroCursorsOff()
+        setAvatarTargetReticlesOff()
     end
   
     def pbBeginAttackPhase

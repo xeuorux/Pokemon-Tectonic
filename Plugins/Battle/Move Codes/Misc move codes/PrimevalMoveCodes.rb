@@ -133,7 +133,7 @@ class PokeBattle_Move_608 < PokeBattle_Move_05B
     include EmpoweredMove
 
     def pbEffectGeneral(user)
-        user.pbOwnSide.applyEffect(:Tailwind, 999)
+        user.pbOwnSide.applyEffect(:Tailwind, 4)
         @battle.eachSameSideBattler(user) do |b|
             b.applyEffect(:ExtraTurns, 1)
         end

@@ -514,8 +514,8 @@ class PokeBattle_Move_59E < PokeBattle_PartyMemberEffectMove
     end
 
     def effectOnPartyMember(pokemon)
+        pokemon.heal
         pokemon.hp = 1
-        pokemon.heal_status
         @battle.pbDisplay(_INTL("{1} recovered to 1 HP!", pokemon.name))
     end
 end

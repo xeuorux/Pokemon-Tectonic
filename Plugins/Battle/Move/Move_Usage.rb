@@ -532,7 +532,7 @@ target.pbThis(true)))
             target.effects[:BideDamage] += damage
             target.pointAt(:BideTarget, user) if user.index != target.index
         end
-        target.damageState.fainted = true if target.fainted?
+        target.damageState.fainted = true if target.fainted? || target.damageState.fear
         target.lastHPLost = damage # For Focus Punch
         target.tookDamage = true if damage > 0 # For Assurance
         target.lastAttacker.push(user.index) # For Revenge

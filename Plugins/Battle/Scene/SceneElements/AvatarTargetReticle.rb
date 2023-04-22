@@ -1,4 +1,4 @@
-class AggroCursor < IconSprite
+class AvatarTargetReticle < IconSprite
     attr_reader   :battler
     attr_reader   :extraAggro
 
@@ -27,10 +27,10 @@ class AggroCursor < IconSprite
         battlerPos = PokeBattle_SceneConstants.pbBattlerPosition(@battler.index,@sideSize)
         battlerSprite = @battler.battle.scene.sprites["pokemon_#{@battler.index}"]
         @battlerX = battlerPos[0] - battlerSprite.width / 2 - 20
-        @battlerY = battlerPos[1] - 100
+        @battlerY = battlerPos[1] - battlerSprite.height / 2 - 100
         self.x = @battlerX
         self.y = @battlerY
-        self.z = 100
+        self.z = 10_000
     end
 
     def update(frameCounter=0)

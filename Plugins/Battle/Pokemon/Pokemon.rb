@@ -317,6 +317,7 @@ class Pokemon
       heal_HP
       heal_status
       heal_PP
+      @afraid = false
     end
 
     def afraid?
@@ -332,7 +333,7 @@ class Pokemon
     def removeFear(battle = nil)
       @afraid = false
       @hp = (@totalhp / 2).floor
-      message = _INTL("#{name} is no longer Afraid! It healed to half health.")
+      message = _INTL("#{name} is no longer Afraid. It was restored to half health!")
       if battle
         battle.pbDisplay(message)
       else

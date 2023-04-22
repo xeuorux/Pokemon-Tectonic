@@ -1901,8 +1901,7 @@ class PokeBattle_Move_578 < PokeBattle_PartyMemberEffectMove
     end
 
     def effectOnPartyMember(pokemon)
-        pokemon.heal_HP
-        pokemon.heal_status
+        pokemon.heal
         @battle.pbDisplay(_INTL("{1} recovered all the way to full health!", pokemon.name))
     end
 
