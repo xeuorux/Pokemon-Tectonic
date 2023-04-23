@@ -212,7 +212,7 @@ end
         @overlaysprite = BitmapSprite.new(Graphics.width,Graphics.height,viewport)
         @overlaysprite.z = self.z+4
         @hpbar    = AnimatedBitmap.new("Graphics/Pictures/Party/overlay_hp")
-        @statuses = AnimatedBitmap.new(_INTL("Graphics/Pictures/Rework/statuses"))
+        @statuses = AnimatedBitmap.new(_INTL("Graphics/Pictures/statuses"))
         @selected      = false
         @preselected   = false
         @switching     = false

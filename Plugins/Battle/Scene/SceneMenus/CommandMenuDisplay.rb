@@ -41,8 +41,8 @@ class CommandMenuDisplay < BattleMenuBase
             background.setBitmap("Graphics/Pictures/Battle/overlay_command")
             addSprite("background",background)
             # Create bitmaps
-            @buttonBitmap = AnimatedBitmap.new(_INTL("Graphics/Pictures/Battle/BattleButtonRework/cursor_command"))
-            @buttonBitmap = AnimatedBitmap.new(_INTL("Graphics/Pictures/Battle/BattleButtonRework/cursor_command"))
+            @buttonBitmap = AnimatedBitmap.new(_INTL("Graphics/Pictures/Battle/cursor_command"))
+            @buttonBitmap = AnimatedBitmap.new(_INTL("Graphics/Pictures/Battle/cursor_command"))
             # Create action buttons
             @buttons = Array.new(6) do |i|   # 4 command options, therefore 4 buttons
             button = SpriteWrapper.new(viewport)

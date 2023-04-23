@@ -23,10 +23,10 @@ class BattleInfoDisplay < SpriteWrapper
 	@selected	  			= 0
 	@individual   			= nil
 	@field					= false
-	@battleInfoMain			= AnimatedBitmap.new("Graphics/Pictures/Battle/BattleButtonRework/battle_info_main")
-	@battleInfoIndividual	= AnimatedBitmap.new("Graphics/Pictures/Battle/BattleButtonRework/battle_info_individual")
+	@battleInfoMain			= AnimatedBitmap.new("Graphics/Pictures/Battle/battle_info_main")
+	@battleInfoIndividual	= AnimatedBitmap.new("Graphics/Pictures/Battle/battle_info_individual")
 	@backgroundBitmap  		= @battleInfoMain
-	@statusCursorBitmap  	= AnimatedBitmap.new("Graphics/Pictures/Battle/BattleButtonRework/cursor_status")
+	@statusCursorBitmap  	= AnimatedBitmap.new("Graphics/Pictures/Battle/cursor_status")
 	
 	@contents = BitmapWrapper.new(@backgroundBitmap.width,@backgroundBitmap.height)
     self.bitmap  = @contents

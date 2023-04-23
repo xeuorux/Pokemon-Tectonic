@@ -180,7 +180,7 @@ class PokemonSummary_Scene
         @page = 4
         @forget = true
         @typebitmap = AnimatedBitmap.new(_INTL("Graphics/Pictures/types"))
-        @extraReminderBitmap = AnimatedBitmap.new(_INTL("Graphics/Pictures/Rework/extra_info_reminder"))
+        @extraReminderBitmap = AnimatedBitmap.new(_INTL("Graphics/Pictures/extra_info_reminder"))
         @sprites = {}
         @sprites["background"] = IconSprite.new(0, 0, @viewport)
         @sprites["overlay"] = BitmapSprite.new(Graphics.width, Graphics.height, @viewport)
@@ -442,7 +442,7 @@ class PokemonSummary_Scene
             status = GameData::Status.get(@pokemon.status).id_number
         end
         status -= 1
-        imagepos.push(["Graphics/Pictures/Rework/statuses", 124, 100, 0, 16 * status, 44, 16]) if status >= 0
+        imagepos.push(["Graphics/Pictures/statuses", 124, 100, 0, 16 * status, 44, 16]) if status >= 0
         # Show hot streak icon
         imagepos.push([sprintf("Graphics/Pictures/Summary/hot_streak"), 176, 100]) if @pokemon.onHotStreak?
         # Show shininess star

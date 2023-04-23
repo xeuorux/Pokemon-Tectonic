@@ -20,7 +20,7 @@ class NewDexNav
 	
 	# Set up all the sprites
 	@sprites["background"] = IconSprite.new(0,0,@viewport1)
-	@sprites["background"].setBitmap(_INTL("Graphics/Pictures/Pokedex/Rework/dexnav"))
+	@sprites["background"].setBitmap(_INTL("Graphics/Pictures/Pokedex/dexnav"))
 	
 	@sprites["overlay"] = BitmapSprite.new(Graphics.width,Graphics.height,@viewport1)
 	@sprites["overlay2"] = BitmapSprite.new(Graphics.width,Graphics.height,@viewport2)

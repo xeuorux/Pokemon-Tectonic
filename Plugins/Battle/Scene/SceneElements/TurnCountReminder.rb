@@ -4,7 +4,7 @@ class TurnCountReminder < SpriteWrapper
 
 	def initialize(turnCount,viewport=nil)
 		super(viewport)
-		@turnCountReminderBitmap = AnimatedBitmap.new("Graphics/Pictures/Battle/BattleButtonRework/turns_counter")
+		@turnCountReminderBitmap = AnimatedBitmap.new("Graphics/Pictures/Battle/turns_counter")
 		@reminderSprite = SpriteWrapper.new(viewport)
 		@reminderSprite.bitmap = @turnCountReminderBitmap.bitmap
 		@turnCountOverlay = BitmapSprite.new(@turnCountReminderBitmap.width,@turnCountReminderBitmap.height,viewport)

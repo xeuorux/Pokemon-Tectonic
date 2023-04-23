@@ -39,7 +39,7 @@ class FightMenuDisplay < BattleMenuBase
           @typeBitmap    			    = AnimatedBitmap.new(_INTL("Graphics/Pictures/types"))
           @megaEvoBitmap 			    = AnimatedBitmap.new(_INTL("Graphics/Pictures/Battle/cursor_mega"))
           @shiftBitmap   			    = AnimatedBitmap.new(_INTL("Graphics/Pictures/Battle/cursor_shift"))
-          @moveInfoDisplayBitmap  = AnimatedBitmap.new(_INTL("Graphics/Pictures/Battle/move_info_display"))
+          @moveInfoDisplayBitmap  = AnimatedBitmap.new(_INTL("Graphics/Pictures/move_info_display"))
           @ppUsageUpBitmap        = AnimatedBitmap.new(_INTL("Graphics/Pictures/Battle/pp_usage_up"))
           @cursorShadeBitmap      = AnimatedBitmap.new(_INTL("Graphics/Pictures/Battle/cursor_fight_shade"))
           # Create background graphic

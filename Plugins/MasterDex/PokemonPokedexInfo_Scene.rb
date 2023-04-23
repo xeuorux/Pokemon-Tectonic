@@ -14,8 +14,8 @@ class PokemonPokedexInfo_Scene
         @linksEnabled = linksEnabled
         @evolutionIndex = -1
         @typebitmap = AnimatedBitmap.new(_INTL("Graphics/Pictures/Pokedex/icon_types"))
-        @types_emphasized_bitmap = AnimatedBitmap.new(_INTL("Graphics/Pictures/Pokedex/Rework/icon_types_emphasized"))
-        @moveInfoDisplayBitmap = AnimatedBitmap.new(_INTL("Graphics/Pictures/Pokedex/Rework/move_info_display"))
+        @types_emphasized_bitmap = AnimatedBitmap.new(_INTL("Graphics/Pictures/Pokedex/icon_types_emphasized"))
+        @moveInfoDisplayBitmap = AnimatedBitmap.new(_INTL("Graphics/Pictures/move_info_display_tall"))
         @sprites = {}
         @sprites["background"] = IconSprite.new(0, 0, @viewport)
         @sprites["infosprite"] = PokemonSprite.new(@viewport)
@@ -226,7 +226,7 @@ sp.form) && !Settings::DEX_SHOWS_ALL_FORMS
     end
 
     def drawPageInfo
-        @sprites["background"].setBitmap(_INTL("Graphics/Pictures/Pokedex/Rework/bg_info"))
+        @sprites["background"].setBitmap(_INTL("Graphics/Pictures/Pokedex/bg_info"))
         overlay = @sprites["overlay"].bitmap
         base   = Color.new(88, 88, 80)
         shadow = Color.new(168, 184, 184)
@@ -290,7 +290,7 @@ sp.form) && !Settings::DEX_SHOWS_ALL_FORMS
     end
 
     def drawPageAbilities
-        @sprites["background"].setBitmap(_INTL("Graphics/Pictures/Pokedex/Rework/bg_abilities"))
+        @sprites["background"].setBitmap(_INTL("Graphics/Pictures/Pokedex/bg_abilities"))
         overlay = @sprites["overlay"].bitmap
         formname = ""
         base = Color.new(64, 64, 64)
@@ -368,7 +368,7 @@ sp.form) && !Settings::DEX_SHOWS_ALL_FORMS
     end
 
     def drawPageStats
-        @sprites["background"].setBitmap(_INTL("Graphics/Pictures/Pokedex/Rework/bg_stats"))
+        @sprites["background"].setBitmap(_INTL("Graphics/Pictures/Pokedex/bg_stats"))
         overlay = @sprites["overlay"].bitmap
         formname = ""
         base = Color.new(64, 64, 64)
@@ -474,7 +474,7 @@ sp.form) && !Settings::DEX_SHOWS_ALL_FORMS
     end
 
     def drawPageMatchups
-        @sprites["background"].setBitmap(_INTL("Graphics/Pictures/Pokedex/Rework/bg_matchups"))
+        @sprites["background"].setBitmap(_INTL("Graphics/Pictures/Pokedex/bg_matchups"))
         overlay = @sprites["overlay"].bitmap
         formname = ""
         base = Color.new(64, 64, 64)
@@ -559,7 +559,7 @@ sp.form) && !Settings::DEX_SHOWS_ALL_FORMS
     end
 
     def drawPageMatchups2
-        @sprites["background"].setBitmap(_INTL("Graphics/Pictures/Pokedex/Rework/bg_matchups"))
+        @sprites["background"].setBitmap(_INTL("Graphics/Pictures/Pokedex/bg_matchups"))
         overlay = @sprites["overlay"].bitmap
         formname = ""
         base = Color.new(64, 64, 64)
@@ -689,7 +689,7 @@ sp.form) && !Settings::DEX_SHOWS_ALL_FORMS
     end
 
     def drawPageLevelUpMoves
-        @sprites["background"].setBitmap(_INTL("Graphics/Pictures/Pokedex/Rework/bg_moves"))
+        @sprites["background"].setBitmap(_INTL("Graphics/Pictures/Pokedex/bg_moves"))
         overlay = @sprites["overlay"].bitmap
         formname = ""
         selected_move = nil
@@ -732,7 +732,7 @@ sp.form) && !Settings::DEX_SHOWS_ALL_FORMS
     end
 
     def drawPageEvolution
-        @sprites["background"].setBitmap(_INTL("Graphics/Pictures/Pokedex/Rework/bg_evolution"))
+        @sprites["background"].setBitmap(_INTL("Graphics/Pictures/Pokedex/bg_evolution"))
         overlay = @sprites["overlay"].bitmap
         formname = ""
         base = Color.new(64, 64, 64)
@@ -828,7 +828,7 @@ sp.form) && !Settings::DEX_SHOWS_ALL_FORMS
     end
 
     def drawPageTutorMoves
-        @sprites["background"].setBitmap(_INTL("Graphics/Pictures/Pokedex/Rework/bg_moves"))
+        @sprites["background"].setBitmap(_INTL("Graphics/Pictures/Pokedex/bg_moves"))
         overlay = @sprites["overlay"].bitmap
         formname = ""
         base = Color.new(64, 64, 64)
@@ -1024,7 +1024,7 @@ sp.form) && !Settings::DEX_SHOWS_ALL_FORMS
     end
 
     def drawPageArea
-        @sprites["background"].setBitmap(_INTL("Graphics/Pictures/Pokedex/Rework/bg_area"))
+        @sprites["background"].setBitmap(_INTL("Graphics/Pictures/Pokedex/bg_area"))
         overlay = @sprites["overlay"].bitmap
         base   = Color.new(88, 88, 80)
         shadow = Color.new(168, 184, 184)
@@ -1088,7 +1088,7 @@ sp.form) && !Settings::DEX_SHOWS_ALL_FORMS
     end
 
     def drawPageForms
-        @sprites["background"].setBitmap(_INTL("Graphics/Pictures/Pokedex/Rework/bg_forms"))
+        @sprites["background"].setBitmap(_INTL("Graphics/Pictures/Pokedex/bg_forms"))
         overlay = @sprites["overlay"].bitmap
         base   = Color.new(88, 88, 80)
         shadow = Color.new(168, 184, 184)
@@ -1265,7 +1265,7 @@ sp.form) && !Settings::DEX_SHOWS_ALL_FORMS
     end
 
     def drawPageDEBUG
-        @sprites["background"].setBitmap(_INTL("Graphics/Pictures/Pokedex/Rework/bg_evolution"))
+        @sprites["background"].setBitmap(_INTL("Graphics/Pictures/Pokedex/bg_evolution"))
         overlay = @sprites["overlay"].bitmap
         formname = ""
         base = Color.new(64, 64, 64)

@@ -11,13 +11,13 @@ class PokemonPokedex_Scene
     @hwbitmap           	= AnimatedBitmap.new("Graphics/Pictures/Pokedex/icon_hw")
     @selbitmap          	= AnimatedBitmap.new("Graphics/Pictures/Pokedex/icon_searchsel")
     @searchsliderbitmap 	= AnimatedBitmap.new(_INTL("Graphics/Pictures/Pokedex/icon_searchslider"))
-	@search2Cursorbitmap	= AnimatedBitmap.new(_INTL("Graphics/Pictures/Pokedex/Rework/cursor_search"))
+	@search2Cursorbitmap	= AnimatedBitmap.new(_INTL("Graphics/Pictures/Pokedex/cursor_search"))
     @sprites = {}
     @viewport = Viewport.new(0,0,Graphics.width,Graphics.height)
     @viewport.z = 99999
     addBackgroundPlane(@sprites,"background","Pokedex/bg_list",@viewport)
-    addBackgroundPlane(@sprites,"searchbg","Pokedex/Rework/bg_search",@viewport)
-	addBackgroundPlane(@sprites,"searchbg2","Pokedex/Rework/bg_search_2",@viewport)
+    addBackgroundPlane(@sprites,"searchbg","Pokedex/bg_search",@viewport)
+	addBackgroundPlane(@sprites,"searchbg2","Pokedex/bg_search_2",@viewport)
     @sprites["searchbg"].visible = false
 	@sprites["searchbg2"].visible = false
     @sprites["pokedex"] = Window_Pokedex.new(206,30,276,364,@viewport)
