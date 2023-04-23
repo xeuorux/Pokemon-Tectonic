@@ -657,8 +657,35 @@ ActiveWater,20
 DarkCave,20
     25,LUNATONE,37,39
     25,MAREANIE,37,39
-    25,UNOWN,37,39
     25,WYNAUT,37,39
+    1,UNOWN,37,39
+    1,UNOWN_1,37,39
+    1,UNOWN_10,37,39
+    1,UNOWN_11,37,39
+    1,UNOWN_12,37,39
+    1,UNOWN_13,37,39
+    1,UNOWN_14,37,39
+    1,UNOWN_15,37,39
+    1,UNOWN_16,37,39
+    1,UNOWN_17,37,39
+    1,UNOWN_18,37,39
+    1,UNOWN_19,37,39
+    1,UNOWN_2,37,39
+    1,UNOWN_20,37,39
+    1,UNOWN_21,37,39
+    1,UNOWN_22,37,39
+    1,UNOWN_23,37,39
+    1,UNOWN_24,37,39
+    1,UNOWN_25,37,39
+    1,UNOWN_26,37,39
+    1,UNOWN_27,37,39
+    1,UNOWN_3,37,39
+    1,UNOWN_4,37,39
+    1,UNOWN_5,37,39
+    1,UNOWN_6,37,39
+    1,UNOWN_7,37,39
+    1,UNOWN_8,37,39
+    1,UNOWN_9,37,39
 #-------------------------------
 [219] # Crumbling Canyon F1
 DarkCave,20

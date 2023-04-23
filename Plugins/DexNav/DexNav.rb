@@ -62,7 +62,7 @@ class NewDexNav
 	
 	# Create the sprites that show the encounters for this area
 	owned = 0
-	@pkmnsprite = []
+	@pkmnsprites = []
 	displaySpecies = []
 	allSeen = true
 	allOwned = true
@@ -71,11 +71,15 @@ class NewDexNav
 		species = species_data.species
 		displaySpecies.push(species_data)
 
-        @pkmnsprite[iconIndex] = PokemonSpeciesIconSprite.new(species,@viewport2)
-		@pkmnsprite[iconIndex].z = -1
+        newPokemonIcon = PokemonSpeciesIconSprite.new(species,@viewport2)
+		@pkmnsprites[iconIndex] = newPokemonIcon
+		@sprites["pkmn_sprite_#{iconIndex}"] = newPokemonIcon
+		
+		newPokemonIcon.form = species_data.form if species_data.form != 0
+		newPokemonIcon.z = -1
 		
 		if !$Trainer.pokedex.seen?(species)
-			@pkmnsprite[iconIndex].silhouette = true
+			newPokemonIcon.silhouette = true
 			allSeen = false
 		end
 		
@@ -203,7 +207,7 @@ class NewDexNav
     @sprites["overlay"].bitmap.clear
 	@sprites["overlay2"].bitmap.clear
 	offset = [(navigationIndex/7)-2,0].max * 7
-	@pkmnsprite.each_with_index do |sprite,iconIndex|
+	@pkmnsprites.each_with_index do |sprite,iconIndex|
 		offsetIndex = iconIndex - offset	
 		sprite.x = 64 * (offsetIndex % 7)
 		sprite.y = 24 + 64 * (offsetIndex / 7)
@@ -246,7 +250,7 @@ class NewDexNav
   def drawOwnedIcons(offset=0)
 	imagePos = []
 	
-	@pkmnsprite.each_with_index do |sprite,iconIndex|
+	@pkmnsprites.each_with_index do |sprite,iconIndex|
 		offsetIndex = iconIndex - offset
 		next if offsetIndex < 0
 		break if offsetIndex > 20
@@ -359,7 +363,17 @@ def getDexNavEncounterDataForMap(mapid = -1)
 	  
     allEncounters.uniq!
     allEncounters.compact!
-    allEncounters.sort!{|a,b| GameData::Species.get(a[1]).id_number <=> GameData::Species.get(b[1]).id_number}
+    allEncounters.sort!{ |a,b|
+		speciesA = GameData::Species.get(a[1])
+		speciesB = GameData::Species.get(b[1])
+		baseSpeciesA = GameData::Species.get(speciesA.species)
+		baseSpeciesB = GameData::Species.get(speciesB.species)
+		if baseSpeciesA.id_number == baseSpeciesB.id_number
+			speciesA.form <=> speciesB.form
+		else
+			baseSpeciesA.id_number <=> baseSpeciesB.id_number
+		end
+	}
 	return allEncounters
 end
 
