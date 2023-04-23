@@ -102,3 +102,20 @@ BattleHandlers::StatusCureAbility.add(:STABILITY,
       end
   }
 )
+
+
+BattleHandlers::StatusCureAbility.add(:SEASURVIVOR,
+    proc { |ability, battler|
+        if battler.hasStatusNoTrigger(:BURN)
+            battler.battle.pbShowAbilitySplash(battler, ability)
+            battler.pbCureStatus(true, :BURN)
+            battler.battle.pbHideAbilitySplash(battler)
+        end
+        if battler.hasStatusNoTrigger(:FROSTBITE)
+            battler.battle.pbShowAbilitySplash(battler, ability)
+            battler.pbCureStatus(true, :FROSTBITE)
+            battler.battle.pbHideAbilitySplash(battler)
+        end
+    }
+  )
+  

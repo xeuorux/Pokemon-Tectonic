@@ -640,7 +640,7 @@
 639,WATERSHURIKEN,Water Shuriken,0C0,15,WATER,Special,100,15,0,NearOther,1,bef,"The user hits the target with throwing stars 2-5 times in a row. This move always goes first.",
 640,RAIN,Rain,100,0,WATER,Status,0,10,0,BothSides,0,,"Summons rain for eight turns, boosting Water-type attacks and hindering most others.",
 641,SOAK,Soak,061,0,WATER,Status,100,15,0,NearOther,0,bce,"The user shoots a torrent of water at the target and changes the target's type to Water.",
-642,SNIPESHOT,Snipe Shot,182,80,WATER,Special,100,12,0,NearOther,0,befh,"Ignores all attempts at redirection, allowing this move to hit the chosen target. Critical hits land more easily.",
+642,SNIPESHOT,Snipe Shot,182,90,WATER,Special,100,12,0,NearOther,0,befh,"Ignores all attempts at redirection, allowing this move to hit the chosen target. Critical hits land more easily.",
 643,FISHIOUSREND,Fishious Rend,178,85,WATER,Physical,100,10,0,NearOther,0,abefi,"Rends the target with its hard gills. Power doubles unless the target has moved this turn.",
 644,LIFEDEW,Life Dew,17E,0,WATER,Status,0,10,0,UserAndAllies,0,d,"The user scatters mysterious water around and restores the HP of itself and allies by 25%.",
 645,SURGINGSTRIKES,Surging Strikes,188,25,WATER,Physical,100,5,0,NearOther,0,abef,"Strikes the target thrice, with mastery of the Water style. Always results in a critical hit.",

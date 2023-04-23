@@ -2135,7 +2135,7 @@ Pokemon = DIGGERSBY,33
 #-------------------------------
 [POKEMONRANGER_M2,Martel]
 Pokemon = FALINKS,34
-    AbilityIndex = 0 # Impervious
+    AbilityIndex = 0 # Imperious
 Pokemon = STEENEE,33
     AbilityIndex = 0 # Play Victim
     Item = SITRUSBERRY
@@ -2280,7 +2280,7 @@ Pokemon = HIPPOWDON,53
     AbilityIndex = 1 # Glass Firing
     Item = SMOOTHROCK
 Pokemon = MANDIBUZZ,53
-    AbilityIndex = 1 # Stout
+    AbilityIndex = 1 # Desert Scavenger
     Item = SITRUSBERRY
 Pokemon = MARACTUS,54
     AbilityIndex = 1 # Desert Armor
@@ -3301,7 +3301,7 @@ Pokemon = HATTERENE,65
     EV = 20,20,10,0,20,0
 Pokemon = MANDIBUZZ,65
     Moves = FOULPLAY,TRICKYTOXINS,CULL,CHILL
-    AbilityIndex = 1 # Stout
+    AbilityIndex = 0 # Impervious
     Item = LEFTOVERS
     EV = 20,0,10,0,0,20
 Pokemon = NINETALES,65

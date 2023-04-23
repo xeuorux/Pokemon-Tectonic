@@ -16,12 +16,6 @@ BattleHandlers::StatusImmunityAbility.add(:INSOMNIA,
   }
 )
 
-BattleHandlers::StatusImmunityAbility.add(:ONEDGE,
-  proc { |ability, battler, status|
-      next true if status == :SLEEP && battler.battle.pbWeather == :Moonglow
-  }
-)
-
 BattleHandlers::StatusImmunityAbility.copy(:INSOMNIA, :SWEETVEIL, :VITALSPIRIT)
 
 BattleHandlers::StatusImmunityAbility.add(:LEAFGUARD,
@@ -33,12 +27,6 @@ BattleHandlers::StatusImmunityAbility.add(:LEAFGUARD,
 BattleHandlers::StatusImmunityAbility.add(:LIMBER,
   proc { |ability, _battler, status|
       next true if status == :NUMB
-  }
-)
-
-BattleHandlers::StatusImmunityAbility.add(:MAGMAARMOR,
-  proc { |ability, _battler, status|
-      next true if status == :FROZEN
   }
 )
 
@@ -57,6 +45,12 @@ BattleHandlers::StatusImmunityAbility.add(:ENERGETIC,
 BattleHandlers::StatusImmunityAbility.add(:STABILITY,
   proc { |ability, _battler, status|
       next true if %i[BURN FROSTBITE POISON].include?(status)
+  }
+)
+
+BattleHandlers::StatusImmunityAbility.add(:SEASURVIVOR,
+  proc { |ability, _battler, status|
+      next true if %i[BURN FROSTBITE].include?(status)
   }
 )
 
@@ -87,12 +81,6 @@ BattleHandlers::StatusImmunityAllyAbility.add(:CANDYVEIL,
 BattleHandlers::StatusImmunityAbility.add(:SLICKSURFACE,
   proc { |ability, _battler, status|
       next true if status == :LEECHED
-  }
-)
-
-BattleHandlers::StatusImmunityAbility.add(:STABILITY,
-  proc { |ability, battler, status|
-      next true if battler.battle.pbWeather == :Eclipse
   }
 )
 
