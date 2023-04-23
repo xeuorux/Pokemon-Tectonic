@@ -49,8 +49,9 @@ end
 alias speciesEntry openSingleDexScreen
 
 def unlockDex
-  $Trainer.pokedex.unlock(-1)
-  $Trainer.pokedex.refresh_accessible_dexes()
+	$Trainer.has_pokedex = true
+  	$Trainer.pokedex.unlock(-1)
+  	$Trainer.pokedex.refresh_accessible_dexes()
 end
 
 def describeEvolutionMethod(method,parameter=0)
