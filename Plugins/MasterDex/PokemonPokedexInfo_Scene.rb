@@ -936,29 +936,7 @@ sp.form) && !Settings::DEX_SHOWS_ALL_FORMS
             @sprites["overlay"].bitmap.blt(380, 60, @typebitmap.bitmap, typerect)
 
             # Draw the move's special categories
-            category = ""
-            moveData.flags.split("").each do |flag|
-                case flag
-                when "i"
-                    category = "Bite"
-                when "j"
-                    category = "Punch"
-                when "k"
-                    category = "Sound"
-                when "l"
-                    category = "Powder"
-                when "m"
-                    category = "Pulse"
-                # when 'n'
-                # 	category = "Bomb"
-                when "o"
-                    category = "Dance"
-                when "p"
-                    category = "Blade"
-                when "q"
-                    category = "Wind"
-                end
-            end
+            category = moveData.getCategoryLabel || ""
 
             categoryBase   = Color.new(88, 88, 80)
             categoryShadow = Color.new(168, 184, 184)

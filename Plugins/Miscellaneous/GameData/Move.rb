@@ -47,6 +47,29 @@ module GameData
           return @flags[/y/]
         end
 
+        def getCategoryLabel
+          category = nil
+          @flags.split("").each do |flag|
+            case flag
+            when "i"
+                category = _INTL("Bite")
+            when "j"
+                category = _INTL("Punch")
+            when "k"
+                category = _INTL("Sound")
+            when "m"
+                category = _INTL("Pulse")
+            when "o"
+                category = _INTL("Dance")
+            when "p"
+                category = _INTL("Blade")
+            when "q"
+                category = _INTL("Wind")
+            end
+          end
+          return category
+        end
+
         def can_be_forced?
           return false if [
             "0D4",   # Bide

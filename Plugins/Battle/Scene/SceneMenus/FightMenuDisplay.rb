@@ -39,7 +39,7 @@ class FightMenuDisplay < BattleMenuBase
           @typeBitmap    			    = AnimatedBitmap.new(_INTL("Graphics/Pictures/types"))
           @megaEvoBitmap 			    = AnimatedBitmap.new(_INTL("Graphics/Pictures/Battle/cursor_mega"))
           @shiftBitmap   			    = AnimatedBitmap.new(_INTL("Graphics/Pictures/Battle/cursor_shift"))
-          @moveInfoDisplayBitmap  = AnimatedBitmap.new(_INTL("Graphics/Pictures/move_info_display_wide"))
+          @moveInfoDisplayBitmap  = AnimatedBitmap.new(_INTL("Graphics/Pictures/move_info_display_full"))
           @ppUsageUpBitmap        = AnimatedBitmap.new(_INTL("Graphics/Pictures/Battle/pp_usage_up"))
           @cursorShadeBitmap      = AnimatedBitmap.new(_INTL("Graphics/Pictures/Battle/cursor_fight_shade"))
           # Create background graphic
@@ -342,7 +342,7 @@ class FightMenuDisplay < BattleMenuBase
         effectivenessTextX = 448
         effectivenessTextY = 44
         if move.damagingMove?
-        begin
+          begin
             if move.is_a?(PokeBattle_FixedDamageMove)
             effectivenessDescription = "Neutral"
             effectivenessColor = EFFECTIVENESS_COLORS[3]
@@ -372,13 +372,12 @@ class FightMenuDisplay < BattleMenuBase
             
             effectivenessTextPos = [effectivenessDescription,effectivenessTextX,effectivenessTextY,2,
             effectivenessColor,EFFECTIVENESS_SHADOW_COLOR]
-        rescue
-            effectivenessTextPos = ["ERROR",effectivenessTextX,44,2,TEXT_BASE_COLOR,TEXT_SHADOW_COLOR]
-        end
-
+          rescue
+              effectivenessTextPos = ["ERROR",effectivenessTextX,44,2,TEXT_BASE_COLOR,TEXT_SHADOW_COLOR]
+          end
         # Apply a highlight to moves that are in an extra useful state
         else
-        effectivenessTextPos = ["Status",effectivenessTextX,44,2,TEXT_BASE_COLOR,TEXT_SHADOW_COLOR]
+          effectivenessTextPos = ["Status",effectivenessTextX,44,2,TEXT_BASE_COLOR,TEXT_SHADOW_COLOR]
         end
 
         pbDrawTextPositions(@infoOverlay.bitmap,[effectivenessTextPos]) if !effectivenessTextPos.nil?
@@ -386,43 +385,61 @@ class FightMenuDisplay < BattleMenuBase
         # Extra move info display
         @extraInfoOverlay.bitmap.clear
         overlay = @extraInfoOverlay.bitmap
-        selected_move = GameData::Move.get(move.id)
+        moveData = GameData::Move.get(move.id)
         
         # Write power and accuracy values for selected move
         # Write various bits of text
         base   = Color.new(248,248,248)
         shadow = Color.new(104,104,104)
+        moveInfoLeftColumnLabelX = 14
+        moveInfoRightColumnLabelX = moveInfoLeftColumnLabelX + 184
         textpos = [
-        [_INTL("CATEGORY"),20,0,0,base,shadow],
-        [_INTL("POWER"),20,32,0,base,shadow],
-        [_INTL("ACCURACY"),20,64,0,base,shadow],
-        [_INTL("PP"),20,96,0,base,shadow]
+          [_INTL("CATEGORY"),moveInfoLeftColumnLabelX,0,0,base,shadow],
+          [_INTL("POWER"),moveInfoLeftColumnLabelX,32,0,base,shadow],
+          [_INTL("ACCURACY"),moveInfoLeftColumnLabelX,64,0,base,shadow],
+          [_INTL("PP"),moveInfoLeftColumnLabelX,96,0,base,shadow],
+
+          [_INTL("TYPE"),moveInfoRightColumnLabelX,0,0,base,shadow],
+          [_INTL("TAG"),moveInfoRightColumnLabelX,32,0,base,shadow],
+          [_INTL("TARGETING"),moveInfoRightColumnLabelX,64,0,base,shadow],
         ]
         
         base = Color.new(64,64,64)
         shadow = Color.new(176,176,176)
-        case selected_move.base_damage
-        when 0 then textpos.push(["---", 220, 32, 1, base, shadow])   # Status move
-        when 1 then textpos.push(["???", 220, 32, 1, base, shadow])   # Variable power move
-        else        textpos.push([selected_move.base_damage.to_s, 220, 32, 2, base, shadow])
+        moveInfoLeftColumnX = moveInfoLeftColumnLabelX + 128
+        moveInfoRightColumnX = moveInfoRightColumnLabelX + 128
+        # Base damage
+        case moveData.base_damage
+        when 0 then textpos.push(["---", moveInfoLeftColumnX, 32, 1, base, shadow])   # Status move
+        when 1 then textpos.push(["???", moveInfoLeftColumnX, 32, 1, base, shadow])   # Variable power move
+        else        textpos.push([moveData.base_damage.to_s, moveInfoLeftColumnX, 32, 2, base, shadow])
         end
-        if selected_move.accuracy == 0
-        textpos.push(["---", 220, 64, 1, base, shadow])
+        # Accuracy
+        if moveData.accuracy == 0
+          textpos.push(["---", moveInfoLeftColumnX, 64, 1, base, shadow])
         else
-        textpos.push(["#{selected_move.accuracy}%", 220, 64, 2, base, shadow])
+          textpos.push(["#{moveData.accuracy}%", moveInfoLeftColumnX, 64, 2, base, shadow])
         end
-        if selected_move.total_pp>0
-        ppFraction = [(4.0*move.pp/move.total_pp).ceil,3].min
-        textpos.push([_INTL("{1}/{2}",move.pp,move.total_pp),
-            220,96,2,PP_COLORS[ppFraction*2],PP_COLORS[ppFraction*2+1]])
+        # PP
+        if moveData.total_pp > 0
+          ppFraction = [(4.0*move.pp/move.total_pp).ceil,3].min
+          textpos.push([_INTL("{1}/{2}",move.pp,move.total_pp),moveInfoLeftColumnX, 96, 2, PP_COLORS[ppFraction*2], PP_COLORS[ppFraction*2+1]])
         end
+        # Tags
+        moveCategoryLabel = moveData.getCategoryLabel || "None"
+        textpos.push([moveCategoryLabel, moveInfoRightColumnX, 32, 2, base, shadow])
+        # Targeting
+        textpos.push([GameData::Target.get(moveData.target).real_name,moveInfoRightColumnLabelX + 12, 96, 0, base, shadow])
         # Draw all text
         pbDrawTextPositions(overlay, textpos)
         # Draw selected move's damage category icon
-        imagepos = [["Graphics/Pictures/category", 192, 8, 0, selected_move.category * 28, 64, 28]]
+        imagepos = [["Graphics/Pictures/category", moveInfoLeftColumnX - 28, 8, 0, moveData.category * 28, 64, 28]]
+        pbDrawImagePositions(overlay, imagepos)
+        # Draw selected move's type category icon
+        imagepos = [["Graphics/Pictures/types", moveInfoRightColumnX - 28, 8, 0, GameData::Type.get(moveData.type).id_number * 28, 64, 28]]
         pbDrawImagePositions(overlay, imagepos)
         # Draw selected move's description
-        drawTextEx(overlay,8,140,264,4,selected_move.description,base,shadow)
+        drawTextEx(overlay,8,140,354,4,moveData.description,base,shadow)
     end
   
     def refreshMegaEvolutionButton
