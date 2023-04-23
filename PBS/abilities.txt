@@ -21,7 +21,6 @@
 20,SERENEGRACE,Serene Grace,"Doubles the likelihood of added effects occuring."
 21,SWIFTSWIM,Swift Swim,"Doubles the Pokémon's Speed in rain."
 22,CHLOROPHYLL,Chlorophyll,"Doubles the Pokémon's Speed in sunshine."
-23,QUICKFEET,Quick Feet,"Doubles Speed if there is a status problem. Ignores numb Speed reduction."
 24,POWERUP,Power Up,"Raises the Pokémon's Attack by 50%."
 25,POISONPOINT,Poison Point,"Physical attacks against the Pokémon have a 30% chance to poison the attacker."
 26,INNERFOCUS,Inner Focus,"The Pokémon is protected from flinching, Intimidate, Fascinate, and Frustrate."
@@ -573,3 +572,4 @@
 572,PLASMABALL,Plasma Ball,"Attacks against the Pokémon deal 50% more damage, but the attacker takes 100% recoil."
 573,JASPERCHARGE,Jasper Charge,"Boosts Sp. Atk by 30%, but lowers Sp. Atk by one step after using a special move."
 574,STRAIGHTAHEAD,Straight Ahead,"Ignores Abilities that would affect its moves. Its attacks can't be redirected to new targets."
+757,HYPERSPEED,Hyper Speed,"Doubles Speed. Dashes to avoid hazards when entering."

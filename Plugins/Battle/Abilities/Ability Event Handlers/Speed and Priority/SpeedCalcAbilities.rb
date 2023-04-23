@@ -10,6 +10,12 @@ BattleHandlers::SpeedCalcAbility.add(:QUICKFEET,
   }
 )
 
+BattleHandlers::SpeedCalcAbility.add(:HYPERSPEED,
+  proc { |ability, battler, mult|
+      next mult * 2.0
+  }
+)
+
 BattleHandlers::SpeedCalcAbility.add(:SANDRUSH,
   proc { |ability, battler, mult|
       next mult * 2 if [:Sandstorm].include?(battler.battle.pbWeather)

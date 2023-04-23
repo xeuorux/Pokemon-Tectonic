@@ -78,3 +78,4 @@
 1077,DAZZLING,Dazzling,"Makes foes unable to use priority attacks."
 1078,PASTELVEIL,Pastel Veil,"Protects it and ally Pokémon from being poisoned."
 1079,QUICKDRAW,Quick Draw,"Enables the Pokémon to move first occasionally."
+23,QUICKFEET,Quick Feet,"Doubles Speed if there is a status problem. Ignores numb Speed reduction."
