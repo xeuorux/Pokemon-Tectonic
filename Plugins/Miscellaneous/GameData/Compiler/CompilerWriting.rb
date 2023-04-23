@@ -253,22 +253,22 @@ module Compiler
 
   def write_move(f, m)
     f.write(sprintf("%d,%s,%s,%s,%d,%s,%s,%d,%d,%d,%s,%d,%s,%s,%s\r\n",
-        m.id_number,
-        csvQuote(m.id.to_s),
-        csvQuote(m.real_name),
-        csvQuote(m.function_code),
-        m.base_damage,
-        m.type.to_s,
-        ["Physical", "Special", "Status"][m.category],
-        m.accuracy,
-        m.total_pp,
-        m.effect_chance,
-        m.target,
-        m.priority,
-        csvQuote(m.flags),
-        csvQuoteAlways(m.real_description),
-        m.animation_move.nil? ? "" : m.animation_move.to_s
-      ))
+      m.id_number,
+      csvQuote(m.id.to_s),
+      csvQuote(m.real_name),
+      csvQuote(m.function_code),
+      m.base_damage,
+      m.type.to_s,
+      ["Physical", "Special", "Status"][m.category],
+      m.accuracy,
+      m.total_pp,
+      m.effect_chance,
+      m.target,
+      m.priority,
+      csvQuote(m.flags),
+      csvQuoteAlways(m.real_description),
+      m.animation_move.nil? ? "" : m.animation_move.to_s
+    ))
   end
   
   #=============================================================================
@@ -521,24 +521,35 @@ module Compiler
   def write_abilities
     File.open("PBS/abilities.txt", "wb") { |f|
       add_PBS_header_to_file(f)
-      f.write("\#-------------------------------\r\n")
-      abilityIndex = 0
       GameData::Ability.each do |a|
-        if a.id_number >= 1000 && abilityIndex < 1000
-          abilityIndex = 1000
-        else
-          abilityIndex += 1
-        end
-        f.write(sprintf("%d,%s,%s,%s\r\n",
-          abilityIndex,
-          csvQuote(a.id.to_s),
-          csvQuote(a.real_name),
-          csvQuoteAlways(a.real_description)
-        ))
-        
+        next if a.cut || a.primeval
+        write_ability(f,a)
+      end
+    }
+    File.open("PBS/abilities_cut.txt", "wb") { |f|
+      add_PBS_header_to_file(f)
+      GameData::Ability.each do |a|
+        next unless a.cut
+        write_ability(f,a)
+      end
+    }
+    File.open("PBS/abilities_primeval.txt", "wb") { |f|
+      add_PBS_header_to_file(f)
+      GameData::Ability.each do |a|
+        next unless a.primeval
+        write_ability(f,a)
       end
     }
     Graphics.update
+  end
+
+  def write_ability(f,a)
+    f.write(sprintf("%d,%s,%s,%s\r\n",
+      a.id_number,
+      csvQuote(a.id.to_s),
+      csvQuote(a.real_name),
+      csvQuoteAlways(a.real_description)
+    ))
   end
 
   def write_battle_tower_pokemon(btpokemon,filename)

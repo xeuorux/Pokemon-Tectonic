@@ -98,8 +98,9 @@ module GameData
           return combos[species] && combos[species].include?(@id)
         end
 
-        def allowed?
+        def legal?(isTrainer = false)
           return false if @cut
+          return false if @super && !isTrainer
           return true
         end
     end

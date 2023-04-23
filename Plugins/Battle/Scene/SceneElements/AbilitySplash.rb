@@ -68,7 +68,7 @@ class AbilitySplashBar < SpriteWrapper
 
     def ability=(value)
         abilityData = GameData::Ability.get(value)
-        if abilityData.is_primeval?
+        if abilityData.primeval
             setBGSprite(@bgPrimevalBitmap)
         else
             setBGSprite(@bgBitmap)

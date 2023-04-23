@@ -1,0 +1,3 @@
+﻿# See the documentation on the wiki to learn how to edit this file.
+2001,PRIMEVALSLOWSTART,Primeval Slow Start,"Attack and Speed are halved."
+2002,PRIMEVALIMPOSTER,Primeval Imposter,"Transforms into the entire enemy team, except buffed!"

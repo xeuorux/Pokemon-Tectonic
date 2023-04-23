@@ -39,7 +39,16 @@ module GameData
 
         HAZARD_IMMUNITY_ABILITIES = %i[AQUASNEAK NINJUTSU DANGERSENSE]
 
-        attr_reader :signature_of
+        attr_reader :signature_of, :cut, :primeval
+
+        def initialize(hash)
+          @id               = hash[:id]
+          @id_number        = hash[:id_number]   || -1
+          @real_name        = hash[:name]        || "Unnamed"
+          @real_description = hash[:description] || "???"
+          @cut              = hash[:cut]         || false
+          @primeval         = hash[:primeval]    || false
+        end
 
         # The highest evolution of a line
         def signature_of=(val)
@@ -50,8 +59,10 @@ module GameData
           return !@signature_of.nil?
         end
 
-        def is_primeval?
-          return @id.to_s[/PRIMEVAL/]
+        def legal?(isBoss = false)
+          return false if @cut
+          return false if @primeval && !isBoss
+          return true
         end
     end
   end

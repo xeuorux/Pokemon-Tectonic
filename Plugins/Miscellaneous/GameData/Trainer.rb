@@ -61,11 +61,11 @@ module GameData
 				partyEntry[:moves]&.each do |moveID|
 					moveData = GameData::Move.get(moveID)
 					next if moveData.learnable?
-					raise _INTL("Cut or nonstandard move #{moveID} learnable by a party member of trainer #{trainerName}!")
+					raise _INTL("Illegal move #{moveID} learnable by a party member of trainer #{trainerName}!")
 				end
 
-				if partyEntry[:item] && !GameData::Item.get(partyEntry[:item]).allowed?
-					raise _INTL("Cut or nonstandard item #{partyEntry[:item]} learnable by a party member of trainer #{trainerName}!")
+				if partyEntry[:item] && !GameData::Item.get(partyEntry[:item]).legal?(true)
+					raise _INTL("Illegal #{partyEntry[:item]} learnable by a party member of trainer #{trainerName}!")
 				end
 			end
 		end

@@ -157,6 +157,51 @@ module Compiler
   end
 
   #=============================================================================
+  # Compile ability data
+  #=============================================================================
+  def compile_abilities
+    GameData::Ability::DATA.clear
+    ability_names        = []
+    ability_descriptions = []
+    idBase = 0
+    ["PBS/abilities.txt","PBS/abilities_cut.txt","PBS/abilities_primeval.txt"].each do |path|
+      idNumber = idBase
+      cutAbility = path == "PBS/abilities_cut.txt"
+      primevalAbility = path == "PBS/abilities_primeval.txt"
+      pbCompilerEachPreppedLine(path) { |line, line_no|
+        idNumber += 1
+        line = pbGetCsvRecord(line, line_no, [0, "vnss"])
+        ability_number = idNumber
+        ability_symbol = line[1].to_sym
+        if GameData::Ability::DATA[ability_number]
+          raise _INTL("Ability ID number '{1}' is used twice.\r\n{2}", ability_number, FileLineData.linereport)
+        elsif GameData::Ability::DATA[ability_symbol]
+          raise _INTL("Ability ID '{1}' is used twice.\r\n{2}", ability_symbol, FileLineData.linereport)
+        end
+        # Construct ability hash
+        ability_hash = {
+          :id          => ability_symbol,
+          :id_number   => ability_number,
+          :name        => line[2],
+          :description => line[3],
+          :cut         => cutAbility,
+          :primeval    => primevalAbility,
+        }
+        # Add ability's data to records
+        GameData::Ability.register(ability_hash)
+        ability_names[ability_number]        = ability_hash[:name]
+        ability_descriptions[ability_number] = ability_hash[:description]
+      }
+      idBase += 1000
+    end
+    # Save all data
+    GameData::Ability.save
+    MessageTypes.setMessages(MessageTypes::Abilities, ability_names)
+    MessageTypes.setMessages(MessageTypes::AbilityDescs, ability_descriptions)
+    Graphics.update
+  end
+
+  #=============================================================================
   # Compile move data
   #=============================================================================
   def compile_moves

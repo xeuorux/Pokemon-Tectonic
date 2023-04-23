@@ -85,7 +85,7 @@ module GameData
 		  @dmg_resist		= hash[:dmg_resist] || 0
 		  @aggression		= hash[:aggression] || PokeBattle_AI_Boss::DEFAULT_BOSS_AGGRESSION
 
-		  raise _INTL("The Avatar definition for #{@id} has no firt moves defined!") if @moves1.nil?
+		  raise _INTL("The Avatar definition for #{@id} has no first moves defined!") if @moves1.nil?
 
 		  @num_phases = 1
 		  if @moves2.length > 0 && @moves2.sort != @moves1.sort
@@ -102,6 +102,12 @@ module GameData
 		  end
 
 		  @num_health_bars = hash[:health_bars] || @num_phases
+
+		  @abilities.each do |abilityID|
+			next unless abilityID
+            next if GameData::Ability.get(abilityID).legal?(true)
+            raise _INTL("Cut ability #{abilityID} is assigned to avatar #{@id}!")
+		  end
 		end
 
 		def second_status?

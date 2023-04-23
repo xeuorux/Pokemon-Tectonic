@@ -6,7 +6,7 @@ BattleHandlers::SpeedCalcAbility.add(:CHLOROPHYLL,
 
 BattleHandlers::SpeedCalcAbility.add(:QUICKFEET,
   proc { |ability, battler, mult|
-      next mult * 1.5 if battler.pbHasAnyStatus?
+      next mult * 2.0 if battler.pbHasAnyStatus?
   }
 )
 
