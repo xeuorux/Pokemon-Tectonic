@@ -339,3 +339,52 @@ class PokemonParty_Scene
         return UIHelper.pbChooseNumber(@sprites["helpwindow"], helptext, maximum, initnum) { pbUpdate }
     end
 end
+
+#===============================================================================
+# Teach and forget a move
+#===============================================================================
+def pbLearnMove(pkmn,move,ignoreifknown=false,bymachine=false,&block)
+    return false if !pkmn
+    move = GameData::Move.get(move).id
+    if pkmn.egg? && !$DEBUG
+      pbMessage(_INTL("Eggs can't be taught any moves."),&block)
+      return false
+    end
+    if pkmn.shadowPokemon?
+      pbMessage(_INTL("Shadow Pokémon can't be taught any moves."),&block)
+      return false
+    end
+    pkmnname = pkmn.name
+    movename = GameData::Move.get(move).name
+    if pkmn.hasMove?(move)
+      pbMessage(_INTL("{1} already knows {2}.",pkmnname,movename),&block) if !ignoreifknown
+      return false
+    end
+    if pkmn.numMoves<Pokemon::MAX_MOVES
+      pkmn.learn_move(move)
+      pbMessage(_INTL("\\se[]{1} learned {2}!\\se[Pkmn move learnt]",pkmnname,movename),&block)
+      return true
+    end
+    loop do
+      pbMessage(_INTL("{1} wants to learn {2}, but it already knows {3} moves.\1",
+        pkmnname, movename, pkmn.numMoves.to_word), &block) if !bymachine
+      pbMessage(_INTL("Please choose a move that will be replaced with {1}.",movename),&block)
+      forgetmove = pbForgetMove(pkmn,move)
+      if forgetmove>=0
+        oldmovename = pkmn.moves[forgetmove].name
+        oldmovepp   = pkmn.moves[forgetmove].pp
+        pkmn.moves[forgetmove] = Pokemon::Move.new(move)   # Replaces current/total PP
+        if bymachine && Settings::TAUGHT_MACHINES_KEEP_OLD_PP
+          pkmn.moves[forgetmove].pp = [oldmovepp,pkmn.moves[forgetmove].total_pp].min
+        end
+        pbMessage(_INTL("1, 2, and...\\wt[16] ...\\wt[16] ... Ta-da!\\se[Battle ball drop]\1"),&block)
+        pbMessage(_INTL("{1} forgot how to use {2}.\\nAnd...\1",pkmnname,oldmovename),&block)
+        pbMessage(_INTL("\\se[]{1} learned {2}!\\se[Pkmn move learnt]",pkmnname,movename),&block)
+        pkmn.changeHappiness("machine") if bymachine
+        return true
+    else
+        pbMessage(_INTL("{1} did not learn {2}.",pkmnname,movename),&block)
+        return false
+      end
+    end
+end
