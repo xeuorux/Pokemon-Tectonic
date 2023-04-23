@@ -34,3 +34,14 @@ BattleHandlers::UserItemAfterMoveUse.add(:THROATSPRAY,
       user.pbHeldItemTriggered(item) if user.tryRaiseStat(:SPECIAL_ATTACK, user, item: item, increment: 2)
   }
 )
+
+
+BattleHandlers::UserItemAfterMoveUse.add(:WHETSTONE,
+    proc { |item, user, _targets, move, numHits, battle|
+        next if battle.pbAllFainted?(user.idxOwnSide) ||
+                battle.pbAllFainted?(user.idxOpposingSide)
+        next if !move.bladeMove? || numHits == 0
+        user.pbHeldItemTriggered(item) if user.tryRaiseStat(:ATTACK, user, item: item, increment: 2)
+    }
+  )
+  

@@ -238,57 +238,97 @@
 2237,PROTECTOR,Protector,Protectors,5,2000,"A protective item of some sort. It is extremely stiff and heavy. It is loved by a certain Pokémon.",0,0,0
 2238,ELECTIRIZER,Electirizer,Electirizers,5,2000,"A box packed with a tremendous amount of electric energy. It is loved by a certain Pokémon.",0,0,0
 2239,MAGMARIZER,Magmarizer,Magmarizers,5,2000,"A box packed with a tremendous amount of magma energy. It is loved by a certain Pokémon.",0,0,0
-2240,ETHER,Ether,Ethers,2,1200,"It restores the PP of a Pokémon's selected move by a maximum of 10 points.",1,0,0
-2241,MAXETHER,Max Ether,Max Ethers,2,2000,"It fully restores the PP of a single selected move that has been learned by the target Pokémon.",1,0,0
-2242,ELIXIR,Elixir,Elixirs,2,3000,"It restores the PP of all the moves learned by the targeted Pokémon by 10 points each.",1,0,0
-2243,MAXELIXIR,Max Elixir,Max Elixirs,2,4500,"It fully restores the PP of all the moves learned by the targeted Pokémon.",1,0,0
-2244,NETBALL,Net Ball,Net Balls,3,400,"A somewhat different Poké Ball that works at 3.5x strength on Water- and Bug-type Pokémon.",0,4,4
-2245,DIVEBALL,Dive Ball,Dive Balls,3,400,"A somewhat different Poké Ball that works at a 3.5x strength on Pokémon that live underwater.",0,4,4
-2246,DUSKBALL,Dusk Ball,Dusk Balls,3,400,"A somewhat different Poké Ball which has 3x strength at night or in dark places like caves.",0,4,4
-2247,FASTBALL,Fast Ball,Fast Balls,3,300,"A Poké Ball with 4x strength against Pokémon species with 100 or more base Speed.",0,4,4
-2248,LEVELBALL,Level Ball,Level Balls,3,300,"A Poké Ball with much higher strength the higher your Pokémon's level is above the target.",0,4,4
-2249,LUREBALL,Lure Ball,Lure Balls,3,300,"A Poké Ball with 5x strength against Pokémon encountered through fishing.",0,4,4
-2250,HEAVYBALL,Heavy Ball,Heavy Balls,3,300,"A Poké Ball whose strength varies with the Pokémon's weight.",0,4,4
-2251,LOVEBALL,Love Ball,Love Balls,3,300,"A Poké Ball with 8x strength against Pokémon that are the opposite gender, but same species, as yours.",0,4,4
-2252,MOONBALL,Moon Ball,Moon Balls,3,300,"A Poké Ball with 4x strength against Pokémon evolve with or from using a Moon Stone.",0,4,4
-2253,FIGYBERRY,Figy Berry,Figy Berries,5,0,"If held by a Pokémon, it restores the user's HP in a pinch, but will cause confusion if it hates the taste.",0,0,5
-2254,WIKIBERRY,Wiki Berry,Wiki Berries,5,0,"If held by a Pokémon, it restores the user's HP in a pinch, but will cause confusion if it hates the taste.",0,0,5
-2255,MAGOBERRY,Mago Berry,Mago Berries,5,0,"If held by a Pokémon, it restores the user's HP in a pinch, but will cause confusion if it hates the taste.",0,0,5
-2256,AGUAVBERRY,Aguav Berry,Aguav Berries,5,0,"If held by a Pokémon, it restores the user's HP in a pinch, but will cause confusion if it hates the taste.",0,0,5
-2257,IAPAPABERRY,Iapapa Berry,Iapapa Berries,5,0,"If held by a Pokémon, it restores the user's HP in a pinch, but will cause confusion if it hates the taste.",0,0,5
-2258,RAZZBERRY,Razz Berry,Razz Berries,5,0,"In the Sinnoh region, they like to make sweets known as Poffins with this Berry.",0,0,5
-2259,BLUKBERRY,Bluk Berry,Bluk Berries,5,0,"In the Sinnoh region, they like to make sweets known as Poffins with this Berry.",0,0,5
-2260,NANABBERRY,Nanab Berry,Nanab Berries,5,0,"In the Sinnoh region, they like to make sweets known as Poffins with this Berry.",0,0,5
-2261,WEPEARBERRY,Wepear Berry,Wepear Berries,5,0,"In the Sinnoh region, they like to make sweets known as Poffins with this Berry.",0,0,5
-2262,PINAPBERRY,Pinap Berry,Pinap Berries,5,0,"In the Sinnoh region, they like to make sweets known as Poffins with this Berry.",0,0,5
-2263,POMEGBERRY,Pomeg Berry,Pomeg Berries,5,0,"Using it on a Pokémon makes it more friendly, but it also lowers its base HP.",1,0,5
-2264,KELPSYBERRY,Kelpsy Berry,Kelpsy Berries,5,0,"Using it on a Pokémon makes it more friendly, but it also lowers its base Attack stat.",1,0,5
-2265,QUALOTBERRY,Qualot Berry,Qualot Berries,5,0,"Using it on a Pokémon makes it more friendly, but it also lowers its base Defense stat.",1,0,5
-2266,HONDEWBERRY,Hondew Berry,Hondew Berries,5,0,"Using it on a Pokémon makes it more friendly, but it also lowers its base Sp. Atk stat.",1,0,5
-2267,GREPABERRY,Grepa Berry,Grepa Berries,5,0,"Using it on a Pokémon makes it more friendly, but it also lowers its base Sp. Def stat.",1,0,5
-2268,TAMATOBERRY,Tamato Berry,Tamato Berries,5,0,"Using it on a Pokémon makes it more friendly, but it also lowers its base Speed stat.",1,0,5
-2269,CORNNBERRY,Cornn Berry,Cornn Berries,5,0,"In the Sinnoh region, they like to make sweets known as Poffins with this Berry.",0,0,5
-2270,MAGOSTBERRY,Magost Berry,Magost Berries,5,0,"In the Sinnoh region, they like to make sweets known as Poffins with this Berry.",0,0,5
-2271,RABUTABERRY,Rabuta Berry,Rabuta Berries,5,0,"In the Sinnoh region, they like to make sweets known as Poffins with this Berry.",0,0,5
-2272,NOMELBERRY,Nomel Berry,Nomel Berries,5,0,"In the Sinnoh region, they like to make sweets known as Poffins with this Berry.",0,0,5
-2273,PAMTREBERRY,Pamtre Berry,Pamtre Berries,5,0,"In the Sinnoh region, they like to make sweets known as Poffins with this Berry.",0,0,5
-2274,WATMELBERRY,Watmel Berry,Watmel Berries,5,0,"In the Sinnoh region, they like to make sweets known as Poffins with this Berry.",0,0,5
-2275,DURINBERRY,Durin Berry,Durin Berries,5,0,"In the Sinnoh region, they like to make sweets known as Poffins with this Berry.",0,0,5
-2276,BELUEBERRY,Belue Berry,Belue Berries,5,0,"In the Sinnoh region, they like to make sweets known as Poffins with this Berry.",0,0,5
-2277,ITEMFINDER,Itemfinder,Itemfinders,8,0,"A device used for finding items. If there is a hidden item nearby when it is used, it emits a signal.",2,0,6
-2278,DOWSINGMACHINE,Dowsing Machine,Dowsing Machines,8,0,"It checks for unseen items in the area and makes noise and lights when it finds something.",2,0,6
-2279,POKERADAR,Poké Radar,Poké Radars,8,0,"A tool that can search out Pokémon that are hiding in grass. Its battery is recharged as you walk.",2,0,6
-2280,POKEFLUTE,Poké Flute,Poké Flutes,8,0,"A flute that is said to instantly awaken any Pokémon. It has a lovely tone.",5,0,6
-2281,COINCASE,Coin Case,Coin Cases,8,0,"A case for holding coins obtained at the Game Corner. It holds up to 50,000 coins.",2,0,6
-2282,SOOTSACK,Soot Sack,Soot Sacks,8,0,"A sack used to gather and hold volcanic ash.",0,0,6
-2283,SILPHSCOPE,Silph Scope,Silph Scopes,8,0,"A scope that makes unseeable Pokémon visible. It is made by Silph Co.",0,0,6
-2284,DEVONSCOPE,Devon Scope,Devon Scopes,8,0,"A device by Devon that signals any unseeable Pokémon.",0,0,6
-2285,SQUIRTBOTTLE,Squirt Bottle,Squirt Bottles,8,0,"A watering can shaped like a Squirtle. It helps promote healthy growth of Berries planted in soft soil.",0,0,6
-2286,SPRAYDUCK,Sprayduck,Sprayducks,8,0,"A watering can shaped like a Psyduck. It helps promote healthy growth of Berries planted in soft soil.",0,0,6
-2287,WAILMERPAIL,Wailmer Pail,Wailmer Pails,8,0,"A nifty watering pail. Use it to promote strong growth in Berries planted in soft soil.",0,0,6
-2288,OVALCHARM,Oval Charm,Oval Charms,8,0,"An oval charm said to increase the chance of Eggs being found at the Day Care.",0,0,6
-2289,SAFETYGOGGLES,Safety Goggles,Safety Goggles,5,4000,"An item to be held by a Pokémon. They protect the holder from weather-related damage and powder.",0,0,0
-2290,PROTECTIVEPADS,Protective Pads,Protective Pads,5,4000,"An item to be held by a Pokémon. They protect the holder from effects caused by making contact.",0,0,0
-2291,BUSTEDRADIO,Busted Radio,Busted Radios,5,4000,"Damages attackers for 1/6th of their HP when they hit the holder with special attacks.",0,0,0
-2292,GUARDLOCK,Guard Lock,Guard Locks,5,4000,"A held item. In battles, it sets the holder's base Defense stat to 95.",0,0,0
-2293,WILLLOCK,Will Lock,Will Locks,5,4000,"A held item. In battles, it sets the holder's base Sp. Def stat to 95.",0,0,0
+2240,SWEETAPPLE,Sweet Apple,Sweet Apples,1,2200,"A peculiar apple that can make a certain species of Pokémon evolve. It's exceptionally sweet.",1,0,7
+2241,TARTAPPLE,Sweet Apple,Sweet Apples,1,2200,"A peculiar apple that can make a certain species of Pokémon evolve. It's exceptionally tart.",1,0,7
+2242,CRACKEDPOT,Cracked Pot,Cracked Pot,1,1600,"A peculiar teapot that can make a certain species of Pokémon evolve. It may be cracked, but tea poured from it is delicious.",1,0,7
+2243,CHIPPEDPOT,Chipped Pot,Chipped Pots,1,1600,"A peculiar teapot that can make a certain species of Pokémon evolve. It's chipped, but tea poured from it is delicious.",1,0,7
+2244,STRAWBERRYSWEET,Strawberry Sweet,Strawberry Sweets,1,500,"A strawberry-shaped sweet. When a Milcery holds this, it will spin around happily.",0,0,13
+2245,LOVESWEET,Love Sweet,Love Sweets,1,500,"A heart-shaped sweet. When a Milcery holds this, it spins around happily.",0,0,13
+2246,BERRYSWEET,Berry Sweet,Berry Sweets,1,500,"A berry-shaped sweet. When a Milcery holds this, it spins around happily.",0,0,13
+2247,CLOVERSWEET,Clover Sweet,Clover Sweets,1,500,"A clover-shaped sweet. When a Milcery holds this, it spins around happily.",0,0,13
+2248,FLOWERSWEET,Flower Sweet,Flower Sweets,1,500,"A flower-shaped sweet. When a Milcery holds this, it spins around happily.",0,0,13
+2249,STARSWEET,Star Sweet,Star Sweets,1,500,"A star-shaped sweet. When a Milcery holds this, it spins around happily.",0,0,13
+2250,RIBBONSWEET,Ribbon Sweet,Ribbon Sweets,1,500,"A ribbon-shaped sweet. When a Milcery holds this, it spins around happily.",0,0,13
+2251,GALARICACUFF,Galarica Cuff,Galarica Cuffs,1,3000,"A cuff made from woven-together Galarica Twigs. Giving it to Galarian Slowpoke makes the Pokémon very happy.",1,0,7
+2252,ROTOMCATALOG,Rotom Catalogue,Rotom Catalogues,8,0,"A catalog of devices that Rotom like and can hop in and out of to change their form.",5,0,6
+2253,ETHER,Ether,Ethers,2,1200,"It restores the PP of a Pokémon's selected move by a maximum of 10 points.",1,0,0
+2254,MAXETHER,Max Ether,Max Ethers,2,2000,"It fully restores the PP of a single selected move that has been learned by the target Pokémon.",1,0,0
+2255,ELIXIR,Elixir,Elixirs,2,3000,"It restores the PP of all the moves learned by the targeted Pokémon by 10 points each.",1,0,0
+2256,MAXELIXIR,Max Elixir,Max Elixirs,2,4500,"It fully restores the PP of all the moves learned by the targeted Pokémon.",1,0,0
+2257,NETBALL,Net Ball,Net Balls,3,400,"A somewhat different Poké Ball that works at 3.5x strength on Water- and Bug-type Pokémon.",0,4,4
+2258,DIVEBALL,Dive Ball,Dive Balls,3,400,"A somewhat different Poké Ball that works at a 3.5x strength on Pokémon that live underwater.",0,4,4
+2259,DUSKBALL,Dusk Ball,Dusk Balls,3,400,"A somewhat different Poké Ball which has 3x strength at night or in dark places like caves.",0,4,4
+2260,FASTBALL,Fast Ball,Fast Balls,3,300,"A Poké Ball with 4x strength against Pokémon species with 100 or more base Speed.",0,4,4
+2261,LEVELBALL,Level Ball,Level Balls,3,300,"A Poké Ball with much higher strength the higher your Pokémon's level is above the target.",0,4,4
+2262,LUREBALL,Lure Ball,Lure Balls,3,300,"A Poké Ball with 5x strength against Pokémon encountered through fishing.",0,4,4
+2263,HEAVYBALL,Heavy Ball,Heavy Balls,3,300,"A Poké Ball whose strength varies with the Pokémon's weight.",0,4,4
+2264,LOVEBALL,Love Ball,Love Balls,3,300,"A Poké Ball with 8x strength against Pokémon that are the opposite gender, but same species, as yours.",0,4,4
+2265,MOONBALL,Moon Ball,Moon Balls,3,300,"A Poké Ball with 4x strength against Pokémon evolve with or from using a Moon Stone.",0,4,4
+2266,FIGYBERRY,Figy Berry,Figy Berries,5,0,"If held by a Pokémon, it restores the user's HP in a pinch, but will cause confusion if it hates the taste.",0,0,5
+2267,WIKIBERRY,Wiki Berry,Wiki Berries,5,0,"If held by a Pokémon, it restores the user's HP in a pinch, but will cause confusion if it hates the taste.",0,0,5
+2268,MAGOBERRY,Mago Berry,Mago Berries,5,0,"If held by a Pokémon, it restores the user's HP in a pinch, but will cause confusion if it hates the taste.",0,0,5
+2269,AGUAVBERRY,Aguav Berry,Aguav Berries,5,0,"If held by a Pokémon, it restores the user's HP in a pinch, but will cause confusion if it hates the taste.",0,0,5
+2270,IAPAPABERRY,Iapapa Berry,Iapapa Berries,5,0,"If held by a Pokémon, it restores the user's HP in a pinch, but will cause confusion if it hates the taste.",0,0,5
+2271,RAZZBERRY,Razz Berry,Razz Berries,5,0,"In the Sinnoh region, they like to make sweets known as Poffins with this Berry.",0,0,5
+2272,BLUKBERRY,Bluk Berry,Bluk Berries,5,0,"In the Sinnoh region, they like to make sweets known as Poffins with this Berry.",0,0,5
+2273,NANABBERRY,Nanab Berry,Nanab Berries,5,0,"In the Sinnoh region, they like to make sweets known as Poffins with this Berry.",0,0,5
+2274,WEPEARBERRY,Wepear Berry,Wepear Berries,5,0,"In the Sinnoh region, they like to make sweets known as Poffins with this Berry.",0,0,5
+2275,PINAPBERRY,Pinap Berry,Pinap Berries,5,0,"In the Sinnoh region, they like to make sweets known as Poffins with this Berry.",0,0,5
+2276,POMEGBERRY,Pomeg Berry,Pomeg Berries,5,0,"Using it on a Pokémon makes it more friendly, but it also lowers its base HP.",1,0,5
+2277,KELPSYBERRY,Kelpsy Berry,Kelpsy Berries,5,0,"Using it on a Pokémon makes it more friendly, but it also lowers its base Attack stat.",1,0,5
+2278,QUALOTBERRY,Qualot Berry,Qualot Berries,5,0,"Using it on a Pokémon makes it more friendly, but it also lowers its base Defense stat.",1,0,5
+2279,HONDEWBERRY,Hondew Berry,Hondew Berries,5,0,"Using it on a Pokémon makes it more friendly, but it also lowers its base Sp. Atk stat.",1,0,5
+2280,GREPABERRY,Grepa Berry,Grepa Berries,5,0,"Using it on a Pokémon makes it more friendly, but it also lowers its base Sp. Def stat.",1,0,5
+2281,TAMATOBERRY,Tamato Berry,Tamato Berries,5,0,"Using it on a Pokémon makes it more friendly, but it also lowers its base Speed stat.",1,0,5
+2282,CORNNBERRY,Cornn Berry,Cornn Berries,5,0,"In the Sinnoh region, they like to make sweets known as Poffins with this Berry.",0,0,5
+2283,MAGOSTBERRY,Magost Berry,Magost Berries,5,0,"In the Sinnoh region, they like to make sweets known as Poffins with this Berry.",0,0,5
+2284,RABUTABERRY,Rabuta Berry,Rabuta Berries,5,0,"In the Sinnoh region, they like to make sweets known as Poffins with this Berry.",0,0,5
+2285,NOMELBERRY,Nomel Berry,Nomel Berries,5,0,"In the Sinnoh region, they like to make sweets known as Poffins with this Berry.",0,0,5
+2286,PAMTREBERRY,Pamtre Berry,Pamtre Berries,5,0,"In the Sinnoh region, they like to make sweets known as Poffins with this Berry.",0,0,5
+2287,WATMELBERRY,Watmel Berry,Watmel Berries,5,0,"In the Sinnoh region, they like to make sweets known as Poffins with this Berry.",0,0,5
+2288,DURINBERRY,Durin Berry,Durin Berries,5,0,"In the Sinnoh region, they like to make sweets known as Poffins with this Berry.",0,0,5
+2289,BELUEBERRY,Belue Berry,Belue Berries,5,0,"In the Sinnoh region, they like to make sweets known as Poffins with this Berry.",0,0,5
+2290,ITEMFINDER,Itemfinder,Itemfinders,8,0,"A device used for finding items. If there is a hidden item nearby when it is used, it emits a signal.",2,0,6
+2291,DOWSINGMACHINE,Dowsing Machine,Dowsing Machines,8,0,"It checks for unseen items in the area and makes noise and lights when it finds something.",2,0,6
+2292,POKERADAR,Poké Radar,Poké Radars,8,0,"A tool that can search out Pokémon that are hiding in grass. Its battery is recharged as you walk.",2,0,6
+2293,POKEFLUTE,Poké Flute,Poké Flutes,8,0,"A flute that is said to instantly awaken any Pokémon. It has a lovely tone.",5,0,6
+2294,COINCASE,Coin Case,Coin Cases,8,0,"A case for holding coins obtained at the Game Corner. It holds up to 50,000 coins.",2,0,6
+2295,SOOTSACK,Soot Sack,Soot Sacks,8,0,"A sack used to gather and hold volcanic ash.",0,0,6
+2296,SILPHSCOPE,Silph Scope,Silph Scopes,8,0,"A scope that makes unseeable Pokémon visible. It is made by Silph Co.",0,0,6
+2297,DEVONSCOPE,Devon Scope,Devon Scopes,8,0,"A device by Devon that signals any unseeable Pokémon.",0,0,6
+2298,SQUIRTBOTTLE,Squirt Bottle,Squirt Bottles,8,0,"A watering can shaped like a Squirtle. It helps promote healthy growth of Berries planted in soft soil.",0,0,6
+2299,SPRAYDUCK,Sprayduck,Sprayducks,8,0,"A watering can shaped like a Psyduck. It helps promote healthy growth of Berries planted in soft soil.",0,0,6
+2300,WAILMERPAIL,Wailmer Pail,Wailmer Pails,8,0,"A nifty watering pail. Use it to promote strong growth in Berries planted in soft soil.",0,0,6
+2301,OVALCHARM,Oval Charm,Oval Charms,8,0,"An oval charm said to increase the chance of Eggs being found at the Day Care.",0,0,6
+2302,SAFETYGOGGLES,Safety Goggles,Safety Goggles,5,4000,"An item to be held by a Pokémon. They protect the holder from weather-related damage and powder.",0,0,0
+2303,PROTECTIVEPADS,Protective Pads,Protective Pads,5,4000,"An item to be held by a Pokémon. They protect the holder from effects caused by making contact.",0,0,0
+2304,BUSTEDRADIO,Busted Radio,Busted Radios,5,4000,"Damages attackers for 1/6th of their HP when they hit the holder with special attacks.",0,0,0
+2305,GUARDLOCK,Guard Lock,Guard Locks,5,4000,"A held item. In battles, it sets the holder's base Defense stat to 95.",0,0,0
+2306,WILLLOCK,Will Lock,Will Locks,5,4000,"A held item. In battles, it sets the holder's base Sp. Def stat to 95.",0,0,0
+2307,LONELYMINT,Lonely Mint,Lonely Mints,1,20,"When a Pokémon smells this mint, its Attack will grow more easily, but its Defense will grow more slowly.",1,0,0
+2308,ADAMANTMINT,Adamant Mint,Adamant Mints,1,20,"When a Pokémon smells this mint, its Attack will grow more easily, but its Sp. Atk will grow more slowly.",1,0,0
+2309,NAUGHTYMINT,Naughty Mint,Naughty Mints,1,20,"When a Pokémon smells this mint, its Attack will grow more easily, but its Sp. Def will grow more slowly.",1,0,0
+2310,BRAVEMINT,Brave Mint,Brave Mints,1,20,"When a Pokémon smells this mint, its Attack will grow more easily, but its Speed will grow more slowly.",1,0,0
+2311,BOLDMINT,Bold Mint,Bold Mints,1,20,"When a Pokémon smells this mint, its Defense will grow more easily, but its Attack will grow more slowly.",1,0,0
+2312,IMPISHMINT,Impish Mint,Impish Mints,1,20,"When a Pokémon smells this mint, its Defense will grow more easily, but its Sp. Atk will grow more slowly.",1,0,0
+2313,LAXMINT,Lax Mint,Lax Mints,1,20,"When a Pokémon smells this mint, its Defense will grow more easily, but its Sp. Def will grow more slowly.",1,0,0
+2314,RELAXEDMINT,Relaxed Mint,Relaxed Mints,1,20,"When a Pokémon smells this mint, its Defense will grow more easily, but its Speed will grow more slowly.",1,0,0
+2315,MODESTMINT,Modest Mint,Modest Mints,1,20,"When a Pokémon smells this mint, its Sp. Atk will grow more easily, but its Attack will grow more slowly.",1,0,0
+2316,MILDMINT,Mild Mint,Mild Mints,1,20,"When a Pokémon smells this mint, its Sp. Atk will grow more easily, but its Defense will grow more slowly.",1,0,0
+2317,RASHMINT,Rash Mint,Rash Mints,1,20,"When a Pokémon smells this mint, its Sp. Atk will grow more easily, but its Sp. Def will grow more slowly.",1,0,0
+2318,QUIETMINT,Quiet Mint,Quiet Mints,1,20,"When a Pokémon smells this mint, its Sp. Atk will grow more easily, but its Speed will grow more slowly.",1,0,0
+2319,CALMMINT,Calm Mint,Calm Mints,1,20,"When a Pokémon smells this mint, its Sp. Def will grow more easily, but its Attack will grow more slowly.",1,0,0
+2320,GENTLEMINT,Gentle Mint,Gentle Mints,1,20,"When a Pokémon smells this mint, its Sp. Def will grow more easily, but its Defense will grow more slowly.",1,0,0
+2321,CAREFULMINT,Careful Mint,Careful Mints,1,20,"When a Pokémon smells this mint, its Sp. Def will grow more easily, but its Sp. Atk will grow more slowly.",1,0,0
+2322,SASSYMINT,Sassy Mint,Sassy Mints,1,20,"When a Pokémon smells this mint, its Sp. Def will grow more easily, but its Speed will grow more slowly.",1,0,0
+2323,TIMIDMINT,Timid Mint,Timid Mints,1,20,"When a Pokémon smells this mint, its Speed will grow more easily, but its Attack will grow more slowly.",1,0,0
+2324,HASTYMINT,Hasty Mint,Hasty Mints,1,20,"When a Pokémon smells this mint, its Speed will grow more easily, but its Defense will grow more slowly.",1,0,0
+2325,JOLLYMINT,Jolly Mint,Jolly Mints,1,20,"When a Pokémon smells this mint, its Speed will grow more easily, but its Sp. Atk will grow more slowly.",1,0,0
+2326,NAIVEMINT,Naive Mint,Naive Mints,1,20,"When a Pokémon smells this mint, its Speed will grow more easily, but its Sp. Def will grow more slowly.",1,0,0
+2327,SERIOUSMINT,Serious Mint,Serious Mints,1,20,"When a Pokémon smells this mint, all of its stats will grow at an equal rate.",1,0,0
+2328,ABILITYPATCH,Ability Patch,Ability Patches,2,20000,"A patch that allows a Pokémon with a regular Ability to have a rare Ability.",1,0,0
+2329,TM200,TM200,TM200s,4,6000,"The target is cut with a scythe or claw. It can also be used to cut down thin trees.",3,0,0,CUT
+2330,TM201,TM201,TM201s,4,6000,"The user soars, then strikes on the second turn. It can also be used to fly to any familiar town.",3,0,0,FLY
+2331,TM202,TM202,TM202s,4,6000,"It swamps the area around the user with a giant wave. It can also be used for crossing water.",3,0,0,BUBBLEBLAST
+2332,TM203,TM203,TM203s,4,6000,"The target is slugged with a punch thrown at maximum power. This move can also be used to move boulders.",3,0,0,STRENGTH
+2333,TM204,TM204,TM204s,4,6000,"The user charges the target at an awesome speed. It can also be used to climb a waterfall.",3,0,0,WATERFALL

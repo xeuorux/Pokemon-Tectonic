@@ -139,7 +139,7 @@ class PokeBattle_Move
     def pulseMove?;         return @flags[/m/]; end
     def bombMove?;          return @flags[/n/]; end
     def danceMove?;         return @flags[/o/]; end
-    def slashMove?;         return @flags[/p/]; end
+    def bladeMove?;         return @flags[/p/]; end
     def windMove?;          return @flags[/q/]; end
     def empoweredMove?;     return @flags[/y/]; end
 

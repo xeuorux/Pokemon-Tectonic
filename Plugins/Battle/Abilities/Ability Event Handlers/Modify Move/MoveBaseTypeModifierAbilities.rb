@@ -55,7 +55,7 @@ BattleHandlers::MoveBaseTypeModifierAbility.add(:FROSTSONG,
 
 BattleHandlers::MoveBaseTypeModifierAbility.add(:BLADETRAINED,
     proc { |ability, _user, move, _type|
-        next unless move.slashMove?
+        next unless move.bladeMove?
         next unless GameData::Type.exists?(:FIGHTING)
         move.powerBoost = true
         next :FIGHTING

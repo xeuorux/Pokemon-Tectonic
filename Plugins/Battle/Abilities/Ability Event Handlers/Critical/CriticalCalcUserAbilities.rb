@@ -12,7 +12,7 @@ BattleHandlers::CriticalCalcUserAbility.add(:STAMPEDE,
 
 BattleHandlers::CriticalCalcUserAbility.add(:RAZORSEDGE,
   proc { |ability, _user, _target, move, c|
-      next c + 1 if move.slashMove?
+      next c + 1 if move.bladeMove?
   }
 )
 
