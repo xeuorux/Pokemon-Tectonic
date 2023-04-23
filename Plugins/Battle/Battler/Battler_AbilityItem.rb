@@ -326,6 +326,8 @@ class PokeBattle_Battler
     end
 
     def pbItemHPHealCheck(item_to_use = nil, fling = false)
+        return if afraid?
+
         # Check for berry filching
         unless item_to_use
             eachActiveItem do |item|
