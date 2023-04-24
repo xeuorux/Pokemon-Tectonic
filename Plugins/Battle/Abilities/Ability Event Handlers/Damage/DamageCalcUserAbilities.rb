@@ -260,7 +260,7 @@ BattleHandlers::DamageCalcUserAbility.add(:LOUD,
 )
 BattleHandlers::DamageCalcUserAbility.add(:SHARPNESS,
   proc { |ability, _user, _target, move, mults, _baseDmg, _type, _aiCheck|
-      mults[:base_damage_multiplier] *= 1.5 if move.bladeMove?
+      mults[:base_damage_multiplier] *= 1.3 if move.bladeMove?
   }
 )
 
