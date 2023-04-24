@@ -592,7 +592,7 @@ class PokeBattle_Move_632 < PokeBattle_Move_032
 end
 
 # Empowered Swords Dance
-class PokeBattle_Move_632 < PokeBattle_Move_02E
+class PokeBattle_Move_633 < PokeBattle_Move_02E
     include EmpoweredMove
 
     def pbEffectGeneral(user)

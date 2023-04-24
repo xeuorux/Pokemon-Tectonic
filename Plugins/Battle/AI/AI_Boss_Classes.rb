@@ -458,7 +458,7 @@ class PokeBattle_AI_Sawsbuck < PokeBattle_AI_Boss
                 newForm = (user.form + 1) % 4
                 formChangeMessage = _INTL("The season shifts!")
                 user.pbChangeForm(newForm, formChangeMessage)
-                newMoveset = MOVESETS[newForm-1].clone
+                newMoveset = MOVESETS[newForm].clone
                 newMoveset.push(:PRIMEVALGROWL) if user.avatarPhase == 1
                 user.assignMoveset(newMoveset)
             end

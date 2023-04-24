@@ -728,7 +728,7 @@ class PokeBattle_Move_031 < PokeBattle_StatUpMove
 end
 
 #===============================================================================
-# Increases the user's Special Attack by 4 steps. (Nasty Plot)
+# Increases the user's Special Attack by 4 steps. (Dream Dance)
 #===============================================================================
 class PokeBattle_Move_032 < PokeBattle_StatUpMove
     def initialize(battle, move)

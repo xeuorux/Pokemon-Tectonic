@@ -89,13 +89,13 @@ module GameData
 		  raise _INTL("The Avatar definition for #{@id} has no first moves defined!") if @moves1.nil?
 
 		  @num_phases = 1
-		  if @moves2.length > 0 && @moves2.sort != @moves1.sort
+		  if @moves2.length > 0
 			@num_phases += 1
-			if @moves3.length > 0 && @moves3.sort != @moves2.sort
+			if @moves3.length > 0
 				@num_phases += 1
-				if @moves4.length > 0 && @moves4.sort != @moves3.sort
+				if @moves4.length > 0
 					@num_phases += 1
-					if @moves5.length > 0 && @moves5.sort != @moves4.sort
+					if @moves5.length > 0
 						@num_phases += 1
 					end
 				end
