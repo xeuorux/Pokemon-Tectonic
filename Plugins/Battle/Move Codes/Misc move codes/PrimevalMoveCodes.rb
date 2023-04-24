@@ -25,21 +25,6 @@ module EmpoweredMove
     end
 end
 
-# # Empowered Heal Bell
-# class PokeBattle_Move_600 < PokeBattle_Move_019
-#     include EmpoweredMove
-
-#     def pbEffectGeneral(user)
-#         # Double supers here is intentional
-#         super
-#         super
-#         @battle.eachSameSideBattler(user) do |b|
-#             b.applyFractionalHealing(1.0 / 2.0)
-#         end
-#         transformType(user, :NORMAL)
-#     end
-# end
-
 # Empowered Sunshine
 class PokeBattle_Move_601 < PokeBattle_Move_0FF
     include EmpoweredMove
@@ -262,7 +247,6 @@ class PokeBattle_Move_612 < PokeBattle_Move
     def pbEffectGeneral(user)
         super
         user.applyEffect(:EmpoweredEndure, 3)
-        transformType(user, :NORMAL)
     end
 end
 
@@ -578,7 +562,6 @@ class PokeBattle_Move_629 < PokeBattle_Move_042
     def pbEffectGeneral(user)
         super
         user.tryRaiseStat(:ATTACK, user, move: self, increment: 2)
-        transformType(user, :NORMAL)
     end
 end
 
@@ -589,7 +572,33 @@ class PokeBattle_Move_630 < PokeBattle_Move_045
     def pbEffectGeneral(user)
         super
         user.tryRaiseStat(:SPECIAL_ATTACK, user, move: self, increment: 2)
-        transformType(user, :NORMAL)
+    end
+end
+
+# Empowered Yawn
+class PokeBattle_Move_631 < PokeBattle_Move_004
+    include EmpoweredMove
+end
+
+# Empowered Dream Dance
+class PokeBattle_Move_632 < PokeBattle_Move_032
+    include EmpoweredMove
+
+    def pbEffectGeneral(user)
+        super
+        # TODO
+        transformType(user, :FAIRY)
+    end
+end
+
+# Empowered Swords Dance
+class PokeBattle_Move_632 < PokeBattle_Move_02E
+    include EmpoweredMove
+
+    def pbEffectGeneral(user)
+        super
+        # TODO
+        transformType(user, :STEEL)
     end
 end
 

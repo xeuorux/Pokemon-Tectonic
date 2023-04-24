@@ -23773,8 +23773,8 @@ InternalName = ZYGARDE
 Type1 = DRAGON
 Type2 = GROUND
 # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
-BaseStats = 108,100,121,95,81,95
-# Total = 600
+BaseStats = 107,91,121,95,91,95
+# Total = 598
 GenderRate = Genderless
 GrowthRate = Slow
 BaseEXP = 270

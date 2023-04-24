@@ -836,7 +836,7 @@ FormName = Active Mode
 #-------------------------------
 [ZYGARDE,1]
 FormName = 10%
-BaseStats = 54,100,71,115,61,85
+BaseStats = 54,91,71,115,71,85
 Height = 1.2
 Weight = 33.5
 Color = Black
@@ -848,7 +848,7 @@ BattlerEnemyY = 19
 #-------------------------------
 [ZYGARDE,2]
 FormName = Complete
-BaseStats = 216,100,121,85,91,95
+BaseStats = 225,91,121,85,91,95
 Abilities = POWERCONSTRUCT
 Height = 4.5
 Weight = 610.0

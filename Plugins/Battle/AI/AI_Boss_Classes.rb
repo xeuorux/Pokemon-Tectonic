@@ -216,39 +216,6 @@ class PokeBattle_AI_Deoxys < PokeBattle_AI_Boss
     end
 end
 
-class PokeBattle_AI_Zygarde < PokeBattle_AI_Boss
-    FIFTY_PERCENT_MOVESET = %i[COREENFORCER DISCHARGE FLASHCANNON FLAMETHROWER]
-    ONE_HUNDRED_PERCENT_MOVESET = %i[THOUSANDARROWS THOUSANDWAVES TORNADO]
-
-    def initialize(user, battle)
-        super
-        @beginTurn.push(proc { |user, battle, turnCount|
-            if turnCount == 0
-                battle.pbDisplayBossNarration(_INTL("{1} is at 10 percent cell strength!", user.pbThis))
-            elsif turnCount <= 9
-                battle.pbDisplayBossNarration(_INTL("{1} gathers a cell!", user.pbThis))
-                percentStrength = (1 + turnCount) * 10
-                battle.pbDisplayBossNarration(_INTL("{1} is now at at {2} percent cell strength!", user.pbThis,
-percentStrength.to_s))
-
-                if percentStrength == 50
-                    formChangeMessage = _INTL("{1} transforms into its 50 percent form!", user.pbThis)
-                    user.pbChangeForm(0, formChangeMessage)
-                    user.setAbility(:AURABREAK)
-                    user.assignMoveset(FIFTY_PERCENT_MOVESET)
-                elsif percentStrength == 100
-                    formChangeMessage = _INTL("{1} transforms into its 100 percent form!", user.pbThis)
-                    user.pbChangeForm(2, formChangeMessage)
-                    user.setAbility(:AURABREAK)
-                    battle.pbDisplayBossNarration(_INTL("{1} completely regenerates!", user.pbThis))
-                    user.pbRecoverHP(user.totalhp - user.hp)
-                    user.assignMoveset(ONE_HUNDRED_PERCENT_MOVESET)
-                end
-            end
-        })
-    end
-end
-
 ##################################################
 # Other Legends
 ##################################################
@@ -491,7 +458,9 @@ class PokeBattle_AI_Sawsbuck < PokeBattle_AI_Boss
                 newForm = (user.form + 1) % 4
                 formChangeMessage = _INTL("The season shifts!")
                 user.pbChangeForm(newForm, formChangeMessage)
-                user.assignMoveset(MOVESETS[newForm])
+                newMoveset = MOVESETS[newForm-1].clone
+                newMoveset.push(:PRIMEVALGROWL) if user.avatarPhase == 1
+                user.assignMoveset(newMoveset)
             end
         })
     end
@@ -513,7 +482,9 @@ class PokeBattle_AI_Rotom < PokeBattle_AI_Boss
                 newForm = 1 if newForm > 5
                 formChangeMessage = _INTL("The avatar swaps machines!")
                 user.pbChangeForm(newForm, formChangeMessage)
-                user.assignMoveset(MOVESETS[newForm-1])
+                newMoveset = MOVESETS[newForm-1].clone
+                newMoveset.push(:PRIMEVALDAZZLE) if user.avatarPhase == 1
+                user.assignMoveset(newMoveset)
             end
         })
     end

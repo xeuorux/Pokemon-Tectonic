@@ -687,7 +687,7 @@ DarkCave,20
     1,UNOWN_8,37,39
     1,UNOWN_9,37,39
 #-------------------------------
-[219] # Crumbling Canyon F1
+[219] # Stone Nest
 DarkCave,20
     20,AXEW,18,20
     20,EKANS,18,20
@@ -896,7 +896,7 @@ DarkCave,20
     12,POIPOLE,56,59
     12,STAKATAKA,56,59
 #-------------------------------
-[353] # Crumbling Canyon F2
+[353] # Crumbling Canyon B4
 DarkCave,20
     20,LUNATONE,56,59
     20,RHYPERIOR,56,59

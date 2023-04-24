@@ -424,7 +424,7 @@
 1423,SHELLSHELTER,Shell Shelter,5E2,0,WATER,Status,0,30,0,User,0,d,"The user withdraws its body into its hard shell, raises both Defensive stats by two steps and gaining Shell Armor.",WITHDRAW
 1424,TUNEUP,Tune Up,5E3,0,BUG,Status,0,10,0,User,0,d,"The user amps itself up for performance, raising its Sp. Atk and Speed by two steps each.",CALMMIND
 1425,HONESIGHT,Hone Sight,5E4,0,NORMAL,Status,0,12,0,User,0,d,"The user focuses its aim to raise its Sp. Atk and Accuracy by three steps each.",LASERFOCUS
-1426,CURSEDOATH,Cursed Oath,10D,0,GHOST,Status,0,10,0,User,0,,"The user spends 1/4th of their max HP to curse the target, damaging their HP by 1/4th each turn.",CURSE
+1426,CURSEDOATH,Cursed Oath,10D,0,GHOST,Status,0,10,0,NearOther,0,bce,"The user spends 1/4th of their max HP to curse the target, damaging their HP by 1/4th each turn.",CURSE
 1427,MINDSAP,Mind Sap,5E5,0,GRASS,Status,100,10,0,NearOther,0,bce,"Restores its own HP by the target's Attack stat amount, then lowers the target's Attack stat.",STRENGTHSAP
 1428,APPLESURPRISE,Apple Surprise,5F2,45,GRASS,Special,100,10,100,NearOther,1,bef,"An apple falls from high up to strike the foe. Always goes first. Deals double damage in intense Gravity.",GRAVAPPLE
 1429,STARDANCE,Star Dance,5F3,0,PSYCHIC,Status,100,15,0,AllNearFoes,0,bceo,"The user covers the target's body with a mass of down that lowers its Sp. Atk stat by five steps.",COSMICPOWER

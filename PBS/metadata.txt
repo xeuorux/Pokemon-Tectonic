@@ -1283,7 +1283,7 @@ BattleBack = cave3
 Environment = Underwater
 #-------------------------------
 [219]
-# Crumbling Canyon F1
+# Stone Nest
 Outdoor = false
 ShowArea = true
 Bicycle = true
@@ -1852,7 +1852,7 @@ ShowArea = true
 Bicycle = false
 #-------------------------------
 [353]
-# Crumbling Canyon F2
+# Crumbling Canyon B4
 Outdoor = false
 ShowArea = true
 Bicycle = true
