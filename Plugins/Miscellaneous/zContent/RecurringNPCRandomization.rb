@@ -10,7 +10,7 @@ end
 # Alessa - 1
 # Skylar - 2
 # Keoni - 3
-# Eifion - 4 
+# Eifion - 4
 # Candy - 5
 
 RECURRING_NPC_COUNT = 6

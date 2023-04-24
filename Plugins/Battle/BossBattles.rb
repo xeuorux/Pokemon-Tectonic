@@ -42,7 +42,6 @@ def pbAvatarBattleCore(*args)
     Events.onStartBattle.trigger(nil)
     # Generate wild Pokémon based on the species and level
     foeParty = []
-
     respawnFollower = false
     for arg in args
         next unless arg.is_a?(Array)

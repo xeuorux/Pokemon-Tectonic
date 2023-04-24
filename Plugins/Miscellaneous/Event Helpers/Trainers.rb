@@ -1,4 +1,5 @@
 def perfectTrainer(maxTrainerLevel=15)
+	removeSpeaker
 	blackFadeOutIn() {
 		setMySwitch('D',true)
 		setFollowerGone()
@@ -7,6 +8,7 @@ def perfectTrainer(maxTrainerLevel=15)
 end
 
 def perfectAceTrainer(maxTrainerLevel=15)
+	removeSpeaker
 	blackFadeOutIn() {
 		setMySwitch('D',true)
 		setFollowerGone()
@@ -15,6 +17,7 @@ def perfectAceTrainer(maxTrainerLevel=15)
 end
 
 def perfectDoubleTrainer(event1,event2,maxTrainerLevel = 15)
+	removeSpeaker
 	blackFadeOutIn() {
 		setMySwitch('D',true)
 		pbSetSelfSwitch(event1,'D',true)

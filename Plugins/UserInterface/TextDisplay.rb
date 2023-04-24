@@ -87,7 +87,7 @@ def pbMessageDisplay(msgwindow,message,letterbyletter=true,commandProc=nil)
   ### Controls
   textchunks=[]
   controls=[]
-  while text[/(?:\\(f|ff|i|ts|cl|me|se|wt|wtnp|ch)\[([^\]]*)\]|\\(g|cn|pt|wd|wm|op|cl|wu|or|ss|\.|\||\!|\^))/i]
+  while text[/(?:\\(f|ff|i|ts|cl|me|se|wt|wtnp|ch)\[([^\]]*)\]|\\(g|cn|pt|wd|wm|wu|wl|wr|op|cl|or|ss|\.|\||\!|\^))/i]
     textchunks.push($~.pre_match)
     if $~[1]
       controls.push([$~[1].downcase,$~[2],-1])
@@ -178,6 +178,11 @@ def pbMessageDisplay(msgwindow,message,letterbyletter=true,commandProc=nil)
   msgwindow.text = text
   Graphics.frame_reset if Graphics.frame_rate>40
   loop do
+    if $SpeakerNameWindow
+      pbPositionNearMsgWindow($SpeakerNameWindow,msgwindow,:left)
+      $SpeakerNameWindow.y = $SpeakerNameWindow.y + 8
+      $SpeakerNameWindow.visible = true
+    end
     if signWaitCount > 0
       signWaitCount -= 1
       signWaitCount = 0 if Input.trigger?(Input::USE)
@@ -234,23 +239,31 @@ def pbMessageDisplay(msgwindow,message,letterbyletter=true,commandProc=nil)
       when "pt"     # Display battle points window
         battlepointswindow.dispose if battlepointswindow
         battlepointswindow = pbDisplayBattlePointsWindow(msgwindow)
-      when "wu"
+      when "wu" # Window Up
         msgwindow.y = 0
         atTop = true
         msgback.y = msgwindow.y if msgback
         pbPositionNearMsgWindow(facewindow,msgwindow,:left)
         msgwindow.y = -msgwindow.height*signWaitCount/signWaitTime
-      when "wm"
+      when "wm" # Window Middle
         atTop = false
         msgwindow.y = (Graphics.height-msgwindow.height)/2
         msgback.y = msgwindow.y if msgback
         pbPositionNearMsgWindow(facewindow,msgwindow,:left)
-      when "wd"
+      when "wd" # Window Down
         atTop = false
         msgwindow.y = Graphics.height-msgwindow.height
         msgback.y = msgwindow.y if msgback
         pbPositionNearMsgWindow(facewindow,msgwindow,:left)
         msgwindow.y = Graphics.height-msgwindow.height*(signWaitTime-signWaitCount)/signWaitTime
+      when "wl" # Window Left
+        msgwindow.x = 0
+        msgwindow.width = Graphics.width - 400
+        pbPositionNearMsgWindow(facewindow,msgwindow,:left)
+      when "wr" # Window Right
+        msgwindow.x = 400
+        msgwindow.width = Graphics.width - 400
+        pbPositionNearMsgWindow(facewindow,msgwindow,:left)
       when "ts"     # Change text speed
         msgwindow.textspeed = (param=="") ? -999 : param.to_i
       when "ss"     # Slowed down display speed
@@ -315,19 +328,20 @@ def pbMessageDisplay(msgwindow,message,letterbyletter=true,commandProc=nil)
     for i in 0..signWaitTime
       if atTop
         msgwindow.y = -msgwindow.height*i/signWaitTime
-		facewindow.y = -facewindow.height*i/signWaitTime
+		    facewindow.y = -facewindow.height*i/signWaitTime
       else
         msgwindow.y = Graphics.height-msgwindow.height*(signWaitTime-i)/signWaitTime
-		facewindow.y = Graphics.height-facewindow.height*(signWaitTime-i)/signWaitTime
+		    facewindow.y = Graphics.height-facewindow.height*(signWaitTime-i)/signWaitTime
       end
       Graphics.update
       Input.update
       pbUpdateSceneMap
       msgwindow.update
-	  facewindow.update
+	    facewindow.update
     end
   end
   facewindow.dispose if facewindow
+  $SpeakerNameWindow.visible = false if $SpeakerNameWindow
   return ret
 end
 

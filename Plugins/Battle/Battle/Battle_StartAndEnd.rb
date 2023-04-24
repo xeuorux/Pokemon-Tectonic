@@ -248,6 +248,7 @@ class PokeBattle_Battle
     # Start a battle
     #=============================================================================
     def pbStartBattle
+        # Spit out lots of debug information
         PBDebug.log("")
         PBDebug.log("******************************************")
         logMsg = "[Started battle] "
@@ -266,11 +267,20 @@ class PokeBattle_Battle
         logMsg += "#{pbParty(1).length} wild Pokémon)" if wildBattle?
         logMsg += "#{@opponent.length} trainer(s))" if trainerBattle?
         PBDebug.log(logMsg)
+
+        # Hide any dialogue speaker box
+        reshowSpeakerWindow = false
+        if speakerNameWindowVisible? 
+            hideSpeaker
+            reshowSpeakerWindow = true
+        end
+
+        # Track information for perfecting
         $game_switches[94] = false
         ableBeforeFight = $Trainer.able_pokemon_count # Record the number of able party members, for perfecting
 
         # Update tribe counts
-        updateTribeCounts()
+        updateTribeCounts
 
         pbEnsureParticipants
         begin
@@ -286,6 +296,7 @@ class PokeBattle_Battle
             @decision = 1
             @scene.pbEndBattle(@decision)
         end
+
         # End the effect of all curses
         curses.each do |curse_policy|
             triggerBattleEndCurse(curse_policy, self)
@@ -310,6 +321,10 @@ class PokeBattle_Battle
                 end
             end
         end
+
+        # Return the speaker box to being visible if it was hidden by the battle
+        showSpeaker if reshowSpeakerWindow
+
         return @decision
     end
 
