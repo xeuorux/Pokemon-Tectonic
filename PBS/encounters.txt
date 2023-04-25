@@ -550,7 +550,7 @@ Mud,20
 #-------------------------------
 [202] # Mountaineer's House
 Special,1
-    1,ORICORIO,40
+    1,ORICORIO,10
 #-------------------------------
 [203] # Skeevy Eevee Pub
 Special,20
@@ -937,3 +937,7 @@ Land,20
     6,ORICORIO_1,8,10
     6,ORICORIO_2,8,10
     6,ORICORIO_3,8,10
+#-------------------------------
+[159] # Travel Agency
+Species,1
+	1,ORICORIO,10
