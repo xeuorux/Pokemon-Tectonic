@@ -488,6 +488,21 @@ class PokemonSpeciesIconSprite < SpriteWrapper
     @currentFrame = 0 if @currentFrame>=@numFrames
     changeOrigin
   end
+
+  def update
+    return if !@animBitmap
+	return if @silhouette
+    super
+    @animBitmap.update
+    self.bitmap = @animBitmap.bitmap
+    # Update animation
+    @counter += 1
+    if @counter>=self.counterLimit
+      @currentFrame = (@currentFrame+1)%@numFrames
+      @counter = 0
+    end
+    self.src_rect.x = self.src_rect.width*@currentFrame
+  end 
 end
 
 class PokemonGlobalMetadata
