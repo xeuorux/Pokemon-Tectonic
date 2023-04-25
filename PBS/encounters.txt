@@ -471,6 +471,10 @@ Land,20
 Special,1
     1,ROTOM,40
 #-------------------------------
+[159] # Travel Agency
+Special,1
+    1,ORICORIO,10
+#-------------------------------
 [180] # Prizca West Mart
 Special,1
     1,GFARFETCHD,40
@@ -937,7 +941,3 @@ Land,20
     6,ORICORIO_1,8,10
     6,ORICORIO_2,8,10
     6,ORICORIO_3,8,10
-#-------------------------------
-[159] # Travel Agency
-Species,1
-	1,ORICORIO,10
