@@ -23774,7 +23774,7 @@ Type1 = DRAGON
 Type2 = GROUND
 # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
 BaseStats = 107,91,121,95,91,95
-# Total = 598
+# Total = 600
 GenderRate = Genderless
 GrowthRate = Slow
 BaseEXP = 270

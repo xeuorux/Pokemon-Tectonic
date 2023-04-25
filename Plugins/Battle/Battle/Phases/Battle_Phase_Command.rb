@@ -98,11 +98,12 @@ class PokeBattle_Battle
                 pbRegisterShift(idxBattler)
                 ret = true
             else      # Chose a move to use
-                next false if cmd < 0 || !@battlers[idxBattler].moves[cmd] ||
-                              !@battlers[idxBattler].moves[cmd].id
+                move = @battlers[idxBattler].moves[cmd]
+                next false if cmd < 0 || move.nil? || move.id.nil?
                 next false unless pbRegisterMove(idxBattler, cmd)
-                next false if !singleBattle? &&
-                              !pbChooseTarget(@battlers[idxBattler], @battlers[idxBattler].moves[cmd])
+                target_data = move.pbTarget(battler)
+                next false if (!singleBattle? || target_data.id == :UserOrNearOther) &&
+                              !pbChooseTarget(@battlers[idxBattler], move)
                 ret = true
             end
             next true

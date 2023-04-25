@@ -47,6 +47,10 @@ move, true, true)
         when :UserAndAllies
             pbAddTarget(targets, user, user, move, true, true)
             @battle.eachSameSideBattler(user.index) { |b| pbAddTarget(targets, user, b, move, false, true) }
+        when :UserOrNearOther
+            targetBattler = (preTarget >= 0) ? @battle.battlers[preTarget] : nil
+            pbAddTarget(targets, user, user, move, false, true) unless pbAddTarget(targets, user, targetBattler,
+move, false, true)
         when :NearFoe, :NearOther
             targetBattler = (preTarget >= 0) ? @battle.battlers[preTarget] : nil
             unless pbAddTarget(targets, user, targetBattler, move)

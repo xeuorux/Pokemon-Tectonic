@@ -12,6 +12,8 @@ module GameData
         attr_reader :real_name
         attr_reader :num_targets        # 0, 1 or 2 (meaning 2+)
         attr_reader :targets_foe        # Is able to target one or more foes
+        attr_reader :targets_user       # Is able to target the user
+        attr_reader :targets_ally       # Is able to target the user's ally
         attr_reader :targets_all        # Crafty Shield can't protect from these moves
         attr_reader :affects_foe_side   # Pressure also affects these moves
         attr_reader :long_range         # Hits non-adjacent targets
@@ -25,13 +27,16 @@ module GameData
         def self.save; end
 
         def initialize(hash)
-            @id               = hash[:id]
-            @real_name        = hash[:name]             || "Unnamed"
-            @num_targets      = hash[:num_targets]      || 0
-            @targets_foe      = hash[:targets_foe]      || false
-            @targets_all      = hash[:targets_all]      || false
-            @affects_foe_side = hash[:affects_foe_side] || false
-            @long_range       = hash[:long_range]       || false
+            @id                 = hash[:id]
+            @real_name          = hash[:name]             || "Unnamed"
+            @num_targets        = hash[:num_targets]      || 0
+            @targets_foe        = hash[:targets_foe]      || false
+            @targets_user       = hash[:targets_user]     || false
+            @targets_ally       = hash[:targets_ally]     || false
+            @targets_all        = hash[:targets_all]      || false
+            @affects_foe_side   = hash[:affects_foe_side] || false
+            @affects_user_side  = hash[:affects_user_side] || false
+            @long_range         = hash[:long_range]       || false
         end
 
         # @return [String] the translated name of this target
@@ -45,6 +50,21 @@ module GameData
 
         def can_target_one_foe?
             return @num_targets == 1 && @targets_foe
+        end
+
+        ###########################################################################################
+        # Methods to determine what to highlight in graphics that explain how a move targets
+        ###########################################################################################
+        def show_foe_targeting?
+            return @targets_foe || @affects_foe_side || @targets_all
+        end
+
+        def show_user_targeting?
+            return @targets_user || @affects_user_side || @targets_all
+        end
+
+        def show_ally_targeting?
+            return @targets_ally || @affects_user_side || @targets_all
         end
     end
 end
@@ -62,6 +82,7 @@ GameData::Target.register({
     :id               => :User,
     :id_number        => 10,
     :name             => _INTL("User"),
+    :targets_user     => true,
 })
 
 # Aromatic Mist, Helping Hand, Hold Hands
@@ -70,6 +91,7 @@ GameData::Target.register({
     :id_number        => 100,
     :name             => _INTL("Near Ally"),
     :num_targets      => 1,
+    :targets_ally     => true,
 })
 
 # Acupressure
@@ -78,6 +100,8 @@ GameData::Target.register({
     :id_number        => 200,
     :name             => _INTL("User or Near Ally"),
     :num_targets      => 1,
+    :targets_user     => true,
+    :targets_ally     => true,
 })
 
 # Aromatherapy, Gear Up, Heal Bell, Life Dew, Magnetic Flux, Howl (in Gen 8+)
@@ -87,6 +111,8 @@ GameData::Target.register({
     :name             => _INTL("User and Allies"),
     :num_targets      => 2,
     :long_range       => true,
+    :targets_user     => true,
+    :targets_ally     => true,
 })
 
 # Me First
@@ -169,6 +195,7 @@ GameData::Target.register({
     :num_targets      => 2,
     :targets_foe      => true,
     :targets_all      => true,
+    :targets_user     => true,
     :long_range       => true,
 })
 
@@ -176,6 +203,7 @@ GameData::Target.register({
     :id               => :UserSide,
     :id_number        => 40,
     :name             => _INTL("User Side"),
+    :affects_user_side => true,
 })
 
 # Entry hazards
@@ -191,6 +219,18 @@ GameData::Target.register({
     :id_number        => 20,
     :name             => _INTL("Both Sides"),
     :affects_foe_side => true,
+    :affects_user_side => true,
+})
+
+GameData::Target.register({
+    :id               => :UserOrNearOther,
+    :id_number        => 21,
+    :name             => _INTL("User Or Near Other"),
+    :targets_foe      => true,
+    :targets_user     => true,
+    :targets_ally     => true,
+    :num_targets      => 1,
+
 })
 
 # Create the targeting category used for the Info button
@@ -201,4 +241,5 @@ GameData::Target.register({
     :targets_foe      => true,
     :long_range       => true,
     :num_targets      => 1,
+    :targets_user     => true,
 })

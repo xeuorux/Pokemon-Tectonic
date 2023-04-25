@@ -110,6 +110,9 @@ class PokeBattle_Battle
             return false unless nearBattlers?(idxUser, idxTarget)
         when :UserAndAllies
             return false if opposes?(idxUser, idxTarget)
+        when :UserOrNearOther
+            return true if idxUser == idxTarget
+            return false unless nearBattlers?(idxUser, idxTarget)
         when :NearFoe, :RandomNearFoe, :AllNearFoes
             return false unless opposes?(idxUser, idxTarget)
             return false unless nearBattlers?(idxUser, idxTarget)

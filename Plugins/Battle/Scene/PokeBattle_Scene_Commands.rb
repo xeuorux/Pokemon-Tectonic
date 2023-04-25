@@ -519,7 +519,7 @@ class PokeBattle_Scene
         indices = @battle.pbGetOpposingIndicesInOrder(idxBattler)
         indices.each { |i| return i if @battle.nearBattlers?(i,idxBattler) && !@battle.battlers[i].fainted? }
         indices.each { |i| return i if @battle.nearBattlers?(i,idxBattler) }
-      when :Foe, :Other, :UserOrOther
+      when :Foe, :Other, :UserOrOther, :UserOrNearOther
         indices = @battle.pbGetOpposingIndicesInOrder(idxBattler)
         indices.each { |i| return i if !@battle.battlers[i].fainted? }
         indices.each { |i| return i }
@@ -565,12 +565,12 @@ class PokeBattle_Scene
               cw.index = idxBattlerTry
               break
             end
-      elsif Input.trigger?(Input::ACTION) && dexSelect
-        pbFadeOutIn {
-          scene = PokemonPokedex_Scene.new
-          screen = PokemonPokedexScreen.new(scene)
-          screen.pbStartScreen
-        }
+        elsif Input.trigger?(Input::ACTION) && dexSelect
+          pbFadeOutIn {
+            scene = PokemonPokedex_Scene.new
+            screen = PokemonPokedexScreen.new(scene)
+            screen.pbStartScreen
+          }
           end
           if cw.index!=oldIndex
             pbPlayCursorSE
