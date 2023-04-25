@@ -531,10 +531,10 @@ def evoStoneVendor(expanded = false)
 	]
 	stock = expandedStock.concat(stock) if expanded
 
-	if postTourney
-		message = _INTL("Regrettably, you are restricted from purchasing any Shiny Stones. Otherwise, how may I serve you?")
-	else
+	if expanded
 		message = _INTL("How can we help to empower your Pokemon?")
+	else
+		message = _INTL("Regrettably, you are restricted from purchasing any Shiny Stones. Otherwise, how may I serve you?")
 	end
 
 	pbPokemonMart(
