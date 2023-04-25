@@ -79,45 +79,15 @@ DebugMenuCommands.register("getsignaturemoves", {
 })
 
 def describeMove(move)
-	categoryDescriptions = ["Physical","Special","Status"]
-
 	moveData = GameData::Move.get(move)
 	typeName = GameData::Type.get(moveData.type).real_name
-	categoryDescriptor = categoryDescriptions[moveData.category]
 	accuracyLabel = moveData.accuracy == 0 ? "-" : moveData.accuracy.to_s
-	priorityLabel = moveData.priority == 0 ? "-" : moveData.priority.to_s
-	if moveData.priority < 0
-		priorityLabel = "-" + priorityLabel
-	elsif moveData.priority > 0
-		priorityLabel = "+" + priorityLabel
-	end
-	tag = ""
-	moveData.flags.split('').each do |flag|
-		case flag
-		when 'i'
-			tag = "Bite"
-		when 'j'
-			tag = "Punch"
-		when 'k'
-			tag = "Sound"
-		when 'l'
-			tag = "Powder"
-		when 'm'
-			tag = "Pulse"
-		when 'o'
-			tag = "Dance"
-		when 'p'
-			tag = "Blade"
-		when 'q'
-			tag = "Wind"
-		end
-	end
 	weilderName = ""
 	if moveData.is_signature?
 		weilderName = GameData::Species.get(moveData.signature_of).real_name
 	end
 	procChanceLabel = (moveData.effect_chance == 0 || moveData.effect_chance == 100) ? "-" : moveData.effect_chance.to_s
-	moveLine = "#{moveData.real_name},#{weilderName},#{typeName},\"#{moveData.description}\",#{moveData.base_damage},#{categoryDescriptor},"
-	moveLine += "#{accuracyLabel},#{moveData.total_pp},#{moveData.target},#{priorityLabel},#{procChanceLabel},#{tag}"
+	moveLine = "#{moveData.real_name},#{weilderName},#{typeName},\"#{moveData.description}\",#{moveData.base_damage},#{moveData.categoryLabel},"
+	moveLine += "#{accuracyLabel},#{moveData.total_pp},#{moveData.target},#{moveData.priorityLabel},#{procChanceLabel},#{moveData.tagLabel}"
 	return moveLine
 end

@@ -414,7 +414,7 @@
 1413,TERRORSWARM,Terror Swarm,0CF,75,BUG,Special,100,15,0,NearOther,0,abef,"The user summons bugs to terrorize the target, trapping and damaging it for three turns.",INFESTATION
 1414,BLIGHTTOUCH,Blight Touch,5D5,80,POISON,Physical,100,10,0,NearOther,0,bef,"The user infects the target with a touch and also destroys any Herbs its holding.",POISONJAB
 1415,DETACHMENT,Detachment,086,55,FIGHTING,Special,100,12,0,NearOther,0,abef,"The user, free from earthly attachments, attacks with aura. Doubles in damage if the user has no item.",AURASPHERE
-1416,SWARMORDER,Attack Order,000,90,BUG,Physical,100,12,0,NearOther,0,befh,"The user calls out its underlings to pummel the target. Skips and destroys protections.",INFESTATION
+1416,SWARMORDER,Swarm Order,000,90,BUG,Physical,100,12,0,NearOther,0,befh,"The user calls out its underlings to pummel the target. Skips and destroys protections.",INFESTATION
 1417,NOISEORDER,Noise Order,401,60,BUG,Special,100,12,100,NearOther,0,bce,"The user calls out its underlings to annoy the target with buzzing sounds, dizzying it.",BUGBUZZ
 1418,REGALIA,Regalia,5D7,0,NORMAL,Status,100,15,0,NearOther,0,bce,"The user adorns the target with precious stones, changing it to your choice of Fairy, Dragon, or Steel-type.",LUCKYCHANT
 1419,ROLLINGARSENAL,Rolling Arsenal,547,90,BUG,Physical,100,10,33,NearOther,0,bef,"The user bites, claws, and stings the target while rolling. It has a 11% chance each to poison, dizzy, or leech.",CHAOSWHEEL
@@ -429,5 +429,5 @@
 1428,APPLESURPRISE,Apple Surprise,5F2,45,GRASS,Special,100,10,100,NearOther,1,bef,"An apple falls from high up to strike the foe. Always goes first. Deals double damage in intense Gravity.",GRAVAPPLE
 1429,STARDANCE,Star Dance,5F3,0,PSYCHIC,Status,100,15,0,AllNearFoes,0,bceo,"The user covers the target's body with a mass of down that lowers its Sp. Atk stat by five steps.",COSMICPOWER
 1430,AMPUP,Amp Up,09C,0,ELECTRIC,Status,0,15,0,NearAlly,0,,"The user assists an ally's next move, boosting its power by 50% and letting it move right after the user.",HELPINGHAND
-1431,TRUESENSES,True Senses,5F5,0,PSYCHIC,Status,0,30,0,User,0,d,"The user meditates, raising both its Attack and Sp. Atk stats.",MEDITATE
+1431,TRUESENSES,True Senses,5F5,0,PSYCHIC,Status,0,30,0,User,0,d,"The user meditates, raising both its Attack and Sp. Atk stats by 4 steps each.",MEDITATE
 1432,UNDYINGRUSH,Undying Rush,5F6,120,GHOST,Physical,100,12,0,NearOther,0,abef,"Clad in souls, the user crashes into the target. The user takes 33% recoil, but can't faint from it.",PHANTOMFORCE

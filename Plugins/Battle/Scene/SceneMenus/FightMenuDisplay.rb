@@ -432,14 +432,12 @@ class FightMenuDisplay < BattleMenuBase
           textpos.push([_INTL("{1}/{2}",move.pp,move.total_pp),moveInfoColumn2ValueX, 32, 2, PP_COLORS[ppFraction*2], PP_COLORS[ppFraction*2+1]])
         end
         # Tag
-        moveCategoryLabel = moveData.getCategoryLabel || "---"
-        textpos.push([moveCategoryLabel, moveInfoColumn2ValueX, 64, 2, moveData.getCategoryLabel ? base : faded_base, shadow])
+        moveCategoryLabel = moveData.tagLabel || "---"
+        textpos.push([moveCategoryLabel, moveInfoColumn2ValueX, 64, 2, moveData.tagLabel ? base : faded_base, shadow])
 
         # Column 3
         # Priority
-        priorityLabel = move.priority.to_s
-        priorityLabel = "+" + priorityLabel if move.priority > 0
-        textpos.push([priorityLabel,moveInfoColumn3ValueX + 6, 0, 2, move.priority != 0 ? base : faded_base, shadow])
+        textpos.push([moveData.priorityLabel,moveInfoColumn3ValueX + 6, 0, 2, move.priority != 0 ? base : faded_base, shadow])
         # Targeting
         targetingData = GameData::Target.get(moveData.target)
         targetingLabel = ""

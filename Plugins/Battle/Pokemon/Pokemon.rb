@@ -910,6 +910,18 @@ class Pokemon
     def clear_first_moves
       @first_moves.clear
     end
+
+    def learnable_moves(skipAlreadyLearned = true)
+      species_data = GameData::Species.get(@species)
+  
+      pokemonLearnables = []
+      species_data.learnable_moves.each do |move|
+        next if hasMove?(move) && skipAlreadyLearned
+        pokemonLearnables.push(move)
+      end
+  
+      return pokemonLearnables
+    end
   
     # @param move_id [Symbol, String, Integer] ID of the move to check
     # @return [Boolean] whether the Pokémon is compatible with the given move

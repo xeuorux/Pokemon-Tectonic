@@ -28,7 +28,7 @@ def checkTrainerPokemonLegality(pkmn,trainerInfo)
 	if pkmn.species != :SMEARGLE
 		pkmn.moves.each do |move|
 			next unless move
-			next if pkmn.learnable_moves(false).include?(move.id)
+			next if pkmn.species_data.learnable_moves.include?(move.id)
 			echoln("ERROR: #{move.id} learned illegaly on #{pkmn.name} on #{trainerInfo}")
 		end
 	end

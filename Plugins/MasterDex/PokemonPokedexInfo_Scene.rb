@@ -936,11 +936,11 @@ sp.form) && !Settings::DEX_SHOWS_ALL_FORMS
             @sprites["overlay"].bitmap.blt(380, 60, @typebitmap.bitmap, typerect)
 
             # Draw the move's special categories
-            category = moveData.getCategoryLabel || ""
+            tag = moveData.tagLabel || ""
 
-            categoryBase   = Color.new(88, 88, 80)
-            categoryShadow = Color.new(168, 184, 184)
-            drawTextEx(@sprites["overlay"].bitmap, 300, 70, 210, 2, category, categoryBase, categoryShadow)
+            tagBase   = Color.new(88, 88, 80)
+            tagShadow = Color.new(168, 184, 184)
+            drawTextEx(@sprites["overlay"].bitmap, 300, 70, 210, 2, tag, tagBase, tagShadow)
         end
     end
 

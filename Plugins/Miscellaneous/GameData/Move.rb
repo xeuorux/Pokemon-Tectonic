@@ -47,7 +47,19 @@ module GameData
           return @flags[/y/]
         end
 
-        def getCategoryLabel
+        def categoryLabel
+          return _INTL("Physical") if physical?
+          return _INTL("Special") if special?
+          return _INTL("Status")
+        end
+
+        def priorityLabel
+          priorityLabel = @priority.to_s
+					priorityLabel = "+" + priorityLabel if @priority > 0
+          return priorityLabel
+        end
+
+        def tagLabel
           category = nil
           @flags.split("").each do |flag|
             case flag

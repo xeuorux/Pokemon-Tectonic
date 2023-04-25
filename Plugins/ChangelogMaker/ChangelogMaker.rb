@@ -87,19 +87,19 @@ def createChangeLogBetween(firstID,lastID,fileName = "changelog.txt")
 			oldBST = 0
 			newBST = 0
 			stats.each do |s|
-					oldStat = species_data.base_stats[s]
-					oldBST += oldStat
-					newStat = newSpeciesData.base_stats[s]
-					newBST += newStat
-					if oldStat != newStat
-						difference = (newStat - oldStat)
-						difference = "+" + difference.to_s if difference > 0
-						spacesString = ""
-						(12-statNames[s].length).times do
-							spacesString += " "
-						end
-						changeLog.push("#{statNames[s]}: #{spacesString}#{oldStat} => #{newStat} (#{difference})")
+				oldStat = species_data.base_stats[s]
+				oldBST += oldStat
+				newStat = newSpeciesData.base_stats[s]
+				newBST += newStat
+				if oldStat != newStat
+					difference = (newStat - oldStat)
+					difference = "+" + difference.to_s if difference > 0
+					spacesString = ""
+					(12-statNames[s].length).times do
+						spacesString += " "
 					end
+					changeLog.push("#{statNames[s]}: #{spacesString}#{oldStat} => #{newStat} (#{difference})")
+				end
 			end
 			bstDiff = (newBST - oldBST)
 			bstDiff = "+" + bstDiff.to_s if bstDiff > 0
@@ -115,14 +115,18 @@ def createChangeLogBetween(firstID,lastID,fileName = "changelog.txt")
 							newRealName = newAbilityData.real_name
 						end
 						if species_data.abilities[i].nil?
-							changeLog.push("Ability #{i+1}:    Added #{newRealName}")
+							newAbilityText = "Ability #{i+1}:    Added #{newRealName}"
+							newAbilityText += " (Signature)" if newAbilityData.is_signature?
+							changeLog.push(newAbilityText)
 						else
 							oldAbilityData = GameData::Ability.get(species_data.abilities[i])
 							oldRealName = oldAbilityData.real_name
 							if newSpeciesData.abilities[i].nil?
 								changeLog.push("Ability #{i+1}:    #{oldRealName} removed")
 							else
-								changeLog.push("Ability #{i+1}:    #{oldRealName} => #{newRealName}")
+								replacementAbilityText = "Ability #{i+1}:    #{oldRealName} => #{newRealName}"
+								replacementAbilityText += " (Signature)" if newAbilityData.is_signature?
+								changeLog.push(replacementAbilityText)
 							end
 						end
 						# Write out the description of the new ability if its custom
@@ -137,65 +141,72 @@ def createChangeLogBetween(firstID,lastID,fileName = "changelog.txt")
 			#Check for which specific moves have been changed
 			moveRenamesInverted = MOVE_RENAMES.invert
 			
-			oldMovesLearned = []
-			species_data.moves.each do |learnsetEntry|
-				oldMovesLearned.push(learnsetEntry[1])
-			end
-			species_data.tutor_moves.each do |move|
-				oldMovesLearned.push(move)
-			end
-			species_data.egg_moves.each do |move|
-				oldMovesLearned.push(move)
-			end
-			oldMovesLearned.uniq!
-			oldMovesLearned.compact!
+			oldMovesLearned = species_data.learnable_moves
 			
-			newMovesLearned = []
-			newSpeciesData.moves.each do |learnsetEntry|
-				newMovesLearned.push(learnsetEntry[1])
-			end
-			newSpeciesData.tutor_moves.each do |move|
-				newMovesLearned.push(move)
-			end
-			newSpeciesData.egg_moves.each do |move|
-				newMovesLearned.push(move)
-			end
-			newMovesLearned.uniq!
-			newMovesLearned.compact!
+			newMovesLearned = newSpeciesData.learnable_moves
 			
 			cutMoves = []
 			
 			oldMovesLearned.each do |oldMove|
 				moveRename = MOVE_RENAMES[oldMove] || oldMove
 				next if newMovesLearned.include?(moveRename)
-				next if GameData::Move.get(moveRename).id_number >= 2000
+				next if GameData::Move.get(moveRename).cut
 				cutMoves.push(oldMove)
 			end
 			
 			if cutMoves.length > 0
-				str = "Removed Moves: \r\n\t"
+				str = "Removed Move#{cutMoves.length > 1 ? "s" : ""}: "
 				cutMoves.each_with_index do |move,index|
 					str += GameData::Move.get(move).real_name
-					str += ", " if index != cutMoves.length - 1
+					if index != cutMoves.length - 1
+						str += ", "
+						str += "\r\n\t" if index > 0 && index % 12 == 0
+					end
 				end
 				changeLog.push(str)
 			end
 			
-			newMoves = []
+			addedMoves = []
+			addedSignatureMoves = []
 			
 			newMovesLearned.each do |newMove|
-				moveRename = moveRenamesInverted[newMove] || newMove
-				next if oldMovesLearned.include?(moveRename)
-				newMoves.push(newMove)
+				next if oldMovesLearned.include?(newMove)
+				next if moveRenamesInverted.key?(newMove) && oldMovesLearned.include?(moveRenamesInverted[newMove])
+				
+				if GameData::Move.get(newMove).is_signature?
+					addedSignatureMoves.push(newMove)
+				else
+					addedMoves.push(newMove)
+				end
 			end
 			
-			if newMoves.length > 0
-				str = "Added Moves: \r\n\t"
-				newMoves.each_with_index do |move,index|
+			if addedMoves.length > 0
+				str = "Added Move#{addedMoves.length > 1 ? "s" : ""}: "
+				addedMoves.each_with_index do |move,index|
 					str += GameData::Move.get(move).real_name
-					str += ", " if index != newMoves.length - 1
+					if index != addedMoves.length - 1
+						str += ", "
+						str += "\r\n\t" if index > 0 && index % 12 == 0
+					end
 				end
 				changeLog.push(str)
+			end
+
+			if addedSignatureMoves.length > 0
+				changeLog.push("New Signature Move#{addedSignatureMoves.length > 1 ? "s" : ""}:")
+				addedSignatureMoves.each_with_index do |move,index|
+					moveData = GameData::Move.get(move)
+					changeLog.push("\t#{moveData.real_name}")
+					changeLog.push("\t#{moveData.categoryLabel}, #{GameData::Type.get(moveData.type).real_name}-type")
+					mainLine = "#{moveData.total_pp} PP"
+					mainLine = "#{moveData.accuracy}\% accuracy, " + mainLine if moveData.accuracy > 0
+					mainLine = "#{moveData.base_damage} BP, " + mainLine if moveData.base_damage > 0
+					mainLine = "\t" + mainLine
+					changeLog.push(mainLine)
+					changeLog.push("\t#{moveData.priorityLabel} priority") if moveData.priority != 0
+					changeLog.push("\t#{moveData.description}")
+					changeLog.push("\t#{moveData.tagLabel} move") if moveData.tagLabel
+				end
 			end
 			
 			# Check for evolution changes
@@ -257,7 +268,7 @@ def createChangeLogBetween(firstID,lastID,fileName = "changelog.txt")
 				f.write("--------------------------------------------\r\n")
 			end
 		end
-		f.write("Species that were unchanged: #{unchanged.to_s}")
+		#f.write("Species that were unchanged: #{unchanged.to_s}")
 	}
 	pbMessage(_INTL("Species changelog written to #{fileName}"))
 end
