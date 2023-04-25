@@ -71,6 +71,11 @@ class PokeBattle_AI
         # Calculate the total estimated damage of all hits
         totalDamage = damage * numHits
 
+        # Reduce damage down to substitute level
+        if target.substituted? && !move.ignoresSubstitute?(user)
+            totalDamage = [totalDamage,target.effects[:Substitute]].min
+        end
+
         return totalDamage.floor
     end
 

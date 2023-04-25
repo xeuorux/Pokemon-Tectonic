@@ -55,8 +55,9 @@ class PokeBattle_Move_504 < PokeBattle_Move
         return baseDmg
     end
 
-    def getEffectScore(user, target)
-        return getWantsToBeSlowerScore(user, target, 2)
+    def pbBaseDamage(baseDmg, user, target)
+        baseDmg *= 1.25 if target.pbSpeed(true) > user.pbSpeed(true)
+        return baseDmg
     end
 end
 
@@ -174,7 +175,7 @@ class PokeBattle_Move_50A < PokeBattle_Move
         end
     end
 
-    def getEffectScore(user, target)
+    def getTargetAffectingEffectScore(user, target)
         score = 0
         real_attack = target.pbAttack
         real_special_attack = target.pbSpAtk
@@ -192,15 +193,13 @@ end
 # (Slight)
 #===============================================================================
 class PokeBattle_Move_50B < PokeBattle_Move
-    # Used to modify the AI elsewhere
-    def hasKOEffect?(user, _target)
-        return false unless user.pbCanRaiseStatStep?(:SPECIAL_ATTACK, user, self)
-        return true
-    end
-
     def pbEffectAfterAllHits(user, target)
         return unless target.damageState.fainted
         user.tryRaiseStat(:SPECIAL_ATTACK, user, increment: 5, move: self)
+    end
+
+    def getFaintEffectScore(user, target)
+        return getMultiStatUpEffectScore([:SPECIAL_ATTACK, 5], user, user)
     end
 end
 
@@ -359,11 +358,6 @@ class PokeBattle_Move_517 < PokeBattle_Move
         return 0
     end
 
-    def getEffectScore(_user, target)
-        return 30 if getsPriorityAgainst?(target)
-        return 0
-    end
-
     def shouldHighlight?(_user, target)
         return getsPriorityAgainst?(target)
     end
@@ -447,10 +441,11 @@ class PokeBattle_Move_51D < PokeBattle_Move
     end
 
     def pbEffectAgainstTarget(_user, target)
+        return if target.damageState.substitute
         target.applyEffect(:CreepOut)
     end
 
-    def getEffectScore(_user, target)
+    def getTargetAffectingEffectScore(_user, target)
         return 0 if target.effectActive?(:CreepOut)
         score = 40
         score += 40 if target.aboveHalfHealth?
@@ -522,8 +517,12 @@ class PokeBattle_Move_521 < PokeBattle_Move
         end
     end
 
-    def getEffectScore(_user, _target)
-        return 20
+    def getTargetAffectingEffectScore(_user, target)
+        target.eachMove do |m|
+            next if m.id != target.lastRegularMoveUsed
+            return 30
+        end
+        return 0
     end
 end
 
@@ -539,7 +538,7 @@ class PokeBattle_Move_522 < PokeBattle_Move
         target.tryLowerStat(target.highestStat, user, increment: 4, move: self)
     end
 
-    def getEffectScore(user, target)
+    def getTargetAffectingEffectScore(user, target)
         return getMultiStatDownEffectScore([target.highestStat, 4], user, target)
     end
 end
@@ -570,7 +569,7 @@ class PokeBattle_Move_524 < PokeBattle_HealingMove
         user.applyEffect(:Disable, 5)
     end
 
-    def getEffectScore(user, target)
+    def getEffectScore(user, _target)
         score = super
         score -= 30
         return score
@@ -621,7 +620,7 @@ class PokeBattle_Move_527 < PokeBattle_Move_004
         target.pbLowerMultipleStatSteps(ATTACKING_STATS_2, user, move: self) if @battle.sunny?
     end
 
-    def getEffectScore(user, target)
+    def getTargetAffectingEffectScore(user, target)
         score = super
         score += getMultiStatDownEffectScore(ATTACKING_STATS_2, user, target) if @battle.sunny?
         return score
@@ -663,7 +662,7 @@ class PokeBattle_Move_529 < PokeBattle_SleepMove
         return !target.canSleep?(user, false, self)
     end
 
-    def getEffectScore(user, target)
+    def getTargetAffectingEffectScore(user, target)
         return 0 if hasBeenUsed?(user)
         userSpeed = user.pbSpeed(true)
         targetSpeed = target.pbSpeed(true)
@@ -702,10 +701,8 @@ class PokeBattle_Move_52C < PokeBattle_DrainMove
         target.tryLowerStat(:SPECIAL_DEFENSE, user, move: self)
     end
 
-    def getEffectScore(user, target)
-        score = super
-        score += getMultiStatDownEffectScore([:SPECIAL_DEFENSE, 1], user, target)
-        return score
+    def getTargetAffectingEffectScore(user, target)
+        return getMultiStatDownEffectScore([:SPECIAL_DEFENSE, 1], user, target)
     end
 end
 
@@ -745,17 +742,15 @@ class PokeBattle_Move_52E < PokeBattle_TargetMultiStatDownMove
 end
 
 #===============================================================================
-# Resets weather and reduces the Attack of all enemies. (Wingspan Eclipse)
+# Summons Eclipse for 8 turns and lowers the Attack of all enemies by 2 steps. (Wingspan Eclipse)
 #===============================================================================
 class PokeBattle_Move_52F < PokeBattle_Move_042
     def pbEffectGeneral(user)
-        @battle.pbStartWeather(user, :ECLIPSE, 8, false) unless @battle.primevalWeatherPresent?
+        @battle.pbStartWeather(user, :Eclipse, 8, false) unless @battle.primevalWeatherPresent?
     end
 
     def getEffectScore(user, target)
-        score = super
-        score += getWeatherSettingEffectScore(:ECLIPSE, user, @battle, 8)
-        return score
+        return getWeatherSettingEffectScore(:Eclipse, user, @battle, 8)
     end
 end
 
@@ -1008,10 +1003,6 @@ class PokeBattle_Move_53C < PokeBattle_Move
         return true if targetChoice == :UseMove && target.movedThisRound?
         return super
     end
-
-    def getEffectScore(user, target)
-        return getWantsToBeSlowerScore(user, target, 2)
-    end
 end
 
 #===============================================================================
@@ -1099,7 +1090,7 @@ class PokeBattle_Move_541 < PokeBattle_Move
         end
     end
 
-    def getEffectScore(user, target)
+    def getTargetAffectingEffectScore(user, target)
         return 0 unless canIncinerateTargetsItem?(target)
         score = 0
         target.eachItemWithName do |item, itemName|
@@ -1120,8 +1111,7 @@ class PokeBattle_Move_542 < PokeBattle_Move
         target.tryRaiseStat(:SPEED, user, move: self)
     end
 
-    def getEffectScore(user, target)
-        return 0 if target.damageState.substitute
+    def getTargetAffectingEffectScore(user, target)
         return -getMultiStatUpEffectScore([:SPEED, 1], user, target)
     end
 end
@@ -1180,7 +1170,7 @@ class PokeBattle_Move_547 < PokeBattle_Move
         end
     end
 
-    def getEffectScore(user, target)
+    def getTargetAffectingEffectScore(user, target)
         poisonScore = getPoisonEffectScore(user, target)
         dizzyScore = getDizzyEffectScore(user, target)
         leechScore = getLeechEffectScore(user, target)
@@ -1232,23 +1222,27 @@ class PokeBattle_Move_549 < PokeBattle_TeamStatBuffMove
 end
 
 #===============================================================================
-# Curses the target. (Spooky Snuggling)
+# Curses the target by spending 1/4th of the user's HP. (Cursed Oath)
 #===============================================================================
-class PokeBattle_Move_54A < PokeBattle_Move
-    def pbFailsAgainstTarget?(_user, target, show_message)
-        if target.effectActive?(:Curse)
-            @battle.pbDisplay(_INTL("But it failed, since #{target.pbThis(true)} is already cursed!")) if show_message
+class PokeBattle_Move_54A < PokeBattle_Move_10D
+    def pbMoveFailed?(user, targets, show_message)
+        if user.hp <= (user.totalhp / 4)
+            @battle.pbDisplay(_INTL("But it failed, since #{user.pbThis(true)}'s HP is too low!")) if show_message
             return true
         end
-        return false
+        super
     end
-
-    def pbEffectAgainstTarget(_user, target)
-        target.applyEffect(:Curse)
+    
+    def pbEffectAgainstTarget(user, target)
+        @battle.pbDisplay(_INTL("{1} cut its own HP!", user.pbThis))
+        user.applyFractionalDamage(1.0 / 4.0, false)
+        super
     end
 
     def getEffectScore(user, target)
-        return getCurseEffectScore(user, target)
+        score = super
+        score += getHPLossEffectScore(user, 0.25)
+        return score
     end
 end
 
@@ -1484,7 +1478,7 @@ class PokeBattle_Move_55D < PokeBattle_Move
         target.pbConfusionDamage(_INTL("It hurt itself in rage!"), false, false, selfHitBasePower(target.level))
     end
 
-    def getEffectScore(user, target)
+    def getTargetAffectingEffectScore(user, target)
         score = 120
         score -= getMultiStatUpEffectScore([:ATTACK, 3], user, target)
         return score
@@ -1501,7 +1495,7 @@ class PokeBattle_Move_55E < PokeBattle_Move
 selfHitBasePower(target.level))
     end
 
-    def getEffectScore(user, target)
+    def getTargetAffectingEffectScore(user, target)
         score = 120
         score -= getMultiStatUpEffectScore([:SPECIAL_ATTACK, 3], user, target)
         return score
@@ -1646,7 +1640,7 @@ class PokeBattle_Move_568 < PokeBattle_Move_0EE
         target.tryLowerStat(:DEFENSE, user, move: self, increment: 2)
     end
 
-    def getEffectScore(user, target)
+    def getTargetAffectingEffectScore(user, target)
         score = super
         score += getMultiStatDownEffectScore([:DEFENSE, 2], user, target)
         return score
@@ -1744,7 +1738,7 @@ class PokeBattle_Move_56F < PokeBattle_Move
         target.tryLowerStat(:SPEED, user, move: self, increment: 3) if targetChoice == :UseMove && target.movedThisRound?
     end
 
-    def getEffectScore(user, target)
+    def getTargetAffectingEffectScore(user, target)
         return getWantsToBeSlowerScore(user, target, 4)
     end
 end
@@ -1788,9 +1782,7 @@ class PokeBattle_Move_572 < PokeBattle_Move_528
     end
 
     def getEffectScore(user, target)
-        score = super
-        score += getMultiStatUpEffectScore([:ATTACK, 1], user, target)
-        return score
+        return getMultiStatUpEffectScore([:ATTACK, 1], user, target)
     end
 end
 

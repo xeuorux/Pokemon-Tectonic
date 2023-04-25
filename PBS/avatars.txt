@@ -24,6 +24,12 @@ Moves1 = BRINE
 Turns = 1
 HPMult = 2.0
 #-------------------------------
+[ABRA]
+Ability = WARPINGEFFECT
+Moves1 = MINDWAVES
+Turns = 1
+HPMult = 2.0
+#-------------------------------
 [VIGOROTH]
 Ability = VITALSPIRIT
 Moves1 = SCRATCH,PRIMEVALDRAGONDANCE

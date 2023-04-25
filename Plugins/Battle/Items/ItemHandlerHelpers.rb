@@ -1,6 +1,6 @@
-def healFromBerry(battler, ratio, item, forced = false, filchedFrom = nil)
+def healFromBerry(battler, ratio, item, forced = false, filchedFrom = nil, filchingAbility = nil)
     if filchedFrom
-        battler.battle.pbShowAbilitySplash(battler, ability)
+        battler.battle.pbShowAbilitySplash(battler, filchingAbility)
         itemName = GameData::Item.get(item).real_name
         battler.battle.pbDisplay(_INTL("#{battler.pbThis} filched #{filchedFrom.pbThis(true)}'s #{itemName}!"))
     end
@@ -17,11 +17,11 @@ def healFromBerry(battler, ratio, item, forced = false, filchedFrom = nil)
     battler.battle.pbHideAbilitySplash(battler) if filchedFrom
 end
 
-def pbBattleStatIncreasingBerry(battler, battle, item, forced, stat, increment = 1, checkGluttony = true, filchedFrom = nil)
+def pbBattleStatIncreasingBerry(battler, battle, item, forced, stat, increment = 1, checkGluttony = true, filchedFrom = nil, filchingAbility = nil)
     return false if !forced && !battler.canConsumePinchBerry?(checkGluttony)
     return false unless battler.pbCanRaiseStatStep?(stat, battler)
     if filchedFrom
-        battle.pbShowAbilitySplash(battler, ability)
+        battle.pbShowAbilitySplash(battler, filchingAbility)
         itemName = GameData::Item.get(item).real_name
         battle.pbDisplay(_INTL("#{battler.pbThis} filched #{filchedFrom.pbThis(true)}'s #{itemName}!"))
     end

@@ -151,8 +151,8 @@ module BattleHandlers
 
     #=============================================================================
 
-    def self.triggerHPHealItem(item, battler, battle, forced, filchedFrom)
-        ret = HPHealItem.trigger(item, battler, battle, forced, filchedFrom)
+    def self.triggerHPHealItem(item, battler, battle, forced, filchedFrom, filchingAbility)
+        ret = HPHealItem.trigger(item, battler, battle, forced, filchedFrom, filchingAbility)
         return !ret.nil? ? ret : false
     end
 

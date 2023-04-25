@@ -57,7 +57,11 @@ class PokeBattle_Move
       moveFunction = move.function_code || "000"
       className = sprintf("PokeBattle_Move_%s", moveFunction)
       if Object.const_defined?(className)
-        return Object.const_get(className).new(battle, move)
+        begin
+          return Object.const_get(className).new(battle, move)
+        rescue StandardError
+          puts "Error while trying to create a move of class #{className}"
+        end
       end
       return PokeBattle_UnimplementedMove.new(battle, move)
     end

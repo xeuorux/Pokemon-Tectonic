@@ -277,7 +277,7 @@ def getMultiStatUpEffectScore(statUpArray, user, target, fakeStepModifier = 0)
         statSymbol = statUpArray[i * 2]
         statIncreaseAmount = statUpArray[i * 2 + 1]
 
-        statIncreaseAmount = [6,statIncreaseAmount * 2].min if target.hasActiveAbilityAI?(:SIMPLE)
+        statIncreaseAmount = [PokeBattle_Battler::STAT_STEP_BOUND,statIncreaseAmount * 2].min if target.hasActiveAbilityAI?(:SIMPLE)
 
         # Give no extra points for attacking stats you can't use
         if statSymbol == :ATTACK && !target.hasPhysicalAttack?
@@ -291,14 +291,14 @@ def getMultiStatUpEffectScore(statUpArray, user, target, fakeStepModifier = 0)
 
         # Increase the score more for boosting attacking stats
         if %i[ATTACK SPECIAL_ATTACK].include?(statSymbol)
-            increase = 40
+            increase = 20
         else
-            increase = 30
+            increase = 15
         end
 
         increase *= statIncreaseAmount
         step = target.steps[statSymbol] + fakeStepModifier
-        increase -= step * 10 # Reduce the score for each existing step
+        increase -= step * 5 # Reduce the score for each existing step
         increase = 0 if increase < 0
 
         score += increase
@@ -347,7 +347,7 @@ def getMultiStatDownEffectScore(statDownArray, user, target, fakeStepModifier = 
         statSymbol = statDownArray[i * 2]
         statDecreaseAmount = statDownArray[i * 2 + 1]
 
-        statDecreaseAmount = [6,statDecreaseAmount * 2].min if target.hasActiveAbilityAI?(:SIMPLE)
+        statDecreaseAmount = [PokeBattle_Battler::STAT_STEP_BOUND,statDecreaseAmount * 2].min if target.hasActiveAbilityAI?(:SIMPLE)
 
         if statSymbol == :ACCURACY
             echoln("The AI will never use a move that reduces accuracy.")
@@ -366,14 +366,14 @@ def getMultiStatDownEffectScore(statDownArray, user, target, fakeStepModifier = 
 
         # Increase the score more for boosting attacking stats
         if %i[ATTACK SPECIAL_ATTACK].include?(statSymbol)
-            scoreIncrease = 40
+            scoreIncrease = 20
         else
-            scoreIncrease = 30
+            scoreIncrease = 15
         end
 
         scoreIncrease *= statDecreaseAmount
         step = target.steps[statSymbol] + fakeStepModifier
-        scoreIncrease += step * 10 # Increase the score for each existing step
+        scoreIncrease += step * 5 # Increase the score for each existing step
         scoreIncrease = 0 if scoreIncrease < 0
 
         score += scoreIncrease

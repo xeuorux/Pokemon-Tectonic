@@ -342,7 +342,7 @@ class PokeBattle_Battler
                 }
     
                 # If the berry is being filched
-                if filcher && BattleHandlers.triggerHPHealItem(item, filcher, @battle, false, self)
+                if filcher && BattleHandlers.triggerHPHealItem(item, filcher, @battle, false, self, :GREEDYGUTS)
                     filcher.pbHeldItemTriggered(item, false)
                     consumeItem(item)
                 end
@@ -355,7 +355,7 @@ class PokeBattle_Battler
 
         itemsToCheck.each do |item|
             # Check for user
-            next unless BattleHandlers.triggerHPHealItem(item, self, @battle, forced, nil)
+            next unless BattleHandlers.triggerHPHealItem(item, self, @battle, forced, nil, nil)
             pbHeldItemTriggered(item, !forced, fling)
         end
 

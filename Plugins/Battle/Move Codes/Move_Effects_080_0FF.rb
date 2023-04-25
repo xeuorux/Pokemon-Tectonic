@@ -18,9 +18,9 @@ class PokeBattle_Move_081 < PokeBattle_Move
         return baseDmg
     end
 
-    def getEffectScore(user, target)
-        score = getWantsToBeSlowerScore(user, target, 4)
-        return score
+    def pbBaseDamageAI(baseDmg, user, target)
+        baseDmg *= 2 if user.pbSpeed(true) < target.pbSpeed
+        return baseDmg
     end
 end
 
@@ -33,13 +33,14 @@ class PokeBattle_Move_082 < PokeBattle_Move
         return baseDmg
     end
 
-    def getEffectScore(user, _target)
-        score = 0
+    def pbBaseDamageAI(baseDmg, user, target)
+        fastAllyAttacker = false
         user.eachAlly do |b|
             next unless b.hasDamagingAttack?
-            score += 40 if b.pbSpeed(true) > user.pbSpeed(true)
+            fastAllyAttacker = true if b.pbSpeed(true) > user.pbSpeed(true)
         end
-        return score
+        baseDmg *= 2 if fastAllyAttacker
+        return baseDmg
     end
 end
 
@@ -67,7 +68,7 @@ class PokeBattle_Move_083 < PokeBattle_Move
         score = 0
         user.eachAlly do |b|
             next unless b.pbHasMove?(@id)
-            score += 30
+            score += 50
         end
         return score
     end
@@ -82,9 +83,9 @@ class PokeBattle_Move_084 < PokeBattle_Move
         return baseDmg
     end
 
-    def getEffectScore(user, target)
-        score = getWantsToBeSlowerScore(user, target, 4)
-        return score
+    def pbBaseDamageAI(baseDmg, user, target)
+        baseDmg *= 2 if user.pbSpeed(true) < target.pbSpeed
+        return baseDmg
     end
 end
 
@@ -328,7 +329,7 @@ class PokeBattle_Move_093 < PokeBattle_Move
         user.applyEffect(:Rage)
     end
 
-    def getEffectScore(user, target)
+    def getTargetAffectingEffectScore(user, target)
         return 0 unless user.pbCanRaiseStatStep?(:ATTACK)
 
         score = 0
@@ -918,8 +919,7 @@ class PokeBattle_Move_0A4 < PokeBattle_Move
         super
     end
 
-    def getEffectScore(_user, target)
-        return 0 if target.substituted?
+    def getTargetAffectingEffectScore(_user, target)
         return 20
     end
 end
@@ -948,57 +948,15 @@ class PokeBattle_Move_0A6 < PokeBattle_Move
 end
 
 #===============================================================================
-# Target's evasion stat changes are ignored from now on. (Foresight, Odor Sleuth)
-# Normal and Fighting moves have normal effectiveness against the Ghost-type target.
+# (Not currently used)
 #===============================================================================
 class PokeBattle_Move_0A7 < PokeBattle_Move
-    def ignoresSubstitute?(_user); return true; end
-
-    def pbFailsAgainstTarget?(_user, target, show_message)
-        if target.effectActive?(:Foresight)
-            @battle.pbDisplay(_INTL("But it failed, since the target is already identified!")) if show_message
-            return true
-        end
-        return false
-    end
-
-    def pbEffectAgainstTarget(_user, target)
-        target.applyEffect(:Foresight)
-    end
-
-    def getEffectScore(_user, target)
-        score = 0
-        score += 40 if target.pbHasTypeAI?(:GHOST)
-        score += 20 * target.steps[:EVASION]
-        return score
-    end
 end
 
 #===============================================================================
-# Target's evasion stat changes are ignored from now on. (Miracle Eye)
-# Psychic moves have normal effectiveness against the Dark-type target.
+# (Not currently used)
 #===============================================================================
 class PokeBattle_Move_0A8 < PokeBattle_Move
-    def ignoresSubstitute?(_user); return true; end
-
-    def pbFailsAgainstTarget?(_user, target, show_message)
-        if target.effectActive?(:MiracleEye)
-            @battle.pbDisplay(_INTL("But it failed, since the target is already identified!")) if show_message
-            return true
-        end
-        return false
-    end
-
-    def pbEffectAgainstTarget(_user, target)
-        target.applyEffect(:MiracleEye)
-    end
-
-    def getEffectScore(_user, target)
-        score = 0
-        score += 40 if target.pbHasTypeAI?(:DARK)
-        score += 20 * target.steps[:EVASION]
-        return score
-    end
 end
 
 #===============================================================================
@@ -1334,6 +1292,11 @@ class PokeBattle_Move_0B3 < PokeBattle_Move
         pseudoMove = calculateNaturePower
         return @battle.getBattleMoveInstanceFromID(pseudoMove).getEffectScore(user, target)
     end
+
+    def getTargetAffectingEffectScore(user, target)
+        pseudoMove = calculateNaturePower
+        return @battle.getBattleMoveInstanceFromID(pseudoMove).getTargetAffectingEffectScore(user, target)
+    end
 end
 
 #===============================================================================
@@ -1599,7 +1562,7 @@ class PokeBattle_Move_0B7 < PokeBattle_Move
         target.applyEffect(:Torment)
     end
 
-    def getEffectScore(_user, target)
+    def getTargetAffectingEffectScore(_user, target)
         return 0 if target.hasActiveAbilityAI?(:MENTALBLOCK)
         score = 60
         score += 40 unless target.hasDamagingAttack?
@@ -1625,7 +1588,7 @@ class PokeBattle_Move_0B8 < PokeBattle_Move
         user.applyEffect(:Imprison)
     end
 
-    def getEffectScore(_user, _target)
+    def getTargetAffectingEffectScore(_user, _target)
         echoln("The AI will never use Imprison.")
         return -1000
     end
@@ -1671,7 +1634,7 @@ class PokeBattle_Move_0B9 < PokeBattle_Move
         target.applyEffect(:Disable, 5)
     end
 
-    def getEffectScore(_user, target)
+    def getTargetAffectingEffectScore(_user, target)
         return 0 if target.hasActiveAbilityAI?(:MENTALBLOCK)
         score = 70
         score += 30 if @battle.pbIsTrapped?(target.index)
@@ -1721,7 +1684,7 @@ class PokeBattle_Move_0BA < PokeBattle_Move
         target.applyEffect(:Taunt, @tauntTurns)
     end
 
-    def getEffectScore(_user, target)
+    def getTargetAffectingEffectScore(_user, target)
         return 0 if target.hasActiveAbilityAI?(:MENTALBLOCK) || target.substituted?
         return 0 unless target.hasStatusMove?
         score = 20
@@ -1752,7 +1715,7 @@ class PokeBattle_Move_0BB < PokeBattle_Move
         target.applyEffect(:HealBlock, 5)
     end
 
-    def getEffectScore(_user, target)
+    def getTargetAffectingEffectScore(_user, target)
         return 0 if target.hasActiveAbilityAI?(:MENTALBLOCK)
         return 0 unless target.hasHealingMove?
         return 40
@@ -1823,7 +1786,7 @@ class PokeBattle_Move_0BC < PokeBattle_Move
         target.applyEffect(:Encore, 4)
     end
 
-    def getEffectScore(user, target)
+    def getTargetAffectingEffectScore(user, target)
         return 0 if target.hasActiveAbilityAI?(:MENTALBLOCK)
         score = 60
         score += 40 if @battle.pbIsTrapped?(target.index)
@@ -2050,7 +2013,7 @@ class PokeBattle_Move_0C5 < PokeBattle_TwoTurnMove
         target.applyNumb(user) if target.canNumb?(user, false, self)
     end
 
-    def getEffectScore(user, target)
+    def getTargetAffectingEffectScore(user, target)
         return getNumbEffectScore(user, target)
     end
 end
@@ -2069,31 +2032,15 @@ class PokeBattle_Move_0C6 < PokeBattle_TwoTurnMove
         target.applyBurn(user) if target.canBurn?(user, false, self)
     end
 
-    def getEffectScore(user, target)
+    def getTargetAffectingEffectScore(user, target)
         return getBurnEffectScore(user, target)
     end
 end
 
 #===============================================================================
-# Two turn attack. Skips first turn, attacks second turn. (Sky Attack)
-# May make the target flinch.
+# (Not currently used)
 #===============================================================================
-class PokeBattle_Move_0C7 < PokeBattle_TwoTurnMove
-    def flinchingMove?; return true; end
-
-    def pbChargingTurnMessage(user, _targets)
-        @battle.pbDisplay(_INTL("{1} became cloaked in a harsh light!", user.pbThis))
-    end
-
-    def pbAdditionalEffect(user, target)
-        return if target.damageState.substitute
-        target.pbFlinch(user)
-    end
-
-    def getEffectScore(user, target)
-        score = getFlinchingEffectScore(80, user, target, self)
-        return score
-    end
+class PokeBattle_Move_0C7 < PokeBattle_Move
 end
 
 #===============================================================================
@@ -2188,7 +2135,7 @@ end
 
 #===============================================================================
 # Two turn attack. Skips first turn, attacks second turn. (Bounce)
-# May paralyze the target.
+# May numb the target.
 # (Handled in Battler's pbSuccessCheckPerHit): Is semi-invulnerable during use.
 #===============================================================================
 class PokeBattle_Move_0CC < PokeBattle_TwoTurnMove
@@ -2203,7 +2150,7 @@ class PokeBattle_Move_0CC < PokeBattle_TwoTurnMove
         target.applyNumb(user) if target.canNumb?(user, false, self)
     end
 
-    def getEffectScore(user, target)
+    def getTargetAffectingEffectScore(user, target)
         return getNumbEffectScore(user, target)
     end
 end
@@ -2905,20 +2852,9 @@ class PokeBattle_Move_0E5 < PokeBattle_Move
 end
 
 #===============================================================================
-# If user is KO'd before it next moves, the attack that caused it loses all PP.
-# (Grudge)
+# (Not currently used)
 #===============================================================================
 class PokeBattle_Move_0E6 < PokeBattle_Move
-    def pbEffectGeneral(user)
-        user.applyEffect(:Grudge)
-        @battle.pbDisplay(_INTL("{1} wants its target to bear a grudge!", user.pbThis))
-    end
-
-    def getEffectScore(user, target)
-        score = 20
-        score += getSelfKOMoveScore(user, target)
-        return score
-    end
 end
 
 #===============================================================================
@@ -2954,7 +2890,7 @@ class PokeBattle_Move_0E7 < PokeBattle_Move
 end
 
 #===============================================================================
-# If user would be KO'd this round, it survives with 1HP instead. (Endure)
+# If user would be KO'd this round, it survives with 1 HP instead. (Endure)
 #===============================================================================
 class PokeBattle_Move_0E8 < PokeBattle_ProtectMove
     def initialize(battle, move)
@@ -3080,7 +3016,7 @@ class PokeBattle_Move_0EB < PokeBattle_Move
         forceOutTargets(user, targets, switchedBattlers)
     end
 
-    def getEffectScore(user, target)
+    def getTargetAffectingEffectScore(user, target)
         return getForceOutEffectScore(user, target)
     end
 end
@@ -3106,7 +3042,7 @@ class PokeBattle_Move_0EC < PokeBattle_Move
         forceOutTargets(user, targets, switchedBattlers, true)
     end
 
-    def getEffectScore(user, target)
+    def getTargetAffectingEffectScore(user, target)
         return getForceOutEffectScore(user, target)
     end
 end
@@ -3214,7 +3150,7 @@ class PokeBattle_Move_0EF < PokeBattle_Move
         target.pointAt(:MeanLook, user) unless target.effectActive?(:MeanLook)
     end
 
-    def getEffectScore(_user, target)
+    def getTargetAffectingEffectScore(_user, target)
         return 0 if target.effectActive?(:MeanLook)
         return 50
     end
@@ -3239,7 +3175,7 @@ class PokeBattle_Move_0F0 < PokeBattle_Move
         knockOffItems(user, target)
     end
 
-    def getEffectScore(user, target)
+    def getTargetAffectingEffectScore(user, target)
         return 30 if canknockOffItems?(user, target, true)
         return 0
     end
@@ -3341,10 +3277,11 @@ class PokeBattle_Move_0F2 < PokeBattle_Move
         elsif user.hasActiveItem?(CHOICE_LOCKING_ITEMS)
             return 100
         elsif !user.firstItem && target.firstItem
-            if user.lastMoveUsed && GameData::Move.get(user.lastMoveUsed).function_code == "0F2"
+            if user.lastMoveUsed && GameData::Move.get(user.lastMoveUsed).function_code == "0F2" # Trick/Switcheroo
                 return 0
-            end # Trick/Switcheroo
+            end
         end
+        return 0
     end
 end
 
@@ -3497,7 +3434,7 @@ class PokeBattle_Move_0F5 < PokeBattle_Move
         end
     end
 
-    def getEffectScore(user, target)
+    def getTargetAffectingEffectScore(user, target)
         return 0 unless canIncinerateTargetsItem?(target)
         score = 0
         target.eachItemWithName do |item, itemName|
@@ -3676,7 +3613,7 @@ class PokeBattle_Move_0F8 < PokeBattle_Move
         target.applyEffect(:Embargo)
     end
 
-    def getEffectScore(_user, target)
+    def getTargetAffectingEffectScore(_user, target)
         return 0 unless target.hasAnyItem?
         return 50
     end
@@ -3733,7 +3670,7 @@ class PokeBattle_Move_0FD < PokeBattle_RecoilMove
         target.applyNumb(user) if target.canNumb?(user, false, self)
     end
 
-    def getEffectScore(user, target)
+    def getTargetAffectingEffectScore(user, target)
         return getNumbEffectScore(user, target)
     end
 end
@@ -3750,7 +3687,7 @@ class PokeBattle_Move_0FE < PokeBattle_RecoilMove
         target.applyBurn(user) if target.canBurn?(user, false, self)
     end
 
-    def getEffectScore(user, target)
+    def getTargetAffectingEffectScore(user, target)
         return getBurnEffectScore(user, target)
     end
 end

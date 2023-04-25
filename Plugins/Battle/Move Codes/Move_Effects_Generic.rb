@@ -43,6 +43,35 @@ class PokeBattle_Confusion < PokeBattle_Move
 end
 
 #===============================================================================
+# Pseudomove for charm damage.
+#===============================================================================
+class PokeBattle_Charm < PokeBattle_Move
+    def initialize(battle, move, basePower = 50)
+        @battle     = battle
+        @realMove   = move
+        @id         = 0
+        @name       = ""
+        @function   = "000"
+        @baseDamage = basePower
+        @type       = nil
+        @category   = 1
+        @accuracy   = 100
+        @pp         = -1
+        @target     = 0
+        @priority   = 0
+        @flags      = ""
+        @effectChance = 0
+        @calcType   = nil
+        @powerBoost = false
+        @snatched   = false
+    end
+
+    def physicalMove?(_thisType = nil);    return false; end
+    def specialMove?(_thisType = nil);     return true; end
+    def pbCriticalOverride(_user, _target); return -1; end
+end
+
+#===============================================================================
 # Implements the move Struggle.
 # For cases where the real move named Struggle is not defined.
 #===============================================================================
@@ -98,7 +127,7 @@ class PokeBattle_SleepMove < PokeBattle_Move
         target.applySleep if target.canSleep?(user, false, self)
     end
 
-    def getEffectScore(user, target)
+    def getTargetAffectingEffectScore(user, target)
         return getSleepEffectScore(user, target)
     end
 end
@@ -124,7 +153,7 @@ class PokeBattle_PoisonMove < PokeBattle_Move
         target.applyPoison(user, nil, @toxic) if target.canPoison?(user, false, self)
     end
 
-    def getEffectScore(user, target)
+    def getTargetAffectingEffectScore(user, target)
         return getPoisonEffectScore(user, target)
     end
 end
@@ -145,7 +174,7 @@ class PokeBattle_NumbMove < PokeBattle_Move
         target.applyNumb(user) if target.canNumb?(user, false, self)
     end
 
-    def getEffectScore(user, target)
+    def getTargetAffectingEffectScore(user, target)
         return getNumbEffectScore(user, target)
     end
 end
@@ -166,30 +195,8 @@ class PokeBattle_BurnMove < PokeBattle_Move
         target.applyBurn(user) if target.canBurn?(user, false, self)
     end
 
-    def getEffectScore(user, target)
+    def getTargetAffectingEffectScore(user, target)
         return getBurnEffectScore(user, target)
-    end
-end
-
-class PokeBattle_FreezeMove < PokeBattle_Move
-    def pbFailsAgainstTarget?(user, target, show_message)
-        return false if damagingMove?
-        return !target.pbCanFreeze?(user, show_message, self)
-    end
-
-    def pbEffectAgainstTarget(_user, target)
-        return if damagingMove?
-        target.pbFreeze
-    end
-
-    def pbAdditionalEffect(user, target)
-        return if target.damageState.substitute
-        target.pbFreeze if target.pbCanFreeze?(user, false, self)
-    end
-
-    def getEffectScore(_user, _target)
-        echoln("AI should never use freezing moves")
-        return -1000
     end
 end
 
@@ -209,33 +216,10 @@ class PokeBattle_FlinchMove < PokeBattle_Move
         target.pbFlinch(user)
     end
 
-    def getEffectScore(user, target)
+    def getTargetAffectingEffectScore(user, target)
         baseScore = baseDamage * 10 / user.level
         score = getFlinchingEffectScore(baseScore, user, target, self)
         return score
-    end
-end
-
-class PokeBattle_ConfuseMove < PokeBattle_Move
-    def pbFailsAgainstTarget?(user, target, show_message)
-        return false if damagingMove?
-        return !target.canConfuse?(user, show_message, self)
-    end
-
-    def pbEffectAgainstTarget(_user, target)
-        return if damagingMove?
-        target.pbConfuse
-    end
-
-    def pbAdditionalEffect(user, target)
-        return if target.damageState.substitute
-        return unless target.canConfuse?(user, false, self)
-        target.pbConfuse
-    end
-
-    def getEffectScore(user, target)
-        return 100 if target.canConfuse?(user, false) && !target.hasActiveAbilityAI?(:MENTALBLOCK)
-        return 0
     end
 end
 
@@ -338,7 +322,7 @@ class PokeBattle_TargetStatDownMove < PokeBattle_Move
         target.tryLowerStat(@statDown[0], user, increment: @statDown[1], move: self)
     end
 
-    def getEffectScore(user, target)
+    def getTargetAffectingEffectScore(user, target)
         return getMultiStatDownEffectScore(@statDown, user, target)
     end
 end
@@ -383,10 +367,11 @@ class PokeBattle_TargetMultiStatDownMove < PokeBattle_Move
     end
 
     def pbAdditionalEffect(user, target)
+        return if target.damageState.substitute
         target.pbLowerMultipleStatSteps(@statDown, user, move: self)
     end
 
-    def getEffectScore(user, target)
+    def getTargetAffectingEffectScore(user, target)
         return getMultiStatDownEffectScore(@statDown, user, target)
     end
 end
@@ -808,35 +793,6 @@ class PokeBattle_PledgeMove < PokeBattle_Move
 end
 
 #===============================================================================
-# Pseudomove for charm damage.
-#===============================================================================
-class PokeBattle_Charm < PokeBattle_Move
-    def initialize(battle, move, basePower = 50)
-        @battle     = battle
-        @realMove   = move
-        @id         = 0
-        @name       = ""
-        @function   = "000"
-        @baseDamage = basePower
-        @type       = nil
-        @category   = 1
-        @accuracy   = 100
-        @pp         = -1
-        @target     = 0
-        @priority   = 0
-        @flags      = ""
-        @effectChance = 0
-        @calcType   = nil
-        @powerBoost = false
-        @snatched   = false
-    end
-
-    def physicalMove?(_thisType = nil);    return false; end
-    def specialMove?(_thisType = nil);     return true; end
-    def pbCriticalOverride(_user, _target); return -1; end
-end
-
-#===============================================================================
 # Dizzies the target.
 #===============================================================================
 class PokeBattle_DizzyMove < PokeBattle_Move
@@ -856,7 +812,7 @@ class PokeBattle_DizzyMove < PokeBattle_Move
         target.applyDizzy
     end
 
-    def getEffectScore(user, target)
+    def getTargetAffectingEffectScore(user, target)
         return getDizzyEffectScore(user, target)
     end
 end
@@ -881,34 +837,8 @@ class PokeBattle_LeechMove < PokeBattle_Move
         target.applyLeeched
     end
 
-    def getEffectScore(user, target)
+    def getTargetAffectingEffectScore(user, target)
         return getLeechEffectScore(user, target)
-    end
-end
-
-#===============================================================================
-# Charms the target.
-#===============================================================================
-class PokeBattle_CharmMove < PokeBattle_Move
-    def pbFailsAgainstTarget?(user, target, show_message)
-        return false if damagingMove?
-        return !target.canCharm?(user, show_message, self)
-    end
-
-    def pbEffectAgainstTarget(_user, target)
-        return if damagingMove?
-        target.pbCharm
-    end
-
-    def pbAdditionalEffect(user, target)
-        return if target.damageState.substitute
-        return unless target.canCharm?(user, false, self)
-        target.pbCharm
-    end
-
-    def getEffectScore(user, target)
-        return 100 if target.canCharm?(user, false) && !target.hasActiveAbility?(:MENTALBLOCK)
-        return 0
     end
 end
 
@@ -932,7 +862,7 @@ class PokeBattle_FrostbiteMove < PokeBattle_Move
         target.applyFrostbite
     end
 
-    def getEffectScore(user, target)
+    def getTargetAffectingEffectScore(user, target)
         return getFrostbiteEffectScore(user, target)
     end
 end
@@ -1090,36 +1020,6 @@ true, self)
 end
 
 #===============================================================================
-# Terrain-setting move.
-#===============================================================================
-class PokeBattle_TerrainMove < PokeBattle_Move
-    def initialize(battle, move)
-        super
-        @terrainType = :None
-        @durationSet = 5
-    end
-
-    def pbMoveFailed?(_user, _targets, show_message)
-        if @battle.field.terrain == @terrainType
-            @battle.pbDisplay(_INTL("But it failed, since that Terrain is already present!")) if show_message
-            return true
-        end
-        return false
-    end
-
-    def pbEffectGeneral(user)
-        @battle.pbStartTerrain(user, @terrainType)
-    end
-
-    def getEffectScore(user, _target)
-        return 0 if @battle.field.terrain == @weatherType
-        score = 100
-        score += 20 if user.firstTurn?
-        return score
-    end
-end
-
-#===============================================================================
 # Type-inducing entry hazard move.
 # Removes similar spikes when setting.
 # If a damaging move, sets the hazard on the side of the target.
@@ -1243,7 +1143,7 @@ class PokeBattle_JealousyMove < PokeBattle_Move
         end
     end
 
-    def getEffectScore(user, target)
+    def getTargetAffectingEffectScore(user, target)
         return getStatusSettingEffectScore(@statusToApply, user, target) if target.hasRaisedStatSteps?
         return 0
     end

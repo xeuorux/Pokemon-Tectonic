@@ -116,19 +116,15 @@ class PokeBattle_AI
 
         return 0 if aiPredictsFailure?(move, user, target)
 
-        effectScore = pbGetMoveScoreFunctionCode(0, move, user, target, policies)
-
-        if effectScore.nil?
-            echoln("ERROR! #{user.pbThis} unable to score #{move.id} against target #{target.pbThis(false)}. Assuming an effect score of 0.")
-            effectScore = 0
-        end
-
-        # Adjust score based on how much damage it can deal
+        # DAMAGE SCORE AND HIT TRIGGERS SCORE
+        damageScore = 0
+        triggersScore = 0
+        willFaint = false
         if move.damagingMove?
             # Adjust the score based on the move dealing damage
             # and perhaps a percent chance to actually benefit from its effect score
             begin
-                score = pbGetMoveScoreDamage(effectScore, move, user, target, numTargets)
+                damageScore,willFaint = pbGetMoveScoreDamage(move, user, target, numTargets)
             rescue StandardError => exception
                 pbPrintException($!) if $DEBUG
             end
@@ -142,7 +138,7 @@ class PokeBattle_AI
                     scoreModifierUserAbility += 
                         BattleHandlers.triggerUserAbilityOnHitAI(ability, user, target, move, @battle, numHits)
                 end
-                score += scoreModifierUserAbility
+                triggersScore += scoreModifierUserAbility
                 echoln("[MOVE SCORING] #{user.pbThis}'s #{numHits} hits against #{target.pbThis(false)} adjusts the score by #{scoreModifierUserAbility} due to the user's abilities") if scoreModifierUserAbility != 0
             rescue StandardError => exception
                 pbPrintException($!) if $DEBUG
@@ -156,7 +152,7 @@ class PokeBattle_AI
                         scoreModifierTargetAbility += 
                             BattleHandlers.triggerTargetAbilityOnHitAI(ability, user, target, move, @battle, numHits)
                     end
-                    score += scoreModifierTargetAbility
+                    triggersScore += scoreModifierTargetAbility
                     echoln("[MOVE SCORING] #{user.pbThis}'s #{numHits} hits against #{target.pbThis(false)} adjusts the score by #{scoreModifierTargetAbility} due to the target's abilities") if scoreModifierTargetAbility != 0
                 rescue StandardError => exception
                     pbPrintException($!) if $DEBUG
@@ -170,18 +166,48 @@ class PokeBattle_AI
                     scoreModifierTargetItem += 
                         BattleHandlers.triggerTargetItemOnHitAI(item, user, target, move, @battle, numHits)
                 end
-                score += scoreModifierTargetItem
+                triggersScore += scoreModifierTargetItem
                 echoln("[MOVE SCORING] #{user.pbThis}'s #{numHits} hits against #{target.pbThis(false)} adjusts the score by #{scoreModifierTargetAbility} due to the target's items") if scoreModifierTargetAbility != 0
             rescue StandardError => exception
                 pbPrintException($!) if $DEBUG
             end
-
-            score *= 0.75 if policies.include?(:DISLIKEATTACKING)
-        else
-            score = effectScore
         end
 
-        # All score changes from this point forward must be multiplicative!!
+        # EFFECT SCORING
+        effectScore = 0
+        begin
+            regularEffectScore = move.getEffectScore(user, target)
+            faintEffectScore = 0
+            targetAffectingEffectScore = 0
+            if willFaint
+                faintEffectScore = move.getFaintEffectScore(user, target)
+            elsif !target.substituted?
+                targetAffectingEffectScore = move.getTargetAffectingEffectScore(user, target)
+            end
+            effectScore += regularEffectScore
+            effectScore += faintEffectScore
+            effectScore += targetAffectingEffectScore
+        rescue StandardError => e
+            echoln("FAILURE IN THE SCORING SYSTEM FOR MOVE #{move.name} #{move.function}")
+            effectScore = 0
+            raise e if @battle.autoTesting
+        end
+
+        # Modify the effect score by the move's additional effect chance if it has one
+        if move.effectChance != 0 && move.effectChance != 100
+            type = pbRoughType(move, user)
+            realProcChance = move.pbAdditionalEffectChance(user, target, type)
+            realProcChance = 0 unless move.canApplyAdditionalEffects?(user,target,false,true)
+            factor = (realProcChance / 100.0)
+            echoln("[MOVE SCORING] #{user.pbThis} multiplies #{move.id}'s effect score of #{effectScore} by a factor of #{factor} based on its predicted additional effect chance (against target #{target.pbThis(false)})")
+            effectScore *= factor
+        end
+
+        # Combine
+        echoln("[MOVE SCORING] #{user.pbThis} gives #{move.id} an effect score of #{effectScore}, a damage score of #{damageScore}, and a triggers score of #{triggersScore} (against target #{target.pbThis(false)})")
+        score = damageScore + triggersScore + effectScore
+
+        # ! All score changes from this point forward must be multiplicative !
 
         # Don't prefer targeting the target if they'd be semi-invulnerable
         if move.accuracy > 0 && (target.semiInvulnerable? || target.effectActive?(:SkyDrop))
@@ -242,6 +268,9 @@ class PokeBattle_AI
 
         # Account for some abilities
         score = getMultiplicativeAbilityScore(score, move, user, target)
+
+        # Policies
+        score *= 0.75 if move.damagingMove? && policies.include?(:DISLIKEATTACKING)
 
         # Final adjustments t score
         score = score.to_i
@@ -342,28 +371,19 @@ class PokeBattle_AI
     # Add to a move's score based on how much damage it will deal (as a percentage
     # of the target's current HP)
     #=============================================================================
-    def pbGetMoveScoreDamage(effectScore, move, user, target, numTargets = 1)
+    def pbGetMoveScoreDamage(move, user, target, numTargets = 1)
         damagePercentage = getDamagePercentageAI(move, user, target, numTargets)
 
         # Adjust score
+        willFaint = false
         if damagePercentage >= 100 # Prefer lethal damage
-            damagePercentage = 200
-            damagePercentage = 300 if move.hasKOEffect?(user, target)
-        end
-
-        if move.effectChance != 0 && move.effectChance != 100
-            type = pbRoughType(move, user)
-            realProcChance = move.pbAdditionalEffectChance(user, target, type)
-            realProcChance = 0 unless move.canApplyAdditionalEffects?(user,target,false,true)
-            factor = (realProcChance / 100.0)
-            echoln("[MOVE SCORING] #{user.pbThis} multiplies #{move.id}'s effect score of #{effectScore} by a factor of #{factor} based on its predicted additional effect chance (against target #{target.pbThis(false)})")
-            effectScore *= factor
+            damagePercentage = 150
+            willFaint = true
         end
 
         damageScore = (damagePercentage * 2.0).to_i
-        echoln("[MOVE SCORING] #{user.pbThis} gives #{move.id} an effect score of #{effectScore} and a damage score of #{damageScore} (against target #{target.pbThis(false)})")
 
-        return effectScore + damageScore
+        return damageScore, willFaint
     end
 
     def getDamagePercentageAI(move, user, target, numTargets = 1)

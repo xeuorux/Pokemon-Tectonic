@@ -36,7 +36,7 @@ target.pbThis(true)))
         target.pointAt(:OctolockUser, user)
     end
 
-    def getEffectScore(_user, target)
+    def getTargetAffectingEffectScore(_user, target)
         score = 60
         score += 60 if target.aboveHalfHealth?
         return score
@@ -138,11 +138,12 @@ class PokeBattle_Move_186 < PokeBattle_Move
     end
 
     def pbEffectAgainstTarget(user, target)
+        return if target.damageState.substitute
         target.tryLowerStat(:SPEED, user, move: self, increment: 3)
         target.applyEffect(:TarShot)
     end
 
-    def getEffectScore(user, target)
+    def getTargetAffectingEffectScore(user, target)
         score = 0
         score += getMultiStatDownEffectScore([:SPEED, 3], user, target)
         score += 50 unless target.effectActive?(:TarShot)
@@ -267,7 +268,7 @@ class PokeBattle_Move_18F < PokeBattle_Move
         end
     end
 
-    def getEffectScore(user, target)
+    def getTargetAffectingEffectScore(user, target)
         score = 0
         target.eachItem do |item|
             score += 30 if canRemoveItem?(user, target, item, checkingForAI: true)
@@ -332,41 +333,15 @@ class PokeBattle_Move_194 < PokeBattle_Move
 end
 
 #===============================================================================
-# Removes all Terrain. Fails if there is no Terrain (Steel Roller)
+# (Not currently used)
 #===============================================================================
 class PokeBattle_Move_195 < PokeBattle_Move
-    def pbMoveFailed?(_user, _targets, show_message)
-        if @battle.field.terrain == :None
-            @battle.pbDisplay(_INTL("But it failed, since there is no active terrain!")) if show_message
-            return true
-        end
-        return false
-    end
-
-    def pbEffectGeneral(user)
-        case @battle.field.terrain
-        when :Electric
-            @battle.pbDisplay(_INTL("The electric current disappeared from the battlefield!"))
-        when :Grassy
-            @battle.pbDisplay(_INTL("The grass disappeared from the battlefield!"))
-        when :Fairy
-            @battle.pbDisplay(_INTL("The fae mist disappeared from the battlefield!"))
-        when :Psychic
-            @battle.pbDisplay(_INTL("The weirdness disappeared from the battlefield!"))
-        end
-        @battle.pbStartTerrain(user, :None, false)
-    end
-
-    def getEffectScore(_user, _target)
-        return 20
-    end
 end
 
 #===============================================================================
 # (Not currently used.)
 #===============================================================================
 class PokeBattle_Move_196 < PokeBattle_Move
-
 end
 
 #===============================================================================

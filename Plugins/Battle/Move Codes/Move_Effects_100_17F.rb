@@ -258,7 +258,7 @@ class PokeBattle_Move_10C < PokeBattle_Move
 end
 
 #===============================================================================
-# User is Ghost: User loses 1/4 of max HP, and curses the target. (Cursed Oath)
+# User curses the target.
 #===============================================================================
 class PokeBattle_Move_10D < PokeBattle_Move
     def ignoresSubstitute?(_user); return true; end
@@ -272,55 +272,19 @@ class PokeBattle_Move_10D < PokeBattle_Move
     end
 
     def pbEffectAgainstTarget(user, target)
-        @battle.pbDisplay(_INTL("{1} cut its own HP!", user.pbThis))
-        user.applyFractionalDamage(1.0 / 4.0, false)
         target.applyEffect(:Curse)
     end
 
     def getEffectScore(user, target)
         score = getCurseEffectScore(user, target)
-        score += getHPLossEffectScore(user, 0.25)
         return score
     end
 end
 
 #===============================================================================
-# Target's last move used loses 4 PP. (Spite)
+# (Not currently used)
 #===============================================================================
 class PokeBattle_Move_10E < PokeBattle_Move
-    def ignoresSubstitute?(_user); return true; end
-
-    def pbFailsAgainstTarget?(_user, target, show_message)
-        failed = true
-        if target.lastRegularMoveUsed
-            target.eachMove do |m|
-                next if m.id != target.lastRegularMoveUsed || m.pp == 0 || m.total_pp <= 0
-                failed = false
-                break
-            end
-        end
-        if failed
-            @battle.pbDisplay(_INTL("But it failed!")) if show_message
-            return true
-        end
-        return false
-    end
-
-    def pbEffectAgainstTarget(_user, target)
-        target.eachMove do |m|
-            next if m.id != target.lastRegularMoveUsed
-            reduction = [4, m.pp].min
-            target.pbSetPP(m, m.pp - reduction)
-            @battle.pbDisplay(_INTL("It reduced the PP of {1}'s {2} by {3}!",
-               target.pbThis(true), m.name, reduction))
-            break
-        end
-    end
-
-    def getEffectScore(_user, _target)
-        echoln("The AI should never use Spite.")
-        return 0
-    end
 end
 
 #===============================================================================
@@ -345,7 +309,7 @@ class PokeBattle_Move_10F < PokeBattle_Move
         target.applyEffect(:Nightmare)
     end
 
-    def getEffectScore(_user, target)
+    def getTargetAffectingEffectScore(_user, target)
         score = 100
         score += 50 if target.aboveHalfHealth?
         return score
@@ -742,7 +706,7 @@ class PokeBattle_Move_11C < PokeBattle_Move
         target.applyEffect(:SmackDown)
     end
 
-    def getEffectScore(_user, target)
+    def getTargetAffectingEffectScore(_user, target)
         score = 0
         if canSmackDown?(target)
             score += 20 unless target.effectActive?(:SmackDown)
@@ -837,7 +801,7 @@ class PokeBattle_Move_11E < PokeBattle_Move
 
     def pbFailsAgainstTargetAI?(_user, _target); return false; end
 
-    def getEffectScore(user, target)
+    def getTargetAffectingEffectScore(user, target)
         return 0 unless user.opposes?(target)
         return 0 unless user.hasAlly?
         userSpeed = user.pbSpeed(true)
@@ -1226,7 +1190,7 @@ class PokeBattle_Move_140 < PokeBattle_Move
         target.pbLowerMultipleStatSteps(@statDown, user, move: self)
     end
 
-    def getEffectScore(user, target)
+    def getTargetAffectingEffectScore(user, target)
         return getMultiStatDownEffectScore(@statDown, user, target) if isValidTarget?(user, target)
         return 0
     end
@@ -1255,7 +1219,7 @@ class PokeBattle_Move_141 < PokeBattle_Move
         @battle.pbDisplay(_INTL("{1}'s stats were reversed!", target.pbThis))
     end
 
-    def getEffectScore(user, target)
+    def getTargetAffectingEffectScore(user, target)
         score = 0
         netSteps = 0
         GameData::Stat.each_battle do |s|
@@ -1298,7 +1262,7 @@ class PokeBattle_Move_142 < PokeBattle_Move
         target.applyEffect(:Type3, :GHOST)
     end
 
-    def getEffectScore(_user, _target)
+    def getTargetAffectingEffectScore(_user, _target)
         return 60
     end
 end
@@ -1331,7 +1295,7 @@ class PokeBattle_Move_143 < PokeBattle_Move
         target.applyEffect(:Type3, :GRASS)
     end
 
-    def getEffectScore(_user, _target)
+    def getTargetAffectingEffectScore(_user, _target)
         return 60
     end
 end
@@ -1598,15 +1562,13 @@ end
 # (Fell Stinger)
 #===============================================================================
 class PokeBattle_Move_150 < PokeBattle_Move
-    # Used to modify the AI elsewhere
-    def hasKOEffect?(user, _target)
-        return false unless user.pbCanRaiseStatStep?(:ATTACK, user, self)
-        return true
-    end
-
     def pbEffectAfterAllHits(user, target)
         return unless target.damageState.fainted
         user.tryRaiseStat(:ATTACK, user, increment: 5, move: self)
+    end
+
+    def getFaintEffectScore(user, target)
+        return getMultiStatUpEffectScore([:ATTACK, 5], user, user)
     end
 end
 
@@ -1643,9 +1605,7 @@ class PokeBattle_Move_151 < PokeBattle_TargetMultiStatDownMove
     end
 
     def getEffectScore(user, target)
-        score = super
-        score += getSwitchOutEffectScore(user, target)
-        return score
+        return getSwitchOutEffectScore(user, target)
     end
 end
 
@@ -1697,39 +1657,21 @@ class PokeBattle_Move_153 < PokeBattle_Move
 end
 
 #===============================================================================
-# For 5 rounds, creates an electric terrain which boosts Electric-type moves and
-# prevents Pokémon from falling asleep. Affects non-airborne Pokémon only.
-# (Electric Terrain)
+# (Not currently used)
 #===============================================================================
-class PokeBattle_Move_154 < PokeBattle_TerrainMove
-    def initialize(battle, move)
-        super
-        @terrainType = :Electric
-    end
+class PokeBattle_Move_154 < PokeBattle_Move
 end
 
 #===============================================================================
-# For 5 rounds, creates a grassy terrain which boosts Grass-type moves and heals
-# Pokémon at the end of each round. Affects non-airborne Pokémon only.
-# (Grassy Terrain)
+# (Not currently used)
 #===============================================================================
-class PokeBattle_Move_155 < PokeBattle_TerrainMove
-    def initialize(battle, move)
-        super
-        @terrainType = :Grassy
-    end
+class PokeBattle_Move_155 < PokeBattle_Move
 end
 
 #===============================================================================
-# For 5 rounds, creates a misty terrain which strengthens Fairy-type moves and
-# protects Pokémon from burn, frostbite, and numb. Affects non-airborne Pokémon only.
-# (Fairy Terrain)
+# (Not currently used)
 #===============================================================================
-class PokeBattle_Move_156 < PokeBattle_TerrainMove
-    def initialize(battle, move)
-        super
-        @terrainType = :Fairy
-    end
+class PokeBattle_Move_156 < PokeBattle_Move
 end
 
 #===============================================================================
@@ -1791,7 +1733,7 @@ class PokeBattle_Move_159 < PokeBattle_Move
         target.tryLowerStat(:SPEED, user, increment: 4, move: self)
     end
 
-    def getEffectScore(user, target)
+    def getTargetAffectingEffectScore(user, target)
         score = getMultiStatDownEffectScore([:SPEED,4],user,target)
         score += getPoisonEffectScore(user, target)
         return score
@@ -1808,7 +1750,7 @@ class PokeBattle_Move_15A < PokeBattle_Move
         target.pbCureStatus(true, :BURN)
     end
 
-    def getEffectScore(user, target)
+    def getTargetAffectingEffectScore(user, target)
         score = 0
         if !target.substituted? && target.burned?
             if target.opposes?(user)
@@ -1966,9 +1908,11 @@ class PokeBattle_Move_160 < PokeBattle_Move
     end
 
     def getEffectScore(user, target)
-        score = getMultiStatDownEffectScore([:ATTACK, 1], user, target)
-        score += getHealingEffectScore(user, user, 2)
-        return score
+        return getHealingEffectScore(user, user, 2)
+    end
+
+    def getTargetAffectingEffectScore(user, target)
+        return getMultiStatDownEffectScore([:ATTACK, 1], user, target)
     end
 end
 
@@ -2021,10 +1965,6 @@ class PokeBattle_Move_163 < PokeBattle_Move
     def pbChangeUsageCounters(user, specialUsage)
         super
         @battle.moldBreaker = true unless specialUsage
-    end
-
-    def getEffectScore(_user, _target)
-        return 10
     end
 end
 
@@ -2230,7 +2170,7 @@ class PokeBattle_Move_16C < PokeBattle_Move
         target.applyEffect(:ThroatChop, 3)
     end
 
-    def getEffectScore(_user, target)
+    def getTargetAffectingEffectScore(_user, target)
         return 30 if !target.effectActive?(:ThroatChop) && target.hasSoundMove? && !target.substituted?
         return 0
     end
@@ -2418,7 +2358,7 @@ class PokeBattle_Move_172 < PokeBattle_Move
         user.applyEffect(:BeakBlast)
     end
 
-    def getEffectScore(user, target)
+    def getTargetAffectingEffectScore(user, target)
         if target.hasPhysicalAttack?
             return getBurnEffectScore(user, target) / 2
         else
@@ -2428,15 +2368,9 @@ class PokeBattle_Move_172 < PokeBattle_Move
 end
 
 #===============================================================================
-# For 5 rounds, creates a psychic terrain which boosts Psychic-type moves and
-# prevents Pokémon from being hit by >0 priority moves. Affects non-airborne
-# Pokémon only. (Psychic Terrain)
+# (Not currently used)
 #===============================================================================
-class PokeBattle_Move_173 < PokeBattle_TerrainMove
-    def initialize(battle, move)
-        super
-        @terrainType = :Psychic
-    end
+class PokeBattle_Move_173 < PokeBattle_Move
 end
 
 #===============================================================================
@@ -2653,6 +2587,7 @@ end
 #===============================================================================
 class PokeBattle_Move_17D < PokeBattle_Move
     def pbEffectAgainstTarget(user, target)
+        return if target.damageState.substitute
         if !user.effectActive?(:JawLock) && !target.effectActive?(:JawLock)
             user.applyEffect(:JawLock)
             target.applyEffect(:JawLock)
@@ -2662,7 +2597,7 @@ class PokeBattle_Move_17D < PokeBattle_Move
         end
     end
 
-    def getEffectScore(_user, target)
+    def getTargetAffectingEffectScore(_user, target)
         return 20 unless target.effectActive?(:JawLock)
         return 0
     end

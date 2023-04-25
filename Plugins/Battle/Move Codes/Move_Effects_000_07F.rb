@@ -58,17 +58,9 @@ class PokeBattle_Move_005 < PokeBattle_PoisonMove
 end
 
 #===============================================================================
-# Badly poisons the target. (Poison Fang, Toxic)
+# (Not currently used)
 #===============================================================================
-class PokeBattle_Move_006 < PokeBattle_PoisonMove
-    def initialize(battle, move)
-        super
-        @toxic = true
-    end
-
-    def pbOverrideSuccessCheckPerHit(user, _target)
-        return (Settings::MORE_TYPE_EFFECTS && statusMove? && user.pbHasType?(:POISON))
-    end
+class PokeBattle_Move_006
 end
 
 #===============================================================================
@@ -114,7 +106,7 @@ class PokeBattle_Move_009 < PokeBattle_Move
         end
     end
 
-    def getEffectScore(user, target)
+    def getTargetAffectingEffectScore(user, target)
         score = 0
         score += 0.1 * getNumbEffectScore(user, target)
         score += 0.1 * getFlinchingEffectScore(60, user, target, self)
@@ -146,7 +138,7 @@ class PokeBattle_Move_00B < PokeBattle_Move
         end
     end
 
-    def getEffectScore(user, target)
+    def getTargetAffectingEffectScore(user, target)
         score = 0
         score += 0.1 * getBurnEffectScore(user, target)
         score += 0.1 * getFlinchingEffectScore(60, user, target, self)
@@ -155,9 +147,9 @@ class PokeBattle_Move_00B < PokeBattle_Move
 end
 
 #===============================================================================
-# Freezes the target.
+# (Not currently used)
 #===============================================================================
-class PokeBattle_Move_00C < PokeBattle_FreezeMove
+class PokeBattle_Move_00C < PokeBattle_Move
 end
 
 #===============================================================================
@@ -171,7 +163,7 @@ class PokeBattle_Move_00D < PokeBattle_FrostbiteMove
 end
 
 #===============================================================================
-# Freezes the target. May cause the target to flinch. (Ice Fang)
+# Frostbites the target. May cause the target to flinch. (Ice Fang)
 #===============================================================================
 class PokeBattle_Move_00E < PokeBattle_Move
     def flinchingMove?; return true; end
@@ -188,7 +180,7 @@ class PokeBattle_Move_00E < PokeBattle_Move
         end
     end
 
-    def getEffectScore(user, target)
+    def getTargetAffectingEffectScore(user, target)
         score = 0
         score += 0.1 * getFrostbiteEffectScore(user, target)
         score += 0.1 * getFlinchingEffectScore(60, user, target, self)
@@ -236,43 +228,32 @@ class PokeBattle_Move_012 < PokeBattle_FlinchMove
         return false
     end
 
-    def getEffectScore(user, target)
+    def getTargetAffectingEffectScore(user, target)
         score = getFlinchingEffectScore(150, user, target, self)
         return score
     end
 end
 
 #===============================================================================
-# Confuses the target.
+# (Not currently used)
 #===============================================================================
-class PokeBattle_Move_013 < PokeBattle_ConfuseMove
+class PokeBattle_Move_013 < PokeBattle_Move
 end
 
 #===============================================================================
-# Confuses the target. (Chatter)
+# (Not currently used)
 #===============================================================================
-class PokeBattle_Move_014 < PokeBattle_Move_013
+class PokeBattle_Move_014 < PokeBattle_Move
 end
 
 #===============================================================================
-# Confuses the target. Accuracy perfect in rain, 50% in sunshine. Hits some
-# semi-invulnerable targets. (old!Hurricane)
+# (Not currently used)
 #===============================================================================
-class PokeBattle_Move_015 < PokeBattle_ConfuseMove
-    def hitsFlyingTargets?; return true; end
-
-    def pbBaseAccuracy(user, target)
-        return 0 if @battle.rainy?
-        return super
-    end
-
-    def shouldHighlight?(_user, _target)
-        return @battle.rainy?
-    end
+class PokeBattle_Move_015 < PokeBattle_Move
 end
 
 #===============================================================================
-# Currently unused #TODO
+# (Not currently used)
 #===============================================================================
 class PokeBattle_Move_016 < PokeBattle_Move
 end
@@ -290,7 +271,7 @@ class PokeBattle_Move_017 < PokeBattle_Move
         end
     end
 
-    def getEffectScore(user, target)
+    def getTargetAffectingEffectScore(user, target)
         burnScore = getBurnEffectScore(user, target)
         frostBiteScore = getFrostbiteEffectScore(user, target)
         numbScore = getNumbEffectScore(user, target)
@@ -317,7 +298,7 @@ class PokeBattle_Move_018 < PokeBattle_Move
     end
 
     def getEffectScore(_user, _target)
-        return 50
+        return 75
     end
 end
 
@@ -1094,7 +1075,7 @@ class PokeBattle_Move_050 < PokeBattle_Move
         end
     end
 
-    def getEffectScore(_user, target)
+    def getTargetAffectingEffectScore(_user, target)
         score = 0
         if !target.substituted? && target.hasAlteredStatSteps?
             GameData::Stat.each_battle do |s|
@@ -2130,19 +2111,9 @@ class PokeBattle_Move_06E < PokeBattle_FixedDamageMove
 end
 
 #===============================================================================
-# Inflicts damage between 0.5 and 1.5 times the user's level. (Psywave)
+# (Not currently used)
 #===============================================================================
-class PokeBattle_Move_06F < PokeBattle_FixedDamageMove
-    def pbFixedDamage(user, _target)
-        min = (user.level / 2).floor
-        max = (user.level * 3 / 2).floor
-        return min + @battle.pbRandom(max - min + 1)
-    end
-
-    def getEffectScore(_user, _target)
-        echoln("The AI will never use Psywave.")
-        return 0
-    end
+class PokeBattle_Move_06F
 end
 
 #===============================================================================
@@ -2488,7 +2459,7 @@ class PokeBattle_Move_07C < PokeBattle_Move
         target.pbCureStatus(true, :NUMB)
     end
 
-    def getEffectScore(_user, target)
+    def getTargetAffectingEffectScore(_user, target)
         return -30 if target.numbed?
         return 0
     end
@@ -2509,7 +2480,7 @@ class PokeBattle_Move_07D < PokeBattle_Move
         target.pbCureStatus(true, :SLEEP)
     end
 
-    def getEffectScore(_user, target)
+    def getTargetAffectingEffectScore(_user, target)
         return -60 if target.asleep?
         return 0
     end

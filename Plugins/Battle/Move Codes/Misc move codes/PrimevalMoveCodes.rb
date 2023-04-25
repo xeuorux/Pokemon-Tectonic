@@ -17,6 +17,10 @@ module EmpoweredMove
     end
 
     def summonAvatar(user,species,summonMessage = nil)
+        if @battle.autoTesting
+            echoln("Skipping an Avatar summon")
+            return
+        end
         if @battle.pbSideSize(user.index) < 3
             summonMessage ||= _INTL("#{user.pbThis} summons another Avatar!")
             @battle.pbDisplay(summonMessage)
