@@ -269,9 +269,9 @@
 268,TM57,TM57,TM57s,4,6000,"The user stores power, then attacks. If the user moves after the target, this attack's power will be doubled.",3,0,0,PAYBACK
 269,TM58,TM58,TM58s,4,10000,"If the target has already taken some damage in the same turn, this attack's power is doubled.",3,0,0,ASSURANCE
 270,TM59,TM59,TM59s,4,100000,"The user flings its held item at the target to attack. This move's power and effects depend on the item.",3,0,0,FLING
-271,TM60,TM60,TM60s,4,30000,"The user employs its psychic power to switch changes to its Attack and Sp. Atk stats with the target.",3,0,0,POWERSWAP
-272,TM61,TM61,TM61s,4,30000,"The user employs its psychic power to switch changes to its Defense and Sp. Def stats with the target.",3,0,0,GUARDSWAP
-273,TM62,TM62,TM62s,4,30000,"The user exchanges Speed stats with the target.",3,0,0,SPEEDSWAP
+271,TM60,TM60,TM60s,4,10000,"The user employs its psychic power to switch changes to its Attack and Sp. Atk stats with the target.",3,0,0,POWERSWAP
+272,TM61,TM61,TM61s,4,10000,"The user employs its psychic power to switch changes to its Defense and Sp. Def stats with the target.",3,0,0,GUARDSWAP
+273,TM62,TM62,TM62s,4,10000,,3,0,0,HEARTSWAP
 274,TM63,TM63,TM63s,4,50000,"An energy-draining punch. The user's HP is restored by half the damage taken by the target.",3,0,0,DRAINPUNCH
 275,TM64,TM64,TM64s,4,10000,"The power of this attack move is doubled if the user has been hurt by the target in the same turn.",3,0,0,AVALANCHE
 276,TM65,TM65,TM65s,4,10000,"The user slashes with a sharp claw made from shadows. Critical hits land more easily.",3,0,0,SHADOWCLAW

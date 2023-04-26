@@ -60,7 +60,7 @@ end
 #===============================================================================
 # (Not currently used)
 #===============================================================================
-class PokeBattle_Move_006
+class PokeBattle_Move_006 < PokeBattle_Move
 end
 
 #===============================================================================
@@ -1124,61 +1124,15 @@ class PokeBattle_Move_051 < PokeBattle_Move
 end
 
 #===============================================================================
-# User and target swap their Attack and Special Attack stat steps. (Power Swap)
+# (Not currently used)
 #===============================================================================
 class PokeBattle_Move_052 < PokeBattle_Move
-    def ignoresSubstitute?(_user); return true; end
-
-    def pbEffectAgainstTarget(user, target)
-        %i[ATTACK SPECIAL_ATTACK].each do |s|
-            user.steps[s], target.steps[s] = target.steps[s], user.steps[s]
-        end
-        @battle.pbDisplay(_INTL("{1} switched all changes to its Attack and Sp. Atk with the target!", user.pbThis))
-    end
-
-    def getEffectScore(user, target)
-        score = 0
-        aatk = user.steps[:ATTACK]
-        aspa = user.steps[:SPECIAL_ATTACK]
-        oatk = target.steps[:ATTACK]
-        ospa = target.steps[:SPECIAL_ATTACK]
-        if aatk >= oatk && aspa >= ospa
-            score -= 80
-        else
-            score += (oatk - aatk) * 10
-            score += (ospa - aspa) * 10
-        end
-        return score
-    end
 end
 
 #===============================================================================
-# User and target swap their Defense and Special Defense stat steps. (Guard Swap)
+# (Not currently used)
 #===============================================================================
 class PokeBattle_Move_053 < PokeBattle_Move
-    def ignoresSubstitute?(_user); return true; end
-
-    def pbEffectAgainstTarget(user, target)
-        %i[DEFENSE SPECIAL_DEFENSE].each do |s|
-            user.steps[s], target.steps[s] = target.steps[s], user.steps[s]
-        end
-        @battle.pbDisplay(_INTL("{1} switched all changes to its Defense and Sp. Def with the target!", user.pbThis))
-    end
-
-    def getEffectScore(user, target)
-        score = 0
-        adef = user.steps[:DEFENSE]
-        aspd = user.steps[:SPECIAL_DEFENSE]
-        odef = target.steps[:DEFENSE]
-        ospd = target.steps[:SPECIAL_DEFENSE]
-        if adef >= odef && aspd >= ospd
-            score -= 80
-        else
-            score += (odef - adef) * 10
-            score += (ospd - aspd) * 10
-        end
-        return score
-    end
 end
 
 #===============================================================================

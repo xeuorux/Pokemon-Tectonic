@@ -117,3 +117,6 @@
 4116,MEDITATE,Meditate,027,0,PSYCHIC,Status,0,30,0,User,0,d,"The user meditates, raising both its Attack and Sp. Atk stats.",
 4117,GASTROACID,Gastro Acid,068,0,POISON,Status,100,10,0,NearOther,0,bce,"The user hurls up its stomach acids on the foe. The fluid negates the effect of the target's Ability.",
 4118,FORESIGHT,Foresight,0A7,0,NORMAL,Status,0,30,0,NearOther,0,bce,"Enables the user to hit a Ghost type with any kind of move. It also enables the user to hit an evasive foe.",
+4119,SPEEDSWAP,Speed Swap,161,0,PSYCHIC,Status,0,10,0,NearOther,0,be,"The user exchanges base Speed stats with the target.",
+4120,POWERSWAP,Power Swap,052,0,PSYCHIC,Status,0,10,0,NearOther,0,be,"The user employs its psychic power to switch changes to its Attack and Sp. Atk with the target.",
+4121,GUARDSWAP,Guard Swap,053,0,PSYCHIC,Status,0,10,0,NearOther,0,be,"The user employs its psychic power to switch changes to its Defense and Sp. Def with the target.",
