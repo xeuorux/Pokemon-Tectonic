@@ -130,7 +130,7 @@ def createChangeLogBetween(firstID,lastID,fileName = "changelog.txt")
 							end
 						end
 						# Write out the description of the new ability if its custom
-						if !newSpeciesData.abilities[i].nil? && newAbilityData.id_number >= NEW_ABILITIES_STARTING_ID
+						if !newSpeciesData.abilities[i].nil? && newAbilityData.tectonic_new
 							desc = newAbilityData.description.gsub("%"," percent")
 							changeLog.push("\t\"#{desc}\"")
 						end
@@ -160,7 +160,6 @@ def createChangeLogBetween(firstID,lastID,fileName = "changelog.txt")
 					str += GameData::Move.get(move).real_name
 					if index != cutMoves.length - 1
 						str += ", "
-						str += "\r\n\t" if index > 0 && index % 12 == 0
 					end
 				end
 				changeLog.push(str)
@@ -186,7 +185,6 @@ def createChangeLogBetween(firstID,lastID,fileName = "changelog.txt")
 					str += GameData::Move.get(move).real_name
 					if index != addedMoves.length - 1
 						str += ", "
-						str += "\r\n\t" if index > 0 && index % 12 == 0
 					end
 				end
 				changeLog.push(str)

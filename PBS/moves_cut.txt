@@ -120,3 +120,4 @@
 4119,SPEEDSWAP,Speed Swap,161,0,PSYCHIC,Status,0,10,0,NearOther,0,be,"The user exchanges base Speed stats with the target.",
 4120,POWERSWAP,Power Swap,052,0,PSYCHIC,Status,0,10,0,NearOther,0,be,"The user employs its psychic power to switch changes to its Attack and Sp. Atk with the target.",
 4121,GUARDSWAP,Guard Swap,053,0,PSYCHIC,Status,0,10,0,NearOther,0,be,"The user employs its psychic power to switch changes to its Defense and Sp. Def with the target.",
+4122,MEGAKICK,Mega Kick,000,120,NORMAL,Physical,80,5,0,NearOther,0,abef,"The target is attacked by a kick launched with muscle-packed power.",
