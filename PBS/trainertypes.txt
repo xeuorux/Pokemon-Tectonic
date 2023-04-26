@@ -288,3 +288,4 @@
 415,ANOTHERPOSSIBLEALESSA,Another Possible,80,,,,Female,,,[]
 416,SHADOWMAVIS,Shadow,80,,,,Female,,,[]
 417,ANCIENTMAKYAN,Ancient Makyan,0,,,,Mixed,,,[]
+418,SCHOOLKID_F3,School Kid,20,,,LASS2,Female,,,[]

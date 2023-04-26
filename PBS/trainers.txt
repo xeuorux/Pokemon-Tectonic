@@ -3139,15 +3139,39 @@ Pokemon = EMBOAR,60
 Pokemon = RIBOMBEE,60
     AbilityIndex = 0 # Candy Veil
 #-------------------------------
+[RUINMANIAC2,Bernard]
+Pokemon = KLEAVOR,60
+    AbilityIndex = 1 # Weak Armor
+    Item = WHITEHERB
+Pokemon = DRAMPA,60
+    AbilityIndex = 0 # Berserk
+Pokemon = SCARAPACE,60
+    AbilityIndex = 1 # Mold Breaker
+Pokemon = CHARIZARD,60
+    AbilityIndex = 0 # Levitate
+    Item = FIREGEM
+#-------------------------------
+[SCHOOLKID_F4,Lucia]
+Pokemon = HGOODRA,60
+    AbilityIndex = 1 # Weak Spirit
+    Item = ORANBERRY
+Pokemon = DRACOZOLT,60
+    AbilityIndex = 1 # Challenger
+Pokemon = MASQUERAIN,60
+    AbilityIndex = 1 # Intimidate
+Pokemon = CRUSTLE,60
+    AbilityIndex = 0 # Stratagem
+    Item = LUMBERRY
+#-------------------------------
 [BUGCATCHER2,Rangsan]
 Pokemon = SCEPTILE,60
     AbilityIndex = 0 # Infiltrator
 Pokemon = FROSMOTH,60
     AbilityIndex = 1 # Bitter
     Item = WEAKNESSPOLICY
-Pokemon = KINGDRA,60
-    AbilityIndex = 1 # Whirler
-    Item = EXPERTBELT
+Pokemon = DRACOVISH,60
+    AbilityIndex = 1 # Schadenfreude
+    Item = AGILITYHERB
 Pokemon = DURANT,60
     AbilityIndex = 0 # Hustle
 #-------------------------------
