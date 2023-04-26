@@ -63,11 +63,8 @@ class PokemonPokedex_Scene
 			speciesUsed[species_data.species] = []
 		end
 		
-		trainerNamesCompleted = []
 		GameData::Trainer.each do |trainerData|
-			name = trainerData.real_name
-			next if trainerNamesCompleted.include?(name)
-			trainerNamesCompleted.push(name)
+			next if trainerData.getParentTrainer # Ignore sub-trainers
 			trainerData.pokemon.each do |partyEntry|
 				species = partyEntry[:species]
 				speciesUsed[species].push(trainerData)

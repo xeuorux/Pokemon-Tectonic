@@ -50,11 +50,11 @@ module GameData
 				pkmn[:ev][s.id] ||= 0 if pkmn[:ev]
 				end
 			end
-			@removedPokemon = hash[:removed_pokemon] || []
-			@policies		  = hash[:policies]		|| []
-			@extendsClass	  = hash[:extends_class]
-			@extendsName	  = hash[:extends_name]
-			@extendsVersion = hash[:extends_version] || -1
+			@removedPokemon 	= hash[:removed_pokemon] || []
+			@policies		  	= hash[:policies]		|| []
+			@extendsClass	  	= hash[:extends_class]
+			@extendsName	  	= hash[:extends_name]
+			@extendsVersion 	= hash[:extends_version] || -1
 
 			@pokemon.each do |partyEntry|
 				trainerName = "#{@trainer_type} #{@real_name}"
@@ -69,19 +69,19 @@ module GameData
 				end
 			end
 		end
-	
-		# Creates a battle-ready version of a trainer's data.
-		# @return [Array] all information about a trainer in a usable form
-		def to_trainer
+
+		def getParentTrainer
 			parentTrainer = nil
-			extending = false
 			if @extendsVersion > -1
 				parentTrainerData = GameData::Trainer.get(@extendsClass || @trainer_type, @extendsName || @real_name, @extendsVersion)
 				parentTrainer = parentTrainerData.to_trainer
-				extending = true if !parentTrainer.nil?
-				#echoln("Trainer #{@id.to_s} is extending trainer #{parentTrainerData.id.to_s}")
 			end
-
+			return parentTrainer
+		end
+	
+		# Creates a battle-ready version of a trainer's data.
+		# @return [Array] all information about a trainer in a usable form
+		def to_trainer	
 			# Determine trainer's name
 			tr_name = self.name
 			Settings::RIVAL_NAMES.each do |rival|
@@ -98,7 +98,8 @@ module GameData
 			trainer.policies   = @policies.clone
 			trainer.policies.concat(GameData::TrainerType.get(@trainer_type).policies)
 
-			if extending
+			parentTrainer = getParentTrainer
+			if parentTrainer
 				trainer.items.concat(parentTrainer.items.clone)
 				trainer.lose_text = parentTrainer.lose_text if @lose_text.nil? || @lose_text == "..."
 				trainer.policies.concat(parentTrainer.policies.clone)
@@ -107,7 +108,7 @@ module GameData
 			trainer.policies.uniq!
 
 			# Add pokemon from a parent trainer entry's party, if inheriting
-			if extending
+			if parentTrainer
 				parentTrainer.party.each do |parentPartyMember|
 					# Determine if this pokemon was marked for removal in the child trainer entry
 					hasRemoveMatch = false
@@ -138,7 +139,7 @@ module GameData
 				nickname = pkmn_data[:name] if pkmn_data[:name] && !pkmn_data[:name].empty?
 
 				pkmn = nil
-				if extending
+				if parentTrainer
 					trainer.party.each do |existingPokemon|
 						next if existingPokemon.species != species
 						if existingPokemon.level == level
@@ -211,7 +212,7 @@ module GameData
 				pkmn.calc_stats
 			end
 
-			if extending && trainer.party.length > Settings::MAX_PARTY_SIZE
+			if parentTrainer && trainer.party.length > Settings::MAX_PARTY_SIZE
 				raise _INTL("Error when trying to contruct trainer #{@id.to_s} as an extension of trainer #{trainer.id.to_s}. The resultant party is larger than the maximum party size!")
 			end
 

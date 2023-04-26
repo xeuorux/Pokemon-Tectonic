@@ -1245,13 +1245,11 @@ sp.form) && !Settings::DEX_SHOWS_ALL_FORMS
     def drawPageDEBUG
         @sprites["background"].setBitmap(_INTL("Graphics/Pictures/Pokedex/bg_evolution"))
         overlay = @sprites["overlay"].bitmap
-        formname = ""
         base = Color.new(64, 64, 64)
         shadow = Color.new(176, 176, 176)
         xLeft = 36
         for i in @available
             next unless i[2] == @form
-            formname = i[0]
             fSpecies = GameData::Species.get_species_form(@species, i[2])
 
             coordinateY = 54
@@ -1304,13 +1302,15 @@ sp.form) && !Settings::DEX_SHOWS_ALL_FORMS
             drawTextEx(overlay, xLeft, coordinateY, 450, 1,
                "BnB coverage #{typesOfCoverage.length}: #{typesOfCoverage[0..[2, typesOfCoverage.length].min]}", base, shadow)
             coordinateY += 32
-            for index in 1..10
-                rangeStart = (5 * index) - 2
-                rangeEnd = [rangeStart + 5, typesOfCoverage.length].min
-                drawTextEx(overlay, xLeft, coordinateY, 450, 1, typesOfCoverage[rangeStart...rangeEnd].to_s.to_s, base,
-              shadow)
-                coordinateY += 32
-                break if rangeEnd == typesOfCoverage.length
+            if typesOfCoverage.length > 2
+                for index in 1..10
+                    rangeStart = (5 * index) - 2
+                    rangeEnd = [rangeStart + 5, typesOfCoverage.length].min
+                    drawTextEx(overlay, xLeft, coordinateY, 450, 1, typesOfCoverage[rangeStart..rangeEnd].to_s, base,
+                shadow)
+                    coordinateY += 32
+                    break if rangeEnd == typesOfCoverage.length
+                end
             end
 
             # Metagame coverage
