@@ -10669,7 +10669,7 @@ InternalName = NUMEL
 Type1 = FIRE
 Type2 = GROUND
 # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
-BaseStats = 70,50,50,30,75,50
+BaseStats = 70,50,50,35,70,50
 # Total = 325
 GenderRate = Female50Percent
 GrowthRate = Medium
@@ -10703,7 +10703,7 @@ InternalName = CAMERUPT
 Type1 = FIRE
 Type2 = GROUND
 # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
-BaseStats = 85,65,65,40,105,65
+BaseStats = 85,65,65,45,100,65
 # Total = 425
 GenderRate = Female50Percent
 GrowthRate = Medium
@@ -30012,7 +30012,7 @@ InternalName = DROMERUPT
 Type1 = FIRE
 Type2 = GROUND
 # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
-BaseStats = 105,90,80,50,130,80
+BaseStats = 105,90,80,60,120,80
 # Total = 535
 GenderRate = Female50Percent
 GrowthRate = Medium
