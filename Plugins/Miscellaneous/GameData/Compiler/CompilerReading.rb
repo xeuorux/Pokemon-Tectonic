@@ -164,10 +164,11 @@ module Compiler
     ability_names        = []
     ability_descriptions = []
     idBase = 0
-    ["PBS/abilities.txt","PBS/abilities_cut.txt","PBS/abilities_primeval.txt"].each do |path|
+    ["PBS/abilities.txt","PBS/abilities_new.txt","PBS/abilities_primeval.txt","PBS/abilities_cut.txt"].each do |path|
       idNumber = idBase
       cutAbility = path == "PBS/abilities_cut.txt"
       primevalAbility = path == "PBS/abilities_primeval.txt"
+      newAbility = ["PBS/abilities_new.txt","PBS/abilities_primeval.txt"].include?(path)
       pbCompilerEachPreppedLine(path) { |line, line_no|
         idNumber += 1
         line = pbGetCsvRecord(line, line_no, [0, "vnss"])
@@ -180,12 +181,13 @@ module Compiler
         end
         # Construct ability hash
         ability_hash = {
-          :id          => ability_symbol,
-          :id_number   => ability_number,
-          :name        => line[2],
-          :description => line[3],
-          :cut         => cutAbility,
-          :primeval    => primevalAbility,
+          :id           => ability_symbol,
+          :id_number    => ability_number,
+          :name         => line[2],
+          :description  => line[3],
+          :cut          => cutAbility,
+          :tectonic_new => newAbility,
+          :primeval     => primevalAbility,
         }
         # Add ability's data to records
         GameData::Ability.register(ability_hash)
@@ -1397,7 +1399,6 @@ module Compiler
       loop do
         madeAnyChanges = false
         iterationCount += 1
-        echoln("Iteration #{iterationCount} of calculating earliest species aquisition level!")
         GameData::Species.each do |speciesData|
           species = speciesData.id
           next unless earliestAquisition.has_key?(species)

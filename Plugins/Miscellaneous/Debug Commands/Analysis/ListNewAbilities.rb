@@ -6,8 +6,7 @@ DebugMenuCommands.register("listnewabilities", {
 	
 	abilityDataSorted = []
 	GameData::Ability.each do |abilityData|
-		next unless abilityData.id_number >= 269
-		break if abilityData.id_number >= 1000
+		next unless abilityData.tectonic_new
 		abilityDataSorted.push(abilityData)
 	end
 

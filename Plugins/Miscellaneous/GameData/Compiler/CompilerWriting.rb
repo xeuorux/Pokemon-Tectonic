@@ -522,7 +522,14 @@ module Compiler
     File.open("PBS/abilities.txt", "wb") { |f|
       add_PBS_header_to_file(f)
       GameData::Ability.each do |a|
-        next if a.cut || a.primeval
+        next if a.cut || a.primeval || a.tectonic_new
+        write_ability(f,a)
+      end
+    }
+    File.open("PBS/abilities_new.txt", "wb") { |f|
+      add_PBS_header_to_file(f)
+      GameData::Ability.each do |a|
+        next unless a.tectonic_new && !a.primeval
         write_ability(f,a)
       end
     }
