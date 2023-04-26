@@ -1861,8 +1861,6 @@ class PokeBattle_Move_0C0 < PokeBattle_Move
         return 3 if @id == :WATERSHURIKEN && user.isSpecies?(:GRENINJA) && user.form == 2
         if user.hasActiveItem?(:LOADEDDICE)
             hitChances = [3, 3, 4, 4, 5, 5]
-        elsif user.hasActiveItem?(:D8)
-            hitChances = [1, 2, 3, 4, 5, 6, 7, 8]
         else
             hitChances = [2, 2, 3, 3, 4, 5]
         end
@@ -1877,6 +1875,7 @@ class PokeBattle_Move_0C0 < PokeBattle_Move
     def pbNumHitsAI(user, _targets)
         return 3 if @id == :WATERSHURIKEN && user.isSpecies?(:GRENINJA) && user.form == 2
         return 5 if user.hasActiveAbilityAI?(:SKILLLINK)
+        return 4 if user.hasActiveItem?(:LOADEDDICE)
         return 19.0 / 6.0 # Average
     end
 
