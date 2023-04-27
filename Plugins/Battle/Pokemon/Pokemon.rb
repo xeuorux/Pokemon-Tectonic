@@ -265,7 +265,7 @@ class Pokemon
   
     # @return [Boolean] whether the Pokémon is not fainted and not an egg
     def able?
-      return !egg? && @hp > 0
+      return !egg? && @hp > 0 && !@afraid
     end
   
     # @return [Boolean] whether the Pokémon is fainted
@@ -280,6 +280,7 @@ class Pokemon
     end
 
 	# Heals this Pokemon's HP by an amount
+	  # Heals this Pokemon's HP by an amount
     def healBy(amount)
         return if egg?
         @hp += amount
