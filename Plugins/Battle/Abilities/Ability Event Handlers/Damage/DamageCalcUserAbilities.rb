@@ -481,3 +481,9 @@ BattleHandlers::DamageCalcUserAbility.add(:HARDFALL,
       mults[:base_damage_multiplier] *= 1.3 if target.pbHeight > user.pbHeight
   }
 )
+
+BattleHandlers::DamageCalcUserAbility.add(:CALAMITY,
+  proc { |ability, user, target, move, mults, _baseDmg, _type|
+      mults[:base_damage_multiplier] *= 1.25 if user.battle.pbWeather == :Eclipse
+  }
+)

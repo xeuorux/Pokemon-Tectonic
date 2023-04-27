@@ -1,20 +1,6 @@
-BattleHandlers::UserAbilityEndOfMove.add(:BEASTBOOST,
-  proc { |ability, user, targets, _move, battle, _switchedBattlers|
-      next if battle.pbAllFainted?(user.idxOpposingSide)
-      numFainted = 0
-      targets.each { |b| numFainted += 1 if b.damageState.fainted }
-      next if numFainted == 0
-      userStats = user.plainStats
-      highestStatValue = 0
-      userStats.each_value { |value| highestStatValue = value if highestStatValue < value }
-      GameData::Stat.each_main_battle do |s|
-          next if userStats[s.id] < highestStatValue
-          stat = s.id
-          user.tryRaiseStat(stat, user, increment: numFainted, ability: ability)
-          break
-      end
-  }
-)
+########################################################################
+# Foe faint abilities
+########################################################################
 
 BattleHandlers::UserAbilityEndOfMove.add(:MOXIE,
   proc { |ability, user, targets, _move, battle, _switchedBattlers|
@@ -23,60 +9,6 @@ BattleHandlers::UserAbilityEndOfMove.add(:MOXIE,
       targets.each { |b| numFainted += 1 if b.damageState.fainted }
       next if numFainted == 0
       user.tryRaiseStat(:ATTACK, user, increment: numFainted, ability: ability)
-  }
-)
-
-BattleHandlers::UserAbilityEndOfMove.add(:MAGICIAN,
-  proc { |ability, user, targets, move, battle, _switchedBattlers|
-      next if battle.futureSight
-      next unless move.pbDamagingMove?
-      targets.each do |b|
-          b.eachItem do |item|
-            move.stealItem(user, b, item)
-          end
-      end
-  }
-)
-
-BattleHandlers::UserAbilityEndOfMove.add(:ASONEICE,
-  proc { |ability, user, targets, _move, battle, _switchedBattlers|
-      next if battle.pbAllFainted?(user.idxOpposingSide)
-      numFainted = 0
-      targets.each { |b| numFainted += 1 if b.damageState.fainted }
-      next if numFainted == 0 || !user.pbCanRaiseStatStep?(:ATTACK, user) || user.fainted?
-      battle.pbShowAbilitySplash(user, :CHILLINGNEIGH)
-      user.pbRaiseStatStep(:ATTACK, numFainted, user)
-      battle.pbHideAbilitySplash(user)
-  }
-)
-
-BattleHandlers::UserAbilityEndOfMove.add(:ASONEGHOST,
-  proc { |ability, user, targets, _move, battle, _switchedBattlers|
-      next if battle.pbAllFainted?(user.idxOpposingSide)
-      numFainted = 0
-      targets.each { |b| numFainted += 1 if b.damageState.fainted }
-      next if numFainted == 0 || !user.pbCanRaiseStatStep?(:ATTACK, user) || user.fainted?
-      battle.pbShowAbilitySplash(user, :GRIMNEIGH)
-      user.pbRaiseStatStep(:SPECIAL_ATTACK, numFainted, user)
-      battle.pbHideAbilitySplash(user)
-  }
-)
-
-BattleHandlers::UserAbilityEndOfMove.add(:DEEPSTING,
-  proc { |ability, user, targets, _move, battle, _switchedBattlers|
-      next unless user.takesIndirectDamage?
-      totalDamageDealt = 0
-      targets.each do |target|
-          next if target.damageState.unaffected
-          totalDamageDealt = target.damageState.totalHPLost
-      end
-      next if totalDamageDealt <= 0
-      amt = (totalDamageDealt / 4.0).round
-      amt = 1 if amt < 1
-      user.pbReduceHP(amt, false)
-      battle.pbDisplay(_INTL("{1} is damaged by recoil!", user.pbThis))
-      user.pbItemHPHealCheck
-      user.pbFaint if user.fainted?
   }
 )
 
@@ -94,57 +26,6 @@ BattleHandlers::UserAbilityEndOfMove.copy(:MOXIE, :CHILLINGNEIGH)
 
 BattleHandlers::UserAbilityEndOfMove.copy(:HUBRIS, :GRIMNEIGH)
 
-BattleHandlers::UserAbilityEndOfMove.add(:SCHADENFREUDE,
-  proc { |ability, user, targets, _move, _battle|
-      numFainted = 0
-      targets.each { |b| numFainted += 1 if b.damageState.fainted }
-      next if numFainted == 0
-      user.applyFractionalHealing(1.0 / 4.0, ability: ability)
-  }
-)
-
-BattleHandlers::UserAbilityEndOfMove.add(:GILD,
-  proc { |ability, user, targets, move, battle, _switchedBattlers|
-      next if battle.futureSight
-      next unless move.pbDamagingMove?
-      targets.each do |b|
-          next unless b.hasAnyItem?
-          next unless move.knockOffItems(user, b, ability: ability) do |itemRemoved, itemName|
-            battle.pbDisplay(_INTL("{1} turned {2}'s {3} into gold!", user.pbThis, b.pbThis(true), itemName))
-            battle.field.incrementEffect(:PayDay, 5 * user.level) if user.pbOwnedByPlayer?
-          end
-          break
-      end
-  }
-)
-
-BattleHandlers::UserAbilityEndOfMove.add(:DAUNTLESS,
-  proc { |ability, user, targets, _move, battle, _switchedBattlers|
-      next if battle.pbAllFainted?(user.idxOpposingSide)
-      numFainted = 0
-      targets.each { |b| numFainted += 1 if b.damageState.fainted }
-      next if numFainted == 0
-      user.pbRaiseMultipleStatSteps([:ATTACK, numFainted, :SPECIAL_ATTACK, numFainted], user, ability: ability)
-  }
-)
-
-BattleHandlers::UserAbilityEndOfMove.add(:CALAMITY,
-  proc { |ability, user, targets, _move, battle, _switchedBattlers|
-      next unless battle.pbWeather == :Eclipse
-      next if battle.pbAllFainted?(user.idxOpposingSide)
-      numFainted = 0
-      targets.each { |b| numFainted += 1 if b.damageState.fainted }
-      next if numFainted == 0
-      user.pbRaiseMultipleStatSteps([:ATTACK, numFainted * 2, :SPECIAL_ATTACK, numFainted * 2], user, ability: ability)
-  }
-)
-
-BattleHandlers::UserAbilityEndOfMove.add(:SPACEINTERLOPER,
-  proc { |ability, user, targets, _move, _battle|
-    user.pbRecoverHPFromMultiDrain(targets, 0.25, ability: ability)
-  }
-)
-
 BattleHandlers::UserAbilityEndOfMove.add(:FOLLOWTHROUGH,
   proc { |ability, user, targets, _move, battle, _switchedBattlers|
       next if battle.pbAllFainted?(user.idxOpposingSide)
@@ -155,17 +36,43 @@ BattleHandlers::UserAbilityEndOfMove.add(:FOLLOWTHROUGH,
   }
 )
 
-BattleHandlers::UserAbilityEndOfMove.add(:SOUNDBARRIER,
-  proc { |ability, user, _targets, move, _battle, _switchedBattlers|
-      next unless move.soundMove?
-      user.pbRaiseMultipleStatSteps(DEFENDING_STATS_1, user, ability: ability)
+BattleHandlers::UserAbilityEndOfMove.add(:PROVING,
+  proc { |ability, user, targets, _move, battle, _switchedBattlers|
+      next if battle.pbAllFainted?(user.idxOpposingSide)
+      numFainted = 0
+      targets.each { |b| numFainted += 1 if b.damageState.fainted }
+      next if numFainted == 0
+      user.pbRaiseMultipleStatSteps([:ATTACK, numFainted, :SPEED, numFainted], user, ability: ability)
   }
 )
 
-BattleHandlers::UserAbilityEndOfMove.add(:WINDBUFFER,
-  proc { |ability, user, _targets, move, _battle, _switchedBattlers|
-    next unless move.windMove?
-    user.pbRaiseMultipleStatSteps(DEFENDING_STATS_1, user, ability: ability)
+BattleHandlers::UserAbilityEndOfMove.add(:ENERGYDRAIN,
+  proc { |ability, user, targets, _move, battle, _switchedBattlers|
+      next if battle.pbAllFainted?(user.idxOpposingSide)
+      numFainted = 0
+      targets.each { |b| numFainted += 1 if b.damageState.fainted }
+      next if numFainted == 0
+      user.pbRaiseMultipleStatSteps([:SPECIAL_ATTACK, numFainted, :SPEED, numFainted], user, ability: ability)
+  }
+)
+
+BattleHandlers::UserAbilityEndOfMove.add(:DOMINATING,
+  proc { |ability, user, targets, _move, battle, _switchedBattlers|
+      next if battle.pbAllFainted?(user.idxOpposingSide)
+      numFainted = 0
+      targets.each { |b| numFainted += 1 if b.damageState.fainted }
+      next if numFainted == 0
+      user.pbRaiseMultipleStatSteps([:ATTACK, numFainted, :DEFENSE, numFainted], user, ability: ability)
+  }
+)
+
+BattleHandlers::UserAbilityEndOfMove.add(:WISEHUNTER,
+  proc { |ability, user, targets, _move, battle, _switchedBattlers|
+      next if battle.pbAllFainted?(user.idxOpposingSide)
+      numFainted = 0
+      targets.each { |b| numFainted += 1 if b.damageState.fainted }
+      next if numFainted == 0
+      user.pbRaiseMultipleStatSteps([:SPECIAL_ATTACK, numFainted, :SPECIAL_DEFENSE, numFainted], user, ability: ability)
   }
 )
 
@@ -199,6 +106,146 @@ BattleHandlers::UserAbilityEndOfMove.add(:VICTORYMOLT,
           user.pbResetStatSteps
       end
       battle.pbHideAbilitySplash(user)
+  }
+)
+
+BattleHandlers::UserAbilityEndOfMove.add(:SCHADENFREUDE,
+  proc { |ability, user, targets, _move, _battle|
+      numFainted = 0
+      targets.each { |b| numFainted += 1 if b.damageState.fainted }
+      next if numFainted == 0
+      user.applyFractionalHealing(1.0 / 4.0, ability: ability)
+  }
+)
+
+BattleHandlers::UserAbilityEndOfMove.add(:HEALINGHOPE,
+  proc { |ability, user, targets, _move, battle, _switchedBattlers|
+      next if battle.pbAllFainted?(user.idxOpposingSide)
+      numFainted = 0
+      targets.each { |b| numFainted += 1 if b.damageState.fainted }
+      next if numFainted == 0
+      battle.forceUseMove(user, :WISH, user.index, ability: ability)
+  }
+)
+
+BattleHandlers::UserAbilityEndOfMove.add(:BEASTBOOST,
+  proc { |ability, user, targets, _move, battle, _switchedBattlers|
+      next if battle.pbAllFainted?(user.idxOpposingSide)
+      numFainted = 0
+      targets.each { |b| numFainted += 1 if b.damageState.fainted }
+      next if numFainted == 0
+      userStats = user.plainStats
+      highestStatValue = 0
+      userStats.each_value { |value| highestStatValue = value if highestStatValue < value }
+      GameData::Stat.each_main_battle do |s|
+          next if userStats[s.id] < highestStatValue
+          stat = s.id
+          user.tryRaiseStat(stat, user, increment: numFainted, ability: ability)
+          break
+      end
+  }
+)
+
+BattleHandlers::UserAbilityEndOfMove.add(:ASONEICE,
+  proc { |ability, user, targets, _move, battle, _switchedBattlers|
+      next if battle.pbAllFainted?(user.idxOpposingSide)
+      numFainted = 0
+      targets.each { |b| numFainted += 1 if b.damageState.fainted }
+      next if numFainted == 0 || !user.pbCanRaiseStatStep?(:ATTACK, user) || user.fainted?
+      battle.pbShowAbilitySplash(user, :CHILLINGNEIGH)
+      user.pbRaiseStatStep(:ATTACK, numFainted, user)
+      battle.pbHideAbilitySplash(user)
+  }
+)
+
+BattleHandlers::UserAbilityEndOfMove.add(:ASONEGHOST,
+  proc { |ability, user, targets, _move, battle, _switchedBattlers|
+      next if battle.pbAllFainted?(user.idxOpposingSide)
+      numFainted = 0
+      targets.each { |b| numFainted += 1 if b.damageState.fainted }
+      next if numFainted == 0 || !user.pbCanRaiseStatStep?(:ATTACK, user) || user.fainted?
+      battle.pbShowAbilitySplash(user, :GRIMNEIGH)
+      user.pbRaiseStatStep(:SPECIAL_ATTACK, numFainted, user)
+      battle.pbHideAbilitySplash(user)
+  }
+)
+
+########################################################################
+# Other abilities
+########################################################################
+
+BattleHandlers::UserAbilityEndOfMove.add(:MAGICIAN,
+  proc { |ability, user, targets, move, battle, _switchedBattlers|
+      next if battle.futureSight
+      next unless move.pbDamagingMove?
+      targets.each do |b|
+          b.eachItem do |item|
+            move.stealItem(user, b, item)
+          end
+      end
+  }
+)
+
+BattleHandlers::UserAbilityEndOfMove.add(:DEEPSTING,
+  proc { |ability, user, targets, _move, battle, _switchedBattlers|
+      next unless user.takesIndirectDamage?
+      totalDamageDealt = 0
+      targets.each do |target|
+          next if target.damageState.unaffected
+          totalDamageDealt = target.damageState.totalHPLost
+      end
+      next if totalDamageDealt <= 0
+      amt = (totalDamageDealt / 4.0).round
+      amt = 1 if amt < 1
+      user.pbReduceHP(amt, false)
+      battle.pbDisplay(_INTL("{1} is damaged by recoil!", user.pbThis))
+      user.pbItemHPHealCheck
+      user.pbFaint if user.fainted?
+  }
+)
+
+BattleHandlers::UserAbilityEndOfMove.add(:GILD,
+  proc { |ability, user, targets, move, battle, _switchedBattlers|
+      next if battle.futureSight
+      next unless move.pbDamagingMove?
+      targets.each do |b|
+          next unless b.hasAnyItem?
+          next unless move.knockOffItems(user, b, ability: ability) do |itemRemoved, itemName|
+            battle.pbDisplay(_INTL("{1} turned {2}'s {3} into gold!", user.pbThis, b.pbThis(true), itemName))
+            battle.field.incrementEffect(:PayDay, 5 * user.level) if user.pbOwnedByPlayer?
+          end
+          break
+      end
+  }
+)
+
+BattleHandlers::UserAbilityEndOfMove.add(:SPACEINTERLOPER,
+  proc { |ability, user, targets, _move, _battle|
+    user.pbRecoverHPFromMultiDrain(targets, 0.25, ability: ability)
+  }
+)
+
+BattleHandlers::UserAbilityEndOfMove.add(:SOUNDBARRIER,
+  proc { |ability, user, _targets, move, _battle, _switchedBattlers|
+      next unless move.soundMove?
+      user.pbRaiseMultipleStatSteps(DEFENDING_STATS_1, user, ability: ability)
+  }
+)
+
+BattleHandlers::UserAbilityEndOfMove.add(:WINDBUFFER,
+  proc { |ability, user, _targets, move, _battle, _switchedBattlers|
+    next unless move.windMove?
+    user.pbRaiseMultipleStatSteps(DEFENDING_STATS_1, user, ability: ability)
+  }
+)
+
+BattleHandlers::UserAbilityEndOfMove.add(:DAUNTLESS,
+  proc { |ability, user, targets, _move, battle, _switchedBattlers|
+      next if battle.pbAllFainted?(user.idxOpposingSide)
+      numFainted = 0
+      targets.each { |b| numFainted += 1 if b.damageState.fainted }
+      next if numFainted == 0
+      user.pbRaiseMultipleStatSteps([:ATTACK, numFainted, :SPECIAL_ATTACK, numFainted], user, ability: ability)
   }
 )
 
@@ -236,16 +283,6 @@ BattleHandlers::UserAbilityEndOfMove.add(:GENERATOR,
       battle.pbShowAbilitySplash(user, ability)
       user.applyEffect(:Charge)
       battle.pbHideAbilitySplash(user)
-  }
-)
-
-BattleHandlers::UserAbilityEndOfMove.add(:HEALINGHOPE,
-  proc { |ability, user, targets, _move, battle, _switchedBattlers|
-      next if battle.pbAllFainted?(user.idxOpposingSide)
-      numFainted = 0
-      targets.each { |b| numFainted += 1 if b.damageState.fainted }
-      next if numFainted == 0
-      battle.forceUseMove(user, :WISH, user.index, ability: ability)
   }
 )
 
@@ -342,16 +379,6 @@ BattleHandlers::UserAbilityEndOfMove.add(:IRREFUTABLE,
       end
       next unless nveHits > 0
       user.tryRaiseStat(:ATTACK, user, increment: nveHits * 2, ability: ability)
-  }
-)
-
-BattleHandlers::UserAbilityEndOfMove.add(:ENERGYABSORB,
-  proc { |ability, user, targets, _move, battle, _switchedBattlers|
-      next if battle.pbAllFainted?(user.idxOpposingSide)
-      numFainted = 0
-      targets.each { |b| numFainted += 1 if b.damageState.fainted }
-      next if numFainted == 0
-      user.applyEffect(:Charge)
   }
 )
 

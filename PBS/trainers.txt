@@ -539,7 +539,7 @@ Pokemon = BRAIXEN,20
     EV = 20,0,20,0,0,10
 Pokemon = FROGADIER,20
     Moves = WATERPULSE,TEASE,ICYWIND
-    AbilityIndex = 1 # Hubris
+    AbilityIndex = 1 # Wise Hunter
     Item = WATERGEM
     EV = 10,20,0,20,20,0
 Pokemon = JIGGLYPUFF,20
@@ -1325,7 +1325,7 @@ Pokemon = STEELIX,35
 #-------------------------------
 [BURGLAR,Keith]
 Pokemon = PRIMEAPE,35
-    AbilityIndex = 1 # Gorilla Tactics
+    AbilityIndex = 1 # Dominating
 Pokemon = ASANDSLASH,35
     AbilityIndex = 1 # Ice Scales
 Pokemon = AGOLEM,35
@@ -1442,7 +1442,7 @@ Pokemon = BISHARP,35
 Pokemon = AEXEGGUTOR,35
     AbilityIndex = 0 # Realist
 Pokemon = FURRET,35
-    AbilityIndex = 0 # Moxie
+    AbilityIndex = 0 # Hustle
     Item = CHESTOBERRY
 Pokemon = BEAUTIFLY,35
     AbilityIndex = 0 # Expertise
