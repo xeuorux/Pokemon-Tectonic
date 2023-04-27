@@ -1155,13 +1155,33 @@ end
 # Halves the target's current HP. (Mouthful)
 # User gains half the HP it inflicts as damage.
 #===============================================================================
-class PokeBattle_Move_5BE < PokeBattle_DrainMove
+class PokeBattle_Move_5BE < PokeBattle_FixedDamageMove
+    def healingMove?; return true; end
+
     def drainFactor(_user, _target); return 0.5; end
+
+    def shouldDrain?(_user, _target); return true; end
+
+    def pbEffectAgainstTarget(user, target)
+        return if target.damageState.hpLost <= 0 || !shouldDrain?(user, target)
+        hpGain = (target.damageState.hpLost * drainFactor(user, target)).round
+        user.pbRecoverHPFromDrain(hpGain, target)
+    end
 
     def pbFixedDamage(_user, target)
         damage = target.hp / 2.0
         damage /= BOSS_HP_BASED_EFFECT_RESISTANCE if target.boss?
         return damage.round
+    end
+
+    def getEffectScore(user, target)
+        score = 40 * drainFactor(user, target)
+        score *= 1.5 if user.hasActiveAbilityAI?(:ROOTED)
+        score *= 2.0 if user.hasActiveAbilityAI?(:GLOWSHROOM) && user.battle.pbWeather == :Moonglow
+        score *= 1.3 if user.hasActiveItem?(:BIGROOT)
+        score *= 2 if user.belowHalfHealth?
+        score *= -1 if target.hasActiveAbilityAI?(:LIQUIDOOZE) || user.effectActive?(:NerveBreak)
+        return score
     end
 end
 
