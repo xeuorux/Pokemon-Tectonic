@@ -121,7 +121,7 @@ BattleHandlers::EOREffectAbility.add(:WARMTHCYCLE,
 BattleHandlers::EOREffectAbility.add(:EXTREMEPOWER,
   proc { |ability, battler, battle|
       battle.pbShowAbilitySplash(battler, ability)
-      battler.applyFractionalDamage(1.0 / 10.0, false)
+      battler.applyFractionalDamage(1.0 / 10.0)
       battle.pbHideAbilitySplash(battler)
   }
 )
