@@ -97,7 +97,7 @@ class PokeBattle_AI
         modifiers[:evasion_step]  = target.steps[:EVASION]
         modifiers[:accuracy_multiplier] = 1.0
         modifiers[:evasion_multiplier]  = 1.0
-        pbCalcAccuracyModifiers(user, target, modifiers, move, type)
+        move.pbCalcAccuracyModifiers(user, target, modifiers, true, type)
         # Calculation
         statBoundary = PokeBattle_Battler::STAT_STEP_BOUND
         accStep = modifiers[:accuracy_step].clamp(-statBoundary, statBoundary)
@@ -112,46 +112,5 @@ class PokeBattle_AI
             return (accuracy / evasion < 1) ? 125 : 100
         end
         return modifiers[:base_accuracy] * accuracy / evasion
-    end
-
-    def pbCalcAccuracyModifiers(user, target, modifiers, move, type)
-        moldBreaker = false
-        moldBreaker = true if target.hasMoldBreaker?
-        # User's abilities
-        user.eachActiveAbility do |ability|
-            BattleHandlers.triggerAccuracyCalcUserAbility(ability,
-            modifiers, user, target, move, type)
-        end
-        # User's ally's abilities
-        user.eachAlly do |ally|
-            ally.eachActiveAbility do |ability|
-                BattleHandlers.triggerAccuracyCalcUserAllyAbility(ability,
-                    modifiers, user, target, move, type)
-            end
-        end
-        # Target's abilities
-        unless moldBreaker
-            target.eachActiveAbility do |ability|
-                BattleHandlers.triggerAccuracyCalcTargetAbility(ability,
-                    modifiers, user, target, move, type)
-            end
-        end
-        # Item effects that alter accuracy calculation
-        user.eachActiveItem do |item|
-            BattleHandlers.triggerAccuracyCalcUserItem(item, modifiers, user, target, move, type)
-        end
-        target.eachActiveItem do |item|
-            BattleHandlers.triggerAccuracyCalcTargetItem(item, modifiers, user, target, move, type)
-        end
-        # Other effects, inc. ones that set accuracy_multiplier or evasion_step to specific values
-        modifiers[:accuracy_multiplier] *= 2.0 if @battle.field.effectActive?(:Gravity)
-        modifiers[:accuracy_multiplier] *= 1.2 if user.effectActive?(:MicleBerry)
-        modifiers[:evasion_step] = 0 if target.effectActive?(:MiracleEye) && modifiers[:evasion_step] > 0
-        modifiers[:evasion_step] = 0 if target.effectActive?(:Foresight) && modifiers[:evasion_step] > 0
-        # "AI-specific calculations below"
-        modifiers[:evasion_step] = 0 if move.function == "0A9" # Chip Away
-        modifiers[:base_accuracy] = 0 if ["0A5", "139", "13A", "13B", "13C",   # "Always hit"
-                                          "147",].include?(move.function)
-        modifiers[:base_accuracy] = 0 if user.effectActive?(:LockOn) && user.pointsAt?(:LockOnPos, target)
     end
 end

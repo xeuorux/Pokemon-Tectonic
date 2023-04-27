@@ -1952,7 +1952,7 @@ class PokeBattle_Move_0C2 < PokeBattle_Move
         end
     end
 
-    def getEffectScore(_user, _target)
+    def getEffectScore(user, _target)
         return -40 unless user.hasActiveItem?(:ENERGYHERB)
         return 0
     end

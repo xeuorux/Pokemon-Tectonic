@@ -796,11 +796,25 @@ user.pbThis))
             end
         end
         # Attack/Sp. Atk boosting Herb consume animation/message
-        if effectActive?(:HerbConsumed) && hitNum == 0
+        if effectActive?(:EmpoweringHerbConsumed) && hitNum == 0
             # NOTE: The consume animation and message for Herbs are shown now, but the
             #       actual removal of the item happens in def pbEffectsAfterMove.
             @battle.pbCommonAnimation("UseItem", user)
-            @battle.pbDisplay(_INTL("The {1} supplemented {2}'s power!", getItemName(user.effects[:HerbConsumed]), move.name))
+            @battle.pbDisplay(_INTL("The {1} supplemented {2}'s power!", getItemName(user.effects[:EmpoweringHerbConsumed]), move.name))
+        end
+        # Accuracy ensuring Herb consume animation/message
+        if effectActive?(:SkillHerbConsumed) && hitNum == 0
+            # NOTE: The consume animation and message for Herbs are shown now, but the
+            #       actual removal of the item happens in def pbEffectsAfterMove.
+            @battle.pbCommonAnimation("UseItem", user)
+            @battle.pbDisplay(_INTL("The {1} ensured {2} would hit!", getItemName(:SKILLHERB), move.name))
+        end
+        # Accuracy ensuring Herb consume animation/message
+        if effectActive?(:LuckHerbConsumed) && hitNum == 0
+            # NOTE: The consume animation and message for Herbs are shown now, but the
+            #       actual removal of the item happens in def pbEffectsAfterMove.
+            @battle.pbCommonAnimation("UseItem", user)
+            @battle.pbDisplay(_INTL("The {1} ensured {2}'s additional effect!", getItemName(:LUCKHERB), move.name))
         end
         # Mystic tribe
         if hasTribeBonus?(:MYSTIC) && user.lastRoundMoveCategory == 2 # Status

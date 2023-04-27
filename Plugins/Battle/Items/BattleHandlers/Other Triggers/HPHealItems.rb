@@ -51,6 +51,12 @@ BattleHandlers::HPHealItem.add(:SALACBERRY,
   }
 )
 
+BattleHandlers::HPHealItem.add(:MICLEBERRY,
+  proc { |item, battler, battle, forced, filchedFrom, filchingAbility|
+    next pbBattleStatIncreasingBerry(battler, battle, item, forced, :ACCURACY, 4, true, filchedFrom, filchingAbility)
+  }
+)
+
 BattleHandlers::HPHealItem.add(:LANSATBERRY,
   proc { |item, battler, battle, forced, filchedFrom, filchingAbility|
       next false if !forced && !battler.canConsumePinchBerry?
@@ -63,29 +69,6 @@ BattleHandlers::HPHealItem.add(:LANSATBERRY,
       battle.pbCommonAnimation("Nom", battler) unless forced
       battler.incrementEffect(:FocusEnergy, 2)
       battle.pbHideAbilitySplash(battler) if filchedFrom
-      next true
-  }
-)
-
-BattleHandlers::HPHealItem.add(:MICLEBERRY,
-  proc { |item, battler, battle, forced, filchedFrom, filchingAbility|
-      next false if !forced && !battler.canConsumePinchBerry?
-      next false unless battler.effectActive?(:MicleBerry)
-      if filchedFrom
-        battle.pbShowAbilitySplash(battler, filchingAbility)
-        itemName = GameData::Item.get(item).real_name
-        battle.pbDisplay(_INTL("#{battler.pbThis} filched #{filchedFrom.pbThis(true)}'s #{itemName}!"))
-      end
-      battle.pbCommonAnimation("Nom", battler) unless forced
-      battler.applyEffect(:MicleBerry)
-      itemName = GameData::Item.get(item).name
-      if forced
-          battle.pbDisplay(_INTL("{1} boosted the accuracy of its next move!", battler.pbThis))
-      else
-          battle.pbDisplay(_INTL("{1} boosted the accuracy of its next move using its {2}!",
-             battler.pbThis, itemName))
-      end
-      attle.pbHideAbilitySplash(battler) if filchedFrom
       next true
   }
 )

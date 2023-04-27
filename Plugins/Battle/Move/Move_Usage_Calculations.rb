@@ -161,39 +161,41 @@ class PokeBattle_Move
         return @battle.pbRandom(100) < modifiers[:base_accuracy] * calc
     end
   
-    def pbCalcAccuracyModifiers(user,target,modifiers)
+    def pbCalcAccuracyModifiers(user,target,modifiers,aiChecking=false,aiType=nil)
+        typeToUse = aiChecking ? aiType : @calcType
         # Ability effects that alter accuracy calculation
-        user.eachActiveAbility do |ability|
-            BattleHandlers.triggerAccuracyCalcUserAbility(ability,modifiers,user,target,self,@calcType)
+        user.eachAbilityShouldApply(aiChecking) do |ability|
+            BattleHandlers.triggerAccuracyCalcUserAbility(ability,modifiers,user,target,self,typeToUse)
         end
         user.eachAlly do |b|
-            b.eachActiveAbility do |ability|
-                BattleHandlers.triggerAccuracyCalcUserAllyAbility(ability,modifiers,user,target,self,@calcType)
+            b.eachAbilityShouldApply(aiChecking) do |ability|
+                BattleHandlers.triggerAccuracyCalcUserAllyAbility(ability,modifiers,user,target,self,typeToUse)
             end
         end
         unless @battle.moldBreaker
-            target.eachActiveAbility do |ability|
-                BattleHandlers.triggerAccuracyCalcTargetAbility(ability,modifiers,user,target,self,@calcType)
+            target.eachAbilityShouldApply(aiChecking) do |ability|
+                BattleHandlers.triggerAccuracyCalcTargetAbility(ability,modifiers,user,target,self,typeToUse)
             end
         end
         # Item effects that alter accuracy calculation
         user.eachActiveItem do |item|
-            BattleHandlers.triggerAccuracyCalcUserItem(item,modifiers,user,target,self,@calcType)
+            BattleHandlers.triggerAccuracyCalcUserItem(item,modifiers,user,target,self,typeToUse,aiChecking)
         end
         target.eachActiveItem do |item|
-            BattleHandlers.triggerAccuracyCalcTargetItem(item,modifiers,user,target,self,@calcType)
+            BattleHandlers.triggerAccuracyCalcTargetItem(item,modifiers,user,target,self,typeToUse)
         end
         # Other effects, inc. ones that set accuracy_multiplier or evasion_step to
         # specific values
-        if @battle.field.effectActive?(:Gravity)
-            modifiers[:accuracy_multiplier] *= 5 / 3.0
-        end
-        if user.effectActive?(:MicleBerry)
-            user.disableEffect(:MicleBerry)
-            modifiers[:accuracy_multiplier] *= 1.2
-        end
+        modifiers[:accuracy_multiplier] *= 2.0 if @battle.field.effectActive?(:Gravity)
+
         modifiers[:evasion_step] = 0 if target.effectActive?(:Foresight) && modifiers[:evasion_step] > 0
         modifiers[:evasion_step] = 0 if target.effectActive?(:MiracleEye) && modifiers[:evasion_step] > 0
+
+        if aiChecking
+            modifiers[:evasion_step] = 0 if @function == "0A9" # Chip Away
+            modifiers[:base_accuracy] = 0 if ["0A5", "139", "13A", "13B", "13C", "147"].include?(@name) # "Always hit"
+            modifiers[:base_accuracy] = 0 if user.effectActive?(:LockOn) && user.pointsAt?(:LockOnPos, target)
+        end
     end
   
     #=============================================================================
@@ -393,7 +395,7 @@ class PokeBattle_Move
         return true
     end
 
-    def pbAdditionalEffectChance(user,target,type,effectChance=0)
+    def pbAdditionalEffectChance(user,target,type,effectChance=0,aiChecking = false)
         return 100 if user.hasActiveAbility?(:STARSALIGN) && @battle.pbWeather == :Eclipse
         return 100 if !user.pbOwnedByPlayer? && @battle.curseActive?(:CURSE_PERFECT_LUCK)
         ret = effectChance > 0 ? effectChance : @effectChance
@@ -407,6 +409,10 @@ class PokeBattle_Move
         ret /= 2 if applyRainDebuff?(user,type)
         ret /= 2 if target.hasTribeBonus?(:SERENE)
         ret = 100 if debugControl
+        if ret < 100 && user.hasActiveItem?(:LUCKHERB)
+            ret = 100
+            user.applyEffect(:LuckHerbConsumed) unless aiChecking
+        end
         return ret
     end
   

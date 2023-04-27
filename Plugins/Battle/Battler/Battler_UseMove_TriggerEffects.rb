@@ -110,11 +110,23 @@ user.pbThis(true)))
             #       after the move's animation, but the item is only consumed now.
             user.consumeItem(user.effects[:GemConsumed])
         end
-        # Consume user's Herb
-        if user.effectActive?(:HerbConsumed)
+        # Consume user's empowering Herb
+        if user.effectActive?(:EmpoweringHerbConsumed)
             # NOTE: The consume animation and message for Herbs are shown immediately
             #       after the move's animation, but the item is only consumed now.
-            user.consumeItem(user.effects[:HerbConsumed])
+            user.consumeItem(user.effects[:EmpoweringHerbConsumed])
+        end
+        # Consume user's skill Herb
+        if user.effectActive?(:SkillHerbConsumed)
+            # NOTE: The consume animation and message for Herbs are shown immediately
+            #       after the move's animation, but the item is only consumed now.
+            user.consumeItem(:SKILLHERB)
+        end
+        # Consume user's luck Herb
+        if user.effectActive?(:LuckHerbConsumed)
+            # NOTE: The consume animation and message for Herbs are shown immediately
+            #       after the move's animation, but the item is only consumed now.
+            user.consumeItem(:LUCKHERB)
         end
         # Consume Volatile Toxin
         if move.pbDamagingMove?

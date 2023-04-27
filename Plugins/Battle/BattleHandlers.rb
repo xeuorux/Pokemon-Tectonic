@@ -293,8 +293,8 @@ module BattleHandlers
         AccuracyCalcTargetAbility.trigger(ability, mults, user, target, move, type)
     end
 
-    def self.triggerAccuracyCalcUserItem(item, mults, user, target, move, type)
-        AccuracyCalcUserItem.trigger(item, mults, user, target, move, type)
+    def self.triggerAccuracyCalcUserItem(item, mults, user, target, move, type, aiCheck)
+        AccuracyCalcUserItem.trigger(item, mults, user, target, move, type, aiCheck)
     end
 
     def self.triggerAccuracyCalcTargetItem(item, mults, user, target, move, type)

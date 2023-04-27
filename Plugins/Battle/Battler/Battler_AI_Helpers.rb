@@ -199,6 +199,13 @@ class PokeBattle_Battler
         end
     end
 
+    def eachAbilityShouldApply(aiChecking)
+        eachActiveAbility do |abilityID|
+            next unless shouldAbilityApply?(abilityID, aiChecking)
+            yield abilityID
+        end
+    end
+
     def ignoreAbilityInAI?(checkAbility,aiChecking)
         return false unless aiChecking
         return aiKnowsAbility?(checkAbility)

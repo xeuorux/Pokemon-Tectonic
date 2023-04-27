@@ -364,8 +364,22 @@ GameData::BattleEffect.register_effect(:Battler, {
 })
 
 GameData::BattleEffect.register_effect(:Battler, {
-    :id => :HerbConsumed,
-    :real_name => "Herb Consumed",
+    :id => :EmpoweringHerbConsumed,
+    :real_name => "Empowering Herb Consumed",
+    :type => :Item,
+    :resets_battlers_eot => true,
+})
+
+GameData::BattleEffect.register_effect(:Battler, {
+    :id => :SkillHerbConsumed,
+    :real_name => "Skill Herb Consumed",
+    :type => :Item,
+    :resets_battlers_eot => true,
+})
+
+GameData::BattleEffect.register_effect(:Battler, {
+    :id => :LuckHerbConsumed,
+    :real_name => "Luck Herb Consumed",
     :type => :Item,
     :resets_battlers_eot => true,
 })
