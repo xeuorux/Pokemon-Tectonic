@@ -112,7 +112,7 @@ class PokeBattle_Battler
         if getStatuses.include?(newStatus) && !ignoreStatus
             if showMessages
                 msg = ""
-                case status
+                case newStatus
                 when :SLEEP			then msg = _INTL("{1} is already asleep!", pbThis)
                 when :POISON		then msg = _INTL("{1} is already poisoned!", pbThis)
                 when :BURN			then msg = _INTL("{1} already has a burn!", pbThis)
