@@ -1,5 +1,9 @@
+#############################################################
+# Adaption abilities
+#############################################################
 BattleHandlers::TargetAbilityAfterMoveUse.add(:COLORCHANGE,
-  proc { |ability, target, _user, move, _switched, battle|
+  proc { |ability, target, user, move, _switched, battle|
+      next if user.hasActiveAbility?(:PROXYFIST)
       next if target.damageState.calcDamage == 0 || target.damageState.substitute
       next if !move.calcType || GameData::Type.get(move.calcType).pseudo_type
       next if target.pbHasType?(move.calcType) && !target.pbHasOtherType?(move.calcType)
@@ -11,10 +15,25 @@ BattleHandlers::TargetAbilityAfterMoveUse.add(:COLORCHANGE,
   }
 )
 
+BattleHandlers::TargetAbilityAfterMoveUse.add(:MORPHINGGUARD,
+  proc { |ability, target, _user, move, _switched, battle|
+      next unless move.damagingMove?
+      battle.pbShowAbilitySplash(target, ability)
+      target.disableEffect(:MorphingGuard)
+      target.applyEffect(:MorphingGuard,move.calcType)
+      battle.pbHideAbilitySplash(target)
+  }
+)
+
+#############################################################
+# Thieving abilities
+#############################################################
+
 BattleHandlers::TargetAbilityAfterMoveUse.add(:PICKPOCKET,
   proc { |ability, target, user, move, switched, battle|
       next if switched.include?(user.index)
-      next unless move.pbDamagingMove?
+      next unless move.damagingMove?
+      next if user.hasActiveItem?(:PROXYFIST)
       next unless move.physicalMove?
       next if battle.futureSight
       move.stealItem(target, user, target.firstItem, ability: ability)
@@ -24,7 +43,8 @@ BattleHandlers::TargetAbilityAfterMoveUse.add(:PICKPOCKET,
 BattleHandlers::TargetAbilityAfterMoveUse.add(:MOONLIGHTER,
   proc { |ability, target, user, move, switched, battle|
       next if switched.include?(user.index)
-      next unless move.pbDamagingMove?
+      next unless move.damagingMove?
+      next if user.hasActiveItem?(:PROXYFIST)
       next if battle.futureSight
       next unless battle.pbWeather == :Moonglow
       item = target.firstItem
@@ -36,76 +56,23 @@ BattleHandlers::TargetAbilityAfterMoveUse.add(:MOONLIGHTER,
   }
 )
 
-BattleHandlers::TargetAbilityAfterMoveUse.add(:VENGEANCE,
-  proc { |ability, target, user, move, _switched, battle|
-      next unless move.damagingMove?
-      next unless target.knockedBelowHalf?
-      battle.pbShowAbilitySplash(target, ability)
-      user.applyFractionalDamage(1.0 / 4.0) if user.takesIndirectDamage?(true)
-      battle.pbHideAbilitySplash(target)
-  }
-)
-
-BattleHandlers::TargetAbilityAfterMoveUse.add(:BRILLIANTFLURRY,
-  proc { |ability, target, user, move, _switched, _battle|
-      next unless move.damagingMove?
-      next unless target.knockedBelowHalf?
-      user.pbLowerMultipleStatSteps(ALL_STATS_1, target, ability: ability)
-  }
-)
-
-BattleHandlers::TargetAbilityAfterMoveUse.add(:STICKYMOLD,
-  proc { |ability, target, user, move, _switched, battle|
-      next unless move.damagingMove?
-      next unless target.knockedBelowHalf?
-      next if user.leeched?
-      battle.pbShowAbilitySplash(target, ability)
-      user.applyLeeched(target) if user.canLeech?(target, true)
-      battle.pbHideAbilitySplash(target)
-  }
-)
-
-BattleHandlers::TargetAbilityAfterMoveUse.add(:WRATHINSTINCT,
-  proc { |ability, target, user, move, _switched, battle|
-      next unless move.damagingMove?
-      next unless target.knockedBelowHalf?
-      battle.forceUseMove(target, :DRAGONDANCE, user.index, ability: ability)
-  }
-)
-
-BattleHandlers::TargetAbilityAfterMoveUse.add(:MALICE,
-  proc { |ability, target, user, move, _switched, battle|
-      next unless move.damagingMove?
-      next unless target.knockedBelowHalf?
-      next if user.effectActive?(:Curse)
-      battle.pbShowAbilitySplash(target, ability)
-      user.applyEffect(:Curse)
-      battle.pbHideAbilitySplash(target)
-  }
-)
+#############################################################
+# Every-hit punishers
+#############################################################
 
 BattleHandlers::TargetAbilityAfterMoveUse.add(:EXOADAPTION,
   proc { |ability, target, user, move, _switched, _battle|
-      next unless move.pbDamagingMove?
+      next unless move.damagingMove?
+      next if user.hasActiveItem?(:PROXYFIST)
       next unless move.specialMove?
       healingMessage = _INTL("{1} heals itself with energy from {2}'s attack!", target.pbThis, user.pbThis(true))
       target.applyFractionalHealing(1.0 / 4.0, ability: ability, customMessage: healingMessage)
   }
 )
 
-BattleHandlers::TargetAbilityAfterMoveUse.add(:MORPHINGGUARD,
-  proc { |ability, target, _user, move, _switched, battle|
-      next unless move.pbDamagingMove?
-      battle.pbShowAbilitySplash(target, ability)
-      target.disableEffect(:MorphingGuard)
-      target.applyEffect(:MorphingGuard,move.calcType)
-      battle.pbHideAbilitySplash(target)
-  }
-)
-
 BattleHandlers::TargetAbilityAfterMoveUse.add(:PLASMABALL,
   proc { |ability, target, user, move, _switched, battle|
-      next unless move.pbDamagingMove?
+      next unless move.damagingMove?
       next if target.damageState.unaffected
       next if target.damageState.totalHPLost <= 0
       battle.pbShowAbilitySplash(target, ability)

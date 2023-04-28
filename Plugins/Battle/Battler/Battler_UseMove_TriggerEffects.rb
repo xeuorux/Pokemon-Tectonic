@@ -129,7 +129,7 @@ user.pbThis(true)))
             user.consumeItem(:LUCKHERB)
         end
         # Consume Volatile Toxin
-        if move.pbDamagingMove?
+        if move.damagingMove?
             targets.each do |b|
                 b.disableEffect(:VolatileToxin)
             end
@@ -202,6 +202,10 @@ user.pbThis(true)))
             next if b.damageState.unaffected || switchedBattlers.include?(b.index)
             b.eachActiveAbility do |ability|
                 BattleHandlers.triggerTargetAbilityAfterMoveUse(ability, b, user, move, switchedBattlers, @battle)
+                
+                if move.damagingMove? && b.knockedBelowHalf? && !user.hasActiveItem?(:PROXYFIST)
+                    BattleHandlers.triggerTargetAbilityKnockedBelowHalf(ability, b, user, move, switchedBattlers, @battle)
+                end
             end
             next unless !switchedBattlers.include?(b.index) && move.damagingMove?
             if b.pbAbilitiesOnDamageTaken(b.damageState.initialHP)

@@ -430,7 +430,7 @@ class PokeBattle_TwoTurnMove < PokeBattle_Move
         return !@damagingTurn # Deliberately not "return @chargingTurn"
     end
 
-    def pbDamagingMove? # Stops damage being dealt in the first (charging) turn
+    def damagingMove? # Stops damage being dealt in the first (charging) turn
         return false unless @damagingTurn
         return super
     end
@@ -736,7 +736,7 @@ class PokeBattle_PledgeMove < PokeBattle_Move
         end
     end
 
-    def pbDamagingMove?
+    def damagingMove?
         return false if @pledgeSetup
         return super
     end

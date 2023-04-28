@@ -1500,7 +1500,7 @@ class PokeBattle_Move_5C8 < PokeBattle_Move
         return !target.pbCanRaiseStatStep?(:SPEED, user, self, true)
     end
 
-    def pbDamagingMove?
+    def damagingMove?
         return false if @buffing
         return super
     end

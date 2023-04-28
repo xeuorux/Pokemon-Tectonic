@@ -124,7 +124,7 @@ BattleHandlers::UserAbilityOnHit.add(:FLASHFREEZE,
 BattleHandlers::UserAbilityOnHit.add(:FUNGALFLURRY,
   proc { |ability, user, target, move, battle, aiChecking, aiNumHits|
     next unless user.firstTurn?
-    randomStatusProcUserAbility(ability, :LEECH, 100, user, target, move, battle, aiChecking, aiNumHits)
+    randomStatusProcUserAbility(ability, :LEECHED, 100, user, target, move, battle, aiChecking, aiNumHits)
   }
 )
 

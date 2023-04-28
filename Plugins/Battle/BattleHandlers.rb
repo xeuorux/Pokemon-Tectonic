@@ -83,6 +83,7 @@ module BattleHandlers
     TargetItemAfterMoveUse              = ItemHandlerHash.new
     UserItemAfterMoveUse                = ItemHandlerHash.new
     TargetAbilityAfterMoveUse           = AbilityHandlerHash.new
+    TargetAbilityKnockedBelowHalf       = AbilityHandlerHash.new
     EndOfMoveItem                       = ItemHandlerHash.new   # Leppa Berry
     EndOfMoveStatRestoreItem            = ItemHandlerHash.new   # White Herb
     # Experience and EV gain
@@ -480,6 +481,10 @@ module BattleHandlers
 
     def self.triggerTargetAbilityAfterMoveUse(ability, target, user, move, switched, battle)
         TargetAbilityAfterMoveUse.trigger(ability, target, user, move, switched, battle)
+    end
+
+    def self.triggerTargetAbilityKnockedBelowHalf(ability, target, user, move, switched, battle)
+        TargetAbilityKnockedBelowHalf.trigger(ability, target, user, move, switched, battle)
     end
 
     def self.triggerEndOfMoveItem(item, battler, battle, forced)

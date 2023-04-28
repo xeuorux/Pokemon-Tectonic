@@ -124,7 +124,7 @@ target.pbThis(true)))
     def pbDamagingMove?; return damagingMove?; end
 
     def canParentalBond?(user, targets, checkingForAI = false)
-        return false unless pbDamagingMove?
+        return false unless damagingMove?
         return false if chargingTurnMove?
         return false unless targets.length == 1
         return true if user.shouldAbilityApply?(:PARENTALBOND,checkingForAI)
@@ -135,7 +135,7 @@ target.pbThis(true)))
     def numberOfHits(user, targets, checkingForAI = false)
         calcedHits = calcNumHits(user, targets, checkingForAI)
 
-        if user.shouldAbilityApply?(:LONGODDS, checkingForAI) && multiHitMove? && pbDamagingMove?
+        if user.shouldAbilityApply?(:LONGODDS, checkingForAI) && multiHitMove? && damagingMove?
             calcedHits2 = calcNumHits(user, targets, checkingForAI)
             if checkingForAI
                 calcedHits += calcedHits2
@@ -160,7 +160,7 @@ target.pbThis(true)))
     def pbNumHits(user, targets, checkingForAI = false)
         return 2 if canParentalBond?(user, targets, checkingForAI)
         numHits = 1
-        numHits += 1 if user.shouldAbilityApply?(:SPACEINTERLOPER, checkingForAI) && pbDamagingMove?
+        numHits += 1 if user.shouldAbilityApply?(:SPACEINTERLOPER, checkingForAI) && damagingMove?
         numHits += 1 if user.effectActive?(:VolleyStance) && specialMove?
         return numHits
     end

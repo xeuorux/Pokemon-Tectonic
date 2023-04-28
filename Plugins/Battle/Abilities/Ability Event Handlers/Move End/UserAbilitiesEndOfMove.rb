@@ -177,7 +177,7 @@ BattleHandlers::UserAbilityEndOfMove.add(:ASONEGHOST,
 BattleHandlers::UserAbilityEndOfMove.add(:MAGICIAN,
   proc { |ability, user, targets, move, battle, _switchedBattlers|
       next if battle.futureSight
-      next unless move.pbDamagingMove?
+      next unless move.damagingMove?
       targets.each do |b|
           b.eachItem do |item|
             move.stealItem(user, b, item)
@@ -207,7 +207,7 @@ BattleHandlers::UserAbilityEndOfMove.add(:DEEPSTING,
 BattleHandlers::UserAbilityEndOfMove.add(:GILD,
   proc { |ability, user, targets, move, battle, _switchedBattlers|
       next if battle.futureSight
-      next unless move.pbDamagingMove?
+      next unless move.damagingMove?
       targets.each do |b|
           next unless b.hasAnyItem?
           next unless move.knockOffItems(user, b, ability: ability) do |itemRemoved, itemName|
@@ -260,7 +260,7 @@ BattleHandlers::UserAbilityEndOfMove.add(:POWERLIFTER,
 BattleHandlers::UserAbilityEndOfMove.add(:FLUSTERFLOCK,
   proc { |ability, user, targets, move, battle, _switchedBattlers|
       next if battle.futureSight
-      next unless move.pbDamagingMove?
+      next unless move.damagingMove?
       hitAnything = false
       targets.each do |b|
         next if b.damageState.unaffected
@@ -279,7 +279,7 @@ BattleHandlers::UserAbilityEndOfMove.copy(:FLUSTERFLOCK, :HEADACHE)
 BattleHandlers::UserAbilityEndOfMove.add(:GENERATOR,
   proc { |ability, user, _targets, move, battle, _switchedBattlers|
       next if battle.futureSight
-      next if move.pbDamagingMove?
+      next if move.damagingMove?
       battle.pbShowAbilitySplash(user, ability)
       user.applyEffect(:Charge)
       battle.pbHideAbilitySplash(user)
@@ -289,7 +289,7 @@ BattleHandlers::UserAbilityEndOfMove.add(:GENERATOR,
 BattleHandlers::UserAbilityEndOfMove.add(:MIDNIGHTOIL,
   proc { |ability, user, _targets, move, battle, _switchedBattlers|
       next if battle.futureSight
-      next if move.pbDamagingMove?
+      next if move.damagingMove?
       next unless battle.pbWeather == :Moonglow
       battle.pbShowAbilitySplash(user, ability)
       battle.extendWeather(1)
@@ -300,7 +300,7 @@ BattleHandlers::UserAbilityEndOfMove.add(:MIDNIGHTOIL,
 BattleHandlers::UserAbilityEndOfMove.add(:ICEQUEEN,
   proc { |ability, user, targets, move, battle, _switchedBattlers|
       next if battle.futureSight
-      next unless move.pbDamagingMove?
+      next unless move.damagingMove?
       next unless battle.pbWeather == :Hail
       user.pbRecoverHPFromMultiDrain(targets, 0.50, ability: ability)
   }
@@ -321,7 +321,7 @@ BattleHandlers::UserAbilityEndOfMove.add(:ETERNALWINTER,
 
 BattleHandlers::UserAbilityEndOfMove.add(:EROSIONCYCLE,
   proc { |ability, user, targets, move, battle, _switchedBattlers|
-      next if move.pbDamagingMove?
+      next if move.damagingMove?
       next unless user.pbOwnSide.effectActive?(:ErodedRock)
       rockCount = user.pbOwnSide.countEffect(:ErodedRock)
       battle.pbShowAbilitySplash(user, ability)
@@ -334,7 +334,7 @@ BattleHandlers::UserAbilityEndOfMove.add(:EROSIONCYCLE,
 BattleHandlers::UserAbilityEndOfMove.add(:FEELTHEBURN,
   proc { |ability, user, targets, move, battle, _switchedBattlers|
       next if battle.futureSight
-      next unless move.pbDamagingMove?
+      next unless move.damagingMove?
       next if user.burned?
       hitAnything = false
       targets.each do |b|
@@ -352,7 +352,7 @@ BattleHandlers::UserAbilityEndOfMove.add(:FEELTHEBURN,
 BattleHandlers::UserAbilityEndOfMove.add(:COLDCALCULATION,
   proc { |ability, user, targets, move, battle, _switchedBattlers|
       next if battle.futureSight
-      next unless move.pbDamagingMove?
+      next unless move.damagingMove?
       next if user.frostbitten?
       hitAnything = false
       targets.each do |b|
@@ -370,7 +370,7 @@ BattleHandlers::UserAbilityEndOfMove.add(:COLDCALCULATION,
 BattleHandlers::UserAbilityEndOfMove.add(:IRREFUTABLE,
   proc { |ability, user, targets, move, battle, _switchedBattlers|
       next if battle.futureSight
-      next unless move.pbDamagingMove?
+      next unless move.damagingMove?
       nveHits = 0
       targets.each do |b|
         next if b.damageState.unaffected

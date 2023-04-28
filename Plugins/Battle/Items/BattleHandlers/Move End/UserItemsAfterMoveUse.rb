@@ -1,7 +1,7 @@
 BattleHandlers::UserItemAfterMoveUse.add(:LIFEORB,
     proc { |item, user, targets, move, numHits, battle|
         next unless user.takesIndirectDamage?
-        next if !move.pbDamagingMove? || numHits == 0
+        next if !move.damagingMove? || numHits == 0
         hitBattler = false
         targets.each do |b|
             hitBattler = true if !b.damageState.unaffected && !b.damageState.substitute

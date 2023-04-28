@@ -328,7 +328,7 @@ end
 class PokeBattle_Move_111 < PokeBattle_Move
     def cannotRedirect?; return true; end
 
-    def pbDamagingMove? # Stops damage being dealt in the setting-up turn
+    def damagingMove? # Stops damage being dealt in the setting-up turn
         return false unless @battle.futureSight
         return super
     end
@@ -2257,7 +2257,7 @@ class PokeBattle_Move_16F < PokeBattle_Move
         return false
     end
 
-    def pbDamagingMove?
+    def damagingMove?
         return false if @healing
         return super
     end

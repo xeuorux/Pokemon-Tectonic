@@ -382,7 +382,7 @@ class PokeBattle_Move_094 < PokeBattle_Move
         return false
     end
 
-    def pbDamagingMove?
+    def damagingMove?
         return false if @presentDmg == 0
         return super
     end
@@ -2360,7 +2360,7 @@ class PokeBattle_Move_0D4 < PokeBattle_FixedDamageMove
         end
     end
 
-    def pbDamagingMove? # Stops damage being dealt in the charging turns
+    def damagingMove? # Stops damage being dealt in the charging turns
         return false unless @damagingTurn
         return super
     end

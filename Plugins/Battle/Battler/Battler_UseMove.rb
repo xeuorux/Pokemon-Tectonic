@@ -758,7 +758,7 @@ user.pbThis))
         targets.each { |b| b.damageState.resetPerHit }
         #---------------------------------------------------------------------------
         # Pre effects
-        if move.pbDamagingMove?
+        if move.damagingMove?
             targets.each do |b|
                 next if b.damageState.unaffected
                 move.pbEffectBeforeDealingDamage(user, b)
@@ -766,7 +766,7 @@ user.pbThis))
         end
         #---------------------------------------------------------------------------
         # Calculate damage to deal
-        if move.pbDamagingMove?
+        if move.damagingMove?
             targets.each do |b|
                 next if b.damageState.unaffected
                 # Check whether Substitute/Disguise will absorb the damage
@@ -823,7 +823,7 @@ user.pbThis))
             @battle.pbHideTribeSplash(user)
         end
         # Volatile Toxin proc message
-        if move.pbDamagingMove?
+        if move.damagingMove?
             targets.each do |b|
                 next unless b.effectActive?(:VolatileToxin)
                 @battle.pbCommonAnimation("Toxic", b)
@@ -844,7 +844,7 @@ user.pbThis))
         end
         # Deal the damage (to all allies first simultaneously, then all foes
         # simultaneously)
-        if move.pbDamagingMove?
+        if move.damagingMove?
             # This just changes the HP amounts and does nothing else
             targets.each do |b|
                 next if b.damageState.unaffected
@@ -856,7 +856,7 @@ user.pbThis))
         # Self-Destruct/Explosion's damaging and fainting of user
         move.pbSelfKO(user) if hitNum == 0 && !@battle.autoTesting
         user.pbFaint if user.fainted?
-        if move.pbDamagingMove?
+        if move.damagingMove?
             targets.each do |b|
                 next if b.damageState.unaffected
                 # NOTE: This method is also used for the OKHO special message.
