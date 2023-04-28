@@ -84,3 +84,4 @@
 3083,CURSEDBODY,Cursed Body,"Moves used on the Pokémon are disabled for 3 turns."
 3084,LIQUIDVOICE,Liquid Voice,"Its sound-based moves become Water-type."
 3085,OWNTEMPO,Own Tempo,"Prevents the Pokémon from becoming confused."
+3086,STOUT,Stout,"Immune to weather downsides, and 20% less damage from attacks during weather."

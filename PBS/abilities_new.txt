@@ -8,7 +8,7 @@
 1007,SUBZERO,Sub Zero,"Powers up Ice-type moves by 50%."
 1008,ADAMANTITE,Adamantite,"Powers up Steel-type moves by 50%."
 1009,MIDNIGHTSUN,Midnight Sun,"Powers up Dark-type moves by 50% in sunshine."
-1010,STOUT,Stout,"Immune to weather downsides, and 20% less damage from attacks during weather."
+1010,ACCLIMATIZE,Acclimatize,"Immune to weather downsides, and 20% less damage from attacks during weather."
 1011,STUBBORN,Stubborn,"Prevents its stat steps from being lowered, by self or others."
 1012,HUBRIS,Hubris,"Raises Sp. Atk by 1 step after knocking out any Pokémon."
 1013,SCALDINGSMOKE,Scalding Smoke,"Powers up Poison-type moves by 50%."

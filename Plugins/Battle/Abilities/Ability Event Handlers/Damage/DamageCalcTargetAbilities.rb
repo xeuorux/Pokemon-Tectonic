@@ -72,12 +72,14 @@ BattleHandlers::DamageCalcTargetAbility.add(:SHIELDWALL,
   }
 )
 
-BattleHandlers::DamageCalcTargetAbility.add(:STOUT,
+BattleHandlers::DamageCalcTargetAbility.add(:ACCLIMATIZE,
   proc { |ability, user, _target, _move, mults, _baseDmg, _type|
       w = user.battle.pbWeather
       mults[:final_damage_multiplier] *= 0.80 if w != :None
   }
 )
+
+BattleHandlers::DamageCalcTargetAbility.copy(:ACCLIMATIZE,:STOUT)
 
 BattleHandlers::DamageCalcTargetAbility.add(:SENTRY,
   proc { |ability, _user, target, _move, mults, _baseDmg, _type|

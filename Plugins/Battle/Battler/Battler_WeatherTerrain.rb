@@ -7,7 +7,7 @@ class PokeBattle_Battler
 
     def affectedByWeatherDownsides?(checkingForAI = false)
         return false if inTwoTurnAttack?("0CA", "0CB")   # Dig, Dive
-        return false if shouldAbilityApply?(%i[STOUT WEATHERSENSES TERRITORIAL METALCOVER], checkingForAI)
+        return false if shouldAbilityApply?(%i[ACCLIMATIZE WEATHERSENSES TERRITORIAL METALCOVER STOUT], checkingForAI)
         return false if hasActiveItem?(:UTILITYUMBRELLA)
         return false if @battle.pbCheckAlliedAbility(:HIGHRISE, @index)
         return true
