@@ -44,4 +44,20 @@ class PokeBattle_AI_Boss
             next 50
         })
     end
+
+    # Have the avatar use the move as its 2nd move every turn if possible
+    # And otherwise never
+    def secondMoveEveryTurn(moveID)
+        @useMoveIFF.add(moveID, proc { |_move, user, _target, _battle|
+            next !user.firstTurnThisRound?
+        })
+    end
+
+    # Have the avatar use the move as its 2nd move every turn if possible
+    # And otherwise never
+    def secondMoveEveryOtherTurn(moveID)
+        @useMoveIFF.add(moveID, proc { |_move, user, _target, _battle|
+            next !user.firstTurnThisRound? && user.turnCount % 2 == 1
+        })
+    end
 end

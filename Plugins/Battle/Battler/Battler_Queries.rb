@@ -748,6 +748,10 @@ class PokeBattle_Battler
         end
     end
 
+    def fullHealth?
+        return @hp == @totalhp
+    end
+
     def aboveHalfHealth?
         return @hp > @totalhp / 2
     end

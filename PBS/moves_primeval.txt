@@ -49,7 +49,7 @@
 2048,EMPOWEREDROCKTOMB,Empowered Rock Tomb,638,120,ROCK,Physical,100,10,100,AllNearFoes,0,befy,"Boulders are hurled at all near enemies, harshly lowering their Speed by preventing their movement.",ROCKTOMB
 2049,EMPOWEREDANCIENTPOWER,Empowered Ancient Power,639,120,ROCK,Special,100,10,100,NearOther,0,befy,"The user attacks with a prehistoric power which raises all its stats",ANCIENTPOWER
 2050,EMPOWEREDTHUNDERBOLT,Empowered Thunderbolt,640,180,ELECTRIC,Special,100,1,100,NearOther,0,befy,"A powerful electric blast is let loose on the target, numbing it.",THUNDERBOLT
-2051,EMPOWEREDFLAREBLITZ,Empowered Flare Blitz,641,240,FIRE,Physical,100,10,0,NearOther,0,abefy,"The user cloaks itself in fire and charges at the foe. The user also takes 33% recoil.",FLAREBLITZ
+2051,EMPOWEREDFLAREBLITZ,Empowered Flare Blitz,641,220,FIRE,Physical,100,10,100,NearOther,0,abefy,"The user cloaks itself in fire and charges at the foe, burning it. The user also takes 33% recoil.",FLAREBLITZ
 2052,EMPOWEREDMETALCLAW,Empowered Metal Claw,642,80,STEEL,Physical,100,30,100,NearOther,0,abefy,"The target is raked with steel claws twice. The user raises its attack after each hit.",METALCLAW
 2053,EMPOWEREDSLASH,Empowered Slash,643,150,NORMAL,Physical,100,15,0,NearOther,0,abefpy,"The target is attacked with a slash of claws or blades, always critting.",SLASH
 2054,EMPOWEREDBRICKBREAK,Empowered Brick Break,644,160,FIGHTING,Physical,100,12,100,NearOther,0,abefy,"The user attacks with a swift chop, destroying barriers, and reducing the target's defense by five steps.",BRICKBREAK
@@ -58,7 +58,13 @@
 2057,EMPOWEREDPOWERGEM,Empowered Power Gem,647,180,ROCK,Special,100,15,100,NearOther,0,befy,"The user attacks with a sparkling gem-like ray, dizzying the target.",POWERGEM
 2058,EMPOWEREDBULLETSEED,Empowered Bullet Seed,648,50,GRASS,Physical,100,15,0,AllNearFoes,0,abefy,"The user forcefully shoots 6 seeds in rapid succession, spread among nearby enemies.",BULLETSEED
 2059,EMPOWEREDFUTURESIGHT,Empowered Future Sight,649,300,PSYCHIC,Special,100,10,0,NearOther,0,y,"Two turns after this move is used, a hunk of psychic energy attacks the target.",FUTURESIGHT
-2060,EMPOWEREDDRAGONDARTS,Empowered Dragon Darts,650,100,DRAGON,Physical,100,10,0,AllNearFoes,0,befy,"The user attacks twice using Dreepy, spreading the hits. One of the Dreepys is summoned as an ally.",
-2061,STRATOSPHERESCREAM,Stratosphere Scream,700,100,FLYING,Special,0,5,0,AllNearFoes,0,befk,"A move that only the avatar of Rayquaza can use. All enemies struck lose their flinch immunity.",SCREECH
-2062,SEVENSEASEDICT,Seven Seas Edict,701,0,WATER,Status,0,3,0,None,0,d,"A move that only the avatar of Kyogre can use. The user commands a Luvdisc avatar and a Remoraid avatar to join it.",
-2063,WARPINGCORE,Warping Core,702,0,GROUND,Status,0,3,0,BothSides,0,,"A move that only the avatar of Groudon can use. Gravity is intensified for five turns and enemy Pokemon have their weight doubled.",
+2060,EMPOWEREDDRAGONDARTS,Empowered Dragon Darts,650,100,DRAGON,Physical,100,10,0,AllNearFoes,0,befy,"The user attacks twice using Dreepy, spreading the hits. One of the Dreepys is summoned as an ally.",DRAGONDARTS
+2061,EMPOWEREDGIGADRAIN,Empowered Giga Drain,651,150,GRASS,Special,100,10,0,NearOther,0,befy,"A nutrient-draining attack. The user's HP is restored by all the damage taken by the target.",GIGADRAIN
+2062,EMPOWEREDEARTHQUAKE,Empowered Earthquake,652,190,GROUND,Physical,100,10,0,AllNearOthers,0,befy,"The user sets off an earthquake that strikes every Pokémon around it and underground.",EARTHQUAKE
+2063,EMPOWEREDSURF,Empowered Surf,653,190,WATER,Special,100,10,0,AllNearOthers,0,befy,"It swamps the area with a giant wave, hitting every battler nearby and underwater.",SURF
+2064,EMPOWEREDBRAVEBIRD,Empowered Brave Bird,641,240,FLYING,Physical,100,10,100,NearOther,0,abefy,"The user tucks in its wings and charges from a low altitude. The user also takes 33% recoil.",BRAVEBIRD
+2065,EMPOWEREDSLUDGEWAVE,Empowered Sludge Wave,655,180,POISON,Special,100,10,100,AllNearOthers,0,befy,"It swamps the area around the user with a giant sludge wave, poisoning everyone struck.",
+2066,EMPOWEREDDRAGONBREATH,Empowered Dragon Breath,007,120,DRAGON,Special,100,10,100,NearOther,0,befy,"The user exhales a mighty gust that inflicts damage and numbs the target.",
+2067,STRATOSPHERESCREAM,Stratosphere Scream,700,100,FLYING,Special,0,5,0,AllNearFoes,0,befk,"A move that only the avatar of Rayquaza can use. All enemies struck lose their flinch immunity.",SCREECH
+2068,SEVENSEASEDICT,Seven Seas Edict,701,0,WATER,Status,0,3,0,None,0,d,"A move that only the avatar of Kyogre can use. The user commands a Luvdisc avatar and a Remoraid avatar to join it.",
+2069,WARPINGCORE,Warping Core,702,0,GROUND,Status,0,3,0,BothSides,0,,"A move that only the avatar of Groudon can use. Gravity is intensified for five turns and enemy Pokemon have their weight doubled.",

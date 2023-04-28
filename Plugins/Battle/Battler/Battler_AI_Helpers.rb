@@ -31,7 +31,7 @@ class PokeBattle_Battler
         end
     end
 
-    def hasPhysicalAttack?
+    def hasPhysicalAttack?(aiChecking = false)
         eachAIKnownMove do |m|
             next unless m.physicalMove?(m.type)
             return true

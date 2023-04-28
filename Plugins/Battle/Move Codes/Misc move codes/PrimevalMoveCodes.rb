@@ -630,13 +630,13 @@ class PokeBattle_Move_639 < PokeBattle_Move_02D
     include EmpoweredMove
 end
 
-# Empowered Thunderbolt
+# Empowered Thunderbolt / Dragon Breath
 class PokeBattle_Move_640 < PokeBattle_NumbMove
     include EmpoweredMove
 end
 
 # Empowered Flareblitz
-class PokeBattle_Move_641 < PokeBattle_Move_0FB
+class PokeBattle_Move_641 < PokeBattle_Move_0FE
     include EmpoweredMove
 end
 
@@ -724,6 +724,33 @@ class PokeBattle_Move_650 < PokeBattle_Move_17C
 
         summonAvatar(user, :DREEPY, _INTL("One of the Dreepys joins the fray!"))
     end
+end
+
+# Empowered Giga Drain
+class PokeBattle_Move_651 < PokeBattle_DrainMove
+    include EmpoweredMove
+
+    def drainFactor(_user, _target); return 1.0; end
+end
+
+# Empowered Earthquake
+class PokeBattle_Move_652 < PokeBattle_Move_076
+    include EmpoweredMove
+end
+
+# Empowered Surf
+class PokeBattle_Move_653 < PokeBattle_Move_075
+    include EmpoweredMove
+end
+
+# Empowered Brave Bird
+class PokeBattle_Move_654 < PokeBattle_Move_0FB
+    include EmpoweredMove
+end
+
+# Empowered Sludge Wave
+class PokeBattle_Move_655 < PokeBattle_Move_005
+    include EmpoweredMove
 end
 
 ########################################################
