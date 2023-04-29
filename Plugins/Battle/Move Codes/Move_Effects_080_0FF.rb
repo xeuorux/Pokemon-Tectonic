@@ -216,9 +216,9 @@ end
 # Power increases with the target's HP. (Crush Grip, Wring Out)
 #===============================================================================
 class PokeBattle_Move_08C < PokeBattle_Move
-    def pbBaseDamage(_baseDmg, user, _target)
+    def pbBaseDamage(_baseDmg, _user, target)
         # From 20 to 120 in increments of 5
-        basePower = (20 * user.hp / user.totalhp).floor * 5
+        basePower = (20 * target.hp / target.totalhp).floor * 5
         basePower += 20
         return basePower
     end
