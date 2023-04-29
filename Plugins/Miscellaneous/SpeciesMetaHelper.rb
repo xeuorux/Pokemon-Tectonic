@@ -1,6 +1,7 @@
 GENERATION_END_IDS = [0,151,251,386,493,649,721,809,898]
 
-def isLegendary(species_symbol)
+def isLegendary(idNumber)
+	idNumber = GameData::Species.get(idNumber).id_number if idNumber.is_a?(Symbol)
 	legendaries1 = [144,145,146,150,151]
 	legendaries2 = [243,244,245,249,250,251]
 	legendaries3 = (377..386).to_a
@@ -12,7 +13,7 @@ def isLegendary(species_symbol)
 	legendaries9 = (888..898).to_a
 	legendaries10 = (2026..2028).to_a
 	legendaries = [legendaries1,legendaries2,legendaries3,legendaries4,legendaries5,legendaries6,legendaries7,legendaries8,legendaries9,legendaries10].flatten
-	return legendaries.include?(GameData::Species.get(species_symbol).id_number)
+	return legendaries.include?(idNumber)
 end
 
 alias isLegendary? isLegendary

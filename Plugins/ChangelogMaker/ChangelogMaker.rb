@@ -30,7 +30,7 @@ DebugMenuCommands.register("generatechangelog", {
   "name"        => _INTL("Generate species changelog"),
   "description" => _INTL("See the changelog for each species between the Old and New pokemon.txt files."),
   "effect"      => proc { |sprites, viewport|
-  createChangeLogBetween(1,9999)
+  	createChangeLogBetween(1,9999)
   }
 })
 
@@ -51,12 +51,21 @@ DebugMenuCommands.register("generatechangelogpergen", {
   }
 })
 
+DebugMenuCommands.register("generatefulldexdoc", {
+	"parent"      => "changelog",
+	"name"        => _INTL("Generate full dex doc"),
+	"description" => _INTL("Generate a document that describes all current species details like a dex"),
+	"effect"      => proc { |sprites, viewport|
+	  if !safeIsDirectory?("Changelogs")
+		  Dir.mkdir("Changelogs") rescue nil
+	  end
+	  generateFullDexDoc
+	}
+  })
+
 def createChangeLogBetween(firstID,lastID,fileName = "changelog.txt")
 	unchanged = []
-	
-	stats = [:HP,:ATTACK,:DEFENSE,:SPECIAL_ATTACK,:SPECIAL_DEFENSE,:SPEED]
-	statNames = {:HP => "HP",:ATTACK => "Attack",:DEFENSE => "Defense",:SPECIAL_ATTACK => "Sp. Atk",:SPECIAL_DEFENSE => "Sp. Def",:SPEED => "Speed"}
-	
+		
 	File.open(fileName,"wb") { |f|
 		GameData::SpeciesOld.each do |species_data|
 			next if species_data.form != 0
@@ -86,7 +95,7 @@ def createChangeLogBetween(firstID,lastID,fileName = "changelog.txt")
 			
 			oldBST = 0
 			newBST = 0
-			stats.each do |s|
+			GameData::Stat.each_main.each do |s|
 				oldStat = species_data.base_stats[s]
 				oldBST += oldStat
 				newStat = newSpeciesData.base_stats[s]
@@ -95,10 +104,11 @@ def createChangeLogBetween(firstID,lastID,fileName = "changelog.txt")
 					difference = (newStat - oldStat)
 					difference = "+" + difference.to_s if difference > 0
 					spacesString = ""
-					(12-statNames[s].length).times do
+					statName = s.real_name_brief
+					(12-statName.length).times do
 						spacesString += " "
 					end
-					changeLog.push("#{statNames[s]}: #{spacesString}#{oldStat} => #{newStat} (#{difference})")
+					changeLog.push("#{statName}: #{spacesString}#{oldStat} => #{newStat} (#{difference})")
 				end
 			end
 			bstDiff = (newBST - oldBST)
@@ -114,7 +124,11 @@ def createChangeLogBetween(firstID,lastID,fileName = "changelog.txt")
 							newAbilityData = GameData::Ability.get(newSpeciesData.abilities[i])
 							newRealName = newAbilityData.real_name
 						end
-						if species_data.abilities[i].nil?
+						if newAbilityData
+							newAbilityText = "Ability #{i+1}: #{newRealName}"
+							newAbilityText += " (Signature)" if newAbilityData.is_signature?
+							changeLog.push(newAbilityText)
+						elsif species_data.abilities[i].nil?
 							newAbilityText = "Ability #{i+1}:    Added #{newRealName}"
 							newAbilityText += " (Signature)" if newAbilityData.is_signature?
 							changeLog.push(newAbilityText)
@@ -146,13 +160,14 @@ def createChangeLogBetween(firstID,lastID,fileName = "changelog.txt")
 			newMovesLearned = newSpeciesData.learnable_moves
 			
 			cutMoves = []
-			
+
 			oldMovesLearned.each do |oldMove|
 				moveRename = MOVE_RENAMES[oldMove] || oldMove
 				next if newMovesLearned.include?(moveRename)
 				next if GameData::Move.get(moveRename).cut
 				cutMoves.push(oldMove)
 			end
+		
 			
 			if cutMoves.length > 0
 				str = "Removed Move#{cutMoves.length > 1 ? "s" : ""}: "
@@ -165,21 +180,22 @@ def createChangeLogBetween(firstID,lastID,fileName = "changelog.txt")
 				changeLog.push(str)
 			end
 			
-			addedMoves = []
 			addedSignatureMoves = []
 			
-			newMovesLearned.each do |newMove|
-				next if oldMovesLearned.include?(newMove)
-				next if moveRenamesInverted.key?(newMove) && oldMovesLearned.include?(moveRenamesInverted[newMove])
-				
-				if GameData::Move.get(newMove).is_signature?
-					addedSignatureMoves.push(newMove)
-				else
-					addedMoves.push(newMove)
-				end
-			end
-			
 			if addedMoves.length > 0
+				addedMoves = []
+
+				newMovesLearned.each do |newMove|
+					next if oldMovesLearned.include?(newMove)
+					next if moveRenamesInverted.key?(newMove) && oldMovesLearned.include?(moveRenamesInverted[newMove])
+					
+					if GameData::Move.get(newMove).is_signature?
+						addedSignatureMoves.push(newMove)
+					else
+						addedMoves.push(newMove)
+					end
+				end
+
 				str = "Added Move#{addedMoves.length > 1 ? "s" : ""}: "
 				addedMoves.each_with_index do |move,index|
 					str += GameData::Move.get(move).real_name
@@ -191,19 +207,10 @@ def createChangeLogBetween(firstID,lastID,fileName = "changelog.txt")
 			end
 
 			if addedSignatureMoves.length > 0
-				changeLog.push("New Signature Move#{addedSignatureMoves.length > 1 ? "s" : ""}:")
+				signatureLabel = "Added Signature Move#{addedSignatureMoves.length > 1 ? "s" : ""}:"
+				changeLog.push(signatureLabel)
 				addedSignatureMoves.each_with_index do |move,index|
-					moveData = GameData::Move.get(move)
-					changeLog.push("\t#{moveData.real_name}")
-					changeLog.push("\t#{moveData.categoryLabel}, #{GameData::Type.get(moveData.type).real_name}-type")
-					mainLine = "#{moveData.total_pp} PP"
-					mainLine = "#{moveData.accuracy}\% accuracy, " + mainLine if moveData.accuracy > 0
-					mainLine = "#{moveData.base_damage} BP, " + mainLine if moveData.base_damage > 0
-					mainLine = "\t" + mainLine
-					changeLog.push(mainLine)
-					changeLog.push("\t#{moveData.priorityLabel} priority") if moveData.priority != 0
-					changeLog.push("\t#{moveData.description}")
-					changeLog.push("\t#{moveData.tagLabel} move") if moveData.tagLabel
+					changelog.concat(describeMoveForChangelog(move))
 				end
 			end
 			
@@ -269,4 +276,153 @@ def createChangeLogBetween(firstID,lastID,fileName = "changelog.txt")
 		#f.write("Species that were unchanged: #{unchanged.to_s}")
 	}
 	pbMessage(_INTL("Species changelog written to #{fileName}"))
+end
+
+
+def generateFullDexDoc
+	fileName = "fulldexdoc.txt"
+	File.open(fileName,"wb") { |f|
+		GameData::Species.each do |species_data|
+			next if isLegendary?(species_data.id_number)
+			next if species_data.form != 0
+			dexListing = []
+
+			# Types
+			types = [species_data.type1]
+			types.push(species_data.type2) if species_data.type1 != species_data.type2
+			typesListing = types.length > 1 ? "Types: " : "Type: "
+			types.each_with_index do |type, index|
+				typesListing += GameData::Type.get(type).real_name
+				typesListing += ", " unless index == types.length - 1
+			end
+			dexListing.push(typesListing)
+
+			# Abilities
+			species_data.abilities.each do |abilityID|
+				abilityData = GameData::Ability.get(abilityID)
+				abilityText = "Ability: #{abilityData.real_name}"
+				abilityText += " (Signature)" if abilityData.is_signature?
+				dexListing.push(abilityText)
+
+				desc = abilityData.description.gsub("%"," percent")
+				dexListing.push("\t\"#{desc}\"")
+			end
+
+			# Base stats and total
+			dexListing.push("Base stats:")
+			baseStatTotal = 0
+			GameData::Stat.each_main do |statData|
+				statValue = species_data.base_stats[statData.id]
+				baseStatTotal += statValue
+				statName = statData.real_name_brief
+				spacesString = ""
+				(6-statName.length).times do
+					spacesString += " "
+				end
+				dexListing.push("\t#{statName}: #{spacesString}#{statValue}")
+			end
+			dexListing.push("\tTotal:  #{baseStatTotal}")
+
+			# Level up moves
+			dexListing.push("Level up learnset:")
+			allLevelMoves = []
+			signatureMoves = []
+			levelUpStr = ""
+			species_data.moves.each_with_index do |levelUpEntry, index|
+				next if allLevelMoves.include?(levelUpEntry[1])
+				moveData = GameData::Move.get(levelUpEntry[1])
+				allLevelMoves.push(levelUpEntry[1])
+				signatureMoves.push(moveData.id) if moveData.is_signature?
+
+				levelUpTimeStr = "\t"
+				levelUpTimeStr += levelUpEntry[0] == 0 ? "Evo" : levelUpEntry[0].to_s
+				
+				spacesString = ""
+				(8-levelUpTimeStr.length).times do
+					spacesString += " "
+				end
+				
+				levelUpStr += levelUpTimeStr + ":" + spacesString + moveData.real_name
+				levelUpStr += " (Signature)" if moveData.is_signature?
+				levelUpStr += "\r\n" unless index == species_data.moves.length - 1
+			end
+			dexListing.push(levelUpStr)
+
+			# Signature moves
+			unless signatureMoves.empty?
+				signatureLabel = "Signature Move#{signatureMoves.length > 1 ? "s" : ""}:"
+				dexListing.push(signatureLabel)
+				signatureMoves.each do |move|
+					dexListing.concat(describeMoveForChangelog(move))
+				end
+			end
+
+			# Tutor moves
+			tutorStr = "Tutor moves: "
+			tutorOnlyMoves = species_data.learnable_moves - allLevelMoves
+			tutorOnlyMoves.each_with_index do |moveID, index|
+				tutorStr += GameData::Move.get(moveID).real_name
+				tutorStr += ", " unless index == tutorOnlyMoves.length - 1
+			end
+			dexListing.push(tutorStr)
+
+			# Prevos
+			species_data.get_prevolutions.each do |evolution|
+				method = evolution[1]
+				parameter = evolution[2]
+				species = evolution[0]
+				evolutionName = GameData::Species.get_species_form(species, species_data.form).real_name
+				methodDescription = describeEvolutionMethod(method, parameter)
+				dexListing.push(_INTL("Evolves from {1} {2}", evolutionName, methodDescription))
+			end
+
+			# Evolutions
+			species_data.evolutions.each do |evolutionData|
+				next if evolutionData[3]
+				method = evolutionData[1]
+				parameter = evolutionData[2]
+				species = evolutionData[0]
+				evolutionName = GameData::Species.get_species_form(species, species_data.form).real_name
+				methodDescription = describeEvolutionMethod(method, parameter)
+				dexListing.push(_INTL("Evolves into {1} {2}", evolutionName, methodDescription))
+			end
+
+			# Tribes
+			unless species_data.tribes.empty?
+				tribeStr = "Tribes: "
+				species_data.tribes.each_with_index do |tribeID, index|
+					tribeStr += getTribeName(tribeID)
+					tribeStr += ", " unless index == species_data.tribes.length - 1
+				end
+				dexListing.push(tribeStr)
+			end
+
+			# Print out the changelog
+			if dexListing.length != 0
+				f.write("#{species_data.real_name}:\r\n")
+				dexListing.each do |listing|
+					next if listing.nil?
+					f.write(listing + "\r\n")
+				end
+				f.write("--------------------------------------------\r\n")
+			end
+		end
+	}
+	pbMessage(_INTL("Species changelog written to #{fileName}"))
+end
+
+def describeMoveForChangelog(move)
+	changelogAdds = []
+	moveData = GameData::Move.get(move)
+	changelogAdds.push("\t#{moveData.real_name}")
+	changelogAdds.push("\t#{moveData.categoryLabel}, #{GameData::Type.get(moveData.type).real_name}-type")
+	mainLine = "#{moveData.total_pp} PP"
+	mainLine = "#{moveData.accuracy}\% accuracy, " + mainLine if moveData.accuracy > 0
+	mainLine = "#{moveData.base_damage} BP, " + mainLine if moveData.base_damage > 0
+	mainLine = "\t" + mainLine
+	changelogAdds.push(mainLine)
+	changelogAdds.push("\t#{moveData.priorityLabel} priority") if moveData.priority != 0
+	changelogAdds.push("\t\"#{moveData.description}\"")
+	changelogAdds.push("\t#{moveData.tagLabel} move") if moveData.tagLabel
+	return changelogAdds
 end

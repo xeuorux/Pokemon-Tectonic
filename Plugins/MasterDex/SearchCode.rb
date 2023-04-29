@@ -488,7 +488,7 @@ class PokemonPokedex_Scene
           tribes = []
           GameData::Tribe.each do |tribe|
               tribes.push(tribe.id)
-              commands.push(TribalBonus.getTribeName(tribe.id))
+              commands.push(getTribeName(tribe.id))
           end
           commands.push(_INTL("Cancel"))
           command = pbMessage("Which tribe?",commands,commands.length)
@@ -511,7 +511,7 @@ class PokemonPokedex_Scene
           tribes = []
           GameData::Tribe.each do |tribe|
               tribes.push(tribe.id)
-              commands.push(TribalBonus.getTribeName(tribe.id))
+              commands.push(getTribeName(tribe.id))
           end
           commands.push(_INTL("Cancel"))
           command = pbMessage("Which tribe?",commands,commands.length)

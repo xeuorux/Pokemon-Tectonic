@@ -390,7 +390,7 @@ sp.form) && !Settings::DEX_SHOWS_ALL_FORMS
             next unless i[2] == @form
             speciesFormData = GameData::Species.get_species_form(@species, @form)
             speciesFormData.tribes.each do |tribe|
-                tribes.push(TribalBonus.getTribeName(tribe))
+                tribes.push(getTribeName(tribe))
             end
         end
         tribesDescription = tribes.join(", ")
@@ -769,7 +769,7 @@ sp.form) && !Settings::DEX_SHOWS_ALL_FORMS
                         # Draw preevolution description
                         color = index == @evolutionIndex ? Color.new(255, 100, 80) : base
                         drawTextEx(overlay, xLeft, coordinateY, 450, 2, _INTL("Evolves from {1} {2}", evolutionName, methodDescription), color,
-                 shadow)
+                            shadow)
                         coordinateY += 30
                         coordinateY += 30 if method != :Level
                         index += 1

@@ -38,7 +38,7 @@ class TribalBonus
     def getActiveBonusesList(concat = true, foe = false)
         list = []
         @tribesGivingBonus.each do |tribeID|
-            description = TribalBonus.getTribeName(tribeID)
+            description = getTribeName(tribeID)
             description += _INTL(" Tribe") if concat
             description += _INTL(" [O]") if foe
             list.push(description)
@@ -81,12 +81,6 @@ class TribalBonus
     def hasTribeBonus?(tribeID)
         return @tribesGivingBonus.include?(tribeID)
     end
-
-    def self.getTribeName(tribe_id)
-        name = tribe_id.downcase
-        name = name[0].upcase + name[1...]
-        return name
-    end
 end
 
 class Pokemon
@@ -107,4 +101,10 @@ def playerTribalBonus()
     $Trainer.tribalBonus = TribalBonus.new($Trainer) unless $Trainer.tribalBonus
     $Trainer.tribalBonus.trainer = $Trainer unless $Trainer.tribalBonus.trainer
     return $Trainer.tribalBonus
+end
+
+def getTribeName(tribe_id)
+    name = tribe_id.downcase
+    name = name[0].upcase + name[1...]
+    return name
 end
