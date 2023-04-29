@@ -54,6 +54,7 @@ BattleHandlers::TargetItemOnHit.add(:JAGGEDHELMET,
     proc { |item,user,target,move,battle,aiChecking,aiNumHits|
         next unless move.physicalMove?
         next if !user.takesIndirectDamage?
+        next -20 * aiNumHits if aiChecking
         battle.pbDisplay(_INTL("{1} was badly hurt by the {2}!",user.pbThis,getItemName(item)))
         user.applyFractionalDamage(1.0/3.0)
     }
@@ -63,6 +64,7 @@ BattleHandlers::TargetItemOnHit.add(:LUSTROUSJACKET,
     proc { |item,user,target,move,battle,aiChecking,aiNumHits|
         next unless move.specialMove?
         next if !user.takesIndirectDamage?
+        next -20 * aiNumHits if aiChecking
         battle.pbDisplay(_INTL("{1} was badly hurt by the {2}!",user.pbThis,getItemName(item)))
         user.applyFractionalDamage(1.0/3.0)
     }
