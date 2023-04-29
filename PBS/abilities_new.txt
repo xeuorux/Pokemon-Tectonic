@@ -391,3 +391,4 @@
 1390,STRAIGHTAHEAD,Straight Ahead,"Ignores Abilities that would affect its moves. Its attacks can't be redirected to new targets."
 1391,HYPERSPEED,Hyper Speed,"Doubles Speed. Dashes to avoid hazards when entering."
 1392,SEASURVIVOR,Sea Survivor,"Protected from critical hits. Can't be burned or frostbitten."
+1393,ASSAULTSPINES,Assault Spines,"Doubles Sp. Def, but the Pokémon can't use status moves."
