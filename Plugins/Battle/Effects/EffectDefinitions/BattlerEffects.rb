@@ -274,8 +274,7 @@ GameData::BattleEffect.register_effect(:Battler, {
 GameData::BattleEffect.register_effect(:Battler, {
     :id => :FirstPledge,
     :real_name => "First Pledge",
-    :type => :Integer,
-    :default => 0,
+    :type => :String,
     :info_displayed => false,
 })
 
