@@ -124,6 +124,15 @@ GameData::Move.get(@effects[:GorillaTactics]).name)
                 echoln(msg)
                 return false
             end
+            statusPreventingAbility = hasActiveAbility?(%i[ASSAULTSPINES])
+            if statusPreventingAbility
+                msg = _INTL("The effects of the {1} prevent status moves from being used!", getAbilityName(statusPreventingAbility))
+                if showMessages
+                    commandPhase ? @battle.pbDisplayPaused(msg) : @battle.pbDisplay(msg)
+                end
+                echoln(msg)
+                return false
+            end
         end
         if hasActiveAbility?(:AURORAPRISM) && pbHasType?(move.type)
             msg = _INTL("{1} cannot use moves of their own types!", pbThis)

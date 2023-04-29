@@ -26,6 +26,13 @@ BattleHandlers::SpecialDefenseCalcUserAbility.add(:ICESCALES,
     }
 )
 
+BattleHandlers::SpecialDefenseCalcUserAbility.add(:ASSAULTSPINES,
+    proc { |ability, _user, _battle, spDefMult|
+        spDefMult *= 2
+        next spDefMult
+    }
+)
+
 BattleHandlers::SpecialDefenseCalcUserAbility.add(:PARANOID,
     proc { |ability, _user, _battle, spDefMult|
         spDefMult *= 2
