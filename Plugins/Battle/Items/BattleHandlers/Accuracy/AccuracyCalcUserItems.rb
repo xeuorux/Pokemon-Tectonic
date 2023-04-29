@@ -5,7 +5,7 @@ BattleHandlers::AccuracyCalcUserItem.add(:WIDELENS,
 )
 
 BattleHandlers::AccuracyCalcUserItem.add(:ZOOMLENS,
-  proc { |item, mults, _user, target, _move, _type, aiCheck|
+  proc { |item, mults, user, target, _move, _type, aiCheck|
     if aiCheck
       if target.pbSpeed(true) > user.pbSpeed(true)
           mults[:accuracy_multiplier] *= 2.0
@@ -22,7 +22,7 @@ BattleHandlers::AccuracyCalcUserItem.add(:ZOOMLENS,
 
 BattleHandlers::AccuracyCalcUserItem.add(:SKILLHERB,
   proc { |item, mults, user, _target, _move, _type, aiCheck|
-      next unless modifiers[:base_accuracy] < 100
+      next unless mults[:base_accuracy] < 100
       mults[:base_accuracy] = 0 # Can't miss
       user.applyEffect(:SkillHerbConsumed) unless aiCheck
   }
