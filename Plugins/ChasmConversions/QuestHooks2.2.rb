@@ -9,5 +9,7 @@ SaveData.register_conversion(:spawning_swords_22) do
     globalVariables[30] += 1 if selfSwitches[[11,28,'A']] # Avatar of Terrakion defeated
     globalVariables[30] += 1 if selfSwitches[[122,2,'A']] # Avatar of Cobalion defeated
     globalVariables[30] += 1 if selfSwitches[[211,3,'A']] # Avatar of Virizion defeated
+    
+    save_data[:bag].pbStoreItem(:POCKETTOTEM) if selfSwitches[[212,52,'D']] # Sang 2 defeated in ruins digsite
   end
 end
