@@ -284,7 +284,7 @@ class Game_Player < Game_Character
         result = true
       end
       # If fitting event is not found
-      if result == false
+      if !result
         # If front tile is a counter
         if $game_map.counter?(new_x, new_y)
           # Calculate coordinates of 1 tile further away
@@ -301,6 +301,16 @@ class Game_Player < Game_Character
             event.start
             result = true
           end
+        end
+      end
+      # Try to find pullable objects
+      if !result
+        for event in $game_map.events.values
+          next if !event.at_coordinate?(new_x, new_y)
+          next if event.jumping? || event.over_trigger?
+          next unless event.name[/pushboulder/]
+          event.pbPullTowardsPlayer
+          result = true
         end
       end
       return result

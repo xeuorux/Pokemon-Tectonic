@@ -47,14 +47,45 @@ class Interpreter
         end
 
         if holeEvent
-            pbSEPlay("Anim/Earth3",70,100)
+            pbSEPlay("Anim/Earth3",80,80)
             pbWait(10)
             pbSetSelfSwitch(event.id,'A')
             pbSetSelfSwitch(holeEvent.id,'A')
+        else
+            pbSEPlay("Anim/Earth3",40,rand(110,140))
         end
     end
+    
+    
 end
 
 class Game_Character
     attr_accessor :always_on_top
+
+    def inverted_dir
+        case @direction
+        when 2 then return 8
+        when 4 then return 6
+        when 6 then return 4
+        when 8 then return 2
+        end
+    end
+
+    def pbPullTowardsPlayer
+        unless $game_player.can_move_in_direction?($game_player.inverted_dir, true)
+            $game_player.bump_into_object
+            return
+        end
+
+        pbSEPlay("Anim/Earth3",30,rand(70,90))
+
+        $game_player.move_backward
+
+        case $game_player.inverted_dir
+        when 2 then move_down
+        when 4 then move_left
+        when 6 then move_right
+        when 8 then move_up
+        end
+    end
 end
