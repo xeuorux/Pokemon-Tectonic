@@ -93,8 +93,8 @@
 92,INTELLECTHERB,Intellect Herb,Intellect Herbs,5,4000,"An item to be held by a Pokémon. Boosts the power of a special move by 30% once per battle.",0,0,0
 93,POWERHERB,Power Herb,Power Herbs,5,4000,"A single-use item to be held by a Pokémon. It allows the immediate use of a move that charges up first.",0,0,0
 94,ENERGYHERB,Energy Herb,Energy Herbs,5,4000,"A single-use item to be held by a Pokémon. It allows user to skip the recharging turn of an exhausting move.",0,0,0
-95,MIRRORHERB,Mirror Herb,Mirror Herbs,5,4000,"A held item. When a foe raises their stats, the herb is consumed to copy their raised stats.",0,0,0
-96,PARADOXHERB,Paradox Herb,Paradox Herbs,5,4000,"A held item. When a foe raises their stats, the herb is consumed to reset their raised stats.",0,0,0
+95,MIRRORHERB,Mirror Herb,Mirror Herbs,5,4000,"A held item. When a foe raises one of their stats, the herb is consumed to copy that increase.",0,0,0
+96,PARADOXHERB,Paradox Herb,Paradox Herbs,5,4000,"A held item. When a foe raises one of their stats, the herb is consumed to reset that stat.",0,0,0
 97,LUCKHERB,Luck Herb,Luck Herbs,5,4000,"An item to be held by a Pokémon. Ensures a random additional affect activates once per battle.",0,0,0
 98,SKILLHERB,Skill Herb,Skill Herbs,5,4000,"An item to be held by a Pokémon. Ensures a less than full accuracy move lands once per battle.",0,0,0
 99,LIFEORB,Life Orb,Life Orbs,5,10000,"A held item. It boosts the power of moves by 30%, but at the cost of 10% HP on each hit.",0,0,0

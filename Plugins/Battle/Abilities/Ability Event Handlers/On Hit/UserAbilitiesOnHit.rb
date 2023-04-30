@@ -128,6 +128,13 @@ BattleHandlers::UserAbilityOnHit.add(:FUNGALFLURRY,
   }
 )
 
+BattleHandlers::UserAbilityOnHit.add(:PESTILENT,
+  proc { |ability, user, target, move, battle, aiChecking, aiNumHits|
+    next unless user.belowHalfHealth?
+    randomStatusProcUserAbility(ability, :LEECHED, 100, user, target, move, battle, aiChecking, aiNumHits)
+  }
+)
+
 #########################################
 # Other status abilities
 #########################################

@@ -126,10 +126,10 @@ class PokeBattle_Battler
         end
         eachOpposing do |b|
             b.eachActiveAbility do |ability|
-                BattleHandlers.triggerAbilityOnEnemyStatGain(ability, b, stat, user, self)
+                BattleHandlers.triggerAbilityOnEnemyStatGain(ability, b, stat, increment, user, @battle, self)
             end
             b.eachActiveItem do |item|
-                BattleHandlers.triggerItemOnEnemyStatGain(item, b, user, @battle, self)
+                BattleHandlers.triggerItemOnEnemyStatGain(item, b, stat, increment, user, @battle, self)
             end
         end
         return true
@@ -167,10 +167,10 @@ class PokeBattle_Battler
         end
         eachOpposing do |b|
             b.eachActiveAbility do |ability|
-                BattleHandlers.triggerAbilityOnEnemyStatGain(ability, b, stat, user, self)
+                BattleHandlers.triggerAbilityOnEnemyStatGain(ability, b, stat, increment, user, @battle, self)
             end
             b.eachActiveItem do |item|
-                BattleHandlers.triggerItemOnEnemyStatGain(item, b, user, @battle, self)
+                BattleHandlers.triggerItemOnEnemyStatGain(item, b, stat, increment, user, @battle, self)
             end
         end
         return true

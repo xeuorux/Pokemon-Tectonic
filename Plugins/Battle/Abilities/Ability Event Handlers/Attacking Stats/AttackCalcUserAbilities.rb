@@ -70,6 +70,13 @@ BattleHandlers::AttackCalcUserAbility.add(:POWERUP,
   }
 )
 
+BattleHandlers::AttackCalcUserAbility.add(:ARCHVILLAIN,
+  proc { |ability, _user, _battle, attackMult|
+      attackMult *= 1.5
+      next attackMult
+  }
+)
+
 BattleHandlers::AttackCalcUserAbility.add(:DEEPSTING,
   proc { |ability, _user, _battle, attackMult|
       attackMult *= 1.5

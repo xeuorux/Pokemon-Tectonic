@@ -23,6 +23,7 @@ class PokeBattle_DamageState
 	attr_accessor :dangerSense     # Danger Sense ability used
 	attr_accessor :disguise        # Disguise ability used
 	attr_accessor :endured         # Damage was endured
+	attr_accessor :archVillain	   # Arch Villain prevented the kill
 	attr_accessor :berryWeakened   # Whether a type-resisting berry was used
 	attr_accessor :iceface         # Ice Face ability activated
 	attr_accessor :direDiversion   # Dire Diversion ability activated
@@ -58,6 +59,7 @@ class PokeBattle_DamageState
 		@focusSash     		= false
 		@sturdy        		= false
 		@dangerSense		= false
+		@archVillain		= false
 		@disguise      		= false
 		@endured       		= false
 		@berryWeakened 		= nil

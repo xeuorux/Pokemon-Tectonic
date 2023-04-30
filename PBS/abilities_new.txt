@@ -392,3 +392,6 @@
 1391,HYPERSPEED,Hyper Speed,"Doubles Speed. Dashes to avoid hazards when entering."
 1392,SEASURVIVOR,Sea Survivor,"Protected from critical hits. Can't be burned or frostbitten."
 1393,ASSAULTSPINES,Assault Spines,"Doubles Sp. Def, but the Pokémon can't use status moves."
+1394,PETTY,Petty,"Whenever a foe raises their stats, the Pokémon follows suit."
+1395,PESTILENT,Pestilent,"When the Pokémon is below half health, its attacks leech those hit."
+1396,ARCHVILLAIN,Arch Villain,"Boosts the Pokémon's Attack by 50%, but its attacks cannot faint the target."

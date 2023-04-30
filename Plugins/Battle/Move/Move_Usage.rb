@@ -342,28 +342,30 @@ target.pbThis(true)))
                 target.damageState.direDiversion = true
                 damage -= 1
                 damageAdjusted = true
-            elsif damage == target.totalhp
-                if target.hasActiveAbility?(:STURDY) && !@battle.moldBreaker
-                    target.damageState.sturdy = true
-                    damage -= 1
-                    damageAdjusted = true
-                elsif target.hasActiveAbility?(:DANGERSENSE) && !@battle.moldBreaker
-                    target.damageState.dangerSense = true
-                    damage -= 1
-                    damageAdjusted = true
-                elsif (target.hasActiveItem?(FULL_ENDURE_ITEMS) && target.hp == target.totalhp) || target.hasActiveItem?(:CLARITYSASH)
-                    target.damageState.focusSash = true
-                    damage -= 1
-                    damageAdjusted = true
-                elsif target.hasActiveItem?(:CASSBERRY) && target.hp == target.totalhp
-                    target.damageState.endureBerry = true
-                    damage -= 1
-                    damageAdjusted = true
-                elsif target.hasActiveItem?(:FOCUSBAND) && @battle.pbRandom(100) < 10
-                    target.damageState.focusBand = true
-                    damage -= 1
-                    damageAdjusted = true
-                end
+            elsif target.hasActiveAbility?(:STURDY) && !@battle.moldBreaker
+                target.damageState.sturdy = true
+                damage -= 1
+                damageAdjusted = true
+            elsif target.hasActiveAbility?(:DANGERSENSE) && !@battle.moldBreaker
+                target.damageState.dangerSense = true
+                damage -= 1
+                damageAdjusted = true
+            elsif (target.hasActiveItem?(FULL_ENDURE_ITEMS) && target.hp == target.totalhp) || target.hasActiveItem?(:CLARITYSASH)
+                target.damageState.focusSash = true
+                damage -= 1
+                damageAdjusted = true
+            elsif target.hasActiveItem?(:CASSBERRY) && target.hp == target.totalhp
+                target.damageState.endureBerry = true
+                damage -= 1
+                damageAdjusted = true
+            elsif target.hasActiveItem?(:FOCUSBAND) && @battle.pbRandom(100) < 10
+                target.damageState.focusBand = true
+                damage -= 1
+                damageAdjusted = true
+            elsif user.hasActiveAbility?(:ARCHVILLAIN)
+                target.damageState.archVillain = true
+                damage -= 1
+                damageAdjusted = true
             end
 
             # Bosses show mercy
@@ -509,6 +511,10 @@ target.pbThis(true)))
         elsif target.damageState.endureBerry
             @battle.pbDisplay(_INTL("{1} hung on by consuming its {2}!", target.pbThis, getItemName(:CASSBERRY)))
             target.consumeItem(:CASSBERRY) if target.hasItem?(:CASSBERRY)
+        elsif target.damageState.archVillain
+            @battle.pbShowAbilitySplash(user,:ARCHVILLAIN)
+            @battle.pbDisplay(_INTL("{1} lets out an arrogant laugh!", user.pbThis))
+            @battle.pbHideAbilitySplash(user)
         end
     end
 
