@@ -2664,9 +2664,7 @@ class PokeBattle_Move_0E0 < PokeBattle_Move
         return false
     end
 
-    def pbMoveFailedAI?(_user, _targets)
-        return false
-    end
+    def pbMoveFailedAI?(_user, _targets); return false; end
 
     def pbSelfKO(user)
         return if user.fainted?

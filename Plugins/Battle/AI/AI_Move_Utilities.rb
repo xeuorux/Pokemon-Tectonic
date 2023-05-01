@@ -40,6 +40,70 @@ class PokeBattle_AI
         return ret
     end
 
+    #=============================================================================
+    # Move failure
+    #=============================================================================
+    def aiPredictsFailure?(move, user, target, boss = false)
+        fails = false
+
+        if !boss && user.effectActive?(:Flinch) && !user.effectActive?(:FlinchImmunity)
+            echoln("#{user.pbThis} rejects the move #{move.id} due to it being predicted to flinch (Moonglow?)")
+            return true
+        end
+
+        # Falsify the turn count so that the AI is calculated as though we are actually
+        # in the midst of performing the move (turnCount is incremented as the attack phase begins)
+        user.turnCount += 1
+
+        # Move blocking abilities make the move fail here
+        @battle.pbPriority(true).each do |b|
+            next unless b
+            abilityBlocked = false
+            b.eachAIKnownActiveAbility do |ability|
+                next unless BattleHandlers.triggerMoveBlockingAbility(ability, b, user, [target], move, @battle)
+                abilityBlocked = true
+                break
+            end
+            next unless abilityBlocked
+            fails = true
+            echoln("#{user.pbThis} rejects #{move.id} -- thinks will be blocked by an ability.")
+            break
+        end
+
+        if move.pbMoveFailedAI?(user, [target])
+            fails = true
+            echoln("#{user.pbThis} rejects #{move.id} -- thinks will fail.")
+        end
+
+        # Don't prefer moves that are ineffective because of abilities or effects on the target
+        unless user.index == target.index
+            type = pbRoughType(move, user)
+            typeMod = pbCalcTypeModAI(type, user, target, move)
+            unless user.pbSuccessCheckAgainstTarget(move, user, target, typeMod, false, true)
+                fails = true
+                echoln("#{user.pbThis} rejects #{move.id} -- thinks will fail against #{target.pbThis(false)} due to abilities, effects, or typemod.")
+            end
+        end
+
+        # Magic Bounce/Magic Shield checks for moves which don't target
+        if user.index == target.index && move.canMagicCoat? && !@battle.moldBreaker
+            @battle.pbPriority(true).each do |b|
+                next unless b
+                next if b.fainted?
+                next unless b.opposes?(user)
+                next if b.semiInvulnerable?
+                next unless b.hasActiveAbilityAI?(%i[MAGICBOUNCE MAGICSHIELD])
+                echoln("#{user.pbThis} rejects #{move.id} -- thinks will fail against #{target.pbThis(false)} due to Magic Bounce etc.")
+                fails = true
+                break
+            end
+        end
+
+        user.turnCount -= 1
+
+        return fails
+    end
+
     def moveFailureAlert(move, user, target, failureMessage)
         echoln("#{user.pbThis(true)} thinks that move #{move.id} against target #{target.pbThis(true)} will fail due to #{failureMessage}")
     end

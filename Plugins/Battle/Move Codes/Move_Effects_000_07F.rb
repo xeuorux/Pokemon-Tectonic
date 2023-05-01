@@ -2141,9 +2141,7 @@ class PokeBattle_Move_071 < PokeBattle_FixedDamageMove
         return false
     end
 
-    def pbMoveFailedAI?(_user, _targets)
-        return false
-    end
+    def pbMoveFailedAI?(_user, _targets); return false; end
 
     def pbFixedDamage(user, _target)
         dmg = user.effects[:Counter] * 2
@@ -2176,9 +2174,7 @@ class PokeBattle_Move_072 < PokeBattle_FixedDamageMove
         return false
     end
 
-    def pbMoveFailedAI?(_user, _targets)
-        return false
-    end
+    def pbMoveFailedAI?(_user, _targets); return false; end
 
     def pbFixedDamage(user, _target)
         dmg = user.effects[:MirrorCoat] * 2
@@ -2212,9 +2208,7 @@ class PokeBattle_Move_073 < PokeBattle_FixedDamageMove
         return false
     end
 
-    def pbMoveFailedAI?(_user, _targets)
-        return false
-    end
+    def pbMoveFailedAI?(_user, _targets); return false; end
 
     def pbFixedDamage(user, _target)
         dmg = (user.lastHPLostFromFoe * 1.5).floor

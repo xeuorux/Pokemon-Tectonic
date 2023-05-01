@@ -208,7 +208,7 @@ class PokeBattle_AI
                     totalScore /= targets.length.to_f
                 end
             else
-                totalScore = pbGetMoveScoreBoss(move, user, nil, 0, bossAI)
+                totalScore = pbGetMoveScoreBoss(move, user, user, 0, bossAI)
             end
             totalScore = totalScore.round
             if totalScore > 0
@@ -283,8 +283,6 @@ class PokeBattle_AI
     end
 
     def pbGetMoveScoreBoss(move, user, target, numTargets, bossAI, targetWeak = false)
-        score = 50
-
         if bossAI.rejectMove?(move, user, target, @battle)
             PBDebug.log(addTargetIfPresent(
                             "[BOSS AI] #{user.pbThis} (#{user.index}) custom AI rejects move #{move.name}", target))
@@ -292,19 +290,13 @@ class PokeBattle_AI
         end
 
         # Rejecting moves based on failure
-
-        # Don't use a move that would fail against the target
-        if !target.nil? && move.pbFailsAgainstTargetAI?(user, target)
+        unless aiPredictsFailure?(move, user, target, true)
             PBDebug.log("[BOSS AI] rejects move #{move.name} due to being predicted to fail against the target against target #{target.pbThis(true)}")
+
             return -99_999
         end
 
-        # Don't use a move that would fail outright
-        if move.pbMoveFailedAI?(user, [target])
-            PBDebug.log("[BOSS AI] rejects move #{move.name} due to being predicted to fail entirely")
-            return -99_999
-        end
-
+        # Checking for requirements
         if bossAI.requireMove?(move, user, target, @battle)
             PBDebug.log(addTargetIfPresent(
                             "[BOSS AI] #{user.pbThis} (#{user.index}) custom AI requires move #{move.name}", target))
@@ -312,6 +304,7 @@ class PokeBattle_AI
         end
 
         if move.damagingMove?
+            score = 0
             if AVATARS_CALCULATE_DAMAGE_DEALT
                 # Calculate how much damage the move will do (roughly)
                 realDamage = pbTotalDamageAI(move, user, target, numTargets)
@@ -331,8 +324,11 @@ class PokeBattle_AI
                 hpMod = AVATAR_DAMAGE_SCORE_MAX - hpMod if targetWeak
                 score += hpMod
             end
+            return score
+        else
+            return 50
         end
 
-        return score
+        
     end
 end

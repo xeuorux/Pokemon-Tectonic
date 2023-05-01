@@ -440,7 +440,7 @@ class PokeBattle_Battler
                 end
             end
             # Magic Coat/Magic Bounce/Magic Shield checks (for moves which don't target Pokémon)
-            if targets.length == 0 && move.canMagicCoat?
+            if targets.empty? && move.canMagicCoat?
                 @battle.pbPriority(true).each do |b|
                     next if b.fainted? || !b.opposes?(user)
                     next if b.semiInvulnerable?
@@ -463,7 +463,7 @@ class PokeBattle_Battler
                 end
             end
             # Needle Fur
-            if targets.length > 0 && move.damagingMove?
+            if !targets.empty? && move.damagingMove?
                 targets.each do |b|
                     next if b.damageState.unaffected
                     next unless b.hasActiveAbility?(:NEEDLEFUR)
