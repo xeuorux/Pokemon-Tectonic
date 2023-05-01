@@ -2318,3 +2318,32 @@ class PokeBattle_Move_5F6 < PokeBattle_RecoilMove
         return damage
     end
 end
+
+#===============================================================================
+# Target can't switch out or flee until they take a hit. (Ice Dungeon)
+# Their attacking stats are both lowered by 1 step.
+#===============================================================================
+class PokeBattle_Move_5F6 < PokeBattle_Move
+    def pbFailsAgainstTarget?(_user, target, show_message)
+        if target.effectActive?(:IceDungeon) && target.pbCanLowerStatStep?(:ATTACK, user, self) &&
+                target.pbCanLowerStatStep?(:SPECIAL_ATTACK, user, self)
+            if show_message
+                @battle.pbDisplay(_INTL("But it failed, since #{target.pbThis(true)} is already imprisoned and its attacking stats can't be reduced!"))
+            end
+            return true
+        end
+        return false
+    end
+
+    def pbEffectAgainstTarget(user, target)
+        target.applyEffect(:IceDungeon)
+        target.pbLowerMultipleStatSteps(ATTACKING_STATS_1, user, move: self)
+    end
+
+    def getTargetAffectingEffectScore(user, target)
+        score = 0
+        score += 40 unless target.effectActive?(:IceDungeon)
+        score += getMultiStatUpEffectScore(ATTACKING_STATS_1, user, target)
+        return score
+    end
+end

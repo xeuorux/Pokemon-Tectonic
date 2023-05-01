@@ -610,6 +610,18 @@ GameData::BattleEffect.register_effect(:Battler, {
 })
 
 GameData::BattleEffect.register_effect(:Battler, {
+    :id => :IceDungeon,
+    :real_name => "Imprisoned in ice",
+    :trapping => true,
+    :apply_proc => proc do |battle, battler, _value|
+        battle.pbDisplay(_INTL("{1} is immprisoned in a tower of ice!", battler.pbThis))
+    end,
+    :disable_proc => proc do |battle, battler|
+        battle.pbDisplay(_INTL("The icy prison around {1} shattered!", battler.pbThis(true)))
+    end,
+})
+
+GameData::BattleEffect.register_effect(:Battler, {
     :id => :MeFirst,
     :real_name => "Me First",
 })

@@ -880,9 +880,11 @@ user.pbThis))
                 next if b.damageState.unaffected
                 move.pbEndureKOMessage(b)
             end
+
             # HP-healing held items (checks all battlers rather than just targets
             # because Flame Burst's splash damage affects non-targets)
             @battle.pbPriority(true).each { |b| b.pbItemHPHealCheck }
+
             # Animate battlers fainting (checks all battlers rather than just targets
             # because Flame Burst's splash damage affects non-targets)
             @battle.pbPriority(true).each { |b| b.pbFaint if b && b.fainted? }

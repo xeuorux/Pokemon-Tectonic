@@ -25,6 +25,9 @@ class PokeBattle_Battler
                     user.pbItemHPHealCheck if user.hp < oldHP
                 end
             end
+
+            # Ice Dungeon
+            target.disableEffect(:IceDungeon)
         end
         if target.opposes?(user) && !user.hasActiveItem?(:PROXYFIST)
             # Rage
