@@ -326,7 +326,7 @@
 1325,PETALTEMPEST,Petal Tempest,000,95,GRASS,Special,100,12,0,AllNearOthers,0,befq,"The user stirs up a violent petal tempest and attacks everything around it.",PETALBLIZZARD
 1326,HEARTRHYTHM,Heart Rhythm,5A9,60,FAIRY,Special,100,20,0,NearOther,0,abefk,"Power increases by 20 each time its used in succession. User heals for half of damage dealt.",ROUND
 1327,SCALEGLINT,Scale Glint,5AA,40,DRAGON,Special,100,15,20,NearOther,0,bef,"The shine from scales damages the target. 20% chance to reduce their higher Attacking stat.",DAZZLINGGLEAM
-1328,REFURBISH,Refurbish,5AB,0,STEEL,Status,0,15,0,User,0,d,"The user economizes half of its weight, raising its Defenses by two steps and also healing based on the weight lost.",AUTOTOMIZE
+1328,REFURBISH,Refurbish,5AB,0,STEEL,Status,0,15,0,User,0,d,"The user economizes half of its weight, raising its defenses by two steps and also healing based on the weight lost.",AUTOTOMIZE
 1329,MYSTERYSEED,Mystery Seed,5AC,0,GRASS,Status,0,10,0,NearOther,0,bce,"The target eats a strange seed. They become numbed if faster than the user, or leeched if slower.",LEECHSEED
 1330,DEPTHCHARGE,Depth Charge,0CB,120,WATER,Physical,100,10,0,NearOther,0,abef,"Diving deep on the first turn, the user rises and strikes with explosive strength on second.",DIVE
 1331,SCARRINGSWING,Scarring Swing,5E6,90,DARK,Physical,100,10,100,AllNearFoes,0,abef,"The user slashes all around them, creating deep scars. This lowers each target's Attack.",
@@ -425,11 +425,11 @@
 1424,TUNEUP,Tune Up,5E3,0,BUG,Status,0,10,0,User,0,d,"The user amps itself up for performance, raising its Sp. Atk and Speed by two steps each.",CALMMIND
 1425,HONESIGHT,Hone Sight,5E4,0,NORMAL,Status,0,12,0,User,0,d,"The user focuses its aim to raise its Sp. Atk and Accuracy by three steps each.",LASERFOCUS
 1426,CURSEDOATH,Cursed Oath,54A,0,GHOST,Status,0,10,0,NearOther,0,bce,"The user spends 1/4th of their max HP to curse the target, damaging their HP by 1/4th each turn.",CURSE
-1427,MINDSAP,Mind Sap,5E5,0,GRASS,Status,100,10,0,NearOther,0,bce,"Restores its own HP by the target's Attack stat amount, then lowers the target's Attack stat.",STRENGTHSAP
+1427,MINDSAP,Mind Sap,5E5,0,GRASS,Status,100,10,0,NearOther,0,bce,"Restores its own HP by the target's Sp. Atk stat amount, then lowers the target's Sp. Atk stat.",STRENGTHSAP
 1428,APPLESURPRISE,Apple Surprise,5F2,45,GRASS,Special,100,10,100,NearOther,1,bef,"An apple falls from high up to strike the foe. Always goes first. Deals double damage in intense Gravity.",GRAVAPPLE
 1429,STARDANCE,Star Dance,5F3,0,PSYCHIC,Status,100,15,0,AllNearFoes,0,bceo,"The user covers the target's body with a mass of down that lowers its Sp. Atk stat by five steps.",COSMICPOWER
 1430,AMPUP,Amp Up,09C,0,ELECTRIC,Status,0,15,0,NearAlly,0,,"The user assists an ally's next move, boosting its power by 50% and letting it move right after the user.",HELPINGHAND
 1431,TRUESENSES,True Senses,5F5,0,PSYCHIC,Status,0,30,0,User,0,d,"The user meditates, raising both its Attack and Sp. Atk stats by 4 steps each.",MEDITATE
 1432,UNDYINGRUSH,Undying Rush,5F6,120,GHOST,Physical,100,12,0,NearOther,0,abef,"Clad in souls, the user crashes into the target. The user takes 33% recoil, but can't faint from it.",PHANTOMFORCE
 1433,VERMINCLOUD,Vermin Cloud,0C9,100,FLYING,Physical,100,5,0,NearOther,4,abef,"The user transforms into a cloud of flies, evading all attacks on the first turn. On the second turn it ambushes the target.",FLY
-1434,ICEDUNGEON,Ice Dungeon,5F7,0,ICE,Status,0,5,0,AllNearFoes,0,ce,"The user creates a tower of ice to hold all near foes, reducing their attacking stats by 1 step each and trapping them until the next time they take a hit.",
+1434,ICEDUNGEON,Ice Dungeon,5F7,0,ICE,Status,0,5,0,AllNearFoes,0,ce,"The user creates a tower of ice to hold all near foes, reducing their attacking stats by one step each and trapping them until the next time they take a hit.",
