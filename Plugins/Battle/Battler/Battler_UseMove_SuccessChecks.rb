@@ -298,12 +298,15 @@ GameData::Move.get(@effects[:GorillaTactics]).name)
         if move.canProtectAgainst? && !protectionIgnoredByAbility
             @battle.pbCommonAnimation(animationName, target) unless animationName.nil?
             @battle.pbDisplay(_INTL("{1} protected {2}!", effectDisplayName, target.pbThis(true))) if showMessages
-            if user.boss? && AVATARS_PIERCE_PROTECT
+            if user.boss? && (move.empoweredMove? || AVATARS_REGULAR_ATTACKS_PIERCE_PROTECT)
                 target.damageState.partiallyProtected = true
                 yield if block_given?
                 if showMessages
-                    @battle.pbDisplay(_INTL("Actually, {1} partially pierces through!",
-user.pbThis(true)))
+                    if move.empoweredMove? && !AVATARS_REGULAR_ATTACKS_PIERCE_PROTECT
+                        @battle.pbDisplay(_INTL("But the empowered attack pierces through!", user.pbThis(true)))
+                    else
+                        @battle.pbDisplay(_INTL("Actually, {1} partially pierces through!", user.pbThis(true)))
+                    end
                 end
             else
                 target.damageState.protected = true
