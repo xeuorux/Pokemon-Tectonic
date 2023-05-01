@@ -430,6 +430,8 @@ class FightMenuDisplay < BattleMenuBase
         if moveData.total_pp > 0
           ppFraction = [(4.0*move.pp/move.total_pp).ceil,3].min
           textpos.push([_INTL("{1}/{2}",move.pp,move.total_pp),moveInfoColumn2ValueX, 32, 2, PP_COLORS[ppFraction*2], PP_COLORS[ppFraction*2+1]])
+        else
+          textpos.push(["---", moveInfoColumn2ValueX, 32, 2, faded_base, shadow])
         end
         # Tag
         moveCategoryLabel = moveData.tagLabel || "---"
@@ -440,19 +442,7 @@ class FightMenuDisplay < BattleMenuBase
         textpos.push([moveData.priorityLabel,moveInfoColumn3ValueX + 6, 0, 2, move.priority != 0 ? base : faded_base, shadow])
         # Targeting
         targetingData = GameData::Target.get(moveData.target)
-        targetingLabel = ""
-        if targetingData.targets_all
-          targetingLabel = "All"
-        elsif targetingData.id == :UserAndAllies
-          targetingLabel = "Us"
-        elsif targetingData.id == :RandomNearFoe
-          targetingLabel = "Random"
-        elsif targetingData.num_targets > 1
-          targetingLabel = "Each"
-        elsif targetingData.num_targets == 1
-          targetingLabel = "One"
-        end
-        textpos.push([targetingLabel,moveInfoColumn3LabelX + 4, 64, 0, base, shadow])
+        textpos.push([targetingData.get_targeting_label,moveInfoColumn3LabelX + 4, 64, 0, base, shadow])
 
         # Targeting graphic
         targetingGraphicTextPos = []

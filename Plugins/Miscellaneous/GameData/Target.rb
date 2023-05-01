@@ -51,7 +51,7 @@ module GameData
         def can_target_one_foe?
             return @num_targets == 1 && @targets_foe
         end
-
+    
         ###########################################################################################
         # Methods to determine what to highlight in graphics that explain how a move targets
         ###########################################################################################
@@ -65,6 +65,22 @@ module GameData
 
         def show_ally_targeting?
             return @targets_ally || @affects_user_side || @targets_all
+        end
+
+        def get_targeting_label
+            targetingLabel = ""
+            if targets_all
+                targetingLabel = "All"
+            elsif @id == :UserAndAllies
+                targetingLabel = "Us"
+            elsif @id == :RandomNearFoe
+                targetingLabel = "Random"
+            elsif @num_targets > 1
+                targetingLabel = "Each"
+            elsif @num_targets == 1
+                targetingLabel = "One"
+            end
+            return targetingLabel
         end
     end
 end

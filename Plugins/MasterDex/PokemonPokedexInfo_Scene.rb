@@ -15,7 +15,7 @@ class PokemonPokedexInfo_Scene
         @evolutionIndex = -1
         @typebitmap = AnimatedBitmap.new(_INTL("Graphics/Pictures/Pokedex/icon_types"))
         @types_emphasized_bitmap = AnimatedBitmap.new(_INTL("Graphics/Pictures/Pokedex/icon_types_emphasized"))
-        @moveInfoDisplayBitmap = AnimatedBitmap.new(_INTL("Graphics/Pictures/move_info_display_tall"))
+        @moveInfoDisplayBitmap = AnimatedBitmap.new(_INTL("Graphics/Pictures/Pokedex/move_info_display_dex"))
         @sprites = {}
         @sprites["background"] = IconSprite.new(0, 0, @viewport)
         @sprites["infosprite"] = PokemonSprite.new(@viewport)
@@ -66,12 +66,12 @@ class PokemonPokedexInfo_Scene
         @sprites["downarrow"].visible = false
         @sprites["leftarrow"] = AnimatedSprite.new("Graphics/Pictures/leftarrow", 8, 40, 28, 2, @viewport)
         @sprites["leftarrow"].x = 48
-        @sprites["leftarrow"].y = 56
+        @sprites["leftarrow"].y = 52
         @sprites["leftarrow"].play
         @sprites["leftarrow"].visible = false
         @sprites["rightarrow"] = AnimatedSprite.new("Graphics/Pictures/rightarrow", 8, 40, 28, 2, @viewport)
         @sprites["rightarrow"].x = 184
-        @sprites["rightarrow"].y = 56
+        @sprites["rightarrow"].y = 52
         @sprites["rightarrow"].play
         @sprites["rightarrow"].visible = false
         @sprites["overlay"] = BitmapSprite.new(Graphics.width, Graphics.height, @viewport)
@@ -82,14 +82,9 @@ class PokemonPokedexInfo_Scene
         # Create the move extra info display
         @moveInfoDisplay = SpriteWrapper.new(@viewport)
         @moveInfoDisplay.bitmap = @moveInfoDisplayBitmap.bitmap
-        @moveInfoDisplay.x      = Graphics.width - @moveInfoDisplayBitmap.width - 16
-        @moveInfoDisplay.y      = Graphics.height - @moveInfoDisplayBitmap.height - 16
         @sprites["moveInfoDisplay"] = @moveInfoDisplay
         # Create overlay for selected move's extra info (shows move's BP, description)
-        @extraInfoOverlay = BitmapSprite.new(@moveInfoDisplayBitmap.bitmap.width, @moveInfoDisplayBitmap.height,
-  @viewport)
-        @extraInfoOverlay.x = @moveInfoDisplay.x
-        @extraInfoOverlay.y = @moveInfoDisplay.y
+        @extraInfoOverlay = BitmapSprite.new(Graphics.width, Graphics.height,  @viewport)
         pbSetNarrowFont(@extraInfoOverlay.bitmap)
         @sprites["extraInfoOverlay"] = @extraInfoOverlay
 
@@ -643,17 +638,21 @@ sp.form) && !Settings::DEX_SHOWS_ALL_FORMS
         overlay = @sprites["overlay"].bitmap
         expectedMoveNameWidth = overlay.text_size(moveName).width
         expectedMoveNameWidth *= 1.2 if isSTAB
+        expectedMoveNameWidth *= 1.2 if move_data.is_signature?
         if expectedMoveNameWidth > maxWidth
             charactersToShave = 3
             loop do
                 testString = moveName[0..-charactersToShave] + "..."
                 expectedTestStringWidth = overlay.text_size(testString).width
                 expectedTestStringWidth *= 1.2 if isSTAB
+                expectedTestStringWidth *= 1.2 if move_data.is_signature?
                 excessWidth = expectedTestStringWidth - maxWidth
                 break if excessWidth <= 0
                 charactersToShave += 1
             end
-            moveName = moveName[0..-charactersToShave] + "..."
+            shavedName = moveName[0..-charactersToShave]
+            shavedName = shavedName[0..-1] if shavedName[shavedName.length-1] == " "
+            moveName = shavedName + "..."
         end
 
         # Add formatting based on if the move is the same type as the user
@@ -688,6 +687,9 @@ sp.form) && !Settings::DEX_SHOWS_ALL_FORMS
         return ret
     end
 
+    MAX_LENGTH_MOVE_LIST = 7
+    MOVE_LIST_STARTING_Y = 54
+
     def drawPageLevelUpMoves
         @sprites["background"].setBitmap(_INTL("Graphics/Pictures/Pokedex/bg_moves"))
         overlay = @sprites["overlay"].bitmap
@@ -710,13 +712,13 @@ sp.form) && !Settings::DEX_SHOWS_ALL_FORMS
                 levelLabel = "E" if level == 0
                 # Draw stat line
                 offsetX = 0
-                maxWidth = displayIndex == 0 ? 250 : 170
+                maxWidth = displayIndex == 0 ? 158 : 170
                 moveName, moveColor, moveShadow = getFormattedMoveName(move, maxWidth)
                 if listIndex == @scroll
                     offsetX = 12
                     selected_move = move
                 end
-                moveDrawY = 60 + 30 * displayIndex
+                moveDrawY = MOVE_LIST_STARTING_Y + 30 * displayIndex
                 drawTextEx(overlay, xLeft + offsetX, moveDrawY, 450, 1, levelLabel, moveColor, moveShadow)
                 drawFormattedTextEx(overlay, xLeft + 30 + offsetX, moveDrawY, 450, moveName, moveColor, moveShadow)
                 if listIndex == @scroll
@@ -724,11 +726,207 @@ sp.form) && !Settings::DEX_SHOWS_ALL_FORMS
                     @sprites["selectionarrow"].visible = true
                 end
                 displayIndex += 1
-                break if displayIndex >= 10
+                break if displayIndex > MAX_LENGTH_MOVE_LIST
             end
         end
 
         drawMoveInfo(selected_move)
+    end
+
+    def drawPageTutorMoves
+        @sprites["background"].setBitmap(_INTL("Graphics/Pictures/Pokedex/bg_moves"))
+        overlay = @sprites["overlay"].bitmap
+        formname = ""
+        base = Color.new(64, 64, 64)
+        shadow = Color.new(176, 176, 176)
+
+        selected_move = nil
+        xLeft = 36
+        for i in @available
+            next unless i[2] == @form
+            formname = i[0]
+            species_data = GameData::Species.get_species_form(@species, i[2])
+            firstSpecies = species_data
+            while GameData::Species.get(firstSpecies.get_previous_species) != firstSpecies
+                firstSpecies = GameData::Species.get(firstSpecies.get_previous_species)
+            end
+
+            compatibleMoves = firstSpecies.egg_moves + species_data.tutor_moves
+            compatibleMoves.uniq!
+            compatibleMoves.compact!
+            compatiblePhysMoves = compatibleMoves.select do |move|
+                movaData = GameData::Move.get(move)
+                next movaData.category == 0
+            end
+            compatibleSpecMoves = compatibleMoves.select do |move|
+                movaData = GameData::Move.get(move)
+                next movaData.category == 1
+            end
+            compatibleStatusMoves = compatibleMoves.select do |move|
+                movaData = GameData::Move.get(move)
+                next movaData.category == 2
+            end
+            @scrollableLists = [compatiblePhysMoves, compatibleSpecMoves, compatibleStatusMoves]
+            categoryName = %w[Physical Special Status][@horizontalScroll]
+            drawFormattedTextEx(overlay, xLeft, 60, 192, "<ac><b>#{categoryName}</b></ac>", base, shadow)
+            displayIndex = 1
+            listIndex = -1
+            if @scrollableLists[@horizontalScroll].length > 0
+                @scrollableLists[@horizontalScroll].each_with_index do |move, _index|
+                    listIndex += 1
+                    next if listIndex < @scroll
+                    maxWidth = displayIndex == 0 ? 188 : 200
+                    moveName, moveColor, moveShadow = getFormattedMoveName(move, 200)
+                    offsetX = 0
+                    if listIndex == @scroll
+                        selected_move = move
+                        offsetX = 12
+                    end
+                    moveDrawY = MOVE_LIST_STARTING_Y + 30 * displayIndex
+                    drawFormattedTextEx(overlay, xLeft + offsetX, moveDrawY, 450, moveName, moveColor, moveShadow)
+                    if listIndex == @scroll
+                        @sprites["selectionarrow"].y = moveDrawY - 4
+                        @sprites["selectionarrow"].visible = true
+                    end
+                    displayIndex += 1
+                    break if displayIndex > MAX_LENGTH_MOVE_LIST
+                end
+            else
+                drawFormattedTextEx(overlay, xLeft + 60, 90, 450, "None", base, shadow)
+            end
+        end
+
+        drawMoveInfo(selected_move)
+    end
+
+    def drawMoveInfo(selected_move)
+        unless selected_move.nil?
+            # Extra move info display
+            @extraInfoOverlay.bitmap.clear
+            overlay = @extraInfoOverlay.bitmap
+            moveData = GameData::Move.get(selected_move)
+
+            # Prepare values
+            base   = Color.new(248, 248, 248)
+            faded_base = Color.new(110,110,110)
+            shadow = Color.new(104, 104, 104)
+            column1LabelX = 246
+            column2LabelX = 322
+            column3LabelX = 430
+            column1ValueX = 274
+            column2ValueX = 368
+            column3ValueX = 460
+            row1LabelY = 80
+            row2LabelY = 146
+            row3LabelY = 210
+            row1ValueY = row1LabelY + 32
+            row2ValueY = row2LabelY + 32
+            row3ValueY = row3LabelY + 32
+
+            nameX = 374
+            nameY = 46
+            descriptionX = 8
+            descriptionY = 286
+
+            # Labels #
+            
+            # Start with the name
+            textpos = [[moveData.real_name, nameX, nameY, 2, base, shadow]]
+
+            # Row 1
+            textpos.concat([
+                [_INTL("TYPE"), column1LabelX, row1LabelY, 0, base, shadow],
+                [_INTL("CATEGORY"), column2LabelX, row1LabelY, 0, base, shadow],
+                [_INTL("POWER"), column3LabelX, row1LabelY, 0, base, shadow],
+            ])
+
+            # Row 1
+            textpos.concat([
+                [_INTL("ACC"), column1LabelX, row2LabelY, 0, base, shadow],
+                [_INTL("PRIORITY"), column2LabelX, row2LabelY, 0, base, shadow],
+                [_INTL("PP"), column3LabelX, row2LabelY, 0, base, shadow],
+            ])
+
+            # Row 1
+            textpos.concat([
+                [_INTL("TAG"), column1LabelX, row3LabelY, 0, base, shadow],
+                [_INTL("TARGET"), column2LabelX, row3LabelY, 0, base, shadow],
+            ])
+
+            # Values #
+            base = Color.new(64,64,64)
+            shadow = Color.new(176,176,176)
+
+            # Row 1
+            # Draw selected move's damage category icon and type icon
+            imagepos = [
+                ["Graphics/Pictures/types", column1LabelX, row1ValueY + 8, 0, GameData::Type.get(moveData.type).id_number * 28, 64, 28],
+                ["Graphics/Pictures/category", column2LabelX + 16, row1ValueY + 8, 0, moveData.category * 28, 64, 28],
+            ]
+            pbDrawImagePositions(overlay, imagepos)
+
+            # Base damage
+            case moveData.base_damage
+            when 0 then textpos.push(["---", column3ValueX, row1ValueY, 2, faded_base, shadow])   # Status move
+            when 1 then textpos.push(["???", column3ValueX, row1ValueY, 2, base, shadow])   # Variable power move
+            else        textpos.push([moveData.base_damage.to_s, column3ValueX, row1ValueY, 2, base, shadow])
+            end
+
+            # Row 2
+            # Accuracy
+            if moveData.accuracy == 0
+                textpos.push(["---", column1ValueX, row2ValueY, 2, faded_base, shadow])
+            else
+                textpos.push(["#{moveData.accuracy}%", column1ValueX, row2ValueY, 2, base, shadow])
+            end
+            # Priority
+            textpos.push([moveData.priorityLabel,column2ValueX, row2ValueY, 2, moveData.priority != 0 ? base : faded_base, shadow])
+
+            # PP
+            textpos.push([moveData.total_pp.to_s,column3ValueX, row2ValueY, 2, moveData.total_pp > 0 ? base : faded_base, shadow])
+
+            # Row 3
+            moveCategoryLabel = moveData.tagLabel || "---"
+            textpos.push([moveCategoryLabel, column1ValueX, row3ValueY, 2, moveData.tagLabel ? base : faded_base, shadow])
+            # Targeting
+            targetingData = GameData::Target.get(moveData.target)
+            textpos.push([targetingData.get_targeting_label,column2LabelX + 4, row3ValueY, 0, base, shadow])
+
+            # Targeting graphic
+            targetingGraphicTextPos = []
+            targetingGraphicColumn1X = column2LabelX + 84
+            targetingGraphicColumn2X = targetingGraphicColumn1X + 46
+            targetingGraphicRow1Y = row3LabelY + 4
+            targetingGraphicRow2Y = targetingGraphicRow1Y + 26
+
+            targetableColor = Color.new(120,5,5)
+            untargetableColor = faded_base
+
+            # Foes
+            foeColor = targetingData.show_foe_targeting? ? targetableColor : untargetableColor
+            targetingGraphicTextPos.push(["Foe",targetingGraphicColumn1X, targetingGraphicRow1Y, 0, foeColor, shadow])
+            targetingGraphicTextPos.push(["Foe",targetingGraphicColumn2X, targetingGraphicRow1Y, 0, foeColor, shadow])
+
+            # User
+            userColor = targetingData.show_user_targeting? ? targetableColor : untargetableColor
+            targetingGraphicTextPos.push(["User",targetingGraphicColumn1X, targetingGraphicRow2Y, 0, userColor, shadow])
+
+            # Ally
+            allyColor = targetingData.show_ally_targeting? ? targetableColor : untargetableColor
+            targetingGraphicTextPos.push(["Ally",targetingGraphicColumn2X, targetingGraphicRow2Y, 0, allyColor, shadow])
+
+            # Draw the targeting graphic text
+            pbSetNarrowFont(overlay)
+            overlay.font.size = 20
+            pbDrawTextPositions(overlay, targetingGraphicTextPos)
+            pbSetSystemFont(overlay)
+
+            # Draw all text
+            pbDrawTextPositions(overlay, textpos)
+
+            # Draw selected move's description
+            drawTextEx(overlay, descriptionX, descriptionY, 496, 3, moveData.description, base, shadow)
+        end
     end
 
     def drawPageEvolution
@@ -824,123 +1022,6 @@ sp.form) && !Settings::DEX_SHOWS_ALL_FORMS
                     end
                 end
             end
-        end
-    end
-
-    def drawPageTutorMoves
-        @sprites["background"].setBitmap(_INTL("Graphics/Pictures/Pokedex/bg_moves"))
-        overlay = @sprites["overlay"].bitmap
-        formname = ""
-        base = Color.new(64, 64, 64)
-        shadow = Color.new(176, 176, 176)
-
-        selected_move = nil
-        xLeft = 36
-        for i in @available
-            next unless i[2] == @form
-            formname = i[0]
-            species_data = GameData::Species.get_species_form(@species, i[2])
-            firstSpecies = species_data
-            while GameData::Species.get(firstSpecies.get_previous_species) != firstSpecies
-                firstSpecies = GameData::Species.get(firstSpecies.get_previous_species)
-            end
-
-            compatibleMoves = firstSpecies.egg_moves + species_data.tutor_moves
-            compatibleMoves.uniq!
-            compatibleMoves.compact!
-            compatiblePhysMoves = compatibleMoves.select do |move|
-                movaData = GameData::Move.get(move)
-                next movaData.category == 0
-            end
-            compatibleSpecMoves = compatibleMoves.select do |move|
-                movaData = GameData::Move.get(move)
-                next movaData.category == 1
-            end
-            compatibleStatusMoves = compatibleMoves.select do |move|
-                movaData = GameData::Move.get(move)
-                next movaData.category == 2
-            end
-            @scrollableLists = [compatiblePhysMoves, compatibleSpecMoves, compatibleStatusMoves]
-            categoryName = %w[Physical Special Status][@horizontalScroll]
-            drawFormattedTextEx(overlay, xLeft, 60, 200, "<ac><b>#{categoryName}</b></ac>", base, shadow)
-            displayIndex = 1
-            listIndex = -1
-            if @scrollableLists[@horizontalScroll].length > 0
-                @scrollableLists[@horizontalScroll].each_with_index do |move, _index|
-                    listIndex += 1
-                    next if listIndex < @scroll
-                    maxWidth = displayIndex == 0 ? 250 : 200
-                    moveName, moveColor, moveShadow = getFormattedMoveName(move, maxWidth)
-                    offsetX = 0
-                    if listIndex == @scroll
-                        selected_move = move
-                        offsetX = 12
-                    end
-                    moveDrawY = 60 + 30 * displayIndex
-                    drawFormattedTextEx(overlay, xLeft + offsetX, moveDrawY, 450, moveName, moveColor, moveShadow)
-                    if listIndex == @scroll
-                        @sprites["selectionarrow"].y = moveDrawY - 4
-                        @sprites["selectionarrow"].visible = true
-                    end
-                    displayIndex += 1
-                    break if displayIndex >= 10
-                end
-            else
-                drawFormattedTextEx(overlay, xLeft + 60, 90, 450, "None", base, shadow)
-            end
-        end
-
-        drawMoveInfo(selected_move)
-    end
-
-    def drawMoveInfo(selected_move)
-        unless selected_move.nil?
-            # Extra move info display
-            @extraInfoOverlay.bitmap.clear
-            overlay = @extraInfoOverlay.bitmap
-            moveData = GameData::Move.get(selected_move)
-
-            # Write power and accuracy values for selected move
-            # Write various bits of text
-            base   = Color.new(248, 248, 248)
-            shadow = Color.new(104, 104, 104)
-            textpos = [
-                [_INTL("CATEGORY"), 20, 0, 0, base, shadow],
-                [_INTL("POWER"), 20, 32, 0, base, shadow],
-                [_INTL("ACCURACY"), 20, 64, 0, base, shadow],
-            ]
-
-            base = Color.new(64, 64, 64)
-            shadow = Color.new(176, 176, 176)
-            case moveData.base_damage
-            when 0 then textpos.push(["---", 220, 32, 1, base, shadow])   # Status move
-            when 1 then textpos.push(["???", 220, 32, 1, base, shadow])   # Variable power move
-            else        textpos.push([moveData.base_damage.to_s, 220, 32, 1, base, shadow])
-            end
-            if moveData.accuracy == 0
-                textpos.push(["---", 220, 64, 1, base, shadow])
-            else
-                textpos.push(["#{moveData.accuracy}%", 220 + overlay.text_size("%").width, 64, 1, base, shadow])
-            end
-            # Draw all text
-            pbDrawTextPositions(overlay, textpos)
-            # Draw selected move's damage category icon
-            imagepos = [["Graphics/Pictures/category", 170, 8, 0, moveData.category * 28, 64, 28]]
-            pbDrawImagePositions(overlay, imagepos)
-            # Draw selected move's description
-            drawTextEx(overlay, 8, 108, 210, 5, moveData.description, base, shadow)
-
-            # Draw the move's type
-            type_number = GameData::Type.get(moveData.type).id_number
-            typerect = Rect.new(0, type_number * 32, 96, 32)
-            @sprites["overlay"].bitmap.blt(380, 60, @typebitmap.bitmap, typerect)
-
-            # Draw the move's special categories
-            tag = moveData.tagLabel || ""
-
-            tagBase   = Color.new(88, 88, 80)
-            tagShadow = Color.new(168, 184, 184)
-            drawTextEx(@sprites["overlay"].bitmap, 300, 70, 210, 2, tag, tagBase, tagShadow)
         end
     end
 
