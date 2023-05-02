@@ -5483,3 +5483,23 @@ Pokemon = VILEPLUME,60
     AbilityIndex = 0 # Stench
 Pokemon = QUAGSIRE,60
     AbilityIndex = 0 # Unaware
+#-------------------------------
+[ANCIENTPRIEST,Radzayac]
+Pokemon = MDUSTOX,60
+    AbilityIndex = 1 # Follow Through
+Pokemon = DIGGERSBY,60
+    AbilityIndex = 0 # Power Up
+Pokemon = MGIGALITH,60
+    AbilityIndex = 0 # Time Interloper
+Pokemon = HONCHKROW,60
+    AbilityIndex = 0 # Rattle 'Em
+#-------------------------------
+[ANCIENTPRIEST,Kazmilos]
+Pokemon = MCARNIVINE,60
+    AbilityIndex = 1 # Pestilent
+Pokemon = MLILLIGANT,60
+    AbilityIndex = 1 # Petty
+Pokemon = GOLEM,60
+    AbilityIndex = 0 # Unbreakable
+Pokemon = GRUMPIG,60
+    AbilityIndex = 0 # Thick Fat
