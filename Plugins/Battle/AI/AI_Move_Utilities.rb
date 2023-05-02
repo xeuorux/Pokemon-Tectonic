@@ -47,7 +47,7 @@ class PokeBattle_AI
         fails = false
 
         if !boss && user.effectActive?(:Flinch) && !user.effectActive?(:FlinchImmunity)
-            echoln("#{user.pbThis} rejects the move #{move.id} due to it being predicted to flinch (Moonglow?)")
+            echoln("[AI FAILURE CHECK] #{user.pbThis} rejects the move #{move.id} due to it being predicted to flinch (Moonglow?)")
             return true
         end
 
@@ -66,22 +66,22 @@ class PokeBattle_AI
             end
             next unless abilityBlocked
             fails = true
-            echoln("#{user.pbThis} rejects #{move.id} -- thinks will be blocked by an ability.")
+            echoln("[AI FAILURE CHECK] #{user.pbThis} rejects #{move.id} -- thinks will be blocked by an ability.")
             break
         end
 
         if move.pbMoveFailedAI?(user, [target])
             fails = true
-            echoln("#{user.pbThis} rejects #{move.id} -- thinks will fail.")
+            echoln("[AI FAILURE CHECK] #{user.pbThis} rejects #{move.id} -- thinks will fail.")
         end
 
-        # Don't prefer moves that are ineffective because of abilities or effects on the target
+        # Check for ineffective because of abilities or effects on the target
         unless user.index == target.index
             type = pbRoughType(move, user)
             typeMod = pbCalcTypeModAI(type, user, target, move)
             unless user.pbSuccessCheckAgainstTarget(move, user, target, typeMod, false, true)
                 fails = true
-                echoln("#{user.pbThis} rejects #{move.id} -- thinks will fail against #{target.pbThis(false)} due to abilities, effects, or typemod.")
+                echoln("[AI FAILURE CHECK] #{user.pbThis} rejects #{move.id} -- thinks will fail against #{target.pbThis(false)} due to abilities, effects, or typemod.")
             end
         end
 
@@ -93,7 +93,7 @@ class PokeBattle_AI
                 next unless b.opposes?(user)
                 next if b.semiInvulnerable?
                 next unless b.hasActiveAbilityAI?(%i[MAGICBOUNCE MAGICSHIELD])
-                echoln("#{user.pbThis} rejects #{move.id} -- thinks will fail against #{target.pbThis(false)} due to Magic Bounce etc.")
+                echoln("[AI FAILURE CHECK] #{user.pbThis} rejects #{move.id} -- thinks will fail against #{target.pbThis(false)} due to Magic Bounce etc.")
                 fails = true
                 break
             end

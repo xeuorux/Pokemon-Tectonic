@@ -509,7 +509,7 @@ class PokeBattle_HealingMove < PokeBattle_Move
     end
 
     def pbMoveFailed?(user, _targets, show_message)
-        if user.hp == user.totalhp
+        if user.fullHealth?
             @battle.pbDisplay(_INTL("{1}'s HP is full!", user.pbThis)) if show_message
             return true
         end

@@ -32,7 +32,7 @@ HPMult = 2.0
 #-------------------------------
 [VIGOROTH]
 Ability = VITALSPIRIT
-Moves1 = SCRATCH,PRIMEVALDRAGONDANCE
+Moves1 = SCRATCH,BITE,PRIMEVALDRAGONDANCE
 Moves2 = CLASH
 HPMult = 3.0
 #-------------------------------

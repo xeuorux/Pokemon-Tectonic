@@ -290,8 +290,8 @@ class PokeBattle_AI
         end
 
         # Rejecting moves based on failure
-        unless aiPredictsFailure?(move, user, target, true)
-            PBDebug.log("[BOSS AI] rejects move #{move.name} due to being predicted to fail against the target against target #{target.pbThis(true)}")
+        if aiPredictsFailure?(move, user, target, true)
+            PBDebug.log("[BOSS AI] rejects move #{move.name} due to being predicted to fail against target #{target.pbThis(true)}")
 
             return -99_999
         end
