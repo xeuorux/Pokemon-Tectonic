@@ -431,5 +431,5 @@
 1430,AMPUP,Amp Up,09C,0,ELECTRIC,Status,0,15,0,NearAlly,0,,"The user assists an ally's next move, boosting its power by 50% and letting it move right after the user.",HELPINGHAND
 1431,TRUESENSES,True Senses,5F5,0,PSYCHIC,Status,0,30,0,User,0,d,"The user meditates, raising both its Attack and Sp. Atk stats by 4 steps each.",MEDITATE
 1432,UNDYINGRUSH,Undying Rush,5F6,120,GHOST,Physical,100,12,0,NearOther,0,abef,"Clad in souls, the user crashes into the target. The user takes 33% recoil, but can't faint from it.",PHANTOMFORCE
-1433,VERMINCLOUD,Vermin Cloud,0C9,100,FLYING,Physical,100,5,0,NearOther,4,abef,"The user transforms into a cloud of vermin, evading all attacks on the first turn. On the second turn it ambushes the target.",FLY
+1433,VERMINCLOUD,Vermin Cloud,0C9,100,FLYING,Physical,100,5,0,NearOther,4,abef,"The user transforms into a cloud of flies, evading all attacks on the first turn. On the second turn it ambushes the target.",FLY
 1434,ICEDUNGEON,Ice Dungeon,5F7,0,ICE,Status,0,5,0,AllNearFoes,0,ce,"The user creates a tower of ice to hold all near foes, reducing their attacking stats by one step each and trapping them until the next time they take a hit.",
