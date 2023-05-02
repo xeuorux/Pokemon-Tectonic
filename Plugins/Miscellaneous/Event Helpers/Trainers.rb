@@ -2,16 +2,25 @@ def perfectTrainer(maxTrainerLevel=15)
 	removeSpeaker
 	blackFadeOutIn() {
 		setMySwitch('D',true)
-		setFollowerGone()
+		setFollowerGone
 	}
 	pbTrainerDropsItem(maxTrainerLevel)
+end
+
+def perfectAncientTrainer
+	removeSpeaker
+	blackFadeOutIn() {
+		setMySwitch('D',true)
+		setFollowerGone
+	}
+	pbTrainerDropsItem(:VANILLATULUMBA)
 end
 
 def perfectAceTrainer(maxTrainerLevel=15)
 	removeSpeaker
 	blackFadeOutIn() {
 		setMySwitch('D',true)
-		setFollowerGone()
+		setFollowerGone
 	}
 	pbTrainerDropsItem(maxTrainerLevel,4)
 end
