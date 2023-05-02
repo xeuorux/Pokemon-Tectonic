@@ -318,7 +318,7 @@ class PokeBattle_AI
                 damageMod = AVATAR_DAMAGE_SCORE_MAX - damageMod if targetWeak
                 score += damageMod
 
-                score += 15 if willFaint
+                score += 10 if willFaint
             else
                 hpMod = AVATAR_DAMAGE_SCORE_MAX * target.hp.to_f / target.totalhp.to_f
                 hpMod = AVATAR_DAMAGE_SCORE_MAX - hpMod if targetWeak
