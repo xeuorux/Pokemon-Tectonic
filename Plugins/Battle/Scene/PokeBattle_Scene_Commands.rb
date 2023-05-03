@@ -27,8 +27,9 @@ class PokeBattle_Scene
       else
         mode = 1
       end
-      ret = pbCommandMenuEx(idxBattler,cmds,mode,wildBattle)
-      ret = -1 if ret==5 && !firstAction   # Convert "Run" to "Cancel"
+      ret = pbCommandMenuEx(idxBattler,cmds,mode)
+      ret = -1 if ret == 5 && !firstAction   # Convert "Run" to "Cancel"
+      ret = 6 if ret == 2 && !wildBattle
       return ret
     end
   
@@ -39,7 +40,7 @@ class PokeBattle_Scene
     #       3 = Safari Zone
     #       4 = Bug Catching Contest
     #       5 = regular battle with "Forfeit" and "Info"
-    def pbCommandMenuEx(idxBattler,texts,mode=0,wildbattle = false)
+    def pbCommandMenuEx(idxBattler,texts,mode=0)
       pbShowWindow(COMMAND_BOX)
       cw = @sprites["commandWindow"]
       cw.setTexts(texts)

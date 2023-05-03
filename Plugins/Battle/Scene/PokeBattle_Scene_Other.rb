@@ -1,5 +1,5 @@
 class PokeBattle_Battle
-	def pbGoAfterInfo(battler)
+	def chooseDexTarget(battler)
 		idxTarget = @scene.pbChooseTarget(battler.index,GameData::Target.get(:UserOrOther),nil,true)
 		return if idxTarget<0
 		pokemonTargeted = @battlers[idxTarget].pokemon

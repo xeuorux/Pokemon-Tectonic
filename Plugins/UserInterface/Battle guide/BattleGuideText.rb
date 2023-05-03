@@ -87,8 +87,8 @@ HELD_ITEMS_HASH = {
     _INTL("What are Held Items?") => _INTL("Held items are items which you can give your Pokémon to benefit them during battle. They can increase their damage, heal them, or other things."),
     _INTL("Equipping an item") => _INTL("You can give a Pokémon an item from your bag, or through the summary screen. Not all items do an effect when held, so read carefully."),
     _INTL("Berries") => _INTL("Berries are a common held item. During battles, Pokémon will eat the berry to get a benefit. Get berries by picking from Berry Trees."),
-    _INTL("Sitrus and Oran Berry") => _INTL("Sitrus Berry and Oran Berry are common berries which heal your Pokémon when at low health. If in doubt about what item to give, give them one of these."),
-    _INTL("Rematerializer") => _INTL("In Project Chasm, the rematerializer regenerates held items which are consumed in battle. You'll never run out of berries!"),
+    _INTL("Sitrus and Oran Berry") => _INTL("Sitrus Berry and Oran Berry are common berries which heal your Pokémon when at low health. If in doubt about what item to give a Pokémon, give them one of these."),
+    _INTL("Rematerializer") => _INTL("In Pokémon Tectonic, the rematerializer regenerates held items which are consumed in battle. You'll never run out of berries!"),
     _INTL("Wild Held Items") => _INTL("Wild Pokémon can be found holding items. These items sometimes have held effects, but often don't."),
     _INTL("Getting More") => _INTL("You will find more held items on the ground when traveling, or as gifts from people, or as the reward for defeating Avatars, or as purchasable items in shops."),
 }
@@ -101,8 +101,8 @@ STATUS_CONDITIONS_HASH = {
     _INTL("Frostbite") => _INTL("When frostbitten, a Pokémon's Sp. Atk is reduced by 33%, and loses 1/8th HP every turn. Ice- and Flying-types do the most frostbiting. Ice is immune."),
     _INTL("Poison") => _INTL("When poisoned, a Pokémon loses 1/8th HP every turn. This doubles every 3 turns. Poison- and Grass-types do the most poisoning. Poison/Steel are immune."),
     _INTL("Numb") => _INTL("When numbed, a Pokémon's Speed is halved, and it deals 25% less damage. Electric- and Fighting-types do the most numbing. Electric is immune."),
-    _INTL("Dizzy") => _INTL("When dizzied, a Pokemon takes 25% more attack damage, and its ability doesn't function. Psychic- and Fairy-types do the most dizzying. Psychic is immune."),
-    _INTL("Leeched") => _INTL("When leeched, a Pokemon loses 1/8th HP every turn, and its opponent(s) split that health. Bug- and Dark-types do the most leeching. Grass is immune."),
+    _INTL("Dizzy") => _INTL("When dizzied, a Pokémon takes 25% more attack damage, and its ability doesn't function. Psychic- and Fairy-types do the most dizzying. Psychic is immune."),
+    _INTL("Leeched") => _INTL("When leeched, a Pokémon loses 1/8th HP every turn, and its opponent(s) split that health. Bug- and Dark-types do the most leeching. Grass is immune."),
     _INTL("Sleep") => _INTL("A rarer status that causes a Pokémon to be unable to do anything for 2 turns. Psychic- and Grass-types put Pokémon to sleep the most often."),
 }
 
@@ -138,7 +138,7 @@ MASTERDEX_HASH = {
     _INTL("Full MasterDex") => _INTL("Access the full MasterDex from your pause menu, or by pressing D when using the Dex button in battles (while its waiting for you to select a battler)."),
     _INTL("Searching") => _INTL("When in the MasterDex, you can press your Special keybind (default Shift or Z) to open the first search page. There's dozens of searches to experiment with!"),
     _INTL("Combining Searches") => _INTL("You can begin a search while you're already looking at the results of a search. This will narrow down from what you were already looking at."),
-    _INTL("Storing Searches") => _INTL("When you press the cancel button while looking at a search, it will ask you if you'd like to cancel the search, or store it for the next time you open the MasterDex."),
+    _INTL("Storing Searches") => _INTL("When you hold CTRL while closing out of a search, it will close the MasterDex and store the search for the next time you open it."),
     _INTL("Quick Navigation") => _INTL("Press A to go up a page at a time, or S to go down a page. Use the number keys (1-9) to quickly go to one of the tab's of a Pokémon's MasterDex entry."),
     _INTL("Move Details") => _INTL("Press the Use key (defaults to C) on the level up learnset or tutor moves tabs to begin scrolling the lists, and viewing details about individual moves."),
     _INTL("Checking Evolutions") => _INTL("Press the Use key (defaults to C) on the evolutions tab to choose a Pokémon in the same evolutionary tree, and to warp to that Pokémon's MasterDex entry."),
@@ -153,7 +153,7 @@ WEATHERS_HASH = {
     _INTL("Hail") => _INTL("Hail deals damage to all Pokémon at the end of each turn. Ice and Ghost-types are immune to this. Additionally, Ice-types get +50% Defense."),
     _INTL("Eclipse") => _INTL("Eclipse lowers all stats of all Pokémon every 4 turns (by 2 steps). Psychic and Dragon-types are immune to this. Additionally, Psychic-type attacks are boosted by 30%."),
     _INTL("Moonglow") => _INTL("Moonglow flinches all Pokémon every 4 turns. Fairy and Dark-types are immune to this. Additionally, Fairy-type attacks are boosted by 30%."),
-    _INTL("Weather Downsides") => _INTL("Each weather has both an upside and a downside. There are items and abilities that make your Pokemon immune to these downsides regardless of type."),
+    _INTL("Weather Downsides") => _INTL("Each weather has both an upside and a downside. There are items and abilities that make your Pokémon immune to these downsides regardless of type."),
     _INTL("Weather Areas") => _INTL("Certain areas in the game experience intense weather. That weather will also be present in the battles of that area. Simple daily weather will not do this."),
     _INTL("Weather Synergies") => _INTL("Each weather has dozens of moves and abilities that benefit from that weather. Pokémon using these moves/abilities ignore the downsides of their favored weather!"),
 }

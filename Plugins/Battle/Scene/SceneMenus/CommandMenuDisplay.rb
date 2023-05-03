@@ -20,7 +20,7 @@ class CommandMenuDisplay < BattleMenuBase
 		 [0,8,2,1,11,4],   # 2 = Battle with "Call" instead of "Run"
 		 [5,7,2,6,11,3],   # 3 = Safari Zone
 		 [0,8,2,1,11,3],    # 4 = Bug Catching Contest
-		 [0,8,2,1,11,10]  # 5 = Trainer Battle
+		 [0,8,12,1,11,10]  # 5 = Trainer Battle
 	  ]
   
     def initialize(viewport,z,battle)

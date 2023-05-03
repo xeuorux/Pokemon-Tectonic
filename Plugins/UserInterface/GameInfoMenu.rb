@@ -117,44 +117,48 @@ class PokemonGameInfoMenu < PokemonPauseMenu
 			elsif cmdMainQuestHelp > - 1 && infoCommand == cmdMainQuestHelp
 				pbMessage("\\l[7]<b>" + $main_quest_tracker.getCurrentStageName() + "</b>\n" + $main_quest_tracker.getCurrentStageHelp())
 			elsif cmdBattleGlossary >- 1 && infoCommand == cmdBattleGlossary
-				listIndex = 0
-				loop do
-					id, listIndex = pbListScreenExtra(_INTL("Battle Guide"), BattleGuideLister.new(MAIN_HASH, listIndex))
-					case id
-					when "Basic Strategy"
-						pbListScreenExtra(_INTL("Battle Strategy"), BattleGuideLister.new(BASICS_HASH), false)
-					when "Moves"
-						pbListScreenExtra(_INTL("Moves"), BattleGuideLister.new(MOVE_HASH), false)
-					when "Type Matchups"
-						pbListScreenExtra(_INTL("Type Matchups"), BattleGuideLister.new(TYPE_MATCHUPS_HASH), false)
-					when "Acquiring Pokémon"
-						pbListScreenExtra(_INTL("Acquiring Pokémon"), BattleGuideLister.new(ACQUIRING_POKEMON_HASH), false)
-					when "Stats"
-						pbListScreenExtra(_INTL("Stats"), BattleGuideLister.new(STATS_HASH), false)
-					when "Abilities"
-						pbListScreenExtra(_INTL("Abilities"), BattleGuideLister.new(ABILITIES_HASH), false)
-					when "Held Items"
-						pbListScreenExtra(_INTL("Held Items"), BattleGuideLister.new(HELD_ITEMS_HASH), false)
-					when "Status Conditions"
-						pbListScreenExtra(_INTL("Status Conditions"), BattleGuideLister.new(STATUS_CONDITIONS_HASH), false)
-					when "Trainers"
-						pbListScreenExtra(_INTL("Trainers"), BattleGuideLister.new(TRAINERS_HASH), false)
-					when "Avatars"
-						pbListScreenExtra(_INTL("Avatars"), BattleGuideLister.new(AVATARS_HASH), false)
-					when "MasterDex"
-						pbListScreenExtra(_INTL("MasterDex"), BattleGuideLister.new(MASTERDEX_HASH), false)
-					when "Weathers"
-						pbListScreenExtra(_INTL("Weathers"), BattleGuideLister.new(WEATHERS_HASH), false)
-					else
-						break
-					end
-				end
+				showBattleGuide
 			else
 				pbPlayCloseMenuSE
 				break
 			end
 		end
 		@scene.pbEndScene if endscene
+	end
+end
+
+def showBattleGuide
+	listIndex = 0
+	loop do
+		id, listIndex = pbListScreenExtra(_INTL("Battle Guide"), BattleGuideLister.new(MAIN_HASH, listIndex))
+		case id
+		when "Basic Strategy"
+			pbListScreenExtra(_INTL("Battle Strategy"), BattleGuideLister.new(BASICS_HASH), false)
+		when "Moves"
+			pbListScreenExtra(_INTL("Moves"), BattleGuideLister.new(MOVE_HASH), false)
+		when "Type Matchups"
+			pbListScreenExtra(_INTL("Type Matchups"), BattleGuideLister.new(TYPE_MATCHUPS_HASH), false)
+		when "Acquiring Pokémon"
+			pbListScreenExtra(_INTL("Acquiring Pokémon"), BattleGuideLister.new(ACQUIRING_POKEMON_HASH), false)
+		when "Stats"
+			pbListScreenExtra(_INTL("Stats"), BattleGuideLister.new(STATS_HASH), false)
+		when "Abilities"
+			pbListScreenExtra(_INTL("Abilities"), BattleGuideLister.new(ABILITIES_HASH), false)
+		when "Held Items"
+			pbListScreenExtra(_INTL("Held Items"), BattleGuideLister.new(HELD_ITEMS_HASH), false)
+		when "Status Conditions"
+			pbListScreenExtra(_INTL("Status Conditions"), BattleGuideLister.new(STATUS_CONDITIONS_HASH), false)
+		when "Trainers"
+			pbListScreenExtra(_INTL("Trainers"), BattleGuideLister.new(TRAINERS_HASH), false)
+		when "Avatars"
+			pbListScreenExtra(_INTL("Avatars"), BattleGuideLister.new(AVATARS_HASH), false)
+		when "MasterDex"
+			pbListScreenExtra(_INTL("MasterDex"), BattleGuideLister.new(MASTERDEX_HASH), false)
+		when "Weathers"
+			pbListScreenExtra(_INTL("Weathers"), BattleGuideLister.new(WEATHERS_HASH), false)
+		else
+			break
+		end
 	end
 end
 

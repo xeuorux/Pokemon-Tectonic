@@ -468,7 +468,7 @@ class PokeBattle_Battle
                 when 0    # Fight
                     break if pbFightMenu(idxBattler)
                 when 1    # Dex
-                    pbGoAfterInfo(@battlers[idxBattler])
+                    chooseDexTarget(@battlers[idxBattler])
                 when 2    # Ball
                     if trainerBattle?
                         pbDisplay(_INTL("You can't catch trainers' Pokemon!"))
@@ -484,9 +484,9 @@ class PokeBattle_Battle
                     end
                 when 3    # Pokémon
                     break if pbPartyMenu(idxBattler)
-                when 4    # Run
+                when 4    # Battle info
                     pbBattleInfoMenu
-                when 5
+                when 5    # Run
                     # NOTE: "Run" is only an available option for the first battler the
                     #       player chooses an action for in a round. Attempting to run
                     #       from battle prevents you from choosing any other actions in
@@ -495,6 +495,8 @@ class PokeBattle_Battle
                         commandsEnd = true
                         break
                     end
+                when 6 # Battle Guide
+                    showBattleGuide
                 when -2   # Debug
                     pbDebugMenu
                     next
