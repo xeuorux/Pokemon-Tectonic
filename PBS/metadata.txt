@@ -1912,10 +1912,50 @@ Bicycle = true
 Outdoor = false
 ShowArea = true
 Bicycle = true
-Weather = Sandstorm,100
+Weather = TimeSandstorm,100
 #-------------------------------
 [367]
 # Prizca Great Hall
 Outdoor = false
 ShowArea = true
 Bicycle = false
+#-------------------------------
+[368]
+# Crumbling Canyon B1
+Outdoor = false
+ShowArea = true
+Bicycle = true
+Weather = TimeSandstorm,100
+#-------------------------------
+[369]
+# Crumbling Canyon B2 - B
+Outdoor = false
+ShowArea = true
+Bicycle = true
+Weather = TimeSandstorm,100
+#-------------------------------
+[370]
+# Crumbling Canyon B3
+Outdoor = false
+ShowArea = true
+Bicycle = true
+#-------------------------------
+[371]
+# Crumbling Canyon B2 - A
+Outdoor = false
+ShowArea = true
+Bicycle = true
+Weather = TimeSandstorm,100
+#-------------------------------
+[372]
+# Latent Grove
+Outdoor = false
+ShowArea = true
+Bicycle = true
+#-------------------------------
+[373]
+# Crumbling Canyon B2 - C
+Outdoor = false
+ShowArea = true
+Bicycle = true
+Weather = TimeSandstorm,100

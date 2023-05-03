@@ -25,5 +25,9 @@ module GameData
         def cloud_cover_opacity(strength)
             return (@clouds_proc) ? @clouds_proc.call(strength) : 0
         end
+
+        def setsTone?
+            return !@tone_proc.nil?
+        end
     end
 end

@@ -28,10 +28,11 @@ class Particle_Engine
            "starteleport" => Particle_Engine::StarTeleport,
            
            # By Zeu
-           "starfield"    => Particle_Engine::CircleStarField,
-           "wormhole"     => Particle_Engine::Wormhole,
-           "steamy"       => Particle_Engine::Steamy,
-           "steamy2"      => Particle_Engine::Steamy2,
+           "starfield"      => Particle_Engine::CircleStarField,
+           "wormhole"       => Particle_Engine::Wormhole,
+           "steamy"         => Particle_Engine::Steamy,
+           "steamy2"        => Particle_Engine::Steamy2,
+           "timeteleporter" => Particle_Engine::TimeTeleporter,
         }
     end
 end
@@ -60,6 +61,7 @@ end
 
 class ParticleEffect_Event
     attr_accessor :event
+    attr_reader :opacity
 
     def initialize(event,viewport=nil)
         @event     = event
@@ -69,6 +71,8 @@ class ParticleEffect_Event
         @cullOffscreen = true
         @movesupdown = false
         @movesleftright = false
+        @opacityMult = 1.0
+        @enabled = true
     end
 
     def setParameters(params)
@@ -89,7 +93,7 @@ class ParticleEffect_Event
         return bitmap
     end
 
-    def initParticles(filename,opacity=255,zOffset=0,blendtype=1)
+    def initParticles(filename,givenOpacity=255,zOffset=0,blendtype=1)
         @particles = []
         @particlex = []
         @particley = []
@@ -104,7 +108,6 @@ class ParticleEffect_Event
         @zoffset   = zOffset
         @bmwidth   = 32
         @bmheight  = 32
-        @opacityMult = 1.0
         for i in 0...@max_particles
           @particles[i] = ParticleSprite.new(@viewport)
           @particles[i].bitmap = loadBitmap(filename, @hue) if filename
@@ -114,7 +117,7 @@ class ParticleEffect_Event
           end
           @particles[i].blend_type = blendtype
           @particles[i].z = self.z + zOffset
-          @opacity[i] = opacity
+          @opacity[i] = givenOpacity
 
           resetParticle(i)
           initializeParticle(i)
@@ -122,25 +125,50 @@ class ParticleEffect_Event
           @particles[i].opacity = @opacity[i]
           @particles[i].update
         end
+
+        @particlesEnabled = true
+        checkForDisablement
     end
 
     def initializeParticle(i)
-        @opacity[i] = rand(opacity/4)
+        @opacity[i] = rand(255)
     end
 
     def x; return ScreenPosHelper.pbScreenX(@event); end
     def y; return ScreenPosHelper.pbScreenY(@event); end
     def z; return ScreenPosHelper.pbScreenZ(@event); end
 
-    def update
-        if $PokemonSystem.particle_effects == 1 # particle effects disabled
+    def particlesEnabled?
+        return false if $PokemonSystem.particle_effects == 1
+        return true
+    end
+
+    def checkForDisablement
+        oldEnabled = @particlesEnabled
+        @particlesEnabled = particlesEnabled?
+
+        if oldEnabled && !@particlesEnabled
             @particles.each do |particle|
                 next if particle.opacity == 0
                 particle.opacity = 0
                 particle.update
             end
             return
+        elsif !oldEnabled && @particlesEnabled
+            reenableParticles
         end
+    end
+
+    def reenableParticles
+        for i in 0...@max_particles 
+            resetParticle(i)
+        end
+    end
+
+    def update
+        checkForDisablement
+
+        return unless @particlesEnabled
 
         # Don't update particle events whose viewports are off screen
         if @viewport && (@viewport.rect.x >= Graphics.width || @viewport.rect.y >= Graphics.height)
@@ -392,7 +420,7 @@ class Particle_Engine::CircleStarField < ParticleEffect_Event
             3, # opacity var
             5 # original opacity
             ])
-        @opacityMult = 0.6
+        @opacityMult = 0.9
         @huerange = 80
         @cullOffscreen = false
         @movesleftright = true
@@ -470,7 +498,7 @@ class Particle_Engine::Wormhole < ParticleEffect_Event
             3, # opacity var
             5 # original opacity
             ])
-        @opacityMult = 0.2
+        @opacityMult = 0.8
         @cullOffscreen = false
         @movesleftright = false
         @movesupdown = false
@@ -539,7 +567,7 @@ class Particle_Engine::Steamy < ParticleEffect_Event
             3, # opacity var
             5 # original opacity
             ])
-        @opacityMult = 0.1
+        @opacityMult = 0.5
         @huerange = 10
         @cullOffscreen = false
         @movesleftright = false
@@ -677,5 +705,101 @@ class Particle_Engine::Steamy2 < ParticleEffect_Event
 
     def yExtent
         return @radius * 2
+    end
+end
+
+class Particle_Engine::TimeTeleporter < ParticleEffect_Event
+    def initialize(event,viewport)
+        super
+        setParameters([
+            0, # Random hue
+            0, # fade
+            60, # max particles
+            -100, # hue
+            1, # slowdown
+            -Graphics.height, # ytop
+            Graphics.height, # ybottom
+            0, # xleft
+            Graphics.width, # xright
+            0, # xgravity
+            -0.05, # ygravity
+            8, # xoffset
+            0, # yoffset
+            2, # opacity var
+            0, # original opacity
+            ])
+        @opacityMult = 0.2
+        @radius = 50
+
+        initParticles("particle",255,-1)
+    end
+
+    def initializeParticle(i)
+        particleSprite = @particles[i]
+        particleSprite.ox = @bmwidth / 2
+        particleSprite.oy = @bmheight / 2
+        particleSprite.zoom_x = 0.6
+        particleSprite.zoom_y = 0.6
+
+        @opacity[i] = rand(255)
+    end
+
+    def particlesEnabled?
+        return false unless super
+        return true if $game_player.at_coordinate?(@event.x, @event.y)
+        map = $MapFactory.getMapNoAdd($game_map.map_id)
+        map.events.each_value do |event|
+            next unless event.name.downcase[/pushboulder/]
+            next unless event.at_coordinate?(@event.x, @event.y)
+            return true
+        end
+        return false
+    end
+
+    def resetOpacity(i)
+        @opacity[i] = 255
+    end
+
+    def changeOpacity(i)
+        @opacity[i] = @opacity[i] - 3
+    end
+
+    TRIANGLE_SIDE_SIZE = 16
+
+    def resetParticle(i)
+        xRand = 0
+        yRand = 0
+        case rand(6)
+        when 0
+            randVal = rand(TRIANGLE_SIDE_SIZE)
+            xRand = -randVal
+            yRand = -randVal
+        when 1
+            randVal = rand(TRIANGLE_SIDE_SIZE)
+            xRand = -TRIANGLE_SIDE_SIZE - randVal
+            yRand = -TRIANGLE_SIDE_SIZE + randVal
+        when 2
+            xRand = -rand(TRIANGLE_SIDE_SIZE * 2)
+            yRand = 0
+        when 3
+            randVal = rand(TRIANGLE_SIDE_SIZE)
+            xRand = -randVal
+            yRand = -TRIANGLE_SIDE_SIZE * 2 + randVal
+        when 4
+            randVal = rand(TRIANGLE_SIDE_SIZE)
+            xRand = -TRIANGLE_SIDE_SIZE - randVal
+            yRand = -TRIANGLE_SIDE_SIZE - randVal
+        when 5
+            xRand = -rand(TRIANGLE_SIDE_SIZE * 2)
+            yRand = -TRIANGLE_SIDE_SIZE * 2
+        else
+            xRand = 200
+            yRand = 200
+        end
+
+        @particles[i].x = @startingx + @xoffset + xRand
+        @particles[i].y = @startingy + @yoffset + yRand
+        @particlex[i] = xRand
+        @particley[i] = yRand
     end
 end

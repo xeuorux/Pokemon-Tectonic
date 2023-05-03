@@ -1,13 +1,11 @@
 PRESENT_TONE = Tone.new(0,0,0,0)
 PAST_TONE = Tone.new(40,30,10,130)
 
-TIME_TRAVEL_MAPS = [365]
-
 def getTimeTone
     if $game_switches[78] # Time Traveling
-        $game_screen.start_tone_change(PAST_TONE, 0)
+        return PAST_TONE
     else
-        $game_screen.start_tone_change(PRESENT_TONE, 0)
+        return PRESENT_TONE
     end
 end
 
@@ -17,7 +15,8 @@ def toggleTimeTravel
 end
 
 def leaveTimeTravelIfNeeded
-    return if TIME_TRAVEL_MAPS.include?($game_map.map_id)
+    return if timeTravelMap?
+    echoln("Disabling time travel since this is not a time travel map") if $game_switches[78]
     $game_switches[78] = false
     $game_screen.start_tone_change(getTimeTone, 0)
 end
@@ -80,11 +79,20 @@ def modifyTimeLinkedEvents
     end
 end
 
+def timeTravelMap?(mapID = -1)
+    mapID = $game_map.map_id if mapID == -1
+    map = $MapFactory.getMapNoAdd(mapID)
+    map.events.each_value do |event|
+        return true if event.name.downcase[/timeteleporter/]
+    end
+    return false
+end
+
 def mapErodes?(mapID = -1)
     mapID = $game_map.map_id if mapID == -1
     eroding = false
     begin
-        eroding = true if GameData::MapMetadata.get(mapID).weather[0] == :Sandstorm
+        eroding = true if GameData::MapMetadata.get(mapID).weather[0] == :TimeSandstorm
     rescue NoMethodError
         echoln("Map #{mapID} has no defined weather metadata, so assuming its not meant to be an eroding map.")
     end

@@ -195,3 +195,18 @@ GameData::Weather.register({
     next Tone.new(-strength, -strength, -strength)
   },
 })
+
+GameData::Weather.register({
+  :id               => :TimeSandstorm,
+  :id_number        => 5,
+  :category         => :Sandstorm,
+  :particle_names   => ["sandstorm_1", "sandstorm_2", "sandstorm_3", "sandstorm_4"],
+  :particle_delta_x => -1200,
+  :particle_delta_y => 640,
+  :tile_name        => "sandstorm_tile",
+  :tile_delta_x     => -720,
+  :tile_delta_y     => 360,
+  :clouds_proc        => proc { |strength|
+    next strength * -10
+  },
+})

@@ -289,7 +289,7 @@ class OverworldWeather
     def numTilesUsed
         return @tiles_wide * @tiles_tall
     end
-
+    
     def weatherTone
         return @weatherData.tone(@strength)
     end
@@ -300,7 +300,7 @@ class OverworldWeather
 
     def update
         update_strength
-        update_screen_tone
+        update_screen_tone if @weatherData.setsTone?
         update_flashes
         update_particles if usingParticles?
         update_tiles if usingTiles?
