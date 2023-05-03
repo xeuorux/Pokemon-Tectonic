@@ -27,21 +27,28 @@ def processTimeTravel
     end
 end
 
+def fakeTimeTravelToEvent(eventID, mapID = -1)
+    timeTravelTransition {
+        transferPlayerToEvent(eventID,$game_player.direction,mapID)
+    }
+end
+
 def timeTravelToEvent(eventID)
-    goingForwards = $game_switches[78]
+    timeTravelTransition {
+        bouldersTimeTravel($game_switches[78])
+        toggleTimeTravel
+        transferPlayerToEvent(eventID)
+    }
+end
+
+def timeTravelTransition
     pbSEPlay("Anim/Sand",70,80)
     pbSEPlay("Anim/Sand",40,65)
     pbWait(10)
-    if goingForwards
-        pbSEPlay("Anim/PRSFX- Roar of Time2",20,200)
-    else
-        pbSEPlay("Anim/PRSFX- Roar of Time2",20,200)
-    end
+    pbSEPlay("Anim/PRSFX- Roar of Time2",20,200)
     $game_screen.start_tone_change(Tone.new(230,230,230,255), 20)
 	pbWait(20)
-    bouldersTimeTravel(goingForwards)
-    toggleTimeTravel
-    transferPlayerToEvent(eventID)
+    yield if block_given?
     $game_screen.start_tone_change(getTimeTone, 20)
 	pbWait(10)
 end
