@@ -438,7 +438,7 @@
 437,HABANBERRY,Haban Berry,Haban Berries,5,0,"Weakens a supereffective Dragon-type attack against the holding Pokémon.",0,0,5
 438,COLBURBERRY,Colbur Berry,Colbur Berries,5,0,"Weakens a supereffective Dark-type attack against the holding Pokémon.",0,0,5
 439,BABIRIBERRY,Babiri Berry,Babiri Berries,5,0,"Weakens a supereffective Steel-type attack against the holding Pokémon.",0,0,5
-440,ROSELIBERRY,Roseli Berry,Roseli Berries,5,20,"If held by a Pokémon, this Berry will lessen the damage taken from one supereffective Fairy-type attack.",0,0,5
+440,ROSELIBERRY,Roseli Berry,Roseli Berries,5,0,"If held by a Pokémon, this Berry will lessen the damage taken from one supereffective Fairy-type attack.",0,0,5
 441,CHILANBERRY,Chilan Berry,Chilan Berries,5,0,"Weakens a Normal-type attack against the Pokémon holding this berry.",0,0,5
 442,LIECHIBERRY,Liechi Berry,Liechi Berries,5,0,"If held by a Pokémon, it raises its Attack by two steps in a pinch.",0,0,5
 443,GANLONBERRY,Ganlon Berry,Ganlon Berries,5,0,"If held by a Pokémon, it raises its Defense by two steps in a pinch.",0,0,5

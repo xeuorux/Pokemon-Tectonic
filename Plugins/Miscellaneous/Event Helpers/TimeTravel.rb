@@ -9,16 +9,22 @@ def getTimeTone
     end
 end
 
-def toggleTimeTravel
-    $game_switches[78] = !$game_switches[78]
-    modifyTimeLinkedEvents unless $game_switches[78] # If now in the present
+def inPast?
+    return $game_switches[78]
 end
 
-def leaveTimeTravelIfNeeded
-    return if timeTravelMap?
-    echoln("Disabling time travel since this is not a time travel map") if $game_switches[78]
-    $game_switches[78] = false
-    $game_screen.start_tone_change(getTimeTone, 0)
+def toggleTimeTravel
+    $game_switches[78] = !$game_switches[78]
+end
+
+def processTimeTravel
+    if timeTravelMap?
+        modifyTimeLinkedEvents unless $game_switches[78] # If now in the present
+    else
+        echoln("Disabling time travel since this is not a time travel map") if $game_switches[78]
+        $game_switches[78] = false
+        $game_screen.start_tone_change(getTimeTone, 0)
+    end
 end
 
 def timeTravelToEvent(eventID)
@@ -33,10 +39,58 @@ def timeTravelToEvent(eventID)
     end
     $game_screen.start_tone_change(Tone.new(230,230,230,255), 20)
 	pbWait(20)
+    bouldersTimeTravel(goingForwards)
     toggleTimeTravel
     transferPlayerToEvent(eventID)
     $game_screen.start_tone_change(getTimeTone, 20)
 	pbWait(10)
+end
+
+def bouldersTimeTravel(fromPast = false)
+    boulders = []
+
+    $game_map.events.each_value do |event|
+        next unless event.name.downcase[/pushboulder/]
+        boulders.push(event)
+    end
+
+    $game_map.events.each_value do |event|
+        eventName = event.name.downcase
+        next unless eventName[/timeteleporter/]
+        if fromPast
+            next unless eventName[/past/]
+        else
+            next unless eventName[/present/]
+        end
+
+        boulders.each do |boulder|
+            next unless boulder.at_coordinate?(event.x, event.y)
+
+            if boulder.name.downcase[/timelinked/]
+                # If the boulder is moving from the past to the present, sever its time linking
+                # Otherwise, re-enable its time-linking
+                pbSetSelfSwitch(boulder.id,"D",fromPast)
+            end
+
+            otherEventID = parseTimeTeleporter(event)
+            targetTimeTeleporter = $game_map.events[otherEventID]
+            boulder.moveto(targetTimeTeleporter.x, targetTimeTeleporter.y)
+        end
+    end
+end
+
+def parseTimeTeleporter(event)
+    list = event.list
+    return nil unless list.is_a?(Array)
+    list.each do |item|
+        next unless item.code == 355 # Script
+        item.parameters.each do |scriptLine|
+            match = /timeTravelToEvent\(([0-9]+)\)/.match(scriptLine)
+            next unless match
+            return match.captures[0].to_i
+        end
+    end
+    return nil
 end
 
 def matchPosition(eventToMove,eventToMatch)
@@ -54,6 +108,7 @@ def modifyTimeLinkedEvents
     map.events.each_value do |event|
         eventName = event.name.downcase
         next unless eventName.include?("timelinked")
+        next if pbGetSelfSwitch(event.id,'D') # Timelinking disabled with D switch
         otherEventID = -1
         match = /timelinked\(([0-9]+)\)/.match(eventName)
         captureGroup1 = match.captures[0]
@@ -61,8 +116,10 @@ def modifyTimeLinkedEvents
             otherEventID = captureGroup1.to_i
             otherEvent = map.events[otherEventID]
 
+            next if pbGetSelfSwitch(otherEvent.id,'D') # Timelinking disabled with D switch
+
             # Match all self switches
-            ['A','B','C','D'].each do |switchName|
+            ['A','B','C'].each do |switchName|
                 switchValue = pbGetSelfSwitch(event.id,switchName)
                 pbSetSelfSwitch(otherEventID,switchName,switchValue)
             end
@@ -77,6 +134,7 @@ def modifyTimeLinkedEvents
             echoln("Unable to modify the state of events linked to event #{eventName} (#{event.id}) due to an unknown error")
         end
     end
+    echoln("Modifying time linked events on this map")
 end
 
 def timeTravelMap?(mapID = -1)
@@ -92,7 +150,9 @@ def mapErodes?(mapID = -1)
     mapID = $game_map.map_id if mapID == -1
     eroding = false
     begin
-        eroding = true if GameData::MapMetadata.get(mapID).weather[0] == :TimeSandstorm
+        weatherMetadata = GameData::MapMetadata.get(mapID).weather
+        return false if !weatherMetadata
+        eroding = true if weatherMetadata[0] == :TimeSandstorm
     rescue NoMethodError
         echoln("Map #{mapID} has no defined weather metadata, so assuming its not meant to be an eroding map.")
     end
@@ -120,20 +180,3 @@ def resetCanyon(mapID = -1)
         end
     end
 end
-
-# def disableCatacombs(mapID = -1)
-#     mapID = $game_map.map_id if mapID == -1
-#     map = $MapFactory.getMapNoAdd(mapID)
-#     count = 0
-#     map.events.each_value do |event|
-#         eventName = event.name.downcase
-#         if eventName.include?("darkblock") || eventName.include?("dragoncandlelit")
-#             pbSetSelfSwitch(event.id,"A",true,mapID)
-#             count += 1
-#         elsif eventName.include?("dragoncandleunlit")
-#             pbSetSelfSwitch(event.id,"A",false,mapID)
-#             count += 1
-#         end
-#     end
-#     echoln("Disabled map #{mapID}'s #{count} dragon flame puzzle events")
-# end

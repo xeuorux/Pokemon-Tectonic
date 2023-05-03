@@ -18,7 +18,7 @@ class Scene_Map
 		$game_player.straighten
 		$game_map.update
 
-		leaveTimeTravelIfNeeded if defined?(leaveTimeTravelIfNeeded)
+		processTimeTravel if defined?(processTimeTravel)
 		
 		# The player surfs if they were transferred to a surfable tile
 		terrainID = $game_map.terrain_tag($game_player.x, $game_player.y).id
