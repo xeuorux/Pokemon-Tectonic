@@ -93,7 +93,7 @@
 92,IMPOSTER,Imposter,"It transforms itself into the Pokémon it is facing."
 93,INFILTRATOR,Infiltrator,"Ignores screens and other barriers, Substitute, and boosted defensive stats."
 94,MUMMY,Mummy,"Physical moves against the Pokémon spread this Ability."
-95,MOXIE,Moxie,"Raises Attack by 1 step after knocking out any Pokémon."
+95,MOXIE,Moxie,"Raises Attack by one step after knocking out any Pokémon."
 96,HEARTOFJUSTICE,Heart of Justice,"Immune to Dark-type moves, and boosts Attack when hit by one."
 97,MAGICBOUNCE,Magic Bounce,"Reflects enemy status moves that target the Pokémon or create hazards around it."
 98,SAPSIPPER,Sap Sipper,"Immune to Grass-type moves, and boosts Attack when hit by one."
