@@ -54,7 +54,7 @@
 1053,BADINFLUENCE,Bad Influence,"Healing moves can't be used."
 1054,CHALLENGER,Challenger,"Immune to Fighting-type moves, and boosts Speed when hit by one."
 1055,OCULAR,Ocular,"Boosts the accuracy of its allies and itself by 50%."
-1056,MENTALBLOCK,Mental Block,"Prevents Taunt, Encore, Torment, Heal Block, Disable, becoming Dizzied, or being Flinched."
+1056,MENTALBLOCK,Mental Block,"Prevents Taunt, Encore, Torment, Heal Block, Disable, becoming dizzied, or being flinched."
 1057,BREAKTHROUGH,Break Through,"Moves ignore immunities due to typing."
 1058,FEEDBACK,Feedback,"When attacked with a special move, inflicts 1/8th max HP damage on the attacker."
 1059,DISORIENTING,Disorienting,"Physical attacks against the Pokémon have a 30% chance to dizzy the attacker."
