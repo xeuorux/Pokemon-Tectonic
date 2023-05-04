@@ -81,7 +81,7 @@
 80,GRIPCLAW,Grip Claw,Grip Claws,5,4000,"A Pokémon held item that doubles the duration of multiturn trapping attacks.",0,0,0
 81,BINDINGBAND,Binding Band,Binding Bands,5,4000,"A band that doubles the damage dealt each turn by binding moves when held.",0,0,0
 82,LOADEDDICE,Loaded Dice,Loaded Dices,5,4000,"An item to be held by a Pokémon. It makes multi-hit attacks hit high more consistently.",0,0,0
-83,BIGROOT,Big Root,Big Roots,5,4000,"A Pokémon held item that boosts the power of HP-stealing moves to let the holder recover 30% more HP.",0,0,0
+83,BIGROOT,Big Root,Big Roots,5,4000,"A Pokémon held item that allows the holder to recover 30% more HP from draining moves, Ingrain, Aqua Ring, and leech.",0,0,0
 84,BLACKSLUDGE,Black Sludge,Black Sludges,5,4000,"A held item that gradually restores the HP of Poison-type Pokémon. It inflicts damage on all other types.",0,0,0
 85,LEFTOVERS,Leftovers,Leftovers,5,10000,"A held item. The holder's HP is restored by 1/16th at the end of each turn.",0,0,0
 86,SHELLBELL,Shell Bell,Shell Bells,5,4000,"An item to be held by a Pokémon. The holder restores 1/6th HP of the damage it deals with moves.",0,0,0
