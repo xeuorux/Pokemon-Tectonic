@@ -205,14 +205,17 @@ BattleHandlers::TargetAbilityOnHit.add(:FORCEREVERSAL,
 
 BattleHandlers::TargetAbilityOnHit.add(:IRONBARBS,
   proc { |ability, user, target, move, battle, aiChecking, aiNumHits|
-      next unless move.physicalMove?
-      next -10 * aiNumHits if aiChecking && user.takesIndirectDamage?
-      battle.pbShowAbilitySplash(target, ability)
-      if user.takesIndirectDamage?(true)
-          battle.pbDisplay(_INTL("{1} is hurt!", user.pbThis))
-          user.applyFractionalDamage(1.0 / 8.0)
-      end
-      battle.pbHideAbilitySplash(target)
+        next unless move.physicalMove?
+        if aiChecking
+            next -10 * aiNumHits if user.takesIndirectDamage?
+            next 0
+        end
+        battle.pbShowAbilitySplash(target, ability)
+        if user.takesIndirectDamage?(true)
+            battle.pbDisplay(_INTL("{1} is hurt!", user.pbThis))
+            user.applyFractionalDamage(1.0 / 8.0)
+        end
+        battle.pbHideAbilitySplash(target)
   }
 )
 
@@ -221,7 +224,10 @@ BattleHandlers::TargetAbilityOnHit.copy(:IRONBARBS, :ROUGHSKIN)
 BattleHandlers::TargetAbilityOnHit.add(:FEEDBACK,
     proc { |ability, user, target, move, battle, aiChecking, aiNumHits|
         next unless move.specialMove?(user)
-        next -10 * aiNumHits if aiChecking && user.takesIndirectDamage?
+        if aiChecking
+            next -10 * aiNumHits if user.takesIndirectDamage?
+            next 0
+        end
         battle.pbShowAbilitySplash(target, ability)
         if user.takesIndirectDamage?(true)
             battle.pbDisplay(_INTL("{1} is hurt!", user.pbThis))
@@ -234,7 +240,10 @@ BattleHandlers::TargetAbilityOnHit.add(:FEEDBACK,
 BattleHandlers::TargetAbilityOnHit.add(:ARCCONDUCTOR,
     proc { |ability, user, target, move, battle, aiChecking, aiNumHits|
         next unless battle.rainy?
-        next -10 * aiNumHits if aiChecking && user.takesIndirectDamage?
+        if aiChecking
+            next -10 * aiNumHits if user.takesIndirectDamage?
+            next 0
+        end
         battle.pbShowAbilitySplash(target, ability)
         if user.takesIndirectDamage?(true)
             battle.pbDisplay(_INTL("{1} is hurt!", user.pbThis))
@@ -247,7 +256,10 @@ BattleHandlers::TargetAbilityOnHit.add(:ARCCONDUCTOR,
 BattleHandlers::TargetAbilityOnHit.add(:SPINTENSITY,
     proc { |ability, user, target, move, battle, aiChecking, aiNumHits|
         next unless target.steps[:SPEED] > 0
-        next -5 * target.steps[:SPEED] if aiChecking && user.takesIndirectDamage?
+        if aiChecking
+            next -5 * target.steps[:SPEED] if user.takesIndirectDamage?
+            next 0
+        end
         battle.pbShowAbilitySplash(target, ability)
         battle.pbDisplay(_INTL("#{user.pbThis} catches the full force of #{target.pbThis(true)}'s Speed!"))
         oldStep = target.steps[:SPEED]
