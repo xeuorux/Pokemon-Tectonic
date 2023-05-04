@@ -4,7 +4,7 @@
 # Creates and returns a Pokémon based on the given species and level.
 # Applies wild Pokémon modifiers (wild held item, shiny chance modifiers,
 # Pokérus, gender/nature forcing because of player's lead Pokémon).
-def pbGenerateWildPokemon(species,level,ignoreCap = false)
+def pbGenerateWildPokemon(species,level,ignoreCap = false,skipAlterations = false)
   level = [getLevelCap(),level].min unless ignoreCap
   genwildpoke = Pokemon.new(species,level)
   # Give the wild Pokémon a held item
@@ -17,7 +17,7 @@ def pbGenerateWildPokemon(species,level,ignoreCap = false)
 	  genwildpoke.shinyRerolls = 1
   end
   # Trigger events that may alter the generated Pokémon further
-  Events.onWildPokemonCreate.trigger(nil,genwildpoke)
+  Events.onWildPokemonCreate.trigger(nil,genwildpoke) unless skipAlterations
   # Give it however many chances to be shiny
   genwildpoke.shinyRerolls.times do
       break if genwildpoke.shiny?

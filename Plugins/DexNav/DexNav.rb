@@ -402,7 +402,6 @@ end
 
 Events.onWildPokemonCreate += proc {|sender,e|
     pokemon = e[0]
-	next if pokemon.boss?
     # Checks current search value, if it exists, sets the Pokemon to it's qualities
     if $currentDexSearch != nil && $currentDexSearch.is_a?(Array)
 		currentTileEncounterType = $PokemonEncounters.encounter_type

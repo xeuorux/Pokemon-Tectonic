@@ -6,7 +6,7 @@ PokeBattle_Battle::BattleStartApplyCurse.add(:CURSE_AVATAR_GUARD,
         )
 
         # Insert the avatar
-        newPokemon = battle.generateAvatarPokemon(:LINOONE,65)
+        newPokemon = generateAvatarPokemon(:LINOONE,65)
         partyIndex = battle.pbParty(1).length
         battle.pbParty(1)[partyIndex] = newPokemon
 

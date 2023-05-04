@@ -168,7 +168,6 @@ class PokeBattle_AI
             targets.each do |target|
                 next unless target.opposes?(user)
                 index = target.index
-                echoln("aSDojabsdflhigbsihgbsihj")
                 @battle.scene.setAvatarTargetReticleOnIndex(index, extraAggro)
 
                 user.indicesTargetedThisRound.push(index)

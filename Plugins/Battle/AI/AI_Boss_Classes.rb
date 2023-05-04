@@ -291,7 +291,7 @@ class PokeBattle_AI_Cresselia < PokeBattle_AI_Boss
         @beginTurn.push(proc { |user, battle, turnsunt|
             if turnCount == 4
                 battle.pbDisplayBossNarration(_INTL("A Shadow creeps into the dream..."))
-                battle.addAvatarBattler(:DARKRAI, user.level)
+                battle.summonAvatarBattler(:DARKRAI, user.level)
             end
         })
     end

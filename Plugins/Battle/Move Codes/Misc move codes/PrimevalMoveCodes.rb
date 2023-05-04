@@ -24,7 +24,7 @@ module EmpoweredMove
         if @battle.pbSideSize(user.index) < 3
             summonMessage ||= _INTL("#{user.pbThis} summons another Avatar!")
             @battle.pbDisplay(summonMessage)
-            @battle.addAvatarBattler(species, user.level, user.index % 2)
+            @battle.summonAvatarBattler(species, user.level, user.index % 2)
         end
     end
 end
@@ -800,8 +800,8 @@ class PokeBattle_Move_701 < PokeBattle_Move
 
     def pbEffectGeneral(user)
         @battle.pbDisplay(_INTL("Fish are drawn to the field!", user.pbThis))
-        @battle.addAvatarBattler(:LUVDISC, user.level, user.index % 2)
-        @battle.addAvatarBattler(:REMORAID, user.level, user.index % 2)
+        @battle.summonAvatarBattler(:LUVDISC, user.level, user.index % 2)
+        @battle.summonAvatarBattler(:REMORAID, user.level, user.index % 2)
         @battle.pbSwapBattlers(user.index, user.index + 2)
     end
 end

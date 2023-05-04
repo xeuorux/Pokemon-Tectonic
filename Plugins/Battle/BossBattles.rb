@@ -46,13 +46,10 @@ def pbAvatarBattleCore(*args)
     for arg in args
         next unless arg.is_a?(Array)
         for i in 0...arg.length / 2
-            speciesData = GameData::Species.get(arg[i * 2])
-            pkmn = pbGenerateWildPokemon(speciesData.species, arg[i * 2 + 1], true)
-            pkmn.forced_form = speciesData.form
-            pkmn.boss = true
-            pkmn.name += " " + speciesData.real_form_name if speciesData.form != 0
-            setAvatarProperties(pkmn)
-            foeParty.push(pkmn)
+            species = arg[i * 2]
+            level = arg[i * 2 + 1]
+            avatarPokemon = generateAvatarPokemon(species, level)
+            foeParty.push(avatarPokemon)
         end
     end
     # Calculate who the trainers and their party are
@@ -107,6 +104,32 @@ def pbAvatarBattleCore(*args)
     #    5 - Draw
     pbSet(outcomeVar, decision)
     return (decision == 1)
+end
+
+def generateAvatarPokemon(species, level, summon = false)
+    newPokemon = pbGenerateWildPokemon(species, level, true, true)
+    newPokemon.boss = true
+    setAvatarProperties(newPokemon)
+
+    # Add the form name to the end of their name
+    # If the avatar's form was specified in its species id
+    speciesForm = GameData::Species.get(species)
+    newPokemon.name += " " + speciesForm.real_form_name if speciesForm.form != 0
+
+    # Set the pokemon's starting health if its a low-level summon
+    if summon
+        if level >= SUMMON_MAX_HEALTH_LEVEL
+            healthPercent = 1.0
+        elsif level <= SUMMON_MIN_HEALTH_LEVEL
+            healthPercent = 0.5
+        else
+            healthPercent = 0.5 + (level - SUMMON_MIN_HEALTH_LEVEL) / (SUMMON_MAX_HEALTH_LEVEL - SUMMON_MIN_HEALTH_LEVEL).to_f
+            healthPercent = 1.0 if healthPercent > 1.0
+        end
+        newPokemon.hp = (newPokemon.totalhp * healthPercent).ceil
+    end
+
+    return newPokemon
 end
 
 def setAvatarProperties(pkmn)
@@ -370,25 +393,6 @@ class PokeBattle_Battle
     SUMMON_MIN_HEALTH_LEVEL = 15
     SUMMON_MAX_HEALTH_LEVEL = 50
 
-    def generateAvatarPokemon(species, level)
-        newPokemon = pbGenerateWildPokemon(species, level, true)
-        newPokemon.boss = true
-        setAvatarProperties(newPokemon)
-
-        # Set the pokemon's starting health
-        if level >= SUMMON_MAX_HEALTH_LEVEL
-            healthPercent = 1.0
-        elsif level <= SUMMON_MIN_HEALTH_LEVEL
-            healthPercent = 0.5
-        else
-            healthPercent = 0.5 + (level - SUMMON_MIN_HEALTH_LEVEL) / (SUMMON_MAX_HEALTH_LEVEL - SUMMON_MIN_HEALTH_LEVEL).to_f
-            healthPercent = 1.0 if healthPercent > 1.0
-        end
-        newPokemon.hp = (newPokemon.totalhp * healthPercent).ceil
-
-        return newPokemon
-    end
-
     def remakeDataBoxes
         # Remake all the battle boxes
         scene.deleteDataBoxes
@@ -454,9 +458,7 @@ class PokeBattle_Battle
         pbCalculatePriority
     end
 
-    def addAvatarBattler(species, level, sideIndex = 1)
-        #return if @autoTesting
-
+    def summonAvatarBattler(species, level, sideIndex = 1)
         indexOnSide = @sideSizes[sideIndex]
         if indexOnSide > 3
             echoln("Cannot create new avatar battler on side #{sideIndex} since the side is already full!")
@@ -464,7 +466,7 @@ class PokeBattle_Battle
         end
 
         # Create the new pokemon
-        newPokemon = generateAvatarPokemon(species, level)
+        newPokemon = generateAvatarPokemon(species, level, true)
 
         # Put the pokemon into the party
         partyIndex = pbParty(sideIndex).length
