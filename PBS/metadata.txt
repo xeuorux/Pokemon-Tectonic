@@ -1856,12 +1856,14 @@ Bicycle = false
 Outdoor = false
 ShowArea = true
 Bicycle = true
+BattleBack = cave1
 #-------------------------------
 [354]
 # Chamber of Regirock
 Outdoor = false
 ShowArea = false
 Bicycle = true
+BattleBack = cave1
 #-------------------------------
 [355]
 # Chamber of Registeel
@@ -1926,6 +1928,7 @@ Outdoor = false
 ShowArea = true
 Bicycle = true
 Weather = TimeSandstorm,100
+BattleBack = cave1
 #-------------------------------
 [369]
 # Crumbling Canyon B2 - B
@@ -1933,12 +1936,15 @@ Outdoor = false
 ShowArea = true
 Bicycle = true
 Weather = TimeSandstorm,100
+BattleBack = cave1
 #-------------------------------
 [370]
 # Crumbling Canyon B3
 Outdoor = false
 ShowArea = true
 Bicycle = true
+Weather = TimeSandstorm,100
+BattleBack = cave1
 #-------------------------------
 [371]
 # Crumbling Canyon B2 - A
@@ -1946,12 +1952,14 @@ Outdoor = false
 ShowArea = true
 Bicycle = true
 Weather = TimeSandstorm,100
+BattleBack = cave1
 #-------------------------------
 [372]
 # Latent Grove
 Outdoor = false
 ShowArea = true
 Bicycle = true
+BattleBack = forest
 #-------------------------------
 [373]
 # Crumbling Canyon B2 - C
@@ -1959,3 +1967,4 @@ Outdoor = false
 ShowArea = true
 Bicycle = true
 Weather = TimeSandstorm,100
+BattleBack = cave1

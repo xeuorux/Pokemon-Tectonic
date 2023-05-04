@@ -5465,14 +5465,24 @@ Pokemon = FLORGES,57
     Item = ORANBERRY
 #-------------------------------
 [ANCIENTPRIEST,Chestibor]
-Pokemon = MFURRET,60
-    AbilityIndex = 0 # Soul Read
-Pokemon = SHIINOTIC,60
-    AbilityIndex = 1 # Fascinate
-Pokemon = MTANGROWTH,60
-    AbilityIndex = 0 # Petrifying
-Pokemon = ARCANINE,60
-    AbilityIndex = 0 # Intimidate
+Pokemon = GOLEM,60
+    AbilityIndex = 1 # Desert Armor
+Pokemon = ZOROARK,60
+    AbilityIndex = 1 # Territorial
+Pokemon = DRAPION,60
+    AbilityIndex = 0 # Sand Demon
+Pokemon = SIGILYPH,60
+    AbilityIndex = 0 # Magic Guard
+#-------------------------------
+[ANCIENTPRIEST,Radzayac]
+Pokemon = DIGGERSBY,60
+    AbilityIndex = 1 # Paranoid
+Pokemon = MGIGALITH,60
+    AbilityIndex = 0 # Time Interloper
+Pokemon = ARCTOZOLT,60
+	AbilityIndex = 0 # Meteoric
+Pokemon = ZOROARK,60
+    AbilityIndex = 1 # Territorial
 #-------------------------------
 [ANCIENTPRIEST,Dobromil]
 Pokemon = MBEAUTIFLY,60
@@ -5484,22 +5494,12 @@ Pokemon = VILEPLUME,60
 Pokemon = QUAGSIRE,60
     AbilityIndex = 0 # Unaware
 #-------------------------------
-[ANCIENTPRIEST,Radzayac]
-Pokemon = MDUSTOX,60
-    AbilityIndex = 1 # Follow Through
-Pokemon = DIGGERSBY,60
-    AbilityIndex = 0 # Power Up
-Pokemon = MGIGALITH,60
-    AbilityIndex = 0 # Time Interloper
-Pokemon = HONCHKROW,60
-    AbilityIndex = 0 # Rattle 'Em
-#-------------------------------
 [ANCIENTPRIEST,Kazmilos]
 Pokemon = MCARNIVINE,60
     AbilityIndex = 1 # Pestilent
-Pokemon = MLILLIGANT,60
-    AbilityIndex = 1 # Petty
-Pokemon = GOLEM,60
-    AbilityIndex = 0 # Unbreakable
-Pokemon = GRUMPIG,60
-    AbilityIndex = 0 # Thick Fat
+Pokemon = MTANGROWTH,60
+    AbilityIndex = 0 # Petrifying
+Pokemon = SHIINOTIC,60
+    AbilityIndex = 1 # Fascinate
+Pokemon = MINCCINO,60
+    AbilityIndex = 1 # Fluffy
