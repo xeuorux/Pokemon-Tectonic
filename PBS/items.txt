@@ -481,7 +481,7 @@
 480,HEAVYDUTYBOOTS,Heavy-Duty Boots,Heavy-Duty Boots,5,4000,"These boots prevent the effects of traps set on the battlefield.",0,0,0
 481,ROOMSERVICE,Room Service,Room Services,5,4000,"An item to be held by a Pokémon. Lowers Speed by four steps when Trick Room takes effect.",0,0,0
 482,THROATSPRAY,Throat Spray,Throat Sprays,5,4000,"Raises Sp. Atk by two steps when the Pokémon uses a sound move the first time each battle.",0,0,0
-483,WHETSTONE,Whet Stone,Whet Stones,5,4000,"Raises Attack by two steps when the Pokémon uses a blade move the first time each battle.",0,0,0
+483,WHETSTONE,Whetstone,Whetstones,5,4000,"Raises Attack by two steps when the Pokémon uses a blade move the first time each battle.",0,0,0
 484,UTILITYUMBRELLA,Utility Umbrella,Utility Umbrellas,5,4000,"A held item. The holder takes 10% less move damage, and is protected from the negative effects of weather. .",0,0,0
 485,EXPCANDYXS,Exp. Candy XS,Exp. Candies XS,2,20,"A candy that is packed with energy. When consumed, it will grant a single Pokémon 250 Exp. Points.",1,0,0
 486,EXPCANDYS,Exp. Candy S,Exp. Candies S,2,240,"A candy that is packed with energy. When consumed, it will grant a single Pokémon 1000 Exp. Points.",1,0,0
