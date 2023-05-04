@@ -5,6 +5,7 @@ class Interpreter
         old_x  = event.x
         old_y  = event.y
         holeEvent = nil
+
         # check for pluggable holes in that direction
         if checkForHoles
             new_x = old_x + xOffsetFromDir($game_player.direction)
@@ -22,19 +23,23 @@ class Interpreter
                 break
             end
         end
+
         # Apply strict version of passable, which treats tiles that are passable
         # only from certain directions as fully impassible
-        unless !holeEvent || event.can_move_in_direction?($game_player.direction, true)
+        if !holeEvent && !event.can_move_in_direction?($game_player.direction)
             $game_player.bump_into_object
             return
         end
+
         case $game_player.direction
         when 2 then event.move_down
         when 4 then event.move_left
         when 6 then event.move_right
         when 8 then event.move_up
         end
+
         $PokemonMap.addMovedEvent(@event_id) if $PokemonMap
+
         if old_x != event.x || old_y != event.y
             $game_player.lock
             loop do
@@ -72,7 +77,7 @@ class Game_Character
     end
 
     def pbPullTowardsPlayer
-        unless $game_player.can_move_in_direction?($game_player.inverted_dir, true)
+        if !$game_player.can_move_in_direction?($game_player.inverted_dir)
             $game_player.bump_into_object
             return
         end

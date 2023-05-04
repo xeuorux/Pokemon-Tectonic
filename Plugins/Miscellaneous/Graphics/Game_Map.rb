@@ -26,15 +26,21 @@ class Game_Map
             dependent = pbGetFollowerDependentEvent
             return false if self_event != dependent && dependent.x == x && dependent.y == y
         end
-        return false if !valid?(x, y)
+        return false unless valid?(x, y)
         bit = (1 << (d / 2 - 1)) & 0x0f
         for event in events.values
           next if event.tile_id <= 0
           next if event == self_event
-          next if !event.at_coordinate?(x, y)
+          next unless event.at_coordinate?(x, y)
           next if event.through
           tileID = getTileIDForEventAtCoordinate(event, x, y)
-          next if GameData::TerrainTag.try_get(@terrain_tags[tileID]).ignore_passability
+          terrainTag = GameData::TerrainTag.try_get(@terrain_tags[tileID])
+          next if terrainTag.ignore_passability
+          return true if terrainTag.ignore_passability
+          return true if terrainTag.ice
+          return true if terrainTag.ledge
+          return true if terrainTag.can_surf
+          return true if terrainTag.bridge
           passage = @passages[tileID]
           return false if passage & bit != 0
           return false if passage & 0x0f == 0x0f
@@ -108,7 +114,7 @@ class Game_Map
       return false if !valid?(x, y)
       for event in events.values
         next if event == self_event || event.tile_id <= 0 || event.through
-        next if !event.at_coordinate?(x, y)
+        next unless event.at_coordinate?(x, y)
         tileID = getTileIDForEventAtCoordinate(event, x, y)
         terrainTag = GameData::TerrainTag.try_get(@terrain_tags[tileID])
         return true if terrainTag.ignore_passability
