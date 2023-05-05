@@ -37,6 +37,18 @@ def perfectDoubleTrainer(event1,event2,maxTrainerLevel = 15)
 	pbTrainerDropsItem(maxTrainerLevel,2,true)
 end
 
+def perfectDoubleAncientTrainer(event1,event2)
+	removeSpeaker
+	blackFadeOutIn() {
+		setMySwitch('D',true)
+		pbSetSelfSwitch(event1,'D',true)
+		pbSetSelfSwitch(event2,'D',true)
+		setFollowerGone(event1)
+		setFollowerGone(event2)
+	}
+	pbTrainerDropsItem(:VANILLATULUMBA, 2, true)
+end
+
 def pbTrainerDropsItem(maxTrainerLevel = 15,multiplier=1,plural=false)
 	itemsGiven = candiesForLevel(maxTrainerLevel)
 	
