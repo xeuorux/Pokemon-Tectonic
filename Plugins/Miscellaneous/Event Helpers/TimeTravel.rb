@@ -121,12 +121,13 @@ def matchPosition(eventToMove,eventToMatch)
 end
 
 def modifyTimeLinkedEvents
-    map = $MapFactory.getMapNoAdd($game_map.map_id)
-    eroding = mapErodes?
+    mapID = $game_map.map_id
+    map = $MapFactory.getMapNoAdd(mapID)
+    eroding = mapErodes?(mapID)
     map.events.each_value do |event|
         eventName = event.name.downcase
         next unless eventName.include?("timelinked")
-        next if pbGetSelfSwitch(event.id,'D') # Timelinking disabled with D switch
+        next if pbGetSelfSwitch(event.id,'D',mapID) # Timelinking disabled with D switch
         otherEventID = -1
         match = /timelinked\(([0-9]+)\)/.match(eventName)
         captureGroup1 = match.captures[0]
@@ -134,25 +135,26 @@ def modifyTimeLinkedEvents
             otherEventID = captureGroup1.to_i
             otherEvent = map.events[otherEventID]
 
-            next if pbGetSelfSwitch(otherEvent.id,'D') # Timelinking disabled with D switch
+            next if pbGetSelfSwitch(otherEvent.id,'D',mapID) # Timelinking disabled with D switch
 
             # Match all self switches
             ['A','B','C'].each do |switchName|
-                switchValue = pbGetSelfSwitch(event.id,switchName)
-                pbSetSelfSwitch(otherEventID,switchName,switchValue)
+                switchValue = pbGetSelfSwitch(event.id,switchName,mapID)
+                pbSetSelfSwitch(otherEventID,switchName,switchValue,mapID)
             end
 
             matchPosition(otherEvent, event)
 
             # Erode events
             if eroding && otherEvent.name[/erodable/]
-                pbSetSelfSwitch(otherEventID,'B',true)
+                pbSetSelfSwitch(otherEventID,'B',true,mapID)
+                echoln("Eroding event #{otherEvent.name} (#{otherEventID}) map ID #{mapID}")
             end
         rescue Error
             echoln("Unable to modify the state of events linked to event #{eventName} (#{event.id}) due to an unknown error")
         end
     end
-    echoln("Modifying time linked events on this map")
+    echoln("Modifying time linked events on map ID #{mapID}")
 end
 
 def timeTravelMap?(mapID = -1)
