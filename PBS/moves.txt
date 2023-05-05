@@ -17,7 +17,7 @@
 16,PINMISSILE,Pin Missile,0C0,25,BUG,Physical,100,15,0,NearOther,0,bef,"Sharp spikes are shot at the target in rapid succession. They hit two to five times in a row.",
 17,TWINEEDLE,Twineedle,0BE,25,BUG,Physical,100,15,20,NearOther,0,bef,"The foe is stabbed twice by a pair of stingers. Each stinger has a 20% chance to poison.",
 18,INFESTATION,Infestation,0CF,50,BUG,Special,100,15,0,NearOther,0,abef,"The user summons bugs to swarm the target, trapping and damaging it for three turns.",
-19,DEFENDORDER,Defend Order,02A,0,BUG,Status,0,10,0,User,1,d,"The user calls its underlings to shield it, raising both its Defensive stats. Always goes first.",
+19,DEFENDORDER,Defend Order,02A,0,BUG,Status,0,10,0,User,1,d,"The user calls its underlings to shield it, raising its defensive stats by two steps. Always goes first.",
 20,HEALORDER,Heal Order,5D6,0,BUG,Status,0,10,0,User,0,d,"The user calls out its underlings to heal it. The user regains 3/5ths of its max HP.",
 21,QUIVERDANCE,Quiver Dance,02B,0,BUG,Status,0,15,0,User,0,do,"The user raises their Sp. Atk and Sp. Def by two steps, and Speed by one step.",
 22,STICKYWEB,Sticky Web,153,0,BUG,Status,0,15,0,FoeSide,0,c,"Weaves a sticky net around the opposing team, which lowers their Speed by two steps upon switching in.",
