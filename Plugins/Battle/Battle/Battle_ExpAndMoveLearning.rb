@@ -173,7 +173,7 @@ class PokeBattle_Battle
         exp = modifiedEXP if modifiedEXP >= 0
         # If EXP in this battle is capped, store all XP instead of granting it
         if @expCapped
-            @expStored += (exp * 0.7).floor
+            @expStored += (exp * EXP_JAR_BASE_EFFICIENCY).floor
             return
         end
         # Make sure Exp doesn't exceed the maximum
@@ -190,7 +190,7 @@ class PokeBattle_Battle
         expGained = expFinal - pkmn.exp
         expLeftovers -= pkmn.exp
         $PokemonGlobal.expJAREfficient = false if $PokemonGlobal.expJAREfficient.nil?
-        expLeftovers = (expLeftovers * 0.8).floor unless $PokemonGlobal.expJAREfficient
+        expLeftovers = (expLeftovers * EXP_JAR_BASE_EFFICIENCY).floor unless $PokemonGlobal.expJAREfficient
         @expStored += expLeftovers if expLeftovers > 0
         curLevel = pkmn.level
         newLevel = growth_rate.level_from_exp(expFinal)
