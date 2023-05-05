@@ -46,7 +46,7 @@ class Interpreter
                 Graphics.update
                 Input.update
                 pbUpdateSceneMap
-                break if !event.moving?
+                break unless event.moving?
             end
             $game_player.unlock
         end
@@ -60,8 +60,6 @@ class Interpreter
             pbSEPlay("Anim/Earth3",40,rand(110,140))
         end
     end
-    
-    
 end
 
 class Game_Character
@@ -82,7 +80,12 @@ class Game_Character
             return
         end
 
+        old_x  = @x
+        old_y  = @y
+
         pbSEPlay("Anim/Earth3",30,rand(70,90))
+
+        Input.update
 
         $game_player.move_backward
 
@@ -91,6 +94,19 @@ class Game_Character
         when 4 then move_left
         when 6 then move_right
         when 8 then move_up
+        end
+
+        $PokemonMap.addMovedEvent(@id) if $PokemonMap
+
+        if old_x != @x || old_y != @y
+            $game_player.lock
+            loop do
+                Graphics.update
+                Input.update
+                pbUpdateSceneMap
+                break unless moving?
+            end
+            $game_player.unlock
         end
     end
 end
