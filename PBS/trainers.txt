@@ -5453,7 +5453,7 @@ Pokemon = GREEDENT,62
     Item = ORANBERRY
 #-------------------------------
 [CAMPER_M,Nick]
-Pokemon = ARATICATE,56
+Pokemon = ARATICATE,57
     AbilityIndex = 1 # Gourmand
 Pokemon = REAVOR,57
     AbilityIndex = 1 # Exo-Adaption
