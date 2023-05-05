@@ -394,7 +394,7 @@ class PokemonSummary_Scene
         @sprites["itemicon2"].type = @pokemon.itemTypeChosen
 
         @sprites["itembackground"].visible = true if setVisible
-        if @pokemon.itemCount > 1
+        if @pokemon.hasMultipleItems?
             @sprites["itembackground"].bitmap = @itemBackground2.bitmap
         else
             @sprites["itembackground"].bitmap = @itemBackground.bitmap
@@ -463,7 +463,8 @@ class PokemonSummary_Scene
             [@pokemon.name, 46, 56, 0, base, shadow],
             [@pokemon.level.to_s, 46, 86, 0, Color.new(64, 64, 64), Color.new(176, 176, 176)],
         ]
-        textpos.push([_INTL("Item"), 66, 312, 0, base, shadow]) if page != 3
+        itemLabel = @pokemon.hasMultipleItems? ? _INTL("Items") : _INTL("Item")
+        textpos.push([itemLabel, 66, 312, 0, base, shadow]) if page != 3
         # Write the gender symbol
         if @pokemon.male?
             textpos.push([_INTL("♂"), 178, 56, 0, Color.new(24, 112, 216), Color.new(136, 168, 208)])
@@ -477,9 +478,13 @@ class PokemonSummary_Scene
 			itemText = []
             if @pokemon.hasItem?  
                 itemName = @pokemon.itemsName
+                itemNameX = 16
 				itemNameY = 346
-				itemNameY += 2 if @pokemon.hasMultipleItems?
-                itemText.push([itemName, 16, itemNameY, 0, Color.new(64, 64, 64), Color.new(176, 176, 176)])
+                if @pokemon.hasMultipleItems?
+				    itemNameY += 2
+                    itemNameX -= 8
+                end
+                itemText.push([itemName, itemNameX, itemNameY, 0, Color.new(64, 64, 64), Color.new(176, 176, 176)])
             else
                 itemText.push([_INTL("None"), 16, 346, 0, Color.new(192, 200, 208), Color.new(208, 216, 224)])
             end
