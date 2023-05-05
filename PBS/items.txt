@@ -556,4 +556,4 @@
 555,CHAMBER6KEY,Chamber 6 Key,Chamber 6 Keys,8,0,"The key to the sixth chamber containing a powerful avatar.",0,0,6
 556,CHAMBER7KEY,Chamber 7 Key,Chamber 7 Keys,8,0,"The key to the seventh chamber containing a powerful avatar.",0,0,6
 557,CHAMBER8KEY,Chamber 8 Key,Chamber 8 Keys,8,0,"The key to the eighth chamber containing a powerful avatar.",0,0,6
-558,LATENTSEED,Latent Seed,Latent Seeds,1,0,"A simple tree seed. It hums with the potential for great change.",1,0,7
+558,LATENTSEED,Latent Seed,Latent Seeds,8,0,"A simple tree seed. It hums with the potential for great change.",0,0,13

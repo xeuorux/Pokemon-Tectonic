@@ -1910,7 +1910,6 @@ ShowArea = true
 Bicycle = true
 #-------------------------------
 [365]
-# Crumbling Canyon Puzzle Testing
 Outdoor = false
 ShowArea = true
 Bicycle = true
