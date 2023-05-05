@@ -121,3 +121,4 @@
 4120,POWERSWAP,Power Swap,052,0,PSYCHIC,Status,0,10,0,NearOther,0,be,"The user employs its psychic power to switch changes to its Attack and Sp. Atk with the target.",
 4121,GUARDSWAP,Guard Swap,053,0,PSYCHIC,Status,0,10,0,NearOther,0,be,"The user employs its psychic power to switch changes to its Defense and Sp. Def with the target.",
 4122,MEGAKICK,Mega Kick,000,120,NORMAL,Physical,80,5,0,NearOther,0,abef,"The target is attacked by a kick launched with muscle-packed power.",
+4123,SCALESHOT,Scale Shot,193,25,DRAGON,Physical,100,15,100,NearOther,0,abef,"The user attacks by shooting scales two to five times. It boosts the user's Speed stat but lowers its Defense stat.",
