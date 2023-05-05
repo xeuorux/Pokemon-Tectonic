@@ -1,4 +1,5 @@
 EXP_PER_EXTRA_SMALL = 250
+EXP_JAR_BASE_EFFICIENCY = 0.8
 
 class PokemonGlobalMetadata
 	attr_accessor :expJARUpgraded
