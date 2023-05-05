@@ -5480,25 +5480,21 @@ Pokemon = DIGGERSBY,60
 Pokemon = MGIGALITH,60
     AbilityIndex = 0 # Time Interloper
 Pokemon = ARCTOZOLT,60
-	AbilityIndex = 0 # Meteoric
+    AbilityIndex = 0 # Meteoric
 Pokemon = ZOROARK,60
     AbilityIndex = 1 # Territorial
 #-------------------------------
 [ANCIENTPRIEST,Dobromil]
 Pokemon = MBEAUTIFLY,60
     AbilityIndex = 1 # Mental Block
-Pokemon = MSEAKING,60
-    AbilityIndex = 0 # Irrefutable
-Pokemon = VILEPLUME,60
-    AbilityIndex = 0 # Stench
+Pokemon = PURUGLY,60
+    AbilityIndex = 0 # Greedy Guts
 Pokemon = QUAGSIRE,60
     AbilityIndex = 0 # Unaware
 #-------------------------------
 [ANCIENTPRIEST,Kazmilos]
 Pokemon = MCARNIVINE,60
     AbilityIndex = 1 # Pestilent
-Pokemon = MTANGROWTH,60
-    AbilityIndex = 0 # Petrifying
 Pokemon = SHIINOTIC,60
     AbilityIndex = 1 # Fascinate
 Pokemon = MINCCINO,60
