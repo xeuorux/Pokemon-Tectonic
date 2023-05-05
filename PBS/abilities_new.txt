@@ -345,7 +345,7 @@
 1344,INFECTED,Infected,"Also Grass in addition to its other types. When hit by a physical move, the attacker is also infected."
 1345,STEELABSORB,Steel Absorb,"Immune to Steel-type moves and restores HP if hit by one."
 1346,SEEDSOWING,Seed Sowing,"Special moves have a 30% chance to leech targets."
-1347,UNCONCERNED,Unconcerned,"Takes 20% less damage from neutrally effective attacks."
+1347,DULL,Dull,"Takes 20% less damage from neutrally effective attacks."
 1348,WELLSUITED,Well Suited,"Takes 50% less damage from not-very-effective or barely-effective attacks."
 1349,BLISS,Bliss,"Increase the EXP gained from battles in which it participates by 50%."
 1350,HERDING,Herding,"Wild Pokemon are more likely to hold items and to be species you've never caught before."
