@@ -669,11 +669,12 @@ class Pokemon
         return @itemTypeChosen
     end
 
-    def canSetItemType?
-        return true if hasItem?(:MEMORYSET)
-        return true if hasItem?(:PRISMATICPLATE)
-        return true if hasItem?(:CRYSTALVEIL)
-        return false
+    def hasTypeSetterItem?
+      typeSetterItems = %i[MEMORYSET PRISMATICPLATE CRYSTALVEIL]
+      typeSetterItems.each do |itemID|
+        return itemID if hasItem?(itemID)
+      end
+      return false
     end
 
     def canHaveMultipleItems?(inBattle = false)

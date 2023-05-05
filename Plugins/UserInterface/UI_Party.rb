@@ -1162,7 +1162,7 @@ end
           newspecies = pkmn.check_evolution_on_level_up
           commands[cmdEvolve = commands.length]       = _INTL("Evolve") if newspecies
     
-          commands[cmdSetItemType = commands.length]       = _INTL("Set Item Type") if pkmn.canSetItemType?
+          commands[cmdSetItemType = commands.length]       = _INTL("Set Item Type") if pkmn.hasTypeSetterItem?
     
           commands[commands.length]                   = _INTL("Cancel")
           command = @scene.pbShowCommands(_INTL("Do what with {1}?",pkmn.name),commands)
@@ -1244,7 +1244,8 @@ end
             existingIndex = typesArray.find_index(pkmn.itemTypeChosen)
             chosenNumber = @scene.pbShowCommands(_INTL("What type should #{pkmn.name} become?"),typeCommands,existingIndex)
             if chosenNumber < typesArray.length
-              pbDisplay(_INTL("#{pkmn.name} changed its #{pkmn.item.name} to #{typeCommands[chosenNumber]}-type!"))
+              typeSettingItem = pkmn.hasTypeSetterItem?
+              pbDisplay(_INTL("#{pkmn.name} changed its #{getItemName(typeSettingItem)} to #{typeCommands[chosenNumber]}-type!"))
               pkmn.itemTypeChosen = typesArray[chosenNumber]
             end
           elsif cmdItem >= 0 && command == cmdItem
