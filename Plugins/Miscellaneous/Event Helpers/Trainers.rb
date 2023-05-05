@@ -14,7 +14,7 @@ def perfectAncientTrainer
 		setFollowerGone
 	}
 	pbMessage("The fleeing trainer dropped some food!")
-	pbReceiveItem(:VANILLATULUMBA,2)
+	pbReceiveItem(:VANILLATULUMBA)
 end
 
 def perfectAceTrainer(maxTrainerLevel=15)

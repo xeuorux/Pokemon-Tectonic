@@ -25,10 +25,10 @@ class Scene_Map
 			$PokemonGlobal.surfing = true
 			pbUpdateVehicle
 		end
-		
-		recreateSpritesets
 
 		processTimeTravel if defined?(processTimeTravel)
+		
+		recreateSpritesets
 		
 		if $game_temp.transition_processing
 		  $game_temp.transition_processing = false

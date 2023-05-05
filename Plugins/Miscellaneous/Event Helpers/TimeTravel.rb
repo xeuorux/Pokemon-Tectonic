@@ -1,5 +1,6 @@
 PRESENT_TONE = Tone.new(0,0,0,0)
 PAST_TONE = Tone.new(40,30,10,130)
+FUTURE_TONE = Tone.new(-9,18,18,9)
 
 def getTimeTone
     if $game_switches[78] # Time Traveling
@@ -20,16 +21,22 @@ end
 def processTimeTravel
     if timeTravelMap?
         modifyTimeLinkedEvents unless $game_switches[78] # If now in the present
-    else
-        echoln("Disabling time travel since this is not a time travel map") if $game_switches[78]
+    elsif $game_switches[78]
+        echoln("Disabling time travel since this is not a time travel map")
         $game_switches[78] = false
+        applyTimeTone
     end
-    applyTimeTone
 end
 
-def fakeTimeTravelToEvent(eventID, mapID = -1)
+def fakeTimeTravelToEvent(eventID, mapID = -1, toneID = -1)
     timeTravelTransition {
         transferPlayerToEvent(eventID,$game_player.direction,mapID)
+        if toneID >= 0
+            tone = [PAST_TONE,PRESENT_TONE,FUTURE_TONE][toneID]
+            $game_screen.start_tone_change(tone, 20)
+        else
+            applyTimeTone(20)
+        end
     }
 end
 
@@ -38,10 +45,11 @@ def timeTravelToEvent(eventID)
         bouldersTimeTravel($game_switches[78])
         toggleTimeTravel
         transferPlayerToEvent(eventID)
+        applyTimeTone(20)
     }
 end
 
-def applyTimeTone
+def applyTimeTone(duration = 0)
     $game_screen.start_tone_change(getTimeTone, 0)
 end
 
@@ -53,7 +61,6 @@ def timeTravelTransition
     $game_screen.start_tone_change(Tone.new(230,230,230,255), 20)
 	pbWait(20)
     yield if block_given?
-    applyTimeTone
 	pbWait(10)
 end
 
