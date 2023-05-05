@@ -13,7 +13,8 @@ def perfectAncientTrainer
 		setMySwitch('D',true)
 		setFollowerGone
 	}
-	pbTrainerDropsItem(:VANILLATULUMBA)
+	pbMessage("The fleeing trainer dropped some food!")
+	pbReceiveItem(:VANILLATULUMBA,2)
 end
 
 def perfectAceTrainer(maxTrainerLevel=15)
@@ -46,7 +47,9 @@ def perfectDoubleAncientTrainer(event1,event2)
 		setFollowerGone(event1)
 		setFollowerGone(event2)
 	}
-	pbTrainerDropsItem(:VANILLATULUMBA, 2, true)
+
+	pbMessage("The fleeing trainers dropped some food!")
+	pbReceiveItem(:VANILLATULUMBA,2)
 end
 
 def pbTrainerDropsItem(maxTrainerLevel = 15,multiplier=1,plural=false)

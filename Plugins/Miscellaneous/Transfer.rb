@@ -17,8 +17,6 @@ class Scene_Map
 		end
 		$game_player.straighten
 		$game_map.update
-
-		processTimeTravel if defined?(processTimeTravel)
 		
 		# The player surfs if they were transferred to a surfable tile
 		terrainID = $game_map.terrain_tag($game_player.x, $game_player.y).id
@@ -29,6 +27,8 @@ class Scene_Map
 		end
 		
 		recreateSpritesets
+
+		processTimeTravel if defined?(processTimeTravel)
 		
 		if $game_temp.transition_processing
 		  $game_temp.transition_processing = false

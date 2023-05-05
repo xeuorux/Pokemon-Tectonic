@@ -23,8 +23,8 @@ def processTimeTravel
     else
         echoln("Disabling time travel since this is not a time travel map") if $game_switches[78]
         $game_switches[78] = false
-        $game_screen.start_tone_change(getTimeTone, 0)
     end
+    applyTimeTone
 end
 
 def fakeTimeTravelToEvent(eventID, mapID = -1)
@@ -41,6 +41,10 @@ def timeTravelToEvent(eventID)
     }
 end
 
+def applyTimeTone
+    $game_screen.start_tone_change(getTimeTone, 0)
+end
+
 def timeTravelTransition
     pbSEPlay("Anim/Sand",70,80)
     pbSEPlay("Anim/Sand",40,65)
@@ -49,7 +53,7 @@ def timeTravelTransition
     $game_screen.start_tone_change(Tone.new(230,230,230,255), 20)
 	pbWait(20)
     yield if block_given?
-    $game_screen.start_tone_change(getTimeTone, 20)
+    applyTimeTone
 	pbWait(10)
 end
 

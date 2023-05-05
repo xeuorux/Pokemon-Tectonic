@@ -1968,3 +1968,10 @@ ShowArea = true
 Bicycle = true
 Weather = TimeSandstorm,100
 BattleBack = cave1
+#-------------------------------
+[374]
+# Stone Nest
+Outdoor = false
+ShowArea = true
+Bicycle = true
+BattleBack = cave2
