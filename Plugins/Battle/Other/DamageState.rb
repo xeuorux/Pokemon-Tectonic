@@ -10,7 +10,6 @@ class PokeBattle_DamageState
 	attr_accessor :totalHPLost     # Like hpLost, but cumulative over all hits
 	attr_accessor :displayedDamage # The damage to display above the hit battler
 	attr_accessor :fainted         # Whether battler was knocked out by the move
-  
 	attr_accessor :missed          # Whether the move failed the accuracy check
 	attr_accessor :calcDamage      # Calculated damage
 	attr_accessor :hpLost          # HP lost by opponent, inc. HP lost by a substitute
@@ -18,7 +17,7 @@ class PokeBattle_DamageState
 	attr_accessor :forced_critical # The critical hit was forced (e.g. by Merciless)
 	attr_accessor :substitute      # Whether a substitute took the damage
 	attr_accessor :focusBand       # Focus Band used
-	attr_accessor :focusSash       # Focus Sash used
+	attr_accessor :focusSash       # Focus Sash style item used
 	attr_accessor :sturdy          # Sturdy ability used
 	attr_accessor :dangerSense     # Danger Sense ability used
 	attr_accessor :disguise        # Disguise ability used
@@ -56,7 +55,7 @@ class PokeBattle_DamageState
 		@critical      		= false
 		@substitute    		= false
 		@focusBand     		= false
-		@focusSash     		= false
+		@focusSash     		= nil
 		@sturdy        		= false
 		@dangerSense		= false
 		@archVillain		= false
