@@ -301,7 +301,9 @@ target.pbThis(true)))
 
     def pbReduceDamage(user, target)
         damage = target.damageState.calcDamage
+
         target.damageState.displayedDamage = damage
+
         # Substitute takes the damage
         if target.damageState.substitute
             damage = target.effects[:Substitute] if damage > target.effects[:Substitute]
@@ -325,6 +327,7 @@ target.pbThis(true)))
         damageAdjusted = false
         if damage >= target.hp
             damage = target.hp
+
             # Survive a lethal hit with 1 HP effects
             if nonLethal?(user, target)
                 damage -= 1
@@ -338,28 +341,28 @@ target.pbThis(true)))
                 damage -= 1
                 damageAdjusted = true
                 target.tickDownAndProc(:EmpoweredEndure)
-            elsif target.hasActiveAbility?(:DIREDIVERSION) && !target.hasAnyItem? && target.itemActive? && !@battle.moldBreaker
+            elsif target.hasActiveAbility?(:DIREDIVERSION) && target.hasAnyItem? && target.itemActive? && !@battle.moldBreaker
                 target.damageState.direDiversion = true
                 damage -= 1
                 damageAdjusted = true
-            elsif target.hasActiveAbility?(:STURDY) && !@battle.moldBreaker
+            elsif target.hasActiveAbility?(:STURDY) && target.fullHealth? && !@battle.moldBreaker
                 target.damageState.sturdy = true
                 damage -= 1
                 damageAdjusted = true
-            elsif target.hasActiveAbility?(:DANGERSENSE) && !@battle.moldBreaker
+            elsif target.hasActiveAbility?(:DANGERSENSE) && target.fullHealth? && !@battle.moldBreaker
                 target.damageState.dangerSense = true
                 damage -= 1
                 damageAdjusted = true
-            elsif (target.hasActiveItem?(FULL_ENDURE_ITEMS) && target.hp == target.totalhp) || target.hasActiveItem?(:CLARITYSASH)
-                target.damageState.focusSash = true
+            elsif target.hasActiveItem?(FULL_ENDURE_ITEMS) && target.fullHealth?
+                target.damageState.focusSash = target.hasActiveItem?(FULL_ENDURE_ITEMS)
                 damage -= 1
                 damageAdjusted = true
-            elsif target.hasActiveItem?(:CASSBERRY) && target.hp == target.totalhp
+            elsif target.hasActiveItem?(:CLARITYSASH)
+                target.damageState.focusSash = :CLARITYSASH
+                damage -= 1
+                damageAdjusted = true
+            elsif target.hasActiveItem?(:CASSBERRY) && target.fullHealth?
                 target.damageState.endureBerry = true
-                damage -= 1
-                damageAdjusted = true
-            elsif target.hasActiveItem?(:FOCUSBAND) && @battle.pbRandom(100) < 10
-                target.damageState.focusBand = true
                 damage -= 1
                 damageAdjusted = true
             elsif user.hasActiveAbility?(:ARCHVILLAIN)
@@ -500,8 +503,8 @@ target.pbThis(true)))
             @battle.pbHideAbilitySplash(target)
         elsif target.damageState.focusSash
             @battle.pbCommonAnimation("UseItem", target)
-            @battle.pbDisplay(_INTL("{1} hung on using its {2}!", target.pbThis, getItemName(:FOCUSSASH)))
-            target.consumeItem(:FOCUSSASH) if target.hasItem?(:FOCUSSASH)
+            @battle.pbDisplay(_INTL("{1} hung on using its {2}!", target.pbThis, getItemName(target.damageState.focusSash)))
+            target.consumeItem(target.damageState.focusSash)
         elsif target.damageState.focusBand
             @battle.pbCommonAnimation("UseItem", target)
             @battle.pbDisplay(_INTL("{1} hung on using its Focus Band!", target.pbThis))
