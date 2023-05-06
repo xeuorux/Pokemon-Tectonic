@@ -95,7 +95,8 @@ def createChangeLogBetween(firstID,lastID,fileName = "changelog.txt")
 			
 			oldBST = 0
 			newBST = 0
-			GameData::Stat.each_main.each do |s|
+			GameData::Stat.each_main do |statData|
+				s = statData.id
 				oldStat = species_data.base_stats[s]
 				oldBST += oldStat
 				newStat = newSpeciesData.base_stats[s]
@@ -104,7 +105,7 @@ def createChangeLogBetween(firstID,lastID,fileName = "changelog.txt")
 					difference = (newStat - oldStat)
 					difference = "+" + difference.to_s if difference > 0
 					spacesString = ""
-					statName = s.real_name_brief
+					statName = statData.real_name_brief
 					(12-statName.length).times do
 						spacesString += " "
 					end
@@ -182,7 +183,7 @@ def createChangeLogBetween(firstID,lastID,fileName = "changelog.txt")
 			
 			addedSignatureMoves = []
 			
-			if addedMoves.length > 0
+			if newMovesLearned.length > 0
 				addedMoves = []
 
 				newMovesLearned.each do |newMove|
@@ -210,7 +211,7 @@ def createChangeLogBetween(firstID,lastID,fileName = "changelog.txt")
 				signatureLabel = "Added Signature Move#{addedSignatureMoves.length > 1 ? "s" : ""}:"
 				changeLog.push(signatureLabel)
 				addedSignatureMoves.each_with_index do |move,index|
-					changelog.concat(describeMoveForChangelog(move))
+					changeLog.concat(describeMoveForChangelog(move))
 				end
 			end
 			
