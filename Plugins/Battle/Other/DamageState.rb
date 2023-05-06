@@ -58,7 +58,7 @@ class PokeBattle_DamageState
 		@focusSash     		= nil
 		@sturdy        		= false
 		@dangerSense		= false
-		@archVillain		= false
+		@archVillain		= nil
 		@disguise      		= false
 		@endured       		= false
 		@berryWeakened 		= nil
