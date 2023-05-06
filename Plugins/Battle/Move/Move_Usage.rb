@@ -366,7 +366,7 @@ target.pbThis(true)))
                 damage -= 1
                 damageAdjusted = true
             elsif user.hasActiveAbility?(:ARCHVILLAIN)
-                target.damageState.archVillain = true
+                target.damageState.archVillain = user
                 damage -= 1
                 damageAdjusted = true
             end
@@ -515,6 +515,7 @@ target.pbThis(true)))
             @battle.pbDisplay(_INTL("{1} hung on by consuming its {2}!", target.pbThis, getItemName(:CASSBERRY)))
             target.consumeItem(:CASSBERRY) if target.hasItem?(:CASSBERRY)
         elsif target.damageState.archVillain
+            user = target.damageState.archVillain
             @battle.pbShowAbilitySplash(user,:ARCHVILLAIN)
             @battle.pbDisplay(_INTL("{1} lets out an arrogant laugh!", user.pbThis))
             @battle.pbHideAbilitySplash(user)
