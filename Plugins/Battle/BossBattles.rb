@@ -106,6 +106,9 @@ def pbAvatarBattleCore(*args)
     return (decision == 1)
 end
 
+SUMMON_MIN_HEALTH_LEVEL = 15
+SUMMON_MAX_HEALTH_LEVEL = 50
+
 def generateAvatarPokemon(species, level, summon = false)
     newPokemon = pbGenerateWildPokemon(species, level, true, true)
     newPokemon.boss = true
@@ -390,9 +393,6 @@ def hue_to_rgb(p, q, t)
 end
 
 class PokeBattle_Battle
-    SUMMON_MIN_HEALTH_LEVEL = 15
-    SUMMON_MAX_HEALTH_LEVEL = 50
-
     def remakeDataBoxes
         # Remake all the battle boxes
         scene.deleteDataBoxes
