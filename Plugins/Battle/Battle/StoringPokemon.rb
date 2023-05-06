@@ -69,9 +69,10 @@ def pbNicknameAndStore(pkmn)
     # Let the player know info about the individual pokemon they caught
     pbMessage(_INTL("You check {1}, and discover that its ability is {2}!", pkmn.name, pkmn.ability.name))
 
-    pbMessage(_INTL("The {1} is holding an {2}!", pkmn.name, pkmn.item.name)) if pkmn.hasItem?
+    pkmn.items.each do |item|
+        pbMessage(_INTL("The {1} is holding an {2}!", pkmn.name, getItemName(item)))
+    end
 
-    
     # Increase the caught count for the global metadata
     incrementDexNavCounts(false) if defined?(incrementDexNavCounts)
 
