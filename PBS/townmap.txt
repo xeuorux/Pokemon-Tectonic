@@ -1,7 +1,7 @@
 ﻿# See the documentation on the wiki to learn how to edit this file.
 #-------------------------------
 [0]
-Name = Unnamed
+Name = Makya
 Filename = mapRegion2.png
 Point = 22,18,Casaba Villa,,,,,
 Point = 22,17,Scenic Trail,,,,,

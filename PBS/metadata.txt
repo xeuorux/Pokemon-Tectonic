@@ -1497,6 +1497,13 @@ Bicycle = true
 BattleBack = cave3
 Environment = Cave
 #-------------------------------
+[273]
+# Barren Crater Station
+Outdoor = false
+ShowArea = false
+Bicycle = false
+HealingSpot = 129,32,37
+#-------------------------------
 [274]
 # Sweetrock Harbor Gym
 Outdoor = false
