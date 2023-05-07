@@ -85,7 +85,7 @@ end
 
 class Pokemon
     def tribes
-        if @ability == :FRIENDTOALL || @item == :WILDCARD
+        if hasAbility?(:FRIENDTOALL) || hasItem?(:WILDCARD)
             list = []
             GameData::Tribe.each do |tribeData|
                 list.push(tribeData.id)
