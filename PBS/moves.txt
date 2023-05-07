@@ -425,7 +425,7 @@
 424,CONVERSION,Conversion,05E,0,NORMAL,Status,0,25,0,User,0,d,"The user changes its type to become the same type as one of its moves.",
 425,CONVERSION2,Conversion 2,05F,0,NORMAL,Status,0,25,0,NearOther,0,,"The user changes its type to make itself resistant to the type of the attack the opponent used last.",
 426,COPYCAT,Copycat,0AF,0,NORMAL,Status,0,15,0,User,0,,"The user mimics the move used immediately before it. The move fails if no other move has been used yet.",
-427,DEFENSECURL,Defense Curl,01E,0,NORMAL,Status,0,30,0,User,0,d,"The user curls up to conceal weak spots and raise both of its defensive stats",
+427,DEFENSECURL,Defense Curl,01E,0,NORMAL,Status,0,30,0,User,0,d,"The user curls up to conceal weak spots and raise both of its defensive stats.",
 428,DISABLE,Disable,0B9,0,GHOST,Status,100,15,0,NearOther,0,bce,"For four turns, this move prevents the target from using the move it last used.",
 429,ENCORE,Encore,0BC,0,NORMAL,Status,100,5,0,NearOther,0,bce,"The user compels the target to keep using only the move it last used for three turns.",
 430,ENDURE,Endure,0E8,0,NORMAL,Status,0,10,0,User,4,,"The user endures any attack with at least 1 HP. It always fails if it is used in succession.",

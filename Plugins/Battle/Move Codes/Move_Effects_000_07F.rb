@@ -444,7 +444,7 @@ end
 #===============================================================================
 # Increases the user's Defense and Sp. Def by 2 steps. User curls up. (Defense Curl)
 #===============================================================================
-class PokeBattle_Move_01E < PokeBattle_StatUpMove
+class PokeBattle_Move_01E < PokeBattle_MultiStatUpMove
     def initialize(battle, move)
         super
         @statUp = DEFENDING_STATS_2
