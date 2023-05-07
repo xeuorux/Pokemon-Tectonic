@@ -7,7 +7,7 @@
 1006,LIGHTNINGDANCE,Lightning Dance,503,0,ELECTRIC,Status,0,15,0,User,0,do,"The user dances with the speed of lightning, raising its Sp. Atk by two steps and Speed by 1.",
 1007,CRASHDIVE,Crash Dive,0FB,120,WATER,Physical,100,12,0,NearOther,0,abef,"The user dives like a submarine at the target. The user also takes 33% recoil.",WATERFALL
 1008,SHOTPUT,Shotput,000,45,STEEL,Physical,100,20,0,NearOther,0,bef,"The user hurls a metal ball at the target.",
-1009,WIPEOUT,Wipeout,043,40,WATER,Physical,100,30,15,NearOther,0,abef,"The user rides a wave, then crashes into the target. Has a 15% chance to lower Defense.",AQUAJET
+1009,WIPEOUT,Wipeout,5E8,40,WATER,Physical,100,30,20,NearOther,0,abef,"The user rides a wave, then crashes into the target. Has a 20% chance to lower Defense.",AQUAJET
 1010,SWOOP,Swoop,0C9,60,FLYING,Physical,100,25,0,NearOther,0,abef,"The user takes an advantageous airborne position, then strikes on the second turn.",FLY
 1011,DIAMONDFORCE,Diamond Force,000,85,ROCK,Special,100,12,0,NearOther,0,befh,"The user calls up spikes of diamond. Critical hits land more easily.",DIAMONDSTORM
 1012,CLASH,Clash,000,45,DRAGON,Physical,100,30,0,NearOther,0,abef,"The user harnesses inner battle instincts to strike at the target.",
