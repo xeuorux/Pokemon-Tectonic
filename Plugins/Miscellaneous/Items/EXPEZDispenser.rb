@@ -27,7 +27,7 @@ def useEXPEZ()
 	xsCandyTotal, sCandyTotal, mCandyTotal, lCandyTotal = calculateCandySplitForEXP($PokemonGlobal.expJAR,$PokemonGlobal.expJARUpgraded)
 
 	# Prompt the player to make the candies
-	if sCandyTotal > 0 || xsCandyTotal > 0 || mCandyTotal > 0 || lCandyTotal > 0
+	if xsCandyTotal > 0 || sCandyTotal > 0 || mCandyTotal > 0 || lCandyTotal > 0
 		if !$PokemonGlobal.expJARUpgraded
 			if pbConfirmMessage(_INTL("You can make {1} Medium, {2} Small and {3} Extra-Small candies. Would you like to?", mCandyTotal, sCandyTotal, xsCandyTotal))
 				pbReceiveItem(:EXPCANDYM,mCandyTotal) if mCandyTotal > 0
@@ -58,6 +58,7 @@ def calculateCandySplitForEXP(expAmount, biggerSized = false)
 		sCandyTotal = xsCandyTotal / 4
 		xsCandyTotal = xsCandyTotal % 4
 	else
+		xsCandyTotal = 0
 		sCandyTotal = expAmount / (EXP_PER_EXTRA_SMALL * 4)
 	end
 	mCandyTotal = sCandyTotal / 4
