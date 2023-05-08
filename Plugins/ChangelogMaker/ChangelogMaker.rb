@@ -125,21 +125,19 @@ def createChangeLogBetween(firstID,lastID,fileName = "changelog.txt")
 							newAbilityData = GameData::Ability.get(newSpeciesData.abilities[i])
 							newRealName = newAbilityData.real_name
 						end
-						if newAbilityData
-							newAbilityText = "Ability #{i+1}: #{newRealName}"
-							newAbilityText += " (Signature)" if newAbilityData.is_signature?
-							changeLog.push(newAbilityText)
-						elsif species_data.abilities[i].nil?
-							newAbilityText = "Ability #{i+1}:    Added #{newRealName}"
-							newAbilityText += " (Signature)" if newAbilityData.is_signature?
-							changeLog.push(newAbilityText)
+						if species_data.abilities[i].nil?
+							if newAbilityData
+								newAbilityText = "Ability #{i+1}: Added #{newRealName}"
+								newAbilityText += " (Signature)" if newAbilityData.is_signature?
+								changeLog.push(newAbilityText)
+							end
 						else
 							oldAbilityData = GameData::Ability.get(species_data.abilities[i])
 							oldRealName = oldAbilityData.real_name
 							if newSpeciesData.abilities[i].nil?
-								changeLog.push("Ability #{i+1}:    #{oldRealName} removed")
+								changeLog.push("Ability #{i+1}: #{oldRealName} removed")
 							else
-								replacementAbilityText = "Ability #{i+1}:    #{oldRealName} => #{newRealName}"
+								replacementAbilityText = "Ability #{i+1}: #{oldRealName} => #{newRealName}"
 								replacementAbilityText += " (Signature)" if newAbilityData.is_signature?
 								changeLog.push(replacementAbilityText)
 							end
