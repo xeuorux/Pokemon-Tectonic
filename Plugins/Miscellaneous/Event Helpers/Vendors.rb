@@ -508,7 +508,7 @@ def weirdBallsVendor
 		ROYALBALL
 	]
 	pbPokemonMart(
-		[],
+		weirdBallStock,
 		_INTL("Custom Pokéballs, made to order! You won't find these in a mart!"),
 		!CAN_SELL_IN_VENDORS
 	)
