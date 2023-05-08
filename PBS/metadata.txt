@@ -644,6 +644,7 @@ Environment = Cave
 Outdoor = false
 ShowArea = false
 Bicycle = true
+MapPosition = 0,5,11
 BattleBack = elite6
 #-------------------------------
 [108]
@@ -1236,7 +1237,7 @@ BattleBack = rocky
 Outdoor = true
 ShowArea = true
 Bicycle = true
-MapPosition = 0,4,11
+MapPosition = 0,3,11
 BattleBack = forest
 Environment = Forest
 #-------------------------------
