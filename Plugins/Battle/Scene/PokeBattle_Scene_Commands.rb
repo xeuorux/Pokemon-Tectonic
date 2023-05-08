@@ -69,9 +69,21 @@ class PokeBattle_Scene
           ret = cw.index
           @lastCmd[idxBattler] = ret
           break
-        elsif Input.trigger?(Input::B) && mode==1   # Cancel
-          pbPlayCancelSE
-          break
+        elsif Input.trigger?(Input::B)
+          if mode == 1   # Cancel
+            pbPlayCancelSE
+            break
+          elsif mode == 0 # Wild battles
+            if cw.index == 5 # Run from battle
+              pbPlayDecisionSE
+              ret = 5
+              @lastCmd[idxBattler] = 5
+              break
+            else # Move cursor to run button
+              cw.index = 5
+              pbPlayCursorSE if cw.index!=oldIndex
+            end
+          end
         elsif Input.trigger?(Input::F9) && $DEBUG    # Debug menu
           pbPlayDecisionSE
           ret = -2
