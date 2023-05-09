@@ -4158,7 +4158,7 @@ Name = Magmar
 InternalName = MAGMAR
 Type1 = FIRE
 # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
-BaseStats = 65,80,57,78,95,85
+BaseStats = 75,60,67,78,95,85
 # Total = 460
 GenderRate = Female25Percent
 GrowthRate = Medium
@@ -15487,7 +15487,7 @@ Name = Magmortar
 InternalName = MAGMORTAR
 Type1 = FIRE
 # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
-BaseStats = 75,95,67,83,125,95
+BaseStats = 85,75,77,73,125,105
 # Total = 540
 GenderRate = Female25Percent
 GrowthRate = Medium
