@@ -2,7 +2,7 @@ DebugMenuCommands.register("waypoints", {
     "parent"      => "main",
     "name"        => _INTL("Waypoints..."),
     "description" => _INTL("Edit information about waypoints."),
-    "always_show" => true
+    "always_show" => true,
   })
   
   DebugMenuCommands.register("unlockallwaypoints", {

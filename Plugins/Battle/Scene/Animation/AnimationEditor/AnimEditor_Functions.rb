@@ -1321,22 +1321,3 @@ def pbAnimationEditor
   pbSetResizeFactor($PokemonSystem.screensize)
   $game_map.autoplay if $game_map
 end
-
-
-def searchListWindow(cmdwin)
-  text = pbEnterText("Enter selection.",0,30).downcase
-  return if text.blank?
-  newIndex = -1
-  cmdwin.commands.each_with_index { |command, i|
-      next if i == cmdwin.index
-      if command.downcase.include?(text)
-          newIndex = i
-          break
-      end
-  }
-  if newIndex < 0
-      pbMessage(_INTL("Could not find a command entry matching that input."))
-  else
-      cmdwin.index = newIndex
-  end
-end
