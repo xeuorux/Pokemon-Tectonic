@@ -11,18 +11,17 @@ def pbGenerateWildPokemon(species,level,ignoreCap = false,skipAlterations = fals
   item = generateWildHeldItem(genwildpoke,herdingActive?)
   genwildpoke.giveItem(item) if item
   # Shiny Charm makes shiny Pokémon more likely to generate
-  if GameData::Item.exists?(:SHINYCHARM) && $PokemonBag.pbHasItem?(:SHINYCHARM)
-	  genwildpoke.shinyRerolls = 2
-  else
-	  genwildpoke.shinyRerolls = 1
+  genwildpoke.shinyRerolls = 1
+  $PokemonBag.pbQuantity(:SHINYCHARM).times do
+    genwildpoke.shinyRerolls *= 2
   end
   # Trigger events that may alter the generated Pokémon further
   Events.onWildPokemonCreate.trigger(nil,genwildpoke) unless skipAlterations
   # Give it however many chances to be shiny
-  genwildpoke.shinyRerolls.times do
-      break if genwildpoke.shiny?
-      genwildpoke.personalID = rand(2 ** 16) | rand(2 ** 16) << 16
-	    genwildpoke.shiny = nil
+  (genwildpoke.shinyRerolls - 1).times do
+    break if genwildpoke.shiny?
+    genwildpoke.regeneratePersonalID
+    genwildpoke.shiny = nil
   end
   #genwildpoke.shiny_variant = true if genwildpoke.shiny? && rand(4) < 1
   return genwildpoke
@@ -54,4 +53,15 @@ def herdingActive?
     return true if partyMember.hasAbility?(:HERDING)
   end
   return false
+end
+
+def testShinyChances
+  shinyTimes = 0
+  totalTimes = 200_000
+  totalTimes.times do
+    shinyTimes += 1 if pbGenerateWildPokemon(:MSINISTEA,8,false,true).shiny?
+  end
+  percentage = (100 * shinyTimes / totalTimes.to_f).to_s
+  pbMessage(_INTL("Trial complete."))
+  echoln("Out of #{totalTimes.to_s} trials, a level 8 sinistea was shiny #{shinyTimes} times or #{percentage} percent of the time")
 end

@@ -461,7 +461,7 @@
 460,OLDSEAMAP,Old Sea Map,Old Sea Maps,8,0,"A faded sea chart that shows the way to a certain island.",0,0,6
 461,DNASPLICERS,DNA Splicers,DNA Splicers,8,0,"A splicer that fuses Kyurem and a certain Pokémon. They are said to have been one in the beginning.",5,0,6
 462,REVEALGLASS,Reveal Glass,Reveal Glasses,8,0,"A glass that reveals the truth. It is a mysterious glass that returns a Pokémon back to its original shape.",5,0,6
-463,SHINYCHARM,Shiny Charm,Shiny Charms,8,0,"A shiny charm which doubles the chance of finding a Shiny Pokémon.",0,0,6
+463,SHINYCHARM,Shiny Charm,Shiny Charms,8,0,"A shiny charm which doubles the chance of finding a Shiny Pokémon.",0,0,13
 464,REDORB,Red Orb,Red Orbs,5,0,"A shiny red orb that is said to have a legend tied to it. It's known to be connected with the Hoenn region.",0,0,0
 465,BLUEORB,Blue Orb,Blue Orbs,5,0,"A shiny blue orb that is said to have a legend tied to it. It's known to be connected with the Hoenn region.",0,0,0
 466,LUMIOSEGALETTE,Lumiose Galette,Lumiose Galettes,2,350,"A popular treat in Lumiose City. It can be used once to heal all the status conditions of a Pokémon.",1,0,0
