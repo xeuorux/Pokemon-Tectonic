@@ -806,7 +806,7 @@ class PokeBattle_Battler
     end
 
     def eachLegalAbility
-        pkmn.species_data.abilities.each do |abilityID|
+        @pokemon.species_data.abilities.each do |abilityID|
             yield abilityID
         end
     end
