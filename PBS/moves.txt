@@ -604,7 +604,7 @@
 603,SHIFTGEAR,Shift Gear,036,0,STEEL,Status,0,10,0,User,0,d,"The user rotates its gears, raising its Attack and Speed by two steps each.",
 604,BEHEMOTHBASH,Behemoth Bash,000,100,STEEL,Physical,100,5,0,NearOther,0,abef,"The user becomes a gigantic shield and slams into the target.",
 605,BEHEMOTHBLADE,Behemoth Blade,000,100,STEEL,Physical,100,5,0,NearOther,0,abefp,"The user becomes a gigantic sword and cuts the target.",
-606,SNAPTRAP,Snap Trap,0CF,75,GRASS,Special,100,12,0,NearOther,0,abef,"The user snares the target, trapping and damaging it for three turns.",
+606,SNAPTRAP,Snap Trap,0CF,75,GRASS,Physical,100,12,0,NearOther,0,abef,"The user snares the target, trapping and damaging it for three turns.",
 607,STEELBEAM,Steel Beam,510,140,STEEL,Special,100,5,100,NearOther,0,bef,"Fires a beam of steel that it collected from its entire body. The user loses half its current HP.",
 608,HYDROCANNON,Hydro Cannon,0C2,170,WATER,Special,100,5,0,NearOther,0,bef,"The target is hit with a watery blast. The user must rest on the next turn, however.",
 609,WATERSPOUT,Water Spout,08B,1,WATER,Special,100,5,0,AllNearFoes,0,bef,"The user spouts water to damage the foe. The lower the user's HP, the less powerful it becomes.",
