@@ -395,3 +395,4 @@
 1394,PETTY,Petty,"Whenever a foe raises their stats, the Pokémon follows suit."
 1395,PESTILENT,Pestilent,"While the Pokémon is below half health, its attacks leech those hit."
 1396,ARCHVILLAIN,Archvillain,"Boosts the Pokémon's Attack by 50%, but its attacks cannot faint the target."
+1397,HEARTOFJUSTICE,Heart of Justice,"Immune to Dark-type moves, and boosts Attack when hit by one."
