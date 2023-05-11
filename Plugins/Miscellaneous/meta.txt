@@ -1,7 +1,0 @@
-Name         = MiscChanges                                      
-Version      = 1.0
-Requires	 = BattleChanges
-Requires	 = Following Pokemon EX                                                                                           
-Link         = https://reliccastle.com/link-to-the-plugin/               
-Credits      = Zeu,Divock
-Scripts		 = GameData/Compiler/CompilerWriting.rb,GameData/Compiler/CompilerReading.rb,GameData/Compiler/MapEditing.rb

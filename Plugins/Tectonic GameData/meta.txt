@@ -1,0 +1,5 @@
+Name         = Tectonic Gamedata                                      
+Version      = 1.0
+Link         = https://reliccastle.com/link-to-the-plugin/               
+Credits      = Zeu
+Scripts		 = Compiler/CompilerWriting.rb,Compiler/CompilerReading.rb,Compiler/Compiler_EventConversion.rb

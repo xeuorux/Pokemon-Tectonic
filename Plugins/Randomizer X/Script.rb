@@ -482,24 +482,6 @@ def pbLoadTrainer(tr_type, tr_name, tr_version = 0)
 
   return trainer_data.to_trainer
 end
-#===============================================================================
-#  randomize encounter data if possible
-#===============================================================================
-module GameData
-  class Encounter
-    #---------------------------------------------------------------------------
-    #  override standard get function
-    #---------------------------------------------------------------------------
-    def self.get(map_id, map_version = 0)
-      validate map_id => Integer
-      validate map_version => Integer
-      trial_key = sprintf("%s_%d", map_id, map_version).to_sym
-      key = (self::DATA.has_key?(trial_key)) ? trial_key : sprintf("%s_0", map_id).to_sym
-      return Randomizer.getRandomizedData(self::DATA[key], :ENCOUNTERS, key)
-    end
-    #---------------------------------------------------------------------------
-  end
-end
 
 def effectiveBST(species)
   return 500 if [:SHEDINJA,:WISHIWASHI].include?(species)
