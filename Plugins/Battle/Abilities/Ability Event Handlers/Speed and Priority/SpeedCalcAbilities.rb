@@ -183,3 +183,15 @@ BattleHandlers::SpeedCalcAbility.add(:METEORIC,
       next mult * 1.5 if %i[Sandstorm Hail].include?(battler.battle.pbWeather)
   }
 )
+
+BattleHandlers::SpeedCalcAbility.add(:MAESTRO,
+  proc { |ability, battler, mult|
+      next mult * 2 if battler.effectActive?(:Maestro)
+  }
+)
+
+BattleHandlers::SpeedCalcAbility.add(:GALEWINGS,
+  proc { |ability, battler, mult|
+      next mult * 2 if battler.effectActive?(:GaleWings)
+  }
+)

@@ -1594,6 +1594,18 @@ GameData::BattleEffect.register_effect(:Battler, {
 })
 
 GameData::BattleEffect.register_effect(:Battler, {
+    :id => :Maestro,
+    :real_name => "Maestro",
+    :resets_eor	=> true,
+})
+
+GameData::BattleEffect.register_effect(:Battler, {
+    :id => :GaleWings,
+    :real_name => "GaleWings",
+    :resets_eor	=> true,
+})
+
+GameData::BattleEffect.register_effect(:Battler, {
     :id => :ShimmeringHeat,
     :real_name => "Shimmering Heat",
     :resets_eor	=> true,

@@ -1,9 +1,3 @@
-BattleHandlers::PriorityChangeAbility.add(:GALEWINGS,
-  proc { |ability, battler, move, _pri, _targets = nil, _aiCheck = false|
-      next 1 if battler.hp == battler.totalhp && move.type == :FLYING
-  }
-)
-
 BattleHandlers::PriorityChangeAbility.add(:PRANKSTER,
   proc { |ability, battler, move, _pri, _targets = nil, aiCheck = false|
       if move.statusMove?
@@ -19,23 +13,9 @@ BattleHandlers::PriorityChangeAbility.add(:TRIAGE,
   }
 )
 
-BattleHandlers::PriorityChangeAbility.add(:MAESTRO,
-  proc { |ability, _battler, move, _pri, _targets = nil, _aiCheck = false|
-      next 1 if move.soundMove?
-  }
-)
-
 BattleHandlers::PriorityChangeAbility.add(:FAUXLIAGE,
   proc { |ability, battler, move, _pri, _targets = nil, _aiCheck = false|
       next 1 if move.calcType == :GRASS
-  }
-)
-
-BattleHandlers::PriorityChangeAbility.add(:NEERDOWELL,
-  proc { |ability, battler, move, _pri, aiCheck = false|
-      if move.statusMove? && battler.battle.pbWeather == :Moonglow
-          next 1
-      end
   }
 )
 
