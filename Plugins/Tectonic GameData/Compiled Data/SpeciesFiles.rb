@@ -246,13 +246,13 @@ module GameData
         ret /= pitch   # Sound played at a lower pitch lasts longer
         return (ret * Graphics.frame_rate).ceil + 4   # 4 provides a buffer between sounds
       end
-    end
 
-    #===========================================================================
+      #===========================================================================
 
-    def self.ow_sprite_filename(species, form = 0, gender = 0, shiny = false, shadow = false)
-        ret = self.check_graphic_file("Graphics/Characters/", species, form, gender, shiny, shadow, "Followers")
-        ret = "Graphics/Characters/Followers/000" if nil_or_empty?(ret)
-        return ret
-    end
+      def self.ow_sprite_filename(species, form = 0, gender = 0, shiny = false, shadow = false)
+          ret = self.check_graphic_file("Graphics/Characters/", species, form, gender, shiny, shadow, "Followers")
+          ret = "Graphics/Characters/Followers/000" if nil_or_empty?(ret)
+          return ret
+      end
+    end   
 end
