@@ -2015,7 +2015,7 @@ class Pokemon
       @timeReceived     = Time.now.to_i
       @timeEggHatched   = nil
       @fused            = nil
-      @personalID       = rand(2**16) | rand(2**16) << 16
+      regeneratePersonalID
       @hp               = 1
       @totalhp          = 1
       @hpMult = 1
@@ -2032,6 +2032,10 @@ class Pokemon
               reset_moves if withMoves
           end
       end
+  end
+
+  def regeneratePersonalID
+    @personalID = rand(2**16) | rand(2**16) << 16
   end
 
   def shadowPokemon?

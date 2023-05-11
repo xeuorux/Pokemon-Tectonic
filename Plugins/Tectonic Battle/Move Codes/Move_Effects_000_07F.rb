@@ -1860,7 +1860,7 @@ class PokeBattle_Move_066 < PokeBattle_Move
 
     def pbEffectAgainstTarget(user, target)
         replacementMsg = _INTL("{1} acquired {2}!", target.pbThis, getAbilityName(user.firstAbility))
-        user.replaceAbility(target.firstAbility, replacementMsg: replacementMsg)
+        target.replaceAbility(user.firstAbility, replacementMsg: replacementMsg)
     end
 
     def getEffectScore(user, target)

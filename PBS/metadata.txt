@@ -1917,12 +1917,6 @@ Outdoor = false
 ShowArea = true
 Bicycle = true
 #-------------------------------
-[365]
-Outdoor = false
-ShowArea = true
-Bicycle = true
-Weather = TimeSandstorm,100
-#-------------------------------
 [367]
 # Prizca Great Hall
 Outdoor = false
