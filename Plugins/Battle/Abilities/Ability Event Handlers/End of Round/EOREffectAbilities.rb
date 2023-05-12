@@ -149,6 +149,7 @@ BattleHandlers::EOREffectAbility.add(:VITALRHYTHM,
       battler.eachAlly do |b|
         canHealAny = true if b.canHeal?
       end
+      canHealAny = true if battler.canHeal?
       next unless canHealAny
       battle.pbShowAbilitySplash(battler, ability)
       battler.applyFractionalHealing(1.0 / 16.0)
