@@ -545,7 +545,7 @@ class PokeBattle_Battle
                 baseMoney = 10 + baseMoney / 2
                 tMoney += pbMaxLevelInTeam(1, i) * baseMoney
             end
-            tMoney *= moneyMult
+            tMoney = (tMoney * moneyMult).floor
             oldMoney = pbPlayer.money
             pbPlayer.money += tMoney
             moneyGained = pbPlayer.money - oldMoney
@@ -554,7 +554,7 @@ class PokeBattle_Battle
         # Pick up money scattered by Pay Day
         if @field.effectActive?(:PayDay)
             paydayMoney = @field.effects[:PayDay]
-            paydayMoney *= moneyMult
+            paydayMoney = (paydayMoney * moneyMult).floor
             oldMoney = pbPlayer.money
             pbPlayer.money += paydayMoney
             moneyGained = pbPlayer.money - oldMoney
