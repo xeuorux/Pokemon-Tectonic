@@ -255,20 +255,6 @@ class DependentEvents
   end
 end
 
-
-#-------------------------------------------------------------------------------
-# Adding a new method to GameData to easily get the appropriate Follower Graphic
-#-------------------------------------------------------------------------------
-module GameData
-  class Species
-    def self.ow_sprite_filename(species, form = 0, gender = 0, shiny = false, shadow = false)
-      ret = self.check_graphic_file("Graphics/Characters/", species, form, gender, shiny, shadow, "Followers")
-	  ret = "Graphics/Characters/Followers/000" if nil_or_empty?(ret)
-	  return ret
-    end
-  end
-end
-
 #-------------------------------------------------------------------------------
 # Adding a new method to GameData to easily get the appropriate Follower Graphic
 #-------------------------------------------------------------------------------

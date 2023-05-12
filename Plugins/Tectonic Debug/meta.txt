@@ -1,0 +1,4 @@
+Name         = Debug
+Version      = 1.0
+Link         = https://reliccastle.com/link-to-the-plugin/
+Credits      = Zeu

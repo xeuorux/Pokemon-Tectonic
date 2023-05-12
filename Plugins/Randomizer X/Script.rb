@@ -482,24 +482,6 @@ def pbLoadTrainer(tr_type, tr_name, tr_version = 0)
 
   return trainer_data.to_trainer
 end
-#===============================================================================
-#  randomize encounter data if possible
-#===============================================================================
-module GameData
-  class Encounter
-    #---------------------------------------------------------------------------
-    #  override standard get function
-    #---------------------------------------------------------------------------
-    def self.get(map_id, map_version = 0)
-      validate map_id => Integer
-      validate map_version => Integer
-      trial_key = sprintf("%s_%d", map_id, map_version).to_sym
-      key = (self::DATA.has_key?(trial_key)) ? trial_key : sprintf("%s_0", map_id).to_sym
-      return Randomizer.getRandomizedData(self::DATA[key], :ENCOUNTERS, key)
-    end
-    #---------------------------------------------------------------------------
-  end
-end
 
 def effectiveBST(species)
   return 500 if [:SHEDINJA,:WISHIWASHI].include?(species)
@@ -514,29 +496,3 @@ def pbBaseStatTotal(species)
   baseStats.each { |k,v| ret += v }
   return ret
 end
-
-
-DebugMenuCommands.register("randomizer", {
-  "parent"      => "main",
-  "name"        => _INTL("Randomizer..."),
-  "description" => _INTL("Deal with randomizer")
-})
-
-DebugMenuCommands.register("startrandomizer", {
-  "parent"      => "randomizer",
-  "name"        => _INTL("Start the Randomizer"),
-  "description" => _INTL("Starts the Randomizer"),
-  "effect"      => proc { |sprites, viewport|
-    Randomizer.start
-  }
-})
-
-DebugMenuCommands.register("resetrandomizer", {
-  "parent"      => "randomizer",
-  "name"        => _INTL("Reset Randomizer"),
-  "description" => _INTL("Reset the Randomizer"),
-  "effect"      => proc { |sprites, viewport|
-    Randomizer.reset
-	pbMessage(_INTL("Randomizer was reset."))
-  }
-})

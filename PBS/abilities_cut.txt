@@ -93,3 +93,4 @@
 3092,AFTERMATH,Aftermath,"Damages the attacker if it knocks out the Pokémon with a move that makes direct contact."
 3093,GRASSPELT,Grass Pelt,"Boosts the Pokémon's Defense stat on Grassy Terrain."
 3094,WATERCOMPACTION,Water Compaction,"Boosts the Defense stat sharply when the Pokémon is hit by a Water-type move."
+3095,NEERDOWELL,Ne'er-do-well,"Gives priority to status moves in moonglow."
