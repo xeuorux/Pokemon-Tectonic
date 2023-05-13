@@ -5552,6 +5552,32 @@ Pokemon = LEDYBA,25
     AbilityIndex = 1 # Star Guardian
     Item = CHOICEBAND
 #-------------------------------
+[COOLTRAINER_F7,Singles Mystic Pro]
+Pokemon = SNEASLER,35
+    Moves = HONECLAWS,CLOSECOMBAT,VENOMORTAR,SEVER
+    AbilityIndex = 1 # Unburden
+    Item = FOCUSSASH
+Pokemon = ANINETALES,35
+    Moves = CALMMIND,ICEBEAM,MOONBLAST,HEALBELL
+    AbilityIndex = 1 # Sudden Chill
+    Item = SITRUSBERRY
+Pokemon = DRAGONAIR,35
+    Moves = DRAGONDANCE,DRAGONPULSE,ROOST,COLDFRONT
+    AbilityIndex = 1 # Multiscale
+    Item = LEFTOVERS
+Pokemon = AMAROWAK,35
+    Moves = BREAKDANCE,DRAINPUNCH,INFERNOCHARGE,SOULRIP
+    AbilityIndex = 1 # Ancestral Dance
+    Item = LUCKHERB
+Pokemon = CLAYDOL,35
+    Moves = EARTHPOWER,LIGHTSCREEN,REFLECT,PSYCHIC
+    AbilityIndex = 1 # Disorienting
+    Item = LIGHTCLAY
+Pokemon = FLOETTE,35
+    Moves = AROMATHERAPY,AURATRICK,WISH,GIGADRAIN
+    AbilityIndex = 1 # Sentry
+    Item = LEFTOVERS
+#-------------------------------
 [COOLTRAINER_F7,Doubles Strategist Pro]
 Pokemon = ILLUMISE,45
     Moves = STRUGGLEBUG,WISH,REFLECT,LIGHTSCREEN
@@ -5578,7 +5604,7 @@ Pokemon = MAGNEZONE,45
     AbilityIndex = 1 # No Guard
     Item = SHELLBELL
 #-------------------------------
-[COOLTRAINER_F7,Singles Fortune Moonglow Pro]
+[COOLTRAINER_M7,Singles Fortune Moonglow Pro]
 Pokemon = ALOMOMOLA,55
     Moves = FLIPTURN,WISH,INFINITEFORCE,HEALBELL
     AbilityIndex = 1 # Moon Gaze
@@ -5603,28 +5629,29 @@ Pokemon = PERRSERKER,55
     AbilityIndex = 1 # Steely Spirit
     Item = UTILITYUMBRELLA
 #-------------------------------
-[COOLTRAINER_F7,Singles Mystic Pro]
-Pokemon = SNEASLER,65
-    Moves = HONECLAWS,CLOSECOMBAT,VENOMORTAR,SEVER
-    AbilityIndex = 1 # Unburden
+[COOLTRAINER_M7,Singles Tyranical Pro]
+Pokemon = MORPEKO,65
+    Moves = AURAWHEEL,TAUNT,BELLYDRUM,RAPIDSPIN
+    AbilityIndex = 0 # Hunger Switch
     Item = FOCUSSASH
-Pokemon = ANINETALES,65
-    Moves = CALMMIND,ICEBEAM,MOONBLAST,HEALBELL
-    AbilityIndex = 1 # Sudden Chill
-    Item = SITRUSBERRY
-Pokemon = DRAGONITE,65
-    Moves = DRAGONDANCE,DRAGONPULSE,ROOST,COLDFRONT
-    AbilityIndex = 1 # Multiscale
-    Item = LEFTOVERS
-Pokemon = AMAROWAK,65
-    Moves = BREAKDANCE,DRAINPUNCH,INFERNOCHARGE,SOULRIP
-    AbilityIndex = 1 # Ancestral Dance
-    Item = LUCKHERB
-Pokemon = CLAYDOL,65
-    Moves = LEYLINEBURST,LIGHTSCREEN,REFLECT,ICEBEAM
+Pokemon = SAHARICANE,65
+    Moves = EARTHPOWER,MIASMA,COLDFRONT,FLAMETHROWER
     AbilityIndex = 1 # Disorienting
-    Item = LIGHTCLAY
-Pokemon = FLORGES,65
-    Moves = AROMATHERAPY,AURATRICK,WISH,GIGADRAIN
-    AbilityIndex = 1 # Sentry
+    Item = STRIKEVEST
+Pokemon = BLASTOISE,65
+    Moves = FLASHCANNON,WATERPULSE,AURASPHERE,DARKPULSE
+    AbilityIndex = 1 # Mega Launcher
+    Item = CHOICESPECS
+Pokemon = VENUSAUR,65
+    Moves = LIGHTSCREEN,LEECHSEED,POWERWHIP,SLUDGEBOMB
+    AbilityIndex = 1 # Thick Fat
     Item = LEFTOVERS
+Pokemon = CHARIZARD,65
+    Moves = OVERHEAT,DRACOMETEOR,MIRAGEFLARE,CRUELTY
+    AbilityIndex = 0 # Levitate
+    Item = WHITEHERB
+Pokemon = LYCANROC,65
+    Form = 2
+    Moves = PSYCHICFANGS,ADAMANTINEPRESS,CLOSECOMBAT,SWORDSDANCE
+    AbilityIndex = 0 # Tough Claws
+    Item = CHOPLEBERRY
