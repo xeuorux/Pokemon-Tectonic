@@ -26,7 +26,7 @@ class PokeBattle_AI
         return Effectiveness::NORMAL_EFFECTIVE if moveType == :GROUND &&
                                                   target.pbHasTypeAI?(:FLYING) && target.hasActiveItem?(:IRONBALL)
         # Determine types
-        tTypes = target.pbTypesAI(true)
+        tTypes = target.pbTypes(true, true)
         # Get effectivenesses
         typeMods = [Effectiveness::NORMAL_EFFECTIVE_ONE] * 3 # 3 types max
         tTypes.each_with_index do |defType, i|
