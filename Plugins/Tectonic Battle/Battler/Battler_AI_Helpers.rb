@@ -236,30 +236,6 @@ class PokeBattle_Battler
     # Understanding the battler's type
     ###############################################################################
 
-    # Returns the active types of this Pokémon. The array should not include the
-    # same type more than once, and should not include any invalid type numbers (e.g. -1).
-    # is fooled by Illusion
-    def pbTypesAI(withType3 = false)
-        if illusion? && pbOwnedByPlayer?
-            ret = [disguisedAs.type1]
-            ret.push(disguisedAs.type2) if disguisedAs.type2 != disguisedAs.type1
-        else
-            ret = [@type1]
-            ret.push(@type2) if @type2 != @type1
-        end
-        # Burn Up erases the Fire-type.
-        ret.delete(:FIRE) if effectActive?(:BurnUp)
-        # Roost erases the Flying-type. If there are no types left, adds the Normal-
-        # type.
-        if effectActive?(:Roost)
-            ret.delete(:FLYING)
-            ret.push(:NORMAL) if ret.length == 0
-        end
-        # Add the third type specially.
-        ret.push(@effects[:Type3]) if withType3 && effectActive?(:Type3) && !ret.include?(@effects[:Type3])
-        return ret
-    end
-
     def shouldTypeApply?(type, checkingForAI)
         if checkingForAI
             return pbHasTypeAI?(type)
@@ -270,7 +246,7 @@ class PokeBattle_Battler
 
     def pbHasTypeAI?(type)
         return false unless type
-        activeTypes = pbTypesAI(true)
+        activeTypes = pbTypes(true, true)
         return activeTypes.include?(GameData::Type.get(type).id)
     end
 
