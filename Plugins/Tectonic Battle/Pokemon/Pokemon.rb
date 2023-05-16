@@ -337,6 +337,7 @@ class Pokemon
         @hp = (@totalhp * HEALING_RATIO_ON_FEAR_REMOVED).floor
         message = _INTL("#{name} is no longer Afraid. It was restored to half health!")
       else
+        @hp = 1
         message = _INTL("#{name} is no longer Afraid!")
       end
       if battle

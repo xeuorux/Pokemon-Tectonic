@@ -113,14 +113,15 @@ BattleHandlers::EORWeatherAbility.add(:NIGHTLINE,
 
         if healingAmount > 0
             potentialHeals = []
-            battle.pbParty(battler.index).each_with_index do |pkmn,_index|
+            battle.pbParty(battler.index).each_with_index do |pkmn,partyIndex|
                 next if pkmn.fainted?
                 next if pkmn.hp == pkmn.totalhp
+                next if battle.pbFindBattler(partyIndex, battler.index)
                 potentialHeals.push(pkmn)
             end
             unless potentialHeals.empty?
                 healTarget = potentialHeals.sample
-                battle.pbDisplay(_INTL("{1} sends out a signal, healing #{healTarget.name}!"))
+                battle.pbDisplay(_INTL("#{battler.pbThis} sends out a signal, healing #{healTarget.name}!"))
                 healTarget.healBy(healingAmount)
             end
         end

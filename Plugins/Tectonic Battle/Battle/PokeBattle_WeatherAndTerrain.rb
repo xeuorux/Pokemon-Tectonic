@@ -387,31 +387,6 @@ class PokeBattle_Battle
                 fraction *= 2 if damageDoubled
                 fraction *= 2 if curseActive?(:CURSE_BOOSTED_HAIL)
                 hailDamage += b.applyFractionalDamage(fraction)
-            when :ShadowSky
-                next unless b.takesShadowSkyDamage?
-                pbDisplay(_INTL("{1} is hurt by the shadow sky!", b.pbThis)) if showWeatherMessages
-                fraction = 1.0 / 16.0
-                b.applyFractionalDamage(fraction)
-            when :Moonglow
-                # if b.pbHasType?(:FAIRY)
-                #     healingMessage = _INTL("{1} absorbs the moonlight!", b.pbThis)
-                #     healingAmount = b.applyFractionalHealing(1.0 / 16.0, showMessage: showWeatherMessages, customMessage: healingMessage)
-                #     if healingAmount > 0 && b.hasActiveAbility?(:NIGHTLINE)
-                #         potentialHeals = []
-                #         @battle.pbParty(b.index).each_with_index do |pkmn,index|
-                #             next if pkmn.fainted?
-                #             next if pkmn.hp == pkmn.totalhp
-                #             potentialHeals.push(pkmn)
-                #         end
-                #         unless potentialHeals.empty?
-                #             healTarget = potentialHeals.sample
-                #             pbDisplay(_INTL("{1} shares the healing with #{healTarget.name}!"))
-                #             newHP = pkmn.hp + healingAmount
-                #             newHP = pkmn.totalhp if newHP > pkmn.totalhp
-                #             pkmn.hp = newHP
-                #         end
-                #     end
-                # end
             end
         end
         # Ectoparticles
