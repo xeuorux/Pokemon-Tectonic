@@ -78,13 +78,6 @@ Compatibility = Undiscovered
 Pokedex = This Pikachu is wearing its Trainer's cap. The cap is a precious symbol that travels across different regions with Pikachu.
 BattlerEnemyY = 29
 #-------------------------------
-[CUBONE,1]
-Evolutions = MAROWAK,Item,DUSKSTONE
-#-------------------------------
-[PICHU,1]
-FormName = Spiky-Eared
-Evolutions = PIKACHU,None,
-#-------------------------------
 [UNOWN,1]
 FormName = B
 BattlerPlayerY = 28
@@ -660,7 +653,7 @@ FormName = Jungle Pattern
 FormName = Marine Pattern
 #-------------------------------
 [VIVILLON,8]
-FormName = Meadow Pattern
+FormName = Archipelago Pattern
 #-------------------------------
 [VIVILLON,9]
 FormName = Modern Pattern
