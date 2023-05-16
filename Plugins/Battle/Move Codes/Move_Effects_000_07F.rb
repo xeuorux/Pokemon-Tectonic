@@ -1913,7 +1913,7 @@ class PokeBattle_Move_067 < PokeBattle_Move
         end
         if target.ungainableAbility?(target.firstAbility) || target.firstAbility == :WONDERGUARD
             if show_message
-                @battle.pbDisplay(_INTL("But it failed, since #{user.pbThis(true)}'s ability can't be copied!"))
+                @battle.pbDisplay(_INTL("But it failed, since #{target.pbThis(true)}'s ability can't be copied!"))
             end
             return true
         end
