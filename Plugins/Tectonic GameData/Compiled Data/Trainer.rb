@@ -9,11 +9,11 @@ module GameData
       attr_reader :real_lose_text
       attr_reader :pokemon
       attr_reader :policies
-		attr_reader :extendsClass
-		attr_reader :extendsName
-		attr_reader :extendsVersion
-		attr_reader :removedPokemon
-		attr_reader :nameForHashing
+      attr_reader :extendsClass
+      attr_reader :extendsName
+      attr_reader :extendsVersion
+      attr_reader :removedPokemon
+      attr_reader :nameForHashing
   
       DATA = {}
       DATA_FILENAME = "trainers.dat"
