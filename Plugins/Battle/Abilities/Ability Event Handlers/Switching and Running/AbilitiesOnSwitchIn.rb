@@ -791,7 +791,7 @@ BattleHandlers::AbilityOnSwitchIn.add(:LOOSESHELL,
       next unless battle.pbWeather == :Sandstorm
       next if battler.pbOpposingSide.effectActive?(:StealthRock)
       battle.pbShowAbilitySplash(battler, ability)
-      battle.pbDisplay(_INTL("{1} shoots out parts of its discarded shell!", pbThis))
+      battle.pbDisplay(_INTL("{1} shoots out parts of its discarded shell!", battler.pbThis))
       battler.pbOpposingSide.applyEffect(:StealthRock)
       battle.pbHideAbilitySplash(battler)
   }
