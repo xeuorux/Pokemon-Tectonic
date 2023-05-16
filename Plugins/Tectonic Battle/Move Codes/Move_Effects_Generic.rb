@@ -208,12 +208,12 @@ class PokeBattle_FlinchMove < PokeBattle_Move
 
     def pbEffectAgainstTarget(user, target)
         return if damagingMove?
-        target.pbFlinch(user)
+        target.pbFlinch
     end
 
     def pbAdditionalEffect(user, target)
         return if target.damageState.substitute
-        target.pbFlinch(user)
+        target.pbFlinch
     end
 
     def getTargetAffectingEffectScore(user, target)

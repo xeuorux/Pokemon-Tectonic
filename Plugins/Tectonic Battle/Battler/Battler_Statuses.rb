@@ -583,11 +583,16 @@ immuneTypeRealName))
     #=============================================================================
     # Flinching
     #=============================================================================
-    def pbFlinch(_user = nil)
+    def flinchImmuneByAbility?(checkingForAI = false)
         unless @battle.moldBreaker
-            return if hasActiveAbility?(GameData::Ability::FLINCH_IMMUNITY_ABILITIES)
-            return if @battle.pbCheckSameSideAbility(:HEARTENINGAROMA,@index)
+            return true if shouldAbilityApply?(GameData::Ability::FLINCH_IMMUNITY_ABILITIES, checkingForAI)
+            return true if @battle.pbCheckSameSideAbility(:HEARTENINGAROMA,@index)
         end
+        return false
+    end
+    
+    def pbFlinch
+        return if flinchImmuneByAbility?
         applyEffect(:Flinch)
     end
 

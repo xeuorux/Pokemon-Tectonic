@@ -53,7 +53,7 @@ class PokeBattle_Battler
     end
 
     def flinchedByMoonglow?(checkingForAI = false)
-        return false if shouldAbilityApply?(:INNERFOCUS, checkingForAI)
+        return false if flinchImmuneByAbility?(checkingForAI)
         return false unless affectedByWeatherDownsides?(checkingForAI)
         return false if shouldTypeApply?(:FAIRY, checkingForAI) || shouldTypeApply?(:DARK, checkingForAI)
         return false if shouldAbilityApply?(GameData::Ability::MOONGLOW_ABILITIES, checkingForAI)

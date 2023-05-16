@@ -102,7 +102,7 @@ class PokeBattle_Move_009 < PokeBattle_Move
             target.applyNumb(user)
         end 
         if @battle.pbRandom(100) < chance && canApplyAdditionalEffects?(user,target,true)
-            target.pbFlinch(user)
+            target.pbFlinch
         end
     end
 
@@ -134,7 +134,7 @@ class PokeBattle_Move_00B < PokeBattle_Move
             target.applyBurn(user)
         end 
         if @battle.pbRandom(100) < chance && canApplyAdditionalEffects?(user,target,true)
-            target.pbFlinch(user)
+            target.pbFlinch
         end
     end
 
@@ -176,7 +176,7 @@ class PokeBattle_Move_00E < PokeBattle_Move
             target.applyFrostbite(user)
         end 
         if @battle.pbRandom(100) < chance && canApplyAdditionalEffects?(user,target,true)
-            target.pbFlinch(user)
+            target.pbFlinch
         end
     end
 

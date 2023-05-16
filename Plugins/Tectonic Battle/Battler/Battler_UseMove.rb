@@ -955,7 +955,7 @@ user.pbThis))
             next unless @battle.pbRandom(100) < chance
             PBDebug.log("[Item/ability triggered] #{user.pbThis}'s King's Rock/Razor Fang or Stench")
             next unless move.canApplyAdditionalEffects?(user, b, true)
-            b.pbFlinch(user)
+            b.pbFlinch
         end
         # Message for and consuming of type-weakening berries
         # NOTE: The "consume held item" animation for type-weakening berries occurs
