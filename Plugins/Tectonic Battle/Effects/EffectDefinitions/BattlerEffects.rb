@@ -733,15 +733,6 @@ GameData::BattleEffect.register_effect(:Battler, {
         battler.pbReduceHP(battler.hp)
         battler.pbFaint if battler.fainted?
     end,
-    :sub_effects => [:PerishSongUser],
-})
-
-GameData::BattleEffect.register_effect(:Battler, {
-    :id => :PerishSongUser,
-    :real_name => "Perish Singer",
-    :type => :Position,
-    :baton_passed => true,
-    :disable_effects_on_other_exit => [:PerishSong],
 })
 
 GameData::BattleEffect.register_effect(:Battler, {

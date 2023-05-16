@@ -460,9 +460,8 @@ BattleHandlers::TargetAbilityOnHit.add(:PERISHBODY,
         next if target.effectActive?(:PerishSong)
         next -5 if aiChecking
         battle.pbShowAbilitySplash(target, ability)
-        battle.pbDisplay(_INTL("Both Pokémon will faint in three turns!"))
         target.applyEffect(:PerishSong, 3)
-        target.pointAt(:PerishSongUser, user)
+        user.applyEffect(:PerishSong, 3)
         battle.pbHideAbilitySplash(target)
     }
 )

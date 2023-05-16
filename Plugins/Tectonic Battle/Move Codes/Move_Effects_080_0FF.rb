@@ -2840,7 +2840,6 @@ class PokeBattle_Move_0E5 < PokeBattle_Move
 
     def pbEffectAgainstTarget(user, target)
         target.applyEffect(:PerishSong, 3)
-        target.pointAt(:PerishSongUser, user)
     end
 
     def getEffectScore(user, _target)
