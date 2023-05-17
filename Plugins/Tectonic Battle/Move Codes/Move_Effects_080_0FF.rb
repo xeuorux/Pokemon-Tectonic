@@ -241,7 +241,7 @@ class PokeBattle_Move_08E < PokeBattle_Move
     def pbBaseDamage(_baseDmg, user, _target)
         mult = 1
         GameData::Stat.each_battle { |s| mult += user.steps[s.id] if user.steps[s.id] > 0 }
-        return 20 * mult
+        return 10 * mult
     end
 end
 
@@ -253,7 +253,7 @@ class PokeBattle_Move_08F < PokeBattle_Move
     def pbBaseDamage(_baseDmg, _user, target)
         mult = 3
         GameData::Stat.each_battle { |s| mult += target.steps[s.id] if target.steps[s.id] > 0 }
-        return [20 * mult, 200].min
+        return [10 * mult, 200].min
     end
 end
 
