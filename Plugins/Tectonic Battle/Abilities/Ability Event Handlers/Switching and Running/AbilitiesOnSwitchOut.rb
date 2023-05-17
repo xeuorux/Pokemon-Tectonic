@@ -1,12 +1,13 @@
 BattleHandlers::AbilityOnSwitchOut.add(:REGENERATOR,
-  proc { |ability, battler, endOfBattle, _battle = nil|
+  proc { |ability, battler, battle, endOfBattle|
       next if endOfBattle
       battler.pbRecoverHP(battler.totalhp / 3.0, false, false, false)
   }
 )
 
 BattleHandlers::AbilityOnSwitchOut.add(:NATURALCURE,
-  proc { |ability, battler, _endOfBattle|
+  proc { |ability, battler, battle, endOfBattle|
+      next if endOfBattle
       battler.pbCureStatus(false)
   }
 )
