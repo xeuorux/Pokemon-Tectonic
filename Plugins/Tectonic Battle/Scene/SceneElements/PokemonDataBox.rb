@@ -351,11 +351,12 @@ class PokemonDataBox < SpriteWrapper
 
 		# Draw held item icon
 		itemIndex = 0
-		@battler.eachActiveItem do |itemID|
+		@battler.eachItem do |itemID|
 		  itemX = (@battler.opposes?(0)) ? 204 : -8   # Foe's/player's
 		  itemX = itemX + 8 * itemIndex
 		  itemY = 36 + 8 * itemIndex
 		  itemIconFileName = GameData::Item.get(itemID).super ? "Graphics/Pictures/Battle/icon_item_super" : "Graphics/Pictures/Battle/icon_item"
+		  itemIconFileName += "_inactive" unless @battler.itemActive?
 		  imagePos.push([itemIconFileName,@spriteBaseX+itemX,itemY])
 		  itemIndex += 1
 		end
