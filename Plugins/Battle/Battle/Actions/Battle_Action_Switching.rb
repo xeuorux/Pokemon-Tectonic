@@ -407,7 +407,7 @@ class PokeBattle_Battle
         unless battler.airborne?
             battler.pbOwnSide.eachEffect(true) do |effect, _value, data|
                 next unless data.is_status_hazard?
-                hazardInfo = data.type_applying_hazard
+                hazardInfo = data.status_applying_hazard
                 status = hazardInfo[:status]
 
                 if hazardInfo[:absorb_proc].call(battler)

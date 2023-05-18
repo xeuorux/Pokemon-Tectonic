@@ -283,7 +283,7 @@ GameData::BattleEffect.register_effect(:Side, {
     :type => :Integer,
     :maximum => 2,
     :is_spike => true,
-    :type_applying_hazard => {
+    :status_applying_hazard => {
         :status => :POISON,
         :absorb_proc => proc do |pokemonOrBattler|
             pokemonOrBattler.hasType?(:POISON)
@@ -309,7 +309,7 @@ GameData::BattleEffect.register_effect(:Side, {
     :type => :Integer,
     :maximum => 2,
     :is_spike => true,
-    :type_applying_hazard => {
+    :status_applying_hazard => {
         :status => :BURN,
         :absorb_proc => proc do |pokemonOrBattler|
             pokemonOrBattler.hasType?(:FIRE)
@@ -336,7 +336,7 @@ GameData::BattleEffect.register_effect(:Side, {
     :maximum => 2,
     :is_spike => true,
     :is_hazard => true,
-    :type_applying_hazard => {
+    :status_applying_hazard => {
         :status => :FROSTBITE,
         :absorb_proc => proc do |pokemonOrBattler|
             pokemonOrBattler.hasType?(:ICE)

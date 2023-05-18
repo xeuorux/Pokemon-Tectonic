@@ -276,7 +276,7 @@ immuneTypeRealName))
             return false
         end
         # Safeguard immunity
-        if pbOwnSide.effectActive?(:Safeguard) && !selfInflicted && move &&
+        if pbOwnSide.effectActive?(:Safeguard) && !selfInflicted &&
            !(user && user.hasActiveAbility?(:INFILTRATOR)) && !statusDoublingCurse
             @battle.pbDisplay(_INTL("{1}'s team is protected by Safeguard!", pbThis)) if showMessages
             return false

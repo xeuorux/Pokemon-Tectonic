@@ -61,7 +61,7 @@ module GameData
         attr_reader :protection_info
 
         # Bespoke information for type applying spikes
-        attr_reader :type_applying_hazard
+        attr_reader :status_applying_hazard
 
         # Whether its swapped by the move Court Change
         # Defaults to true
@@ -122,7 +122,7 @@ module GameData
 
         # Poison Spikes, etc.
         def is_status_hazard?
-            return !@type_applying_hazard.nil?
+            return !@status_applying_hazard.nil?
         end
 
         ### Has defined procs
@@ -240,7 +240,7 @@ module GameData
             @protection_info	= hash[:protection_info]
             @court_changed	= hash[:court_changed] || true
 
-            @type_applying_hazard = hash[:type_applying_hazard]
+            @status_applying_hazard = hash[:status_applying_hazard]
 
             @is_room	= hash[:is_room] || false
             @is_screen				= hash[:is_screen] || false
