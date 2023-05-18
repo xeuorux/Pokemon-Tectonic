@@ -244,7 +244,7 @@ class PokeBattle_AI
                     # Each of the status setting spikes
                     battlerSlot.pbOwnSide.eachEffect(true) do |_effect, value, data|
                         next unless data.is_status_hazard?
-                        hazardInfo = data.type_applying_hazard
+                        hazardInfo = data.status_applying_hazard
 
                         if hazardInfo[:absorb_proc].call(pkmn)
                             willAbsorbSpikes = true
