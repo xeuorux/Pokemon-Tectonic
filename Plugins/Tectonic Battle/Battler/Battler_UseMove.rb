@@ -560,7 +560,6 @@ user.pbThis))
                 targets.each do |b|
                     next unless b.damageState.fear
                     @battle.pbDisplay(_INTL("#{user.pbThis} showed mercy on #{b.pbThis(true)}!", realNumHits))
-                    @battle.pbDisplay(_INTL("However, the near-faint made #{b.pbThis(true)} Afraid!"))
                     b.pokemon.becomeAfraid
                 end
             end

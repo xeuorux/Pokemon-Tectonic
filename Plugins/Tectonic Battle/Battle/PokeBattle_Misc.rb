@@ -113,17 +113,11 @@ class PokeBattle_Battle
                 pbDisplayBossNarration(_INTL("A great energy rises up from inside {1}!", b.pbThis(true)))
                 b.lastRoundMoved = 0
                 b.pbUseMove([:UseMove, index, move, -1, 0])
-
-                # Reset fear
-                pbParty(0).each_with_index do |pkmn, i|
-                    next unless pkmn
-                    pkmn.removeFear(self) if pkmn.afraid?
-                end
-
                 usedEmpoweredMove = true
+                break
             end
-            # Swap to post-empowerment moveset
             next unless usedEmpoweredMove
+            # Swap to post-empowerment moveset
             b.avatarPhase += 1
             movesetToAssign = avatarData.arrayOfMoveSets[b.avatarPhase - 1]
             echoln("ERROR: Unable to change moveset.") if movesetToAssign.nil?
@@ -131,6 +125,15 @@ class PokeBattle_Battle
             b.empoweredTimer = 0
             b.indicesTargetedLastRound = []
             @scene.pbRefresh
+
+            # Reset fear
+            pbParty(0).each_with_index do |pkmn, i|
+                next unless pkmn
+                pkmn.removeFear(self) if pkmn.afraid?
+            end
+
+            # Allow the player to swap to any pokemon that are no longer afraid
+            pbEORSwitch
         end
     end
 
