@@ -106,6 +106,42 @@ class LightEffect_DragonFlame < LightEffect
   end
 end
 
+CONDENSED_LIGHT_COUNT = 11
+
+class LightEffect_Condensed < LightEffect
+  def initialize(event,viewport=nil,map=nil)
+    super
+    @light.setBitmap("Graphics/Pictures/HLE")
+    @opacityCounter = 0
+    @light.ox      = (@light.bitmap.width * 2) / 4
+    @light.oy      = (@light.bitmap.height * 2) / 4
+    @light.blend_type = 1
+  end
+
+  def update
+    return if !@light || !@event
+    super
+    if @event.character_name.blank?
+      @light.opacity = 0
+      return
+    end
+    completionPercent = $PokemonBag.pbQuantity(:CONDENSEDLIGHT) / CONDENSED_LIGHT_COUNT
+    completionPercent = 1 if completionPercent > 1
+    @baseOpacity = 40 + 80 * completionPercent
+    @opacityCounter += 1
+    @light.opacity = (@baseOpacity + (@baseOpacity / 6.0) * Math.sin(@opacityCounter.to_f / 12.0)).floor
+    if (Object.const_defined?(:ScreenPosHelper) rescue false)
+      @light.x      = ScreenPosHelper.pbScreenX(@event)
+      @light.y      = ScreenPosHelper.pbScreenY(@event) - 32
+      @light.zoom_x = ScreenPosHelper.pbScreenZoomX(@event)
+    else
+      @light.x      = @event.screen_x
+      @light.y      = @event.screen_y - 32
+      @light.zoom_x = 1.0
+    end
+  end
+end
+
 Events.onSpritesetCreate += proc { |_sender,e|
   spriteset = e[0]      # Spriteset being created
   viewport  = e[1]      # Viewport used for tilemap and characters
@@ -124,6 +160,8 @@ Events.onSpritesetCreate += proc { |_sender,e|
       spriteset.addUserSprite(LightEffect_Basic.new(event,viewport,map,filename))
     elsif event.name[/AvatarTotem/i] || event.name.include?("goldenglow")
       spriteset.addUserSprite(LightEffect_Totem.new(event,viewport,map))
+    elsif event.name[/^condensedlight$/i] || event.name.include?("condensedlight")
+      spriteset.addUserSprite(LightEffect_Condensed.new(event,viewport,map))
     elsif event.name[/^light$/i] || event.name.include?("lighteffect")
       spriteset.addUserSprite(LightEffect_Basic.new(event,viewport,map))
     end
