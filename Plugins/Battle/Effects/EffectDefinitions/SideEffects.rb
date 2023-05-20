@@ -258,7 +258,7 @@ GameData::BattleEffect.register_effect(:Side, {
 ##########################################
 GameData::BattleEffect.register_effect(:Side, {
     :id => :Spikes,
-    :real_name => "Spikes Count",
+    :real_name => "Spikes",
     :type => :Integer,
     :maximum => 2,
     :is_hazard => true,
