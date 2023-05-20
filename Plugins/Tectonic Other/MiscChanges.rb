@@ -11,65 +11,6 @@ module PBDebug
   end
 end
 
-class Interpreter
-#-----------------------------------------------------------------------------
-  # * Show Text
-  #-----------------------------------------------------------------------------
-  def command_101
-    return false if $game_temp.message_window_showing
-    message     = @list[@index].parameters[0]
-    message_end = ""
-    commands                = nil
-    number_input_variable   = nil
-    number_input_max_digits = nil
-    # Check the next command(s) for things to add on to this text
-    loop do
-      next_index = pbNextIndex(@index)
-      case @list[next_index].code
-      when 401   # Continuation of 101 Show Text
-        text = @list[next_index].parameters[0]
-        message += " " if text != "" && message[message.length - 1, 1] != " "
-        message += text
-        @index = next_index
-        next
-      when 101   # Show Text
-        message_end = "\1"
-      when 102   # Show Choices
-        commands = @list[next_index].parameters
-        @index = next_index
-      when 103   # Input Number
-        number_input_variable   = @list[next_index].parameters[0]
-        number_input_max_digits = @list[next_index].parameters[1]
-        @index = next_index
-      end
-      break
-    end
-    # Translate the text
-    message = _MAPINTL($game_map.map_id, message)
-	  message = globalMessageReplacements(message)
-    # Display the text, with commands/number choosing if appropriate
-    @message_waiting = true   # Lets parallel process events work while a message is displayed
-    if commands
-      cmd_texts = []
-      for cmd in commands[0]
-        cmd_texts.push(_MAPINTL($game_map.map_id, cmd))
-      end
-      command = pbMessage(message + message_end, cmd_texts, commands[1])
-      @branch[@list[@index].indent] = command
-    elsif number_input_variable
-      params = ChooseNumberParams.new
-      params.setMaxDigits(number_input_max_digits)
-      params.setDefaultValue($game_variables[number_input_variable])
-      $game_variables[number_input_variable] = pbMessageChooseNumber(message + message_end, params)
-      $game_map.need_refresh = true if $game_map
-    else
-      pbMessage(message + message_end)
-    end
-    @message_waiting = false
-    return true
-  end
-end
-
 def pbFadeOutAndHide(sprites)
   visiblesprites = {}
   numFrames = (Graphics.frame_rate*0.4).floor

@@ -217,17 +217,6 @@ class PokeBattle_Scene
   end
 end
 
-module Game
-  class << self
-    alias follower_load load
-    def load(save_data)
-      follower_load(save_data)
-      $PokemonTemp.dependentEvents.refresh_sprite(false)
-    end
-  end
-end
-
-
 #-------------------------------------------------------------------------------
 # Various updates to Character Sprites to incorporate Reflection and Footprints
 #-------------------------------------------------------------------------------
@@ -554,48 +543,6 @@ class DependentEvents
   #Fix follower not being in the same spot upon save
   def pbMapChangeMoveDependentEvents
     return
-  end
-end
-
-#-------------------------------------------------------------------------------
-# Various updates to the Map scene for followers
-#-------------------------------------------------------------------------------
-class Scene_Map
-
-# Check for Toggle input and update the stepping animation
-  alias follow_update update
-  def update
-    follow_update
-    for i in 0...$PokemonGlobal.dependentEvents.length
-      event = $PokemonTemp.dependentEvents.realEvents[i]
-      return if event.move_route_forcing
-      event.move_speed = $game_player.move_speed
-    end
-    if Input.trigger?(getConst(Input,FollowerSettings::TOGGLEFOLLOWERKEY)) &&
-        FollowerSettings::ALLOWTOGGLEFOLLOW
-      pbToggleFollowingPokemon
-    end
-    if $PokemonGlobal.follower_toggled
-      # Stop stepping animation if on Ice
-      if $game_player.pbTerrainTag.ice
-        $PokemonTemp.dependentEvents.stop_stepping
-      else
-        $PokemonTemp.dependentEvents.start_stepping
-      end
-    end
-  end
-
-  alias follow_transfer transfer_player
-  def transfer_player(cancelVehicles = true)
-    follow_transfer(cancelVehicles)
-    events = $PokemonGlobal.dependentEvents
-    $PokemonTemp.dependentEvents.updateDependentEvents
-    leader = $game_player
-    for i in 0...events.length
-      event = $PokemonTemp.dependentEvents.realEvents[i]
-      $PokemonTemp.dependentEvents.refresh_sprite(false)
-      $PokemonTemp.dependentEvents.pbFollowEventAcrossMaps(leader,event,false,i == 0)
-    end
   end
 end
 
