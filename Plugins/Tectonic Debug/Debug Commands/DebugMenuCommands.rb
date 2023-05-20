@@ -35,4 +35,4 @@ module DebugMenuCommands
       return nil if !option_hash || !option_hash[function]
       return (option_hash[function].call(*args) == true)
     end
-  end
+end

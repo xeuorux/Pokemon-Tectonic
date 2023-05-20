@@ -1,9 +1,3 @@
-DebugMenuCommands.register("randomizer", {
-  "parent"      => "main",
-  "name"        => _INTL("Randomizer..."),
-  "description" => _INTL("Deal with randomizer")
-})
-
 DebugMenuCommands.register("startrandomizer", {
   "parent"      => "randomizer",
   "name"        => _INTL("Start the Randomizer"),
