@@ -817,7 +817,7 @@ user.pbThis))
             @battle.pbDisplay(_INTL("The {1} ensured {2}'s additional effect!", getItemName(:LUCKHERB), move.name))
         end
         # Mystic tribe
-        if hasTribeBonus?(:MYSTIC) && user.lastRoundMoveCategory == 2 # Status
+        if hasTribeBonus?(:MYSTIC) && user.lastRoundMoveCategory == 2 && move.damagingMove? # Status
             @battle.pbShowTribeSplash(user,:MYSTIC)
             @battle.pbDisplay(_INTL("{1}'s patience pays off!", user.pbThis))
             @battle.pbHideTribeSplash(user)
