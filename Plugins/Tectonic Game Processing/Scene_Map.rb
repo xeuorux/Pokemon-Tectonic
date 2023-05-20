@@ -46,6 +46,12 @@ class Scene_Map
         @spritesetGlobal = nil
     end
 
+    def recreateSpritesets
+		disposeSpritesets
+		RPG::Cache.clear
+		createSpritesets
+	end
+
     def autofade(mapid)
         playingBGM = $game_system.playing_bgm
         playingBGS = $game_system.playing_bgs
