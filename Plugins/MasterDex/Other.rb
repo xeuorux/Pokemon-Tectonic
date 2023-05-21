@@ -48,10 +48,11 @@ def openSingleDexScreen(pokemon)
 end
 alias speciesEntry openSingleDexScreen
 
-def unlockDex
+def unlockDex(showMessage = false)
 	$Trainer.has_pokedex = true
   	$Trainer.pokedex.unlock(-1)
   	$Trainer.pokedex.refresh_accessible_dexes()
+	pbMessage(_INTL("\\PN received a MasterDex!")) if showMessage
 end
 
 def describeEvolutionMethod(method,parameter=0)

@@ -121,7 +121,7 @@ class LightEffect_Condensed < LightEffect
   def update
     return if !@light || !@event
     super
-    if @event.character_name.blank?
+    if @event.character_name.blank? || $game_switches[80] # Lainie saved
       @light.opacity = 0
       return
     end

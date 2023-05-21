@@ -180,8 +180,8 @@ def pbMessageDisplay(msgwindow,message,letterbyletter=true,commandProc=nil)
   loop do
     if $SpeakerNameWindow
       pbPositionNearMsgWindow($SpeakerNameWindow,msgwindow,:left)
-      $SpeakerNameWindow.y = $SpeakerNameWindow.y + 8
-      $SpeakerNameWindow.visible = true
+      $SpeakerNameWindow.y += 8
+      $SpeakerNameWindow.x += 20
     end
     if signWaitCount > 0
       signWaitCount -= 1

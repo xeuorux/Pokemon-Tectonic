@@ -30,6 +30,7 @@
 78: Time traveling
 
 79: Saving not allowed
+80: Lainie saved
 94: Perfected battle
 
 # Global Variables

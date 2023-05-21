@@ -30,8 +30,14 @@ VINCENT = _INTL("Vincent")
 PRAVEEN = _INTL("Praveen")
 ANSEL = _INTL("Ansel")
 
+# Pro Trainers
+XANDER = _INTL("Xander")
+
 # Other
 CARETAKER = _INTL("Valentina")
+SANG = _INTL("Sang")
+MAVIS = _INTL("Mavis")
+LAINIE = _INTL("Lainie")
 
 def setSpeaker(speakerName,viewport = nil)
     unless $SpeakerNameWindow
@@ -44,6 +50,7 @@ def setSpeaker(speakerName,viewport = nil)
     $SpeakerNameWindow.y = Graphics.height - $SpeakerNameWindow.height
     $SpeakerNameWindow.viewport = viewport
     $SpeakerNameWindow.z = 99_999
+    $SpeakerNameWindow.visible = false # Starts hidden
 end
 
 def speakerNameWindowVisible?
@@ -51,14 +58,24 @@ def speakerNameWindowVisible?
 end
 
 def hideSpeaker
-    $SpeakerNameWindow.visible = false if $SpeakerNameWindow
+    return unless $SpeakerNameWindow
+    $SpeakerNameWindow.visible = false
 end
 
 def showSpeaker
-    $SpeakerNameWindow.visible = true if $SpeakerNameWindow
+    return unless $SpeakerNameWindow
+    $SpeakerNameWindow.visible = true
 end
 
 def removeSpeaker
     $SpeakerNameWindow.dispose if $SpeakerNameWindow
     $SpeakerNameWindow = nil
+end
+
+class Game_Event
+    def start
+        return if @list.size == 0
+        @starting = true
+        removeSpeaker unless pbMapInterpreter.message_waiting
+    end
 end

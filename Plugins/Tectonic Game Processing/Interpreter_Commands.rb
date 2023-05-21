@@ -5,6 +5,8 @@
 #  Game_System class and the Game_Event class.
 #===============================================================================
 class Interpreter
+    attr_reader :message_waiting
+
     #-----------------------------------------------------------------------------
     # * Event Command Execution
     #-----------------------------------------------------------------------------
@@ -217,7 +219,9 @@ class Interpreter
     #-----------------------------------------------------------------------------
     def command_102
         @message_waiting = true
+        showSpeaker
         command = pbShowCommands(nil, @list[@index].parameters[0], @list[@index].parameters[1])
+        hideSpeaker
         @message_waiting = false
         @branch[@list[@index].indent] = command
         Input.update # Must call Input.update again to avoid extra triggers
