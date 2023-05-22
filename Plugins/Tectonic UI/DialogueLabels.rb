@@ -20,6 +20,9 @@ HELENA = _INTL("Helena")
 RAFAEL = _INTL("Rafael")
 ZOE = _INTL("Zoé")
 BENCE = _INTL("Bence")
+NOEL = _INTL("Noel")
+VICTOIRE = _INTL("Victoire")
+SAMORN = _INTL("Samorn")
 
 # Former champions
 SCILLA = _INTL("Scilla")
