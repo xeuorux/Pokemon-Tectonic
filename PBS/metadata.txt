@@ -156,7 +156,6 @@ Bicycle = false
 BattleBack = indoor1
 #-------------------------------
 [020]
-# Lunar Island Placeholder
 Outdoor = true
 ShowArea = true
 Bicycle = true
@@ -1094,7 +1093,6 @@ ShowArea = false
 Bicycle = false
 #-------------------------------
 [182]
-# Sylvan Labyrinth
 Outdoor = true
 ShowArea = true
 Bicycle = true
