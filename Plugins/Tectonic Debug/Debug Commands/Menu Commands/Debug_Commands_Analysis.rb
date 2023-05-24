@@ -3,37 +3,100 @@ DebugMenuCommands.register("findtextinevents", {
     "name"        => _INTL("Find Text In Events"),
     "description" => _INTL("Find events which have a peice of text in the params of their command list."),
     "effect"      => proc { |sprites, viewport|
-      textEntered = pbEnterText("Enter text...", 0, 32)
-  
-      mapData = Compiler::MapData.new
-      for id in mapData.mapinfos.keys.sort
-          map = mapData.getMap(id)
-          next if !map || !mapData.mapinfos[id]
-          mapName = mapData.mapinfos[id].name
-          for key in map.events.keys
-              find_text_in_event(id,mapName,map.events[key],textEntered)
-          end
-      end
+        textEntered = pbEnterText("Enter text...", 0, 32)
+
+        mapData = Compiler::MapData.new
+        for id in mapData.mapinfos.keys.sort
+            map = mapData.getMap(id)
+            next if !map || !mapData.mapinfos[id]
+            mapName = mapData.mapinfos[id].name
+            for key in map.events.keys
+                find_text_in_event(id,mapName,map.events[key],textEntered)
+            end
+        end
+
+        pbMessage(_INTL("Results printed to console."))
     }}
-  )
-  
-  def find_text_in_event(map_id,map_name,event,text_entered)
-      return [] if !event || event.pages.length==0
-      event.pages.each do |page|
-          page.list.each do |eventCommand|
-              eventCommand.parameters.each do |parameter|
-                  next unless parameter.is_a?(String)
-                  match = parameter.downcase.match(/#{text_entered.downcase}/)
-                  if match
-                      eventName = event.name.gsub(",","")
-                      echoln "Event \"#{eventName}\" (#{event.id}) on map #{map_name} (#{map_id})"
-                      echoln "\"#{parameter}\"\r\n"
-                  end
-              end
-          end
-      end
-  end
-  
+)
+
+def find_text_in_event(map_id,map_name,event,text_entered)
+    return if !event || event.pages.length==0
+    event.pages.each do |page|
+        page.list.each do |eventCommand|
+            eventCommand.parameters.each do |parameter|
+                next unless parameter.is_a?(String)
+                match = parameter.downcase.match(/#{text_entered.downcase}/)
+                if match
+                    eventName = event.name.gsub(",","")
+                    echoln "Event \"#{eventName}\" (#{event.id}) on map #{map_name} (#{map_id})"
+                    echoln "\"#{parameter}\"\r\n"
+                end
+            end
+        end
+    end
+end
+
+DebugMenuCommands.register("replacetextinevents", {
+    "parent"      => "analysis",
+    "name"        => _INTL("Replace Text In Events"),
+    "description" => _INTL("Find events which have a peice of text in the params of their command list, and replace them with a new string."),
+    "effect"      => proc { |sprites, viewport|
+        textEntered = pbEnterText("Enter text to replace...", 0, 32)
+
+        next if textEntered.blank?
+
+        replacementText = pbEnterText("Enter new text...", 0, 32)
+
+        next if replacementText.blank?
+
+        replace_text_in_events(textEntered, replacementText)
+
+        pbMessage(_INTL("Results printed to console."))
+    }}
+)
+
+def replace_text_in_events(text_to_find,replacement_text)
+    mapData = Compiler::MapData.new
+    for id in mapData.mapinfos.keys.sort
+        map = mapData.getMap(id)
+        next if !map || !mapData.mapinfos[id]
+        mapName = mapData.mapinfos[id].name
+        for key in map.events.keys
+            changed = true if replace_text_in_event(id,mapName,map.events[key],text_to_find,replacement_text)
+        end
+        if changed
+            mapData.saveMap(id)
+            mapData.saveTilesets
+        end
+    end
+end
+
+def replace_text_in_event(map_id,map_name,event,text_to_find,replacement_text)
+    return false if !event || event.pages.length==0
+    changed = false
+    event.pages.each do |page|
+        page.list.each do |eventCommand|
+            changedParameters = {}
+            eventCommand.parameters.each_with_index do |parameter, index|
+                next unless parameter.is_a?(String)
+                changedParameter = parameter.clone
+                changedParameter.gsub!(text_to_find, replacement_text)
+                changedParameter.gsub!(text_to_find.downcase, replacement_text)
+                next if changedParameter == parameter
+                eventName = event.name.gsub(",","")
+                echoln "Event \"#{eventName}\" (#{event.id}) on map #{map_name} (#{map_id})"
+                echoln "\"#{parameter}\"\r\n"
+                changed = true
+
+                changedParameters[index] = changedParameter
+            end
+            changedParameters.each do |key, value|
+                eventCommand.parameters[key] = value
+            end
+        end
+    end
+    return changed
+end
 
 DebugMenuCommands.register("analyzeitemdistribution", {
     "parent"      => "analysis",

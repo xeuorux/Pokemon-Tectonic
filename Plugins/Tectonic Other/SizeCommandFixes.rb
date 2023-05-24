@@ -91,6 +91,10 @@ def pbNoticePlayer(event)
   pbMoveTowardPlayer(event)
 end
 
+def noticePlayer
+  pbNoticePlayer(get_self)
+end
+
 def pbMoveTowardPlayer(event)
   maxsize = [$game_map.width, $game_map.height].max
   return if !pbEventCanReachPlayer?(event, $game_player, maxsize)
