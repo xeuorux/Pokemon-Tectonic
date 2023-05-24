@@ -106,8 +106,6 @@ class LightEffect_DragonFlame < LightEffect
   end
 end
 
-CONDENSED_LIGHT_COUNT = 11
-
 class LightEffect_Condensed < LightEffect
   def initialize(event,viewport=nil,map=nil)
     super
