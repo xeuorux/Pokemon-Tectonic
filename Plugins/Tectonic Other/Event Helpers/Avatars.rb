@@ -7,11 +7,14 @@ def defeatBoss(item=nil,count=1,opacityStart=180,opacityTarget=0)
 
 	event = get_self
 
+	pbSEPlay("Avatar death")
 	opacityStart.downto(opacityTarget) do |i|
-		next if i % 2 != 0
+		next if i % 3 != 0
 		event.opacity = i
 		pbWait(1)
 	end
+
+	pbWait(60)
 
 	setMySwitch('A',true)
 
@@ -91,4 +94,13 @@ end
 def quickCry(species, form = 0)
 	Pokemon.play_cry(species, form)
 	pbWait((0.5 * Graphics.frame_rate).ceil)
+end
+
+def avatarSpawnsIn(event_id)
+	pbSEPlay("Avatar summoning")
+	avatarEvent = get_event(event_id)
+	for i in 20..180 do
+		avatarEvent.opacity = i
+		pbWait(1)
+	end
 end

@@ -147,7 +147,7 @@ def weatherRNGByHour(totalHours)
     return (Math.sin(day * 2.0) * Math.sin(day * 4.0) * Math.sin(day * 8.0)).abs
 end
 
-def applyOutdoorEffects()
+def applyOutdoorEffects(delay = -1)
     return unless $PokemonSystem.overworld_weather == 0
     return unless playerIsOutdoors?
 
@@ -163,7 +163,8 @@ def applyOutdoorEffects()
                 print("Weather strength changed to #{strength}!")
             end
         end
-        $game_screen.weather(weatherSym, strength, WEATHER_TRANSITION_DELAY, false, !GLASS_CEILING_MAPS.include?(map_id))
+        delay = WEATHER_TRANSITION_DELAY if delay < 0
+        $game_screen.weather(weatherSym, strength, delay, false, !GLASS_CEILING_MAPS.include?(map_id))
     end
 end
 
