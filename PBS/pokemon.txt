@@ -32005,6 +32005,7 @@ Color = White
 Shape = Head
 Kind = Blazing
 Pokedex = Though it has a gentle disposition, it's also very strong. It will quickly freeze the snowball on its head before going for a headbutt.
+FormName = Standard Mode
 BattlerPlayerX = 0
 BattlerPlayerY = 23
 BattlerEnemyX = 0
