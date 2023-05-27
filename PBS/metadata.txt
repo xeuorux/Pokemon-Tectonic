@@ -156,6 +156,7 @@ Bicycle = false
 BattleBack = indoor1
 #-------------------------------
 [020]
+# Alloyed Thicket - Expanse
 Outdoor = true
 ShowArea = true
 Bicycle = true
@@ -1093,6 +1094,7 @@ ShowArea = false
 Bicycle = false
 #-------------------------------
 [182]
+# Alloyed Thicket - Eastern
 Outdoor = true
 ShowArea = true
 Bicycle = true
