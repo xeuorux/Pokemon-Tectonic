@@ -432,7 +432,7 @@
 431,FOCUSENERGY,Focus Energy,023,0,NORMAL,Status,0,25,0,User,0,d,"The user focuses intensely on the fight, quadrupling its critical hit chance.",
 432,FOLLOWME,Follow Me,117,0,NORMAL,Status,0,15,0,User,2,,"The user draws attention to itself, making all targets take aim only at the user.",
 433,GLARE,Glare,007,0,NORMAL,Status,100,12,0,NearOther,0,bce,"The user intimidates the target by staring at it to cause numbing.",
-434,GROWL,Growl,042,0,NORMAL,Status,100,30,0,AllNearFoes,0,bcek,"The user growls, scaring nearby foes. Their Attack stat is lowered by two steps.",
+434,GROWL,Growl,042,0,NORMAL,Status,100,30,0,AllNearFoes,0,bcek,"The user growls, scaring nearby foes. Their Attack is lowered by two steps.",
 435,GROWTH,Growth,028,0,GRASS,Status,0,15,0,User,0,d,"The user's body grows all at once, raising Atk and Sp. Atk by two steps each, or 4 in Sunshine.",
 436,HARDEN,Harden,5DB,0,NORMAL,Status,0,25,0,User,0,d,"The user stiffens all the muscles in its body to raise its Defense stat by three steps.",
 437,HEALBELL,Heal Bell,019,0,NORMAL,Status,0,5,0,UserAndAllies,0,dk,"The user makes a soothing bell chime to heal the status problems of all the party Pokémon.",

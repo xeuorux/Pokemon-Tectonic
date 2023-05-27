@@ -191,7 +191,7 @@
 1190,PARAPOLLEN,Para-Pollen,007,0,GRASS,Status,100,12,0,NearOther,0,bce,"The user scatters a cloud of painful dust that leaves the target numb.",STUNSPORE
 1191,BLACKPOWDER,Blackpowder,148,0,BUG,Status,100,15,0,NearOther,1,bce,"The target is covered in a powder that explodes if it uses a Fire-type move. It always goes first.",POWDER
 1192,KRAKENCLUTCHES,Kraken Clutches,0CF,75,WATER,Physical,100,10,0,NearOther,0,abef,"The user's monstrous tentacles grasp the target, trapping and damaging it for three turns.",WRAP
-1193,DAZZLE,Dazzle,045,0,NORMAL,Status,100,30,0,AllNearFoes,0,bce,"The user dazzles nearby foes with a display of light or sound. Their Sp. Atk stat is lowered.",FLASH
+1193,DAZZLE,Dazzle,045,0,NORMAL,Status,100,30,0,AllNearFoes,0,bce,"The user dazzles nearby foes with light or sound. Their Sp. Atk is lowered by two steps.",FLASH
 1194,SMIRK,Smirk,046,0,NORMAL,Status,100,25,0,AllNearFoes,0,bce,"The user smirks with confidence. The Sp. Def of nearby enemies is reduced.",SCARYFACE
 1195,STOREFUEL,Store Fuel,54E,0,FIRE,Status,0,15,0,User,0,d,"The user conserves for future attacks. This raises its Sp. Atk, Sp. Def, and accuracy by two steps each.",
 1196,REMOVALBEAM,Removal Beam,007,85,NORMAL,Special,100,12,30,NearOther,0,befm,"The target is struck by a beam of negative energy. It has a 30% chance to numb.",WEATHERBALL
