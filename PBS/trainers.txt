@@ -1004,13 +1004,19 @@ Pokemon = KROKOROK,26
 [DANDY,Charles]
 Pokemon = NIDORINO,26
     AbilityIndex = 1 # Poison Point
-Pokemon = SANDSHREW,26
-    AbilityIndex = 1 # Tough Claws
 Pokemon = GREEDENT,27
-    Moves = STOCKPILE,SWALLOW,SUPERFANG,BODYSLAM
+    Moves = STOCKPILE,SWALLOW,SUPERFANG,TAKEDOWN
     AbilityIndex = 0 # Cheek Pouch
 Pokemon = VULLABY,26
     AbilityIndex = 0 # Impervious
+#-------------------------------
+[CYCLIST_M,Mitron]
+Pokemon = MDUSTOX,28
+    AbilityIndex = 0 # Harsh
+Pokemon = WEEPINBELL,28
+    AbilityIndex = 0 # Trapper
+Pokemon = GRAVELER,27
+    AbilityIndex = 0 # Unbreakable
 #-------------------------------
 [WORKER,Kevin]
 Pokemon = BOLDORE,27
@@ -5321,7 +5327,7 @@ Pokemon = TORTERRA,51
 Pokemon = MIENSHAO,52
     AbilityIndex = 1 # Natural Cure
 Pokemon = MDUSTOX,53
-    AbilityIndex = 0 # Harsh
+    AbilityIndex = 1 # Follow Through
 #-------------------------------
 [ARTIST3,Alicynthia]
 Pokemon = ALAKAZAM,52

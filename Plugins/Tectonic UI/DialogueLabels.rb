@@ -56,6 +56,16 @@ def setSpeaker(speakerName,viewport = nil)
     $SpeakerNameWindow.visible = false # Starts hidden
 end
 
+def setSpeakerTrainer(trainerClass,trainerName)
+    begin
+        trainerData = GameData::Trainer.get(trainerClass,trainerName)
+        trainerTypeData = GameData::TrainerType.get(trainerData.trainer_type)
+        setSpeaker("#{trainerTypeData.name} #{trainerData.name}")
+    rescue ArgumentError
+        echoln("Unable to find dialogue label display name for trainer: #{trainerClass} #{trainerName}")
+    end
+end
+
 def speakerNameWindowVisible?
     return $SpeakerNameWindow&.visible
 end

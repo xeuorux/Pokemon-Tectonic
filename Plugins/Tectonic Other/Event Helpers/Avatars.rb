@@ -104,3 +104,9 @@ def avatarSpawnsIn(event_id)
 		pbWait(1)
 	end
 end
+
+def thunderClap
+	pbSEPlay("Anim/PRSFX- Thunderbolt2")
+	duration = (0.5 * Graphics.frame_rate).ceil
+	$game_screen.start_flash(Color.new(255, 255, 255),duration)
+end
