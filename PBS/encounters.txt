@@ -925,7 +925,7 @@ Special,1
     20,HZORUA,10
 #-------------------------------
 [359] # Alloyed Thicket
-Land,20
+LandSparse,20
     20,AMOONGUSS,53,55
     20,ARIADOS,53,55
     20,DURANT,53,55
