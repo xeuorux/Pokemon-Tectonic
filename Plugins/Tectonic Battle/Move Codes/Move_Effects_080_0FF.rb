@@ -183,21 +183,15 @@ class PokeBattle_Move_088 < PokeBattle_Move
 end
 
 #===============================================================================
-# Power increases with the user's happiness. (Return)
+# (Not currently used.)
 #===============================================================================
 class PokeBattle_Move_089 < PokeBattle_Move
-    def pbBaseDamage(_baseDmg, user, _target)
-        return [(user.happiness * 2 / 5).floor, 1].max
-    end
 end
 
 #===============================================================================
-# Power decreases with the user's happiness. (Frustration)
+# (Not currently used.)
 #===============================================================================
 class PokeBattle_Move_08A < PokeBattle_Move
-    def pbBaseDamage(_baseDmg, user, _target)
-        return [((255 - user.happiness) * 2 / 5).floor, 1].max
-    end
 end
 
 #===============================================================================

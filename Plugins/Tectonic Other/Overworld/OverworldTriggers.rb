@@ -14,7 +14,7 @@ end
 Events.onStepTaken += proc {
   $PokemonGlobal.happinessSteps = 0 if !$PokemonGlobal.happinessSteps
   $PokemonGlobal.happinessSteps += 1
-  threshold = 35 - $Trainer.able_pokemon_count * 3
+  threshold = (20 * 6) / $Trainer.able_pokemon_count # The more pokemon, the more often gains happiness
   if $PokemonGlobal.happinessSteps >= threshold
     if $Trainer.able_pokemon_count > 0
       chosenPokemon = nil
