@@ -375,6 +375,14 @@ Pokemon = SPEAROW,23
 Pokemon = DROWZEE,24
     AbilityIndex = 0 # Bad Dreams
 #-------------------------------
+[TEENAGERF,Naomi]
+Pokemon = FROGADIER,23
+    AbilityIndex = 0 # Protean
+Pokemon = SKIDDO,24
+    AbilityIndex = 1 # Rock Climber
+Pokemon = VENONAT,24
+    AbilityIndex = 0 # Toxic Cloud
+#-------------------------------
 [MEDIUM,Theoni]
 Pokemon = SABLEYE,24
     AbilityIndex = 0 # Magic Bounce
@@ -459,6 +467,14 @@ Pokemon = YAMASK,26
     Item = SITRUSBERRY
 Pokemon = SANDACONDA,26
     AbilityIndex = 1 # Disorienting
+#-------------------------------
+[BEAUTY2,Enisa]
+Pokemon = PURRLOIN,26
+    AbilityIndex = 1 # Prankster
+Pokemon = DARTRIX,25
+    AbilityIndex = 1 # Trapper
+Pokemon = ESPURR,25
+    AbilityIndex = 1 # Liminal
 #-------------------------------
 [PSYCHIC_F2,Ludmila]
 Pokemon = MIMEJR,25
@@ -1098,6 +1114,14 @@ Pokemon = ANORITH,28
     Item = ROCKGEM
 Pokemon = POLIWHIRL,29
     AbilityIndex = 1 # Disorienting
+#-------------------------------
+[FAIRYTALEGIRL,Maja]
+Pokemon = AMAURA,27
+    AbilityIndex = 0 # Aurora Prism
+Pokemon = PIDGEOTTO,28
+    AbilityIndex = 1 # Wind Buffer
+Pokemon = BRAIXEN,28
+    AbilityIndex = 1 # Fascinate
 #-------------------------------
 [HOOPSTER,Jerel]
 Pokemon = VOLTORB,28
