@@ -12,6 +12,7 @@ end
 #===============================================================================
 # Party Pokémon gain happiness from walking
 Events.onStepTaken += proc {
+  next if $Trainer.able_pokemon_count # If has no party (e.g. in debug mode)
   $PokemonGlobal.happinessSteps = 0 if !$PokemonGlobal.happinessSteps
   $PokemonGlobal.happinessSteps += 1
   threshold = (20 * 6) / $Trainer.able_pokemon_count # The more pokemon, the more often gains happiness
