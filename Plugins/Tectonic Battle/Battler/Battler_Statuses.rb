@@ -610,11 +610,14 @@ immuneTypeRealName))
             end
             poisonCount = getStatusCount(:POISON)
             yield if block_given?
-            if !defined?($PokemonSystem.status_effect_messages) || $PokemonSystem.status_effect_messages.zero?
-                case oneStatus
-                when :SLEEP
-                    @battle.pbDisplay(_INTL("{1} is fast asleep.", pbThis))
-                when :POISON
+
+            showMessages = $PokemonSystem.status_effect_messages.zero?
+            
+            case oneStatus
+            when :SLEEP
+                @battle.pbDisplay(_INTL("{1} is fast asleep.", pbThis)) if showMessages
+            when :POISON
+                if showMessages
                     case poisonCount
                     when 0..2
                         @battle.pbDisplay(_INTL("{1} was hurt by poison!", pbThis))
@@ -625,25 +628,24 @@ immuneTypeRealName))
                     else
                         @battle.pbDisplay(_INTL("{1} was brought to its knees entirely by poison!", pbThis))
                     end
-                    unless fainted?
-                        increaseStatusCount(:POISON)
-                        newPoisonCount = getStatusCount(:POISON)
-                        if newPoisonCount % 3 == 0
-                            if newPoisonCount == 3
-                                @battle.pbDisplaySlower(_INTL("The poison worsened! Its damage will be doubled until {1} leaves the field.",
-pbThis(true)))
-                            else
-                                @battle.pbDisplaySlower(_INTL("The poison doubled yet again!", pbThis))
-                            end
+                end
+                unless fainted?
+                    increaseStatusCount(:POISON)
+                    newPoisonCount = getStatusCount(:POISON)
+                    if newPoisonCount % 3 == 0
+                        if newPoisonCount == 3
+                            @battle.pbDisplaySlower(_INTL("The poison worsened! Its damage will be doubled until {1} leaves the field.", pbThis(true)))
+                        else
+                            @battle.pbDisplaySlower(_INTL("The poison doubled yet again!", pbThis))
                         end
                     end
-                when :BURN
-                    @battle.pbDisplay(_INTL("{1} was hurt by its burn!", pbThis))
-                when :FROSTBITE
-                    @battle.pbDisplay(_INTL("{1} was hurt by frostbite!", pbThis))
-                when :LEECHED
-                    @battle.pbDisplay(_INTL("{1}'s health was sapped!", pbThis))
                 end
+            when :BURN
+                @battle.pbDisplay(_INTL("{1} was hurt by its burn!", pbThis)) if showMessages
+            when :FROSTBITE
+                @battle.pbDisplay(_INTL("{1} was hurt by frostbite!", pbThis)) if showMessages
+            when :LEECHED
+                @battle.pbDisplay(_INTL("{1}'s health was sapped!", pbThis)) if showMessages
             end
             PBDebug.log("[Status continues] #{pbThis}'s sleep count is #{@statusCount}") if oneStatus == :SLEEP
         end
