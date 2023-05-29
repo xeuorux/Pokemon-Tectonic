@@ -114,6 +114,7 @@ end
 # [MASKEDVILLAIN2,Teal]
 def randomNPCTrainerBattle(isRandom1,fightSection=0)
     trainerVersion = isRandom1 ? $npc_randomization.chosenNPC1 : $npc_randomization.chosenNPC2
+    doubleBattle = trainerVersion == 0
     trainerVersion *= 2
     if $PokemonGlobal.tarot_amulet_active
         trainerVersion += 1
@@ -123,7 +124,11 @@ def randomNPCTrainerBattle(isRandom1,fightSection=0)
     trainerType = isRandom1 ? "MASKEDVILLAIN" : "MASKEDVILLAIN2"
     trainerName = isRandom1 ? "Crimson" : "Teal"
 
-    echoln("Trying to start fight against #{trainerName} version #{trainerVersion}")
+    if doubleBattle
+        setBattleRule("double")
+        trainerType += "_DOUBLE"
+    end
+
     return pbTrainerBattle(trainerType,trainerName,nil, false, trainerVersion)
 end
 

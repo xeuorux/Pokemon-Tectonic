@@ -3444,7 +3444,7 @@ Pokemon = REGIELEKI,65
 Pokemon = TYRANITAR,65
     Item = ASSAULTVEST
 #-------------------------------
-[MASKEDVILLAIN,Crimson]
+[MASKEDVILLAIN_DOUBLE,Crimson]
 NameForHashing = Imogene
 Pokemon = REGIROCK,55
     Moves = ADAMANTINEPRESS,ACCELEROCK,BODYPRESS,BULKUP
@@ -3467,7 +3467,7 @@ Pokemon = GOLISOPOD,55
     Moves = FIRSTIMPRESSION,CROSSCHOP,WATERFALL,XSCISSOR
     AbilityIndex = 0 # Emergency Exit
 #-------------------------------
-[MASKEDVILLAIN,Crimson,1]
+[MASKEDVILLAIN_DOUBLE,Crimson,1]
 ExtendsVersion = 0
 NameForHashing = Imogene
 Policies = CURSE_TYPE_WEAKENED
@@ -3666,7 +3666,7 @@ Pokemon = STARAPTOR,55
 Pokemon = GOLURK,55
     Item = GROUNDGEM
 #-------------------------------
-[MASKEDVILLAIN2,Teal]
+[MASKEDVILLAIN2_DOUBLE,Teal]
 NameForHashing = Imogene
 Pokemon = REGICE,65
     Moves = ICEBEAM,THUNDERBOLT,AURASPHERE,RECOVER
@@ -3689,7 +3689,7 @@ Pokemon = GOLISOPOD,65
     Moves = FIRSTIMPRESSION,CROSSCHOP,WATERFALL,XSCISSOR
     AbilityIndex = 0 # Emergency Exit
 #-------------------------------
-[MASKEDVILLAIN2,Teal,1]
+[MASKEDVILLAIN2_DOUBLE,Teal,1]
 ExtendsVersion = 0
 NameForHashing = Imogene
 Policies = CURSE_PERFECT_LUCK
@@ -4583,7 +4583,7 @@ Pokemon = FORRETRESS,70
 Pokemon = PORYGONZ,70
     Item = CHOICESCARF
 #-------------------------------
-[MASKEDVILLAIN,Crimson,12]
+[MASKEDVILLAIN_DOUBLE,Crimson,12]
 NameForHashing = Imogene
 Pokemon = GOLISOPOD,70
     Moves = FIRSTIMPRESSION,CLOSECOMBAT,LIQUIDATION,XSCISSOR
@@ -4606,7 +4606,7 @@ Pokemon = SHEDINJA,70
     AbilityIndex = 0 # Wonder Guard
     Item = FOCUSSASH
 #-------------------------------
-[MASKEDVILLAIN,Crimson,13]
+[MASKEDVILLAIN_DOUBLE,Crimson,13]
 ExtendsVersion = 12
 NameForHashing = Imogene
 Policies = CURSE_TORMENTED
@@ -4804,7 +4804,7 @@ Pokemon = GRAPIDASH,70
 Pokemon = GOLURK,70
     Item = SEVENLEAGUEBOOTS
 #-------------------------------
-[MASKEDVILLAIN2,Teal,12]
+[MASKEDVILLAIN2_DOUBLE,Teal,12]
 NameForHashing = Imogene
 Pokemon = GOLISOPOD,70
     Moves = FIRSTIMPRESSION,CLOSECOMBAT,LIQUIDATION,XSCISSOR
@@ -4827,7 +4827,7 @@ Pokemon = SHEDINJA,70
     AbilityIndex = 0 # Wonder Guard
     Item = FOCUSSASH
 #-------------------------------
-[MASKEDVILLAIN2,Teal,13]
+[MASKEDVILLAIN2_DOUBLE,Teal,13]
 ExtendsVersion = 12
 NameForHashing = Imogene
 Policies = CURSE_SELF_DEBUFFING

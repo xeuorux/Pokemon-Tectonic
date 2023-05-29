@@ -290,3 +290,5 @@
 417,ANCIENTPRIEST,Ancient Priest,0,,,,Mixed,,,[]
 418,SCHOOLKID_F3,School Kid,20,,,LASS2,Female,,,[]
 419,SCHOOLKID_F4,School Kid,20,,,LASS2,Female,,,[]
+420,MASKEDVILLAIN_DOUBLE,Masked Villains,0,,,,Mixed,,,[]
+421,MASKEDVILLAIN2_DOUBLE,Masked Villains,0,,,,Mixed,,,[]
