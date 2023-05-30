@@ -78,7 +78,10 @@ class Scene_Map
         autofade($game_temp.player_new_map_id)
         pbBridgeOff
         @spritesetGlobal.playersprite.clearShadows if @spritesetGlobal
-        $MapFactory.setup($game_temp.player_new_map_id) if $game_map.map_id != $game_temp.player_new_map_id
+        if $game_map.map_id != $game_temp.player_new_map_id
+            $game_switches[82] = false # Enable Auto Clouds, if it was disabled
+            $MapFactory.setup($game_temp.player_new_map_id) 
+        end
         $game_player.moveto($game_temp.player_new_x, $game_temp.player_new_y)
         case $game_temp.player_new_direction
         when 2 then $game_player.turn_down

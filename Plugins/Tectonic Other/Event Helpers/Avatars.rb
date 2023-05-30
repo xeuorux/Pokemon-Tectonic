@@ -110,3 +110,60 @@ def thunderClap
 	duration = (0.5 * Graphics.frame_rate).ceil
 	$game_screen.start_flash(Color.new(255, 255, 255),duration)
 end
+
+def timeMagicDay
+	return if PBDayNight.isDay?
+	$game_screen.start_shake(4, 4, 999)
+	pbWait(10)
+	while !PBDayNight.isDay?
+		UnrealTime.add_seconds(200)
+		pbWait(1)
+	end
+	$game_screen.start_shake(2, 2, 10)
+	pbWait(30)
+end
+
+def timeMagicNight
+	return if PBDayNight.isNight?
+	$game_screen.start_shake(4, 4, 999)
+	pbWait(10)
+	while !PBDayNight.isNight?
+		UnrealTime.add_seconds(200)
+		pbWait(1)
+	end
+	$game_screen.start_shake(2, 2, 10)
+	pbWait(30)
+end
+
+def disableAutoWeather
+	weather(:None,0,60)
+	$game_switches[82] = true
+end
+
+def enableAutoWeather
+	$game_switches[82] = false
+	applyOutdoorEffects
+end
+
+def fadeInUniqueFog(fogName)
+	disableAutoWeather
+
+	$game_map.start_fog_opacity_change(0, 80)
+	pbWait(80)
+
+	applyFog(fogName)
+
+	for i in 0..200 do
+		$game_map.fog_opacity    = i
+		pbWait(1)
+	end
+
+	pbWait(20)
+end
+
+def fadeOutUniqueFog
+	$game_map.start_fog_opacity_change(0, 40)
+	pbWait(40)
+
+	enableAutoWeather
+end

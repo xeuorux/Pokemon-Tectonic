@@ -32,6 +32,7 @@
 79: Saving not allowed
 80: Lainie saved
 81: Tapu Island unlocked
+82: Auto Clouds Disabled
 94: Perfected battle
 
 # Global Variables

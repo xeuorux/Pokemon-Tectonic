@@ -75,7 +75,7 @@ class Game_Screen
         resetWeather if !@weather_type
         weather.updateWeatherSettings($game_screen.weather_type, $game_screen.weather_strength,
             $game_screen.transition_time, $game_screen.weather_sprites_enabled, @callback_block)
-        weather.updateCloudCover
+        weather.updateCloudCover unless $game_switches[82]
     end
 
     def resetWeatherCallback

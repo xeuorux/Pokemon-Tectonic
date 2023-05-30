@@ -1,4 +1,6 @@
 class Spriteset_Map
+    attr_reader :weather
+
     def initialize(map=nil)
         @usersprites = []
         @map = (map) ? map : $game_map

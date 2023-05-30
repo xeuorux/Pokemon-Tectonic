@@ -563,16 +563,16 @@ class OverworldWeather
         darknessOpacity = 100 if DARK_MAPS.include?($game_map.map_id)
         applyFog('darkness', 0, darknessOpacity)
     end
-    
-    def applyFog(name, hue = 0, opacity = 100, velX = 0, velY = 0, blend_type = 0, zoom = 100)
-        $game_map.fog_name       = name
-        $game_map.fog_hue        = hue
-        $game_map.fog_opacity    = opacity
-        $game_map.fog_blend_type = blend_type
-        $game_map.fog_zoom       = zoom
-        $game_map.fog_sx         = velX
-        $game_map.fog_sy         = velY
-    end
+end
+
+def applyFog(name, hue = 0, opacity = 100, velX = 0, velY = 0, blend_type = 0, zoom = 100)
+    $game_map.fog_name       = name
+    $game_map.fog_hue        = hue
+    $game_map.fog_opacity    = opacity
+    $game_map.fog_blend_type = blend_type
+    $game_map.fog_zoom       = zoom
+    $game_map.fog_sx         = velX
+    $game_map.fog_sy         = velY
 end
 
 class WeatherParticle < Sprite
