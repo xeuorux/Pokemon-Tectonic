@@ -233,7 +233,7 @@
 1232,SINISTERSPINES,Sinister Spines,116,70,GRASS,Physical,100,5,0,NearOther,1,abef,"This move enables the user to attack first. It fails if the target is not readying an attack, however.",SPIKECANNON
 1233,MIRAGEFLARE,Mirage Flare,000,120,FLYING,Special,100,5,0,AllNearOthers,0,bef,"The user creates a storm using its flaming body, damaging everything around it.",
 1234,HAREHEROICS,Hare Heroics,566,1,NORMAL,Physical,100,15,0,NearOther,0,abef,"Deals more damage the less HP the user has. After attacking, the user switches out.",
-1235,RIPTURN,Rip Turn,568,70,WATER,Physical,100,10,100,NearOther,0,abef,"The user rips the target, lowering the their Defense by two steps. After attacking, the user switches out.",
+1235,RIPTURN,Rip Turn,568,70,WATER,Physical,100,10,100,NearOther,0,abef,"The user rips the target, lowering their Defense by two steps. After attacking, the user switches out.",
 1236,REDHOTRETREAT,Red-Hot Retreat,567,0,FIRE,Status,0,3,0,User,4,,"Protects the user from attacks. Also burns any attacker who specially attacks the user.",WITHDRAW
 1237,FROSTSPIKES,Frost Spikes,569,0,ICE,Status,0,15,0,FoeSide,0,c,"The user lays frozen spikes on the foe's side. One layer hurts switched in foes, two layers frostbites.",
 1238,SANDTOSS,Sand Toss,00A,40,GROUND,Special,100,30,10,NearOther,0,bef,"The user tosses hot desert sand on the target. It has a 10% chance to burn.",SCORCHINGSANDS
