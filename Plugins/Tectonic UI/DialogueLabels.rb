@@ -35,6 +35,11 @@ ANSEL = _INTL("Ansel")
 
 # Pro Trainers
 XANDER = _INTL("Xander")
+JADE = _INTL("Jade")
+BLAIRE = _INTL("Blaire")
+EMIR = _INTL("Emir")
+NYX = _INTL("Nyx")
+NERO = _INTL("Nero")
 
 # Other
 CARETAKER = _INTL("Valentina")
