@@ -719,9 +719,7 @@ end
 class PokeBattle_Move_650 < PokeBattle_Move_17C
     include EmpoweredMove
 
-    def pbEffectGeneral(user)
-        super
-
+    def pbEffectAfterAllHits(user, target)
         summonAvatar(user, :DREEPY, _INTL("One of the Dreepys joins the fray!"))
     end
 end

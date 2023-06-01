@@ -125,10 +125,10 @@ class PokeBattle_Scene
         trainerY -= 12 if @battle.battlers[1].boss?
         pixelsBetweenTrainerDataboxes = BASE_PIXELS_BETWEEN_DATABOXES - extraTrainerBattlers * SQUISH_PIXELS_PER_ADDED_BATTLER
         @battle.battlers.each do |b|
-        next if !b || b.index.even?
-        newDataBox = PokemonDataBox.new(b,trainerSideSize,@viewport,trainerY)
-        @sprites["dataBox_#{b.index}"] = newDataBox
-        trainerY += newDataBox.getHeight + pixelsBetweenTrainerDataboxes
+          next if !b || b.index.even?
+          newDataBox = PokemonDataBox.new(b,trainerSideSize,@viewport,trainerY)
+          @sprites["dataBox_#{b.index}"] = newDataBox
+          trainerY += newDataBox.getHeight + pixelsBetweenTrainerDataboxes
         end
 
         # Player side databoxes
@@ -137,10 +137,10 @@ class PokeBattle_Scene
         playerY = Graphics.height - BASE_PLAYER_HEIGHT + extraPlayerBattlers * SHIFT_PIXELS_PER_ADDED_PLAYER_BATTLER
         pixelsBetweenPlayerDataboxes = BASE_PIXELS_BETWEEN_DATABOXES - extraPlayerBattlers * SQUISH_PIXELS_PER_ADDED_BATTLER
         @battle.battlers.reverse.each do |b|
-        next if !b || b.index.odd?
-        newDataBox = PokemonDataBox.new(b,playerSideSize,@viewport,playerY)
-        @sprites["dataBox_#{b.index}"] = newDataBox
-        playerY -= newDataBox.getHeight + pixelsBetweenPlayerDataboxes
+          next if !b || b.index.odd?
+          newDataBox = PokemonDataBox.new(b,playerSideSize,@viewport,playerY)
+          @sprites["dataBox_#{b.index}"] = newDataBox
+          playerY -= newDataBox.getHeight + pixelsBetweenPlayerDataboxes
         end
     end
 
