@@ -61,8 +61,8 @@
 1060,BEDROCKBREAKER,Bedrock Breaker,0FB,120,ROCK,Physical,100,10,0,NearOther,0,abef,"The user smashes its rock-hard head into the target. The user also takes 33% recoil.",HEADSMASH
 1061,TEMPEST,Tempest,401,100,FLYING,Special,50,10,100,NearOther,0,befq,"Chaotic winds push the target around, dizzying it.",HURRICANE
 1062,BLUSTER,Bluster,020,40,FLYING,Special,100,10,100,NearOther,0,befq,"The user fires a stormy gust at the target. This also raises the user's Sp. Atk by two steps.",GUST
-1063,SHREDSHOT,Shred Shot,511,55,STEEL,Special,100,30,100,NearOther,0,befn,"The user shreads off bits of its own body to launch at the target. This also damages the user.",SPIKECANNON
-1064,SHARDS,Shards,511,90,STEEL,Special,100,10,100,NearOther,0,bef,"The user shoots shards of its own body at the target. This also damages the user.",SPIKECANNON
+1063,SHREDSHOT,Shred Shot,511,55,STEEL,Special,100,30,100,NearOther,0,befn,"The user shreads off bits of its own body to launch at the target. The user loses 30% of their current health.",SPIKECANNON
+1064,SHARDS,Shards,511,90,STEEL,Special,100,10,100,NearOther,0,bef,"The user shoots shards of its own body at the target. The user loses 30% of their current health.",SPIKECANNON
 1065,SPITEFULCHANT,Spiteful Chant,521,70,GHOST,Special,100,15,100,NearOther,0,befk,"The user unleashes its grudge, damaging the target and cutting 4 PP from the move last used by it.",NIGHTSHADE
 1066,ENLIGHTENEDHIT,Enlightened Hit,515,90,FIGHTING,Physical,100,12,100,NearOther,0,abef,"The user is immune to extra effects of moves until their next attack.",KARATECHOP
 1067,GRIMEGRAPPLE,Grime Grapple,514,100,POISON,Physical,100,10,100,NearOther,0,abef,"The user attacks while slathered in grime. This poisons the user.",POISONJAB
@@ -272,7 +272,7 @@
 1271,ODDROOM,Odd Room,582,0,PSYCHIC,Status,0,10,0,BothSides,0,e,"The user creates an odd area in which Pokémon's offensive and defensive stats are swapped.",MAGICROOM
 1272,MULCHMEAL,Mulch Meal,583,0,GRASS,Status,0,10,0,User,0,d,"The user eats decaying leaves, restoring its HP by 50% and raising its Speed.",RECOVER
 1273,GUIDINGAROMA,Guiding Aroma,584,0,BUG,Status,0,12,0,NearAlly,0,,"The user raises all of the target's attacking and defensive stats.",AROMATICMIST
-1274,FLAREWITCH,Flare Witch,585,0,FIRE,Status,0,10,0,User,0,d,"Raises Sp. Atk. Until switch out, the user's attacks spread to hit all nearby foes.",
+1274,FLAREWITCH,Flare Witch,585,0,FIRE,Status,0,10,0,User,0,d,"Raises Sp. Atk by 2 steps. Until switch out, the user's attacks spread to hit all nearby foes.",
 1275,WHIPTRANCE,Whip Trance,55F,120,FIGHTING,Special,100,10,0,NearOther,0,abefh,"The user relentlessly attacks with its whip-like hands for three turns. Critical hits land more easily.",
 1276,CRUELWHIPBLADE,Cruel Whipblade,104,30,GRASS,Physical,100,12,0,NearOther,0,abefp,"The user flicks its thorns, dealing damage and setting a layer of poison spikes around the target.",
 1277,HONORLESSSTING,Honorless Sting,586,105,POISON,Physical,100,12,0,NearOther,0,abef,"The user uses venom that turns the target's body against it. Super effective vs Fighting-types.",POISONSTING
