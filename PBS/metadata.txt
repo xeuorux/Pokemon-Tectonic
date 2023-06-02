@@ -626,7 +626,7 @@ Bicycle = true
 BattleBack = elite6
 #-------------------------------
 [105]
-# Southeast Sinkhole
+# Burnt-Out Sinkhole
 Outdoor = false
 ShowArea = false
 Bicycle = true
@@ -648,13 +648,13 @@ MapPosition = 0,5,11
 BattleBack = elite6
 #-------------------------------
 [108]
-# Sinkhole House Yard
+# Sunken House Yard
 Outdoor = false
 ShowArea = false
 Bicycle = true
 #-------------------------------
 [109]
-# Sunken Building South
+# Candle-Lit House
 Outdoor = false
 ShowArea = false
 Bicycle = true
@@ -676,7 +676,7 @@ BattleBack = cave1
 Environment = Cave
 #-------------------------------
 [112]
-# Sunken Building Middle
+# Secret Storage
 Outdoor = false
 ShowArea = false
 Bicycle = false
@@ -698,7 +698,7 @@ BattleBack = cave1
 Environment = Cave
 #-------------------------------
 [115]
-# Weird Sinkhole
+# Snowy Sinkhole
 Outdoor = false
 ShowArea = false
 Bicycle = true

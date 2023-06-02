@@ -2139,18 +2139,6 @@ Pokemon = CHIMECHO,34
     AbilityIndex = 1 # Mending Tones
     Item = SHELLBELL
 #-------------------------------
-[BEAUTY3,Ester]
-Pokemon = AMPHAROS,42
-    AbilityIndex = 0 # Static
-Pokemon = SCARAPACE,44
-    AbilityIndex = 1 # Mold Breaker
-    Item = BUGGEM
-Pokemon = MIMIKYU,43
-    AbilityIndex = 0 # Disguise
-    Item = LIFEORB
-Pokemon = GRAPPLOCT,42
-    AbilityIndex = 1 # Energetic
-#-------------------------------
 [AROMALADY3,Marion]
 Pokemon = VAPOREON,33
     AbilityIndex = 0 # Hydration
@@ -2623,27 +2611,63 @@ Pokemon = MILLIBLAZE,42
     AbilityIndex = 1 # Locomotion
     Item = LIFEORB
 #-------------------------------
+[BEAUTY3,Ester]
+Pokemon = AMPHAROS,42
+    AbilityIndex = 0 # Static
+Pokemon = SCARAPACE,43
+    AbilityIndex = 1 # Mold Breaker
+    Item = BUGGEM
+Pokemon = MIMIKYU,43
+    AbilityIndex = 0 # Disguise
+    Item = LIFEORB
+Pokemon = GRAPPLOCT,42
+    AbilityIndex = 1 # Energetic
+#-------------------------------
 [WORKER2,Hugo]
-Pokemon = COFAGRIGUS,41
-    AbilityIndex = 1 # Unafraid
-Pokemon = ASANDSLASH,41
+Pokemon = MACHAMP,42
+    AbilityIndex = 0 # Feel the Burn
+    Item = RAWSTBERRY
+Pokemon = ASANDSLASH,42
     AbilityIndex = 1 # Assault Spines
-Pokemon = TAUROS,42
+Pokemon = TAUROS,43
     AbilityIndex = 0 # Intimidate
     Item = CHOPLEBERRY
 Pokemon = VIKAVOLT,43
     AbilityIndex = 1 # Levitate
+#-------------------------------
+[PUNKM,Vlad]
+Pokemon = GSLOWBRO,42
+    AbilityIndex = 1 # Merciless
+Pokemon = BARBARACLE,42
+    AbilityIndex = 1 # Steel Absorb
+    Item = LUMBERRY
+Pokemon = PARASECT,43
+    AbilityIndex = 1 # Bad Dreams
+Pokemon = JOLTEON,43
+    AbilityIndex = 1 # Needle Fur
     Item = FOCUSSASH
 #-------------------------------
+[ARTIST2,Frank]
+Pokemon = SUDOWOODO,47
+    AbilityIndex = 1 # Prankster
+	Item = LEFTOVERS
+Pokemon = BRUXISH,48
+    AbilityIndex = 1 # Strong Jaw
+Pokemon = DUNSPARCE,48
+    AbilityIndex = 0 # Serene Grace
+Pokemon = LILLIGANT,47
+    AbilityIndex = 1 # Herbalist
+	Item = WHITEHERB
+#-------------------------------
 [CLOWN,Dimesmart]
-Pokemon = MISMAGIUS,47
+Pokemon = MISMAGIUS,43
     AbilityIndex = 1 # Levitate
-Pokemon = GIGACHU,48
+Pokemon = GIGACHU,43
     AbilityIndex = 0 # Arc Conductor
-Pokemon = TORKOAL,48
+Pokemon = TORKOAL,43
     AbilityIndex = 0 # White Smoke
     Item = AIRBALLOON
-Pokemon = FLYGON,49
+Pokemon = FLYGON,44
     AbilityIndex = 0 # Desert Spirit
     Item = SHELLBELL
 #-------------------------------
