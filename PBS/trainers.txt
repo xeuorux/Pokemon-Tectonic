@@ -1662,17 +1662,14 @@ Pokemon = AMPHAROS,43
 Pokemon = TSAREENA,43
     AbilityIndex = 1 # Royal Majesty
     Item = LIFEORB
-Pokemon = ESPEON,42
-    AbilityIndex = 1 # Plot Armor
-    Item = SITRUSBERRY
+Pokemon = COFAGRIGUS,43
+    AbilityIndex = 1 # Unafraid
 #-------------------------------
 [CAMERAMAN,Marcel]
-Pokemon = LUXRAY,43
-    AbilityIndex = 0 # Night Vision
-    Item = DARKGEM
-Pokemon = UMBREON,42
-    AbilityIndex = 0 # Malicious Glow
-    Item = LEFTOVERS
+Pokemon = ORBEETLE,43
+    AbilityIndex = 0 # Brain Scramble
+Pokemon = CARRACOSTA,43
+    AbilityIndex = 1 # Tough
 #-------------------------------
 [JANITOR,Aaron]
 Pokemon = FEAROW,40
@@ -2650,14 +2647,14 @@ Pokemon = JOLTEON,43
 [ARTIST2,Frank]
 Pokemon = SUDOWOODO,47
     AbilityIndex = 1 # Prankster
-	Item = LEFTOVERS
+    Item = LEFTOVERS
 Pokemon = BRUXISH,48
     AbilityIndex = 1 # Strong Jaw
 Pokemon = DUNSPARCE,48
     AbilityIndex = 0 # Serene Grace
 Pokemon = LILLIGANT,47
     AbilityIndex = 1 # Herbalist
-	Item = WHITEHERB
+    Item = WHITEHERB
 #-------------------------------
 [CLOWN,Dimesmart]
 Pokemon = MISMAGIUS,43
@@ -5335,7 +5332,7 @@ Pokemon = SUNFLORA,63
     AbilityIndex = 1 # Drought
     Item = HEATROCK
 Pokemon = ESPEON,64
-    AbilityIndex = 1 # Plot Armor
+    AbilityIndex = 0 # Jasper Charge
 Pokemon = HOUNDOMINUS,64
     AbilityIndex = 0 # Midnight Sun
     Item = WEAKNESSPOLICY
