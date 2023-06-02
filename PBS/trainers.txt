@@ -3181,14 +3181,14 @@ Pokemon = CRUSTLE,60
     Item = LUMBERRY
 #-------------------------------
 [BUGCATCHER2,Rangsan]
+Pokemon = DRACOVISH,60
+    AbilityIndex = 1 # Schadenfreude
+    Item = AGILITYHERB
 Pokemon = SCEPTILE,60
     AbilityIndex = 0 # Infiltrator
 Pokemon = FROSMOTH,60
     AbilityIndex = 1 # Bitter
     Item = WEAKNESSPOLICY
-Pokemon = DRACOVISH,60
-    AbilityIndex = 1 # Schadenfreude
-    Item = AGILITYHERB
 Pokemon = DURANT,60
     AbilityIndex = 0 # Hustle
 #-------------------------------
