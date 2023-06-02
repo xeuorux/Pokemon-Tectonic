@@ -292,3 +292,6 @@
 419,SCHOOLKID_F4,School Kid,20,,,LASS2,Female,,,[]
 420,MASKEDVILLAIN_DOUBLE,Masked Villains,0,,,,Mixed,,,[]
 421,MASKEDVILLAIN2_DOUBLE,Masked Villains,0,,,,Mixed,,,[]
+422,PUNKM,Punk,20,,,ROUGHNECK,Male,,,[]
+423,PUNKF,Punk,20,,,ROUGHNECK,Female,,,[]
+424,ARTIST4,Artist,32,,,ARTIST,Male,,,[]

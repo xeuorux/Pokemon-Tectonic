@@ -197,7 +197,7 @@ module Compiler
     push_text(firstPage.list,"Dialogue here.")
     
     push_branch(firstPage.list,"pbTrainerBattle(:#{trainerTypeName},\"#{trainerName}\")")
-    push_branch(firstPage.list,"$game_switches[94]",1)
+    push_branch(firstPage.list,"battlePerfected?",1)
     push_text(firstPage.list,"Dialogue here.",2)
     push_script(firstPage.list,"perfectTrainer(#{trainerMaxLevel})",2)
     push_else(firstPage.list,2)

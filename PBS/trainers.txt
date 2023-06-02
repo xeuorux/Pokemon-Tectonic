@@ -2782,6 +2782,18 @@ Pokemon = FLORGES,53
     AbilityIndex = 1 # Sentry
     Item = OCCABERRY
 #-------------------------------
+[BACKERS_M,Yanko and Orlando]
+Pokemon = SIMISEAR,54
+    AbilityIndex = 0 # Friend Guard
+Pokemon = SIMIPOUR,54
+    AbilityIndex = 0 # Friend Guard
+Pokemon = TYRANTRUM,53
+    AbilityIndex = 1 # Rock Head
+    Item = ROCKGEM
+Pokemon = ACCELGOR,53
+    AbilityIndex = 1 # Ninjutsu
+    Item = LIFEORB
+#-------------------------------
 [BLACKBELT,Santiago]
 Pokemon = DRAGONITE,54
     AbilityIndex = 1 # Multiscale
@@ -2805,6 +2817,28 @@ Pokemon = NOIVERN,55
 Pokemon = PERRSERKER,54
     AbilityIndex = 1 # Steely Spirit
     Item = STEELGEM
+#-------------------------------
+[ARTIST4,Rabah]
+Pokemon = MLILLIGANT,55
+    AbilityIndex = 0 # Tangling Hair
+    Item = SITRUSBERRY
+Pokemon = MACHAMP,55
+    AbilityIndex = 0 # Feel the Burn
+    Item = RAWSTBERRY
+Pokemon = STUNFISK,55
+    AbilityIndex = 0 # Static
+Pokemon = TEAMUJIN,55
+    AbilityIndex = 1 # Parental Bond
+#-------------------------------
+[COOLTRAINER_F,Reina]
+Pokemon = AMBIPOM,55
+    AbilityIndex = 0 # Sticky Fingers
+Pokemon = HTYPHLOSION,55
+    AbilityIndex = 0 # Fiery Spirit
+Pokemon = HSAMUROTT,55
+    AbilityIndex = 1 # Sharpness
+Pokemon = HDECIDUEYE,55
+    AbilityIndex = 1 # Feather Coat
 #-------------------------------
 [LEADER_Victoire,Victoire]
 Policies = VICTOIRE
