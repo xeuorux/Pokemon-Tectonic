@@ -479,6 +479,19 @@ def diegosWares
 	)
 end
 
+def gemVendor
+	gemStock = %i[
+		FIREGEM WATERGEM ELECTRICGEM GRASSGEM ICEGEM FIGHTINGGEM POISONGEM GROUNDGEM FLYINGGEM
+		PSYCHICGEM BUGGEM ROCKGEM GHOSTGEM DRAGONGEM DARKGEM STEELGEM NORMALGEM FAIRYGEM
+	]
+
+	pbPokemonMart(
+		gemStock,
+		_INTL("Yo, I'm Adam, the gem guy. Gonna buy some gems, or what?"),
+		!CAN_SELL_IN_VENDORS
+	)
+end
+
 def basicBallVendor
 	basicBallStock = %i[
 		GREATBALL
@@ -575,6 +588,45 @@ def berryVendor
 	pbPokemonMart(
 		berryStock,
 		_INTL("Care to buy some of our extra berry harvest?"),
+		!CAN_SELL_IN_VENDORS
+	)
+end
+
+def weirdBerryVendor
+	setPrice(:LIECHIBERRY,1000)
+	setPrice(:GANLONBERRY,1000)
+	setPrice(:SALACBERRY,1000)
+	setPrice(:PETAYABERRY,1000)
+	setPrice(:APICOTBERRY,1000)
+	setPrice(:LANSATBERRY,1000)
+	setPrice(:STARFBERRY,1000)
+	setPrice(:MICLEBERRY,1000)
+
+	setPrice(:MICLEBERRY,1000)
+	setPrice(:CUSTAPBERRY,1000)
+	setPrice(:JABOCABERRY,1000)
+	setPrice(:ROWAPBERRY,1000)
+	setPrice(:MARANGABERRY,1000)
+
+	berryStock = %i[
+		LIECHIBERRY
+		GANLONBERRY
+		SALACBERRY
+		PETAYABERRY
+		APICOTBERRY
+		LANSATBERRY
+		STARFBERRY
+		MICLEBERRY
+		CUSTAPBERRY
+		JABOCABERRY
+		ROWAPBERRY
+		KEEBERRY
+		MARANGABERRY
+	]
+
+	pbPokemonMart(
+		berryStock,
+		_INTL("Some of these are illegal to import. Don't get me caught."),
 		!CAN_SELL_IN_VENDORS
 	)
 end
