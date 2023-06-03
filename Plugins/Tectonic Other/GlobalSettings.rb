@@ -3,6 +3,7 @@ module Settings
 
   # The maximum level Pokémon can reach.
   MAXIMUM_LEVEL        = 71
+  GAIN_EXP_FOR_CAPTURE = false
   # Whether poisoned Pokémon will lose HP while walking around in the field.
   POISON_IN_FIELD       = true
   # Whether poisoned Pokémon will faint while walking around in the field
