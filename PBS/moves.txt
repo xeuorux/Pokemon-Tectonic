@@ -558,7 +558,7 @@
 557,TRICK,Trick,0F2,0,PSYCHIC,Status,100,10,0,NearOther,0,be,"The user catches the target off guard and swaps its held item with its own.",
 558,TRICKROOM,Trick Room,11F,0,PSYCHIC,Status,0,5,0,BothSides,-7,e,"The user creates a bizarre area in which slower Pokémon get to move first for five turns.",
 559,WONDERROOM,Wonder Room,124,0,PSYCHIC,Status,0,10,0,BothSides,0,e,"The user creates a bizarre area in which Pokémon's Defense and Sp. Def stats are swapped for 5 turns.",
-560,SHATTEREDENERGY,Shattered Energy,190,80,DRAGON,Special,100,15,0,AllNearOthers,0,bef,"Attacks with dragon energy. Power increases and damages all opponents in eclipse.",
+560,SHATTEREDENERGY,Shattered Energy,190,80,DRAGON,Special,100,15,0,AllNearOthers,0,bef,"Attacks with dragon energy. Power increases and damages all nearby in eclipse.",
 561,EERIESPELL,Eerie Spell,521,70,PSYCHIC,Special,100,10,0,NearOther,0,bef,"The user casts a horrible spell on the opponent. This removes 4 PP from their last used move.",
 562,FREEZINGGLARE,Freezing Glare,403,90,PSYCHIC,Special,100,10,20,NearOther,0,ef,"The user shoots its psychic power from its eyes to attack. It has a 20% chance to frostbite.",
 563,HEADSMASH,Head Smash,0FC,120,ROCK,Physical,100,5,0,NearOther,0,abef,"The user attacks the foe with a hazardous, full-power headbutt. The user also takes 50% recoil.",
