@@ -675,7 +675,7 @@ class PokeBattle_Battle
 
         # Collect Pay Day money in a wild battle that ended in a capture
         pbGainMoney if @decision == 4
-        pbDisplayPaused(_INTL("{1} exp was stored in the EXP-EZ Dispenser this battle.", @expStored)) if @expStored > 0
+        pbDisplayWithFormatting(_INTL("\\i[EXPEZDISPENSER]{1} exp was stored in the EXP-EZ Dispenser this battle.", @expStored)) if @expStored > 0
         
         # Clean up battle stuff
         @scene.pbEndBattle(@decision)
