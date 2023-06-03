@@ -498,7 +498,7 @@
 497,INFINITEROPE,Escape Rope,Escape Ropes,8,0,"A long, durable rope. Use it to escape instantly from a cave or a dungeon.",2,0,6
 498,GRASSTOKEN,Grass Token,Grass Tokens,1,10000,"A token which can be exchanged for a Grass-type at the Starter Store.",0,0,0
 499,WATERTOKEN,Water Token,Water Tokens,1,10000,"A token which can be exchanged for a Water-type at the Starter Store.",0,0,0
-500,ORIGINORE,Origin Ore,Origin Ores,1,8000,"A peculiar ore that makes certain species of Pokémon evolve.",1,0,7
+500,ORIGINORE,Origin Ore,Origin Ores,1,8000,"A peculiar ore that makes certain species of Pokémon evolve. Associated with Arceus.",1,0,7
 501,FIRETOKEN,Fire Token,Fire Tokens,1,10000,"A token which can be exchanged for a Fire-type at the Starter Store.",0,0,0
 502,DRATINIEGG,Dratini Egg,Dratini Eggs,1,10000,"An abandoned Dratini egg that is cold and calm. Only an expert would be able to hatch it.",0,0,0
 503,BAGONEGG,Bagon Egg,Bagon Eggs,1,10000,"An abandoned Bagon egg that is cold and calm. Only an expert would be able to hatch it.",0,0,0
