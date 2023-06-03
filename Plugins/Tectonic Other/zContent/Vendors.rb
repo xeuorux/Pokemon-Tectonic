@@ -59,7 +59,7 @@ def purchaseStarters(type,price=0)
 			starterChosenName = starterArray[result]
 			starterSpecies = starterChosenName.upcase.to_sym
 
-			choicesArray = [_INTL("View Pokedex"), _INTL("Buy Pokemon"), _INTL("Cancel")]
+			choicesArray = [_INTL("View MasterDex"), _INTL("Buy Pokemon"), _INTL("Cancel")]
 			secondResult = pbShowCommands(nil,choicesArray,3)
 			case secondResult
 			when 1
@@ -227,7 +227,7 @@ def createHisuian
 			chosenName = speciesArray[result]
 			chosenSpecies = actualSpecies[result]
 
-			choicesArray = [_INTL("View Pokedex"), _INTL("Buy Pokemon"), _INTL("Cancel")]
+			choicesArray = [_INTL("View MasterDex"), _INTL("Buy Pokemon"), _INTL("Cancel")]
 			secondResult = pbShowCommands(nil,choicesArray,3)
 			case secondResult
 			when 1
