@@ -92,8 +92,7 @@ class PokeBattle_Battle
 
     def useEmpoweredStatusMoves
         # Have bosses use empowered moves if appropriate
-        @battlers.each do |b|
-            next unless b
+        eachBattler do |b|
             next unless b.boss?
             avatarData = GameData::Avatar.get(b.species.to_sym)
             next if b.avatarPhase == avatarData.num_phases
@@ -107,11 +106,12 @@ class PokeBattle_Battle
                     pbAnimation(:REFRESH,b,b)
                     pbDisplayBossNarration(_INTL("{1} wiped the slate clean.", b.pbThis))
                     b.pbCureStatus
-                    b.pbCureStatus
+                    b.pbCureStatus # Duplicated intentionally
                     b.pbResetLoweredStatSteps(true)
                 end
                 pbDisplayBossNarration(_INTL("A great energy rises up from inside {1}!", b.pbThis(true)))
                 b.lastRoundMoved = 0
+                b.pbCancelMoves # Cancels multi-turn moves
                 b.pbUseMove([:UseMove, index, move, -1, 0])
                 usedEmpoweredMove = true
                 break

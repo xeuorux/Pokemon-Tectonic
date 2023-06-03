@@ -90,7 +90,7 @@ class PokeBattle_Battler
     # Pursuit was used specially to intercept a switching foe.
     # Cancels the use of multi-turn moves and counters thereof. Note that Hyper
     # Beam's effect is NOT cancelled.
-    def pbCancelMoves(_full_cancel = false)
+    def pbCancelMoves
         echoln("[EFFECTS] Effects are being disabled due to moves being cancelled on #{pbThis(true)}")
         eachEffect do |effect, _value, effectData|
             disableEffect(effect) if effectData.resets_on_cancel

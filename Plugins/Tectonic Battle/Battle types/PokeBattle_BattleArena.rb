@@ -137,8 +137,8 @@ class PokeBattle_BattleArena < PokeBattle_Battle
     @count += 1
     return if @count < 3
     # Half all multi-turn moves
-    @battlers[0].pbCancelMoves(true)
-    @battlers[1].pbCancelMoves(true)
+    @battlers[0].pbCancelMoves
+    @battlers[1].pbCancelMoves
     # Calculate scores in each category
     ratings1 = [0, 0, 0]
     ratings2 = [0, 0, 0]
