@@ -309,7 +309,6 @@ class FightMenuDisplay < BattleMenuBase
         shadow = Color.new(104,104,104)
 
         pbSetNarrowFont(@infoOverlay.bitmap)
-        @infoOverlay.bitmap.font.size = 22
         moveInfoToggleReminderText = []
         moveInfoToggleReminderText.push([_INTL("Toggle Info:"),448,6,2,faded_base,TEXT_SHADOW_COLOR])
         moveInfoToggleReminderText.push([_INTL("ACTION/Z"),448,26,2,faded_base,TEXT_SHADOW_COLOR])
