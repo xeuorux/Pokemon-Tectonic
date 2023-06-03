@@ -2656,6 +2656,30 @@ Pokemon = LILLIGANT,47
     AbilityIndex = 1 # Herbalist
     Item = WHITEHERB
 #-------------------------------
+[VETERANM,Yoshihiro]
+Pokemon = HELECTRODE,47
+    AbilityIndex = 0 # Self Mending
+    Item = LIGHTCLAY
+Pokemon = HUNTAIL,48
+    AbilityIndex = 0 # Intimidate
+Pokemon = BASTIODON,48
+    AbilityIndex = 1 # Frustrate
+    Item = BINDINGBAND
+Pokemon = HARCANINE,47
+    AbilityIndex = 1 # Rock Head
+#-------------------------------
+[REPORTER,Pesha]
+Pokemon = VOLBEAT,48
+    AbilityIndex = 1 # Competitive
+    Item = FOCUSSASH
+Pokemon = KINGDRA,47
+    AbilityIndex = 0 # Serene Grace
+Pokemon = TORKOAL,48
+    AbilityIndex = 0 # White Smoke
+    Item = SITRUSBERRY
+Pokemon = MSEAKING,47
+    AbilityIndex = 1 # Unafraid
+#-------------------------------
 [CLOWN,Dimesmart]
 Pokemon = MISMAGIUS,43
     AbilityIndex = 1 # Levitate
