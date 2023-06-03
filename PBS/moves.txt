@@ -227,7 +227,7 @@
 226,AERIALACE,Aerial Ace,0A5,60,FLYING,Physical,0,15,0,NearOther,0,aefp,"The user confounds the foe with speed, then slashes. Can't miss and skips protections.",
 227,AIRCUTTER,Air Cutter,000,60,FLYING,Special,100,20,0,AllNearFoes,0,befhpq,"The user launches razor-like wind to slash the opposing team. Critical hits land more easily.",
 228,PLUCK,Pluck,0F4,60,FLYING,Physical,100,15,0,NearOther,0,abef,"The user pecks the target. If the target is holding a Berry, the user eats it and gains its effect.",
-229,WINGATTACK,Wing Attack,599,55,FLYING,Physical,100,30,0,NearOther,0,abef,"The target is struck with large, imposing wings. The user also takes 20% recoil.",
+229,WINGCRASH,Wing Crash,599,55,FLYING,Physical,100,30,0,NearOther,0,abef,"The target is struck with large, imposing wings. The user also takes 20% recoil.",
 230,ACROBATICS,Acrobatics,086,55,FLYING,Physical,100,12,0,NearOther,0,abef,"The user nimbly strikes the foe through an elaborate routine. Doubles in damage if the user has no item.",
 231,GUST,Gust,403,40,FLYING,Special,100,30,10,NearOther,0,befq,"The user whips up a gust of wind at the target. This has a 10% chance to frostbite.",
 232,PECK,Peck,000,45,FLYING,Physical,100,30,0,NearOther,0,abef,"The target is jabbed with a sharply pointed beak or horn.",
