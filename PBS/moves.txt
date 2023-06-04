@@ -393,7 +393,7 @@
 392,DOUBLEHIT,Double Hit,0BD,35,NORMAL,Physical,100,10,0,NearOther,0,abef,"The user slams the target with a long tail, vines, or tentacle. The target is hit twice in a row.",
 393,FEINT,Feint,0AD,30,NORMAL,Physical,100,10,0,NearOther,2,ef,"An attack that hits a target using Protect or Detect. It also lifts the effects of those moves.",
 394,RAGE,Rage,093,30,NORMAL,Physical,100,15,0,NearOther,0,abef,"As long as this move is in use, the user's Attack is raised two steps each time the user is hit.",
-395,RAPIDSPIN,Rapid Spin,5E0,65,NORMAL,Physical,100,30,100,NearOther,0,abef,"A spin attack that can also eliminate trapping and hazard moves. Also raises the user's Speed.",
+395,RAPIDSPIN,Rapid Spin,54B,65,NORMAL,Physical,100,30,100,NearOther,0,abef,"A spin attack that can also eliminate trapping and hazard moves. Also raises the user's Speed.",
 396,SPIKECANNON,Spike Cannon,0C0,25,STEEL,Physical,100,20,0,NearOther,0,bef,"Sharp spikes are shot at the target in rapid succession. They hit two to five times in a row.",
 397,FURYSWIPES,Fury Swipes,0C0,25,NORMAL,Physical,100,12,0,NearOther,0,abefph,"The target is raked two to five times. Critical hits land more easily.",
 398,HEADTHROW,Head Throw,500,40,GRASS,Special,100,15,0,NearOther,0,befn,"Round objects are hurled at the target to strike three times in a row.",
