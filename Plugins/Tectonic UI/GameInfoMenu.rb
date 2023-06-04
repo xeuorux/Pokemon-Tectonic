@@ -66,14 +66,14 @@ class PokemonGameInfoMenu_Scene
 		  end
 		end
 		return ret
-	  end
+	end
 	
-	  def pbEndScene
+	def pbEndScene
 		pbDisposeSpriteHash(@sprites)
 		@viewport.dispose
-	  end
-	
-	  def pbRefresh; end
+	end
+
+	def pbRefresh; end
 end
 
 class PokemonGameInfoMenu < PokemonPauseMenu
@@ -96,6 +96,7 @@ class PokemonGameInfoMenu < PokemonPauseMenu
 		infoCommands[cmdBattleGlossary = infoCommands.length] = _INTL("Battle Guide")
 		infoCommands[cmdTrainer = infoCommands.length] = _INTL("#{$Trainer.name}'s Card")
 		infoCommands[cmdLevelCap = infoCommands.length] = _INTL("Level Cap") if LEVEL_CAPS_USED && getLevelCap > 0 && $Trainer.party_count > 0
+		infoCommands.push(_INTL("Cancel"))
 		loop do
 			infoCommand = @scene.pbShowCommands(infoCommands)
 			if cmdTrainer >= 0 && infoCommand == cmdTrainer

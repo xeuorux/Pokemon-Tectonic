@@ -104,8 +104,9 @@ class PokemonPauseMenu_Scene
 				:label => _INTL("Game Info"),
 				:press_proc => Proc.new { |scene|
 					storedLastMenuChoice = $PokemonTemp.menuLastChoice
-					
 					$PokemonTemp.menuLastChoice = 0
+					
+					pbPlayDecisionSE
 					infoMenuScene = PokemonGameInfoMenu_Scene.new
 					infoMenuScreen = PokemonGameInfoMenu.new(infoMenuScene)
 					infoMenuScreen.pbStartPokemonMenu
@@ -118,15 +119,17 @@ class PokemonPauseMenu_Scene
 			:OPTIONS => {
 				:label => _INTL("Options"),
 				:press_proc => Proc.new { |scene|
+					storedLastMenuChoice = $PokemonTemp.menuLastChoice
+					$PokemonTemp.menuLastChoice = 0
+					
 					pbPlayDecisionSE
-					pbFadeOutIn {
-						optionsScene = PokemonOption_Scene.new
-						screen = PokemonOptionScreen.new(optionsScene)
-						screen.pbStartScreen
-						pbUpdateSceneMap
+					optionScene = PokemonOption_Scene.new
+					optionScreen = PokemonOptionMenu.new(optionScene)
+					optionScreen.pbStartPokemonMenu
 
-						scene.pbRefresh
-					}
+					scene.pbRefresh
+
+					$PokemonTemp.menuLastChoice = storedLastMenuChoice
 				},
 			},
 			:SAVE => {
