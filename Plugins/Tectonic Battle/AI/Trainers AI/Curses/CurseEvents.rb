@@ -97,8 +97,7 @@ class PokeBattle_Battle
 
         msgwindow = pbCreateMessageWindow
         msgwindow.z = 100_001
-        waitTime = 40
-        waitTime /= 2 if fastTransitions?
+        waitTime = tutorialMessageDuration
         fontSize = 48
         msgwindow.lineHeight(48)
         curseName = _INTL("\\ts[]<c3=4C0D0D,FFFFFF22><b><outln2><ac><fs={1}>\\w[]\\wu\\l[12]{2}</fs></ac></outln2></b></c3>\\wt[{3}]",fontSize,curseName,waitTime)
