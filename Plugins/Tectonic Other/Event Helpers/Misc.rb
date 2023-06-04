@@ -216,6 +216,6 @@ end
 
 def tutorialMessageDuration
 	dur = 90
-	dur -= 15 * $PokemonSystem.textspeed
+	dur -= 10 * $PokemonSystem.textspeed
 	return dur
 end
