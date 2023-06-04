@@ -3383,6 +3383,7 @@ class PokeBattle_Move_0F4 < PokeBattle_Move
         return unless canPluckBerry?(user, target)
         target.eachItemWithName do |item, itemName|
             next unless canRemoveItem?(user, target, item)
+            next unless GameData::Item.get(item).is_berry?
             target.removeItem(item)
             @battle.pbDisplay(_INTL("{1} stole and ate its target's {2}!", user.pbThis, itemName))
             user.pbHeldItemTriggerCheck(item, false)
