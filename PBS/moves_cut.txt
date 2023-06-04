@@ -125,3 +125,6 @@
 4124,VISEGRIP,Vise Grip,000,55,NORMAL,Physical,100,25,0,NearOther,0,abef,"The target is gripped and squeezed from both sides to inflict damage.",
 4125,DISTORT,Distort,5E8,40,FIGHTING,Special,100,30,10,NearOther,0,abef,"The user distorts the target's aura, damaging it. This has a 10% chance of reducing the target's Defense.",VACUUMWAVE
 4126,WINGATTACK,Wing Attack,599,55,FLYING,Physical,100,30,0,NearOther,0,abef,"The target is struck with large, imposing wings. The user also takes 20% recoil.",
+4127,HYDROCANNON,Hydro Cannon,0C2,170,WATER,Special,100,5,0,NearOther,0,bef,"The target is hit with a watery blast. The user must rest on the next turn, however.",
+4128,FRENZYPLANT,Frenzy Plant,0C2,170,GRASS,Special,100,5,0,NearOther,0,bef,"The user slams the target with an enormous tree. The user can't move on the next turn.",
+4129,BLASTBURN,Blast Burn,0C2,170,FIRE,Special,100,5,0,NearOther,0,bef,"The target is razed by a fiery explosion. The user must rest on the next turn, however.",
