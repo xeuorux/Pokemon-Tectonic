@@ -3026,6 +3026,16 @@ Pokemon = MZANGOOSE,56
     AbilityIndex = 0 # Served Cold
     Item = GHOSTGEM
 #-------------------------------
+[YOUNGSTER2,Davor]
+Pokemon = RUBARIOR,58
+    AbilityIndex = 1 # Prankster
+Pokemon = GOREBYSS,57
+    AbilityIndex = 0 # Fascinate
+Pokemon = HLILLIGANT,58
+    AbilityIndex = 1 # Heartening Aroma
+Pokemon = TURTONATOR,57
+    AbilityIndex = 1 # Harsh
+#-------------------------------
 [DRAGONTAMER,Bataar]
 Pokemon = FLYGON,57
     AbilityIndex = 0 # Desert Spirit
@@ -3100,16 +3110,29 @@ Pokemon = CURSOLA,47
     Item = SITRUSBERRY
 #-------------------------------
 [POKEMONRANGER_M3,Grant]
-Pokemon = HIPPOWDON,49
-    AbilityIndex = 1 # Glass Firing
+Policies = SAND_TEAM
+Pokemon = HIPPOWDON,47
+    AbilityIndex = 0 # Sand Stream
     Item = EJECTBUTTON
-Pokemon = CACTURNE,50
-    AbilityIndex = 0 # Heartless
-Pokemon = PROBOPASS,51
+Pokemon = MARACTUS,48
+    AbilityIndex = 1 # Desert Armor
+Pokemon = PROBOPASS,48
     AbilityIndex = 1 # Iron Storm
     Item = EXPERTBELT
-Pokemon = GOLURK,52
+Pokemon = GOLURK,47
     AbilityIndex = 0 # Iron Fist
+#-------------------------------
+[GUITARIST2,Brady]
+Pokemon = POLITOED,48
+    AbilityIndex = 1 # Energy Up
+Pokemon = ORANGURU,48
+    AbilityIndex = 1 # Telepathy
+#-------------------------------
+[LINEBACKER,Lorenzo]
+Pokemon = KOMMOO,48
+    AbilityIndex = 0 # Sound Barrier
+Pokemon = ESCAVALIER,48
+    AbilityIndex = 0 # Armor Piercing
 #-------------------------------
 [TRAINER_Eifion,Eifion]
 Pokemon = HOUNDOOM,28
@@ -3352,6 +3375,16 @@ Pokemon = AVALUGG,64
     AbilityIndex = 0 # Chilled Body
 Pokemon = ABSOLUS,63
     AbilityIndex = 1 # Vengeance
+#-------------------------------
+[BACKERS_F,Maria and Iveta]
+Pokemon = HAEROBIC,63
+    AbilityIndex = 1 # Stubborn
+Pokemon = MAGNEZONE,63
+    AbilityIndex = 0 # Analytic
+Pokemon = TREVENANT,64
+    AbilityIndex = 1 # Break Through
+Pokemon = HBRAVIARY,64
+    AbilityIndex = 0 # Feather Coat
 #-------------------------------
 [ABSOL,Absol]
 Pokemon = ABSOL,20
