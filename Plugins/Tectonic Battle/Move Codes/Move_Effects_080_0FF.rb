@@ -3444,9 +3444,15 @@ end
 #===============================================================================
 class PokeBattle_Move_0F6 < PokeBattle_Move
     def pbMoveFailed?(user, _targets, show_message)
-        if !user.recyclableItem || user.hasItem?(user.recyclableItem)
+        unless user.recyclableItem
             if show_message
                 @battle.pbDisplay(_INTL("But it failed, since #{user.pbThis(true)} doesn't have an item to recycle!"))
+            end
+            return true
+        end
+        if user.hasItem?(user.recyclableItem)
+            if show_message
+                @battle.pbDisplay(_INTL("But it failed, since #{user.pbThis(true)} has the item it would recycle!"))
             end
             return true
         end

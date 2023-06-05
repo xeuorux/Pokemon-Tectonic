@@ -218,15 +218,15 @@ class PokeBattle_Battler
     end
 
     def recycleItem(recyclingMsg: nil, ability: nil)
-        return unless @recyclableItem
-        itemToRecycle = @recyclableItem
+        return unless recyclableItem
+        itemToRecycle = recyclableItem
         return unless canAddItem?(itemToRecycle)
-        @battle.pbShowAbilitySplash(self, ability)
+        @battle.pbShowAbilitySplash(self, ability) if ability
         giveItem(itemToRecycle)
         setRecycleItem(nil)
         recyclingMsg ||= _INTL("{1} recycled one {2}!", pbThis, getItemName(itemToRecycle))
         battle.pbDisplay(recyclingMsg)
-        @battle.pbHideAbilitySplash(self)
+        @battle.pbHideAbilitySplash(self) if ability
         pbHeldItemTriggerCheck
     end
 
