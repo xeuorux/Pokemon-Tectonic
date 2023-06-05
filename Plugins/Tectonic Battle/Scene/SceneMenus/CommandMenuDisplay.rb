@@ -16,7 +16,7 @@ class CommandMenuDisplay < BattleMenuBase
 	MODES = [
 		# Fight, Dex, Ball, Pkmn, Info, Forfeit
 		 [0,8,2,1,11,3],   # 0 = Wild Battle
-		 [0,8,2,1,11,9],   # 1 = Battle with "Cancel" instead of "Run"
+		 [0,8,12,1,11,9],   # 1 = Battle with "Cancel" instead of "Run"
 		 [0,8,2,1,11,4],   # 2 = Battle with "Call" instead of "Run"
 		 [5,7,2,6,11,3],   # 3 = Safari Zone
 		 [0,8,2,1,11,3],    # 4 = Bug Catching Contest
@@ -75,9 +75,9 @@ class CommandMenuDisplay < BattleMenuBase
     end
   
     def z=(value)
-      super
-      @msgBox.z    += 1
-      @cmdWindow.z += 1 if @cmdWindow
+        super
+        @msgBox.z    += 1
+        @cmdWindow.z += 1 if @cmdWindow
     end
   
     def setTexts(value)
@@ -101,8 +101,8 @@ class CommandMenuDisplay < BattleMenuBase
     end
   
     def refresh
-      @msgBox.refresh
-      @cmdWindow.refresh if @cmdWindow
-      refreshButtons
+        @msgBox.refresh
+        @cmdWindow.refresh if @cmdWindow
+        refreshButtons
     end
 end
