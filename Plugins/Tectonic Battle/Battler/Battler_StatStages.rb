@@ -311,7 +311,7 @@ class PokeBattle_Battler
         return false if increment <= 0
 
         # Stat down animation and message
-        trauma = user&.hasActiveAbility?(:TRAUMATIZING)
+        trauma = user&.hasActiveAbility?(:TRAUMATIZING) && opposes?(user)
         @battle.pbShowAbilitySplash(user, :TRAUMATIZING) if trauma
         @battle.pbCommonAnimation("StatDown", self) if showAnim
         increment /= 2.0 if boss? && AVATAR_DILUTED_STAT_STEPS
