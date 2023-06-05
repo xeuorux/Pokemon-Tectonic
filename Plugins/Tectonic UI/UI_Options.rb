@@ -482,7 +482,7 @@ class PokemonOption_Scene_Audio < PokemonOption_Scene_Base
 				proc { |value|
 					if $PokemonSystem.bgmvolume * VOLUME_FAKERY_MULT != value
 						$PokemonSystem.bgmvolume = value
-						if !$game_system.playing_bgm.nil? && !inloadscreen
+						if !$game_system.playing_bgm.nil?
 							playingBGM = $game_system.getPlayingBGM
 							$game_system.bgm_pause
 							$game_system.bgm_resume(playingBGM)
