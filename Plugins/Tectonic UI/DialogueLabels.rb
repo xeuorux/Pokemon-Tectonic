@@ -8,7 +8,7 @@ ZAIN = _INTL("Zain")
 # Recurring NPCs
 IMOGENE = _INTL("Imogene")
 ALESSA = _INTL("Alessa")
-SKYLAR = _INTL("Skylar")
+SKYLER = _INTL("Skyler")
 KEONI = _INTL("Keoni")
 EIFION = _INTL("Eifion")
 CANDY = _INTL("Candy")
