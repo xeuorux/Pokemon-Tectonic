@@ -48,8 +48,10 @@ def pbMountBike
     return if $PokemonGlobal.bicycle
     $PokemonGlobal.bicycle = true
     pbUpdateVehicle
-    bike_bgm = GameData::Metadata.get.bicycle_BGM
-    pbCueBGM(bike_bgm, 0.5) if bike_bgm
+    if $PokemonSystem.bike_bgm == 0
+        bike_bgm = GameData::Metadata.get.bicycle_BGM
+        pbCueBGM(bike_bgm, 0.5) if bike_bgm
+    end
     pbPokeRadarCancel
     map_metadata = GameData::MapMetadata.try_get($game_map.map_id)
     bike_anim = !(map_metadata && map_metadata.always_bicycle)
@@ -60,7 +62,7 @@ def pbDismountBike
     return if !$PokemonGlobal.bicycle
     $PokemonGlobal.bicycle = false
     pbUpdateVehicle
-    $game_map.autoplayAsCue
+    $game_map.autoplayAsCue if $PokemonSystem.bike_bgm == 0
     $PokemonTemp.dependentEvents.refresh_sprite(true)
 end
   

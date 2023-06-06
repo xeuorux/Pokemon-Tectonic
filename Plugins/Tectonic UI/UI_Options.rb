@@ -49,6 +49,13 @@ class PokemonSystem
         return @overworld_weather
     end
 
+    def bike_bgm
+        @bike_bgm ||= 0
+        return @bike_bgm
+    end
+
+    attr_writer :bike_bgm
+
     def initialize
         @textspeed = $DEBUG ? 4 : 2 # Text speed (0=slow, 1=normal, 2=fast, 3=rapid, 4=instant)
         @battlescene = 1 # Battle effects (animations) (0=on, 1=fast, 2=off)
@@ -62,6 +69,7 @@ class PokemonSystem
         @runstyle    		          = 0 # Default movement speed (0=walk, 1=run)
         @bgmvolume = 50 # Volume of background music and ME
         @sevolume    		          = 50 # Volume of sound effects
+        @bike_bgm                     = 0 # (0=true, 1=false)
         @textinput   		          = System.platform.downcase[/android/] ? 0 : 1 # Text input mode (0=cursor, 1=keyboard)
         @followers   		          = 0	# Follower Pokemon enabled (0=true, 1=false)
         @autosave	 		            = 0	# Autosave enabled (0=true, 1=false)
@@ -503,6 +511,12 @@ class PokemonOption_Scene_Audio < PokemonOption_Scene_Base
 						end
 						pbPlayCursorSE
 					end
+				}
+			),
+            EnumOption.new(_INTL("Bicycle Music"), [_INTL("On"), _INTL("Off")],
+				proc { $PokemonSystem.bike_bgm },
+				proc { |value|
+					$PokemonSystem.bike_bgm = value
 				}
 			),
 		])
