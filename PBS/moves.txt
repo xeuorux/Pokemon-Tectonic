@@ -104,7 +104,7 @@
 103,THUNDERSHOCK,Thunder Shock,007,40,ELECTRIC,Special,100,25,10,NearOther,0,bef,"A jolt of electricity is hurled at the foe to inflict damage. It has a 10% chance to numb.",
 104,NUZZLE,Nuzzle,007,20,ELECTRIC,Physical,100,15,100,NearOther,0,abef,"The user nuzzles its electrified cheeks against the target. This also leaves the target numbed.",
 105,ELECTROBALL,Electro Ball,099,1,ELECTRIC,Special,100,10,0,NearOther,0,befn,"The user hurls an electric orb at the foe. It does more damage the faster the user is.",
-106,CHARGE,Charge,021,0,ELECTRIC,Status,0,15,0,User,0,d,"The user gains a Charge, empowering its next Electric-type attack. Also raises the user's defensive stats by two steps each.",
+106,CHARGE,Charge,021,0,ELECTRIC,Status,0,15,0,User,0,d,"The user gains a Charge, doubling its next Electric-type attack. Also raises the user's defensive stats by two steps each.",
 107,EERIEIMPULSE,Eerie Impulse,13D,0,ELECTRIC,Status,100,12,0,NearOther,0,bce,"The user's body generates an eerie impulse. Lowers the target's Sp. Atk stat by four steps.",
 108,MAGNETRISE,Magnet Rise,119,0,ELECTRIC,Status,0,10,0,User,0,d,"The user levitates using electrically generated magnetism for five turns.",
 109,NUMB,Numb,007,0,ELECTRIC,Status,100,12,0,NearOther,0,bce,"A weak electric charge is launched to numb the target.",
