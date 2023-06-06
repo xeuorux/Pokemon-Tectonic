@@ -509,7 +509,7 @@ end
 class PokeBattle_AI_Sunflora < PokeBattle_AI_Boss
     def initialize(user, battle)
         super
-        secondMoveEveryTurn(:GROWTH)
+        secondMoveEveryOtherTurn(:GROWTH)
     end
 end
 
