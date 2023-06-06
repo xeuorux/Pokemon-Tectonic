@@ -251,7 +251,17 @@ class PokeBattle_Battle
             end
         end
 
-        pbCommandPhaseLoop(false) # AI chooses their actions
+        # Turn skipped due to ambush
+        if @turnCount == 0 && @playerAmbushing
+            # Player ambushes successfully!
+            pbDisplaySlower(_INTL("Your foe was ambushed! You get a free turn!"))
+            eachOtherSideBattler do |b|
+                b.extraMovesPerTurn = 0
+            end
+        else
+            # AI chooses their actions
+            pbCommandPhaseLoop(false)
+        end
 
         return if @decision != 0 # Battle ended, stop choosing actions
 
@@ -283,7 +293,16 @@ class PokeBattle_Battle
             end
         end
 
-        pbCommandPhaseLoop(true) # Player chooses their actions
+        # Turn skipped due to ambush
+        if @turnCount == 0 && @foeAmbushing
+            # The player is ambushed by the foe!
+            pbDisplaySlower(_INTL("You were ambushed! The foe gets a free turn!"))
+            eachSameSideBattler do |b|
+                b.extraMovesPerTurn = 0
+            end
+        else
+            pbCommandPhaseLoop(true) # Player chooses their actions
+        end
 
         triggerAllChoicesDialogue
     end

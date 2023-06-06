@@ -131,6 +131,9 @@ class Game_Player < Game_Character
       ret.concat(pbTriggeredCounterEvents(triggers))
       return false if ret.length==0
       for event in ret
+        if event.name[/ambushable/]
+          setBattleRule("foeambush")
+        end
         event.start
       end
       return true
@@ -280,6 +283,9 @@ class Game_Player < Game_Character
         next if !triggers.include?(event.trigger)
         # If starting determinant is front event (other than jumping)
         next if event.jumping? || event.over_trigger?
+        if event.name[/ambushable/]
+          setBattleRule("playerambush")
+        end
         event.start
         result = true
       end

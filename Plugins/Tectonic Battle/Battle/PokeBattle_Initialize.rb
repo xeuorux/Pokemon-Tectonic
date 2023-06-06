@@ -57,6 +57,8 @@ class PokeBattle_Battle
     attr_reader	  :curses
     attr_accessor :expCapped
     attr_accessor :turnsToSurvive
+    attr_accessor :playerAmbushing
+    attr_accessor :foeAmbushing
 
     #=============================================================================
     # Creating the battle class
@@ -142,6 +144,8 @@ class PokeBattle_Battle
         @expStored		   = 0
         @expCapped		   = false
         @turnsToSurvive = -1
+        @playerAmbushing = false
+        @foeAmbushing = false
         if GameData::Move.exists?(:STRUGGLE)
             @struggle = PokeBattle_Move.from_pokemon_move(self, Pokemon::Move.new(:STRUGGLE))
         else

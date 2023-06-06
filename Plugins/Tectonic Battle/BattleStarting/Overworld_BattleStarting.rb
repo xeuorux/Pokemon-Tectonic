@@ -54,6 +54,10 @@ def pbPrepareBattle(battle)
       battle.defaultWeather = :Sandstorm
     when :Sun
       battle.defaultWeather = :Sun
+    when :Eclipse
+      battle.defaultWeather = :Eclipse
+    when :Moonglow
+      battle.defaultWeather = :Moonglow
     when :Windy
       battle.defaultWeather = :StrongWinds
     end
@@ -98,6 +102,9 @@ def pbPrepareBattle(battle)
     else;                                 battle.time = 0
     end
   end
+  # Ambush
+  battle.playerAmbushing = true if battleRules["playerambush"]
+  battle.foeAmbushing = true if battleRules["foeambush"]
   # Auto testing
   battle.autoTesting = battleRules["autotesting"]
 end
@@ -362,6 +369,8 @@ class PokemonTemp
 	  when "randomorder";           then rules["randomOrder"]    = true
     when "turnstosurvive";        then rules["turnsToSurvive"] = var
     when "autotesting"            then rules["autotesting"]    = true
+    when "playerambush"           then rules["playerambush"]   = true
+    when "foeambush"              then rules["foeambush"]   = true
     else
       raise _INTL("Battle rule \"{1}\" does not exist.", rule)
     end
