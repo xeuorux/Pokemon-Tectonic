@@ -55,7 +55,7 @@ class PokeBattle_Move_504 < PokeBattle_Move
         return baseDmg
     end
 
-    def pbBaseDamage(baseDmg, user, target)
+    def pbBaseDamageAI(baseDmg, user, target)
         baseDmg *= 1.25 if target.pbSpeed(true) > user.pbSpeed(true)
         return baseDmg
     end
