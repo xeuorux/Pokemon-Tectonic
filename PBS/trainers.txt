@@ -3028,11 +3028,13 @@ Pokemon = MZANGOOSE,56
 #-------------------------------
 [YOUNGSTER2,Davor]
 Pokemon = RUBARIOR,58
-    AbilityIndex = 1 # Prankster
+    AbilityIndex = 0 # Magic Bounce
+    Item = ASSAULTVEST
 Pokemon = GOREBYSS,57
     AbilityIndex = 0 # Fascinate
 Pokemon = HLILLIGANT,58
     AbilityIndex = 1 # Heartening Aroma
+    Item = LUMBERRY
 Pokemon = TURTONATOR,57
     AbilityIndex = 1 # Harsh
 #-------------------------------
@@ -3125,6 +3127,7 @@ Pokemon = GOLURK,47
 [GUITARIST2,Brady]
 Pokemon = POLITOED,48
     AbilityIndex = 1 # Energy Up
+    Item = FLYINGGEM
 Pokemon = ORANGURU,48
     AbilityIndex = 1 # Telepathy
 #-------------------------------
@@ -3133,6 +3136,7 @@ Pokemon = KOMMOO,48
     AbilityIndex = 0 # Sound Barrier
 Pokemon = ESCAVALIER,48
     AbilityIndex = 0 # Armor Piercing
+    Item = WHETSTONE
 #-------------------------------
 [TRAINER_Eifion,Eifion]
 Pokemon = HOUNDOOM,28
@@ -3359,20 +3363,24 @@ Pokemon = SEISMITOAD,60
 [VETERAN_F,Emily]
 Pokemon = SAMUROTT,61
     AbilityIndex = 1 # Sharpness
+    Item = WHETSTONE
 Pokemon = PAPELLUMEN,62
     AbilityIndex = 1 # Erudite
 Pokemon = DODRIO,63
     AbilityIndex = 0 # Fluster Flock
+    Item = MENTALHERB
 Pokemon = ROSERADE,62
     AbilityIndex = 0 # Sharpness
 #-------------------------------
 [PSYCHIC_F3,Felicia]
 Pokemon = GENGAR,62
     AbilityIndex = 0 # Levitate
+    Item = GHOSTGEM
 Pokemon = LEAVANNY,63
     AbilityIndex = 1 # Sharpness
 Pokemon = AVALUGG,64
     AbilityIndex = 0 # Chilled Body
+    Item = LEFTOVERS
 Pokemon = ABSOLUS,63
     AbilityIndex = 1 # Vengeance
 #-------------------------------
@@ -3381,10 +3389,12 @@ Pokemon = HAEROBIC,63
     AbilityIndex = 1 # Stubborn
 Pokemon = MAGNEZONE,63
     AbilityIndex = 0 # Analytic
+    Item = CHOICESPECS
 Pokemon = TREVENANT,64
     AbilityIndex = 1 # Break Through
 Pokemon = HBRAVIARY,64
     AbilityIndex = 0 # Feather Coat
+    Item = SITRUSBERRY
 #-------------------------------
 [ABSOL,Absol]
 Pokemon = ABSOL,20
