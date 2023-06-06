@@ -109,7 +109,7 @@
 108,STRONGJAW,Strong Jaw,"Boosts the power of biting moves by 50%."
 109,STANCECHANGE,Stance Change,"Changes between Blade and Shield Forme with attacks and King's Shield."
 110,GALEWINGS,Gale Wings,"Doubles the speed of Flying-type moves."
-111,MEGALAUNCHER,Mega Launcher,"Increases aura and pulse moves power by 50%."
+111,MEGALAUNCHER,Mega Launcher,"Boosts the power of pulse moves by 50%."
 112,TOUGHCLAWS,Tough Claws,"Increases Attack by 30%."
 113,GOOEY,Gooey,"Physical moves against it lower the attacker's Speed and Attack stat."
 114,AERILATE,Aerilate,"Normal-type moves become Flying-type and power up by 30%."
