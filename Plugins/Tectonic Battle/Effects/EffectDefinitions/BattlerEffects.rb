@@ -327,6 +327,7 @@ GameData::BattleEffect.register_effect(:Battler, {
     :id => :FollowMe,
     :real_name => "Follow Me",
     :type => :Integer,
+    :resets_eor	=> true,
     :apply_proc => proc do |battle, battler, _value|
         battle.pbDisplay(_INTL("{1} became the center of attention!", battler.pbThis))
     end,
