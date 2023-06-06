@@ -128,3 +128,4 @@
 4127,HYDROCANNON,Hydro Cannon,0C2,170,WATER,Special,100,5,0,NearOther,0,bef,"The target is hit with a watery blast. The user must rest on the next turn, however.",
 4128,FRENZYPLANT,Frenzy Plant,0C2,170,GRASS,Special,100,5,0,NearOther,0,bef,"The user slams the target with an enormous tree. The user can't move on the next turn.",
 4129,BLASTBURN,Blast Burn,0C2,170,FIRE,Special,100,5,0,NearOther,0,bef,"The target is razed by a fiery explosion. The user must rest on the next turn, however.",
+4130,DETECT,Detect,0AA,0,FIGHTING,Status,0,3,0,User,4,,"It enables the user to evade all attacks. It always fails if it is used in succession.",
