@@ -308,7 +308,7 @@
 1307,SINGINGSTONE,Singing Stone,59F,85,ROCK,Special,100,12,100,NearOther,0,befk,"The user thrums ominously, lowering the target's Attack and Sp. Atk.",ECHOEDVOICE
 1308,DRAININGCHILL,Draining Chill,0DD,80,ICE,Special,100,10,0,NearOther,0,bef,"A draining blast of ice. The user's HP is restored by half the damage taken by the target.",
 1309,FEVERISHGAS,Feverish Gas,5A0,100,FIRE,Special,100,10,0,NearOther,0,bef,"The user breathes a pheromonal nerve-chilling agent. This move is also Ice-type.",SMOG
-1310,SNOWSTORM,Snowstorm,102,50,ICE,Special,100,10,0,NearFoe,0,bef,"Hits the target with a frigid blast, then summons hail for five turns.",HAIL
+1310,SNOWSTORM,Snowstorm,102,50,ICE,Special,100,10,0,NearFoe,0,bef,"Hits the target with a frigid blast, then summons hail for eight turns.",HAIL
 1311,SHEDCOAT,Shed Coat,5A2,0,ICE,Status,0,12,0,User,0,d,"The user sheds excess covering, raising Sp. Atk and Speed by three steps, but lowering Sp. Def by two steps.",
 1312,FEATHERWARD,Feather Ward,5A1,0,STEEL,Status,0,15,0,FoeSide,0,c,"The user lays a trap of sharp feathers around the foe. It hurts foes that switch into battle.",
 1313,HYPERJET,Hyper Jet,000,80,WATER,Physical,100,5,0,NearOther,2,abef,"The user swims at the target at blinding speed. This attack always goes before any other move.",AQUAJET
