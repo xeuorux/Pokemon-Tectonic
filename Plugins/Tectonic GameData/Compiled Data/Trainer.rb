@@ -132,14 +132,14 @@ module GameData
         parentTrainer = nil
         if @extendsVersion > -1
             parentTrainerData = GameData::Trainer.get(@extendsClass || @trainer_type, @extendsName || @real_name, @extendsVersion)
-            parentTrainer = parentTrainerData.to_trainer
+            parentTrainer = pbLoadTrainer(parentTrainerData.trainer_type,parentTrainerData.name,parentTrainerData.version)
         end
         return parentTrainer
-    end
+      end
 
-    # Creates a battle-ready version of a trainer's data.
-    # @return [Array] all information about a trainer in a usable form
-    def to_trainer	
+      # Creates a battle-ready version of a trainer's data.
+      # @return [Array] all information about a trainer in a usable form
+      def to_trainer	
         # Determine trainer's name
         tr_name = self.name
         Settings::RIVAL_NAMES.each do |rival|
@@ -271,7 +271,7 @@ module GameData
         end
 
         if parentTrainer && trainer.party.length > Settings::MAX_PARTY_SIZE
-            raise _INTL("Error when trying to contruct trainer #{@id.to_s} as an extension of trainer #{trainer.id.to_s}. The resultant party is larger than the maximum party size!")
+            #raise _INTL("Error when trying to contruct trainer #{@id.to_s} as an extension of trainer #{trainer.id.to_s}. The resultant party is larger than the maximum party size!")
         end
 
         trainer.party.sort! { |memberA,memberB|
