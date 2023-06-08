@@ -813,21 +813,25 @@ class PokemonPokedex_Scene
 		pbPlayDecisionSE
 		@sprites["pokedex"].active = false
 		begin
-		dexlist = searchingBlock.call
-		if !dexlist
-			# Do nothing
-		elsif dexlist.length==0
-			pbMessage(_INTL("No matching Pokémon were found."))
-		else
-			@dexlist = dexlist
-			@sprites["pokedex"].commands = @dexlist
-			@sprites["pokedex"].index    = 0
-			@sprites["pokedex"].refresh
-			@searchResults = true
-			@sprites["background"].setBitmap("Graphics/Pictures/Pokedex/bg_listsearch")
-		end
-		rescue
-		pbMessage(_INTL("An unknown error has occured."))
+			dexlist = searchingBlock.call
+			if !dexlist
+				# Do nothing
+			elsif dexlist.length==0
+				if @searchResults
+					pbMessage(_INTL("Attempted to do a combined search, but no matching Pokémon were found."))
+				else
+					pbMessage(_INTL("No matching Pokémon were found."))
+				end
+			else
+				@dexlist = dexlist
+				@sprites["pokedex"].commands = @dexlist
+				@sprites["pokedex"].index    = 0
+				@sprites["pokedex"].refresh
+				@searchResults = true
+				@sprites["background"].setBitmap("Graphics/Pictures/Pokedex/bg_listsearch")
+			end
+			rescue
+			pbMessage(_INTL("An unknown error has occured."))
 		end
 		@sprites["pokedex"].active = true
 		pbRefresh
@@ -840,7 +844,11 @@ class PokemonPokedex_Scene
 			if !dexlist
 				# Do nothing
 			elsif dexlist.length==0
-				pbMessage(_INTL("No matching Pokémon were found."))
+				if @searchResults
+					pbMessage(_INTL("Attempted to do a combined search, but no matching Pokémon were found."))
+				else
+					pbMessage(_INTL("No matching Pokémon were found."))
+				end
 			else
 				@dexlist = dexlist
 				@sprites["pokedex"].commands = @dexlist
