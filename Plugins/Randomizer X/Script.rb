@@ -46,7 +46,10 @@ module Randomizer
   #-----------------------------------------------------------------------------
   def self.all_items
     keys = []
-    GameData::Item.each { |item| keys.push(item.id) }
+    GameData::Item.each { |itemData|
+      next unless itemData.legal?
+      keys.push(itemData.id)
+    }
     return keys
   end
   #-----------------------------------------------------------------------------
