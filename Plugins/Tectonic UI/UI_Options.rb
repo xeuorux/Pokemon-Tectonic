@@ -610,7 +610,7 @@ class PokemonOption_Scene_Battle < PokemonOption_Scene_Base
 				proc { |value| $PokemonSystem.battlescene = value }
 			),
 			EnumOption.new(_INTL("Battle Transitions"), [_INTL("Standard"), _INTL("Fast")],
-				proc { $PokemonSystem.battlescene },
+				proc { $PokemonSystem.battle_transitions },
 				proc { |value| $PokemonSystem.battle_transitions = value }
 			),
 			EnumOption.new(_INTL("Damage Numbers"), [_INTL("On"), _INTL("Off")],
