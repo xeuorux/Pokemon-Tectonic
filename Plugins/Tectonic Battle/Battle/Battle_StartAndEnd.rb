@@ -163,22 +163,27 @@ class PokeBattle_Battle
             foeParty = pbParty(1)
             case foeParty.length
             when 1
-                pbDisplayPaused(_INTL("Oh! A wild {1} appeared!", foeParty[0].name))
                 if bossBattle?
-                    if isLegendary?(foeParty[0].species)
-                        pbDisplayPaused("Actually, it's a powerful legendary avatar!")
-                    else
-                        pbDisplayPaused("Actually, it's an avatar!")
-                    end
+                    pbDisplayPaused(_INTL("Oh no! The Avatar of {1} appeared!", foeParty[0].name))
+                else
+                    pbDisplayPaused(_INTL("Oh! A wild {1} appeared!", foeParty[0].name))
                 end
             when 2
-                pbDisplayPaused(_INTL("Oh! A wild {1} and {2} appeared!", foeParty[0].name,
-                  foeParty[1].name))
-                pbDisplayPaused("Actually, they're both avatars!") if bossBattle?
+                if bossBattle?
+                    pbDisplayPaused(_INTL("Oh no! The Avatars of {1} and {2} appeared!", foeParty[0].name,
+                        foeParty[1].name))
+                else
+                    pbDisplayPaused(_INTL("Oh! A wild {1} and {2} appeared!", foeParty[0].name,
+                        foeParty[1].name))
+                end
             when 3
-                pbDisplayPaused(_INTL("Oh! A wild {1}, {2} and {3} appeared!", foeParty[0].name,
-                  foeParty[1].name, foeParty[2].name))
-                pbDisplayPaused("Actually, they're all avatars!") if bossBattle?
+                if bossBattle?
+                    pbDisplayPaused(_INTL("Oh no! The Avatars of {1}, {2} and {3} appeared!", foeParty[0].name,
+                        foeParty[1].name, foeParty[2].name))
+                else
+                    pbDisplayPaused(_INTL("Oh! A wild {1}, {2} and {3} appeared!", foeParty[0].name,
+                        foeParty[1].name, foeParty[2].name))
+                end
             end
         else # Trainer battle
             case @opponent.length

@@ -26,6 +26,7 @@ class PokemonSystem
     attr_accessor :weather_messages
     attr_accessor :status_effect_messages
     attr_accessor :move_clarifying_messages
+    attr_accessor :avatar_mechanics_messages
     attr_accessor :nicknaming_prompt
     attr_accessor :color_shifts
     attr_accessor :party_snapshots
@@ -85,6 +86,7 @@ class PokemonSystem
         @weather_messages         = 0 # (0=true, 1=false)
         @status_effect_messages   = 0 # (0=true, 1=false)
         @move_clarifying_messages = 0 # (0=true, 1=false)
+        @avatar_mechanics_messages= 0 # (0=true, 1=false)
         @nicknaming_prompt        = 0 # (0=true, 1=false)
         @show_trait_unlocks       = $DEBUG ? 1 : 0 # (0=true, 1=false)
         @party_snapshots          = $DEBUG ? 1 : 0 # (0=true, 1=false)
@@ -639,6 +641,12 @@ class PokemonOption_Scene_Battle < PokemonOption_Scene_Base
 				proc { $PokemonSystem.move_clarifying_messages },
 				proc { |value|
 					$PokemonSystem.move_clarifying_messages = value
+				}
+			),
+            EnumOption.new(_INTL("Avatar Mechanics Msgs"), [_INTL("On"), _INTL("Off")],
+				proc { $PokemonSystem.avatar_mechanics_messages },
+				proc { |value|
+					$PokemonSystem.avatar_mechanics_messages = value
 				}
 			),
 		])

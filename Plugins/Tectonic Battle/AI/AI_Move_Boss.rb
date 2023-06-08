@@ -149,7 +149,7 @@ class PokeBattle_AI
         extraAggro = false
 
         if move.damagingMove? && move.empoweredMove?
-            @battle.pbDisplayBossNarration(_INTL("#{user.pbThis} is winding up a big attack!"))
+            @battle.pbDisplayBossNarration(_INTL("#{user.pbThis} is winding up a big attack!")) if $PokemonSystem.avatar_mechanics_messages == 0
             empoweredAttack = true
         else
             user.resetExtraMovesPerTurn

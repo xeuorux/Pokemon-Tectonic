@@ -559,7 +559,7 @@ user.pbThis))
             if move.damagingMove?
                 targets.each do |b|
                     next unless b.damageState.fear
-                    @battle.pbDisplay(_INTL("#{user.pbThis} showed mercy on #{b.pbThis(true)}!", realNumHits))
+                    @battle.pbDisplay(_INTL("#{user.pbThis} showed mercy on #{b.pbThis(true)}!", realNumHits)) if $PokemonSystem.avatar_mechanics_messages == 0
                     b.pokemon.becomeAfraid
                 end
             end
