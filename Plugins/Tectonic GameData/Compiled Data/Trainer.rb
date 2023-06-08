@@ -271,7 +271,11 @@ module GameData
         end
 
         if parentTrainer && trainer.party.length > Settings::MAX_PARTY_SIZE
-            #raise _INTL("Error when trying to contruct trainer #{@id.to_s} as an extension of trainer #{trainer.id.to_s}. The resultant party is larger than the maximum party size!")
+            echoln _INTL("Error when trying to contruct trainer #{@id.to_s} as an extension of trainer #{parentTrainer.id.to_s}. The resultant party is larger than the maximum party size!")
+            # Trim it down to size
+            while trainer.party.length > Settings::MAX_PARTY_SIZE
+              trainer.party.pop
+            end
         end
 
         trainer.party.sort! { |memberA,memberB|
@@ -282,7 +286,7 @@ module GameData
         }
 
         return trainer
-    end
+      end
     end
 end
 

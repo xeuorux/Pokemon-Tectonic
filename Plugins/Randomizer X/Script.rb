@@ -475,8 +475,11 @@ def pbLoadTrainer(tr_type, tr_name, tr_version = 0)
     trainer_data = new_trainer_data
 
     # Make sure the trainer's pokemon uses the default moves for their level
+    # And have no nickname or item
     trainer_data.pokemon.each do |pkmn|
       pkmn[:moves] = nil
+      pkmn[:name] = nil
+      pkmn[:item] = nil
     end
   end
 
