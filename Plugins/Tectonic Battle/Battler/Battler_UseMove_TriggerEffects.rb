@@ -144,7 +144,7 @@ user.pbThis(true)))
         # Pokémon switching caused by Roar, Whirlwind, Circle Throw, Dragon Tail
         move.pbSwitchOutTargetsEffect(user, targets, numHits, switchedBattlers)
         # Target's item, user's item, target's ability (all negated by Sheer Force)
-        if user.hasActiveAbility?(:SHEERFORCE) && move.effectChance != 0
+        if user.hasActiveAbility?(:SHEERFORCE) && move.randomEffect?
             # Skip other additional effects too if sheer force is being applied to the move
         else
             pbEffectsAfterMove2(user, targets, move, numHits, switchedBattlers)

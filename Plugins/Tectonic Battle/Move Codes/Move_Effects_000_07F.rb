@@ -98,10 +98,10 @@ class PokeBattle_Move_009 < PokeBattle_Move
         return if target.damageState.substitute
         chance = pbAdditionalEffectChance(user, target, @calcType, 10)
         return if chance == 0
-        if @battle.pbRandom(100) < chance && target.canNumb?(user, false, self) && canApplyAdditionalEffects?(user,target,true)
+        if @battle.pbRandom(100) < chance && target.canNumb?(user, false, self) && canApplyRandomAddedEffects?(user,target,true)
             target.applyNumb(user)
         end 
-        if @battle.pbRandom(100) < chance && canApplyAdditionalEffects?(user,target,true)
+        if @battle.pbRandom(100) < chance && canApplyRandomAddedEffects?(user,target,true)
             target.pbFlinch
         end
     end
@@ -130,10 +130,10 @@ class PokeBattle_Move_00B < PokeBattle_Move
         return if target.damageState.substitute
         chance = pbAdditionalEffectChance(user, target, @calcType, 10)
         return if chance == 0
-        if @battle.pbRandom(100) < chance && target.canBurn?(user, false, self) && canApplyAdditionalEffects?(user,target,true)
+        if @battle.pbRandom(100) < chance && target.canBurn?(user, false, self) && canApplyRandomAddedEffects?(user,target,true)
             target.applyBurn(user)
         end 
-        if @battle.pbRandom(100) < chance && canApplyAdditionalEffects?(user,target,true)
+        if @battle.pbRandom(100) < chance && canApplyRandomAddedEffects?(user,target,true)
             target.pbFlinch
         end
     end
@@ -172,10 +172,10 @@ class PokeBattle_Move_00E < PokeBattle_Move
         return if target.damageState.substitute
         chance = pbAdditionalEffectChance(user, target, @calcType, 10)
         return if chance == 0
-        if @battle.pbRandom(100) < chance && target.canFrostbite?(user, false, self) && canApplyAdditionalEffects?(user,target,true)
+        if @battle.pbRandom(100) < chance && target.canFrostbite?(user, false, self) && canApplyRandomAddedEffects?(user,target,true)
             target.applyFrostbite(user)
         end 
-        if @battle.pbRandom(100) < chance && canApplyAdditionalEffects?(user,target,true)
+        if @battle.pbRandom(100) < chance && canApplyRandomAddedEffects?(user,target,true)
             target.pbFlinch
         end
     end

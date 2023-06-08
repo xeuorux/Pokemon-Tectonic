@@ -869,7 +869,7 @@ class PokeBattle_Move_0A4 < PokeBattle_Move
         return if target.damageState.unaffected || target.damageState.substitute
         chance = pbAdditionalEffectChance(user, target, @calcType)
         return if @battle.pbRandom(100) >= chance
-        return unless canApplyAdditionalEffects?(user,target,true)
+        return unless canApplyRandomAddedEffects?(user,target,true)
         case @secretPower
         when 2
             target.applySleep if target.canSleep?(user, false, self)
@@ -3562,7 +3562,7 @@ class PokeBattle_Move_0F7 < PokeBattle_Move
 
     def pbEffectAgainstTarget(user, target)
         return if target.damageState.substitute
-        return unless canApplyAdditionalEffects?(user, target, true)
+        return unless canApplyRandomAddedEffects?(user, target, true)
         case @chosenItem
         when :POISONORB
             target.applyPoison(user) if target.canPoison?(user, false, self)

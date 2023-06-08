@@ -162,5 +162,13 @@ class PokeBattle_Move
       return true if user && user.hasActiveAbility?(:CLEAVING)
       return false
     end
+
+    def randomEffect?
+      return @effectChance > 0 && @effectChance < 100
+    end
+
+    def guaranteedEffect?
+      return @effectChance >= 100
+    end
   end
   

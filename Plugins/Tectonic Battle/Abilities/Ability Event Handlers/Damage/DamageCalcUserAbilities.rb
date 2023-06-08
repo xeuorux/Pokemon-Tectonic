@@ -104,7 +104,7 @@ BattleHandlers::DamageCalcUserAbility.add(:RIVALRY,
 
 BattleHandlers::DamageCalcUserAbility.add(:SHEERFORCE,
   proc { |ability, _user, _target, move, mults, _baseDmg, _type, _aiCheck|
-      mults[:base_damage_multiplier] *= 1.3 if move.effectChance > 0
+      mults[:base_damage_multiplier] *= 1.3 if move.randomEffect?
   }
 )
 

@@ -143,7 +143,7 @@ BattleHandlers::UserAbilityOnHit.add(:MENTALDAMAGE,
   proc { |ability, user, target, move, battle, aiChecking, aiNumHits|
     next if target.fainted?
     next if target.effectActive?(:Disable)
-    next unless move.canApplyAdditionalEffects?(user, target, !aiChecking)
+    next unless move.canApplyRandomAddedEffects?(user, target, !aiChecking)
     if aiChecking
       next 15
     else

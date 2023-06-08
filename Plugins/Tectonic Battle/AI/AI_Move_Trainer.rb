@@ -194,10 +194,10 @@ class PokeBattle_AI
         end
 
         # Modify the effect score by the move's additional effect chance if it has one
-        if move.effectChance != 0 && move.effectChance != 100
+        if move.randomEffect?
             type = pbRoughType(move, user)
             realProcChance = move.pbAdditionalEffectChance(user, target, type, 0, true)
-            realProcChance = 0 unless move.canApplyAdditionalEffects?(user,target,false,true)
+            realProcChance = 0 unless move.canApplyRandomAddedEffects?(user,target,false,true)
             factor = (realProcChance / 100.0)
             echoln("[MOVE SCORING] #{user.pbThis} multiplies #{move.id}'s effect score of #{effectScore} by a factor of #{factor} based on its predicted additional effect chance (against target #{target.pbThis(false)})")
             effectScore *= factor

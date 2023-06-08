@@ -927,8 +927,13 @@ user.pbThis))
         end
         targets.each { |b| b.pbFaint if b && b.fainted? }
         user.pbFaint if user.fainted?
-        # Additional effect
-        unless user.hasActiveAbility?(:SHEERFORCE)
+        # Guarenteed added effects
+        if move.guaranteedEffect?
+            targets.each do |b|
+                next if b.damageState.calcDamage == 0
+                move.pbAdditionalEffect(user, b)
+            end
+        elsif move.randomEffect? && !user.hasActiveAbility?(:SHEERFORCE) # Random added effects
             targets.each do |b|
                 next if b.damageState.calcDamage == 0
                 chance = move.pbAdditionalEffectChance(user, b, move.calcType)
@@ -939,7 +944,7 @@ user.pbThis))
                         @battle.pbDisplay(_INTL("The added effect of {1}'s {2} is deflected, harming it!", pbThis(true), move.name))
                         user.applyFractionalDamage(1.0 / 6.0, true)
                         @battle.pbHideAbilitySplash(b)
-                    elsif move.canApplyAdditionalEffects?(user,b,true)
+                    elsif move.canApplyRandomAddedEffects?(user,b,true)
                         move.pbAdditionalEffect(user, b)
                     end
                 end
@@ -953,7 +958,7 @@ user.pbThis))
             next if chance <= 0
             next unless @battle.pbRandom(100) < chance
             PBDebug.log("[Item/ability triggered] #{user.pbThis}'s King's Rock/Razor Fang or Stench")
-            next unless move.canApplyAdditionalEffects?(user, b, true)
+            next unless move.canApplyRandomAddedEffects?(user, b, true)
             b.pbFlinch
         end
         # Message for and consuming of type-weakening berries

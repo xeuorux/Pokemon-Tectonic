@@ -366,13 +366,13 @@ class PokeBattle_Move
     #=============================================================================
     # Additional effect chance
     #=============================================================================
-    def canApplyAdditionalEffects?(user,target,showMessages=false,aiChecking=false)
+    def canApplyRandomAddedEffects?(user,target,showMessages=false,aiChecking=false)
         unless @battle.moldBreaker
             %i[SHIELDDUST HARSHTRAINING].each do |ability|
                 if target.shouldAbilityApply?(ability,aiChecking)
                     if showMessages
                         battle.pbShowAbilitySplash(target,ability)
-                        battle.pbDisplay(_INTL("#{target.pbThis} prevents the additional effect!"))
+                        battle.pbDisplay(_INTL("#{target.pbThis} prevents the random added effect!"))
                         battle.pbHideAbilitySplash(target)
                     end
                     return false
@@ -382,13 +382,13 @@ class PokeBattle_Move
         
         if target.effectActive?(:Enlightened)
             if showMessages
-                battle.pbDisplay(_INTL("#{target.pbThis} is enlightened, and so ignores the additional effect!"))
+                battle.pbDisplay(_INTL("#{target.pbThis} is enlightened, and so ignores the random added effect!"))
             end
             return false
         end
         if target.hasActiveItem?(:COVERTCLOAK) && user.opposes?(target)
             if showMessages
-                battle.pbDisplay(_INTL("#{target.pbThis}'s #{getItemName(:COVERTCLOAK)} protects it from the additional effect!"))
+                battle.pbDisplay(_INTL("#{target.pbThis}'s #{getItemName(:COVERTCLOAK)} protects it from the random added effect!"))
             end
             return false
         end
@@ -399,7 +399,7 @@ class PokeBattle_Move
         return 100 if user.hasActiveAbility?(:STARSALIGN) && @battle.pbWeather == :Eclipse
         return 100 if !user.pbOwnedByPlayer? && @battle.curseActive?(:CURSE_PERFECT_LUCK)
         ret = effectChance > 0 ? effectChance : @effectChance
-        return 100 if ret >= 100
+        return 100 if ret >= 100 || debugControl
         ret += 20 if user.hasTribeBonus?(:FORTUNE)
         ret *= 1.5 if flinchingMove? && user.hasActiveAbility?(:RATTLEEM)
         ret *= 2 if flinchingMove? && user.hasActiveAbility?(:TERRORIZE)
@@ -408,7 +408,6 @@ class PokeBattle_Move
         ret *= 4 if windMove? && user.hasActiveAbility?(:FUMIGATE)
         ret /= 2 if applyRainDebuff?(user,type)
         ret /= 2 if target.hasTribeBonus?(:SERENE)
-        ret = 100 if debugControl
         if ret < 100 && user.hasActiveItem?(:LUCKHERB)
             ret = 100
             user.applyEffect(:LuckHerbConsumed) unless aiChecking
