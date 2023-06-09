@@ -96,6 +96,12 @@ class PokemonPartyShowcase_Scene
             drawTextEx(@overlay, genderX, genderY, 80, 1, _INTL("♀"), Color.new(232,32,16), Color.new(248,168,184))
         end
 
+        # Draw shiny icon
+        if pokemon.shiny?
+            shinyIconFileName = pokemon.shiny_variant? ? "Graphics/Pictures/shiny_variant" : "Graphics/Pictures/shiny"
+            pbDrawImagePositions(@overlay,[[shinyIconFileName,displayX,mainIconY,0,0,16,16]])
+        end
+
         # Display moves
         pokemon.moves.each_with_index do |pokemonMove,moveIndex|
             moveName = GameData::Move.get(pokemonMove.id).real_name
