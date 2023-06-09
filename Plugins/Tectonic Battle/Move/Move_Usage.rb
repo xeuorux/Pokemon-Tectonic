@@ -457,6 +457,15 @@ target.pbThis(true)))
                 @battle.pbDisplay(_INTL("It's not very effective..."))
             end
         end
+
+        if Effectiveness.super_effective?(target.damageState.typeMod) && target.pbOwnedByPlayer? &&
+                !$PokemonGlobal.typeChartChangesTutorialized
+            newWeakness = false
+            newWeakness = true if @calcType == :POISON && target.pbHasType?(:WATER)
+            newWeakness = true if @calcType == :BUG && target.pbHasType?(:FAIRY)
+            newWeakness = true if @calcType == :PSYCHIC && target.pbHasType?(:STEEL)
+            playTypeChartChangesTutorial if newWeakness
+        end
     end
 
     def pbHitEffectivenessMessages(user, target, numTargets = 1)

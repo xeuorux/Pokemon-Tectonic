@@ -200,22 +200,3 @@ def weatherBossDefeated(eventID,newFogOpacity)
 	$game_map.start_fog_opacity_change(newFogOpacity, weatherWaitTime)
 	lockPlayerInput
 end
-
-def playBicycleShortcutTutorial
-    if $DEBUG
-        echoln("Skipping bicycle tutorial message.")
-        return
-    end
-    pbBGMFade(1.0)
-    pbWait(Graphics.frame_rate)
-    pbSEPlay("Voltorb Flip tile",150,100)
-	dur = tutorialMessageDuration
-    pbMessage(_INTL("\\wmYou can set a keyboard shortcut to use your bicycle quickly.\\wtnp[#{dur}]\1"))
-    pbMessage(_INTL("\\wmAccess your control setttings with <imp>F1</imp> to set it to whatever you like.\\wtnp[#{dur}]\1"))
-end
-
-def tutorialMessageDuration
-	dur = 90
-	dur -= 10 * $PokemonSystem.textspeed
-	return dur
-end

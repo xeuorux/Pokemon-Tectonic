@@ -32,6 +32,7 @@ class PokemonSystem
     attr_accessor :party_snapshots
     attr_accessor :bag_sorting
     attr_accessor :battle_transitions
+    attr_accessor :tutorial_popups
 
     def bgmvolume
         return @bgmvolume / VOLUME_FAKERY_MULT
@@ -90,6 +91,7 @@ class PokemonSystem
         @nicknaming_prompt        = 0 # (0=true, 1=false)
         @show_trait_unlocks       = $DEBUG ? 1 : 0 # (0=true, 1=false)
         @party_snapshots          = $DEBUG ? 1 : 0 # (0=true, 1=false)
+        @tutorial_popups          = $DEBUG ? 1 : 0 # (0=true, 1=false)
         @bag_sorting              = 0 # (0=none,1=alphabetical,2=ID)
     end
 end
@@ -540,6 +542,7 @@ class PokemonOption_Scene_UserInterface < PokemonOption_Scene_Base
 				proc { |value|
 					$PokemonSystem.textspeed = value
 					MessageConfig.pbSetTextSpeed(MessageConfig.pbSettingToTextSpeed(value))
+                    playCustomSpeedTutorial if value >= 4 && !$PokemonGlobal.customSpeedTutorialized
 				}
 			),
 			NumberOption.new(_INTL("Speech Frame"), 1, Settings::SPEECH_WINDOWSKINS.length,
@@ -589,6 +592,12 @@ class PokemonOption_Scene_UserInterface < PokemonOption_Scene_Base
 				proc { $PokemonSystem.party_snapshots },
 				proc { |value|
 					$PokemonSystem.party_snapshots = value
+				}
+			),
+            EnumOption.new(_INTL("Advanced Tutorials"), [_INTL("On"), _INTL("Off")],
+				proc { $PokemonSystem.tutorial_popups },
+				proc { |value|
+					$PokemonSystem.tutorial_popups = value
 				}
 			),
 		])

@@ -350,6 +350,9 @@ class PokeBattle_Battler
             BattleHandlers.triggerAbilityOnStatLoss(ability, self, stat, user)
         end
         applyEffect(:StatsDropped)
+
+        playStatStepsTutorial unless $PokemonGlobal.statStepsTutorialized
+
         return true
     end
 

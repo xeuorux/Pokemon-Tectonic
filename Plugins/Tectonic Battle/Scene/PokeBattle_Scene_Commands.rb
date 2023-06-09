@@ -238,7 +238,7 @@ class PokeBattle_Scene
           end
           break if yield idxPartyRet, switchScreen
         elsif cmdSummary>=0 && command==cmdSummary   # Summary
-          scene.pbSummary(idxParty,true)
+          scene.pbSummary(idxParty,@battle)
       elsif cmdPokedex && command==cmdPokedex
           openSingleDexScreen(modParty[idxParty])
         end

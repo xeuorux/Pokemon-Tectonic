@@ -106,13 +106,13 @@ class PokemonSummary_Scene
         pbUpdateSpriteHash(@sprites)
     end
 
-    def pbStartScene(party, partyindex, inbattle = false)
+    def pbStartScene(party, partyindex, battle = nil)
         @viewport = Viewport.new(0, 0, Graphics.width, Graphics.height)
         @viewport.z = 99_999
         @party      = party
         @partyindex = partyindex
         @pokemon    = @party[@partyindex]
-        @inbattle   = inbattle
+        @battle     = battle
         @page = 1
         @forget = false
         @typebitmap    = AnimatedBitmap.new(_INTL("Graphics/Pictures/types"))
@@ -215,7 +215,7 @@ class PokemonSummary_Scene
         @party      = nil
         @partyindex = -1
         @pokemon    = pokemon
-        @inbattle   = false
+        @battle     = nil
         @page = 1
         @typebitmap    = AnimatedBitmap.new("Graphics/Pictures/types")
         @markingbitmap = AnimatedBitmap.new("Graphics/Pictures/Summary/markings")
@@ -706,6 +706,8 @@ class PokemonSummary_Scene
 
         # Write all text
         drawFormattedTextEx(overlay, 232, 82, 268, memo)
+
+        playTraitsTutorial unless $PokemonGlobal.traitsTutorialized
     end
 
     def drawPageThree
@@ -947,6 +949,10 @@ class PokemonSummary_Scene
         pbDrawImagePositions(overlay, imagepos)
         # Draw selected move's description
         drawTextEx(overlay, 4, 222, 230, 5, selected_move.description, base, shadow)
+
+        if @battle&.pokemonIsActiveBattler?(@pokemon) && !$PokemonGlobal.moveInfoPanelTutorialized
+            playMoveInfoPanelTutorial
+        end
     end
 
     def drawPageFive
@@ -1490,7 +1496,7 @@ class PokemonSummary_Scene
                     pbPlayDecisionSE
                     pbRibbonSelection
                     dorefresh = true
-                elsif !@inbattle
+                elsif @battle.nil?
                     pbPlayDecisionSE
                     dorefresh = pbOptions
                 end
@@ -1541,13 +1547,13 @@ end
 #
 #===============================================================================
 class PokemonSummaryScreen
-    def initialize(scene, inbattle = false)
+    def initialize(scene, battle)
         @scene = scene
-        @inbattle = inbattle
+        @battle = battle
     end
 
     def pbStartScreen(party, partyindex)
-        @scene.pbStartScene(party, partyindex, @inbattle)
+        @scene.pbStartScene(party, partyindex, @battle)
         ret = @scene.pbScene
         @scene.pbEndScene
         return ret

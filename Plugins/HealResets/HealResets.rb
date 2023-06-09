@@ -68,22 +68,6 @@ class ResetTracker
   end
 end
 
-def playRespawningTutorial
-  if $DEBUG
-    echoln("Skipping Trainer Respawning tutorial message.")
-    return
-  end
-  currentBGM = $game_system.playing_bgm
-  pbBGMFade(1.0)
-  pbWait(Graphics.frame_rate)
-  pbSEPlay("Voltorb Flip tile",150,100)
-  dur = tutorialMessageDuration
-  pbMessage(_INTL("\\wmAfter a full party heal, defeated enemy trainers will be battle ready again!\\wtnp[#{dur}]\1"))
-  pbMessage(_INTL("\\wmFor example, healing at a Pokemon Center triggers this.\\wtnp[#{dur}]\1"))
-  pbMessage(_INTL("\\wmTrainers who fled won't come back, however.\\wtnp[#{dur}]\1"))
-  pbBGMPlay(currentBGM)
-end
-
 def pbRespawnTrainers
   $reset_tracker.refillRespawnTable()
 end

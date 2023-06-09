@@ -413,6 +413,14 @@ class PokeBattle_Battle
         return nil
     end
 
+    def pokemonIsActiveBattler?(pokemon)
+        eachBattler do |b|
+            next unless b.pokemon.personalID == pokemon.personalID
+            return true 
+        end
+        return false
+    end
+
     # Only used for Wish, as the Wishing Pokémon will no longer be in battle.
     def pbThisEx(idxBattler, idxParty)
         party = pbParty(idxBattler)
