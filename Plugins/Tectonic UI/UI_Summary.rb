@@ -1547,7 +1547,7 @@ end
 #
 #===============================================================================
 class PokemonSummaryScreen
-    def initialize(scene, battle)
+    def initialize(scene, battle = nil)
         @scene = scene
         @battle = battle
     end
