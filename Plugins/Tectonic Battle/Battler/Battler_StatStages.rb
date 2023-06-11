@@ -439,7 +439,7 @@ class PokeBattle_Battler
             return true
         elsif @battle.pbCheckSameSideAbility(:HEARTENINGAROMA, @index)
             aromaHolder = @battle.pbCheckSameSideAbility(:HEARTENINGAROMA, @index)
-            @battle.pbShowAbilitySplash(aromaHolder, true)
+            @battle.pbShowAbilitySplash(aromaHolder, :HEARTENINGAROMA, true)
             @battle.pbDisplay(_INTL("{1}'s {2} prevented {3}'s {4} from working!",
                 aromaHolder.pbThis, getAbilityName(:HEARTENINGAROMA), user.pbThis(true), getAbilityName(ability)))
             @battle.pbHideAbilitySplash(aromaHolder)
