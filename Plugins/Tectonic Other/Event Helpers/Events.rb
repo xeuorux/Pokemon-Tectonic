@@ -117,3 +117,15 @@ def toggleSwitches(eventsArray,switchName="A")
 	end
 	$MapFactory.getMap(mapid, false).need_refresh = true
 end
+
+def turnTowardsEvent(eventID)
+	pbTurnTowardEvent(get_self,get_event(eventID))
+end
+
+def turnEventTowardsThis(eventID)
+	pbTurnTowardEvent(get_event(eventID),get_self)
+end
+
+def playerTurnsTowards
+	turnEventTowardsThis(-1)
+end

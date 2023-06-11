@@ -718,10 +718,6 @@ end
 # Empowered Dragon Darts
 class PokeBattle_Move_650 < PokeBattle_Move_17C
     include EmpoweredMove
-
-    def pbEffectAfterAllHits(user, target)
-        summonAvatar(user, :DREEPY, _INTL("One of the Dreepys joins the fray!"))
-    end
 end
 
 # Empowered Giga Drain
@@ -749,6 +745,17 @@ end
 # Empowered Sludge Wave
 class PokeBattle_Move_655 < PokeBattle_Move_005
     include EmpoweredMove
+end
+
+# Empowered Stored Power
+class PokeBattle_Move_656 < PokeBattle_Move_08E
+    include EmpoweredMove
+
+    def pbBaseDamage(_baseDmg, user, _target)
+        mult = 1
+        GameData::Stat.each_battle { |s| mult += user.steps[s.id] if user.steps[s.id] > 0 }
+        return 30 * mult
+    end
 end
 
 ########################################################

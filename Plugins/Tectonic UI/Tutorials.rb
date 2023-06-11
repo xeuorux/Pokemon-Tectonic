@@ -60,8 +60,8 @@ end
 
 def playBicycleShortcutTutorial
     playTutorial { |messageWait|
-        pbMessage(_INTL("\\wmYou can set a keyboard shortcut to use your bicycle quickly.\\wtnp[#{messageWait}]\1"))
-        pbMessage(_INTL("\\wmAccess your control setttings with <imp>F1</imp> to set it to whatever you like.\\wtnp[#{messageWait}]\1"))
+        pbMessage(_INTL("\\wmThere's a shortcut key to instantly mount the bicycle while walking.\\wtnp[#{messageWait}]\1"))
+        pbMessage(_INTL("\\wmAccess your control setttings with <imp>F1</imp> to customize it.\\wtnp[#{messageWait}]\1"))
     }
 end
 

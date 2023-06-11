@@ -28,6 +28,7 @@ def phoneCallConditional(caller="Unknown")
 end
 
 def phoneCallEnd()
+	removeSpeaker
 	pbMessage(_INTL("\\se[Voltorb Flip mark]Click."))
 	pbWait(40)
 end

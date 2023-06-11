@@ -525,7 +525,7 @@
 524,PSYBEAM,Psybeam,401,65,PSYCHIC,Special,100,15,10,NearOther,0,bef,"The target is attacked with a peculiar ray. It has a 10% chance to dizzy.",
 525,HEARTSTAMP,Heart Stamp,00F,60,PSYCHIC,Physical,100,20,50,NearOther,0,abe,"The user unleashes a vicious blow after a cute act. It has a 50% chance to cause flinching.",
 526,MINDWAVES,Mind Waves,401,40,PSYCHIC,Special,100,30,10,NearOther,0,bef,"The target is hit by a weak telekinetic force. It has a 10% chance to dizzy.",CONFUSION
-527,STOREDPOWER,Stored Power,08E,20,PSYCHIC,Special,100,10,0,NearOther,0,bef,"The user attacks with stored power. The more the user's stats are raised, the greater the damage.",
+527,STOREDPOWER,Stored Power,08E,10,PSYCHIC,Special,100,10,0,NearOther,0,bef,"The user attacks with stored power. The more the user's stats are raised, the greater the damage.",
 528,MIRRORCOAT,Mirror Coat,072,1,PSYCHIC,Special,100,15,0,None,-5,bf,"A retaliation move that counters any special attack, inflicting double the damage taken.",
 529,PSYWAVE,Psywave,06F,1,PSYCHIC,Special,100,12,0,NearOther,0,bef,"The target is attacked with an odd psychic wave. The attack varies in intensity.",
 530,AGILITY,Agility,030,0,PSYCHIC,Status,0,25,0,User,0,d,"The user relaxes and lightens its body to move faster, raising its Speed by four steps.",

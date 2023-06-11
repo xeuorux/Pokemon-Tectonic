@@ -40,6 +40,11 @@ class PokemonGlobalMetadata
     map_id = $game_map.map_id if map_id == -1
     forcedBGM[map_id] = musicName
   end
+
+  def resetForcedBGM(map_id = -1)
+    map_id = $game_map.map_id if map_id == -1
+    forcedBGM.delete(map_id) if forcedBGM.key?(map_id)
+  end
 end
 
 PRIMAL_GOOD_BGM = "Tectonic_Primal_Clay"
@@ -53,6 +58,11 @@ end
 
 def forceMapBGM(bgmName)
   $PokemonGlobal.forceMapBGM(bgmName)
+  $game_map.autoplayAsCue
+end
+
+def resetForcedBGM
+  $PokemonGlobal.resetForcedBGM
   $game_map.autoplayAsCue
 end
 
@@ -80,6 +90,10 @@ class Game_Map
 
     def mapBGS(id = -1)
       return musicSettingMap(id).bgs
+    end
+
+    def playingDefaultBGM?
+      return mapAutoplayBGM(mapid) == $game_system.playing_bgm
     end
 
     def autofade(mapid)
