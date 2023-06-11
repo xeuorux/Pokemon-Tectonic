@@ -295,3 +295,8 @@
 422,PUNKM,Punk,20,,,ROUGHNECK,Male,,,[]
 423,PUNKF,Punk,20,,,ROUGHNECK,Female,,,[]
 424,ARTIST4,Artist,32,,,ARTIST,Male,,,[]
+425,RISINGSTAR_M,Rising Star,60,,,ELITETRAINER,Male,,,[]
+426,RISINGSTAR_M2,Rising Star,60,,,ELITETRAINER,Male,,,[]
+427,RISINGSTAR_F,Rising Star,60,,,ELITETRAINER,Female,,,[]
+428,RISINGSTAR_F2,Rising Star,60,,,ELITETRAINER,Female,,,[]
+429,CHALLENGER_Vanya,Challenger,60,,,TWINS2,Mixed,,,[]

@@ -275,7 +275,7 @@ class PokeBattle_Battle
 
         # Hide any dialogue speaker box
         reshowSpeakerWindow = false
-        if speakerNameWindowVisible? 
+        if speakerNameWindowVisible?
             hideSpeaker
             reshowSpeakerWindow = true
         end
@@ -283,6 +283,10 @@ class PokeBattle_Battle
         # Track information for perfecting
         $game_switches[94] = false
         ableBeforeFight = $Trainer.able_pokemon_count # Record the number of able party members, for perfecting
+        skipPerfecting = false
+        @opponent.each do |opp|
+            skipPerfecting = true if opp.policies.include?(:NO_PERFECT)
+        end
 
         # Update tribe counts
         updateTribeCounts

@@ -5553,133 +5553,83 @@ Pokemon = SHIINOTIC,60
 Pokemon = MINCCINO,60
     AbilityIndex = 1 # Fluffy
 #-------------------------------
-[COOLTRAINER_F7,Doubles Charmer Pro]
-Pokemon = MIMEJR,25
-    Moves = ICYWIND,PSYBEAM,BATONPASS,CALMMIND
-    AbilityIndex = 0 # Barrier Maker
-    Item = TANGABERRY
-Pokemon = GOSSIFLEUR,25
-    Moves = LULLABY,HELPINGHAND,LEECHSEED,MEGADRAIN
-    AbilityIndex = 1 # On the Wind
-    Item = BIGROOT
-Pokemon = MAWILE,25
-    Moves = METALCLAW,PERFUMEDPUNCH,FLOWSTATE,BATONPASS
-    AbilityIndex = 1 # Intimidate
-    Item = SALACBERRY
-Pokemon = MINCCINO,25
-    Moves = SWIFT,SHOCKWAVE,PROTECT,NUMB
-    AbilityIndex = 0 # Fascinate
-    Item = LEFTOVERS
-Pokemon = VAPOREON,25
-    Moves = VANGUARD,BRINE,BATONPASS,MENDINGSPRING
-    AbilityIndex = 1 # Aqua Sneak
-    Item = SITRUSBERRY
-Pokemon = LEDYBA,25
-    Moves = FIREPUNCH,MACHPUNCH,BUGBITE,UTURN
-    AbilityIndex = 1 # Star Guardian
-    Item = CHOICEBAND
+[CHALLENGER_Vanya,Vanya]
+Policies = NO_PERFECT
+Pokemon = BUTTERFREE,15
+    AbilityIndex = 1 # Erudite
+Pokemon = MSINISTEA,15
+    AbilityIndex = 1 # Chill Out
+Pokemon = RALTS,15
+    AbilityIndex = 1 # Feedback
 #-------------------------------
-[COOLTRAINER_F7,Singles Mystic Pro]
-Pokemon = SNEASLER,35
-    Moves = HONECLAWS,CLOSECOMBAT,VENOMORTAR,SEVER
-    AbilityIndex = 1 # Unburden
-    Item = FOCUSSASH
-Pokemon = ANINETALES,35
-    Moves = CALMMIND,ICEBEAM,MOONBLAST,HEALBELL
-    AbilityIndex = 1 # Sudden Chill
-    Item = SITRUSBERRY
-Pokemon = DRAGONAIR,35
-    Moves = DRAGONDANCE,DRAGONPULSE,ROOST,COLDFRONT
-    AbilityIndex = 1 # Multiscale
-    Item = LEFTOVERS
-Pokemon = AMAROWAK,35
-    Moves = BREAKDANCE,DRAINPUNCH,INFERNOCHARGE,SOULRIP
-    AbilityIndex = 1 # Ancestral Dance
-    Item = LUCKHERB
-Pokemon = CLAYDOL,35
-    Moves = EARTHPOWER,LIGHTSCREEN,REFLECT,PSYCHIC
-    AbilityIndex = 1 # Disorienting
-    Item = LIGHTCLAY
-Pokemon = FLOETTE,35
-    Moves = AROMATHERAPY,AURATRICK,WISH,GIGADRAIN
-    AbilityIndex = 1 # Sentry
-    Item = LEFTOVERS
+[CHALLENGER_Vanya,Vanya,1]
+Policies = NO_PERFECT
+Pokemon = GULPIN,20
+    AbilityIndex = 0 # Thick Fat
+Pokemon = MROGGENROLA,20
+    AbilityIndex = 0 # Time Interloper
+Pokemon = BARBOACH,20
+    AbilityIndex = 0 # Mental Block
 #-------------------------------
-[COOLTRAINER_F7,Doubles Strategist Pro]
-Pokemon = ILLUMISE,45
-    Moves = STRUGGLEBUG,WISH,REFLECT,LIGHTSCREEN
+[CHALLENGER_Vanya,Vanya,2]
+Policies = NO_PERFECT
+Pokemon = SERVINE,25
+    AbilityIndex = 1 # Contrary
+Pokemon = SHELLOS,25
+    AbilityIndex = 1 # Water Absorb
+Pokemon = CORVISQUIRE,25
+    AbilityIndex = 1 # Volt Absorb
+#-------------------------------
+[CHALLENGER_Vanya,Vanya,3]
+Policies = NO_PERFECT
+Pokemon = PYROAR,30
+    AbilityIndex = 1 # Hubris
+Pokemon = SNEASEL,30
+    AbilityIndex = 0 # Inner Focus
+Pokemon = HZOROARK,30
+    AbilityIndex = 1 # Mental Block
+#-------------------------------
+[CHALLENGER_Vanya,Vanya,4]
+Policies = NO_PERFECT
+Pokemon = SAURENAID,40
+    AbilityIndex = 0 # Frost Song
+Pokemon = GOLEM,40
+    AbilityIndex = 0 # Unbreakable
+Pokemon = ARAICHU,40
+    AbilityIndex = 1 # Surf's Up
+Pokemon = KLEFKI,40
+    Moves = PLAYROUGH,LIGHTSCREEN,REFLECT,FLASHCANNON
     AbilityIndex = 0 # Prankster
-    Item = LIGHTCLAY
-Pokemon = EMPOLEON,45
-    Moves = MENDINGSPRING,CHILL,PROTECT,STEALTHROCK
-    AbilityIndex = 1 # Well Supplied
-    Item = LEFTOVERS
-Pokemon = CROBAT,45
-    Moves = UTURN,TOXICTASTE,DIVEBOMB,LEECHLIFE
-    AbilityIndex = 1 # Infiltrator
-    Item = LIFEORB
-Pokemon = SLOWKING,45
-    Moves = CALMMIND,YAWN,PSYCHIC,SLACKOFF
-    AbilityIndex = 1 # Realist
-    Item = LEFTOVERS
-Pokemon = EELEKTROSS,45
-    Moves = COIL,GUNKSHOT,LEECHLIFE,ELECTROSLASH
-    AbilityIndex = 0 # Levitate
-    Item = SITRUSBERRY
-Pokemon = MIGHTYENA,45
-    Moves = CRUNCH,YAWN,PARTINGSHOT,CRUELTY
+#-------------------------------
+[CHALLENGER_Vanya,Vanya,5]
+Policies = NO_PERFECT
+Pokemon = ESCAVALIER,45
+    AbilityIndex = 1 # Metal Cover
+Pokemon = SLOWBRO,45
+    AbilityIndex = 0 # Regenerator
+Pokemon = KABUTOPS,45
+    AbilityIndex = 0 # Super Luck
+Pokemon = INCINEROAR,45
     AbilityIndex = 0 # Intimidate
-    Item = DARKGEM
 #-------------------------------
-[COOLTRAINER_M7,Singles Fortune Moonglow Pro]
-Pokemon = ALOMOMOLA,55
-    Moves = FLIPTURN,WISH,INFINITEFORCE,HEALBELL
-    AbilityIndex = 1 # Moon Gaze
-    Item = MIRROREDROCK
-Pokemon = LUNATONE,55
-    Moves = THUNDERBOLT,PSYCHIC,MOONBLAST,EARTHPOWER
-    AbilityIndex = 1 # Night Light
-    Item = STRIKEVEST
-Pokemon = HONCHKROW,55
-    Moves = DARKPULSE,AIRSLASH,BUBBLEBLAST,HEATWAVE
-    AbilityIndex = 0 # Rattle 'Em
-    Item = CHOICESCARF
-Pokemon = TOGEKISS,55
-    Moves = ANCIENTPOWER,MOONBLAST,YAWN,DEFOG
-    AbilityIndex = 1 # Serene Grace
-    Item = LUMBERRY
-Pokemon = APERSIAN,55
-    Moves = MOONGLOW,PARTINGSHOT,POWERNAP,NIGHTCHILL
-    AbilityIndex = 0 # Fur Coat
-    Item = MENTALHERB
-Pokemon = PERRSERKER,55
-    Moves = BULLETTRAIN,CLOSECOMBAT,DEEPBREATHING,AMBUSH
-    AbilityIndex = 1 # Steely Spirit
-    Item = UTILITYUMBRELLA
+[CHALLENGER_Vanya,Vanya,6]
+Policies = NO_PERFECT
+Pokemon = DONSTER,55
+    AbilityIndex = 0 # Aggravate
+Pokemon = TORTERRA,55
+    AbilityIndex = 0 # Refuge
+Pokemon = SCARODON,55
+    AbilityIndex = 0 # Schadenfreude
+Pokemon = MDUSTOX,55
+    AbilityIndex = 1 # Follow Through
 #-------------------------------
-[COOLTRAINER_M7,Singles Tyranical Pro]
-Pokemon = MORPEKO,65
-    Moves = AURAWHEEL,TAUNT,BELLYDRUM,RAPIDSPIN
-    AbilityIndex = 0 # Hunger Switch
-    Item = FOCUSSASH
-Pokemon = SAHARICANE,65
-    Moves = EARTHPOWER,MIASMA,COLDFRONT,FLAMETHROWER
-    AbilityIndex = 1 # Disorienting
-    Item = STRIKEVEST
-Pokemon = BLASTOISE,65
-    Moves = FLASHCANNON,WATERPULSE,AURASPHERE,DARKPULSE
-    AbilityIndex = 1 # Mega Launcher
-    Item = CHOICESPECS
-Pokemon = VENUSAUR,65
-    Moves = LIGHTSCREEN,LEECHSEED,POWERWHIP,SLUDGEBOMB
-    AbilityIndex = 1 # Thick Fat
-    Item = LEFTOVERS
-Pokemon = CHARIZARD,65
-    Moves = OVERHEAT,DRACOMETEOR,MIRAGEFLARE,CRUELTY
-    AbilityIndex = 0 # Levitate
-    Item = WHITEHERB
-Pokemon = LYCANROC,65
-    Form = 2
-    Moves = PSYCHICFANGS,ADAMANTINEPRESS,CLOSECOMBAT,SWORDSDANCE
-    AbilityIndex = 0 # Tough Claws
-    Item = CHOPLEBERRY
+[CHALLENGER_Vanya,Vanya,7]
+Policies = NO_PERFECT
+Pokemon = HARCANINE,60
+    AbilityIndex = 1 # Rock Head
+Pokemon = WIGGLYTUFF,60
+    AbilityIndex = 1 # Maestro
+Pokemon = DRAGAPULT,60
+    AbilityIndex = 0 # Clear Body
+Pokemon = SWANNA,60
+    AbilityIndex = 0 # Intimidate

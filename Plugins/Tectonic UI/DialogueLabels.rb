@@ -44,6 +44,7 @@ NERO = _INTL("Nero")
 # Other
 CARETAKER = _INTL("Valentina")
 TECH_NERD = _INTL("Jovan")
+GRIND_RIVAL = _INTL("Vanya")
 SANG = _INTL("Sang")
 MAVIS = _INTL("Mavis")
 LAINIE = _INTL("Lainie")
