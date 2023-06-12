@@ -284,7 +284,7 @@ class PokeBattle_Battle
         $game_switches[94] = false
         ableBeforeFight = $Trainer.able_pokemon_count # Record the number of able party members, for perfecting
         skipPerfecting = false
-        @opponent.each do |opp|
+        @opponent&.each do |opp|
             skipPerfecting = true if opp.policies.include?(:NO_PERFECT)
         end
 
