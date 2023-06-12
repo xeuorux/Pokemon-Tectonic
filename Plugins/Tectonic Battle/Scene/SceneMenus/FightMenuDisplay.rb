@@ -246,7 +246,7 @@ class FightMenuDisplay < BattleMenuBase
             if shouldShade
               @visibility["shader_#{i}"] = true
             # Determine whether to highlight the move
-            elsif move.damagingMove?
+            elsif move.damagingMove?(true)
               shouldHighlight = false
     
               if targetingData.num_targets == 0
@@ -318,7 +318,7 @@ class FightMenuDisplay < BattleMenuBase
         effectivenessTextPos = nil
         effectivenessTextX = 448
         effectivenessTextY = 48
-        if move.damagingMove?
+        if move.damagingMove?(true)
           begin
             if move.is_a?(PokeBattle_FixedDamageMove)
               effectivenessDescription = "Neutral"

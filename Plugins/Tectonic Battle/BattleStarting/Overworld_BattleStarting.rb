@@ -225,6 +225,7 @@ def pbTrainerBattleCore(*args)
   #    3 - Player or wild Pokémon ran from battle, or player forfeited the match
   #    5 - Draw
   pbSet(outcomeVar,decision)
+  $PokemonGlobal.respawnPoint = nil
   return decision
 end
 
@@ -390,6 +391,7 @@ def battleAutoTest(trainerID, trainerName)
     $game_variables[LEVEL_CAP_VAR] = 70
     pbTrainerBattle(trainerID, trainerName)
     pbHealAll
+    break if debugControl
   end
 end
 

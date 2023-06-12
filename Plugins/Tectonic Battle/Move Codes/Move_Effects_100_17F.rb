@@ -328,9 +328,13 @@ end
 class PokeBattle_Move_111 < PokeBattle_Move
     def cannotRedirect?; return true; end
 
-    def damagingMove? # Stops damage being dealt in the setting-up turn
-        return false unless @battle.futureSight
-        return super
+    def damagingMove?(aiChecking = false) # Stops damage being dealt in the setting-up turn
+        if aiChecking
+            return super
+        else
+            return false unless @battle.futureSight
+            return super
+        end
     end
 
     def pbAccuracyCheck(user, target)
@@ -2257,9 +2261,13 @@ class PokeBattle_Move_16F < PokeBattle_Move
         return false
     end
 
-    def damagingMove?
-        return false if @healing
-        return super
+    def damagingMove?(aiChecking = false)
+        if aiChecking
+            return super
+        else
+            return false if @buffing
+            return super
+        end
     end
 
     def pbEffectAgainstTarget(_user, target)

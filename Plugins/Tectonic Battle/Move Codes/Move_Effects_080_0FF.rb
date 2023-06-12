@@ -350,54 +350,9 @@ class PokeBattle_Move_093 < PokeBattle_Move
 end
 
 #===============================================================================
-# Randomly damages or heals the target. (Present)
-# NOTE: Apparently a Normal Gem should be consumed even if this move will heal,
-#       but I think that's silly so I've omitted that effect.
+# (Not currently used.)
 #===============================================================================
 class PokeBattle_Move_094 < PokeBattle_Move
-    def pbOnStartUse(_user, _targets)
-        @presentDmg = 0 # 0 = heal, >0 = damage
-        r = @battle.pbRandom(100)
-        if r < 40
-            @presentDmg = 40
-        elsif r < 70
-            @presentDmg = 80
-        elsif r < 80
-            @presentDmg = 120
-        end
-    end
-
-    def pbFailsAgainstTarget?(_user, target, show_message)
-        return false if @presentDmg.nil? || @presentDmg > 0
-        unless target.canHeal?
-            @battle.pbDisplay(_INTL("But it failed, since #{target.pbThis(true)} cannot be healed!")) if show_message
-            return true
-        end
-        return false
-    end
-
-    def damagingMove?
-        return false if @presentDmg == 0
-        return super
-    end
-
-    def pbBaseDamage(_baseDmg, _user, _target)
-        return @presentDmg
-    end
-
-    def pbBaseDamageAI(_baseDmg, _user, _target)
-        return 50
-    end
-
-    def pbEffectAgainstTarget(_user, target)
-        return if @presentDmg > 0
-        target.applyFractionalHealing(1.0 / 4.0)
-    end
-
-    def pbShowAnimation(id, user, targets, hitNum = 0, showAnimation = true)
-        hitNum = 1 if @presentDmg == 0 # Healing anim
-        super
-    end
 end
 
 #===============================================================================
@@ -2354,9 +2309,13 @@ class PokeBattle_Move_0D4 < PokeBattle_FixedDamageMove
         end
     end
 
-    def damagingMove? # Stops damage being dealt in the charging turns
-        return false unless @damagingTurn
-        return super
+    def damagingMove?(aiChecking = false)
+        if aiChecking
+            return super
+        else
+            return false unless @damagingTurn
+            return super
+        end
     end
 
     def pbFixedDamage(user, _target)

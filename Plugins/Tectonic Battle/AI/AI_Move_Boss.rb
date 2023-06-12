@@ -148,7 +148,7 @@ class PokeBattle_AI
         empoweredAttack = false
         extraAggro = false
 
-        if move.damagingMove? && move.empoweredMove?
+        if move.damagingMove?(true) && move.empoweredMove?
             @battle.pbDisplayBossNarration(_INTL("#{user.pbThis} is winding up a big attack!")) if $PokemonSystem.avatar_mechanics_messages == 0
             empoweredAttack = true
         else
@@ -179,7 +179,7 @@ class PokeBattle_AI
         move = user.moves[idxMove]
 
         # Never ever use empowered status moves normally
-        if move.empoweredMove? && !move.damagingMove?
+        if move.empoweredMove? && !move.damagingMove?(true)
             PBDebug.log("[BOSS AI] #{user.pbThis} (#{user.index}) scores #{move.name} a 0 due to it being an empowered status move.")
             return nil
         end
@@ -190,7 +190,7 @@ class PokeBattle_AI
         if target_data.num_targets > 1
             # If move affects multiple battlers and you don't choose a particular one
             totalScore = 0
-            if move.damagingMove?
+            if move.damagingMove?(true)
                 targets = []
                 @battle.eachBattler do |b|
                     next unless @battle.pbMoveCanTarget?(user.index, b.index, target_data)
@@ -302,7 +302,7 @@ class PokeBattle_AI
             return 99_999
         end
 
-        if move.damagingMove?
+        if move.damagingMove?(true)
             score = 0
             if AVATARS_CALCULATE_DAMAGE_DEALT
                 # Calculate how much damage the move will do (roughly)

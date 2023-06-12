@@ -44,7 +44,7 @@
 43,BEATUP,Beat Up,0C1,1,DARK,Physical,100,10,0,NearOther,0,bef,"The user gets all the party Pokémon to attack the foe. The more party Pokémon, the more damage.",
 44,FLING,Fling,0F7,75,DARK,Physical,100,10,0,NearOther,0,bef,"The user throws its held item at the target. Some items deal more damage or have extra effects.",
 45,POWERTRIP,Power Trip,08E,20,DARK,Physical,100,10,0,NearOther,0,abef,"The user boasts of its strength. Power increases the more the user's stats are raised.",
-46,PUNISHMENT,Punishment,08F,80,DARK,Physical,100,5,0,NearOther,0,abef,"This attack's power increases by 20 for every one of the target's positive stat steps.",
+46,PUNISHMENT,Punishment,08F,30,DARK,Physical,100,5,0,NearOther,0,abef,"This attack's power increases by 10 for every one of the target's positive stat steps.",
 47,DARKVOID,Dark Void,077,0,DARK,Status,100,1,0,AllNearFoes,-1,bce,"Targets are dragged into a world of total darkness that makes them sleep. This move always goes last.",
 48,EMBARGO,Embargo,0F8,0,DARK,Status,100,12,0,NearOther,0,bce,"It prevents the target from using its held item. Its Trainer is also prevented from using items on it.",
 49,FAKETEARS,Fake Tears,04F,0,DARK,Status,100,15,0,NearOther,0,bce,"The user feigns crying to worry the target,  lowering its Sp. Def stat by four steps.",

@@ -99,7 +99,7 @@ class PokeBattle_Battle
             next if b.hp > b.avatarPhaseLowerHealthBound
             usedEmpoweredMove = false
             b.eachMoveWithIndex do |move, index|
-                next if move.damagingMove?
+                next if move.damagingMove?(true)
                 next unless move.empoweredMove?
                 next if move.pp < 1
                 showMessages = $PokemonSystem.avatar_mechanics_messages == 0
@@ -256,7 +256,7 @@ class PokeBattle_Battle
         return true unless predictable?(predictor,idxBattler)
         predictedAction = @predictedActions[idxBattler]
         return false unless predictedAction[0] == :UseMove
-        return false unless predictedAction[2].damagingMove?
+        return false unless predictedAction[2].damagingMove?(true)
         return false if againstPredictor && !actionTargets?(@battlers[idxBattler],predictedAction,predictor)
         return false if categoryOnly != -1 && predictedAction[2].calculated_category != categoryOnly
         return true
@@ -266,7 +266,7 @@ class PokeBattle_Battle
         return false unless predictable?(predictor,idxBattler)
         predictedAction = @predictedActions[idxBattler]
         return false unless predictedAction[0] == :UseMove
-        return false if predictedAction[2].damagingMove?
+        return false if predictedAction[2].damagingMove?(true)
         return false if againstPredictor && !actionTargets?(@battlers[idxBattler],predictedAction,predictor)
         return true
     end
