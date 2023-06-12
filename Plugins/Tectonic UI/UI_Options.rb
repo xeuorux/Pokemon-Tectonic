@@ -540,11 +540,22 @@ class PokemonOption_Scene_UserInterface < PokemonOption_Scene_Base
 			EnumOption.new(_INTL("Text Speed"), [_INTL("1"), _INTL("2"), _INTL("3"), _INTL("4"), _INTL("5")],
 				proc { $PokemonSystem.textspeed },
 				proc { |value|
+                    if value >= 4 && $PokemonSystem.textspeed < 4 && !$PokemonGlobal.customSpeedTutorialized
+                        playCustomSpeedTutorial
+                    end
 					$PokemonSystem.textspeed = value
 					MessageConfig.pbSetTextSpeed(MessageConfig.pbSettingToTextSpeed(value))
-                    playCustomSpeedTutorial if value >= 4 && !$PokemonGlobal.customSpeedTutorialized
 				}
 			),
+            EnumOption.new(_INTL("Screen Size"),[_INTL("S"),_INTL("M"),_INTL("L"),_INTL("XL"),_INTL("Full")],
+                proc { [$PokemonSystem.screensize, 4].min },
+                proc { |value|
+                if $PokemonSystem.screensize != value
+                    $PokemonSystem.screensize = value
+                    pbSetResizeFactor($PokemonSystem.screensize)
+                end
+                }
+            ),
 			NumberOption.new(_INTL("Speech Frame"), 1, Settings::SPEECH_WINDOWSKINS.length,
 				proc { $PokemonSystem.textskin },
 				proc { |value|
@@ -803,6 +814,7 @@ class PokemonOptionMenu < PokemonPauseMenu
         cmdBattleOptions = -1
         cmdOverworldOptions = -1
         cmdAdvancedGraphicsOptions = -1
+        cmdLanguageSelect = -1
         cmdCancel    = -1
 		optionsCommands = []
 		optionsCommands[cmdAudioOptions = optionsCommands.length] = _INTL("Audio Options")
@@ -810,10 +822,23 @@ class PokemonOptionMenu < PokemonPauseMenu
 		optionsCommands[cmdBattleOptions = optionsCommands.length] = _INTL("Battle Options")
 		optionsCommands[cmdOverworldOptions = optionsCommands.length] = _INTL("Overworld Options")
         optionsCommands[cmdAdvancedGraphicsOptions = optionsCommands.length] = _INTL("Adv. Graphics Options")
+        optionsCommands[cmdLanguageSelect = optionsCommands.length] = _INTL("Language")
         optionsCommands[cmdCancel = optionsCommands.length] = _INTL("Cancel")
 		loop do
 			infoCommand = @scene.pbShowCommands(optionsCommands)
             break if infoCommand < 0 || infoCommand == cmdCancel
+            if cmdLanguageSelect > 0 && infoCommand == cmdLanguageSelect
+                prevLanguage = $PokemonSystem.language
+                $PokemonSystem.language = pbChooseLanguage
+                if $PokemonSystem.language == prevLanguage
+                    pbMessage(_INTL("Game language was unchanged."))
+                else
+                    pbLoadMessages('Data/' + Settings::LANGUAGES[$PokemonSystem.language][1])
+                    languageName = Settings::LANGUAGES[$PokemonSystem.language][0]
+                    pbMessage(_INTL("Game language changed to #{languageName}!"))
+                end
+                next
+            end
             optionsScene = [
                 PokemonOption_Scene_Audio,
                 PokemonOption_Scene_UserInterface,

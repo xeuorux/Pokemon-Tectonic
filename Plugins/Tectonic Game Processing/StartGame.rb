@@ -20,26 +20,27 @@ module Game
     # Loads bootup data from save file (if it exists) or creates bootup data (if
     # it doesn't).
     def self.set_up_system
-		SaveData.changeFILEPATH($storenamefilesave.nil? ? FileSave.name : $storenamefilesave)
-		SaveData.move_old_windows_save if System.platform[/Windows/]
-		save_data = (SaveData.exists?) ? SaveData.read_from_file(SaveData::FILE_PATH) : {}
-		if save_data.empty?
-		  SaveData.initialize_bootup_values
-		else
-		  SaveData.load_bootup_values(save_data)
-		end
-		# Set resize factor
-		pbSetResizeFactor([$PokemonSystem.screensize, 4].min)
-		# Set language (and choose language if there is no save file)
-		if Settings::LANGUAGES.length >= 2 && $DEBUG
-		  $PokemonSystem.language = pbChooseLanguage if save_data.empty?
-		  pbLoadMessages('Data/' + Settings::LANGUAGES[$PokemonSystem.language][1])
-		end
-	end
+      SaveData.changeFILEPATH($storenamefilesave.nil? ? FileSave.name : $storenamefilesave)
+      SaveData.move_old_windows_save if System.platform[/Windows/]
+      save_data = (SaveData.exists?) ? SaveData.read_from_file(SaveData::FILE_PATH) : {}
+      if save_data.empty?
+        SaveData.initialize_bootup_values
+      else
+        SaveData.load_bootup_values(save_data)
+      end
+      # Set resize factor
+      pbSetResizeFactor(1)
+      # Set language (and choose language if there is no save file)
+      if Settings::LANGUAGES.length >= 2 && $DEBUG
+        $PokemonSystem.language = pbChooseLanguage if save_data.empty?
+        pbLoadMessages('Data/' + Settings::LANGUAGES[$PokemonSystem.language][1])
+      end
+    end
   
     # Called when starting a new game. Initializes global variables
     # and transfers the player into the map scene.
     def self.start_new
+      mainMenuLanguage = $PokemonSystem.language
       if $game_map && $game_map.events
         $game_map.events.each_value { |event| event.clear_starting }
       end
@@ -47,6 +48,7 @@ module Game
       $PokemonTemp.begunNewGame = true
       $scene = Scene_Map.new
       SaveData.load_new_game_values
+      $PokemonSystem.language = mainMenuLanguage
       $MapFactory = PokemonMapFactory.new($data_system.start_map_id)
       $game_player.moveto($data_system.start_x, $data_system.start_y)
       $game_player.refresh
@@ -68,6 +70,7 @@ module Game
       $PokemonMap.updateMap
       $scene = Scene_Map.new
       $PokemonTemp.dependentEvents.refresh_sprite(false)
+      pbSetResizeFactor($PokemonSystem.screensize)
     end
   
     # Loads and validates the map. Called when loading a saved game.
