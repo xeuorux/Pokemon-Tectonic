@@ -226,7 +226,7 @@ module GameData
                 pkmn.form_simple = pkmn_data[:form]
             end
 
-            pkmn.giveItem(pkmn_data[:item]) if !pkmn_data[:item].nil?
+            pkmn.setItems([pkmn_data[:item]]) if !pkmn_data[:item].nil?
 
             if pkmn_data[:moves] && pkmn_data[:moves].length > 0
                 pkmn.forget_all_moves
