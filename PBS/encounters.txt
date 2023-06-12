@@ -800,10 +800,10 @@ Land,20
 [282] # The Catacombs B1
 LandSparse,20
     20,AEGISLASH,53,55
-    20,DRUDDIGON,34,36
-    20,DUSKNOIR,34,36
-    20,MCARNIVINE,34,36
-    20,NOIVERN,34,36
+    20,DRUDDIGON,53,55
+    20,DUSKNOIR,53,55
+    20,MCARNIVINE,53,55
+    20,NOIVERN,53,55
 #-------------------------------
 [288] # Underground River
 Puddle,20
