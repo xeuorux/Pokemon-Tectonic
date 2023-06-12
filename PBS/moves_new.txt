@@ -400,35 +400,36 @@
 1399,SHINESHOT,Shine Shot,046,60,STEEL,Special,100,10,30,NearOther,0,bef,"The user looses a flash of energy from its polished body. It has a 30% chance to lower Sp. Def.",MIRRORSHOT
 1400,TUTELAGE,Tutelage,5CE,0,PSYCHIC,Status,0,10,0,NearAlly,0,,"The user imparts knowledge on its ally Pokémon, raising their Sp. Atk and Sp. Def stats by two steps.",COACHING
 1401,POWERNAP,Power Nap,0F9,0,DARK,Status,0,5,0,User,0,d,"The user restores 1/2 of its HP, or 2/3rds in moonglow.",REST
-1402,GEMSEAL,Gem Seal,5CF,0,GHOST,Status,100,15,0,NearOther,0,bce,"Disables the targets last used move for 4 turns, and cuts 4 PP from it.",DISABLE
-1403,RIVERREST,River Rest,5D0,0,WATER,Status,0,10,0,User,0,d,"The user rests in a riverbed, restoring its HP by half of max, and forming an Aqua Ring around itself.",REST
-1404,WHALESONG,Whale Song,5D1,0,WATER,Status,0,5,0,UserAndAllies,0,dk,"The user's song heals the status problems of all the party Pokémon, and forms an Aqua Ring around itself.",HEALBELL
-1405,DEEPBREATHING,Deep Breathing,5D2,0,FIGHTING,Status,0,15,0,User,0,d,"The user breathes deeply, raising its Speed by four steps and quadrupling its critical hit chance.",FOCUSENERGY
-1406,ANGELSKISS,Angel's Kiss,401,0,FAIRY,Status,100,10,0,NearOther,0,bce,"The user kisses the target with a sweet, angelic cuteness that dizzies the target.",SWEETKISS
-1407,MISTBURST,Mist Burst,510,130,FAIRY,Special,100,5,0,AllNearFoes,0,bef,"Attacks nearby foes with a misty explosion. User is damaged for 50% of their current HP.",MISTYEXPLOSION
-1408,ENERGYTRICK,Energy Trick,056,0,PSYCHIC,Status,0,10,0,User,0,d,"The user employs psychic power to switch its base Sp. Atk with its base Sp. Def stat.",POWERTRICK
-1409,SUSTAINEDWIND,Sustained Wind,5D3,0,FLYING,Status,0,12,0,UserSide,0,dq,"The user whips up a lingering tailwind that ups the Speed of all party Pokémon for six turns.",TAILWIND
-1410,STABILIZE,Stabilize,5B3,0,GROUND,Status,0,10,0,User,0,d,"The user slathers mud around to heal itself for 1/2 of its max HP, and extends any active Screens by 1 turn.",MUDSPORT
-1411,THIEVINGSPREE,Thieving Spree,0F1,80,NORMAL,Physical,100,20,0,AllNearFoes,0,abef,"The user attacks and steals items from all near foes. Items stolen from wild Pokémon are stored.",COVET
-1412,TERRORSWARM,Terror Swarm,0CF,75,BUG,Special,100,15,0,NearOther,0,abef,"The user summons bugs to terrorize the target, trapping and damaging it for three turns.",INFESTATION
-1413,BLIGHTTOUCH,Blight Touch,5D5,80,POISON,Physical,100,10,0,NearOther,0,bef,"The user infects the target with a touch and also destroys any Herbs its holding.",POISONJAB
-1414,DETACHMENT,Detachment,086,55,FIGHTING,Special,100,12,0,NearOther,0,abef,"The user, free from earthly attachments, attacks with aura. Doubles in damage if the user has no item.",AURASPHERE
-1415,SWARMORDER,Swarm Order,0AD,90,BUG,Physical,100,12,0,NearOther,0,befh,"The user calls out its underlings to pummel the target. Skips and destroys protections.",INFESTATION
-1416,NOISEORDER,Noise Order,401,60,BUG,Special,100,12,100,NearOther,0,bce,"The user calls out its underlings to annoy the target with buzzing sounds, dizzying it.",BUGBUZZ
-1417,REGALIA,Regalia,5D7,0,NORMAL,Status,100,15,0,NearOther,0,bce,"The user adorns the target with precious stones, changing it to your choice of Fairy, Dragon, or Steel-type.",LUCKYCHANT
-1418,ROLLINGARSENAL,Rolling Arsenal,547,90,BUG,Physical,100,10,33,NearOther,0,bef,"The user bites, claws, and stings the target while rolling. It has a 11% chance each to poison, dizzy, or leech.",CHAOSWHEEL
-1419,ZEPHYRWING,Zephyr Wing,536,130,FLYING,Physical,100,5,30,NearOther,0,bef,"The user flies up to raise its Sp. Def by four steps in the first turn, then rams the foe on the second.",SKYATTACK
-1420,SWAGGER,Swagger,55D,0,NORMAL,Status,100,12,0,NearOther,0,bce,"The target's Attack stat is raised by three steps. It then hits itself in a rage.",
-1421,FLATTER,Flatter,55E,0,DARK,Status,100,12,0,NearOther,0,bce,"The target's Sp. Atk stat is raised by three steps. It then hurts itself in its mental turmoil.",
-1422,SHELLSHELTER,Shell Shelter,5E2,0,WATER,Status,0,30,0,User,0,d,"The user withdraws its body into its hard shell, raises both defensive stats by two steps and gaining Shell Armor.",WITHDRAW
-1423,TUNEUP,Tune Up,5E3,0,BUG,Status,0,10,0,User,0,d,"The user amps itself up for performance, raising its Sp. Atk and Speed by two steps each.",CALMMIND
-1424,HONESIGHT,Hone Sight,5E4,0,NORMAL,Status,0,12,0,User,0,d,"The user focuses its aim to raise its Sp. Atk and Accuracy by three steps each.",LASERFOCUS
-1425,CURSEDOATH,Cursed Oath,54A,0,GHOST,Status,0,10,0,NearOther,0,bce,"The user spends 1/4th of their max HP to curse the target, damaging their HP by 1/4th each turn.",CURSE
-1426,MINDSAP,Mind Sap,5E5,0,GRASS,Status,100,10,0,NearOther,0,bce,"Restores its own HP by the target's Sp. Atk stat amount, then lowers the target's Sp. Atk stat.",STRENGTHSAP
-1427,APPLESURPRISE,Apple Surprise,5F2,45,GRASS,Special,100,10,100,NearOther,1,bef,"An apple falls from high up to strike the foe. Always goes first. Deals double damage in intense Gravity.",GRAVAPPLE
-1428,STARDANCE,Star Dance,5F3,0,PSYCHIC,Status,100,15,0,AllNearFoes,0,bceo,"The user dazzles the target with celestial visions that lowers its Sp. Atk stat by five steps.",COSMICPOWER
-1429,AMPUP,Amp Up,09C,0,ELECTRIC,Status,0,15,0,NearAlly,0,,"The user assists an ally's next move, boosting its power by 50% and letting it move right after the user.",HELPINGHAND
-1430,TRUESENSES,True Senses,5F5,0,PSYCHIC,Status,0,30,0,User,0,d,"The user meditates, raising both its Attack and Sp. Atk stats by 4 steps each.",MEDITATE
-1431,UNDYINGRUSH,Undying Rush,5F6,120,GHOST,Physical,100,12,0,NearOther,0,abef,"Clad in souls, the user crashes into the target. The user takes 33% recoil, but can't faint from it.",PHANTOMFORCE
-1432,VERMINCLOUD,Vermin Cloud,0C9,100,FLYING,Physical,100,5,0,NearOther,4,abef,"The user transforms into a cloud of flies, evading all attacks on the first turn. On the second turn it ambushes the target.",FLY
-1433,ICEDUNGEON,Ice Dungeon,5F7,0,ICE,Status,0,5,0,AllNearFoes,0,ce,"The user imprisons all near foes, reducing their attacking stats by one step each and trapping them until the next time they take a hit.",
+1402,SHATTEREDENERGY,Shattered Energy,190,80,DRAGON,Special,100,15,0,AllNearOthers,0,bef,"Attacks with dragon energy. Power increases and damages all nearby in eclipse.",
+1403,GEMSEAL,Gem Seal,5CF,0,GHOST,Status,100,15,0,NearOther,0,bce,"Disables the targets last used move for 4 turns, and cuts 4 PP from it.",DISABLE
+1404,RIVERREST,River Rest,5D0,0,WATER,Status,0,10,0,User,0,d,"The user rests in a riverbed, restoring its HP by half of max, and forming an Aqua Ring around itself.",REST
+1405,WHALESONG,Whale Song,5D1,0,WATER,Status,0,5,0,UserAndAllies,0,dk,"The user's song heals the status problems of all the party Pokémon, and forms an Aqua Ring around itself.",HEALBELL
+1406,DEEPBREATHING,Deep Breathing,5D2,0,FIGHTING,Status,0,15,0,User,0,d,"The user breathes deeply, raising its Speed by four steps and quadrupling its critical hit chance.",FOCUSENERGY
+1407,ANGELSKISS,Angel's Kiss,401,0,FAIRY,Status,100,10,0,NearOther,0,bce,"The user kisses the target with a sweet, angelic cuteness that dizzies the target.",SWEETKISS
+1408,MISTBURST,Mist Burst,510,130,FAIRY,Special,100,5,0,AllNearFoes,0,bef,"Attacks nearby foes with a misty explosion. User is damaged for 50% of their current HP.",MISTYEXPLOSION
+1409,ENERGYTRICK,Energy Trick,056,0,PSYCHIC,Status,0,10,0,User,0,d,"The user employs psychic power to switch its base Sp. Atk with its base Sp. Def stat.",POWERTRICK
+1410,SUSTAINEDWIND,Sustained Wind,5D3,0,FLYING,Status,0,12,0,UserSide,0,dq,"The user whips up a lingering tailwind that ups the Speed of all party Pokémon for six turns.",TAILWIND
+1411,STABILIZE,Stabilize,5B3,0,GROUND,Status,0,10,0,User,0,d,"The user slathers mud around to heal itself for 1/2 of its max HP, and extends any active Screens by 1 turn.",MUDSPORT
+1412,THIEVINGSPREE,Thieving Spree,0F1,80,NORMAL,Physical,100,20,0,AllNearFoes,0,abef,"The user attacks and steals items from all near foes. Items stolen from wild Pokémon are stored.",COVET
+1413,TERRORSWARM,Terror Swarm,0CF,75,BUG,Special,100,15,0,NearOther,0,abef,"The user summons bugs to terrorize the target, trapping and damaging it for three turns.",INFESTATION
+1414,BLIGHTTOUCH,Blight Touch,5D5,80,POISON,Physical,100,10,0,NearOther,0,bef,"The user infects the target with a touch and also destroys any Herbs its holding.",POISONJAB
+1415,DETACHMENT,Detachment,086,55,FIGHTING,Special,100,12,0,NearOther,0,abef,"The user, free from earthly attachments, attacks with aura. Doubles in damage if the user has no item.",AURASPHERE
+1416,SWARMORDER,Swarm Order,0AD,90,BUG,Physical,100,12,0,NearOther,0,befh,"The user calls out its underlings to pummel the target. Skips and destroys protections.",INFESTATION
+1417,NOISEORDER,Noise Order,401,60,BUG,Special,100,12,100,NearOther,0,bce,"The user calls out its underlings to annoy the target with buzzing sounds, dizzying it.",BUGBUZZ
+1418,REGALIA,Regalia,5D7,0,NORMAL,Status,100,15,0,NearOther,0,bce,"The user adorns the target with precious stones, changing it to your choice of Fairy, Dragon, or Steel-type.",LUCKYCHANT
+1419,ROLLINGARSENAL,Rolling Arsenal,547,90,BUG,Physical,100,10,33,NearOther,0,bef,"The user bites, claws, and stings the target while rolling. It has a 11% chance each to poison, dizzy, or leech.",CHAOSWHEEL
+1420,ZEPHYRWING,Zephyr Wing,536,130,FLYING,Physical,100,5,30,NearOther,0,bef,"The user flies up to raise its Sp. Def by four steps in the first turn, then rams the foe on the second.",SKYATTACK
+1421,SWAGGER,Swagger,55D,0,NORMAL,Status,100,12,0,NearOther,0,bce,"The target's Attack stat is raised by three steps. It then hits itself in a rage.",
+1422,FLATTER,Flatter,55E,0,DARK,Status,100,12,0,NearOther,0,bce,"The target's Sp. Atk stat is raised by three steps. It then hurts itself in its mental turmoil.",
+1423,SHELLSHELTER,Shell Shelter,5E2,0,WATER,Status,0,30,0,User,0,d,"The user withdraws its body into its hard shell, raises both defensive stats by two steps and gaining Shell Armor.",WITHDRAW
+1424,TUNEUP,Tune Up,5E3,0,BUG,Status,0,10,0,User,0,d,"The user amps itself up for performance, raising its Sp. Atk and Speed by two steps each.",CALMMIND
+1425,HONESIGHT,Hone Sight,5E4,0,NORMAL,Status,0,12,0,User,0,d,"The user focuses its aim to raise its Sp. Atk and Accuracy by three steps each.",LASERFOCUS
+1426,CURSEDOATH,Cursed Oath,54A,0,GHOST,Status,0,10,0,NearOther,0,bce,"The user spends 1/4th of their max HP to curse the target, damaging their HP by 1/4th each turn.",CURSE
+1427,MINDSAP,Mind Sap,5E5,0,GRASS,Status,100,10,0,NearOther,0,bce,"Restores its own HP by the target's Sp. Atk stat amount, then lowers the target's Sp. Atk stat.",STRENGTHSAP
+1428,APPLESURPRISE,Apple Surprise,5F2,45,GRASS,Special,100,10,100,NearOther,1,bef,"An apple falls from high up to strike the foe. Always goes first. Deals double damage in intense Gravity.",GRAVAPPLE
+1429,STARDANCE,Star Dance,5F3,0,PSYCHIC,Status,100,15,0,AllNearFoes,0,bceo,"The user dazzles the target with celestial visions that lowers its Sp. Atk stat by five steps.",COSMICPOWER
+1430,AMPUP,Amp Up,09C,0,ELECTRIC,Status,0,15,0,NearAlly,0,,"The user assists an ally's next move, boosting its power by 50% and letting it move right after the user.",HELPINGHAND
+1431,TRUESENSES,True Senses,5F5,0,PSYCHIC,Status,0,30,0,User,0,d,"The user meditates, raising both its Attack and Sp. Atk stats by 4 steps each.",MEDITATE
+1432,UNDYINGRUSH,Undying Rush,5F6,120,GHOST,Physical,100,12,0,NearOther,0,abef,"Clad in souls, the user crashes into the target. The user takes 33% recoil, but can't faint from it.",PHANTOMFORCE
+1433,VERMINCLOUD,Vermin Cloud,0C9,100,FLYING,Physical,100,5,0,NearOther,4,abef,"The user transforms into a cloud of flies, evading all attacks on the first turn. On the second turn it ambushes the target.",FLY
+1434,ICEDUNGEON,Ice Dungeon,5F7,0,ICE,Status,0,5,0,AllNearFoes,0,ce,"The user imprisons all near foes, reducing their attacking stats by one step each and trapping them until the next time they take a hit.",

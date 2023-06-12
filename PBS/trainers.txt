@@ -195,7 +195,7 @@ Pokemon = GASTLY,16
 #-------------------------------
 [PSYCHIC_M,Uriel]
 Pokemon = ABRA,15
-    AbilityIndex = 1 # Wondrous Aura
+    AbilityIndex = 1 # Steelworker
     Item = PSYCHICGEM
 Pokemon = IMPIDIMP,16
     AbilityIndex = 0 # Unassuming
@@ -723,7 +723,7 @@ Pokemon = FLAAFFY,35
 ExtendsVersion = 4
 Policies = CURSE_DOUBLE_ABILITIES
 Pokemon = MILTANK,35
-    Moves = POUT,HEADBUTT,MILKDRINK,BULLDOZE
+    Moves = CHARM,HEADBUTT,MILKDRINK,BULLDOZE
     AbilityIndex = 0 # Thick Fat
     Item = LEFTOVERS
 Pokemon = MALAMAR,35
@@ -762,7 +762,7 @@ Pokemon = POOCHYENA,25
 #-------------------------------
 [NURSE,Ellen]
 Pokemon = CHANSEY,29
-    Moves = SEISMICTOSS,POUT,CHIBLOCK,LULLABY
+    Moves = SEISMICTOSS,EERIEIMPULSE,CHIBLOCK,LULLABY
     AbilityIndex = 0 # Serene Grace
     Item = LEFTOVERS
 Pokemon = STANTLER,30
@@ -970,7 +970,7 @@ Pokemon = DOTTLER,26
     AbilityIndex = 1 # Total Grasp
     Item = SITRUSBERRY
 Pokemon = HERDIER,27
-    Moves = SEISMICTOSS,CHILL,POUT
+    Moves = SEISMICTOSS,CHILL,CHARM
     AbilityIndex = 0 # Break Through
 Pokemon = CHANSEY,27
     Moves = SEISMICTOSS,CHIBLOCK,ANGELSKISS
@@ -2589,7 +2589,7 @@ Pokemon = AGRAVELER,30
 #-------------------------------
 [SKIER_F2,Valeriya]
 Pokemon = KADABRA,30
-    AbilityIndex = 1 # Wondrous Aura
+    AbilityIndex = 1 # Steelworker
 Pokemon = RABOOT,28
     AbilityIndex = 1 # Unburden
     Item = FIREGEM
@@ -5421,7 +5421,7 @@ Pokemon = MDUSTOX,53
 #-------------------------------
 [ARTIST3,Alicynthia]
 Pokemon = ALAKAZAM,52
-    AbilityIndex = 1 # Wondrous Aura
+    AbilityIndex = 1 # Steelworker
     Item = REINFORCINGROD
 Pokemon = SCEPTILE,52
     AbilityIndex = 1 # Wall Ninja
