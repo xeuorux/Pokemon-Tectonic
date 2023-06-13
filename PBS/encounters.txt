@@ -34,6 +34,8 @@ FloweryGrass2,20
     25,PORYGON,15,18
     25,PURRLOIN,15,18
     25,SHINX,15,18
+Special
+    1,SENTRET,15
 #-------------------------------
 [007] # Repora Forest
 Land,20
@@ -238,8 +240,6 @@ FloweryGrass,20
     25,DUCKLETT,14,17
     25,SMOOCHUM,14,17
     25,SWIRLIX,14,17
-Special
-    1,SENTRET,15
 #-------------------------------
 [059] # Feebas' Fin
 Land,20
@@ -617,6 +617,7 @@ Mud,20
     20,GSTUNFISK,34,36
     20,SEVIPER,34,36
     20,ZANGOOSE,34,36
+	20,STUNFISK,34,36
 #-------------------------------
 [214] # Team Chasm HQ
 DarkCave,21
