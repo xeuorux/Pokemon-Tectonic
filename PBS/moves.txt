@@ -629,3 +629,4 @@
 628,LIFEDEW,Life Dew,17E,0,WATER,Status,0,10,0,UserAndAllies,0,d,"The user scatters mysterious water around and restores the HP of itself and allies by 25%.",
 629,SURGINGSTRIKES,Surging Strikes,188,25,WATER,Physical,100,5,0,NearOther,0,abef,"Strikes the target thrice, with mastery of the Water style. Always results in a critical hit.",
 630,FLIPTURN,Flip Turn,0EE,70,WATER,Physical,100,15,0,NearOther,0,abef,"After making its attack, the user rushes back to switch places with a party Pokémon in waiting.",
+631,MEMENTO,Memento,0E2,0,DARK,Status,100,10,0,NearOther,0,be,"The user faints in order to lower the target's Attack and Sp. Atk by 5 steps each.",

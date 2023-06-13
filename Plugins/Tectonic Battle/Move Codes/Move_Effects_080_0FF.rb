@@ -2729,9 +2729,26 @@ class PokeBattle_Move_0E1 < PokeBattle_FixedDamageMove
 end
 
 #===============================================================================
-# (Not currently used.)
+# Target's attacking stats are lowered by 5 steps. User faints. (Memento)
 #===============================================================================
-class PokeBattle_Move_0E2 < PokeBattle_Move
+class PokeBattle_Move_0E2 < PokeBattle_TargetMultiStatDownMove
+    def worksWithNoTargets?; return true; end
+
+    def initialize(battle, move)
+        super
+        @statDown = [:ATTACK, 5, :SPECIAL_ATTACK, 5]
+    end
+
+    def pbSelfKO(user)
+        return if user.fainted?
+        user.pbReduceHP(user.totalhp, false)
+        user.pbItemHPHealCheck
+    end
+    
+    def getEffectScore(user, target)
+        score = getSelfKOMoveScore(user, target)
+        return score
+    end
 end
 
 #===============================================================================

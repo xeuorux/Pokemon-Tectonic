@@ -407,6 +407,36 @@ def tmShop
 	)
 end
 
+def hackedTMShop
+	tmsStock = %i[
+		TM22
+		TM23
+		TM27
+		TM176
+	]
+
+	pbPokemonMart(
+		tmsStock,
+		_INTL("Hurry and buy some."),
+		!CAN_SELL_IN_VENDORS
+	)
+end
+
+def switchOutTMShop
+	tmsStock = %i[
+		TM88
+		TM89
+		TM90
+		TM91
+	]
+
+	pbPokemonMart(
+		tmsStock,
+		_INTL("I'm sure you'll appreciate one of these."),
+		!CAN_SELL_IN_VENDORS
+	)
+end
+
 def naturesGallery
 	stock = %i[
 		HEATROCK DAMPROCK SMOOTHROCK ICYROCK MIRROREDROCK PINPOINTROCK
@@ -606,6 +636,7 @@ def weirdBerryVendor
 	setPrice(:CUSTAPBERRY,1000)
 	setPrice(:JABOCABERRY,1000)
 	setPrice(:ROWAPBERRY,1000)
+	setPrice(:KEEBERRY,1000)
 	setPrice(:MARANGABERRY,1000)
 
 	berryStock = %i[
