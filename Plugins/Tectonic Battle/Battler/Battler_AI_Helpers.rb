@@ -49,7 +49,7 @@ class PokeBattle_Battler
 
     def hasDamagingAttack?
         eachAIKnownMove do |m|
-            next unless m.damagingMove?
+            next unless m.damagingMove?(true)
             return true
         end
         return false
@@ -121,7 +121,15 @@ class PokeBattle_Battler
         return false unless check_type
         check_type = GameData::Type.get(check_type).id
         eachAIKnownMove do |m|
-            return true if m.type == check_type && m.damagingMove?
+            return true if m.type == check_type && m.damagingMove?(true)
+        end
+        return false
+    end
+
+    def hasOffTypeMove?
+        eachAIKnownMove do |m|
+            next if pbHasTypeAI?(m.type)
+            return true
         end
         return false
     end

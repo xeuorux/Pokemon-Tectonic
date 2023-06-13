@@ -350,54 +350,9 @@ class PokeBattle_Move_093 < PokeBattle_Move
 end
 
 #===============================================================================
-# Randomly damages or heals the target. (Present)
-# NOTE: Apparently a Normal Gem should be consumed even if this move will heal,
-#       but I think that's silly so I've omitted that effect.
+# (Not currently used.)
 #===============================================================================
 class PokeBattle_Move_094 < PokeBattle_Move
-    def pbOnStartUse(_user, _targets)
-        @presentDmg = 0 # 0 = heal, >0 = damage
-        r = @battle.pbRandom(100)
-        if r < 40
-            @presentDmg = 40
-        elsif r < 70
-            @presentDmg = 80
-        elsif r < 80
-            @presentDmg = 120
-        end
-    end
-
-    def pbFailsAgainstTarget?(_user, target, show_message)
-        return false if @presentDmg.nil? || @presentDmg > 0
-        unless target.canHeal?
-            @battle.pbDisplay(_INTL("But it failed, since #{target.pbThis(true)} cannot be healed!")) if show_message
-            return true
-        end
-        return false
-    end
-
-    def damagingMove?
-        return false if @presentDmg == 0
-        return super
-    end
-
-    def pbBaseDamage(_baseDmg, _user, _target)
-        return @presentDmg
-    end
-
-    def pbBaseDamageAI(_baseDmg, _user, _target)
-        return 50
-    end
-
-    def pbEffectAgainstTarget(_user, target)
-        return if @presentDmg > 0
-        target.applyFractionalHealing(1.0 / 4.0)
-    end
-
-    def pbShowAnimation(id, user, targets, hitNum = 0, showAnimation = true)
-        hitNum = 1 if @presentDmg == 0 # Healing anim
-        super
-    end
 end
 
 #===============================================================================
@@ -1654,14 +1609,6 @@ class PokeBattle_Move_0BA < PokeBattle_Move
             return true
         end
         return true if pbMoveFailedAromaVeil?(user, target, show_message)
-        if target.hasActiveAbility?(:OBLIVIOUS) && !@battle.moldBreaker
-            if show_message
-                @battle.pbShowAbilitySplash(target, ability)
-                @battle.pbDisplay(_INTL("But it failed!"))
-                @battle.pbHideAbilitySplash(target)
-            end
-            return true
-        end
         return false
     end
 
@@ -1674,12 +1621,12 @@ class PokeBattle_Move_0BA < PokeBattle_Move
         return if target.damageState.substitute
         return if target.effectActive?(:Taunt)
         return true if pbMoveFailedAromaVeil?(user, target)
-        return if target.hasActiveAbility?(:OBLIVIOUS) && !@battle.moldBreaker
         target.applyEffect(:Taunt, @tauntTurns)
     end
 
     def getTargetAffectingEffectScore(_user, target)
-        return 0 if target.hasActiveAbilityAI?(:MENTALBLOCK) || target.substituted?
+        return 0 if target.substituted? && statusMove?
+        return 0 if target.hasActiveAbilityAI?(:MENTALBLOCK)
         return 0 unless target.hasStatusMove?
         score = 20
         score += getSetupLikelihoodScore(target) { |move|
@@ -2032,9 +1979,44 @@ class PokeBattle_Move_0C6 < PokeBattle_TwoTurnMove
 end
 
 #===============================================================================
-# (Not currently used)
+# For 4 rounds, disables the target's off-type moves. (Bar)
 #===============================================================================
 class PokeBattle_Move_0C7 < PokeBattle_Move
+    def ignoresSubstitute?(_user); return statusMove?; end
+
+    def initialize(battle, move)
+        super
+        @barredTurns = 4
+    end
+
+    def pbFailsAgainstTarget?(user, target, show_message)
+        return false if damagingMove?
+        if target.effectActive?(:Barred)
+            @battle.pbDisplay(_INTL("But it failed, since #{target.pbThis(true)} is already barred!")) if show_message
+            return true
+        end
+        return true if pbMoveFailedAromaVeil?(user, target, show_message)
+        return false
+    end
+
+    def pbEffectAgainstTarget(_user, target)
+        return if damagingMove?
+        target.applyEffect(:Barred, @tauntTurns)
+    end
+
+    def pbAdditionalEffect(user, target)
+        return if target.damageState.substitute
+        return if target.effectActive?(:Barred)
+        return true if pbMoveFailedAromaVeil?(user, target)
+        target.applyEffect(:Barred, @tauntTurns)
+    end
+
+    def getTargetAffectingEffectScore(_user, target)
+        return 0 if target.substituted? && statusMove?
+        return 0 if target.hasActiveAbilityAI?(:MENTALBLOCK)
+        return 0 unless target.hasOffTypeMove?
+        return 80
+    end
 end
 
 #===============================================================================
@@ -2354,9 +2336,13 @@ class PokeBattle_Move_0D4 < PokeBattle_FixedDamageMove
         end
     end
 
-    def damagingMove? # Stops damage being dealt in the charging turns
-        return false unless @damagingTurn
-        return super
+    def damagingMove?(aiChecking = false)
+        if aiChecking
+            return super
+        else
+            return false unless @damagingTurn
+            return super
+        end
     end
 
     def pbFixedDamage(user, _target)
@@ -2743,9 +2729,26 @@ class PokeBattle_Move_0E1 < PokeBattle_FixedDamageMove
 end
 
 #===============================================================================
-# (Not currently used.)
+# Target's attacking stats are lowered by 5 steps. User faints. (Memento)
 #===============================================================================
-class PokeBattle_Move_0E2 < PokeBattle_Move
+class PokeBattle_Move_0E2 < PokeBattle_TargetMultiStatDownMove
+    def worksWithNoTargets?; return true; end
+
+    def initialize(battle, move)
+        super
+        @statDown = [:ATTACK, 5, :SPECIAL_ATTACK, 5]
+    end
+
+    def pbSelfKO(user)
+        return if user.fainted?
+        user.pbReduceHP(user.totalhp, false)
+        user.pbItemHPHealCheck
+    end
+    
+    def getEffectScore(user, target)
+        score = getSelfKOMoveScore(user, target)
+        return score
+    end
 end
 
 #===============================================================================

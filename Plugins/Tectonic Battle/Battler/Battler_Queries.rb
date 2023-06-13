@@ -796,9 +796,10 @@ class PokeBattle_Battler
     end
 
     def hasGem?
-        return false unless item
-        return false unless itemActive?
-        return item.is_gem?
+        eachActiveItem do |item|
+            return true if GameData::Item.get(item).is_gem?
+        end
+        return false
     end
 
     def trapped?

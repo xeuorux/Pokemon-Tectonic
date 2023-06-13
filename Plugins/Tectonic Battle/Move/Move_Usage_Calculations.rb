@@ -57,10 +57,6 @@ class PokeBattle_Move
         if target.effectActive?(:Inured)
             ret /= 2 if Effectiveness.super_effective_type?(moveType, defType)
         end
-        # Tar Shot
-        if target.effectActive?(:TarShot) && moveType == :FIRE
-            ret *= 2
-        end
         # Break Through
         if user.hasActiveAbility?(:BREAKTHROUGH) && Effectiveness.ineffective_type?(moveType, defType)
             ret = Effectiveness::NORMAL_EFFECTIVE_ONE
@@ -111,6 +107,9 @@ class PokeBattle_Move
 
         # Creep Out
         ret *= 2 if target.effectActive?(:CreepOut) && moveType == :BUG
+
+        # Tar Shot
+        ret *= 2 if target.effectActive?(:TarShot) && moveType == :FIRE
 
         # Modify effectiveness for bosses
         ret = Effectiveness.modify_boss_effectiveness(ret, user, target)

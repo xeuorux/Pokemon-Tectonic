@@ -36,7 +36,7 @@ class PokeBattle_Battler
             BattleHandlers.triggerAbilityOnSwitchOut(ability, self, @battle, false)
         end
         # Caretaker bonus
-        pbRecoverHP(@totalhp / 10.0, false, false, false) if hasTribeBonus?(:CARETAKER)
+        pbRecoverHP(@totalhp / 10.0, false, false, false) if hasTribeBonus?(:CARETAKER) && !fainted?
         # Reset form
         @battle.peer.pbOnLeavingBattle(@battle, @pokemon, @battle.usedInBattle[idxOwnSide][@index / 2])
         # Treat self as fainted

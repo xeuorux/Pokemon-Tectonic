@@ -103,7 +103,7 @@ class PokeBattle_Move
       return @category
     end
   
-    def damagingMove?; return @category != 2; end
+    def damagingMove?(aiChecking = false); return @category != 2; end
     def statusMove?;   return @category == 2; end
   
     def usableWhenAsleep?;       return false; end

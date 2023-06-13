@@ -120,7 +120,7 @@ class PokeBattle_AI
         damageScore = 0
         triggersScore = 0
         willFaint = false
-        if move.damagingMove?
+        if move.damagingMove?(true)
             # Adjust the score based on the move dealing damage
             # and perhaps a percent chance to actually benefit from its effect score
             begin
@@ -239,7 +239,7 @@ class PokeBattle_AI
         # Pick a good move for the Choice items
         if user.hasActiveItem?(CHOICE_LOCKING_ITEMS) || user.hasActiveAbilityAI?(CHOICE_LOCKING_ABILITIES)
             echoln("[MOVE SCORING] #{user.pbThis} scores the move #{move.id} differently due to choice locking.")
-            if move.damagingMove?
+            if move.damagingMove?(true)
                 score *= 1.5
             else
                 score /= 2
@@ -270,7 +270,7 @@ class PokeBattle_AI
         score = getMultiplicativeAbilityScore(score, move, user, target)
 
         # Policies
-        score *= 0.75 if move.damagingMove? && policies.include?(:DISLIKEATTACKING)
+        score *= 0.75 if move.damagingMove?(true) && policies.include?(:DISLIKEATTACKING)
 
         # Final adjustments t score
         score = score.to_i

@@ -19,6 +19,7 @@ def avatarBattleAutoTest(*args)
         $game_variables[LEVEL_CAP_VAR] = 70
         pbSmallAvatarBattle(*args)
         pbHealAll
+        break if debugControl
     end
 end
 

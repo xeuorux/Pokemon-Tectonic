@@ -430,9 +430,13 @@ class PokeBattle_TwoTurnMove < PokeBattle_Move
         return !@damagingTurn # Deliberately not "return @chargingTurn"
     end
 
-    def damagingMove? # Stops damage being dealt in the first (charging) turn
-        return false unless @damagingTurn
-        return super
+    def damagingMove?(aiChecking = false) # Stops damage being dealt in the first (charging) turn
+        if aiChecking
+            return super
+        else
+            return false unless @damagingTurn
+            return super
+        end
     end
 
     def pbAccuracyCheck(user, target)
@@ -736,9 +740,13 @@ class PokeBattle_PledgeMove < PokeBattle_Move
         end
     end
 
-    def damagingMove?
-        return false if @pledgeSetup
-        return super
+    def damagingMove?(aiChecking = false)
+        if aiChecking
+            return super
+        else
+            return false if @pledgeSetup
+            return super
+        end
     end
 
     def pbBaseType(user)

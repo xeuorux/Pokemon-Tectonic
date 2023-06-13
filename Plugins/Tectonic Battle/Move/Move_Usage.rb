@@ -121,7 +121,6 @@ target.pbThis(true)))
     # user.effects[:TwoTurnAttack] is set to the move's ID during the
     # charging turn, and is nil during the attack turn.
     def pbIsChargingTurn?(_user); return false; end
-    def pbDamagingMove?; return damagingMove?; end
 
     def canParentalBond?(user, targets, checkingForAI = false)
         return false unless damagingMove?

@@ -79,8 +79,6 @@ BattleHandlers::DamageCalcTargetAbility.add(:ACCLIMATIZE,
   }
 )
 
-BattleHandlers::DamageCalcTargetAbility.copy(:ACCLIMATIZE,:STOUT)
-
 BattleHandlers::DamageCalcTargetAbility.add(:SENTRY,
   proc { |ability, _user, target, _move, mults, _baseDmg, _type|
       mults[:final_damage_multiplier] *= 0.75 if target.effectActive?(:ChoseStatus)

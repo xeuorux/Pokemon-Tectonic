@@ -112,6 +112,15 @@ GameData::Move.get(@effects[:GorillaTactics]).name)
             echoln(msg)
             return false
         end
+        # Barred
+        if effectActive?(:Barred) && !user.pbHasType?(move.calcType)
+            msg = _INTL("{1} can't use {2} after being barred!", pbThis, move.name)
+            if showMessages
+                commandPhase ? @battle.pbDisplayPaused(msg) : @battle.pbDisplay(msg)
+            end
+            echoln(msg)
+            return false
+        end
         # Assault Vest and Strike Vest (prevents choosing status moves but doesn't prevent
         # executing them)
         if move.statusMove? && commandPhase
