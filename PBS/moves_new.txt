@@ -106,7 +106,7 @@
 1105,LIGHTNINGSHRIEK,Lightning Shriek,030,60,ELECTRIC,Special,100,5,100,NearOther,0,bef,"The user lets out an electric roar, raising the user's Speed by four steps.",ROAR
 1106,IGNITE,Ignite,00A,0,FIRE,Status,100,12,0,NearOther,0,bce,"The user sets the target on fire, inflicting a burn.",EMBER
 1107,HYDROSCYTHE,Hydro Scythe,000,120,WATER,Physical,100,12,0,NearOther,0,abefhp,"The user uses a jet of water like a sword and attacks by slashing. Critical hits land more easily.",LIQUIDATION
-1108,STAREDOWN,Stare Down,535,100,DARK,Special,100,5,0,NearOther,2,bef,"Stares harshly, dealing double damage if they hurt the user this turn. Only usable on the first turn.",FREEZINGGLARE
+1108,STAREDOWN,Stare Down,535,100,DARK,Special,100,5,0,NearOther,0,bef,"Stares harshly, dealing double damage if they hurt the user this turn. Only usable on the first turn.",FREEZINGGLARE
 1109,INURE,Inure,531,0,ICE,Status,0,10,0,User,0,d,"The user inures themselves to a harsh environment, shedding their type weaknesses.",
 1110,BREAKDANCE,Breakdance,532,0,FIGHTING,Status,0,15,0,User,0,do,"The user improvises a dance, raising its two weakest stats by three steps each.",WORKUP
 1111,SHIVERDANCE,Shiver Dance,525,0,ICE,Status,0,15,0,User,0,do,"The user raises their Attack and Defense by two steps, and Speed by one step.",
