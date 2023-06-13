@@ -68,13 +68,13 @@ BattleHandlers::StatusImmunityAllyAbility.add(:FAEVEIL,
 
 BattleHandlers::StatusImmunityAbility.add(:CANDYVEIL,
   proc { |ability, _battler, status|
-      next true if %i[SLEEP DIZZY].include?(status)
+      next true if %i[POISON LEECH DIZZY].include?(status)
   }
 )
 
 BattleHandlers::StatusImmunityAllyAbility.add(:CANDYVEIL,
   proc { |ability, _battler, status|
-      next true if %i[SLEEP DIZZY].include?(status)
+      next true if %i[POISON LEECH DIZZY].include?(status)
   }
 )
 

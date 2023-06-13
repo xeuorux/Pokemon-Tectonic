@@ -86,7 +86,7 @@
 85,TELEPATHY,Telepathy,"Anticipates an ally's attack and dodges it."
 86,MOODY,Moody,"Raises one attacking or defending stat by three steps and lowers another by 1 at the end of each turn."
 87,POISONTOUCH,Poison Touch,"Physical moves have a 30% chance to poison targets."
-88,REGENERATOR,Regenerator,"Restores 1/3 of max HP when withdrawn from battle."
+88,REGENERATOR,Regenerator,"Restores 25% of max HP when withdrawn from battle."
 89,SANDRUSH,Sand Rush,"Doubles the Pokémon's Speed in a sandstorm."
 90,ANALYTIC,Analytic,"Boosts move power when the Pokémon moves last by 30%."
 91,ILLUSION,Illusion,"Comes out disguised as the Pokémon in back."

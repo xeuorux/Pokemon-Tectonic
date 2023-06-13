@@ -412,6 +412,7 @@ def hackedTMShop
 		TM22
 		TM23
 		TM27
+		TM114
 		TM176
 	]
 

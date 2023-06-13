@@ -1,7 +1,7 @@
 BattleHandlers::AbilityOnSwitchOut.add(:REGENERATOR,
   proc { |ability, battler, battle, endOfBattle|
       next if endOfBattle
-      battler.pbRecoverHP(battler.totalhp / 3.0, false, false, false)
+      battler.pbRecoverHP(battler.totalhp / 4.0, false, false, false)
   }
 )
 

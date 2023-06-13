@@ -735,14 +735,14 @@ class PokeBattle_Move_034 < PokeBattle_Move
 end
 
 #===============================================================================
-# Decreases the user's Defense and Special Defense by 1 step each.
-# Increases the user's Attack, Speed and Special Attack by 2 steps each.
+# Decreases the user's Defense and Special Defense by 2 steps each.
+# Increases the user's Attack, Speed and Special Attack by 3 steps each.
 # (Shell Smash)
 #===============================================================================
 class PokeBattle_Move_035 < PokeBattle_StatUpDownMove
     def initialize(battle, move)
         super
-        @statUp   = [:ATTACK, 4, :SPECIAL_ATTACK, 4, :SPEED, 4]
+        @statUp   = [:ATTACK, 3, :SPECIAL_ATTACK, 3, :SPEED, 3]
         @statDown = DEFENDING_STATS_2
     end
 end

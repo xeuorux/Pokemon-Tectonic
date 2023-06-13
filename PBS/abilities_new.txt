@@ -85,7 +85,7 @@
 1084,IMPERVIOUS,Impervious,"Protects from critical hits and from enemies lowering Defense or Sp. Def."
 1085,HARSH,Harsh,"Its attacks are critical against burned targets."
 1086,TOUGH,Tough,"Takes half damage from Fighting- and Rock-type moves."
-1087,CANDYVEIL,Candy Veil,"Prevents itself and allies from falling asleep or being dizzied."
+1087,CANDYVEIL,Candy Veil,"Prevents itself and allies from being poisoned, leeched, or dizzied."
 1088,FAEVEIL,Fae Veil,"Prevents itself and allies from being burned, frostbitten, or numbed."
 1089,FRUSTRATE,Frustrate,"Upon entry, lowers the foe's Speed stat by two steps."
 1090,TERRITORIAL,Territorial,"Boosts damage by 20% if there is a weather. Immune to weather downsides."

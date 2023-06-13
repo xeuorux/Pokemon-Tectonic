@@ -260,7 +260,7 @@ GameData::BattleEffect.register_effect(:Side, {
     :id => :Spikes,
     :real_name => "Spikes",
     :type => :Integer,
-    :maximum => 2,
+    :maximum => 3,
     :is_hazard => true,
     :is_spike => true,
     :increment_proc => proc do |battle, _side, teamName, _value, increment|

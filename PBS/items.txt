@@ -67,8 +67,8 @@
 66,AMULETCOIN,Amulet Coin,Amulet Coins,5,10000,"An item to be held by a Pokémon. It doubles a battle's prize money if the holding Pokémon joins in.",0,0,0
 67,SOOTHEBELL,Soothe Bell,Soothe Bells,5,4000,"An item to be held by a Pokémon. The comforting chime of this bell makes it gain happiness twice as fast.",0,0,0
 68,CLEANSETAG,Cleanse Tag,Cleanse Tags,5,5000,"An item to be held by a Pokémon. It prevents wild Pokémon encounters if the holder is the first one in the party.",0,0,0
-69,CHOICEBAND,Choice Band,Choice Bands,5,10000,"Held item which ups Attack by 33%, but allows the use of only one move.",0,0,0
-70,CHOICESPECS,Choice Specs,Choice Specs,5,10000,"Held item which ups Sp. Atk by 33%, but allows the use of only one move.",0,0,0
+69,CHOICEBAND,Choice Band,Choice Bands,5,10000,"Held item which ups Attack by 40%, but allows the use of only one move.",0,0,0
+70,CHOICESPECS,Choice Specs,Choice Specs,5,10000,"Held item which ups Sp. Atk by 40%, but allows the use of only one move.",0,0,0
 71,CHOICESCARF,Choice Scarf,Choice Scarves,5,10000,"Held item which boosts Speed by 33% but allows the use of only one move.",0,0,0
 72,HEATROCK,Heat Rock,Heat Rocks,5,4000,"A Pokémon held item. When the holder summons sunshine, it lasts twice as long.",0,0,0
 73,DAMPROCK,Damp Rock,Damp Rocks,5,4000,"A Pokémon held item. When the holder summons rain, it lasts twice as long.",0,0,0
@@ -325,7 +325,7 @@
 324,TM111,TM111,TM111s,4,6000,,3,0,0,PSYCHIC
 325,TM112,TM112,TM112s,4,4000,,3,0,0,AGILITY
 326,TM113,TM113,TM113s,4,2000,,3,0,0,FOCUSENERGY
-327,TM114,TM114,TM114s,4,2000,,3,0,0,METRONOME
+327,TM114,TM114,TM114s,4,4000,,3,0,0,AIMTRUE
 328,TM115,TM115,TM115s,4,16000,,3,0,0,FIREBLAST
 329,TM116,TM116,TM116s,4,6000,,3,0,0,WATERFALL
 330,TM117,TM117,TM117s,4,4000,,3,0,0,AMNESIA

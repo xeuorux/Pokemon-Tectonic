@@ -130,3 +130,7 @@
 4129,WONDERROOM,Wonder Room,124,0,PSYCHIC,Status,0,10,0,BothSides,0,e,"The user creates a bizarre area in which Pokémon's Defense and Sp. Def stats are swapped for 5 turns.",
 4130,POUT,Pout,04B,0,FAIRY,Status,100,15,0,NearOther,0,bce,"The user gazes charmingly at the target. The target's Attack is lowered by four steps.",
 4131,IMPRISON,Imprison,0B8,0,PSYCHIC,Status,0,10,0,User,0,d,"If the foe knows any move also known by the user, the foe is prevented from using it.",
+4132,FREEZEDRY,Freeze-Dry,135,70,ICE,Special,100,15,20,NearOther,0,bef,"The user rapidly cools the target. It has a 20% chance to frostbite. Is super-effective on Water types.",
+4133,VITALFORCE,Vital Force,08B,100,FIGHTING,Special,100,5,0,AllNearFoes,0,bef,"The user unleashes a vital energy wave. The lower the user's HP, the less powerful it becomes.",FOCUSBLAST
+4134,LOCKON,Lock-On,0A6,0,NORMAL,Status,0,5,0,NearOther,0,be,"The user takes sure aim at the target. This ensures the next attack does not miss the target.",
+4135,MINDREADER,Mind Reader,0A6,0,PSYCHIC,Status,0,5,0,NearOther,0,be,"The user senses the foe's movements with its mind to ensure its next attack does not miss the foe.",

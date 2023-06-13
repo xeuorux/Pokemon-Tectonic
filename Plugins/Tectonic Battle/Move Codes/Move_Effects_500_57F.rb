@@ -1464,7 +1464,7 @@ end
 
 def selfHitBasePower(level)
     calcLevel = [level, 50].min
-    selfHitBasePower = (25 + calcLevel * 1.2)
+    selfHitBasePower = (20 + calcLevel)
     selfHitBasePower = selfHitBasePower.ceil
     return selfHitBasePower
 end

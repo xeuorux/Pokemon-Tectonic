@@ -14,7 +14,7 @@ BattleHandlers::SpecialAttackCalcUserItem.add(:WISEGLASSES,
 
 BattleHandlers::SpecialAttackCalcUserItem.add(:CHOICESPECS,
   proc { |item, _user, _battle, spAtkMult|
-      spAtkMult *= 1.33
+      spAtkMult *= 1.4
       next spAtkMult
   }
 )
