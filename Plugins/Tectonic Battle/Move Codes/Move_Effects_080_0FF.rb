@@ -2836,7 +2836,11 @@ class PokeBattle_Move_0E5 < PokeBattle_Move
     end
 
     def pbEffectAgainstTarget(user, target)
-        target.applyEffect(:PerishSong, 3)
+        if target.boss?
+            target.applyEffect(:PerishSong, 12)
+        else
+            target.applyEffect(:PerishSong, 3)
+        end
     end
 
     def getEffectScore(user, _target)
