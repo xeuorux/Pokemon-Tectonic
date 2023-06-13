@@ -130,3 +130,4 @@
 4129,DETECT,Detect,0AA,0,FIGHTING,Status,0,3,0,User,4,,"It enables the user to evade all attacks. It always fails if it is used in succession.",
 4130,WONDERROOM,Wonder Room,124,0,PSYCHIC,Status,0,10,0,BothSides,0,e,"The user creates a bizarre area in which Pokémon's Defense and Sp. Def stats are swapped for 5 turns.",
 4131,POUT,Pout,04B,0,FAIRY,Status,100,15,0,NearOther,0,bce,"The user gazes charmingly at the target. The target's Attack is lowered by four steps.",
+4132,IMPRISON,Imprison,0B8,0,PSYCHIC,Status,0,10,0,User,0,d,"If the foe knows any move also known by the user, the foe is prevented from using it.",

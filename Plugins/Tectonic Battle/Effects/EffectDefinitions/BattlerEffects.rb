@@ -1005,6 +1005,23 @@ GameData::BattleEffect.register_effect(:Battler, {
 })
 
 GameData::BattleEffect.register_effect(:Battler, {
+    :id => :Barred,
+    :real_name => "Barred Turns",
+    :type => :Integer,
+    :ticks_down => true,
+    :is_mental => true,
+    :apply_proc => proc do |battle, battler, _value|
+        battle.pbDisplay(_INTL("{1} is barred from using off-type moves!", battler.pbThis))
+    end,
+    :disable_proc => proc do |battle, battler|
+        battle.pbDisplay(_INTL("No moves barred! {1} can use off-type moves again!", battler.pbThis))
+    end,
+    :expire_proc => proc do |battle, battler|
+        battle.pbDisplay(_INTL("{1} is no longer being barred.", battler.pbThis))
+    end,
+})
+
+GameData::BattleEffect.register_effect(:Battler, {
     :id => :Telekinesis,
     :real_name => "Telekinesis Turns",
     :type => :Integer,

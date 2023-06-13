@@ -1609,14 +1609,6 @@ class PokeBattle_Move_0BA < PokeBattle_Move
             return true
         end
         return true if pbMoveFailedAromaVeil?(user, target, show_message)
-        if target.hasActiveAbility?(:OBLIVIOUS) && !@battle.moldBreaker
-            if show_message
-                @battle.pbShowAbilitySplash(target, ability)
-                @battle.pbDisplay(_INTL("But it failed!"))
-                @battle.pbHideAbilitySplash(target)
-            end
-            return true
-        end
         return false
     end
 
@@ -1629,12 +1621,12 @@ class PokeBattle_Move_0BA < PokeBattle_Move
         return if target.damageState.substitute
         return if target.effectActive?(:Taunt)
         return true if pbMoveFailedAromaVeil?(user, target)
-        return if target.hasActiveAbility?(:OBLIVIOUS) && !@battle.moldBreaker
         target.applyEffect(:Taunt, @tauntTurns)
     end
 
     def getTargetAffectingEffectScore(_user, target)
-        return 0 if target.hasActiveAbilityAI?(:MENTALBLOCK) || target.substituted?
+        return 0 if target.substituted? && statusMove?
+        return 0 if target.hasActiveAbilityAI?(:MENTALBLOCK)
         return 0 unless target.hasStatusMove?
         score = 20
         score += getSetupLikelihoodScore(target) { |move|
@@ -1987,9 +1979,44 @@ class PokeBattle_Move_0C6 < PokeBattle_TwoTurnMove
 end
 
 #===============================================================================
-# (Not currently used)
+# For 4 rounds, disables the target's off-type moves. (Bar)
 #===============================================================================
 class PokeBattle_Move_0C7 < PokeBattle_Move
+    def ignoresSubstitute?(_user); return statusMove?; end
+
+    def initialize(battle, move)
+        super
+        @barredTurns = 4
+    end
+
+    def pbFailsAgainstTarget?(user, target, show_message)
+        return false if damagingMove?
+        if target.effectActive?(:Barred)
+            @battle.pbDisplay(_INTL("But it failed, since #{target.pbThis(true)} is already barred!")) if show_message
+            return true
+        end
+        return true if pbMoveFailedAromaVeil?(user, target, show_message)
+        return false
+    end
+
+    def pbEffectAgainstTarget(_user, target)
+        return if damagingMove?
+        target.applyEffect(:Barred, @tauntTurns)
+    end
+
+    def pbAdditionalEffect(user, target)
+        return if target.damageState.substitute
+        return if target.effectActive?(:Barred)
+        return true if pbMoveFailedAromaVeil?(user, target)
+        target.applyEffect(:Barred, @tauntTurns)
+    end
+
+    def getTargetAffectingEffectScore(_user, target)
+        return 0 if target.substituted? && statusMove?
+        return 0 if target.hasActiveAbilityAI?(:MENTALBLOCK)
+        return 0 unless target.hasOffTypeMove?
+        return 80
+    end
 end
 
 #===============================================================================

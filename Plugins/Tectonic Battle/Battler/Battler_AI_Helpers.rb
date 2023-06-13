@@ -126,6 +126,14 @@ class PokeBattle_Battler
         return false
     end
 
+    def hasOffTypeMove?
+        eachAIKnownMove do |m|
+            next if pbHasTypeAI?(m.type)
+            return true
+        end
+        return false
+    end
+
     def hasForceSwitchMove?
         eachAIKnownMove do |m|
             next unless m.forceSwitchMove?
