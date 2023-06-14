@@ -2930,35 +2930,35 @@ Policies = CURSE_VENGEANT
 #-------------------------------
 [TRAINER_Sang,Sang]
 Policies = EQ_PROTECT
-Pokemon = EXPLOUD,47
+Pokemon = EXPLOUD,50
     Name = Egret Ash
     Gender = female
     Moves = HYPERVOICE,FLAMETHROWER,SHADOWBALL,PROTECT
     AbilityIndex = 0 # Echo
-Pokemon = SEISMITOAD,47
+Pokemon = SEISMITOAD,50
     Name = Ibis Veil
     Gender = female
     Moves = HYPERVOICE,SLUDGEWAVE,EARTHQUAKE,BUBBLEBLAST
     AbilityIndex = 1 # Vibrational
-Pokemon = WIGGLYTUFF,47
+Pokemon = WIGGLYTUFF,50
     Name = Wren Glass
     Gender = male
     Moves = UPROAR,TRANQUILTUNE,PLAYROUGH,PROTECT
     AbilityIndex = 1 # Maestro
     Item = THROATSPRAY
-Pokemon = KROOKODILE,47
+Pokemon = KROOKODILE,50
     Name = Stork Saw
     Gender = male
     Moves = EARTHQUAKE,CRUNCH,STAREDOWN,BULKUP
     AbilityIndex = 0 # Tough
     Item = WILDCARD
-Pokemon = CHATOT,47
+Pokemon = CHATOT,50
     Name = Dove Abyss
     Gender = male
     Moves = CHATTER,BUGBUZZ,SNARL,PROTECT
     AbilityIndex = 1 # Fascinate
     Item = SITRUSBERRY
-Pokemon = MAMOSWINE,47
+Pokemon = MAMOSWINE,50
     Name = Hawk Doll
     Gender = female
     Moves = CRYSTALCRUSH,SHIVERDANCE,EARTHQUAKE,ADAMANTINEPRESS
@@ -2967,11 +2967,11 @@ Pokemon = MAMOSWINE,47
 [TRAINER_Sang,Sang,1]
 ExtendsVersion = 0
 Policies = CURSE_PERISH_SONGED
-Pokemon = EXPLOUD,47
+Pokemon = EXPLOUD,50
     Item = STRIKEVEST
-Pokemon = SEISMITOAD,47
+Pokemon = SEISMITOAD,50
     Item = LIFEORB
-Pokemon = MAMOSWINE,47
+Pokemon = MAMOSWINE,50
     Item = LEFTOVERS
 #-------------------------------
 [POKEMONTRAINER_Yezera,Yezera,6]
