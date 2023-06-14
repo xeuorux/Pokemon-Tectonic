@@ -56,14 +56,14 @@ BattleHandlers::SpecialDefenseCalcUserAbility.add(:HEATVEIL,
 
 BattleHandlers::SpecialDefenseCalcUserAbility.add(:WARPINGEFFECT,
     proc { |ability, _user, battle, spDefMult|
-        spDefMult *= 2 if battle.pbWeather == :Eclipse
+        spDefMult *= 2 if battle.eclipsed?
         next spDefMult
     }
 )
 
 BattleHandlers::SpecialDefenseCalcUserAbility.add(:ICEMIRROR,
     proc { |ability, _user, battle, spDefMult|
-        spDefMult *= 2 if battle.pbWeather == :Hail
+        spDefMult *= 2 if battle.icy?
         next spDefMult
     }
 )

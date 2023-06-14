@@ -48,7 +48,7 @@ BattleHandlers::TargetAbilityAfterMoveUse.add(:MOONLIGHTER,
       next unless move.damagingMove?
       next if user.hasActiveItem?(:PROXYFIST)
       next if battle.futureSight
-      next unless battle.pbWeather == :Moonglow
+      next unless battle.moonGlowing?
       item = target.firstItem
       if move.canStealItem?(user,target, item)
         move.stealItem(target, user, item, ability: ability)

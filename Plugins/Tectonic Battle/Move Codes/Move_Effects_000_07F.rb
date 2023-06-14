@@ -157,7 +157,7 @@ end
 #===============================================================================
 class PokeBattle_Move_00D < PokeBattle_FrostbiteMove
     def pbBaseAccuracy(user, target)
-        return 0 if @battle.pbWeather == :Hail
+        return 0 if @battle.icy?
         return super
     end
 end

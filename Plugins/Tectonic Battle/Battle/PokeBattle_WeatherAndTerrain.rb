@@ -324,8 +324,8 @@ class PokeBattle_Battle
     end
 
     def weatherSpedUp?
-        return true if pbWeather == :Eclipse && pbCheckGlobalAbility(:EPHEMERATE)
-        return true if pbWeather == :Moonglow && pbCheckGlobalAbility(:SOLSTICE)
+        return true if eclipsed? && pbCheckGlobalAbility(:EPHEMERATE)
+        return true if moonGlowing? && pbCheckGlobalAbility(:SOLSTICE)
         return false
     end
 
@@ -455,19 +455,35 @@ class PokeBattle_Battle
         return %i[Rain HeavyRain].include?(pbWeather)
     end
 
+    def sandy?
+        return %i[Sandstorm].include?(pbWeather)
+    end
+
+    def icy?
+        return %i[Hail].include?(pbWeather)
+    end
+
+    def eclipsed?
+        return %i[Eclipse].include?(pbWeather)
+    end
+
+    def moonGlowing?
+        return %i[Moonglow].include?(pbWeather)
+    end
+
     def partialEclipse?
-        return pbWeather == :Eclipse && !@field.specialWeatherEffect
+        return eclipsed? && !@field.specialWeatherEffect
     end
 
     def totalEclipse?
-        return pbWeather == :Eclipse && @field.specialWeatherEffect
+        return eclipsed? && @field.specialWeatherEffect
     end
 
     def waxingMoon?
-        return pbWeather == :Moonglow && !@field.specialWeatherEffect
+        return moonGlowing? && !@field.specialWeatherEffect
     end
 
     def fullMoon?
-        return pbWeather == :Moonglow && @field.specialWeatherEffect
+        return moonGlowing? && @field.specialWeatherEffect
     end
 end

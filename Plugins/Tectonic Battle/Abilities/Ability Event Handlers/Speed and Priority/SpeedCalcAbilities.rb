@@ -126,49 +126,49 @@ BattleHandlers::SpeedCalcAbility.add(:LIGHTTRICK,
 
 BattleHandlers::SpeedCalcAbility.add(:ANARCHIC,
   proc { |ability, battler, mult|
-      next mult * 2 if battler.battle.pbWeather == :Eclipse
+      next mult * 2 if battler.battle.eclipsed?
   }
 )
 
 BattleHandlers::SpeedCalcAbility.add(:NIGHTLIFE,
   proc { |ability, battler, mult|
-      next mult * 2 if battler.battle.pbWeather == :Moonglow
+      next mult * 2 if battler.battle.moonGlowing?
   }
 )
 
 BattleHandlers::SpeedCalcAbility.add(:NIGHTVISION,
   proc { |ability, battler, mult|
-      next mult * 1.5 if battler.battle.pbWeather == :Moonglow
+      next mult * 1.5 if battler.battle.moonGlowing?
   }
 )
 
 BattleHandlers::SpeedCalcAbility.add(:SANDDRILLING,
   proc { |ability, battler, mult|
-      next mult * 1.5 if battler.battle.pbWeather == :Sandstorm
+      next mult * 1.5 if battler.battle.sandy?
   }
 )
 
 BattleHandlers::SpeedCalcAbility.add(:NIGHTOWL,
   proc { |ability, battler, mult|
-      next mult * 1.5 if battler.battle.pbWeather == :Moonglow
+      next mult * 1.5 if battler.battle.moonGlowing?
   }
 )
 
 BattleHandlers::SpeedCalcAbility.add(:SANDSNIPER,
   proc { |ability, battler, mult|
-      next mult * 1.5 if battler.battle.pbWeather == :Sandstorm
+      next mult * 1.5 if battler.battle.sandy?
   }
 )
 
 BattleHandlers::SpeedCalcAbility.add(:TAIGATRECKER,
   proc { |ability, battler, mult|
-      next mult * 1.5 if battler.battle.pbWeather == :Hail
+      next mult * 1.5 if battler.battle.icy?
   }
 )
 
 BattleHandlers::SpeedCalcAbility.add(:POLARHUNTER,
   proc { |ability, battler, mult|
-      next mult * 1.25 if battler.battle.pbWeather == :Hail
+      next mult * 1.25 if battler.battle.icy?
   }
 )
 

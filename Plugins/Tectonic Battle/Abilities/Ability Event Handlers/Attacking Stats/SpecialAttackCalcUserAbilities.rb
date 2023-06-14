@@ -92,21 +92,21 @@ BattleHandlers::SpecialAttackCalcUserAbility.add(:BALANCEOFPOWER,
 
 BattleHandlers::SpecialAttackCalcUserAbility.add(:SHATTERING,
   proc { |ability, _user, battle, spAtkMult|
-      spAtkMult *= 1.3 if battle.pbWeather == :Eclipse
+      spAtkMult *= 1.3 if battle.eclipsed?
       next spAtkMult
   }
 )
 
 BattleHandlers::SpecialAttackCalcUserAbility.add(:NIGHTLIGHT,
   proc { |ability, _user, battle, spAtkMult|
-      spAtkMult *= 1.3 if battle.pbWeather == :Moonglow
+      spAtkMult *= 1.3 if battle.moonGlowing?
       next spAtkMult
   }
 )
 
 BattleHandlers::SpecialAttackCalcUserAbility.add(:SANDPOWER,
   proc { |ability, _user, battle, spAtkMult|
-      spAtkMult *= 1.3 if battle.pbWeather == :Sandstorm
+      spAtkMult *= 1.3 if battle.sandy?
       next spAtkMult
   }
 )
@@ -120,7 +120,7 @@ BattleHandlers::SpecialAttackCalcUserAbility.add(:OVERWHELM,
 
 BattleHandlers::SpecialAttackCalcUserAbility.add(:WINTERWISDOM,
   proc { |ability, _user, battle, spAtkMult|
-      spAtkMult *= 1.3 if battle.pbWeather == :Hail
+      spAtkMult *= 1.3 if battle.icy?
       next spAtkMult
   }
 )

@@ -922,12 +922,12 @@ end
 #===============================================================================
 class PokeBattle_Move_5B1 < PokeBattle_FrostbiteMove
     def pbAdditionalEffect(user, target)
-        return unless @battle.pbWeather == :Moonglow
+        return unless @battle.moonGlowing?
         super
     end
 
     def getTargetAffectingEffectScore(user, target)
-        return 0 unless @battle.pbWeather == :Moonglow
+        return 0 unless @battle.moonGlowing?
         super
     end
 end
@@ -937,12 +937,12 @@ end
 #===============================================================================
 class PokeBattle_Move_5B2 < PokeBattle_BurnMove
     def pbAdditionalEffect(user, target)
-        return unless @battle.pbWeather == :Eclipse
+        return unless @battle.eclipsed?
         super
     end
 
     def getTargetAffectingEffectScore(user, target)
-        return 0 unless @battle.pbWeather == :Eclipse
+        return 0 unless @battle.eclipsed?
         super
     end
 end
@@ -1091,7 +1091,7 @@ class PokeBattle_Move_5BA < PokeBattle_MultiStatUpMove
     end
 
     def pbOnStartUse(_user, _targets)
-        if @battle.pbWeather == :Moonglow
+        if @battle.moonGlowing?
             @statUp = [:ATTACK, 1, :SPECIAL_ATTACK, 2, :SPEED, 2]
         else
             @statUp = ATTACKING_STATS_2
@@ -1099,7 +1099,7 @@ class PokeBattle_Move_5BA < PokeBattle_MultiStatUpMove
     end
 
     def shouldHighlight?(_user, _target)
-        return @battle.pbWeather == :Moonglow
+        return @battle.moonGlowing?
     end
 end
 
@@ -1177,7 +1177,7 @@ class PokeBattle_Move_5BE < PokeBattle_FixedDamageMove
     def getEffectScore(user, target)
         score = 40 * drainFactor(user, target)
         score *= 1.5 if user.hasActiveAbilityAI?(:ROOTED)
-        score *= 2.0 if user.hasActiveAbilityAI?(:GLOWSHROOM) && user.battle.pbWeather == :Moonglow
+        score *= 2.0 if user.hasActiveAbilityAI?(:GLOWSHROOM) && user.battle.moonGlowing?
         score *= 1.3 if user.hasActiveItem?(:BIGROOT)
         score *= 2 if user.belowHalfHealth?
         score *= -1 if target.hasActiveAbilityAI?(:LIQUIDOOZE) || user.effectActive?(:NerveBreak)
@@ -2349,5 +2349,44 @@ class PokeBattle_Move_5F7 < PokeBattle_Move
         score += 40 unless target.effectActive?(:IceDungeon)
         score += getMultiStatUpEffectScore(ATTACKING_STATS_1, user, target)
         return score
+    end
+end
+
+#===============================================================================
+# Target's Defense is lowered by 3 steps if in sandstorm. (Grindstone)
+#===============================================================================
+class PokeBattle_Move_5F8 < PokeBattle_TargetStatDownMove
+    def initialize(battle, move)
+        super
+        @statDown = [:DEFENSE, 3]
+    end
+
+    def pbAdditionalEffect(user, target)
+        return if target.damageState.substitute
+        return unless @battle.sandy?
+        target.tryLowerStat(@statDown[0], user, increment: @statDown[1], move: self)
+    end
+
+    def getTargetAffectingEffectScore(user, target)
+        return 0 unless @battle.sandy?
+        return getMultiStatDownEffectScore(@statDown, user, target)
+    end
+
+    def shouldHighlight?(_user, _target)
+        return @battle.sandy?
+    end
+end
+
+#===============================================================================
+# Move has increased Priority in sandstorm (Sand Blasting)
+#===============================================================================
+class PokeBattle_Move_579 < PokeBattle_Move
+    def priorityModification(_user, _targets)
+        return 1 if @battle.sandy?
+        return 0
+    end
+
+    def shouldHighlight?(_user, _target)
+        return @battle.sandy?
     end
 end

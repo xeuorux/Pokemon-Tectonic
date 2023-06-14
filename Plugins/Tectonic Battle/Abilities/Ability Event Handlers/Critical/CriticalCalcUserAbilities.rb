@@ -18,12 +18,12 @@ BattleHandlers::CriticalCalcUserAbility.add(:RAZORSEDGE,
 
 BattleHandlers::CriticalCalcUserAbility.add(:NIGHTVISION,
   proc { |ability, user, _target, _move, c|
-      next c + 1 if user.battle.pbWeather == :Moonglow
+      next c + 1 if user.battle.moonGlowing?
   }
 )
 
 BattleHandlers::CriticalCalcUserAbility.add(:SANDDRILLING,
   proc { |ability, user, _target, _move, c|
-      next c + 1 if user.battle.pbWeather == :Sandstorm
+      next c + 1 if user.battle.sandy?
   }
 )

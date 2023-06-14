@@ -42,18 +42,18 @@ BattleHandlers::AccuracyCalcUserAbility.add(:OCULAR,
 
 BattleHandlers::AccuracyCalcUserAbility.add(:SANDSNIPER,
     proc { |ability, mults, user, _target, _move, _type|
-        mults[:base_accuracy] = 0 if user.battle.pbWeather == :Sandstorm
+        mults[:base_accuracy] = 0 if user.battle.sandy?
     }
 )
 
 BattleHandlers::AccuracyCalcUserAbility.add(:NIGHTOWL,
   proc { |ability, mults, user, _target, _move, _type|
-      mults[:base_accuracy] = 0 if user.battle.pbWeather == :Moonglow
+      mults[:base_accuracy] = 0 if user.battle.moonGlowing?
   }
 )
 
 BattleHandlers::AccuracyCalcUserAbility.add(:STARSALIGN,
   proc { |ability, mults, user, _target, _move, _type|
-      mults[:base_accuracy] = 0 if user.battle.pbWeather == :Eclipse
+      mults[:base_accuracy] = 0 if user.battle.eclipsed?
   }
 )

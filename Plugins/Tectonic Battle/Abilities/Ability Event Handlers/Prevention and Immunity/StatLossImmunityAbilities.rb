@@ -13,7 +13,7 @@ BattleHandlers::StatLossImmunityAbility.copy(:CLEARBODY, :WHITESMOKE, :STUBBORN,
 
 BattleHandlers::StatLossImmunityAbility.add(:ANCIENTSCALES,
   proc { |ability, battler, _stat, battle, showMessages|
-      next false unless @battle.pbWeather == :Eclipse
+      next false unless @battle.eclipsed?
       if showMessages
           battle.pbShowAbilitySplash(battler, ability)
           battle.pbDisplay(_INTL("{1}'s stats cannot be lowered!", battler.pbThis))

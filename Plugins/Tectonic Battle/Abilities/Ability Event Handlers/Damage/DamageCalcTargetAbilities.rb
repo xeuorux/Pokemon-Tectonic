@@ -117,13 +117,13 @@ BattleHandlers::DamageCalcTargetAbility.add(:PARANOID,
 
 BattleHandlers::DamageCalcTargetAbility.add(:SANDSHROUD,
   proc { |ability, user, _target, _move, mults, _baseDmg, _type|
-      mults[:final_damage_multiplier] *= 0.75 if user.battle.pbWeather == :Sandstorm
+      mults[:final_damage_multiplier] *= 0.75 if user.battle.sandy?
   }
 )
 
 BattleHandlers::DamageCalcTargetAbility.add(:SNOWSHROUD,
   proc { |ability, user, _target, _move, mults, _baseDmg, _type|
-      mults[:final_damage_multiplier] *= 0.75 if user.battle.pbWeather == :Hail
+      mults[:final_damage_multiplier] *= 0.75 if user.battle.icy?
   }
 )
 
@@ -176,7 +176,7 @@ BattleHandlers::DamageCalcTargetAbility.add(:FINESUGAR,
 
 BattleHandlers::DamageCalcTargetAbility.add(:MISTBLANKET,
   proc { |ability, user, _target, _move, mults, _baseDmg, _type|
-      mults[:final_damage_multiplier] *= 0.75 if user.battle.pbWeather == :Moonglow
+      mults[:final_damage_multiplier] *= 0.75 if user.battle.moonGlowing?
   }
 )
 

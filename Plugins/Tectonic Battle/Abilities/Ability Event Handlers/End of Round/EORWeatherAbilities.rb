@@ -50,7 +50,7 @@ BattleHandlers::EORWeatherAbility.add(:SOLARPOWER,
 
 BattleHandlers::EORWeatherAbility.add(:NIGHTSTALKER,
     proc { |ability, _weather, battler, battle|
-        next unless battle.pbWeather == :Moonglow
+        next unless battle.moonGlowing?
         battle.pbShowAbilitySplash(battler, ability)
         battle.pbDisplay(_INTL("{1} was hurt by the moonlight!", battler.pbThis))
         battler.applyFractionalDamage(1.0 / 8.0)
@@ -83,7 +83,7 @@ BattleHandlers::EORWeatherAbility.add(:FINESUGAR,
 
 BattleHandlers::EORWeatherAbility.add(:EXTREMOPHILE,
     proc { |ability, _weather, battler, battle|
-        next unless battle.pbWeather == :Eclipse
+        next unless battle.eclipsed?
         healingMessage = _INTL("{1} revels in the unusual conditions.", battler.pbThis)
         battler.applyFractionalHealing(1.0 / 8.0, ability: ability, customMessage: healingMessage)
     }
@@ -99,7 +99,7 @@ BattleHandlers::EORWeatherAbility.add(:NESTING,
 
 BattleHandlers::EORWeatherAbility.add(:MOONBASKING,
     proc { |ability, _weather, battler, battle|
-        next unless battle.pbWeather == :Moonglow
+        next unless battle.moonGlowing?
         healingMessage = _INTL("{1} absorbs the moonlight.", battler.pbThis)
         battler.applyFractionalHealing(1.0 / 8.0, ability: ability, customMessage: healingMessage)
     }
@@ -107,7 +107,7 @@ BattleHandlers::EORWeatherAbility.add(:MOONBASKING,
 
 BattleHandlers::EORWeatherAbility.add(:NIGHTLINE,
     proc { |ability, _weather, battler, battle|
-        next unless battle.pbWeather == :Moonglow
+        next unless battle.moonGlowing?
         healingMessage = _INTL("{1} absorbs the moonlight.", battler.pbThis)
         healingAmount = battler.applyFractionalHealing(1.0 / 12.0, ability: ability, customMessage: healingMessage)
 

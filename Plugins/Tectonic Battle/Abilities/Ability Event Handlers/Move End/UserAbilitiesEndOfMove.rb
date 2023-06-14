@@ -290,7 +290,7 @@ BattleHandlers::UserAbilityEndOfMove.add(:MIDNIGHTOIL,
   proc { |ability, user, _targets, move, battle, _switchedBattlers|
       next if battle.futureSight
       next if move.damagingMove?
-      next unless battle.pbWeather == :Moonglow
+      next unless battle.moonGlowing?
       battle.pbShowAbilitySplash(user, ability)
       battle.extendWeather(1)
       battle.pbHideAbilitySplash(user)
@@ -301,7 +301,7 @@ BattleHandlers::UserAbilityEndOfMove.add(:ICEQUEEN,
   proc { |ability, user, targets, move, battle, _switchedBattlers|
       next if battle.futureSight
       next unless move.damagingMove?
-      next unless battle.pbWeather == :Hail
+      next unless battle.icy?
       user.pbRecoverHPFromMultiDrain(targets, 0.50, ability: ability)
   }
 )
@@ -309,7 +309,7 @@ BattleHandlers::UserAbilityEndOfMove.add(:ICEQUEEN,
 BattleHandlers::UserAbilityEndOfMove.add(:ETERNALWINTER,
   proc { |ability, user, targets, _move, battle, _switchedBattlers|
       next if battle.pbAllFainted?(user.idxOpposingSide)
-      next unless battle.pbWeather == :Hail
+      next unless battle.icy?
       numFainted = 0
       targets.each { |b| numFainted += 1 if b.damageState.fainted }
       next if numFainted == 0

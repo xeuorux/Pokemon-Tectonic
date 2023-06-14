@@ -245,7 +245,7 @@ BattleHandlers::MoveImmunityTargetAbility.add(:SOUNDPROOF,
 
 BattleHandlers::MoveImmunityTargetAbility.add(:WINTERINSULATION,
   proc { |ability, _user, target, move, type, battle, showMessages|
-      next false unless battle.pbWeather == :Hail
+      next false unless battle.icy?
       next false unless %i[FIRE ELECTRIC].include?(type)
       if showMessages
         battle.pbShowAbilitySplash(target, ability)

@@ -134,3 +134,4 @@
 4133,VITALFORCE,Vital Force,08B,100,FIGHTING,Special,100,5,0,AllNearFoes,0,bef,"The user unleashes a vital energy wave. The lower the user's HP, the less powerful it becomes.",FOCUSBLAST
 4134,LOCKON,Lock-On,0A6,0,NORMAL,Status,0,5,0,NearOther,0,be,"The user takes sure aim at the target. This ensures the next attack does not miss the target.",
 4135,MINDREADER,Mind Reader,0A6,0,PSYCHIC,Status,0,5,0,NearOther,0,be,"The user senses the foe's movements with its mind to ensure its next attack does not miss the foe.",
+4136,DUSTFORCE,Dust Force,54D,110,GROUND,Special,85,12,10,AllNearFoes,0,bef,"The user controls turbulent dust and sand to attack all nearby foes.",SCORCHINGSANDS

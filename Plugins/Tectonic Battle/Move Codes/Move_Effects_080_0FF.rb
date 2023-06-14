@@ -2072,7 +2072,7 @@ class PokeBattle_Move_0CA < PokeBattle_TwoTurnMove
     end
 
     def canBecomeReaper?(user)
-        return @battle.pbWeather == :Sandstorm && user.species == :GARCHOMP && user.hasActiveAbility?(:DUNEPREDATOR) && user.form == 0
+        return @battle.sandy? && user.species == :GARCHOMP && user.hasActiveAbility?(:DUNEPREDATOR) && user.form == 0
     end
 
     def pbAttackingTurnMessage(user, targets)
@@ -3629,7 +3629,7 @@ end
 #===============================================================================
 class PokeBattle_Move_0F9 < PokeBattle_HealingMove
     def healRatio(_user)
-        if @battle.pbWeather == :Moonglow
+        if @battle.moonGlowing?
             return 2.0 / 3.0
         else
             return 1.0 / 2.0
@@ -3637,7 +3637,7 @@ class PokeBattle_Move_0F9 < PokeBattle_HealingMove
     end
 
     def shouldHighlight?(_user, _target)
-        return @battle.pbWeather == :Moonglow
+        return @battle.moonGlowing?
     end
 end
 

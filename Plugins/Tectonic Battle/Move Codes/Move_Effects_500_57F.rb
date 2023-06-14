@@ -334,12 +334,12 @@ end
 #===============================================================================
 class PokeBattle_Move_516 < PokeBattle_DizzyMove
     def pbBaseAccuracy(user, target)
-        return 0 if @battle.pbWeather == :Moonglow
+        return 0 if @battle.moonGlowing?
         return super
     end
 
     def shouldHighlight?(_user, _target)
-        return @battle.pbWeather == :Moonglow
+        return @battle.moonGlowing?
     end
 end
 
@@ -1663,7 +1663,7 @@ end
 #===============================================================================
 class PokeBattle_Move_56A < PokeBattle_Move
     def pbModifyDamage(damageMult, _user, _target)
-        damageMult *= 1.5 if @battle.pbWeather == :Hail
+        damageMult *= 1.5 if @battle.icy?
         return damageMult
     end
 end
