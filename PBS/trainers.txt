@@ -156,7 +156,7 @@ ExtendsVersion = 0
 Policies = CURSE_TORMENTED
 #-------------------------------
 [POKEMONTRAINER_Yezera,Yezera]
-Policies = YEZERA
+Policies = YEZERA,NO_PERFECT
 Pokemon = BUNNELBY,17
     Moves = TREADON,QUICKATTACK,TACKLE,BABYDOLLEYES
     AbilityIndex = 1 # Paranoid
@@ -167,14 +167,14 @@ Pokemon = SMOOCHUM,17
 Pokemon = JOLTIK,18
     Moves = LIGHTSHOW,STICKYWEB,DISABLE,THUNDERSHOCK
     AbilityIndex = 0 # Ocular
+Pokemon = NOIBAT,17
+    Moves = BOREALWIND,ABSORB,DEFOG,DRAGONBREATH
+    AbilityIndex = 0 # Terrorize
+    Item = FLYINGGEM
 #-------------------------------
 [POKEMONTRAINER_Yezera,Yezera,1]
 ExtendsVersion = 0
 Policies = CURSE_PERFECT_LUCK
-Pokemon = NOIBAT,17
-    Moves = BOREALWIND,ABSORB,DEFOG,DRAGONBREATH
-    AbilityIndex = 1 # Shattering
-    Item = FLYINGGEM
 Pokemon = LARVESTA,18
     Moves = EMBER,STRUGGLEBUG,INFESTATION,PROTECT
     AbilityIndex = 0 # Solar Power
@@ -673,6 +673,7 @@ Pokemon = LYCANROC,65
     Item = CHOPLEBERRY
 #-------------------------------
 [POKEMONTRAINER_Yezera,Yezera,2]
+Policies = NO_PERFECT
 Pokemon = MORGREM,25
     Moves = REFLECT,ASSURANCE,PERFUMEDPUNCH
     AbilityIndex = 1 # Ruinous
@@ -682,14 +683,14 @@ Pokemon = MAGNETON,25
 Pokemon = POLIWHIRL,25
     Moves = SPATTERINGRAM,BRICKBREAK,HELPINGHAND
     AbilityIndex = 1 # Disorienting
-#-------------------------------
-[POKEMONTRAINER_Yezera,Yezera,3]
-ExtendsVersion = 2
-Policies = CURSE_TYPE_WEAKENED
 Pokemon = CENTISKORCH,25
     Moves = BUGBITE,FLAMEWHEEL,DAZZLE
     AbilityIndex = 1 # Locomotion
     Item = FIREGEM
+#-------------------------------
+[POKEMONTRAINER_Yezera,Yezera,3]
+ExtendsVersion = 2
+Policies = CURSE_TYPE_WEAKENED
 Pokemon = SANDACONDA,25
     Moves = DUSTDEVIL,GLARE,SANDSTORM
     AbilityIndex = 1 # Disorienting
@@ -700,7 +701,7 @@ Pokemon = DARTRIX,25
     Item = GHOSTGEM
 #-------------------------------
 [POKEMONTRAINER_Yezera,Yezera,4]
-Policies = YEZERA
+Policies = YEZERA,NO_PERFECT
 Pokemon = RHYDON,35
     Moves = GRANITEHEAD,STEALTHROCK,BULLDOZE,BRICKBREAK
     AbilityIndex = 0 # Reckless
@@ -734,6 +735,7 @@ Pokemon = SKIPLOOM,35
     Item = LOADEDDICE
 #-------------------------------
 [SCHOOLKID_M,Louis]
+Policies = NO_PERFECT
 Pokemon = DUCKLETT,19
     AbilityIndex = 0 # Intimidate
     Item = EJECTBUTTON
@@ -746,6 +748,7 @@ Pokemon = FLAPPLE,21
     Item = ORANBERRY
 #-------------------------------
 [KIMONOGIRL,Haera]
+Policies = NO_PERFECT
 Pokemon = ROSELIA,24
     AbilityIndex = 1 # Merciless
 Pokemon = BRIONNE,26
@@ -761,6 +764,7 @@ Pokemon = POOCHYENA,25
     Item = DARKGEM
 #-------------------------------
 [NURSE,Ellen]
+Policies = NO_PERFECT
 Pokemon = CHANSEY,29
     Moves = SEISMICTOSS,EERIEIMPULSE,CHIBLOCK,LULLABY
     AbilityIndex = 0 # Serene Grace
@@ -777,6 +781,7 @@ Pokemon = DOUBLADE,32
     AbilityIndex = 0 # Full Metal Body
 #-------------------------------
 [GUITARIST3,Jamie]
+Policies = NO_PERFECT
 Pokemon = NIDORINO,34
     AbilityIndex = 0 # Sheer Force
 Pokemon = HOUNDOOM,35
@@ -792,6 +797,7 @@ Pokemon = AVALUGG,37
     Item = LIECHIBERRY
 #-------------------------------
 [BAKER,Margerie]
+Policies = NO_PERFECT
 Pokemon = BLASFEMMIE,44
     AbilityIndex = 1 # Hubris
     Item = FAIRYGEM
@@ -808,6 +814,7 @@ Pokemon = VESPIQUEN,47
     Item = SHELLBELL
 #-------------------------------
 [PILOT,Charlie]
+Policies = NO_PERFECT
 Pokemon = SKARMORY,50
     AbilityIndex = 0 # Mental Block
     Item = ORANBERRY
@@ -841,6 +848,7 @@ Pokemon = GIGALITH,56
     AbilityIndex = 1 # Unburden
 #-------------------------------
 [DRAGONTAMER,Arthur]
+Policies = NO_PERFECT
 Pokemon = KROOKODILE,59
     AbilityIndex = 0 # Tough
     Item = DARKGEM
@@ -857,6 +865,7 @@ Pokemon = HYMNUS,62
     Item = LEFTOVERS
 #-------------------------------
 [IRISCOSPLAYER,Isabelle]
+Policies = NO_PERFECT
 Pokemon = HAXORUS,65
     AbilityIndex = 1 # Mold Breaker
 Pokemon = AGGRON,64
@@ -876,6 +885,7 @@ Pokemon = EXCADRILL,66
     Item = LIFEORB
 #-------------------------------
 [ELDER,Logun]
+Policies = NO_PERFECT
 Pokemon = RAICHU,70
     Moves = THUNDERBOLT,SURF,FOCUSBLAST,GRASSKNOT
     AbilityIndex = 1 # Break Through
@@ -1051,6 +1061,7 @@ Pokemon = LOUDRED,28
     AbilityIndex = 0 # Echo
 #-------------------------------
 [POKEMONRANGER_M2,Connor]
+Policies = NO_PERFECT
 Pokemon = DRIFBLIM,30
     Moves = NUMB,HEX,SHIVER
     AbilityIndex = 0 # Unburden
@@ -1537,6 +1548,7 @@ Pokemon = CRUSTLE,38
     Item = ORANBERRY
 #-------------------------------
 [GENTLEMAN3,Oliver]
+Policies = NO_PERFECT
 Pokemon = GRAPIDASH,39
     AbilityIndex = 1 # Heart of Justice
 Pokemon = GWEEZING,39
@@ -1571,6 +1583,7 @@ Pokemon = SWALOT,39
     AbilityIndex = 1 # Gluttony
 #-------------------------------
 [CEO,Beatrice]
+Policies = NO_PERFECT
 Pokemon = HELIOLISK,40
     AbilityIndex = 1 # Water Absorb
     Item = ORANBERRY
@@ -1990,7 +2003,7 @@ RemovePokemon = SUDOWOODO,40
 Extends = LEADER_Zoe,Zoé,0
 #-------------------------------
 [TRAINER_Zain,Zain]
-Policies = ZAIN
+Policies = ZAIN,NO_PERFECT
 Pokemon = LIEPARD,43
     Moves = STAREDOWN,SCAM,TAUNT,KNOCKOFF
     AbilityIndex = 0 # Dauntless
@@ -2187,6 +2200,7 @@ Pokemon = REUNICLUS,43
     AbilityIndex = 0 # Extremophile
 #-------------------------------
 [JUGGLER,Youcef]
+Policies = NO_PERFECT
 Pokemon = ELECTRODE,44
     Moves = EXPLOSION
     AbilityIndex = 0 # Bunker Down
@@ -2254,7 +2268,7 @@ Pokemon = WATCHOG,45
     AbilityIndex = 1 # Paranoid
 #-------------------------------
 [BLACKBELT2,Riccardo]
-Policies = SAND_TEAM
+Policies = SAND_TEAM,NO_PERFECT
 Pokemon = HIPPOWDON,53
     AbilityIndex = 1 # Glass Firing
     Item = SMOOTHROCK
@@ -2272,6 +2286,7 @@ Pokemon = TYPHLOSION,55
     Item = UTILITYUMBRELLA
 #-------------------------------
 [BATTLEGIRL3,Amelia]
+Policies = NO_PERFECT
 Pokemon = KECLEON,58
     AbilityIndex = 1 # Protean
     Item = WEAKNESSPOLICY
@@ -2288,6 +2303,7 @@ Pokemon = MANIKLAW,60
     Item = FOCUSSASH
 #-------------------------------
 [BATTLEGIRL2,Juniper]
+Policies = NO_PERFECT
 Pokemon = AMOONGUSS,63
     AbilityIndex = 0 # Regenerator
     Item = ROCKYHELMET
@@ -2304,6 +2320,7 @@ Pokemon = RAPIDASH,65
     Item = LIECHIBERRY
 #-------------------------------
 [BLACKBELT,Leo]
+Policies = NO_PERFECT
 Pokemon = AMPHAROS,68
     AbilityIndex = 1 # Stubborn
     Item = ORANBERRY
@@ -2323,6 +2340,7 @@ Pokemon = SNORLAX,70
     AbilityIndex = 1 # Thick Fat
 #-------------------------------
 [FORMERCHAMP_Scilla,Scilla]
+Policies = NO_PERFECT
 Pokemon = AZUMARILL,70
     Moves = AQUAJET,PLAYROUGH,AQUATAIL,GIGAIMPACT
     AbilityIndex = 1 # Power Up
@@ -2356,7 +2374,7 @@ Pokemon = URSHIFU,70
     EV = 0,20,10,20,20,0
 #-------------------------------
 [FORMERCHAMP_Casey,Casey]
-Policies = SUN_TEAM
+Policies = SUN_TEAM,NO_PERFECT
 Pokemon = CHERRIM,70
     Moves = SUNSHINE,SYNTHESIS,SOLARBEAM,FIREBLAST
     AbilityIndex = 0 # Flower Gift
@@ -2390,6 +2408,7 @@ Pokemon = BLAZIKEN,70
     EV = 10,20,0,20,20,0
 #-------------------------------
 [TRAINER_Imogene_A,Imogene]
+Policies = NO_PERFECT
 Pokemon = GOTHORITA,27
     AbilityIndex = 1 # Clingy
     Item = ORANBERRY
@@ -2413,6 +2432,7 @@ Pokemon = KIRLIA,29
     Item = SITRUSBERRY
 #-------------------------------
 [TRAINER_Candy,Candy]
+Policies = NO_PERFECT
 Pokemon = GALLADE,40
     Name = Jeanne
     Gender = female
@@ -2431,6 +2451,7 @@ Pokemon = ARCANINE,40
     Item = EJECTBUTTON
 #-------------------------------
 [TRAINER_Keoni,Keoni]
+Policies = NO_PERFECT
 Pokemon = MSENTRET,22
     AbilityIndex = 0 # Soul Read
     Item = PSYCHICGEM
@@ -2441,6 +2462,7 @@ Pokemon = GDARUMAKA,23
     AbilityIndex = 0 # Gorilla Tactics
 #-------------------------------
 [TRAINER_Keoni,Keoni,1]
+Policies = NO_PERFECT
 Pokemon = MSEVIPER,38
     AbilityIndex = 1 # Envy
 Pokemon = MZANGOOSE,38
@@ -2454,7 +2476,7 @@ Pokemon = ARATICATE,40
     Item = LEFTOVERS
 #-------------------------------
 [TRAINER_Keoni,Keoni,2]
-Policies = HAIL_TEAM
+Policies = HAIL_TEAM,NO_PERFECT
 Pokemon = MNOCTOWL,70
     Moves = SNOWSTORM,AURORAVEIL,BLIZZARD,COLDFRONT
     AbilityIndex = 1 # Winter Insulation
@@ -2477,6 +2499,7 @@ Pokemon = MZANGOOSE,70
     AbilityIndex = 1 # Mental Damage
 #-------------------------------
 [TRAINER_Alessa,Alessa]
+Policies = NO_PERFECT
 Pokemon = COTTONEE,19
     AbilityIndex = 1 # Power Up
     Item = KEEBERRY
@@ -2490,7 +2513,7 @@ Pokemon = VANILLISH,20
     AbilityIndex = 1 # Windy
 #-------------------------------
 [TRAINER_Alessa,Alessa,1]
-Policies = SUN_TEAM
+Policies = SUN_TEAM,NO_PERFECT
 Pokemon = TRUBBISH,26
     AbilityIndex = 1 # Vengeance
 Pokemon = SWADLOON,26
@@ -2505,6 +2528,7 @@ Pokemon = SUNKERN,27
 #-------------------------------
 [TRAINER_Alessa,Alessa,2]
 NameForHashing = Zain
+Policies = NO_PERFECT
 Pokemon = WALREIN,44
     AbilityIndex = 0 # Thick Fat
     Item = ICEGEM
@@ -2562,6 +2586,7 @@ Pokemon = ABSOL,37
     AbilityIndex = 1 # Vengeance
 #-------------------------------
 [SCIENTIST_F,Zofia]
+Policies = NO_PERFECT
 Pokemon = VESPIQUEN,35
     AbilityIndex = 1 # Stressful
     Item = ORANBERRY
@@ -2929,7 +2954,7 @@ ExtendsVersion = 0
 Policies = CURSE_VENGEANT
 #-------------------------------
 [TRAINER_Sang,Sang]
-Policies = EQ_PROTECT
+Policies = EQ_PROTECT,NO_PERFECT
 Pokemon = EXPLOUD,50
     Name = Egret Ash
     Gender = female
@@ -2975,7 +3000,7 @@ Pokemon = MAMOSWINE,50
     Item = LEFTOVERS
 #-------------------------------
 [POKEMONTRAINER_Yezera,Yezera,6]
-Policies = YEZERA4
+Policies = YEZERA4,NO_PERFECT
 Pokemon = TOGEKISS,65
     Name = Artemisia
     Gender = female
@@ -3139,6 +3164,7 @@ Pokemon = ESCAVALIER,48
     Item = WHETSTONE
 #-------------------------------
 [TRAINER_Eifion,Eifion]
+Policies = NO_PERFECT
 Pokemon = HOUNDOOM,28
     AbilityIndex = 1 # Berserk
 Pokemon = GROVYLE,29
@@ -3166,6 +3192,7 @@ Pokemon = PAWNIARD,9
     Item = SHELLBELL
 #-------------------------------
 [FORMERCHAMP_Chara,Chara]
+Policies = NO_PERFECT
 Pokemon = BISHARP,70
     Moves = SLAY,POISONJAB,PSYCHOCUT,SEVER
     AbilityIndex = 1 # Sturdy
@@ -3317,7 +3344,7 @@ Pokemon = NINJASK,52
     Item = LIFEORB
 #-------------------------------
 [TRAINER_Sang,Sang,2]
-Policies = EQ_PROTECT
+Policies = EQ_PROTECT,NO_PERFECT
 Pokemon = REGISTEEL,60
     Moves = HAMMERARM,DISCHARGE,WARPEDSTRIKE,STEALTHROCK
     AbilityIndex = 1 # Morphing Guard
@@ -3495,6 +3522,7 @@ Pokemon = KLAWSAR,58
     Item = LIFEORB
 #-------------------------------
 [POKEMONTRAINER_Yezera,Yezera,8]
+Policies = NO_PERFECT
 Pokemon = REGIDRAGO,65
     Moves = DRAGONENERGY,RECOVER,HAMMERARM,CRUNCH
     AbilityIndex = 1 # Dragon Scales
@@ -3536,6 +3564,7 @@ Pokemon = TYRANITAR,65
 #-------------------------------
 [MASKEDVILLAIN_DOUBLE,Crimson]
 NameForHashing = Imogene
+Policies = NO_PERFECT
 Pokemon = REGIROCK,55
     Moves = ADAMANTINEPRESS,ACCELEROCK,BODYPRESS,BULKUP
     AbilityIndex = 1 # Erosion Cycle
@@ -3572,6 +3601,7 @@ Pokemon = GOLISOPOD,55
 #-------------------------------
 [MASKEDVILLAIN,Crimson,2]
 NameForHashing = Alessa
+Policies = NO_PERFECT
 Pokemon = REGIROCK,55
     Moves = ADAMANTINEPRESS,ACCELEROCK,BODYPRESS,BULKUP
     AbilityIndex = 1 # Erosion Cycle
@@ -3608,6 +3638,7 @@ Pokemon = RILLABOOM,55
 #-------------------------------
 [MASKEDVILLAIN,Crimson,4]
 NameForHashing = Skylar
+Policies = NO_PERFECT
 Pokemon = REGIROCK,55
     Moves = ADAMANTINEPRESS,ACCELEROCK,BODYPRESS,BULKUP
     AbilityIndex = 1 # Erosion Cycle
@@ -3646,6 +3677,7 @@ Pokemon = PALMANTRA,55
 #-------------------------------
 [MASKEDVILLAIN,Crimson,6]
 NameForHashing = Keoni
+Policies = NO_PERFECT
 Pokemon = REGIROCK,55
     Moves = ADAMANTINEPRESS,ACCELEROCK,BODYPRESS,BULKUP
     AbilityIndex = 1 # Erosion Cycle
@@ -3682,6 +3714,7 @@ Pokemon = AGOLEM,55
 #-------------------------------
 [MASKEDVILLAIN,Crimson,8]
 NameForHashing = Eifion
+Policies = NO_PERFECT
 Pokemon = REGIROCK,55
     Moves = ADAMANTINEPRESS,ACCELEROCK,BODYPRESS,BULKUP
     AbilityIndex = 1 # Erosion Cycle
@@ -3718,6 +3751,7 @@ Pokemon = GIGANTEON,55
 #-------------------------------
 [MASKEDVILLAIN,Crimson,10]
 NameForHashing = Candy
+Policies = NO_PERFECT
 Pokemon = REGIROCK,55
     Moves = ADAMANTINEPRESS,ACCELEROCK,BODYPRESS,BULKUP
     AbilityIndex = 1 # Erosion Cycle
@@ -3758,6 +3792,7 @@ Pokemon = GOLURK,55
 #-------------------------------
 [MASKEDVILLAIN2_DOUBLE,Teal]
 NameForHashing = Imogene
+Policies = NO_PERFECT
 Pokemon = REGICE,65
     Moves = ICEBEAM,THUNDERBOLT,AURASPHERE,RECOVER
     AbilityIndex = 1 # Total Mirror
@@ -3794,6 +3829,7 @@ Pokemon = GOLISOPOD,65
 #-------------------------------
 [MASKEDVILLAIN2,Teal,2]
 NameForHashing = Alessa
+Policies = NO_PERFECT
 Pokemon = REGICE,65
     Moves = ICEBEAM,THUNDERBOLT,AURASPHERE,RECOVER
     AbilityIndex = 1 # Total Mirror
@@ -3830,6 +3866,7 @@ Pokemon = RILLABOOM,65
 #-------------------------------
 [MASKEDVILLAIN2,Teal,4]
 NameForHashing = Skylar
+Policies = NO_PERFECT
 Pokemon = REGICE,65
     Moves = ICEBEAM,THUNDERBOLT,AURASPHERE,RECOVER
     AbilityIndex = 1 # Total Mirror
@@ -3866,6 +3903,7 @@ Pokemon = PALMANTRA,65
 #-------------------------------
 [MASKEDVILLAIN2,Teal,6]
 NameForHashing = Keoni
+Policies = NO_PERFECT
 Pokemon = REGICE,65
     Moves = ICEBEAM,THUNDERBOLT,AURASPHERE,RECOVER
     AbilityIndex = 1 # Total Mirror
@@ -3902,6 +3940,7 @@ Pokemon = AGOLEM,65
 #-------------------------------
 [MASKEDVILLAIN2,Teal,8]
 NameForHashing = Eifion
+Policies = NO_PERFECT
 Pokemon = REGICE,65
     Moves = ICEBEAM,THUNDERBOLT,AURASPHERE,RECOVER
     AbilityIndex = 1 # Total Mirror
@@ -3938,6 +3977,7 @@ Pokemon = GIGANTEON,65
 #-------------------------------
 [MASKEDVILLAIN2,Teal,10]
 NameForHashing = Candy
+Policies = NO_PERFECT
 Pokemon = REGICE,65
     Moves = ICEBEAM,THUNDERBOLT,AURASPHERE,RECOVER
     AbilityIndex = 1 # Total Mirror
@@ -3987,7 +4027,7 @@ Pokemon = XATU,70
     AbilityIndex = 0 # Sentry
 #-------------------------------
 [FORMERCHAMP_Elise,Elise]
-Policies = PRESERVE_LAST_POKEMON,HAIL_TEAM
+Policies = PRESERVE_LAST_POKEMON,HAIL_TEAM,NO_PERFECT
 Pokemon = FROSLASS,70
     Moves = SNOWYSORROWS,AURORAVEIL,HAIL,DESTINYBOND
     AbilityIndex = 0 # Sealing Body
@@ -4020,7 +4060,7 @@ Pokemon = WEAVILE,70
     EV = 10,20,0,20,20,0
 #-------------------------------
 [FORMERCHAMP_Vincent,Vincent]
-Policies = RAIN_TEAM
+Policies = RAIN_TEAM,NO_PERFECT
 Pokemon = POLITOED,70
     Moves = SCALD,ENCORE,COLDFRONT,MENDINGSPRING
     AbilityIndex = 0 # Drizzle
@@ -4053,7 +4093,7 @@ Pokemon = GRENINJA,70
     EV = 0,20,5,20,20,5
 #-------------------------------
 [FORMERCHAMP_Praveen,Praveen]
-Policies = ECLIPSE_TEAM
+Policies = ECLIPSE_TEAM,NO_PERFECT
 Pokemon = XATU,70
     Moves = TAILWIND,WISH,FUTURESIGHT,UTURN
     AbilityIndex = 1 # Harbinger
@@ -4096,6 +4136,7 @@ Pokemon = DARUMAKA,24
     AbilityIndex = 0 # Extreme Power
 #-------------------------------
 [FORMERCHAMP_Ansel,Ansel]
+Policies = NO_PERFECT
 Pokemon = GALVANTULA,70
     Moves = STICKYWEB,SIGNALOVERLOAD,VOLTSWITCH,THUNDER
     AbilityIndex = 0 # Ocular
@@ -4128,6 +4169,7 @@ Pokemon = BRAVIARY,70
     EV = 10,20,0,20,20,0
 #-------------------------------
 [LEADER_Samorn_2,Samorn,2]
+Policies = NO_PERFECT
 Pokemon = RUNERIGUS,70
     Moves = STEALTHROCK,PHANTOMBREAK,PAINSPLIT,WILLOWISP
     AbilityIndex = 1 # Sand Stream
@@ -4169,6 +4211,7 @@ Pokemon = WORNET,70
     Item = STRIKECORSET
 #-------------------------------
 [LEADER_Lambert_2,Lambert,2]
+Policies = NO_PERFECT
 Pokemon = ZOROARK,70
     Moves = DREAMDANCE,BLACKOUT,MASSDESTRUCTION,PSYCHIC
     AbilityIndex = 0 # Illusion
@@ -4210,6 +4253,7 @@ Pokemon = AEGISLASH,70
     Item = SPELLBELL
 #-------------------------------
 [LEADER_Eko_2,Eko,2]
+Policies = NO_PERFECT
 Pokemon = INCINEROAR,70
     Moves = DARKESTLARIAT,FLAMESPIKES,PARTINGSHOT,FLAREBLITZ
     AbilityIndex = 0 # Intimidate
@@ -4251,7 +4295,7 @@ Pokemon = ARAICHU,70
     Item = LUCENTGEM
 #-------------------------------
 [COOLTRAINER_M7,X,1]
-Policies = PRESERVE_LAST_POKEMON
+Policies = PRESERVE_LAST_POKEMON,NO_PERFECT
 Pokemon = MRMIME,70
     Moves = LIGHTSCREEN,TEETERDANCE,DREAMDANCE,MOONBLAST
     AbilityIndex = 0 # Barrier Maker
@@ -4289,7 +4333,7 @@ Pokemon = GARDEVOIR,70
     Item = DEATHORB
 #-------------------------------
 [FORMERCHAMP_Elise,Elise,1]
-Policies = PRESERVE_LAST_POKEMON,HAIL_TEAM
+Policies = PRESERVE_LAST_POKEMON,HAIL_TEAM,NO_PERFECT
 Pokemon = FROSLASS,70
     Moves = SNOWYSORROWS,AURORAVEIL,HAIL,DESTINYBOND
     AbilityIndex = 0 # Sealing Body
@@ -4327,6 +4371,7 @@ Pokemon = WEAVILE,70
     Item = DEATHORB
 #-------------------------------
 [TRAINER_Alessa,Alessa,3]
+Policies = NO_PERFECT
 Pokemon = FORRETRESS,70
     Moves = SWARMBURST,POISONSPIKES,SPIKES
     AbilityIndex = 0 # Skill Link
@@ -4364,6 +4409,7 @@ Pokemon = CLAYDOL,70
     Item = LUNUSBERRY
 #-------------------------------
 [TRAINER_Eifion,Eifion,1]
+Policies = NO_PERFECT
 Pokemon = DELPHOX,70
     Moves = SUNSHINE,PSYCHIC,HEATWAVE,SOLARBEAM
     AbilityIndex = 0 # Blinding Light
@@ -4401,6 +4447,7 @@ Pokemon = SLOWBRO,70
     Item = SITREONBERRY
 #-------------------------------
 [LEADER_Helena_2,Helena,2]
+Policies = NO_PERFECT
 Pokemon = PINCURCHIN,70
     Moves = POISONSPIKES,THUNDERBOLT,SPIKES,VENOMDRENCH
     AbilityIndex = 0 # Arc Conductor
@@ -4442,6 +4489,7 @@ Pokemon = ARCLAMOR,70
     Item = LEADBALLOON
 #-------------------------------
 [LEADER_Bence_2,Bence,2]
+Policies = NO_PERFECT
 Pokemon = ARCHEOPS,70
     Moves = STEALTHROCK,TAILWIND,PARTINGSHOT,ROCKWRECKER
     AbilityIndex = 0 # Defeatist
@@ -4485,6 +4533,7 @@ Pokemon = DRAGONITE,70
     Item = LUNCHBOX
 #-------------------------------
 [TRAINER_Zain,Zain,2]
+Policies = NO_PERFECT
 Pokemon = FERROTHORN,70
     Moves = SPIKES,KNOCKOFF,LEECHSEED,BODYPRESS
     AbilityIndex = 0 # Iron Barbs
@@ -4525,7 +4574,7 @@ Pokemon = MGIGALITH,70
     Item = ASSAULTCORSET
 #-------------------------------
 [TRAINER_Sang,Sang,4]
-Policies = EQ_PROTECT
+Policies = EQ_PROTECT,NO_PERFECT
 Pokemon = EXPLOUD,70
     Name = Egret Ash
     Gender = female
@@ -4675,6 +4724,7 @@ Pokemon = PORYGONZ,70
 #-------------------------------
 [MASKEDVILLAIN_DOUBLE,Crimson,12]
 NameForHashing = Imogene
+Policies = NO_PERFECT
 Pokemon = GOLISOPOD,70
     Moves = FIRSTIMPRESSION,CLOSECOMBAT,LIQUIDATION,XSCISSOR
     AbilityIndex = 0 # Emergency Exit
@@ -4711,6 +4761,7 @@ Pokemon = GOTHITELLE,70
 #-------------------------------
 [MASKEDVILLAIN,Crimson,14]
 NameForHashing = Alessa
+Policies = NO_PERFECT
 Pokemon = FORRETRESS,70
     Moves = POISONSPIKES,STEALTHROCK,SWARMBURST
     AbilityIndex = 1 # Acclimatize
@@ -4747,6 +4798,7 @@ Pokemon = CRUSTLE,70
 #-------------------------------
 [MASKEDVILLAIN,Crimson,16]
 NameForHashing = Skylar
+Policies = NO_PERFECT
 Pokemon = PALMANTRA,70
     Moves = REFLEXOVERDRIVE,DRAINPUNCH,FAKEOUT,POISONJAB
     AbilityIndex = 0 # Balance of Power
@@ -4783,6 +4835,7 @@ Pokemon = FLORGES,70
 #-------------------------------
 [MASKEDVILLAIN,Crimson,18]
 NameForHashing = Keoni
+Policies = NO_PERFECT
 Pokemon = PERRSERKER,70
     Moves = UTURN,SLAY,CLOSECOMBAT,POWERUPPUNCH
     AbilityIndex = 1 # Steely Spirit
@@ -4819,6 +4872,7 @@ Pokemon = AGOLEM,70
 #-------------------------------
 [MASKEDVILLAIN,Crimson,20]
 NameForHashing = Eifion
+Policies = NO_PERFECT
 Pokemon = HOUNDOMINUS,70
     Moves = DREAMDANCE,SLUDGEBOMB,FLAMETHROWER,SUCKERPUNCH
     AbilityIndex = 1 # Berserk
@@ -4855,6 +4909,7 @@ Pokemon = GIGANTEON,70
 #-------------------------------
 [MASKEDVILLAIN,Crimson,22]
 NameForHashing = Candy
+Policies = NO_PERFECT
 Pokemon = STARAPTOR,70
     Gender = male
     Moves = BRAVEBIRD,SUBMISSION,TAILWIND,UTURN
@@ -4896,6 +4951,7 @@ Pokemon = GOLURK,70
 #-------------------------------
 [MASKEDVILLAIN2_DOUBLE,Teal,12]
 NameForHashing = Imogene
+Policies = NO_PERFECT
 Pokemon = GOLISOPOD,70
     Moves = FIRSTIMPRESSION,CLOSECOMBAT,LIQUIDATION,XSCISSOR
     AbilityIndex = 0 # Emergency Exit
@@ -4932,6 +4988,7 @@ Pokemon = GOTHITELLE,70
 #-------------------------------
 [MASKEDVILLAIN2,Teal,14]
 NameForHashing = Alessa
+Policies = NO_PERFECT
 Pokemon = FORRETRESS,70
     Moves = POISONSPIKES,STEALTHROCK,SWARMBURST
     AbilityIndex = 1 # Acclimatize
@@ -4968,6 +5025,7 @@ Pokemon = CRUSTLE,70
 #-------------------------------
 [MASKEDVILLAIN2,Teal,16]
 NameForHashing = Skylar
+Policies = NO_PERFECT
 Pokemon = PALMANTRA,70
     Moves = REFLEXOVERDRIVE,DRAINPUNCH,FAKEOUT,POISONJAB
     AbilityIndex = 0 # Balance of Power
@@ -5004,6 +5062,7 @@ Pokemon = FLORGES,70
 #-------------------------------
 [MASKEDVILLAIN2,Teal,18]
 NameForHashing = Keoni
+Policies = NO_PERFECT
 Pokemon = PERRSERKER,70
     Moves = UTURN,SLAY,CLOSECOMBAT,POWERUPPUNCH
     AbilityIndex = 1 # Steely Spirit
@@ -5040,6 +5099,7 @@ Pokemon = AGOLEM,70
 #-------------------------------
 [MASKEDVILLAIN2,Teal,20]
 NameForHashing = Eifion
+Policies = NO_PERFECT
 Pokemon = HOUNDOMINUS,70
     Moves = DREAMDANCE,SLUDGEBOMB,FLAMETHROWER,SUCKERPUNCH
     AbilityIndex = 1 # Berserk
@@ -5076,6 +5136,7 @@ Pokemon = GIGANTEON,70
 #-------------------------------
 [MASKEDVILLAIN2,Teal,22]
 NameForHashing = Candy
+Policies = NO_PERFECT
 Pokemon = STARAPTOR,70
     Gender = male
     Moves = BRAVEBIRD,SUBMISSION,TAILWIND,UTURN
@@ -5116,7 +5177,7 @@ Pokemon = GOLURK,70
     Item = SEVENLEAGUEBOOTS
 #-------------------------------
 [POKEMONTRAINER_Yezera,Yezera,10]
-Policies = YEZERA6
+Policies = YEZERA6,NO_PERFECT
 Pokemon = TYRANITAR,70
     Name = Autochthon
     Gender = male
@@ -5200,6 +5261,7 @@ Pokemon = ROSERADE,70
     Item = BLACKSLUDGE
 #-------------------------------
 [PROFESSOR_Tamarind,Tamarind]
+Policies = NO_PERFECT
 Pokemon = SPIRITOMB,70
     Moves = NIGHTSHADE,WILLOWISP,STITCHUP,CURSEDOATH
     AbilityIndex = 1 # Odd Aura
@@ -5222,6 +5284,7 @@ Pokemon = BLACEPHALON,70
     AbilityIndex = 1 # Beast Boost
 #-------------------------------
 [TRAINER_Candy,Candy,1]
+Policies = NO_PERFECT
 Pokemon = GALLADE,70
     Name = Jeanne
     Gender = female
@@ -5255,6 +5318,7 @@ Pokemon = GOLURK,70
     AbilityIndex = 1 # No Guard
 #-------------------------------
 [TRAINER_Imogene_A,Imogene,1]
+Policies = NO_PERFECT
 Pokemon = GOLISOPOD,70
     Moves = FIRSTIMPRESSION,LATCHON,LIQUIDATION,XSCISSOR
     AbilityIndex = 0 # Emergency Exit
@@ -5277,6 +5341,7 @@ Pokemon = SHEDINJA,70
     Item = FOCUSSASH
 #-------------------------------
 [TRAINER_Eifion,Eifion,3]
+Policies = NO_PERFECT
 Pokemon = MANAPHY,70
     Moves = REST,MAELSTROM,ICEBEAM,MENDINGSPRING
     AbilityIndex = 0 # Hydration
@@ -5299,7 +5364,7 @@ Pokemon = SCEPTILE,70
     AbilityIndex = 0 # Infiltrator
 #-------------------------------
 [TRAINER_Alessa,Alessa,5]
-Policies = ALESSA_4
+Policies = ALESSA_4,NO_PERFECT
 Pokemon = FORRETRESS,55
     Moves = POISONSPIKES,STEALTHROCK,EXPLOSION
     AbilityIndex = 1 # Acclimatize
@@ -5322,7 +5387,7 @@ Pokemon = DIGNIPHITE,55
     AbilityIndex = 0 # Robust
 #-------------------------------
 [TRAINER_Alessa,Alessa,6]
-Policies = ALESSA_5
+Policies = ALESSA_5,NO_PERFECT
 Pokemon = SALAMENCE,70
     Moves = DRAGONDANCE,OUTRAGE,EARTHQUAKE,HUNTDOWN
     AbilityIndex = 0 # Intimidate
@@ -5349,6 +5414,7 @@ Pokemon = HEATRAN,70
     Item = AIRBALLOON
 #-------------------------------
 [TRAINER_Skyler,Skyler]
+Policies = NO_PERFECT
 Pokemon = FLORGES,70
     Moves = SYNTHESIS,AURATRICK,PETALTEMPEST,PSYCHIC
     AbilityIndex = 0 # Clover Song
