@@ -5714,11 +5714,11 @@ Pokemon = VIKAVOLT,70
 Pokemon = DODRIO,70
     AbilityIndex = 1 # Vital Spirit
 #-------------------------------
-[WILDPARTY_FINI,of Life]
+[WILDPARTY_LELE,of Life]
 Pokemon = FLORGES,70
     AbilityIndex = 1 # Sentry
-Pokemon = PROBOPASS,70
-    AbilityIndex = 0 # Magnet Trap
+Pokemon = ADUGTRIO,70
+    AbilityIndex = 1 # Tangling Hair
 Pokemon = RIBOMBEE,70
     AbilityIndex = 0 # Candy Veil
 Pokemon = LIEPARD,70
@@ -5728,7 +5728,7 @@ Pokemon = DUSTOX,70
 Pokemon = KECLEON,70
     AbilityIndex = 0 # Adaptive Skin
 #-------------------------------
-[WILDPARTY_KOKO,of Abundance]
+[WILDPARTY_BULU,of Abundance]
 Pokemon = TAUROS,70
     AbilityIndex = 0 # Intimidate
 Pokemon = AEXEGGUTOR,70
@@ -5742,7 +5742,7 @@ Pokemon = APERSIAN,70
 Pokemon = FLYGON,70
     AbilityIndex = 0 # Desert Spirit
 #-------------------------------
-[WILDPARTY_KOKO,of Hope]
+[WILDPARTY_FINI,of Hope]
 Pokemon = GASTRODON,70
     AbilityIndex = 0 # Fascinate
 Pokemon = CORSOLA,70
@@ -5753,5 +5753,5 @@ Pokemon = CRADILY,70
     AbilityIndex = 1 # Water Absorb
 Pokemon = EELEKTROSS,70
     AbilityIndex = 1 # Frustrate
-Pokemon = ADUGTRIO,70
-    AbilityIndex = 1 # Tangling Hair
+Pokemon = ANINETALES,70
+    AbilityIndex = 1 # Sudden Chill
