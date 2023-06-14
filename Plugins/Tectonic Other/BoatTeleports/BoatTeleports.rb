@@ -9,13 +9,14 @@ def boatTravel(currentDock = "")
     mainlandDockCommand = -1
     sweetrockHarborCommand = -1
     eleigBoatingCommand = -1
+    tapuIslandCommand = -1
 
     commands = []
     commands[casabaVillaCommand = commands.length] = _INTL(CASABA_VILLA_DOCK) if currentDock != CASABA_VILLA_DOCK
     commands[mainlandDockCommand = commands.length] = _INTL(MAINLAND_DOCK) if currentDock != MAINLAND_DOCK
     commands[eleigBoatingCommand = commands.length] = _INTL(ELEIG_BOATING_DOCK) if $game_switches[70] && currentDock != ELEIG_BOATING_DOCK
     commands[sweetrockHarborCommand = commands.length] = _INTL(SWEETROCK_DOCK) if $game_switches[71] && currentDock != SWEETROCK_DOCK
-    commands[sweetrockHarborCommand = commands.length] = _INTL(TAPU_ISLAND) if $game_switches[78] && currentDock != TAPU_ISLAND
+    commands[tapuIslandCommand = commands.length] = _INTL(TAPU_ISLAND) if $game_switches[81] && currentDock != TAPU_ISLAND
     commands.push(_INTL("Cancel"))
 
     choice = pbMessage(_INTL("Where would you like to go?"),commands,commands.length)
@@ -27,5 +28,7 @@ def boatTravel(currentDock = "")
         transferPlayer(47,17,Up,185)
     elsif sweetrockHarborCommand > -1 && choice == sweetrockHarborCommand
         transferPlayer(18,55,Up,217)
+    elsif tapuIslandCommand > -1 && choice == tapuIslandCommand
+        transferPlayer(80,39,Up,377)
     end
 end

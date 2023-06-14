@@ -282,7 +282,7 @@ end
 #===============================================================================
 class PokeBattle_Move_190 < PokeBattle_Move
     def pbBaseDamage(baseDmg, _user, _target)
-        baseDmg *= 1.5 if @battle.pbWeather == :Eclipse
+        baseDmg *= 1.5 if @battle.eclipsed?
         return baseDmg
     end
 end

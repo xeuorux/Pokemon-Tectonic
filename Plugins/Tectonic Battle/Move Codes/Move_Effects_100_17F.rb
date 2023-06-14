@@ -2185,12 +2185,12 @@ end
 #===============================================================================
 class PokeBattle_Move_16D < PokeBattle_HealingMove
     def healRatio(_user)
-        return 2.0 / 3.0 if @battle.pbWeather == :Sandstorm
+        return 2.0 / 3.0 if @battle.sandy?
         return 1.0 / 2.0
     end
 
     def shouldHighlight?(_user, _target)
-        return @battle.pbWeather == :Sandstorm
+        return @battle.sandy?
     end
 end
 
@@ -2214,7 +2214,7 @@ class PokeBattle_Move_16E < PokeBattle_Move
     end
 
     def pbEffectAgainstTarget(_user, target)
-        if @battle.pbWeather == :Moonglow
+        if @battle.moonGlowing?
             ratio = 2.0 / 3.0
         else
             ratio = 1.0 / 2.0
@@ -2224,7 +2224,7 @@ class PokeBattle_Move_16E < PokeBattle_Move
 
     def getEffectScore(user, target)
         magnitude = 3
-        magnitude = 5 if @battle.pbWeather == :Moonglow
+        magnitude = 5 if @battle.moonGlowing?
         return getHealingEffectScore(user, target, magnitude)
     end
 

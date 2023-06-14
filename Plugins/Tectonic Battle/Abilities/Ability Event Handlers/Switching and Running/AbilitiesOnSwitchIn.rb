@@ -427,7 +427,7 @@ BattleHandlers::AbilityOnSwitchIn.add(:NEUTRALIZINGGAS,
 
 BattleHandlers::AbilityOnSwitchIn.add(:DRAMATICLIGHTING,
   proc { |ability, battler, battle|
-      next unless battle.pbWeather == :Eclipse
+      next unless battle.eclipsed?
       battle.pbShowAbilitySplash(battler, ability)
       battle.eachOtherSideBattler(battler.index) do |b|
           next unless b.near?(battler)
@@ -439,7 +439,7 @@ BattleHandlers::AbilityOnSwitchIn.add(:DRAMATICLIGHTING,
 
 BattleHandlers::AbilityOnSwitchIn.add(:CRAGTERROR,
   proc { |ability, battler, battle|
-      next unless battle.pbWeather == :Sandstorm
+      next unless battle.sandy?
       battle.pbShowAbilitySplash(battler, ability)
       battle.eachOtherSideBattler(battler.index) do |b|
           next unless b.near?(battler)
@@ -692,7 +692,7 @@ BattleHandlers::AbilityOnSwitchIn.add(:REFRESHMENTS,
 
 BattleHandlers::AbilityOnSwitchIn.add(:MENDINGTONES,
   proc { |ability, battler, battle|
-      next unless battle.pbWeather == :Eclipse
+      next unless battle.eclipsed?
       lowestId = battler.index
       lowestPercent = battler.hp / battler.totalhp.to_f
       battler.eachAlly do |b|
@@ -714,7 +714,7 @@ BattleHandlers::AbilityOnSwitchIn.add(:MENDINGTONES,
 
 BattleHandlers::AbilityOnSwitchIn.add(:PEARLSEEKER,
   proc { |ability, battler, battle|
-      next unless battle.pbWeather == :Eclipse
+      next unless battle.eclipsed?
       next unless battler.canAddItem?(:PEARLOFFATE)
       battle.pbShowAbilitySplash(battler, ability)
       battler.giveItem(:PEARLOFFATE)
@@ -788,7 +788,7 @@ BattleHandlers::AbilityOnSwitchIn.add(:PRECHARGED,
 
 BattleHandlers::AbilityOnSwitchIn.add(:LOOSESHELL,
   proc { |ability, battler, battle|
-      next unless battle.pbWeather == :Sandstorm
+      next unless battle.sandy?
       next if battler.pbOpposingSide.effectActive?(:StealthRock)
       battle.pbShowAbilitySplash(battler, ability)
       battle.pbDisplay(_INTL("{1} shoots out parts of its discarded shell!", battler.pbThis))

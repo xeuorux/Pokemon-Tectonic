@@ -220,7 +220,14 @@ class PokeBattle_Battle
                           @battlers[sent[0]].name, @battlers[sent[1]].name, @battlers[sent[2]].name)
                     end
                 else
-                    msg += _INTL("The {1} joined in!", t.full_name)
+                    case sent.length
+                    when 1
+                        msg += _INTL("The {1} joined the battle!", @battlers[sent[0]].name)
+                    when 2
+                        msg += _INTL("{1} and {2} joined the battle!", @battlers[sent[0]].name, @battlers[sent[1]].name)
+                    when 3
+                        msg += _INTL("{1}, {2} and {3} joined the battle!",@battlers[sent[0]].name, @battlers[sent[1]].name, @battlers[sent[2]].name)
+                    end
                 end
                 toSendOut.concat(sent)
             end

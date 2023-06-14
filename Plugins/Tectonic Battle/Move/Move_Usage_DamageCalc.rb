@@ -90,7 +90,7 @@ class PokeBattle_Move
         # Calculate user's attack stat
         attacking_stat_holder, attacking_stat = pbAttackingStat(user,target)
 
-        if user.shouldAbilityApply?(:MALICIOUSGLOW,aiChecking) && @battle.pbWeather == :Moonglow
+        if user.shouldAbilityApply?(:MALICIOUSGLOW,aiChecking) && @battle.moonGlowing?
             attacking_stat_holder = target
         end
 

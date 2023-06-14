@@ -18,7 +18,7 @@ BattleHandlers::TrappingTargetAbility.add(:CLINGY,
 
 BattleHandlers::TrappingTargetAbility.add(:FROSTPITALITY,
   proc { |ability, switcher, _bearer, battle|
-      next true if battle.pbWeather == :Hail
+      next true if battle.icy?
   }
 )
 

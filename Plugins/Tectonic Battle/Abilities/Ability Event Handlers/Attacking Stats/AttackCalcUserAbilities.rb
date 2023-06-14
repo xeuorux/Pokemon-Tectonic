@@ -100,7 +100,7 @@ BattleHandlers::AttackCalcUserAbility.add(:SUNCHASER,
 
 BattleHandlers::AttackCalcUserAbility.add(:BLIZZBOXER,
   proc { |ability, _user, battle, attackMult|
-      attackMult *= 1.3 if battle.pbWeather == :Hail
+      attackMult *= 1.3 if battle.icy?
       next attackMult
   }
 )
@@ -135,7 +135,7 @@ BattleHandlers::AttackCalcUserAbility.add(:ONEDGE,
 
 BattleHandlers::AttackCalcUserAbility.add(:SANDSTRENGTH,
   proc { |ability, _user, battle, attackMult|
-      attackMult *= 1.3 if battle.pbWeather == :Sandstorm
+      attackMult *= 1.3 if battle.sandy?
       next attackMult
   }
 )
@@ -163,7 +163,7 @@ BattleHandlers::AttackCalcUserAbility.add(:BALANCEOFPOWER,
 
 BattleHandlers::AttackCalcUserAbility.add(:SERVEDCOLD,
   proc { |ability, user, battle, attackMult|
-      if battle.pbWeather == :Hail
+      if battle.icy?
         if user.belowHalfHealth?
           attackMult *= 1.4
         else
@@ -176,7 +176,7 @@ BattleHandlers::AttackCalcUserAbility.add(:SERVEDCOLD,
 
 BattleHandlers::AttackCalcUserAbility.add(:POLARHUNTER,
   proc { |ability, user, battle, attackMult|
-      attackMult *= 1.25 if battle.pbWeather == :Hail
+      attackMult *= 1.25 if battle.icy?
       next attackMult
   }
 )

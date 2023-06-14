@@ -388,7 +388,7 @@ class PokeBattle_Battler
         proteanAbility = nil
         proteanAbility = :PROTEAN if user.hasActiveAbility?(:PROTEAN)
         proteanAbility = :LIBERO if user.hasActiveAbility?(:LIBERO)
-        proteanAbility = :SHAKYCODE if user.hasActiveAbility?(:SHAKYCODE) && @battle.pbWeather == :Eclipse
+        proteanAbility = :SHAKYCODE if user.hasActiveAbility?(:SHAKYCODE) && @battle.eclipsed?
         if proteanAbility && !move.callsAnotherMove? &&
            !move.snatched && user.pbHasOtherType?(move.calcType) && !GameData::Type.get(move.calcType).pseudo_type
             @battle.pbShowAbilitySplash(user, proteanAbility)
@@ -411,7 +411,7 @@ class PokeBattle_Battler
             @battle.pbShowAbilitySplash(user, :SHIFTINGFIST)
             user.applyEffect(:Type3, move.calcType)
             typeName = GameData::Type.get(move.calcType).name
-            @battle.pbDisplay(_INTL("{1} shifted into a {2} stance!", user.pbThis, typeName))
+            #@battle.pbDisplay(_INTL("{1} shifted into a {2} stance!", user.pbThis, typeName))
             @battle.pbHideAbilitySplash(user)
         end
         #---------------------------------------------------------------------------

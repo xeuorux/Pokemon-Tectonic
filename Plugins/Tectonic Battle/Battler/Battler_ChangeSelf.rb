@@ -120,7 +120,7 @@ class PokeBattle_Battler
         end
         raise _INTL("Told to recover a negative amount") if amt.negative?
         amt *= 1.5 if hasActiveAbility?(:ROOTED)
-        amt *= 2.0 if hasActiveAbilityAI?(:GLOWSHROOM) && @battle.pbWeather == :Moonglow
+        amt *= 2.0 if hasActiveAbilityAI?(:GLOWSHROOM) && @battle.moonGlowing?
         amt *= 0.5 if effectActive?(:IcyInjection)
         amt = amt.round
         amt = @totalhp - @hp if amt > @totalhp - @hp
@@ -435,7 +435,7 @@ class PokeBattle_Battler
             end
         end
         # Eiscue - Ice Face
-        if @species == :EISCUE && hasActiveAbility?(:ICEFACE) && @battle.pbWeather == :Hail && (@form == 1)
+        if @species == :EISCUE && hasActiveAbility?(:ICEFACE) && @battle.icy? && (@form == 1)
             @battle.pbShowAbilitySplash(self, :ICEFACE, true)
             @battle.pbHideAbilitySplash(self)
             pbChangeForm(0, _INTL("{1} transformed!", pbThis))

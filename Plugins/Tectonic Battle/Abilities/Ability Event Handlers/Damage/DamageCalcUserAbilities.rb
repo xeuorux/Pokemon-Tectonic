@@ -223,7 +223,7 @@ BattleHandlers::DamageCalcUserAbility.add(:MIDNIGHTSUN,
 
 BattleHandlers::DamageCalcUserAbility.add(:SANDDEMON,
   proc { |ability, user, _target, _move, mults, _baseDmg, type, _aiCheck|
-      mults[:base_damage_multiplier] *= 1.5 if user.battle.pbWeather == :Sandstorm && type == :DARK
+      mults[:base_damage_multiplier] *= 1.5 if user.battle.sandy? && type == :DARK
   }
 )
 
@@ -430,13 +430,13 @@ BattleHandlers::DamageCalcUserAbility.add(:LINEBACKER,
 
 BattleHandlers::DamageCalcUserAbility.add(:WORLDQUAKE,
   proc { |ability, user, _target, _move, mults, _baseDmg, type, _aiCheck|
-      mults[:base_damage_multiplier] *= 1.5 if user.battle.pbWeather == :Eclipse && type == :GROUND
+      mults[:base_damage_multiplier] *= 1.5 if user.battle.eclipsed? && type == :GROUND
   }
 )
 
 BattleHandlers::DamageCalcUserAbility.add(:TIDALFORCE,
   proc { |ability, user, _target, _move, mults, _baseDmg, type, _aiCheck|
-      mults[:base_damage_multiplier] *= 1.5 if user.battle.pbWeather == :Moonglow && type == :WATER
+      mults[:base_damage_multiplier] *= 1.5 if user.battle.moonGlowing? && type == :WATER
   }
 )
 BattleHandlers::DamageCalcUserAbility.add(:RATTLEEM,
@@ -447,7 +447,7 @@ BattleHandlers::DamageCalcUserAbility.add(:RATTLEEM,
 
 BattleHandlers::DamageCalcUserAbility.add(:TAIGATRECKER,
   proc { |ability, user, _target, _move, mults, _baseDmg, type|
-      mults[:base_damage_multiplier] *= 1.5 if user.battle.pbWeather == :Hail && type == :GRASS
+      mults[:base_damage_multiplier] *= 1.5 if user.battle.icy? && type == :GRASS
   }
 )
 
@@ -484,6 +484,6 @@ BattleHandlers::DamageCalcUserAbility.add(:HARDFALL,
 
 BattleHandlers::DamageCalcUserAbility.add(:CALAMITY,
   proc { |ability, user, target, move, mults, _baseDmg, _type|
-      mults[:base_damage_multiplier] *= 1.25 if user.battle.pbWeather == :Eclipse
+      mults[:base_damage_multiplier] *= 1.25 if user.battle.eclipsed?
   }
 )

@@ -138,7 +138,7 @@ def getLeechEffectScore(user, target, ignoreCheck: false)
         score += STATUS_PUNISHMENT_BONUS if user.hasStatusPunishMove?
         score *= 2 if user.hasActiveAbilityAI?(:AGGRAVATE)
         score *= 1.5 if user.hasActiveAbilityAI?(:ROOTED)
-        score *= 2.0 if user.hasActiveAbilityAI?(:GLOWSHROOM) && user.battle.pbWeather == :Moonglow
+        score *= 2.0 if user.hasActiveAbilityAI?(:GLOWSHROOM) && user.battle.moonGlowing?
         score *= 1.3 if user.hasActiveItem?(:BIGROOT)
         score *= 2 if user.ownersPolicies.include?(:PRIORITIZEDOTS) && user.opposes?(target)
     else
@@ -250,7 +250,7 @@ def getHealingEffectScore(user, target, magnitude = 5)
     score += magnitude * 5 if target.hp <= target.totalhp / 3
 
     score *= 1.5 if target.hasActiveAbilityAI?(:ROOTED)
-    score *= 2.0 if target.hasActiveAbilityAI?(:GLOWSHROOM) && user.battle.pbWeather == :Moonglow
+    score *= 2.0 if target.hasActiveAbilityAI?(:GLOWSHROOM) && user.battle.moonGlowing?
     score *= 1.3 if target.hasActiveItem?(:BIGROOT)
 
     score *= -1 if target.effectActive?(:NerveBreak)
