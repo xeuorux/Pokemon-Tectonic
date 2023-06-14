@@ -411,7 +411,7 @@ class PokeBattle_Battler
             @battle.pbShowAbilitySplash(user, :SHIFTINGFIST)
             user.applyEffect(:Type3, move.calcType)
             typeName = GameData::Type.get(move.calcType).name
-            @battle.pbDisplay(_INTL("{1} shifted into a {2} stance!", user.pbThis, typeName))
+            #@battle.pbDisplay(_INTL("{1} shifted into a {2} stance!", user.pbThis, typeName))
             @battle.pbHideAbilitySplash(user)
         end
         #---------------------------------------------------------------------------
