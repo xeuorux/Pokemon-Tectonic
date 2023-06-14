@@ -300,3 +300,7 @@
 427,RISINGSTAR_F,Rising Star,60,,,ELITETRAINER,Female,,,[]
 428,RISINGSTAR_F2,Rising Star,60,,,ELITETRAINER,Female,,,[]
 429,CHALLENGER_Vanya,Challenger,60,,,TWINS2,Mixed,,,[]
+430,WILDPARTY_KOKO,Wild Party,100,,,,Wild,,,[]
+431,WILDPARTY_LELE,Wild Party,100,,,,Wild,,,[]
+432,WILDPARTY_BULU,Wild Party,100,,,,Wild,,,[]
+433,WILDPARTY_FINI,Wild Party,100,,,,Wild,,,[]

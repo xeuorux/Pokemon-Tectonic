@@ -5633,3 +5633,59 @@ Pokemon = DRAGAPULT,60
     AbilityIndex = 0 # Clear Body
 Pokemon = SWANNA,60
     AbilityIndex = 0 # Intimidate
+#-------------------------------
+[WILDPARTY_KOKO,of Conflict]
+Pokemon = BLAZIKEN,70
+    AbilityIndex = 0 # Speed Boost
+Pokemon = ELECTIVIRE,70
+    AbilityIndex = 0 # Live Wire
+Pokemon = AMAROWAK,70
+    AbilityIndex = 0 # Sealing Body
+Pokemon = PURUGLY,70
+    AbilityIndex = 0 # Greedy Guts
+Pokemon = VIKAVOLT,70
+    AbilityIndex = 1 # Levitate
+Pokemon = DODRIO,70
+    AbilityIndex = 1 # Vital Spirit
+#-------------------------------
+[WILDPARTY_FINI,of Life]
+Pokemon = FLORGES,70
+    AbilityIndex = 1 # Sentry
+Pokemon = PROBOPASS,70
+    AbilityIndex = 0 # Magnet Trap
+Pokemon = RIBOMBEE,70
+    AbilityIndex = 0 # Candy Veil
+Pokemon = LIEPARD,70
+    AbilityIndex = 0 # Dauntless
+Pokemon = DUSTOX,70
+    AbilityIndex = 1 # Shield Dust
+Pokemon = KECLEON,70
+    AbilityIndex = 0 # Adaptive Skin
+#-------------------------------
+[WILDPARTY_KOKO,of Abundance]
+Pokemon = TAUROS,70
+    AbilityIndex = 0 # Intimidate
+Pokemon = AEXEGGUTOR,70
+    AbilityIndex = 0 # Realist
+Pokemon = TROPIUS,70
+    AbilityIndex = 0 # Mental Block
+Pokemon = SNORLAX,70
+    AbilityIndex = 1 # Thick Fat
+Pokemon = APERSIAN,70
+    AbilityIndex = 0 # Fur Coat
+Pokemon = FLYGON,70
+    AbilityIndex = 0 # Desert Spirit
+#-------------------------------
+[WILDPARTY_KOKO,of Hope]
+Pokemon = GASTRODON,70
+    AbilityIndex = 0 # Fascinate
+Pokemon = CORSOLA,70
+    AbilityIndex = 0 # Persistent Growth
+Pokemon = ALOMOMOLA,70
+    AbilityIndex = 0 # Slick Surface
+Pokemon = CRADILY,70
+    AbilityIndex = 1 # Water Absorb
+Pokemon = EELEKTROSS,70
+    AbilityIndex = 1 # Frustrate
+Pokemon = ADUGTRIO,70
+    AbilityIndex = 1 # Tangling Hair

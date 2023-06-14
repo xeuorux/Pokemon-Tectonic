@@ -616,8 +616,8 @@ Mud,20
     20,CRAMORANT,34,36
     20,GSTUNFISK,34,36
     20,SEVIPER,34,36
+    20,STUNFISK,34,36
     20,ZANGOOSE,34,36
-	20,STUNFISK,34,36
 #-------------------------------
 [214] # Team Chasm HQ
 DarkCave,21

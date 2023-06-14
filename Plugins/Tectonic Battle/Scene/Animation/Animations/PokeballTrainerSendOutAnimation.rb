@@ -11,10 +11,44 @@ class PokeballTrainerSendOutAnimation < PokeBattle_Animation
     @battler        = battler
     @showingTrainer = startBattle
     @idxOrder       = idxOrder
+    @trainer        = @battler.battle.pbGetOwnerFromBattlerIndex(@battler.index)
     sprites["pokemon_#{battler.index}"].visible = false
     @shadowVisible = sprites["shadow_#{battler.index}"].visible
     sprites["shadow_#{battler.index}"].visible = false
-    super(sprites,viewport)
+    @sprites        = sprites
+    @viewport       = viewport
+    @pictureEx      = []   # For all the PictureEx
+    @pictureSprites = []   # For all the sprites
+    @tempSprites    = []   # For sprites that exist only for this animation
+    @animDone       = false
+    if @trainer.wild?
+      createFollowerProcesses
+    else
+      createProcesses
+    end
+  end
+
+  def createFollowerProcesses
+    batSprite = @sprites["pokemon_#{@battler.index}"]
+    shaSprite = @sprites["shadow_#{@battler.index}"]
+    finalLocationX = batSprite.x
+    finalLocationY = batSprite.y
+    battler = addSprite(batSprite,PictureOrigin::Bottom)
+    battler.setXY(0,finalLocationX+240,finalLocationY)
+    battler.setVisible(0,true)
+    battler.setZoomXY(0,100,100)
+    battler.setColor(0,Color.new(0,0,0,0))
+    battler.moveXY(0,12,finalLocationX,finalLocationY)
+    secondaryDelay = fastTransitions? ? 6 : 12
+    battler.setCallback(secondaryDelay,[batSprite,:pbPlayIntroAnimation])
+    if @shadowVisible
+      # Set up shadow sprite
+      shadow = addSprite(shaSprite,PictureOrigin::Center)
+      shadow.setOpacity(0,0)
+      # Shadow animation
+      shadow.setVisible(0,@shadowVisible)
+      shadow.moveOpacity(5,10,255)
+    end
   end
 
   def createProcesses
