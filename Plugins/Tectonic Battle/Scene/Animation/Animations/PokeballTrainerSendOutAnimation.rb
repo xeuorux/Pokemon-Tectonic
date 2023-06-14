@@ -22,13 +22,13 @@ class PokeballTrainerSendOutAnimation < PokeBattle_Animation
     @tempSprites    = []   # For sprites that exist only for this animation
     @animDone       = false
     if @trainer.wild?
-      createFollowerProcesses
+      createWildProcesses
     else
       createProcesses
     end
   end
 
-  def createFollowerProcesses
+  def createWildProcesses
     batSprite = @sprites["pokemon_#{@battler.index}"]
     shaSprite = @sprites["shadow_#{@battler.index}"]
     finalLocationX = batSprite.x

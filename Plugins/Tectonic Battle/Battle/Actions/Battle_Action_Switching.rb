@@ -264,8 +264,12 @@ class PokeBattle_Battle
                 pbDisplayBrief(_INTL("{1}, switch out! Come back!", battler.name))
             end
         else
-            owner = pbGetOwnerName(battler.index)
-            pbDisplayBrief(_INTL("{1} withdrew {2}!", owner, battler.name))
+            if battler.wildParty?
+                pbDisplayBrief(_INTL("The {1} withdrew!", battler.name))
+            else
+                owner = pbGetOwnerName(battler.index)
+                pbDisplayBrief(_INTL("{1} withdrew {2}!", owner, battler.name))
+            end
         end
     end
 
@@ -289,8 +293,12 @@ class PokeBattle_Battle
                 pbDisplayBrief(_INTL("Your opponent's weak! Get 'em, {1}!", newPkmnName))
             end
         else
-            owner = pbGetOwnerFromBattlerIndex(idxBattler)
-            pbDisplayBrief(_INTL("{1} sent out {2}!", owner.full_name, newPkmnName))
+            if pbGetOwnerFromBattlerIndex(@index)&.wild?
+                pbDisplayBrief(_INTL("The {1} entered the battle!", newPkmnName))
+            else
+                owner = pbGetOwnerFromBattlerIndex(idxBattler)
+                pbDisplayBrief(_INTL("{1} sent out {2}!", owner.full_name, newPkmnName))
+            end
         end
     end
 

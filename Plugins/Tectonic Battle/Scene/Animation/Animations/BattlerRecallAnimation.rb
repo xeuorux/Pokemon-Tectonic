@@ -4,9 +4,37 @@
 class BattlerRecallAnimation < PokeBattle_Animation
     include PokeBattle_BallAnimationMixin
   
-    def initialize(sprites,viewport,idxBattler)
+    def initialize(sprites,viewport,idxBattler,battler)
       @idxBattler = idxBattler
-      super(sprites,viewport)
+      @battler = battler
+      @sprites        = sprites
+      @viewport       = viewport
+      @pictureEx      = []   # For all the PictureEx
+      @pictureSprites = []   # For all the sprites
+      @tempSprites    = []   # For sprites that exist only for this animation
+      @animDone       = false
+      @trainer = @battler.battle.pbGetOwnerFromBattlerIndex(@battler.index)
+      if @trainer.wild?
+        createWildProcesses
+      else
+        createProcesses
+      end
+    end
+
+    def createWildProcesses
+      batSprite = @sprites["pokemon_#{@battler.index}"]
+      shaSprite = @sprites["shadow_#{@battler.index}"]
+      battler = addSprite(batSprite,PictureOrigin::Bottom)
+      battler.setVisible(0,true)
+      battler.setZoomXY(0,100,100)
+      battler.setColor(0,Color.new(0,0,0,0))
+      battler.moveDelta(0,12,240,0)
+      if shaSprite.visible
+        # Set up shadow sprite
+        shadow = addSprite(shaSprite,PictureOrigin::Center)
+        # Shadow animation
+        shadow.setVisible(0,false)
+      end
     end
   
     def createProcesses

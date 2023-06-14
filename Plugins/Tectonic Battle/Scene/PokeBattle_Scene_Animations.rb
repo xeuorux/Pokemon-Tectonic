@@ -151,7 +151,7 @@ class PokeBattle_Scene
     def pbRecall(idxBattler)
       @briefMessage = false
       # Recall animation
-      recallAnim = BattlerRecallAnimation.new(@sprites,@viewport,idxBattler)
+      recallAnim = BattlerRecallAnimation.new(@sprites,@viewport,idxBattler,@battle.battlers[idxBattler])
       loop do
         recallAnim.update if recallAnim
         pbUpdate
