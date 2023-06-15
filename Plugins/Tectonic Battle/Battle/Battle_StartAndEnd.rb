@@ -321,7 +321,9 @@ class PokeBattle_Battle
             # Record if the fight was perfected
             if $Trainer.able_pokemon_count >= ableBeforeFight
                 $game_switches[94] = true
-                pbMessage(_INTL("\\me[Battle perfected]You perfected the fight!")) if trainerBattle? && @decision == 1
+                if trainerBattle? && @decision == 1 && !skipPerfecting
+                    pbMessage(_INTL("\\me[Battle perfected]You perfected the fight!"))
+                end
             end
             # Update each of the player's pokemon's battling streak
             if trainerBattle? || bossBattle?
