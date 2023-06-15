@@ -33,6 +33,7 @@ class PokemonSystem
     attr_accessor :bag_sorting
     attr_accessor :battle_transitions
     attr_accessor :tutorial_popups
+    attr_accessor :dark_mode
 
     def bgmvolume
         return @bgmvolume / VOLUME_FAKERY_MULT
@@ -65,6 +66,7 @@ class PokemonSystem
         @battlestyle = 1 # Battle style (0=switch, 1=set)
         @frame = 0 # Default window frame (see also Settings::MENU_WINDOWSKINS)
         @textskin    		          = 0 # Speech frame
+        @dark_mode                    = 1 # (0=true, 1=false)
         @font        		          = 0 # Font (see also Settings::FONT_OPTIONS)
         @screensize  		          = (Settings::SCREEN_SCALE * 2).floor - 1 # 0=half size, 1=full size, 2=full-and-a-half size, 3=double size
         @language    		          = 0 # Language (see also Settings::LANGUAGES in script PokemonSystem)
@@ -535,6 +537,21 @@ class PokemonOption_Scene_UserInterface < PokemonOption_Scene_Base
         return _INTL("User Interface Options")
     end
 
+    def setSpeechFrame(frameID)
+        windowSkinName = "Graphics/Windowskins/" + Settings::SPEECH_WINDOWSKINS[frameID]
+        windowSkinName += "_dark" if $PokemonSystem.dark_mode == 0
+        MessageConfig.pbSetSpeechFrame(windowSkinName)
+        @sprites["textbox"].setSkin(MessageConfig.pbGetSpeechFrame)
+    end
+
+    def setSystemFrame(frameID)
+        windowSkinName = "Graphics/Windowskins/" + Settings::MENU_WINDOWSKINS[frameID]
+        windowSkinName += "_dark" if $PokemonSystem.dark_mode == 0
+        MessageConfig.pbSetSystemFrame(windowSkinName)
+        @sprites["option"].setSkin(MessageConfig.pbGetSystemFrame)
+        @sprites["title"].setSkin(MessageConfig.pbGetSystemFrame)
+    end
+
 	def pbAddOnOptions(options)
 		options.concat([
 			EnumOption.new(_INTL("Text Speed"), [_INTL("1"), _INTL("2"), _INTL("3"), _INTL("4"), _INTL("5")],
@@ -560,15 +577,23 @@ class PokemonOption_Scene_UserInterface < PokemonOption_Scene_Base
 				proc { $PokemonSystem.textskin },
 				proc { |value|
 					$PokemonSystem.textskin = value
-					MessageConfig.pbSetSpeechFrame("Graphics/Windowskins/" + Settings::SPEECH_WINDOWSKINS[value])
+					setSpeechFrame(value)
 				}
 			),
 			NumberOption.new(_INTL("Menu Frame"), 1, Settings::MENU_WINDOWSKINS.length,
 				proc { $PokemonSystem.frame },
 				proc { |value|
 					$PokemonSystem.frame = value
-					MessageConfig.pbSetSystemFrame("Graphics/Windowskins/" + Settings::MENU_WINDOWSKINS[value])
+					setSystemFrame(value)
 				}
+			),
+            EnumOption.new(_INTL("Dark Mode"), [_INTL("On"), _INTL("Off")],
+				proc { $PokemonSystem.dark_mode },
+				proc { |value|
+                    $PokemonSystem.dark_mode = value
+                    setSpeechFrame($PokemonSystem.textskin)
+                    setSystemFrame($PokemonSystem.frame)
+                }
 			),
 			EnumOption.new(_INTL("Text Entry"), [_INTL("Cursor"), _INTL("Keyboard")],
 				proc { $PokemonSystem.textinput },
@@ -852,6 +877,7 @@ class PokemonOptionMenu < PokemonPauseMenu
                 screen = PokemonOptionScreen.new(scene)
                 screen.pbStartScreen
                 @scene.pbRefresh
+
             }
 		end
 		@scene.pbEndScene if endscene

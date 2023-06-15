@@ -82,6 +82,63 @@ module Settings
     ]
   end
 
+  # Available speech frames. These are graphic files in "Graphics/Windowskins/".
+  SPEECH_WINDOWSKINS = [
+    "speech1",
+    "speech2",
+    "speech3",
+    "speech4",
+    "speech5",
+    "speech6",
+    "speech7",
+    "speech8",
+    "speech9",
+    "speech10",
+    "speech11",
+    "speech12",
+    "speech13",
+    "speech14",
+    "speech15",
+    "speech16",
+    "speech17",
+    "speech18",
+    "speech19",
+    "speech20",
+    "speech21"
+  ]
+
+  # Available menu frames. These are graphic files in "Graphics/Windowskins/".
+  MENU_WINDOWSKINS = [
+    "choice1",
+    "choice2",
+    "choice3",
+    "choice4",
+    "choice5",
+    "choice6",
+    "choice7",
+    "choice8",
+    "choice9",
+    "choice10",
+    "choice11",
+    "choice12",
+    "choice13",
+    "choice14",
+    "choice15",
+    "choice16",
+    "choice17",
+    "choice18",
+    "choice19",
+    "choice20",
+    "choice21",
+    "choice22",
+    "choice23",
+    "choice24",
+    "choice5",
+    "choice26",
+    "choice27",
+    "choice28"
+  ]
+
   LANGUAGES = [
     ["English", "english.dat"],
     ["Español", "spanish.dat"]
