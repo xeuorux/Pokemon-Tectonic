@@ -664,11 +664,21 @@ user.pbThis))
                 b.applyFractionalHealing(1.0 / 8.0, ability: :FIESTA)
 			end
         end
+        # Ancestral Dance
 		if moveSucceeded && (move.danceMove?)
             if @battle.pbCheckGlobalAbility(:ANCESTRALDANCE)
 				@battle.pbPriority(true).each do |b|
 					next unless b.hasActiveAbility?(:ANCESTRALDANCE)
 					b.pbRaiseMultipleStatSteps(DEFENDING_STATS_1, user, ability: :ANCESTRALDANCE)
+				end
+			end
+        end
+        # Choreography
+		if moveSucceeded && (move.danceMove?)
+            if @battle.pbCheckGlobalAbility(:CHOREOGRAPHY)
+				@battle.pbPriority(true).each do |b|
+					next unless b.hasActiveAbility?(:CHOREOGRAPHY)
+					b.pbRaiseMultipleStatSteps([:SPEED, 1], user, ability: :CHOREOGRAPHY)
 				end
 			end
         end

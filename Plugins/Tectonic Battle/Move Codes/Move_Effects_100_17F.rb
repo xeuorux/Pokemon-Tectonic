@@ -2376,9 +2376,26 @@ class PokeBattle_Move_172 < PokeBattle_Move
 end
 
 #===============================================================================
-# (Not currently used)
+# Cures the target's frostbite. (Rousing Hula)
 #===============================================================================
 class PokeBattle_Move_173 < PokeBattle_Move
+    def pbAdditionalEffect(_user, target)
+        return if target.fainted? || target.damageState.substitute
+        return if target.status != :FROSTBITE
+        target.pbCureStatus(true, :FROSTBITE)
+    end
+
+    def getTargetAffectingEffectScore(user, target)
+        score = 0
+        if !target.substituted? && target.frostbitten?
+            if target.opposes?(user)
+                score -= 30
+            else
+                score += 30
+            end
+        end
+        return score
+    end
 end
 
 #===============================================================================

@@ -1198,7 +1198,7 @@ Pokemon = MISDREAVUS,30
     Item = LIFEORB
 Pokemon = BELLOSSOM,30
     Moves = MEGADRAIN,FLAMEDANCE,POISONSPIKES,SOLARGLIDE
-    AbilityIndex = 1 # Dancer
+    AbilityIndex = 1 # Choreography
     Item = SITRUSBERRY
 #-------------------------------
 [LEADER_Rafael_2,Rafael,1]
