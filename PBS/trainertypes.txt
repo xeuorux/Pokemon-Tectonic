@@ -304,3 +304,7 @@
 431,WILDPARTY_LELE,Wild Party,100,,,,Wild,,,[]
 432,WILDPARTY_BULU,Wild Party,100,,,,Wild,,,[]
 433,WILDPARTY_FINI,Wild Party,100,,,,Wild,,,[]
+434,TAPU_KOKO,Guardian Deity,100,,,,Wild,,,[]
+435,TAPU_LELE,Guardian Deity,100,,,,Wild,,,[]
+436,TAPU_BULU,Guardian Deity,100,,,,Wild,,,[]
+437,TAPU_FINI,Guardian Deity,100,,,,Wild,,,[]

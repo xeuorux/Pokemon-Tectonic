@@ -5701,20 +5701,41 @@ Pokemon = SWANNA,60
     AbilityIndex = 0 # Intimidate
 #-------------------------------
 [WILDPARTY_KOKO,of Conflict]
-Pokemon = BLAZIKEN,70
-    AbilityIndex = 0 # Speed Boost
-Pokemon = ELECTIVIRE,70
-    AbilityIndex = 0 # Live Wire
-Pokemon = AMAROWAK,70
-    AbilityIndex = 0 # Sealing Body
 Pokemon = PURUGLY,70
     AbilityIndex = 0 # Greedy Guts
-Pokemon = VIKAVOLT,70
-    AbilityIndex = 1 # Levitate
+Pokemon = AGOLEM,70
+    AbilityIndex = 1 # Arc Conductor
+Pokemon = INCINEROAR,70
+    AbilityIndex = 0 # Intimidate
+Pokemon = AMAROWAK,70
+    AbilityIndex = 1 # Ancestral Dance
+#-------------------------------
+[TAPU_KOKO,Tapu Koko]
+Pokemon = BLAZIKEN,70
+    AbilityIndex = 0 # Speed Boost
 Pokemon = DODRIO,70
     AbilityIndex = 1 # Vital Spirit
+Pokemon = KOMMOO,70
+    AbilityIndex = 0 # Sound Barrier
+Pokemon = VIKAVOLT,70
+    AbilityIndex = 0 # Battery
+Pokemon = LYCANROC,70
+    Form = 1
+    AbilityIndex = 0 # No Guard
+Pokemon = ARAICHU,70
+    AbilityIndex = 1 # Surf's Up
 #-------------------------------
 [WILDPARTY_LELE,of Life]
+Pokemon = APERSIAN,70
+    AbilityIndex = 0 # Fur Coat
+Pokemon = SALAZZLE,70
+    AbilityIndex = 1 # Multiscale
+Pokemon = COMFEY,70
+    AbilityIndex = 0 # Garland Guardian
+Pokemon = MIMIKYU,70
+    AbilityIndex = 0 # Disguise
+#-------------------------------
+[TAPU_LELE,Tapu Lele]
 Pokemon = FLORGES,70
     AbilityIndex = 1 # Sentry
 Pokemon = ADUGTRIO,70
@@ -5729,29 +5750,49 @@ Pokemon = KECLEON,70
     AbilityIndex = 0 # Adaptive Skin
 #-------------------------------
 [WILDPARTY_BULU,of Abundance]
+Pokemon = ASANDSLASH,70
+    AbilityIndex = 1 # Assault Spines
+Pokemon = ARATICATE,70
+    AbilityIndex = 1 # Gourmand
+Pokemon = DECIDUEYE,70
+    AbilityIndex = 1 # Trapper
 Pokemon = TAUROS,70
     AbilityIndex = 0 # Intimidate
+#-------------------------------
+[TAPU_BULU,Tapu Bulu]
 Pokemon = AEXEGGUTOR,70
     AbilityIndex = 0 # Realist
 Pokemon = TROPIUS,70
     AbilityIndex = 0 # Mental Block
 Pokemon = SNORLAX,70
     AbilityIndex = 1 # Thick Fat
-Pokemon = APERSIAN,70
-    AbilityIndex = 0 # Fur Coat
 Pokemon = FLYGON,70
     AbilityIndex = 0 # Desert Spirit
+Pokemon = CRABOMINABLE,70
+    AbilityIndex = 0 # Sturdy
+Pokemon = DRAMPA,70
+    AbilityIndex = 0 # Berserk
 #-------------------------------
 [WILDPARTY_FINI,of Hope]
-Pokemon = GASTRODON,70
-    AbilityIndex = 0 # Fascinate
-Pokemon = CORSOLA,70
-    AbilityIndex = 0 # Persistent Growth
-Pokemon = ALOMOMOLA,70
-    AbilityIndex = 0 # Slick Surface
-Pokemon = CRADILY,70
-    AbilityIndex = 1 # Water Absorb
 Pokemon = EELEKTROSS,70
     AbilityIndex = 1 # Frustrate
+Pokemon = AMUK,70
+    AbilityIndex = 0 # Power of Alchemy
+Pokemon = PRIMARINA,70
+    AbilityIndex = 0 # Maestro
+Pokemon = SHIINOTIC,70
+    AbilityIndex = 1 # Fascinate
+#-------------------------------
+[TAPU_FINI,Tapu Fini]
+Pokemon = CORSOLA,70
+    AbilityIndex = 0 # Persistent Growth
+Pokemon = CRADILY,70
+    AbilityIndex = 1 # Water Absorb
 Pokemon = ANINETALES,70
     AbilityIndex = 1 # Sudden Chill
+Pokemon = TOXAPEX,70
+    AbilityIndex = 1 # Regenerator
+Pokemon = PALOSSAND,70
+    AbilityIndex = 0 # Grit
+Pokemon = GOLISOPOD,70
+    AbilityIndex = 0 # Emergency Exit
