@@ -228,6 +228,7 @@ class PokeBattle_AI
                 score = pbGetMoveScoreBoss(move, user, b, 1, bossAI, targetWeak)
                 score = score.round
                 if score > 0
+                    score += 50 if !user.indicesTargetedLastRound.include?(b.index) && AVATARS_PREFER_OTHER_SLOT_BETWEEN_TURNS
                     scoresAndTargets.push([score, b.index])
                 else
                     PBDebug.log("[BOSS AI] #{user.pbThis} (#{user.index}) scores #{move.name} a 0.")
