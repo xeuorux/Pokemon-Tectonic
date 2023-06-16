@@ -6,7 +6,7 @@ def basicPokeMart
 end
 
 def rangerMart
-    pbPokemonMart(pbGet(77),"Get your ranging supplies here!")
+    pbPokemonMart(pbGet(77),"Get your supplies here!")
 end
 
 ######################################################
