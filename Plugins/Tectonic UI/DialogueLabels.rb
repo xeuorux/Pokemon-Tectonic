@@ -95,7 +95,11 @@ end
 class Game_Event
     def start
         return if @list.size == 0
+        return if @starting
         @starting = true
-        removeSpeaker unless pbMapInterpreter.message_waiting
+        unless pbMapInterpreter.message_waiting
+            removeSpeaker
+            echoln("Removing speaker in event #{@event.name} (#{@id})")
+        end
     end
 end
