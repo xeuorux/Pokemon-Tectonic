@@ -293,10 +293,10 @@ class PokeBattle_Battle
                 pbDisplayBrief(_INTL("Your opponent's weak! Get 'em, {1}!", newPkmnName))
             end
         else
-            if pbGetOwnerFromBattlerIndex(@index)&.wild?
+            owner = pbGetOwnerFromBattlerIndex(idxBattler)
+            if owner.wild?
                 pbDisplayBrief(_INTL("The {1} entered the battle!", newPkmnName))
             else
-                owner = pbGetOwnerFromBattlerIndex(idxBattler)
                 pbDisplayBrief(_INTL("{1} sent out {2}!", owner.full_name, newPkmnName))
             end
         end
