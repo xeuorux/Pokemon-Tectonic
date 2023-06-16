@@ -3,6 +3,10 @@ module PokeBattle_SceneConstants
     # Text colors
     MESSAGE_BASE_COLOR   = Color.new(80, 80, 88)
     MESSAGE_SHADOW_COLOR = Color.new(160, 160, 168)
+
+    # Text colors
+    MESSAGE_BASE_COLOR_DARK   = Color.new(248, 248, 248)
+    MESSAGE_SHADOW_COLOR_DARK = Color.new(72, 80, 88)
   
     # The number of party balls to show in each side's lineup.
     NUM_BALLS = Settings::MAX_PARTY_SIZE
@@ -14,6 +18,14 @@ module PokeBattle_SceneConstants
     # Centre middle of the foe's side base graphic
     FOE_BASE_X    = Settings::SCREEN_WIDTH - 128
     FOE_BASE_Y    = (Settings::SCREEN_HEIGHT * 3 / 4) - 112
+
+    def self.getBaseColor
+      return $PokemonSystem.dark_mode == 0 ? MESSAGE_BASE_COLOR_DARK : MESSAGE_BASE_COLOR
+    end
+
+    def self.getShadowColor
+      return $PokemonSystem.dark_mode == 0 ? MESSAGE_SHADOW_COLOR_DARK : MESSAGE_SHADOW_COLOR
+    end
   
     # Returns where the centre bottom of a battler's sprite should be, given its
     # index and the number of battlers on its side, assuming the battler has

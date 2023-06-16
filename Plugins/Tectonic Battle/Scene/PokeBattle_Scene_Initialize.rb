@@ -26,16 +26,17 @@ class PokeBattle_Scene
       # The background image and each side's base graphic
       pbCreateBackdropSprites
       # Create message box graphic
-      messageBox = pbAddSprite("messageBox",0,Graphics.height-96,
-        "Graphics/Pictures/Battle/overlay_message",@viewport)
+      overlayMessageName = "Graphics/Pictures/Battle/overlay_message"
+      overlayMessageName += "_dark" if $PokemonSystem.dark_mode == 0
+      messageBox = pbAddSprite("messageBox",0,Graphics.height-96,overlayMessageName,@viewport)
       messageBox.z = 195
       # Create message window (displays the message)
       msgWindow = Window_AdvancedTextPokemon.newWithSize("",
         16,Graphics.height-96+2,Graphics.width-32,96,@viewport)
       msgWindow.z              = 200
       msgWindow.opacity        = 0
-      msgWindow.baseColor      = PokeBattle_SceneConstants::MESSAGE_BASE_COLOR
-      msgWindow.shadowColor    = PokeBattle_SceneConstants::MESSAGE_SHADOW_COLOR
+      msgWindow.baseColor      = PokeBattle_SceneConstants.getBaseColor
+      msgWindow.shadowColor    = PokeBattle_SceneConstants.getShadowColor
       msgWindow.letterbyletter = true
       @sprites["messageWindow"] = msgWindow
       # Create command window

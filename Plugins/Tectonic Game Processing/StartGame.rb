@@ -71,6 +71,8 @@ module Game
       $scene = Scene_Map.new
       $PokemonTemp.dependentEvents.refresh_sprite(false)
       pbSetResizeFactor($PokemonSystem.screensize)
+      $PokemonSystem.setSystemFrame
+      $PokemonSystem.setSpeechFrame
     end
   
     # Loads and validates the map. Called when loading a saved game.
