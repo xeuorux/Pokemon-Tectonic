@@ -113,7 +113,7 @@ GameData::Move.get(@effects[:GorillaTactics]).name)
             return false
         end
         # Barred
-        if effectActive?(:Barred) && !user.pbHasType?(move.calcType)
+        if effectActive?(:Barred) && !pbHasType?(move.calcType)
             msg = _INTL("{1} can't use {2} after being barred!", pbThis, move.name)
             if showMessages
                 commandPhase ? @battle.pbDisplayPaused(msg) : @battle.pbDisplay(msg)

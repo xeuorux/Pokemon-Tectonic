@@ -2001,14 +2001,14 @@ class PokeBattle_Move_0C7 < PokeBattle_Move
 
     def pbEffectAgainstTarget(_user, target)
         return if damagingMove?
-        target.applyEffect(:Barred, @tauntTurns)
+        target.applyEffect(:Barred, @barredTurns)
     end
 
     def pbAdditionalEffect(user, target)
         return if target.damageState.substitute
         return if target.effectActive?(:Barred)
         return true if pbMoveFailedAromaVeil?(user, target)
-        target.applyEffect(:Barred, @tauntTurns)
+        target.applyEffect(:Barred, @barredTurns)
     end
 
     def getTargetAffectingEffectScore(_user, target)
