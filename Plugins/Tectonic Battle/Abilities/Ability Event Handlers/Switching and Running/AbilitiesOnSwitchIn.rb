@@ -472,7 +472,7 @@ BattleHandlers::AbilityOnSwitchIn.add(:HOLIDAYCHEER,
 BattleHandlers::AbilityOnSwitchIn.add(:STARGUARDIAN,
   proc { |ability, battler, battle|
       battle.pbShowAbilitySplash(battler, ability)
-      duration = battler.getScreenDuration
+      duration = battler.getScreenDuration(4)
       battler.pbOwnSide.applyEffect(:LightScreen, duration)
       battle.pbHideAbilitySplash(battler)
   }
@@ -481,7 +481,7 @@ BattleHandlers::AbilityOnSwitchIn.add(:STARGUARDIAN,
 BattleHandlers::AbilityOnSwitchIn.add(:BARRIERMAKER,
   proc { |ability, battler, battle|
       battle.pbShowAbilitySplash(battler, ability)
-      duration = battler.getScreenDuration
+      duration = battler.getScreenDuration(4)
       battler.pbOwnSide.applyEffect(:Reflect, duration)
       battle.pbHideAbilitySplash(battler)
   }
@@ -725,7 +725,7 @@ BattleHandlers::AbilityOnSwitchIn.add(:PEARLSEEKER,
 
 BattleHandlers::AbilityOnSwitchIn.add(:WHIRLER,
   proc { |ability, battler, battle|
-      trappingDuration = 3
+      trappingDuration = 2
       trappingDuration *= 2 if battler.hasActiveItem?(:GRIPCLAW)
 
       battle.pbShowAbilitySplash(battler, ability)

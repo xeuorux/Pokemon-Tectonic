@@ -596,8 +596,8 @@ class PokeBattle_Battler
         end
     end
 
-    def getScreenDuration
-        ret = 5
+    def getScreenDuration(baseDuration = 5)
+        ret = baseDuration
         ret += 3 if hasActiveItem?(:LIGHTCLAY)
         ret += 6 if hasActiveItem?(:BRIGHTCLAY)
         ret *= 2 if hasActiveAbility?(:RESONANCE) && @battle.eclipsed?

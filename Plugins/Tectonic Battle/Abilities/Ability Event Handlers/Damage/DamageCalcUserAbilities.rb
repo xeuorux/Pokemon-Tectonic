@@ -9,9 +9,9 @@ BattleHandlers::DamageCalcUserAbility.copy(:AERILATE, :PIXILATE, :REFRIGERATE, :
 BattleHandlers::DamageCalcUserAbility.add(:FROSTSONG,
   proc { |ability, _user, _target, move, mults, _baseDmg, _type, aiCheck|
       if aiCheck
-          mults[:base_damage_multiplier] *= 1.5 if move.soundMove?
+          mults[:base_damage_multiplier] *= 1.3 if move.soundMove?
       elsif move.powerBoost
-          mults[:base_damage_multiplier] *= 1.5
+          mults[:base_damage_multiplier] *= 1.3
       end
   }
 )
@@ -180,6 +180,12 @@ BattleHandlers::DamageCalcUserAbility.add(:WATERBUBBLE,
 BattleHandlers::DamageCalcUserAbility.add(:IRONFIST,
   proc { |ability, _user, _target, move, mults, _baseDmg, _type, _aiCheck|
       mults[:base_damage_multiplier] *= 1.3 if move.punchingMove?
+  }
+)
+
+BattleHandlers::DamageCalcUserAbility.add(:SUPERFIST,
+  proc { |ability, _user, _target, move, mults, _baseDmg, _type, _aiCheck|
+      mults[:base_damage_multiplier] *= 1.5 if move.punchingMove?
   }
 )
 

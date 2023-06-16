@@ -40,13 +40,6 @@ BattleHandlers::SpecialDefenseCalcUserAbility.add(:PARANOID,
     }
 )
 
-BattleHandlers::SpecialDefenseCalcUserAbility.add(:EXOADAPTION,
-    proc { |ability, _user, _battle, spDefMult|
-        spDefMult *= 1.25
-        next spDefMult
-    }
-)
-
 BattleHandlers::SpecialDefenseCalcUserAbility.add(:HEATVEIL,
     proc { |ability, _user, battle, spDefMult|
         spDefMult *= 2 if battle.sunny?

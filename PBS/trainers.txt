@@ -1309,7 +1309,7 @@ Pokemon = LEAFEON,35
 Pokemon = WEAVILE,35
     AbilityIndex = 1 # Lunatic
 Pokemon = HYPNO,35
-    AbilityIndex = 1 # Inner Focus
+    AbilityIndex = 1 # Super Fist
 Pokemon = ALTARIA,35
     AbilityIndex = 0 # Levitate
     Item = SITRUSBERRY
@@ -1419,7 +1419,7 @@ Pokemon = DELIBIRD,55
 #-------------------------------
 [HARLEQUIN,Vincenzi,1]
 Pokemon = LEAVANNY,55
-    Moves = XSCISSOR,LEAFBLADE,SUMMERSUNDER
+    Moves = XSCISSOR,LEAFBLADE,PARAPOLLEN
     AbilityIndex = 1 # Sharpness
 Pokemon = PRIMARINA,55
     Moves = GROWL,HYPERVOICE,WATERSPIRAL
@@ -5578,7 +5578,7 @@ Pokemon = REAVOR,57
     AbilityIndex = 1 # Exo-Adaption
     Item = ASSAULTVEST
 Pokemon = PTEROFLYTE,58
-    AbilityIndex = 0 # Rock Head
+    AbilityIndex = 0 # Armor Piercing
 Pokemon = FLORGES,57
     AbilityIndex = 0 # Clover Song
     Item = ORANBERRY
