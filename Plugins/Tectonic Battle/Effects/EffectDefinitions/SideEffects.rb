@@ -214,7 +214,7 @@ GameData::BattleEffect.register_effect(:Side, {
     :remain_proc => proc do |battle, side, _teamName|
         battle.pbCommonAnimation("SeaOfFire") if side.index == 0
         battle.pbCommonAnimation("SeaOfFireOpp") if side.index == 1
-        battle.eachBattler.each do |b|
+        battle.eachBattler do |b|
             next if b.opposes?(side.index)
             next if !b.takesIndirectDamage? || b.pbHasType?(:FIRE)
             battle.pbDisplay(_INTL("{1} is hurt by the sea of fire!", b.pbThis))
