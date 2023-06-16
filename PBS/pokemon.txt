@@ -23959,7 +23959,7 @@ Type1 = BUG
 Type2 = ELECTRIC
 # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
 BaseStats = 60,42,54,39,78,45
-# Total = 306
+# Total = 318
 GenderRate = Female50Percent
 GrowthRate = Medium
 BaseEXP = 60
@@ -23993,7 +23993,7 @@ Type1 = BUG
 Type2 = ELECTRIC
 # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
 BaseStats = 81,57,75,51,102,63
-# Total = 400
+# Total = 429
 GenderRate = Female50Percent
 GrowthRate = Medium
 BaseEXP = 140

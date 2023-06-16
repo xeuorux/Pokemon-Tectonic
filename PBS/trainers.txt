@@ -1078,7 +1078,7 @@ Pokemon = TANGELA,28
 Pokemon = GOURGEIST,28
     AbilityIndex = 0 # Grow Up
 Pokemon = CHARJABUG,28
-    AbilityIndex = 0 # Battery
+    AbilityIndex = 0 # Battery Break
 #-------------------------------
 [POKEMONRANGER_F2,Amahle]
 Pokemon = GROTLE,27
@@ -5718,7 +5718,7 @@ Pokemon = DODRIO,70
 Pokemon = KOMMOO,70
     AbilityIndex = 0 # Sound Barrier
 Pokemon = VIKAVOLT,70
-    AbilityIndex = 0 # Battery
+    AbilityIndex = 0 # Battery Break
 Pokemon = LYCANROC,70
     Form = 1
     AbilityIndex = 0 # No Guard
