@@ -5701,16 +5701,22 @@ Pokemon = SWANNA,60
     AbilityIndex = 0 # Intimidate
 #-------------------------------
 [WILDPARTY_KOKO,of Conflict]
-Pokemon = PURUGLY,70
-    AbilityIndex = 0 # Greedy Guts
-Pokemon = AGOLEM,70
-    AbilityIndex = 1 # Arc Conductor
+Policies = NO_PERFECT
 Pokemon = INCINEROAR,70
     AbilityIndex = 0 # Intimidate
+    Item = SITRUSBERRY
+Pokemon = AGOLEM,70
+    AbilityIndex = 0 # Galvanize
+    Item = SKILLHERB
+Pokemon = PURUGLY,70
+    AbilityIndex = 0 # Greedy Guts
+    Item = CHOPLEBERRY
 Pokemon = AMAROWAK,70
     AbilityIndex = 1 # Ancestral Dance
+    Item = SALACBERRY
 #-------------------------------
 [TAPU_KOKO,Tapu Koko]
+Policies = NO_PERFECT
 Pokemon = BLAZIKEN,70
     AbilityIndex = 0 # Speed Boost
 Pokemon = DODRIO,70
@@ -5726,16 +5732,22 @@ Pokemon = ARAICHU,70
     AbilityIndex = 1 # Surf's Up
 #-------------------------------
 [WILDPARTY_LELE,of Life]
-Pokemon = APERSIAN,70
-    AbilityIndex = 0 # Fur Coat
-Pokemon = SALAZZLE,70
-    AbilityIndex = 1 # Multiscale
+Policies = NO_PERFECT
 Pokemon = COMFEY,70
     AbilityIndex = 0 # Garland Guardian
+    Item = LUCKHERB
+Pokemon = APERSIAN,70
+    AbilityIndex = 0 # Fur Coat
+    Item = LEFTOVERS
+Pokemon = SALAZZLE,70
+    AbilityIndex = 1 # Multiscale
+    Item = SHELLBELL
 Pokemon = MIMIKYU,70
     AbilityIndex = 0 # Disguise
+    Item = GHOSTGEM
 #-------------------------------
 [TAPU_LELE,Tapu Lele]
+Policies = NO_PERFECT
 Pokemon = FLORGES,70
     AbilityIndex = 1 # Sentry
 Pokemon = ADUGTRIO,70
@@ -5750,16 +5762,23 @@ Pokemon = KECLEON,70
     AbilityIndex = 0 # Adaptive Skin
 #-------------------------------
 [WILDPARTY_BULU,of Abundance]
+Policies = NO_PERFECT
 Pokemon = ASANDSLASH,70
+    Moves = SHIVERDANCE,ICICLESPEAR,SPIKECANNON,FURYPECKS
     AbilityIndex = 1 # Assault Spines
+    Item = SKILLHERB
 Pokemon = ARATICATE,70
     AbilityIndex = 1 # Gourmand
+    Item = AGILITYHERB
 Pokemon = DECIDUEYE,70
     AbilityIndex = 1 # Trapper
+    Item = MENTALHERB
 Pokemon = TAUROS,70
     AbilityIndex = 0 # Intimidate
+    Item = LANSATBERRY
 #-------------------------------
 [TAPU_BULU,Tapu Bulu]
+Policies = NO_PERFECT
 Pokemon = AEXEGGUTOR,70
     AbilityIndex = 0 # Realist
 Pokemon = TROPIUS,70
@@ -5774,16 +5793,22 @@ Pokemon = DRAMPA,70
     AbilityIndex = 0 # Berserk
 #-------------------------------
 [WILDPARTY_FINI,of Hope]
+Policies = NO_PERFECT
 Pokemon = EELEKTROSS,70
     AbilityIndex = 1 # Frustrate
-Pokemon = AMUK,70
-    AbilityIndex = 0 # Power of Alchemy
+    Item = SHUCABERRY
 Pokemon = PRIMARINA,70
     AbilityIndex = 0 # Maestro
+    Item = KEBIABERRY
+Pokemon = AMUK,70
+    AbilityIndex = 0 # Power of Alchemy
+    Item = BLACKSLUDGE
 Pokemon = SHIINOTIC,70
     AbilityIndex = 1 # Fascinate
+    Item = BIGROOT
 #-------------------------------
 [TAPU_FINI,Tapu Fini]
+Policies = NO_PERFECT
 Pokemon = CORSOLA,70
     AbilityIndex = 0 # Persistent Growth
 Pokemon = CRADILY,70

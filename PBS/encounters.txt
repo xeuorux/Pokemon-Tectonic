@@ -935,10 +935,17 @@ LandSparse,20
 #-------------------------------
 [366] # Far Beach
 Land,20
-    25,APPLIN,8,10
-    25,KRABBY,8,10
-    25,NUMEL,8,10
-    6,ORICORIO,8,10
-    6,ORICORIO_1,8,10
-    6,ORICORIO_2,8,10
-    6,ORICORIO_3,8,10
+    34,NUMEL,8,10
+    33,APPLIN,8,10
+    33,KRABBY,8,10
+#-------------------------------
+[377] # Tapu Island (Easter Island)
+Land,20
+    20,COMFEY,60,64
+    20,GUMSHOOS,60,64
+    20,RIBOMBEE,60,64
+    20,TRUMBEAK,60,64
+    6,ORICORIO,8,60
+    6,ORICORIO_1,60,64
+    6,ORICORIO_2,60,64
+    6,ORICORIO_3,60,64
