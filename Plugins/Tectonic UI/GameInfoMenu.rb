@@ -135,12 +135,12 @@ def showBattleGuide
 		case id
 		when "Basic Strategy"
 			pbListScreenExtra(_INTL("Battle Strategy"), BattleGuideLister.new(BASICS_HASH), false)
+		when "Acquiring Pokémon"
+			pbListScreenExtra(_INTL("Acquiring Pokémon"), BattleGuideLister.new(ACQUIRING_POKEMON_HASH), false)
 		when "Moves"
 			pbListScreenExtra(_INTL("Moves"), BattleGuideLister.new(MOVE_HASH), false)
 		when "Type Matchups"
 			pbListScreenExtra(_INTL("Type Matchups"), BattleGuideLister.new(TYPE_MATCHUPS_HASH), false)
-		when "Acquiring Pokémon"
-			pbListScreenExtra(_INTL("Acquiring Pokémon"), BattleGuideLister.new(ACQUIRING_POKEMON_HASH), false)
 		when "Stats"
 			pbListScreenExtra(_INTL("Stats"), BattleGuideLister.new(STATS_HASH), false)
 		when "Abilities"
@@ -157,6 +157,8 @@ def showBattleGuide
 			pbListScreenExtra(_INTL("MasterDex"), BattleGuideLister.new(MASTERDEX_HASH), false)
 		when "Weathers"
 			pbListScreenExtra(_INTL("Weathers"), BattleGuideLister.new(WEATHERS_HASH), false)
+		when "Type Chart"
+			pbListScreenExtra(_INTL("Type Chart"), BattleGuideLister.new(TYPE_CHART_CHANGES), false)
 		else
 			break
 		end
