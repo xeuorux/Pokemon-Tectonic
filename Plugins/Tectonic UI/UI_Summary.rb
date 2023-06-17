@@ -1456,7 +1456,7 @@ class PokemonSummary_Scene
         ability = @pokemon.ability
         if ability
             textpos.push([ability.name, 138, 278, 0, Color.new(64, 64, 64), Color.new(176, 176, 176)])
-            drawTextEx(overlay, 8, 320, Graphics.width, 2, ability.description, Color.new(64, 64, 64),
+            drawTextEx(overlay, 8, 320, Graphics.width - 12, 2, ability.description, Color.new(64, 64, 64),
   Color.new(176, 176, 176))
         end
         # Draw Pokémon's type icon(s)
