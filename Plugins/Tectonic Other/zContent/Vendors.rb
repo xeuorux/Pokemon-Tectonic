@@ -689,7 +689,7 @@ def vendingMachine
 	pbMessage(_INTL("It's a vending machine."))
 
 	freshWaterCost = 200
-	sodePopCost = 300
+	sodaPopCost = 300
 	lemonadeCost = 350
 
 	choices = []
@@ -698,7 +698,7 @@ def vendingMachine
 	lemonadeCommand = -1
 	cancelCommand = -1
 	choices[freshWaterCommand = choices.length] = _INTL("Fresh Water - $#{freshWaterCost}")
-	choices[sodaPopCommand = choices.length] = _INTL("Soda Pop - $#{freshWaterCost}")
+	choices[sodaPopCommand = choices.length] = _INTL("Soda Pop - $#{sodaPopCost}")
 	choices[lemonadeCommand = choices.length] = _INTL("Lemonade - $#{lemonadeCost}")
 	choices[cancelCommand = choices.length] = _INTL("Cancel")
 	loop do
@@ -719,7 +719,7 @@ def vendingMachine
 				pbMessage(_INTL("\\GYou have no room left in the Bag."))
 				next
 			end
-			if payMoney(sodePopCost, false)
+			if payMoney(sodaPopCost, false)
 				$PokemonBag.pbStoreItem(:SODAPOP)
 				pbMessage(_INTL("\\GA Soda Pop dropped down!"))
 			else
