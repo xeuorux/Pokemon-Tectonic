@@ -480,11 +480,21 @@ end
 #
 #===============================================================================
 module MessageConfig
+    def self.systemFrameName
+        frameName = "Graphics/Windowskins/" + Settings::MENU_WINDOWSKINS[$PokemonSystem.frame]
+        frameName += "_dark" if $PokemonSystem.dark_mode == 0
+        return frameName
+    end
+
+    def self.speechFrameName
+        frameName = "Graphics/Windowskins/" + Settings::SPEECH_WINDOWSKINS[$PokemonSystem.textskin]
+        frameName += "_dark" if $PokemonSystem.dark_mode == 0
+        return frameName
+    end
+
     def self.pbDefaultSystemFrame
         if $PokemonSystem
-            frameName = "Graphics/Windowskins/" + Settings::MENU_WINDOWSKINS[$PokemonSystem.frame]
-            frameName += "_dark" if $PokemonSystem.dark_mode == 0
-            return pbResolveBitmap(frameName) || ""
+            return pbResolveBitmap(self.systemFrameName) || ""
         else
             return pbResolveBitmap("Graphics/Windowskins/" + Settings::MENU_WINDOWSKINS[0]) || ""
         end
@@ -492,9 +502,8 @@ module MessageConfig
     
     def self.pbDefaultSpeechFrame
         if $PokemonSystem
-            frameName = "Graphics/Windowskins/" + Settings::SPEECH_WINDOWSKINS[$PokemonSystem.textskin]
-            frameName += "_dark" if $PokemonSystem.dark_mode == 0
-            return pbResolveBitmap(frameName) || ""
+            
+            return pbResolveBitmap(self.speechFrameName) || ""
         else
             return pbResolveBitmap("Graphics/Windowskins/" + Settings::SPEECH_WINDOWSKINS[0]) || ""
         end
@@ -851,7 +860,10 @@ class PokemonOption_Scene
 		@viewport.dispose
 	end
 
-	def pbRefresh; end
+	def pbRefresh
+        @sprites["cmdwindow"].resetSystemFrame
+        @sprites["cmdwindow"].refreshSkin
+    end
 end
 
 class PokemonOptionMenu < PokemonPauseMenu
@@ -908,7 +920,6 @@ class PokemonOptionMenu < PokemonPauseMenu
                 screen = PokemonOptionScreen.new(scene)
                 screen.pbStartScreen
                 @scene.pbRefresh
-
             }
 		end
 		@scene.pbEndScene if endscene

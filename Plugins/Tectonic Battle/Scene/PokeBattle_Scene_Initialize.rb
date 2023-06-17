@@ -35,10 +35,9 @@ class PokeBattle_Scene
         16,Graphics.height-96+2,Graphics.width-32,96,@viewport)
       msgWindow.z              = 200
       msgWindow.opacity        = 0
-      msgWindow.baseColor      = PokeBattle_SceneConstants.getBaseColor
-      msgWindow.shadowColor    = PokeBattle_SceneConstants.getShadowColor
       msgWindow.letterbyletter = true
       @sprites["messageWindow"] = msgWindow
+      resetMessageTextColor
       # Create command window
       @sprites["commandWindow"] = CommandMenuDisplay.new(@viewport,200,@battle)
       # Create fight window
@@ -97,6 +96,12 @@ class PokeBattle_Scene
       @sprites["turnCountReminder"] = TurnCountReminder.new(-1,@viewport)
       @sprites["turnCountReminder"].x = Graphics.width / 2 + 20
       @sprites["turnCountReminder"].visible = false
+    end
+
+    def resetMessageTextColor
+      msgWindow = @sprites["messageWindow"]
+      msgWindow.baseColor      = PokeBattle_SceneConstants.getBaseColor
+      msgWindow.shadowColor    = PokeBattle_SceneConstants.getShadowColor
     end
 
     def getDisplayBallCount(side)
