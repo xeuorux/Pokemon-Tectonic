@@ -939,7 +939,7 @@ Land,20
     33,APPLIN,8,10
     33,KRABBY,8,10
 #-------------------------------
-[377] # Tapu Island (Easter Island)
+[377] # Guardian Island
 Land,20
     20,COMFEY,60,64
     20,GUMSHOOS,60,64

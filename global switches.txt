@@ -3,7 +3,7 @@
 52: Visited Volcanic Shore
 53: LarpersEncountered
 54: 8th Badge Call
-55: 
+55: Visited Guardian Island
 56: EnteredHexicle
 57: NPC1 Traitor
 58: NPC2 Traitor

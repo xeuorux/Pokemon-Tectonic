@@ -70,4 +70,5 @@ HIDDEN_MAPS = {
 	288 => 51, # Underground River
 	218 => 51, # Absysal Cavern
 	215 => 50, # Tempest Realm
+	377 => 55, # Guardian Island
 }

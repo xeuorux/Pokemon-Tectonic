@@ -65,7 +65,8 @@ module Settings
 
   REGION_MAP_EXTRAS = [
     [0, 51, 0, 0, "Abyssal Cave", false],
-    [0, 52, 0, 0, "Volcanic Shore", false]
+    [0, 52, 0, 0, "Volcanic Shore", false],
+    [0, 55, 0, 0, "Guardian Island", false]
   ]
 
   # The names of each pocket of the Bag. Ignore the first entry ("").

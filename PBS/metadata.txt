@@ -1976,3 +1976,9 @@ Outdoor = false
 ShowArea = true
 Bicycle = true
 BattleBack = cave2
+#-------------------------------
+[377]
+# Guardian Island
+Outdoor = true
+ShowArea = true
+Bicycle = true

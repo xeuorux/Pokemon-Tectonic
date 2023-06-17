@@ -103,3 +103,5 @@ Point = 5,12,Barren Crater,,,,,
 Point = 18,13,,,,,,
 Point = 16,8,Carnation Graves,,,,,
 Point = 14,2,Prizca Castle,,,,,
+Point = 26,12,Guardian Island,,,,,55
+Point = 27,12,Guardian Island,,,,,55

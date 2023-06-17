@@ -2,7 +2,7 @@ CASABA_VILLA_DOCK = _INTL("Casaba Villa")
 MAINLAND_DOCK = _INTL("Feebas' Fin")
 ELEIG_BOATING_DOCK = _INTL("Eleig Boating Dock")
 SWEETROCK_DOCK = _INTL("Sweetrock Harbor")
-TAPU_ISLAND = _INTL("To Be Named")
+TAPU_ISLAND = _INTL("Guardian Island")
 
 def boatTravel(currentDock = "")
     casabaVillaCommand = -1
@@ -29,6 +29,7 @@ def boatTravel(currentDock = "")
     elsif sweetrockHarborCommand > -1 && choice == sweetrockHarborCommand
         transferPlayer(18,55,Up,217)
     elsif tapuIslandCommand > -1 && choice == tapuIslandCommand
+        $game_switches[55] = true # Mark player as having visited this island
         transferPlayer(80,39,Up,377)
     end
 end
