@@ -2423,6 +2423,7 @@ Pokemon = GLIGAR,27
     Item = ORANBERRY
 #-------------------------------
 [ROUGHNECK2,Robert]
+Policies = NO_PERFECT
 Pokemon = GRIMER,28
     AbilityIndex = 0 # Corrosion
 Pokemon = DOTTLER,30
