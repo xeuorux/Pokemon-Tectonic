@@ -4,7 +4,7 @@ def pbRockSmashDynamite
     pbMessage(_INTL("It's a rugged rock, but some explosives might be able to destroy it."))
     return false
   end
-  if pbConfirmMessageSerious(_INTL("This rock appears to be breakable. Would you like to use a Dynamite Stick? You have #{pbQuantity(:DYNAMITESTICK)}."))
+  if pbConfirmMessageSerious(_INTL("An explodeable rock. Use a Dynamite Stick? You have #{pbQuantity(:DYNAMITESTICK)}."))
     pbMessage(_INTL("{1} used the explosives!",$Trainer.name))
     $PokemonBag.pbDeleteItem(:DYNAMITESTICK,1)
     return true

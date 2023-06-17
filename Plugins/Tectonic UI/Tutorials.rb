@@ -104,7 +104,7 @@ def playTypeChartChangesTutorial
     $PokemonGlobal.typeChartChangesTutorialized = true
     playTutorial { |messageWait|
         pbMessage(_INTL("\\wmMany type matchups were changed in Pokemon Tectonic.\\wtnp[#{messageWait}]\1"))
-        pbMessage(_INTL("\\wmTo strengthen some types, we had to be weaken others.\\wtnp[#{messageWait}]\1"))
+        pbMessage(_INTL("\\wmTo strengthen some types, we had to weaken others.\\wtnp[#{messageWait}]\1"))
         pbMessage(_INTL("\\wmCheck the Masterdex or the Battle Guide to learn these changes.\\wtnp[#{messageWait}]\1"))
     }
 end

@@ -282,7 +282,7 @@ Special
 #-------------------------------
 [085] # Worried Man's House
 Special,20
-    1,HORSEA,15
+    1,SHELLOS,15
 #-------------------------------
 [086] # Zigzagoon Nest
 Special,20
