@@ -236,7 +236,7 @@ class PokeBattle_AI_Genesect < PokeBattle_AI_Boss
             },
             :warning => proc { |_move, user, targets, _battle|
                 target = targets[0]
-                _INTL("#{user.pbThis} aims its stinger at #{target.pbThis(false)}!")
+                _INTL("#{user.pbThis} aims its stinger at #{target.pbThis(true)}!")
             },
         })
 
@@ -744,6 +744,101 @@ class PokeBattle_AI_Claydol < PokeBattle_AI_Boss
             },
             :warning => proc { |_move, user, targets, _battle|
                 _INTL("#{user.pbThis} is molding its clay for special defense!")
+            },
+        })
+    end
+end
+
+class PokeBattle_AI_Sensibelle < PokeBattle_AI_Boss
+    def initialize(user, battle)
+        super
+        secondMoveEveryTurn(:HEALPULSE)
+    end
+end
+
+class PokeBattle_AI_Bronzong < PokeBattle_AI_Boss
+    def initialize(user, battle)
+        super
+        
+        @warnedIFFMove.add(:PACIFY, {
+            :condition => proc { |_move, user, _target, _battle|
+                next true
+            },
+            :warning => proc { |_move, user, targets, _battle|
+                _INTL("#{user.pbThis} detects weakened mental defenses!")
+            },
+        })
+
+        @warnedIFFMove.add(:CONFUSERAY, {
+            :condition => proc { |_move, user, _target, _battle|
+                next target.pbCanLowerStatStep?(:SPECIAL_DEFENSE,user)
+            },
+            :warning => proc { |_move, user, targets, _battle|
+                _INTL("#{user.pbThis} aims to eliminate your protection against its sound!")
+            },
+        })
+
+        @warnedIFFMove.add(:METALSOUND, {
+            :condition => proc { |_move, user, _target, _battle|
+                next target.steps[:SPECIAL_DEFENSE] >= 0
+            },
+            :warning => proc { |_move, user, targets, _battle|
+                _INTL("#{user.pbThis} positions itself to make a terrible noise!")
+            },
+        })
+    end
+end
+
+class PokeBattle_AI_Mimikyu < PokeBattle_AI_Boss
+    def initialize(user, battle)
+        super
+
+        @warnedIFFMove.add(:SPOOKYSNUGGLING, {
+            :condition => proc { |_move, user, _target, _battle|
+                next target.hasHealingMove?
+            },
+            :warning => proc { |_move, user, targets, _battle|
+                _INTL("#{user.pbThis} wants a hug from someone healthy!")
+            },
+        })
+    end
+end
+
+class PokeBattle_AI_Reavor < PokeBattle_AI_Boss
+    def initialize(user, battle)
+        super
+        @warnedIFFMove.add(:BUGBITE, {
+            :condition => proc { |_move, _user, target, _battle|
+                next target.hasAnyBerry? || target.hasAnyGem?
+            },
+            :warning => proc { |_move, user, targets, _battle|
+                target = targets[0]
+                _INTL("#{user.pbThis} locks onto #{target.pbThis(true)}'s item!")
+            },
+        })
+    end
+end
+
+class PokeBattle_AI_Sudowoodo < PokeBattle_AI_Boss
+    def initialize(user, battle)
+        super
+        @warnedIFFMove.add(:BUGBITE, {
+            :condition => proc { |_move, _user, target, _battle|
+                next target.lastRoundMoveCategory == 2
+            },
+            :warning => proc { |_move, user, targets, _battle|
+                target = targets[0]
+                _INTL("#{user.pbThis} is a big fan of #{target.pbThis(true)}'s last used move!")
+            },
+        })
+
+        @warnedIFFMove.add(:STRENGTHSAP, {
+            :condition => proc { |_move, _user, target, _battle|
+                next target.steps[:ATTACK] > 1
+            },
+            :warning => proc { |_move, user, targets, _battle|
+                target = targets[0]
+                _INTL("#{user.pbThis} envies #{target.pbThis(true)}'s Attack!")
             },
         })
     end

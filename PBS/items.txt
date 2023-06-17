@@ -555,3 +555,6 @@
 554,CHAMBER7KEY,Chamber 7 Key,Chamber 7 Keys,8,0,"The key to the seventh chamber containing a powerful avatar.",0,0,6
 555,CHAMBER8KEY,Chamber 8 Key,Chamber 8 Keys,8,0,"The key to the eighth chamber containing a powerful avatar.",0,0,6
 556,LATENTSEED,Latent Seed,Latent Seeds,8,0,"A simple tree seed. It hums with the potential for great change.",0,0,13
+557,ALLOYEDLUMP,Alloyed Lump,Alloyed Lumps,1,0,"Mishapen, unusual metal. Useless without a way to sharpen it.",2,0,13
+558,ALLOYEDBLADE,Alloyed Blade,Alloyed Blades,1,0,"A fragile blade of unusual metal. Sharp enough to cut alloyed overgrowth.",2,0,13
+559,ALLOYEDWIRE,Alloyed Wire,Alloyed Wires,1,0,"A thin, nearly invisible strand of unusual metal.",2,0,13

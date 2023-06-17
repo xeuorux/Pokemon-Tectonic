@@ -1,3 +1,5 @@
 ﻿# See the documentation on the wiki to learn how to edit this file.
 2001,PRIMEVALSLOWSTART,Primeval Slow Start,"Attack and Speed are halved."
 2002,PRIMEVALIMPOSTER,Primeval Imposter,"Transforms into the entire enemy team, except buffed!"
+2003,PRIMEVALREGENERATOR,Primeval Regenerator,"Heals for 1/4th of its HP at the end of every turn."
+2004,PRIMEVALDISGUISE,Primeval Disguise,"The Pokemon starts as a very convincing Pikachu!"

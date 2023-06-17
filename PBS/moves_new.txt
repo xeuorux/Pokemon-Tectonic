@@ -202,7 +202,7 @@
 1201,ACIDBATH,Acid Bath,03C,110,POISON,Special,100,5,0,NearOther,0,bef,"The user and target bathe in acid. Lowers the user's Defense and Sp. Def by two steps each.",ACIDSPRAY
 1202,STINGINGJEALOUSY,Stinging Jealousy,553,70,POISON,Physical,100,12,100,AllNearFoes,0,bef,"Attacks with energy from jealousy. All opposing Pokémon with stat boosts get poisoned.",POISONSTING
 1203,STANDTOGETHER,Stand Together,554,0,FIGHTING,Status,0,30,0,User,0,d,"The user holds fast with its teammates, raising the Defense of itself and its allies by three steps.",
-1204,CAMARADERIE,Camaraderie,555,0,PSYCHIC,Status,0,30,0,User,0,d,"The user calms itself and its teammates, raising the Sp. Def of itself and its allies by three steps.",
+1204,HARMONIZE,Harmonize,555,0,GRASS,Status,0,30,0,User,0,d,"The user calms itself and its teammates, raising the Sp. Def of itself and its allies by three steps.",
 1205,TRICKYTOXINS,Tricky Toxins,121,95,POISON,Special,100,12,0,NearOther,0,abef,"Turns the foe's power against it, dealing damage using the target's Sp. Attack stat.",VENOSHOCK
 1206,RANSACK,Ransack,0F1,60,NORMAL,Special,100,20,0,NearOther,0,abef,"The user skillfully blasts the target, then steals their item. Items stolen from wild Pokémon are stored.",
 1207,TRAPJAW,Trap Jaw,557,85,GRASS,Physical,100,12,0,NearOther,0,abefi,"Lures an enemy into its jaws, draining 2/3 of damage dealt if they hit the user this turn.",

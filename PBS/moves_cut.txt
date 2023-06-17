@@ -141,3 +141,4 @@
 4140,DEFENSECURL,Defense Curl,01E,0,NORMAL,Status,0,30,0,User,0,d,"The user curls up to conceal weak spots and raise both of its defensive stats.",
 4141,MOONIMPACT,Moon Impact,516,110,FAIRY,Physical,85,12,0,NearOther,0,abef,"Cannot miss in moonglow. 30% chance to dizzy the target.",SPIRITBREAK
 4142,LUNARJUSTICE,Lunar Justice,546,85,FAIRY,Physical,100,10,0,NearOther,0,abef,"The user attacks with the power of the moon, guaranteeing a critical hit on foes with boosted stats.",BEHEMOTHBLADE
+4143,CAMARADERIE,Camaraderie,555,0,PSYCHIC,Status,0,30,0,User,0,d,"The user calms itself and its teammates, raising the Sp. Def of itself and its allies by three steps.",

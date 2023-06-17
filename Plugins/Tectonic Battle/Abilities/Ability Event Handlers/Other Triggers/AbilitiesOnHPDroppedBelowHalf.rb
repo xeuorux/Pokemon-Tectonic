@@ -54,3 +54,13 @@ BattleHandlers::AbilityOnHPDroppedBelowHalf.add(:REAWAKENEDPOWER,
       next false
   }
 )
+
+BattleHandlers::AbilityOnHPDroppedBelowHalf.add(:REAWAKENEDPOWER,
+    proc { |ability, battler, _battle|
+        next unless battler.illusion?
+        target.disableEffect(:Illusion)
+        battle.scene.pbChangePokemon(battler, battler.pokemon)
+        battle.pbSetSeen(battler)
+        next false
+    }
+)

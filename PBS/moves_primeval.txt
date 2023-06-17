@@ -40,32 +40,35 @@
 2039,PRIMEVALIRONDEFENSE,Primeval Iron Defense,625,0,STEEL,Status,0,1,0,User,0,dy,"The user sharply boosts its Defense, gains the ability Filter, and becomes Steel-type.",IRONDEFENSE
 2040,PRIMEVALAMNESIA,Primeval Amnesia,626,0,PSYCHIC,Status,0,1,0,User,0,dy,"The user sharply boosts its Sp. Def, gains the ability Unaware, and becomes Psychic-type.",AMNESIA
 2041,PRIMEVALHOWL,Primeval Howl,627,0,DARK,Status,0,1,0,User,0,dy,"The user summons an allied Poochyena, raises the Attack stat of itself and its allies, and becomes Dark-type.",
-2042,PRIMEVALMINDLINK,Primeval Mind Link,628,0,PSYCHIC,Status,0,1,0,User,0,dy,"The user summons an allied Abra, raises the Sp. Atk stat of itself and its allies, and becomes Psychic-type.",
-2043,PRIMEVALYAWN,Primeval Yawn,631,0,NORMAL,Status,0,1,0,AllNearFoes,0,bey,"The user yawns, making all near foes drowsy. They'll fall asleep at end of turn next.",
-2044,PRIMEVALDREAMDANCE,Primeval Dream Dance,632,0,FAIRY,Status,0,1,0,User,0,doy,"The user raises their Sp. Atk by four steps and becomes Fairy-type.",
-2045,PRIMEVALSWORDSDANCE,Primeval Swords Dance,633,0,STEEL,Status,0,1,0,User,0,doy,"The user raises their Attack by four steps and becomes Steel-type.",
-2046,EMPOWEREDMETEORMASH,Empowered Meteor Mash,636,180,STEEL,Physical,100,10,100,NearOther,0,abefjy,"The target is obliterated by a meteoric strike, which raises the user's attack by two steps.",METEORMASH
-2047,EMPOWEREDICEBEAM,Empowered Ice Beam,637,180,ICE,Special,100,10,100,NearOther,0,befy,"The target is struck with an absolute zero beam of energy, frostbiting it.",ICEBEAM
-2048,EMPOWEREDROCKTOMB,Empowered Rock Tomb,638,120,ROCK,Physical,100,10,100,AllNearFoes,0,befy,"Boulders are hurled at all near enemies, harshly lowering their Speed by preventing their movement.",ROCKTOMB
-2049,EMPOWEREDANCIENTPOWER,Empowered Ancient Power,639,120,ROCK,Special,100,10,100,NearOther,0,befy,"The user attacks with a prehistoric power which raises all its stats",ANCIENTPOWER
-2050,EMPOWEREDTHUNDERBOLT,Empowered Thunderbolt,640,180,ELECTRIC,Special,100,1,100,NearOther,0,befy,"A powerful electric blast is let loose on the target, numbing it.",THUNDERBOLT
-2051,EMPOWEREDFLAREBLITZ,Empowered Flare Blitz,641,220,FIRE,Physical,100,10,100,NearOther,0,abefy,"The user cloaks itself in fire and charges at the foe, burning it. The user also takes 33% recoil.",FLAREBLITZ
-2052,EMPOWEREDMETALCLAW,Empowered Metal Claw,642,80,STEEL,Physical,100,30,100,NearOther,0,abefy,"The target is raked with steel claws twice. The user raises its attack after each hit.",METALCLAW
-2053,EMPOWEREDSLASH,Empowered Slash,643,150,NORMAL,Physical,100,15,0,NearOther,0,abefpy,"The target is attacked with a slash of claws or blades, always critting.",SLASH
-2054,EMPOWEREDBRICKBREAK,Empowered Brick Break,644,160,FIGHTING,Physical,100,12,100,NearOther,0,abefy,"The user attacks with a swift chop, destroying barriers, and reducing the target's defense by five steps.",BRICKBREAK
-2055,EMPOWEREDCROSSPOISON,Empowered Cross Poison,645,90,POISON,Physical,100,10,10,AllNearFoes,0,abefpy,"The user slashes all near foes with with poisonous blades or edges. Will be critical against poisoned targets.",CROSSPOISON
-2056,EMPOWEREDSOLARBEAM,Empowered Solar Beam,646,220,GRASS,Special,100,10,0,AllNearFoes,0,befy,"A two-turn attack. The user gathers light, then blasts all near foes on the second turn.",SOLARBEAM
-2057,EMPOWEREDPOWERGEM,Empowered Power Gem,647,180,ROCK,Special,100,15,100,NearOther,0,befy,"The user attacks with a sparkling gem-like ray, dizzying the target.",POWERGEM
-2058,EMPOWEREDBULLETSEED,Empowered Bullet Seed,648,50,GRASS,Physical,100,15,0,AllNearFoes,0,abefy,"The user forcefully shoots 6 seeds in rapid succession, spread among nearby enemies.",BULLETSEED
-2059,EMPOWEREDFUTURESIGHT,Empowered Future Sight,649,300,PSYCHIC,Special,100,10,0,NearOther,0,y,"Two turns after this move is used, a hunk of psychic energy attacks the target.",FUTURESIGHT
-2060,EMPOWEREDDRAGONDARTS,Empowered Dragon Darts,650,150,DRAGON,Physical,100,10,0,AllNearFoes,0,befy,"The user attacks twice using Dreepy, spreading the hits.",DRAGONDARTS
-2061,EMPOWEREDGIGADRAIN,Empowered Giga Drain,651,150,GRASS,Special,100,10,0,NearOther,0,befy,"A nutrient-draining attack. The user's HP is restored by all the damage taken by the target.",GIGADRAIN
-2062,EMPOWEREDEARTHQUAKE,Empowered Earthquake,652,190,GROUND,Physical,100,10,0,AllNearOthers,0,befy,"The user sets off an earthquake that strikes every Pokémon around it and underground.",EARTHQUAKE
-2063,EMPOWEREDSURF,Empowered Surf,653,190,WATER,Special,100,10,0,AllNearOthers,0,befy,"It swamps the area with a giant wave, hitting every battler nearby and underwater.",SURF
-2064,EMPOWEREDBRAVEBIRD,Empowered Brave Bird,641,240,FLYING,Physical,100,10,100,NearOther,0,abefy,"The user tucks in its wings and charges from a low altitude. The user also takes 33% recoil.",BRAVEBIRD
-2065,EMPOWEREDSLUDGEWAVE,Empowered Sludge Wave,655,180,POISON,Special,100,10,100,AllNearOthers,0,befy,"It swamps the area around the user with a giant sludge wave, poisoning everyone struck.",
-2066,EMPOWEREDDRAGONBREATH,Empowered Dragon Breath,007,120,DRAGON,Special,100,10,100,NearOther,0,befy,"The user exhales a mighty gust that inflicts damage and numbs the target.",
-2067,EMPOWEREDSTOREDPOWER,Empowered Stored Power,656,30,PSYCHIC,Special,100,10,0,NearOther,0,befy,"The user attacks with stored power. The more the user's stats are raised, the greater the damage.",
-2068,STRATOSPHERESCREAM,Stratosphere Scream,700,100,FLYING,Special,0,5,0,AllNearFoes,0,befk,"A move that only the avatar of Rayquaza can use. All enemies struck lose their flinch immunity.",SCREECH
-2069,SEVENSEASEDICT,Seven Seas Edict,701,0,WATER,Status,0,3,0,None,0,d,"A move that only the avatar of Kyogre can use. The user commands a Luvdisc avatar and a Remoraid avatar to join it.",
-2070,WARPINGCORE,Warping Core,702,0,GROUND,Status,0,3,0,BothSides,0,,"A move that only the avatar of Groudon can use. Gravity is intensified for five turns and enemy Pokemon have their weight doubled.",
+2042,PRIMEVALMINDLINK,Primeval Mind Link,634,0,PSYCHIC,Status,0,1,0,User,0,dy,"The user summons an allied Abra, raises the Sp. Atk stat of itself and its allies, and becomes Psychic-type.",
+2043,PRIMEVALSTANDTOGETHER,Primeval Howl,633,0,FIGHTING,Status,0,1,0,User,0,dy,"The user summons an allied Tyrogue, raises the Defense of itself and its allies by 3 steps, and becomes Fighting-type.",
+2044,PRIMEVALHARMONIZE,Primeval Harmonize,634,0,GRASS,Status,0,1,0,User,0,dy,"The user summons an allied Gossifleur, raises the Sp. Def itself and its allies by 3 steps, and becomes Grass-type.",
+2045,PRIMEVALYAWN,Primeval Yawn,631,0,NORMAL,Status,0,1,0,AllNearFoes,0,bey,"The user yawns, making all near foes drowsy. They'll fall asleep at end of turn next.",
+2046,PRIMEVALDREAMDANCE,Primeval Dream Dance,632,0,FAIRY,Status,0,1,0,User,0,doy,"The user raises their Sp. Atk by four steps and becomes Fairy-type.",
+2047,PRIMEVALSWORDSDANCE,Primeval Swords Dance,633,0,STEEL,Status,0,1,0,User,0,doy,"The user raises their Attack by four steps and becomes Steel-type.",
+2048,EMPOWEREDMETEORMASH,Empowered Meteor Mash,636,180,STEEL,Physical,100,10,100,NearOther,0,abefjy,"The target is obliterated by a meteoric strike, which raises the user's attack by two steps.",METEORMASH
+2049,EMPOWEREDICEBEAM,Empowered Ice Beam,637,180,ICE,Special,100,10,100,NearOther,0,befy,"The target is struck with an absolute zero beam of energy, frostbiting it.",ICEBEAM
+2050,EMPOWEREDROCKTOMB,Empowered Rock Tomb,638,120,ROCK,Physical,100,10,100,AllNearFoes,0,befy,"Boulders are hurled at all near enemies, harshly lowering their Speed by preventing their movement.",ROCKTOMB
+2051,EMPOWEREDANCIENTPOWER,Empowered Ancient Power,639,120,ROCK,Special,100,10,100,NearOther,0,befy,"The user attacks with a prehistoric power which raises all its stats",ANCIENTPOWER
+2052,EMPOWEREDTHUNDERBOLT,Empowered Thunderbolt,640,180,ELECTRIC,Special,100,1,100,NearOther,0,befy,"A powerful electric blast is let loose on the target, numbing it.",THUNDERBOLT
+2053,EMPOWEREDFLAREBLITZ,Empowered Flare Blitz,641,220,FIRE,Physical,100,10,100,NearOther,0,abefy,"The user cloaks itself in fire and charges at the foe, burning it. The user also takes 33% recoil.",FLAREBLITZ
+2054,EMPOWEREDMETALCLAW,Empowered Metal Claw,642,80,STEEL,Physical,100,30,100,NearOther,0,abefy,"The target is raked with steel claws twice. The user raises its attack after each hit.",METALCLAW
+2055,EMPOWEREDSLASH,Empowered Slash,643,150,NORMAL,Physical,100,15,0,NearOther,0,abefpy,"The target is attacked with a slash of claws or blades, always critting.",SLASH
+2056,EMPOWEREDBRICKBREAK,Empowered Brick Break,644,160,FIGHTING,Physical,100,12,100,NearOther,0,abefy,"The user attacks with a swift chop, destroying barriers, and reducing the target's defense by five steps.",BRICKBREAK
+2057,EMPOWEREDCROSSPOISON,Empowered Cross Poison,645,90,POISON,Physical,100,10,10,AllNearFoes,0,abefpy,"The user slashes all near foes with with poisonous blades or edges. Will be critical against poisoned targets.",CROSSPOISON
+2058,EMPOWEREDSOLARBEAM,Empowered Solar Beam,646,220,GRASS,Special,100,10,0,AllNearFoes,0,befy,"A two-turn attack. The user gathers light, then blasts all near foes on the second turn.",SOLARBEAM
+2059,EMPOWEREDPOWERGEM,Empowered Power Gem,647,180,ROCK,Special,100,15,100,NearOther,0,befy,"The user attacks with a sparkling gem-like ray, dizzying the target.",POWERGEM
+2060,EMPOWEREDBULLETSEED,Empowered Bullet Seed,648,50,GRASS,Physical,100,15,0,AllNearFoes,0,abefy,"The user forcefully shoots 6 seeds in rapid succession, spread among nearby enemies.",BULLETSEED
+2061,EMPOWEREDFUTURESIGHT,Empowered Future Sight,649,300,PSYCHIC,Special,100,10,0,NearOther,0,y,"Two turns after this move is used, a hunk of psychic energy attacks the target.",FUTURESIGHT
+2062,EMPOWEREDDRAGONDARTS,Empowered Dragon Darts,650,150,DRAGON,Physical,100,10,0,AllNearFoes,0,befy,"The user attacks twice using Dreepy, spreading the hits.",DRAGONDARTS
+2063,EMPOWEREDGIGADRAIN,Empowered Giga Drain,651,150,GRASS,Special,100,10,0,NearOther,0,befy,"A nutrient-draining attack. The user's HP is restored by all the damage taken by the target.",GIGADRAIN
+2064,EMPOWEREDEARTHQUAKE,Empowered Earthquake,652,190,GROUND,Physical,100,10,0,AllNearOthers,0,befy,"The user sets off an earthquake that strikes every Pokémon around it and underground.",EARTHQUAKE
+2065,EMPOWEREDSURF,Empowered Surf,653,190,WATER,Special,100,10,0,AllNearOthers,0,befy,"It swamps the area with a giant wave, hitting every battler nearby and underwater.",SURF
+2066,EMPOWEREDBRAVEBIRD,Empowered Brave Bird,641,240,FLYING,Physical,100,10,100,NearOther,0,abefy,"The user tucks in its wings and charges from a low altitude. The user also takes 33% recoil.",BRAVEBIRD
+2067,EMPOWEREDSLUDGEWAVE,Empowered Sludge Wave,655,180,POISON,Special,100,10,100,AllNearOthers,0,befy,"It swamps the area around the user with a giant sludge wave, poisoning everyone struck.",
+2068,EMPOWEREDDRAGONBREATH,Empowered Dragon Breath,007,120,DRAGON,Special,100,10,100,NearOther,0,befy,"The user exhales a mighty gust that inflicts damage and numbs the target.",
+2069,EMPOWEREDSTOREDPOWER,Empowered Stored Power,656,30,PSYCHIC,Special,100,10,0,NearOther,0,befy,"The user attacks with stored power. The more the user's stats are raised, the greater the damage.",
+2070,EMPOWEREDBULLETPUNCH,Empowered Bullet Punch,657,60,STEEL,Physical,100,10,0,NearOther,1,abefj,"The user strikes the target with 3 punches like bullets. This move always goes first.",
+2071,STRATOSPHERESCREAM,Stratosphere Scream,700,100,FLYING,Special,0,5,0,AllNearFoes,0,befk,"A move that only the avatar of Rayquaza can use. All enemies struck lose their flinch immunity.",SCREECH
+2072,SEVENSEASEDICT,Seven Seas Edict,701,0,WATER,Status,0,3,0,None,0,d,"A move that only the avatar of Kyogre can use. The user commands a Luvdisc avatar and a Remoraid avatar to join it.",
+2073,WARPINGCORE,Warping Core,702,0,GROUND,Status,0,3,0,BothSides,0,,"A move that only the avatar of Groudon can use. Gravity is intensified for five turns and enemy Pokemon have their weight doubled.",

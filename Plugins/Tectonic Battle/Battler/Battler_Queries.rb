@@ -135,6 +135,7 @@ class PokeBattle_Battler
             # Abilities with undefined behaviour if they were replaced or moved around
             :STYLISH,
             :FRIENDTOALL,
+            :PRIMEVALDISGUISE,
         ]
 
         if abil
@@ -176,6 +177,7 @@ class PokeBattle_Battler
             # Abilities with undefined behaviour if they were replaced or moved around
             :STYLISH,
             :FRIENDTOALL,
+            :PRIMEVALDISGUISE,
         ]
 
         if abil

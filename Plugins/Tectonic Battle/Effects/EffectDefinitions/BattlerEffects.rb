@@ -435,6 +435,11 @@ GameData::BattleEffect.register_effect(:Battler, {
                 battler.applyEffect(:Illusion, toDisguiseAs)
             end
         end
+
+        if battler.hasActiveAbility?(:PRIMEVALDISGUISE)
+            fakePikachu = Pokemon.new(:PIKACHU,user.level,user.owner,user.moves)
+            battler.applyEffect(:Illusion,fakePikachu)
+        end
     end,
     :disable_proc => proc do |battle, battler|
         battle.pbDisplay(_INTL("{1}'s illusion wore off!", battler.pbThis))

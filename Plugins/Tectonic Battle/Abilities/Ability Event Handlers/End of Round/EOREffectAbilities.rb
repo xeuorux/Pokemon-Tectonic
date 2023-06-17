@@ -192,3 +192,9 @@ BattleHandlers::EOREffectAbility.add(:WELLSUPPLIED,
       battler.applyFractionalHealing(1.0 / 12.0, ability: ability)
   }
 )
+
+BattleHandlers::EOREffectAbility.add(:PRIMEVALREGENERATOR,
+  proc { |ability, battler, _battle|
+      battler.applyFractionalHealing(1.0 / 4.0, ability: ability)
+  }
+)
