@@ -760,7 +760,7 @@ Pokemon = CUBONE,25
     AbilityIndex = 1 # Break Through
     Item = ROWAPBERRY
 Pokemon = POOCHYENA,25
-    AbilityIndex = 1 # Night Stalker
+    AbilityIndex = 0 # Intimidate
     Item = DARKGEM
 #-------------------------------
 [NURSE,Ellen]
@@ -772,7 +772,7 @@ Pokemon = CHANSEY,29
 Pokemon = STANTLER,30
     AbilityIndex = 0 # Intimidate
 Pokemon = ONIX,31
-    AbilityIndex = 1 # Gravitational
+    AbilityIndex = 0 # Radiate
     Item = ROCKGEM
 Pokemon = GOLISOPOD,32
     AbilityIndex = 1 # Emergency Exit
@@ -785,7 +785,7 @@ Policies = NO_PERFECT
 Pokemon = NIDORINO,34
     AbilityIndex = 0 # Sheer Force
 Pokemon = HOUNDOOM,35
-    AbilityIndex = 0 # Midnight Sun
+    AbilityIndex = 1 # Berserk
     Item = EVIOLITE
 Pokemon = SWOOBAT,35
     AbilityIndex = 1 # Simple
@@ -828,7 +828,7 @@ Pokemon = TOXICROAK,52
     AbilityIndex = 0 # Poison Touch
     Item = FOCUSSASH
 Pokemon = MINIOR,53
-    AbilityIndex = 1 # Loose Shell
+    AbilityIndex = 0 # Shields Down
 #-------------------------------
 [VETERANM_2,Roy]
 Policies = HAIL_TEAM
@@ -875,7 +875,7 @@ Pokemon = SAURENAID,65
     AbilityIndex = 0 # Frost Song
     Item = LEFTOVERS
 Pokemon = EMOLGA,66
-    AbilityIndex = 0 # Overwhelm
+    AbilityIndex = 1 # Fly By
     Item = FLYINGGEM
 Pokemon = HOUNDOMINUS,66
     AbilityIndex = 1 # Berserk
@@ -888,10 +888,10 @@ Pokemon = EXCADRILL,66
 Policies = NO_PERFECT
 Pokemon = RAICHU,70
     Moves = THUNDERBOLT,SURF,FOCUSBLAST,GRASSKNOT
-    AbilityIndex = 1 # Break Through
+    AbilityIndex = 0 # Extreme Energy
     Item = SITRUSBERRY
 Pokemon = CORVIKNIGHT,70
-    AbilityIndex = 0 # Mirror Armor
+    AbilityIndex = 1 # Volt Absorb
     Item = STEELGEM
 Pokemon = SEISMAW,70
     AbilityIndex = 0 # Strong Jaw
@@ -903,7 +903,7 @@ Pokemon = ABSOLUS,70
     AbilityIndex = 1 # Vengeance
     Item = CHOICESCARF
 Pokemon = ALAKAZAM,70
-    AbilityIndex = 0 # Warping Effect
+    AbilityIndex = 1 # Steelworker
     Item = LUMBERRY
 #-------------------------------
 [SCIENTIST_M2,Marco]
@@ -950,34 +950,9 @@ Pokemon = BEHEEYEM,35
 Pokemon = UNFEZANT,35
     AbilityIndex = 1 # Super Luck
 #-------------------------------
-[TRAINER_Lucile,Lucile]
-Pokemon = WHISMUR,18
-    Name = Pippin
-    AbilityIndex = 1 # Loud
-Pokemon = ARON,19
-    Name = Pebble
-    AbilityIndex = 0 # Rock Head
-Pokemon = JANGMOO,20
-    Name = Buttercup
-    AbilityIndex = 1 # Plot Armor
-#-------------------------------
-[TRAINER_Lucile,Lucile,1]
-Pokemon = JANGMOO,29
-    Name = Buttercup
-    AbilityIndex = 1 # Plot Armor
-Pokemon = LOUDRED,30
-    Name = Pippin
-    AbilityIndex = 1 # Loud
-Pokemon = TOXTRICITY,31
-    Name = Cookie
-    AbilityIndex = 1 # Thunderstruck
-Pokemon = LAIRON,32
-    Name = Pebble
-    AbilityIndex = 0 # Rock Head
-#-------------------------------
 [SAGE,Imay]
 Pokemon = DOTTLER,26
-    AbilityIndex = 1 # Total Grasp
+    AbilityIndex = 0 # Brain Scramble
     Item = SITRUSBERRY
 Pokemon = HERDIER,27
     Moves = SEISMICTOSS,CHILL,CHARM
@@ -999,17 +974,17 @@ Pokemon = BINACLE,26
 Pokemon = ELECTABUZZ,26
     AbilityIndex = 1 # Adrenaline Rush
 Pokemon = MUDBRAY,26
-    AbilityIndex = 0 # Mental Block
+    AbilityIndex = 1 # Stamina
     Item = GROUNDGEM
 Pokemon = MBOLDORE,26
-    AbilityIndex = 0 # Time Interloper
+    AbilityIndex = 1 # Space Interloper
 #-------------------------------
 [PARASOLLADY,Clarissa]
 Pokemon = SEEL,25
-    AbilityIndex = 1 # Swift Swim
+    AbilityIndex = 0 # Bitter
     Item = ORANBERRY
 Pokemon = HOUNDOOM,27
-    AbilityIndex = 0 # Midnight Sun
+    AbilityIndex = 1 # Berserk
 Pokemon = FOONGUS,26
     AbilityIndex = 1 # Belligerent
 #-------------------------------
@@ -1050,15 +1025,15 @@ Pokemon = GRAVELER,27
 #-------------------------------
 [WORKER,Kevin]
 Pokemon = BOLDORE,27
-    AbilityIndex = 0 # Solar Cell
+    AbilityIndex = 1 # Unburden
 Pokemon = YAMPER,27
     AbilityIndex = 0 # Strong Jaw
 #-------------------------------
 [TEACHER,Hilde]
 Pokemon = HATTREM,27
-    AbilityIndex = 1 # Blizz Boxer
+    AbilityIndex = 0 # Killjoy
 Pokemon = LOUDRED,28
-    AbilityIndex = 0 # Echo
+    AbilityIndex = 1 # Loud
 #-------------------------------
 [POKEMONRANGER_M2,Connor]
 Policies = NO_PERFECT
@@ -1068,7 +1043,7 @@ Pokemon = DRIFBLIM,30
 Pokemon = LOMBRE,30
     AbilityIndex = 0 # Fiesta
 Pokemon = GYAMASK,30
-    AbilityIndex = 1 # Sand Stream
+    AbilityIndex = 0 # Wandering Spirit
     Item = ORANBERRY
 #-------------------------------
 [BACKPACKER_F,Aiyana]
@@ -1104,7 +1079,7 @@ Pokemon = BANETTE,28
     AbilityIndex = 1 # Razor's Edge
     Item = SITRUSBERRY
 Pokemon = CHERRIM,29
-    AbilityIndex = 0 # Flower Gift
+    AbilityIndex = 1 # Flower Gift
 Pokemon = FLOATZEL,27
     AbilityIndex = 1 # Technician
 #-------------------------------
@@ -1123,7 +1098,7 @@ Pokemon = DRIZZILE,28
     AbilityIndex = 0 # Sniper
     Item = WATERGEM
 Pokemon = HERACROSS,27
-    AbilityIndex = 1 # Power Lifter
+    AbilityIndex = 0 # Skill Link
 #-------------------------------
 [BACKPACKER_M,Freedom]
 Pokemon = MTANGELA,27
@@ -1132,7 +1107,7 @@ Pokemon = MTANGELA,27
 Pokemon = CORVISQUIRE,27
     AbilityIndex = 0 # Mirror Armor
 Pokemon = GABITE,28
-    AbilityIndex = 1 # Sand Shroud
+    AbilityIndex = 0 # Rough Skin
 #-------------------------------
 [NINJABOY,Hwan]
 Pokemon = SPINARAK,28
@@ -1145,7 +1120,7 @@ Pokemon = HELIOPTILE,29
 #-------------------------------
 [VETERAN_F,Genevieve]
 Pokemon = MNOCTOWL,28
-    AbilityIndex = 1 # Winter Insulation
+    AbilityIndex = 0 # Sentry
 Pokemon = ANORITH,28
     AbilityIndex = 0 # Impervious
     Item = ROCKGEM
@@ -2270,7 +2245,7 @@ Pokemon = WATCHOG,45
 [BLACKBELT2,Riccardo]
 Policies = SAND_TEAM,NO_PERFECT
 Pokemon = HIPPOWDON,53
-    AbilityIndex = 1 # Glass Firing
+    AbilityIndex = 0 # Sand Stream
     Item = SMOOTHROCK
 Pokemon = MANDIBUZZ,53
     AbilityIndex = 1 # Desert Scavenger
@@ -2279,7 +2254,7 @@ Pokemon = MARACTUS,54
     AbilityIndex = 1 # Desert Armor
 Pokemon = SALAMENCE,55
     Moves = OUTRAGE,FIREFANG,DRAGONDANCE,ACROBATICS
-    AbilityIndex = 1 # Calamity
+    AbilityIndex = 0 # Intimidate
     Item = PERSIMBERRY
 Pokemon = TYPHLOSION,55
     AbilityIndex = 0 # Burn Skill
@@ -2308,7 +2283,7 @@ Pokemon = AMOONGUSS,63
     AbilityIndex = 0 # Regenerator
     Item = ROCKYHELMET
 Pokemon = OMASTAR,63
-    AbilityIndex = 0 # Overwhelm
+    AbilityIndex = 1 # Hubris
 Pokemon = DRAPION,64
     AbilityIndex = 1 # Merciless
     Item = REDCARD
@@ -2322,13 +2297,13 @@ Pokemon = RAPIDASH,65
 [BLACKBELT,Leo]
 Policies = NO_PERFECT
 Pokemon = AMPHAROS,68
-    AbilityIndex = 1 # Stubborn
+    AbilityIndex = 0 # Static
     Item = ORANBERRY
 Pokemon = HAEROBIC,68
     AbilityIndex = 1 # Stubborn
     Item = FIGHTINGGEM
 Pokemon = SALAMENCE,69
-    AbilityIndex = 1 # Calamity
+    AbilityIndex = 0 # Intimidate
     Item = SHELLBELL
 Pokemon = SAMUROTT,70
     AbilityIndex = 1 # Sharpness
@@ -2869,12 +2844,12 @@ Pokemon = ACCELGOR,53
 Pokemon = DRAGONITE,54
     AbilityIndex = 1 # Multiscale
 Pokemon = GIGANTEON,55
-    AbilityIndex = 1 # Friend to All
+    AbilityIndex = 0 # Ultra Adapted
     Item = NORMALGEM
 Pokemon = SOLROCK,55
     AbilityIndex = 0 # Levitate
 Pokemon = HITMONLEE,54
-    AbilityIndex = 0 # Energetic
+    AbilityIndex = 1 # Ally Cushion
     Item = MUSCLEBAND
 #-------------------------------
 [GENTLEMAN,Nicholas]
@@ -2884,7 +2859,7 @@ Pokemon = WHISCASH,55
     AbilityIndex = 0 # Mental Block
     Item = SHELLBELL
 Pokemon = NOIVERN,55
-    AbilityIndex = 1 # Shattering
+    AbilityIndex = 0 # Terrorize
 Pokemon = PERRSERKER,54
     AbilityIndex = 1 # Steely Spirit
     Item = STEELGEM
@@ -2904,10 +2879,12 @@ Pokemon = TEAMUJIN,55
 [COOLTRAINER_F,Reina]
 Pokemon = AMBIPOM,55
     AbilityIndex = 0 # Sticky Fingers
+    Item = FOCUSSASH
 Pokemon = HTYPHLOSION,55
     AbilityIndex = 0 # Fiery Spirit
 Pokemon = HSAMUROTT,55
     AbilityIndex = 1 # Sharpness
+    Item = WHETSTONE
 Pokemon = HDECIDUEYE,55
     AbilityIndex = 1 # Feather Coat
 #-------------------------------
