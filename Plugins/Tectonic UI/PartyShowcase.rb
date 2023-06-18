@@ -39,6 +39,10 @@ class PokemonPartyShowcase_Scene
         playerName = "<ar>#{$Trainer.name}</ar>"
         drawFormattedTextEx(@overlay, Graphics.width - 168, Graphics.height - 20, 160, playerName, BASE_COLOR, SHADOW_COLOR)
 
+        # Show player name
+        settingsLabel = "v#{Settings::GAME_VERSION}"
+        drawFormattedTextEx(@overlay, Graphics.width / 2 + 64, Graphics.height - 20, 160, settingsLabel, BASE_COLOR, SHADOW_COLOR)
+
         pbFadeInAndShow(@sprites) { pbUpdate }
 
         pbScreenCapture(snapShotName) if snapshot
