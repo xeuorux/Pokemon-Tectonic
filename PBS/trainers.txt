@@ -2162,42 +2162,42 @@ Pokemon = AMUK,34
     AbilityIndex = 1 # Gluttony
 #-------------------------------
 [HIKER2,Rhys]
-Pokemon = BELLOSSOM,43
-    AbilityIndex = 0 # Solar Power
+Pokemon = BELLOSSOM,52
+    AbilityIndex = 1 # Choreography
     Item = FOCUSSASH
-Pokemon = SALAZZLE,44
+Pokemon = SALAZZLE,51
     AbilityIndex = 0 # Expertise
     Item = EXPERTBELT
-Pokemon = POLTEAGEIST,43
-    AbilityIndex = 0 # Frostpitality
-Pokemon = BIBAREL,44
+Pokemon = POLTEAGEIST,52
+    AbilityIndex = 1 # Burn Skill
+Pokemon = BIBAREL,53
     Moves = YAWN,SWORDSDANCE,HYPERFANG,WATERFALL
     AbilityIndex = 0 # Simple
     Item = NORMALGEM
 #-------------------------------
 [SWIMMER_F5,Shreya]
-Pokemon = OVERQWIL,43
+Pokemon = OVERQWIL,51
     AbilityIndex = 0 # Poison Point
-Pokemon = MIGHTYENA,44
+Pokemon = MIGHTYENA,52
     AbilityIndex = 0 # Intimidate
     Item = EJECTBUTTON
-Pokemon = MIENSHAO,43
+Pokemon = MIENSHAO,51
     AbilityIndex = 0 # Nerve Number
     Item = SHELLBELL
-Pokemon = PLUSLE,44
+Pokemon = PLUSLE,52
     AbilityIndex = 1 # Expertise
 #-------------------------------
 [SWIMMER_F2,Astrid]
-Pokemon = TENTACRUEL,42
+Pokemon = TENTACRUEL,50
     AbilityIndex = 0 # Clear Body
-Pokemon = VOLBEAT,43
-    AbilityIndex = 0 # Night Life
+Pokemon = VOLBEAT,51
+    AbilityIndex = 1 # Competitive
     Item = LIFEORB
-Pokemon = PALOSSAND,42
+Pokemon = PALOSSAND,50
     AbilityIndex = 0 # Grit
     Item = GANLONBERRY
-Pokemon = REUNICLUS,43
-    AbilityIndex = 0 # Extremophile
+Pokemon = REUNICLUS,51
+    AbilityIndex = 1 # Magic Guard
 #-------------------------------
 [JUGGLER,Youcef]
 Policies = NO_PERFECT
