@@ -1582,7 +1582,7 @@ GameData::BattleEffect.register_effect(:Battler, {
     :id => :EmpoweredDestinyBond,
     :real_name => "Empowered Bond",
     :apply_proc => proc do |battle, battler, _value|
-        battle.pbDisplay(_INTL("Attacks against {1} will incur half recoil!", battler.pbThis(true)))
+        battle.pbDisplay(_INTL("Attacks against {1} will incur recoil!", battler.pbThis(true)))
     end,
 })
 

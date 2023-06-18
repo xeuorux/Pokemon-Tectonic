@@ -621,7 +621,7 @@ user.pbThis))
 
                 # Empowered Destiny Bond
                 if targetBattler.effectActive?(:EmpoweredDestinyBond) && targetBattler.damageState.totalHPLost > 0 
-                    recoilDamage = targetBattler.damageState.totalHPLost / 2.0
+                    recoilDamage = targetBattler.damageState.totalHPLost / 3.0
                     recoilMessage = _INTL("{1}'s destiny is bonded with {2}!", user.pbThis,
     targetBattler.pbThis(true))
                     user.applyRecoilDamage(recoilDamage, false, true, recoilMessage)
