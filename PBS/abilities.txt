@@ -124,7 +124,7 @@
 123,WIMPOUT,Wimp Out,"Cowardly switches out if its HP becomes half or less."
 124,EMERGENCYEXIT,Emergency Exit,"Switches out if its HP becomes half or less."
 125,MERCILESS,Merciless,"Its attacks are critical against poisoned targets."
-126,SHIELDSDOWN,Shields Down,"No shell when HP is half or less. Can't be Statused while has shell."
+126,SHIELDSDOWN,Shields Down,"It can't be statused while it has its shell. Below half HP its shell breaks and it becomes aggressive."
 127,WATERBUBBLE,Water Bubble,"Weakens incoming Fire-type moves, and doubles Water-type damage."
 128,STEELWORKER,Steelworker,"Powers up Steel-type moves by 50%."
 129,BERSERK,Berserk,"Raises Atk and Sp. Atk by two steps each when its HP is lowered below half."
