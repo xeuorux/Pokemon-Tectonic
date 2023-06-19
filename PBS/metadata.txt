@@ -1982,3 +1982,9 @@ BattleBack = cave2
 Outdoor = true
 ShowArea = true
 Bicycle = true
+#-------------------------------
+[384]
+# Casaba Gatehouse
+Outdoor = false
+ShowArea = false
+Bicycle = true
