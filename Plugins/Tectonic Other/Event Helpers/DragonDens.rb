@@ -46,7 +46,7 @@ def hatchDragonEggs(egg)
 end
 
 def dragonDenEnterPrompt()
-	if pbConfirmMessage(_INTL("You notice a small hole at the bottom of the rock wall. Would you like to dig into it?"))
+	if pbConfirmMessage(_INTL("You notice a small hole in the rock. Dig into it?"))
 		pbMessage(_INTL("You clambor into the den!"))
 		return true
 	end

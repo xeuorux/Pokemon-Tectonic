@@ -83,7 +83,7 @@ def updateTotalBadgesVar
 end
 
 def giveBattleReport()
-	pbMessage(_INTL("The Performance Analyzer whirs, then begins printing."))
+	pbMessage(_INTL("\\i[PERFORMANCEANALYZER]The Performance Analyzer whirs, then begins printing."))
 	pbReceiveItem(:BATTLEREPORT)
 end
 

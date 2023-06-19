@@ -280,6 +280,7 @@ BattleHandlers::UserAbilityEndOfMove.add(:GENERATOR,
   proc { |ability, user, _targets, move, battle, _switchedBattlers|
       next if battle.futureSight
       next if move.damagingMove?
+      next if battler.effectActive?(:Charge)
       battle.pbShowAbilitySplash(user, ability)
       user.applyEffect(:Charge)
       battle.pbHideAbilitySplash(user)
