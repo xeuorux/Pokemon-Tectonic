@@ -2318,8 +2318,15 @@ class PokeBattle_Move_5F6 < PokeBattle_RecoilMove
     
     def pbRecoilDamage(user, target)
         damage = (target.damageState.totalHPLost * finalRecoilFactor(user)).round
-        damage = [damage,(user.hp - 1)].max
+        damage = [damage,(user.hp - 1)].min
         return damage
+    end
+
+    def pbEffectAfterAllHits(user, target)
+        return if target.damageState.unaffected
+        recoilDamage = pbRecoilDamage(user, target)
+        return if recoilDamage <= 0
+        user.applyRecoilDamage(recoilDamage, false, true)
     end
 end
 
