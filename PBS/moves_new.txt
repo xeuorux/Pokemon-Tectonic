@@ -402,7 +402,7 @@
 1401,MISTBURST,Mist Burst,510,130,FAIRY,Special,100,5,0,AllNearFoes,0,bef,"Attacks nearby foes with a misty explosion. User is damaged for 50% of their current HP.",MISTYEXPLOSION
 1402,ENERGYTRICK,Energy Trick,056,0,PSYCHIC,Status,0,10,0,User,0,d,"The user employs psychic power to switch its base Sp. Atk with its base Sp. Def stat.",POWERTRICK
 1403,SUSTAINEDWIND,Sustained Wind,5D3,0,FLYING,Status,0,12,0,UserSide,0,dq,"The user whips up a lingering tailwind that ups the Speed of all party Pokémon for six turns.",TAILWIND
-1404,STABILIZE,Stabilize,5B3,0,GROUND,Status,0,10,0,User,0,d,"The user slathers mud around to heal itself for 1/2 of its max HP, and extends any active Screens by 1 turn.",MUDSPORT
+1404,STABILIZE,Stabilize,5B3,0,GROUND,Status,0,10,0,User,0,d,"The user slathers mud around to heal itself for 1/2 of its max HP, and extends any active screens by 1 turn.",MUDSPORT
 1405,THIEVINGSPREE,Thieving Spree,0F1,80,NORMAL,Physical,100,20,0,AllNearFoes,0,abef,"The user attacks and steals items from all near foes. Items stolen from wild Pokémon are stored.",COVET
 1406,TERRORSWARM,Terror Swarm,0CF,75,BUG,Special,100,15,0,NearOther,0,abef,"The user summons bugs to terrorize the target, trapping and damaging it for three turns.",INFESTATION
 1407,BLIGHTTOUCH,Blight Touch,5D5,80,POISON,Physical,100,10,0,NearOther,0,bef,"The user infects the target with a touch and also destroys any Herbs its holding.",POISONJAB
@@ -429,11 +429,11 @@
 1428,BAR,Bar,0C7,0,FIGHTING,Status,100,15,0,NearOther,0,bce,"The target barred by rules which prevent it from using off-type moves for three more turns.",IMPRISON
 1429,SHATTEREDENERGY,Shattered Energy,190,80,DRAGON,Special,100,15,0,AllNearOthers,0,bef,"Attacks with dragon energy. Power increases and damages all nearby in eclipse.",DRAGONPULSE
 1430,AIMTRUE,AIMTRUE,5D9,0,NORMAL,Status,0,25,0,User,0,d,"The user steadies its eyes, mind, and body in order to maximize its accuracy.",MINDREADER
-1431,STAMPDOWN,Stamp Down,050,60,GROUND,Physical,0,12,0,NearOther,0,bef,"The user attacks by flatting the target into the ground. The target's stat step changes are returned to normal.",STOMP
-1432,GRINDSTONE,Grind Stone,5F8,80,ROCK,Physical,100,12,0,NearOther,0,abef,"The user scratches the target with rough rocks. If in Sandstorm, the target's Defense is lowered by 3 steps.",STONEEDGE
+1431,STAMPDOWN,Stamp Down,050,60,GROUND,Physical,0,12,0,NearOther,0,bef,"The user attacks by flattening the target into the ground. The target's stat step changes are returned to normal.",STOMP
+1432,GRINDSTONE,Grind Stone,5F8,80,ROCK,Physical,100,12,0,NearOther,0,abef,"The user scratches the target with rough rocks. If in sandstorm, the target's Defense is lowered by 3 steps.",STONEEDGE
 1433,SANDBLASTING,Sand Blasting,5F9,70,GROUND,Special,100,15,0,NearOther,0,abef,"Attacks by blasting sand. This move always goes first in sandstorm.",SANDATTACK
 1434,ROUSINGHULA,Rousing Hula,173,80,FIRE,Special,100,10,100,AllNearOthers,0,befo,"The user dances rapidly, emitting tropical heat. Any frostbitten Pokémon will be healed by this heat.",HEATWAVE
 1435,CURLUP,CURLUP,01E,0,NORMAL,Status,0,30,0,User,0,d,"The user curls up to conceal weak spots and raise both of its defensive stats.",DEFENSECURL
 1436,WHAMBLAM,Wham Blam,000,135,FAIRY,Physical,70,12,0,NearOther,0,abef,"The user pretends to be a hero and strikes their foe with super strength.",SPIRITBREAK
 1437,FIREPULSE,Fire Pulse,00A,60,FIRE,Special,100,15,20,NearOther,0,befm,"The user attacks the target with a pulsing blast of fire. It has a 20% chance to burn.",FLAMEBURST
-1438,SHRAPNELCANNON,Shrapnel Cannon,551,30,FIRE,Special,100,12,0,NearOther,0,befk,"The user launches shrapnel, dealing damage and setting a layer of flames spikes around the target.",FLAMEBURST
+1438,SHRAPNELCANNON,Shrapnel Cannon,551,30,FIRE,Special,100,12,0,NearOther,0,befk,"The user launches shrapnel, dealing damage and setting a layer of flame spikes around the target.",FLAMEBURST
