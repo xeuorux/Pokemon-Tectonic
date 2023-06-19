@@ -7,10 +7,10 @@ def increaseLevelCap(increase)
     setLevelCap($game_variables[LEVEL_CAP_VAR] + increase)
 end
 
-def setLevelCap(newCap)
+def setLevelCap(newCap, showMessage = true)
     return unless LEVEL_CAPS_USED
     $game_variables[LEVEL_CAP_VAR] = newCap
-    pbMessage(_INTL("\\wmLevel cap raised to {1}!\\me[Bug catching 3rd]\\wtnp[80]\1", newCap))
+    pbMessage(_INTL("\\wmLevel cap raised to {1}!\\me[Bug catching 3rd]\\wtnp[80]\1", newCap)) if showMessage
 end
 
 def levelCapMaxed?
