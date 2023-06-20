@@ -94,7 +94,7 @@
 1093,STRATAGEM,Stratagem,"Powers up Rock-type moves by 50%."
 1094,ARMORPIERCING,Armor Piercing,"Deals double damage against raised Defense or Sp. Def."
 1095,BADLUCK,Bad Luck,"When free from status, non-damaging moves by foes are drawn in."
-1096,SOULREAD,Soul Read,"Double damage to targets who don't share a type with their last move."
+1096,SOULREAD,Soul Read,"Double damage to targets who don't share a type with their last-used move."
 1097,SURFSUP,Surf's Up,"Powers up Water-type moves by 50%."
 1098,NUMBINGTOUCH,Numbing Touch,"Physical moves have a 30% chance to numb targets."
 1099,NERVENUMBER,Nerve Number,"Special moves have a 30% chance to numb targets."
