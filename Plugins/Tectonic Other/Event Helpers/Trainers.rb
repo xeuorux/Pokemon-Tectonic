@@ -212,3 +212,21 @@ def allTrainersPerfected(events)
 	end
 	return true
 end
+
+def allEventsExclaim(eventIDArray)
+	eventIDArray.each do |id|
+		showExclamation(id)
+		pbWait(10)
+	end
+end
+
+def wildBattlersFlee(eventIDArray)
+	allEventsExclaim(eventIDArray)
+	pbWait(20)
+	blackFadeOutIn {
+		pbSEPlay('Battle flee')
+		eventIDArray.each do |id|
+			pbSetSelfSwitch(id,'D')
+		end
+	}
+end
