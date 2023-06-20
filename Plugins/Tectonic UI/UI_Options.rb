@@ -34,6 +34,7 @@ class PokemonSystem
     attr_accessor :battle_transitions
     attr_accessor :tutorial_popups
     attr_accessor :dark_mode
+    attr_accessor :forced_time_tint
 
     def bgmvolume
         return @bgmvolume / VOLUME_FAKERY_MULT
@@ -80,6 +81,7 @@ class PokemonSystem
         @color_shifts = 0 # (0=true, 1=false)
         @particle_effects = 0 # (0=true, 1=false)
         @overworld_weather        = 0 # (0=true, 1=false)
+        @forced_time_tint         = 0 # (0=off,1=morning,2=mid-day,3=evening,4=night)
         @screenshake              = 0 # (0=true, 1=false)
         @skip_fades = 1 # (0=true, 1=false)
         @gendered_look 		        = 0 # (0 = Masc, 1 = Fem, 2 = Andro)
@@ -771,6 +773,24 @@ class PokemonOption_Scene_Overworld < PokemonOption_Scene_Base
 					pbToggleFollowingPokemon($PokemonSystem.followers == 0 ? "on" : "off", false)
 				}
 			),
+            EnumOption.new(_INTL("World Weather"), [_INTL("On"), _INTL("Off")],
+				proc { $PokemonSystem.overworld_weather },
+				proc { |value|
+					$PokemonSystem.overworld_weather = value
+					if value == 0
+						applyOutdoorEffects
+					else
+						$game_screen.resetWeather
+					end
+				}
+			),
+            EnumOption.new(_INTL("Force Time"), [_INTL("Off"), _INTL("6"), _INTL("12"), _INTL("18"), _INTL("24")],
+				proc { $PokemonSystem.forced_time_tint },
+				proc { |value|
+					$PokemonSystem.forced_time_tint = value
+                    PBDayNight.sheduleToneRefresh
+				}
+			),
 		])
 	end
 end
@@ -801,17 +821,6 @@ class PokemonOption_Scene_AdvancedGraphics < PokemonOption_Scene_Base
 				proc { $PokemonSystem.screenshake },
 				proc { |value|
 					$PokemonSystem.screenshake = value
-				}
-			),
-			EnumOption.new(_INTL("World Weather"), [_INTL("On"), _INTL("Off")],
-				proc { $PokemonSystem.overworld_weather },
-				proc { |value|
-					$PokemonSystem.overworld_weather = value
-					if value == 0
-						applyOutdoorEffects
-					else
-						$game_screen.resetWeather
-					end
 				}
 			),
 		])

@@ -168,6 +168,26 @@ module PBDayNight
     def sheduleToneRefresh
       @dayNightToneLastUpdate = nil
     end
+
+    def getToneInternal
+      if $PokemonSystem.forced_time_tint == 0
+        # Calculates the tone for the current frame, used for day/night effects
+        realMinutes = pbGetDayNightMinutes
+        hour   = realMinutes/60
+        minute = realMinutes%60
+        tone         = PBDayNight::HourlyTones[hour]
+        nexthourtone = PBDayNight::HourlyTones[(hour+1)%24]
+        # Calculate current tint according to current and next hour's tint and
+        # depending on current minute
+        @cachedTone.red   = ((nexthourtone.red-tone.red)*minute*@oneOverSixty)+tone.red
+        @cachedTone.green = ((nexthourtone.green-tone.green)*minute*@oneOverSixty)+tone.green
+        @cachedTone.blue  = ((nexthourtone.blue-tone.blue)*minute*@oneOverSixty)+tone.blue
+        @cachedTone.gray  = ((nexthourtone.gray-tone.gray)*minute*@oneOverSixty)+tone.gray
+      elsif $PokemonSystem.forced_time_tint
+        fakeHour = [nil,6,12,18,0][$PokemonSystem.forced_time_tint]
+        @cachedTone = PBDayNight::HourlyTones[fakeHour]
+      end
+    end
   end
 end
 
