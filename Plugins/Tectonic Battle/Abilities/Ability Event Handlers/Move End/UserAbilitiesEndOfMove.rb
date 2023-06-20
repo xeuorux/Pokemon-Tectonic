@@ -397,3 +397,18 @@ BattleHandlers::UserAbilityEndOfMove.add(:JASPERCHARGE,
       user.tryLowerStat(:SPECIAL_ATTACK, user, ability: ability)
   }
 )
+
+BattleHandlers::UserAbilityEndOfMove.add(:SIRENSONG,
+  proc { |ability, user, _targets, move, _battle, _switchedBattlers|
+      next unless move.soundMove?
+      battle.pbShowAbilitySplash(user, ability)
+      user.eachOpposing do |b|
+        if b.pbAttack > b.pbSpAtk
+          b.tryLowerStat(:ATTACK, user, increment: 1, showFailMsg: true)
+        else
+          b.tryLowerStat(:SPECIAL_ATTACK, user, increment: 1, showFailMsg: true)
+        end
+      end
+      battle.pbHideAbilitySplash(user)
+  }
+)

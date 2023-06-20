@@ -80,7 +80,7 @@
 1079,RUINOUS,Ruinous,"All Pokémon deal 20% more move damage."
 1080,FORTIFIED,Fortified,"Take 20% less damage from attacks on turns when it hasn't moved yet."
 1081,BLIZZBOXER,Blizz Boxer,"Boosts Attack by 30% in hailstorms."
-1082,DESERTSPIRIT,Desert Spirit,"Immune to Ground-type moves and sandstorm damage."
+1082,DESERTSPIRIT,Desert Spirit,"Immune to Ground-type moves. Takes 20% less damage in Sandstorm."
 1083,SUDDENCHILL,Sudden Chill,"Special moves against the Pokémon have a 30% chance to frostbite the attacker."
 1084,IMPERVIOUS,Impervious,"Protects from critical hits and from enemies lowering Defense or Sp. Def."
 1085,HARSH,Harsh,"Its attacks are critical against burned targets."
@@ -391,3 +391,4 @@
 1390,CHOREOGRAPHY,Choreography,"Raises Speed whenever any Pokémon uses a dance move."
 1391,BATTERYBREAK,Battery Break,"Uses Lightning Dance if an attack lowers its HP to half or below."
 1392,SUPERFIST,Super Fist,"Boosts the power of punching moves by 50%."
+1393,SIRENSONG,Siren Song,"After using a sound move, lowers one of each foe's attacking stats, whichever is higher."

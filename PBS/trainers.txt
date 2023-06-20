@@ -2128,7 +2128,7 @@ Pokemon = CHIMECHO,34
 Pokemon = VAPOREON,33
     AbilityIndex = 0 # Hydration
 Pokemon = VIBRAVA,34
-    AbilityIndex = 1 # Sand Shroud
+    AbilityIndex = 1 # Siren Song
     Item = LEFTOVERS
 Pokemon = FLOETTE,33
     AbilityIndex = 0 # Clover Song
@@ -4122,7 +4122,7 @@ Pokemon = RUNERIGUS,70
     Item = SMOOTHROCK
 Pokemon = FLYGON,70
     Moves = SANDVORTEX,BUGBUZZ,DRAGONPULSE,SUPERSONIC
-    AbilityIndex = 1 # Sand Shroud
+    AbilityIndex = 1 # Siren Song
 Pokemon = SAURENAID,70
     Name = Maxie
     Gender = male
@@ -5658,7 +5658,7 @@ Pokemon = PURUGLY,70
     AbilityIndex = 0 # Greedy Guts
     Item = CHOPLEBERRY
 Pokemon = FEAROW,70
-	AbilityIndex = 0 # Tough
+    AbilityIndex = 0 # Tough
 #-------------------------------
 [TAPU_KOKO,Tapu Koko]
 Policies = NO_PERFECT
