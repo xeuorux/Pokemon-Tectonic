@@ -45,7 +45,7 @@
 1044,LINGERINGDAZE,Lingering Daze,"Enemies which wake up have all their stats lowered by two steps."
 1045,SHIELDWALL,Shield Wall,"Takes 50% less damage from hyper-effective attacks."
 1046,MYSTICFIST,Mystic Fist,"Boosts the power of punching moves by 30%, and makes them special when that would be more effective."
-1047,LIGHTTRICK,Light Trick,"Doubled speed if any enemy has a status condition."
+1047,LIGHTTRICK,Light Trick,"Doubled Speed if any enemy has a status condition."
 1048,OVERWHELM,Overwhelm,"Boosts Sp. Atk by 30% in rain."
 1049,BRAINSCRAMBLE,Brain Scramble,"Has a 30% chance to dizzy targets when using special moves."
 1050,KILLJOY,Killjoy,"Pokémon can't dance."
