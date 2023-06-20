@@ -751,8 +751,12 @@ class PokeBattle_Move_0A2 < PokeBattle_Move
     end
 
     def getEffectScore(user, _target)
-        score = 20 * user.getScreenDuration
-        score += 30 if user.firstTurn?
+        score = 0
+        user.eachOpposing do |b|
+            score += 40 if b.hasSpecialAttack?
+        end
+        score += 10 * user.getScreenDuration
+        score = (score * 1.3).ceil if user.fullHealth?
         return score
     end
 end
@@ -774,8 +778,12 @@ class PokeBattle_Move_0A3 < PokeBattle_Move
     end
 
     def getEffectScore(user, _target)
-        score = 20 * user.getScreenDuration
-        score += 30 if user.firstTurn?
+        score = 0
+        user.eachOpposing do |b|
+            score += 40 if b.hasPhysicalAttack?
+        end
+        score += 10 * user.getScreenDuration
+        score = (score * 1.3).ceil if user.fullHealth?
         return score
     end
 end
