@@ -3026,7 +3026,7 @@ Pokemon = SWELLOW,56
 Pokemon = ARMALDO,57
     AbilityIndex = 0 # Impervious
 Pokemon = MZANGOOSE,56
-    AbilityIndex = 0 # Served Cold
+    AbilityIndex = 1 # Mental Damage
     Item = GHOSTGEM
 #-------------------------------
 [YOUNGSTER2,Davor]
@@ -3042,6 +3042,7 @@ Pokemon = TURTONATOR,57
     AbilityIndex = 1 # Harsh
 #-------------------------------
 [DRAGONTAMER,Bataar]
+Policies = ECLIPSE_TEAM
 Pokemon = FLYGON,57
     AbilityIndex = 0 # Desert Spirit
 Pokemon = MILOTIC,58
@@ -5766,3 +5767,93 @@ Pokemon = PALOSSAND,70
     AbilityIndex = 0 # Grit
 Pokemon = GOLISOPOD,70
     AbilityIndex = 0 # Emergency Exit
+#-------------------------------
+[WILDPACK,Solar]
+Policies = SUN_TEAM
+Pokemon = TORKOAL,70
+    AbilityIndex = 1 # Drought
+Pokemon = SOLROCK,70
+    AbilityIndex = 1 # Sun Chaser
+Pokemon = CHARIZARD,70
+    AbilityIndex = 1 # Solar Power
+Pokemon = AEXEGGUTOR,70
+    AbilityIndex = 1 # Sustainable
+Pokemon = HELIOLISK,70
+    AbilityIndex = 0 # Solar Power
+Pokemon = BELLOSSOM,70
+    AbilityIndex = 0 # Solar Power
+#-------------------------------
+[WILDPACK,Lunar]
+Policies = MOONGLOW_TEAM
+Pokemon = CLEFABLE,70
+    AbilityIndex = 1 # Lunar Loyalty
+Pokemon = NOCTOWL,70
+    AbilityIndex = 0 # Night Owl
+Pokemon = VOLBEAT,70
+    AbilityIndex = 0 # Night Life
+Pokemon = HUNTAIL,70
+    AbilityIndex = 1 # Night Light
+Pokemon = ARATICATE,70
+    AbilityIndex = 0 # Night Life
+Pokemon = ALOMOMOLA,70
+    AbilityIndex = 1 # Moon Gaze
+#-------------------------------
+[WILDPACK,Tempest]
+Policies = RAIN_TEAM
+Pokemon = STUNFISK,70
+    AbilityIndex = 1 # Drizzle
+Pokemon = PELIPPER,70
+    AbilityIndex = 1 # Dreary Clouds
+Pokemon = GOODRA,70
+    AbilityIndex = 1 # Hydration
+Pokemon = EMOLGA,70
+    AbilityIndex = 0 # Overwhelm
+Pokemon = PINCURCHIN,70
+    AbilityIndex = 0 # Arc Conductor
+Pokemon = LUDICOLO,70
+    AbilityIndex = 1 # Rain Dish
+#-------------------------------
+[WILDPACK,Arid]
+Policies = SAND_TEAM
+Pokemon = DUGTRIO,70
+    AbilityIndex = 0 # Sand Strength
+Pokemon = SUDOWOODO,70
+    AbilityIndex = 0 # Desiccate
+Pokemon = HIPPOWDON,70
+    AbilityIndex = 0 # Sand Stream
+Pokemon = GLISCOR,70
+    AbilityIndex = 1 # Sand Shroud
+Pokemon = PROBOPASS,70
+    AbilityIndex = 1 # Iron Storm
+Pokemon = MANDIBUZZ,70
+    AbilityIndex = 1 # Desert Scavenger
+#-------------------------------
+[WILDPACK,Frigid]
+Policies = HAIL_TEAM
+Pokemon = CONIFEAR,70
+    AbilityIndex = 0 # Frost Scatter
+Pokemon = AVALUGG,70
+    AbilityIndex = 1 # Bitter Cold
+Pokemon = GLACEON,70
+    AbilityIndex = 0 # Snow Shroud
+Pokemon = PERRSERKER,70
+    AbilityIndex = 0 # Slush Rush
+Pokemon = CURSOLA,70
+    AbilityIndex = 0 # Ecto-Particles
+Pokemon = ANINETALES,70
+    AbilityIndex = 0 # Winter Wisdom
+#-------------------------------
+[WILDPACK,Cosmic]
+Policies = ECLIPSE_TEAM
+Pokemon = XATU,70
+    AbilityIndex = 1 # Harbinger
+Pokemon = STARMIE,70
+    AbilityIndex = 0 # Stars Align
+Pokemon = BRUXISH,70
+    AbilityIndex = 0 # Anarchic
+Pokemon = KOMMOO,70
+    AbilityIndex = 1 # Plot Armor
+Pokemon = HAXORUS,70
+    AbilityIndex = 0 # Anarchic
+Pokemon = SLOWKING,70
+    AbilityIndex = 0 # Ephemerate

@@ -1982,9 +1982,16 @@ BattleBack = cave2
 Outdoor = true
 ShowArea = true
 Bicycle = true
+MapPosition = 0,26,12
 #-------------------------------
 [384]
 # Casaba Gatehouse
 Outdoor = false
 ShowArea = false
 Bicycle = true
+#-------------------------------
+[385]
+# Abandoned Lodge
+Outdoor = false
+ShowArea = false
+Bicycle = false

@@ -308,3 +308,4 @@
 435,TAPU_LELE,Guardian Deity,0,,,,Wild,,,[]
 436,TAPU_BULU,Guardian Deity,0,,,,Wild,,,[]
 437,TAPU_FINI,Guardian Deity,0,,,,Wild,,,[]
+438,WILDPACK,Wild Pack,0,,,,Wild,,,[]

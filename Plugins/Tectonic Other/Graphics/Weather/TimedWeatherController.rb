@@ -19,6 +19,8 @@ HOT_MAPS = [
     136, # Casaba Villa
     38, # Bluepoint Beach
     53, # Jungle Path
+    377, # Guardian Island
+    7, # Repora Forest
 ]
 
 COLD_MAPS = [
@@ -32,9 +34,9 @@ COLD_MAPS = [
 ]
 
 STABLE_TEMP_MAPS = [
-    7, # Wet Walkways
     59, # Mainland Dock
     216, # Highland Lake
+    55, # Lingering Delta
 ]
 
 ###########################
@@ -48,8 +50,9 @@ WET_MAPS = [
     217, # Sweetrock Harbor
     266, # Berry GreenHouse
     258, # Whitebloom Town
-    53, # Jungle Path
-    7, # Wet Walkways
+    53, # The Shelf
+    377, # Guardian Island
+    55, # Lingering Delta
 ]
 
 DRY_MAPS = [
@@ -59,6 +62,7 @@ DRY_MAPS = [
     121, # Skyward Ascent
     129, # Barren Crater
     25, # Grouz
+    7, # Repora Forest
 ]
 
 FOG_MAPS = [
