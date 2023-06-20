@@ -1995,3 +1995,27 @@ Bicycle = true
 Outdoor = false
 ShowArea = false
 Bicycle = false
+#-------------------------------
+[386]
+# Cave of Conflict
+Outdoor = false
+ShowArea = true
+Bicycle = false
+#-------------------------------
+[387]
+# Cave of Life
+Outdoor = false
+ShowArea = true
+Bicycle = false
+#-------------------------------
+[388]
+# Cave of Abundance
+Outdoor = false
+ShowArea = true
+Bicycle = false
+#-------------------------------
+[389]
+# Cave of Hope
+Outdoor = false
+ShowArea = true
+Bicycle = false
