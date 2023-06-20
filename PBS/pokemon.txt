@@ -33176,7 +33176,7 @@ BattlerShadowX = 0
 BattlerShadowSize = 2
 Evolutions = MMANDIBUZZ,Level,31
 #-------------------------------
-[630]
+[2526]
 Name = M. Mandibuzz
 InternalName = MMANDIBUZZ
 Type1 = GHOST
