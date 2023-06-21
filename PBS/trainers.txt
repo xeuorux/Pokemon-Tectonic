@@ -2199,13 +2199,13 @@ Pokemon = GDARMANITAN,45
     AbilityIndex = 0 # Gorilla Tactics
 Pokemon = STARMIE,45
     AbilityIndex = 0 # Stars Align
-    Item = PSYCHICGEM
 Pokemon = MAMOSWINE,45
     AbilityIndex = 0 # Thick Fat
     Item = EXPERTBELT
 Pokemon = MEOWSTIC,45
     Gender = male
     AbilityIndex = 0 # Prankster
+	Item = LOADEDDICE
 #-------------------------------
 [ARTIST,Arnold]
 Pokemon = VENOMOTH,45
