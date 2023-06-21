@@ -153,6 +153,16 @@ GameData::Move.get(@effects[:GorillaTactics]).name)
         end
         # Belch
         return false unless move.pbCanChooseMove?(self, commandPhase, showMessages)
+        # Turbulent Sky
+        if pbOwnSide.effectActive?(:TurbulentSky) && !effectActive?(:Instructed) &&
+            @lastMoveUsedType && move.calcType == @lastMoveUsedType && move.id != @battle.struggle.id
+             msg = _INTL("{1} can't use the same type twice in a row due to the turbulent sky!", pbThis)
+             if showMessages
+                 commandPhase ? @battle.pbDisplayPaused(msg) : @battle.pbDisplay(msg)
+             end
+             echoln(msg)
+             return false
+         end
         return true
     end
 

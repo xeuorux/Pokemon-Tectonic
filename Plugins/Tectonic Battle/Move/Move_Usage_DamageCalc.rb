@@ -321,6 +321,11 @@ class PokeBattle_Move
 		if target.effectActive?(:VolatileToxin) && (type == :GROUND)
 			multipliers[:base_damage_multiplier] *= 2
 		end
+
+        # Turbulent Sky
+        if user.pbOwnSide.effectActive?(:TurbulentSky)
+            multipliers[:final_damage_multiplier] *= 1.3
+        end
     end
 
     def pbCalcTribeBasedDamageMultipliers(user,target,type,multipliers,checkingForAI=false)

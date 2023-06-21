@@ -234,6 +234,7 @@ GameData::BattleEffect.register_effect(:Side, {
         battle.pbDisplay(_INTL("The Sea of Fire on {1}'s side dissapeared.", teamName))
     end,
 })
+
 GameData::BattleEffect.register_effect(:Side, {
     :id => :Swamp,
     :real_name => "Swamp Turns",
@@ -393,6 +394,95 @@ GameData::BattleEffect.register_effect(:Side, {
     :disable_proc => proc do |battle, _side, teamName|
         teamName[0] = teamName[0].downcase
         battle.pbDisplay(_INTL("The sticky web beneath {1}'s feet was removed!", teamName))
+    end,
+})
+
+##########################################
+# Totem effects
+##########################################
+GameData::BattleEffect.register_effect(:Side, {
+    :id => :MisdirectingFog,
+    :real_name => "Misdirecting Fog",
+    :type => :Integer,
+    :ticks_down => true,
+    :apply_proc => proc do |battle, _side, teamName, _value|
+        teamName[0] = teamName[0].downcase
+        battle.pbDisplay(_INTL("A fog covered {1}!", teamName))
+    end,
+    :disable_proc => proc do |battle, _side, teamName|
+        teamName[0] = teamName[0].downcase
+        battle.pbDisplay(_INTL("The fog on {1}'s side was dispelled!", teamName))
+    end,
+    :expire_proc => proc do |battle, _side, teamName|
+        teamName[0] = teamName[0].downcase
+        battle.pbDisplay(_INTL("The Swamp on {1}'s side dissipated.", teamName))
+    end,
+})
+
+GameData::BattleEffect.register_effect(:Side, {
+    :id => :PrimalForest,
+    :real_name => "Primal Forest",
+    :type => :Integer,
+    :ticks_down => true,
+    :apply_proc => proc do |battle, _side, teamName, _value|
+        teamName[0] = teamName[0].downcase
+        battle.pbDisplay(_INTL("A primal forest surrounded {1}!", teamName))
+    end,
+    :disable_proc => proc do |battle, _side, teamName|
+        teamName[0] = teamName[0].downcase
+        battle.pbDisplay(_INTL("The primal forest on {1}'s side was removed!", teamName))
+    end,
+    :expire_proc => proc do |battle, _side, teamName|
+        teamName[0] = teamName[0].downcase
+        battle.pbDisplay(_INTL("The primal forest on {1}'s side shriveled up.", teamName))
+    end,
+})
+
+GameData::BattleEffect.register_effect(:Side, {
+    :id => :CruelCocoon,
+    :real_name => "Cruel Cocoon",
+    :type => :Integer,
+    :ticks_down => true,
+    :apply_proc => proc do |battle, _side, teamName, _value|
+        teamName[0] = teamName[0].downcase
+        battle.pbDisplay(_INTL("{1} was enclosed in a cocoon of scales!", teamName[0]))
+    end,
+    :disable_proc => proc do |battle, _side, teamName|
+        teamName[0] = teamName[0].downcase
+        battle.pbDisplay(_INTL("The cocoon enclosing {1}'s side was removed!", teamName))
+    end,
+    :expire_proc => proc do |battle, _side, teamName|
+        teamName[0] = teamName[0].downcase
+        battle.pbDisplay(_INTL("The cocoon enclosing {1}'s side dried up.", teamName))
+    end,
+    :eor_proc => proc do |battle, side, _teamName, value|
+        battle.eachSameSideBattler(side.index) do |b|
+            healingMessage = _INTL("#{b.pbThis} was healed by the cruel cocoon at the expense of its PP!")
+            b.applyFractionalHealing(1.0/8.0, customMessage: healingMessage)
+            b.eachMove do |m|
+                next if m.pp <= 0
+                b.pbSetPP(m, m.pp - 1)
+            end
+        end
+    end,
+})
+
+GameData::BattleEffect.register_effect(:Side, {
+    :id => :TurbulentSky,
+    :real_name => "Turbulent Sky",
+    :type => :Integer,
+    :ticks_down => true,
+    :apply_proc => proc do |battle, _side, teamName, _value|
+        teamName[0] = teamName[0].downcase
+        battle.pbDisplay(_INTL("A turbulent sky appeared above {1}!", teamName[0]))
+    end,
+    :disable_proc => proc do |battle, _side, teamName|
+        teamName[0] = teamName[0].downcase
+        battle.pbDisplay(_INTL("The turbulent sky above {1}'s side was calmed!", teamName))
+    end,
+    :expire_proc => proc do |battle, _side, teamName|
+        teamName[0] = teamName[0].downcase
+        battle.pbDisplay(_INTL("The turbulent sky above {1}'s side calmed down.", teamName))
     end,
 })
 
