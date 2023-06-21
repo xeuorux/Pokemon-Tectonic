@@ -685,7 +685,7 @@ end
 
 
 def vendingMachine
-	return unless $game_player.direction == Up
+	return unless playerFacingNorth?
 	pbMessage(_INTL("It's a vending machine."))
 
 	freshWaterCost = 200

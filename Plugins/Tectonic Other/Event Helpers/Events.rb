@@ -97,6 +97,22 @@ def playerDirectlySouth?
 	return $game_player.x == playerCheckPosX && $game_player.y == playerCheckPosY
 end
 
+def playerFacingNorth?
+	return $game_player.direction == Up
+end
+
+def playerFacingSouth?
+	return $game_player.direction == Down
+end
+
+def playerFacingEast?
+	return $game_player.direction == Right
+end
+
+def playerFacingWest?
+	return $game_player.direction == Left
+end
+
 def fadeSwitchOn(switchName = 'A')
 	blackFadeOutIn {
 		setMySwitch(switchName,true)
