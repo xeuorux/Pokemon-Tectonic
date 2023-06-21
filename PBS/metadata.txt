@@ -2036,6 +2036,12 @@ ShowArea = false
 Bicycle = true
 MapPosition = 0,9,13
 #-------------------------------
+[392]
+# Turf-Grouz Gatehouse
+Outdoor = false
+ShowArea = false
+Bicycle = true
+#-------------------------------
 [393]
 # LuxTech-Delta Gatehouse
 Outdoor = false
