@@ -2077,3 +2077,31 @@ Outdoor = false
 ShowArea = false
 Bicycle = true
 MapPosition = 0,5,11
+#-------------------------------
+[399]
+# West-Plaza Gatehouse
+Outdoor = false
+ShowArea = false
+Bicycle = true
+MapPosition = 0,10,3
+#-------------------------------
+[400]
+# Plaza-East Gatehouse
+Outdoor = false
+ShowArea = false
+Bicycle = true
+MapPosition = 0,13,3
+#-------------------------------
+[401]
+# East-Peaks Gatehouse
+Outdoor = false
+ShowArea = false
+Bicycle = true
+MapPosition = 0,15,4
+#-------------------------------
+[402]
+# Peaks-Harbor Gatehouse
+Outdoor = false
+ShowArea = false
+Bicycle = true
+MapPosition = 0,18,3
