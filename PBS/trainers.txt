@@ -2205,7 +2205,7 @@ Pokemon = MAMOSWINE,45
 Pokemon = MEOWSTIC,45
     Gender = male
     AbilityIndex = 0 # Prankster
-	Item = LOADEDDICE
+    Item = LOADEDDICE
 #-------------------------------
 [ARTIST,Arnold]
 Pokemon = VENOMOTH,45

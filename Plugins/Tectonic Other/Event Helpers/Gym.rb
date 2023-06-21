@@ -186,6 +186,17 @@ def hasAllEightBadges?()
 		$game_switches[8] && $game_switches[9] && $game_switches[10] && $game_switches[11]
 end
 
+def hasAllBadgesUpTo?(badgeNumber) # Index at 1
+	for i in 4..(badgeNumber+3) do
+		return false unless $game_switches[i]
+	end
+	return true
+end
+
+def hasBadge?(badgeNumber) # Index at 1
+	return $game_switches[3 + badgeNumber]
+end
+
 def endGymChoice()
 	pbTrainerEnd
 	command_end

@@ -34,6 +34,12 @@ class PokeBattle_Battler
             if target.effectActive?(:Rage) && !target.fainted? && target.tryRaiseStat(:ATTACK, target, increment: 2)
                 @battle.pbDisplay(_INTL("{1}'s rage is building!", target.pbThis))
             end
+            # Primal Forest
+            if target.pbOwnSide.effectActive?(:PrimalForest) && !target.fainted?
+                @battle.pbDisplay(_INTL("{1} communes with the primal forest!", target.pbThis))
+                target.pbRaiseMultipleStatSteps(ATTACKING_STATS_1, nil)
+                target.pbLowerMultipleStatSteps(DEFENDING_STATS_1, nil)
+            end
             # Beak Blast
             if target.effectActive?(:BeakBlast)
                 PBDebug.log("[Lingering effect] #{target.pbThis}'s Beak Blast")
@@ -165,7 +171,40 @@ user.pbThis(true)))
         unless switchedBattlers.include?(user.index)
             move.pbEndOfMoveUsageEffect(user, targets, numHits, switchedBattlers)
         end
+        # Misdirecting Fog
+        unless switchedBattlers.include?(user.index)
+            fogSending = false
+            targets.each do |target|
+                next unless target.pbOwnSide.effectActive?(:MisdirectingFog)
+                next unless target.opposes?(user)
+                fogSending = true
+                break
+            end
+
+            trySwitchOutUser(user, targets, numHits, switchedBattlers) if fogSending
+        end
         @battle.eachBattler { |b| b.pbItemEndOfMoveCheck } if numHits > 0
+    end
+
+    def trySwitchOutUser(user, targets, numHits, switchedBattlers)
+        return if user.fainted? || numHits == 0
+        targetSwitched = true
+        targets.each do |b|
+            targetSwitched = false unless switchedBattlers.include?(b.index)
+        end
+        return if targetSwitched
+        return unless @battle.pbCanChooseNonActive?(user.index)
+        @battle.pbDisplay(_INTL("{1} went back to {2}!", user.pbThis,
+            @battle.pbGetOwnerName(user.index)))
+        @battle.pbPursuit(user.index)
+        return if user.fainted?
+        newPkmn = @battle.pbGetReplacementPokemonIndex(user.index) # Owner chooses
+        return if newPkmn < 0
+        @battle.pbRecallAndReplace(user.index, newPkmn)
+        @battle.pbClearChoice(user.index) # Replacement Pokémon does nothing this round
+        @battle.moldBreaker = false
+        switchedBattlers.push(user.index)
+        user.pbEffectsOnSwitchIn(true)
     end
 
     # Everything in this method is negated by Sheer Force.

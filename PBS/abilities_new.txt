@@ -392,3 +392,7 @@
 1391,BATTERYBREAK,Battery Break,"Uses Lightning Dance if an attack lowers its HP to half or below."
 1392,SUPERFIST,Super Fist,"Boosts the power of punching moves by 50%."
 1393,SIRENSONG,Siren Song,"After using a sound move, lowers one of each foe's attacking stats, whichever is higher."
+1394,FOGTOTEM,"Fog Totem\"Upon entry","summons a Misdirecting Fog on the Pokémon's side for 6 turns.\""
+1395,WILDTOTEM,"Wild Totem\"Upon entry","summons a Primal Forest on the Pokémon's side for 6 turns.\""
+1396,FLUTTERTOTEM,"Flutter Totem\"Upon entry","summons a Cruel Cocoon on the Pokémon's side for 6 turns.\""
+1397,STORMTOTEM,"Storm Totem\"Upon entry","summons a Turbulet Sky on the Pokémon's side for 6 turns.\""
