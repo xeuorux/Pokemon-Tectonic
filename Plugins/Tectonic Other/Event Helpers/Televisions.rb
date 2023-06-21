@@ -12,19 +12,19 @@ def displayNewsProgram(map_id = -1)
 end
 
 WEATHER_REPORT_MAPS = {
-    56 => "Nemeth",
-    217 => "Sweetrock Harbor",
-    32 => "Prizca",
-    187 => "Prizca",
-    126 => "Casaba Villa", 
-    301 => "County Park",
-    37 => "Svait",
-    258 => "Whitebloom Town",
-    186 => "Frostflow Farms",
-    6 => "LuxTech Campus",
-    130 => "Canal Desert",
-    59 => "Mainland Dock",
-    53 => "Jungle Path",
+    56 => _INTL("Novo Town"),
+    217 => _INTL("Sweetrock Harbor"),
+    32 => _INTL("Prizca"),
+    187 => _INTL("Prizca"),
+    126 => _INTL("Casaba Villa"),
+    301 => _INTL("County Park"),
+    37 => _INTL("Svait"),
+    258 => _INTL("Whitebloom Town"),
+    186 => _INTL("Frostflow Farms"),
+    6 => _INTL("LuxTech Campus"),
+    130 => _INTL("Canal Desert"),
+    59 => _INTL("Feebas' Fin"),
+    53 => _INTL("The Shelf"),
 }
 
 def displayInterestingWeatherReport()
@@ -114,26 +114,26 @@ end
 def getWeatherDescriptor(weatherSymbol, strength)
     case weatherSymbol
     when :Rain
-        return "cloudy skies with light rain showers"
+        return _INTL("cloudy skies with light rain showers")
     when :Snow
-        return "cloudy skies with light snowfall"
+        return _INTL("cloudy skies with light snowfall")
     when :Dusty
-        return "sunny skies with dry, dusty air"
+        return _INTL("sunny skies with dry, dusty air")
     when :Sun
-        return "sunny skies and hot tempuratures"
+        return _INTL("sunny skies and hot tempuratures")
     when :Overcast
-        return "overcast skies with high ambient humidity"
+        return _INTL("overcast skies with high ambient humidity")
     when :Storm,:HeavyRain
-        return "total cloud cover and heavy rain with thunder"
+        return _INTL("total cloud cover and heavy rain with thunder")
     when :Blizzard
-        return "blizzard conditions with high winds and heavy snowfall"
+        return _INTL("blizzard conditions with high winds and heavy snowfall")
     when :Sandstorm
-        return "hot and dry sandstorm conditions"
+        return _INTL("hot and dry sandstorm conditions")
     when :Fog
-        return "cold and wet fog wtih reduced visibility"
+        return _INTL("cold and wet fog wtih reduced visibility")
     when :ToxicFog
-        return "smoggy and dangerous conditions"
+        return _INTL("smoggy and dangerous conditions")
     end
 
-    return "lightly cloudy skies with no precipitation"
+    return _INTL("lightly cloudy skies with no precipitation")
 end

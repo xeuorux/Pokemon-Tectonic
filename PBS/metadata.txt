@@ -1985,16 +1985,18 @@ Bicycle = true
 MapPosition = 0,26,12
 #-------------------------------
 [384]
-# Casaba Gatehouse
+# Casaba-Bluepoint Gatehouse
 Outdoor = false
 ShowArea = false
 Bicycle = true
+MapPosition = 0,21,18
 #-------------------------------
 [385]
 # Abandoned Lodge
 Outdoor = false
 ShowArea = false
 Bicycle = false
+HealingSpot = 377,50,36
 #-------------------------------
 [386]
 # Cave of Conflict
@@ -2019,3 +2021,59 @@ Bicycle = false
 Outdoor = false
 ShowArea = true
 Bicycle = false
+#-------------------------------
+[390]
+# Novo-Turf Gatehouse
+Outdoor = false
+ShowArea = false
+Bicycle = true
+MapPosition = 0,11,13
+#-------------------------------
+[391]
+# Shelf-Novo Gatehouse
+Outdoor = false
+ShowArea = false
+Bicycle = true
+MapPosition = 0,9,13
+#-------------------------------
+[393]
+# LuxTech-Delta Gatehouse
+Outdoor = false
+ShowArea = false
+Bicycle = true
+MapPosition = 0,13,8
+#-------------------------------
+[394]
+# Park-LuxTech Gatehouse
+Outdoor = false
+ShowArea = false
+Bicycle = true
+MapPosition = 0,11,8
+#-------------------------------
+[395]
+# Svait-Park Gatehouse
+Outdoor = false
+ShowArea = false
+Bicycle = true
+MapPosition = 0,7,8
+#-------------------------------
+[396]
+# Crater-Shelf Gatehouse
+Outdoor = false
+ShowArea = false
+Bicycle = true
+MapPosition = 0,5,13
+#-------------------------------
+[397]
+# Menagerie-Velenz Gatehouse
+Outdoor = false
+ShowArea = false
+Bicycle = true
+MapPosition = 0,3,11
+#-------------------------------
+[398]
+# Velenz-Repora Gatehouse
+Outdoor = false
+ShowArea = false
+Bicycle = true
+MapPosition = 0,5,11
