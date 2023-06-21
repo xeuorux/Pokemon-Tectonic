@@ -53,3 +53,4 @@
 29: Larpers encounters
 30: Swords of justice defeated
 31: Latent seeds planted
+32: Grindable trainer stage
