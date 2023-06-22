@@ -6831,7 +6831,7 @@ InternalName = QWILFISH
 Type1 = WATER
 Type2 = POISON
 # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
-BaseStats = 65,75,85,85,55,85
+BaseStats = 125,25,85,105,25,85
 # Total = 450
 GenderRate = Female50Percent
 GrowthRate = Medium
