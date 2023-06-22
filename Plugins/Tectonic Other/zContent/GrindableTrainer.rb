@@ -10,6 +10,12 @@ def setGrindableTrainerStage(value)
     echoln("Progressing the grindable trainer to stage #{value}.")
 end
 
+def grindRivalMovesOn
+    blackFadeOutIn {
+        progressGrindableTrainerStage
+    }
+end
+
 # Progress the grindable trainer stage when moving into the next gym town
 # After having defeated the previous gym
 Events.onMapChange += proc { |_sender,_e|

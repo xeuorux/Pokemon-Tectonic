@@ -1242,41 +1242,6 @@ Pokemon = SLURPUFF,60
 Pokemon = HAPPINY,20
     AbilityIndex = 0 # Serene Grace
 #-------------------------------
-[WAITRESS,Linnea]
-Pokemon = COMBEE,15
-    AbilityIndex = 0 # Honey Gather
-Pokemon = KLINK,15
-    AbilityIndex = 0 # Metal Cover
-Pokemon = CHINGLING,15
-    AbilityIndex = 1 # Mending Tones
-#-------------------------------
-[STRIKER,Thaddeus]
-Pokemon = MACHOKE,20
-    Gender = male
-    AbilityIndex = 0 # Feel the Burn
-Pokemon = TYRUNT,20
-    Gender = male
-    AbilityIndex = 1 # Rock Head
-Pokemon = WARTORTLE,20
-    Gender = male
-    AbilityIndex = 1 # Mega Launcher
-#-------------------------------
-[LASS,Dimitra]
-Pokemon = CUFANT,25
-    AbilityIndex = 0 # Robust
-Pokemon = MARILL,25
-    AbilityIndex = 0 # Grit
-Pokemon = POOCHYENA,25
-    AbilityIndex = 1 # Night Stalker
-#-------------------------------
-[JOGGER,Janos]
-Pokemon = MANECTRIC,30
-    AbilityIndex = 1 # Fascinate
-Pokemon = NIDORINA,30
-    AbilityIndex = 0 # Rugged Scales
-Pokemon = MUNNA,30
-    AbilityIndex = 0 # Dream Weaver
-#-------------------------------
 [POKEMANIAC,Nikos]
 Pokemon = LEAFEON,35
     AbilityIndex = 1 # Reluctant Blade
@@ -1732,16 +1697,6 @@ Pokemon = WEEZING,40
 Pokemon = RUNERIGUS,40
     AbilityIndex = 0 # Wandering Spirit
     Item = LEFTOVERS
-#-------------------------------
-[WAITRESS3,Leonie]
-Pokemon = METANG,40
-    AbilityIndex = 0 # Full Metal Body
-Pokemon = BOLTUND,40
-    AbilityIndex = 0 # Strong Jaw
-Pokemon = YANMEGA,40
-    AbilityIndex = 0 # Speed Boost
-Pokemon = AROMATISSE,40
-    AbilityIndex = 0 # Fashionable
 #-------------------------------
 [DEVJUGGLER,Brickbat]
 Pokemon = WIGGLYTUFF,70
@@ -2231,16 +2186,6 @@ Pokemon = GLACEON,45
 Pokemon = SIGILYPH,45
     AbilityIndex = 0 # Magic Guard
     Item = CUSTAPBERRY
-#-------------------------------
-[CLERK_M2,Gazsi]
-Pokemon = THIEVUL,45
-    AbilityIndex = 0 # Moonlighter
-Pokemon = GARDEVOIR,45
-    AbilityIndex = 1 # Feedback
-Pokemon = KANGASKHAN,45
-    AbilityIndex = 1 # Inner Focus
-Pokemon = WATCHOG,45
-    AbilityIndex = 1 # Paranoid
 #-------------------------------
 [BLACKBELT2,Riccardo]
 Policies = SAND_TEAM,NO_PERFECT
@@ -3153,17 +3098,6 @@ Pokemon = MANECTRIC,29
 Pokemon = PHIONE,30
     AbilityIndex = 1 # Sentry
 #-------------------------------
-[SAILOR,Owein]
-Pokemon = FLAREON,55
-    AbilityIndex = 1 # Warmth Cycle
-Pokemon = DELIBIRD,55
-    AbilityIndex = 0 # Larder
-Pokemon = WEAVILE,55
-    AbilityIndex = 1 # Lunatic
-Pokemon = LYCANROC,55
-    Form = 2
-    AbilityIndex = 1 # Tough Claws
-#-------------------------------
 [SCHOOLKID_M3,Jeremy]
 Pokemon = PAWNIARD,9
     Moves = SUCKERPUNCH,BULLETPUNCH,ENDEAVOR
@@ -3202,16 +3136,6 @@ Pokemon = SPIRITOMB,70
     AbilityIndex = 0 # Bad Influence
     Item = SALACBERRY
     EV = 20,15,15,0,15,0
-#-------------------------------
-[BIRDKEEPER_F,Rachel]
-Pokemon = PELIPPER,60
-    AbilityIndex = 1 # Dreary Clouds
-Pokemon = SANDSLASH,60
-    AbilityIndex = 1 # Tough Claws
-Pokemon = EMBOAR,60
-    AbilityIndex = 1 # Heat Savor
-Pokemon = RIBOMBEE,60
-    AbilityIndex = 0 # Candy Veil
 #-------------------------------
 [RUINMANIAC2,Bernard]
 Pokemon = KLEAVOR,60
@@ -3961,16 +3885,6 @@ Pokemon = STARAPTOR,65
     Item = WHITEHERB
 Pokemon = GOLURK,65
     Item = GROUNDGEM
-#-------------------------------
-[TEENAGERF,Jamilah]
-Pokemon = MAROWAK,70
-    AbilityIndex = 0 # Rock Head
-Pokemon = DRAGALGE,70
-    AbilityIndex = 0 # Expertise
-Pokemon = MASQUERAIN,70
-    AbilityIndex = 1 # Intimidate
-Pokemon = XATU,70
-    AbilityIndex = 0 # Sentry
 #-------------------------------
 [FORMERCHAMP_Elise,Elise]
 Policies = PRESERVE_LAST_POKEMON,HAIL_TEAM,NO_PERFECT
@@ -5663,15 +5577,15 @@ Pokemon = HZOROARK,30
 #-------------------------------
 [CHALLENGER_Vanya,Vanya,4]
 Policies = NO_PERFECT
+Pokemon = KLEFKI,40
+    Moves = PLAYROUGH,LIGHTSCREEN,REFLECT,FLASHCANNON
+    AbilityIndex = 0 # Prankster
 Pokemon = SAURENAID,40
     AbilityIndex = 0 # Frost Song
 Pokemon = GOLEM,40
     AbilityIndex = 0 # Unbreakable
 Pokemon = ARAICHU,40
     AbilityIndex = 1 # Surf's Up
-Pokemon = KLEFKI,40
-    Moves = PLAYROUGH,LIGHTSCREEN,REFLECT,FLASHCANNON
-    AbilityIndex = 0 # Prankster
 #-------------------------------
 [CHALLENGER_Vanya,Vanya,5]
 Policies = NO_PERFECT
@@ -5686,10 +5600,10 @@ Pokemon = INCINEROAR,45
 #-------------------------------
 [CHALLENGER_Vanya,Vanya,6]
 Policies = NO_PERFECT
-Pokemon = DONSTER,55
-    AbilityIndex = 0 # Aggravate
 Pokemon = TORTERRA,55
     AbilityIndex = 0 # Refuge
+Pokemon = DONSTER,55
+    AbilityIndex = 0 # Aggravate
 Pokemon = SCARODON,55
     AbilityIndex = 0 # Schadenfreude
 Pokemon = MDUSTOX,55
@@ -5705,6 +5619,21 @@ Pokemon = DRAGAPULT,60
     AbilityIndex = 0 # Clear Body
 Pokemon = SWANNA,60
     AbilityIndex = 0 # Intimidate
+#-------------------------------
+[CHALLENGER_Vanya,Vanya,8]
+Policies = NO_PERFECT
+Pokemon = SKARMORY,70
+    Moves = STEALTHROCK,ROOST,FEATHERWARD,TAILWIND
+    AbilityIndex = 0 # Mental Block
+Pokemon = WEAVILE,70
+    Moves = SEVER,TRIPLEAXEL,SWORDSDANCE,ICESHARD
+    AbilityIndex = 0 # Inner Focus
+Pokemon = GOLURK,70
+    Moves = PHANTOMBREAK,LAHAR,ZAPCANNON,VENOMORTAR
+    AbilityIndex = 1 # No Guard
+Pokemon = DRAGALGE,70
+    Moves = DRAGONTAIL,CRUELTY,RECOVER,GREYMIST
+    AbilityIndex = 0 # Expertise
 #-------------------------------
 [WILDPARTY_KOKO,of Conflict]
 Policies = NO_PERFECT
