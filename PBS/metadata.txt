@@ -157,7 +157,7 @@ BattleBack = indoor1
 #-------------------------------
 [020]
 # Alloyed Thicket - Expanse
-Outdoor = true
+Outdoor = false
 ShowArea = true
 Bicycle = true
 MapPosition = 0,13,10

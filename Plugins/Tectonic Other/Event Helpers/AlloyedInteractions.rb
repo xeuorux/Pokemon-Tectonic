@@ -35,20 +35,14 @@ end
 
 def cutAlloyedVines
     pbMessage(_INTL("Strands of a strangely tough metal hang from the wall."))
-    if pbHasItem?(:ALLOYEDBLADE)
-        if pbConfirmMessage(_INTL("Cut them with an alloyed blade?"))
-            pbMessage(_INTL("You slash through the metallic vines!"))
-            pbSEPlay('Cut')
-            setMySwitch('A')
-            pbWait(40)
-            pbDeleteItem(:ALLOYEDBLADE)
-            pbReceiveItem(:ALLOYEDWIRE)
-            pbMessage(_INTL("The alloyed blade crumbled into pieces."))
-        else
-            pbMessage(_INTL("You leave the strands alone."))
-        end
+    if pbConfirmMessage(_INTL("Harvest the metallic vines?"))
+        pbMessage(_INTL("You slash through the metallic vines!"))
+        pbSEPlay('Cut') # Other SE
+        setMySwitch('A')
+        pbWait(40)
+        pbReceiveItem(:ALLOYEDWIRE)
     else
-        pbMessage(_INTL("You'd need a tool made of a strong material to cut it."))
+        pbMessage(_INTL("You leave the strands alone."))
     end
 end
 
