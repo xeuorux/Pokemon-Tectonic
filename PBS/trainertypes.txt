@@ -309,3 +309,8 @@
 436,TAPU_BULU,Guardian Deity,0,,,,Wild,,,[]
 437,TAPU_FINI,Guardian Deity,0,,,,Wild,,,[]
 438,WILDPACK,Wild Pack,0,,,,Wild,,,[]
+439,HIKER3,Hiker,32,,,BACKPACKER,Male,,,[]
+440,DITTO_CAMPER,Camper,16,,,DITTO_YOUNGSTER,Male,,,[]
+441,DITTO_HIKER,Hiker,32,,,DITTO_BACKPACKER,Male,,,[]
+442,DITTO_AROMALADY,Aroma Lady,32,,,DITTO_AROMALADY,Female,,,[]
+443,DITTO_RANGER,Pokémon Ranger,60,,,DITTO_ACETRAINER,Female,,,[]
