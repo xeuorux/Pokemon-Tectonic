@@ -164,7 +164,7 @@
 163,ICEFACE,Ice Face,"Prevents a physical attack. Restored if its hailing when it enters, or when hail begins."
 164,ICESCALES,Ice Scales,"Doubles the Pokémon's Sp. Def."
 165,INTREPIDSWORD,Intrepid Sword,"Raises Attack when the Pokémon enters a battle."
-166,LIBERO,Libero,"It changes type to that of the move it's about to use."
+166,LIBERO,Libero,"The Pokémon changes type to that of the move it's about to use. However, it's 20% less accurate."
 167,MIRRORARMOR,Mirror Armor,"Bounces back stat-lowering effects."
 168,NEUTRALIZINGGAS,Neutralizing Gas,"Abilities will be nullified or will not be triggered."
 169,PERISHBODY,Perish Body,"When it takes a hit, both Pokémon faint after 3 turns."

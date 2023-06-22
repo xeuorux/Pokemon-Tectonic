@@ -6,7 +6,7 @@ BattleHandlers::AccuracyCalcUserAbility.add(:COMPOUNDEYES,
 
 BattleHandlers::AccuracyCalcUserAbility.add(:HUSTLE,
   proc { |ability, mults, _user, _target, move, _type|
-      mults[:accuracy_multiplier] *= 0.8 if move.physicalMove?
+      mults[:accuracy_multiplier] *= 0.8
   }
 )
 
@@ -55,5 +55,11 @@ BattleHandlers::AccuracyCalcUserAbility.add(:NIGHTOWL,
 BattleHandlers::AccuracyCalcUserAbility.add(:STARSALIGN,
   proc { |ability, mults, user, _target, _move, _type|
       mults[:base_accuracy] = 0 if user.battle.eclipsed?
+  }
+)
+
+BattleHandlers::AccuracyCalcUserAbility.add(:HUSTLE,
+  proc { |ability, mults, _user, _target, move, _type|
+      mults[:accuracy_multiplier] *= 0.8
   }
 )

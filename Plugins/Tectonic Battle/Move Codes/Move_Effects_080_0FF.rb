@@ -1285,7 +1285,8 @@ class PokeBattle_Move_0B4 < PokeBattle_Move
             "0B6",   # Metronome
             # Two-turn attacks
             "0C3",   # Razor Wind
-            "0C4",   # Solar Beam, Solar Blade
+            "0C4",   # Solar Beam
+            "0E6",   # Storm Drive
             "0C5",   # Freeze Shock
             "0C6",   # Ice Burn
             "0C7",   # Sky Attack
@@ -1917,7 +1918,7 @@ class PokeBattle_Move_0C3 < PokeBattle_TwoTurnMove
 end
 
 #===============================================================================
-# Two turn attack. Skips first turn, attacks second turn. In sunshine, takes 1 turn instead. (Solar Beam, Solar Blade)
+# Two turn attack. Skips first turn, attacks second turn. In sunshine, takes 1 turn instead. (Solar Beam)
 #===============================================================================
 class PokeBattle_Move_0C4 < PokeBattle_TwoTurnMove
     def immuneToSunDebuff?; return true; end
@@ -2858,9 +2859,35 @@ class PokeBattle_Move_0E5 < PokeBattle_Move
 end
 
 #===============================================================================
-# (Not currently used)
+# Two turn attack. Skips first turn, attacks second turn. In rain, takes 1 turn instead. (Storm Drive)
 #===============================================================================
-class PokeBattle_Move_0E6 < PokeBattle_Move
+class PokeBattle_Move_0E6 < PokeBattle_TwoTurnMove
+    def immuneToRainDebuff?; return true; end
+
+    def pbIsChargingTurn?(user)
+        ret = super
+        if !user.effectActive?(:TwoTurnAttack) && @battle.rainy?
+            @powerHerb = false
+            @chargingTurn = true
+            @damagingTurn = true
+            return false
+        end
+        return ret
+    end
+
+    def pbChargingTurnMessage(user, _targets)
+        @battle.pbDisplay(_INTL("{1} took in electricity!", user.pbThis))
+    end
+
+    def getEffectScore(user, target)
+        score = super
+        score += 50 if @battle.rainy?
+        return score
+    end
+
+    def shouldHighlight?(_user, _target)
+        return @battle.rainy?
+    end
 end
 
 #===============================================================================

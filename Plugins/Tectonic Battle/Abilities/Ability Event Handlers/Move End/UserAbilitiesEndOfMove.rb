@@ -77,9 +77,10 @@ BattleHandlers::UserAbilityEndOfMove.add(:WISEHUNTER,
 )
 
 BattleHandlers::UserAbilityEndOfMove.add(:SEALORD,
-  proc { |ability, user, targets, _move, battle, _switchedBattlers|
+  proc { |ability, user, targets, move, battle, _switchedBattlers|
       next unless user.species == :GYARADOS
       next unless user.form == 0
+      next unless move.id == :WATERFALL
       next if battle.pbAllFainted?(user.idxOpposingSide)
       numFainted = 0
       targets.each { |b| numFainted += 1 if b.damageState.fainted }

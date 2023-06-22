@@ -1855,3 +1855,8 @@ GameData::BattleEffect.register_effect(:Battler, {
     :resets_eor => true,
     :info_displayed => false,
 })
+
+GameData::BattleEffect.register_effect(:Battler, {
+    :id => :Mutated,
+    :real_name => "Mutated",
+})

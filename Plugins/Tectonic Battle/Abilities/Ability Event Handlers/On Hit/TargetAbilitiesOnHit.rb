@@ -330,7 +330,16 @@ BattleHandlers::TargetAbilityOnHit.add(:SHOCKRESPONSE,
           end
           battle.forceUseMove(target, :NUZZLE, target.index, ability: ability)
     }
-  )
+)
+
+BattleHandlers::TargetAbilityOnHit.add(:SNORING,
+    proc { |ability, user, target, move, battle, aiChecking, aiNumHits|
+          next if target.fainted?
+          next unless target.asleep?
+          next -30 * aiNumHits if aiChecking
+          battle.forceUseMove(target, :SNORE, user.index, ability: ability)
+    }
+)
 
 #########################################
 # Status inducing abilities

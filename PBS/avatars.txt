@@ -393,7 +393,7 @@ Item = SITRUSBERRY
 [GYARADOS]
 Ability = INTIMIDATE,SEALORD
 Moves1 = REND,WATERFALL,PRIMEVALTORMENT
-Moves2 = CRUNCH,SURF
+Moves2 = CRUNCH,WATERFALL
 Item = LIFEORB
 Aggression = 8
 #-------------------------------

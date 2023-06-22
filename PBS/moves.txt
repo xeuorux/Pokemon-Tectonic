@@ -360,7 +360,7 @@
 359,HYPERFANG,Hyper Fang,00F,80,NORMAL,Physical,100,12,40,NearOther,0,abei,"The user bites hard on the target with its sharp front fangs. It has a 40% to make the target flinch.",
 360,MEGAPUNCH,Mega Punch,000,100,NORMAL,Physical,100,15,0,NearOther,0,abefj,"The target is slugged by a punch thrown with muscle-packed power.",
 361,RAZORWIND,Razor Wind,0C3,80,FLYING,Special,100,10,0,AllNearFoes,0,befpq,"A two-turn attack. Blades of wind hit the foe on the second turn. Critical hits twice as often.",
-362,TRIATTACK,Tri Attack,017,80,NORMAL,Special,100,10,33,NearOther,0,bef,"The user strikes with a simultaneous three-beam attack. It has a 11% chance each to numb, burn, or frostbite.",
+362,TRIATTACK,Tri Attack,017,80,NORMAL,Special,100,10,45,NearOther,0,bef,"The user strikes with a simultaneous three-beam attack. It has a 15% chance each to numb, burn, or frostbite.",
 363,CRUSHCLAW,Crush Claw,5E9,75,NORMAL,Physical,100,10,100,NearOther,0,abef,"The user slashes the target with hard and sharp claws, lowering their Defense by three steps.",
 364,RELICSONG,Relic Song,078,75,NORMAL,Special,100,10,10,AllNearFoes,0,befk,"An ancient song appeals to the hearts of those listening. Switches Meloetta's form.",
 365,CHIPAWAY,Chip Away,0A9,70,NORMAL,Physical,100,15,0,NearOther,0,abef,"Seeking an opening, the user strikes continually. Ignores the target's stat step changes.",

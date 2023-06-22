@@ -177,7 +177,7 @@
 1176,JUSTDESERTS,Just Deserts,546,85,FAIRY,Physical,100,10,0,NearOther,0,abef,"The user attacks with a naive sense of justice, guaranteeing a critical hit on foes with boosted stats.",BEHEMOTHBLADE
 1177,POISONSPIKES,Poison Spikes,104,0,POISON,Status,0,15,0,FoeSide,0,c,"The user lays poison spikes on the foe's side. One layer hurts switched in foes, two layers poisons.",TOXICSPIKES
 1178,ENVENOM,Envenom,005,0,POISON,Status,100,30,0,NearFoe,0,bce,"Venom is strategically introduced into the target, poisoning it.",POISONSTING
-1179,CHAOSWHEEL,Chaos Wheel,547,80,NORMAL,Physical,100,10,33,NearOther,0,bef,"The user thrashes while infused with elements. It has a 11% chance each to poison, dizzy, or leech.",FIERYWRATH
+1179,CHAOSWHEEL,Chaos Wheel,547,80,NORMAL,Physical,100,10,45,NearOther,0,bef,"The user thrashes while infused with elements. It has a 15% chance each to poison, dizzy, or leech.",FIERYWRATH
 1180,MINDLINK,Mind Link,549,0,PSYCHIC,Status,0,30,0,User,0,d,"The user syncs its mind with its teammates, raising the Sp. Atk of itself and its allies by two steps.",CONFUSION
 1181,BULLETCHARGE,Bullet Charge,5E0,60,STEEL,Physical,100,15,30,NearOther,0,abef,"The user uses gunpowder to rocket at its foe. It has a 30% chance to raise its Speed.",BULLETPUNCH
 1182,SEEDSURPRISE,Seed Surprise,096,140,NORMAL,Special,100,12,0,NearOther,0,bef,"The user draws power to attack by using a held Berry. The Berry used determines its type.",NATURALGIFT
@@ -410,7 +410,7 @@
 1409,SWARMORDER,Swarm Order,0AD,90,BUG,Physical,100,12,0,NearOther,0,befh,"The user calls out its underlings to pummel the target. Skips and destroys protections.",INFESTATION
 1410,NOISEORDER,Noise Order,401,60,BUG,Special,100,12,100,NearOther,0,bce,"The user calls out its underlings to annoy the target with buzzing sounds, dizzying it.",BUGBUZZ
 1411,REGALIA,Regalia,5D7,0,NORMAL,Status,100,15,0,NearOther,0,bce,"The user adorns the target with precious stones, changing it to your choice of Fairy, Dragon, or Steel-type.",LUCKYCHANT
-1412,ROLLINGARSENAL,Rolling Arsenal,547,90,BUG,Physical,100,10,33,NearOther,0,bef,"The user bites, claws, and stings the target while rolling. It has a 11% chance each to poison, dizzy, or leech.",CHAOSWHEEL
+1412,ROLLINGARSENAL,Rolling Arsenal,547,90,BUG,Physical,100,10,60,NearOther,0,bef,"The user bites, claws, and stings the target while rolling. It has a 20% chance each to poison, dizzy, or leech.",CHAOSWHEEL
 1413,ZEPHYRWING,Zephyr Wing,536,130,FLYING,Physical,100,5,30,NearOther,0,bef,"The user flies up to raise its Sp. Def by four steps in the first turn, then rams the foe on the second.",SKYATTACK
 1414,SWAGGER,Swagger,55D,0,NORMAL,Status,100,12,0,NearOther,0,bce,"The target's Attack stat is raised by three steps. It then hits itself in a rage.",
 1415,FLATTER,Flatter,55E,0,DARK,Status,100,12,0,NearOther,0,bce,"The target's Sp. Atk stat is raised by three steps. It then hurts itself in its mental turmoil.",
@@ -437,3 +437,4 @@
 1436,WHAMBLAM,Wham Blam,000,135,FAIRY,Physical,70,12,0,NearOther,0,abef,"The user pretends to be a hero and strikes their foe with super strength.",SPIRITBREAK
 1437,FIREPULSE,Fire Pulse,00A,60,FIRE,Special,100,15,20,NearOther,0,befm,"The user attacks the target with a pulsing blast of fire. It has a 20% chance to burn.",FLAMEBURST
 1438,SHRAPNELCANNON,Shrapnel Cannon,551,30,FIRE,Special,100,12,0,NearOther,0,befm,"The user launches shrapnel, dealing damage and setting a layer of flame spikes around the target.",FLAMEBURST
+1439,STORMDRIVE,Storm Drive,0E6,120,ELECTRIC,Physical,100,10,0,NearOther,0,bef,"The user charges, then attacks on the second turn. Charges instantly in Rain.",

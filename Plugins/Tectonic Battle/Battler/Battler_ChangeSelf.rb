@@ -88,11 +88,9 @@ class PokeBattle_Battler
 
             # Can be replaced
             if @battle.pbCanSwitch?(@index) && @battle.pbCanChooseNonActive?(@index)
-                allyCushionAmount = (damage / 2.0).round
-                allyCushionAmount = 1 if allyCushionAmount < 1
                 applyEffect(:AllyCushionSwap)
                 position.applyEffect(:AllyCushion, @pokemonIndex)
-                position.applyEffect(:AllyCushionAmount, allyCushionAmount)
+                position.applyEffect(:AllyCushionAmount, damage)
                 @battle.pbHideAbilitySplash(self)
                 return
             else
