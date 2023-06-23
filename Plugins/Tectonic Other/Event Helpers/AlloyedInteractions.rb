@@ -58,3 +58,24 @@ def strikeAlloyedBell?
         return false
     end
 end
+
+def cutDownAlloyedTree(eventID)
+    pbMessage(_INTL("A tall metal tree. It has no branches."))
+    if pbHasItem?(:ALLOYEDBLADE)
+        if pbConfirmMessage(_INTL("Chop it down?"))
+            pbMessage(_INTL("You take a swing at the tree with an alloyed blade."))
+            pbSEPlay('Cut') # Other SE
+            pbWait(20)
+            blackFadeOutIn {
+                setMySwitch('A')
+                pbSetSelfSwitch(eventID, 'A')
+            }
+            pbDeleteItem(:ALLOYEDBLADE)
+            pbMessage(_INTL("The alloyed blade crumbles into pieces."))
+        else
+            pbMessage(_INTL("You refrain from chopping the tree."))
+        end
+    else
+        pbMessage(_INTL("You could probably cut it down, with the right tool."))
+    end
+end

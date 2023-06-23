@@ -437,7 +437,7 @@ GameData::BattleEffect.register_effect(:Battler, {
         end
 
         if battler.hasActiveAbility?(:PRIMEVALDISGUISE)
-            fakePikachu = Pokemon.new(:PIKACHU,user.level,user.owner,user.moves)
+            fakePikachu = Pokemon.new(:PIKACHU,battler.level,battler.owner,battler.moves)
             battler.applyEffect(:Illusion,fakePikachu)
         end
     end,
