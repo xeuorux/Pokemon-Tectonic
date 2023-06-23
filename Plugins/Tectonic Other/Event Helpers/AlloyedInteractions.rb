@@ -46,13 +46,12 @@ def cutAlloyedVines
     end
 end
 
-def strikeAlloyedBell?(eventID, switch='B')
+def strikeAlloyedBell?
     pbMessage(_INTL("A metal plant with a golden orb. You feel the urge to strike it."))
     if pbConfirmMessage(_INTL("Hit the golden orb?"))
         pbMessage(_INTL("With your strike, a noise emanates through the thicket!"))
         pbSEPlay('Anim/PRSFX- Heal Order2',120,70)
         pbWait(80)
-        pbSetSelfSwitch(eventID,'B')
         return true
     else
         pbMessage(_INTL("You refrain from striking the orb."))

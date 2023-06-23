@@ -45,6 +45,7 @@
 107: Avatar Assault 3 Began
 108: Avatar Assault 3 Active
 109: Avatar Assault 3 Completed
+110: Melmetal split
 
 # Global Variables
 26: Level cap

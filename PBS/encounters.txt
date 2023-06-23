@@ -929,9 +929,9 @@ Special,1
 LandSparse,20
     20,AMOONGUSS,53,55
     20,ARIADOS,53,55
+    20,DITTO,53,55
     20,DURANT,53,55
     20,FERROTHORN,53,55
-    20,REAVOR,53,55
 #-------------------------------
 [366] # Far Beach
 Land,20

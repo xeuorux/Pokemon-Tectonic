@@ -5452,43 +5452,43 @@ Pokemon = WALREIN,58
     AbilityIndex = 0 # Thick Fat
 #-------------------------------
 [DITTO_HIKER,Kevinick]
-Pokemon = GOLEM,60
+Pokemon = GOLEM,59
     AbilityIndex = 0 # Unbreakable
-Pokemon = RUBARIOR,60
+Pokemon = RUBARIOR,59
     AbilityIndex = 0 # Magic Bounce
-Pokemon = LINOONE,60
+Pokemon = LINOONE,59
     AbilityIndex = 0 # Dire Diversion
-Pokemon = MILOTIC,60
+Pokemon = MILOTIC,59
     AbilityIndex = 1 # Competitive
 #-------------------------------
 [DITTO_AROMALADY,Cindalice]
-Pokemon = LURANTIS,60
+Pokemon = LURANTIS,59
     AbilityIndex = 0 # Contrary
-Pokemon = TOUCANNON,60
+Pokemon = TOUCANNON,59
     AbilityIndex = 1 # Skill Link
-Pokemon = DRAGALGE,60
+Pokemon = DRAGALGE,59
     AbilityIndex = 0 # Expertise
-Pokemon = WAILORD,60
+Pokemon = WAILORD,59
     AbilityIndex = 0 # Pressure
 #-------------------------------
 [DITTO_CAMPER,Johnate]
-Pokemon = GRENINJA,60
+Pokemon = GRENINJA,59
     AbilityIndex = 0 # Protean
-Pokemon = SPINDA,60
+Pokemon = SPINDA,59
     AbilityIndex = 0 # Disorienting
-Pokemon = TREVENANT,60
+Pokemon = TREVENANT,59
     AbilityIndex = 1 # Break Through
-Pokemon = HARIYAMA,60
+Pokemon = HARIYAMA,59
     AbilityIndex = 1 # Fighting Vigor
 #-------------------------------
 [DITTO_RANGER,Hannamy]
-Pokemon = GRIMMSNARL,60
+Pokemon = GRIMMSNARL,59
     AbilityIndex = 1 # Ruinous
-Pokemon = TENTACRUEL,60
+Pokemon = TENTACRUEL,59
     AbilityIndex = 1 # Trapper
-Pokemon = CACTURNE,60
+Pokemon = CACTURNE,59
     AbilityIndex = 1 # Schadenfreude
-Pokemon = ALAKAZAM,60
+Pokemon = ALAKAZAM,59
     AbilityIndex = 1 # Steelworker
 #-------------------------------
 [CAMPER_M,Nick]
