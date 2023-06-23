@@ -409,7 +409,7 @@
 1408,DETACHMENT,Detachment,086,55,FIGHTING,Special,100,12,0,NearOther,0,abef,"The user, free from earthly attachments, attacks with aura. Doubles in damage if the user has no item.",AURASPHERE
 1409,SWARMORDER,Swarm Order,0AD,90,BUG,Physical,100,12,0,NearOther,0,befh,"The user calls out its underlings to pummel the target. Skips and destroys protections.",INFESTATION
 1410,NOISEORDER,Noise Order,401,60,BUG,Special,100,12,100,NearOther,0,bce,"The user calls out its underlings to annoy the target with buzzing sounds, dizzying it.",BUGBUZZ
-1411,REGALIA,Regalia,5D7,0,NORMAL,Status,100,15,0,NearOther,0,bce,"The user adorns the target with precious stones, changing it to your choice of Fairy, Dragon, or Steel-type.",LUCKYCHANT
+1411,REGALIA,Regalia,5D7,0,NORMAL,Status,100,15,0,UserOrNearOther,0,bce,"The user adorns itself or the target with precious stones, changing it to your choice of Fairy, Dragon, or Steel-type.",LUCKYCHANT
 1412,ROLLINGARSENAL,Rolling Arsenal,547,90,BUG,Physical,100,10,60,NearOther,0,bef,"The user bites, claws, and stings the target while rolling. It has a 20% chance each to poison, dizzy, or leech.",CHAOSWHEEL
 1413,ZEPHYRWING,Zephyr Wing,536,130,FLYING,Physical,100,5,30,NearOther,0,bef,"The user flies up to raise its Sp. Def by four steps in the first turn, then rams the foe on the second.",SKYATTACK
 1414,SWAGGER,Swagger,55D,0,NORMAL,Status,100,12,0,NearOther,0,bce,"The target's Attack stat is raised by three steps. It then hits itself in a rage.",
