@@ -1479,8 +1479,9 @@ class PokeBattle_Move_55D < PokeBattle_Move
     end
 
     def getTargetAffectingEffectScore(user, target)
-        score = 120
+        score = 100
         score -= getMultiStatUpEffectScore([:ATTACK, 3], user, target)
+        score -= 50 if target.hasActiveAbilityAI?(:UNAWARE)
         return score
     end
 end
@@ -1496,8 +1497,9 @@ selfHitBasePower(target.level))
     end
 
     def getTargetAffectingEffectScore(user, target)
-        score = 120
+        score = 100
         score -= getMultiStatUpEffectScore([:SPECIAL_ATTACK, 3], user, target)
+        score -= 50 if target.hasActiveAbilityAI?(:UNAWARE)
         return score
     end
 end
