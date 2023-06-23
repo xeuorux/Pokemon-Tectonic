@@ -91,6 +91,12 @@ class PokemonPartyShowcase_Scene
             end
         end
 
+        # Display ball caught in icon
+        newItemIcon = ItemIconSprite.new(displayX + 200,mainIconY + POKEMON_ICON_SIZE + 16,pokemon.poke_ball,@viewport)
+        newItemIcon.zoom_x = 0.5
+        newItemIcon.zoom_y = 0.5
+        @sprites["ball_#{index}"] = newItemIcon
+
         # Display gender
         #genderX = displayX + 2
         #genderY = itemY - 6
