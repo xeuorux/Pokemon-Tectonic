@@ -2,7 +2,7 @@ BURNED_EXPLANATION = _INTL("Its physical damage is reduced by a third")
 POISONED_EXPLANATION = _INTL("The poison will worsen over time")
 FROSTBITE_EXPLANATION = _INTL("Its special damage is reduced by a third")
 NUMBED_EXPLANATION = _INTL("Its Speed is halved, and it'll deal less damage")
-DIZZY_EXPLANATION = _INTL("It's ability is supressed, and it'll take more damage")
+DIZZY_EXPLANATION = _INTL("Its ability is suppressed, and it'll take more damage")
 LEECHED_EXPLANATION = _INTL("Its HP will be siphoned by the opposing side")
 
 class PokeBattle_Battler

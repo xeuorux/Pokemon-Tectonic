@@ -127,24 +127,25 @@ class PokeBattle_Battler
         end
         # Over-Acting
         if hasActiveAbility?(:OVERACTING)
-            choices = []
+            choices = {}
             @battle.eachOtherSideBattler(@index) do |b|
-                anyCopyables = false
+                copiableAbilities = []
                 b.eachLegalAbility do |abilityID|
-                    next if b.ungainableAbility?(abilityID) || GameData::Ability::UNCOPYABLE_ABILITIES.include?(abilityID)
-                    anyCopyables = true
-                    break
+                    next if b.ungainableAbility?(abilityID)
+                    next if GameData::Ability::UNCOPYABLE_ABILITIES.include?(abilityID)
+                    copiableAbilities.push(abilityID)
                 end
-                choices.push(b) if anyCopyables
+                next if copiableAbilities.empty?
+                choices[b] = copiableAbilities
             end
             unless choices.empty?
-                choice = choices.sample
+                battlerCopying = choices.sample
+                abilitiesCopying = choices[battlerCopying]
                 @battle.pbShowAbilitySplash(self, :OVERACTING)
-                @battle.pbDisplay(_INTL("{1} is acting like a {2}!", pbThis, GameData::Species.get(choice.species).real_name))
-                legalAbilities = choice.legalAbilities
-                setAbility(legalAbilities)
-                legalAbilities.each do |legalAbility|
-                    @battle.pbDisplay(_INTL("{1} mimicked the ability {2}!", pbThis, choice.pbThis(true), getAbilityName(legalAbility)))
+                @battle.pbDisplay(_INTL("{1} is acting like a {2}!", pbThis, GameData::Species.get(battlerCopying.species).real_name))
+                setAbility(abilitiesCopying)
+                abilitiesCopying.each do |legalAbility|
+                    @battle.pbDisplay(_INTL("{1} mimicked the ability {2}!", pbThis, getAbilityName(legalAbility)))
                 end
                 @battle.pbHideAbilitySplash(self)
                 if !onSwitchIn && (unstoppableAbility? || abilityActive?)

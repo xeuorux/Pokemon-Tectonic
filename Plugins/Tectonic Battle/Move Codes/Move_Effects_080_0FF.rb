@@ -2244,7 +2244,7 @@ class PokeBattle_Move_0CF < PokeBattle_Move
         when :MAGMASTORM
             msg = _INTL("{1} became trapped by Magma Storm!", target.pbThis)
         when :SANDTOMB, :SANDVORTEX
-            msg = _INTL("{1} became trapped by Sand Tomb!", target.pbThis)
+            msg = _INTL("{1} became trapped by sand!", target.pbThis)
         when :WHIRLPOOL, :MAELSTROM
             msg = _INTL("{1} became trapped in the vortex!", target.pbThis)
         when :WRAP, :KRAKENCLUTCHES

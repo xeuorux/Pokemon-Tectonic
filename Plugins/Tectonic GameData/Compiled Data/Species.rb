@@ -1283,4 +1283,13 @@ end
           return -1
       end
   end
+
+  def legalAbilities
+    legalAbilities = []
+    legalAbilities.concat(@abilities)
+    legalAbilities.concat(@hidden_abilities)
+    legalAbilities.uniq!
+    legalAbilities.compact!
+    return legalAbilities
+  end
 end

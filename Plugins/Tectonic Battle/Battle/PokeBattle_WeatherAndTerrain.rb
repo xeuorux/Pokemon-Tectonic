@@ -73,44 +73,44 @@ class PokeBattle_Battle
 
     def displayResetWeatherMessage
         case @field.weather
-        when :Sun         then pbDisplay(_INTL("The sunshine continues!"))
-        when :Rain        then pbDisplay(_INTL("The rain shows no sign of stopping!"))
-        when :Sandstorm   then pbDisplay(_INTL("The sandstorm returns to full strength!"))
-        when :Hail        then pbDisplay(_INTL("The hail keeps coming!"))
-        when :ShadowSky   then pbDisplay(_INTL("The darkened sky darkens even further!"))
-        when :Eclipse     then pbDisplay(_INTL("The eclipse extends unnaturally!"))
-        when :Moonglow   then pbDisplay(_INTL("The bright moon doesn't wane!"))
+        when :Sun           then pbDisplay(_INTL("The sunshine continues!"))
+        when :Rain          then pbDisplay(_INTL("The rain shows no sign of stopping!"))
+        when :Sandstorm     then pbDisplay(_INTL("The sandstorm returns to full strength!"))
+        when :Hail          then pbDisplay(_INTL("The hail keeps coming!"))
+        when :ShadowSky     then pbDisplay(_INTL("The darkened sky darkens even further!"))
+        when :Eclipse       then pbDisplay(_INTL("The eclipse extends unnaturally!"))
+        when :Moonglow      then pbDisplay(_INTL("The bright moon doesn't wane!"))
         end
     end
 
     def displayFreshWeatherMessage
         case @field.weather
-        when :Sun         then pbDisplay(_INTL("The sun is shining in the sky!"))
-        when :Rain        then pbDisplay(_INTL("It started to rain!"))
-        when :Sandstorm   then pbDisplay(_INTL("A sandstorm brewed!"))
-        when :Hail        then pbDisplay(_INTL("It started to hail!"))
-        when :HarshSun    then pbDisplay(_INTL("The sunlight turned extremely harsh!"))
-        when :HeavyRain   then pbDisplay(_INTL("A heavy rain began to fall!"))
-        when :StrongWinds then pbDisplay(_INTL("Mysterious strong winds are protecting Flying-type Pokémon!"))
-        when :ShadowSky   then pbDisplay(_INTL("A shadow sky appeared!"))
-        when :Eclipse     then pbDisplay(_INTL("An eclipse covers the sun!"))
-        when :Moonglow   then pbDisplay(_INTL("The light of the moon shines down!"))
+        when :Sun           then pbDisplay(_INTL("The sun is shining in the sky!"))
+        when :Rain          then pbDisplay(_INTL("It started to rain!"))
+        when :Sandstorm     then pbDisplay(_INTL("A sandstorm brewed!"))
+        when :Hail          then pbDisplay(_INTL("It started to hail!"))
+        when :HarshSun      then pbDisplay(_INTL("The sunlight turned extremely harsh!"))
+        when :HeavyRain     then pbDisplay(_INTL("A heavy rain began to fall!"))
+        when :StrongWinds   then pbDisplay(_INTL("Mysterious strong winds are protecting Flying-type Pokémon!"))
+        when :ShadowSky     then pbDisplay(_INTL("A shadow sky appeared!"))
+        when :Eclipse       then pbDisplay(_INTL("An eclipse covers the sun!"))
+        when :Moonglow      then pbDisplay(_INTL("The light of the moon shines down!"))
         end
     end
 
     def endWeather
         return if @field.weather == :None
         case @field.weather
-        when :Sun         then pbDisplay(_INTL("The sunshine faded."))
-        when :Rain        then pbDisplay(_INTL("The rain stopped."))
-        when :Sandstorm   then pbDisplay(_INTL("The sandstorm subsided."))
-        when :Hail        then pbDisplay(_INTL("The hail stopped."))
-        when :ShadowSky   then pbDisplay(_INTL("The shadow sky faded."))
-        when :Eclipse     then pbDisplay(_INTL("The eclipse ended."))
-        when :Moonglow   then pbDisplay(_INTL("The moonlight faded."))
-        when :HeavyRain   then pbDisplay(_INTL("The heavy rain has lifted!"))
-        when :HarshSun    then pbDisplay(_INTL("The harsh sunlight faded!"))
-        when :StrongWinds then pbDisplay(_INTL("The mysterious air current has dissipated!"))
+        when :Sun           then pbDisplay(_INTL("The sunshine faded."))
+        when :Rain          then pbDisplay(_INTL("The rain stopped."))
+        when :Sandstorm     then pbDisplay(_INTL("The sandstorm subsided."))
+        when :Hail          then pbDisplay(_INTL("The hail stopped."))
+        when :ShadowSky     then pbDisplay(_INTL("The shadow sky faded."))
+        when :Eclipse       then pbDisplay(_INTL("The eclipse ended."))
+        when :Moonglow      then pbDisplay(_INTL("The moonlight faded."))
+        when :HeavyRain     then pbDisplay(_INTL("The heavy rain has lifted!"))
+        when :HarshSun      then pbDisplay(_INTL("The harsh sunlight faded!"))
+        when :StrongWinds   then pbDisplay(_INTL("The mysterious air current has dissipated!"))
         end
         oldWeather = @field.weather
         @field.weather	= :None

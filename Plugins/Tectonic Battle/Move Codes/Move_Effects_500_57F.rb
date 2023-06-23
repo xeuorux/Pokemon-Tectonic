@@ -1475,7 +1475,7 @@ end
 class PokeBattle_Move_55D < PokeBattle_Move
     def pbEffectAgainstTarget(user, target)
         target.tryRaiseStat(:ATTACK, user, increment: 3, move: self)
-        target.pbConfusionDamage(_INTL("It hurt itself in rage!"), false, false, selfHitBasePower(target.level))
+        target.pbConfusionDamage(_INTL("It hurt itself in a rage!"), false, false, selfHitBasePower(target.level))
     end
 
     def getTargetAffectingEffectScore(user, target)

@@ -812,8 +812,12 @@ class PokeBattle_Battler
         return @battle.pbIsTrapped?(@index)
     end
 
+    def legalAbilities
+        return @pokemon.species_data.legalAbilities
+    end
+
     def eachLegalAbility
-        @pokemon.species_data.abilities.each do |abilityID|
+        @pokemon.species_data.legalAbilities.each do |abilityID|
             yield abilityID
         end
     end

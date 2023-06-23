@@ -91,11 +91,11 @@ class StyleValueScene
         textpos = []
         textpos.push([_INTL("Adjust {1}'s Style", @pokemon.name),Graphics.width / 2,0,2,Color.new(88,88,80),Color.new(168,184,184)])
 
-        # Place the pokemon's style values (stored as EVs)
+        # Place the pokemon's Style Points (stored as EVs)
         numberBase = Color.new(64, 64, 64)
         numberShadow = Color.new(176, 176, 176)
         textpos.concat([
-                           [_INTL("Style Values"), styleValueLabelX, styleValueY, 0, base, shadow],
+                           [_INTL("Style Points"), styleValueLabelX, styleValueY, 0, base, shadow],
                            [_INTL("HP"), styleValueLabelX, styleValueY + 40, 0, base, shadow],
                            [format("%d", @pokemon.ev[:HP]), styleValueX, styleValueY + 40, 1, numberBase,
                             numberShadow,],
@@ -348,7 +348,7 @@ class StyleValueScreen
         end
 
         if resetEVs
-            pbMessage(_INTL("Resetting style values due to non-conformity with rules."))
+            pbMessage(_INTL("Resetting Style Points due to non-conformity with rules."))
             GameData::Stat.each_main do |s|
                 pkmn.ev[s.id] = DEFAULT_STYLE_VALUE
             end
@@ -369,8 +369,8 @@ class StyleValueScreen
             if Input.trigger?(Input::BACK)
                 if @pool > 0
                     pbPlayBuzzerSE
-                    @scene.pbDisplay("There are still Style Values points left to assign!")
-                elsif @scene.pbConfirm(_INTL("Finish adjusting style values?"))
+                    @scene.pbDisplay("There are still Style Points points left to assign!")
+                elsif @scene.pbConfirm(_INTL("Finish adjusting Style Points?"))
                     @scene.pbEndScene
                     pbPlayCloseMenuSE
                     return
@@ -387,8 +387,8 @@ class StyleValueScreen
                 elsif @index == 7
                     if @pool > 0
                         pbPlayBuzzerSE
-                        @scene.pbDisplay("There are still Style Values points left to assign!")
-                    elsif @scene.pbConfirm(_INTL("Finish adjusting style values?"))
+                        @scene.pbDisplay("There are still Style Points points left to assign!")
+                    elsif @scene.pbConfirm(_INTL("Finish adjusting Style Points?"))
                         @scene.pbEndScene
                         pbPlayCloseMenuSE
                         return

@@ -293,7 +293,7 @@ GameData::Move.get(@effects[:GorillaTactics]).name)
         # Flinching
         if effectActive?(:Flinch)
             if effectActive?(:FlinchImmunity)
-                @battle.pbDisplay("#{pbThis} would have flinched, but its immune now!")
+                @battle.pbDisplay("#{pbThis} would have flinched, but it's immune now!")
                 disableEffect(:Flinch)
             elsif hasTribeBonus?(:TYRANNICAL) && !pbOwnSide.effectActive?(:TyrannicalImmunity)
                 @battle.pbShowTribeSplash(self,:TYRANNICAL)
@@ -491,9 +491,10 @@ target.pbThis(true)))
     def airborneImmunity?(user, target, move, showMessages = true)
         # Airborne-based immunity to Ground moves
         if move.damagingMove? && move.calcType == :GROUND && target.airborne? && !move.hitsFlyingTargets?
-            if target.hasLevitate? && !@battle.moldBreaker
+            levitationAbility = target.hasLevitate?
+            if levitationAbility && !@battle.moldBreaker
                 if showMessages
-                    @battle.pbShowAbilitySplash(target, :LEVITATE)
+                    @battle.pbShowAbilitySplash(target, levitationAbility)
                     @battle.pbDisplay(_INTL("{1} avoided the attack!", target.pbThis))
                     @battle.pbHideAbilitySplash(target)
                     @battle.triggerImmunityDialogue(user, target, true)

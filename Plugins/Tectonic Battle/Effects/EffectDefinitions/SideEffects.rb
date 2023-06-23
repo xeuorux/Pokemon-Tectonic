@@ -268,7 +268,7 @@ GameData::BattleEffect.register_effect(:Side, {
         if increment == 1
             battle.pbDisplay(_INTL("Spikes were scattered all around {1}'s feet!", teamName))
         else
-            battle.pbDisplay(_INTL("{1} layers of Spikes were scattered all around {2}'s feet!", increment,
+            battle.pbDisplay(_INTL("{1} layers of spikes were scattered all around {2}'s feet!", increment,
 teamName))
         end
     end,
