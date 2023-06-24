@@ -339,7 +339,7 @@ def randomizeSpecies(species, static = false, gift = false)
   if !pokemon.nil?
     pokemon.species = species
     pokemon.calc_stats
-    pokemon.resetMoves
+    pokemon.reset_moves
   end
   return pokemon.nil? ? species : pokemon
 end
