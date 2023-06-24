@@ -94,3 +94,14 @@ def placeAlloyedTripWire
         pbMessage(_INTL("It'd be a good place to set a trip wire."))
     end
 end
+
+def fadeFlee(switchName = 'A')
+    blackFadeOutIn {
+        pbSEPlay('Battle flee')
+        setMySwitch(switchName)
+    }
+end
+
+def playMetallicGrinding
+    pbSEPlay('Anim/PRSFX- Gear Grind',120,60)
+end

@@ -19,6 +19,16 @@ def perfectAncientTrainer
 	pbReceiveItem(:VANILLATULUMBA)
 end
 
+def perfectDittoTrainer(maxTrainerLevel=15)
+	blackFadeOutIn() {
+		setMySwitch('D',true)
+		pbSEPlay("Cries/DITTO",50,100)
+		setFollowerGone
+	}
+	pbTrainerDropsItem(maxTrainerLevel)
+end
+
+
 def perfectAceTrainer(maxTrainerLevel=15)
 	blackFadeOutIn() {
 		setMySwitch('D',true)

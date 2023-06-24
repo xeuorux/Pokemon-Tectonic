@@ -254,7 +254,7 @@ class PokeBattle_Battle
         # Turn skipped due to ambush
         if @turnCount == 0 && @playerAmbushing
             # Player ambushes successfully!
-            pbDisplaySlower(_INTL("Your foe was ambushed! You get a free turn!"))
+            pbDisplay(_INTL("Your foe was ambushed! You get a free turn!"))
             eachOtherSideBattler do |b|
                 b.extraMovesPerTurn = 0
             end
@@ -296,7 +296,7 @@ class PokeBattle_Battle
         # Turn skipped due to ambush
         if @turnCount == 0 && @foeAmbushing
             # The player is ambushed by the foe!
-            pbDisplaySlower(_INTL("You were ambushed! The foe gets a free turn!"))
+            pbDisplay(_INTL("You were ambushed! The foe gets a free turn!"))
             eachSameSideBattler do |b|
                 b.extraMovesPerTurn = 0
             end
