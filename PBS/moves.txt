@@ -272,7 +272,7 @@
 271,MAGICALLEAF,Magical Leaf,0A5,60,GRASS,Special,0,15,0,NearOther,0,ef,"The user scatters leaves that chase the target. Can't miss and skips protections.",
 272,NEEDLEARM,Needle Arm,00F,60,GRASS,Physical,100,12,50,NearOther,0,abe,"The user attacks by wildly swinging its thorny arms. It has a 50% chance to make the target flinch.",
 273,RAZORLEAF,Razor Leaf,000,55,GRASS,Physical,100,20,0,AllNearFoes,0,befh,"Sharp-edged leaves are launched to slash at the opposing team. Critical hits twice as often.",
-274,VINEWHIP,Vine Whip,504,40,GRASS,Physical,100,20,0,NearOther,0,abef,"The target is struck with slender, whiplike vines. Deals 25% more damage if the target attacked first.",
+274,VINEWHIP,Vine Whip,000,45,GRASS,Physical,100,20,0,NearOther,0,abef,"The target is struck with slender, whiplike vines.",
 275,LEAFAGE,Leafage,000,40,GRASS,Physical,100,30,0,NearOther,0,bef,"The user attacks by pelting the target with leaves. Critical hits twice as often.",
 276,MEGADRAIN,Mega Drain,0DD,40,GRASS,Special,100,12,0,NearOther,0,befh,"A nutrient-draining attack. The user's HP is restored by half the damage taken by the target.",
 277,BULLETSEED,Bullet Seed,0C0,25,GRASS,Physical,100,25,0,NearOther,0,befn,"The user forcefully shoots seeds at the target. Two to five seeds are shot in rapid succession.",
