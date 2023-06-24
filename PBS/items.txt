@@ -417,7 +417,7 @@
 416,RAWSTBERRY,Rawst Berry,Rawst Berries,5,0,"It may be held by a Pokémon to recover from a burn.",0,0,5
 417,ASPEARBERRY,Aspear Berry,Aspear Berries,5,0,"It may be held by a Pokémon to recover from a frostbite.",0,0,5
 418,LEPPABERRY,Leppa Berry,Leppa Berries,5,0,"It may be held by a Pokémon to restore a move's PP by 10.",0,0,5
-419,ORANBERRY,Oran Berry,Oran Berries,5,0,"It may be held by a Pokémon to heal the user by 33% in a pinch.",0,0,5
+419,AMWIBERRY,Amwi Berry,Amwi Berries,5,0,"It may be held by a Pokémon to heal the user by 33% in a pinch (below 25% HP).",0,0,5
 420,PERSIMBERRY,Persim Berry,Persim Berries,5,0,"It may be held by a Pokémon to recover from being dizzy.",0,0,5
 421,LUMBERRY,Lum Berry,Lum Berries,5,0,"It may be held by a Pokémon to recover from any status problem.",0,0,5
 422,SITRUSBERRY,Sitrus Berry,Sitrus Berries,5,0,"If held by a Pokémon, it heals its HP by 25% at half health.",0,0,5

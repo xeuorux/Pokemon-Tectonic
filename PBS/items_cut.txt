@@ -335,3 +335,4 @@
 2334,TM203,TM203,TM203s,4,6000,"The target is slugged with a punch thrown at maximum power. This move can also be used to move boulders.",3,0,0,STRENGTH
 2335,TM204,TM204,TM204s,4,6000,"The user charges the target at an awesome speed. It can also be used to climb a waterfall.",3,0,0,WATERFALL
 2336,BRIGHTPOWDER,Bright Powder,Bright Powders,5,4000,"An item to be held by a Pokémon. It casts a tricky glare that lowers the opponent's accuracy.",0,0,0
+2337,ORANBERRY,Oran Berry,Oran Berries,5,0,"It may be held by a Pokémon to heal the user by 33% in a pinch (below 25% HP).",0,0,5

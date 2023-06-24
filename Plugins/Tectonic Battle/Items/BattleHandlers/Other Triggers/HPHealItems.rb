@@ -82,6 +82,8 @@ BattleHandlers::HPHealItem.add(:ORANBERRY,
   }
 )
 
+BattleHandlers::HPHealItem.copy(:ORANBERRY,:AMWIBERRY)
+
 BattleHandlers::HPHealItem.add(:SITRUSBERRY,
   proc { |item, battler, battle, forced, filchedFrom, filchingAbility|
       next false unless battler.canHeal?
