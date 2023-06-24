@@ -37,6 +37,8 @@ class Game_Map
           terrainTag = GameData::TerrainTag.try_get(@terrain_tags[tileID])
           next if terrainTag.ignore_passability
           return true if terrainTag.ignore_passability
+          return false if self_event && self_event != $game_player &&
+            self_event.name[/trippable/] && terrainTag.id == :TripWire
           return true if terrainTag.ice
           return true if terrainTag.ledge
           return true if terrainTag.can_surf

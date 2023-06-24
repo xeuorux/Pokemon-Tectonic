@@ -382,3 +382,8 @@ module GameData
     :battle_environment     => :Water,
     :can_surf               => true,
   })
+
+  GameData::TerrainTag.register({
+    :id                     => :TripWire,
+    :id_number              => 39,
+  })

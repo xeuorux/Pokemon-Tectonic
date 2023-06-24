@@ -79,3 +79,18 @@ def cutDownAlloyedTree(eventID)
         pbMessage(_INTL("You could probably cut it down, with the right tool."))
     end
 end
+
+def placeAlloyedTripWire
+    pbMessage(_INTL("A pair of metal posts are stuck into the ground."))
+    if pbHasItem?(:ALLOYEDWIRE)
+        if pbConfirmMessage(_INTL("String an alloyed wire between the posts?"))
+            pbMessage(_INTL("You place a trip wire!"))
+            setMySwitch('A')
+            pbDeleteItem(:ALLOYEDWIRE)
+        else
+            pbMessage(_INTL("You leave the posts alone."))
+        end
+    else
+        pbMessage(_INTL("It'd be a good place to set a trip wire."))
+    end
+end
