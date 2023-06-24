@@ -330,15 +330,15 @@ class PokeBattle_Scene
     end
   
     def pbChangePokemon(idxBattler,pkmn)
-		idxBattler = idxBattler.index if idxBattler.respond_to?("index")
-		pkmnSprite   = @sprites["pokemon_#{idxBattler}"]
-		shadowSprite = @sprites["shadow_#{idxBattler}"]
-		back = !@battle.opposes?(idxBattler)
-		pkmnSprite.setPokemonBitmap(pkmn,back)
-		shadowSprite.setPokemonBitmap(pkmn)
-		# Set visibility of battler's shadow
-		shadowSprite.visible = pkmn.species_data.shows_shadow? if shadowSprite && !back
-		shadowSprite.visible = false if pkmn.boss
+      idxBattler = idxBattler.index if idxBattler.respond_to?("index")
+      pkmnSprite   = @sprites["pokemon_#{idxBattler}"]
+      shadowSprite = @sprites["shadow_#{idxBattler}"]
+      back = !@battle.opposes?(idxBattler)
+      pkmnSprite.setPokemonBitmap(pkmn,back)
+      shadowSprite.setPokemonBitmap(pkmn)
+      # Set visibility of battler's shadow
+      shadowSprite.visible = pkmn.species_data.shows_shadow? if shadowSprite && !back
+      shadowSprite.visible = false if pkmn.boss
     end
   
     def pbResetMoveIndex(idxBattler)

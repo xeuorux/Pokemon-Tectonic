@@ -39,7 +39,7 @@ BattleHandlers::AbilityOnHPDroppedBelowHalf.add(:BOULDERNEST,
       battle.pbShowAbilitySplash(battler, ability)
       if battler.pbOpposingSide.effectActive?(:StealthRock)
           battle.pbDisplay(_INTL("But there were already pointed stones floating around {1}!",
-   battler.pbOpposingTeam(true)))
+                battler.pbOpposingTeam(true)))
       else
           battler.pbOpposingSide.applyEffect(:StealthRock)
       end
@@ -55,12 +55,14 @@ BattleHandlers::AbilityOnHPDroppedBelowHalf.add(:REAWAKENEDPOWER,
   }
 )
 
-BattleHandlers::AbilityOnHPDroppedBelowHalf.add(:REAWAKENEDPOWER,
-    proc { |ability, battler, _battle|
+BattleHandlers::AbilityOnHPDroppedBelowHalf.add(:PRIMEVALDISGUISE,
+    proc { |ability, battler, battle|
         next unless battler.illusion?
-        target.disableEffect(:Illusion)
+        battle.pbShowAbilitySplash(battler,ability)
+        battler.disableEffect(:Illusion)
         battle.scene.pbChangePokemon(battler, battler.pokemon)
         battle.pbSetSeen(battler)
+        battle.pbHideAbilitySplash(battler)
         next false
     }
 )

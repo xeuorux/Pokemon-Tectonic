@@ -794,7 +794,7 @@ class PokeBattle_AI_Mimikyu < PokeBattle_AI_Boss
         super
 
         @warnedIFFMove.add(:SPOOKYSNUGGLING, {
-            :condition => proc { |_move, user, _target, _battle|
+            :condition => proc { |_move, user, target, _battle|
                 next target.hasHealingMove?
             },
             :warning => proc { |_move, user, targets, _battle|

@@ -58,38 +58,40 @@ class PokeBattle_Scene
           ball.visible = false
         end
         # Ability splash bars
-          newAbilityBar = AbilitySplashBar.new(side,@viewport)
-          @sprites["abilityBar_#{side}"] = newAbilityBar
-          # Tribe splash bars
-          newTribeBar = TribeSplashBar.new(side,@viewport)
-          @sprites["tribeBar_#{side}"] = newTribeBar
-        end
-        # Player's and partner trainer's back sprite
-        @battle.player.each_with_index do |p,i|
-          pbCreateTrainerBackSprite(i,p.trainer_type,@battle.player.length)
-        end
-        # Opposing trainer(s) sprites
-        if @battle.trainerBattle?
-          @battle.opponent.each_with_index do |p,i|
-            pbCreateTrainerFrontSprite(i,p.trainer_type,@battle.opponent.length)
-          end
-        end
-        createDataBoxes()
+        newAbilityBar = AbilitySplashBar.new(side,@viewport)
+        @sprites["abilityBar_#{side}"] = newAbilityBar
+        # Tribe splash bars
+        newTribeBar = TribeSplashBar.new(side,@viewport)
+        @sprites["tribeBar_#{side}"] = newTribeBar
+      end
 
-        @battle.battlers.each_with_index do |b,i|
-        next if !b
-          pbCreatePokemonSprite(i)
-          createAvatarTargetReticle(b,i)
+      # Player's and partner trainer's back sprite
+      @battle.player.each_with_index do |p,i|
+        pbCreateTrainerBackSprite(i,p.trainer_type,@battle.player.length)
+      end
+      # Opposing trainer(s) sprites
+      if @battle.trainerBattle?
+        @battle.opponent.each_with_index do |p,i|
+          pbCreateTrainerFrontSprite(i,p.trainer_type,@battle.opponent.length)
         end
+      end
+      createDataBoxes()
+
+      @battle.battlers.each_with_index do |b,i|
+      next if !b
+        pbCreatePokemonSprite(i)
+        createAvatarTargetReticle(b,i)
+      end
 
       # Wild battle, so set up the Pokémon sprite(s) accordingly
       if @battle.wildBattle?
         @battle.pbParty(1).each_with_index do |pkmn,i|
-        index = i*2+1
-        pbChangePokemon(index,pkmn)
-        pkmnSprite = @sprites["pokemon_#{index}"]
-        pkmnSprite.tone    = Tone.new(-80,-80,-80)
-        pkmnSprite.visible = true
+          index = i*2+1
+          pkmn = @battle.battlers[index].disguisedAs || pkmn
+          pbChangePokemon(index,pkmn)
+          pkmnSprite = @sprites["pokemon_#{index}"]
+          pkmnSprite.tone    = Tone.new(-80,-80,-80)
+          pkmnSprite.visible = true
         end
       end
       
