@@ -628,7 +628,13 @@ class Pokemon
     # @param value [Symbol, GameData::Item, Integer, nil] ID of the item to give
     #   to this Pokémon
     def setItems(value)
-      @items = value.is_a?(Array) ? value : [value]
+      if value.nil?
+        @items = []
+      elsif value.is_a?(Array)
+        @items = value
+      else
+        @items = [value]
+      end
     end
 
     def giveItem(value)

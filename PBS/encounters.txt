@@ -479,6 +479,14 @@ Special,1
 Special,1
     1,GFARFETCHD,40
 #-------------------------------
+[182] # Alloyed Thicket - Eastern
+LandSparse,20
+    20,AMOONGUSS,53,55
+    20,ARIADOS,53,55
+    20,DITTO,53,55
+    20,DURANT,53,55
+    20,FERROTHORN,53,55
+#-------------------------------
 [183] # Circuit Cave
 DarkCave,21
     25,ELEKID,38
@@ -839,6 +847,14 @@ LandSparse,20
 Special,1
     1,DRIFLOON,14,17
 #-------------------------------
+[304] # Alloyed Thicket - Southern
+LandSparse,20
+    20,AMOONGUSS,53,55
+    20,ARIADOS,53,55
+    20,DITTO,53,55
+    20,DURANT,53,55
+    20,FERROTHORN,53,55
+#-------------------------------
 [305] # Dock Warehouse
 Special,1
     1,GPONYTA,15
@@ -933,11 +949,27 @@ LandSparse,20
     20,DURANT,53,55
     20,FERROTHORN,53,55
 #-------------------------------
+[365] # Alloyed Thicket - Western
+LandSparse,20
+    20,AMOONGUSS,53,55
+    20,ARIADOS,53,55
+    20,DITTO,53,55
+    20,DURANT,53,55
+    20,FERROTHORN,53,55
+#-------------------------------
 [366] # Far Beach
 Land,20
     34,NUMEL,8,10
     33,APPLIN,8,10
     33,KRABBY,8,10
+#-------------------------------
+[375] # Alloyed Thicket - Central
+LandSparse,20
+    20,AMOONGUSS,53,55
+    20,ARIADOS,53,55
+    20,DITTO,53,55
+    20,DURANT,53,55
+    20,FERROTHORN,53,55
 #-------------------------------
 [377] # Guardian Island
 Land,20
