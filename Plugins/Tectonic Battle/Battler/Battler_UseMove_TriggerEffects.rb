@@ -43,7 +43,7 @@ class PokeBattle_Battler
             # Beak Blast
             if target.effectActive?(:BeakBlast)
                 PBDebug.log("[Lingering effect] #{target.pbThis}'s Beak Blast")
-                user.applyBurn(target) if move.physicalMove? && user.canBurn?(target, false, self)
+                user.applyBurn(target) if move.physicalMove? && user.canBurn?(target, true, move)
             end
             # Shell Trap (make the trapper move next if the trap was triggered)
             if target.effectActive?(:ShellTrap) && @battle.choices[target.index][0] == :UseMove && !target.movedThisRound? && (target.damageState.hpLost > 0 && !target.damageState.substitute && move.physicalMove?)

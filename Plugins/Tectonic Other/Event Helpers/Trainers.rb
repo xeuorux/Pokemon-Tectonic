@@ -22,7 +22,7 @@ end
 def perfectDittoTrainer(maxTrainerLevel=15)
 	blackFadeOutIn() {
 		setMySwitch('D',true)
-		pbSEPlay("Cries/DITTO",50,100)
+		pbSEPlay("Cries/DITTO",50,50)
 		setFollowerGone
 	}
 	pbTrainerDropsItem(maxTrainerLevel)

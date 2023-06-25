@@ -770,16 +770,16 @@ class PokeBattle_AI_Bronzong < PokeBattle_AI_Boss
         })
 
         @warnedIFFMove.add(:CONFUSERAY, {
-            :condition => proc { |_move, user, _target, _battle|
-                next target.pbCanLowerStatStep?(:SPECIAL_DEFENSE,user)
+            :condition => proc { |_move, user, target, _battle|
+                next !target.pbCanLowerStatStep?(:SPECIAL_DEFENSE,user)
             },
             :warning => proc { |_move, user, targets, _battle|
-                _INTL("#{user.pbThis} aims to eliminate your protection against its sound!")
+                _INTL("#{user.pbThis} aims to eliminate sound protection!")
             },
         })
 
         @warnedIFFMove.add(:METALSOUND, {
-            :condition => proc { |_move, user, _target, _battle|
+            :condition => proc { |_move, user, target, _battle|
                 next target.steps[:SPECIAL_DEFENSE] >= 0
             },
             :warning => proc { |_move, user, targets, _battle|
