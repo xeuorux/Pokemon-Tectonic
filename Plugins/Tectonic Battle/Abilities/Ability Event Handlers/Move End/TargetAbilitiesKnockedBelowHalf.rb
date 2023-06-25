@@ -27,6 +27,12 @@ BattleHandlers::TargetAbilityKnockedBelowHalf.add(:WRATHINSTINCT,
     }
 )
 
+BattleHandlers::TargetAbilityKnockedBelowHalf.add(:BATTERYBREAK,
+    proc { |ability, target, user, move, _switched, battle|
+        battle.forceUseMove(target, :LIGHTNINGDANCE, user.index, ability: ability)
+    }
+)
+
 BattleHandlers::TargetAbilityKnockedBelowHalf.add(:MALICE,
     proc { |ability, target, user, move, _switched, battle|
         next if user.effectActive?(:Curse)
