@@ -29,14 +29,14 @@ class PokeBattle_Battle
             pbPlayer.pokedex.register(pkmn) # In case the form changed upon leaving battle
 
             # Let the player know info about the individual pokemon they caught
-            pbDisplayPaused(_INTL("You check {1}, and discover that its ability is {2}!", pkmn.name, pkmn.ability.name))
+            pbDisplayWithFormatting(_INTL("You check {1}, and discover that its ability is <imp>{2}</imp>!", pkmn.name, pkmn.ability.name))
 
             itemsToRemove = []
             pkmn.items.each do |item|
                 if GameData::Item.get(item).super
                     itemsToRemove.push(item)
                 else
-                    pbDisplayPaused(_INTL("The {1} is holding an {2}!", pkmn.name, getItemName(item)))
+                    pbDisplayWithFormatting(_INTL("The {1} is holding an <imp>{2}</imp>!", pkmn.name, getItemName(item)))
                 end
             end
 
@@ -50,9 +50,11 @@ class PokeBattle_Battle
             unless pbPlayer.owned?(pkmn.species)
                 pbPlayer.pokedex.set_owned(pkmn.species)
                 if $Trainer.has_pokedex
-                    pbDisplayPaused(_INTL("You register {1} as caught in the Pokédex.", pkmn.name))
                     pbPlayer.pokedex.register_last_seen(pkmn)
-                    @scene.pbShowPokedex(pkmn.species)
+                    if $PokemonSystem.dex_shown_register == 0
+                        pbDisplayPaused(_INTL("You register {1} as caught in the Pokédex.", pkmn.name))
+                        @scene.pbShowPokedex(pkmn.species)
+                    end
                 end
             end
 

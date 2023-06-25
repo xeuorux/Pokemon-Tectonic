@@ -28,6 +28,7 @@ class PokemonSystem
     attr_accessor :move_clarifying_messages
     attr_accessor :avatar_mechanics_messages
     attr_accessor :nicknaming_prompt
+    attr_accessor :dex_shown_register
     attr_accessor :color_shifts
     attr_accessor :party_snapshots
     attr_accessor :bag_sorting
@@ -93,6 +94,7 @@ class PokemonSystem
         @move_clarifying_messages = 0 # (0=true, 1=false)
         @avatar_mechanics_messages= 0 # (0=true, 1=false)
         @nicknaming_prompt        = 0 # (0=true, 1=false)
+        @dex_shown_register       = 0 # (0=true, 1=false)
         @show_trait_unlocks       = $DEBUG ? 1 : 0 # (0=true, 1=false)
         @party_snapshots          = $DEBUG ? 1 : 0 # (0=true, 1=false)
         @tutorial_popups          = $DEBUG ? 1 : 0 # (0=true, 1=false)
@@ -652,6 +654,12 @@ class PokemonOption_Scene_UserInterface < PokemonOption_Scene_Base
 				proc { $PokemonSystem.nicknaming_prompt },
 				proc { |value|
 					$PokemonSystem.nicknaming_prompt = value
+				}
+			),
+            EnumOption.new(_INTL("Dex Register Popup"), [_INTL("On"), _INTL("Off")],
+				proc { $PokemonSystem.dex_shown_register },
+				proc { |value|
+					$PokemonSystem.dex_shown_register = value
 				}
 			),
 			EnumOption.new(_INTL("Item Desc Popups"), [_INTL("On"), _INTL("Off")],
