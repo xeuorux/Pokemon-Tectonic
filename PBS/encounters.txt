@@ -798,6 +798,7 @@ LandSparse,20
     25,LARVITAR,42,44
     25,MAGNEMITE,42,44
     25,ZUBAT,42,44
+	20,KECLEON,42,44
 #-------------------------------
 [258] # Whitebloom Town
 Land,20
