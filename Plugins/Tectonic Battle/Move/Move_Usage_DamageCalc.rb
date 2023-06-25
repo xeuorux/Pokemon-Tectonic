@@ -124,7 +124,7 @@ class PokeBattle_Move
             end
         end
         if @battle.pbCheckGlobalAbility(:RUINOUS)
-            multipliers[:base_damage_multiplier] *= 1.2
+            multipliers[:base_damage_multiplier] *= 1.4
         end
         # Ability effects that alter damage
         user.eachActiveAbility do |ability|

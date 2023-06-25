@@ -77,7 +77,7 @@
 1076,ARCCONDUCTOR,Arc Conductor,"Inflicts 1/6th max HP damage to the foe when damaged during rain."
 1077,HONORAURA,Honor Aura,"Lowers priority of status moves used by any Pokémon."
 1078,GARGANTUAN,Gargantuan,"Completely protects allies from foes' multi-target moves."
-1079,RUINOUS,Ruinous,"All Pokémon deal 20% more move damage."
+1079,RUINOUS,Ruinous,"All Pokémon deal 40% more move damage."
 1080,FORTIFIED,Fortified,"Take 20% less damage from attacks on turns when it hasn't moved yet."
 1081,BLIZZBOXER,Blizz Boxer,"Boosts Attack by 30% in hailstorms."
 1082,DESERTSPIRIT,Desert Spirit,"Immune to Ground-type moves. Takes 20% less damage in Sandstorm."
