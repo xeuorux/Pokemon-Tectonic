@@ -64,7 +64,7 @@ DebugMenuCommands.register("warp", {
     "effect"      => proc {
       chosenMap = pbListScreen("Choose Map",MapLister.new($game_map.map_id))
       if chosenMap >= 0
-        chosenEvent = pbListScreen("Choose Event on #{pbGetMapNameFromId(chosenMap)}",EventLister.new(chosenMap))
+        chosenEvent = pbListScreen("Choose Event on #{pbGetMapNameFromId(chosenMap)}",EventLister.new(chosenMap), Graphics.width * 3.0/4.0)
         if chosenEvent >= 0
           while true
             currentA = $game_self_switches[[chosenMap, chosenEvent, 'A']]
@@ -104,6 +104,7 @@ DebugMenuCommands.register("warp", {
         next if !event || event.pages.length==0
         @events.push(event)
       end
+      @events.sort_by!(&:id)
       @index = 0
     end
   

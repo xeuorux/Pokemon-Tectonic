@@ -10,14 +10,14 @@ def pbListWindow(cmds, width = Graphics.width / 2)
   return list
 end
 
-def pbListScreen(title,lister)
+def pbListScreen(title,lister,listWidth = Graphics.width / 2)
   viewport = Viewport.new(0,0,Graphics.width,Graphics.height)
   viewport.z = 99999
-  list = pbListWindow([])
+  list = pbListWindow([], listWidth)
   list.viewport = viewport
   list.z        = 2
   title = Window_UnformattedTextPokemon.newWithSize(title,
-     Graphics.width / 2, 0, Graphics.width / 2, 64, viewport)
+    listWidth, 0, Graphics.width - listWidth, 64, viewport)
   title.z = 2
   lister.setViewport(viewport)
   selectedIndex = -1
