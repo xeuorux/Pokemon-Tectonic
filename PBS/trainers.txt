@@ -5634,6 +5634,30 @@ Pokemon = GOLURK,70
 Pokemon = DRAGALGE,70
     Moves = DRAGONTAIL,CRUELTY,RECOVER,GREYMIST
     AbilityIndex = 0 # Expertise
+Pokemon = VAPOREON,70
+	Moves = MENDINGSPRING,SCALD,RECOVER,HEALBELL
+	AbilityIndex = 1 # Expertise
+#-------------------------------
+[CHALLENGER_Vanya,Vanya,9]
+Policies = NO_PERFECT
+Pokemon = SKARMORY,70
+    Moves = STEALTHROCK,ROOST,FEATHERWARD,TAILWIND
+    AbilityIndex = 0 # Mental Block
+Pokemon = WEAVILE,70
+    Moves = SEVER,TRIPLEAXEL,SWORDSDANCE,ICESHARD
+    AbilityIndex = 0 # Inner Focus
+Pokemon = GOLURK,70
+    Moves = PHANTOMBREAK,LAHAR,ZAPCANNON,VENOMORTAR
+    AbilityIndex = 1 # No Guard
+Pokemon = DRAGALGE,70
+    Moves = DRAGONTAIL,CRUELTY,RECOVER,GREYMIST
+    AbilityIndex = 0 # Expertise
+Pokemon = VAPOREON,70
+	Moves = MENDINGSPRING,SCALD,RECOVER,HEALBELL
+	AbilityIndex = 1 # Expertise
+Pokemon = PINCURCHIN,70
+	AbilityIndex = 1 # Spinesplode
+	SPIKYSHIELD,EXPLOSION,POISONSPIKES,NUMB
 #-------------------------------
 [WILDPARTY_KOKO,of Conflict]
 Policies = NO_PERFECT
