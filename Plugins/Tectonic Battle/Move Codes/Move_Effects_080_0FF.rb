@@ -1765,11 +1765,28 @@ class PokeBattle_Move_0BD < PokeBattle_Move
 end
 
 #===============================================================================
-# Hits twice. May poison the target on each hit. (Twineedle)
+# Hits twice as Beedrill and four times as Wornet. (Multi-Needle)
 #===============================================================================
 class PokeBattle_Move_0BE < PokeBattle_PoisonMove
     def multiHitMove?; return true; end
-    def pbNumHits(_user, _targets, _checkingForAI = false); return 2; end
+
+    def pbMoveFailed?(user, _targets, show_message)
+        if !user.countsAs?(:BEEDRILL) && !user.countsAs?(:WORNET)
+            if show_message
+                @battle.pbDisplay(_INTL("But it failed, since #{user.pbThis(true)} has no stingers!"))
+            end
+            return true
+        end
+        return false
+    end
+    
+    def pbNumHits(_user, _targets, _checkingForAI = false)
+        if user.countsAs?(:WORNET)
+            return 4
+        elsif user.countsAs?(:BEEDRILL)
+            return 2
+        end
+    end
 end
 
 #===============================================================================
@@ -1856,7 +1873,7 @@ class PokeBattle_Move_0C1 < PokeBattle_Move
         calculateBeatUpList(user)
         if @beatUpList.length == 0
             if show_message
-                @battle.pbDisplay(_INTL("But it failed, since has no party members on #{user.pbTeam(true)} who can join in!"))
+                @battle.pbDisplay(_INTL("But it failed, since there are no party members on #{user.pbTeam(true)} who can join in!"))
             end
             return true
         end

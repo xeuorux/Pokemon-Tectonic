@@ -399,6 +399,10 @@ def tmShop
 	# Wailing Blow, Shadow Ball
 	# Rend, Dragon Pulse
 
+	# Crunch, Dark Allure
+	# Bullet Train, Flash Cannon
+	# Play Rough, Moon Blast
+
 	tmsStock = %i[
 		TM49 TM142
 		TM141 TM102
