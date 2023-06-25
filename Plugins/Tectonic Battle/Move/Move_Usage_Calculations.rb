@@ -297,7 +297,11 @@ class PokeBattle_Move
             c = BattleHandlers.triggerCriticalCalcTargetItem(item,user,target,c)
         end
 
-        c += 1 if highCriticalRate?
+        if veryHighCriticalRate?
+            c += 2
+        elsif highCriticalRate?
+            c += 1
+        end
 		c += user.effects[:FocusEnergy]
 		c += 1 if user.effectActive?(:LuckyStar)
         c += 1 if user.inHyperMode? && @calcType == :SHADOW

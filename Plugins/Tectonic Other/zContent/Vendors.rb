@@ -379,22 +379,47 @@ def eastEndExclusives(postTourney = false)
 end
 
 def tmShop
+	# Megapunch, Hypervoice
+	# Inferno Charge, Flame Thrower
+	# Liquidation, Bubble Blast
+
+	# Leaf Blade, Thriving Force
+	# Electroslash, Thunderbolt
+	# Crystal Crush, Ice Beam
+
+	# Brick Break, Aura Sphere
+	# Poison Jab, Miasma
+	# Trample, Earth Power
+
+	# Strafe, Cold Front
+	# Prediction Strike, Psychic
+	# X-Scissor, Bug Buzz
+
+	# Adamantine Press, Power Gem
+	# Wailing Blow, Shadow Ball
+	# Rend, Dragon Pulse
+
 	tmsStock = %i[
 		TM49 TM142
 		TM141 TM102
-		TM198 TM202
+		TM198 TM96
+
 		TM150 TM28
 		TM186 TM108
 		TM51 TM105
+
 		TM43 TM156
 		TM157 TM178
-		TM110 TM167
+		TM187 TM167
+
 		TM48 TM95
 		TM169 TM111
 		TM160 TM161
+
 		TM175 TM163
 		TM54 TM133
 		TM147 TM162
+
 		TM132 TM158
 		TM174 TM170
 		TM190 TM192

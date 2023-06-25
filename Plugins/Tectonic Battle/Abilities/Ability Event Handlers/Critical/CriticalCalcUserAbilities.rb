@@ -4,6 +4,12 @@ BattleHandlers::CriticalCalcUserAbility.add(:SUPERLUCK,
   }
 )
 
+BattleHandlers::CriticalCalcUserAbility.add(:SNIPER,
+  proc { |ability, _user, _target, _move, c|
+      next c + 1
+  }
+)
+
 BattleHandlers::CriticalCalcUserAbility.add(:STAMPEDE,
   proc { |ability, user, _target, _move, c|
       next c + user.steps[:SPEED]

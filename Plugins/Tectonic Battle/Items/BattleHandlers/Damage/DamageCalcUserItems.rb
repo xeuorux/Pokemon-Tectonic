@@ -321,3 +321,9 @@ BattleHandlers::DamageCalcUserItem.add(:INTELLECTHERB,
       mults[:final_damage_multiplier] *= 1.33
   }
 )
+
+BattleHandlers::DamageCalcUserItem.add(:SCOPELENS,
+  proc { |item, user, target, move, mults, _baseDmg, type, aiChecking|
+    mults[:final_damage_multiplier] *= 1.33 if target.damageState.critical
+  }
+)

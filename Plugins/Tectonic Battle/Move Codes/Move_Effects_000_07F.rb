@@ -649,7 +649,7 @@ end
 class PokeBattle_Move_02D < PokeBattle_MultiStatUpMove
     def initialize(battle, move)
         super
-        @statUp = [:ATTACK, 1, :DEFENSE, 1, :SPECIAL_ATTACK, 1, :SPECIAL_DEFENSE, 1, :SPEED, 1]
+        @statUp = ALL_STATS_1
     end
 end
 
@@ -932,9 +932,14 @@ class PokeBattle_Move_046 < PokeBattle_TargetStatDownMove
 end
 
 #===============================================================================
-# (Not currently used)
+# Lowers the target's Attack, Defense, Speed, Special Attack and Special Defense
+# by 1 step each. (Ruin)
 #===============================================================================
-class PokeBattle_Move_047 < PokeBattle_Move
+class PokeBattle_Move_047 < PokeBattle_TargetMultiStatDownMove
+    def initialize(battle, move)
+        super
+        @statDown = ALL_STATS_1
+    end
 end
 
 #===============================================================================

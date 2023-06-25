@@ -103,458 +103,457 @@
 102,MUSCLEBAND,Muscle Band,Muscle Bands,5,4000,"An item to be held by a Pokémon. It is a headband that boosts the power of physical moves by 10%.",0,0,0
 103,WISEGLASSES,Wise Glasses,Wise Glasses,5,4000,"An item to be held by a Pokémon. It is a thick pair of glasses that boosts the power of special moves by 10%.",0,0,0
 104,SEVENLEAGUEBOOTS,7-League Boots,7-League Boots,5,4000,"An item to be held by a Pokémon. They are boots that boost Speed by 10%.",0,0,0
-105,SCOPELENS,Scope Lens,Scope Lenses,5,4000,"An item to be held by a Pokémon. It is a lens that doubles the holder's critical-hit chance.",0,0,0
-106,WIDELENS,Wide Lens,Wide Lenses,5,4000,"An item to be held by a Pokémon. It is a magnifying lens that boosts the accuracy of moves by 35%.",0,0,0
-107,ZOOMLENS,Zoom Lens,Zoom Lenses,5,4000,"An item to be held by a Pokémon. If the holder moves after its target, its accuracy will be doubled.",0,0,0
-108,LAGGINGTAIL,Lagging Tail,Lagging Tails,5,4000,"An item to be held by a Pokémon. It is tremendously heavy and makes the holder move slower than usual.",0,0,0
-109,FOCUSSASH,Focus Sash,Focus Sashes,5,4000,"An item to be held by a Pokémon. If it has full HP, the holder will endure one potential KO attack, leaving 1 HP.",0,0,0
-110,FLAMEORB,Flame Orb,Flame Orbs,5,4000,"An item to be held by a Pokémon. A bizarre orb that inflicts burn on the holder at the end of a turn.",5,0,0
-111,FROSTORB,Frost Orb,Frost Orbs,5,4000,"An item to be held by a Pokémon. A bizarre orb that inflicts frostbite on the holder at the end of a turn.",5,0,0
-112,POISONORB,Poison Orb,Poison Orbs,5,4000,"An item to be held by a Pokémon. A bizarre orb that inflicts poison on the holder at the end of a turn.",5,0,0
-113,STICKYBARB,Sticky Barb,Sticky Barbs,5,4000,"A held item that damages the holder on every turn. It may latch on to Pokémon that attacks the holder.",0,0,0
-114,IRONBALL,Iron Ball,Iron Balls,5,4000,"A Pokémon held item that cuts Speed. It makes Flying-type and levitating holders susceptible to Ground moves.",0,0,0
-115,CHARCOAL,Charcoal,Charcoals,5,1000,"A combustible fuel that boosts the holder's Fire-type moves by 20%.",0,0,0
-116,MYSTICWATER,Mystic Water,Mystic Waters,5,1000,"A teardrop-shaped gem that boosts the holder's Water-type moves by 20%.",0,0,0
-117,MAGNET,Magnet,Magnets,5,1000,"A powerful magnet that boosts the holder's Electric-type moves by 20%.",0,0,0
-118,MIRACLESEED,Miracle Seed,Miracle Seeds,5,1000,"A seed imbued with life that boosts the holder's Grass-type moves by 20%.",0,0,0
-119,NEVERMELTICE,Never-Melt Ice,Never-Melt Ices,5,1000,"A piece of ice that repels heat and boosts Ice-type moves by 20%.",0,0,0
-120,BLACKBELT,Black Belt,Black Belts,5,1000,"A belt that boosts determination and Fighting-type moves by 20%.",0,0,0
-121,POISONBARB,Poison Barb,Poison Barbs,5,1000,"A small, poisonous barb that boosts the holder's Poison-type moves by 20%.",0,0,0
-122,SOFTSAND,Soft Sand,Soft Sand,5,1000,"A loose, silky sand that boosts the holder's Ground-type moves by 20%.",0,0,0
-123,SHARPBEAK,Sharp Beak,Sharp Beaks,5,1000,"A long, sharp beak that boosts the holder's Flying-type moves by 20%.",0,0,0
-124,TWISTEDSPOON,Twisted Spoon,Twisted Spoons,5,1000,"A spoon imbued with telekinetic power that boosts Psychic-type moves by 20%.",0,0,0
-125,SILVERPOWDER,Silver Powder,Silver Powders,5,1000,"A shiny, silver powder that boosts the holder's Bug-type moves by 20%.",0,0,0
-126,HARDSTONE,Hard Stone,Hard Stones,5,1000,"An unbreakable stone that boosts the holder's Rock-type moves by 20%.",0,0,0
-127,SPELLTAG,Spell Tag,Spell Tags,5,1000,"A sinister, eerie tag that boosts the holder's the holder's Ghost-type moves by 20%.",0,0,0
-128,DRAGONFANG,Dragon Fang,Dragon Fangs,5,1000,"A hard and sharp fang that boosts the holder's Dragon-type moves by 20%.",0,0,0
-129,BLACKGLASSES,Black Glasses,Black Glasses,5,1000,"A shady-looking pair of glasses that boosts the holder's Dark-type moves by 20%.",0,0,0
-130,METALCOAT,Metal Coat,Metal Coats,5,2000,"A special metallic film that boosts the holder's Steel-type moves by 20%.",0,0,0
-131,SILKSCARF,Silk Scarf,Silk Scarves,5,1000,"A sumptuous scarf that boosts the holder's Normal-type moves by 20%.",0,0,0
-132,FIREGEM,Fire Gem,Fire Gems,5,1000,"A gem with an essence of fire. Boosts the power of a Fire-type move by 50% once per battle.",0,0,10
-133,WATERGEM,Water Gem,Water Gems,5,1000,"A gem with an essence of water. Boosts the power of a Water-type move by 50% once per battle.",0,0,10
-134,ELECTRICGEM,Electric Gem,Electric Gems,5,1000,"A gem with an essence of electricity. Boosts the power of an Electric-type move by 50% once per battle.",0,0,10
-135,GRASSGEM,Grass Gem,Grass Gems,5,1000,"A gem with an essence of nature. Boosts the power of a Grass-type move by 50% once per battle.",0,0,10
-136,ICEGEM,Ice Gem,Ice Gems,5,1000,"A gem with an essence of ice. Boosts the power of an Ice-type move by 50% once per battle.",0,0,10
-137,FIGHTINGGEM,Fighting Gem,Fighting Gems,5,1000,"A gem with an essence of combat. Boosts the power of a Fighting-type move by 50% once per battle.",0,0,10
-138,POISONGEM,Poison Gem,Poison Gems,5,1000,"A gem with an essence of poison. Boosts the power of a Poison-type move by 50% once per battle.",0,0,10
-139,GROUNDGEM,Ground Gem,Ground Gems,5,1000,"A gem with an essence of land. Boosts the power of a Ground-type move by 50% once per battle.",0,0,10
-140,FLYINGGEM,Flying Gem,Flying Gems,5,1000,"A gem with an essence of air. Boosts the power of a Flying-type move by 50% once per battle.",0,0,10
-141,PSYCHICGEM,Psychic Gem,Psychic Gems,5,1000,"A gem with an essence of the mind. Boosts the power of a Psychic-type move by 50% once per battle.",0,0,10
-142,BUGGEM,Bug Gem,Bug Gems,5,1000,"A gem with an insect-like essence. Boosts the power of a Bug-type move by 50% once per battle.",0,0,10
-143,ROCKGEM,Rock Gem,Rock Gems,5,1000,"A gem with an essence of rock. Boosts the power of a Rock-type move by 50% once per battle.",0,0,10
-144,GHOSTGEM,Ghost Gem,Ghost Gems,5,1000,"A gem with a spectral essence. Boosts the power of a Ghost-type move by 50% once per battle.",0,0,10
-145,DRAGONGEM,Dragon Gem,Dragon Gems,5,1000,"A gem with a draconic essence. Boosts the power of a Dragon-type move by 50% once per battle.",0,0,10
-146,DARKGEM,Dark Gem,Dark Gems,5,1000,"A gem with an essence of darkness. Boosts the power of a Dark-type move by 50% once per battle.",0,0,10
-147,STEELGEM,Steel Gem,Steel Gems,5,1000,"A gem with an essence of steel. Boosts the power of a Steel-type move by 50% once per battle.",0,0,10
-148,NORMALGEM,Normal Gem,Normal Gems,5,1000,"A gem with an ordinary essence. Boosts the power of a Normal-type move by 50% once per battle.",0,0,10
-149,FAIRYGEM,Fairy Gem,Fairy Gems,5,1000,"A gem with an essence of the fey. Boosts the power of a Fairy-type move by 50% once per battle.",0,0,10
-150,CRYSTALVEIL,Crystal Veil,Crystal Veils,5,6000,"A held item. It changes the holder's type in battle. You can change which type between battles.",0,0,0
-151,MEMORYSET,Memory Set,Memory Sets,5,0,"A set of memory discs, one for each type. If held by a Silvally, you can change its type between battles.",0,0,0
-152,PRISMATICPLATE,Prismatic Plate,Prismatic Plates,5,0,"A tablet that boosts same-type attacks by 20%. If held by Arceus, you can change its type between battles.",0,0,0
-153,WILDCARD,Wild Card,Wild Cards,5,10000,"An item to be held by a Pokémon. It counts as a member of every tribe.",0,0,0
-154,PROXYFIST,Proxy Fist,Proxy Fists,5,3000,"A held item. The holder doesn't trigger items, abilities, or effects of targets it hits.",0,0,0
-155,COVERTCLOAK,Covert Cloak,Covert Cloaks,5,3000,"A held item. The holder is protected from the additional effects of enemy attacks.",0,0,0
-156,SOULDEW,Soul Dew,Soul Dews,5,0,"A wondrous orb to be held by either Latios or Latias. It raises the power of Psychic- and Dragon-type moves.",0,0,0
-157,ADAMANTORB,Adamant Orb,Adamant Orbs,5,10000,"A brightly gleaming orb to be held by Dialga. It boosts the power of Dragon- and Steel-type moves.",0,0,0
-158,LUSTROUSORB,Lustrous Orb,Lustrous Orbs,5,10000,"A beautifully glowing orb to be held by Palkia. It boosts the power of Dragon- and Water-type moves.",0,0,0
-159,GRISEOUSORB,Griseous Orb,Griseous Orbs,5,10000,"A glowing orb to be held by Giratina. It boosts the power of Dragon- and Ghost-type moves.",0,0,0
-160,DOUSEDRIVE,Douse Drive,Douse Drives,5,1000,"A cassette to be held by Genesect. It changes Techno Blast to a Water-type move.",0,0,0
-161,SHOCKDRIVE,Shock Drive,Shock Drives,5,1000,"A cassette to be held by Genesect. It changes Techno Blast to an Electric-type move.",0,0,0
-162,BURNDRIVE,Burn Drive,Burn Drives,5,1000,"A cassette to be held by Genesect. It changes Techno Blast to a Fire-type move.",0,0,0
-163,CHILLDRIVE,Chill Drive,Chill Drives,5,1000,"A cassette to be held by Genesect. It changes Techno Blast to an Ice-type move.",0,0,0
-164,EVERSTONE,Everstone,Everstones,5,3000,"An item to be held by a Pokémon. The Pokémon holding this peculiar stone is prevented from evolving.",0,0,0
-165,REAPERCLOTH,Reaper Cloth,Reaper Cloths,5,2000,"A cloth imbued with horrifyingly strong spiritual energy. It is loved by a certain Pokémon.",0,0,0
-166,POTION,Potion,Potions,2,200,"A spray-type medicine for wounds. It restores the HP of one Pokémon by just 40 points.",1,0,0
-167,SUPERPOTION,Super Potion,Super Potions,2,400,"A spray-type medicine for wounds. It restores the HP of one Pokémon by 80 points.",1,0,0
-168,HYPERPOTION,Hyper Potion,Hyper Potions,2,600,"A spray-type medicine for wounds. It restores the HP of one Pokémon by 120 points.",1,0,0
-169,MAXPOTION,Max Potion,Max Potions,2,800,"A spray-type medicine for wounds. It completely restores the HP of a single Pokémon.",1,0,0
-170,FULLRESTORE,Full Restore,Full Restores,2,1200,"A medicine that fully restores the HP and heals any status problems of a single Pokémon.",1,0,0
-171,SACREDASH,Sacred Ash,Sacred Ashes,2,50000,"It revives all fainted Pokémon. In doing so, it also fully restores their HP.",2,0,0
-172,STATUSHEAL,Status Heal,Status Heals,2,400,"A spray-type medicine. It heals all the status problems of a single Pokémon.",1,0,0
-173,LAVACOOKIE,Lava Cookie,Lava Cookies,2,350,"Lavaridge Town's local specialty. It heals all the status problems of one Pokémon.",1,0,0
-174,OLDGATEAU,Old Gateau,Old Gateaux,2,350,"Old Chateau's hidden specialty. It heals all the status problems of a single Pokémon.",1,0,0
-175,CASTELIACONE,Casteliacone,Casteliacones,2,350,"Castelia City's specialty, soft-serve ice cream. It heals all the status problems of a single Pokémon.",1,0,0
-176,REVIVE,Revive,Revives,2,500,"A medicine that revives a fainted Pokémon. It restores half the Pokémon's maximum HP.",1,0,0
-177,MAXREVIVE,Max Revive,Max Revives,2,1000,"A medicine that revives a fainted Pokémon. It fully restores the Pokémon's HP.",1,0,0
-178,BERRYJUICE,Berry Juice,Berry Juices,2,100,"A 100% pure juice made of Berries. It restores the HP of one Pokémon by just 20 points.",1,0,5
-179,RAGECANDYBAR,Rage Candy Bar,Rage Candy Bars,2,350,"Mahogany Town's famous candy. It can be used once to heal all the status conditions of a Pokémon.",1,0,0
-180,SWEETHEART,Sweet Heart,Sweet Hearts,2,150,"Very sweet chocolate. It restores the HP of one Pokémon by only 20 points.",1,0,0
-181,FRESHWATER,Fresh Water,Fresh Waters,2,200,"Water with a high mineral content. It restores the HP of one Pokémon by 50 points.",1,0,0
-182,SODAPOP,Soda Pop,Soda Pops,2,300,"A fizzy soda drink. It restores the HP of one Pokémon by 60 points.",1,0,0
-183,LEMONADE,Lemonade,Lemonades,2,350,"A very sweet drink. It restores the HP of one Pokémon by 80 points.",1,0,0
-184,MOOMOOMILK,Moomoo Milk,Moomoo Milks,2,600,"Milk with a very high nutrition content. It restores the HP of one Pokémon by 100 points.",1,0,0
-185,ENERGYPOWDER,Energy Powder,Energy Powders,2,500,"A very bitter medicine powder. It restores the HP of one Pokémon by 50 points.",1,0,0
-186,ENERGYROOT,Energy Root,Energy Roots,2,1200,"A very bitter root. It restores the HP of one Pokémon by 200 points.",1,0,0
-187,HEALPOWDER,Heal Powder,Heal Powders,2,300,"A very bitter medicine powder. It heals all the status problems of a single Pokémon.",1,0,0
-188,REVIVALHERB,Revival Herb,Revival Herbs,2,2800,"A very bitter medicinal herb. It revives a fainted Pokémon, fully restoring its HP.",1,0,0
-189,RARECANDY,Candy,Candies,2,1000,"A candy that is packed with energy. It raises the level of a single Pokémon by one.",1,0,0
-190,VANILLATULUMBA,Vanilla Tulumba,Vanilla Tulumba,2,800,"Fried dough dipped in vanilla syrup. It can be used to raise a Pokémon's level by 1.",1,0,0
-191,MASTERBALL,Master Ball,Master Balls,3,0,"The best Ball with the ultimate level of performance. It will catch any wild Pokémon without fail.",0,4,4
-192,ULTRABALL,Ultra Ball,Ultra Balls,3,800,"An ultra-performance Ball with 2x the strength of a regular ball.",0,4,4
-193,GREATBALL,Great Ball,Great Balls,3,400,"A good, high-performance Ball with 1.5x strength compared to a regular ball.",0,4,4
-194,POKEBALL,Poké Ball,Poké Balls,3,100,"A device for catching wild Pokémon. It is thrown like a ball at the target. It is designed as a capsule system.",0,4,4
-195,SAFARIBALL,Safari Ball,Safari Balls,3,0,"A special Poké Ball that is used only in the Safari Zone. It is decorated in a camouflage pattern.",0,4,4
-196,SPORTBALL,Sport Ball,Sport Balls,3,300,"A special Poké Ball for the Bug-Catching Contest.",0,4,4
-197,NESTBALL,Nest Ball,Nest Balls,3,400,"A somewhat different Poké Ball that works better the lower the Pokémon's level is below your level cap.",0,4,4
-198,REPEATBALL,Repeat Ball,Repeat Balls,3,400,"A somewhat different Poké Ball that works at 3.5x strength on Pokémon species that were previously caught.",0,4,4
-199,TIMERBALL,Timer Ball,Timer Balls,3,400,"A somewhat different Ball that becomes up to 4x better the more turns there are in a battle.",0,4,4
-200,LUXURYBALL,Luxury Ball,Luxury Balls,3,800,"A comfortable Poké Ball that makes a caught wild Pokémon gain happiness twice as quickly.",0,4,4
-201,PREMIERBALL,Premier Ball,Premier Balls,3,20,"A somewhat rare Poké Ball that has been specially made to commemorate an event of some sort.",0,4,4
-202,HEALBALL,Heal Ball,Heal Balls,3,400,"A remedial Poké Ball that restores the caught Pokémon's HP and eliminates any status problem.",0,4,4
-203,QUICKBALL,Quick Ball,Quick Balls,3,800,"A somewhat different Poké Ball which has 5x strength on the first turn of a wild encounter.",0,4,4
-204,CHERISHBALL,Cherish Ball,Cherish Balls,3,800,"A quite rare Poké Ball that has been specially crafted to commemorate an occasion of some sort.",0,4,4
-205,FRIENDBALL,Friend Ball,Friend Balls,3,300,"A Poké Ball that makes caught Pokémon more friendly.",0,4,4
-206,DREAMBALL,Dream Ball,Dream Balls,3,300,"A somewhat different Poké Ball that makes it easier to catch wild Pokémon while they're asleep.",0,4,4
-207,BEASTBALL,Beast Ball,Beast Balls,3,1000,"A special Poké Ball designed to catch Ultra Beasts. It has a low success rate for catching others.",0,4,4
-208,SLICEBALL,Slice Ball,Slice Balls,3,200,"A sharp Poké Ball that damages the Pokémon for 1/4th of its HP if it fails to catch it.",0,4,4
-209,LEECHBALL,Leech Ball,Leech Balls,3,200,"A parasitic Poké Ball that leeches the Pokémon if it fails to catch it.",0,4,4
-210,POTIONBALL,Potion Ball,Potion Balls,3,200,"A medicinal Poké Ball that heals the Pokémon for 1/4th of its HP if it fails to catch it.",0,4,4
-211,DISABLEBALL,Disable Ball,Disable Balls,3,200,"A mentally disrupting Poké Ball that disables the Pokemon's last used move for 10 turns if it fails to catch it.",0,4,4
-212,ROYALBALL,Royal Ball,Royal Balls,3,1000,"A ball whose striking appearance makes it popular despite its poor performance.",0,4,4
-213,TM00,TM00,TM00s,4,10000,,3,0,0,RANSACK
-214,TM01,TM01,TM01s,4,10000,,3,0,0,COVET
-215,TM02,TM02,TM02s,4,10000,,3,0,0,PAYDAY
-216,TM03,TM03,TM03s,4,50000,,3,0,0,FIREPUNCH
-217,TM04,TM04,TM04s,4,50000,,3,0,0,ICEPUNCH
-218,TM05,TM05,TM05s,4,50000,,3,0,0,THUNDERPUNCH
-219,TM06,TM06,TM06s,4,10000,,3,0,0,FLY
-220,TM07,TM07,TM07s,4,10000,,3,0,0,CRUELTY
-221,TM08,TM08,TM08s,4,50000,,3,0,0,HYPERBEAM
-222,TM09,TM09,TM09s,4,50000,,3,0,0,GIGAIMPACT
-223,TM10,TM10,TM10s,4,10000,,3,0,0,GREYMIST
-224,TM11,TM11,TM11s,4,10000,,3,0,0,SOLARBEAM
-225,TM12,TM12,TM12s,4,10000,,3,0,0,FOLLOWME
-226,TM13,TM13,TM13s,4,10000,,3,0,0,FIRESPIN
-227,TM14,TM14,TM14s,4,10000,,3,0,0,NUMB
-228,TM15,TM15,TM15s,4,6000,,3,0,0,DIG
-229,TM16,TM16,TM16s,4,10000,,3,0,0,SCREECH
-230,TM17,TM17,TM17s,4,10000,,3,0,0,LIGHTSCREEN
-231,TM18,TM18,TM18s,4,10000,,3,0,0,REFLECT
-232,TM19,TM19,TM19s,4,10000,,3,0,0,SAFEGUARD
-233,TM20,TM20,TM20s,4,4000,,3,0,0,SELFDESTRUCT
-234,TM21,TM21,TM21s,4,10000,,3,0,0,REST
-235,TM22,TM22,TM22s,4,8000,,3,0,0,EXPLOSION
-236,TM23,TM23,TM23s,4,4000,,3,0,0,MEMENTO
-237,TM24,TM24,TM24s,4,10000,,3,0,0,SNORE
-238,TM25,TM25,TM25s,4,10000,,3,0,0,PROTECT
-239,TM26,TM26,TM26s,4,10000,,3,0,0,SCARYFACE
-240,TM27,TM27,TM27s,4,10000,,3,0,0,RAPIDSPIN
-241,TM28,TM28,TM28s,4,6000,,3,0,0,THRIVINGFORCE
-242,TM29,TM29,TM29s,4,10000,,3,0,0,CHARM
-243,TM30,TM30,TM30s,4,10000,,3,0,0,STEELWING
-244,TM31,TM31,TM31s,4,10000,,3,0,0,ATTRACT
-245,TM32,TM32,TM32s,4,5000,,3,0,0,SANDSTORM
-246,TM33,TM33,TM33s,4,5000,,3,0,0,RAIN
-247,TM34,TM34,TM34s,4,5000,,3,0,0,SUNSHINE
-248,TM35,TM35,TM35s,4,5000,,3,0,0,HAIL
-249,TM36,TM36,TM36s,4,10000,,3,0,0,WHIRLPOOL
-250,TM37,TM37,TM37s,4,10000,,3,0,0,BEATUP
-251,TM38,TM38,TM38s,4,10000,,3,0,0,WILLOWISP
-252,TM39,TM39,TM39s,4,10000,,3,0,0,FACADE
-253,TM40,TM40,TM40s,4,10000,,3,0,0,SWIFT
-254,TM41,TM41,TM41s,4,10000,,3,0,0,HELPINGHAND
-255,TM42,TM42,TM42s,4,10000,,3,0,0,REVENGE
-256,TM43,TM43,TM43s,4,6000,,3,0,0,BRICKBREAK
-257,TM44,TM44,TM44s,4,100000,,3,0,0,IMPRISON
-258,TM45,TM45,TM45s,4,6000,,3,0,0,DIVE
-259,TM46,TM46,TM46s,4,6000,,3,0,0,WEATHERBURST
-260,TM47,TM47,TM47s,4,10000,,3,0,0,FAKETEARS
-261,TM48,TM48,TM48s,4,6000,,3,0,0,STRAFE
-262,TM49,TM49,TM49s,4,6000,,3,0,0,MEGAPUNCH
-263,TM50,TM50,TM50s,4,6000,,3,0,0,BULLETSEED
-264,TM51,TM51,TM51s,4,6000,,3,0,0,ICECALIBUR
-265,TM52,TM52,TM52s,4,6000,,3,0,0,BOUNCE
-266,TM53,TM53,TM53s,4,10000,,3,0,0,MUDSHOT
-267,TM54,TM54,TM54s,4,6000,,3,0,0,WAILINGBLOW
-268,TM55,TM55,TM55s,4,10000,,3,0,0,BRINE
-269,TM56,TM56,TM56s,4,10000,,3,0,0,UTURN
-270,TM57,TM57,TM57s,4,6000,,3,0,0,PAYBACK
-271,TM58,TM58,TM58s,4,10000,,3,0,0,ASSURANCE
-272,TM59,TM59,TM59s,4,100000,,3,0,0,FLING
-273,TM60,TM60,TM60s,4,10000,,3,0,0,POWERSWAP
-274,TM61,TM61,TM61s,4,10000,,3,0,0,GUARDSWAP
-275,TM62,TM62,TM62s,4,10000,,3,0,0,HEARTSWAP
-276,TM63,TM63,TM63s,4,50000,,3,0,0,DRAINPUNCH
-277,TM64,TM64,TM64s,4,10000,,3,0,0,AVALANCHE
-278,TM65,TM65,TM65s,4,10000,,3,0,0,SHADOWCLAW
-279,TM66,TM66,TM66s,4,30000,,3,0,0,THUNDERFANG
-280,TM67,TM67,TM67s,4,30000,,3,0,0,ICEFANG
-281,TM68,TM68,TM68s,4,30000,,3,0,0,FIREFANG
-282,TM69,TM69,TM69s,4,10000,,3,0,0,PSYCHOCUT
-283,TM70,TM70,TM70s,4,50000,,3,0,0,TRICKROOM
-284,TM71,TM71,TM71s,4,50000,,3,0,0,WONDERROOM
-285,TM72,TM72,TM72s,4,50000,,3,0,0,PUZZLEROOM
-286,TM73,TM73,TM73s,4,6000,,3,0,0,CROSSPOISON
-287,TM74,TM74,TM74s,4,10000,,3,0,0,VENOSHOCK
-288,TM75,TM75,TM75s,4,10000,,3,0,0,LOWSWEEP
-289,TM76,TM76,TM76s,4,10000,,3,0,0,ROUND
-290,TM77,TM77,TM77s,4,10000,,3,0,0,HEX
-291,TM78,TM78,TM78s,4,10000,,3,0,0,ACROBATICS
-292,TM79,TM79,TM79s,4,10000,,3,0,0,RETALIATE
-293,TM80,TM80,TM80s,4,10000,,3,0,0,VOLTSWITCH
-294,TM81,TM81,TM81s,4,10000,,3,0,0,BULLDOZE
-295,TM82,TM82,TM82s,4,10000,,3,0,0,ELECTROWEB
-296,TM83,TM83,TM83s,4,100000,,3,0,0,RAZORSHELL
-297,TM84,TM84,TM84s,4,10000,,3,0,0,TAILSLAP
-298,TM85,TM85,TM85s,4,10000,,3,0,0,SNARL
-299,TM86,TM86,TM86s,4,6000,,3,0,0,PHANTOMFORCE
-300,TM87,TM87,TM87s,4,10000,,3,0,0,TRICKYTOXINS
-301,TM88,TM88,TM88s,4,5000,,3,0,0,VOLTSWITCH
-302,TM89,TM89,TM89s,4,5000,,3,0,0,UTURN
-303,TM90,TM90,TM90s,4,5000,,3,0,0,FLIPTURN
-304,TM91,TM91,TM91s,4,5000,,3,0,0,PARTINGSHOT
-305,TM92,TM92,TM92s,4,100000,,3,0,0,MEMENTO
-306,TM93,TM93,TM93s,4,10000,,3,0,0,EERIEIMPULSE
-307,TM94,TM94,TM94s,4,10000,,3,0,0,POUT
-308,TM95,TM95,TM95s,4,6000,,3,0,0,COLDFRONT
-309,TM96,TM96,TM96s,4,10000,,3,0,0,SMARTHORN
-310,TM97,TM97,TM97s,4,10000,,3,0,0,BRUTALSWING
-311,TM98,TM98,TM98s,4,6000,,3,0,0,STOMPINGTANTRUM
-312,TM99,TM99,TM99s,4,10000,,3,0,0,BREAKINGSWIPE
-313,TM100,TM100,TM100s,4,4000,,3,0,0,FLOWSTATE
-314,TM101,TM101,TM101s,4,6000,,3,0,0,BODYSLAM
-315,TM102,TM102,TM102s,4,6000,,3,0,0,FLAMETHROWER
-316,TM103,TM103,TM103s,4,16000,,3,0,0,HYDROPUMP
-317,TM104,TM104,TM104s,4,6000,,3,0,0,SURF
-318,TM105,TM105,TM105s,4,6000,,3,0,0,ICEBEAM
-319,TM106,TM106,TM106s,4,16000,,3,0,0,BLIZZARD
-320,TM107,TM107,TM107s,4,6000,,3,0,0,LOWKICK
-321,TM108,TM108,TM108s,4,6000,,3,0,0,THUNDERBOLT
-322,TM109,TM109,TM109s,4,16000,,3,0,0,THUNDER
-323,TM110,TM110,TM110s,4,6000,,3,0,0,EARTHQUAKE
-324,TM111,TM111,TM111s,4,6000,,3,0,0,PSYCHIC
-325,TM112,TM112,TM112s,4,4000,,3,0,0,AGILITY
-326,TM113,TM113,TM113s,4,2000,,3,0,0,FOCUSENERGY
-327,TM114,TM114,TM114s,4,4000,,3,0,0,AIMTRUE
-328,TM115,TM115,TM115s,4,16000,,3,0,0,FIREBLAST
-329,TM116,TM116,TM116s,4,6000,,3,0,0,WATERFALL
-330,TM117,TM117,TM117s,4,4000,,3,0,0,AMNESIA
-331,TM118,TM118,TM118s,4,6000,,3,0,0,LEECHLIFE
-332,TM119,TM119,TM119s,4,6000,,3,0,0,TRIATTACK
-333,TM120,TM120,TM120s,4,6000,,3,0,0,SUBSTITUTE
-334,TM121,TM121,TM121s,4,4000,,3,0,0,REVERSAL
-335,TM122,TM122,TM122s,4,10000,,3,0,0,SLUDGEBOMB
-336,TM123,TM123,TM123s,4,4000,,3,0,0,SPIKES
-337,TM124,TM124,TM124s,4,16000,,3,0,0,OUTRAGE
-338,TM125,TM125,TM125s,4,6000,,3,0,0,PSYSHOCK
-339,TM126,TM126,TM126s,4,2000,,3,0,0,ENDURE
-340,TM127,TM127,TM127s,4,4000,,3,0,0,SLEEPTALK
-341,TM128,TM128,TM128s,4,16000,,3,0,0,MEGAHORN
-342,TM129,TM129,TM129s,4,4000,,3,0,0,BATONPASS
-343,TM130,TM130,TM130s,4,4000,,3,0,0,ENCORE
-344,TM131,TM131,TM131s,4,10000,,3,0,0,IRONTAIL
-345,TM132,TM132,TM132s,4,6000,,3,0,0,CRUNCH
-346,TM133,TM133,TM133s,4,6000,,3,0,0,SHADOWBALL
-347,TM134,TM134,TM134s,4,4000,,3,0,0,FROSTSPIKES
-348,TM135,TM135,TM135s,4,6000,,3,0,0,UPROAR
-349,TM136,TM136,TM136s,4,6000,,3,0,0,BAR
-350,TM137,TM137,TM137s,4,4000,,3,0,0,TAUNT
-351,TM138,TM138,TM138s,4,4000,,3,0,0,TRICK
-352,TM139,TM139,TM139s,4,16000,,3,0,0,SUPERPOWER
-353,TM140,TM140,TM140s,4,2000,,3,0,0,SKILLSWAP
-354,TM141,TM141,TM141s,4,6000,,3,0,0,BLAZEKICK
-355,TM142,TM142,TM142s,4,6000,,3,0,0,HYPERVOICE
-356,TM143,TM143,TM143s,4,16000,,3,0,0,OVERHEAT
-357,TM144,TM144,TM144s,4,4000,,3,0,0,COSMICPOWER
-358,TM145,TM145,TM145s,4,50000,,3,0,0,ODDROOM
-359,TM146,TM146,TM146s,4,4000,,3,0,0,IRONDEFENSE
-360,TM147,TM147,TM147s,4,6000,,3,0,0,REND
-361,TM148,TM148,TM148s,4,4000,,3,0,0,BULKUP
-362,TM149,TM149,TM149s,4,4000,,3,0,0,CALMMIND
-363,TM150,TM150,TM150s,4,6000,,3,0,0,LEAFBLADE
-364,TM151,TM151,TM151s,4,4000,,3,0,0,FLAMESPIKES
-365,TM152,TM152,TM152s,4,6000,,3,0,0,GYROBALL
-366,TM153,TM153,TM153s,4,16000,,3,0,0,CLOSECOMBAT
-367,TM154,TM154,TM154s,4,4000,,3,0,0,POISONSPIKES
-368,TM155,TM155,TM155s,4,16000,,3,0,0,FLAREBLITZ
-369,TM156,TM156,TM156s,4,6000,,3,0,0,AURASPHERE
-370,TM157,TM157,TM157s,4,6000,,3,0,0,POISONJAB
-371,TM158,TM158,TM158s,4,6000,,3,0,0,DARKALLURE
-372,TM159,TM159,TM159s,4,6000,,3,0,0,REMOVALBEAM
-373,TM160,TM160,TM160s,4,6000,,3,0,0,XSCISSOR
-374,TM161,TM161,TM161s,4,6000,,3,0,0,BUGBUZZ
-375,TM162,TM162,TM162s,4,6000,,3,0,0,DRAGONPULSE
-376,TM163,TM163,TM163s,4,6000,,3,0,0,POWERGEM
-377,TM164,TM164,TM164s,4,16000,,3,0,0,FOCUSBLAST
-378,TM165,TM165,TM165s,4,10000,,3,0,0,ENERGYBALL
-379,TM166,TM166,TM166s,4,16000,,3,0,0,BRAVEBIRD
-380,TM167,TM167,TM167s,4,6000,,3,0,0,EARTHPOWER
-381,TM168,TM168,TM168s,4,4000,,3,0,0,VANGUARD
-382,TM169,TM169,TM169s,4,6000,,3,0,0,PREDICTIONSTRIKE
-383,TM170,TM170,TM170s,4,6000,,3,0,0,FLASHCANNON
-384,TM171,TM171,TM171s,4,16000,,3,0,0,LEAFSTORM
-385,TM172,TM172,TM172s,4,16000,,3,0,0,POWERWHIP
-386,TM173,TM173,TM173s,4,16000,,3,0,0,GUNKSHOT
-387,TM174,TM174,TM174s,4,6000,,3,0,0,BULLETTRAIN
-388,TM175,TM175,TM175s,4,6000,,3,0,0,ADAMANTINEPRESS
-389,TM176,TM176,TM176s,4,10000,,3,0,0,STEALTHROCK
-390,TM177,TM177,TM177s,4,6000,,3,0,0,GRASSKNOT
-391,TM178,TM178,TM178s,4,6000,,3,0,0,MIASMA
-392,TM179,TM179,TM179s,4,6000,,3,0,0,HEAVYSLAM
-393,TM180,TM180,TM180s,4,6000,,3,0,0,ELECTROBALL
-394,TM181,TM181,TM181s,4,6000,,3,0,0,FOULPLAY
-395,TM182,TM182,TM182s,4,4000,,3,0,0,STOREDPOWER
-396,TM183,TM183,TM183s,4,4000,,3,0,0,ALLYSWITCH
-397,TM184,TM184,TM184s,4,6000,,3,0,0,SCALD
-398,TM185,TM185,TM185s,4,2000,,3,0,0,WORKUP
-399,TM186,TM186,TM186s,4,6000,,3,0,0,ELECTROSLASH
-400,TM187,TM187,TM187s,4,6000,,3,0,0,TRAMPLE
-401,TM188,TM188,TM188s,4,6000,,3,0,0,HEATCRASH
-402,TM189,TM189,TM189s,4,16000,,3,0,0,HURRICANE
-403,TM190,TM190,TM190s,4,6000,,3,0,0,PLAYROUGH
-404,TM191,TM191,TM191s,4,4000,,3,0,0,VENOMDRENCH
-405,TM192,TM192,TM192s,4,6000,,3,0,0,MOONBLAST
-406,TM193,TM193,TM193s,4,6000,,3,0,0,AURATRICK
-407,TM194,TM194,TM194s,4,6000,,3,0,0,SCORCHINGSANDS
-408,TM195,TM195,TM195s,4,6000,,3,0,0,THROATCHOP
-409,TM196,TM196,TM196s,4,5000,,3,0,0,MOONGLOW
-410,TM197,TM197,TM197s,4,5000,,3,0,0,ECLIPSE
-411,TM198,TM198,TM198s,4,6000,,3,0,0,LIQUIDATION
-412,TM199,TM199,TM199s,4,6000,,3,0,0,BODYPRESS
-413,CHERIBERRY,Cheri Berry,Cheri Berries,5,0,"It may be held by a Pokémon to recover from numbing.",0,0,5
-414,CHESTOBERRY,Chesto Berry,Chesto Berries,5,0,"It may be held by a Pokémon to recover from sleep.",0,0,5
-415,PECHABERRY,Pecha Berry,Pecha Berries,5,0,"It may be held by a Pokémon to recover from poison.",0,0,5
-416,RAWSTBERRY,Rawst Berry,Rawst Berries,5,0,"It may be held by a Pokémon to recover from a burn.",0,0,5
-417,ASPEARBERRY,Aspear Berry,Aspear Berries,5,0,"It may be held by a Pokémon to recover from a frostbite.",0,0,5
-418,LEPPABERRY,Leppa Berry,Leppa Berries,5,0,"It may be held by a Pokémon to restore a move's PP by 10.",0,0,5
-419,AMWIBERRY,Amwi Berry,Amwi Berries,5,0,"It may be held by a Pokémon to heal the user by 33% in a pinch (below 25% HP).",0,0,5
-420,PERSIMBERRY,Persim Berry,Persim Berries,5,0,"It may be held by a Pokémon to recover from being dizzy.",0,0,5
-421,LUMBERRY,Lum Berry,Lum Berries,5,0,"It may be held by a Pokémon to recover from any status problem.",0,0,5
-422,SITRUSBERRY,Sitrus Berry,Sitrus Berries,5,0,"If held by a Pokémon, it heals its HP by 25% at half health.",0,0,5
-423,SPELONBERRY,Spelon Berry,Spelon Berries,5,500,"It may be held by a Pokémon to recover from being leeched.",0,0,5
-424,OCCABERRY,Occa Berry,Occa Berries,5,0,"Weakens a supereffective Fire-type attack against the holding Pokémon.",0,0,5
-425,PASSHOBERRY,Passho Berry,Passho Berries,5,0,"Weakens a supereffective Water-type attack against the holding Pokémon.",0,0,5
-426,WACANBERRY,Wacan Berry,Wacan Berries,5,0,"Weakens a supereffective Electric-type attack against the holding Pokémon.",0,0,5
-427,RINDOBERRY,Rindo Berry,Rindo Berries,5,0,"Weakens a supereffective Grass-type attack against the holding Pokémon.",0,0,5
-428,YACHEBERRY,Yache Berry,Yache Berries,5,0,"Weakens a supereffective Ice-type attack against the holding Pokémon.",0,0,5
-429,CHOPLEBERRY,Chople Berry,Chople Berries,5,0,"Weakens a supereffective Fighting-type attack against the holding Pokémon.",0,0,5
-430,KEBIABERRY,Kebia Berry,Kebia Berries,5,0,"Weakens a supereffective Poison-type attack against the holding Pokémon.",0,0,5
-431,SHUCABERRY,Shuca Berry,Shuca Berries,5,0,"Weakens a supereffective Ground-type attack against the holding Pokémon.",0,0,5
-432,COBABERRY,Coba Berry,Coba Berries,5,0,"Weakens a supereffective Flying-type attack against the holding Pokémon.",0,0,5
-433,PAYAPABERRY,Payapa Berry,Payapa Berries,5,0,"Weakens a supereffective Psychic-type attack against the holding Pokémon.",0,0,5
-434,TANGABERRY,Tanga Berry,Tanga Berries,5,0,"Weakens a supereffective Bug-type attack against the holding Pokémon.",0,0,5
-435,CHARTIBERRY,Charti Berry,Charti Berries,5,0,"Weakens a supereffective Rock-type attack against the holding Pokémon.",0,0,5
-436,KASIBBERRY,Kasib Berry,Kasib Berries,5,0,"Weakens a supereffective Ghost-type attack against the holding Pokémon.",0,0,5
-437,HABANBERRY,Haban Berry,Haban Berries,5,0,"Weakens a supereffective Dragon-type attack against the holding Pokémon.",0,0,5
-438,COLBURBERRY,Colbur Berry,Colbur Berries,5,0,"Weakens a supereffective Dark-type attack against the holding Pokémon.",0,0,5
-439,BABIRIBERRY,Babiri Berry,Babiri Berries,5,0,"Weakens a supereffective Steel-type attack against the holding Pokémon.",0,0,5
-440,ROSELIBERRY,Roseli Berry,Roseli Berries,5,0,"If held by a Pokémon, this Berry will lessen the damage taken from one supereffective Fairy-type attack.",0,0,5
-441,CHILANBERRY,Chilan Berry,Chilan Berries,5,0,"Weakens a Normal-type attack against the Pokémon holding this berry.",0,0,5
-442,LIECHIBERRY,Liechi Berry,Liechi Berries,5,0,"If held by a Pokémon, it raises its Attack by two steps in a pinch.",0,0,5
-443,GANLONBERRY,Ganlon Berry,Ganlon Berries,5,0,"If held by a Pokémon, it raises its Defense by two steps in a pinch.",0,0,5
-444,SALACBERRY,Salac Berry,Salac Berries,5,0,"If held by a Pokémon, it raises its Speed by two steps in a pinch.",0,0,5
-445,PETAYABERRY,Petaya Berry,Petaya Berries,5,0,"If held by a Pokémon, it raises its Sp. Atk by two steps in a pinch.",0,0,5
-446,APICOTBERRY,Apicot Berry,Apicot Berries,5,0,"If held by a Pokémon, it raises its Sp. Def by two steps in a pinch.",0,0,5
-447,LANSATBERRY,Lansat Berry,Lansat Berries,5,0,"If held by a Pokémon, it raises its critical-hit ratio in a pinch.",0,0,5
-448,STARFBERRY,Starf Berry,Starf Berries,5,0,"If held by a Pokémon, it raises one of its stats by three steps in a pinch.",0,0,5
-449,ENIGMABERRY,Enigma Berry,Enigma Berries,5,0,"If held by a Pokémon, it restores its HP if it is hit by any supereffective attack.",0,0,5
-450,MICLEBERRY,Micle Berry,Micle Berries,5,0,"If held by a Pokémon, it raises its Accuracy by 4 steps in a pinch.",0,0,5
-451,CUSTAPBERRY,Custap Berry,Custap Berries,5,0,"If held by a Pokémon, it gets to move first just once in a pinch.",0,0,5
-452,JABOCABERRY,Jaboca Berry,Jaboca Berries,5,0,"If held by a Pokémon and a physical attack hits it, the attacker takes 1/4th HP  damage.",0,0,5
-453,ROWAPBERRY,Rowap Berry,Rowap Berries,5,0,"If held by a Pokémon and a special attack hits it, the attacker takes 1/4th HP damage.",0,0,5
-454,KEEBERRY,Kee Berry,Kee Berries,5,20,"If held by a Pokémon, this Berry will increase the holder's Defense by four steps if it's hit with a physical move.",0,0,5
-455,MARANGABERRY,Maranga Berry,Maranga Berries,5,20,"If held by a Pokémon, this Berry will increase the holder's Sp. Def by four steps if it's hit with a special move.",0,0,5
-456,BICYCLE,Bicycle,Bicycles,8,0,"A folding Bicycle that enables much faster movement than the Running Shoes.",2,0,6
-457,TOWNMAP,Town Map,Town Maps,8,0,"A very convenient map that can be viewed anytime. It even shows your present location.",2,0,6
-458,GRACIDEA,Gracidea,Gracideas,8,0,"A flower sometimes bundled in bouquets to convey gratitude on special occasions like birthdays.",5,0,6
-459,AURORATICKET,Aurora Ticket,Aurora Tickets,8,0,"A ticket required to board the ship to Doxy Island. It glows beautifully.",0,0,6
-460,OLDSEAMAP,Old Sea Map,Old Sea Maps,8,0,"A faded sea chart that shows the way to a certain island.",0,0,6
-461,DNASPLICERS,DNA Splicers,DNA Splicers,8,0,"A splicer that fuses Kyurem and a certain Pokémon. They are said to have been one in the beginning.",5,0,6
-462,REVEALGLASS,Reveal Glass,Reveal Glasses,8,0,"A glass that reveals the truth. It is a mysterious glass that returns a Pokémon back to its original shape.",5,0,6
-463,SHINYCHARM,Shiny Charm,Shiny Charms,8,0,"A shiny charm which doubles the chance of finding a Shiny Pokémon.",0,0,13
-464,REDORB,Red Orb,Red Orbs,5,0,"A shiny red orb that is said to have a legend tied to it. It's known to be connected with the Hoenn region.",0,0,0
-465,BLUEORB,Blue Orb,Blue Orbs,5,0,"A shiny blue orb that is said to have a legend tied to it. It's known to be connected with the Hoenn region.",0,0,0
-466,LUMIOSEGALETTE,Lumiose Galette,Lumiose Galettes,2,350,"A popular treat in Lumiose City. It can be used once to heal all the status conditions of a Pokémon.",1,0,0
-467,SHALOURSABLE,Shalour Sable,Shalour Sables,2,350,"Shalour City's famous shortbread. It can be used once to heal all the status conditions of a Pokémon.",1,0,0
-468,BIGMALASADA,Big Malasada,Big Malasadas,2,350,"The Alola region's specialty--fried bread. It can be used once to heal all the status conditions of a Pokémon.",1,0,0
-469,ABILITYCAPSULE,Ability Capsule,Ability Capsule,2,3000,"A capsule that allows a Pokémon with two Abilities to switch between these Abilities when it is used.",1,0,0
-470,SPRINKLOTAD,Sprinklotad,Sprinklotads,8,0,"A watering can shaped like a Lotad. It helps promote the healthy growth of any Berries planted in soft soil.",0,0,6
-471,PRISONBOTTLE,Prison Bottle,Prison Bottles,8,0,"A bottle believed to have been used to seal away the power of a certain Pokémon long, long ago.",5,0,6
-472,NSOLARIZER,N-Solarizer,N-Solarizers,8,0,"A machine to fuse Necrozma, which needs light, and Solgaleo.",5,0,6
-473,NLUNARIZER,N-Lunarizer,N-Lunarizers,8,0,"A machine to fuse Necrozma, which needs light, and Lunala.",5,0,6
-474,MEGARING,Mega Ring,Mega Rings,8,0,"This ring contains an untold power that somehow enables Pokémon carrying Mega Stones to Mega Evolve.",0,0,6
-475,ZYGARDECUBE,Zygarde Cube,Zygarde Cubes,8,0,"An item to store Zygarde Cores and Cells. You can also use it to teach Zygarde moves.",2,0,6
-476,BLUNDERPOLICY,Blunder Policy,Blunder Policy,5,4000,"Raises Speed sharply when a Pokémon misses with a move because of accuracy.",0,0,0
-477,EJECTPACK,Eject Pack,Eject Packs,5,4000,"An item to be held by a Pokémon. When the holder's stats are lowered, it will be switched out of battle.",0,0,0
-478,HEAVYDUTYBOOTS,Heavy-Duty Boots,Heavy-Duty Boots,5,4000,"These boots prevent the effects of traps set on the battlefield.",0,0,0
-479,ROOMSERVICE,Room Service,Room Services,5,4000,"An item to be held by a Pokémon. Lowers Speed by four steps when Trick Room takes effect.",0,0,0
-480,THROATSPRAY,Throat Spray,Throat Sprays,5,4000,"Raises Sp. Atk by two steps when the Pokémon uses a sound move the first time each battle.",0,0,0
-481,WHETSTONE,Whetstone,Whetstones,5,4000,"Raises Attack by two steps when the Pokémon uses a blade move the first time each battle.",0,0,0
-482,UTILITYUMBRELLA,Utility Umbrella,Utility Umbrellas,5,4000,"A held item. The holder takes 10% less move damage, and is protected from the negative effects of weather.",0,0,0
-483,EXPCANDYXS,Exp. Candy XS,Exp. Candies XS,2,20,"A candy that is packed with energy. When consumed, it will grant a single Pokémon 250 Exp. Points.",1,0,0
-484,EXPCANDYS,Exp. Candy S,Exp. Candies S,2,240,"A candy that is packed with energy. When consumed, it will grant a single Pokémon 1000 Exp. Points.",1,0,0
-485,EXPCANDYM,Exp. Candy M,Exp. Candies M,2,1000,"A candy that is packed with energy. When consumed, it will grant a single Pokémon 4,000 Exp. Points.",1,0,0
-486,EXPCANDYL,Exp. Candy L,Exp. Candies L,2,3000,"A candy that is packed with energy. When consumed, it will grant a single Pokémon 12,000 Exp. Points.",1,0,0
-487,EXPCANDYXL,Exp. Candy XL,Exp. Candies XL,2,10000,"A candy that is packed with energy. When consumed, it will grant a single Pokémon 50,000 Exp. Points.",1,0,0
-488,FOSSILIZEDBIRD,Fossilized Bird,Fossilized Birds,1,5000,"The fossil of an ancient Pokémon that once soared through the sky. What it looked like is a mystery.",0,0,8
-489,FOSSILIZEDFISH,Fossilized Fish,Fossilized Fishes,1,5000,"The fossil of an ancient Pokémon that once lived in the sea. What it looked like is a mystery.",0,0,8
-490,FOSSILIZEDDRAKE,Fossilized Drake,Fossilized Drakes,1,5000,"The fossil of an ancient Pokémon that once roamed the land. What it looked like is a mystery.",0,0,8
-491,FOSSILIZEDDINO,Fossilized Dino,Fossilized Dinos,1,5000,"The fossil of an ancient Pokémon that once lived in the sea. What it looked like is a mystery.",0,0,8
-492,RUSTEDSHIELD,Rusted Shield,Rusted Shields,5,0,"It is said that a hero used this shield to halt a terrible disaster in ancient times. But it's grown rusty and worn.",0,0,0
-493,RUSTEDSWORD,Rusted Sword,Rusted Swords,5,0,"It is said that a hero used this sword to halt a terrible disaster in ancient times. But it's grown rusty and worn.",0,0,0
-494,REINSOFUNITY,Reins of Unity,Reins of Unity,8,0,"Reins that people presented to the king. They enable Calyrex to connect and communicate with its beloved steed.",5,0,6
-495,EXPCHARM,EXP Charm,EXP Charms,8,0,"A charm that increases the Exp. Points that Pokémon can get. A machine-like object is inside the charm.",0,0,6
-496,CATCHINGCHARM,Catching Charm,Catching Charms,8,0,"Holding it is said to increase the chance of getting a critical catch. Curiously, the charm doesn't shake much.",0,0,6
-497,INFINITEROPE,Escape Rope,Escape Ropes,8,0,"A long, durable rope. Use it to escape instantly from a cave or a dungeon.",2,0,6
-498,GRASSTOKEN,Grass Token,Grass Tokens,1,10000,"A token which can be exchanged for a Grass-type at the Starter Store.",0,0,0
-499,WATERTOKEN,Water Token,Water Tokens,1,10000,"A token which can be exchanged for a Water-type at the Starter Store.",0,0,0
-500,ORIGINORE,Origin Ore,Origin Ores,1,8000,"A peculiar ore that makes certain species of Pokémon evolve. Associated with Arceus.",1,0,7
-501,FIRETOKEN,Fire Token,Fire Tokens,1,10000,"A token which can be exchanged for a Fire-type at the Starter Store.",0,0,0
-502,DRATINIEGG,Dratini Egg,Dratini Eggs,1,10000,"An abandoned Dratini egg that is cold and calm. Only an expert would be able to hatch it.",0,0,0
-503,BAGONEGG,Bagon Egg,Bagon Eggs,1,10000,"An abandoned Bagon egg that is cold and calm. Only an expert would be able to hatch it.",0,0,0
-504,GIBLEEGG,Gible Egg,Gible Eggs,1,10000,"An abandoned Gible egg that is cold and calm. Only an expert would be able to hatch it.",0,0,0
-505,DEINOEGG,Deino Egg,Deino Eggs,1,10000,"An abandoned Deino egg that is cold and calm. Only an expert would be able to hatch it.",0,0,0
-506,GOOMYEGG,Goomy Egg,Goomy Eggs,1,10000,"An abandoned Goomy egg that is cold and calm. Only an expert would be able to hatch it.",0,0,0
-507,JANGMOOEGG,Jangmo-o Egg,Jangmo-o Eggs,1,10000,"An abandoned Jangmo-o egg that is cold and calm. Only an expert would be able to hatch it.",0,0,0
-508,DREEPYEGG,Dreepy Egg,Dreepy Eggs,1,10000,"An abandoned Dreepy egg that is cold and calm. Only an expert would be able to hatch it.",0,0,0
-509,EEVEETICKET,Eevee Ticket,Eevee Tickets,1,20000,"A ticket that can be exchanged for an Eevee at the Skeevy Eevee Pub.",0,0,0
-510,AIDKIT,Aid Kit,Aid Kits,8,0,"Heals your whole team a limited number of times. Restocked at PokeCenters and after resting.",2,0,6
-511,KITEXPANSION,Kit Expansion,Kit Expansion,2,0,"A pack for holding medicine. If you use it, your Aid Kit will gain a max charge.",2,0,0
-512,MEDICALUPGRADE,Medical Upgrade,Medical Upgrades,2,0,"A suite of medicines. If you use it, your Aid Kit will heal more efficiently.",2,0,0
-513,DYNAMITESTICK,Dynamite Stick,Dynamite Sticks,1,0,"A stick of dynamite, perfectly suited to destroying small bits of rock.",2,0,13
-514,MEGAUPGRADER,Mega Upgrader,Mega Upgraders,1,0,"A peculiar stone that makes certain species of Pokémon evolve.",1,0,7
-515,SURFBOARD,Surf Board,Surf Boards,8,0,"A surf board, allowing you to surf on water.",0,0,6
-516,CLIMBINGGEAR,Climbing Gear,Climbing Gears,8,0,"A set of climbing gear, allowing you to climb on white rocks.",0,0,6
-517,ABRAPORTER,Abraporter,Abraporters,8,0,"A teleporter which brings you to your last safe spot using the power of Abras.",2,0,6
-518,REMATERIALIZER,Rematerializer,Rematerializers,8,0,"A 3D printer which automatically copies consumed held items after battles.",0,0,6
-519,CUPOFCOFFEE,Cup of Coffee,Cups of Coffee,8,0,"It's a cup filled with warm coffee. You probably shouldn't be keeping this in your backpack.",0,0,6
-520,LUXTECHSHIPMENT,LuxTech Shipment,LuxTech Shipments,8,0,"A package containing an important shipment destined for LuxTech.",0,0,6
-521,EXPEZDISPENSER,EXP-EZ Dispenser,EXP-EZ Dispensers,8,0,"A machine that stores excess EXP. You can activate it to turn that stored EXP into candies.",2,0,6
-522,UNIVERSALFORMALIZER,Universal Formalizer,Universal Formalizers,8,0,"Use on a Pokémon to switch it into another one of its forms.",5,0,6
-523,WEIRDPACKAGE,Weird Package,Weird Packages,8,0,"A suspicious package. Probably best not to look inside.",0,0,0
-524,AEGISIDCARD,Aegis ID Card,Aegis ID Cards,8,0,"A forged ID card. It will let you pretend you work at Aegis Insurance.",0,0,6
-525,INCRIMINATINGEVIDENCE,Incriminating Evidence,Incriminating Evidence,8,0,"A device containing evidence against Aegis Insurance.",0,0,6
-526,TAROTAMULET,Tarot Amulet,Tarot Amulets,8,0,"An amulet which make certain battles harder and cursed. Can be toggled on or off.",2,0,6
-527,HOUSEDEED1,House Deed,House Deeds,8,0,"Proof of ownership for the house you bought in Prizca East.",0,0,6
-528,GLEAMPOWDER,Gleam Powder,Gleam Powder,1,100000,"A small vial of gleaming powder. Can be used once to ensure the next wild Pokémon you find is shiny.",2,0,0
-529,VIRALHELIX,Viral Helix,Viral Helices,8,0,"Infinitely mutating alien DNA. It allows a Pokémon with two abilities to switch abilities when used.",5,0,6
-530,FACTORYPASS,Factory Pass,Factory Passes,8,0,"A pass that grants you access through the locked door in Victoire's factory.",5,0,6
-531,BALLLAUNCHER,Ball Launcher,Ball Launchers,3,0,"A device which creates then launches regular Poké Balls, never running out.",0,9,4
-532,LIGHTHOUSEKEYCARD,Lighthouse Keycard,Lighthouse Keycards,8,0,"A colorful keycard. It grants access to elevator at the Sweetrock Harbor Lighthouse.",0,0,6
-533,MILKBONETREAT,Milk Bone Treat,Milk Bone Treats,8,0,"It would be a delicious treat if you were a Pokémon.",0,0,6
-534,DIGITSLIP,Digit Slip,Digit Slips,8,0,"A slip of paper with one digit of the code for the lock to Rafael's gym door.",0,0,13
-535,PERFORMANCEANALYZER,Performance Analyzer,Performance Analyzers,8,0,"A hi-tech recording device which increases your Pokémon's experience gained from Trainer battles by 20%.",0,0,6
-536,PERFORMANCEANALYZER2,Performance Analyzer 2,Performance Analyzers 2,8,0,"An upgraded, hi-tech recording device which increases the experience gained from Trainer battles by 25%.",0,0,6
-537,BATTLEREPORT,Battle Report,Battle Reports,1,0,"A detailed report on how to improve as a trainer. If you decide to read it, your level cap will be raised by 5.",2,0,13
-538,CHASMIDCARD,Chasm ID Card,Chasm ID Cards,8,0,"An ID card which unlocks Team Chasm gates and doors, giving access to dangers and rewards.",0,0,6
-539,POCKETTOTEM,Pocket Totem,Pocket Totems,8,0,"A miniature Avatar Totem. Use it to teleport to any unlocked Avatar Totems throughout Makya.",2,0,6
-540,SIGILLEFTHALF,Sigil Left Half,Sigils Left Half,8,0,"The left half of the sigil of an ancient order of knights.",0,0,6
-541,SIGILRIGHTHALF,Sigil Right Half,Sigils Right Half,8,0,"The right half of the sigil of an ancient order of knights.",0,0,6
-542,CARNATIONSIGIL,Carnation Sigil,Carnation Sigil,8,0,"An ancient sigil of the Carnation Knights. You feel it pulling you towards another place.",2,0,6
-543,PRIMALCLAY,Primal Clay,Primal Clay,8,0,"A lump of ancient clay. It glows with a soft golden color.",5,0,0
-544,OMNIDRIVE,OmniDrive,OmniDrives,8,0,"A mysterious data storage device which can be used to upgrade your PC.",5,0,6
-545,UBCONTAINMENTKEY,UB Containment Key,UB Containment Keys,8,0,"Unlocks the UB Containment Room at Novo Academy.",0,0,6
-546,ANCIENTSEAWATER,Ancient Sea Water,Ancient Sea Water,1,50000,"A vial of shimmering ocean water. It makes a certain Pokémon evolve.",1,0,7
-547,CONDENSEDLIGHT,Condensed Light,Condensed Light,8,0,"A strange ball of light. You should gather these for a friend.",0,0,13
-548,CHAMBER1KEY,Chamber 1 Key,Chamber 1 Keys,8,0,"The key to the first chamber containing a powerful avatar.",0,0,6
-549,CHAMBER2KEY,Chamber 2 Key,Chamber 2 Keys,8,0,"The key to the second chamber containing a powerful avatar.",0,0,6
-550,CHAMBER3KEY,Chamber 3 Key,Chamber 3 Keys,8,0,"The key to the third chamber containing a powerful avatar.",0,0,6
-551,CHAMBER4KEY,Chamber 4 Key,Chamber 4 Keys,8,0,"The key to the fourth chamber containing a powerful avatar.",0,0,6
-552,CHAMBER5KEY,Chamber 5 Key,Chamber 5 Keys,8,0,"The key to the fifth chamber containing a powerful avatar.",0,0,6
-553,CHAMBER6KEY,Chamber 6 Key,Chamber 6 Keys,8,0,"The key to the sixth chamber containing a powerful avatar.",0,0,6
-554,CHAMBER7KEY,Chamber 7 Key,Chamber 7 Keys,8,0,"The key to the seventh chamber containing a powerful avatar.",0,0,6
-555,CHAMBER8KEY,Chamber 8 Key,Chamber 8 Keys,8,0,"The key to the eighth chamber containing a powerful avatar.",0,0,6
-556,LATENTSEED,Latent Seed,Latent Seeds,8,0,"A simple tree seed. It hums with the potential for great change.",0,0,13
-557,ALLOYEDLUMP,Alloyed Lump,Alloyed Lumps,1,0,"Mishapen, unusual metal. Useless without a way to sharpen it.",2,0,13
-558,ALLOYEDBLADE,Alloyed Blade,Alloyed Blades,1,0,"A fragile blade of unusual metal. Sharp enough to cut alloyed overgrowth.",2,0,13
-559,ALLOYEDWIRE,Alloyed Wire,Alloyed Wires,1,0,"A thin, nearly invisible strand of unusual metal.",2,0,13
+105,SCOPELENS,Scope Lens,Scope Lenses,5,4000,"A held item. Doubles the holder's critical-hit chance, and raises their critical hit damage by 33%.",0,0,0
+106,WIDELENS,Wide Lens,Wide Lenses,5,4000,"A held item. It is a magnifying lens that boosts the accuracy of moves by 35%.",0,0,0
+107,LAGGINGTAIL,Lagging Tail,Lagging Tails,5,4000,"An item to be held by a Pokémon. It is tremendously heavy and makes the holder move slower than usual.",0,0,0
+108,FOCUSSASH,Focus Sash,Focus Sashes,5,4000,"An item to be held by a Pokémon. If it has full HP, the holder will endure one potential KO attack, leaving 1 HP.",0,0,0
+109,FLAMEORB,Flame Orb,Flame Orbs,5,4000,"An item to be held by a Pokémon. A bizarre orb that inflicts burn on the holder at the end of a turn.",5,0,0
+110,FROSTORB,Frost Orb,Frost Orbs,5,4000,"An item to be held by a Pokémon. A bizarre orb that inflicts frostbite on the holder at the end of a turn.",5,0,0
+111,POISONORB,Poison Orb,Poison Orbs,5,4000,"An item to be held by a Pokémon. A bizarre orb that inflicts poison on the holder at the end of a turn.",5,0,0
+112,STICKYBARB,Sticky Barb,Sticky Barbs,5,4000,"A held item that damages the holder on every turn. It may latch on to Pokémon that attacks the holder.",0,0,0
+113,IRONBALL,Iron Ball,Iron Balls,5,4000,"A Pokémon held item that cuts Speed. It makes Flying-type and levitating holders susceptible to Ground moves.",0,0,0
+114,CHARCOAL,Charcoal,Charcoals,5,1000,"A combustible fuel that boosts the holder's Fire-type moves by 20%.",0,0,0
+115,MYSTICWATER,Mystic Water,Mystic Waters,5,1000,"A teardrop-shaped gem that boosts the holder's Water-type moves by 20%.",0,0,0
+116,MAGNET,Magnet,Magnets,5,1000,"A powerful magnet that boosts the holder's Electric-type moves by 20%.",0,0,0
+117,MIRACLESEED,Miracle Seed,Miracle Seeds,5,1000,"A seed imbued with life that boosts the holder's Grass-type moves by 20%.",0,0,0
+118,NEVERMELTICE,Never-Melt Ice,Never-Melt Ices,5,1000,"A piece of ice that repels heat and boosts Ice-type moves by 20%.",0,0,0
+119,BLACKBELT,Black Belt,Black Belts,5,1000,"A belt that boosts determination and Fighting-type moves by 20%.",0,0,0
+120,POISONBARB,Poison Barb,Poison Barbs,5,1000,"A small, poisonous barb that boosts the holder's Poison-type moves by 20%.",0,0,0
+121,SOFTSAND,Soft Sand,Soft Sand,5,1000,"A loose, silky sand that boosts the holder's Ground-type moves by 20%.",0,0,0
+122,SHARPBEAK,Sharp Beak,Sharp Beaks,5,1000,"A long, sharp beak that boosts the holder's Flying-type moves by 20%.",0,0,0
+123,TWISTEDSPOON,Twisted Spoon,Twisted Spoons,5,1000,"A spoon imbued with telekinetic power that boosts Psychic-type moves by 20%.",0,0,0
+124,SILVERPOWDER,Silver Powder,Silver Powders,5,1000,"A shiny, silver powder that boosts the holder's Bug-type moves by 20%.",0,0,0
+125,HARDSTONE,Hard Stone,Hard Stones,5,1000,"An unbreakable stone that boosts the holder's Rock-type moves by 20%.",0,0,0
+126,SPELLTAG,Spell Tag,Spell Tags,5,1000,"A sinister, eerie tag that boosts the holder's the holder's Ghost-type moves by 20%.",0,0,0
+127,DRAGONFANG,Dragon Fang,Dragon Fangs,5,1000,"A hard and sharp fang that boosts the holder's Dragon-type moves by 20%.",0,0,0
+128,BLACKGLASSES,Black Glasses,Black Glasses,5,1000,"A shady-looking pair of glasses that boosts the holder's Dark-type moves by 20%.",0,0,0
+129,METALCOAT,Metal Coat,Metal Coats,5,2000,"A special metallic film that boosts the holder's Steel-type moves by 20%.",0,0,0
+130,SILKSCARF,Silk Scarf,Silk Scarves,5,1000,"A sumptuous scarf that boosts the holder's Normal-type moves by 20%.",0,0,0
+131,FIREGEM,Fire Gem,Fire Gems,5,1000,"A gem with an essence of fire. Boosts the power of a Fire-type move by 50% once per battle.",0,0,10
+132,WATERGEM,Water Gem,Water Gems,5,1000,"A gem with an essence of water. Boosts the power of a Water-type move by 50% once per battle.",0,0,10
+133,ELECTRICGEM,Electric Gem,Electric Gems,5,1000,"A gem with an essence of electricity. Boosts the power of an Electric-type move by 50% once per battle.",0,0,10
+134,GRASSGEM,Grass Gem,Grass Gems,5,1000,"A gem with an essence of nature. Boosts the power of a Grass-type move by 50% once per battle.",0,0,10
+135,ICEGEM,Ice Gem,Ice Gems,5,1000,"A gem with an essence of ice. Boosts the power of an Ice-type move by 50% once per battle.",0,0,10
+136,FIGHTINGGEM,Fighting Gem,Fighting Gems,5,1000,"A gem with an essence of combat. Boosts the power of a Fighting-type move by 50% once per battle.",0,0,10
+137,POISONGEM,Poison Gem,Poison Gems,5,1000,"A gem with an essence of poison. Boosts the power of a Poison-type move by 50% once per battle.",0,0,10
+138,GROUNDGEM,Ground Gem,Ground Gems,5,1000,"A gem with an essence of land. Boosts the power of a Ground-type move by 50% once per battle.",0,0,10
+139,FLYINGGEM,Flying Gem,Flying Gems,5,1000,"A gem with an essence of air. Boosts the power of a Flying-type move by 50% once per battle.",0,0,10
+140,PSYCHICGEM,Psychic Gem,Psychic Gems,5,1000,"A gem with an essence of the mind. Boosts the power of a Psychic-type move by 50% once per battle.",0,0,10
+141,BUGGEM,Bug Gem,Bug Gems,5,1000,"A gem with an insect-like essence. Boosts the power of a Bug-type move by 50% once per battle.",0,0,10
+142,ROCKGEM,Rock Gem,Rock Gems,5,1000,"A gem with an essence of rock. Boosts the power of a Rock-type move by 50% once per battle.",0,0,10
+143,GHOSTGEM,Ghost Gem,Ghost Gems,5,1000,"A gem with a spectral essence. Boosts the power of a Ghost-type move by 50% once per battle.",0,0,10
+144,DRAGONGEM,Dragon Gem,Dragon Gems,5,1000,"A gem with a draconic essence. Boosts the power of a Dragon-type move by 50% once per battle.",0,0,10
+145,DARKGEM,Dark Gem,Dark Gems,5,1000,"A gem with an essence of darkness. Boosts the power of a Dark-type move by 50% once per battle.",0,0,10
+146,STEELGEM,Steel Gem,Steel Gems,5,1000,"A gem with an essence of steel. Boosts the power of a Steel-type move by 50% once per battle.",0,0,10
+147,NORMALGEM,Normal Gem,Normal Gems,5,1000,"A gem with an ordinary essence. Boosts the power of a Normal-type move by 50% once per battle.",0,0,10
+148,FAIRYGEM,Fairy Gem,Fairy Gems,5,1000,"A gem with an essence of the fey. Boosts the power of a Fairy-type move by 50% once per battle.",0,0,10
+149,CRYSTALVEIL,Crystal Veil,Crystal Veils,5,6000,"A held item. It changes the holder's type in battle. You can change which type between battles.",0,0,0
+150,MEMORYSET,Memory Set,Memory Sets,5,0,"A set of memory discs, one for each type. If held by a Silvally, you can change its type between battles.",0,0,0
+151,PRISMATICPLATE,Prismatic Plate,Prismatic Plates,5,0,"A tablet that boosts same-type attacks by 20%. If held by Arceus, you can change its type between battles.",0,0,0
+152,WILDCARD,Wild Card,Wild Cards,5,10000,"An item to be held by a Pokémon. It counts as a member of every tribe.",0,0,0
+153,PROXYFIST,Proxy Fist,Proxy Fists,5,3000,"A held item. The holder doesn't trigger items, abilities, or effects of targets it hits.",0,0,0
+154,COVERTCLOAK,Covert Cloak,Covert Cloaks,5,3000,"A held item. The holder is protected from the additional effects of enemy attacks.",0,0,0
+155,SOULDEW,Soul Dew,Soul Dews,5,0,"A wondrous orb to be held by either Latios or Latias. It raises the power of Psychic- and Dragon-type moves.",0,0,0
+156,ADAMANTORB,Adamant Orb,Adamant Orbs,5,10000,"A brightly gleaming orb to be held by Dialga. It boosts the power of Dragon- and Steel-type moves.",0,0,0
+157,LUSTROUSORB,Lustrous Orb,Lustrous Orbs,5,10000,"A beautifully glowing orb to be held by Palkia. It boosts the power of Dragon- and Water-type moves.",0,0,0
+158,GRISEOUSORB,Griseous Orb,Griseous Orbs,5,10000,"A glowing orb to be held by Giratina. It boosts the power of Dragon- and Ghost-type moves.",0,0,0
+159,DOUSEDRIVE,Douse Drive,Douse Drives,5,1000,"A cassette to be held by Genesect. It changes Techno Blast to a Water-type move.",0,0,0
+160,SHOCKDRIVE,Shock Drive,Shock Drives,5,1000,"A cassette to be held by Genesect. It changes Techno Blast to an Electric-type move.",0,0,0
+161,BURNDRIVE,Burn Drive,Burn Drives,5,1000,"A cassette to be held by Genesect. It changes Techno Blast to a Fire-type move.",0,0,0
+162,CHILLDRIVE,Chill Drive,Chill Drives,5,1000,"A cassette to be held by Genesect. It changes Techno Blast to an Ice-type move.",0,0,0
+163,EVERSTONE,Everstone,Everstones,5,3000,"An item to be held by a Pokémon. The Pokémon holding this peculiar stone is prevented from evolving.",0,0,0
+164,REAPERCLOTH,Reaper Cloth,Reaper Cloths,5,2000,"A cloth imbued with horrifyingly strong spiritual energy. It is loved by a certain Pokémon.",0,0,0
+165,POTION,Potion,Potions,2,200,"A spray-type medicine for wounds. It restores the HP of one Pokémon by just 40 points.",1,0,0
+166,SUPERPOTION,Super Potion,Super Potions,2,400,"A spray-type medicine for wounds. It restores the HP of one Pokémon by 80 points.",1,0,0
+167,HYPERPOTION,Hyper Potion,Hyper Potions,2,600,"A spray-type medicine for wounds. It restores the HP of one Pokémon by 120 points.",1,0,0
+168,MAXPOTION,Max Potion,Max Potions,2,800,"A spray-type medicine for wounds. It completely restores the HP of a single Pokémon.",1,0,0
+169,FULLRESTORE,Full Restore,Full Restores,2,1200,"A medicine that fully restores the HP and heals any status problems of a single Pokémon.",1,0,0
+170,SACREDASH,Sacred Ash,Sacred Ashes,2,50000,"It revives all fainted Pokémon. In doing so, it also fully restores their HP.",2,0,0
+171,STATUSHEAL,Status Heal,Status Heals,2,400,"A spray-type medicine. It heals all the status problems of a single Pokémon.",1,0,0
+172,LAVACOOKIE,Lava Cookie,Lava Cookies,2,350,"Lavaridge Town's local specialty. It heals all the status problems of one Pokémon.",1,0,0
+173,OLDGATEAU,Old Gateau,Old Gateaux,2,350,"Old Chateau's hidden specialty. It heals all the status problems of a single Pokémon.",1,0,0
+174,CASTELIACONE,Casteliacone,Casteliacones,2,350,"Castelia City's specialty, soft-serve ice cream. It heals all the status problems of a single Pokémon.",1,0,0
+175,REVIVE,Revive,Revives,2,500,"A medicine that revives a fainted Pokémon. It restores half the Pokémon's maximum HP.",1,0,0
+176,MAXREVIVE,Max Revive,Max Revives,2,1000,"A medicine that revives a fainted Pokémon. It fully restores the Pokémon's HP.",1,0,0
+177,BERRYJUICE,Berry Juice,Berry Juices,2,100,"A 100% pure juice made of Berries. It restores the HP of one Pokémon by just 20 points.",1,0,5
+178,RAGECANDYBAR,Rage Candy Bar,Rage Candy Bars,2,350,"Mahogany Town's famous candy. It can be used once to heal all the status conditions of a Pokémon.",1,0,0
+179,SWEETHEART,Sweet Heart,Sweet Hearts,2,150,"Very sweet chocolate. It restores the HP of one Pokémon by only 20 points.",1,0,0
+180,FRESHWATER,Fresh Water,Fresh Waters,2,200,"Water with a high mineral content. It restores the HP of one Pokémon by 50 points.",1,0,0
+181,SODAPOP,Soda Pop,Soda Pops,2,300,"A fizzy soda drink. It restores the HP of one Pokémon by 60 points.",1,0,0
+182,LEMONADE,Lemonade,Lemonades,2,350,"A very sweet drink. It restores the HP of one Pokémon by 80 points.",1,0,0
+183,MOOMOOMILK,Moomoo Milk,Moomoo Milks,2,600,"Milk with a very high nutrition content. It restores the HP of one Pokémon by 100 points.",1,0,0
+184,ENERGYPOWDER,Energy Powder,Energy Powders,2,500,"A very bitter medicine powder. It restores the HP of one Pokémon by 50 points.",1,0,0
+185,ENERGYROOT,Energy Root,Energy Roots,2,1200,"A very bitter root. It restores the HP of one Pokémon by 200 points.",1,0,0
+186,HEALPOWDER,Heal Powder,Heal Powders,2,300,"A very bitter medicine powder. It heals all the status problems of a single Pokémon.",1,0,0
+187,REVIVALHERB,Revival Herb,Revival Herbs,2,2800,"A very bitter medicinal herb. It revives a fainted Pokémon, fully restoring its HP.",1,0,0
+188,RARECANDY,Candy,Candies,2,1000,"A candy that is packed with energy. It raises the level of a single Pokémon by one.",1,0,0
+189,VANILLATULUMBA,Vanilla Tulumba,Vanilla Tulumba,2,800,"Fried dough dipped in vanilla syrup. It can be used to raise a Pokémon's level by 1.",1,0,0
+190,MASTERBALL,Master Ball,Master Balls,3,0,"The best Ball with the ultimate level of performance. It will catch any wild Pokémon without fail.",0,4,4
+191,ULTRABALL,Ultra Ball,Ultra Balls,3,800,"An ultra-performance Ball with 2x the strength of a regular ball.",0,4,4
+192,GREATBALL,Great Ball,Great Balls,3,400,"A good, high-performance Ball with 1.5x strength compared to a regular ball.",0,4,4
+193,POKEBALL,Poké Ball,Poké Balls,3,100,"A device for catching wild Pokémon. It is thrown like a ball at the target. It is designed as a capsule system.",0,4,4
+194,SAFARIBALL,Safari Ball,Safari Balls,3,0,"A special Poké Ball that is used only in the Safari Zone. It is decorated in a camouflage pattern.",0,4,4
+195,SPORTBALL,Sport Ball,Sport Balls,3,300,"A special Poké Ball for the Bug-Catching Contest.",0,4,4
+196,NESTBALL,Nest Ball,Nest Balls,3,400,"A somewhat different Poké Ball that works better the lower the Pokémon's level is below your level cap.",0,4,4
+197,REPEATBALL,Repeat Ball,Repeat Balls,3,400,"A somewhat different Poké Ball that works at 3.5x strength on Pokémon species that were previously caught.",0,4,4
+198,TIMERBALL,Timer Ball,Timer Balls,3,400,"A somewhat different Ball that becomes up to 4x better the more turns there are in a battle.",0,4,4
+199,LUXURYBALL,Luxury Ball,Luxury Balls,3,800,"A comfortable Poké Ball that makes a caught wild Pokémon gain happiness twice as quickly.",0,4,4
+200,PREMIERBALL,Premier Ball,Premier Balls,3,20,"A somewhat rare Poké Ball that has been specially made to commemorate an event of some sort.",0,4,4
+201,HEALBALL,Heal Ball,Heal Balls,3,400,"A remedial Poké Ball that restores the caught Pokémon's HP and eliminates any status problem.",0,4,4
+202,QUICKBALL,Quick Ball,Quick Balls,3,800,"A somewhat different Poké Ball which has 5x strength on the first turn of a wild encounter.",0,4,4
+203,CHERISHBALL,Cherish Ball,Cherish Balls,3,800,"A quite rare Poké Ball that has been specially crafted to commemorate an occasion of some sort.",0,4,4
+204,FRIENDBALL,Friend Ball,Friend Balls,3,300,"A Poké Ball that makes caught Pokémon more friendly.",0,4,4
+205,DREAMBALL,Dream Ball,Dream Balls,3,300,"A somewhat different Poké Ball that makes it easier to catch wild Pokémon while they're asleep.",0,4,4
+206,BEASTBALL,Beast Ball,Beast Balls,3,1000,"A special Poké Ball designed to catch Ultra Beasts. It has a low success rate for catching others.",0,4,4
+207,SLICEBALL,Slice Ball,Slice Balls,3,200,"A sharp Poké Ball that damages the Pokémon for 1/4th of its HP if it fails to catch it.",0,4,4
+208,LEECHBALL,Leech Ball,Leech Balls,3,200,"A parasitic Poké Ball that leeches the Pokémon if it fails to catch it.",0,4,4
+209,POTIONBALL,Potion Ball,Potion Balls,3,200,"A medicinal Poké Ball that heals the Pokémon for 1/4th of its HP if it fails to catch it.",0,4,4
+210,DISABLEBALL,Disable Ball,Disable Balls,3,200,"A mentally disrupting Poké Ball that disables the Pokemon's last used move for 10 turns if it fails to catch it.",0,4,4
+211,ROYALBALL,Royal Ball,Royal Balls,3,1000,"A ball whose striking appearance makes it popular despite its poor performance.",0,4,4
+212,TM00,TM00,TM00s,4,10000,,3,0,0,RANSACK
+213,TM01,TM01,TM01s,4,10000,,3,0,0,COVET
+214,TM02,TM02,TM02s,4,10000,,3,0,0,PAYDAY
+215,TM03,TM03,TM03s,4,50000,,3,0,0,FIREPUNCH
+216,TM04,TM04,TM04s,4,50000,,3,0,0,ICEPUNCH
+217,TM05,TM05,TM05s,4,50000,,3,0,0,THUNDERPUNCH
+218,TM06,TM06,TM06s,4,10000,,3,0,0,FLY
+219,TM07,TM07,TM07s,4,10000,,3,0,0,CRUELTY
+220,TM08,TM08,TM08s,4,50000,,3,0,0,HYPERBEAM
+221,TM09,TM09,TM09s,4,50000,,3,0,0,GIGAIMPACT
+222,TM10,TM10,TM10s,4,10000,,3,0,0,GREYMIST
+223,TM11,TM11,TM11s,4,10000,,3,0,0,SOLARBEAM
+224,TM12,TM12,TM12s,4,10000,,3,0,0,FOLLOWME
+225,TM13,TM13,TM13s,4,10000,,3,0,0,FIRESPIN
+226,TM14,TM14,TM14s,4,10000,,3,0,0,NUMB
+227,TM15,TM15,TM15s,4,6000,,3,0,0,DIG
+228,TM16,TM16,TM16s,4,10000,,3,0,0,SCREECH
+229,TM17,TM17,TM17s,4,10000,,3,0,0,LIGHTSCREEN
+230,TM18,TM18,TM18s,4,10000,,3,0,0,REFLECT
+231,TM19,TM19,TM19s,4,10000,,3,0,0,SAFEGUARD
+232,TM20,TM20,TM20s,4,4000,,3,0,0,SELFDESTRUCT
+233,TM21,TM21,TM21s,4,10000,,3,0,0,REST
+234,TM22,TM22,TM22s,4,8000,,3,0,0,EXPLOSION
+235,TM23,TM23,TM23s,4,4000,,3,0,0,MEMENTO
+236,TM24,TM24,TM24s,4,10000,,3,0,0,SNORE
+237,TM25,TM25,TM25s,4,10000,,3,0,0,PROTECT
+238,TM26,TM26,TM26s,4,10000,,3,0,0,SCARYFACE
+239,TM27,TM27,TM27s,4,10000,,3,0,0,RAPIDSPIN
+240,TM28,TM28,TM28s,4,6000,,3,0,0,THRIVINGFORCE
+241,TM29,TM29,TM29s,4,10000,,3,0,0,CHARM
+242,TM30,TM30,TM30s,4,10000,,3,0,0,STEELWING
+243,TM31,TM31,TM31s,4,10000,,3,0,0,ATTRACT
+244,TM32,TM32,TM32s,4,5000,,3,0,0,SANDSTORM
+245,TM33,TM33,TM33s,4,5000,,3,0,0,RAIN
+246,TM34,TM34,TM34s,4,5000,,3,0,0,SUNSHINE
+247,TM35,TM35,TM35s,4,5000,,3,0,0,HAIL
+248,TM36,TM36,TM36s,4,10000,,3,0,0,WHIRLPOOL
+249,TM37,TM37,TM37s,4,10000,,3,0,0,BEATUP
+250,TM38,TM38,TM38s,4,10000,,3,0,0,WILLOWISP
+251,TM39,TM39,TM39s,4,10000,,3,0,0,FACADE
+252,TM40,TM40,TM40s,4,10000,,3,0,0,SWIFT
+253,TM41,TM41,TM41s,4,10000,,3,0,0,HELPINGHAND
+254,TM42,TM42,TM42s,4,10000,,3,0,0,REVENGE
+255,TM43,TM43,TM43s,4,6000,,3,0,0,BRICKBREAK
+256,TM44,TM44,TM44s,4,100000,,3,0,0,IMPRISON
+257,TM45,TM45,TM45s,4,6000,,3,0,0,DIVE
+258,TM46,TM46,TM46s,4,6000,,3,0,0,WEATHERBURST
+259,TM47,TM47,TM47s,4,10000,,3,0,0,FAKETEARS
+260,TM48,TM48,TM48s,4,6000,,3,0,0,STRAFE
+261,TM49,TM49,TM49s,4,6000,,3,0,0,MEGAPUNCH
+262,TM50,TM50,TM50s,4,6000,,3,0,0,BULLETSEED
+263,TM51,TM51,TM51s,4,6000,,3,0,0,CRYSTALCRUSH
+264,TM52,TM52,TM52s,4,6000,,3,0,0,BOUNCE
+265,TM53,TM53,TM53s,4,10000,,3,0,0,MUDSHOT
+266,TM54,TM54,TM54s,4,6000,,3,0,0,WAILINGBLOW
+267,TM55,TM55,TM55s,4,10000,,3,0,0,BRINE
+268,TM56,TM56,TM56s,4,10000,,3,0,0,UTURN
+269,TM57,TM57,TM57s,4,6000,,3,0,0,PAYBACK
+270,TM58,TM58,TM58s,4,10000,,3,0,0,ASSURANCE
+271,TM59,TM59,TM59s,4,100000,,3,0,0,FLING
+272,TM60,TM60,TM60s,4,10000,,3,0,0,POWERSWAP
+273,TM61,TM61,TM61s,4,10000,,3,0,0,GUARDSWAP
+274,TM62,TM62,TM62s,4,10000,,3,0,0,HEARTSWAP
+275,TM63,TM63,TM63s,4,50000,,3,0,0,DRAINPUNCH
+276,TM64,TM64,TM64s,4,10000,,3,0,0,AVALANCHE
+277,TM65,TM65,TM65s,4,10000,,3,0,0,SHADOWCLAW
+278,TM66,TM66,TM66s,4,30000,,3,0,0,THUNDERFANG
+279,TM67,TM67,TM67s,4,30000,,3,0,0,ICEFANG
+280,TM68,TM68,TM68s,4,30000,,3,0,0,FIREFANG
+281,TM69,TM69,TM69s,4,10000,,3,0,0,PSYCHOCUT
+282,TM70,TM70,TM70s,4,50000,,3,0,0,TRICKROOM
+283,TM71,TM71,TM71s,4,50000,,3,0,0,WONDERROOM
+284,TM72,TM72,TM72s,4,50000,,3,0,0,PUZZLEROOM
+285,TM73,TM73,TM73s,4,6000,,3,0,0,CROSSPOISON
+286,TM74,TM74,TM74s,4,10000,,3,0,0,VENOSHOCK
+287,TM75,TM75,TM75s,4,10000,,3,0,0,LOWSWEEP
+288,TM76,TM76,TM76s,4,10000,,3,0,0,ROUND
+289,TM77,TM77,TM77s,4,10000,,3,0,0,HEX
+290,TM78,TM78,TM78s,4,10000,,3,0,0,ACROBATICS
+291,TM79,TM79,TM79s,4,10000,,3,0,0,RETALIATE
+292,TM80,TM80,TM80s,4,10000,,3,0,0,VOLTSWITCH
+293,TM81,TM81,TM81s,4,10000,,3,0,0,BULLDOZE
+294,TM82,TM82,TM82s,4,10000,,3,0,0,ELECTROWEB
+295,TM83,TM83,TM83s,4,100000,,3,0,0,RAZORSHELL
+296,TM84,TM84,TM84s,4,10000,,3,0,0,TAILSLAP
+297,TM85,TM85,TM85s,4,10000,,3,0,0,SNARL
+298,TM86,TM86,TM86s,4,6000,,3,0,0,PHANTOMFORCE
+299,TM87,TM87,TM87s,4,10000,,3,0,0,TRICKYTOXINS
+300,TM88,TM88,TM88s,4,5000,,3,0,0,VOLTSWITCH
+301,TM89,TM89,TM89s,4,5000,,3,0,0,UTURN
+302,TM90,TM90,TM90s,4,5000,,3,0,0,FLIPTURN
+303,TM91,TM91,TM91s,4,5000,,3,0,0,PARTINGSHOT
+304,TM92,TM92,TM92s,4,100000,,3,0,0,MEMENTO
+305,TM93,TM93,TM93s,4,10000,,3,0,0,EERIEIMPULSE
+306,TM94,TM94,TM94s,4,10000,,3,0,0,POUT
+307,TM95,TM95,TM95s,4,6000,,3,0,0,COLDFRONT
+308,TM96,TM96,TM96s,4,10000,,3,0,0,BUBBLEBLAST
+309,TM97,TM97,TM97s,4,10000,,3,0,0,BRUTALSWING
+310,TM98,TM98,TM98s,4,6000,,3,0,0,STOMPINGTANTRUM
+311,TM99,TM99,TM99s,4,10000,,3,0,0,BREAKINGSWIPE
+312,TM100,TM100,TM100s,4,4000,,3,0,0,FLOWSTATE
+313,TM101,TM101,TM101s,4,6000,,3,0,0,BODYSLAM
+314,TM102,TM102,TM102s,4,6000,,3,0,0,FLAMETHROWER
+315,TM103,TM103,TM103s,4,16000,,3,0,0,HYDROPUMP
+316,TM104,TM104,TM104s,4,6000,,3,0,0,SURF
+317,TM105,TM105,TM105s,4,6000,,3,0,0,ICEBEAM
+318,TM106,TM106,TM106s,4,16000,,3,0,0,BLIZZARD
+319,TM107,TM107,TM107s,4,6000,,3,0,0,LOWKICK
+320,TM108,TM108,TM108s,4,6000,,3,0,0,THUNDERBOLT
+321,TM109,TM109,TM109s,4,16000,,3,0,0,THUNDER
+322,TM110,TM110,TM110s,4,6000,,3,0,0,EARTHQUAKE
+323,TM111,TM111,TM111s,4,6000,,3,0,0,PSYCHIC
+324,TM112,TM112,TM112s,4,4000,,3,0,0,AGILITY
+325,TM113,TM113,TM113s,4,2000,,3,0,0,FOCUSENERGY
+326,TM114,TM114,TM114s,4,4000,,3,0,0,AIMTRUE
+327,TM115,TM115,TM115s,4,16000,,3,0,0,FIREBLAST
+328,TM116,TM116,TM116s,4,6000,,3,0,0,WATERFALL
+329,TM117,TM117,TM117s,4,4000,,3,0,0,AMNESIA
+330,TM118,TM118,TM118s,4,6000,,3,0,0,LEECHLIFE
+331,TM119,TM119,TM119s,4,6000,,3,0,0,TRIATTACK
+332,TM120,TM120,TM120s,4,6000,,3,0,0,SUBSTITUTE
+333,TM121,TM121,TM121s,4,4000,,3,0,0,REVERSAL
+334,TM122,TM122,TM122s,4,10000,,3,0,0,SLUDGEBOMB
+335,TM123,TM123,TM123s,4,4000,,3,0,0,SPIKES
+336,TM124,TM124,TM124s,4,16000,,3,0,0,OUTRAGE
+337,TM125,TM125,TM125s,4,6000,,3,0,0,PSYSHOCK
+338,TM126,TM126,TM126s,4,2000,,3,0,0,ENDURE
+339,TM127,TM127,TM127s,4,4000,,3,0,0,SLEEPTALK
+340,TM128,TM128,TM128s,4,16000,,3,0,0,MEGAHORN
+341,TM129,TM129,TM129s,4,4000,,3,0,0,BATONPASS
+342,TM130,TM130,TM130s,4,4000,,3,0,0,ENCORE
+343,TM131,TM131,TM131s,4,10000,,3,0,0,IRONTAIL
+344,TM132,TM132,TM132s,4,6000,,3,0,0,CRUNCH
+345,TM133,TM133,TM133s,4,6000,,3,0,0,SHADOWBALL
+346,TM134,TM134,TM134s,4,4000,,3,0,0,FROSTSPIKES
+347,TM135,TM135,TM135s,4,6000,,3,0,0,UPROAR
+348,TM136,TM136,TM136s,4,6000,,3,0,0,BAR
+349,TM137,TM137,TM137s,4,4000,,3,0,0,TAUNT
+350,TM138,TM138,TM138s,4,4000,,3,0,0,TRICK
+351,TM139,TM139,TM139s,4,16000,,3,0,0,SUPERPOWER
+352,TM140,TM140,TM140s,4,2000,,3,0,0,SKILLSWAP
+353,TM141,TM141,TM141s,4,6000,,3,0,0,INFERNOCHARGE
+354,TM142,TM142,TM142s,4,6000,,3,0,0,HYPERVOICE
+355,TM143,TM143,TM143s,4,16000,,3,0,0,OVERHEAT
+356,TM144,TM144,TM144s,4,4000,,3,0,0,COSMICPOWER
+357,TM145,TM145,TM145s,4,50000,,3,0,0,ODDROOM
+358,TM146,TM146,TM146s,4,4000,,3,0,0,IRONDEFENSE
+359,TM147,TM147,TM147s,4,6000,,3,0,0,REND
+360,TM148,TM148,TM148s,4,4000,,3,0,0,BULKUP
+361,TM149,TM149,TM149s,4,4000,,3,0,0,CALMMIND
+362,TM150,TM150,TM150s,4,6000,,3,0,0,LEAFBLADE
+363,TM151,TM151,TM151s,4,4000,,3,0,0,FLAMESPIKES
+364,TM152,TM152,TM152s,4,6000,,3,0,0,GYROBALL
+365,TM153,TM153,TM153s,4,16000,,3,0,0,CLOSECOMBAT
+366,TM154,TM154,TM154s,4,4000,,3,0,0,POISONSPIKES
+367,TM155,TM155,TM155s,4,16000,,3,0,0,FLAREBLITZ
+368,TM156,TM156,TM156s,4,6000,,3,0,0,AURASPHERE
+369,TM157,TM157,TM157s,4,6000,,3,0,0,POISONJAB
+370,TM158,TM158,TM158s,4,6000,,3,0,0,DARKALLURE
+371,TM159,TM159,TM159s,4,6000,,3,0,0,REMOVALBEAM
+372,TM160,TM160,TM160s,4,6000,,3,0,0,XSCISSOR
+373,TM161,TM161,TM161s,4,6000,,3,0,0,BUGBUZZ
+374,TM162,TM162,TM162s,4,6000,,3,0,0,DRAGONPULSE
+375,TM163,TM163,TM163s,4,6000,,3,0,0,POWERGEM
+376,TM164,TM164,TM164s,4,16000,,3,0,0,FOCUSBLAST
+377,TM165,TM165,TM165s,4,10000,,3,0,0,ENERGYBALL
+378,TM166,TM166,TM166s,4,16000,,3,0,0,BRAVEBIRD
+379,TM167,TM167,TM167s,4,6000,,3,0,0,EARTHPOWER
+380,TM168,TM168,TM168s,4,4000,,3,0,0,VANGUARD
+381,TM169,TM169,TM169s,4,6000,,3,0,0,PREDICTIONSTRIKE
+382,TM170,TM170,TM170s,4,6000,,3,0,0,FLASHCANNON
+383,TM171,TM171,TM171s,4,16000,,3,0,0,LEAFSTORM
+384,TM172,TM172,TM172s,4,16000,,3,0,0,POWERWHIP
+385,TM173,TM173,TM173s,4,16000,,3,0,0,GUNKSHOT
+386,TM174,TM174,TM174s,4,6000,,3,0,0,BULLETTRAIN
+387,TM175,TM175,TM175s,4,6000,,3,0,0,ADAMANTINEPRESS
+388,TM176,TM176,TM176s,4,10000,,3,0,0,STEALTHROCK
+389,TM177,TM177,TM177s,4,6000,,3,0,0,GRASSKNOT
+390,TM178,TM178,TM178s,4,6000,,3,0,0,MIASMA
+391,TM179,TM179,TM179s,4,6000,,3,0,0,HEAVYSLAM
+392,TM180,TM180,TM180s,4,6000,,3,0,0,ELECTROBALL
+393,TM181,TM181,TM181s,4,6000,,3,0,0,FOULPLAY
+394,TM182,TM182,TM182s,4,4000,,3,0,0,STOREDPOWER
+395,TM183,TM183,TM183s,4,4000,,3,0,0,ALLYSWITCH
+396,TM184,TM184,TM184s,4,6000,,3,0,0,SCALD
+397,TM185,TM185,TM185s,4,2000,,3,0,0,WORKUP
+398,TM186,TM186,TM186s,4,6000,,3,0,0,ELECTROSLASH
+399,TM187,TM187,TM187s,4,6000,,3,0,0,TRAMPLE
+400,TM188,TM188,TM188s,4,6000,,3,0,0,HEATCRASH
+401,TM189,TM189,TM189s,4,16000,,3,0,0,HURRICANE
+402,TM190,TM190,TM190s,4,6000,,3,0,0,PLAYROUGH
+403,TM191,TM191,TM191s,4,4000,,3,0,0,VENOMDRENCH
+404,TM192,TM192,TM192s,4,6000,,3,0,0,MOONBLAST
+405,TM193,TM193,TM193s,4,6000,,3,0,0,AURATRICK
+406,TM194,TM194,TM194s,4,6000,,3,0,0,SCORCHINGSANDS
+407,TM195,TM195,TM195s,4,6000,,3,0,0,THROATCHOP
+408,TM196,TM196,TM196s,4,5000,,3,0,0,MOONGLOW
+409,TM197,TM197,TM197s,4,5000,,3,0,0,ECLIPSE
+410,TM198,TM198,TM198s,4,6000,,3,0,0,LIQUIDATION
+411,TM199,TM199,TM199s,4,6000,,3,0,0,BODYPRESS
+412,CHERIBERRY,Cheri Berry,Cheri Berries,5,0,"It may be held by a Pokémon to recover from numbing.",0,0,5
+413,CHESTOBERRY,Chesto Berry,Chesto Berries,5,0,"It may be held by a Pokémon to recover from sleep.",0,0,5
+414,PECHABERRY,Pecha Berry,Pecha Berries,5,0,"It may be held by a Pokémon to recover from poison.",0,0,5
+415,RAWSTBERRY,Rawst Berry,Rawst Berries,5,0,"It may be held by a Pokémon to recover from a burn.",0,0,5
+416,ASPEARBERRY,Aspear Berry,Aspear Berries,5,0,"It may be held by a Pokémon to recover from a frostbite.",0,0,5
+417,LEPPABERRY,Leppa Berry,Leppa Berries,5,0,"It may be held by a Pokémon to restore a move's PP by 10.",0,0,5
+418,AMWIBERRY,Amwi Berry,Amwi Berries,5,0,"It may be held by a Pokémon to heal the user by 33% in a pinch (below 25% HP).",0,0,5
+419,PERSIMBERRY,Persim Berry,Persim Berries,5,0,"It may be held by a Pokémon to recover from being dizzy.",0,0,5
+420,LUMBERRY,Lum Berry,Lum Berries,5,0,"It may be held by a Pokémon to recover from any status problem.",0,0,5
+421,SITRUSBERRY,Sitrus Berry,Sitrus Berries,5,0,"If held by a Pokémon, it heals its HP by 25% at half health.",0,0,5
+422,SPELONBERRY,Spelon Berry,Spelon Berries,5,500,"It may be held by a Pokémon to recover from being leeched.",0,0,5
+423,OCCABERRY,Occa Berry,Occa Berries,5,0,"Weakens a supereffective Fire-type attack against the holding Pokémon.",0,0,5
+424,PASSHOBERRY,Passho Berry,Passho Berries,5,0,"Weakens a supereffective Water-type attack against the holding Pokémon.",0,0,5
+425,WACANBERRY,Wacan Berry,Wacan Berries,5,0,"Weakens a supereffective Electric-type attack against the holding Pokémon.",0,0,5
+426,RINDOBERRY,Rindo Berry,Rindo Berries,5,0,"Weakens a supereffective Grass-type attack against the holding Pokémon.",0,0,5
+427,YACHEBERRY,Yache Berry,Yache Berries,5,0,"Weakens a supereffective Ice-type attack against the holding Pokémon.",0,0,5
+428,CHOPLEBERRY,Chople Berry,Chople Berries,5,0,"Weakens a supereffective Fighting-type attack against the holding Pokémon.",0,0,5
+429,KEBIABERRY,Kebia Berry,Kebia Berries,5,0,"Weakens a supereffective Poison-type attack against the holding Pokémon.",0,0,5
+430,SHUCABERRY,Shuca Berry,Shuca Berries,5,0,"Weakens a supereffective Ground-type attack against the holding Pokémon.",0,0,5
+431,COBABERRY,Coba Berry,Coba Berries,5,0,"Weakens a supereffective Flying-type attack against the holding Pokémon.",0,0,5
+432,PAYAPABERRY,Payapa Berry,Payapa Berries,5,0,"Weakens a supereffective Psychic-type attack against the holding Pokémon.",0,0,5
+433,TANGABERRY,Tanga Berry,Tanga Berries,5,0,"Weakens a supereffective Bug-type attack against the holding Pokémon.",0,0,5
+434,CHARTIBERRY,Charti Berry,Charti Berries,5,0,"Weakens a supereffective Rock-type attack against the holding Pokémon.",0,0,5
+435,KASIBBERRY,Kasib Berry,Kasib Berries,5,0,"Weakens a supereffective Ghost-type attack against the holding Pokémon.",0,0,5
+436,HABANBERRY,Haban Berry,Haban Berries,5,0,"Weakens a supereffective Dragon-type attack against the holding Pokémon.",0,0,5
+437,COLBURBERRY,Colbur Berry,Colbur Berries,5,0,"Weakens a supereffective Dark-type attack against the holding Pokémon.",0,0,5
+438,BABIRIBERRY,Babiri Berry,Babiri Berries,5,0,"Weakens a supereffective Steel-type attack against the holding Pokémon.",0,0,5
+439,ROSELIBERRY,Roseli Berry,Roseli Berries,5,0,"If held by a Pokémon, this Berry will lessen the damage taken from one supereffective Fairy-type attack.",0,0,5
+440,CHILANBERRY,Chilan Berry,Chilan Berries,5,0,"Weakens a Normal-type attack against the Pokémon holding this berry.",0,0,5
+441,LIECHIBERRY,Liechi Berry,Liechi Berries,5,0,"If held by a Pokémon, it raises its Attack by two steps in a pinch.",0,0,5
+442,GANLONBERRY,Ganlon Berry,Ganlon Berries,5,0,"If held by a Pokémon, it raises its Defense by two steps in a pinch.",0,0,5
+443,SALACBERRY,Salac Berry,Salac Berries,5,0,"If held by a Pokémon, it raises its Speed by two steps in a pinch.",0,0,5
+444,PETAYABERRY,Petaya Berry,Petaya Berries,5,0,"If held by a Pokémon, it raises its Sp. Atk by two steps in a pinch.",0,0,5
+445,APICOTBERRY,Apicot Berry,Apicot Berries,5,0,"If held by a Pokémon, it raises its Sp. Def by two steps in a pinch.",0,0,5
+446,LANSATBERRY,Lansat Berry,Lansat Berries,5,0,"If held by a Pokémon, it raises its critical-hit ratio in a pinch.",0,0,5
+447,STARFBERRY,Starf Berry,Starf Berries,5,0,"If held by a Pokémon, it raises one of its stats by three steps in a pinch.",0,0,5
+448,ENIGMABERRY,Enigma Berry,Enigma Berries,5,0,"If held by a Pokémon, it restores its HP if it is hit by any supereffective attack.",0,0,5
+449,MICLEBERRY,Micle Berry,Micle Berries,5,0,"If held by a Pokémon, it raises its Accuracy by 4 steps in a pinch.",0,0,5
+450,CUSTAPBERRY,Custap Berry,Custap Berries,5,0,"If held by a Pokémon, it gets to move first just once in a pinch.",0,0,5
+451,JABOCABERRY,Jaboca Berry,Jaboca Berries,5,0,"If held by a Pokémon and a physical attack hits it, the attacker takes 1/4th HP  damage.",0,0,5
+452,ROWAPBERRY,Rowap Berry,Rowap Berries,5,0,"If held by a Pokémon and a special attack hits it, the attacker takes 1/4th HP damage.",0,0,5
+453,KEEBERRY,Kee Berry,Kee Berries,5,20,"If held by a Pokémon, this Berry will increase the holder's Defense by four steps if it's hit with a physical move.",0,0,5
+454,MARANGABERRY,Maranga Berry,Maranga Berries,5,20,"If held by a Pokémon, this Berry will increase the holder's Sp. Def by four steps if it's hit with a special move.",0,0,5
+455,BICYCLE,Bicycle,Bicycles,8,0,"A folding Bicycle that enables much faster movement than the Running Shoes.",2,0,6
+456,TOWNMAP,Town Map,Town Maps,8,0,"A very convenient map that can be viewed anytime. It even shows your present location.",2,0,6
+457,GRACIDEA,Gracidea,Gracideas,8,0,"A flower sometimes bundled in bouquets to convey gratitude on special occasions like birthdays.",5,0,6
+458,AURORATICKET,Aurora Ticket,Aurora Tickets,8,0,"A ticket required to board the ship to Doxy Island. It glows beautifully.",0,0,6
+459,OLDSEAMAP,Old Sea Map,Old Sea Maps,8,0,"A faded sea chart that shows the way to a certain island.",0,0,6
+460,DNASPLICERS,DNA Splicers,DNA Splicers,8,0,"A splicer that fuses Kyurem and a certain Pokémon. They are said to have been one in the beginning.",5,0,6
+461,REVEALGLASS,Reveal Glass,Reveal Glasses,8,0,"A glass that reveals the truth. It is a mysterious glass that returns a Pokémon back to its original shape.",5,0,6
+462,SHINYCHARM,Shiny Charm,Shiny Charms,8,0,"A shiny charm which doubles the chance of finding a Shiny Pokémon.",0,0,13
+463,REDORB,Red Orb,Red Orbs,5,0,"A shiny red orb that is said to have a legend tied to it. It's known to be connected with the Hoenn region.",0,0,0
+464,BLUEORB,Blue Orb,Blue Orbs,5,0,"A shiny blue orb that is said to have a legend tied to it. It's known to be connected with the Hoenn region.",0,0,0
+465,LUMIOSEGALETTE,Lumiose Galette,Lumiose Galettes,2,350,"A popular treat in Lumiose City. It can be used once to heal all the status conditions of a Pokémon.",1,0,0
+466,SHALOURSABLE,Shalour Sable,Shalour Sables,2,350,"Shalour City's famous shortbread. It can be used once to heal all the status conditions of a Pokémon.",1,0,0
+467,BIGMALASADA,Big Malasada,Big Malasadas,2,350,"The Alola region's specialty--fried bread. It can be used once to heal all the status conditions of a Pokémon.",1,0,0
+468,ABILITYCAPSULE,Ability Capsule,Ability Capsule,2,3000,"A capsule that allows a Pokémon with two Abilities to switch between these Abilities when it is used.",1,0,0
+469,SPRINKLOTAD,Sprinklotad,Sprinklotads,8,0,"A watering can shaped like a Lotad. It helps promote the healthy growth of any Berries planted in soft soil.",0,0,6
+470,PRISONBOTTLE,Prison Bottle,Prison Bottles,8,0,"A bottle believed to have been used to seal away the power of a certain Pokémon long, long ago.",5,0,6
+471,NSOLARIZER,N-Solarizer,N-Solarizers,8,0,"A machine to fuse Necrozma, which needs light, and Solgaleo.",5,0,6
+472,NLUNARIZER,N-Lunarizer,N-Lunarizers,8,0,"A machine to fuse Necrozma, which needs light, and Lunala.",5,0,6
+473,MEGARING,Mega Ring,Mega Rings,8,0,"This ring contains an untold power that somehow enables Pokémon carrying Mega Stones to Mega Evolve.",0,0,6
+474,ZYGARDECUBE,Zygarde Cube,Zygarde Cubes,8,0,"An item to store Zygarde Cores and Cells. You can also use it to teach Zygarde moves.",2,0,6
+475,BLUNDERPOLICY,Blunder Policy,Blunder Policy,5,4000,"Raises Speed sharply when a Pokémon misses with a move because of accuracy.",0,0,0
+476,EJECTPACK,Eject Pack,Eject Packs,5,4000,"An item to be held by a Pokémon. When the holder's stats are lowered, it will be switched out of battle.",0,0,0
+477,HEAVYDUTYBOOTS,Heavy-Duty Boots,Heavy-Duty Boots,5,4000,"These boots prevent the effects of traps set on the battlefield.",0,0,0
+478,ROOMSERVICE,Room Service,Room Services,5,4000,"An item to be held by a Pokémon. Lowers Speed by four steps when Trick Room takes effect.",0,0,0
+479,THROATSPRAY,Throat Spray,Throat Sprays,5,4000,"Raises Sp. Atk by two steps when the Pokémon uses a sound move the first time each battle.",0,0,0
+480,WHETSTONE,Whetstone,Whetstones,5,4000,"Raises Attack by two steps when the Pokémon uses a blade move the first time each battle.",0,0,0
+481,UTILITYUMBRELLA,Utility Umbrella,Utility Umbrellas,5,4000,"A held item. The holder takes 10% less move damage, and is protected from the negative effects of weather.",0,0,0
+482,EXPCANDYXS,Exp. Candy XS,Exp. Candies XS,2,20,"A candy that is packed with energy. When consumed, it will grant a single Pokémon 250 Exp. Points.",1,0,0
+483,EXPCANDYS,Exp. Candy S,Exp. Candies S,2,240,"A candy that is packed with energy. When consumed, it will grant a single Pokémon 1000 Exp. Points.",1,0,0
+484,EXPCANDYM,Exp. Candy M,Exp. Candies M,2,1000,"A candy that is packed with energy. When consumed, it will grant a single Pokémon 4,000 Exp. Points.",1,0,0
+485,EXPCANDYL,Exp. Candy L,Exp. Candies L,2,3000,"A candy that is packed with energy. When consumed, it will grant a single Pokémon 12,000 Exp. Points.",1,0,0
+486,EXPCANDYXL,Exp. Candy XL,Exp. Candies XL,2,10000,"A candy that is packed with energy. When consumed, it will grant a single Pokémon 50,000 Exp. Points.",1,0,0
+487,FOSSILIZEDBIRD,Fossilized Bird,Fossilized Birds,1,5000,"The fossil of an ancient Pokémon that once soared through the sky. What it looked like is a mystery.",0,0,8
+488,FOSSILIZEDFISH,Fossilized Fish,Fossilized Fishes,1,5000,"The fossil of an ancient Pokémon that once lived in the sea. What it looked like is a mystery.",0,0,8
+489,FOSSILIZEDDRAKE,Fossilized Drake,Fossilized Drakes,1,5000,"The fossil of an ancient Pokémon that once roamed the land. What it looked like is a mystery.",0,0,8
+490,FOSSILIZEDDINO,Fossilized Dino,Fossilized Dinos,1,5000,"The fossil of an ancient Pokémon that once lived in the sea. What it looked like is a mystery.",0,0,8
+491,RUSTEDSHIELD,Rusted Shield,Rusted Shields,5,0,"It is said that a hero used this shield to halt a terrible disaster in ancient times. But it's grown rusty and worn.",0,0,0
+492,RUSTEDSWORD,Rusted Sword,Rusted Swords,5,0,"It is said that a hero used this sword to halt a terrible disaster in ancient times. But it's grown rusty and worn.",0,0,0
+493,REINSOFUNITY,Reins of Unity,Reins of Unity,8,0,"Reins that people presented to the king. They enable Calyrex to connect and communicate with its beloved steed.",5,0,6
+494,EXPCHARM,EXP Charm,EXP Charms,8,0,"A charm that increases the Exp. Points that Pokémon can get. A machine-like object is inside the charm.",0,0,6
+495,CATCHINGCHARM,Catching Charm,Catching Charms,8,0,"Holding it is said to increase the chance of getting a critical catch. Curiously, the charm doesn't shake much.",0,0,6
+496,INFINITEROPE,Escape Rope,Escape Ropes,8,0,"A long, durable rope. Use it to escape instantly from a cave or a dungeon.",2,0,6
+497,GRASSTOKEN,Grass Token,Grass Tokens,1,10000,"A token which can be exchanged for a Grass-type at the Starter Store.",0,0,0
+498,WATERTOKEN,Water Token,Water Tokens,1,10000,"A token which can be exchanged for a Water-type at the Starter Store.",0,0,0
+499,ORIGINORE,Origin Ore,Origin Ores,1,8000,"A peculiar ore that makes certain species of Pokémon evolve. Associated with Arceus.",1,0,7
+500,FIRETOKEN,Fire Token,Fire Tokens,1,10000,"A token which can be exchanged for a Fire-type at the Starter Store.",0,0,0
+501,DRATINIEGG,Dratini Egg,Dratini Eggs,1,10000,"An abandoned Dratini egg that is cold and calm. Only an expert would be able to hatch it.",0,0,0
+502,BAGONEGG,Bagon Egg,Bagon Eggs,1,10000,"An abandoned Bagon egg that is cold and calm. Only an expert would be able to hatch it.",0,0,0
+503,GIBLEEGG,Gible Egg,Gible Eggs,1,10000,"An abandoned Gible egg that is cold and calm. Only an expert would be able to hatch it.",0,0,0
+504,DEINOEGG,Deino Egg,Deino Eggs,1,10000,"An abandoned Deino egg that is cold and calm. Only an expert would be able to hatch it.",0,0,0
+505,GOOMYEGG,Goomy Egg,Goomy Eggs,1,10000,"An abandoned Goomy egg that is cold and calm. Only an expert would be able to hatch it.",0,0,0
+506,JANGMOOEGG,Jangmo-o Egg,Jangmo-o Eggs,1,10000,"An abandoned Jangmo-o egg that is cold and calm. Only an expert would be able to hatch it.",0,0,0
+507,DREEPYEGG,Dreepy Egg,Dreepy Eggs,1,10000,"An abandoned Dreepy egg that is cold and calm. Only an expert would be able to hatch it.",0,0,0
+508,EEVEETICKET,Eevee Ticket,Eevee Tickets,1,20000,"A ticket that can be exchanged for an Eevee at the Skeevy Eevee Pub.",0,0,0
+509,AIDKIT,Aid Kit,Aid Kits,8,0,"Heals your whole team a limited number of times. Restocked at PokeCenters and after resting.",2,0,6
+510,KITEXPANSION,Kit Expansion,Kit Expansion,2,0,"A pack for holding medicine. If you use it, your Aid Kit will gain a max charge.",2,0,0
+511,MEDICALUPGRADE,Medical Upgrade,Medical Upgrades,2,0,"A suite of medicines. If you use it, your Aid Kit will heal more efficiently.",2,0,0
+512,DYNAMITESTICK,Dynamite Stick,Dynamite Sticks,1,0,"A stick of dynamite, perfectly suited to destroying small bits of rock.",2,0,13
+513,MEGAUPGRADER,Mega Upgrader,Mega Upgraders,1,0,"A peculiar stone that makes certain species of Pokémon evolve.",1,0,7
+514,SURFBOARD,Surf Board,Surf Boards,8,0,"A surf board, allowing you to surf on water.",0,0,6
+515,CLIMBINGGEAR,Climbing Gear,Climbing Gears,8,0,"A set of climbing gear, allowing you to climb on white rocks.",0,0,6
+516,ABRAPORTER,Abraporter,Abraporters,8,0,"A teleporter which brings you to your last safe spot using the power of Abras.",2,0,6
+517,REMATERIALIZER,Rematerializer,Rematerializers,8,0,"A 3D printer which automatically copies consumed held items after battles.",0,0,6
+518,CUPOFCOFFEE,Cup of Coffee,Cups of Coffee,8,0,"It's a cup filled with warm coffee. You probably shouldn't be keeping this in your backpack.",0,0,6
+519,LUXTECHSHIPMENT,LuxTech Shipment,LuxTech Shipments,8,0,"A package containing an important shipment destined for LuxTech.",0,0,6
+520,EXPEZDISPENSER,EXP-EZ Dispenser,EXP-EZ Dispensers,8,0,"A machine that stores excess EXP. You can activate it to turn that stored EXP into candies.",2,0,6
+521,UNIVERSALFORMALIZER,Universal Formalizer,Universal Formalizers,8,0,"Use on a Pokémon to switch it into another one of its forms.",5,0,6
+522,WEIRDPACKAGE,Weird Package,Weird Packages,8,0,"A suspicious package. Probably best not to look inside.",0,0,0
+523,AEGISIDCARD,Aegis ID Card,Aegis ID Cards,8,0,"A forged ID card. It will let you pretend you work at Aegis Insurance.",0,0,6
+524,INCRIMINATINGEVIDENCE,Incriminating Evidence,Incriminating Evidence,8,0,"A device containing evidence against Aegis Insurance.",0,0,6
+525,TAROTAMULET,Tarot Amulet,Tarot Amulets,8,0,"An amulet which make certain battles harder and cursed. Can be toggled on or off.",2,0,6
+526,HOUSEDEED1,House Deed,House Deeds,8,0,"Proof of ownership for the house you bought in Prizca East.",0,0,6
+527,GLEAMPOWDER,Gleam Powder,Gleam Powder,1,100000,"A small vial of gleaming powder. Can be used once to ensure the next wild Pokémon you find is shiny.",2,0,0
+528,VIRALHELIX,Viral Helix,Viral Helices,8,0,"Infinitely mutating alien DNA. It allows a Pokémon with two abilities to switch abilities when used.",5,0,6
+529,FACTORYPASS,Factory Pass,Factory Passes,8,0,"A pass that grants you access through the locked door in Victoire's factory.",5,0,6
+530,BALLLAUNCHER,Ball Launcher,Ball Launchers,3,0,"A device which creates then launches regular Poké Balls, never running out.",0,9,4
+531,LIGHTHOUSEKEYCARD,Lighthouse Keycard,Lighthouse Keycards,8,0,"A colorful keycard. It grants access to elevator at the Sweetrock Harbor Lighthouse.",0,0,6
+532,MILKBONETREAT,Milk Bone Treat,Milk Bone Treats,8,0,"It would be a delicious treat if you were a Pokémon.",0,0,6
+533,DIGITSLIP,Digit Slip,Digit Slips,8,0,"A slip of paper with one digit of the code for the lock to Rafael's gym door.",0,0,13
+534,PERFORMANCEANALYZER,Performance Analyzer,Performance Analyzers,8,0,"A hi-tech recording device which increases your Pokémon's experience gained from Trainer battles by 20%.",0,0,6
+535,PERFORMANCEANALYZER2,Performance Analyzer 2,Performance Analyzers 2,8,0,"An upgraded, hi-tech recording device which increases the experience gained from Trainer battles by 25%.",0,0,6
+536,BATTLEREPORT,Battle Report,Battle Reports,1,0,"A detailed report on how to improve as a trainer. If you decide to read it, your level cap will be raised by 5.",2,0,13
+537,CHASMIDCARD,Chasm ID Card,Chasm ID Cards,8,0,"An ID card which unlocks Team Chasm gates and doors, giving access to dangers and rewards.",0,0,6
+538,POCKETTOTEM,Pocket Totem,Pocket Totems,8,0,"A miniature Avatar Totem. Use it to teleport to any unlocked Avatar Totems throughout Makya.",2,0,6
+539,SIGILLEFTHALF,Sigil Left Half,Sigils Left Half,8,0,"The left half of the sigil of an ancient order of knights.",0,0,6
+540,SIGILRIGHTHALF,Sigil Right Half,Sigils Right Half,8,0,"The right half of the sigil of an ancient order of knights.",0,0,6
+541,CARNATIONSIGIL,Carnation Sigil,Carnation Sigil,8,0,"An ancient sigil of the Carnation Knights. You feel it pulling you towards another place.",2,0,6
+542,PRIMALCLAY,Primal Clay,Primal Clay,8,0,"A lump of ancient clay. It glows with a soft golden color.",5,0,0
+543,OMNIDRIVE,OmniDrive,OmniDrives,8,0,"A mysterious data storage device which can be used to upgrade your PC.",5,0,6
+544,UBCONTAINMENTKEY,UB Containment Key,UB Containment Keys,8,0,"Unlocks the UB Containment Room at Novo Academy.",0,0,6
+545,ANCIENTSEAWATER,Ancient Sea Water,Ancient Sea Water,1,50000,"A vial of shimmering ocean water. It makes a certain Pokémon evolve.",1,0,7
+546,CONDENSEDLIGHT,Condensed Light,Condensed Light,8,0,"A strange ball of light. You should gather these for a friend.",0,0,13
+547,CHAMBER1KEY,Chamber 1 Key,Chamber 1 Keys,8,0,"The key to the first chamber containing a powerful avatar.",0,0,6
+548,CHAMBER2KEY,Chamber 2 Key,Chamber 2 Keys,8,0,"The key to the second chamber containing a powerful avatar.",0,0,6
+549,CHAMBER3KEY,Chamber 3 Key,Chamber 3 Keys,8,0,"The key to the third chamber containing a powerful avatar.",0,0,6
+550,CHAMBER4KEY,Chamber 4 Key,Chamber 4 Keys,8,0,"The key to the fourth chamber containing a powerful avatar.",0,0,6
+551,CHAMBER5KEY,Chamber 5 Key,Chamber 5 Keys,8,0,"The key to the fifth chamber containing a powerful avatar.",0,0,6
+552,CHAMBER6KEY,Chamber 6 Key,Chamber 6 Keys,8,0,"The key to the sixth chamber containing a powerful avatar.",0,0,6
+553,CHAMBER7KEY,Chamber 7 Key,Chamber 7 Keys,8,0,"The key to the seventh chamber containing a powerful avatar.",0,0,6
+554,CHAMBER8KEY,Chamber 8 Key,Chamber 8 Keys,8,0,"The key to the eighth chamber containing a powerful avatar.",0,0,6
+555,LATENTSEED,Latent Seed,Latent Seeds,8,0,"A simple tree seed. It hums with the potential for great change.",0,0,13
+556,ALLOYEDLUMP,Alloyed Lump,Alloyed Lumps,1,0,"Mishapen, unusual metal. Useless without a way to sharpen it.",2,0,13
+557,ALLOYEDBLADE,Alloyed Blade,Alloyed Blades,1,0,"A fragile blade of unusual metal. Sharp enough to cut alloyed overgrowth.",2,0,13
+558,ALLOYEDWIRE,Alloyed Wire,Alloyed Wires,1,0,"A thin, nearly invisible strand of unusual metal.",2,0,13

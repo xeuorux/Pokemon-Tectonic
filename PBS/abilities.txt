@@ -61,7 +61,7 @@
 60,LEAFGUARD,Leaf Guard,"Immune to status conditions while in sunshine."
 61,MOLDBREAKER,Mold Breaker,"Ignores Abilities that would affect its moves."
 62,SUPERLUCK,Super Luck,"Four times more likely for moves to be critical."
-63,SNIPER,Sniper,"Powers up critical hits by another 50%."
+63,SNIPER,Sniper,"Doubles critical hit chance. Powers up critical hits by another 50%."
 64,UNAWARE,Unaware,"Ignores raised defensive stat changes in opponents its hitting, and positive offensive stat stages in foes hitting it."
 65,TINTEDLENS,Tinted Lens,"Doubles the damage of \"not very effective\" moves."
 66,FILTER,Filter,"Reduces damage from super-effective attacks by 25%."

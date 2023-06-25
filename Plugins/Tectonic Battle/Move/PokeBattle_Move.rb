@@ -129,23 +129,24 @@ class PokeBattle_Move
     def immuneToSunDebuff?;      return false; end
     def setsARoom?;              return false; end
 
-    def canProtectAgainst?; return @flags[/b/]; end
-    def canMagicCoat?;      return @flags[/c/]; end
-    def canSnatch?;         return @flags[/d/]; end
-    def canMirrorMove?;     return @flags[/e/]; end
-    def canKingsRock?;      return @flags[/f/]; end
-    def thawsUser?;         return @flags[/g/]; end
-    def highCriticalRate?;  return @flags[/h/]; end
-    def bitingMove?;        return @flags[/i/]; end
-    def punchingMove?;      return @flags[/j/]; end
-    def soundMove?;         return @flags[/k/]; end
-    def powderMove?;        return @flags[/l/]; end
-    def pulseMove?;         return @flags[/m/]; end
-    def bombMove?;          return @flags[/n/]; end
-    def danceMove?;         return @flags[/o/]; end
-    def bladeMove?;         return @flags[/p/]; end
-    def windMove?;          return @flags[/q/]; end
-    def empoweredMove?;     return @flags[/y/]; end
+    def canProtectAgainst?;     return @flags[/b/]; end
+    def canMagicCoat?;          return @flags[/c/]; end
+    def canSnatch?;             return @flags[/d/]; end
+    def canMirrorMove?;         return @flags[/e/]; end
+    def canKingsRock?;          return @flags[/f/]; end
+    def thawsUser?;             return @flags[/g/]; end
+    def highCriticalRate?;      return @flags[/h/]; end
+    def bitingMove?;            return @flags[/i/]; end
+    def punchingMove?;          return @flags[/j/]; end
+    def soundMove?;             return @flags[/k/]; end
+    def powderMove?;            return @flags[/l/]; end
+    def pulseMove?;             return @flags[/m/]; end
+    def bombMove?;              return @flags[/n/]; end
+    def danceMove?;             return @flags[/o/]; end
+    def bladeMove?;             return @flags[/p/]; end
+    def windMove?;              return @flags[/q/]; end
+    def veryHighCriticalRate?;  return @flags[/r/]; end
+    def empoweredMove?;         return @flags[/y/]; end
 
     def turnsBetweenUses(); return 0; end
     def aiAutoKnows?(pokemon); return false; end

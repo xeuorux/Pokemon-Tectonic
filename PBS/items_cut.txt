@@ -331,8 +331,9 @@
 2330,ABILITYPATCH,Ability Patch,Ability Patches,2,20000,"A patch that allows a Pokémon with a regular Ability to have a rare Ability.",1,0,0
 2331,TM200,TM200,TM200s,4,6000,"The target is cut with a scythe or claw. It can also be used to cut down thin trees.",3,0,0,CUT
 2332,TM201,TM201,TM201s,4,6000,"The user soars, then strikes on the second turn. It can also be used to fly to any familiar town.",3,0,0,FLY
-2333,TM202,TM202,TM202s,4,6000,"It swamps the area around the user with a giant wave. It can also be used for crossing water.",3,0,0,BUBBLEBLAST
+2333,TM202,TM202,TM202s,4,6000,"It swamps the area around the user with a giant wave. It can also be used for crossing water.",3,0,0,SURF
 2334,TM203,TM203,TM203s,4,6000,"The target is slugged with a punch thrown at maximum power. This move can also be used to move boulders.",3,0,0,STRENGTH
 2335,TM204,TM204,TM204s,4,6000,"The user charges the target at an awesome speed. It can also be used to climb a waterfall.",3,0,0,WATERFALL
 2336,BRIGHTPOWDER,Bright Powder,Bright Powders,5,4000,"An item to be held by a Pokémon. It casts a tricky glare that lowers the opponent's accuracy.",0,0,0
 2337,ORANBERRY,Oran Berry,Oran Berries,5,0,"It may be held by a Pokémon to heal the user by 33% in a pinch (below 25% HP).",0,0,5
+2338,ZOOMLENS,Zoom Lens,Zoom Lenses,5,4000,"An item to be held by a Pokémon. If the holder moves after its target, its accuracy will be doubled.",0,0,0
