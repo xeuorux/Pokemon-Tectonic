@@ -5663,13 +5663,13 @@ Policies = NO_PERFECT
 Pokemon = KLAWSAR,70
     AbilityIndex = 1 # Steely Shell
 Pokemon = MPOLTEAGEIST,70
-    AbilityIndex = 1 # Refreshments
+    AbilityIndex = 1 # Chill Out
 Pokemon = GREEDENT,70
-    AbilityIndex = 1 # Cheek Pouch
+    AbilityIndex = 1 # Unaware
 Pokemon = REAVOR,70
     AbilityIndex = 0 # Technician
 Pokemon = SAHARICANE,70
-    AbilityIndex = 1 # Sand Sniper
+    AbilityIndex = 1 # Disorienting
 Pokemon = SEISMAW,70
     AbilityIndex = 1 # Trapper
 #-------------------------------
@@ -5680,20 +5680,20 @@ Pokemon = DROMERUPT,70
 Pokemon = WATCHOG,70
     AbilityIndex = 1 # Paranoid
 Pokemon = MZANGOOSE,70
-    AbilityIndex = 1 # Served Cold
+    AbilityIndex = 1 # Mental Damage
 Pokemon = RUBARIOR,70
     AbilityIndex = 0 # Magic Bounce
 Pokemon = DECEAT,70
     AbilityIndex = 0 # Power Up
 Pokemon = PTEROFLYTE,70
-    AbilityIndex = 0 # Crag Terror
+    AbilityIndex = 0 # Armor Piercing
 #-------------------------------
 [POKEMONMASTER_Vanya,Vanya,3]
 Policies = NO_PERFECT
 Pokemon = APPLETUN,70
     AbilityIndex = 1 # Shed Skin
 Pokemon = LINOONE,70
-    AbilityIndex = 1 # Dire Diversion
+    AbilityIndex = 1 # Gluttony
 Pokemon = MSEAKING,70
     AbilityIndex = 1 # Unafraid
 Pokemon = RIOJIN,70
@@ -5702,6 +5702,51 @@ Pokemon = MCARNIVINE,70
     AbilityIndex = 1 # Pestilent
 Pokemon = MANERGETIC,70
     AbilityIndex = 0 # Nerve Number
+#-------------------------------
+[POKEMONMASTER_Vanya,Vanya,4]
+Policies = NO_PERFECT
+Pokemon = BASTIODON,70
+    AbilityIndex = 1 # Frustrate
+Pokemon = SAWSBUCK_3,70
+    AbilityIndex = 0 # Serene Grace
+Pokemon = LICKILICKY,70
+    AbilityIndex = 0 # Tenderize
+Pokemon = GOGOAT,70
+    AbilityIndex = 0 # Bully
+Pokemon = HIPPOWDON,70
+    AbilityIndex = 1 # Glass Firing
+Pokemon = JELLICENT,70
+    AbilityIndex = 0 # Stability
+#-------------------------------
+[POKEMONMASTER_Vanya,Vanya,5]
+Policies = NO_PERFECT
+Pokemon = ELECTRODE,70
+    AbilityIndex = 0 # Bunker Down
+Pokemon = CLAWITZER,70
+    AbilityIndex = 0 # Mega Launcher
+Pokemon = ARCTOVISH,70
+    AbilityIndex = 1 # Analytic
+Pokemon = DRAGAPULT,70
+    AbilityIndex = 1 # Infiltrator
+Pokemon = ACCELGOR,70
+    AbilityIndex = 1 # Ninjutsu
+Pokemon = SIRFETCHD,70
+    AbilityIndex = 1 # Super Luck
+#-------------------------------
+[POKEMONMASTER_Vanya,Vanya,6]
+Policies = NO_PERFECT
+Pokemon = KLEFKI,70
+    AbilityIndex = 0 # Prankster
+Pokemon = SMEARGLE,70
+    AbilityIndex = 0 # Mental Block
+Pokemon = BOLTUND,70
+    AbilityIndex = 0 # Strong Jaw
+Pokemon = AMBIPOM,70
+    AbilityIndex = 1 # Skill Link
+Pokemon = WAILORD,70
+    AbilityIndex = 0 # Pressure
+Pokemon = ALAKAZAM,70
+    AbilityIndex = 1 # Steelworker
 #-------------------------------
 [WILDPARTY_KOKO,of Conflict]
 Policies = NO_PERFECT
