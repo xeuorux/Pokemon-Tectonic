@@ -123,9 +123,9 @@ class LightEffect_Condensed < LightEffect
       @light.opacity = 0
       return
     end
-    completionPercent = $PokemonBag.pbQuantity(:CONDENSEDLIGHT) / CONDENSED_LIGHT_COUNT
+    completionPercent = $PokemonBag.pbQuantity(:CONDENSEDLIGHT) / CONDENSED_LIGHT_COUNT.to_f
     completionPercent = 1 if completionPercent > 1
-    @baseOpacity = 40 + 80 * completionPercent
+    @baseOpacity = 40 + 100 * completionPercent
     @opacityCounter += 1
     @light.opacity = (@baseOpacity + (@baseOpacity / 6.0) * Math.sin(@opacityCounter.to_f / 12.0)).floor
     if (Object.const_defined?(:ScreenPosHelper) rescue false)
