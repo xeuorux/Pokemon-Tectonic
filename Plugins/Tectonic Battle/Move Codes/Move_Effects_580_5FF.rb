@@ -2083,7 +2083,7 @@ class PokeBattle_Move_5E5 < PokeBattle_Move
         #       has Contrary and is at +6" check too for symmetry. This move still
         #       works even if the stat step cannot be changed due to an ability or
         #       other effect.
-        if !@battle.moldBreaker && target.hasActiveAbility?(:CONTRARY) &&
+        if !@battle.moldBreaker && target.hasActiveAbility?(%i[CONTRARY ECCENTRIC]) &&
            target.statStepAtMax?(:SPECIAL_ATTACK)
             if show_message
                 @battle.pbDisplay(_INTL("But it failed, since #{target.pbThis(true)}'s Attack can't go any higher!"))

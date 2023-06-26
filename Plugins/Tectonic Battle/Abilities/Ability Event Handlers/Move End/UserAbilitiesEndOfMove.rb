@@ -316,7 +316,7 @@ BattleHandlers::UserAbilityEndOfMove.add(:ETERNALWINTER,
       targets.each { |b| numFainted += 1 if b.damageState.fainted }
       next if numFainted == 0
       battle.pbShowAbilitySplash(user, ability)
-      battle.extendWeather(numFainted)
+      battle.extendWeather(numFainted * 2)
       battle.pbHideAbilitySplash(user)
   }
 )

@@ -1803,7 +1803,7 @@ class PokeBattle_Move_0BF < PokeBattle_Move
 
     def pbOnStartUse(user, _targets)
         @calcBaseDmg = 0
-        @accCheckPerHit = !user.hasActiveAbility?(:SKILLLINK)
+        @accCheckPerHit = !user.hasActiveAbility?(%i[SKILLLINK PERFECTLUCK])
     end
 
     def pbBaseDamage(baseDmg, _user, target)
@@ -1831,7 +1831,7 @@ class PokeBattle_Move_0C0 < PokeBattle_Move
         else
             hitChances = [2, 2, 3, 3, 4, 5]
         end
-        if user.hasActiveAbility?(:SKILLLINK)
+        if user.hasActiveAbility?(%i[SKILLLINK PERFECTLUCK])
             numHits = hitChances.last
         else
             numHits = hitChances.sample
@@ -1841,7 +1841,7 @@ class PokeBattle_Move_0C0 < PokeBattle_Move
 
     def pbNumHitsAI(user, _targets)
         return 3 if @id == :WATERSHURIKEN && user.isSpecies?(:GRENINJA) && user.form == 2
-        return 5 if user.hasActiveAbilityAI?(:SKILLLINK)
+        return 5 if user.hasActiveAbilityAI?(%i[SKILLLINK PERFECTLUCK])
         return 4 if user.hasActiveItem?(:LOADEDDICE)
         return 19.0 / 6.0 # Average
     end

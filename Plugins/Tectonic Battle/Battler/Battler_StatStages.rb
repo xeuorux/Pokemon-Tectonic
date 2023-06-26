@@ -71,6 +71,11 @@ class PokeBattle_Battler
                 aiLearnsAbility(:CONTRARY)
                 return pbLowerStatStepBasic(stat, increment, true)
             end
+            if hasActiveAbility?(:ECCENTRIC) && !ignoreContrary
+                aiLearnsAbility(:ECCENTRIC)
+                increment = (increment / 2.0).ceil
+                return pbLowerStatStepBasic(stat, increment, true)
+            end
             # Simple
             increment *= 2 if hasActiveAbility?(:SIMPLE)
         end
@@ -89,7 +94,7 @@ class PokeBattle_Battler
         validateStat(stat)
         return false if fainted?
         # Contrary
-        if hasActiveAbility?(:CONTRARY) && !ignoreContrary && !@battle.moldBreaker && !ignoreAbilities
+        if hasActiveAbility?(%i[CONTRARY ECCENTRIC]) && !ignoreContrary && !@battle.moldBreaker && !ignoreAbilities
             return pbCanLowerStatStep?(stat, user, move, showFailMsg, true, ignoreAbilities: ignoreAbilities)
         end
         # Check the stat step
@@ -106,6 +111,12 @@ class PokeBattle_Battler
         # Contrary
         if hasActiveAbility?(:CONTRARY) && !ignoreContrary && !@battle.moldBreaker
             aiLearnsAbility(:CONTRARY)
+            return pbLowerStatStep(stat, increment, user, showAnim, true)
+        end
+        # Eccentric
+        if hasActiveAbility?(:ECCENTRIC) && !ignoreContrary && !@battle.moldBreaker
+            aiLearnsAbility(:ECCENTRIC)
+            increment = (increment / 2.0).ceil
             return pbLowerStatStep(stat, increment, user, showAnim, true)
         end
         # Perform the stat step change
@@ -139,6 +150,12 @@ class PokeBattle_Battler
         # Contrary
         if hasActiveAbility?(:CONTRARY) && !ignoreContrary && !@battle.moldBreaker
             aiLearnsAbility(:CONTRARY)
+            return pbLowerStatStepByCause(stat, increment, user, cause, showAnim, true)
+        end
+        # Eccentric
+        if hasActiveAbility?(:ECCENTRIC) && !ignoreContrary && !@battle.moldBreaker
+            aiLearnsAbility(:ECCENTRIC)
+            increment = (increment / 2.0).ceil
             return pbLowerStatStepByCause(stat, increment, user, cause, showAnim, true)
         end
         # Perform the stat step change
@@ -197,7 +214,7 @@ class PokeBattle_Battler
         validateStat(stat)
         return false if fainted?
         # Contrary
-        if hasActiveAbility?(:CONTRARY) && !ignoreContrary && !@battle.moldBreaker && !ignoreAbilities
+        if hasActiveAbility?(%i[CONTRARY ECCENTRIC]) && !ignoreContrary && !@battle.moldBreaker && !ignoreAbilities
             return pbCanRaiseStatStep?(stat, user, move, showFailMsg, true, ignoreAbilities: ignoreAbilities)
         end
         if !user || user.index != @index # Not self-inflicted
@@ -263,6 +280,11 @@ class PokeBattle_Battler
                 aiLearnsAbility(:CONTRARY)
                 return pbRaiseStatStepBasic(stat, increment, true)
             end
+            if hasActiveAbility?(:ECCENTRIC) && !ignoreContrary
+                aiLearnsAbility(:ECCENTRIC)
+                increment = (increment / 2.0).ceil
+                return pbRaiseStatStepBasic(stat, increment, true)
+            end
             # Simple
             increment *= 2 if hasActiveAbility?(:SIMPLE)
         end
@@ -300,6 +322,12 @@ class PokeBattle_Battler
         # Contrary
         if hasActiveAbility?(:CONTRARY) && !ignoreContrary && !@battle.moldBreaker
             aiLearnsAbility(:CONTRARY)
+            return pbRaiseStatStep(stat, increment, user, showAnim, true)
+        end
+        # Eccentric
+        if hasActiveAbility?(:ECCENTRIC) && !ignoreContrary && !@battle.moldBreaker
+            aiLearnsAbility(:ECCENTRIC)
+            increment = (increment / 2.0).ceil
             return pbRaiseStatStep(stat, increment, user, showAnim, true)
         end
         # Stubborn
@@ -381,6 +409,12 @@ class PokeBattle_Battler
             aiLearnsAbility(:CONTRARY)
             return pbRaiseStatStepByCause(stat, increment, user, cause, showAnim, true)
         end
+        # Eccentric
+        if hasActiveAbility?(:ECCENTRIC) && !ignoreContrary && !@battle.moldBreaker
+            aiLearnsAbility(:ECCENTRIC)
+            increment = (increment / 2.0).ceil
+            return pbRaiseStatStepByCause(stat, increment, user, cause, showAnim, true)
+        end
         # Stubborn
         return false if hasActiveAbility?(:STUBBORN) && !@battle.moldBreaker
         # Total Focus
@@ -426,7 +460,7 @@ class PokeBattle_Battler
 
     def blockAteAbilities(user,ability)
         return true if fainted?
-        # NOTE: Substitute intentially blocks Intimidate even if self has Contrary.
+        # NOTE: Substitute intentially blocks Intimidate even if self has Contrary or eccentric
         if substituted?
             @battle.pbDisplay(_INTL("{1} is protected by its substitute!", pbThis))
             return true
@@ -451,6 +485,10 @@ class PokeBattle_Battler
         if hasActiveAbility?(:CONTRARY) && !ignoreContrary
             aiLearnsAbility(:CONTRARY)
             pbMaximizeStatStep(stat, user, move, true, ability: ability)
+        elsif hasActiveAbility?(:ECCENTRIC) && !ignoreContrary
+            aiLearnsAbility(:ECCENTRIC)
+            increment = ((STAT_STEP_BOUND + @steps[stat]) / 2.0).ceil
+            tryRaiseStat(stat, user, move, increment: increment, ability: ability)
         elsif pbCanLowerStatStep?(stat, user, move, true, ignoreContrary)
             @battle.pbShowAbilitySplash(user, ability) if ability
             @steps[stat] = -STAT_STEP_BOUND
@@ -481,6 +519,10 @@ class PokeBattle_Battler
         if hasActiveAbility?(:CONTRARY) && !ignoreContrary
             aiLearnsAbility(:CONTRARY)
             pbMinimizeStatStep(stat, user, move, true, ability: ability)
+        elsif hasActiveAbility?(:ECCENTRIC) && !ignoreContrary
+            aiLearnsAbility(:ECCENTRIC)
+            increment = ((STAT_STEP_BOUND + @steps[stat]) / 2.0).ceil
+            tryLowerStat(stat, user, move, increment: increment, ability: ability)
         elsif pbCanRaiseStatStep?(stat, user, move, true, ignoreContrary)
             @battle.pbShowAbilitySplash(user, ability) if ability
             @steps[stat] = STAT_STEP_BOUND

@@ -398,3 +398,7 @@
 1397,STORMTOTEM,Storm Totem,"Upon entry, summons a Turbulent Sky on the Pokémon's side for 6 turns."
 1398,MUTABLE,Mutable,"It changes type to that of the move it's about to use. This works only once each time the Pokémon enters battle."
 1399,SNORING,Snoring,"When hit while asleep, hits back instantly with Snore."
+1400,SHRIEKING,Shrieking,"Boosts power of sound-based moves by 50%."
+1401,ECCENTRIC,Eccentric,"If its stats would be changed, instead they’re changed half as much in the opposite direction (rounded up)."
+1402,PERFECTLUCK,Perfect Luck,"Maximizes the frequency of multi-strike moves. Always deals critical hits."
+1403,FATCHANCE,Fat Chance,"Raises all of its stats whenever it gets a critical hit."

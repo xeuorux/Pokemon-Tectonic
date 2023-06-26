@@ -264,6 +264,13 @@ BattleHandlers::DamageCalcUserAbility.add(:LOUD,
       mults[:base_damage_multiplier] *= 1.3 if move.soundMove?
   }
 )
+
+BattleHandlers::DamageCalcUserAbility.add(:SHRIEKING,
+  proc { |ability, _user, _target, move, mults, _baseDmg, _type, _aiCheck|
+      mults[:base_damage_multiplier] *= 1.5 if move.soundMove?
+  }
+)
+
 BattleHandlers::DamageCalcUserAbility.add(:SHARPNESS,
   proc { |ability, _user, _target, move, mults, _baseDmg, _type, _aiCheck|
       mults[:base_damage_multiplier] *= 1.3 if move.bladeMove?

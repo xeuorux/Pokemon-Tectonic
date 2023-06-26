@@ -1169,7 +1169,7 @@ Pokemon = ORICORIO,30
     Item = MENTALHERB
 Pokemon = MISDREAVUS,30
     Moves = HEX,KALEIDOSCOPE,SHIVER,CLEARSMOG
-    AbilityIndex = 1 # Levitate
+    AbilityIndex = 1 # Shrieking
     Item = LIFEORB
 Pokemon = BELLOSSOM,30
     Moves = MEGADRAIN,FLAMEDANCE,POISONSPIKES,SOLARGLIDE
@@ -1951,7 +1951,7 @@ Pokemon = DONPHAN,43
     Item = SHELLBELL
 Pokemon = SERPERIOR,43
     Moves = GALLINGSPIT,AUTUMNBLAST,LEECHSEED
-    AbilityIndex = 1 # Contrary
+    AbilityIndex = 1 # Eccentric
     Item = BIGROOT
 #-------------------------------
 [TRAINER_Zain,Zain,1]
@@ -2628,7 +2628,7 @@ Pokemon = MSEAKING,47
 #-------------------------------
 [CLOWN,Dimesmart]
 Pokemon = MISMAGIUS,43
-    AbilityIndex = 1 # Levitate
+    AbilityIndex = 1 # Shrieking
 Pokemon = GIGACHU,43
     AbilityIndex = 0 # Arc Conductor
 Pokemon = TORKOAL,43
@@ -2841,7 +2841,7 @@ Pokemon = DECEAT,55
 Pokemon = MISMAGIUS,55
     Name = Cherchez
     Moves = AURATRICK,SHADOWBALL,ENCHANTINGSONG,THUNDER
-    AbilityIndex = 1 # Levitate
+    AbilityIndex = 1 # Shrieking
     Item = ASSAULTVEST
 Pokemon = AGGRON,55
     Moves = BEDROCKBREAKER,IRONTAIL,AQUATAIL,FACADE
@@ -4402,7 +4402,7 @@ Pokemon = SENSIBELLE,70
     AbilityIndex = 1 # Regenerator
 Pokemon = SERPERIOR,70
     Moves = LEAFSTORM,DRACOMETEOR,THUNDERBOLT,PETRIFY
-    AbilityIndex = 1 # Contrary
+    AbilityIndex = 1 # Eccentric
     Item = SITRUSBERRY
 Pokemon = EMPOLEON,70
     Moves = DRILLPECK,CRASHDIVE,DOUSE,SLAY
@@ -4500,7 +4500,7 @@ Pokemon = HYMNUS,70
     Item = LEFTOVERS
 Pokemon = SERPERIOR,70
     Moves = AUTUMNBLAST,LEECHSEED,THUNDERBOLT,PETRIFY
-    AbilityIndex = 1 # Contrary
+    AbilityIndex = 1 # Eccentric
     Item = YACHEBERRY
 #-------------------------------
 [ANOTHERPOSSIBLEZAIN,Zain,1]
@@ -5443,7 +5443,7 @@ Pokemon = PRIMEAPE,58
 #-------------------------------
 [SAGE,Shion]
 Pokemon = MISMAGIUS,58
-    AbilityIndex = 1 # Levitate
+    AbilityIndex = 1 # Shrieking
 Pokemon = BRELOOM,60
     AbilityIndex = 0 # Technician
 Pokemon = COALOSSAL,59
@@ -5560,7 +5560,7 @@ Pokemon = BARBOACH,20
 [CHALLENGER_Vanya,Vanya,2]
 Policies = NO_PERFECT
 Pokemon = SERVINE,25
-    AbilityIndex = 1 # Contrary
+    AbilityIndex = 1 # Eccentric
 Pokemon = SHELLOS,25
     AbilityIndex = 1 # Water Absorb
 Pokemon = CORVISQUIRE,25

@@ -200,6 +200,20 @@ BattleHandlers::UserAbilityOnHit.add(:RENDINGCLAWS,
   }
 )
 
+BattleHandlers::UserAbilityOnHit.add(:FATCHANCE,
+  proc { |ability, user, target, move, battle, aiChecking, aiNumHits|
+    next unless target.damageState.critical
+    if aiChecking
+      ret = 0
+      aiNumHits.times do |i|
+          ret += getMultiStatUpEffectScore(ALL_STATS_1, user, user, i)
+      end
+      next ret
+    end
+    user.pbRaiseMultipleStatSteps(ALL_STATS_1, user, ability: ability)
+  }
+)
+
 #########################################
 # Other Abilities
 #########################################

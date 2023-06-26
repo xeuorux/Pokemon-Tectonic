@@ -272,7 +272,7 @@ class PokeBattle_AI
             speedDebuffers = 0
             battlerSlot.eachOpposing do |opposingBattler|
                 next if opposingBattler.hasActiveAbilityAI?(%i[INNERFOCUS HEARTENINGAROMA])
-                if opposingBattler.hasActiveAbilityAI?(:CONTRARY)
+                if opposingBattler.hasActiveAbilityAI?(%i[CONTRARY ECCENTRIC])
                     attackDebuffers -= 1
                     specialDebuffers -= 1
                     speedDebuffers -= 1
