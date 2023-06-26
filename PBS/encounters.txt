@@ -327,10 +327,38 @@ Land,20
 #-------------------------------
 [120] # Hollowed Layer
 DarkCave,20
-    25,BALTOY,17,20
-    25,BRONZOR,17,20
-    25,LARVITAR,17,20
-    25,TYNAMO,17,20
+    20,BALTOY,17,20
+    20,BRONZOR,17,20
+    20,LARVITAR,17,20
+    20,TYNAMO,17,20
+    1,UNOWN,17,20
+    1,UNOWN_1,17,20
+    1,UNOWN_10,17,20
+    1,UNOWN_11,17,20
+    1,UNOWN_12,17,20
+    1,UNOWN_13,17,20
+    1,UNOWN_14,17,20
+    1,UNOWN_15,17,20
+    1,UNOWN_16,17,20
+    1,UNOWN_17,17,20
+    1,UNOWN_18,17,20
+    1,UNOWN_19,17,20
+    1,UNOWN_2,17,20
+    1,UNOWN_20,17,20
+    1,UNOWN_21,17,20
+    1,UNOWN_22,17,20
+    1,UNOWN_23,17,20
+    1,UNOWN_24,17,20
+    1,UNOWN_25,17,20
+    1,UNOWN_26,17,20
+    1,UNOWN_27,17,20
+    1,UNOWN_3,17,20
+    1,UNOWN_4,17,20
+    1,UNOWN_5,17,20
+    1,UNOWN_6,17,20
+    1,UNOWN_7,17,20
+    1,UNOWN_8,17,20
+    1,UNOWN_9,17,20
 #-------------------------------
 [121] # Kilna Ascent
 Land,20

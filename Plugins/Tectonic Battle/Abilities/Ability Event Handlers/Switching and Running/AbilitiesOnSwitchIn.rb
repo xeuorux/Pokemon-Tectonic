@@ -529,7 +529,7 @@ BattleHandlers::AbilityOnSwitchIn.add(:WONDROUSAURA,
 BattleHandlers::AbilityOnSwitchIn.add(:STORMTOTEM,
   proc { |ability, battler, battle|
     battle.pbShowAbilitySplash(battler, ability)
-    battle.applyEffect(:TurbulentSky,6)
+    battler.pbOwnSide.applyEffect(:TurbulentSky,6)
     battle.pbHideAbilitySplash(battler)
   }
 )
@@ -537,7 +537,7 @@ BattleHandlers::AbilityOnSwitchIn.add(:STORMTOTEM,
 BattleHandlers::AbilityOnSwitchIn.add(:FOGTOTEM,
   proc { |ability, battler, battle|
     battle.pbShowAbilitySplash(battler, ability)
-    battle.applyEffect(:MisdirectingFog,6)
+    battler.pbOwnSide.applyEffect(:MisdirectingFog,6)
     battle.pbHideAbilitySplash(battler)
   }
 )
@@ -545,7 +545,7 @@ BattleHandlers::AbilityOnSwitchIn.add(:FOGTOTEM,
 BattleHandlers::AbilityOnSwitchIn.add(:WILDTOTEM,
   proc { |ability, battler, battle|
     battle.pbShowAbilitySplash(battler, ability)
-    battle.applyEffect(:PrimalForest,6)
+    battler.pbOwnSide.applyEffect(:PrimalForest,6)
     battle.pbHideAbilitySplash(battler)
   }
 )
@@ -553,7 +553,7 @@ BattleHandlers::AbilityOnSwitchIn.add(:WILDTOTEM,
 BattleHandlers::AbilityOnSwitchIn.add(:FLUTTERTOTEM,
   proc { |ability, battler, battle|
     battle.pbShowAbilitySplash(battler, ability)
-    battle.applyEffect(:CruelCocoon,6)
+    battler.pbOwnSide.applyEffect(:CruelCocoon,6)
     battle.pbHideAbilitySplash(battler)
   }
 )
