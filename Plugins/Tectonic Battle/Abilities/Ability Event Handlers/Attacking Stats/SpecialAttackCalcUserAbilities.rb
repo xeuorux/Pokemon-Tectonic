@@ -46,13 +46,6 @@ BattleHandlers::SpecialAttackCalcUserAbility.add(:ENERGYUP,
   }
 )
 
-BattleHandlers::SpecialAttackCalcUserAbility.add(:ARCANEFINALE,
-  proc { |ability, user, _battle, spAtkMult|
-      spAtkMult *= 2 if user.isLastAlive?
-      next spAtkMult
-  }
-)
-
 BattleHandlers::SpecialAttackCalcUserAbility.add(:AQUAPROPULSION,
   proc { |ability, _user, battle, spAtkMult|
       spAtkMult *= 1.2 if battle.rainy?

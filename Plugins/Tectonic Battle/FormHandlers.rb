@@ -97,3 +97,15 @@ MultipleForms.register(:URSHIFU,{
     end
   }
 })
+
+MultipleForms.register(:GARDEVOIR, {
+  "getFormOnLeavingBattle" => proc { |pkmn, _battle, _usedInBattle, endBattle|
+      next 0 if pkmn.form == 1 && (pkmn.fainted? || endBattle)
+  },
+})
+
+MultipleForms.register(:GALLADE, {
+  "getFormOnLeavingBattle" => proc { |pkmn, _battle, _usedInBattle, endBattle|
+      next 0 if pkmn.form == 1 && (pkmn.fainted? || endBattle)
+  },
+})

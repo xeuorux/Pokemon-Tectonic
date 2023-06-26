@@ -1316,7 +1316,7 @@ Pokemon = TYRUNT,25
 [SAGE,Rennyo]
 Pokemon = KIRLIA,25
     Moves = LIFEDEW,HELPINGHAND
-    AbilityIndex = 0 # Arcane Finale
+    AbilityIndex = 0 # Synchronize
 Pokemon = NATU,25
     Moves = HEALPULSE,HELPINGHAND
     AbilityIndex = 0 # Sentry
@@ -2349,7 +2349,7 @@ Pokemon = GRIMER,28
 Pokemon = DOTTLER,30
     AbilityIndex = 1 # Total Grasp
 Pokemon = KIRLIA,29
-    AbilityIndex = 0 # Arcane Finale
+    AbilityIndex = 0 # Synchronize
     Item = SITRUSBERRY
 #-------------------------------
 [TRAINER_Candy,Candy]
@@ -5635,8 +5635,8 @@ Pokemon = DRAGALGE,70
     Moves = DRAGONTAIL,CRUELTY,RECOVER,GREYMIST
     AbilityIndex = 0 # Expertise
 Pokemon = VAPOREON,70
-	Moves = MENDINGSPRING,SCALD,RECOVER,HEALBELL
-	AbilityIndex = 1 # Expertise
+    Moves = MENDINGSPRING,SCALD,RECOVER,HEALBELL
+    AbilityIndex = 1 # Aqua Sneak
 #-------------------------------
 [CHALLENGER_Vanya,Vanya,9]
 Policies = NO_PERFECT
@@ -5653,11 +5653,10 @@ Pokemon = DRAGALGE,70
     Moves = DRAGONTAIL,CRUELTY,RECOVER,GREYMIST
     AbilityIndex = 0 # Expertise
 Pokemon = VAPOREON,70
-	Moves = MENDINGSPRING,SCALD,RECOVER,HEALBELL
-	AbilityIndex = 1 # Expertise
+    Moves = MENDINGSPRING,SCALD,RECOVER,HEALBELL
+    AbilityIndex = 1 # Aqua Sneak
 Pokemon = PINCURCHIN,70
-	AbilityIndex = 1 # Spinesplode
-	SPIKYSHIELD,EXPLOSION,POISONSPIKES,NUMB
+    AbilityIndex = 1 # Spinesplode
 #-------------------------------
 [WILDPARTY_KOKO,of Conflict]
 Policies = NO_PERFECT
