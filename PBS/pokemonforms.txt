@@ -1480,3 +1480,17 @@ BaseStats = 108,155,125,97,100,75
 [GYARADOS,1]
 FormName = Hull Breaker
 BaseStats = 95,155,109,86,85,115
+#-------------------------------
+[GARDEVOIR,1]
+FormName = Finale
+BaseStats = 88,85,85,110,145,145
+Abilities = SYNCHRONIZE
+BattlerPlayerY = 9
+BattlerEnemyY = 13
+#-------------------------------
+[GALLADE,1]
+FormName = M. Gallade
+MegaStone = GALLADITE
+BaseStats = 88,125,100,110,75,160
+Abilities = INNERFOCUS
+BattlerPlayerY = 11

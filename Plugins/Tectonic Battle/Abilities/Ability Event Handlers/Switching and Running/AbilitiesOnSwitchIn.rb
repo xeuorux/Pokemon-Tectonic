@@ -624,20 +624,14 @@ BattleHandlers::AbilityOnSwitchIn.add(:CLOVERSONG,
 BattleHandlers::AbilityOnSwitchIn.add(:ARCANEFINALE,
   proc { |ability, battler, battle|
       next unless battler.isLastAlive?
+      next unless battler.form == 0
       battle.pbShowAbilitySplash(battler, ability)
-      battle.pbDisplay(_INTL("{1} is the team's finale!", battler.pbThis))
+      battler.pbChangeForm(1, _INTL("{1} is the team's finale!", battler.pbThis))
       battle.pbHideAbilitySplash(battler)
   }
 )
 
-BattleHandlers::AbilityOnSwitchIn.add(:HEROICFINALE,
-  proc { |ability, battler, battle|
-      next unless battler.isLastAlive?
-      battle.pbShowAbilitySplash(battler, ability)
-      battle.pbDisplay(_INTL("{1} is the team's finale!", battler.pbThis))
-      battle.pbHideAbilitySplash(battler)
-  }
-)
+BattleHandlers::AbilityOnSwitchIn.copy(:ARCANEFINALE,:HEROICFINALE)
 
 BattleHandlers::AbilityOnSwitchIn.add(:ONTHEWIND,
   proc { |ability, battler, battle|
