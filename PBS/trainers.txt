@@ -5658,6 +5658,51 @@ Pokemon = VAPOREON,70
 Pokemon = PINCURCHIN,70
     AbilityIndex = 1 # Spinesplode
 #-------------------------------
+[POKEMONMASTER_Vanya,Vanya]
+Policies = NO_PERFECT
+Pokemon = KLAWSAR,70
+    AbilityIndex = 1 # Steely Shell
+Pokemon = MPOLTEAGEIST,70
+    AbilityIndex = 1 # Refreshments
+Pokemon = GREEDENT,70
+    AbilityIndex = 1 # Cheek Pouch
+Pokemon = REAVOR,70
+    AbilityIndex = 0 # Technician
+Pokemon = SAHARICANE,70
+    AbilityIndex = 1 # Sand Sniper
+Pokemon = SEISMAW,70
+    AbilityIndex = 1 # Trapper
+#-------------------------------
+[POKEMONMASTER_Vanya,Vanya,1]
+Policies = NO_PERFECT
+Pokemon = DROMERUPT,70
+    AbilityIndex = 1 # Adrenaline Rush
+Pokemon = WATCHOG,70
+    AbilityIndex = 1 # Paranoid
+Pokemon = MZANGOOSE,70
+    AbilityIndex = 1 # Served Cold
+Pokemon = RUBARIOR,70
+    AbilityIndex = 0 # Magic Bounce
+Pokemon = DECEAT,70
+    AbilityIndex = 0 # Power Up
+Pokemon = PTEROFLYTE,70
+    AbilityIndex = 0 # Crag Terror
+#-------------------------------
+[POKEMONMASTER_Vanya,Vanya,3]
+Policies = NO_PERFECT
+Pokemon = APPLETUN,70
+    AbilityIndex = 1 # Shed Skin
+Pokemon = LINOONE,70
+    AbilityIndex = 1 # Dire Diversion
+Pokemon = MSEAKING,70
+    AbilityIndex = 1 # Unafraid
+Pokemon = RIOJIN,70
+    AbilityIndex = 0 # Honor Aura
+Pokemon = MCARNIVINE,70
+    AbilityIndex = 1 # Pestilent
+Pokemon = MANERGETIC,70
+    AbilityIndex = 0 # Nerve Number
+#-------------------------------
 [WILDPARTY_KOKO,of Conflict]
 Policies = NO_PERFECT
 Pokemon = INCINEROAR,70
