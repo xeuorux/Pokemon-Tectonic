@@ -399,6 +399,21 @@ BattleHandlers::UserAbilityEndOfMove.add(:JASPERCHARGE,
   }
 )
 
+BattleHandlers::UserAbilityEndOfMove.add(:FUELHUNGRY,
+  proc { |ability, user, targets, move, battle, _switchedBattlers|
+      next if battle.futureSight
+      next unless move.physicalMove?
+      hitAnything = false
+      targets.each do |b|
+        next if b.damageState.unaffected
+        hitAnything = true
+        break
+      end
+      next unless hitAnything
+      user.tryLowerStat(:ATTACK, user, ability: ability)
+  }
+)
+
 BattleHandlers::UserAbilityEndOfMove.add(:SIRENSONG,
   proc { |ability, user, _targets, move, _battle, _switchedBattlers|
       next unless move.soundMove?

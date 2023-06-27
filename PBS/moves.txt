@@ -567,7 +567,7 @@
 566,SANDSTORM,Sandstorm,101,0,ROCK,Status,0,10,0,BothSides,0,,"Summons sandstorm for eight turns. Damages non-Rock, non-Ground Pokemon every turn.",
 567,STEALTHROCK,Stealth Rock,105,0,ROCK,Status,0,15,0,FoeSide,0,c,"The user lays a trap of levitating stones around the foe. The trap hurts foes that switch into battle.",
 568,WIDEGUARD,Wide Guard,0AC,0,ROCK,Status,0,5,0,UserSide,3,d,"The user and its allies are protected from wide-ranging attacks for a turn. Always fails if used in succession.",
-569,TARSHOT,Tar Shot,186,0,ROCK,Status,0,12,0,NearOther,3,bce,"Pours sticky tar over the target, lowering its Speed by three steps and making it weak to Fire.",
+569,TARSHOT,Tar Shot,186,0,ROCK,Status,0,12,0,NearOther,3,bce,"Pours sticky tar over the target, lowering its Speed by six steps and making it weak to Fire.",
 570,METEORBEAM,Meteor Beam,191,120,ROCK,Special,100,10,0,NearOther,0,bef,"Gathers space power and boosts its Sp. Atk by three steps on one turn, then attacks on the next turn.",
 571,DOOMDESIRE,Doom Desire,111,140,STEEL,Special,100,5,0,NearOther,0,,"Two turns after this move is used, the user blasts the target with a concentrated bundle of light.",
 572,IRONTAIL,Iron Tail,043,110,STEEL,Physical,90,12,30,NearOther,0,abef,"The target is slammed with a steel-hard tail. It has a 30% chance to lower Defense.",

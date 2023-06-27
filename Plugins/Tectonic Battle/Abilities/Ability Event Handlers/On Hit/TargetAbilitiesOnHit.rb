@@ -562,7 +562,7 @@ BattleHandlers::TargetAbilityOnHit.add(:GULPMISSILE,
             score = 0
             score -= 20 if user.takesIndirectDamage?
             if gulpform == 1
-                score -= getMultiStatDownEffectScore([:DEFENSE,1], target, user)
+                score -= getMultiStatDownEffectScore(DEFENDING_STATS_1, target, user)
             elsif gulpform == 2
                 score -= getNumbEffectScore(target, user)
             end
@@ -574,7 +574,7 @@ BattleHandlers::TargetAbilityOnHit.add(:GULPMISSILE,
             battle.scene.pbDamageAnimation(user)
             user.applyFractionalDamage(1.0 / 4.0) if user.takesIndirectDamage?(true)
             if gulpform == 1
-                user.tryLowerStat(:DEFENSE, target, ability: ability, increment: 2)
+                user.pbLowerMultipleStatSteps(DEFENDING_STATS_1, target, ability: ability)
             elsif gulpform == 2
                 msg = nil
                 user.applyNumb(target, msg)

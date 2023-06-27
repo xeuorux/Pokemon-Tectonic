@@ -89,21 +89,21 @@ BattleHandlers::UserAbilityOnHit.add(:BURNOUT,
 BattleHandlers::UserAbilityOnHit.add(:FROSTWINGS,
   proc { |ability, user, target, move, battle, aiChecking, aiNumHits|
     next unless move.calcType == :FLYING
-    randomStatusProcUserAbility(ability, :FROSTBITE, 20, user, target, move, battle, aiChecking, aiNumHits)
+    randomStatusProcUserAbility(ability, :FROSTBITE, 40, user, target, move, battle, aiChecking, aiNumHits)
   }
 )
 
 BattleHandlers::UserAbilityOnHit.add(:SHOCKWINGS,
   proc { |ability, user, target, move, battle, aiChecking, aiNumHits|
     next unless move.calcType == :FLYING  
-    randomStatusProcUserAbility(ability, :NUMB, 20, user, target, move, battle, aiChecking, aiNumHits)
+    randomStatusProcUserAbility(ability, :NUMB, 40, user, target, move, battle, aiChecking, aiNumHits)
   }
 )
 
 BattleHandlers::UserAbilityOnHit.add(:FLAMEWINGS,
   proc { |ability, user, target, move, battle, aiChecking, aiNumHits|
     next unless move.calcType == :FLYING
-    randomStatusProcUserAbility(ability, :BURN, 20, user, target, move, battle, aiChecking, aiNumHits)
+    randomStatusProcUserAbility(ability, :BURN, 40, user, target, move, battle, aiChecking, aiNumHits)
   }
 )
 

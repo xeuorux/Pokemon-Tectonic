@@ -249,7 +249,7 @@ Pokemon = SOLOSIS,20
 Policies = PRIORITIZEDOTS
 Pokemon = CARKOL,20
     Moves = FLAMECHARGE,HEADBANG,RAPIDSPIN,IGNITE
-    AbilityIndex = 1 # Flame Body
+    AbilityIndex = 1 # Fuel Hungry
 Pokemon = KOFFING,20
     Moves = POISONGAS,BOREALWIND,DAZZLE,CLEARSMOG
     AbilityIndex = 1 # Fumigate
@@ -1114,7 +1114,7 @@ Pokemon = SPINARAK,28
     AbilityIndex = 0 # Fascinate
     Item = SITRUSBERRY
 Pokemon = CARKOL,28
-    AbilityIndex = 1 # Flame Body
+    AbilityIndex = 1 # Fuel Hungry
 Pokemon = HELIOPTILE,29
     AbilityIndex = 1 # Water Absorb
 #-------------------------------
@@ -1663,7 +1663,7 @@ Pokemon = RAMPARDOS,40
 #-------------------------------
 [WORKER,Bryn]
 Pokemon = COALOSSAL,40
-    AbilityIndex = 1 # Flame Body
+    AbilityIndex = 1 # Fuel Hungry
 Pokemon = CORVIKNIGHT,40
     AbilityIndex = 1 # Volt Absorb
 Pokemon = GOLEM,40
@@ -5447,7 +5447,7 @@ Pokemon = MISMAGIUS,58
 Pokemon = BRELOOM,60
     AbilityIndex = 0 # Technician
 Pokemon = COALOSSAL,59
-    AbilityIndex = 1 # Flame Body
+    AbilityIndex = 1 # Fuel Hungry
 Pokemon = WALREIN,58
     AbilityIndex = 0 # Thick Fat
 #-------------------------------
@@ -5903,7 +5903,7 @@ Pokemon = SOLROCK,70
     AbilityIndex = 1 # Sun Chaser
     Item = AGILITYHERB
 Pokemon = EXEGGUTOR,70
-    AbilityIndex = 1 # Sustainable
+    AbilityIndex = 1 # Chlorophyll
     Item = SITRUSBERRY
 Pokemon = BELLOSSOM,70
     AbilityIndex = 0 # Solar Power

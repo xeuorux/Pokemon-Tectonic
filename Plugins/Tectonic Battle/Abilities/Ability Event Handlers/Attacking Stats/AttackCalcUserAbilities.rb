@@ -194,3 +194,10 @@ BattleHandlers::AttackCalcUserAbility.add(:EXTREMEPOWER,
       next attackMult
   }
 )
+
+BattleHandlers::AttackCalcUserAbility.add(:FUELHUNGRY,
+  proc { |ability, _user, _battle, attackMult|
+      attackMult *= 1.3
+      next attackMult
+  }
+)

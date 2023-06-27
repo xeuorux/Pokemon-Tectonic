@@ -258,7 +258,7 @@
 1257,HARDPLACE,Hard Place,574,1,ROCK,Physical,0,10,0,NearOther,0,abef,"The user slams the target into a nearby hard object. Increases power the higher the Defense of any ally.",HEADSMASH
 1258,DRAGONRIDE,Dragon Ride,575,0,DRAGON,Status,0,5,0,NearAlly,0,,"Doubles target ally's Attack and Speed. However, if the user faints, so too does that ally.",COACHING
 1259,MAGMAROAR,Magma Roar,530,50,FIRE,Special,0,30,0,NearOther,0,d,"The user roars with the force of a volcano, raising the Attack of itself and allies.",HOWL
-1260,BLAZINGSPEED,Blazing Speed,000,65,FIRE,Physical,100,5,0,NearOther,2,abef,"The user charges the target at blazing-fast speed. This attack always goes before any other move.",FLAMECHARGE
+1260,BLAZINGSPEED,Blazing Speed,000,80,FIRE,Physical,100,5,0,NearOther,2,abef,"The user charges the target at blazing-fast speed. This attack always goes before any other move.",FLAMECHARGE
 1261,ARCHAICDELUGE,Archaic Deluge,576,120,WATER,Special,100,5,0,NearOther,0,bef,"Summons rain for five turns on the first turn, then overwhelms the foe with water on the second.",SURF
 1262,SHIMMERINGHEAT,Shimmering Heat,577,90,FIRE,Special,100,10,0,AllNearFoes,0,befq,"The user attacks with heat, creating an obscuring wall of haze. The user takes 33% less damage this turn.",HEATWAVE
 1263,BREATHELIFE,Breathe Life,578,0,GRASS,Status,0,1,0,None,0,,"Restores a fainted Grass-type party member to full HP. Only one use per battle.",GRASSYTERRAIN
@@ -356,7 +356,7 @@
 1355,TRIUMPHANTDANCE,Triumphant Dance,5B0,0,FIGHTING,Status,100,5,0,User,0,do,"The user raises all of their stats by two step. Fails unless a foe fainted last turn.",WORKUP
 1356,ICEBREAKER,Icebreaker,5B1,120,ROCK,Physical,100,10,0,NearOther,0,abef,"The user charges at the target, sweeping away hazards in the with its armored jaw. The user also takes 33% recoil.",HEADSMASH
 1357,SCHEME,Scheme,5BA,0,NORMAL,Status,0,25,0,User,0,d,"The user schemes to raise its Attack and Sp. Atk by two steps. During moonglow, also raises Speed by two steps.",NASTYPLOT
-1358,RAGINGFURY,Raging Fury,55F,120,FIRE,Physical,100,10,0,RandomNearFoe,0,abef,"The user rampages and attacks while spewing flames for three turns.",FLAREBLITZ
+1358,RAGINGFURY,Raging Fury,55F,135,FIRE,Physical,100,10,0,RandomNearFoe,0,abef,"The user rampages and attacks while spewing flames for three turns.",FLAREBLITZ
 1359,CHLOROBLAST,Chloroblast,510,150,GRASS,Special,100,5,100,NearOther,0,bef,"The user launches its amassed chlorophyll to inflict damage on the target. The user loses half its current HP.",SOLARBEAM
 1360,DIRECLAW,Dire Claw,005,85,POISON,Physical,100,15,50,NearOther,0,abefh,"The user lashes out with its claws. 50% chance to poison. Critical hits twice as often.",CROSSPOISON
 1361,SHIELDSHELL,Shield Shell,5BB,0,STEEL,Status,0,3,0,User,4,,"Protects itself from damage. It also lowers the Sp. Atk of special attackers by two steps.",PROTECT
@@ -433,7 +433,7 @@
 1432,GRINDSTONE,Grind Stone,5F8,80,ROCK,Physical,100,12,0,NearOther,0,abef,"The user scratches the target with rough rocks. If in sandstorm, the target's Defense is lowered by 3 steps.",STONEEDGE
 1433,SANDBLASTING,Sand Blasting,5F9,70,GROUND,Special,100,15,0,NearOther,0,abef,"Attacks by blasting sand. This move always goes first in sandstorm.",SANDATTACK
 1434,ROUSINGHULA,Rousing Hula,173,80,FIRE,Special,100,10,100,AllNearOthers,0,befo,"The user dances rapidly, emitting tropical heat. Any frostbitten Pokémon will be healed by this heat.",HEATWAVE
-1435,CURLUP,CURLUP,01E,0,NORMAL,Status,0,30,0,User,0,d,"The user curls up to conceal weak spots and raise both of its defensive stats.",DEFENSECURL
+1435,CURLUP,Curl Up,01E,0,NORMAL,Status,0,30,0,User,0,d,"The user curls up to conceal weak spots and raise both of its defensive stats.",DEFENSECURL
 1436,WHAMBLAM,Wham Blam,000,135,FAIRY,Physical,70,12,0,NearOther,0,abef,"The user pretends to be a hero and strikes their foe with super strength.",SPIRITBREAK
 1437,FIREPULSE,Fire Pulse,00A,60,FIRE,Special,100,15,20,NearOther,0,befm,"The user attacks the target with a pulsing blast of fire. It has a 20% chance to burn.",FLAMEBURST
 1438,SHRAPNELCANNON,Shrapnel Cannon,551,30,FIRE,Special,100,12,0,NearOther,0,befm,"The user launches shrapnel, dealing damage and setting a layer of flame spikes around the target.",FLAMEBURST
