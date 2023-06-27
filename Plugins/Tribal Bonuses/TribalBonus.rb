@@ -69,7 +69,7 @@ class TribalBonus
             end
         end
 
-        if hasTribeBonus?(:INDUSTRIOUS) && @trainer.money >= 100_000
+        if hasTribeBonus?(:INDUSTRIOUS) && (!@trainer.is_a?(Player) || @trainer.money >= 100_000)
             GameData::Stat.each_main_battle do |stat|
                 tribeBonuses[stat.id] = 8 + (level / 10).floor
             end
