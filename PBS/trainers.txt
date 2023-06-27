@@ -5749,6 +5749,21 @@ Pokemon = WAILORD,70
 Pokemon = ALAKAZAM,70
     AbilityIndex = 1 # Steelworker
 #-------------------------------
+[POKEMONMASTER_Vanya,Vanya,7]
+Policies = NO_PERFECT
+Pokemon = MNINETALES,70
+    AbilityIndex = 0 # Gild
+Pokemon = SLOWKING,70
+    AbilityIndex = 1 # Realist
+Pokemon = MILOTIC,70
+    AbilityIndex = 1 # Competitive
+Pokemon = FURFROU,70
+    AbilityIndex = 0 # Stylish
+Pokemon = SHEDINJA,70
+    AbilityIndex = 0 # Wonder Guard
+Pokemon = NIDOKING,70
+    AbilityIndex = 1 # Poison Point
+#-------------------------------
 [WILDPARTY_KOKO,of Conflict]
 Policies = NO_PERFECT
 Pokemon = INCINEROAR,70
