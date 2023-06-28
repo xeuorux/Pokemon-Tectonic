@@ -233,3 +233,9 @@ BattleHandlers::DamageCalcTargetAbility.add(:PLASMABALL,
       mults[:final_damage_multiplier] *= 1.5
   }
 )
+
+BattleHandlers::DamageCalcTargetAbility.add(:INTROVERT,
+  proc { |ability, _user, target, _move, mults, _baseDmg, type|
+      mults[:final_damage_multiplier] *= 0.7 unless target.usedDamagingMove
+  }
+)

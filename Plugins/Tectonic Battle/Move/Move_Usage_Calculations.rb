@@ -404,11 +404,12 @@ class PokeBattle_Move
         ret = effectChance > 0 ? effectChance : @effectChance
         return 100 if ret >= 100 || debugControl
         ret += 20 if user.hasTribeBonus?(:FORTUNE)
+        ret += 50 if windMove? && user.hasActiveAbility?(:FUMIGATE)
+        ret += 50 if bitingMove? && user.hasActiveAbility?(:GNAWING)
         ret *= 1.5 if flinchingMove? && user.hasActiveAbility?(:RATTLEEM)
         ret *= 2 if flinchingMove? && user.hasActiveAbility?(:TERRORIZE)
         ret *= 2 if user.hasActiveAbility?(:SERENEGRACE)
         ret *= 2 if user.pbOwnSide.effectActive?(:Rainbow)
-        ret *= 4 if windMove? && user.hasActiveAbility?(:FUMIGATE)
         ret /= 2 if applyRainDebuff?(user,type)
         ret /= 2 if target.hasTribeBonus?(:SERENE)
         if ret < 100 && user.hasActiveItem?(:LUCKHERB)

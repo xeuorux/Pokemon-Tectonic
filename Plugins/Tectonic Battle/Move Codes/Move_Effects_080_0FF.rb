@@ -2066,11 +2066,20 @@ class PokeBattle_Move_0C8 < PokeBattle_TwoTurnMove
 end
 
 #===============================================================================
-# Two turn attack. Skips first turn, attacks second turn. (Fly)
+# Two turn attack. Skips first turn, attacks second turn. (Fly, Divebomb)
 # (Handled in Battler's pbSuccessCheckPerHit): Is semi-invulnerable during use.
 #===============================================================================
 class PokeBattle_Move_0C9 < PokeBattle_TwoTurnMove
     def unusableInGravity?; return true; end
+
+    def pbIsChargingTurn?(user)
+        ret = super
+        if !user.effectActive?(:TwoTurnAttack) && user.hasActiveAbility?(:SLINKY)
+            skipChargingTurn
+            return false
+        end
+        return ret
+    end
 
     def pbChargingTurnMessage(user, _targets)
         @battle.pbDisplay(_INTL("{1} flew up high!", user.pbThis))
@@ -2088,10 +2097,8 @@ class PokeBattle_Move_0CA < PokeBattle_TwoTurnMove
 
     def pbIsChargingTurn?(user)
         ret = super
-        if !user.effectActive?(:TwoTurnAttack) && user.hasActiveAbility?(:BURROWER)
-            @powerHerb = false
-            @chargingTurn = true
-            @damagingTurn = true
+        if !user.effectActive?(:TwoTurnAttack) && user.hasActiveAbility?(:SLINKY)
+            skipChargingTurn
             return false
         end
         return ret
@@ -2120,6 +2127,15 @@ end
 # (Handled in Battler's pbSuccessCheckPerHit): Is semi-invulnerable during use.
 #===============================================================================
 class PokeBattle_Move_0CB < PokeBattle_TwoTurnMove
+    def pbIsChargingTurn?(user)
+        ret = super
+        if !user.effectActive?(:TwoTurnAttack) && user.hasActiveAbility?(:SLINKY)
+            skipChargingTurn
+            return false
+        end
+        return ret
+    end
+
     def pbChargingTurnMessage(user, _targets)
         @battle.pbDisplay(_INTL("{1} hid underwater!", user.pbThis))
         if user.canGulpMissile?
@@ -2142,6 +2158,15 @@ end
 #===============================================================================
 class PokeBattle_Move_0CC < PokeBattle_TwoTurnMove
     def unusableInGravity?; return true; end
+
+    def pbIsChargingTurn?(user)
+        ret = super
+        if !user.effectActive?(:TwoTurnAttack) && user.hasActiveAbility?(:SLINKY)
+            skipChargingTurn
+            return false
+        end
+        return ret
+    end
 
     def pbChargingTurnMessage(user, _targets)
         @battle.pbDisplay(_INTL("{1} sprang up!", user.pbThis))

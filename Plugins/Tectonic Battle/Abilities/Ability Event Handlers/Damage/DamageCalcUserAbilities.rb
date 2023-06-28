@@ -500,3 +500,15 @@ BattleHandlers::DamageCalcUserAbility.add(:CALAMITY,
       mults[:base_damage_multiplier] *= 1.25 if user.battle.eclipsed?
   }
 )
+
+BattleHandlers::DamageCalcUserAbility.add(:BALLLIGHTNING,
+  proc { |ability, user, target, move, mults, _baseDmg, _type|
+      damageMult = 1.0
+      if user.pbSpeed > target.pbSpeed
+        speedMult = user.pbSpeed / target.pbSpeed.to_f
+        speedMult = 2.0 if speedMult > 2.0
+        damageMult += speedMult / 4.0
+      end
+      mults[:base_damage_multiplier] *= damageMult
+  }
+)

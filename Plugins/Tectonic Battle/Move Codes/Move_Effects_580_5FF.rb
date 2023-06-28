@@ -1429,7 +1429,7 @@ class PokeBattle_Move_5C4 < PokeBattle_TwoTurnMove
 end
 
 #===============================================================================
-# Two turn attack. Skips first turn, attacks second turn. (Fly)
+# Two turn attack. Skips first turn, attacks second turn. (Liftoff)
 # (Handled in Battler's pbSuccessCheckPerHit): Is semi-invulnerable during use.
 #===============================================================================
 class PokeBattle_Move_5C5 < PokeBattle_Move_0C9
