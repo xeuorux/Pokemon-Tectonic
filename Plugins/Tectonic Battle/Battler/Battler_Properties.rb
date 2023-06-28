@@ -8,7 +8,7 @@ class PokeBattle_Battler
     attr_accessor  :participants, :lastAttacker, :lastFoeAttacker, :lastHPLost, :lastHPLostFromFoe
     attr_accessor  :lastMoveUsed, :lastMoveUsedType, :lastMoveUSedCategory
     attr_accessor  :lastRoundMove, :lastRoundMoveType, :lastRoundMoveCategory
-    attr_accessor  :lastRegularMoveUsed, :lastRegularMoveTarget
+    attr_accessor  :lastRegularMoveUsed, :lastRegularMoveTarget, :usedDamagingMove
     attr_accessor  :lastRoundMoved, :lastMoveFailed, :lastRoundMoveFailed, :movesUsed, :currentMove
     attr_accessor  :tookDamage, :tookPhysicalHit, :damageState, :initialHP, :lastRoundHighestTypeModFromFoe
     # The Pokémon and its properties

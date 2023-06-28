@@ -422,7 +422,7 @@ BattleHandlers::UserAbilityEndOfMove.add(:FUELHUNGRY,
 )
 
 BattleHandlers::UserAbilityEndOfMove.add(:SIRENSONG,
-  proc { |ability, user, _targets, move, _battle, _switchedBattlers|
+  proc { |ability, user, _targets, move, battle, _switchedBattlers|
       next unless move.soundMove?
       battle.pbShowAbilitySplash(user, ability)
       user.eachOpposing do |b|
@@ -437,7 +437,7 @@ BattleHandlers::UserAbilityEndOfMove.add(:SIRENSONG,
 )
 
 BattleHandlers::UserAbilityEndOfMove.add(:ROYALVOICE,
-  proc { |ability, user, _targets, move, _battle, _switchedBattlers|
+  proc { |ability, user, _targets, move, battle, _switchedBattlers|
       next unless move.soundMove?
       battle.pbShowAbilitySplash(user, ability)
       user.eachOpposing do |b|

@@ -139,7 +139,7 @@ class PokeBattle_Battler
                 choices[b] = copiableAbilities
             end
             unless choices.empty?
-                battlerCopying = choices.sample
+                battlerCopying = choices.keys.sample
                 abilitiesCopying = choices[battlerCopying]
                 @battle.pbShowAbilitySplash(self, :OVERACTING)
                 @battle.pbDisplay(_INTL("{1} is acting like a {2}!", pbThis, GameData::Species.get(battlerCopying.species).real_name))

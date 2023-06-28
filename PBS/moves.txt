@@ -159,7 +159,7 @@
 158,KARATECHOP,Karate Chop,000,40,FIGHTING,Physical,100,20,0,NearOther,0,abefh,"The target is attacked with a sharp chop. Critical hits twice as often.",
 159,MACHPUNCH,Mach Punch,000,40,FIGHTING,Physical,100,25,0,NearOther,1,abefj,"The user throws a punch at blinding speed. It is certain to strike first.",
 160,POWERUPPUNCH,Power-Up Punch,01C,40,FIGHTING,Physical,100,15,100,NearOther,0,abefj,"Striking opponents repeatedly makes the user's fists harder, raising the user's Attack stat by two steps.",
-161,SMASH,Smash,5E8,40,FIGHTING,Physical,100,12,20,NearOther,0,abef,"The user attacks with a punch that could shatter a rock. It has a 20% chance to lower Defense.",
+161,SMASH,Smash,5E8,40,FIGHTING,Physical,100,12,20,NearOther,0,abef,"The user attacks with a strong punch. It has a 20% chance to lower Defense.",
 162,VACUUMWAVE,Vacuum Wave,000,40,FIGHTING,Special,100,25,0,NearOther,1,bef,"The user whirls its fists to send a wave of pure vacuum at the target. This move always goes first.",
 163,DOUBLEKICK,Double Kick,0BD,30,FIGHTING,Physical,100,25,0,NearOther,0,abef,"The target is quickly kicked twice in succession using both feet.",
 164,ARMTHRUST,Arm Thrust,0C0,15,FIGHTING,Physical,100,15,0,NearOther,0,abef,"The user looses a flurry of open-palmed arm thrusts that hit two to five times in a row.",

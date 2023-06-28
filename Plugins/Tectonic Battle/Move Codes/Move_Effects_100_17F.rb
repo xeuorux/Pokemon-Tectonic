@@ -302,7 +302,7 @@ class PokeBattle_Move_10E < PokeBattle_Move
         return false
     end
 
-    def pbEffectAgainstTarget(_user, target)
+    def pbEffectAgainstTarget(user, target)
         if @buffing
             target.tryRaiseStat(:SPEED, user, move: self)
         else

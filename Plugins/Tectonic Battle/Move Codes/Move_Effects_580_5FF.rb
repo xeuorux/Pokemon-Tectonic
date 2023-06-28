@@ -2335,7 +2335,7 @@ end
 # Their attacking stats are both lowered by 1 step.
 #===============================================================================
 class PokeBattle_Move_5F7 < PokeBattle_Move
-    def pbFailsAgainstTarget?(_user, target, show_message)
+    def pbFailsAgainstTarget?(user, target, show_message)
         if target.effectActive?(:IceDungeon) && target.pbCanLowerStatStep?(:ATTACK, user, self) &&
                 target.pbCanLowerStatStep?(:SPECIAL_ATTACK, user, self)
             if show_message

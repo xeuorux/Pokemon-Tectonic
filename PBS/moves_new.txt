@@ -17,7 +17,7 @@
 1016,FAVOR,Favor,089,9,NORMAL,Special,100,15,0,NearOther,0,bef,"A full-power special attack that grows more powerful the more the user likes its Trainer.",RETURN
 1017,ESSENCEARROW,Essence Arrow,5DC,40,GRASS,Special,100,30,10,NearOther,0,befn,"The user fires a small bolt of energy at the target. It has a 10% chance to raise user's Sp. Atk.",ENERGYBALL
 1018,ROOTWRACK,Rootwrack,504,60,GRASS,Physical,100,20,0,NearOther,0,bef,"The user sends its roots to attack. Deals 25% more damage if the target attacked first.",VINEWHIP
-1019,EAGERTICKLING,Eager Tickling,5E6,40,FAIRY,Physical,100,25,10,NearOther,0,abef,"The user tickles the target excessively, damaging it. This has a 10% chance to lower Attack.",PLAYROUGH
+1019,EAGERTICKLING,Eager Tickling,5E6,40,FAIRY,Physical,100,25,20,NearOther,0,abef,"The user tickles the target excessively, damaging it. This has a 20% chance to lower Attack.",PLAYROUGH
 1020,TREADON,Tread On,5EA,40,GROUND,Physical,100,30,20,NearOther,0,abef,"The user attacks the opposing Pokémon by trampling it. It has a 20% chance to lower Speed.",STOMPINGTANTRUM
 1021,RUMBLE,Rumble,076,45,GROUND,Physical,100,30,0,AllNearOthers,0,bef,"The user causes the earth to rumble, striking every Pokémon around it and underground.",EARTHQUAKE
 1022,TREMOR,Tremor,076,65,GROUND,Physical,100,15,0,AllNearOthers,0,bef,"The user slams the earth, damaging all Pokémon around it and underground.",
