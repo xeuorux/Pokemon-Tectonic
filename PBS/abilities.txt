@@ -48,7 +48,7 @@
 47,UNBURDEN,Unburden,"Raises Speed if a held item is consumed in battle."
 48,SIMPLE,Simple,"Stat changes in the Pokemon are doubled."
 49,DRYSKIN,Dry Skin,"Restores 1/8 HP in rain, 1/4 when hit by Water-type moves. Loses 1/8 in sunshine, takes 25% more from Fire-type moves."
-50,DOWNLOAD,Download,"Boosts one Attacking stat by two steps according to a foe's defenses."
+50,DOWNLOAD,Download,"Boosts one Attacking stat by two steps according to the foe's defenses."
 51,IRONFIST,Iron Fist,"Boosts the power of punching moves by 30%."
 52,ADAPTED,Adapted,"Powers up moves of the same type by 33%."
 53,SKILLLINK,Skill Link,"Maximizes the frequency of multi-strike moves."

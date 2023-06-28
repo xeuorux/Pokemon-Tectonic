@@ -482,6 +482,17 @@ user.pbThis))
                     @battle.pbHideAbilitySplash(b)
                 end
             end
+            # Smoke Reflex
+            if !targets.empty? && move.damagingMove?
+                targets.each do |b|
+                    next if b.damageState.unaffected
+                    next unless b.hasActiveAbility?(:SMOKEREFLEX)
+                    @battle.pbShowAbilitySplash(b, :SMOKEREFLEX)
+                    user.pbResetStatSteps
+                    @battle.pbDisplay(_INTL("{1}'s stat changes were eliminated!", user.pbThis))
+                    @battle.pbHideAbilitySplash(b)
+                end
+            end
             # Get the number of hits
             numHits = move.numberOfHits(user, targets)
             # Mark each target with whether its being targeted by a multihit move

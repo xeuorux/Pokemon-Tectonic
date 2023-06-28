@@ -437,7 +437,10 @@
 1436,WHAMBLAM,Wham Blam,000,135,FAIRY,Physical,70,12,0,NearOther,0,abef,"The user pretends to be a hero and strikes their foe with super strength.",SPIRITBREAK
 1437,FIREPULSE,Fire Pulse,00A,60,FIRE,Special,100,15,20,NearOther,0,befm,"The user attacks the target with a pulsing blast of fire. It has a 20% chance to burn.",FLAMEBURST
 1438,SHRAPNELCANNON,Shrapnel Cannon,551,30,FIRE,Special,100,12,0,NearOther,0,befm,"The user launches shrapnel, dealing damage and setting a layer of flame spikes around the target.",FLAMEBURST
-1439,STORMDRIVE,Storm Drive,0E6,120,ELECTRIC,Physical,100,10,0,NearOther,0,bef,"The user charges, then attacks on the second turn. Charges instantly in Rain.",
-1440,MULTINEEDLE,Multi-Needle,0BE,25,BUG,Physical,100,15,20,NearOther,0,bef,"The foe is stabbed once by each of the user's stingers.",
+1439,STORMDRIVE,Storm Drive,0E6,120,ELECTRIC,Physical,100,10,0,NearOther,0,bef,"The user charges, then attacks on the second turn. Charges instantly in Rain.",WILDCHARGE
+1440,MULTINEEDLE,Multi-Needle,0BE,25,BUG,Physical,100,15,20,NearOther,0,bef,"The foe is stabbed once by each of the user's stingers.",TWINEEDLE
 1441,RISINGTIDES,Rising Tides,100,50,WATER,Special,0,10,0,NearFoe,0,bef,"Strikes the target with harbor waters, then summons rain for eight turns.",SURF
-1442,BLOODBITE,Blood Bite,5E8,75,POISON,Physical,100,15,100,NearOther,0,abefi,"The user steals blood, lowering the target's Attack. If so, raises the user's Attack.",
+1442,BLOODBITE,Blood Bite,5E8,75,POISON,Physical,100,15,100,NearOther,0,abefi,"The user steals blood, lowering the target's Attack. If so, raises the user's Attack.",CRUNCH
+1443,GLEEFULGRASP,Gleeful Grasp,048,80,DARK,Physical,100,10,0,NearOther,0,abef,"The user indulges its love of battle by striking a foe. Both of the user's attacking stats are raised.",
+1444,PLAYBITE,Play Bite,013,60,FAIRY,Physical,100,15,100,NearOther,0,abefi,"The user bites with playful abandon. This deals double damage on the user's first turn out.",CRUNCH
+1445,MOUNTSJUDGEMENT,Mount's Judgement,10E,0,FIRE,Status,100,12,0,NearOther,0,bce,"The user burns the target if they're a foe, or raises the target's Speed by 4 steps if their an ally.",EMBER

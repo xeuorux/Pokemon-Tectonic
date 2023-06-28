@@ -411,3 +411,8 @@
 1410,GRIPSTRENGTH,Grip Strength,"Moves that bind the opponent deal 50% more damage (on the initial hit)."
 1411,CREEPINGSTRENGTH,Creeping Strength,"Deals 30% more damage when it's slower than the target."
 1412,SHOCKSTYLE,Shock Style,"Powers up Fighting-type moves by 50%."
+1413,WISHMAKER,Wish Maker,"The random added effects of its own moves, and of moves against it, always activate."
+1414,SMOKEREFLEX,Smoke Reflex,"Right before the Pokémon is attacked, the attacker's stat changes are reset."
+1415,EVOARMOR,Evo-Armor,"Boosts one Defending stat by two steps according to the foe's attacking stats."
+1416,ROYALVOICE,Royal Voice,"After using a sound move, all foes are Tormented."
+1417,FULLBLUBBER,Full Blubber,"Immune to Fire-type and Ice-type moves."

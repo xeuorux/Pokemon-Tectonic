@@ -268,3 +268,16 @@ BattleHandlers::MoveImmunityTargetAbility.add(:MORPHINGGUARD,
       next true
   }
 )
+
+BattleHandlers::MoveImmunityTargetAbility.add(:FULLBLUBBER,
+  proc { |ability, user, target, _move, type, battle, showMessages, aiChecking|
+      next false if user.index == target.index
+      next false unless %i[FIRE ICE].include?(type)
+      if showMessages
+          battle.pbShowAbilitySplash(target, ability)
+          battle.pbDisplay(_INTL("It doesn't affect {1}...", target.pbThis(true)))
+          battle.pbHideAbilitySplash(target)
+      end
+      next true
+  }
+)

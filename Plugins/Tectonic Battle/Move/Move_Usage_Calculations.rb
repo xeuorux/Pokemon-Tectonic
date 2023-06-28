@@ -400,6 +400,7 @@ class PokeBattle_Move
 
     def pbAdditionalEffectChance(user,target,type,effectChance=0,aiChecking = false)
         return 100 if user.hasActiveAbility?(:STARSALIGN) && @battle.eclipsed?
+        return 100 if user.hasActiveAbility?(:WISHMAKER) || target.hasActiveAbility?(:WISHMAKER)
         return 100 if !user.pbOwnedByPlayer? && @battle.curseActive?(:CURSE_PERFECT_LUCK)
         ret = effectChance > 0 ? effectChance : @effectChance
         return 100 if ret >= 100 || debugControl

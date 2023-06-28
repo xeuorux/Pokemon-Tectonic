@@ -170,12 +170,24 @@ BattleHandlers::AbilityOnSwitchIn.add(:DARKAURA,
 
 BattleHandlers::AbilityOnSwitchIn.add(:DOWNLOAD,
   proc { |ability, battler, battle|
-      oDef = oSpDef = 0
+      oppTotalDef = oppTotalSpDef = 0
       battle.eachOtherSideBattler(battler.index) do |b|
-          oDef += b.defense
-          oSpDef += b.spdef
+        oppTotalDef += b.pbDefense
+        oppTotalSpDef += b.pbSpDef
       end
-      stat = (oDef < oSpDef) ? :ATTACK : :SPECIAL_ATTACK
+      stat = (oppTotalDef < oppTotalSpDef) ? :ATTACK : :SPECIAL_ATTACK
+      battler.tryRaiseStat(stat, battler, ability: ability, increment: 2)
+  }
+)
+
+BattleHandlers::AbilityOnSwitchIn.add(:EVOARMOR,
+  proc { |ability, battler, battle|
+      oppTotalAttack = oppTotalSpAtk = 0
+      battle.eachOtherSideBattler(battler.index) do |b|
+        oppTotalAttack += b.pbAttack
+        oppTotalSpAtk += b.pbSpAtk
+      end
+      stat = (oppTotalAttack > oppTotalSpAtk) ? :DEFENSE : :SPECIAL_DEFENSE
       battler.tryRaiseStat(stat, battler, ability: ability, increment: 2)
   }
 )

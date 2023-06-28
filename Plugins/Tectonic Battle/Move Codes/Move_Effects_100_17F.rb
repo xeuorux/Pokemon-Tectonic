@@ -282,9 +282,48 @@ class PokeBattle_Move_10D < PokeBattle_Move
 end
 
 #===============================================================================
-# (Not currently used)
+# Burns target if target is a foe, or raises target's Speed by 4 steps an ally. (Mount's Judgement)
 #===============================================================================
 class PokeBattle_Move_10E < PokeBattle_Move
+    def pbOnStartUse(user, targets)
+        @buffing = false
+        @buffing = !user.opposes?(targets[0]) if targets.length > 0
+    end
+
+    def pbFailsAgainstTarget?(user, target, show_message)
+        if @buffing
+            if target.substituted? && !ignoresSubstitute?(user)
+                @battle.pbDisplay(_INTL("#{target.pbThis} is protected behind its substitute!")) if show_message
+                return true
+            end
+        else
+            return true unless target.canBurn?(user, show_message, self)
+        end
+        return false
+    end
+
+    def pbEffectAgainstTarget(_user, target)
+        if @buffing
+            target.tryRaiseStat(:SPEED, user, move: self)
+        else
+            target.applyBurn(user)
+        end
+    end
+
+    def pbShowAnimation(id, user, targets, hitNum = 0, showAnimation = true)
+        if @buffing
+            id = :AGILITY
+        end
+        super
+    end
+
+    def getTargetAffectingEffectScore(user, target)
+        if user.opposes?(target)
+            return getBurnEffectScore(user, target)
+        else
+            return getMultiStatUpEffectScore([:SPEED,4])
+        end
+    end
 end
 
 #===============================================================================

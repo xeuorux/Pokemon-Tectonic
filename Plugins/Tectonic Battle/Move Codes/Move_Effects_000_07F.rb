@@ -235,9 +235,13 @@ class PokeBattle_Move_012 < PokeBattle_FlinchMove
 end
 
 #===============================================================================
-# (Not currently used)
+# Deals double damage on the first turn out. (Play Bite)
 #===============================================================================
-class PokeBattle_Move_013 < PokeBattle_Move
+class PokeBattle_Move_013 < PokeBattle_FlinchMove
+    def pbBaseDamage(baseDmg, user, target)
+        baseDmg *= 2 if user.firstTurn?
+        return baseDmg
+    end
 end
 
 #===============================================================================
@@ -582,14 +586,14 @@ end
 class PokeBattle_Move_028 < PokeBattle_MultiStatUpMove
     def initialize(battle, move)
         super
-        @statUp = ATTACKING_STATS_1
+        @statUp = ATTACKING_STATS_2
     end
 
     def pbOnStartUse(_user, _targets)
         if @battle.sunny?
             @statUp = [:ATTACK, 4, :SPECIAL_ATTACK, 4]
         else
-            @statUp = ATTACKING_STATS_1
+            @statUp = ATTACKING_STATS_2
         end
     end
 
@@ -943,9 +947,13 @@ class PokeBattle_Move_047 < PokeBattle_TargetMultiStatDownMove
 end
 
 #===============================================================================
-# (Not currently used)
+# Increases the user's Attack and Special Attack by 1 steps each.
 #===============================================================================
-class PokeBattle_Move_048 < PokeBattle_Move
+class PokeBattle_Move_048 < PokeBattle_MultiStatUpMove
+    def initialize(battle, move)
+        super
+        @statUp = ATTACKING_STATS_2
+    end
 end
 
 #===============================================================================

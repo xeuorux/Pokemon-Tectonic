@@ -435,3 +435,14 @@ BattleHandlers::UserAbilityEndOfMove.add(:SIRENSONG,
       battle.pbHideAbilitySplash(user)
   }
 )
+
+BattleHandlers::UserAbilityEndOfMove.add(:ROYALVOICE,
+  proc { |ability, user, _targets, move, _battle, _switchedBattlers|
+      next unless move.soundMove?
+      battle.pbShowAbilitySplash(user, ability)
+      user.eachOpposing do |b|
+        b.applyEffect(:Torment)
+      end
+      battle.pbHideAbilitySplash(user)
+  }
+)
