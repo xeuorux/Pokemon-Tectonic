@@ -905,15 +905,37 @@ class PokeBattle_Move_0A6 < PokeBattle_Move
 end
 
 #===============================================================================
-# (Not currently used)
+# Lower's the target's Attack by 1 step. If so, it raises the user's Attack by 1 step. (Blood Bite)
 #===============================================================================
-class PokeBattle_Move_0A7 < PokeBattle_Move
+class PokeBattle_Move_0A7 < PokeBattle_TargetStatDownMove
+    def initialize(battle, move)
+        super
+        @statDown = [:ATTACK, 1]
+    end
+
+    def pbAdditionalEffect(user, target)
+        return if target.damageState.substitute
+        if target.tryLowerStat(@statDown[0], user, increment: @statDown[1], move: self)
+            user.tryRaiseStat(@statDown[0], user, increment: @statDown[1], move: self)
+        end
+    end
 end
 
 #===============================================================================
-# (Not currently used)
+# Lower's the target's Sp. Atk by 1 step. If so, it raises the user's Sp. Atk by 1 step. (TBD)
 #===============================================================================
-class PokeBattle_Move_0A8 < PokeBattle_Move
+class PokeBattle_Move_0A8 < PokeBattle_TargetStatDownMove
+    def initialize(battle, move)
+        super
+        @statDown = [:SPECIAL_ATTACK, 1]
+    end
+
+    def pbAdditionalEffect(user, target)
+        return if target.damageState.substitute
+        if target.tryLowerStat(@statDown[0], user, increment: @statDown[1], move: self)
+            user.tryRaiseStat(@statDown[0], user, increment: @statDown[1], move: self)
+        end
+    end
 end
 
 #===============================================================================

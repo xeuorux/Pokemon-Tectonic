@@ -9,8 +9,7 @@ class PokeBattle_Move
     def pbModifyTargets(targets, user); end # For Dragon Darts, etc.
     def pbAllMissed(user, targets); end # Move effects that occur after all hits if all of them missed
 
-    def pbEffectOnNumHits(user, target, numHits);
- end # Move effects that occur after all hits, which base themselves on how many hits landed
+    def pbEffectOnNumHits(user, target, numHits); end # Move effects that occur after all hits, which base themselves on how many hits landed
 
     def pbMoveFailedNoSpecial?(_user, _targets)
         return false

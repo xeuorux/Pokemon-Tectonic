@@ -440,3 +440,4 @@
 1439,STORMDRIVE,Storm Drive,0E6,120,ELECTRIC,Physical,100,10,0,NearOther,0,bef,"The user charges, then attacks on the second turn. Charges instantly in Rain.",
 1440,MULTINEEDLE,Multi-Needle,0BE,25,BUG,Physical,100,15,20,NearOther,0,bef,"The foe is stabbed once by each of the user's stingers.",
 1441,RISINGTIDES,Rising Tides,100,50,WATER,Special,0,10,0,NearFoe,0,bef,"Strikes the target with harbor waters, then summons rain for eight turns.",SURF
+1442,BLOODBITE,Blood Bite,5E8,75,POISON,Physical,100,15,100,NearOther,0,abefi,"The user steals blood, lowering the target's Attack. If so, raises the user's Attack.",
