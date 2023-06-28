@@ -326,7 +326,7 @@ class PokeBattle_Battle
                 end
             end
             # Update each of the player's pokemon's battling streak
-            if trainerBattle? || bossBattle?
+            if (trainerBattle? || bossBattle?) && HOT_STREAKS_ACTIVE
                 pbParty(0).each_with_index do |pkmn, i|
                     wasOnStreak = pkmn.onHotStreak?
                     if pkmn.fainted? || [2, 3].include?(@decision)

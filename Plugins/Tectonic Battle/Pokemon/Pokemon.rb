@@ -238,6 +238,7 @@ class Pokemon
     end
 
     def onHotStreak?
+      return false unless HOT_STREAKS_ACTIVE
       return @battlingStreak >= 2
     end
   

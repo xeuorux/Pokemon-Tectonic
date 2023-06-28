@@ -532,8 +532,8 @@
 531,LIGHTHOUSEKEYCARD,Lighthouse Keycard,Lighthouse Keycards,8,0,"A colorful keycard. It grants access to elevator at the Sweetrock Harbor Lighthouse.",0,0,6
 532,MILKBONETREAT,Milk Bone Treat,Milk Bone Treats,8,0,"It would be a delicious treat if you were a Pokémon.",0,0,6
 533,DIGITSLIP,Digit Slip,Digit Slips,8,0,"A slip of paper with one digit of the code for the lock to Rafael's gym door.",0,0,13
-534,PERFORMANCEANALYZER,Performance Analyzer,Performance Analyzers,8,0,"A hi-tech recording device which increases your Pokémon's experience gained from Trainer battles by 20%.",0,0,6
-535,PERFORMANCEANALYZER2,Performance Analyzer 2,Performance Analyzers 2,8,0,"An upgraded, hi-tech recording device which increases the experience gained from Trainer battles by 25%.",0,0,6
+534,PERFORMANCEANALYZER,Performance Analyzer,Performance Analyzers,8,0,"A hi-tech recording device which increases your Pokémon's experience gained from Trainer battles by 40%.",0,0,6
+535,PERFORMANCEANALYZER2,Performance Analyzer 2,Performance Analyzers 2,8,0,"An upgraded, hi-tech recording device which increases the experience gained from Trainer battles by 50%.",0,0,6
 536,BATTLEREPORT,Battle Report,Battle Reports,1,0,"A detailed report on how to improve as a trainer. If you decide to read it, your level cap will be raised by 5.",2,0,13
 537,CHASMIDCARD,Chasm ID Card,Chasm ID Cards,8,0,"An ID card which unlocks Team Chasm gates and doors, giving access to dangers and rewards.",0,0,6
 538,POCKETTOTEM,Pocket Totem,Pocket Totems,8,0,"A miniature Avatar Totem. Use it to teleport to any unlocked Avatar Totems throughout Makya.",2,0,6

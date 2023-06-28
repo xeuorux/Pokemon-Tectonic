@@ -1,3 +1,5 @@
+HOT_STREAKS_ACTIVE = false
+
 class PokeBattle_Battle
     #=============================================================================
     # Gaining Experience
@@ -116,9 +118,9 @@ class PokeBattle_Battle
         if trainerBattle?
             exp *= 1.5
             if $PokemonBag.pbHasItem?(:PERFORMANCEANALYZER2)
-                exp *= 1.25
+                exp *= 1.5
             elsif $PokemonBag.pbHasItem?(:PERFORMANCEANALYZER)
-                exp *= 1.2
+                exp *= 1.4
             end
             exp = exp.floor
         end
@@ -136,8 +138,7 @@ class PokeBattle_Battle
         end
         # Increase Exp gain based on battling streak
         pkmn.battlingStreak = 0 if pkmn.battlingStreak.nil?
-        if pkmn.onHotStreak?
-            # pbDisplayPaused(_INTL("{1} benefits from its Hot Streak!",pkmn.name))
+        if pkmn.onHotStreak? && HOT_STREAKS_ACTIVE
             exp = (exp * 1.3).floor
         end
         exp  = (exp * 1.1).floor if playerTribalBonus.hasTribeBonus?(:LOYAL)
@@ -181,10 +182,10 @@ class PokeBattle_Battle
                     pbDisplayPaused(_INTL("{1} gained only {3} Exp. Points due to the level cap at level {2}.", pkmn.name,
                     level_cap, expGained))
                 end
-            elsif !pkmn.onHotStreak?
-                pbDisplayPaused(_INTL("{1} got {2} Exp. Points!", pkmn.name, expGained))
-            else
+            elsif pkmn.onHotStreak? && HOT_STREAKS_ACTIVE
                 pbDisplayPaused(_INTL("{1} got a Hot Streak boosted {2} Exp. Points!", pkmn.name, expGained))
+            else
+                pbDisplayPaused(_INTL("{1} got {2} Exp. Points!", pkmn.name, expGained))
             end
         end
         if newLevel < curLevel
