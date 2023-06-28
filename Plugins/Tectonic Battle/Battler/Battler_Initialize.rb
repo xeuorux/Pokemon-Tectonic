@@ -212,6 +212,7 @@ class PokeBattle_Battler
         @tookPhysicalHit       = false
         @lastMoveUsed          = nil
         @lastMoveUsedType      = nil
+        @usedDamagingMove      = false
         @lastMoveUsedCategory  = -1
         @lastRoundMove = nil
         @lastRoundMoveType     = nil

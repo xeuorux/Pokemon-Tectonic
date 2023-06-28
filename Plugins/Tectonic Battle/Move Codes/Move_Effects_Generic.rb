@@ -493,6 +493,12 @@ class PokeBattle_TwoTurnMove < PokeBattle_Move
         score -= 40 unless user.hasActiveItem?(:POWERHERB)
         return score
     end
+
+    def skipChargingTurn
+        @powerHerb = false
+        @chargingTurn = true
+        @damagingTurn = true
+    end
 end
 
 #===============================================================================

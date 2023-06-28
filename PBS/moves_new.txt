@@ -286,8 +286,8 @@
 1285,COCODROP,Coco Drop,591,1,GRASS,Physical,100,12,0,NearOther,0,abef,"The user drops some heads from high up. The taller the user compared to the target, the greater the damage.",
 1286,LIGHTNINGSPEAR,Lightning Spear,5C8,90,ELECTRIC,Special,100,12,0,NearOther,0,bef,"Shoots a damaging spear at enemies, or a 4-step Speed-increasing electric charge at allies.",THUNDERBOLT
 1287,TARVOLLEY,Tar Volley,592,45,FIRE,Special,100,10,100,AllNearFoes,0,bef,"The user attacks twice with tar globs. If two targets, the hits spread. Reduces targets' Speed.",SMOKESCREEN
-1288,WAXINGWATER,Waxing Water,100,50,WATER,Special,0,10,0,NearFoe,0,bef,"Strikes the target with lunar tides, then summons rain for five turns.",SURF
-1289,HEATGYRE,Heat Gyre,0FF,50,FIRE,Physical,0,10,0,NearFoe,0,abef,"Spins into the target while emitting heat, then summons sunshine for five turns.",FLAMEWHEEL
+1288,WAXINGLIGHT,Waxing Light,09E,50,FAIRY,Special,0,10,0,NearFoe,0,bef,"Strikes the target with lunar light, then summons moonglow for eight turns.",DAZZLINGGLEAM
+1289,HEATGYRE,Heat Gyre,0FF,50,FIRE,Physical,0,10,0,NearFoe,0,abef,"Spins into the target while emitting heat, then summons sunshine for eight turns.",FLAMEWHEEL
 1290,MIRRORSHIELD,Mirror Shield,593,0,STEEL,Status,0,3,0,User,4,,"Protects the user from attacks. Special attackers take 1/8th HP damage.",PROTECT
 1291,UNFURL,Unfurl,594,100,NORMAL,Physical,100,10,0,NearOther,0,abef,"The user attacks by spreading its body wide. Its power doubles if Defense Curl was used previously.",BODYSLAM
 1292,BUILTDIFFERENT,Built Different,595,0,FIGHTING,Status,0,15,0,User,0,d,"The user flexes its rocky skin, raising its Attack and Defense and gaining the Rock type.",BULKUP
@@ -439,3 +439,5 @@
 1438,SHRAPNELCANNON,Shrapnel Cannon,551,30,FIRE,Special,100,12,0,NearOther,0,befm,"The user launches shrapnel, dealing damage and setting a layer of flame spikes around the target.",FLAMEBURST
 1439,STORMDRIVE,Storm Drive,0E6,120,ELECTRIC,Physical,100,10,0,NearOther,0,bef,"The user charges, then attacks on the second turn. Charges instantly in Rain.",
 1440,MULTINEEDLE,Multi-Needle,0BE,25,BUG,Physical,100,15,20,NearOther,0,bef,"The foe is stabbed once by each of the user's stingers.",
+1441,RISINGTIDES,Rising Tides,100,50,WATER,Special,0,10,0,NearFoe,0,bef,"Strikes the target with harbor waters, then summons rain for eight turns.",SURF
+1442,BLOODBITE,Blood Bite,5E8,75,POISON,Physical,100,15,100,NearOther,0,abefi,"The user steals blood, lowering the target's Attack. If so, raises the user's Attack.",

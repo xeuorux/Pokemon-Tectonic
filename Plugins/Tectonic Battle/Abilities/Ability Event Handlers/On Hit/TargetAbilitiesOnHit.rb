@@ -352,16 +352,10 @@ BattleHandlers::TargetAbilityOnHit.add(:STATIC,
     }
 )
   
-BattleHandlers::TargetAbilityOnHit.add(:LIVEWIRE,
+BattleHandlers::TargetAbilityOnHit.add(:PETRIFYING,
     proc { |ability, user, target, move, battle, aiChecking, aiNumHits|
         next unless move.specialMove?
         randomStatusProcTargetAbility(ability, :NUMB, 30, user, target, move, battle, aiChecking, aiNumHits)
-    }
-)
-
-BattleHandlers::TargetAbilityOnHit.add(:PETRIFYING,
-    proc { |ability, user, target, move, battle, aiChecking, aiNumHits|
-         randomStatusProcTargetAbility(ability, :NUMB, 30, user, target, move, battle, aiChecking, aiNumHits)
     }
 )
 

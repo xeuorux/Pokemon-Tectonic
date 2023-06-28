@@ -105,7 +105,7 @@ BattleHandlers::DamageCalcTargetAbility.add(:TRAPPER,
 
 BattleHandlers::DamageCalcTargetAbility.add(:FORTIFIED,
   proc { |ability, _user, target, _move, mults, _baseDmg, _type|
-      mults[:final_damage_multiplier] *= 0.80 unless target.movedThisRound?
+      mults[:final_damage_multiplier] *= 0.7 unless target.movedThisRound?
   }
 )
 
@@ -231,5 +231,17 @@ BattleHandlers::DamageCalcTargetAbility.add(:LIMINAL,
 BattleHandlers::DamageCalcTargetAbility.add(:PLASMABALL,
   proc { |ability, _user, target, _move, mults, _baseDmg, _type|
       mults[:final_damage_multiplier] *= 1.5
+  }
+)
+
+BattleHandlers::DamageCalcTargetAbility.add(:INTROVERT,
+  proc { |ability, _user, target, _move, mults, _baseDmg, type|
+      mults[:final_damage_multiplier] *= 0.7 unless target.usedDamagingMove
+  }
+)
+
+BattleHandlers::DamageCalcTargetAbility.add(:QUARRELSOME,
+  proc { |ability, user, target, _move, mults, _baseDmg, _type|
+      mults[:final_damage_multiplier] *= 2 if target.firstTurn?
   }
 )

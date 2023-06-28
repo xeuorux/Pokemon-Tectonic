@@ -130,7 +130,7 @@ class PokeBattle_Battle
             next if b.fainted?
             next unless b.poisoned?
             healFromStatusAbility(:POISONHEAL, b, :POISON, 4) if b.hasActiveAbility?(:POISONHEAL)
-            damageFromDOTStatus(b, :POISON)
+            damageDealt = damageFromDOTStatus(b, :POISON)
 
             # Venom Gorger
             if b.getStatusCount(:POISON) % 3 == 0
@@ -140,6 +140,17 @@ class PokeBattle_Battle
                     fraction = 1.0 / 3.0
                     fraction *= b.getPoisonDoublings
                     opposingB.applyFractionalHealing(fraction, ability: :VENOMGORGER, customMessage: healingMessage)
+                end
+            end
+
+            # Toxin Tax
+            if damageDealt > 0
+                priority.each do |b|
+                    next unless b.hasActiveAbility?(:TOXINTAX)
+                    pbShowAbilitySplash(b, :TOXINTAX)
+                    healingMessage = _INTL("{1} absorbs the damage from the poison", b.pbThis)
+                    b.pbRecoverHP(damageDealt, true, true, true, healingMessage)
+                    pbHideAbilitySplash(b)
                 end
             end
         end

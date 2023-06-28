@@ -905,15 +905,37 @@ class PokeBattle_Move_0A6 < PokeBattle_Move
 end
 
 #===============================================================================
-# (Not currently used)
+# Lower's the target's Attack by 1 step. If so, it raises the user's Attack by 1 step. (Blood Bite)
 #===============================================================================
-class PokeBattle_Move_0A7 < PokeBattle_Move
+class PokeBattle_Move_0A7 < PokeBattle_TargetStatDownMove
+    def initialize(battle, move)
+        super
+        @statDown = [:ATTACK, 1]
+    end
+
+    def pbAdditionalEffect(user, target)
+        return if target.damageState.substitute
+        if target.tryLowerStat(@statDown[0], user, increment: @statDown[1], move: self)
+            user.tryRaiseStat(@statDown[0], user, increment: @statDown[1], move: self)
+        end
+    end
 end
 
 #===============================================================================
-# (Not currently used)
+# Lower's the target's Sp. Atk by 1 step. If so, it raises the user's Sp. Atk by 1 step. (TBD)
 #===============================================================================
-class PokeBattle_Move_0A8 < PokeBattle_Move
+class PokeBattle_Move_0A8 < PokeBattle_TargetStatDownMove
+    def initialize(battle, move)
+        super
+        @statDown = [:SPECIAL_ATTACK, 1]
+    end
+
+    def pbAdditionalEffect(user, target)
+        return if target.damageState.substitute
+        if target.tryLowerStat(@statDown[0], user, increment: @statDown[1], move: self)
+            user.tryRaiseStat(@statDown[0], user, increment: @statDown[1], move: self)
+        end
+    end
 end
 
 #===============================================================================
@@ -2066,11 +2088,20 @@ class PokeBattle_Move_0C8 < PokeBattle_TwoTurnMove
 end
 
 #===============================================================================
-# Two turn attack. Skips first turn, attacks second turn. (Fly)
+# Two turn attack. Skips first turn, attacks second turn. (Fly, Divebomb)
 # (Handled in Battler's pbSuccessCheckPerHit): Is semi-invulnerable during use.
 #===============================================================================
 class PokeBattle_Move_0C9 < PokeBattle_TwoTurnMove
     def unusableInGravity?; return true; end
+
+    def pbIsChargingTurn?(user)
+        ret = super
+        if !user.effectActive?(:TwoTurnAttack) && user.hasActiveAbility?(:SLINKY)
+            skipChargingTurn
+            return false
+        end
+        return ret
+    end
 
     def pbChargingTurnMessage(user, _targets)
         @battle.pbDisplay(_INTL("{1} flew up high!", user.pbThis))
@@ -2088,10 +2119,8 @@ class PokeBattle_Move_0CA < PokeBattle_TwoTurnMove
 
     def pbIsChargingTurn?(user)
         ret = super
-        if !user.effectActive?(:TwoTurnAttack) && user.hasActiveAbility?(:BURROWER)
-            @powerHerb = false
-            @chargingTurn = true
-            @damagingTurn = true
+        if !user.effectActive?(:TwoTurnAttack) && user.hasActiveAbility?(:SLINKY)
+            skipChargingTurn
             return false
         end
         return ret
@@ -2120,6 +2149,15 @@ end
 # (Handled in Battler's pbSuccessCheckPerHit): Is semi-invulnerable during use.
 #===============================================================================
 class PokeBattle_Move_0CB < PokeBattle_TwoTurnMove
+    def pbIsChargingTurn?(user)
+        ret = super
+        if !user.effectActive?(:TwoTurnAttack) && user.hasActiveAbility?(:SLINKY)
+            skipChargingTurn
+            return false
+        end
+        return ret
+    end
+
     def pbChargingTurnMessage(user, _targets)
         @battle.pbDisplay(_INTL("{1} hid underwater!", user.pbThis))
         if user.canGulpMissile?
@@ -2142,6 +2180,15 @@ end
 #===============================================================================
 class PokeBattle_Move_0CC < PokeBattle_TwoTurnMove
     def unusableInGravity?; return true; end
+
+    def pbIsChargingTurn?(user)
+        ret = super
+        if !user.effectActive?(:TwoTurnAttack) && user.hasActiveAbility?(:SLINKY)
+            skipChargingTurn
+            return false
+        end
+        return ret
+    end
 
     def pbChargingTurnMessage(user, _targets)
         @battle.pbDisplay(_INTL("{1} sprang up!", user.pbThis))

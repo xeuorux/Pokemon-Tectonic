@@ -126,6 +126,12 @@ BattleHandlers::DamageCalcUserAbility.add(:LIMINAL,
   }
 )
 
+BattleHandlers::DamageCalcUserAbility.add(:QUARRELSOME,
+  proc { |ability, user, target, _move, mults, _baseDmg, _type, aiCheck|
+      mults[:attack_multiplier] *= 2.0 if user.firstTurn?
+  }
+)
+
 BattleHandlers::DamageCalcUserAbility.add(:STEELWORKER,
   proc { |ability, _user, _target, _move, mults, _baseDmg, type, _aiCheck|
       mults[:attack_multiplier] *= 1.5 if type == :STEEL
@@ -435,6 +441,12 @@ BattleHandlers::DamageCalcUserAbility.add(:MARINEMENACE,
   }
 )
 
+BattleHandlers::DamageCalcUserAbility.add(:GRIPSTRENGTH,
+  proc { |ability, _user, _target, move, mults, _baseDmg, _type|
+      mults[:base_damage_multiplier] *= 1.5 if move.function == "0CF" # 3-turn DOT trapping moves
+  }
+)
+
 BattleHandlers::DamageCalcUserAbility.add(:LINEBACKER,
   proc { |ability, _user, _target, move, mults, _baseDmg, _type, _aiCheck|
       mults[:base_damage_multiplier] *= 2.0 if move.recoilMove?
@@ -498,5 +510,29 @@ BattleHandlers::DamageCalcUserAbility.add(:HARDFALL,
 BattleHandlers::DamageCalcUserAbility.add(:CALAMITY,
   proc { |ability, user, target, move, mults, _baseDmg, _type|
       mults[:base_damage_multiplier] *= 1.25 if user.battle.eclipsed?
+  }
+)
+
+BattleHandlers::DamageCalcUserAbility.add(:BALLLIGHTNING,
+  proc { |ability, user, target, move, mults, _baseDmg, _type|
+      damageMult = 1.0
+      if user.pbSpeed > target.pbSpeed
+        speedMult = user.pbSpeed / target.pbSpeed.to_f
+        speedMult = 2.0 if speedMult > 2.0
+        damageMult += speedMult / 4.0
+      end
+      mults[:base_damage_multiplier] *= damageMult
+  }
+)
+
+BattleHandlers::DamageCalcUserAbility.add(:CREEPINGSTRENGTH,
+  proc { |ability, user, target, move, mults, _baseDmg, _type|
+      mults[:base_damage_multiplier] *= 1.3 if user.pbSpeed < target.pbSpeed
+  }
+)
+
+BattleHandlers::DamageCalcUserAbility.add(:SURFSUP,
+  proc { |ability, _user, _target, _move, mults, _baseDmg, type, _aiCheck|
+      mults[:attack_multiplier] *= 1.5 if type == :FIGHTING
   }
 )

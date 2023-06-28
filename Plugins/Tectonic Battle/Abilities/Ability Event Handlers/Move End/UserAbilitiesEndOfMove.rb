@@ -240,6 +240,13 @@ BattleHandlers::UserAbilityEndOfMove.add(:WINDBUFFER,
   }
 )
 
+BattleHandlers::UserAbilityEndOfMove.add(:WINDBUFFER,
+  proc { |ability, user, _targets, move, _battle, _switchedBattlers|
+    next unless move.statusMove?
+    user.pbRaiseMultipleStatSteps(DEFENDING_STATS_1, user, ability: ability)
+  }
+)
+
 BattleHandlers::UserAbilityEndOfMove.add(:DAUNTLESS,
   proc { |ability, user, targets, _move, battle, _switchedBattlers|
       next if battle.pbAllFainted?(user.idxOpposingSide)

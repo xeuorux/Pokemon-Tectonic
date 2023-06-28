@@ -238,7 +238,7 @@ Pokemon = HOOTHOOT,17
 Policies = PRIORITIZEDOTS
 Pokemon = GRIMER,20
     Moves = POISONGAS,SLUDGE,DISABLE,MUDSHOT
-    AbilityIndex = 0 # Corrosion
+    AbilityIndex = 0 # Toxin Tax
 Pokemon = CHARMELEON,20
     Moves = IGNITE,BOREALWIND,FIREFANG,TWISTER
     AbilityIndex = 0 # Flame Body
@@ -263,7 +263,7 @@ Pokemon = SALANDIT,20
     AbilityIndex = 1 # Multiscale
 Pokemon = TENTACOOL,20
     Moves = WATERPULSE,SUPERSONIC,BIND,ACID
-    AbilityIndex = 1 # Trapper
+    AbilityIndex = 1 # Grip Strength
 Pokemon = VULPIX,20
     Moves = FIRESPIN,CONFUSERAY,WILLOWISP,SUBSTITUTE
     AbilityIndex = 0 # Cursed Tail
@@ -483,7 +483,7 @@ Pokemon = GOLBAT,26
     AbilityIndex = 0 # Inner Focus
     Item = AMWIBERRY
 Pokemon = RATICATE,27
-    AbilityIndex = 1 # Strong Jaw
+    AbilityIndex = 1 # Gnawing
 #-------------------------------
 [RANCHER,Billy]
 Pokemon = MILTANK,27
@@ -526,7 +526,7 @@ Pokemon = SHELLOS,15
     Item = SITRUSBERRY
 Pokemon = GULPIN,15
     Moves = POISONGAS,ACID,STOCKPILE,SPITUP
-    AbilityIndex = 1 # Gluttony
+    AbilityIndex = 1 # Corrosion
     Item = AMWIBERRY
 Pokemon = PANSEAR,15
     Moves = SCRATCH,DISARMINGVOICE,RECYCLE,EMBER
@@ -1079,7 +1079,7 @@ Pokemon = BANETTE,28
     AbilityIndex = 1 # Razor's Edge
     Item = SITRUSBERRY
 Pokemon = CHERRIM,29
-    AbilityIndex = 1 # Flower Gift
+    AbilityIndex = 1 # Introvert
 Pokemon = FLOATZEL,27
     AbilityIndex = 1 # Technician
 #-------------------------------
@@ -1137,7 +1137,7 @@ Pokemon = BRAIXEN,28
 #-------------------------------
 [HOOPSTER,Jerel]
 Pokemon = VOLTORB,28
-    AbilityIndex = 1 # Bunker Down
+    AbilityIndex = 1 # Ball Lightning
     Item = SITRUSBERRY
 Pokemon = ABOMASNOW,28
     AbilityIndex = 1 # Frustrate
@@ -1319,7 +1319,7 @@ Pokemon = KIRLIA,25
     AbilityIndex = 0 # Synchronize
 Pokemon = NATU,25
     Moves = HEALPULSE,HELPINGHAND
-    AbilityIndex = 0 # Sentry
+    AbilityIndex = 0 # Cosmic Contact
 Pokemon = DELIBIRD,25
     Moves = TAILWIND,AURORABEAM
     AbilityIndex = 1 # Holiday Cheer
@@ -1352,7 +1352,7 @@ Pokemon = GARDEVOIR,55
     AbilityIndex = 1 # Feedback
 Pokemon = XATU,55
     Moves = REFLECT,HELPINGHAND,LIGHTSCREEN
-    AbilityIndex = 0 # Sentry
+    AbilityIndex = 0 # Cosmic Contact
 Pokemon = DELIBIRD,55
     Moves = TAILWIND,PACKAGE,CHILL
     AbilityIndex = 1 # Holiday Cheer
@@ -1465,7 +1465,7 @@ Pokemon = AEXEGGUTOR,37
 #-------------------------------
 [BIKER2,Chuck]
 Pokemon = MUK,37
-    AbilityIndex = 0 # Corrosion
+    AbilityIndex = 0 # Toxin Tax
 Pokemon = MAGMORTAR,37
     AbilityIndex = 0 # Mega Launcher
     Item = FIREGEM
@@ -1520,7 +1520,7 @@ Pokemon = TROPIUS,38
     AbilityIndex = 0 # Mental Block
     Item = AMWIBERRY
 Pokemon = SWALOT,39
-    AbilityIndex = 1 # Gluttony
+    AbilityIndex = 1 # Corrosion
 #-------------------------------
 [CEO,Beatrice]
 Policies = NO_PERFECT
@@ -2228,7 +2228,7 @@ Pokemon = AMOONGUSS,63
     AbilityIndex = 0 # Regenerator
     Item = ROCKYHELMET
 Pokemon = OMASTAR,63
-    AbilityIndex = 1 # Hubris
+    AbilityIndex = 1 # Introvert
 Pokemon = DRAPION,64
     AbilityIndex = 1 # Merciless
     Item = REDCARD
@@ -2345,7 +2345,7 @@ Pokemon = GLIGAR,27
 [ROUGHNECK2,Robert]
 Policies = NO_PERFECT
 Pokemon = GRIMER,28
-    AbilityIndex = 0 # Corrosion
+    AbilityIndex = 0 # Toxin Tax
 Pokemon = DOTTLER,30
     AbilityIndex = 1 # Total Grasp
 Pokemon = KIRLIA,29
@@ -3381,7 +3381,7 @@ Pokemon = ZOROARK,58
 #-------------------------------
 [TUBER_F2,Hana]
 Pokemon = RATICATE,57
-    AbilityIndex = 1 # Strong Jaw
+    AbilityIndex = 0 # Filthy
     Item = NORMALGEM
 Pokemon = CONKELDURR,58
     AbilityIndex = 1 # Quick Build
@@ -5485,7 +5485,7 @@ Pokemon = HARIYAMA,59
 Pokemon = GRIMMSNARL,59
     AbilityIndex = 1 # Ruinous
 Pokemon = TENTACRUEL,59
-    AbilityIndex = 1 # Trapper
+    AbilityIndex = 1 # Grip Strength
 Pokemon = CACTURNE,59
     AbilityIndex = 1 # Schadenfreude
 Pokemon = ALAKAZAM,59

@@ -143,3 +143,4 @@
 4142,LUNARJUSTICE,Lunar Justice,546,85,FAIRY,Physical,100,10,0,NearOther,0,abef,"The user attacks with the power of the moon, guaranteeing a critical hit on foes with boosted stats.",BEHEMOTHBLADE
 4143,CAMARADERIE,Camaraderie,555,0,PSYCHIC,Status,0,30,0,User,0,d,"The user calms itself and its teammates, raising the Sp. Def of itself and its allies by three steps.",
 4144,TWINEEDLE,Twineedle,0BE,25,BUG,Physical,100,15,20,NearOther,0,bef,"The foe is stabbed twice by a pair of stingers. Each stinger has a 20% chance to poison.",
+4145,WAXINGWATER,Waxing Water,100,50,WATER,Special,0,10,0,NearFoe,0,bef,"Strikes the target with lunar tides, then summons rain for five turns.",SURF
