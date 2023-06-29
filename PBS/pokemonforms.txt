@@ -1472,6 +1472,8 @@ BattlerEnemyY = 30
 FormName = Ascended
 BaseStats = 110,100,165,80,210,165
 BattlerPlayerY = 12
+BattlerEnemyX = 13
+BattlerEnemyY = 15
 #-------------------------------
 [GARCHOMP,1]
 FormName = Reaper

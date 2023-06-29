@@ -31668,8 +31668,8 @@ Kind = Axe
 Pokedex = A violent creature that fells towering trees with its crude axes and shields itself with hard stone.
 BattlerPlayerX = 0
 BattlerPlayerY = 11
-BattlerEnemyX = 0
-BattlerEnemyY = 5
+BattlerEnemyX = -7
+BattlerEnemyY = 16
 BattlerShadowX = 0
 BattlerShadowSize = 2
 #-------------------------------
