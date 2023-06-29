@@ -104,3 +104,4 @@
 3103,BURROWER,Burrower,"Dig and Undermine hit instantly."
 3104,TOXICATTITUDE,Toxic Attitude,"Powers up Poison-type moves of itself and its allies by 50%."
 3105,LIVEWIRE,Live Wire,"Special attacks against the Pokémon has a 30% chance to cause numbing."
+3106,STEAMENGINE,Steam Engine,"Maximizes Speed when hit by a Fire- or Water-type move."

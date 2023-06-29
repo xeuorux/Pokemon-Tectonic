@@ -444,3 +444,8 @@
 1443,GLEEFULGRASP,Gleeful Grasp,048,80,DARK,Physical,100,10,0,NearOther,0,abef,"The user indulges its love of battle by striking a foe. Both of the user's attacking stats are raised.",
 1444,PLAYBITE,Play Bite,013,60,FAIRY,Physical,100,15,100,NearOther,0,abefi,"The user bites with playful abandon. This deals double damage on the user's first turn out.",CRUNCH
 1445,MOUNTSJUDGEMENT,Mount's Judgement,10E,0,FIRE,Status,100,12,0,NearOther,0,bce,"The user burns the target if they're a foe, or raises the target's Speed by 4 steps if their an ally.",EMBER
+1446,JOUST,Joust,53D,130,STEEL,Physical,50,12,0,NearOther,0,abef,"The user charges at the target to strike it squarely. If it misses, the user's Accuracy and Speed is raised.",SMARTSTRIKE
+1447,SEASONSEND,Season's End,590,95,NORMAL,Physical,100,20,0,NearOther,0,abef,"The user strikes while inviting the power of seasons. The user changes form to the next season.",BODYSLAM
+1448,SCALESCATTER,Scale Scatter,06F,70,BUG,Special,100,15,0,NearOther,0,bef,"The target is plastered with irritating scales, damaging it and changing its type to Bug.",POWDER
+1449,THORNRATTLE,Thorn Rattle,5CC,75,GRASS,Special,100,10,0,NearOther,-1,bef,"The user makes a scary sound by shaking, forcing the target to switch out.",UPROAR
+1450,CROSSEXAMINE,Cross Examine,598,0,NORMAL,Status,0,15,0,User,0,,"The user chooses between the three most recent moves used by any foe, and uses that move.",AMNESIA

@@ -1006,9 +1006,18 @@ class PokeBattle_Move_53C < PokeBattle_Move
 end
 
 #===============================================================================
-# (Not currently used)
+# If the move misses, the user gains Accuracy and Speed. (Jouse)
 #===============================================================================
 class PokeBattle_Move_53D < PokeBattle_Move
+    # This method is called if a move fails to hit all of its targets
+    def pbCrashDamage(user)
+        return unless user.pbRaiseMultipleStatSteps([:ACCURACY, 1, :SPEED, 1], user, move: self)
+        @battle.pbDisplay(_INTL("{1} circles back around for a retry!", user.pbThis))
+    end
+
+    def getEffectScore(user, _target)
+        return getMultiStatUpEffectScore([:ACCURACY, 1, :SPEED, 1], user, user) * 0.5
+    end
 end
 
 #===============================================================================

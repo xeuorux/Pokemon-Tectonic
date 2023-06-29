@@ -168,17 +168,17 @@ BattleHandlers::TargetAbilityOnHit.add(:WEAKSPIRIT,
     }
 )
 
-BattleHandlers::TargetAbilityOnHit.add(:STEAMENGINE,
+BattleHandlers::TargetAbilityOnHit.add(:STEAMPOWER,
     proc { |ability, user, target, move, _battle, aiChecking, aiNumHits|
-        next if move.calcType != :FIRE && move.calcType != :WATER
+        next unless move.calcType == :WATER
         if aiChecking
             ret = 0
             aiNumHits.times do |i|
-                ret -= getMultiStatUpEffectScore([:SPEED,12], user, target, i*6)
+                ret -= getMultiStatUpEffectScore([:SPEED,4], user, target, i*4)
             end
             next ret
         end
-        target.pbMaximizeStatStep(:SPEED, target, target, ability: ability)
+        target.tryRaiseStat(:SPEED, target, increment: 4, ability: ability)
     }
 )
 
@@ -625,3 +625,6 @@ BattleHandlers::TargetAbilityOnHit.add(:MULTISCALE,
         end
     }
 )
+
+# Only does stuff for the AI
+BattleHandlers::TargetAbilityOnHit.copy(:MULTISCALE,:ALOOF)

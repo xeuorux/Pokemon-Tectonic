@@ -461,23 +461,20 @@ class PokeBattle_AI_Wailord < PokeBattle_AI_Boss
 end
 
 class PokeBattle_AI_Sawsbuck < PokeBattle_AI_Boss
-    FORM_0_MOVESET = %i[HEADBUTT PLAYROUGH]
-    FORM_1_MOVESET = %i[HEADBUTT HORNDRAIN]
-    FORM_2_MOVESET = %i[HEADBUTT TRAMPLE]
-    FORM_3_MOVESET = %i[HEADBUTT CRYSTALCRUSH]
+    FORM_0_MOVESET = %i[PLAYROUGH SEASONSEND]
+    FORM_1_MOVESET = %i[HORNDRAIN SEASONSEND]
+    FORM_2_MOVESET = %i[TRAMPLE SEASONSEND]
+    FORM_3_MOVESET = %i[CRYSTALCRUSH SEASONSEND]
     MOVESETS = [FORM_0_MOVESET,FORM_1_MOVESET,FORM_2_MOVESET,FORM_3_MOVESET]
 
     def initialize(user, battle)
         super
+        secondMoveEveryOtherTurn(:SEASONSEND)
         @beginTurn.push(proc { |user, _battle, turnCount|
-            if turnCount != 0 && turnCount % 2 == 1
-                newForm = (user.form + 1) % 4
-                formChangeMessage = _INTL("The season shifts!")
-                user.pbChangeForm(newForm, formChangeMessage)
-                newMoveset = MOVESETS[newForm].clone
-                newMoveset.push(:PRIMEVALGROWL) if user.avatarPhase == 1
-                user.assignMoveset(newMoveset)
-            end
+            # Make sure it has the right moveset for its form
+            newMoveset = MOVESETS[user.form].clone
+            newMoveset.push(:PRIMEVALGROWL) if user.avatarPhase == 1
+            user.assignMoveset(newMoveset)
         })
     end
 end

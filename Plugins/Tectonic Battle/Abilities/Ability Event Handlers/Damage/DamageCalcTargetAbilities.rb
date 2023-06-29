@@ -30,6 +30,8 @@ BattleHandlers::DamageCalcTargetAbility.add(:MULTISCALE,
   }
 )
 
+BattleHandlers::DamageCalcTargetAbility.copy(:MULTISCALE,:ALOOF)
+
 BattleHandlers::DamageCalcTargetAbility.add(:THICKFAT,
   proc { |ability, _user, _target, _move, mults, _baseDmg, type|
       mults[:base_damage_multiplier] /= 2 if %i[FIRE ICE].include?(type)
@@ -243,5 +245,17 @@ BattleHandlers::DamageCalcTargetAbility.add(:INTROVERT,
 BattleHandlers::DamageCalcTargetAbility.add(:QUARRELSOME,
   proc { |ability, user, target, _move, mults, _baseDmg, _type|
       mults[:final_damage_multiplier] *= 2 if target.firstTurn?
+  }
+)
+
+BattleHandlers::DamageCalcTargetAbility.add(:RUSTYANCHOR,
+  proc { |ability, user, target, _move, mults, _baseDmg, _type|
+      mults[:final_damage_multiplier] *= 1.15
+  }
+)
+
+BattleHandlers::DamageCalcTargetAbility.add(:RUSTYANCHOR,
+  proc { |ability, user, target, _move, mults, _baseDmg, type|
+      mults[:final_damage_multiplier] /= 2.0 if type == :WATER
   }
 )

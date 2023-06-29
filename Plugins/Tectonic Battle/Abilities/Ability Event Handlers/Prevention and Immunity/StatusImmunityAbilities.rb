@@ -101,3 +101,9 @@ BattleHandlers::StatusImmunityAbility.add(:WELLSUPPLIED,
       next true if %i[BURN FROSTBITE].include?(status)
   }
 )
+
+BattleHandlers::StatusImmunityAbility.add(:ALOOF,
+  proc { |ability, _battler, status|
+      next true if status == :DIZZY
+  }
+)

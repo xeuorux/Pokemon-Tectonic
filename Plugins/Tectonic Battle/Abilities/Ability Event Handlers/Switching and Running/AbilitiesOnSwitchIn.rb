@@ -853,3 +853,11 @@ BattleHandlers::AbilityOnSwitchIn.add(:INFECTED,
       battle.pbHideAbilitySplash(battler)
   }
 )
+
+BattleHandlers::AbilityOnSwitchIn.add(:RUSTYANCHOR,
+  proc { |ability, battler, battle|
+      battle.pbShowAbilitySplash(battler, ability)
+      battler.applyEffect(:Type3,:STEEL)
+      battle.pbHideAbilitySplash(battler)
+  }
+)
