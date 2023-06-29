@@ -5491,6 +5491,32 @@ Pokemon = CACTURNE,59
 Pokemon = ALAKAZAM,59
     AbilityIndex = 1 # Steelworker
 #-------------------------------
+[DITTO_PROTRAINER,Xandevon]
+Pokemon = GOLEM,60
+    Moves = IGNITE,EARTHQUAKE,BEDROCKBREAKER,STEALTHROCK
+    AbilityIndex = 0 # Unbreakable
+    Item = FOCUSSASH
+Pokemon = HZOROARK,60
+    Moves = RUIN,LIGHTSCREEN,REFLECT,RECOVER
+    AbilityIndex = 0 # Illusion
+    Item = LIGHTCLAY
+Pokemon = ZOROARK,60
+    Moves = BLACKOUT,PSYCHIC,SNARL,UTURN
+    AbilityIndex = 0 # Illusion
+    Item = CHOICESCARF
+Pokemon = CHATOT,60
+    Moves = CHATTER,SHOUT,BUGBUZZ,HYPERVOICE
+    AbilityIndex = 1 # Fascinate
+    Item = THROATSPRAY
+Pokemon = MELMETAL,60
+    Moves = DOUBLEIRONBASH,NUMB,SUPERPOWER,THUNDERPUNCH
+    AbilityIndex = 0 # Iron Fist
+    Item = PROXYFIST
+Pokemon = GRIMMSNARL,60
+    Moves = SUCKERPUNCH,PLAYROUGH,POWERWHIP,DRAINPUNCH
+    AbilityIndex = 1 # Ruinous
+    Item = ASSAULTVEST
+#-------------------------------
 [CAMPER_M,Nick]
 Pokemon = ARATICATE,57
     AbilityIndex = 1 # Gourmand

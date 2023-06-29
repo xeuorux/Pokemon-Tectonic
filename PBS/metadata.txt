@@ -156,12 +156,12 @@ Bicycle = false
 BattleBack = indoor1
 #-------------------------------
 [020]
-# Alloyed Thicket - Expanse
+# Alloyed Thicket
 Outdoor = false
 ShowArea = true
 Bicycle = true
 MapPosition = 0,13,10
-BattleBack = forest
+BattleBack = cave1
 Environment = Forest
 #-------------------------------
 [021]
@@ -1886,7 +1886,7 @@ ShowArea = true
 Bicycle = true
 #-------------------------------
 [359]
-# Alloyed Thicket
+# Alloyed Thicket Split Maps
 Outdoor = false
 ShowArea = true
 Bicycle = true
@@ -2111,3 +2111,10 @@ Outdoor = false
 ShowArea = false
 Bicycle = true
 MapPosition = 0,18,3
+#-------------------------------
+[412]
+# Metal Den
+Outdoor = false
+ShowArea = true
+Bicycle = true
+BattleBack = cave1
