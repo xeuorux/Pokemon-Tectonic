@@ -221,7 +221,6 @@ class PokeBattle_Battler
 
     def aiKnowsAbility?(checkAbility)
         return true unless pbOwnedByPlayer?
-        return false if effectActive?(:Illusion)
         return true if @addedAbilities.include?(checkAbility)
         return @battle.aiKnowsAbility?(@pokemon,checkAbility)
     end
@@ -254,7 +253,8 @@ class PokeBattle_Battler
 
     def pbHasTypeAI?(type)
         return false unless type
-        activeTypes = pbTypes(true, true)
+        allowIllusion = !aiKnowsAbility?(:ILLUSION)
+        activeTypes = pbTypes(true, allowIllusion)
         return activeTypes.include?(GameData::Type.get(type).id)
     end
 

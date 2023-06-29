@@ -434,6 +434,9 @@ animationName, show_message) do
         elsif targetInherentlyImmune?(user, target, move, show_message, ai_check)
             return false
         elsif targetTypeModImmune?(user, target, move, typeMod, show_message)
+            if !ai_check && target.effectActive?(:Illusion)
+                target.aiLearnsAbility(:ILLUSION)
+            end
             return false
         end
 

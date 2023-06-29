@@ -1,5 +1,10 @@
 ﻿# See the documentation on the wiki to learn how to edit this file.
 #-------------------------------
+[BATTLEGIRL,RandomTest]
+Pokemon = PALMANTRA,70
+    Moves = PSYCHIC,AURASPHERE
+    AbilityIndex = 0 # Balance of Power
+#-------------------------------
 [BATTLEGIRL,Tester]
 Pokemon = SLAKING,70
     Moves = TACKLE
