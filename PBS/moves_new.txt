@@ -80,7 +80,7 @@
 1079,AURASTRIKE,Aura Strike,007,60,FIGHTING,Special,100,15,30,NearOther,0,bef,"The user shoots a blast of aura. This has a 30% chance to numb the target.",
 1080,COURAGEBOLT,Courage Bolt,5DC,40,FIGHTING,Special,100,30,10,NearOther,0,bef,"The user manifests a bolt of pure courage. This has a 10% chance of raising the user's Sp. Atk.",AURASPHERE
 1081,PSYCHICOVERLOAD,Psychic Overload,55F,120,PSYCHIC,Special,100,10,0,RandomNearFoe,0,abef,"The user overloads its mind to attack for three turns.",PSYCHOBOOST
-1082,PSYPIERCE,Psypierce,046,70,PSYCHIC,Special,100,15,50,NearOther,0,bef,"The user manifests a piercing bolt of psychic energy. It has a 50% chance to lower Sp. Def.",PSYSHOCK
+1082,PSYPIERCE,Psypierce,5EF,70,PSYCHIC,Special,100,15,50,NearOther,0,bef,"The user manifests a piercing bolt of psychic energy. It has a 50% chance to lower Sp. Def.",PSYSHOCK
 1083,LIGHTSHOW,Light Show,401,40,BUG,Special,100,25,10,NearOther,0,bef,"The user attacks with small beams of light. It has a 10% chance to dizzy.",SIGNALBEAM
 1084,SIGNALOVERLOAD,Signal Overload,401,110,BUG,Special,70,12,30,NearOther,0,bef,"The target is overwhelmed by light and sound. This has a 30% chance to dizzy it.",SIGNALBEAM
 1085,PETRIFY,Petrify,007,70,ROCK,Special,100,12,50,NearOther,0,bef,"The user turns the target into stone. This has a 50% chance to numb it.",
@@ -163,7 +163,7 @@
 1162,ROLLINGBOULDER,Rolling Boulder,53F,140,ROCK,Physical,50,10,0,NearOther,-1,bef,"If this move misses, the target is forced to switch out. Always goes last.",SMACKDOWN
 1163,MINDWARP,Mind Warp,401,80,PSYCHIC,Special,100,12,20,NearOther,0,bef,"The target's psyche is attacked directly. It has a 20% chance to dizzy.",PSYCHIC
 1164,AIRDART,Air Dart,00F,60,FLYING,Special,100,12,30,NearOther,0,beq,"The user strikes the target with a sudden wind. It has a 40% chance to flinch the target.",
-1165,MIASMA,Miasma,046,90,POISON,Special,100,15,10,NearOther,0,befq,"The user envelops the target in a foul wind. It has a 10% chance to lower Sp. Def.",ACIDSPRAY
+1165,MIASMA,Miasma,5EF,90,POISON,Special,100,15,20,NearOther,0,befq,"The user envelops the target in a foul wind. It has a 20% chance to lower Sp. Def.",ACIDSPRAY
 1166,VENOMORTAR,Venomortar,005,100,POISON,Physical,50,5,100,NearOther,0,bef,"The user blasts a bundle of venom at the target, poisoning it.",
 1167,AURATRICK,Aura Trick,540,80,FAIRY,Special,100,10,0,NearOther,0,bef,"The user attacks with its aura, dealing damage based on the user's Sp. Def stat.",FAIRYWIND
 1168,ADRENALASH,Adrenalash,5DC,90,FIGHTING,Special,100,12,20,NearOther,0,bef,"The user forms their excitement into a lash with a 10% chance of raising the user's Sp. Atk.",FOCUSBLAST
@@ -300,7 +300,7 @@
 1299,INVOKEHAIL,Invoke Hail,59C,0,ICE,Status,0,10,0,NearOther,0,bce,"The user frostbites the target, then summons hail for four turns.",HAIL
 1300,HATEFULHAYMAKER,Hateful Haymaker,081,65,DARK,Physical,100,10,0,NearOther,-4,abefj,"A punch that inflicts double the damage if the user has been hurt by the foe in the same turn.",SUCKERPUNCH
 1301,DEFIBRILLATE,Defibrillate,59E,0,ELECTRIC,Status,0,1,0,None,0,,"Restores a fainted party member to 1 HP.",ELECTRICTERRAIN
-1302,ABERRANTMOTE,Aberrant Mote,046,85,PSYCHIC,Special,100,12,100,NearOther,0,bef,"The user fires a dimensional mote, lowering the target's Sp. Defense.",LUSTERPURGE
+1302,ABERRANTMOTE,Aberrant Mote,5EF,85,PSYCHIC,Special,100,12,100,NearOther,0,bef,"The user fires a dimensional mote, lowering the target's Sp. Defense.",LUSTERPURGE
 1303,SINGINGSTONE,Singing Stone,59F,85,ROCK,Special,100,12,100,NearOther,0,befk,"The user thrums ominously, lowering the target's Attack and Sp. Atk.",ECHOEDVOICE
 1304,DRAININGCHILL,Draining Chill,0DD,80,ICE,Special,100,10,0,NearOther,0,bef,"A draining blast of ice. The user's HP is restored by half the damage taken by the target.",
 1305,SNOWSTORM,Snowstorm,102,50,ICE,Special,100,10,0,NearFoe,0,bef,"Hits the target with a frigid blast, then summons hail for eight turns.",HAIL
@@ -391,7 +391,7 @@
 1390,DRAGONSROAR,Dragons Roar,5CC,75,DRAGON,Special,100,10,0,NearOther,-1,bef,"The user roars with explosive ferocity, forcing the target to switch out.",ROAR
 1391,CHECKMATE,Checkmate,5CD,80,DARK,Physical,100,10,0,NearOther,0,abef,"If the target is the last able member of their party, this attack's power is doubled.",NIGHTSLASH
 1392,WEATHERBURST,Weather Burst,087,100,NORMAL,Physical,100,10,0,NearOther,0,bef,"Type based on weather. Inflicts physical or special damage based on the user's stats.",WEATHERBALL
-1393,SHINESHOT,Shine Shot,046,60,STEEL,Special,100,10,30,NearOther,0,bef,"The user looses a flash of energy from its polished body. It has a 30% chance to lower Sp. Def.",MIRRORSHOT
+1393,SHINESHOT,Shine Shot,5EF,60,STEEL,Special,100,10,30,NearOther,0,bef,"The user looses a flash of energy from its polished body. It has a 30% chance to lower Sp. Def.",MIRRORSHOT
 1394,TUTELAGE,Tutelage,5CE,0,PSYCHIC,Status,0,10,0,NearAlly,0,,"The user imparts knowledge on its ally Pokémon, raising their Sp. Atk and Sp. Def stats by two steps.",COACHING
 1395,POWERNAP,Power Nap,0F9,0,DARK,Status,0,5,0,User,0,d,"The user restores 1/2 of its HP, or 2/3rds in moonglow.",REST
 1396,GEMSEAL,Gem Seal,5CF,0,GHOST,Status,100,15,0,NearOther,0,bce,"Disables the targets last used move for four turns, and cuts 4 PP from it.",DISABLE
