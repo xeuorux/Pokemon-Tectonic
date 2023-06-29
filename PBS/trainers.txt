@@ -1921,7 +1921,7 @@ Pokemon = SUDOWOODO,40
     AbilityIndex = 1 # Prankster
 Pokemon = PTEROFLYTE,40
     Moves = HARDPLACE,GRANITEHEAD,BRAVEBIRD,CRUNCH
-    AbilityIndex = 1 # Crag Terror
+    AbilityIndex = 0 # Armor Piercing
     Item = SITRUSBERRY
 #-------------------------------
 [LEADER_Zoe_2,Zoé]
@@ -5436,8 +5436,10 @@ Pokemon = CASTFORM,58
     AbilityIndex = 1 # Forecast
 Pokemon = POLTEAGEIST,60
     AbilityIndex = 1 # Burn Skill
+    Item = WHITEHERB
 Pokemon = SEAKING,59
     AbilityIndex = 1 # Volt Absorb
+    Item = LUMBERRY
 Pokemon = PRIMEAPE,58
     AbilityIndex = 0 # Defiant
 #-------------------------------
@@ -5446,18 +5448,22 @@ Pokemon = MISMAGIUS,58
     AbilityIndex = 1 # Shrieking
 Pokemon = BRELOOM,60
     AbilityIndex = 0 # Technician
+    Item = GRASSGEM
 Pokemon = COALOSSAL,59
     AbilityIndex = 1 # Fuel Hungry
 Pokemon = WALREIN,58
     AbilityIndex = 0 # Full Blubber
+    Item = MENTALHERB
 #-------------------------------
 [DITTO_HIKER,Kevinick]
 Pokemon = GOLEM,59
     AbilityIndex = 0 # Unbreakable
+    Item = PASSHOBERRY
 Pokemon = RUBARIOR,59
     AbilityIndex = 0 # Magic Bounce
 Pokemon = LINOONE,59
     AbilityIndex = 0 # Dire Diversion
+    Item = LIECHIBERRY
 Pokemon = MILOTIC,59
     AbilityIndex = 1 # Competitive
 #-------------------------------
@@ -5466,28 +5472,34 @@ Pokemon = LURANTIS,59
     AbilityIndex = 0 # Contrary
 Pokemon = TOUCANNON,59
     AbilityIndex = 1 # Skill Link
+    Item = FLYINGGEM
 Pokemon = DRAGALGE,59
     AbilityIndex = 0 # Deterrent
 Pokemon = WAILORD,59
     AbilityIndex = 0 # Pressure
+    Item = LEFTOVERS
 #-------------------------------
 [DITTO_CAMPER,Johnate]
 Pokemon = GRENINJA,59
     AbilityIndex = 0 # Protean
 Pokemon = SPINDA,59
     AbilityIndex = 0 # Disorienting
+    Item = SITRUSBERRY
 Pokemon = TREVENANT,59
     AbilityIndex = 1 # Break Through
 Pokemon = HARIYAMA,59
     AbilityIndex = 1 # Fighting Vigor
+    Item = LUMBERRY
 #-------------------------------
 [DITTO_RANGER,Hannamy]
 Pokemon = GRIMMSNARL,59
     AbilityIndex = 1 # Ruinous
 Pokemon = TENTACRUEL,59
     AbilityIndex = 1 # Grip Strength
+    Item = BINDINGBAND
 Pokemon = CACTURNE,59
     AbilityIndex = 1 # Schadenfreude
+    Item = LIFEORB
 Pokemon = ALAKAZAM,59
     AbilityIndex = 1 # Steelworker
 #-------------------------------
