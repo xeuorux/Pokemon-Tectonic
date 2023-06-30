@@ -349,6 +349,12 @@ class PokemonDataBox < SpriteWrapper
 		  imagePos.push([shinyIconFileName,@spriteBaseX+shinyX,36])
 		end
 
+		# Draw trapped icon
+		if @battler.trapped?
+			trappedX = (@battler.opposes?(0)) ? 212 : -8   # Foe's/player's
+			imagePos.push(["Graphics/Pictures/battle/icon_trapped",@spriteBaseX+trappedX,36])
+		end
+
 		# Draw held item icon
 		itemIndex = 0
 		@battler.eachItem do |itemID|
