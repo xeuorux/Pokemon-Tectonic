@@ -152,7 +152,7 @@
 151,PRISMATICPLATE,Prismatic Plate,Prismatic Plates,5,0,"A tablet that boosts same-type attacks by 20%. If held by Arceus, you can change its type between battles.",0,0,0
 152,WILDCARD,Wild Card,Wild Cards,5,10000,"An item to be held by a Pokémon. It counts as a member of every tribe.",0,0,0
 153,PROXYFIST,Proxy Fist,Proxy Fists,5,3000,"A held item. The holder doesn't trigger items, abilities, or effects of targets it hits.",0,0,0
-154,COVERTCLOAK,Covert Cloak,Covert Cloaks,5,3000,"A held item. The holder is protected from the additional effects of enemy attacks.",0,0,0
+154,COVERTCLOAK,Covert Cloak,Covert Cloaks,5,3000,"A held item. The holder is protected from the random added effects of enemy attacks.",0,0,0
 155,SOULDEW,Soul Dew,Soul Dews,5,0,"A wondrous orb to be held by either Latios or Latias. It raises the power of Psychic- and Dragon-type moves.",0,0,0
 156,ADAMANTORB,Adamant Orb,Adamant Orbs,5,10000,"A brightly gleaming orb to be held by Dialga. It boosts the power of Dragon- and Steel-type moves.",0,0,0
 157,LUSTROUSORB,Lustrous Orb,Lustrous Orbs,5,10000,"A beautifully glowing orb to be held by Palkia. It boosts the power of Dragon- and Water-type moves.",0,0,0
