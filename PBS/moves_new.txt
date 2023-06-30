@@ -449,3 +449,6 @@
 1448,THORNRATTLE,Thorn Rattle,5CC,75,GRASS,Special,100,10,0,NearOther,-1,bef,"The user makes a scary sound by shaking, forcing the target to switch out.",UPROAR
 1449,CROSSEXAMINE,Cross Examine,598,0,NORMAL,Status,0,15,0,User,0,,"The user chooses between the three most recent moves used by any foe, and uses that move.",AMNESIA
 1450,GENEBOOST,Gene Boost,089,0,PSYCHIC,Status,0,5,0,User,0,,"The user psychically modifies its own genes, transforming into either Mega Muscle form or Mega Mind form.",TRANSFORM
+1450,AURORAFLASH,Aurora Flash,5E6,80,ICE,Special,100,5,100,NearOther,1,bef,"An aurora borealis flashes brightly at the target, lowering their Attack. Always goes first.",
+1450,CRACKLINGCLOUD,Crackling Cloud,51C,80,ELECTRIC,Special,100,5,100,NearOther,1,be,"An electrified cloud zaps the target, lowering their Speed. This has a 50% chance to flinch.",
+1450,FLARELANCE,Flare Lance,5EC,80,FIRE,Special,100,5,100,NearOther,0,befr,"A lance of fire pierces the target from above, lowering their Sp. Atk. Critical hits four times as often.",

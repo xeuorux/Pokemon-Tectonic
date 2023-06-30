@@ -420,9 +420,34 @@ class PokeBattle_Move_51B < PokeBattle_Move
 end
 
 #===============================================================================
-# (Not currently used)
+# Lowers the target's Speed. 50% flinch chance. (Crackling Cloud)
 #===============================================================================
 class PokeBattle_Move_51C < PokeBattle_Move
+    def flinchingMove?; return true; end
+
+    def pbAdditionalEffect(user, target)
+        return if target.damageState.substitute
+
+        target.tryLowerStat(:SPEED, user, move: self, increment: 1)
+
+        # Flinching aspect
+        chance = pbAdditionalEffectChance(user, target, @calcType, 50)
+        if @battle.pbRandom(100) < chance && canApplyRandomAddedEffects?(user,target,true)
+            target.pbFlinch
+        end
+    end
+
+    def getTargetAffectingEffectScore(user, target)
+        score = getMultiStatDownEffectScore([:SPEED, 1], user, target)
+
+        # Flinching aspect
+        chance = pbAdditionalEffectChance(user, target, @calcType, 50)
+        if @battle.pbRandom(100) < chance && canApplyRandomAddedEffects?(user,target,true)
+            baseScore = baseDamage * 10 / user.level
+            score += getFlinchingEffectScore(baseScore, user, target, self)
+        end
+        return score
+    end
 end
 
 #===============================================================================
