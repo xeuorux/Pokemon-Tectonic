@@ -114,7 +114,7 @@ class PokemonPokedexInfo_Scene
         @species = @dexlist[@index][0]
         @gender, @form = $Trainer.pokedex.last_form_seen(@species)
         species_data = GameData::Species.get_species_form(@species, @form)
-        @title = species_data.real_form_name ? "#{species_data.real_name} (#{species_data.real_form_name})" : species_data.real_name
+        @title = species_data.form_name ? "#{species_data.real_name} (#{species_data.form_name})" : species_data.real_name
         @sprites["infosprite"].setSpeciesBitmap(@species, @gender, @form)
         forceShiny = debugControl
         @sprites["formfront"].setSpeciesBitmap(@species, @gender, @form, forceShiny) if @sprites["formfront"]

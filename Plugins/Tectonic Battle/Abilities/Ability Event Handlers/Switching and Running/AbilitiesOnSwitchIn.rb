@@ -781,6 +781,23 @@ BattleHandlers::AbilityOnSwitchIn.add(:WHIRLER,
   }
 )
 
+BattleHandlers::AbilityOnSwitchIn.add(:PITTING,
+  proc { |ability, battler, battle|
+      trappingDuration = 2
+      trappingDuration *= 2 if battler.hasActiveItem?(:GRIPCLAW)
+
+      battle.pbShowAbilitySplash(battler, ability)
+      battler.eachOpposing do |b|
+        next if b.effectActive?(:Trapping)
+        b.applyEffect(:Trapping, trappingDuration)
+        b.applyEffect(:TrappingMove, :SANDTOMB)
+        b.pointAt(:TrappingUser, battler)
+        battle.pbDisplay(_INTL("{1} became trapped in the sand!", b.pbThis))
+      end
+      battle.pbHideAbilitySplash(battler)
+  }
+)
+
 BattleHandlers::AbilityOnSwitchIn.add(:SUSTAINABLE,
   proc { |ability, battler, battle|
     next unless battler.recyclableItem
@@ -850,6 +867,14 @@ BattleHandlers::AbilityOnSwitchIn.add(:INFECTED,
   proc { |ability, battler, battle|
       battle.pbShowAbilitySplash(battler, ability)
       battler.applyEffect(:Type3,:GRASS)
+      battle.pbHideAbilitySplash(battler)
+  }
+)
+
+BattleHandlers::AbilityOnSwitchIn.add(:RUSTYANCHOR,
+  proc { |ability, battler, battle|
+      battle.pbShowAbilitySplash(battler, ability)
+      battler.applyEffect(:Type3,:STEEL)
       battle.pbHideAbilitySplash(battler)
   }
 )

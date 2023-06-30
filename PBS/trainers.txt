@@ -1,5 +1,10 @@
 ﻿# See the documentation on the wiki to learn how to edit this file.
 #-------------------------------
+[BATTLEGIRL,RandomTest]
+Pokemon = PALMANTRA,70
+    Moves = PSYCHIC,AURASPHERE
+    AbilityIndex = 0 # Balance of Power
+#-------------------------------
 [BATTLEGIRL,Tester]
 Pokemon = SLAKING,70
     Moves = TACKLE
@@ -260,7 +265,7 @@ Pokemon = SLUGMA,20
 Policies = PRIORITIZEDOTS,EKO
 Pokemon = SALANDIT,20
     Moves = POISONGAS,STINKCLOUD,EMBER,IGNITE
-    AbilityIndex = 1 # Multiscale
+    AbilityIndex = 1 # Aloof
 Pokemon = TENTACOOL,20
     Moves = WATERPULSE,SUPERSONIC,BIND,ACID
     AbilityIndex = 1 # Grip Strength
@@ -1417,7 +1422,7 @@ Pokemon = PYUKUMUKU,40
 Pokemon = ARIADOS,40
     AbilityIndex = 0 # Fascinate
 Pokemon = DIGGERSBY,40
-    AbilityIndex = 0 # Power Up
+    AbilityIndex = 0 # Digging Fist
     Item = CHOICEBAND
 Pokemon = DEWGONG,40
     AbilityIndex = 0 # Bitter
@@ -1921,7 +1926,7 @@ Pokemon = SUDOWOODO,40
     AbilityIndex = 1 # Prankster
 Pokemon = PTEROFLYTE,40
     Moves = HARDPLACE,GRANITEHEAD,BRAVEBIRD,CRUNCH
-    AbilityIndex = 1 # Crag Terror
+    AbilityIndex = 0 # Armor Piercing
     Item = SITRUSBERRY
 #-------------------------------
 [LEADER_Zoe_2,Zoé]
@@ -5379,7 +5384,7 @@ Pokemon = ZEBSTRIKA,56
 Pokemon = HZOROARK,57
     AbilityIndex = 1 # Mental Block
 Pokemon = SALAZZLE,58
-    AbilityIndex = 1 # Multiscale
+    AbilityIndex = 1 # Aloof
 #-------------------------------
 [CAMERAMAN2,Octavio]
 Pokemon = SKARMORY,57
@@ -5436,8 +5441,10 @@ Pokemon = CASTFORM,58
     AbilityIndex = 1 # Forecast
 Pokemon = POLTEAGEIST,60
     AbilityIndex = 1 # Burn Skill
+    Item = WHITEHERB
 Pokemon = SEAKING,59
     AbilityIndex = 1 # Volt Absorb
+    Item = LUMBERRY
 Pokemon = PRIMEAPE,58
     AbilityIndex = 0 # Defiant
 #-------------------------------
@@ -5446,18 +5453,22 @@ Pokemon = MISMAGIUS,58
     AbilityIndex = 1 # Shrieking
 Pokemon = BRELOOM,60
     AbilityIndex = 0 # Technician
+    Item = GRASSGEM
 Pokemon = COALOSSAL,59
     AbilityIndex = 1 # Fuel Hungry
 Pokemon = WALREIN,58
     AbilityIndex = 0 # Full Blubber
+    Item = MENTALHERB
 #-------------------------------
 [DITTO_HIKER,Kevinick]
 Pokemon = GOLEM,59
     AbilityIndex = 0 # Unbreakable
+    Item = PASSHOBERRY
 Pokemon = RUBARIOR,59
     AbilityIndex = 0 # Magic Bounce
 Pokemon = LINOONE,59
     AbilityIndex = 0 # Dire Diversion
+    Item = LIECHIBERRY
 Pokemon = MILOTIC,59
     AbilityIndex = 1 # Competitive
 #-------------------------------
@@ -5466,30 +5477,62 @@ Pokemon = LURANTIS,59
     AbilityIndex = 0 # Contrary
 Pokemon = TOUCANNON,59
     AbilityIndex = 1 # Skill Link
+    Item = FLYINGGEM
 Pokemon = DRAGALGE,59
-    AbilityIndex = 0 # Expertise
+    AbilityIndex = 0 # Deterrent
 Pokemon = WAILORD,59
     AbilityIndex = 0 # Pressure
+    Item = LEFTOVERS
 #-------------------------------
 [DITTO_CAMPER,Johnate]
 Pokemon = GRENINJA,59
     AbilityIndex = 0 # Protean
 Pokemon = SPINDA,59
     AbilityIndex = 0 # Disorienting
+    Item = SITRUSBERRY
 Pokemon = TREVENANT,59
     AbilityIndex = 1 # Break Through
 Pokemon = HARIYAMA,59
     AbilityIndex = 1 # Fighting Vigor
+    Item = LUMBERRY
 #-------------------------------
 [DITTO_RANGER,Hannamy]
 Pokemon = GRIMMSNARL,59
     AbilityIndex = 1 # Ruinous
 Pokemon = TENTACRUEL,59
     AbilityIndex = 1 # Grip Strength
+    Item = BINDINGBAND
 Pokemon = CACTURNE,59
     AbilityIndex = 1 # Schadenfreude
+    Item = LIFEORB
 Pokemon = ALAKAZAM,59
     AbilityIndex = 1 # Steelworker
+#-------------------------------
+[DITTO_PROTRAINER,Xandevon]
+Pokemon = GOLEM,60
+    Moves = IGNITE,EARTHQUAKE,BEDROCKBREAKER,STEALTHROCK
+    AbilityIndex = 0 # Unbreakable
+    Item = FOCUSSASH
+Pokemon = HZOROARK,60
+    Moves = RUIN,LIGHTSCREEN,REFLECT,RECOVER
+    AbilityIndex = 0 # Illusion
+    Item = LIGHTCLAY
+Pokemon = ZOROARK,60
+    Moves = BLACKOUT,PSYCHIC,SNARL,UTURN
+    AbilityIndex = 0 # Illusion
+    Item = CHOICESCARF
+Pokemon = CHATOT,60
+    Moves = CHATTER,SHOUT,BUGBUZZ,HYPERVOICE
+    AbilityIndex = 1 # Fascinate
+    Item = THROATSPRAY
+Pokemon = MELMETAL,60
+    Moves = DOUBLEIRONBASH,NUMB,SUPERPOWER,THUNDERPUNCH
+    AbilityIndex = 0 # Iron Fist
+    Item = PROXYFIST
+Pokemon = GRIMMSNARL,60
+    Moves = SUCKERPUNCH,PLAYROUGH,POWERWHIP,DRAINPUNCH
+    AbilityIndex = 1 # Ruinous
+    Item = ASSAULTVEST
 #-------------------------------
 [CAMPER_M,Nick]
 Pokemon = ARATICATE,57
@@ -5633,7 +5676,7 @@ Pokemon = GOLURK,70
     AbilityIndex = 1 # No Guard
 Pokemon = DRAGALGE,70
     Moves = DRAGONTAIL,CRUELTY,RECOVER,GREYMIST
-    AbilityIndex = 0 # Expertise
+    AbilityIndex = 0 # Deterrent
 Pokemon = VAPOREON,70
     Moves = MENDINGSPRING,SCALD,RECOVER,HEALBELL
     AbilityIndex = 1 # Aqua Sneak
@@ -5651,7 +5694,7 @@ Pokemon = GOLURK,70
     AbilityIndex = 1 # No Guard
 Pokemon = DRAGALGE,70
     Moves = DRAGONTAIL,CRUELTY,RECOVER,GREYMIST
-    AbilityIndex = 0 # Expertise
+    AbilityIndex = 0 # Deterrent
 Pokemon = VAPOREON,70
     Moves = MENDINGSPRING,SCALD,RECOVER,HEALBELL
     AbilityIndex = 1 # Aqua Sneak
@@ -5809,7 +5852,7 @@ Pokemon = BEWEAR,70
     AbilityIndex = 0 # Intimidate
     Item = AGILITYHERB
 Pokemon = SALAZZLE,70
-    AbilityIndex = 1 # Multiscale
+    AbilityIndex = 1 # Aloof
     Item = SHELLBELL
 Pokemon = MIMIKYU,70
     AbilityIndex = 0 # Disguise

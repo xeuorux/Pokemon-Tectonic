@@ -200,7 +200,7 @@ class BattleInfoDisplay < SpriteWrapper
 	if battler.pokemon.nicknamed?
 		speciesData = GameData::Species.get(battler.species)
 		battlerName += " (#{speciesData.real_name})"
-		battlerName += " [#{speciesData.real_form_name}]" if speciesData.form != 0
+		battlerName += " [#{speciesData.form_name}]" if speciesData.form != 0
 	end
 	textToDraw.push([battlerName,256,0,2,base,shadow])
 	

@@ -69,6 +69,7 @@
 2068,EMPOWEREDDRAGONBREATH,Empowered Dragon Breath,007,120,DRAGON,Special,100,10,100,NearOther,0,befy,"The user exhales a mighty gust that inflicts damage and numbs the target.",
 2069,EMPOWEREDSTOREDPOWER,Empowered Stored Power,656,30,PSYCHIC,Special,100,10,0,NearOther,0,befy,"The user attacks with stored power. The more the user's stats are raised, the greater the damage.",
 2070,EMPOWEREDBULLETPUNCH,Empowered Bullet Punch,657,60,STEEL,Physical,100,10,0,NearOther,1,abefj,"The user strikes the target with 3 punches like bullets. This move always goes first.",
-2071,STRATOSPHERESCREAM,Stratosphere Scream,700,100,FLYING,Special,0,5,0,AllNearFoes,0,befk,"A move that only the avatar of Rayquaza can use. All enemies struck lose their flinch immunity.",SCREECH
-2072,SEVENSEASEDICT,Seven Seas Edict,701,0,WATER,Status,0,3,0,None,0,d,"A move that only the avatar of Kyogre can use. The user commands a Luvdisc avatar and a Remoraid avatar to join it.",
-2073,WARPINGCORE,Warping Core,702,0,GROUND,Status,0,3,0,BothSides,0,,"A move that only the avatar of Groudon can use. Gravity is intensified for five turns and enemy Pokemon have their weight doubled.",
+2071,EMPOWEREDMYSTICALFIRE,Empowered Mystical Fire,657,200,FIRE,Special,100,10,100,NearOther,0,beyf,"The user attacks by breathing a special, hot fire. This lowers the target's Sp. Atk stat by six steps.",
+2072,STRATOSPHERESCREAM,Stratosphere Scream,700,100,FLYING,Special,0,5,0,AllNearFoes,0,befk,"A move that only the avatar of Rayquaza can use. All enemies struck lose their flinch immunity.",SCREECH
+2073,SEVENSEASEDICT,Seven Seas Edict,701,0,WATER,Status,0,3,0,None,0,d,"A move that only the avatar of Kyogre can use. The user commands a Luvdisc avatar and a Remoraid avatar to join it.",
+2074,WARPINGCORE,Warping Core,702,0,GROUND,Status,0,3,0,BothSides,0,,"A move that only the avatar of Groudon can use. Gravity is intensified for five turns and enemy Pokemon have their weight doubled.",

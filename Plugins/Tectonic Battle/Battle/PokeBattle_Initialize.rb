@@ -39,6 +39,8 @@ class PokeBattle_Battle
     attr_reader   :successStates    # Success states
     attr_accessor :lastMoveUsed     # Last move used
     attr_accessor :lastMoveUser     # Last move user
+    attr_accessor :allMovesUsedSide0     # The list of all moves used by side 0, in order
+    attr_accessor :allMovesUsedSide1     # The list of all moves used by side 1, in order
     attr_reader   :switching        # True if during the switching phase of the round
     attr_accessor :futureSight      # True if Future Sight is hitting
     attr_accessor :specialUsage     # True if a special usage is happening
@@ -126,6 +128,8 @@ class PokeBattle_Battle
         @successStates     = []
         @lastMoveUsed      = nil
         @lastMoveUser      = -1
+        @allMovesUsedSide0 = []
+        @allMovesUsedSide1 = []
         @switching         = false
         @futureSight       = false
         @specialUsage      = false

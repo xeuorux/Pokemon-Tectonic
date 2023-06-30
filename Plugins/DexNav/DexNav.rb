@@ -223,7 +223,7 @@ class NewDexNav
 		  end
 		  if prevNavCol != @navigationColumn || prevNavRow != @navigationRow
 			speciesFormName =  highlightedSpeciesData.real_name 
-			speciesFormName += "(#{highlightedSpeciesData.real_form_name})" if highlightedSpeciesData.form != 0
+			speciesFormName += "(#{highlightedSpeciesData.form_name})" if highlightedSpeciesData.form != 0
 			@displayedName = $Trainer.pokedex.seen?(highlightedSpecies) ? speciesFormName : "Unknown"
 			drawSprites
 		  end

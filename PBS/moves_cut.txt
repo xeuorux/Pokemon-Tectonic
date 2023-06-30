@@ -144,3 +144,4 @@
 4143,CAMARADERIE,Camaraderie,555,0,PSYCHIC,Status,0,30,0,User,0,d,"The user calms itself and its teammates, raising the Sp. Def of itself and its allies by three steps.",
 4144,TWINEEDLE,Twineedle,0BE,25,BUG,Physical,100,15,20,NearOther,0,bef,"The foe is stabbed twice by a pair of stingers. Each stinger has a 20% chance to poison.",
 4145,WAXINGWATER,Waxing Water,100,50,WATER,Special,0,10,0,NearFoe,0,bef,"Strikes the target with lunar tides, then summons rain for five turns.",SURF
+4146,FAVOR,Favor,089,9,NORMAL,Special,100,15,0,NearOther,0,bef,"A full-power special attack that grows more powerful the more the user likes its Trainer.",RETURN

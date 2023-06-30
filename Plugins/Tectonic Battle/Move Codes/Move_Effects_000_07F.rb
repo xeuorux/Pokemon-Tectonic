@@ -2078,9 +2078,34 @@ class PokeBattle_Move_06E < PokeBattle_FixedDamageMove
 end
 
 #===============================================================================
-# (Not currently used)
+# Target becomes Bug type. (Scale Scatter)
 #===============================================================================
-class PokeBattle_Move_06F
+class PokeBattle_Move_06F < PokeBattle_Move
+    def pbFailsAgainstTarget?(_user, target, show_message)
+        unless GameData::Type.exists?(:BUG)
+            @battle.pbDisplay(_INTL("But it failed, since the Bug-type doesn't exist!")) if show_message
+            return true
+        end
+        unless target.canChangeType?
+            @battle.pbDisplay(_INTL("But it failed, since #{target.pbThis(true)} can't change their type!")) if show_message
+            return true
+        end
+        unless target.pbHasOtherType?(:BUG)
+            @battle.pbDisplay(_INTL("But it failed, since #{target.pbThis(true)} is already only Bug-type!")) if show_message
+            return true
+        end
+        return false
+    end
+
+    def pbEffectAgainstTarget(_user, target)
+        target.pbChangeTypes(:BUG)
+        typeName = GameData::Type.get(:BUG).name
+        @battle.pbDisplay(_INTL("{1} transformed into the {2} type!", target.pbThis, typeName))
+    end
+
+    def getEffectScore(_user, _target)
+        return 80
+    end
 end
 
 #===============================================================================

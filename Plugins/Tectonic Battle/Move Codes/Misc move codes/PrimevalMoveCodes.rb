@@ -785,6 +785,16 @@ class PokeBattle_Move_657 < PokeBattle_Move_500
     include EmpoweredMove
 end
 
+# Empowered Mystical Fire
+class PokeBattle_Move_658 < PokeBattle_TargetStatDownMove
+    include EmpoweredMove
+
+    def initialize(battle, move)
+        super
+        @statDown = [:SPECIAL_ATTACK, 6]
+    end
+end
+
 ########################################################
 ### Specific avatar only moves
 ########################################################

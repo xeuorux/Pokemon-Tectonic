@@ -441,6 +441,12 @@ BattleHandlers::DamageCalcUserAbility.add(:MARINEMENACE,
   }
 )
 
+BattleHandlers::DamageCalcUserAbility.add(:DIGGINGFIST,
+  proc { |ability, _user, _target, move, mults, _baseDmg, _type|
+      mults[:base_damage_multiplier] *= 1.5 if move.function == "0CA" # Dig, Undermine
+  }
+)
+
 BattleHandlers::DamageCalcUserAbility.add(:GRIPSTRENGTH,
   proc { |ability, _user, _target, move, mults, _baseDmg, _type|
       mults[:base_damage_multiplier] *= 1.5 if move.function == "0CF" # 3-turn DOT trapping moves
@@ -531,7 +537,7 @@ BattleHandlers::DamageCalcUserAbility.add(:CREEPINGSTRENGTH,
   }
 )
 
-BattleHandlers::DamageCalcUserAbility.add(:SURFSUP,
+BattleHandlers::DamageCalcUserAbility.add(:SHOCKSTYLE,
   proc { |ability, _user, _target, _move, mults, _baseDmg, type, _aiCheck|
       mults[:attack_multiplier] *= 1.5 if type == :FIGHTING
   }
