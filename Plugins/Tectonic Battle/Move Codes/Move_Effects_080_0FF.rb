@@ -183,9 +183,57 @@ class PokeBattle_Move_088 < PokeBattle_Move
 end
 
 #===============================================================================
-# (Not currently used.)
+# Transforms the user into one of its Mega Forms. (Gene Boost)
 #===============================================================================
 class PokeBattle_Move_089 < PokeBattle_Move
+    def resolutionChoice(user)
+        if @battle.autoTesting
+            @chosenForm = rand(2) + 1
+        elsif !user.pbOwnedByPlayer? # Trainer AI
+            @chosenForm = 2 # Always chooses mega mind form
+        else
+            form1Name = GameData::Species.get_species_form(:MEWTWO,1).form_name
+            form2Name = GameData::Species.get_species_form(:MEWTWO,2).form_name
+            formNames = [form1Name,form2Name]
+            chosenIndex = @battle.scene.pbShowCommands(_INTL("Which form should #{user.pbThis(true)} take?"),formNames,0)
+            @chosenForm = chosenIndex + 1
+        end
+    end
+
+    def pbCanChooseMove?(user, commandPhase, show_message)
+        unless user.form == 0
+            if show_message
+                msg = _INTL("#{user.pbThis} has already transformed!")
+                commandPhase ? @battle.pbDisplayPaused(msg) : @battle.pbDisplay(msg)
+            end
+            return false
+        end
+        return true
+    end
+
+    def pbMoveFailed?(user, _targets, show_message)
+        unless user.countsAs?(:MEWTWO)
+            @battle.pbDisplay(_INTL("But {1} can't use the move!", user.pbThis)) if show_message
+            return true
+        end
+        unless user.form == 0
+            @battle.pbDisplay(_INTL("But {1} has already transformed!", user.pbThis)) if show_message
+            return true
+        end
+        return false
+    end
+    
+    def pbEffectGeneral(user)
+        user.pbChangeForm(@chosenForm, _INTL("{1} augmented its genes and transformed!", user.pbThis))
+    end
+
+    def resetMoveUsageState
+        @chosenForm = nil
+    end
+
+    def getEffectScore(_user, _target)
+        return 100
+    end
 end
 
 #===============================================================================
@@ -2134,7 +2182,7 @@ class PokeBattle_Move_0CA < PokeBattle_TwoTurnMove
         if canBecomeReaper?(user)
             @battle.pbDisplay(_INTL("The ground rumbles violently underneath {1}!", targets[0].pbThis))
             @battle.pbAnimation(:EARTHQUAKE, targets[0], targets, 0)
-            user.pbChangeForm(1, _INTL("The Reaper appears!", user.pbThis))
+            user.pbChangeForm(1, _INTL("The Reaper appears!"))
         end
     end
 

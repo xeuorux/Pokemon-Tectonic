@@ -1496,3 +1496,23 @@ MegaStone = GALLADITE
 BaseStats = 88,125,100,110,75,160
 Abilities = INNERFOCUS
 BattlerPlayerY = 11
+#-------------------------------
+[MEWTWO,1]
+FormName = Mega Muscles
+Type1 = PSYCHIC
+Type2 = FIGHTING
+BaseStats = 110,190,100,130,150,100
+Abilities = INNERFOCUS
+Height = 2.3
+Weight = 127.0
+Pokedex = Psychic power has augmented its muscles. It has a grip strength of one ton and can sprint a hundred meters in two seconds flat!
+BattlerPlayerY = 10
+BattlerEnemyY = 18
+#-------------------------------
+[MEWTWO,2]
+FormName = Mega Mind
+BaseStats = 110,150,70,140,190,120
+Abilities = VITALSPIRIT
+Height = 1.5
+Weight = 33.0
+Pokedex = Despite its diminished size, its mental power has grown phenomenally. With a mere thought, it can smash a skyscraper to smithereens.

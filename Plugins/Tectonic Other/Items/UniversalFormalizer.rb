@@ -11,7 +11,7 @@ ItemHandlers::UseOnPokemon.add(:UNIVERSALFORMALIZER,proc { |item,pkmn,scene|
 			next if species_data.form == pkmn.form
 			next if species_data.species == :LYCANROC && species_data.form == 1
 			possibleForms.push(species_data)
-			possibleFormNames.push(species_data.real_form_name)
+			possibleFormNames.push(species_data.form_name)
 		end
 		possibleFormNames.push(_INTL("Cancel"))
 		choice = scene.pbMessage("Which form shall the Pokemon take?",	possibleFormNames,possibleFormNames.length)
@@ -37,7 +37,7 @@ def getFormSelectionChoices(species,currentForm=0)
 		next unless species_data.species == species
 		next if species_data.form == currentForm
 		possibleForms.push(species_data)
-		possibleFormNames.push(species_data.real_form_name)
+		possibleFormNames.push(species_data.form_name)
 	end
 	possibleFormNames.push(_INTL("Cancel"))
 	return [possibleForms, possibleFormNames]

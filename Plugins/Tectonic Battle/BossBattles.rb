@@ -118,7 +118,7 @@ def generateAvatarPokemon(species, level, summon = false)
     # Add the form name to the end of their name
     # If the avatar's form was specified in its species id
     speciesForm = GameData::Species.get(species)
-    newPokemon.name += " " + speciesForm.real_form_name if speciesForm.form != 0
+    newPokemon.name += " " + speciesForm.form_name if speciesForm.form != 0
 
     # Set the pokemon's starting health if its a low-level summon
     if summon
