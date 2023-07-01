@@ -139,6 +139,14 @@ GameData::BattleEffect.register_effect(:Battler, {
 })
 
 GameData::BattleEffect.register_effect(:Battler, {
+    :id => :Warned,
+    :real_name => "Curse-Warned",
+    :apply_proc => proc do |battle, battler, _value|
+        battle.pbDisplay(_INTL("{1} was warned not to attack it again!", battler.pbThis))
+    end,
+})
+
+GameData::BattleEffect.register_effect(:Battler, {
     :id => :Curse,
     :real_name => "Cursed",
     :baton_passed => true,

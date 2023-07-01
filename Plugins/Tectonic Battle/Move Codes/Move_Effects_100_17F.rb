@@ -702,9 +702,31 @@ class PokeBattle_Move_119 < PokeBattle_Move
 end
 
 #===============================================================================
-# (Not currently used)
+# Traps the target and frostbites them. (Icicle Pin)
 #===============================================================================
-class PokeBattle_Move_11A < PokeBattle_Move
+class PokeBattle_Move_11A < PokeBattle_Move_0EF
+    def pbFailsAgainstTarget?(_user, target, show_message)
+        return false if damagingMove?
+        if target.effectActive?(:MeanLook) && !target.canFrostbite?(user, false, self)
+            if show_message
+                @battle.pbDisplay(_INTL("But it failed, since #{target.pbThis(true)} is already trapped and can't be frostbitten!"))
+            end
+            return true
+        end
+        return false
+    end
+
+    def pbEffectAgainstTarget(user, target)
+        super
+        target.applyFrostbite(user) if target.canFrostbite?(user, false)
+    end
+
+    def getTargetAffectingEffectScore(_user, target)
+        score = 0
+        score += 50 unless target.effectActive?(:MeanLook)
+        score += getFrostbiteEffectScore(user, target)
+        return score
+    end
 end
 
 #===============================================================================

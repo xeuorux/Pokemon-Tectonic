@@ -27,7 +27,7 @@
 1026,SUNCHASER,Sun Chaser,"Boosts Attack by 30% in sunshine."
 1027,EXPERTISE,Expertise,"Powers up super-effective moves by 30%."
 1028,TEMPERATURE,Temperature,"Powers up moves different than the last move by 50%."
-1029,CURSEDTAIL,Cursed Tail,"Physical moves against it have a 30% chance to cause a curse."
+1029,CURSEDTAIL,Cursed Tail,"When a foe hits the Pokémon, they are warned. If they hit the Pokémon again, they become Cursed."
 1030,FROSTWINGS,Frost Wings,"Flying-type attacks have a 40% chance to frostbite."
 1031,SHOCKWINGS,Shock Wings,"Flying-type attacks have a 40% chance to numb."
 1032,FLAMEWINGS,Flame Wings,"Flying-type attacks have a 40% chance to burn."

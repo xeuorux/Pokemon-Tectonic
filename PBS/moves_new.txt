@@ -449,6 +449,9 @@
 1448,THORNRATTLE,Thorn Rattle,5CC,75,GRASS,Special,100,10,0,NearOther,-1,bef,"The user makes a scary sound by shaking, forcing the target to switch out.",UPROAR
 1449,CROSSEXAMINE,Cross Examine,598,0,NORMAL,Status,0,15,0,User,0,,"The user chooses between the three most recent moves used by the opposing team, and uses that move themselves.",AMNESIA
 1450,GENEBOOST,Gene Boost,089,0,PSYCHIC,Status,0,5,0,User,0,,"The user psychically modifies its own genes, transforming into either Mega Muscle form or Mega Mind form.",TRANSFORM
-1451,AURORAFLASH,Aurora Flash,5E6,80,ICE,Special,100,5,100,NearOther,1,bef,"An aurora borealis flashes brightly at the target, lowering their Attack. Always goes first.",
-1452,CRACKLINGCLOUD,Crackling Cloud,51C,80,ELECTRIC,Special,100,5,100,NearOther,1,be,"An electrified cloud zaps the target, lowering their Speed. This has a 50% chance to flinch.",
-1453,FLARELANCE,Flare Lance,5EC,80,FIRE,Special,100,5,100,NearOther,0,befr,"A lance of fire pierces the target from above, lowering their Sp. Atk. Critical hits four times as often.",
+1451,AURORAFLASH,Aurora Flash,5E6,80,ICE,Special,100,5,100,NearOther,1,bef,"An aurora borealis flashes brightly at the target, lowering their Attack. Always goes first.",AURORABEAM
+1452,CRACKLINGCLOUD,Crackling Cloud,51C,80,ELECTRIC,Special,100,5,100,NearOther,1,be,"An electrified cloud zaps the target, lowering their Speed. This has a 50% chance to flinch.",THUNDER
+1453,FLARELANCE,Flare Lance,5EC,80,FIRE,Special,100,5,100,NearOther,0,befr,"A lance of fire pierces the target from above, lowering their Sp. Atk. Critical hits four times as often.",SEARINGSHOT
+1454,ICICLEPIN,Icicle Pin,11A,0,ICE,Status,0,5,0,NearOther,0,ce,"The user pins the target down with icy spikes, applying frostbite and making it unable to flee.",ICICLESPEAR
+1455,HEADTHROW,Head Throw,500,40,GRASS,Special,100,15,0,NearOther,0,befn,"Round objects are hurled at the target to strike three times in a row.",BARRAGE
+1456,TRIPLEBUMP,Triple Bump,500,40,GROUND,Physical,100,15,0,NearOther,0,bef,"The user hits the target with each of its heads from underground. Strikes three times.",DIG

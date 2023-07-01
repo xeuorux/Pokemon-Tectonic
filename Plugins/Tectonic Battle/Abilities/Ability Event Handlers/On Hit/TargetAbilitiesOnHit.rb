@@ -437,10 +437,19 @@ BattleHandlers::TargetAbilityOnHit.add(:CURSEDTAIL,
     proc { |ability, user, target, move, battle, aiChecking, aiNumHits|
         next unless move.physicalMove?
         next if user.effectActive?(:Curse)
-        next -10 * aiNumHits if aiChecking
-        next if battle.pbRandom(100) >= 30
+        if aiChecking
+            if user.effectActive?(:Warned) || aiNumHits > 1
+                next -30
+            else
+                next -10
+            end
+        end
         battle.pbShowAbilitySplash(target, ability)
-        user.applyEffect(:Curse)
+        if user.effectActive?(:Warned)
+            user.applyEffect(:Curse)
+        else
+            user.applyEffect(:Warned)
+        end
         battle.pbHideAbilitySplash(target)
     }
 )
