@@ -420,4 +420,4 @@
 1419,ALOOF,Aloof,"Reduces move damage taken by 50% when HP is full. Can't be Dizzied."
 1420,RUSTYANCHOR,Rusty Anchor,"The Pokémon is also Steel-type, but it takes 15% more damage from moves."
 1421,STEAMPOWER,Steam Power,"Takes 50% less damage from Water-type moves. Raises Speed by 4 steps when hit by one."
-1251,PITTING,Pitting,"Upon entry, traps each opponent in a sand tomb for two turns."
+1422,PITTING,Pitting,"Upon entry, traps each opponent in a sand tomb for two turns."
