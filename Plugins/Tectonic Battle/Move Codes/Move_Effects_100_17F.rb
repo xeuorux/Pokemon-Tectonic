@@ -721,7 +721,7 @@ class PokeBattle_Move_11A < PokeBattle_Move_0EF
         target.applyFrostbite(user) if target.canFrostbite?(user, false)
     end
 
-    def getTargetAffectingEffectScore(_user, target)
+    def getTargetAffectingEffectScore(user, target)
         score = 0
         score += 50 unless target.effectActive?(:MeanLook)
         score += getFrostbiteEffectScore(user, target)

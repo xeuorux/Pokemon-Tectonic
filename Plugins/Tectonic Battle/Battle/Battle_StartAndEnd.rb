@@ -450,8 +450,9 @@ class PokeBattle_Battle
             break if @decision > 0
 
             numExtraPhasesThisTurn = 0
-            @battlers.each do |b|
-                next unless b
+
+            # Calculate how many extra phases to add
+            eachBattler do |b|
                 numExtraPhasesThisTurn = b.extraMovesPerTurn if b.extraMovesPerTurn > numExtraPhasesThisTurn
             end
 
@@ -465,6 +466,15 @@ class PokeBattle_Battle
                     end
 
                     resetMoveUsageState
+
+                    # Ability popups for triggered extra turn abilities
+                    eachBattler do |b|
+                        next unless b.extraMovesPerTurn >= 1
+                        next unless b.hasActiveAbility?(:HEAVENSCROWN) && totalEclipse?
+                        pbShowAbilitySplash(b,:HEAVENSCROWN)
+                        pbDisplay(_INTL("#{b.pbThis} is blessed by the shattered sky!"))
+                        pbHideAbilitySplash(b)
+                    end
 
                     # Command phase
                     PBDebug.logonerr { pbExtraCommandPhase }

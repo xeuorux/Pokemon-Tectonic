@@ -455,3 +455,4 @@
 1454,ICICLEPIN,Icicle Pin,11A,0,ICE,Status,0,5,0,NearOther,0,ce,"The user pins the target down with icy spikes, applying frostbite and making it unable to flee.",ICICLESPEAR
 1455,HEADTHROW,Head Throw,500,40,GRASS,Special,100,15,0,NearOther,0,befn,"Round objects are hurled at the target to strike three times in a row.",BARRAGE
 1456,TRIPLEBUMP,Triple Bump,500,40,GROUND,Physical,100,15,0,NearOther,0,bef,"The user hits the target with each of its heads from underground. Strikes three times.",DIG
+1457,DIAMONDFIELD,Diamond Field,022,0,ROCK,Status,0,20,0,UserSide,0,d,"A diamond-tough force-field protects the user’s side for 10 turns from critical hits or random added effects.",

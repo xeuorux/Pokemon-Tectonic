@@ -311,6 +311,7 @@ class PokeBattle_Move
 
     def critsPossible?(user,target)
         return false if target.pbOwnSide.effectActive?(:LuckyChant)
+        return false if target.pbOwnSide.effectActive?(:DiamondField) && !(user && user.hasActiveAbility?(:INFILTRATOR))
         return false if applySunDebuff?(user,@calcType)
         return false if pbCriticalOverride(user,target) < 0
         return true
@@ -375,23 +376,27 @@ class PokeBattle_Move
                 if target.shouldAbilityApply?(ability,aiChecking)
                     if showMessages
                         battle.pbShowAbilitySplash(target,ability)
-                        battle.pbDisplay(_INTL("#{target.pbThis} prevents the random added effect!"))
+                        battle.pbDisplay(_INTL("#{target.pbThis} prevents a random added effect!"))
                         battle.pbHideAbilitySplash(target)
                     end
                     return false
                 end
             end
         end
-        
+        if target.pbOwnSide.effectActive?(:DiamondField) && !(user && user.hasActiveAbility?(:INFILTRATOR))
+            if showMessages
+                battle.pbDisplay(_INTL("The Diamond Field protects #{target.pbThis} from a random added effect!"))
+            end
+        end
         if target.effectActive?(:Enlightened)
             if showMessages
-                battle.pbDisplay(_INTL("#{target.pbThis} is enlightened, and so ignores the random added effect!"))
+                battle.pbDisplay(_INTL("#{target.pbThis} is enlightened, and so ignores a random added effect!"))
             end
             return false
         end
         if target.hasActiveItem?(:COVERTCLOAK) && user.opposes?(target)
             if showMessages
-                battle.pbDisplay(_INTL("#{target.pbThis}'s #{getItemName(:COVERTCLOAK)} protects it from the random added effect!"))
+                battle.pbDisplay(_INTL("#{target.pbThis}'s #{getItemName(:COVERTCLOAK)} protects it from a random added effect!"))
             end
             return false
         end

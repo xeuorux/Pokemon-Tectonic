@@ -265,7 +265,7 @@
 1264,ICEQUEEN,Ice Queen,"During hail, it restores its HP by half the damage it deals with attacks."
 1265,EPHEMERATE,Ephemerate,"Eclipse counts down twice as quickly."
 1266,DESICCATE,Desiccate,"Prevents Water- or Grass-type moves during sandstorm."
-1267,HEAVENSCROWN,Heaven's Crown,"Moves twice during a Total Eclipse turn."
+1267,HEAVENSCROWN,Heaven's Crown,"If the Pokémon witnesses a Total Eclipse, it gets to move twice that turn."
 1268,NIGHTLINE,Night-line,"At the end of each turn in moonglow, heals self by 1/12th of its max HP, and a party member alongside."
 1269,LUNARCLEANSING,Lunar Cleansing,"Prevents Bug- or Poison-type moves during moonglow."
 1270,ROCKBODY,Rock Body,"Heals 1/8th of its max HP each turn during sandstorm."

@@ -381,7 +381,7 @@ class PokeBattle_Move_01A < PokeBattle_Move
     end
 
     def getEffectScore(user, _target)
-        score = 0
+        score = 20
         @battle.eachSameSideBattler(user.index) do |b|
             score += 30 if b.hasSpotsForStatus?
         end
@@ -513,9 +513,29 @@ class PokeBattle_Move_021 < PokeBattle_MultiStatUpMove
 end
 
 #===============================================================================
-# (Not currently used.)
+# Protects the user's side from critical hits and random added effects.
+# (Diamond Field)
 #===============================================================================
 class PokeBattle_Move_022 < PokeBattle_Move
+    def pbMoveFailed?(user, _targets, show_message)
+        if user.pbOwnSide.effectActive?(:DiamondField)
+            @battle.pbDisplay(_INTL("But it failed, since a Diamond Field is already present!")) if show_message
+            return true
+        end
+        return false
+    end
+
+    def pbEffectGeneral(user)
+        user.pbOwnSide.applyEffect(:DiamondField, 10)
+    end
+
+    def getEffectScore(user, _target)
+        score = 20
+        @battle.eachSameSideBattler(user.index) do |b|
+            score += 30 if b.aboveHalfHealth?
+        end
+        return score
+    end
 end
 
 #===============================================================================
