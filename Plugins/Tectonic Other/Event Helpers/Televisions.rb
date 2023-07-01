@@ -67,7 +67,7 @@ def displayWeatherReport(weatherReport,mapName)
     pbMessage(_INTL("Tomorrow's weather forecast for #{mapName}!"))
     if (morningWeather == :None) &&  (afternoonWeather == :None) && (eveningWeather == :None)
         pbMessage(_INTL("The area will experience normal conditions all day."))
-        pbMessage(_INTL("This means cloud cover at around 50%, with a very low chance for precipitation."))
+        pbMessage(_INTL("This means cloud cover at around 50\%, with a very low chance for precipitation."))
         return
     end
     
