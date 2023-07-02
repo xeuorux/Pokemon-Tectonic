@@ -250,9 +250,9 @@ class PokeBattle_Battler
                 end
                 return false
             end
-            if hasTribeBonus?(:SHIMMERING) && stat == :SPECIAL_DEFENSE
+            if hasTribeBonus?(:RADIANT) && stat == :SPECIAL_DEFENSE
                 if showFailMsg
-                    @battle.pbShowTribeSplash(self,:SHIMMERING)
+                    @battle.pbShowTribeSplash(self,:RADIANT)
                     @battle.pbDisplay(_INTL("{1}'s sheen prevents its Sp. Def from lowering!", pbThis))
                     @battle.pbHideTribeSplash(self)
                 end

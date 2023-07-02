@@ -78,9 +78,9 @@ class PokeBattle_Battler
                     next if partyMember.hp == partyMember.totalhp
                     battler = @battle.pbFindBattler(index, opposingIndex)
                     if battler
-                        battler.applyFractionalHealing(1/12.0)
+                        battler.applyFractionalHealing(1/10.0)
                     else
-                        partyMember.healByFraction(1/12.0)
+                        partyMember.healByFraction(1/10.0)
                     end
                 end
                 @battle.pbHideTribeSplash(opposingSide)

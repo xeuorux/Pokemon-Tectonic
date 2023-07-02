@@ -243,7 +243,7 @@ class PokeBattle_Battler
             defenseMult = BattleHandlers.triggerDefenseCalcUserItem(item, self, battle, defenseMult)
         end
         
-        defenseMult *= 1.1 if hasTribeBonus?(:SCRAPPER)
+        defenseMult *= 1.2 if hasTribeBonus?(:SCRAPPER)
 
         # Calculation
         return [(defense * defenseMult).round, 1].max
@@ -268,7 +268,7 @@ class PokeBattle_Battler
             spDefMult = BattleHandlers.triggerSpecialDefenseCalcUserItem(item, self, battle, spDefMult)
         end
         
-        spDefMult *= 1.1 if hasTribeBonus?(:SHIMMERING)
+        spDefMult *= 1.2 if hasTribeBonus?(:RADIANT)
 
         # Calculation
         return [(special_defense * spDefMult).round, 1].max

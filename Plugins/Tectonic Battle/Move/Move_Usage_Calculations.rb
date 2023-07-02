@@ -247,7 +247,7 @@ class PokeBattle_Move
             end
 
             # Tactician tribe prevents random crits
-            if !forced && target.hasTribeBonus?(:TACTICIAN)
+            if target.hasTribeBonus?(:TACTICIAN)
                 unless checkingForAI
                     battle.pbShowTribeSplash(target,:TACTICIAN)
                     battle.pbDisplay(_INTL("#{target.pbThis} prevents the hit from being critical!"))

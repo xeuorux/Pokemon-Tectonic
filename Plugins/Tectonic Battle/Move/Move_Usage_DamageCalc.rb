@@ -341,51 +341,56 @@ class PokeBattle_Move
 
         # Assassin tribe
         if user.hasTribeBonus?(:ASSASSIN) && user.firstTurn?
-            multipliers[:final_damage_multiplier] *= 1.1
+            multipliers[:final_damage_multiplier] *= 1.2
         end
 
         # Artillery tribe
         if user.hasTribeBonus?(:ARTILLERY) && !user.firstTurn?
-            multipliers[:final_damage_multiplier] *= 1.1
+            multipliers[:final_damage_multiplier] *= 1.2
         end
 
         # Mystic tribe
         if user.hasTribeBonus?(:MYSTIC) && user.lastRoundMoveCategory == 2 # Status
-            multipliers[:final_damage_multiplier] *= 1.2
+            multipliers[:final_damage_multiplier] *= 1.25
         end
 
         # Warrior tribe
         if user.hasTribeBonus?(:WARRIOR)
-            multipliers[:final_damage_multiplier] *= 1.05
+            if checkingForAI
+                expectedTypeMod = @battleAI.pbCalcTypeModAI(type, user, target, self)
+                multipliers[:final_damage_multiplier] *= 1.2 if Effectiveness.super_effective?(expectedTypeMod)
+            else
+                multipliers[:final_damage_multiplier] *= 1.2 if Effectiveness.super_effective?(target.damageState.typeMod)
+            end
         end      
 
-        # Noble tribe
+        # Scavenger tribe
         if user.hasTribeBonus?(:SCAVENGER)
             if checkingForAI
-                multipliers[:final_damage_multiplier] *= 1.1 if user.hasGem?
+                multipliers[:final_damage_multiplier] *= 1.25 if user.hasGem?
             else
-                multipliers[:final_damage_multiplier] *= 1.1 if user.effectActive?(:GemConsumed)
+                multipliers[:final_damage_multiplier] *= 1.25 if user.effectActive?(:GemConsumed)
             end
         end
 
         # Harmonic tribe
         if target.hasTribeBonus?(:HARMONIC)
-            multipliers[:final_damage_multiplier] *= 0.95
+            multipliers[:final_damage_multiplier] *= 0.9
         end
 
         # Charmer tribe
         if target.hasTribeBonus?(:CHARMER) && target.effectActive?(:SwitchedIn)
-            multipliers[:final_damage_multiplier] *= 0.85
+            multipliers[:final_damage_multiplier] *= 0.8
         end
 
         # Stampede tribe
         if target.hasTribeBonus?(:STAMPEDE) && target.effectActive?(:ChoseAttack)
-            multipliers[:final_damage_multiplier] *= 0.92
+            multipliers[:final_damage_multiplier] *= 0.88
         end
 
         # Noble tribe
         if target.hasTribeBonus?(:NOBLE) && target.effectActive?(:ChoseStatus)
-            multipliers[:final_damage_multiplier] *= 0.92
+            multipliers[:final_damage_multiplier] *= 0.88
         end
     end
       
