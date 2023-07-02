@@ -241,7 +241,7 @@
 1240,PATTERNRELEASE,Pattern Release,56C,35,PSYCHIC,Physical,100,10,0,RandomNearFoe,0,abef,"Unveiling its ears, the released psychic power causes the user to attack 2-5 times for three turns.",FURYSWIPES
 1241,THUNDERBELLY,Thunder Belly,56B,200,ELECTRIC,Physical,100,10,0,AllNearFoes,0,abef,"The user takes an entire grid of power into its belly to slam the target. The user takes 100% recoil.",BODYSLAM
 1242,VOLLEYSTANCE,Volley Stance,56D,0,STEEL,Status,0,10,0,User,0,d,"The user prepares its dual cannons. Until switch out, each special attack hits twice.",FOCUSENERGY
-1243,ASTRALDREAM,Astral Dream,56C,0,PSYCHIC,Status,0,10,0,User,0,d,"This move raises all the user's stats by two steps. Can only be used while asleep.",COSMICPOWER
+1243,ASTRALDREAM,Astral Dream,56E,0,PSYCHIC,Status,0,10,0,User,0,d,"This move raises all the user's stats by two steps. Can only be used while asleep.",COSMICPOWER
 1244,VINEMAZE,Vine Maze,56F,85,GRASS,Physical,100,10,100,AllNearFoes,0,abef,"The user sends vines to ensnare all enemies, lowering the Speed of any that moved first by three steps.",FRENZYPLANT
 1245,JOKEJOLT,Joke Jolt,0BA,60,ELECTRIC,Special,100,10,100,NearOther,0,bef,"The target is pranked by an electric jolt. They are taunted and unable to use status moves for three turns.",THUNDERSHOCK
 1246,PHOTONEDGE,Photon Edge,007,85,ELECTRIC,Physical,100,15,50,NearOther,0,abeh,"The user slices with claws of light that have a 50% chance to numb. Critical hits twice as often.",
