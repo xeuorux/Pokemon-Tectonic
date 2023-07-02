@@ -352,7 +352,7 @@
 1351,STONEAXE,Stone Axe,105,55,ROCK,Physical,100,10,0,NearOther,0,abefp,"The user swings its stone axes. This leaves stone splinters floating around the target.",STONEEDGE
 1352,AURAARROWS,Aura Arrows,500,30,FIGHTING,Special,100,15,0,NearOther,0,befhn,"The user shoots three arrows made of Aura with extreme precision. Critical hits twice as often.",AURASPHERE
 1353,ESPERDIVE,Esper Dive,01F,80,PSYCHIC,Physical,100,10,100,NearOther,0,abef,"The user slashes the target with aura-enriched wings. This boosts the user's Speed by two steps.",SKYATTACK
-1354,TRIUMPHANTDANCE,Triumphant Dance,5B0,0,FIGHTING,Status,100,5,0,User,0,do,"The user raises all of their stats by two step. Fails unless a foe fainted last turn.",WORKUP
+1354,TRIUMPHANTDANCE,Triumphant Dance,5B7,0,FIGHTING,Status,100,5,0,User,0,do,"The user raises all of their stats by two step. Fails unless a foe fainted last turn.",WORKUP
 1355,ICEBREAKER,Icebreaker,5B1,120,ROCK,Physical,100,10,0,NearOther,0,abef,"The user charges at the target, sweeping away hazards in the with its armored jaw. The user also takes 33% recoil.",HEADSMASH
 1356,SCHEME,Scheme,5BA,0,NORMAL,Status,0,25,0,User,0,d,"The user schemes to raise its Attack and Sp. Atk by two steps. During moonglow, also raises Speed by two steps.",NASTYPLOT
 1357,RAGINGFURY,Raging Fury,55F,135,FIRE,Physical,100,10,0,RandomNearFoe,0,abef,"The user rampages and attacks while spewing flames for three turns.",FLAREBLITZ
@@ -456,3 +456,7 @@
 1455,HEADTHROW,Head Throw,500,40,GRASS,Special,100,15,0,NearOther,0,befn,"Round objects are hurled at the target to strike three times in a row.",BARRAGE
 1456,TRIPLEBUMP,Triple Bump,500,40,GROUND,Physical,100,15,0,NearOther,0,bef,"The user hits the target with each of its heads from underground. Strikes three times.",DIG
 1457,DIAMONDFIELD,Diamond Field,022,0,ROCK,Status,0,20,0,UserSide,0,d,"A diamond-tough force-field protects the user’s side for 10 turns from critical hits or random added effects.",
+1458,LUCKYCHEER,Lucky Cheer,08A,0,ELECTRIC,Status,0,15,0,NearAlly,5,o,"The user dances to encourage its ally. Their attacks this turn will be critical hits.",
+1459,HEALTHYCHEER,Healthy Cheer,126,0,ELECTRIC,Status,0,5,0,NearAlly,0,bco,"The user dances to restore an ally by 50% max HP. They're cured of any status conditions.",
+1460,DEATHKNELL,Death Knell,000,90,GHOST,Special,100,15,20,AllNearOthers,0,befnk,"The user makes a dreadful bell noise, harming all near battlers with visions of impending doom.",
+1461,SILENTWIND,Silent Wind,0A5,85,GHOST,Special,100,12,20,NearOther,0,befq,"The target is blasted with eeriely quiet wind. Can't miss and skips protections.",

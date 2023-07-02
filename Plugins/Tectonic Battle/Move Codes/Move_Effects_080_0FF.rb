@@ -237,9 +237,32 @@ class PokeBattle_Move_089 < PokeBattle_Move
 end
 
 #===============================================================================
-# (Not currently used.)
+# Powers up the ally's attack this round by making it crit. (Lucky Cheer)
 #===============================================================================
 class PokeBattle_Move_08A < PokeBattle_Move
+    def ignoresSubstitute?(_user); return true; end
+
+    def hitsInvulnerable?; return true; end
+
+    def pbFailsAgainstTarget?(_user, target, show_message)
+        if target.fainted?
+            @battle.pbDisplay(_INTL("But it failed, since the receiver of the cheer is gone!")) if show_message
+            return true
+        end
+        if target.effectActive?(:LuckyCheer)
+            @battle.pbDisplay(_INTL("But it failed, since #{arget.pbThis(true)} is already being cheered!")) if show_message
+            return true
+        end
+        return true if pbMoveFailedTargetAlreadyMoved?(target, show_message)
+        return false
+    end
+
+    def pbFailsAgainstTargetAI?(_user, _target); return false; end
+
+    def pbEffectAgainstTarget(user, target)
+        target.applyEffect(:LuckyCheer)
+        @battle.pbDisplay(_INTL("{1} is ready to cheer on {2}!", user.pbThis, target.pbThis(true)))
+    end
 end
 
 #===============================================================================
@@ -646,6 +669,8 @@ end
 #===============================================================================
 class PokeBattle_Move_09C < PokeBattle_Move
     def ignoresSubstitute?(_user); return true; end
+
+    def hitsInvulnerable?; return true; end
 
     def pbFailsAgainstTarget?(_user, target, show_message)
         if target.fainted?
@@ -1103,6 +1128,7 @@ class PokeBattle_Move_0AF < PokeBattle_Move
             "073",   # Metal Burst                         # Not listed on Bulbapedia
             # Helping Hand, Feint (always blacklisted together, don't know why)
             "09C",   # Helping Hand
+            "08A",   # Lucky Cheer
             "0AD",   # Feint
             # Protection moves
             "0AA",   # Detect, Protect
@@ -1430,6 +1456,7 @@ class PokeBattle_Move_0B5 < PokeBattle_Move
             "073",   # Metal Burst                         # Not listed on Bulbapedia
             # Helping Hand, Feint (always blacklisted together, don't know why)
             "09C",   # Helping Hand
+            "08A",   # Lucky Cheer
             "0AD",   # Feint
             # Protection moves
             "0AA",   # Detect, Protect
@@ -1520,6 +1547,7 @@ class PokeBattle_Move_0B6 < PokeBattle_Move
             "11D",   # After You
             "11E",   # Quash
             "09C",   # Helping Hand
+            "08A",   # Lucky Cheer
             # Move-redirecting and stealing moves
             "0B1",   # Magic Coat
             "0B2",   # Snatch

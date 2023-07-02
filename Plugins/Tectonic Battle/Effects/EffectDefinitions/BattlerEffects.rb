@@ -421,6 +421,12 @@ GameData::BattleEffect.register_effect(:Battler, {
 })
 
 GameData::BattleEffect.register_effect(:Battler, {
+    :id => :LuckyCheer,
+    :real_name => "Lucky Cheer",
+    :resets_eor	=> true,
+})
+
+GameData::BattleEffect.register_effect(:Battler, {
     :id => :HyperBeam,
     :real_name => "Recharging",
     :type => :Integer,

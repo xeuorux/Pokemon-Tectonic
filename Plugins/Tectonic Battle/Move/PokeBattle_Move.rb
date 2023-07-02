@@ -164,6 +164,8 @@ class PokeBattle_Move
       return false
     end
 
+    def hitsInvulnerable?; return false; end
+
     def randomEffect?
       return @effectChance > 0 && @effectChance < 100
     end

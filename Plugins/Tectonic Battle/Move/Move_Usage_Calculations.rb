@@ -319,6 +319,7 @@ class PokeBattle_Move
   
 	def guaranteedCrit?(user,target)
         return true if user.effectActive?(:LaserFocus) || user.effectActive?(:EmpoweredLaserFocus)
+        return true if user.effectActive?(:LuckyCheer)
         return true if pbCriticalOverride(user,target) > 0
         user.eachActiveAbility do |ability|
             return true if BattleHandlers.triggerGuaranteedCriticalUserAbility(ability,user,target,@battle)

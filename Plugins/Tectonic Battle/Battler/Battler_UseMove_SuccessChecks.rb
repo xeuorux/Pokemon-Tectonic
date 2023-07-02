@@ -549,7 +549,7 @@ target.pbThis(true)))
         # Future Sight
         hitsInvul = true if @battle.futureSight
         # Helping Hand
-        hitsInvul = true if move.function == "09C"
+        hitsInvul = true if move.hitsInvulnerable?
         unless hitsInvul
             # Semi-invulnerable moves
             if target.effectActive?(:TwoTurnAttack)

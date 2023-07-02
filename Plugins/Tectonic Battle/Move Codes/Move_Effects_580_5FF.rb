@@ -1366,6 +1366,7 @@ class PokeBattle_Move_5C2 < PokeBattle_Move
             "073",   # Metal Burst                         # Not listed on Bulbapedia
             # Helping Hand, Feint (always blacklisted together, don't know why)
             "09C",   # Helping Hand
+            "08A",   # Lucky Cheer
             "0AD",   # Feint
             # Protection moves
             "0AA",   # Detect, Protect

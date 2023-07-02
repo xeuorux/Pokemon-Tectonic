@@ -1018,9 +1018,27 @@ class PokeBattle_Move_125 < PokeBattle_Move
 end
 
 #===============================================================================
-# Not currently used.
+# The user dances to restore an ally by 50% max HP. They're cured of any status conditions. (Healthy Cheer)
 #===============================================================================
-class PokeBattle_Move_126 < PokeBattle_Move
+class PokeBattle_Move_126 < PokeBattle_Move_0DF
+    def pbFailsAgainstTarget?(_user, target, show_message)
+       if !target.canHeal? && !target.pbHasAnyStatus?
+            @battle.pbDisplay(_INTL("{1} can't be healed and it has no status conditions!", target.pbThis)) if show_message
+            return true
+        end
+        return false
+    end
+
+    def pbEffectAgainstTarget(user, target)
+        super
+        healStatus(target)
+    end
+
+    def getEffectScore(user, target)
+        score = super
+        score += 40 if target.pbHasAnyStatus?
+        return score
+    end
 end
 
 #===============================================================================
