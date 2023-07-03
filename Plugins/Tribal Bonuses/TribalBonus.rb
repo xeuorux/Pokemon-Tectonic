@@ -64,18 +64,32 @@ class TribalBonus
         tribeBonuses = TribalBonus.initStatBonusHash
 
         if hasTribeBonus?(:LOYAL)
+            smallBonus = getSingleStatBonusSmall(level)
             GameData::Stat.each_main_battle do |stat|
-                tribeBonuses[stat.id] = 5 + (level / 14).floor
+                tribeBonuses[stat.id] = smallBonus
             end
         end
 
         if hasTribeBonus?(:INDUSTRIOUS) && (!@trainer.is_a?(Player) || @trainer.money >= 100_000)
+            mediumBonus = getSingleStatBonusMedium(level)
             GameData::Stat.each_main_battle do |stat|
-                tribeBonuses[stat.id] = 8 + (level / 10).floor
+                tribeBonuses[stat.id] = mediumBonus
             end
         end
 
         return tribeBonuses
+    end
+
+    def getSingleStatBonusSmall(level)
+        return 5 + (level / 14).floor
+    end
+
+    def getSingleStatBonusMedium(level)
+        return 8 + (level / 10).floor
+    end
+
+    def getSingleStatBonusLarge(level)
+        return 10 + (level / 8).floor
     end
 
     def hasTribeBonus?(tribeID)

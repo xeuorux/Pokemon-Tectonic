@@ -358,9 +358,9 @@ class PokeBattle_Move
         if user.hasTribeBonus?(:WARRIOR)
             if checkingForAI
                 expectedTypeMod = @battleAI.pbCalcTypeModAI(type, user, target, self)
-                multipliers[:final_damage_multiplier] *= 1.2 if Effectiveness.super_effective?(expectedTypeMod)
+                multipliers[:final_damage_multiplier] *= 1.12 if Effectiveness.super_effective?(expectedTypeMod)
             else
-                multipliers[:final_damage_multiplier] *= 1.2 if Effectiveness.super_effective?(target.damageState.typeMod)
+                multipliers[:final_damage_multiplier] *= 1.12 if Effectiveness.super_effective?(target.damageState.typeMod)
             end
         end      
 

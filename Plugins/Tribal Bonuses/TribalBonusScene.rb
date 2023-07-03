@@ -36,7 +36,9 @@ class TribalBonusScene
 
         pbFadeInAndShow(@sprites) { pbUpdate }
 
-        tribeCounts = playerTribalBonus().tribeCounts.clone
+        tribalTracker = playerTribalBonus()
+
+        tribeCounts = tribalTracker.tribeCounts.clone
         tribeCounts = tribeCounts.sort_by { |k,v| -v}.to_h
         tribeCounts.each {|tribeID, count, index|
             tribeName = TribalBonus.getTribeName(tribeID)
@@ -45,6 +47,15 @@ class TribalBonusScene
             titleText = "<b>#{titleText}</b>" if count >= tribeData.threshold
             @displayText << titleText
             bonusDescription = tribeData.description
+
+            # Put in the curren value for the scaling stat bonuses
+            smallBonus = tribalTracker.getSingleStatBonusSmall(getLevelCap)
+            bonusDescription.gsub!("{b}","<b>#{smallBonus.to_s}</b>")
+            mediumBonus = tribalTracker.getSingleStatBonusMedium(getLevelCap)
+            bonusDescription.gsub!("{b1}","<b>#{mediumBonus.to_s}</b>")
+            largeBonus = tribalTracker.getSingleStatBonusLarge(getLevelCap)
+            bonusDescription.gsub!("{b2}","<b>#{largeBonus.to_s}</b>")
+
             break_string(bonusDescription, 40).each {|line|
                 @displayText << line
             }

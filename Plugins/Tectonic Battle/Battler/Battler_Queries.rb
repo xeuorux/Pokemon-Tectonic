@@ -733,8 +733,26 @@ class PokeBattle_Battler
         return @battle.pbGetOwnerFromBattlerIndex(@index)
     end
 
+    def ownedByPlayer?
+        return false unless @pokemon
+        return @pokemon.ownedByPlayer?
+    end
+
     def ownerParty
         return @battle.pbParty(@index)
+    end
+
+    def ownerLevelCap
+        if ownedByPlayer?
+            return getLevelCap
+        else
+            highestLevel = 0
+            ownerParty.each do |pkmn|
+                next unless pkmn.level > highestLevel
+                highestLevel = pkmn.level
+            end
+            return highestLevel
+        end
     end
 
     def hasTribeBonus?(tribeID)

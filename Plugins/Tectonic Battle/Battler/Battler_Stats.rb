@@ -23,7 +23,8 @@ class PokeBattle_Battler
         ret[:SPECIAL_DEFENSE] = spdef
         ret[:SPEED]           = speed
         if owner
-            tribalStatBonuses = owner.tribalBonus.getTribeBonusStats(pokemon.level)
+            level = 0
+            tribalStatBonuses = owner.tribalBonus.getTribeBonusStats(ownerLevelCap)
             ret[:ATTACK_TRIBAL] = tribalStatBonuses[:ATTACK]
             ret[:DEFENSE_TRIBAL] = tribalStatBonuses[:DEFENSE]
             ret[:SPECIAL_ATTACK_TRIBAL] = tribalStatBonuses[:SPECIAL_ATTACK]
