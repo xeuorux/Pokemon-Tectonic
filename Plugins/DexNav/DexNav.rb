@@ -253,7 +253,8 @@ class NewDexNav
 		else
 			checkBoxFileName = "Graphics/Pictures/Pokedex/checkbox_inactive"
 		end
-		ownedIconImagePositions.push([checkBoxFileName,40,lineHeight + 20])
+        checkboxY = lineHeight + 20
+		encounterGroupCheckboxesImagePositions.push([checkBoxFileName,40,checkboxY]) unless checkboxY < 60 # dunno why this number
 
 		groupSpriteArray.each_with_index do |sprite, iconIndex|
 			sprite.x = 28 + 64 + 64 * (iconIndex % ROW_MAX_SIZE)

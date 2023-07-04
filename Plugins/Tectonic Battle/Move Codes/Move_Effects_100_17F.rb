@@ -642,13 +642,13 @@ class PokeBattle_Move_118 < PokeBattle_Move
     end
 
     def getEffectScore(user, _target)
-        score = 0
+        score = 20
         @battle.eachBattler do |b|
             bScore = 0
             bScore -= 20 if b.airborne?(true)
             bScore += 20 if b.hasInaccurateMove?
             bScore += 40 if b.hasLowAccuracyMove?
-            bScore *= 1 if b.opposes?(user)
+            bScore *= -1 if b.opposes?(user)
 
             score += bScore
         end
