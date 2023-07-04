@@ -32,3 +32,10 @@ BattleHandlers::DefenseCalcUserAbility.add(:MOONBUBBLE,
         next defenseMult
     }
 )
+
+BattleHandlers::DefenseCalcUserAbility.add(:BIGBOSS,
+    proc { |ability, _user, _battle, defenseMult|
+        defenseMult *= 1.25
+        next defenseMult
+    }
+)

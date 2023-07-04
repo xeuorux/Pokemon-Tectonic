@@ -1361,6 +1361,7 @@ BattlerEnemyY = 24
 [MORPEKO,1]
 FormName = Hangry
 Type1 = DARK
+BaseStats = 90,125,70,120,85,70
 Pokedex = Hunger hormones affect its temperament. Until its hunger is appeased, it gets up to all manner of evil deeds.
 #-------------------------------
 [ZACIAN,1]

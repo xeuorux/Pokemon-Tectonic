@@ -146,3 +146,4 @@
 4145,WAXINGWATER,Waxing Water,100,50,WATER,Special,0,10,0,NearFoe,0,bef,"Strikes the target with lunar tides, then summons rain for five turns.",SURF
 4146,FAVOR,Favor,089,9,NORMAL,Special,100,15,0,NearOther,0,bef,"A full-power special attack that grows more powerful the more the user likes its Trainer.",RETURN
 4147,BARRAGE,Fury Swipes,0C0,15,NORMAL,Physical,85,12,0,NearOther,0,abef,"Round objects are hurled at the target to strike two to five times in a row.",
+4148,LAHAR,Lahar,51E,140,GROUND,Special,75,10,0,NearOther,0,bef,"The user causes a huge landslide to cover the field.",

@@ -56,6 +56,20 @@ BattleHandlers::TargetAbilityOnHit.add(:GOOEY,
   }
 )
 
+BattleHandlers::TargetAbilityOnHit.add(:SICKENING,
+  proc { |ability, user, target, move, _battle, aiChecking, aiNumHits|
+        next unless move.specialMove?
+        if aiChecking
+            ret = 0
+            aiNumHits.times do |i|
+                ret -= getMultiStatDownEffectScore([:SPECIAL_ATTACK,1,:SPEED,1], target, user, i)
+            end
+            next ret
+        end
+        user.pbLowerMultipleStatSteps([:SPECIAL_ATTACK,1,:SPEED,1], target, ability: ability)
+  }
+)
+
 BattleHandlers::TargetAbilityOnHit.add(:TANGLINGHAIR,
     proc { |ability, user, target, move, _battle, aiChecking, aiNumHits|
           next unless move.physicalMove?
@@ -282,6 +296,15 @@ BattleHandlers::TargetAbilityOnHit.add(:RELUCTANTBLADE,
         next if target.fainted?
         next -30 * aiNumHits if aiChecking
         battle.forceUseMove(target, :LEAFAGE, user.index, ability: ability)
+  }
+)
+
+BattleHandlers::TargetAbilityOnHit.add(:COUNTERFLOW,
+  proc { |ability, user, target, move, battle, aiChecking, aiNumHits|
+        next unless move.specialMove?
+        next if target.fainted?
+        next -30 * aiNumHits if aiChecking
+        battle.forceUseMove(target, :WIPEOUT, user.index, ability: ability)
   }
 )
 

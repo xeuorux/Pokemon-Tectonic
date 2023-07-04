@@ -145,7 +145,7 @@ class PokeBattle_AI
             end
 
             # Account for the triggered abilities of the target
-            unless user.hasActiveItem?(:PROXYFIST)
+            if user.activatesTargetAbilities?(true)
                 begin
                     scoreModifierTargetAbility = 0
                     target.eachAIKnownActiveAbility do |ability|
@@ -160,16 +160,18 @@ class PokeBattle_AI
             end
 
             # Account for the items of the target
-            begin
-                scoreModifierTargetItem = 0
-                target.eachActiveItem do |item|
-                    scoreModifierTargetItem += 
-                        BattleHandlers.triggerTargetItemOnHitAI(item, user, target, move, @battle, numHits)
+            unless user.hasActiveItem?(:PROXYFIST)
+                begin
+                    scoreModifierTargetItem = 0
+                    target.eachActiveItem do |item|
+                        scoreModifierTargetItem += 
+                            BattleHandlers.triggerTargetItemOnHitAI(item, user, target, move, @battle, numHits)
+                    end
+                    triggersScore += scoreModifierTargetItem
+                    echoln("[MOVE SCORING] #{user.pbThis}'s #{numHits} hits against #{target.pbThis(false)} adjusts the score by #{scoreModifierTargetAbility} due to the target's items") if scoreModifierTargetAbility != 0
+                rescue StandardError => exception
+                    pbPrintException($!) if $DEBUG
                 end
-                triggersScore += scoreModifierTargetItem
-                echoln("[MOVE SCORING] #{user.pbThis}'s #{numHits} hits against #{target.pbThis(false)} adjusts the score by #{scoreModifierTargetAbility} due to the target's items") if scoreModifierTargetAbility != 0
-            rescue StandardError => exception
-                pbPrintException($!) if $DEBUG
             end
         end
 

@@ -82,16 +82,3 @@ BattleHandlers::StatLossImmunityAbility.add(:IMPERVIOUS,
       next true
   }
 )
-
-
-BattleHandlers::StatLossImmunityAbility.add(:JUGGERNAUT,
-  proc { |ability, battler, stat, battle, showMessages|
-      next false if stat != :SPEED
-      if showMessages
-          battle.pbShowAbilitySplash(battler, ability)
-          battle.pbDisplay(_INTL("{1}'s {2} cannot be lowered!", battler.pbThis, GameData::Stat.get(stat).name))
-          battle.pbHideAbilitySplash(battler)
-      end
-      next true
-  }
-)

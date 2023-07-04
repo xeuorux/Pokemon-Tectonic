@@ -1042,9 +1042,46 @@ class PokeBattle_Move_126 < PokeBattle_Move_0DF
 end
 
 #===============================================================================
-# Not currently used.
+# User cuts its own HP by 25% to curse all foes and also to set Ingrain. (Cursed Roots)
 #===============================================================================
-class PokeBattle_Move_127 < PokeBattle_Move
+class PokeBattle_Move_127 < PokeBattle_Move_0DB
+    def pbMoveFailed?(user, _targets, show_message)
+        if user.hp <= (user.totalhp / 4)
+            @battle.pbDisplay(_INTL("But it failed, since #{user.pbThis(true)}'s HP is too low!")) if show_message
+            return true
+        end
+        allCursed = true
+        user.eachOpposing do |b|
+            next if b.effectActive?(:Cursed)
+            allCursed = false
+            break
+        end
+        if user.effectActive?(:Ingrain) && allCursed
+            if show_message
+                @battle.pbDisplay(_INTL("But it failed, since #{user.pbThis(true)}'s roots are already planted and all foes are already cursed!"))
+            end
+            return true
+        end
+        return false
+    end
+
+    def pbEffectGeneral(user)
+        @battle.pbDisplay(_INTL("{1} cut its own HP!", user.pbThis))
+        user.applyFractionalDamage(1.0 / 4.0, false)
+
+        user.eachOpposing do |b|
+            next if b.effectActive?(:Cursed)
+            b.applyEffect(:Cursed)
+        end
+
+        super
+    end
+
+    def getEffectScore(user, _target)
+        score = super
+        score += getHPLossEffectScore(user, 0.25)
+        return score
+    end
 end
 
 #===============================================================================

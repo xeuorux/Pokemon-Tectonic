@@ -131,7 +131,7 @@ Pokemon = NICKIT,15
 Policies = LAMBERT
 Pokemon = PANCHAM,15
     Moves = SMASH,TAUNT,LEER,BITE
-    AbilityIndex = 0 # Iron Fist
+    AbilityIndex = 1 # Juggernaut
 Pokemon = MACHOP,15
     Moves = MACHPUNCH,LOWKICK,KARATECHOP,BULKUP
     AbilityIndex = 1 # No Guard
@@ -687,7 +687,7 @@ Pokemon = MAGNETON,25
     AbilityIndex = 1 # No Guard
 Pokemon = POLIWHIRL,25
     Moves = SPATTERINGRAM,BRICKBREAK,HELPINGHAND
-    AbilityIndex = 1 # Disorienting
+    AbilityIndex = 0 # Clear Body
 Pokemon = CENTISKORCH,25
     Moves = BUGBITE,FLAMEWHEEL,DAZZLE
     AbilityIndex = 1 # Locomotion
@@ -918,8 +918,8 @@ Pokemon = DELCATTY,36
     AbilityIndex = 0 # Above It All
 Pokemon = NINETALES,36
     AbilityIndex = 1 # Feedback
-Pokemon = POLIWRATH,36
-    AbilityIndex = 1 # Disorienting
+Pokemon = GABITE,36
+    AbilityIndex = 0 # Rough Skin
 #-------------------------------
 [SCIENTIST_F,Natasha]
 Pokemon = SMEARGLE,37
@@ -947,7 +947,7 @@ Pokemon = MIMIKYU,36
 #-------------------------------
 [SCIENTIST_F3,Viola]
 Pokemon = GIRAFARIG,35
-    AbilityIndex = 0 # Trickster Aura
+    AbilityIndex = 0 # Trickster
 Pokemon = COMFEY,35
     AbilityIndex = 0 # Garland Guardian
 Pokemon = BEHEEYEM,35
@@ -1130,7 +1130,7 @@ Pokemon = ANORITH,28
     AbilityIndex = 0 # Evo-Armor
     Item = ROCKGEM
 Pokemon = POLIWHIRL,29
-    AbilityIndex = 1 # Disorienting
+    AbilityIndex = 0 # Clear Body
 #-------------------------------
 [FAIRYTALEGIRL,Maja]
 Pokemon = AMAURA,27
@@ -1539,7 +1539,7 @@ Pokemon = DOUBLADE,40
 Pokemon = FURFROU,40
     AbilityIndex = 0 # Stylish
 Pokemon = PANGORO,40
-    AbilityIndex = 0 # Iron Fist
+    AbilityIndex = 0 # Big Boss
     Item = AMWIBERRY
 #-------------------------------
 [POKEFAN_F,Impi]
@@ -1739,7 +1739,7 @@ Pokemon = DHELMISE,70
 Pokemon = CRYOGONAL,70
     AbilityIndex = 0 # Levitate
 Pokemon = GIRAFARIG,70
-    AbilityIndex = 0 # Trickster Aura
+    AbilityIndex = 0 # Trickster
 Pokemon = MUSHARNA,70
     AbilityIndex = 0 # Dream Weaver
 Pokemon = CHIMECHO,70
@@ -1993,7 +1993,7 @@ Pokemon = GLALIE,45
 Extends = LEADER_Noel,Noel,0
 Pokemon = GIRAFARIG,45
     Moves = FOULPLAY,PSYCHICFANGS,FLING,IRONHEAD
-    AbilityIndex = 0 # Trickster Aura
+    AbilityIndex = 0 # Trickster
     Item = IRONBALL
 Pokemon = METAGROSS,45
     Item = LUMBERRY
@@ -3649,7 +3649,7 @@ Pokemon = ARCANINE,55
     AbilityIndex = 0 # Intimidate
     Item = FIREGEM
 Pokemon = GOLURK,55
-    Moves = INFERNO,LAHAR,PROFANE,ZAPCANNON
+    Moves = INFERNO,MUDSLIDE,PROFANE,ZAPCANNON
     AbilityIndex = 1 # No Guard
 #-------------------------------
 [MASKEDVILLAIN,Crimson,11]
@@ -3875,7 +3875,7 @@ Pokemon = ARCANINE,65
     AbilityIndex = 0 # Intimidate
     Item = FIREGEM
 Pokemon = GOLURK,65
-    Moves = INFERNO,LAHAR,PROFANE,ZAPCANNON
+    Moves = INFERNO,MUDSLIDE,PROFANE,ZAPCANNON
     AbilityIndex = 1 # No Guard
 #-------------------------------
 [MASKEDVILLAIN2,Teal,11]
@@ -4088,7 +4088,7 @@ Pokemon = RIOJIN,70
     Item = SALACBERRY
 Pokemon = PANGORO,70
     Moves = SWORDSDANCE,SUCKERPUNCH,HAMMERARM,BULLETPUNCH
-    AbilityIndex = 0 # Iron Fist
+    AbilityIndex = 0 # Big Boss
 Pokemon = EXCADRILL,70
     Moves = UNDERMINE,STEALTHROCK,METEORMASH,XSCISSOR
     AbilityIndex = 1 # Mold Breaker
@@ -4798,7 +4798,7 @@ Pokemon = ARCANINE,70
     AbilityIndex = 0 # Intimidate
     Item = FIREGEM
 Pokemon = GOLURK,70
-    Moves = INFERNO,LAHAR,PROFANE,ZAPCANNON
+    Moves = INFERNO,MUDSLIDE,PROFANE,ZAPCANNON
     AbilityIndex = 1 # No Guard
 #-------------------------------
 [MASKEDVILLAIN,Crimson,23]
@@ -5025,7 +5025,7 @@ Pokemon = ARCANINE,70
     AbilityIndex = 0 # Intimidate
     Item = FIREGEM
 Pokemon = GOLURK,70
-    Moves = INFERNO,LAHAR,PROFANE,ZAPCANNON
+    Moves = INFERNO,MUDSLIDE,PROFANE,ZAPCANNON
     AbilityIndex = 1 # No Guard
 #-------------------------------
 [MASKEDVILLAIN2,Teal,23]
@@ -5179,7 +5179,7 @@ Pokemon = ARCANINE,70
     AbilityIndex = 0 # Intimidate
 Pokemon = GOLURK,70
     Name = Prometheus
-    Moves = INFERNO,LAHAR,PROFANE,ZAPCANNON
+    Moves = INFERNO,MUDSLIDE,PROFANE,ZAPCANNON
     AbilityIndex = 1 # No Guard
 #-------------------------------
 [TRAINER_Imogene_A,Imogene,1]
@@ -5305,7 +5305,7 @@ Pokemon = MILLIBLAZE,70
 Pokemon = FURFROU,61
     AbilityIndex = 0 # Stylish
 Pokemon = PANGORO,62
-    AbilityIndex = 0 # Iron Fist
+    AbilityIndex = 0 # Big Boss
     Item = AMWIBERRY
 Pokemon = TOXAPEX,63
     AbilityIndex = 0 # Energetic
@@ -5672,7 +5672,7 @@ Pokemon = WEAVILE,70
     Moves = SEVER,TRIPLEAXEL,SWORDSDANCE,ICESHARD
     AbilityIndex = 0 # Inner Focus
 Pokemon = GOLURK,70
-    Moves = PHANTOMBREAK,LAHAR,ZAPCANNON,VENOMORTAR
+    Moves = PHANTOMBREAK,DYNAMICPUNCH,ZAPCANNON,VENOMORTAR
     AbilityIndex = 1 # No Guard
 Pokemon = DRAGALGE,70
     Moves = DRAGONTAIL,CRUELTY,RECOVER,GREYMIST
@@ -5690,7 +5690,7 @@ Pokemon = WEAVILE,70
     Moves = SEVER,TRIPLEAXEL,SWORDSDANCE,ICESHARD
     AbilityIndex = 0 # Inner Focus
 Pokemon = GOLURK,70
-    Moves = PHANTOMBREAK,LAHAR,ZAPCANNON,VENOMORTAR
+    Moves = PHANTOMBREAK,MUDSLIDE,ZAPCANNON,VENOMORTAR
     AbilityIndex = 1 # No Guard
 Pokemon = DRAGALGE,70
     Moves = DRAGONTAIL,CRUELTY,RECOVER,GREYMIST

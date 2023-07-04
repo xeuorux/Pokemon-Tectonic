@@ -3,7 +3,7 @@
 #############################################################
 BattleHandlers::TargetAbilityAfterMoveUse.add(:COLORCHANGE,
   proc { |ability, target, user, move, _switched, battle|
-      next if user.hasActiveAbility?(:PROXYFIST)
+      next unless user.activatesTargetAbilities?
       next if target.damageState.calcDamage == 0 || target.damageState.substitute
       next if !move.calcType || GameData::Type.get(move.calcType).pseudo_type
       next if target.pbHasType?(move.calcType) && !target.pbHasOtherType?(move.calcType)
@@ -35,7 +35,7 @@ BattleHandlers::TargetAbilityAfterMoveUse.add(:PICKPOCKET,
   proc { |ability, target, user, move, switched, battle|
       next if switched.include?(user.index)
       next unless move.damagingMove?
-      next if user.hasActiveItem?(:PROXYFIST)
+      next unless user.activatesTargetAbilities?
       next unless move.physicalMove?
       next if battle.futureSight
       move.stealItem(target, user, target.firstItem, ability: ability)
@@ -46,7 +46,7 @@ BattleHandlers::TargetAbilityAfterMoveUse.add(:MOONLIGHTER,
   proc { |ability, target, user, move, switched, battle|
       next if switched.include?(user.index)
       next unless move.damagingMove?
-      next if user.hasActiveItem?(:PROXYFIST)
+      next unless user.activatesTargetAbilities?
       next if battle.futureSight
       next unless battle.moonGlowing?
       item = target.firstItem
@@ -65,7 +65,7 @@ BattleHandlers::TargetAbilityAfterMoveUse.add(:MOONLIGHTER,
 BattleHandlers::TargetAbilityAfterMoveUse.add(:EXOADAPTION,
   proc { |ability, target, user, move, _switched, _battle|
       next unless move.damagingMove?
-      next if user.hasActiveItem?(:PROXYFIST)
+      next unless user.activatesTargetAbilities?
       next unless move.specialMove?
       healingMessage = _INTL("{1} heals itself with energy from {2}'s attack!", target.pbThis, user.pbThis(true))
       target.applyFractionalHealing(1.0 / 4.0, ability: ability, customMessage: healingMessage)

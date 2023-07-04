@@ -203,7 +203,7 @@
 202,FIREFANG,Fire Fang,00B,65,FIRE,Physical,100,20,100,NearOther,0,abei,"The user bites with flame-cloaked fangs. It has a 10% chance to flinch and a 10% chance to burn.",
 203,FLAMEWHEEL,Flame Wheel,00A,60,FIRE,Physical,100,20,20,NearOther,0,abef,"The user cloaks itself in fire and charges at the target. It has a 20% chance to burn.",
 204,INCINERATE,Incinerate,0F5,60,FIRE,Special,100,12,0,AllNearFoes,0,bef,"The user attacks the foe with fire. The target's held Berry or Gem becomes burnt up and unusable.",
-205,FLAMECHARGE,Flame Charge,5E0,60,FIRE,Physical,100,15,100,NearOther,0,abef,"The user cloaks itself in flame and attacks. Building up more power, it raises the user's Speed stat.",
+205,FLAMECHARGE,Flame Charge,5E0,60,FIRE,Physical,100,15,100,NearOther,0,abef,"The user cloaks itself in flame and attacks. Building up more power, it raises the user's Speed.",
 206,EMBER,Ember,00A,40,FIRE,Special,100,20,10,NearOther,0,bef,"The target is attacked with small flames. It has a 10% chance to burn.",
 207,FIRESPIN,Fire Spin,0CF,50,FIRE,Special,100,15,0,NearOther,0,bef,"The user engulfs the target in fierce flames, trapping and damaging it for three turns.",
 208,HEATCRASH,Heat Crash,09B,1,FIRE,Physical,100,10,0,NearOther,0,abef,"The user slams the foe with its flaming body. The heavier the user is, the greater the damage.",

@@ -384,7 +384,13 @@ class PokeBattle_Battler
     end
 
     def hasMoldBreaker?
-        return hasActiveAbility?(%i[MOLDBREAKER TERAVOLT TURBOBLAZE CLEAVING STRAIGHTAHEAD])
+        return hasActiveAbility?(GameData::Ability::MOLD_BREAKING_ABILITIES)
+    end
+
+    def activatesTargetAbilities?(aiCheck = false)
+        return false if hasActiveItem?(:PROXYFIST)
+        return false if shouldAbilityApply?(:JUGGERNAUT, aiCheck)
+        return true
     end
 
     def canChangeType?

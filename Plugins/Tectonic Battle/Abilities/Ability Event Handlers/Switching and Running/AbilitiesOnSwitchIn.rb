@@ -296,13 +296,15 @@ BattleHandlers::AbilityOnSwitchIn.add(:FRUSTRATE,
   }
 )
 
-BattleHandlers::AbilityOnSwitchIn.add(:MOLDBREAKER,
-  proc { |ability, battler, battle|
-      battle.pbShowAbilitySplash(battler, ability)
-      battle.pbDisplay(_INTL("{1} breaks the mold!", battler.pbThis))
-      battle.pbHideAbilitySplash(battler)
-  }
-)
+GameData::Ability::MOLD_BREAKING_ABILITIES.each do |abilityID|
+    BattleHandlers::AbilityOnSwitchIn.add(abilityID,
+        proc { |ability, battler, battle|
+            battle.pbShowAbilitySplash(battler, ability)
+            battle.pbDisplay(_INTL("{1} breaks the mold!", battler.pbThis))
+            battle.pbHideAbilitySplash(battler)
+        }
+    )
+end
 
 BattleHandlers::AbilityOnSwitchIn.add(:PRESSURE,
   proc { |ability, battler, battle|
@@ -511,7 +513,7 @@ BattleHandlers::AbilityOnSwitchIn.add(:PUZZLINGAURA,
   }
 )
 
-BattleHandlers::AbilityOnSwitchIn.add(:TRICKSTERAURA,
+BattleHandlers::AbilityOnSwitchIn.add(:TRICKYAURA,
   proc { |ability, battler, battle|
     battle.pbShowAbilitySplash(battler, ability)
     battle.pbStartRoom(:TrickRoom, battler)

@@ -254,8 +254,14 @@ BattleHandlers::DamageCalcTargetAbility.add(:RUSTYANCHOR,
   }
 )
 
-BattleHandlers::DamageCalcTargetAbility.add(:RUSTYANCHOR,
+BattleHandlers::DamageCalcTargetAbility.add(:STEAMPOWER,
   proc { |ability, user, target, _move, mults, _baseDmg, type|
       mults[:final_damage_multiplier] /= 2.0 if type == :WATER
+  }
+)
+
+BattleHandlers::DamageCalcTargetAbility.add(:APRICORNARMOR,
+  proc { |ability, user, _target, move, mults, _baseDmg, _type|
+      mults[:final_damage_multiplier] /= 2 if user.pbHasAnyStatus?
   }
 )

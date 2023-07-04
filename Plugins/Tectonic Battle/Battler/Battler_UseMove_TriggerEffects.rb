@@ -5,7 +5,7 @@ class PokeBattle_Battler
     def pbEffectsOnMakingHit(move, user, target)
         if target.damageState.calcDamage > 0 && !target.damageState.substitute
             # Target's ability
-            unless user.hasActiveItem?(:PROXYFIST)
+            if user.activatesTargetAbilities?
                 target.eachActiveAbility(true) do |ability|
                     oldHP = user.hp
                     BattleHandlers.triggerTargetAbilityOnHit(ability, user, target, move, @battle)
@@ -245,7 +245,7 @@ user.pbThis(true)))
             b.eachActiveAbility do |ability|
                 BattleHandlers.triggerTargetAbilityAfterMoveUse(ability, b, user, move, switchedBattlers, @battle)
                 
-                if move.damagingMove? && b.knockedBelowHalf? && !user.hasActiveItem?(:PROXYFIST)
+                if move.damagingMove? && b.knockedBelowHalf? && user.activatesTargetAbilities?
                     BattleHandlers.triggerTargetAbilityKnockedBelowHalf(ability, b, user, move, switchedBattlers, @battle)
                 end
             end
