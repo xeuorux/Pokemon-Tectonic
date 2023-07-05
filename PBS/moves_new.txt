@@ -67,7 +67,7 @@
 1066,VANGUARD,Vanguard,513,0,STEEL,Status,100,15,100,User,0,d,"The user enters a protective stance, raising its Sp. Atk and Defense by two steps each.",
 1067,FLOWSTATE,Flow State,512,0,WATER,Status,100,15,100,User,0,d,"The user gains an instinctual knowledge of battle, raising its Attack and Sp. Def by two steps each.",
 1068,COLDCONVERSION,Cold Conversion,51B,130,ICE,Special,100,5,0,NearOther,0,bef,"To inflict massive damage, the user uses up its Ice-type.",ICEBEAM
-1069,TOXICTASTE,Toxic Taste,545,70,POISON,Physical,100,10,20,NearOther,0,abef,"The user chomps with venomous teeth. The user's HP is restored by a third of the damage dealt.",
+1069,TOXICTASTE,Toxic Taste,545,70,POISON,Physical,100,10,0,NearOther,0,abef,"The user chomps with venomous teeth. The user's HP is restored by a third of the damage dealt.",
 1070,REFLEXOVERDRIVE,Reflex Overdrive,519,110,PSYCHIC,Physical,0,10,0,NearOther,0,abef,"Lands without fail and lowers the user's Defense and Speed.",
 1071,DOUSE,Douse,518,40,WATER,Special,100,10,0,NearFoe,0,bef,"The user douses the target, healing itself by a third of its maximum HP in the process.",BRINE
 1072,AQUAINSTINCT,Aqua Instinct,517,65,WATER,Physical,100,10,0,NearOther,0,bef,"The user preys on the target. This move goes first if the target is below half health.",FISHIOUSREND

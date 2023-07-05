@@ -105,3 +105,8 @@
 3104,TOXICATTITUDE,Toxic Attitude,"Powers up Poison-type moves of itself and its allies by 50%."
 3105,LIVEWIRE,Live Wire,"Special attacks against the Pokémon has a 30% chance to cause numbing."
 3106,STEAMENGINE,Steam Engine,"Maximizes Speed when hit by a Fire- or Water-type move."
+3107,ELECTRICSURGE,Electric Surge,"Turns the ground into Electric Terrain for 5 turns when entering battle."
+3108,PSYCHICSURGE,Psychic Surge,"Turns the ground into Psychic Terrain for 5 turns when entering battle."
+3109,FAIRYSURGE,Fairy Surge,"Turns the ground into Fairy Terrain for 5 turns when entering battle."
+3110,GRASSYSURGE,Grassy Surge,"Turns the ground into Grassy Terrain for 5 turns when entering battle."
+3111,TRICKSTERAURA,Trickster Aura,"Upon entry, creates a Trick Room for five turns, inverting the effect of Speed."
