@@ -1052,7 +1052,7 @@ class PokeBattle_Move_127 < PokeBattle_Move_0DB
         end
         allCursed = true
         user.eachOpposing do |b|
-            next if b.effectActive?(:Cursed)
+            next if b.effectActive?(:Curse)
             allCursed = false
             break
         end
@@ -1070,8 +1070,8 @@ class PokeBattle_Move_127 < PokeBattle_Move_0DB
         user.applyFractionalDamage(1.0 / 4.0, false)
 
         user.eachOpposing do |b|
-            next if b.effectActive?(:Cursed)
-            b.applyEffect(:Cursed)
+            next if b.effectActive?(:Curse)
+            b.applyEffect(:Curse)
         end
 
         super

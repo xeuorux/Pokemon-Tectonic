@@ -840,3 +840,11 @@ class PokeBattle_AI_Sudowoodo < PokeBattle_AI_Boss
         })
     end
 end
+
+class PokeBattle_AI_Slowking < PokeBattle_AI_Boss
+    def initialize(user, battle)
+        super
+        secondMoveEveryTurn(:COSMICPOWER)
+        secondMoveEveryTurn(:WORKUP)
+    end
+end
