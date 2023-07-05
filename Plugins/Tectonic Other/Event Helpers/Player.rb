@@ -78,8 +78,22 @@ def healPartyWithDelay()
 	refillAidKit()
 end
 
+def nonLegendarySpeciesCount(owned = false)
+    count = 0
+    GameData::Species.each do |speciesData|
+        next unless speciesData.form == 0
+        next if isLegendary?(speciesData.id)
+        next if owned && !$Trainer.pokedex.owned?(speciesData.species)
+        count += 1
+    end
+    return count
+end
+
 def dexCompletionPercent(dexNumber = -1)
-	ratio = 100.0 * $Trainer.pokedex.owned_count(dexNumber).to_f / pbGetRegionalDexLength(dexNumber).to_f
+    ownedCount = nonLegendarySpeciesCount(true)
+    totalCount = nonLegendarySpeciesCount
+	ratio = 100.0 * ownedCount.to_f / totalCount.to_f
+    echoln("Non-legendary dex Completion: #{ownedCount} / #{totalCount} is #{ratio} percent")
 	return ratio.floor
 end
 
