@@ -418,7 +418,7 @@ def describeMoveForChangelog(move)
 	changelogAdds.push("\t#{moveData.real_name}")
 	changelogAdds.push("\t#{moveData.categoryLabel}, #{GameData::Type.get(moveData.type).real_name}-type")
 	mainLine = "#{moveData.total_pp} PP"
-	mainLine = "#{moveData.accuracy}%% accuracy, " + mainLine if moveData.accuracy > 0
+	mainLine = "#{moveData.accuracy} percent accuracy, " + mainLine if moveData.accuracy > 0
 	mainLine = "#{moveData.base_damage} BP, " + mainLine if moveData.base_damage > 0
 	mainLine = "\t" + mainLine
 	changelogAdds.push(mainLine)

@@ -78,7 +78,7 @@ def playStatStepsTutorial
     $PokemonGlobal.statStepsTutorialized = true
     playTutorial { |messageWait|
         pbMessage(_INTL("\\wmStats can be changed during battle by 'stat steps'.\\wtnp[#{messageWait}]\1"))
-        pbMessage(_INTL("\\wmA step is a small change! At +1 steps, only 25%% is added to the stat.\\wtnp[#{messageWait}]\1"))
+        pbMessage(_INTL("\\wmA step is a small change! At +1 steps, only 25% is added to the stat.\\wtnp[#{messageWait}]\1"))
         pbMessage(_INTL("\\wmCheck the Info menu to see the active steps and their effects on the battlers.\\wtnp[#{messageWait}]\1"))
     }
 end

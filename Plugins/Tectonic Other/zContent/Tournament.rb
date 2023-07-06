@@ -180,13 +180,13 @@ def displayRoundOdds(round)
     return if round < 1 || round > 6
     if round == 6
         pbMessage(_INTL("Odds are displayed for the grand final, gathered from a spectator poll."))
-        pbMessage(_INTL("Only 20%% of respondents expect you to win against your brother."))
+        pbMessage(_INTL("Only 20 percent of respondents expect you to win against your brother."))
     else
         index = round-1
         ordinal = ["second", "third", "fourth", "fifth"][index]
         percent = [60,55,45,35][index]
         pbMessage(_INTL("Odds are displayed for the #{ordinal} round matches, gathered from a spectator poll."))
-        pbMessage(_INTL("#{percent}%% of respondents expect you to win against #{nextOpponentName()}."))
+        pbMessage(_INTL("#{percent} percent of respondents expect you to win against #{nextOpponentName()}."))
     end
 end
 
