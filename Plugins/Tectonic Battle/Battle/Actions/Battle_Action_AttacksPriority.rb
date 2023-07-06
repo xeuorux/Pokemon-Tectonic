@@ -6,6 +6,7 @@ class PokeBattle_Battle
         battler = @battlers[idxBattler]
         move = battler.moves[idxMove]
         return false unless move
+        return true if move.empoweredMove? && battler.boss?
         if move.pp == 0 && move.total_pp > 0 && !sleepTalk
             pbDisplayPaused(_INTL("There's no PP left for this move!")) if showMessages
             echoln("The move #{move.name} has no PP, so it cannot be chosen.")
@@ -24,6 +25,7 @@ class PokeBattle_Battle
     def pbCanChooseAnyMove?(idxBattler, sleepTalk = false)
         battler = @battlers[idxBattler]
         battler.eachMoveWithIndex do |m, i|
+            return true if m.empoweredMove? && battler.boss?
             next if m.pp == 0 && m.total_pp > 0 && !sleepTalk
             if battler.effectActive?(:Encore)
                 idxEncoredMove = battler.pbEncoredMoveIndex

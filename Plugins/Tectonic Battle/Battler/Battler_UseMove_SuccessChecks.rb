@@ -230,7 +230,7 @@ GameData::Move.get(@effects[:GorillaTactics]).name)
     # to have been used (even if it then fails for whatever reason).
     #=============================================================================
     def pbTryUseMove(choice, move, specialUsage, skipAccuracyCheck)
-        return true if move.empoweredMove? && move.statusMove?
+        return true if move.empoweredMove? && boss? && move.statusMove?
         
         # Check whether it's possible for self to use the given move
         # NOTE: Encore has already changed the move being used, no need to have a
@@ -270,9 +270,6 @@ GameData::Move.get(@effects[:GorillaTactics]).name)
                 end
             end
         end
-
-        # Obedience check
-        return false unless pbObedienceCheck?(choice)
 
         # Truant
         if hasActiveAbility?(:TRUANT)

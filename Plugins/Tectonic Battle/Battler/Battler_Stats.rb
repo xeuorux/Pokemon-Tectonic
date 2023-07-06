@@ -246,6 +246,14 @@ class PokeBattle_Battler
         
         defenseMult *= 1.2 if hasTribeBonus?(:SCRAPPER)
 
+        # Hail
+        if @battle.icy? && pbHasType?(:ICE)
+            hailAddition = 0.5
+            hailAddition *= 2 if @battle.pbCheckGlobalAbility(:BITTERCOLD)
+            hailAddition *= 2 if @battle.curseActive?(:CURSE_BOOSTED_HAIL)
+            defenseMult *= (1 + hailAddition)
+        end
+
         # Calculation
         return [(defense * defenseMult).round, 1].max
     end
@@ -270,6 +278,14 @@ class PokeBattle_Battler
         end
         
         spDefMult *= 1.2 if hasTribeBonus?(:RADIANT)
+
+        # Sandstorm
+        if @battle.sandy? && pbHasType?(:ROCK)
+            sandAddition = 0.5
+            sandAddition *= 2 if @battle.pbCheckGlobalAbility(:IRONSTORM)
+            sandAddition *= 2 if @battle.curseActive?(:CURSE_BOOSTED_SAND)
+            spDefMult *= (1 + sandAddition)
+        end
 
         # Calculation
         return [(special_defense * spDefMult).round, 1].max

@@ -101,7 +101,6 @@ class PokeBattle_Battle
             b.eachMoveWithIndex do |move, index|
                 next if move.damagingMove?(true)
                 next unless move.empoweredMove?
-                next if move.pp < 1
                 showMessages = $PokemonSystem.avatar_mechanics_messages == 0
                 if PRIMEVAL_MOVES_RESET_DEBUFFS && (b.pbHasAnyStatus? || b.hasLoweredStatSteps?)
                     pbAnimation(:REFRESH,b,b)

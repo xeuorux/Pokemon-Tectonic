@@ -67,7 +67,7 @@ end
 # For 5 rounds, swaps all battlers' offensive and defensive stats (Sp. Def <-> Sp. Atk and Def <-> Atk).
 # (Odd Room)
 #===============================================================================
-class PokeBattle_Move_582 < PokeBattle_Move
+class PokeBattle_Move_582 < PokeBattle_RoomMove
     def initialize(battle, move)
         super
         @roomEffect = :OddRoom
