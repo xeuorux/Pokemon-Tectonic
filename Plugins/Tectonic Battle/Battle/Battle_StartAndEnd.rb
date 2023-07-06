@@ -410,6 +410,8 @@ class PokeBattle_Battle
         end
         # Abilities upon entering battle
         pbOnActiveAll
+        # Exit the pre-battle phase
+        @preBattle = false
         # Main battle loop
         pbBattleLoop
     end
@@ -453,6 +455,7 @@ class PokeBattle_Battle
 
             # Calculate how many extra phases to add
             eachBattler do |b|
+                echoln("#{b.pbThis} gets #{b.extraMovesPerTurn} extra moves this turn.")
                 numExtraPhasesThisTurn = b.extraMovesPerTurn if b.extraMovesPerTurn > numExtraPhasesThisTurn
             end
 

@@ -85,6 +85,7 @@ class PokeBattle_Battle
         @time              = 0
         @environment       = :None # e.g. Tall grass, cave, still water
         @turnCount         = 0
+        @preBattle         = true
         @decision          = 0
         @caughtPokemon     = []
         player   = [player] if !player.nil? && !player.is_a?(Array)

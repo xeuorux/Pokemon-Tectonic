@@ -397,7 +397,7 @@ class PokeBattle_Battle
         eachBattler { |b| b.pbUpdateParticipants }
 
         # Note its switching in this turn
-        battler.applyEffect(:SwitchedIn)
+        battler.applyEffect(:SwitchedIn) unless @preBattle
 
         # Perform procs from battlers entering into a position
         position = @positions[battler.index]
