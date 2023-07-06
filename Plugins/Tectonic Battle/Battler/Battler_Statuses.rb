@@ -214,11 +214,6 @@ class PokeBattle_Battler
                 hasImmuneType = true
                 immuneType = :ICE
             end
-        when :DIZZY
-            if pbHasType?(:PSYCHIC)
-                hasImmuneType = true
-                immuneType = :PSYCHIC
-            end
         when :LEECHED
             if pbHasType?(:GRASS)
                 hasImmuneType = true
@@ -305,11 +300,9 @@ immuneTypeRealName))
         when :BURN
             hasImmuneType |= pbHasType?(:FIRE)
         when :NUMB
-            hasImmuneType |= pbHasType?(:ELECTRIC) && Settings::MORE_TYPE_EFFECTS
-        when :FROZEN, :FROSTBITE
+            hasImmuneType |= pbHasType?(:ELECTRIC)
+        when :FROSTBITE
             hasImmuneType |= pbHasType?(:ICE)
-        when :DIZZY
-            hasImmuneType |= pbHasType?(:PSYCHIC)
         when :LEECHED
             hasImmuneType |= pbHasType?(:GRASS)
         end

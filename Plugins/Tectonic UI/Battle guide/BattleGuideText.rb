@@ -111,7 +111,7 @@ STATUS_CONDITIONS_HASH = {
     _INTL("Frostbite") => _INTL("When frostbitten, a Pokémon's Sp. Atk is reduced by 33\%, and loses 1/8th HP every turn. Ice- and Flying-types do the most frostbiting. Ice is immune."),
     _INTL("Poison") => _INTL("When poisoned, a Pokémon loses 1/8th HP every turn. This doubles every 3 turns. Poison- and Grass-types do the most poisoning. Poison/Steel are immune."),
     _INTL("Numb") => _INTL("When numbed, a Pokémon's Speed is halved, and it deals 25\% less damage. Electric- and Fighting-types do the most numbing. Electric is immune."),
-    _INTL("Dizzy") => _INTL("When dizzied, a Pokémon takes 25\% more attack damage, and its ability doesn't function. Psychic- and Fairy-types do the most dizzying. Psychic is immune."),
+    _INTL("Dizzy") => _INTL("When dizzied, a Pokémon takes 25\% more attack damage, and its ability doesn't function. Psychic- and Fairy-types do the most dizzying."),
     _INTL("Leeched") => _INTL("When leeched, a Pokémon loses 1/8th HP every turn, and its opponent(s) split that health. Bug- and Dark-types do the most leeching. Grass is immune."),
     _INTL("Sleep") => _INTL("A rarer status that causes a Pokémon to be unable to do anything for 2 turns. Psychic- and Grass-types put Pokémon to sleep the most often."),
 }
@@ -130,7 +130,7 @@ TRAINERS_HASH = {
 
 AVATARS_HASH = {
     _INTL("What are Avatars?") => _INTL("Avatars are powerful enemy Pokémon with unique properties that you will fight and destroy during your adventure. They cannot be caught."),
-    _INTL("Avatars are Healthy") => _INTL("Avatars have two health bars, which means they have a lot of health. Usually more than double the normal amount!"),
+    _INTL("Avatars are Healthy") => _INTL("Avatars have two health bars, which means they have a lot of health. Much more than double the normal amount!"),
     _INTL("Multi-Move") => _INTL("Avatars can move twice each turn. Their second move will happen after every battler has used their regular move for the turn."),
     _INTL("Two Statuses") => _INTL("Avatars are large, and have room for up to two status conditions at a time. They can't have two of the same condition."),
     _INTL("HP-Based Effects") => _INTL("Effects that damage based on a fraction of total HP are only one-sixth as powerful against avatars, compared to normal Pokémon."),
@@ -138,8 +138,8 @@ AVATARS_HASH = {
     _INTL("Clean Slate") => _INTL("Before an Avatar uses a Primeval Move, they will also heal from any status conditions and reset any of their stat steps that have been lowered."),
     _INTL("Shields") => _INTL("The top of Avatars health bars starts Shielded. Shielded bars take 75\% less damage. A shield is removed when the Avatar uses a Primeval Move."),
     _INTL("Attack Choice") => _INTL("Avatars usually only have a few moves to choose from. They usually alternate between their moves on successive attacks."),
-    _INTL("Target Choice") => _INTL("Avatars usually attack your healthiest Pokémon. However, they will sometimes attack your lower health Pokémon. This is more common when the Avatar is also low."),
-    _INTL("Empowered Moves") => _INTL("Some Avatars also have Empowered Moves, which are powered-up versions of damaging attacks. They take up both of an Avatar's moves on that turn."),
+    _INTL("Target Choice") => _INTL("A targeting reticle shows which of your battles the Avatar wants to attack. It will switch to another battler, however, if their attack is made impossible."),
+    _INTL("Empowered Moves") => _INTL("Some Avatars have Empowered attacks, which are powered-up versions of other attacks. They take up both of an Avatar's moves on that turn."),
     _INTL("Experience Reward") => _INTL("When an Avatar is destroyed, every Pokémon on your team is given experience, even those that are fainted."),
     _INTL("Legendary Avatars") => _INTL("Legendary Avatars are unique. You fight them with 3 Pokémon, they have 3 HP bars, and they have more moves with more smarts about how to use them."),
 }
