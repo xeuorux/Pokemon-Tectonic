@@ -166,7 +166,6 @@ def createChangeLogBetween(firstID,lastID,fileName = "changelog.txt")
 				next if GameData::Move.get(moveRename).cut
 				cutMoves.push(oldMove)
 			end
-		
 			
 			if cutMoves.length > 0
 				str = "Removed Move#{cutMoves.length > 1 ? "s" : ""}: "
@@ -181,7 +180,7 @@ def createChangeLogBetween(firstID,lastID,fileName = "changelog.txt")
 			
 			addedSignatureMoves = []
 			
-			if newMovesLearned.length > 0
+			unless newMovesLearned.empty?
 				addedMoves = []
 
 				newMovesLearned.each do |newMove|
@@ -195,14 +194,16 @@ def createChangeLogBetween(firstID,lastID,fileName = "changelog.txt")
 					end
 				end
 
-				str = "Added Move#{addedMoves.length > 1 ? "s" : ""}: "
-				addedMoves.each_with_index do |move,index|
-					str += GameData::Move.get(move).real_name
-					if index != addedMoves.length - 1
-						str += ", "
-					end
-				end
-				changeLog.push(str)
+                unless addedMoves.empty?
+                    str = "Added Move#{addedMoves.length > 1 ? "s" : ""}: "
+                    addedMoves.each_with_index do |move,index|
+                        str += GameData::Move.get(move).real_name
+                        if index != addedMoves.length - 1
+                            str += ", "
+                        end
+                    end
+                    changeLog.push(str)
+                end
 			end
 
 			if addedSignatureMoves.length > 0
@@ -262,6 +263,7 @@ def createChangeLogBetween(firstID,lastID,fileName = "changelog.txt")
 			
 			# Print out the changelog
 			if changeLog.length == 0
+                f.write("#{species_data.real_name}: Unchanged!\r\n")
 				unchanged.push(species_data.id)
 			else
 				f.write("#{species_data.real_name}:\r\n")
@@ -269,8 +271,8 @@ def createChangeLogBetween(firstID,lastID,fileName = "changelog.txt")
 					next if change.nil?
 					f.write(change + "\r\n")
 				end
-				f.write("--------------------------------------------\r\n")
 			end
+            f.write("--------------------------------------------\r\n")
 		end
 		#f.write("Species that were unchanged: #{unchanged.to_s}")
 	}
@@ -416,7 +418,7 @@ def describeMoveForChangelog(move)
 	changelogAdds.push("\t#{moveData.real_name}")
 	changelogAdds.push("\t#{moveData.categoryLabel}, #{GameData::Type.get(moveData.type).real_name}-type")
 	mainLine = "#{moveData.total_pp} PP"
-	mainLine = "#{moveData.accuracy}\% accuracy, " + mainLine if moveData.accuracy > 0
+	mainLine = "#{moveData.accuracy}%% accuracy, " + mainLine if moveData.accuracy > 0
 	mainLine = "#{moveData.base_damage} BP, " + mainLine if moveData.base_damage > 0
 	mainLine = "\t" + mainLine
 	changelogAdds.push(mainLine)

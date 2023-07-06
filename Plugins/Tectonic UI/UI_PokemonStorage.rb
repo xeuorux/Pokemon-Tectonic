@@ -1906,7 +1906,7 @@ class PokemonBoxIcon < IconSprite
             pbDisplay(_INTL("It didn't earn enough XP for you to earn any candies back."))
           else
             percentile = (CANDY_EXCHANGE_EFFICIENCY * 100).to_i
-            pbDisplay(_INTL("You are reimbursed for #{percentile}\% of the EXP it earned."))
+            pbDisplay(_INTL("You are reimbursed for #{percentile}%% of the EXP it earned."))
             pbReceiveItem(:EXPCANDYM,mCandyTotal) if mCandyTotal > 0
             pbReceiveItem(:EXPCANDYS,sCandyTotal) if sCandyTotal > 0
             pbReceiveItem(:EXPCANDYXS,xsCandyTotal) if xsCandyTotal > 0
