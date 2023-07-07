@@ -21,8 +21,9 @@ LandTall,20
     20,NIDORANmA,15,18
     20,PONYTA,15,18
     20,POOCHYENA,15,18
-Special,20
+Special,1
     1,ELEKID,15
+    1,NUMEL,10
 #-------------------------------
 [004] # Scientist's House
 Special,1
@@ -681,6 +682,8 @@ LandTall,20
     25,FALINKS,34,36
     25,GIRAFARIG,34,36
     25,KANGASKHAN,34,36
+Special,1
+    1,KRABBY,10
 #-------------------------------
 [217] # Sweetrock Harbor
 Land,20
@@ -835,6 +838,10 @@ Land,20
     25,PICHU,43,45
     25,ROOKIDEE,43,45
 #-------------------------------
+[264] # Sweetrock Harbor Mart
+Special,1
+    1,APPLIN,10
+#-------------------------------
 [282] # The Catacombs B1
 LandSparse,20
     20,AEGISLASH,53,55
@@ -962,12 +969,6 @@ Special,1
     20,HVOLTORB,10
     20,HZORUA,10
 #-------------------------------
-[366] # Far Beach
-Land,20
-    34,NUMEL,8,10
-    33,APPLIN,8,10
-    33,KRABBY,8,10
-#-------------------------------
 [377] # Guardian Island
 Land,20
     20,COMFEY,60,64
@@ -978,3 +979,9 @@ Land,20
     6,ORICORIO_1,60,64
     6,ORICORIO_2,60,64
     6,ORICORIO_3,60,64
+#-------------------------------
+[411] # Tri Islands
+Land,20
+    34,NUMEL,8,10
+    33,APPLIN,8,10
+    33,KRABBY,8,10

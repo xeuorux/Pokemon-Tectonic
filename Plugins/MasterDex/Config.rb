@@ -71,4 +71,5 @@ HIDDEN_MAPS = {
 	218 => 51, # Absysal Cavern
 	215 => 50, # Tempest Realm
 	377 => 55, # Guardian Island
+	411 => 69, # Tri Island
 }

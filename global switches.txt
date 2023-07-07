@@ -14,11 +14,10 @@
 63: Estate Disabled
 64: Tournament Running
 65: Villain 1 Defeated
-
 66: Met Alessa
 67: Met Eifion
 68: Yezera Defeated
-
+79: Tri-Island Visited
 70: Eleig Boating Dock Unlocked
 71: Sweetrock Dock Unlocked
 72: Regirock Freed
