@@ -609,7 +609,7 @@ class PokeBattle_Battler
         if value.is_a?(Array)
             validAbilities = []
             value.each do |newAbility|
-                validAbilities.push(GameData::Ability.try_get(value).id)
+                validAbilities.push(GameData::Ability.try_get(newAbility).id)
             end
             if validAbilities.length > 0
                 @ability_ids = validAbilities
