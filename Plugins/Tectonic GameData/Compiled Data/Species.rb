@@ -1147,6 +1147,18 @@ end
       return @species
     end
 
+    def get_line_start
+      firstSpecies = self
+      while GameData::Species.get(firstSpecies.get_previous_species()) != firstSpecies do
+        firstSpecies = GameData::Species.get(firstSpecies.get_previous_species())
+      end
+      return firstSpecies
+    end
+
+    def is_solitary?
+      return @evolutions.empty?
+    end
+
     def get_baby_species(check_items = false, item1 = nil, item2 = nil)
       ret = @species
       return ret if @evolutions.length == 0

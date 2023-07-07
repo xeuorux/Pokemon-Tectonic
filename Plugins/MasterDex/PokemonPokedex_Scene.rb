@@ -492,73 +492,70 @@ class PokemonPokedex_Scene
 				end
 			end
 
-			lineBehaviourSelection = pbMessage("Do what with same line?",[_INTL("Both"),_INTL("Prevos"),_INTL("Evos"),_INTL("Neither"),_INTL("Cancel")],5)
-	  		return if lineBehaviourSelection == 4
+			lineBehaviourSelection = pbMessage("Tutor or line moves?",[_INTL("Line"),_INTL("Tutor"),_INTL("Cancel")],3)
+	  		return if lineBehaviourSelection == 2
 			
 			speciesToEdit = []
 			@dexlist.each do |dexlist_entry|
 				species = dexlist_entry[0]
 				speciesData = GameData::Species.get(species)
-				speciesToEdit.push(species)
-
-				# Grab the prevos
-				if lineBehaviourSelection == 0 || lineBehaviourSelection == 1
+				
+				# Grab the prevos and evos
+				if lineBehaviourSelection == 1
+					speciesToEdit.push(species)
 					getPrevosInLineAsList(speciesData).each do |prevoSpecies|
 						speciesToEdit.push(prevoSpecies)
 					end
-				end
-
-				# Grab the prevos
-				if lineBehaviourSelection == 0 || lineBehaviourSelection == 2
 					getEvosInLineAsList(speciesData).each do |evoSpecies|
 						speciesToEdit.push(evoSpecies)
 					end
+				else
+					speciesToEdit.push(speciesData.get_line_start.id)
 				end
 			end
 
 			speciesToEdit.uniq!
 			speciesToEdit.compact!
+			
 			speciesEdited = 0
+
 			if tutorActionSelection == 0
-				echoln("Adding #{actualMoveID} to tutor movesets:")
+				echoln("Adding #{actualMoveID} to tutorable movesets:")
 				speciesToEdit.each do |species|
 					speciesData = GameData::Species.get(species)
-					next if speciesData.tutor_moves.include?(actualMoveID)
-					speciesData.tutor_moves.push(actualMoveID)
+					movesList = [speciesData.egg_moves,speciesData.tutor_moves][lineBehaviourSelection]
+					movesList = speciesData.tutor_moves if speciesData.is_solitary?
+					next if movesList.include?(actualMoveID)
+					movesList.push(actualMoveID)
 					echoln(species)
 					speciesEdited += 1
 				end
 			elsif tutorActionSelection == 1
-				echoln("Deleting #{actualMoveID} from tutor/line movesets:")
+				echoln("Deleting #{actualMoveID} from tutorable movesets:")
 				speciesToEdit.each do |species|
 					speciesData = GameData::Species.get(species)
-					edited = false
-					if speciesData.tutor_moves.include?(actualMoveID)
-						speciesData.tutor_moves.delete(actualMoveID)
-						edited = true
-					end
-					if speciesData.egg_moves.include?(actualMoveID)
-						speciesData.egg_moves.delete(actualMoveID)
-						edited = true
-					end
-					if edited
-						echoln(species)
-						speciesEdited += 1
-					end
+					movesList = [speciesData.egg_moves,speciesData.tutor_moves][lineBehaviourSelection]
+					movesList = speciesData.tutor_moves if speciesData.is_solitary?
+					next unless movesList.include?(actualMoveID)
+					movesList.delete(actualMoveID)
+					echoln(species)
+					speciesEdited += 1
 				end
 			elsif tutorActionSelection == 2
-				echoln("Replacing #{actualMoveID} in tutor movesets with #{replacementActualMoveID}:")
+				echoln("Replacing #{actualMoveID} in tutorable movesets with #{replacementActualMoveID}:")
 				speciesToEdit.each do |species|
 					speciesData = GameData::Species.get(species)
-					next if !speciesData.tutor_moves.include?(actualMoveID)
-					next if speciesData.tutor_moves.include?(replacementActualMoveID)
-					speciesData.tutor_moves.delete(actualMoveID)
-					speciesData.tutor_moves.push(replacementActualMoveID)
+					movesList = [speciesData.egg_moves,speciesData.tutor_moves][lineBehaviourSelection]
+					movesList = speciesData.tutor_moves if speciesData.is_solitary?
+					next unless movesList.include?(actualMoveID)
+					next if movesList.include?(replacementActualMoveID)
+					movesList.delete(actualMoveID)
+					movesList.push(replacementActualMoveID)
 					echoln(species)
 					speciesEdited += 1
 				end
 			end
-			pbMessage("#{speciesEdited} species tutor movesets edited!")
+			pbMessage("#{speciesEdited} species tutorable movesets edited!")
 
 			GameData::Species.save
 			Compiler.write_pokemon
