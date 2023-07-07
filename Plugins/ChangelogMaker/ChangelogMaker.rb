@@ -275,7 +275,24 @@ def createChangeLogBetween(firstID,lastID,fileName = "changelog.txt")
 				f.write("--------------------------------------------\r\n")
 			end
 		end
-		f.write("Species that were unchanged: #{unchanged.to_s}")
+		unless unchanged.empty?
+			f.write("\r\n\r\nSpecies that were unchanged:\r\n")
+			writingIndex = 0
+			unchanged.each do |speciesID|
+				name = GameData::Species.get(speciesID).real_name
+				f.write("#{name}")
+				if writingIndex % 3 == 2
+					f.write("\r\n")
+				else
+					spacesString = ""
+					(18-name.length).times do
+						spacesString += " "
+					end
+					f.write(spacesString)
+				end
+				writingIndex += 1
+			end
+		end
 	}
 	pbMessage(_INTL("Species changelog written to #{fileName}"))
 end
