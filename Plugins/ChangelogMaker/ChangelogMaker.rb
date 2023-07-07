@@ -263,18 +263,19 @@ def createChangeLogBetween(firstID,lastID,fileName = "changelog.txt")
 			
 			# Print out the changelog
 			if changeLog.length == 0
-                f.write("#{species_data.real_name}: Unchanged!\r\n")
 				unchanged.push(species_data.id)
+				# f.write("#{species_data.real_name}: Unchanged!\r\n")
+				# f.write("--------------------------------------------\r\n")
 			else
 				f.write("#{species_data.real_name}:\r\n")
 				changeLog.each do |change|
 					next if change.nil?
 					f.write(change + "\r\n")
 				end
+				f.write("--------------------------------------------\r\n")
 			end
-            f.write("--------------------------------------------\r\n")
 		end
-		#f.write("Species that were unchanged: #{unchanged.to_s}")
+		f.write("Species that were unchanged: #{unchanged.to_s}")
 	}
 	pbMessage(_INTL("Species changelog written to #{fileName}"))
 end

@@ -286,7 +286,7 @@ Pokemon = TYNAMO,20
     Moves = JOLT,NASTYNIP,POISONFANG,LIGHTSCREEN
     AbilityIndex = 0 # Levitate
 Pokemon = CAMERUPT,20
-    Moves = TREMOR,FLAMEBURST,INCINERATE,MUDTHROW
+    Moves = TREMOR,FIREPULSE,INCINERATE,MUDTHROW
     AbilityIndex = 1 # Adrenaline Rush
     Item = SITRUSBERRY
 #-------------------------------
