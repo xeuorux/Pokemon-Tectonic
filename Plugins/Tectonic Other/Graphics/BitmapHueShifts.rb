@@ -82,6 +82,25 @@ def hue_shift_from_id(id)
 end
 
 class PokemonSprite < SpriteWrapper
+    attr_reader :pokemon
+
+    def setPokemonBitmap(pokemon,back=false)
+        @pokemon = pokemon
+        @_iconbitmap.dispose if @_iconbitmap
+        @_iconbitmap = (pokemon) ? GameData::Species.sprite_bitmap_from_pokemon(pokemon, back) : nil
+        self.bitmap = (@_iconbitmap) ? @_iconbitmap.bitmap : nil
+        self.color = Color.new(0,0,0,0)
+        changeOrigin
+    end
+
+    def setPokemonBitmapSpecies(pokemon,species,back=false)
+        @pokemon = pokemon
+        @_iconbitmap.dispose if @_iconbitmap
+        @_iconbitmap = (pokemon) ? GameData::Species.sprite_bitmap_from_pokemon(pokemon, back, species) : nil
+        self.bitmap = (@_iconbitmap) ? @_iconbitmap.bitmap : nil
+        changeOrigin
+    end
+
     def setSpeciesBitmapHueShifted(species, gender = 0, form = 0, shiny = false, shadow = false, back = false, egg = false)
         @_iconbitmap.dispose if @_iconbitmap
         @_iconbitmap = GameData::Species.sprite_bitmap(species, form, gender, shiny, shadow, back, egg)

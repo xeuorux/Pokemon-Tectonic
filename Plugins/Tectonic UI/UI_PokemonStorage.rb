@@ -1455,7 +1455,7 @@ class PokemonBoxIcon < IconSprite
         pbDrawImagePositions(overlay,imagepos)
       end
       pbDrawTextPositions(overlay,textstrings)
-      @sprites["pokemon"].setPokemonBitmap(pokemon)
+      @sprites["pokemon"].setPokemonBitmap(pokemon) unless @sprites["pokemon"].pokemon == pokemon
     end
   
     def update
