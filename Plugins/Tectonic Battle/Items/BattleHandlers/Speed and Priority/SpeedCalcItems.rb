@@ -1,6 +1,6 @@
 BattleHandlers::SpeedCalcItem.add(:CHOICESCARF,
     proc { |item, _battler, mult|
-        next mult * 1.33
+        next mult * 1.4
     }
 )
 
