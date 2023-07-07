@@ -150,20 +150,30 @@ class NewDexNav
 		  
 		  highlightedSpeciesData = displaySpecies[@navigationRow][@navigationColumn]
 		  highlightedSpecies = highlightedSpeciesData.species
-		  if Input.repeat?(Input::DOWN) && @navigationRow < @totalRows - 1
+		  if Input.repeat?(Input::DOWN)
 			highestUpRepeat = 0
-			repeats = 1 + Input.time?(Input::DOWN) / 100000
-			if repeats > highestDownRepeat
-				highestDownRepeat = repeats
-				@navigationRow += 1
+			if @navigationRow < @totalRows - 1
+				repeats = 1 + Input.time?(Input::DOWN) / 100000
+				if repeats > highestDownRepeat
+					highestDownRepeat = repeats
+					@navigationRow += 1
+					pbPlayCursorSE
+				end
+			elsif Input.time?(Input::DOWN) < 500
+				@navigationRow = 0
 				pbPlayCursorSE
 			end
-		  elsif Input.repeat?(Input::UP) && @navigationRow >= 1
+		  elsif Input.repeat?(Input::UP)
 			highestDownRepeat = 0
-			repeats = 1 + Input.time?(Input::UP) / 100000
-			if repeats > highestUpRepeat
-				highestUpRepeat = repeats
-				@navigationRow -= 1
+			if @navigationRow >= 1
+				repeats = 1 + Input.time?(Input::UP) / 100000
+				if repeats > highestUpRepeat
+					highestUpRepeat = repeats
+					@navigationRow -= 1
+					pbPlayCursorSE
+				end
+			elsif Input.time?(Input::UP) < 500
+				@navigationRow = @totalRows - 1
 				pbPlayCursorSE
 			end
 		  elsif Input.repeat?(Input::LEFT) && @navigationColumn > 0
@@ -201,7 +211,7 @@ class NewDexNav
 					next
 				end
 				searchTime = 20 + rand(60)
-				searchTime = 0 if debugControl
+				searchTime = 0 if $DEBUG
 				pbMessage(_INTL("Searching\\ts[15]...\\wtnp[#{searchTime}]"))
 				pbMessage(_INTL("Oh! A #{highlightedSpeciesData.real_name} was found nearby!"))
 				pbFadeOutAndHide(@sprites)
@@ -254,9 +264,13 @@ class NewDexNav
 			checkBoxFileName = "Graphics/Pictures/Pokedex/checkbox_inactive"
 		end
         checkboxY = lineHeight + 20
-		encounterGroupCheckboxesImagePositions.push([checkBoxFileName,40,checkboxY]) unless checkboxY < 60 # dunno why this number
+		if checkboxY > 60 && checkboxY < 300 # dunno why these numbers
+			encounterGroupCheckboxesImagePositions.push([checkBoxFileName,40,checkboxY])
+		end
 
 		groupSpriteArray.each_with_index do |sprite, iconIndex|
+			lineHeight += DEXNAV_LINE_HEIGHT if iconIndex > 0 && iconIndex % ROW_MAX_SIZE == 0
+
 			sprite.x = 28 + 64 + 64 * (iconIndex % ROW_MAX_SIZE)
 			sprite.y = lineHeight
 			sprite.visible = false
@@ -269,7 +283,6 @@ class NewDexNav
 					ownedIconImagePositions.push(["Graphics/Pictures/Battle/icon_own",ownedIconX,ownedIconY])
 				end
 			end
-			lineHeight += DEXNAV_LINE_HEIGHT if iconIndex % ROW_MAX_SIZE == (ROW_MAX_SIZE - 1)
 		end
 		lineHeight += DEXNAV_LINE_HEIGHT
     end
