@@ -45,6 +45,7 @@
 108: Avatar Assault 3 Active
 109: Avatar Assault 3 Completed
 110: Melmetal split
+111: EQ Event
 
 # Global Variables
 26: Level cap

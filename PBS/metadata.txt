@@ -2112,6 +2112,11 @@ ShowArea = false
 Bicycle = true
 MapPosition = 0,18,3
 #-------------------------------
+[408]
+# Tournament Grounds EQ
+Outdoor = true
+Weather = Overcast,100
+#-------------------------------
 [412]
 # Metal Den
 Outdoor = false

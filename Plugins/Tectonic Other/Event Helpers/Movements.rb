@@ -4,6 +4,13 @@ class Game_Character
 		@move_route_index   = 0
 		move_type_custom
 	end
+
+	def reset_move_route
+		@move_route_forcing = false
+		@move_route       = @original_move_route
+		@move_route_index = @original_move_route_index
+		@original_move_route = nil
+	end
 end
 
 def getNewMoveRoute()
