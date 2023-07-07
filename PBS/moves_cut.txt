@@ -148,3 +148,10 @@
 4147,BARRAGE,Fury Swipes,0C0,15,NORMAL,Physical,85,12,0,NearOther,0,abef,"Round objects are hurled at the target to strike two to five times in a row.",
 4148,LAHAR,Lahar,51E,140,GROUND,Special,75,10,0,NearOther,0,bef,"The user causes a huge landslide to cover the field.",
 4149,FLAMEBURST,Flame Burst,074,70,FIRE,Special,100,12,0,NearOther,0,bef,"The user attacks the foe with a bursting flame. It also damages Pokémon next to the target.",
+4150,CORRODE,Corrode,507,80,POISON,Special,100,15,0,NearOther,0,bef,"The user expels strong stomache acid to corrode the target. Super effective against Steel-types.",ACIDSPRAY
+4151,BLACKPOWDER,Blackpowder,148,0,BUG,Status,100,15,0,NearOther,1,bce,"The target is covered in a powder that explodes if it uses a Fire-type move. It always goes first.",POWDER
+4152,EVAPORATE,Evaporate,559,0,GHOST,Status,0,5,0,User,1,d,"The user becomes Ghost-type only. Always goes first.",
+4153,SHEERCOLD,Sheer Cold,070,1,ICE,Special,30,5,0,NearOther,0,be,"The foe is attacked with a blast of absolute-zero cold. The target instantly faints if it hits.",
+4154,GUILLOTINE,Guillotine,070,1,NORMAL,Physical,30,5,0,NearOther,0,abe,"A vicious, tearing attack with big pincers. The target will faint instantly if this attack hits.",
+4155,HORNDRILL,Horn Drill,070,1,NORMAL,Physical,30,5,0,NearOther,0,abe,"The user stabs the foe with a horn that rotates like a drill. If it hits, the target faints instantly.",
+4156,FISSURE,Fissure,070,1,GROUND,Physical,30,5,0,NearOther,0,be,"The user opens up a fissure in the ground and drops the foe in. The target instantly faints if it hits.",
