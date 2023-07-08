@@ -1,4 +1,6 @@
-
+def grindRivalBattle(id = 0)
+    pbTrainerBattle(:CHALLENGER_Vanya,"Vanya",nil,false,id)
+end
 
 def randomGrindRivalIntro
     pbMessage([
