@@ -1878,7 +1878,7 @@ class PokeBattle_Move_0BE < PokeBattle_PoisonMove
         return false
     end
     
-    def pbNumHits(_user, _targets, _checkingForAI = false)
+    def pbNumHits(user, _targets, _checkingForAI = false)
         if user.countsAs?(:WORNET)
             return 4
         elsif user.countsAs?(:BEEDRILL)
