@@ -34,7 +34,7 @@ class WaypointsTracker
 		return generateMapPositionHash
 	end
 
-	def generateMapPositionHash()
+	def generateMapPositionHash
 		mapPositionHash = {}
 		activeWayPoints.each do |waypointName,waypointInfo|
 			mapID = waypointInfo[0]
@@ -81,7 +81,8 @@ class WaypointsTracker
 		else
 			pbMessage(_INTL("#{WAYPOINT_ACCESS_MESSAGE}"))
 		end
-		if !@activeWayPoints.has_key?(waypointName)
+		
+		unless @activeWayPoints.has_key?(waypointName)
 			pbMessage(_INTL("#{WAYPOINT_REGISTER_MESSAGE}"))
 			addWaypoint(waypointName,waypointEvent)
 		end
@@ -89,17 +90,18 @@ class WaypointsTracker
 		if @activeWayPoints.length <= 1
 			pbMessage(_INTL("#{WAYPOINT_UNABLE_MESSAGE}"))
 		else
-			warpByWaypoints()
+			warpByWaypoints
 		end
 	end
 
 	def warpByWaypoints(skipMessage = false)
-		if @activeWayPoints.length == 0
+		if @activeWayPoints.empty?
 			pbMessage(_INTL("#{NO_WAYPOINTS_MESSAGE}"))
 			return
 		end
 
 		chosenLocation = nil
+		chosenKey = nil
 		if CHOOSE_BY_LIST
 			commands = [_INTL("Cancel")]
 			names = @activeWayPoints.sort_by {|key,value| value[0]}.map {|value| value[0]}
@@ -109,21 +111,21 @@ class WaypointsTracker
 			end
 			chosen = pbMessage(_INTL("#{WAYPOINT_CHOOSE_MESSAGE}"),commands,0)
 			if chosen != 0
-				chosenLocationName = names[chosen-1]
-				chosenLocation = @activeWayPoints[chosenLocationName]
+				chosenKey = names[chosen-1]
+				chosenLocation = @activeWayPoints[chosenKey]
 			end
 		else
 			pbMessage(_INTL("#{WAYPOINT_CHOOSE_MESSAGE}")) unless skipMessage
-			chosenTotem = nil
+			chosenKey = nil
 			pbFadeOutIn {
 				scene = PokemonRegionMap_Scene.new(-1,false)
 				screen = PokemonRegionMapScreen.new(scene)
-				chosenTotem = screen.pbStartWaypointScreen
+				chosenKey = screen.pbStartWaypointScreen
 			}
-			chosenLocation = @activeWayPoints[chosenTotem] if !chosenTotem.nil?
+			chosenLocation = @activeWayPoints[chosenKey] if !chosenKey.nil?
 		end
 
-		if !chosenLocation.nil?
+		unless chosenLocation.nil?
 			mapID = chosenLocation[0]
 			waypointInfo = chosenLocation[1]
 
@@ -136,7 +138,11 @@ class WaypointsTracker
 				$game_temp.transition_processing = true
 				$game_temp.transition_name       = ""
 			else
-				transferPlayerToEvent(waypointInfo,Up,mapID,[0,1])
+				unless transferPlayerToEvent(waypointInfo,Up,mapID,[0,1])
+					pbMessage(_INTL("The chosen waypoint is somehow invalid."))
+					pbMessage(_INTL("Removing access."))
+					@activeWayPoints.delete(chosenKey)
+				end
 			end
 			$scene.transfer_player
 			$game_map.autoplay
