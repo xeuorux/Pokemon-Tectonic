@@ -68,7 +68,7 @@ BattleHandlers::AbilityOnHPDroppedBelowHalf.add(:PRIMEVALDISGUISE,
 )
 
 BattleHandlers::AbilityOnHPDroppedBelowHalf.add(:TRICKSTER,
-  proc { |ability, battler, _battle|
+  proc { |ability, battler, battle|
         battle.pbShowAbilitySplash(battler, ability)
         battle.pbStartRoom(:TrickRoom, battler)
         battle.pbHideAbilitySplash(battler)
