@@ -51,10 +51,12 @@ def transferPlayerToEvent(event_id,direction=-1,map_id = -1,offset=[0,0])
 	mapData = Compiler::MapData.new
 	map = mapData.getMap(map_id)
 	event = map.events[event_id]
+	return false if event.nil?
 	x = event.x + offset[0]
 	y = event.y + offset[1]
 	direction = $game_player.direction if direction < 0
 	transferPlayer(x,y,direction,map_id)
+	return true
 end
 
 def teleportPlayer(map_id,x,y,instant=false)
