@@ -1865,7 +1865,7 @@ end
 #===============================================================================
 # Hits twice as Beedrill and four times as Wornet. (Multi-Needle)
 #===============================================================================
-class PokeBattle_Move_0BE < PokeBattle_PoisonMove
+class PokeBattle_Move_0BE < PokeBattle_Move
     def multiHitMove?; return true; end
 
     def pbMoveFailed?(user, _targets, show_message)
