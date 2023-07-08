@@ -226,6 +226,7 @@ def pbTrainerBattleCore(*args)
   #    5 - Draw
   pbSet(outcomeVar,decision)
   $PokemonGlobal.respawnPoint = nil
+  refreshSpeakerWindow
   return decision
 end
 
