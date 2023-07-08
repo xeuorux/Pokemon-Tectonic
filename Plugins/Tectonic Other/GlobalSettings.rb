@@ -142,6 +142,6 @@ module Settings
 
   LANGUAGES = [
     ["English", "english.dat"],
-    ["Español", "spanish.dat"]
+    ["Español (Incompleto)", "spanish.dat"]
   ]
 end
