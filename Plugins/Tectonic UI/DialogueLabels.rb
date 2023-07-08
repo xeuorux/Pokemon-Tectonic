@@ -55,10 +55,15 @@ def setSpeaker(speakerName,viewport = nil)
         $SpeakerNameWindow.setSkin(MessageConfig.pbGetSpeechFrame)
     end
     $SpeakerNameWindow.text = speakerName
-    $SpeakerNameWindow.resizeToFit($SpeakerNameWindow.text,Graphics.width)
-    $SpeakerNameWindow.width = 160 if $SpeakerNameWindow.width<=160
-    $SpeakerNameWindow.y = Graphics.height - $SpeakerNameWindow.height
     $SpeakerNameWindow.viewport = viewport
+    refreshSpeakerWindow
+end
+
+def refreshSpeakerWindow
+    return unless $SpeakerNameWindow
+    $SpeakerNameWindow.resizeToFit($SpeakerNameWindow.text,Graphics.width)
+    $SpeakerNameWindow.width = 160 if $SpeakerNameWindow.width <= 160
+    $SpeakerNameWindow.y = Graphics.height - $SpeakerNameWindow.height
     $SpeakerNameWindow.z = 99_999
     $SpeakerNameWindow.visible = false # Starts hidden
 end
