@@ -87,8 +87,6 @@ Land,20
     25,PAWNIARD,15,18
     25,RUFFLET,15,18
     25,TYROGUE,15,18
-Special,20
-    1,BLIPBUG,15
 #-------------------------------
 [026] # Bluepoint Grotto
 DarkCave,20
