@@ -74,7 +74,7 @@
 73,FLOWERGIFT,Flower Gift,"In sunshine boosts its and allies' Attack and Sp. Def by 50%."
 74,BADDREAMS,Bad Dreams,"Reduces a sleeping foe's HP by 1/8 at the end of a round."
 75,PICKPOCKET,Pickpocket,"Steals an item when hit by another Pokémon."
-76,SHEERFORCE,Sheer Force,"Removes added effects of attacks to increase their damage by 30%."
+76,SHEERFORCE,Sheer Force,"Removes random added effects of attacks to increase their damage by 30%."
 77,CONTRARY,Contrary,"Makes stat changes have an opposite effect."
 78,DEFIANT,Defiant,"Raises Attack by four steps when a stat is lowered by a foe."
 79,DEFEATIST,Defeatist,"Halves move damage when HP becomes half or less."
