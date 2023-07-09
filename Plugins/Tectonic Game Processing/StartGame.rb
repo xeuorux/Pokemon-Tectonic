@@ -73,6 +73,7 @@ module Game
       pbSetResizeFactor($PokemonSystem.screensize)
       $PokemonSystem.setSystemFrame
       $PokemonSystem.setSpeechFrame
+      removeSpeaker
     end
   
     # Loads and validates the map. Called when loading a saved game.
