@@ -21,7 +21,7 @@ DebugMenuCommands.register("generatechangelogrange", {
 	end
 	lastNumberAttempt = lastNumberInput.to_i
 	return nil if lastNumberAttempt == 0
-	createChangeLogBetween(firstNumberAttempt,lastNumberAttempt)
+	createChangeLog(firstNumberAttempt,lastNumberAttempt)
   }
 })
 
@@ -30,7 +30,7 @@ DebugMenuCommands.register("generatechangelog", {
   "name"        => _INTL("Generate species changelog"),
   "description" => _INTL("See the changelog for each species between the Old and New pokemon.txt files."),
   "effect"      => proc { |sprites, viewport|
-  	createChangeLogBetween(1,9999)
+  	createChangeLog
   }
 })
 
@@ -46,14 +46,14 @@ DebugMenuCommands.register("generatechangelogpergen", {
 		startID = GENERATION_END_IDS[index-1] + 1
 		endID = GENERATION_END_IDS[index]
 		echoln("Creating the changelog between the IDs of #{startID} and #{endID}")
-		createChangeLogBetween(startID,endID,"Changelogs/changelog_gen#{index.to_s}.txt")
+		createChangeLog(startID,endID,"Changelogs/changelog_gen#{index.to_s}.txt")
 	end
   }
 })
 
 DebugMenuCommands.register("generatefulldexdoc", {
 	"parent"      => "changelog",
-	"name"        => _INTL("Generate full dex doc"),
+	"name"        => _INTL("Generate dex doc"),
 	"description" => _INTL("Generate a document that describes all current species details like a dex"),
 	"effect"      => proc { |sprites, viewport|
 	  if !safeIsDirectory?("Changelogs")
@@ -61,9 +61,26 @@ DebugMenuCommands.register("generatefulldexdoc", {
 	  end
 	  generateFullDexDoc
 	}
-  })
+})
 
-def createChangeLogBetween(firstID,lastID,fileName = "changelog.txt")
+DebugMenuCommands.register("generatedexdocpergen", {
+"parent"      => "changelog",
+"name"        => _INTL("Generate dex doc by generation"),
+"description" => _INTL("Generate a series document that describes all current species details like a dex, split by generation"),
+"effect"      => proc { |sprites, viewport|
+		if !safeIsDirectory?("Changelogs")
+			Dir.mkdir("Changelogs") rescue nil
+		end
+		for index in 1...GENERATION_END_IDS.length
+			startID = GENERATION_END_IDS[index-1] + 1
+			endID = GENERATION_END_IDS[index]
+			echoln("Creating the full dex doc between the IDs of #{startID} and #{endID}")
+			generateFullDexDoc(startID,endID,"Changelogs/fulldexdoc_#{index.to_s}.txt")
+		end
+	}
+})
+
+def createChangeLog(firstID = 0,lastID = 999_999,fileName = "changelog.txt")
 	unchanged = []
 		
 	File.open(fileName,"wb") { |f|
@@ -297,13 +314,13 @@ def createChangeLogBetween(firstID,lastID,fileName = "changelog.txt")
 	pbMessage(_INTL("Species changelog written to #{fileName}"))
 end
 
-
-def generateFullDexDoc
-	fileName = "fulldexdoc.txt"
+def generateFullDexDoc(firstID = 0,lastID = 999_999,fileName = "fulldexdoc.txt")
 	File.open(fileName,"wb") { |f|
 		GameData::Species.each do |species_data|
 			next if isLegendary?(species_data.id_number)
 			next if species_data.form != 0
+			next if species_data.id_number < firstID
+			break if species_data.id_number > lastID
 			dexListing = []
 
 			# Types
