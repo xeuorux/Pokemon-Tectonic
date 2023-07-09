@@ -860,6 +860,9 @@ Outdoor = false
 ShowArea = true
 Bicycle = false
 #-------------------------------
+[143]
+# River Crossing Buildings
+#-------------------------------
 [144]
 # Artist's House
 Outdoor = false
@@ -1117,7 +1120,7 @@ Environment = Cave
 Outdoor = true
 ShowArea = true
 Bicycle = true
-MapPosition = 0,12,6
+MapPosition = 0,13,6
 BattleBack = forest
 MapSize = 4,1111
 Environment = Forest
@@ -1322,7 +1325,7 @@ Outdoor = false
 ShowArea = true
 Bicycle = true
 Weather = ToxicFog,100
-MapPosition = 0,12,4
+MapPosition = 0,11,4
 BattleBack = indoor3
 Environment = StillWater
 #-------------------------------
@@ -1833,6 +1836,12 @@ BattleBack = wcave
 # Carnation Tower F1
 Outdoor = false
 ShowArea = true
+Bicycle = true
+#-------------------------------
+[345]
+# Eleig Boating and Fishing
+Outdoor = false
+ShowArea = false
 Bicycle = true
 #-------------------------------
 [348]
