@@ -1051,6 +1051,8 @@ sp.form) && !Settings::DEX_SHOWS_ALL_FORMS
             return "Puddle"
         when :LandTinted
             return "Secret Grass"
+        when :Cloud
+            return "Dark Clouds"
         end
         return "Unknown"
     end
