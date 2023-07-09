@@ -48,6 +48,7 @@ Environment = None
 Outdoor = false
 ShowArea = true
 Bicycle = true
+MapPosition = 0,8,6
 BattleBack = wcave
 Environment = Cave
 #-------------------------------
@@ -160,7 +161,7 @@ BattleBack = indoor1
 Outdoor = false
 ShowArea = true
 Bicycle = true
-MapPosition = 0,13,10
+MapPosition = 0,16,13
 BattleBack = cave1
 Environment = Forest
 #-------------------------------
@@ -177,6 +178,7 @@ TeleportBlocked = true
 Outdoor = false
 ShowArea = true
 Bicycle = true
+MapPosition = 0,11,14
 #-------------------------------
 [023]
 # Testing Map
@@ -1498,6 +1500,7 @@ Bicycle = false
 Outdoor = false
 ShowArea = true
 Bicycle = true
+MapPosition = 0,17,4
 BattleBack = cave3
 Environment = Cave
 #-------------------------------
