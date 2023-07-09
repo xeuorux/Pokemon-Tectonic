@@ -142,6 +142,7 @@ class WaypointsTracker
 					pbMessage(_INTL("The chosen waypoint is somehow invalid."))
 					pbMessage(_INTL("Removing access."))
 					@activeWayPoints.delete(chosenKey)
+					return
 				end
 			end
 			$scene.transfer_player
