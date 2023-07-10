@@ -187,16 +187,18 @@ class PokeBattle_Battler
         skipAccuracyCheck = (specialUsage && choice[2] != @battle.struggle)
         # Start using the move
         pbBeginTurn(choice)
-        # Force the use of certain moves if they're already being used
-        if usingMultiTurnAttack? && !@currentMove.nil?
-            choice[2] = PokeBattle_Move.from_pokemon_move(@battle, Pokemon::Move.new(@currentMove))
-            specialUsage = true
-        elsif effectActive?(:Encore) && choice[1] >= 0 && @battle.pbCanShowCommands?(@index)
-            idxEncoredMove = pbEncoredMoveIndex
-            if idxEncoredMove >= 0 && @battle.pbCanChooseMove?(@index, idxEncoredMove, false) && (choice[1] != idxEncoredMove) # Change move if battler was Encored mid-round
-                choice[1] = idxEncoredMove
-                choice[2] = @moves[idxEncoredMove]
-                choice[3] = -1 # No target chosen
+        unless (choice[2]&.empoweredMove? && boss?)
+            # Force the use of certain moves if they're already being used
+            if usingMultiTurnAttack? && !@currentMove.nil?
+                choice[2] = PokeBattle_Move.from_pokemon_move(@battle, Pokemon::Move.new(@currentMove))
+                specialUsage = true
+            elsif effectActive?(:Encore) && choice[1] >= 0 && @battle.pbCanShowCommands?(@index)
+                idxEncoredMove = pbEncoredMoveIndex
+                if idxEncoredMove >= 0 && @battle.pbCanChooseMove?(@index, idxEncoredMove, false) && (choice[1] != idxEncoredMove) # Change move if battler was Encored mid-round
+                    choice[1] = idxEncoredMove
+                    choice[2] = @moves[idxEncoredMove]
+                    choice[3] = -1 # No target chosen
+                end
             end
         end
         # Labels the move being used as "move"
@@ -292,7 +294,7 @@ class PokeBattle_Battler
         user = pbChangeUser(choice, move, user)
         targets = pbFindTargets(choice, move, user)
         targets = pbChangeTargets(move, user, targets)
-        unless move.empoweredMove?
+        unless move.empoweredMove? && boss?
             # Pressure
             unless specialUsage
                 targets.each do |b|
