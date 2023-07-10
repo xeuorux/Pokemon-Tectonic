@@ -292,32 +292,34 @@ class PokeBattle_Battler
         user = pbChangeUser(choice, move, user)
         targets = pbFindTargets(choice, move, user)
         targets = pbChangeTargets(move, user, targets)
-        # Pressure
-        unless specialUsage
-            targets.each do |b|
-                next unless b.opposes?(user) && b.hasActiveAbility?(:PRESSURE)
-                user.pbReducePP(move)
-            end
-            if move.pbTarget(user).affects_foe_side
-                @battle.eachOtherSideBattler(user) do |b|
-                    next unless b.hasActiveAbility?(:PRESSURE)
+        unless move.empoweredMove?
+            # Pressure
+            unless specialUsage
+                targets.each do |b|
+                    next unless b.opposes?(user) && b.hasActiveAbility?(:PRESSURE)
                     user.pbReducePP(move)
                 end
+                if move.pbTarget(user).affects_foe_side
+                    @battle.eachOtherSideBattler(user) do |b|
+                        next unless b.hasActiveAbility?(:PRESSURE)
+                        user.pbReducePP(move)
+                    end
+                end
             end
-        end
-        # Move blocking abilities make the move fail here
-        @battle.pbPriority(true).each do |b|
-            next unless b
-            b.eachActiveAbility do |ability|
-                next unless BattleHandlers.triggerMoveBlockingAbility(ability, b, user, targets, move, @battle)
-                @battle.pbDisplayBrief(_INTL("{1} tried to use {2}!", user.pbThis, move.name))
-                @battle.pbShowAbilitySplash(b, ability)
-                @battle.pbDisplay(_INTL("But, {1} cannot use {2}!", user.pbThis, move.name))
-                @battle.pbHideAbilitySplash(b)
-                user.lastMoveFailed = true
-                pbCancelMoves
-                pbEndTurn(choice)
-                return
+            # Move blocking abilities make the move fail here
+            @battle.pbPriority(true).each do |b|
+                next unless b
+                b.eachActiveAbility do |ability|
+                    next unless BattleHandlers.triggerMoveBlockingAbility(ability, b, user, targets, move, @battle)
+                    @battle.pbDisplayBrief(_INTL("{1} tried to use {2}!", user.pbThis, move.name))
+                    @battle.pbShowAbilitySplash(b, ability)
+                    @battle.pbDisplay(_INTL("But, {1} cannot use {2}!", user.pbThis, move.name))
+                    @battle.pbHideAbilitySplash(b)
+                    user.lastMoveFailed = true
+                    pbCancelMoves
+                    pbEndTurn(choice)
+                    return
+                end
             end
         end
         # "X used Y!" message
