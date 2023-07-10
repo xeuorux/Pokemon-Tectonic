@@ -807,7 +807,7 @@ class PokeBattle_Battler
     end
 
     def canBeDisabled?(show_messages = false, move = nil)
-        return false if move&.empoweredMove?
+        return false if move&.empoweredMove? && boss?
         return false if move&.pbMoveFailedAromaVeil?(nil, self, show_messages)
         return false if fainted?
         return false if effectActive?(:Disable)
