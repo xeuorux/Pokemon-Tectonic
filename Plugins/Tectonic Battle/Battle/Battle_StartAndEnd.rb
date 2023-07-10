@@ -163,10 +163,12 @@ class PokeBattle_Battle
             foeParty = pbParty(1)
             case foeParty.length
             when 1
+                foeName = foeParty[0].name
+                foeName = "Pikachu" if foeParty[0].hasAbility?(:PRIMEVALDISGUISE)
                 if bossBattle?
-                    pbDisplayPaused(_INTL("Oh no! The Avatar of {1} appeared!", foeParty[0].name))
+                    pbDisplayPaused(_INTL("Oh no! The Avatar of {1} appeared!", foeName))
                 else
-                    pbDisplayPaused(_INTL("Oh! A wild {1} appeared!", foeParty[0].name))
+                    pbDisplayPaused(_INTL("Oh! A wild {1} appeared!", foeName))
                 end
             when 2
                 if bossBattle?
