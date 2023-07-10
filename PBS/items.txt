@@ -557,3 +557,4 @@
 556,ALLOYEDLUMP,Alloyed Lump,Alloyed Lumps,1,0,"Mishapen, unusual metal. Useless without a way to sharpen it.",2,0,13
 557,ALLOYEDBLADE,Alloyed Blade,Alloyed Blades,1,0,"A fragile blade of unusual metal. Sharp enough to cut alloyed overgrowth.",2,0,13
 558,ALLOYEDWIRE,Alloyed Wire,Alloyed Wires,1,0,"A thin, nearly invisible strand of unusual metal.",2,0,13
+559,RAINBOWFEATHER,Rainbow Feather,Rainbow Feathers,8,0,"A strange feather that gleams in rainbow colors.",0,0,13
