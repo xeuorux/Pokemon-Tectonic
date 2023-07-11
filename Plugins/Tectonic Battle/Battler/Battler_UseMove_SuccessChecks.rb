@@ -565,7 +565,7 @@ target.pbThis(true)))
                     miss = true unless move.hitsDiggingTargets?
                 elsif target.inTwoTurnAttack?("0CB")            # Dive
                     miss = true unless move.hitsDivingTargets?
-                elsif target.inTwoTurnAttack?("0CD", "14D") # Shadow Force, Phantom Force
+                elsif target.inTwoTurnAttack?("0CD", "14D", "5C5") # Shadow Force, Phantom Force
                     miss = true
                 end
             end
