@@ -290,7 +290,7 @@ class PokeBattle_Move
             end
         end
         # Item effects that alter critical hit rate
-        user.eachActiveAbility do |item|
+        user.eachActiveItem do |item|
             c = BattleHandlers.triggerCriticalCalcUserItem(item,user,target,c)
         end
         target.eachActiveItem do |item|
