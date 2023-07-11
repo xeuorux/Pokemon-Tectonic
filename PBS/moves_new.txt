@@ -63,8 +63,8 @@
 1062,SPITEFULCHANT,Spiteful Chant,521,70,GHOST,Special,100,15,100,NearOther,0,befk,"The user unleashes its grudge, damaging the target and cutting 4 PP from the move last used by it.",NIGHTSHADE
 1063,ENLIGHTENEDHIT,Enlightened Hit,515,90,FIGHTING,Physical,100,12,100,NearOther,0,abef,"The user is protected from random added effects of moves until their next attack.",KARATECHOP
 1064,GRIMEGRAPPLE,Grime Grapple,514,100,POISON,Physical,100,10,100,NearOther,0,abef,"The user attacks while slathered in grime. This poisons the user.",POISONJAB
-1065,VANGUARD,Vanguard,513,0,STEEL,Status,100,15,100,User,0,d,"The user enters a protective stance, raising its Sp. Atk and Defense by two steps each.",
-1066,FLOWSTATE,Flow State,512,0,WATER,Status,100,15,100,User,0,d,"The user gains an instinctual knowledge of battle, raising its Attack and Sp. Def by two steps each.",
+1065,VANGUARD,Vanguard,513,0,STEEL,Status,0,15,0,User,0,d,"The user enters a protective stance, raising its Sp. Atk and Defense by two steps each.",
+1066,FLOWSTATE,Flow State,512,0,WATER,Status,0,15,0,User,0,d,"The user gains an instinctual knowledge of battle, raising its Attack and Sp. Def by two steps each.",
 1067,COLDCONVERSION,Cold Conversion,51B,130,ICE,Special,100,5,0,NearOther,0,bef,"To inflict massive damage, the user uses up its Ice-type.",ICEBEAM
 1068,TOXICTASTE,Toxic Taste,545,70,POISON,Physical,100,10,0,NearOther,0,abef,"The user chomps with venomous teeth. The user's HP is restored by a third of the damage dealt.",
 1069,REFLEXOVERDRIVE,Reflex Overdrive,519,110,PSYCHIC,Physical,0,10,0,NearOther,0,abef,"Lands without fail and lowers the user's Defense and Speed.",
