@@ -377,6 +377,11 @@ class Interpreter
         end
     end
 
+    def setGlobalSwitch(switchID,value = true)
+        $game_variables[switchID] = value
+        $game_map.need_refresh = true
+    end
+
     def pbGetPokemon(id)
         return $Trainer.party[pbGet(id)]
     end

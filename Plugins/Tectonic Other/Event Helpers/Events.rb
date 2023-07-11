@@ -2,6 +2,10 @@ def pbSetSelfSwitch(eventid, switch_name, value=true, mapid = -1)
 	$game_system.map_interpreter.pbSetSelfSwitch(eventid, switch_name, value, mapid)
 end
 
+def pbSetGlobalSwitch(switchID, value = true)
+	$game_system.map_interpreter.setGlobalSwitch(switchID, value)
+end
+
 def setMySwitch(switch,value=true)
 	pbSetSelfSwitch(get_self.id,switch,value)
 end
@@ -122,6 +126,12 @@ end
 def fadeSwitchOff(switchName = 'A')
 	blackFadeOutIn {
 		setMySwitch(switchName,false)
+	}
+end
+
+def fadeGlobalSwitch(switchID, value = true)
+	blackFadeOutIn {
+		setGlobalSwitch(switchID, value)
 	}
 end
 
