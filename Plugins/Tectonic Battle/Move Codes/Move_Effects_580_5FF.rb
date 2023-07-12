@@ -1102,7 +1102,7 @@ class PokeBattle_Move_5B7 < PokeBattle_MultiStatUpMove
     end
 	
 	def pbMoveFailed?(user, targets, show_message)
-        unless user.pbOpposingSide.effects[:LastRoundFainted]
+        unless user.pbOpposingSide.faintLastRound?
             @battle.pbDisplay(_INTL("But it failed, since there was no victory to celebrate!")) if show_message
             return true
         end
