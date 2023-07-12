@@ -43,7 +43,7 @@ def displayInterestingWeatherReport()
     mapName = nil
     report = nil
     echoln("There are #{interestingReports.length} maps experiencing interesting weather tomorrow.")
-    if interestingReports.length > 0 && rand(2) == 0
+    if (!interestingReports.empty? && rand(2) == 0) || boringReports.empty?
         mapName = interestingReports.keys.sample
         report = interestingReports[mapName]
     else
@@ -51,7 +51,7 @@ def displayInterestingWeatherReport()
         report = boringReports[mapName]
     end
 
-    displayWeatherReport(report,mapName)
+    displayWeatherReport(report,mapName) if report
 end
 
 def displayWeatherReport(weatherReport,mapName)
