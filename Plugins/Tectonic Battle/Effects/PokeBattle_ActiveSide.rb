@@ -48,4 +48,9 @@ class PokeBattle_ActiveSide
     def battlerEntry(effect,battlerIndex)
         getData(effect).entry_side(@battle, battlerIndex, @index)
     end
+
+    def faintLastRound?
+        lrf = @effects[:LastRoundFainted]
+        return lrf >= 0 && lrf == @battle.turnCount - 1
+    end
 end
