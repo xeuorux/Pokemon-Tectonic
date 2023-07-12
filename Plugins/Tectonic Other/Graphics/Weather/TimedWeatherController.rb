@@ -255,13 +255,7 @@ def secondsInADay
 end
 
 def getWeatherOverNextDay(map_id = -1)
-    mapName = ""
-    if map_id == -1
-        map_id = WEATHER_REPORT_MAPS.keys.sample
-        mapName = WEATHER_REPORT_MAPS[map_id]
-    else
-        mapName = pbGetMapNameFromId(map_id)
-    end
+    map_id = WEATHER_REPORT_MAPS.keys.sample if map_id == -1
 
     # Add 24 hours, then round down to latest 24 hour start
     tomorrowStart = ((pbGetTimeNow.to_i + secondsInADay) / secondsInADay).floor * secondsInADay
@@ -271,21 +265,18 @@ def getWeatherOverNextDay(map_id = -1)
     tomorrowEvening = Time.at(tomorrowStart + secondsInAnHour * 20) # 8 PM
 
     morningWeather, morningStrength = getWeatherForTimeAndMap(tomorrowMorning,map_id)
-    morningDescriptor = getWeatherDescriptor(morningWeather, morningStrength)
-    
     afternoonWeather, afternoonStrength = getWeatherForTimeAndMap(tomorrowAfternoon,map_id)
-    afternoonDescriptor = getWeatherDescriptor(afternoonWeather, afternoonStrength)
-    
     eveningWeather, eveningStrength = getWeatherForTimeAndMap(tomorrowEvening,map_id)
-    eveningDescriptor = getWeatherDescriptor(eveningWeather, eveningStrength)
 
-    return [[morningWeather, morningStrength],[afternoonWeather, afternoonStrength],[eveningWeather, eveningStrength]]
+    return [
+        [morningWeather, morningStrength],
+        [afternoonWeather, afternoonStrength],
+        [eveningWeather, eveningStrength],
+    ]
 end
 
 def weather(type, strength = -1, delay = -1)
-    if strength < 0
-        strength = GameData::Weather.get(type).default_strength
-    end
+    strength = GameData::Weather.get(type).default_strength if strength < 0
     delay = WEATHER_TRANSITION_DELAY if delay < 0
     $game_screen.weather(type, strength, delay)
 end
