@@ -60,9 +60,9 @@ def strikeAlloyedBell?
 end
 
 def cutDownAlloyedTree(eventID)
-    pbMessage(_INTL("A tall metal tree. It has no branches."))
+    pbMessage(_INTL("A tall metal tree. One side has been notched by something sharp."))
     if pbHasItem?(:ALLOYEDBLADE)
-        if pbConfirmMessage(_INTL("Chop it down?"))
+        if pbConfirmMessage(_INTL("Finish chopping it down?"))
             pbMessage(_INTL("You take a swing at the tree with an alloyed blade."))
             pbSEPlay('Cut') # Other SE
             pbWait(20)
