@@ -516,7 +516,7 @@
 515,CLIMBINGGEAR,Climbing Gear,Climbing Gears,8,0,"A set of climbing gear, allowing you to climb on white rocks.",0,0,6
 516,ABRAPORTER,Abraporter,Abraporters,8,0,"A teleporter which brings you to your last safe spot using the power of Abras.",2,0,6
 517,REMATERIALIZER,Rematerializer,Rematerializers,8,0,"A 3D printer which automatically copies consumed held items after battles.",0,0,6
-518,CUPOFCOFFEE,Cup of Coffee,Cups of Coffee,8,0,"It's a cup filled with warm coffee. You probably shouldn't be keeping this in your backpack.",0,0,6
+518,CUPOFCOFFEE,Cup of Coffee,Cups of Coffee,8,0,"It's a cup filled with warm coffee. You probably shouldn't be keeping this in your backpack.",0,0,13
 519,LUXTECHSHIPMENT,LuxTech Shipment,LuxTech Shipments,8,0,"A package containing an important shipment destined for LuxTech.",0,0,6
 520,EXPEZDISPENSER,EXP-EZ Dispenser,EXP-EZ Dispensers,8,0,"A machine that stores excess EXP. You can activate it to turn that stored EXP into candies.",2,0,6
 521,UNIVERSALFORMALIZER,Universal Formalizer,Universal Formalizers,8,0,"Use on a Pokémon to switch it into another one of its forms.",5,0,6
