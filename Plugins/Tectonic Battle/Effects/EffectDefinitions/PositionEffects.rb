@@ -21,12 +21,12 @@ GameData::BattleEffect.register_effect(:Position, {
         if moveUser.nil?
             party = battle.pbParty(userIndex)
             pkmn = party[partyIndex]
-            if pkmn && pkmn.able?
+            if pkmn
                 moveUser = PokeBattle_Battler.new(battle, userIndex)
                 moveUser.pbInitDummyPokemon(pkmn, partyIndex)
             end
         end
-        next if moveUser.nil? # User is fainted
+        next if moveUser.nil?
         moveName = GameData::Move.get(move).name
         battle.pbDisplay(_INTL("{1} took the {2} attack!", battler.pbThis, moveName))
         # NOTE: Future Sight failing against the target here doesn't count towards
