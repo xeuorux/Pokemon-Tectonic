@@ -124,7 +124,7 @@
 123,TWISTEDSPOON,Twisted Spoon,Twisted Spoons,5,1000,"A spoon imbued with telekinetic power that boosts Psychic-type moves by 20%.",0,0,0
 124,SILVERPOWDER,Silver Powder,Silver Powders,5,1000,"A shiny, silver powder that boosts the holder's Bug-type moves by 20%.",0,0,0
 125,HARDSTONE,Hard Stone,Hard Stones,5,1000,"An unbreakable stone that boosts the holder's Rock-type moves by 20%.",0,0,0
-126,SPELLTAG,Spell Tag,Spell Tags,5,1000,"A sinister, eerie tag that boosts the holder's the holder's Ghost-type moves by 20%.",0,0,0
+126,SPELLTAG,Spell Tag,Spell Tags,5,1000,"A sinister, eerie tag that boosts the holder's Ghost-type moves by 20%.",0,0,0
 127,DRAGONFANG,Dragon Fang,Dragon Fangs,5,1000,"A hard and sharp fang that boosts the holder's Dragon-type moves by 20%.",0,0,0
 128,BLACKGLASSES,Black Glasses,Black Glasses,5,1000,"A shady-looking pair of glasses that boosts the holder's Dark-type moves by 20%.",0,0,0
 129,METALCOAT,Metal Coat,Metal Coats,5,2000,"A special metallic film that boosts the holder's Steel-type moves by 20%.",0,0,0
