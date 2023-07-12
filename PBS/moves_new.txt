@@ -451,10 +451,11 @@
 1450,ICICLEPIN,Icicle Pin,11A,0,ICE,Status,0,5,0,NearOther,0,ce,"The user pins the target down with icy spikes, applying frostbite and making it unable to flee.",ICICLESPEAR
 1451,HEADTHROW,Head Throw,500,40,GRASS,Special,100,15,0,NearOther,0,befn,"Round objects are hurled at the target to strike three times in a row.",BARRAGE
 1452,TRIPLEBUMP,Triple Bump,500,40,GROUND,Physical,100,15,0,NearOther,0,bef,"The user hits the target with each of its heads from underground. Strikes three times.",DIG
-1453,DIAMONDFIELD,Diamond Field,022,0,ROCK,Status,0,20,0,UserSide,0,d,"A diamond-tough force-field protects the user’s side for 10 turns from critical hits or random added effects.",
-1454,LUCKYCHEER,Lucky Cheer,08A,0,ELECTRIC,Status,0,15,0,NearAlly,5,o,"The user dances to encourage its ally. Their attacks this turn will be critical hits.",
-1455,HEALTHYCHEER,Healthy Cheer,126,0,ELECTRIC,Status,0,5,0,NearAlly,0,bco,"The user dances to restore an ally by 50% max HP. They're cured of any status conditions.",
-1456,DEATHKNELL,Death Knell,000,90,GHOST,Special,100,15,20,AllNearOthers,0,befnk,"The user makes a dreadful bell noise, harming all near battlers with visions of impending doom.",
-1457,SILENTWIND,Silent Wind,0A5,85,GHOST,Special,100,12,20,NearOther,0,befq,"The target is blasted with eeriely quiet wind. Can't miss and skips protections.",
+1453,DIAMONDFIELD,Diamond Field,022,0,ROCK,Status,0,20,0,UserSide,0,d,"A diamond-tough force-field protects the user’s side for 10 turns from critical hits or random added effects.",LIGHTSCREEN
+1454,LUCKYCHEER,Lucky Cheer,08A,0,ELECTRIC,Status,0,15,0,NearAlly,5,o,"The user dances to encourage its ally. Their attacks this turn will be critical hits.",HELPINGHAND
+1455,HEALTHYCHEER,Healthy Cheer,126,0,ELECTRIC,Status,0,5,0,NearAlly,0,bco,"The user dances to restore an ally by 50% max HP. They're cured of any status conditions.",HEALPULSE
+1456,DEATHKNELL,Death Knell,000,90,GHOST,Special,100,15,20,AllNearOthers,0,befnk,"The user makes a dreadful bell noise, harming all near battlers with visions of impending doom.",SCREECH
+1457,SILENTWIND,Silent Wind,0A5,85,GHOST,Special,100,12,20,NearOther,0,befq,"The target is blasted with eeriely quiet wind. Can't miss and skips protections.",OMINOUSWIND
 1458,CURSEDROOTS,Cursed Roots,127,0,GRASS,Status,0,15,0,User,0,d,"The user spends 25% HP to lay down evil roots. This curses all foes. The user becomes trapped, but heals by 1/8th HP every turn.",
-1459,MUDSLIDE,Mud Slide,5E0,80,GROUND,Special,100,10,100,AllNearOthers,0,bef,"The user rides onto the field on a huge wave of mud, damaging all nearby and raising their own Speed.",
+1459,MUDSLIDE,Mud Slide,5E0,80,GROUND,Special,100,10,100,AllNearOthers,0,bef,"The user rides onto the field on a huge wave of mud, damaging all nearby and raising their own Speed.",MUDBOMB
+1460,BUTTINGHEADS,BUTTINGHEADS,54C,95,NORMAL,Physical,100,12,20,NearOther,0,abe,"The user engages the target in a head-to-head fight. The damage is based on the target's Attack rather than their Defense.",HEADBUTT

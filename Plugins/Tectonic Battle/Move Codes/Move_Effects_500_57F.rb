@@ -1310,15 +1310,23 @@ class PokeBattle_Move_54B < PokeBattle_StatUpMove
 end
 
 #===============================================================================
-# Not currently used.
+# Target's Attack is used instead of its Defense for this move's
+# calculations. (Butt Heads)
 #===============================================================================
 class PokeBattle_Move_54C < PokeBattle_Move
+    def pbDefendingStat(_user, target)
+        return target, :ATTACK
+    end
 end
 
 #===============================================================================
-# Not currently used.
+# Target's Sp. Atk is used instead of its Sp. Def for this move's
+# calculations.
 #===============================================================================
 class PokeBattle_Move_54D < PokeBattle_Move
+    def pbDefendingStat(_user, target)
+        return target, :SPECIAL_ATTACK
+    end
 end
 
 #===============================================================================
