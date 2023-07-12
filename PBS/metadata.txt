@@ -806,6 +806,12 @@ BattleBack = sand
 MapSize = 3,111
 Environment = Sand
 #-------------------------------
+[132]
+# Waterlogged House
+Outdoor = false
+ShowArea = false
+Bicycle = true
+#-------------------------------
 [134]
 # Prizca West Gym
 Outdoor = false
