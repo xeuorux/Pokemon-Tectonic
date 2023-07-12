@@ -88,9 +88,7 @@ class PokeBattle_AI
 
         # Magic Bounce/Magic Shield checks for moves which don't target
         if user.index == target.index && move.canMagicCoat? && !@battle.moldBreaker
-            @battle.pbPriority(true).each do |b|
-                next unless b
-                next if b.fainted?
+            @battle.eachBattler do |b|
                 next unless b.opposes?(user)
                 next if b.semiInvulnerable?
                 next unless b.hasActiveAbilityAI?(%i[MAGICBOUNCE MAGICSHIELD])

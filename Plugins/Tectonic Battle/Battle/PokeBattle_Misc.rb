@@ -206,8 +206,18 @@ class PokeBattle_Battle
         echoln("[AI LEARNING] The AI is now aware of #{battler.pbThis(true)}'s ability #{ability}")
     end
 
+    # If given an array, returns true if the AI knows of ANY of the listed abilities
     def aiKnowsAbility?(pokemon,checkAbility)
-        return @knownAbilities[pokemon.personalID]&.include?(checkAbility)
+        knownAbilitiesOfMon = @knownAbilities[pokemon.personalID]
+        return false if knownAbilitiesOfMon.nil?
+        if checkAbility.is_a?(Array)
+            checkAbility.each do |specificAbility|
+                return true if knownAbilitiesOfMon.include?(specificAbility)
+            end
+            return false
+        else
+            return knownAbilitiesOfMon.include?(checkAbility)
+        end
     end
 
     def aiSeesMove(battler, moveID)

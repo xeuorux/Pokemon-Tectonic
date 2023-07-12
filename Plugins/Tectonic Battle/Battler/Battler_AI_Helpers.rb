@@ -221,7 +221,13 @@ class PokeBattle_Battler
 
     def aiKnowsAbility?(checkAbility)
         return true unless pbOwnedByPlayer?
-        return true if @addedAbilities.include?(checkAbility)
+        if checkAbility.is_a?(Array)
+            checkAbility.each do |specificAbility|
+                return true if @addedAbilities.include?(specificAbility)
+            end
+        else
+            return true if @addedAbilities.include?(checkAbility)
+        end
         return @battle.aiKnowsAbility?(@pokemon,checkAbility)
     end
 
