@@ -139,6 +139,7 @@ end
 def setAvatarProperties(pkmn)
     avatar_data = GameData::Avatar.get_from_pokemon(pkmn)
 
+    pkmn.owner = Pokemon::Owner.new_foreign
     pkmn.forced_form = avatar_data.form if avatar_data.form != 0
 
     pkmn.forget_all_moves
