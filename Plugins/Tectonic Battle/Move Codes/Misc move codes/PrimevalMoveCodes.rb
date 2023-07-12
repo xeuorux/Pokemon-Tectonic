@@ -800,7 +800,7 @@ end
 ########################################################
 
 #===============================================================================
-# Targets struck lose their flinch immunity. Only usable by the Avatar of Rayquaza (Stratosphere Scream)
+# Targets struck lose their flinch immunity. Only usable by the avatar of Rayquaza (Stratosphere Scream)
 #===============================================================================
 class PokeBattle_Move_700 < PokeBattle_Move
     def ignoresSubstitute?(_user); return true; end
@@ -825,7 +825,7 @@ end
 
 #===============================================================================
 # Summons an Avatar of Luvdisc and an Avatar of Remoraid.
-# Only usable by the Avatar of Kyogre (Seven Seas Edict)
+# Only usable by the avatar of Kyogre (Seven Seas Edict)
 #===============================================================================
 class PokeBattle_Move_701 < PokeBattle_Move
     def pbMoveFailed?(user, _targets, show_message)
@@ -850,7 +850,7 @@ end
 
 #===============================================================================
 # Summons Gravity for 10 turn and doubles the weight of Pokemon on the opposing side.
-# Only usable by the Avatar of Groudon (Warping Core)
+# Only usable by the avatar of Groudon (Warping Core)
 #===============================================================================
 class PokeBattle_Move_702 < PokeBattle_Move
     def pbMoveFailed?(user, _targets, show_message)

@@ -166,13 +166,13 @@ class PokeBattle_Battle
                 foeName = foeParty[0].name
                 foeName = "Pikachu" if foeParty[0].hasAbility?(:PRIMEVALDISGUISE)
                 if bossBattle?
-                    pbDisplayPaused(_INTL("Oh no! The Avatar of {1} appeared!", foeName))
+                    pbDisplayPaused(_INTL("Oh no! The avatar of {1} appeared!", foeName))
                 else
                     pbDisplayPaused(_INTL("Oh! A wild {1} appeared!", foeName))
                 end
             when 2
                 if bossBattle?
-                    pbDisplayPaused(_INTL("Oh no! The Avatars of {1} and {2} appeared!", foeParty[0].name,
+                    pbDisplayPaused(_INTL("Oh no! The avatars of {1} and {2} appeared!", foeParty[0].name,
                         foeParty[1].name))
                 else
                     pbDisplayPaused(_INTL("Oh! A wild {1} and {2} appeared!", foeParty[0].name,
@@ -180,7 +180,7 @@ class PokeBattle_Battle
                 end
             when 3
                 if bossBattle?
-                    pbDisplayPaused(_INTL("Oh no! The Avatars of {1}, {2} and {3} appeared!", foeParty[0].name,
+                    pbDisplayPaused(_INTL("Oh no! The avatars of {1}, {2} and {3} appeared!", foeParty[0].name,
                         foeParty[1].name, foeParty[2].name))
                 else
                     pbDisplayPaused(_INTL("Oh! A wild {1}, {2} and {3} appeared!", foeParty[0].name,

@@ -543,7 +543,7 @@ DebugMenuCommands.register("analyzeitemdistribution", {
       GameData::Avatar.each do |avatarData|
           speciesData = GameData::Species.get(avatarData.id)
           if !speciesData.abilities.include?(avatarData.ability.to_sym)
-              echoln("ERROR: #{avatarData.ability} not a legal ability on the Avatar of #{speciesData.real_name}")
+              echoln("ERROR: #{avatarData.ability} not a legal ability on the avatar of #{speciesData.real_name}")
           end
       end
   
