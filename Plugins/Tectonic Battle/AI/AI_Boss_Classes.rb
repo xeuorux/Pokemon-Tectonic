@@ -138,7 +138,7 @@ class PokeBattle_AI_Rayquaza < PokeBattle_AI_Boss
             user.battle.pbMegaEvolve(user.index)
         })
 
-        @wholeRound += %i[DRAGONASCENT STRATOSPHERESCREAM DIVEBOMB]
+        @wholeRound += %i[STRATOSPHERESCREAM]
 
         @warnedIFFMove.add(:DRAGONASCENT, {
             :condition => proc { |_move, _user, _target, battle|
