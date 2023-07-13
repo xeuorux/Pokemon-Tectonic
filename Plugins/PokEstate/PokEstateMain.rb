@@ -232,7 +232,6 @@ class PokEstate
 		commandScrubAwards = -1
 		commands = []
 		commands[commandLandscape = commands.length] = _INTL("Landscape")
-		commands[commandScrubAwards = commands.length] = _INTL("Scrub Awards") if COMPLETION_AWARDS_FEATURE_AVAILABLE && $DEBUG
 		commands[commandReceiveUpdate = commands.length] = _INTL("Hear Story") if STORIES_FEATURE_AVAILABLE
 		commands[commandCancel = commands.length] = _INTL("Cancel")
 		
@@ -320,9 +319,10 @@ class PokEstate
 		
 		# Create the first page, where the cry happens
 		firstPage = RPG::Event::Page.new
-		fileName = species.to_s
-		fileName += "_" + form.to_s if form != 0
-		firstPage.graphic.character_name = "Followers/#{fileName}"
+
+		characterName = GameData::Species.ow_sprite_filename(pokemon.species,pokemon.form,pokemon.gender,pokemon.shiny?).gsub!("Graphics/Characters/","")
+		firstPage.graphic.character_name = characterName
+
 		beginWandering(firstPage,pokemon,originalPage.step_anime)
 		firstPage.move_type = originalPage.move_type
 		if originalPage.move_type == 1 # Random
