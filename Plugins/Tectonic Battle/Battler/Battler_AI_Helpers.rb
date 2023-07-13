@@ -142,6 +142,14 @@ class PokeBattle_Battler
         return false
     end
 
+    def hasStatBoostStealingMove?
+        eachAIKnownMove do |m|
+            next unless m.statStepStealingMove?
+            return true
+        end
+        return false
+    end
+
     def canChooseProtect?
         eachAIKnownMoveWithIndex do |move, i|
             next unless move.is_a?(PokeBattle_ProtectMove)

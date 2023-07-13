@@ -1920,9 +1920,11 @@ end
 #===============================================================================
 # User gains stat steps equal to each of the target's positive stat steps,
 # and target's positive stat steps become 0, before damage calculation.
-# (Spectral Thief)
+# (Spectral Thief, Scam)
 #===============================================================================
 class PokeBattle_Move_15D < PokeBattle_Move
+    def statStepStealingMove?; return true; end
+    
     def ignoresSubstitute?(_user); return true; end
 
     def pbCalcDamage(user, target, numTargets = 1)

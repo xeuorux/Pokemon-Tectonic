@@ -201,7 +201,7 @@ def getHazardSettingEffectScore(user, _target)
     end
     return 0 unless canChoose # Opponent can't switch in any Pokemon
     score = 20
-    score += 15 * user.enemiesInReserveCount
+    score += 10 * user.enemiesInReserveCount
     score += 10 * user.alliesInReserveCount
     return score
 end
@@ -331,6 +331,16 @@ def getMultiStatUpEffectScore(statUpArray, user, target, fakeStepModifier = 0)
         score *= -1
         echoln("[EFFECT SCORING] The target opposes the user! Inverting the score.")
     end
+
+    enemiesCanSteal = false
+    target.eachOpposing do |opp|
+        next unless opp.hasStatBoostStealingMove?
+        enemiesCanSteal = true
+        echoln("[EFFECT SCORING] A foe of the target can steal the boost! Inverting the score.")
+        break
+    end
+
+    score *= -1 if enemiesCanSteal
 
     return score
 end
