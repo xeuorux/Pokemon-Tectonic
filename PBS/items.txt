@@ -18,7 +18,7 @@
 17,GALARICAWREATH,Galarica Wreath,Galarica Wreaths,1,5000,"A wreath made from woven- Galarica Twigs. It makes certain species of Pokémon evolve.",1,0,7
 18,HELIXFOSSIL,Helix Fossil,Helix Fossils,1,5000,"A fossil of an ancient Pokémon that lived in the sea. It appears to be part of a seashell.",0,0,8
 19,DOMEFOSSIL,Dome Fossil,Dome Fossils,1,5000,"A fossil of an ancient Pokémon that lived in the sea. It appears to be part of a shell.",0,0,8
-20,OLDAMBER,Old Amber,Old Ambers,1,1000,"A piece of amber that contains the genes of an ancient Pokémon. It is clear with a reddish tint.",0,0,8
+20,OLDAMBER,Old Amber,Old Ambers,1,5000,"A piece of amber that contains the genes of an ancient Pokémon. It is clear with a reddish tint.",0,0,8
 21,ROOTFOSSIL,Root Fossil,Root Fossils,1,5000,"A fossil of an ancient Pokémon that lived in the sea. It appears to be part of a plant root.",0,0,8
 22,CLAWFOSSIL,Claw Fossil,Claw Fossils,1,5000,"A fossil of an ancient Pokémon that lived in the sea. It appears to be part of a claw.",0,0,8
 23,SKULLFOSSIL,Skull Fossil,Skull Fossils,1,5000,"A fossil from a prehistoric Pokémon that lived on the land. It appears to be part of a head.",0,0,8
