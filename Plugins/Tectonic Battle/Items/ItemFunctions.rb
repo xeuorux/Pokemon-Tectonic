@@ -228,13 +228,15 @@ display_exp))
         totalhpdiff, attackdiff, defensediff, spatkdiff, spdefdiff, speeddiff), scene)
     pbTopRightWindow(_INTL("Max. HP<r>{1}\r\nAttack<r>{2}\r\nDefense<r>{3}\r\nSp. Atk<r>{4}\r\nSp. Def<r>{5}\r\nSpeed<r>{6}",
         pkmn.totalhp, pkmn.attack, pkmn.defense, pkmn.spatk, pkmn.spdef, pkmn.speed), scene)
-
+    
     # Learn new moves upon level up
-    movelist = pkmn.getMoveList
-    for i in movelist
-        next if i[0] <= current_lvl
-        break if i[0] > new_level
-        pbLearnMove(pkmn, i[1], true)
+    unless $PokemonSystem.prompt_level_moves == 1
+        movelist = pkmn.getMoveList
+        for i in movelist
+            next if i[0] <= current_lvl
+            break if i[0] > new_level
+            pbLearnMove(pkmn, i[1], true)
+        end
     end
 
     # Check for evolution
@@ -310,13 +312,17 @@ def pbChangeLevel(pkmn, newlevel, scene)
            totalhpdiff, attackdiff, defensediff, spatkdiff, spdefdiff, speeddiff), scene)
         pbTopRightWindow(_INTL("Max. HP<r>{1}\r\nAttack<r>{2}\r\nDefense<r>{3}\r\nSp. Atk<r>{4}\r\nSp. Def<r>{5}\r\nSpeed<r>{6}",
            pkmn.totalhp, pkmn.attack, pkmn.defense, pkmn.spatk, pkmn.spdef, pkmn.speed), scene)
+        
         # Learn new moves upon level up
-        movelist = pkmn.getMoveList
-        for i in movelist
-            next unless i[0] > oldLevel
-            next unless i[0] <= pkmn.level
-            pbLearnMove(pkmn, i[1], true)
+        unless $PokemonSystem.prompt_level_moves == 1
+            movelist = pkmn.getMoveList
+            for i in movelist
+                next unless i[0] > oldLevel
+                next unless i[0] <= pkmn.level
+                pbLearnMove(pkmn, i[1], true)
+            end
         end
+        
         # Check for evolution
         newspecies = pkmn.check_evolution_on_level_up
         if newspecies

@@ -31,6 +31,7 @@ class PokemonSystem
     attr_accessor :dex_shown_register
     attr_accessor :color_shifts
     attr_accessor :party_snapshots
+    attr_accessor :prompt_level_moves
     attr_accessor :bag_sorting
     attr_accessor :battle_transitions
     attr_accessor :tutorial_popups
@@ -95,6 +96,7 @@ class PokemonSystem
         @avatar_mechanics_messages= 0 # (0=true, 1=false)
         @nicknaming_prompt        = 0 # (0=true, 1=false)
         @dex_shown_register       = 0 # (0=true, 1=false)
+        @prompt_level_moves       = 0 # (0=true, 1=false)
         @show_trait_unlocks       = $DEBUG ? 1 : 0 # (0=true, 1=false)
         @party_snapshots          = $DEBUG ? 1 : 0 # (0=true, 1=false)
         @tutorial_popups          = $DEBUG ? 1 : 0 # (0=true, 1=false)
@@ -678,6 +680,12 @@ class PokemonOption_Scene_UserInterface < PokemonOption_Scene_Base
 				proc { $PokemonSystem.party_snapshots },
 				proc { |value|
 					$PokemonSystem.party_snapshots = value
+				}
+			),
+            EnumOption.new(_INTL("Prompt Level Moves"), [_INTL("On"), _INTL("Off")],
+				proc { $PokemonSystem.prompt_level_moves },
+				proc { |value|
+					$PokemonSystem.prompt_level_moves = value
 				}
 			),
             EnumOption.new(_INTL("Advanced Tutorials"), [_INTL("On"), _INTL("Off")],
