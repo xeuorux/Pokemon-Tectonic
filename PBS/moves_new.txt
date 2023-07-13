@@ -425,7 +425,7 @@
 1424,SHATTEREDENERGY,Shattered Energy,190,80,DRAGON,Special,100,15,0,AllNearOthers,0,bef,"Attacks with dragon energy. Power increases and damages all nearby in eclipse.",DRAGONPULSE
 1425,AIMTRUE,Aim True,5D9,0,NORMAL,Status,0,25,0,User,0,d,"The user steadies its eyes, mind, and body in order to maximize its accuracy.",MINDREADER
 1426,STAMPDOWN,Stamp Down,050,60,GROUND,Physical,0,12,0,NearOther,0,bef,"The user attacks by flattening the target into the ground. The target's stat step changes are returned to normal.",STOMP
-1427,GRINDSTONE,Grind Stone,5F8,80,ROCK,Physical,100,12,0,NearOther,0,abef,"The user scratches the target with rough rocks. If in sandstorm, the target's Defense is lowered by 3 steps.",STONEEDGE
+1427,GRINDSTONE,Grind Stone,5F8,80,ROCK,Physical,100,12,100,NearOther,0,abef,"The user scratches the target with rough rocks. If in sandstorm, the target's Defense is lowered by 3 steps.",STONEEDGE
 1428,SANDBLASTING,Sand Blasting,5F9,70,GROUND,Special,100,15,0,NearOther,0,abef,"Attacks by blasting sand. This move always goes first in sandstorm.",SANDATTACK
 1429,ROUSINGHULA,Rousing Hula,173,80,FIRE,Special,100,10,100,AllNearOthers,0,befo,"The user dances rapidly, emitting tropical heat. Any frostbitten Pokémon will be healed by this heat.",HEATWAVE
 1430,CURLUP,Curl Up,01E,0,NORMAL,Status,0,30,0,User,0,d,"The user curls up to conceal weak spots and raise both of its defensive stats.",DEFENSECURL
