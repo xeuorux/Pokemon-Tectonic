@@ -149,6 +149,22 @@ class PokeBattle_Battler
         end
         return false
     end
+    
+    def hasRedirectionMove?
+        eachAIKnownMove do |m|
+            next unless m.redirectionMove?
+            return true
+        end
+        return false
+    end
+
+    def allyHasRedirectionMove?
+        eachAlly do |b|
+            next unless b.hasRedirectionMove?
+            return true
+        end
+        return false
+    end
 
     def canChooseProtect?
         eachAIKnownMoveWithIndex do |move, i|

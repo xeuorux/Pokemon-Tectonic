@@ -318,6 +318,8 @@ class PokeBattle_AI
     def pbGetMoveScoreDamage(move, user, target, numTargets = 1)
         damagePercentage = getDamagePercentageAI(move, user, target, numTargets)
 
+        damagePercentage *= 0.66 if target.allyHasRedirectionMove?
+
         # Adjust score
         willFaint = false
         if damagePercentage >= 100 # Prefer lethal damage

@@ -607,6 +607,8 @@ end
 # (Follow Me)
 #===============================================================================
 class PokeBattle_Move_117 < PokeBattle_Move
+    def redirectionMove?; return true; end
+
     def pbEffectGeneral(user)
         maxFollowMe = 0
         user.eachAlly do |b|
@@ -2204,6 +2206,8 @@ end
 # (Spotlight)
 #===============================================================================
 class PokeBattle_Move_16A < PokeBattle_Move
+    def redirectionMove?; return true; end
+
     def pbEffectAgainstTarget(_user, target)
         maxSpotlight = 0
         target.eachAlly do |b|
