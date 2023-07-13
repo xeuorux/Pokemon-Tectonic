@@ -29,10 +29,12 @@ class PokemonEvolutionScene
         $Trainer.pokedex.set_owned(@newspecies)
 
         # Learn moves upon evolution for evolved species
-        movelist = @pokemon.getMoveList
-        for i in movelist
-            next if i[0] != 0 && i[0] != @pokemon.level # 0 is "learn upon evolution"
-            pbLearnMove(@pokemon, i[1], true) { pbUpdate }
+        unless $PokemonSystem.prompt_level_moves == 1
+            movelist = @pokemon.getMoveList
+            for i in movelist
+                next if i[0] != 0 && i[0] != @pokemon.level # 0 is "learn upon evolution"
+                pbLearnMove(@pokemon, i[1], true) { pbUpdate }
+            end
         end
 
         @pokemon.changeHappiness("evolution")
