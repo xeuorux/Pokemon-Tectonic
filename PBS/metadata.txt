@@ -806,12 +806,6 @@ BattleBack = sand
 MapSize = 3,111
 Environment = Sand
 #-------------------------------
-[132]
-# Waterlogged House
-Outdoor = false
-ShowArea = false
-Bicycle = true
-#-------------------------------
 [134]
 # Prizca West Gym
 Outdoor = false
@@ -2003,6 +1997,37 @@ ShowArea = true
 Bicycle = true
 MapPosition = 0,26,12
 #-------------------------------
+[378]
+# Endless Ice
+Outdoor = false
+ShowArea = false
+Bicycle = true
+#-------------------------------
+[379]
+# Glacial Labyrinth
+Outdoor = false
+ShowArea = false
+Bicycle = true
+#-------------------------------
+[380]
+# Mirror Crevasse
+Outdoor = false
+ShowArea = false
+Bicycle = true
+#-------------------------------
+[381]
+# Howling Frost
+Outdoor = false
+ShowArea = false
+Bicycle = true
+#-------------------------------
+[383]
+# Mirror Tundra Redux
+Outdoor = false
+ShowArea = true
+Bicycle = true
+MapPosition = 0,6,7
+#-------------------------------
 [384]
 # Casaba-Bluepoint Gatehouse
 Outdoor = false
@@ -2130,6 +2155,18 @@ Outdoor = false
 ShowArea = false
 Bicycle = true
 MapPosition = 0,18,3
+#-------------------------------
+[403]
+# Frozen Lake
+Outdoor = false
+ShowArea = false
+Bicycle = true
+#-------------------------------
+[404]
+# Mirror Maze
+Outdoor = false
+ShowArea = false
+Bicycle = true
 #-------------------------------
 [408]
 # Tournament Grounds EQ
