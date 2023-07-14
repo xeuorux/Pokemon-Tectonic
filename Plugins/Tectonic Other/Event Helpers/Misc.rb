@@ -190,6 +190,7 @@ end
 def weatherBossDefeated(eventID,newFogOpacity)
 	pbSetSelfSwitch(eventID,'A',true)
 	pbWait(Graphics.frame_rate)
+	lockPlayerInput
 	baseWaitTime = Graphics.frame_rate / 4
 	weatherCallback = proc {
 		pbSetSelfSwitch(eventID,'B',true)
@@ -198,5 +199,4 @@ def weatherBossDefeated(eventID,newFogOpacity)
 	$game_screen.weather(:None,0,baseWaitTime,true,true,weatherCallback)
 	weatherWaitTime = baseWaitTime * 2 * $game_screen.weather_strength
 	$game_map.start_fog_opacity_change(newFogOpacity, weatherWaitTime)
-	lockPlayerInput
 end
