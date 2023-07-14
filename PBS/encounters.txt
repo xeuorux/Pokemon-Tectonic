@@ -951,14 +951,6 @@ DarkCave,20
     20,TITANIX,56,59
     20,TYRANITAR,56,59
 #-------------------------------
-[356] # Mirror Tundra
-LandTall,20
-    20,CARBINK,53,55
-    20,CRYOGONAL,53,55
-    20,HATTERENE,53,55
-    20,JYNX,53,55
-    20,MNOCTOWL,53,55
-#-------------------------------
 [358] # Dr. Hekata's House
 Special,1
     20,HGROWLITHE,10
@@ -977,6 +969,22 @@ Land,20
     6,ORICORIO_1,60,64
     6,ORICORIO_2,60,64
     6,ORICORIO_3,60,64
+#-------------------------------
+[383] # Mirror Tundra
+LandTall,20
+    20,CARBINK,53,55
+    20,CRYOGONAL,53,55
+    20,HATTERENE,53,55
+    20,JYNX,53,55
+    20,MNOCTOWL,53,55
+#-------------------------------
+[403] # Frozen Lake
+LandTall,20
+    20,CARBINK,53,55
+    20,CRYOGONAL,53,55
+    20,HATTERENE,53,55
+    20,JYNX,53,55
+    20,MNOCTOWL,53,55
 #-------------------------------
 [411] # Tri Islands
 Land,20

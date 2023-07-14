@@ -21,6 +21,51 @@ class Game_Map
         return tile_ID_from_coordinates(newCoordinateX, newCoordinateY)
     end
 
+    def slowingTerrain?(x, y, self_event = nil)
+      # Events
+      for event in events.values
+        next if event.tile_id <= 0
+        next if event == self_event
+        next unless event.at_coordinate?(x, y)
+        next if event.through
+        tileID = getTileIDForEventAtCoordinate(event, x, y)
+        terrainTag = GameData::TerrainTag.try_get(@terrain_tags[tileID])
+        next if terrainTag.ignore_passability
+        return true if terrainTag.slows
+      end
+
+      # Tiles
+      for i in [2, 1, 0]
+        tile_id = data[x, y, i]
+        terrain = GameData::TerrainTag.try_get(@terrain_tags[tile_id])
+        return true if terrain.slows
+      end
+
+      return false
+    end
+
+    def noRunTerrain?(x, y, self_event = nil)
+      # Events
+      for event in events.values
+        next if event.tile_id <= 0
+        next if event == self_event
+        next unless event.at_coordinate?(x, y)
+        next if event.through
+        tileID = getTileIDForEventAtCoordinate(event, x, y)
+        terrainTag = GameData::TerrainTag.try_get(@terrain_tags[tileID])
+        next if terrainTag.ignore_passability
+        return true if terrainTag.must_walk
+      end
+
+      # Tiles
+      for i in [2, 1, 0]
+        tile_id = data[x, y, i]
+        terrain = GameData::TerrainTag.try_get(@terrain_tags[tile_id])
+        return true if terrain.must_walk
+      end
+      return false
+    end
+    
     def passable?(x, y, d, self_event = nil)
         if !$game_temp.player_transferring && pbGetFollowerDependentEvent && self_event != $game_player
             dependent = pbGetFollowerDependentEvent
@@ -42,6 +87,7 @@ class Game_Map
           return true if terrainTag.ice
           return true if terrainTag.ledge
           return true if terrainTag.can_surf
+          return true if terrainTag.rock_climbable
           return true if terrainTag.bridge
           passage = @passages[tileID]
           return false if passage & bit != 0
@@ -123,6 +169,7 @@ class Game_Map
         return true if terrainTag.ice
         return true if terrainTag.ledge
         return true if terrainTag.can_surf
+        return true if terrainTag.rock_climbable
         return true if terrainTag.bridge
         return false if @passages[tileID] & 0x0f != 0
         return true if @priorities[tileID] == 0
@@ -134,9 +181,38 @@ class Game_Map
         return true if terrainTag.ice
         return true if terrainTag.ledge
         return true if terrainTag.can_surf
+        return true if terrainTag.rock_climbable
         return true if terrainTag.bridge
         return false if @passages[tile_id] & 0x0f != 0
         return true if @priorities[tile_id] == 0
+      end
+      return true
+    end
+
+    def playerPassable?(x, y, d, self_event = nil)
+      bit = (1 << (d / 2 - 1)) & 0x0f
+      for i in [2, 1, 0]
+        tile_id = data[x, y, i]
+        terrain = GameData::TerrainTag.try_get(@terrain_tags[tile_id])
+        passage = @passages[tile_id]
+        if terrain
+        # Ignore bridge tiles if not on a bridge
+        next if terrain.bridge && $PokemonGlobal.bridge == 0
+        # Make water tiles passable if player is surfing or has the surfboard
+        return true if terrain.can_surf && !terrain.waterfall && ($PokemonGlobal.surfing || playerCanSurf?)
+        return true if terrain.rock_climbable && $PokemonBag.pbHasItem?(:CLIMBINGGEAR)
+        # Prevent cycling in really tall grass/on ice
+        return false if $PokemonGlobal.bicycle && terrain.must_walk
+        # Depend on passability of bridge tile if on bridge
+        if terrain.bridge && $PokemonGlobal.bridge > 0
+          return (passage & bit == 0 && passage & 0x0f != 0x0f)
+        end
+        end
+        # Regular passability checks
+        if !terrain || !terrain.ignore_passability
+        return false if passage & bit != 0 || passage & 0x0f == 0x0f
+        return true if @priorities[tile_id] == 0
+        end
       end
       return true
     end

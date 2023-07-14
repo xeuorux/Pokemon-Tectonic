@@ -1893,7 +1893,6 @@ ShowArea = false
 Bicycle = true
 #-------------------------------
 [356]
-# Mirror Tundra
 Outdoor = false
 ShowArea = true
 Bicycle = true
@@ -2022,7 +2021,7 @@ ShowArea = false
 Bicycle = true
 #-------------------------------
 [383]
-# Mirror Tundra Redux
+# Mirror Tundra
 Outdoor = false
 ShowArea = true
 Bicycle = true

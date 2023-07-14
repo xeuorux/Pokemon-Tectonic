@@ -20,12 +20,18 @@ class Game_Player < Game_Character
     end
   
     def pbCanRun?
-      return false if $game_temp.in_menu || $game_temp.in_battle ||
-                      @move_route_forcing || $game_temp.message_window_showing ||
-                      pbMapInterpreterRunning?
+      return false if $game_temp.in_menu
+      return false if $game_temp.in_battle
+      return false if @move_route_forcing
+      return false if $game_temp.message_window_showing
+      return false if pbMapInterpreterRunning?
+      return false unless $Trainer.has_running_shoes
+      return false if jumping?
+      return false if $PokemonGlobal.diving
+      return false if $PokemonGlobal.bicycle
+      return false if $game_player.forcedWalkByTerrain?
       input = ($PokemonSystem.runstyle == 1) ^ Input.press?(Input::ACTION)
-      return input && $Trainer.has_running_shoes && !jumping? &&
-         !$PokemonGlobal.diving && !$PokemonGlobal.bicycle && !$game_player.pbTerrainTag.must_walk
+      return input
     end
   
     def pbIsRunning?
@@ -49,6 +55,14 @@ class Game_Player < Game_Character
       end
       return @character_name
     end
+
+    def slowedByTerrain?
+      return $game_map.slowingTerrain?(@x, @y, self)
+    end
+
+    def forcedWalkByTerrain?
+      return $game_map.noRunTerrain?(@x, @y, self)
+    end
   
     def update_command
       if $game_player.pbTerrainTag.ice
@@ -60,15 +74,8 @@ class Game_Player < Game_Character
         elsif $PokemonGlobal.surfing
           newMoveSpeed = 4   # Surfing
         end
-          
-        if pbCanRun?
-          newMoveSpeed += 1
-        end
-
-        if $game_player.pbTerrainTag.slows
-          newMoveSpeed -= 1
-        end
-
+        newMoveSpeed += 1 if pbCanRun?
+        newMoveSpeed -= 1 if slowedByTerrain?
         self.move_speed = newMoveSpeed
       end
       super

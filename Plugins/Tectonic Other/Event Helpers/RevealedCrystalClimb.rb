@@ -19,5 +19,5 @@ def inertCrystal
 end
 
 def inactiveCrystalClimb
-    pbMessage(_INTL("Budding crystals. They're much too weak to try climbing."))
+    pbMessage(_INTL("Budding crystals. They're much too weak to climb on."))
 end
