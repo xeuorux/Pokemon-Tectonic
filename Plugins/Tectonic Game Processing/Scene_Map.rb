@@ -239,11 +239,13 @@ class Scene_Map
                     $game_temp.menu_beep = true
                 end
             elsif Input.trigger?(Input::SPECIAL)
-                $PokemonTemp.keyItemCalling = true unless $game_player.moving?
+                unless $game_system.menu_disabled || $game_player.moving?
+                    $PokemonTemp.keyItemCalling = true
+                end
             elsif Input.trigger?(Input::AUX2)
-                # unless $game_player.moving?
-                $PokemonTemp.bicycleCalling = true
-                # end
+                unless $game_player.lock?
+                    $PokemonTemp.bicycleCalling = true
+                end
             elsif Input.trigger?(Input::AUX1)
                 unless $game_system.menu_disabled or $game_player.moving?
                     if savingAllowed?
