@@ -110,3 +110,4 @@
 3109,FAIRYSURGE,Fairy Surge,"Turns the ground into Fairy Terrain for 5 turns when entering battle."
 3110,GRASSYSURGE,Grassy Surge,"Turns the ground into Grassy Terrain for 5 turns when entering battle."
 3111,TRICKSTERAURA,Trickster Aura,"Upon entry, creates a Trick Room for five turns, inverting the effect of Speed."
+3112,FRISK,Frisk,"The Pokémon can check a foe's held item. Makes wild Pokémon have items more often."
