@@ -1367,6 +1367,7 @@ Outdoor = true
 ShowArea = true
 Bicycle = false
 BattleBack = water
+TeleportBlocked = true
 #-------------------------------
 [241]
 # Grouz Mine Sinkhole
