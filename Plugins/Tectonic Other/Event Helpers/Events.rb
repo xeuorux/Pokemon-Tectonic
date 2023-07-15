@@ -42,6 +42,12 @@ def pbGetFirstSwitch(eventid, value = true, mapid = -1)
 	return nil
 end
 
+def setSwitchesAll(eventIDs, switch = 'A', value = true, mapid = -1)
+	eventIDs.each do |eventID|
+		pbSetSelfSwitch(eventID, switch, value, mapid)
+	end
+end
+
 def refreshMapEvents()
 	events = $game_map.events.values
 	for event in events
