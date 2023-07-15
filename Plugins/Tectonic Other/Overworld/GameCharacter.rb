@@ -38,4 +38,12 @@ class Game_Character
       end
       return true
     end
+
+    def silent_offset(offsetX, offsetY)
+      @x += offsetX
+      @y += offsetY
+      @real_x += offsetX * Game_Map::REAL_RES_X
+      @real_y += offsetY * Game_Map::REAL_RES_Y
+      triggerLeaveTile
+    end
 end

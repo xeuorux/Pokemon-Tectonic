@@ -224,6 +224,17 @@ class Game_Player < Game_Character
         $PokemonTemp.dependentEvents.pbFollowEventAcrossMaps(leader,event,true,i==0)
       end
     end
+
+    def silent_offset(offsetX, offsetY)
+      super
+
+      # Move follower events
+      events = $PokemonGlobal.dependentEvents
+      for i in 0...events.length
+        event = $PokemonTemp.dependentEvents.realEvents[i]
+        event.silent_offset(offsetX, offsetY)
+      end
+    end
   
     #-----------------------------------------------------------------------------
     # * Make Encounter Count
