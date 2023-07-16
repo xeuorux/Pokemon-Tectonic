@@ -111,6 +111,10 @@ end
 #===============================================================================
 # Generic status problem-inflicting classes.
 #===============================================================================
+
+#===============================================================================
+# Sleeps the target.
+#===============================================================================
 class PokeBattle_SleepMove < PokeBattle_Move
     def pbFailsAgainstTarget?(user, target, show_message)
         return false if damagingMove?
@@ -124,7 +128,8 @@ class PokeBattle_SleepMove < PokeBattle_Move
 
     def pbAdditionalEffect(user, target)
         return if target.damageState.substitute
-        target.applySleep if target.canSleep?(user, false, self)
+        return unless target.canSleep?(user, guaranteedEffect?, self)
+        target.applySleep
     end
 
     def getTargetAffectingEffectScore(user, target)
@@ -132,12 +137,10 @@ class PokeBattle_SleepMove < PokeBattle_Move
     end
 end
 
+#===============================================================================
+# Poisons the target.
+#===============================================================================
 class PokeBattle_PoisonMove < PokeBattle_Move
-    def initialize(battle, move)
-        super
-        @toxic = false
-    end
-
     def pbFailsAgainstTarget?(user, target, show_message)
         return false if damagingMove?
         return !target.canPoison?(user, show_message, self)
@@ -145,12 +148,13 @@ class PokeBattle_PoisonMove < PokeBattle_Move
 
     def pbEffectAgainstTarget(user, target)
         return if damagingMove?
-        target.applyPoison(user, nil, @toxic)
+        target.applyPoison(user)
     end
 
     def pbAdditionalEffect(user, target)
         return if target.damageState.substitute
-        target.applyPoison(user, nil, @toxic) if target.canPoison?(user, false, self)
+        return unless target.canPoison?(user, guaranteedEffect?, self)
+        target.applyPoison(user)
     end
 
     def getTargetAffectingEffectScore(user, target)
@@ -171,7 +175,8 @@ class PokeBattle_NumbMove < PokeBattle_Move
 
     def pbAdditionalEffect(user, target)
         return if target.damageState.substitute
-        target.applyNumb(user) if target.canNumb?(user, false, self)
+        return unless target.canNumb?(user, guaranteedEffect?, self)
+        target.applyNumb(user)
     end
 
     def getTargetAffectingEffectScore(user, target)
@@ -179,6 +184,9 @@ class PokeBattle_NumbMove < PokeBattle_Move
     end
 end
 
+#===============================================================================
+# Burns the target.
+#===============================================================================
 class PokeBattle_BurnMove < PokeBattle_Move
     def pbFailsAgainstTarget?(user, target, show_message)
         return false if damagingMove?
@@ -192,11 +200,87 @@ class PokeBattle_BurnMove < PokeBattle_Move
 
     def pbAdditionalEffect(user, target)
         return if target.damageState.substitute
-        target.applyBurn(user) if target.canBurn?(user, false, self)
+        return unless target.canBurn?(user, guaranteedEffect?, self)
+        target.applyBurn(user)
     end
 
     def getTargetAffectingEffectScore(user, target)
         return getBurnEffectScore(user, target)
+    end
+end
+
+#===============================================================================
+# Frostbites the target.
+#===============================================================================
+class PokeBattle_FrostbiteMove < PokeBattle_Move
+    def pbFailsAgainstTarget?(user, target, show_message)
+        return false if damagingMove?
+        return !target.canFrostbite?(user, show_message, self)
+    end
+
+    def pbEffectAgainstTarget(_user, target)
+        return if damagingMove?
+        target.applyFrostbite
+    end
+
+    def pbAdditionalEffect(user, target)
+        return if target.damageState.substitute
+        return unless target.canFrostbite?(user, guaranteedEffect?, self)
+        target.applyFrostbite
+    end
+
+    def getTargetAffectingEffectScore(user, target)
+        return getFrostbiteEffectScore(user, target)
+    end
+end
+
+#===============================================================================
+# Dizzies the target.
+#===============================================================================
+class PokeBattle_DizzyMove < PokeBattle_Move
+    def pbFailsAgainstTarget?(user, target, show_message)
+        return false if damagingMove?
+        return !target.canDizzy?(user, show_message, self)
+    end
+
+    def pbEffectAgainstTarget(_user, target)
+        return if damagingMove?
+        target.applyDizzy
+    end
+
+    def pbAdditionalEffect(user, target)
+        return if target.damageState.substitute
+        return unless target.canDizzy?(user, guaranteedEffect?, self)
+        target.applyDizzy
+    end
+
+    def getTargetAffectingEffectScore(user, target)
+        return getDizzyEffectScore(user, target)
+    end
+end
+
+#===============================================================================
+# Leeches the target
+#===============================================================================
+class PokeBattle_LeechMove < PokeBattle_Move
+    def pbFailsAgainstTarget?(user, target, show_message)
+        return false if damagingMove?
+        return !target.canLeech?(user, show_message, self)
+    end
+
+    def pbEffectAgainstTarget(_user, target)
+        return if damagingMove?
+        target.applyLeeched
+    end
+
+    def pbAdditionalEffect(user, target)
+        return if target.damageState.substitute
+        return unless target.canLeech?(user, guaranteedEffect?, self)
+        target.applyLeeched
+    end
+
+    def getTargetAffectingEffectScore(user, target)
+        return getLeechEffectScore(user, target)
     end
 end
 
@@ -803,81 +887,6 @@ class PokeBattle_PledgeMove < PokeBattle_Move
         return if @pledgeSetup # No animation for setting up
         id = @overrideAnim if @overrideAnim
         return super
-    end
-end
-
-#===============================================================================
-# Dizzies the target.
-#===============================================================================
-class PokeBattle_DizzyMove < PokeBattle_Move
-    def pbFailsAgainstTarget?(user, target, show_message)
-        return false if damagingMove?
-        return !target.canDizzy?(user, show_message, self)
-    end
-
-    def pbEffectAgainstTarget(_user, target)
-        return if damagingMove?
-        target.applyDizzy
-    end
-
-    def pbAdditionalEffect(user, target)
-        return if target.damageState.substitute
-        return unless target.canDizzy?(user, false, self)
-        target.applyDizzy
-    end
-
-    def getTargetAffectingEffectScore(user, target)
-        return getDizzyEffectScore(user, target)
-    end
-end
-
-#===============================================================================
-# Leeches the target
-#===============================================================================
-class PokeBattle_LeechMove < PokeBattle_Move
-    def pbFailsAgainstTarget?(user, target, show_message)
-        return false if damagingMove?
-        return !target.canLeech?(user, show_message, self)
-    end
-
-    def pbEffectAgainstTarget(_user, target)
-        return if damagingMove?
-        target.applyLeeched
-    end
-
-    def pbAdditionalEffect(user, target)
-        return if target.damageState.substitute
-        return unless target.canLeech?(user, false, self)
-        target.applyLeeched
-    end
-
-    def getTargetAffectingEffectScore(user, target)
-        return getLeechEffectScore(user, target)
-    end
-end
-
-#===============================================================================
-# Frostbite's the target.
-#===============================================================================
-class PokeBattle_FrostbiteMove < PokeBattle_Move
-    def pbFailsAgainstTarget?(user, target, show_message)
-        return false if damagingMove?
-        return !target.canFrostbite?(user, show_message, self)
-    end
-
-    def pbEffectAgainstTarget(_user, target)
-        return if damagingMove?
-        target.applyFrostbite
-    end
-
-    def pbAdditionalEffect(user, target)
-        return if target.damageState.substitute
-        return unless target.canFrostbite?(user, false, self)
-        target.applyFrostbite
-    end
-
-    def getTargetAffectingEffectScore(user, target)
-        return getFrostbiteEffectScore(user, target)
     end
 end
 
