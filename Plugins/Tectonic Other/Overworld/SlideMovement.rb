@@ -12,7 +12,7 @@ Events.onStepTakenFieldMovement += proc { |_sender, e|
           pbSlideOnIce
         end
       elsif currentTag.push_direction
-        pbPushedByWater
+        pbPushedByTiles
       else
         $PokemonGlobal.sliding = false
         $game_player.walk_anime = true
@@ -21,16 +21,22 @@ Events.onStepTakenFieldMovement += proc { |_sender, e|
   end
 }
 
-def pbPushedByWater
-  oldthrough   = $game_player.through
-  $game_player.through    = true
+def pinningWindActive?
+  windActive = (Time.now.sec / 3) % 2 == 0
+  echoln("Pinning wind active? #{windActive} (#{Time.now.sec})")
+  return windActive
+end
+
+def pbPushedByTiles
   loop do
-    $game_player.move_generic($game_player.pbTerrainTag.push_direction)
-    pbWait(4)
     terrain = $game_player.pbTerrainTag
-    break unless terrain.push_direction
+    pushDirection = terrain.push_direction
+    break if pushDirection.nil?
+    break if terrain.pinning_wind && !pinningWindActive?
+    $game_player.move_generic(pushDirection)
+    pbWait(2)
+    break if $game_player.check_event_trigger_here([1,2])
   end
-  $game_player.through    = oldthrough
 end
 
 def slideDownTerrainTag(terrainTagData)

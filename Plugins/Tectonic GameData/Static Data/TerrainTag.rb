@@ -23,6 +23,7 @@ module GameData
       attr_reader :rock_climbable
       attr_reader :push_direction
       attr_reader :encounter_tile
+      attr_reader :pinning_wind
   
       DATA = {}
   
@@ -66,6 +67,7 @@ module GameData
         @rock_climbable		      = hash[:rock_climbable]		      || false
         @push_direction         = hash[:push_direction]
         @encounter_tile         = hash[:encounter_tile]         || false
+        @pinning_wind           = hash[:pinning_wind]           || false
       end
   
       def can_surf_freely
@@ -357,6 +359,7 @@ module GameData
     :push_direction         => 8,
     :battle_environment     => :Water,
     :can_surf               => true,
+    :must_walk              => true,
   })
   
   GameData::TerrainTag.register({
@@ -365,6 +368,7 @@ module GameData
     :push_direction         => 2,
     :battle_environment     => :Water,
     :can_surf               => true,
+    :must_walk              => true,
   })
   
   GameData::TerrainTag.register({
@@ -373,6 +377,7 @@ module GameData
     :push_direction         => 6,
     :battle_environment     => :Water,
     :can_surf               => true,
+    :must_walk              => true,
   })
   
   GameData::TerrainTag.register({
@@ -381,9 +386,42 @@ module GameData
     :push_direction         => 4,
     :battle_environment     => :Water,
     :can_surf               => true,
+    :must_walk              => true,
   })
 
   GameData::TerrainTag.register({
     :id                     => :TripWire,
     :id_number              => 39,
+  })
+
+  GameData::TerrainTag.register({
+    :id                     => :NorthWind,
+    :id_number              => 40,
+    :push_direction         => 8,
+    :pinning_wind           => true,
+    :must_walk              => true,
+  })
+  
+  GameData::TerrainTag.register({
+    :id                     => :SouthWind,
+    :id_number              => 41,
+    :push_direction         => 2,
+    :pinning_wind           => true,
+    :must_walk              => true,
+  })
+  
+  GameData::TerrainTag.register({
+    :id                     => :EastWind,
+    :id_number              => 42,
+    :push_direction         => 6,
+    :pinning_wind           => true,
+    :must_walk              => true,
+  })
+  
+  GameData::TerrainTag.register({
+    :id                     => :WestWind,
+    :id_number              => 43,
+    :push_direction         => 4,
+    :pinning_wind           => true,
+    :must_walk              => true,
   })
