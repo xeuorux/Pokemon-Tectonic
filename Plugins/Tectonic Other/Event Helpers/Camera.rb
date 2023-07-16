@@ -62,8 +62,8 @@ class Game_Map
 		prevCameraX = self.display_x
 		prevCameraY = self.display_y
 		blackFadeOutIn {
-			self.display_x = (centerX - 8) * 128
-			self.display_y = (centerY - 8) * 128
+			self.display_x = (centerX - 7) * 128
+			self.display_y = (centerY - 7) * 128
 		}
 		Graphics.update
 		pbWait(Graphics.frame_rate*seconds)
@@ -73,9 +73,9 @@ class Game_Map
 		}
 	end
 	
-	def centerCameraOnPlayer()
-		self.display_x = $game_player.x * 128
-		self.display_y = $game_player.y * 128
+	def centerCameraOnPlayer
+		self.display_x = ($game_player.x - 7.5) * 128
+		self.display_y = ($game_player.y - 5.5) * 128
 	end
 	
 	def slideCameraToPlayer(speed=3)

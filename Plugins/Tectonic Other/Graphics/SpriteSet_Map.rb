@@ -103,4 +103,11 @@ class Spriteset_Map
           @usersprites[i].update if !@usersprites[i].disposed?
         end
     end
+
+    def force_update_characters
+      @character_sprites.each do |characterSprite|
+        next unless characterSprite
+        characterSprite.character_update
+      end
+    end
 end

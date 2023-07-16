@@ -52,6 +52,12 @@ class Scene_Map
 		createSpritesets
 	end
 
+    def force_update_characters
+        for map in $MapFactory.maps
+            @spritesets[map.map_id].force_update_characters
+        end
+    end
+
     def autofade(mapid)
         playingBGM = $game_system.playing_bgm
         playingBGS = $game_system.playing_bgs
