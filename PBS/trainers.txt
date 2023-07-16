@@ -5400,6 +5400,53 @@ Pokemon = SYLVEON,59
     AbilityIndex = 1 # Dragon Slayer
     Item = STRIKEVEST
 #-------------------------------
+[LOST_RANGER_BLUE,Farid]
+Pokemon = DARMANITAN,60
+    Form = 1
+    AbilityIndex = 0 # Tough
+Pokemon = RIOJIN,60
+    AbilityIndex = 1 # Inner Focus
+	Item = SHELLBELL
+Pokemon = DONPHAN,60
+    AbilityIndex = 1 # Burn Out
+Pokemon = INTELEON,60
+    AbilityIndex = 0 # Sniper
+	Item = SCOPELENS
+Pokemon = KOMALA,60
+    AbilityIndex = 0 # Comatose
+	Item = ENERGYHERB
+#-------------------------------
+[LOST_RANGER_GREEN,Farid]
+Pokemon = FERROTHORN,60
+    AbilityIndex = 0 # Iron Barbs
+Pokemon = REUNICLUS,60
+    AbilityIndex = 1 # Magic Guard
+    Item = LIFEORB
+Pokemon = VIVILLON,60
+    Form = 3
+    AbilityIndex = 0 # Multiscale
+    Item = LEFTOVERS
+Pokemon = MEGANIUM,60
+    AbilityIndex = 0 # Fae Veil
+Pokemon = DRACOZOLT,60
+    AbilityIndex = 0 # Foolhardy
+    Item = CHOICESCARF
+#-------------------------------
+[LOST_RANGER_PURPLE,Farid]
+Pokemon = NIDOKING,60
+    AbilityIndex = 1 # Poison Point
+Pokemon = GRANBULL,60
+    AbilityIndex = 0 # Intimidate
+    Item = SKILLHERB
+Pokemon = MISMAGIUS,60
+    AbilityIndex = 1 # Shrieking
+    Item = THROATSPRAY
+Pokemon = CLOYSTER,60
+    AbilityIndex = 0 # Tough
+Pokemon = GLISCOR,60
+    AbilityIndex = 0 # Grotesque Vitals
+    Item = ASSAULTVEST
+#-------------------------------
 [BIKER,Knoxx]
 Pokemon = SCRAFTY,55
     AbilityIndex = 0 # Shed Skin
