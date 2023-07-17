@@ -2425,7 +2425,7 @@ BattlerEnemyX = 0
 BattlerEnemyY = 22
 BattlerShadowX = 0
 BattlerShadowSize = 2
-Evolutions = GOLEM,Level,36
+Evolutions = GOLEM,Level,35
 #-------------------------------
 [76]
 Name = Golem
@@ -9195,8 +9195,8 @@ InternalName = SURSKIT
 Type1 = BUG
 Type2 = WATER
 # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
-BaseStats = 50,40,42,75,60,62
-# Total = 329
+BaseStats = 60,40,52,75,60,72
+# Total = 359
 GenderRate = Female50Percent
 GrowthRate = Medium
 BaseEXP = 54
@@ -9222,7 +9222,7 @@ BattlerEnemyX = -3
 BattlerEnemyY = 27
 BattlerShadowX = 0
 BattlerShadowSize = 2
-Evolutions = MASQUERAIN,Level,22
+Evolutions = MASQUERAIN,Level,26
 #-------------------------------
 [284]
 Name = Masquerain
