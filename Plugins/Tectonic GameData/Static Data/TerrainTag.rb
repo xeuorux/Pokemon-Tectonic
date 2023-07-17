@@ -70,8 +70,14 @@ module GameData
         @pinning_wind           = hash[:pinning_wind]           || false
       end
   
-      def can_surf_freely
+      def can_surf_freely?
         return @can_surf && !@waterfall && !@waterfall_crest
+      end
+
+      def walkingForced?
+        return true if @must_walk
+        return true if @pinning_wind && pinningWindActive?
+        return false
       end
     end
   end
@@ -399,7 +405,6 @@ module GameData
     :id_number              => 40,
     :push_direction         => 8,
     :pinning_wind           => true,
-    :must_walk              => true,
   })
   
   GameData::TerrainTag.register({
@@ -407,7 +412,6 @@ module GameData
     :id_number              => 41,
     :push_direction         => 2,
     :pinning_wind           => true,
-    :must_walk              => true,
   })
   
   GameData::TerrainTag.register({
@@ -415,7 +419,6 @@ module GameData
     :id_number              => 42,
     :push_direction         => 6,
     :pinning_wind           => true,
-    :must_walk              => true,
   })
   
   GameData::TerrainTag.register({
@@ -423,5 +426,4 @@ module GameData
     :id_number              => 43,
     :push_direction         => 4,
     :pinning_wind           => true,
-    :must_walk              => true,
   })

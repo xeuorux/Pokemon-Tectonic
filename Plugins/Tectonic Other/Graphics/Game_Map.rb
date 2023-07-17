@@ -54,14 +54,14 @@ class Game_Map
         tileID = getTileIDForEventAtCoordinate(event, x, y)
         terrainTag = GameData::TerrainTag.try_get(@terrain_tags[tileID])
         next if terrainTag.ignore_passability
-        return true if terrainTag.must_walk
+        return true if terrainTag.walkingForced?
       end
 
       # Tiles
       for i in [2, 1, 0]
         tile_id = data[x, y, i]
         terrain = GameData::TerrainTag.try_get(@terrain_tags[tile_id])
-        return true if terrain.must_walk
+        return true if terrain.walkingForced?
       end
       return false
     end
@@ -125,13 +125,13 @@ class Game_Map
           tile_id = data[x, y, i]
           terrain = GameData::TerrainTag.try_get(@terrain_tags[tile_id])
           # If already on water, only allow movement to another water tile
-          if self_event != nil && terrain.can_surf_freely
+          if self_event != nil && terrain.can_surf_freely?
             for j in [2, 1, 0]
               facing_tile_id = data[newx, newy, j]
               return false if facing_tile_id == nil
               facing_terrain = GameData::TerrainTag.try_get(@terrain_tags[facing_tile_id])
               if facing_terrain.id != :None && !facing_terrain.ignore_passability
-                return facing_terrain.can_surf_freely
+                return facing_terrain.can_surf_freely?
               end
             end
             return false
@@ -202,7 +202,7 @@ class Game_Map
         return true if terrain.can_surf && !terrain.waterfall && ($PokemonGlobal.surfing || playerCanSurf?)
         return true if terrain.rock_climbable && $PokemonBag.pbHasItem?(:CLIMBINGGEAR)
         # Prevent cycling in really tall grass/on ice
-        return false if $PokemonGlobal.bicycle && terrain.must_walk
+        return false if $PokemonGlobal.bicycle && terrain.walkingForced?
         # Depend on passability of bridge tile if on bridge
         if terrain.bridge && $PokemonGlobal.bridge > 0
           return (passage & bit == 0 && passage & 0x0f != 0x0f)

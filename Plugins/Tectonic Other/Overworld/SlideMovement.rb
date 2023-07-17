@@ -22,9 +22,15 @@ Events.onStepTakenFieldMovement += proc { |_sender, e|
 }
 
 def pinningWindActive?
-  windActive = (Time.now.sec / 3) % 2 == 0
-  echoln("Pinning wind active? #{windActive} (#{Time.now.sec})")
-  return windActive
+  return pinningWindStrength >= 100
+end
+
+def pinningWindStrength
+  return 100 + 80 * [Math.sin(Time.now.sec * 0.7),0.5].min
+end
+
+def playPinningWindBGS
+  pbBGSPlay("blizzard-loop-SE",pinningWindStrength)
 end
 
 def pbPushedByTiles
