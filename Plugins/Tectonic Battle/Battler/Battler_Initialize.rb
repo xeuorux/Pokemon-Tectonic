@@ -141,26 +141,21 @@ class PokeBattle_Battler
         @damageState.reset
     end
 
+    def pbInitializeFake(pkmn, idxParty)
+        pbInitPokemon(pkmn, idxParty)
+        initializeEffects
+        resetStatSteps
+        resetTrackers
+        @damageState.reset
+    end
+
     def pbInitEffects(batonPass)
         # Dragon ride ends
         if effectActive?(:GivingDragonRideTo)
             getBattlerPointsTo(:GivingDragonRideTo).disableEffect(:OnDragonRide)
         end
         
-        # Reset values, accounting for baton pass
-        GameData::BattleEffect.each_battler_effect do |effectData|
-            effectID = effectData.id
-            # Reset the value to its default
-            # Unless its a baton passable value and we are baton passing
-            if batonPass && effectData.baton_passed
-                currentValue = @effects[effectID]
-                newValue = effectData.baton_pass_value(self, currentValue)
-                @effects[effectID] = newValue
-            else
-                @effects[effectID] = effectData.default
-            end
-            effectData.initialize_battler(@battle, self)
-        end
+        initializeEffects(batonPass)
 
         # All effects stop pointing at this battler index if appropriate
         @battle.allEffectHolders do |holder|
@@ -192,15 +187,40 @@ class PokeBattle_Battler
         if batonPass
             # Don't reset stats
         else
-            @steps[:ATTACK] = 0
-            @steps[:DEFENSE]         = 0
-            @steps[:SPEED]           = 0
-            @steps[:SPECIAL_ATTACK]  = 0
-            @steps[:SPECIAL_DEFENSE] = 0
-            @steps[:ACCURACY]        = 0
-            @steps[:EVASION]         = 0
+            resetStatSteps
         end
 
+        resetTrackers
+    end
+
+    def initializeEffects(batonPass = false)
+        # Reset values, accounting for baton pass
+        GameData::BattleEffect.each_battler_effect do |effectData|
+            effectID = effectData.id
+            # Reset the value to its default
+            # Unless its a baton passable value and we are baton passing
+            if batonPass && effectData.baton_passed
+                currentValue = @effects[effectID]
+                newValue = effectData.baton_pass_value(self, currentValue)
+                @effects[effectID] = newValue
+            else
+                @effects[effectID] = effectData.default
+            end
+            effectData.initialize_battler(@battle, self)
+        end
+    end
+
+    def resetStatSteps
+        @steps[:ATTACK] = 0
+        @steps[:DEFENSE]         = 0
+        @steps[:SPEED]           = 0
+        @steps[:SPECIAL_ATTACK]  = 0
+        @steps[:SPECIAL_DEFENSE] = 0
+        @steps[:ACCURACY]        = 0
+        @steps[:EVASION]         = 0
+    end
+
+    def resetTrackers
         @fainted               = @hp.zero? || @pokemon.afraid?
         @initialHP             = 0
         @lastAttacker          = []

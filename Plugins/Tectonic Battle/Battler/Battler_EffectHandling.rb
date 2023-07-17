@@ -3,9 +3,24 @@ class PokeBattle_Battler
 
     def resetEffects
         @effects.clear
-        # Reset values, accounting for baton pass
+
         GameData::BattleEffect.each_battler_effect do |effectData|
             @effects[effectData.id] = effectData.default
+        end
+
+        # Reset values, accounting for baton pass
+        GameData::BattleEffect.each_battler_effect do |effectData|
+            effectID = effectData.id
+            # Reset the value to its default
+            # Unless its a baton passable value and we are baton passing
+            if batonPass && effectData.baton_passed
+                currentValue = @effects[effectID]
+                newValue = effectData.baton_pass_value(self, currentValue)
+                @effects[effectID] = newValue
+            else
+                @effects[effectID] = effectData.default
+            end
+            effectData.initialize_battler(@battle, self)
         end
     end
 

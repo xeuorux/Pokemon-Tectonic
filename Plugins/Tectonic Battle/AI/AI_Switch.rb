@@ -390,7 +390,7 @@ class PokeBattle_AI
 
     def highestMoveScoreForHypotheticalBattle(battlerSlot,pokemon,partyIndex)
         fakeBattler = battlerSlot.clone
-        fakeBattler.pbInitPokemon(pokemon,partyIndex)
+        fakeBattler.pbInitializeFake(pokemon,partyIndex)
         choices = pbGetBestTrainerMoveChoices(fakeBattler, fakeBattler.ownersPolicies)
 
         maxScore = 0
