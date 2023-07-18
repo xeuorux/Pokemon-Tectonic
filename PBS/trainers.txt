@@ -5406,15 +5406,15 @@ Pokemon = DARMANITAN,60
     AbilityIndex = 0 # Tough
 Pokemon = RIOJIN,60
     AbilityIndex = 1 # Inner Focus
-	Item = SHELLBELL
+    Item = SHELLBELL
 Pokemon = DONPHAN,60
     AbilityIndex = 1 # Burn Out
 Pokemon = INTELEON,60
     AbilityIndex = 0 # Sniper
-	Item = SCOPELENS
+    Item = SCOPELENS
 Pokemon = KOMALA,60
     AbilityIndex = 0 # Comatose
-	Item = ENERGYHERB
+    Item = ENERGYHERB
 #-------------------------------
 [LOST_RANGER_GREEN,Farid]
 Pokemon = FERROTHORN,60
