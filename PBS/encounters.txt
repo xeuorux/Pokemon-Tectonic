@@ -191,7 +191,7 @@ Special,1
 #-------------------------------
 [049] # Tourist's House
 Special,20
-    1,MINCCINO,10
+    1,BONSLY,10
 #-------------------------------
 [051] # Foreclosed Tunnel
 DarkCave,20
