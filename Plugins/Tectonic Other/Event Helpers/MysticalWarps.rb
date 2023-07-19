@@ -3,28 +3,42 @@ LABYRINTH_WARP_2 = [38,-52]
 LABYRINTH_WARP_3 = [0,52]
 LABYRINTH_WARP_4 = [-38,-52]
 
-def mirroredTeleportToEvent(event_id)
+def mirroredTeleportToEvent(event_id,fourWay=false)
 	mysticalWarpEffect {
 		mapData = Compiler::MapData.new
 		map = mapData.getMap($game_map.map_id)
 		event = map.events[event_id]
 
-		distanceX = $game_player.x - get_self.x
-		distanceY = $game_player.y - get_self.y
+		if fourWay
+			distanceX = $game_player.x - get_self.x
+			distanceY = $game_player.y - get_self.y
+
+			case $game_player.direction
+			when Up
+				direction = Down
+			when Down
+				direction = Up
+			when Left
+				direction = Right
+			when Right
+				direction = Left
+			end
+		else
+			distanceX = $game_player.x - get_self.x
+			distanceY = get_self.y - $game_player.y
+
+			case $game_player.direction
+			when Left
+				direction = Right
+			when Right
+				direction = Left
+			else
+				direction = $game_player.direction
+			end
+		end
 
 		x = event.x - distanceX
 		y = event.y - distanceY
-
-		case $game_player.direction
-		when Up
-			direction = Down
-		when Down
-			direction = Up
-		when Left
-			direction = Right
-		when Right
-			direction = Left
-		end
 
 		transferPlayer(x,y,direction)
 	}
