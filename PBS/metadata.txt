@@ -870,6 +870,9 @@ Bicycle = false
 #-------------------------------
 [143]
 # River Crossing Buildings
+Outdoor = false
+ShowArea = false
+Bicycle = false
 #-------------------------------
 [144]
 # Artist's House
@@ -1422,6 +1425,12 @@ Outdoor = false
 ShowArea = false
 Bicycle = false
 #-------------------------------
+[231]
+# Investment House
+Outdoor = false
+ShowArea = false
+Bicycle = false
+#-------------------------------
 [232]
 # Biologist's House
 Outdoor = false
@@ -1734,6 +1743,9 @@ Environment = Cave
 #-------------------------------
 [290]
 # Sweetrock Lighthouse F1
+Outdoor = false
+ShowArea = false
+Bicycle = false
 MapPosition = 0,20,3
 #-------------------------------
 [291]
@@ -1747,6 +1759,9 @@ Environment = Cave
 #-------------------------------
 [292]
 # Crescent Island Secret
+Outdoor = false
+ShowArea = false
+Bicycle = true
 MapPosition = 0,19,4
 #-------------------------------
 [293]
@@ -1812,6 +1827,10 @@ Environment = Cave
 #-------------------------------
 [309]
 # Cave of Hatching F2
+Outdoor = false
+ShowArea = true
+Bicycle = true
+MapPosition = 0,5,4
 BattleBack = rocky
 #-------------------------------
 [315]
@@ -2282,6 +2301,8 @@ Bicycle = true
 [408]
 # Tournament Grounds EQ
 Outdoor = true
+ShowArea = false
+Bicycle = false
 Weather = Overcast,100
 #-------------------------------
 [412]

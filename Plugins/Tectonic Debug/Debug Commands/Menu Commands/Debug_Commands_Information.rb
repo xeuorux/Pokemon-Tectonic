@@ -35,7 +35,10 @@ DebugMenuCommands.register("setmetadata", {
           :trainer_victory_ME   => map_metadata.trainer_victory_ME,
           :wild_capture_ME      => map_metadata.wild_capture_ME,
           :town_map_size        => map_metadata.town_map_size,
-          :battle_environment   => map_metadata.battle_environment
+          :battle_environment   => map_metadata.battle_environment,
+          :teleport_blocked	    => map_metadata.teleport_blocked,
+          :saving_blocked	      => map_metadata.saving_blocked,
+          :no_team_editing	    => map_metadata.no_team_editing,
         }
         metadata_hash[:outdoor_map] = false if metadata_hash[:outdoor_map].nil?
         metadata_hash[:announce_location] = false if metadata_hash[:announce_location].nil?
