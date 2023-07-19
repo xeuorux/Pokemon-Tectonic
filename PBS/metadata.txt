@@ -1168,6 +1168,12 @@ ShowArea = false
 Bicycle = false
 HealingSpot = 187,67,30
 #-------------------------------
+[192]
+# Prizca East Mart
+Outdoor = false
+ShowArea = false
+Bicycle = false
+#-------------------------------
 [193]
 # Volcanic Shore
 Outdoor = true
@@ -1180,7 +1186,9 @@ Environment = Sand
 #-------------------------------
 [194]
 # Makyan Capital Building
+Outdoor = false
 ShowArea = true
+Bicycle = false
 #-------------------------------
 [195]
 # Prizca East Gym
@@ -1199,6 +1207,12 @@ MapPosition = 0,22,14
 BattleBack = cave2
 Environment = Volcano
 #-------------------------------
+[197]
+# Noel's House
+Outdoor = false
+ShowArea = false
+Bicycle = false
+#-------------------------------
 [199]
 # Xerneas's Chamber
 Outdoor = false
@@ -1207,6 +1221,66 @@ Bicycle = true
 MapPosition = 0,15,3
 BattleBack = wcave
 Environment = Cave
+#-------------------------------
+[200]
+# Emma's Empolorium
+Outdoor = false
+ShowArea = false
+Bicycle = true
+#-------------------------------
+[201]
+# Nature's Gallery
+Outdoor = false
+ShowArea = false
+Bicycle = false
+#-------------------------------
+[202]
+# Mountaineer's House
+Outdoor = false
+ShowArea = false
+Bicycle = false
+#-------------------------------
+[203]
+# Skeevy Eevee Pub
+Outdoor = false
+ShowArea = false
+Bicycle = false
+#-------------------------------
+[204]
+# One-Stop Tech Shop
+Outdoor = false
+ShowArea = false
+Bicycle = false
+#-------------------------------
+[205]
+# Cat Lovers House
+Outdoor = false
+ShowArea = false
+Bicycle = false
+#-------------------------------
+[206]
+# Ironclad Dojo
+Outdoor = false
+ShowArea = false
+Bicycle = false
+#-------------------------------
+[207]
+# The Tunes
+Outdoor = false
+ShowArea = false
+Bicycle = false
+#-------------------------------
+[208]
+# Ironclad Dojo Mid-Fight
+Outdoor = false
+ShowArea = false
+Bicycle = false
+#-------------------------------
+[209]
+# Jesters' House
+Outdoor = false
+ShowArea = false
+Bicycle = false
 #-------------------------------
 [210]
 # Crater Hermit's House
@@ -1342,6 +1416,30 @@ ShowArea = false
 Bicycle = false
 HealingSpot = 130,15,28
 #-------------------------------
+[230]
+# Galarian Fan's House
+Outdoor = false
+ShowArea = false
+Bicycle = false
+#-------------------------------
+[232]
+# Biologist's House
+Outdoor = false
+ShowArea = false
+Bicycle = false
+#-------------------------------
+[233]
+# Ranger Warehouse
+Outdoor = false
+ShowArea = false
+Bicycle = false
+#-------------------------------
+[234]
+# Ranger Recruitment
+Outdoor = false
+ShowArea = false
+Bicycle = false
+#-------------------------------
 [235]
 # Renovated House
 Outdoor = false
@@ -1356,6 +1454,18 @@ ShowArea = false
 Bicycle = false
 HealingSpot = 187,55,37
 MapPosition = 0,15,4
+#-------------------------------
+[237]
+# Ranger Bunks
+Outdoor = false
+ShowArea = false
+Bicycle = false
+#-------------------------------
+[238]
+# East End Exclusives
+Outdoor = false
+ShowArea = false
+Bicycle = false
 #-------------------------------
 [239]
 # Ocean Fishing Contest
@@ -1400,6 +1510,18 @@ Bicycle = true
 Outdoor = false
 ShowArea = false
 Bicycle = true
+#-------------------------------
+[254]
+# Old Restaurant
+Outdoor = false
+ShowArea = false
+Bicycle = false
+#-------------------------------
+[255]
+# Old Restaurant F2
+Outdoor = false
+ShowArea = false
+Bicycle = false
 #-------------------------------
 [256]
 # Waterfall Secret
