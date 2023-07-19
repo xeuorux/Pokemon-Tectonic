@@ -117,13 +117,11 @@ def candiesForLevel(level)
   when 53..57
 	itemsGiven = [:EXPCANDYM,2,:EXPCANDYS,2] # 10000
   when 58..62
-	itemsGiven = [:EXPCANDYL,1] # 12000
+	itemsGiven = [:EXPCANDYM,3] # 12000
   when 63..67
-	itemsGiven = [:EXPCANDYL,1,:EXPCANDYM,1] # 16000
+	itemsGiven = [:EXPCANDYL,1] # 16000
   when 68..72
-	itemsGiven = [:EXPCANDYL,1,:EXPCANDYM,2] # 20000
-  when 68..72
-	itemsGiven = [:EXPCANDYL,1,:EXPCANDYM,2] # 20000
+	itemsGiven = [:EXPCANDYL,1,:EXPCANDYM,1] # 20000
   else
 	pbMessage("Unassigned level passed to pbTrainerDropsItem: #{maxTrainerLevel}") if $DEBUG
 	itemsGiven = [:EXPCANDYXS,1] # 250

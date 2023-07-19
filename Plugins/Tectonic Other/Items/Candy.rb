@@ -51,9 +51,9 @@ ItemHandlers::UseOnPokemon.add(:EXPCANDYM,proc { |item,pkmn,scene|
 })
 
 ItemHandlers::UseOnPokemon.add(:EXPCANDYL,proc { |item,pkmn,scene|
-  pbEXPAdditionItem(pkmn,12000,item,scene)
+  pbEXPAdditionItem(pkmn,16000,item,scene)
 })
 
 ItemHandlers::UseOnPokemon.add(:EXPCANDYXL,proc { |item,pkmn,scene|
-  pbEXPAdditionItem(pkmn,50000,item,scene)
+  pbEXPAdditionItem(pkmn,64000,item,scene)
 })

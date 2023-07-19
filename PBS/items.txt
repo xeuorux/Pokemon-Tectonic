@@ -476,11 +476,11 @@
 475,THROATSPRAY,Throat Spray,Throat Sprays,5,4000,"Raises Sp. Atk by two steps when the Pokémon uses a sound move the first time each battle.",0,0,0
 476,WHETSTONE,Whetstone,Whetstones,5,4000,"Raises Attack by two steps when the Pokémon uses a blade move the first time each battle.",0,0,0
 477,UTILITYUMBRELLA,Utility Umbrella,Utility Umbrellas,5,4000,"A held item. The holder takes 10% less move damage, and is protected from the negative effects of weather.",0,0,0
-478,EXPCANDYXS,Exp. Candy XS,Exp. Candies XS,2,20,"A candy that is packed with energy. When consumed, it will grant a single Pokémon 250 Exp. Points.",1,0,0
-479,EXPCANDYS,Exp. Candy S,Exp. Candies S,2,240,"A candy that is packed with energy. When consumed, it will grant a single Pokémon 1000 Exp. Points.",1,0,0
-480,EXPCANDYM,Exp. Candy M,Exp. Candies M,2,1000,"A candy that is packed with energy. When consumed, it will grant a single Pokémon 4,000 Exp. Points.",1,0,0
-481,EXPCANDYL,Exp. Candy L,Exp. Candies L,2,3000,"A candy that is packed with energy. When consumed, it will grant a single Pokémon 12,000 Exp. Points.",1,0,0
-482,EXPCANDYXL,Exp. Candy XL,Exp. Candies XL,2,10000,"A candy that is packed with energy. When consumed, it will grant a single Pokémon 50,000 Exp. Points.",1,0,0
+478,EXPCANDYXS,Exp. Candy XS,Exp. Candies XS,2,60,"A candy that is packed with energy. When consumed, it will grant a single Pokémon 250 Exp. Points.",1,0,0
+479,EXPCANDYS,Exp. Candy S,Exp. Candies S,2,225,"A candy that is packed with energy. When consumed, it will grant a single Pokémon 1000 Exp. Points.",1,0,0
+480,EXPCANDYM,Exp. Candy M,Exp. Candies M,2,800,"A candy that is packed with energy. When consumed, it will grant a single Pokémon 4,000 Exp. Points.",1,0,0
+481,EXPCANDYL,Exp. Candy L,Exp. Candies L,2,3200,"A candy that is packed with energy. When consumed, it will grant a single Pokémon 16,000 Exp. Points.",1,0,0
+482,EXPCANDYXL,Exp. Candy XL,Exp. Candies XL,2,12000,"A candy that is packed with energy. When consumed, it will grant a single Pokémon 64,000 Exp. Points.",1,0,0
 483,FOSSILIZEDBIRD,Fossilized Bird,Fossilized Birds,1,5000,"The fossil of an ancient Pokémon that once soared through the sky. What it looked like is a mystery.",0,0,8
 484,FOSSILIZEDFISH,Fossilized Fish,Fossilized Fishes,1,5000,"The fossil of an ancient Pokémon that once lived in the sea. What it looked like is a mystery.",0,0,8
 485,FOSSILIZEDDRAKE,Fossilized Drake,Fossilized Drakes,1,5000,"The fossil of an ancient Pokémon that once roamed the land. What it looked like is a mystery.",0,0,8
