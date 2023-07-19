@@ -381,10 +381,11 @@ Special,20
 Special,20
     1,VOLTORB,17,19
 SewerFloor,20
-    25,GRIMER,17,19
-    25,MUNCHLAX,17,19
-    25,SOLOSIS,17,19
-    25,TRUBBISH,17,19
+    22,GRIMER,17,19
+    22,MUNCHLAX,17,19
+    22,SOLOSIS,17,19
+    22,TRUBBISH,17,19
+    12,VOLTORB,17,19
 #-------------------------------
 [123] # Novo College
 Special,20

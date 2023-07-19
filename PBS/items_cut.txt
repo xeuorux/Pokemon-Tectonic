@@ -337,3 +337,7 @@
 2336,BRIGHTPOWDER,Bright Powder,Bright Powders,5,4000,"An item to be held by a Pokémon. It casts a tricky glare that lowers the opponent's accuracy.",0,0,0
 2337,ORANBERRY,Oran Berry,Oran Berries,5,0,"It may be held by a Pokémon to heal the user by 33% in a pinch (below 25% HP).",0,0,5
 2338,ZOOMLENS,Zoom Lens,Zoom Lenses,5,4000,"An item to be held by a Pokémon. If the holder moves after its target, its accuracy will be doubled.",0,0,0
+2339,ENERGYPOWDER,Energy Powder,Energy Powders,2,500,"A very bitter medicine powder. It restores the HP of one Pokémon by 50 points.",1,0,0
+2340,ENERGYROOT,Energy Root,Energy Roots,2,1200,"A very bitter root. It restores the HP of one Pokémon by 200 points.",1,0,0
+2341,HEALPOWDER,Heal Powder,Heal Powders,2,300,"A very bitter medicine powder. It heals all the status problems of a single Pokémon.",1,0,0
+2342,REVIVALHERB,Revival Herb,Revival Herbs,2,2800,"A very bitter medicinal herb. It revives a fainted Pokémon, fully restoring its HP.",1,0,0
