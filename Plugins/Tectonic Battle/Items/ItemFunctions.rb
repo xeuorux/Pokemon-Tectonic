@@ -394,3 +394,84 @@ def pbLearnMove(pkmn,move,ignoreifknown=false,bymachine=false,&block)
       end
     end
 end
+
+
+#===============================================================================
+# Use an item from the Bag and/or on a Pokémon
+#===============================================================================
+# @return [Integer] 0 = item wasn't used; 1 = item used; 2 = close Bag to use in field
+def pbUseItem(bag,item,bagscene=nil)
+    itm = GameData::Item.get(item)
+    useType = itm.field_use
+    if itm.is_machine?    # TM or TR or HM
+      if $Trainer.pokemon_count == 0
+        pbMessage(_INTL("There is no Pokémon."))
+        return 0
+      end
+      machine = itm.move
+      return 0 unless machine
+      if pbMoveTutorChoose(machine,nil,true,itm.is_TR?)
+        bag.pbDeleteItem(item) if itm.is_TR?
+        return 1
+      end
+      return 0
+    elsif useType==1 || useType==5   # Item is usable on a Pokémon
+      if $Trainer.pokemon_count == 0
+        pbMessage(_INTL("There is no Pokémon."))
+        return 0
+      end
+      ret = false
+      annot = nil
+      if itm.is_evolution_stone?
+        annot = []
+        for pkmn in $Trainer.party
+          elig = pkmn.check_evolution_on_use_item(item)
+          annot.push((elig) ? _INTL("ABLE") : _INTL("NOT ABLE"))
+        end
+      end
+      pbFadeOutIn {
+        scene = PokemonParty_Scene.new
+        screen = PokemonPartyScreen.new(scene,$Trainer.party)
+        screen.pbStartScene(_INTL("Use on which Pokémon?"),false,annot)
+        loop do
+          scene.pbSetHelpText(_INTL("Use on which Pokémon?"))
+          chosen = screen.pbChoosePokemon
+          if chosen<0
+            ret = false
+            break
+          end
+          pkmn = $Trainer.party[chosen]
+          if pbCheckUseOnPokemon(item,pkmn,screen)
+            ret = ItemHandlers.triggerUseOnPokemon(item,pkmn,screen)
+            if ret && useType==1   # Usable on Pokémon, consumed
+              bag.pbDeleteItem(item)
+              if !bag.pbHasItem?(item)
+                pbMessage(_INTL("You used your last {1}.",itm.name)) { screen.pbUpdate }
+                break
+              end
+            end
+          end
+        end
+        screen.pbEndScene
+        bagscene.pbRefresh if bagscene
+      }
+      return (ret) ? 1 : 0
+    elsif useType==2   # Item is usable from Bag
+      intret = ItemHandlers.triggerUseFromBag(item)
+      case intret
+      when 0 then return 0
+      when 1 then return 1   # Item used
+      when 2 then return 2   # Item used, end screen
+      when 3                 # Item used, consume item
+        bag.pbDeleteItem(item)
+        return 1
+      when 4                 # Item used, end screen and consume item
+        bag.pbDeleteItem(item)
+        return 2
+      end
+      pbMessage(_INTL("Can't use that here."))
+      return 0
+    end
+    pbMessage(_INTL("Can't use that here."))
+    return 0
+end
