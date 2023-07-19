@@ -536,6 +536,12 @@ Outdoor = false
 ShowArea = false
 Bicycle = false
 #-------------------------------
+[079]
+# LuxTech Battle Labs
+Outdoor = false
+ShowArea = false
+Bicycle = false
+#-------------------------------
 [081]
 # East Tunnel
 Outdoor = false
@@ -1097,16 +1103,6 @@ Bicycle = false
 Outdoor = false
 ShowArea = false
 Bicycle = false
-#-------------------------------
-[182]
-# Alloyed Thicket - Eastern
-Outdoor = true
-ShowArea = true
-Bicycle = true
-MapPosition = 0,8,14
-BattleBack = forest
-Environment = Grass
-TeleportBlocked = true
 #-------------------------------
 [183]
 # Circuit Cave
@@ -1893,12 +1889,6 @@ ShowArea = false
 Bicycle = true
 #-------------------------------
 [356]
-Outdoor = false
-ShowArea = true
-Bicycle = true
-#-------------------------------
-[359]
-# Alloyed Thicket Split Maps
 Outdoor = false
 ShowArea = true
 Bicycle = true
