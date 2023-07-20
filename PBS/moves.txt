@@ -127,7 +127,7 @@
 126,FAIRYLOCK,Fairy Lock,152,0,FAIRY,Status,0,10,0,BothSides,0,e,"By locking down the battlefield, the user keeps all Pokémon from fleeing during the next turn.",
 127,FLORALHEALING,Floral Healing,16E,0,FAIRY,Status,0,5,0,NearOther,0,bc,"The user restores the target's HP by 50% of its max hp, or 2/3rds in moonglow.",
 128,GEOMANCY,Geomancy,14E,0,FAIRY,Status,0,10,0,User,0,,"The user absorbs energy and raises its Sp. Atk, Sp. Def, and Speed by four steps on the next turn.",
-129,NATURESMADNESS,Nature's Madness,06C,0,FAIRY,Special,90,10,0,NearOther,0,bef,"The user hits the target with the force of nature. It halves the target's HP.",
+129,NATURESMADNESS,Nature's Madness,06C,1,FAIRY,Special,90,10,0,NearOther,0,bef,"The user hits the target with the force of nature. It halves the target's HP.",
 130,SPIRITBREAK,Spirit Break,045,75,FAIRY,Physical,100,12,100,NearOther,0,abef,"Attacks the target and breaks its spirit. Lowers the target's Sp. Atk by two steps.",
 131,DECORATE,Decorate,17B,0,FAIRY,Status,0,12,0,NearAlly,0,,"The user decorates the target, raising their Attack and Sp. Atk by five steps each.",
 132,STRANGESTEAM,Strange Steam,401,90,FAIRY,Special,100,10,20,NearOther,0,bef,"The user attacks the target by emitting steam. It has a 20% chance to dizzy.",
