@@ -62,7 +62,7 @@ class PokemonPartyShowcase_Scene
 
         pbFadeInAndShow(@sprites) { pbUpdate }
 
-        pbScreenCapture(snapShotName) if snapshot
+        pbScreenCapture(snapShotName, true) if snapshot
 
         loop do
             Graphics.update
