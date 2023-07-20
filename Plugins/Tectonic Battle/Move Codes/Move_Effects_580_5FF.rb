@@ -1200,7 +1200,7 @@ end
 #===============================================================================
 class PokeBattle_Move_5BC < PokeBattle_Move_0E0
     def pbBaseDamage(baseDmg, _user, target)
-        target.eachEffect(true) do |effect, value, effectData|
+        target.pbOwnSide.eachEffect(true) do |effect, value, effectData|
             next unless effectData.is_spike?
             baseDmg += 50 * value
         end
