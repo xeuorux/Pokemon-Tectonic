@@ -25,25 +25,40 @@ class PokemonPartyShowcase_Scene
 
         # Draw tribal bonus info at the bottom
         playerTribalBonus().updateTribeCount
+        bonusesList = $Trainer.tribalBonus.getActiveBonusesList(false)
+        tribesTotal = GameData::Tribe::DATA.keys.count - 1
+        echoln("Total tribes: #{tribesTotal}")
         fullDescription = ""
-        $Trainer.tribalBonus.getActiveBonusesList(false).each_with_index do |label,index|
-            fullDescription += "," unless index == 0
-            fullDescription += label
+        if bonusesList.length <= 3
+            bonusesList.each_with_index do |label,index|
+                fullDescription += "," unless index == 0
+                fullDescription += label
+            end
+        elsif bonusesList.length == tribesTotal
+            fullDescription = "All"
+        else
+            fullDescription = bonusesList.length.to_s + " bonuses"
         end
         if fullDescription.blank?
             fullDescription = "No Tribal Bonuses"
         else
             fullDescription = "Tribes: " + fullDescription
         end
-        drawFormattedTextEx(@overlay, 8, Graphics.height - 20, Graphics.width, fullDescription, BASE_COLOR, SHADOW_COLOR)
+        bottomBarY = Graphics.height - 20
+        drawFormattedTextEx(@overlay, 8, bottomBarY, Graphics.width, fullDescription, BASE_COLOR, SHADOW_COLOR)
 
         # Show player name
         playerName = "<ar>#{$Trainer.name}</ar>"
-        drawFormattedTextEx(@overlay, Graphics.width - 168, Graphics.height - 20, 160, playerName, BASE_COLOR, SHADOW_COLOR)
+        drawFormattedTextEx(@overlay, Graphics.width - 168, bottomBarY, 160, playerName, BASE_COLOR, SHADOW_COLOR)
 
-        # Show player name
+        # Show game version
         settingsLabel = "v#{Settings::GAME_VERSION}"
-        drawFormattedTextEx(@overlay, Graphics.width / 2 + 64, Graphics.height - 20, 160, settingsLabel, BASE_COLOR, SHADOW_COLOR)
+        drawFormattedTextEx(@overlay, Graphics.width / 2 + 64, bottomBarY, 160, settingsLabel, BASE_COLOR, SHADOW_COLOR)
+
+        # Show randomizer icon
+        if Randomizer.on?
+            pbDrawImagePositions(@overlay,[["Graphics/Pictures/Party/icon_randomizer",Graphics.width / 2 + 120,bottomBarY-4,0,0,32,32]])
+        end
 
         pbFadeInAndShow(@sprites) { pbUpdate }
 
@@ -61,8 +76,10 @@ class PokemonPartyShowcase_Scene
         end
     end
 
+    MAX_MOVE_NAME_WIDTH = 140
+
     def renderShowcaseInfo(index,pokemon)
-        displayX =  ((index % 2) * (Graphics.width / 2)) + 6
+        displayX = ((index % 2) * (Graphics.width / 2)) + 6
         displayY = (index / 2) * (Graphics.height / 3 - 8) + 6
 
         mainIconY = displayY + 20
@@ -117,6 +134,20 @@ class PokemonPartyShowcase_Scene
         # Display moves
         pokemon.moves.each_with_index do |pokemonMove,moveIndex|
             moveName = GameData::Move.get(pokemonMove.id).real_name
+            expectedMoveNameWidth = @overlay.text_size(moveName).width
+            if expectedMoveNameWidth > MAX_MOVE_NAME_WIDTH
+                charactersToShave = 3
+                loop do
+                    testString = moveName[0..-charactersToShave] + "..."
+                    expectedTestStringWidth = @overlay.text_size(testString).width
+                    excessWidth = expectedTestStringWidth - MAX_MOVE_NAME_WIDTH
+                    break if excessWidth <= 0
+                    charactersToShave += 1
+                end
+                shavedName = moveName[0..-charactersToShave]
+                shavedName = shavedName[0..-1] if shavedName[shavedName.length-1] == " "
+                moveName = shavedName + "..."
+            end
             drawTextEx(@overlay, displayX + POKEMON_ICON_SIZE + 8, mainIconY + 2 + moveIndex * 16, 200, 1, moveName, BASE_COLOR, SHADOW_COLOR)
         end
 
