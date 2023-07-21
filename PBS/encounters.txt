@@ -992,3 +992,19 @@ Land,20
     34,NUMEL,8,10
     33,APPLIN,8,10
     33,KRABBY,8,10
+#-------------------------------
+[413] # Eventide Isle
+Land,20
+    20,CLEFABLE,50,53
+    20,GENGAR,50,53
+    20,MUSHARNA,50,53
+    20,NOCTOWL,50,53
+    20,URSARING,50,53
+#-------------------------------
+[414] # Eventide Peak
+Land,20
+    20,CLEFABLE,50,53
+    20,GENGAR,50,53
+    20,MUSHARNA,50,53
+    20,NOCTOWL,50,53
+    20,URSARING,50,53

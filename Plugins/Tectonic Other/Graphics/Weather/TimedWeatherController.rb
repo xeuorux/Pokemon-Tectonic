@@ -67,6 +67,8 @@ DRY_MAPS = [
 
 FOG_MAPS = [
     8, # Velenz
+    413, # Eventide Isle
+    414, # Eventide Peak
 ]
 
 DARK_MAPS = [

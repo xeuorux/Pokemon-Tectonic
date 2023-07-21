@@ -2311,3 +2311,16 @@ Outdoor = false
 ShowArea = true
 Bicycle = true
 BattleBack = cave1
+#-------------------------------
+[413]
+# Eventide Isle
+Outdoor = true
+ShowArea = true
+Bicycle = true
+MapPosition = 0,27,5
+#-------------------------------
+[414]
+# Eventide Peak
+Outdoor = true
+ShowArea = true
+Bicycle = true

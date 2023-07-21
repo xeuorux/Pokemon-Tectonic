@@ -72,4 +72,6 @@ HIDDEN_MAPS = {
 	215 => 50, # Tempest Realm
 	377 => 55, # Guardian Island
 	411 => 69, # Tri Island
+	413 => 85, # Eventide Isle
+	414 => 85, # Eventide Peak
 }
