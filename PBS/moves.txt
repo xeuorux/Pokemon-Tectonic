@@ -81,7 +81,7 @@
 80,DYNAMAXCANNON,Dynamax Cannon,000,100,DRAGON,Special,100,5,0,NearOther,0,bf,"The user unleashes a strong beam from its core.",
 81,ETERNABEAM,Eternabeam,0C2,170,DRAGON,Special,100,5,0,NearOther,0,bef,"Eternatus's most powerful attack in its original form. The user can't move on the next turn.",
 82,CLANGOROUSSOUL,Clangorous Soul,179,0,DRAGON,Status,100,5,0,User,0,dk,"The user raises all its stats by two steps, at the cost of 1/3rd of its max HP.",
-83,DRAGONENERGY,Dragon Energy,08B,1,DRAGON,Special,100,5,0,AllNearFoes,0,ef,"Attacks all enemy Pokémon with pure vitality. Its power decreases with the user's HP.",
+83,DRAGONENERGY,Dragon Energy,08B,1,DRAGON,Special,100,5,0,AllNearFoes,0,bef,"Attacks all enemy Pokémon with pure vitality. Its power decreases with the user's HP.",
 84,BOLTSTRIKE,Bolt Strike,007,130,ELECTRIC,Physical,85,5,20,NearOther,0,abef,"The user charges at its foe, surrounding itself with lightning. It has a 20% chance to numb.",
 85,VOLTTACKLE,Volt Tackle,0FD,120,ELECTRIC,Physical,100,12,10,NearOther,0,abef,"The user charges at the foe while electrified. The user also takes 33% recoil. This has a 10% chance to numb.",
 86,ZAPCANNON,Zap Cannon,007,100,ELECTRIC,Special,50,5,100,NearOther,0,befn,"The user fires an electric blast like a cannon to inflict damage and cause numbing.",
