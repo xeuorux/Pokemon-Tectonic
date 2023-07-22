@@ -155,3 +155,4 @@
 4154,GUILLOTINE,Guillotine,070,1,NORMAL,Physical,30,5,0,NearOther,0,abe,"A vicious, tearing attack with big pincers. The target will faint instantly if this attack hits.",
 4155,HORNDRILL,Horn Drill,070,1,NORMAL,Physical,30,5,0,NearOther,0,abe,"The user stabs the foe with a horn that rotates like a drill. If it hits, the target faints instantly.",
 4156,FISSURE,Fissure,070,1,GROUND,Physical,30,5,0,NearOther,0,be,"The user opens up a fissure in the ground and drops the foe in. The target instantly faints if it hits.",
+4157,ROCKCLIMB,Rock Climb,401,90,NORMAL,Physical,85,15,20,NearOther,0,abef,"The user attacks the target by smashing into it with incredible force. It has a 20% chance to dizzy.",
