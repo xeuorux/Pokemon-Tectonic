@@ -347,8 +347,8 @@ target.pbThis(true)))
                 target.damageState.sturdy = true
                 damage -= 1
                 damageAdjusted = true
-            elsif target.hasActiveAbility?(:DANGERSENSE) && target.fullHealth? && !@battle.moldBreaker
-                target.damageState.dangerSense = true
+            elsif target.hasActiveAbility?(:SURVIVALIST) && target.fullHealth? && !@battle.moldBreaker
+                target.damageState.survivalist = true
                 damage -= 1
                 damageAdjusted = true
             elsif target.hasActiveItem?(FULL_ENDURE_ITEMS) && target.fullHealth?
@@ -504,9 +504,9 @@ target.pbThis(true)))
             @battle.pbShowAbilitySplash(target, :STURDY)
             @battle.pbDisplay(_INTL("{1} endured the hit!", target.pbThis))
             @battle.pbHideAbilitySplash(target)
-        elsif target.damageState.dangerSense
-            @battle.pbShowAbilitySplash(target, :DANGERSENSE)
-            @battle.pbDisplay(_INTL("{1} avoided taking the full hit!", target.pbThis))
+        elsif target.damageState.survivalist
+            @battle.pbShowAbilitySplash(target, :SURVIVALIST)
+            @battle.pbDisplay(_INTL("{1} survived the hit!", target.pbThis))
             @battle.pbHideAbilitySplash(target)
         elsif target.damageState.focusSash
             @battle.pbCommonAnimation("UseItem", target)

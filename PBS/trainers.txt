@@ -1983,7 +1983,7 @@ Pokemon = LUNATONE,45
     Item = POWERHERB
 Pokemon = CRABOMINABLE,45
     Moves = ENLIGHTENEDHIT,ICEHAMMER,BRICKBREAK,KNOCKOFF
-    AbilityIndex = 0 # Danger Sense
+    AbilityIndex = 0 # Survivalist
 Pokemon = GLALIE,45
     Moves = CRYSTALCRUSH,CRUNCH,BULLDOZE,ICESHARD
     AbilityIndex = 0 # Flash Freeze
@@ -5390,7 +5390,7 @@ Pokemon = SALAZZLE,58
 Pokemon = SKARMORY,57
     AbilityIndex = 0 # Mental Block
 Pokemon = CRABOMINABLE,58
-    AbilityIndex = 0 # Danger Sense
+    AbilityIndex = 0 # Survivalist
     Item = AMWIBERRY
 #-------------------------------
 [IDOL,Teagan]
@@ -5957,7 +5957,7 @@ Pokemon = APERSIAN,70
     AbilityIndex = 0 # Fur Coat
     Item = LEFTOVERS
 Pokemon = CRABOMINABLE,70
-    AbilityIndex = 0 # Danger Sense
+    AbilityIndex = 0 # Survivalist
     Item = SALACBERRY
 Pokemon = DRAMPA,70
     AbilityIndex = 0 # Berserk

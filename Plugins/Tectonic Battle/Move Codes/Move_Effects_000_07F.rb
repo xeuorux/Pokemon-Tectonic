@@ -2145,7 +2145,7 @@ class PokeBattle_Move_070 < PokeBattle_FixedDamageMove
             return true
         end
         unless @battle.moldBreaker
-            %i[STURDY DANGERSENSE].each do |ability|
+            %i[STURDY SURVIVALIST].each do |ability|
                 if target.hasActiveAbility?(ability)
                     if show_message
                         @battle.pbShowAbilitySplash(target, ability)

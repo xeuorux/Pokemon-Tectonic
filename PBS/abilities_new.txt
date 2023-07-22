@@ -321,7 +321,7 @@
 1320,GRASSYSPIRIT,Grassy Spirit,"Powers up Grass-type moves of itself and its allies by 50%."
 1321,ABOVEITALL,Above It All,"When hit by a move, uses Parting Shot to switch out."
 1322,MOTHBURGLAR,Moth Burglar,"Hits opponent with Thief when withdrawn from battle."
-1323,DANGERSENSE,Danger Sense,"It avoids hazards and can't be knocked out with one hit."
+1323,SURVIVALIST,Survivalist,"It avoids hazards and can't be knocked out with one hit."
 1324,GLASSFIRING,Glass Firing,"Immune to Fire-type moves and raises both defensive stats if hit by one."
 1325,GUARDBREAK,Guard Break,"Its physical attacks reduce the target's Defense."
 1326,WILLBREAK,Will Break,"Its special attacks reduce the target's Sp. Def."
