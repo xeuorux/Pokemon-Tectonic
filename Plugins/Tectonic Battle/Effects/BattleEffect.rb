@@ -87,7 +87,7 @@ module GameData
 
         # Fury Cutter, etc.
         def snowballing_move_counter?
-            return @snowballing_move_count
+            return @snowballing_move_counter
         end
 
         # Reflect, etc.
