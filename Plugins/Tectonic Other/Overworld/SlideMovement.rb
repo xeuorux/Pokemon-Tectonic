@@ -21,6 +21,14 @@ Events.onStepTakenFieldMovement += proc { |_sender, e|
   end
 }
 
+# Check for pushing every frame
+Events.onMapUpdate += proc { |_sender,_e|
+  pushingTag = $game_player.pushingTag
+  if pushingTag.push_direction && pushingTag.pinning_wind && !$PokemonGlobal.pushing
+    pbPushedByTiles
+  end
+}
+
 def pinningWindActive?
   return pinningWindStrength >= 100
 end
@@ -33,9 +41,14 @@ def playPinningWindBGS
   pbBGSPlay("blizzard-loop-SE",pinningWindStrength)
 end
 
+class PokemonGlobalMetadata
+  attr_accessor :pushing
+end
+
 def pbPushedByTiles
+  $PokemonGlobal.pushing = true
   loop do
-    terrain = $game_player.pbTerrainTag
+    terrain = $game_player.pushingTag
     pushDirection = terrain.push_direction
     break if pushDirection.nil?
     break if terrain.pinning_wind && !pinningWindActive?
@@ -43,6 +56,7 @@ def pbPushedByTiles
     pbWait(2)
     break if $game_player.check_event_trigger_here([1,2])
   end
+  $PokemonGlobal.pushing = false
 end
 
 def slideDownTerrainTag(terrainTagData)
@@ -76,7 +90,10 @@ def pbSlideOnIce
   $game_player.straighten
   $game_player.walk_anime = false
   loop do
-    break if !$game_player.can_move_in_direction?(direction)
+    unless $game_player.can_move_in_direction?($game_player.direction)
+      $game_player.bump_into_object
+      break
+    end
     break if !$game_player.pbTerrainTag.ice
     $game_player.move_forward
     while $game_player.moving?
@@ -84,6 +101,7 @@ def pbSlideOnIce
       Graphics.update
       Input.update
     end
+    echoln("Sliding on ice in #{direction} direction")
   end
   $game_player.center($game_player.x, $game_player.y)
   $game_player.straighten

@@ -143,6 +143,10 @@ class Game_Player < Game_Character
       return $MapFactory.getTerrainTag(self.map.map_id, @x, @y, countBridge) if $MapFactory
       return $game_map.terrain_tag(@x, @y, countBridge)
     end
+
+    def pushingTag
+      return $game_map.pushing_tag(@x, @y)
+    end
   
     def pbFacingEvent(ignoreInterpreter=false)
       return nil if $game_system.map_interpreter.running? && !ignoreInterpreter

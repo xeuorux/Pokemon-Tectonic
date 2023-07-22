@@ -405,6 +405,7 @@ module GameData
     :id_number              => 40,
     :push_direction         => 8,
     :pinning_wind           => true,
+    :ignore_passability     => true,
   })
   
   GameData::TerrainTag.register({
@@ -412,6 +413,7 @@ module GameData
     :id_number              => 41,
     :push_direction         => 2,
     :pinning_wind           => true,
+    :ignore_passability     => true,
   })
   
   GameData::TerrainTag.register({
@@ -419,6 +421,7 @@ module GameData
     :id_number              => 42,
     :push_direction         => 6,
     :pinning_wind           => true,
+    :ignore_passability     => true,
   })
   
   GameData::TerrainTag.register({
@@ -426,4 +429,5 @@ module GameData
     :id_number              => 43,
     :push_direction         => 4,
     :pinning_wind           => true,
+    :ignore_passability     => true,
   })

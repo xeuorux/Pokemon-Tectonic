@@ -230,6 +230,19 @@ class Game_Map
       return GameData::TerrainTag.get(:None)
     end
 
+    def pushing_tag(x,y,countBridge=false)
+      if valid?(x, y)
+        for i in [2, 1, 0]
+          tile_id = data[x, y, i]
+          terrain = GameData::TerrainTag.try_get(@terrain_tags[tile_id])
+          next unless terrain.push_direction
+          next if !countBridge && terrain.bridge && $PokemonGlobal.bridge == 0
+          return terrain
+        end
+      end
+      return GameData::TerrainTag.get(:None)
+    end
+
     def encounter_terrain_tag(x,y,countBridge=false)
       if valid?(x, y)
         for i in [2, 1, 0]
