@@ -378,7 +378,7 @@ class Interpreter
     end
 
     def setGlobalSwitch(switchID,value = true)
-        $game_variables[switchID] = value
+        $game_switches[switchID] = value
         $game_map.need_refresh = true
     end
 
