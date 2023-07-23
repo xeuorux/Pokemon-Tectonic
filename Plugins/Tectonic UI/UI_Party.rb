@@ -1243,7 +1243,7 @@ end
             typeCommands.push("Cancel")
             existingIndex = typesArray.find_index(pkmn.itemTypeChosen)
             chosenNumber = @scene.pbShowCommands(_INTL("What type should #{pkmn.name} become?"),typeCommands,existingIndex)
-            if chosenNumber < typesArray.length
+            if chosenNumber > -1 && chosenNumber < typeCommands.length - 1
               typeSettingItem = pkmn.hasTypeSetterItem?
               pbDisplay(_INTL("#{pkmn.name} changed its #{getItemName(typeSettingItem)} to #{typeCommands[chosenNumber]}-type!"))
               pkmn.itemTypeChosen = typesArray[chosenNumber]
