@@ -87,7 +87,7 @@ def pbMessageDisplay(msgwindow,message,letterbyletter=true,commandProc=nil)
   ### Controls
   textchunks=[]
   controls=[]
-  while text[/(?:\\(f|ff|i|ts|cl|me|se|wt|wtnp|ch)\[([^\]]*)\]|\\(g|cn|pt|wd|wm|wu|wl|wr|op|cl|or|ss|\.|\||\!|\^))/i]
+  while text[/(?:\\(f|ff|i|db|ts|cl|me|se|wt|wtnp|ch)\[([^\]]*)\]|\\(g|cn|pt|wd|wm|wu|wl|wr|op|cl|or|ss|\.|\||\!|\^))/i]
     textchunks.push($~.pre_match)
     if $~[1]
       controls.push([$~[1].downcase,$~[2],-1])
@@ -114,6 +114,7 @@ def pbMessageDisplay(msgwindow,message,letterbyletter=true,commandProc=nil)
   end
   text = textchunks.join("")
   signWaitCount = 0
+  badgeDisplayCount = 0
   case ($PokemonSystem.textspeed rescue 4)
   when 0..2
     signWaitTime = Graphics.frame_rate/2
@@ -124,6 +125,7 @@ def pbMessageDisplay(msgwindow,message,letterbyletter=true,commandProc=nil)
   end
   haveSpecialClose = false
   specialCloseSE = ""
+  faceFadeInTime = -1
   for i in 0...controls.length
     control = controls[i][0]
     param = controls[i][1]
@@ -145,6 +147,15 @@ def pbMessageDisplay(msgwindow,message,letterbyletter=true,commandProc=nil)
 	    icon_location = GameData::Item.icon_filename(param)
       facewindow = PictureWindow.new(icon_location)
 	    facewindow.visible = false
+    when "db"
+      facewindow.dispose if facewindow
+	    icon_location = "Graphics/Pictures/Trainer Card/DISPLAY_BADGE_#{param}"
+      facewindow = PictureWindow.new(icon_location)
+      facewindow.windowskin = nil
+	    facewindow.visible = false
+      facewindow.contents_opacity = 0
+      msgwindow.visible = false
+      faceFadeInTime = 20
     when "ch"
       cmds = param.clone
       cmdvariable = pbCsvPosInt!(cmds)
@@ -177,12 +188,22 @@ def pbMessageDisplay(msgwindow,message,letterbyletter=true,commandProc=nil)
   ########## Show text #############################
   msgwindow.text = text
   Graphics.frame_reset if Graphics.frame_rate>40
+  faceFadeInCount = faceFadeInTime
   loop do
     if $SpeakerNameWindow
       pbPositionNearMsgWindow($SpeakerNameWindow,msgwindow,:left)
       $SpeakerNameWindow.y += 12
       $SpeakerNameWindow.x += 12
       $SpeakerNameWindow.z = msgwindow.z + 1
+    end
+    if faceFadeInCount > 0
+      fadeProgress = (faceFadeInTime - faceFadeInCount) / faceFadeInTime.to_f
+      facewindow.contents_opacity = (fadeProgress * 255).ceil
+      facewindow.y -= 1
+      faceFadeInCount -= 1
+      if faceFadeInCount <= 0
+        msgwindow.visible = true
+      end
     end
     if signWaitCount > 0
       signWaitCount -= 1
@@ -222,6 +243,18 @@ def pbMessageDisplay(msgwindow,message,letterbyletter=true,commandProc=nil)
             facewindow.y = Graphics.height-facewindow.height*(signWaitTime-signWaitCount)/signWaitTime if facewindow
           end
         end
+      when "db"
+        facewindow.dispose if facewindow
+        icon_location = "Graphics/Pictures/Trainer Card/DISPLAY_BADGE_#{param}"
+        facewindow = PictureWindow.new(icon_location)
+        facewindow.windowskin = nil
+        pbPositionNearMsgWindow(facewindow,msgwindow,:center)
+        facewindow.viewport = msgwindow.viewport
+        facewindow.z        = msgwindow.z
+		    facewindow.y = (Graphics.height / 2.0 - (facewindow.height * 2) / 3.0).ceil
+        facewindow.y += faceFadeInTime
+        msgwindow.waitcount = faceFadeInTime
+        autoresume = true
 	    when "or"
         msgwindow.x			= 60
         msgwindow.width		-= 60
@@ -477,4 +510,36 @@ def pbChooseNumber(msgwindow,params)
   cmdwindow.dispose
   Input.update
   return ret
+end
+
+def pbPositionNearMsgWindow(cmdwindow,msgwindow,side)
+  return if !cmdwindow
+  if msgwindow
+    height=[cmdwindow.height,Graphics.height-msgwindow.height].min
+    if cmdwindow.height!=height
+      cmdwindow.height=height
+    end
+    cmdwindow.y=msgwindow.y-cmdwindow.height
+    if cmdwindow.y<0
+      cmdwindow.y=msgwindow.y+msgwindow.height
+      if cmdwindow.y+cmdwindow.height>Graphics.height
+        cmdwindow.y=msgwindow.y-cmdwindow.height
+      end
+    end
+    case side
+    when :left
+      cmdwindow.x=msgwindow.x
+    when :right
+      cmdwindow.x=msgwindow.x+msgwindow.width-cmdwindow.width
+    when :center
+      messageCenter = msgwindow.x + msgwindow.width / 2
+      cmdwindow.x = messageCenter - cmdwindow.width / 2
+    else
+      cmdwindow.x=msgwindow.x+msgwindow.width-cmdwindow.width
+    end
+  else
+    cmdwindow.height=Graphics.height if cmdwindow.height>Graphics.height
+    cmdwindow.x=0
+    cmdwindow.y=0
+  end
 end

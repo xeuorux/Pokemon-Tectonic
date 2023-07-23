@@ -33,10 +33,9 @@ def earnBadge(badgeNum)
 	end
 
 	name = BADGE_NAMES[badgeNum-1]
-	pbMessage(_INTL("\\me[Badge get]You've earned the {1} Badge.",name))
-	$Trainer.badges[badgeNum-1]=true
-	$game_switches[3+badgeNum]=true # "Defeated Gym X" switch
-	pbWait(120)
+	pbMessage(_INTL("\\db[#{badgeNum}]\\me[Badge get]You've earned the {1} Badge!\\wtnp[120]",name))
+	$Trainer.badges[badgeNum-1] = true
+	$game_switches[3+badgeNum] = true # "Defeated Gym X" switch
 	
 	badgesEarnedArray = []
 	$Trainer.badges.each_with_index do |hasBadge,index|
