@@ -37,7 +37,7 @@ DebugMenuCommands.register("setbadges", {
         end
         badgecmd = pbShowCommands(nil, badgecmds, -1, badgecmd)
         break if badgecmd < 0
-        earnBadge(badgecmd)
+        earnBadge(badgecmd + 1)
       end
     }
   })
