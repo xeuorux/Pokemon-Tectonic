@@ -1,7 +1,3 @@
-GROUZ_AVATAR_PHONECALL_GLOBAL = 61
-CATACOMBS_PHONECALL_GLOBAL = 62
-WHITEBLOOM_PHONECALL_GLOBAL = 54
-
 Events.onBadgeEarned += proc { |_sender,_e|
     totalBadges = _e[1]
     if totalBadges == 4
