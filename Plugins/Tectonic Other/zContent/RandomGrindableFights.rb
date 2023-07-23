@@ -16,7 +16,7 @@ def randomGrindRivalIntro
         _INTL("Hark! Brace yourself for a battle of wonder, where victory is uncertain!"),
         _INTL("Well, well, well! Fancy a sparring session, with a dash of unpredictability?"),
         _INTL("Hey, you! Up for a surprise Pokemon battle? Or are you too scared?"),
-        _INTL("Champion, huh? You got the to face my surprises?"),
+        _INTL("Champion, huh? You got the gumption to face my surprises?"),
         _INTL("Get ready to unravel the enigma of my team. Will it be a treat or a trick?"),
         _INTL("Warning! Battling me may cause trembling, excessive sweating, and a memorable defeat."),
     ].sample)
