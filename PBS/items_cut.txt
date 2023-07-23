@@ -341,3 +341,21 @@
 2340,ENERGYROOT,Energy Root,Energy Roots,2,1200,"A very bitter root. It restores the HP of one Pokémon by 200 points.",1,0,0
 2341,HEALPOWDER,Heal Powder,Heal Powders,2,300,"A very bitter medicine powder. It heals all the status problems of a single Pokémon.",1,0,0
 2342,REVIVALHERB,Revival Herb,Revival Herbs,2,2800,"A very bitter medicinal herb. It revives a fainted Pokémon, fully restoring its HP.",1,0,0
+2343,CRYSTALVEILNORMAL,Crystal Veil Normal,Crystal Veils Normal,5,1000,"A held item. During battle, the holder is Normal-type.",0,0,0
+2344,CRYSTALVEILFIRE,Crystal Veil Fire,Crystal Veils Fire,5,1000,"A held item. During battle, the holder is Fire-type.",0,0,0
+2345,CRYSTALVEILWATER,Crystal Veil Water,Crystal Veils Water,5,1000,"A held item. During battle, the holder is Water-type.",0,0,0
+2346,CRYSTALVEILELECTRIC,Crystal Veil Electric,Crystal Veils Electric,5,1000,"A held item. During battle, the holder is Electric-type.",0,0,0
+2347,CRYSTALVEILGRASS,Crystal Veil Grass,Crystal Veils Grass,5,1000,"A held item. During battle, the holder is Grass-type.",0,0,0
+2348,CRYSTALVEILICE,Crystal Veil Ice,Crystal Veils Ice,5,1000,"A held item. During battle, the holder is Ice-type.",0,0,0
+2349,CRYSTALVEILFIGHTING,Crystal Veil Fighting,Crystal Veils Fighting,5,1000,"A held item. During battle, the holder is Fighting-type.",0,0,0
+2350,CRYSTALVEILPOISON,Crystal Veil Poison,Crystal Veils Poison,5,1000,"A held item. During battle, the holder is Poison-type.",0,0,0
+2351,CRYSTALVEILGROUND,Crystal Veil Ground,Crystal Veils Ground,5,1000,"A held item. During battle, the holder is Ground-type.",0,0,0
+2352,CRYSTALVEILFLYING,Crystal Veil Flying,Crystal Veils Flying,5,1000,"A held item. During battle, the holder is Flying-type.",0,0,0
+2353,CRYSTALVEILPSYCHIC,Crystal Veil Psychic,Crystal Veils Psychic,5,1000,"A held item. During battle, the holder is Psychic-type.",0,0,0
+2354,CRYSTALVEILBUG,Crystal Veil Bug,Crystal Veils Bug,5,1000,"A held item. During battle, the holder is Bug-type.",0,0,0
+2355,CRYSTALVEILROCK,Crystal Veil Rock,Crystal Veils Rock,5,1000,"A held item. During battle, the holder is Rock-type.",0,0,0
+2356,CRYSTALVEILGHOST,Crystal Veil Ghost,Crystal Veils Ghost,5,1000,"A held item. During battle, the holder is Ghost-type.",0,0,0
+2357,CRYSTALVEILDRAGON,Crystal Veil Dragon,Crystal Veils Dragon,5,1000,"A held item. During battle, the holder is Dragon-type.",0,0,0
+2358,CRYSTALVEILDARK,Crystal Veil Dark,Crystal Veils Dark,5,1000,"A held item. During battle, the holder is Dark-type.",0,0,0
+2359,CRYSTALVEILSTEEL,Crystal Veil Steel,Crystal Veils Steel,5,1000,"A held item. During battle, the holder is Steel-type.",0,0,0
+2360,CRYSTALVEILFAIRY,Crystal Veil Fairy,Crystal Veils Fairy,5,1000,"A held item. During battle, the holder is Fairy-type.",0,0,0
