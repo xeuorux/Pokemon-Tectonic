@@ -574,7 +574,7 @@ class PokeBattle_Battle
         if trainerBattle?
             tMoney = 0
             @opponent.each_with_index do |t, i|
-                baseMoney = [t.base_money, 100].min
+                baseMoney = t.base_money
                 baseMoney = 10 + baseMoney / 2
                 tMoney += pbMaxLevelInTeam(1, i) * baseMoney
             end
