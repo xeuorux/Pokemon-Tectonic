@@ -57,7 +57,7 @@ class PokeBattle_Battler
                                                                                                                 user.pbThis, move.name))
             end
             # Destiny Bond (recording that it should apply)
-            if target.effectActive?(:DestinyBond) && target.fainted? && !target.effectActive?(:DestinyBondTarget)
+            if target.effectActive?(:DestinyBond) && target.fainted? && !user.effectActive?(:DestinyBondTarget)
                 applyEffect(:DestinyBondTarget, target.index)
             end
             # Stunning Curl
