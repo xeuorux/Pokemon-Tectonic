@@ -35,7 +35,7 @@ class ItemIconSprite < SpriteWrapper
 	# For Prismatic Plate / Memory Set
 	def type=(value)
 		return if @item.nil?
-		return unless %i[PRISMATICPLATE MEMORYSET].include?(GameData::Item.get(@item).id)
+		return unless %i[PRISMATICPLATE MEMORYSET CRYSTALVEIL].include?(GameData::Item.get(@item).id)
 
 		# Dispose current graphic
 		@animbitmap.dispose if @animbitmap
@@ -44,12 +44,16 @@ class ItemIconSprite < SpriteWrapper
 
 		# Find the proper pseudo bitmap
 		pretendItem = nil
-		typeID = GameData::Type.get(value).id_number
+		typeData = GameData::Type.get(value)
+		typeID = typeData.id_number
 
 		if @item == :PRISMATICPLATE
 			pretendItem = PLATES_BY_TYPE_ID[typeID]
 		elsif @item == :MEMORYSET
 			pretendItem = MEMORIES_BY_TYPE_ID[typeID]
+		elsif @item == :CRYSTALVEIL
+			pretendItem = ("CRYSTALVEIL" + typeData.real_name.upcase).to_sym
+			echoln("Pretending that the crystal veil is a #{pretendItem}")
 		end
 
 		if pretendItem.nil?
