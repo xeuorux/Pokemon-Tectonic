@@ -30,6 +30,6 @@ def boatTravel(currentDock = "")
         transferPlayer(18,55,Up,217)
     elsif tapuIslandCommand > -1 && choice == tapuIslandCommand
         $game_switches[55] = true # Mark player as having visited this island
-        transferPlayer(80,39,Up,377)
+        transferPlayer(49,60,Up,377)
     end
 end
