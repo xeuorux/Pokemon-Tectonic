@@ -2760,6 +2760,8 @@ end
 # rounded up. (Life Dew)
 #===============================================================================
 class PokeBattle_Move_17E < PokeBattle_Move
+    def ignoresSubstitute?(_user); return true; end
+
     def healingMove?; return true; end
 
     def healRatio(_user)
