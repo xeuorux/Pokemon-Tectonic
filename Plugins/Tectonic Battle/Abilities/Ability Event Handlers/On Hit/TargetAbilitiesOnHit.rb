@@ -495,8 +495,16 @@ BattleHandlers::TargetAbilityOnHit.add(:PERISHBODY,
         next if target.effectActive?(:PerishSong)
         next -5 if aiChecking
         battle.pbShowAbilitySplash(target, ability)
-        target.applyEffect(:PerishSong, 3)
-        user.applyEffect(:PerishSong, 3)
+        if target.boss?
+            target.applyEffect(:PerishSong, 12)
+        else
+            target.applyEffect(:PerishSong, 3)
+        end
+        if user.boss?
+            user.applyEffect(:PerishSong, 12)
+        else
+            user.applyEffect(:PerishSong, 3)
+        end
         battle.pbHideAbilitySplash(target)
     }
 )
