@@ -449,7 +449,7 @@ BattleHandlers::UserAbilityEndOfMove.add(:ROYALVOICE,
 
 BattleHandlers::UserAbilityEndOfMove.add(:SPARESCALES,
   proc { |ability, user, _targets, move, _battle, _switchedBattlers|
-      next unless move.type == :GRASS || :GROUND || :STEEL
+      next unless %i[GRASS GROUND STEEL].include?(move.calcType)
       user.pbRaiseMultipleStatSteps(DEFENDING_STATS_1, user, ability: ability)
   }
 )
