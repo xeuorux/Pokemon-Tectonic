@@ -446,3 +446,10 @@ BattleHandlers::UserAbilityEndOfMove.add(:ROYALVOICE,
       battle.pbHideAbilitySplash(user)
   }
 )
+
+BattleHandlers::UserAbilityEndOfMove.add(:SPARESCALES,
+  proc { |ability, user, _targets, move, _battle, _switchedBattlers|
+      next unless move.type == :GRASS || :GROUND || :STEEL
+      user.pbRaiseMultipleStatSteps(DEFENDING_STATS_1, user, ability: ability)
+  }
+)

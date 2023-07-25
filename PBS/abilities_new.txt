@@ -425,3 +425,4 @@
 1424,TRICKSTER,Trickster,"Creates a Trick Room for five turns when its HP is lowered below half."
 1425,COUNTERFLOW,Counter Flow,"When hit with a special move, hits back instantly with Wipeout."
 1426,APRICORNARMOR,Apricorn Armor,"Takes 50% less damage from attacks by Pokémon who have a status condition."
+1427,SPARESCALES,Spare Scales,"Raises defenses after using a Grass, Ground, or Steel-type move."
