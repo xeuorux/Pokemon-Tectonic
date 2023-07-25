@@ -25,7 +25,7 @@ class PokeBattle_Battle
 
     def pbDisplayWithFormatting(msg)
         @scene.pbShowWindow(PokeBattle_Scene::MESSAGE_BOX)
-        if $PokemonSystem.dark_mode
+        if $PokemonSystem.dark_mode == 0
             msg = "\\c[12]#{msg}"
         else
             msg = "\\c[11]#{msg}"
