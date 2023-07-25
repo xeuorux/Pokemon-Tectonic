@@ -426,3 +426,4 @@
 1425,COUNTERFLOW,Counter Flow,"When hit with a special move, hits back instantly with Wipeout."
 1426,APRICORNARMOR,Apricorn Armor,"Takes 50% less damage from attacks by Pokémon who have a status condition."
 1427,SPARESCALES,Spare Scales,"Raises defenses after using a Grass, Ground, or Steel-type move."
+1428,EGOIST,Egoist,"Fighting-type moves deal 20% more damage and have +4 priority."

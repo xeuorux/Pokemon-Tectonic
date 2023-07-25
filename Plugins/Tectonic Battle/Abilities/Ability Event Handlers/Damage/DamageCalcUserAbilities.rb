@@ -542,3 +542,9 @@ BattleHandlers::DamageCalcUserAbility.add(:SHOCKSTYLE,
       mults[:attack_multiplier] *= 1.5 if type == :FIGHTING
   }
 )
+
+BattleHandlers::DamageCalcUserAbility.add(:EGOIST,
+  proc { |ability, _user, _target, _move, mults, _baseDmg, type, _aiCheck|
+      mults[:attack_multiplier] *= 1.2 if type == :FIGHTING
+  }
+)

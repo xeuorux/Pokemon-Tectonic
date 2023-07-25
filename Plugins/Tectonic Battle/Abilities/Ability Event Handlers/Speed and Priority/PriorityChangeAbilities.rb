@@ -42,3 +42,9 @@ BattleHandlers::PriorityChangeAbility.add(:POWERLIFTER,
       next -6 if move.physicalMove?
   }
 )
+
+BattleHandlers::PriorityChangeAbility.add(:EGOIST,
+  proc { |ability, battler, move, _pri, _targets = nil, _aiCheck = false|
+      next 4 if move.type == :FIGHTING
+  }
+)

@@ -27,7 +27,7 @@ Pokemon = SLAKING,70
 #-------------------------------
 [YOUNGSTER,Joey]
 Pokemon = MACHOP,10
-    Moves = NUZZLE
+    Moves = PROTECT
     AbilityIndex = 0 # Feel the Burn
 #-------------------------------
 [HIKER,Conroy]
@@ -2542,7 +2542,7 @@ Pokemon = AGRAVELER,30
 Pokemon = KADABRA,30
     AbilityIndex = 1 # Steelworker
 Pokemon = RABOOT,28
-    AbilityIndex = 1 # Unburden
+    AbilityIndex = 1 # Egoist
     Item = FIREGEM
 Pokemon = HITMONTOP,29
     AbilityIndex = 1 # Spintensity
