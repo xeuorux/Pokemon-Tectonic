@@ -170,8 +170,8 @@
 1169,PSYCHOBLADE,Psychoblade,000,90,PSYCHIC,Physical,100,10,0,NearOther,0,abefhp,"The user manifests a blade of psychic energy to slash the target. Critical hits twice as often.",PSYCHOCUT
 1170,CHILL,Chill,403,0,ICE,Status,100,12,0,NearOther,0,bce,"The user lowers the target's body temperature, afflicting it with frostbite.",
 1171,GLITTERBOMB,Glitter Bomb,000,45,FAIRY,Physical,100,25,0,NearOther,0,abefn,"The user chucks a party favor which explodes in the target's face.",MAGNETBOMB
-1172,FAIRPLAY,Fair Play,546,65,FAIRY,Physical,100,15,0,NearOther,0,abefp,"The user attacks the target with just force. Guaranteed critical hit on foes with boosted stats.",
-1173,JUSTDESERTS,Just Deserts,546,85,FAIRY,Physical,100,10,0,NearOther,0,abef,"The user attacks with a naive sense of justice, guaranteeing a critical hit on foes with boosted stats.",BEHEMOTHBLADE
+1172,FAIRPLAY,Fair Play,546,65,FAIRY,Physical,100,15,0,NearOther,0,abefp,"The user attacks the target with just force. Guaranteed critical hit on foes with boosted stats.",PLAYROUGH
+1173,JUSTDESERTS,Just Deserts,546,85,FAIRY,Physical,100,10,0,NearOther,0,abef,"The user attacks with a naive sense of justice, guaranteeing a critical hit on foes with boosted stats.",SPIRITBREAK
 1174,POISONSPIKES,Poison Spikes,104,0,POISON,Status,0,15,0,FoeSide,0,c,"The user lays poison spikes on the foe's side. One layer hurts switched in foes, two layers poisons.",TOXICSPIKES
 1175,ENVENOM,Envenom,005,0,POISON,Status,100,30,0,NearFoe,0,bce,"Venom is strategically introduced into the target, poisoning it.",POISONSTING
 1176,CHAOSWHEEL,Chaos Wheel,547,80,NORMAL,Physical,100,10,45,NearOther,0,bef,"The user thrashes while infused with elements. It has a 15% chance each to poison, dizzy, or leech.",FIERYWRATH
