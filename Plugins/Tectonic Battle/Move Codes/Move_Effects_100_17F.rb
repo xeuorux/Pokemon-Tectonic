@@ -2391,7 +2391,7 @@ class PokeBattle_Move_16F < PokeBattle_Move
         if aiChecking
             return super
         else
-            return false if @buffing
+            return false if @healing
             return super
         end
     end
@@ -2409,6 +2409,10 @@ class PokeBattle_Move_16F < PokeBattle_Move
     def getEffectScore(user, target)
         return getHealingEffectScore(user, target) unless user.opposes?(target)
         return 0
+    end
+
+    def resetMoveUsageState
+        @healing = false
     end
 end
 
