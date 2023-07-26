@@ -6088,3 +6088,31 @@ Pokemon = STARMIE,70
 Pokemon = INFERNAPE,70
     AbilityIndex = 1 # Heaven's Crown
     Item = SHELLBELL
+#-------------------------------
+[SAILOR2,Noah]
+Pokemon = KINGDRA,60
+    AbilityIndex = 1 # Whirler
+Pokemon = RIBOMBEE,60
+    AbilityIndex = 0 # Candy Veil
+    Item = FOCUSSASH
+#-------------------------------
+[POKEMONBREEDER_F4,Sara]
+Pokemon = SANDSLASH,60
+    AbilityIndex = 1 # Tough Claws
+Pokemon = GOODRA,60
+    AbilityIndex = 0 # Gooey
+    Item = BLACKSLUDGE
+#-------------------------------
+[POKEMONBREEDER_M4,Isaac]
+Pokemon = YANMEGA,60
+    AbilityIndex = 0 # Speed Boost
+Pokemon = TURTONATOR,60
+    AbilityIndex = 0 # Vengeance
+    Item = SITRUSBERRY
+#-------------------------------
+[COOLTRAINER_F3,Leah]
+Pokemon = INDEEDEE,60
+    AbilityIndex = 1 # Fascinate
+Pokemon = TOGEDEMARU,60
+    AbilityIndex = 1 # Roll In
+    Item = CHOICEBAND

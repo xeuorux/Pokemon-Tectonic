@@ -319,3 +319,7 @@
 446,LOST_RANGER_BLUE,Pokémon Ranger,60,,,PSYCHIC,Male,,,[]
 447,LOST_RANGER_GREEN,Pokémon Ranger,60,,,PSYCHIC,Male,,,[]
 448,LOST_RANGER_PURPLE,Pokémon Ranger,60,,,PSYCHIC,Male,,,[]
+449,POKEMONBREEDER_M3,Pokémon Breeder,16,,,PARASOL,Male,,,[]
+450,POKEMONBREEDER_M4,Pokémon Breeder,16,,,AROMALADY,Male,,,[]
+451,POKEMONBREEDER_F3,Pokémon Breeder,16,,,PARASOL,Female,,,[]
+452,POKEMONBREEDER_F4,Pokémon Breeder,16,,,AROMALADY,Female,,,[]
