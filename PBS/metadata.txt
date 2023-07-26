@@ -2030,6 +2030,7 @@ ShowArea = false
 Bicycle = true
 #-------------------------------
 [356]
+# Isle of Dragons
 Outdoor = false
 ShowArea = true
 Bicycle = true

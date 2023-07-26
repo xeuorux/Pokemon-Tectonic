@@ -952,6 +952,16 @@ DarkCave,20
     20,TITANIX,56,59
     20,TYRANITAR,56,59
 #-------------------------------
+[356] # Isle of Dragons
+LandSparse,20
+    15,DREEPY,10,13
+    15,JANGMOO,10,13
+    14,BAGON,10,13
+    14,DEINO,10,13
+    14,DRATINI,10,13
+    14,GIBLE,10,13
+    14,GOOMY,10,13
+#-------------------------------
 [358] # Dr. Hekata's House
 Special,1
     20,HGROWLITHE,10
@@ -1008,13 +1018,3 @@ Land,20
     20,MUSHARNA,50,53
     20,NOCTOWL,50,53
     20,URSARING,50,53
-#-------------------------------
-[356] # Isle of Dragons
-LandSparse,20
-    14,DRATINI,10,13
-	14,BAGON,10,13
-	14,GIBLE,10,13
-	14,DEINO,10,13
-	14,GOOMY,10,13
-	15,JANGMOO,10,13
-	15,DREEPY,10,13
