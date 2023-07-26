@@ -4159,7 +4159,7 @@ Pokemon = SCOLIPEDE,70
 Pokemon = ARAICHU,70
     Item = LUCENTGEM
 #-------------------------------
-[COOLTRAINER_M7,X,1]
+[COOLTRAINER_M7,X]
 Policies = PRESERVE_LAST_POKEMON,NO_PERFECT
 Pokemon = MRMIME,70
     Moves = LIGHTSCREEN,TEETERDANCE,NUMB,PLAYROUGH
@@ -4181,7 +4181,7 @@ Pokemon = GARDEVOIR,70
     AbilityIndex = 0 # Arcane Finale
     Item = LIFEORB
 #-------------------------------
-[COOLTRAINER_M7,X,2]
+[COOLTRAINER_M7,X,1]
 ExtendsVersion = 1
 Policies = CURSE_SUPER_ITEMS
 Pokemon = MRMIME,70
