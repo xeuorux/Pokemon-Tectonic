@@ -160,7 +160,7 @@
 1159,SOLARCELL,Solar Cell,"In sunshine, gets a 25% boost to Sp. Atk and Sp. Def."
 1160,SANDSTRENGTH,Sand Strength,"In sandstorm, Attack is boosted by 30%."
 1161,AGGRAVATE,Aggravate,"HP-fraction-based damage effects deal 50% more damage to opponents."
-1162,WIBBLEWOBBLE,Wibble Wobble,"When hit by a move, responds with Power Split."
+1162,WIBBLEWOBBLE,Wibble Wobble,"Uses Power Split upon entry or when hit by a move."
 1163,TUNNELMAKER,Tunnel Maker,"Powers up Ground-type moves by 50%."
 1164,CONSTRICTOR,Constrictor,"When hit with a physical move, hits back instantly with Bind."
 1165,STYLISH,Stylish,"The Pokémon benefits twice as much from style points."

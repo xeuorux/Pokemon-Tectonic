@@ -837,6 +837,11 @@ BattleHandlers::AbilityOnSwitchIn.add(:ROLLIN,
   }
 )
 
+BattleHandlers::AbilityOnSwitchIn.add(:WIBBLEWOBBLE,
+  proc { |ability, battler, battle|
+      battle.forceUseMove(battler, :POWERSPLIT, -1, ability: ability)
+  }
+)
 
 BattleHandlers::AbilityOnSwitchIn.add(:PRECHARGED,
   proc { |ability, battler, battle|
