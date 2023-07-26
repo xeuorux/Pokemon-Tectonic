@@ -12,7 +12,7 @@ POOL_1 = [
     [:LEADER_Samorn_2,"Samorn",2,3,2],
     [:LEADER_Lambert_2,"Lambert",2,3,3],
     [:LEADER_Eko_2,"Eko",2,3,4],
-    [:COOLTRAINER_M7,"X",1,2,5],
+    [:COOLTRAINER_M7,"X",0,1,5],
     [:FORMERCHAMP_Elise,"Elise",1,2,6],
 ]
 
