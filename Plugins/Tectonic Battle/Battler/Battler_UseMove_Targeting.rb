@@ -86,27 +86,27 @@ move, false, true)
         return targets
     end
 
-    def moveWillFail(user, target, move)
-        return true if target.protectedAgainst?(user, move)
-        return true if invulnerableTwoTurnAttack?(target, move)
-        return true if move.pbImmunityByAbility(user, target, false, true)
-        return true if Effectiveness.ineffective_type?(move.type, target.type1, target.type2)
-        return true unless move.pbAccuracyCheck(user, target)
-        return false
-    end
+    def moveFailsSemiInvulnerability?(move, user, target, aiCheck = false)
+        return false if user.shouldAbilityApply?(:NOGUARD, aiCheck) || target.shouldAbilityApply?(:NOGUARD, aiCheck)
+        return false if @battle.futureSight
+        return false if move.hitsInvulnerable?
 
-    def invulnerableTwoTurnAttack?(target, move)
-        miss = true
+        return false if aiCheck && !@battle.battleAI.userMovesFirst?(move, user, target)
+
         if target.inTwoTurnAttack?("0C9", "0CC", "0CE") # Fly, Bounce, Sky Drop
-            miss = false if move.hitsFlyingTargets?
+            return true unless move.hitsFlyingTargets?
         elsif target.inTwoTurnAttack?("0CA")            # Dig
-            miss = false if move.hitsDiggingTargets?
+            return true unless move.hitsDiggingTargets?
         elsif target.inTwoTurnAttack?("0CB")            # Dive
-            miss = false if move.hitsDivingTargets?
-        elsif target.inTwoTurnAttack?("0CD", "14D")	# PHANTOMFORCE/SHADOWFORCE in case we have a move that hits them
-            miss = true
+            return true unless move.hitsDivingTargets?
+        elsif target.inTwoTurnAttack?("0CD", "14D", "5C5")	# PHANTOMFORCE/SHADOWFORCE in case we have a move that hits them
+            return true
         end
-        return miss
+        
+        # Sky Drop
+        return true if target.effectActive?(:SkyDrop) && target.effects[:SkyDrop] != user.index && !move.hitsFlyingTargets?
+        
+        return false
     end
 
     #=============================================================================

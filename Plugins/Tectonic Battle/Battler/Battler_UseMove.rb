@@ -756,7 +756,7 @@ user.pbThis))
             targets.each do |b|
                 b.damageState.missed = false
                 next if b.damageState.unaffected
-                if pbSuccessCheckPerHit(move, user, b, skipAccuracyCheck)
+                if skipAccuracyCheck || pbSuccessCheckPerHit(move, user, b)
                     numTargets += 1
                 else
                     b.damageState.missed = true

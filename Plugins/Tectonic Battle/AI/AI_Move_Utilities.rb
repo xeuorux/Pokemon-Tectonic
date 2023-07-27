@@ -76,6 +76,12 @@ class PokeBattle_AI
             echoln("[AI FAILURE CHECK] #{user.pbThis} rejects #{move.id} -- thinks will fail.")
         end
 
+        # Check for failure because of forced missing
+        unless user.pbSuccessCheckPerHit(move, user, target, true)
+            echoln("[AI FAILURE CHECK] #{user.pbThis} rejects #{move.id} -- thinks will fail against #{target.pbThis(false)} due to the target being semi-invulnerable.")
+            fails = true
+        end
+
         # Check for ineffective because of abilities or effects on the target
         unless user.index == target.index
             type = pbRoughType(move, user)
@@ -175,5 +181,16 @@ class PokeBattle_AI
             return (accuracy / evasion < 1) ? 125 : 100
         end
         return modifiers[:base_accuracy] * accuracy / evasion
+    end
+
+    #===========================================================================
+    # Speed calculation
+    #===========================================================================
+    def userMovesFirst?(move, user, target)
+        movePrio = @battle.getMovePriority(move, user, [target], true)
+        willGoFirst = user.pbSpeed(true) > target.pbSpeed(true)
+        willGoFirst = true if movePrio > 0
+        willGoFirst = false if movePrio < 0
+        return willGoFirst
     end
 end

@@ -114,7 +114,9 @@ class PokeBattle_AI
         move.calculated_category = move.calculateCategory(user, [target])
         move.calcType = move.pbCalcType(user)
 
-        return 0 if aiPredictsFailure?(move, user, target)
+        return 0 if aiPredictsFailure?(move, user, target, false)
+        
+        switchPredicted = @battle.aiPredictsSwitch?(user,target.index,true)
 
         # DAMAGE SCORE AND HIT TRIGGERS SCORE
         damageScore = 0
@@ -211,33 +213,6 @@ class PokeBattle_AI
 
         # ! All score changes from this point forward must be multiplicative !
 
-        # Don't prefer targeting the target if they'd be semi-invulnerable
-        if move.accuracy > 0 && (target.semiInvulnerable? || target.effectActive?(:SkyDrop))
-            echoln("[MOVE SCORING] #{user.pbThis} scores the move #{move.id} differently against target #{target.pbThis(false)} due to the target being semi-invulnerable.")
-            canHitAnyways = false
-            # Knows what can get past semi-invulnerability
-            if target.effectActive?(:SkyDrop)
-                canHitAnyways = true if move.hitsFlyingTargets?
-            elsif target.inTwoTurnAttack?("0C9", "0CC", "0CE")
-                canHitAnyways = true if move.hitsFlyingTargets? # Fly, Bounce, Sky Drop
-            elsif target.inTwoTurnAttack?("0CA")          # Dig
-                canHitAnyways = true if move.hitsDiggingTargets?
-            elsif target.inTwoTurnAttack?("0CB")          # Dive
-                canHitAnyways = true if move.hitsDivingTargets?
-            end
-            canHitAnyways = true if user.hasActiveAbility?(:NOGUARD) || target.hasActiveAbility?(:NOGUARD)
-
-            if user.pbSpeed(true) > target.pbSpeed(true)
-                if canHitAnyways
-                    score *= 2
-                else
-                    score = 0
-                end
-            else
-                score /= 2
-            end
-        end
-
         # Pick a good move for the Choice items
         if user.hasActiveItem?(CHOICE_LOCKING_ITEMS) || user.hasActiveAbilityAI?(CHOICE_LOCKING_ABILITIES)
             echoln("[MOVE SCORING] #{user.pbThis} scores the move #{move.id} differently due to choice locking.")
@@ -256,16 +231,10 @@ class PokeBattle_AI
             echoln("[MOVE SCORING] #{user.pbThis} predicts the move #{move.id} against target #{target.pbThis(false)} will have an accuracy of #{accuracy}")
         end
 
-        # Account for the value of priority
-        movePrio = @battle.getMovePriority(move, user, [target], true)
-        unless @battle.aiPredictsSwitch?(user,target.index,true) # Priority doesn't matter if they are switching out
-            if target.pbSpeed(true) > user.pbSpeed(true) && movePrio > 0
-                echoln("[MOVE SCORING] #{user.pbThis} scores the move #{move.id} higher since its positive priority (#{movePrio}) when normally would be slower")
-                score *= 1.5
-            elsif target.pbSpeed(true) < user.pbSpeed(true) && movePrio < 0
-                echoln("[MOVE SCORING] #{user.pbThis} scores the move #{move.id} lower since its negative priority (#{movePrio}) when normally would be faster")
-                score *= 0.66
-            end
+        # If slower than them, our move will be worse in comparison
+        if !switchPredicted && !userMovesFirst?(move, user, target)
+            echoln("[MOVE SCORING] #{user.pbThis} scores the move #{move.id} lower since it'll be going slower than the target")
+            score *= 0.7
         end
 
         # Account for some abilities

@@ -533,44 +533,21 @@ target.pbThis(true)))
     # Per-hit success check against the target.
     # Includes semi-invulnerable move use and accuracy calculation.
     #=============================================================================
-    def pbSuccessCheckPerHit(move, user, target, skipAccuracyCheck)
+    def pbSuccessCheckPerHit(move, user, target, aiChecking = false)
         # Two-turn attacks can't fail here in the charging turn
-        return true if user.effectActive?(:TwoTurnAttack)
+        if aiChecking
+            return true if move.is_a?(PokeBattle_TwoTurnMove)
+        else
+            return true if user.effectActive?(:TwoTurnAttack)
+        end
         # Lock-On
         return true if user.effectActive?(:LockOn) && user.effects[:LockOnPos] == target.index
-        # Toxic
+        # Move-specific success checks
         return true if move.pbOverrideSuccessCheckPerHit(user, target)
-        miss = false
-        hitsInvul = false
-        # No Guard
-        hitsInvul = true if user.hasActiveAbility?(:NOGUARD) || target.hasActiveAbility?(:NOGUARD)
-        # Future Sight
-        hitsInvul = true if @battle.futureSight
-        # Helping Hand
-        hitsInvul = true if move.hitsInvulnerable?
-        unless hitsInvul
-            # Semi-invulnerable moves
-            if target.effectActive?(:TwoTurnAttack)
-                if target.inTwoTurnAttack?("0C9", "0CC", "0CE") # Fly, Bounce, Sky Drop
-                    miss = true unless move.hitsFlyingTargets?
-                elsif target.inTwoTurnAttack?("0CA")            # Dig
-                    miss = true unless move.hitsDiggingTargets?
-                elsif target.inTwoTurnAttack?("0CB")            # Dive
-                    miss = true unless move.hitsDivingTargets?
-                elsif target.inTwoTurnAttack?("0CD", "14D", "5C5") # Shadow Force, Phantom Force
-                    miss = true
-                end
-            end
-            if target.effectActive?(:SkyDrop) && target.effects[:SkyDrop] != user.index && !move.hitsFlyingTargets?
-                miss = true
-            end
-        end
-        unless miss
-            # Called by another move
-            return true if skipAccuracyCheck
-            # Accuracy check
-            return true if move.pbAccuracyCheck(user, target) # Includes Counter/Mirror Coat
-        end
+        # Semi-invulnerability
+        return false if moveFailsSemiInvulnerability?(move, user, target, aiChecking)
+        # Accuracy check
+        return true if aiChecking || move.pbAccuracyCheck(user, target) # Includes Counter/Mirror Coat
         # Missed
         PBDebug.log("[Move failed] Failed pbAccuracyCheck or target is semi-invulnerable")
         return false
