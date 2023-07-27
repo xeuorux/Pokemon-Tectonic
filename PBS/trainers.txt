@@ -4182,7 +4182,7 @@ Pokemon = GARDEVOIR,70
     Item = LIFEORB
 #-------------------------------
 [COOLTRAINER_M7,X,1]
-ExtendsVersion = 1
+ExtendsVersion = 0
 Policies = CURSE_SUPER_ITEMS
 Pokemon = MRMIME,70
     Item = BRIGHTCLAY
