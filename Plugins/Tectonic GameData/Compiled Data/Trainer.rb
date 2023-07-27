@@ -413,12 +413,12 @@ module Compiler
           trainer_hash[:extends_class] = property_value[0]
           trainer_hash[:extends_name] = property_value[1]
           trainer_hash[:extends_version] = property_value[2]
-          if trainer_hash[:extends_version] == trainer_hash[:version]
-            raise _INTL("A trainer definition cannot extend itself: {1}", FileLineData.linereport)
-          end
           isExtending = true
         when "ExtendsVersion"
           trainer_hash[:extends_version] = property_value
+          if trainer_hash[:extends_version] == trainer_hash[:version]
+            raise _INTL("A trainer definition cannot extend itself: {1}", FileLineData.linereport)
+          end
           isExtending = true
         when "Pokemon","RemovePokemon"
           current_pkmn = {
