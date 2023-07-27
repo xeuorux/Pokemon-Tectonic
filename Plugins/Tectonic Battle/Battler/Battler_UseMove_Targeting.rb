@@ -91,15 +91,15 @@ move, false, true)
         return false if @battle.futureSight
         return false if move.hitsInvulnerable?
 
-        return false if aiCheck && !@battle.battleAI.userMovesFirst?(move, user, target)
+        return false if aiCheck && !user.boss? && !@battle.battleAI.userMovesFirst?(move, user, target)
 
-        if target.inTwoTurnAttack?("0C9", "0CC", "0CE") # Fly, Bounce, Sky Drop
+        if target.inTwoTurnAttack?("0C9", "0CC", "0CE", "5C5") # Fly, Bounce, Sky Drop, Liftoff
             return true unless move.hitsFlyingTargets?
         elsif target.inTwoTurnAttack?("0CA")            # Dig
             return true unless move.hitsDiggingTargets?
         elsif target.inTwoTurnAttack?("0CB")            # Dive
             return true unless move.hitsDivingTargets?
-        elsif target.inTwoTurnAttack?("0CD", "14D", "5C5")	# PHANTOMFORCE/SHADOWFORCE in case we have a move that hits them
+        elsif target.inTwoTurnAttack?("0CD", "14D")	# PHANTOMFORCE/SHADOWFORCE in case we have a move that hits them
             return true
         end
         
