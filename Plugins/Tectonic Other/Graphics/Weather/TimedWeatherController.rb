@@ -37,6 +37,7 @@ STABLE_TEMP_MAPS = [
     59, # Mainland Dock
     216, # Highland Lake
     55, # Lingering Delta
+    356, # Isle of Dragons
 ]
 
 ###########################

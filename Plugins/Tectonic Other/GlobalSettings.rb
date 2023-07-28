@@ -68,6 +68,7 @@ module Settings
     [0, 52, 0, 0, "Volcanic Shore", false],
     [0, 55, 0, 0, "Guardian Island", false],
     [0, 85, 0, 0, "Eventide Isle", false],
+    [0, 87, 0, 0, "Isle of Dragons", false],
   ]
 
   # The names of each pocket of the Bag. Ignore the first entry ("").

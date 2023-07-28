@@ -35,13 +35,25 @@ def boatTravel(currentDock = "")
     elsif sweetrockHarborCommand > -1 && choice == sweetrockHarborCommand
         transferPlayer(18,55,Up,217)
     elsif tapuIslandCommand > -1 && choice == tapuIslandCommand
-        $game_switches[55] = true # Mark player as having visited this island
-        transferPlayer(49,60,Up,377)
+        teleportToGuardianIsland
     elsif eventideIsleCommand > -1 && choice == eventideIsleCommand
-        $game_switches[85] = true # Mark player as having visited this island
-        transferPlayer(21,37,Up,413)
+        teleportToEventideIsle
     elsif dragonIslandCommand > -1 && choice == dragonIslandCommand
-        $game_switches[87] = true # Mark player as having visited this island
-        transferPlayer(21,28,Up,356)
+        teleportToDragonIsle
     end
+end
+
+def teleportToGuardianIsland
+    $game_switches[55] = true # Mark player as having visited this island
+    transferPlayer(49,60,Up,377)
+end
+
+def teleportToEventideIsle
+    $game_switches[85] = true # Mark player as having visited this island
+    transferPlayer(21,37,Up,413)
+end
+
+def teleportToDragonIsle
+    $game_switches[87] = true # Mark player as having visited this island
+    transferPlayer(21,28,Up,356)
 end

@@ -46,11 +46,20 @@ def mapTransitionTransfer(map_id,x,y,fade=true)
 	end
 end
 
-def transferPlayerToEvent(event_id,direction=-1,map_id = -1,offset=[0,0])
-	map_id = $game_map.map_id if map_id < 0
-	mapData = Compiler::MapData.new
-	map = mapData.getMap(map_id)
-	event = map.events[event_id]
+def getEventByID(event_id,map_id = -1)
+	begin
+		map_id = $game_map.map_id if map_id < 0
+		mapData = Compiler::MapData.new
+		map = mapData.getMap(map_id)
+		event = map.events[event_id]
+		return event
+	rescue Error
+		return nil
+	end
+end
+
+def transferPlayerToEvent(event,direction=-1,map_id = -1,offset=[0,0])
+	event = getEventByID(event,map_id) if event.is_a?(Integer)
 	return false if event.nil?
 	x = event.x + offset[0]
 	y = event.y + offset[1]

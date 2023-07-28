@@ -138,12 +138,14 @@ class WaypointsTracker
 				$game_temp.transition_processing = true
 				$game_temp.transition_name       = ""
 			else
-				unless transferPlayerToEvent(waypointInfo,Up,mapID,[0,1])
+				event = getEventByID(waypointInfo,mapID)
+				if event.nil? || !event.name.include?("AvatarTotem")
 					pbMessage(_INTL("The chosen waypoint is somehow invalid."))
 					pbMessage(_INTL("Removing access."))
 					@activeWayPoints.delete(chosenKey)
 					return
 				end
+				transferPlayerToEvent(waypointInfo,Up,mapID,[0,1])
 			end
 			$scene.transfer_player
 			$game_map.autoplay

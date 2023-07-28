@@ -2034,6 +2034,7 @@ Bicycle = true
 Outdoor = false
 ShowArea = true
 Bicycle = true
+MapPosition = 0,23,8
 #-------------------------------
 [361]
 # The Catacombs B2
