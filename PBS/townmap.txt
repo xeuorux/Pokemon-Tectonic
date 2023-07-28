@@ -106,3 +106,4 @@ Point = 14,2,Prizca Castle,,,,,
 Point = 26,12,Guardian Island,,,,,55
 Point = 27,12,Guardian Island,,,,,55
 Point = 27,5,Eventide Isle,,,,,85
+Point = 23,8,Isle of Dragons,,,,,87
