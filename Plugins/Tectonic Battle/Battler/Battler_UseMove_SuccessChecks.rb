@@ -431,7 +431,7 @@ animationName, show_message) do
             # Do nothing
         elsif targetInherentlyImmune?(user, target, move, show_message, ai_check)
             return false
-        elsif targetTypeModImmune?(user, target, move, typeMod, show_message)
+        elsif targetTypeModImmune?(user, target, move, typeMod, show_message, ai_check)
             if !ai_check && target.effectActive?(:Illusion)
                 target.aiLearnsAbility(:ILLUSION)
             end
@@ -448,9 +448,9 @@ animationName, show_message) do
         return true
     end
 
-    def targetTypeModImmune?(user, target, move, typeMod, showMessages = true)
+    def targetTypeModImmune?(user, target, move, typeMod, showMessages = true, ai_check = false)
         # Type immunity
-        if move.damagingMove? && Effectiveness.ineffective?(typeMod)
+        if move.damagingMove?(ai_check) && Effectiveness.ineffective?(typeMod)
             PBDebug.log("[Target immune] #{target.pbThis}'s type immunity")
             if showMessages
                 @battle.pbDisplay(_INTL("It doesn't affect {1}...", target.pbThis(true)))
