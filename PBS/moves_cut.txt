@@ -156,3 +156,4 @@
 4155,HORNDRILL,Horn Drill,070,1,NORMAL,Physical,30,5,0,NearOther,0,abe,"The user stabs the foe with a horn that rotates like a drill. If it hits, the target faints instantly.",
 4156,FISSURE,Fissure,070,1,GROUND,Physical,30,5,0,NearOther,0,be,"The user opens up a fissure in the ground and drops the foe in. The target instantly faints if it hits.",
 4157,ROCKCLIMB,Rock Climb,401,90,NORMAL,Physical,85,15,20,NearOther,0,abef,"The user attacks the target by smashing into it with incredible force. It has a 20% chance to dizzy.",
+4158,HIDDENPOWER,Hidden Power,090,60,NORMAL,Special,100,12,0,NearOther,0,bef,"A unique attack that varies in type and intensity depending on the Pokémon using it.",
