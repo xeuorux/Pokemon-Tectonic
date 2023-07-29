@@ -20,6 +20,12 @@ gen5Thresholds = [15,25,40,60,100,156]
 gen6Rewards = [:POKEBALL,:POKEBALL,:GREATBALL,:GREATBALL]
 gen6Thresholds = [17,28,45,72]
 
+gen7Rewards = gen6Rewards
+gen7Thresholds = [20,40,60,81]
+
+gen8Rewards = gen6Rewards
+gen8Thresholds = gen7Thresholds
+
 generationRewardsHash = {
     gen1Thresholds => gen1Rewards,
     gen2Thresholds => gen2Rewards,
@@ -27,6 +33,8 @@ generationRewardsHash = {
     gen4Thresholds => gen4Rewards,
     gen5Thresholds => gen5Rewards,
     gen6Thresholds => gen6Rewards,
+    gen7Thresholds => gen7Rewards,
+    gen8Thresholds => gen8Rewards,
 }
 
 generationRewardsHash.each_with_index do |kvp,generationIndex|
