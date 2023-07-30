@@ -1758,6 +1758,9 @@ GameData::BattleEffect.register_effect(:Battler, {
         :hit_proc => proc do |user, _target, move, _battle|
             user.tryLowerStat(:ATTACK, user, increment: 2) if move.physicalMove?
         end,
+        :does_negate_proc => proc do |_user, _target, move, _battle|
+            move.damagingMove?
+        end,
     },
 })
 
