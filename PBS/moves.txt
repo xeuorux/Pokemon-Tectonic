@@ -48,7 +48,7 @@
 47,EMBARGO,Embargo,0F8,0,DARK,Status,100,12,0,NearOther,0,bce,"It prevents the target from using its held item. Its Trainer is also prevented from using items on it.",
 48,FAKETEARS,Fake Tears,04F,0,DARK,Status,100,15,0,NearOther,0,bce,"The user feigns crying to worry the target,  lowering its Sp. Def stat by four steps.",
 49,HONECLAWS,Hone Claws,029,0,DARK,Status,0,12,0,User,0,d,"The user sharpens its claws to raises its Attack and Accuracy by three steps each.",
-50,PARTINGSHOT,Parting Shot,151,0,DARK,Status,100,15,0,NearOther,0,bcek,"The user lowers the target's Attack and Sp. Atk by two steps each. Then, the user switches out.",
+50,PARTINGSHOT,Parting Shot,151,0,DARK,Status,100,5,0,NearOther,0,bcek,"The user lowers the target's Attack and Sp. Atk by two steps each. Then, the user switches out.",
 51,QUASH,Quash,11E,0,DARK,Status,100,12,0,NearOther,0,be,"The user suppresses the target and makes its move go last.",
 52,SNATCH,Snatch,0B2,0,DARK,Status,0,10,0,User,4,,"The user steals the effects of any healing or stat-changing move the foe attempts to use.",
 53,SWITCHEROO,Switcheroo,0F2,0,DARK,Status,100,10,0,NearOther,0,be,"The user trades held items with the target faster than the eye can follow.",

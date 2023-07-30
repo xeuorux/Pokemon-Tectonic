@@ -223,8 +223,8 @@
 1222,THUNDERCLAP,Thunderclap,00F,80,ELECTRIC,Physical,100,15,40,NearOther,0,abe,"The user jabs the target with electric charges. It has a 40% chance to make the target flinch.",SPARK
 1223,SINISTERSPINES,Sinister Spines,116,70,GRASS,Physical,100,5,0,NearOther,1,abef,"This move enables the user to attack first. It fails if the target is not readying an attack, however.",SPIKECANNON
 1224,MIRAGEFLARE,Mirage Flare,000,120,FLYING,Special,100,5,0,AllNearOthers,0,bef,"The user creates a storm using its flaming body, damaging everything around it.",
-1225,HAREHEROICS,Hare Heroics,566,1,NORMAL,Physical,100,15,0,NearOther,0,abef,"Deals more damage the less HP the user has. After attacking, the user switches out.",
-1226,RIPTURN,Rip Turn,568,70,WATER,Physical,100,10,100,NearOther,0,abef,"The user rips the target, lowering their Defense by two steps. After attacking, the user switches out.",
+1225,HAREHEROICS,Hare Heroics,566,1,NORMAL,Physical,100,5,0,NearOther,0,abef,"Deals more damage the less HP the user has. After attacking, the user switches out.",
+1226,RIPTURN,Rip Turn,568,70,WATER,Physical,100,5,100,NearOther,0,abef,"The user rips the target, lowering their Defense by two steps. After attacking, the user switches out.",
 1227,REDHOTRETREAT,Red-Hot Retreat,567,0,FIRE,Status,0,3,0,User,4,,"Protects the user from attacks. Also burns any attacker who specially attacks the user.",WITHDRAW
 1228,FROSTSPIKES,Frost Spikes,569,0,ICE,Status,0,15,0,FoeSide,0,c,"The user lays frozen spikes on the foe's side. One layer hurts switched in foes, two layers frostbites.",
 1229,SANDTOSS,Sand Toss,00A,40,GROUND,Special,100,30,10,NearOther,0,bef,"The user tosses hot desert sand on the target. It has a 10% chance to burn.",SCORCHINGSANDS
@@ -274,7 +274,7 @@
 1273,VIPERSHOCK,Vipershock,58A,80,POISON,Physical,100,5,0,NearOther,0,abef,"The user finishes off its prey. Power is tripled against poisoned targets.",POISONFANG
 1274,ONAROLL,On A Roll,58B,90,GROUND,Physical,100,15,0,NearOther,0,abef,"The user attacks while balled up. This counts as a usage of Fury Cutter, Rock Roll, or Snowball.",ROCKROLL
 1275,MACHFLIGHT,Mach Flight,58C,0,FLYING,Status,0,15,0,User,0,d,"The user takes off at sonic speeds, raising its Speed by two steps and gaining the Flying type.",AGILITY
-1276,CALTROPSTYLE,Caltrop Style,58E,50,DARK,Special,100,15,100,NearOther,0,bef,"Attacks and sets a layer of spikes. After attacking, the user switches out.",UTURN
+1276,CALTROPSTYLE,Caltrop Style,58E,50,DARK,Special,100,5,100,NearOther,0,bef,"Attacks and sets a layer of spikes. After attacking, the user switches out.",UTURN
 1277,CULL,Cull,58F,40,DARK,Special,100,10,0,NearOther,0,bef,"The user tries to pick off a weak target. After damage, if the target is below 1/4 HP, they instantly faint.",NIGHTSLASH
 1278,TRIPLETHREAT,Triple Threat,017,90,DRAGON,Special,100,10,60,NearOther,0,bef,"The user strikes with a simultaneous three-beam attack. It has a 20% chance each to numb, burn, or frostbite.",TRIATTACK
 1279,ERODINGFOAM,Eroding Foam,5E9,80,WATER,Special,100,20,100,NearOther,0,bef,"The user spews alkaline bubbles that melt the target, drastically lowering their Defense.",BUBBLEBEAM
