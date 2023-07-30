@@ -78,8 +78,8 @@ class PokemonPokedex_Scene
     end
     
     def searchByMoveLearned()
-        learningMethodSelection = pbMessage("Which method?",[_INTL("Any"),_INTL("Level Up"),_INTL("By Specific Level"),_INTL("Tutor"),_INTL("Cancel")],5)
-        return if learningMethodSelection == 4
+        learningMethodSelection = pbMessage("Which method?",[_INTL("Any"),_INTL("Level Up"),_INTL("By Specific Level"),_INTL("Tutor"),_INTL("Coverage Type"),_INTL("Cancel")],6)
+        return if learningMethodSelection == 5
         
         if learningMethodSelection == 2
           while true
@@ -96,7 +96,51 @@ class PokemonPokedex_Scene
               break
           end
         end
+
+        # Search by coverage type
+        if learningMethodSelection == 4
+            while true
+                typeTextInput = pbEnterText(_INTL("Enter type..."), 0, 100)
+                return nil if typeTextInput.blank?
+                reversed = typeTextInput[0] == '-'
+                typeTextInput = typeTextInput[1..-1] if reversed
+
+                typeTextInput.downcase!
+
+                coverageType = nil
+                GameData::Type.each do |type_data|
+                    next unless type_data.real_name.downcase == typeTextInput
+                    coverageType = type_data.id
+                    break
+                end
+
+                if coverageType.nil?
+                    pbMessage(_INTL("Invalid input: {1}", typeTextInput))
+                    next
+                end
+
+                dexlist = searchStartingList()
+                dexlist = dexlist.find_all { |item|
+                    next false if autoDisqualifyFromSearch(item[0])
+                    
+                    speciesData = GameData::Species.get(item[0])
+                    contains = false
+                    speciesData.learnable_moves.each do |moveID|
+                        moveData = GameData::Move.get(moveID)
+                        next unless moveData.damaging?
+                        next unless moveData.type == coverageType
+                        contains = true
+                        break
+                    end
+                    next contains ^ reversed # Boolean XOR
+                }
+                return dexlist
+
+                break
+            end
+        end
         
+        # All other move searches
         while true
             moveNameInput = pbEnterText("Move name...", 0, 20)
             if moveNameInput && moveNameInput!=""
@@ -121,7 +165,7 @@ class PokemonPokedex_Scene
                       contains = false
                       
                       # By level up
-                      if learningMethodSelection == 0 || learningMethodSelection == 1
+                      if [0,1].include?(learningMethodSelection)
                           lvlmoves = item[11]
                           lvlmoves.each do |learnset_entry|
                             if learnset_entry[1] == actualMove
@@ -143,7 +187,7 @@ class PokemonPokedex_Scene
                           end
                       end
                       
-                      if learningMethodSelection == 0 || learningMethodSelection == 3
+                      if [0, 3].include?(learningMethodSelection)
                           eggmoves = item[13]
                           eggmoves.each do |move|
                             if move == actualMove
