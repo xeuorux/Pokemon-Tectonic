@@ -2171,24 +2171,9 @@ class PokeBattle_Move_167 < PokeBattle_Move
 end
 
 #===============================================================================
-# User is protected against moves with the "B" flag this round. If a Pokémon
-# attacks the user with a physical move while this effect applies, that Pokémon is
-# poisoned. (Baneful Bunker)
+# (Not currently used.)
 #===============================================================================
-class PokeBattle_Move_168 < PokeBattle_ProtectMove
-    def initialize(battle, move)
-        super
-        @effect = :BanefulBunker
-    end
-
-    def getEffectScore(user, target)
-        score = super
-        # Check only physical attackers
-        user.eachPredictedProtectHitter(0) do |b|
-            score += getPoisonEffectScore(user, b)
-        end
-        return score
-    end
+class PokeBattle_Move_168 < PokeBattle_Move
 end
 
 #===============================================================================
