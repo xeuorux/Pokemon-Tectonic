@@ -1772,6 +1772,9 @@ GameData::BattleEffect.register_effect(:Battler, {
         :hit_proc => proc do |user, _target, move, _battle|
             user.tryLowerStat(:SPECIAL_ATTACK, user, increment: 2) if move.specialMove?
         end,
+        :does_negate_proc => proc do |_user, _target, move, _battle|
+            move.damagingMove?
+        end,
     },
 })
 
@@ -1783,6 +1786,9 @@ GameData::BattleEffect.register_effect(:Battler, {
         :hit_proc => proc do |user, _target, move, _battle|
             user.tryLowerStat(:DEFENSE, user, increment: 4) if move.physicalMove?
         end,
+        :does_negate_proc => proc do |_user, _target, move, _battle|
+            move.damagingMove?
+        end,
     },
 })
 
@@ -1793,6 +1799,9 @@ GameData::BattleEffect.register_effect(:Battler, {
     :protection_info => {
         :hit_proc => proc do |user, _target, move, _battle|
             user.tryLowerStat(:SPECIAL_DEFENSE, user, increment: 4) if move.specialMove?
+        end,
+        :does_negate_proc => proc do |_user, _target, move, _battle|
+            move.damagingMove?
         end,
     },
 })
