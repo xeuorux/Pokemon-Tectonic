@@ -52,7 +52,7 @@
 51,ADAPTED,Adapted,"Powers up moves of the same type by 33%."
 52,SKILLLINK,Skill Link,"Maximizes the frequency of multi-strike moves."
 53,HYDRATION,Hydration,"Heals status problems each turn if it is raining."
-54,SOLARPOWER,Solar Power,"In sunshine, Sp. Atk is boosted by 50%, but HP decreases."
+54,SOLARPOWER,Solar Power,"In sunshine, Sp. Atk is boosted by 50%, but the Pokémon is hurt for 1/10th HP each turn."
 55,NORMALIZE,Normalize,"Non-Normal moves become Normal-type and are powered up by 40%."
 56,MAGICGUARD,Magic Guard,"The Pokémon only takes damage from attacks."
 57,NOGUARD,No Guard,"Ensures attacks by or against the Pokémon land."

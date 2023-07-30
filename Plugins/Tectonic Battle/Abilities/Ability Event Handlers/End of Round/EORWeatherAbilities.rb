@@ -43,7 +43,7 @@ BattleHandlers::EORWeatherAbility.add(:SOLARPOWER,
       next unless battle.sunny?
       battle.pbShowAbilitySplash(battler, ability)
       battle.pbDisplay(_INTL("{1} was hurt by the sunlight!", battler.pbThis))
-      battler.applyFractionalDamage(1.0 / 8.0)
+      battler.applyFractionalDamage(1.0 / 10.0)
       battle.pbHideAbilitySplash(battler)
   }
 )
@@ -53,7 +53,7 @@ BattleHandlers::EORWeatherAbility.add(:NIGHTSTALKER,
         next unless battle.moonGlowing?
         battle.pbShowAbilitySplash(battler, ability)
         battle.pbDisplay(_INTL("{1} was hurt by the moonlight!", battler.pbThis))
-        battler.applyFractionalDamage(1.0 / 8.0)
+        battler.applyFractionalDamage(1.0 / 10.0)
         battle.pbHideAbilitySplash(battler)
     }
   )
