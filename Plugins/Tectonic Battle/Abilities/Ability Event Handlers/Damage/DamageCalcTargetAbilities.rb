@@ -265,3 +265,9 @@ BattleHandlers::DamageCalcTargetAbility.add(:APRICORNARMOR,
       mults[:final_damage_multiplier] /= 2 if user.pbHasAnyStatus?
   }
 )
+
+BattleHandlers::DamageCalcTargetAbility.add(:RUGGEDSCALES,
+  proc { |ability, _user, target, move, mults, _baseDmg, _type|
+      mults[:final_damage_multiplier] *= 0.7 if move.randomEffect?
+  }
+)

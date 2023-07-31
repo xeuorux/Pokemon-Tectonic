@@ -112,3 +112,5 @@
 3111,TRICKSTERAURA,Trickster Aura,"Upon entry, creates a Trick Room for five turns, inverting the effect of Speed."
 3112,FRISK,Frisk,"The Pokémon can check a foe's held item. Makes wild Pokémon have items more often."
 3113,DANGERSENSE,Danger Sense,"It avoids hazards and can't be knocked out with one hit."
+3114,LIBERO,Libero,"The Pokémon changes type to that of the move it's about to use."
+3115,NIGHTLINE,Night-line,"At the end of each turn in moonglow, heals self by 1/12th of its max HP, and a party member alongside."

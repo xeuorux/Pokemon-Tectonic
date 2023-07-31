@@ -104,26 +104,3 @@ BattleHandlers::EORWeatherAbility.add(:MOONBASKING,
         battler.applyFractionalHealing(1.0 / 8.0, ability: ability, customMessage: healingMessage)
     }
 )
-
-BattleHandlers::EORWeatherAbility.add(:NIGHTLINE,
-    proc { |ability, _weather, battler, battle|
-        next unless battle.moonGlowing?
-        healingMessage = _INTL("{1} absorbs the moonlight.", battler.pbThis)
-        healingAmount = battler.applyFractionalHealing(1.0 / 12.0, ability: ability, customMessage: healingMessage)
-
-        if healingAmount > 0
-            potentialHeals = []
-            battle.pbParty(battler.index).each_with_index do |pkmn,partyIndex|
-                next if pkmn.fainted?
-                next if pkmn.hp == pkmn.totalhp
-                next if battle.pbFindBattler(partyIndex, battler.index)
-                potentialHeals.push(pkmn)
-            end
-            unless potentialHeals.empty?
-                healTarget = potentialHeals.sample
-                battle.pbDisplay(_INTL("#{battler.pbThis} sends out a signal, healing #{healTarget.name}!"))
-                healTarget.healBy(healingAmount)
-            end
-        end
-    }
-)

@@ -90,7 +90,7 @@ class PokeBattle_Battle
     end
 
     def damageFromDOTStatus(battler, status)
-        if battler.takesIndirectDamage?
+        if battler.takesIndirectDamage? && !battler.hasActiveAbility?(:APATHETIC)
             fraction = 1.0 / 8.0
             fraction *= 2 if battler.pbOwnedByPlayer? && curseActive?(:CURSE_STATUS_DOUBLED)
             if status == :POISON

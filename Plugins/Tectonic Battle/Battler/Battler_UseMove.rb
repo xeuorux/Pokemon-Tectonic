@@ -398,7 +398,7 @@ class PokeBattle_Battler
         # Protean
         proteanAbility = nil
         proteanAbility = :PROTEAN if user.hasActiveAbility?(:PROTEAN)
-        proteanAbility = :LIBERO if user.hasActiveAbility?(:LIBERO)
+        proteanAbility = :FREESTYLE if user.hasActiveAbility?(:FREESTYLE)
         proteanAbility = :SHAKYCODE if user.hasActiveAbility?(:SHAKYCODE) && @battle.eclipsed?
         proteanAbility = :MUTABLE if user.hasActiveAbility?(:MUTABLE) && !effectActive?(:Mutated)
         if proteanAbility && !move.callsAnotherMove? &&
@@ -964,15 +964,8 @@ user.pbThis))
                 next if b.damageState.calcDamage == 0
                 chance = move.pbAdditionalEffectChance(user, b, move.calcType)
                 next if chance <= 0
-                if @battle.pbRandom(100) < chance
-                    if b.hasActiveAbility?(:RUGGEDSCALES)
-                        @battle.pbShowAbilitySplash(b, :RUGGEDSCALES)
-                        @battle.pbDisplay(_INTL("The added effect of {1}'s {2} is deflected, harming it!", pbThis(true), move.name))
-                        user.applyFractionalDamage(1.0 / 6.0, true)
-                        @battle.pbHideAbilitySplash(b)
-                    elsif move.canApplyRandomAddedEffects?(user,b,true)
-                        move.pbAdditionalEffect(user, b)
-                    end
+                if @battle.pbRandom(100) < chance && move.canApplyRandomAddedEffects?(user,b,true)
+                    move.pbAdditionalEffect(user, b)
                 end
             end
         end

@@ -189,3 +189,9 @@ BattleHandlers::SpeedCalcAbility.add(:GALEWINGS,
       next mult * 2 if battler.effectActive?(:GaleWings)
   }
 )
+
+BattleHandlers::SpeedCalcAbility.add(:RAMMINGSPEED,
+  proc { |ability, battler, mult|
+      next mult * 2 if battler.effectActive?(:RammingSpeed)
+  }
+)

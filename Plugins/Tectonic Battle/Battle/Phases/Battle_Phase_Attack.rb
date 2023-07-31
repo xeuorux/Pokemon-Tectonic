@@ -191,6 +191,10 @@ class PokeBattle_Battle
             if b.hasActiveAbility?(:GALEWINGS) && move&.type == :FLYING
                 b.applyEffect(:GaleWings)
             end
+
+            if b.hasActiveAbility?(:RAMMINGSPEED) && move&.recoilMove?
+                b.applyEffect(:RammingSpeed)
+            end
         end
         pbCalculatePriority
     end

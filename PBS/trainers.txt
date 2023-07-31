@@ -386,7 +386,7 @@ Pokemon = FROGADIER,23
 Pokemon = SKIDDO,24
     AbilityIndex = 1 # Rock Climber
 Pokemon = VENONAT,24
-    AbilityIndex = 0 # Toxic Cloud
+    AbilityIndex = 0 # Fluffy
 #-------------------------------
 [MEDIUM,Theoni]
 Pokemon = SABLEYE,24
@@ -1833,7 +1833,7 @@ Pokemon = CONIFEAR,70
 Pokemon = GALVANTULA,70
     AbilityIndex = 0 # Ocular
 Pokemon = TOXAPEX,70
-    AbilityIndex = 0 # Energetic
+    AbilityIndex = 0 # Pain Presence
 Pokemon = CHANDELURE,70
     AbilityIndex = 0 # Light Trick
 Pokemon = HATTERENE,70
@@ -2169,7 +2169,7 @@ Pokemon = MEOWSTIC,45
 #-------------------------------
 [ARTIST,Arnold]
 Pokemon = VENOMOTH,45
-    AbilityIndex = 0 # Toxic Cloud
+    AbilityIndex = 0 # Fluffy
     Item = SHELLBELL
 Pokemon = CLAYDOL,45
     AbilityIndex = 1 # Disorienting
@@ -2773,7 +2773,7 @@ Pokemon = SCOLIPEDE,53
     AbilityIndex = 1 # Stamina
     Item = WEAKNESSPOLICY
 Pokemon = CINDERACE,54
-    AbilityIndex = 0 # Libero
+    AbilityIndex = 0 # Freestyle
 Pokemon = FLORGES,53
     AbilityIndex = 1 # Sentry
     Item = OCCABERRY
@@ -5308,7 +5308,7 @@ Pokemon = PANGORO,70
     AbilityIndex = 0 # Big Boss
     Item = AMWIBERRY
 Pokemon = TOXAPEX,70
-    AbilityIndex = 0 # Energetic
+    AbilityIndex = 0 # Pain Presence
     Item = BLACKSLUDGE
 Pokemon = CHIMECHO,70
     AbilityIndex = 0 # Windy

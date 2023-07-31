@@ -173,10 +173,11 @@ end
 #===============================================================================
 class PokeBattle_Move_587 < PokeBattle_Move
     def pbEffectGeneral(_user)
-        @battle.field.applyEffect(:GreyMist, 5)
+        @battle.field.applyEffect(:GreyMist, 5) unless @battle.field.effectActive?(:GreyMist)
     end
 
     def pbMoveFailed?(_user, _targets, show_message)
+        return false if damagingMove?
         if @battle.field.effectActive?(:GreyMist)
             if show_message
                 @battle.pbDisplay(_INTL("But it failed, since the field is already shrouded in Grey Mist!"))
@@ -959,7 +960,7 @@ class PokeBattle_Move_5AE < PokeBattle_ProtectMove
 end
 
 #===============================================================================
-# Target becomes trapped. Summons Eclipse for 6 turns.
+# Target becomes trapped. Summons Eclipse for 8 turns.
 # (Captivating Sight)
 #===============================================================================
 class PokeBattle_Move_5AF < PokeBattle_Move_0EF
@@ -969,22 +970,34 @@ class PokeBattle_Move_5AF < PokeBattle_Move_0EF
     end
 
     def pbEffectGeneral(user)
-        @battle.pbStartWeather(user, :Eclipse, 6, false) unless @battle.primevalWeatherPresent?
+        @battle.pbStartWeather(user, :Eclipse, 8, false) unless @battle.primevalWeatherPresent?
+    end
+
+    def getEffectScore(user, _target)
+        score = super
+        score += getWeatherSettingEffectScore(:Eclipse, user, @battle, 8)
+        return score
     end
 end
 
 #===============================================================================
-# Target becomes trapped. Summons Moonglow for 6 turns.
-# (Midnight Hunt)
+# Summons Moonglow for 8 turns. Raises the Attack of itself and all allies by 2 steps. (Moon Howling)
 #===============================================================================
-class PokeBattle_Move_5B0 < PokeBattle_Move_0EF
-    def pbFailsAgainstTarget?(_user, target, show_message)
+class PokeBattle_Move_5B0 < PokeBattle_Move_530
+    def pbMoveFailed?(user, _targets, show_message)
         return false unless @battle.primevalWeatherPresent?(false)
         super
     end
 
     def pbEffectGeneral(user)
-        @battle.pbStartWeather(user, :Moonglow, 6, false) unless @battle.primevalWeatherPresent?
+        @battle.pbStartWeather(user, :Moonglow, 8, false) unless @battle.primevalWeatherPresent?
+        super
+    end
+
+    def getEffectScore(user, _target)
+        score = super
+        score += getWeatherSettingEffectScore(:Moonglow, user, @battle, 8)
+        return score
     end
 end
 

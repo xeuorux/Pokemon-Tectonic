@@ -198,3 +198,36 @@ BattleHandlers::EOREffectAbility.add(:PRIMEVALREGENERATOR,
       battler.applyFractionalHealing(1.0 / 4.0, ability: ability)
   }
 )
+
+BattleHandlers::EOREffectAbility.add(:LIFELINE,
+  proc { |ability, battler, _battle|
+    healingAmount = battler.applyFractionalHealing(1.0 / 20.0, ability: ability)
+
+    if healingAmount > 0
+        potentialHeals = []
+        battle.pbParty(battler.index).each_with_index do |pkmn,partyIndex|
+            next if pkmn.fainted?
+            next if pkmn.hp == pkmn.totalhp
+            next if battle.pbFindBattler(partyIndex, battler.index)
+            potentialHeals.push(pkmn)
+        end
+        unless potentialHeals.empty?
+            healTarget = potentialHeals.sample
+            battle.pbDisplay(_INTL("#{battler.pbThis} also heals #{healTarget.name}!"))
+            healTarget.healBy(healingAmount)
+        end
+    end
+  }
+)
+
+BattleHandlers::EOREffectAbility.add(:PAINPRESENCE,
+  proc { |ability, battler, battle|
+      battle.eachOtherBattler do |b|
+          battle.pbShowAbilitySplash(battler, ability)
+          next unless b.takesIndirectDamage?(true)
+          battle.pbDisplay(_INTL("{1} is pained!", b.pbThis))
+          b.applyFractionalDamage(1.0 / 12.0, false)
+          battle.pbHideAbilitySplash(battler)
+      end
+  }
+)

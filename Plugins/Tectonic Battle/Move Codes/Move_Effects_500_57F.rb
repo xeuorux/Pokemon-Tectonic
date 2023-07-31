@@ -732,26 +732,9 @@ class PokeBattle_Move_52C < PokeBattle_DrainMove
 end
 
 #===============================================================================
-# Resets weather and cures all active Pokemon of statuses. (Abyssal Reset)
+# (Not currently used.)
 #===============================================================================
 class PokeBattle_Move_52D < PokeBattle_Move
-    def pbEffectGeneral(_user)
-        @battle.endWeather
-        @battle.eachBattler do |b|
-            healStatus(b)
-        end
-    end
-
-    def getEffectScore(_user, _target)
-        score = 0
-        score += 30 if @battle.field.weather != :None
-        @battle.eachBattler do |b|
-            pkmn = b.pokemon
-            next if !pkmn || !pkmn.able? || pkmn.status == :NONE
-            score += b.opposes? ? 30 : -30
-        end
-        return score
-    end
 end
 
 #===============================================================================
@@ -1377,9 +1360,25 @@ class PokeBattle_Move_551 < PokeBattle_StatusSpikeMove
 end
 
 #===============================================================================
-# (Currently unused)
+# Leeches the target and reduces their attacking stats by 1 step each. (Sapping Seed)
 #===============================================================================
-class PokeBattle_Move_552 < PokeBattle_Move
+class PokeBattle_Move_552 < PokeBattle_LeechMove
+    def pbFailsAgainstTarget?(user, target, show_message)
+        if  !target.canLeech?(user, false, self) &&
+            !target.pbCanLowerStatStep?(:ATTACK, user, self) &&
+            !target.pbCanLowerStatStep?(:SPECIAL_ATTACK, user, self)
+
+            @battle.pbDisplay(_INTL("But it failed, since #{target.pbThis(true)} can't be leeched or have either of its attacking stats lowered!")) if show_message
+            return true
+        end
+        return false
+    end
+
+    def pbEffectAgainstTarget(_user, target)
+        return if damagingMove?
+        target.applyLeeched if target.canLeech?(user, false, self)
+        target.pbLowerMultipleStatSteps(ATTACKING_STATS_1, user, move: self)
+    end
 end
 
 #===============================================================================
@@ -2084,23 +2083,5 @@ class PokeBattle_Move_57F < PokeBattle_HalfProtectMove
 
     def getOnHitEffectScore(user,target)
         return getPoisonEffectScore(user, target)
-    end
-end
-
-#===============================================================================
-# Two turn attack. Sets rain first turn, attacks second turn.
-# (Archaic Deluge)
-#===============================================================================
-class PokeBattle_Move_576 < PokeBattle_TwoTurnMove
-    def pbChargingTurnMessage(user, _targets)
-        @battle.pbDisplay(_INTL("{1} begins the flood!", user.pbThis))
-    end
-
-    def pbChargingTurnEffect(user, _target)
-        @battle.pbStartWeather(user, :Rain, 5, false)
-    end
-
-    def getEffectScore(user, _target)
-        return getWeatherSettingEffectScore(:Rain, user, battle, 5)
     end
 end

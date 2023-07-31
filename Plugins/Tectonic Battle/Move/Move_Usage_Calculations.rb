@@ -373,7 +373,7 @@ class PokeBattle_Move
     #=============================================================================
     def canApplyRandomAddedEffects?(user,target,showMessages=false,aiChecking=false)
         unless @battle.moldBreaker
-            %i[SHIELDDUST HARSHTRAINING].each do |ability|
+            %i[SHIELDDUST HARSHTRAINING RUGGEDSCALES].each do |ability|
                 if target.shouldAbilityApply?(ability,aiChecking)
                     if showMessages
                         battle.pbShowAbilitySplash(target,ability)
