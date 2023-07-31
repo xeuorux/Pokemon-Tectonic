@@ -1216,30 +1216,30 @@ Pokemon = MZANGOOSE,60
 #-------------------------------
 [ULTRALAINIE,Lainie]
 Policies = LAINIE
-Pokemon = SOLGALEO,65
+Pokemon = SOLGALEO,70
     Moves = SUNSTEELSTRIKE,FLAREBLITZ,SYNTHESIS,PSYCHICFANGS
     AbilityIndex = 0 # Full Metal Body
     Item = LEFTOVERS
-Pokemon = LUNALA,65
+Pokemon = LUNALA,70
     Moves = MOONGEISTBEAM,METEORBEAM,POWERNAP,MOONBLAST
     AbilityIndex = 0 # Shadow Shield
     Item = POWERHERB
-Pokemon = HOUNDOMINUS,60
+Pokemon = HOUNDOMINUS,70
     Moves = HEATWAVE,DARKPULSE,MASSDESTRUCTION,SLUDGEBOMB
     AbilityIndex = 1 # Berserk
     Item = FOCUSSASH
-Pokemon = SCARAPACE,60
+Pokemon = SCARAPACE,70
     Moves = DIVEBOMB,XSCISSOR,CLOSECOMBAT,TRAMPLE
     AbilityIndex = 0 # Victory Molt
     Item = STRIKEVEST
-Pokemon = SAURENAID,60
+Pokemon = SAURENAID,70
     Moves = HYPERVOICE,DRAGONENERGY,GEYSER,SURF
     AbilityIndex = 0 # Frost Song
     Item = ASSAULTVEST
-Pokemon = SLURPUFF,60
+Pokemon = SLURPUFF,70
     Name = Lik
     Gender = male
-    Moves = BELLYDRUM,PLAYROUGH,INFINITEFORCE,DRAINPUNCH
+    Moves = BELLYDRUM,PLAYROUGH,POWERWHIP,DRAINPUNCH
     AbilityIndex = 0 # Candy Veil
     Item = SITRUSBERRY
 #-------------------------------
@@ -5302,40 +5302,40 @@ Pokemon = MILLIBLAZE,70
     Item = WATERGEM
 #-------------------------------
 [FAIRYTALEGIRL,Madeline]
-Pokemon = FURFROU,61
+Pokemon = FURFROU,70
     AbilityIndex = 0 # Stylish
-Pokemon = PANGORO,62
+Pokemon = PANGORO,70
     AbilityIndex = 0 # Big Boss
     Item = AMWIBERRY
-Pokemon = TOXAPEX,63
+Pokemon = TOXAPEX,70
     AbilityIndex = 0 # Energetic
     Item = BLACKSLUDGE
-Pokemon = SLAKING,63
-    AbilityIndex = 0 # Truant
+Pokemon = CHIMECHO,70
+    AbilityIndex = 0 # Windy
 #-------------------------------
 [GARDENER,Larry]
-Pokemon = KABUTOPS,63
+Pokemon = KABUTOPS,70
     AbilityIndex = 1 # Unafraid
-Pokemon = REAVOR,63
+Pokemon = REAVOR,70
     AbilityIndex = 1 # Exo-Adaption
     Item = AMWIBERRY
-Pokemon = MZANGOOSE,64
+Pokemon = MZANGOOSE,70
     AbilityIndex = 0 # Served Cold
-Pokemon = GARCHOMP,64
+Pokemon = GARCHOMP,70
     AbilityIndex = 0 # Rough Skin
     Item = SHELLBELL
 #-------------------------------
 [BEAUTY5,Esme]
 Policies = SUN_TEAM
-Pokemon = SUNFLORA,63
+Pokemon = SUNFLORA,70
     AbilityIndex = 1 # Drought
     Item = HEATROCK
-Pokemon = ESPEON,64
+Pokemon = ESPEON,70
     AbilityIndex = 0 # Jasper Charge
-Pokemon = HOUNDOMINUS,64
+Pokemon = HOUNDOMINUS,70
     AbilityIndex = 0 # Midnight Sun
     Item = WEAKNESSPOLICY
-Pokemon = RIBOMBEE,65
+Pokemon = RIBOMBEE,70
     AbilityIndex = 1 # Impulsive
 #-------------------------------
 [HEXMANIAC,Juno]
