@@ -58,7 +58,7 @@ BattleHandlers::AccuracyCalcUserAbility.add(:STARSALIGN,
   }
 )
 
-BattleHandlers::AccuracyCalcUserAbility.add(:HUSTLE,
+BattleHandlers::AccuracyCalcUserAbility.add(:LIBERO,
   proc { |ability, mults, _user, _target, move, _type|
       mults[:accuracy_multiplier] *= 0.8
   }
