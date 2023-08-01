@@ -2487,3 +2487,18 @@ class PokeBattle_Move_5F9 < PokeBattle_Move
         return @battle.sandy?
     end
 end
+
+#===============================================================================
+# Target is numbed if in eclipse. (Tidalkinesis)
+#===============================================================================
+class PokeBattle_Move_5FA < PokeBattle_NumbMove
+    def pbAdditionalEffect(user, target)
+        return unless @battle.eclipsed?
+        super
+    end
+
+    def getTargetAffectingEffectScore(user, target)
+        return 0 unless @battle.eclipsed?
+        super
+    end
+end
