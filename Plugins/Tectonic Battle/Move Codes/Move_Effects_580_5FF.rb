@@ -2477,7 +2477,7 @@ end
 #===============================================================================
 # Move has increased Priority in sandstorm (Sand Blasting)
 #===============================================================================
-class PokeBattle_Move_579 < PokeBattle_Move
+class PokeBattle_Move_5F9 < PokeBattle_Move
     def priorityModification(_user, _targets)
         return 1 if @battle.sandy?
         return 0
