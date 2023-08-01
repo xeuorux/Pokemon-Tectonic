@@ -412,7 +412,7 @@ class PokeBattle_Battle
         end
 
         # Type applying spike hazards
-        unless battler.airborne?
+        unless battler.airborne? || battler.hasActiveAbility?(:NINJUTSU)
             battler.pbOwnSide.eachEffect(true) do |effect, _value, data|
                 next unless data.is_status_hazard?
                 hazardInfo = data.status_applying_hazard
@@ -440,9 +440,14 @@ class PokeBattle_Battle
                 bTypes = battler.pbTypes(true)
                 getTypedHazardHPRatio = getTypedHazardHPRatio(:ROCK, bTypes[0], bTypes[1], bTypes[2])
                 if getTypedHazardHPRatio > 0
-                    pbDisplay(_INTL("Pointed stones dug into {1}!", battler.pbThis(true)))
-                    if battler.applyFractionalDamage(getTypedHazardHPRatio, true, false, true)
-                        return pbOnActiveOne(battler) # For replacement battler
+                    if battler.hasActiveAbility?(:ROCKCLIMBER)
+                        pbDisplay(_INTL("{1} jumps onto the pointed stones!", battler.pbThis))
+                        battler.tryRaiseStat(:SPEED, ability: :ROCKCLIMBER)
+                    else
+                        pbDisplay(_INTL("Pointed stones dug into {1}!", battler.pbThis(true)))
+                        if battler.applyFractionalDamage(getTypedHazardHPRatio, true, false, true)
+                            return pbOnActiveOne(battler) # For replacement battler
+                        end
                     end
                 end
             end
@@ -462,7 +467,10 @@ class PokeBattle_Battle
             # Ground-based hazards
             if !battler.fainted? && !battler.immuneToHazards? && !battler.airborne?
                 # Spikes
-                if battler.pbOwnSide.effectActive?(:Spikes) && battler.takesIndirectDamage?
+                if  battler.pbOwnSide.effectActive?(:Spikes) &&
+                    battler.takesIndirectDamage? &&
+                    !battler.hasActiveAbility?(:NINJUTSU)
+
                     spikesIndex = battler.pbOwnSide.countEffect(:Spikes) - 1
                     spikesDiv = [8,6,4][spikesIndex]
                     spikesHPRatio = 1.0 / spikesDiv.to_f

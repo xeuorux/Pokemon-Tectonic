@@ -160,3 +160,4 @@
 4159,VINEMAZE,Vine Maze,56F,85,GRASS,Physical,100,10,100,AllNearFoes,0,abef,"The user sends vines to ensnare all enemies, lowering the Speed of any that moved first by three steps.",FRENZYPLANT
 4160,ABYSSALRESET,Abyssal Reset,52D,60,DARK,Special,100,12,0,AllNearOthers,0,bce,"Darkness rolls over the field, damaging all other Pokémon, ending weather, and healing statuses.",
 4161,MIDNIGHTHUNT,Midnight Hunt,5B0,0,DARK,Status,0,5,0,NearFoe,0,,"Summons moonglow for eight turns. The target is terrorized by howls, trapping it.",HOWL
+4162,COURTCHANGE,Court Change,17A,0,NORMAL,Status,100,10,0,BothSides,0,e,"With its mysterious power, the user swaps the effects on either side of the field.",

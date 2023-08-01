@@ -126,6 +126,12 @@ BattleHandlers::DamageCalcUserAbility.add(:LIMINAL,
   }
 )
 
+BattleHandlers::DamageCalcUserAbility.add(:NINJUTSU,
+  proc { |ability, _user, target, _move, mults, _baseDmg, _type, aiCheck|
+      mults[:attack_multiplier] *= 1.5 if target.effectActive?(:SwitchedIn)
+  }
+)
+
 BattleHandlers::DamageCalcUserAbility.add(:QUARRELSOME,
   proc { |ability, user, target, _move, mults, _baseDmg, _type, aiCheck|
       mults[:attack_multiplier] *= 2.0 if user.firstTurn?

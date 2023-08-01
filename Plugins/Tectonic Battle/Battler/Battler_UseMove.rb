@@ -317,7 +317,7 @@ class PokeBattle_Battler
                     @battle.pbShowAbilitySplash(b, ability)
                     @battle.pbDisplay(_INTL("But, {1} cannot use {2}!", user.pbThis, move.name))
                     @battle.pbHideAbilitySplash(b)
-                    user.lastMoveFailed = true
+                    user.onMoveFailed(move)
                     pbCancelMoves
                     pbEndTurn(choice)
                     return
@@ -333,13 +333,13 @@ class PokeBattle_Battler
         move.pbDisplayUseMessage(self, targets)
         # Snatch's message (user is the new user, self is the original user)
         if move.snatched
-            @lastMoveFailed = true # Intentionally applies to self, not user
+            onMoveFailed(move) # Intentionally applies to self, not user
             @battle.pbDisplay(_INTL("{1} snatched {2}'s move!", user.pbThis, pbThis(true)))
         end
         # "But it failed!" checks
         if move.pbMoveFailed?(user, targets, true)
             PBDebug.log(format("[Move failed] In function code %s's def pbMoveFailed?", move.function))
-            user.lastMoveFailed = true
+            user.onMoveFailed(move)
             move.moveFailed(user, targets)
             pbCancelMoves
             pbEndTurn(choice)
@@ -348,7 +348,7 @@ class PokeBattle_Battler
         # "But it failed!" checks, when the move is not a special usage
         if !specialUsage && move.pbMoveFailedNoSpecial?(user, targets)
             PBDebug.log(format("[Move failed] In function code %s's def pbMoveFailedNoSpecial?", move.function))
-            user.lastMoveFailed = true
+            user.onMoveFailed(move)
             pbCancelMoves
             pbEndTurn(choice)
             return
@@ -364,7 +364,7 @@ class PokeBattle_Battler
         if user.effectActive?(:Powder) && move.calcType == :FIRE
             @battle.pbCommonAnimation("Powder", user)
             @battle.pbDisplay(_INTL("When the flame touched the powder on the Pokémon, it exploded!"))
-            user.lastMoveFailed = true
+            user.onMoveFailed(move)
             if user.takesIndirectDamage?(true)
                 oldHP = user.hp
                 user.pbReduceHP((user.totalhp / 4.0).round, false)
@@ -380,7 +380,7 @@ class PokeBattle_Battler
             when :HeavyRain
                 if move.calcType == :FIRE
                     @battle.pbDisplay(_INTL("The Fire-type attack fizzled out in the heavy rain!"))
-                    user.lastMoveFailed = true
+                    user.onMoveFailed(move)
                     pbCancelMoves
                     pbEndTurn(choice)
                     return
@@ -388,7 +388,7 @@ class PokeBattle_Battler
             when :HarshSun
                 if move.calcType == :WATER
                     @battle.pbDisplay(_INTL("The Water-type attack evaporated in the harsh sunlight!"))
-                    user.lastMoveFailed = true
+                    user.onMoveFailed(move)
                     pbCancelMoves
                     pbEndTurn(choice)
                     return
@@ -428,7 +428,7 @@ class PokeBattle_Battler
             # they were all fainted
             # All target types except: None, User, UserSide, FoeSide, BothSides
             @battle.pbDisplay(_INTL("But there was no target..."))
-            user.lastMoveFailed = true
+            user.onMoveFailed(move)
         else # We have targets, or move doesn't use targets
             # Reset whole damage state, perform various success checks (not accuracy)
             user.initialHP = user.hp
@@ -462,7 +462,7 @@ class PokeBattle_Battler
                         @battle.pbShowAbilitySplash(b, :MAGICSHIELD)
                         @battle.pbDisplay(_INTL("{1} shielded its side from the {2}!", b.pbThis, move.name))
                         @battle.pbHideAbilitySplash(b)
-                        user.lastMoveFailed = true
+                        user.onMoveFailed(move)
                         break
                     end
                 end
@@ -609,7 +609,7 @@ user.pbThis))
                 end
                 pbProcessMoveHit(move, b, newTargets, 0, false, multiHitAesthetics) if success
 
-                b.lastMoveFailed = true unless success
+                b.onMoveFailed(move) unless success
                 targets.each { |otherB| otherB.pbFaint if otherB && otherB.fainted? }
                 user.pbFaint if user.fainted?
             end
@@ -617,7 +617,7 @@ user.pbThis))
             if magicCoater >= 0 || magicBouncer >= 0
                 mc = @battle.battlers[(magicCoater >= 0) ? magicCoater : magicBouncer]
                 unless mc.fainted?
-                    user.lastMoveFailed = true
+                    user.onMoveFailed(move)
                     @battle.pbShowAbilitySplash(mc, :MAGICBOUNCE) if magicBouncer >= 0
                     @battle.pbDisplay(_INTL("{1} bounced the {2} back!", mc.pbThis, move.name))
                     @battle.pbHideAbilitySplash(mc) if magicBouncer >= 0
@@ -625,7 +625,7 @@ user.pbThis))
                     unless move.pbMoveFailed?(mc, [], true)
                         success = pbProcessMoveHit(move, mc, [], 0, false, multiHitAesthetics)
                     end
-                    mc.lastMoveFailed = true unless success
+                    mc.onMoveFailed(move) unless success
                     targets.each { |b| b.pbFaint if b && b.fainted? }
                     user.pbFaint if user.fainted?
                 end

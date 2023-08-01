@@ -458,9 +458,7 @@
 1457,MUDSLIDE,Mud Slide,5E0,80,GROUND,Special,100,10,100,AllNearOthers,0,bef,"The user rides onto the field on a huge wave of mud, damaging all nearby and raising their own Speed.",MUDBOMB
 1458,BUTTINGHEADS,BUTTINGHEADS,54C,95,NORMAL,Physical,100,12,20,NearOther,0,abe,"The user engages the target in a head-to-head fight. The damage is based on the target's Attack rather than their Defense.",HEADBUTT
 1459,PACKAGE,Package,16F,90,ICE,Special,100,10,0,NearOther,0,befn,"The user throws an exploding package at enemies, or one filled with healing treats at allies.",PRESENT
-1460,SAPPINGSEED,Sapping Seed,552,0,GRASS,Status,100,10,0,NearOther,0,bce,"A parasitic seed leeches the target and reduces both its attacking stats.",
+1460,SAPPINGSEED,Sapping Seed,552,0,GRASS,Status,100,10,0,NearOther,0,bce,"A parasitic seed leeches the target and reduces both its attacking stats.",LEECHSEED
 1461,MOONHOWLING,Moon Howling,5B0,0,DARK,Status,0,5,0,NearFoe,0,,"Summons moonglow for eight turns and raises the Attack stat of itself and its allies by two steps.",HOWL
-1462,GLOAT,Gloat,56E,0,PSYCHIC,Status,0,10,0,User,0,d,"This move raises all the user's stats by two steps. Fails unless a foe is below half health.",COSMICPOWER
-1463,COURTCHANGE,Court Change,17A,0,NORMAL,Status,100,10,0,BothSides,0,e,"With its mysterious power, the user swaps the effects on either side of the field.",
-1464,LUMINOUSBURST,Luminous Burst,046,80,ELECTRIC,Special,100,20,100,NearOther,0,abef,"Cloaking itself in light energy, the user shocks the target, raising the user's Sp. Def by two steps.",ZENHEADBUTT
-1465,FIGHTFOREVER,Fight Forever,094,0,FIGHTING,Status,0,5,0,User,4,,"The user endures attacks with 1 HP. If so, raises its Attack by 2 steps. Fails if used in succession.",
+1462,LUMINOUSBURST,Luminous Burst,046,80,ELECTRIC,Special,100,20,100,NearOther,0,abef,"Cloaking itself in light energy, the user shocks the target, raising the user's Sp. Def by two steps.",DISCHARGE
+1463,FIGHTFOREVER,Fight Forever,094,0,FIGHTING,Status,0,5,0,User,4,,"The user endures attacks with 1 HP. If so, raises its Attack by 2 steps. Fails if used in succession.",ENDURE

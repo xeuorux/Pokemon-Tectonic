@@ -168,64 +168,6 @@ GameData::Move.get(@effects[:GorillaTactics]).name)
     end
 
     #=============================================================================
-    # Obedience check
-    #=============================================================================
-    # Return true if Pokémon continues attacking (although it may have chosen to
-    # use a different move in disobedience), or false if attack stops.
-    def pbObedienceCheck?(_choice)
-        return true
-    end
-
-    def pbDisobey(choice, badgeLevel)
-        move = choice[2]
-        PBDebug.log("[Disobedience] #{pbThis} disobeyed")
-        disableEffect(:Rage)
-        # Do nothing if using Snore/Sleep Talk
-        if @status == :SLEEP && move.usableWhenAsleep?
-            @battle.pbDisplay(_INTL("{1} ignored orders and kept sleeping!", pbThis))
-            return false
-        end
-        b = ((@level + badgeLevel) * @battle.pbRandom(256) / 256).floor
-        # Use another move
-        if b < badgeLevel
-            @battle.pbDisplay(_INTL("{1} ignored orders!", pbThis))
-            return false unless @battle.pbCanShowFightMenu?(@index)
-            otherMoves = []
-            eachMoveWithIndex do |_m, i|
-                next if i == choice[1]
-                otherMoves.push(i) if @battle.pbCanChooseMove?(@index, i, false)
-            end
-            return false if otherMoves.length == 0 # No other move to use; do nothing
-            newChoice = otherMoves[@battle.pbRandom(otherMoves.length)]
-            choice[1] = newChoice
-            choice[2] = @moves[newChoice]
-            choice[3] = -1
-            return true
-        end
-        c = @level - badgeLevel
-        r = @battle.pbRandom(256)
-        # Fall asleep
-        if r < c && canSleep?(self, false)
-            applySleepSelf(_INTL("{1} began to nap!", pbThis))
-            return false
-        end
-        # Hurt self in confusion
-        r -= c
-        if r < c && @status != :SLEEP
-            pbConfusionDamage(_INTL("{1} won't obey! It hurt itself in its confusion!", pbThis))
-            return false
-        end
-        # Show refusal message and do nothing
-        case @battle.pbRandom(4)
-        when 0 then @battle.pbDisplay(_INTL("{1} won't obey!", pbThis))
-        when 1 then @battle.pbDisplay(_INTL("{1} turned away!", pbThis))
-        when 2 then @battle.pbDisplay(_INTL("{1} is loafing around!", pbThis))
-        when 3 then @battle.pbDisplay(_INTL("{1} pretended not to notice!", pbThis))
-        end
-        return false
-    end
-
-    #=============================================================================
     # Check whether the user (self) is able to take action at all.
     # If this returns true, and if PP isn't a problem, the move will be considered
     # to have been used (even if it then fails for whatever reason).
@@ -237,7 +179,7 @@ GameData::Move.get(@effects[:GorillaTactics]).name)
         # NOTE: Encore has already changed the move being used, no need to have a
         #       check for it here.
         unless pbCanChooseMove?(move, false, true, specialUsage)
-            @lastMoveFailed = true
+            onMoveFailed(move)
             return false
         end
 
@@ -266,7 +208,7 @@ GameData::Move.get(@effects[:GorillaTactics]).name)
             else
                 pbContinueStatus(:SLEEP)
                 unless move.usableWhenAsleep? # Snore/Sleep Talk
-                    @lastMoveFailed = true
+                    onMoveFailed(move)
                     return false
                 end
             end
@@ -282,7 +224,7 @@ GameData::Move.get(@effects[:GorillaTactics]).name)
             if !effectActive?(:Truant) && move.id != :SLACKOFF # True means loafing, but was just inverted
                 @battle.pbShowAbilitySplash(self, :TRUANT)
                 @battle.pbDisplay(_INTL("{1} is loafing around!", pbThis))
-                @lastMoveFailed = true
+                onMoveFailed(move)
                 @battle.pbHideAbilitySplash(self)
                 return false
             end
@@ -303,7 +245,7 @@ GameData::Move.get(@effects[:GorillaTactics]).name)
                 eachActiveAbility do |ability|
                     BattleHandlers.triggerAbilityOnFlinch(ability, self, @battle)
                 end
-                @lastMoveFailed = true
+                onMoveFailed(move)
                 applyEffect(:FlinchImmunity,4)
                 return false
             end
@@ -563,6 +505,18 @@ target.pbThis(true)))
             @battle.pbDisplay(_INTL("{1} avoided the attack!", target.pbThis))
         elsif !move.pbMissMessage(user, target)
             @battle.pbDisplay(_INTL("{1}'s attack missed!", user.pbThis))
+        end
+    end
+
+    def onMoveFailed(move)
+        @lastMoveFailed = true
+        # Slap stick
+        eachOpposing do |b|
+            next unless b.hasActiveAbility?(:SLAPSTICK)
+            @battle.pbShowAbilitySplash(b, :SLAPSTICK)
+            @battle.pbDisplay(_INTL("{1} worsens {2}'s failure!", b.pbThis, pbThis(true)))
+            applyFractionalDamage(1.0 / 8.0) if takesIndirectDamage?(true)
+            @battle.pbHideAbilitySplash(battler)
         end
     end
 end

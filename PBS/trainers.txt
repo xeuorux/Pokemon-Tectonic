@@ -2011,7 +2011,7 @@ Pokemon = ELDEGOSS,47
 Pokemon = MRRIME,46
     AbilityIndex = 1 # Screen Cleaner
 Pokemon = SCIZOR,47
-    AbilityIndex = 1 # Exo-Adaption
+    AbilityIndex = 1 # Inner Focus
     Item = BUGGEM
 #-------------------------------
 [WORKER3,Seamus]
@@ -5317,7 +5317,7 @@ Pokemon = CHIMECHO,70
 Pokemon = KABUTOPS,70
     AbilityIndex = 1 # Unafraid
 Pokemon = REAVOR,70
-    AbilityIndex = 1 # Exo-Adaption
+    AbilityIndex = 1 # Inner Focus
     Item = AMWIBERRY
 Pokemon = MZANGOOSE,70
     AbilityIndex = 0 # Served Cold
@@ -5585,7 +5585,7 @@ Pokemon = GRIMMSNARL,60
 Pokemon = ARATICATE,57
     AbilityIndex = 1 # Gourmand
 Pokemon = REAVOR,57
-    AbilityIndex = 1 # Exo-Adaption
+    AbilityIndex = 1 # Inner Focus
     Item = ASSAULTVEST
 Pokemon = PTEROFLYTE,58
     AbilityIndex = 0 # Armor Piercing

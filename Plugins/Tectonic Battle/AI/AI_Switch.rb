@@ -220,15 +220,8 @@ class PokeBattle_AI
                 # Calculate how much damage the pokemon is likely to take from entry hazards
                 entryDamage = 0
                 if !airborne && pkmn.ability != :MAGICGUARD && pkmn.hasItem?(:HEAVYDUTYBOOTS)
-                    # Spikes
-                    spikesCount = battlerSlot.pbOwnSide.countEffect(:Spikes)
-                    if spikesCount > 0
-                        spikesDenom = [8, 6, 4][spikesCount - 1]
-                        entryDamage += pkmn.totalhp / spikesDenom
-                    end
-
                     # Stealth Rock
-                    if battlerSlot.pbOwnSide.effectActive?(:StealthRock)
+                    if battlerSlot.pbOwnSide.effectActive?(:StealthRock) && !pkmn.hasAbility?(:ROCKCLIMBER)
                         types = pkmn.types
                         stealthRockHPRatio = @battle.getTypedHazardHPRatio(:ROCK, types[0], types[1] || nil)
                         entryDamage += pkmn.totalhp * stealthRockHPRatio
@@ -241,16 +234,25 @@ class PokeBattle_AI
                         entryDamage += pkmn.totalhp * featherWardHPRatio
                     end
 
-                    # Each of the status setting spikes
-                    battlerSlot.pbOwnSide.eachEffect(true) do |_effect, value, data|
-                        next unless data.is_status_hazard?
-                        hazardInfo = data.status_applying_hazard
+                    unless pkmn.hasAbility?(:NINJUTSU)
+                        # Spikes
+                        spikesCount = battlerSlot.pbOwnSide.countEffect(:Spikes)
+                        if spikesCount > 0
+                            spikesDenom = [8, 6, 4][spikesCount - 1]
+                            entryDamage += pkmn.totalhp / spikesDenom
+                        end
 
-                        if hazardInfo[:absorb_proc].call(pkmn)
-                            willAbsorbSpikes = true
-                        else
-                            statusSpikesDenom = [16, 4][value - 1]
-                            entryDamage += pkmn.totalhp / statusSpikesDenom
+                        # Each of the status setting spikes
+                        battlerSlot.pbOwnSide.eachEffect(true) do |_effect, value, data|
+                            next unless data.is_status_hazard?
+                            hazardInfo = data.status_applying_hazard
+
+                            if hazardInfo[:absorb_proc].call(pkmn)
+                                willAbsorbSpikes = true
+                            else
+                                statusSpikesDenom = [16, 4][value - 1]
+                                entryDamage += pkmn.totalhp / statusSpikesDenom
+                            end
                         end
                     end
                 end
