@@ -33,3 +33,5 @@ generate_install_zip.bat
 generate_patch_zip.bat
 install_files.txt
 patch_.zip
+towersingleteams.rxdata
+towersingle.rxdata
