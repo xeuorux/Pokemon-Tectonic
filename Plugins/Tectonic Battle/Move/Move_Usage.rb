@@ -334,6 +334,10 @@ target.pbThis(true)))
                 target.damageState.endured = true
                 damage -= 1
                 damageAdjusted = true
+            elsif target.effectActive?(:FightForever)
+                target.damageState.fightforever = true
+                damage -= 1
+                damageAdjusted = true
             elsif target.effectActive?(:EmpoweredEndure)
                 target.damageState.endured = true
                 damage -= 1

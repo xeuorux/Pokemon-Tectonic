@@ -277,8 +277,12 @@ class PokeBattle_Move
     end
 
     def pbCalcTypeBasedDamageMultipliers(user,target,type,multipliers,checkingForAI=false)
+        stabActive = true
+        stabActive = false if user.pbOwnedByPlayer? && @battle.curses.include?(:DULLED)
+        stabActive = false if @battle.pbCheckGlobalAbility(:SIGNALJAM)
+
         # STAB
-        if !user.pbOwnedByPlayer? || !@battle.curses.include?(:DULLED)
+        if stabActive
             if type && user.pbHasType?(type)
                 stab = 1.5
                 if user.shouldAbilityApply?(:ADAPTED,checkingForAI)

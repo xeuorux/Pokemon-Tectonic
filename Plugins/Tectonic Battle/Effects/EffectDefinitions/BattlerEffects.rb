@@ -278,6 +278,12 @@ GameData::BattleEffect.register_effect(:Battler, {
     :resets_eor	=> true,
 })
 
+GameData::BattleEffect.register_effect(:Battler, {
+    :id => :FightForever,
+    :real_name => "Fight Forever",
+    :resets_eor	=> true,
+})
+
 # Stores a move code
 GameData::BattleEffect.register_effect(:Battler, {
     :id => :FirstPledge,
