@@ -908,7 +908,7 @@ user.pbThis))
 
             # Endure-style move activations
             targets.each do |b|
-                next if b.damageState.fightforever
+                next unless b.damageState.fightforever
                 b.tryRaiseStat(:ATTACK, user, increment: 2)
             end
 
