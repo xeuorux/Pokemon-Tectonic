@@ -301,4 +301,12 @@ class PokeBattle_Battler
     def refreshDataBox
         @battle.scene.pbRefreshOne(@index) if @battle.scene
     end
+
+    def showMyAbilitySplash(abilityID, delay = false)
+        @battle.pbShowAbilitySplash(self, abilityID, delay)
+    end
+
+    def hideMyAbilitySplash
+        @battle.pbHideAbilitySplash(self)
+    end
 end

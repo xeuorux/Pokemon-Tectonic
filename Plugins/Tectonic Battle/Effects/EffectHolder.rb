@@ -178,7 +178,6 @@ module EffectHolder
     end
 
     def processEffectsEOR
-        changedEffects = {}
         eachEffect(true) do |effect, _value, data|
             # Active end of round effects
             @eor_proc.call(data)

@@ -4,7 +4,7 @@
 class BattlerDamageAnimation < PokeBattle_Animation
 	def initialize(sprites,viewport,idxBattler,effectiveness,battler,fastHitAnimation=false)
 		@idxBattler    = idxBattler
-		@effectiveness = effectiveness
+		@effectiveness = effectiveness || 1
 		@battler = battler
 		@damageDealt = battler.damageState.displayedDamage.round
 		battler.damageState.displayedDamage = 0

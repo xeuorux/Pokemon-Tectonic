@@ -222,10 +222,10 @@ GameData::Move.get(@effects[:GorillaTactics]).name)
                 applyEffect(:Truant)
             end
             if !effectActive?(:Truant) && move.id != :SLACKOFF # True means loafing, but was just inverted
-                @battle.pbShowAbilitySplash(self, :TRUANT)
+                showMyAbilitySplash(:TRUANT)
                 @battle.pbDisplay(_INTL("{1} is loafing around!", pbThis))
                 onMoveFailed(move)
-                @battle.pbHideAbilitySplash(self)
+                hideMyAbilitySplash
                 return false
             end
         end

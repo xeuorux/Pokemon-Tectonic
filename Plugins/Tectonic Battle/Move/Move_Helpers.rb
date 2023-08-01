@@ -69,7 +69,7 @@ class PokeBattle_Move
 
     # Returns whether the item was removed
     # Can pass a block to overwrite the removal message and do other effects at the same time
-    def knockOffItems(remover, victim, ability: nil, firstItemOnly: false)
+    def knockOffItems(remover, victim, ability: nil, firstItemOnly: false, validItemProc: nil)
         return false unless canknockOffItems?(remover, victim)
         battle.pbShowAbilitySplash(remover, ability) if ability
         if victim.hasActiveAbility?(:STICKYHOLD)
@@ -80,15 +80,15 @@ class PokeBattle_Move
             return false
         end
         victim.eachItemWithName do |item, itemName|
-            unless victim.unlosableItem?(item)
-                victim.removeItem(item)
-                if block_given?
-                    yield item
-                else
-                    removeMessage = _INTL("{1} forced {2} to drop their {3}!", remover.pbThis,
-                        victim.pbThis(true), itemName)
-                    battle.pbDisplay(removeMessage)
-                end
+            next if victim.unlosableItem?(item)
+            next unless validItemProc.nil? || validItemProc.call(item)
+            victim.removeItem(item)
+            if block_given?
+                yield item
+            else
+                removeMessage = _INTL("{1} forced {2} to drop their {3}!", remover.pbThis,
+                    victim.pbThis(true), itemName)
+                battle.pbDisplay(removeMessage)
             end
             break if firstItemOnly
         end

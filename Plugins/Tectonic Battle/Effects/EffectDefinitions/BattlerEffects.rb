@@ -1899,3 +1899,28 @@ GameData::BattleEffect.register_effect(:Battler, {
     :id => :Mutated,
     :real_name => "Mutated",
 })
+
+GameData::BattleEffect.register_effect(:Battler, {
+    :id => :PainDelay,
+    :real_name => "Pain Delay",
+    :type => :Array,
+    :eor_proc => proc do |battle, battler, value|
+        damageToApply = 0
+        value.each do |painDelayEntry|
+            painDelayEntry[0] -= 1
+            if painDelayEntry[0] == 0
+                damageToApply += painDelayEntry[1]
+            end
+        end
+        if damageToApply > 0
+            battle.pbShowAbilitySplash(battler, :PAINDELAY)
+            battle.pbDisplay(_INTL("The pain caught up to {1}!", battler.pbThis(true)))
+            oldHP = battler.hp
+            battler.hp -= damageToApply
+            battler.damageState.displayedDamage = damageToApply
+            battle.scene.pbHitAndHPLossAnimation([[battler, oldHP, 1]], true)
+            battler.cleanupPreMoveDamage(battler, oldHP)
+            battle.pbHideAbilitySplash(battler)
+        end
+    end,
+})

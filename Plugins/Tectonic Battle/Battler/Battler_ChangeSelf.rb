@@ -12,7 +12,7 @@ class PokeBattle_Battler
         self.hp -= amt
         PBDebug.log("[HP change] #{pbThis} lost #{amt} HP (#{oldHP}=>#{@hp})") if amt.positive?
         raise _INTL("HP less than 0") if @hp.negative?
-        raise _INTL("HP greater than total HP") if @hp > @totalhp
+        raise _INTL("HP greater than total HP") if @hp > @totalhp && oldHP <= @totalhp
         @battle.scene.pbHPChanged(self, oldHP, anim) if anyAnim && amt.positive? && !@battle.autoTesting
         @tookDamage = true if amt.positive? && registerDamage
         return amt
@@ -83,7 +83,7 @@ class PokeBattle_Battler
         damage = damage.round
         damage = 1 if damage < 1
         if !cushionRecoil && hasActiveAbility?(:ALLYCUSHION)
-            @battle.pbShowAbilitySplash(self, :ALLYCUSHION)
+            showMyAbilitySplash(:ALLYCUSHION)
             @battle.pbDisplay(_INTL("{1} looks for an ally to help in avoiding the recoil!", pbThis))
 
             # Can be replaced
@@ -91,11 +91,11 @@ class PokeBattle_Battler
                 applyEffect(:AllyCushionSwap)
                 position.applyEffect(:AllyCushion, @pokemonIndex)
                 position.applyEffect(:AllyCushionAmount, damage)
-                @battle.pbHideAbilitySplash(self)
+                hideMyAbilitySplash
                 return
             else
                 @battle.pbDisplay(_INTL("But it couldn't swap into anybody!"))
-                @battle.pbHideAbilitySplash(self)
+                hideMyAbilitySplash
             end
         end
 
@@ -111,7 +111,7 @@ class PokeBattle_Battler
         end
     end
 
-    def pbRecoverHP(amt, anim = true, anyAnim = true, showMessage = true, customMessage = nil)
+    def pbRecoverHP(amt, anim = true, anyAnim = true, showMessage = true, customMessage = nil, canOverheal: false)
         if @battle.autoTesting
             anim = false
             anyAnim = false
@@ -121,7 +121,7 @@ class PokeBattle_Battler
         amt *= 2.0 if hasActiveAbilityAI?(:GLOWSHROOM) && @battle.moonGlowing?
         amt *= 0.5 if effectActive?(:IcyInjection)
         amt = amt.round
-        amt = @totalhp - @hp if amt > @totalhp - @hp
+        amt = @totalhp - @hp if amt > @totalhp - @hp && !canOverheal
         amt = 1 if amt < 1 && @hp < @totalhp
         if effectActive?(:NerveBreak)
             @battle.pbDisplay(_INTL("{1}'s healing is reversed because of their broken nerves!", pbThis))
@@ -131,7 +131,7 @@ class PokeBattle_Battler
         self.hp += amt
         self.hp = 0 if self.hp.negative?
         PBDebug.log("[HP change] #{pbThis} gained #{amt} HP (#{oldHP}=>#{@hp})") if amt.positive?
-        raise _INTL("HP greater than total HP") if @hp > @totalhp
+        raise _INTL("HP greater than total HP") if @hp > @totalhp unless canOverheal
         anyAnim = false if @autoTesting
         @battle.scene.pbHPChanged(self, oldHP, anim) if anyAnim && amt.positive?
         if showMessage
@@ -155,9 +155,14 @@ class PokeBattle_Battler
             pbItemHPHealCheck
             pbAbilitiesOnDamageTaken(oldHP)
             pbFaint if fainted?
-        elsif canHeal?
+        elsif canHeal?(true)
             drainAmount = (drainAmount * 1.3).floor if hasActiveItem?(:BIGROOT)
-            pbRecoverHP(drainAmount, true, true, false)
+            pbRecoverHP(drainAmount, true, true, false, canOverheal: hasActiveAbility?(:ENGORGE))
+            if overhealed?
+                showMyAbilitySplash(:ENGORGE)
+                @battle.pbDisplay(_INTL("{1} is loaded up with fluids!", pbThis))
+                hideMyAbilitySplash
+            end
         end
     end
 
@@ -178,12 +183,12 @@ class PokeBattle_Battler
             end
         end
         return if totalDamageDealt <= 0 || !canHeal?
-        @battle.pbShowAbilitySplash(self, ability) if ability
+        showMyAbilitySplash(ability) if ability
         drainAmount = (totalDamageDealt * ratio).round
         drainAmount = 1 if drainAmount < 1
         drainAmount = (drainAmount * 1.3).floor if hasActiveItem?(:BIGROOT)
         pbRecoverHP(drainAmount, true, true, false)
-        @battle.pbHideAbilitySplash(self) if ability
+        hideMyAbilitySplash if ability
     end
 
     def applyFractionalHealing(fraction, ability: nil, anim: true, anyAnim: true, showMessage: true, customMessage: nil, item: nil)
@@ -411,8 +416,8 @@ class PokeBattle_Battler
                 when :Hail             then newForm = 3
                 end
                 if @form != newForm
-                    @battle.pbShowAbilitySplash(self, :FORECAST, true)
-                    @battle.pbHideAbilitySplash(self)
+                    showMyAbilitySplash(:FORECAST, true)
+                    hideMyAbilitySplash
                     pbChangeForm(newForm, _INTL("{1} transformed!", pbThis))
                 end
             else
@@ -425,8 +430,8 @@ class PokeBattle_Battler
                 newForm = 0
                 newForm = 1 if %i[Sun HarshSun].include?(@battle.pbWeather)
                 if @form != newForm
-                    @battle.pbShowAbilitySplash(self, :FLOWERGIFT, true)
-                    @battle.pbHideAbilitySplash(self)
+                    showMyAbilitySplash(:FLOWERGIFT, true)
+                    hideMyAbilitySplash
                     pbChangeForm(newForm, _INTL("{1} transformed!", pbThis))
                 end
             else
@@ -435,8 +440,8 @@ class PokeBattle_Battler
         end
         # Eiscue - Ice Face
         if @species == :EISCUE && hasActiveAbility?(:ICEFACE) && @battle.icy? && (@form == 1)
-            @battle.pbShowAbilitySplash(self, :ICEFACE, true)
-            @battle.pbHideAbilitySplash(self)
+            showMyAbilitySplash(:ICEFACE, true)
+            hideMyAbilitySplash
             pbChangeForm(0, _INTL("{1} transformed!", pbThis))
         end
     end
@@ -456,8 +461,8 @@ class PokeBattle_Battler
             end
             if pbTypes != newTypes
                 pbChangeTypes(newTypes)
-                @battle.pbShowAbilitySplash(self, :MIMICRY, true)
-                @battle.pbHideAbilitySplash(self)
+                showMyAbilitySplash(:MIMICRY, true)
+                hideMyAbilitySplash
                 if newTypes == originalTypes
                     @battle.pbDisplay(_INTL("{1} returned back to normal!", pbThis))
                 else
@@ -480,13 +485,13 @@ class PokeBattle_Battler
         if isSpecies?(:DARMANITAN) && hasAbility?(:ZENMODE)
             if @hp <= @totalhp / 2
                 if @form != 1
-                    @battle.pbShowAbilitySplash(self, :ZENMODE, true)
-                    @battle.pbHideAbilitySplash(self)
+                    showMyAbilitySplash(:ZENMODE, true)
+                    hideMyAbilitySplash
                     pbChangeForm(1, _INTL("{1} triggered!", getAbilityName(:ZENMODE)))
                 end
             elsif @form != 0
-                @battle.pbShowAbilitySplash(self, :ZENMODE, true)
-                @battle.pbHideAbilitySplash(self)
+                showMyAbilitySplash(:ZENMODE, true)
+                hideMyAbilitySplash
                 pbChangeForm(0, _INTL("{1} triggered!", getAbilityName(:ZENMODE)))
             end
         end
@@ -495,15 +500,15 @@ class PokeBattle_Battler
             if @hp > @totalhp / 2 # Turn into Meteor form
                 newForm = (@form >= 7) ? @form - 7 : @form
                 if @form != newForm
-                    @battle.pbShowAbilitySplash(self, :SHIELDSDOWN, true)
-                    @battle.pbHideAbilitySplash(self)
+                    showMyAbilitySplash(:SHIELDSDOWN, true)
+                    hideMyAbilitySplash
                     pbChangeForm(newForm, _INTL("{1} deactivated!", getAbilityName(:SHIELDSDOWN)))
                 elsif !endOfRound
                     @battle.pbDisplay(_INTL("{1} deactivated!", getAbilityName(:SHIELDSDOWN)))
                 end
             elsif @form < 7 # Turn into Core form
-                @battle.pbShowAbilitySplash(self, :SHIELDSDOWN, true)
-                @battle.pbHideAbilitySplash(self)
+                showMyAbilitySplash(:SHIELDSDOWN, true)
+                hideMyAbilitySplash
                 pbChangeForm(@form + 7, _INTL("{1} activated!", getAbilityName(:SHIELDSDOWN)))
             end
         end
@@ -511,13 +516,13 @@ class PokeBattle_Battler
         if isSpecies?(:WISHIWASHI) && hasAbility?(:SCHOOLING)
             if @level >= 20 && @hp > @totalhp / 4
                 if @form != 1
-                    @battle.pbShowAbilitySplash(self, :SCHOOLING, true)
-                    @battle.pbHideAbilitySplash(self)
+                    showMyAbilitySplash(:SCHOOLING, true)
+                    hideMyAbilitySplash
                     pbChangeForm(1, _INTL("{1} formed a school!", pbThis))
                 end
             elsif @form != 0
-                @battle.pbShowAbilitySplash(self, :SCHOOLING, true)
-                @battle.pbHideAbilitySplash(self)
+                showMyAbilitySplash(:SCHOOLING, true)
+                hideMyAbilitySplash
                 pbChangeForm(0, _INTL("{1} stopped schooling!", pbThis))
             end
         end
@@ -525,8 +530,8 @@ class PokeBattle_Battler
         if isSpecies?(:ZYGARDE) && hasAbility?(:POWERCONSTRUCT) && endOfRound && (@hp <= @totalhp / 2 && @form < 2) # Turn into Complete Forme
             newForm = @form + 2
             @battle.pbDisplay(_INTL("You sense the presence of many!"))
-            @battle.pbShowAbilitySplash(self, :POWERCONSTRUCT, true)
-            @battle.pbHideAbilitySplash(self)
+            showMyAbilitySplash(:POWERCONSTRUCT, true)
+            hideMyAbilitySplash
             pbChangeForm(newForm, _INTL("{1} transformed into its Complete Forme!", pbThis))
         end
     end
@@ -628,9 +633,9 @@ class PokeBattle_Battler
         @ability_ids.push(newAbility)
         @addedAbilities.push(newAbility)
         if showcase
-            @battle.pbShowAbilitySplash(self, newAbility)
+            showMyAbilitySplash(newAbility)
             @battle.pbDisplay(_INTL("{1} gained the Ability {2}!", pbThis, getAbilityName(newAbility)))
-            @battle.pbHideAbilitySplash(self)
+            hideMyAbilitySplash
         end
     end
 
@@ -640,12 +645,12 @@ class PokeBattle_Battler
         oldAbil = firstAbility
         oldAbilities = abilities.clone
         oldAbilities.delete(newAbility)
-        @battle.pbShowAbilitySplash(self, oldAbil, true, false) if showSplashes
+        showMyAbilitySplash(oldAbil, true, false) if showSplashes
         setAbility(newAbility)
         @battle.pbReplaceAbilitySplash(self, newAbility) if showSplashes
         replacementMsg ||= _INTL("{1}'s Ability became {2}!", pbThis, getAbilityName(newAbility))
         @battle.pbDisplay(replacementMsg)
-        @battle.pbHideAbilitySplash(self) if showSplashes
+        hideMyAbilitySplash if showSplashes
         @battle.pbHideAbilitySplash(swapper) if showSplashes && swapper
         pbOnAbilitiesLost(oldAbilities) unless oldAbil.nil?
         pbEffectsOnSwitchIn

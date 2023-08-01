@@ -1395,7 +1395,7 @@ Pokemon = FURRET,35
     AbilityIndex = 0 # Hustle
     Item = CHESTOBERRY
 Pokemon = BEAUTIFLY,35
-    AbilityIndex = 0 # Expertise
+    AbilityIndex = 0 # Engorge
 Pokemon = NIDOKING,35
     AbilityIndex = 1 # Poison Point
 #-------------------------------
@@ -4293,7 +4293,7 @@ Pokemon = OCTILLERY,70
     AbilityIndex = 0 # Armor Piercing
 Pokemon = SLOWBRO,70
     Moves = SLACKOFF,SCALD,PSYCHIC,FLIPTURN
-    AbilityIndex = 0 # Regenerator
+    AbilityIndex = 0 # Pain Delay
 #-------------------------------
 [TRAINER_Eifion,Eifion,2]
 ExtendsVersion = 1
@@ -5682,7 +5682,7 @@ Policies = NO_PERFECT
 Pokemon = ESCAVALIER,45
     AbilityIndex = 1 # White Knight
 Pokemon = SLOWBRO,45
-    AbilityIndex = 0 # Regenerator
+    AbilityIndex = 0 # Pain Delay
 Pokemon = KABUTOPS,45
     AbilityIndex = 0 # Super Luck
 Pokemon = INCINEROAR,45
@@ -5920,7 +5920,7 @@ Pokemon = LIEPARD,70
     AbilityIndex = 0 # Dauntless
     Item = LUMBERRY
 Pokemon = DUSTOX,70
-    AbilityIndex = 0 # Merciless
+    AbilityIndex = 0 # Vandel
     Item = LUCKHERB
 Pokemon = KECLEON,70
     AbilityIndex = 0 # Adaptive Skin

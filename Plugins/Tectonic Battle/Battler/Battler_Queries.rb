@@ -418,9 +418,9 @@ class PokeBattle_Battler
         return false if fainted?
         if hasActiveAbility?(:MAGICGUARD)
             if showMsg
-                @battle.pbShowAbilitySplash(self, :MAGICGUARD)
+                showMyAbilitySplash(:MAGICGUARD)
                 @battle.pbDisplay(_INTL("{1} is unaffected!", pbThis))
-                @battle.pbHideAbilitySplash(self)
+                hideMyAbilitySplash
             end
             return false
         end
@@ -435,9 +435,9 @@ class PokeBattle_Battler
         end
         if hasActiveAbility?(:OVERCOAT) && !@battle.moldBreaker
             if showMsg
-                @battle.pbShowAbilitySplash(self, :OVERCOAT)
+                showMyAbilitySplash(:OVERCOAT)
                 @battle.pbDisplay(_INTL("{1} is unaffected!", pbThis))
-                @battle.pbHideAbilitySplash(self)
+                hideMyAbilitySplash
             end
             return false
         end
@@ -448,8 +448,9 @@ class PokeBattle_Battler
         return true
     end
 
-    def canHeal?
-        return false if fainted? || @hp >= @totalhp
+    def canHeal?(drain = false)
+        return false if fainted?
+        return false if @hp >= @totalhp && !(drain && hasActiveAbility?(:ENGORGE))
         return false if effectActive?(:HealBlock)
         return false if hasActiveAbility?(:ONEDGE) && @battle.moonGlowing?
         return true
@@ -779,7 +780,7 @@ class PokeBattle_Battler
     end
 
     def fullHealth?
-        return @hp == @totalhp
+        return @hp >= @totalhp
     end
 
     def aboveHalfHealth?
@@ -788,6 +789,10 @@ class PokeBattle_Battler
 
     def belowHalfHealth?
         return @hp <= @totalhp / 2
+    end
+
+    def overhealed?
+        return @hp > @totalhp
     end
 
     def getWeatherSettingDuration(weatherType, baseDuration = 4, ignoreFainted = false)

@@ -554,3 +554,21 @@ BattleHandlers::DamageCalcUserAbility.add(:EGOIST,
       mults[:attack_multiplier] *= 1.2 if type == :FIGHTING
   }
 )
+
+BattleHandlers::DamageCalcUserAbility.add(:EGOIST,
+  proc { |ability, _user, _target, _move, mults, _baseDmg, type, _aiCheck|
+      mults[:attack_multiplier] *= 1.2 if type == :FIGHTING
+  }
+)
+
+BattleHandlers::DamageCalcUserAbility.add(:VANDAL,
+  proc { |ability, _user, target, _move, mults, _baseDmg, type, _aiCheck|
+      mults[:attack_multiplier] *= 1.3 if target.hasAnyItem?
+  }
+)
+
+BattleHandlers::DamageCalcUserAbility.add(:ENGORGE,
+  proc { |ability, _user, _target, move, mults, _baseDmg, type, _aiCheck|
+      mults[:attack_multiplier] *= 1.3 if move.healingMove?
+  }
+)

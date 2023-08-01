@@ -46,7 +46,6 @@ module BattleHandlers
     DamageCalcUserAbility               = AbilityHandlerHash.new
     DamageCalcUserAllyAbility           = AbilityHandlerHash.new
     DamageCalcTargetAbility             = AbilityHandlerHash.new
-    DamageCalcTargetAbilityNonIgnorable = AbilityHandlerHash.new
     DamageCalcTargetAllyAbility         = AbilityHandlerHash.new
     DamageCalcUserItem                  = ItemHandlerHash.new
     DamageCalcTargetItem                = ItemHandlerHash.new
@@ -318,16 +317,12 @@ module BattleHandlers
 
     #=============================================================================
 
-    def self.triggerDamageCalcTargetAbility(ability, user, target, move, mults, baseDmg, type)
-        DamageCalcTargetAbility.trigger(ability, user, target, move, mults, baseDmg, type)
+    def self.triggerDamageCalcTargetAbility(ability, user, target, move, mults, baseDmg, type, aiChecking = false)
+        DamageCalcTargetAbility.trigger(ability, user, target, move, mults, baseDmg, type, aiChecking)
     end
 
-    def self.triggerDamageCalcTargetAbilityNonIgnorable(ability, user, target, move, mults, baseDmg, type)
-        DamageCalcTargetAbilityNonIgnorable.trigger(ability, user, target, move, mults, baseDmg, type)
-    end
-
-    def self.triggerDamageCalcTargetAllyAbility(ability, user, target, move, mults, baseDmg, type)
-        DamageCalcTargetAllyAbility.trigger(ability, user, target, move, mults, baseDmg, type)
+    def self.triggerDamageCalcTargetAllyAbility(ability, user, target, move, mults, baseDmg, type, aiChecking = false)
+        DamageCalcTargetAllyAbility.trigger(ability, user, target, move, mults, baseDmg, type, aiChecking)
     end
 
     def self.triggerDamageCalcTargetItem(item, user, target, move, mults, baseDmg, type, aiChecking)

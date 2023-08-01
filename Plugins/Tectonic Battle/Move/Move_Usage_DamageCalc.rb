@@ -37,8 +37,19 @@ class PokeBattle_Move
 
         # Main damage calculation
         finalCalculatedDamage = calcDamageWithMultipliers(baseDmg,attack,defense,user.level,multipliers)
-
         finalCalculatedDamage = flatDamageReductions(finalCalculatedDamage,user,target,aiChecking)
+        finalCalculatedDamage  = [(finalCalculatedDamage  * multipliers[:final_damage_multiplier]).round, 1].max
+
+        # Pain Delay
+        if !aiChecking && !@battle.moldBreaker && target.hasActiveAbility?(:PAINDELAY)
+            echoln("!!!Adding delayed damage for pain delay to #{target.pbThis(true)}!!!")
+            delayedDamage = (finalCalculatedDamage * 0.33).floor
+            finalCalculatedDamage -=  delayedDamage
+            if delayedDamage > 0
+                target.effects[:PainDelay] = [] unless target.effectActive?(:PainDelay)
+                target.effects[:PainDelay].push([2,delayedDamage])
+            end
+        end
 
         if target.boss?
             # All damage up to the phase lower health bound is unmodified
@@ -69,7 +80,6 @@ class PokeBattle_Move
         attack  = [(attack  * multipliers[:attack_multiplier]).round, 1].max
         defense = [(defense * multipliers[:defense_multiplier]).round, 1].max
         damage  = calcBasicDamage(baseDmg,userLevel,attack,defense)
-        damage  = [(damage  * multipliers[:final_damage_multiplier]).round, 1].max
         return damage
     end
 
@@ -135,17 +145,14 @@ class PokeBattle_Move
                 BattleHandlers.triggerDamageCalcUserAllyAbility(ability,user,target,self,multipliers,baseDmg,type,aiChecking)
             end
         end
-        target.eachActiveAbility do |ability|
-            BattleHandlers.triggerDamageCalcTargetAbilityNonIgnorable(ability,user,target,self,multipliers,baseDmg,type)
-        end
         unless @battle.moldBreaker
             # TODO: AI-Check discrepency for targets abilities
             target.eachActiveAbility do |ability|
-                BattleHandlers.triggerDamageCalcTargetAbility(ability,user,target,self,multipliers,baseDmg,type)
+                BattleHandlers.triggerDamageCalcTargetAbility(ability,user,target,self,multipliers,baseDmg,type,aiChecking)
             end
             target.eachAlly do |b|
                 b.eachActiveAbility do |ability|
-                    BattleHandlers.triggerDamageCalcTargetAllyAbility(ability,user,target,self,multipliers,baseDmg,type)
+                    BattleHandlers.triggerDamageCalcTargetAllyAbility(ability,user,target,self,multipliers,baseDmg,type,aiChecking)
                 end
             end
         end

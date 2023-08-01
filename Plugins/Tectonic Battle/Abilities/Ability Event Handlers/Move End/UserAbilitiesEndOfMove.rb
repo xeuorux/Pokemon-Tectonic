@@ -453,3 +453,16 @@ BattleHandlers::UserAbilityEndOfMove.add(:SPARESCALES,
       user.pbRaiseMultipleStatSteps(DEFENDING_STATS_1, user, ability: ability)
   }
 )
+
+BattleHandlers::UserAbilityEndOfMove.add(:VANDAL,
+  proc { |ability, user, targets, move, battle, _switchedBattlers|
+      next if battle.futureSight
+      next unless move.damagingMove?
+      clothingItemProc = proc do |item|
+        CLOTHING_ITEMS.include?(item)
+      end
+      targets.each do |b|
+        move.knockOffItems(user, b, ability: ability, validItemProc: clothingItemProc)
+      end
+  }
+)

@@ -8,7 +8,7 @@ module GameData
         attr_reader :location
 
         # The types are :Boolean, :Integer, :Position, :Type, :Pokemon, :Move, :Item,
-        # :Species, :PartyPosition, :Ability, :Hash, :String
+        # :Species, :PartyPosition, :Ability, :Hash, :String, :Array
         # If the type isn't included in an effect definition, its assumed to be a boolean
         attr_reader :type
 
@@ -285,6 +285,8 @@ module GameData
                     active = !value.nil? && !value.blank?
                 when :Type, :Pokemon, :Move, :Item, :Ability, :Hash
                     active = !value.nil?
+                when :Array
+                    active = !value.nil? && !value.empty?
                 end
             end
             return active
@@ -316,6 +318,8 @@ module GameData
                 return value.nil? || value.is_a?(Hash)
             when :String
                 return value.nil? || value.is_a?(String)
+            when :Array
+                return value.nil? || value.is_a?(Array)
             end
             return false
         end

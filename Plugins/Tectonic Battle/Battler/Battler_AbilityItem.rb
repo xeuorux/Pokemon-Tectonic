@@ -114,11 +114,11 @@ class PokeBattle_Battler
             end
             unless choices.empty?
                 choice = choices.sample
-                @battle.pbShowAbilitySplash(self, :TRACE)
+                showMyAbilitySplash(:TRACE)
                 stolenAbility = choice.ability
                 setAbility(stolenAbility)
                 @battle.pbDisplay(_INTL("{1} traced {2}'s {3}!", pbThis, choice.pbThis(true), getAbilityName(stolenAbility)))
-                @battle.pbHideAbilitySplash(self)
+                hideMyAbilitySplash
                 if !onSwitchIn && (unstoppableAbility?(stolenAbility) || abilityActive?)
                     BattleHandlers.triggerAbilityOnSwitchIn(stolenAbility, self, @battle)
                 end
@@ -141,14 +141,14 @@ class PokeBattle_Battler
             unless choices.empty?
                 battlerCopying = choices.keys.sample
                 abilitiesCopying = choices[battlerCopying]
-                @battle.pbShowAbilitySplash(self, :OVERACTING)
+                showMyAbilitySplash(:OVERACTING)
                 @battle.pbDisplay(_INTL("{1} is acting like a {2}!", pbThis, GameData::Species.get(battlerCopying.species).real_name))
                 echoln("Abilities that Over-Acting is copying: #{abilitiesCopying.to_s}")
                 setAbility(abilitiesCopying)
                 abilitiesCopying.each do |legalAbility|
                     @battle.pbDisplay(_INTL("{1} mimicked the ability {2}!", pbThis, getAbilityName(legalAbility)))
                 end
-                @battle.pbHideAbilitySplash(self)
+                hideMyAbilitySplash
                 if !onSwitchIn && (unstoppableAbility? || abilityActive?)
                     eachAbility do |ability|
                         BattleHandlers.triggerAbilityOnSwitchIn(ability, self, @battle)
@@ -223,12 +223,12 @@ class PokeBattle_Battler
         return unless recyclableItem
         itemToRecycle = recyclableItem
         return unless canAddItem?(itemToRecycle)
-        @battle.pbShowAbilitySplash(self, ability) if ability
+        showMyAbilitySplash(ability) if ability
         giveItem(itemToRecycle)
         setRecycleItem(nil)
         recyclingMsg ||= _INTL("{1} recycled one {2}!", pbThis, getItemName(itemToRecycle))
         battle.pbDisplay(recyclingMsg)
-        @battle.pbHideAbilitySplash(self) if ability
+        hideMyAbilitySplash if ability
         pbHeldItemTriggerCheck
     end
 
