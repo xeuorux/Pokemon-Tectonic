@@ -906,6 +906,12 @@ user.pbThis))
                 move.pbEndureKOMessage(b)
             end
 
+            # Endure-style move activations
+            targets.each do |b|
+                next if b.damageState.fightforever
+                b.tryRaiseStat(:ATTACK, user, increment: 2)
+            end
+
             # HP-healing held items (checks all battlers rather than just targets
             # because Flame Burst's splash damage affects non-targets)
             @battle.pbPriority(true).each { |b| b.pbItemHPHealCheck }

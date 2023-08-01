@@ -1009,7 +1009,7 @@ Pokemon = BUIZEL,26
 Pokemon = SEADRA,26
     AbilityIndex = 1 # Whirler
 Pokemon = KROKOROK,26
-    AbilityIndex = 1 # Dauntless
+    AbilityIndex = 1 # Regenerator
 #-------------------------------
 [DANDY,Charles]
 Pokemon = NIDORINO,26
@@ -1564,7 +1564,7 @@ Pokemon = JELLICENT,42
     Gender = male
     AbilityIndex = 1 # Sealing Body
 Pokemon = GSTUNFISK,41
-    AbilityIndex = 1 # Trapper
+    AbilityIndex = 1 # Deterrent
     Item = SITRUSBERRY
 #-------------------------------
 [DOCTOR,Peio]
@@ -5680,7 +5680,7 @@ Pokemon = ARAICHU,40
 [CHALLENGER_Vanya,Vanya,5]
 Policies = NO_PERFECT
 Pokemon = ESCAVALIER,45
-    AbilityIndex = 1 # Metal Cover
+    AbilityIndex = 1 # White Knight
 Pokemon = SLOWBRO,45
     AbilityIndex = 0 # Regenerator
 Pokemon = KABUTOPS,45
@@ -6105,7 +6105,7 @@ Pokemon = GOODRA,60
 #-------------------------------
 [POKEMONBREEDER_M4,Isaac]
 Pokemon = YANMEGA,60
-    AbilityIndex = 0 # Speed Boost
+    AbilityIndex = 0 # Darter
 Pokemon = TURTONATOR,60
     AbilityIndex = 0 # Vengeance
     Item = SITRUSBERRY

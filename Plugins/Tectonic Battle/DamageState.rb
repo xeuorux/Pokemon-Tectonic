@@ -22,6 +22,7 @@ class PokeBattle_DamageState
 	attr_accessor :survivalist     # Danger Sense ability used
 	attr_accessor :disguise        # Disguise ability used
 	attr_accessor :endured         # Damage was endured
+	attr_accessor :fightforever	   # Damage was endured by fight forever
 	attr_accessor :archVillain	   # Arch Villain prevented the kill
 	attr_accessor :berryWeakened   # Whether a type-resisting berry was used
 	attr_accessor :iceface         # Ice Face ability activated
@@ -61,6 +62,7 @@ class PokeBattle_DamageState
 		@archVillain		= nil
 		@disguise      		= false
 		@endured       		= false
+		@fightforever		= false
 		@berryWeakened 		= nil
 		@feastWeakened		= nil
 		@iceface       		= false

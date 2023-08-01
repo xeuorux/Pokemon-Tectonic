@@ -160,9 +160,9 @@ move, false, true)
         if move.statusMove? && !user.pbHasAnyStatus?
             targets = pbChangeTargetByAbility(:BADLUCK, move, user, targets, priority, nearOnly)
         end
-        # Epic Hero
+        # White Knight
         if move.damagingMove? && move.baseDamage >= 100
-            targets = pbChangeTargetByAbility(:EPICHERO, move, user, targets, priority, nearOnly)
+            targets = pbChangeTargetByAbility(:WHITEKNIGHT, move, user, targets, priority, nearOnly)
         end
         # Tantalizing
         if move.damagingMove? && user.belowHalfHealth?

@@ -271,3 +271,9 @@ BattleHandlers::DamageCalcTargetAbility.add(:RUGGEDSCALES,
       mults[:final_damage_multiplier] *= 0.7 if move.randomEffect?
   }
 )
+
+BattleHandlers::DamageCalcTargetAbility.add(:DARTER,
+  proc { |ability, _user, target, _move, mults, _baseDmg, _type|
+      mults[:final_damage_multiplier] *= 0.7
+  }
+)

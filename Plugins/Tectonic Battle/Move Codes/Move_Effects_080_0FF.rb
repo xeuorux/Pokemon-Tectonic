@@ -420,9 +420,23 @@ class PokeBattle_Move_093 < PokeBattle_Move
 end
 
 #===============================================================================
-# (Not currently used.)
+# If user would be KO'd this round, it survives with 1 HP instead. (Fight Forever)
+# Then, it's Attack is raised by 2
 #===============================================================================
-class PokeBattle_Move_094 < PokeBattle_Move
+class PokeBattle_Move_094 < PokeBattle_ProtectMove
+    def initialize(battle, move)
+        super
+        @effect = :FightForever
+    end
+
+    def pbProtectMessage(user)
+        @battle.pbDisplay(_INTL("{1} braced itself!", user.pbThis))
+    end
+
+    def getEffectScore(user, target)
+        return 0 if user.aboveHalfHealth?
+        return super
+    end
 end
 
 #===============================================================================
