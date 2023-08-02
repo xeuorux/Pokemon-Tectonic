@@ -28,6 +28,12 @@ class PokeBattle_Battler
 
             # Ice Dungeon
             target.disableEffect(:IceDungeon)
+
+            # Learn the target's damage affecting abilities
+            target.eachActiveAbility do |abilityID|
+                next unless BattleHandlers::DamageCalcTargetAbility.hasKey?(abilityID)
+                target.aiLearnsAbility(abilityID)
+            end
         end
         if target.opposes?(user) && !user.hasActiveItem?(:PROXYFIST)
             # Rage

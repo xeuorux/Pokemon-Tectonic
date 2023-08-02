@@ -16,6 +16,29 @@ def playerCanSurf?
 	return $PokemonBag.pbHasItem?(:SURFBOARD)
 end
 
+def pbEndSurf(_xOffset,_yOffset)
+	hidden = !$PokemonTemp.dependentEvents.can_refresh?
+	ret = pbEndSurfEx(_xOffset,_yOffset)
+  	$PokemonGlobal.call_refresh = [true, hidden] if ret
+end
+
+def pbEndSurfEx(_xOffset,_yOffset)
+	return false if !$PokemonGlobal.surfing
+	x = $game_player.x
+	y = $game_player.y
+	if $game_map.terrain_tag(x,y).can_surf && !$game_player.pbFacingTerrainTag.can_surf
+	  $PokemonTemp.surfJump = [x,y]
+	  if pbJumpToward(1,false,true)
+		$game_map.autoplayAsCue
+		$game_player.increase_steps
+		result = $game_player.check_event_trigger_here([1,2])
+		pbOnStepTaken(result)
+	  end
+	  $PokemonTemp.surfJump = nil
+	  return true
+	end
+	return false
+end
 
 Events.onStepTakenFieldMovement += proc { |_sender,e|
   event = e[0]   # Get the event affected by field movement

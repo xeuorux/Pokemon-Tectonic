@@ -136,7 +136,7 @@ class PokeBattle_Move
         if @battle.pbCheckGlobalAbility(:RUINOUS)
             multipliers[:base_damage_multiplier] *= 1.4
         end
-        # Ability effects that alter damage
+        # User or user ally ability effects that alter damage
         user.eachActiveAbility do |ability|
             BattleHandlers.triggerDamageCalcUserAbility(ability,user,target,self,multipliers,baseDmg,type,aiChecking)
         end
@@ -145,13 +145,13 @@ class PokeBattle_Move
                 BattleHandlers.triggerDamageCalcUserAllyAbility(ability,user,target,self,multipliers,baseDmg,type,aiChecking)
             end
         end
+        # Target or target ally ability effects that alter damage
         unless @battle.moldBreaker
-            # TODO: AI-Check discrepency for targets abilities
-            target.eachActiveAbility do |ability|
+            target.eachAbilityShouldApply(aiChecking) do |ability|
                 BattleHandlers.triggerDamageCalcTargetAbility(ability,user,target,self,multipliers,baseDmg,type,aiChecking)
             end
             target.eachAlly do |b|
-                b.eachActiveAbility do |ability|
+                b.eachAbilityShouldApply(aiChecking) do |ability|
                     BattleHandlers.triggerDamageCalcTargetAllyAbility(ability,user,target,self,multipliers,baseDmg,type,aiChecking)
                 end
             end

@@ -94,20 +94,3 @@ end
 def noticePlayer
   pbNoticePlayer(get_self)
 end
-
-def pbMoveTowardPlayer(event)
-  maxsize = [$game_map.width, $game_map.height].max
-  return if !pbEventCanReachPlayer?(event, $game_player, maxsize)
-  loop do
-    x = event.x
-    y = event.y
-    event.move_toward_player
-    break if event.x == x && event.y == y # Stop if stuck
-    while event.moving?
-      Graphics.update
-      Input.update
-      pbUpdateSceneMap
-    end
-  end
-  $PokemonMap.addMovedEvent(event.id) if $PokemonMap
-end

@@ -219,7 +219,6 @@ end
 
 # Save screen
 class PokemonSaveScreen
-	
 	# Returns whether the player decided to quit the game
 	def pbSaveScreen(quitting = false, deleting = true)
 		if !savingAllowed?()
@@ -973,4 +972,16 @@ class ScreenChooseFileSave
 		dispose
 		@viewport.dispose
 	end
+end
+
+def savingAllowed?()
+	begin
+		return !GameData::MapMetadata.get($game_map.map_id).saving_blocked
+	rescue
+		return true
+	end
+end
+
+def showSaveBlockMessage()
+	pbMessage(_INTL("Saving is not allowed at the moment."))
 end

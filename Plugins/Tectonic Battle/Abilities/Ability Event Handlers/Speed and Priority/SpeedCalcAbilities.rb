@@ -74,12 +74,6 @@ BattleHandlers::SpeedCalcAbility.add(:BROODING,
   }
 )
 
-BattleHandlers::SpeedCalcAbility.add(:HEROICFINALE,
-  proc { |ability, battler, mult|
-      next mult *= 2 if battler.isLastAlive?
-  }
-)
-
 BattleHandlers::SpeedCalcAbility.add(:FEROCIOUS,
   proc { |ability, battler, mult|
       active = false

@@ -1,25 +1,3 @@
-class PokemonGlobalMetadata
-	def pokedexStars
-	  @pokedexStars = {} if @pokedexStars.nil?
-	  return @pokedexStars
-	end
-
-	def speciesStarred?(species)
-		if !pokedexStars.has_key?(species)
-			pokedexStars[species] = false
-		end
-		return pokedexStars[species]
-	end
-
-	def toggleStarred(species)
-		if !pokedexStars.has_key?(species)
-			pokedexStars[species] = true
-		else
-			pokedexStars[species] = !pokedexStars[species]
-		end
-	end
-end
-
 module Settings
 	USE_CURRENT_REGION_DEX = true
 	def self.pokedex_names

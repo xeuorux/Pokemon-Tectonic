@@ -357,47 +357,6 @@ def randomizeItem(item)
   return Randomizer.getRandomizedData(item, :ITEMS, item)
 end
 #===============================================================================
-#  aliasing to return randomized battlers
-#===============================================================================
-alias pbBattleOnStepTaken_randomizer_x pbBattleOnStepTaken unless defined?(pbBattleOnStepTaken_randomizer_x)
-def pbBattleOnStepTaken(*args)
-  $rndx_non_static = true
-  pbBattleOnStepTaken_randomizer_x(*args)
-  $rndx_non_static = false
-end
-#===============================================================================
-#  aliasing to randomize static battles
-#===============================================================================
-alias pbWildBattle_randomizer_x pbWildBattle unless defined?(pbWildBattle_randomizer_x)
-def pbWildBattle(*args)
-  # randomizer
-  for i in [0]
-    args[i] = randomizeSpecies(args[i], !$rndx_non_static)
-  end
-  # starts battle processing
-  return pbWildBattle_randomizer_x(*args)
-end
-
-alias pbDoubleWildBattle_randomizer_x pbDoubleWildBattle unless defined?(pbDoubleWildBattle_randomizer_x)
-def pbDoubleWildBattle(*args)
-  # randomizer
-  for i in [0, 2]
-    args[i] = randomizeSpecies(args[i], !$rndx_non_static)
-  end
-  # starts battle processing
-  return pbDoubleWildBattle_randomizer_x(*args)
-end
-
-alias pbTripleWildBattle_randomizer_x pbTripleWildBattle unless defined?(pbTripleWildBattle_randomizer_x)
-def pbTripleWildBattle(*args)
-  # randomizer
-  for i in [0, 2, 4]
-    args[i] = randomizeSpecies(args[i], !$rndx_non_static)
-  end
-  # starts battle processing
-  return pbTripleWildBattle_randomizer_x(*args)
-end
-#===============================================================================
 #  aliasing to randomize gifted Pokemon
 #===============================================================================
 alias pbAddPokemon_randomizer_x pbAddPokemon unless defined?(pbAddPokemon_randomizer_x)
@@ -414,33 +373,6 @@ def pbAddPokemonSilent(*args)
   args[0] = randomizeSpecies(args[0], false, true)
   # gives Pokemon
   return pbAddPokemonSilent_randomizer_x(*args)
-end
-#===============================================================================
-#  snipped of code used to alias the item receiving
-#===============================================================================
-#-----------------------------------------------------------------------------
-#  item find
-alias pbItemBall_randomizer_x pbItemBall unless defined?(pbItemBall_randomizer_x)
-def pbItemBall(*args)
-  args[0] = randomizeItem(args[0])
-  return pbItemBall_randomizer_x(*args)
-end
-#-----------------------------------------------------------------------------
-#  item receive
-=begin
-alias pbReceiveItem_randomizer_x pbReceiveItem unless defined?(pbReceiveItem_randomizer_x)
-def pbReceiveItem(*args)
-  args[0] = randomizeItem(args[0])
-  return pbReceiveItem_randomizer_x(*args)
-end
-=end
-#===============================================================================
-#  additional entry to Global Metadata for randomized data storage
-#===============================================================================
-class PokemonGlobalMetadata
-  attr_accessor :randomizedData
-  attr_accessor :isRandomizer
-  attr_accessor :randomizerRules
 end
 #===============================================================================
 #  refresh cache on load

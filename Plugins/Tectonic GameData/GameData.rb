@@ -228,19 +228,6 @@ module GameData
     end
 end
 
-#===============================================================================
-# Data caches.
-#===============================================================================
-class PokemonTemp
-  attr_accessor :townMapData
-  attr_accessor :phoneData
-  attr_accessor :speciesShadowMovesets
-  attr_accessor :regionalDexes
-  attr_accessor :battleAnims
-  attr_accessor :moveToAnim
-  attr_accessor :mapInfos
-end
-
 def pbClearData
   if $PokemonTemp
     $PokemonTemp.townMapData           = nil

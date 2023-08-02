@@ -542,10 +542,6 @@ class PokemonSpeciesIconSprite < SpriteWrapper
   end 
 end
 
-class PokemonGlobalMetadata
-	attr_accessor :dexNavEggMovesUnlocked
-end
-
 def incrementDexNavCounts(caught)
 	$PokemonGlobal.caughtCountsPerMap = {} if !$PokemonGlobal.caughtCountsPerMap
 	if caught

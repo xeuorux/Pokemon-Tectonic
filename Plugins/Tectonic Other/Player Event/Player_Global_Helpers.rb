@@ -52,7 +52,6 @@ def pbMountBike
         bike_bgm = GameData::Metadata.get.bicycle_BGM
         pbCueBGM(bike_bgm, 0.5) if bike_bgm
     end
-    pbPokeRadarCancel
     map_metadata = GameData::MapMetadata.try_get($game_map.map_id)
     bike_anim = !(map_metadata && map_metadata.always_bicycle)
     $PokemonTemp.dependentEvents.refresh_sprite(bike_anim)
