@@ -106,7 +106,6 @@ end
 def addMove(moves, move, base)
   data = GameData::Move.get(move)
   return if moves.include?(data.id)
-  return if [:BUBBLE, :BUBBLEBEAM].include?(data.id)   # Never add these moves
   count = base + 1   # Number of times to add move to moves
   count = base if data.function_code == "000" && data.base_damage <= 40
   if data.base_damage <= 30 || [:GROWL, :TAILWHIP, :LEER].include?(data.id)

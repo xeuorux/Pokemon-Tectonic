@@ -1,12 +1,13 @@
-def battleTowerSinglesRegister
-    pbMessage(_INTL("Welcome to the Battle Tower."))
+def battleMonumentSinglesRegister
+    pbMessage(_INTL("Welcome to the Battle Monument."))
 
-    if pbConfirmMessageSerious(_INTL("Would you like to participate in a singles battle challenge?"))
-        rules = pbBattleTowerRules(false, false)
+    if pbConfirmMessage(_INTL("Take the singles battle challenge?"))
+        rules = pbBattleMonumentRules(false, false)
         pbBattleChallenge.set(
-            "towersingle",
+            "monumentsingle",
             7,
-            rules
+            rules,
+            false
         )
 
         rules.setNumber(4)
@@ -19,9 +20,9 @@ def battleTowerSinglesRegister
                 return true
             end
         else
-            pbMessage(_INTL("Sorry, you can't participate. You need three different Pokémon to enter."))
-            pbMessage(_INTL("They must be of a different species and hold different items."))
-            pbMessage(_INTL("Certain legendary species are also ineligible."))
+            pbMessage(_INTL("Sorry, you can't participate. You need four different Pokémon to enter."))
+            pbMessage(_INTL("They must be of a different species."))
+            pbMessage(_INTL("Certain legendary or unusual species are also ineligible."))
         end
     end
 
@@ -29,15 +30,17 @@ def battleTowerSinglesRegister
     return false
 end
 
-def battleTowerSinglesBattle(opponentEventID)
-    pbBattleChallengeGraphic(get_character(opponentEventID))
-    pbMessage(pbBattleChallengeBeginSpeech)
+def battleMonumentSinglesBattle(opponentEventID)
+    blackFadeOutIn {
+        pbBattleChallengeGraphic(get_character(opponentEventID))
+    }
+    pbMessage(_INTL("The match will now begin!"))
     if pbBattleChallengeBattle
         pbBattleChallenge.pbAddWin
         # Player is victorous in their run
         if pbBattleChallenge.pbMatchOver?
             pbBattleChallenge.setDecision(1)
-            battleTowerTransferToStart
+            battleMonumentTransferToStart
         else
             pbMessage(_INTL("Let me heal your party."))
             healPartyWithDelay
@@ -45,18 +48,18 @@ def battleTowerSinglesBattle(opponentEventID)
         end
     else
         pbBattleChallenge.setDecision(2)
-        battleTowerTransferToStart
+        battleMonumentTransferToStart
     end
 end
 
-def battleTowerTransferToStart
+def battleMonumentTransferToStart
     pbSEPlay('Door Exit',80,100)
     blackFadeOutIn {
         pbBattleChallenge.pbGoToStart
     }
 end
 
-def battleTowerRecievePlayerInLobby
+def battleMonumentRecievePlayerInLobby
     if pbBattleChallenge.decision == 1
         pbMessage(_INTL("Congratulations for winning."))
         pbMessage(_INTL("Please take this prize."))

@@ -20,6 +20,27 @@ class StandardRestriction
       return true
     end
   end
+
+  #===============================================================================
+#
+#===============================================================================
+class LaxStandardRestriction
+  def isValid?(pkmn)
+    return false if !pkmn || pkmn.egg?
+    # Species with disadvantageous abilities are not banned
+    pkmn.species_data.abilities.each do |a|
+      return true if [:TRUANT, :SLOWSTART, :DEFEATIST].include?(a)
+    end
+    # Certain named species are banned
+    return false if [:WYNAUT, :WOBBUFFET].include?(pkmn.species)
+    # Species with total base stat 600 or more are banned
+    bst = 0
+    pkmn.baseStats.each_value { |s| bst += s }
+    return false if bst > 600
+    # Is valid
+    return true
+  end
+end
   
   #===============================================================================
   #

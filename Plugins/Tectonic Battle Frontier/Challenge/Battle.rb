@@ -37,7 +37,7 @@ class BattleType
   #===============================================================================
   #
   #===============================================================================
-  def pbOrganizedBattleEx(opponent, challengedata, endspeech, endspeechwin)
+  def pbOrganizedBattleEx(opponent, challengedata, endspeech = "...", endspeechwin = "...")
     # Skip battle if holding Ctrl in Debug mode
     if Input.press?(Input::CTRL) && $DEBUG
       pbMessage(_INTL("SKIPPING BATTLE..."))

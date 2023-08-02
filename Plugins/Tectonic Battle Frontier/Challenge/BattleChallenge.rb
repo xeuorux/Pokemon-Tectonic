@@ -15,12 +15,14 @@ class BattleChallenge
     @types = {}
   end
 
-  def set(id, numrounds, rules)
+  def set(id, numrounds, rules, trainersFromLists = true)
     @id = id
     @numRounds = numrounds
     @rules = rules
+    @trainersFromLists = trainersFromLists
+    battleType = id[/^factory/] ? BattleFactoryID : BattleTowerID
     register(id, id[/double/], 3,
-       id[/^factory/] ? BattleFactoryID : BattleTowerID,
+      battleType,
        id[/open$/] ? 1 : 0)
     pbWriteCup(id, rules)
   end
@@ -52,7 +54,7 @@ class BattleChallenge
     when BattleArenaID
       rules.setBattleType(BattleArena.new)
       doublebattle = false
-    else   # Factory works the same as Tower
+    else   # Factory and monument work the same as Tower
       rules.setBattleType(BattleTower.new)
     end
     # Set standard rules and maximum level
@@ -95,12 +97,16 @@ class BattleChallenge
 
   def pbBattle
     return @bc.extraData.pbBattle(self) if @bc.extraData   # Battle Factory
-    opponent = pbGenerateBattleTrainer(self.nextTrainer, self.rules)
-    bttrainers = pbGetBTTrainers(@id)
-    trainerdata = bttrainers[self.nextTrainer]
-    ret = pbOrganizedBattleEx(opponent,self.rules,
-       pbGetMessageFromHash(MessageTypes::EndSpeechLose, trainerdata[4]),
-       pbGetMessageFromHash(MessageTypes::EndSpeechWin, trainerdata[3]))
+    if @trainersFromLists
+      opponent = pbGenerateBattleTrainer(self.nextTrainer, self.rules)
+      bttrainers = pbGetBTTrainers(@id)
+      trainerdata = bttrainers[self.nextTrainer]
+    else
+      trainerdata = GameData::Trainer.randomMonumentTrainer
+      opponent = trainerdata.to_trainer
+      opponent.policies.push(:NO_PERFECT)
+    end
+    ret = pbOrganizedBattleEx(opponent,self.rules)
     return ret
   end
 

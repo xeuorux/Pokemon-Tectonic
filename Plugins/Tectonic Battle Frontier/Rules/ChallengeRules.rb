@@ -254,6 +254,19 @@ class PokemonChallengeRules
     ret.setDoubleBattle(double)
     return ret
   end
+
+  def pbBattleMonumentRules(double, openlevel)
+    ret = PokemonChallengeRules.new
+    if openlevel
+      ret.setLevelAdjustment(OpenLevelAdjustment.new(60))
+    else
+      ret.setLevelAdjustment(CappedLevelAdjustment.new(50))
+    end
+    ret.addPokemonRule(LaxStandardRestriction.new)
+    ret.addTeamRule(SpeciesClause.new)
+    ret.setDoubleBattle(double)
+    return ret
+  end
   
   #===============================================================================
   # Other Interesting Rulesets

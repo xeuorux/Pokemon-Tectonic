@@ -79,12 +79,12 @@ def pbBattleChallenge
     bttrainers = pbGetBTTrainers(pbBattleChallenge.currentChallenge)
     filename = GameData::TrainerType.charset_filename_brief((bttrainers[nextTrainer][0] rescue nil))
     begin
-      filename = "NPC 01" if nil_or_empty?(filename)
+      filename = "00PTrainerPlaceholder" if nil_or_empty?(filename)
       bitmap = AnimatedBitmap.new("Graphics/Characters/" + filename)
       bitmap.dispose
       event.character_name = filename
     rescue
-      event.character_name = "NPC 01"
+      event.character_name = "NPC01"
     end
   end
   
