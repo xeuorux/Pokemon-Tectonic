@@ -1,6 +1,343 @@
 ﻿# See the documentation on the wiki to learn how to edit this file.
 #-------------------------------
-[BATTLEGIRL,RandomTest]
-Pokemon = PALMANTRA,70
-    Moves = PSYCHIC,AURASPHERE
-    AbilityIndex = 0 # Balance of Power
+[CLERK_M2,Airi]
+Pokemon = ALTARIA,70
+    AbilityIndex = 0 # Levitate
+Pokemon = APPLETUN,70
+    AbilityIndex = 0 # Ripen
+Pokemon = MTANGROWTH,70
+    AbilityIndex = 0 # Petrifying
+Pokemon = CURSOLA,70
+    AbilityIndex = 1 # Perish Body
+#-------------------------------
+[MEDIUM,Holly]
+Pokemon = ZOROARK,70
+    AbilityIndex = 0 # Illusion
+Pokemon = ROSERADE,70
+    AbilityIndex = 0 # Sharpness
+Pokemon = SWAMPERT,70
+    AbilityIndex = 1 # Boulder Nest
+Pokemon = LITWICK,70
+    AbilityIndex = 1 # Royal Majesty
+#-------------------------------
+[ROUGHNECK,Reuben]
+Pokemon = UMBREON,70
+    AbilityIndex = 1 # Secretion Secret
+Pokemon = HOUNDOMINUS,70
+    AbilityIndex = 1 # Berserk
+Pokemon = PORYGONZ,70
+    AbilityIndex = 0 # Realist
+Pokemon = DRAGONITE,70
+    AbilityIndex = 0 # Inner Focus
+#-------------------------------
+[PUNKM,Panda]
+Pokemon = MISMAGIUS,70
+    AbilityIndex = 1 # Shrieking
+Pokemon = LILLIGANT,70
+    AbilityIndex = 1 # Herbalist
+Pokemon = STARAPTOR,70
+    AbilityIndex = 1 # Reckless
+Pokemon = GENGAR,70
+    AbilityIndex = 1 # Uncanny Cold
+#-------------------------------
+[RICHBOY,Splits]
+Pokemon = SCIZOR,70
+    AbilityIndex = 0 # Technician
+Pokemon = NIDOKING,70
+    AbilityIndex = 1 # Poison Point
+Pokemon = TYRANTRUM,70
+    AbilityIndex = 1 # Rock Head
+Pokemon = WEAVILE,70
+    AbilityIndex = 0 # Inner Focus
+#-------------------------------
+[RUINMANIAC,StephenStone]
+Pokemon = DECEAT,70
+    AbilityIndex = 1 # Intimidate
+Pokemon = TITANIX,70
+    AbilityIndex = 0 # Radiate
+Pokemon = DONSTER,70
+    AbilityIndex = 0 # Aggravate
+Pokemon = TOWERPODA,70
+    AbilityIndex = 0 # Stubborn
+#-------------------------------
+[CAMPER,Nexx]
+Pokemon = GRENINJA,70
+    AbilityIndex = 1 # Wise Hunter
+Pokemon = LUCARIO,70
+    AbilityIndex = 0 # Honor Aura
+Pokemon = DRAGONITE,70
+    AbilityIndex = 0 # Inner Focus
+Pokemon = NIDOKING,70
+    AbilityIndex = 0 # Sheer Force
+#-------------------------------
+[VETERANM_2,Luke]
+Pokemon = RIOJIN,70
+    AbilityIndex = 0 # Honor Aura
+Pokemon = GARCHOMP,70
+    AbilityIndex = 0 # Rough Skin
+Pokemon = PTEROFLYTE,70
+    AbilityIndex = 0 # Armor Piercing
+Pokemon = SCARODON,70
+    AbilityIndex = 0 # Schadenfreude
+#-------------------------------
+[POKEMANIAC,Chris]
+Pokemon = TROPIUS,70
+    AbilityIndex = 1 # Berry Bunch
+Pokemon = PORYGONZ,70
+    AbilityIndex = 0 # Realist
+Pokemon = MAGNEZONE,70
+    AbilityIndex = 1 # No Guard
+Pokemon = TOGEKISS,70
+    AbilityIndex = 0 # Super Luck
+#-------------------------------
+[POKEMONRANGER_M2,Qwinn]
+Pokemon = CHATOT,70
+    AbilityIndex = 0 # Loud
+Pokemon = JUMPLUFF,70
+    AbilityIndex = 0 # Aerodynamic
+Pokemon = PRIMARINA,70
+    AbilityIndex = 0 # Maestro
+Pokemon = MGIGALITH,70
+    AbilityIndex = 0 # Time Interloper
+#-------------------------------
+[COOLTRAINER_M,Sirus]
+Pokemon = GARCHOMP,70
+    AbilityIndex = 0 # Rough Skin
+Pokemon = ASANDSLASH,70
+    AbilityIndex = 1 # Assault Spines
+Pokemon = LYCANROC,70
+    AbilityIndex = 0 # Werewolf
+Pokemon = INFERNAPE,70
+    AbilityIndex = 0 # Mystic Fist
+#-------------------------------
+[SWIMMER_F5,Thai]
+Pokemon = CLAWITZER,70
+    AbilityIndex = 0 # Mega Launcher
+Pokemon = SAURENAID,70
+    AbilityIndex = 0 # Frost Song
+Pokemon = MSEVIPER,70
+    AbilityIndex = 1 # Envy
+Pokemon = BRAVIARY,70
+    AbilityIndex = 0 # Defiant
+#-------------------------------
+[DANCER,Lee]
+Pokemon = RIOJIN,70
+    AbilityIndex = 0 # Honor Aura
+Pokemon = ESPEON,70
+    AbilityIndex = 0 # Jasper Charge
+Pokemon = CROBAT,70
+    AbilityIndex = 1 # Infiltrator
+Pokemon = CHANDELURE,70
+    AbilityIndex = 0 # Light Trick
+#-------------------------------
+[PSYCHIC_M,Rowan]
+Pokemon = CHATOT,70
+    AbilityIndex = 1 # Fascinate
+Pokemon = CORVIKNIGHT,70
+    AbilityIndex = 1 # Volt Absorb
+Pokemon = DUSKNOIR,70
+    AbilityIndex = 0 # Aggravate
+Pokemon = REAVOR,70
+    AbilityIndex = 0 # Technician
+#-------------------------------
+[COOLTRAINER_M2,Lucas]
+Pokemon = MILLIBLAZE,70
+    AbilityIndex = 0 # Flash Fire
+Pokemon = DONPHAN,70
+    AbilityIndex = 0 # Speed Boost
+Pokemon = SAURENAID,70
+    AbilityIndex = 1 # Sea Survivor
+Pokemon = SKUNTANK,70
+    AbilityIndex = 0 # Stench
+#-------------------------------
+[HIKER,Lucas]
+Pokemon = HSAMUROTT,70
+    AbilityIndex = 0 # Poor Conduct
+Pokemon = HTYPHLOSION,70
+    AbilityIndex = 1 # Superstitious
+Pokemon = HDECIDUEYE,70
+    AbilityIndex = 1 # Feather Coat
+Pokemon = HAVALUGG,70
+    AbilityIndex = 1 # Follow Through
+#-------------------------------
+[NINJABOY,Drakus]
+Pokemon = GRENINJA,70
+    AbilityIndex = 0 # Protean
+Pokemon = TYPHLOSION,70
+    AbilityIndex = 1 # Hubris
+Pokemon = ARCLAMOR,70
+    AbilityIndex = 1 # Thunderstruck
+Pokemon = ABSOLUS,70
+    AbilityIndex = 1 # Vengeance
+#-------------------------------
+[WORKER,Rob]
+Policies = HAIL_TEAM
+Pokemon = AURORUS,70
+    AbilityIndex = 1 # Snow Warning
+Pokemon = MAMOSWINE,70
+    AbilityIndex = 1 # Ice Mirror
+Pokemon = FROSLASS,70
+    AbilityIndex = 1 # Eternal Winter
+Pokemon = AEGISLASH,70
+    AbilityIndex = 0 # Stance Change
+#-------------------------------
+[COOLTRAINER_M3,Ghyst]
+Pokemon = HDECIDUEYE,70
+    AbilityIndex = 1 # Feather Coat
+Pokemon = BLASTOISE,70
+    AbilityIndex = 1 # Mega Launcher
+Pokemon = DROMERUPT,70
+    AbilityIndex = 0 # Dull
+Pokemon = SALAMENCE,70
+    AbilityIndex = 0 # Intimidate
+#-------------------------------
+[SUPERNERD,Pod]
+Pokemon = DUSKNOIR,70
+    AbilityIndex = 0 # Aggravate
+Pokemon = ABSOLUS,70
+    AbilityIndex = 1 # Vengeance
+Pokemon = GLISCOR,70
+    AbilityIndex = 0 # Grotesque Vitals
+Pokemon = GRENINJA,70
+    AbilityIndex = 0 # Protean
+#-------------------------------
+[SCIENTIST_M4,Eben]
+Pokemon = BISHARP,70
+    AbilityIndex = 1 # Sturdy
+Pokemon = REUNICLUS,70
+    AbilityIndex = 1 # Magic Guard
+Pokemon = CINDERACE,70
+    AbilityIndex = 1 # Egoist
+Pokemon = METAGROSS,70
+    AbilityIndex = 0 # Full Metal Body
+#-------------------------------
+[COOLTRAINER_M4,Esai]
+Pokemon = CINDERACE,70
+    AbilityIndex = 0 # Freestyle
+Pokemon = AEGISLASH,70
+    AbilityIndex = 0 # Stance Change
+Pokemon = LAPRAS,70
+    AbilityIndex = 0 # Frost Song
+Pokemon = RIOJIN,70
+    AbilityIndex = 0 # Honor Aura
+#-------------------------------
+[GENTLEMAN,Eolis]
+Pokemon = RIOJIN,70
+    AbilityIndex = 1 # Inner Focus
+Pokemon = PERSIAN,70
+    AbilityIndex = 1 # All That Glitters
+Pokemon = RAPIDASH,70
+    AbilityIndex = 1 # Harsh
+Pokemon = RAICHU,70
+    AbilityIndex = 1 # Break Through
+#-------------------------------
+[COOLTRAINER_M2,Jan]
+Pokemon = CINDERACE,70
+    AbilityIndex = 1 # Egoist
+Pokemon = SERPERIOR,70
+    AbilityIndex = 1 # Eccentric
+Pokemon = GRENINJA,70
+    AbilityIndex = 0 # Protean
+Pokemon = RIOJIN,70
+    AbilityIndex = 1 # Inner Focus
+#-------------------------------
+[CLERK_M2,Kirby]
+Pokemon = HYDREIGON,70
+    AbilityIndex = 0 # Levitate
+Pokemon = FERROTHORN,70
+    AbilityIndex = 0 # Iron Barbs
+Pokemon = PRIMARINA,70
+    AbilityIndex = 0 # Maestro
+Pokemon = HZOROARK,70
+    AbilityIndex = 1 # Mental Block
+#-------------------------------
+[PSYCHIC_M3,Xerxes]
+Pokemon = MNINETALES,70
+    AbilityIndex = 0 # Gild
+Pokemon = NINETALES,70
+    AbilityIndex = 1 # Feedback
+Pokemon = XATU,70
+    AbilityIndex = 0 # Cosmic Contact
+Pokemon = HYDREIGON,70
+    AbilityIndex = 0 # Levitate
+#-------------------------------
+[AROMALADY,Litha]
+Pokemon = ACCELGOR,70
+    AbilityIndex = 0 # Water Absorb
+Pokemon = HARCANINE,70
+    AbilityIndex = 1 # Rock Head
+Pokemon = FERROTHORN,70
+    AbilityIndex = 0 # Iron Barbs
+Pokemon = PRIMARINA,70
+    AbilityIndex = 1 # Moon Bubble
+#-------------------------------
+[RICHBOY2,Cole]
+Policies = PRESERVE_LAST_POKEMON
+Pokemon = BLAZIKEN,70
+    AbilityIndex = 0 # Speed Boost
+Pokemon = GOODRA,70
+    AbilityIndex = 0 # Gooey
+Pokemon = ZOROARK,70
+    AbilityIndex = 0 # Illusion
+Pokemon = GARDEVOIR,70
+    AbilityIndex = 0 # Arcane Finale
+#-------------------------------
+[POKEMANIAC,plane]
+Pokemon = DITTO,70
+    AbilityIndex = 1 # Imposter
+Pokemon = ALAKAZAM,70
+    AbilityIndex = 1 # Steelworker
+Pokemon = DUGTRIO,70
+    AbilityIndex = 1 # Pitting
+Pokemon = MAGMORTAR,70
+    AbilityIndex = 1 # Scalding Smoke
+#-------------------------------
+[DANCER,Brewja]
+Pokemon = SERPERIOR,70
+    AbilityIndex = 1 # Eccentric
+Pokemon = SCOLIPEDE,70
+    AbilityIndex = 0 # Speed Boost
+Pokemon = HONCHKROW,70
+    AbilityIndex = 0 # Rattle 'Em
+Pokemon = BLAZIKEN,70
+    AbilityIndex = 1 # Pecking Order
+#-------------------------------
+[JANITOR,Ceansyr]
+Pokemon = REAVOR,70
+    AbilityIndex = 0 # Technician
+Pokemon = GARDEVOIR,70
+    AbilityIndex = 1 # Feedback
+Pokemon = INFERNAPE,70
+    AbilityIndex = 0 # Mystic Fist
+Pokemon = PTEROFLYTE,70
+    AbilityIndex = 0 # Armor Piercing
+#-------------------------------
+[JOGGER,Atticus]
+Pokemon = JUMPLUFF,70
+    AbilityIndex = 1 # Seed Sowing
+Pokemon = SERPERIOR,70
+    AbilityIndex = 1 # Eccentric
+Pokemon = SNEASLER,70
+    AbilityIndex = 0 # Tough
+Pokemon = RUBARIOR,70
+    AbilityIndex = 0 # Magic Bounce
+#-------------------------------
+[COOLTRAINER_M,Mercury]
+Pokemon = GARDEVOIR,70
+    AbilityIndex = 1 # Feedback
+Pokemon = HYDREIGON,70
+    AbilityIndex = 0 # Levitate
+Pokemon = FERROTHORN,70
+    AbilityIndex = 0 # Iron Barbs
+Pokemon = VOLCARONA,70
+    AbilityIndex = 1 # Dawn Burst
+#-------------------------------
+[BEAUTY,Riko]
+Pokemon = LINOONE,70
+    AbilityIndex = 1 # Gluttony
+Pokemon = MASQUERAIN,70
+    AbilityIndex = 0 # Hyper Speed
+Pokemon = AMPHAROS,70
+    AbilityIndex = 0 # Static
+Pokemon = AEGISLASH,70
+    AbilityIndex = 0 # Stance Change
