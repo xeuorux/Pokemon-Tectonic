@@ -2,10 +2,6 @@ class Game_Temp
 	attr_accessor :save_calling             # save calling flag
 end
 
-class PokemonTemp
-	attr_accessor :bicycleCalling 
-end
-
 class PokemonGlobalMetadata
   attr_accessor :autosaveSteps
 end

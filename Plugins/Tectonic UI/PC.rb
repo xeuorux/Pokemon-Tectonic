@@ -1,12 +1,3 @@
-class PokemonGlobalMetadata
-    attr_writer :omnitutor_active
-
-    def omnitutor_active
-        @omnitutor_active = false if @omnitutor_active.nil?
-        return @omnitutor_active
-    end
-end
-
 def pbPokeCenterPC
     if !teamEditingAllowed?()
       showNoTeamEditingMessage()

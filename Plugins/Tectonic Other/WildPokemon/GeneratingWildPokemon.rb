@@ -65,3 +65,31 @@ def testShinyChances
   pbMessage(_INTL("Trial complete."))
   echoln("Out of #{totalTimes.to_s} trials, a level 8 sinistea was shiny #{shinyTimes} times or #{percentage} percent of the time")
 end
+
+Events.onWildPokemonCreate += proc { |_sender, e|
+  pokemon = e[0]
+  if $game_switches[Settings::SHINY_WILD_POKEMON_SWITCH]
+    pokemon.shiny = true
+  end
+}
+
+# Used by fishing rods and Headbutt/Rock Smash/Sweet Scent to generate a wild
+# Pokémon (or two) for a triggered wild encounter.
+def pbEncounter(enc_type)
+  $PokemonTemp.encounterType = enc_type
+  encounter1 = $PokemonEncounters.choose_wild_pokemon(enc_type)
+  encounter1 = EncounterModifier.trigger(encounter1)
+  return false if !encounter1
+  if $PokemonEncounters.have_double_wild_battle?
+    encounter2 = $PokemonEncounters.choose_wild_pokemon(enc_type)
+    encounter2 = EncounterModifier.trigger(encounter2)
+    return false if !encounter2
+    pbDoubleWildBattle(encounter1[0], encounter1[1], encounter2[0], encounter2[1])
+  else
+    pbWildBattle(encounter1[0], encounter1[1])
+  end
+	$PokemonTemp.encounterType = nil
+  $PokemonTemp.forceSingleBattle = false
+  EncounterModifier.triggerEncounterEnd
+  return true
+end

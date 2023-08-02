@@ -1,11 +1,3 @@
-#===============================================================================
-# Global variables used by the overworld triggers.
-#===============================================================================
-class PokemonTemp
-  attr_accessor :batterywarning
-  attr_accessor :cueBGM
-  attr_accessor :cueFrames
-end
 
 #===============================================================================
 # Checks per step
@@ -50,6 +42,12 @@ def pbOnStepTaken(eventTriggered)
 end
 
 def pbBattleOnStepTaken(repel_active)
+  $rndx_non_static = true
+  pbBattleOnStepTakenEx(repel_active)
+  $rndx_non_static = false
+end
+
+def pbBattleOnStepTakenEx(repel_active)
   return if $Trainer.able_pokemon_count == 0
   return if !$PokemonEncounters.encounter_possible_here?
   encounter_type = $PokemonEncounters.encounter_type

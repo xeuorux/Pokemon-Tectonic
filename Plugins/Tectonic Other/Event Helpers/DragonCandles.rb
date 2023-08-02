@@ -13,13 +13,6 @@ class PokemonGlobalMetadata
     end
 end
 
-class PokemonTemp
-    def dragonFlames
-        @dragonFlames = [] if @dragonFlames.nil?
-        return @dragonFlames
-    end
-end
-
 def takeDragonFlame(triggerEventID = -1)
     if candlePuzzlesCompleted?
         pbMessage(_INTL("The flame refuses to budge!"))

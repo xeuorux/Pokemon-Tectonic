@@ -1,3 +1,152 @@
+#===============================================================================
+# Location signpost
+#===============================================================================
+class LocationWindow
+  def initialize(name)
+    @window = Window_AdvancedTextPokemon.new(name)
+    @window.resizeToFit(name,Graphics.width)
+    @window.x        = 0
+    @window.y        = -@window.height
+    @window.viewport = Viewport.new(0,0,Graphics.width,Graphics.height)
+    @window.viewport.z = 99999
+    @currentmap = $game_map.map_id
+    @frames = 0
+  end
+
+  def disposed?
+    @window.disposed?
+  end
+
+  def dispose
+    @window.dispose
+  end
+
+  def update
+    return if @window.disposed?
+    @window.update
+    if $game_temp.message_window_showing || @currentmap!=$game_map.map_id
+      @window.dispose
+      return
+    end
+    if @frames > Graphics.frame_rate * 2
+      @window.y -= 4
+      @window.dispose if @window.y+@window.height<0
+    else
+      @window.y += 4 if @window.y<0
+      @frames += 1
+    end
+  end
+end
+
+#===============================================================================
+# Light effects
+#===============================================================================
+class LightEffect
+  def initialize(event,viewport=nil,map=nil,filename=nil)
+    @light = IconSprite.new(0,0,viewport)
+    if filename!=nil && filename!="" && pbResolveBitmap("Graphics/Pictures/"+filename)
+      @light.setBitmap("Graphics/Pictures/"+filename)
+    else
+      @light.setBitmap("Graphics/Pictures/LE")
+    end
+    @light.z = 1000
+    @event = event
+    @map = (map) ? map : $game_map
+    @disposed = false
+  end
+
+  def disposed?
+    return @disposed
+  end
+
+  def dispose
+    @light.dispose
+    @map = nil
+    @event = nil
+    @disposed = true
+  end
+
+  def update
+    @light.update
+  end
+end
+
+
+
+class LightEffect_Lamp < LightEffect
+  def initialize(event,viewport=nil,map=nil)
+    lamp = AnimatedBitmap.new("Graphics/Pictures/LE")
+    @light = Sprite.new(viewport)
+    @light.bitmap  = Bitmap.new(128,64)
+    src_rect = Rect.new(0, 0, 64, 64)
+    @light.bitmap.blt(0, 0, lamp.bitmap, src_rect)
+    @light.bitmap.blt(20, 0, lamp.bitmap, src_rect)
+    @light.visible = true
+    @light.z       = 1000
+    lamp.dispose
+    @map = (map) ? map : $game_map
+    @event = event
+  end
+end
+
+
+
+class LightEffect_Basic < LightEffect
+  def update
+    return if !@light || !@event
+    super
+    @light.opacity = 100
+    @light.ox      = 32
+    @light.oy      = 48
+    if (Object.const_defined?(:ScreenPosHelper) rescue false)
+      @light.x      = ScreenPosHelper.pbScreenX(@event)
+      @light.y      = ScreenPosHelper.pbScreenY(@event)
+      @light.zoom_x = ScreenPosHelper.pbScreenZoomX(@event)
+    else
+      @light.x      = @event.screen_x
+      @light.y      = @event.screen_y
+      @light.zoom_x = 1.0
+    end
+    @light.zoom_y = @light.zoom_x
+    @light.tone   = $game_screen.tone
+  end
+end
+
+class LightEffect_DayNight < LightEffect
+  def update
+    return if !@light || !@event
+    super
+    shade = PBDayNight.getShade
+    if shade>=144   # If light enough, call it fully day
+      shade = 255
+    elsif shade<=64   # If dark enough, call it fully night
+      shade = 0
+    else
+      shade = 255-(255*(144-shade)/(144-64))
+    end
+    @light.opacity = 255-shade
+    if @light.opacity>0
+      @light.ox = 32
+      @light.oy = 48
+      if (Object.const_defined?(:ScreenPosHelper) rescue false)
+        @light.x      = ScreenPosHelper.pbScreenX(@event)
+        @light.y      = ScreenPosHelper.pbScreenY(@event)
+        @light.zoom_x = ScreenPosHelper.pbScreenZoomX(@event)
+        @light.zoom_y = ScreenPosHelper.pbScreenZoomY(@event)
+      else
+        @light.x      = @event.screen_x
+        @light.y      = @event.screen_y
+        @light.zoom_x = 1.0
+        @light.zoom_y = 1.0
+      end
+      @light.tone.set($game_screen.tone.red,
+                      $game_screen.tone.green,
+                      $game_screen.tone.blue,
+                      $game_screen.tone.gray)
+    end
+  end
+end
+
 class LightEffect_Abyss < LightEffect
   def initialize(event,viewport=nil,map=nil,filename=nil)
     @light = IconSprite.new(0,0,viewport)
