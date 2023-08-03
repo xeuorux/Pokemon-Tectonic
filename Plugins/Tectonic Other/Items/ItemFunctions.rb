@@ -196,23 +196,6 @@ def pbChangeLevel(pkmn, newlevel, scene)
   end
 end
 
-def pbTopRightWindow(text, scene = nil)
-  window = Window_AdvancedTextPokemon.new(text)
-  window.width = 198
-  window.x     = Graphics.width-window.width
-  window.y     = 0
-  window.z     = 99999
-  pbPlayDecisionSE
-  loop do
-    Graphics.update
-    Input.update
-    window.update
-    scene.pbUpdate if scene
-    break if Input.trigger?(Input::USE)
-  end
-  window.dispose
-end
-
 #===============================================================================
 # Restore HP
 #===============================================================================
