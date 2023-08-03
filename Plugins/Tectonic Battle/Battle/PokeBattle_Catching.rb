@@ -193,7 +193,6 @@ class PokeBattle_Battle
                 @decision = trainerBattle? ? 1 : 4 # Battle ended by win/capture
             end
             # Modify the Pokémon's properties because of the capture
-            pkmn.owner = Pokemon::Owner.new_from_trainer(pbPlayer) if GameData::Item.get(ball).is_snag_ball?
             BallHandlers.onCatch(ball, self, pkmn)
             pkmn.poke_ball = ball
             pkmn.makeUnmega if pkmn.mega?
