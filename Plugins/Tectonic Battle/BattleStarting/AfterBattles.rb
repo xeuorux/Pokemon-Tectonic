@@ -32,11 +32,6 @@ def pbAfterBattle(decision,canLose)
       end
     end
     case decision
-    when 1, 4   # Win, capture
-      $Trainer.pokemon_party.each do |pkmn|
-        pbPickup(pkmn)
-        pbHoneyGather(pkmn)
-      end
     when 2, 5   # Lose, draw
       if !canLose
         $game_system.bgm_unpause
