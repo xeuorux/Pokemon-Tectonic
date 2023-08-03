@@ -377,7 +377,7 @@ Pokemon = DROWZEE,24
 #-------------------------------
 [TEENAGERF,Naomi]
 Pokemon = FROGADIER,23
-    AbilityIndex = 0 # Protean
+    AbilityIndex = 0 # Mutable
 Pokemon = SKIDDO,24
     AbilityIndex = 1 # Rock Climber
 Pokemon = VENONAT,24
@@ -3948,7 +3948,7 @@ Pokemon = HYDREIGON,70
     EV = 10,20,0,20,20,0
 Pokemon = GRENINJA,70
     Moves = SHARDS,GUNKSHOT,HYDROPUMP,POWERGEM
-    AbilityIndex = 0 # Protean
+    AbilityIndex = 0 # Mutable
     Item = POISONGEM
     EV = 0,20,5,20,20,5
 #-------------------------------
@@ -5528,7 +5528,7 @@ Pokemon = WAILORD,59
 #-------------------------------
 [DITTO_CAMPER,Johnate]
 Pokemon = GRENINJA,59
-    AbilityIndex = 0 # Protean
+    AbilityIndex = 0 # Mutable
 Pokemon = SPINDA,59
     AbilityIndex = 0 # Disorienting
     Item = SITRUSBERRY

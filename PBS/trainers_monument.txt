@@ -40,8 +40,8 @@ Pokemon = DRAGONITE,70
 Pokemon = EELEKTROSS,70
     AbilityIndex = 0 # Levitate
 Pokemon = LYCANROC,70
+    Form = 2
     AbilityIndex = 0 # Tough Claws
-	Form = 2
 #-------------------------------
 [PUNKM,Panda]
 Pokemon = MISMAGIUS,70
@@ -324,8 +324,8 @@ Pokemon = RIOJIN,70
 Pokemon = GARDEVOIR,70
     AbilityIndex = 1 # Feedback
 Pokemon = ROTOM,70
+    Form = 4
     AbilityIndex = 1 # Motor Drive
-	Form = 4
 #-------------------------------
 [CLERK_M2,Kirby]
 Pokemon = HYDREIGON,70

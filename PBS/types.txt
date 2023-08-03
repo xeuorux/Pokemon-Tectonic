@@ -144,3 +144,12 @@ Color = 240,182,188
 IsSpecialType = true
 Weaknesses = POISON,STEEL,BUG
 Resistances = FIGHTING,DARK,DRAGON
+#-------------------------------
+[19]
+Name = Mutant
+InternalName = MUTANT
+Color = 162,114,146
+IsPseudoType = true
+Weaknesses = NORMAL,DRAGON
+Resistances = ELECTRIC,FIGHTING,POISON,ROCK,GHOST,DARK
+Immunities = FIRE,ICE

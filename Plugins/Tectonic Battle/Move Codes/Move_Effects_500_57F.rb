@@ -732,9 +732,58 @@ class PokeBattle_Move_52C < PokeBattle_DrainMove
 end
 
 #===============================================================================
-# (Not currently used.)
+# Transforms the user into one of its forms. (Mutate)
 #===============================================================================
 class PokeBattle_Move_52D < PokeBattle_Move
+    def resolutionChoice(user)
+        if @battle.autoTesting
+            @chosenForm = rand(3) + 1
+        elsif !user.pbOwnedByPlayer? # Trainer AI
+            @chosenForm = 2 # Always chooses mega mind form
+        else
+            form1Name = GameData::Species.get_species_form(:DEOXYS,1).form_name
+            form2Name = GameData::Species.get_species_form(:DEOXYS,2).form_name
+            form3Name = GameData::Species.get_species_form(:DEOXYS,3).form_name
+            formNames = [form1Name,form2Name,form3Name]
+            chosenIndex = @battle.scene.pbShowCommands(_INTL("Which form should #{user.pbThis(true)} take?"),formNames,0)
+            @chosenForm = chosenIndex + 1
+        end
+    end
+
+    def pbCanChooseMove?(user, commandPhase, show_message)
+        unless user.form == 0
+            if show_message
+                msg = _INTL("#{user.pbThis} has already mutated!")
+                commandPhase ? @battle.pbDisplayPaused(msg) : @battle.pbDisplay(msg)
+            end
+            return false
+        end
+        return true
+    end
+
+    def pbMoveFailed?(user, _targets, show_message)
+        unless user.countsAs?(:DEOXYS)
+            @battle.pbDisplay(_INTL("But {1} can't use the move!", user.pbThis)) if show_message
+            return true
+        end
+        unless user.form == 0
+            @battle.pbDisplay(_INTL("But {1} has already mutated!", user.pbThis)) if show_message
+            return true
+        end
+        return false
+    end
+    
+    def pbEffectGeneral(user)
+        user.pbChangeForm(@chosenForm, _INTL("{1} reforms its genes with space energy!", user.pbThis))
+    end
+
+    def resetMoveUsageState
+        @chosenForm = nil
+    end
+
+    def getEffectScore(_user, _target)
+        return 100
+    end
 end
 
 #===============================================================================

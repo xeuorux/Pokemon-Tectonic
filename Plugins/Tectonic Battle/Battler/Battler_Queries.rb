@@ -136,6 +136,7 @@ class PokeBattle_Battler
             :STYLISH,
             :FRIENDTOALL,
             :PRIMEVALDISGUISE,
+            :UNIDENTIFIED,
         ]
 
         if abil
@@ -178,6 +179,7 @@ class PokeBattle_Battler
             :STYLISH,
             :FRIENDTOALL,
             :PRIMEVALDISGUISE,
+            :UNIDENTIFIED,
         ]
 
         if abil

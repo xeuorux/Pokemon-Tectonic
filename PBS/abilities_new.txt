@@ -437,3 +437,4 @@
 1436,PAINDELAY,Pain Delay,"33% of all move damage taken is instead taken at the end of the next turn."
 1437,VANDAL,Vandel,"Deals 30% damage to targets that have an item. After attacking a foe, destroys their clothing items."
 1438,ENGORGE,Engorge,"Draining moves deal 30% more damage. Can overheal when draining."
+1439,UNIDENTIFIED,Unidentified,"The Pokémon is Mutant-type."
