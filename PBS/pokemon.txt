@@ -29664,7 +29664,7 @@ InternalName = HAEROBIC
 Type1 = NORMAL
 Type2 = FIGHTING
 # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
-BaseStats = 79,116,99,120,50,106
+BaseStats = 79,116,89,120,60,106
 # Total = 570
 GenderRate = Female50Percent
 GrowthRate = Medium
