@@ -645,7 +645,7 @@ class PokeBattle_Battler
         oldAbil = firstAbility
         oldAbilities = abilities.clone
         oldAbilities.delete(newAbility)
-        showMyAbilitySplash(oldAbil, true, false) if showSplashes
+        showMyAbilitySplash(oldAbil, true) if showSplashes
         setAbility(newAbility)
         @battle.pbReplaceAbilitySplash(self, newAbility) if showSplashes
         replacementMsg ||= _INTL("{1}'s Ability became {2}!", pbThis, getAbilityName(newAbility))

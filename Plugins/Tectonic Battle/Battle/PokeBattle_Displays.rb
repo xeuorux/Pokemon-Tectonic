@@ -56,7 +56,7 @@ class PokeBattle_Battle
         @scene.pbCommonAnimation(name, user, targets) if @showAnims
     end
 
-    def pbShowAbilitySplash(battler, ability, delay = false, logTrigger = true)
+    def pbShowAbilitySplash(battler, ability, delay = false)
         aiLearnsAbility(battler, ability)
         triggerAbilityTriggeredDialogue(battler, ability)
         return unless showMessages?
