@@ -362,18 +362,6 @@ MultipleForms.register(:FLABEBE,{
 
 MultipleForms.copy(:FLABEBE,:FLOETTE,:FLORGES)
 
-MultipleForms.register(:FURFROU,{
-  "getForm" => proc { |pkmn|
-    if !pkmn.time_form_set ||
-       pbGetTimeNow.to_i > pkmn.time_form_set.to_i + 60 * 60 * 24 * 5   # 5 days
-      next 0
-    end
-  },
-  "onSetForm" => proc { |pkmn,form,oldForm|
-    pkmn.time_form_set = (form > 0) ? pbGetTimeNow.to_i : nil
-  }
-})
-
 MultipleForms.register(:ESPURR,{
   "getForm" => proc { |pkmn|
     next pkmn.gender
