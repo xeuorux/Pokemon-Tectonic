@@ -66,6 +66,8 @@ class PokemonGlobalMetadata
     attr_accessor :randomizedData
     attr_accessor :isRandomizer
     attr_accessor :randomizerRules
+    # Omnitutor
+    attr_accessor :omnitutor_active
 	
 	def initialize
     # Movement
