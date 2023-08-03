@@ -2219,7 +2219,7 @@ class PokeBattle_Move_16B < PokeBattle_Move
             end
             return true
         end
-        if target.pbHasMove?(target.lastRegularMoveUsed)
+        unless target.pbHasMove?(target.lastRegularMoveUsed)
             if show_message
                 @battle.pbDisplay(_INTL("But it failed, since #{target.pbThis(true)} no longer knows its most recent move!"))
             end
@@ -2336,7 +2336,7 @@ class PokeBattle_Move_16E < PokeBattle_Move
     end
 
     def shouldHighlight?(_user, _target)
-        return @battle.field.terrain == :Grassy
+        return @battle.moonGlowing?
     end
 end
 
