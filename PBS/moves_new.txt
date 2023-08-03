@@ -347,7 +347,7 @@
 1346,AURAARROWS,Aura Arrows,500,30,FIGHTING,Special,100,15,0,NearOther,0,befhn,"The user shoots three arrows made of Aura with extreme precision. Critical hits twice as often.",AURASPHERE
 1347,ESPERDIVE,Esper Dive,01F,80,PSYCHIC,Physical,100,10,100,NearOther,0,abef,"The user slashes the target with aura-enriched wings. This boosts the user's Speed by two steps.",SKYATTACK
 1348,TRIUMPHANTDANCE,Triumphant Dance,5B7,0,FIGHTING,Status,100,5,0,User,0,do,"The user raises all of their stats by two step. Fails unless a foe fainted last turn.",WORKUP
-1349,ICEBREAKER,Icebreaker,5B1,120,ROCK,Physical,100,10,0,NearOther,0,abef,"The user charges at the target, sweeping away hazards in the with its armored jaw. The user also takes 33% recoil.",HEADSMASH
+1349,ICEBREAKER,Icebreaker,5B8,120,ROCK,Physical,100,10,0,NearOther,0,abef,"The user sweeps away hazards while charging. User also takes 33% recoil.",HEADSMASH
 1350,SCHEME,Scheme,5BA,0,NORMAL,Status,0,25,0,User,0,d,"The user schemes to raise its Attack and Sp. Atk by two steps. During moonglow, also raises Speed by two steps.",NASTYPLOT
 1351,RAGINGFURY,Raging Fury,55F,135,FIRE,Physical,100,10,0,RandomNearFoe,0,abef,"The user rampages and attacks while spewing flames for three turns.",FLAREBLITZ
 1352,CHLOROBLAST,Chloroblast,510,150,GRASS,Special,100,5,100,NearOther,0,bef,"The user launches its amassed chlorophyll to inflict damage on the target. The user loses half its current HP.",SOLARBEAM
