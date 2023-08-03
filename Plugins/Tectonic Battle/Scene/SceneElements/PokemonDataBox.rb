@@ -351,14 +351,14 @@ class PokemonDataBox < SpriteWrapper
 
 		# Draw trapped icon
 		if @battler.trapped?
-			trappedX = (@battler.opposes?(0)) ? 212 : -8   # Foe's/player's
+			trappedX = (@battler.opposes?(0)) ? 216 : -12   # Foe's/player's
 			imagePos.push(["Graphics/Pictures/battle/icon_trapped",@spriteBaseX+trappedX,36])
 		end
 
 		# Draw held item icon
 		itemIndex = 0
 		@battler.eachItem do |itemID|
-		  itemX = (@battler.opposes?(0)) ? 204 : -8   # Foe's/player's
+		  itemX = (@battler.opposes?(0)) ? 200 : -4   # Foe's/player's
 		  itemX = itemX + 8 * itemIndex
 		  itemY = 36 + 8 * itemIndex
 		  itemIconFileName = GameData::Item.get(itemID).super ? "Graphics/Pictures/Battle/icon_item_super" : "Graphics/Pictures/Battle/icon_item"

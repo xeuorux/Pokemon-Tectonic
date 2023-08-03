@@ -67,7 +67,7 @@ class PokemonPokedex_Scene
 			next if trainerData.getParentTrainer # Ignore sub-trainers
 			trainerData.pokemon.each do |partyEntry|
 				species = partyEntry[:species]
-				speciesUsed[species].push(trainerData)
+				speciesUsed[species]&.push(trainerData)
 			end
 		end
 		

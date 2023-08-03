@@ -44,6 +44,8 @@ class PokeBattle_Battler
         return if fainted? && !ignoreFainted
         # echoln("[BATTLER EFFECT] Effect #{effect} disabled on battler #{pbThis(true)}") if effectActive?(effect)
         super(effect)
+
+        refreshDataBox if getData(effect).trapping?
     end
 
     def effectActive?(effect, ignoreFainted = false)

@@ -39,8 +39,9 @@ Pokemon = DRAGONITE,70
     AbilityIndex = 1 # Multiscale
 Pokemon = EELEKTROSS,70
     AbilityIndex = 0 # Levitate
-Pokemon = LYCANROC_2,70
+Pokemon = LYCANROC,70
     AbilityIndex = 0 # Tough Claws
+	Form = 2
 #-------------------------------
 [PUNKM,Panda]
 Pokemon = MISMAGIUS,70
@@ -322,8 +323,9 @@ Pokemon = RIOJIN,70
     AbilityIndex = 1 # Inner Focus
 Pokemon = GARDEVOIR,70
     AbilityIndex = 1 # Feedback
-Pokemon = ROTOM_4,70
+Pokemon = ROTOM,70
     AbilityIndex = 1 # Motor Drive
+	Form = 4
 #-------------------------------
 [CLERK_M2,Kirby]
 Pokemon = HYDREIGON,70
