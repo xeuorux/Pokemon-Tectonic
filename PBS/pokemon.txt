@@ -293,7 +293,7 @@ Name = Caterpie
 InternalName = CATERPIE
 Type1 = BUG
 # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
-BaseStats = 45,20,35,45,30,20
+BaseStats = 45,20,20,45,30,35
 # Total = 195
 GenderRate = Female50Percent
 GrowthRate = Medium
@@ -326,7 +326,7 @@ Name = Metapod
 InternalName = METAPOD
 Type1 = BUG
 # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
-BaseStats = 50,20,55,30,25,25
+BaseStats = 50,20,45,30,25,75
 # Total = 205
 GenderRate = Female50Percent
 GrowthRate = Medium
@@ -427,7 +427,7 @@ InternalName = KAKUNA
 Type1 = BUG
 Type2 = POISON
 # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
-BaseStats = 45,25,50,35,25,25
+BaseStats = 55,35,50,35,25,45
 # Total = 205
 GenderRate = Female50Percent
 GrowthRate = Medium
