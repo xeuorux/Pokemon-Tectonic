@@ -231,7 +231,7 @@ module PBDayNight
     end
 
     # Shedule a tone refresh on the next try (probably next frame)
-    def sheduleToneRefresh
+    def self.sheduleToneRefresh
         @dayNightToneLastUpdate = nil
     end
     
