@@ -615,3 +615,7 @@
 614,SURGINGSTRIKES,Surging Strikes,188,25,WATER,Physical,100,5,0,NearOther,0,abef,"Strikes the target thrice, with mastery of the Water style. Always results in a critical hit.",
 615,FLIPTURN,Flip Turn,0EE,70,WATER,Physical,100,5,0,NearOther,0,abef,"After making its attack, the user rushes back to switch places with a party Pokémon in waiting.",
 616,MEMENTO,Memento,0E2,0,DARK,Status,100,10,0,NearOther,0,be,"The user faints in order to lower the target's Attack and Sp. Atk by 5 steps each.",
+617,SANDSEARSTORM,Sandsear Storm,00A,110,GROUND,Special,80,10,30,AllNearFoes,0,bef,"The user wraps foes in fierce winds and searingly hot sand. It has a 30% chance to burn.",SCORCHINGSANDS
+618,WILDBOLTSTORM,Wildbolt Storm,007,110,ELECTRIC,Special,80,10,30,AllNearFoes,0,bef,"The user savagely attacks foes with lightning and wind. It has a 30% chance to numb.",THUNDER
+619,BLEAKWINDSTORM,Bleakwind Storm,403,110,FLYING,Special,80,10,30,AllNearFoes,0,bef,"The user attacks foes with savagely cold winds. It has a 30% chance to frostbite.",HURRICANE
+620,SPRINGTIDESTORM,Springtide Storm,59F,110,FAIRY,Special,80,10,30,AllNearFoes,0,bef,"The user attacks foes with love and hate. It has a 30% chance to lower both attacking stats.",HURRICANE

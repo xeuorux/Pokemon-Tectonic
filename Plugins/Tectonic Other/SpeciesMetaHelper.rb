@@ -12,7 +12,8 @@ def isLegendary(idNumber)
 	legendaries8 = (785..809).to_a
 	legendaries9 = (888..898).to_a
 	legendaries10 = (2026..2028).to_a
-	legendaries = [legendaries1,legendaries2,legendaries3,legendaries4,legendaries5,legendaries6,legendaries7,legendaries8,legendaries9,legendaries10].flatten
+	legendaries = [legendaries1,legendaries2,legendaries3,legendaries4,legendaries5,
+		legendaries6,legendaries7,legendaries8,legendaries9,legendaries10,[2060]].flatten
 	return legendaries.include?(idNumber)
 end
 

@@ -1331,3 +1331,11 @@ Abilities = VITALSPIRIT
 Height = 1.5
 Weight = 33.0
 Pokedex = Despite its diminished size, its mental power has grown phenomenally. With a mere thought, it can smash a skyscraper to smithereens.
+#-------------------------------
+[ENAMORUS,1]
+FormName = Therian
+BaseStats = 74,115,110,46,135,100
+Abilities = ACCLIMATIZE
+Shape = Quadruped
+BattlerPlayerY = 6
+BattlerEnemyY = 17
