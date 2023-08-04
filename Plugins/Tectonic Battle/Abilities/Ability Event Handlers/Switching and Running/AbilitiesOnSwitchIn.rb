@@ -627,6 +627,30 @@ BattleHandlers::AbilityOnSwitchIn.add(:HONORAURA,
   }
 )
 
+BattleHandlers::AbilityOnSwitchIn.add(:KILLJOY,
+  proc { |ability, battler, battle|
+      battle.pbShowAbilitySplash(battler, ability)
+      battle.pbDisplay(_INTL("{1} is a killjoy! No one is allowed to dance!", battler.pbThis))
+      battle.pbHideAbilitySplash(battler)
+  }
+)
+
+BattleHandlers::AbilityOnSwitchIn.add(:BADINFLUENCE,
+  proc { |ability, battler, battle|
+      battle.pbShowAbilitySplash(battler, ability)
+      battle.pbDisplay(_INTL("{1} is a bad influence! No one can heal!", battler.pbThis))
+      battle.pbHideAbilitySplash(battler)
+  }
+)
+
+BattleHandlers::AbilityOnSwitchIn.add(:SIGNALJAM,
+  proc { |ability, battler, battle|
+      battle.pbShowAbilitySplash(battler, ability)
+      battle.pbDisplay(_INTL("{1} is interfering! No one gets same-type damage bonus!", battler.pbThis))
+      battle.pbHideAbilitySplash(battler)
+  }
+)
+
 BattleHandlers::AbilityOnSwitchIn.add(:CLOVERSONG,
   proc { |ability, battler, battle|
       battle.pbShowAbilitySplash(battler, ability)
