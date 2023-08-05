@@ -122,7 +122,8 @@ class PokeBattle_AI
         damageScore = 0
         triggersScore = 0
         willFaint = false
-        if move.damagingMove?(true)
+        damagingMove = move.damagingMove?(true)
+        if damagingMove
             # Adjust the score based on the move dealing damage
             # and perhaps a percent chance to actually benefit from its effect score
             begin
@@ -185,7 +186,7 @@ class PokeBattle_AI
             targetAffectingEffectScore = 0
             if willFaint
                 faintEffectScore = move.getFaintEffectScore(user, target)
-            elsif !target.substituted?
+            elsif !target.substituted? || move.ignoresSubstitute?(user)
                 targetAffectingEffectScore = move.getTargetAffectingEffectScore(user, target)
             end
             effectScore += regularEffectScore
@@ -216,7 +217,7 @@ class PokeBattle_AI
         # Pick a good move for the Choice items
         if user.hasActiveItem?(CHOICE_LOCKING_ITEMS) || user.hasActiveAbilityAI?(CHOICE_LOCKING_ABILITIES)
             echoln("[MOVE SCORING] #{user.pbThis} scores the move #{move.id} differently due to choice locking.")
-            if move.damagingMove?(true)
+            if damagingMove
                 score *= 1.5
             else
                 score /= 2
@@ -232,8 +233,8 @@ class PokeBattle_AI
         end
 
         # If slower than them, our move will be worse in comparison
-        if !switchPredicted && !userMovesFirst?(move, user, target)
-            echoln("[MOVE SCORING] #{user.pbThis} scores the move #{move.id} lower since it'll be going slower than the target")
+        if damagingMove && !switchPredicted && !userMovesFirst?(move, user, target)
+            echoln("[MOVE SCORING] #{user.pbThis} scores the move #{move.id} lower since its an attack going slower than the target")
             score *= 0.7
         end
 

@@ -59,7 +59,7 @@ module FollowerSettings
     :ORBEETLE, :FLAPPLE, :SINISTEA, :POLTEAGEIST, :FROSMOTH, :DREEPY, :DRAKLOAK,
     :DRAGAPULT, :ETERNATUS, :REGIELEKI, :REGIDRAGO, :CALYREX,
     # Tectonic original
-    :MGOLDEEN, :MSEAKING
+    :MGOLDEEN, :MSEAKING, :MMUNNA, :MMUSHARNA
   ]
 
   # List of Pokemon that will not appear behind the player when surfing,
@@ -84,7 +84,9 @@ module FollowerSettings
     # Gen VII
     :ROWLET, :DARTRIX, :PIKIPEK, :ORICORIO, :SILVALLY_2,
     # Gen VIII
-    :ROOKIDEE
+    :ROOKIDEE,
+    # Tectonic original
+    :MVULLABY, :MMANDIBUZZ,
   ]
 end
 #===============================================================================

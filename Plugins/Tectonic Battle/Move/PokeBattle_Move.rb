@@ -158,6 +158,7 @@ class PokeBattle_Move
     def hazardMove?; return false; end
     def statStepStealingMove?; return false; end
     def redirectionMove?; return false; end
+    def hazardRemovalMove?; return false; end
   
     def ignoresSubstitute?(user)   # user is the Pokémon using this move
       return true if soundMove?

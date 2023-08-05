@@ -210,7 +210,7 @@ end
 class PokeBattle_Move_588 < PokeBattle_Move
     def pbEffectAfterAllHits(user, target)
         return unless target.damageState.fainted
-        @battle.field.incrementEffect(:PayDay, 10 * user.level) if user.pbOwnedByPlayer?
+        @battle.field.incrementEffect(:PayDay, 15 * user.level) if user.pbOwnedByPlayer?
     end
 end
 
@@ -636,7 +636,7 @@ class PokeBattle_Move_5A1 < PokeBattle_Move
     end
 
     def getEffectScore(user, target)
-        return getHazardSettingEffectScore(user, target)
+        return getHazardSettingEffectScore(user, target, 12)
     end
 end
 
@@ -1071,8 +1071,8 @@ class PokeBattle_Move_5B5 < PokeBattle_Move
        @battle.endWeather
     end
 
-    def getEffectScore(_user, _target)
-        return 20
+    def getEffectScore(user, _target)
+        return 40 unless user.inWeatherTeam
     end
 end
 
@@ -1128,6 +1128,8 @@ end
 # (Icebreaker)
 #===============================================================================
 class PokeBattle_Move_5B8 < PokeBattle_RecoilMove
+    def hazardRemovalMove?; return true; end
+
     def recoilFactor;  return (1.0 / 3.0); end
 
     def pbEffectAfterAllHits(user, target)
@@ -1738,7 +1740,7 @@ class PokeBattle_Move_5CC < PokeBattle_Move
     end
 
     def getTargetAffectingEffectScore(user, target)
-        return getForceOutEffectScore(user, target)
+        return getForceOutEffectScore(user, target, false)
     end
 end
 

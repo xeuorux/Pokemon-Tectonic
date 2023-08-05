@@ -5,6 +5,14 @@ class PokeBattle_Battler
         return []
     end
 
+    def inWeatherTeam
+        policies = ownersPolicies
+        %i[SUN_TEAM RAIN_TEAM SAND_TEAM HAIL_TEAM ECLIPSE_TEAM MOONGLOW_TEAM].each do |weatherPolicy|
+            return true if policies.include?(weatherPolicy)
+        end
+        return false
+    end
+
     ###############################################################################
     # Understanding the battler's moves
     ###############################################################################
@@ -31,7 +39,7 @@ class PokeBattle_Battler
         end
     end
 
-    def hasPhysicalAttack?(aiChecking = false)
+    def hasPhysicalAttack?
         eachAIKnownMove do |m|
             next unless m.physicalMove?(m.type)
             return true
@@ -145,6 +153,14 @@ class PokeBattle_Battler
     def hasStatBoostStealingMove?
         eachAIKnownMove do |m|
             next unless m.statStepStealingMove?
+            return true
+        end
+        return false
+    end
+
+    def hasHazardRemovalMove?
+        eachAIKnownMove do |m|
+            next unless m.hazardRemovalMove?
             return true
         end
         return false

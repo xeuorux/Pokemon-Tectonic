@@ -103,7 +103,7 @@ class PokeBattle_Move_105 < PokeBattle_Move
 
     def getEffectScore(user, target)
         return 0 if damagingMove? && target.pbOwnSide.effectActive?(:StealthRock)
-        return getHazardSettingEffectScore(user, target)
+        return getHazardSettingEffectScore(user, target, 12)
     end
 end
 
@@ -1087,9 +1087,12 @@ class PokeBattle_Move_127 < PokeBattle_Move_0DB
 end
 
 #===============================================================================
-# Not currently used.
+# Scatters lots of coins that the player picks up after winning the battle. (Cha-ching)
 #===============================================================================
 class PokeBattle_Move_128 < PokeBattle_Move
+    def pbEffectGeneral(user)
+        @battle.field.incrementEffect(:PayDay, 8 * user.level) if user.pbOwnedByPlayer?
+    end
 end
 
 #===============================================================================
@@ -1727,7 +1730,7 @@ class PokeBattle_Move_151 < PokeBattle_TargetMultiStatDownMove
     end
 
     def getEffectScore(user, target)
-        return getSwitchOutEffectScore(user, target)
+        return getSwitchOutEffectScore(user)
     end
 end
 
@@ -1774,7 +1777,7 @@ class PokeBattle_Move_153 < PokeBattle_Move
     end
 
     def getEffectScore(user, target)
-        return getHazardSettingEffectScore(user, target)
+        return getHazardSettingEffectScore(user, target, 15)
     end
 end
 

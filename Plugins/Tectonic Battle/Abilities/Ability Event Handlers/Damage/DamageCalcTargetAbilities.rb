@@ -1,6 +1,6 @@
 BattleHandlers::DamageCalcTargetAbility.add(:FILTER,
-  proc { |ability, user, target, _move, mults, _baseDmg, _type, aiChecking|
-      if Effectiveness.super_effective?(typeModToCheck(battle, type, user, target, move, aiChecking))
+  proc { |ability, user, target, move, mults, _baseDmg, type, aiChecking|
+      if Effectiveness.super_effective?(typeModToCheck(user.battle, type, user, target, move, aiChecking))
         mults[:final_damage_multiplier] *= 0.75
       end
   }
@@ -9,24 +9,24 @@ BattleHandlers::DamageCalcTargetAbility.add(:FILTER,
 BattleHandlers::DamageCalcTargetAbility.copy(:FILTER, :SOLIDROCK, :PRISMARMOR)
 
 BattleHandlers::DamageCalcTargetAbility.add(:SHIELDWALL,
-  proc { |ability, _user, target, _move, mults, _baseDmg, _type, aiChecking|
-    if Effectiveness.hyper_effective?(typeModToCheck(battle, type, user, target, move, aiChecking))
+  proc { |ability, user, target, move, mults, _baseDmg, type, aiChecking|
+    if Effectiveness.hyper_effective?(typeModToCheck(user.battle, type, user, target, move, aiChecking))
       mults[:final_damage_multiplier] *= 0.5
     end
   }
 )
 
 BattleHandlers::DamageCalcTargetAbility.add(:DULL,
-  proc { |ability, _user, target, _move, mults, _baseDmg, _type, aiChecking|
-    if Effectiveness.normal?(typeModToCheck(battle, type, user, target, move, aiChecking))
+  proc { |ability, user, target, move, mults, _baseDmg, type, aiChecking|
+    if Effectiveness.normal?(typeModToCheck(user.battle, type, user, target, move, aiChecking))
       mults[:final_damage_multiplier] *= 0.8
     end
   }
 )
 
 BattleHandlers::DamageCalcTargetAbility.add(:WELLSUITED,
-  proc { |ability, _user, target, _move, mults, _baseDmg, _type, aiChecking|
-    if Effectiveness.not_very_effective?(typeModToCheck(battle, type, user, target, move, aiChecking))
+  proc { |ability, user, target, move, mults, _baseDmg, type, aiChecking|
+    if Effectiveness.not_very_effective?(typeModToCheck(user.battle, type, user, target, move, aiChecking))
       mults[:final_damage_multiplier] *= 0.5
     end
   }

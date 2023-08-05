@@ -298,13 +298,7 @@ class BattleInfoDisplay < SpriteWrapper
 		end
 
 		# Display the stat's name
-		statNameColor = base
-		if GameData::Stat.get(stat).type == :main_battle
-			tribalBoostSymbol = (stat.to_s + "_TRIBAL").to_sym
-			isTribalBoosted = statValues[tribalBoostSymbol] > 0
-			statNameColor = TRIBAL_BOOSTED_BASE if isTribalBoosted
-		end
-		textToDraw.push([name,statLabelX,y,0,statNameColor,shadow])
+		textToDraw.push([name,statLabelX,y,0,base,shadow])
 
 		# Display the stat step
 		x = statStepX

@@ -148,7 +148,7 @@ def getLeechEffectScore(user, target, ignoreCheck: false)
 end
 
 def getSleepEffectScore(user, target, _policies = [])
-    score = 200
+    score = 150
     score -= 100 if target.hasSleepAttack?
     score += STATUS_PUNISHMENT_BONUS if user&.hasStatusPunishMove?
     return score
@@ -192,17 +192,18 @@ def getWantsToBeSlowerScore(user, other, magnitude = 1)
     end
 end
 
-def getHazardSettingEffectScore(user, _target)
+def getHazardSettingEffectScore(user, _target, magnitude = 10)
     canChoose = false
     user.eachOpposing do |b|
         next unless user.battle.pbCanChooseNonActive?(b.index)
         canChoose = true
+        return 0 if b.hasHazardRemovalMove?
         break
     end
     return 0 unless canChoose # Opponent can't switch in any Pokemon
-    score = 20
-    score += 10 * user.enemiesInReserveCount
-    score += 10 * user.alliesInReserveCount
+    score = magnitude * 2
+    score += magnitude * user.enemiesInReserveCount
+    score += magnitude * user.alliesInReserveCount
     return score
 end
 
@@ -223,23 +224,42 @@ end
 def hazardWeightOnSide(side, excludeEffects = [])
     hazardWeight = 0
     hazardWeight += 20 * side.countEffect(:Spikes) unless excludeEffects.include?(:Spikes)
-    hazardWeight += 50 if side.effectActive?(:StealthRock) && !excludeEffects.include?(:StealthRock)
+    hazardWeight += 40 if side.effectActive?(:StealthRock) && !excludeEffects.include?(:StealthRock)
+    hazardWeight += 40 if side.effectActive?(:FeatherWard) && !excludeEffects.include?(:FeatherWard)
     hazardWeight += 20 if side.effectActive?(:StickyWeb) && !excludeEffects.include?(:StickyWeb)
     hazardWeight += statusSpikesWeightOnSide(side, excludeEffects)
     return hazardWeight
 end
 
-def getSwitchOutEffectScore(user, _target)
-    score = user.alliesInReserveCount * 5
-    score *= 1.5 if user.ownersPolicies.include?(:PRIORITIZEUTURN)
-    score -= hazardWeightOnSide(user.pbOwnSide)
+def getSwitchOutEffectScore(switcher, scoreStatSteps = true)
+    score = switcher.alliesInReserveCount * 5
+    score *= 1.5 if switcher.ownersPolicies.include?(:PRIORITIZEUTURN)
+    score -= hazardWeightOnSide(switcher.pbOwnSide)
+    score -= statStepsValueScore(switcher) if scoreStatSteps
     return score
 end
 
-def getForceOutEffectScore(_user, target)
-    return 0 if target.substituted?
+def getForceOutEffectScore(_user, target, random = true)
     return 0 if target.battle.pbCanChooseNonActive?(target.index)
-    return hazardWeightOnSide(target.pbOwnSide)
+    return 0 if target.effectActive?(:Ingrain)
+    score = random ? 10 : -15
+    score += hazardWeightOnSide(target.pbOwnSide)
+    score += statStepsValueScore(target)
+    return score
+end
+
+def statStepsValueScore(battler)
+    score = 0
+    GameData::Stat.each_battle do |s|
+        statStep = battler.steps[s.id]
+        if s.id == :ATTACK
+            next unless battler.hasPhysicalAttack?
+        elsif s.id == :SPECIAL_ATTACK
+            next unless battler.hasSpecialAttack?
+        end
+        score += statStep * 5
+    end
+    return score
 end
 
 def getHealingEffectScore(user, target, magnitude = 5)
