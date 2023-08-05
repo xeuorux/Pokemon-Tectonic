@@ -981,6 +981,8 @@ end
 # And all entry hazard's for the user's side.
 #===============================================================================
 class PokeBattle_Move_049 < PokeBattle_Move
+    def hazardRemovalMove?; return true; end
+
     def ignoresSubstitute?(_user); return true; end
 
     def initialize(battle, move)

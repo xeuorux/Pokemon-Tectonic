@@ -2626,7 +2626,8 @@ class PokeBattle_Move_0D9 < PokeBattle_HealingMove
 
     def getEffectScore(user, target)
         score = super
-        score -= getSleepEffectScore(user, target)
+        score -= getSleepEffectScore(nil, target)
+        score += 40 if user.pbHasAnyStatus?
         return score
     end
 end
@@ -3146,7 +3147,7 @@ class PokeBattle_Move_0EA < PokeBattle_Move
     end
 
     def getEffectScore(user, target)
-        return getSwitchOutEffectScore(user, target)
+        return getSwitchOutEffectScore(user)
     end
 end
 
@@ -3268,10 +3269,9 @@ class PokeBattle_Move_0ED < PokeBattle_Move
         total = 0
         GameData::Stat.each_battle { |s| total += user.steps[s.id] }
         return 0 if total <= 0 || user.firstTurn?
-        score = 0
-        score += total * 20
+        score = total * 10
         score += 30 unless user.hasDamagingAttack?
-        score += getSwitchOutEffectScore(user, target)
+        score += getSwitchOutEffectScore(user, false)
         return score
     end
 end
@@ -3305,7 +3305,7 @@ class PokeBattle_Move_0EE < PokeBattle_Move
     end
 
     def getEffectScore(user, target)
-        return getSwitchOutEffectScore(user, target)
+        return getSwitchOutEffectScore(user)
     end
 end
 

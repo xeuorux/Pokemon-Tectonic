@@ -465,3 +465,5 @@
 1464,TIDALKINESIS,Tidalkinesis,5FA,100,WATER,Physical,100,10,100,NearOther,0,abefi,"The user bites with added telekinetic force. During eclipse, the target also becomes numbed.",
 1465,MUTATE,Mutate,52D,0,MUTANT,Status,0,5,0,User,0,,"The user mutates its genetic code, transforming into any of its 3 other forms. Only useable as Deoxys Normal.",TRANSFORM
 1466,GUTCHECK,Gut Check,176,55,ELECTRIC,Physical,100,25,100,NearOther,0,abef,"The user attacks with courage. Sets spikes if Full. If Hangry, deals double damage and is Dark-type.",SPARK
+1467,SHATTERVICE,Shatter Vice,0CF,90,STEEL,Physical,100,15,0,NearOther,0,bef,"The user crushes the target in its metallic vices, trapping and damaging it for three turns.",METALCLAW
+1468,WAVEOFJADE,Wave of Jade,55A,70,ROCK,Special,100,12,0,AllNearFoes,0,abef,"The user emits a wave of green energy to strike near foes. Deals double damage to those slower than the user.",

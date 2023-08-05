@@ -249,7 +249,6 @@ class PokeBattle_Move
             next if b.fainted? || b.damageState.unaffected
             next if switchedBattlers.include?(b.index)
             next if b.effectActive?(:Ingrain)
-            next if b.hasActiveAbility?(:SUCTIONCUPS) && !@battle.moldBreaker
             next if substituteBlocks && b.damageState.substitute
             next unless @battle.pbCanChooseNonActive?(b.index)
             @battle.pbShowAbilitySplash(user, ability) if ability

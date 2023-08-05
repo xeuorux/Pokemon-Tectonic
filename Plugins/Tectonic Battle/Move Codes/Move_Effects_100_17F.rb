@@ -103,7 +103,7 @@ class PokeBattle_Move_105 < PokeBattle_Move
 
     def getEffectScore(user, target)
         return 0 if damagingMove? && target.pbOwnSide.effectActive?(:StealthRock)
-        return getHazardSettingEffectScore(user, target)
+        return getHazardSettingEffectScore(user, target, 12)
     end
 end
 
@@ -1727,7 +1727,7 @@ class PokeBattle_Move_151 < PokeBattle_TargetMultiStatDownMove
     end
 
     def getEffectScore(user, target)
-        return getSwitchOutEffectScore(user, target)
+        return getSwitchOutEffectScore(user)
     end
 end
 
@@ -1774,7 +1774,7 @@ class PokeBattle_Move_153 < PokeBattle_Move
     end
 
     def getEffectScore(user, target)
-        return getHazardSettingEffectScore(user, target)
+        return getHazardSettingEffectScore(user, target, 15)
     end
 end
 

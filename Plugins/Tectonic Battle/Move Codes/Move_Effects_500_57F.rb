@@ -957,6 +957,8 @@ end
 # Removes all hazards on both sides. (Terraform)
 #===============================================================================
 class PokeBattle_Move_538 < PokeBattle_Move
+    def hazardRemovalMove?; return true; end
+
     def eachHazard(side, isOurSide)
         side.eachEffect(true) do |effect, _value, data|
             next unless data.is_hazard?
@@ -1317,6 +1319,8 @@ end
 # (Rapid Spin)
 #===============================================================================
 class PokeBattle_Move_54B < PokeBattle_StatUpMove
+    def hazardRemovalMove?; return true; end
+
     def initialize(battle, move)
         super
         @statUp = [:SPEED, 1]
@@ -1519,9 +1523,13 @@ class PokeBattle_Move_559 < PokeBattle_Move
 end
 
 #===============================================================================
-# (Not currently used.)
+# Deals double damage if faster than the target. (Wave of Jade)
 #===============================================================================
 class PokeBattle_Move_55A < PokeBattle_Move
+    def pbBaseDamage(baseDmg, user, target)
+        baseDmg *= 2 if user.pbSpeed > target.pbSpeed
+        return baseDmg
+    end
 end
 
 #===============================================================================
