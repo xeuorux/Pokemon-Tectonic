@@ -161,3 +161,4 @@
 4160,ABYSSALRESET,Abyssal Reset,52D,60,DARK,Special,100,12,0,AllNearOthers,0,bce,"Darkness rolls over the field, damaging all other Pokémon, ending weather, and healing statuses.",
 4161,MIDNIGHTHUNT,Midnight Hunt,5B0,0,DARK,Status,0,5,0,NearFoe,0,,"Summons moonglow for eight turns. The target is terrorized by howls, trapping it.",HOWL
 4162,COURTCHANGE,Court Change,17A,0,NORMAL,Status,100,10,0,BothSides,0,e,"With its mysterious power, the user swaps the effects on either side of the field.",
+4163,AURAWHEEL,Aura Wheel,176,100,ELECTRIC,Physical,100,10,10,NearOther,0,bef,"Type changes depending on the user's form. It has a 10% chance to numb.",

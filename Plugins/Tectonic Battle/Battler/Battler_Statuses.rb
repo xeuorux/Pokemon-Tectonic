@@ -391,10 +391,22 @@ immuneTypeRealName))
         end
         if newStatus == :SLEEP
             PBDebug.log("[Status change] #{pbThis}'s sleep count is #{newStatusCount}")
+
+            # Dream Weaver
             @battle.eachBattler do |b|
-                next if b.nil?
                 next unless b.hasActiveAbility?(:DREAMWEAVER)
                 b.tryRaiseStat(:SPECIAL_ATTACK, b, ability: :DREAMWEAVER, increment: 2)
+            end
+
+            # Snooze Fest
+            if hasActiveAbility?(:SNOOZEFEST)
+                showMyAbilitySplash(:SNOOZEFEST)
+                eachOther do |b|
+                    next unless b.canSleep?(self, true)
+                    next if b.effectActive?(:Yawn)
+                    b.applyEffect(:Yawn,2)
+                end
+                hideMyAbilitySplash
             end
         end
         # Form change check

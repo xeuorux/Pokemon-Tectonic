@@ -41,3 +41,13 @@ BattleHandlers::TargetAbilityKnockedBelowHalf.add(:MALICE,
         battle.pbHideAbilitySplash(target)
     }
 )
+
+BattleHandlers::TargetAbilityKnockedBelowHalf.add(:SLEEPSNARE,
+    proc { |ability, target, user, move, _switched, battle|
+        next unless user.canSleep?(target, true)
+        next if user.effectActive?(:Yawn)
+        battle.pbShowAbilitySplash(target, ability)
+        user.applyEffect(:Yawn, 2)
+        battle.pbHideAbilitySplash(target)
+    }
+)

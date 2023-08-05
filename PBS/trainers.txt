@@ -146,6 +146,7 @@ Pokemon = ZORUA,15
     Moves = HARSHVOICE,GRASSKNOT,SWIFT
     AbilityIndex = 0 # Illusion
     Item = SITRUSBERRY
+	Position = 0
 Pokemon = CROAGUNK,15
     Moves = FLATTER,NASTYNIP,KARATECHOP,CHIBLOCK
     AbilityIndex = 0 # Poison Touch

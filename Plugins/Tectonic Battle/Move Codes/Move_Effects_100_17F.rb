@@ -2535,27 +2535,35 @@ class PokeBattle_Move_175 < PokeBattle_FlinchMove
 end
 
 #===============================================================================
-# Chance to paralyze the target. Fail if the user is not a Morpeko.
-# If the user is a Morpeko-Hangry, this move will be Dark type. (Aura Wheel)
+# Only usable by Morpeko. Sets Spikes if Full Belly. (Gut Check)
+# If Hangry, doubles in damage and deals Dark-type damage.
 #===============================================================================
-class PokeBattle_Move_176 < PokeBattle_NumbMove
+class PokeBattle_Move_176 < PokeBattle_Move
     def pbMoveFailed?(user, _targets, show_message)
-        if @id == :AURAWHEEL && !user.countsAs?(:MORPEKO)
+        unless user.countsAs?(:MORPEKO)
             @battle.pbDisplay(_INTL("But {1} can't use the move!", user.pbThis(true))) if show_message
             return true
         end
         return false
     end
 
-    def pbBaseType(user)
-        ret = :NORMAL
-        case user.form
-        when 0
-            ret = :ELECTRIC
-        when 1
-            ret = :DARK
+    def pbBaseDamage(baseDmg, user, _target)
+        if user.form == 1
+            baseDmg *= 2
         end
+        return baseDmg
+    end
+
+    def pbBaseType(user)
+        ret = :ELECTRIC
+        ret = :DARK if user.form == 1
         return ret
+    end
+
+    def pbAdditionalEffect(user, _target)
+        return unless user.form == 0
+        return if user.pbOpposingSide.effectAtMax?(:Spikes)
+        user.pbOpposingSide.incrementEffect(:Spikes)
     end
 end
 

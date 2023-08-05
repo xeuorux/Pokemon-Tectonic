@@ -572,3 +572,13 @@ BattleHandlers::DamageCalcUserAbility.add(:ENGORGE,
       mults[:attack_multiplier] *= 1.3 if move.healingMove?
   }
 )
+
+BattleHandlers::DamageCalcUserAbility.add(:TEAMPLAYER,
+  proc { |ability, user, _target, move, mults, _baseDmg, type, _aiCheck|
+      allyCount = 0
+      user.eachAlly do |_b|
+        allyCount += 1
+      end
+      mults[:attack_multiplier] *= (1 + 0.25 * allyCount)
+  }
+)

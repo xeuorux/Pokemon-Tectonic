@@ -108,7 +108,6 @@
 107,MAGNETRISE,Magnet Rise,119,0,ELECTRIC,Status,0,10,0,User,0,d,"The user levitates using electrically generated magnetism for five turns.",
 108,NUMB,Numb,007,0,ELECTRIC,Status,100,12,0,NearOther,0,bce,"A weak electric charge is launched to numb the target.",
 109,OVERDRIVE,Overdrive,000,80,ELECTRIC,Special,100,10,0,AllNearFoes,0,befk,"Attacks opposing Pokémon by twanging a guitar or bass guitar.",
-110,AURAWHEEL,Aura Wheel,176,100,ELECTRIC,Physical,100,10,10,NearOther,0,bef,"Type changes depending on the user's form. It has a 10% chance to numb.",
 111,BOLTBEAK,Bolt Beak,178,85,ELECTRIC,Physical,100,10,0,NearOther,0,abef,"Attacks with an electrified beak. Power doubles unless the target has moved this turn.",
 112,THUNDEROUSKICK,Thunderous Kick,043,90,FIGHTING,Physical,100,10,100,NearOther,0,abef,"The user kicks the target with lightning-like movement. It lowers the target's Defense by two steps.",
 113,THUNDERCAGE,Thunder Cage,0CF,75,ELECTRIC,Special,100,12,0,NearOther,0,bef,"The user throws a cage of electricity around the target, trapping and damaging it for three turns.",

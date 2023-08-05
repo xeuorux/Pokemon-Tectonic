@@ -222,7 +222,7 @@ BattleHandlers::EOREffectAbility.add(:LIFELINE,
 
 BattleHandlers::EOREffectAbility.add(:PAINPRESENCE,
   proc { |ability, battler, battle|
-      battle.eachOtherBattler do |b|
+      battle.eachOther do |b|
           battle.pbShowAbilitySplash(battler, ability)
           next unless b.takesIndirectDamage?(true)
           battle.pbDisplay(_INTL("{1} is pained!", b.pbThis))
