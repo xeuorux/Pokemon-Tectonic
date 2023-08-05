@@ -143,13 +143,13 @@ Pokemon = RIOLU,15
 [LEADER_Lambert_2,Lambert]
 Extends = LEADER_Lambert,Lambert,0
 Pokemon = ZORUA,15
+    Position = 0
     Moves = HARSHVOICE,GRASSKNOT,SWIFT
     AbilityIndex = 0 # Illusion
     Item = SITRUSBERRY
-	Position = 0
 Pokemon = CROAGUNK,15
     Moves = FLATTER,NASTYNIP,KARATECHOP,CHIBLOCK
-    AbilityIndex = 0 # Poison Touch
+    AbilityIndex = 0 # Prankster
     Item = SITRUSBERRY
 #-------------------------------
 [LEADER_Lambert_2,Lambert,1]
@@ -648,7 +648,7 @@ Pokemon = PERRSERKER,55
 #-------------------------------
 [COOLTRAINER_M7,Nero]
 Pokemon = MORPEKO,65
-    Moves = AURAWHEEL,TAUNT,BELLYDRUM,RAPIDSPIN
+    Moves = GUTCHECK,TAUNT,BELLYDRUM,RAPIDSPIN
     AbilityIndex = 0 # Hunger Switch
     Item = FOCUSSASH
 Pokemon = VENUSAUR,65
@@ -826,7 +826,7 @@ Pokemon = MANERGETIC,51
     AbilityIndex = 0 # Nerve Number
     Item = ELECTRICGEM
 Pokemon = TOXICROAK,52
-    AbilityIndex = 0 # Poison Touch
+    AbilityIndex = 0 # Prankster
     Item = FOCUSSASH
 Pokemon = MINIOR,53
     AbilityIndex = 0 # Shields Down
