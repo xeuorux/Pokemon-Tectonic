@@ -59,9 +59,11 @@ class TribalBonus
         return newBonusHash
     end
 
-    def getTribeBonusStats(level)
+    def getTribeBonusStats(battler)
         # Returns a hash of all bonuses given the current pokemon
         tribeBonuses = TribalBonus.initStatBonusHash
+
+        level = battler.ownerLevelCap
 
         if hasTribeBonus?(:LOYAL)
             smallBonus = getSingleStatBonusSmall(level)
