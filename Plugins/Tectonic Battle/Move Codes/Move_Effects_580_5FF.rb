@@ -210,7 +210,7 @@ end
 class PokeBattle_Move_588 < PokeBattle_Move
     def pbEffectAfterAllHits(user, target)
         return unless target.damageState.fainted
-        @battle.field.incrementEffect(:PayDay, 10 * user.level) if user.pbOwnedByPlayer?
+        @battle.field.incrementEffect(:PayDay, 15 * user.level) if user.pbOwnedByPlayer?
     end
 end
 

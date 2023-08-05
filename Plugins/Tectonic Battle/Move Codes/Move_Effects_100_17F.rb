@@ -1087,9 +1087,12 @@ class PokeBattle_Move_127 < PokeBattle_Move_0DB
 end
 
 #===============================================================================
-# Not currently used.
+# Scatters lots of coins that the player picks up after winning the battle. (Cha-ching)
 #===============================================================================
 class PokeBattle_Move_128 < PokeBattle_Move
+    def pbEffectGeneral(user)
+        @battle.field.incrementEffect(:PayDay, 8 * user.level) if user.pbOwnedByPlayer?
+    end
 end
 
 #===============================================================================

@@ -244,10 +244,10 @@
 1243,TRANQUILTUNE,Tranquil Tune,572,0,FAIRY,Status,100,10,0,NearOther,0,befk,"The target is put to sleep, and the user's Attack is raised. Fails unless the target is at or below half health.",SING
 1244,SUGARBALL,Sugar Ball,08D,1,FAIRY,Special,100,5,0,NearOther,0,befn,"The user spins sugar into a ball launched at the target. The slower the user, the greater the damage.",
 1245,SILTSURGE,Silt Surge,044,110,WATER,Special,100,12,100,AllNearFoes,0,bef,"The user attacks with a wave of murky water, which hits all near foes and lowers their Speed.",MUDDYWATER
-1246,PLUNDER,Plunder,588,90,STEEL,Physical,100,15,0,NearOther,0,abef,"The user attacks the target with a sword. If it faints, lots of money is earned after the battle.",
-1247,ROYALTRIBUTE,Royal Tribute,109,90,DARK,Special,100,15,0,NearOther,0,bef,"The user demands tribute from their subjects. Money is earned after battle.",
+1246,PLUNDER,Plunder,588,90,STEEL,Physical,100,15,0,NearOther,0,abef,"The user attacks the target with a sword. If it faints, tons of money is earned after the battle.",
+1247,ROYALTRIBUTE,Royal Tribute,128,90,DARK,Special,100,15,0,NearOther,0,bef,"The user demands tribute from the target. Much money is earned after battle.",
 1248,SACREDLOTS,Sacred Lots,589,25,DRAGON,Physical,100,15,0,NearOther,0,abef,"The user makes an offering, then attacks two to five times. Money is earned for each hit.",
-1249,CHACHING,Cha-ching,109,90,NORMAL,Physical,100,15,0,NearOther,0,abef,"The user crashes with the full force of The Market. Money is earned after battle.",
+1249,CHACHING,Cha-ching,128,90,NORMAL,Physical,100,15,0,NearOther,0,abef,"The user crashes with the full force of The Market. Much money is earned after battle.",
 1250,LEYLINEBURST,Leyline Burst,573,110,GROUND,Special,100,10,0,NearOther,0,bef,"Energy is sent through a conduit, erupting under the target. This move is also Psychic-type.",EARTHPOWER
 1251,HARDPLACE,Hard Place,574,1,ROCK,Physical,0,10,0,NearOther,0,abef,"The user slams the target into a nearby hard object. Increases power the higher the Defense of any ally.",HEADSMASH
 1252,DRAGONRIDE,Dragon Ride,575,0,DRAGON,Status,0,5,0,NearAlly,0,,"Doubles target ally's Attack and Speed. However, if the user faints, so too does that ally.",COACHING
