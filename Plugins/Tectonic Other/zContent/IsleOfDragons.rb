@@ -1,3 +1,9 @@
+def earnedHatcherTrust?
+    return true if trainedPseudoDragons?
+    return true if $game_switches[68] # Yezera defeated
+    return false
+end
+
 def trainedPseudoDragons?
     %i[DRAGONITE SALAMENCE GARCHOMP HYDREIGON KOMMOO DRAGAPULT].each do |speciesID|
         next if $Trainer.owned?(speciesID)
