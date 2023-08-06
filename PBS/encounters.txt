@@ -954,13 +954,14 @@ DarkCave,20
 #-------------------------------
 [356] # Isle of Dragons
 LandSparse,20
-    15,DREEPY,10,13
-    15,JANGMOO,10,13
-    14,BAGON,10,13
-    14,DEINO,10,13
-    14,DRATINI,10,13
-    14,GIBLE,10,13
-    14,GOOMY,10,13
+    13,BAGON,10,13
+    13,DEINO,10,13
+    13,DREEPY,10,13
+    13,JANGMOO,10,13
+    12,DRATINI,10,13
+    12,GIBLE,10,13
+    12,GOOMY,10,13
+    12,MMUNNA,10,13
 #-------------------------------
 [358] # Dr. Hekata's House
 Special,1

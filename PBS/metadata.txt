@@ -452,6 +452,13 @@ Bicycle = false
 BattleBack = elite8
 TeleportBlocked = true
 #-------------------------------
+[064]
+# M. Munna Den
+Outdoor = false
+ShowArea = false
+Bicycle = true
+BattleBack = cave3
+#-------------------------------
 [065]
 # Novo Mart
 Outdoor = false
@@ -2063,6 +2070,13 @@ Outdoor = false
 ShowArea = true
 Bicycle = true
 #-------------------------------
+[366]
+# M. Munna Den 2
+Outdoor = false
+ShowArea = false
+Bicycle = true
+BattleBack = cave3
+#-------------------------------
 [367]
 # Prizca Great Hall
 Outdoor = false
@@ -2327,3 +2341,10 @@ MapPosition = 0,27,5
 Outdoor = true
 ShowArea = true
 Bicycle = true
+#-------------------------------
+[418]
+# M. Munna Den 3
+Outdoor = false
+ShowArea = false
+Bicycle = true
+BattleBack = cave3
