@@ -222,12 +222,12 @@ BattleHandlers::EOREffectAbility.add(:LIFELINE,
 
 BattleHandlers::EOREffectAbility.add(:PAINPRESENCE,
   proc { |ability, battler, battle|
-      battle.eachOther do |b|
-          battle.pbShowAbilitySplash(battler, ability)
-          next unless b.takesIndirectDamage?(true)
-          battle.pbDisplay(_INTL("{1} is pained!", b.pbThis))
-          b.applyFractionalDamage(1.0 / 12.0, false)
-          battle.pbHideAbilitySplash(battler)
-      end
+    battler.eachOther do |b|
+      battle.pbShowAbilitySplash(battler, ability)
+      next unless b.takesIndirectDamage?(true)
+      battle.pbDisplay(_INTL("{1} is pained!", b.pbThis))
+      b.applyFractionalDamage(1.0 / 12.0, false)
+      battle.pbHideAbilitySplash(battler)
+    end
   }
 )
