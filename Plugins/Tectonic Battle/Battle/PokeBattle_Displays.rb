@@ -73,9 +73,9 @@ class PokeBattle_Battle
         @scene.pbHideAbilitySplash(battler)
     end
 
-    def pbReplaceAbilitySplash(battler, ability, delay = false, logTrigger = true)
+    def pbReplaceAbilitySplash(battler, ability, delay = false)
         return unless showMessages?
-        pbShowAbilitySplash(battler, ability, delay, logTrigger)
+        pbShowAbilitySplash(battler, ability, delay)
     end
 
     def pbShowTribeSplash(side, tribe, delay = false, trainerName: nil)
