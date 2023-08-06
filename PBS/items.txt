@@ -538,7 +538,7 @@
 537,CARNATIONSIGIL,Carnation Sigil,Carnation Sigil,8,0,"An ancient sigil of the Carnation Knights. You feel it pulling you towards another place.",2,0,6
 538,PRIMALCLAY,Primal Clay,Primal Clay,8,0,"A lump of ancient clay. It glows with a soft golden color.",5,0,0
 539,OMNIDRIVE,OmniDrive,OmniDrives,8,0,"A mysterious data storage device which can be used to upgrade your PC.",5,0,6
-540,UBCONTAINMENTKEY,UB Containment Key,UB Containment Keys,8,0,"Unlocks the UB Containment Room at Novo Academy.",0,0,6
+540,UBCONTAINMENTKEY,UB Containment Key,UB Containment Keys,8,0,"A key which unlocks the Ultra Beast Containment Room at Novo College.",0,0,6
 541,ANCIENTSEAWATER,Ancient Sea Water,Ancient Sea Water,1,50000,"A vial of shimmering ocean water. It makes a certain Pokémon evolve.",1,0,7
 542,CONDENSEDLIGHT,Condensed Light,Condensed Light,8,0,"A strange ball of light. You should gather these for a friend.",0,0,13
 543,CHAMBER1KEY,Chamber 1 Key,Chamber 1 Keys,8,0,"The key to the first chamber containing a powerful avatar.",0,0,6
