@@ -373,7 +373,11 @@ class PokeBattle_StatDownMove < PokeBattle_Move
     end
 
     def getEffectScore(user, _target)
-        return -getMultiStatUpEffectScore(@statDown, user, user)
+        if user.hasActiveItem?(:EJECTPACK)
+            return getSwitchOutEffectScore(user)
+        else
+            return getMultiStatDownEffectScore(@statDown, user, user)
+        end
     end
 end
 
@@ -737,12 +741,7 @@ class PokeBattle_ProtectMove < PokeBattle_Move
             score += 30 if user.hasAlly?
         end
         score *= 2 if user.belowHalfHealth?
-        user.eachOpposing do |b|
-            score += 30 if b.poisoned?
-            score += 30 if b.leeched?
-            score += 20 if b.burned?
-            score += 20 if b.frostbitten?
-        end
+        score += passingTurnEffectScore(@battle,user.pbOwnSide.index)
         return score
     end
 end

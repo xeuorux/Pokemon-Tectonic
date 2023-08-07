@@ -172,12 +172,14 @@ end
 def getFlinchingEffectScore(baseScore, user, target, move)
     return 0 unless userWillHitFirst?(user, target, move)
     return 0 if target.hasActiveAbilityAI?(GameData::Ability::FLINCH_IMMUNITY_ABILITIES)
-    return 0 if target.substituted?
+    return 0 if target.substituted? && !move.ignoresSubstitute?(user)
     return 0 if target.effectActive?(:FlinchImmunity)
     return 0 if target.battle.pbCheckSameSideAbility(:HEARTENINGAROMA,target.index)
 
     score = baseScore
-    score *= 1.5 if user.hasAlly?
+    score *= 2.0 if user.hasAlly?
+
+    score /= 2.0 if user.battle.moonglowing? && target.flinchedByMoonglow?(true)
 
     return score
 end
@@ -556,4 +558,15 @@ def getHazardLikelihoodScore(battler,&block)
         next false if block&.call(move) == false
         next move.hazardMove? && !move.statusMove?
     }
+end
+
+def passingTurnEffectScore(battle,sideIndex = 1)
+    return 0
+    # score = 0
+    # battle.eachBattler do |b|
+    #     score += 30 if b.poisoned?
+    #     score += 30 if b.leeched?
+    #     score += 20 if b.burned?
+    #     score += 20 if b.frostbitten?
+    # end
 end
