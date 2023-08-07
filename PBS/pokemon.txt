@@ -33279,7 +33279,7 @@ BattlerEnemyX = 0
 BattlerEnemyY = 14
 BattlerShadowX = 0
 BattlerShadowSize = 1
-Evolutions = MUSHARNA,Level,37
+Evolutions = MMUSHARNA,Level,37
 #-------------------------------
 [2528]
 Name = M. Musharna
