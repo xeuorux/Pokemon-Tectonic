@@ -192,7 +192,7 @@ Pokemon = TOXEL,16
     AbilityIndex = 1 # Thunderstruck
     Item = SITRUSBERRY
 Pokemon = GASTLY,16
-    AbilityIndex = 1 # Uncanny Cold
+    AbilityIndex = 0 # Levitate
 #-------------------------------
 [PSYCHIC_M,Uriel]
 Pokemon = ABRA,15
