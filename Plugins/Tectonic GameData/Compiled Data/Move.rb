@@ -315,7 +315,7 @@ module Compiler
     Graphics.update
   end
 
-  def write_move(f, m)
+  def write_move(f, m)    
     f.write(sprintf("%d,%s,%s,%s,%d,%s,%s,%d,%d,%d,%s,%d,%s,%s,%s\r\n",
       m.id_number,
       csvQuote(m.id.to_s),
@@ -333,5 +333,39 @@ module Compiler
       csvQuoteAlways(m.real_description),
       m.animation_move.nil? ? "" : m.animation_move.to_s
     ))
+  end
+
+  def rework_flags(move)
+    prunedFlags = m.flags.clone
+    prunedFlags.gsub!("a","")
+    prunedFlags.gsub!("f","")
+    prunedFlags.gsub!("g","")
+    prunedFlags.gsub!("l","")
+    prunedFlags.gsub!("n","")
+    prunedFlags.split("")
+
+    newFlags = []
+    flagMap = {
+      "b" => "CanProtect",
+      "c" => "CanMagicCoat",
+      "d" => "CanSnatch",
+      "e" => "CanMirrorMove",
+      "h" => "HighCriticalHitRate",
+      "i" => "Biting",
+      "j" => "Punch",
+      "k" => "Sound",
+      "m" => "Pulse",
+      "o" => "Dance",
+      "p" => "Blade",
+      "q" => "Wind",
+      "r" => "VeryHighCriticalHitRate",
+      "y" => "Empowered",
+    }
+    prunedFlags.split("").each do |flagLetter|
+      newFlags.push(flagMap[flagLetter])
+    end
+
+    newFlagsString = newFlags.join(";")
+    return newFlagsString
   end
 end

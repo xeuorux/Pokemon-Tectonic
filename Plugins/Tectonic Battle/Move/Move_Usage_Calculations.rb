@@ -433,8 +433,6 @@ class PokeBattle_Move
         ret = 0
         if user.hasActiveAbility?(:STENCH,true)
             ret = 50
-        elsif user.hasActiveItem?([:KINGSROCK,:RAZORFANG],true)
-            ret = 10
         end
         ret *= 2 if user.hasActiveAbility?(:SERENEGRACE) ||
                     user.pbOwnSide.effectActive?(:Rainbow)
