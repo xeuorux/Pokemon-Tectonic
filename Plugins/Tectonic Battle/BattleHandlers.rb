@@ -90,8 +90,6 @@ module BattleHandlers
     EVGainModifierItem                  = ItemHandlerHash.new
     # Weather and terrin
     WeatherExtenderItem                 = ItemHandlerHash.new
-    TerrainExtenderItem                 = ItemHandlerHash.new # Terrain Extender
-    TerrainStatBoostItem                = ItemHandlerHash.new
     # End Of Round
     EORWeatherAbility                   = AbilityHandlerHash.new
     EORHealingAbility                   = AbilityHandlerHash.new
@@ -511,17 +509,7 @@ module BattleHandlers
         ret = WeatherExtenderItem.trigger(item, weather, duration, battler, battle)
         return !ret.nil? ? ret : duration
     end
-
-    def self.triggerTerrainExtenderItem(item, terrain, duration, battler, battle)
-        ret = TerrainExtenderItem.trigger(item, terrain, duration, battler, battle)
-        return !ret.nil? ? ret : duration
-    end
-
-    def self.triggerTerrainStatBoostItem(item, battler, battle)
-        ret = TerrainStatBoostItem.trigger(item, battler, battle)
-        return !ret.nil? ? ret : false
-    end
-
+    
     #=============================================================================
 
     def self.triggerEORWeatherAbility(ability, weather, battler, battle)

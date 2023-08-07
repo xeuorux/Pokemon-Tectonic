@@ -20,30 +20,31 @@ module GameData
       DATA_FILENAME = "trainers.dat"
   
       SCHEMA = {
-        "Items"        		=> [:items,         "*e", :Item],
-        "LoseText"     		=> [:lose_text,     "s"],
-        "Policies"	 		  => [:policies,		 "*e", :Policy],
-        "Pokemon"      		=> [:pokemon,       "ev", :Species],   # Species, level
-        "RemovePokemon"		=> [:removed_pokemon,       "ev", :Species],   # Species, level
-        "Form"         		=> [:form,          "u"],
-        "Name"         		=> [:name,          "s"],
-        "NameForHashing"   	=> [:name_for_hashing,   "s"],
-        "Moves"        		=> [:moves,         "*e", :Move],
-        "Ability"      		=> [:ability,       "s"],
-        "AbilityIndex" 		=> [:ability_index, "u"],
-        "Item"         		=> [:item,          "e", :Item],
-        "Gender"       		=> [:gender,        "e", { "M" => 0, "m" => 0, "Male" => 0, "male" => 0, "0" => 0,
-                                                  "F" => 1, "f" => 1, "Female" => 1, "female" => 1, "1" => 1 }],
-        "Nature"       		=> [:nature,        "e", :Nature],
-        "IV"           		=> [:iv,            "uUUUUU"],
-        "EV"           		=> [:ev,            "uUUUUU"],
-        "Happiness"   		=> [:happiness,     "u"],
-        "Shiny"        		=> [:shininess,     "b"],
-        "Shadow"       		=> [:shadowness,    "b"],
-        "Ball"         		=> [:poke_ball,     "s"],
-        "ExtendsVersion" 		=> [:extends_version, "u"],
-        "Extends"		 		=> [:extends,		 "esu", :TrainerType],
-        "Position"	 		=> [:assigned_position, "u"],
+        "Items"        		=> [:items,             "*e",   :Item],
+        "LoseText"     		=> [:lose_text,         "s"],
+        "Policies"	 		  => [:policies,		      "*e",   :Policy],
+        "Pokemon"      		=> [:pokemon,           "ev",   :Species],   # Species, level
+        "RemovePokemon"		=> [:removed_pokemon,   "ev",   :Species],   # Species, level
+        "Form"         		=> [:form,              "u"],
+        "Name"         		=> [:name,              "s"],
+        "NameForHashing"  => [:name_for_hashing,   "s"],
+        "Moves"        		=> [:moves,             "*e",   :Move],
+        "Ability"      		=> [:ability,           "s"],
+        "AbilityIndex" 		=> [:ability_index,     "u"],
+        "Item"         		=> [:item,              "*e",   :Item],
+        "ItemType"        => [:item_type,         "e",    :Type],
+        "Gender"       		=> [:gender,            "e", { "M" => 0, "m" => 0, "Male" => 0, "male" => 0, "0" => 0,
+                                                      "F" => 1, "f" => 1, "Female" => 1, "female" => 1, "1" => 1 }],
+        "Nature"       		=> [:nature,            "e",    :Nature],
+        "IV"           		=> [:iv,                "uUUUUU"],
+        "EV"           		=> [:ev,               "uUUUUU"],
+        "Happiness"   		=> [:happiness,         "u"],
+        "Shiny"        		=> [:shininess,         "b"],
+        "Shadow"       		=> [:shadowness,        "b"],
+        "Ball"         		=> [:poke_ball,         "s"],
+        "ExtendsVersion" 	=> [:extends_version,   "u"],
+        "Extends"		 		  => [:extends,		        "esu",  :TrainerType],
+        "Position"	 		  => [:assigned_position, "u"],
       }
   
       extend ClassMethods
@@ -127,8 +128,10 @@ module GameData
                 raise _INTL("Illegal move #{moveID} learnable by a party member of trainer #{trainerName}!")
             end
 
-            if partyEntry[:item] && !GameData::Item.get(partyEntry[:item]).legal?(true)
-                raise _INTL("Illegal #{partyEntry[:item]} learnable by a party member of trainer #{trainerName}!")
+            partyEntry[:item]&.each do |itemID|
+                itemData = GameData::Item.get(itemID)
+                next if itemData.legal?(true)
+                raise _INTL("Illegal item #{itemID} assigned to a party member of trainer #{trainerName}!")
             end
         end
     end
@@ -241,7 +244,20 @@ module GameData
                 pkmn.form_simple = pkmn_data[:form]
             end
 
-            pkmn.setItems([pkmn_data[:item]]) if !pkmn_data[:item].nil?
+            itemInfo = pkmn_data[:item]
+            if !itemInfo.nil?
+              if itemInfo.is_a?(Array)
+                if pkmn.legalItems?(itemInfo)
+                  pkmn.setItems(itemInfo)
+                else
+                  echoln("Trainer pokemon #{pkmn.name} is not allowed to hold the assigned item set!")
+                end
+              else
+                pkmn.setItems([itemInfo])
+              end
+            end
+
+            pkmn.itemTypeChosen = pkmn_data[:item_type] if pkmn_data[:item_type]
 
             if pkmn_data[:moves] && pkmn_data[:moves].length > 0
                 pkmn.forget_all_moves
@@ -374,6 +390,10 @@ module Compiler
               raise _INTL("Bad nickname: {1} (must be 1-{2} characters).\r\n{3}", property_value, Pokemon::MAX_NAME_SIZE, FileLineData.linereport)
             end
           when "Moves"
+            property_value = [property_value] if !property_value.is_a?(Array)
+            property_value.uniq!
+            property_value.compact!
+          when "Item"
             property_value = [property_value] if !property_value.is_a?(Array)
             property_value.uniq!
             property_value.compact!
@@ -572,7 +592,15 @@ module Compiler
       abilityName = GameData::Ability.get(abilityID).real_name
       f.write(sprintf("    AbilityIndex = %d # %s\r\n", pkmn[:ability_index], abilityName))
     end
-    f.write(sprintf("    Item = %s\r\n", pkmn[:item])) if pkmn[:item]
+    itemInfo = pkmn[:item]
+    if !itemInfo.nil?
+      if itemInfo.is_a?(Array)
+        f.write(sprintf("    Item = %s\r\n", pkmn[:item].join(","))) 
+      else
+        f.write(sprintf("    Item = %s\r\n", pkmn[:item])) 
+      end
+    end
+    f.write(sprintf("    ItemType = %s\r\n", pkmn[:item_type])) if pkmn[:item_type]
     f.write(sprintf("    Nature = %s\r\n", pkmn[:nature])) if pkmn[:nature]
     ivs_array = []
     evs_array = []

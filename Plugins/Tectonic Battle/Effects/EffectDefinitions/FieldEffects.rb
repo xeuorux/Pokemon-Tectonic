@@ -164,16 +164,6 @@ GameData::BattleEffect.register_effect(:Field, {
 })
 
 GameData::BattleEffect.register_effect(:Field, {
-    :id => :TerrainSealant,
-    :real_name => "Terrain Sealer",
-    :type => :Position,
-    :others_lose_track => true,
-    :disable_proc => proc do |battle|
-        battle.pbDisplay(_INTL("The terrain is no longer being sealed!"))
-    end,
-})
-
-GameData::BattleEffect.register_effect(:Field, {
     :id => :GreyMist,
     :real_name => "Grey Mist Turns",
     :type => :Integer,

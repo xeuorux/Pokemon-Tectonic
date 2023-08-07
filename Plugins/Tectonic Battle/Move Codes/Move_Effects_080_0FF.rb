@@ -1306,44 +1306,33 @@ class PokeBattle_Move_0B3 < PokeBattle_Move
 
     def calculateNaturePower
         npMove = :RUIN
-        case @battle.field.terrain
-        when :Electric
-            npMove = :THUNDERBOLT if GameData::Move.exists?(:THUNDERBOLT)
-        when :Grassy
+        case @battle.environment
+        when :Grass, :TallGrass, :Forest, :ForestGrass
             npMove = :ENERGYBALL if GameData::Move.exists?(:ENERGYBALL)
-        when :Fairy
-            npMove = :MOONBLAST if GameData::Move.exists?(:MOONBLAST)
-        when :Psychic
-            npMove = :PSYCHIC if GameData::Move.exists?(:PSYCHIC)
-        else
-            case @battle.environment
-            when :Grass, :TallGrass, :Forest, :ForestGrass
-                npMove = :ENERGYBALL if GameData::Move.exists?(:ENERGYBALL)
-            when :MovingWater, :StillWater, :Underwater
-                npMove = :HYDROPUMP if GameData::Move.exists?(:HYDROPUMP)
-            when :Puddle
-                npMove = :MUDBOMB if GameData::Move.exists?(:MUDBOMB)
-            when :Cave
-                npMove = :POWERGEM if GameData::Move.exists?(:POWERGEM)
-            when :Rock
-                npMove = :EARTHPOWER if GameData::Move.exists?(:EARTHPOWER)
-            when :Sand
-                npMove = :EARTHPOWER if GameData::Move.exists?(:EARTHPOWER)
-            when :Snow
-                npMove = :FROSTBREATH if GameData::Move.exists?(:FROSTBREATH)
-            when :Ice
-                npMove = :ICEBEAM if GameData::Move.exists?(:ICEBEAM)
-            when :Volcano
-                npMove = :LAVAPLUME if GameData::Move.exists?(:LAVAPLUME)
-            when :Graveyard
-                npMove = :SHADOWBALL if GameData::Move.exists?(:SHADOWBALL)
-            when :Sky
-                npMove = :AIRSLASH if GameData::Move.exists?(:AIRSLASH)
-            when :Space
-                npMove = :DRACOMETEOR if GameData::Move.exists?(:DRACOMETEOR)
-            when :UltraSpace
-                npMove = :PSYSHOCK if GameData::Move.exists?(:PSYSHOCK)
-            end
+        when :MovingWater, :StillWater, :Underwater
+            npMove = :HYDROPUMP if GameData::Move.exists?(:HYDROPUMP)
+        when :Puddle
+            npMove = :MUDBOMB if GameData::Move.exists?(:MUDBOMB)
+        when :Cave
+            npMove = :POWERGEM if GameData::Move.exists?(:POWERGEM)
+        when :Rock
+            npMove = :EARTHPOWER if GameData::Move.exists?(:EARTHPOWER)
+        when :Sand
+            npMove = :EARTHPOWER if GameData::Move.exists?(:EARTHPOWER)
+        when :Snow
+            npMove = :FROSTBREATH if GameData::Move.exists?(:FROSTBREATH)
+        when :Ice
+            npMove = :ICEBEAM if GameData::Move.exists?(:ICEBEAM)
+        when :Volcano
+            npMove = :LAVAPLUME if GameData::Move.exists?(:LAVAPLUME)
+        when :Graveyard
+            npMove = :SHADOWBALL if GameData::Move.exists?(:SHADOWBALL)
+        when :Sky
+            npMove = :AIRSLASH if GameData::Move.exists?(:AIRSLASH)
+        when :Space
+            npMove = :DRACOMETEOR if GameData::Move.exists?(:DRACOMETEOR)
+        when :UltraSpace
+            npMove = :PSYSHOCK if GameData::Move.exists?(:PSYSHOCK)
         end
         return npMove
     end
@@ -1443,6 +1432,11 @@ class PokeBattle_Move_0B4 < PokeBattle_Move
     def pbEffectGeneral(user)
         choice = getSleepTalkMoves(user).sample
         user.pbUseMoveSimple(user.moves[choice].id, user.pbDirectOpposing.index)
+    end
+
+    def getEffectScore(_user, _target)
+        echoln("The AI will never use Sleep talk.")
+        return -1000
     end
 end
 
@@ -1715,7 +1709,7 @@ end
 # For 4 rounds, disables the target's non-damaging moves. (Taunt)
 #===============================================================================
 class PokeBattle_Move_0BA < PokeBattle_Move
-    def ignoresSubstitute?(_user); return statusMove?; end
+    def ignoresSubstitute?(user); return statusMove?; end
 
     def initialize(battle, move)
         super
@@ -1744,8 +1738,8 @@ class PokeBattle_Move_0BA < PokeBattle_Move
         target.applyEffect(:Taunt, @tauntTurns)
     end
 
-    def getTargetAffectingEffectScore(_user, target)
-        return 0 if target.substituted? && statusMove?
+    def getTargetAffectingEffectScore(user, target)
+        return 0 if target.substituted? && statusMove? && !ignoresSubstitute?(user)
         return 0 if target.hasActiveAbilityAI?(:MENTALBLOCK)
         return 0 unless target.hasStatusMove?
         score = 20
@@ -1755,6 +1749,7 @@ class PokeBattle_Move_0BA < PokeBattle_Move
         score += getHazardLikelihoodScore(target) { |move|
             next !move.statusMove?
         }
+        score /= 2 unless @battle.battleAI.userMovesFirst?(self, user, target)
         return score
     end
 end
@@ -2619,6 +2614,11 @@ class PokeBattle_Move_0D9 < PokeBattle_HealingMove
         return false
     end
 
+    def pbMoveFailedAI?(user, targets)
+        return false if user.getStatusCount(:SLEEP) == 1
+        return pbMoveFailed?(user, targets, false)
+    end
+
     def pbEffectGeneral(user)
         user.applySleepSelf(_INTL("{1} slept and became healthy!", user.pbThis), 3)
         super
@@ -2627,7 +2627,7 @@ class PokeBattle_Move_0D9 < PokeBattle_HealingMove
     def getEffectScore(user, target)
         score = super
         score -= getSleepEffectScore(nil, target)
-        score += 40 if user.pbHasAnyStatus?
+        score += 40 if user.hasStatusNoSleep?
         return score
     end
 end
@@ -2813,7 +2813,7 @@ class PokeBattle_Move_0E0 < PokeBattle_Move
         return if user.fainted?
 
         if user.hasActiveAbility?(:SPINESPLODE)
-            spikesCount = user.pbOpposingSide.incrementEffect(:Spikes, GameData::BattleEffect.get(:Spikes).maximum)
+            spikesCount = user.pbOpposingSide.incrementEffect(:Spikes, 2)
             
             if spikesCount > 0
                 @battle.pbShowAbilitySplash(user, :SPINESPLODE)
@@ -2855,7 +2855,14 @@ class PokeBattle_Move_0E0 < PokeBattle_Move
 
     def getEffectScore(user, target)
         score = getSelfKOMoveScore(user, target)
-        score += 20 if user.bunkeringDown?(true)
+        score += 30 if user.bunkeringDown?(true)
+        score += 30 if user.hasActiveAbilityAI?(:SELFMENDING)
+        if user.hasActiveAbility?(:SPINESPLODE)
+            currentSpikeCount = user.pbOpposingSide.countEffect(:Spikes)
+            spikesMax = GameData::BattleEffect.get(:Spikes).maximum
+            count = [spikesMax, currentSpikeCount + 2].min - currentSpikeCount
+            score += count * getHazardSettingEffectScore(user, target)
+        end
         return score
     end
 end

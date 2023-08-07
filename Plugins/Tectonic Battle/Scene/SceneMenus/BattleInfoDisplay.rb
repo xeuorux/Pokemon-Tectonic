@@ -105,7 +105,7 @@ class BattleInfoDisplay < SpriteWrapper
 		battlerIndex += 1
 	end
 	
-	weatherAndTerrainY = 336
+	weatherY = 336
 	weatherMessage = "No Weather"
 	weatherColor = FADED_EFFECT_BASE
 	if @battle.field.weather != :None
@@ -121,19 +121,10 @@ class BattleInfoDisplay < SpriteWrapper
 		end
 	end
 	
-	textToDraw.push([weatherMessage,24,weatherAndTerrainY,0,weatherColor,shadow])
-
-	# terrainMessage = "No Terrain"
-	# if @battle.field.terrain != :None
-	# 	terrainName = GameData::BattleTerrain.get(@battle.field.terrain).real_name
-	# 	terrainDuration = @battle.field.terrainDuration
-	# 	terrainDuration = "Inf." if terrainDuration < 0
-	# 	terrainMessage = _INTL("{1} Terrain ({2})",terrainName, terrainDuration)
-	# end
-	# textToDraw.push([terrainMessage,256+24,weatherAndTerrainY,0,base,shadow])
+	textToDraw.push([weatherMessage,24,weatherY,0,weatherColor,shadow])
 
 	turnCountMessage = "Turn Count: #{(@battle.turnCount + 1).to_s}"
-	textToDraw.push([turnCountMessage,256+24,weatherAndTerrainY,0,base,shadow])
+	textToDraw.push([turnCountMessage,256+24,weatherY,0,base,shadow])
 	
 	# Whole field effects
 	wholeFieldX = 324

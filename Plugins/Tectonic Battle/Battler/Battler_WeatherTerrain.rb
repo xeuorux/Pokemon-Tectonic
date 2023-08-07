@@ -1,10 +1,4 @@
 class PokeBattle_Battler
-    def affectedByTerrain?(checkingForAI = false)
-        return false if airborne?(checkingForAI)
-        return false if semiInvulnerable?
-        return true
-    end
-
     def affectedByWeatherDownsides?(checkingForAI = false)
         return false if inTwoTurnAttack?("0CA", "0CB")   # Dig, Dive
         return false if shouldAbilityApply?(%i[ACCLIMATIZE TERRITORIAL METALCOVER NESTING HIGHRISE], checkingForAI)

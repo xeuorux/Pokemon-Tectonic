@@ -298,19 +298,6 @@ target.pbThis(true)))
             return false
         end
 
-        # Immunity to priority moves because of Psychic Terrain
-        if @battle.field.terrain == :Psychic && target.affectedByTerrain? && target.opposes?(user)
-            if ai_check
-                return false if move.priority > 0
-            elsif @battle.choices[user.index][4] > 0
-                if show_message
-                    @battle.pbDisplay(_INTL("{1} surrounds itself with psychic terrain!",
-target.pbThis))
-                end
-                return false
-            end
-        end
-
         ###	Protect Style Moves
         # Ability effects that ignore protection
         protectionIgnoredByAbility = false

@@ -213,6 +213,11 @@ class PokeBattle_Move_011 < PokeBattle_FlinchMove
         end
         return false
     end
+
+    def pbMoveFailedAI?(user, targets)
+        return true if user.getStatusCount(:SLEEP) == 1
+        return pbMoveFailed?(user, targets, false)
+    end
 end
 
 #===============================================================================
@@ -229,7 +234,7 @@ class PokeBattle_Move_012 < PokeBattle_FlinchMove
     end
 
     def getTargetAffectingEffectScore(user, target)
-        score = getFlinchingEffectScore(150, user, target, self)
+        score = getFlinchingEffectScore(100, user, target, self)
         return score
     end
 end
@@ -1619,46 +1624,29 @@ class PokeBattle_Move_060 < PokeBattle_Move
 
     def getCamouflageType
         newType = :NORMAL
-        checkedTerrain = false
-        case @battle.field.terrain
-        when :Electric
-            newType = :ELECTRIC
-            checkedTerrain = true
-        when :Grassy
+        case @battle.environment
+        when :Grass, :TallGrass
             newType = :GRASS
-            checkedTerrain = true
-        when :Fairy
-            newType = :FAIRY
-            checkedTerrain = true
-        when :Psychic
+        when :MovingWater, :StillWater, :Puddle, :Underwater
+            newType = :WATER
+        when :Cave
+            newType = :ROCK
+        when :Rock, :Sand
+            newType = :GROUND
+        when :Forest, :ForestGrass
+            newType = :BUG
+        when :Snow, :Ice
+            newType = :ICE
+        when :Volcano
+            newType = :FIRE
+        when :Graveyard
+            newType = :GHOST
+        when :Sky
+            newType = :FLYING
+        when :Space
+            newType = :DRAGON
+        when :UltraSpace
             newType = :PSYCHIC
-            checkedTerrain = true
-        end
-        unless checkedTerrain
-            case @battle.environment
-            when :Grass, :TallGrass
-                newType = :GRASS
-            when :MovingWater, :StillWater, :Puddle, :Underwater
-                newType = :WATER
-            when :Cave
-                newType = :ROCK
-            when :Rock, :Sand
-                newType = :GROUND
-            when :Forest, :ForestGrass
-                newType = :BUG
-            when :Snow, :Ice
-                newType = :ICE
-            when :Volcano
-                newType = :FIRE
-            when :Graveyard
-                newType = :GHOST
-            when :Sky
-                newType = :FLYING
-            when :Space
-                newType = :DRAGON
-            when :UltraSpace
-                newType = :PSYCHIC
-            end
         end
         newType = :NORMAL unless GameData::Type.exists?(newType)
         return newType

@@ -107,14 +107,14 @@ BattleHandlers::AttackCalcUserAbility.add(:BLIZZBOXER,
 
 BattleHandlers::AttackCalcUserAbility.add(:LUNATIC,
   proc { |ability, _user, battle, attackMult|
-      attackMult *= 1.3 if battle.field.terrain == :Moonglow
+      attackMult *= 1.3 if battle.moonGlowing?
       next attackMult
   }
 )
 
 BattleHandlers::AttackCalcUserAbility.add(:NIGHTSTALKER,
   proc { |ability, _user, battle, attackMult|
-      attackMult *= 1.5 if battle.field.terrain == :Moonglow
+      attackMult *= 1.5 if battle.moonGlowing?
       next attackMult
   }
 )
@@ -122,13 +122,6 @@ BattleHandlers::AttackCalcUserAbility.add(:NIGHTSTALKER,
 BattleHandlers::AttackCalcUserAbility.add(:FULLMOONBLADE,
   proc { |ability, _user, battle, attackMult|
       attackMult *= 2.0 if battle.fullMoon?
-      next attackMult
-  }
-)
-
-BattleHandlers::AttackCalcUserAbility.add(:ONEDGE,
-  proc { |ability, _user, battle, attackMult|
-      attackMult *= 1.5 if battle.field.terrain == :Moonglow
       next attackMult
   }
 )

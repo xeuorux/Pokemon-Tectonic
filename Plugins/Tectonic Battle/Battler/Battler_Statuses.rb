@@ -53,6 +53,15 @@ class PokeBattle_Battler
     end
     alias hasAnyStatusNoTrigger? hasAnyStatusNoTrigger
 
+    def hasStatusNoSleep?
+        getStatuses.each do |status|
+            next if status == :NONE
+            next if status == :SLEEP
+            return true
+        end
+        return false
+    end
+
     def hasSpotsForStatus
         hasSpots = false
         getStatuses.each do |status|
@@ -134,23 +143,6 @@ class PokeBattle_Battler
         if substituted? && !(move && move.ignoresSubstitute?(user)) && !selfInflicted && !statusDoublingCurse
             @battle.pbDisplay(_INTL("It doesn't affect {1} behind its substitute...", pbThis(true))) if showMessages
             return false
-        end
-        # Terrains immunity
-        if affectedByTerrain? && !statusDoublingCurse
-            case @battle.field.terrain
-            when :Electric
-                if %i[SLEEP DIZZY].include?(newStatus)
-                    if showMessages
-                        @battle.pbDisplay(_INTL("{1} surrounds itself with electrified terrain!", pbThis(true)))
-                    end
-                    return false
-                end
-            when :Fairy
-                if %i[POISON BURN FROSTBITE].include?(newStatus)
-                    @battle.pbDisplay(_INTL("{1} surrounds itself with fairy terrain!", pbThis(true))) if showMessages
-                    return false
-                end
-            end
         end
         # Uproar immunity
         if newStatus == :SLEEP && !(hasActiveAbility?(:SOUNDPROOF) && !@battle.moldBreaker) && !statusDoublingCurse
@@ -283,11 +275,6 @@ immuneTypeRealName))
         return false if fainted?
         # Trying to replace a status problem with another one
         return false unless hasSpotsForStatus
-        # Terrain immunity
-        return false if @battle.field.terrain == :Fairy && affectedByTerrain? && %i[BURN POISON
-                                                                                    FROSTBITE].include?(newStatus)
-        return false if @battle.field.terrain == :Electric && affectedByTerrain? && %i[SLEEP
-                                                                                       DIZZY].include?(newStatus)
         # Type immunities
         hasImmuneType = false
         case newStatus
@@ -439,7 +426,6 @@ immuneTypeRealName))
 
     def canSleepYawn?
         return false unless hasSpotsForStatus
-        return false if affectedByTerrain? && @battle.field.terrain == :Electric
         unless hasActiveAbility?(:SOUNDPROOF)
             @battle.eachBattler do |b|
                 return false if b.effectActive?(:Uproar)

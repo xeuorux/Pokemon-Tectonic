@@ -16,7 +16,6 @@ class PokeBattle_Battle
         pbEORHealing(priority)
 
         pbEORWeather(priority)
-        grassyTerrainEOR(priority)
 
         pbEORDamage(priority)
 
@@ -37,9 +36,6 @@ class PokeBattle_Battle
         allEffectHolders do |effectHolder|
             effectHolder.processEffectsEOR
         end
-
-        # End of terrains
-        pbEORTerrain
 
         processTriggersEOR(priority)
 
@@ -89,7 +85,7 @@ class PokeBattle_Battle
         end
     end
 
-    def damageFromDOTStatus(battler, status)
+    def damageFromDOTStatus(battler, status, aiChecking = false)
         if battler.takesIndirectDamage? && !battler.hasActiveAbility?(:APATHETIC)
             fraction = 1.0 / 8.0
             fraction *= 2 if battler.pbOwnedByPlayer? && curseActive?(:CURSE_STATUS_DOUBLED)
@@ -99,10 +95,14 @@ class PokeBattle_Battle
                 end
             end
             damage = 0
-            battler.pbContinueStatus(status) do
-                damage = battler.applyFractionalDamage(fraction)
+            if aiChecking
+                damage = battler.applyFractionalDamage(fraction, false, aiChecking: true)
+            else
+                battler.pbContinueStatus(status) do
+                    damage = battler.applyFractionalDamage(fraction)
+                end
+                triggerDOTDeathDialogue(battler) if battler.fainted?
             end
-            triggerDOTDeathDialogue(battler) if battler.fainted?
             return damage
         end
         return 0
@@ -119,12 +119,6 @@ class PokeBattle_Battle
     end
 
     def pbEORDamage(priority)
-        # Damage from Hyper
-        priority.each do |b|
-            next if !b.inHyperMode? || @choices[b.index][0] != :UseMove
-            pbDisplay(_INTL("The Hyper Mode attack hurts {1}!", b.pbThis(true)))
-            b.applyFractionalDamage(1.0 / 24.0)
-        end
         # Damage from poisoning
         priority.each do |b|
             next if b.fainted?
@@ -204,16 +198,25 @@ class PokeBattle_Battle
     end
 
     def processTriggersEOR(priority)
+        # End of Round Effect Abilities
         priority.each do |b|
             next if b.fainted?
             # Bad Dreams, Moody, Speed Boost
             b.eachActiveAbility do |ability|
                 BattleHandlers.triggerEOREffectAbility(ability, b, self)
             end
+        end
+        # End of Round Effect Items
+        priority.each do |b|
+            next if b.fainted?
             # Flame Orb, Sticky Barb, Toxic Orb
             b.eachActiveItem do |item|
                 BattleHandlers.triggerEOREffectItem(item, b, self)
             end
+        end
+        # End of Round Item Gain abilities
+        priority.each do |b|
+            next if b.fainted?
             # Harvest, Pickup
             b.eachActiveAbility do |ability|
                 BattleHandlers.triggerEORGainItemAbility(ability, b, self)

@@ -236,7 +236,6 @@ GameData::BattleEffect.register_effect(:Battler, {
     end,
     :disable_proc => proc do |battle, battler|
         battle.pbDisplay(_INTL("{1} can use items again!", battler.pbThis))
-        battler.pbItemTerrainStatBoostCheck
         battler.pbItemFieldEffectCheck
     end,
 })

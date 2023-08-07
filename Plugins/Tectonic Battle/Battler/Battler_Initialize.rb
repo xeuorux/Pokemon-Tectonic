@@ -2,7 +2,7 @@ class PokeBattle_Battler
     #=============================================================================
     # Creating a battler
     #=============================================================================
-    def initialize(btl, idxBattler)
+    def initialize(btl, idxBattler, fake = false)
         @battle = btl
         @index       = idxBattler
         @captured    = false
@@ -12,7 +12,7 @@ class PokeBattle_Battler
         @damageState = PokeBattle_DamageState.new
         pbInitBlank
         pbInitProcs
-        pbInitEffects(false)
+        pbInitEffects(false) unless fake
     end
 
     def pbInitProcs

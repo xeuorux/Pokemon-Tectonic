@@ -1427,7 +1427,7 @@ class PokeBattle_Move_552 < PokeBattle_LeechMove
         return false
     end
 
-    def pbEffectAgainstTarget(_user, target)
+    def pbEffectAgainstTarget(user, target)
         return if damagingMove?
         target.applyLeeched if target.canLeech?(user, false, self)
         target.pbLowerMultipleStatSteps(ATTACKING_STATS_1, user, move: self)
@@ -1963,7 +1963,9 @@ class PokeBattle_Move_576 < PokeBattle_TwoTurnMove
     end
 
     def getEffectScore(user, _target)
-        return getWeatherSettingEffectScore(:Rain, user, battle, 5)
+        score = super
+        score += getWeatherSettingEffectScore(:Rain, user, battle, 5)
+        return score
     end
 end
 
@@ -1998,7 +2000,7 @@ class PokeBattle_Move_578 < PokeBattle_PartyMemberEffectMove
     end
 
     def getScore(_user, _target)
-        return 200
+        return 250
     end
 end
 

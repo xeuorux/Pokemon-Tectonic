@@ -104,13 +104,16 @@ class PokeBattle_AI
         end
         
         # Less likely to switch when any opponent has a force switch out move
-        # Even less likely if the opponent just used such a mvoe
+        # Even less likely if the opponent just used such a move
         battler.eachOpposing do |b|
             if b.hasForceSwitchMove?
                 switchingBias -= 10
                 PBDebug.log("[AI SWITCH] #{battler.pbThis} (#{battler.index}) has an opponent that can force swaps (-10)")
             end
         end
+
+        # Less likely to switch when has self-mending
+        switchingBias -= 10 if battler.hasActiveAbilityAI?(:SELFMENDING)
 
         # Tries to determine if its in a good or bad type matchup
         # Used for Cool Trainers
@@ -162,10 +165,9 @@ class PokeBattle_AI
 
     def getRoughAttackingTypes(battler)
         return nil if battler.fainted?
-        attackingTypes = [battler.pokemon.type1, battler.pokemon.type2]
-        unless battler.lastMoveUsed.nil?
-            moveData = GameData::Move.get(battler.lastMoveUsed)
-            attackingTypes.push(moveData.type)
+        attackingTypes = []
+        battler.eachAIKnownMove do |move|
+            attackingTypes.push(pbRoughType(move, battler))
         end
         attackingTypes.uniq!
         attackingTypes.compact!
@@ -293,12 +295,12 @@ class PokeBattle_AI
 
             # More want to swap if has a entry ability that matters
             # Intentionally checked even if the pokemon will die on entry
-            settingSun = @battle.pbWeather != :Sun && policies.include?(:SUN_TEAM)
-            settingRain = @battle.pbWeather != :Rain && policies.include?(:RAIN_TEAM)
-            settingHail = @battle.pbWeather != :Hail && policies.include?(:HAIL_TEAM)
-            settingSand = @battle.pbWeather != :Sandstorm && policies.include?(:SAND_TEAM)
-            settingEclipse = @battle.pbWeather != :Eclipse && policies.include?(:ECLIPSE_TEAM)
-            settingMoonglow = @battle.pbWeather != :Moonglow && policies.include?(:MOONGLOW_TEAM)
+            settingSun = !@battle.sunny? && policies.include?(:SUN_TEAM)
+            settingRain = !@battle.rainy? && policies.include?(:RAIN_TEAM)
+            settingHail = !@battle.icy? && policies.include?(:HAIL_TEAM)
+            settingSand = !@battle.sandy? && policies.include?(:SAND_TEAM)
+            settingEclipse = !@battle.eclipsed? && policies.include?(:ECLIPSE_TEAM)
+            settingMoonglow = !@battle.moonGlowing? && policies.include?(:MOONGLOW_TEAM)
             alliesInReserve = battlerSlot.alliesInReserveCount
 
             case pkmn.ability
@@ -309,17 +311,17 @@ class PokeBattle_AI
             when :FRUSTRATE
                 switchScore += speedDebuffers * 10
             when :DROUGHT, :INNERLIGHT
-                switchScore += alliesInReserve * 8 if settingSun
+                switchScore += 30 + alliesInReserve * 5 if settingSun
             when :DRIZZLE, :STORMBRINGER
-                switchScore += alliesInReserve * 8 if settingRain
+                switchScore += 30 + alliesInReserve * 5 if settingRain
             when :SNOWWARNING, :FROSTSCATTER
-                switchScore += alliesInReserve * 8 if settingHail
+                switchScore += 30 + alliesInReserve * 5 if settingHail
             when :SANDSTREAM, :SANDBURST
-                switchScore += alliesInReserve * 8 if settingSand
+                switchScore += 30 + alliesInReserve * 5 if settingSand
             when :MOONGAZE, :LUNARLOYALTY
-                switchScore += alliesInReserve * 8 if settingMoonglow
+                switchScore += 30 + alliesInReserve * 5 if settingMoonglow
             when :HARBINGER, :SUNEATER
-                switchScore += alliesInReserve * 8 if settingEclipse
+                switchScore += 30 + alliesInReserve * 5 if settingEclipse
             end
 
             # Only matters if the pokemon will live
@@ -365,14 +367,14 @@ class PokeBattle_AI
         if Effectiveness.ineffective?(typeModDefensive)
             matchupScore += 40
         elsif Effectiveness.not_very_effective?(typeModDefensive)
-            matchupScore += 20
+            matchupScore += 25
         elsif Effectiveness.hyper_effective?(typeModDefensive)
             matchupScore -= 40
         elsif Effectiveness.super_effective?(typeModDefensive)
-            matchupScore -= 20
+            matchupScore -= 25
         end
 
-        maxScore = highestMoveScoreForHypotheticalBattle(battlerSlot,pokemon,partyIndex)
+        maxScore = highestMoveScoreForHypotheticalBattler(battlerSlot,pokemon,partyIndex)
         maxMoveScoreBiasChange = -40
         maxMoveScoreBiasChange += (maxScore / 2.5).round
         matchupScore += maxMoveScoreBiasChange
@@ -390,8 +392,8 @@ class PokeBattle_AI
         return maxTypeMod
     end
 
-    def highestMoveScoreForHypotheticalBattle(battlerSlot,pokemon,partyIndex)
-        fakeBattler = PokeBattle_Battler.new(@battle, battlerSlot.index)
+    def highestMoveScoreForHypotheticalBattler(battlerSlot,pokemon,partyIndex)
+        fakeBattler = PokeBattle_Battler.new(@battle, battlerSlot.index, true)
         fakeBattler.pbInitializeFake(pokemon,partyIndex)
         choices = pbGetBestTrainerMoveChoices(fakeBattler, fakeBattler.ownersPolicies)
 

@@ -278,7 +278,7 @@ class PokeBattle_Move_18F < PokeBattle_Move
 end
 
 #===============================================================================
-# Power is boosted on Psychic Terrain (Shattered Energy)
+# Power is boosted in Eclipse. (Shattered Energy)
 #===============================================================================
 class PokeBattle_Move_190 < PokeBattle_Move
     def pbBaseDamage(baseDmg, _user, _target)
@@ -296,7 +296,11 @@ class PokeBattle_Move_191 < PokeBattle_TwoTurnMove
     end
 
     def pbChargingTurnEffect(user, _target)
-        user.tryRaiseStat(:SPECIAL_ATTACK, user, move: self, increment: 3)
+        user.tryRaiseStat(:SPECIAL_ATTACK, user, move: self, increment: 2)
+    end
+
+    def getEffectScore(user, _target)
+        return getMultiStatUpEffectScore([:SPECIAL_ATTACK,2],user,user)
     end
 end
 

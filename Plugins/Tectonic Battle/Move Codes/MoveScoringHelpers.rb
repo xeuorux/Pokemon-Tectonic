@@ -151,6 +151,10 @@ def getSleepEffectScore(user, target, _policies = [])
     score = 150
     score -= 100 if target.hasSleepAttack?
     score += STATUS_PUNISHMENT_BONUS if user&.hasStatusPunishMove?
+    score -= 60 if target.hasActiveAbilityAI?(%i[SNORING SNOOZEFEST])
+    if target.hasActiveAbilityAI?(:DREAMWEAVER)
+        score -= getMultiStatUpEffectScore([:SPECIAL_ATTACK, 2],target,target)
+    end
     return score
 end
 
@@ -168,12 +172,14 @@ end
 def getFlinchingEffectScore(baseScore, user, target, move)
     return 0 unless userWillHitFirst?(user, target, move)
     return 0 if target.hasActiveAbilityAI?(GameData::Ability::FLINCH_IMMUNITY_ABILITIES)
-    return 0 if target.substituted?
+    return 0 if target.substituted? && !move.ignoresSubstitute?(user)
     return 0 if target.effectActive?(:FlinchImmunity)
     return 0 if target.battle.pbCheckSameSideAbility(:HEARTENINGAROMA,target.index)
 
     score = baseScore
-    score *= 1.5 if user.hasAlly?
+    score *= 2.0 if user.hasAlly?
+
+    score /= 2.0 if user.battle.moonGlowing? && target.flinchedByMoonglow?(true)
 
     return score
 end
@@ -437,13 +443,18 @@ def getMultiStatDownEffectScore(statDownArray, user, target, fakeStepModifier = 
     return score
 end
 
-def getWeatherSettingEffectScore(weatherType, user, battle, duration = 4, checkExtensions = true)
+def getWeatherSettingEffectScore(weatherType, user, battle, finalDuration = 4, checkExtensions = true)
     return 0 if battle.primevalWeatherPresent? || battle.pbCheckGlobalAbility(:AIRLOCK) ||
-                battle.pbCheckGlobalAbility(:CLOUDNINE) || battle.pbWeather == @weatherType
+                battle.pbCheckGlobalAbility(:CLOUDNINE)
 
-    duration = user.getWeatherSettingDuration(weatherType, duration, true) if checkExtensions
+    finalDuration = user.getWeatherSettingDuration(weatherType, finalDuration, true) if checkExtensions
+    currentDuration = battle.pbWeather == @weatherType ? battle.field.weatherDuration : 0
 
-    score = 5 * duration
+    return 0 if currentDuration >= finalDuration
+
+    finalScore = 5 + 5 * finalDuration**0.7
+    currentScore = 5 + 5 * currentDuration**0.7
+    score = finalScore - currentScore
 
     weatherMatchesPolicy = false
     hasSynergyAbility = false
@@ -475,15 +486,12 @@ def getWeatherSettingEffectScore(weatherType, user, battle, duration = 4, checkE
         hasSynergisticType = true if user.pbHasAttackingType?(:PSYCHIC)
     end
     
-    score *= 2 if weatherMatchesPolicy
+    score *= 3 if weatherMatchesPolicy
 
     hasSynergyAbility = true if user.hasActiveAbilityAI?(GameData::Ability::GENERAL_WEATHER_ABILITIES)
 
-    score += 20 if hasSynergisticType
-    score += 40 if hasSynergyAbility
-    score += 10 if user.aboveHalfHealth?
-
-    score += 20 if user.pbHasMoveFunction?("087") # Weather Ball
+    score += 10 if hasSynergisticType
+    score += 30 if hasSynergyAbility && user.aboveHalfHealth?
    
     return score
 end
@@ -501,7 +509,7 @@ end
 def getHPLossEffectScore(user, fraction)
     score = -80 * fraction
     if user.hp <= user.totalhp * fraction
-        return 0 unless user.alliesInReserve?
+        return -300 unless user.alliesInReserve?
         score *= 2
     end
     return score
@@ -550,4 +558,59 @@ def getHazardLikelihoodScore(battler,&block)
         next false if block&.call(move) == false
         next move.hazardMove? && !move.statusMove?
     }
+end
+
+def passingTurnEffectScore(battle,sideIndex = 1)
+    score = 0
+    battle.eachBattler do |b|
+        healthChange = predictedEOTHealing(battle,b)
+        healthChange -= predictedEOTDamage(battle,b)
+
+        healthPercentage = healthChange / b.totalhp.to_f
+        battlerScore = (healthPercentage * 100).ceil
+        battlerScore *= -1 if b.index % 2 != sideIndex
+        score += battlerScore
+    end
+    return score
+end
+
+def predictedEOTDamage(battle,battler)
+    damage = 0
+    # Sandstorm
+    # Hail
+
+    # Status DOTs
+    damage += battle.damageFromDOTStatus(battler, :POISON) if battler.poisoned?
+    damage += battle.damageFromDOTStatus(battler, :LEECHED) if battler.leeched?
+    damage += battle.damageFromDOTStatus(battler, :BURN) if battler.burned?
+    damage += battle.damageFromDOTStatus(battler, :FROSTBITE) if battler.frostbitten?
+
+    # Curse
+    # Trapping DOT
+
+    # Bad Dreams
+    # Painful Presence
+
+    # Sticky Barb
+
+    return damage
+end
+
+def predictedEOTHealing(battle,battler)
+    healing = 0
+    # Aqua Ring
+    # Ingrain
+    # Wish
+
+    # Grotesque Vitals, Fighting Valor, Well Supplied
+    # Rain Dish, Dry Skin
+    # Fine Sugar, Heat Savor
+    # Rock Body
+    # Ice Body
+    # Vital Rhythm
+
+    # Leftovers
+
+    # Harvest, Larder
+    return healing
 end

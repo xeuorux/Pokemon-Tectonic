@@ -48,7 +48,7 @@ class PokeBattle_Battler
     # Applies damage effects that are based on a fraction of the battler's total HP
     # Returns how much damage ended up dealt
     # Accounts for bosses taking reduced fractional damage
-    def applyFractionalDamage(fraction, showDamageAnimation = true, basedOnCurrentHP = false, entryCheck = false, struggle: false)
+    def applyFractionalDamage(fraction, showDamageAnimation = true, basedOnCurrentHP = false, entryCheck = false, struggle: false, aiChecking: false)
         return 0 unless takesIndirectDamage? || struggle
         oldHP = @hp
         fraction /= BOSS_HP_BASED_EFFECT_RESISTANCE if boss?
@@ -64,14 +64,18 @@ class PokeBattle_Battler
             @damageState.displayedDamage = reduction
             @battle.scene.pbDamageAnimation(self,0,true)
         end
-        reduction = @hp if reduction > @hp
-        pbReduceHP(reduction, false)
-        if entryCheck
-            swapped = pbEntryHealthLossChecks(oldHP)
-            return swapped
-        else
-            pbHealthLossChecks(oldHP)
+        if aiChecking
             return reduction
+        else
+            reduction = @hp if reduction > @hp
+            pbReduceHP(reduction, false)
+            if entryCheck
+                swapped = pbEntryHealthLossChecks(oldHP)
+                return swapped
+            else
+                pbHealthLossChecks(oldHP)
+                return reduction
+            end
         end
     end
 
@@ -446,33 +450,6 @@ class PokeBattle_Battler
         end
     end
 
-    def pbCheckFormOnTerrainChange
-        return if fainted?
-        if hasActiveAbility?(:MIMICRY)
-            newTypes = pbTypes
-            originalTypes = [@pokemon.type1]
-            originalTypes.push(@pokemon.type2) if @pokemon.type2 != @pokemon.type1
-            case @battle.field.terrain
-            when :Electric then   newTypes = [:ELECTRIC]
-            when :Grassy then     newTypes = [:GRASS]
-            when :Fairy then      newTypes = [:FAIRY]
-            when :Psychic then    newTypes = [:PSYCHIC]
-            else; newTypes = originalTypes.dup
-            end
-            if pbTypes != newTypes
-                pbChangeTypes(newTypes)
-                showMyAbilitySplash(:MIMICRY, true)
-                hideMyAbilitySplash
-                if newTypes == originalTypes
-                    @battle.pbDisplay(_INTL("{1} returned back to normal!", pbThis))
-                else
-                    typeName = GameData::Type.get(newTypes[0]).name
-                    @battle.pbDisplay(_INTL("{1}'s type changed to {2}!", pbThis, typeName))
-                end
-            end
-        end
-    end
-
     # Checks the Pokémon's form and updates it if necessary. Used for when a
     # Pokémon enters battle (endOfRound=false) and at the end of each round
     # (endOfRound=true).
@@ -480,7 +457,6 @@ class PokeBattle_Battler
         return if fainted? || effectActive?(:Transform)
         # Form changes upon entering battle and when the weather changes
         pbCheckFormOnWeatherChange unless endOfRound
-        pbCheckFormOnTerrainChange unless endOfRound
         # Darmanitan - Zen Mode
         if isSpecies?(:DARMANITAN) && hasAbility?(:ZENMODE)
             if @hp <= @totalhp / 2

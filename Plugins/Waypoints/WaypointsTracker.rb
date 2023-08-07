@@ -64,7 +64,7 @@ class WaypointsTracker
 	def summonPokemonFromWaypoint(avatarSpecies,waypointEvent)
 		$PokemonGlobal.respawnPoint = waypointEvent.id
 		speciesDisplayName = GameData::Species.get(avatarSpecies).name
-		pbMessage(_INTL("By the power of Regigigas, a #{speciesDisplayName} was created!"))
+		pbMessage(_INTL("By the power of the Primal Clay, a #{speciesDisplayName} was created!"))
 		level = [50,getLevelCap].min
 		if pbWildBattleCore(avatarSpecies, level) == 4 # Caught
 			$PokemonGlobal.respawnPoint = nil
@@ -163,9 +163,10 @@ def accessWaypoint(waypointName,avatarSpecies=nil)
 	if avatarSpecies
 		alternate = true
 		if pbHasItem?(:PRIMALCLAY)
-			avatarSpeciesName = GameData::Species.get(avatarSpecies).name
+			speciesName = GameData::Species.get(avatarSpecies).name
 
-			if pbConfirmMessageSerious(_INTL("The totem pulses with the frequency of #{avatarSpeciesName}. Summon it?"))
+			pbMessage(_INTL("The totem pulses with the frequency of #{speciesName}."))
+			if pbConfirmMessage(_INTL("Use the Primal Clay to summon #{speciesName}?"))
 				# No longer allow summoning the pokemon once its been caught once
 				if $waypoints_tracker.summonPokemonFromWaypoint(avatarSpecies,waypointEvent)
 					pbMessage(_INTL("The totem returns to its original state."))
@@ -182,4 +183,21 @@ end
 
 def setWaypointSummonable(waypointEventID)
 	pbSetSelfSwitch(waypointEventID,'A',true)
+end
+
+def totemAuraSummon(species)
+	unless pbHasItem?(:PRIMALCLAY)
+		pbMessage(_INTL("You sense an powerful presence trying to manifest on this spot."))
+		pbMessage(_INTL("However, you seem to lack a way to interact with it."))
+		return
+	end
+	speciesName = GameData::Species.get(species).name
+	pbMessage(_INTL("An Avatar Totem is partially manifested on this spot."))
+	pbMessage(_INTL("It pulses with the frequency of #{speciesName}."))
+	return unless pbConfirmMessage(_INTL("Use the Primal Clay to summon #{speciesName}?"))
+	if $waypoints_tracker.summonPokemonFromWaypoint(species,get_character(0))
+		pbMessage(_INTL("The summoning spot exhausted its energy."))
+		setMySwitch('A')
+		return true
+	end
 end

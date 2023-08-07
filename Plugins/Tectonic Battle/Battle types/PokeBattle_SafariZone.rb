@@ -202,7 +202,6 @@ class PokeBattle_FakeBattler
     end
   
     def defaultWeather=(value); @weather = value; end
-    def defaultTerrain=(value); end
   
     #=============================================================================
     # Information about the type and size of the battle

@@ -19,7 +19,6 @@ class PokeBattle_AI
     TrainerPokemonDiesToDOTDialogue	            = TrainerDialogueHandlerHash.new
     PlayerPokemonDiesToDOTDialogue	            = TrainerDialogueHandlerHash.new
     WeatherChangeDialogue						= TrainerDialogueHandlerHash.new
-    TerrainChangeDialogue						= TrainerDialogueHandlerHash.new
     BattleSurvivedDialogue	                    = TrainerDialogueHandlerHash.new
     TrainerPokemonConsumesItemDialogue	        = TrainerDialogueHandlerHash.new
     PlayerPokemonConsumesItemDialogue	        = TrainerDialogueHandlerHash.new
@@ -105,11 +104,6 @@ dialogue_array)
         return !ret.nil? ? ret : dialogue_array
     end
 
-    def self.triggerTerrainChangeDialogue(policy, old_terrain, new_terrain, trainer_speaking, dialogue_array)
-        ret = TerrainChangeDialogue.trigger(policy, old_terrain, new_terrain, trainer_speaking, dialogue_array)
-        return !ret.nil? ? ret : dialogue_array
-    end
-
     def self.triggerBattleSurvivedDialogue(policy, trainer_speaking, dialogue_array)
         ret = BattleSurvivedDialogue.trigger(policy, trainer_speaking, dialogue_array)
         return !ret.nil? ? ret : dialogue_array
@@ -179,13 +173,6 @@ class PokeBattle_Battle
     #####################################################
     ## Dialogue triggering helper methods
     #####################################################
-    def triggerTerrainChangeDialogue(old_terrain, new_terrain)
-        triggerDialogueForEachOpponent do |policy, trainer_speaking, dialogue|
-            PokeBattle_AI.triggerTerrainChangeDialogue(policy, old_terrain, new_terrain, trainer_speaking,
-dialogue)
-        end
-    end
-
     def triggerWeatherChangeDialogue(old_weather, new_weather)
         triggerDialogueForEachOpponent do |policy, trainer_speaking, dialogue|
             PokeBattle_AI.triggerWeatherChangeDialogue(policy, old_weather, new_weather, trainer_speaking,

@@ -34,12 +34,6 @@ BattleHandlers::SpeedCalcAbility.add(:SLUSHRUSH,
   }
 )
 
-BattleHandlers::SpeedCalcAbility.add(:SURGESURFER,
-  proc { |ability, battler, mult|
-      next mult * 2 if battler.battle.field.terrain == :Electric
-  }
-)
-
 BattleHandlers::SpeedCalcAbility.add(:SWIFTSWIM,
   proc { |ability, battler, mult|
       next mult * 2 if battler.battle.rainy?
@@ -55,12 +49,6 @@ BattleHandlers::SpeedCalcAbility.add(:AQUAPROPULSION,
 BattleHandlers::SpeedCalcAbility.add(:UNBURDEN,
   proc { |ability, battler, mult|
       next mult * 2 if battler.effectActive?(:ItemLost) && !battler.hasAnyItem?
-  }
-)
-
-BattleHandlers::SpeedCalcAbility.add(:QUICKTHINKING,
-  proc { |ability, battler, mult|
-      next mult * 2 if battler.battle.field.terrain == :Psychic
   }
 )
 

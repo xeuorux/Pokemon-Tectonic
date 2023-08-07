@@ -158,20 +158,6 @@ class PokeBattle_Move
         end
     end
 
-    def pbCalcTerrainDamageMultipliers(user,target,type,multipliers,checkingForAI=false)
-        # Terrain moves
-        case @battle.field.terrain
-        when :Electric
-            multipliers[:base_damage_multiplier] *= 1.3 if type == :ELECTRIC && user.affectedByTerrain?
-        when :Grassy
-            multipliers[:base_damage_multiplier] *= 1.3 if type == :GRASS && user.affectedByTerrain?
-        when :Psychic
-            multipliers[:base_damage_multiplier] *= 1.3 if type == :PSYCHIC && user.affectedByTerrain?
-        when :Fairy
-            multipliers[:base_damage_multiplier] *= 1.3 if type == :FAIRY && target.affectedByTerrain?
-        end
-    end
-
     def pbCalcWeatherDamageMultipliers(user,target,type,multipliers,checkingForAI=false)
         case @battle.pbWeather
         when :Sun, :HarshSun
@@ -393,7 +379,6 @@ class PokeBattle_Move
       
     def pbCalcDamageMultipliers(user,target,numTargets,type,baseDmg,multipliers,aiChecking=false)
         pbCalcAbilityDamageMultipliers(user,target,type,baseDmg,multipliers,aiChecking)
-        pbCalcTerrainDamageMultipliers(user,target,type,multipliers,aiChecking)
         pbCalcWeatherDamageMultipliers(user,target,type,multipliers,aiChecking)
         pbCalcStatusesDamageMultipliers(user,target,multipliers,aiChecking)
         pbCalcProtectionsDamageMultipliers(user,target,multipliers,aiChecking)

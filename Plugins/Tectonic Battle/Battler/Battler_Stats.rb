@@ -295,8 +295,7 @@ class PokeBattle_Battler
         speedMult *= 2 if pbOwnSide.effectActive?(:Tailwind)
         speedMult /= 2 if pbOwnSide.effectActive?(:Swamp)
         speedMult *= 2 if effectActive?(:OnDragonRide)
-        speedMult *= 2 if @battle.curseActive?(:CURSE_BOOSTED_ELECTRIC) &&
-                          @battle.field.terrain == :Electric && pbHasType?(:ELECTRIC)
+        
         # Numb
         if !shouldAbilityApply?(:QUICKFEET, aiChecking) && numbed?
             speedMult /= 2

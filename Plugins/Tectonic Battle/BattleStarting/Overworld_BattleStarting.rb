@@ -93,8 +93,6 @@ def pbPrepareBattle(battle)
   # Whether battle animations are shown
   battle.showAnims = $PokemonSystem.battlescene != 2
   battle.showAnims = battleRules["battleAnims"] if !battleRules["battleAnims"].nil?
-  # Terrain
-  battle.defaultTerrain = battleRules["defaultTerrain"] if !battleRules["defaultTerrain"].nil?
   # Weather
   if !battleRules["defaultWeather"].nil?
     battle.defaultWeather = battleRules["defaultWeather"]

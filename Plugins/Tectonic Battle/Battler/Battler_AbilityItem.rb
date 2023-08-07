@@ -362,7 +362,6 @@ class PokeBattle_Battler
         end
 
         unless forced
-            pbItemTerrainStatBoostCheck
             pbItemFieldEffectCheck
         end
     end
@@ -418,14 +417,6 @@ class PokeBattle_Battler
             if BattleHandlers.triggerEndOfMoveStatRestoreItem(item, self, @battle, forced)
                 pbHeldItemTriggered(item, !forced, fling)
             end
-        end
-    end
-
-    # Called when the battle terrain changes and when a Pokémon loses HP.
-    def pbItemTerrainStatBoostCheck
-        itemsToCheck = activeItems.clone
-        itemsToCheck.each do |item|
-            pbHeldItemTriggered(item) if BattleHandlers.triggerTerrainStatBoostItem(item, self, @battle)
         end
     end
 

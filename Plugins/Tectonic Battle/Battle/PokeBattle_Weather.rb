@@ -158,64 +158,6 @@ class PokeBattle_Battle
         end
     end
 
-    def defaultTerrain=(value)
-        @field.defaultTerrain = value
-        @field.terrain         = value
-        @field.terrainDuration = -1
-    end
-
-    def pbStartTerrain(user, newTerrain, fixedDuration = true)
-        if @field.terrain == newTerrain
-            pbHideAbilitySplash(user) if user
-            return
-        end
-        old_terrain = @field.terrain
-        @field.terrain = newTerrain
-        duration = fixedDuration ? 5 : -1
-        if duration > 0 && user
-            user.eachActiveItem do |item|
-                duration = BattleHandlers.triggerTerrainExtenderItem(item, newTerrain, duration, user, self)
-            end
-        end
-        @field.terrainDuration = duration
-        terrain_data = GameData::BattleTerrain.try_get(@field.terrain)
-        pbCommonAnimation(terrain_data.animation) if terrain_data
-        case @field.terrain
-        when :Electric
-            pbDisplay(_INTL("An electric current runs across the battlefield!"))
-            pbDisplay(_INTL("Pokemon cannot fall asleep or be dizzied!"))
-        when :Grassy
-            pbDisplay(_INTL("Grass grew to cover the battlefield!"))
-            pbDisplay(_INTL("All Pokemon are healed each turn!"))
-        when :Fairy
-            pbDisplay(_INTL("Fae mist swirled about the battlefield!"))
-            pbDisplay(_INTL("Pokemon cannot be burned, frostbitten, or poisoned!"))
-        when :Psychic
-            pbDisplay(_INTL("The battlefield got weird!"))
-            pbDisplay(_INTL("Priority moves are prevented!"))
-        end
-        pbHideAbilitySplash(user) if user
-
-        triggerTerrainChangeDialogue(old_terrain, newTerrain)
-    end
-
-    def endTerrain
-        return if @field.terrain == :None
-        case @field.terrain
-        when :Electric
-            pbDisplay(_INTL("The electric current disappeared from the battlefield!"))
-        when :Grassy
-            pbDisplay(_INTL("The grass disappeared from the battlefield!"))
-        when :Fairy
-            pbDisplay(_INTL("The mist disappeared from the battlefield!"))
-        when :Psychic
-            pbDisplay(_INTL("The weirdness disappeared from the battlefield!"))
-        end
-        @field.terrain = :None
-        # Start up the default terrain
-        pbStartTerrain(nil, @field.defaultTerrain, false) if @field.defaultTerrain != :None
-    end
-
     def pbChangeField(_user, fieldEffect, modifier)
         return
         @field.effects[PBEffects: fieldEffect] = modifier
@@ -412,41 +354,8 @@ class PokeBattle_Battle
     end
 
     #=============================================================================
-    # End Of Round terrain
+    # Weather helper methods
     #=============================================================================
-    def pbEORTerrain
-        # Count down terrain duration
-        @field.terrainDuration -= 1 if @field.terrainDuration > 0 && !@field.effectActive?(:TerrainSealant)
-        # Terrain wears off
-        if @field.terrain != :None && @field.terrainDuration == 0
-            endTerrain
-            return if @field.terrain == :None
-        end
-        # Terrain continues
-        terrain_data = GameData::BattleTerrain.try_get(@field.terrain)
-        pbCommonAnimation(terrain_data.animation) if terrain_data
-        case @field.terrain
-        when :Electric then pbDisplay(_INTL("An electric current is running across the battlefield."))
-        when :Grassy   then pbDisplay(_INTL("Grass is covering the battlefield."))
-        when :Fairy    then pbDisplay(_INTL("Mist is swirling about the battlefield."))
-        when :Psychic  then pbDisplay(_INTL("The battlefield is weird."))
-        end
-    end
-
-    def grassyTerrainEOR(priority)
-        return if @field.terrain != :Grassy
-        # Status-curing effects/abilities and HP-healing items
-        priority.each do |b|
-            next if b.fainted?
-            next unless b.affectedByTerrain?
-            PBDebug.log("[Lingering effect] Grassy Terrain affects #{b.pbThis(true)}")
-            fraction = 1.0 / 16.0
-            healingMessage = _INTL("{1} is healed by the Grassy Terrain.", b.pbThis)
-            b.applyFractionalHealing(fraction, customMessage: healingMessage)
-            pbHideAbilitySplash(b) if b.hasActiveAbility?(:NESTING)
-        end
-    end
-
     def sunny?
         return %i[Sun HarshSun].include?(pbWeather)
     end
