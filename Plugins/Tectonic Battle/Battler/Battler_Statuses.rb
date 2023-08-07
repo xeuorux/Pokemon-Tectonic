@@ -53,6 +53,15 @@ class PokeBattle_Battler
     end
     alias hasAnyStatusNoTrigger? hasAnyStatusNoTrigger
 
+    def hasStatusNoSleep?
+        getStatuses.each do |status|
+            next if status == :NONE
+            next if status == :SLEEP
+            return true
+        end
+        return false
+    end
+
     def hasSpotsForStatus
         hasSpots = false
         getStatuses.each do |status|

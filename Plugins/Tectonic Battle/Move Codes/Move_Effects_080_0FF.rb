@@ -2624,6 +2624,11 @@ class PokeBattle_Move_0D9 < PokeBattle_HealingMove
         return false
     end
 
+    def pbMoveFailedAI?(user, targets)
+        return false if user.getStatusCount(:SLEEP) == 1
+        return pbMoveFailed?(user, targets)
+    end
+
     def pbEffectGeneral(user)
         user.applySleepSelf(_INTL("{1} slept and became healthy!", user.pbThis), 3)
         super
@@ -2632,7 +2637,7 @@ class PokeBattle_Move_0D9 < PokeBattle_HealingMove
     def getEffectScore(user, target)
         score = super
         score -= getSleepEffectScore(nil, target)
-        score += 40 if user.pbHasAnyStatus?
+        score += 40 if user.hasStatusNoSleep?
         return score
     end
 end

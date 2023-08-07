@@ -151,6 +151,10 @@ def getSleepEffectScore(user, target, _policies = [])
     score = 150
     score -= 100 if target.hasSleepAttack?
     score += STATUS_PUNISHMENT_BONUS if user&.hasStatusPunishMove?
+    score -= 60 if target.hasActiveAbilityAI?(%i[SNORING SNOOZEFEST])
+    if target.hasActiveAbilityAI?(:DREAMWEAVER)
+        score -= getMultiStatUpEffectScore([:SPECIAL_ATTACK, 2],target,target)
+    end
     return score
 end
 
@@ -503,7 +507,7 @@ end
 def getHPLossEffectScore(user, fraction)
     score = -80 * fraction
     if user.hp <= user.totalhp * fraction
-        return 0 unless user.alliesInReserve?
+        return -300 unless user.alliesInReserve?
         score *= 2
     end
     return score

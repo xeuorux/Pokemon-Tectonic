@@ -213,6 +213,11 @@ class PokeBattle_Move_011 < PokeBattle_FlinchMove
         end
         return false
     end
+
+    def pbMoveFailedAI?(user, targets)
+        return true if user.getStatusCount(:SLEEP) == 1
+        return pbMoveFailed?(user, targets)
+    end
 end
 
 #===============================================================================

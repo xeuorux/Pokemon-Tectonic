@@ -3,7 +3,7 @@ class PokeBattle_Battle
     # Choosing a move/target
     #=============================================================================
     def pbCanChooseMove?(battler, idxMove, showMessages, sleepTalk = false)
-        battler = @battlers[idxBattler] if battler.is_a?(Integer)
+        battler = @battlers[battler.index] if battler.is_a?(Integer)
         move = battler.moves[idxMove]
         return false unless move
         return true if move.empoweredMove? && battler.boss?

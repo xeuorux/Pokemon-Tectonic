@@ -557,7 +557,7 @@
 556,STEALTHROCK,Stealth Rock,105,0,ROCK,Status,0,15,0,FoeSide,0,c,"The user lays a trap of levitating stones around the foe. The trap hurts foes that switch into battle.",
 557,WIDEGUARD,Wide Guard,0AC,0,ROCK,Status,0,5,0,UserSide,3,d,"The user and its allies are protected from wide-ranging attacks for a turn. Always fails if used in succession.",
 558,TARSHOT,Tar Shot,186,0,ROCK,Status,0,12,0,NearOther,3,bce,"Pours sticky tar over the target, lowering its Speed by six steps and making it weak to Fire.",
-559,METEORBEAM,Meteor Beam,191,120,ROCK,Special,100,10,0,NearOther,0,bef,"Gathers space power and boosts its Sp. Atk by three steps on one turn, then attacks on the next turn.",
+559,METEORBEAM,Meteor Beam,191,120,ROCK,Special,100,10,0,NearOther,0,bef,"Gathers space power and boosts its Sp. Atk by two steps on one turn, then attacks on the next turn.",
 560,DOOMDESIRE,Doom Desire,111,140,STEEL,Special,100,5,0,NearOther,0,,"Two turns after this move is used, the user blasts the target with a concentrated bundle of light.",
 561,IRONTAIL,Iron Tail,000,115,STEEL,Physical,80,12,30,NearOther,0,abef,"The target is slammed with a steel-hard tail.",
 562,SUNSTEELSTRIKE,Sunsteel Strike,163,100,STEEL,Physical,100,5,0,NearOther,0,abef,"The user slams into the target with the force of a meteor. Can't be stopped by the target's Ability.",

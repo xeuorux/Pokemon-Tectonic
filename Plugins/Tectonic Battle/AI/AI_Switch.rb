@@ -162,10 +162,9 @@ class PokeBattle_AI
 
     def getRoughAttackingTypes(battler)
         return nil if battler.fainted?
-        attackingTypes = [battler.pokemon.type1, battler.pokemon.type2]
-        unless battler.lastMoveUsed.nil?
-            moveData = GameData::Move.get(battler.lastMoveUsed)
-            attackingTypes.push(moveData.type)
+        attackingTypes = []
+        battler.eachAIKnownMove do |move|
+            attackingTypes.push(pbRoughType(move, battler))
         end
         attackingTypes.uniq!
         attackingTypes.compact!
@@ -365,11 +364,11 @@ class PokeBattle_AI
         if Effectiveness.ineffective?(typeModDefensive)
             matchupScore += 40
         elsif Effectiveness.not_very_effective?(typeModDefensive)
-            matchupScore += 20
+            matchupScore += 25
         elsif Effectiveness.hyper_effective?(typeModDefensive)
             matchupScore -= 40
         elsif Effectiveness.super_effective?(typeModDefensive)
-            matchupScore -= 20
+            matchupScore -= 25
         end
 
         maxScore = highestMoveScoreForHypotheticalBattler(battlerSlot,pokemon,partyIndex)
