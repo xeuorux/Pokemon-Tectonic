@@ -561,12 +561,56 @@ def getHazardLikelihoodScore(battler,&block)
 end
 
 def passingTurnEffectScore(battle,sideIndex = 1)
-    return 0
-    # score = 0
-    # battle.eachBattler do |b|
-    #     score += 30 if b.poisoned?
-    #     score += 30 if b.leeched?
-    #     score += 20 if b.burned?
-    #     score += 20 if b.frostbitten?
-    # end
+    score = 0
+    battle.eachBattler do |b|
+        healthChange = predictedEOTHealing(battle,b)
+        healthChange -= predictedEOTDamage(battle,b)
+
+        healthPercentage = healthChange / b.totalhp.to_f
+        battlerScore = (healthPercentage * 100).ceil
+        battlerScore *= -1 if b.index % 2 != sideIndex
+        score += battlerScore
+    end
+    return score
+end
+
+def predictedEOTDamage(battle,battler)
+    damage = 0
+    # Sandstorm
+    # Hail
+
+    # Status DOTs
+    damage += battle.damageFromDOTStatus(battler, :POISON) if battler.poisoned?
+    damage += battle.damageFromDOTStatus(battler, :LEECHED) if battler.leeched?
+    damage += battle.damageFromDOTStatus(battler, :BURN) if battler.burned?
+    damage += battle.damageFromDOTStatus(battler, :FROSTBITE) if battler.frostbitten?
+
+    # Curse
+    # Trapping DOT
+
+    # Bad Dreams
+    # Painful Presence
+
+    # Sticky Barb
+
+    return damage
+end
+
+def predictedEOTHealing(battle,battler)
+    healing = 0
+    # Aqua Ring
+    # Ingrain
+    # Wish
+
+    # Grotesque Vitals, Fighting Valor, Well Supplied
+    # Rain Dish, Dry Skin
+    # Fine Sugar, Heat Savor
+    # Rock Body
+    # Ice Body
+    # Vital Rhythm
+
+    # Leftovers
+
+    # Harvest, Larder
+    return healing
 end

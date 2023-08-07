@@ -57,46 +57,6 @@ BattleHandlers::AbilityOnSwitchIn.add(:DELTASTREAM,
 )
 
 #######################################################
-# Terrain setting abilities
-#######################################################
-
-BattleHandlers::AbilityOnSwitchIn.add(:GRASSYSURGE,
-  proc { |ability, battler, battle|
-      next if battle.field.terrain == :Grassy
-      battle.pbShowAbilitySplash(battler, ability)
-      battle.pbStartTerrain(battler, :Grassy)
-      # NOTE: The ability splash is hidden again in def pbStartTerrain.
-  }
-)
-
-BattleHandlers::AbilityOnSwitchIn.add(:PSYCHICSURGE,
-  proc { |ability, battler, battle|
-      next if battle.field.terrain == :Psychic
-      battle.pbShowAbilitySplash(battler, ability)
-      battle.pbStartTerrain(battler, :Psychic)
-      # NOTE: The ability splash is hidden again in def pbStartTerrain.
-  }
-)
-
-BattleHandlers::AbilityOnSwitchIn.add(:FAIRYSURGE,
-  proc { |ability, battler, battle|
-      next if battle.field.terrain == :Fairy
-      battle.pbShowAbilitySplash(battler, ability)
-      battle.pbStartTerrain(battler, :Fairy)
-      # NOTE: The ability splash is hidden again in def pbStartTerrain.
-  }
-)
-
-BattleHandlers::AbilityOnSwitchIn.add(:ELECTRICSURGE,
-  proc { |ability, battler, battle|
-      next if battle.field.terrain == :Electric
-      battle.pbShowAbilitySplash(battler, ability)
-      battle.pbStartTerrain(battler, :Electric)
-      # NOTE: The ability splash is hidden again in def pbStartTerrain.
-  }
-)
-
-#######################################################
 # Other abilities
 #######################################################
 
@@ -591,14 +551,6 @@ BattleHandlers::AbilityOnSwitchIn.add(:FREERIDE,
       battler.eachAlly do |b|
           b.tryRaiseStat(:SPEED, battler, increment: 2)
       end
-      battle.pbHideAbilitySplash(battler)
-  }
-)
-
-BattleHandlers::AbilityOnSwitchIn.add(:EARTHLOCK,
-  proc { |ability, battler, battle|
-      battle.pbShowAbilitySplash(battler, ability)
-      battle.pbDisplay(_INTL("The effects of the terrain disappeared."))
       battle.pbHideAbilitySplash(battler)
   }
 )

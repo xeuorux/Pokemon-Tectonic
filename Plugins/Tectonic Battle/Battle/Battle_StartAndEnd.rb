@@ -384,19 +384,6 @@ class PokeBattle_Battle
         when :StrongWinds then pbDisplay(_INTL("The wind is strong."))
         when :ShadowSky   then pbDisplay(_INTL("The sky is shadowy."))
         end
-        # Terrain announcement
-        terrain_data = GameData::BattleTerrain.try_get(@field.terrain)
-        pbCommonAnimation(terrain_data.animation) if terrain_data
-        case @field.terrain
-        when :Electric
-            pbDisplay(_INTL("An electric current runs across the battlefield!"))
-        when :Grassy
-            pbDisplay(_INTL("Grass is covering the battlefield!"))
-        when :Fairy
-            pbDisplay(_INTL("Fae mist swirls about the battlefield!"))
-        when :Psychic
-            pbDisplay(_INTL("The battlefield is weird!"))
-        end
         # Change avatars for auto-testing
         if @autoTesting
             eachBattler do |b|

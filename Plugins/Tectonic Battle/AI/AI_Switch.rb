@@ -104,13 +104,16 @@ class PokeBattle_AI
         end
         
         # Less likely to switch when any opponent has a force switch out move
-        # Even less likely if the opponent just used such a mvoe
+        # Even less likely if the opponent just used such a move
         battler.eachOpposing do |b|
             if b.hasForceSwitchMove?
                 switchingBias -= 10
                 PBDebug.log("[AI SWITCH] #{battler.pbThis} (#{battler.index}) has an opponent that can force swaps (-10)")
             end
         end
+
+        # Less likely to switch when has self-mending
+        switchingBias -= 10 if battler.hasActiveAbilityAI?(:SELFMENDING)
 
         # Tries to determine if its in a good or bad type matchup
         # Used for Cool Trainers

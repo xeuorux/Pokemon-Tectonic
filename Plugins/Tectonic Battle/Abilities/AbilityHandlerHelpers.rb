@@ -49,13 +49,6 @@ def pbBattleWeatherAbility(ability, weather, battler, battle, ignorePrimal = fal
     end
 end
 
-def terrainSetAbility(ability, terrain, battler, battle, _ignorePrimal = false)
-    return if battle.field.terrain == terrain
-    battle.pbShowAbilitySplash(battler, ability)
-    battle.pbStartTerrain(battler, terrain)
-    # NOTE: The ability splash is hidden again in def pbStartTerrain.
-end
-
 def randomStatusProcUserAbility(ability, status, chance, user, target, move, battle, aiChecking = false, aiNumHits = 1)
     return if target.pbHasStatus?(status)
     return if target.fainted?

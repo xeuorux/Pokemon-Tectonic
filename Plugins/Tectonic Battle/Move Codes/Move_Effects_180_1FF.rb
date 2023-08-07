@@ -278,7 +278,7 @@ class PokeBattle_Move_18F < PokeBattle_Move
 end
 
 #===============================================================================
-# Power is boosted on Psychic Terrain (Shattered Energy)
+# Power is boosted in Eclipse. (Shattered Energy)
 #===============================================================================
 class PokeBattle_Move_190 < PokeBattle_Move
     def pbBaseDamage(baseDmg, _user, _target)
