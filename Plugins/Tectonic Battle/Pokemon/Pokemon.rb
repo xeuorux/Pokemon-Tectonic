@@ -794,6 +794,7 @@ class Pokemon
             pbTakeItemsFromPokemon(self)
           end
         else
+          echoln(_INTL("#{name} is not allowed to hold its current items."))
           removeItems
         end
     end

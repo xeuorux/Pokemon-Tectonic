@@ -195,15 +195,15 @@ Special,20
 #-------------------------------
 [051] # Foreclosed Tunnel
 DarkCave,20
+    25,GASTLY,9,11
     25,LITWICK,9,11
     25,ROLYCOLY,9,11
-    25,GASTLY,9,11
     25,TRAPINCH,9,11
 Mud,40
-    25,PHANPY,9,11
     25,MACHOP,9,11
     25,MUDBRAY,9,11
-	25,ONIX,9,11
+    25,ONIX,9,11
+    25,PHANPY,9,11
 #-------------------------------
 [053] # The Shelf
 Land,20
