@@ -20,7 +20,7 @@ class PokeBattle_AI
         else # If there are no calculated choices, create a list of the choices all scored the same, to be chosen between randomly later on
             PBDebug.log("[AI] #{user.pbThis} (#{user.index}) scored no moves above a zero, resetting all choices to default")
             user.eachMoveWithIndex do |m, i|
-                next unless @battle.pbCanChooseMove?(idxBattler, i, false)
+                next unless @battle.pbCanChooseMove?(user, i, false)
                 next if m.empoweredMove?
                 choices.push([i, 100, -1]) # Move index, score, target
             end
@@ -49,7 +49,7 @@ class PokeBattle_AI
     def pbGetBestTrainerMoveChoices(user, policies = [])
         choices = []
         user.eachMoveWithIndex do |_move, i|
-            next unless @battle.pbCanChooseMove?(user.index, i, false)
+            next unless @battle.pbCanChooseMove?(user, i, false)
             newChoice = pbEvaluateMoveTrainer(user, user.moves[i], policies)
             # Push a new array of [moveIndex,moveScore,targetIndex]
             # where targetIndex could be -1 for anything thats not single target

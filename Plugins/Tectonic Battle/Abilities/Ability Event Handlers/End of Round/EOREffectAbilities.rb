@@ -224,9 +224,10 @@ BattleHandlers::EOREffectAbility.add(:PAINPRESENCE,
   proc { |ability, battler, battle|
     battler.eachOther do |b|
       battle.pbShowAbilitySplash(battler, ability)
-      next unless b.takesIndirectDamage?(true)
-      battle.pbDisplay(_INTL("{1} is pained!", b.pbThis))
-      b.applyFractionalDamage(1.0 / 12.0, false)
+      if b.takesIndirectDamage?(true)
+        battle.pbDisplay(_INTL("{1} is pained!", b.pbThis))
+        b.applyFractionalDamage(1.0 / 12.0, false)
+      end
       battle.pbHideAbilitySplash(battler)
     end
   }

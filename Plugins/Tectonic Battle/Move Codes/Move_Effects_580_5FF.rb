@@ -587,6 +587,10 @@ class PokeBattle_Move_59E < PokeBattle_PartyMemberEffectMove
         pokemon.hp = 1
         @battle.pbDisplay(_INTL("{1} recovered to 1 HP!", pokemon.name))
     end
+
+    def getScore(_user, _target)
+        return 200
+    end
 end
 
 #===============================================================================
@@ -1511,7 +1515,9 @@ class PokeBattle_Move_5C4 < PokeBattle_TwoTurnMove
     end
 
     def getEffectScore(user, _target)
-        return getWeatherSettingEffectScore(:Sun, user, battle, 5)
+        score = super
+        score += getWeatherSettingEffectScore(:Sun, user, battle, 5)
+        return score
     end
 end
 
@@ -1707,7 +1713,7 @@ class PokeBattle_Move_5CB < PokeBattle_Move
         when 1
             return getBurnEffectScore(user, target)
         when 2
-            return getNumnEffectScore(user, target)
+            return getNumbEffectScore(user, target)
         when 3
             return getFrostbiteEffectScore(user, target)
         when 4

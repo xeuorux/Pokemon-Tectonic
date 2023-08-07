@@ -573,8 +573,11 @@ class PokeBattle_TwoTurnMove < PokeBattle_Move
 
     def getEffectScore(user, _target)
         score = 0
-        score -= 20 unless user.firstTurn?
-        score -= 40 unless user.hasActiveItem?(:POWERHERB)
+        unless user.hasActiveItem?(:POWERHERB)
+            score -= 40
+            score -= 20 unless user.firstTurn?
+            score -= 20 if user.belowHalfHealth?
+        end
         return score
     end
 

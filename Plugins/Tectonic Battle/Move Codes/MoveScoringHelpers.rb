@@ -437,13 +437,18 @@ def getMultiStatDownEffectScore(statDownArray, user, target, fakeStepModifier = 
     return score
 end
 
-def getWeatherSettingEffectScore(weatherType, user, battle, duration = 4, checkExtensions = true)
+def getWeatherSettingEffectScore(weatherType, user, battle, finalDuration = 4, checkExtensions = true)
     return 0 if battle.primevalWeatherPresent? || battle.pbCheckGlobalAbility(:AIRLOCK) ||
-                battle.pbCheckGlobalAbility(:CLOUDNINE) || battle.pbWeather == @weatherType
+                battle.pbCheckGlobalAbility(:CLOUDNINE)
 
-    duration = user.getWeatherSettingDuration(weatherType, duration, true) if checkExtensions
+    finalDuration = user.getWeatherSettingDuration(weatherType, finalDuration, true) if checkExtensions
+    currentDuration = battle.pbWeather == @weatherType ? battle.field.weatherDuration : 0
 
-    score = 5 * duration
+    return 0 if currentDuration >= finalDuration
+
+    finalScore = 5 + 5 * finalDuration**0.7
+    currentScore = 5 + 5 * currentDuration**0.7
+    score = finalScore - currentScore
 
     weatherMatchesPolicy = false
     hasSynergyAbility = false
@@ -475,15 +480,12 @@ def getWeatherSettingEffectScore(weatherType, user, battle, duration = 4, checkE
         hasSynergisticType = true if user.pbHasAttackingType?(:PSYCHIC)
     end
     
-    score *= 2 if weatherMatchesPolicy
+    score *= 3 if weatherMatchesPolicy
 
     hasSynergyAbility = true if user.hasActiveAbilityAI?(GameData::Ability::GENERAL_WEATHER_ABILITIES)
 
-    score += 20 if hasSynergisticType
-    score += 40 if hasSynergyAbility
-    score += 10 if user.aboveHalfHealth?
-
-    score += 20 if user.pbHasMoveFunction?("087") # Weather Ball
+    score += 10 if hasSynergisticType
+    score += 30 if hasSynergyAbility && user.aboveHalfHealth?
    
     return score
 end

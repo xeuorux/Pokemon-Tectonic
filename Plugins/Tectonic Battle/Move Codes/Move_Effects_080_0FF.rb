@@ -1444,6 +1444,11 @@ class PokeBattle_Move_0B4 < PokeBattle_Move
         choice = getSleepTalkMoves(user).sample
         user.pbUseMoveSimple(user.moves[choice].id, user.pbDirectOpposing.index)
     end
+
+    def getEffectScore(_user, _target)
+        echoln("The AI will never use Sleep talk.")
+        return -1000
+    end
 end
 
 #===============================================================================

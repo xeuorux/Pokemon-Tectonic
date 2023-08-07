@@ -229,7 +229,7 @@ class PokeBattle_Move_012 < PokeBattle_FlinchMove
     end
 
     def getTargetAffectingEffectScore(user, target)
-        score = getFlinchingEffectScore(150, user, target, self)
+        score = getFlinchingEffectScore(120, user, target, self)
         return score
     end
 end

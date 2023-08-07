@@ -523,12 +523,12 @@ class Pokemon
     end
 
 	  def addExtraAbility(ability)
-        @extraAbilities.push(ability) unless @extraAbilities.include?(ability)
+      @extraAbilities.push(ability) unless @extraAbilities.include?(ability)
     end
 
     def extraAbilities
-        @extraAbilities = [] if @extraAbilities.nil?
-        return @extraAbilities
+      @extraAbilities = [] if @extraAbilities.nil?
+      return @extraAbilities
     end
   
     #=============================================================================
