@@ -1371,10 +1371,8 @@ class PokeBattle_Move_5C2 < PokeBattle_Move
     def initialize(battle, move)
         super
         @moveBlacklist = [
-            # Struggle, Chatter, Belch
+            # Struggle
             "002",   # Struggle
-            "014",   # Chatter
-            "158",   # Belch
             # Moves that affect the moveset
             "05C",   # Mimic
             "05D",   # Sketch

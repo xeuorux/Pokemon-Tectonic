@@ -469,7 +469,7 @@
 468,YAWN,Yawn,004,0,NORMAL,Status,0,8,0,NearOther,0,CanProtect;CanMagicCoat;CanMirrorMove,"The user yawns, making the target drowsy. They'll fall asleep at end of turn next.",
 469,STUFFCHEEKS,Stuff Cheeks,183,0,NORMAL,Status,100,10,0,User,0,CanMirrorMove,"The user eats its held Berry, then  raises both its defensive stats by three steps.",
 470,TEATIME,Teatime,184,0,NORMAL,Status,0,10,0,AllBattlers,0,,"The user has teatime with all the Pokémon in the battle. Each Pokémon eats its held Berry.",
-471,BELCH,Belch,158,120,POISON,Special,100,10,0,NearOther,0,CanProtect,"The user lets out a damaging belch at the target. The user must eat a held Berry to use this move.",
+471,BELCH,Belch,158,60,POISON,Special,100,10,0,NearOther,0,CanProtect;Sound,"The user lets out a damaging belch at the target. Deals double damage if the user has eaten a berry this battle.",
 472,GUNKSHOT,Gunk Shot,000,115,POISON,Physical,80,5,10,NearOther,0,CanProtect;CanMirrorMove,"The user shoots filthy garbage at the target to attack.",
 473,SLUDGEWAVE,Sludge Wave,005,95,POISON,Special,100,10,10,AllNearOthers,0,CanProtect;CanMirrorMove,"It swamps the area around the user with a giant sludge wave. It has a 10% chance to poison.",
 474,SLUDGEBOMB,Sludge Bomb,005,80,POISON,Special,100,10,30,NearOther,0,CanProtect;CanMirrorMove,"Unsanitary sludge is hurled at the target. It has a 30% chance to poison.",

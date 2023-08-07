@@ -117,7 +117,6 @@ class PokeBattle_Battler
     def unstoppableAbility?(abil = nil)
         ability_blacklist = [
             # Form-changing abilities
-            :BATTLEBOND,
             :DISGUISE,
             :MULTITYPE,
             :POWERCONSTRUCT,
@@ -154,7 +153,6 @@ class PokeBattle_Battler
     def ungainableAbility?(abil = nil)
         ability_blacklist = [
             # Form-changing abilities
-            :BATTLEBOND,
             :DISGUISE,
             :FLOWERGIFT,
             :FORECAST,
@@ -529,6 +527,14 @@ class PokeBattle_Battler
 
     def setBelched
         @battle.belch[@index & 1][@pokemonIndex] = true
+    end
+
+    def lustered?
+        return @battle.luster[@index & 1][@pokemonIndex]
+    end
+
+    def setLustered
+        @battle.luster[@index & 1][@pokemonIndex] = true
     end
 
     def empowered?

@@ -137,7 +137,6 @@ module GameData
           "14B",   # King's Shield
           # Struggle
           "002",   # Struggle
-          "158",   # Belch
           # Moves that affect the moveset
           "05C",   # Mimic
           "05D",   # Sketch

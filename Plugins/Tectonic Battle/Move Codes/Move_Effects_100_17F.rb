@@ -1815,28 +1815,12 @@ class PokeBattle_Move_157 < PokeBattle_Move
 end
 
 #===============================================================================
-# Fails unless user has consumed a berry at some point. (Belch)
+# Deals double damage if the user has consumed a berry at some point. (Belch)
 #===============================================================================
 class PokeBattle_Move_158 < PokeBattle_Move
-    def pbCanChooseMove?(user, commandPhase, showMessages)
-        unless user.belched?
-            if showMessages
-                msg = _INTL("{1} hasn't eaten any held berry, so it can't possibly belch!", user.pbThis)
-                commandPhase ? @battle.pbDisplayPaused(msg) : @battle.pbDisplay(msg)
-            end
-            return false
-        end
-        return true
-    end
-
-    def pbMoveFailed?(user, _targets, show_message)
-        unless user.belched?
-            if show_message
-                @battle.pbDisplay(_INTL("But it failed, since #{user.pbThis(true)} hasn't eaten a berry yet!"))
-            end
-            return true
-        end
-        return false
+    def pbBaseDamage(baseDmg, user, target)
+        baseDmg *= 2 if user.belched?
+        return baseDmg
     end
 end
 
@@ -2174,9 +2158,13 @@ class PokeBattle_Move_167 < PokeBattle_Move
 end
 
 #===============================================================================
-# (Not currently used.)
+# Deals double damage if the user has consumed a gem at some point. (Glimmer Pulse)
 #===============================================================================
 class PokeBattle_Move_168 < PokeBattle_Move
+    def pbBaseDamage(baseDmg, user, target)
+        baseDmg *= 2 if user.lustered?
+        return baseDmg
+    end
 end
 
 #===============================================================================

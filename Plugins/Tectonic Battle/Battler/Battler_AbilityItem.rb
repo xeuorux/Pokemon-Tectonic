@@ -290,6 +290,7 @@ class PokeBattle_Battler
             applyEffect(:PickupUse, @battle.nextPickupUse)
         end
         setBelched if belch && itemData.is_berry?
+        setLustered if belch && itemData.is_gem?
         removeItem(item)
     end
 

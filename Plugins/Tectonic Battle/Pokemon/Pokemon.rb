@@ -1819,7 +1819,6 @@ class Pokemon
       return nil if egg?
       return nil if hasItem?(:EVERSTONE)
       return nil if hasItem?(:EVIOLITE)
-      return nil if hasAbility?(:BATTLEBOND)
       species_data.get_evolutions(true).each do |evo| # [new_species, method, parameter, boolean]
           next if evo[3] # Prevolution
           ret = yield self, evo[0], evo[1], evo[2] # pkmn, new_species, method, parameter
