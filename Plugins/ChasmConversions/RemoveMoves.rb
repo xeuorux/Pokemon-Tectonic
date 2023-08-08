@@ -4,7 +4,7 @@ SaveData.register_conversion(:move_renaming_0) do
   game_version '1.12.0'
   display_title '1.12.0 move removals'
   to_all do |save_data|
-    eachPokemonInSave(save_data) do |pokemon|
+    eachPokemonInSave(save_data) do |pokemon,_location|
       pokemon.moves.map! { |move|
         moveID = move.id
         if MOVES_REMOVED_112.include?(moveID)

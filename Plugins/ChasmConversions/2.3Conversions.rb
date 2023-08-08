@@ -13,7 +13,7 @@ SaveData.register_conversion(:oran_berry_rename_2_3) do
   to_all do |save_data|
     bag = save_data[:bag]
     bag.pbChangeItem(:ORANBERRY,:AMWIBERRY)
-    eachPokemonInSave(save_data) do |pokemon|
+    eachPokemonInSave(save_data) do |pokemon,_location|
       next unless pokemon.hasItem?(:ORANBERRY)
       pokemon.removeItem(:ORANBERRY)
       pokemon.giveItem(:AMWIBERRY)

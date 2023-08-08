@@ -37,7 +37,7 @@ end
 
 def renameAllSavedMovesInBatch(save_data,batch_number)
   move_renames = getRenamedMovesBatch(batch_number)
-  eachPokemonInSave(save_data) do |pokemon|
+  eachPokemonInSave(save_data) do |pokemon,_location|
     renameMovesOnPokemon(pokemon, move_renames)
   end
 end

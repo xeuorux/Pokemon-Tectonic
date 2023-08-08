@@ -4,7 +4,7 @@ SaveData.register_conversion(:replace_busted_radio_220) do
   to_all do |save_data|
     bag = save_data[:bag]
     bag.pbChangeItem(:BUSTEDRADIO,:HIVISJACKET)
-    eachPokemonInSave(save_data) do |pokemon|
+    eachPokemonInSave(save_data) do |pokemon,_location|
       next unless pokemon.hasItem?(:BUSTEDRADIO)
       pokemon.removeItem(:BUSTEDRADIO)
       pokemon.giveItem(:HIVISJACKET)

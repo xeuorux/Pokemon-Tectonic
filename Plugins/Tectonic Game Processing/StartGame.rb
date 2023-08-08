@@ -63,6 +63,7 @@ module Game
     # @raise [SaveData::InvalidValueError] if an invalid value is being loaded
     def self.load(save_data)
       validate save_data => Hash
+      removeIllegalElementsFromAllPokemon(save_data)
       SaveData.load_all_values(save_data)
       self.load_map
       pbAutoplayOnSave
@@ -128,5 +129,57 @@ module Game
       end
       return true
     end
+end
+
+
+def removeIllegalElementsFromAllPokemon(save_data)
+  eachPokemonInSave(save_data) do |pokemon, location|
+    echoln("#{pokemon.name} learnable moves: #{pokemon.learnable_moves(false).to_s}")
+    echoln("#{pokemon.name} legal abilities: #{pokemon.species_data.legalAbilities.to_s}")
+
+    # Find and remove illegal moves
+    pokemon.moves.each do |move|
+      next if move.nil?
+      moveID = move.id
+      
+      remove = false
+
+      moveData = GameData::Move.get(moveID)
+      if !moveData.learnable? && !(pokemon.species == :SMEARGLE && moveData.primeval)
+        pbMessage(_INTL("Pokemon #{pokemon.name} in #{location} has move #{moveData.name} in its move list."))
+        pbMessage(_INTL("That move has been cut from the game or is not legal to learn. Removing now."))
+        remove = true
+      end
+
+      unless pokemon.learnable_moves(false).include?(moveID)
+        pbMessage(_INTL("Pokemon #{pokemon.name} in #{location} has move #{moveData.name} in its move list."))
+        pbMessage(_INTL("That move is not legal for its species. Removing now."))
+        remove = true
+      end
+
+      if remove
+        pokemon.forget_move(moveID)
+        pokemon.remove_first_move(moveID)
+      end
+    end
+
+    # Find and fix illegal abilities
+    unless pokemon.species_data.legalAbilities.include?(pokemon.ability_id)
+      pbMessage(_INTL("Pokemon #{pokemon.name} in #{location} has ability #{pokemon.ability.name}."))
+      pokemon.recalculateAbilityFromIndex
+      pbMessage(_INTL("That ability is not legal for its species. Switching to #{pokemon.ability.name}."))
+    end
+
+    # Check and remove illegal items
+    pokemon.items.clone.each do |item|
+      itemData = GameData::Item.get(item)
+      next if itemData.legal?
+      pbMessage(_INTL("Pokemon #{pokemon.name} in #{location} has item #{itemData.name}."))
+      pbMessage(_INTL("That item has been cut from the game or is not legal to own. Removing now."))
+      pokemon.removeItem(item)
+    end
   end
-  
+rescue StandardError
+  pbMessage(_INTL("An error occured while checking for the legality of your party."))
+  pbPrintException($!)
+end
