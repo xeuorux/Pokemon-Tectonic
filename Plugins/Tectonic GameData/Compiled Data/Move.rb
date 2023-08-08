@@ -110,21 +110,21 @@ module GameData
 
       def tagLabel
         category = nil
-        @flags.split("").each do |flag|
+        @flags.split(";").each do |flag|
           case flag
-          when "i"
+          when "Bite"
               category = _INTL("Bite")
-          when "j"
+          when "Punch"
               category = _INTL("Punch")
-          when "k"
+          when "Sound"
               category = _INTL("Sound")
-          when "m"
+          when "Pulse"
               category = _INTL("Pulse")
-          when "o"
+          when "Dance"
               category = _INTL("Dance")
-          when "p"
+          when "Blade"
               category = _INTL("Blade")
-          when "q"
+          when "Wind"
               category = _INTL("Wind")
           end
         end
