@@ -541,7 +541,7 @@ class PokemonSummary_Scene
                           Color.new(176, 176, 176),])
         end
         # Write the Pokemon's original level of obtaining
-        textpos.push([@pokemon.obtain_level.to_s, infoTextInsertedX, infoLabelBaseY + 32 * 4, 1, Color.new(64, 64, 64),
+        textpos.push([@pokemon.obtain_level.to_s, infoTextInsertedX, infoLabelBaseY + 32 * 4, 2, Color.new(64, 64, 64),
             Color.new(176, 176, 176),])
         # Write experience point info
         endexp = @pokemon.growth_rate.minimum_exp_for_level(@pokemon.level + 1)

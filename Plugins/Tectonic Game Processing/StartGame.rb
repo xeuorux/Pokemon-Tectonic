@@ -134,8 +134,8 @@ end
 
 def removeIllegalElementsFromAllPokemon(save_data)
   eachPokemonInSave(save_data) do |pokemon, location|
-    echoln("#{pokemon.name} learnable moves: #{pokemon.learnable_moves(false).to_s}")
-    echoln("#{pokemon.name} legal abilities: #{pokemon.species_data.legalAbilities.to_s}")
+    #echoln("#{pokemon.name} learnable moves: #{pokemon.learnable_moves(false).to_s}")
+    #echoln("#{pokemon.name} legal abilities: #{pokemon.species_data.legalAbilities.to_s}")
 
     # Find and remove illegal moves
     pokemon.moves.each do |move|
