@@ -444,17 +444,25 @@ def getMultiStatDownEffectScore(statDownArray, user, target, fakeStepModifier = 
 end
 
 def getWeatherSettingEffectScore(weatherType, user, battle, finalDuration = 4, checkExtensions = true)
-    return 0 if battle.primevalWeatherPresent? || battle.pbCheckGlobalAbility(:AIRLOCK) ||
+    if battle.primevalWeatherPresent? || battle.pbCheckGlobalAbility(:AIRLOCK) ||
                 battle.pbCheckGlobalAbility(:CLOUDNINE)
+            echoln("[EFFECT SCORING] Score for setting weather #{weatherType} is 0 due to presence of weather-disabling ability")
+        return 0
+    end
 
     finalDuration = user.getWeatherSettingDuration(weatherType, finalDuration, true) if checkExtensions
     currentDuration = battle.pbWeather == @weatherType ? battle.field.weatherDuration : 0
 
-    return 0 if currentDuration >= finalDuration
+    if currentDuration >= finalDuration
+        echoln("[EFFECT SCORING] Score for setting weather #{weatherType} is 0 due to final duration #{finalDuration} being less than the current duration #{currentDuration}")
+        return 0
+    end
 
-    finalScore = 5 + 5 * finalDuration**0.7
-    currentScore = 5 + 5 * currentDuration**0.7
+    finalScore = (10 * finalDuration**0.7).ceil
+    currentScore = (10 * currentDuration**0.7).ceil
     score = finalScore - currentScore
+
+    echoln("[EFFECT SCORING] Base score for setting weather #{weatherType} calculated as #{score} from difference of #{finalDuration}-turn final duration score (#{finalScore}) and #{currentDuration}-turn current duration score (#{currentScore})")
 
     weatherMatchesPolicy = false
     hasSynergyAbility = false
@@ -486,7 +494,10 @@ def getWeatherSettingEffectScore(weatherType, user, battle, finalDuration = 4, c
         hasSynergisticType = true if user.pbHasAttackingType?(:PSYCHIC)
     end
     
-    score *= 3 if weatherMatchesPolicy
+    if weatherMatchesPolicy
+        echoln("[EFFECT SCORING] Base score for setting weather #{weatherType} tripled due to relevant policy")
+        score *= 3
+    end
 
     hasSynergyAbility = true if user.hasActiveAbilityAI?(GameData::Ability::GENERAL_WEATHER_ABILITIES)
 

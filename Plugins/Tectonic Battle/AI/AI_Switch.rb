@@ -119,7 +119,7 @@ class PokeBattle_AI
         # Used for Cool Trainers
         if policies.include?(:PROACTIVE_MATCHUP_SWAPPER)
             unless sacrificing
-                currentMatchupRating = rateMatchupAgainstFoes(battler, battler.pokemon, battler.pokemonIndex)
+                currentMatchupRating = rateMatchupAgainstFoes(battler)
                 switchingBias -= currentMatchupRating
                 PBDebug.log("[AI] #{battler.pbThis} (#{battler.index}) evaluates its current matchup (#{-currentMatchupRating.to_change})")
             end
@@ -210,50 +210,49 @@ class PokeBattle_AI
 
             switchScore = 0
 
-            # Account for hazards
-            unless GameData::Ability::HAZARD_IMMUNITY_ABILITIES.include?(pkmn.ability) && !@battle.abilitiesNeutralized?
-                # Determine if the pokemon will be airborne
-                airborne = pkmn.hasType?(:FLYING) || pkmn.hasAbility?(:LEVITATE) || pkmn.hasItem?(LEVITATION_ITEMS)
-                airborne = false if @battle.field.effectActive?(:Gravity)
-                airborne = false if pkmn.hasItem?(:IRONBALL)
+            # Create a battler to simulate what would happen if the Pokemon was in battle right now
+            fakeBattler = PokeBattle_Battler.new(@battle, battlerSlot.index, true)
+            fakeBattler.pbInitializeFake(pkmn,partyIndex)
 
+            # Account for hazards
+            unless fakeBattler.ignoresHazards?
                 willAbsorbSpikes = false
 
                 # Calculate how much damage the pokemon is likely to take from entry hazards
                 entryDamage = 0
-                if !airborne && pkmn.ability != :MAGICGUARD && pkmn.hasItem?(:HEAVYDUTYBOOTS)
+                if fakeBattler.airborne?(true) && fakeBattler.takesIndirectDamage? && fakeBattler.hasActiveItem?(:HEAVYDUTYBOOTS)
                     # Stealth Rock
-                    if battlerSlot.pbOwnSide.effectActive?(:StealthRock) && !pkmn.hasAbility?(:ROCKCLIMBER)
-                        types = pkmn.types
+                    if fakeBattler.pbOwnSide.effectActive?(:StealthRock) && !fakeBattler.hasActiveAbility?(:ROCKCLIMBER)
+                        types = fakeBattler.pbTypes
                         stealthRockHPRatio = @battle.getTypedHazardHPRatio(:ROCK, types[0], types[1] || nil)
-                        entryDamage += pkmn.totalhp * stealthRockHPRatio
+                        entryDamage += fakeBattler.totalhp * stealthRockHPRatio
                     end
 
                     # Feather Ward
-                    if battlerSlot.pbOwnSide.effectActive?(:FeatherWard)
-                        types = pkmn.types
+                    if fakeBattler.pbOwnSide.effectActive?(:FeatherWard)
+                        types = fakeBattler.pbTypes
                         featherWardHPRatio = @battle.getTypedHazardHPRatio(:STEEL, types[0], types[1] || nil)
-                        entryDamage += pkmn.totalhp * featherWardHPRatio
+                        entryDamage += fakeBattler.totalhp * featherWardHPRatio
                     end
 
-                    unless pkmn.hasAbility?(:NINJUTSU)
+                    unless fakeBattler.hasActiveAbility?(:NINJUTSU)
                         # Spikes
-                        spikesCount = battlerSlot.pbOwnSide.countEffect(:Spikes)
+                        spikesCount = fakeBattler.pbOwnSide.countEffect(:Spikes)
                         if spikesCount > 0
                             spikesDenom = [8, 6, 4][spikesCount - 1]
-                            entryDamage += pkmn.totalhp / spikesDenom
+                            entryDamage += fakeBattler.totalhp / spikesDenom
                         end
 
                         # Each of the status setting spikes
-                        battlerSlot.pbOwnSide.eachEffect(true) do |_effect, value, data|
+                        fakeBattler.pbOwnSide.eachEffect(true) do |_effect, value, data|
                             next unless data.is_status_hazard?
                             hazardInfo = data.status_applying_hazard
 
-                            if hazardInfo[:absorb_proc].call(pkmn)
+                            if hazardInfo[:absorb_proc].call(fakeBattler)
                                 willAbsorbSpikes = true
                             else
                                 statusSpikesDenom = [16, 4][value - 1]
-                                entryDamage += pkmn.totalhp / statusSpikesDenom
+                                entryDamage += fakeBattler.totalhp / statusSpikesDenom
                             end
                         end
                     end
@@ -266,68 +265,45 @@ class PokeBattle_AI
                 elsif willAbsorbSpikes
                     switchScore += 30
                 else
-                    switchScore -= ((entryDamage / pkmn.totalhp.to_f) * 80).floor
-                end
-            end
-
-            # Analyze the player's active battlers to their susceptibility to being debuffed
-            attackDebuffers = 0
-            specialDebuffers = 0
-            speedDebuffers = 0
-            battlerSlot.eachOpposing do |opposingBattler|
-                next if opposingBattler.hasActiveAbilityAI?(%i[INNERFOCUS HEARTENINGAROMA])
-                if opposingBattler.hasActiveAbilityAI?(%i[CONTRARY ECCENTRIC])
-                    attackDebuffers -= 1
-                    specialDebuffers -= 1
-                    speedDebuffers -= 1
-                else
-                    if opposingBattler.hasPhysicalAttack? && opposingBattler.steps[:ATTACK] > -2 && opposingBattler.pbCanLowerStatStep?(:ATTACK)
-                        attackDebuffers += 1
-                    end
-                    if opposingBattler.hasSpecialAttack? && opposingBattler.steps[:SPECIAL_ATTACK] > -2 && opposingBattler.pbCanLowerStatStep?(:SPECIAL_ATTACK)
-                        specialDebuffers += 1
-                    end
-                    if opposingBattler.pbSpeed > pkmn.speed && opposingBattler.pbCanLowerStatStep?(:SPEED)
-                        speedDebuffers += 1
-                    end
+                    switchScore -= ((entryDamage / fakeBattler.totalhp.to_f) * 80).floor
                 end
             end
 
             # More want to swap if has a entry ability that matters
             # Intentionally checked even if the pokemon will die on entry
-            settingSun = !@battle.sunny? && policies.include?(:SUN_TEAM)
-            settingRain = !@battle.rainy? && policies.include?(:RAIN_TEAM)
-            settingHail = !@battle.icy? && policies.include?(:HAIL_TEAM)
-            settingSand = !@battle.sandy? && policies.include?(:SAND_TEAM)
-            settingEclipse = !@battle.eclipsed? && policies.include?(:ECLIPSE_TEAM)
-            settingMoonglow = !@battle.moonGlowing? && policies.include?(:MOONGLOW_TEAM)
-            alliesInReserve = battlerSlot.alliesInReserveCount
-
-            case pkmn.ability
-            when :INTIMIDATE
-                switchScore += attackDebuffers * 10
-            when :FASCINATE
-                switchScore += specialDebuffers * 10
-            when :FRUSTRATE
-                switchScore += speedDebuffers * 10
-            when :DROUGHT, :INNERLIGHT
-                switchScore += 30 + alliesInReserve * 5 if settingSun
-            when :DRIZZLE, :STORMBRINGER
-                switchScore += 30 + alliesInReserve * 5 if settingRain
-            when :SNOWWARNING, :FROSTSCATTER
-                switchScore += 30 + alliesInReserve * 5 if settingHail
-            when :SANDSTREAM, :SANDBURST
-                switchScore += 30 + alliesInReserve * 5 if settingSand
-            when :MOONGAZE, :LUNARLOYALTY
-                switchScore += 30 + alliesInReserve * 5 if settingMoonglow
-            when :HARBINGER, :SUNEATER
-                switchScore += 30 + alliesInReserve * 5 if settingEclipse
+            fakeBattler.eachActiveAbility do |abilityID|
+                case abilityID
+                when :INTIMIDATE
+                    fakeBattler.eachOpposing do |opposingBattler|
+                        switchScore += getMultiStatDownEffectScore([:ATTACK,2],fakeBattler,opposingBattler) / 2
+                    end
+                when :FASCINATE
+                    fakeBattler.eachOpposing do |opposingBattler|
+                        switchScore += getMultiStatDownEffectScore([:SPECIAL_ATTACK,2],fakeBattler,opposingBattler) / 2
+                    end
+                when :FRUSTRATE
+                    fakeBattler.eachOpposing do |opposingBattler|
+                        switchScore += getMultiStatDownEffectScore([:SPEED,2],fakeBattler,opposingBattler) / 2
+                    end
+                when :DROUGHT, :INNERLIGHT
+                    switchScore += getWeatherSettingEffectScore(:SUN,fakeBattler,battle) / 2
+                when :DRIZZLE, :STORMBRINGER
+                    switchScore += getWeatherSettingEffectScore(:RAIN,fakeBattler,battle) / 2
+                when :SNOWWARNING, :FROSTSCATTER
+                    switchScore += getWeatherSettingEffectScore(:HAIL,fakeBattler,battle) / 2
+                when :SANDSTREAM, :SANDBURST
+                    switchScore += getWeatherSettingEffectScore(:SAND,fakeBattler,battle) / 2
+                when :MOONGAZE, :LUNARLOYALTY
+                    switchScore += getWeatherSettingEffectScore(:MOONGLOW,fakeBattler,battle) / 2
+                when :HARBINGER, :SUNEATER
+                    switchScore += getWeatherSettingEffectScore(:ECLIPSE,fakeBattler,battle) / 2
+                end
             end
 
             # Only matters if the pokemon will live
             unless dieingOnEntry
                 # Find the worst type matchup against the current player battlers
-                switchScore += rateMatchupAgainstFoes(battlerSlot, pkmn, partyIndex)
+                switchScore += rateMatchupAgainstFoes(fakeBattler)
             end
 
             # For preserving the pokemon placed in the last slot
@@ -341,11 +317,11 @@ class PokeBattle_AI
         return list
     end
 
-    # The pokemon passed in could be be the pokemon in the given battler slot, or somewhere in the party
-    def rateMatchupAgainstFoes(battlerSlot, pokemon, partyIndex)
+    # The battler passed in could be a real battler, or a fake one
+    def rateMatchupAgainstFoes(battler)
         matchups = []
-        battlerSlot.eachOpposing do |opposingBattler|
-            matchup = rateMatchup(battlerSlot, pokemon, partyIndex, getRoughAttackingTypes(opposingBattler))
+        battler.eachOpposing do |opposingBattler|
+            matchup = rateMatchup(battler, getRoughAttackingTypes(opposingBattler))
             matchups.push(matchup)
         end
         if matchups.empty?
@@ -355,12 +331,12 @@ class PokeBattle_AI
         end
     end
 
-    # The pokemon passed in could be be the pokemon in the given battler slot, or somewhere in the party
-    def rateMatchup(battlerSlot, pokemon, partyIndex, attackingtypes = nil)
+    # The battler passed in could be a real battler, or a fake one
+    def rateMatchup(battler, attackingtypes = nil)
         typeModDefensive = Effectiveness::NORMAL_EFFECTIVE
 
         # Get the worse defensive type mod among any of the given types
-        typeModDefensive = pbCalcMaxOffensiveTypeMod(attackingtypes, pokemon) unless attackingtypes.nil?
+        typeModDefensive = pbCalcMaxOffensiveTypeMod(attackingtypes, battler.pokemon) unless attackingtypes.nil?
 
         matchupScore = 0
         # Modify the type matchup score based on the defensive matchup
@@ -374,7 +350,7 @@ class PokeBattle_AI
             matchupScore -= 25
         end
 
-        maxScore = highestMoveScoreForHypotheticalBattler(battlerSlot,pokemon,partyIndex)
+        maxScore = highestMoveScoreForHypotheticalBattler(battler)
         maxMoveScoreBiasChange = -40
         maxMoveScoreBiasChange += (maxScore / 2.5).round
         matchupScore += maxMoveScoreBiasChange
@@ -392,9 +368,7 @@ class PokeBattle_AI
         return maxTypeMod
     end
 
-    def highestMoveScoreForHypotheticalBattler(battlerSlot,pokemon,partyIndex)
-        fakeBattler = PokeBattle_Battler.new(@battle, battlerSlot.index, true)
-        fakeBattler.pbInitializeFake(pokemon,partyIndex)
+    def highestMoveScoreForHypotheticalBattler(fakeBattler)
         choices = pbGetBestTrainerMoveChoices(fakeBattler, fakeBattler.ownersPolicies)
 
         maxScore = 0

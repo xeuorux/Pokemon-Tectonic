@@ -458,25 +458,30 @@ class PokeBattle_Battler
         return ret
     end
 
-    def blockAteAbilities(user,ability)
+    def blockAteAbilities(user,ability,showMessages = true)
         return true if fainted?
         # NOTE: Substitute intentially blocks Intimidate even if self has Contrary or eccentric
         if substituted?
-            @battle.pbDisplay(_INTL("{1} is protected by its substitute!", pbThis))
+            @battle.pbDisplay(_INTL("{1} is protected by its substitute!", pbThis)) if showMessages
             return true
         end
         if hasActiveAbility?(:INNERFOCUS)
-            showMyAbilitySplash(:INNERFOCUS, true)
-            @battle.pbDisplay(_INTL("{1}'s {2} prevented {3}'s {4} from working!",
-                    pbThis, getAbilityName(:INNERFOCUS), user.pbThis(true), getAbilityName(ability)))
-            hideMyAbilitySplash
+            if showMessages
+                showMyAbilitySplash(:INNERFOCUS, true)
+                @battle.pbDisplay(_INTL("{1}'s {2} prevented {3}'s {4} from working!",
+                        pbThis, getAbilityName(:INNERFOCUS), user.pbThis(true), getAbilityName(ability)))
+                hideMyAbilitySplash
+            end
             return true
         elsif @battle.pbCheckSameSideAbility(:HEARTENINGAROMA, @index)
-            aromaHolder = @battle.pbCheckSameSideAbility(:HEARTENINGAROMA, @index)
-            @battle.pbShowAbilitySplash(aromaHolder, :HEARTENINGAROMA, true)
-            @battle.pbDisplay(_INTL("{1}'s {2} prevented {3}'s {4} from working!",
-                aromaHolder.pbThis, getAbilityName(:HEARTENINGAROMA), user.pbThis(true), getAbilityName(ability)))
-            @battle.pbHideAbilitySplash(aromaHolder)
+            if showMessages
+                aromaHolder = @battle.pbCheckSameSideAbility(:HEARTENINGAROMA, @index)
+                @battle.pbShowAbilitySplash(aromaHolder, :HEARTENINGAROMA, true)
+                @battle.pbDisplay(_INTL("{1}'s {2} prevented {3}'s {4} from working!",
+                    aromaHolder.pbThis, getAbilityName(:HEARTENINGAROMA), user.pbThis(true), getAbilityName(ability)))
+                @battle.pbHideAbilitySplash(aromaHolder)
+            end
+            return true
         end
         return false
     end
