@@ -1896,32 +1896,9 @@ class PokeBattle_Move_0BE < PokeBattle_Move
 end
 
 #===============================================================================
-# Hits 3 times. Power is multiplied by the hit number. (Triple Kick)
-# An accuracy check is performed for each hit.
+# (Not currently used.)
 #===============================================================================
 class PokeBattle_Move_0BF < PokeBattle_Move
-    def multiHitMove?; return true; end
-    def pbNumHits(_user, _targets, _checkingForAI = false); return 3; end
-
-    def successCheckPerHit?
-        return @accCheckPerHit
-    end
-
-    def pbOnStartUse(user, _targets)
-        @calcBaseDmg = 0
-        @accCheckPerHit = !user.hasActiveAbility?(%i[SKILLLINK PERFECTLUCK])
-    end
-
-    def pbBaseDamage(baseDmg, _user, target)
-        @calcBaseDmg += baseDmg if !target.damageState.disguise || !target.damageState.iceface
-        return @calcBaseDmg
-    end
-
-    def shouldHighlight?(_user, _target); return false; end
-
-    def pbBaseDamageAI(baseDmg, _user, _target)
-        return baseDmg * 2
-    end
 end
 
 #===============================================================================

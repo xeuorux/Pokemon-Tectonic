@@ -121,11 +121,18 @@ module GameData
         @monumentTrainer  = hash[:monument_trainer] || false
 
         @pokemon.each do |partyEntry|
+            next if partyEntry[:species] == :SMEARGLE
             trainerName = "#{@trainer_type} #{@real_name}"
+            speciesData = GameData::Species.get_species_form(partyEntry[:species],partyEntry[:form] || 0)
             partyEntry[:moves]&.each do |moveID|
                 moveData = GameData::Move.get(moveID)
-                next if moveData.learnable?
-                raise _INTL("Illegal move #{moveID} learnable by a party member of trainer #{trainerName}!")
+                unless moveData.learnable?
+                  raise _INTL("Illegal move #{moveID} learnable by a party member of trainer #{trainerName}!")
+                end
+
+                unless speciesData.learnable_moves.include?(moveID)
+                  raise _INTL("Trainer #{trainerName}'s #{speciesData.species} can't learn the move #{moveID} assigned to it!")
+                end
             end
 
             partyEntry[:item]&.each do |itemID|
@@ -134,7 +141,7 @@ module GameData
                 raise _INTL("Illegal item #{itemID} assigned to a party member of trainer #{trainerName}!")
             end
         end
-    end
+      end
   
       # @return [String] the translated name of this trainer
       def name
