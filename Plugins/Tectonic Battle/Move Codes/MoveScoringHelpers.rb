@@ -444,9 +444,8 @@ def getMultiStatDownEffectScore(statDownArray, user, target, fakeStepModifier = 
 end
 
 def getWeatherSettingEffectScore(weatherType, user, battle, finalDuration = 4, checkExtensions = true)
-    if battle.primevalWeatherPresent? || battle.pbCheckGlobalAbility(:AIRLOCK) ||
-                battle.pbCheckGlobalAbility(:CLOUDNINE)
-            echoln("[EFFECT SCORING] Score for setting weather #{weatherType} is 0 due to presence of weather-disabling ability")
+    if battle.primevalWeatherPresent? || battle.pbCheckGlobalAbility(%i[AIRLOCK CLOUDNINE)])
+        echoln("[EFFECT SCORING] Score for setting weather #{weatherType} is 0 due to presence of weather-disabling ability")
         return 0
     end
 

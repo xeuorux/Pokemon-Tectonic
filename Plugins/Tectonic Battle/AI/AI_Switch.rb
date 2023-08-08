@@ -262,53 +262,75 @@ class PokeBattle_AI
                 if pkmn.hp <= entryDamage
                     switchScore -= 80
                     dieingOnEntry = true
-                elsif willAbsorbSpikes
-                    switchScore += 30
-                else
-                    switchScore -= ((entryDamage / fakeBattler.totalhp.to_f) * 80).floor
+                    echoln("[SWITCH SCORING] #{fakeBattler.pbThis} will die from hazards! (-80)")
+                elsif entryDamage > 0
+                    percentDamage = (entryDamage / fakeBattler.totalhp.to_f)
+                    hazardDamageSwitchMalus = (percentDamage * 80).floor
+                    switchScore -= hazardDamageSwitchMalus
+                    echoln("[SWITCH SCORING] #{fakeBattler.pbThis} will take #{percentDamage} percent HP damage from hazards (#{hazardDamageSwitchMalus.to_change})")
+                end
+
+                if willAbsorbSpikes
+                    switchScore += 20
+                    echoln("[SWITCH SCORING] #{fakeBattler.pbThis} will absorb a status spikes (+20)")
                 end
             end
 
             # More want to swap if has a entry ability that matters
             # Intentionally checked even if the pokemon will die on entry
             fakeBattler.eachActiveAbility do |abilityID|
+                switchAbilityEffectScore = 0
                 case abilityID
                 when :INTIMIDATE
                     fakeBattler.eachOpposing do |opposingBattler|
-                        switchScore += getMultiStatDownEffectScore([:ATTACK,2],fakeBattler,opposingBattler) / 2
+                        switchAbilityEffectScore += getMultiStatDownEffectScore([:ATTACK,2],fakeBattler,opposingBattler)
                     end
                 when :FASCINATE
                     fakeBattler.eachOpposing do |opposingBattler|
-                        switchScore += getMultiStatDownEffectScore([:SPECIAL_ATTACK,2],fakeBattler,opposingBattler) / 2
+                        switchAbilityEffectScore += getMultiStatDownEffectScore([:SPECIAL_ATTACK,2],fakeBattler,opposingBattler)
                     end
                 when :FRUSTRATE
                     fakeBattler.eachOpposing do |opposingBattler|
-                        switchScore += getMultiStatDownEffectScore([:SPEED,2],fakeBattler,opposingBattler) / 2
+                        switchAbilityEffectScore += getMultiStatDownEffectScore([:SPEED,2],fakeBattler,opposingBattler)
+                    end
+                when :CRAGTERROR && @battle.sandy?
+                    fakeBattler.eachOpposing do |opposingBattler|
+                        switchAbilityEffectScore += getMultiStatDownEffectScore(ATTACKING_STATS_2,fakeBattler,opposingBattler)
+                    end
+                when :DRAMATICLIGHTING && @battle.eclipsed?
+                    fakeBattler.eachOpposing do |opposingBattler|
+                        switchAbilityEffectScore += getMultiStatDownEffectScore(ATTACKING_STATS_2,fakeBattler,opposingBattler)
                     end
                 when :DROUGHT, :INNERLIGHT
-                    switchScore += getWeatherSettingEffectScore(:SUN,fakeBattler,@battle) / 2
+                    switchAbilityEffectScore += getWeatherSettingEffectScore(:SUN,fakeBattler,@battle)
                 when :DRIZZLE, :STORMBRINGER
-                    switchScore += getWeatherSettingEffectScore(:RAIN,fakeBattler,@battle) / 2
+                    switchAbilityEffectScore += getWeatherSettingEffectScore(:RAIN,fakeBattler,@battle)
                 when :SNOWWARNING, :FROSTSCATTER
-                    switchScore += getWeatherSettingEffectScore(:HAIL,fakeBattler,@battle) / 2
+                    switchAbilityEffectScore += getWeatherSettingEffectScore(:HAIL,fakeBattler,@battle)
                 when :SANDSTREAM, :SANDBURST
-                    switchScore += getWeatherSettingEffectScore(:SAND,fakeBattler,@battle) / 2
+                    switchAbilityEffectScore += getWeatherSettingEffectScore(:SAND,fakeBattler,@battle)
                 when :MOONGAZE, :LUNARLOYALTY
-                    switchScore += getWeatherSettingEffectScore(:MOONGLOW,fakeBattler,@battle) / 2
+                    switchAbilityEffectScore += getWeatherSettingEffectScore(:MOONGLOW,fakeBattler,@battle)
                 when :HARBINGER, :SUNEATER
-                    switchScore += getWeatherSettingEffectScore(:ECLIPSE,fakeBattler,@battle) / 2
+                    switchAbilityEffectScore += getWeatherSettingEffectScore(:ECLIPSE,fakeBattler,@battle)
                 end
+                abilitySwitchModifier = (switchAbilityEffectScore / 2).ceil
+                switchScore += abilitySwitchModifier
+                echoln("[SWITCH SCORING] #{fakeBattler.pbThis} values the effect of #{abilityID} as #{switchAbilityEffectScore} (#{abilitySwitchModifier.to_change})")
             end
 
             # Only matters if the pokemon will live
             unless dieingOnEntry
                 # Find the worst type matchup against the current player battlers
-                switchScore += rateMatchupAgainstFoes(fakeBattler)
+                matchupRating = rateMatchupAgainstFoes(fakeBattler)
+                switchScore += matchupRating
+                echoln("[SWITCH SCORING] #{fakeBattler.pbThis} matchup rating: #{matchupRating.to_change}")
             end
 
             # For preserving the pokemon placed in the last slot
             if policies.include?(:PRESERVE_LAST_POKEMON) && partyIndex == @battle.pbParty(idxBattler).length - 1
-                switchScore = -1000
+                switchScore = -50
+                echoln("[SWITCH SCORING] #{fakeBattler.pbThis} should be preserved by policy (-50)")
             end
 
             list.push([partyIndex, switchScore])
