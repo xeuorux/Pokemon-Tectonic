@@ -20,7 +20,7 @@ PokeBattle_AI::PlayerPokemonImmuneDialogue.add(:SAMORN,
 
 PokeBattle_AI::PlayerPokemonFaintedDialogue.add(:SAMORN,
   proc { |_policy, battler, trainer_speaking, dialogue_array|
-      if !trainer_speaking.policyStates[:BPDeathComment] && battler.lastFoeAttacker.length > 0 && battler.battle.pbWeather == :Rain
+      if !trainer_speaking.policyStates[:BPDeathComment] && battler.lastFoeAttacker.length > 0
           anyLastMoveWasBulletPunch = false
           battler.lastFoeAttacker.each do |battler_index|
               anyLastMoveWasBulletPunch = true if battler.battle.battlers[battler_index].lastMoveUsed == :BULLETPUNCH

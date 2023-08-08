@@ -302,17 +302,17 @@ class PokeBattle_AI
                         switchAbilityEffectScore += getMultiStatDownEffectScore(ATTACKING_STATS_2,fakeBattler,opposingBattler)
                     end
                 when :DROUGHT, :INNERLIGHT
-                    switchAbilityEffectScore += getWeatherSettingEffectScore(:SUN,fakeBattler,@battle)
+                    switchAbilityEffectScore += getWeatherSettingEffectScore(:Sun,fakeBattler,@battle)
                 when :DRIZZLE, :STORMBRINGER
-                    switchAbilityEffectScore += getWeatherSettingEffectScore(:RAIN,fakeBattler,@battle)
+                    switchAbilityEffectScore += getWeatherSettingEffectScore(:Rain,fakeBattler,@battle)
                 when :SNOWWARNING, :FROSTSCATTER
-                    switchAbilityEffectScore += getWeatherSettingEffectScore(:HAIL,fakeBattler,@battle)
+                    switchAbilityEffectScore += getWeatherSettingEffectScore(:Hail,fakeBattler,@battle)
                 when :SANDSTREAM, :SANDBURST
-                    switchAbilityEffectScore += getWeatherSettingEffectScore(:SAND,fakeBattler,@battle)
+                    switchAbilityEffectScore += getWeatherSettingEffectScore(:Sand,fakeBattler,@battle)
                 when :MOONGAZE, :LUNARLOYALTY
-                    switchAbilityEffectScore += getWeatherSettingEffectScore(:MOONGLOW,fakeBattler,@battle)
+                    switchAbilityEffectScore += getWeatherSettingEffectScore(:Moonglow,fakeBattler,@battle)
                 when :HARBINGER, :SUNEATER
-                    switchAbilityEffectScore += getWeatherSettingEffectScore(:ECLIPSE,fakeBattler,@battle)
+                    switchAbilityEffectScore += getWeatherSettingEffectScore(:Eclipse,fakeBattler,@battle)
                 end
                 abilitySwitchModifier = (switchAbilityEffectScore / 2).ceil
                 switchScore += abilitySwitchModifier

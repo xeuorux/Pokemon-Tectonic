@@ -1,6 +1,6 @@
 BattleHandlers::EORWeatherAbility.add(:ICEBODY,
   proc { |ability, weather, battler, battle|
-      next unless weather == :Hail
+    next unless battle.icy?
       healingMessage = _INTL("{1} incorporates hail into its body.", battler.pbThis)
       battler.applyFractionalHealing(1.0 / 8.0, ability: ability, customMessage: healingMessage)
   }
@@ -16,7 +16,7 @@ BattleHandlers::EORWeatherAbility.add(:RAINDISH,
 
 BattleHandlers::EORWeatherAbility.add(:ROCKBODY,
     proc { |ability, weather, battler, battle|
-        next unless weather == :Sandstorm
+        next unless battle.sandy?
         healingMessage = _INTL("{1} incorporates sand into its body.", battler.pbThis)
         battler.applyFractionalHealing(1.0 / 8.0, ability: ability, customMessage: healingMessage)
     }

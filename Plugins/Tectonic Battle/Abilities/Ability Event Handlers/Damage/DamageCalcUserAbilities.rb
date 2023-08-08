@@ -235,7 +235,7 @@ BattleHandlers::DamageCalcUserAbility.add(:EXPERTISE,
 
 BattleHandlers::DamageCalcUserAbility.add(:MIDNIGHTSUN,
   proc { |ability, user, _target, _move, mults, _baseDmg, type, _aiCheck|
-      mults[:base_damage_multiplier] *= 1.5 if user.battle.pbWeather == :Sun && type == :DARK
+      mults[:base_damage_multiplier] *= 1.5 if user.battle.sunny? && type == :DARK
   }
 )
 
@@ -247,7 +247,7 @@ BattleHandlers::DamageCalcUserAbility.add(:SANDDEMON,
 
 BattleHandlers::DamageCalcUserAbility.add(:RAINPRISM,
   proc { |ability, user, _target, _move, mults, _baseDmg, type, _aiCheck|
-      mults[:base_damage_multiplier] *= 1.5 if user.battle.pbWeather == :Rain && type == :FAIRY
+      mults[:base_damage_multiplier] *= 1.5 if user.battle.rainy? && type == :FAIRY
   }
 )
 
@@ -303,7 +303,7 @@ BattleHandlers::DamageCalcUserAbility.add(:MYSTICFIST,
 
 BattleHandlers::DamageCalcUserAbility.add(:STORMFRONT,
   proc { |ability, user, _target, _move, mults, _baseDmg, type, _aiCheck|
-      if user.battle.pbWeather == :Rain && %i[ELECTRIC FLYING WATER].include?(type)
+      if user.battle.rainy? && %i[ELECTRIC FLYING WATER].include?(type)
           mults[:base_damage_multiplier] *= 1.3
       end
   }
