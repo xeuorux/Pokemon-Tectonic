@@ -1868,6 +1868,79 @@ Pokemon = BRONZONG,70
 Pokemon = DRAPION,70
     AbilityIndex = 0 # Sand Demon
 #-------------------------------
+[DEVGAMBLER,Tiki]
+Pokemon = FARFETCHD,70
+    AbilityIndex = 1 # Fat Chance
+Pokemon = BISHARP,70
+    Shiny = yes
+    AbilityIndex = 0 # Defiant
+Pokemon = SAURENAID,70
+    AbilityIndex = 0 # Frost Song
+Pokemon = MAGNEZONE,70
+    AbilityIndex = 0 # Analytic
+Pokemon = NIBELONG,70
+    AbilityIndex = 1 # Fascinate
+Pokemon = GOLURK,70
+    AbilityIndex = 0 # Iron Fist
+#-------------------------------
+[DEVRICHBOY,Splitmoon]
+Pokemon = REAVOR,70
+    AbilityIndex = 1 # Inner Focus
+Pokemon = NIDOKING,70
+    AbilityIndex = 0 # Sheer Force
+Pokemon = TYRANITAR,70
+    AbilityIndex = 0 # Sand Burst
+Pokemon = CHARIZARD,70
+    AbilityIndex = 0 # Levitate
+Pokemon = VIKAVOLT,70
+    AbilityIndex = 1 # Levitate
+Pokemon = CORVIKNIGHT,70
+    AbilityIndex = 0 # Mirror Armor
+#-------------------------------
+[DEVJANITOR,Steeb]
+Pokemon = BEWEAR,70
+    Shiny = yes
+    AbilityIndex = 1 # Lunatic
+Pokemon = OCTILLERY,70
+    AbilityIndex = 0 # Armor Piercing
+Pokemon = MAROWAK,70
+    AbilityIndex = 0 # Rock Head
+Pokemon = LILLIGANT,70
+    AbilityIndex = 0 # Chlorophyll
+Pokemon = DHELMISE,70
+    AbilityIndex = 1 # Kelp Link
+Pokemon = DECEAT,70
+    AbilityIndex = 0 # Power Up
+#-------------------------------
+[DEVGENTLEMAN3,D]
+Pokemon = SHUPPET,7
+    AbilityIndex = 1 # Razor's Edge
+Pokemon = MIMIKYU,5
+    AbilityIndex = 0 # Disguise
+Pokemon = MNINETALES,70
+    AbilityIndex = 0 # Gild
+Pokemon = DELCATTY,70
+    Shiny = yes
+    AbilityIndex = 0 # Above It All
+Pokemon = ZORUA,70
+    AbilityIndex = 1 # Territorial
+Pokemon = SHEDINJA,70
+    AbilityIndex = 0 # Wonder Guard
+#-------------------------------
+[DEVROUGHNECK2,Jaggedthorn]
+Pokemon = KLINKLANG,70
+    AbilityIndex = 1 # Generator
+Pokemon = FALINKS,70
+    AbilityIndex = 0 # Imperious
+Pokemon = EXPLOUD,70
+    AbilityIndex = 0 # Echo
+Pokemon = RHYPERIOR,70
+    AbilityIndex = 0 # Reckless
+Pokemon = YANMEGA,70
+    AbilityIndex = 1 # Tinted Lens
+Pokemon = DHELMISE,70
+    AbilityIndex = 0 # Rusty Anchor
+#-------------------------------
 [LEADER_Bence,Bence]
 Policies = BENCE
 Pokemon = STARAPTOR,40
