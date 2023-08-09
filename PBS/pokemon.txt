@@ -20602,7 +20602,7 @@ InternalName = DEINO
 Type1 = DARK
 Type2 = DRAGON
 # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
-BaseStats = 52,45,50,38,65,50
+BaseStats = 67,35,50,33,65,50
 # Total = 300
 GenderRate = Female50Percent
 GrowthRate = Slow
@@ -20636,7 +20636,7 @@ InternalName = ZWEILOUS
 Type1 = DARK
 Type2 = DRAGON
 # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
-BaseStats = 72,65,70,58,85,70
+BaseStats = 87,55,70,53,85,70
 # Total = 420
 GenderRate = Female50Percent
 GrowthRate = Slow
@@ -20669,7 +20669,7 @@ InternalName = HYDREIGON
 Type1 = DARK
 Type2 = DRAGON
 # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
-BaseStats = 82,95,90,88,125,90
+BaseStats = 107,85,90,73,125,90
 # Total = 570
 GenderRate = Female50Percent
 GrowthRate = Slow
