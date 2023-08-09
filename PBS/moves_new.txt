@@ -376,7 +376,7 @@
 1375,ICYINJECTION,Ice Injection,5C6,90,ICE,Physical,100,12,100,NearOther,0,CanProtect;CanMirrorMove,"Injects supercold liquid into the target, damaging them and halving all future healing.",FROSTBARB
 1376,DIVINATION,Divination,5C7,0,DARK,Status,0,5,0,User,0,CanSnatch,"The user restores 1/2 of their HP and raises their Defense, Sp. Def, and critical hit chance by one step each.",COSMICPOWER
 1377,WINTEROPS,Winter Ops,0C1,1,ICE,Physical,100,10,0,NearOther,0,CanProtect;CanMirrorMove;HighCriticalHitRate,"The user hunts with its allies. The more party Pokémon, the more damage. Critical hits twice as often.",ICEPUNCH
-1378,GRIMVISIONS,Grim Visions,5E8,90,DARK,Special,100,10,100,NearOther,0,CanProtect;CanMirrorMove,"The user attacks with dark illusions. This also lowers the target's Defense stat.",DARKPULSE
+1378,GRIMVISIONS,Grim Visions,043,90,DARK,Special,100,10,100,NearOther,0,CanProtect;CanMirrorMove,"The user attacks with dark illusions. This also lowers the target's Defense stat by two steps.",DARKPULSE
 1379,SILKBLADE,Silk Blade,50F,130,BUG,Physical,100,5,0,NearOther,0,CanProtect;CanMirrorMove;HighCriticalHitRate;Blade,"The user slashes using woven silk, lowering the user's Attack by four steps. Critical hits twice as often.",XSCISSOR
 1380,EXTREMEEFFORT,Extreme Effort,5C9,150,NORMAL,Physical,100,5,0,NearOther,0,CanProtect;CanMirrorMove,"The user uses all their might to attack their opponent, causing them to rest on their next turn.",GIGAIMPACT
 1381,TRANQUILPRAYER,Tranquil Prayer,5CA,0,FAIRY,Status,0,15,0,User,0,CanSnatch,"The user doubles its critical strike chance and raises its Sp. Atk and Sp. Def by two steps each.",FOCUSENERGY
