@@ -17265,8 +17265,8 @@ InternalName = AUDINO
 Type1 = NORMAL
 Type2 = FAIRY
 # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
-BaseStats = 85,50,105,40,65,105
-# Total = 450
+BaseStats = 85,40,105,40,65,105
+# Total = 440
 GenderRate = Female50Percent
 GrowthRate = Fast
 BaseEXP = 200
@@ -29727,7 +29727,7 @@ InternalName = SENSIBELLE
 Type1 = NORMAL
 Type2 = FAIRY
 # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
-BaseStats = 103,60,126,50,80,126
+BaseStats = 103,50,126,50,90,126
 # Total = 545
 GenderRate = Female50Percent
 GrowthRate = Fast
