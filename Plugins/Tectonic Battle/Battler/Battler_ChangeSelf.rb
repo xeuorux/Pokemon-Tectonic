@@ -137,7 +137,7 @@ class PokeBattle_Battler
         PBDebug.log("[HP change] #{pbThis} gained #{amt} HP (#{oldHP}=>#{@hp})") if amt.positive?
         raise _INTL("HP greater than total HP") if @hp > @totalhp unless canOverheal
         anyAnim = false if @autoTesting
-        @battle.scene.pbHPChanged(self, oldHP, anim) if anyAnim && amt.positive?
+        @battle.scene.pbHPChanged(self, oldHP, anim) if anyAnim
         if showMessage
             if amt.positive?
                 message = customMessage.nil? ? _INTL("{1}'s HP was restored.", pbThis) : customMessage
