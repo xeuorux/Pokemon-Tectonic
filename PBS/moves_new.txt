@@ -468,3 +468,8 @@
 1467,SHATTERVICE,Shatter Vice,0CF,90,STEEL,Physical,100,15,0,NearOther,0,CanProtect;CanMirrorMove,"The user crushes the target in its metallic vices, trapping and damaging it for three turns.",METALCLAW
 1468,WAVEOFJADE,Wave of Jade,55A,70,ROCK,Special,100,12,0,AllNearFoes,0,CanProtect;CanMirrorMove,"The user emits a wave of green energy to strike near foes. Deals double damage to those slower than the user.",
 1469,GLIMMERPULSE,Glimmer Pulse,168,60,ROCK,Special,100,10,0,NearOther,0,CanProtect;Pulse,"The user harms the target with gemlike light. Deals double damage if the user has used a gem this battle.",
+1470,BUBBLEBARRAGE,Bubble Barrage,0C0,20,WATER,Special,100,20,0,NearOther,0,CanProtect;CanMirrorMove,"The user creates two to five giant bubbles to explode against the target."
+1471,PULSAR,Pulsar,0C0,25,PSYCHIC,Special,100,20,0,NearOther,0,CanProtect;CanMirrorMove,"The user sends two to five waves of cosmic energy to overwhelm the target's senses."
+1472,SEANCE,Seance,0C0,25,GHOST,Special,100,20,0,NearOther,0,CanProtect;CanMirrorMove,"The user summons two to five apparitions that dance around hypnotically before striking."
+1473,FIREWORKS,Fireworks,25,FIRE,Special,100,20,0,NearOther,0,CanProtect;CanMirrorMove,"The user fires off two to five explosive rounds in a beautiful display."
+1474,RAPIDHERTZ,Rapid Hertz,25,ELECTRIC,Special,100,20,0,NearOther,0,CanProtect;CanMirrorMove,"The user shocks the target with an electric current two to five times in quick succession."
