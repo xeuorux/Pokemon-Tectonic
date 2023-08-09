@@ -4,6 +4,7 @@ SaveData.register_conversion(:global_switch_refactor_3_0) do
   display_title 'Setting global switches based on self-switches.'
   to_all do |save_data|
     globalSwitches = save_data[:switches]
+    globalVariables = save_data[:variables]
     selfSwitches = save_data[:self_switches]
     itemBag = save_data[:bag]
 
@@ -49,6 +50,62 @@ SaveData.register_conversion(:global_switch_refactor_3_0) do
     # Debug info
     for i in 1..8 do
       echoln("Chamber #{i} quested/defeated: #{globalSwitches[133 + i]} / #{globalSwitches[125 + i]}")
+    end
+
+    # NPC questlines
+    # Imogene
+    globalVariables[IMOGENE_STAGE_VAR] = 0
+    globalVariables[IMOGENE_STAGE_VAR] += 1 if selfSwitches[[136,43,'A']] # Imogene 1 completed
+    globalVariables[IMOGENE_STAGE_VAR] += 1 if selfSwitches[[117,6,'C']] # Imogene 2 completed
+    globalVariables[IMOGENE_STAGE_VAR] += 1 if selfSwitches[[155,47,'B']] # Imogene 3 completed
+    globalVariables[IMOGENE_STAGE_VAR] += 1 if selfSwitches[[25,20,'B']] # Imogene 4 completed
+    globalVariables[IMOGENE_STAGE_VAR] += 1 if selfSwitches[[326,17,'B']] # Imogene 5 completed
+
+    # Alessa
+    globalVariables[ALESSA_STAGE_VAR] = 0
+    globalVariables[ALESSA_STAGE_VAR] += 1 if selfSwitches[[56,56,'C']] # Alessa 1 completed
+    globalVariables[ALESSA_STAGE_VAR] += 1 if selfSwitches[[122,23,'D']] # Alessa 2 completed
+    globalVariables[ALESSA_STAGE_VAR] += 1 if selfSwitches[[187,84,'D']] # Alessa 3 completed
+    globalVariables[ALESSA_STAGE_VAR] += 1 if selfSwitches[[193,21,'D']] # Alessa 4 completed
+    globalVariables[ALESSA_STAGE_VAR] += 1 if selfSwitches[[120,22,'D']] # Alessa 5 completed
+
+    # Skylar
+    globalVariables[SKYLAR_STAGE_VAR] = 0
+    globalVariables[SKYLAR_STAGE_VAR] += 1 if selfSwitches[[3,40,'B']] # Skyler 1 completed
+    globalVariables[SKYLAR_STAGE_VAR] += 1 if selfSwitches[[8,27,'C']] # Skyler 2 completed
+    globalVariables[SKYLAR_STAGE_VAR] += 1 if selfSwitches[[255,4,'B']] # Skyler 3 completed
+    globalVariables[SKYLAR_STAGE_VAR] += 1 if selfSwitches[[214,39,'B']] # Skyler 4 completed
+    globalVariables[SKYLAR_STAGE_VAR] += 1 if selfSwitches[[121,29,'D']] # Skyler 5 completed
+    
+=begin
+    # Keoni
+    globalVariables[KEONI_STAGE_VAR] = 0
+    globalVariables[KEONI_STAGE_VAR] += 1 if selfSwitches[[]] # Keoni 1 completed
+    globalVariables[KEONI_STAGE_VAR] += 1 if selfSwitches[[]] # Keoni 2 completed
+    globalVariables[KEONI_STAGE_VAR] += 1 if selfSwitches[[]] # Keoni 3 completed
+    globalVariables[KEONI_STAGE_VAR] += 1 if selfSwitches[[]] # Keoni 4 completed
+    globalVariables[KEONI_STAGE_VAR] += 1 if selfSwitches[[]] # Keoni 5 completed
+
+    # Eifion
+    globalVariables[EIFION_STAGE_VAR] = 0
+    globalVariables[EIFION_STAGE_VAR] += 1 if selfSwitches[[]] # Eifion 1 completed
+    globalVariables[EIFION_STAGE_VAR] += 1 if selfSwitches[[]] # Eifion 2 completed
+    globalVariables[EIFION_STAGE_VAR] += 1 if selfSwitches[[]] # Eifion 3 completed
+    globalVariables[EIFION_STAGE_VAR] += 1 if selfSwitches[[]] # Eifion 4 completed
+    globalVariables[EIFION_STAGE_VAR] += 1 if selfSwitches[[]] # Eifion 5 completed
+
+    # Candy
+    globalVariables[CANDY_STAGE_VAR] = 0
+    globalVariables[CANDY_STAGE_VAR] += 1 if selfSwitches[[]] # Candy 1 completed
+    globalVariables[CANDY_STAGE_VAR] += 1 if selfSwitches[[]] # Candy 2 completed
+    globalVariables[CANDY_STAGE_VAR] += 1 if selfSwitches[[]] # Candy 3 completed
+    globalVariables[CANDY_STAGE_VAR] += 1 if selfSwitches[[]] # Candy 4 completed
+    globalVariables[CANDY_STAGE_VAR] += 1 if selfSwitches[[]] # Candy 5 completed
+=end
+
+    # Debug info
+    for i in 1..6 do
+      echoln("Questline #{i} stage: #{globalVariables[50 + i]}")
     end
   end
 end

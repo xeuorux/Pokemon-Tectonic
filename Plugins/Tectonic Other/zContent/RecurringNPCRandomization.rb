@@ -5,10 +5,17 @@ SaveData.register(:npc_randomization) do
 	new_game_value { NPCRandomization.new }
 end
 
+IMOGENE_STAGE_VAR = 51
+ALESSA_STAGE_VAR = 52
+SKYLER_STAGE_VAR = 53
+KEONI_STAGE_VAR = 54
+EIFION_STAGE_VAR = 55
+CANDY_STAGE_VAR = 56
+
 # Recurring NPC IDs
 # Imogene - 0
 # Alessa - 1
-# Skylar - 2
+# Skyler - 2
 # Keoni - 3
 # Eifion - 4
 # Candy - 5

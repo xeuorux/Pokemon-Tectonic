@@ -1,9 +1,8 @@
+###############################################################
+# Self-switches
+###############################################################
 def pbSetSelfSwitch(eventid, switch_name, value=true, mapid = -1)
 	$game_system.map_interpreter.pbSetSelfSwitch(eventid, switch_name, value, mapid)
-end
-
-def pbSetGlobalSwitch(switchID, value = true)
-	$game_system.map_interpreter.setGlobalSwitch(switchID, value)
 end
 
 def setMySwitch(switch,value=true)
@@ -48,6 +47,64 @@ def setSwitchesAll(eventIDs, switch = 'A', value = true, mapid = -1)
 	end
 end
 
+def fadeSwitchOn(switchName = 'A')
+	blackFadeOutIn {
+		setMySwitch(switchName,true)
+	}
+end
+
+def fadeSwitchOff(switchName = 'A')
+	blackFadeOutIn {
+		setMySwitch(switchName,false)
+	}
+end
+
+def toggleSwitches(eventsArray,switchName="A")
+	mapid = $game_map.map_id
+	eventsArray.each do |eventID|
+		currentValue = $game_self_switches[[mapid, eventID, switchName]]
+		$game_self_switches[[mapid, eventID, switchName]] = !currentValue
+	end
+	$MapFactory.getMap(mapid, false).need_refresh = true
+end
+
+###############################################################
+# Global switches
+###############################################################
+def pbSetGlobalSwitch(switchID, value = true)
+	$game_system.map_interpreter.setGlobalSwitch(switchID, value)
+end
+
+def fadeGlobalSwitch(switchID, value = true)
+	blackFadeOutIn {
+		setGlobalSwitch(switchID, value)
+	}
+end
+
+###############################################################
+# Global variables
+###############################################################
+def setGlobalVariable(variableID, value)
+	$game_system.map_interpreter.setVariable(variableID, value)
+end
+
+def getGlobalVariable(variableID)
+	return $game_system.map_interpreter.getVariable(variableID)
+end
+
+def incrementGlobalVar(variableID)
+	setVariable(variableID,getGlobalVariable(variableID) + 1)
+end
+
+def fadeVarIncrement(variableID)
+	blackFadeOutIn {
+		incrementGlobalVar(variableID)
+	}
+end
+
+###############################################################
+# Other event helpers
+###############################################################
 def refreshMapEvents()
 	events = $game_map.events.values
 	for event in events
@@ -121,33 +178,6 @@ end
 
 def playerFacingWest?
 	return $game_player.direction == Left
-end
-
-def fadeSwitchOn(switchName = 'A')
-	blackFadeOutIn {
-		setMySwitch(switchName,true)
-	}
-end
-
-def fadeSwitchOff(switchName = 'A')
-	blackFadeOutIn {
-		setMySwitch(switchName,false)
-	}
-end
-
-def fadeGlobalSwitch(switchID, value = true)
-	blackFadeOutIn {
-		setGlobalSwitch(switchID, value)
-	}
-end
-
-def toggleSwitches(eventsArray,switchName="A")
-	mapid = $game_map.map_id
-	eventsArray.each do |eventID|
-		currentValue = $game_self_switches[[mapid, eventID, switchName]]
-		$game_self_switches[[mapid, eventID, switchName]] = !currentValue
-	end
-	$MapFactory.getMap(mapid, false).need_refresh = true
 end
 
 def turnTowardsEvent(eventID)

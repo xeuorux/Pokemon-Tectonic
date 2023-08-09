@@ -198,6 +198,14 @@ def hasBadge?(badgeNumber) # Index at 1
 	return $game_switches[3 + badgeNumber]
 end
 
+def has6Badges?
+	return getGlobalVariable(BADGE_COUNT_VARIABLE) >= 6
+end
+
+def has7Badges?
+	return getGlobalVariable(BADGE_COUNT_VARIABLE) >= 7
+end
+
 def endGymChoice()
 	pbTrainerEnd
 	command_end
