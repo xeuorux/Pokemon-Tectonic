@@ -204,7 +204,7 @@ Pokemon = RUFFLET,15
 #-------------------------------
 [POKEFAN_M,Jamie]
 Pokemon = PUMPKABOO,16
-    AbilityIndex = 1 # Grow Up
+    AbilityIndex = 0 # Grow Up
 Pokemon = TAILLOW,16
     AbilityIndex = 0 # Daring
     Item = SALACBERRY
@@ -1616,7 +1616,7 @@ Pokemon = TSAREENA,43
     AbilityIndex = 1 # Royal Majesty
     Item = LIFEORB
 Pokemon = COFAGRIGUS,43
-    AbilityIndex = 1 # Unafraid
+    AbilityIndex = 1 # Skill Link
 #-------------------------------
 [CAMERAMAN,Marcel]
 Pokemon = ORBEETLE,43
