@@ -76,7 +76,6 @@ SaveData.register_conversion(:global_switch_refactor_3_0) do
     globalVariables[SKYLAR_STAGE_VAR] += 1 if selfSwitches[[255,4,'B']] # Skyler 3 completed
     globalVariables[SKYLAR_STAGE_VAR] += 1 if selfSwitches[[214,39,'B']] # Skyler 4 completed
     globalVariables[SKYLAR_STAGE_VAR] += 1 if selfSwitches[[121,29,'D']] # Skyler 5 completed
-    
 
     # Keoni
     globalVariables[KEONI_STAGE_VAR] = 0
@@ -85,7 +84,6 @@ SaveData.register_conversion(:global_switch_refactor_3_0) do
     globalVariables[KEONI_STAGE_VAR] += 1 if selfSwitches[[222,4,'B']] # Keoni 3 completed
     globalVariables[KEONI_STAGE_VAR] += 1 if selfSwitches[[123,26,'B']] # Keoni 4 completed
     globalVariables[KEONI_STAGE_VAR] += 1 if selfSwitches[[213,20,'B']] # Keoni 5 completed
-
 
     # Eifion
     globalVariables[EIFION_STAGE_VAR] = 0

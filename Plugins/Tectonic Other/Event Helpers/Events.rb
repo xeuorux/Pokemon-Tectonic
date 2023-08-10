@@ -75,6 +75,10 @@ def pbSetGlobalSwitch(switchID, value = true)
 	$game_system.map_interpreter.setGlobalSwitch(switchID, value)
 end
 
+def getGlobalSwitch(switchID)
+	return $game_switches[switchID]
+end
+
 def fadeGlobalSwitch(switchID, value = true)
 	blackFadeOutIn {
 		setGlobalSwitch(switchID, value)

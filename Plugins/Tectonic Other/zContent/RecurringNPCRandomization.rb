@@ -182,3 +182,29 @@ DebugMenuCommands.register("setnpcchosen2", {
     end
   }
 })
+
+RECURRING_QUEST_FAILURE_SWITCH = 56
+
+def imogeneQuestFailed?
+    return getGlobalVariable(IMOGENE_STAGE_VAR) < 5 && getGlobalSwitch(RECURRING_QUEST_FAILURE_SWITCH)
+end
+
+def alessaQuestFailed?
+    return getGlobalVariable(ALESSA_STAGE_VAR) < 5 && getGlobalSwitch(RECURRING_QUEST_FAILURE_SWITCH)
+end
+
+def skylarQuestFailed?
+    return getGlobalVariable(SKYLAR_STAGE_VAR) < 5 && getGlobalSwitch(RECURRING_QUEST_FAILURE_SWITCH)
+end
+
+def keoniQuestFailed?
+    return getGlobalVariable(KEONI_STAGE_VAR) < 5 && getGlobalSwitch(RECURRING_QUEST_FAILURE_SWITCH)
+end
+
+def eifionQuestFailed?
+    return getGlobalVariable(EIFION_STAGE_VAR) < 5 && getGlobalSwitch(RECURRING_QUEST_FAILURE_SWITCH)
+end
+
+def candyQuestFailed?
+    return getGlobalVariable(CANDY_STAGE_VAR) < 5 && getGlobalSwitch(RECURRING_QUEST_FAILURE_SWITCH)
+end
