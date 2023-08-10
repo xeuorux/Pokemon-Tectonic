@@ -1908,9 +1908,8 @@ class PokeBattle_Move_0C0 < PokeBattle_Move
     def multiHitMove?; return true; end
 
     def pbNumHits(user, _targets, _checkingForAI = false)
-        return 3 if @id == :WATERSHURIKEN && user.isSpecies?(:GRENINJA) && user.form == 2
         if user.hasActiveItem?(:LOADEDDICE)
-            hitChances = [3, 3, 4, 4, 5, 5]
+            hitChances = [4, 5]
         else
             hitChances = [2, 2, 3, 3, 4, 5]
         end
