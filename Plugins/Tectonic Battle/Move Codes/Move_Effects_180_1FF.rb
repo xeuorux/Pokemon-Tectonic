@@ -321,9 +321,20 @@ class PokeBattle_Move_192 < PokeBattle_Move
 end
 
 #===============================================================================
-# (Not currently used.)
+# Double damage if a critical hit. (Extinction Axe)
 #===============================================================================
 class PokeBattle_Move_193 < PokeBattle_Move
+    def pbBaseDamage(baseDmg, _user, target)
+        baseDmg *= 2 if target.damageState.critical
+        return baseDmg
+    end
+
+    def pbBaseDamageAI(baseDmg, user, target)
+        rate = pbIsCritical?(user,target,true)
+        rate = 5 if rate > 5
+        baseDmg *= 1.0 + (0.2 * rate)
+        return baseDmg
+    end
 end
 
 #===============================================================================
@@ -337,9 +348,13 @@ class PokeBattle_Move_194 < PokeBattle_Move
 end
 
 #===============================================================================
-# (Not currently used)
+# If it faints the target, you set Spikes on the their side of the field. (Impaling Spike)
 #===============================================================================
 class PokeBattle_Move_195 < PokeBattle_Move
+    def pbEffectAfterAllHits(_user, target)
+        return unless target.damageState.fainted
+        target.pbOwnSide.incrementEffect(:Spikes)
+    end
 end
 
 #===============================================================================

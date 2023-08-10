@@ -6,10 +6,12 @@ class PokemonBattlerSprite < RPG::Sprite
     attr_accessor :index
     attr_accessor :selected
     attr_reader   :sideSize
+    attr_reader   :speciesData
   
     def initialize(viewport,sideSize,index,battleAnimations)
       super(viewport)
       @pkmn             = nil
+      @speciesData      = nil
       @sideSize         = sideSize
       @index            = index
       @battleAnimations = battleAnimations
@@ -74,14 +76,15 @@ class PokemonBattlerSprite < RPG::Sprite
         @spriteX = p[0]
         @spriteY = p[1]
         # Apply metrics
-        @pkmn.species_data.apply_metrics_to_sprite(self, @index)
+        @speciesData.apply_metrics_to_sprite(self, @index)
     end
   
-    def setPokemonBitmap(pkmn,back=false)
+    def setPokemonBitmap(pkmn,back=false,species=nil)
       @pkmn = pkmn
       @_iconBitmap.dispose if @_iconBitmap
-      @_iconBitmap = GameData::Species.sprite_bitmap_from_pokemon(@pkmn, back)
+      @_iconBitmap = GameData::Species.sprite_bitmap_from_pokemon(@pkmn, back, species)
       self.bitmap = (@_iconBitmap) ? @_iconBitmap.bitmap : nil
+      @speciesData = species.nil? ? pkmn.species_data : GameData::Species.get_species_form(species,pkmn.form)
       pbSetPosition
     end
   

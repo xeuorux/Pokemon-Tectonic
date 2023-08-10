@@ -44,10 +44,10 @@ class PokemonBattlerShadowSprite < RPG::Sprite
       @pkmn.species_data.apply_metrics_to_sprite(self, @index, true)
     end
   
-    def setPokemonBitmap(pkmn)
+    def setPokemonBitmap(pkmn, species = nil)
       @pkmn = pkmn
       @_iconBitmap.dispose if @_iconBitmap
-      @_iconBitmap = GameData::Species.shadow_bitmap_from_pokemon(@pkmn)
+      @_iconBitmap = GameData::Species.shadow_bitmap_from_pokemon(@pkmn, species)
       self.bitmap = (@_iconBitmap) ? @_iconBitmap.bitmap : nil
       pbSetPosition
     end

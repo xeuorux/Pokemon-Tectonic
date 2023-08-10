@@ -361,6 +361,11 @@ class PokeBattle_Battler
             @type1 = newType[0]
             @type2 = newType[1] if newType.length > 1
             applyEffect(:Type3, newType[2]) if newType.length > 2
+        elsif newType.is_a?(Symbol)
+            speciesData = GameData::Species.get(newType)
+            @type1 = speciesData.type1
+            @type2 = speciesData.type2
+            disableEffect(:Type3)
         else
             newType = GameData::Type.get(newType).id
             @type1 = newType
@@ -521,6 +526,8 @@ class PokeBattle_Battler
     end
 
     def pbTransform(target)
+        @battle.scene.pbChangePokemon(self, target.pokemon)
+
         oldAbilities = abilities.clone
         applyEffect(:Transform)
         applyEffect(:TransformSpecies, target.species)
@@ -548,6 +555,27 @@ class PokeBattle_Battler
         pbOnAbilitiesLost(oldAbilities)
         # Trigger abilities
         pbEffectsOnSwitchIn
+    end
+
+    def transformSpecies(newSpecies)
+        @battle.scene.pbChangePokemon(self, @pokemon, newSpecies)
+
+        newSpeciesData = GameData::Species.get(newSpecies)
+        applyEffect(:Transform)
+        applyEffect(:TransformSpecies, newSpecies)
+        pbChangeTypes(newSpecies)
+        refreshDataBox
+        @battle.pbDisplay(_INTL("{1} transformed into a {2}!", pbThis, newSpeciesData.name))
+        newAbility = newSpeciesData.legalAbilities[@pokemon.ability_index]
+        replaceAbility(newAbility) unless hasAbility?(newAbility)
+
+        newStats = @pokemon.getCalculatedStats(newSpecies)
+        @attack  = newStats[:ATTACK]
+        @defense = newStats[:DEFENSE]
+        @spatk   = newStats[:SPECIAL_ATTACK]
+        @spdef   = newStats[:SPECIAL_DEFENSE]
+        @speed   = newStats[:SPEED]
+        disableBaseStatEffects
     end
 
     def pbHyperMode; end

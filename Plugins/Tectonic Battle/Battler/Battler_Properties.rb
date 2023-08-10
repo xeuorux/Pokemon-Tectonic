@@ -126,6 +126,17 @@ class PokeBattle_Battler
         return effectActive?(:Transform)
     end
 
+    def technicalSpecies
+        if transformed?
+            return @effects[:TransformSpecies]
+        else
+            return @pokemon&.species
+        end
+    end
+
+    def technicalSpeciesData
+    end
+
     def countsAs?(speciesCheck)
         return isSpecies?(speciesCheck) || transformedInto?(speciesCheck)
     end

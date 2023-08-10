@@ -182,8 +182,9 @@ module GameData
         return (filename) ? AnimatedBitmap.new(filename) : nil
       end
   
-      def self.shadow_bitmap_from_pokemon(pkmn)
-        filename = self.shadow_filename(pkmn.species, pkmn.form)
+      def self.shadow_bitmap_from_pokemon(pkmn, species = nil)
+        species = pkmn.species if species.nil?
+        filename = self.shadow_filename(species, pkmn.form)
         return (filename) ? AnimatedBitmap.new(filename) : nil
       end
   

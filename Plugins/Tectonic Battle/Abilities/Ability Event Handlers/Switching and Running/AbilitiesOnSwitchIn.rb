@@ -212,7 +212,6 @@ BattleHandlers::AbilityOnSwitchIn.add(:IMPOSTER,
       battle.pbShowAbilitySplash(battler, ability, true)
       battle.pbHideAbilitySplash(battler)
       battle.pbAnimation(:TRANSFORM, battler, choice)
-      battle.scene.pbChangePokemon(battler, choice.pokemon)
       battler.pbTransform(choice)
   }
 )

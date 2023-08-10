@@ -1098,7 +1098,7 @@ class PokeBattle_Move_0AE < PokeBattle_Move
             end
             return true
         end
-        unless GameData::Move.get(target.lastRegularMoveUsed).flags[/e/] # Not copyable by Mirror Move
+        unless GameData::Move.get(target.lastRegularMoveUsed).canMirrorMove? # Not copyable by Mirror Move
             @battle.pbDisplay(_INTL("But #{target.pbThis(true)}'s last used move can't be mirrored!")) if show_message
             return true
         end
@@ -1896,9 +1896,38 @@ class PokeBattle_Move_0BE < PokeBattle_Move
 end
 
 #===============================================================================
-# (Not currently used.)
+# Target transforms into their pre-evolution. (Young Again)
 #===============================================================================
 class PokeBattle_Move_0BF < PokeBattle_Move
+    def pbFailsAgainstTarget?(_user, target, show_message)
+        if target.illusion?
+            if show_message
+                @battle.pbDisplay(_INTL("But it failed, since #{target.pbThis(true)} is disguised by an Illusion!"))
+            end
+            return true
+        end
+        unless target.species_data
+            if show_message
+                @battle.pbDisplay(_INTL("But it failed, since #{target.pbThis(true)} doesn't have a defined species somehow!"))
+            end
+            return true
+        end
+        unless GameData::Species.get(target.technicalSpecies).has_previous_species?
+            if show_message
+                @battle.pbDisplay(_INTL("But it failed, since #{target.pbThis(true)} has no previous species to transform into!"))
+            end
+            return true
+        end
+        return false
+    end
+
+    def pbEffectAgainstTarget(user, target)
+        target.transformSpecies(GameData::Species.get(target.technicalSpecies).get_previous_species)
+    end
+
+    def getEffectScore(_user, _target)
+        return 80
+    end
 end
 
 #===============================================================================

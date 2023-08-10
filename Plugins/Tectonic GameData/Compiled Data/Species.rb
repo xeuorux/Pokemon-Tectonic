@@ -1147,6 +1147,12 @@ end
       return @species
     end
 
+    def has_previous_species?
+      return false if @evolutions.length == 0
+      @evolutions.each { |evo| return true if evo[3] }   # Is the prevolution
+      return false
+    end
+
     def get_line_start
       firstSpecies = self
       while GameData::Species.get(firstSpecies.get_previous_species()) != firstSpecies do

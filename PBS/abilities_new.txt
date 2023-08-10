@@ -441,3 +441,5 @@
 1440,SNOOZEFEST,Snoozefest,"Whenever the Pokémon falls asleep, each other battler becomes drowsy."
 1441,SLEEPSNARE,Sleep Snare,"If an attack lowers its HP to half or less, the attacker becomes drowsy."
 1442,TEAMPLAYER,Team Player,"Deals 25% more move damage for each ally in battle."
+1443,STUPEFYING,Stupefying,"Ignores Abilities that would affect its moves. Dizzies opponents that it hits below half health."
+1444,MUPROTOCOL,MU Protocol,"Immune to the type of the memory disc it holds."

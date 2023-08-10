@@ -1832,8 +1832,9 @@ class Pokemon
     #=============================================================================
   
     # @return [Hash<Integer>] this Pokémon's base stats, a hash with six key/value pairs
-    def baseStats
-      this_base_stats = species_data.base_stats
+    def baseStats(overloadingSpecies = nil)
+      speciesData = overloadingSpecies.nil? ? species_data : GameData::Species.get(overloadingSpecies)
+      this_base_stats = speciesData.base_stats
       ret = {}
       GameData::Stat.each_main { |s| ret[s.id] = this_base_stats[s.id] }
       return ret
@@ -1864,22 +1865,7 @@ class Pokemon
   
     # Recalculates this Pokémon's stats.
     def calc_stats
-        base_stats = baseStats
-        this_level = level
-        this_IV    = calcIV
-        # Calculate stats
-        stats = {}
-        stylish = hasAbility?(:STYLISH)
-        GameData::Stat.each_main do |s|
-            if s.id == :HP
-                hpValue = calcHPGlobal(base_stats[s.id], this_level, @ev[s.id], stylish)
-                stats[s.id] = (hpValue * hpMult).ceil
-            elsif (s.id == :ATTACK) || (s.id == :SPECIAL_ATTACK)
-                stats[s.id] = calcStatGlobal(base_stats[s.id], this_level, @ev[s.id], stylish)
-            else
-                stats[s.id] = calcStatGlobal(base_stats[s.id], this_level, @ev[s.id], stylish)
-            end
-        end
+        stats = getCalculatedStats
         hpDiff = @totalhp - @hp
         @totalhp = stats[:HP]
         @hp      = (fainted? ? 0 : (@totalhp - hpDiff))
@@ -1888,6 +1874,25 @@ class Pokemon
         @spatk   = stats[:SPECIAL_ATTACK]
         @spdef   = stats[:SPECIAL_DEFENSE]
         @speed   = stats[:SPEED]
+    end
+
+    def getCalculatedStats(overloadingSpecies = nil)
+      base_stats = baseStats(overloadingSpecies)
+      this_level = level
+      # Calculate stats
+      stats = {}
+      stylish = hasAbility?(:STYLISH)
+      GameData::Stat.each_main do |s|
+          if s.id == :HP
+              hpValue = calcHPGlobal(base_stats[s.id], this_level, @ev[s.id], stylish)
+              stats[s.id] = (hpValue * hpMult).ceil
+          elsif (s.id == :ATTACK) || (s.id == :SPECIAL_ATTACK)
+              stats[s.id] = calcStatGlobal(base_stats[s.id], this_level, @ev[s.id], stylish)
+          else
+              stats[s.id] = calcStatGlobal(base_stats[s.id], this_level, @ev[s.id], stylish)
+          end
+      end
+      return stats
     end
 
     #=============================================================================

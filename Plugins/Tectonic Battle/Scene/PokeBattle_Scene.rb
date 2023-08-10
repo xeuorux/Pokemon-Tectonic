@@ -329,15 +329,16 @@ class PokeBattle_Scene
       end
     end
   
-    def pbChangePokemon(idxBattler,pkmn)
+    def pbChangePokemon(idxBattler,pkmn,species = nil)
       idxBattler = idxBattler.index if idxBattler.respond_to?("index")
       pkmnSprite   = @sprites["pokemon_#{idxBattler}"]
       shadowSprite = @sprites["shadow_#{idxBattler}"]
       back = !@battle.opposes?(idxBattler)
-      pkmnSprite.setPokemonBitmap(pkmn,back)
-      shadowSprite.setPokemonBitmap(pkmn)
+      pkmnSprite.setPokemonBitmap(pkmn,back,species)
+      shadowSprite.setPokemonBitmap(pkmn,species)
       # Set visibility of battler's shadow
-      shadowSprite.visible = pkmn.species_data.shows_shadow? if shadowSprite && !back
+      speciesForShadow = species.nil? ? pkmn.species : species
+      shadowSprite.visible = GameData::Species.get(speciesForShadow).shows_shadow? if shadowSprite && !back
       shadowSprite.visible = false if pkmn.boss
     end
   

@@ -273,3 +273,17 @@ BattleHandlers::MoveImmunityTargetAbility.add(:FULLBLUBBER,
       next true
   }
 )
+
+BattleHandlers::MoveImmunityTargetAbility.add(:MUPROTOCOL,
+  proc { |ability, user, target, _move, type, battle, showMessages, aiChecking|
+      next false if user.index == target.index
+      next false unless user.hasActiveItem?(:MEMORYSET)
+      next false unless type == user.itemTypeChosen
+      if showMessages
+          battle.pbShowAbilitySplash(target, ability)
+          battle.pbDisplay(_INTL("It doesn't affect {1}...", target.pbThis(true)))
+          battle.pbHideAbilitySplash(target)
+      end
+      next true
+  }
+)
