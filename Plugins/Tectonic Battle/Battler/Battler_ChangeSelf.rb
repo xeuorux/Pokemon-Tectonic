@@ -361,7 +361,7 @@ class PokeBattle_Battler
             @type1 = newType[0]
             @type2 = newType[1] if newType.length > 1
             applyEffect(:Type3, newType[2]) if newType.length > 2
-        elsif newType.is_a?(Symbol)
+        elsif GameData::Species.exists?(newType)
             speciesData = GameData::Species.get(newType)
             @type1 = speciesData.type1
             @type2 = speciesData.type2
