@@ -23827,7 +23827,7 @@ BattlerEnemyX = 0
 BattlerEnemyY = 31
 BattlerShadowX = 0
 BattlerShadowSize = 2
-Evolutions = TRUMBEAK,Level,16
+Evolutions = TRUMBEAK,Level,21
 #-------------------------------
 [732]
 Name = Trumbeak
