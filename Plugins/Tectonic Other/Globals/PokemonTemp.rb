@@ -1,4 +1,3 @@
-
 #===============================================================================
 # Temporary data which is not saved and which is erased when a game restarts.
 #===============================================================================
@@ -19,7 +18,7 @@ class PokemonTemp
     attr_accessor :encounterTriggered
     attr_accessor :encounterType
     attr_accessor :evolutionLevels
-    attr_writer :dependentEvents
+    attr_writer   :dependentEvents
 
     # Overworld trackers
     attr_accessor :batterywarning
@@ -34,6 +33,11 @@ class PokemonTemp
     attr_accessor :battleAnims
     attr_accessor :moveToAnim
     attr_accessor :mapInfos
+    
+    # Dexnav
+    attr_accessor :navigationRow
+    attr_accessor :navigationColumn
+    attr_accessor :currentDexSearch
   
     def initialize
       @menuLastChoice         = 0

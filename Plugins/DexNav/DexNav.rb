@@ -97,9 +97,11 @@ class NewDexNav
 	@status = "All seen!" if allSeen
 	@status = "All owned!" if allOwned
 	
-	@navigationRow = 0
-	@navigationColumn = 0
+	@navigationRow = $PokemonTemp.navigationRow || 0
+	@navigationColumn = $PokemonTemp.navigationColumn || 0
 	drawSprites
+
+	updateNavArrow
 	
     pbFadeInAndShow(@sprites)
 	
@@ -116,6 +118,11 @@ class NewDexNav
     @viewport1.dispose
 	@viewport2.dispose
     @viewport3.dispose
+  end
+
+  def updateNavArrow
+	@sprites["nav_arrow"].x = 64 + 64 * @navigationColumn
+	@sprites["nav_arrow"].y = 120 + DEXNAV_LINE_HEIGHT * @navigationRow + visualHeightOffset
   end
   
   def openMainDexNavScreen(speciesByEncounterGroup)	
@@ -138,8 +145,7 @@ class NewDexNav
 		  Input.update
 		  pbUpdateSpriteHash(@sprites)
 		  
-		  @sprites["nav_arrow"].x = 64 + 64 * @navigationColumn
-		  @sprites["nav_arrow"].y = 120 + DEXNAV_LINE_HEIGHT * @navigationRow + visualHeightOffset
+		  updateNavArrow
 		  @sprites["scroll_arrow_up"].visible = @navigationRow > 3
 		  @sprites["scroll_arrow_down"].visible = (displaySpecies.length - @navigationRow) > 1 && displaySpecies.length >= 5
 
@@ -202,7 +208,7 @@ class NewDexNav
 			    pbMessage(_INTL("You cannot search for this Pokémon, because you haven't owned one yet!"))
 			    next
 			else
-				if $currentDexSearch != nil && $currentDexSearch.is_a?(Array) && !pbConfirmMessage("Would you like to replace your existing search?")
+				if $PokemonTemp.currentDexSearch != nil && $PokemonTemp.currentDexSearch.is_a?(Array) && !pbConfirmMessage("Would you like to replace your existing search?")
 					next
 				end
 				if debugControl
@@ -241,6 +247,8 @@ class NewDexNav
 	else
 		pbFadeOutAndHide(@sprites)
 	end
+	$PokemonTemp.navigationRow = @navigationRow
+	$PokemonTemp.navigationColumn = @navigationColumn
 	dispose
   end
 
@@ -316,12 +324,12 @@ class NewDexNav
   end
 
   def generateSearch(species_data)
-	$currentDexSearch=[species_data,getRandomMentorMove(species_data.species),rand(2)]
+	$PokemonTemp.currentDexSearch=[species_data,getRandomMentorMove(species_data.species),rand(2)]
   end
 end
 
 def searchActive?()
-	return !$currentDexSearch.nil? && $currentDexSearch.is_a?(Array)
+	return !$PokemonTemp.currentDexSearch.nil? && $PokemonTemp.currentDexSearch.is_a?(Array)
 end
 
 class DexNav_SearchOverlay
@@ -361,20 +369,20 @@ class DexNav_SearchOverlay
 	def drawSearchOverlay()
 		return if !searchActive?
 	
-		if $currentDexSearch[1] == nil
+		if $PokemonTemp.currentDexSearch[1] == nil
 			dexMove = "-"
 		else
-			dexMove = GameData::Move.get($currentDexSearch[1]).name
+			dexMove = GameData::Move.get($PokemonTemp.currentDexSearch[1]).name
 		end
 		
-		species_data = $currentDexSearch[0]
+		species_data = $PokemonTemp.currentDexSearch[0]
 		navAbil1 = species_data.abilities
 		if navAbil1[1] != nil
 		  navAbil = [navAbil1[0],navAbil1[1]]
 		else
 		  navAbil = [navAbil1[0],navAbil1[0]]
 		end
-		abilityID = navAbil[$currentDexSearch[2]]
+		abilityID = navAbil[$PokemonTemp.currentDexSearch[2]]
 		abilityName = GameData::Ability.get(abilityID).name
 	
 		@sprites["search"].visible = true
@@ -431,15 +439,17 @@ end
 
 Events.onMapChanging +=proc {|_sender,e|
     $search_overlay.dispose if $search_overlay
-	$currentDexSearch = nil
+	$PokemonTemp.currentDexSearch = nil
+	$PokemonTemp.navigationRow = 0
+	$PokemonTemp.navigationColumn = 0
 }
 
 Events.onWildPokemonCreate += proc {|sender,e|
     pokemon = e[0]
     # Checks current search value, if it exists, sets the Pokemon to it's qualities
-    if $currentDexSearch != nil && $currentDexSearch.is_a?(Array)
+    if $PokemonTemp.currentDexSearch != nil && $PokemonTemp.currentDexSearch.is_a?(Array)
 		currentTileEncounterType = $PokemonEncounters.encounter_type
-		species_data = $currentDexSearch[0]
+		species_data = $PokemonTemp.currentDexSearch[0]
 		species = species_data.species
 		# If the generated pokemon can actually be found here
 		begin
@@ -453,14 +463,14 @@ Events.onWildPokemonCreate += proc {|sender,e|
 			pokemon.species = species
 			pokemon.level = level # Level is reset on species change
 			pokemon.name = GameData::Species.get(pokemon.species).name
-			pokemon.ability_index = $currentDexSearch[2]
+			pokemon.ability_index = $PokemonTemp.currentDexSearch[2]
 			pokemon.form = species_data.form
 			pokemon.reset_moves
-			pokemon.learn_move($currentDexSearch[1]) if $currentDexSearch[1]
+			pokemon.learn_move($PokemonTemp.currentDexSearch[1]) if $PokemonTemp.currentDexSearch[1]
 			pokemon.setItems(generateWildHeldItem(pokemon,herdingActive?))
 			# There is a higher chance for shininess
 			pokemon.shinyRerolls *= 2
-			$currentDexSearch = nil
+			$PokemonTemp.currentDexSearch = nil
 			$search_overlay.dispose if $search_overlay
 		else
 			echoln("Cannot find #{species} in #{currentTileEncounterType}!")
