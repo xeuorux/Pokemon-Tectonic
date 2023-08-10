@@ -590,10 +590,10 @@ def predictedEOTDamage(battle,battler)
     # Hail
 
     # Status DOTs
-    damage += battle.damageFromDOTStatus(battler, :POISON) if battler.poisoned?
-    damage += battle.damageFromDOTStatus(battler, :LEECHED) if battler.leeched?
-    damage += battle.damageFromDOTStatus(battler, :BURN) if battler.burned?
-    damage += battle.damageFromDOTStatus(battler, :FROSTBITE) if battler.frostbitten?
+    damage += battle.damageFromDOTStatus(battler, :POISON, true) if battler.poisoned?
+    damage += battle.damageFromDOTStatus(battler, :LEECHED, true) if battler.leeched?
+    damage += battle.damageFromDOTStatus(battler, :BURN, true) if battler.burned?
+    damage += battle.damageFromDOTStatus(battler, :FROSTBITE, true) if battler.frostbitten?
 
     # Curse
     # Trapping DOT
