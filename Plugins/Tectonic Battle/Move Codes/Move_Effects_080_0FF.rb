@@ -1933,7 +1933,7 @@ end
 #===============================================================================
 # Hits 2-5 times.
 #===============================================================================
-class PokeBattle_Move_0C0 < PokeBattle_Move
+module RandomHitable
     def multiHitMove?; return true; end
 
     def pbNumHits(user, _targets, _checkingForAI = false)
@@ -1951,16 +1951,14 @@ class PokeBattle_Move_0C0 < PokeBattle_Move
     end
 
     def pbNumHitsAI(user, _targets)
-        return 3 if @id == :WATERSHURIKEN && user.isSpecies?(:GRENINJA) && user.form == 2
         return 5 if user.hasActiveAbilityAI?(%i[SKILLLINK PERFECTLUCK])
         return 4 if user.hasActiveItem?(:LOADEDDICE)
         return 19.0 / 6.0 # Average
     end
+end
 
-    def pbBaseDamage(baseDmg, user, target)
-        return 20 if @id == :WATERSHURIKEN && user.isSpecies?(:GRENINJA) && user.form == 2
-        super
-    end
+class PokeBattle_Move_0C0 < PokeBattle_Move
+    include RandomHitable
 end
 
 #===============================================================================
