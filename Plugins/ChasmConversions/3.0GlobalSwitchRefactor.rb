@@ -77,31 +77,32 @@ SaveData.register_conversion(:global_switch_refactor_3_0) do
     globalVariables[SKYLAR_STAGE_VAR] += 1 if selfSwitches[[214,39,'B']] # Skyler 4 completed
     globalVariables[SKYLAR_STAGE_VAR] += 1 if selfSwitches[[121,29,'D']] # Skyler 5 completed
     
-=begin
+
     # Keoni
     globalVariables[KEONI_STAGE_VAR] = 0
-    globalVariables[KEONI_STAGE_VAR] += 1 if selfSwitches[[]] # Keoni 1 completed
-    globalVariables[KEONI_STAGE_VAR] += 1 if selfSwitches[[]] # Keoni 2 completed
-    globalVariables[KEONI_STAGE_VAR] += 1 if selfSwitches[[]] # Keoni 3 completed
-    globalVariables[KEONI_STAGE_VAR] += 1 if selfSwitches[[]] # Keoni 4 completed
-    globalVariables[KEONI_STAGE_VAR] += 1 if selfSwitches[[]] # Keoni 5 completed
+    globalVariables[KEONI_STAGE_VAR] += 1 if selfSwitches[[81,20,'C']] # Keoni 1 completed
+    globalVariables[KEONI_STAGE_VAR] += 1 if selfSwitches[[185,22,'D']] # Keoni 2 completed
+    globalVariables[KEONI_STAGE_VAR] += 1 if selfSwitches[[222,4,'B']] # Keoni 3 completed
+    globalVariables[KEONI_STAGE_VAR] += 1 if selfSwitches[[123,26,'B']] # Keoni 4 completed
+    globalVariables[KEONI_STAGE_VAR] += 1 if selfSwitches[[213,20,'B']] # Keoni 5 completed
+
 
     # Eifion
     globalVariables[EIFION_STAGE_VAR] = 0
-    globalVariables[EIFION_STAGE_VAR] += 1 if selfSwitches[[]] # Eifion 1 completed
-    globalVariables[EIFION_STAGE_VAR] += 1 if selfSwitches[[]] # Eifion 2 completed
-    globalVariables[EIFION_STAGE_VAR] += 1 if selfSwitches[[]] # Eifion 3 completed
-    globalVariables[EIFION_STAGE_VAR] += 1 if selfSwitches[[]] # Eifion 4 completed
-    globalVariables[EIFION_STAGE_VAR] += 1 if selfSwitches[[]] # Eifion 5 completed
+    globalVariables[EIFION_STAGE_VAR] += 1 if selfSwitches[[40,5,'B']] # Eifion 1 completed
+    globalVariables[EIFION_STAGE_VAR] += 1 if selfSwitches[[11,22,'D']] # Eifion 2 completed
+    globalVariables[EIFION_STAGE_VAR] += 1 if selfSwitches[[216,16,'C']] # Eifion 3 completed
+    globalVariables[EIFION_STAGE_VAR] += 1 if selfSwitches[[328,4,'B']] # Eifion 4 completed
+    globalVariables[EIFION_STAGE_VAR] += 1 if selfSwitches[[218,54,'D']] # Eifion 5 completed
 
     # Candy
     globalVariables[CANDY_STAGE_VAR] = 0
-    globalVariables[CANDY_STAGE_VAR] += 1 if selfSwitches[[]] # Candy 1 completed
-    globalVariables[CANDY_STAGE_VAR] += 1 if selfSwitches[[]] # Candy 2 completed
-    globalVariables[CANDY_STAGE_VAR] += 1 if selfSwitches[[]] # Candy 3 completed
-    globalVariables[CANDY_STAGE_VAR] += 1 if selfSwitches[[]] # Candy 4 completed
-    globalVariables[CANDY_STAGE_VAR] += 1 if selfSwitches[[]] # Candy 5 completed
-=end
+    globalVariables[CANDY_STAGE_VAR] += 1 if selfSwitches[[129,13,'B']] # Candy 1 completed
+    globalVariables[CANDY_STAGE_VAR] += 1 if selfSwitches[[123,19,'B']] # Candy 2 completed
+    globalVariables[CANDY_STAGE_VAR] += 1 if selfSwitches[[155,48,'B']] # Candy 3 completed
+    globalVariables[CANDY_STAGE_VAR] += 1 if selfSwitches[[257,18,'B']] # Candy 4 completed
+    globalVariables[CANDY_STAGE_VAR] += 1 if selfSwitches[[185,41,'C']] ||
+                                              selfSwitches[[185,42,'B']] # Candy 5 completed
 
     # Debug info
     for i in 1..6 do
