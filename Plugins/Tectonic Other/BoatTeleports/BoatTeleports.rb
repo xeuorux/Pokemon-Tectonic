@@ -5,6 +5,7 @@ SWEETROCK_DOCK = _INTL("Sweetrock Harbor")
 TAPU_ISLAND = _INTL("Guardian Island")
 EVENTIDE_ISLE = _INTL("Eventide Isle")
 DRAGON_ISLAND = _INTL("Isle of Dragons")
+TRI_ISLAND = _INTL("Tri Island")
 
 def boatTravel(currentDock = "")
     casabaVillaCommand = -1
@@ -14,6 +15,7 @@ def boatTravel(currentDock = "")
     tapuIslandCommand = -1
     eventideIsleCommand = -1
     dragonIslandCommand = -1
+    triIslandCommand = -1
 
     commands = []
     commands[casabaVillaCommand = commands.length] = _INTL(CASABA_VILLA_DOCK) if currentDock != CASABA_VILLA_DOCK
@@ -23,6 +25,7 @@ def boatTravel(currentDock = "")
     commands[tapuIslandCommand = commands.length] = _INTL(TAPU_ISLAND) if $game_switches[81] && currentDock != TAPU_ISLAND
     commands[eventideIsleCommand = commands.length] = _INTL(EVENTIDE_ISLE) if $game_switches[84] && currentDock != EVENTIDE_ISLE
     commands[dragonIslandCommand = commands.length] = _INTL(DRAGON_ISLAND) if $game_switches[86] && currentDock != DRAGON_ISLAND
+    commands[triIslandCommand = commands.length] = _INTL(TRI_ISLAND) if $game_switches[97] && currentDock != TRI_ISLAND
     commands.push(_INTL("Cancel"))
 
     choice = pbMessage(_INTL("Where would you like to go?"),commands,commands.length)
@@ -40,6 +43,8 @@ def boatTravel(currentDock = "")
         teleportToEventideIsle
     elsif dragonIslandCommand > -1 && choice == dragonIslandCommand
         teleportToDragonIsle
+    elsif triIslandCommand > -1 && choice == triIslandCommand
+        teleportToTriIsland
     end
 end
 
@@ -56,4 +61,9 @@ end
 def teleportToDragonIsle
     $game_switches[87] = true # Mark player as having visited this island
     transferPlayer(21,28,Up,356)
+end
+
+def teleportToTriIsland
+    $game_switches[98] = true # Mark player as having visited this island
+    transferPlayer(39,46,Up,411)
 end

@@ -999,11 +999,12 @@ LandTall,20
     20,JYNX,53,55
     20,MNOCTOWL,53,55
 #-------------------------------
-[411] # Tri Islands
+[411] # Tri Island
 Land,20
-    34,NUMEL,8,10
-    33,APPLIN,8,10
-    33,KRABBY,8,10
+    25,APPLIN,8,10
+    25,CASTFORM,8,10
+    25,KRABBY,8,10
+    25,NUMEL,8,10
 #-------------------------------
 [413] # Eventide Isle
 Land,20
@@ -1020,3 +1021,27 @@ Land,20
     20,MUSHARNA,50,53
     20,NOCTOWL,50,53
     20,URSARING,50,53
+#-------------------------------
+[415] # Frigid Overlook
+Land,20
+    20,CRYOGONAL,62,64
+    20,EISCUE,62,64
+    20,FROSMOTH,62,64
+    20,MNOCTOWL,62,64
+    20,WEAVILE,62,64
+#-------------------------------
+[416] # Sunbaked Camp
+Land,20
+    20,ARCANINE,62,64
+    20,CHERRIM,62,64
+    20,PIDGEOT,62,64
+    20,PYROAR,62,64
+    20,TALONFLAME,62,64
+#-------------------------------
+[417] # Ferrous Cave
+Land,20
+    20,EELEKTROSS,62,64
+    20,ELECTIVIRE,62,64
+    20,GALVANTULA,62,64
+    20,MAGNEZONE,62,64
+    20,PINCURCHIN,62,64
