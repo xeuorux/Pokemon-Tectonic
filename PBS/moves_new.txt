@@ -106,7 +106,7 @@
 1105,INURE,Inure,531,0,ICE,Status,0,10,0,User,0,CanSnatch,"The user inures themselves to a harsh environment, shedding their type weaknesses.",
 1106,BREAKDANCE,Breakdance,532,0,FIGHTING,Status,0,15,0,User,0,CanSnatch;Dance,"The user improvises a dance, raising its two weakest stats by three steps each.",WORKUP
 1107,SHIVERDANCE,Shiver Dance,525,0,ICE,Status,0,15,0,User,0,CanSnatch;Dance,"The user raises their Attack and Defense by two steps, and Speed by one step.",
-1108,AMBUSH,Ambush,516,110,DARK,Physical,75,10,0,NearOther,0,CanProtect;CanMirrorMove,"The user tries to surprise-attack the target. Cannot miss in moonglow. Critical hits twice as often.",NIGHTSLASH
+1108,AMBUSH,Ambush,516,110,DARK,Physical,70,10,0,NearOther,0,CanProtect;CanMirrorMove,"The user tries to surprise-attack the target. Cannot miss in moonglow. Critical hits twice as often.",NIGHTSLASH
 1109,STITCHUP,Stitch Up,524,0,GHOST,Status,0,5,0,User,0,CanSnatch,"The user restores two thirds of its own HP. Then, this move is disabled.",RECOVER
 1110,PHANTOMBREAK,Phantom Break,523,120,GHOST,Physical,100,5,0,NearOther,0,CanProtect;CanMirrorMove,"Although this move has great power, it disables itself after use.",SHADOWPUNCH
 1111,LOOMOVER,Loom Over,522,0,DRAGON,Status,0,12,0,NearOther,0,CanMagicCoat;CanMirrorMove,"The user looms over the target with awful menace, lowering their highest stat by four steps.",
@@ -321,7 +321,7 @@
 1320,HIVEMIND,Hive Mind,57A,0,BUG,Status,0,10,0,NearAlly,0,,"The user makes its ally perform the move in the user's first slot.",
 1321,DOCILEMASK,Docile Mask,0D0,0,FAIRY,Status,100,15,0,NearOther,1,CanProtect;CanMagicCoat;CanMirrorMove,"The target is taunted by a deceptive look. It can't use status moves this or next turn. This move always goes first.",PLAYNICE
 1322,MUCUSARMOR,Mucus Armor,57B,0,POISON,Status,0,10,0,User,0,CanSnatch,"The user protects itself by excreting a thick mucus, raising its Sp. Def stat by five steps.",
-1323,LONGSHOT,Long Shot,57C,110,NORMAL,Physical,75,25,0,NearOther,0,CanProtect;CanMirrorMove,"Inflicts physical or special damage based on the user's stats. However, it's likely to miss.",
+1323,LONGSHOT,Long Shot,57C,110,NORMAL,Physical,70,25,0,NearOther,0,CanProtect;CanMirrorMove,"Inflicts physical or special damage based on the user's stats. However, it's likely to miss.",
 1324,DRYHEAT,Dry Heat,57D,90,FIRE,Special,100,10,10,NearOther,0,CanProtect;CanMirrorMove,"The target is dried out and loses Water-type. Then, it bursts into flame from the heat.",
 1325,ICICLEARMOR,Icicle Armor,57E,0,ICE,Status,0,3,0,User,4,,"Protects the user from attacks. Also frostbites any attacker who physically attacks the user.",DEFENSECURL
 1326,VENOMGUARD,Venom Guard,57F,0,POISON,Status,0,3,0,User,4,,"Halves attack damage taken this turn. Poisons any attackers. Fails if used successively.",DEFENSECURL
