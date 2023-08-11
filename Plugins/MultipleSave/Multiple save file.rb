@@ -165,7 +165,7 @@ module SaveData
 	# @param file_path [String] path of the file to read from
 	# @return [Hash] save data in Hash format
 	# @raise (see .get_data_from_file)
-	def self.read_from_file(file_path,convert=true)
+	def self.read_from_file(file_path,convert=false)
 		validate file_path => String
 		save_data = get_data_from_file(file_path)
 		save_data = to_hash_format(save_data) if save_data.is_a?(Array)
