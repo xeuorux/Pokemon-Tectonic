@@ -2508,3 +2508,16 @@ class PokeBattle_Move_5FA < PokeBattle_NumbMove
         super
     end
 end
+#===============================================================================
+# Multi-hit move that can numb.
+#===============================================================================
+class PokeBattle_Move_5FB < PokeBattle_NumbMove
+    include RandomHitable
+end
+
+#===============================================================================
+# Multi-hit move that can dizzy.
+#===============================================================================
+class PokeBattle_Move_5FC < PokeBattle_DizzyMove
+    include RandomHitable
+end
