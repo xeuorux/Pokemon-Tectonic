@@ -1213,3 +1213,57 @@ class PokeBattle_TeamStatBuffMove < PokeBattle_Move
         return score
     end
 end
+
+#===============================================================================
+# Hits X times, where X is the number of non-user unfainted status-free Pokémon
+# in the user's party (not including partner trainers). Fails if X is 0.
+# Base power of each hit depends on one of the base stats for the species of that
+# hit's participant. (Beat Up)
+#===============================================================================
+# Each subclass must have an initialization method that defines the @statUsed variable
+class PokeBattle_PartyAttackMove
+    def multiHitMove?; return true; end
+
+    def calculatePartyAttackerList(user)
+        @partyAttackerList = []
+        @battle.eachInTeamFromBattlerIndex(user.index) do |pkmn, i|
+            next if !pkmn.able? || pkmn.status != :NONE
+            @partyAttackerList.push(i)
+        end
+    end
+
+    def pbMoveFailed?(user, _targets, show_message)
+        calculatePartyAttackerList(user)
+        if @partyAttackerList.empty?
+            if show_message
+                @battle.pbDisplay(_INTL("But it failed, since there are no party members on #{user.pbTeam(true)} who can join in!"))
+            end
+            return true
+        end
+        return false
+    end
+
+    def pbNumHits(user, _targets, _checkingForAI = false)
+        calculatePartyAttackerList(user) if @partyAttackerList.empty?
+        return @partyAttackerList.length
+    end
+
+    def baseDamageFromStat(stat)
+        return 5 + (stat / 10)
+    end
+
+    def pbBaseDamage(_baseDmg, user, _target)
+        i = @partyAttackerList.shift # First element in array, and removes it from array
+        baseStatValue = @battle.pbParty(user.index)[i].baseStats[@statUsed]
+        return baseDamageFromStat(baseStatValue)
+    end
+
+    def pbBaseDamageAI(_baseDmg, user, _target)
+        calculatePartyAttackerList(user) if @partyAttackerList.empty?
+        totalBaseStat = 0
+        @partyAttackerList.each do |i|
+            totalBaseStat += @battle.pbParty(user.index)[i].baseStats[baseStatValue]
+        end
+        return baseDamageFromStat(totalBaseStat / @partyAttackerList.length)
+    end
+end

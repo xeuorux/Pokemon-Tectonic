@@ -40,7 +40,7 @@
 39,SNARL,Snarl,045,55,DARK,Special,100,12,100,AllNearFoes,0,CanProtect;CanMirrorMove;Sound,"The user yells as if it is ranting about something, lowering the target's Sp. Atk by two steps.",
 40,PAYBACK,Payback,084,50,DARK,Physical,100,10,0,NearOther,0,CanProtect;CanMirrorMove,"If the user moves after the target, this attack's power will be doubled.",
 41,PURSUIT,Pursuit,088,40,DARK,Physical,100,15,0,NearOther,0,CanProtect;CanMirrorMove,"Inflicts double damage on a target that is switching out.",
-42,BEATUP,Beat Up,0C1,1,DARK,Physical,100,10,0,NearOther,0,CanProtect;CanMirrorMove,"The user gets all the party Pokémon to attack the foe. The more party Pokémon, the more damage.",
+42,BEATUP,Beat Up,0C1,1,DARK,Physical,100,10,0,NearOther,0,CanProtect;CanMirrorMove,"The user gets all the party Pokémon to attack the foe with punches and kicks.",
 43,FLING,Fling,0F7,75,DARK,Physical,100,10,0,NearOther,0,CanProtect;CanMirrorMove,"The user throws its held item at the target. Some items deal more damage or have extra effects.",
 44,POWERTRIP,Power Trip,08E,20,DARK,Physical,100,10,0,NearOther,0,CanProtect;CanMirrorMove,"The user boasts of its strength. Power increases the more the user's stats are raised.",
 45,PUNISHMENT,Punishment,08F,30,DARK,Physical,100,5,0,NearOther,0,CanProtect;CanMirrorMove,"This attack's power increases by 10 for every one of the target's positive stat steps.",

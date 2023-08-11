@@ -1967,50 +1967,10 @@ end
 # Base power of each hit depends on the base Attack stat for the species of that
 # hit's participant. (Beat Up)
 #===============================================================================
-class PokeBattle_Move_0C1 < PokeBattle_Move
-    def multiHitMove?; return true; end
-
-    def calculateBeatUpList(user)
-        @beatUpList = []
-        @battle.eachInTeamFromBattlerIndex(user.index) do |pkmn, i|
-            next if !pkmn.able? || pkmn.status != :NONE
-            @beatUpList.push(i)
-        end
-    end
-
-    def pbMoveFailed?(user, _targets, show_message)
-        calculateBeatUpList(user)
-        if @beatUpList.length == 0
-            if show_message
-                @battle.pbDisplay(_INTL("But it failed, since there are no party members on #{user.pbTeam(true)} who can join in!"))
-            end
-            return true
-        end
-        return false
-    end
-
-    def pbNumHits(user, _targets, _checkingForAI = false)
-        calculateBeatUpList(user) if @beatUpList.empty?
-        return @beatUpList.length
-    end
-
-    def baseDamageFromAttack(attack)
-        return 5 + (attack / 10)
-    end
-
-    def pbBaseDamage(_baseDmg, user, _target)
-        i = @beatUpList.shift # First element in array, and removes it from array
-        attack = @battle.pbParty(user.index)[i].baseStats[:ATTACK]
-        return baseDamageFromAttack(attack)
-    end
-
-    def pbBaseDamageAI(_baseDmg, user, _target)
-        calculateBeatUpList(user) if @beatUpList.empty?
-        totalAttack = 0
-        @beatUpList.each do |i|
-            totalAttack += @battle.pbParty(user.index)[i].baseStats[:ATTACK]
-        end
-        return baseDamageFromAttack(totalAttack / @beatUpList.length)
+class PokeBattle_Move_0C1 < PokeBattle_PartyAttackMove
+    def initialize(battle, move)
+        super
+        @statUsed = :ATTACK
     end
 end
 

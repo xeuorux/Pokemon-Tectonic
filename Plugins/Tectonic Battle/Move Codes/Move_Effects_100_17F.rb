@@ -1095,10 +1095,18 @@ class PokeBattle_Move_128 < PokeBattle_Move
     end
 end
 
+
 #===============================================================================
-# Not currently used.
+# Hits X times, where X is the number of non-user unfainted status-free Pokémon
+# in the user's party (not including partner trainers). Fails if X is 0.
+# Base power of each hit depends on the base Sp. Atk stat for the species of that
+# hit's participant. (Volley)
 #===============================================================================
-class PokeBattle_Move_129 < PokeBattle_Move
+class PokeBattle_Move_129 < PokeBattle_PartyAttackMove
+    def initialize(battle, move)
+        super
+        @statUsed = :SPECIAL_ATTACK
+    end
 end
 
 #===============================================================================
