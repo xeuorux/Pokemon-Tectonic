@@ -1255,6 +1255,7 @@ end
         
         learnableMoves.concat(firstSpecies.egg_moves)
         learnableMoves.concat(@tutor_moves)
+        learnableMoves.concat(form_specific_moves)
         @moves.each { |learnset_entry|
           m = learnset_entry[1]
           learnableMoves.push(m)
@@ -1264,6 +1265,37 @@ end
         learnableMoves.compact!
 
         return learnableMoves
+      end
+
+      def get_form_specific_move
+        formMoves = form_specific_moves
+        return nil if formMoves.empty?
+        return formMoves[@form] || nil
+      end
+
+      def form_specific_moves
+        if @species == :ROTOM
+          return [
+            nil,
+            :OVERHEAT,    # Heat, Microwave
+            :HYDROPUMP,   # Wash, Washing Machine
+            :BLIZZARD,    # Frost, Refrigerator
+            :AIRSLASH,    # Fan
+            :LEAFSTORM    # Mow, Lawnmower
+         ]
+        elsif @species == :URSHIFU
+          return [
+            :WICKEDBLOW,
+            :SURGINGSTRIKES,
+         ]
+        elsif @species == :NECROZMA
+          [
+            nil,
+            :SUNSTEELSTRIKE,   # Dusk Mane (with Solgaleo) (form 1)
+            :MOONGEISTBEAM     # Dawn Wings (with Lunala) (form 2)
+          ]
+        end
+        return []
       end
 
       def available_by?(level)

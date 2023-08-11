@@ -214,13 +214,7 @@ MultipleForms.register(:CHERRIM,{
 
 MultipleForms.register(:ROTOM,{
   "onSetForm" => proc { |pkmn, form, oldForm|
-    form_moves = [
-       :OVERHEAT,    # Heat, Microwave
-       :HYDROPUMP,   # Wash, Washing Machine
-       :BLIZZARD,    # Frost, Refrigerator
-       :AIRSLASH,    # Fan
-       :LEAFSTORM    # Mow, Lawnmower
-    ]
+    form_moves = GameData::Species.get(:ROTOM).form_specific_moves
     move_index = -1
     pkmn.moves.each_with_index do |move, i|
       next if !form_moves.any? { |m| m == move.id }
@@ -237,7 +231,7 @@ MultipleForms.register(:ROTOM,{
       end
     else
       # Turned into an alternate form; try learning that form's unique move
-      new_move_id = form_moves[form - 1]
+      new_move_id = form_moves[form]
       if move_index >= 0
         # Knows another form's unique move; replace it
         old_move_name = pkmn.moves[move_index].name
@@ -462,10 +456,7 @@ MultipleForms.register(:NECROZMA,{
   },
   "onSetForm" => proc { |pkmn, form, oldForm|
     next if form > 2 || oldForm > 2   # Ultra form changes don't affect moveset
-    form_moves = [
-       :SUNSTEELSTRIKE,   # Dusk Mane (with Solgaleo) (form 1)
-       :MOONGEISTBEAM     # Dawn Wings (with Lunala) (form 2)
-    ]
+    form_moves = GameData::Species.form_specific_moves()
     if form == 0
       # Turned back into the base form; forget form-specific moves
       move_index = -1
@@ -482,7 +473,7 @@ MultipleForms.register(:NECROZMA,{
       end
     else
       # Turned into an alternate form; try learning that form's unique move
-      new_move_id = form_moves[form - 1]
+      new_move_id = form_moves[form]
       pbLearnMove(pkmn, new_move_id, true)
     end
   }
@@ -548,4 +539,30 @@ MultipleForms.register(:GALLADE, {
   "getFormOnLeavingBattle" => proc { |pkmn, _battle, _usedInBattle, endBattle|
       next 0 if pkmn.form == 1 && (pkmn.fainted? || endBattle)
   },
+})
+
+MultipleForms.register(:URSHIFU,{
+  "onSetForm" => proc { |pkmn, form, oldForm|
+    form_moves = GameData::Species.get(:URSHIFU).form_specific_moves
+    move_index = -1
+    pkmn.moves.each_with_index do |move, i|
+      next if !form_moves.any? { |m| m == move.id }
+      move_index = i
+      break
+    end
+    # Turned into an alternate form; try learning that form's unique move
+    new_move_id = form_moves[form]
+    if move_index >= 0
+      # Knows another form's unique move; replace it
+      old_move_name = pkmn.moves[move_index].name
+      pkmn.moves[move_index].id = new_move_id
+      new_move_name = pkmn.moves[move_index].name
+      pbMessage(_INTL("1,\\wt[16] 2, and\\wt[16]...\\wt[16] ...\\wt[16] ... Ta-da!\\se[Battle ball drop]\1"))
+      pbMessage(_INTL("{1} forgot how to use {2}.\\nAnd...\1", pkmn.name, old_move_name))
+      pbMessage(_INTL("\\se[]{1} learned {2}!\\se[Pkmn move learnt]", pkmn.name, new_move_name))
+    else
+      # Just try to learn this form's unique move
+      pbLearnMove(pkmn, new_move_id, true)
+    end
+  }
 })

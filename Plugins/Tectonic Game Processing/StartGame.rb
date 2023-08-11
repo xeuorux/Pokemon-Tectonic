@@ -151,7 +151,7 @@ def removeIllegalElementsFromAllPokemon(save_data)
         remove = true
       end
 
-      unless pokemon.learnable_moves(false).include?(moveID)
+      unless pokemon.learnable_moves(false).include?(moveID) && pokemon.species != :SMEARGLE
         pbMessage(_INTL("Pokemon #{pokemon.name} in #{location} has move #{moveData.name} in its move list."))
         pbMessage(_INTL("That move is not legal for its species. Removing now."))
         remove = true
@@ -174,7 +174,9 @@ def removeIllegalElementsFromAllPokemon(save_data)
     pokemon.items.clone.each do |item|
       itemData = GameData::Item.get(item)
       next if itemData.legal?
-      pbMessage(_INTL("Pokemon #{pokemon.name} in #{location} has item #{itemData.name}."))
+      name = pokemon.name
+      name = "#{name} (#{pokemon.species_data.name})" if pokemon.nicknamed?
+      pbMessage(_INTL("Pokemon #{name} in #{location} has item #{itemData.name}."))
       pbMessage(_INTL("That item has been cut from the game or is not legal to own. Removing now."))
       pokemon.removeItem(item)
     end
