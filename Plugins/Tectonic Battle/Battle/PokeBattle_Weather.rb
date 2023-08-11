@@ -119,31 +119,25 @@ class PokeBattle_Battle
         triggerWeatherChangeDialogue(oldWeather, :None)
     end
 
+    # Ability-set Primordial Sea, Desolate Land, Delta Stream begin to run out
     def pbEndPrimordialWeather
-        oldWeather = @field.weather
-        # End Primordial Sea, Desolate Land, Delta Stream
+        return unless @field.weatherDuration < 0
         case @field.weather
         when :HarshSun
             if !pbCheckGlobalAbility(:DESOLATELAND) && @field.defaultWeather != :HarshSun
-                @field.weather = :None
-                pbDisplay("The harsh sunlight faded!")
+                @field.weatherDuration = 3
+                pbDisplay("The harsh sunlight began to fade!")
             end
         when :HeavyRain
             if !pbCheckGlobalAbility(:PRIMORDIALSEA) && @field.defaultWeather != :HeavyRain
-                @field.weather = :None
-                pbDisplay("The heavy rain has lifted!")
+                @field.weatherDuration = 3
+                pbDisplay("The heavy rain began to lift!")
             end
         when :StrongWinds
             if !pbCheckGlobalAbility(:DELTASTREAM) && @field.defaultWeather != :StrongWinds
-                @field.weather = :None
-                pbDisplay("The mysterious air current has dissipated!")
+                @field.weatherDuration = 3
+                pbDisplay("The mysterious air current began to dissipate!")
             end
-        end
-        if @field.weather != oldWeather
-            # Check for form changes caused by the weather changing
-            eachBattler { |b| b.pbCheckFormOnWeatherChange }
-            # Start up the default weather
-            pbStartWeather(nil, @field.defaultWeather) if @field.defaultWeather != :None
         end
     end
 
