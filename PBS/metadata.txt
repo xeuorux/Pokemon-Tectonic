@@ -2334,6 +2334,13 @@ ShowArea = false
 Bicycle = false
 Weather = Overcast,100
 #-------------------------------
+[411]
+# Tri Island
+Outdoor = true
+ShowArea = true
+Bicycle = true
+MapPosition = 0,23,11
+#-------------------------------
 [412]
 # Metal Den
 Outdoor = false

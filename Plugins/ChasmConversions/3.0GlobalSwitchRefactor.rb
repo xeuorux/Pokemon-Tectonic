@@ -101,6 +101,9 @@ SaveData.register_conversion(:global_switch_refactor_3_0) do
     globalVariables[CANDY_STAGE_VAR] += 1 if selfSwitches[[257,18,'B']] # Candy 4 completed
     globalVariables[CANDY_STAGE_VAR] += 1 if selfSwitches[[185,41,'C']] ||
                                               selfSwitches[[185,42,'B']] # Candy 5 completed
+    
+    globalSwitches[66] = false # "Met Eifion" scrubbed
+    globalSwitches[67] = false # "Met Alessa" scrubbed
 
     # Debug info
     for i in 1..6 do

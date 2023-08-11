@@ -71,7 +71,10 @@ HIDDEN_MAPS = {
 	218 => 51, # Absysal Cavern
 	215 => 50, # Tempest Realm
 	377 => 55, # Guardian Island
-	411 => 69, # Tri Island
 	413 => 85, # Eventide Isle
 	414 => 85, # Eventide Peak
+	411	=> 98, # Tri Island
+	415	=> 98, # Tri Island -- Articuno
+	416	=> 98, # Tri Island -- Moltres
+	417	=> 98, # Tri Island -- Zapos
 }
