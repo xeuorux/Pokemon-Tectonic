@@ -256,10 +256,11 @@ class PokeBattle_Battler
     #=============================================================================
     def pbUpdate(fullChange = false)
         return unless @pokemon
+        hpDiff = @totalhp - @hp
         @pokemon.calc_stats
         @level          = @pokemon.level
-        @hp             = @pokemon.hp
         @totalhp        = @pokemon.totalhp
+        @hp             = @pokemon.totalhp - hpDiff
         unless effectActive?(:Transform)
             @attack       = @pokemon.attack
             @defense      = @pokemon.defense
