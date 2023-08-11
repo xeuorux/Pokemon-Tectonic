@@ -79,7 +79,7 @@
 1078,PSYCHICOVERLOAD,Psychic Overload,55F,120,PSYCHIC,Special,100,10,0,RandomNearFoe,0,CanProtect;CanMirrorMove,"The user overloads its mind to attack for three turns.",PSYCHOBOOST
 1079,PSYPIERCE,Psypierce,5EF,70,PSYCHIC,Special,100,15,50,NearOther,0,CanProtect;CanMirrorMove,"The user manifests a piercing bolt of psychic energy. It has a 50% chance to lower Sp. Def.",PSYSHOCK
 1080,LIGHTSHOW,Light Show,401,40,BUG,Special,100,25,10,NearOther,0,CanProtect;CanMirrorMove,"The user attacks with small beams of light. It has a 10% chance to dizzy.",SIGNALBEAM
-1081,SIGNALOVERLOAD,Signal Overload,401,110,BUG,Special,70,12,30,NearOther,0,CanProtect;CanMirrorMove,"The target is overwhelmed by light and sound. This has a 30% chance to dizzy it.",SIGNALBEAM
+1081,SIGNALOVERLOAD,Signal Overload,401,110,BUG,Special,80,12,30,NearOther,0,CanProtect;CanMirrorMove;Sound,"The target is overwhelmed by light and sound. This has a 30% chance to dizzy it.",SIGNALBEAM
 1082,PETRIFY,Petrify,007,70,ROCK,Special,100,12,50,NearOther,0,CanProtect;CanMirrorMove,"The user turns the target into stone. This has a 50% chance to numb it.",
 1083,CRYSTALGLEAM,Crystal Gleam,000,60,ROCK,Special,100,15,0,NearOther,0,CanProtect;CanMirrorMove;HighCriticalHitRate,"The user attacks with the bright glint of crystals. Critical hits twice as often.",
 1084,WAILINGBLOW,Wailing Blow,010,80,GHOST,Physical,100,15,40,NearOther,0,CanProtect;CanMirrorMove,"The user attacks while wailing. This has a 40% chance to make the target flinch.",SHADOWCLAW
@@ -106,7 +106,7 @@
 1105,INURE,Inure,531,0,ICE,Status,0,10,0,User,0,CanSnatch,"The user inures themselves to a harsh environment, shedding their type weaknesses.",
 1106,BREAKDANCE,Breakdance,532,0,FIGHTING,Status,0,15,0,User,0,CanSnatch;Dance,"The user improvises a dance, raising its two weakest stats by three steps each.",WORKUP
 1107,SHIVERDANCE,Shiver Dance,525,0,ICE,Status,0,15,0,User,0,CanSnatch;Dance,"The user raises their Attack and Defense by two steps, and Speed by one step.",
-1108,AMBUSH,Ambush,516,110,DARK,Physical,70,10,0,NearOther,0,CanProtect;CanMirrorMove,"The user tries to surprise-attack the target. Cannot miss in moonglow. Critical hits twice as often.",NIGHTSLASH
+1108,AMBUSH,Ambush,516,110,DARK,Physical,75,10,0,NearOther,0,CanProtect;CanMirrorMove,"The user tries to surprise-attack the target. Cannot miss in moonglow. Critical hits twice as often.",NIGHTSLASH
 1109,STITCHUP,Stitch Up,524,0,GHOST,Status,0,5,0,User,0,CanSnatch,"The user restores two thirds of its own HP. Then, this move is disabled.",RECOVER
 1110,PHANTOMBREAK,Phantom Break,523,120,GHOST,Physical,100,5,0,NearOther,0,CanProtect;CanMirrorMove,"Although this move has great power, it disables itself after use.",SHADOWPUNCH
 1111,LOOMOVER,Loom Over,522,0,DRAGON,Status,0,12,0,NearOther,0,CanMagicCoat;CanMirrorMove,"The user looms over the target with awful menace, lowering their highest stat by four steps.",
@@ -321,7 +321,7 @@
 1320,HIVEMIND,Hive Mind,57A,0,BUG,Status,0,10,0,NearAlly,0,,"The user makes its ally perform the move in the user's first slot.",
 1321,DOCILEMASK,Docile Mask,0D0,0,FAIRY,Status,100,15,0,NearOther,1,CanProtect;CanMagicCoat;CanMirrorMove,"The target is taunted by a deceptive look. It can't use status moves this or next turn. This move always goes first.",PLAYNICE
 1322,MUCUSARMOR,Mucus Armor,57B,0,POISON,Status,0,10,0,User,0,CanSnatch,"The user protects itself by excreting a thick mucus, raising its Sp. Def stat by five steps.",
-1323,LONGSHOT,Long Shot,57C,110,NORMAL,Physical,70,25,0,NearOther,0,CanProtect;CanMirrorMove,"Inflicts physical or special damage based on the user's stats. However, it's likely to miss.",
+1323,LONGSHOT,Long Shot,57C,110,NORMAL,Physical,75,25,0,NearOther,0,CanProtect;CanMirrorMove,"Inflicts physical or special damage based on the user's stats. However, it's likely to miss.",
 1324,DRYHEAT,Dry Heat,57D,90,FIRE,Special,100,10,10,NearOther,0,CanProtect;CanMirrorMove,"The target is dried out and loses Water-type. Then, it bursts into flame from the heat.",
 1325,ICICLEARMOR,Icicle Armor,57E,0,ICE,Status,0,3,0,User,4,,"Protects the user from attacks. Also frostbites any attacker who physically attacks the user.",DEFENSECURL
 1326,VENOMGUARD,Venom Guard,57F,0,POISON,Status,0,3,0,User,4,,"Halves attack damage taken this turn. Poisons any attackers. Fails if used successively.",DEFENSECURL
@@ -476,6 +476,6 @@
 1475,EXTINCTIONAXE,Extinction Axe,193,80,DRAGON,Physical,100,10,0,NearOther,0,CanProtect;CanMirrorMove,"The user aims to cut the target in half with its axe head. Deals double damage if its a critical hit.",SLASH
 1476,IMPALINGSPIKE,Impaling Spike,195,80,STEEL,Physical,100,10,0,NearOther,0,CanProtect;CanMirrorMove,"A large spike it shot at the target. If this causes the target to faint, a layer of Spikes is set on the ground beneath them.",SPIKECANNON
 1477,YOUNGAGAIN,Young Again,0BF,0,NORMAL,Status,0,10,0,NearOther,0,CanProtect;CanMirrorMove,"The user conjures up the past, transforming the target into their previous evolutionary form.",TRANSFORM
-1478,DUNESINGING,Dune Singing,5EA,115,GROUND,Special,80,10,30,AllNearFoes,0,CanProtect;CanMirrorMove;Sound,"An avalanche of sand causes painful, ringing vibrations. Has a 30% chance to lower Speed.",SCORCHINGSANDS
+1478,DUNESINGING,Dune Singing,5EA,115,GROUND,Special,80,10,30,AllNearFoes,0,CanProtect;CanMirrorMove;Sound,"An avalanche of sand causes painful, ringing vibrations.",SCORCHINGSANDS
 1479,WINDTUNNEL,Wind Tunnel,5FC,20,FLYING,Special,20,20,10,AllNearFoes,0,CanProtect;CanMirrorMove;Wind,"Wind rapidly spins the target in place to hit them two to five times. Has a 10% chance to dizzy each hit.",
 1480,SUCKBLOOD,Suck Blood,0DD,50,BUG,Physical,100,20,0,NearOther,0,CanProtect;CanMirrorMove,"The user leeches the target's life. The user's HP is restored by half the damage taken by the target.",LEECHLIFE
