@@ -52,7 +52,7 @@
 1051,INFINITEFORCE,Infinite Force,50F,130,FAIRY,Physical,100,10,0,NearOther,0,CanProtect;CanMirrorMove,"The user wields an exaggerated power to strike the target. Lowers the user's Attack by four steps.",SPIRITBREAK
 1052,TANTRUM,Tantrum,55F,120,FAIRY,Physical,100,10,0,RandomNearFoe,0,CanProtect;CanMirrorMove,"The user goes on a wild tantrum for three turns.",THRASH
 1053,SLAG,Slag,005,80,STEEL,Special,100,10,30,NearOther,0,CanProtect;CanMirrorMove,"The user sprays mining waste at the target. It has a 30% chance to poison.",STEELBEAM
-1054,MAGNETWAVE,Magnet Wave,044,40,STEEL,Special,0,30,10,NearOther,0,CanProtect;CanMirrorMove,"The target is hit by a wave of magnetic energy. It has a 10% chance to lower their Speed.",
+1054,MAGNETWAVE,Magnet Wave,5EA,40,STEEL,Special,0,30,20,NearOther,0,CanProtect;CanMirrorMove,"The target is hit by a wave of magnetic energy. It has a 20% chance to lower their Speed.",
 1055,HEADBANG,Headbang,599,55,ROCK,Physical,100,25,0,NearOther,0,CanProtect;CanMirrorMove,"The user slams the target with blunt force, taking 20% recoil.",
 1056,GRANITEHEAD,Granite Head,0FB,85,ROCK,Physical,100,12,0,NearOther,0,CanProtect;CanMirrorMove,"The user charges into the target with its stony body. The user also takes 33% recoil.",HEADSMASH
 1057,BEDROCKBREAKER,Bedrock Breaker,0FB,120,ROCK,Physical,100,10,0,NearOther,0,CanProtect;CanMirrorMove,"The user smashes its rock-hard head into the target. The user also takes 33% recoil.",HEADSMASH
@@ -73,7 +73,7 @@
 1072,CREEPOUT,Creep Out,51D,50,BUG,Special,100,12,100,NearOther,0,CanProtect;CanMirrorMove,"The user preys on the target's fear of insects, giving it a weakness to the Bug type.",
 1073,ROCKAPULT,Rockapult,51F,170,ROCK,Special,50,10,0,NearOther,0,CanProtect;CanMirrorMove,"The user throws a large rock at the target. If it misses, the user's accuracy is raised.",ROCKTHROW
 1074,STARFALL,Star Fall,520,50,ROCK,Special,100,12,100,NearOther,0,CanProtect;CanMirrorMove,"A star falls on the target. Witnessing this lucky star also increases the user's critical hit chance.",DOOMDESIRE
-1075,BUBBLEBLAST,Bubble Blast,044,90,WATER,Special,100,15,20,NearOther,0,CanProtect;CanMirrorMove,"A blast of bubbles is shot at the target. It has a 20% chance to lower the target's Speed stat.",
+1075,BUBBLEBLAST,Bubble Blast,5EA,90,WATER,Special,100,15,20,NearOther,0,CanProtect;CanMirrorMove,"A blast of bubbles is shot at the target. It has a 20% chance to lower the target's Speed stat.",
 1076,AURASTRIKE,Aura Strike,007,60,FIGHTING,Special,100,15,30,NearOther,0,CanProtect;CanMirrorMove,"The user shoots a blast of aura. This has a 30% chance to numb the target.",
 1077,COURAGEBOLT,Courage Bolt,5DC,40,FIGHTING,Special,100,30,10,NearOther,0,CanProtect;CanMirrorMove,"The user manifests a bolt of pure courage. This has a 10% chance of raising the user's Sp. Atk.",AURASPHERE
 1078,PSYCHICOVERLOAD,Psychic Overload,55F,120,PSYCHIC,Special,100,10,0,RandomNearFoe,0,CanProtect;CanMirrorMove,"The user overloads its mind to attack for three turns.",PSYCHOBOOST
@@ -90,7 +90,7 @@
 1089,COLDSNOT,Cold Snot,005,65,ICE,Physical,100,20,30,NearOther,0,CanProtect;CanMirrorMove,"The user launches snot at the target. This has a 30% chance to poison the target.",SNOWBALL
 1090,ENCHANTINGSONG,Enchanting Song,401,80,FAIRY,Special,100,12,30,AllNearOthers,0,CanProtect;CanMirrorMove;Sound,"An enchanting outcry. It has a 30% chance to dizzy every target.",SING
 1091,KALEIDOSCOPE,Kaleidoscope,401,60,FAIRY,Special,100,15,30,NearOther,0,CanProtect;CanMirrorMove,"The target is bombarded by crazy colors. There's a 30% chance it becomes dizzy.",DAZZLINGGLEAM
-1092,TRAMPLE,Trample,044,90,GROUND,Physical,100,15,20,NearOther,0,CanProtect;CanMirrorMove,"The user tramples the target. It has a 20% chance to lower the target's Speed stat.",STOMPINGTANTRUM
+1092,TRAMPLE,Trample,5EA,90,GROUND,Physical,100,15,20,NearOther,0,CanProtect;CanMirrorMove,"The user tramples the target. It has a 20% chance to lower the target's Speed stat.",STOMPINGTANTRUM
 1093,DEMONSKISS,Demon's Kiss,526,0,PSYCHIC,Status,100,3,0,NearOther,0,CanProtect;CanMagicCoat;CanMirrorMove,"By sacrificing half its HP, the user jinxes the target with a kiss, making it fall asleep.",LOVELYKISS
 1094,RUIN,Ruin,047,90,NORMAL,Special,100,10,20,NearOther,0,CanProtect;CanMirrorMove,"The user brings down a ruinous power on the target. This has a 20% chance of lowering all the target's stats.",JUDGMENT
 1095,HARDFEELINGS,Hard Feelings,07E,70,NORMAL,Special,100,12,0,NearOther,0,CanProtect;CanMirrorMove,"Doubles its power if the user has a status condition. Ignores frostbite Sp. Atk reduction.",
@@ -114,7 +114,7 @@
 1113,PACIFY,Pacify,534,0,PSYCHIC,Status,100,15,0,NearOther,0,CanProtect;CanMagicCoat;CanMirrorMove,"The user employs hypnotic suggestion to make a dizzy target fall into a deep sleep.",HYPNOSIS
 1114,LULLABY,Lullaby,528,0,NORMAL,Status,100,12,0,NearOther,0,CanProtect;CanMagicCoat;CanMirrorMove;Sound,"A lullaby is sung in a calming voice that puts the target with half its HP or less left into a deep sleep.",SING
 1115,PUFFBALL,Puffball,529,0,GRASS,Status,100,12,0,NearOther,0,CanProtect;CanMagicCoat;CanMirrorMove,"The user bursts a ball of sleep-inducing powder. It fails unless the target hit the user this turn.",SLEEPPOWDER
-1116,MUDTHROW,Mud Throw,044,40,GROUND,Special,100,12,10,NearOther,0,CanProtect;CanMirrorMove,"The user attacks by hurling a blob of mud. It has a 10% chance to reduce the target's Speed.",MUDSLAP
+1116,MUDTHROW,Mud Throw,5EA,40,GROUND,Special,100,12,20,NearOther,0,CanProtect;CanMirrorMove,"The user attacks by hurling a blob of mud. It has a 20% chance to reduce the target's Speed.",MUDSLAP
 1117,PURIFYINGWATER,Purifying Water,548,50,WATER,Special,100,5,0,NearOther,0,CanProtect;CanMirrorMove,"The user shoots purified water, also healing the status problems of all the party Pokémon.",WATERPULSE
 1118,CRITICALERROR,Critical Error,0A0,60,GHOST,Special,100,10,0,NearOther,0,CanProtect;CanMirrorMove,"The user causes a glitch in reality. This attack always results in a critical hit.",
 1119,PRIMALIMPACT,Primal Impact,0AD,90,NORMAL,Physical,100,10,0,NearOther,0,CanMirrorMove,"An attack empowered by the might of a lazy king. It skips and destroys protections.",
@@ -243,7 +243,7 @@
 1242,FRANTICFANG,Frantic Fang,571,60,NORMAL,Physical,100,10,0,NearOther,0,CanProtect;CanMirrorMove;Biting,"Channeling fear, the user bites the target. Deals double damage if the user is below half health.",HYPERFANG
 1243,TRANQUILTUNE,Tranquil Tune,572,0,FAIRY,Status,100,10,0,NearOther,0,CanProtect;CanMirrorMove;Sound,"The target is put to sleep, and the user's Attack is raised. Fails unless the target is at or below half health.",SING
 1244,SUGARBALL,Sugar Ball,08D,1,FAIRY,Special,100,5,0,NearOther,0,CanProtect;CanMirrorMove,"The user spins sugar into a ball launched at the target. The slower the user, the greater the damage.",
-1245,SILTSURGE,Silt Surge,044,110,WATER,Special,100,12,100,AllNearFoes,0,CanProtect;CanMirrorMove,"The user attacks with a wave of murky water, which hits all near foes and lowers their Speed.",MUDDYWATER
+1245,SILTSURGE,Silt Surge,044,110,WATER,Special,100,12,100,AllNearFoes,0,CanProtect;CanMirrorMove,"The user attacks with a wave of murky water, which hits all near foes and lowers their Speed by 2 steps.",MUDDYWATER
 1246,PLUNDER,Plunder,588,90,STEEL,Physical,100,15,0,NearOther,0,CanProtect;CanMirrorMove,"The user attacks the target with a sword. If it faints, tons of money is earned after the battle.",
 1247,ROYALTRIBUTE,Royal Tribute,128,90,DARK,Special,100,15,0,NearOther,0,CanProtect;CanMirrorMove,"The user demands tribute from the target. Much money is earned after battle.",
 1248,SACREDLOTS,Sacred Lots,589,25,DRAGON,Physical,100,15,0,NearOther,0,CanProtect;CanMirrorMove,"The user makes an offering, then attacks two to five times. Money is earned for each hit.",
@@ -476,6 +476,6 @@
 1475,EXTINCTIONAXE,Extinction Axe,193,80,DRAGON,Physical,100,10,0,NearOther,0,CanProtect;CanMirrorMove,"The user aims to cut the target in half with its axe head. Deals double damage if its a critical hit.",SLASH
 1476,IMPALINGSPIKE,Impaling Spike,195,80,STEEL,Physical,100,10,0,NearOther,0,CanProtect;CanMirrorMove,"A large spike it shot at the target. If this causes the target to faint, a layer of Spikes is set on the ground beneath them.",SPIKECANNON
 1477,YOUNGAGAIN,Young Again,0BF,0,NORMAL,Status,0,10,0,NearOther,0,CanProtect;CanMirrorMove,"The user conjures up the past, transforming the target into their previous evolutionary form.",TRANSFORM
-1478,DUNESINGING,Dune Singing,044,115,GROUND,Special,80,10,30,AllNearFoes,0,CanProtect;CanMirrorMove;Sound,"An avalanche of sand causes painful, ringing vibrations. Has a 30% chance to lower Speed.",SCORCHINGSANDS
-1479,WINDTUNNEL,Wind Tunnel,5FC,20,FLYING,Special,20,20,10,AllNearFoes,0,CanProtect;CanMirrorMove;Wind,"A large gust of wind rapidly spins the target in place. Has a 10% chance to dizzy.
+1478,DUNESINGING,Dune Singing,5EA,115,GROUND,Special,80,10,30,AllNearFoes,0,CanProtect;CanMirrorMove;Sound,"An avalanche of sand causes painful, ringing vibrations. Has a 30% chance to lower Speed.",SCORCHINGSANDS
+1479,WINDTUNNEL,Wind Tunnel,5FC,20,FLYING,Special,20,20,10,AllNearFoes,0,CanProtect;CanMirrorMove;Wind,"Wind rapidly spins the target in place to hit them two to five times. Has a 10% chance to dizzy each hit.",
 1480,SUCKBLOOD,Suck Blood,0DD,50,BUG,Physical,100,20,0,NearOther,0,CanProtect;CanMirrorMove,"The user leeches the target's life. The user's HP is restored by half the damage taken by the target.",LEECHLIFE
