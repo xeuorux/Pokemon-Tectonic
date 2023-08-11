@@ -1986,6 +1986,12 @@ Outdoor = false
 ShowArea = true
 Bicycle = true
 #-------------------------------
+[343]
+# Basement Access
+Outdoor = false
+ShowArea = false
+Bicycle = true
+#-------------------------------
 [345]
 # Eleig Boating and Fishing
 Outdoor = false
@@ -2003,6 +2009,12 @@ Bicycle = false
 Outdoor = false
 ShowArea = true
 Bicycle = false
+#-------------------------------
+[350]
+# Forgotten Grave Site
+Outdoor = false
+ShowArea = false
+Bicycle = true
 #-------------------------------
 [351]
 # Lainie's Mansion

@@ -70,12 +70,12 @@ SaveData.register_conversion(:global_switch_refactor_3_0) do
     globalVariables[ALESSA_STAGE_VAR] += 1 if selfSwitches[[120,22,'D']] # Alessa 5 completed
 
     # Skylar
-    globalVariables[SKYLAR_STAGE_VAR] = 0
-    globalVariables[SKYLAR_STAGE_VAR] += 1 if selfSwitches[[3,40,'B']] # Skyler 1 completed
-    globalVariables[SKYLAR_STAGE_VAR] += 1 if selfSwitches[[8,27,'C']] # Skyler 2 completed
-    globalVariables[SKYLAR_STAGE_VAR] += 1 if selfSwitches[[255,4,'B']] # Skyler 3 completed
-    globalVariables[SKYLAR_STAGE_VAR] += 1 if selfSwitches[[214,39,'B']] # Skyler 4 completed
-    globalVariables[SKYLAR_STAGE_VAR] += 1 if selfSwitches[[121,29,'D']] # Skyler 5 completed
+    globalVariables[SKYLER_STAGE_VAR] = 0
+    globalVariables[SKYLER_STAGE_VAR] += 1 if selfSwitches[[3,40,'B']] # Skyler 1 completed
+    globalVariables[SKYLER_STAGE_VAR] += 1 if selfSwitches[[8,27,'C']] # Skyler 2 completed
+    globalVariables[SKYLER_STAGE_VAR] += 1 if selfSwitches[[255,4,'B']] # Skyler 3 completed
+    globalVariables[SKYLER_STAGE_VAR] += 1 if selfSwitches[[214,39,'B']] # Skyler 4 completed
+    globalVariables[SKYLER_STAGE_VAR] += 1 if selfSwitches[[121,29,'D']] # Skyler 5 completed
 
     # Keoni
     globalVariables[KEONI_STAGE_VAR] = 0
@@ -104,7 +104,8 @@ SaveData.register_conversion(:global_switch_refactor_3_0) do
 
     # Debug info
     for i in 1..6 do
-      echoln("Questline #{i} stage: #{globalVariables[50 + i]}")
+      name = ["Imogene","Alessa","Skyler","Keoni","Eifion","Candy"][i-1]
+      echoln("#{name} questline stage: #{globalVariables[50 + i]}")
     end
   end
 end

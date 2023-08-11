@@ -193,8 +193,8 @@ def alessaQuestFailed?
     return getGlobalVariable(ALESSA_STAGE_VAR) < 5 && getGlobalSwitch(RECURRING_QUEST_FAILURE_SWITCH)
 end
 
-def skylarQuestFailed?
-    return getGlobalVariable(SKYLAR_STAGE_VAR) < 5 && getGlobalSwitch(RECURRING_QUEST_FAILURE_SWITCH)
+def skylerQuestFailed?
+    return getGlobalVariable(SKYLER_STAGE_VAR) < 5 && getGlobalSwitch(RECURRING_QUEST_FAILURE_SWITCH)
 end
 
 def keoniQuestFailed?
