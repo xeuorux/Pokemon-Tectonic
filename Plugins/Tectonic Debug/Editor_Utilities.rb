@@ -363,23 +363,11 @@ def pbGetLegalMoves(species)
         sortMode = (sortMode + 1) % 2
         sorting = true
       elsif cmd[0] == 2   # Go to first matching
-        text = pbEnterText("Enter selection.",0,20).downcase
-        if text.blank?
-          sorting = true
-          next
-        end
-        changed = false
-        commands.each_with_index { |command, i|
-          next if i == itemIndex
-          if command[1].downcase.start_with?(text) || command[2].to_s.downcase.start_with?(text) # Real name, or ID
-            itemIndex = i
-            changed = true
-          end
-        }
-        pbMessage(_INTL("Could not find a command entry matching that input.")) if !changed
+        itemIndex = searchListWindow(cmdwin)
+        itemID = commands[itemIndex][2] || commands[itemIndex][0]
         sorting = true
-        end
       end
+    end
     cmdwin.dispose
     return itemID
   end
@@ -422,15 +410,16 @@ def pbGetLegalMoves(species)
     return if text.blank?
     newIndex = -1
     cmdwin.commands.each_with_index { |command, i|
-        next if i == cmdwin.index
-        if command.downcase.include?(text)
-            newIndex = i
-            break
-        end
+      next if i == cmdwin.index
+      if command.downcase.include?(text)
+        newIndex = i
+        break
+      end
     }
     if newIndex < 0
         pbMessage(_INTL("Could not find a command entry matching that input."))
     else
         cmdwin.index = newIndex
     end
+    return newIndex
   end

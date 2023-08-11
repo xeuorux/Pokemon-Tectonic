@@ -674,49 +674,6 @@ module PokemonDebugMenuCommands
     }
   })
   
-  PokemonDebugMenuCommands.register("setnature", {
-    "parent"      => "main",
-    "name"        => _INTL("Set nature"),
-    "always_show" => true,
-    "effect"      => proc { |pkmn, pkmnid, heldpoke, settingUpBattle, screen|
-      commands = []
-      ids = []
-      GameData::Nature.each do |nature|
-        if nature.stat_changes.length == 0
-          commands.push(_INTL("{1} (---)", nature.real_name))
-        else
-          plus_text = ""
-          minus_text = ""
-          nature.stat_changes.each do |change|
-            if change[1] > 0
-              plus_text += "/" if !plus_text.empty?
-              plus_text += GameData::Stat.get(change[0]).name_brief
-            elsif change[1] < 0
-              minus_text += "/" if !minus_text.empty?
-              minus_text += GameData::Stat.get(change[0]).name_brief
-            end
-          end
-          commands.push(_INTL("{1} (+{2}, -{3})", nature.real_name, plus_text, minus_text))
-        end
-        ids.push(nature.id)
-      end
-      commands.push(_INTL("[Reset]"))
-      cmd = ids.index(pkmn.nature_id || ids[0])
-      loop do
-        msg = _INTL("Nature is {1}.", pkmn.nature.name)
-        cmd = screen.pbShowCommands(msg, commands, cmd)
-        break if cmd < 0
-        if cmd >= 0 && cmd < commands.length - 1   # Set nature
-          pkmn.nature = ids[cmd]
-        elsif cmd == commands.length - 1   # Reset
-          pkmn.nature = nil
-        end
-        screen.pbRefreshSingle(pkmnid)
-      end
-      next false
-    }
-  })
-  
   PokemonDebugMenuCommands.register("setgender", {
     "parent"      => "main",
     "name"        => _INTL("Set gender"),
