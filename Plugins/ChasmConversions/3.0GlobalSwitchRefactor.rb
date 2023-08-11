@@ -44,7 +44,7 @@ SaveData.register_conversion(:global_switch_refactor_3_0) do
     globalSwitches[137] = selfSwitches[[104,5,'A']] # Chamber 4 quested
     globalSwitches[138] = selfSwitches[[175,4,'A']] # Chamber 5 quested
     globalSwitches[139] = selfSwitches[[195,15,'B']] # Chamber 6 quested
-    globalSwitches[140] = selfSwitches[[279,7,'A']] # Chamber 7 quested
+    globalSwitches[140] = selfSwitches[[279,2,'A']] # Chamber 7 quested
     globalSwitches[141] = selfSwitches[[300,1,'A']] # Chamber 8 quested
 
     # Debug info

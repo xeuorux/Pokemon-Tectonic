@@ -137,6 +137,9 @@ def removeIllegalElementsFromAllPokemon(save_data)
     #echoln("#{pokemon.name} learnable moves: #{pokemon.learnable_moves(false).to_s}")
     #echoln("#{pokemon.name} legal abilities: #{pokemon.species_data.legalAbilities.to_s}")
 
+    name = pokemon.name
+    name = "#{name} (#{pokemon.species_data.name})" if pokemon.nicknamed?
+
     # Find and remove illegal moves
     pokemon.moves.each do |move|
       next if move.nil?
@@ -146,14 +149,12 @@ def removeIllegalElementsFromAllPokemon(save_data)
 
       moveData = GameData::Move.get(moveID)
       if !moveData.learnable? && !(pokemon.species == :SMEARGLE && moveData.primeval)
-        pbMessage(_INTL("Pokemon #{pokemon.name} in #{location} has move #{moveData.name} in its move list."))
-        pbMessage(_INTL("That move has been cut from the game or is not legal to learn. Removing now."))
+        pbMessage(_INTL("\\l[4]Pokemon #{name} in #{location} has move #{moveData.name} in its move list. That move has been cut from the game or is not legal to learn. Removing now."))
         remove = true
       end
 
       unless pokemon.learnable_moves(false).include?(moveID) && pokemon.species != :SMEARGLE
-        pbMessage(_INTL("Pokemon #{pokemon.name} in #{location} has move #{moveData.name} in its move list."))
-        pbMessage(_INTL("That move is not legal for its species. Removing now."))
+        pbMessage(_INTL("\\l[4]Pokemon #{name} in #{location} has move #{moveData.name} in its move list. That move is not legal for its species. Removing now."))
         remove = true
       end
 
@@ -165,19 +166,17 @@ def removeIllegalElementsFromAllPokemon(save_data)
 
     # Find and fix illegal abilities
     unless pokemon.species_data.legalAbilities.include?(pokemon.ability_id)
-      pbMessage(_INTL("Pokemon #{pokemon.name} in #{location} has ability #{pokemon.ability.name}."))
+      oldAbilityName = pokemon.ability.name
       pokemon.recalculateAbilityFromIndex
-      pbMessage(_INTL("That ability is not legal for its species. Switching to #{pokemon.ability.name}."))
+      newAbilityName = pokemon.ability.name
+      pbMessage(_INTL("\\l[4]Pokemon #{name} in #{location} has ability #{oldAbilityName}. That ability is not legal for its species. Switching to #{newAbilityName}."))
     end
 
     # Check and remove illegal items
     pokemon.items.clone.each do |item|
       itemData = GameData::Item.get(item)
       next if itemData.legal?
-      name = pokemon.name
-      name = "#{name} (#{pokemon.species_data.name})" if pokemon.nicknamed?
-      pbMessage(_INTL("Pokemon #{name} in #{location} has item #{itemData.name}."))
-      pbMessage(_INTL("That item has been cut from the game or is not legal to own. Removing now."))
+      pbMessage(_INTL("\\l[4]Pokemon #{name} in #{location} has item #{itemData.name}. That item has been cut from the game or is not legal to own. Removing now."))
       pokemon.removeItem(item)
     end
   end
