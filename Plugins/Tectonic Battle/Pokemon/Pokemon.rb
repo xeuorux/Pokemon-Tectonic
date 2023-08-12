@@ -502,9 +502,12 @@ class Pokemon
     # @return [Boolean] whether this Pokémon has a particular ability or
     #   an ability at all
     def hasAbility?(check_ability = nil)
-      current_ability = self.ability
-      return !current_ability.nil? if check_ability.nil?
-      return current_ability == check_ability
+      return !self.ability.nil? if check_ability.nil?
+      if check_ability.is_a?(Symbol)
+        return self.ability_id == check_ability
+      else
+        return self.ability == check_ability
+      end
     end
   
     # @return [Boolean] whether this Pokémon has a hidden ability
@@ -691,11 +694,11 @@ class Pokemon
     end
 
 	  def canHaveItem?(itemCheck = nil, showMessages = false)
-        return true if firstItem.nil?
-        return false unless canHaveMultipleItems?
-        return true if itemCheck.nil?
-        theoreticalItems = items.clone.push(itemCheck)
-        return legalItems?(theoreticalItems, showMessages)
+      return true if firstItem.nil?
+      return false unless canHaveMultipleItems?
+      return true if itemCheck.nil?
+      theoreticalItems = items.clone.push(itemCheck)
+      return legalItems?(theoreticalItems, showMessages)
     end
 
     def legalItems?(itemSet, showMessages = false)
@@ -717,7 +720,7 @@ class Pokemon
       end
 
       # All That Glitters
-      if @ability == :ALLTHATGLITTERS
+      if hasAbility?(:ALLTHATGLITTERS)
           allGems = true
           itemSet.each do |item|
               next if GameData::Item.get(item).is_gem?
@@ -732,7 +735,7 @@ class Pokemon
       end
 
       # Berry Bunch
-      if @ability == :BERRYBUNCH
+      if hasAbility?(:BERRYBUNCH)
           allBerries = true
           itemSet.each do |item|
               next if GameData::Item.get(item).is_berry?
@@ -747,7 +750,7 @@ class Pokemon
       end
 
       # Herbalist
-      if @ability == :HERBALIST
+      if hasAbility?(:HERBALIST)
         allHerbs = true
         itemSet.each do |item|
             next if HERB_ITEMS.include?(item)
@@ -762,7 +765,7 @@ class Pokemon
       end
 
       # Fashionable
-      if @ability == :FASHIONABLE
+      if hasAbility?(:FASHIONABLE)
           clothingCount = 0
           itemSet.each do |item|
               next unless CLOTHING_ITEMS.include?(item)
@@ -780,7 +783,7 @@ class Pokemon
       end
 
       # Klumsy Kinesis
-      return true if @ability == :KLUMSYKINESIS
+      return true if hasAbility?(:KLUMSYKINESIS)
     end
 
     def removeInvalidItems
