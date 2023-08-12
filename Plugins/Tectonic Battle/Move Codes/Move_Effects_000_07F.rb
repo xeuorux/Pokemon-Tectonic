@@ -987,6 +987,7 @@ end
 #===============================================================================
 class PokeBattle_Move_049 < PokeBattle_Move
     def hazardRemovalMove?; return true; end
+    def aiAutoKnows?(pokemon); return false; end
 
     def ignoresSubstitute?(_user); return true; end
 

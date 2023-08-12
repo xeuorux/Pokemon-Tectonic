@@ -10,7 +10,8 @@ class PokeBattle_Battler
     attr_accessor  :lastRoundMove, :lastRoundMoveType, :lastRoundMoveCategory
     attr_accessor  :lastRegularMoveUsed, :lastRegularMoveTarget, :usedDamagingMove
     attr_accessor  :lastRoundMoved, :lastMoveFailed, :lastRoundMoveFailed, :movesUsed, :currentMove
-    attr_accessor  :tookDamage, :tookPhysicalHit, :damageState, :initialHP, :lastRoundHighestTypeModFromFoe
+    attr_accessor  :tookDamage, :tookPhysicalHit, :tookSpecialHit, :tookPhysicalHitLastRound, :tookSpecialHitLastRound
+    attr_accessor :damageState, :initialHP, :lastRoundHighestTypeModFromFoe
     # The Pokémon and its properties
     attr_reader :pokemon
     attr_reader :fainted # Boolean to mark whether self has fainted properly

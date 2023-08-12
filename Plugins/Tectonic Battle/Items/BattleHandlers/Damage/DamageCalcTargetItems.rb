@@ -34,22 +34,6 @@ BattleHandlers::DamageCalcTargetItem.add(:COLBURBERRY,
   }
 )
 
-BattleHandlers::DamageCalcTargetItem.add(:DEEPSEASCALE,
-  proc { |item, _user, target, move, mults, _baseDmg, _type|
-      mults[:defense_multiplier] *= 2 if target.isSpecies?(:CLAMPERL) && move.specialMove?
-  }
-)
-
-BattleHandlers::DamageCalcTargetItem.add(:EVIOLITE,
-  proc { |item, _user, target, _move, mults, _baseDmg, _type|
-      # NOTE: Eviolite cares about whether the Pokémon itself can evolve, which
-      #       means it also cares about the Pokémon's form. Some forms cannot
-      #       evolve even if the species generally can, and such forms are not
-      #       affected by Eviolite.
-      mults[:defense_multiplier] *= 1.5 if target.pokemon.species_data.get_evolutions(true).length > 0
-  }
-)
-
 BattleHandlers::DamageCalcTargetItem.add(:HABANBERRY,
   proc { |item, _user, target, _move, mults, _baseDmg, type, aiChecking|
       pbBattleTypeWeakingBerry(item, :DRAGON, type, target, mults, false, aiChecking)
@@ -65,12 +49,6 @@ BattleHandlers::DamageCalcTargetItem.add(:KASIBBERRY,
 BattleHandlers::DamageCalcTargetItem.add(:KEBIABERRY,
   proc { |item, _user, target, _move, mults, _baseDmg, type, aiChecking|
       pbBattleTypeWeakingBerry(item, :POISON, type, target, mults, false, aiChecking)
-  }
-)
-
-BattleHandlers::DamageCalcTargetItem.add(:METALPOWDER,
-  proc { |item, _user, target, _move, mults, _baseDmg, _type|
-      mults[:defense_multiplier] *= 1.5 if target.isSpecies?(:DITTO) && !target.transformed?
   }
 )
 
@@ -110,14 +88,6 @@ BattleHandlers::DamageCalcTargetItem.add(:SHUCABERRY,
   }
 )
 
-BattleHandlers::DamageCalcTargetItem.add(:SOULDEW,
-  proc { |item, user, target, move, mults, _baseDmg, _type|
-      next if Settings::SOUL_DEW_POWERS_UP_TYPES
-      next if !target.isSpecies?(:LATIAS) && !target.isSpecies?(:LATIOS)
-      mults[:defense_multiplier] *= 1.5 if move.specialMove? && !user.battle.rules["souldewclause"]
-  }
-)
-
 BattleHandlers::DamageCalcTargetItem.add(:TANGABERRY,
   proc { |item, _user, target, _move, mults, _baseDmg, type, aiChecking|
       pbBattleTypeWeakingBerry(item, :BUG, type, target, mults, false, aiChecking)
@@ -133,5 +103,15 @@ BattleHandlers::DamageCalcTargetItem.add(:WACANBERRY,
 BattleHandlers::DamageCalcTargetItem.add(:YACHEBERRY,
   proc { |item, _user, target, _move, mults, _baseDmg, type, aiChecking|
       pbBattleTypeWeakingBerry(item, :ICE, type, target, mults, false, aiChecking)
+  }
+)
+
+BattleHandlers::DamageCalcTargetItem.add(:EVIOLITE,
+  proc { |item, _user, target, _move, mults, _baseDmg, _type|
+      # NOTE: Eviolite cares about whether the Pokémon itself can evolve, which
+      #       means it also cares about the Pokémon's form. Some forms cannot
+      #       evolve even if the species generally can, and such forms are not
+      #       affected by Eviolite.
+      mults[:defense_multiplier] *= 1.5 unless target.pokemon.species_data.get_evolutions(true).empty?
   }
 )

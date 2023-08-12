@@ -1098,7 +1098,7 @@ class PokeBattle_Move_0AE < PokeBattle_Move
             end
             return true
         end
-        unless GameData::Move.get(target.lastRegularMoveUsed).canMirrorMove? # Not copyable by Mirror Move
+        unless @battle.getBattleMoveInstanceFromID(target.lastRegularMoveUsed).canMirrorMove? # Not copyable by Mirror Move
             @battle.pbDisplay(_INTL("But #{target.pbThis(true)}'s last used move can't be mirrored!")) if show_message
             return true
         end
@@ -1744,10 +1744,10 @@ class PokeBattle_Move_0BA < PokeBattle_Move
         return 0 unless target.hasStatusMove?
         score = 20
         score += getSetupLikelihoodScore(target) { |move|
-            next !move.statusMove?
+            next move.statusMove?
         }
         score += getHazardLikelihoodScore(target) { |move|
-            next !move.statusMove?
+            next move.statusMove?
         }
         score /= 2 unless @battle.battleAI.userMovesFirst?(self, user, target)
         return score
@@ -2622,10 +2622,7 @@ class PokeBattle_Move_0DA < PokeBattle_Move
     end
 
     def getEffectScore(user, _target)
-        return 0 if user.effectActive?(:AquaRing)
-        score = 70
-        score += 30 if user.firstTurn?
-        return score
+        return getAquaRingEffectScore(user)
     end
 end
 
@@ -3332,8 +3329,21 @@ class PokeBattle_Move_0F0 < PokeBattle_Move
     end
 
     def getTargetAffectingEffectScore(user, target)
-        return 30 if canknockOffItems?(user, target, true)
-        return 0
+        return 0 unless canknockOffItems?(user, target, true)
+        score = 0
+        target.eachItem do |itemID|
+            score += 50
+            case itemID
+            when :EVIOLITE
+                score += 50
+            when :CRYSTALVEIL
+                score += 20
+            when :POWERLOCK,:ENERGYLOCK
+                score += 20
+            end
+        end
+        score /= 2 unless target.itemActive?
+        return score
     end
 end
 

@@ -299,8 +299,10 @@ class PokeBattle_Move_191 < PokeBattle_TwoTurnMove
         user.tryRaiseStat(:SPECIAL_ATTACK, user, move: self, increment: 2)
     end
 
-    def getEffectScore(user, _target)
-        return getMultiStatUpEffectScore([:SPECIAL_ATTACK,2],user,user)
+    def getEffectScore(user, target)
+        score = super
+        score += getMultiStatUpEffectScore([:SPECIAL_ATTACK,2],user,user)
+        return score
     end
 end
 

@@ -25,6 +25,10 @@ class PokeBattle_Move
         target.damageState.calcDamage = calculateDamageForHit(user,target,type,baseDmg,numTargets)
     end
 
+    def calculateDamageForHitAI(user,target,type,baseDmg,numTargets)
+        calculateDamageForHit(user,target,type,baseDmg,numTargets,true)
+    end
+
     def calculateDamageForHit(user,target,type,baseDmg,numTargets,aiChecking=false)
         echoln("[DAMAGE CALC] Calcing damage based on given base power #{baseDmg} and type #{type}") if DAMAGE_CALC_DEBUG
         

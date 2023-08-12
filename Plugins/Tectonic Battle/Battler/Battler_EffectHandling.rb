@@ -82,7 +82,10 @@ class PokeBattle_Battler
         @lastHPLost = 0
         @lastHPLostFromFoe                    = 0
         @tookDamage                           = false
+        @tookPhysicalHitLastRound             = @tookPhysicalHit
         @tookPhysicalHit                      = false
+        @tookSpecialHitLastRound              = @tookSpecialHit
+        @tookSpecialHit                       = false
         @lastRoundMoveFailed                  = @lastMoveFailed
         @lastAttacker.clear
         @lastFoeAttacker.clear

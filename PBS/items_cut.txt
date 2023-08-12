@@ -359,3 +359,4 @@
 2358,CRYSTALVEILDARK,Crystal Veil Dark,Crystal Veils Dark,5,1000,"A held item. During battle, the holder is Dark-type.",0,0,0
 2359,CRYSTALVEILSTEEL,Crystal Veil Steel,Crystal Veils Steel,5,1000,"A held item. During battle, the holder is Steel-type.",0,0,0
 2360,CRYSTALVEILFAIRY,Crystal Veil Fairy,Crystal Veils Fairy,5,1000,"A held item. During battle, the holder is Fairy-type.",0,0,0
+2361,SOULDEW,Soul Dew,Soul Dews,5,0,"A wondrous orb to be held by either Latios or Latias. It raises the power of Psychic- and Dragon-type moves.",0,0,0

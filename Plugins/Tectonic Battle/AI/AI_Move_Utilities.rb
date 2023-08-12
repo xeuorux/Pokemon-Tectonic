@@ -132,7 +132,7 @@ class PokeBattle_AI
         baseDmg = pbMoveBaseDamageAI(move, user, target)
 
         # Calculate the damage for one hit
-        damage = move.calculateDamageForHit(user, target, type, baseDmg, numTargets, true)
+        damage = move.calculateDamageForHitAI(user, target, type, baseDmg, numTargets)
 
         # Estimate how many hits the move will do
         numHits = move.numberOfHits(user, [target], true)
@@ -187,6 +187,7 @@ class PokeBattle_AI
     # Speed calculation
     #===========================================================================
     def userMovesFirst?(move, user, target)
+        return false if move.is_a?(PokeBattle_ForetoldMove)
         movePrio = @battle.getMovePriority(move, user, [target], true)
         willGoFirst = user.pbSpeed(true) > target.pbSpeed(true)
         willGoFirst = true if movePrio > 0

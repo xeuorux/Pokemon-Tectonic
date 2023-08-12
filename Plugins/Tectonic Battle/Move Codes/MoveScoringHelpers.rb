@@ -54,16 +54,18 @@ end
 def getPoisonEffectScore(user, target, ignoreCheck: false)
     return 0 if willHealStatus?(target)
     if target && (ignoreCheck || target.canPoison?(user, false))
-        score = 40
-        score += 20 if target.hp == target.totalhp
-        score += 20 if target.hp >= target.totalhp / 2 || target.hp <= target.totalhp / 8
-        score += 30 if target.trapped?
-        score += NON_ATTACKER_BONUS unless user.hasDamagingAttack?
-        score -= STATUS_UPSIDE_MALUS if target.hasActiveAbilityAI?(%i[TOXICBOOST
-                                                                      POISONHEAL].concat(STATUS_UPSIDE_ABILITIES))
+        score = -10
+        if target.takesIndirectDamage?
+            score += 50
+            score += 20 if target.hp == target.totalhp
+            score += 20 if target.hp >= target.totalhp / 2 || target.hp <= target.totalhp / 8
+            score += 30 if target.trapped?
+            score += NON_ATTACKER_BONUS unless user.hasDamagingAttack?
+            score *= 1.5 if user.hasActiveAbilityAI?(:AGGRAVATE)
+            score *= 2 if user.ownersPolicies.include?(:PRIORITIZEDOTS) && user.opposes?(target)
+        end
+        score -= STATUS_UPSIDE_MALUS if target.hasActiveAbilityAI?(%i[TOXICBOOST POISONHEAL].concat(STATUS_UPSIDE_ABILITIES))
         score += STATUS_PUNISHMENT_BONUS if user.hasStatusPunishMove? || user.pbHasMoveFunction?("07B") # Venoshock
-        score *= 1.5 if user.hasActiveAbilityAI?(:AGGRAVATE)
-        score *= 2 if user.ownersPolicies.include?(:PRIORITIZEDOTS) && user.opposes?(target)
     else
         return 0
     end
@@ -73,18 +75,23 @@ end
 def getBurnEffectScore(user, target, ignoreCheck: false)
     return 0 if willHealStatus?(target)
     if target && (ignoreCheck || target.canBurn?(user, false))
-        score = 40
+        score = -10
+
+        if target.takesIndirectDamage?
+            score += 50
+            score += 20 if target.hp >= target.totalhp / 2 || target.hp <= target.totalhp / 8
+            score += NON_ATTACKER_BONUS unless user.hasDamagingAttack?
+            score *= 1.5 if user.hasActiveAbilityAI?(:AGGRAVATE)
+            score *= 2 if user.ownersPolicies.include?(:PRIORITIZEDOTS) && user.opposes?(target)
+        end
+
         if target.hasPhysicalAttack?
             score += 30
             score += 30 unless target.hasSpecialAttack?
         end
-        score += 20 if target.hp >= target.totalhp / 2 || target.hp <= target.totalhp / 8
-        score += NON_ATTACKER_BONUS unless user.hasDamagingAttack?
-        score -= STATUS_UPSIDE_MALUS if target.hasActiveAbilityAI?(%i[FLAREBOOST
-                                                                      BURNHEAL].concat(STATUS_UPSIDE_ABILITIES))
+        
+        score -= STATUS_UPSIDE_MALUS if target.hasActiveAbilityAI?(%i[FLAREBOOST BURNHEAL].concat(STATUS_UPSIDE_ABILITIES))
         score += STATUS_PUNISHMENT_BONUS if user.hasStatusPunishMove? || user.pbHasMoveFunction?("50E") # Flare Up
-        score *= 1.5 if user.hasActiveAbilityAI?(:AGGRAVATE)
-        score *= 2 if user.ownersPolicies.include?(:PRIORITIZEDOTS) && user.opposes?(target)
     else
         return 0
     end
@@ -94,17 +101,23 @@ end
 def getFrostbiteEffectScore(user, target, ignoreCheck: false)
     return 0 if willHealStatus?(target)
     if target && (ignoreCheck || target.canFrostbite?(user, false))
-        score = 40
+        score = -10
+
+        if target.takesIndirectDamage?
+            score += 50
+            score += 20 if target.hp >= target.totalhp / 2 || target.hp <= target.totalhp / 8
+            score += NON_ATTACKER_BONUS unless user.hasDamagingAttack?
+            score *= 1.5 if user.hasActiveAbilityAI?(:AGGRAVATE)
+            score *= 2 if user.ownersPolicies.include?(:PRIORITIZEDOTS) && user.opposes?(target)
+        end
+
         if target.hasSpecialAttack?
             score += 30
             score += 30 unless target.hasPhysicalAttack?
         end
-        score += 20 if target.hp >= target.totalhp / 2 || target.hp <= target.totalhp / 8
-        score += NON_ATTACKER_BONUS unless user.hasDamagingAttack?
+
         score -= STATUS_UPSIDE_MALUS if target.hasActiveAbilityAI?([:FROSTHEAL].concat(STATUS_UPSIDE_ABILITIES))
         score += STATUS_PUNISHMENT_BONUS if user.hasStatusPunishMove? || user.pbHasMoveFunction?("50C") # Ice Impact
-        score *= 1.5 if user.hasActiveAbilityAI?(:AGGRAVATE)
-        score *= 2 if user.ownersPolicies.include?(:PRIORITIZEDOTS) && user.opposes?(target)
     else
         return 0
     end
@@ -127,20 +140,24 @@ end
 
 def getLeechEffectScore(user, target, ignoreCheck: false)
     return 0 if willHealStatus?(target)
+    return -10 unless target.takesIndirectDamage?
     canLeech = target.canLeech?(user, false)
     if ignoreCheck || canLeech
-        score = 40
-        score += NON_ATTACKER_BONUS * 2 unless user.hasDamagingAttack?
-        score += 20 if target.hp >= target.totalhp / 2
-        score += 30 if target.totalhp > user.totalhp * 2
-        score -= 30 if target.totalhp < user.totalhp / 2
+        score = -10
+        if target.takesIndirectDamage?
+            score += 50
+            score += NON_ATTACKER_BONUS * 2 unless user.hasDamagingAttack?
+            score += 20 if target.hp >= target.totalhp / 2
+            score += 30 if target.totalhp > user.totalhp * 2
+            score -= 30 if target.totalhp < user.totalhp / 2
+            score *= 2 if user.hasActiveAbilityAI?(:AGGRAVATE)
+            score *= 1.5 if user.hasActiveAbilityAI?(:ROOTED)
+            score *= 1.3 if user.hasActiveItem?(:BIGROOT)
+            score *= 2 if user.ownersPolicies.include?(:PRIORITIZEDOTS) && user.opposes?(target)
+        end
+
         score -= STATUS_UPSIDE_MALUS if target.hasActiveAbilityAI?(STATUS_UPSIDE_ABILITIES)
         score += STATUS_PUNISHMENT_BONUS if user.hasStatusPunishMove?
-        score *= 2 if user.hasActiveAbilityAI?(:AGGRAVATE)
-        score *= 1.5 if user.hasActiveAbilityAI?(:ROOTED)
-        score *= 2.0 if user.hasActiveAbilityAI?(:GLOWSHROOM) && user.battle.moonGlowing?
-        score *= 1.3 if user.hasActiveItem?(:BIGROOT)
-        score *= 2 if user.ownersPolicies.include?(:PRIORITIZEDOTS) && user.opposes?(target)
     else
         return 0
     end
@@ -238,7 +255,9 @@ def hazardWeightOnSide(side, excludeEffects = [])
 end
 
 def getSwitchOutEffectScore(switcher, scoreStatSteps = true)
-    score = switcher.alliesInReserveCount * 5
+    return 0 if switcher.battle.pbCanChooseNonActive?(switcher.index)
+    return 0 if switcher.trapped?
+    score = 5 + switcher.alliesInReserveCount * 5
     score *= 1.5 if switcher.ownersPolicies.include?(:PRIORITIZEUTURN)
     score -= hazardWeightOnSide(switcher.pbOwnSide)
     score -= statStepsValueScore(switcher) if scoreStatSteps
@@ -265,6 +284,7 @@ def statStepsValueScore(battler)
         end
         score += statStep * 5
     end
+    echoln("[EFFECT SCORING] Scoring the total value of the stat steps on #{battler.pbThis(true)} as #{score}.")
     return score
 end
 
@@ -318,6 +338,10 @@ def getMultiStatUpEffectScore(statUpArray, user, target, fakeStepModifier = 0)
         # Increase the score more for boosting attacking stats
         if %i[ATTACK SPECIAL_ATTACK].include?(statSymbol)
             increase = 20
+        elsif statSymbol == :DEFENSE
+            increase = target.tookPhysicalHitLastRound ? 20 : 10
+        elsif statSymbol == :SPECIAL_DEFENSE
+            increase = target.tookSpecialHitLastRound ? 20 : 10
         else
             increase = 15
         end
@@ -500,8 +524,8 @@ def getWeatherSettingEffectScore(weatherType, user, battle, finalDuration = 4, c
 
     hasSynergyAbility = true if user.hasActiveAbilityAI?(GameData::Ability::GENERAL_WEATHER_ABILITIES)
 
-    score += 10 if hasSynergisticType
-    score += 30 if hasSynergyAbility && user.aboveHalfHealth?
+    score *= 1.2 if hasSynergisticType
+    score *= 1.4 if hasSynergyAbility && user.aboveHalfHealth?
    
     return score
 end
@@ -566,7 +590,7 @@ end
 def getHazardLikelihoodScore(battler,&block)
     return getMovesLikelihoodScore(battler) { |move|
         next false if block&.call(move) == false
-        next move.hazardMove? && !move.statusMove?
+        next move.hazardMove?
     }
 end
 
@@ -623,4 +647,11 @@ def predictedEOTHealing(battle,battler)
 
     # Harvest, Larder
     return healing
+end
+
+def getAquaRingEffectScore(user)
+    return 0 if user.effectActive?(:AquaRing)
+    score = 40
+    score += 40 if user.aboveHalfHealth?
+    return score
 end

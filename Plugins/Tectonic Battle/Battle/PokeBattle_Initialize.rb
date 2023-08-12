@@ -182,7 +182,9 @@ class PokeBattle_Battle
     end
 
     def aiAutoKnowsMove?(move,pokemon)
-        return true if getBattleMoveInstanceFromID(move.id).aiAutoKnows?(pokemon)
+        autoKnow = getBattleMoveInstanceFromID(move.id).aiAutoKnows?(pokemon)
+        return true if !autoKnow.nil? && autoKnow
+        return false if !autoKnow.nil? && !autoKnow
         return false unless pokemon.types.include?(move.type) # Don't know off-type moves
         return false if move.category == 2 # Don't know status moves
         return true

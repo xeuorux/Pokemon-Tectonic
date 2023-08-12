@@ -230,6 +230,9 @@ class PokeBattle_Battler
         @lastRoundHighestTypeModFromFoe = -1
         @tookDamage            = false
         @tookPhysicalHit       = false
+        @tookSpecialHit        = false
+        @tookPhysicalHitLastRound = false
+        @tookSpecialHitLastRound = false
         @lastMoveUsed          = nil
         @lastMoveUsedType      = nil
         @usedDamagingMove      = false

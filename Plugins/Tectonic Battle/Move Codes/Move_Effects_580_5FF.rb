@@ -191,12 +191,11 @@ class PokeBattle_Move_587 < PokeBattle_Move
         score = 20
         @battle.eachBattler do |b|
             totalSteps = 0
-            GameData::Stat.each_battle { |s| totalSteps += b.steps[s.id] }
             if b.opposes?(user)
-                score += totalSteps * 20
+                score += statStepsValueScore(user)
                 score += getSetupLikelihoodScore(user)
             else
-                score -= totalSteps * 20
+                score -= statStepsValueScore(user)
                 score -= getSetupLikelihoodScore(user)
             end
         end
@@ -1822,7 +1821,7 @@ class PokeBattle_Move_5D0 < PokeBattle_HalfHealingMove
 
     def getEffectScore(user, target)
         score = super
-        score += 40 unless user.effectActive?(:AquaRing)
+        score += getAquaRingEffectScore(user)
         return score
     end
 end
@@ -1853,7 +1852,7 @@ class PokeBattle_Move_5D1 < PokeBattle_Move_019
 
     def getEffectScore(user, _target)
         score = super
-        score += 40 unless user.effectActive?(:AquaRing)
+        score += getAquaRingEffectScore(user)
         return score
     end
 end

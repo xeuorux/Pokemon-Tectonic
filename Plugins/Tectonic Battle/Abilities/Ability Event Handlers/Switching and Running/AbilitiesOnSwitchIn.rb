@@ -860,3 +860,11 @@ BattleHandlers::AbilityOnSwitchIn.add(:RUSTYANCHOR,
       battle.pbHideAbilitySplash(battler)
   }
 )
+
+BattleHandlers::AbilityOnSwitchIn.add(:LEVITATE,
+  proc { |ability, battler, battle|
+      battle.pbShowAbilitySplash(battler, ability)
+      battle.pbDisplay(_INTL("{1} is floating in mid-air!", battler.pbThis))
+      battle.pbHideAbilitySplash(battler)
+  }
+)

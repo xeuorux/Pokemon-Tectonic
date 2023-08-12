@@ -624,7 +624,9 @@ class PokeBattle_Move_526 < PokeBattle_SleepMove
     end
 
     def getEffectScore(user, _target)
-        return getHPLossEffectScore(user, 0.5)
+        score = super
+        score += getHPLossEffectScore(user, 0.5)
+        return score
     end
 end
 
@@ -958,6 +960,7 @@ end
 #===============================================================================
 class PokeBattle_Move_538 < PokeBattle_Move
     def hazardRemovalMove?; return true; end
+    def aiAutoKnows?(pokemon); return false; end
 
     def eachHazard(side, isOurSide)
         side.eachEffect(true) do |effect, _value, data|
@@ -1320,6 +1323,7 @@ end
 #===============================================================================
 class PokeBattle_Move_54B < PokeBattle_StatUpMove
     def hazardRemovalMove?; return true; end
+    def aiAutoKnows?(pokemon); return false; end
 
     def initialize(battle, move)
         super
@@ -1577,10 +1581,15 @@ class PokeBattle_Move_55D < PokeBattle_Move
     end
 
     def getTargetAffectingEffectScore(user, target)
-        score = 100
+        score = 0
         score -= getMultiStatUpEffectScore([:ATTACK, 3], user, target)
-        score -= 50 if target.hasActiveAbilityAI?(:UNAWARE)
         return score
+    end
+    
+    def calculateDamageForHitAI(user,target,type,baseDmg,numTargets)
+        damage = calculateDamageForHit(user,target,type,baseDmg,numTargets,true)
+        damage *= 1.75 unless target.hasActiveAbilityAI?(:UNAWARE)
+        return damage
     end
 end
 
@@ -1595,10 +1604,16 @@ selfHitBasePower(target.level))
     end
 
     def getTargetAffectingEffectScore(user, target)
-        score = 100
+        score = 0
         score -= getMultiStatUpEffectScore([:SPECIAL_ATTACK, 3], user, target)
         score -= 50 if target.hasActiveAbilityAI?(:UNAWARE)
         return score
+    end
+
+    def calculateDamageForHitAI(user,target,type,baseDmg,numTargets)
+        damage = calculateDamageForHit(user,target,type,baseDmg,numTargets,true)
+        damage *= 1.75 unless target.hasActiveAbilityAI?(:UNAWARE)
+        return damage
     end
 end
 

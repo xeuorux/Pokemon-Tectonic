@@ -364,67 +364,7 @@ end
 #===============================================================================
 # Attacks 2 rounds in the future. (Future Sight, etc.)
 #===============================================================================
-class PokeBattle_Move_111 < PokeBattle_Move
-    def cannotRedirect?; return true; end
-
-    def damagingMove?(aiChecking = false) # Stops damage being dealt in the setting-up turn
-        if aiChecking
-            return super
-        else
-            return false unless @battle.futureSight
-            return super
-        end
-    end
-
-    def pbAccuracyCheck(user, target)
-        return true unless @battle.futureSight
-        return super
-    end
-
-    def pbDisplayUseMessage(user, targets)
-        super unless @battle.futureSight
-    end
-
-    def displayWeatherDebuffMessages(user, type)
-        super unless @battle.futureSight
-    end
-
-    def pbFailsAgainstTarget?(_user, target, show_message)
-        if !@battle.futureSight && target.position.effectActive?(:FutureSightCounter)
-            if show_message
-                @battle.pbDisplay(_INTL("But it failed, since an attack is already foreseen against #{target.pbThis(true)}!"))
-            end
-            return true
-        end
-        return false
-    end
-
-    def pbEffectAgainstTarget(user, target)
-        return if @battle.futureSight # Attack is hitting
-        count = 2
-        count -= 1 if user.hasActiveAbility?([:BADOMEN])
-        target.position.applyEffect(:FutureSightCounter, count)
-        target.position.applyEffect(:FutureSightMove, @id)
-        target.position.pointAt(:FutureSightUserIndex, user)
-        target.position.applyEffect(:FutureSightUserPartyIndex, user.pokemonIndex)
-        if @id == :DOOMDESIRE
-            @battle.pbDisplay(_INTL("{1} chose Doom Desire as its destiny!", user.pbThis))
-        else
-            @battle.pbDisplay(_INTL("{1} foresaw an attack!", user.pbThis))
-        end
-    end
-
-    def pbShowAnimation(id, user, targets, hitNum = 0, showAnimation = true)
-        hitNum = 1 unless @battle.futureSight # Charging anim
-        super
-    end
-
-    def getEffectScore(user, _target)
-        score = 0
-        score -= 50 unless user.alliesInReserve?
-        score -= 20 unless user.firstTurn?
-        return score
-    end
+class PokeBattle_Move_111 < PokeBattle_ForetoldMove
 end
 
 #===============================================================================
@@ -599,6 +539,10 @@ class PokeBattle_Move_116 < PokeBattle_Move
             return true if hasBeenUsed?(user)
             return false
         end
+    end
+
+    def getEffectScore(user, target)
+        return -10
     end
 end
 
@@ -2563,6 +2507,12 @@ class PokeBattle_Move_176 < PokeBattle_Move
         return unless user.form == 0
         return if user.pbOpposingSide.effectAtMax?(:Spikes)
         user.pbOpposingSide.incrementEffect(:Spikes)
+    end
+
+    def getEffectScore(user, target)
+        return 0 unless user.form == 0
+        return 0 if damagingMove? && target.pbOwnSide.effectAtMax?(:Spikes)
+        return getHazardSettingEffectScore(user, target)
     end
 end
 

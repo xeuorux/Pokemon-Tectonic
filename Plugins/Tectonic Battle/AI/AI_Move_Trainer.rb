@@ -217,11 +217,7 @@ class PokeBattle_AI
         # Pick a good move for the Choice items
         if user.hasActiveItem?(CHOICE_LOCKING_ITEMS) || user.hasActiveAbilityAI?(CHOICE_LOCKING_ABILITIES)
             echoln("[MOVE SCORING] #{user.pbThis} scores the move #{move.id} differently due to choice locking.")
-            if damagingMove
-                score *= 1.5
-            else
-                score /= 2
-            end
+            score /= 2 unless damagingMove
         end
 
         # Account for accuracy of move

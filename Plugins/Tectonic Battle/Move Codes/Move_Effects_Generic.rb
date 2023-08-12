@@ -1262,8 +1262,70 @@ class PokeBattle_PartyAttackMove
         calculatePartyAttackerList(user) if @partyAttackerList.empty?
         totalBaseStat = 0
         @partyAttackerList.each do |i|
-            totalBaseStat += @battle.pbParty(user.index)[i].baseStats[baseStatValue]
+            totalBaseStat += @battle.pbParty(user.index)[i].baseStats[@statUsed]
         end
         return baseDamageFromStat(totalBaseStat / @partyAttackerList.length)
+    end
+end
+
+class PokeBattle_ForetoldMove
+    def cannotRedirect?; return true; end
+
+    def damagingMove?(aiChecking = false) # Stops damage being dealt in the setting-up turn
+        if aiChecking
+            return super
+        else
+            return false unless @battle.futureSight
+            return super
+        end
+    end
+
+    def pbAccuracyCheck(user, target)
+        return true unless @battle.futureSight
+        return super
+    end
+
+    def pbDisplayUseMessage(user, targets)
+        super unless @battle.futureSight
+    end
+
+    def displayWeatherDebuffMessages(user, type)
+        super unless @battle.futureSight
+    end
+
+    def pbFailsAgainstTarget?(_user, target, show_message)
+        if !@battle.futureSight && target.position.effectActive?(:FutureSightCounter)
+            if show_message
+                @battle.pbDisplay(_INTL("But it failed, since an attack is already foreseen against #{target.pbThis(true)}!"))
+            end
+            return true
+        end
+        return false
+    end
+
+    def pbEffectAgainstTarget(user, target)
+        return if @battle.futureSight # Attack is hitting
+        count = 2
+        count -= 1 if user.hasActiveAbility?([:BADOMEN])
+        target.position.applyEffect(:FutureSightCounter, count)
+        target.position.applyEffect(:FutureSightMove, @id)
+        target.position.pointAt(:FutureSightUserIndex, user)
+        target.position.applyEffect(:FutureSightUserPartyIndex, user.pokemonIndex)
+        if @id == :DOOMDESIRE
+            @battle.pbDisplay(_INTL("{1} chose Doom Desire as its destiny!", user.pbThis))
+        else
+            @battle.pbDisplay(_INTL("{1} foresaw an attack!", user.pbThis))
+        end
+    end
+
+    def pbShowAnimation(id, user, targets, hitNum = 0, showAnimation = true)
+        hitNum = 1 unless @battle.futureSight # Charging anim
+        super
+    end
+
+    def getEffectScore(user, _target)
+        score = -20
+        score -= 50 unless user.alliesInReserve?
+        return score
     end
 end

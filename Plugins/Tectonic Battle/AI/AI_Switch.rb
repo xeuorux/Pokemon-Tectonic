@@ -26,75 +26,24 @@ class PokeBattle_AI
         switchingBias = 0
         PBDebug.log("[AI SWITCH] #{battler.pbThis} (#{battler.index}) is determining whether it should switch out")
 
-        # Reactive matchup considerations
-        # Ignore these protocols if this is an AI trainer helping you in a boss battle
-        unless @battle.bossBattle? && !policies.include?(:PROACTIVE_MATCHUP_SWAPPER)
-            # Figure out the effectiveness of the last move that hit it
-            typeMod = battler.lastRoundHighestTypeModFromFoe
-            if typeMod >= 0
-                effectivenessSwitchBiasMod = 0
-                if Effectiveness.hyper_effective?(typeMod)
-                    effectivenessSwitchBiasMod += 20
-                elsif Effectiveness.super_effective?(typeMod)
-                    effectivenessSwitchBiasMod += 10
-                elsif Effectiveness.not_very_effective?(typeMod)
-                    effectivenessSwitchBiasMod -= 10
-                elsif Effectiveness.ineffective?(typeMod)
-                    effectivenessSwitchBiasMod -= 20
-                end
-                switchingBias += effectivenessSwitchBiasMod
-                PBDebug.log("[AI SWITCH] #{battler.pbThis} (#{battler.index}) takes into account the effectiveness of its last hit taken (#{effectivenessSwitchBiasMod.to_change})")
-            end
-
-            # More or less likely to switch based on if you have a good move to use
-            maxScore = 0
-            choices.each do |c|
-                maxScore = c[1] if c[1] > maxScore
-            end
-            maxMoveScoreBiasChange = 40
-            maxMoveScoreBiasChange -= (maxScore / 2.5).round
-            switchingBias += maxMoveScoreBiasChange
-            PBDebug.log("[AI SWITCH] #{battler.pbThis} (#{battler.index}) max score among its #{choices.length} choices is #{maxScore} (#{maxMoveScoreBiasChange.to_change})")
-
-            # If there is a single foe and it is resting after Hyper Beam or is
-            # Truanting (i.e. free turn)
-            if @battle.pbSideSize(battler.index + 1) == 1 && !battler.pbDirectOpposing.fainted?
-                opposingBattler = battler.pbDirectOpposing
-                unless opposingBattler.canActThisTurn?
-                    switchingBias -= 20
-                    PBDebug.log("[AI SWITCH] #{battler.pbThis} (#{battler.index}) thinks the opposing battler can't act this turn (-20)")
-                end
-            end
+        # Pokémon is about to faint because of Perish Song
+        if battler.effects[:PerishSong] == 1
+            switchingBias += 20
+            switchingBias += 20 if battler.aboveHalfHealth?
+            PBDebug.log("[AI SWITCH] #{battler.pbThis} (#{battler.index}) is to die to perish song (+20)")
         end
 
-        # "Sacrificed Not Swaps" policy
-        sacrificing = false
-        if policies.include?(:SACS_NOT_SWAPS) && battler.hp <= battler.totalhp / 4
-            switchingBias -= 10
-            sacrificing = true
-            PBDebug.log("[AI SWITCH] #{battler.pbThis} (#{battler.index}) at or below 25% HP, so values saccing itself for tempo (-10)")
-            PBDebug.log("[AI SWITCH] #{battler.pbThis} (#{battler.index}) will ignore switch evaluation checks about avoiding death")
-        else # Check effects that put the pokemon in danger
+        # More likely to switch when poison has worsened
+        if battler.poisoned?
+            poisonBias = battler.getPoisonDoublings * 20
+            switchingBias += poisonBias
+            PBDebug.log("[AI SWITCH] #{battler.pbThis} (#{battler.index}) is poisoned at count (#{battler.getStatusCount(:POISON)}) (+#{poisonBias})")
+        end
 
-            # Pokémon is about to faint because of Perish Song
-            if battler.effects[:PerishSong] == 1
-                switchingBias += 20
-                switchingBias += 20 if user.aboveHalfHealth?
-                PBDebug.log("[AI SWITCH] #{battler.pbThis} (#{battler.index}) is to die to perish song (+20)")
-            end
-
-            # More likely to switch when poison has worsened
-            if battler.poisoned?
-                poisonBias = 5 + battler.getPoisonDoublings * 20
-                switchingBias += poisonBias
-                PBDebug.log("[AI SWITCH] #{battler.pbThis} (#{battler.index}) is poisoned at count (#{battler.getStatusCount(:POISON)}) (+#{poisonBias})")
-            end
-
-            # More likely to switch when cursed
-            if battler.effectActive?(:Curse)
-                switchingBias += 15
-                PBDebug.log("[AI SWITCH] #{battler.pbThis} (#{battler.index}) is cursed (+15)")
-            end
+        # More likely to switch when cursed
+        if battler.effectActive?(:Curse)
+            switchingBias += 15
+            PBDebug.log("[AI SWITCH] #{battler.pbThis} (#{battler.index}) is cursed (+15)")
         end
 
         # More likely to switch when drowsy
@@ -116,25 +65,17 @@ class PokeBattle_AI
         switchingBias -= 10 if battler.hasActiveAbilityAI?(:SELFMENDING)
 
         # Tries to determine if its in a good or bad type matchup
-        # Used for Cool Trainers
-        if policies.include?(:PROACTIVE_MATCHUP_SWAPPER)
-            unless sacrificing
-                currentMatchupRating = rateMatchupAgainstFoes(battler)
-                switchingBias -= currentMatchupRating
-                PBDebug.log("[AI] #{battler.pbThis} (#{battler.index}) evaluates its current matchup (#{-currentMatchupRating.to_change})")
-            end
-        elsif switchingBias <= 0
-            PBDebug.log("[AI SWITCH] #{battler.pbThis} decides it doesn't have any reason to switch (final switching bias: #{switchingBias})")
-            return -1
-        end
+        currentMatchupRating = rateMatchupAgainstFoes(battler)
+        switchingBias -= currentMatchupRating
+        PBDebug.log("[AI] #{battler.pbThis} (#{battler.index}) evaluates its current matchup (#{-currentMatchupRating.to_change})")
 
         # Determine who to swap into if at all
         PBDebug.log("[AI SWITCH] #{battler.pbThis} (#{battler.index}) is trying to find a teammate to swap into. Its switching bias is #{switchingBias}.")
         list = pbGetPartyWithSwapRatings(idxBattler)
         listSwapOutCandidates(battler, list)
 
-        # Only considers swapping into pokemon whose rating would be at least a +25 upgrade
-        upgradeThreshold = 25
+        # Only considers swapping into pokemon whose rating would be at least a +30 upgrade
+        upgradeThreshold = 30
         upgradeThreshold -= 10 if owner.tribalBonus.hasTribeBonus?(:CHARMER)
         list.delete_if { |val| !@battle.pbCanSwitch?(idxBattler, val[0]) || (switchingBias + val[1] < upgradeThreshold) }
 
@@ -165,6 +106,7 @@ class PokeBattle_AI
 
     def getRoughAttackingTypes(battler)
         return nil if battler.fainted?
+        return nil if battler.canActThisTurn?
         attackingTypes = []
         battler.eachAIKnownMove do |move|
             attackingTypes.push(pbRoughType(move, battler))
@@ -343,7 +285,7 @@ class PokeBattle_AI
     def rateMatchupAgainstFoes(battler)
         matchups = []
         battler.eachOpposing do |opposingBattler|
-            matchup = rateMatchup(battler, getRoughAttackingTypes(opposingBattler))
+            matchup = rateMatchup(battler, opposingBattler)
             matchups.push(matchup)
         end
         if matchups.empty?
@@ -354,11 +296,13 @@ class PokeBattle_AI
     end
 
     # The battler passed in could be a real battler, or a fake one
-    def rateMatchup(battler, attackingtypes = nil)
+    def rateMatchup(battler, opposingBattler)
+        # Rate DEFENSIVE TYPING #
+        foeAttackingTypes = getRoughAttackingTypes(opposingBattler)
         typeModDefensive = Effectiveness::NORMAL_EFFECTIVE
 
         # Get the worse defensive type mod among any of the given types
-        typeModDefensive = pbCalcMaxOffensiveTypeMod(attackingtypes, battler.pokemon) unless attackingtypes.nil?
+        typeModDefensive = pbCalcMaxOffensiveTypeMod(foeAttackingTypes, battler.pokemon) unless foeAttackingTypes.nil?
 
         matchupScore = 0
         # Modify the type matchup score based on the defensive matchup
@@ -372,10 +316,21 @@ class PokeBattle_AI
             matchupScore -= 25
         end
 
+        # Moves
         maxScore = highestMoveScoreForHypotheticalBattler(battler)
         maxMoveScoreBiasChange = -40
         maxMoveScoreBiasChange += (maxScore / 2.5).round
         matchupScore += maxMoveScoreBiasChange
+
+        # Items
+        if battler.hasActiveItem?(:REDCARD) && !opposingBattler.hasActiveItem?(:PROXYFIST)
+            matchupScore += statStepsValueScore(battler)
+        end
+
+        # Abilities
+        if battler.hasActiveAbility?(%i[UNAWARE SMOKEINSINCT PERISHSONG CURIOUSMEDICINE DRIFTINGMIST])
+            matchupScore += statStepsValueScore(battler)
+        end
 
         return matchupScore
     end

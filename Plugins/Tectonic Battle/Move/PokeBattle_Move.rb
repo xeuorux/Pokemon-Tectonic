@@ -87,15 +87,11 @@ class PokeBattle_Move
     # NOTE: This method is only ever called while using a move (and also by the
     #       AI), so using @calcType here is acceptable.
     def physicalMove?(thisType=nil)
-      return true if @calculated_category == 0
-      return true if @category == 0
-      return false
+      return calculatedCategory == 0
     end
   
     def specialMove?(thisType=nil)
-      return true if @calculated_category == 1
-      return true if @category == 1
-      return false
+      return calculatedCategory == 1
     end
 
     def calculatedCategory
@@ -145,7 +141,7 @@ class PokeBattle_Move
     def empoweredMove?;         return @flags[/Empowered/]; end
 
     def turnsBetweenUses(); return 0; end
-    def aiAutoKnows?(pokemon); return false; end
+    def aiAutoKnows?(pokemon); return nil; end
     def statUp; return []; end
   
     def nonLethal?(user,_target); return false; end   # For False Swipe

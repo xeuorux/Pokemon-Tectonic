@@ -418,14 +418,15 @@ class PokeBattle_Battler
         return shouldAbilityApply?(%i[LEVITATE DESERTSPIRIT], checkingForAI)
     end
 
-    def takesIndirectDamage?(showMsg = false)
+    def takesIndirectDamage?(showMsg = false, aiCheck = false)
         return false if fainted?
-        if hasActiveAbility?(:MAGICGUARD)
+        if shouldAbilityApply?(:MAGICGUARD, aiCheck)
             if showMsg
                 showMyAbilitySplash(:MAGICGUARD)
                 @battle.pbDisplay(_INTL("{1} is unaffected!", pbThis))
                 hideMyAbilitySplash
             end
+            aiLearnsAbility(:MAGICGUARD) unless aiCheck
             return false
         end
         return true

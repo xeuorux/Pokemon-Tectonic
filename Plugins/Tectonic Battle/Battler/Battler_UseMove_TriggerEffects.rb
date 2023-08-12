@@ -29,6 +29,12 @@ class PokeBattle_Battler
             # Ice Dungeon
             target.disableEffect(:IceDungeon)
 
+            # Trackers
+            if target.opposes?(user)
+                target.tookPhysicalHit = true if move.physicalMove?
+                target.tookSpecialHit = true if move.physicalMove?
+            end
+
             # Learn the target's damage affecting abilities
             target.eachActiveAbility do |abilityID|
                 next unless BattleHandlers::DamageCalcTargetAbility.hasKey?(abilityID)
@@ -52,8 +58,7 @@ class PokeBattle_Battler
                 user.applyBurn(target) if move.physicalMove? && user.canBurn?(target, true, move)
             end
             # Shell Trap (make the trapper move next if the trap was triggered)
-            if target.effectActive?(:ShellTrap) && @battle.choices[target.index][0] == :UseMove && !target.movedThisRound? && (target.damageState.hpLost > 0 && !target.damageState.substitute && move.physicalMove?)
-                target.tookPhysicalHit = true
+            if target.tookPhysicalHit && target.effectActive?(:ShellTrap) && @battle.choices[target.index][0] == :UseMove && !target.movedThisRound?
                 target.applyEffect(:MoveNext)
             end
             # Grudge
