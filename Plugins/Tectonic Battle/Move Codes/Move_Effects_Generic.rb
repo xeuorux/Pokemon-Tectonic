@@ -1221,7 +1221,7 @@ end
 # hit's participant. (Beat Up)
 #===============================================================================
 # Each subclass must have an initialization method that defines the @statUsed variable
-class PokeBattle_PartyAttackMove
+class PokeBattle_PartyAttackMove < PokeBattle_Move
     def multiHitMove?; return true; end
 
     def calculatePartyAttackerList(user)
@@ -1268,7 +1268,7 @@ class PokeBattle_PartyAttackMove
     end
 end
 
-class PokeBattle_ForetoldMove
+class PokeBattle_ForetoldMove < PokeBattle_Move
     def cannotRedirect?; return true; end
 
     def damagingMove?(aiChecking = false) # Stops damage being dealt in the setting-up turn

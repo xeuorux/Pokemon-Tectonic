@@ -471,7 +471,9 @@ BattleHandlers::UserAbilityEndOfMove.add(:STUPEFYING,
   proc { |ability, user, targets, move, battle, _switchedBattlers|
       next if battle.futureSight
       next unless move.damagingMove?
-      next unless target.knockedBelowHalf?
-      target.applyDizzy(user) if target.canDizzy?(user, true)
+      targets.each do |target|
+        next unless target.knockedBelowHalf?
+        target.applyDizzy(user) if target.canDizzy?(user, true)
+      end
   }
 )

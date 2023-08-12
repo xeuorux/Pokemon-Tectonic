@@ -46,11 +46,11 @@ class PokeBattle_AI
 
     # Returns an array filled with each move that has a target worth using against
     # Giving also the best target to use the move against and the score of doing so
-    def pbGetBestTrainerMoveChoices(user, policies = [])
+    def pbGetBestTrainerMoveChoices(user, opposingBattler = nil)
         choices = []
-        user.eachMoveWithIndex do |_move, i|
+        user.eachAIKnownMoveWithIndex do |move, i|
             next unless @battle.pbCanChooseMove?(user, i, false)
-            newChoice = pbEvaluateMoveTrainer(user, user.moves[i], policies)
+            newChoice = pbEvaluateMoveTrainer(user, move)
             # Push a new array of [moveIndex,moveScore,targetIndex]
             # where targetIndex could be -1 for anything thats not single target
             choices.push([i].concat(newChoice)) if newChoice
@@ -58,31 +58,27 @@ class PokeBattle_AI
         return choices
     end
 
-    def pbEvaluateMoveTrainer(user, move, policies = [])
+    def pbEvaluateMoveTrainer(user, move, targets = [])
+        policies = user.ownersPolicies
         target_data = move.pbTarget(user)
         newChoice = nil
         if target_data.num_targets > 1
             # If move affects multiple battlers and you don't choose a particular one
             totalScore = 0
-            targets = []
-            @battle.eachBattler do |b|
-                next unless @battle.pbMoveCanTarget?(user.index, b.index, target_data)
-                targets.push(b)
+            if targets.empty?
+                @battle.eachBattler do |b|
+                    next unless @battle.pbMoveCanTarget?(user.index, b.index, target_data)
+                    targets.push(b)
+                end
             end
             targets.each do |b|
                 score = pbGetMoveScore(move, user, b, policies, targets.length)
                 if user.opposes?(b)
                     totalScore += score
                 else
-                    if policies.include?(:EQ_PROTECT) && b.canChooseProtect?
-                        next
-                    end
+                    next if policies.include?(:EQ_PROTECT) && b.canChooseProtect?
                     totalScore -= score
                 end
-            end
-            if targets.length > 1
-                totalScore *= targets.length / (targets.length.to_f + 1.0)
-                totalScore = totalScore.floor
             end
             newChoice = [totalScore, -1] if totalScore > 0
         elsif target_data.num_targets == 0
@@ -93,6 +89,7 @@ class PokeBattle_AI
             # If move affects one battler and you have to choose which one
             scoresAndTargets = []
             @battle.eachBattler do |b|
+                next unless targets.empty? || targets.include?(b)
                 next unless @battle.pbMoveCanTarget?(user.index, b.index, target_data)
                 next if target_data.targets_foe && !user.opposes?(b)
                 score = pbGetMoveScore(move, user, b, policies)

@@ -67,8 +67,8 @@ class PokeBattle_AI
         elsif @battle.wildBattle? && @battle.opposes?(idxBattler) # Checks for opposing because it could be an partner trainer's pokemon
             @battle.pbRegisterMove(idxBattler, pbAIRandom(user.moves.length), false)
         else
-            bestMoveChoices = pbGetBestTrainerMoveChoices(user, user.ownersPolicies)
-            return if pbEnemyShouldWithdraw?(idxBattler,bestMoveChoices)
+            return if pbEnemyShouldWithdraw?(idxBattler)
+            bestMoveChoices = pbGetBestTrainerMoveChoices(user)
             pbChooseMovesTrainer(idxBattler, bestMoveChoices)
         end
     end
@@ -87,7 +87,7 @@ class PokeBattle_AI
 
     def pbPredictChoiceByPlayer(idxBattler)
         user = @battle.battlers[idxBattler]
-        bestMoveChoices = pbGetBestTrainerMoveChoices(user, user.ownersPolicies)
+        bestMoveChoices = pbGetBestTrainerMoveChoices(user)
         return [:None, 0, nil, -1] if bestMoveChoices.empty?
         switchChoice = pbDetermineSwitch(idxBattler, bestMoveChoices)
         return [:SwitchOut, switchChoice, -1] if switchChoice > -1

@@ -1,16 +1,16 @@
 class Integer
     def to_change
-        if self > 0
+        if self >= 0
             return "+" + to_s
         else
-            return "-" + to_s
+            return to_s
         end
     end
 end
 
 class PokeBattle_AI
-    def pbEnemyShouldWithdraw?(idxBattler,choices=[])
-        chosenPartyIndex = pbDetermineSwitch(idxBattler,choices)
+    def pbEnemyShouldWithdraw?(idxBattler)
+        chosenPartyIndex = pbDetermineSwitch(idxBattler)
         if chosenPartyIndex >= 0
             @battle.pbRegisterSwitch(idxBattler,chosenPartyIndex)
             return true
@@ -18,80 +18,94 @@ class PokeBattle_AI
         return false
     end
 
-    def pbDetermineSwitch(idxBattler, choices = [])
+    def pbDetermineSwitch(idxBattler)
         battler = @battle.battlers[idxBattler]
         owner = @battle.pbGetOwnerFromBattlerIndex(idxBattler)
-        policies = owner.policies || []
 
-        switchingBias = 0
+        stayInRating = 0
         PBDebug.log("[AI SWITCH] #{battler.pbThis} (#{battler.index}) is determining whether it should switch out")
 
+        # Defensive matchup
+        matchupRating = worstDefensiveMatchupAgainstActiveFoes(battler)
+        stayInRating += matchupRating
+        echoln("[STAY-IN RATING] #{battler.pbThis} matchup rating: #{matchupRating.to_change}")
+
+        # Value of its own moves
+        movesRating = switchRatingBestMoveScore(battler)
+        stayInRating += movesRating
+        echoln("[STAY-IN RATING] #{battler.pbThis} moves rating: #{movesRating.to_change}")
+
+        stayInRating += miscStayInRatingModifiers(battler)
+
+        # Determine who to swap into if at all
+        PBDebug.log("[AI SWITCH] #{battler.pbThis} (#{battler.index}) is trying to find a switch. Staying in is rated: #{stayInRating}.")
+        list = pbGetPartyWithSwapRatings(idxBattler)
+        listSwapOutCandidates(battler, list)
+
+        # Only considers swapping into pokemon whose rating would be at least a +30 upgrade
+        upgradeThreshold = 30
+        upgradeThreshold -= 5 if owner.tribalBonus.hasTribeBonus?(:CHARMER)
+        list.delete_if { |val| val[1] < stayInRating + upgradeThreshold }
+
+        if list.empty?
+            PBDebug.log("[AI SWITCH] #{battler.pbThis} (#{battler.index}) fails to find any swap candidates.")
+        else
+            partySlotNumber = list[0][0]
+            if @battle.pbCanSwitch?(idxBattler, partySlotNumber)
+                PBDebug.log("[AI SWITCH] #{battler.pbThis} (#{idxBattler}) will switch with #{@battle.pbParty(idxBattler)[partySlotNumber].name}")
+                return partySlotNumber
+            end
+        end
+        return -1
+    rescue StandardError => exception
+        echoln("FAILURE ENCOUNTERED IN pbDetermineSwitch FOR BATTLER INDEX #{idxBattler}")
+        return -1
+    end
+
+    def miscStayInRatingModifiers(battler)
+        stayInRating = 0
+
         # Pokémon is about to faint because of Perish Song
-        if battler.effects[:PerishSong] == 1
-            switchingBias += 20
-            switchingBias += 20 if battler.aboveHalfHealth?
-            PBDebug.log("[AI SWITCH] #{battler.pbThis} (#{battler.index}) is to die to perish song (+20)")
+        if battler.effects[:PerishSong] == 2
+            stayInRating -= 5
+            PBDebug.log("[STAY-IN RATING] #{battler.pbThis} (#{battler.index}) is soon-ish to die to perish song (-5)")
+        elsif battler.effects[:PerishSong] == 1
+            stayInRating -= 20
+            PBDebug.log("[STAY-IN RATING] #{battler.pbThis} (#{battler.index}) is about to die to perish song (-20)")
         end
 
         # More likely to switch when poison has worsened
         if battler.poisoned?
-            poisonBias = battler.getPoisonDoublings * 20
-            switchingBias += poisonBias
-            PBDebug.log("[AI SWITCH] #{battler.pbThis} (#{battler.index}) is poisoned at count (#{battler.getStatusCount(:POISON)}) (+#{poisonBias})")
+            poisonBias = battler.getPoisonDoublings * -20
+            stayInRating += poisonBias
+            PBDebug.log("[STAY-IN RATING] #{battler.pbThis} (#{battler.index}) is poisoned at count (#{battler.getStatusCount(:POISON)}) (#{poisonBias.to_change})")
         end
 
         # More likely to switch when cursed
         if battler.effectActive?(:Curse)
-            switchingBias += 15
-            PBDebug.log("[AI SWITCH] #{battler.pbThis} (#{battler.index}) is cursed (+15)")
+            stayInRating -= 15
+            PBDebug.log("[STAY-IN RATING] #{battler.pbThis} (#{battler.index}) is cursed (-15)")
         end
 
         # More likely to switch when drowsy
         if battler.effectActive?(:Yawn)
-            switchingBias += 25
-            PBDebug.log("[AI SWITCH] #{battler.pbThis} (#{battler.index}) is drowsy (+25)")
+            stayInRating -= 25
+            PBDebug.log("[STAY-IN RATING] #{battler.pbThis} (#{battler.index}) is drowsy (-25)")
         end
         
         # Less likely to switch when any opponent has a force switch out move
         # Even less likely if the opponent just used such a move
         battler.eachOpposing do |b|
             if b.hasForceSwitchMove?
-                switchingBias -= 10
-                PBDebug.log("[AI SWITCH] #{battler.pbThis} (#{battler.index}) has an opponent that can force swaps (-10)")
+                stayInRating += 10
+                PBDebug.log("[STAY-IN RATING] #{battler.pbThis} (#{battler.index}) has an opponent that can force swaps (+10)")
             end
         end
 
         # Less likely to switch when has self-mending
-        switchingBias -= 10 if battler.hasActiveAbilityAI?(:SELFMENDING)
+        stayInRating += 10 if battler.hasActiveAbilityAI?(:SELFMENDING)
 
-        # Tries to determine if its in a good or bad type matchup
-        currentMatchupRating = rateMatchupAgainstFoes(battler)
-        switchingBias -= currentMatchupRating
-        PBDebug.log("[AI] #{battler.pbThis} (#{battler.index}) evaluates its current matchup (#{-currentMatchupRating.to_change})")
-
-        # Determine who to swap into if at all
-        PBDebug.log("[AI SWITCH] #{battler.pbThis} (#{battler.index}) is trying to find a teammate to swap into. Its switching bias is #{switchingBias}.")
-        list = pbGetPartyWithSwapRatings(idxBattler)
-        listSwapOutCandidates(battler, list)
-
-        # Only considers swapping into pokemon whose rating would be at least a +30 upgrade
-        upgradeThreshold = 30
-        upgradeThreshold -= 10 if owner.tribalBonus.hasTribeBonus?(:CHARMER)
-        list.delete_if { |val| !@battle.pbCanSwitch?(idxBattler, val[0]) || (switchingBias + val[1] < upgradeThreshold) }
-
-        if list.length > 0
-            partySlotNumber = list[0][0]
-            if @battle.pbCanSwitch?(idxBattler, partySlotNumber)
-                PBDebug.log("[AI SWITCH] #{battler.pbThis} (#{idxBattler}) will switch with #{@battle.pbParty(idxBattler)[partySlotNumber].name}")
-                return partySlotNumber
-            end
-        else
-            PBDebug.log("[AI SWITCH] #{battler.pbThis} (#{battler.index}) fails to find any swap candidates.")
-        end
-        return -1
-    rescue StandardError => exception
-        echoln("FAILURE ENCOUNTERED IN pbDetermineSwitch FOR BATTLER INDEX #{idxBattler}")
-        return -1
+        return stayInRating
     end
 
     def pbDefaultChooseNewEnemy(idxBattler, _party)
@@ -102,31 +116,6 @@ class PokeBattle_AI
             return list[0][0]
         end
         return -1
-    end
-
-    def getRoughAttackingTypes(battler)
-        return nil if battler.fainted?
-        return nil if battler.canActThisTurn?
-        attackingTypes = []
-        battler.eachAIKnownMove do |move|
-            attackingTypes.push(pbRoughType(move, battler))
-        end
-        attackingTypes.uniq!
-        attackingTypes.compact!
-        return attackingTypes
-    end
-
-    def getPartyMemberAttackingTypes(pokemon)
-        attackingTypes = []
-
-        pokemon.moves.each do |move|
-            next if move.category == 2 # Status
-            attackingTypes.push(move.type)
-        end
-
-        attackingTypes.uniq!
-        attackingTypes.compact!
-        return attackingTypes
     end
 
     def listSwapOutCandidates(battler, list)
@@ -144,148 +133,170 @@ class PokeBattle_AI
         list = []
         battlerSlot = @battle.battlers[idxBattler]
 
-        policies = battlerSlot.ownersPolicies
-
         @battle.pbParty(idxBattler).each_with_index do |pkmn, partyIndex|
             next unless pkmn.able?
             next if battlerSlot.pokemonIndex == partyIndex
-
-            switchScore = 0
-
-            # Create a battler to simulate what would happen if the Pokemon was in battle right now
-            fakeBattler = PokeBattle_Battler.new(@battle, battlerSlot.index, true)
-            fakeBattler.pbInitializeFake(pkmn,partyIndex)
-
-            # Account for hazards
-            unless fakeBattler.ignoresHazards?
-                willAbsorbSpikes = false
-
-                # Calculate how much damage the pokemon is likely to take from entry hazards
-                entryDamage = 0
-                if fakeBattler.airborne?(true) && fakeBattler.takesIndirectDamage? && fakeBattler.hasActiveItem?(:HEAVYDUTYBOOTS)
-                    # Stealth Rock
-                    if fakeBattler.pbOwnSide.effectActive?(:StealthRock) && !fakeBattler.hasActiveAbility?(:ROCKCLIMBER)
-                        types = fakeBattler.pbTypes
-                        stealthRockHPRatio = @battle.getTypedHazardHPRatio(:ROCK, types[0], types[1] || nil)
-                        entryDamage += fakeBattler.totalhp * stealthRockHPRatio
-                    end
-
-                    # Feather Ward
-                    if fakeBattler.pbOwnSide.effectActive?(:FeatherWard)
-                        types = fakeBattler.pbTypes
-                        featherWardHPRatio = @battle.getTypedHazardHPRatio(:STEEL, types[0], types[1] || nil)
-                        entryDamage += fakeBattler.totalhp * featherWardHPRatio
-                    end
-
-                    unless fakeBattler.hasActiveAbility?(:NINJUTSU)
-                        # Spikes
-                        spikesCount = fakeBattler.pbOwnSide.countEffect(:Spikes)
-                        if spikesCount > 0
-                            spikesDenom = [8, 6, 4][spikesCount - 1]
-                            entryDamage += fakeBattler.totalhp / spikesDenom
-                        end
-
-                        # Each of the status setting spikes
-                        fakeBattler.pbOwnSide.eachEffect(true) do |_effect, value, data|
-                            next unless data.is_status_hazard?
-                            hazardInfo = data.status_applying_hazard
-
-                            if hazardInfo[:absorb_proc].call(fakeBattler)
-                                willAbsorbSpikes = true
-                            else
-                                statusSpikesDenom = [16, 4][value - 1]
-                                entryDamage += fakeBattler.totalhp / statusSpikesDenom
-                            end
-                        end
-                    end
-                end
-
-                # Try not to swap in pokemon who will die to entry hazard damage
-                if pkmn.hp <= entryDamage
-                    switchScore -= 80
-                    dieingOnEntry = true
-                    echoln("[SWITCH SCORING] #{fakeBattler.pbThis} will die from hazards! (-80)")
-                elsif entryDamage > 0
-                    percentDamage = (entryDamage / fakeBattler.totalhp.to_f)
-                    hazardDamageSwitchMalus = (percentDamage * 80).floor
-                    switchScore -= hazardDamageSwitchMalus
-                    echoln("[SWITCH SCORING] #{fakeBattler.pbThis} will take #{percentDamage} percent HP damage from hazards (#{hazardDamageSwitchMalus.to_change})")
-                end
-
-                if willAbsorbSpikes
-                    switchScore += 20
-                    echoln("[SWITCH SCORING] #{fakeBattler.pbThis} will absorb a status spikes (+20)")
-                end
-            end
-
-            # More want to swap if has a entry ability that matters
-            # Intentionally checked even if the pokemon will die on entry
-            fakeBattler.eachActiveAbility do |abilityID|
-                switchAbilityEffectScore = 0
-                case abilityID
-                when :INTIMIDATE
-                    fakeBattler.eachOpposing do |opposingBattler|
-                        switchAbilityEffectScore += getMultiStatDownEffectScore([:ATTACK,2],fakeBattler,opposingBattler)
-                    end
-                when :FASCINATE
-                    fakeBattler.eachOpposing do |opposingBattler|
-                        switchAbilityEffectScore += getMultiStatDownEffectScore([:SPECIAL_ATTACK,2],fakeBattler,opposingBattler)
-                    end
-                when :FRUSTRATE
-                    fakeBattler.eachOpposing do |opposingBattler|
-                        switchAbilityEffectScore += getMultiStatDownEffectScore([:SPEED,2],fakeBattler,opposingBattler)
-                    end
-                when :CRAGTERROR && @battle.sandy?
-                    fakeBattler.eachOpposing do |opposingBattler|
-                        switchAbilityEffectScore += getMultiStatDownEffectScore(ATTACKING_STATS_2,fakeBattler,opposingBattler)
-                    end
-                when :DRAMATICLIGHTING && @battle.eclipsed?
-                    fakeBattler.eachOpposing do |opposingBattler|
-                        switchAbilityEffectScore += getMultiStatDownEffectScore(ATTACKING_STATS_2,fakeBattler,opposingBattler)
-                    end
-                when :DROUGHT, :INNERLIGHT
-                    switchAbilityEffectScore += getWeatherSettingEffectScore(:Sun,fakeBattler,@battle)
-                when :DRIZZLE, :STORMBRINGER
-                    switchAbilityEffectScore += getWeatherSettingEffectScore(:Rain,fakeBattler,@battle)
-                when :SNOWWARNING, :FROSTSCATTER
-                    switchAbilityEffectScore += getWeatherSettingEffectScore(:Hail,fakeBattler,@battle)
-                when :SANDSTREAM, :SANDBURST
-                    switchAbilityEffectScore += getWeatherSettingEffectScore(:Sand,fakeBattler,@battle)
-                when :MOONGAZE, :LUNARLOYALTY
-                    switchAbilityEffectScore += getWeatherSettingEffectScore(:Moonglow,fakeBattler,@battle)
-                when :HARBINGER, :SUNEATER
-                    switchAbilityEffectScore += getWeatherSettingEffectScore(:Eclipse,fakeBattler,@battle)
-                end
-                abilitySwitchModifier = (switchAbilityEffectScore / 2).ceil
-                switchScore += abilitySwitchModifier
-                echoln("[SWITCH SCORING] #{fakeBattler.pbThis} values the effect of #{abilityID} as #{switchAbilityEffectScore} (#{abilitySwitchModifier.to_change})")
-            end
-
-            # Only matters if the pokemon will live
-            unless dieingOnEntry
-                # Find the worst type matchup against the current player battlers
-                matchupRating = rateMatchupAgainstFoes(fakeBattler)
-                switchScore += matchupRating
-                echoln("[SWITCH SCORING] #{fakeBattler.pbThis} matchup rating: #{matchupRating.to_change}")
-            end
-
-            # For preserving the pokemon placed in the last slot
-            if policies.include?(:PRESERVE_LAST_POKEMON) && partyIndex == @battle.pbParty(idxBattler).length - 1
-                switchScore = -50
-                echoln("[SWITCH SCORING] #{fakeBattler.pbThis} should be preserved by policy (-50)")
-            end
-
+            next unless @battle.pbCanSwitch?(idxBattler, partyIndex)
+            switchScore = getSwitchRatingForPartyMember(pkmn,partyIndex,battlerSlot)
             list.push([partyIndex, switchScore])
         end
         list.sort_by! { |entry| entry[1].nil? ? 99999 : -entry[1] }
         return list
     end
 
+    def getSwitchRatingForPartyMember(pkmn,partyIndex,battlerSlot)
+        switchScore = 0
+
+        # Create a battler to simulate what would happen if the Pokemon was in battle right now
+        fakeBattler = PokeBattle_Battler.new(@battle, battlerSlot.index, true)
+        fakeBattler.pbInitializeFake(pkmn,partyIndex)
+
+        # Account for hazards
+        hazardSwitchScore,dieingOnEntry = getHazardEvaluationForEnteringBattler(fakeBattler)
+        switchScore += hazardSwitchScore
+
+        # More want to swap if has a entry ability that matters
+        # Intentionally checked even if the pokemon will die on entry
+        switchScore += getEntryAbilityEvaluationForEnteringBattler(fakeBattler,dieingOnEntry)
+
+        # Only matters if the pokemon will live
+        unless dieingOnEntry
+            # Find the worst matchup against the current player battlers
+            matchupRating = worstDefensiveMatchupAgainstActiveFoes(fakeBattler)
+            switchScore += matchupRating
+            echoln("[SWITCH SCORING] #{fakeBattler.pbThis} matchup rating: #{matchupRating.to_change}")
+
+            movesRating = switchRatingBestMoveScore(fakeBattler)
+            switchScore += movesRating
+            echoln("[SWITCH SCORING] #{fakeBattler.pbThis} moves rating: #{movesRating.to_change}")
+        end
+
+        # For preserving the pokemon placed in the last slot
+        if battlerSlot.ownersPolicies.include?(:PRESERVE_LAST_POKEMON) && partyIndex == @battle.pbParty(idxBattler).length - 1
+            switchScore = -50
+            echoln("[SWITCH SCORING] #{fakeBattler.pbThis} should be preserved by policy (-50)")
+        end
+
+        return switchScore
+    end
+
+    def getHazardEvaluationForEnteringBattler(battler)
+        return 0,false unless battler.ignoresHazards?
+
+        willAbsorbSpikes = false
+        dieingOnEntry = false
+        switchScore = 0
+
+        # Calculate how much damage the pokemon is likely to take from entry hazards
+        entryDamage = 0
+        if battler.airborne?(true) && battler.takesIndirectDamage? && battler.hasActiveItem?(:HEAVYDUTYBOOTS)
+            # Stealth Rock
+            if battler.pbOwnSide.effectActive?(:StealthRock) && !battler.hasActiveAbility?(:ROCKCLIMBER)
+                types = battler.pbTypes
+                stealthRockHPRatio = @battle.getTypedHazardHPRatio(:ROCK, types[0], types[1] || nil)
+                entryDamage += battler.totalhp * stealthRockHPRatio
+            end
+
+            # Feather Ward
+            if battler.pbOwnSide.effectActive?(:FeatherWard)
+                types = battler.pbTypes
+                featherWardHPRatio = @battle.getTypedHazardHPRatio(:STEEL, types[0], types[1] || nil)
+                entryDamage += battler.totalhp * featherWardHPRatio
+            end
+
+            unless battler.hasActiveAbility?(:NINJUTSU)
+                # Spikes
+                spikesCount = battler.pbOwnSide.countEffect(:Spikes)
+                if spikesCount > 0
+                    spikesDenom = [8, 6, 4][spikesCount - 1]
+                    entryDamage += battler.totalhp / spikesDenom
+                end
+
+                # Each of the status setting spikes
+                battler.pbOwnSide.eachEffect(true) do |_effect, value, data|
+                    next unless data.is_status_hazard?
+                    hazardInfo = data.status_applying_hazard
+
+                    if hazardInfo[:absorb_proc].call(battler)
+                        willAbsorbSpikes = true
+                    else
+                        statusSpikesDenom = [16, 4][value - 1]
+                        entryDamage += battler.totalhp / statusSpikesDenom
+                    end
+                end
+            end
+        end
+
+        # Try not to swap in pokemon who will die to entry hazard damage
+        if battler.hp <= entryDamage
+            switchScore -= 100
+            dieingOnEntry = true
+            echoln("[SWITCH SCORING] #{battler.pbThis} will die from hazards! (-80)")
+        elsif entryDamage > 0
+            percentDamage = (entryDamage / battler.totalhp.to_f)
+            hazardDamageSwitchMalus = (percentDamage * 100).floor
+            switchScore -= hazardDamageSwitchMalus
+            echoln("[SWITCH SCORING] #{battler.pbThis} will take #{percentDamage} percent HP damage from hazards (#{hazardDamageSwitchMalus.to_change})")
+        end
+
+        if willAbsorbSpikes
+            switchScore += 20
+            echoln("[SWITCH SCORING] #{battler.pbThis} will absorb a status spikes (+20)")
+        end
+        
+        return switchScore,dieingOnEntry
+    end
+
+    def getEntryAbilityEvaluationForEnteringBattler(battler,dieingOnEntry)
+        totalAbilityScore = 0
+        battler.eachActiveAbility do |abilityID|
+            switchAbilityEffectScore = 0
+            case abilityID
+            when :INTIMIDATE
+                battler.eachOpposing do |opposingBattler|
+                    switchAbilityEffectScore += getMultiStatDownEffectScore([:ATTACK,2],battler,opposingBattler)
+                end
+            when :FASCINATE
+                battler.eachOpposing do |opposingBattler|
+                    switchAbilityEffectScore += getMultiStatDownEffectScore([:SPECIAL_ATTACK,2],battler,opposingBattler)
+                end
+            when :FRUSTRATE
+                battler.eachOpposing do |opposingBattler|
+                    switchAbilityEffectScore += getMultiStatDownEffectScore([:SPEED,2],battler,opposingBattler)
+                end
+            when :CRAGTERROR && @battle.sandy?
+                battler.eachOpposing do |opposingBattler|
+                    switchAbilityEffectScore += getMultiStatDownEffectScore(ATTACKING_STATS_2,battler,opposingBattler)
+                end
+            when :DRAMATICLIGHTING && @battle.eclipsed?
+                battler.eachOpposing do |opposingBattler|
+                    switchAbilityEffectScore += getMultiStatDownEffectScore(ATTACKING_STATS_2,battler,opposingBattler)
+                end
+            when :DROUGHT, :INNERLIGHT
+                switchAbilityEffectScore += getWeatherSettingEffectScore(:Sun,battler,@battle)
+            when :DRIZZLE, :STORMBRINGER
+                switchAbilityEffectScore += getWeatherSettingEffectScore(:Rain,battler,@battle)
+            when :SNOWWARNING, :FROSTSCATTER
+                switchAbilityEffectScore += getWeatherSettingEffectScore(:Hail,battler,@battle)
+            when :SANDSTREAM, :SANDBURST
+                switchAbilityEffectScore += getWeatherSettingEffectScore(:Sand,battler,@battle)
+            when :MOONGAZE, :LUNARLOYALTY
+                switchAbilityEffectScore += getWeatherSettingEffectScore(:Moonglow,battler,@battle)
+            when :HARBINGER, :SUNEATER
+                switchAbilityEffectScore += getWeatherSettingEffectScore(:Eclipse,battler,@battle)
+            end
+            abilitySwitchModifier = (switchAbilityEffectScore / 2).ceil
+            totalAbilityScore += abilitySwitchModifier
+            echoln("[SWITCH SCORING] #{battler.pbThis} values the effect of #{abilityID} as #{switchAbilityEffectScore} (#{abilitySwitchModifier.to_change})")
+        end
+        return totalAbilityScore
+    end
+
     # The battler passed in could be a real battler, or a fake one
-    def rateMatchupAgainstFoes(battler)
+    def worstDefensiveMatchupAgainstActiveFoes(battler)
         matchups = []
         battler.eachOpposing do |opposingBattler|
-            matchup = rateMatchup(battler, opposingBattler)
+            matchup = rateDefensiveMatchup(battler, opposingBattler)
             matchups.push(matchup)
         end
         if matchups.empty?
@@ -296,31 +307,9 @@ class PokeBattle_AI
     end
 
     # The battler passed in could be a real battler, or a fake one
-    def rateMatchup(battler, opposingBattler)
-        # Rate DEFENSIVE TYPING #
-        foeAttackingTypes = getRoughAttackingTypes(opposingBattler)
-        typeModDefensive = Effectiveness::NORMAL_EFFECTIVE
-
-        # Get the worse defensive type mod among any of the given types
-        typeModDefensive = pbCalcMaxOffensiveTypeMod(foeAttackingTypes, battler.pokemon) unless foeAttackingTypes.nil?
-
-        matchupScore = 0
-        # Modify the type matchup score based on the defensive matchup
-        if Effectiveness.ineffective?(typeModDefensive)
-            matchupScore += 40
-        elsif Effectiveness.not_very_effective?(typeModDefensive)
-            matchupScore += 25
-        elsif Effectiveness.hyper_effective?(typeModDefensive)
-            matchupScore -= 40
-        elsif Effectiveness.super_effective?(typeModDefensive)
-            matchupScore -= 25
-        end
-
-        # Moves
-        maxScore = highestMoveScoreForHypotheticalBattler(battler)
-        maxMoveScoreBiasChange = -40
-        maxMoveScoreBiasChange += (maxScore / 2.5).round
-        matchupScore += maxMoveScoreBiasChange
+    def rateDefensiveMatchup(battler, opposingBattler)
+        # How good are the opponent's moves against me?
+        matchupScore = switchRatingBestMoveScore(opposingBattler, battler)
 
         # Items
         if battler.hasActiveItem?(:REDCARD) && !opposingBattler.hasActiveItem?(:PROXYFIST)
@@ -335,18 +324,15 @@ class PokeBattle_AI
         return matchupScore
     end
 
-    def pbCalcMaxOffensiveTypeMod(attackingTypes, victimPokemon)
-        victimPokemon = victimPokemon.disguisedAs if victimPokemon.is_a?(PokeBattle_Battler) && victimPokemon.illusion?
-        maxTypeMod = 0
-        attackingTypes.each do |attackingType|
-            mod = Effectiveness.calculate(attackingType, victimPokemon.type1, victimPokemon.type2)
-            maxTypeMod = mod if mod > maxTypeMod
-        end
-        return maxTypeMod
+    def switchRatingBestMoveScore(battler, opposingBattler = nil)
+        maxScore = highestMoveScoreForBattler(battler, opposingBattler)
+        maxMoveScoreBiasChange = -40
+        maxMoveScoreBiasChange += (maxScore / 2.5).round
+        return maxMoveScoreBiasChange
     end
 
-    def highestMoveScoreForHypotheticalBattler(fakeBattler)
-        choices = pbGetBestTrainerMoveChoices(fakeBattler, fakeBattler.ownersPolicies)
+    def highestMoveScoreForBattler(battler, opposingBattler = nil)
+        choices = pbGetBestTrainerMoveChoices(battler, opposingBattler)
 
         maxScore = 0
         choices.each do |c|

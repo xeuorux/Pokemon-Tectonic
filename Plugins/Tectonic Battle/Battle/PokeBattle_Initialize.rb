@@ -166,7 +166,12 @@ class PokeBattle_Battle
             echoln("Player's side pokemon #{pokemon.name}'s ability #{abilityToKnow} is known by the AI") if knownAlready
         end
         @knownMoves = {}
+        echoln("===PARTY 1 KNOWN MOVES===")
         @party1.each do |pokemon|
+            initializeKnownMoves(pokemon)
+        end
+        echoln("===PARTY 2 KNOWN MOVES===")
+        @party2.each do |pokemon|
             initializeKnownMoves(pokemon)
         end
     end
