@@ -28,12 +28,12 @@ class PokeBattle_AI
         # Defensive matchup
         matchupRating = worstDefensiveMatchupAgainstActiveFoes(battler)
         stayInRating += matchupRating
-        echoln("[STAY-IN RATING] #{battler.pbThis} matchup rating: #{matchupRating.to_change}")
+        PBDebug.log("[STAY-IN RATING] #{battler.pbThis} matchup rating: #{matchupRating.to_change}")
 
         # Value of its own moves
         movesRating = switchRatingBestMoveScore(battler)
         stayInRating += movesRating
-        echoln("[STAY-IN RATING] #{battler.pbThis} moves rating: #{movesRating.to_change}")
+        PBDebug.log("[STAY-IN RATING] #{battler.pbThis} moves rating: #{movesRating.to_change}")
 
         stayInRating += miscStayInRatingModifiers(battler)
 

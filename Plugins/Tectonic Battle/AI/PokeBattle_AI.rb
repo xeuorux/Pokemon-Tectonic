@@ -18,6 +18,7 @@ end
 class PokeBattle_AI
     def initialize(battle)
         @battle = battle
+        @precalculatedChoices = {}
     end
 
     def pbAIRandom(x); return rand(x); end
@@ -83,6 +84,10 @@ class PokeBattle_AI
             logMsg += ", " if i < choices.length - 1
         end
         PBDebug.log(logMsg)
+    end
+
+    def resetPrecalculatedChoices
+        @precalculatedChoices.clear
     end
 
     def pbPredictChoiceByPlayer(idxBattler)

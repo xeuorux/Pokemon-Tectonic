@@ -108,10 +108,20 @@ class PokeBattle_AI
     # Get a score for the given move being used against the given target
     #=============================================================================
     def pbGetMoveScore(move, user, target, policies = [], numTargets = 1)
+        scoringKey = [move.id, user.personalID, target.personalID, numTargets]
+        if @precalculatedChoices.key?(scoringKey)
+            precalcedScore = @precalculatedChoices[scoringKey]
+            echoln("[MOVE SCORING] Score for #{user.pbThis(true)}'s #{move.name} (#{move.function}) against target #{target.pbThis(true)} already calced this round: #{precalcedScore}")
+            return precalcedScore
+        end
+
         move.calculated_category = move.calculateCategory(user, [target])
         move.calcType = move.pbCalcType(user)
 
-        return 0 if aiPredictsFailure?(move, user, target, false)
+        if aiPredictsFailure?(move, user, target, false)
+            @precalculatedChoices[scoringKey] = 0
+            return 0
+        end
         
         switchPredicted = @battle.aiPredictsSwitch?(user,target.index,true)
 
@@ -241,6 +251,7 @@ class PokeBattle_AI
         score = score.to_i
         score = 0 if score < 0
         echoln("[MOVE SCORING] #{user.pbThis} scores the move #{move.id} against target #{target.pbThis(false)}: #{score}")
+        @precalculatedChoices[scoringKey] = score
         return score
     end
 
