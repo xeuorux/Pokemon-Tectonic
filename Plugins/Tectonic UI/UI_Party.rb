@@ -1238,7 +1238,7 @@ end
             GameData::Type.each do |typeData|
               next if typeData.pseudo_type
               typesArray.push(typeData.id)
-              typeCommands.push(typeData.real_name)
+              typeCommands.push(typeData.name)
             end
             typeCommands.push("Cancel")
             existingIndex = typesArray.find_index(pkmn.itemTypeChosen)

@@ -1065,7 +1065,7 @@ class PokeBattle_StatusSpikeMove < PokeBattle_Move
         if user.pbOpposingSide.effectAtMax?(@spikeEffect)
             maximum = @spikeData.maximum
             if show_message
-                @battle.pbDisplay(_INTL("But it failed, since the opposing side already has #{maximum} layers of #{@spikeData.real_name} spikes!"))
+                @battle.pbDisplay(_INTL("But it failed, since the opposing side already has #{maximum} layers of #{@spikeData.name} spikes!"))
             end
             return true
         end

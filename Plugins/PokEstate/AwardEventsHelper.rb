@@ -7,7 +7,7 @@ end
 
 def typeReward(type,threshold,reward)
     if $Trainer.pokedex.ownedOfType(type) >= threshold
-        typeName = GameData::Type.get(type).real_name
+        typeName = GameData::Type.get(type).name
         return [reward,_INTL("#{threshold} #{typeName}-type species")]
     end
     return nil

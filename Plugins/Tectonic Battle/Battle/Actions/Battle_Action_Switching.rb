@@ -421,12 +421,12 @@ class PokeBattle_Battle
 
                 if hazardInfo[:absorb_proc].call(battler)
                     battler.pbOwnSide.disableEffect(effect)
-                    pbDisplay(_INTL("{1} absorbed the {2}!", battler.pbThis, data.real_name))
+                    pbDisplay(_INTL("{1} absorbed the {2}!", battler.pbThis, data.name))
                 elsif battler.pbCanInflictStatus?(status, nil, false) && !battler.ignoresHazards? && !battler.immuneToHazards?
                     if battler.pbOwnSide.countEffect(effect) >= 2
                         battler.pbInflictStatus(status)
                     elsif battler.takesIndirectDamage?
-                        pbDisplay(_INTL("{1} was hurt by the thin layer of {2}!", battler.pbThis, data.real_name))
+                        pbDisplay(_INTL("{1} was hurt by the thin layer of {2}!", battler.pbThis, data.name))
                         if battler.applyFractionalDamage(1.0 / 16.0, true, false, true)
                             return pbOnActiveOne(battler) # For replacement battler
                         end

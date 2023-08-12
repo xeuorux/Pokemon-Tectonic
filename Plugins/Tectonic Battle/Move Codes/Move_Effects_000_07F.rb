@@ -1020,7 +1020,7 @@ class PokeBattle_Move_049 < PokeBattle_Move
     def blowAwayEffect(user, side, effect, data)
         side.disableEffect(effect)
         if data.is_hazard?
-            hazardName = data.real_name
+            hazardName = data.name
             @battle.pbDisplay(_INTL("{1} blew away {2}!", user.pbThis, hazardName)) unless data.has_expire_proc?
         end
     end
@@ -1616,7 +1616,7 @@ class PokeBattle_Move_060 < PokeBattle_Move
         end
         if user.pbHasOtherType?(camouflageType)
             if show_message
-                @battle.pbDisplay(_INTL("But it failed, since #{user.pbThis(true)} is already #{GameData::Type.get(camouflageType).real_name}-type!"))
+                @battle.pbDisplay(_INTL("But it failed, since #{user.pbThis(true)} is already #{GameData::Type.get(camouflageType).name}-type!"))
             end
             return true
         end

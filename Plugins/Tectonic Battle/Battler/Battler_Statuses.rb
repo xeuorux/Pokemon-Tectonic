@@ -213,7 +213,7 @@ class PokeBattle_Battler
             end
         end
         if hasImmuneType
-            immuneTypeRealName = GameData::Type.get(immuneType).real_name
+            immuneTypeRealName = GameData::Type.get(immuneType).name
             if showMessages
                 @battle.pbDisplay(_INTL("It doesn't affect {1} since it's an {2}-type...", pbThis(true),
 immuneTypeRealName))

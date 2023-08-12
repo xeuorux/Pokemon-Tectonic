@@ -1433,7 +1433,7 @@ class PokemonBoxIcon < IconSprite
           textstrings.push([_INTL("No ability"),86,300,2,nonbase,nonshadow])
         end
         if pokemon.firstItem
-          textstrings.push([pokemon.firstItemData.real_name,86,336,2,base,shadow])
+          textstrings.push([pokemon.firstItemData.name,86,336,2,base,shadow])
         else
           textstrings.push([_INTL("No item"),86,336,2,nonbase,nonshadow])
         end

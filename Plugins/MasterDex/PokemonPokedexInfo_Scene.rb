@@ -114,7 +114,7 @@ class PokemonPokedexInfo_Scene
         @species = @dexlist[@index][0]
         @gender, @form = $Trainer.pokedex.last_form_seen(@species)
         species_data = GameData::Species.get_species_form(@species, @form)
-        @title = species_data.form_name ? "#{species_data.real_name} (#{species_data.form_name})" : species_data.real_name
+        @title = species_data.form_name ? "#{species_data.name} (#{species_data.form_name})" : species_data.name
         @sprites["infosprite"].setSpeciesBitmap(@species, @gender, @form)
         forceShiny = debugControl
         @sprites["formfront"].setSpeciesBitmap(@species, @gender, @form, forceShiny) if @sprites["formfront"]
@@ -199,7 +199,7 @@ sp.form) && !Settings::DEX_SHOWS_ALL_FORMS
         drawFormattedTextEx(overlay, xPos, 2, Graphics.width, "<outln2>[#{page}/#{PAGE_TITLES.length - 1}]</outln2>", base,
   shadow, 18)
         # Draw species name on top right	
-        speciesName = GameData::Species.get(@species).real_name
+        speciesName = GameData::Species.get(@species).name
 		speciesName = "#{speciesName} #{@form + 1}" if @multiple_forms
         # shift x position so that species name does not overlap with the right facing arrow
         xPos += 14 if @page >= 10
@@ -303,7 +303,7 @@ sp.form) && !Settings::DEX_SHOWS_ALL_FORMS
                 ability1 = GameData::Ability.get(abilities[0])
                 abilityNameColor = base
                 abilityNameShadow = shadow
-                abilityNameText = ability1.real_name
+                abilityNameText = ability1.name
                 if ability1.is_signature?
                     abilityNameText = "<outln2>" + abilityNameText + "</outln2>"
                     abilityNameColor = SIGNATURE_COLOR_LIGHTER
@@ -311,7 +311,7 @@ sp.form) && !Settings::DEX_SHOWS_ALL_FORMS
                 end
                 drawFormattedTextEx(overlay, abilityTextX, ability1Y, 450, abilityNameText, abilityNameColor,
               abilityNameShadow)
-                drawTextEx(overlay, abilityTextX, ability1Y + 32, 450, 3, ability1.real_description, base, shadow)
+                drawTextEx(overlay, abilityTextX, ability1Y + 32, 450, 3, ability1.description, base, shadow)
             else
                 drawTextEx(overlay, abilityTextX, 128, 450, 1, "None", base, shadow)
             end
@@ -322,7 +322,7 @@ sp.form) && !Settings::DEX_SHOWS_ALL_FORMS
                 ability2 = GameData::Ability.get(abilities[1])
                 abilityNameColor = base
                 abilityNameShadow = shadow
-                abilityNameText = ability2.real_name
+                abilityNameText = ability2.name
                 if ability2.is_signature?
                     abilityNameText = "<outln2>" + abilityNameText + "</outln2>"
                     abilityNameColor = SIGNATURE_COLOR_LIGHTER
@@ -330,7 +330,7 @@ sp.form) && !Settings::DEX_SHOWS_ALL_FORMS
                 end
                 drawFormattedTextEx(overlay, abilityTextX, ability2Y, 450, abilityNameText, abilityNameColor,
               abilityNameShadow)
-                drawTextEx(overlay, abilityTextX, ability2Y + 32, 450, 3, ability2.real_description, base, shadow)
+                drawTextEx(overlay, abilityTextX, ability2Y + 32, 450, 3, ability2.description, base, shadow)
             else
                 drawTextEx(overlay, abilityTextX, ability2Y, 450, 1, "None", base, shadow)
             end
@@ -453,7 +453,7 @@ sp.form) && !Settings::DEX_SHOWS_ALL_FORMS
             itemsString = ""
             if items.length > 0
                 items.each_with_index do |item, index|
-                    name = GameData::Item.get(item).real_name
+                    name = GameData::Item.get(item).name
                     itemsString += name
                     itemsString += ", " if index < items.length - 1
                 end
@@ -630,7 +630,7 @@ sp.form) && !Settings::DEX_SHOWS_ALL_FORMS
     def getFormattedMoveName(move, maxWidth = 99_999)
         fSpecies = GameData::Species.get_species_form(@species, @form)
         move_data = GameData::Move.get(move)
-        moveName = move_data.real_name
+        moveName = move_data.name
 
         isSTAB = move_data.category < 2 && [fSpecies.type1, fSpecies.type2].include?(move_data.type)
 
@@ -831,7 +831,7 @@ sp.form) && !Settings::DEX_SHOWS_ALL_FORMS
             # Labels #
             
             # Start with the name
-            textpos = [[moveData.real_name, nameX, nameY, 2, base, shadow]]
+            textpos = [[moveData.name, nameX, nameY, 2, base, shadow]]
 
             # Row 1
             textpos.concat([
@@ -962,7 +962,7 @@ sp.form) && !Settings::DEX_SHOWS_ALL_FORMS
                         parameter = evolution[2]
                         species = evolution[0]
                         return if !method || !species
-                        evolutionName = GameData::Species.get_species_form(species, i[2]).real_name
+                        evolutionName = GameData::Species.get_species_form(species, i[2]).name
                         methodDescription = describeEvolutionMethod(method, parameter)
                         # Draw preevolution description
                         color = index == @evolutionIndex ? Color.new(255, 100, 80) : base
@@ -1004,11 +1004,11 @@ sp.form) && !Settings::DEX_SHOWS_ALL_FORMS
                         speciesData = GameData::Species.get_species_form(species, i[2])
                         next if speciesData.nil?
                         @evolutionsArray.push(evolution)
-                        evolutionName = speciesData.real_name
+                        evolutionName = speciesData.name
                         methodDescription = describeEvolutionMethod(method, parameter)
                         # Draw evolution description
                         color = index == @evolutionIndex ? Color.new(255, 100, 80) : base
-                        fromSpeciesName = GameData::Species.get(fromSpecies).real_name
+                        fromSpeciesName = GameData::Species.get(fromSpecies).name
                         if fromSpecies == fSpecies.species
                             drawTextEx(overlay, xLeft, coordinateY, 450, 2, _INTL("Evolves into {1} {2}", evolutionName, methodDescription), color,
                  shadow)

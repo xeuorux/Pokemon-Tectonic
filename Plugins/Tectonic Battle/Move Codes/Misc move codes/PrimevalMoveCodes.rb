@@ -388,7 +388,7 @@ class PokeBattle_Move_61A < PokeBattle_Move_587
     def pbEffectGeneral(user)
         super
 
-        itemName = GameData::Item.get(:BLACKSLUDGE).real_name
+        itemName = GameData::Item.get(:BLACKSLUDGE).name
         @battle.pbDisplay(_INTL("{1} crafts itself a {2}!", user.pbThis, itemName))
         user.giveItem(:BLACKSLUDGE)
 

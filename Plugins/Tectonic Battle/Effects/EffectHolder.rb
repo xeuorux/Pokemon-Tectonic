@@ -13,15 +13,15 @@ module EffectHolder
             if effectData.type == :Boolean
                 value = true
             else
-                raise _INTL("Value must be provided when applying effect #{effectData.real_name} (it's not a boolean)")
+                raise _INTL("Value must be provided when applying effect #{effectData.name} (it's not a boolean)")
             end
         elsif !effectData.valid_value?(value)
-            raise _INTL("Value #{value} provided to apply for effect #{effectData.real_name} is invalid")
+            raise _INTL("Value #{value} provided to apply for effect #{effectData.name} is invalid")
         elsif value == effectData.default
-            raise _INTL("Value #{value} provided to apply for effect #{effectData.real_name} is its default value")
+            raise _INTL("Value #{value} provided to apply for effect #{effectData.name} is its default value")
         end
         if @effects[effect] == value
-            echoln(_INTL("[EFFECT] Effect #{effectData.real_name} set to apply, but at existing value #{@effects[effect]}"))
+            echoln(_INTL("[EFFECT] Effect #{effectData.name} set to apply, but at existing value #{@effects[effect]}"))
         else
             @effects[effect] = value
             @apply_proc.call(effectData, value)
@@ -41,7 +41,7 @@ module EffectHolder
         oldValue = @effects[effect]
         newValue = oldValue + incrementAmount
         if effectData.maximum && newValue > effectData.maximum
-            echoln(_INTL("[EFFECT] Effect incremented while already at maximum: #{effectData.real_name}"))
+            echoln("[EFFECT] Effect incremented while already at maximum: #{effectData.real_name}")
             return oldValue
         else
             @effects[effect] = newValue
@@ -109,7 +109,7 @@ module EffectHolder
 
             unless @effects.has_key?(effect)
                 echoln(@effects.to_s)
-                raise _INTL("Cannot check if effect #{effectData.real_name} is active because it has no entry in the effect hash")
+                raise _INTL("Cannot check if effect #{effectData.name} is active because it has no entry in the effect hash")
             end
 
             return effectData.active_value?(@effects[effect])
@@ -152,7 +152,7 @@ module EffectHolder
 
     def getName(effect)
         validateCorrectLocation(effect)
-        return getData(effect).real_name
+        return getData(effect).name
     end
 
     def effectAtMax?(effect)
@@ -161,7 +161,7 @@ module EffectHolder
         validateInteger(effectData)
         return false if effectData.maximum.nil?
         value = @effects[effect]
-        raise _INTL("Effect above maximum: #{effectData.real_name}") if value > effectData.maximum
+        raise _INTL("Effect above maximum: #{effectData.name}") if value > effectData.maximum
         return value == effectData.maximum
     end
 

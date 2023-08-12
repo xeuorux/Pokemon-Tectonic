@@ -845,7 +845,7 @@ user.pbThis))
             targets.each do |b|
                 next unless b.effectActive?(:VolatileToxin)
                 @battle.pbCommonAnimation("Toxic", b)
-                effectName = GameData::BattleEffect.get(:VolatileToxin).real_name
+                effectName = GameData::BattleEffect.get(:VolatileToxin).name
                 @battle.pbDisplay(_INTL("The {1} burst, causing {2} to deal double damage!", effectName, move.name))
             end
         end
@@ -994,7 +994,7 @@ user.pbThis))
             next if b.damageState.unaffected
             itemTriggered = b.damageState.berryWeakened || b.damageState.feastWeakened
             next unless itemTriggered
-            name = GameData::Item.get(itemTriggered).real_name
+            name = GameData::Item.get(itemTriggered).name
             @battle.pbDisplay(_INTL("The {1} weakened the damage to {2}!", name, b.pbThis(true)))
             b.pbHeldItemTriggered(itemTriggered) if b.hasItem?(itemTriggered) && b.damageState.berryWeakened
         end

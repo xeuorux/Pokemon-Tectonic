@@ -142,7 +142,7 @@ class PokeBattle_Battler
                 battlerCopying = choices.keys.sample
                 abilitiesCopying = choices[battlerCopying]
                 showMyAbilitySplash(:OVERACTING)
-                @battle.pbDisplay(_INTL("{1} is acting like a {2}!", pbThis, GameData::Species.get(battlerCopying.species).real_name))
+                @battle.pbDisplay(_INTL("{1} is acting like a {2}!", pbThis, GameData::Species.get(battlerCopying.species).name))
                 echoln("Abilities that Over-Acting is copying: #{abilitiesCopying.to_s}")
                 setAbility(abilitiesCopying)
                 abilitiesCopying.each do |legalAbility|

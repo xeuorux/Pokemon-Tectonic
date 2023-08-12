@@ -71,7 +71,7 @@ module ItemStorageHelper
       if $PokemonSystem.bag_sorting == 2
         items.sort! { |a, b| b[1] <=> a[1] }
       elsif $PokemonSystem.bag_sorting == 1
-        items.sort! { |a, b| GameData::Item.get(a[0]).real_name <=> GameData::Item.get(b[0]).real_name }
+        items.sort! { |a, b| GameData::Item.get(a[0]).name <=> GameData::Item.get(b[0]).name }
       end
     end
   end

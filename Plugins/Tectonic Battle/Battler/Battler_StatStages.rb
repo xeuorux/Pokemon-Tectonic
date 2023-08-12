@@ -498,7 +498,7 @@ class PokeBattle_Battler
             @battle.pbShowAbilitySplash(user, ability) if ability
             @steps[stat] = -STAT_STEP_BOUND
             @battle.pbCommonAnimation("StatDown", self)
-            statName = GameData::Stat.get(stat).real_name
+            statName = GameData::Stat.get(stat).name
             @battle.pbDisplay(_INTL("{1} minimized its {2}!", pbThis, statName))
             @battle.pbHideAbilitySplash(user) if ability
 
@@ -532,7 +532,7 @@ class PokeBattle_Battler
             @battle.pbShowAbilitySplash(user, ability) if ability
             @steps[stat] = STAT_STEP_BOUND
             @battle.pbCommonAnimation("StatUp", self)
-            statName = GameData::Stat.get(stat).real_name
+            statName = GameData::Stat.get(stat).name
             @battle.pbDisplay(_INTL("{1} maximizes its {2}!", pbThis, statName))
             @battle.pbHideAbilitySplash(user) if ability
         end

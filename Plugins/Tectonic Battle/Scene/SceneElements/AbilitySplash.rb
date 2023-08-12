@@ -74,7 +74,7 @@ class AbilitySplashBar < SpriteWrapper
             setBGSprite(@bgBitmap)
         end
         positionBar
-        @abilityName = abilityData.real_name
+        @abilityName = abilityData.name
         refresh
     end
 

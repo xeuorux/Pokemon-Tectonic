@@ -52,7 +52,7 @@ end
 def pocketAlert(item)
     item = GameData::Item.get(item)
     pbMessage(_INTL("You put the {1} away\\nin the <icon=bagPocket{2}>\\c[1]{3} Pocket\\c[0].",
-        item.real_name,item.pocket,PokemonBag.pocketNames()[item.pocket]))
+        item.name,item.pocket,PokemonBag.pocketNames()[item.pocket]))
 end
 
 def alreadyHoldingAlert(pkmn,itemID,scene)

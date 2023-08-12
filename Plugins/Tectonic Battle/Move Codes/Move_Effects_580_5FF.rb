@@ -24,7 +24,7 @@ class PokeBattle_Move_580 < PokeBattle_Move
                 end
             else
                 statusData = GameData::Status.get(status)
-                @battle.pbDisplay(_INTL("{1} tries to transfer its {2} to {3}, but...", user.pbThis, statusData.real_name,
+                @battle.pbDisplay(_INTL("{1} tries to transfer its {2} to {3}, but...", user.pbThis, statusData.name,
 target.pbThis(true)))
                 target.pbCanInflictStatus?(status, user, true, self)
             end
@@ -470,7 +470,7 @@ class PokeBattle_Move_598 < PokeBattle_Move
 
         moveNames = []
         moveChoices.each do |moveID|
-            moveNames.push(GameData::Move.get(moveID).real_name)
+            moveNames.push(GameData::Move.get(moveID).name)
         end
         if moveChoices.length == 1
             @chosenMoveID = moveChoices[0]
@@ -1910,7 +1910,7 @@ class PokeBattle_Move_5D4 < PokeBattle_HalfHealingMove
         pbOwnSide.eachEffect(true) do |effect, value, data|
             next unless data.is_screen?
             pbOwnSide.effects[effect] += 1
-            @battle.pbDisplay(_INTL("{1}'s {2} was extended 1 turn!", pbTeam, data.real_name))
+            @battle.pbDisplay(_INTL("{1}'s {2} was extended 1 turn!", pbTeam, data.name))
         end
     end
 
@@ -1976,7 +1976,7 @@ class PokeBattle_Move_5D7 < PokeBattle_Move
         validTypes = %i[DRAGON FAIRY STEEL]
         validTypeNames = []
         validTypes.each do |typeID|
-            validTypeNames.push(GameData::Type.get(typeID).real_name)
+            validTypeNames.push(GameData::Type.get(typeID).name)
         end
         if validTypes.length == 1
             @chosenType = validTypes[0]

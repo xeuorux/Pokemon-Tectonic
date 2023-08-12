@@ -4,7 +4,7 @@ def legendaryFight(species, level, switch = 'A', form = 0)
     if pbWildBattleCore(species, level) == 4
         fadeSwitchOn(switch)
     else
-        speciesName = GameData::Species.get(species).real_name
+        speciesName = GameData::Species.get(species).name
         pbMessage(_INTL("#{speciesName} stands strong, still ready to fight!"))
     end
 end

@@ -560,7 +560,7 @@ class PokeBattle_Move_096 < PokeBattle_Move
     def pbDisplayUseMessage(user, targets)
         super
         if @chosenItem
-            typeName = GameData::Type.get(pbBaseType(user)).real_name
+            typeName = GameData::Type.get(pbBaseType(user)).name
             @battle.pbDisplay(_INTL("The {1} turned the attack {2}-type!", getItemName(@chosenItem), typeName))
         end
     end
@@ -1816,7 +1816,7 @@ class PokeBattle_Move_0BC < PokeBattle_Move
         end
         if @moveBlacklist.include?(GameData::Move.get(target.lastRegularMoveUsed).function_code)
             @battle.pbDisplay(_INTL("But it failed, since {1} can't be locked into {2}!",
-                  target.pbThis(true), GameData::Move.get(target.lastRegularMoveUsed).real_name)) if show_message
+                  target.pbThis(true), GameData::Move.get(target.lastRegularMoveUsed).name)) if show_message
             return true
         end
         if target.effectActive?(:ShellTrap)

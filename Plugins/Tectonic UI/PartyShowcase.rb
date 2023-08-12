@@ -133,7 +133,7 @@ class PokemonPartyShowcase_Scene
 
         # Display moves
         pokemon.moves.each_with_index do |pokemonMove,moveIndex|
-            moveName = GameData::Move.get(pokemonMove.id).real_name
+            moveName = GameData::Move.get(pokemonMove.id).name
             expectedMoveNameWidth = @overlay.text_size(moveName).width
             if expectedMoveNameWidth > MAX_MOVE_NAME_WIDTH
                 charactersToShave = 3
@@ -152,7 +152,7 @@ class PokemonPartyShowcase_Scene
         end
 
         # Display ability name
-        abilityName = pokemon.ability&.real_name || "No Ability"
+        abilityName = pokemon.ability&.name || "No Ability"
         drawTextEx(@overlay, displayX + 4, mainIconY + POKEMON_ICON_SIZE + 8, 200, 1, abilityName, BASE_COLOR, SHADOW_COLOR)
     
         # Display Style Points

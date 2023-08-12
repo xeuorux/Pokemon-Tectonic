@@ -144,7 +144,7 @@ class PokeBattle_Battle
     def extendWeather(numTurns = 1)
         return if pbWeather == :None
         @field.weatherDuration += numTurns
-        weatherName = GameData::BattleWeather.get(pbWeather).real_name
+        weatherName = GameData::BattleWeather.get(pbWeather).name
         if numTurns == 1
             pbDisplay(_INTL("The {1} extends by a turn!",weatherName))
         else

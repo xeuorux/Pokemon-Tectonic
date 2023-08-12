@@ -2,7 +2,7 @@
 class PokeBattle_Battle
     def pbStartRoom(roomEffect, user)
         duration = user.getRoomDuration
-        effectName = GameData::BattleEffect.get(roomEffect).real_name
+        effectName = GameData::BattleEffect.get(roomEffect).name
         if @field.effectActive?(roomEffect)
             if @field.effects[roomEffect] >= duration
                 pbDisplay(_INTL("The #{effectName} stayed the same."))

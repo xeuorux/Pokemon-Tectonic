@@ -29,7 +29,7 @@ class PokemonPokedex_Scene
   
                   actualAbility = nil
                   GameData::Ability.each do |abilityData|
-                      if abilityData.real_name.downcase == abilityNameInput.downcase
+                      if abilityData.name.downcase == abilityNameInput.downcase
                           actualAbility = abilityData.id
                           break
                       end
@@ -109,7 +109,7 @@ class PokemonPokedex_Scene
 
                 coverageType = nil
                 GameData::Type.each do |type_data|
-                    next unless type_data.real_name.downcase == typeTextInput
+                    next unless type_data.name.downcase == typeTextInput
                     coverageType = type_data.id
                     break
                 end
@@ -149,7 +149,7 @@ class PokemonPokedex_Scene
                   
                   actualMove = nil
                   GameData::Move.each do |moveData|
-                      if moveData.real_name.downcase == moveNameInput.downcase
+                      if moveData.name.downcase == moveNameInput.downcase
                           actualMove = moveData.id
                           break
                       end
@@ -240,7 +240,7 @@ class PokemonPokedex_Scene
                 typesInputArray.each do |type_input_entry|
                   typeIsReal = false
                   GameData::Type.each do |type_data|
-                      typeIsReal = true if type_data.real_name.downcase == type_input_entry
+                      typeIsReal = true if type_data.name.downcase == type_input_entry
                       break if typeIsReal
                   end
                   if !typeIsReal
@@ -259,9 +259,9 @@ class PokemonPokedex_Scene
                 dexlist = dexlist.find_all { |item|
                   next false if autoDisqualifyFromSearch(item[0])
                   searchPokeType1 = item[6]
-                  searchPokeType1Name = GameData::Type.get(searchPokeType1).real_name.downcase if searchPokeType1
+                  searchPokeType1Name = GameData::Type.get(searchPokeType1).name.downcase if searchPokeType1
                   searchPokeType2 = item[7]
-                  searchPokeType2Name = GameData::Type.get(searchPokeType2).real_name.downcase if searchPokeType2
+                  searchPokeType2Name = GameData::Type.get(searchPokeType2).name.downcase if searchPokeType2
                   
                   pokeTypeNames = [searchPokeType1Name,searchPokeType2Name]
                   
@@ -588,7 +588,7 @@ class PokemonPokedex_Scene
                   # Don't do the search if one of the input type names isn't an actual type
                   realTypeSymbol = nil
                   GameData::Type.each do |type_data|
-                      if type_data.real_name.downcase == typeInput
+                      if type_data.name.downcase == typeInput
                           realTypeSymbol = type_data.id
                           break
                       end
@@ -737,7 +737,7 @@ class PokemonPokedex_Scene
               
               containsText = false
               items.each_with_index do |item,index|
-                  name = GameData::Item.get(item).real_name.downcase
+                  name = GameData::Item.get(item).name.downcase
                   containsText = true if name.include?(wildItemNameTextInput.downcase)
               end
               
@@ -1022,7 +1022,7 @@ class PokemonPokedex_Scene
                       typeIsReal = false
                       type_symbol = nil
                       GameData::Type.each do |type_data|
-                          if type_data.real_name.downcase == type_input_entry
+                          if type_data.name.downcase == type_input_entry
                               typeIsReal = true
                               type_symbol = type_data.id
                               break

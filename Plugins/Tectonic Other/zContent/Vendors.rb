@@ -15,10 +15,10 @@ end
 
 def purchaseStarters(type,price=0)
 	return unless %i[GRASS FIRE WATER].include?(type)
-	typeName = GameData::Type.get(type).real_name
+	typeName = GameData::Type.get(type).name
 	
 	token = (type.to_s + "TOKEN").to_sym
-	tokenName = GameData::Item.get(token).real_name
+	tokenName = GameData::Item.get(token).name
 	
 	pbMessage(_INTL("Hello, and welcome to the Starters Store!"))
 	pbMessage(_INTL("I'm the #{typeName}-type starters salesperson!"))
@@ -272,7 +272,7 @@ def shinifyPokemonVendor
 		return
 	end
 
-	gleamPowderRealName = GameData::Item.get(:GLEAMPOWDER).real_name
+	gleamPowderRealName = GameData::Item.get(:GLEAMPOWDER).name
 	pbMessage(_INTL("\\PN hands over the #{gleamPowderRealName}, $30,000, and #{pkmn.name}."))
 
 	pbMessage("And so my work begins!")

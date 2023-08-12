@@ -313,7 +313,7 @@ target.pbThis(true)))
                     user, target, move, @battle)
                     next
                 end
-                effectName = data.real_name
+                effectName = data.name
                 animationName = data.protection_info ? data.protection_info[:animation_name] : effect.to_s
                 negated = doesProtectionEffectNegateThisMove?(effectName, move, user, target, protectionIgnoredByAbility,
 animationName, show_message) do

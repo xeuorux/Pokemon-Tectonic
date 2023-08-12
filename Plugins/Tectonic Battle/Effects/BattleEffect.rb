@@ -251,6 +251,11 @@ module GameData
             checkForInvalidDefinitions
         end
 
+        def name
+            # TODO: Add support for translation
+            return @real_name
+        end
+
         def checkForInvalidDefinitions
             if @type != :Integer
                 raise _INTL("Battle effect #{@id} defines increment proc when its not an integer.") if @increment_proc
@@ -268,7 +273,7 @@ module GameData
             active = false
 
             unless valid_value?(value)
-                raise _INTL("Value #{@real_name} cannot check if the value #{value} is active because its value #{value} is invalid}")
+                raise _INTL("Value #{name} cannot check if the value #{value} is active because its value #{value} is invalid}")
             end
 
             if @active_value_proc
@@ -330,19 +335,19 @@ module GameData
                 when :Boolean, :Integer
                     return value.to_s
                 when :Species
-                    return GameData::Species.get(value).real_name
+                    return GameData::Species.get(value).name
                 when :Position
                     return battle.battlers[value].name
                 when :Type
-                    return GameData::Type.get(value).real_name
+                    return GameData::Type.get(value).name
                 when :Pokemon
                     return value.name
                 when :Move
-                    return GameData::Move.get(value).real_name
+                    return GameData::Move.get(value).name
                 when :Item
-                    return GameData::Item.get(value).real_name
+                    return GameData::Item.get(value).name
                 when :Ability
-                    return GameData::Ability.get(value).real_name
+                    return GameData::Ability.get(value).name
                 when :String
                     return value
                 end

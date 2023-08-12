@@ -4,7 +4,7 @@ BattleHandlers::HPHealItem.add(:BERRYJUICE,
       next false if !forced && battler.aboveHalfHealth?
       if filchedFrom
         battle.pbShowAbilitySplash(battler, filchingAbility)
-        itemName = GameData::Item.get(item).real_name
+        itemName = GameData::Item.get(item).name
         battle.pbDisplay(_INTL("#{battler.pbThis} filched #{filchedFrom.pbThis(true)}'s #{itemName}!"))
       end
       itemName = GameData::Item.get(item).name
@@ -63,7 +63,7 @@ BattleHandlers::HPHealItem.add(:LANSATBERRY,
       next false if battler.effectAtMax?(:FocusEnergy)
       if filchedFrom
         battle.pbShowAbilitySplash(battler, filchingAbility)
-        itemName = GameData::Item.get(item).real_name
+        itemName = GameData::Item.get(item).name
         battle.pbDisplay(_INTL("#{battler.pbThis} filched #{filchedFrom.pbThis(true)}'s #{itemName}!"))
       end
       battle.pbCommonAnimation("Nom", battler) unless forced

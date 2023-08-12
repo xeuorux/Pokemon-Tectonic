@@ -110,7 +110,7 @@ class BattleInfoDisplay < SpriteWrapper
 	weatherColor = FADED_EFFECT_BASE
 	if @battle.field.weather != :None
 		weatherColor = base
-		weatherName = GameData::BattleWeather.get(@battle.field.weather).real_name
+		weatherName = GameData::BattleWeather.get(@battle.field.weather).name
 		weatherDuration = @battle.field.weatherDuration
 		weatherDuration = "Infinite" if weatherDuration < 0
 		if [:Eclipse,:Moonglow].include?(@battle.field.weather)
@@ -190,7 +190,7 @@ class BattleInfoDisplay < SpriteWrapper
 	battlerName = battler.name
 	if battler.pokemon.nicknamed?
 		speciesData = GameData::Species.get(battler.species)
-		battlerName += " (#{speciesData.real_name})"
+		battlerName += " (#{speciesData.name})"
 		battlerName += " [#{speciesData.form_name}]" if speciesData.form != 0
 	end
 	textToDraw.push([battlerName,256,0,2,base,shadow])
@@ -355,7 +355,7 @@ class BattleInfoDisplay < SpriteWrapper
   def pushEffectDescriptorsToArray(effectHolder,descriptorsArray)
 	effectHolder.eachEffect(!DEBUGGING_EFFECT_DISPLAY) do |effect, value, effectData|
 		next if !effectData.info_displayed
-		effectName = effectData.real_name
+		effectName = effectData.name
 		if effectData.type != :Boolean
 			effectName = "#{effectName}: #{effectData.value_to_string(value,@battle)}"
 		end

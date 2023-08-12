@@ -972,7 +972,7 @@ class PokeBattle_Move_538 < PokeBattle_Move
     def removeEffect(user, side, effect, data)
         side.disableEffect(effect)
         if data.is_hazard?
-            hazardName = data.real_name
+            hazardName = data.name
             @battle.pbDisplay(_INTL("{1} destroyed {2}!", user.pbThis, hazardName)) unless data.has_expire_proc?
         end
     end
