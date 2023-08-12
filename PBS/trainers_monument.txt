@@ -1,18 +1,36 @@
 ﻿# See the documentation on the wiki to learn how to edit this file.
 #-------------------------------
 [CLERK_M2,Airi]
-Pokemon = ALTARIA,70
-    AbilityIndex = 0 # Levitate
-Pokemon = APPLETUN,70
-    AbilityIndex = 0 # Ripen
-Pokemon = MTANGROWTH,70
-    AbilityIndex = 0 # Petrifying
-Pokemon = CURSOLA,70
-    AbilityIndex = 1 # Perish Body
 Pokemon = SWAMPERT,70
+    Moves = EARTHQUAKE,ADAMANTINEPRESS,BRICKBREAK,AQUAJET
     AbilityIndex = 1 # Boulder Nest
-Pokemon = AURORUS,70
-    AbilityIndex = 0 # Aurora Prism
+    Item = STRIKEVEST
+    EV = 10,20,20,0,20,0
+Pokemon = GCORSOLA,70
+    Moves = WILLOWISP,STRENGTHSAP,TERRAFORM,GREYMIST
+    AbilityIndex = 1 # Perish Body
+    Item = EVIOLITE
+    EV = 20,0,20,0,0,10
+Pokemon = HYMNUS,70
+    Moves = AURATRICK,EARTHQUAKE,ICEBEAM,FLAMETHROWER
+    AbilityIndex = 0 # Levitate
+    Item = ASSAULTVEST
+    EV = 20,10,0,0,10,20
+Pokemon = APPLETUN,70
+    Moves = LEECHSEED,CONFIDE,GIGADRAIN,DRACOMETEOR
+    AbilityIndex = 0 # Ripen
+    Item = SITRUSBERRY
+    EV = 20,0,20,0,0,10
+Pokemon = MTANGROWTH,70
+    Moves = GLARE,WAVEOFJADE,SLUDGEWAVE,FOCUSBLAST
+    AbilityIndex = 0 # Petrifying
+    Item = ENERGYLOCK
+    EV = 10,20,0,20,20,0
+Pokemon = DURANT,70
+    Moves = XSCISSOR,EARTHQUAKE,ICEFANG,BULLETTRAIN
+    AbilityIndex = 0 # Hustle
+    Item = WIDELENS
+    EV = 10,20,0,20,20,0
 #-------------------------------
 [MEDIUM,Holly]
 Pokemon = ZOROARK,70
@@ -44,18 +62,36 @@ Pokemon = LYCANROC,70
     AbilityIndex = 0 # Tough Claws
 #-------------------------------
 [PUNKM,Panda]
-Pokemon = MISMAGIUS,70
-    AbilityIndex = 1 # Shrieking
-Pokemon = LILLIGANT,70
-    AbilityIndex = 1 # Herbalist
-Pokemon = STARAPTOR,70
-    AbilityIndex = 1 # Reckless
-Pokemon = GENGAR,70
-    AbilityIndex = 1 # Uncanny Cold
-Pokemon = GARDEVOIR,70
-    AbilityIndex = 1 # Feedback
+Pokemon = ARIADOS,70
+    Moves = TOXICTHREAD,STICKYWEB,LEECHLIFE,POISONSPIKES
+    AbilityIndex = 1 # Sentry
+    Item = SITRUSBERRY
+    EV = 20,0,15,10,0,5
 Pokemon = SWAMPERT,70
+    Moves = FLIPTURN,EARTHQUAKE,ADAMANTINEPRESS,AQUAJET
     AbilityIndex = 1 # Boulder Nest
+    Item = ASSAULTVEST
+    EV = 10,20,0,0,20,20
+Pokemon = MISMAGIUS,70
+    Moves = ENCHANTINGSONG,DEATHKNELL,CONFUSERAY,HYPERVOICE
+    AbilityIndex = 1 # Shrieking
+    Item = PRISMATICPLATE
+    EV = 10,20,0,20,20,0
+Pokemon = LILLIGANT,70
+    Moves = PETALTEMPEST,MISTBURST,HYPERBEAM,ENCHANTINGSONG
+    AbilityIndex = 1 # Herbalist
+    Item = ENERGYHERB,INTELLECTHERB
+    EV = 10,20,0,20,20,0
+Pokemon = STARAPTOR,70
+    Moves = SUBMISSION,BRAVEBIRD,UTURN,ENDEAVOR
+    AbilityIndex = 1 # Reckless
+    Item = FIGHTINGGEM
+    EV = 0,20,10,20,20,0
+Pokemon = GENGAR,70
+    Moves = SHADOWBALL,SLUDGEWAVE,ICEBEAM,THUNDERBOLT
+    AbilityIndex = 0 # Levitate
+    Item = FOCUSSASH
+    EV = 0,20,10,20,20,0
 #-------------------------------
 [RICHBOY,Splits]
 Pokemon = SCIZOR,70
@@ -500,7 +536,7 @@ Pokemon = BISHARP,70
     Item = WEAKNESSPOLICY
     EV = 0,20,10,20,20,0
 #-------------------------------
-[WILDPACK,ReplaceMe2]
+[WILDPACK,ZReplaceMe2]
 Pokemon = HSAMUROTT,70
     Moves = CEASELESSEDGE,XSCISSOR,SLAY,DRAGONTAIL
     AbilityIndex = 1 # Sharpness
@@ -512,10 +548,10 @@ Pokemon = HARCANINE,70
     Item = LIFEORB
     EV = 0,20,5,20,20,5
 Pokemon = KECLEON,70
-    Moves = RECOVER,POLTERGEIST,BODYPRESS,AURATRICK
-    AbilityIndex = 0 # Adaptive Skin
-    Item = LEFTOVERS
-    EV = 10,20,20,0,20,0
+    Moves = ICEBEAM,VOLTSWITCH,POLTERGEIST,STINGINGJEALOUSY
+    AbilityIndex = 1 # Protean
+    Item = AGILITYHERB
+    EV = 10,20,0,20,20,0
 Pokemon = BASCULEGION,70
     Moves = LEAPOUT,FLIPTURN,UNDYINGRUSH,AQUATAIL
     AbilityIndex = 1 # Adapted
@@ -565,7 +601,7 @@ Pokemon = DIGNIPHITE,70
     Item = CUSTAPBERRY
     EV = 10,20,10,0,20,10
 #-------------------------------
-[WILDPACK,ReplaceMe4]
+[WILDPACK,ZReplaceMe4]
 Pokemon = INTELEON,70
     Moves = SNIPESHOT,ICEBEAM,MASSDESTRUCTION,COLDFRONT
     AbilityIndex = 1 # Illusion
@@ -597,13 +633,18 @@ Pokemon = GALVANTULA,70
     Item = LIFEORB
     EV = 0,20,10,20,20,0
 #-------------------------------
-[WILDPACK,ReplaceMe5]
+[WILDPACK,ZReplaceMe5]
 Policies = RAIN_TEAM
 Pokemon = STUNFISK,70
     Moves = THUNDER,RECOVER,STEALTHROCK,DEFIBRILLATE
     AbilityIndex = 1 # Drizzle
     Item = DAMPROCK
     EV = 10,0,20,0,0,20
+Pokemon = ARMALDO,70
+    Moves = XSCISSOR,ADAMANTINEPRESS,STORMDRIVE,LIQUIDATION
+    AbilityIndex = 1 # Swift Swim
+    Item = HEAVYDUTYBOOTS
+    EV = 10,20,5,10,20,5
 Pokemon = JOLTEON,70
     Moves = THUNDER,VOLTSWITCH,WEATHERBURST,DUSTDEVIL
     AbilityIndex = 0 # Overwhelm
@@ -614,11 +655,6 @@ Pokemon = OMASTAR,70
     AbilityIndex = 0 # Swift Swim
     Item = POWERHERB
     EV = 10,20,0,20,20,0
-Pokemon = ARMALDO,70
-    Moves = XSCISSOR,ADAMANTINEPRESS,STORMDRIVE,BRICKBREAK
-    AbilityIndex = 1 # Swift Swim
-    Item = PRISMATICPLATE
-    EV = 10,20,5,10,20,5
 Pokemon = PELIPPER,70
     Moves = RAIN,DEFOG,COLDFRONT,MENDINGSPRING
     AbilityIndex = 1 # Dreary Clouds
@@ -643,10 +679,10 @@ Pokemon = NOIVERN,70
     AbilityIndex = 1 # Shattering
     Item = LIFEORB
     EV = 10,20,0,20,20,0
-Pokemon = STARMIE,70
-    Moves = HYDROPUMP,PSYSHOCK,METEORBEAM,THUNDER
-    AbilityIndex = 0 # Stars Align
-    Item = POWERHERB
+Pokemon = ALAKAZAM,70
+    Moves = MOONBLAST,PSYSHOCK,TERRAFORM,ECLIPSE
+    AbilityIndex = 0 # Warping Effect
+    Item = FAIRYGEM
     EV = 10,20,0,20,20,0
 Pokemon = KOMMOO,70
     Moves = FLASHCANNON,CLANGOROUSSOUL,SHATTEREDENERGY,CLOSECOMBAT
@@ -664,7 +700,7 @@ Pokemon = PROBOPASS,70
     Item = ENERGYLOCK
     EV = 20,20,10,0,20,0
 #-------------------------------
-[WILDPACK,ReplaceMe7]
+[WILDPACK,ZReplaceMe7]
 Pokemon = CHESNAUGHT,70
     Moves = SPIKES,ROAR,BODYPRESS,WOODHAMMER
     AbilityIndex = 0 # Intimidate
@@ -697,7 +733,7 @@ Pokemon = VOLCARONA,70
     Item = HEAVYDUTYBOOTS
     EV = 10,0,0,20,0,20
 #-------------------------------
-[WILDPACK,ReplaceMe8]
+[WILDPACK,ZReplaceMe8]
 Pokemon = TYRANITAR,70
     Moves = ADAMANTINEPRESS,DRAGONTAIL,STEALTHROCK,CRUNCH
     AbilityIndex = 1 # Stressful
@@ -724,12 +760,12 @@ Pokemon = TOGEDEMARU,70
     Item = POWERLOCK
     EV = 15,20,0,10,20,5
 Pokemon = HAEROBIC,70
-    Moves = FAKEOUT,UTURN,CLOSECOMBAT,ICEPUNCH
+    Moves = EXTREMESPEED,UTURN,CLOSECOMBAT,ICEPUNCH
     AbilityIndex = 1 # Stubborn
     Item = FIGHTINGGEM
     EV = 10,20,0,20,20,0
 #-------------------------------
-[WILDPACK,ReplaceMe9]
+[WILDPACK,ZReplaceMe9]
 Pokemon = GALVANTULA,70
     Moves = STICKYWEB,THUNDER,SIGNALOVERLOAD,VOLTSWITCH
     AbilityIndex = 0 # Ocular
@@ -761,7 +797,7 @@ Pokemon = LEAVANNY,70
     Item = EJECTPACK
     EV = 0,20,10,20,20,0
 #-------------------------------
-[WILDPACK,ReplaceMe10]
+[WILDPACK,ZReplaceMe10]
 Pokemon = AMOONGUSS,70
     Moves = SPORE,BELCH,GIGADRAIN,SYNTHESIS
     AbilityIndex = 0 # Regenerator
@@ -793,7 +829,7 @@ Pokemon = HELECTRODE,70
     Item = POWERLOCK
     EV = 0,20,20,10,20,0
 #-------------------------------
-[WILDPACK,ReplaceMe11]
+[WILDPACK,XReplaceMe11]
 Policies = MOONGLOW_TEAM
 Pokemon = ALOMOMOLA,70
     Moves = FLIPTURN,WISH,SUPERSONIC,TOPSYTURVY
@@ -825,3 +861,297 @@ Pokemon = NOCTOWL,70
     AbilityIndex = 0 # Night Owl
     Item = LIFEORB
     EV = 0,20,0,19,20,11
+#-------------------------------
+[WILDPACK,ReplaceMe12]
+Policies = SUN_TEAM
+Pokemon = TORKOAL,70
+    Moves = STEALTHROCK,RAPIDSPIN,GREYMIST,FLAMETHROWER
+    AbilityIndex = 1 # Drought
+    Item = HEATROCK
+    EV = 20,0,10,0,0,20
+Pokemon = LILLIGANT,70
+    Moves = SOLARBEAM,MOONBLAST,POLLENPUFF,SUNSHINE
+    AbilityIndex = 0 # Chlorophyll
+    Item = LIFEORB
+    EV = 20,20,2,8,20,0
+Pokemon = HELIOLISK,70
+    Moves = THUNDERBOLT,SOLARBEAM,SURF,VOLTSWITCH
+    AbilityIndex = 0 # Solar Power
+    Item = ELECTRICGEM
+    EV = 0,20,0,20,20,10
+Pokemon = HOUNDOMINUS,70
+    Moves = FLAMETHROWER,SOLARBEAM,DARKALLURE,SLUDGEBOMB
+    AbilityIndex = 0 # Midnight Sun
+    Item = PRISMATICPLATE
+    EV = 0,20,0,20,20,10
+Pokemon = GDARMANITAN,70
+    Form = 1
+    Moves = FLAMETHROWER,ICEBEAM,SOLARBEAM,HYPERBEAM
+    AbilityIndex = 0 # Phase Shift
+    Item = HEAVYDUTYBOOTS
+    EV = 10,20,10,0,20,10
+Pokemon = GASTRODON,70
+    Form = 1
+    Moves = EARTHPOWER,SLUDGEWAVE,RECOVER,YAWN
+    AbilityIndex = 1 # Water Absorb
+    Item = UTILITYUMBRELLA
+    EV = 10,10,15,0,10,15
+#-------------------------------
+[WILDPACK,ReplaceMe13]
+Policies = SAND_TEAM
+Pokemon = HIPPOWDON,70
+    Moves = STEALTHROCK,ROAR,SANDBLASTING,IGNITE
+    AbilityIndex = 0 # Sand Stream
+    Item = SMOOTHROCK
+    EV = 20,0,20,0,0,10
+Pokemon = DRAPION,70
+    Moves = KNOCKOFF,HONORLESSSTING,LEECHLIFE,AQUATAIL
+    AbilityIndex = 0 # Sand Demon
+    Item = STRIKEVEST
+    EV = 10,20,20,0,20,0
+Pokemon = SAHARICANE,70
+    Moves = TEMPEST,ROCKAPULT,EARTHPOWER,MIASMA
+    AbilityIndex = 0 # Sand Sniper
+    Item = LIFEORB
+    EV = 5,20,0,16,20,9
+Pokemon = TYRANITAR,70
+    Moves = GRINDSTONE,CRUNCH,EARTHQUAKE,PURSUIT
+    AbilityIndex = 0 # Sand Burst
+    Item = ASSAULTVEST
+    EV = 10,20,0,0,20,20
+Pokemon = CRADILY,70
+    Moves = LEECHSEED,RECOVER,GIGADRAIN,POWERGEM
+    AbilityIndex = 1 # Water Absorb
+    Item = LEFTOVERS
+    EV = 20,20,10,0,20,0
+Pokemon = EELEKTROSS,70
+    Moves = POISONJAB,ELECTROSLASH,NUMB,BRICKBREAK
+    AbilityIndex = 0 # Levitate
+    Item = UTILITYUMBRELLA
+    EV = 10,20,10,0,20,10
+#-------------------------------
+[WILDPACK,ReplaceMe14]
+Policies = HAIL_TEAM
+Pokemon = RUBARIOR,70
+    Moves = GEMSEAL,HAIL,FOULPLAY,STEALTHROCK
+    AbilityIndex = 1 # Prankster
+    Item = ICYROCK
+    EV = 20,0,10,0,0,20
+Pokemon = BEARTIC,70
+    Moves = ICICLESPEAR,PLAYROUGH,BRICKBREAK,THROATCHOP
+    AbilityIndex = 1 # Chronic Cold
+    Item = LOADEDDICE
+    EV = 10,20,0,20,20,0
+Pokemon = PERRSERKER,70
+    Moves = SLAY,CLOSECOMBAT,UTURN,PLAYROUGH
+    AbilityIndex = 0 # Slush Rush
+    Item = PRISMATICPLATE
+    EV = 10,20,0,20,20,0
+Pokemon = CONIFEAR,70
+    Moves = HOLLYCHARM,BLIZZARD,ICESHARD,EARTHPOWER
+    AbilityIndex = 0 # Frost Scatter
+    Item = ASSAULTVEST
+    EV = 20,20,5,0,20,5
+Pokemon = JELLICENT,70
+    Moves = SHIVER,HEX,MAELSTROM,STRENGTHSAP
+    AbilityIndex = 1 # Sealing Body
+    Item = LEFTOVERS
+    EV = 20,0,20,0,0,10
+Pokemon = JOLTEON,70
+    Moves = THUNDERBOLT,VOLTSWITCH,WEATHERBURST,SHADOWBALL
+    AbilityIndex = 1 # Needle Fur
+    Item = LIFEORB
+    EV = 10,20,0,20,20,0
+#-------------------------------
+[MEDIUM,EVALUATE2Holly]
+Policies = PRESERVE_LAST_POKEMON
+Pokemon = ROSERADE,70
+    Moves = CRUELWHIPBLADE,CROSSPOISON,LEAFBLADE,SLAY
+    AbilityIndex = 1 # Merciless
+    Item = FOCUSSASH
+    EV = 10,20,0,20,20,0
+Pokemon = ZOROARK,70
+    Moves = PLANTDOUBT,MASSDESTRUCTION,SLUDGEBOMB,BURNINGJEALOUSY
+    AbilityIndex = 0 # Illusion
+    Item = DARKGEM
+    EV = 0,20,10,20,20,0
+Pokemon = SWAMPERT,70
+    Moves = EARTHQUAKE,HAMMERARM,LIQUIDATION,AQUAJET
+    AbilityIndex = 1 # Boulder Nest
+    Item = ASSAULTVEST
+    EV = 10,20,0,0,20,20
+Pokemon = LUXRAY,70
+    Moves = PHOTONEDGE,SUCKERPUNCH,SEVER,ICEFANG
+    AbilityIndex = 1 # Intimidate
+    Item = LUCKHERB
+    EV = 20,20,5,5,20,0
+Pokemon = COFAGRIGUS,70
+    Moves = HEX,WILLOWISP,POISONSPIKES,BODYPRESS
+    AbilityIndex = 0 # Mummy
+    Item = SITRUSBERRY
+    EV = 20,0,20,0,0,10
+Pokemon = CHANDELURE,70
+    Moves = HEX,FLAMETHROWER,THRIVINGFORCE,CONFUSERAY
+    AbilityIndex = 0 # Light Trick
+    Item = PRISMATICPLATE
+    EV = 20,20,5,5,20,0
+#-------------------------------
+[ROUGHNECK,XEVALUATE3Reuben]
+Pokemon = MORPEKO,70
+    Moves = GUTCHECK,TAUNT,RAPIDSPIN,PARTINGSHOT
+    AbilityIndex = 0 # Hunger Switch
+    Item = FOCUSSASH
+    EV = 0,10,10,20,10,10
+Pokemon = UMBREON,70
+    Moves = FOULPLAY,POWERNAP,HEARTSWAP,BATONPASS
+    AbilityIndex = 1 # Secretion Secret
+    Item = LEFTOVERS
+    EV = 20,0,20,0,0,10
+Pokemon = HOUNDOMINUS,70
+    Moves = FLAMETHROWER,DARKALLURE,MASSDESTRUCTION,SLUDGEBOMB
+    AbilityIndex = 1 # Berserk
+    Item = DARKGEM
+    EV = 10,20,0,20,20,0
+Pokemon = PORYGONZ,70
+    Moves = CRITICALERROR,ZAPCANNON,ICEBEAM,DETACHMENT
+    AbilityIndex = 0 # Realist
+    Item = SKILLHERB
+    EV = 15,20,10,0,20,5
+Pokemon = DRAGONITE,70
+    Moves = OUTRAGE,EXTREMESPEED,EARTHQUAKE,DRAGONDANCE
+    AbilityIndex = 1 # Multiscale
+    Item = LUMBERRY
+    EV = 20,20,5,0,20,5
+Pokemon = CORVIKNIGHT,70
+    Moves = SLAY,UTURN,BRAVEBIRD,ROOST
+    AbilityIndex = 0 # Mirror Armor
+    Item = POWERLOCK
+    EV = 10,20,10,0,20,10
+#-------------------------------
+[POKEMONBREEDER_F3,XEVALUATE4Katie]
+Pokemon = THIEVUL,70
+    Moves = SPIKES,GREYMIST,FOULPLAY,FLATTER
+    AbilityIndex = 1 # Sentry
+    Item = REDCARD
+    EV = 20,0,15,0,0,15
+Pokemon = SALAMENCE,70
+    Moves = OUTRAGE,EARTHQUAKE,STRAFE,IRONTAIL
+    AbilityIndex = 0 # Intimidate
+    Item = CHOICESCARF
+    EV = 0,20,18,12,20,0
+Pokemon = GYARADOS,70
+    Moves = EARTHQUAKE,WATERFALL,POWERWHIP,BULLETTRAIN
+    AbilityIndex = 1 # Sea Lord
+    Item = ASSAULTVEST
+    EV = 10,20,0,0,20,20
+Pokemon = ESCAVALIER,70
+    Moves = CLOSECOMBAT,SLAY,FELLSTINGER,KNOCKOFF
+    AbilityIndex = 0 # Armor Piercing
+    Item = DARKGEM
+    EV = 20,20,10,0,20,0
+Pokemon = GSLOWKING,70
+    Moves = BELCH,PSYCHIC,ICEBEAM,FLAMETHROWER
+    AbilityIndex = 0 # Curious Medicine
+    Item = SITRUSBERRY
+    EV = 20,20,10,0,20,0
+Pokemon = SANDSLASH,70
+    Moves = ADAMANTINEPRESS,RAPIDSPIN,EARTHQUAKE,STEALTHROCK
+    AbilityIndex = 1 # Tough Claws
+    Item = ROCKGEM
+    EV = 10,20,0,20,20,0
+#-------------------------------
+[RICHBOY,EVALUATE5Splits]
+Pokemon = WEAVILE,70
+    Moves = TAUNT,BEATUP,WINTEROPS,ICESHARD
+    AbilityIndex = 0 # Inner Focus
+    Item = FOCUSSASH
+    EV = 5,20,0,20,20,5
+Pokemon = REAVOR,70
+    Moves = UTURN,BULLETPUNCH,PSYCHOBLADE,SWORDSDANCE
+    AbilityIndex = 0 # Technician
+    Item = PRISMATICPLATE
+    EV = 20,20,10,0,20,0
+Pokemon = NIDOKING,70
+    Moves = TRAMPLE,CRYSTALCRUSH,POISONJAB,SUCKERPUNCH
+    AbilityIndex = 0 # Sheer Force
+    Item = LIFEORB
+    EV = 20,20,10,0,20,0
+Pokemon = TYRANTRUM,70
+    Moves = BEDROCKBREAKER,CLOSECOMBAT,CRUNCH,PSYCHICFANGS
+    AbilityIndex = 1 # Rock Head
+    Item = STRIKEVEST
+    EV = 10,20,20,0,20,0
+Pokemon = BRONZONG,70
+    Moves = SLAG,PSYCHIC,STEALTHROCK,TERRAFORM
+    AbilityIndex = 0 # Levitate
+    Item = ENERGYLOCK
+    EV = 20,20,0,0,20,10
+Pokemon = CHARIZARD,70
+    Moves = FLAMETHROWER,DRACOMETEOR,MIRAGEFLARE,SOLARBEAM
+    AbilityIndex = 0 # Levitate
+    Item = POWERHERB
+    EV = 0,20,0,20,20,10
+#-------------------------------
+[RUINMANIAC,EVLAUATE6Steve]
+Pokemon = HELECTRODE,70
+    Moves = REFLECT,LIGHTSCREEN,EXPLOSION,TAUNT
+    AbilityIndex = 0 # Self Mending
+    Item = LIGHTCLAY
+    EV = 20,0,12,12,0,6
+Pokemon = DECEAT,70
+    Moves = METEORMASH,PLAYROUGH,SUCKERPUNCH,SWORDSDANCE
+    AbilityIndex = 0 # Power Up
+    Item = LUMBERRY
+    EV = 20,20,10,0,20,0
+Pokemon = OCTILLERY,70
+    Moves = FIREWORKS,BUBBLEBARRAGE,SEANCE,SLUDGEWAVE
+    AbilityIndex = 1 # Double Check
+    Item = LOADEDDICE
+    EV = 10,20,10,0,20,10
+Pokemon = MAROWAK,70
+    Moves = BONEMERANG,DRAINPUNCH,STEALTHROCK,FLOWSTATE
+    AbilityIndex = 1 # Break Through
+    Item = LEFTOVERS
+    EV = 20,20,0,0,20,10
+Pokemon = CHANDELURE,70
+    Moves = WILLOWISP,HEX,FLAMETHROWER,THRIVINGFORCE
+    AbilityIndex = 0 # Light Trick
+    Item = KASIBBERRY
+    EV = 20,20,10,0,20,0
+Pokemon = WORNET,70
+    Moves = UTURN,POISONJAB,KNOCKOFF,BRICKBREAK
+    AbilityIndex = 0 # Deep Sting
+    Item = CHOICESCARF
+    EV = 18,20,0,12,20,0
+#-------------------------------
+[CAMPER,EVALUATE7Nexx]
+Pokemon = CRYOGONAL,70
+    Moves = ICICLEARMOR,CHILL,FROSTSPIKES,NERVEBREAK
+    AbilityIndex = 1 # Magic Bounce
+    Item = FOCUSSASH
+    EV = 20,0,0,20,0,10
+Pokemon = RIOJIN,70
+    Moves = CHIBURST,VACUUMWAVE,DARKALLURE,FLASHCANNON
+    AbilityIndex = 1 # Inner Focus
+    Item = EJECTPACK
+    EV = 5,20,5,20,20,0
+Pokemon = SAURENAID,70
+    Moves = FROSTSPIKES,LOOMOVER,BUBBLEBLAST,THUNDERBOLT
+    AbilityIndex = 1 # Sea Survivor
+    Item = LEFTOVERS
+    EV = 0,10,20,0,10,20
+Pokemon = GRENINJA,70
+    Moves = DARKALLURE,BUBBLEBLAST,WATERSHURIKEN,SLUDGEWAVE
+    AbilityIndex = 1 # Wise Hunter
+    Item = PRISMATICPLATE
+    EV = 0,20,0,20,20,10
+Pokemon = DRAGONITE,70
+    Moves = EXTREMESPEED,EARTHQUAKE,STRAFE,AURATRICK
+    AbilityIndex = 1 # Multiscale
+    Item = ASSAULTVEST
+    EV = 10,20,0,0,20,20
+Pokemon = NIDOKING,70
+    Moves = TRAMPLE,CRYSTALCRUSH,POISONJAB,SUCKERPUNCH
+    AbilityIndex = 0 # Sheer Force
+    Item = LIFEORB
+    EV = 20,20,10,0,20,0
