@@ -188,6 +188,7 @@ class PokeBattle_Battle
         return if @decision == 5 && favorDraws
         pbJudge
         return if @decision > 0
+        @battleAI.resetPrecalculatedChoices
         # Check through each fainted battler to see if that spot can be filled.
         switched = []
         loop do
