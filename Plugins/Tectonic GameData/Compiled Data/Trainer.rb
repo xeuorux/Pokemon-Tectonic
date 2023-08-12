@@ -251,13 +251,19 @@ module GameData
                 pkmn.form_simple = pkmn_data[:form]
             end
 
+            if !pkmn_data[:ability_index].nil?
+              pkmn.ability_index = pkmn_data[:ability_index]
+            elsif !pkmn_data[:ability].nil?
+              pkmn.ability = pkmn_data[:ability]
+            end
+
             itemInfo = pkmn_data[:item]
             if !itemInfo.nil?
               if itemInfo.is_a?(Array)
-                if pkmn.legalItems?(itemInfo)
+                if pkmn.legalItems?(itemInfo,true)
                   pkmn.setItems(itemInfo)
                 else
-                  echoln("Trainer pokemon #{pkmn.name} is not allowed to hold the assigned item set!")
+                  echoln("Trainer pokemon #{pkmn.name} is not allowed to hold the assigned item set of #{itemInfo.to_s}!")
                 end
               else
                 pkmn.setItems([itemInfo])
@@ -273,12 +279,6 @@ module GameData
 
             if pkmn.moves.length == 0
                 pkmn.reset_moves([pkmn.level,50].min,true)
-            end
-
-            if !pkmn_data[:ability_index].nil?
-                pkmn.ability_index = pkmn_data[:ability_index]
-            elsif !pkmn_data[:ability].nil?
-                pkmn.ability = pkmn_data[:ability]
             end
             
             pkmn.gender = pkmn_data[:gender] || ((trainer.male?) ? 0 : 1)
