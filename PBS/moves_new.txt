@@ -477,7 +477,7 @@
 1476,IMPALINGSPIKE,Impaling Spike,195,80,STEEL,Physical,100,10,0,NearOther,0,CanProtect;CanMirrorMove,"A large spike it shot at the target. If this causes the target to faint, a layer of Spikes is set on the ground beneath them.",SPIKECANNON
 1477,YOUNGAGAIN,Young Again,0BF,0,NORMAL,Status,0,10,0,NearOther,0,CanProtect;CanMirrorMove,"The user conjures up the past, transforming the target into their previous evolutionary form.",TRANSFORM
 1478,DUNESINGING,Dune Singing,5EA,115,GROUND,Special,80,10,30,AllNearFoes,0,CanProtect;CanMirrorMove;Sound,"An avalanche of sand causes painful, ringing vibrations.",SCORCHINGSANDS
-1479,WINDTUNNEL,Wind Tunnel,5FC,20,FLYING,Special,20,20,10,AllNearFoes,0,CanProtect;CanMirrorMove;Wind,"Wind rapidly spins the target in place to hit them two to five times. Has a 10% chance to dizzy each hit.",
+1479,WINDTUNNEL,Wind Tunnel,5FC,20,FLYING,Special,100,20,10,AllNearFoes,0,CanProtect;CanMirrorMove;Wind,"Wind rapidly spins the target in place to hit them two to five times. Has a 10% chance to dizzy.",GUST
 1480,SUCKBLOOD,Suck Blood,0DD,50,BUG,Physical,100,20,0,NearOther,0,CanProtect;CanMirrorMove,"The user leeches the target's life. The user's HP is restored by half the damage taken by the target.",LEECHLIFE
 1481,VOLLEY,Volley,129,1,FLYING,Special,100,10,0,NearOther,0,CanProtect;CanMirrorMove,"The user gets all the party Pokémon to attack the foe with aerial projectiles.",AIRDART
 1482,DRONING,Droning,5EC,65,BUG,Special,100,20,30,NearOther,0,CanProtect;CanMirrorMove;Sound,"The user vibrates its wings to make a damaging sound wave. It has a 30% chance to lower Sp. Atk.",BUGBUZZ
