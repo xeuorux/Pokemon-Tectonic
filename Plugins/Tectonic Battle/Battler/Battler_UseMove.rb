@@ -834,13 +834,6 @@ user.pbThis))
             @battle.pbCommonAnimation("UseItem", user)
             @battle.pbDisplay(_INTL("The {1} ensured {2} would hit!", getItemName(:SKILLHERB), move.name))
         end
-        # Accuracy ensuring Herb consume animation/message
-        if effectActive?(:LuckHerbConsumed) && hitNum == 0
-            # NOTE: The consume animation and message for Herbs are shown now, but the
-            #       actual removal of the item happens in def pbEffectsAfterMove.
-            @battle.pbCommonAnimation("UseItem", user)
-            @battle.pbDisplay(_INTL("The {1} ensured {2}'s additional effect!", getItemName(:LUCKHERB), move.name))
-        end
         # Mystic tribe
         if hasTribeBonus?(:MYSTIC) && user.lastRoundMoveCategory == 2 && move.damagingMove? # Status
             @battle.pbShowTribeSplash(user,:MYSTIC)
@@ -973,6 +966,13 @@ user.pbThis))
                 if @battle.pbRandom(100) < chance && move.canApplyRandomAddedEffects?(user,b,true)
                     move.pbAdditionalEffect(user, b)
                 end
+            end
+            # Additional effect ensuring Herb consume animation/message
+            if effectActive?(:LuckHerbConsumed) && hitNum == 0
+                # NOTE: The consume animation and message for Herbs are shown now, but the
+                #       actual removal of the item happens in def pbEffectsAfterMove.
+                @battle.pbCommonAnimation("UseItem", user)
+                @battle.pbDisplay(_INTL("The {1} ensured {2}'s additional effect!", getItemName(:LUCKHERB), move.name))
             end
         end
         # Make the target flinch (because of an item/ability)
