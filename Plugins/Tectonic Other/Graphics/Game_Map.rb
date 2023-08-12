@@ -496,6 +496,7 @@ class Game_Map
         # Tiles
         for i in [2, 1, 0]
             tile_id = data[x, y, i]
+            next unless tile_id
             terrain = GameData::TerrainTag.try_get(@terrain_tags[tile_id])
             return true if terrain.slows
         end
@@ -530,6 +531,7 @@ class Game_Map
         if valid?(x, y)
             for i in [2, 1, 0]
                 tile_id = data[x, y, i]
+                next unless tile_id
                 terrain = GameData::TerrainTag.try_get(@terrain_tags[tile_id])
                 next unless terrain.push_direction
                 next if !countBridge && terrain.bridge && $PokemonGlobal.bridge == 0
@@ -543,6 +545,7 @@ class Game_Map
         if valid?(x, y)
             for i in [2, 1, 0]
                 tile_id = data[x, y, i]
+                next unless tile_id
                 terrain = GameData::TerrainTag.try_get(@terrain_tags[tile_id])
                 next unless terrain.encounter_tile
                 next if !countBridge && terrain.bridge && $PokemonGlobal.bridge == 0
