@@ -156,6 +156,7 @@ module GameData
           # Moves that start focussing at the start of the round
           "115",   # Focus Punch
           "171",   # Shell Trap
+          "12B",   # Masquerblade
           "172",   # Beak Blast
           # Counter moves
           "071",   # Counter

@@ -57,6 +57,7 @@ module GameData
         # and that battler leaves the battlefield, disable the effects in the array stored in disable_effecs_on_exit
         # Only used for :Position type effects
         attr_reader :disable_effects_on_other_exit
+        attr_reader :deep_teeth # However, don't do the above if the user has the ability Deep Teeth
 
         attr_reader :protection_info
 
@@ -78,6 +79,11 @@ module GameData
         # Mean Look, etc.
         def trapping?
             return @trapping
+        end
+
+        # The effects that track the applyer of trapping
+        def deep_teeth?
+            return @deep_teeth
         end
 
         # Focus Energy, etc.
@@ -234,6 +240,7 @@ module GameData
             @others_lose_track = hash[:others_lose_track] || false
 
             @disable_effects_on_other_exit = hash[:disable_effects_on_other_exit] || []
+            @deep_teeth     = hash[:deep_teeth] || false
             @sub_effects	= hash[:sub_effects] || []
 
             @protection_effect	= hash[:protection_effect] || false

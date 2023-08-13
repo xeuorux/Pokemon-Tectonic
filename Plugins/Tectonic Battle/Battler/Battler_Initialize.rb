@@ -136,8 +136,9 @@ class PokeBattle_Battler
     end
 
     def pbInitialize(pkmn, idxParty, batonPass = false)
+        deepTeeth = hasActiveAbility?(:DEEPTEETH,true)
         pbInitPokemon(pkmn, idxParty)
-        pbInitEffects(batonPass)
+        pbInitEffects(batonPass, deepTeeth)
         @damageState.reset
     end
 
@@ -149,7 +150,7 @@ class PokeBattle_Battler
         @damageState.reset
     end
 
-    def pbInitEffects(batonPass)
+    def pbInitEffects(batonPass = false, deepTeeth = false)
         # Dragon ride ends
         if effectActive?(:GivingDragonRideTo)
             getBattlerPointsTo(:GivingDragonRideTo).disableEffect(:OnDragonRide)
@@ -177,6 +178,7 @@ class PokeBattle_Battler
             b.eachEffect(true) do |_effect, value, data|
                 next if data.type != :Position
                 next if value != @index
+                next if data.deep_teeth?
                 data.disable_effects_on_other_exit.each do |effectToDisable|
                     echoln("[BATTLER EFFECT] Effect #{effectToDisable} is disabled on #{b.name} due to #{name} (#{@index}) exiting")
                     b.disableEffect(effectToDisable)

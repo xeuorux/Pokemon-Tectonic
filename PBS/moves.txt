@@ -178,7 +178,7 @@
 177,VCREATE,V-create,03D,180,FIRE,Physical,100,5,0,NearOther,0,CanProtect;CanMirrorMove,"With a fiery forehead, the user hurls itself at the foe. Lowers the user's Defense, Sp. Def, and Speed by two steps each.",
 178,ERUPTION,Eruption,08B,1,FIRE,Special,100,5,0,AllNearFoes,0,CanProtect;CanMirrorMove,"The user attacks in an explosive fury. The lower the user's HP, the less powerful this attack becomes.",
 179,MINDBLOWN,Mind Blown,170,150,FIRE,Special,100,5,0,AllNearOthers,0,CanProtect;CanMirrorMove,"The user attacks everything by causing its own head to explode. This also damages the user.",
-180,SHELLTRAP,Shell Trap,171,150,FIRE,Special,100,5,0,AllNearFoes,-3,CanProtect,"The user sets a shell trap. If it is hit by a physical move, the trap explodes and hurt the attacker.",
+180,SHELLTRAP,Shell Trap,171,150,FIRE,Special,100,5,0,AllNearFoes,-3,CanProtect,"The user sets a shell trap. If it is hit by a physical move, the trap explodes and hurts all near foes.",
 181,BLUEFLARE,Blue Flare,00A,130,FIRE,Special,80,5,30,NearOther,0,CanProtect;CanMirrorMove,"The user attacks by engulfing the foe in a beautiful, yet intense, blue flame. It has a 30% chance to burn.",
 182,BURNUP,Burn Up,162,130,FIRE,Special,100,5,0,NearOther,0,CanProtect;CanMirrorMove,"To inflict massive damage, the user uses up its Fire-typing.",
 183,OVERHEAT,Overheat,03F,130,FIRE,Special,100,5,0,NearOther,0,CanProtect;CanMirrorMove,"The user attacks the target at full power. Lowers the user's Sp. Atk by four steps.",

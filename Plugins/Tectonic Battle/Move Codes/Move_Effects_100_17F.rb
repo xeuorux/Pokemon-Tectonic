@@ -1081,15 +1081,48 @@ class PokeBattle_Move_12A < PokeBattle_Move
 end
 
 #===============================================================================
-# Not currently used.
+# Fails if user has not been hit by an opponent's special move this round.
+# (Masquerblade)
 #===============================================================================
 class PokeBattle_Move_12B < PokeBattle_Move
+    def pbDisplayChargeMessage(user)
+        user.applyEffect(:Masquerblade)
+    end
+
+    def pbDisplayUseMessage(user, targets)
+        super if user.tookSpecialHit
+    end
+
+    def pbMoveFailed?(user, _targets, show_message)
+        unless user.effectActive?(:Masquerblade)
+            @battle.pbDisplay(_INTL("But it failed, since the effect wore off somehow!")) if show_message
+            return true
+        end
+        unless user.tookSpecialHit
+            @battle.pbDisplay(_INTL("{1}'s hidden blade trap didn't work!", user.pbThis)) if show_message
+            return true
+        end
+        return false
+    end
+
+    def pbMoveFailedAI?(_user, targets)
+        targets.each do |target|
+            return false if target.hasSpecialAttack?
+        end
+        return true
+    end
 end
 
 #===============================================================================
-# Not currently used.
+# Spurs all allies to move immediately after. (Pride's Flame)
 #===============================================================================
 class PokeBattle_Move_12C < PokeBattle_Move
+    def pbEffectGeneral(user)
+        user.eachAlly do |b|
+            b.applyEffect(:MoveNext)
+            @battle.pbDisplay(_INTL("{1} is fired up!", b.pbThis))
+        end
+    end
 end
 
 #===============================================================================
@@ -2202,6 +2235,7 @@ class PokeBattle_Move_16B < PokeBattle_Move
         targetMove = @battle.choices[target.index][2]
         if targetMove && (targetMove.function == "115" ||   # Focus Punch
                           targetMove.function == "171" ||   # Shell Trap
+                          targetMove.function == "12B" ||   # Masquerblade
                           targetMove.function == "172")     # Beak Blast
             @battle.pbDisplay(_INTL("But it failed, since #{target.pbThis(true)} is focusing!")) if show_message
             return true
@@ -2428,11 +2462,11 @@ class PokeBattle_Move_171 < PokeBattle_Move
         return false
     end
 
-    def pbMoveFailedAI?(_user, _targets); return false; end
-
-    def getEffectScore(_user, target)
-        return -1000 unless target.hasPhysicalAttack?
-        return -30
+    def pbMoveFailedAI?(_user, targets)
+        targets.each do |target|
+            return false if target.hasSpecialAttack?
+        end
+        return true
     end
 end
 

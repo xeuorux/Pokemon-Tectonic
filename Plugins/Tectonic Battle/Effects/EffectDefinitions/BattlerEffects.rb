@@ -940,6 +940,16 @@ GameData::BattleEffect.register_effect(:Battler, {
 })
 
 GameData::BattleEffect.register_effect(:Battler, {
+    :id => :Masquerblade,
+    :real_name => "Masquerblade",
+    :resets_battlers_eot => true,
+    :apply_proc => proc do |battle, battler, _value|
+        battle.pbCommonAnimation("Masquerblade", battler)
+        battle.pbDisplay(_INTL("{1} concealed its blade!", battler.pbThis))
+    end,
+})
+
+GameData::BattleEffect.register_effect(:Battler, {
     :id => :SkyDrop,
     :real_name => "Sky Drop",
     :type => :Position,
@@ -1159,7 +1169,7 @@ GameData::BattleEffect.register_effect(:Battler, {
         end
         if battler.takesIndirectDamage?
             fraction = 1.0 / 8.0
-            fraction *= 2 if battler.getBattlerPointsTo(:TrappingUser).hasActiveItem?(:BINDINGBAND)
+            fraction *= 2 if battler.getBattlerPointsTo(:TrappingUser)&.hasActiveItem?(:BINDINGBAND)
             battle.pbDisplay(_INTL("{1} is hurt by {2}!", battler.pbThis, moveName))
             battler.applyFractionalDamage(fraction)
         end
@@ -1179,6 +1189,7 @@ GameData::BattleEffect.register_effect(:Battler, {
     :real_name => "Trapped By",
     :type => :Position,
     :disable_effects_on_other_exit => [:Trapping],
+    :deep_teeth => true,
 })
 
 GameData::BattleEffect.register_effect(:Battler, {
@@ -1334,6 +1345,7 @@ GameData::BattleEffect.register_effect(:Battler, {
     :type => :Position,
     :baton_passed => true,
     :disable_effects_on_other_exit => [:JawLock],
+    :deep_teeth => true,
 })
 
 GameData::BattleEffect.register_effect(:Battler, {
@@ -1366,6 +1378,7 @@ GameData::BattleEffect.register_effect(:Battler, {
     :real_name => "Octolocked By",
     :type => :Position,
     :disable_effects_on_other_exit => [:Octolock],
+    :deep_teeth => true,
 })
 
 GameData::BattleEffect.register_effect(:Battler, {

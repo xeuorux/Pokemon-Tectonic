@@ -1128,6 +1128,7 @@ class PokeBattle_Move_0AF < PokeBattle_Move
             # Moves that start focussing at the start of the round
             "115",   # Focus Punch
             "171",   # Shell Trap
+            "12B",   # Masquerblade
             "172",   # Beak Blast
             # Event moves that do nothing
             "133", # Hold Hands
@@ -1185,6 +1186,7 @@ class PokeBattle_Move_0B0 < PokeBattle_Move
             # Moves that start focussing at the start of the round
             "115",   # Focus Punch
             "171",   # Shell Trap
+            "12B",   # Masquerblade
             "172", # Beak Blast
         ]
     end
@@ -1332,6 +1334,7 @@ class PokeBattle_Move_0B4 < PokeBattle_Move
             # Moves that start focussing at the start of the round
             "115",   # Focus Punch
             "171",   # Shell Trap
+            "12B",   # Masquerblade
             "172", # Beak Blast
         ]
     end
@@ -1424,6 +1427,7 @@ class PokeBattle_Move_0B5 < PokeBattle_Move
             # Moves that start focussing at the start of the round
             "115",   # Focus Punch
             "171",   # Shell Trap
+            "12B",   # Masquerblade
             "172",   # Beak Blast
             # Event moves that do nothing
             "133", # Hold Hands
@@ -1731,6 +1735,10 @@ class PokeBattle_Move_0BC < PokeBattle_Move
         end
         if target.effectActive?(:ShellTrap)
             @battle.pbDisplay(_INTL("But it failed, since #{target.pbThis(true)} is setting a Shell Trap!")) if show_message
+            return true
+        end
+        if target.effectActive?(:Masquerblade)
+            @battle.pbDisplay(_INTL("But it failed, since #{target.pbThis(true)} is hiding a Masquerblade!")) if show_message
             return true
         end
         return true if pbMoveFailedAromaVeil?(user, target, show_message)
