@@ -177,3 +177,9 @@ BattleHandlers::SpeedCalcAbility.add(:RAMMINGSPEED,
       next mult * 2 if battler.effectActive?(:RammingSpeed)
   }
 )
+
+BattleHandlers::SpeedCalcAbility.add(:SLUGGISH,
+  proc { |ability, battler, mult|
+      next mult / 2.0
+  }
+)

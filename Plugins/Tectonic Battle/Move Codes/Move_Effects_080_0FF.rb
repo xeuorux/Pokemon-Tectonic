@@ -238,29 +238,16 @@ end
 #===============================================================================
 # Powers up the ally's attack this round by making it crit. (Lucky Cheer)
 #===============================================================================
-class PokeBattle_Move_08A < PokeBattle_Move
-    def ignoresSubstitute?(_user); return true; end
-
-    def hitsInvulnerable?; return true; end
-
-    def pbFailsAgainstTarget?(_user, target, show_message)
-        if target.fainted?
-            @battle.pbDisplay(_INTL("But it failed, since the receiver of the cheer is gone!")) if show_message
-            return true
-        end
-        if target.effectActive?(:LuckyCheer)
-            @battle.pbDisplay(_INTL("But it failed, since #{arget.pbThis(true)} is already being cheered!")) if show_message
-            return true
-        end
-        return true if pbMoveFailedTargetAlreadyMoved?(target, show_message)
-        return false
+class PokeBattle_Move_08A < PokeBattle_HelpingMove
+    def initialize(battle, move)
+        super
+        @helpingEffect = :LuckyCheer
     end
 
-    def pbFailsAgainstTargetAI?(_user, _target); return false; end
-
-    def pbEffectAgainstTarget(user, target)
-        target.applyEffect(:LuckyCheer)
-        @battle.pbDisplay(_INTL("{1} is ready to cheer on {2}!", user.pbThis, target.pbThis(true)))
+    def getEffectScore(user, target)
+        score = super
+        score *= 1.3
+        return score
     end
 end
 
@@ -680,29 +667,10 @@ end
 #===============================================================================
 # Powers up the ally's attack this round by 1.5. (Helping Hand)
 #===============================================================================
-class PokeBattle_Move_09C < PokeBattle_Move
-    def ignoresSubstitute?(_user); return true; end
-
-    def hitsInvulnerable?; return true; end
-
-    def pbFailsAgainstTarget?(_user, target, show_message)
-        if target.fainted?
-            @battle.pbDisplay(_INTL("But it failed, since the receiver of the help is gone!")) if show_message
-            return true
-        end
-        if target.effectActive?(:HelpingHand)
-            @battle.pbDisplay(_INTL("But it failed, since #{arget.pbThis(true)} is already being helped!")) if show_message
-            return true
-        end
-        return true if pbMoveFailedTargetAlreadyMoved?(target, show_message)
-        return false
-    end
-
-    def pbFailsAgainstTargetAI?(_user, _target); return false; end
-
-    def pbEffectAgainstTarget(user, target)
-        target.applyEffect(:HelpingHand)
-        @battle.pbDisplay(_INTL("{1} is ready to help {2}!", user.pbThis, target.pbThis(true)))
+class PokeBattle_Move_09C < PokeBattle_HelpingMove
+    def initialize(battle, move)
+        super
+        @helpingEffect = :HelpingHand
     end
 end
 
@@ -1127,10 +1095,8 @@ class PokeBattle_Move_0AF < PokeBattle_Move
     def initialize(battle, move)
         super
         @moveBlacklist = [
-            # Struggle, Chatter, Belch
+            # Struggle
             "002",   # Struggle
-            "014",   # Chatter
-            "158",   # Belch                               # Not listed on Bulbapedia
             # Moves that affect the moveset
             "05C",   # Mimic
             "05D",   # Sketch
@@ -1138,36 +1104,22 @@ class PokeBattle_Move_0AF < PokeBattle_Move
             # Counter moves
             "071",   # Counter
             "072",   # Mirror Coat
-            "073",   # Metal Burst                         # Not listed on Bulbapedia
-            # Helping Hand, Feint (always blacklisted together, don't know why)
-            "09C",   # Helping Hand
-            "08A",   # Lucky Cheer
-            "0AD",   # Feint
-            # Protection moves
-            "0AA",   # Detect, Protect
-            "0AB",   # Quick Guard                         # Not listed on Bulbapedia
-            "0AC",   # Wide Guard                          # Not listed on Bulbapedia
-            "0E8",   # Endure
-            "149",   # Mat Block
-            "14A",   # Crafty Shield                       # Not listed on Bulbapedia
-            "14B",   # King's Shield
-            "14C",   # Spiky Shield
-            "168",   # Baneful Bunker
+            "073",   # Metal Burst
             # Moves that call other moves
             "0AE",   # Mirror Move
-            "0AF",   # Copycat (this move)
+            "0AF",   # Copycat
             "0B0",   # Me First
-            "0B3",   # Nature Power                        # Not listed on Bulbapedia
+            "0B3",   # Nature Power
             "0B4",   # Sleep Talk
             "0B5",   # Assist
             "0B6",   # Metronome
             # Move-redirecting and stealing moves
-            "0B1",   # Magic Coat                          # Not listed on Bulbapedia
+            "0B1",   # Magic Coat
             "0B2",   # Snatch
             "117",   # Follow Me, Rage Powder
             "16A",   # Spotlight
             # Set up effects that trigger upon KO
-            "0E6",   # Grudge                              # Not listed on Bulbapedia
+            "0E6",   # Grudge
             "0E7",   # Destiny Bond
             # Held item-moving moves
             "0F1",   # Covet, Thief
@@ -1193,8 +1145,10 @@ class PokeBattle_Move_0AF < PokeBattle_Move
             @battle.pbDisplay(_INTL("But it failed, since there was no move to copy!")) if show_message
             return true
         end
-        if @moveBlacklist.include?(GameData::Move.get(@copied_move).function_code) || 
-                @battle.getBattleMoveInstanceFromID(@copied_move).forceSwitchMove?
+        moveObject = @battle.getBattleMoveInstanceFromID(@copied_move)
+        if      @moveBlacklist.include?(GameData::Move.get(@copied_move).function_code) || 
+                moveObject.forceSwitchMove? ||
+                moveObject.is_a?(PokeBattle_HelpingMove)
             @battle.pbDisplay(_INTL("But it failed, since the last used move can't be copied!")) if show_message
             return true
         end
@@ -1222,10 +1176,8 @@ class PokeBattle_Move_0B0 < PokeBattle_Move
         super
         @moveBlacklist = [
             "0F1", # Covet, Thief
-            # Struggle, Chatter, Belch
+            # Struggle
             "002",   # Struggle
-            "014",   # Chatter
-            "158",   # Belch
             # Counter moves
             "071",   # Counter
             "072",   # Mirror Coat
@@ -1364,12 +1316,8 @@ class PokeBattle_Move_0B4 < PokeBattle_Move
     def initialize(battle, move)
         super
         @moveBlacklist = [
-            "0D1",   # Uproar
-            "0D4",   # Bide
-            # Struggle, Chatter, Belch
-            "002",   # Struggle                            # Not listed on Bulbapedia
-            "014",   # Chatter                             # Not listed on Bulbapedia
-            "158",   # Belch
+            # Struggle
+            "002",   # Struggle
             # Moves that affect the moveset (except Transform)
             "05C",   # Mimic
             "05D",   # Sketch
@@ -1377,27 +1325,10 @@ class PokeBattle_Move_0B4 < PokeBattle_Move
             "0AE",   # Mirror Move
             "0AF",   # Copycat
             "0B0",   # Me First
-            "0B3",   # Nature Power                        # Not listed on Bulbapedia
+            "0B3",   # Nature Power
             "0B4",   # Sleep Talk
             "0B5",   # Assist
             "0B6",   # Metronome
-            # Two-turn attacks
-            "0C3",   # Razor Wind
-            "0C4",   # Solar Beam
-            "0E6",   # Storm Drive
-            "0C5",   # Freeze Shock
-            "0C6",   # Ice Burn
-            "0C7",   # Sky Attack
-            "0C8",   # Skull Bash
-            "0C9",   # Fly
-            "0CA",   # Dig
-            "0CB",   # Dive
-            "0CC",   # Bounce
-            "0CD",   # Shadow Force
-            "0CE",   # Sky Drop
-            "12E",   # Shadow Half
-            "14D",   # Phantom Force
-            "14E",   # Geomancy
             # Moves that start focussing at the start of the round
             "115",   # Focus Punch
             "171",   # Shell Trap
@@ -1409,6 +1340,7 @@ class PokeBattle_Move_0B4 < PokeBattle_Move
         sleepTalkMoves = []
         user.eachMoveWithIndex do |m, i|
             next if @moveBlacklist.include?(m.function)
+            next if m.is_a?(PokeBattle_TwoTurnMove)
             next unless @battle.pbCanChooseMove?(user.index, i, false, true)
             sleepTalkMoves.push(i)
         end
@@ -1449,10 +1381,8 @@ class PokeBattle_Move_0B5 < PokeBattle_Move
     def initialize(battle, move)
         super
         @moveBlacklist = [
-            # Struggle, Chatter, Belch
+            # Struggle
             "002",   # Struggle
-            "014",   # Chatter
-            "158",   # Belch
             # Moves that affect the moveset
             "05C",   # Mimic
             "05D",   # Sketch
@@ -1460,18 +1390,14 @@ class PokeBattle_Move_0B5 < PokeBattle_Move
             # Counter moves
             "071",   # Counter
             "072",   # Mirror Coat
-            "073",   # Metal Burst                         # Not listed on Bulbapedia
-            # Helping Hand, Feint (always blacklisted together, don't know why)
-            "09C",   # Helping Hand
-            "08A",   # Lucky Cheer
-            "0AD",   # Feint
+            "073",   # Metal Burst
             # Protection moves
             "0AA",   # Detect, Protect
-            "0AB",   # Quick Guard                         # Not listed on Bulbapedia
-            "0AC",   # Wide Guard                          # Not listed on Bulbapedia
+            "0AB",   # Quick Guard
+            "0AC",   # Wide Guard
             "0E8",   # Endure
             "149",   # Mat Block
-            "14A",   # Crafty Shield                       # Not listed on Bulbapedia
+            "14A",   # Crafty Shield
             "14B",   # King's Shield
             "14C",   # Spiky Shield
             "168",   # Baneful Bunker
@@ -1479,17 +1405,17 @@ class PokeBattle_Move_0B5 < PokeBattle_Move
             "0AE",   # Mirror Move
             "0AF",   # Copycat
             "0B0",   # Me First
-            #       "0B3",   # Nature Power                                      # See below
+            "0B3",   # Nature Power
             "0B4",   # Sleep Talk
             "0B5",   # Assist
             "0B6",   # Metronome
             # Move-redirecting and stealing moves
-            "0B1",   # Magic Coat                          # Not listed on Bulbapedia
+            "0B1",   # Magic Coat
             "0B2",   # Snatch
             "117",   # Follow Me, Rage Powder
             "16A",   # Spotlight
             # Set up effects that trigger upon KO
-            "0E6",   # Grudge                              # Not listed on Bulbapedia
+            "0E6",   # Grudge
             "0E7",   # Destiny Bond
             # Held item-moving moves
             "0F1",   # Covet, Thief
@@ -1518,6 +1444,7 @@ class PokeBattle_Move_0B5 < PokeBattle_Move
                 battleMoveInstance = @battle.getBattleMoveInstanceFromID(move.id)
                 next if battleMoveInstance.forceSwitchMove?
                 next if battleMoveInstance.is_a?(PokeBattle_TwoTurnMove)
+                next if battleMoveInstance.is_a?(PokeBattle_HelpingMove)
                 assistMoves.push(move.id)
             end
         end
@@ -1553,8 +1480,6 @@ class PokeBattle_Move_0B6 < PokeBattle_Move
             "011",   # Snore
             "11D",   # After You
             "11E",   # Quash
-            "09C",   # Helping Hand
-            "08A",   # Lucky Cheer
             # Move-redirecting and stealing moves
             "0B1",   # Magic Coat
             "0B2",   # Snatch
@@ -1580,7 +1505,9 @@ class PokeBattle_Move_0B6 < PokeBattle_Move
             next if move_data.type == :SHADOW
             next if @moveBlacklist.include?(move_data.function_code)
             next if move_data.empoweredMove?
-            next if @battle.getBattleMoveInstanceFromID(move_id).is_a?(PokeBattle_ProtectMove)
+            moveObject = @battle.getBattleMoveInstanceFromID(move_id)
+            next if moveObject.is_a?(PokeBattle_ProtectMove)
+            next if moveObject.is_a?(PokeBattle_HelpingMove)
             @metronomeMoves.push(move_data.id)
         end
     end
@@ -1663,44 +1590,27 @@ end
 class PokeBattle_Move_0B9 < PokeBattle_Move
     def ignoresSubstitute?(_user); return true; end
 
+    def initialize(battle, move)
+        super
+        @disableTurns = 4
+    end
+
     def pbFailsAgainstTarget?(user, target, show_message)
-        if target.effectActive?(:Disable)
-            if show_message
-                @battle.pbDisplay(_INTL("But it failed, since #{target.pbThis(true)} already has a move disabled!"))
-            end
-            return true
-        end
-        unless target.lastRegularMoveUsed
-            if show_message
-                @battle.pbDisplay(_INTL("But it failed, since #{target.pbThis(true)} hasn't used a move yet!"))
-            end
-            return true
-        end
-        return true if pbMoveFailedAromaVeil?(user, target, show_message)
-        canDisable = false
-        target.eachMove do |m|
-            next if m.id != target.lastRegularMoveUsed
-            next if m.pp == 0 && m.total_pp > 0
-            canDisable = true
-            break
-        end
-        unless canDisable
-            if show_message
-                @battle.pbDisplay(_INTL("But it failed, since #{target.pbThis(true)}'s last used move has no more PP!"))
-            end
+        unless target.canBeDisabled?(true, self)
+            @battle.pbDisplay(_INTL("But it failed, since the target can't be disabled!")) if show_message
             return true
         end
         return false
     end
 
     def pbEffectAgainstTarget(_user, target)
-        target.applyEffect(:Disable, 5)
+        target.applyEffect(:Disable, @disableTurns)
     end
 
     def getTargetAffectingEffectScore(_user, target)
         return 0 if target.hasActiveAbilityAI?(:MENTALBLOCK)
-        score = 70
-        score += 30 if @battle.pbIsTrapped?(target.index)
+        score = 15 * @disableTurns
+        score *= 1.5 if @battle.pbIsTrapped?(target.index)
         return score
     end
 end
@@ -1978,18 +1888,23 @@ end
 # Two turn attack. Attacks first turn, skips second turn (if successful).
 #===============================================================================
 class PokeBattle_Move_0C2 < PokeBattle_Move
+    def initialize(battle, move)
+        super
+        @exhaustionTracker = :HyperBeam
+    end
+
     def pbEffectGeneral(user)
         if user.hasActiveItem?(:ENERGYHERB)
             @battle.pbCommonAnimation("UseItem", user)
             @battle.pbDisplay(_INTL("{1} skipped exhaustion due to its Energy Herb!", user.pbThis))
             user.consumeItem(:ENERGYHERB)
         else
-            user.applyEffect(:HyperBeam, 2)
+            user.applyEffect(@exhaustionTracker, 2)
         end
     end
 
     def getEffectScore(user, _target)
-        return -40 unless user.hasActiveItem?(:ENERGYHERB)
+        return -70 unless user.hasActiveItem?(:ENERGYHERB)
         return 0
     end
 end

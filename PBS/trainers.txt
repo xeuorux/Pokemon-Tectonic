@@ -1557,7 +1557,7 @@ Pokemon = RILLABOOM,42
     Item = AMWIBERRY
 Pokemon = JELLICENT,42
     Gender = male
-    AbilityIndex = 1 # Sealing Body
+    AbilityIndex = 1 # Sentry
 Pokemon = GSTUNFISK,41
     AbilityIndex = 1 # Deterrent
     Item = SITRUSBERRY
@@ -3430,7 +3430,7 @@ Pokemon = RHYPERIOR,57
 #-------------------------------
 [SWIMMER_F6,Kiana]
 Pokemon = JELLICENT,58
-    AbilityIndex = 1 # Sealing Body
+    AbilityIndex = 1 # Sentry
     Item = SITRUSBERRY
 Pokemon = DIGNIPHITE,59
     AbilityIndex = 0 # Robust

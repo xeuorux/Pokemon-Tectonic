@@ -443,3 +443,4 @@
 1442,TEAMPLAYER,Team Player,"Deals 25% more move damage for each ally in battle."
 1443,STUPEFYING,Stupefying,"Ignores Abilities that would affect its moves. Dizzies opponents that it hits below half health."
 1444,MUPROTOCOL,MU Protocol,"Immune to the type of the memory disc it holds."
+1445,SLUGGISH,Sluggish,"The Pokémon is also Bug-type, but its Speed is halved."

@@ -256,6 +256,15 @@ class PokeBattle_Move
                     multipliers[:final_damage_multiplier] *= 0.5
                 end
             end
+
+            # Polarized Field
+            if baseDamage >= 100 && target.pbOwnSide.effectActive?(:PolarizedField)
+                if @battle.pbSideBattlerCount(target) > 1
+                    multipliers[:final_damage_multiplier] *= 2 / 3.0
+                else
+                    multipliers[:final_damage_multiplier] *= 0.5
+                end
+            end
         end
         # Partial protection moves
         if target.effectActive?([:StunningCurl,:RootShelter,:VenomGuard])
@@ -417,6 +426,10 @@ class PokeBattle_Move
             end
             # Helping Hand
             if user.effectActive?(:HelpingHand) && !self.is_a?(PokeBattle_Confusion)
+                multipliers[:base_damage_multiplier] *= 1.5
+            end
+            # Helping Hand
+            if user.effectActive?(:Spotting) && !self.is_a?(PokeBattle_Confusion)
                 multipliers[:base_damage_multiplier] *= 1.5
             end
             # Shimmering Heat

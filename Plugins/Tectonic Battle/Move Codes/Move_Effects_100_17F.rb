@@ -1054,9 +1054,30 @@ class PokeBattle_Move_129 < PokeBattle_PartyAttackMove
 end
 
 #===============================================================================
-# Not currently used.
+# For 5 rounds, lowers power of attacks with 100+ BP against the user's side. (Polarized Field)
 #===============================================================================
 class PokeBattle_Move_12A < PokeBattle_Move
+    def pbMoveFailed?(user, _targets, show_message)
+        if user.pbOwnSide.effectActive?(:PolarizedField)
+            @battle.pbDisplay(_INTL("But it failed, since Polarized Field is already active!")) if show_message
+            return true
+        end
+        return false
+    end
+
+    def pbEffectGeneral(user)
+        user.pbOwnSide.applyEffect(:PolarizedField, user.getScreenDuration)
+    end
+
+    def getEffectScore(user, _target)
+        score = 0
+        user.eachOpposing do |b|
+            score += 40 if b.hasDamagingAttack?
+        end
+        score += 15 * user.getScreenDuration
+        score = (score * 1.3).ceil if user.fullHealth?
+        return score
+    end
 end
 
 #===============================================================================

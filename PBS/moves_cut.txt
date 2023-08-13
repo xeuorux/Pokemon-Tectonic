@@ -164,3 +164,4 @@
 4163,AURAWHEEL,Aura Wheel,176,100,ELECTRIC,Physical,100,10,10,NearOther,0,CanProtect;CanMirrorMove,"Type changes depending on the user's form. It has a 10% chance to numb.",
 4164,TRIPLEKICK,Triple Kick,0BF,20,FIGHTING,Physical,100,10,0,NearOther,0,CanProtect;CanMirrorMove,"A consecutive three-kick attack that becomes more powerful with each successive hit.",
 4165,TRIPLEAXEL,Triple Axel,0BF,20,ICE,Physical,100,10,0,NearOther,0,CanProtect;CanMirrorMove,"A consecutive three-kick attack that becomes more powerful with each successful hit.",
+4166,AIRCUTTER,Air Cutter,000,60,FLYING,Special,100,20,0,AllNearFoes,0,CanProtect;CanMirrorMove;HighCriticalHitRate;Blade;Wind,"The user launches razor-like wind to slash the opposing team. Critical hits twice as often.",

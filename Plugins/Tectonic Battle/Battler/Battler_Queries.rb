@@ -645,6 +645,7 @@ class PokeBattle_Battler
 
     def canActThisTurn?
         return false if effectActive?(:HyperBeam)
+        return false if effectActive?(:Attached)
         return false if effectActive?(:Truant)
         return true
     end

@@ -186,6 +186,7 @@ class PokeBattle_Move
         # Other effects, inc. ones that set accuracy_multiplier or evasion_step to
         # specific values
         modifiers[:accuracy_multiplier] *= 2.0 if @battle.field.effectActive?(:Gravity)
+        modifiers[:accuracy_multiplier] *= 1.5 if user.effectActive?(:Spotting)
 
         modifiers[:evasion_step] = 0 if target.effectActive?(:Foresight) && modifiers[:evasion_step] > 0
         modifiers[:evasion_step] = 0 if target.effectActive?(:MiracleEye) && modifiers[:evasion_step] > 0

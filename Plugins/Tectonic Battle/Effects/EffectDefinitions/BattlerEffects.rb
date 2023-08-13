@@ -432,6 +432,12 @@ GameData::BattleEffect.register_effect(:Battler, {
 })
 
 GameData::BattleEffect.register_effect(:Battler, {
+    :id => :Spotting,
+    :real_name => "Spotting",
+    :resets_eor	=> true,
+})
+
+GameData::BattleEffect.register_effect(:Battler, {
     :id => :HyperBeam,
     :real_name => "Recharging",
     :type => :Integer,
@@ -440,6 +446,25 @@ GameData::BattleEffect.register_effect(:Battler, {
     :apply_proc => proc do |_battle, battler, _value|
         battler.currentMove = battler.lastMoveUsed
     end,
+})
+
+GameData::BattleEffect.register_effect(:Battler, {
+    :id => :Attached,
+    :real_name => "Attached",
+    :type => :Integer,
+    :ticks_down => true,
+    :multi_turn_tracker => true,
+    :apply_proc => proc do |_battle, battler, _value|
+        battler.currentMove = battler.lastMoveUsed
+    end,
+    :sub_effects => [:AttachedTo],
+})
+
+GameData::BattleEffect.register_effect(:Battler, {
+    :id => :AttachedTo,
+    :real_name => "Attached To",
+    :type => :Position,
+    :sub_effects => [:Attached],
 })
 
 GameData::BattleEffect.register_effect(:Battler, {

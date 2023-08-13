@@ -1407,14 +1407,13 @@ class PokeBattle_Move_05C < PokeBattle_Move
     def initialize(battle, move)
         super
         @moveBlacklist = [
-            "014", # Chatter
             "0B6", # Metronome
             # Struggle
             "002", # Struggle
             # Moves that affect the moveset
             "05C",   # Mimic
             "05D",   # Sketch
-            "069", # Transform
+            "069",   # Transform
         ]
     end
 
@@ -1468,9 +1467,7 @@ class PokeBattle_Move_05D < PokeBattle_Move
     def initialize(battle, move)
         super
         @moveBlacklist = [
-            "014", # Chatter
             "05D", # Sketch (this move)
-            # Struggle
             "002", # Struggle
         ]
     end

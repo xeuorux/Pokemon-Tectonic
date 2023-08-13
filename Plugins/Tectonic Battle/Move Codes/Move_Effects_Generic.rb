@@ -1329,3 +1329,37 @@ class PokeBattle_ForetoldMove < PokeBattle_Move
         return score
     end
 end
+
+# Each subclass must have an initialization method that defines the @helpingEffect variable
+class PokeBattle_HelpingMove
+    def ignoresSubstitute?(_user); return true; end
+
+    def hitsInvulnerable?; return true; end
+
+    def pbFailsAgainstTarget?(_user, target, show_message)
+        if target.fainted?
+            @battle.pbDisplay(_INTL("But it failed, since the receiver of the help is gone!")) if show_message
+            return true
+        end
+        if target.effectActive?(@helpingEffect)
+            @battle.pbDisplay(_INTL("But it failed, since #{arget.pbThis(true)} is already being helped!")) if show_message
+            return true
+        end
+        return true if pbMoveFailedTargetAlreadyMoved?(target, show_message)
+        return false
+    end
+
+    def pbFailsAgainstTargetAI?(_user, _target); return false; end
+
+    def pbEffectAgainstTarget(user, target)
+        target.applyEffect(@helpingEffect)
+        @battle.pbDisplay(_INTL("{1} is ready to help {2}!", user.pbThis, target.pbThis(true)))
+    end
+
+    def getEffectScore(user, target)
+        return 0 unless target.hasDamagingAttack?
+        score = 50
+        score *= 2 if target.pbSpeed > user.pbSpeed
+        return score
+    end
+end

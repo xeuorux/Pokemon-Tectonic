@@ -76,6 +76,24 @@ teamName))
     end,
 })
 
+GameData::BattleEffect.register_effect(:Side, {
+    :id => :PolarizedField,
+    :real_name => "Polarized Field",
+    :type => :Integer,
+    :ticks_down => true,
+    :is_screen => true,
+    :apply_proc => proc do |battle, _side, teamName, value|
+        battle.pbDisplay(_INTL("{1} takes less damage from moves with 100+ base power! This will last for #{value - 1} more turns!",
+teamName))
+    end,
+    :disable_proc => proc do |battle, _side, teamName|
+        battle.pbDisplay(_INTL("{1}'s Polarized Field was broken!", teamName))
+    end,
+    :expire_proc => proc do |battle, _side, teamName|
+        battle.pbDisplay(_INTL("{1}'s Polarized Field wore off!", teamName))
+    end,
+})
+
 ##########################################
 # Misc. immunity effects
 ##########################################

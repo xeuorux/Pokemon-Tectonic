@@ -1362,69 +1362,10 @@ class PokeBattle_Move_5C1 < PokeBattle_Move
 end
 
 #===============================================================================
-# Uses the highest base-power move known by any non-user Pokémon in the user's party. (Optimized Action)
+# Uses the highest base-power attacking move known by any non-user Pokémon in the user's party. (Optimized Action)
 #===============================================================================
 class PokeBattle_Move_5C2 < PokeBattle_Move
     def callsAnotherMove?; return true; end
-
-    def initialize(battle, move)
-        super
-        @moveBlacklist = [
-            # Struggle
-            "002",   # Struggle
-            # Moves that affect the moveset
-            "05C",   # Mimic
-            "05D",   # Sketch
-            "069",   # Transform
-            # Counter moves
-            "071",   # Counter
-            "072",   # Mirror Coat
-            "073",   # Metal Burst                         # Not listed on Bulbapedia
-            # Helping Hand, Feint (always blacklisted together, don't know why)
-            "09C",   # Helping Hand
-            "08A",   # Lucky Cheer
-            "0AD",   # Feint
-            # Protection moves
-            "0AA",   # Detect, Protect
-            "0AB",   # Quick Guard                         # Not listed on Bulbapedia
-            "0AC",   # Wide Guard                          # Not listed on Bulbapedia
-            "0E8",   # Endure
-            "149",   # Mat Block
-            "14A",   # Crafty Shield                       # Not listed on Bulbapedia
-            "14B",   # King's Shield
-            "14C",   # Spiky Shield
-            "168",   # Baneful Bunker
-            # Moves that call other moves
-            "0AE",   # Mirror Move
-            "0AF",   # Copycat
-            "0B0",   # Me First
-            #       "0B3",   # Nature Power                                      # See below
-            "0B4",   # Sleep Talk
-            "0B5",   # Assist
-            "0B6",   # Metronome
-            # Move-redirecting and stealing moves
-            "0B1",   # Magic Coat                          # Not listed on Bulbapedia
-            "0B2",   # Snatch
-            "117",   # Follow Me, Rage Powder
-            "16A",   # Spotlight
-            # Set up effects that trigger upon KO
-            "0E6",   # Grudge                              # Not listed on Bulbapedia
-            "0E7",   # Destiny Bond
-            # Held item-moving moves
-            "0F1",   # Covet, Thief
-            "0F2",   # Switcheroo, Trick
-            "0F3",   # Bestow
-            # Moves that start focussing at the start of the round
-            "115",   # Focus Punch
-            "171",   # Shell Trap
-            "172",   # Beak Blast
-            # Event moves that do nothing
-            "133", # Hold Hands
-            "134", # Celebrate
-            # Moves that call other moves
-            "0B3", # Nature Power
-        ]
-    end
 
     def getOptimizedMove(user)
         optimizedMove = nil
@@ -1433,13 +1374,13 @@ class PokeBattle_Move_5C2 < PokeBattle_Move
             next if !pkmn || i == user.pokemonIndex
             next unless pkmn.able?
             pkmn.moves.each do |move|
-                next if @moveBlacklist.include?(move.function_code)
                 next if move.type == :SHADOW
                 next if move.category == 2
                 next unless move.base_damage > optimizedBP
                 battleMove = @battle.getBattleMoveInstanceFromID(move.id)
                 next if battleMove.forceSwitchMove?
                 next if battleMove.is_a?(PokeBattle_TwoTurnMove)
+                next if battleMove.is_a?(PokeBattle_HelpingMove)
                 optimizedMove = move.id
                 optimizedBP = move.base_damage
             end
@@ -1769,24 +1710,14 @@ class PokeBattle_Move_5CE < PokeBattle_TargetMultiStatUpMove
 end
 
 #===============================================================================
-# For 5 rounds, disables the last move the target used. Also, remove 4 PP from it. (Gem Seal)
+# For 5 rounds, disables the last move the target used. Also, remove 5 PP from it. (Gem Seal)
 #===============================================================================
-class PokeBattle_Move_5CF < PokeBattle_Move
-    def ignoresSubstitute?(_user); return true; end
-
-    def pbFailsAgainstTarget?(user, target, show_message)
-        unless target.canBeDisabled?(true, self)
-            @battle.pbDisplay(_INTL("But it failed, since the target can't be disabled!")) if show_message
-            return true
-        end
-        return false
-    end
-
+class PokeBattle_Move_5CF < PokeBattle_Move_0B9
     def pbEffectAgainstTarget(_user, target)
-        target.applyEffect(:Disable, 5)
+        super
         target.eachMove do |m|
             next if m.id != target.lastRegularMoveUsed
-            reduction = [4, m.pp].min
+            reduction = [5, m.pp].min
             target.pbSetPP(m, m.pp - reduction)
             @battle.pbDisplay(_INTL("It reduced the PP of {1}'s {2} by {3}!",
                target.pbThis(true), m.name, reduction))
@@ -1795,9 +1726,8 @@ class PokeBattle_Move_5CF < PokeBattle_Move
     end
 
     def getEffectScore(_user, target)
-        return 0 if target.hasActiveAbilityAI?(:MENTALBLOCK)
-        score = 90
-        score += 30 if @battle.pbIsTrapped?(target.index)
+        score = super
+        score += 10
         return score
     end
 end
@@ -2507,6 +2437,7 @@ class PokeBattle_Move_5FA < PokeBattle_NumbMove
         super
     end
 end
+
 #===============================================================================
 # Multi-hit move that can numb.
 #===============================================================================
@@ -2519,4 +2450,70 @@ end
 #===============================================================================
 class PokeBattle_Move_5FC < PokeBattle_DizzyMove
     include RandomHitable
+end
+
+#===============================================================================
+# For 4 rounds, disables the last move the target used. (Drown)
+# Then debuffs a stat based on what was disabled.
+#===============================================================================
+class PokeBattle_Move_5FD < PokeBattle_Move_0B9
+    def initialize(battle, move)
+        super
+        @disableTurns = 4
+    end
+
+    def pbEffectAgainstTarget(user, target)
+        super
+        statToLower = getDebuffingStat(target)
+        target.pbLowerStatStep(statToLower, 4, user) if target.pbCanLowerStatStep?(statToLower,user,self,true)
+    end
+
+    def getDebuffingStat(battler)
+        return :SPEED unless battler.lastRegularMoveUsed
+        case GameData::Move.get(battler.lastRegularMoveUsed).category
+        when 0
+            return :ATTACK
+        when 1
+            return :SPECIAL_ATTACK
+        when 2
+            return :SPEED
+        end
+    end
+
+    def getEffectScore(user, target)
+        score = super
+        score += getMultiStatDownEffectScore([getDebuffingStat(target),4],user,target)
+        return score
+    end
+end
+
+#===============================================================================
+# Two turn attack. Attacks first turn, skips second turn (if successful).
+# The second-turn skipping it removed if the target fains or switches out.
+#===============================================================================
+class PokeBattle_Move_5FE < PokeBattle_Move_0C2
+    def initialize(battle, move)
+        super
+        @exhaustionTracker = :Attached
+    end
+
+    def pbEffectAfterAllHits(user, target)
+        return if target.damageState.fainted
+        super
+        user.pointAt(:AttachedTo, target)
+    end
+end
+
+#===============================================================================
+# Powers up the ally's attack this round by boosting its damage and accuracy by 50%. (Spotting)
+#===============================================================================
+class PokeBattle_Move_5FF < PokeBattle_HelpingMove
+    def initialize(battle, move)
+        super
+        @helpingEffect = :Spotting
+    end
+
+    def getEffectScore(user, target)
+        score = super
+    end
 end

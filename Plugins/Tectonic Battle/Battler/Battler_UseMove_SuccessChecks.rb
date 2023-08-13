@@ -192,6 +192,10 @@ GameData::Move.get(@effects[:GorillaTactics]).name)
             @battle.pbDisplay(_INTL("{1} must recharge!", pbThis))
             return false
         end
+        if effectActive?(:AttachedTo)
+            @battle.pbDisplay(_INTL("{1} is still attached to {2}!", pbThis, getBattlerPointsTo(:AttachedTo).pbThis(true)))
+            return false
+        end
         if choice[1] == -2 # Battle Palace
             @battle.pbDisplay(_INTL("{1} appears incapable of using its power!", pbThis))
             return false

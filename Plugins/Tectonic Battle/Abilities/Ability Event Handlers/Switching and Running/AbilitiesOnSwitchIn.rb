@@ -861,6 +861,14 @@ BattleHandlers::AbilityOnSwitchIn.add(:RUSTYANCHOR,
   }
 )
 
+BattleHandlers::AbilityOnSwitchIn.add(:SLUGGISH,
+  proc { |ability, battler, battle|
+      battle.pbShowAbilitySplash(battler, ability)
+      battler.applyEffect(:Type3,:BUG)
+      battle.pbHideAbilitySplash(battler)
+  }
+)
+
 BattleHandlers::AbilityOnSwitchIn.add(:LEVITATE,
   proc { |ability, battler, battle|
       battle.pbShowAbilitySplash(battler, ability)

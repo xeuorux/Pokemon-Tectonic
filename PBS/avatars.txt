@@ -1,7 +1,7 @@
 ﻿# See the documentation on the wiki to learn how to edit this file.
 #-------------------------------
 [COMBEE]
-Ability = HONEYGATHER
+Ability = STRESSFUL
 Moves1 = HELPINGHAND
 Turns = 1
 HPMult = 2.0
@@ -113,7 +113,7 @@ Item = POWERHERB
 Form = 1
 #-------------------------------
 [DEOXYS]
-Ability = PRESSURE
+Ability = UNIDENTIFIED
 Moves1 = PSYCHIC,SPIKES
 HPMult = 12.0
 HealthBars = 3
@@ -493,7 +493,7 @@ Moves2 = RUIN,PSYSHOCK,EMPOWEREDFUTURESIGHT
 HPMult = 4.0
 #-------------------------------
 [MAGCARGO]
-Ability = IMPERVIOUS
+Ability = SLUGGISH
 Moves1 = LAVAPLUME,POWERGEM,REDHOTRETREAT,PRIMEVALCALMMIND
 Moves2 = INFERNO,PSYCHIC
 #-------------------------------
