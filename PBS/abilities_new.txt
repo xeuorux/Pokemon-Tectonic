@@ -394,7 +394,7 @@
 1393,MUTABLE,Mutable,"It changes type to that of the move it's about to use. This works only once each time the Pokémon enters battle."
 1394,SNORING,Snoring,"When hit while asleep, hits back instantly with Snore."
 1395,SHRIEKING,Shrieking,"Boosts power of sound-based moves by 50%."
-1396,ECCENTRIC,Eccentric,"If its stats would be changed, instead they’re changed half as much in the opposite direction (rounded up)."
+1396,ECCENTRIC,Eccentric,"If its stats would be changed, instead they are changed half as much in the opposite direction (rounded up)."
 1397,PERFECTLUCK,Perfect Luck,"Maximizes the frequency of multi-strike moves. Always deals critical hits."
 1398,FATCHANCE,Fat Chance,"Raises all of its stats whenever it gets a critical hit."
 1399,FUELHUNGRY,Fuel Hungry,"Boosts Attack by 30%, but lowers Attack by one step after using a physical move."
