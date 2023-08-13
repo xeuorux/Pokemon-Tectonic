@@ -1774,12 +1774,12 @@ class PokeBattle_Move_569 < PokeBattle_StatusSpikeMove
 end
 
 #===============================================================================
-# 50% more damage in hailstorm. (Leap Out.)
+# Debuff's target's attacking stats in hail. (Cold Shoulder)
 #===============================================================================
 class PokeBattle_Move_56A < PokeBattle_Move
-    def pbModifyDamage(damageMult, _user, _target)
-        damageMult *= 1.5 if @battle.icy?
-        return damageMult
+    def pbAdditionalEffect(user, target)
+        return if target.damageState.substitute
+        target.pbLowerMultipleStatSteps(ATTACKING_STATS_2, user, move: self) if @battle.icy?
     end
 end
 

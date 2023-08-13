@@ -120,9 +120,20 @@ class PokeBattle_Move_184 < PokeBattle_Move
 end
 
 #===============================================================================
-# (Not currently used)
+# This move is physical if user's Attack is higher than its Special Attack (Multi-Strike)
+# It hits between 2-5 times in a row.
 #===============================================================================
 class PokeBattle_Move_185 < PokeBattle_Move
+    include RandomHitable
+
+    def initialize(battle, move)
+        super
+        @calculated_category = 1
+    end
+
+    def calculateCategory(user, _targets)
+        return selectBestCategory(user)
+    end
 end
 
 #===============================================================================

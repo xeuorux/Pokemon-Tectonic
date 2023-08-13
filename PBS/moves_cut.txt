@@ -165,3 +165,5 @@
 4164,TRIPLEKICK,Triple Kick,0BF,20,FIGHTING,Physical,100,10,0,NearOther,0,CanProtect;CanMirrorMove,"A consecutive three-kick attack that becomes more powerful with each successive hit.",
 4165,TRIPLEAXEL,Triple Axel,0BF,20,ICE,Physical,100,10,0,NearOther,0,CanProtect;CanMirrorMove,"A consecutive three-kick attack that becomes more powerful with each successful hit.",
 4166,AIRCUTTER,Air Cutter,000,60,FLYING,Special,100,20,0,AllNearFoes,0,CanProtect;CanMirrorMove;HighCriticalHitRate;Blade;Wind,"The user launches razor-like wind to slash the opposing team. Critical hits twice as often.",
+4167,LEAPOUT,Leap Out,56A,50,GHOST,Physical,100,15,0,NearOther,1,CanProtect;CanMirrorMove,"The user attacks the target from a blind spot. Always goes first. Deals 50% more damage in a hailstorm.",
+4168,KALEIDOSCOPE,Kaleidoscope,401,60,FAIRY,Special,100,15,30,NearOther,0,CanProtect;CanMirrorMove,"The target is bombarded by crazy colors. There's a 30% chance it becomes dizzy.",DAZZLINGGLEAM

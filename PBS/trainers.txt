@@ -1168,7 +1168,7 @@ Extends = LEADER_Rafael,Rafael,0
 Pokemon = ORICORIO,30
     Item = MENTALHERB
 Pokemon = MISDREAVUS,30
-    Moves = HEX,KALEIDOSCOPE,SHIVER,CLEARSMOG
+    Moves = HEX,DANGERDITTY,SHIVER,CLEARSMOG
     AbilityIndex = 1 # Shrieking
     Item = LIFEORB
 Pokemon = BELLOSSOM,30
@@ -5174,7 +5174,7 @@ Pokemon = LUXRAY,70
 Pokemon = BASCULEGION,70
     Name = Brokenribs
     Gender = male
-    Moves = UNDYINGRUSH,CRASHDIVE,INFERNOCHARGE,LEAPOUT
+    Moves = UNDYINGRUSH,CRASHDIVE,INFERNOCHARGE,SHADOWSNEAK
     AbilityIndex = 1 # Adapted
     Item = SITRUSBERRY
 #-------------------------------
