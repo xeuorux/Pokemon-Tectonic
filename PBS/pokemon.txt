@@ -7105,8 +7105,8 @@ InternalName = MAGCARGO
 Type1 = FIRE
 Type2 = ROCK
 # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
-BaseStats = 80,50,130,30,130,80
-# Total = 500
+BaseStats = 80,60,130,30,130,80
+# Total = 510
 GenderRate = Female50Percent
 GrowthRate = Medium
 BaseEXP = 151
