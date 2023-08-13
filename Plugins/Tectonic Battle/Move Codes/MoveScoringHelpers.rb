@@ -594,18 +594,27 @@ def getHazardLikelihoodScore(battler,&block)
     }
 end
 
-def passingTurnEffectScore(battle,sideIndex = 1)
+def passingTurnSideEffectScore(battle,sideIndex = 1)
     score = 0
     battle.eachBattler do |b|
-        healthChange = predictedEOTHealing(battle,b)
-        healthChange -= predictedEOTDamage(battle,b)
-
-        healthPercentage = healthChange / b.totalhp.to_f
-        battlerScore = (healthPercentage * 100).ceil
+        battlerScore = passingTurnBattlerEffectScore(b,battle)
         battlerScore *= -1 if b.index % 2 != sideIndex
         score += battlerScore
     end
     return score
+end
+
+def passingTurnBattlerEffectScore(battler,battle)
+    healthChange,healthPercentageChange = passingTurnBattlerHealthChange(battler,battle)
+    return healthPercentageChange * 2
+end
+
+def passingTurnBattlerHealthChange(battler,battle)
+    healthChange = predictedEOTHealing(battle,battler)
+    healthChange -= predictedEOTDamage(battle,battler)
+
+    healthPercentageChange = healthChange * 100 / battler.totalhp
+    return healthChange,healthPercentageChange
 end
 
 def predictedEOTDamage(battle,battler)
@@ -624,6 +633,10 @@ def predictedEOTDamage(battle,battler)
 
     # Bad Dreams
     # Painful Presence
+    # Extreme Energy
+    # Extreme Power
+    # Solar Power
+    # Night Stalker
 
     # Sticky Barb
 

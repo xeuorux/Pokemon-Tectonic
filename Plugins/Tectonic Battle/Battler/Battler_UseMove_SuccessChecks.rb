@@ -384,7 +384,7 @@ animationName, show_message) do
     def targetTypeModImmune?(user, target, move, typeMod, showMessages = true, ai_check = false)
         # Type immunity
         if move.damagingMove?(ai_check) && Effectiveness.ineffective?(typeMod)
-            PBDebug.log("[Target immune] #{target.pbThis}'s type immunity")
+            PBDebug.log("[Target immune] #{target.pbThis}'s type immunity") unless ai_check
             if showMessages
                 @battle.pbDisplay(_INTL("It doesn't affect {1}...", target.pbThis(true)))
                 @battle.triggerImmunityDialogue(user, target, false)

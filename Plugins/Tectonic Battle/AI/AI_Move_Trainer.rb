@@ -50,7 +50,9 @@ class PokeBattle_AI
         choices = []
         user.eachAIKnownMoveWithIndex do |move, i|
             next unless @battle.pbCanChooseMove?(user, i, false)
-            newChoice = pbEvaluateMoveTrainer(user, move)
+            targets = []
+            targets.push(opposingBattler) if opposingBattler
+            newChoice = pbEvaluateMoveTrainer(user, move, targets)
             # Push a new array of [moveIndex,moveScore,targetIndex]
             # where targetIndex could be -1 for anything thats not single target
             choices.push([i].concat(newChoice)) if newChoice
@@ -82,18 +84,28 @@ class PokeBattle_AI
             end
             newChoice = [totalScore, -1] if totalScore > 0
         elsif target_data.num_targets == 0
-            # If move has no targets, affects the user, a side or the whole field
-            score = pbGetMoveScore(move, user, user, policies, 0)
-            newChoice = [score, -1] if score > 0
+            if targets.empty?
+                # If move has no targets, affects the user, a side or the whole field
+                score = pbGetMoveScore(move, user, user, policies, 0)
+                newChoice = [score, -1] if score > 0
+            end
         else
             # If move affects one battler and you have to choose which one
             scoresAndTargets = []
-            @battle.eachBattler do |b|
-                next unless targets.empty? || targets.include?(b)
-                next unless @battle.pbMoveCanTarget?(user.index, b.index, target_data)
-                next if target_data.targets_foe && !user.opposes?(b)
-                score = pbGetMoveScore(move, user, b, policies)
-                scoresAndTargets.push([score, b.index]) if score > 0
+            if targets.empty?
+                @battle.eachBattler do |b|
+                    next unless @battle.pbMoveCanTarget?(user.index, b.index, target_data)
+                    next if target_data.targets_foe && !user.opposes?(b)
+                    score = pbGetMoveScore(move, user, b, policies)
+                    scoresAndTargets.push([score, b.index]) if score > 0
+                end
+            else
+                targets.each do |b|
+                    next unless @battle.pbMoveCanTarget?(user.index, b.index, target_data)
+                    next if target_data.targets_foe && !user.opposes?(b)
+                    score = pbGetMoveScore(move, user, b, policies)
+                    scoresAndTargets.push([score, b.index]) if score > 0
+                end
             end
             if scoresAndTargets.length > 0
                 # Get the one best target for the move
@@ -290,23 +302,29 @@ class PokeBattle_AI
     # of the target's current HP)
     #=============================================================================
     def pbGetMoveScoreDamage(move, user, target, numTargets = 1)
-        damagePercentage = getDamagePercentageAI(move, user, target, numTargets)
-
-        damagePercentage *= 0.66 if target.allyHasRedirectionMove?
+        realDamage,damagePercentage = getDamageAnalysisAI(move, user, target, numTargets)
 
         # Adjust score
         willFaint = false
-        if damagePercentage >= 100 # Prefer lethal damage
-            damagePercentage = 150
+        if realDamage >= target.hp
+            damageScore = 250
             willFaint = true
+        else
+            # Only care about KO thresholds
+            if damagePercentage >= 50
+                damageScore = 150 + (damagePercentage - 50)
+            elsif damagePercentage >= 33
+                damageScore = 100 + (damagePercentage - 33)
+            else
+                damageScore = 50 + damagePercentage
+            end
         end
-
-        damageScore = (damagePercentage * 2.0).to_i
+        damageScore *= 0.66 if target.allyHasRedirectionMove?
 
         return damageScore, willFaint
     end
 
-    def getDamagePercentageAI(move, user, target, numTargets = 1)
+    def getDamageAnalysisAI(move, user, target, numTargets = 1)
         # Calculate how much damage the move will do (roughly)
         realDamage = pbTotalDamageAI(move, user, target, numTargets)
 
@@ -316,10 +334,17 @@ class PokeBattle_AI
         end
 
         # Convert damage to percentage of target's remaining HP
-        damagePercentage = realDamage * 100.0 / target.hp
+        damagePercentage = realDamage * 100.0 / target.totalhp
 
-        echoln("[MOVE SCORING] #{user.pbThis} thinks that move #{move.id} will deal #{realDamage} damage -- #{damagePercentage.round(1)} percent of #{target.pbThis(false)}'s HP")
+        if realDamage < target.hp
+            echoln("[MOVE SCORING] #{user.pbThis} thinks that move #{move.id} will deal #{realDamage} damage to #{target.pbThis(false)}, fainting it")
+        else
+            healthChange,eotDamagePercent = passingTurnBattlerHealthChange(target,@battle)
+            realDamage += healthChange
+            damagePercentage += eotDamagePercent
+            echoln("[MOVE SCORING] #{user.pbThis} thinks that move #{move.id} will deal #{realDamage} damage -- #{damagePercentage.round(1)} percent of #{target.pbThis(false)}'s HP. Additionally, the target's HP will change by #{eotDamagePercent} percent at the passing of the turn.")
+        end
 
-        return damagePercentage
+        return realDamage,damagePercentage
     end
 end

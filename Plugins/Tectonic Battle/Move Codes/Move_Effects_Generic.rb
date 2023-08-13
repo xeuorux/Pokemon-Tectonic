@@ -741,7 +741,7 @@ class PokeBattle_ProtectMove < PokeBattle_Move
             score += 30 if user.hasAlly?
         end
         score *= 2 if user.belowHalfHealth?
-        score += passingTurnEffectScore(@battle,user.pbOwnSide.index)
+        score += passingTurnSideEffectScore(@battle,user.pbOwnSide.index)
         return score
     end
 end
@@ -1331,7 +1331,7 @@ class PokeBattle_ForetoldMove < PokeBattle_Move
 end
 
 # Each subclass must have an initialization method that defines the @helpingEffect variable
-class PokeBattle_HelpingMove
+class PokeBattle_HelpingMove < PokeBattle_Move
     def ignoresSubstitute?(_user); return true; end
 
     def hitsInvulnerable?; return true; end

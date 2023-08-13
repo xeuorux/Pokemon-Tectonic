@@ -26,14 +26,14 @@ class PokeBattle_AI
         PBDebug.log("[AI SWITCH] #{battler.pbThis} (#{battler.index}) is determining whether it should switch out")
 
         # Defensive matchup
-        matchupRating = worstDefensiveMatchupAgainstActiveFoes(battler)
+        matchupRating = (0.5 * worstDefensiveMatchupAgainstActiveFoes(battler)).floor
         stayInRating += matchupRating
         PBDebug.log("[STAY-IN RATING] #{battler.pbThis} matchup rating: #{matchupRating.to_change}")
 
         # Value of its own moves
-        movesRating = switchRatingBestMoveScore(battler)
+        movesRating = (0.5 * switchRatingBestMoveScore(battler)).floor
         stayInRating += movesRating
-        PBDebug.log("[STAY-IN RATING] #{battler.pbThis} moves rating: #{movesRating.to_change}")
+        PBDebug.log("[STAY-IN RATING] #{battler.pbThis} moves rating is #{movesRating.to_change} based on highest move score #{}")
 
         stayInRating += miscStayInRatingModifiers(battler)
 
@@ -43,7 +43,7 @@ class PokeBattle_AI
         listSwapOutCandidates(battler, list)
 
         # Only considers swapping into pokemon whose rating would be at least a +30 upgrade
-        upgradeThreshold = 30
+        upgradeThreshold = 40
         upgradeThreshold -= 5 if owner.tribalBonus.hasTribeBonus?(:CHARMER)
         list.delete_if { |val| val[1] < stayInRating + upgradeThreshold }
 
@@ -162,11 +162,11 @@ class PokeBattle_AI
         # Only matters if the pokemon will live
         unless dieingOnEntry
             # Find the worst matchup against the current player battlers
-            matchupRating = worstDefensiveMatchupAgainstActiveFoes(fakeBattler)
+            matchupRating = (0.66 * worstDefensiveMatchupAgainstActiveFoes(fakeBattler)).floor
             switchScore += matchupRating
             echoln("[SWITCH SCORING] #{fakeBattler.pbThis} matchup rating: #{matchupRating.to_change}")
 
-            movesRating = switchRatingBestMoveScore(fakeBattler)
+            movesRating = (0.33 * switchRatingBestMoveScore(fakeBattler)).floor
             switchScore += movesRating
             echoln("[SWITCH SCORING] #{fakeBattler.pbThis} moves rating: #{movesRating.to_change}")
         end
@@ -295,7 +295,7 @@ class PokeBattle_AI
     # The battler passed in could be a real battler, or a fake one
     def worstDefensiveMatchupAgainstActiveFoes(battler)
         matchups = []
-        battler.eachOpposing do |opposingBattler|
+        battler.eachOpposing(true) do |opposingBattler|
             matchup = rateDefensiveMatchup(battler, opposingBattler)
             matchups.push(matchup)
         end
@@ -309,7 +309,7 @@ class PokeBattle_AI
     # The battler passed in could be a real battler, or a fake one
     def rateDefensiveMatchup(battler, opposingBattler)
         # How good are the opponent's moves against me?
-        matchupScore = switchRatingBestMoveScore(opposingBattler, battler)
+        matchupScore = -1 * switchRatingBestMoveScore(opposingBattler, battler)
 
         # Items
         if battler.hasActiveItem?(:REDCARD) && !opposingBattler.hasActiveItem?(:PROXYFIST)
@@ -320,6 +320,9 @@ class PokeBattle_AI
         if battler.hasActiveAbility?(%i[UNAWARE SMOKEINSINCT PERISHSONG CURIOUSMEDICINE DRIFTINGMIST])
             matchupScore += statStepsValueScore(battler)
         end
+
+        # Value of stalling
+        matchupScore += passingTurnBattlerEffectScore(battler,@battle)
 
         return matchupScore
     end
@@ -335,8 +338,16 @@ class PokeBattle_AI
         choices = pbGetBestTrainerMoveChoices(battler, opposingBattler)
 
         maxScore = 0
+        bestMove = nil
         choices.each do |c|
-            maxScore = c[1] if c[1] > maxScore
+            next unless c[1] > maxScore
+            maxScore = c[1]
+            bestMove = battler.moves[c[0]].id
+        end
+        if opposingBattler
+            echoln("[MOVES SCORING] #{battler.pbThis}'s best move against target #{opposingBattler.pbThis(true)} is #{bestMove} at score #{maxScore}")
+        else
+            echoln("[MOVES SCORING] #{battler.pbThis}'s best move is #{bestMove} at score #{maxScore}")
         end
         return maxScore
     end
