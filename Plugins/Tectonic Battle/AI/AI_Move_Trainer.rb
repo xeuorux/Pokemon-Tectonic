@@ -336,7 +336,7 @@ class PokeBattle_AI
         # Convert damage to percentage of target's remaining HP
         damagePercentage = realDamage * 100.0 / target.totalhp
 
-        if realDamage < target.hp
+        if realDamage >= target.hp
             echoln("[MOVE SCORING] #{user.pbThis} thinks that move #{move.id} will deal #{realDamage} damage to #{target.pbThis(false)}, fainting it")
         else
             healthChange,eotDamagePercent = passingTurnBattlerHealthChange(target,@battle)
