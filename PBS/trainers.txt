@@ -6265,3 +6265,73 @@ Pokemon = SNEASLER,70
     Moves = DIRECLAW,CLOSECOMBAT,ROCKSLIDE
     AbilityIndex = 1 # Frustrate
     Item = AIRBALLOON
+#-------------------------------
+[BIRDKEEPER_M2,Vlasta]
+Pokemon = HAWLUCHA,70
+    AbilityIndex = 1 # Unburden
+Pokemon = VILEPLUME,70
+    AbilityIndex = 1 # Adapted
+Pokemon = BOUFFALANT,70
+    AbilityIndex = 0 # Reckless
+Pokemon = EISCUE,70
+    AbilityIndex = 1 # Ice Face
+#-------------------------------
+[BIRDKEEPER_F,Danika]
+Pokemon = MMANDIBUZZ,70
+    AbilityIndex = 1 # Aggravate
+Pokemon = PYUKUMUKU,70
+    AbilityIndex = 0 # Innards Out
+    Item = BLACKHERB
+Pokemon = EMBOAR,70
+    AbilityIndex = 0 # Roast
+    Item = SITRUSBERRY
+Pokemon = DELIBIRD,70
+    AbilityIndex = 0 # Larder
+#-------------------------------
+[BUTLER,Sagan]
+Pokemon = MMUSHARNA,70
+    AbilityIndex = 0 # Dream Weaver
+    Item = DRAGONGEM
+Pokemon = BOLTUND,70
+    AbilityIndex = 0 # Strong Jaw
+Pokemon = PASSIMIAN,70
+    AbilityIndex = 0 # Receiver
+Pokemon = MUDSDALE,70
+    AbilityIndex = 1 # Stamina
+    Item = LEFTOVERS
+#-------------------------------
+[MAID,Wendy]
+Pokemon = FLAREON,70
+    AbilityIndex = 1 # Warmth Cycle
+Pokemon = MILTANK,70
+    AbilityIndex = 0 # Thick Fat
+    Item = ROCKYHELMET
+Pokemon = VANILLUXE,70
+    AbilityIndex = 0 # Adrenaline Rush
+Pokemon = DRIFBLIM,70
+    AbilityIndex = 0 # Unburden
+    Item = SITRUSBERRY
+#-------------------------------
+[SUSPICIOUSMAN,Tommaso]
+Pokemon = NIDOQUEEN,70
+    AbilityIndex = 0 # Rugged Scales
+    Item = PASSHOBERRY
+Pokemon = MACHOKE,70
+    AbilityIndex = 1 # No Guard
+Pokemon = HYPNO,70
+    AbilityIndex = 1 # Super Fist
+Pokemon = DEDENNE,70
+    AbilityIndex = 0 # Cheek Pouch
+    Item = SITRUSBERRY
+#-------------------------------
+[BURGLAR,Martino]
+Pokemon = NINETALES,70
+    AbilityIndex = 0 # Cursed Tail
+    Item = ASSAULTVEST
+Pokemon = METAGROSS,70
+    AbilityIndex = 0 # Full Metal Body
+Pokemon = WEEZING,70
+    AbilityIndex = 1 # Fumigate
+    Item = LEFTOVERS
+Pokemon = RELICANTH,70
+    AbilityIndex = 0 # Ramming Speed
