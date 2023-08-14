@@ -208,7 +208,7 @@ GameData::Move.get(@effects[:GorillaTactics]).name)
             if aiCheck
                 if willStayAsleepAI? && !move.usableWhenAsleep?
                     echoln("[AI FAILURE CHECK] #{pbThis} rejects the move #{move.id} due to it being predicted to stay asleep this turn")
-                    return true
+                    return false
                 end
             else
                 reduceStatusCount(:SLEEP)
@@ -229,7 +229,7 @@ GameData::Move.get(@effects[:GorillaTactics]).name)
             if aiCheck
                 if effectActive?(:Truant) && move.id != :SLACKOFF
                     echoln("[AI FAILURE CHECK] #{pbThis} rejects the move #{move.id} due to it being predicted to loaf around (Truant)")
-                    return true
+                    return false
                 end
             else
                 if effectActive?(:Truant)
@@ -252,7 +252,7 @@ GameData::Move.get(@effects[:GorillaTactics]).name)
             if aiCheck
                 unless effectActive?(:FlinchImmunity)
                     echoln("[AI FAILURE CHECK] #{pbThis} rejects the move #{move.id} due to it being predicted to flinch (Moonglow?)")
-                    return true
+                    return false
                 end
             else
                 if effectActive?(:FlinchImmunity)

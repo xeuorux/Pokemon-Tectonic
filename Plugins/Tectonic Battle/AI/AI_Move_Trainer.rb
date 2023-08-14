@@ -64,6 +64,7 @@ class PokeBattle_AI
         policies = user.ownersPolicies
         target_data = move.pbTarget(user)
         newChoice = nil
+        ignoreGeneralEffectScores = !targets.empty?
         if target_data.num_targets > 1
             # If move affects multiple battlers and you don't choose a particular one
             totalScore = 0
@@ -74,7 +75,7 @@ class PokeBattle_AI
                 end
             end
             targets.each do |b|
-                score = pbGetMoveScore(move, user, b, policies, targets.length)
+                score = pbGetMoveScore(move, user, b, policies, targets.length, ignoreGeneralEffectScores)
                 if user.opposes?(b)
                     totalScore += score
                 else
@@ -96,14 +97,14 @@ class PokeBattle_AI
                 @battle.eachBattler do |b|
                     next unless @battle.pbMoveCanTarget?(user.index, b.index, target_data)
                     next if target_data.targets_foe && !user.opposes?(b)
-                    score = pbGetMoveScore(move, user, b, policies)
+                    score = pbGetMoveScore(move, user, b, policies, 1, ignoreGeneralEffectScores)
                     scoresAndTargets.push([score, b.index]) if score > 0
                 end
             else
                 targets.each do |b|
                     next unless @battle.pbMoveCanTarget?(user.index, b.index, target_data)
                     next if target_data.targets_foe && !user.opposes?(b)
-                    score = pbGetMoveScore(move, user, b, policies)
+                    score = pbGetMoveScore(move, user, b, policies, 1, ignoreGeneralEffectScores)
                     scoresAndTargets.push([score, b.index]) if score > 0
                 end
             end
@@ -119,7 +120,7 @@ class PokeBattle_AI
     #=============================================================================
     # Get a score for the given move being used against the given target
     #=============================================================================
-    def pbGetMoveScore(move, user, target, policies = [], numTargets = 1)
+    def pbGetMoveScore(move, user, target, policies = [], numTargets = 1, ignoreGeneralEffectScores = false)
         scoringKey = [move.id, user.personalID, target.personalID, numTargets]
         if @precalculatedChoices.key?(scoringKey)
             precalcedScore = @precalculatedChoices[scoringKey]
@@ -191,7 +192,7 @@ class PokeBattle_AI
                             BattleHandlers.triggerTargetItemOnHitAI(item, user, target, move, @battle, numHits)
                     end
                     triggersScore += scoreModifierTargetItem
-                    echoln("[MOVE SCORING] #{user.pbThis}'s #{numHits} hits against #{target.pbThis(false)} adjusts the score by #{scoreModifierTargetAbility} due to the target's items") if scoreModifierTargetAbility != 0
+                    echoln("[MOVE SCORING] #{user.pbThis}'s #{numHits} hits against #{target.pbThis(false)} adjusts the score by #{scoreModifierTargetItem} due to the target's items") if scoreModifierTargetItem != 0
                 rescue StandardError => exception
                     pbPrintException($!) if $DEBUG
                 end
@@ -201,7 +202,8 @@ class PokeBattle_AI
         # EFFECT SCORING
         effectScore = 0
         begin
-            regularEffectScore = move.getEffectScore(user, target)
+            regularEffectScore = 0
+            regularEffectScore += move.getEffectScore(user, target) unless ignoreGeneralEffectScores
             faintEffectScore = 0
             targetAffectingEffectScore = 0
             if willFaint

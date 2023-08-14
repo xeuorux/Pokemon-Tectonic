@@ -431,7 +431,7 @@ class PokeBattle_Battle
 
         changesForAutoTesting if @autoTesting && @turnCount == 0
 
-        @battleAI.resetPrecalculatedChoices unless isPlayer
+        @battleAI.resetPrecalculations unless isPlayer
 
         actioned = []
         idxBattler = -1

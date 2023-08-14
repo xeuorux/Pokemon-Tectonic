@@ -16,9 +16,13 @@ module PBTrainerAI
 end
 
 class PokeBattle_AI
+    attr_reader :precalculatedChoices
+    attr_reader :precalculatedDefensiveMatchup
+
     def initialize(battle)
         @battle = battle
         @precalculatedChoices = {}
+        @precalculatedDefensiveMatchup = {}
     end
 
     def pbAIRandom(x); return rand(x); end
@@ -86,8 +90,9 @@ class PokeBattle_AI
         PBDebug.log(logMsg)
     end
 
-    def resetPrecalculatedChoices
+    def resetPrecalculations
         @precalculatedChoices.clear
+        @precalculatedDefensiveMatchup.clear
     end
 
     def pbPredictChoiceByPlayer(idxBattler)

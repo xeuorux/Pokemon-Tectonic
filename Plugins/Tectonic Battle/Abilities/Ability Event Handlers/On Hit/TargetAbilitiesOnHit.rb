@@ -110,7 +110,7 @@ BattleHandlers::TargetAbilityOnHit.add(:STAMINA,
         if aiChecking
             ret = 0
             aiNumHits.times do |i|
-                ret -= getMultiStatUpEffectScore([:DEFENSE,2], user, target, i)
+                ret -= getMultiStatUpEffectScore([:DEFENSE,2], user, target, i, evaluateThreat: false)
             end
             next ret
         end
@@ -123,7 +123,7 @@ BattleHandlers::TargetAbilityOnHit.add(:GRIT,
         if aiChecking
             ret = 0
             aiNumHits.times do |i|
-                ret -= getMultiStatUpEffectScore([:SPECIAL_DEFENSE,2], user, target, i)
+                ret -= getMultiStatUpEffectScore([:SPECIAL_DEFENSE,2], user, target, i, evaluateThreat: false)
             end
             next ret
         end
@@ -142,7 +142,7 @@ BattleHandlers::TargetAbilityOnHit.add(:ADAPTIVESKIN,
         if aiChecking
             ret = 0
             aiNumHits.times do |i|
-                ret -= getMultiStatUpEffectScore([statToRaise,1], user, target, i)
+                ret -= getMultiStatUpEffectScore([statToRaise,1], user, target, i, evaluateThreat: false)
             end
             next ret
         end
@@ -155,7 +155,7 @@ BattleHandlers::TargetAbilityOnHit.add(:WEAKARMOR,
         next unless move.physicalMove?
         if aiChecking
             ret = getMultiStatDownEffectScore([:DEFENSE, 1], target, target)
-            ret -= getMultiStatUpEffectScore([:SPEED, 2], target, target)
+            ret -= getMultiStatUpEffectScore([:SPEED, 2], target, target, evaluateThreat: false)
             next ret
         else
             battle.pbShowAbilitySplash(target, ability)
@@ -171,7 +171,7 @@ BattleHandlers::TargetAbilityOnHit.add(:WEAKSPIRIT,
         next unless move.specialMove?
         if aiChecking
             ret = getMultiStatDownEffectScore([:SPECIAL_DEFENSE, 1], target, target)
-            ret -= getMultiStatUpEffectScore([:SPEED, 2], target, target)
+            ret -= getMultiStatUpEffectScore([:SPEED, 2], target, target, evaluateThreat: false)
             next ret
         else
             battle.pbShowAbilitySplash(target, ability)
@@ -188,7 +188,7 @@ BattleHandlers::TargetAbilityOnHit.add(:STEAMPOWER,
         if aiChecking
             ret = 0
             aiNumHits.times do |i|
-                ret -= getMultiStatUpEffectScore([:SPEED,4], user, target, i*4)
+                ret -= getMultiStatUpEffectScore([:SPEED,4], user, target, i*4, evaluateThreat: false)
             end
             next ret
         end
@@ -203,7 +203,7 @@ BattleHandlers::TargetAbilityOnHit.add(:FORCEREVERSAL,
             next 0 unless Effectiveness.resistant?(target.damageState.typeMod)
             ret = 0
             aiNumHits.times do |i|
-                ret -= getMultiStatUpEffectScore(ATTACKING_STATS_2, user, target, i)
+                ret -= getMultiStatUpEffectScore(ATTACKING_STATS_2, user, target, i, evaluateThreat: false)
             end
             next ret
         else

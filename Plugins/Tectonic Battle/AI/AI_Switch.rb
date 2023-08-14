@@ -28,7 +28,7 @@ class PokeBattle_AI
         # Defensive matchup
         defensiveMatchupRating = (0.5 * worstDefensiveMatchupAgainstActiveFoes(battler)).floor
         stayInRating += defensiveMatchupRating
-        PBDebug.log("[STAY-IN RATING] #{battler.pbThis} matchup rating: #{defensiveMatchupRating.to_change}")
+        PBDebug.log("[STAY-IN RATING] #{battler.pbThis} defensive matchup rating: #{defensiveMatchupRating.to_change}")
 
         # Value of its own moves
         offensiveMatchupRating = (0.5 * switchRatingBestMoveScore(battler)).floor
@@ -67,11 +67,11 @@ class PokeBattle_AI
 
         # Pokémon is about to faint because of Perish Song
         if battler.effects[:PerishSong] == 2
-            stayInRating -= 5
-            PBDebug.log("[STAY-IN RATING] #{battler.pbThis} (#{battler.index}) is soon-ish to die to perish song (-5)")
+            stayInRating -= 10
+            PBDebug.log("[STAY-IN RATING] #{battler.pbThis} (#{battler.index}) is soon-ish to die to perish song (-10)")
         elsif battler.effects[:PerishSong] == 1
-            stayInRating -= 20
-            PBDebug.log("[STAY-IN RATING] #{battler.pbThis} (#{battler.index}) is about to die to perish song (-20)")
+            stayInRating -= 50
+            PBDebug.log("[STAY-IN RATING] #{battler.pbThis} (#{battler.index}) is about to die to perish song (-50)")
         end
 
         # More likely to switch when poison has worsened
@@ -99,6 +99,13 @@ class PokeBattle_AI
             if b.hasForceSwitchMove?
                 stayInRating += 10
                 PBDebug.log("[STAY-IN RATING] #{battler.pbThis} (#{battler.index}) has an opponent that can force swaps (+10)")
+            end
+
+            pursuitMove = b.canChoosePursuit?(battler)
+            if pursuitMove
+                pursuitScore = pbEvaluateMoveTrainer(b, pursuitMove, [battler]) / 2
+                stayInRating += pursuitScore
+                PBDebug.log("[STAY-IN RATING] #{battler.pbThis} (#{battler.index}) has an opponent that can target it with pursuit (#{pursuitScore.to_change})")
             end
         end
 
@@ -152,8 +159,10 @@ class PokeBattle_AI
         fakeBattler.pbInitializeFake(pkmn,partyIndex)
 
         # Account for hazards
-        hazardSwitchScore,dieingOnEntry = getHazardEvaluationForEnteringBattler(fakeBattler)
+        hazardSwitchScore,entryDamageTaken,dieingOnEntry = getHazardEvaluationForEnteringBattler(fakeBattler)
         switchScore += hazardSwitchScore
+
+        fakeBattler.hp -= entryDamageTaken
 
         # More want to swap if has a entry ability that matters
         # Intentionally checked even if the pokemon will die on entry
@@ -188,7 +197,7 @@ class PokeBattle_AI
         end
 
         # For preserving the pokemon placed in the last slot
-        if battlerSlot.ownersPolicies.include?(:PRESERVE_LAST_POKEMON) && partyIndex == @battle.pbParty(idxBattler).length - 1
+        if battlerSlot.ownersPolicies.include?(:PRESERVE_LAST_POKEMON) && partyIndex == @battle.pbParty(battlerSlot.index).length - 1
             switchScore = -50
             echoln("[SWITCH SCORING] #{fakeBattler.pbThis} should be preserved by policy (-50)")
         end
@@ -197,7 +206,7 @@ class PokeBattle_AI
     end
 
     def getHazardEvaluationForEnteringBattler(battler)
-        return 0,false unless battler.ignoresHazards?
+        return 0,0,false unless battler.ignoresHazards?
 
         willAbsorbSpikes = false
         dieingOnEntry = false
@@ -260,7 +269,7 @@ class PokeBattle_AI
             echoln("[SWITCH SCORING] #{battler.pbThis} will absorb a status spikes (+20)")
         end
         
-        return switchScore,dieingOnEntry
+        return switchScore,entryDamage,dieingOnEntry
     end
 
     def getEntryAbilityEvaluationForEnteringBattler(battler,dieingOnEntry)
@@ -301,7 +310,7 @@ class PokeBattle_AI
             when :HARBINGER, :SUNEATER
                 switchAbilityEffectScore += getWeatherSettingEffectScore(:Eclipse,battler,@battle)
             end
-            abilitySwitchModifier = (switchAbilityEffectScore / 2).ceil
+            abilitySwitchModifier = (switchAbilityEffectScore / 2.5).ceil
             totalAbilityScore += abilitySwitchModifier
             echoln("[SWITCH SCORING] #{battler.pbThis} values the effect of #{abilityID} as #{switchAbilityEffectScore} (#{abilitySwitchModifier.to_change})")
         end
@@ -310,16 +319,23 @@ class PokeBattle_AI
 
     # The battler passed in could be a real battler, or a fake one
     def worstDefensiveMatchupAgainstActiveFoes(battler)
+        if @precalculatedDefensiveMatchup.key?(battler.personalID)
+            precalcedScore = @precalculatedDefensiveMatchup[battler.personalID]
+            echoln("[MOVE SCORING] Defensive matchup for #{battler.pbThis(true)} already calced this round: #{precalcedScore}")
+            return precalcedScore
+        end
         matchups = []
         battler.eachOpposing(true) do |opposingBattler|
             matchup = rateDefensiveMatchup(battler, opposingBattler)
             matchups.push(matchup)
         end
         if matchups.empty?
-            return 0
+            worseDefensiveMatchup = 0
         else
-            return matchups.min
+            worseDefensiveMatchup = matchups.min
         end
+        @precalculatedDefensiveMatchup[battler.personalID] = worseDefensiveMatchup
+        return worseDefensiveMatchup
     end
 
     # The battler passed in could be a real battler, or a fake one
@@ -339,6 +355,9 @@ class PokeBattle_AI
 
         # Value of stalling
         matchupScore += passingTurnBattlerEffectScore(battler,@battle)
+
+        # Fear of unknown
+        matchupScore -= opposingBattler.unknownMovesCountAI * 2
 
         return matchupScore
     end

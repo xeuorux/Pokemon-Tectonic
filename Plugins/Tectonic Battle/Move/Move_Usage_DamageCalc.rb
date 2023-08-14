@@ -45,11 +45,10 @@ class PokeBattle_Move
         finalCalculatedDamage  = [(finalCalculatedDamage  * multipliers[:final_damage_multiplier]).round, 1].max
 
         # Pain Delay
-        if !aiChecking && !@battle.moldBreaker && target.hasActiveAbility?(:PAINDELAY)
-            echoln("!!!Adding delayed damage for pain delay to #{target.pbThis(true)}!!!")
+        if !@battle.moldBreaker && target.shouldAbilityApply?(:PAINDELAY,aiChecking)
             delayedDamage = (finalCalculatedDamage * 0.33).floor
             finalCalculatedDamage -=  delayedDamage
-            if delayedDamage > 0
+            if delayedDamage > 0 && !aiChecking
                 target.effects[:PainDelay] = [] unless target.effectActive?(:PainDelay)
                 target.effects[:PainDelay].push([2,delayedDamage])
             end
@@ -283,21 +282,25 @@ class PokeBattle_Move
     end
 
     def pbCalcTypeBasedDamageMultipliers(user,target,type,multipliers,checkingForAI=false)
-        stabActive = true
+        stabActive = false
+        stabActive = true unless type && user.pbHasType?(type)
+        if checkingForAI
+            stabActive = true if user.hasActiveAbilityAI?(%i[PROTEAN FREESTYLE])
+            stabActive = true if user.hasActiveAbilityAI?(:MUTABLE) && !user.hasEffect?(:Mutated)
+            stabActive = true if user.hasActiveAbilityAI?(:SHAKYCODE) && @battle.eclipsed?
+        end
         stabActive = false if user.pbOwnedByPlayer? && @battle.curses.include?(:DULLED)
         stabActive = false if @battle.pbCheckGlobalAbility(:SIGNALJAM)
 
         # STAB
         if stabActive
-            if type && user.pbHasType?(type)
-                stab = 1.5
-                if user.shouldAbilityApply?(:ADAPTED,checkingForAI)
-                    stab *= 4.0/3.0
-                elsif user.shouldAbilityApply?(:ULTRAADAPTED,checkingForAI)
-                    stab *= 3.0/2.0
-                end
-                multipliers[:final_damage_multiplier] *= stab
+            stab = 1.5
+            if user.shouldAbilityApply?(:ADAPTED,checkingForAI)
+                stab *= 4.0/3.0
+            elsif user.shouldAbilityApply?(:ULTRAADAPTED,checkingForAI)
+                stab *= 3.0/2.0
             end
+            multipliers[:final_damage_multiplier] *= stab
         end
 
         # Type effectiveness

@@ -1932,28 +1932,11 @@ end
 class PokeBattle_Move_0C4 < PokeBattle_TwoTurnMove
     def immuneToSunDebuff?; return true; end
 
-    def pbIsChargingTurn?(user)
-        ret = super
-        if !user.effectActive?(:TwoTurnAttack) && @battle.sunny?
-            @powerHerb = false
-            @chargingTurn = true
-            @damagingTurn = true
-            return false
-        end
-        return ret
-    end
-
     def pbChargingTurnMessage(user, _targets)
         @battle.pbDisplay(_INTL("{1} took in sunlight!", user.pbThis))
     end
 
-    def getEffectScore(user, target)
-        score = super
-        score += 50 if @battle.sunny?
-        return score
-    end
-
-    def shouldHighlight?(_user, _target)
+    def skipChargingTurn?(user)
         return @battle.sunny?
     end
 end
@@ -2909,29 +2892,12 @@ end
 #===============================================================================
 class PokeBattle_Move_0E6 < PokeBattle_TwoTurnMove
     def immuneToRainDebuff?; return true; end
-
-    def pbIsChargingTurn?(user)
-        ret = super
-        if !user.effectActive?(:TwoTurnAttack) && @battle.rainy?
-            @powerHerb = false
-            @chargingTurn = true
-            @damagingTurn = true
-            return false
-        end
-        return ret
-    end
-
+    
     def pbChargingTurnMessage(user, _targets)
         @battle.pbDisplay(_INTL("{1} took in electricity!", user.pbThis))
     end
 
-    def getEffectScore(user, target)
-        score = super
-        score += 50 if @battle.rainy?
-        return score
-    end
-
-    def shouldHighlight?(_user, _target)
+    def skipChargingTurn?(user)
         return @battle.rainy?
     end
 end

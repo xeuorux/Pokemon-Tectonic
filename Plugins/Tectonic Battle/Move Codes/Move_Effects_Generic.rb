@@ -376,7 +376,15 @@ class PokeBattle_StatDownMove < PokeBattle_Move
         if user.hasActiveItem?(:EJECTPACK)
             return getSwitchOutEffectScore(user)
         else
-            return getMultiStatDownEffectScore(@statDown, user, user)
+            statDownAI = []
+            for i in 0...@statDown.length / 2
+                statSymbol = @statDown[i * 2]
+                statDecreaseAmount = @statDown[i * 2 + 1]
+                next unless user.pbCanLowerStatStep?(statSymbol,user,self)
+                statDownAI.push(statSymbol)
+                statDownAI.push(statDecreaseAmount)
+            end
+            return getMultiStatDownEffectScore(statDownAI, user, user)
         end
     end
 end
@@ -511,9 +519,15 @@ class PokeBattle_TwoTurnMove < PokeBattle_Move
         @damagingTurn = true
         # 0 at start of charging turn, move's ID at start of damaging turn
         unless user.effectActive?(:TwoTurnAttack)
-            @powerHerb = user.hasActiveItem?(:POWERHERB)
-            @chargingTurn = true
-            @damagingTurn = @powerHerb
+            if skipChargingTurn?(user)
+                @powerHerb = false
+                @chargingTurn = true
+                @damagingTurn = true
+            else
+                @powerHerb = user.hasActiveItem?(:POWERHERB)
+                @chargingTurn = true
+                @damagingTurn = @powerHerb
+            end
         end
         return !@damagingTurn # Deliberately not "return @chargingTurn"
     end
@@ -577,18 +591,24 @@ class PokeBattle_TwoTurnMove < PokeBattle_Move
 
     def getEffectScore(user, _target)
         score = 0
-        unless user.hasActiveItem?(:POWERHERB)
-            score -= 40
-            score -= 20 unless user.firstTurn?
-            score -= 20 if user.belowHalfHealth?
+        unless user.hasActiveItem?(:POWERHERB) || skipChargingTurn?(user)
+            score -= 50
+            score -= 30 unless user.firstTurn?
+            score -= 30 if user.belowHalfHealth?
         end
         return score
     end
+
+    def skipChargingTurn?(user); return false; end
 
     def skipChargingTurn
         @powerHerb = false
         @chargingTurn = true
         @damagingTurn = true
+    end
+
+    def shouldHighlight?(user, _target)
+        return skipChargingTurn?(user)
     end
 end
 

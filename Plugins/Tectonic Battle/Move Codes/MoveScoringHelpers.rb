@@ -227,6 +227,7 @@ def getHazardSettingEffectScore(user, _target, magnitude = 10)
     score = magnitude * 2
     score += magnitude * user.enemiesInReserveCount
     score += magnitude * user.alliesInReserveCount
+    score *= 1.5
     return score
 end
 
@@ -309,7 +310,7 @@ def getHealingEffectScore(user, target, magnitude = 5)
     return score
 end
 
-def getMultiStatUpEffectScore(statUpArray, user, target, fakeStepModifier = 0)
+def getMultiStatUpEffectScore(statUpArray, user, target, fakeStepModifier = 0, evaluateThreat = true)
     echoln("[EFFECT SCORING] Scoring the effect of raising stats #{statUpArray.to_s} on target #{target.pbThis(true)}")
     
     if user.battle.field.effectActive?(:GreyMist)
@@ -365,10 +366,9 @@ def getMultiStatUpEffectScore(statUpArray, user, target, fakeStepModifier = 0)
     # Stat ups tend to be stronger when the target is protected by a substitute
     score *= 1.2 if target.substituted?
 
-    # Feel more free to use the move the fewer pokemon that can attack the buff receiver this turn
-    target.eachPredictedAttacker do |_b|
-        score *= 0.7
-    end
+    # Stats ups are stronger the less threat the user is under this turn
+    # And worse the more threat
+    score += user.battle.battleAI.worstDefensiveMatchupAgainstActiveFoes(target) * 2
 
     if target.hasActiveAbilityAI?(:CONTRARY)
         score *= -1

@@ -35,19 +35,29 @@ class PokeBattle_Battler
         @battle.aiSeesMove(self,move)
     end
 
+    def unknownMovesCountAI
+        movesNotKnownByAICount = 4
+        eachAIKnownMove do |_move|
+            movesNotKnownByAICount -= 1
+        end
+        return movesNotKnownByAICount
+    end
+
     def eachAIKnownMove
-        return if effectActive?(:Illusion) && pbOwnedByPlayer?
+        return if effectActive?(:Illusion) && pbOwnedByPlayer? && !aiKnowsAbility?(:ILLUSION)
         knownMoveIDs = @battle.aiKnownMoves(@pokemon)
         @moves.each do |move|
+            next unless move
             next if pbOwnedByPlayer? && !knownMoveIDs.include?(move.id)
             yield move
         end
     end
 
     def eachAIKnownMoveWithIndex
-        return if effectActive?(:Illusion) && pbOwnedByPlayer?
+        return if effectActive?(:Illusion) && pbOwnedByPlayer? && !aiKnowsAbility?(:ILLUSION)
         knownMoveIDs = @battle.aiKnownMoves(@pokemon)
         @moves.each_with_index do |move, index|
+            next unless move
             next if pbOwnedByPlayer? && !knownMoveIDs.include?(move.id)
             yield move, index
         end
@@ -194,6 +204,16 @@ class PokeBattle_Battler
             return true
         end
         return false
+    end
+
+    def canChoosePursuit?(target)
+        eachAIKnownMove do |m|
+            next unless m.function == "088"
+            next unless @battle.pbCanChooseMove?(index, i, false)
+            next if @battle.battleAI.aiPredictsFailure?(move, self, target)
+            return m
+        end
+        return nil
     end
 
     def canChooseProtect?
