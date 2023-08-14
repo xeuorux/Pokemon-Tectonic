@@ -328,3 +328,5 @@
 451,POKEMONBREEDER_F3,Pokémon Breeder,16,,,PARASOL,Female,,,[]
 452,POKEMONBREEDER_F4,Pokémon Breeder,16,,,AROMALADY,Female,,,[]
 453,DRAGONTAMER2,Dragon Tamer,32,,,ACETRAINER,Male,,,[]
+454,NIGHTMARE_TRAINER,Nightmare of,32,,,ACETRAINER,Male,,,[]
+455,NIGHTMAREQUEEN_Elise,Nightmare Queen,32,,,ACETRAINER,Female,,,[]
