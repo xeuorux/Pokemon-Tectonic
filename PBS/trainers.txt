@@ -6262,7 +6262,7 @@ Pokemon = MANIKLAW,70
     AbilityIndex = 0 # Malice
     Item = LIFEORB
 Pokemon = SNEASLER,70
-    Moves = DIRECLAW,CLOSECOMBAT,ROCKSLIDE
+    Moves = DIRECLAW,CLOSECOMBAT,ROCKSLIDE,ACROBATICS
     AbilityIndex = 1 # Frustrate
     Item = AIRBALLOON
 #-------------------------------
