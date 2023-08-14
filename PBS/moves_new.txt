@@ -411,7 +411,7 @@
 1410,CURSEDOATH,Cursed Oath,54A,0,GHOST,Status,0,10,0,NearOther,0,CanProtect;CanMagicCoat;CanMirrorMove,"The user spends 1/4th of their max HP to curse the target, damaging their HP by 1/4th each turn.",CURSE
 1411,MINDSAP,Mind Sap,5E5,0,GRASS,Status,100,10,0,NearOther,0,CanProtect;CanMagicCoat;CanMirrorMove,"Restores its own HP by the target's Sp. Atk stat amount, then lowers the target's Sp. Atk stat.",STRENGTHSAP
 1412,APPLESURPRISE,Apple Surprise,5F2,45,GRASS,Special,100,10,100,NearOther,1,CanProtect;CanMirrorMove,"An apple falls from high up to strike the foe. Always goes first. Deals double damage in intense Gravity.",GRAVAPPLE
-1413,STARDANCE,Star Dance,5F3,0,PSYCHIC,Status,100,15,0,AllNearFoes,0,CanProtect;CanMagicCoat;CanMirrorMove;Dance,"The user dazzles the target with celestial visions that lowers its Sp. Atk stat by five steps.",COSMICPOWER
+1413,STARDANCE,Star Dance,5F3,0,PSYCHIC,Status,100,12,0,NearOther,0,CanProtect;CanMagicCoat;CanMirrorMove;Dance,"The user dazzles the target with celestial visions that lowers its Sp. Atk stat by five steps.",COSMICPOWER
 1414,AMPUP,Amp Up,09C,0,ELECTRIC,Status,0,15,0,NearAlly,0,,"The user assists an ally's next move, boosting its power by 50% and letting it move right after the user.",HELPINGHAND
 1415,TRUESENSES,True Senses,5F5,0,PSYCHIC,Status,0,30,0,User,0,CanSnatch,"The user meditates, raising both its Attack and Sp. Atk stats by four steps each.",MEDITATE
 1416,UNDYINGRUSH,Undying Rush,5F6,120,GHOST,Physical,100,12,0,NearOther,0,CanProtect;CanMirrorMove,"Clad in souls, the user crashes into the target. The user takes 33% recoil, but can't faint from it.",PHANTOMFORCE
