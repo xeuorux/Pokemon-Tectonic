@@ -42,8 +42,8 @@ class PokeBattle_AI
         list = pbGetPartyWithSwapRatings(idxBattler)
         listSwapOutCandidates(battler, list)
 
-        # Only considers swapping into pokemon whose rating would be at least a +30 upgrade
-        upgradeThreshold = 40
+        # Only considers swapping into pokemon whose rating would be at least a +35 upgrade
+        upgradeThreshold = 30
         upgradeThreshold -= 5 if owner.tribalBonus.hasTribeBonus?(:CHARMER)
         list.delete_if { |val| val[1] < stayInRating + upgradeThreshold }
 

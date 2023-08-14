@@ -2501,8 +2501,10 @@ class PokeBattle_Move_0D9 < PokeBattle_HealingMove
     end
 
     def pbMoveFailedAI?(user, targets)
-        return false if user.getStatusCount(:SLEEP) == 1
-        return pbMoveFailed?(user, targets, false)
+        return true if user.willStayAsleepAI?
+        return true unless user.canSleep?(user, false, self, true)
+        return true if super
+        return false
     end
 
     def pbEffectGeneral(user)

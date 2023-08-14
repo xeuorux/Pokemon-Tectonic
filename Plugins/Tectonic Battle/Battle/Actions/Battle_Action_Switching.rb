@@ -155,14 +155,6 @@ class PokeBattle_Battle
         if pbOwnedByPlayer?(idxBattler)
             return pbPartyScreen(idxBattler, checkLaxOnly, canCancel) 
         else
-            if safeSwitch.nil?
-                safeSwitch = true
-                @battlers[idxBattler].eachOpposing do |b|
-                    next if b.movedThisRound?
-                    next unless b.canActThisTurn?
-                    safeSwitch = false
-                end
-            end
             return @battleAI.pbDefaultChooseNewEnemy(idxBattler, safeSwitch)
         end
     end

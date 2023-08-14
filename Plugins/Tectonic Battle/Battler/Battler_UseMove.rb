@@ -206,7 +206,7 @@ class PokeBattle_Battler
         return unless move # if move was not chosen somehow
         # Try to use the move (inc. disobedience)
         @lastMoveFailed = false
-        unless pbTryUseMove(choice, move, specialUsage, skipAccuracyCheck)
+        unless pbTryUseMove(move, specialUsage, skipAccuracyCheck)
             @lastMoveUsed = nil
             @lastMoveUsedType = nil
             @lastMoveUsedCategory = -1

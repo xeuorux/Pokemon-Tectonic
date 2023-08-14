@@ -172,32 +172,31 @@ GameData::Move.get(@effects[:GorillaTactics]).name)
     # If this returns true, and if PP isn't a problem, the move will be considered
     # to have been used (even if it then fails for whatever reason).
     #=============================================================================
-    def pbTryUseMove(choice, move, specialUsage, skipAccuracyCheck)
+    def pbTryUseMove(move, specialUsage, skipAccuracyCheck, aiCheck = false)
         return true if move.empoweredMove? && boss? && move.statusMove?
         
         # Check whether it's possible for self to use the given move
         # NOTE: Encore has already changed the move being used, no need to have a
         #       check for it here.
-        unless pbCanChooseMove?(move, false, true, specialUsage)
+        if !aiCheck && !pbCanChooseMove?(move, false, true, specialUsage)
             onMoveFailed(move)
             return false
         end
 
-        # Check whether it's possible for self to do anything at all
-        if effectActive?(:SkyDrop) # Intentionally no message here
-            PBDebug.log("[Move failed] #{pbThis} can't use #{move.name} because of being Sky Dropped")
-            return false
-        end
         if effectActive?(:HyperBeam) # Intentionally before Truant
-            @battle.pbDisplay(_INTL("{1} must recharge!", pbThis))
+            if aiCheck
+                echoln("[AI FAILURE CHECK] #{pbThis} rejects the move #{move.id} due to exhaustion failure (Hyperbeam, etc.)")
+            else
+                @battle.pbDisplay(_INTL("{1} must recharge!", pbThis))
+            end
             return false
         end
         if effectActive?(:AttachedTo)
-            @battle.pbDisplay(_INTL("{1} is still attached to {2}!", pbThis, getBattlerPointsTo(:AttachedTo).pbThis(true)))
-            return false
-        end
-        if choice[1] == -2 # Battle Palace
-            @battle.pbDisplay(_INTL("{1} appears incapable of using its power!", pbThis))
+            if aiCheck
+                echoln("[AI FAILURE CHECK] #{pbThis} rejects the move #{move.id} due to attachment failure")
+            else
+                @battle.pbDisplay(_INTL("{1} is still attached to {2}!", pbThis, getBattlerPointsTo(:AttachedTo).pbThis(true)))
+            end
             return false
         end
 
@@ -206,52 +205,73 @@ GameData::Move.get(@effects[:GorillaTactics]).name)
 
         # Check status problems and continue their effects/cure them
         if pbHasStatus?(:SLEEP)
-            reduceStatusCount(:SLEEP)
-            if getStatusCount(:SLEEP) <= 0
-                pbCureStatus(true, :SLEEP)
+            if aiCheck
+                if willStayAsleepAI? && !move.usableWhenAsleep?
+                    echoln("[AI FAILURE CHECK] #{pbThis} rejects the move #{move.id} due to it being predicted to stay asleep this turn")
+                    return true
+                end
             else
-                pbContinueStatus(:SLEEP)
-                unless move.usableWhenAsleep? # Snore/Sleep Talk
-                    onMoveFailed(move)
-                    return false
+                reduceStatusCount(:SLEEP)
+                if getStatusCount(:SLEEP) <= 0
+                    pbCureStatus(true, :SLEEP)
+                else
+                    pbContinueStatus(:SLEEP)
+                    unless move.usableWhenAsleep? # Snore/Sleep Talk
+                        onMoveFailed(move)
+                        return false
+                    end
                 end
             end
         end
 
         # Truant
         if hasActiveAbility?(:TRUANT)
-            if effectActive?(:Truant)
-                disableEffect(:Truant)
+            if aiCheck
+                if effectActive?(:Truant) && move.id != :SLACKOFF
+                    echoln("[AI FAILURE CHECK] #{pbThis} rejects the move #{move.id} due to it being predicted to loaf around (Truant)")
+                    return true
+                end
             else
-                applyEffect(:Truant)
-            end
-            if !effectActive?(:Truant) && move.id != :SLACKOFF # True means loafing, but was just inverted
-                showMyAbilitySplash(:TRUANT)
-                @battle.pbDisplay(_INTL("{1} is loafing around!", pbThis))
-                onMoveFailed(move)
-                hideMyAbilitySplash
-                return false
+                if effectActive?(:Truant)
+                    disableEffect(:Truant)
+                else
+                    applyEffect(:Truant)
+                end
+                if !effectActive?(:Truant) && move.id != :SLACKOFF # True means loafing, but was just inverted
+                    showMyAbilitySplash(:TRUANT)
+                    @battle.pbDisplay(_INTL("{1} is loafing around!", pbThis))
+                    onMoveFailed(move)
+                    hideMyAbilitySplash
+                    return false
+                end
             end
         end
 
         # Flinching
         if effectActive?(:Flinch)
-            if effectActive?(:FlinchImmunity)
-                @battle.pbDisplay("#{pbThis} would have flinched, but it's immune now!")
-                disableEffect(:Flinch)
-            elsif hasTribeBonus?(:TYRANNICAL) && !pbOwnSide.effectActive?(:TyrannicalImmunity)
-                @battle.pbShowTribeSplash(self,:TYRANNICAL)
-                @battle.pbDisplay(_INTL("{1} refuses to flinch!", pbThis))
-                @battle.pbHideTribeSplash(self)
-                pbOwnSide.applyEffect(:TyrannicalImmunity)
-            else
-                @battle.pbDisplay(_INTL("{1} flinched and couldn't move!", pbThis))
-                eachActiveAbility do |ability|
-                    BattleHandlers.triggerAbilityOnFlinch(ability, self, @battle)
+            if aiCheck
+                unless effectActive?(:FlinchImmunity)
+                    echoln("[AI FAILURE CHECK] #{pbThis} rejects the move #{move.id} due to it being predicted to flinch (Moonglow?)")
+                    return true
                 end
-                onMoveFailed(move)
-                applyEffect(:FlinchImmunity,4)
-                return false
+            else
+                if effectActive?(:FlinchImmunity)
+                    @battle.pbDisplay("#{pbThis} would have flinched, but it's immune now!")
+                    disableEffect(:Flinch)
+                elsif hasTribeBonus?(:TYRANNICAL) && !pbOwnSide.effectActive?(:TyrannicalImmunity)
+                    @battle.pbShowTribeSplash(self,:TYRANNICAL)
+                    @battle.pbDisplay(_INTL("{1} refuses to flinch!", pbThis))
+                    @battle.pbHideTribeSplash(self)
+                    pbOwnSide.applyEffect(:TyrannicalImmunity)
+                else
+                    @battle.pbDisplay(_INTL("{1} flinched and couldn't move!", pbThis))
+                    eachActiveAbility do |ability|
+                        BattleHandlers.triggerAbilityOnFlinch(ability, self, @battle)
+                    end
+                    onMoveFailed(move)
+                    applyEffect(:FlinchImmunity,4)
+                    return false
+                end
             end
         end
         return true

@@ -13,6 +13,20 @@ class PokeBattle_Battler
         return false
     end
 
+    # AI method to predict if user can act this turn
+    def canActThisTurn?
+        return false if effectActive?(:HyperBeam)
+        return false if effectActive?(:Attached)
+        return false if effectActive?(:Truant)
+        return false if willStayAsleepAI?
+        return true
+    end
+
+    # AI method to predict if the user will wake up before moving this turn
+    def willStayAsleepAI?
+        return asleep? && getStatusCount(:SLEEP) > 1
+    end
+
     ###############################################################################
     # Understanding the battler's moves
     ###############################################################################
