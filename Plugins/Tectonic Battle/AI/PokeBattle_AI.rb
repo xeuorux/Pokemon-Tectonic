@@ -15,6 +15,8 @@ module PBTrainerAI
     def self.bestSkill;    return 100; end
 end
 
+KillInfo = Struct.new(:user, :move, :speed, :priority, :score)
+
 class PokeBattle_AI
     attr_reader :precalculatedChoices
     attr_reader :precalculatedDefensiveMatchup
@@ -73,7 +75,7 @@ class PokeBattle_AI
             @battle.pbRegisterMove(idxBattler, pbAIRandom(user.moves.length), false)
         else
             return if pbEnemyShouldWithdraw?(idxBattler)
-            bestMoveChoices = pbGetBestTrainerMoveChoices(user)
+            bestMoveChoices,killInfo = pbGetBestTrainerMoveChoices(user)
             pbChooseMovesTrainer(idxBattler, bestMoveChoices)
         end
     end
@@ -97,7 +99,7 @@ class PokeBattle_AI
 
     def pbPredictChoiceByPlayer(idxBattler)
         user = @battle.battlers[idxBattler]
-        bestMoveChoices = pbGetBestTrainerMoveChoices(user)
+        bestMoveChoices,killInfo = pbGetBestTrainerMoveChoices(user)
         return [:None, 0, nil, -1] if bestMoveChoices.empty?
         switchChoice = pbDetermineSwitch(idxBattler)
         return [:SwitchOut, switchChoice, -1] if switchChoice > -1

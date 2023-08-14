@@ -174,9 +174,25 @@ class PokeBattle_Battler
         return false
     end
 
+    def hasStatBoostingMove?
+        eachAIKnownMove do |m|
+            next unless m.is_a?(PokeBattle_MultiStatUpMove)
+            return true
+        end
+        return false
+    end
+
     def hasStatBoostStealingMove?
         eachAIKnownMove do |m|
             next unless m.statStepStealingMove?
+            return true
+        end
+        return false
+    end
+
+    def hasHazardSettingMove?
+        eachAIKnownMove do |m|
+            next unless m.hazardMove?
             return true
         end
         return false
@@ -341,6 +357,11 @@ class PokeBattle_Battler
     ###############################################################################
     # Understanding the battler's opponents
     ###############################################################################
+
+    def defensiveMatchupAI
+        score,killInfoArray = @battle.battleAI.worstDefensiveMatchupAgainstActiveFoes(self)
+        return score
+    end
 
     def eachPotentialAttacker(categoryOnly = -1)
         eachOpposing(true) do |b|

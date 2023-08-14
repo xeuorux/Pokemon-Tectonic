@@ -185,7 +185,7 @@ GameData::Move.get(@effects[:GorillaTactics]).name)
 
         if effectActive?(:HyperBeam) # Intentionally before Truant
             if aiCheck
-                echoln("[AI FAILURE CHECK] #{pbThis} rejects the move #{move.id} due to exhaustion failure (Hyperbeam, etc.)")
+                echoln("\t\t[AI FAILURE CHECK] #{pbThis} rejects the move #{move.id} due to exhaustion failure (Hyperbeam, etc.)")
             else
                 @battle.pbDisplay(_INTL("{1} must recharge!", pbThis))
             end
@@ -193,7 +193,7 @@ GameData::Move.get(@effects[:GorillaTactics]).name)
         end
         if effectActive?(:AttachedTo)
             if aiCheck
-                echoln("[AI FAILURE CHECK] #{pbThis} rejects the move #{move.id} due to attachment failure")
+                echoln("\t\t[AI FAILURE CHECK] #{pbThis} rejects the move #{move.id} due to attachment failure")
             else
                 @battle.pbDisplay(_INTL("{1} is still attached to {2}!", pbThis, getBattlerPointsTo(:AttachedTo).pbThis(true)))
             end
@@ -207,7 +207,7 @@ GameData::Move.get(@effects[:GorillaTactics]).name)
         if pbHasStatus?(:SLEEP)
             if aiCheck
                 if willStayAsleepAI? && !move.usableWhenAsleep?
-                    echoln("[AI FAILURE CHECK] #{pbThis} rejects the move #{move.id} due to it being predicted to stay asleep this turn")
+                    echoln("\t\t[AI FAILURE CHECK] #{pbThis} rejects the move #{move.id} due to it being predicted to stay asleep this turn")
                     return false
                 end
             else
@@ -228,7 +228,7 @@ GameData::Move.get(@effects[:GorillaTactics]).name)
         if hasActiveAbility?(:TRUANT)
             if aiCheck
                 if effectActive?(:Truant) && move.id != :SLACKOFF
-                    echoln("[AI FAILURE CHECK] #{pbThis} rejects the move #{move.id} due to it being predicted to loaf around (Truant)")
+                    echoln("\t\t[AI FAILURE CHECK] #{pbThis} rejects the move #{move.id} due to it being predicted to loaf around (Truant)")
                     return false
                 end
             else
@@ -251,7 +251,7 @@ GameData::Move.get(@effects[:GorillaTactics]).name)
         if effectActive?(:Flinch)
             if aiCheck
                 unless effectActive?(:FlinchImmunity)
-                    echoln("[AI FAILURE CHECK] #{pbThis} rejects the move #{move.id} due to it being predicted to flinch (Moonglow?)")
+                    echoln("\t\t[AI FAILURE CHECK] #{pbThis} rejects the move #{move.id} due to it being predicted to flinch (Moonglow?)")
                     return false
                 end
             else

@@ -223,34 +223,6 @@ class PokeBattle_Battle
 
         # Choose actions for the round (AI first, then player)
 
-        # AI predicts the players actions
-        @predictedActions = {}
-
-        anyCanPredict = false
-        if @opponent
-            @opponent.each do |opposingTrainer|
-                next unless opposingTrainer.policies.include?(:PREDICTS_PLAYER)
-                anyCanPredict = true
-                break
-            end
-
-            # Each of the player's pokemon (or NPC allies)
-            if anyCanPredict && !@autoTesting
-                echoln("[PLAYER PREDICTION]")
-                eachSameSideBattler do |b|
-                    next unless b.pbOwnedByPlayer?
-                    predictedPlayerAction = @battleAI.pbPredictChoiceByPlayer(b.index)
-                    @predictedActions[b.index] = predictedPlayerAction
-                end
-
-                eachSameSideBattler do |b|
-                    next unless b.pbOwnedByPlayer?
-                    describedPlayerAction = describeAction(b,@predictedActions[b.index])
-                    echoln("[PLAYER PREDICTION] The AI predicts that #{b.pbThis} will #{describedPlayerAction}!")
-                end
-            end
-        end
-
         # Turn skipped due to ambush
         if @turnCount == 0 && @playerAmbushing
             # Player ambushes successfully!
@@ -431,7 +403,37 @@ class PokeBattle_Battle
 
         changesForAutoTesting if @autoTesting && @turnCount == 0
 
-        @battleAI.resetPrecalculations unless isPlayer
+        unless isPlayer
+            @battleAI.resetPrecalculations
+
+            # AI predicts the players actions
+            @predictedActions = {}
+
+            anyCanPredict = false
+            if @opponent
+                @opponent.each do |opposingTrainer|
+                    next unless opposingTrainer.policies.include?(:PREDICTS_PLAYER)
+                    anyCanPredict = true
+                    break
+                end
+
+                # Each of the player's pokemon (or NPC allies)
+                if anyCanPredict && !@autoTesting
+                    echoln("[PLAYER PREDICTION]")
+                    eachSameSideBattler do |b|
+                        next unless b.pbOwnedByPlayer?
+                        predictedPlayerAction = @battleAI.pbPredictChoiceByPlayer(b.index)
+                        @predictedActions[b.index] = predictedPlayerAction
+                    end
+
+                    eachSameSideBattler do |b|
+                        next unless b.pbOwnedByPlayer?
+                        describedPlayerAction = describeAction(b,@predictedActions[b.index])
+                        echoln("[PLAYER PREDICTION] The AI predicts that #{b.pbThis} will #{describedPlayerAction}!")
+                    end
+                end
+            end
+        end
 
         actioned = []
         idxBattler = -1

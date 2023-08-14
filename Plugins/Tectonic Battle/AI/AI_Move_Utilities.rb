@@ -65,19 +65,19 @@ class PokeBattle_AI
                 end
                 next unless abilityBlocked
                 fails = true
-                echoln("[AI FAILURE CHECK] #{user.pbThis} rejects #{move.id} -- thinks will be blocked by an ability.")
+                echoln("\t\t[AI FAILURE CHECK] #{user.pbThis} rejects #{move.id} -- thinks will be blocked by an ability.")
                 break
             end
         end
 
         if !fails && move.pbMoveFailedAI?(user, [target])
             fails = true
-            echoln("[AI FAILURE CHECK] #{user.pbThis} rejects #{move.id} -- thinks will fail for move specific reasons")
+            echoln("\t\t[AI FAILURE CHECK] #{user.pbThis} rejects #{move.id} -- thinks will fail for move specific reasons")
         end
 
         # Check for failure because of forced missing
-        if !fails && !user.pbSuccessCheckPerHit(move, user, target, true)
-            echoln("[AI FAILURE CHECK] #{user.pbThis} rejects #{move.id} -- thinks will fail against #{target.pbThis(false)} due to the target being semi-invulnerable.")
+        if !fails && user.index != target.index && !user.pbSuccessCheckPerHit(move, user, target, true)
+            echoln("\t\t[AI FAILURE CHECK] #{user.pbThis} rejects #{move.id} -- thinks will fail against #{target.pbThis(false)} due to the target being semi-invulnerable.")
             fails = true
         end
 
@@ -87,7 +87,7 @@ class PokeBattle_AI
             typeMod = pbCalcTypeModAI(type, user, target, move)
             unless user.pbSuccessCheckAgainstTarget(move, user, target, typeMod, false, true)
                 fails = true
-                echoln("[AI FAILURE CHECK] #{user.pbThis} rejects #{move.id} -- thinks will fail against #{target.pbThis(false)} due to abilities, effects, or typemod.")
+                echoln("\t\t[AI FAILURE CHECK] #{user.pbThis} rejects #{move.id} -- thinks will fail against #{target.pbThis(false)} due to abilities, effects, or typemod.")
             end
         end
 
@@ -97,7 +97,7 @@ class PokeBattle_AI
                 next unless b.opposes?(user)
                 next if b.semiInvulnerable?
                 next unless b.hasActiveAbilityAI?(%i[MAGICBOUNCE MAGICSHIELD])
-                echoln("[AI FAILURE CHECK] #{user.pbThis} rejects #{move.id} -- thinks will fail against #{target.pbThis(false)} due to Magic Bounce etc.")
+                echoln("\t\t[AI FAILURE CHECK] #{user.pbThis} rejects #{move.id} -- thinks will fail against #{target.pbThis(false)} due to Magic Bounce etc.")
                 fails = true
                 break
             end
@@ -185,12 +185,35 @@ class PokeBattle_AI
     #===========================================================================
     # Speed calculation
     #===========================================================================
-    def userMovesFirst?(move, user, target)
+    # If KillInfo is given, calculates if the user will move before the possible kill against it
+    # Otherwise, calculates if the user will move before the target (assuming 0 priority)
+    def userMovesFirst?(move, user, target, killInfo: nil)
         return false if move.is_a?(PokeBattle_ForetoldMove)
-        movePrio = @battle.getMovePriority(move, user, [target], true)
-        willGoFirst = user.pbSpeed(true) > target.pbSpeed(true)
-        willGoFirst = true if movePrio > 0
-        willGoFirst = false if movePrio < 0
-        return willGoFirst
+        userPriority = @battle.getMovePriority(move, user, [target], true)
+        foePriority = killInfo&.priority || 0
+        foeChecking = killInfo&.user || target
+        if userPriority > foePriority
+            message = "\t[ORDER CALC] #{user.pbThis}'s #{move.id} has priority #{userPriority}, so will probably move BEFORE #{foeChecking.pbThis(true)}"
+            message += "'s #{killInfo.move.id} at priority #{foePriority}" if killInfo
+            echoln(message)
+            return true
+        elsif foePriority > userPriority
+            message = "\t[ORDER CALC] #{user.pbThis}'s #{move.id} has priority #{userPriority}, so will probably move AFTER #{foeChecking.pbThis(true)}"
+            message += "'s #{killInfo.move.id} at priority #{foePriority}" if killInfo
+            echoln(message)
+            return false
+        else
+            userSpeed = user.pbSpeed(true)
+            opposingSpeed = killInfo&.speed || target.pbSpeed(true)
+            movesFirst = userSpeed > opposingSpeed
+            movesFirst = !movesFirst if user.battle.field.effectActive?(:TrickRoom)
+            orderDescriptor = movesFirst ? "BEFORE" : "AFTER"
+
+            message = "\t[ORDER CALC] #{user.pbThis}'s #{move.id} will have speed #{userSpeed}, so will move #{orderDescriptor} #{foeChecking.pbThis(true)}"
+            message += "'s #{killInfo.move.id}" if killInfo
+            message += " at speed #{opposingSpeed}"
+            echoln(message)
+            return movesFirst
+        end
     end
 end

@@ -26,12 +26,14 @@ class PokeBattle_AI
         PBDebug.log("[AI SWITCH] #{battler.pbThis} (#{battler.index}) is determining whether it should switch out")
 
         # Defensive matchup
-        defensiveMatchupRating = (0.5 * worstDefensiveMatchupAgainstActiveFoes(battler)).floor
+        defensiveMatchupRating,killInfoArray = worstDefensiveMatchupAgainstActiveFoes(battler)
+        defensiveMatchupRating = (0.5 * defensiveMatchupRating).floor
         stayInRating += defensiveMatchupRating
         PBDebug.log("[STAY-IN RATING] #{battler.pbThis} defensive matchup rating: #{defensiveMatchupRating.to_change}")
 
         # Value of its own moves
-        offensiveMatchupRating = (0.5 * switchRatingBestMoveScore(battler)).floor
+        bestMoveScore,killInfo = switchRatingBestMoveScore(battler,killInfoArray: killInfoArray)
+        offensiveMatchupRating = (0.5 * bestMoveScore).floor
         stayInRating += offensiveMatchupRating
         PBDebug.log("[STAY-IN RATING] #{battler.pbThis} offensive matchup rating: #{offensiveMatchupRating.to_change}")
 
@@ -48,7 +50,7 @@ class PokeBattle_AI
         list.delete_if { |val| val[1] < stayInRating + upgradeThreshold }
 
         if list.empty?
-            PBDebug.log("[AI SWITCH] #{battler.pbThis} (#{battler.index}) fails to find any swap candidates.")
+            PBDebug.log("[AI SWITCH] #{battler.pbThis} (#{battler.index}) fails to find any swap candidates (stay-in rating: #{stayInRating}).")
         else
             partySlotNumber = list[0][0]
             if @battle.pbCanSwitch?(idxBattler, partySlotNumber)
@@ -103,7 +105,7 @@ class PokeBattle_AI
 
             pursuitMove = b.canChoosePursuit?(battler)
             if pursuitMove
-                pursuitScore = pbEvaluateMoveTrainer(b, pursuitMove, [battler]) / 2
+                pursuitScore = pbEvaluateMoveTrainer(b, pursuitMove, targets: [battler]) / 2
                 stayInRating += pursuitScore
                 PBDebug.log("[STAY-IN RATING] #{battler.pbThis} (#{battler.index}) has an opponent that can target it with pursuit (#{pursuitScore.to_change})")
             end
@@ -177,23 +179,31 @@ class PokeBattle_AI
         # Only matters if the pokemon will live
         unless dieingOnEntry
             # Find the worst matchup against the current player battlers
-            defensiveMatchupRating = worstDefensiveMatchupAgainstActiveFoes(fakeBattler)
+            defensiveMatchupRating,killInfoArray = worstDefensiveMatchupAgainstActiveFoes(fakeBattler)
             if safeSwitch
                 defensiveMatchupRating = (0.5 * defensiveMatchupRating).floor
             else
-                defensiveMatchupRating = (0.66 * defensiveMatchupRating).floor
+                defensiveMatchupRating = (0.75 * defensiveMatchupRating).floor
             end
             switchScore += defensiveMatchupRating
-            echoln("[SWITCH SCORING] #{fakeBattler.pbThis} defensive matchup rating: #{defensiveMatchupRating.to_change}")
+            if killInfoArray.empty?
+                echoln("[SWITCH SCORING] #{fakeBattler.pbThis} defensive matchup rating: #{defensiveMatchupRating.to_change} (doesn't think it can be fainted)")
+            else
+                echoln("[SWITCH SCORING] #{fakeBattler.pbThis} defensive matchup rating: #{defensiveMatchupRating.to_change} (thinks can be fainted!)")
+            end
 
-            offensiveMatchupRating = switchRatingBestMoveScore(fakeBattler)
+            offensiveMatchupRating,killInfo = switchRatingBestMoveScore(fakeBattler, killInfoArray: killInfoArray)
             if safeSwitch
                 offensiveMatchupRating = (0.5 * offensiveMatchupRating).floor
             else
-                offensiveMatchupRating = (0.33 * offensiveMatchupRating).floor
+                offensiveMatchupRating = (0.25 * offensiveMatchupRating).floor
             end
             switchScore += offensiveMatchupRating
-            echoln("[SWITCH SCORING] #{fakeBattler.pbThis} offensive matchup rating: #{offensiveMatchupRating.to_change}")
+            if killInfo
+                echoln("[SWITCH SCORING] #{fakeBattler.pbThis} offensive matchup rating: #{offensiveMatchupRating.to_change} (thinks can faint a foe!)")
+            else
+                echoln("[SWITCH SCORING] #{fakeBattler.pbThis} offensive matchup rating: #{offensiveMatchupRating.to_change} (doesn't think it can faint anyone)")
+            end
         end
 
         # For preserving the pokemon placed in the last slot
@@ -320,14 +330,16 @@ class PokeBattle_AI
     # The battler passed in could be a real battler, or a fake one
     def worstDefensiveMatchupAgainstActiveFoes(battler)
         if @precalculatedDefensiveMatchup.key?(battler.personalID)
-            precalcedScore = @precalculatedDefensiveMatchup[battler.personalID]
-            echoln("[MOVE SCORING] Defensive matchup for #{battler.pbThis(true)} already calced this round: #{precalcedScore}")
-            return precalcedScore
+            precalcedScore,killInfoArray = @precalculatedDefensiveMatchup[battler.personalID]
+            echoln("[DEFENSIVE MATCHUP] Defensive matchup for #{battler.pbThis(true)} already calced this round: #{precalcedScore}")
+            return precalcedScore,killInfoArray
         end
         matchups = []
+        killInfoArray = []
         battler.eachOpposing(true) do |opposingBattler|
-            matchup = rateDefensiveMatchup(battler, opposingBattler)
+            matchup,killInfo = rateDefensiveMatchup(battler, opposingBattler)
             matchups.push(matchup)
+            killInfoArray.push(killInfo) if killInfo
         end
         if matchups.empty?
             worseDefensiveMatchup = 0
@@ -335,21 +347,18 @@ class PokeBattle_AI
             worseDefensiveMatchup = matchups.min
         end
         @precalculatedDefensiveMatchup[battler.personalID] = worseDefensiveMatchup
-        return worseDefensiveMatchup
+        return worseDefensiveMatchup,killInfoArray
     end
 
     # The battler passed in could be a real battler, or a fake one
     def rateDefensiveMatchup(battler, opposingBattler)
         # How good are the opponent's moves against me?
-        matchupScore = -1 * switchRatingBestMoveScore(opposingBattler, battler)
+        bestMoveScore,killInfo = switchRatingBestMoveScore(opposingBattler, opposingBattler: battler)
+        matchupScore = -1 * bestMoveScore
 
-        # Items
-        if battler.hasActiveItem?(:REDCARD) && !opposingBattler.hasActiveItem?(:PROXYFIST)
-            matchupScore += statStepsValueScore(battler)
-        end
-
-        # Abilities
-        if battler.hasActiveAbility?(%i[UNAWARE SMOKEINSINCT PERISHSONG CURIOUSMEDICINE DRIFTINGMIST])
+        # Set-up counterplay scoring
+        if      (battler.hasActiveItem?(:REDCARD) && !opposingBattler.hasActiveItem?(:PROXYFIST)) ||
+                battler.hasActiveAbility?(%i[SMOKEINSINCT PERISHSONG CURIOUSMEDICINE DRIFTINGMIST])
             matchupScore += statStepsValueScore(battler)
         end
 
@@ -359,18 +368,18 @@ class PokeBattle_AI
         # Fear of unknown
         matchupScore -= opposingBattler.unknownMovesCountAI * 2
 
-        return matchupScore
+        return matchupScore,killInfo
     end
 
-    def switchRatingBestMoveScore(battler, opposingBattler = nil)
-        maxScore = highestMoveScoreForBattler(battler, opposingBattler)
+    def switchRatingBestMoveScore(battler, opposingBattler: nil, killInfoArray: [])
+        maxScore,killInfo = highestMoveScoreForBattler(battler, opposingBattler: opposingBattler, killInfoArray: killInfoArray)
         maxMoveScoreBiasChange = -40
         maxMoveScoreBiasChange += (maxScore / 2.5).round
-        return maxMoveScoreBiasChange
+        return maxMoveScoreBiasChange,killInfo
     end
 
-    def highestMoveScoreForBattler(battler, opposingBattler = nil)
-        choices = pbGetBestTrainerMoveChoices(battler, opposingBattler)
+    def highestMoveScoreForBattler(battler, opposingBattler: nil, killInfoArray: [])
+        choices,killInfo = pbGetBestTrainerMoveChoices(battler, opposingBattler: opposingBattler, killInfoArray: killInfoArray)
 
         maxScore = 0
         bestMove = nil
@@ -384,6 +393,6 @@ class PokeBattle_AI
         else
             echoln("[MOVES SCORING] #{battler.pbThis}'s best move is #{bestMove} at score #{maxScore}")
         end
-        return maxScore
+        return maxScore,killInfo
     end
 end

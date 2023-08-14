@@ -178,7 +178,7 @@ class PokeBattle_Battler
             b.eachEffect(true) do |_effect, value, data|
                 next if data.type != :Position
                 next if value != @index
-                next if data.deep_teeth?
+                next if data.deep_teeth? && deepTeeth
                 data.disable_effects_on_other_exit.each do |effectToDisable|
                     echoln("[BATTLER EFFECT] Effect #{effectToDisable} is disabled on #{b.name} due to #{name} (#{@index}) exiting")
                     b.disableEffect(effectToDisable)

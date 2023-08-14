@@ -71,7 +71,7 @@ def randomStatusProcTargetAbility(ability, status, chance, user, target, move, b
     return if user.pbHasStatus?(status)
     return if user.fainted?
     if aiChecking
-        chanceOfActivating = 1 - (((100 - chance) / 100)**aiNumHits)
+        chanceOfActivating = 1 - (((100 - chance) / 100.0)**aiNumHits)
         ret = -getStatusSettingEffectScore(status, target, user)
         ret *= chanceOfActivating
         ret = ret.round(-1)

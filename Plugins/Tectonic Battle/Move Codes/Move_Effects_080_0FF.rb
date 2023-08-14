@@ -1657,12 +1657,8 @@ class PokeBattle_Move_0BA < PokeBattle_Move
         return 0 if target.hasActiveAbilityAI?(:MENTALBLOCK)
         return 0 unless target.hasStatusMove?
         score = 20
-        score += getSetupLikelihoodScore(target) { |move|
-            next move.statusMove?
-        }
-        score += getHazardLikelihoodScore(target) { |move|
-            next move.statusMove?
-        }
+        score += 100 if target.hasStatBoostingMove?
+        score += 100 if target.hasHazardSettingMove?
         score /= 2 unless @battle.battleAI.userMovesFirst?(self, user, target)
         return score
     end
@@ -1870,7 +1866,7 @@ module RandomHitable
 
     def pbNumHitsAI(user, _targets)
         return 5 if user.hasActiveAbilityAI?(%i[SKILLLINK PERFECTLUCK])
-        return 4 if user.hasActiveItem?(:LOADEDDICE)
+        return 4.5 if user.hasActiveItem?(:LOADEDDICE)
         return 19.0 / 6.0 # Average
     end
 end
