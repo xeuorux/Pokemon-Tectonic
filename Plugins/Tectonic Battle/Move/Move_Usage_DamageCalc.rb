@@ -283,7 +283,7 @@ class PokeBattle_Move
 
     def pbCalcTypeBasedDamageMultipliers(user,target,type,multipliers,checkingForAI=false)
         stabActive = false
-        stabActive = true unless type && user.pbHasType?(type)
+        stabActive = true if type && user.pbHasType?(type)
         if checkingForAI
             stabActive = true if user.hasActiveAbilityAI?(%i[PROTEAN FREESTYLE])
             stabActive = true if user.hasActiveAbilityAI?(:MUTABLE) && !user.hasEffect?(:Mutated)
