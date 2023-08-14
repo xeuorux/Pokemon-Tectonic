@@ -190,7 +190,7 @@
 1189,STUNNINGCURL,Stunning Curl,550,0,BUG,Status,0,3,0,User,4,,"Halves attack damage taken this turn. Numbs any attackers. Fails if used successively.",DEFENSECURL
 1190,FLAMESPIKES,Flame Spikes,551,0,FIRE,Status,0,15,0,FoeSide,0,CanMagicCoat,"The user lays burning spikes on the foe's side. One layer hurts switched in foes, two layers burns.",
 1191,DROPKICK,Drop Kick,0FA,80,FIGHTING,Physical,0,20,100,NearFoe,0,CanProtect;CanMirrorMove,"The user drops onto the target with a kick, dealing 25% recoil to self.",JUMPKICK
-1192,MULTISTRIKE,Multi-strike,185,14,NORMAL,Physical,100,30,0,NearOther,0,CanProtect;CanMirrorMove;Punch,"The target is hit two to five times in a row. Inflicts physical or special damage based on the user's stats.",
+1192,MULTISTRIKE,Multi-strike,185,14,NORMAL,Physical,100,30,0,NearOther,0,CanProtect;CanMirrorMove,"The target is hit two to five times in a row. Inflicts physical or special damage based on the user's stats.",
 1193,MOUNTAINCRUSH,Mountain Crush,0FC,200,ROCK,Physical,50,10,0,NearOther,0,CanProtect;CanMirrorMove,"The user slams itself into the target with the power to destroy a mountain, taking 50% recoil.",
 1194,SMUSH,Smush,5E8,40,BUG,Physical,100,15,20,NearOther,0,CanProtect;CanMirrorMove,"Avenging bugs everywhere, the user crushes the target. It has a 20% chance to lower their Defense stat.",
 1195,ACIDBATH,Acid Bath,03C,110,POISON,Special,100,5,0,NearOther,0,CanProtect;CanMirrorMove,"The user and target bathe in acid. Lowers the user's Defense and Sp. Def by two steps each.",ACIDSPRAY
