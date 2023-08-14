@@ -2367,6 +2367,27 @@ Outdoor = true
 ShowArea = true
 Bicycle = true
 #-------------------------------
+[415]
+# Frigid Overlook
+Outdoor = true
+ShowArea = true
+Bicycle = true
+Weather = Blizzard,100
+#-------------------------------
+[416]
+# Sunbaked Camp
+Outdoor = true
+ShowArea = true
+Bicycle = true
+Weather = Sun,100
+#-------------------------------
+[417]
+# Ferrous Cave
+Outdoor = false
+ShowArea = true
+Bicycle = true
+Weather = DryLightning,100
+#-------------------------------
 [418]
 # M. Munna Den 3
 Outdoor = false

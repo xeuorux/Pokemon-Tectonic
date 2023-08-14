@@ -376,7 +376,7 @@ class OverworldWeather
     def update_flashes
         return if @strength == 0
         # Storm flashes
-        if @type == :Storm
+        if %i[Storm DryLightning].include?(@type)
             if @time_until_flash > 0
                 @time_until_flash -= Graphics.delta_s
                 if @time_until_flash <= 0

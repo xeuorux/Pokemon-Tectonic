@@ -342,12 +342,12 @@ class PokeBattle_AI
             killInfoArray.push(killInfo) if killInfo
         end
         if matchups.empty?
-            worseDefensiveMatchup = 0
+            worstDefensiveMatchup = 0
         else
-            worseDefensiveMatchup = matchups.min
+            worstDefensiveMatchup = matchups.min
         end
-        @precalculatedDefensiveMatchup[battler.personalID] = worseDefensiveMatchup
-        return worseDefensiveMatchup,killInfoArray
+        @precalculatedDefensiveMatchup[battler.personalID] = [worstDefensiveMatchup,killInfoArray]
+        return worstDefensiveMatchup,killInfoArray
     end
 
     # The battler passed in could be a real battler, or a fake one
