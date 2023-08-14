@@ -1123,6 +1123,12 @@ MapPosition = 0,16,6
 BattleBack = cave1
 Environment = Cave
 #-------------------------------
+[184]
+# Helena's House
+Outdoor = false
+ShowArea = true
+Bicycle = false
+#-------------------------------
 [185]
 # Eleig Stretch
 Outdoor = true
