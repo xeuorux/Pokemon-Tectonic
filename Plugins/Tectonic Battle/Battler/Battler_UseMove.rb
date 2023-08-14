@@ -701,8 +701,8 @@ user.pbThis))
         # Instruct
         @battle.eachBattler do |b|
             next if !b.effectActive?(:Instruct) || !b.lastMoveUsed
-            disableEffect(:Instruct)
-            # Don't force the move if the pokemon someone no longer has that move
+            b.disableEffect(:Instruct)
+            # Don't force the move if the pokemon somehow no longer has that move
             moveIndex = -1
             b.eachMoveWithIndex do |m, i|
                 moveIndex = i if m.id == b.lastMoveUsed
