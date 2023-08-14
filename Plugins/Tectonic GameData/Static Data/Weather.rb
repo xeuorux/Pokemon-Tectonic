@@ -284,3 +284,11 @@ module GameData
       next strength * -10
     },
   })
+
+  GameData::Weather.register({
+    :id               => :DryLightning,
+    :id_number        => 14,
+    :clouds_proc        => proc { |strength|
+      next 0
+    },
+  })
