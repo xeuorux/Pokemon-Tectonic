@@ -73,7 +73,7 @@ module PokeBattle_RecordedBattleModule
       return Marshal.dump([pbGetBattleType,@properties,@rounds,@randomnumbers,@switches])
     end
   
-    def pbSwitchInBetween(idxBattler,checkLaxOnly=false,canCancel=false)
+    def pbSwitchInBetween(idxBattler, checkLaxOnly: false, canCancel: false, safeSwitch: false)
       ret = super
       @switches.push(ret)
       return ret
@@ -218,7 +218,7 @@ module PokeBattle_RecordedBattleModule
       super
     end
   
-    def pbSwitchInBetween(_idxBattler,_checkLaxOnly=false,_canCancel=false)
+    def pbSwitchInBetween(_idxBattler, _checkLaxOnly: false, _canCancel: false, _safeSwitch: false)
       ret = @switches[@switchindex]
       @switchindex += 1
       return ret

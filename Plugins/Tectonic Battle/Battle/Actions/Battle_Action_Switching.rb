@@ -151,9 +151,20 @@ class PokeBattle_Battle
 
     # For choosing a replacement Pokémon when prompted in the middle of other
     # things happening (U-turn, Baton Pass, in def pbSwitch).
-    def pbSwitchInBetween(idxBattler, checkLaxOnly = false, canCancel = false)
-        return pbPartyScreen(idxBattler, checkLaxOnly, canCancel) if pbOwnedByPlayer?(idxBattler)
-        return @battleAI.pbDefaultChooseNewEnemy(idxBattler, pbParty(idxBattler))
+    def pbSwitchInBetween(idxBattler, checkLaxOnly: false, canCancel: false, safeSwitch: nil)
+        if pbOwnedByPlayer?(idxBattler)
+            return pbPartyScreen(idxBattler, checkLaxOnly, canCancel) 
+        else
+            if safeSwitch.nil?
+                safeSwitch = true
+                @battlers[idxBattler].eachOpposing do |b|
+                    next if b.movedThisRound?
+                    next unless b.canActThisTurn?
+                    safeSwitch = false
+                end
+            end
+            return @battleAI.pbDefaultChooseNewEnemy(idxBattler, safeSwitch)
+        end
     end
 
     def triggeredSwitchOut(idxBattler, ability: nil)
@@ -199,7 +210,7 @@ class PokeBattle_Battle
                 next unless pbCanChooseNonActive?(idxBattler)
                 if !pbOwnedByPlayer?(idxBattler) # Opponent/ally is switching in
                     next if wildBattle? && opposes?(idxBattler) # Wild Pokémon can't switch
-                    idxPartyNew = pbSwitchInBetween(idxBattler)
+                    idxPartyNew = pbSwitchInBetween(idxBattler, safeSwitch: true)
                     pbRecallAndReplace(idxBattler, idxPartyNew)
                     switched.push(idxBattler)
                 elsif trainerBattle? || bossBattle? # Player switches in in a trainer battle or boss battle
@@ -238,7 +249,7 @@ class PokeBattle_Battle
             return choices[pbRandom(choices.length)]
         else
             return -1 unless pbCanChooseNonActive?(idxBattler)
-            return pbSwitchInBetween(idxBattler, true)
+            return pbSwitchInBetween(idxBattler, checkLaxOnly: true)
         end
     end
 

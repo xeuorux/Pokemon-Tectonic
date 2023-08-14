@@ -661,8 +661,10 @@ module Recoilable
         user.applyRecoilDamage(recoilDamage, false, true)
     end
 
-    def getEffectScore(user, _target)
-        return -50 * finalRecoilFactor(user, true)
+    def getDamageBasedEffectScore(user,_target,damage)
+        recoilDamage = damage * finalRecoilFactor(user, true)
+        score = (-recoilDamage * 2 / user.totalhp).floor
+        return score
     end
 end
 
@@ -1002,13 +1004,13 @@ class PokeBattle_DrainMove < PokeBattle_Move
         user.pbRecoverHPFromDrain(hpGain, target)
     end
 
-    def getEffectScore(user, target)
-        score = 40 * drainFactor(user, target)
-        score *= 1.5 if user.hasActiveAbilityAI?(:ROOTED)
-        score *= 2.0 if user.hasActiveAbilityAI?(:GLOWSHROOM) && user.battle.moonGlowing?
-        score *= 1.3 if user.hasActiveItem?(:BIGROOT)
+    def getDamageBasedEffectScore(user,target,damage)
+        drainAmount = damage * drainFactor(user, target)
+        drainAmount *= 1.5 if user.hasActiveAbilityAI?(:ROOTED)
+        drainAmount *= 1.3 if user.hasActiveItem?(:BIGROOT)
+        drainAmount *= -1 if target.hasActiveAbilityAI?(:LIQUIDOOZE) || user.effectActive?(:NerveBreak)
+        score = (drainAmount * 2 / user.totalhp).floor
         score *= 2 if user.belowHalfHealth?
-        score *= -1 if target.hasActiveAbilityAI?(:LIQUIDOOZE) || user.effectActive?(:NerveBreak)
         return score
     end
 end

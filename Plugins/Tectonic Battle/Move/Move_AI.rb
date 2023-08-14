@@ -19,6 +19,11 @@ class PokeBattle_Move
         return 0
     end
 
+    # Scoring the effects that scale based on the damage dealt to the target (recoil, drain, etc.)
+    def getDamageBasedEffectScore(_user,_target,_damage)
+        return 0
+    end
+
     # For moves that want to lie to the AI about their base damage
     # Or avoid side effects of the base damage method
     # Or give an estimate of the base damage when it can't be accurately measured at the point of choosing moves

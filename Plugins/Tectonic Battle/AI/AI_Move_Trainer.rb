@@ -138,6 +138,7 @@ class PokeBattle_AI
         switchPredicted = @battle.aiPredictsSwitch?(user,target.index,true)
 
         # DAMAGE SCORE AND HIT TRIGGERS SCORE
+        damageDealt = 0
         damageScore = 0
         triggersScore = 0
         willFaint = false
@@ -146,7 +147,7 @@ class PokeBattle_AI
             # Adjust the score based on the move dealing damage
             # and perhaps a percent chance to actually benefit from its effect score
             begin
-                damageScore,willFaint = pbGetMoveScoreDamage(move, user, target, numTargets)
+                damageScore,damageDealt,willFaint = pbGetMoveScoreDamage(move, user, target, numTargets)
             rescue StandardError => exception
                 pbPrintException($!) if $DEBUG
             end
@@ -208,9 +209,11 @@ class PokeBattle_AI
             elsif !target.substituted? || move.ignoresSubstitute?(user)
                 targetAffectingEffectScore = move.getTargetAffectingEffectScore(user, target)
             end
+            damageBasedEffectScore = move.getDamageBasedEffectScore(user, target, damageDealt)
             effectScore += regularEffectScore
             effectScore += faintEffectScore
             effectScore += targetAffectingEffectScore
+            effectScore += damageBasedEffectScore
         rescue StandardError => e
             echoln("FAILURE IN THE SCORING SYSTEM FOR MOVE #{move.name} #{move.function}")
             effectScore = 0
@@ -228,7 +231,11 @@ class PokeBattle_AI
         end
 
         # Combine
-        echoln("[MOVE SCORING] #{user.pbThis} gives #{move.id} an effect score of #{effectScore}, a damage score of #{damageScore}, and a triggers score of #{triggersScore} (against target #{target.pbThis(false)})")
+        if damagingMove
+            echoln("[MOVE SCORING] #{user.pbThis} gives #{move.id} a damage score of #{damageScore}, an effect score of #{effectScore}, and a triggers score of #{triggersScore} (against target #{target.pbThis(false)})")
+        else
+            echoln("[MOVE SCORING] #{user.pbThis} gives #{move.id} an effect score of #{effectScore}, and a triggers score of #{triggersScore} (against target #{target.pbThis(false)})")
+        end
         score = damageScore + triggersScore + effectScore
 
         # ! All score changes from this point forward must be multiplicative !
@@ -307,6 +314,7 @@ class PokeBattle_AI
         # Adjust score
         willFaint = false
         if realDamage >= target.hp
+            realDamage = target.hp
             damageScore = 250
             willFaint = true
         else
@@ -321,7 +329,7 @@ class PokeBattle_AI
         end
         damageScore *= 0.66 if target.allyHasRedirectionMove?
 
-        return damageScore, willFaint
+        return damageScore,realDamage,willFaint
     end
 
     def getDamageAnalysisAI(move, user, target, numTargets = 1)

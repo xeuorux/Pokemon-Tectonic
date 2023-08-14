@@ -1016,7 +1016,7 @@ class PokeBattle_CableClub_AI < PokeBattle_AI
     end
   end
 
-  def pbDefaultChooseNewEnemy(index, party)
+  def pbDefaultChooseNewEnemy(index, safeSwitch = false)
     raise "Expected this to be unused."
   end
 end

@@ -26,14 +26,14 @@ class PokeBattle_AI
         PBDebug.log("[AI SWITCH] #{battler.pbThis} (#{battler.index}) is determining whether it should switch out")
 
         # Defensive matchup
-        matchupRating = (0.5 * worstDefensiveMatchupAgainstActiveFoes(battler)).floor
-        stayInRating += matchupRating
-        PBDebug.log("[STAY-IN RATING] #{battler.pbThis} matchup rating: #{matchupRating.to_change}")
+        defensiveMatchupRating = (0.5 * worstDefensiveMatchupAgainstActiveFoes(battler)).floor
+        stayInRating += defensiveMatchupRating
+        PBDebug.log("[STAY-IN RATING] #{battler.pbThis} matchup rating: #{defensiveMatchupRating.to_change}")
 
         # Value of its own moves
-        movesRating = (0.5 * switchRatingBestMoveScore(battler)).floor
-        stayInRating += movesRating
-        PBDebug.log("[STAY-IN RATING] #{battler.pbThis} moves rating is #{movesRating.to_change} based on highest move score #{}")
+        offensiveMatchupRating = (0.5 * switchRatingBestMoveScore(battler)).floor
+        stayInRating += offensiveMatchupRating
+        PBDebug.log("[STAY-IN RATING] #{battler.pbThis} offensive matchup rating: #{offensiveMatchupRating.to_change}")
 
         stayInRating += miscStayInRatingModifiers(battler)
 
@@ -108,8 +108,8 @@ class PokeBattle_AI
         return stayInRating
     end
 
-    def pbDefaultChooseNewEnemy(idxBattler, _party)
-        list = pbGetPartyWithSwapRatings(idxBattler)
+    def pbDefaultChooseNewEnemy(idxBattler, safeSwitch = false)
+        list = pbGetPartyWithSwapRatings(idxBattler, safeSwitch)
         list.delete_if { |val| !@battle.pbCanSwitchLax?(idxBattler, val[0]) }
         if list.length != 0
             listSwapOutCandidates(@battle.battlers[idxBattler], list)
@@ -129,7 +129,7 @@ class PokeBattle_AI
     end
 
     # Rates every other Pokemon in the trainer's party and returns a sorted list of the indices and swap in rating
-    def pbGetPartyWithSwapRatings(idxBattler)
+    def pbGetPartyWithSwapRatings(idxBattler, safeSwitch = false)
         list = []
         battlerSlot = @battle.battlers[idxBattler]
 
@@ -137,14 +137,14 @@ class PokeBattle_AI
             next unless pkmn.able?
             next if battlerSlot.pokemonIndex == partyIndex
             next unless @battle.pbCanSwitch?(idxBattler, partyIndex)
-            switchScore = getSwitchRatingForPartyMember(pkmn,partyIndex,battlerSlot)
+            switchScore = getSwitchRatingForPartyMember(pkmn,partyIndex, battlerSlot, safeSwitch)
             list.push([partyIndex, switchScore])
         end
         list.sort_by! { |entry| entry[1].nil? ? 99999 : -entry[1] }
         return list
     end
 
-    def getSwitchRatingForPartyMember(pkmn,partyIndex,battlerSlot)
+    def getSwitchRatingForPartyMember(pkmn,partyIndex,battlerSlot, safeSwitch = false)
         switchScore = 0
 
         # Create a battler to simulate what would happen if the Pokemon was in battle right now
@@ -159,16 +159,32 @@ class PokeBattle_AI
         # Intentionally checked even if the pokemon will die on entry
         switchScore += getEntryAbilityEvaluationForEnteringBattler(fakeBattler,dieingOnEntry)
 
+        if safeSwitch
+            echoln("[SWITCH SCORING] Evaluating #{fakeBattler.pbThis} as a SAFE switch")
+        else
+            echoln("[SWITCH SCORING] Evaluating #{fakeBattler.pbThis} as a UN-SAFE switch")
+        end
+
         # Only matters if the pokemon will live
         unless dieingOnEntry
             # Find the worst matchup against the current player battlers
-            matchupRating = (0.66 * worstDefensiveMatchupAgainstActiveFoes(fakeBattler)).floor
-            switchScore += matchupRating
-            echoln("[SWITCH SCORING] #{fakeBattler.pbThis} matchup rating: #{matchupRating.to_change}")
+            defensiveMatchupRating = worstDefensiveMatchupAgainstActiveFoes(fakeBattler)
+            if safeSwitch
+                defensiveMatchupRating = (0.5 * defensiveMatchupRating).floor
+            else
+                defensiveMatchupRating = (0.66 * defensiveMatchupRating).floor
+            end
+            switchScore += defensiveMatchupRating
+            echoln("[SWITCH SCORING] #{fakeBattler.pbThis} defensive matchup rating: #{defensiveMatchupRating.to_change}")
 
-            movesRating = (0.33 * switchRatingBestMoveScore(fakeBattler)).floor
-            switchScore += movesRating
-            echoln("[SWITCH SCORING] #{fakeBattler.pbThis} moves rating: #{movesRating.to_change}")
+            offensiveMatchupRating = switchRatingBestMoveScore(fakeBattler)
+            if safeSwitch
+                offensiveMatchupRating = (0.5 * offensiveMatchupRating).floor
+            else
+                offensiveMatchupRating = (0.33 * offensiveMatchupRating).floor
+            end
+            switchScore += offensiveMatchupRating
+            echoln("[SWITCH SCORING] #{fakeBattler.pbThis} offensive matchup rating: #{offensiveMatchupRating.to_change}")
         end
 
         # For preserving the pokemon placed in the last slot

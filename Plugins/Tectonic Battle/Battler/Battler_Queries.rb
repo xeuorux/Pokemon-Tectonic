@@ -647,6 +647,7 @@ class PokeBattle_Battler
         return false if effectActive?(:HyperBeam)
         return false if effectActive?(:Attached)
         return false if effectActive?(:Truant)
+        return false if asleep? && getStatusCount(:SLEEP) > 1
         return true
     end
 

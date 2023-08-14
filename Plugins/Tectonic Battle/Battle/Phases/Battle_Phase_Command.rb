@@ -164,7 +164,7 @@ class PokeBattle_Battle
     def pbPartyMenu(idxBattler)
         ret = -1
         if @debug
-            ret = @battleAI.pbDefaultChooseNewEnemy(idxBattler, pbParty(idxBattler))
+            ret = @battleAI.pbDefaultChooseNewEnemy(idxBattler)
         else
             ret = pbPartyScreen(idxBattler, false, true, true)
         end
