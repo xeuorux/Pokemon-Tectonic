@@ -1661,7 +1661,7 @@ class PokeBattle_Move_0BA < PokeBattle_Move
         firstTurnScore = 0
         firstTurnScore += 100 if setupHate
         firstTurnScore += 100 if hazardHate
-        firstTurnScore /= 2 if @battle.battleAI.userMovesFirst?(self, user, target)
+        firstTurnScore /= 2 unless @battle.battleAI.userMovesFirst?(self, user, target)
         lastingScore = 0
         lastingScore += 20 if setupHate
         lastingScore += 20 if hazardHate
