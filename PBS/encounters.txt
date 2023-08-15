@@ -695,7 +695,7 @@ Land,20
 [218] # Abyssal Cavern
 ActiveWater,20
     25,CHINCHOU,37,39
-    25,FRILLISH,37,39
+    25,MFRILLISH,37,39
     25,RELICANTH,37,39
     25,WIMPOD,37,39
 DarkCave,20
@@ -890,8 +890,8 @@ Special,1
 [316] # Sandstone Estuary
 ActiveWater,20
     20,CARVANHA,37,39
-    20,CHINCHOU,37,39
     20,MANTYKE,37,39
+    20,MFRILLISH,37,39
     20,REMORAID,37,39
     20,WAILMER,37,39
 LandSparse,20
