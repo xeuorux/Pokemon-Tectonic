@@ -162,10 +162,11 @@ class PokeBattle_Move
     end
 
     def pbCalcWeatherDamageMultipliers(user,target,type,multipliers,checkingForAI=false)
-        case @battle.pbWeather
+        weather = @battle.pbWeather
+        case weather
         when :Sun, :HarshSun
             if type == :FIRE
-                damageBonus = @battle.pbWeather == :HarshSun ? 0.5 : 0.3
+                damageBonus = weather == :HarshSun ? 0.5 : 0.3
                 damageBonus *= 2 if @battle.curseActive?(:CURSE_BOOSTED_SUN)
                 multipliers[:final_damage_multiplier] *= (1 + damageBonus)
             elsif applySunDebuff?(user,type,checkingForAI)
@@ -176,7 +177,7 @@ class PokeBattle_Move
             end
         when :Rain, :HeavyRain
             if type == :WATER
-                damageBonus = @battle.pbWeather == :HeavyRain ? 0.5 : 0.3
+                damageBonus = weather == :HeavyRain ? 0.5 : 0.3
                 damageBonus *= 2 if @battle.curseActive?(:CURSE_BOOSTED_RAIN)
                 multipliers[:final_damage_multiplier] *= (1 + damageBonus)
             elsif applyRainDebuff?(user,type,checkingForAI)
@@ -185,18 +186,18 @@ class PokeBattle_Move
                 damageReduction *= 2 if @battle.curseActive?(:CURSE_BOOSTED_RAIN)
                 multipliers[:final_damage_multiplier] *= (1 - damageReduction)
             end
-        when :Eclipse
-            if type == :PSYCHIC
-                damageBonus = 0.3
+        when :Eclipse,:RingEclipse
+            if type == :PSYCHIC || (type == :DRAGON && weather == :RingEclipse)
+                damageBonus = weather == :RingEclipse ? 0.5 : 0.3
                 multipliers[:final_damage_multiplier] *= (1 + damageBonus)
             end
 
             if @battle.pbCheckOpposingAbility(:DISTRESSING,user.index)
                 multipliers[:final_damage_multiplier] *= 0.8
             end
-        when :Moonglow
-            if type == :FAIRY
-                damageBonus = 0.3
+        when :Moonglow,:BloodMoon
+            if type == :FAIRY || (type == :DARK && weather == :BloodMoon)
+                damageBonus = weather == :BloodMoon ? 0.5 : 0.3
                 multipliers[:final_damage_multiplier] *= (1 + damageBonus)
             end
         end

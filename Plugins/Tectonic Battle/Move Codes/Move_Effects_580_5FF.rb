@@ -190,13 +190,12 @@ class PokeBattle_Move_587 < PokeBattle_Move
     def getEffectScore(user, _target)
         score = 20
         @battle.eachBattler do |b|
-            totalSteps = 0
             if b.opposes?(user)
-                score += statStepsValueScore(user)
-                score += getSetupLikelihoodScore(user)
+                score += statStepsValueScore(b)
+                score += 50 if b.hasStatBoostingMove?
             else
-                score -= statStepsValueScore(user)
-                score -= getSetupLikelihoodScore(user)
+                score -= statStepsValueScore(b)
+                score -= 50 if b.hasStatBoostingMove?
             end
         end
         return score

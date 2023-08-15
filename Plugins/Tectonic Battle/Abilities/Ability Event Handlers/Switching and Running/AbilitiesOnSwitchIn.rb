@@ -56,6 +56,18 @@ BattleHandlers::AbilityOnSwitchIn.add(:DELTASTREAM,
   }
 )
 
+BattleHandlers::AbilityOnSwitchIn.add(:SATURNALSKY,
+  proc { |ability, battler, battle|
+      pbBattleWeatherAbility(ability, :RingEclipse, battler, battle, true, baseDuration: -1)
+  }
+)
+
+BattleHandlers::AbilityOnSwitchIn.add(:STYGIANNIGHT,
+  proc { |ability, battler, battle|
+      pbBattleWeatherAbility(ability, :BloodMoon, battler, battle, true, baseDuration: -1)
+  }
+)
+
 #######################################################
 # Other abilities
 #######################################################

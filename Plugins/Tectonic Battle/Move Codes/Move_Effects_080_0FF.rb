@@ -132,9 +132,9 @@ class PokeBattle_Move_087 < PokeBattle_Move
             ret = :ROCK if GameData::Type.exists?(:ROCK)
         when :Hail
             ret = :ICE if GameData::Type.exists?(:ICE)
-        when :Eclipse
+        when :Eclipse,:RingEclipse
             ret = :PSYCHIC if GameData::Type.exists?(:PSYCHIC)
-        when :Moonglow
+        when :Moonglow,:BloodMoon
             ret = :FAIRY if GameData::Type.exists?(:FAIRY)
         end
         return ret

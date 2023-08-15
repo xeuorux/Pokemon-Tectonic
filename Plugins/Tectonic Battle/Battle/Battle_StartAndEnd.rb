@@ -383,6 +383,8 @@ class PokeBattle_Battle
         when :HeavyRain   then pbDisplay(_INTL("It is raining heavily."))
         when :StrongWinds then pbDisplay(_INTL("The wind is strong."))
         when :ShadowSky   then pbDisplay(_INTL("The sky is shadowy."))
+        when :RingEclipse then pbDisplay(_INTL("A planetary ring dominates the skyline."))
+        when :Bloodmoon   then pbDisplay(_INTL("The moon is taken by a nightmare."))
         end
         # Change avatars for auto-testing
         if @autoTesting

@@ -310,7 +310,7 @@ def getHealingEffectScore(user, target, magnitude = 5)
     return score
 end
 
-def getMultiStatUpEffectScore(statUpArray, user, target, fakeStepModifier = 0, evaluateThreat = true)
+def getMultiStatUpEffectScore(statUpArray, user, target, fakeStepModifier: 0, evaluateThreat: true)
     echoln("\t\t[EFFECT SCORING] Scoring the effect of raising stats #{statUpArray.to_s} on target #{target.pbThis(true)}")
     
     if user.battle.field.effectActive?(:GreyMist)

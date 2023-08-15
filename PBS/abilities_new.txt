@@ -445,3 +445,5 @@
 1444,MUPROTOCOL,MU Protocol,"Immune to the type of the memory disc it holds."
 1445,SLUGGISH,Sluggish,"The Pokémon is also Bug-type, but its Speed is halved."
 1446,DEEPTEETH,Deep Teeth,"Foes aren't released from its trapping moves even when the Pokémon leaves the field."
+1447,SATURNALSKY,Saturnal Sky,"Changes the weather to Ring Eclipse, which heralds the Total Ring Eclipse. Lingers for 3 turns after leaving."
+1448,STYGIANNIGHT,Stygian Night,"Changes the weather to Blood Moon, which heralds the Full Blood Moon. Lingers for 3 turns after leaving."

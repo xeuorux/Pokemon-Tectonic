@@ -110,7 +110,7 @@ BattleHandlers::TargetAbilityOnHit.add(:STAMINA,
         if aiChecking
             ret = 0
             aiNumHits.times do |i|
-                ret -= getMultiStatUpEffectScore([:DEFENSE,2], user, target, i, evaluateThreat: false)
+                ret -= getMultiStatUpEffectScore([:DEFENSE,2], user, target, fakeStepModifier: i, evaluateThreat: false)
             end
             next ret
         end
@@ -123,7 +123,7 @@ BattleHandlers::TargetAbilityOnHit.add(:GRIT,
         if aiChecking
             ret = 0
             aiNumHits.times do |i|
-                ret -= getMultiStatUpEffectScore([:SPECIAL_DEFENSE,2], user, target, i, evaluateThreat: false)
+                ret -= getMultiStatUpEffectScore([:SPECIAL_DEFENSE,2], user, target, fakeStepModifier: i, evaluateThreat: false)
             end
             next ret
         end
@@ -142,7 +142,7 @@ BattleHandlers::TargetAbilityOnHit.add(:ADAPTIVESKIN,
         if aiChecking
             ret = 0
             aiNumHits.times do |i|
-                ret -= getMultiStatUpEffectScore([statToRaise,1], user, target, i, evaluateThreat: false)
+                ret -= getMultiStatUpEffectScore([statToRaise,1], user, target, fakeStepModifier: i, evaluateThreat: false)
             end
             next ret
         end
@@ -188,7 +188,7 @@ BattleHandlers::TargetAbilityOnHit.add(:STEAMPOWER,
         if aiChecking
             ret = 0
             aiNumHits.times do |i|
-                ret -= getMultiStatUpEffectScore([:SPEED,4], user, target, i*4, evaluateThreat: false)
+                ret -= getMultiStatUpEffectScore([:SPEED,4], user, target, fakeStepModifier: i*4, evaluateThreat: false)
             end
             next ret
         end
@@ -203,7 +203,7 @@ BattleHandlers::TargetAbilityOnHit.add(:FORCEREVERSAL,
             next 0 unless Effectiveness.resistant?(target.damageState.typeMod)
             ret = 0
             aiNumHits.times do |i|
-                ret -= getMultiStatUpEffectScore(ATTACKING_STATS_2, user, target, i, evaluateThreat: false)
+                ret -= getMultiStatUpEffectScore(ATTACKING_STATS_2, user, target, fakeStepModifier: i, evaluateThreat: false)
             end
             next ret
         else

@@ -71,8 +71,8 @@ BattleHandlers::TargetItemOnHit.add(:AIRBALLOON,
 
 BattleHandlers::TargetItemOnHit.add(:KEEBERRY,
   proc { |item, user, target, move, battle, aiChecking, aiNumHits|
-      next getMultiStatUpEffectScore([:DEFENSE, target.hasActiveAbilityAI?(:RIPEN) ? 4 : 2], user, target, evaluateThreat: false) if aiChecking
       next unless move.physicalMove?
+      next getMultiStatUpEffectScore([:DEFENSE, target.hasActiveAbilityAI?(:RIPEN) ? 4 : 2], user, target, evaluateThreat: false) if aiChecking
       if BattleHandlers.triggerTargetItemOnHitPositiveBerry(item, target, battle, false)
           target.pbHeldItemTriggered(item)
       end
@@ -81,8 +81,8 @@ BattleHandlers::TargetItemOnHit.add(:KEEBERRY,
 
 BattleHandlers::TargetItemOnHit.add(:MARANGABERRY,
   proc { |item, user, target, move, battle, aiChecking, aiNumHits|
-      next getMultiStatUpEffectScore([:SPECIAL_DEFENSE, target.hasActiveAbilityAI?(:RIPEN) ? 4 : 2], user, target, evaluateThreat: false) if aiChecking
       next unless move.specialMove?
+      next getMultiStatUpEffectScore([:SPECIAL_DEFENSE, target.hasActiveAbilityAI?(:RIPEN) ? 4 : 2], user, target, evaluateThreat: false) if aiChecking
       if BattleHandlers.triggerTargetItemOnHitPositiveBerry(item, target, battle, false)
           target.pbHeldItemTriggered(item)
       end

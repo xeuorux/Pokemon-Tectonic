@@ -80,6 +80,8 @@ class PokeBattle_Battle
         when :ShadowSky     then pbDisplay(_INTL("The darkened sky darkens even further!"))
         when :Eclipse       then pbDisplay(_INTL("The eclipse extends unnaturally!"))
         when :Moonglow      then pbDisplay(_INTL("The bright moon doesn't wane!"))
+        when :RingEclipse   then pbDisplay(_INTL("The planetary ring tightens its grip!"))
+        when :BloodMoon     then pbDisplay(_INTL("he nightmarish moon is unending!"))
         end
     end
 
@@ -95,6 +97,8 @@ class PokeBattle_Battle
         when :ShadowSky     then pbDisplay(_INTL("A shadow sky appeared!"))
         when :Eclipse       then pbDisplay(_INTL("An eclipse covers the sun!"))
         when :Moonglow      then pbDisplay(_INTL("The light of the moon shines down!"))
+        when :RingEclipse   then pbDisplay(_INTL("A planetary ring dominates the sky!"))
+        when :BloodMoon     then pbDisplay(_INTL("A nightmare possessed the moon!"))
         end
     end
 
@@ -111,6 +115,8 @@ class PokeBattle_Battle
         when :HeavyRain     then pbDisplay(_INTL("The heavy rain has lifted!"))
         when :HarshSun      then pbDisplay(_INTL("The harsh sunlight faded!"))
         when :StrongWinds   then pbDisplay(_INTL("The mysterious air current has dissipated!"))
+        when :RingEclipse   then pbDisplay(_INTL("The planetary ring flew off!"))
+        when :BloodMoon     then pbDisplay(_INTL("The nightmare is purged from the moon!"))
         end
         oldWeather = @field.weather
         @field.weather	= :None
@@ -137,6 +143,16 @@ class PokeBattle_Battle
             if !pbCheckGlobalAbility(:DELTASTREAM) && @field.defaultWeather != :StrongWinds
                 @field.weatherDuration = 3
                 pbDisplay("The mysterious air current began to dissipate!")
+            end
+        when :RingEclipse
+            if !pbCheckGlobalAbility(:SATURNALSKY) && @field.defaultWeather != :RingEclipse
+                @field.weatherDuration = 3
+                pbDisplay("The planetary ring begins to lose its grip!")
+            end
+        when :RingEclipse
+            if !pbCheckGlobalAbility(:SATURNALSKY) && @field.defaultWeather != :RingEclipse
+                @field.weatherDuration = 3
+                pbDisplay("The nightmare moon begins to retreat!")
             end
         end
     end
@@ -168,6 +184,12 @@ class PokeBattle_Battle
         when :StrongWinds
             pbDisplay(_INTL("The mysterious air current blows on regardless!")) if showMessages
             return true
+        when :RingEclipse
+            pbDisplay(_INTL("The skyline is still dominated by a planet!")) if showMessages
+            return true
+        when :BloodMoon
+            pbDisplay(_INTL("The nightmarish moon is unaffected!")) if showMessages
+            return true
         end
         return false
     end
@@ -188,15 +210,27 @@ class PokeBattle_Battle
 
         if @field.specialTimer >= threshold
             case curWeather
-            when :Eclipse
-                pbDisplay(_INTL("The Total Eclipse arrives!")) if showWeatherMessages
+            when :Eclipse,:RingEclipse
+                primevalVariant = curWeather == :RingEclipse
+                if showWeatherMessages
+                    if primevalVariant
+                        pbDisplay(_INTL("The Total Ring Eclipse arrives!"))
+                    else
+                        pbDisplay(_INTL("The Total Eclipse arrives!"))
+                    end
+                end
                 pbCommonAnimation("Eclipse")
                 anyAffected = false
+                debuff = primevalVariant ? ALL_STATS_3 : ALL_STATS_2
                 priority.each do |b|
                     next if b.fainted?
                     next unless b.debuffedByEclipse?
-                    pbDisplay(_INTL("{1} is panicked!", b.pbThis))
-                    b.pbLowerMultipleStatSteps(ALL_STATS_2, b)
+                    if primevalVariant
+                        pbDisplay(_INTL("{1} is severely panicked!", b.pbThis))
+                    else
+                        pbDisplay(_INTL("{1} is panicked!", b.pbThis))
+                    end
+                    b.pbLowerMultipleStatSteps(debuff, b)
                     anyAffected = true
                 end
                 pbDisplay(_INTL("But no one was panicked.")) if showWeatherMessages && !anyAffected
@@ -205,8 +239,15 @@ class PokeBattle_Battle
                         BattleHandlers.triggerTotalEclipseAbility(ability, b, self)
                     end
                 end
-            when :Moonglow
-                pbDisplay(_INTL("The Full Moon rises!")) if showWeatherMessages
+            when :Moonglow, :BloodMoon
+                primevalVariant = curWeather == :BloodMoon
+                if showWeatherMessages
+                    if primevalVariant
+                        pbDisplay(_INTL("The Full Blood Moon rises!"))
+                    else
+                        pbDisplay(_INTL("The Full Moon rises!"))
+                    end
+                end
                 pbAnimation(:Moonglow, @battlers[0], [])
                 anyAffected = false
                 priority.each do |b|
@@ -214,6 +255,10 @@ class PokeBattle_Battle
                     next unless b.flinchedByMoonglow?
                     pbDisplay(_INTL("{1} is moonstruck! It'll flinch this turn!", b.pbThis))
                     b.pbFlinch
+                    if primevalVariant
+                        b.applyFractionalDamage(1.0/4.0)
+                        pbDisplay(_INTL("{1} is afflicted by the nightmarish moon!", b.pbThis))
+                    end
                     anyAffected = true
                 end
                 pbDisplay(_INTL("But no one was moonstruck.")) if showWeatherMessages && !anyAffected
@@ -230,11 +275,17 @@ class PokeBattle_Battle
 
             # Special effect happening next turn
             if @field.specialTimer + 1 == threshold && @field.weatherDuration > 1
-                case curWeather
-                when :Eclipse
-                    pbDisplay(_INTL("The Total Eclipse is approaching.")) if showWeatherMessages
-                when :Moonglow
-                    pbDisplay(_INTL("The Full Moon is approaching.")) if showWeatherMessages
+                if showWeatherMessages
+                    case curWeather
+                    when :Eclipse
+                        pbDisplay(_INTL("The Total Eclipse is approaching."))
+                    when :Moonglow
+                        pbDisplay(_INTL("The Full Moon is approaching."))
+                    when :RingEclipse
+                        pbDisplay(_INTL("The Total Ring Eclipse is approaching."))
+                    when :BloodMoon
+                        pbDisplay(_INTL("The Full Blood Moon is approaching."))
+                    end
                 end
             end
         end
@@ -367,11 +418,11 @@ class PokeBattle_Battle
     end
 
     def eclipsed?
-        return %i[Eclipse].include?(pbWeather)
+        return %i[Eclipse RingEclipse].include?(pbWeather)
     end
 
     def moonGlowing?
-        return %i[Moonglow].include?(pbWeather)
+        return %i[Moonglow BloodMoon].include?(pbWeather)
     end
 
     def partialEclipse?
