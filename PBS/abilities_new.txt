@@ -317,7 +317,7 @@
 1316,NINJUTSU,Ninjutsu,"Slips past all types of spikes. Deals 50% more damage to targets that switched in this turn."
 1317,SELFMENDING,Self Mending,"After fainting from exploding, revives after three turns."
 1318,GRASSYSPIRIT,Grassy Spirit,"Powers up Grass-type moves of itself and its allies by 50%."
-1319,ABOVEITALL,Above It All,"When hit by a move, uses Parting Shot to switch out."
+1319,ABOVEITALL,Above It All,"After being attacked, uses Parting Shot to switch out."
 1320,MOTHBURGLAR,Moth Burglar,"Hits opponent with Thief when withdrawn from battle."
 1321,SURVIVALIST,Survivalist,"It avoids hazards and can't be knocked out with one hit."
 1322,GLASSFIRING,Glass Firing,"Immune to Fire-type moves and raises both defensive stats if hit by one."

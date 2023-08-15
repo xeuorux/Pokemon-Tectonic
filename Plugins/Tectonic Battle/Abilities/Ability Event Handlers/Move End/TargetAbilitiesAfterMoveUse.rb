@@ -89,3 +89,11 @@ BattleHandlers::TargetAbilityAfterMoveUse.add(:PLASMABALL,
       battle.pbHideAbilitySplash(target)
   }
 )
+
+BattleHandlers::TargetAbilityAfterMoveUse.add(:ABOVEITALL,
+  proc { |ability, target, user, move, _switched, battle|
+      next if target.fainted?
+      next unless target.damageState.totalHPLost > 0
+      battle.forceUseMove(target, :PARTINGSHOT, user.index, ability: ability)
+  }
+)

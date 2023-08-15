@@ -3139,18 +3139,13 @@ end
 
 #===============================================================================
 # After inflicting damage, user switches out. Ignores trapping moves.
-# (U-turn, Volt Switch)
+# (U-turn, Volt Switch, Flip Turn)
 #===============================================================================
 class PokeBattle_Move_0EE < PokeBattle_Move
     def switchOutMove?; return true; end
 
     def pbEndOfMoveUsageEffect(user, targets, numHits, switchedBattlers)
         return if user.fainted? || numHits == 0
-        targetSwitched = true
-        targets.each do |b|
-            targetSwitched = false unless switchedBattlers.include?(b.index)
-        end
-        return if targetSwitched
         return unless @battle.pbCanChooseNonActive?(user.index)
         @battle.pbDisplay(_INTL("{1} went back to {2}!", user.pbThis,
             @battle.pbGetOwnerName(user.index)))

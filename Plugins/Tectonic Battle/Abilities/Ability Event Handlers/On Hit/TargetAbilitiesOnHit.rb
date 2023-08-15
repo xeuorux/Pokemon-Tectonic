@@ -334,14 +334,6 @@ BattleHandlers::TargetAbilityOnHit.add(:TOTALMIRROR,
     }
 )
 
-BattleHandlers::TargetAbilityOnHit.add(:ABOVEITALL,
-  proc { |ability, user, target, move, battle, aiChecking, aiNumHits|
-        next if target.fainted?
-        next -40 if aiChecking
-        battle.forceUseMove(target, :PARTINGSHOT, user.index, ability: ability)
-  }
-)
-
 BattleHandlers::TargetAbilityOnHit.add(:SHOCKRESPONSE,
     proc { |ability, user, target, move, battle, aiChecking, aiNumHits|
           next if target.fainted?
