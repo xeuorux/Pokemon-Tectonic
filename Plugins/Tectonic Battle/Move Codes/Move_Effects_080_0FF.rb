@@ -103,13 +103,8 @@ end
 # Power is doubled if the user has no held item. (Acrobatics)
 #===============================================================================
 class PokeBattle_Move_086 < PokeBattle_Move
-    def pbModifyDamage(damageMult, user, _target)
-        damageMult *= 2 unless user.hasAnyItem?
-        return damageMult
-    end
-
-    def pbBaseDamageAI(baseDmg, user, _target)
-        baseDmg *= 2 if !user.hasAnyItem? || user.hasActiveItem?(:FLYINGGEM)
+    def pbBaseDamage(baseDmg, user, _target)
+        baseDmg *= 2 unless user.hasAnyItem?
         return baseDmg
     end
 end

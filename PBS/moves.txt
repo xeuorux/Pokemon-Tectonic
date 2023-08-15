@@ -221,7 +221,7 @@
 220,AERIALACE,Aerial Ace,0A5,60,FLYING,Physical,0,15,0,NearOther,0,CanMirrorMove;Blade,"The user confounds the foe with speed, then slashes. Can't miss and skips protections.",
 221,PLUCK,Pluck,0F4,60,FLYING,Physical,100,15,0,NearOther,0,CanProtect;CanMirrorMove,"The user pecks the target. If the target is holding a Berry, the user eats it and gains its effect.",
 222,WINGCRASH,Wing Crash,599,55,FLYING,Physical,100,30,0,NearOther,0,CanProtect;CanMirrorMove,"The target is struck with large, imposing wings. The user also takes 20% recoil.",
-223,ACROBATICS,Acrobatics,086,55,FLYING,Physical,100,12,0,NearOther,0,CanProtect;CanMirrorMove,"The user nimbly strikes the foe through an elaborate routine. Doubles in damage if the user has no item.",
+223,ACROBATICS,Acrobatics,086,55,FLYING,Physical,100,12,0,NearOther,0,CanProtect;CanMirrorMove,"The user nimbly strikes the foe. Doubles in damage if the user has no item when the move starts.",
 224,GUST,Gust,403,40,FLYING,Special,100,30,10,NearOther,0,CanProtect;CanMirrorMove;Wind,"The user whips up a gust of wind at the target. This has a 10% chance to frostbite.",
 225,PECK,Peck,000,45,FLYING,Physical,100,30,0,NearOther,0,CanProtect;CanMirrorMove,"The target is jabbed with a sharply pointed beak or horn.",
 226,DEFOG,Defog,049,0,FLYING,Status,0,12,0,NearOther,0,CanProtect;CanMagicCoat;CanMirrorMove;Wind,"The user whips up a wind to blows away the target's protective Screens. Also removes hazards on both sides.",
