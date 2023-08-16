@@ -891,6 +891,10 @@ class PokemonOption_Scene
     end
 end
 
+def loadLanguage
+    pbLoadMessages('Data/' + Settings::LANGUAGES[$PokemonSystem.language][1])
+end
+
 class PokemonOptionMenu < PokemonPauseMenu
 	def pbStartPokemonMenu
 		if !$Trainer
@@ -926,7 +930,7 @@ class PokemonOptionMenu < PokemonPauseMenu
                 if $PokemonSystem.language == prevLanguage
                     pbMessage(_INTL("Game language was unchanged."))
                 else
-                    pbLoadMessages('Data/' + Settings::LANGUAGES[$PokemonSystem.language][1])
+                    loadLanguage
                     languageName = Settings::LANGUAGES[$PokemonSystem.language][0]
                     pbMessage(_INTL("Game language changed to #{languageName}!"))
                 end

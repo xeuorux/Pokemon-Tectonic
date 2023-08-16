@@ -74,6 +74,7 @@ module Game
       $PokemonSystem.setSystemFrame
       $PokemonSystem.setSpeechFrame
       removeSpeaker
+      loadLanguage
     end
   
     # Loads and validates the map. Called when loading a saved game.
