@@ -1961,3 +1961,14 @@ GameData::BattleEffect.register_effect(:Battler, {
         end
     end,
 })
+
+GameData::BattleEffect.register_effect(:Battler, {
+    :id => :BubbleBarrier,
+    :real_name => "Bubble Barrier",
+    :apply_proc => proc do |battle, battler, _value|
+        battle.pbDisplay(_INTL("{1} is protected by a bubble! It'll pop when attacked!", battler.pbThis))
+    end,
+    # :disable_proc => proc do |battle, battler|
+    #     battle.pbDisplay(_INTL("{1} is no longer protected by a bubble!", battler.pbThis))
+    # end,
+})

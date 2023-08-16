@@ -368,7 +368,7 @@ def getMultiStatUpEffectScore(statUpArray, user, target, fakeStepModifier: 0, ev
 
     # Stats ups are stronger the less threat the user is under this turn
     # And worse the more threat
-    score += user.defensiveMatchupAI * 2
+    score += user.defensiveMatchupAI * 2 if evaluateThreat
 
     if target.hasActiveAbilityAI?(:CONTRARY)
         score *= -1

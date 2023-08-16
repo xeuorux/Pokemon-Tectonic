@@ -323,6 +323,14 @@ target.pbThis(true)))
 
         # Target takes the damage
         damageAdjusted = false
+
+        # Bubble Barrier
+        if target.effectActive?(:BubbleBarrier)
+            damage /= 2
+            target.damageState.bubbleBarrier = damage
+            damageAdjusted = true
+        end
+
         if damage >= target.hp
             damage = target.hp
 

@@ -215,9 +215,22 @@ class PokeBattle_Move_189 < PokeBattle_Move
 end
 
 #===============================================================================
-# (Not currently used)
+# Changes type to match the user's Gem, Plate, or Crystal Veil. (Prismatic Power)
 #===============================================================================
 class PokeBattle_Move_18A < PokeBattle_Move
+    def pbBaseType(user)
+        ret = :NORMAL
+        if user.hasActiveItem?(%i[CRYSTALVEIL PRISMATICPLATE])
+            ret = user.itemTypeChosen
+        elsif user.hasGem?
+            user.eachActiveItem do |itemID|
+                next unless GameData::Item.get(itemID).is_gem?
+                ret = itemID.to_s.gsub!("GEM","").to_sym
+                break
+            end
+        end
+        return ret
+    end
 end
 
 #===============================================================================
@@ -371,40 +384,54 @@ class PokeBattle_Move_195 < PokeBattle_Move
 end
 
 #===============================================================================
-# (Not currently used.)
+# Creates a bubble to shield the target. The next time they’re attacked, (Bubble Barrier)
+# 50% of the move damage is instead dealt to the attacker
 #===============================================================================
 class PokeBattle_Move_196 < PokeBattle_Move
-end
+    def ignoresSubstitute?(_user); return true; end
 
-#===============================================================================
-# Target becomes Psychic type. (Magic Powder)
-#===============================================================================
-class PokeBattle_Move_197 < PokeBattle_Move
+    def hitsInvulnerable?; return true; end
+
     def pbFailsAgainstTarget?(_user, target, show_message)
-        unless target.canChangeType?
-            if show_message
-                @battle.pbDisplay(_INTL("But it failed, since #{target.pbThis(true)}'s type can't be changed!"))
-            end
+        if target.fainted?
+            @battle.pbDisplay(_INTL("But it failed, since the receiver of the barrier is gone!")) if show_message
             return true
         end
-        if target.pbHasOtherType?(:PSYCHIC)
-            if show_message
-                @battle.pbDisplay(_INTL("But it failed, since #{target.pbThis(true)} is already Psychic-type!"))
-            end
+        if target.effectActive?(:BubbleBarrier)
+            @battle.pbDisplay(_INTL("But it failed, since #{arget.pbThis(true)} is already protected by a bubble!")) if show_message
             return true
         end
         return false
     end
 
     def pbEffectAgainstTarget(_user, target)
-        newType = :PSYCHIC
-        target.pbChangeTypes(newType)
-        typeName = newType.name
-        @battle.pbDisplay(_INTL("{1} transformed into the {2} type!", target.pbThis, typeName))
+        target.applyEffect(:BubbleBarrier)
     end
 
-    def getEffectScore(_user, _target)
-        return 50
+    def getEffectScore(_user, target)
+        score = 50
+        score += 50 if target.aboveHalfHealth?
+        return score
+    end
+end
+
+#===============================================================================
+# If it deals less than 50% of the target’s max health, the user (Capacity Burst)
+# takes the difference as recoil.
+#===============================================================================
+class PokeBattle_Move_197 < PokeBattle_Move
+    def pbAllMissed(user, targets)
+        targets.each do |b|
+            recoilMessage = _INTL("The gathered electricity blows up in #{user.pbThis(true)}'s face!")
+            user.applyRecoilDamage(b.totalhp / 2, true, true, recoilMessage)
+        end
+    end
+
+    def pbEffectAfterAllHits(user, target)
+        return unless target.damageState.totalHPLost < target.totalhp / 2
+        recoilAmount = (target.totalhp / 2) - target.damageState.totalHPLost
+        recoilMessage = _INTL("#{user.pbThis} is hurt by leftover electricity!")
+        user.applyRecoilDamage(recoilAmount, true, true, recoilMessage)
     end
 end
 

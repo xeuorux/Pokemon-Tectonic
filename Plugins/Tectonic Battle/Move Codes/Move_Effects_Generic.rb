@@ -1380,8 +1380,7 @@ class PokeBattle_HelpingMove < PokeBattle_Move
 
     def getEffectScore(user, target)
         return 0 unless target.hasDamagingAttack?
-        score = 50
-        score *= 2 if target.pbSpeed > user.pbSpeed
+        score = 100
         return score
     end
 end

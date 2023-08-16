@@ -104,6 +104,12 @@ user.pbThis(true)))
                     user.applyPoison(target)
                 end
             end
+            # Bubble Barrier
+            if target.effectActive?(:BubbleBarrier) && target.damageState.bubbleBarrier > 0
+                recoilMessage = _INTL("The bubble barrier bursts, harming #{user.pbThis(true)}!")
+                user.applyRecoilDamage(target.damageState.bubbleBarrier, true, true, recoilMessage)
+                target.disableEffect(:BubbleBarrier)
+            end
         end
     end
 

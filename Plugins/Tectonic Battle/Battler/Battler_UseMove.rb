@@ -270,7 +270,7 @@ class PokeBattle_Battler
         end
         # Record move as having been used
         aiSeesMove(move) if pbOwnedByPlayer? && !boss? # Enemy trainers now know of this move's existence
-        user.aiLearnsAbility(:ILLUSION) if hasActiveAbility?(:ILLUSION) && effectActive?(:Illusion)
+        aiLearnsAbility(:ILLUSION) if hasActiveAbility?(:ILLUSION) && effectActive?(:Illusion)
         @lastMoveUsed     = move.id
         @lastMoveUsedType = move.calcType # For Conversion 2
         @lastMoveUsedCategory = move.calculatedCategory
@@ -854,6 +854,11 @@ user.pbThis))
         if user.effectActive?(:ChargeExpended) && hitNum == 0
             @battle.pbDisplay(_INTL("{1} expended its charge to empower {2}!", user.pbThis, move.name))
         end
+        # Bubble Barrier proc message
+        targets.each do |b|
+            next unless b.damageState.bubbleBarrier > 0
+            @battle.pbDisplay(_INTL("The bubble surrounding {1} reduced the damage!", b.pbThis))
+        end
         # Messages about missed target(s) (relevant for multi-target moves only)
         unless move.pbRepeatHit?
             targets.each do |b|
@@ -899,7 +904,6 @@ user.pbThis))
                 next if b.damageState.unaffected
                 move.pbEndureKOMessage(b)
             end
-
             # Endure-style move activations
             targets.each do |b|
                 next unless b.damageState.fightforever

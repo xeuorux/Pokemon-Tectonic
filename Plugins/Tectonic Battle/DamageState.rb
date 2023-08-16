@@ -30,6 +30,7 @@ class PokeBattle_DamageState
 	attr_accessor :endureBerry	   # Cass Berry activated
 	attr_accessor :feastWeakened   # Whether a type-resisting feast was used (wont be consumed)
 	attr_accessor :fear			   # The hit caused fear in the pokemon
+	attr_accessor :bubbleBarrier   # How much damage was prevented by bubble barrier
 
 	def initialize; reset; end
 
@@ -69,5 +70,6 @@ class PokeBattle_DamageState
 		@forced_critical	= false
 		@direDiversion		= false
 		@endureBerry		= false
+		@bubbleBarrier		= 0
 	end
 end
