@@ -80,7 +80,7 @@ class PokeBattle_Battle
 
     def pbShowTribeSplash(side, tribe, delay = false, trainerName: nil)
         return unless showMessages?
-        tribe = TribalBonus.getTribeName(tribe) if tribe.is_a?(Symbol)
+        tribe = getTribeName(tribe) if tribe.is_a?(Symbol)
         @scene.pbShowTribeSplash(side, tribe, trainerName)
         if delay
             frames = Graphics.frame_rate # Default 1 second
