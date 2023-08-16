@@ -41,7 +41,7 @@ class TribalBonusScene
         tribeCounts = tribalTracker.tribeCounts.clone
         tribeCounts = tribeCounts.sort_by { |k,v| -v}.to_h
         tribeCounts.each {|tribeID, count, index|
-            tribeName = TribalBonus.getTribeName(tribeID)
+            tribeName = getTribeName(tribeID)
             tribeData = GameData::Tribe.get(tribeID)
             titleText = "<u>#{tribeName} (#{count}/#{tribeData.threshold})</u>"
             titleText = "<b>#{titleText}</b>" if count >= tribeData.threshold

@@ -120,7 +120,5 @@ def playerTribalBonus()
 end
 
 def getTribeName(tribe_id)
-    name = tribe_id.downcase
-    name = name[0].upcase + name[1...]
-    return name
+    return GameData::Tribe.get(tribe_id).name
 end
