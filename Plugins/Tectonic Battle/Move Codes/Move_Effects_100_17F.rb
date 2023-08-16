@@ -1788,9 +1788,41 @@ class PokeBattle_Move_153 < PokeBattle_Move
 end
 
 #===============================================================================
-# (Not currently used)
+# Gives the target the Steel type and reduces its Speed by 4 steps. (Weld)
 #===============================================================================
 class PokeBattle_Move_154 < PokeBattle_Move
+    def pbFailsAgainstTarget?(user, target, show_message)
+        unless target.pbCanLowerStatStep?(:SPEED, user, self)
+            unless GameData::Type.exists?(:STEEL)
+                @battle.pbDisplay(_INTL("But it failed, since the Steel-type doesn't exist and #{target.pbThis(true)}'s Speed can't be lowered!")) if show_message
+                return true
+            end
+            if target.pbHasType?(:STEEL)
+                if show_message
+                    @battle.pbDisplay(_INTL("But it failed, since #{target.pbThis(true)} is already Steel-type and its Speed can't be lowered!"))
+                end
+                return true
+            end
+            unless target.canChangeType?
+                if show_message
+                    @battle.pbDisplay(_INTL("But it failed, since #{target.pbThis(true)} can't have its type changed and its Speed can't be lowered!"))
+                end
+                return true
+            end
+        end
+        return false
+    end
+
+    def pbEffectAgainstTarget(_user, target)
+        target.applyEffect(:Type3, :STEEL)
+        target.tryLowerStat(:SPEED, user, move: self, increment: 4, showFailMsg: true)
+    end
+
+    def getTargetAffectingEffectScore(user, target)
+        score = 60
+        score += getMultiStatDownEffectScore([:SPEED,4],user,target)
+        return score
+    end
 end
 
 #===============================================================================

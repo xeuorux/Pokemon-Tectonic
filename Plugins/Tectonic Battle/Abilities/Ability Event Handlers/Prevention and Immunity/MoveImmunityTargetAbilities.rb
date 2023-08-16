@@ -1,11 +1,4 @@
 # pbBattleMoveImmunityStatAbility
-
-BattleHandlers::MoveImmunityTargetAbility.add(:LIGHTNINGROD,
-  proc { |ability, user, target, move, type, battle, showMessages, aiChecking|
-      next pbBattleMoveImmunityStatAbility(ability, user, target, move, type, :ELECTRIC, :SPECIAL_ATTACK, 1, battle, showMessages, aiChecking)
-  }
-)
-
 BattleHandlers::MoveImmunityTargetAbility.add(:MOTORDRIVE,
   proc { |ability, user, target, move, type, battle, showMessages, aiChecking|
       next pbBattleMoveImmunityStatAbility(ability, user, target, move, type, :ELECTRIC, :SPEED, 1, battle, showMessages, aiChecking)
@@ -14,7 +7,7 @@ BattleHandlers::MoveImmunityTargetAbility.add(:MOTORDRIVE,
 
 BattleHandlers::MoveImmunityTargetAbility.add(:SAPSIPPER,
   proc { |ability, user, target, move, type, battle, showMessages, aiChecking|
-      next pbBattleMoveImmunityStatAbility(ability, user, target, move, type, :GRASS, :ATTACK, 1, battle, showMessages, aiChecking)
+      next pbBattleMoveImmunityStatAbility(ability, user, target, move, type, :GRASS, ATTACKING_STATS_1, nil, battle, showMessages, aiChecking)
   }
 )
 
@@ -26,13 +19,13 @@ BattleHandlers::MoveImmunityTargetAbility.add(:AERODYNAMIC,
 
 BattleHandlers::MoveImmunityTargetAbility.add(:FLYTRAP,
   proc { |ability, user, target, move, type, battle, showMessages, aiChecking|
-      next pbBattleMoveImmunityStatAbility(ability, user, target, move, type, :BUG, :ATTACK, 1, battle, showMessages, aiChecking)
+      next pbBattleMoveImmunityStatAbility(ability, user, target, move, type, :BUG, ATTACKING_STATS_1, nil, battle, showMessages, aiChecking)
   }
 )
 
 BattleHandlers::MoveImmunityTargetAbility.add(:COLDRECEPTION,
   proc { |ability, user, target, move, type, battle, showMessages, aiChecking|
-      next pbBattleMoveImmunityStatAbility(ability, user, target, move, type, :ICE, :ATTACK, 1, battle, showMessages, aiChecking)
+      next pbBattleMoveImmunityStatAbility(ability, user, target, move, type, :ICE, ATTACKING_STATS_1, nil, battle, showMessages, aiChecking)
   }
 )
 
@@ -44,19 +37,13 @@ BattleHandlers::MoveImmunityTargetAbility.add(:CHALLENGER,
 
 BattleHandlers::MoveImmunityTargetAbility.add(:HEARTOFJUSTICE,
   proc { |ability, user, target, move, type, battle, showMessages, aiChecking|
-      next pbBattleMoveImmunityStatAbility(ability, user, target, move, type, :DARK, :ATTACK, 1, battle, showMessages, aiChecking)
+      next pbBattleMoveImmunityStatAbility(ability, user, target, move, type, :DARK, ATTACKING_STATS_1, nil, battle, showMessages, aiChecking)
   }
 )
 
 BattleHandlers::MoveImmunityTargetAbility.add(:INDUSTRIALIZE,
   proc { |ability, user, target, move, type, battle, showMessages, aiChecking|
       next pbBattleMoveImmunityStatAbility(ability, user, target, move, type, :STEEL, :SPEED, 1, battle, showMessages, aiChecking)
-  }
-)
-
-BattleHandlers::MoveImmunityTargetAbility.add(:STORMDRAIN,
-  proc { |ability, user, target, move, type, battle, showMessages, aiChecking|
-      next pbBattleMoveImmunityStatAbility(ability, user, target, move, type, :WATER, :SPECIAL_ATTACK, 1, battle, showMessages, aiChecking)
   }
 )
 
@@ -80,13 +67,19 @@ BattleHandlers::MoveImmunityTargetAbility.add(:GLASSFIRING,
 
 BattleHandlers::MoveImmunityTargetAbility.add(:VENOMDETTA,
   proc { |ability, user, target, move, type, battle, showMessages, aiChecking|
-      next pbBattleMoveImmunityStatAbility(ability, user, target, move, type, :POISON, :ATTACK, 1, battle, showMessages, aiChecking)
+      next pbBattleMoveImmunityStatAbility(ability, user, target, move, type, :POISON, ATTACKING_STATS_1, nil, battle, showMessages, aiChecking)
   }
 )
 
 BattleHandlers::MoveImmunityTargetAbility.add(:FOOLHARDY,
   proc { |ability, user, target, move, type, battle, showMessages, aiChecking|
       next pbBattleMoveImmunityStatAbility(ability, user, target, move, type, :PSYCHIC, :SPEED, 1, battle, showMessages, aiChecking)
+  }
+)
+
+BattleHandlers::MoveImmunityTargetAbility.add(:FIREFIGHTER,
+  proc { |ability, user, target, move, type, battle, showMessages, aiChecking|
+      next pbBattleMoveImmunityStatAbility(ability, user, target, move, type, :FIRE, ATTACKING_STATS_1, nil, battle, showMessages, aiChecking)
   }
 )
 

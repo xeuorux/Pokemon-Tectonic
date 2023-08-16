@@ -488,7 +488,8 @@
 1487,COLDSHOULDER,Cold Shoulder,56A,80,GHOST,Physical,100,12,100,NearOther,0,CanProtect;CanMirrorMove,"The user attacks with bitter emotion. This lowers the targets attacking stats by 2 steps if in hail.",PHANTOMFORCE
 1488,DISTURB,Disturb,007,90,GHOST,Physical,100,15,10,NearOther,0,CanProtect;CanMirrorMove,"The target is subjected to a violent and frightening prank. It has a 10% chance to numb.",
 1489,DANGERDITTY,Danger Ditty,401,60,FAIRY,Special,100,20,30,NearOther,0,CanProtect;CanMirrorMove;Sound,"The user sings with reckless abandon, annoying the target. There's a 30% chance they become dizzy.",ENCHANTINGSONG
-1490,BUBBLEBARRIER,Bubble Barrier,196,0,WATER,Status,0,15,0,NearAlly,0,,"The user creates a bubble to shield their ally. The next time they’re hit, 50% of the move damage is instead dealt back as recoil.",AQUARING
+1490,BUBBLEBARRIER,Bubble Barrier,196,0,WATER,Status,0,15,0,NearAlly,0,CanMirrorMove,"The user creates a bubble to shield their ally. The next time they’re hit, 50% of the move damage is instead dealt back as recoil.",AQUARING
 1491,ROCKETPUNCH,Rocket Punch,000,150,STEEL,Physical,70,10,0,NearOther,0,CanProtect;CanMirrorMove;Punch,"The user launches a fist with extreme force. This attack is popular with children.",
 1492,PRISMATICPOWER,Prismatic Power,18A,100,NORMAL,Special,100,10,0,NearOther,0,CanProtect;CanMirrorMove,"The user expresses a hidden potential. Changes type to match the user's Gem, Plate, or Crystal Veil.",
 1493,CAPACITYBURST,Capacity Burst,197,110,ELECTRIC,Special,100,10,0,NearOther,0,CanProtect;CanMirrorMove,"The user summons a ton of electricity to shock the target. If it deals less than 50% of the target’s max health, the user takes the difference as recoil.",
+1494,WELD,Weld,154,0,STEEL,Status,100,15,0,NearOther,0,CanProtect;CanMagicCoat,"Welds heavy steel onto the target, giving it Steel type and reducing its Speed by 4 steps.",

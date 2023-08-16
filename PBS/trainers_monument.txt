@@ -239,7 +239,7 @@ Pokemon = MILOTIC,70
 #-------------------------------
 [COOLTRAINER_M2,Lucas]
 Pokemon = MILLIBLAZE,70
-    AbilityIndex = 0 # Flash Fire
+    AbilityIndex = 0 # Fire-fighter
 Pokemon = DONPHAN,70
     AbilityIndex = 0 # Speed Boost
 Pokemon = SAURENAID,70
