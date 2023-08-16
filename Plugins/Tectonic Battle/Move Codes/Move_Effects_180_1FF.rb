@@ -433,6 +433,13 @@ class PokeBattle_Move_197 < PokeBattle_Move
         recoilMessage = _INTL("#{user.pbThis} is hurt by leftover electricity!")
         user.applyRecoilDamage(recoilAmount, true, true, recoilMessage)
     end
+
+    def getDamageBasedEffectScore(user,target,damage)
+        return 0 if damage >= target.totalhp / 2
+        recoilDamage = (target.totalhp / 2) - damage
+        score = (-recoilDamage * 2 / user.totalhp).floor
+        return score
+    end
 end
 
 #===============================================================================
