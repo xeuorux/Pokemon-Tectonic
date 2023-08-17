@@ -85,7 +85,7 @@
 1084,SAPPINGWIND,Sapping Wind,403,80,ICE,Special,100,12,30,AllNearOthers,0,CanProtect;CanMirrorMove;Wind,"The user summons a wind that drains the target's vitality. This has a 30% chance to frostbite it.",ICYWIND
 1085,DREAMDANCE,Dream Dance,032,0,FAIRY,Status,0,15,0,User,0,CanSnatch;Dance,"The user dances in tune with a dreamlike energy, raising their Sp. Atk by four steps.",
 1086,TONGUETWISTER,Tongue Twister,007,120,GHOST,Physical,100,10,50,NearOther,0,CanProtect;CanMirrorMove,"The target is pestered by a giant tongue. This has a 50% chance to numb it.",LICK
-1087,SMOGSTORM,Smog Storm,005,80,POISON,Special,100,5,30,AllNearFoes,0,CanProtect;CanMirrorMove,"Summons a storm of poisonous gas to hit all nearby pokemon with a a 30% chance to poison.",SMOG
+1087,SMOGSTORM,Smog Storm,005,80,POISON,Special,100,5,30,AllNearFoes,0,CanProtect;CanMirrorMove,"Summons a storm of poisonous gas to hit all nearby pokemon with a 30% chance to poison.",SMOG
 1088,COLDSNOT,Cold Snot,005,65,ICE,Physical,100,20,30,NearOther,0,CanProtect;CanMirrorMove,"The user launches snot at the target. This has a 30% chance to poison the target.",SNOWBALL
 1089,ENCHANTINGSONG,Enchanting Song,401,80,FAIRY,Special,100,12,30,AllNearOthers,0,CanProtect;CanMirrorMove;Sound,"An enchanting outcry. It has a 30% chance to dizzy those hit.",SING
 1090,TRAMPLE,Trample,5EA,90,GROUND,Physical,100,15,20,NearOther,0,CanProtect;CanMirrorMove,"The user tramples the target. It has a 20% chance to lower the target's Speed stat.",STOMPINGTANTRUM
@@ -310,7 +310,7 @@
 1309,TRANSCENDENTENERGY,Transcendent Energy,5A7,0,DRAGON,Status,0,5,0,User,0,,"A two-turn move. The user channels insane amounts of energy the first turn, then transforms.",DAZZLINGGLEAM
 1310,TRASHTREASURE,Trash Treasure,5A8,0,POISON,Status,100,12,0,NearOther,0,CanProtect;CanMagicCoat;CanMirrorMove,"The target is given a Black Sludge, replacing their item if any. Their Sp. Def is lowered.",
 1311,PETALTEMPEST,Petal Tempest,000,95,GRASS,Special,100,12,0,AllNearOthers,0,CanProtect;CanMirrorMove;Wind,"The user stirs up a violent petal tempest and attacks everything around it.",PETALBLIZZARD
-1312,HEARTRHYTHM,Heart Rhythm,5A9,60,FAIRY,Special,100,20,0,NearOther,0,CanProtect;CanMirrorMove;Sound,"Power increases by 20 each time its used in succession. User heals for half of damage dealt.",ROUND
+1312,HEARTRHYTHM,Heart Rhythm,5A9,60,FAIRY,Special,100,20,0,NearOther,0,CanProtect;CanMirrorMove;Sound,"Power increases by 20 each time it's used in succession. User heals for half of damage dealt.",ROUND
 1313,SCALEGLINT,Scale Glint,5AA,40,DRAGON,Special,100,15,20,NearOther,0,CanProtect;CanMirrorMove,"The shine from scales damages the target. 20% chance to reduce their higher attacking stat.",DAZZLINGGLEAM
 1314,REFURBISH,Refurbish,5AB,0,STEEL,Status,0,15,0,User,0,CanSnatch,"The user economizes half of its weight, raising its defenses by two steps and also healing based on the weight lost.",AUTOTOMIZE
 1315,MYSTERYSEED,Mystery Seed,5AC,0,GRASS,Status,0,10,0,NearOther,0,CanProtect;CanMagicCoat;CanMirrorMove,"The target eats a strange seed. They become numbed if faster than the user, or leeched if slower.",LEECHSEED
@@ -351,7 +351,7 @@
 1350,CHLOROBLAST,Chloroblast,510,150,GRASS,Special,100,5,100,NearOther,0,CanProtect;CanMirrorMove,"The user launches its amassed chlorophyll to inflict damage on the target. The user loses half its current HP.",SOLARBEAM
 1351,DIRECLAW,Dire Claw,005,85,POISON,Physical,100,15,50,NearOther,0,CanProtect;CanMirrorMove;HighCriticalHitRate,"The user lashes out with its claws. 50% chance to poison. Critical hits twice as often.",CROSSPOISON
 1352,SHIELDSHELL,Shield Shell,5BB,0,STEEL,Status,0,3,0,User,4,,"Protects the user from damage this turn. It also lowers the Sp. Atk of special attackers by two steps.",PROTECT
-1353,SPIKYBURST,Spiky Burst,5BC,300,DARK,Physical,100,5,0,AllNearOthers,0,CanProtect;CanMirrorMove,"Exlodes, dealing an extra 50 base power to all foes for each layer of spikes underneath them. The user faints.",EXPLOSION
+1353,SPIKYBURST,Spiky Burst,5BC,300,DARK,Physical,100,5,0,AllNearOthers,0,CanProtect;CanMirrorMove,"Explodes, dealing an extra 50 base power to all foes for each layer of spikes underneath them. The user faints.",EXPLOSION
 1354,MALEFICPHANTOM,Malefic Phantom,0EE,70,GHOST,Special,100,15,0,NearOther,-1,CanProtect;CanMirrorMove,"The user swaps out using an illusion made from the hatred of their opponent. This move always goes last.",PURSUIT
 1355,HAIRCURL,Hair Curl,0CF,80,STEEL,Special,100,15,0,NearOther,0,CanProtect;CanMirrorMove,"The user curls its metal hair around the target, trapping and damaging it for three turns.",BIND
 1356,STONESIGNAL,Stone Signal,5BD,0,ROCK,Status,0,10,0,FoeSide,0,CanMagicCoat,"The user calls all rocks to join it, summoning sandstorm for 5 turns and laying a trap of levitating stones around the target.",STEALTHROCK
@@ -385,7 +385,7 @@
 1384,SHINESHOT,Shine Shot,5EF,60,STEEL,Special,100,10,30,NearOther,0,CanProtect;CanMirrorMove,"The user looses a flash of energy from its polished body. It has a 30% chance to lower Sp. Def.",MIRRORSHOT
 1385,TUTELAGE,Tutelage,5CE,0,PSYCHIC,Status,0,10,0,NearAlly,0,,"The user imparts knowledge on its ally Pokémon, raising their Sp. Atk and Sp. Def stats by two steps.",COACHING
 1386,POWERNAP,Power Nap,0F9,0,DARK,Status,0,5,0,User,0,CanSnatch,"The user restores 1/2 of its HP, or 2/3rds in moonglow.",REST
-1387,GEMSEAL,Gem Seal,5CF,0,GHOST,Status,100,15,0,NearOther,0,CanProtect;CanMagicCoat;CanMirrorMove,"Disables the targets last used move for five turns, and cuts 5 PP from it.",DISABLE
+1387,GEMSEAL,Gem Seal,5CF,0,GHOST,Status,100,15,0,NearOther,0,CanProtect;CanMagicCoat;CanMirrorMove,"Disables the target's last used move for five turns, and cuts 5 PP from it.",DISABLE
 1388,RIVERREST,River Rest,5D0,0,WATER,Status,0,10,0,User,0,CanSnatch,"The user rests in a riverbed, restoring its HP by half of max, and forming an Aqua Ring around itself.",REST
 1389,WHALESONG,Whale Song,5D1,0,WATER,Status,0,5,0,UserAndAllies,0,CanSnatch;Sound,"The user's song heals the status problems of all the party Pokémon, and forms an Aqua Ring around itself.",HEALBELL
 1390,DEEPBREATHING,Deep Breathing,5D2,0,FIGHTING,Status,0,15,0,User,0,CanSnatch,"The user breathes deeply, raising its Speed by four steps and quadrupling its critical hit chance.",FOCUSENERGY
@@ -396,7 +396,7 @@
 1395,STABILIZE,Stabilize,5B3,0,GROUND,Status,0,10,0,User,0,CanSnatch,"The user slathers mud around to heal itself for 1/2 of its max HP, and extends any active screens by 1 turn.",MUDSPORT
 1396,THIEVINGSPREE,Thieving Spree,0F1,80,NORMAL,Physical,100,20,0,AllNearFoes,0,CanProtect;CanMirrorMove,"The user attacks and steals items from all near foes. Items stolen from wild Pokémon are stored.",COVET
 1397,TERRORSWARM,Terror Swarm,0CF,75,BUG,Special,100,15,0,NearOther,0,CanProtect;CanMirrorMove,"The user summons bugs to terrorize the target, trapping and damaging it for three turns.",INFESTATION
-1398,BLIGHTTOUCH,Blight Touch,5D5,80,POISON,Physical,100,10,0,NearOther,0,CanProtect;CanMirrorMove,"The user infects the target with a touch and also destroys any Herbs its holding.",POISONJAB
+1398,BLIGHTTOUCH,Blight Touch,5D5,80,POISON,Physical,100,10,0,NearOther,0,CanProtect;CanMirrorMove,"The user infects the target with a touch and also destroys any Herbs it's holding.",POISONJAB
 1399,DETACHMENT,Detachment,086,55,FIGHTING,Special,100,12,0,NearOther,0,CanProtect;CanMirrorMove,"The user attacks freed from earthly attachments. Doubles in damage if the user has no item when the move starts.",AURASPHERE
 1400,SWARMORDER,Swarm Order,0AD,90,BUG,Physical,100,12,0,NearOther,0,CanProtect;CanMirrorMove;HighCriticalHitRate,"The user calls out its underlings to pummel the target. Skips and destroys protections.",INFESTATION
 1401,NOISEORDER,Noise Order,401,60,BUG,Special,100,12,100,NearOther,0,CanProtect;CanMagicCoat;CanMirrorMove,"The user calls out its underlings to annoy the target with buzzing sounds, dizzying it.",BUGBUZZ
@@ -451,7 +451,7 @@
 1450,LUCKYCHEER,Lucky Cheer,08A,0,ELECTRIC,Status,0,15,0,NearAlly,5,Dance,"The user dances to encourage its ally. Their attacks this turn will be critical hits.",HELPINGHAND
 1451,HEALTHYCHEER,Healthy Cheer,126,0,ELECTRIC,Status,0,5,0,NearAlly,0,CanProtect;CanMagicCoat;Dance,"The user dances to restore an ally by 50% max HP. They're cured of any status conditions.",HEALPULSE
 1452,DEATHKNELL,Death Knell,000,90,GHOST,Special,100,15,20,AllNearOthers,0,CanProtect;CanMirrorMove;Sound,"The user makes a dreadful bell noise, harming all near battlers with visions of impending doom.",SCREECH
-1453,SILENTWIND,Silent Wind,0A5,85,GHOST,Special,100,12,20,NearOther,0,CanProtect;CanMirrorMove;Wind,"The target is blasted with eeriely quiet wind. Can't miss and skips protections.",OMINOUSWIND
+1453,SILENTWIND,Silent Wind,0A5,85,GHOST,Special,100,12,20,NearOther,0,CanProtect;CanMirrorMove;Wind,"The target is blasted with eerily quiet wind. Can't miss and skips protections.",OMINOUSWIND
 1454,CURSEDROOTS,Cursed Roots,127,0,GRASS,Status,0,15,0,User,0,CanSnatch,"The user spends 25% HP to lay down evil roots. This curses all foes. The user becomes trapped, but heals by 1/8th HP every turn.",
 1455,MUDSLIDE,Mud Slide,5E0,80,GROUND,Special,100,10,100,AllNearOthers,0,CanProtect;CanMirrorMove,"The user rides onto the field on a huge wave of mud, damaging all nearby and raising their own Speed.",MUDBOMB
 1456,BUTTINGHEADS,Butting Heads,54C,95,NORMAL,Physical,100,12,20,NearOther,0,CanProtect;CanMirrorMove,"The user engages the target in a head-to-head fight. The damage is based on the target's Attack rather than their Defense.",HEADBUTT
