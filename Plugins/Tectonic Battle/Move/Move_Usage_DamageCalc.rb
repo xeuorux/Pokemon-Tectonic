@@ -287,7 +287,7 @@ class PokeBattle_Move
         stabActive = true if type && user.pbHasType?(type)
         if checkingForAI
             stabActive = true if user.hasActiveAbilityAI?(%i[PROTEAN FREESTYLE])
-            stabActive = true if user.hasActiveAbilityAI?(:MUTABLE) && !user.hasEffect?(:Mutated)
+            stabActive = true if user.hasActiveAbilityAI?(:MUTABLE) && !user.effectActive?(:Mutated)
             stabActive = true if user.hasActiveAbilityAI?(:SHAKYCODE) && @battle.eclipsed?
         end
         stabActive = false if user.pbOwnedByPlayer? && @battle.curses.include?(:DULLED)
