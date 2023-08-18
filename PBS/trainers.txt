@@ -6288,6 +6288,18 @@ Pokemon = EMBOAR,70
 Pokemon = DELIBIRD,70
     AbilityIndex = 0 # Larder
 #-------------------------------
+[COOLTRAINERSQUAD_2,Shouta and Kaede]
+Pokemon = TITANIX,70
+    AbilityIndex = 1 # Gravitational
+	Item = CUSTAPBERRY
+Pokemon = TOXICROAK,70
+    AbilityIndex = 0 # Prankster
+Pokemon = TANGROWTH,70
+    AbilityIndex = 1 # Tangling Hair
+	Item = LEFTOVERS
+Pokemon = MJELLICENT,70
+    AbilityIndex = 0 # Ruinous
+#-------------------------------
 [BUTLER,Sagan]
 Pokemon = MMUSHARNA,70
     AbilityIndex = 0 # Dream Weaver
@@ -6312,6 +6324,18 @@ Pokemon = DRIFBLIM,70
     AbilityIndex = 0 # Unburden
     Item = SITRUSBERRY
 #-------------------------------
+[RICHCOUPLE,Diana and Edward]
+Pokemon = KLEAVOR,70
+    AbilityIndex = 0 # Sharpness
+Pokemon = LIEPARD,70
+    AbilityIndex = 0 # Dauntless
+	Item = LIGHTCLAY
+Pokemon = ORANGURU,70
+    AbilityIndex = 1 # Telepathy
+Pokemon = AROMATISSE,70
+    AbilityIndex = 0 # Fashionable
+	Item = CHOICESPECS,SHELLBELL
+#-------------------------------
 [SUSPICIOUSMAN,Tommaso]
 Pokemon = NIDOQUEEN,70
     AbilityIndex = 0 # Rugged Scales
@@ -6335,3 +6359,15 @@ Pokemon = WEEZING,70
     Item = LEFTOVERS
 Pokemon = RELICANTH,70
     AbilityIndex = 0 # Ramming Speed
+#-------------------------------
+[CRIMINALTEAM,Gianna and Rocco]
+Pokemon = HZOROARK,70
+    AbilityIndex = 1 # Mental Block
+Pokemon = CROBAT,70
+    AbilityIndex = 0 # Inner Focus
+	Item = CHOICEBAND
+Pokemon = ELECTIVIRE,70
+    AbilityIndex = 1 # Adrenaline Rush
+	Item = LIECHIBERRY
+Pokemon = MRMIME,70
+    AbilityIndex = 0 # Barrier Maker
