@@ -344,7 +344,7 @@
 1343,STONEAXE,Stone Axe,105,55,ROCK,Physical,100,10,0,NearOther,0,CanProtect;CanMirrorMove;Blade,"The user swings its stone axes. This leaves stone splinters floating around the target.",STONEEDGE
 1344,AURAARROWS,Aura Arrows,500,30,FIGHTING,Special,100,15,0,NearOther,0,CanProtect;CanMirrorMove;HighCriticalHitRate,"The user shoots three arrows made of Aura with extreme precision. Critical hits twice as often.",AURASPHERE
 1345,ESPERDIVE,Esper Dive,01F,80,PSYCHIC,Physical,100,10,100,NearOther,0,CanProtect;CanMirrorMove,"The user slashes the target with aura-enriched wings. This boosts the user's Speed by two steps.",SKYATTACK
-1346,TRIUMPHANTDANCE,Triumphant Dance,5B7,0,FIGHTING,Status,100,5,0,User,0,CanSnatch;Dance,"The user raises all of their stats by two step. Fails unless a foe fainted last turn.",WORKUP
+1346,TRIUMPHANTDANCE,Triumphant Dance,5B7,0,FIGHTING,Status,100,5,0,User,0,CanSnatch;Dance,"The user raises all of their stats by two steps. Fails unless a foe fainted last turn.",WORKUP
 1347,ICEBREAKER,Icebreaker,5B8,120,ROCK,Physical,100,10,0,NearOther,0,CanProtect;CanMirrorMove,"The user sweeps away hazards while charging. User also takes 33% recoil.",HEADSMASH
 1348,SCHEME,Scheme,5BA,0,NORMAL,Status,0,25,0,User,0,CanSnatch,"The user schemes to raise its Attack and Sp. Atk by two steps. During moonglow, also raises Speed by two steps.",NASTYPLOT
 1349,RAGINGFURY,Raging Fury,55F,135,FIRE,Physical,100,10,0,RandomNearFoe,0,CanProtect;CanMirrorMove,"The user rampages and attacks while spewing flames for three turns.",FLAREBLITZ
@@ -434,7 +434,7 @@
 1433,BLOODBITE,Blood Bite,0A7,75,POISON,Physical,100,15,100,NearOther,0,CanProtect;CanMirrorMove;Biting,"The user steals blood, lowering the target's Attack. If so, raises the user's Attack.",CRUNCH
 1434,GLEEFULGRASP,Gleeful Grasp,048,80,DARK,Physical,100,10,0,NearOther,0,CanProtect;CanMirrorMove,"The user indulges its love of battle by striking a foe. Both of the user's attacking stats are raised.",
 1435,PLAYBITE,Play Bite,013,60,FAIRY,Physical,100,15,100,NearOther,0,CanProtect;CanMirrorMove;Biting,"The user bites with playful abandon. This deals double damage on the user's first turn out.",CRUNCH
-1436,MOUNTSJUDGEMENT,Mount's Judgement,10E,0,FIRE,Status,100,12,0,NearOther,0,CanProtect;CanMagicCoat;CanMirrorMove,"The user burns the target if they're a foe, or raises the target's Speed by 4 steps if their an ally.",EMBER
+1436,MOUNTSJUDGEMENT,Mount's Judgement,10E,0,FIRE,Status,100,12,0,NearOther,0,CanProtect;CanMagicCoat;CanMirrorMove,"The user burns the target if they're a foe, or raises their Speed by 4 steps if they're an ally.",EMBER
 1437,JOUST,Joust,53D,130,STEEL,Physical,50,12,0,NearOther,0,CanProtect;CanMirrorMove,"The user charges at the target to strike it squarely. If it misses, the user's Accuracy and Speed is raised.",SMARTSTRIKE
 1438,SEASONSEND,Season's End,590,95,NORMAL,Physical,100,20,0,NearOther,0,CanProtect;CanMirrorMove,"The user strikes while inviting the power of seasons. The user changes form to the next season.",BODYSLAM
 1439,SCALESCATTER,Scale Scatter,06F,70,BUG,Special,100,15,0,NearOther,0,CanProtect;CanMirrorMove,"The target is plastered with irritating scales, damaging it and changing its type to Bug.",POWDER
@@ -447,7 +447,7 @@
 1446,ICICLEPIN,Icicle Pin,11A,0,ICE,Status,0,5,0,NearOther,0,CanMagicCoat;CanMirrorMove,"The user pins the target down with icy spikes, applying frostbite and making it unable to flee.",ICICLESPEAR
 1447,HEADTHROW,Head Throw,500,40,GRASS,Special,100,15,0,NearOther,0,CanProtect;CanMirrorMove,"Round objects are hurled at the target to strike three times in a row.",BARRAGE
 1448,TRIPLEBUMP,Triple Bump,500,40,GROUND,Physical,100,15,0,NearOther,0,CanProtect;CanMirrorMove,"The user hits the target with each of its heads from underground. Strikes three times.",DIG
-1449,DIAMONDFIELD,Diamond Field,022,0,ROCK,Status,0,20,0,UserSide,0,CanSnatch,"A diamond-tough force-field protects the user’s side for 10 turns from critical hits or random added effects.",LIGHTSCREEN
+1449,DIAMONDFIELD,Diamond Field,022,0,ROCK,Status,0,20,0,UserSide,0,CanSnatch,"A diamond-tough force-field protects the user's side for 10 turns from critical hits or random added effects.",LIGHTSCREEN
 1450,LUCKYCHEER,Lucky Cheer,08A,0,ELECTRIC,Status,0,15,0,NearAlly,5,Dance,"The user dances to encourage its ally. Their attacks this turn will be critical hits.",HELPINGHAND
 1451,HEALTHYCHEER,Healthy Cheer,126,0,ELECTRIC,Status,0,5,0,NearAlly,0,CanProtect;CanMagicCoat;Dance,"The user dances to restore an ally by 50% max HP. They're cured of any status conditions.",HEALPULSE
 1452,DEATHKNELL,Death Knell,000,90,GHOST,Special,100,15,20,AllNearOthers,0,CanProtect;CanMirrorMove;Sound,"The user makes a dreadful bell noise, harming all near battlers with visions of impending doom.",SCREECH
