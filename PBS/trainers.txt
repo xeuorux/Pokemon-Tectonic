@@ -422,7 +422,7 @@ Pokemon = MAWILE,18
     Item = STEELGEM
 Pokemon = HSNEASEL,19
     AbilityIndex = 1 # Frustrate
-Pokemon = MORELULL,19
+Pokemon = FOMANTIS,19
     AbilityIndex = 1 # Fascinate
 #-------------------------------
 [LEADER_Helena,Helena]
