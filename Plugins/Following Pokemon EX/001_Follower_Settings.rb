@@ -24,6 +24,26 @@ module FollowerSettings
   DIZZYTONE        = [140,70,120,120]
   LEECHEDTONE      = [80,100,50,120]
 
+  def self.getToneFromStatus(status)
+    case status
+    when :BURNED
+      return BURNTONE
+    when :FROSTBITE
+      return FROSTBITETONE
+    when :POISON
+      return POISONTONE
+    when :NUMB
+      return NUMBTONE
+    when :SLEEP
+      return SLEEPTONE
+    when :DIZZY
+      return DIZZYTONE
+    when :LEECHED
+      return LEECHEDTONE
+    end
+    return nil
+  end
+
   # List of Pokemon that will always appear behind the player when surfing
   # Doesn't include any flying or water types because those are handled already
   SURFING_FOLLOWERS = [

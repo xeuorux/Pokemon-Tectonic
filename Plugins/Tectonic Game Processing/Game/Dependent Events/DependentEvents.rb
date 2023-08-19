@@ -652,7 +652,11 @@ class DependentEvents
             for i in 0...events.length
                 next unless events[i]
                 next unless events[i][8][/FollowerPkmn/i]
-                anim = getConstantNameOrValue(FollowerSettings, ret ? :Animation_Come_Out : :Animation_Come_In)
+                if ret
+                    anim = FollowerSettings::Animation_Come_Out
+                else
+                    anim = FollowerSettings::Animation_Come_In
+                end
                 $scene.spriteset.addUserAnimation(anim, @realEvents[i].x, @realEvents[i].y)
                 pbWait(Graphics.frame_rate / 10)
             end
