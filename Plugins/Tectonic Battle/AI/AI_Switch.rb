@@ -216,7 +216,7 @@ class PokeBattle_AI
     end
 
     def getHazardEvaluationForEnteringBattler(battler)
-        return 0,0,false unless battler.ignoresHazards?
+        return 0,0,false if battler.ignoresHazards?
 
         willAbsorbSpikes = false
         dieingOnEntry = false

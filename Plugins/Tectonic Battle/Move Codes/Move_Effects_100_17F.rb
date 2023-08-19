@@ -1813,7 +1813,7 @@ class PokeBattle_Move_154 < PokeBattle_Move
         return false
     end
 
-    def pbEffectAgainstTarget(_user, target)
+    def pbEffectAgainstTarget(user, target)
         target.applyEffect(:Type3, :STEEL)
         target.tryLowerStat(:SPEED, user, move: self, increment: 4, showFailMsg: true)
     end
