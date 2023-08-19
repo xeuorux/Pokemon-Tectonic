@@ -5,7 +5,13 @@
 # Applies wild Pokémon modifiers (wild held item, shiny chance modifiers,
 # Pokérus, gender/nature forcing because of player's lead Pokémon).
 def pbGenerateWildPokemon(species,level,ignoreCap = false,skipAlterations = false)
-  level = [getLevelCap(),level].min unless ignoreCap
+  # Reduce the given level below the current level cap
+  unless ignoreCap
+    levelCap = getLevelCap
+    until level <= levelCap
+      level -= 5
+    end
+  end
   genwildpoke = Pokemon.new(species,level)
   # Give the wild Pokémon a held item
   item = generateWildHeldItem(genwildpoke,herdingActive?)

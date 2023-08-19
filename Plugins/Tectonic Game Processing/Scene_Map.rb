@@ -289,10 +289,6 @@ class Scene_Map
             return if event.move_route_forcing
             event.move_speed = $game_player.move_speed
         end
-        if Input.trigger?(getConst(Input, FollowerSettings::TOGGLEFOLLOWERKEY)) &&
-           FollowerSettings::ALLOWTOGGLEFOLLOW
-            pbToggleFollowingPokemon
-        end
         if $PokemonGlobal.follower_toggled
             # Stop stepping animation if on Ice
             if $game_player.pbTerrainTag.ice

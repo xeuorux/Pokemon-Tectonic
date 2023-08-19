@@ -60,18 +60,6 @@ def teamSnapshot(label=nil)
 	PokemonPartyShowcase_Scene.new($Trainer.party,true,label)
 end
 
-def pbScreenCapture(label = nil, show_message = false)
-	t = Time.now
-  	filestart = t.strftime("[%Y-%m-%d] %H_%M_%S.%L")
-	filestart = label + filestart if label
-  	Dir.mkdir(DIR_SCREENSHOTS) if !safeExists?(DIR_SCREENSHOTS)
-  	capturefile = sprintf("%s/%s.png", DIR_SCREENSHOTS, filestart)
-  	Graphics.screenshot(capturefile)
-  	pbSEPlay("Pkmn exp full") if FileTest.audio_exist?("Audio/SE/Pkmn exp full")
-
-	pbMessage(_INTL("Screenshot saved to folder #{DIR_SCREENSHOTS}\1")) if show_message
-end
-
 def updateTotalBadgesVar
 	totalBadges = 0
 	$Trainer.badges.each_with_index do |hasBadge,index|

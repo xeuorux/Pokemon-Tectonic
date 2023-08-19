@@ -357,24 +357,6 @@ def randomizeItem(item)
   return Randomizer.getRandomizedData(item, :ITEMS, item)
 end
 #===============================================================================
-#  aliasing to randomize gifted Pokemon
-#===============================================================================
-alias pbAddPokemon_randomizer_x pbAddPokemon unless defined?(pbAddPokemon_randomizer_x)
-def pbAddPokemon(*args)
-  # randomizer
-  args[0] = randomizeSpecies(args[0], false, true)
-  # gives Pokemon
-  return pbAddPokemon_randomizer_x(*args)
-end
-
-alias pbAddPokemonSilent_randomizer_x pbAddPokemonSilent unless defined?(pbAddPokemonSilent_randomizer_x)
-def pbAddPokemonSilent(*args)
-  # randomizer
-  args[0] = randomizeSpecies(args[0], false, true)
-  # gives Pokemon
-  return pbAddPokemonSilent_randomizer_x(*args)
-end
-#===============================================================================
 #  refresh cache on load
 #===============================================================================
 Events.onMapChange += proc { |_sender,_e|

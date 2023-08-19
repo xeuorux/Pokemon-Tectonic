@@ -66,6 +66,22 @@ def playTypeChartChangesTutorial
     }
 end
 
+def evolutionButtonCheck(pkmn)
+    return if $PokemonGlobal.evolutionButtonTutorialized
+    return unless pkmn.level == getLevelCap
+    return unless pkmn.check_evolution_on_level_up
+    playEvolutionButtonTutorial
+end
+
+def playEvolutionButtonTutorial
+    $PokemonGlobal.evolutionButtonTutorialized = true
+    playTutorial { |messageWait|
+        pbMessage(_INTL("\\wmSometimes you will receive Pokemon who are at your level cap.\\wtnp[#{messageWait}]\1"))
+        pbMessage(_INTL("\\wmDoes this mean you can't evolve them by level up? No!\\wtnp[#{messageWait}]\1"))
+        pbMessage(_INTL("\\wmJust press the Evolve button in your party screen.\\wtnp[#{messageWait}]\1"))
+    }
+end
+
 def tutorialIntro
     pbBGMFade(1.0)
     pbWait(Graphics.frame_rate)

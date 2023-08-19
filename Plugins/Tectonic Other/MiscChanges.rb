@@ -50,16 +50,6 @@ def pbFadeInAndShow(sprites,visiblesprites=nil)
   }
 end
 
-def pbChangePlayer(id)
-  return false if id < 0 || id >= 8
-  meta = GameData::Metadata.get_player(id)
-  return false if !meta
-  $Trainer.character_ID = id
-  $PokemonSystem.gendered_look = id
-  $Trainer.trainer_type = meta[0]
-  $game_player.character_name = meta[1]
-end
-
 def pbStartTrade(pokemonIndex,newpoke,nickname,trainerName,trainerGender=0)
   myPokemon = $Trainer.party[pokemonIndex]
   pbTakeItemsFromPokemon(myPokemon) if myPokemon.hasItem?
@@ -92,22 +82,14 @@ def pbStartTrade(pokemonIndex,newpoke,nickname,trainerName,trainerGender=0)
   refreshFollow(false)
 end
 
+class StorageSystemPC
+  def name
+      return _INTL("Pokémon Storage PC")
+  end
+end
 
-def globalMessageReplacements(message)
-    return message if message.frozen?
-    message.gsub!("’","'")
-    message.gsub!("‘","'")
-    message.gsub!("“","\"")
-    message.gsub!("”","\"")
-  	message.gsub!("…","...")
-	  message.gsub!("–","-")
-    message.gsub!("—","-")
-	  message.gsub!("Pokemon","Pokémon")
-	  message.gsub!("Pokedex","Pokédex")
-    message.gsub!("Poke ball","Poké Ball")
-    message.gsub!("Poke Ball","Poké Ball")
-    message.gsub!("Pokeball","Poké Ball")
-    message.gsub!("PokEstate","PokÉstate")
-    message.gsub!("Avatar","avatar")
-    return message
+class TrainerPC
+  def name
+      return _INTL("Item Storage PC")
+  end
 end

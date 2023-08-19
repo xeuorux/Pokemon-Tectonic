@@ -14,11 +14,6 @@ module FollowerSettings
   Emo_Sing            = 12
   Emo_Love            = 9
 
-  # Allow the player to toggle followers on/off by pressing a key
-  ALLOWTOGGLEFOLLOW = false
-  # The key the player needs to press to toggle followers. :JUMPUP is the A key by default
-  TOGGLEFOLLOWERKEY = :JUMPUP
-
   #Status tones to be used, if this is true (Red,Green,Blue,Gray)
   APPLYSTATUSTONES = true
   BURNTONE         = [150,40,40,120]

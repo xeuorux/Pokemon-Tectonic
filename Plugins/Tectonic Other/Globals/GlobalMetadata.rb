@@ -200,6 +200,12 @@ class PokemonGlobalMetadata
         return @typeChartChangesTutorialized
     end
 
+    attr_writer :evolutionButtonTutorialized
+    def evolutionButtonTutorialized
+        @evolutionButtonTutorialized = false if @evolutionButtonTutorialized.nil?
+        return @evolutionButtonTutorialized
+    end
+
   ####################################################
   # Who knows?
   ####################################################

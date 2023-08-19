@@ -543,3 +543,22 @@ def pbPositionNearMsgWindow(cmdwindow,msgwindow,side)
     cmdwindow.y=0
   end
 end
+
+def globalMessageReplacements(message)
+  return message if message.frozen?
+  message.gsub!("’","'")
+  message.gsub!("‘","'")
+  message.gsub!("“","\"")
+  message.gsub!("”","\"")
+  message.gsub!("…","...")
+  message.gsub!("–","-")
+  message.gsub!("—","-")
+  message.gsub!("Pokemon","Pokémon")
+  message.gsub!("Pokedex","Pokédex")
+  message.gsub!("Poke ball","Poké Ball")
+  message.gsub!("Poke Ball","Poké Ball")
+  message.gsub!("Pokeball","Poké Ball")
+  message.gsub!("PokEstate","PokÉstate")
+  message.gsub!("Avatar","avatar")
+  return message
+end

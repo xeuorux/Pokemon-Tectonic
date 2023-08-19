@@ -115,6 +115,8 @@ class PokeBattle_Battle
                 # Store caught Pokémon
                 pbStorePokemon(pkmn)
             end
+
+            evolutionButtonCheck(pkmn)
         end
         @caughtPokemon.clear
     end

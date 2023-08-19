@@ -43,7 +43,7 @@ class DependentEventSprites
             unless $PokemonGlobal.follower_toggled && FollowerSettings::APPLYSTATUSTONES && first_pkmn && first_pkmn.status != :NONE
                 next
             end
-            status_tone = getConst(FollowerSettings, "#{first_pkmn.status}TONE")
+            status_tone = getConstantNameOrValue(FollowerSettings, "#{first_pkmn.status}TONE")
             next unless status_tone
             @sprites[i].tone.set(@sprites[i].tone.red + status_tone[0],
                                  @sprites[i].tone.green + status_tone[1],
