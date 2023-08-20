@@ -114,9 +114,10 @@ Form = 1
 #-------------------------------
 [DEOXYS]
 Ability = UNIDENTIFIED
-Moves1 = PSYCHIC,SPIKES
+Moves1 = PSYCHIC,ICEBEAM,SPIKES,PRIMEVALLASERFOCUS
+Moves2 = BULLETTRAIN,LIQUIDATION,PRIMEVALINGRAIN
+Moves3 = GIGADRAIN,DRAINPUNCH
 HPMult = 12.0
-HealthBars = 3
 #-------------------------------
 [ZYGARDE]
 Ability = POWERCONSTRUCT

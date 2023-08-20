@@ -64,6 +64,10 @@ class PokeBattle_AI_Boss
         # All of the procs are called at the beginning of the first round
         @beginBattle = []
 
+        # An array of procs
+        # All of the procs are called before the Avatar performs a phase change
+        @beforePhaseChange = []
+
         # A hash, where the key is a move ID and the value is a proc which provides a score for the given move
         @scoreMove = {}
 
@@ -91,8 +95,14 @@ class PokeBattle_AI_Boss
     end
 
     def startTurn(user, battle, turnCount)
-        @beginTurn.each do |beginTurnProcs|
-            beginTurnProcs.call(user, battle, turnCount)
+        @beginTurn.each do |beginTurnProc|
+            beginTurnProc.call(user, battle, turnCount)
+        end
+    end
+
+    def startPhaseChange(user, battle)
+        @beforePhaseChange.each do |beforePhaseChangeProc|
+            beforePhaseChangeProc.call(user, battle)
         end
     end
 

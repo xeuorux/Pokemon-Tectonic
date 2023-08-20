@@ -375,6 +375,11 @@ class PokeBattle_Battler
         disableEffect(:BurnUp)
         disableEffect(:ColdConversion)
         disableEffect(:Roost)
+        if hasActiveAbility?(:UNIDENTIFIED)
+            showMyAbilitySplash(:UNIDENTIFIED)
+            applyEffect(:Type3,:MUTANT)
+            hideMyAbilitySplash
+        end
         refreshDataBox
     end
 

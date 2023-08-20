@@ -83,6 +83,10 @@ module GameData
         return physical? || special?
       end
 
+      def status?
+        return !damaging?
+      end
+
       # The highest evolution of a line
       def signature_of=(val)
         @signature_of = val
@@ -93,7 +97,7 @@ module GameData
       end
 
       def empoweredMove?
-        return @flags[/y/]
+        return @flags[/Empowered/]
       end
 
       def categoryLabel

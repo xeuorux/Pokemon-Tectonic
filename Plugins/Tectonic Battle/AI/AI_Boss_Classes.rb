@@ -191,33 +191,15 @@ class PokeBattle_AI_Xerneas < PokeBattle_AI_Boss
 end
 
 class PokeBattle_AI_Deoxys < PokeBattle_AI_Boss
-    ATTACK_FORM_MOVESET = %i[PSYCHOBOOST INFINITEFORCE]
-    DEFENSE_FORM_MOVESET = %i[COSMICPOWER RECOVER]
-    SPEED_FORM_MOVESET = %i[ZENHEADBUTT ELECTROBALL]
-
     def initialize(user, battle)
         super
-        @beginTurn.push(proc { |user, _battle, turnCount|
-            if turnCount != 0
-                if user.hp < user.totalhp * 0.25
-                    if user.form != 1
-                        formChangeMessage = _INTL("The avatar of Deoxys turns to Attack Form!")
-                        user.pbChangeForm(1, formChangeMessage)
-                        user.assignMoveset(ATTACK_FORM_MOVESET)
-                    end
-                elsif user.hp < user.totalhp * 0.5
-                    if user.form != 2
-                        formChangeMessage = _INTL("The avatar of Deoxys turns to Defense Form!")
-                        user.pbChangeForm(2, formChangeMessage)
-                        user.assignMoveset(DEFENSE_FORM_MOVESET)
-                    end
-                elsif user.hp < user.totalhp * 0.75
-                    if user.form != 3
-                        formChangeMessage = _INTL("The avatar of Deoxys turns to Speed Form!")
-                        user.pbChangeForm(3, formChangeMessage)
-                        user.assignMoveset(SPEED_FORM_MOVESET)
-                    end
-                end
+        @beforePhaseChange.push(proc { |user, _battle|
+            if user.avatarPhase == 0
+                formChangeMessage = _INTL("The avatar of Deoxys turns to Attack Form!")
+                user.pbChangeForm(1, formChangeMessage)
+            elsif user.avatarPhase == 1
+                formChangeMessage = _INTL("The avatar of Deoxys turns to Defense Form!")
+                    user.pbChangeForm(2, formChangeMessage)
             end
         })
     end

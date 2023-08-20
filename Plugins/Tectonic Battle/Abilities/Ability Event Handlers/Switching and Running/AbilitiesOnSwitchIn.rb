@@ -888,3 +888,11 @@ BattleHandlers::AbilityOnSwitchIn.add(:LEVITATE,
       battle.pbHideAbilitySplash(battler)
   }
 )
+
+BattleHandlers::AbilityOnSwitchIn.add(:UNIDENTIFIED,
+  proc { |ability, battler, battle|
+      battle.pbShowAbilitySplash(battler, ability)
+      battle.pbDisplay(_INTL("{1} is Mutant-type!", battler.pbThis))
+      battle.pbHideAbilitySplash(battler)
+  }
+)

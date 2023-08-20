@@ -233,8 +233,7 @@ module GameData
 			arrayOfMoveSets.each do |moveSet|
 				moveSet.each do |move|
 					moveData = GameData::Move.get(move)
-
-					if moveData.empoweredMove? && moveData.category == 2
+					if moveData.empoweredMove? && moveData.status?
 						phaseTypes.push(moveData.type)
 					end
 				end
@@ -244,7 +243,7 @@ module GameData
 		end
 
 		def getTypeForPhase(index)
-			return getListOfPhaseTypes[]
+			return getListOfPhaseTypes[index]
 		end
 
 		def self.get_from_species_form(speciesForm)
