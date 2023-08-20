@@ -549,7 +549,7 @@
 548,CHAMBER7KEY,Chamber 7 Key,Chamber 7 Keys,8,0,"The key to the seventh chamber containing a powerful avatar.",0,0,6
 549,CHAMBER8KEY,Chamber 8 Key,Chamber 8 Keys,8,0,"The key to the eighth chamber containing a powerful avatar.",0,0,6
 550,LATENTSEED,Latent Seed,Latent Seeds,8,0,"A simple tree seed. It hums with the potential for great change.",0,0,13
-551,ALLOYEDLUMP,Alloyed Lump,Alloyed Lumps,1,0,"Mishapen, unusual metal. Useless without a way to sharpen it.",2,0,13
+551,ALLOYEDLUMP,Alloyed Lump,Alloyed Lumps,1,0,"Misshapen, unusual metal. Useless without a way to sharpen it.",2,0,13
 552,ALLOYEDBLADE,Alloyed Blade,Alloyed Blades,1,0,"A fragile blade of unusual metal. Sharp enough to cut alloyed overgrowth.",2,0,13
 553,ALLOYEDWIRE,Alloyed Wire,Alloyed Wires,1,0,"A thin, nearly invisible strand of unusual metal.",2,0,13
 554,RAINBOWFEATHER,Rainbow Feather,Rainbow Feathers,8,0,"A strange feather that gleams in rainbow colors.",0,0,13

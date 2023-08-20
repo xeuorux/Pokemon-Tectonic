@@ -61,7 +61,7 @@
 60,MOLDBREAKER,Mold Breaker,"Ignores Abilities that would affect its moves."
 61,SUPERLUCK,Super Luck,"Four times more likely for moves to be critical."
 62,SNIPER,Sniper,"Doubles critical hit chance. Powers up critical hits by another 50%."
-63,UNAWARE,Unaware,"Ignores defensive stat changes in opponents its hitting, and offensive stat stages in foes hitting it."
+63,UNAWARE,Unaware,"Ignores defensive stat changes in opponents it's hitting, and offensive stat stages in foes hitting it."
 64,TINTEDLENS,Tinted Lens,"Doubles the damage of \"not very effective\" moves."
 65,FILTER,Filter,"Reduces damage from super-effective attacks by 25%."
 66,SLOWSTART,Slow Start,"Halves Attack and Speed for 3 turns."

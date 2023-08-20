@@ -281,7 +281,7 @@
 1280,WAXINGLIGHT,Waxing Light,09E,50,FAIRY,Special,0,10,0,NearFoe,0,CanProtect;CanMirrorMove,"Strikes the target with lunar light, then summons moonglow for eight turns.",DAZZLINGGLEAM
 1281,HEATGYRE,Heat Gyre,0FF,50,FIRE,Physical,0,10,0,NearFoe,0,CanProtect;CanMirrorMove,"Spins into the target while emitting heat, then summons sunshine for eight turns.",FLAMEWHEEL
 1282,MIRRORSHIELD,Mirror Shield,593,0,STEEL,Status,0,3,0,User,4,,"Protects the user from attacks. Special attackers take 1/8th HP damage.",PROTECT
-1283,UNFURL,Unfurl,594,100,NORMAL,Physical,100,10,0,NearOther,0,CanProtect;CanMirrorMove,"The user attacks by spreading its body wide. Its power doubles if Defense Curl was used previously.",BODYSLAM
+1283,UNFURL,Unfurl,594,100,NORMAL,Physical,100,10,0,NearOther,0,CanProtect;CanMirrorMove,"The user attacks by spreading its body wide. Its power doubles if Curl Up was used previously.",BODYSLAM
 1284,BUILTDIFFERENT,Built Different,595,0,FIGHTING,Status,0,15,0,User,0,CanSnatch,"The user flexes its rocky skin, raising its Attack and Defense and gaining the Rock type.",BULKUP
 1285,DEATHMARK,Death Mark,596,0,GHOST,Status,0,1,0,NearOther,0,CanMagicCoat;CanMirrorMove,"The target becomes unable to flee, and takes 50% more damage from all attacks.",MEANLOOK
 1286,BULWARK,Bulwark,597,0,FIGHTING,Status,0,3,0,UserSide,3,CanSnatch,"The user and its allies take 50% less attack damage this turn. Always fails if used in succession.",
