@@ -211,7 +211,7 @@
 210,BRAVEBIRD,Brave Bird,0FB,120,FLYING,Physical,100,12,0,NearOther,0,CanProtect;CanMirrorMove,"The user tucks in its wings and charges from a low altitude. The user also takes 33% recoil.",
 211,DRAGONASCENT,Dragon Ascent,03C,120,FLYING,Physical,100,5,0,NearOther,0,CanProtect;CanMirrorMove,"The user soars upward and drops at high speeds. This lowers the user's defensive stats.",
 212,AEROBLAST,Aeroblast,000,95,FLYING,Special,100,5,0,NearOther,0,CanProtect;CanMirrorMove;HighCriticalHitRate,"A vortex of air is shot at the target to inflict damage. Critical hits twice as often.",
-213,BEAKBLAST,Beak Blast,172,100,FLYING,Physical,100,12,0,NearOther,0,CanProtect,"The user heats up its beak before attacking. Physically attacking in this time results in a burn.",
+213,BEAKBLAST,Beak Blast,172,100,FLYING,Physical,100,12,0,NearOther,-3,CanProtect,"The user heats up its beak before attacking. Physically attacking in this time results in a burn.",
 214,FLY,Fly,0C9,90,FLYING,Physical,100,12,0,NearOther,0,CanProtect;CanMirrorMove,"The user soars, then strikes on the second turn.",
 215,BOUNCE,Bounce,0CC,85,FLYING,Physical,100,12,30,NearOther,0,CanProtect;CanMirrorMove,"The user bounces up high, then drops on the foe on the second turn. It has a 30% chance to numb.",
 216,DRILLPECK,Drill Peck,000,80,FLYING,Physical,100,15,0,NearOther,0,CanProtect;CanMirrorMove,"A corkscrewing attack with the sharp beak acting as a drill.",

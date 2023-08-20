@@ -68,12 +68,6 @@ class PokeBattle_Battler
                     target.applyEffect(:MoveNext)
                 end
             end
-            # Grudge
-            if target.effectActive?(:Grudge) && target.fainted?
-                move.pp = 0
-                @battle.pbDisplay(_INTL("{1}'s {2} lost all of its PP due to the grudge!",
-                                                                                                                user.pbThis, move.name))
-            end
             # Destiny Bond (recording that it should apply)
             if target.effectActive?(:DestinyBond) && target.fainted? && !user.effectActive?(:DestinyBondTarget)
                 applyEffect(:DestinyBondTarget, target.index)

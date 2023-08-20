@@ -206,7 +206,6 @@ class PokeBattle_Battle
             @successStates[i].clear
             if @choices[i][0] != :UseMove && @choices[i][0] != :Shift && @choices[i][0] != :SwitchOut
                 b.disableEffect(:DestinyBond)
-                b.disableEffect(:Grudge)
             end
             b.disableEffect(:Rage) unless pbChoseMoveFunctionCode?(i, "093") # Rage
             b.disableEffect(:Enlightened) unless pbChoseMoveFunctionCode?(i, "515") # Enlightened Hit
