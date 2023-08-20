@@ -111,7 +111,7 @@
 1110,SUMMERDAZE,Summer Daze,527,0,GRASS,Status,100,8,0,NearOther,0,CanProtect;CanMagicCoat;CanMirrorMove;Sound,"The user plays a melody, making the target drowsy. In Sunlight, lowers the target's Attack and Sp. Atk by two steps.",GRASSWHISTLE
 1111,PACIFY,Pacify,534,0,PSYCHIC,Status,100,15,0,NearOther,0,CanProtect;CanMagicCoat;CanMirrorMove,"The user employs hypnotic suggestion to make a dizzy target fall into a deep sleep.",HYPNOSIS
 1112,LULLABY,Lullaby,528,0,NORMAL,Status,100,12,0,NearOther,0,CanProtect;CanMagicCoat;CanMirrorMove;Sound,"A lullaby is sung in a calming voice that puts the target with half its HP or less left into a deep sleep.",SING
-1113,PUFFBALL,Puffball,529,0,GRASS,Status,100,12,0,NearOther,0,CanProtect;CanMagicCoat;CanMirrorMove,"The user bursts a ball of sleep-inducing powder. It fails unless the target hit the user this turn.",SLEEPPOWDER
+1113,PUFFBALL,Puffball,529,0,GRASS,Status,100,12,0,NearOther,-1,CanProtect;CanMagicCoat;CanMirrorMove,"The user bursts a ball of sleep-inducing powder. It fails unless the target hit the user this turn.",SLEEPPOWDER
 1114,MUDTHROW,Mud Throw,5EA,40,GROUND,Special,100,12,20,NearOther,0,CanProtect;CanMirrorMove,"The user attacks by hurling a blob of mud. It has a 20% chance to reduce the target's Speed.",MUDSLAP
 1115,PURIFYINGWATER,Purifying Water,548,50,WATER,Special,100,5,0,NearOther,0,CanProtect;CanMirrorMove,"The user shoots purified water, also healing the status problems of all the party Pokémon.",WATERPULSE
 1116,CRITICALERROR,Critical Error,0A0,60,GHOST,Special,100,10,0,NearOther,0,CanProtect;CanMirrorMove,"The user causes a glitch in reality. This attack always results in a critical hit.",

@@ -24593,8 +24593,8 @@ InternalName = MORELULL
 Type1 = GRASS
 Type2 = FAIRY
 # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
-BaseStats = 73,43,73,43,73,73
-# Total = 378
+BaseStats = 73,43,73,20,73,73
+# Total = 355
 GenderRate = Female50Percent
 GrowthRate = Medium
 BaseEXP = 57
@@ -24629,8 +24629,8 @@ InternalName = SHIINOTIC
 Type1 = GRASS
 Type2 = FAIRY
 # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
-BaseStats = 103,63,103,73,103,103
-# Total = 548
+BaseStats = 103,63,103,30,103,103
+# Total = 505
 GenderRate = Female50Percent
 GrowthRate = Medium
 BaseEXP = 142

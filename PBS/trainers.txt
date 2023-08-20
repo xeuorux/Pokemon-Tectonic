@@ -6291,12 +6291,12 @@ Pokemon = DELIBIRD,70
 [COOLTRAINERSQUAD_2,Shouta and Kaede]
 Pokemon = TITANIX,70
     AbilityIndex = 1 # Gravitational
-	Item = CUSTAPBERRY
+    Item = CUSTAPBERRY
 Pokemon = TOXICROAK,70
     AbilityIndex = 0 # Prankster
 Pokemon = TANGROWTH,70
     AbilityIndex = 1 # Tangling Hair
-	Item = LEFTOVERS
+    Item = LEFTOVERS
 Pokemon = MJELLICENT,70
     AbilityIndex = 0 # Ruinous
 #-------------------------------
@@ -6329,12 +6329,12 @@ Pokemon = KLEAVOR,70
     AbilityIndex = 0 # Sharpness
 Pokemon = LIEPARD,70
     AbilityIndex = 0 # Dauntless
-	Item = LIGHTCLAY
+    Item = LIGHTCLAY
 Pokemon = ORANGURU,70
     AbilityIndex = 1 # Telepathy
 Pokemon = AROMATISSE,70
     AbilityIndex = 0 # Fashionable
-	Item = CHOICESPECS,SHELLBELL
+    Item = CHOICESPECS,SHELLBELL
 #-------------------------------
 [SUSPICIOUSMAN,Tommaso]
 Pokemon = NIDOQUEEN,70
@@ -6365,9 +6365,9 @@ Pokemon = HZOROARK,70
     AbilityIndex = 1 # Mental Block
 Pokemon = CROBAT,70
     AbilityIndex = 0 # Inner Focus
-	Item = CHOICEBAND
+    Item = CHOICEBAND
 Pokemon = ELECTIVIRE,70
     AbilityIndex = 1 # Adrenaline Rush
-	Item = LIECHIBERRY
+    Item = LIECHIBERRY
 Pokemon = MRMIME,70
     AbilityIndex = 0 # Barrier Maker
