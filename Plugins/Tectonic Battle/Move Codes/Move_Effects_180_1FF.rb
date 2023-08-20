@@ -225,7 +225,10 @@ class PokeBattle_Move_18A < PokeBattle_Move
         elsif user.hasGem?
             user.eachActiveItem do |itemID|
                 next unless GameData::Item.get(itemID).is_gem?
-                ret = itemID.to_s.gsub!("GEM","").to_sym
+                typeName = itemID.to_s
+                typeName.gsub!("GEM","")
+                typeName.gsub!("RING","")
+                ret = typeName.to_sym
                 break
             end
         end

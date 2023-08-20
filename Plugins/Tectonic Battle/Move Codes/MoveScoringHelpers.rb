@@ -398,7 +398,7 @@ def getMultiStatUpEffectScore(statUpArray, user, target, fakeStepModifier: 0, ev
 
     score *= -1 if enemiesCanSteal
 
-    return score
+    return score.ceil
 end
 
 def getMultiStatDownEffectScore(statDownArray, user, target, fakeStepModifier = 0)
@@ -470,7 +470,7 @@ def getMultiStatDownEffectScore(statDownArray, user, target, fakeStepModifier = 
         echoln("\t\t[EFFECT SCORING] The target is an ally of the user! Inverting the score.")
     end
 
-    return score
+    return score.ceil
 end
 
 def getWeatherSettingEffectScore(weatherType, user, battle, finalDuration = 4, checkExtensions = true)

@@ -37,6 +37,7 @@ class PokeBattle_AI
         stayInRating += offensiveMatchupRating
         PBDebug.log("[STAY-IN RATING] #{battler.pbThis} offensive matchup rating: #{offensiveMatchupRating.to_change}")
 
+        # Other things that affect the stay in rating
         stayInRating += miscStayInRatingModifiers(battler)
 
         # Determine who to swap into if at all
@@ -109,6 +110,13 @@ class PokeBattle_AI
                 stayInRating += pursuitScore
                 PBDebug.log("[STAY-IN RATING] #{battler.pbThis} (#{battler.index}) has an opponent that can target it with pursuit (#{pursuitScore.to_change})")
             end
+        end
+
+        # Less likely to switch when coming in later would cause it to die to hazards
+        entryDamage, hazardScore = @battle.applyHazards(battler,true)
+        if entryDamage >= battler.hp
+            stayInRating += 40
+            PBDebug.log("[STAY-IN RATING] #{battler.pbThis} (#{battler.index}) likely to die to hazards if switches back in later (+40)")
         end
 
         # Less likely to switch when has self-mending
