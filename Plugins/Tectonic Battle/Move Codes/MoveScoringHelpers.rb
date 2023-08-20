@@ -40,11 +40,11 @@ def getNumbEffectScore(user, target, ignoreCheck: false)
     if target && (ignoreCheck || target.canNumb?(user, false))
         score = 0
         score += 60 if target.hasDamagingAttack?
-        score += 60 if target.pbSpeed(true) > user.pbSpeed(true)
+        score += 60 if user && target.pbSpeed(true) > user.pbSpeed(true)
         score -= STATUS_UPSIDE_MALUS if target.hasActiveAbilityAI?(STATUS_UPSIDE_ABILITIES)
-        score += STATUS_PUNISHMENT_BONUS if user.hasStatusPunishMove? ||
-                                            user.pbHasMoveFunction?("07C", "579") # Smelling Salts, Spectral Tongue
-        score += 60 if user.hasActiveAbilityAI?(:TENDERIZE)
+        score += STATUS_PUNISHMENT_BONUS if user && (user.hasStatusPunishMove? ||
+                                            user.pbHasMoveFunction?("07C", "579")) # Smelling Salts, Spectral Tongue
+        score += 60 if user&.hasActiveAbilityAI?(:TENDERIZE)
     else
         return 0
     end
@@ -60,12 +60,14 @@ def getPoisonEffectScore(user, target, ignoreCheck: false)
             score += 20 if target.hp == target.totalhp
             score += 20 if target.hp >= target.totalhp / 2 || target.hp <= target.totalhp / 8
             score += 30 if target.trapped?
-            score += NON_ATTACKER_BONUS unless user.hasDamagingAttack?
-            score *= 1.5 if user.hasActiveAbilityAI?(:AGGRAVATE)
-            score *= 2 if user.ownersPolicies.include?(:PRIORITIZEDOTS) && user.opposes?(target)
+            score += NON_ATTACKER_BONUS unless user&.hasDamagingAttack?
+            if user
+                score *= 1.5 if user.hasActiveAbilityAI?(:AGGRAVATE)
+                score *= 2 if user.ownersPolicies.include?(:PRIORITIZEDOTS) && user.opposes?(target)
+            end
         end
         score -= STATUS_UPSIDE_MALUS if target.hasActiveAbilityAI?(%i[TOXICBOOST POISONHEAL].concat(STATUS_UPSIDE_ABILITIES))
-        score += STATUS_PUNISHMENT_BONUS if user.hasStatusPunishMove? || user.pbHasMoveFunction?("07B") # Venoshock
+        score += STATUS_PUNISHMENT_BONUS if user && (user.hasStatusPunishMove? || user.pbHasMoveFunction?("07B")) # Venoshock
     else
         return 0
     end
@@ -80,9 +82,11 @@ def getBurnEffectScore(user, target, ignoreCheck: false)
         if target.takesIndirectDamage?
             score += 50
             score += 20 if target.hp >= target.totalhp / 2 || target.hp <= target.totalhp / 8
-            score += NON_ATTACKER_BONUS unless user.hasDamagingAttack?
-            score *= 1.5 if user.hasActiveAbilityAI?(:AGGRAVATE)
-            score *= 2 if user.ownersPolicies.include?(:PRIORITIZEDOTS) && user.opposes?(target)
+            score += NON_ATTACKER_BONUS unless user&.hasDamagingAttack?
+            if user
+                score *= 1.5 if user.hasActiveAbilityAI?(:AGGRAVATE)
+                score *= 2 if user.ownersPolicies.include?(:PRIORITIZEDOTS) && user.opposes?(target)
+            end
         end
 
         if target.hasPhysicalAttack?
@@ -91,7 +95,7 @@ def getBurnEffectScore(user, target, ignoreCheck: false)
         end
         
         score -= STATUS_UPSIDE_MALUS if target.hasActiveAbilityAI?(%i[FLAREBOOST BURNHEAL].concat(STATUS_UPSIDE_ABILITIES))
-        score += STATUS_PUNISHMENT_BONUS if user.hasStatusPunishMove? || user.pbHasMoveFunction?("50E") # Flare Up
+        score += STATUS_PUNISHMENT_BONUS if user && (user.hasStatusPunishMove? || user.pbHasMoveFunction?("50E")) # Flare Up
     else
         return 0
     end
@@ -106,9 +110,11 @@ def getFrostbiteEffectScore(user, target, ignoreCheck: false)
         if target.takesIndirectDamage?
             score += 50
             score += 20 if target.hp >= target.totalhp / 2 || target.hp <= target.totalhp / 8
-            score += NON_ATTACKER_BONUS unless user.hasDamagingAttack?
-            score *= 1.5 if user.hasActiveAbilityAI?(:AGGRAVATE)
-            score *= 2 if user.ownersPolicies.include?(:PRIORITIZEDOTS) && user.opposes?(target)
+            score += NON_ATTACKER_BONUS unless user&.hasDamagingAttack?
+            if user
+                score *= 1.5 if user.hasActiveAbilityAI?(:AGGRAVATE)
+                score *= 2 if user.ownersPolicies.include?(:PRIORITIZEDOTS) && user.opposes?(target)
+            end
         end
 
         if target.hasSpecialAttack?
@@ -117,7 +123,7 @@ def getFrostbiteEffectScore(user, target, ignoreCheck: false)
         end
 
         score -= STATUS_UPSIDE_MALUS if target.hasActiveAbilityAI?([:FROSTHEAL].concat(STATUS_UPSIDE_ABILITIES))
-        score += STATUS_PUNISHMENT_BONUS if user.hasStatusPunishMove? || user.pbHasMoveFunction?("50C") # Ice Impact
+        score += STATUS_PUNISHMENT_BONUS if user && (user.hasStatusPunishMove? || user.pbHasMoveFunction?("50C")) # Ice Impact
     else
         return 0
     end
@@ -129,9 +135,9 @@ def getDizzyEffectScore(user, target, ignoreCheck: false)
     if ignoreCheck || canDizzy
         score = 60 # TODO: Some sort of basic AI for rating abilities?
         score += 20 if target.hp >= target.totalhp / 2
-        score += 20 if user.hasDamagingAttack?
+        score += 20 if user&.hasDamagingAttack?
         score -= STATUS_UPSIDE_MALUS if target.hasActiveAbilityAI?(STATUS_UPSIDE_ABILITIES)
-        score += STATUS_PUNISHMENT_BONUS if user.hasStatusPunishMove?
+        score += STATUS_PUNISHMENT_BONUS if user&.hasStatusPunishMove?
     else
         return 0
     end
@@ -146,18 +152,18 @@ def getLeechEffectScore(user, target, ignoreCheck: false)
         score = -10
         if target.takesIndirectDamage?
             score += 50
-            score += NON_ATTACKER_BONUS * 2 unless user.hasDamagingAttack?
+            score += NON_ATTACKER_BONUS * 2 unless user&.hasDamagingAttack?
             score += 20 if target.hp >= target.totalhp / 2
-            score += 30 if target.totalhp > user.totalhp * 2
-            score -= 30 if target.totalhp < user.totalhp / 2
-            score *= 2 if user.hasActiveAbilityAI?(:AGGRAVATE)
-            score *= 1.5 if user.hasActiveAbilityAI?(:ROOTED)
-            score *= 1.3 if user.hasActiveItem?(:BIGROOT)
-            score *= 2 if user.ownersPolicies.include?(:PRIORITIZEDOTS) && user.opposes?(target)
+            score += 30 if target.totalhp > user&.totalhp * 2
+            score -= 30 if target.totalhp < user&.totalhp / 2
+            score *= 2 if user&.hasActiveAbilityAI?(:AGGRAVATE)
+            score *= 1.5 if user&.hasActiveAbilityAI?(:ROOTED)
+            score *= 1.3 if user&.hasActiveItem?(:BIGROOT)
+            score *= 2 if user&.ownersPolicies.include?(:PRIORITIZEDOTS) && user&.opposes?(target)
         end
 
         score -= STATUS_UPSIDE_MALUS if target.hasActiveAbilityAI?(STATUS_UPSIDE_ABILITIES)
-        score += STATUS_PUNISHMENT_BONUS if user.hasStatusPunishMove?
+        score += STATUS_PUNISHMENT_BONUS if user&.hasStatusPunishMove?
     else
         return 0
     end

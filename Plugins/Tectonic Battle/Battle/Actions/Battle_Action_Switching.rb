@@ -152,7 +152,7 @@ class PokeBattle_Battle
     # For choosing a replacement Pokémon when prompted in the middle of other
     # things happening (U-turn, Baton Pass, in def pbSwitch).
     def pbSwitchInBetween(idxBattler, checkLaxOnly: false, canCancel: false, safeSwitch: nil)
-        if pbOwnedByPlayer?(idxBattler)
+        if pbOwnedByPlayer?(idxBattler) && !@autoTesting
             return pbPartyScreen(idxBattler, checkLaxOnly, canCancel) 
         else
             return @battleAI.pbDefaultChooseNewEnemy(idxBattler, safeSwitch)
@@ -231,7 +231,7 @@ class PokeBattle_Battle
     end
 
     def pbGetReplacementPokemonIndex(idxBattler, random = false)
-        if random || @autoTesting
+        if random
             return -1 unless pbCanSwitch?(idxBattler) # Can battler switch out?
             choices = [] # Find all Pokémon that can switch in
             eachInTeamFromBattlerIndex(idxBattler) do |_pkmn, i|
@@ -415,84 +415,8 @@ class PokeBattle_Battle
             side.battlerEntry(effect, battler.index % 2) if data.has_entry_proc?
         end
 
-        # Type applying spike hazards
-        unless battler.airborne? || battler.hasActiveAbility?(:NINJUTSU)
-            battler.pbOwnSide.eachEffect(true) do |effect, _value, data|
-                next unless data.is_status_hazard?
-                hazardInfo = data.status_applying_hazard
-                status = hazardInfo[:status]
-
-                if hazardInfo[:absorb_proc].call(battler)
-                    battler.pbOwnSide.disableEffect(effect)
-                    pbDisplay(_INTL("{1} absorbed the {2}!", battler.pbThis, data.name))
-                elsif battler.pbCanInflictStatus?(status, nil, false) && !battler.ignoresHazards? && !battler.immuneToHazards?
-                    if battler.pbOwnSide.countEffect(effect) >= 2
-                        battler.pbInflictStatus(status)
-                    elsif battler.takesIndirectDamage?
-                        pbDisplay(_INTL("{1} was hurt by the thin layer of {2}!", battler.pbThis, data.name))
-                        if battler.applyFractionalDamage(1.0 / 16.0, true, false, true)
-                            return pbOnActiveOne(battler) # For replacement battler
-                        end
-                    end
-                end
-            end
-        end
-
-        unless battler.ignoresHazards?
-            # Stealth Rock
-            if battler.pbOwnSide.effectActive?(:StealthRock) && battler.takesIndirectDamage? && !battler.immuneToHazards? && GameData::Type.exists?(:ROCK)
-                bTypes = battler.pbTypes(true)
-                getTypedHazardHPRatio = getTypedHazardHPRatio(:ROCK, bTypes[0], bTypes[1], bTypes[2])
-                if getTypedHazardHPRatio > 0
-                    if battler.hasActiveAbility?(:ROCKCLIMBER)
-                        pbDisplay(_INTL("{1} jumps onto the pointed stones!", battler.pbThis))
-                        battler.tryRaiseStat(:SPEED, ability: :ROCKCLIMBER)
-                    else
-                        pbDisplay(_INTL("Pointed stones dug into {1}!", battler.pbThis(true)))
-                        if battler.applyFractionalDamage(getTypedHazardHPRatio, true, false, true)
-                            return pbOnActiveOne(battler) # For replacement battler
-                        end
-                    end
-                end
-            end
-
-            # Feather Ward
-            if battler.pbOwnSide.effectActive?(:FeatherWard) && battler.takesIndirectDamage? && !battler.immuneToHazards? && GameData::Type.exists?(:STEEL)
-                bTypes = battler.pbTypes(true)
-                getTypedHazardHPRatio = getTypedHazardHPRatio(:STEEL, bTypes[0], bTypes[1], bTypes[2])
-                if getTypedHazardHPRatio > 0
-                    pbDisplay(_INTL("Sharp feathers dug into {1}!", battler.pbThis(true)))
-                    if battler.applyFractionalDamage(getTypedHazardHPRatio, true, false, true)
-                        return pbOnActiveOne(battler) # For replacement battler
-                    end
-                end
-            end
-
-            # Ground-based hazards
-            if !battler.fainted? && !battler.immuneToHazards? && !battler.airborne?
-                # Spikes
-                if  battler.pbOwnSide.effectActive?(:Spikes) &&
-                    battler.takesIndirectDamage? &&
-                    !battler.hasActiveAbility?(:NINJUTSU)
-
-                    spikesIndex = battler.pbOwnSide.countEffect(:Spikes) - 1
-                    spikesDiv = [8,6,4][spikesIndex]
-                    spikesHPRatio = 1.0 / spikesDiv.to_f
-                    layerLabel = ["layer", "2 layers", "3 layers"][spikesIndex]
-                    pbDisplay(_INTL("{1} is hurt by the {2} of spikes!", battler.pbThis, layerLabel))
-                    battler.pbItemHPHealCheck
-                    if battler.applyFractionalDamage(spikesHPRatio, true, false, true)
-                        return pbOnActiveOne(battler) # For replacement battler
-                    end
-                end
-
-                # Sticky Web
-                if battler.pbOwnSide.effectActive?(:StickyWeb)
-                    pbDisplay(_INTL("{1} was caught in a sticky web!", battler.pbThis))
-                    battler.pbItemStatRestoreCheck if battler.tryLowerStat(:SPEED, nil, increment: 2)
-                end
-            end
-        end
+        # Hazards
+        applyHazards(battler)
 
         # None, currently
         eachOtherSideBattler(battler.index) do |enemy|
@@ -512,5 +436,144 @@ class PokeBattle_Battle
         battler.pbCheckForm
         triggerBattlerEnterDialogue(battler)
         return true
+    end
+
+    def applyHazards(battler, aiCheck = false)
+        hazardDamagePredicted = 0
+        otherHazardScore = 0
+
+        unless battler.immuneToHazards?(aiCheck)
+            # Stealth Rock
+            if battler.pbOwnSide.effectActive?(:StealthRock) && battler.takesIndirectDamage?(false,aiCheck)
+                bTypes = battler.pbTypes(true)
+                getTypedHazardHPRatio = getTypedHazardHPRatio(:ROCK, bTypes[0], bTypes[1], bTypes[2])
+                if getTypedHazardHPRatio > 0
+                    # Rock Climber
+                    if battler.shouldAbilityApply?(:ROCKCLIMBER,aiCheck)
+                        if aiCheck
+                            rockClimberScore += getMultiStatUpEffectScore([:SPEED,1],battler,battler)
+                            otherHazardScore += rockClimberScore
+                            echoln("[HAZARD SCORING] #{battler.pbThis} will activate Rock Climber (#{rockClimberScore.to_change})")
+                        else
+                            pbDisplay(_INTL("{1} jumps onto the pointed stones!", battler.pbThis))
+                            battler.tryRaiseStat(:SPEED, ability: :ROCKCLIMBER)
+                        end
+                    else # Takes damage
+                        if aiCheck
+                            stealthRocksDamage = battler.applyFractionalDamage(getTypedHazardHPRatio, aiChecking: true)
+                            hazardDamagePredicted += stealthRocksDamage
+                            echoln("[HAZARD SCORING] #{battler.pbThis} will take #{stealthRocksDamage} damage from Stealth Rocks")
+                        else
+                            pbDisplay(_INTL("Pointed stones dug into {1}!", battler.pbThis(true)))
+                            if battler.applyFractionalDamage(getTypedHazardHPRatio, true, false, true)
+                                return pbOnActiveOne(battler) # For replacement battler
+                            end
+                        end
+                    end
+                end
+            end
+
+            # Feather Ward
+            if battler.pbOwnSide.effectActive?(:FeatherWard) && battler.takesIndirectDamage?(false,aiCheck)
+                bTypes = battler.pbTypes(true)
+                getTypedHazardHPRatio = getTypedHazardHPRatio(:STEEL, bTypes[0], bTypes[1], bTypes[2])
+                if getTypedHazardHPRatio > 0
+                    if aiCheck
+                        featherWardDamage = battler.applyFractionalDamage(getTypedHazardHPRatio, aiChecking: true)
+                        hazardDamagePredicted += featherWardDamage
+                        echoln("[HAZARD SCORING] #{battler.pbThis} will take #{featherWardDamage} damage from Feather Ward")
+                    else
+                        pbDisplay(_INTL("Sharp feathers dug into {1}!", battler.pbThis(true)))
+                        if battler.applyFractionalDamage(getTypedHazardHPRatio, true, false, true)
+                            return pbOnActiveOne(battler) # For replacement battler
+                        end
+                    end
+                end
+            end
+
+            # Ground-based hazards
+            if !battler.fainted? && !battler.airborne?(aiCheck)
+                # Spikes
+                if  battler.pbOwnSide.effectActive?(:Spikes) &&
+                    battler.takesIndirectDamage?(false,aiCheck) &&
+                    !battler.hasActiveAbility?(:NINJUTSU)
+
+                    spikesIndex = battler.pbOwnSide.countEffect(:Spikes) - 1
+                    spikesDiv = [8,6,4][spikesIndex]
+                    spikesHPRatio = 1.0 / spikesDiv.to_f
+                    layerLabel = [_INTL("layer"), _INTL("2 layers"), _INTL("3 layers")][spikesIndex]
+                    if aiCheck
+                        spikesDamage = battler.applyFractionalDamage(spikesHPRatio, aiChecking: true)
+                        hazardDamagePredicted += spikesDamage
+                        echoln("[HAZARD SCORING] #{battler.pbThis} will take #{spikesDamage} damage from the #{layerLabel} of spikes")
+                    else
+                        pbDisplay(_INTL("{1} is hurt by the {2} of spikes!", battler.pbThis, layerLabel))
+                        if battler.applyFractionalDamage(spikesHPRatio, true, false, true)
+                            return pbOnActiveOne(battler) # For replacement battler
+                        end
+                    end
+                end
+
+                # Sticky Web
+                if battler.pbOwnSide.effectActive?(:StickyWeb)
+                    if aiCheck
+                        stickyWebScore = getMultiStatDownEffectScore([:SPEED,2],battler,battler)
+                        otherHazardScore += stickyWebScore
+                        echoln("[HAZARD SCORING] #{battler.pbThis} will be afflicted by Sticky Web (#{stickyWebScore.to_change})")
+                    else
+                        pbDisplay(_INTL("{1} was caught in a sticky web!", battler.pbThis))
+                        battler.pbItemStatRestoreCheck if battler.tryLowerStat(:SPEED, nil, increment: 2)
+                    end
+                end
+            end
+        end
+
+        # Status applying spike hazards
+        # Checked seperately so can absorb spikes even if they normally would be immune
+        unless battler.airborne?(aiCheck)
+            battler.pbOwnSide.eachEffect(true) do |effect, _value, data|
+                next unless data.is_status_hazard?
+                hazardInfo = data.status_applying_hazard
+                status = hazardInfo[:status]
+
+                # Absorbing the spikes
+                if hazardInfo[:absorb_proc].call(battler)
+                    if aiCheck
+                        otherHazardScore += 20
+                        echoln("[HAZARD SCORING] #{battler.pbThis} will absorb a status spikes (+20)")
+                    else
+                        battler.pbOwnSide.disableEffect(effect)
+                        pbDisplay(_INTL("{1} absorbed the {2}!", battler.pbThis, data.name))
+                    end
+                elsif   battler.pbCanInflictStatus?(status, nil, false) &&
+                        !battler.immuneToHazards?(aiCheck) &&
+                        !battler.shouldAbilityApply?(:NINJUTSU,aiCheck)
+                    # Apply status
+                    if battler.pbOwnSide.countEffect(effect) >= 2
+                        if aiCheck
+                            statusAfflictionScore = getStatusSettingEffectScore(status, nil, battler, ignoreCheck: true)
+                            otherHazardScore += statusAfflictionScore
+                            echoln("[HAZARD SCORING] #{battler.pbThis} will be statused by the #{data.real_name} (#{statusAfflictionScore.to_change})")
+                        else
+                            battler.pbInflictStatus(status)
+                        end
+                    elsif battler.takesIndirectDamage?(false,aiCheck) # Damage
+                        thinStatusSpikesDamageFraction = 1.0 / 16.0
+                        if aiCheck
+                            statusSpikesDamage = battler.applyFractionalDamage(thinStatusSpikesDamageFraction, aiChecking: true)
+                            hazardDamagePredicted += statusSpikesDamage
+                            echoln("[HAZARD SCORING] #{battler.pbThis} will take #{statusSpikesDamage} damage from #{data.real_name}")
+                        else
+                            pbDisplay(_INTL("{1} was hurt by the thin layer of {2}!", battler.pbThis, data.name))
+                            if battler.applyFractionalDamage(thinStatusSpikesDamageFraction, true, false, true)
+                                return pbOnActiveOne(battler) # For replacement battler
+                            end
+                        end
+                    end
+                end
+            end
+        end
+
+        return hazardDamagePredicted,otherHazardScore
     end
 end

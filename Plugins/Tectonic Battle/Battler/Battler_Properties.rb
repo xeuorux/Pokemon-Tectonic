@@ -45,7 +45,7 @@ class PokeBattle_Battler
 
     def hp=(value)
         @hp = value.to_i
-        @pokemon.hp = value.to_i if @pokemon
+        @pokemon.hp = value.to_i if @pokemon && !@fake
     end
 
     def fainted?

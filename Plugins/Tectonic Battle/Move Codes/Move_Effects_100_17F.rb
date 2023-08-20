@@ -651,7 +651,7 @@ end
 # Traps the target and frostbites them. (Icicle Pin)
 #===============================================================================
 class PokeBattle_Move_11A < PokeBattle_Move_0EF
-    def pbFailsAgainstTarget?(_user, target, show_message)
+    def pbFailsAgainstTarget?(user, target, show_message)
         return false if damagingMove?
         if target.effectActive?(:MeanLook) && !target.canFrostbite?(user, false, self)
             if show_message

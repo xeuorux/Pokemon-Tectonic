@@ -164,6 +164,7 @@ class PokeBattle_AI
         hazardSwitchScore,entryDamageTaken,dieingOnEntry = getHazardEvaluationForEnteringBattler(fakeBattler)
         switchScore += hazardSwitchScore
 
+        # Track the damage taken
         fakeBattler.hp -= entryDamageTaken
 
         # More want to swap if has a entry ability that matters
@@ -216,70 +217,26 @@ class PokeBattle_AI
     end
 
     def getHazardEvaluationForEnteringBattler(battler)
-        return 0,0,false if battler.ignoresHazards?
-
-        willAbsorbSpikes = false
-        dieingOnEntry = false
-        switchScore = 0
-
         # Calculate how much damage the pokemon is likely to take from entry hazards
-        entryDamage = 0
-        if battler.airborne?(true) && battler.takesIndirectDamage? && battler.hasActiveItem?(:HEAVYDUTYBOOTS)
-            # Stealth Rock
-            if battler.pbOwnSide.effectActive?(:StealthRock) && !battler.hasActiveAbility?(:ROCKCLIMBER)
-                types = battler.pbTypes
-                stealthRockHPRatio = @battle.getTypedHazardHPRatio(:ROCK, types[0], types[1] || nil)
-                entryDamage += battler.totalhp * stealthRockHPRatio
-            end
+        entryDamage, hazardScore = @battle.applyHazards(battler,true)
 
-            # Feather Ward
-            if battler.pbOwnSide.effectActive?(:FeatherWard)
-                types = battler.pbTypes
-                featherWardHPRatio = @battle.getTypedHazardHPRatio(:STEEL, types[0], types[1] || nil)
-                entryDamage += battler.totalhp * featherWardHPRatio
-            end
-
-            unless battler.hasActiveAbility?(:NINJUTSU)
-                # Spikes
-                spikesCount = battler.pbOwnSide.countEffect(:Spikes)
-                if spikesCount > 0
-                    spikesDenom = [8, 6, 4][spikesCount - 1]
-                    entryDamage += battler.totalhp / spikesDenom
-                end
-
-                # Each of the status setting spikes
-                battler.pbOwnSide.eachEffect(true) do |_effect, value, data|
-                    next unless data.is_status_hazard?
-                    hazardInfo = data.status_applying_hazard
-
-                    if hazardInfo[:absorb_proc].call(battler)
-                        willAbsorbSpikes = true
-                    else
-                        statusSpikesDenom = [16, 4][value - 1]
-                        entryDamage += battler.totalhp / statusSpikesDenom
-                    end
-                end
-            end
-        end
+        dieingOnEntry = false
 
         # Try not to swap in pokemon who will die to entry hazard damage
         if battler.hp <= entryDamage
-            switchScore -= 100
+            hazardScore -= 80
             dieingOnEntry = true
+            entryDamage = battler.hp
             echoln("[SWITCH SCORING] #{battler.pbThis} will die from hazards! (-80)")
         elsif entryDamage > 0
             percentDamage = (entryDamage / battler.totalhp.to_f)
-            hazardDamageSwitchMalus = (percentDamage * 100).floor
-            switchScore -= hazardDamageSwitchMalus
-            echoln("[SWITCH SCORING] #{battler.pbThis} will take #{percentDamage} percent HP damage from hazards (#{hazardDamageSwitchMalus.to_change})")
+            hazardDamageSwitchMalus = -(percentDamage * 100).floor
+            hazardScore += hazardDamageSwitchMalus
+            percentDamageDisplay = (100 * percentDamage).round(1)
+            echoln("[SWITCH SCORING] #{battler.pbThis} will take #{percentDamageDisplay} percent HP damage from hazards (#{hazardDamageSwitchMalus.to_change})")
         end
 
-        if willAbsorbSpikes
-            switchScore += 20
-            echoln("[SWITCH SCORING] #{battler.pbThis} will absorb a status spikes (+20)")
-        end
-        
-        return switchScore,entryDamage,dieingOnEntry
+        return hazardScore,entryDamage,dieingOnEntry
     end
 
     def getEntryAbilityEvaluationForEnteringBattler(battler,dieingOnEntry)

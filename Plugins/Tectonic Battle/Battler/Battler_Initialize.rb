@@ -4,11 +4,12 @@ class PokeBattle_Battler
     #=============================================================================
     def initialize(btl, idxBattler, fake = false)
         @battle = btl
-        @index       = idxBattler
-        @captured    = false
-        @dummy       = false
+        @index      = idxBattler
+        @captured   = false
+        @dummy      = false
         @steps      = {}
-        @effects     = {}
+        @effects    = {}
+        @fake       = fake
         @damageState = PokeBattle_DamageState.new
         pbInitBlank
         pbInitProcs

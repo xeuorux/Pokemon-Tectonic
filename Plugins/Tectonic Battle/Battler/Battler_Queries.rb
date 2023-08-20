@@ -576,11 +576,6 @@ class PokeBattle_Battler
         return @battle.commandPhasesThisRound == (turnCheck - 1)
     end
 
-    def immuneToHazards?
-        return true if hasActiveItem?(:HEAVYDUTYBOOTS)
-        return false
-    end
-
     def hasHonorAura?
         return hasActiveAbility?([:HONORAURA])
     end
@@ -838,8 +833,9 @@ class PokeBattle_Battler
         return true
     end
 
-    def ignoresHazards?
-        return hasActiveAbility?(GameData::Ability::HAZARD_IMMUNITY_ABILITIES)
+    def immuneToHazards?(aiCheck = false)
+        return true if hasActiveItem?(:HEAVYDUTYBOOTS)
+        return shouldAbilityApply?(GameData::Ability::HAZARD_IMMUNITY_ABILITIES, aiCheck)
     end
 
     def hasGem?
