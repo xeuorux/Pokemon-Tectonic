@@ -452,8 +452,9 @@ class PokeBattle_Battle
                     if battler.shouldAbilityApply?(:ROCKCLIMBER,aiCheck)
                         if aiCheck
                             rockClimberScore += getMultiStatUpEffectScore([:SPEED,1],battler,battler)
+                            rockClimberScore = (rockClimberScore / PokeBattle_AI::EFFECT_SCORE_TO_SWITCH_SCORE_CONVERSION_RATIO).ceil
                             otherHazardScore += rockClimberScore
-                            echoln("[HAZARD SCORING] #{battler.pbThis} will activate Rock Climber (#{rockClimberScore.to_change})")
+                            echoln("\t[HAZARD SCORING] #{battler.pbThis} will activate Rock Climber (#{rockClimberScore.to_change})")
                         else
                             pbDisplay(_INTL("{1} jumps onto the pointed stones!", battler.pbThis))
                             battler.tryRaiseStat(:SPEED, ability: :ROCKCLIMBER)
@@ -462,7 +463,7 @@ class PokeBattle_Battle
                         if aiCheck
                             stealthRocksDamage = battler.applyFractionalDamage(getTypedHazardHPRatio, aiCheck: true)
                             hazardDamagePredicted += stealthRocksDamage
-                            echoln("[HAZARD SCORING] #{battler.pbThis} will take #{stealthRocksDamage} damage from Stealth Rocks")
+                            echoln("\t[HAZARD SCORING] #{battler.pbThis} will take #{stealthRocksDamage} damage from Stealth Rocks")
                         else
                             pbDisplay(_INTL("Pointed stones dug into {1}!", battler.pbThis(true)))
                             if battler.applyFractionalDamage(getTypedHazardHPRatio, true, false, true)
@@ -481,7 +482,7 @@ class PokeBattle_Battle
                     if aiCheck
                         featherWardDamage = battler.applyFractionalDamage(getTypedHazardHPRatio, aiCheck: true)
                         hazardDamagePredicted += featherWardDamage
-                        echoln("[HAZARD SCORING] #{battler.pbThis} will take #{featherWardDamage} damage from Feather Ward")
+                        echoln("\t[HAZARD SCORING] #{battler.pbThis} will take #{featherWardDamage} damage from Feather Ward")
                     else
                         pbDisplay(_INTL("Sharp feathers dug into {1}!", battler.pbThis(true)))
                         if battler.applyFractionalDamage(getTypedHazardHPRatio, true, false, true)
@@ -505,7 +506,7 @@ class PokeBattle_Battle
                     if aiCheck
                         spikesDamage = battler.applyFractionalDamage(spikesHPRatio, aiCheck: true)
                         hazardDamagePredicted += spikesDamage
-                        echoln("[HAZARD SCORING] #{battler.pbThis} will take #{spikesDamage} damage from the #{layerLabel} of spikes")
+                        echoln("\t[HAZARD SCORING] #{battler.pbThis} will take #{spikesDamage} damage from the #{layerLabel} of spikes")
                     else
                         pbDisplay(_INTL("{1} is hurt by the {2} of spikes!", battler.pbThis, layerLabel))
                         if battler.applyFractionalDamage(spikesHPRatio, true, false, true)
@@ -518,8 +519,9 @@ class PokeBattle_Battle
                 if battler.pbOwnSide.effectActive?(:StickyWeb)
                     if aiCheck
                         stickyWebScore = getMultiStatDownEffectScore([:SPEED,2],battler,battler)
+                        stickyWebScore = (stickyWebScore / PokeBattle_AI::EFFECT_SCORE_TO_SWITCH_SCORE_CONVERSION_RATIO).ceil
                         otherHazardScore += stickyWebScore
-                        echoln("[HAZARD SCORING] #{battler.pbThis} will be afflicted by Sticky Web (#{stickyWebScore.to_change})")
+                        echoln("\t[HAZARD SCORING] #{battler.pbThis} will be afflicted by Sticky Web (#{stickyWebScore.to_change})")
                     else
                         pbDisplay(_INTL("{1} was caught in a sticky web!", battler.pbThis))
                         battler.pbItemStatRestoreCheck if battler.tryLowerStat(:SPEED, nil, increment: 2)
@@ -539,8 +541,8 @@ class PokeBattle_Battle
                 # Absorbing the spikes
                 if hazardInfo[:absorb_proc].call(battler)
                     if aiCheck
-                        otherHazardScore += 20
-                        echoln("[HAZARD SCORING] #{battler.pbThis} will absorb a status spikes (+20)")
+                        otherHazardScore += 10
+                        echoln("\t[HAZARD SCORING] #{battler.pbThis} will absorb a status spikes (+10)")
                     else
                         battler.pbOwnSide.disableEffect(effect)
                         pbDisplay(_INTL("{1} absorbed the {2}!", battler.pbThis, data.name))
@@ -552,8 +554,9 @@ class PokeBattle_Battle
                     if battler.pbOwnSide.countEffect(effect) >= 2
                         if aiCheck
                             statusAfflictionScore = getStatusSettingEffectScore(status, nil, battler, ignoreCheck: true)
+                            statusAfflictionScore = (statusAfflictionScore / PokeBattle_AI::EFFECT_SCORE_TO_SWITCH_SCORE_CONVERSION_RATIO).ceil
                             otherHazardScore += statusAfflictionScore
-                            echoln("[HAZARD SCORING] #{battler.pbThis} will be statused by the #{data.real_name} (#{statusAfflictionScore.to_change})")
+                            echoln("\t[HAZARD SCORING] #{battler.pbThis} will be statused by the #{data.real_name} (#{statusAfflictionScore.to_change})")
                         else
                             battler.pbInflictStatus(status)
                         end
@@ -562,7 +565,7 @@ class PokeBattle_Battle
                         if aiCheck
                             statusSpikesDamage = battler.applyFractionalDamage(thinStatusSpikesDamageFraction, aiCheck: true)
                             hazardDamagePredicted += statusSpikesDamage
-                            echoln("[HAZARD SCORING] #{battler.pbThis} will take #{statusSpikesDamage} damage from #{data.real_name}")
+                            echoln("\t[HAZARD SCORING] #{battler.pbThis} will take #{statusSpikesDamage} damage from #{data.real_name}")
                         else
                             pbDisplay(_INTL("{1} was hurt by the thin layer of {2}!", battler.pbThis, data.name))
                             if battler.applyFractionalDamage(thinStatusSpikesDamageFraction, true, false, true)

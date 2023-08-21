@@ -108,7 +108,6 @@ class ItemIconSprite < SpriteWrapper
 			pretendItem = MEMORIES_BY_TYPE_ID[typeID]
 		elsif @item == :CRYSTALVEIL
 			pretendItem = ("CRYSTALVEIL" + typeData.real_name.upcase).to_sym
-			echoln("Pretending that the crystal veil is a #{pretendItem}")
 		end
 
 		if pretendItem.nil?

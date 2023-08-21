@@ -106,7 +106,8 @@ class PokeBattle_AI
 
             pursuitMove = b.canChoosePursuit?(battler)
             if pursuitMove
-                pursuitScore = pbEvaluateMoveTrainer(b, pursuitMove, targets: [battler]) / 2
+                pursuitScore = pbEvaluateMoveTrainer(b, pursuitMove, targets: [battler])
+                pursuitScore = (pursuitScore / PokeBattle_AI::EFFECT_SCORE_TO_SWITCH_SCORE_CONVERSION_RATIO).ceil
                 stayInRating += pursuitScore
                 PBDebug.log("[STAY-IN RATING] #{battler.pbThis} (#{battler.index}) has an opponent that can target it with pursuit (#{pursuitScore.to_change})")
             end
@@ -115,8 +116,8 @@ class PokeBattle_AI
         # Less likely to switch when coming in later would cause it to die to hazards
         entryDamage, hazardScore = @battle.applyHazards(battler,true)
         if entryDamage >= battler.hp
-            stayInRating += 40
-            PBDebug.log("[STAY-IN RATING] #{battler.pbThis} (#{battler.index}) likely to die to hazards if switches back in later (+40)")
+            stayInRating += 30
+            PBDebug.log("[STAY-IN RATING] #{battler.pbThis} (#{battler.index}) likely to die to hazards if switches back in later (+30)")
         end
 
         # Less likely to switch when has self-mending
@@ -238,7 +239,7 @@ class PokeBattle_AI
             echoln("[SWITCH SCORING] #{battler.pbThis} will die from hazards! (-40)")
         elsif entryDamage > 0
             percentDamage = (entryDamage / battler.totalhp.to_f)
-            hazardDamageSwitchMalus = -(percentDamage * 20).floor
+            hazardDamageSwitchMalus = -(percentDamage * 10).floor
             hazardScore += hazardDamageSwitchMalus
             percentDamageDisplay = (100 * percentDamage).round(1)
             echoln("[SWITCH SCORING] #{battler.pbThis} will take #{percentDamageDisplay} percent HP damage from hazards (#{hazardDamageSwitchMalus.to_change})")
@@ -285,7 +286,7 @@ class PokeBattle_AI
             when :HARBINGER, :SUNEATER
                 switchAbilityEffectScore += getWeatherSettingEffectScore(:Eclipse,battler,@battle)
             end
-            abilitySwitchModifier = (switchAbilityEffectScore / 2.5).ceil
+            abilitySwitchModifier = (switchAbilityEffectScore / PokeBattle_AI::EFFECT_SCORE_TO_SWITCH_SCORE_CONVERSION_RATIO).ceil
             totalAbilityScore += abilitySwitchModifier
             echoln("[SWITCH SCORING] #{battler.pbThis} values the effect of #{abilityID} as #{switchAbilityEffectScore} (#{abilitySwitchModifier.to_change})")
         end
@@ -336,10 +337,12 @@ class PokeBattle_AI
         return matchupScore,killInfo
     end
 
+    EFFECT_SCORE_TO_SWITCH_SCORE_CONVERSION_RATIO = 2.5
+
     def switchRatingBestMoveScore(battler, opposingBattler: nil, killInfoArray: [])
         maxScore,killInfo = highestMoveScoreForBattler(battler, opposingBattler: opposingBattler, killInfoArray: killInfoArray)
         maxMoveScoreBiasChange = -40
-        maxMoveScoreBiasChange += (maxScore / 2.5).round
+        maxMoveScoreBiasChange += (maxScore / EFFECT_SCORE_TO_SWITCH_SCORE_CONVERSION_RATIO).round
         return maxMoveScoreBiasChange,killInfo
     end
 

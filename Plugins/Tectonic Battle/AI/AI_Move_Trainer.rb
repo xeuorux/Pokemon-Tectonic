@@ -290,8 +290,8 @@ class PokeBattle_AI
         if !switchPredicted && !killInfoArray.empty?
             killInfoArray.each do |killInfo|
                 next if userMovesFirst?(move, user, target, killInfo: killInfo)
-                echoln("\t[MOVE SCORING] Halving score since #{killInfo.user.pbThis(true)} may kill it this turn with #{killInfo.move.id} beforehand")
-                score *= 0.5
+                echoln("\t[MOVE SCORING] Cutting score by 70 percent since #{killInfo.user.pbThis(true)} may kill it this turn with #{killInfo.move.id} beforehand")
+                score *= 0.3
             end
         end
 

@@ -377,6 +377,13 @@ class Pokemon
       type = GameData::Type.get(type).id
       return self.types.include?(type)
     end
+
+    # Used by the AI
+    def likelyHasSTAB?(type)
+      likelySTABTypes = types
+      likelySTABTypes.push(@itemTypeChosen) if hasItem?(:CRYSTALVEIL)
+      return likelySTABTypes.include?(type)
+    end
   
     #=============================================================================
     # Gender
