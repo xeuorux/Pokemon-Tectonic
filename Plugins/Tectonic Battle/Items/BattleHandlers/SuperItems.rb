@@ -1,6 +1,6 @@
 # Choice Crown
 BattleHandlers::DamageCalcUserItem.add(:CHOICECROWN,
-    proc { |item,user,target,move,mults,baseDmg,type,aiChecking|
+    proc { |item,user,target,move,mults,baseDmg,type,aiCheck|
       mults[:base_damage_multiplier] *= 1.5
     }
 )
@@ -36,7 +36,7 @@ BattleHandlers::SpeedCalcItem.add(:ZENITHSCARF,
 
 # All-Purpose Vest
 BattleHandlers::DamageCalcTargetItem.add(:ALLPURPOSEVEST,
-    proc { |item,user,target,move,mults,baseDmg,type,aiChecking|
+    proc { |item,user,target,move,mults,baseDmg,type,aiCheck|
       mults[:defense_multiplier] *= 1.5
     }
 )
@@ -51,20 +51,20 @@ BattleHandlers::TargetItemOnHit.copy(:HIVISJACKET,:STRIKECORSET)
 
 # Jagged Helmet
 BattleHandlers::TargetItemOnHit.add(:JAGGEDHELMET,
-    proc { |item,user,target,move,battle,aiChecking,aiNumHits|
+    proc { |item,user,target,move,battle,aiCheck,aiNumHits|
         next unless move.physicalMove?
         next if !user.takesIndirectDamage?
-        next -20 * aiNumHits if aiChecking
+        next -20 * aiNumHits if aiCheck
         battle.pbDisplay(_INTL("{1} was badly hurt by the {2}!",user.pbThis,getItemName(item)))
         user.applyFractionalDamage(1.0/3.0)
     }
 )
   
 BattleHandlers::TargetItemOnHit.add(:LUSTROUSJACKET,
-    proc { |item,user,target,move,battle,aiChecking,aiNumHits|
+    proc { |item,user,target,move,battle,aiCheck,aiNumHits|
         next unless move.specialMove?
         next if !user.takesIndirectDamage?
-        next -20 * aiNumHits if aiChecking
+        next -20 * aiNumHits if aiCheck
         battle.pbDisplay(_INTL("{1} was badly hurt by the {2}!",user.pbThis,getItemName(item)))
         user.applyFractionalDamage(1.0/3.0)
     }
@@ -85,8 +85,8 @@ BattleHandlers::HPHealItem.add(:SITREONBERRY,
 BattleHandlers::EORHealingItem.copy(:LEFTOVERS,:ROSELIFEAST)
 
 BattleHandlers::DamageCalcTargetItem.add(:ROSELIFEAST,
-    proc { |item,user,target,move,mults,baseDmg,type,aiChecking|
-      pbBattleTypeWeakingBerry(item, :FAIRY,type,target,mults,true,aiChecking)
+    proc { |item,user,target,move,mults,baseDmg,type,aiCheck|
+      pbBattleTypeWeakingBerry(item, :FAIRY,type,target,mults,true,aiCheck)
     }
 )
 
@@ -94,8 +94,8 @@ BattleHandlers::DamageCalcTargetItem.add(:ROSELIFEAST,
 BattleHandlers::EORHealingItem.copy(:LEFTOVERS,:OCCAFEAST)
 
 BattleHandlers::DamageCalcTargetItem.add(:OCCAFEAST,
-    proc { |item,user,target,move,mults,baseDmg,type,aiChecking|
-      pbBattleTypeWeakingBerry(item, :FIRE,type,target,mults,true,aiChecking)
+    proc { |item,user,target,move,mults,baseDmg,type,aiCheck|
+      pbBattleTypeWeakingBerry(item, :FIRE,type,target,mults,true,aiCheck)
     }
 )
 
@@ -103,8 +103,8 @@ BattleHandlers::DamageCalcTargetItem.add(:OCCAFEAST,
 BattleHandlers::EORHealingItem.copy(:LEFTOVERS,:RINDOFEAST)
 
 BattleHandlers::DamageCalcTargetItem.add(:RINDOFEAST,
-    proc { |item,user,target,move,mults,baseDmg,type,aiChecking|
-      pbBattleTypeWeakingBerry(item, :GRASS,type,target,mults,true,aiChecking)
+    proc { |item,user,target,move,mults,baseDmg,type,aiCheck|
+      pbBattleTypeWeakingBerry(item, :GRASS,type,target,mults,true,aiCheck)
     }
 )
 
@@ -130,8 +130,8 @@ BattleHandlers::HPHealItem.add(:ZALAKABERRY,
 
 # Lucent Gem
 BattleHandlers::DamageCalcUserItem.add(:LUCENTGEM,
-    proc { |item,user,target,move,mults,baseDmg,type,aiChecking|
-        user.applyEffect(:GemConsumed,item) unless aiChecking
+    proc { |item,user,target,move,mults,baseDmg,type,aiCheck|
+        user.applyEffect(:GemConsumed,item) unless aiCheck
         mults[:base_damage_multiplier] *= 1.5
     }
 )
@@ -200,7 +200,7 @@ BattleHandlers::WeatherExtenderItem.copy(:SMOOTHROCK,:SMOOTHSASH)
 
 # Death Orb
 BattleHandlers::DamageCalcUserItem.add(:DEATHORB,
-  proc { |item,user,target,move,mults,baseDmg,type,aiChecking|
+  proc { |item,user,target,move,mults,baseDmg,type,aiCheck|
     if !move.is_a?(PokeBattle_Confusion)
       mults[:final_damage_multiplier] *= 1.3
     end
@@ -230,7 +230,7 @@ BattleHandlers::EORHealingItem.add(:LUNCHBOX,
 )
 
 BattleHandlers::DamageCalcTargetItem.add(:LUNCHBOX,
-  proc { |item,user,target,move,mults,baseDmg,type,aiChecking|
+  proc { |item,user,target,move,mults,baseDmg,type,aiCheck|
     mults[:final_damage_multiplier] *= (2.0/3.0) if target.hp == target.totalhp
   }
 )

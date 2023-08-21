@@ -1,9 +1,9 @@
 # For abilities that grant immunity to moves of a particular type, and heals the
 # ability's bearer by 1/4 of its total HP instead.
-def pbBattleMoveImmunityHealAbility(ability, user, target, move, moveType, immuneType, battle, showMessages, aiChecking = false)
+def pbBattleMoveImmunityHealAbility(ability, user, target, move, moveType, immuneType, battle, showMessages, aiCheck = false)
     return false if user.index == target.index
     return false if moveType != immuneType
-    return true if aiChecking
+    return true if aiCheck
     if target.applyFractionalHealing(1.0 / 4.0, ability: ability) <= 0 && showMessages
         battle.pbShowAbilitySplash(target, ability)
         battle.pbDisplay(_INTL("{1}'s {2} made {3} ineffective!", target.pbThis, getAbilityName(ability),
@@ -15,10 +15,10 @@ end
 
 # For abilities that grant immunity to moves of a particular type, and raises
 # one of the ability's bearer's stats instead.
-def pbBattleMoveImmunityStatAbility(ability, user, target, move, moveType, immuneType, stat, increment, battle, showMessages, aiChecking = false)
+def pbBattleMoveImmunityStatAbility(ability, user, target, move, moveType, immuneType, stat, increment, battle, showMessages, aiCheck = false)
     return false if user.index == target.index
     return false if moveType != immuneType
-    return true if aiChecking
+    return true if aiCheck
     battle.pbShowAbilitySplash(target, ability) if showMessages
     if stat.is_a?(Array)
         target.pbRaiseMultipleStatSteps(stat, target, move: move)
@@ -31,10 +31,10 @@ def pbBattleMoveImmunityStatAbility(ability, user, target, move, moveType, immun
     return true
 end
 
-def pbBattleWeatherAbility(ability, weather, battler, battle, ignorePrimal = false, ignoreFainted = false, aiChecking = false, baseDuration: 4)
+def pbBattleWeatherAbility(ability, weather, battler, battle, ignorePrimal = false, ignoreFainted = false, aiCheck = false, baseDuration: 4)
     return 0 if battle.pbWeather == weather && battle.field.weatherDuration == -1
-    return 0 if !ignorePrimal && battle.primevalWeatherPresent?(!aiChecking)
-    if aiChecking
+    return 0 if !ignorePrimal && battle.primevalWeatherPresent?(!aiCheck)
+    if aiCheck
         if baseDuration < 0 # infinite
             duration = 20 - battle.turnCount
         else
@@ -49,10 +49,10 @@ def pbBattleWeatherAbility(ability, weather, battler, battle, ignorePrimal = fal
     end
 end
 
-def randomStatusProcUserAbility(ability, status, chance, user, target, move, battle, aiChecking = false, aiNumHits = 1)
+def randomStatusProcUserAbility(ability, status, chance, user, target, move, battle, aiCheck = false, aiNumHits = 1)
     return if target.pbHasStatus?(status)
     return if target.fainted?
-    if aiChecking
+    if aiCheck
         chanceOfActivating = 1 - (((100 - chance) / 100)**aiNumHits)
         ret = getStatusSettingEffectScore(status, target, user)
         ret *= chanceOfActivating
@@ -67,10 +67,10 @@ def randomStatusProcUserAbility(ability, status, chance, user, target, move, bat
     end
 end
 
-def randomStatusProcTargetAbility(ability, status, chance, user, target, move, battle, aiChecking = false, aiNumHits = 1)
+def randomStatusProcTargetAbility(ability, status, chance, user, target, move, battle, aiCheck = false, aiNumHits = 1)
     return if user.pbHasStatus?(status)
     return if user.fainted?
-    if aiChecking
+    if aiCheck
         chanceOfActivating = 1 - (((100 - chance) / 100.0)**aiNumHits)
         ret = -getStatusSettingEffectScore(status, target, user)
         ret *= chanceOfActivating

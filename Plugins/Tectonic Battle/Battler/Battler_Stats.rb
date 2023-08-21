@@ -158,18 +158,18 @@ class PokeBattle_Battler
     #=============================================================================
     AI_CHEATS_FOR_STAT_ABILITIES = true
 
-    def pbAttack(aiChecking = false, step = -1)
+    def pbAttack(aiCheck = false, step = -1)
         return 1 if fainted?
         attack = statAfterStep(:ATTACK, step)
         attackMult = 1.0
 
         eachActiveAbility do |ability|
-            next if ignoreAbilityInAI?(ability,aiChecking) && !AI_CHEATS_FOR_STAT_ABILITIES
+            next if ignoreAbilityInAI?(ability,aiCheck) && !AI_CHEATS_FOR_STAT_ABILITIES
             attackMult = BattleHandlers.triggerAttackCalcUserAbility(ability, self, @battle, attackMult)
         end
         eachAlly do |ally|
             ally.eachActiveAbility do |ability|
-                next if ally.ignoreAbilityInAI?(ability,aiChecking) && !AI_CHEATS_FOR_STAT_ABILITIES
+                next if ally.ignoreAbilityInAI?(ability,aiCheck) && !AI_CHEATS_FOR_STAT_ABILITIES
                 attackMult = BattleHandlers.triggerAttackCalcAllyAbility(ability, self, @battle, attackMult)
             end
         end
@@ -185,18 +185,18 @@ class PokeBattle_Battler
         return [(attack * attackMult).round, 1].max
     end
 
-    def pbSpAtk(aiChecking = false, step = -1)
+    def pbSpAtk(aiCheck = false, step = -1)
         return 1 if fainted?
         special_attack = statAfterStep(:SPECIAL_ATTACK, step)
         spAtkMult = 1.0
 
         eachActiveAbility do |ability|
-            next if ignoreAbilityInAI?(ability,aiChecking) && !AI_CHEATS_FOR_STAT_ABILITIES
+            next if ignoreAbilityInAI?(ability,aiCheck) && !AI_CHEATS_FOR_STAT_ABILITIES
             spAtkMult = BattleHandlers.triggerSpecialAttackCalcUserAbility(ability, self, @battle, spAtkMult)
         end
         eachAlly do |ally|
             ally.eachActiveAbility do |ability|
-                next if ally.ignoreAbilityInAI?(ability,aiChecking) && !AI_CHEATS_FOR_STAT_ABILITIES
+                next if ally.ignoreAbilityInAI?(ability,aiCheck) && !AI_CHEATS_FOR_STAT_ABILITIES
                 spAtkMult = BattleHandlers.triggerSpecialAttackCalcAllyAbility(ability, self, @battle, spAtkMult)
             end
         end
@@ -209,18 +209,18 @@ class PokeBattle_Battler
         return [(special_attack * spAtkMult).round, 1].max
     end
 
-    def pbDefense(aiChecking = false, step = -1)
+    def pbDefense(aiCheck = false, step = -1)
         return 1 if fainted?
         defense = statAfterStep(:DEFENSE, step)
         defenseMult = 1.0
 
         eachActiveAbility do |ability|
-            next if ignoreAbilityInAI?(ability,aiChecking) && !AI_CHEATS_FOR_STAT_ABILITIES
+            next if ignoreAbilityInAI?(ability,aiCheck) && !AI_CHEATS_FOR_STAT_ABILITIES
             defenseMult = BattleHandlers.triggerDefenseCalcUserAbility(ability, self, @battle, defenseMult)
         end
         eachAlly do |ally|
             ally.eachActiveAbility do |ability|
-                next if ally.ignoreAbilityInAI?(ability,aiChecking) && !AI_CHEATS_FOR_STAT_ABILITIES
+                next if ally.ignoreAbilityInAI?(ability,aiCheck) && !AI_CHEATS_FOR_STAT_ABILITIES
                 defenseMult = BattleHandlers.triggerDefenseCalcAllyAbility(ability, self, @battle, defenseMult)
             end
         end
@@ -243,13 +243,13 @@ class PokeBattle_Battler
         return [(defense * defenseMult).round, 1].max
     end
 
-    def pbSpDef(aiChecking = false, step = -1)
+    def pbSpDef(aiCheck = false, step = -1)
         return 1 if fainted?
         special_defense = statAfterStep(:SPECIAL_DEFENSE, step)
         spDefMult = 1.0
 
         eachActiveAbility do |ability|
-            next if ignoreAbilityInAI?(ability,aiChecking) && !AI_CHEATS_FOR_STAT_ABILITIES
+            next if ignoreAbilityInAI?(ability,aiCheck) && !AI_CHEATS_FOR_STAT_ABILITIES
             spDefMult = BattleHandlers.triggerSpecialDefenseCalcUserAbility(ability, self, @battle, spDefMult)
         end
         eachAlly do |ally|
@@ -276,13 +276,13 @@ class PokeBattle_Battler
         return [(special_defense * spDefMult).round, 1].max
     end
 
-    def pbSpeed(aiChecking = false, step = -1)
+    def pbSpeed(aiCheck = false, step = -1)
         return 1 if fainted?
         speed = statAfterStep(:SPEED, step)
         speedMult = 1.0
 
         eachActiveAbility do |ability|
-            next if ignoreAbilityInAI?(ability,aiChecking) && !AI_CHEATS_FOR_STAT_ABILITIES
+            next if ignoreAbilityInAI?(ability,aiCheck) && !AI_CHEATS_FOR_STAT_ABILITIES
             speedMult = BattleHandlers.triggerSpeedCalcAbility(ability, self, speedMult)
         end
 
@@ -297,7 +297,7 @@ class PokeBattle_Battler
         speedMult *= 2 if effectActive?(:OnDragonRide)
         
         # Numb
-        if !shouldAbilityApply?(:QUICKFEET, aiChecking) && numbed?
+        if !shouldAbilityApply?(:QUICKFEET, aiCheck) && numbed?
             speedMult /= 2
             speedMult /= 2 if pbOwnedByPlayer? && @battle.curseActive?(:CURSE_STATUS_DOUBLED)
         end
@@ -305,18 +305,18 @@ class PokeBattle_Battler
         return [(speed * speedMult).round, 1].max
     end
 
-    def getFinalStat(stat, aiChecking = false, step = -1)
+    def getFinalStat(stat, aiCheck = false, step = -1)
         case stat
         when :ATTACK
-            return pbAttack(aiChecking, step)
+            return pbAttack(aiCheck, step)
         when :DEFENSE
-            return pbDefense(aiChecking, step)
+            return pbDefense(aiCheck, step)
         when :SPECIAL_ATTACK
-            return pbSpAtk(aiChecking, step)
+            return pbSpAtk(aiCheck, step)
         when :SPECIAL_DEFENSE
-            return pbSpDef(aiChecking, step)
+            return pbSpDef(aiCheck, step)
         when :SPEED
-            return pbSpeed(aiChecking, step)
+            return pbSpeed(aiCheck, step)
         end
         return -1
     end

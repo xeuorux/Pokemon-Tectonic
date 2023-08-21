@@ -232,13 +232,13 @@ class PokeBattle_AI
 
         # Try not to swap in pokemon who will die to entry hazard damage
         if battler.hp <= entryDamage
-            hazardScore -= 80
+            hazardScore -= 40
             dieingOnEntry = true
             entryDamage = battler.hp
-            echoln("[SWITCH SCORING] #{battler.pbThis} will die from hazards! (-80)")
+            echoln("[SWITCH SCORING] #{battler.pbThis} will die from hazards! (-40)")
         elsif entryDamage > 0
             percentDamage = (entryDamage / battler.totalhp.to_f)
-            hazardDamageSwitchMalus = -(percentDamage * 100).floor
+            hazardDamageSwitchMalus = -(percentDamage * 20).floor
             hazardScore += hazardDamageSwitchMalus
             percentDamageDisplay = (100 * percentDamage).round(1)
             echoln("[SWITCH SCORING] #{battler.pbThis} will take #{percentDamageDisplay} percent HP damage from hazards (#{hazardDamageSwitchMalus.to_change})")

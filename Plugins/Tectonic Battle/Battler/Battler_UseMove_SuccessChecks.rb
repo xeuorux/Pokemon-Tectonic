@@ -310,13 +310,13 @@ target.pbThis(true)))
     # Initial success check against the target. Done once before the first hit.
     # Includes move-specific failure conditions, protections and type immunities.
     #=============================================================================
-    def pbSuccessCheckAgainstTarget(move, user, target, typeMod, show_message = true, ai_check = false)
+    def pbSuccessCheckAgainstTarget(move, user, target, typeMod, show_message = true, aiCheck = false)
         # Two-turn attacks can't fail here in the charging turn
         return true if user.effectActive?(:TwoTurnAttack)
 
         # Move-specific failures
 
-        if ai_check
+        if aiCheck
             return false if move.pbFailsAgainstTargetAI?(user, target)
         elsif move.pbFailsAgainstTarget?(user, target, show_message)
             return false
@@ -325,7 +325,7 @@ target.pbThis(true)))
         ###	Protect Style Moves
         # Ability effects that ignore protection
         protectionIgnoredByAbility = false
-        protectionIgnoredByAbility = true if user.shouldAbilityApply?(:UNSEENFIST, ai_check) && move.physicalMove?
+        protectionIgnoredByAbility = true if user.shouldAbilityApply?(:UNSEENFIST, aiCheck) && move.physicalMove?
 
         # Only check the target's side if the target is not the self
         holdersToCheck = [target]
@@ -341,7 +341,7 @@ target.pbThis(true)))
                 animationName = data.protection_info ? data.protection_info[:animation_name] : effect.to_s
                 negated = doesProtectionEffectNegateThisMove?(effectName, move, user, target, protectionIgnoredByAbility,
 animationName, show_message) do
-                    if data.protection_info&.has_key?(:hit_proc) && !ai_check
+                    if data.protection_info&.has_key?(:hit_proc) && !aiCheck
                         data.protection_info[:hit_proc].call(user, target, move, @battle)
                     end
                 end
@@ -352,21 +352,21 @@ animationName, show_message) do
         # Magic Coat/Magic Bounce/Magic Shield
         if move.canMagicCoat? && !target.semiInvulnerable? && target.opposes?(user)
             if target.effectActive?(:MagicCoat)
-                unless ai_check
+                unless aiCheck
                     target.damageState.magicCoat = true
                     target.disableEffect(:MagicCoat)
                 end
                 return false
             end
             if target.hasActiveAbility?(:MAGICBOUNCE) && !@battle.moldBreaker
-                unless ai_check
+                unless aiCheck
                     target.damageState.magicBounce = true
                     target.applyEffect(:MagicBounce)
                 end
                 return false
             end
             if target.hasActiveAbility?(:MAGICSHIELD) && !@battle.moldBreaker
-                unless ai_check
+                unless aiCheck
                     target.damageState.protected = true
                     if show_message
                         @battle.pbShowAbilitySplash(target, :MAGICSHIELD)
@@ -382,10 +382,10 @@ animationName, show_message) do
         # Skipped for bosses using damaging moves so that it can be calculated properly later
         if move.inherentImmunitiesPierced?(user, target)
             # Do nothing
-        elsif targetInherentlyImmune?(user, target, move, show_message, ai_check)
+        elsif targetInherentlyImmune?(user, target, move, show_message, aiCheck)
             return false
-        elsif targetTypeModImmune?(user, target, move, typeMod, show_message, ai_check)
-            if !ai_check && target.effectActive?(:Illusion)
+        elsif targetTypeModImmune?(user, target, move, typeMod, show_message, aiCheck)
+            if !aiCheck && target.effectActive?(:Illusion)
                 target.aiLearnsAbility(:ILLUSION)
             end
             return false
@@ -401,10 +401,10 @@ animationName, show_message) do
         return true
     end
 
-    def targetTypeModImmune?(user, target, move, typeMod, showMessages = true, ai_check = false)
+    def targetTypeModImmune?(user, target, move, typeMod, showMessages = true, aiCheck = false)
         # Type immunity
-        if move.damagingMove?(ai_check) && Effectiveness.ineffective?(typeMod)
-            PBDebug.log("[Target immune] #{target.pbThis}'s type immunity") unless ai_check
+        if move.damagingMove?(aiCheck) && Effectiveness.ineffective?(typeMod)
+            PBDebug.log("[Target immune] #{target.pbThis}'s type immunity") unless aiCheck
             if showMessages
                 @battle.pbDisplay(_INTL("It doesn't affect {1}...", target.pbThis(true)))
                 @battle.triggerImmunityDialogue(user, target, false)
@@ -414,8 +414,8 @@ animationName, show_message) do
         return false
     end
 
-    def targetInherentlyImmune?(user, target, move, showMessages = true, aiChecking = false)
-        if move.pbImmunityByAbility(user, target, showMessages, aiChecking)
+    def targetInherentlyImmune?(user, target, move, showMessages = true, aiCheck = false)
+        if move.pbImmunityByAbility(user, target, showMessages, aiCheck)
             @battle.triggerImmunityDialogue(user, target, true) if showMessages
             return true
         end
@@ -425,7 +425,7 @@ animationName, show_message) do
         end
         # Dark-type immunity to moves made faster by Prankster
         pranksterInEffect = false
-        if aiChecking
+        if aiCheck
             pranksterInEffect = true if user.hasActiveAbilityAI?(:PRANKSTER) && move.statusMove?
         else
             pranksterInEffect = true if user.effectActive?(:Prankster)
@@ -486,9 +486,9 @@ target.pbThis(true)))
     # Per-hit success check against the target.
     # Includes semi-invulnerable move use and accuracy calculation.
     #=============================================================================
-    def pbSuccessCheckPerHit(move, user, target, aiChecking = false)
+    def pbSuccessCheckPerHit(move, user, target, aiCheck = false)
         # Two-turn attacks can't fail here in the charging turn
-        if aiChecking
+        if aiCheck
             return true if move.is_a?(PokeBattle_TwoTurnMove)
         else
             return true if user.effectActive?(:TwoTurnAttack)
@@ -498,9 +498,9 @@ target.pbThis(true)))
         # Move-specific success checks
         return true if move.pbOverrideSuccessCheckPerHit(user, target)
         # Semi-invulnerability
-        return false if moveFailsSemiInvulnerability?(move, user, target, aiChecking)
+        return false if moveFailsSemiInvulnerability?(move, user, target, aiCheck)
         # Accuracy check
-        return true if aiChecking || move.pbAccuracyCheck(user, target) # Includes Counter/Mirror Coat
+        return true if aiCheck || move.pbAccuracyCheck(user, target) # Includes Counter/Mirror Coat
         # Missed
         PBDebug.log("[Move failed] Failed pbAccuracyCheck or target is semi-invulnerable")
         return false

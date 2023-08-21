@@ -36,7 +36,7 @@ def pbBattleStatIncreasingBerry(battler, battle, item, forced, stat, increment =
     return result
 end
 
-def pbBattleTypeWeakingBerry(item, type, moveType, target, mults, feast = false, aiChecking = false)
+def pbBattleTypeWeakingBerry(item, type, moveType, target, mults, feast = false, aiCheck = false)
     return if moveType != type
     return if Effectiveness.resistant?(target.damageState.typeMod) && moveType != :NORMAL
     if target.hasActiveAbility?(:RIPEN)
@@ -49,14 +49,14 @@ def pbBattleTypeWeakingBerry(item, type, moveType, target, mults, feast = false,
     else
         target.damageState.berryWeakened = item
     end
-    target.battle.pbCommonAnimation("Nom", target) unless aiChecking
+    target.battle.pbCommonAnimation("Nom", target) unless aiCheck
 end
 
-def pbBattleGem(item, user, type, move, mults, moveType, aiChecking = false)
+def pbBattleGem(item, user, type, move, mults, moveType, aiCheck = false)
     # Pledge moves never consume Gems
     return if move.is_a?(PokeBattle_PledgeMove)
     return if moveType != type
     return unless user.canConsumeGem?
-    user.applyEffect(:GemConsumed, item) unless aiChecking
+    user.applyEffect(:GemConsumed, item) unless aiCheck
     mults[:base_damage_multiplier] *= 1.5
 end

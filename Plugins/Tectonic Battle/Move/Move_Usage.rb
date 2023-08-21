@@ -195,10 +195,10 @@ target.pbThis(true)))
     #=============================================================================
     # Check if target is immune to the move because of its ability
     #=============================================================================
-    def pbImmunityByAbility(user, target, showMessages = true, aiChecking = false)
+    def pbImmunityByAbility(user, target, showMessages = true, aiCheck = false)
         return false if @battle.moldBreaker
         target.eachActiveAbility do |ability|
-            return true if BattleHandlers.triggerMoveImmunityTargetAbility(ability, user, target, self, @calcType, @battle, showMessages, aiChecking)
+            return true if BattleHandlers.triggerMoveImmunityTargetAbility(ability, user, target, self, @calcType, @battle, showMessages, aiCheck)
         end
         target.eachAlly do |b|
             b.eachActiveAbility do |ability|

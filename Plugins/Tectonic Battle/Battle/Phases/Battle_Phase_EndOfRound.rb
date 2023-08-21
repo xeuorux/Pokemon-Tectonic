@@ -85,7 +85,7 @@ class PokeBattle_Battle
         end
     end
 
-    def damageFromDOTStatus(battler, status, aiChecking = false)
+    def damageFromDOTStatus(battler, status, aiCheck = false)
         if battler.takesIndirectDamage? && !battler.hasActiveAbility?(:APATHETIC)
             fraction = 1.0 / 8.0
             fraction *= 2 if battler.pbOwnedByPlayer? && curseActive?(:CURSE_STATUS_DOUBLED)
@@ -95,8 +95,8 @@ class PokeBattle_Battle
                 end
             end
             damage = 0
-            if aiChecking
-                damage = battler.applyFractionalDamage(fraction, false, aiChecking: true)
+            if aiCheck
+                damage = battler.applyFractionalDamage(fraction, false, aiCheck: true)
             else
                 battler.pbContinueStatus(status) do
                     damage = battler.applyFractionalDamage(fraction)

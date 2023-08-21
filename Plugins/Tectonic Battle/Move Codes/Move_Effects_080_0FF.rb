@@ -2360,8 +2360,8 @@ class PokeBattle_Move_0D4 < PokeBattle_FixedDamageMove
         end
     end
 
-    def damagingMove?(aiChecking = false)
-        if aiChecking
+    def damagingMove?(aiCheck = false)
+        if aiCheck
             return super
         else
             return false unless @damagingTurn

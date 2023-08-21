@@ -495,7 +495,7 @@ class PokeBattle_FixedDamageMove < PokeBattle_Move
         end
     end
 
-    def calculateDamageForHit(user, target, type, baseDmg, numTargets, aiChecking = false)
+    def calculateDamageForHit(user, target, type, baseDmg, numTargets, aiCheck = false)
         fixedDamage = pbFixedDamage(user, target)
         return fixedDamage if fixedDamage
         super
@@ -532,8 +532,8 @@ class PokeBattle_TwoTurnMove < PokeBattle_Move
         return !@damagingTurn # Deliberately not "return @chargingTurn"
     end
 
-    def damagingMove?(aiChecking = false) # Stops damage being dealt in the first (charging) turn
-        if aiChecking
+    def damagingMove?(aiCheck = false) # Stops damage being dealt in the first (charging) turn
+        if aiCheck
             return super
         else
             return false unless @damagingTurn
@@ -854,8 +854,8 @@ class PokeBattle_PledgeMove < PokeBattle_Move
         end
     end
 
-    def damagingMove?(aiChecking = false)
-        if aiChecking
+    def damagingMove?(aiCheck = false)
+        if aiCheck
             return super
         else
             return false if @pledgeSetup
@@ -1293,8 +1293,8 @@ end
 class PokeBattle_ForetoldMove < PokeBattle_Move
     def cannotRedirect?; return true; end
 
-    def damagingMove?(aiChecking = false) # Stops damage being dealt in the setting-up turn
-        if aiChecking
+    def damagingMove?(aiCheck = false) # Stops damage being dealt in the setting-up turn
+        if aiCheck
             return super
         else
             return false unless @battle.futureSight

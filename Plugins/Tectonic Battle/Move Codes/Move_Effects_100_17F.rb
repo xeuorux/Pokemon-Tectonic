@@ -2402,8 +2402,8 @@ class PokeBattle_Move_16F < PokeBattle_Move
         return false
     end
 
-    def damagingMove?(aiChecking = false)
-        if aiChecking
+    def damagingMove?(aiCheck = false)
+        if aiCheck
             return super
         else
             return false if @healing

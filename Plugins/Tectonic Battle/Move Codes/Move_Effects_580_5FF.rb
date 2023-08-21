@@ -1535,8 +1535,8 @@ class PokeBattle_Move_5C8 < PokeBattle_Move
         return !target.pbCanRaiseStatStep?(:SPEED, user, self, true)
     end
 
-    def damagingMove?(aiChecking = false)
-        if aiChecking
+    def damagingMove?(aiCheck = false)
+        if aiCheck
             return super
         else
             return false if @buffing

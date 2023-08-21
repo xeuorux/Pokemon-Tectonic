@@ -260,8 +260,8 @@ module BattleHandlers
         return !ret.nil? ? ret : false
     end
 
-    def self.triggerMoveImmunityTargetAbility(ability, user, target, move, type, battle, showMessages, aiChecking)
-        ret = MoveImmunityTargetAbility.trigger(ability, user, target, move, type, battle, showMessages, aiChecking)
+    def self.triggerMoveImmunityTargetAbility(ability, user, target, move, type, battle, showMessages, aiCheck)
+        ret = MoveImmunityTargetAbility.trigger(ability, user, target, move, type, battle, showMessages, aiCheck)
         return !ret.nil? ? ret : false
     end
 
@@ -301,30 +301,30 @@ module BattleHandlers
 
     #=============================================================================
 
-    def self.triggerDamageCalcUserAbility(ability, user, target, move, mults, baseDmg, type, aiChecking = false)
-        DamageCalcUserAbility.trigger(ability, user, target, move, mults, baseDmg, type, aiChecking)
+    def self.triggerDamageCalcUserAbility(ability, user, target, move, mults, baseDmg, type, aiCheck = false)
+        DamageCalcUserAbility.trigger(ability, user, target, move, mults, baseDmg, type, aiCheck)
     end
 
-    def self.triggerDamageCalcUserAllyAbility(ability, user, target, move, mults, baseDmg, type, aiChecking = false)
-        DamageCalcUserAllyAbility.trigger(ability, user, target, move, mults, baseDmg, type, aiChecking)
+    def self.triggerDamageCalcUserAllyAbility(ability, user, target, move, mults, baseDmg, type, aiCheck = false)
+        DamageCalcUserAllyAbility.trigger(ability, user, target, move, mults, baseDmg, type, aiCheck)
     end
 
-    def self.triggerDamageCalcUserItem(item, user, target, move, mults, baseDmg, type, aiChecking = false)
-        DamageCalcUserItem.trigger(item, user, target, move, mults, baseDmg, type, aiChecking)
+    def self.triggerDamageCalcUserItem(item, user, target, move, mults, baseDmg, type, aiCheck = false)
+        DamageCalcUserItem.trigger(item, user, target, move, mults, baseDmg, type, aiCheck)
     end
 
     #=============================================================================
 
-    def self.triggerDamageCalcTargetAbility(ability, user, target, move, mults, baseDmg, type, aiChecking = false)
-        DamageCalcTargetAbility.trigger(ability, user, target, move, mults, baseDmg, type, aiChecking)
+    def self.triggerDamageCalcTargetAbility(ability, user, target, move, mults, baseDmg, type, aiCheck = false)
+        DamageCalcTargetAbility.trigger(ability, user, target, move, mults, baseDmg, type, aiCheck)
     end
 
-    def self.triggerDamageCalcTargetAllyAbility(ability, user, target, move, mults, baseDmg, type, aiChecking = false)
-        DamageCalcTargetAllyAbility.trigger(ability, user, target, move, mults, baseDmg, type, aiChecking)
+    def self.triggerDamageCalcTargetAllyAbility(ability, user, target, move, mults, baseDmg, type, aiCheck = false)
+        DamageCalcTargetAllyAbility.trigger(ability, user, target, move, mults, baseDmg, type, aiCheck)
     end
 
-    def self.triggerDamageCalcTargetItem(item, user, target, move, mults, baseDmg, type, aiChecking)
-        DamageCalcTargetItem.trigger(item, user, target, move, mults, baseDmg, type, aiChecking)
+    def self.triggerDamageCalcTargetItem(item, user, target, move, mults, baseDmg, type, aiCheck)
+        DamageCalcTargetItem.trigger(item, user, target, move, mults, baseDmg, type, aiCheck)
     end
 
     #=============================================================================

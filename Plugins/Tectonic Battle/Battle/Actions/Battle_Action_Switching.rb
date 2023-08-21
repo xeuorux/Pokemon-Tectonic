@@ -460,7 +460,7 @@ class PokeBattle_Battle
                         end
                     else # Takes damage
                         if aiCheck
-                            stealthRocksDamage = battler.applyFractionalDamage(getTypedHazardHPRatio, aiChecking: true)
+                            stealthRocksDamage = battler.applyFractionalDamage(getTypedHazardHPRatio, aiCheck: true)
                             hazardDamagePredicted += stealthRocksDamage
                             echoln("[HAZARD SCORING] #{battler.pbThis} will take #{stealthRocksDamage} damage from Stealth Rocks")
                         else
@@ -479,7 +479,7 @@ class PokeBattle_Battle
                 getTypedHazardHPRatio = getTypedHazardHPRatio(:STEEL, bTypes[0], bTypes[1], bTypes[2])
                 if getTypedHazardHPRatio > 0
                     if aiCheck
-                        featherWardDamage = battler.applyFractionalDamage(getTypedHazardHPRatio, aiChecking: true)
+                        featherWardDamage = battler.applyFractionalDamage(getTypedHazardHPRatio, aiCheck: true)
                         hazardDamagePredicted += featherWardDamage
                         echoln("[HAZARD SCORING] #{battler.pbThis} will take #{featherWardDamage} damage from Feather Ward")
                     else
@@ -503,7 +503,7 @@ class PokeBattle_Battle
                     spikesHPRatio = 1.0 / spikesDiv.to_f
                     layerLabel = [_INTL("layer"), _INTL("2 layers"), _INTL("3 layers")][spikesIndex]
                     if aiCheck
-                        spikesDamage = battler.applyFractionalDamage(spikesHPRatio, aiChecking: true)
+                        spikesDamage = battler.applyFractionalDamage(spikesHPRatio, aiCheck: true)
                         hazardDamagePredicted += spikesDamage
                         echoln("[HAZARD SCORING] #{battler.pbThis} will take #{spikesDamage} damage from the #{layerLabel} of spikes")
                     else
@@ -560,7 +560,7 @@ class PokeBattle_Battle
                     elsif battler.takesIndirectDamage?(false,aiCheck) # Damage
                         thinStatusSpikesDamageFraction = 1.0 / 16.0
                         if aiCheck
-                            statusSpikesDamage = battler.applyFractionalDamage(thinStatusSpikesDamageFraction, aiChecking: true)
+                            statusSpikesDamage = battler.applyFractionalDamage(thinStatusSpikesDamageFraction, aiCheck: true)
                             hazardDamagePredicted += statusSpikesDamage
                             echoln("[HAZARD SCORING] #{battler.pbThis} will take #{statusSpikesDamage} damage from #{data.real_name}")
                         else
