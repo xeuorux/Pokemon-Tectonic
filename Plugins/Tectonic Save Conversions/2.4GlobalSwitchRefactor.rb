@@ -1,6 +1,6 @@
 
-SaveData.register_conversion(:global_switch_refactor_3_0) do
-  game_version '3.0.0'
+SaveData.register_conversion(:global_switch_refactor_2_4_0) do
+  game_version '2.4.0'
   display_title 'Setting global switches based on self-switches.'
   to_all do |save_data|
     globalSwitches = save_data[:switches]
