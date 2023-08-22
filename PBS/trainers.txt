@@ -5717,13 +5717,13 @@ Pokemon = BARBOACH,20
 #-------------------------------
 [CHALLENGER_Vanya,Vanya,2]
 Policies = NO_PERFECT
-Pokemon = SERVINE,25
-    AbilityIndex = 1 # Eccentric
+Pokemon = SLIGGOO,25
+    AbilityIndex = 1 # Hydration
 Pokemon = SHELLOS,25
     AbilityIndex = 1 # Water Absorb
-Pokemon = VOLTORB,25
-    Moves = SPARK,TACKLE,CHARGEBEAM,SWIFT
-    AbilityIndex = 1 # Ball Lightning
+Pokemon = HVOLTORB,25
+    Moves = SPARK,LEAFAGE,CHARGEBEAM,PARAPOLLEN
+    AbilityIndex = 1 # Apricorn Armor
 #-------------------------------
 [CHALLENGER_Vanya,Vanya,3]
 Policies = NO_PERFECT
