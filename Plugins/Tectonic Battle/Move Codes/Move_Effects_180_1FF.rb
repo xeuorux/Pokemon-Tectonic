@@ -137,7 +137,7 @@ class PokeBattle_Move_185 < PokeBattle_Move
 end
 
 #===============================================================================
-# Decrease 3 steps of speed and weakens target to fire moves. (Tar Shot)
+# Decrease 6 steps of speed and weakens target to fire moves. (Tar Shot)
 #===============================================================================
 class PokeBattle_Move_186 < PokeBattle_Move
     def pbFailsAgainstTarget?(_user, target, show_message)
@@ -150,13 +150,13 @@ class PokeBattle_Move_186 < PokeBattle_Move
 
     def pbEffectAgainstTarget(user, target)
         return if target.damageState.substitute
-        target.tryLowerStat(:SPEED, user, move: self, increment: 3)
+        target.tryLowerStat(:SPEED, user, move: self, increment: 6)
         target.applyEffect(:TarShot)
     end
 
     def getTargetAffectingEffectScore(user, target)
         score = 0
-        score += getMultiStatDownEffectScore([:SPEED, 3], user, target)
+        score += getMultiStatDownEffectScore([:SPEED, 6], user, target)
         score += 50 unless target.effectActive?(:TarShot)
         return score
     end
