@@ -116,7 +116,7 @@ module GameData
         category = nil
         @flags.split(";").each do |flag|
           case flag
-          when "Bite"
+          when "Biting"
               category = _INTL("Bite")
           when "Punch"
               category = _INTL("Punch")
