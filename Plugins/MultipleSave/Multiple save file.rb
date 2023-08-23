@@ -169,11 +169,49 @@ module SaveData
 		validate file_path => String
 		save_data = get_data_from_file(file_path)
 		save_data = to_hash_format(save_data) if save_data.is_a?(Array)
-		if convert && !save_data.empty? && run_conversions(save_data)
-			File.open(file_path, 'wb') { |file| Marshal.dump(save_data, file) }
+		# Updating to a new version
+		if convert && !save_data.empty? && PluginManager.compare_versions(save_data[:game_version], Settings::GAME_VERSION) < 0
+			if run_conversions(save_data, file_path)
+				File.open(file_path, 'wb') { |file| Marshal.dump(save_data, file) }
+			end
+			if removeIllegalElementsFromAllPokemon(save_data)
+				File.open(file_path, 'wb') { |file| Marshal.dump(save_data, file) }
+			end
 		end
 		return save_data
 	end
+
+	# Compiles the save data and saves a marshaled version of it into
+	# the given file.
+	# @param file_path [String] path of the file to save into
+	# @raise [InvalidValueError] if an invalid value is being saved
+	def self.save_backup(file_path)
+		validate file_path => String
+		save_data = self.compile_save_hash
+		File.open(file_path + ".bak", 'wb') { |file| Marshal.dump(save_data, file) }
+	end
+
+	def self.run_conversions(save_data, filePath = nil)
+		validate save_data => Hash
+		conversions_to_run = self.get_conversions(save_data)
+		return false if conversions_to_run.none?
+		filePath = SaveData::FILE_PATH unless filePath
+		File.open(filePath + '.bak', 'wb') { |f| Marshal.dump(save_data, f) }
+			echoln "Running #{conversions_to_run.length} conversions..."
+			conversions_to_run.each do |conversion|
+			echo "#{conversion.title}..."
+			conversion.run(save_data)
+			echoln ' done.'
+		end
+		echoln '' if conversions_to_run.length > 0
+		save_data[:essentials_version] = Essentials::VERSION
+		save_data[:game_version] = Settings::GAME_VERSION
+		return true
+	end
+end
+
+def setProperSavePath
+	SaveData.changeFILEPATH($storenamefilesave.nil? ? FileSave.name : $storenamefilesave)
 end
 
 #--------------------#
@@ -185,7 +223,7 @@ def pbEmergencySave
 	pbMessage(_INTL("The script is taking too long. The game will restart."))
 	return if !$Trainer
 	# It will store the last save file when you dont file save
-	SaveData.changeFILEPATH($storenamefilesave.nil? ? FileSave.name : $storenamefilesave)
+	setProperSavePath
 	if SaveData.exists?
 		File.open(SaveData::FILE_PATH, 'rb') do |r|
 		  File.open(SaveData::FILE_PATH + '.bak', 'wb') do |w|
@@ -653,7 +691,7 @@ class ScreenChooseFileSave
 								ret = false
 							end
 							$storenamefilesave = FileSave.name(@position+1)
-							SaveData.changeFILEPATH($storenamefilesave.nil? ? FileSave.name : $storenamefilesave)
+							setProperSavePath
 							break
 						# Delete file
 						when 2
@@ -984,4 +1022,9 @@ end
 
 def showSaveBlockMessage()
 	pbMessage(_INTL("Saving is not allowed at the moment."))
+end
+
+def makeBackupSave
+	setProperSavePath
+	SaveData.save_backup(SaveData::FILE_PATH)
 end

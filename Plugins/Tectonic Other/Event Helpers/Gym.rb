@@ -55,6 +55,7 @@ def earnBadge(badgeNum)
 end
 
 def teamSnapshot(label=nil)
+	makeBackupSave
 	return if $PokemonSystem.party_snapshots == 1
 	pbMessage(_INTL("\\wmTaking team snapshot."))
 	PokemonPartyShowcase_Scene.new($Trainer.party,true,label)

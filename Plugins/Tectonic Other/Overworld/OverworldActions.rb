@@ -21,14 +21,14 @@ def properlySave
 		SaveData.changeFILEPATH(FileSave.name(count+1))
 		$storenamefilesave = FileSave.name(count+1)
 	end
-	SaveData.changeFILEPATH($storenamefilesave.nil? ? FileSave.name : $storenamefilesave)
+	setProperSavePath
 	return Game.save
 end
 
 def autoSave
 	return if $PokemonSystem.autosave == 1
 	return if !savingAllowed?()
-	SaveData.changeFILEPATH($storenamefilesave.nil? ? FileSave.name : $storenamefilesave)
+	setProperSavePath
 	if !properlySave
 		pbMessage(_INTL("\\se[]Auto-save failed.\\wtnp[30]"))
 	else
