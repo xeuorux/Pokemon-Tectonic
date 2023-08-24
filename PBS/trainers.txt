@@ -1652,7 +1652,7 @@ Pokemon = LYCANROC,40
 Pokemon = SWELLOW,40
     AbilityIndex = 0 # Daring
 Pokemon = MAGCARGO,40
-    AbilityIndex = 1 # Flame Body
+    AbilityIndex = 0 # Sluggish
 #-------------------------------
 [LADY3,Kristiane]
 Pokemon = PIDGEOT,40
@@ -5556,6 +5556,42 @@ Pokemon = CLOYSTER,60
 Pokemon = GLISCOR,60
     AbilityIndex = 0 # Grotesque Vitals
     Item = ASSAULTVEST
+#-------------------------------
+[TEENAGERM,Burke]
+Pokemon = LEAFEON,58
+    AbilityIndex = 1 # Reluctant Blade
+Pokemon = GSTUNFISK,58
+    AbilityIndex = 0 # Deep Teeth
+    Item = GRIPCLAW
+Pokemon = MAROWAK,59
+    AbilityIndex = 0 # Rock Head
+Pokemon = SEVIPER,58
+    AbilityIndex = 0 # Shed Skin
+    Item = BLACKSLUDGE
+#-------------------------------
+[MEDIUM,Paula]
+Pokemon = GENGAR,57
+    AbilityIndex = 1 # Uncanny Cold
+    Item = ICEGEM
+Pokemon = MMUSHARNA,57
+    AbilityIndex = 0 # Dream Weaver
+Pokemon = ZANGOOSE,58
+    AbilityIndex = 0 # Venomdetta
+    Item = FOCUSSASH
+Pokemon = SEAKING,58
+    AbilityIndex = 1 # Volt Absorb
+#-------------------------------
+[BEAUTY4,Brunhilda]
+Pokemon = MBEAUTIFLY,59
+    AbilityIndex = 1 # Mental Block
+Pokemon = GOLDUCK,58
+    AbilityIndex = 1 # Stupefying
+    Item = SITRUSBERRY
+Pokemon = WYRDEER,58
+    AbilityIndex = 0 # Intimidate
+Pokemon = MAGCARGO,58
+    AbilityIndex = 1 # Flame Body
+    Item = BUGGEM
 #-------------------------------
 [BIKER,Knoxx]
 Pokemon = SCRAFTY,55

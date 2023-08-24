@@ -830,3 +830,10 @@ class PokeBattle_AI_Slowking < PokeBattle_AI_Boss
         secondMoveEveryTurn(:WORKUP)
     end
 end
+
+class PokeBattle_AI_Mrmime < PokeBattle_AI_Boss
+    def initialize(user, battle)
+        super
+        secondMoveEveryTurn(:MIMIC)
+    end
+end
