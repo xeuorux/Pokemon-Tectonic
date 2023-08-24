@@ -116,7 +116,7 @@ ShowArea = false
 Bicycle = false
 #-------------------------------
 [013]
-# Svait Station
+# Frost Station 1032
 Outdoor = false
 ShowArea = false
 Bicycle = false
@@ -559,14 +559,14 @@ BattleBack = indoor3
 Environment = Cave
 #-------------------------------
 [082]
-# Grouz Station
+# Alloy Station 531
 Outdoor = false
 ShowArea = false
 Bicycle = false
 HealingSpot = 25,16,19
 #-------------------------------
 [083]
-# Chasm HQ Station
+# Operating Station 913
 Outdoor = false
 ShowArea = false
 Bicycle = false
@@ -1426,7 +1426,7 @@ BattleBack = indoor2
 Environment = None
 #-------------------------------
 [229]
-# Canal Desert Station
+# Circuit Station 232
 Outdoor = false
 ShowArea = false
 Bicycle = false
@@ -1646,7 +1646,7 @@ BattleBack = cave3
 Environment = Cave
 #-------------------------------
 [273]
-# Barren Crater Station
+# Impact Station 722
 Outdoor = false
 ShowArea = false
 Bicycle = false
@@ -1784,7 +1784,7 @@ ShowArea = false
 Bicycle = false
 #-------------------------------
 [294]
-# Eden
+# Nascent Garden
 Outdoor = false
 ShowArea = false
 Bicycle = true
@@ -1847,7 +1847,7 @@ MapPosition = 0,5,4
 BattleBack = rocky
 #-------------------------------
 [315]
-# Path of Genesis
+# Uplifted Abysm
 Outdoor = false
 ShowArea = true
 Bicycle = true
@@ -1972,14 +1972,14 @@ ShowArea = false
 Bicycle = false
 #-------------------------------
 [338]
-# Deep Station
+# Chasm Station 000
 Outdoor = false
 ShowArea = false
 Bicycle = false
 HealingSpot = 315,28,31
 #-------------------------------
 [340]
-# The Hexicle
+# Illuminant Helix
 Outdoor = false
 ShowArea = true
 Bicycle = true

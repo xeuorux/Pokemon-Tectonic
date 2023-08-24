@@ -7,6 +7,7 @@ MAIN_HASH = {
     _INTL("Abilities")         => _INTL("How do abilities work?"),
     _INTL("Held Items")        => _INTL("What are held items and how to use them?"),
     _INTL("Status Conditions") => _INTL("What are the Conditions a Pokémon can be afflicted with?"),
+    _INTL("Tribes")            => _INTL("What are Tribes and what do they do?"),
     _INTL("Trainers")          => _INTL("How do enemy Trainers work?"),
     _INTL("Avatars")           => _INTL("What are avatars and what do they do?"),
     _INTL("MasterDex")         => _INTL("What does the MasterDex do and how should I use it?"),
@@ -55,7 +56,7 @@ TYPE_CHART_CHANGES = {
     _INTL("Poison vs Water") => _INTL("Poison is now Super-Effective vs Water. Think of chemicals polluting a river."),
     _INTL("Bug vs Fairy") => _INTL("Bug is now Super-Effective vs Fairy. Think of insects scaring children."),
     _INTL("Grass resistances") => _INTL("Grass now resists Fairy, Psychic, and Ghost. Think of incense warding off magic."),
-    _INTL("Ice resistances") => _INTL("Ice now resists Flying and Ground. Ice is Super-Effective against those types, so its only natural!"),
+    _INTL("Ice resistances") => _INTL("Ice now resists Flying and Ground. Ice is Super-Effective against those types, so it's only natural!"),
     _INTL("Other changes") => _INTL("Rock resists Ice. Fairy resists Dragon. Fairy is neutral against Fire. Bug resists Psychic."),
 }
 
@@ -97,8 +98,8 @@ HELD_ITEMS_HASH = {
     _INTL("What are Held Items?") => _INTL("Held items are items which you can give your Pokémon to benefit them during battle. They can increase their damage, heal them, or other things."),
     _INTL("Equipping an item") => _INTL("You can give a Pokémon an item from your bag, or through the summary screen. Not all items do an effect when held, so read carefully."),
     _INTL("Berries") => _INTL("Berries are a common held item. During battles, Pokémon will eat the berry to get a benefit. Get berries by picking from Berry Trees."),
-    _INTL("Sitrus and Oran Berry") => _INTL("Sitrus Berry and Oran Berry are common berries which heal your Pokémon when at low health. If in doubt about what item to give a Pokémon, give them one of these."),
-    _INTL("Rematerializer") => _INTL("In Pokémon Tectonic, the rematerializer regenerates held items which are consumed in battle. You'll never run out of berries!"),
+    _INTL("Sitrus and Amwi Berry") => _INTL("Sitrus Berry and Amwi Berry are common berries which heal your Pokémon when at low health. If in doubt about what item to give a Pokémon, give them one of these."),
+    _INTL("Rematerializer") => _INTL("In Pokémon Tectonic, the Rematerializer regenerates held items which are consumed in battle. You'll never run out of berries!"),
     _INTL("Wild Held Items") => _INTL("Wild Pokémon can be found holding items. These items sometimes have held effects, but often don't."),
     _INTL("Getting More") => _INTL("You will find more held items on the ground when traveling, or as gifts from people, or as the reward for defeating Avatars, or as purchasable items in shops."),
 }
@@ -116,15 +117,21 @@ STATUS_CONDITIONS_HASH = {
     _INTL("Sleep") => _INTL("A rarer status that causes a Pokémon to be unable to do anything for 2 turns. Psychic- and Grass-types put Pokémon to sleep the most often."),
 }
 
+TRIBES_HASH = {
+    _INTL("What are Tribes?") => _INTL("Every Pokémon has 1-3 Tribes, decided by their species. Have 5 Pokémon of a shared Tribe on your team, and your entire team will receive that Tribe's bonus in battle!"),
+    _INTL("Tribal Bonus") => _INTL("Tribal Bonuses are not identical: each Tribe provides a unique boon. With careful team composition, you can have 2 or even 3 Tribal Bonuses active at once!"),
+    _INTL("Are they important?") => _INTL("Tribes are not required in any way to complete the game. They are simply an alternative team-building challenge to play with, like Single Type runs."),
+}
+
 TRAINERS_HASH = {
     _INTL("What are Enemy Trainers?") => _INTL("Enemy Trainers are the Pokémon Trainers you will battle throughout the game. Some block your path forwards (like Gym Leaders), others are optional."),
     _INTL("Detecting Trainers") => _INTL("Trainers are people who have a companion Pokémon next to them. If a person doesn't have that, they either aren't a Trainer, or are an inactive one."),
     _INTL("Avoiding Trainers") => _INTL("Trainers will challenge you if they see you within 4 tiles of them. Avoid them by going out of that distance, sneaking around them, or waiting until they move."),
     _INTL("Trainer Inactivity") => _INTL("When you defeat a Trainer, they will become inactive until the next time you heal at a PokéCenter. This is indicated by them returning their companion Pokémon to its Poké Ball."),
     _INTL("Perfecting Fights") => _INTL("If you defeat a Trainer without any of your Pokémon fainting, you've 'perfected' the fight. They will leave forever and drop experience candy as a reward."),
-    _INTL("Enemy Teams") => _INTL("Enemy Trainers have their own teams of Pokémon with their own moves and held items. Its important to pay attention to these possibilities to win battles."),
+    _INTL("Enemy Teams") => _INTL("Enemy Trainers have their own teams of Pokémon with their own moves and held items. It's important to pay attention to these possibilities to win battles."),
     _INTL("Differences") => _INTL("The typical trainer has 3 Pokémon, but Gym Leaders will have more. Trainers with more Pokémon also have more move variety and more items on their Pokémon."),
-    _INTL("Pro Trainers") => _INTL("Pro Trainers are special Trainers, noted by their grey hair and black clothes. Their teams are always 6 Pokémon, with a wide variety of moves, all with items. They're hard!"),
+    _INTL("Pro Trainers") => _INTL("Pro Trainers are special Trainers, noted by their grey hair and black clothes. Their teams are always 6 Pokémon, all with items, and built around a Tribal Bonus. They're hard!"),
     _INTL("Trainer Behaviour") => _INTL("Individual Trainers will always react to the same in-battle circumstances the same way. You can learn how to beat or even perfect a Trainer through trial and error."),
 }
 
@@ -147,7 +154,7 @@ AVATARS_HASH = {
 MASTERDEX_HASH = {
     _INTL("What is the MasterDex?") => _INTL("The MasterDex is an advanced encyclopedia about the 900+ Pokémon available in this game."),
     _INTL("Single MasterDex") => _INTL("Access the MasterDex entry of a single Pokémon when looking at a Pokémon in the summary or the PC, or by using the Dex button in battles."),
-    _INTL("Full MasterDex") => _INTL("Access the full MasterDex from your pause menu, or by pressing D when using the Dex button in battles (while its waiting for you to select a battler)."),
+    _INTL("Full MasterDex") => _INTL("Access the full MasterDex from your pause menu, or by pressing D when using the Dex button in battles (while it's waiting for you to select a battler)."),
     _INTL("Searching") => _INTL("When in the MasterDex, you can press your Special keybind (default Shift or Z) to open the first search page. There's dozens of searches to experiment with!"),
     _INTL("Combining Searches") => _INTL("You can begin a search while you're already looking at the results of a search. This will narrow down from what you were already looking at."),
     _INTL("Storing Searches") => _INTL("When you hold CTRL while closing out of a search, it will close the MasterDex and store the search for the next time you open it."),
