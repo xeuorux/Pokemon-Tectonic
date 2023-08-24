@@ -2100,6 +2100,7 @@ BattleBack = cave3
 Outdoor = false
 ShowArea = true
 Bicycle = false
+TeleportBlocked = true
 #-------------------------------
 [368]
 # Crumbling Canyon B1
