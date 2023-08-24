@@ -292,14 +292,6 @@ GameData::BattleEffect.register_effect(:Battler, {
 })
 
 GameData::BattleEffect.register_effect(:Battler, {
-    :id => :FlashFire,
-    :real_name => "Fired Up",
-    :apply_proc => proc do |battle, battler, _value|
-        battle.pbDisplay(_INTL("The power of {1}'s Fire-type moves rose!", battler.pbThis(true)))
-    end,
-})
-
-GameData::BattleEffect.register_effect(:Battler, {
     :id => :Flinch,
     :real_name => "Flinch",
     :resets_eor	=> true,

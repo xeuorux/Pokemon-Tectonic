@@ -115,3 +115,5 @@
 3114,LIBERO,Libero,"The Pokémon changes type to that of the move it's about to use."
 3115,NIGHTLINE,Night-line,"At the end of each turn in moonglow, heals self by 1/12th of its max HP, and a party member alongside."
 3116,EPICHERO,Epic Hero,"Draws in moves from foes with base power 100 or more."
+3117,FLASHFIRE,Flash Fire,"Immunity to Fire-type moves and powers up Fire-type attacks if hit by one."
+3118,SWARM,Swarm,"Powers up Bug-type moves in a pinch."

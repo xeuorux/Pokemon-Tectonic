@@ -16,7 +16,7 @@ PokeBattle_AI::TrainerPokemonFaintedDialogue.add(:YEZERA6,
 PokeBattle_AI::TrainerPokemonTookMoveDamageDialogue.add(:YEZERA6,
     proc { |_policy, _dealer, taker, _move, trainer_speaking, dialogue_array|
         next dialogue_array if trainer_speaking.policyStates[:PivotComment]
-        next dialogue_array unless taker.species == :TOGEKISS && taker.turnCount == 0
+        next dialogue_array unless taker.species == :TOGEKISS && taker.effectActive?(:SwitchedIn)
         if Effectiveness.resistant?(taker.damageState.typeMod)
             dialogue_array.push("The same simple pivot, again and again...I'm bored.")
         elsif Effectiveness.super_effective?(taker.damageState.typeMod)
@@ -30,7 +30,7 @@ PokeBattle_AI::TrainerPokemonTookMoveDamageDialogue.add(:YEZERA6,
 PokeBattle_AI::TrainerPokemonImmuneDialogue.add(:YEZERA6,
     proc { |_policy, _attacker, _target, _isImmunityAbility, trainer_speaking, dialogue_array|
         next dialogue_array if trainer_speaking.policyStates[:PivotComment]
-        next dialogue_array unless taker.species == :TOGEKISS && taker.turnCount == 0
+        next dialogue_array unless taker.species == :TOGEKISS && taker.effectActive?(:SwitchedIn)
         dialogue_array.push("The same simple pivot, again and again...I'm bored.")
         trainer_speaking.policyStates[:PivotComment] = true
         next dialogue_array

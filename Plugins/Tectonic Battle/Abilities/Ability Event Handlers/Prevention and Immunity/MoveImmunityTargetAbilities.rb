@@ -199,23 +199,6 @@ BattleHandlers::MoveImmunityTargetAbility.add(:WONDERGUARD,
   }
 )
 
-BattleHandlers::MoveImmunityTargetAbility.add(:FLASHFIRE,
-  proc { |ability, user, target, _move, type, battle, showMessages, aiCheck|
-      next false if user.index == target.index
-      next false if type != :FIRE
-      battle.pbShowAbilitySplash(target, ability) if showMessages
-      unless aiCheck
-        if !target.effectActive?(:FlashFire)
-            target.applyEffect(:FlashFire)
-        elsif showMessages
-            battle.pbDisplay(_INTL("It doesn't affect {1}...", target.pbThis(true)))
-        end
-      end
-      battle.pbHideAbilitySplash(target)
-      next true
-  }
-)
-
 BattleHandlers::MoveImmunityTargetAbility.add(:SOUNDPROOF,
   proc { |ability, _user, target, move, _type, battle, showMessages|
       next false unless move.soundMove?

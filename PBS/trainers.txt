@@ -68,7 +68,7 @@ Pokemon = CHEWTLE,10
 Pokemon = BONSLY,12
     AbilityIndex = 0 # Desiccate
 Pokemon = NINCADA,12
-    AbilityIndex = 0 # Swarm
+    AbilityIndex = 0 # Speed Boost
 #-------------------------------
 [FIREBREATHER,Antonio]
 Pokemon = MAGBY,13
@@ -5385,7 +5385,7 @@ Pokemon = PROBOPASS,70
     Item = LEFTOVERS
 Pokemon = HEATRAN,70
     Moves = MAGMASTORM,FLASHCANNON,EARTHPOWER,WILLOWISP
-    AbilityIndex = 0 # Flash Fire
+    AbilityIndex = 0 # Fire-fighter
     Item = AIRBALLOON
 #-------------------------------
 [TRAINER_Skyler,Skyler]

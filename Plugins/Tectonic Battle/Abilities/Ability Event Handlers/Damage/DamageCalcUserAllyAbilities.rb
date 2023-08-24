@@ -1,24 +1,32 @@
 BattleHandlers::DamageCalcUserAllyAbility.add(:POWERSPOT,
-    proc { |ability, _user, _target, _move, mults, _baseDmg, _type, _aiCheck|
+    proc { |ability, user, _target, _move, mults, _baseDmg, _type, aiCheck|
         mults[:final_damage_multiplier] *= 1.3
+        user.aiLearnsAbility(ability) unless aiCheck
     }
 )
 
 BattleHandlers::DamageCalcUserAllyAbility.add(:STEELYSPIRIT,
-  proc { |ability, _user, _target, _move, mults, _baseDmg, type, _aiCheck|
-      mults[:base_damage_multiplier] *= 1.5 if type == :STEEL
+  proc { |ability, user, _target, _move, mults, _baseDmg, type, aiCheck|
+        if type == :STEEL
+            mults[:base_damage_multiplier] *= 1.5
+            user.aiLearnsAbility(ability) unless aiCheck
+        end
   }
 )
 
 BattleHandlers::DamageCalcUserAllyAbility.add(:GRASSYSPIRIT,
-    proc { |ability, _user, _target, _move, mults, _baseDmg, type, _aiCheck|
-        mults[:base_damage_multiplier] *= 1.5 if type == :GRASS
+    proc { |ability, user, _target, _move, mults, _baseDmg, type, aiCheck|
+        if type == :GRASS
+            mults[:base_damage_multiplier] *= 1.5
+        end
     }
-  )
+)
 
-BattleHandlers::DamageCalcUserAllyAbility.add(:TOXICATTITUDE,
-    proc { |ability, _user, _target, _move, mults, _baseDmg, type, _aiCheck|
-        mults[:base_damage_multiplier] *= 1.5 if type == :POISON
+BattleHandlers::DamageCalcUserAllyAbility.add(:TOXICSPIRIT,
+    proc { |ability, user, _target, _move, mults, _baseDmg, type, aiCheck|
+        if type == :POISON
+            mults[:base_damage_multiplier] *= 1.5
+            user.aiLearnsAbility(ability) unless aiCheck
+        end
     }
-  )
-  
+)

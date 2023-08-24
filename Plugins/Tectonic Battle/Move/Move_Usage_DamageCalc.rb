@@ -140,11 +140,11 @@ class PokeBattle_Move
             multipliers[:base_damage_multiplier] *= 1.4
         end
         # User or user ally ability effects that alter damage
-        user.eachActiveAbility do |ability|
+        user.eachAbilityShouldApply(aiCheck) do |ability|
             BattleHandlers.triggerDamageCalcUserAbility(ability,user,target,self,multipliers,baseDmg,type,aiCheck)
         end
         user.eachAlly do |b|
-            b.eachActiveAbility do |ability|
+            b.eachAbilityShouldApply(aiCheck) do |ability|
                 BattleHandlers.triggerDamageCalcUserAllyAbility(ability,user,target,self,multipliers,baseDmg,type,aiCheck)
             end
         end
@@ -485,6 +485,7 @@ class PokeBattle_Move
     def flatDamageReductions(finalCalculatedDamage,user,target,aiCheck = false)
         if target.shouldAbilityApply?(:DRAGONSCALES,aiCheck)
             finalCalculatedDamage -= target.level
+            target.aiLearnsAbility(:DRAGONSCALES) unless aiCheck
         end
 
         finalCalculatedDamage = 0 if finalCalculatedDamage < 0

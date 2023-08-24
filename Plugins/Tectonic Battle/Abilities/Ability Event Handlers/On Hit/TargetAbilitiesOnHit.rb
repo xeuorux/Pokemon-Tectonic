@@ -649,14 +649,11 @@ BattleHandlers::TargetAbilityOnHit.add(:QUILLERINSTINCT,
 # Only does stuff for the AI
 BattleHandlers::TargetAbilityOnHit.add(:MULTISCALE,
     proc { |ability, user, target, move, _battle, aiCheck, aiNumHits|
+        next unless aiCheck
         next unless target.hp == target.totalhp
-        if aiCheck
-            next 20
-        else
-            target.aiLearnsAbility(ability)
-        end
+        next 20 # Value for breaking multiscale
     }
 )
 
 # Only does stuff for the AI
-BattleHandlers::TargetAbilityOnHit.copy(:MULTISCALE,:ALOOF)
+BattleHandlers::TargetAbilityOnHit.copy(:MULTISCALE,:ALOOF,:SHADOWSHIELD)
