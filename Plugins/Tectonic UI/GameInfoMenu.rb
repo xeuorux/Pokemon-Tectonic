@@ -158,7 +158,9 @@ def showBattleGuide
 		when "Weathers"
 			pbListScreenExtra(_INTL("Weathers"), BattleGuideLister.new(WEATHERS_HASH), false)
 		when "Type Chart"
-			pbListScreenExtra(_INTL("Type Chart"), BattleGuideLister.new(TYPE_CHART_CHANGES), false)
+			pbListScreenExtra(_INTL("Type Chart"), BattleGuideLister.new(TYPE_CHART_CHANGES_HASH), false)
+		when "Tribes"
+			pbListScreenExtra(_INTL("Tribes"), BattleGuideLister.new(TRIBES_HASH), false)
 		else
 			break
 		end

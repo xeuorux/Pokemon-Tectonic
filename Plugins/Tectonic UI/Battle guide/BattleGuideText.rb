@@ -7,12 +7,12 @@ MAIN_HASH = {
     _INTL("Abilities")         => _INTL("How do abilities work?"),
     _INTL("Held Items")        => _INTL("What are held items and how to use them?"),
     _INTL("Status Conditions") => _INTL("What are the Conditions a Pokémon can be afflicted with?"),
-    _INTL("Tribes")            => _INTL("What are Tribes and what do they do?"),
     _INTL("Trainers")          => _INTL("How do enemy Trainers work?"),
     _INTL("Avatars")           => _INTL("What are avatars and what do they do?"),
     _INTL("MasterDex")         => _INTL("What does the MasterDex do and how should I use it?"),
     _INTL("Weathers")          => _INTL("What are weathers, and what does each do?"),
     _INTL("Type Chart")        => _INTL("How were type matchups changes compared to canon?"),
+    _INTL("Tribes")            => _INTL("What are Tribes and what do they do?"),
 }
 
 BASICS_HASH = {
@@ -51,7 +51,7 @@ TYPE_MATCHUPS_HASH = {
     _INTL("Looking Up Matchups") => _INTL("The 5th and 6th pages of a MasterDex entry show that Pokémon's type matchups. Open the MasterDex in battle to check matchups if you're not sure."),
 }
 
-TYPE_CHART_CHANGES = {
+TYPE_CHART_CHANGES_HASH = {
     _INTL("Psychic vs Steel") => _INTL("Psychic is now Super-Effective vs Steel. Think of magicians bending spoons."),
     _INTL("Poison vs Water") => _INTL("Poison is now Super-Effective vs Water. Think of chemicals polluting a river."),
     _INTL("Bug vs Fairy") => _INTL("Bug is now Super-Effective vs Fairy. Think of insects scaring children."),
