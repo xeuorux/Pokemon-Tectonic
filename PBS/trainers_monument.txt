@@ -629,7 +629,7 @@ Pokemon = PERSIAN,70
 [SUPERNERD,Pod]
 Pokemon = METAGROSS,70
     Moves = STEALTHROCK,METEORMASH,PREDICTIONSTRIKE,BULLETPUNCH
-    AbilityIndex = 1 # Heavy Metal
+    AbilityIndex = 1 # Robust
     Item = PRISMATICPLATE
     EV = 10,20,10,0,20,10
 Pokemon = GLISCOR,70
@@ -972,7 +972,7 @@ Pokemon = MAMOSWINE,70
     EV = 5,20,5,0,20,20
 Pokemon = DIGNIPHITE,70
     Moves = HEAVYSLAM,HEATCRASH,EARTHQUAKE,REFURBISH
-    AbilityIndex = 0 # Robust
+    AbilityIndex = 0 # Heavy Metal
     Item = CUSTAPBERRY
     EV = 10,20,10,0,20,10
 #-------------------------------
