@@ -30,15 +30,17 @@ Events.onMapUpdate += proc { |_sender,_e|
 }
 
 def pinningWindActive?
-  return pinningWindStrength >= 100
+  return pinningWindStrength >= 130
 end
 
 def pinningWindStrength
-  return 100 + 80 * [Math.sin(Time.now.sec * 0.7),0.5].min
+  strength = 100 + 100 * Math.sin(Time.now.to_r * 0.7)
+  strength = strength.clamp(50,150)
+  return strength
 end
 
 def playPinningWindBGS
-  pbBGSPlay("blizzard-loop-SE",pinningWindStrength)
+  pbBGSPlay("blizzard-loop-SE",1.5 * (pinningWindStrength - 25))
 end
 
 class PokemonGlobalMetadata
@@ -101,7 +103,7 @@ def pbSlideOnIce
       Graphics.update
       Input.update
     end
-    echoln("Sliding on ice in #{direction} direction")
+    #echoln("Sliding on ice in #{direction} direction")
   end
   $game_player.center($game_player.x, $game_player.y)
   $game_player.straighten

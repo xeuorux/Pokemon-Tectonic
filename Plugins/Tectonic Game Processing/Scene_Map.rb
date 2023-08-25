@@ -74,7 +74,9 @@ class Scene_Map
                 pbBGMFade(0.8)
             end
         end
-        pbBGSFade(0.8) if playingBGS && map.autoplay_bgs && (playingBGS.name != map.bgs.name)
+        if playingBGS && playingBGS.name != map.bgs.name
+            pbBGSFade(0.8)
+        end
         Graphics.frame_reset
     end
 

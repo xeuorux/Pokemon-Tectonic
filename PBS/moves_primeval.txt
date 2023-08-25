@@ -40,7 +40,7 @@
 2039,PRIMEVALIRONDEFENSE,Primeval Iron Defense,625,0,STEEL,Status,0,1,0,User,0,CanSnatch;Empowered,"The user sharply boosts its Defense, gains the ability Filter, and becomes Steel-type.",IRONDEFENSE
 2040,PRIMEVALAMNESIA,Primeval Amnesia,626,0,PSYCHIC,Status,0,1,0,User,0,CanSnatch;Empowered,"The user sharply boosts its Sp. Def, gains the ability Unaware, and becomes Psychic-type.",AMNESIA
 2041,PRIMEVALHOWL,Primeval Howl,627,0,DARK,Status,0,1,0,User,0,CanSnatch;Empowered,"The user summons an allied Poochyena, raises the Attack stat of itself and its allies, and becomes Dark-type.",
-2042,PRIMEVALMINDLINK,Primeval Mind Link,634,0,PSYCHIC,Status,0,1,0,User,0,CanSnatch;Empowered,"The user summons an allied Abra, raises the Sp. Atk stat of itself and its allies, and becomes Psychic-type.",
+2042,PRIMEVALMINDLINK,Primeval Mind Link,628,0,PSYCHIC,Status,0,1,0,User,0,CanSnatch;Empowered,"The user summons an allied Abra, raises the Sp. Atk stat of itself and its allies, and becomes Psychic-type.",
 2043,PRIMEVALSTANDTOGETHER,Primeval Howl,633,0,FIGHTING,Status,0,1,0,User,0,CanSnatch;Empowered,"The user summons an allied Tyrogue, raises the Defense of itself and its allies by 3 steps, and becomes Fighting-type.",
 2044,PRIMEVALHARMONIZE,Primeval Harmonize,634,0,GRASS,Status,0,1,0,User,0,CanSnatch;Empowered,"The user summons an allied Gossifleur, raises the Sp. Def itself and its allies by 3 steps, and becomes Grass-type.",
 2045,PRIMEVALYAWN,Primeval Yawn,631,0,NORMAL,Status,0,1,0,AllNearFoes,0,CanProtect;CanMirrorMove;Empowered,"The user yawns, making all near foes drowsy. They'll fall asleep at end of turn next.",

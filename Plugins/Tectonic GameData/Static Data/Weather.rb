@@ -292,3 +292,17 @@ module GameData
       next 0
     },
   })
+
+   GameData::Weather.register({
+    :id               => :CrystalSnow,
+    :id_number        => 15,   # Must be 3 (preset RMXP weather)
+    :category         => :Hail,
+    :particle_names   => ["crystal_snow_1", "crystal_snow_2", "crystal_snow_3", "crystal_snow_4"],
+    :particle_delta_x => Proc.new {
+      -5 * (pinningWindStrength - 50)
+    },
+    :particle_delta_y => 240,
+    :clouds_proc        => proc { |strength|
+      next strength * -4
+    },
+  })

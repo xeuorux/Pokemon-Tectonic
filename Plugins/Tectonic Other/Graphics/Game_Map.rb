@@ -584,26 +584,6 @@ class Game_Map
         return mapAutoplayBGM(mapid) == $game_system.playing_bgm
     end
 
-    def autofade(mapid)
-        playingBGM = $game_system.playing_bgm
-        playingBGS = $game_system.playing_bgs
-        return if !playingBGM && !playingBGS
-        if playingBGM && mapAutoplayBGM(mapid)
-            newBGM = mapBGM(mapid)
-            if begin
-                PBDayNight.isNight?
-            rescue StandardError
-                false
-            end
-                pbBGMFade(0.8) if playingBGM.name != newBGM.name && playingBGM.name != newBGM.name + "_n"
-            elsif playingBGM.name != newBGM.name
-                pbBGMFade(0.8)
-            end
-        end
-        pbBGMFade(0.8) if playingBGS && mapAutoplayBGS(mapid) && (playingBGS.name != map.bgs.name)
-        Graphics.frame_reset
-    end
-
     #-----------------------------------------------------------------------------
     # Camera operations
     #-----------------------------------------------------------------------------

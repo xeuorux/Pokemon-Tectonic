@@ -228,10 +228,6 @@ def pbSuggestTrainerName(_gender)
     #  return getRandomNameEx(gender, nil, 1, Settings::MAX_PLAYER_NAME_SIZE)
 end
 
-def pbGetUserName
-    return System.user_name
-end
-
 def getRandomNameEx(type, variable, upper, maxLength = 100)
     return "" if maxLength <= 0
     name = ""

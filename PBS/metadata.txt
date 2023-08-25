@@ -1964,6 +1964,7 @@ Weather = Fog,100
 Outdoor = false
 ShowArea = false
 Bicycle = true
+BattleBack = cave1
 #-------------------------------
 [337]
 # Deep Station Backroom
@@ -2168,24 +2169,29 @@ MapPosition = 0,26,12
 Outdoor = false
 ShowArea = true
 Bicycle = true
+BattleBack = cave1
 #-------------------------------
 [379]
 # Glacial Labyrinth
 Outdoor = false
 ShowArea = true
 Bicycle = true
+BattleBack = cave1
 #-------------------------------
 [380]
 # Mirror Crevasse
 Outdoor = false
 ShowArea = true
 Bicycle = true
+Dungeon = false
+BattleBack = cave1
 #-------------------------------
 [381]
 # Howling Frost
 Outdoor = false
 ShowArea = true
 Bicycle = true
+BattleBack = cave1
 #-------------------------------
 [383]
 # Mirror Tundra
@@ -2193,6 +2199,7 @@ Outdoor = false
 ShowArea = true
 Bicycle = true
 MapPosition = 0,6,7
+BattleBack = cave1
 #-------------------------------
 [384]
 # Casaba-Bluepoint Gatehouse
@@ -2327,12 +2334,14 @@ MapPosition = 0,18,3
 Outdoor = false
 ShowArea = true
 Bicycle = true
+BattleBack = cave1
 #-------------------------------
 [404]
 # Mirror Maze
 Outdoor = false
 ShowArea = true
 Bicycle = true
+BattleBack = cave1
 #-------------------------------
 [408]
 # Tournament Grounds EQ

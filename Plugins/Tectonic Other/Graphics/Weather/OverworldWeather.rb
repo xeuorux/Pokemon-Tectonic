@@ -426,7 +426,11 @@ class OverworldWeather
     end
 
     def particleDeltaX
-        x_speed = @weatherData.particle_delta_x
+        if @weatherData.particle_delta_x.is_a?(Integer)
+            x_speed = @weatherData.particle_delta_x
+        else
+            x_speed = @weatherData.particle_delta_x.call
+        end
 
         if rainStyle?
             x_speed *= (1.0 + strengthRatio) / 2.0
