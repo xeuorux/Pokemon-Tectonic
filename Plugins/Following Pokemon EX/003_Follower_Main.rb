@@ -48,12 +48,11 @@ end
 #-------------------------------------------------------------------------------
 def pbTalkToFollower
   return false if !$PokemonTemp.dependentEvents.can_refresh?
-  if !($PokemonGlobal.surfing ||
+  unless ($PokemonGlobal.surfing ||
        (GameData::MapMetadata.exists?($game_map.map_id) &&
        GameData::MapMetadata.get($game_map.map_id).always_bicycle) ||
        !$game_player.pbFacingTerrainTag.can_surf_freely? ||
        !$game_map.passable?($game_player.x,$game_player.y,$game_player.direction,$game_player))
-    pbSurf
     return false
   end
   first_pkmn = $Trainer.first_able_pokemon
