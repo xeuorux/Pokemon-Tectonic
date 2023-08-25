@@ -484,7 +484,7 @@
 1483,POLARIZEDFIELD,Polarized Field,,0,ICE,Status,0,15,0,UserSide,0,CanSnatch,"This move creates a directional magnetic field which reduces damage from attacks with 100 or more base power for five turns.",
 1484,MASQUERBLADE,Masquerblade,12B,150,GRASS,Physical,100,5,0,AllNearFoes,-3,CanProtect,"The user hides its blade. If it is hit by a special move, it unsheathes it quickly slashes all near foes.",CAMOUFLAGE
 1485,PRIDESFLAME,Pride's Flame,12C,90,FIRE,Special,100,10,0,NearOther,0,CanProtect;CanMirrorMove,"A distinguished attack that motivates nearby allies to follow, letting them act immediately after",
-1486,COLDSHOULDER,Cold Shoulder,56A,80,GHOST,Physical,100,12,100,NearOther,0,CanProtect;CanMirrorMove,"The user attacks with bitter emotion. This lowers the targets attacking stats by 2 steps if in hail.",PHANTOMFORCE
+1486,COLDSHOULDER,Cold Shoulder,56A,80,GHOST,Physical,100,12,100,NearOther,0,CanProtect;CanMirrorMove,"The user attacks with bitter emotion. This lowers the target's attacking stats by 2 steps if in hail.",PHANTOMFORCE
 1487,DISTURB,Disturb,007,90,GHOST,Physical,100,15,10,NearOther,0,CanProtect;CanMirrorMove,"The target is subjected to a violent and frightening prank. It has a 10% chance to numb.",
 1488,DANGERDITTY,Danger Ditty,401,60,FAIRY,Special,100,20,30,NearOther,0,CanProtect;CanMirrorMove;Sound,"The user sings with reckless abandon, annoying the target. There's a 30% chance they become dizzy.",ENCHANTINGSONG
 1489,BUBBLEBARRIER,Bubble Barrier,196,0,WATER,Status,0,15,0,NearAlly,0,CanMirrorMove,"The user creates a bubble to shield their ally. The next time they’re hit, 50% of the move damage is instead dealt back as recoil.",AQUARING
