@@ -33,8 +33,11 @@ def pinningWindActive?
   return pinningWindStrength >= 130
 end
 
+PINNING_WIND_CYCLE = 1.4
+
 def pinningWindStrength
-  strength = 100 + 100 * Math.sin(Time.now.to_r * 0.7)
+  return 150 if $game_map.map_id == 404 # Mirror Maze
+  strength = 100 + 100 * Math.sin(Time.now.to_r / PINNING_WIND_CYCLE)
   strength = strength.clamp(50,150)
   return strength
 end
