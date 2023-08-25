@@ -1007,7 +1007,7 @@ Land,20
     25,NUMEL,8,10
 #-------------------------------
 [413] # Eventide Isle
-Land,20
+LandSparse,20
     20,CLEFABLE,50,53
     20,GENGAR,50,53
     20,MUSHARNA,50,53
@@ -1015,7 +1015,7 @@ Land,20
     20,URSARING,50,53
 #-------------------------------
 [414] # Eventide Peak
-Land,20
+LandSparse,20
     20,CLEFABLE,50,53
     20,GENGAR,50,53
     20,MUSHARNA,50,53

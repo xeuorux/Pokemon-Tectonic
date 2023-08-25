@@ -2361,6 +2361,7 @@ Outdoor = true
 ShowArea = true
 Bicycle = true
 MapPosition = 0,27,5
+BattleBack = forest_night
 #-------------------------------
 [414]
 # Eventide Peak

@@ -107,6 +107,7 @@ class Scene_Map
         end
 
         processTimeTravel if defined?(processTimeTravel)
+        PBDayNight.sheduleToneRefresh
 
         recreateSpritesets
 

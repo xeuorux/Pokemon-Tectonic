@@ -279,6 +279,16 @@ class PokeBattle_AI_Cresselia < PokeBattle_AI_Boss
     end
 end
 
+class PokeBattle_AI_Darkrai < PokeBattle_AI_Boss
+    def initialize(user, battle)
+        super
+        @dangerMoves.push(:DARKVOID)
+        @wholeRound.push(:DARKVOID)
+        everyOtherTurn(:DARKVOID)
+        @requiredMoves.push(:NIGHTMARE)
+    end
+end
+
 ##################################################
 # Route Avatars
 ##################################################

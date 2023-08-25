@@ -243,7 +243,10 @@ module PBDayNight
       private
     
       def self.getToneInternal
-        if $PokemonSystem.forced_time_tint == 0
+        if [413, 414].include?($game_map.map_id) # Eventide Isle
+          @cachedTone = PBDayNight::HourlyTones[21]
+          echoln("Faking overworld tone for Eventide Isle")
+        elsif $PokemonSystem.forced_time_tint == 0
             # Calculates the tone for the current frame, used for day/night effects
             realMinutes = pbGetDayNightMinutes
             hour   = realMinutes / 60
