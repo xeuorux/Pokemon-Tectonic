@@ -1,10 +1,10 @@
 MIRROR_MAZE_CLIMBS = [
     # Crystal reservoirs
     1,2,
+    4,5,
     9,10,
+    11,12,
     21,22,
-    32,33,
-    66,67,
     # Climbs
     23,24,
     32,33,
