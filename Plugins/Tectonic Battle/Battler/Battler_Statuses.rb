@@ -5,6 +5,8 @@ NUMBED_EXPLANATION = _INTL("Its Speed is halved, and it'll deal less damage")
 DIZZY_EXPLANATION = _INTL("Its ability is suppressed, and it'll take more damage")
 LEECHED_EXPLANATION = _INTL("Its HP will be siphoned by the opposing side")
 
+POISON_DOUBLING_TURNS = 2
+
 class PokeBattle_Battler
     def getStatuses
         statuses = [abilities.include?(:COMATOSE) ? :SLEEP : @status]
@@ -482,16 +484,12 @@ immuneTypeRealName))
         pbInflictStatus(:POISON, toxic ? 1 : 0, msg, user)
     end
 
-    def badlyPoisoned?
-        return poisoned? && getPoisonDoublings > 0
-    end
-
     def getPoisonDoublings
         poisonCount = getStatusCount(:POISON)
         if boss?
-            doublings = poisonCount / 5
+            doublings = poisonCount / (POISON_DOUBLING_TURNS * 2)
         else
-            doublings = poisonCount / 3
+            doublings = poisonCount / POISON_DOUBLING_TURNS
         end
         return doublings
     end
@@ -623,8 +621,8 @@ immuneTypeRealName))
                 unless fainted?
                     increaseStatusCount(:POISON)
                     newPoisonCount = getStatusCount(:POISON)
-                    if newPoisonCount % 3 == 0
-                        if newPoisonCount == 3
+                    if newPoisonCount % POISON_DOUBLING_TURNS == 0
+                        if newPoisonCount == POISON_DOUBLING_TURNS
                             @battle.pbDisplaySlower(_INTL("The poison worsened! Its damage will be doubled until {1} leaves the field.", pbThis(true)))
                         else
                             @battle.pbDisplaySlower(_INTL("The poison doubled yet again!", pbThis))

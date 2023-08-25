@@ -87,7 +87,11 @@ class PokeBattle_Battle
 
     def damageFromDOTStatus(battler, status, aiCheck = false)
         if battler.takesIndirectDamage? && !battler.hasActiveAbility?(:APATHETIC)
-            fraction = 1.0 / 8.0
+            if %i[POISON LEECHED].include?(status)
+                fraction = 1.0 / 10.0
+            else
+                fraction = 1.0 / 8.0
+            end
             fraction *= 2 if battler.pbOwnedByPlayer? && curseActive?(:CURSE_STATUS_DOUBLED)
             if status == :POISON
                 battler.getPoisonDoublings.times do
@@ -127,13 +131,11 @@ class PokeBattle_Battle
             damageDealt = damageFromDOTStatus(b, :POISON)
 
             # Venom Gorger
-            if b.getStatusCount(:POISON) % 3 == 0
+            if b.getStatusCount(:POISON) % POISON_DOUBLING_TURNS == 0
                 b.eachOpposing do |opposingB|
                     next unless opposingB.hasActiveAbility?(:VENOMGORGER)
                     healingMessage = _INTL("{1} slurped up venom leaking from #{b.pbThis(true)}.")
-                    fraction = 1.0 / 3.0
-                    fraction *= b.getPoisonDoublings
-                    opposingB.applyFractionalHealing(fraction, ability: :VENOMGORGER, customMessage: healingMessage)
+                    opposingB.applyFractionalHealing(1.0 / 2.0, ability: :VENOMGORGER, customMessage: healingMessage)
                 end
             end
 

@@ -356,7 +356,7 @@
 1355,FIRSTSTRIKE,First Strike,"Powers up priority moves by 30%."
 1356,HARDFALL,Hard Fall,"Deals 30% more move damage to Pokémon that are taller than it."
 1357,BULLY,Bully,"Takes 30% less move damage from Pokémon that are shorter than it."
-1358,VENOMGORGER,Venom Gorger,"Whenever a foe's poison worsens, heal for 33% for each level of worsening."
+1358,VENOMGORGER,Venom Gorger,"Whenever a foe's poison worsens, the Pokémon heals for 50% max HP."
 1359,OVERACTING,Over Acting,"At the first chance, copies an opponent's species' legal Abilities."
 1360,HERBALIST,Herbalist,"Can hold two different items, if both are Herbs."
 1361,TRAUMATIZING,Traumatizing,"Foes whose stats are lowered by the Pokémon keep those lowered stats even after switching."
