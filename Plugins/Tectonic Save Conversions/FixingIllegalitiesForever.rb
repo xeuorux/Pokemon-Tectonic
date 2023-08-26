@@ -55,10 +55,16 @@
   
       # Find and fix illegal abilities
       unless pokemon.species_data.legalAbilities.include?(pokemon.ability_id)
-        oldAbilityName = pokemon.ability.name
-        pokemon.recalculateAbilityFromIndex
-        newAbilityName = pokemon.ability.name
-        pbMessage(_INTL("\\l[4]Pokemon #{name} in #{location} has ability #{oldAbilityName}. That ability is not legal for its species. Switching to #{newAbilityName}."))
+        if pokemon.ability.nil?
+          pokemon.recalculateAbilityFromIndex
+          newAbilityName = pokemon.ability.name
+          pbMessage(_INTL("\\l[4]Pokemon #{name} in #{location} has no ability. Switching to #{newAbilityName}."))
+        else
+          oldAbilityName = pokemon.ability.name
+          pokemon.recalculateAbilityFromIndex
+          newAbilityName = pokemon.ability.name
+          pbMessage(_INTL("\\l[4]Pokemon #{name} in #{location} has ability #{oldAbilityName}. That ability is not legal for its species. Switching to #{newAbilityName}."))
+        end
         anyPokemonChanged = true
       end
   
