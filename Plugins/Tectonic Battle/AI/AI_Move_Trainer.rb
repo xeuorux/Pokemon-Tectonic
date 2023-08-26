@@ -117,6 +117,16 @@ class PokeBattle_AI
                     next unless @battle.pbMoveCanTarget?(user.index, b.index, target_data)
                     next if target_data.targets_foe && !user.opposes?(b)
                     score,targetKillInfo = pbGetMoveScore(move, user, b, policies, 1, ignoreGeneralEffectScores, killInfoArray)
+                    if user.opposes?(b)
+                        totalScore = score
+                        battlerCount = 1
+                        b.eachRedirectingAlly do |ally|
+                            allyScore,allyKillInfo = pbGetMoveScore(move, user, b, policies, 1, ignoreGeneralEffectScores, killInfoArray)
+                            totalScore += allyScore
+                            battlerCount += 1
+                        end
+                        score = totalScore / battlerCount
+                    end
                     scoresAndTargets.push([score, b.index, nil]) if score > 0
                 end
             else
@@ -367,7 +377,6 @@ class PokeBattle_AI
                 damageScore = 50 + damagePercentage
             end
         end
-        damageScore *= 0.7 if target.allyHasRedirectionMove?
         damageScore = damageScore.floor
 
         return damageScore,realDamage,willFaint

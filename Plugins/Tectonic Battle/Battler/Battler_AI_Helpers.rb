@@ -214,12 +214,11 @@ class PokeBattle_Battler
         return false
     end
 
-    def allyHasRedirectionMove?
+    def eachRedirectingAlly
         eachAlly do |b|
             next unless b.hasRedirectionMove?
-            return true
+            yield b
         end
-        return false
     end
 
     def canChoosePursuit?(target)
