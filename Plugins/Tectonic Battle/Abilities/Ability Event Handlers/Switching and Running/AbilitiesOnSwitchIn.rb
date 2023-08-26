@@ -896,3 +896,13 @@ BattleHandlers::AbilityOnSwitchIn.add(:UNIDENTIFIED,
       battle.pbHideAbilitySplash(battler)
   }
 )
+
+BattleHandlers::AbilityOnSwitchIn.add(:SLUMBERINGDRAKE,
+  proc { |ability, battler, battle|
+      next unless battler.pbCanApplyStatus(battler,true)
+      battle.pbShowAbilitySplash(battler, ability)
+      battler.applySleep
+      battler.pbRaiseMultipleStatSteps(ALL_STATS_2,battler) if battler.asleep?
+      battle.pbHideAbilitySplash(battler)
+  }
+)

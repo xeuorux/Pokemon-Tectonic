@@ -27,3 +27,9 @@ BattleHandlers::TrappingTargetAbility.add(:MAGNETTRAP,
       next true if bearer.pbSpAtk > switcher.pbSpAtk
   }
 )
+
+BattleHandlers::TrappingTargetAbility.add(:TENDRILTRAP,
+  proc { |ability, switcher, bearer, _battle|
+      next true if bearer.pbAttack > switcher.pbAttack
+  }
+)

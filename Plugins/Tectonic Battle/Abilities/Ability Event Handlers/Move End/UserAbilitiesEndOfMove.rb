@@ -477,3 +477,18 @@ BattleHandlers::UserAbilityEndOfMove.add(:STUPEFYING,
       end
   }
 )
+
+BattleHandlers::UserAbilityEndOfMove.add(:FATIGUED,
+  proc { |ability, user, targets, move, battle, _switchedBattlers|
+      next if battle.futureSight
+      next unless move.damagingMove?
+      hitAnything = false
+      targets.each do |b|
+        next if b.damageState.unaffected
+        hitAnything = true
+        break
+      end
+      next unless hitAnything
+      @battle.forceUseMove(user, :REST)
+  }
+)

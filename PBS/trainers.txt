@@ -5574,7 +5574,7 @@ Pokemon = GENGAR,57
     AbilityIndex = 1 # Uncanny Cold
     Item = ICEGEM
 Pokemon = MMUSHARNA,57
-    AbilityIndex = 0 # Dream Weaver
+    AbilityIndex = 0 # Slumbering Drake
 Pokemon = ZANGOOSE,58
     AbilityIndex = 0 # Venomdetta
     Item = FOCUSSASH
@@ -6357,7 +6357,7 @@ Pokemon = EISCUE,70
 #-------------------------------
 [BIRDKEEPER_F,Danika]
 Pokemon = MMANDIBUZZ,70
-    AbilityIndex = 1 # Aggravate
+    AbilityIndex = 1 # Toil and Trouble
 Pokemon = PYUKUMUKU,70
     AbilityIndex = 0 # Innards Out
     Item = BLACKHERB
@@ -6381,7 +6381,7 @@ Pokemon = MJELLICENT,70
 #-------------------------------
 [BUTLER,Sagan]
 Pokemon = MMUSHARNA,70
-    AbilityIndex = 0 # Dream Weaver
+    AbilityIndex = 0 # Slumbering Drake
     Item = DRAGONGEM
 Pokemon = BOLTUND,70
     AbilityIndex = 0 # Strong Jaw
