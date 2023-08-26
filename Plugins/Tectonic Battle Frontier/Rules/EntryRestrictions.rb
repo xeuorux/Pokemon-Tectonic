@@ -41,6 +41,13 @@ class LaxStandardRestriction
     return true
   end
 end
+
+class NoLegendaryRestriction
+  def isValid?(pkmn)
+    return false if !pkmn || pkmn.egg?
+    return !isLegendary?(pkmn.species)
+  end
+end
   
   #===============================================================================
   #

@@ -879,7 +879,7 @@ Pokemon = LINOONE,70
 Pokemon = PIDGEOT,70
     AbilityIndex = 1 # Wind Buffer
 #-------------------------------
-[WILDPACK,ZReplaceMe1]
+[WORKER,Andrick]
 Pokemon = SKARMORY,70
     Moves = FEATHERWARD,SPIKES,SKYFALL,WHIRLWIND
     AbilityIndex = 0 # Mental Block
@@ -911,7 +911,7 @@ Pokemon = BISHARP,70
     Item = WEAKNESSPOLICY
     EV = 0,20,10,20,20,0
 #-------------------------------
-[WILDPACK,ZReplaceMe2]
+[SAGE,Kenji]
 Pokemon = HSAMUROTT,70
     Moves = CEASELESSEDGE,XSCISSOR,SLAY,DRAGONTAIL
     AbilityIndex = 1 # Sharpness
@@ -976,7 +976,7 @@ Pokemon = DIGNIPHITE,70
     Item = CUSTAPBERRY
     EV = 10,20,10,0,20,10
 #-------------------------------
-[WILDPACK,ZReplaceMe4]
+[BUGCATCHER_F,Ani]
 Pokemon = INTELEON,70
     Moves = SNIPESHOT,ICEBEAM,MASSDESTRUCTION,COLDFRONT
     AbilityIndex = 1 # Illusion
@@ -1008,7 +1008,7 @@ Pokemon = GALVANTULA,70
     Item = LIFEORB
     EV = 0,20,10,20,20,0
 #-------------------------------
-[WILDPACK,ZReplaceMe5]
+[SWIMMER_F,Karaline]
 Policies = RAIN_TEAM
 Pokemon = STUNFISK,70
     Moves = THUNDER,RECOVER,STEALTHROCK,DEFIBRILLATE
@@ -1041,7 +1041,7 @@ Pokemon = TOXICROAK,70
     Item = ASSAULTVEST
     EV = 20,20,0,0,20,10
 #-------------------------------
-[WILDPACK,ZReplaceMe6]
+[DRAGONTAMER,Mirek]
 Policies = ECLIPSE_TEAM
 Pokemon = MEOWSTIC,70
     Gender = male
@@ -1075,7 +1075,7 @@ Pokemon = PROBOPASS,70
     Item = ENERGYLOCK
     EV = 20,20,10,0,20,0
 #-------------------------------
-[WILDPACK,ZReplaceMe7]
+[GUITARIST,Zandros]
 Pokemon = CHESNAUGHT,70
     Moves = SPIKES,ROAR,BODYPRESS,WOODHAMMER
     AbilityIndex = 0 # Intimidate
@@ -1108,7 +1108,7 @@ Pokemon = VOLCARONA,70
     Item = HEAVYDUTYBOOTS
     EV = 10,0,0,20,0,20
 #-------------------------------
-[WILDPACK,ZReplaceMe8]
+[GUITARIST3,Kisha]
 Pokemon = TYRANITAR,70
     Moves = ADAMANTINEPRESS,DRAGONTAIL,STEALTHROCK,CRUNCH
     AbilityIndex = 1 # Stressful
@@ -1140,7 +1140,7 @@ Pokemon = HAEROBIC,70
     Item = FIGHTINGGEM
     EV = 10,20,0,20,20,0
 #-------------------------------
-[WILDPACK,ZReplaceMe9]
+[VETERAN_F,Iva]
 Pokemon = GALVANTULA,70
     Moves = STICKYWEB,THUNDER,SIGNALOVERLOAD,VOLTSWITCH
     AbilityIndex = 0 # Ocular
@@ -1172,7 +1172,7 @@ Pokemon = LEAVANNY,70
     Item = EJECTPACK
     EV = 0,20,10,20,20,0
 #-------------------------------
-[WILDPACK,ZReplaceMe10]
+[BEAUTY3,Akemi]
 Pokemon = AMOONGUSS,70
     Moves = SPORE,BELCH,GIGADRAIN,SYNTHESIS
     AbilityIndex = 0 # Regenerator
@@ -1272,7 +1272,7 @@ Pokemon = GASTRODON,70
     Item = UTILITYUMBRELLA
     EV = 10,10,15,0,10,15
 #-------------------------------
-[WILDPACK,ZReplaceMe13]
+[COWGIRL,Belle]
 Policies = SAND_TEAM
 Pokemon = HIPPOWDON,70
     Moves = STEALTHROCK,ROAR,SANDBLASTING,IGNITE

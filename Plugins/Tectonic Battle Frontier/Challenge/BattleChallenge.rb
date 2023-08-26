@@ -25,6 +25,7 @@ class BattleChallenge
       battleType,
        id[/open$/] ? 1 : 0)
     pbWriteCup(id, rules)
+    @bc.monumentTrainers = !trainersFromLists
   end
 
   def register(id, doublebattle, numPokemon, battletype, mode = 1)
@@ -102,8 +103,7 @@ class BattleChallenge
       bttrainers = pbGetBTTrainers(@id)
       trainerdata = bttrainers[self.nextTrainer]
     else
-      trainerdata = GameData::Trainer.randomMonumentTrainer
-      opponent = trainerdata.to_trainer
+      opponent = self.nextTrainer.to_trainer
       opponent.policies.push(:NO_PERFECT)
     end
     ret = pbOrganizedBattleEx(opponent,self.rules)
@@ -193,6 +193,7 @@ class BattleChallengeData
   attr_reader   :swaps
   attr_accessor :decision
   attr_reader   :extraData
+  attr_accessor :monumentTrainers
 
   def initialize
     reset
@@ -224,12 +225,17 @@ class BattleChallengeData
     # Get all the trainers for the next set of battles
     btTrainers = pbGetBTTrainers(pbBattleChallenge.currentChallenge)
     while @trainers.length < @numRounds
-      newtrainer = pbBattleChallengeTrainer(@wins + @trainers.length, btTrainers)
-      found = false
-      for tr in @trainers
-        found = true if tr == newtrainer
+      if @battleNumber
+        newtrainer = GameData::Trainer.randomMonumentTrainer
+        @trainers.push(newtrainer)
+      else
+        newtrainer = pbBattleChallengeTrainer(@wins + @trainers.length, btTrainers)
+        found = false
+        for tr in @trainers
+          found = true if tr == newtrainer
+        end
+        @trainers.push(newtrainer) if !found
       end
-      @trainers.push(newtrainer) if !found
     end
     @start = [$game_map.map_id, $game_player.x, $game_player.y]
     @oldParty = $Trainer.party

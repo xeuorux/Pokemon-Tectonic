@@ -2,7 +2,7 @@ def battleMonumentSinglesRegister
     pbMessage(_INTL("Welcome to the Battle Monument."))
 
     if pbConfirmMessage(_INTL("Take the singles battle challenge?"))
-        rules = pbBattleMonumentRules(false, false)
+        rules = pbBattleMonumentRules(false)
         pbBattleChallenge.set(
             "monumentsingle",
             7,
@@ -10,19 +10,19 @@ def battleMonumentSinglesRegister
             false
         )
 
-        rules.setNumber(4)
+        rules.setNumber(6)
 
-        if pbHasEligible?
-            pbMessage(_INTL("Please choose the four Pokémon that will enter."))
-            if pbEntryScreen
-                pbMessage(_INTL("Please come this way."))
-                pbBattleChallenge.start(0, 7)
-                return true
-            end
+        errorList = []
+        if rules.ruleset.isValid?($Trainer.party,errorList)
+            pbBattleChallenge.setParty($Trainer.party)
+            pbMessage(_INTL("Please come this way."))
+            pbBattleChallenge.start(0, 7)
+            return true
         else
-            pbMessage(_INTL("Sorry, you can't participate. You need four different Pokémon to enter."))
-            pbMessage(_INTL("They must be of a different species."))
-            pbMessage(_INTL("Certain legendary or unusual species are also ineligible."))
+            pbMessage(_INTL("Your party is not legal for this challenge."))
+            errorList.each do |error|
+                pbMessage(error)
+            end
         end
     end
 
@@ -32,7 +32,11 @@ end
 
 def battleMonumentSinglesBattle(opponentEventID)
     blackFadeOutIn {
-        pbBattleChallengeGraphic(get_character(opponentEventID))
+        event = get_character(opponentEventID)
+        overworldFileName = pbBattleChallenge.nextTrainer.trainer_type.to_s
+        bitmap = AnimatedBitmap.new("Graphics/Characters/" + overworldFileName)
+        bitmap.dispose
+        event.character_name = overworldFileName
     }
     pbMessage(_INTL("The match will now begin!"))
     if pbBattleChallengeBattle

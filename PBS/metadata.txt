@@ -800,6 +800,12 @@ MapPosition = 0,6,9
 BattleBack = cave1
 Environment = Cave
 #-------------------------------
+[128]
+# Battle Monument Entrance
+Outdoor = false
+ShowArea = false
+Bicycle = true
+#-------------------------------
 [129]
 # Barren Crater
 Outdoor = true
@@ -818,6 +824,15 @@ MapPosition = 0,15,7
 BattleBack = sand
 MapSize = 3,111
 Environment = Sand
+#-------------------------------
+[131]
+# Battle Monument Arena
+Outdoor = false
+ShowArea = false
+Bicycle = false
+TeleportBlocked = true
+SavingBlocked = true
+NoTeamEditing = false
 #-------------------------------
 [134]
 # Prizca West Gym
