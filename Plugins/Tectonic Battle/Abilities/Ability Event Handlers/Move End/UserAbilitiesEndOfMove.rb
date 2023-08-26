@@ -489,6 +489,6 @@ BattleHandlers::UserAbilityEndOfMove.add(:FATIGUED,
         break
       end
       next unless hitAnything
-      @battle.forceUseMove(user, :REST)
+      battle.forceUseMove(user, :REST)
   }
 )

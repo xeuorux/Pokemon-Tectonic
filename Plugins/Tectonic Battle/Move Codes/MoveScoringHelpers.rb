@@ -401,7 +401,7 @@ def getMultiStatUpEffectScore(statUpArray, user, target, fakeStepModifier: 0, ev
     return score.ceil
 end
 
-def getMultiStatDownEffectScore(statDownArray, user, target, fakeStepModifier = 0)
+def getMultiStatDownEffectScore(statDownArray, user, target, fakeStepModifier: 0)
     echoln("\t\t[EFFECT SCORING] Scoring the effect of lowering stats #{statDownArray.to_s} on target #{target.pbThis(true)}")
     
     if user.battle.field.effectActive?(:GreyMist)
