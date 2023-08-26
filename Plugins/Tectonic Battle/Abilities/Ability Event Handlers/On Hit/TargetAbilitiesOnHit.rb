@@ -48,7 +48,7 @@ BattleHandlers::TargetAbilityOnHit.add(:GOOEY,
         if aiCheck
             ret = 0
             aiNumHits.times do |i|
-                ret -= getMultiStatDownEffectScore([:ATTACK,1,:SPEED,1], target, user, i)
+                ret -= getMultiStatDownEffectScore([:ATTACK,1,:SPEED,1], target, user, fakeStepModifier: i)
             end
             next ret
         end
@@ -62,7 +62,7 @@ BattleHandlers::TargetAbilityOnHit.add(:SICKENING,
         if aiCheck
             ret = 0
             aiNumHits.times do |i|
-                ret -= getMultiStatDownEffectScore([:SPECIAL_ATTACK,1,:SPEED,1], target, user, i)
+                ret -= getMultiStatDownEffectScore([:SPECIAL_ATTACK,1,:SPEED,1], target, user, fakeStepModifier: i)
             end
             next ret
         end
@@ -76,7 +76,7 @@ BattleHandlers::TargetAbilityOnHit.add(:TANGLINGHAIR,
           if aiCheck
               ret = 0
               aiNumHits.times do |i|
-                  ret -= getMultiStatDownEffectScore([:SPEED,3], target, user, i)
+                  ret -= getMultiStatDownEffectScore([:SPEED,3], target, user, fakeStepModifier: i)
               end
               next ret
           end
@@ -89,7 +89,7 @@ BattleHandlers::TargetAbilityOnHit.add(:COTTONDOWN,
         if aiCheck
             ret = 0
             aiNumHits.times do |i|
-                ret -= getMultiStatDownEffectScore([:SPEED,2], target, user, i)
+                ret -= getMultiStatDownEffectScore([:SPEED,2], target, user, fakeStepModifier: i)
             end
             next ret
         else
