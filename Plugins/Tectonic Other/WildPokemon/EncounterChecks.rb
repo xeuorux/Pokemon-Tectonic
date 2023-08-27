@@ -135,9 +135,9 @@ class PokemonEncounters
   def allow_encounter?(enc_data, repel_active = false)
     return false if !enc_data
     # Repel
-    if repel_active && !pbPokeRadarOnShakingGrass
-		@chance_accumulator = 0
-		return false
+    if repel_active
+		  @chance_accumulator = 0
+		  return false
     end
     return true
   end
