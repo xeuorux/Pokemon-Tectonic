@@ -206,7 +206,7 @@ Pokemon = ABRA,15
 Pokemon = IMPIDIMP,16
     AbilityIndex = 0 # Unassuming
 Pokemon = RUFFLET,15
-    AbilityIndex = 1 # Blizz Boxer
+    AbilityIndex = 0 # Defiant
 #-------------------------------
 [POKEFAN_M,Jamie]
 Pokemon = PUMPKABOO,16
@@ -215,7 +215,7 @@ Pokemon = TAILLOW,16
     AbilityIndex = 0 # Daring
     Item = SALACBERRY
 Pokemon = SPHEAL,17
-    AbilityIndex = 1 # Ice Body
+    AbilityIndex = 0 # Full Blubber
 #-------------------------------
 [DANCER,Isai]
 Pokemon = TYROGUE,17
