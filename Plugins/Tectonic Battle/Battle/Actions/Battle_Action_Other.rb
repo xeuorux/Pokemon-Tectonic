@@ -28,25 +28,6 @@ class PokeBattle_Battle
     #=============================================================================
     # Choosing to Mega Evolve a battler
     #=============================================================================
-    def pbHasMegaRing?(idxBattler)
-        return true unless pbOwnedByPlayer?(idxBattler) # Assume AI trainer have a ring
-        Settings::MEGA_RINGS.each { |item| return true if $PokemonBag.pbHasItem?(item) }
-        return false
-    end
-
-    def pbGetMegaRingName(idxBattler)
-        if pbOwnedByPlayer?(idxBattler)
-            Settings::MEGA_RINGS.each do |item|
-                return GameData::Item.get(item).name if $PokemonBag.pbHasItem?(item)
-            end
-        end
-        # NOTE: Add your own Mega objects for particular NPC trainers here.
-        #    if pbGetOwnerFromBattlerIndex(idxBattler).trainer_type == :BUGCATCHER
-        #      return _INTL("Mega Net")
-        #    end
-        return _INTL("Mega Ring")
-    end
-
     def pbCanMegaEvolve?(idxBattler)
         return false if $game_switches[Settings::NO_MEGA_EVOLUTION]
         battler = @battlers[idxBattler]
@@ -54,7 +35,6 @@ class PokeBattle_Battle
         return false if wildBattle? && opposes?(idxBattler) && !battler.boss
         return true if debugControl
         return false if battler.effectActive?(:SkyDrop)
-        return false if !pbHasMegaRing?(idxBattler) && !battler.boss
         side  = battler.idxOwnSide
         owner = pbGetOwnerIndexFromBattlerIndex(idxBattler)
         return @megaEvolution[side][owner] == -1
@@ -102,13 +82,7 @@ class PokeBattle_Battle
         # Mega Evolve
         if !battler.boss
             trainerName = pbGetOwnerName(idxBattler)
-            case battler.pokemon.megaMessage
-            when 1 # Rayquaza
-                pbDisplay(_INTL("{1}'s fervent wish has reached {2}!", trainerName, battler.pbThis))
-            else
-                pbDisplay(_INTL("{1}'s {2} is reacting to {3}'s {4}!",
-                    battler.pbThis, getItemName(battler.pokemon.item), trainerName, pbGetMegaRingName(idxBattler)))
-            end
+            pbDisplay(_INTL("{1}'s fervent wish has reached {2}!", trainerName, battler.pbThis))
         else
             case battler.pokemon.megaMessage
             when 1 # Rayquaza
