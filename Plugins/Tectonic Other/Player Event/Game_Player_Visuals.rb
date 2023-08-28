@@ -63,6 +63,10 @@ class Game_Player < Game_Character
     def forcedWalkByTerrain?
       return $game_map.noRunTerrain?(@x, @y, self)
     end
+
+    def canBikeOnTerrain?
+      return !$game_map.noBikingTerrain?(@x, @y, self)
+    end
   
     def update_command
       if $game_player.pbTerrainTag.ice
