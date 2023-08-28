@@ -503,6 +503,12 @@ MultipleForms.register(:LYCANROC, {
   },
 })
 
+MultipleForms.register(:MEWTWO, {
+  "getFormOnLeavingBattle" => proc { |pkmn, _battle, _usedInBattle, endBattle|
+      next 0 if pkmn.fainted? || endBattle
+  },
+})
+
 MultipleForms.register(:ZAMAZENTA,{
   "getForm" => proc { |pkmn|
     next 1 if pkmn.hasItem?(:RUSTEDSHIELD)
