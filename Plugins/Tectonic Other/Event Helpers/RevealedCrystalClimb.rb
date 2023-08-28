@@ -1,3 +1,16 @@
+GLACIAL_LABYRINTH_CLIMBS = [
+    # Crystal reservoirs
+    38,
+    54,
+    47,
+    61,
+    # Climbs
+    68,
+    93,
+    94,
+    95,
+]
+
 MIRROR_MAZE_CLIMBS = [
     # Crystal reservoirs
     1,2,

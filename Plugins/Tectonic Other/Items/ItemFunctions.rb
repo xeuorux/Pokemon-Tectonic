@@ -257,8 +257,11 @@ end
 # Decide whether the player is able to ride/dismount their Bicycle
 #===============================================================================
 def pbBikeCheck
-  if $PokemonGlobal.surfing || $PokemonGlobal.diving ||
-     (!$PokemonGlobal.bicycle && $game_player.pbTerrainTag.must_walk)
+  if $PokemonGlobal.surfing || $PokemonGlobal.diving
+    pbMessage(_INTL("Can't use that here."))
+    return false
+  end
+  if !$PokemonGlobal.bicycle && !$game_player.canBikeOnTerrain?
     pbMessage(_INTL("Can't use that here."))
     return false
   end

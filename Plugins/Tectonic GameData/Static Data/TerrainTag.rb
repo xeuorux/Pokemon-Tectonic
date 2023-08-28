@@ -79,6 +79,12 @@ module GameData
         return true if @pinning_wind && pinningWindActive?
         return false
       end
+
+      def can_bicycle?
+        return false if walkingForced?
+        return false if @pinning_wind
+        return true
+      end
     end
   end
   

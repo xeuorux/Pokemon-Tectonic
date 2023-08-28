@@ -289,7 +289,7 @@ class Game_Map
                 return true if terrain.can_surf && !terrain.waterfall && ($PokemonGlobal.surfing || playerCanSurf?)
                 return true if terrain.rock_climbable && $PokemonBag.pbHasItem?(:CLIMBINGGEAR)
                 # Prevent cycling in really tall grass/on ice
-                return false if $PokemonGlobal.bicycle && terrain.walkingForced?
+                return false if $PokemonGlobal.bicycle && !terrain.can_bicycle?
                 # Depend on passability of bridge tile if on bridge
                 return (passage & bit == 0 && passage & 0x0f != 0x0f) if terrain.bridge && $PokemonGlobal.bridge > 0
             end
@@ -480,7 +480,7 @@ class Game_Map
         return tile_ID_from_coordinates(newCoordinateX, newCoordinateY)
     end
 
-    def slowingTerrain?(x, y, self_event = nil)
+    def terrainHasProperty?(x, y, self_event = nil, &block)
         # Events
         for event in events.values
             next if event.tile_id <= 0
@@ -488,43 +488,38 @@ class Game_Map
             next unless event.at_coordinate?(x, y)
             next if event.through
             tileID = getTileIDForEventAtCoordinate(event, x, y)
-            terrainTag = GameData::TerrainTag.try_get(@terrain_tags[tileID])
-            next if terrainTag.ignore_passability
-            return true if terrainTag.slows
+            terrainTagData = GameData::TerrainTag.try_get(@terrain_tags[tileID])
+            next if terrainTagData.ignore_passability
+            return true if block.call(terrainTagData)
         end
 
         # Tiles
         for i in [2, 1, 0]
             tile_id = data[x, y, i]
             next unless tile_id
-            terrain = GameData::TerrainTag.try_get(@terrain_tags[tile_id])
-            return true if terrain.slows
+            terrainTagData = GameData::TerrainTag.try_get(@terrain_tags[tile_id])
+            return true if block.call(terrainTagData)
         end
 
         return false
     end
 
-    def noRunTerrain?(x, y, self_event = nil)
-        # Events
-        for event in events.values
-            next if event.tile_id <= 0
-            next if event == self_event
-            next unless event.at_coordinate?(x, y)
-            next if event.through
-            tileID = getTileIDForEventAtCoordinate(event, x, y)
-            terrainTag = GameData::TerrainTag.try_get(@terrain_tags[tileID])
-            next if terrainTag.ignore_passability
-            return true if terrainTag.walkingForced?
-        end
+    def slowingTerrain?(x, y, self_event = nil)
+        return terrainHasProperty?(x, y, self_event) { |terrainTagData|
+            terrainTagData.slows
+        }
+    end
 
-        # Tiles
-        for i in [2, 1, 0]
-            tile_id = data[x, y, i]
-            next unless tile_id
-            terrain = GameData::TerrainTag.try_get(@terrain_tags[tile_id])
-            return true if terrain.walkingForced?
-        end
-        return false
+    def noRunTerrain?(x, y, self_event = nil)
+        return terrainHasProperty?(x, y, self_event) { |terrainTagData|
+            terrainTagData.walkingForced?
+        }
+    end
+
+    def noBikingTerrain?(x, y, self_event = nil)
+        return terrainHasProperty?(x, y, self_event) { |terrainTagData|
+            !terrainTagData.can_bicycle?
+        }
     end
 
     def pushing_tag(x, y, countBridge = false)
