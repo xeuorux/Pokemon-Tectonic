@@ -9,12 +9,14 @@ def pbGiveItemToPokemon(item,pkmn,scene,fromBag=true)
         return false
     end
 
+    return false unless pkmn.canHaveItem?(item, true)
+
     # If they don't have an item, just give them it
     if !pkmn.hasItem?
         giveItem = true
     # If the pokemon can have multiple items due to an ability, check for legality thereof
     elsif pkmn.canHaveMultipleItems?
-        if pkmn.canHaveItem?(item, true)
+        if pkmn.canHaveSecondItem?(item, true)
             giveItem = true
         elsif scene.pbConfirm(_INTL("Swap its items with the #{newitemname}?"))
             pbTakeItemsFromPokemon(pkmn)

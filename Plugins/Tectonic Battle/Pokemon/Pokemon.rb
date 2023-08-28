@@ -700,7 +700,16 @@ class Pokemon
       return GameData::Ability::MULTI_ITEM_ABILITIES.include?(@ability)
     end
 
-	  def canHaveItem?(itemCheck = nil, showMessages = false)
+    def canHaveItem?(itemCheck, showMessages = false)
+      if itemCheck == :CRYSTALVEIL && hasAbility?(:WONDERGUARD)
+        pbMessage(_INTL("#{name} can't hold a #{getItemName(:CRYSTALVEIL)}!")) if showMessages
+        return false
+      end
+      return true
+    end
+
+	  def canHaveSecondItem?(itemCheck = nil, showMessages = false)
+      return false unless canHaveItem?(itemCheck, showMessages)
       return true if firstItem.nil?
       return false unless canHaveMultipleItems?
       return true if itemCheck.nil?
@@ -709,9 +718,8 @@ class Pokemon
     end
 
     def legalItems?(itemSet, showMessages = false)
-      if itemSet.include?(:CRYSTALVEIL) && hasAbility?(:WONDERGUARD)
-        pbMessage(_INTL("#{name} can't hold a #{getItemName(:CRYSTALVEIL)}!")) if showMessages
-        return false
+      itemSet.each do |item|
+        return false unless canHaveItem?(item, showMessages)
       end
       return true unless itemSet.length > 1
 
