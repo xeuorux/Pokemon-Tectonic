@@ -293,7 +293,7 @@
 1292,CRAGTERROR,Crag Terror,"Upon entry during sandstorm, lowers foe's Attack and Sp. Atk by two steps each."
 1293,MAGNETTRAP,Magnet Trap,"Prevents foes whose Sp. Atk is less than its from fleeing."
 1294,DESERTSCAVENGER,Desert Scavenger,"Restores HP based on damage from sandstorm."
-1295,LOOSESHELL,Loose Shell,"Upon entry in sandstorm, turns its shell into a levitating stone trap."
+1295,SKYHAZARD,Sky Hazard,"Can't be statused due to its hard shell. Boosts Sp. Atk and Speed by 25% in sandstorm."
 1296,ETERNALWINTER,Eternal Winter,"Extends hail by a turn after knocking out any Pokémon."
 1297,TAIGATRECKER,Taiga Trecker,"During hail, boosts Speed and Grass-type damage by 50%."
 1298,ICEMIRROR,Ice Mirror,"Doubles Sp. Def in hail."

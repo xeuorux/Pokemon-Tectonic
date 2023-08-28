@@ -46,6 +46,12 @@ BattleHandlers::SpeedCalcAbility.add(:AQUAPROPULSION,
   }
 )
 
+BattleHandlers::SpeedCalcAbility.add(:SKYHAZARD,
+  proc { |ability, battler, mult|
+      next mult * 1.25 if battler.battle.sandy?
+  }
+)
+
 BattleHandlers::SpeedCalcAbility.add(:UNBURDEN,
   proc { |ability, battler, mult|
       next mult * 2 if battler.effectActive?(:ItemLost) && !battler.hasAnyItem?

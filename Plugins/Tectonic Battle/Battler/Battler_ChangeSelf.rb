@@ -483,19 +483,19 @@ class PokeBattle_Battler
         end
         # Minior - Shields Down
         if isSpecies?(:MINIOR) && hasAbility?(:SHIELDSDOWN)
-            if @hp > @totalhp / 2 # Turn into Meteor form
-                newForm = (@form >= 7) ? @form - 7 : @form
-                if @form != newForm
+            if aboveHalfHealth? # Turn into Meteor form
+                if form >= 7
+                    newForm = @form - 7
+                    showMyAbilitySplash(:SHIELDSDOWN, true)
+                    pbChangeForm(newForm, _INTL("{1} deactivated!", getAbilityName(:SHIELDSDOWN)))
+                    hideMyAbilitySplash
+                end
+            else # Turn into Core form
+                if form < 7
                     showMyAbilitySplash(:SHIELDSDOWN, true)
                     hideMyAbilitySplash
-                    pbChangeForm(newForm, _INTL("{1} deactivated!", getAbilityName(:SHIELDSDOWN)))
-                elsif !endOfRound
-                    @battle.pbDisplay(_INTL("{1} deactivated!", getAbilityName(:SHIELDSDOWN)))
+                    pbChangeForm(@form + 7, _INTL("{1} activated!", getAbilityName(:SHIELDSDOWN)))
                 end
-            elsif @form < 7 # Turn into Core form
-                showMyAbilitySplash(:SHIELDSDOWN, true)
-                hideMyAbilitySplash
-                pbChangeForm(@form + 7, _INTL("{1} activated!", getAbilityName(:SHIELDSDOWN)))
             end
         end
         # Wishiwashi - Schooling

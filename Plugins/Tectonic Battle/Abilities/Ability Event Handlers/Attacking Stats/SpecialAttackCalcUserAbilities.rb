@@ -48,7 +48,14 @@ BattleHandlers::SpecialAttackCalcUserAbility.add(:ENERGYUP,
 
 BattleHandlers::SpecialAttackCalcUserAbility.add(:AQUAPROPULSION,
   proc { |ability, _user, battle, spAtkMult|
-      spAtkMult *= 1.2 if battle.rainy?
+      spAtkMult *= 1.25 if battle.rainy?
+      next spAtkMult
+  }
+)
+
+BattleHandlers::SpecialAttackCalcUserAbility.add(:SKYHAZARD,
+  proc { |ability, _user, battle, spAtkMult|
+      spAtkMult *= 1.25 if battle.sandy?
       next spAtkMult
   }
 )

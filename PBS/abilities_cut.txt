@@ -117,3 +117,4 @@
 3116,EPICHERO,Epic Hero,"Draws in moves from foes with base power 100 or more."
 3117,FLASHFIRE,Flash Fire,"Immunity to Fire-type moves and powers up Fire-type attacks if hit by one."
 3118,SWARM,Swarm,"Powers up Bug-type moves in a pinch."
+3119,LOOSESHELL,Loose Shell,"Upon entry in sandstorm, turns its shell into a levitating stone trap."
