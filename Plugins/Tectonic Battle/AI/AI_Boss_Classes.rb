@@ -213,8 +213,9 @@ class PokeBattle_AI_Genesect < PokeBattle_AI_Boss
         super
         @warnedIFFMove.add(:FELLSTINGER, {
             :condition => proc { |move, user, target, _battle|
-                ai = user.battle.battleAI
-                next ai.getDamagePercentageAI(move, user, target, 100) >= 100
+                damageDealt = user.battle.battleAI.pbTotalDamageAI(move, user, target, 1)
+                
+                next damageDealt >= target.hp
             },
             :warning => proc { |_move, user, targets, _battle|
                 target = targets[0]
