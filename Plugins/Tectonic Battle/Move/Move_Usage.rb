@@ -197,11 +197,11 @@ target.pbThis(true)))
     #=============================================================================
     def pbImmunityByAbility(user, target, showMessages = true, aiCheck = false)
         return false if @battle.moldBreaker
-        target.eachActiveAbility do |ability|
+        target.eachAbilityShouldApply(aiCheck) do |ability|
             return true if BattleHandlers.triggerMoveImmunityTargetAbility(ability, user, target, self, @calcType, @battle, showMessages, aiCheck)
         end
         target.eachAlly do |b|
-            b.eachActiveAbility do |ability|
+            b.eachAbilityShouldApply(aiCheck) do |ability|
                 return true if BattleHandlers.triggerMoveImmunityAllyAbility(ability, user, target, self, @calcType, @battle, b, showMessages)
             end
         end
