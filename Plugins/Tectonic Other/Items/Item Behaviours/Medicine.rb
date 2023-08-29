@@ -36,16 +36,14 @@ ItemHandlers::UseOnPokemon.add(:POTION,proc { |item,pkmn,scene|
   
   ItemHandlers::UseOnPokemon.add(:FULLHEAL,proc { |item,pkmn,scene|
     if pkmn.fainted? || pkmn.status == :NONE
-      scene.pbDisplay(_INTL("It won't have any effect."))
+      pbSceneDefaultDisplay(_INTL("It won't have any effect."),scene)
       next false
     end
     pkmn.heal_status
-    scene.pbRefresh
-    scene.pbDisplay(_INTL("{1} became healthy.",pkmn.name))
+    scene&.pbRefresh
+    pbSceneDefaultDisplay(_INTL("{1} became healthy.",pkmn.name),scene)
     next true
   })
-
-  ItemHandlers::UseOnPokemon.copy(:FULLHEAL)
   
   ItemHandlers::UseOnPokemon.copy(:FULLHEAL,
      :LAVACOOKIE,:OLDGATEAU,:CASTELIACONE,:LUMIOSEGALETTE,:SHALOURSABLE,
@@ -53,64 +51,64 @@ ItemHandlers::UseOnPokemon.add(:POTION,proc { |item,pkmn,scene|
   
   ItemHandlers::UseOnPokemon.add(:FULLRESTORE,proc { |item,pkmn,scene|
     if pkmn.fainted? || (pkmn.hp==pkmn.totalhp && pkmn.status == :NONE)
-      scene.pbDisplay(_INTL("It won't have any effect."))
+      pbSceneDefaultDisplay(_INTL("It won't have any effect."),scene)
       next false
     end
     hpgain = pbItemRestoreHP(pkmn,pkmn.totalhp-pkmn.hp)
     pkmn.heal_status
-    scene.pbRefresh
+    scene&.pbRefresh
     if hpgain>0
-      scene.pbDisplay(_INTL("{1}'s HP was restored by {2} points.",pkmn.name,hpgain))
+      pbSceneDefaultDisplay(_INTL("{1}'s HP was restored by {2} points.",pkmn.name,hpgain),scene)
     else
-      scene.pbDisplay(_INTL("{1} became healthy.",pkmn.name))
+      pbSceneDefaultDisplay(_INTL("{1} became healthy.",pkmn.name),scene)
     end
     next true
   })
   
   ItemHandlers::UseOnPokemon.add(:REVIVE,proc { |item,pkmn,scene|
     if !pkmn.fainted?
-      scene.pbDisplay(_INTL("It won't have any effect."))
+      pbSceneDefaultDisplay(_INTL("It won't have any effect."),scene)
       next false
     end
     pkmn.hp = (pkmn.totalhp/2).floor
     pkmn.hp = 1 if pkmn.hp<=0
     pkmn.heal_status
-    scene.pbRefresh
-    scene.pbDisplay(_INTL("{1}'s HP was restored.",pkmn.name))
+    scene&.pbRefresh
+    pbSceneDefaultDisplay(_INTL("{1}'s HP was restored.",pkmn.name),scene)
     next true
   })
   
   ItemHandlers::UseOnPokemon.add(:MAXREVIVE,proc { |item,pkmn,scene|
     if !pkmn.fainted?
-      scene.pbDisplay(_INTL("It won't have any effect."))
+      pbSceneDefaultDisplay(_INTL("It won't have any effect."),scene)
       next false
     end
     pkmn.heal_HP
     pkmn.heal_status
-    scene.pbRefresh
-    scene.pbDisplay(_INTL("{1}'s HP was restored.",pkmn.name))
+    scene&.pbRefresh
+    pbSceneDefaultDisplay(_INTL("{1}'s HP was restored.",pkmn.name),scene)
     next true
   })
 
 ItemHandlers::UseOnPokemon.add(:ETHER,proc { |item,pkmn,scene|
-    move = scene.pbChooseMove(pkmn,_INTL("Restore which move?"))
+    move = scene.pbChooseMove(pkmn,_INTL("Restore which move?"),scene)
     next false if move<0
     if pbRestorePP(pkmn,move,10)==0
-      scene.pbDisplay(_INTL("It won't have any effect."))
+      pbSceneDefaultDisplay(_INTL("It won't have any effect."),scene)
       next false
     end
-    scene.pbDisplay(_INTL("PP was restored."))
+    pbSceneDefaultDisplay(_INTL("PP was restored."),scene)
     next true
   })
   
   ItemHandlers::UseOnPokemon.add(:MAXETHER,proc { |item,pkmn,scene|
-    move = scene.pbChooseMove(pkmn,_INTL("Restore which move?"))
+    move = scene.pbChooseMove(pkmn,_INTL("Restore which move?"),scene)
     next false if move<0
     if pbRestorePP(pkmn,move,pkmn.moves[move].total_pp-pkmn.moves[move].pp)==0
-      scene.pbDisplay(_INTL("It won't have any effect."))
+      pbSceneDefaultDisplay(_INTL("It won't have any effect."),scene)
       next false
     end
-    scene.pbDisplay(_INTL("PP was restored."))
+    pbSceneDefaultDisplay(_INTL("PP was restored."),scene)
     next true
   })
   
@@ -120,10 +118,10 @@ ItemHandlers::UseOnPokemon.add(:ETHER,proc { |item,pkmn,scene|
       pprestored += pbRestorePP(pkmn,i,10)
     end
     if pprestored==0
-      scene.pbDisplay(_INTL("It won't have any effect."))
+      pbSceneDefaultDisplay(_INTL("It won't have any effect."),scene)
       next false
     end
-    scene.pbDisplay(_INTL("PP was restored."))
+    pbSceneDefaultDisplay(_INTL("PP was restored."),scene)
     next true
   })
   
@@ -133,10 +131,10 @@ ItemHandlers::UseOnPokemon.add(:ETHER,proc { |item,pkmn,scene|
       pprestored += pbRestorePP(pkmn,i,pkmn.moves[i].total_pp-pkmn.moves[i].pp)
     end
     if pprestored==0
-      scene.pbDisplay(_INTL("It won't have any effect."))
+      pbSceneDefaultDisplay(_INTL("It won't have any effect."),scene)
       next false
     end
-    scene.pbDisplay(_INTL("PP was restored."))
+    pbSceneDefaultDisplay(_INTL("PP was restored."),scene)
     next true
   })
 

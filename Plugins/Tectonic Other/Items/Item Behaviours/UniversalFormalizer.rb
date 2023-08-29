@@ -12,9 +12,9 @@ ItemHandlers::UseOnPokemon.add(:UNIVERSALFORMALIZER,proc { |item,pkmn,scene|
 			possibleFormNames.push(species_data.form_name)
 		end
 		possibleFormNames.push(_INTL("Cancel"))
-		choice = scene.pbMessage("Which form shall the Pokemon take?",	possibleFormNames,possibleFormNames.length)
+		choice = pbMessage(_INTL("Which form shall the Pokemon take?"),possibleFormNames,possibleFormNames.length)
 		if choice < possibleForms.length
-			scene.pbMessage("#{pkmn.name} swapped to #{possibleFormNames[choice]}!")
+			pbSceneDefaultDisplay(_INTL("#{pkmn.name} swapped to #{possibleFormNames[choice]}!"),scene)
 			
 			showPokemonChanges(pkmn) {
 				pkmn.form = possibleForms[choice].form
@@ -22,7 +22,7 @@ ItemHandlers::UseOnPokemon.add(:UNIVERSALFORMALIZER,proc { |item,pkmn,scene|
 		end
 		next true
 	else
-		scene.pbMessage("Cannot use this item on that Pokemon.")
+		pbSceneDefaultDisplay(_INTL("Cannot use this item on that Pokemon."),scene)
 		next false
 	end
 })

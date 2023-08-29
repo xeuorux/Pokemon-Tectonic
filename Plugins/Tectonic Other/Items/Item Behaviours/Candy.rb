@@ -5,10 +5,10 @@ ItemHandlers::UseOnPokemon.add(:RARECANDY,proc { |item,pkmn,scene|
 
 def pbLevelGivingItem(pkmn, item, scene)
   if pkmn.level >= GameData::GrowthRate.max_level
-    scene.pbDisplay(_INTL("It won't have any effect."))
+    pbSceneDefaultDisplay(_INTL("It won't have any effect."),scene)
     return false
   elsif LEVEL_CAPS_USED && (pkmn.level + 1) > getLevelCap
-      scene.pbDisplay(_INTL("It won't have any effect due to the level cap at #{getLevelCap}."))
+      pbSceneDefaultDisplay(_INTL("It won't have any effect due to the level cap at #{getLevelCap}."),scene)
       return false
   end
 
@@ -31,7 +31,7 @@ def pbLevelGivingItem(pkmn, item, scene)
 
   $PokemonBag.pbDeleteItem(item, qty - 1)
   pbChangeLevel(pkmn,pkmn.level + qty,scene)
-  scene.pbHardRefresh
+  scene&.pbHardRefresh
 
   return true
 end

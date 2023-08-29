@@ -366,6 +366,7 @@ class PokEstate
 		
 		pokemon = nil
 		currentBox = -1
+		donationBox = false
 		currentSlot = -1
 		for box in -1...$PokemonStorage.maxBoxes
 			for slot in 0...$PokemonStorage.maxPokemon(box)
@@ -374,6 +375,7 @@ class PokEstate
 				if pkmn.personalID == personalID
 					pokemon = pkmn
 					currentBox = box
+					donationBox = true if box >= 40
 					currentSlot = slot
 					break
 				end
@@ -389,14 +391,23 @@ class PokEstate
 		cmdSummary = -1
 		cmdTake = -1
 		cmdInteract = -1
+		cmdUseItem = -1
 		cmdRename = -1
+		cmdEvolve = -1
 		cmdCancel = -1
-		commands[cmdSummary = commands.length] = _INTL("View Summary")
-		commands[cmdTake = commands.length] = _INTL("Take")
 		commands[cmdInteract = commands.length] = _INTL("Interact")
-		commands[cmdRename = commands.length] = _INTL("Rename")
+		commands[cmdTake = commands.length] = _INTL("Take") unless donationBox
+		commands[cmdSummary = commands.length] = _INTL("View Summary")
+		commands[cmdRename = commands.length] = _INTL("Rename") unless donationBox
+		commands[cmdUseItem = commands.length] = _INTL("Use Item") unless donationBox
+		newspecies = pokemon.check_evolution_on_level_up
+		commands[cmdEvolve = commands.length]       = _INTL("Evolve") if newspecies
 		commands[cmdCancel = commands.length] = _INTL("Cancel")
 		command = 0
+
+		species = pokemon.species
+		form = pokemon.form
+
 		while true
 			command = pbMessage(_INTL("What would you like to do with #{pokemon.name}?"),commands,commands.length,nil,command)
 			if cmdSummary > -1 && command == cmdSummary
@@ -449,6 +460,24 @@ class PokEstate
 					eventCalling.refresh
 				else
 					eventCalling.turn_generic(prev_direction)
+				end
+			elsif cmdUseItem > -1 && command == cmdUseItem
+				item = selectItemForUseOnPokemon($PokemonBag,pokemon)
+				next unless item
+				pbUseItemOnPokemon(item,pokemon) 
+				if pokemon.form != form || pokemon.species != species
+					convertEventToPokemon(eventCalling,pokemon)
+					break
+				end
+			elsif cmdEvolve > -1 && command == cmdEvolve
+				pbFadeOutInWithMusic do
+					evo = PokemonEvolutionScene.new
+					evo.pbStartScreen(pokemon, newspecies)
+					evo.pbEvolution
+					evo.pbEndScreen
+					convertEventToPokemon(eventCalling,pokemon)
+					eventCalling.turn_toward_player
+					break
 				end
 			elsif cmdCancel > -1 && command == cmdCancel
 				break

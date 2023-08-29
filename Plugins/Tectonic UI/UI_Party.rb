@@ -670,25 +670,6 @@ end
       return ret
     end
   
-    def pbUseItem(bag,pokemon)
-      ret = nil
-      pbFadeOutIn {
-        scene = PokemonBag_Scene.new
-        screen = PokemonBagScreen.new(scene,bag)
-        ret = screen.pbChooseItemScreen(Proc.new { |item|
-          itm = GameData::Item.get(item)
-          next false if !pbCanUseOnPokemon?(itm)
-          if itm.is_machine?
-            move = itm.move
-            next false if pokemon.hasMove?(move) || !pokemon.compatible_with_move?(move)
-          end
-          next true
-        })
-        yield if block_given?
-      }
-      return ret
-    end
-  
     def pbChoosePokemon(switching=false,initialsel=-1,canswitch=0)
         for i in 0...Settings::MAX_PARTY_SIZE
           @sprites["pokemon#{i}"].preselected = (switching && i==@activecmd)
@@ -844,6 +825,25 @@ end
     def update
       pbUpdateSpriteHash(@sprites)
     end
+  end
+
+  def selectItemForUseOnPokemon(bag,pokemon)
+    ret = nil
+    pbFadeOutIn {
+      scene = PokemonBag_Scene.new
+      screen = PokemonBagScreen.new(scene,bag)
+      ret = screen.pbChooseItemScreen(Proc.new { |item|
+        itm = GameData::Item.get(item)
+        next false if !pbCanUseOnPokemon?(itm)
+        if itm.is_machine?
+          move = itm.move
+          next false if pokemon.hasMove?(move) || !pokemon.compatible_with_move?(move)
+        end
+        next true
+      })
+      yield if block_given?
+    }
+    return ret
   end
   
   #===============================================================================
@@ -1276,7 +1276,7 @@ end
             itemcommands[itemcommands.length]             = _INTL("Cancel")
             command = @scene.pbShowCommands(_INTL("Do what with an item?"),itemcommands)
             if cmdUseItem>=0 && command==cmdUseItem   # Use
-              item = @scene.pbUseItem($PokemonBag,pkmn) {
+              item = selectItemForUseOnPokemon($PokemonBag,pkmn) {
                 @scene.pbSetHelpText((@party.length>1) ? _INTL("Choose a Pokémon.") : _INTL("Choose Pokémon or cancel."))
               }
               if item
