@@ -283,6 +283,9 @@ class PokeBattle_AI
     end
 
     def pbGetMoveScoreBoss(move, user, target, numTargets, bossAI, targetWeak = false)
+        move.calculated_category = move.calculateCategory(user, [target])
+        move.calcType = move.pbCalcType(user)
+
         if bossAI.rejectMove?(move, user, target, @battle)
             PBDebug.log(addTargetIfPresent(
                             "[BOSS AI] #{user.pbThis} (#{user.index}) custom AI rejects move #{move.name}", target))
