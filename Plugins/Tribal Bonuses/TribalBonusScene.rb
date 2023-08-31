@@ -33,19 +33,23 @@ class TribalBonusScene
         @sprites["scroll_bar"].x = Graphics.width - 32
         @sprites["scroll_bar"].y = 48
         @sprites["scroll_bar"].visible = true
-
-        pbFadeInAndShow(@sprites) { pbUpdate }
+        @tribalMemberIcons = {}
 
         tribalTracker = playerTribalBonus()
 
         tribeCounts = tribalTracker.tribeCounts.clone
         tribeCounts = tribeCounts.sort_by { |k,v| -v}.to_h
+        @memberIconLineIndexes = []
+        lineIndex = 0
         tribeCounts.each {|tribeID, count, index|
+            @memberIconLineIndexes.push([tribeID,lineIndex])
+
             tribeName = getTribeName(tribeID)
             tribeData = GameData::Tribe.get(tribeID)
             titleText = "<u>#{tribeName} (#{count}/#{tribeData.threshold})</u>"
             titleText = "<b>#{titleText}</b>" if count >= tribeData.threshold
             @displayText << titleText
+            lineIndex += 1
             bonusDescription = tribeData.description
 
             # Put in the curren value for the scaling stat bonuses
@@ -58,9 +62,32 @@ class TribalBonusScene
 
             break_string(bonusDescription, 40).each {|line|
                 @displayText << line
+                lineIndex += 1
             }
             @displayText << "\n" unless index == tribeCounts.size - 1
+            lineIndex += 1
+
+            # Create the sprites
+            memberIcons = []
+            @tribalMemberIcons[tribeID] = memberIcons
+            memberIndex = 0
+            $Trainer.party.each do |partyMember|
+                next unless partyMember.tribes.include?(tribeID)
+                newPokemonSprite = PokemonIconSprite.new(partyMember,@viewport1)
+                newPokemonSprite.visible = false
+                memberIcons.push(newPokemonSprite)
+                @sprites["member_icon_#{tribeID}_#{memberIndex}"] = newPokemonSprite
+                memberIndex += 1
+            end
+
+            # Right align the icons
+            iconsTotalWidth = memberIcons.length * 40
+            memberIcons.each_with_index do |memberIcon,index|
+                memberIcon.x = Graphics.width - 60 - iconsTotalWidth + index * 40
+            end
         }
+
+        pbFadeInAndShow(@sprites) { pbUpdate }
 
         @base = Color.new(88,88,88)
         @shadow = Color.new(168,184,184)
@@ -99,6 +126,21 @@ class TribalBonusScene
         overlay = @sprites["overlay"].bitmap
         xLeft = 36
         coordinateY = 32
+
+        @memberIconLineIndexes.each do |entry|
+            tribeID = entry[0]
+            lineIndex = entry[1]
+            if lineIndex >= @offset && lineIndex < @offset + @linesToShow
+                @tribalMemberIcons[tribeID].each do |iconSprite|
+                    iconSprite.visible = true
+                    iconSprite.y = 32 + 30 * (lineIndex - @offset)
+                end
+            else
+                @tribalMemberIcons[tribeID].each do |iconSprite|
+                    iconSprite.visible = false
+                end
+            end
+        end
 
         @displayText[@offset..@offset+@linesToShow].each {|line|
             drawFormattedTextEx(overlay, xLeft, coordinateY += 30, 450, line, @base, @shadow)
