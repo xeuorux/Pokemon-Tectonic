@@ -47,15 +47,6 @@ class PokemonPartyScreen
   end
 end
 
-# Update follower after any kind of Evolution
-class PokemonEvolutionScene
-  alias follow_pbEndScreen pbEndScreen
-  def pbEndScreen
-    follow_pbEndScreen
-    $PokemonTemp.dependentEvents.refresh_sprite(false)
-  end
-end
-
 class PokemonTrade_Scene
   alias follow_pbEndScreen pbEndScreen
   def pbEndScreen

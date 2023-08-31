@@ -164,6 +164,10 @@ def pbChangeLevel(pkmn, newlevel, scene = nil)
          totalhpdiff, attackdiff, defensediff, spatkdiff, spdefdiff, speeddiff), scene)
       pbTopRightWindow(_INTL("Max. HP<r>{1}\r\nAttack<r>{2}\r\nDefense<r>{3}\r\nSp. Atk<r>{4}\r\nSp. Def<r>{5}\r\nSpeed<r>{6}",
          pkmn.totalhp, pkmn.attack, pkmn.defense, pkmn.spatk, pkmn.spdef, pkmn.speed), scene)
+
+      (newlevel - oldLevel).times do
+          pkmn.changeHappiness("candylevelup")
+      end
       
       # Learn new moves upon level up
       unless $PokemonSystem.prompt_level_moves == 1
@@ -176,18 +180,18 @@ def pbChangeLevel(pkmn, newlevel, scene = nil)
       end
       
       # Check for evolution
-      newspecies = pkmn.check_evolution_on_level_up
-      if newspecies
-          pbFadeOutInWithMusic do
-              evo = PokemonEvolutionScene.new
-              evo.pbStartScreen(pkmn, newspecies)
-              evo.pbEvolution
-              evo.pbEndScreen
-              scene.pbRefresh if scene.is_a?(PokemonPartyScreen)
-          end
-      end
-      (newlevel - oldLevel).times do
-          pkmn.changeHappiness("levelup")
+      while true
+        newspecies = pkmn.check_evolution_on_level_up
+        break unless newspecies
+        evolutionSuccess = false
+        pbFadeOutInWithMusic do
+            evo = PokemonEvolutionScene.new
+            evo.pbStartScreen(pkmn, newspecies)
+            evolutionSuccess = true if evo.pbEvolution
+            evo.pbEndScreen
+            scene&.pbRefresh
+        end
+        break unless evolutionSuccess
       end
   end
 end
@@ -643,6 +647,10 @@ def pbEXPAdditionItem(pkmn, exp, item, scene = nil)
         totalhpdiff, attackdiff, defensediff, spatkdiff, spdefdiff, speeddiff), scene)
     pbTopRightWindow(_INTL("Max. HP<r>{1}\r\nAttack<r>{2}\r\nDefense<r>{3}\r\nSp. Atk<r>{4}\r\nSp. Def<r>{5}\r\nSpeed<r>{6}",
         pkmn.totalhp, pkmn.attack, pkmn.defense, pkmn.spatk, pkmn.spdef, pkmn.speed), scene)
+
+    (new_level - current_lvl).times do
+        pkmn.changeHappiness("candylevelup")
+    end
     
     # Learn new moves upon level up
     unless $PokemonSystem.prompt_level_moves == 1
@@ -655,19 +663,18 @@ def pbEXPAdditionItem(pkmn, exp, item, scene = nil)
     end
 
     # Check for evolution
-    newspecies = pkmn.check_evolution_on_level_up
-    if newspecies
-        pbFadeOutInWithMusic do
-            evo = PokemonEvolutionScene.new
-            evo.pbStartScreen(pkmn, newspecies)
-            evo.pbEvolution
-            evo.pbEndScreen
-            scene&.pbRefresh
-        end
-    end
-
-    (new_level - current_lvl).times do
-        pkmn.changeHappiness("levelup")
+    while true
+      newspecies = pkmn.check_evolution_on_level_up
+      break unless newspecies
+      evolutionSuccess = false
+      pbFadeOutInWithMusic do
+          evo = PokemonEvolutionScene.new
+          evo.pbStartScreen(pkmn, newspecies)
+          evolutionSuccess = true if evo.pbEvolution
+          evo.pbEndScreen
+          scene&.pbRefresh
+      end
+      break unless evolutionSuccess
     end
 
     return true

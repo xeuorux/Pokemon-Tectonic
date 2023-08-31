@@ -1735,8 +1735,10 @@ class Pokemon
       case method
       when "walking"
         gain = 1
+      when "candylevelup"
+        gain = 2
       when "levelup"
-        gain = 3
+        gain = 4
       when "evolution"
         gain = 15
       when "groom"
