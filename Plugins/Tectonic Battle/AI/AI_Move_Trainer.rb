@@ -77,7 +77,7 @@ class PokeBattle_AI
         return choices,bestKillInfo
     end
 
-    def pbEvaluateMoveTrainer(user, move, targets: [], killInfoArray: [])
+    def pbEvaluateMoveTrainer(user, move, targets: [], killInfoArray: [], random: false)
         policies = user.ownersPolicies
         target_data = move.pbTarget(user)
         newChoice = nil
@@ -138,11 +138,20 @@ class PokeBattle_AI
                 end
             end
             if scoresAndTargets.length > 0
-                # Get the one best target for the move
-                scoresAndTargets.sort! { |a, b| b[0] <=> a[0] }
-                bestTargetChoice = scoresAndTargets[0]
-                newChoice = [bestTargetChoice[0], bestTargetChoice[1]]
-                killInfo = bestTargetChoice[2]
+                if random
+                    totalScore = 0
+                    scoresAndTargets.each do |scoreAndTargetEntry|
+                        totalScore += scoreAndTargetEntry[0]
+                    end
+                    totalScore /= scoresAndTargets.length.to_f
+                    newChoice = [totalScore, -1]
+                else
+                    # Get the one best target for the move
+                    scoresAndTargets.sort! { |a, b| b[0] <=> a[0] }
+                    bestTargetChoice = scoresAndTargets[0]
+                    newChoice = [bestTargetChoice[0], bestTargetChoice[1]]
+                    killInfo = bestTargetChoice[2]
+                end
             end
         end
         return newChoice,killInfo

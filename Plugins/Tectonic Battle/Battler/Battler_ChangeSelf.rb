@@ -115,7 +115,7 @@ class PokeBattle_Battler
         end
     end
 
-    def pbRecoverHP(amt, anim = true, anyAnim = true, showMessage = true, customMessage = nil, canOverheal: false)
+    def pbRecoverHP(amt, anim = true, anyAnim = true, showMessage = true, customMessage = nil, canOverheal: false, aiCheck: false)
         if @battle.autoTesting
             anim = false
             anyAnim = false
@@ -128,22 +128,25 @@ class PokeBattle_Battler
         amt = @totalhp - @hp if amt > @totalhp - @hp && !canOverheal
         amt = 1 if amt < 1 && @hp < @totalhp
         if effectActive?(:NerveBreak)
-            @battle.pbDisplay(_INTL("{1}'s healing is reversed because of their broken nerves!", pbThis))
+            @battle.pbDisplay(_INTL("{1}'s healing is reversed because of their broken nerves!", pbThis)) if showMessage && !aiCheck
             amt *= -1
         end
-        oldHP = @hp
-        self.hp += amt
-        self.hp = 0 if self.hp.negative?
-        PBDebug.log("[HP change] #{pbThis} gained #{amt} HP (#{oldHP}=>#{@hp})") if amt.positive?
-        raise _INTL("HP greater than total HP") if @hp > @totalhp unless canOverheal
-        anyAnim = false if @autoTesting
-        @battle.scene.pbHPChanged(self, oldHP, anim) if anyAnim
-        if showMessage
-            if amt.positive?
-                message = customMessage.nil? ? _INTL("{1}'s HP was restored.", pbThis) : customMessage
-                @battle.pbDisplay(message)
-            elsif amt.negative?
-                @battle.pbDisplay(_INTL("{1}'s lost HP.", pbThis))
+        # Actually perform the HP change
+        unless aiCheck
+            oldHP = @hp
+            self.hp += amt
+            self.hp = 0 if self.hp.negative?
+            PBDebug.log("[HP change] #{pbThis} gained #{amt} HP (#{oldHP}=>#{@hp})") if amt.positive?
+            raise _INTL("HP greater than total HP") if @hp > @totalhp unless canOverheal
+            anyAnim = false if @autoTesting
+            @battle.scene.pbHPChanged(self, oldHP, anim) if anyAnim
+            if showMessage
+                if amt.positive?
+                    message = customMessage.nil? ? _INTL("{1}'s HP was restored.", pbThis) : customMessage
+                    @battle.pbDisplay(message)
+                elsif amt.negative?
+                    @battle.pbDisplay(_INTL("{1}'s lost HP.", pbThis))
+                end
             end
         end
         return amt
@@ -195,9 +198,9 @@ class PokeBattle_Battler
         hideMyAbilitySplash if ability
     end
 
-    def applyFractionalHealing(fraction, ability: nil, anim: true, anyAnim: true, showMessage: true, customMessage: nil, item: nil)
+    def applyFractionalHealing(fraction, ability: nil, anim: true, anyAnim: true, showMessage: true, customMessage: nil, item: nil, aiCheck: false)
         return 0 unless canHeal?
-        if item
+        if item && !aiCheck
             @battle.pbCommonAnimation("UseItem", self) unless @battle.autoTesting
             unless customMessage
                 if fraction <= 1.0 / 8.0
@@ -207,12 +210,16 @@ class PokeBattle_Battler
                 end
             end
         end
-        battle.pbShowAbilitySplash(self, ability) if ability
+        battle.pbShowAbilitySplash(self, ability) if ability && !aiCheck
         healAmount = @totalhp * fraction
         healAmount /= BOSS_HP_BASED_EFFECT_RESISTANCE.to_f if boss?
-        actuallyHealed = pbRecoverHP(healAmount, anim, anyAnim, showMessage, customMessage)
-        battle.pbHideAbilitySplash(self) if ability
-        return actuallyHealed
+        actuallyHealed = pbRecoverHP(healAmount, anim, anyAnim, showMessage, customMessage, aiCheck: aiCheck)
+        battle.pbHideAbilitySplash(self) if ability && !aiCheck
+        if aiCheck
+            return getHealingEffectScore(actuallyHealed)
+        else
+            return actuallyHealed
+        end
     end
 
     def pbFaint(showMessage = true)

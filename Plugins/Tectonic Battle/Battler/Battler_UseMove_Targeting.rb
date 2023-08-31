@@ -32,8 +32,7 @@ class PokeBattle_Battler
     #=============================================================================
     # Get move's default target(s)
     #=============================================================================
-    def pbFindTargets(choice, move, user)
-        preTarget = choice[3] # A target that was already chosen
+    def pbFindTargets(preTarget, move, user)
         targets = []
         # Get list of targets
         case move.pbTarget(user).id # Curse can change its target type

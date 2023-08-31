@@ -765,20 +765,17 @@ end
 # For 5 rounds, foes' attacks cannot become critical hits. (Lucky Chant)
 #===============================================================================
 class PokeBattle_Move_0A1 < PokeBattle_Move
-    def pbMoveFailed?(user, _targets, show_message)
-        if user.pbOwnSide.effectActive?(:LuckyChant)
-            @battle.pbDisplay(_INTL("But it failed, since #{user.pbTeam(true)} is already blessed!")) if show_message
-            return true
-        end
-        return false
+    def initialize(battle, move)
+        super
+        @luckyChantDuration = 10
     end
 
     def pbEffectGeneral(user)
-        user.pbOwnSide.applyEffect(:LuckyChant, 10)
+        user.pbOwnSide.applyEffect(:LuckyChant, @luckyChantDuration)
     end
 
-    def getEffectScore(_user, _target)
-        return 40
+    def getEffectScore(user, _target)
+        return getLuckyChantEffectScore(user, @luckyChantDuration)
     end
 end
 
@@ -787,26 +784,12 @@ end
 # (Reflect)
 #===============================================================================
 class PokeBattle_Move_0A2 < PokeBattle_Move
-    def pbMoveFailed?(user, _targets, show_message)
-        if user.pbOwnSide.effectActive?(:Reflect)
-            @battle.pbDisplay(_INTL("But it failed, since a Reflect is already active!")) if show_message
-            return true
-        end
-        return false
-    end
-
     def pbEffectGeneral(user)
         user.pbOwnSide.applyEffect(:Reflect, user.getScreenDuration)
     end
 
     def getEffectScore(user, _target)
-        score = 0
-        user.eachOpposing do |b|
-            score += 40 if b.hasPhysicalAttack?
-        end
-        score += 10 * user.getScreenDuration
-        score = (score * 1.3).ceil if user.fullHealth?
-        return score
+        return getReflectEffectScore(user)
     end
 end
 
@@ -814,26 +797,12 @@ end
 # For 5 rounds, lowers power of special attacks against the user's side. (Light Screen)
 #===============================================================================
 class PokeBattle_Move_0A3 < PokeBattle_Move
-    def pbMoveFailed?(user, _targets, show_message)
-        if user.pbOwnSide.effectActive?(:LightScreen)
-            @battle.pbDisplay(_INTL("But it failed, since a Light Screen is already active!")) if show_message
-            return true
-        end
-        return false
-    end
-
     def pbEffectGeneral(user)
         user.pbOwnSide.applyEffect(:LightScreen, user.getScreenDuration)
     end
 
     def getEffectScore(user, _target)
-        score = 0
-        user.eachOpposing do |b|
-            score += 40 if b.hasSpecialAttack?
-        end
-        score += 10 * user.getScreenDuration
-        score = (score * 1.3).ceil if user.fullHealth?
-        return score
+        return getLightScreenEffectScore(user)
     end
 end
 
@@ -2633,17 +2602,20 @@ class PokeBattle_Move_0DF < PokeBattle_Move
         return false
     end
 
-    def pbEffectAgainstTarget(user, target)
+    def healingRatio(user)
         if pulseMove? && user.hasActiveAbility?(:MEGALAUNCHER)
-            ratio = 3.0 / 4.0
+            return 3.0 / 4.0
         else
-            ratio = 1.0 / 2.0
+            return 1.0 / 2.0
         end
-        target.applyFractionalHealing(ratio)
+    end
+
+    def pbEffectAgainstTarget(user, target)
+        target.applyFractionalHealing(healingRatio(user))
     end
 
     def getEffectScore(user, target)
-        return getHealingEffectScore(user, target)
+        return target.applyFractionalHealing(healingRatio(user),aiCheck: true)
     end
 end
 
@@ -3523,7 +3495,7 @@ class PokeBattle_Move_0F6 < PokeBattle_Move
     end
 
     def getEffectScore(_user, _target)
-        return 100
+        return 80
     end
 end
 

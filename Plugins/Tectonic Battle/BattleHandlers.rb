@@ -558,8 +558,9 @@ module BattleHandlers
         return !ret.nil? ? ret : false
     end
 
-    def self.triggerAbilityOnSwitchIn(ability, battler, battle)
-        AbilityOnSwitchIn.trigger(ability, battler, battle)
+    def self.triggerAbilityOnSwitchIn(ability, battler, battle, aiCheck = false)
+        ret = AbilityOnSwitchIn.trigger(ability, battler, battle, aiCheck)
+        return ret || 0
     end
 
     def self.triggerAbilityOnEnemySwitchIn(ability, switcher, bearer, battle)

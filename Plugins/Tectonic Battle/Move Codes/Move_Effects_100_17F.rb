@@ -244,15 +244,8 @@ class PokeBattle_Move_10C < PokeBattle_Move
     end
 
     def getEffectScore(user, _target)
-        score = 80
-        score += 20 if user.firstTurn?
-        user.eachOpposing(true) do |b|
-            if !b.canActThisTurn?
-                score += 50
-            elsif b.hasSoundMove?
-                score -= 50
-            end
-        end
+        score = getSubstituteEffectScore(user)
+        score += getHPLossEffectScore(user, 0.25)
         return score
     end
 end
@@ -575,30 +568,17 @@ end
 # (Gravity)
 #===============================================================================
 class PokeBattle_Move_118 < PokeBattle_Move
-    def pbMoveFailed?(_user, _targets, show_message)
-        if @battle.field.effectActive?(:Gravity)
-            @battle.pbDisplay(_INTL("But it failed, since gravity is already intense!")) if show_message
-            return true
-        end
-        return false
+    def initialize(battle, move)
+        super
+        @gravityDuration = 5
     end
 
     def pbEffectGeneral(_user)
-        @battle.field.applyEffect(:Gravity, 5)
+        @battle.field.applyEffect(:Gravity, @gravityDuration)
     end
 
     def getEffectScore(user, _target)
-        score = 20
-        @battle.eachBattler do |b|
-            bScore = 0
-            bScore -= 20 if b.airborne?(true)
-            bScore += 20 if b.hasInaccurateMove?
-            bScore += 40 if b.hasLowAccuracyMove?
-            bScore *= -1 if b.opposes?(user)
-
-            score += bScore
-        end
-        return score
+        return getGravityEffectScore(user, @gravityDuration)
     end
 end
 
@@ -1930,10 +1910,14 @@ class PokeBattle_Move_15B < PokeBattle_HalfHealingMove
         super
     end
 
-    def getEffectScore(user, _target)
+    def getEffectScore(user, target)
         # The target for this is set as the user since its the user that heals
-        score = getHealingEffectScore(user, user, 5)
-        score += 30
+        score = super
+        if target.opposes?(user)
+            score += 40
+        else
+            score -= 40
+        end
         return score
     end
 end
@@ -2015,53 +1999,10 @@ end
 # Decreases the target's Attack by 1 step. Heals user by an amount equal to the
 # target's Attack stat. (Strength Sap)
 #===============================================================================
-class PokeBattle_Move_160 < PokeBattle_Move
-    def healingMove?; return true; end
-
-    def pbFailsAgainstTarget?(_user, target, show_message)
-        # NOTE: The official games appear to just check whether the target's Attack
-        #       stat step is -6 and fail if so, but I've added the "fail if target
-        #       has Contrary and is at +6" check too for symmetry. This move still
-        #       works even if the stat step cannot be changed due to an ability or
-        #       other effect.
-        if !@battle.moldBreaker && target.hasActiveAbility?(%i[CONTRARY ECCENTRIC]) &&
-           target.statStepAtMax?(:ATTACK)
-            if show_message
-                @battle.pbDisplay(_INTL("But it failed, since #{target.pbThis(true)}'s Attack can't go any higher!"))
-            end
-            return true
-        elsif target.statStepAtMin?(:ATTACK)
-            if show_message
-                @battle.pbDisplay(_INTL("But it failed, since #{target.pbThis(true)}'s Attack can't go any lower!"))
-            end
-            return true
-        end
-        return false
-    end
-
-    def pbEffectAgainstTarget(user, target)
-        healAmount = target.pbAttack
-        # Reduce target's Attack stat
-        target.tryLowerStat(:ATTACK, user, move: self)
-        # Heal user
-        if target.hasActiveAbility?(:LIQUIDOOZE)
-            @battle.pbShowAbilitySplash(target, :LIQUIDOOZE)
-            user.pbReduceHP(healAmount)
-            @battle.pbDisplay(_INTL("{1} sucked up the liquid ooze!", user.pbThis))
-            @battle.pbHideAbilitySplash(target)
-            user.pbItemHPHealCheck
-        elsif user.canHeal?
-            healAmount *= 1.3 if user.hasActiveItem?(:BIGROOT)
-            user.pbRecoverHP(healAmount)
-        end
-    end
-
-    def getEffectScore(user, target)
-        return getHealingEffectScore(user, user, 2)
-    end
-
-    def getTargetAffectingEffectScore(user, target)
-        return getMultiStatDownEffectScore([:ATTACK, 1], user, target)
+class PokeBattle_Move_160 < PokeBattle_StatDrainHealingMove
+    def initialize(battle, move)
+        super
+        @statToReduce = :ATTACK
     end
 end
 
@@ -2354,19 +2295,20 @@ class PokeBattle_Move_16E < PokeBattle_Move
         return false
     end
 
-    def pbEffectAgainstTarget(_user, target)
+    def healingRatio(user,target)
         if @battle.moonGlowing?
-            ratio = 2.0 / 3.0
+            return 2.0 / 3.0
         else
-            ratio = 1.0 / 2.0
+            return 1.0 / 2.0
         end
-        target.applyFractionalHealing(ratio)
+    end
+
+    def pbEffectAgainstTarget(user, target)
+        target.applyFractionalHealing(healingRatio(user,target))
     end
 
     def getEffectScore(user, target)
-        magnitude = 3
-        magnitude = 5 if @battle.moonGlowing?
-        return getHealingEffectScore(user, target, magnitude)
+        return target.applyFractionalHealing(healingRatio(user,target),aiCheck: true)
     end
 
     def shouldHighlight?(_user, _target)
@@ -2376,7 +2318,7 @@ end
 
 #===============================================================================
 # Damages target if target is a foe, or heals target by 1/2 of its max HP if
-# target is an ally. (Pollen Puff)
+# target is an ally. (Pollen Puff, Package, Water Spiral)
 #===============================================================================
 class PokeBattle_Move_16F < PokeBattle_Move
     def pbTarget(user)
@@ -2422,7 +2364,7 @@ class PokeBattle_Move_16F < PokeBattle_Move
     end
 
     def getEffectScore(user, target)
-        return getHealingEffectScore(user, target) unless user.opposes?(target)
+        return target.applyFractionalHealing(1.0 / 2.0, aiCheck: true) unless user.opposes?(target)
         return 0
     end
 

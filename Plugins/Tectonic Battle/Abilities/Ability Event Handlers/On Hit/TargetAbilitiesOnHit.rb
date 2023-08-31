@@ -4,37 +4,43 @@
 
 BattleHandlers::TargetAbilityOnHit.add(:SANDBURST,
     proc { |ability, user, target, move, battle, aiCheck, aiNumHits|
-        next pbBattleWeatherAbility(ability, :Sandstorm, target, battle, false, true, aiCheck)
+        score = pbBattleWeatherAbility(ability, :Sandstorm, target, battle, false, true, aiCheck)
+        next score * -1 if aiCheck
     }
 )
 
 BattleHandlers::TargetAbilityOnHit.add(:INNERLIGHT,
     proc { |ability, user, target, move, battle, aiCheck, aiNumHits|
-        next pbBattleWeatherAbility(ability, :Sun, target, battle, false, true, aiCheck)
+        score = pbBattleWeatherAbility(ability, :Sun, target, battle, false, true, aiCheck)
+        next score * -1 if aiCheck
     }
 )
 
 BattleHandlers::TargetAbilityOnHit.add(:STORMBRINGER,
     proc { |ability, user, target, move, battle, aiCheck, aiNumHits|
-        next pbBattleWeatherAbility(ability, :Rain, target, battle, false, true, aiCheck)
+        score = pbBattleWeatherAbility(ability, :Rain, target, battle, false, true, aiCheck)
+        next score * -1 if aiCheck
     }
 )
 
 BattleHandlers::TargetAbilityOnHit.add(:FROSTSCATTER,
     proc { |ability, user, target, move, battle, aiCheck, aiNumHits|
-        next pbBattleWeatherAbility(ability, :Hail, target, battle, false, true, aiCheck)
+        score = pbBattleWeatherAbility(ability, :Hail, target, battle, false, true, aiCheck)
+        next score * -1 if aiCheck
     }
 )
 
 BattleHandlers::TargetAbilityOnHit.add(:SUNEATER,
     proc { |ability, user, target, move, battle, aiCheck, aiNumHits|
-        next pbBattleWeatherAbility(ability, :Eclipse, target, battle, false, true, aiCheck)
+        score = pbBattleWeatherAbility(ability, :Eclipse, target, battle, false, true, aiCheck)
+        next score * -1 if aiCheck
     }
 )
 
 BattleHandlers::TargetAbilityOnHit.add(:LUNARLOYALTY,
     proc { |ability, user, target, move, battle, aiCheck, aiNumHits|
-        next pbBattleWeatherAbility(ability, :Moonglow, target, battle, false, true, aiCheck)
+        score = pbBattleWeatherAbility(ability, :Moonglow, target, battle, false, true, aiCheck)
+        next score * -1 if aiCheck
     }
 )
 

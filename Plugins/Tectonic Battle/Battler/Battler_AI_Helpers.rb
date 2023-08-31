@@ -27,6 +27,16 @@ class PokeBattle_Battler
         return asleep? && getStatusCount(:SLEEP) > 1
     end
 
+    def getHealingEffectScore(healingAmount)
+        healingScore = 0
+        healingScore += healingAmount * pbDefense
+        healingScore += healingAmount * pbSpDef
+        healingScore /= 5
+        healingPercentage = (100 * healingAmount / @totalhp.to_f).round(1)
+        echoln("\t\t[EFFECT SCORING] #{pbThis} scores the value of healing #{healingAmount} HP (#{healingPercentage} percent) at #{healingScore}")
+        return healingScore
+    end
+
     ###############################################################################
     # Understanding the battler's moves
     ###############################################################################

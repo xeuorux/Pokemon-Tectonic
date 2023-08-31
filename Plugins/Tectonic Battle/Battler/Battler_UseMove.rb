@@ -293,7 +293,7 @@ class PokeBattle_Battler
         # Find the default user (self or Snatcher) and target(s)
         user = pbFindUser(choice, move)
         user = pbChangeUser(choice, move, user)
-        targets = pbFindTargets(choice, move, user)
+        targets = pbFindTargets(choice[3], move, user)
         targets = pbChangeTargets(move, user, targets)
         unless move.empoweredMove? && boss?
             # Pressure
@@ -587,9 +587,7 @@ user.pbThis))
                 @battle.pbShowAbilitySplash(b, :MAGICBOUNCE) if b.damageState.magicBounce
                 @battle.pbDisplay(_INTL("{1} bounced the {2} back!", b.pbThis, move.name))
                 @battle.pbHideAbilitySplash(b) if b.damageState.magicBounce
-                newChoice = choice.clone
-                newChoice[3] = user.index
-                newTargets = pbFindTargets(newChoice, move, b)
+                newTargets = pbFindTargets(user.index, move, b)
                 newTargets = pbChangeTargets(move, b, newTargets)
 
                 # Check to see if the bounced move should fail

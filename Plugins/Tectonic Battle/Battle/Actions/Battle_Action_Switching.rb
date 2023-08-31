@@ -451,7 +451,7 @@ class PokeBattle_Battle
                     # Rock Climber
                     if battler.shouldAbilityApply?(:ROCKCLIMBER,aiCheck)
                         if aiCheck
-                            rockClimberScore += getMultiStatUpEffectScore([:SPEED,1],battler,battler)
+                            rockClimberScore = getMultiStatUpEffectScore([:SPEED,1],battler,battler)
                             rockClimberScore = (rockClimberScore / PokeBattle_AI::EFFECT_SCORE_TO_SWITCH_SCORE_CONVERSION_RATIO).ceil
                             otherHazardScore += rockClimberScore
                             echoln("\t[HAZARD SCORING] #{battler.pbThis} will activate Rock Climber (#{rockClimberScore.to_change})")

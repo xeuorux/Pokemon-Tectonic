@@ -295,27 +295,6 @@ def statStepsValueScore(battler)
     return score
 end
 
-def getHealingEffectScore(user, target, magnitude = 5)
-    score = 0
-
-    score += magnitude * 5 if target.hp <= (target.totalhp * 2) / 3
-
-    score += magnitude * 5 if target.hp <= target.totalhp / 3
-
-    score *= 1.5 if target.hasActiveAbilityAI?(:ROOTED)
-    score *= 2.0 if target.hasActiveAbilityAI?(:GLOWSHROOM) && user.battle.moonGlowing?
-    score *= 1.3 if target.hasActiveItem?(:BIGROOT)
-
-    score *= -1 if target.effectActive?(:NerveBreak)
-
-    score *= 1 + (target.steps[:DEFENSE] / 5)
-    score *= 1 + (target.steps[:SPECIAL_DEFENSE] / 5)
-
-    score *= -1 if user.opposes?(target)
-
-    return score
-end
-
 def getMultiStatUpEffectScore(statUpArray, user, target, fakeStepModifier: 0, evaluateThreat: true)
     echoln("\t\t[EFFECT SCORING] Scoring the effect of raising stats #{statUpArray.to_s} on target #{target.pbThis(true)}")
     
@@ -648,5 +627,133 @@ def getAquaRingEffectScore(user)
     return 0 if user.effectActive?(:AquaRing)
     score = 40
     score += 40 if user.aboveHalfHealth?
+    return score
+end
+
+def getSubstituteEffectScore(user)
+    score = 0
+    user.eachOpposing(true) do |b|
+        if !b.canActThisTurn?
+            score += 80
+        elsif !b.hasDamagingAttack?
+            score += 60
+        elsif !b.hasSoundMove?
+            score += 40
+        end
+    end
+    score += user.getHealingEffectScore(predictedEOTHealing(user.battle,user)) / 2
+    score += 20 if user.hasStatBoostingMove?
+    score += 20 if user.firstTurn?
+    return score
+end
+
+def getWeatherResetEffectScore(user)
+    if user.inWeatherTeam
+        return -80
+    else
+        return 80
+    end
+end
+
+def getGreyMistSettingEffectScore(user,duration)
+    score = 20
+    user.battle.eachBattler do |b|
+        if b.opposes?(user)
+            score += statStepsValueScore(b)
+            score += 10 * duration if b.hasStatBoostingMove?
+        else
+            score -= statStepsValueScore(b)
+            score -= 10 * duration if b.hasStatBoostingMove?
+        end
+    end
+    return score
+end
+
+def getReflectEffectScore(user, baseDuration = nil, move = nil)
+    score = 0
+    # Current turn value
+    unless user.pbOwnSide.effectActive?(:Reflect)
+        user.eachOpposing do |b|
+            next unless b.hasPhysicalAttack?
+            score += 60 if !move || user.battle.battleAI.userMovesFirst?(move, user, b)
+        end
+    end
+    duration = baseDuration ? user.getScreenDuration(baseDuration) : user.getScreenDuration
+    duration -= user.pbOwnSide.countEffect(:Reflect) if user.pbOwnSide.effectActive?(:Reflect)
+    score += 10 * duration
+    score = (score * 1.3).ceil if user.fullHealth?
+    return score
+end
+
+def getLightScreenEffectScore(user, baseDuration = nil, move = nil)
+    score = 0
+    # Current turn value
+    unless user.pbOwnSide.effectActive?(:LightScreen)
+        user.eachOpposing do |b|
+            next unless b.hasSpecialAttack?
+            score += 60 if !move || user.battle.battleAI.userMovesFirst?(move, user, b)
+        end
+    end
+    duration = baseDuration ? user.getScreenDuration(baseDuration) : user.getScreenDuration
+    duration -= user.pbOwnSide.countEffect(:LightScreen) if user.pbOwnSide.effectActive?(:LightScreen)
+    score += 10 * duration
+    score = (score * 1.3).ceil if user.fullHealth?
+    return score
+end
+
+def getSafeguardEffectScore(user, duration)
+    score = 0
+    duration -= user.pbOwnSide.countEffect(:Safeguard) if user.pbOwnSide.effectActive?(:Safeguard)
+    user.battle.eachSameSideBattler(user.index) do |b|
+        score += duration * 5
+        score += 10 if b.hasSpotsForStatus?
+    end
+    
+    return score
+end
+
+def getLuckyChantEffectScore(user, duration)
+    score = 0
+    duration -= user.pbOwnSide.countEffect(:LuckyChant) if user.pbOwnSide.effectActive?(:LuckyChant)
+    user.battle.eachSameSideBattler(user.index) do |b|
+        score += duration * 5
+    end
+
+    return score
+end
+
+def getTailwindEffectScore(user, duration, move = nil)
+    score = 0
+
+    # Current turn value
+    unless user.pbOwnSide.effectActive?(:Tailwind)
+        user.eachAlly do |b|
+            score += 10
+            score += 40 if !move || user.battle.battleAI.userMovesFirst?(move, user, b)
+        end
+    end
+
+    # Lingering Value
+    duration -= user.pbOwnSide.countEffect(:Tailwind) if user.pbOwnSide.effectActive?(:Tailwind)
+    user.battle.eachSameSideBattler(user.index) do |b|
+        score += duration * 20
+    end
+
+    return score
+end
+
+def getGravityEffectScore(user, duration)
+    score = 0
+    duration -= user.battle.field.countEffect(:Gravity) if user.battle.field.effectActive?(:Gravity)
+    user.battle.eachBattler do |b|
+        bScore = 0
+        bScore -= 4 if b.airborne?(true)
+        bScore += 4 if b.hasInaccurateMove?
+        bScore += 10 if b.hasLowAccuracyMove?
+        bScore *= duration
+        bScore *= -1 if b.opposes?(user)
+
+        score += bScore
+    end
     return score
 end

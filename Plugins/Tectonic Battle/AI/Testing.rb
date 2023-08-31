@@ -21,7 +21,7 @@ class PokeBattle_AI
             score = 0
             begin
                 moveObject = PokeBattle_Move.from_pokemon_move(@battle, Pokemon::Move.new(move.id))
-                target = user.pbFindTargets([nil, nil, nil, -1], moveObject, user)
+                target = user.pbFindTargets(-1, moveObject, user)
                 newChoice = pbEvaluateMoveTrainer(user, moveObject)
                 if newChoice
                     score = newChoice[0]

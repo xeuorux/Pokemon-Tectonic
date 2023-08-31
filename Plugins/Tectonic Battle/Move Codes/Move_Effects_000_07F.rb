@@ -373,24 +373,17 @@ end
 # (Safeguard)
 #===============================================================================
 class PokeBattle_Move_01A < PokeBattle_Move
-    def pbMoveFailed?(user, _targets, show_message)
-        if user.pbOwnSide.effectActive?(:Safeguard)
-            @battle.pbDisplay(_INTL("But it failed, since a Safeguard is already present!")) if show_message
-            return true
-        end
-        return false
+    def initialize(battle, move)
+        super
+        @safeguardDuration = 10
     end
 
     def pbEffectGeneral(user)
-        user.pbOwnSide.applyEffect(:Safeguard, 10)
+        user.pbOwnSide.applyEffect(:Safeguard, @safeguardDuration)
     end
 
     def getEffectScore(user, _target)
-        score = 20
-        @battle.eachSameSideBattler(user.index) do |b|
-            score += 30 if b.hasSpotsForStatus?
-        end
-        return score
+        return getSafeguardEffectScore(user, @safeguardDuration)
     end
 end
 
@@ -1377,23 +1370,17 @@ end
 # For 4 rounds, doubles the Speed of all battlers on the user's side. (Tailwind)
 #===============================================================================
 class PokeBattle_Move_05B < PokeBattle_Move
-    def pbMoveFailed?(user, _targets, show_message)
-        if user.pbOwnSide.effectActive?(:Tailwind)
-            @battle.pbDisplay(_INTL("But it failed, since there is already a tailwind blowing!")) if show_message
-            return true
-        end
-        return false
+    def initialize(battle, move)
+        super
+        @tailwindDuration = 4
     end
 
     def pbEffectGeneral(user)
-        user.pbOwnSide.applyEffect(:Tailwind, 4)
+        user.pbOwnSide.applyEffect(:Tailwind, @tailwindDuration)
     end
 
     def getEffectScore(user, _target)
-        score = 100
-        score += 20 if user.firstTurn?
-        score += 50 if @battle.pbSideSize(user.index) > 1
-        return score
+        return getTailwindEffectScore(user, @tailwindDuration, self)
     end
 end
 

@@ -106,7 +106,7 @@ class PokeBattle_AI
 
             pursuitMove = b.canChoosePursuit?(battler)
             if pursuitMove
-                pursuitScore = pbEvaluateMoveTrainer(b, pursuitMove, targets: [battler])
+                pursuitScore,pursuitKillInfo = pbGetMoveScore(pursuitMove, b, battler)
                 pursuitScore = (pursuitScore / PokeBattle_AI::EFFECT_SCORE_TO_SWITCH_SCORE_CONVERSION_RATIO).ceil
                 stayInRating += pursuitScore
                 PBDebug.log("[STAY-IN RATING] #{battler.pbThis} (#{battler.index}) has an opponent that can target it with pursuit (#{pursuitScore.to_change})")
@@ -251,41 +251,7 @@ class PokeBattle_AI
     def getEntryAbilityEvaluationForEnteringBattler(battler,dieingOnEntry)
         totalAbilityScore = 0
         battler.eachActiveAbility do |abilityID|
-            switchAbilityEffectScore = 0
-            case abilityID
-            when :INTIMIDATE
-                battler.eachOpposing do |opposingBattler|
-                    switchAbilityEffectScore += getMultiStatDownEffectScore([:ATTACK,2],battler,opposingBattler)
-                end
-            when :FASCINATE
-                battler.eachOpposing do |opposingBattler|
-                    switchAbilityEffectScore += getMultiStatDownEffectScore([:SPECIAL_ATTACK,2],battler,opposingBattler)
-                end
-            when :FRUSTRATE
-                battler.eachOpposing do |opposingBattler|
-                    switchAbilityEffectScore += getMultiStatDownEffectScore([:SPEED,2],battler,opposingBattler)
-                end
-            when :CRAGTERROR && @battle.sandy?
-                battler.eachOpposing do |opposingBattler|
-                    switchAbilityEffectScore += getMultiStatDownEffectScore(ATTACKING_STATS_2,battler,opposingBattler)
-                end
-            when :DRAMATICLIGHTING && @battle.eclipsed?
-                battler.eachOpposing do |opposingBattler|
-                    switchAbilityEffectScore += getMultiStatDownEffectScore(ATTACKING_STATS_2,battler,opposingBattler)
-                end
-            when :DROUGHT, :INNERLIGHT
-                switchAbilityEffectScore += getWeatherSettingEffectScore(:Sun,battler,@battle)
-            when :DRIZZLE, :STORMBRINGER
-                switchAbilityEffectScore += getWeatherSettingEffectScore(:Rain,battler,@battle)
-            when :SNOWWARNING, :FROSTSCATTER
-                switchAbilityEffectScore += getWeatherSettingEffectScore(:Hail,battler,@battle)
-            when :SANDSTREAM, :SANDBURST
-                switchAbilityEffectScore += getWeatherSettingEffectScore(:Sand,battler,@battle)
-            when :MOONGAZE, :LUNARLOYALTY
-                switchAbilityEffectScore += getWeatherSettingEffectScore(:Moonglow,battler,@battle)
-            when :HARBINGER, :SUNEATER
-                switchAbilityEffectScore += getWeatherSettingEffectScore(:Eclipse,battler,@battle)
-            end
+            switchAbilityEffectScore = BattleHandlers.triggerAbilityOnSwitchIn(abilityID, battler, @battle, true)
             abilitySwitchModifier = (switchAbilityEffectScore / PokeBattle_AI::EFFECT_SCORE_TO_SWITCH_SCORE_CONVERSION_RATIO).ceil
             totalAbilityScore += abilitySwitchModifier
             echoln("[SWITCH SCORING] #{battler.pbThis} values the effect of #{abilityID} as #{switchAbilityEffectScore} (#{abilitySwitchModifier.to_change})")

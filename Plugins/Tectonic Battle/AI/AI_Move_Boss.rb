@@ -141,7 +141,7 @@ class PokeBattle_AI
         user.lastMoveChosen = move.id
         PBDebug.log("[BOSS AI] #{user.pbThis} (#{user.index}) will use #{move.name} with target #{target}")
 
-        targets = user.pbFindTargets(choice, move, user)
+        targets = user.pbFindTargets(target, move, user)
 
         # Determine which aggro cursor to use
         # And show warning messages

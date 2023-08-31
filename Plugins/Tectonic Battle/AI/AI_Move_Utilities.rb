@@ -186,7 +186,7 @@ class PokeBattle_AI
     # Speed calculation
     #===========================================================================
     # If KillInfo is given, calculates if the user will move before the possible kill against it
-    # Otherwise, calculates if the user will move before the target (assuming 0 priority)
+    # Otherwise, calculates if the user will move before the target (assuming 0 priority by the target)
     def userMovesFirst?(move, user, target, killInfo: nil)
         return false if move.is_a?(PokeBattle_ForetoldMove)
         userPriority = @battle.getMovePriority(move, user, [target], true)

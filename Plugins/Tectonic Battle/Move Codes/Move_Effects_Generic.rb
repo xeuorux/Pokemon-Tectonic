@@ -619,16 +619,6 @@ class PokeBattle_HealingMove < PokeBattle_Move
     def healingMove?; return true; end
     def healRatio(_user); return 0.0; end # A float value representing the percent HP heal
 
-    def pbHealAmount(user)
-        ratio = healRatio(user)
-        if ratio > 0
-            healAmount = user.totalhp * ratio
-            healAmount /= BOSS_HP_BASED_EFFECT_RESISTANCE.to_f if user.boss?
-            return healAmount
-        end
-        return 1
-    end
-
     def pbMoveFailed?(user, _targets, show_message)
         if user.fullHealth?
             @battle.pbDisplay(_INTL("{1}'s HP is full!", user.pbThis)) if show_message
@@ -638,15 +628,11 @@ class PokeBattle_HealingMove < PokeBattle_Move
     end
 
     def pbEffectGeneral(user)
-        amt = pbHealAmount(user)
-        user.pbRecoverHP(amt) if amt > 0
+        user.applyFractionalHealing(healRatio(user))
     end
 
     def getEffectScore(user, target)
-        scoringMagnitude = 3
-        ratio = healRatio(user)
-        scoringMagnitude = 10 * ratio if ratio > 0
-        return getHealingEffectScore(user, target, scoringMagnitude)
+        return user.applyFractionalHealing(healRatio(user),aiCheck: true)
     end
 end
 
@@ -1007,7 +993,7 @@ class PokeBattle_RoomMove < PokeBattle_Move
     end
 
     def getEffectScore(user, _target)
-        return 5 * user.getRoomDuration
+        return @battle.pbStartRoom(@roomEffect, user, true)
     end
 end
 
@@ -1382,5 +1368,62 @@ class PokeBattle_HelpingMove < PokeBattle_Move
         return 0 unless target.hasDamagingAttack?
         score = 100
         return score
+    end
+end
+
+# Each subclass must have an initialization method that defines the @statToReduce variable
+class PokeBattle_StatDrainHealingMove < PokeBattle_Move
+    def healingMove?; return true; end
+
+    def pbFailsAgainstTarget?(_user, target, show_message)
+        # NOTE: The official games appear to just check whether the target's Attack
+        #       stat step is -6 and fail if so, but I've added the "fail if target
+        #       has Contrary and is at +6" check too for symmetry. This move still
+        #       works even if the stat step cannot be changed due to an ability or
+        #       other effect.
+        statName = GameData::Stat.get(@statToReduce).name
+        if !@battle.moldBreaker && target.hasActiveAbility?(%i[CONTRARY ECCENTRIC]) &&
+           target.statStepAtMax?(@statToReduce)
+            if show_message
+                @battle.pbDisplay(_INTL("But it failed, since #{target.pbThis(true)}'s #{statName} can't go any higher!"))
+            end
+            return true
+        elsif target.statStepAtMin?(@statToReduce)
+            if show_message
+                @battle.pbDisplay(_INTL("But it failed, since #{target.pbThis(true)}'s #{statName} can't go any lower!"))
+            end
+            return true
+        end
+        return false
+    end
+
+    def healingAmount(user,target)
+        healAmount = target.getFinalStat(@statToReduce)
+        healAmount *= 1.3 if user.hasActiveItem?(:BIGROOT)
+        return healAmount
+    end
+
+    def pbEffectAgainstTarget(user, target)
+        healAmount = healingAmount(user,target)
+        # Reduce target's stat
+        target.tryLowerStat(@statToReduce, user, move: self)
+        # Heal user
+        if target.hasActiveAbility?(:LIQUIDOOZE)
+            @battle.pbShowAbilitySplash(target, :LIQUIDOOZE)
+            user.pbReduceHP(healAmount)
+            @battle.pbDisplay(_INTL("{1} sucked up the liquid ooze!", user.pbThis))
+            @battle.pbHideAbilitySplash(target)
+            user.pbItemHPHealCheck
+        elsif user.canHeal?
+            user.pbRecoverHP(healAmount)
+        end
+    end
+
+    def getEffectScore(user, target)
+        return user.pbRecoverHP(healingAmount(user,target), aiCheck: true)
+    end
+
+    def getTargetAffectingEffectScore(user, target)
+        return getMultiStatDownEffectScore([@statToReduce, 1], user, target)
     end
 end

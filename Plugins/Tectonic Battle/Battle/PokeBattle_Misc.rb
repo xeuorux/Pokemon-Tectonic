@@ -140,7 +140,25 @@ class PokeBattle_Battle
 
     # moveIDOrIndex is either the index of the move on the user's move list (Integer)
     # or it's the ID of the move to be used (Symbol)
-    def forceUseMove(forcedMoveUser, moveIDOrIndex, target = -1, specialUsage = true, usageMessage = nil, moveUsageEffect = nil, ability: nil)
+    def forceUseMove(forcedMoveUser, moveIDOrIndex, target = -1, specialUsage = true, usageMessage = nil, moveUsageEffect = nil, ability: nil, aiCheck: false)
+        if aiCheck
+            if moveIDOrIndex.is_a?(Symbol)
+                fakeMove = PokeBattle_Move.from_pokemon_move(self, Pokemon::Move.new(moveIDOrIndex))
+            else
+                fakeMove = forcedMoveUser.moves[moveIDOrIndex]
+            end
+            moveScore = 0
+            if target >= 0
+                moveScore = @battleAI.pbGetMoveScore(fakeMove, forcedMoveUser, @battlers[target], forcedMoveUser.ownersPolicies)
+            else
+                newChoice,killInfo = @battleAI.pbEvaluateMoveTrainer(forcedMoveUser, fakeMove, random: true)
+                if newChoice
+                    return newChoice[0]
+                else
+                    return 0 # No valid targets
+                end
+            end
+        end
         oldLastRoundMoved = forcedMoveUser.lastRoundMoved
         if specialUsage
             @specialUsage = true

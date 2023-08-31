@@ -188,17 +188,7 @@ class PokeBattle_Move_587 < PokeBattle_Move
     end
 
     def getEffectScore(user, _target)
-        score = 20
-        @battle.eachBattler do |b|
-            if b.opposes?(user)
-                score += statStepsValueScore(b)
-                score += 50 if b.hasStatBoostingMove?
-            else
-                score -= statStepsValueScore(b)
-                score -= 50 if b.hasStatBoostingMove?
-            end
-        end
-        return score
+        return getGreyMistSettingEffectScore(user,5)
     end
 end
 
@@ -1074,7 +1064,7 @@ class PokeBattle_Move_5B5 < PokeBattle_Move
     end
 
     def getEffectScore(user, _target)
-        return 40 unless user.inWeatherTeam
+        return getWeatherResetEffectScore(user)
     end
 end
 
@@ -1818,14 +1808,9 @@ end
 # For 6 rounds, doubles the Speed of all battlers on the user's side. (Sustained Wind)
 #===============================================================================
 class PokeBattle_Move_5D3 < PokeBattle_Move_05B
-    def pbEffectGeneral(user)
-        user.pbOwnSide.applyEffect(:Tailwind, 6)
-    end
-
-    def getEffectScore(user, _target)
-        score = super
-        score = (score * 1.5).round
-        return score
+    def initialize(battle, move)
+        super
+        @tailwindDuration = 6
     end
 end
 
@@ -2098,53 +2083,10 @@ end
 # Decreases the target's Sp. Atk by 1 step. Heals user by an amount equal to the
 # target's Sp. Atk stat. (Mind Sap)
 #===============================================================================
-class PokeBattle_Move_5E5 < PokeBattle_Move
-    def healingMove?; return true; end
-
-    def pbFailsAgainstTarget?(_user, target, show_message)
-        # NOTE: The official games appear to just check whether the target's Attack
-        #       stat step is -6 and fail if so, but I've added the "fail if target
-        #       has Contrary and is at +6" check too for symmetry. This move still
-        #       works even if the stat step cannot be changed due to an ability or
-        #       other effect.
-        if !@battle.moldBreaker && target.hasActiveAbility?(%i[CONTRARY ECCENTRIC]) &&
-           target.statStepAtMax?(:SPECIAL_ATTACK)
-            if show_message
-                @battle.pbDisplay(_INTL("But it failed, since #{target.pbThis(true)}'s Attack can't go any higher!"))
-            end
-            return true
-        elsif target.statStepAtMin?(:SPECIAL_ATTACK)
-            if show_message
-                @battle.pbDisplay(_INTL("But it failed, since #{target.pbThis(true)}'s Attack can't go any lower!"))
-            end
-            return true
-        end
-        return false
-    end
-
-    def pbEffectAgainstTarget(user, target)
-        healAmount = target.pbSpAtk
-        # Reduce target's Attack stat
-        target.tryLowerStat(:SPECIAL_ATTACK, user, move: self)
-        # Heal user
-        if target.hasActiveAbility?(:LIQUIDOOZE)
-            @battle.pbShowAbilitySplash(target, :LIQUIDOOZE)
-            user.pbReduceHP(healAmount)
-            @battle.pbDisplay(_INTL("{1} sucked up the liquid ooze!", user.pbThis))
-            @battle.pbHideAbilitySplash(target)
-            user.pbItemHPHealCheck
-        elsif user.canHeal?
-            healAmount *= 1.3 if user.hasActiveItem?(:BIGROOT)
-            user.pbRecoverHP(healAmount)
-        end
-    end
-
-    def getEffectScore(user, _target)
-        return getHealingEffectScore(user, user, 2)
-    end
-
-    def getTargetAffectingEffectScore(user, target)
-        return getMultiStatDownEffectScore([:ATTACK, 1], user, target)
+class PokeBattle_Move_5E5 < PokeBattle_StatDrainHealingMove
+    def initialize(battle, move)
+        super
+        @statToReduce = :SPECIAL_ATTACK
     end
 end
 
