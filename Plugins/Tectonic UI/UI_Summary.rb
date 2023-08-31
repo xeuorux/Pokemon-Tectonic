@@ -507,49 +507,45 @@ class PokemonSummary_Scene
         overlay = @sprites["overlay"].bitmap
         base   = Color.new(248, 248, 248)
         shadow = Color.new(104, 104, 104)
-        dexNumBase   = @pokemon.shiny? ? Color.new(248, 56, 32) : Color.new(64, 64, 64)
-        dexNumShadow = @pokemon.shiny? ? Color.new(224, 152, 144) : Color.new(176, 176, 176)
+        blackBase = Color.new(64, 64, 64)
+        blackShadow = Color.new(176, 176, 176)
         # Write various bits of text
         infoTextLabelX = 238
         infoTextInsertedX = 435
         infoLabelBaseY = 74
         textpos = [
             [_INTL("Species"), infoTextLabelX, infoLabelBaseY, 0, base, shadow],
-            [@pokemon.speciesName, infoTextInsertedX, infoLabelBaseY, 2, Color.new(64, 64, 64), Color.new(176, 176, 176)],
+            [@pokemon.speciesName, infoTextInsertedX, infoLabelBaseY, 2, blackBase, blackShadow],
             [_INTL("Type"), infoTextLabelX, infoLabelBaseY + 32, 0, base, shadow],
             [_INTL("OT"), infoTextLabelX, infoLabelBaseY + 32 * 2, 0, base, shadow],
             [_INTL("ID No."), infoTextLabelX, infoLabelBaseY + 32 * 3, 0, base, shadow],
-            [_INTL("Obtain Lv."), infoTextLabelX, infoLabelBaseY + 32 * 4, 0, base, shadow],
+            [_INTL("Marks"), infoTextLabelX, infoLabelBaseY + 32 * 4, 0, base, shadow],
         ]
         # Write Original Trainer's name and ID number
         if @pokemon.owner.name.empty?
-            textpos.push([_INTL("RENTAL"), infoTextInsertedX, infoLabelBaseY + 32 * 2, 2, Color.new(64, 64, 64), Color.new(176, 176, 176)])
-            textpos.push(["?????", infoTextInsertedX, infoLabelBaseY + 32 * 3, 2, Color.new(64, 64, 64), Color.new(176, 176, 176)])
+            textpos.push([_INTL("RENTAL"), infoTextInsertedX, infoLabelBaseY + 32 * 2, 2, blackBase, blackShadow])
+            textpos.push(["?????", infoTextInsertedX, infoLabelBaseY + 32 * 3, 2, blackBase, blackShadow])
         else
-            ownerbase   = Color.new(64, 64, 64)
-            ownershadow = Color.new(176, 176, 176)
-            case @pokemon.owner.gender
-            when 0
-                ownerbase = Color.new(24, 112, 216)
-                ownershadow = Color.new(136, 168, 208)
-            when 1
-                ownerbase = Color.new(248, 56, 32)
-                ownershadow = Color.new(224, 152, 144)
-            end
-            textpos.push([@pokemon.owner.name, infoTextInsertedX, infoLabelBaseY + 32 * 2, 2, ownerbase, ownershadow])
-            textpos.push([format("%05d", @pokemon.owner.public_id), infoTextInsertedX, infoLabelBaseY + 32 * 3, 2, Color.new(64, 64, 64),
-                          Color.new(176, 176, 176),])
+            textpos.push([@pokemon.owner.name, infoTextInsertedX, infoLabelBaseY + 32 * 2, 2, blackBase, blackShadow])
+            textpos.push([format("%05d", @pokemon.owner.public_id), infoTextInsertedX, infoLabelBaseY + 32 * 3, 2, blackBase,
+                          blackShadow,])
         end
-        # Write the Pokemon's original level of obtaining
-        textpos.push([@pokemon.obtain_level.to_s, infoTextInsertedX, infoLabelBaseY + 32 * 4, 2, Color.new(64, 64, 64),
-            Color.new(176, 176, 176),])
+        # Draw the Pokémon's markings
+        drawMarkings(overlay,infoTextInsertedX - 48,infoLabelBaseY + 32 * 4 + 12)
+        # Write the Pokemon's original map and level of obtaining
+        obtainText = "Obtained at level #{@pokemon.obtain_level.to_s} in"
+        textpos.push([obtainText, infoTextLabelX, infoLabelBaseY + 32 * 5 + 2, 0, blackBase, blackShadow])
+        mapname = pbGetMapNameFromId(@pokemon.obtain_map)
+        mapname = @pokemon.obtain_text if @pokemon.obtain_text && !@pokemon.obtain_text.empty?
+        mapname = _INTL("a faraway place") if nil_or_empty?(mapname)
+        textpos.push([mapname, infoTextLabelX, infoLabelBaseY + 32 * 6 - 2, 0, Color.new(24, 112, 216), Color.new(136, 168, 208)])
         # Write experience point info
         endexp = @pokemon.growth_rate.minimum_exp_for_level(@pokemon.level + 1)
-        textpos.push([_INTL("Exp. Points"), 238, 234, 0, base, shadow])
-        textpos.push([@pokemon.exp.to_s_formatted, 488, 266, 1, Color.new(64, 64, 64), Color.new(176, 176, 176)])
-        textpos.push([_INTL("To Next Lv."), 238, 298, 0, base, shadow])
-        textpos.push([(endexp - @pokemon.exp).to_s_formatted, 488, 330, 1, Color.new(64, 64, 64),
-                      Color.new(176, 176, 176),])
+        textpos.push([_INTL("Exp. Points"), 238, infoLabelBaseY + 32 * 7, 0, base, shadow])
+        textpos.push([@pokemon.exp.to_s_formatted, 488, infoLabelBaseY + 32 * 7, 1, blackBase, blackShadow])
+        textpos.push([_INTL("To Next Lv."), 238, infoLabelBaseY + 32 * 8, 0, base, shadow])
+        textpos.push([(endexp - @pokemon.exp).to_s_formatted, 488, infoLabelBaseY + 32 * 8, 1, blackBase,
+                      blackShadow,])
         # Draw all text
         pbDrawTextPositions(overlay, textpos)
         # Draw Pokémon type(s)
@@ -571,8 +567,6 @@ class PokemonSummary_Scene
                                      ["Graphics/Pictures/Summary/overlay_exp", 362, 372, 0, 0, w, 6],
                                  ])
         end
-        # Draw the Pokémon's markings
-        drawMarkings(overlay,104,24)
     end
 
     def drawPageOneEgg
