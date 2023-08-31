@@ -70,6 +70,7 @@ end
 
 def pbRespawnTrainers
   $reset_tracker.refillRespawnTable()
+  $reset_tracker.checkForResets($game_map.map_id)
 end
 
 Events.onMapChange += proc { |_sender,e|

@@ -65,5 +65,5 @@ end
 
 def teleportToTriIsland
     $game_switches[98] = true # Mark player as having visited this island
-    transferPlayer(39,46,Up,411)
+    transferPlayer(54,49,Up,411)
 end
