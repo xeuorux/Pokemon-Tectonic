@@ -31,7 +31,7 @@ class PokeBattle_Battler
         healingScore = 0
         healingScore += healingAmount * pbDefense
         healingScore += healingAmount * pbSpDef
-        healingScore /= 5
+        healingScore /= (2 * level)
         healingPercentage = (100 * healingAmount / @totalhp.to_f).round(1)
         echoln("\t\t[EFFECT SCORING] #{pbThis} scores the value of healing #{healingAmount} HP (#{healingPercentage} percent) at #{healingScore}")
         return healingScore

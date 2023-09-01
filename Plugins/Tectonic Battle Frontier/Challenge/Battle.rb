@@ -76,13 +76,11 @@ class BattleType
       pkmn.heal
       pkmn.makeUnmega
       pkmn.makeUnprimal
-      pkmn.giveItem(olditems[i])
     end
     opponent.party.each_with_index do |pkmn, i|
       pkmn.heal
       pkmn.makeUnmega
       pkmn.makeUnprimal
-      pkmn.giveItem(olditems2[i])
     end
     # Save the record of the battle
     $PokemonTemp.lastbattle = nil
