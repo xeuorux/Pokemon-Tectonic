@@ -287,21 +287,9 @@ class PokeBattle_Battler
 
         pbInitEffects(false)
 
-        # Reset status
-        self.status      = :NONE
-        self.statusCount = 0
-
-        @bossStatus = :NONE
-        @bossStatusCount = 0
-
-        # Lose happiness
-        if @pokemon && @battle.internalBattle
-            badLoss = false
-            @battle.eachOtherSideBattler(@index) do |b|
-                badLoss = true if b.level >= level + 30
-            end
-            @pokemon.changeHappiness(badLoss ? "faintbad" : "faint")
-        end
+        # # Reset status on the underlying pokemon
+        @pokemon&.status = :NONE
+        @pokemon&.statusCount = 0
 
         # Reset form
         @battle.peer.pbOnLeavingBattle(@battle, @pokemon, @battle.usedInBattle[idxOwnSide][@index / 2])
