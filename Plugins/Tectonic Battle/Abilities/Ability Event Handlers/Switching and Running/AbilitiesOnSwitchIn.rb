@@ -504,7 +504,7 @@ BattleHandlers::AbilityOnSwitchIn.add(:WIBBLEWOBBLE,
 BattleHandlers::AbilityOnSwitchIn.add(:DAUNTLESSSWORD,
   proc { |ability, battler, _battle, aiCheck|
       if aiCheck
-          next pbGetMultiStatUpEffectScore([:ATTACK, 1], battler, battler)
+          next getMultiStatUpEffectScore([:ATTACK, 1], battler, battler)
       else
           battler.tryRaiseStat(:ATTACK, battler, ability: ability)
       end
@@ -514,7 +514,7 @@ BattleHandlers::AbilityOnSwitchIn.add(:DAUNTLESSSWORD,
 BattleHandlers::AbilityOnSwitchIn.add(:DAUNTLESSSHIELD,
   proc { |ability, battler, _battle, aiCheck|
       if aiCheck
-          next pbGetMultiStatUpEffectScore([:DEFENSE, 1], battler, battler)
+          next getMultiStatUpEffectScore([:DEFENSE, 1], battler, battler)
       else
           battler.tryRaiseStat(:DEFENSE, battler, ability: ability)
       end
@@ -524,13 +524,16 @@ BattleHandlers::AbilityOnSwitchIn.add(:DAUNTLESSSHIELD,
 BattleHandlers::AbilityOnSwitchIn.add(:DOWNLOAD,
   proc { |ability, battler, battle, aiCheck|
       oppTotalDef = oppTotalSpDef = 0
-      battle.eachOtherSideBattler(battler.index) do |b|
-          oppTotalDef += b.pbDefense
-          oppTotalSpDef += b.pbSpDef
+      anyFoes = false
+      battler.eachOpposing do |b|
+        anyFoes = true
+        oppTotalDef += b.pbDefense
+        oppTotalSpDef += b.pbSpDef
       end
+      next 0 unless anyFoes
       stat = (oppTotalDef < oppTotalSpDef) ? :ATTACK : :SPECIAL_ATTACK
       if aiCheck
-          next pbGetMultiStatUpEffectScore([stat, 2], battler, battler)
+          next getMultiStatUpEffectScore([stat, 2], battler, battler)
       else
           battler.tryRaiseStat(stat, battler, ability: ability, increment: 2)
       end
@@ -540,13 +543,16 @@ BattleHandlers::AbilityOnSwitchIn.add(:DOWNLOAD,
 BattleHandlers::AbilityOnSwitchIn.add(:EVOARMOR,
   proc { |ability, battler, battle, aiCheck|
       oppTotalAttack = oppTotalSpAtk = 0
-      battle.eachOtherSideBattler(battler.index) do |b|
-          oppTotalAttack += b.pbAttack
-          oppTotalSpAtk += b.pbSpAtk
+      anyFoes = false
+      battler.eachOpposing do |b|
+        anyFoes = true
+        oppTotalAttack += b.pbAttack
+        oppTotalSpAtk += b.pbSpAtk
       end
+      next 0 unless anyFoes
       stat = (oppTotalAttack > oppTotalSpAtk) ? :DEFENSE : :SPECIAL_DEFENSE
       if aiCheck
-          next pbGetMultiStatUpEffectScore([stat, 2], battler, battler)
+          next getMultiStatUpEffectScore([stat, 2], battler, battler)
       else
           battler.tryRaiseStat(stat, battler, ability: ability, increment: 2)
       end
