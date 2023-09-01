@@ -353,17 +353,7 @@ end
 # Double damage if a critical hit. (Extinction Axe)
 #===============================================================================
 class PokeBattle_Move_193 < PokeBattle_Move
-    def pbBaseDamage(baseDmg, _user, target)
-        baseDmg *= 2 if target.damageState.critical
-        return baseDmg
-    end
-
-    def pbBaseDamageAI(baseDmg, user, target)
-        rate = pbIsCritical?(user,target,true)
-        rate = 5 if rate > 5
-        baseDmg *= 1.0 + (0.2 * rate)
-        return baseDmg
-    end
+    def criticalHitMultiplier(user,target); return 3.0; end
 end
 
 #===============================================================================

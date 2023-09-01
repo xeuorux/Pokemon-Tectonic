@@ -143,6 +143,7 @@ class PokeBattle_Move
     def turnsBetweenUses(); return 0; end
     def aiAutoKnows?(pokemon); return nil; end
     def statUp; return []; end
+    def criticalHitMultiplier(user,target); return 1.5; end
   
     def nonLethal?(user,_target); return false; end   # For False Swipe
     def switchOutMove?; return false; end
