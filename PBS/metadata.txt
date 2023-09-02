@@ -2400,6 +2400,7 @@ Outdoor = true
 ShowArea = true
 Bicycle = true
 Weather = Blizzard,100
+BattleBack = snow
 WildBattleBGM = TrainerBattleKanto.ogg
 #-------------------------------
 [416]
@@ -2408,14 +2409,16 @@ Outdoor = true
 ShowArea = true
 Bicycle = true
 Weather = Sun,100
+BattleBack = forest
 WildBattleBGM = TrainerBattleKanto.ogg
 #-------------------------------
 [417]
-# Ferrous Cave
+# Crackling Cave
 Outdoor = false
 ShowArea = true
 Bicycle = true
 Weather = DryLightning,100
+BattleBack = cave3
 WildBattleBGM = TrainerBattleKanto.ogg
 #-------------------------------
 [418]

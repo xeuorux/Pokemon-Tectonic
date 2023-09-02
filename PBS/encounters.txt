@@ -1038,10 +1038,10 @@ Land,20
     20,PYROAR,62,64
     20,TALONFLAME,62,64
 #-------------------------------
-[417] # Ferrous Cave
-Land,20
+[417] # Crackling Cave
+Cloud,20
     20,EELEKTROSS,62,64
     20,ELECTIVIRE,62,64
-    20,GALVANTULA,62,64
+    20,EMOLGA,62,64
     20,MAGNEZONE,62,64
-    20,PINCURCHIN,62,64
+    20,MANERGETIC,62,64

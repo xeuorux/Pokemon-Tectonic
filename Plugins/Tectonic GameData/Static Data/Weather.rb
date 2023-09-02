@@ -288,8 +288,12 @@ module GameData
   GameData::Weather.register({
     :id               => :DryLightning,
     :id_number        => 14,
+    :default_strength => 6,
     :clouds_proc        => proc { |strength|
       next 0
+    },
+    :tone_proc        => proc { |strength|
+      next Tone.new(-strength * 10, -strength * 10, -strength * 10, 30)
     },
   })
 
