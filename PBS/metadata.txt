@@ -2371,6 +2371,7 @@ Outdoor = true
 ShowArea = true
 Bicycle = true
 MapPosition = 0,23,11
+WildBattleBGM = TrainerBattleKanto.ogg
 #-------------------------------
 [412]
 # Metal Den
@@ -2399,6 +2400,7 @@ Outdoor = true
 ShowArea = true
 Bicycle = true
 Weather = Blizzard,100
+WildBattleBGM = TrainerBattleKanto.ogg
 #-------------------------------
 [416]
 # Sunbaked Camp
@@ -2406,6 +2408,7 @@ Outdoor = true
 ShowArea = true
 Bicycle = true
 Weather = Sun,100
+WildBattleBGM = TrainerBattleKanto.ogg
 #-------------------------------
 [417]
 # Ferrous Cave
@@ -2413,6 +2416,7 @@ Outdoor = false
 ShowArea = true
 Bicycle = true
 Weather = DryLightning,100
+WildBattleBGM = TrainerBattleKanto.ogg
 #-------------------------------
 [418]
 # M. Munna Den 3
