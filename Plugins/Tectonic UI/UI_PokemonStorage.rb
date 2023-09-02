@@ -970,7 +970,7 @@ class PokemonBoxIcon < IconSprite
     def pbSelectParty(party)
       return pbSelectPartyInternal(party,true)
     end
-  
+
     def pbChangeBackground(wp)
       @sprites["box"].refreshSprites = false
       alpha = 0
@@ -1203,6 +1203,11 @@ class PokemonBoxIcon < IconSprite
         end
       end
       return pbShowCommands(msg,commands,@storage.currentBox)
+    end
+
+    def pbChooseSort(msg)
+      sortMethods = [_INTL("Name"), _INTL("Species"), _INTL("Dex ID"), _INTL("Type"), _INTL("Level")]
+      return pbShowCommands(msg,sortMethods)
     end
   
     def pbBoxName(helptext,minchars,maxchars)
@@ -1837,6 +1842,53 @@ class PokemonBoxIcon < IconSprite
         @heldpkmn = nil
     end
     
+    
+    def pbSortBox(type, boxNumber)
+      # @storage = PokemonStorage in rpgmaker scripts.
+      box = @storage.boxes[boxNumber]
+      return if box.empty? || @heldpkmn
+      nitems = box.nitems-1
+      listtosort = []
+      dicttosort = {}
+      for i in 0..PokemonBox::BOX_SIZE
+        if box[i]
+          listtosort.push(box[i])
+        end  
+      end
+      
+      if type==0 # Name
+        listtosort.sort!{ |a,b| a.name <=> b.name }
+      elsif type==1 # Species
+        listtosort.sort!{ |a,b| a.speciesName <=> b.speciesName }
+      elsif type==2 # DexID
+        listtosort.sort!{ |a,b| a.species_data.id_number <=> b.species_data.id_number }
+      elsif type==3 # Type - Type 1 then Type 2 on colissions
+        listtosort.sort!{ |a,b| a.types <=> b.types }
+      elsif type==4 # Level
+        listtosort.sort!{ |a,b| a.level <=> b.level }
+      else
+        echoln("no")
+      end
+      for i in 0..nitems
+        dicttosort[listtosort[i]] = i
+      end
+
+      for i in 0..PokemonBox::BOX_SIZE
+        while dicttosort[@storage[boxNumber, i]] != i
+          if !@storage[boxNumber, i]
+            break
+          end
+          pbHold([boxNumber, i])
+          targetposition = dicttosort[@heldpkmn]
+          if @storage[boxNumber, targetposition]
+            pbSwap([boxNumber, targetposition])
+            pbPlace([boxNumber, i])
+          else
+            pbPlace([boxNumber, targetposition])
+          end
+        end
+      end
+    end
   
     def pbSwap(selected)
         box = selected[0]
@@ -1950,11 +2002,15 @@ class PokemonBoxIcon < IconSprite
         jumpCommand = -1
         wallPaperCommand = -1
         nameCommand = -1
+        sortCommand = -1
+        sortAllCommand = -1
         visitEstateCommand = -1
         cancelCommand = -1
         commands[jumpCommand = commands.length] = _INTL("Jump")
         commands[wallPaperCommand = commands.length] = _INTL("Wallpaper")
         commands[nameCommand = commands.length] = _INTL("Name")
+        commands[sortCommand = commands.length] = _INTL("Sort")
+        commands[sortAllCommand = commands.length] = _INTL("Sort All")
         commands[visitEstateCommand = commands.length] = _INTL("Visit PokÉstate") if defined?(PokEstate) && !$game_switches[ESTATE_DISABLED_SWITCH]
         commands[cancelCommand = commands.length] = _INTL("Cancel")
         command = pbShowCommands(
@@ -1985,6 +2041,17 @@ class PokemonBoxIcon < IconSprite
           end
             $PokEstate.transferToEstate(@storage.currentBox,0)
           return true
+        elsif command == sortCommand || command == sortAllCommand
+          sortMethod = @scene.pbChooseSort(_INTL("How will you sort?"))
+          if sortMethod>=0
+            if command == sortCommand
+              pbSortBox(sortMethod, @storage.currentBox)
+            else
+              for i in 0...@storage.maxBoxes
+                  pbSortBox(sortMethod, i)
+              end
+            end
+          end
         end
         return false
     end

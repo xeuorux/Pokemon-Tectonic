@@ -7204,6 +7204,8 @@ Yes
 Sí
 No
 No
+Level
+Nivel
 Level 50
 Nivel 50
 Open Level
@@ -36768,6 +36770,12 @@ Nunca ganó EXP, así que no recibes ningún caramelo.
 Jump
 Saltar
 Wallpaper
+Sort
+El Sort
+Sort All
+El Sort All
+Dex ID
+El Dex ID
 Fondo
 Jump to which Box?
 ¿Saltar a cuál Caja?
