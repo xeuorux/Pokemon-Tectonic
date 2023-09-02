@@ -176,6 +176,14 @@ module GameData
         return false if @zmove
         return true
       end
+
+      def canon_move?
+        return false if @cut
+        return false if @primeval
+        return false if @zmove
+        return false if @tectonic_new
+        return true
+      end
     end
 end
   
@@ -309,10 +317,7 @@ module Compiler
     File.open("PBS/moves.txt", "wb") { |f|
       add_PBS_header_to_file(f)
       GameData::Move.each do |m|
-        next if m.tectonic_new
-        next if m.cut
-        next if m.zmove
-        next if m.primeval
+        next unless m.canon_move?
         write_move(f,m)
       end
     }

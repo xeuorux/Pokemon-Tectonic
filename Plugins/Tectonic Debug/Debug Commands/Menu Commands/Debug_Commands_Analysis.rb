@@ -418,6 +418,33 @@ DebugMenuCommands.register("analyzeitemdistribution", {
       return moveLine
   end
 
+  DebugMenuCommands.register("listcanonmoves", {
+    "parent"      => "analysis",
+    "name"        => _INTL("List canon moves"),
+    "description" => _INTL("List all moves maintained from canon."),
+    "effect"      => proc { |sprites, viewport|
+      
+      moveDataSorted = []
+      GameData::Move.each do |moveData|
+          next unless moveData.canon_move?
+          moveDataSorted.push(moveData)
+      end
+  
+      moveDataSorted.sort_by! { |data|
+          GameData::Type.get(data.type).id_number * 10_000 + data.category * 1000 + data.base_damage
+      }
+  
+      File.open("canon_moves.txt","wb") { |file|
+          moveDataSorted.each do |moveData|
+              moveLine = describeMove(moveData.id)
+              moveLine += "\r\n"
+              file.write(moveLine)
+          end
+      }
+      pbMessage(_INTL("Canon moves information written to canon_moves.txt"))
+    }
+  })
+
   DebugMenuCommands.register("listnewmoves", {
     "parent"      => "analysis",
     "name"        => _INTL("List new moves"),
