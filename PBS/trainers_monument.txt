@@ -1048,7 +1048,7 @@ Pokemon = WHIMSICOTT,70
     Item = FAIRYGEM
     EV = 0,20,10,20,20,0
 #-------------------------------
-[WILDPACK,ZReplaceMe3]
+[BATTLEGIRL,Marta]
 Pokemon = FALINKS,70
     Moves = NORETREAT,IRONHEAD,DRAINPUNCH,MEGAHORN
     AbilityIndex = 0 # Imperious
@@ -1600,7 +1600,7 @@ Pokemon = PIDGEOT,70
     Item = EXPERTBELT
     EV = 0,20,10,20,20,0
 #-------------------------------
-[WILDPACK,ReplaceMe11]
+[BURGLAR,Miladin]
 Policies = MOONGLOW_TEAM
 Pokemon = ALOMOMOLA,70
     Moves = FLIPTURN,WISH,INFINITEFORCE,TOPSYTURVY
@@ -1633,7 +1633,7 @@ Pokemon = NOCTOWL,70
     Item = LIFEORB
     EV = 0,20,0,19,20,11
 #-------------------------------
-[WILDPACK,ReplaceMe12]
+[CHEF,Rajo]
 Policies = SUN_TEAM
 Pokemon = TORKOAL,70
     Moves = STEALTHROCK,RAPIDSPIN,GREYMIST,FLAMETHROWER
@@ -1668,7 +1668,7 @@ Pokemon = GASTRODON,70
     Item = UTILITYUMBRELLA
     EV = 10,10,15,0,10,15
 #-------------------------------
-[WILDPACK,ReplaceMe14]
+[CEO,Evelina]
 Policies = HAIL_TEAM
 Pokemon = RUBARIOR,70
     Moves = GEMSEAL,HAIL,FOULPLAY,STEALTHROCK
@@ -1702,7 +1702,7 @@ Pokemon = JOLTEON,70
     Item = LIFEORB
     EV = 10,20,0,20,20,0
 #-------------------------------
-[WILDPACK,ReplaceMe15]
+[BUGCATCHER,Milo]
 Pokemon = KLEAVOR,70
     Moves = STONEAXE,XSCISSOR,PSYCHOBLADE,QUICKATTACK
     AbilityIndex = 0 # Sharpness
@@ -1734,7 +1734,7 @@ Pokemon = HARIYAMA,70
     Item = STRIKEVEST
     EV = 0,20,20,0,20,10
 #-------------------------------
-[WILDPACK,ReplaceMe16]
+[COWGIRL,Dara]
 Pokemon = CARRACOSTA,70
     Moves = STEALTHROCK,AURATRICK,ADAMANTINEPRESS,CURSEDOATH
     AbilityIndex = 1 # Tough
@@ -1799,7 +1799,7 @@ Pokemon = FLORGES,70
     Item = LEFTOVERS
     EV = 20,10,0,0,10,20
 #-------------------------------
-[WILDPACK,ReplaceMe18]
+[PARASOLLADY2,Ranka]
 Policies = MOONGLOW_TEAM
 Pokemon = KLEFKI,70
     Moves = MOONGLOW,NUMB,FOULPLAY,DEFOG
@@ -1833,7 +1833,7 @@ Pokemon = DRAGONITE,70
     Item = HEAVYDUTYBOOTS
     EV = 20,20,0,5,20,5
 #-------------------------------
-[WILDPACK,ReplaceMe19]
+[POKEFAN_F3,Dalia]
 Pokemon = FROSMOTH,70
     Moves = COLDFRONT,FROSTSPIKES,CHILL,RECOVER
     AbilityIndex = 0 # Ice Scales

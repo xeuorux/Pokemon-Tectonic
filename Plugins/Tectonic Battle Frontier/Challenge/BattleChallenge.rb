@@ -24,7 +24,7 @@ class BattleChallenge
     register(id, id[/double/], 3,
       battleType,
        id[/open$/] ? 1 : 0)
-    pbWriteCup(id, rules)
+    #pbWriteCup(id, rules)
     @bc.monumentTrainers = !trainersFromLists
   end
 
