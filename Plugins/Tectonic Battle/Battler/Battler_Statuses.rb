@@ -400,6 +400,7 @@ immuneTypeRealName))
         end
         # Form change check
         pbCheckFormOnStatusChange
+        
         # Synchronize
         eachActiveAbility do |ability|
             BattleHandlers.triggerAbilityOnStatusInflicted(ability, self, user, newStatus)
@@ -410,7 +411,7 @@ immuneTypeRealName))
         pbAbilityStatusCureCheck
 
         # Rampaging moves get cancelled immediately by falling asleep
-        disableEffect(:Outrage) if newStatus == :SLEEP
+        disableEffect(:Outrage) if asleep?
 
         pbOnAbilitiesLost(abilities) if dizzy?
     end

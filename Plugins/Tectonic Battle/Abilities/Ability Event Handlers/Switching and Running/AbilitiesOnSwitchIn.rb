@@ -902,7 +902,7 @@ BattleHandlers::AbilityOnSwitchIn.add(:SLUMBERINGDRAKE,
       next unless battler.canSleep?(battler,true)
       battle.pbShowAbilitySplash(battler, ability)
       battler.applySleep
-      battler.pbRaiseMultipleStatSteps(ALL_STATS_2,battler) if battler.asleep?
+      battler.pbRaiseMultipleStatSteps(ALL_STATS_2,battler)
       battle.pbHideAbilitySplash(battler)
   }
 )
