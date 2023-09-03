@@ -867,7 +867,7 @@ class PokeBattle_Move_0A4 < PokeBattle_Move
         when 3
             target.tryLowerStat(:SPECIAL_ATTACK, user, move: self, increment: 2)
         when 4, 6, 12
-            target.tryLowerStryLowerStattat(:SPEED, user, move: self, increment: 2)
+            target.tryLowerStat(:SPEED, user, move: self, increment: 2)
         when 7, 11, 13
             target.pbFlinch
         end
