@@ -329,16 +329,18 @@ BattleHandlers::AbilityOnSwitchIn.add(:STARGUARDIAN,
 BattleHandlers::AbilityOnSwitchIn.add(:PUZZLINGAURA,
   proc { |ability, battler, battle, aiCheck|
       battle.pbShowAbilitySplash(battler, ability) unless aiCheck
-      next battle.pbStartRoom(:PuzzleRoom, battler, aiCheck)
+      score = battle.pbStartRoom(:PuzzleRoom, battler, aiCheck)
       battle.pbHideAbilitySplash(battler) unless aiCheck
+      next score
   }
 )
 
 BattleHandlers::AbilityOnSwitchIn.add(:ODDAURA,
   proc { |ability, battler, battle, aiCheck|
       battle.pbShowAbilitySplash(battler, ability) unless aiCheck
-      next battle.pbStartRoom(:OddRoom, battler, aiCheck)
+      score = battle.pbStartRoom(:OddRoom, battler, aiCheck)
       battle.pbHideAbilitySplash(battler) unless aiCheck
+      next score
   }
 )
 
