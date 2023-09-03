@@ -804,6 +804,8 @@ user.pbThis))
                 move.pbCalcDamage(user, b, targets.length) # Stored in damageState.calcDamage
                 # Lessen damage dealt because of False Swipe/Endure/etc.
                 move.pbReduceDamage(user, b) # Stored in damageState.hpLost
+                # Track the total damage calculated
+                b.damageState.totalCalcedDamage += b.damageState.displayedDamage
             end
         end
         # Show move animation (for this hit)

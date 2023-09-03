@@ -413,16 +413,9 @@ end
 # takes the difference as recoil.
 #===============================================================================
 class PokeBattle_Move_197 < PokeBattle_Move
-    def pbAllMissed(user, targets)
-        targets.each do |b|
-            recoilMessage = _INTL("The gathered electricity blows up in #{user.pbThis(true)}'s face!")
-            user.applyRecoilDamage(b.totalhp / 2, true, true, recoilMessage)
-        end
-    end
-
     def pbEffectAfterAllHits(user, target)
-        return unless target.damageState.totalHPLost < target.totalhp / 2
-        recoilAmount = (target.totalhp / 2) - target.damageState.totalHPLost
+        return unless target.damageState.totalCalcedDamage < target.totalhp / 2
+        recoilAmount = (target.totalhp / 2) - target.damageState.totalCalcedDamage
         recoilMessage = _INTL("#{user.pbThis} is hurt by leftover electricity!")
         user.applyRecoilDamage(recoilAmount, true, true, recoilMessage)
     end
