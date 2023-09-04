@@ -260,10 +260,12 @@ module GameData
             itemInfo = pkmn_data[:item]
             if !itemInfo.nil?
               if itemInfo.is_a?(Array)
-                if pkmn.legalItems?(itemInfo,true)
-                  pkmn.setItems(itemInfo)
-                else
-                  echoln("Trainer pokemon #{pkmn.name} is not allowed to hold the assigned item set of #{itemInfo.to_s}!")
+                unless itemInfo.empty?
+                  if pkmn.legalItems?(itemInfo,true)
+                    pkmn.setItems(itemInfo)
+                  else
+                    echoln("Trainer pokemon #{pkmn.name} is not allowed to hold the assigned item set of #{itemInfo.to_s}!")
+                  end
                 end
               else
                 pkmn.setItems([itemInfo])
