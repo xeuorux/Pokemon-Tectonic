@@ -126,7 +126,7 @@ target.pbThis(true)))
         return false if chargingTurnMove?
         return false unless targets.length == 1
         return true if user.shouldAbilityApply?(:PARENTALBOND,checkingForAI)
-        return true if user.shouldAbilityApply?(:STRIKESTWICE,checkingForAI) && @battle.rainy?
+        return true if user.shouldAbilityApply?(:STRIKETWICE,checkingForAI) && @battle.rainy?
         return false
     end
 
