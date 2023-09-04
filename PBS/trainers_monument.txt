@@ -1651,7 +1651,7 @@ Pokemon = URSALUNA,70
     Item = ENERGYHERB
     EV = 10,20,0,0,20,20
 #-------------------------------
-[WILDPACK,ReplaceMe17]
+[DELINQUENT,Krista]
 Pokemon = BRELOOM,70
     Moves = SPORE,FOCUSPUNCH,MACHPUNCH,BULLETSEED
     AbilityIndex = 0 # Technician
