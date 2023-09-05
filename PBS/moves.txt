@@ -441,7 +441,7 @@
 440,SAFEGUARD,Safeguard,01A,0,NORMAL,Status,0,20,0,UserSide,0,CanSnatch,"The user creates a protective field that prevents status problems for ten turns.",
 441,SCARYFACE,Scary Face,04D,0,GHOST,Status,100,10,0,NearOther,0,CanProtect;CanMagicCoat;CanMirrorMove,"The user frightens the target with a scary face to reduce its Speed stat by four steps.",
 442,SCREECH,Screech,04C,0,NORMAL,Status,100,30,0,AllNearFoes,0,CanProtect;CanMagicCoat;CanMirrorMove;Sound,"The user's earsplitting screech reduces the target's Defense stat by four steps.",
-443,SHARPEN,Sharpen,5D9,0,NORMAL,Status,0,25,0,User,0,CanSnatch,"The user edges become sharper, raising its Attack stat by three steps.",
+443,SHARPEN,Sharpen,5D9,0,NORMAL,Status,0,25,0,User,0,CanSnatch,"The user's edges become sharper, raising its Attack stat by three steps.",
 444,SHELLSMASH,Shell Smash,035,0,WATER,Status,0,12,0,User,0,CanSnatch,"The user breaks its shell, lowering its defensive stats by two steps but raising attacking and Speed stats by three steps each.",
 445,SIMPLEBEAM,Simple Beam,063,0,NORMAL,Status,100,12,0,NearOther,0,CanProtect;CanMagicCoat;CanMirrorMove,"The user shoots a mysterious beam that changes the target's Ability to Simple.",
 446,SING,Sing,003,0,NORMAL,Status,55,12,0,NearOther,0,CanProtect;CanMagicCoat;CanMirrorMove;Sound,"A soothing lullaby is sung in a calming voice that puts the target into a deep slumber.",
