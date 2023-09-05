@@ -503,14 +503,12 @@ def getWeatherSettingEffectScore(weatherType, user, battle, finalDuration = 4, c
     end
     
     if weatherMatchesPolicy
-        echoln("\t\t[EFFECT SCORING] Base score for setting weather #{weatherType} tripled due to relevant policy")
-        score *= 3
+        echoln("\t\t[EFFECT SCORING] Base score for setting weather #{weatherType} quadrupled due to relevant policy")
+        score *= 4
+    elsif user.aboveHalfHealth?
+        score *= 1.5 if hasSynergisticType
+        score *= 1.5 if user.hasActiveAbilityAI?(GameData::Ability::GENERAL_WEATHER_ABILITIES)
     end
-
-    hasSynergyAbility = true if user.hasActiveAbilityAI?(GameData::Ability::GENERAL_WEATHER_ABILITIES)
-
-    score *= 1.2 if hasSynergisticType
-    score *= 1.4 if hasSynergyAbility && user.aboveHalfHealth?
    
     return score
 end
