@@ -5,7 +5,7 @@ def battleMonumentSinglesRegister
         rules = pbBattleMonumentRules(false)
         pbBattleChallenge.set(
             "monumentsingle",
-            7,
+            5,
             rules,
             false
         )
@@ -16,7 +16,7 @@ def battleMonumentSinglesRegister
         if rules.ruleset.isValid?($Trainer.party,errorList)
             pbBattleChallenge.setParty($Trainer.party)
             pbMessage(_INTL("Please come this way."))
-            pbBattleChallenge.start(0, 7)
+            pbBattleChallenge.start
             return true
         else
             pbMessage(_INTL("Your party is not legal for this challenge."))
@@ -64,14 +64,35 @@ def battleMonumentTransferToStart
 end
 
 def battleMonumentRecievePlayerInLobby
+    battleChallenge = pbBattleChallenge
+    wins = battleChallenge.getPreviousWins(battleChallenge.currentChallenge) || 0
     if pbBattleChallenge.decision == 1
-        pbMessage(_INTL("Congratulations for winning."))
-        pbMessage(_INTL("Please take this prize."))
-        pbReceiveItem(:EXPCANDYXL)
-        pbBattleChallenge.pbEnd
-    else
+        pbMessage(_INTL("Congratulations on your victory!"))
+        earnBattlePoints(50)
+    elsif wins
         pbMessage(_INTL("Thanks for playing."))
-        pbBattleChallenge.pbEnd
+        
+        echoln("Wins: #{wins}")
+        case wins
+        when 1
+            earnBattlePoints(3)
+        when 2
+            earnBattlePoints(6)
+        when 3
+            earnBattlePoints(12)
+        when 4
+            earnBattlePoints(25)
+        when 5
+            earnBattlePoints(50)
+        end
+    else
+        pbMessage(_INTL("Better luck next time."))
     end
+    pbBattleChallenge.pbEnd
     pbMessage(_INTL("Come back another time."))
+end
+
+def earnBattlePoints(battlePointsAdded = 1)
+    $Trainer.battle_points += battlePointsAdded
+    pbMessage(_INTL("\\me[Earn battle points]\\ptYou've earned #{battlePointsAdded} battle points.\\wtnp[30]"))
 end
