@@ -1404,9 +1404,10 @@ class PokeBattle_StatDrainHealingMove < PokeBattle_Move
     end
 
     def pbEffectAgainstTarget(user, target)
-        healAmount = healingAmount(user,target)
         # Reduce target's stat
         target.tryLowerStat(@statToReduce, user, move: self)
+        
+        healAmount = healingAmount(user,target)
         # Heal user
         if target.hasActiveAbility?(:LIQUIDOOZE)
             @battle.pbShowAbilitySplash(target, :LIQUIDOOZE)
