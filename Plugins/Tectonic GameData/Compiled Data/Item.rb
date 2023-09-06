@@ -104,26 +104,31 @@ module GameData
         end
     end
   
-      def is_TM?;              return @field_use == 3; end
-      def is_HM?;              return @field_use == 4; end
-      def is_TR?;              return @field_use == 6; end
-      def is_machine?;         return is_TM? || is_HM? || is_TR?; end
-      def is_mail?;            return @type == 1 || @type == 2; end
-      def is_icon_mail?;       return @type == 2; end
-      def is_poke_ball?;       return @type == 3 || @type == 4; end
-      def is_berry?;           return @type == 5; end
-      def is_key_item?;        return @type == 6 || @type == 13; end
-
-      def is_evolution_stone?; return @type == 7; end
-      def is_fossil?;          return @type == 8; end
-      def is_apricorn?;        return @type == 9; end
-      def is_gem?;             return @type == 10; end
-      def is_mulch?;           return @type == 11; end
-      def is_mega_stone?;      return @type == 12; end   # Does NOT include Red Orb/Blue Orb
-      def is_consumable_key_item?;      return @type == 13; end
+      def is_TM?;                   return @field_use == 3; end
+      def is_HM?;                   return @field_use == 4; end
+      def is_TR?;                   return @field_use == 6; end
+      def is_machine?;              return is_TM? || is_HM? || is_TR?; end
+      def is_mail?;                 return @type == 1 || @type == 2; end
+      def is_icon_mail?;            return @type == 2; end
+      def is_poke_ball?;            return @type == 3 || @type == 4; end
+      def is_berry?;                return @type == 5; end
+      def is_key_item?;             return @type == 6 || @type == 13; end
+      def is_single_key_item?;      return @type == 6; end
+      def is_evolution_stone?;      return @type == 7; end
+      def is_fossil?;               return @type == 8; end
+      def is_apricorn?;             return @type == 9; end
+      def is_gem?;                  return @type == 10; end
+      def is_mulch?;                return @type == 11; end
+      def is_mega_stone?;           return @type == 12; end   # Does NOT include Red Orb/Blue Orb
+      def is_consumable_key_item?;  return @type == 13; end
   
       def is_important?
         return true if is_key_item? || is_HM? || is_TM?
+        return false
+      end
+
+      def is_single_purchase?
+        return true if is_single_key_item? || is_HM? || is_TM?
         return false
       end
   

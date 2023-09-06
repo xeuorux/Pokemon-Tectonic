@@ -49,7 +49,7 @@ class PokemonMartAdapter
     end
   
     def showQuantity?(item)
-      return !GameData::Item.get(item).is_important?
+      return !GameData::Item.get(item).is_single_purchase?
     end
   
     def getPrice(item, selling = false)

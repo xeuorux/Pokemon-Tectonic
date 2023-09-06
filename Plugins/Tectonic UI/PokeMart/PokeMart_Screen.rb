@@ -34,7 +34,7 @@ class PokemonMartScreen
         pbDisplayPaused(_INTL("You don't have enough money."))
         next
       end
-      if GameData::Item.get(item).is_important?
+      if GameData::Item.get(item).is_single_purchase?
         if @human
           confirmPurchaseMessage = _INTL("Certainly. You want {1}. That will be ${2}. OK?",itemname,price.to_s_formatted)
         else
@@ -79,7 +79,7 @@ class PokemonMartScreen
       else
         @adapter.setMoney(@adapter.getMoney-price)
         for i in 0...@stock.length
-          if GameData::Item.get(@stock[i]).is_important? && $PokemonBag.pbHasItem?(@stock[i])
+          if GameData::Item.get(@stock[i]).is_single_purchase? && $PokemonBag.pbHasItem?(@stock[i])
             @stock[i]=nil
           end
         end
