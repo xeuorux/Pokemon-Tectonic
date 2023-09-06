@@ -134,7 +134,7 @@ class PokeBattle_Battle
             if b.getStatusCount(:POISON) % POISON_DOUBLING_TURNS == 0
                 b.eachOpposing do |opposingB|
                     next unless opposingB.hasActiveAbility?(:VENOMGORGER)
-                    healingMessage = _INTL("{1} slurped up venom leaking from #{b.pbThis(true)}.")
+                    healingMessage = _INTL("{1} slurped up venom leaking from #{b.pbThis(true)}.", opposingB.pbThis)
                     opposingB.applyFractionalHealing(1.0 / 2.0, ability: :VENOMGORGER, customMessage: healingMessage)
                 end
             end

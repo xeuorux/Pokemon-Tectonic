@@ -294,7 +294,7 @@
 1293,MAGNETTRAP,Magnet Trap,"Prevents foes whose Sp. Atk is less than its from fleeing."
 1294,DESERTSCAVENGER,Desert Scavenger,"Restores HP based on damage from sandstorm."
 1295,SKYHAZARD,Sky Hazard,"Can't be statused due to its hard shell. Boosts Sp. Atk and Speed by 25% in sandstorm."
-1296,ETERNALWINTER,Eternal Winter,"Extends hail by a turn after knocking out any Pokémon."
+1296,ETERNALWINTER,Eternal Winter,"Extends hail by two turns after knocking out any Pokémon."
 1297,TAIGATRECKER,Taiga Trecker,"During hail, boosts Speed and Grass-type damage by 50%."
 1298,ICEMIRROR,Ice Mirror,"Doubles Sp. Def in hail."
 1299,WINTERINSULATION,Winter Insulation,"During hail, immune to Fire- and Electric-type moves."
