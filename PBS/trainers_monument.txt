@@ -1837,7 +1837,6 @@ Pokemon = APERSIAN,70
     Item = POWERLOCK
     EV = 20,10,20,0,10,0
 Pokemon = MINIOR,70
-    Form = 15
     Moves = POWERGEM,COLDFRONT,METEORBEAM,PSYCHIC
     AbilityIndex = 0 # Shields Down
     Item = POWERHERB
