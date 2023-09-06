@@ -477,6 +477,20 @@ module PokemonDebugMenuCommands
       next false
     }
   })
+
+  PokemonDebugMenuCommands.register("teachlegalmove", {
+    "parent"      => "moves",
+    "name"        => _INTL("Teach legal move"),
+    "always_show" => true,
+    "effect"      => proc { |pkmn, pkmnid, heldpoke, settingUpBattle, screen|
+      move = pbChooseMoveListForSpecies(pkmn.species, nil, true)
+      if move
+        pbLearnMove(pkmn, move)
+        screen.pbRefreshSingle(pkmnid)
+      end
+      next false
+    }
+  })
   
   PokemonDebugMenuCommands.register("forgetmove", {
     "parent"      => "moves",

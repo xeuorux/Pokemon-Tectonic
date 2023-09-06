@@ -140,8 +140,7 @@ def pbGetLegalMoves(species)
     return pbChooseList(commands, default, nil, -1)
   end
   
-  def pbChooseMoveListForSpecies(species, defaultMoveID = nil)
-    cmdwin = pbListWindow([], 200)
+  def pbChooseMoveListForSpecies(species, defaultMoveID = nil, onlyLegalMoves = false)
     commands = []
     # Get all legal moves
     legalMoves = GameData::Species.get(species).learnable_moves
@@ -156,24 +155,22 @@ def pbGetLegalMoves(species)
         moveDefault = i if moveDefault == 0 && i[2] == defaultMoveID
       end
     end
-    # Get all moves
-    commands2 = []
-    GameData::Move.each do |move_data|
-      commands2.push([move_data.id_number, move_data.name, move_data.id])
-    end
-    commands2.sort! { |a, b| a[1] <=> b[1] }
-    if defaultMoveID
-      commands2.each_with_index do |_item, i|
-        moveDefault = i if moveDefault == 0 && i[2] == defaultMoveID
+    unless onlyLegalMoves
+      # Get all moves
+      commands2 = []
+      GameData::Move.each do |move_data|
+        commands2.push([move_data.id_number, move_data.name, move_data.id])
       end
+      commands2.sort! { |a, b| a[1] <=> b[1] }
+      if defaultMoveID
+        commands2.each_with_index do |_item, i|
+          moveDefault = i if moveDefault == 0 && i[2] == defaultMoveID
+        end
+      end
+      # Choose from all moves
+      commands.concat(commands2)
     end
-    # Choose from all moves
-    commands.concat(commands2)
-    realcommands = []
-    commands.each { |cmd| realcommands.push(cmd[1]) }
-    ret = pbCommands2(cmdwin, realcommands, -1, moveDefault, true)
-    cmdwin.dispose
-    return (ret >= 0) ? commands[ret][2] : nil
+    return pbChooseList(commands, moveDefault, -1)
   end
   
   # Displays a list of all types, and returns the ID of the type selected (or nil
@@ -331,9 +328,10 @@ def pbGetLegalMoves(species)
     itemID = default
     itemIndex = 0
     sortMode = (sortType >= 0) ? sortType : 0   # 0=ID, 1=alphabetical
-    sorting = true
+    
+    shouldSort = true
     loop do
-      if sorting
+      if shouldSort
         if sortMode == 0
           commands.sort! { |a, b| a[0] <=> b[0] }
         elsif sortMode == 1
@@ -344,16 +342,18 @@ def pbGetLegalMoves(species)
         elsif itemID && itemID > 0
           commands.each_with_index { |command, i| itemIndex = i if command[0] == itemID }
         end
-        realcommands = []
-        for command in commands
-          if sortType <= 0
-            realcommands.push(sprintf("%03d: %s", command[0], command[1]))
-          else
-            realcommands.push(command[1])
-          end
-        end
-        sorting = false
+        shouldSort = false
       end
+
+      realcommands = []
+      for command in commands
+        if sortType <= 0
+          realcommands.push(sprintf("%03d: %s", command[0], command[1]))
+        else
+          realcommands.push(command[1])
+        end
+      end
+
       cmd = pbCommandsSortable(cmdwin, realcommands, -1, itemIndex, (sortType < 0))
       if cmd[0] == 0   # Chose an option or cancelled
         itemID = (cmd[1] < 0) ? cancelValue : (commands[cmd[1]][2] || commands[cmd[1]][0])
@@ -361,11 +361,14 @@ def pbGetLegalMoves(species)
       elsif cmd[0] == 1   # Toggle sorting
         itemID = commands[cmd[1]][2] || commands[cmd[1]][0]
         sortMode = (sortMode + 1) % 2
-        sorting = true
+        shouldSort = true
       elsif cmd[0] == 2   # Go to first matching
-        itemIndex = searchListWindow(cmdwin)
-        itemID = commands[itemIndex][2] || commands[itemIndex][0]
-        sorting = true
+        newItemIndex = searchListWindow(cmdwin) || cmd[1]
+        if newItemIndex && newItemIndex >= 0
+          itemIndex = newItemIndex
+          itemID = commands[itemIndex][2] || commands[itemIndex][0]
+          shouldSort = true
+        end
       end
     end
     cmdwin.dispose
@@ -395,7 +398,7 @@ def pbGetLegalMoves(species)
       elsif Input.trigger?(Input::USE)
         command = [0,cmdwindow.index]
         break
-    elsif Input.trigger?(Input::SPECIAL)
+      elsif Input.trigger?(Input::SPECIAL)
         command = [2,cmdwindow.index]
         break
       end
