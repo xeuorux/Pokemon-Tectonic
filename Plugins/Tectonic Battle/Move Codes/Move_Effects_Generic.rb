@@ -1384,3 +1384,61 @@ class PokeBattle_HelpingMove < PokeBattle_Move
         return score
     end
 end
+
+# Each subclass must have an initialization method that defines the @statToReduce variable
+class PokeBattle_StatDrainHealingMove < PokeBattle_Move
+    def healingMove?; return true; end
+
+    def pbFailsAgainstTarget?(_user, target, show_message)
+        # NOTE: The official games appear to just check whether the target's Attack
+        #       stat step is -6 and fail if so, but I've added the "fail if target
+        #       has Contrary and is at +6" check too for symmetry. This move still
+        #       works even if the stat step cannot be changed due to an ability or
+        #       other effect.
+        statName = GameData::Stat.get(@statToReduce).name
+        if !@battle.moldBreaker && target.hasActiveAbility?(%i[CONTRARY ECCENTRIC]) &&
+           target.statStepAtMax?(@statToReduce)
+            if show_message
+                @battle.pbDisplay(_INTL("But it failed, since #{target.pbThis(true)}'s #{statName} can't go any higher!"))
+            end
+            return true
+        elsif target.statStepAtMin?(@statToReduce)
+            if show_message
+                @battle.pbDisplay(_INTL("But it failed, since #{target.pbThis(true)}'s #{statName} can't go any lower!"))
+            end
+            return true
+        end
+        return false
+    end
+
+    def healingAmount(user,target)
+        healAmount = target.getFinalStat(@statToReduce)
+        healAmount *= 1.3 if user.hasActiveItem?(:BIGROOT)
+        return healAmount
+    end
+
+    def pbEffectAgainstTarget(user, target)
+        # Reduce target's stat
+        target.tryLowerStat(@statToReduce, user, move: self)
+        
+        healAmount = healingAmount(user,target)
+        # Heal user
+        if target.hasActiveAbility?(:LIQUIDOOZE)
+            @battle.pbShowAbilitySplash(target, :LIQUIDOOZE)
+            user.pbReduceHP(healAmount)
+            @battle.pbDisplay(_INTL("{1} sucked up the liquid ooze!", user.pbThis))
+            @battle.pbHideAbilitySplash(target)
+            user.pbItemHPHealCheck
+        elsif user.canHeal?
+            user.pbRecoverHP(healAmount)
+        end
+    end
+
+    def getEffectScore(user, target)
+        return user.pbRecoverHP(healingAmount(user,target), aiCheck: true)
+    end
+
+    def getTargetAffectingEffectScore(user, target)
+        return getMultiStatDownEffectScore([@statToReduce, 1], user, target)
+    end
+end

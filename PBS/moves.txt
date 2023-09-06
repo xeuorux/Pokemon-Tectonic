@@ -281,7 +281,7 @@
 280,LEECHSEED,Leech Seed,402,0,GRASS,Status,100,10,0,NearOther,0,CanProtect;CanMagicCoat;CanMirrorMove,"A seed is planted on the target, causing it to become leeched.",
 281,SPIKYSHIELD,Spiky Shield,14C,0,GRASS,Status,0,3,0,User,4,,"Protects the user from attacks. Physical attackers take 1/8th HP damage.",
 282,SPORE,Spore,003,0,GRASS,Status,100,1,0,NearOther,0,CanProtect;CanMagicCoat;CanMirrorMove,"The user scatters bursts of spores that induce sleep. Only one use per battle.",
-283,STRENGTHSAP,Strength Sap,160,0,GRASS,Status,100,10,0,NearOther,0,CanProtect;CanMagicCoat;CanMirrorMove,"Restores its own HP by the target's Attack stat amount, then lowers the target's Attack stat.",
+283,STRENGTHSAP,Strength Sap,160,0,GRASS,Status,100,5,0,NearOther,0,CanProtect;CanMagicCoat;CanMirrorMove,"Lowers the target's Attack stat, then restores its own HP by the target's Attack.",
 284,SYNTHESIS,Synthesis,0D8,0,GRASS,Status,0,5,0,User,0,CanSnatch,"The user restores 1/2 of its HP, or 2/3rds in Sunshine.",
 285,WORRYSEED,Worry Seed,064,0,GRASS,Status,100,10,0,NearOther,0,CanProtect;CanMagicCoat;CanMirrorMove,"A seed that causes worry is planted on the foe. It prevents sleep by making its Ability Insomnia.",
 286,BRANCHPOKE,Branch Poke,000,45,GRASS,Physical,100,30,0,NearOther,0,CanProtect;CanMirrorMove,"The user attacks the target by poking it with a sharply pointed branch.",
