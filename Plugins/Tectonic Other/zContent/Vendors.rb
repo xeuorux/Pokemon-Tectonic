@@ -1,12 +1,19 @@
 ######################################################
 # Mart vendors
 ######################################################
+BASIC_MART_STOCK = [
+	:POKEBALL,
+	:POTION,
+	:RARECANDY,
+	:ABILITYCAPSULE,
+]
+
 def basicPokeMart
-    pbPokemonMart(pbGet(77))
+    pbPokemonMart(BASIC_MART_STOCK)
 end
 
 def rangerMart
-    pbPokemonMart(pbGet(77),"Get your supplies here!")
+    pbPokemonMart(BASIC_MART_STOCK,_INTL("Get your supplies here!"))
 end
 
 ######################################################
@@ -704,6 +711,15 @@ def malasadaVendor()
 	)
 end
 
+def pubVendor
+	pubStock = %i[
+		EEVEETICKET
+		SWEETHEART
+	]
+	setPrice(:MOOMOOMILK,800)
+	pbPokemonMart(pubStock,"What can I get you?",true)
+end
+
 def arenaVendor()
 	pbPokemonMart(
 		[:VANILLATULUMBA],
@@ -712,11 +728,10 @@ def arenaVendor()
 	)
 end
 
-
 def vendingMachine
 	return unless playerFacingNorth?
 	pbPokemonMart(
-		%i[FRESHWATER SODAPOP LEMONADE],
+		%i[FRESHWATER SODAPOP LEMONADE MOOMOOMILK],
 		_INTL("It's a vending machine."),
 		true,
 		false,

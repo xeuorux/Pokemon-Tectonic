@@ -1743,7 +1743,7 @@ class Pokemon
         gain = 15
       when "groom"
         gain = 8
-      when "machine", "battleitem"
+      when "sweetheart"
         gain = 1
       end
 

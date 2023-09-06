@@ -801,7 +801,7 @@ BattleBack = cave1
 Environment = Cave
 #-------------------------------
 [128]
-# Battle Monument Entrance
+# Monument Lobby
 Outdoor = false
 ShowArea = false
 Bicycle = true
@@ -826,7 +826,7 @@ MapSize = 3,111
 Environment = Sand
 #-------------------------------
 [131]
-# Battle Monument Arena
+# Monument Arena
 Outdoor = false
 ShowArea = false
 Bicycle = false

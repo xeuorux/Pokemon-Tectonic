@@ -161,11 +161,11 @@
 160,BURNDRIVE,Burn Drive,Burn Drives,5,1000,"A cassette to be held by Genesect. It changes Techno Blast to a Fire-type move.",0,0,0
 161,CHILLDRIVE,Chill Drive,Chill Drives,5,1000,"A cassette to be held by Genesect. It changes Techno Blast to an Ice-type move.",0,0,0
 162,EVERSTONE,Everstone,Everstones,5,3000,"An item to be held by a Pokémon. The Pokémon holding this peculiar stone is prevented from evolving.",0,0,0
-163,POTION,Potion,Potions,2,200,"A spray-type medicine for wounds. It restores the HP of one Pokémon by just 40 points.",1,0,0
-164,SUPERPOTION,Super Potion,Super Potions,2,400,"A spray-type medicine for wounds. It restores the HP of one Pokémon by 80 points.",1,0,0
-165,HYPERPOTION,Hyper Potion,Hyper Potions,2,600,"A spray-type medicine for wounds. It restores the HP of one Pokémon by 120 points.",1,0,0
-166,MAXPOTION,Max Potion,Max Potions,2,800,"A spray-type medicine for wounds. It completely restores the HP of a single Pokémon.",1,0,0
-167,FULLRESTORE,Full Restore,Full Restores,2,1200,"A medicine that fully restores the HP and heals any status problems of a single Pokémon.",1,0,0
+163,POTION,Potion,Potions,2,300,"A spray-type medicine for wounds. It restores the HP of one Pokémon by just 40 points.",1,0,0
+164,SUPERPOTION,Super Potion,Super Potions,2,600,"A spray-type medicine for wounds. It restores the HP of one Pokémon by 80 points.",1,0,0
+165,HYPERPOTION,Hyper Potion,Hyper Potions,2,900,"A spray-type medicine for wounds. It restores the HP of one Pokémon by 120 points.",1,0,0
+166,MAXPOTION,Max Potion,Max Potions,2,1200,"A spray-type medicine for wounds. It completely restores the HP of a single Pokémon.",1,0,0
+167,FULLRESTORE,Full Restore,Full Restores,2,1500,"A medicine that fully restores the HP and heals any status problems of a single Pokémon.",1,0,0
 168,SACREDASH,Sacred Ash,Sacred Ashes,2,50000,"It revives all fainted Pokémon. In doing so, it also fully restores their HP.",2,0,0
 169,STATUSHEAL,Status Heal,Status Heals,2,400,"A spray-type medicine. It heals all the status problems of a single Pokémon.",1,0,0
 170,LAVACOOKIE,Lava Cookie,Lava Cookies,2,350,"Lavaridge Town's local specialty. It heals all the status problems of one Pokémon.",1,0,0
@@ -175,11 +175,11 @@
 174,MAXREVIVE,Max Revive,Max Revives,2,1000,"A medicine that revives a fainted Pokémon. It fully restores the Pokémon's HP.",1,0,0
 175,BERRYJUICE,Berry Juice,Berry Juices,2,100,"A 100% pure juice made of Berries. It restores the HP of one Pokémon by just 20 points.",1,0,5
 176,RAGECANDYBAR,Rage Candy Bar,Rage Candy Bars,2,350,"Mahogany Town's famous candy. It can be used once to heal all the status conditions of a Pokémon.",1,0,0
-177,SWEETHEART,Sweet Heart,Sweet Hearts,2,150,"Very sweet chocolate. It restores the HP of one Pokémon by only 20 points.",1,0,0
-178,FRESHWATER,Fresh Water,Fresh Waters,2,200,"Water with a high mineral content. It restores the HP of one Pokémon by 50 points.",1,0,0
-179,SODAPOP,Soda Pop,Soda Pops,2,300,"A fizzy soda drink. It restores the HP of one Pokémon by 60 points.",1,0,0
-180,LEMONADE,Lemonade,Lemonades,2,350,"A very sweet drink. It restores the HP of one Pokémon by 80 points.",1,0,0
-181,MOOMOOMILK,Moomoo Milk,Moomoo Milks,2,600,"Milk with a very high nutrition content. It restores the HP of one Pokémon by 100 points.",1,0,0
+177,SWEETHEART,Sweet Heart,Sweet Hearts,2,300,"Very sweet chocolate. It restores the HP of one Pokémon by 40 points and makes it happier.",1,0,0
+178,FRESHWATER,Fresh Water,Fresh Waters,2,300,"Water with a high mineral content. It restores the HP of one Pokémon by 50 points.",1,0,0
+179,SODAPOP,Soda Pop,Soda Pops,2,550,"A fizzy soda drink. It restores the HP of one Pokémon by 100 points.",1,0,0
+180,LEMONADE,Lemonade,Lemonades,2,800,"A very sweet drink. It restores the HP of one Pokémon by 150 points.",1,0,0
+181,MOOMOOMILK,Moomoo Milk,Moomoo Milks,2,1000,"Nutritious milk. It fully restores the HP and heals any status problems of a single Pokémon.",1,0,0
 182,RARECANDY,Candy,Candies,2,1000,"A candy that is packed with energy. It raises the level of a single Pokémon by one.",1,0,0
 183,VANILLATULUMBA,Vanilla Tulumba,Vanilla Tulumba,2,800,"Fried dough dipped in vanilla syrup. It can be used to raise a Pokémon's level by 1.",1,0,0
 184,MASTERBALL,Master Ball,Master Balls,3,0,"The best Ball with the ultimate level of performance. It will catch any wild Pokémon without fail.",0,4,4

@@ -2,7 +2,7 @@ ItemHandlers::UseOnPokemon.add(:POTION,proc { |item,pkmn,scene|
     next pbHPItem(pkmn,40,scene)
   })
   
-  ItemHandlers::UseOnPokemon.copy(:POTION,:BERRYJUICE,:SWEETHEART)
+  ItemHandlers::UseOnPokemon.copy(:POTION,:BERRYJUICE)
   ItemHandlers::UseOnPokemon.copy(:POTION,:RAGECANDYBAR) if !Settings::RAGE_CANDY_BAR_CURES_STATUS_PROBLEMS
   
   ItemHandlers::UseOnPokemon.add(:SUPERPOTION,proc { |item,pkmn,scene|
@@ -22,17 +22,12 @@ ItemHandlers::UseOnPokemon.add(:POTION,proc { |item,pkmn,scene|
   })
   
   ItemHandlers::UseOnPokemon.add(:SODAPOP,proc { |item,pkmn,scene|
-    next pbHPItem(pkmn,60,scene)
+    next pbHPItem(pkmn,100,scene)
   })
   
   ItemHandlers::UseOnPokemon.add(:LEMONADE,proc { |item,pkmn,scene|
-    next pbHPItem(pkmn,80,scene)
+    next pbHPItem(pkmn,150,scene)
   })
-  
-  ItemHandlers::UseOnPokemon.add(:MOOMOOMILK,proc { |item,pkmn,scene|
-    next pbHPItem(pkmn,100,scene)
-  })
-
   
   ItemHandlers::UseOnPokemon.add(:FULLHEAL,proc { |item,pkmn,scene|
     if pkmn.fainted? || pkmn.status == :NONE
@@ -50,7 +45,7 @@ ItemHandlers::UseOnPokemon.add(:POTION,proc { |item,pkmn,scene|
      :BIGMALASADA,:RAGECANDYBAR,:STATUSHEAL)
   
   ItemHandlers::UseOnPokemon.add(:FULLRESTORE,proc { |item,pkmn,scene|
-    if pkmn.fainted? || (pkmn.hp==pkmn.totalhp && pkmn.status == :NONE)
+    if (pkmn.hp==pkmn.totalhp && pkmn.status == :NONE)
       pbSceneDefaultDisplay(_INTL("It won't have any effect."),scene)
       next false
     end
@@ -64,7 +59,9 @@ ItemHandlers::UseOnPokemon.add(:POTION,proc { |item,pkmn,scene|
     end
     next true
   })
-  
+
+  ItemHandlers::UseOnPokemon.copy(:FULLRESTORE,:MOOMOOMILK)
+
   ItemHandlers::UseOnPokemon.add(:REVIVE,proc { |item,pkmn,scene|
     if !pkmn.fainted?
       pbSceneDefaultDisplay(_INTL("It won't have any effect."),scene)
@@ -171,4 +168,17 @@ ItemHandlers::UseOnPokemon.add(:ETHER,proc { |item,pkmn,scene|
       screen.pbEndScene
     }
     next (revived==0) ? 0 : 3
+  })
+
+  ItemHandlers::UseOnPokemon.add(:SWEETHEART,proc { |item,pkmn,scene|
+    if pkmn.hp == pkmn.totalhp
+      pbSceneDefaultDisplay(_INTL("It won't have any effect."),scene)
+      next false
+    end
+    hpGain = pbItemRestoreHP(pkmn,40)
+    scene&.pbRefresh
+    pbSceneDefaultDisplay(_INTL("{1}'s HP was restored by {2} points.",pkmn.name,hpGain),scene)
+    pbSceneDefaultDisplay(_INTL("{1} really enjoyed the chocolate!",pkmn.name),scene)
+    pkmn.changeHappiness("sweetheart")
+    next true
   })

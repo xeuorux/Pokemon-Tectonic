@@ -208,7 +208,7 @@ def pbItemRestoreHP(pkmn,restoreHP)
 end
 
 def pbHPItem(pkmn,restoreHP,scene = nil)
-  if !pkmn.able? || pkmn.hp==pkmn.totalhp
+  if pkmn.hp == pkmn.totalhp
     pbSceneDefaultDisplay(_INTL("It won't have any effect."),scene)
     return false
   end
@@ -350,7 +350,6 @@ def pbLearnMove(pkmn,move,ignoreifknown=false,bymachine=false,&block)
       pbMessage(_INTL("1, 2, and...\\wt[16] ...\\wt[16] ... Ta-da!\\se[Battle ball drop]\1"),&block)
       pbMessage(_INTL("{1} forgot how to use {2}.\\nAnd...\1",pkmnname,oldmovename),&block)
       pbMessage(_INTL("\\se[]{1} learned {2}!\\se[Pkmn move learnt]",pkmnname,movename),&block)
-      pkmn.changeHappiness("machine") if bymachine
       return true
   else
       pbMessage(_INTL("{1} did not learn {2}.",pkmnname,movename),&block)
