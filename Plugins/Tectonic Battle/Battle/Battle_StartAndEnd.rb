@@ -652,10 +652,9 @@ class PokeBattle_Battle
                     @opponent[1].full_name, @opponent[2].full_name))
                 end
                 @opponent.each_with_index do |_t, i|
-                    if @endSpeeches[i] && @endSpeeches[i] != "" && @endSpeeches[i] != "..."
-                        @scene.pbShowOpponent(i)
-                        pbDisplayPaused(@endSpeeches[i].gsub(/\\[Pp][Nn]/, pbPlayer.name))
-                    end
+                    next unless @endSpeeches[i] && @endSpeeches[i] != "" && @endSpeeches[i] != "..."
+                    @scene.pbShowOpponent(i)
+                    pbDisplayPaused(@endSpeeches[i].gsub(/\\[Pp][Nn]/, pbPlayer.name))
                 end
             end
             # Hide remaining trainer
@@ -681,9 +680,9 @@ class PokeBattle_Battle
             elsif @decision == 2
                 if @opponent
                     @opponent.each_with_index do |_t, i|
+                        next unless (@endSpeechesWin[i] && @endSpeechesWin[i] != "" && @endSpeechesWin[i] != "...")
                         @scene.pbShowOpponent(i)
-                        msg = (@endSpeechesWin[i] && @endSpeechesWin[i] != "") ? @endSpeechesWin[i] : "..."
-                        pbDisplayPaused(msg.gsub(/\\[Pp][Nn]/, pbPlayer.name))
+                        pbDisplayPaused(@endSpeechesWin[i].gsub(/\\[Pp][Nn]/, pbPlayer.name))
                     end
                 end
             end

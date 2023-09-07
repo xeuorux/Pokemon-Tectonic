@@ -225,9 +225,13 @@ class BattleChallengeData
     # Get all the trainers for the next set of battles
     btTrainers = pbGetBTTrainers(pbBattleChallenge.currentChallenge)
     while @trainers.length < @numRounds
-      if @battleNumber
-        newtrainer = GameData::Trainer.randomMonumentTrainer
-        @trainers.push(newtrainer)
+      if @monumentTrainers
+        while true
+          newtrainer = GameData::Trainer.randomMonumentTrainer
+          next if @trainers.include?(newtrainer)
+          @trainers.push(newtrainer)
+          break
+        end
       else
         newtrainer = pbBattleChallengeTrainer(@wins + @trainers.length, btTrainers)
         found = false
