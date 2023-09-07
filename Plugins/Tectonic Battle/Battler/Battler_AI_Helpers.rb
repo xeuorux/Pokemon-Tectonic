@@ -232,11 +232,11 @@ class PokeBattle_Battler
     end
 
     def canChoosePursuit?(target)
-        eachAIKnownMove do |m|
-            next unless m.function == "088"
+        eachAIKnownMoveWithIndex do |move, i|
+            next unless move.function == "088"
             next unless @battle.pbCanChooseMove?(index, i, false)
             next if @battle.battleAI.aiPredictsFailure?(move, self, target)
-            return m
+            return move
         end
         return nil
     end
