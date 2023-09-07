@@ -338,3 +338,4 @@
 461,RICHCOUPLE,Rich Couple,100,,,PARASOL,Mixed,,,[]
 462,CHEF,Chef,32,,,AROMALADY,Male,,,[]
 463,POKEFAN_F3,Poké Fan,64,,,POKEFAN,Female,,,[]
+464,NECKBEARD,Neckbeard,40,,,POKEFAN,Male,,,[]

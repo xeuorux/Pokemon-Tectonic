@@ -1420,7 +1420,7 @@ Pokemon = LEAVANNY,70
     Item = EJECTPACK
     EV = 0,20,10,20,20,0
 #-------------------------------
-[BEAUTY3,Akemi]
+[JUGGLER,Daan]
 Pokemon = AMOONGUSS,70
     Moves = SPORE,BELCH,GIGADRAIN,SYNTHESIS
     AbilityIndex = 0 # Regenerator
@@ -1652,7 +1652,7 @@ Pokemon = FLORGES,70
     Item = LEFTOVERS
     EV = 20,10,0,0,10,20
 #-------------------------------
-[WILDPACK,ZReplaceMe20]
+[SWIMMER_M4,Lars]
 Policies = RAIN_TEAM
 Pokemon = KLEFKI,70
     Moves = RAIN,SPELLBIND,FOULPLAY,DEFOG
@@ -1685,7 +1685,7 @@ Pokemon = GOODRA,70
     Item = ROCKYHELMET
     EV = 20,0,20,0,0,10
 #-------------------------------
-[WILDPACK,ZReplaceMe21]
+[STRIKER,Cezar]
 Pokemon = BISHARP,70
     Moves = STEALTHROCK,KNOCKOFF,SLAY,PSYCHOCUT
     AbilityIndex = 1 # Sturdy
@@ -1717,7 +1717,7 @@ Pokemon = BEWEAR,70
     Item = LEFTOVERS
     EV = 10,20,15,0,20,5
 #-------------------------------
-[WILDPACK,ZReplaceMe22]
+[RUINMANIAC2,Vladislav]
 Policies = SAND_TEAM
 Pokemon = RUNERIGUS,70
     Moves = ADAMANTINEPRESS,STEALTHROCK,WILLOWISP,CURSEDOATH
@@ -1815,7 +1815,7 @@ Pokemon = CRAWDAUNT,70
     Item = PRISMATICPLATE
     EV = 20,20,0,0,20,10
 #-------------------------------
-[WILDPACK,ReplaceMe23]
+[LADY,Gerlinde]
 Pokemon = ARMALDO,70
     Moves = RAPIDSPIN,STEALTHROCK,ADAMANTINEPRESS,XSCISSOR
     AbilityIndex = 0 # Evo-Armor
@@ -1847,7 +1847,7 @@ Pokemon = HELIOLISK,70
     Item = ENERGYHERB
     EV = 10,20,0,20,20,0
 #-------------------------------
-[WILDPACK,ReplaceMe24]
+[BIKER,Lazar]
 Pokemon = MANDIBUZZ,70
     Moves = POWERNAP,DEFOG,FLATTER,SWAGGER
     AbilityIndex = 0 # Impervious
@@ -1880,7 +1880,7 @@ Pokemon = QUAGSIRE,70
     Item = LEFTOVERS
     EV = 20,0,20,0,0,10
 #-------------------------------
-[WILDPACK,ReplaceMe25]
+[PARASOLLADY,Willow]
 Policies = SUN_TEAM
 Pokemon = SUDOWOODO,70
     Moves = STEALTHROCK,STRENGTHSAP,SUNSHINE,TAUNT
@@ -1945,7 +1945,7 @@ Pokemon = GOURGEIST,70
     Item = ENERGYLOCK
     EV = 0,20,5,20,20,5
 #-------------------------------
-[WILDPACK,ReplaceMe27]
+[NECKBEARD,James]
 Pokemon = SNORLAX,70
     Moves = BEDFELLOWS,SNORE,KNOCKOFF,STOCKPILE
     AbilityIndex = 0 # Snoring
