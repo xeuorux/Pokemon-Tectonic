@@ -1154,13 +1154,9 @@ class PokeBattle_Move_134 < PokeBattle_Move
 end
 
 #===============================================================================
-# Freezes the target. Effectiveness against Water-type is 2x. (Freeze-Dry)
+# (Not currently used.)
 #===============================================================================
 class PokeBattle_Move_135 < PokeBattle_FrostbiteMove
-    def pbCalcTypeModSingle(moveType, defType, user, target)
-        return Effectiveness::SUPER_EFFECTIVE_ONE if defType == :WATER
-        return super
-    end
 end
 
 #===============================================================================

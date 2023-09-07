@@ -91,13 +91,9 @@ class PokeBattle_Move_506 < PokeBattle_Move
 end
 
 #===============================================================================
-# Effectiveness against Steel-type is 2x. (Corrode)
+# (Not currently used.)
 #===============================================================================
 class PokeBattle_Move_507 < PokeBattle_Move
-    def pbCalcTypeModSingle(moveType, defType, user, target)
-        return Effectiveness::SUPER_EFFECTIVE_ONE if defType == :STEEL
-        return super
-    end
 end
 
 #===============================================================================
@@ -1383,9 +1379,9 @@ end
 # Effectiveness against Dragon-type is 2x. (Slay)
 #===============================================================================
 class PokeBattle_Move_54F < PokeBattle_Move
-    def pbCalcTypeModSingle(moveType, defType, user, target)
-        return Effectiveness::SUPER_EFFECTIVE_ONE if defType == :DRAGON
-        return super
+    def initialize(battle, move)
+        super
+        @typeHated = :DRAGON
     end
 end
 
@@ -1651,19 +1647,19 @@ end
 # Effectiveness against Electric-type is 2x. (Blackout)
 #===============================================================================
 class PokeBattle_Move_562 < PokeBattle_Move
-    def pbCalcTypeModSingle(moveType, defType, user, target)
-        return Effectiveness::SUPER_EFFECTIVE_ONE if defType == :ELECTRIC
-        return super
+    def initialize(battle, move)
+        super
+        @typeHated = :ELECTRIC
     end
 end
 
 #===============================================================================
 # Effectiveness against Ghost-type is 2x. (Holly Charm)
 #===============================================================================
-class PokeBattle_Move_563 < PokeBattle_Move
-    def pbCalcTypeModSingle(moveType, defType, user, target)
-        return Effectiveness::SUPER_EFFECTIVE_ONE if defType == :GHOST
-        return super
+class PokeBattle_Move_563 < PokeBattle_TypeSuperMove
+    def initialize(battle, move)
+        super
+        @typeHated = :GHOST
     end
 end
 

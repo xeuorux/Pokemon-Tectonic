@@ -1428,3 +1428,13 @@ class PokeBattle_StatDrainHealingMove < PokeBattle_Move
         return getMultiStatDownEffectScore([@statToReduce, 1], user, target)
     end
 end
+
+# Each subclass must have an initialization method that defines the @typeHated variable
+class PokeBattle_TypeSuperMove < PokeBattle_Move
+    def pbCalcTypeModSingle(moveType, defType, user, target)
+        effectiveness = super
+        return effectiveness if Effectiveness.ineffective?(effectiveness)
+        return Effectiveness::SUPER_EFFECTIVE_ONE if defType == @typeHated
+        return effectiveness
+    end
+end
