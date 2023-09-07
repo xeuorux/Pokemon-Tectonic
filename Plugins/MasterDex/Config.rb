@@ -77,4 +77,5 @@ HIDDEN_MAPS = {
 	415	=> 98, # Tri Island -- Articuno
 	416	=> 98, # Tri Island -- Moltres
 	417	=> 98, # Tri Island -- Zapos
+	357 => 100, # Battle Monument
 }

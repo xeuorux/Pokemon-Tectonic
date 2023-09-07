@@ -70,6 +70,7 @@ module Settings
     [0, 85, 0, 0, "Eventide Isle", false],
     [0, 87, 0, 0, "Isle of Dragons", false],
     [0, 98, 0, 0, "Tri Island", false],
+    [0, 100, 0, 0, "Battle Monument", false],
   ]
 
   # The names of each pocket of the Bag. Ignore the first entry ("").
