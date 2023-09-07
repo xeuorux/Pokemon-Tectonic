@@ -717,7 +717,7 @@ Environment = Cave
 Outdoor = false
 ShowArea = false
 Bicycle = true
-BattleBack = cave1
+BattleBack = snow
 Environment = Cave
 #-------------------------------
 [116]
