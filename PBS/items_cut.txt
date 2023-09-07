@@ -361,3 +361,4 @@
 2360,CRYSTALVEILFAIRY,Crystal Veil Fairy,Crystal Veils Fairy,5,1000,"A held item. During battle, the holder is Fairy-type.",0,0,0
 2361,SOULDEW,Soul Dew,Soul Dews,5,0,"A wondrous orb to be held by either Latios or Latias. It raises the power of Psychic- and Dragon-type moves.",0,0,0
 2362,REAPERCLOTH,Reaper Cloth,Reaper Cloths,5,2000,"A cloth imbued with horrifyingly strong spiritual energy. It is loved by a certain Pokémon.",0,0,0
+2363,BLUNDERPOLICY,Blunder Policy,Blunder Policy,5,4000,"Raises Speed sharply when a Pokémon misses with a move because of accuracy.",0,0,0

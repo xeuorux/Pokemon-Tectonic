@@ -207,7 +207,7 @@
 206,TM00,TM00,TM00s,4,5000,,3,0,0,RANSACK
 207,TM01,TM01,TM01s,4,5000,,3,0,0,COVET
 208,TM02,TM02,TM02s,4,5000,,3,0,0,PAYDAY
-209,TM03,TM03,TM03s,4,5000,,3,0,0,FIREPUNCH
+209,TM03,TM03,TM03s,4,5000,,3,0,0,CHAOSWHEEL
 210,TM04,TM04,TM04s,4,5000,,3,0,0,ICEPUNCH
 211,TM05,TM05,TM05s,4,5000,,3,0,0,THUNDERPUNCH
 212,TM06,TM06,TM06s,4,5000,,3,0,0,FLY
@@ -467,91 +467,90 @@
 466,NLUNARIZER,N-Lunarizer,N-Lunarizers,8,0,"A machine to fuse Necrozma, which needs light, and Lunala.",5,0,6
 467,MEGARING,Mega Ring,Mega Rings,8,0,"This ring contains an untold power that somehow enables Pokémon carrying Mega Stones to Mega Evolve.",0,0,6
 468,ZYGARDECUBE,Zygarde Cube,Zygarde Cubes,8,0,"An item to store Zygarde Cores and Cells. You can also use it to teach Zygarde moves.",2,0,6
-469,BLUNDERPOLICY,Blunder Policy,Blunder Policy,5,4000,"Raises Speed sharply when a Pokémon misses with a move because of accuracy.",0,0,0
-470,EJECTPACK,Eject Pack,Eject Packs,5,4000,"An item to be held by a Pokémon. When the holder's stats are lowered, it will be switched out of battle.",0,0,0
-471,HEAVYDUTYBOOTS,Heavy-Duty Boots,Heavy-Duty Boots,5,4000,"These boots prevent the effects of traps set on the battlefield.",0,0,0
-472,ROOMSERVICE,Room Service,Room Services,5,4000,"An item to be held by a Pokémon. Lowers Speed by four steps when Trick Room takes effect.",0,0,0
-473,THROATSPRAY,Throat Spray,Throat Sprays,5,4000,"Raises Sp. Atk by two steps when the Pokémon uses a sound move the first time each battle.",0,0,0
-474,WHETSTONE,Whetstone,Whetstones,5,4000,"Raises Attack by two steps when the Pokémon uses a blade move the first time each battle.",0,0,0
-475,UTILITYUMBRELLA,Utility Umbrella,Utility Umbrellas,5,4000,"A held item. The holder is protected from the negative effects of weather.",0,0,0
-476,EXPCANDYXS,Exp. Candy XS,Exp. Candies XS,2,60,"A candy that is packed with energy. When consumed, it will grant a single Pokémon 250 Exp. Points.",1,0,0
-477,EXPCANDYS,Exp. Candy S,Exp. Candies S,2,225,"A candy that is packed with energy. When consumed, it will grant a single Pokémon 1000 Exp. Points.",1,0,0
-478,EXPCANDYM,Exp. Candy M,Exp. Candies M,2,800,"A candy that is packed with energy. When consumed, it will grant a single Pokémon 4,000 Exp. Points.",1,0,0
-479,EXPCANDYL,Exp. Candy L,Exp. Candies L,2,3200,"A candy that is packed with energy. When consumed, it will grant a single Pokémon 16,000 Exp. Points.",1,0,0
-480,EXPCANDYXL,Exp. Candy XL,Exp. Candies XL,2,12000,"A candy that is packed with energy. When consumed, it will grant a single Pokémon 64,000 Exp. Points.",1,0,0
-481,FOSSILIZEDBIRD,Fossilized Bird,Fossilized Birds,1,5000,"The fossil of an ancient Pokémon that once soared through the sky. What it looked like is a mystery.",0,0,8
-482,FOSSILIZEDFISH,Fossilized Fish,Fossilized Fishes,1,5000,"The fossil of an ancient Pokémon that once lived in the sea. What it looked like is a mystery.",0,0,8
-483,FOSSILIZEDDRAKE,Fossilized Drake,Fossilized Drakes,1,5000,"The fossil of an ancient Pokémon that once roamed the land. What it looked like is a mystery.",0,0,8
-484,FOSSILIZEDDINO,Fossilized Dino,Fossilized Dinos,1,5000,"The fossil of an ancient Pokémon that once lived in the sea. What it looked like is a mystery.",0,0,8
-485,RUSTEDSHIELD,Rusted Shield,Rusted Shields,5,0,"It is said that a hero used this shield to halt a terrible disaster in ancient times. But it's grown rusty and worn.",0,0,0
-486,RUSTEDSWORD,Rusted Sword,Rusted Swords,5,0,"It is said that a hero used this sword to halt a terrible disaster in ancient times. But it's grown rusty and worn.",0,0,0
-487,REINSOFUNITY,Reins of Unity,Reins of Unity,8,0,"Reins that people presented to the king. They enable Calyrex to connect and communicate with its beloved steed.",5,0,6
-488,EXPCHARM,EXP Charm,EXP Charms,8,0,"A charm that increases the Exp. Points that Pokémon can get. A machine-like object is inside the charm.",0,0,6
-489,CATCHINGCHARM,Catching Charm,Catching Charms,8,0,"Holding it is said to increase the chance of getting a critical catch. Curiously, the charm doesn't shake much.",0,0,6
-490,INFINITEROPE,Escape Rope,Escape Ropes,8,0,"A long, durable rope. Use it to escape instantly from a cave or a dungeon.",2,0,6
-491,GRASSTOKEN,Grass Token,Grass Tokens,1,10000,"A token which can be exchanged for a Grass-type at the Starter Store.",0,0,0
-492,WATERTOKEN,Water Token,Water Tokens,1,10000,"A token which can be exchanged for a Water-type at the Starter Store.",0,0,0
-493,ORIGINORE,Origin Ore,Origin Ores,1,8000,"A peculiar ore that makes certain species of Pokémon evolve. Associated with Arceus.",1,0,7
-494,FIRETOKEN,Fire Token,Fire Tokens,1,10000,"A token which can be exchanged for a Fire-type at the Starter Store.",0,0,0
-495,DRATINIEGG,Dratini Egg,Dratini Eggs,1,10000,"An abandoned Dratini egg that is cold and calm. Only an expert would be able to hatch it.",0,0,0
-496,BAGONEGG,Bagon Egg,Bagon Eggs,1,10000,"An abandoned Bagon egg that is cold and calm. Only an expert would be able to hatch it.",0,0,0
-497,GIBLEEGG,Gible Egg,Gible Eggs,1,10000,"An abandoned Gible egg that is cold and calm. Only an expert would be able to hatch it.",0,0,0
-498,DEINOEGG,Deino Egg,Deino Eggs,1,10000,"An abandoned Deino egg that is cold and calm. Only an expert would be able to hatch it.",0,0,0
-499,GOOMYEGG,Goomy Egg,Goomy Eggs,1,10000,"An abandoned Goomy egg that is cold and calm. Only an expert would be able to hatch it.",0,0,0
-500,JANGMOOEGG,Jangmo-o Egg,Jangmo-o Eggs,1,10000,"An abandoned Jangmo-o egg that is cold and calm. Only an expert would be able to hatch it.",0,0,0
-501,DREEPYEGG,Dreepy Egg,Dreepy Eggs,1,10000,"An abandoned Dreepy egg that is cold and calm. Only an expert would be able to hatch it.",0,0,0
-502,EEVEETICKET,Eevee Ticket,Eevee Tickets,1,20000,"A ticket that can be exchanged for an Eevee at the Skeevy Eevee Pub.",0,0,0
-503,AIDKIT,Aid Kit,Aid Kits,8,0,"Heals your whole team a limited number of times. Restocked at PokeCenters and after resting.",2,0,6
-504,KITEXPANSION,Kit Expansion,Kit Expansion,2,0,"A pack for holding medicine. If you use it, your Aid Kit will gain a max charge.",2,0,0
-505,MEDICALUPGRADE,Medical Upgrade,Medical Upgrades,2,0,"A suite of medicines. If you use it, your Aid Kit will heal more efficiently.",2,0,0
-506,DYNAMITESTICK,Dynamite Stick,Dynamite Sticks,1,0,"A stick of dynamite, perfectly suited to destroying small bits of rock.",2,0,13
-507,MEGAUPGRADER,Mega Upgrader,Mega Upgraders,1,0,"A peculiar stone that makes certain species of Pokémon evolve.",1,0,7
-508,SURFBOARD,Surf Board,Surf Boards,8,0,"A surf board, allowing you to surf on water.",0,0,6
-509,CLIMBINGGEAR,Climbing Gear,Climbing Gears,8,0,"A set of climbing gear, allowing you to climb on white rocks.",0,0,6
-510,ABRAPORTER,Abraporter,Abraporters,8,0,"A teleporter which brings you to your last safe spot using the power of Abras.",2,0,6
-511,REMATERIALIZER,Rematerializer,Rematerializers,8,0,"A 3D printer which automatically copies consumed held items after battles.",0,0,6
-512,CUPOFCOFFEE,Cup of Coffee,Cups of Coffee,8,0,"It's a cup filled with warm coffee. You probably shouldn't be keeping this in your backpack.",0,0,13
-513,LUXTECHSHIPMENT,LuxTech Shipment,LuxTech Shipments,8,0,"A package containing an important shipment destined for LuxTech.",0,0,6
-514,EXPEZDISPENSER,EXP-EZ Dispenser,EXP-EZ Dispensers,8,0,"A machine that stores excess EXP. You can activate it to turn that stored EXP into candies.",2,0,6
-515,UNIVERSALFORMALIZER,Universal Formalizer,Universal Formalizers,8,0,"Use on a Pokémon to switch it into another one of its forms.",5,0,6
-516,WEIRDPACKAGE,Weird Package,Weird Packages,8,0,"A suspicious package. Probably best not to look inside.",0,0,0
-517,AEGISIDCARD,Aegis ID Card,Aegis ID Cards,8,0,"A forged ID card. It will let you pretend you work at Aegis Insurance.",0,0,6
-518,INCRIMINATINGEVIDENCE,Incriminating Evidence,Incriminating Evidence,8,0,"A device containing evidence against Aegis Insurance.",0,0,6
-519,TAROTAMULET,Tarot Amulet,Tarot Amulets,8,0,"If reversed, gym leaders and story fights will become harder through unique curses.",2,0,6
-520,HOUSEDEED1,House Deed,House Deeds,8,0,"Proof of ownership for the house you bought in Prizca East.",0,0,6
-521,GLEAMPOWDER,Gleam Powder,Gleam Powder,1,100000,"A small vial of gleaming powder. Can be used once to ensure the next wild Pokémon you find is shiny.",2,0,0
-522,VIRALHELIX,Viral Helix,Viral Helices,8,0,"Infinitely mutating alien DNA. It allows a Pokémon with two abilities to switch abilities when used.",5,0,6
-523,FACTORYPASS,Factory Pass,Factory Passes,8,0,"A pass that grants you access through the locked door in Victoire's factory.",5,0,6
-524,BALLLAUNCHER,Ball Launcher,Ball Launchers,3,0,"A device which creates then launches regular Poké Balls, never running out.",0,9,4
-525,LIGHTHOUSEKEYCARD,Lighthouse Keycard,Lighthouse Keycards,8,0,"A colorful keycard. It grants access to elevator at the Sweetrock Harbor Lighthouse.",0,0,6
-526,MILKBONETREAT,Milk Bone Treat,Milk Bone Treats,8,0,"It would be a delicious treat if you were a Pokémon.",0,0,6
-527,DIGITSLIP,Digit Slip,Digit Slips,8,0,"A slip of paper with one digit of the code for the lock to Rafael's gym door.",0,0,13
-528,PERFORMANCEANALYZER,Performance Analyzer,Performance Analyzers,8,0,"A hi-tech recording device which increases your Pokémon's experience gained from Trainer battles by 40%.",0,0,6
-529,PERFORMANCEANALYZER2,Performance Analyzer 2,Performance Analyzers 2,8,0,"An upgraded, hi-tech recording device which increases the experience gained from Trainer battles by 50%.",0,0,6
-530,BATTLEREPORT,Battle Report,Battle Reports,1,0,"A detailed report on how to improve as a trainer. If you decide to read it, your level cap will be raised by 5.",2,0,13
-531,CHASMIDCARD,Chasm ID Card,Chasm ID Cards,8,0,"An ID card which unlocks Team Chasm gates and doors, giving access to dangers and rewards.",0,0,6
-532,POCKETTOTEM,Pocket Totem,Pocket Totems,8,0,"A miniature Avatar Totem. Use it to teleport to any unlocked Avatar Totems throughout Makya.",2,0,6
-533,SIGILLEFTHALF,Sigil Left Half,Sigils Left Half,8,0,"The left half of the sigil of an ancient order of knights.",0,0,6
-534,SIGILRIGHTHALF,Sigil Right Half,Sigils Right Half,8,0,"The right half of the sigil of an ancient order of knights.",0,0,6
-535,CARNATIONSIGIL,Carnation Sigil,Carnation Sigil,8,0,"An ancient sigil of the Carnation Knights. You feel it pulling you towards another place.",2,0,6
-536,PRIMALCLAY,Primal Clay,Primal Clay,8,0,"A lump of ancient clay. It glows with a soft golden color.",5,0,0
-537,OMNIDRIVE,OmniDrive,OmniDrives,8,0,"A mysterious data storage device which can be used to upgrade your PC.",5,0,6
-538,UBCONTAINMENTKEY,UB Containment Key,UB Containment Keys,8,0,"A key which unlocks the Ultra Beast Containment Room at Novo College.",0,0,6
-539,ANCIENTSEAWATER,Ancient Sea Water,Ancient Sea Water,1,50000,"A vial of shimmering ocean water. It makes a certain Pokémon evolve.",1,0,7
-540,CONDENSEDLIGHT,Condensed Light,Condensed Light,8,0,"A strange ball of light. You should gather these for a friend.",0,0,13
-541,CHAMBER1KEY,Chamber 1 Key,Chamber 1 Keys,8,0,"The key to the first chamber containing a powerful avatar.",0,0,6
-542,CHAMBER2KEY,Chamber 2 Key,Chamber 2 Keys,8,0,"The key to the second chamber containing a powerful avatar.",0,0,6
-543,CHAMBER3KEY,Chamber 3 Key,Chamber 3 Keys,8,0,"The key to the third chamber containing a powerful avatar.",0,0,6
-544,CHAMBER4KEY,Chamber 4 Key,Chamber 4 Keys,8,0,"The key to the fourth chamber containing a powerful avatar.",0,0,6
-545,CHAMBER5KEY,Chamber 5 Key,Chamber 5 Keys,8,0,"The key to the fifth chamber containing a powerful avatar.",0,0,6
-546,CHAMBER6KEY,Chamber 6 Key,Chamber 6 Keys,8,0,"The key to the sixth chamber containing a powerful avatar.",0,0,6
-547,CHAMBER7KEY,Chamber 7 Key,Chamber 7 Keys,8,0,"The key to the seventh chamber containing a powerful avatar.",0,0,6
-548,CHAMBER8KEY,Chamber 8 Key,Chamber 8 Keys,8,0,"The key to the eighth chamber containing a powerful avatar.",0,0,6
-549,LATENTSEED,Latent Seed,Latent Seeds,8,0,"A simple tree seed. It hums with the potential for great change.",0,0,13
-550,ALLOYEDLUMP,Alloyed Lump,Alloyed Lumps,1,0,"Misshapen, unusual metal. Useless without a way to sharpen it.",2,0,13
-551,ALLOYEDBLADE,Alloyed Blade,Alloyed Blades,1,0,"A fragile blade of unusual metal. Sharp enough to cut alloyed overgrowth.",2,0,13
-552,ALLOYEDWIRE,Alloyed Wire,Alloyed Wires,1,0,"A thin, nearly invisible strand of unusual metal.",2,0,13
-553,RAINBOWFEATHER,Rainbow Feather,Rainbow Feathers,8,0,"A strange feather that gleams in rainbow colors.",0,0,13
-554,SWEETTOOTH,Sweet Tooth,Sweet Teeth,8,0,"A charm in the shape of a tooth. It increases the EXP gained from EXP Candy by 15%.",0,0,6
-555,BOXLINK,Box Link,Box Links,8,0,"An advanced transporter which allows you to access your Pokémon Storage to withdraw or deposit Pokémon.",2,0,6
-556,STYLINGKIT,Styling Kit,Styling Kits,8,0,"A suite of training tools which allows you to modify your Pokemon's style points.",2,0,6
+469,EJECTPACK,Eject Pack,Eject Packs,5,4000,"An item to be held by a Pokémon. When the holder's stats are lowered, it will be switched out of battle.",0,0,0
+470,HEAVYDUTYBOOTS,Heavy-Duty Boots,Heavy-Duty Boots,5,4000,"These boots prevent the effects of traps set on the battlefield.",0,0,0
+471,ROOMSERVICE,Room Service,Room Services,5,4000,"An item to be held by a Pokémon. Lowers Speed by four steps when Trick Room takes effect.",0,0,0
+472,THROATSPRAY,Throat Spray,Throat Sprays,5,4000,"Raises Sp. Atk by two steps when the Pokémon uses a sound move the first time each battle.",0,0,0
+473,WHETSTONE,Whetstone,Whetstones,5,4000,"Raises Attack by two steps when the Pokémon uses a blade move the first time each battle.",0,0,0
+474,UTILITYUMBRELLA,Utility Umbrella,Utility Umbrellas,5,4000,"A held item. The holder is protected from the negative effects of weather.",0,0,0
+475,EXPCANDYXS,Exp. Candy XS,Exp. Candies XS,2,60,"A candy that is packed with energy. When consumed, it will grant a single Pokémon 250 Exp. Points.",1,0,0
+476,EXPCANDYS,Exp. Candy S,Exp. Candies S,2,225,"A candy that is packed with energy. When consumed, it will grant a single Pokémon 1000 Exp. Points.",1,0,0
+477,EXPCANDYM,Exp. Candy M,Exp. Candies M,2,800,"A candy that is packed with energy. When consumed, it will grant a single Pokémon 4,000 Exp. Points.",1,0,0
+478,EXPCANDYL,Exp. Candy L,Exp. Candies L,2,3200,"A candy that is packed with energy. When consumed, it will grant a single Pokémon 16,000 Exp. Points.",1,0,0
+479,EXPCANDYXL,Exp. Candy XL,Exp. Candies XL,2,12000,"A candy that is packed with energy. When consumed, it will grant a single Pokémon 64,000 Exp. Points.",1,0,0
+480,FOSSILIZEDBIRD,Fossilized Bird,Fossilized Birds,1,5000,"The fossil of an ancient Pokémon that once soared through the sky. What it looked like is a mystery.",0,0,8
+481,FOSSILIZEDFISH,Fossilized Fish,Fossilized Fishes,1,5000,"The fossil of an ancient Pokémon that once lived in the sea. What it looked like is a mystery.",0,0,8
+482,FOSSILIZEDDRAKE,Fossilized Drake,Fossilized Drakes,1,5000,"The fossil of an ancient Pokémon that once roamed the land. What it looked like is a mystery.",0,0,8
+483,FOSSILIZEDDINO,Fossilized Dino,Fossilized Dinos,1,5000,"The fossil of an ancient Pokémon that once lived in the sea. What it looked like is a mystery.",0,0,8
+484,RUSTEDSHIELD,Rusted Shield,Rusted Shields,5,0,"It is said that a hero used this shield to halt a terrible disaster in ancient times. But it's grown rusty and worn.",0,0,0
+485,RUSTEDSWORD,Rusted Sword,Rusted Swords,5,0,"It is said that a hero used this sword to halt a terrible disaster in ancient times. But it's grown rusty and worn.",0,0,0
+486,REINSOFUNITY,Reins of Unity,Reins of Unity,8,0,"Reins that people presented to the king. They enable Calyrex to connect and communicate with its beloved steed.",5,0,6
+487,EXPCHARM,EXP Charm,EXP Charms,8,0,"A charm that increases the Exp. Points that Pokémon can get. A machine-like object is inside the charm.",0,0,6
+488,CATCHINGCHARM,Catching Charm,Catching Charms,8,0,"Holding it is said to increase the chance of getting a critical catch. Curiously, the charm doesn't shake much.",0,0,6
+489,INFINITEROPE,Escape Rope,Escape Ropes,8,0,"A long, durable rope. Use it to escape instantly from a cave or a dungeon.",2,0,6
+490,GRASSTOKEN,Grass Token,Grass Tokens,1,10000,"A token which can be exchanged for a Grass-type at the Starter Store.",0,0,0
+491,WATERTOKEN,Water Token,Water Tokens,1,10000,"A token which can be exchanged for a Water-type at the Starter Store.",0,0,0
+492,ORIGINORE,Origin Ore,Origin Ores,1,8000,"A peculiar ore that makes certain species of Pokémon evolve. Associated with Arceus.",1,0,7
+493,FIRETOKEN,Fire Token,Fire Tokens,1,10000,"A token which can be exchanged for a Fire-type at the Starter Store.",0,0,0
+494,DRATINIEGG,Dratini Egg,Dratini Eggs,1,10000,"An abandoned Dratini egg that is cold and calm. Only an expert would be able to hatch it.",0,0,0
+495,BAGONEGG,Bagon Egg,Bagon Eggs,1,10000,"An abandoned Bagon egg that is cold and calm. Only an expert would be able to hatch it.",0,0,0
+496,GIBLEEGG,Gible Egg,Gible Eggs,1,10000,"An abandoned Gible egg that is cold and calm. Only an expert would be able to hatch it.",0,0,0
+497,DEINOEGG,Deino Egg,Deino Eggs,1,10000,"An abandoned Deino egg that is cold and calm. Only an expert would be able to hatch it.",0,0,0
+498,GOOMYEGG,Goomy Egg,Goomy Eggs,1,10000,"An abandoned Goomy egg that is cold and calm. Only an expert would be able to hatch it.",0,0,0
+499,JANGMOOEGG,Jangmo-o Egg,Jangmo-o Eggs,1,10000,"An abandoned Jangmo-o egg that is cold and calm. Only an expert would be able to hatch it.",0,0,0
+500,DREEPYEGG,Dreepy Egg,Dreepy Eggs,1,10000,"An abandoned Dreepy egg that is cold and calm. Only an expert would be able to hatch it.",0,0,0
+501,EEVEETICKET,Eevee Ticket,Eevee Tickets,1,20000,"A ticket that can be exchanged for an Eevee at the Skeevy Eevee Pub.",0,0,0
+502,AIDKIT,Aid Kit,Aid Kits,8,0,"Heals your whole team a limited number of times. Restocked at PokeCenters and after resting.",2,0,6
+503,KITEXPANSION,Kit Expansion,Kit Expansion,2,0,"A pack for holding medicine. If you use it, your Aid Kit will gain a max charge.",2,0,0
+504,MEDICALUPGRADE,Medical Upgrade,Medical Upgrades,2,0,"A suite of medicines. If you use it, your Aid Kit will heal more efficiently.",2,0,0
+505,DYNAMITESTICK,Dynamite Stick,Dynamite Sticks,1,0,"A stick of dynamite, perfectly suited to destroying small bits of rock.",2,0,13
+506,MEGAUPGRADER,Mega Upgrader,Mega Upgraders,1,0,"A peculiar stone that makes certain species of Pokémon evolve.",1,0,7
+507,SURFBOARD,Surf Board,Surf Boards,8,0,"A surf board, allowing you to surf on water.",0,0,6
+508,CLIMBINGGEAR,Climbing Gear,Climbing Gears,8,0,"A set of climbing gear, allowing you to climb on white rocks.",0,0,6
+509,ABRAPORTER,Abraporter,Abraporters,8,0,"A teleporter which brings you to your last safe spot using the power of Abras.",2,0,6
+510,REMATERIALIZER,Rematerializer,Rematerializers,8,0,"A 3D printer which automatically copies consumed held items after battles.",0,0,6
+511,CUPOFCOFFEE,Cup of Coffee,Cups of Coffee,8,0,"It's a cup filled with warm coffee. You probably shouldn't be keeping this in your backpack.",0,0,13
+512,LUXTECHSHIPMENT,LuxTech Shipment,LuxTech Shipments,8,0,"A package containing an important shipment destined for LuxTech.",0,0,6
+513,EXPEZDISPENSER,EXP-EZ Dispenser,EXP-EZ Dispensers,8,0,"A machine that stores excess EXP. You can activate it to turn that stored EXP into candies.",2,0,6
+514,UNIVERSALFORMALIZER,Universal Formalizer,Universal Formalizers,8,0,"Use on a Pokémon to switch it into another one of its forms.",5,0,6
+515,WEIRDPACKAGE,Weird Package,Weird Packages,8,0,"A suspicious package. Probably best not to look inside.",0,0,0
+516,AEGISIDCARD,Aegis ID Card,Aegis ID Cards,8,0,"A forged ID card. It will let you pretend you work at Aegis Insurance.",0,0,6
+517,INCRIMINATINGEVIDENCE,Incriminating Evidence,Incriminating Evidence,8,0,"A device containing evidence against Aegis Insurance.",0,0,6
+518,TAROTAMULET,Tarot Amulet,Tarot Amulets,8,0,"If reversed, gym leaders and story fights will become harder through unique curses.",2,0,6
+519,HOUSEDEED1,House Deed,House Deeds,8,0,"Proof of ownership for the house you bought in Prizca East.",0,0,6
+520,GLEAMPOWDER,Gleam Powder,Gleam Powder,1,100000,"A small vial of gleaming powder. Can be used once to ensure the next wild Pokémon you find is shiny.",2,0,0
+521,VIRALHELIX,Viral Helix,Viral Helices,8,0,"Infinitely mutating alien DNA. It allows a Pokémon with two abilities to switch abilities when used.",5,0,6
+522,FACTORYPASS,Factory Pass,Factory Passes,8,0,"A pass that grants you access through the locked door in Victoire's factory.",5,0,6
+523,BALLLAUNCHER,Ball Launcher,Ball Launchers,3,0,"A device which creates then launches regular Poké Balls, never running out.",0,9,4
+524,LIGHTHOUSEKEYCARD,Lighthouse Keycard,Lighthouse Keycards,8,0,"A colorful keycard. It grants access to elevator at the Sweetrock Harbor Lighthouse.",0,0,6
+525,MILKBONETREAT,Milk Bone Treat,Milk Bone Treats,8,0,"It would be a delicious treat if you were a Pokémon.",0,0,6
+526,DIGITSLIP,Digit Slip,Digit Slips,8,0,"A slip of paper with one digit of the code for the lock to Rafael's gym door.",0,0,13
+527,PERFORMANCEANALYZER,Performance Analyzer,Performance Analyzers,8,0,"A hi-tech recording device which increases your Pokémon's experience gained from Trainer battles by 40%.",0,0,6
+528,PERFORMANCEANALYZER2,Performance Analyzer 2,Performance Analyzers 2,8,0,"An upgraded, hi-tech recording device which increases the experience gained from Trainer battles by 50%.",0,0,6
+529,BATTLEREPORT,Battle Report,Battle Reports,1,0,"A detailed report on how to improve as a trainer. If you decide to read it, your level cap will be raised by 5.",2,0,13
+530,CHASMIDCARD,Chasm ID Card,Chasm ID Cards,8,0,"An ID card which unlocks Team Chasm gates and doors, giving access to dangers and rewards.",0,0,6
+531,POCKETTOTEM,Pocket Totem,Pocket Totems,8,0,"A miniature Avatar Totem. Use it to teleport to any unlocked Avatar Totems throughout Makya.",2,0,6
+532,SIGILLEFTHALF,Sigil Left Half,Sigils Left Half,8,0,"The left half of the sigil of an ancient order of knights.",0,0,6
+533,SIGILRIGHTHALF,Sigil Right Half,Sigils Right Half,8,0,"The right half of the sigil of an ancient order of knights.",0,0,6
+534,CARNATIONSIGIL,Carnation Sigil,Carnation Sigil,8,0,"An ancient sigil of the Carnation Knights. You feel it pulling you towards another place.",2,0,6
+535,PRIMALCLAY,Primal Clay,Primal Clay,8,0,"A lump of ancient clay. It glows with a soft golden color.",5,0,0
+536,OMNIDRIVE,OmniDrive,OmniDrives,8,0,"A mysterious data storage device which can be used to upgrade your PC.",5,0,6
+537,UBCONTAINMENTKEY,UB Containment Key,UB Containment Keys,8,0,"A key which unlocks the Ultra Beast Containment Room at Novo College.",0,0,6
+538,ANCIENTSEAWATER,Ancient Sea Water,Ancient Sea Water,1,50000,"A vial of shimmering ocean water. It makes a certain Pokémon evolve.",1,0,7
+539,CONDENSEDLIGHT,Condensed Light,Condensed Light,8,0,"A strange ball of light. You should gather these for a friend.",0,0,13
+540,CHAMBER1KEY,Chamber 1 Key,Chamber 1 Keys,8,0,"The key to the first chamber containing a powerful avatar.",0,0,6
+541,CHAMBER2KEY,Chamber 2 Key,Chamber 2 Keys,8,0,"The key to the second chamber containing a powerful avatar.",0,0,6
+542,CHAMBER3KEY,Chamber 3 Key,Chamber 3 Keys,8,0,"The key to the third chamber containing a powerful avatar.",0,0,6
+543,CHAMBER4KEY,Chamber 4 Key,Chamber 4 Keys,8,0,"The key to the fourth chamber containing a powerful avatar.",0,0,6
+544,CHAMBER5KEY,Chamber 5 Key,Chamber 5 Keys,8,0,"The key to the fifth chamber containing a powerful avatar.",0,0,6
+545,CHAMBER6KEY,Chamber 6 Key,Chamber 6 Keys,8,0,"The key to the sixth chamber containing a powerful avatar.",0,0,6
+546,CHAMBER7KEY,Chamber 7 Key,Chamber 7 Keys,8,0,"The key to the seventh chamber containing a powerful avatar.",0,0,6
+547,CHAMBER8KEY,Chamber 8 Key,Chamber 8 Keys,8,0,"The key to the eighth chamber containing a powerful avatar.",0,0,6
+548,LATENTSEED,Latent Seed,Latent Seeds,8,0,"A simple tree seed. It hums with the potential for great change.",0,0,13
+549,ALLOYEDLUMP,Alloyed Lump,Alloyed Lumps,1,0,"Misshapen, unusual metal. Useless without a way to sharpen it.",2,0,13
+550,ALLOYEDBLADE,Alloyed Blade,Alloyed Blades,1,0,"A fragile blade of unusual metal. Sharp enough to cut alloyed overgrowth.",2,0,13
+551,ALLOYEDWIRE,Alloyed Wire,Alloyed Wires,1,0,"A thin, nearly invisible strand of unusual metal.",2,0,13
+552,RAINBOWFEATHER,Rainbow Feather,Rainbow Feathers,8,0,"A strange feather that gleams in rainbow colors.",0,0,13
+553,SWEETTOOTH,Sweet Tooth,Sweet Teeth,8,0,"A charm in the shape of a tooth. It increases the EXP gained from EXP Candy by 15%.",0,0,6
+554,BOXLINK,Box Link,Box Links,8,0,"An advanced transporter which allows you to access your Pokémon Storage to withdraw or deposit Pokémon.",2,0,6
+555,STYLINGKIT,Styling Kit,Styling Kits,8,0,"A suite of training tools which allows you to modify your Pokemon's style points.",2,0,6
