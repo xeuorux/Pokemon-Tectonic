@@ -49,7 +49,7 @@
 48,RELICSTATUE,Relic Statue,Relic Statues,6,300000,"A stone figure made in a civilization about 3,000 years ago. Can be sold for $150,000.",0,0,0
 49,RELICCROWN,Relic Crown,Relic Crowns,6,600000,"A crown made in a civilization about 3,000 years ago. Can be sold for $300,000.",0,0,0
 50,AIRBALLOON,Air Balloon,Air Balloons,5,4000,"An item to be held by a Pokémon. The holder will float in the air until hit. Once hit, this item will burst.",0,0,0
-51,EVIOLITE,Eviolite,Eviolites,5,4000,"When held by a Pokemon who can still evolve, reduces move damage taken by 33%. Prevents evolution.",0,0,0
+51,EVIOLITE,Eviolite,Eviolites,5,4000,"When held by a Pokémon who can still evolve, reduces move damage taken by 33%. Prevents evolution.",0,0,0
 52,POWERLOCK,Power Lock,Power Locks,5,4000,"A held item. In battles, it sets the holder's base Attack stat to 120.",0,0,0
 53,ENERGYLOCK,Energy Lock,Energy Locks,5,4000,"A held item. In battles, it sets the holder's base Sp. Atk stat to 120.",0,0,0
 54,FLOATSTONE,Float Stone,Float Stones,5,4000,"A very light stone. It reduces the weight of a Pokémon when held.",0,0,0
@@ -202,7 +202,7 @@
 201,SLICEBALL,Slice Ball,Slice Balls,3,200,"A sharp Poké Ball that damages the Pokémon for 1/4th of its HP if it fails to catch it.",0,4,4
 202,LEECHBALL,Leech Ball,Leech Balls,3,200,"A parasitic Poké Ball that leeches the Pokémon if it fails to catch it.",0,4,4
 203,POTIONBALL,Potion Ball,Potion Balls,3,200,"A medicinal Poké Ball that heals the Pokémon for 1/4th of its HP if it fails to catch it.",0,4,4
-204,DISABLEBALL,Disable Ball,Disable Balls,3,200,"A mentally disrupting Poké Ball that disables the Pokemon's last used move for 10 turns if it fails to catch it.",0,4,4
+204,DISABLEBALL,Disable Ball,Disable Balls,3,200,"A mentally disrupting Poké Ball that disables the Pokémon's last used move for 10 turns if it fails to catch it.",0,4,4
 205,ROYALBALL,Royal Ball,Royal Balls,3,1000,"A ball whose striking appearance makes it popular despite its poor performance.",0,4,4
 206,TM00,TM00,TM00s,4,5000,,3,0,0,RANSACK
 207,TM01,TM01,TM01s,4,5000,,3,0,0,COVET
@@ -552,3 +552,6 @@
 551,ALLOYEDBLADE,Alloyed Blade,Alloyed Blades,1,0,"A fragile blade of unusual metal. Sharp enough to cut alloyed overgrowth.",2,0,13
 552,ALLOYEDWIRE,Alloyed Wire,Alloyed Wires,1,0,"A thin, nearly invisible strand of unusual metal.",2,0,13
 553,RAINBOWFEATHER,Rainbow Feather,Rainbow Feathers,8,0,"A strange feather that gleams in rainbow colors.",0,0,13
+554,SWEETTOOTH,Sweet Tooth,Sweet Teeth,8,0,"A charm in the shape of a tooth. It increases the EXP gained from EXP Candy by 15%.",0,0,6
+555,BOXLINK,Box Link,Box Links,8,0,"An advanced transporter which allows you to access your Pokémon Storage to withdraw or deposit Pokémon.",2,0,6
+556,STYLINGKIT,Styling Kit,Styling Kits,8,0,"A suite of training tools which allows you to modify your Pokemon's style points.",2,0,6

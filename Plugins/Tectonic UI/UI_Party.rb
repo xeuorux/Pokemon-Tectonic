@@ -1141,6 +1141,7 @@ end
           cmdSendPC  = -1
           cmdEvolve  = -1
           cmdSetItemType = -1
+          cmdStyle = -1
     
           canEditTeam = teamEditingAllowed?()
     
@@ -1155,6 +1156,7 @@ end
             end
             commands[cmdRename = commands.length]   = _INTL("Rename")
             commands[cmdItem = commands.length]     = _INTL("Item")
+            commands[cmdStyle = commands.length]    = _INTL("Set Style") if pbHasItem?(:STYLINGKIT)
           end
           commands[cmdSendPC = commands.length]       = _INTL("Send to PC") if @party.length>1
     
@@ -1228,6 +1230,12 @@ end
               evo.pbEndScreen
               scene.pbRefresh
             end
+          elsif cmdStyle >= 0 && command == cmdStyle
+            if !canEditTeam
+              showNoTeamEditingMessage()
+              next
+            end
+            pbStyleValueScreen(pkmn)
           elsif cmdSetItemType >= 0 && command == cmdSetItemType
             if !canEditTeam
               showNoTeamEditingMessage()

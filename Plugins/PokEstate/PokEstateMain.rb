@@ -402,6 +402,7 @@ class PokEstate
 		commands[cmdUseItem = commands.length] = _INTL("Use Item") unless donationBox
 		newspecies = pokemon.check_evolution_on_level_up
 		commands[cmdEvolve = commands.length]       = _INTL("Evolve") if newspecies
+		commands[cmdStyle = commands.length]  = _INTL("Set Style") if pbHasItem?(:STYLINGKIT)
 		commands[cmdCancel = commands.length] = _INTL("Cancel")
 		command = 0
 
@@ -479,6 +480,8 @@ class PokEstate
 					eventCalling.turn_toward_player
 					break
 				end
+			elsif cmdStyle >= 0 && command == cmdStyle
+				pbStyleValueScreen(pokemon)
 			elsif cmdCancel > -1 && command == cmdCancel
 				break
 			end

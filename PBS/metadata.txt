@@ -805,6 +805,7 @@ Environment = Cave
 Outdoor = false
 ShowArea = false
 Bicycle = true
+HealingSpot = 357,31,29
 #-------------------------------
 [129]
 # Barren Crater

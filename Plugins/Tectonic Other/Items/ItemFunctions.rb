@@ -612,7 +612,9 @@ def pbEXPAdditionItem(pkmn, exp, item, scene = nil)
     scene&.pbRefresh
 
     # Apply the new EXP, accounting for the level cap
-    pkmn.exp += exp * qty
+    expAmount = exp * qty
+    expAmount = (expAmount * 1.15).floor if pbHasItem?(:SWEETTOOTH)
+    pkmn.exp += expAmount
     pkmn.exp = [pkmn.exp, maxxp].min
     display_exp = pkmn.exp - current_exp
     new_level = pkmn.level

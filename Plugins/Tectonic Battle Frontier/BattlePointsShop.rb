@@ -5,9 +5,9 @@ def battlePointsShop
 		:MASTERBALL => 25,
 		:GLEAMPOWDER => 50,
 		:RELICCROWN => 100,
-		# :BOXLINK => 50,
-		# :STYLINGKIT => 50,
-		# :SWEETTOOTH => 75,
+		:BOXLINK => 50,
+		:STYLINGKIT => 50,
+		:SWEETTOOTH => 75,
 	}
 
 	stock = shopEntries.keys

@@ -1289,48 +1289,7 @@ class PokemonSummary_Scene
     end
 
     def pbOptions
-        canEditTeam = teamEditingAllowed?
-        loop do
-            dorefresh = false
-            commands = []
-            cmdGiveItem = -1
-            cmdTakeItem = -1
-            cmdPokedex  = -1
-            cmdMark     = -1
-            unless @pokemon.egg?
-                commands[cmdGiveItem = commands.length] = _INTL("Give item")
-                commands[cmdTakeItem = commands.length] = _INTL("Take item") if @pokemon.hasItem?
-                commands[cmdPokedex = commands.length]  = _INTL("View MasterDex") if $Trainer.has_pokedex
-            end
-            commands[cmdMark = commands.length]       = _INTL("Mark")
-            commands[commands.length]                 = _INTL("Cancel")
-            command = pbShowCommands(commands)
-            if cmdGiveItem >= 0 && command == cmdGiveItem
-                unless canEditTeam
-                    showNoTeamEditingMessage
-                    next
-                end
-                item = nil
-                pbFadeOutIn do
-                    scene = PokemonBag_Scene.new
-                    screen = PokemonBagScreen.new(scene, $PokemonBag)
-                    item = screen.pbChooseItemScreen(proc { |itm| GameData::Item.get(itm).can_hold? })
-                end
-                dorefresh = pbGiveItemToPokemon(item, @pokemon, self) if item
-            elsif cmdTakeItem >= 0 && command == cmdTakeItem
-                unless canEditTeam
-                    showNoTeamEditingMessage
-                    next
-                end
-                dorefresh = pbTakeItemsFromPokemon(@pokemon) > 0
-            elsif cmdPokedex >= 0 && command == cmdPokedex
-                openSingleDexScreen(@pokemon)
-                dorefresh = true
-            elsif cmdMark >= 0 && command == cmdMark
-                dorefresh = pbMarking(@pokemon)
-            end
-            return dorefresh
-        end
+        return pbMarking(@pokemon)
     end
 
     def pbChooseMoveToForget(move_to_learn)
