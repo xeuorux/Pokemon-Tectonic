@@ -339,3 +339,4 @@
 462,CHEF,Chef,32,,,AROMALADY,Male,,,[]
 463,POKEFAN_F3,Poké Fan,64,,,POKEFAN,Female,,,[]
 464,NECKBEARD,Neckbeard,40,,,POKEFAN,Male,,,[]
+465,REPORTER2,Reporter,40,,,ELITETRAINER,Female,,,[]

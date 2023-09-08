@@ -219,16 +219,47 @@ class BattleChallengeData
     @swaps        = t.currentSwaps
     @wins         = t.currentWins
     @battleNumber = 1
-    @trainers     = []
     raise _INTL("Number of rounds is 0 or less.") if numRounds <= 0
     @numRounds = numRounds
     # Get all the trainers for the next set of battles
+    generateTrainers
+    @start = [$game_map.map_id, $game_player.x, $game_player.y]
+    @oldParty = $Trainer.party
+    $Trainer.party = @party if @party
+    Game.save(safe: true)
+  end
+
+  def testGenerationRandomness
+    generationCounts = {}
+    GameData::Trainer.getMonumentTrainers.each do |trainerData|
+      generationCounts[trainerData.id] = 0
+    end
+    1000.times do
+      generateTrainers
+      @trainers.each do |trainerData|
+        generationCounts[trainerData.id] += 1
+      end
+    end
+    generationCounts.each do |trainerID,trainerCount|
+      echoln("#{trainerID[0]}_#{trainerID[1]},#{trainerCount}")
+    end
+  end
+
+  def generateTrainers
+    @trainers     = []
     btTrainers = pbGetBTTrainers(pbBattleChallenge.currentChallenge)
     while @trainers.length < @numRounds
       if @monumentTrainers
         while true
           newtrainer = GameData::Trainer.randomMonumentTrainer
-          next if @trainers.include?(newtrainer)
+          duplicate = false
+          @trainers.each do |trainerData|
+            next unless trainerData.id == newtrainer.id
+            duplicate = true
+            break
+          end
+          next if duplicate
+          @trainers.include?(newtrainer)
           @trainers.push(newtrainer)
           break
         end
@@ -241,10 +272,12 @@ class BattleChallengeData
         @trainers.push(newtrainer) if !found
       end
     end
-    @start = [$game_map.map_id, $game_player.x, $game_player.y]
-    @oldParty = $Trainer.party
-    $Trainer.party = @party if @party
-    Game.save(safe: true)
+    if @monumentTrainers
+      echoln("Monument run trainers selected:")
+      @trainers.each do |trainerData|
+        echoln("#{trainerData.trainer_type} #{trainerData.name}")
+      end
+    end
   end
 
   def pbGoToStart

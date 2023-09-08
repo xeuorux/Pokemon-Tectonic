@@ -1815,7 +1815,7 @@ Pokemon = CRAWDAUNT,70
     Item = PRISMATICPLATE
     EV = 20,20,0,0,20,10
 #-------------------------------
-[LADY,Test23Gerlinde]]
+[LADY,Test23Gerlinde]
 Pokemon = ARMALDO,70
     Moves = RAPIDSPIN,STEALTHROCK,ADAMANTINEPRESS,XSCISSOR
     AbilityIndex = 0 # Evo-Armor
@@ -1847,7 +1847,7 @@ Pokemon = HELIOLISK,70
     Item = ENERGYHERB
     EV = 10,20,0,20,20,0
 #-------------------------------
-[BIKER,Test24Lazar]]
+[BIKER,Test24Lazar]
 Pokemon = MANDIBUZZ,70
     Moves = POWERNAP,DEFOG,FLATTER,SWAGGER
     AbilityIndex = 0 # Impervious
@@ -1913,7 +1913,7 @@ Pokemon = TOWERPODA,70
     Item = LEFTOVERS
     EV = 20,0,15,0,0,15
 #-------------------------------
-[WILDPACK,ReplaceMe26]
+[REPORTER2,Sabine]
 Pokemon = HAEROBIC,70
     Moves = EXTREMESPEED,UTURN,CLOSECOMBAT,FAKEOUT
     AbilityIndex = 1 # Stubborn
@@ -1977,7 +1977,7 @@ Pokemon = MMANDIBUZZ,70
     Item = BLACKSLUDGE
     EV = 20,0,10,0,0,20
 #-------------------------------
-[WILDPACK,ReplaceMe27]
+[LASS,Sylvia]
 Pokemon = DECEAT,70
     Moves = DOCILEMASK,SUCKERPUNCH,PLAYROUGH,METEORMASH
     AbilityIndex = 0 # Power Up
@@ -2009,7 +2009,7 @@ Pokemon = MAROWAK,70
     Item = ENERGYHERB
     EV = 20,20,0,0,20,10
 #-------------------------------
-[WILDPACK,ReplaceMe28]
+[BLACKBELT,Galip]
 Pokemon = MIENSHAO,70
     Moves = WINDTUNNEL,RAPIDHERTZ,PULSAR,VACUUMWAVE
     AbilityIndex = 0 # Nerve Number
@@ -2041,7 +2041,7 @@ Pokemon = ESCAVALIER,70
     Item = DARKGEM
     EV = 20,20,10,0,20,0
 #-------------------------------
-[WILDPACK,ReplaceMe29]
+[SCIENTIST_M4,Rikard]
 Pokemon = FORRETRESS,70
     Moves = SPIKES,RAPIDSPIN,REST,GYROBALL
     AbilityIndex = 0 # Natural Cure

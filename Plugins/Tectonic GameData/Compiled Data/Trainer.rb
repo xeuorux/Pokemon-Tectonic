@@ -84,19 +84,22 @@ module GameData
         return (self::DATA.has_key?(key)) ? self::DATA[key] : nil
       end
 
-      def self.randomMonumentTrainer
-        return monumentTrainers.sample
+      @@monumentTrainers = []
+
+      def self.getMonumentTrainers
+        if @@monumentTrainers.empty?
+          each do |trainerData|
+            next unless trainerData.monumentTrainer
+            @@monumentTrainers.push(trainerData)
+          end
+        end
+        return @@monumentTrainers
       end
 
-      def self.monumentTrainers
-        monumentTrainers = []
-        self.each do |trainerData|
-          next unless trainerData.monumentTrainer
-          monumentTrainers.push(trainerData)
-        end
-        return monumentTrainers
+      def self.randomMonumentTrainer
+        return getMonumentTrainers.sample
       end
-  
+
       def initialize(hash)
         @id             = hash[:id]
         @id_number      = hash[:id_number]
@@ -119,6 +122,8 @@ module GameData
         @extendsName	  	= hash[:extends_name]
         @extendsVersion 	= hash[:extends_version] || -1
         @monumentTrainer  = hash[:monument_trainer] || false
+
+        @@monumentTrainers.push(self) if @monumentTrainer
 
         @pokemon.each do |partyEntry|
             next if partyEntry[:species] == :SMEARGLE
