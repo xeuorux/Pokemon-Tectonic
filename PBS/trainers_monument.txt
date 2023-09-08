@@ -156,8 +156,8 @@ Pokemon = STARAPTOR,70
     EV = 0,20,10,20,20,0
 Pokemon = GENGAR,70
     Moves = SHADOWBALL,SLUDGEWAVE,ICEBEAM,THUNDERBOLT
-    AbilityIndex = 0 # Levitate
-    Item = FOCUSSASH
+    AbilityIndex = 1 # Break Through
+    Item = POISONGEM
     EV = 0,20,10,20,20,0
 #-------------------------------
 [RICHBOY,Splits]
@@ -1105,7 +1105,7 @@ Pokemon = MASQUERAIN,70
     Moves = UTURN,LIQUIDATION,FELLSTINGER,GREYMIST
     AbilityIndex = 0 # Hyper Speed
     Item = POWERLOCK
-    EV = 10,20,0,0,20,20
+    EV = 10,20,0,10,20,10
 Pokemon = AMPHAROS,70
     Moves = TRANSCENDENTENERGY,DRACOMETEOR,VOLTSWITCH,BLACKOUT
     AbilityIndex = 1 # Stubborn
@@ -1750,7 +1750,7 @@ Pokemon = CLEFABLE,70
     Item = LIFEORB
     EV = 20,20,5,0,20,5
 #-------------------------------
-[COWGIRL,Test16Dara]
+[COWGIRL,Dara]
 Pokemon = CARRACOSTA,70
     Moves = STEALTHROCK,AURATRICK,ADAMANTINEPRESS,CURSEDOATH
     AbilityIndex = 1 # Tough
@@ -1815,7 +1815,7 @@ Pokemon = CRAWDAUNT,70
     Item = PRISMATICPLATE
     EV = 20,20,0,0,20,10
 #-------------------------------
-[LADY,Gerlinde]
+[LADY,Test23Gerlinde]]
 Pokemon = ARMALDO,70
     Moves = RAPIDSPIN,STEALTHROCK,ADAMANTINEPRESS,XSCISSOR
     AbilityIndex = 0 # Evo-Armor
@@ -1847,7 +1847,7 @@ Pokemon = HELIOLISK,70
     Item = ENERGYHERB
     EV = 10,20,0,20,20,0
 #-------------------------------
-[BIKER,Lazar]
+[BIKER,Test24Lazar]]
 Pokemon = MANDIBUZZ,70
     Moves = POWERNAP,DEFOG,FLATTER,SWAGGER
     AbilityIndex = 0 # Impervious
@@ -1880,7 +1880,7 @@ Pokemon = QUAGSIRE,70
     Item = LEFTOVERS
     EV = 20,0,20,0,0,10
 #-------------------------------
-[PARASOLLADY,Willow]
+[PARASOLLADY,Test25Willow]
 Policies = SUN_TEAM
 Pokemon = SUDOWOODO,70
     Moves = STEALTHROCK,STRENGTHSAP,SUNSHINE,TAUNT
@@ -1945,7 +1945,7 @@ Pokemon = GOURGEIST,70
     Item = ENERGYLOCK
     EV = 0,20,5,20,20,5
 #-------------------------------
-[NECKBEARD,James]
+[NECKBEARD,Test26James]
 Pokemon = SNORLAX,70
     Moves = BEDFELLOWS,SNORE,KNOCKOFF,STOCKPILE
     AbilityIndex = 0 # Snoring
@@ -1976,3 +1976,99 @@ Pokemon = MMANDIBUZZ,70
     AbilityIndex = 0 # Sealing Body
     Item = BLACKSLUDGE
     EV = 20,0,10,0,0,20
+#-------------------------------
+[WILDPACK,ReplaceMe27]
+Pokemon = DECEAT,70
+    Moves = DOCILEMASK,SUCKERPUNCH,PLAYROUGH,METEORMASH
+    AbilityIndex = 0 # Power Up
+    Item = FOCUSSASH
+    EV = 20,20,10,0,20,0
+Pokemon = MJELLICENT,70
+    Moves = FLASHSTING,POLTERGEIST,VOLTTACKLE,REFLEXOVERDRIVE
+    AbilityIndex = 1 # Tendril Trap
+    Item = POWERLOCK
+    EV = 10,20,0,0,20,20
+Pokemon = HARCANINE,70
+    Moves = BULLETTRAIN,BEDROCKBREAKER,FLAREBLITZ,EXTREMESPEED
+    AbilityIndex = 1 # Rock Head
+    Item = HEAVYDUTYBOOTS
+    EV = 0,20,0,20,20,10
+Pokemon = HAWLUCHA,70
+    Moves = CLOSECOMBAT,ACROBATICS,SWORDSDANCE,THROATCHOP
+    AbilityIndex = 1 # Unburden
+    Item = AGILITYHERB
+    EV = 0,20,10,20,20,0
+Pokemon = MASQUERAIN,70
+    Moves = HYDROPUMP,ICEBEAM,BUGBUZZ,BLUSTER
+    AbilityIndex = 0 # Hyper Speed
+    Item = LIFEORB
+    EV = 20,20,0,0,20,10
+Pokemon = MAROWAK,70
+    Moves = BONEMERANG,BRICKBREAK,HYPERBEAM,STEALTHROCK
+    AbilityIndex = 1 # Break Through
+    Item = ENERGYHERB
+    EV = 20,20,0,0,20,10
+#-------------------------------
+[WILDPACK,ReplaceMe28]
+Pokemon = MIENSHAO,70
+    Moves = WINDTUNNEL,RAPIDHERTZ,PULSAR,VACUUMWAVE
+    AbilityIndex = 0 # Nerve Number
+    Item = LOADEDDICE
+    EV = 10,20,0,20,20,0
+Pokemon = SKUNTANK,70
+    Moves = PURSUIT,SUCKERPUNCH,POISONJAB,PLAYROUGH
+    AbilityIndex = 0 # Stench
+    Item = FAIRYGEM
+    EV = 0,20,10,20,20,0
+Pokemon = HARIYAMA,70
+    Moves = ADAMANTINEPRESS,POWERUPPUNCH,BAR,CROSSCHOP
+    AbilityIndex = 1 # Fighting Vigor
+    Item = LEFTOVERS
+    EV = 0,0,20,10,0,20
+Pokemon = MTANGROWTH,70
+    Moves = GLARE,WAVEOFJADE,ACIDBATH,STEALTHROCK
+    AbilityIndex = 0 # Petrifying
+    Item = ENERGYLOCK
+    EV = 20,20,0,0,20,10
+Pokemon = LICKILICKY,70
+    Moves = TRICKYTOXINS,TONGUETWISTER,MEGAPUNCH,SLACKOFF
+    AbilityIndex = 0 # Tenderize
+    Item = LEFTOVERS
+    EV = 20,10,10,0,10,10
+Pokemon = ESCAVALIER,70
+    Moves = PURSUIT,XSCISSOR,SLAY,DRILLRUN
+    AbilityIndex = 0 # Armor Piercing
+    Item = DARKGEM
+    EV = 20,20,10,0,20,0
+#-------------------------------
+[WILDPACK,ReplaceMe29]
+Pokemon = FORRETRESS,70
+    Moves = SPIKES,RAPIDSPIN,REST,GYROBALL
+    AbilityIndex = 0 # Natural Cure
+    Item = ROCKYHELMET
+    EV = 20,10,20,0,10,0
+Pokemon = MNOCTOWL,70
+    Moves = SHEDCOAT,STOREDPOWER,COLDFRONT,ICEBEAM
+    AbilityIndex = 0 # Sentry
+    Item = HEAVYDUTYBOOTS
+    EV = 20,12,0,8,12,10
+Pokemon = KINGDRA,70
+    Moves = DRACOMETEOR,AURORABEAM,BUBBLEBLAST,SLUDGEWAVE
+    AbilityIndex = 1 # Whirler
+    Item = LIFEORB
+    EV = 10,20,0,20,20,0
+Pokemon = MAROWAK,70
+    Moves = BONEMERANG,DRAINPUNCH,POWERUPPUNCH,THUNDERCLAP
+    AbilityIndex = 1 # Break Through
+    Item = ASSAULTVEST
+    EV = 20,20,0,0,20,10
+Pokemon = DURANT,70
+    Moves = HONECLAWS,EARTHQUAKE,XSCISSOR,BULLETTRAIN
+    AbilityIndex = 0 # Hustle
+    Item = GROUNDGEM
+    EV = 10,20,0,20,20,0
+Pokemon = SLOWBRO,70
+    Moves = FLIPTURN,DRAGONTAIL,SLACKOFF,NUMB
+    AbilityIndex = 1 # Apathetic
+    Item = ROCKYHELMET
+    EV = 20,0,20,0,0,10
