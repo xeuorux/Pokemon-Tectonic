@@ -239,3 +239,7 @@ end
 def pbSilentItem(item,quantity=1)
 	$PokemonBag.pbStoreItem(item,quantity)
 end
+
+def pbRegisterItem(item)
+  $PokemonBag.pbRegisterItem(item)
+end
