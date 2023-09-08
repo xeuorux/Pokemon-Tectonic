@@ -1153,7 +1153,7 @@ Pokemon = DRAGAPULT,70
     AbilityIndex = 1 # Infiltrator
     Item = GHOSTGEM
     EV = 10,20,0,20,20,0
-Pokemon = BISHARP,70
+Pokemon = KINGAMBIT,70
     Moves = SLAY,KNOCKOFF,SUCKERPUNCH,BRICKBREAK
     AbilityIndex = 1 # Sturdy
     Item = WEAKNESSPOLICY
@@ -1686,7 +1686,7 @@ Pokemon = GOODRA,70
     EV = 20,0,20,0,0,10
 #-------------------------------
 [STRIKER,Cezar]
-Pokemon = BISHARP,70
+Pokemon = KINGAMBIT,70
     Moves = STEALTHROCK,KNOCKOFF,SLAY,PSYCHOCUT
     AbilityIndex = 1 # Sturdy
     Item = CUSTAPBERRY
