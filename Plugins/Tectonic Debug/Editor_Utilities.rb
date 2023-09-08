@@ -170,7 +170,7 @@ def pbGetLegalMoves(species)
       # Choose from all moves
       commands.concat(commands2)
     end
-    return pbChooseList(commands, moveDefault, -1)
+    return pbChooseList(commands, moveDefault, nil)
   end
   
   # Displays a list of all types, and returns the ID of the type selected (or nil
