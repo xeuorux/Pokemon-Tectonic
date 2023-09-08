@@ -2061,10 +2061,10 @@ Pokemon = MRRIME,45
 Pokemon = METAGROSS,45
     Name = Armiger
     Shiny = yes
-    Moves = METEORMASH,AGILITY,BRICKBREAK,PREDICTIONSTRIKE
+    Moves = METEORMASH,TRAMPLE,BRICKBREAK,PREDICTIONSTRIKE
     AbilityIndex = 1 # Robust
 Pokemon = MPOLTEAGEIST,45
-    Moves = FROSTBREATH,SEANCE,BUBBLEBARRAGE,FOULPLAY
+    Moves = FROSTBREATH,SEANCE,BUBBLEBARRAGE,AROMATHERAPY
     AbilityIndex = 1 # Chill Out
     Item = LOADEDDICE
 Pokemon = CRABOMINABLE,45
@@ -2083,7 +2083,7 @@ Pokemon = GDARMANITAN,45
     AbilityIndex = 0 # Phase Shift
     Item = POWERHERB
 Pokemon = METAGROSS,45
-    Item = LUMBERRY
+    Item = SALACBERRY
 #-------------------------------
 [LEADER_Noel_2,Noel,1]
 ExtendsVersion = 0

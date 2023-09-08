@@ -26,7 +26,7 @@ PokeBattle_Battle::BattlerEnterCurseEffect.add(:CURSE_EXTRA_TYPES,
         when :BRUXISH
             type = :POISON
         when :GDARMANITAN
-            type = :FAIRY
+            type = :FIGHTING
         end
         battler.effects[:Type3] = type
 
