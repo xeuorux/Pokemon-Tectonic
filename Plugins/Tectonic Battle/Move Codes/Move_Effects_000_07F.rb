@@ -977,7 +977,7 @@ end
 class PokeBattle_Move_048 < PokeBattle_MultiStatUpMove
     def initialize(battle, move)
         super
-        @statUp = ATTACKING_STATS_2
+        @statUp = ATTACKING_STATS_1
     end
 end
 
