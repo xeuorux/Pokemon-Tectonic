@@ -3,10 +3,11 @@ CHASM_CREDITs = <<_END_
 Major Contributors
 Zeu<s>Agentbla
 Divock<s>Brickbat
-Wakarimasensei<s>ali760
-Drawingbox<s>LucaSantosSims
-lichenprincess<s>Jaggedthorn
-papper<s>IgitedXSoul
+Wakarimasensei<s>Drawingbox
+IgitedXSoul<s>LucaSantosSims
+Darlvon<s>Jaggedthorn
+Splitmoon<s>TikiShades
+Valrex<s>Steeb
 
 Other Contributors
 Arenastellez<s>Zufaix
@@ -19,15 +20,17 @@ MrPanda1<s>Angelcake
 Mikomii<s>Lmorgan89
 Valrex<s>Avery
 Destinygreatness<s>Gary Oak
+ali760<s>papper
+lichenprincess
 
 Playtesters
-Splitmoon<s>Sets
-Steeb<s>Licras
+Sets<s>Licras
 HairyHoopa<s>Robinzh
 Phyrol<s>dragonwarrior
 Tauxins<s>TheBreadDealer
 KickassKT<s>PandaNinjaPants
-Airiii<s>TikiShades
+Airiii<s>Ghyst
+Ghost<s>Not Reese
 
 {INSERTS_PLUGIN_CREDITS_DO_NOT_REMOVE}
 
@@ -149,6 +152,51 @@ Compilation of Resources
 Golisopod User<s>UberDunsparce
 Porting to v19
 Golisopod User<s>Maruno
+
+Generation 9 Pack
+Script Gen 9 and Adapting PLA for v20:
+Caruban<s>Lucidious89
+Eskiss
+PBS for Gen 9:
+Caruban<s>PorousMist
+DJChaos<s>Futuresushi
+Pokemon Gen 9 Battler Sprites:
+KingOfThe-X-Roads<s>Mak
+Caruban<s>jinxed
+leParagon<s>Sopita_Yorita
+Azria<s>Mashirosakura,
+JordanosArt<s>Abnayami
+OldSoulja<s>Katten
+Divaruta 666<s>Clara
+Skyflyer<s>AshnixsLaw
+Pokemon Gen 9 icons:
+ezerart, JordanosArt
+Pokemon Gen 9 Followers:
+Azria<s>DarkusShadow
+EduarPokeN<s>Carmanekko
+StarWolff<s>Caruban
+Pokemon PLA and Gen 9 Footprints
+Caruban
+Pokemon Gen 9 Cries:
+Lightblade Absol<s>HeroLinik
+Gen 9 item icons:
+lichenprincess<s>Caruban
+PLA item icons:
+AztecCroc<s>3DJackArt
+Caruban<s>lichenprincess
+Pokemon cries ripped:
+Morningdew
+PLA Pokémon icons:
+LuigiTKO
+PLA Followers:
+Boonzeet<s>DarkusShadow
+princess-phoenix<s>Ezeart
+WolfPP
+PLA Sprites from Smogon Gen8 Sprite Project
+Blaquaza<s>KingOfThe-X-Roads
+KattenK<s>Travis
+G.E.Z.<s>SpheX
+Hematite<s>SelenaArmorclaw
 
 Z-Move Scripts
 Marcello
