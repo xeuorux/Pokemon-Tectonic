@@ -14,7 +14,10 @@ class PokemonMart_Scene
            (itemwindow.item) ? @adapter.getDescription(itemwindow.item) : _INTL("Quit shopping.")
         itemwindow.refresh
       end
-      @sprites["moneywindow"].text = _INTL("Money:\r\n<r>{1}", @adapter.getMoneyString)
+      moneyWindowText = @adapter.getMoneyName(true) + ": "
+      moneyWindowText += "\r\n" if @adapter.moneyOnNewLine?
+      moneyWindowText += "<r>" + @adapter.getMoneyString
+      @sprites["moneywindow"].text = moneyWindowText
     end
   
     def pbStartBuyOrSellScene(buying, stock, adapter)
@@ -53,7 +56,7 @@ class PokemonMart_Scene
       @sprites["moneywindow"].x = 0
       @sprites["moneywindow"].y = 0
       @sprites["moneywindow"].width = 190
-      @sprites["moneywindow"].height = 96
+      @sprites["moneywindow"].height = @adapter.moneyOnNewLine? ? 96 : 64
       @sprites["moneywindow"].baseColor = Color.new(88, 88, 80)
       @sprites["moneywindow"].shadowColor = Color.new(168, 184, 184)
       pbDeactivateWindows(@sprites)
@@ -257,12 +260,13 @@ class PokemonMart_Scene
           inbagwindow.baseColor = Color.new(88, 88, 80)
           inbagwindow.shadowColor = Color.new(168, 184, 184)
           inbagwindow.text = _INTL("In Bag:<r>{1}  ", qty)
-          numwindow.text = _INTL("x{1}<r>$ {2}", curnumber, (curnumber * itemprice).to_s_formatted)
           pbBottomRight(numwindow)
           numwindow.y -= helpwindow.height
           pbBottomLeft(inbagwindow)
           inbagwindow.y -= helpwindow.height
           loop do
+            numwindow.text = _INTL("x{1}<r>{2}", curnumber, @adapter.getMoneyDisplay(curnumber * itemprice))
+
             Graphics.update
             Input.update
             numwindow.update
@@ -272,22 +276,18 @@ class PokemonMart_Scene
               pbPlayCursorSE
               curnumber -= 10
               curnumber = 1 if curnumber < 1
-              numwindow.text = _INTL("x{1}<r>$ {2}", curnumber, (curnumber * itemprice).to_s_formatted)
             elsif Input.repeat?(Input::RIGHT)
               pbPlayCursorSE
               curnumber += 10
               curnumber = maximum if curnumber > maximum
-              numwindow.text = _INTL("x{1}<r>$ {2}", curnumber, (curnumber * itemprice).to_s_formatted)
             elsif Input.repeat?(Input::UP)
               pbPlayCursorSE
               curnumber += 1
               curnumber = 1 if curnumber > maximum
-              numwindow.text = _INTL("x{1}<r>$ {2}", curnumber, (curnumber * itemprice).to_s_formatted)
             elsif Input.repeat?(Input::DOWN)
               pbPlayCursorSE
               curnumber -= 1
               curnumber = maximum if curnumber < 1
-              numwindow.text = _INTL("x{1}<r>$ {2}", curnumber, (curnumber * itemprice).to_s_formatted)
             elsif Input.trigger?(Input::USE)
               pbPlayDecisionSE
               ret = curnumber

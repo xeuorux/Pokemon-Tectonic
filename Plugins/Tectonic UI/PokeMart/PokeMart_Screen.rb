@@ -26,19 +26,19 @@ class PokemonMartScreen
     item=nil
     loop do
       item=@scene.pbChooseBuyItem
-      break if !item
+      break unless item
       quantity=0
       itemname=@adapter.getDisplayName(item)
       price=@adapter.getPrice(item)
       if @adapter.getMoney<price
-        pbDisplayPaused(_INTL("You don't have enough money."))
+        pbDisplayPaused(_INTL("You don't have enough {1}.",@adapter.getMoneyName))
         next
       end
       if GameData::Item.get(item).is_single_purchase?
         if @human
-          confirmPurchaseMessage = _INTL("Certainly. You want {1}. That will be ${2}. OK?",itemname,price.to_s_formatted)
+          confirmPurchaseMessage = _INTL("Certainly. You want {1}. That will be {2}. OK?",itemname,@adapter.getMoneyDisplay(price))
         else
-          confirmPurchaseMessage = _INTL("{1} costs ${2}. Confirm?",itemname,price.to_s_formatted)
+          confirmPurchaseMessage = _INTL("{1} costs {2}. Confirm?",itemname,@adapter.getMoneyDisplay(price))
         end
         next unless pbConfirm(confirmPurchaseMessage)
         quantity=1
@@ -54,14 +54,14 @@ class PokemonMartScreen
         next if quantity==0
         price*=quantity
         if @human
-          quantityConfirmMessage = _INTL("{1}, and you want {2}. That will be ${3}. OK?",itemname,quantity,price.to_s_formatted)
+          quantityConfirmMessage = _INTL("{1}, and you want {2}. That will be {3}. OK?",itemname,quantity,@adapter.getMoneyDisplay(price))
         else
-          quantityConfirmMessage = _INTL("Total cost: ${3}. Confirm?",itemname,quantity,price.to_s_formatted)
+          quantityConfirmMessage = _INTL("Total cost: {3}. Confirm?",itemname,quantity,@adapter.getMoneyDisplay(price))
         end
         next unless pbConfirm(quantityConfirmMessage)
       end
       if @adapter.getMoney<price
-        pbDisplayPaused(_INTL("You don't have enough money."))
+        pbDisplayPaused(_INTL("You don't have enough {1}.", @adapter.getMoneyName))
         next
       end
       added=0
@@ -140,12 +140,12 @@ class PokemonMartScreen
       end
       price/=2
       price*=qty
-      if pbConfirm(_INTL("I can pay ${1}. Would that be OK?",price.to_s_formatted))
+      if pbConfirm(_INTL("I can pay {1}. Would that be OK?",@adapter.getMoneyDisplay(price)))
         @adapter.setMoney(@adapter.getMoney+price)
         qty.times do
           @adapter.removeItem(item)
         end
-        pbDisplayPaused(_INTL("Turned over the {1} and received ${2}.",itemname,price.to_s_formatted)) { pbSEPlay("Mart buy item") }
+        pbDisplayPaused(_INTL("Turned over the {1} and received {2}.",itemname,@adapter.getMoneyDisplay(price))) { pbSEPlay("Mart buy item") }
         @scene.pbRefresh
       end
       @scene.pbHideMoney

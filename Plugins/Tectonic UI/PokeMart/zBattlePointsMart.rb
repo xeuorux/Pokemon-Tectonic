@@ -4,12 +4,23 @@ class BattlePointsAdapter < PokemonMartAdapter
     end
   
     def getMoneyString
-      return $Trainer.battle_points.to_s
+      return $Trainer.battle_points.to_s_formatted
+    end
+
+    def getMoneyDisplay(currencyAmount = nil)
+      currencyAmount = getMoney unless currencyAmount
+      return "#{currencyAmount.to_s_formatted} BP"
+    end
+
+    def getMoneyName(upperCase = false)
+      return "BP"
     end
   
     def setMoney(value)
       $Trainer.battle_points = value
     end
+
+    def moneyOnNewLine?; return false; end
 end
 
 class BattlePointsMartScreen < PokemonMartScreen

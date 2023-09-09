@@ -9,10 +9,21 @@ class PokemonMartAdapter
     def getMoneyString
       return pbGetGoldString
     end
+
+    def getMoneyDisplay(currencyAmount = nil)
+      currencyAmount = getMoney unless currencyAmount
+      return "$#{currencyAmount.to_s_formatted}"
+    end
+
+    def getMoneyName(upperCase = false)
+      return upperCase ? "Money" : "money"
+    end
   
     def setMoney(value)
       $Trainer.money=value
     end
+
+    def moneyOnNewLine?; return true; end
   
     def getInventory
       return $PokemonBag
@@ -64,8 +75,7 @@ class PokemonMartAdapter
     end
   
     def getDisplayPrice(item, selling = false)
-      price = getPrice(item, selling).to_s_formatted
-      return _INTL("$ {1}", price)
+      return getMoneyDisplay(getPrice(item, selling))
     end
   
     def canSell?(item)
