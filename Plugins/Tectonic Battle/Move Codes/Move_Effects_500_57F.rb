@@ -1329,7 +1329,6 @@ class PokeBattle_Move_54B < PokeBattle_StatUpMove
     def pbEffectAfterAllHits(user, target)
         return if user.fainted? || target.damageState.unaffected
         user.disableEffect(:Trapping)
-        user.disableEffect(:LeechSeed)
         user.pbOwnSide.eachEffect(true) do |effect, _value, data|
             next unless data.is_hazard?
             user.pbOwnSide.disableEffect(effect)
@@ -1339,7 +1338,6 @@ class PokeBattle_Move_54B < PokeBattle_StatUpMove
     def getEffectScore(user, target)
         score = super
         score += hazardWeightOnSide(user.pbOwnSide) if user.alliesInReserve?
-        score += 20 if user.effectActive?(:LeechSeed)
         score += 20 if user.effectActive?(:Trapping)
         return score
     end

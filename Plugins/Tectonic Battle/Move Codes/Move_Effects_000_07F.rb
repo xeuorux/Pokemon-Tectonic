@@ -1032,11 +1032,19 @@ class PokeBattle_Move_049 < PokeBattle_Move
     def getEffectScore(user, target)
         score = 0
         # Dislike removing hazards that affect the enemy
-        score -= hazardWeightOnSide(target.pbOwnSide)
+        score -= 0.8 * hazardWeightOnSide(target.pbOwnSide)
         # Like removing hazards that affect us
         score += hazardWeightOnSide(target.pbOpposingSide)
-        target.pbOwnSide.eachEffect(true) do |effect, _value, data|
-            score += 25 if data.is_screen? || @miscEffects.include?(effect)
+        target.pbOwnSide.eachEffect(true) do |effect, value, data|
+            next unless data.is_screen? || @miscEffects.include?(effect)
+			case value
+				when 2
+					score += 30
+				when 3
+					score += 55
+				when 4..999
+					score += 150
+				end	
         end
         return score
     end
