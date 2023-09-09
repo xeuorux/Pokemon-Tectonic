@@ -576,7 +576,7 @@ class PokeBattle_Move_59E < PokeBattle_PartyMemberEffectMove
         @battle.pbDisplay(_INTL("{1} recovered to 1 HP!", pokemon.name))
     end
 
-    def getScore(_user, _target)
+    def getEffectScore(_user, _target)
         return 200
     end
 end

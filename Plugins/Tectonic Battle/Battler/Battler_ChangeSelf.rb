@@ -539,6 +539,7 @@ class PokeBattle_Battler
         @spdef = target.spdef
         @speed = target.speed
         GameData::Stat.each_battle { |s| @steps[s.id] = target.steps[s.id] }
+
         # Copy critical hit chance raising effects
         target.eachEffect do |effect, value, data|
             @effects[effect] = value if data.critical_rate_buff?
@@ -546,13 +547,16 @@ class PokeBattle_Battler
         @moves.clear
         target.moves.each_with_index do |m, i|
             @moves[i] = PokeBattle_Move.from_pokemon_move(@battle, Pokemon::Move.new(m.id))
+            aiSeesMove(@moves[i])
         end
+
         disableEffect(:Disable)
         disableBaseStatEffects
         @effects[:WeightChange] = target.effects[:WeightChange]
         refreshDataBox
         @battle.pbDisplay(_INTL("{1} transformed into {2}!", pbThis, target.pbThis(true)))
         pbOnAbilitiesLost(oldAbilities)
+
         # Trigger abilities
         pbEffectsOnSwitchIn
     end

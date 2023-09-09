@@ -668,6 +668,7 @@ module Recoilable
     end
 
     def getDamageBasedEffectScore(user,_target,damage)
+        return 0 unless user.takesIndirectDamage?
         recoilDamage = damage * finalRecoilFactor(user, true)
         score = (-recoilDamage * 2 / user.totalhp).floor
         return score

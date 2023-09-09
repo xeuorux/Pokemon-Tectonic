@@ -494,13 +494,10 @@ class PokeBattle_Move_115 < PokeBattle_Move
 
     def pbMoveFailedAI?(user, _targets)
         return false if user.substituted?
-        if user.ownersPolicies.include?(:PREDICTS_PLAYER)
-            user.eachPredictedAttacker do |_b|
-                return true
-            end
-            return false
+        user.eachPotentialAttacker do |_b|
+            return true
         end
-        return hasBeenUsed?(user)
+        return false
     end
 end
 

@@ -251,6 +251,7 @@ class PokeBattle_Move_510 < PokeBattle_Move
     end
 
     def getEffectScore(user, _target)
+        return 0 unless user.takesIndirectDamage?
         return -((user.hp.to_f / user.totalhp.to_f) * 50).floor
     end
 end
@@ -2008,7 +2009,7 @@ class PokeBattle_Move_578 < PokeBattle_PartyMemberEffectMove
         @battle.pbDisplay(_INTL("{1} recovered all the way to full health!", pokemon.name))
     end
 
-    def getScore(_user, _target)
+    def getEffectScore(_user, _target)
         return 250
     end
 end

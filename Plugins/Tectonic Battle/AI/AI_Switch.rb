@@ -261,15 +261,16 @@ class PokeBattle_AI
 
     # The battler passed in could be a real battler, or a fake one
     def worstDefensiveMatchupAgainstActiveFoes(battler)
-        if @precalculatedDefensiveMatchup.key?(battler.personalID)
-            precalcedScore,killInfoArray = @precalculatedDefensiveMatchup[battler.personalID]
-            echoln("[DEFENSIVE MATCHUP] Defensive matchup for #{battler.pbThis(true)} already calced this round: #{precalcedScore}")
-            return precalcedScore,killInfoArray
-        end
         matchups = []
         killInfoArray = []
         battler.eachOpposing(true) do |opposingBattler|
-            matchup,killInfo = rateDefensiveMatchup(battler, opposingBattler)
+            scoringKey = [battler.personalID,opposingBattler.personalID]
+            if @precalculatedDefensiveMatchup.key?(scoringKey)
+                matchup,killInfo =  @precalculatedDefensiveMatchup[scoringKey]
+            else
+                matchup,killInfo = rateDefensiveMatchup(battler, opposingBattler)
+                @precalculatedDefensiveMatchup[scoringKey] = [matchup,killInfo]
+            end
             matchups.push(matchup)
             killInfoArray.push(killInfo) if killInfo
         end
@@ -278,7 +279,6 @@ class PokeBattle_AI
         else
             worstDefensiveMatchup = matchups.min
         end
-        @precalculatedDefensiveMatchup[battler.personalID] = [worstDefensiveMatchup,killInfoArray]
         return worstDefensiveMatchup,killInfoArray
     end
 
