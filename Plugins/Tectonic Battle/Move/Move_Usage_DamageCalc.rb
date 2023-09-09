@@ -210,7 +210,7 @@ class PokeBattle_Move
             damageReduction = (1.0/3.0)
             damageReduction = (1.0/5.0) if user.boss? && AVATAR_DILUTED_STATUS_CONDITIONS
             damageReduction *= 2 if user.pbOwnedByPlayer? && @battle.curseActive?(:CURSE_STATUS_DOUBLED)
-            damageReduction *= 2 if toil
+            damageReduction *= 1.5 if toil
             damageReduction = 1 if damageReduction > 1
             multipliers[:final_damage_multiplier] *= (1.0 - damageReduction)
         end
@@ -219,7 +219,7 @@ class PokeBattle_Move
             damageReduction = (1.0/3.0)
             damageReduction = (1.0/5.0) if user.boss? && AVATAR_DILUTED_STATUS_CONDITIONS
             damageReduction *= 2 if user.pbOwnedByPlayer? && @battle.curseActive?(:CURSE_STATUS_DOUBLED)
-            damageReduction *= 2 if toil
+            damageReduction *= 1.5 if toil
             damageReduction = 1 if damageReduction > 1
             multipliers[:final_damage_multiplier] *= (1.0 - damageReduction)
         end
@@ -228,7 +228,7 @@ class PokeBattle_Move
             damageReduction = (1.0/4.0)
             damageReduction = (3.0/20.0) if user.boss? && AVATAR_DILUTED_STATUS_CONDITIONS
             damageReduction *= 2 if user.pbOwnedByPlayer? && @battle.curseActive?(:CURSE_STATUS_DOUBLED)
-            damageReduction *= 2 if toil
+            damageReduction *= 1.5 if toil
             damageReduction = 1 if damageReduction > 1
             multipliers[:final_damage_multiplier] *= (1.0 - damageReduction)
         end
