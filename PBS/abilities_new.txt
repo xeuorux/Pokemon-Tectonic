@@ -450,5 +450,5 @@
 1449,FIREFIGHTER,Fire-fighter,"Immune to Fire-type moves, and raises both attacking stats if hit by one."
 1450,SLUMBERINGDRAKE,Slumbering Drake,"Falls asleep upon entry, but raises all of its stats by 2 steps."
 1451,TENDRILTRAP,Tendril Trap,"Prevents foes whose Attack is less than its from fleeing."
-1452,TOILANDTROUBLE,Toil and Trouble,"Foes suffer double stat reduction from Burn, Frostbite, and Numb."
+1452,TOILANDTROUBLE,Toil and Trouble,"Foes suffer 50% more stat reduction from Burn, Frostbite, and Numb."
 1453,FATIGUED,Fatigued,"After attacking any foe, the Pokémon immediately uses Rest."
