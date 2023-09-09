@@ -541,8 +541,8 @@ class PokeBattle_Battle
                 # Absorbing the spikes
                 if hazardInfo[:absorb_proc].call(battler)
                     if aiCheck
-                        otherHazardScore += 10
-                        echoln("\t[HAZARD SCORING] #{battler.pbThis} will absorb a status spikes (+10)")
+                        otherHazardScore += 15
+                        echoln("\t[HAZARD SCORING] #{battler.pbThis} will absorb a status spikes (+15)")
                     else
                         battler.pbOwnSide.disableEffect(effect)
                         pbDisplay(_INTL("{1} absorbed the {2}!", battler.pbThis, data.name))
@@ -554,8 +554,9 @@ class PokeBattle_Battle
                     if battler.pbOwnSide.countEffect(effect) >= 2
                         if aiCheck
                             statusAfflictionScore = getStatusSettingEffectScore(status, nil, battler, ignoreCheck: true)
+							statusAfflictionScore -= 2 * statusAfflictionScore # i dont know how else to make it negative
                             statusAfflictionScore = (statusAfflictionScore / PokeBattle_AI::EFFECT_SCORE_TO_SWITCH_SCORE_CONVERSION_RATIO).ceil
-                            otherHazardScore += statusAfflictionScore
+                            otherHazardScore += 0.4 * statusAfflictionScore # + a negative instead of - a positive since if this isnt negative, debug will show as + instead of -
                             echoln("\t[HAZARD SCORING] #{battler.pbThis} will be statused by the #{data.real_name} (#{statusAfflictionScore.to_change})")
                         else
                             battler.pbInflictStatus(status)
