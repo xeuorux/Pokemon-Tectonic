@@ -87,6 +87,27 @@ class PokeBattle_Battle
         pbCalculatePriority if Settings::RECALCULATE_TURN_ORDER_AFTER_SPEED_CHANGES
     end
 
+    def pbAttackPhaseCloaking
+        pbPriority.each do |b|
+            next unless @choices[b.index][0] == :UseMove && !b.fainted?
+            next if b.movedThisRound?
+            next unless b.hasActiveAbility?(:CLOAKING)
+            move = @choices[b.index][2]
+            next if move.callsAnotherMove?
+            typeToFormHash = {
+                :GRASS => 0,
+                :GROUND => 1,
+                :STEEL => 2,
+            }
+            newForm = typeToFormHash[move.pbCalcType(b)]
+            next unless newForm
+            next if b.form == newForm
+            pbShowAbilitySplash(b, :CLOAKING)
+            b.pbChangeForm(newForm,_INTL("{1} changes its cloak to fit its next move!",b.pbThis))
+            pbHideAbilitySplash(b)
+        end
+    end
+
     def pbAttackPhaseMegaEvolution
         pbPriority.each do |b|
             next if wildBattle? && b.opposes?
@@ -224,6 +245,7 @@ class PokeBattle_Battle
         pbAttackPhaseItems
         return true if @decision > 0
         pbAttackPhaseMegaEvolution
+        pbAttackPhaseCloaking
         return false
     end
 

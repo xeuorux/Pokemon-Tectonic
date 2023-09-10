@@ -170,39 +170,14 @@ MultipleForms.register(:KYOGRE,{
 })
 
 MultipleForms.register(:BURMY,{
-  "getFormOnCreation" => proc { |pkmn|
-    case pbGetEnvironment
-    when :Rock, :Sand, :Cave
-      next 1   # Sandy Cloak
-    when :None
-      next 2   # Trash Cloak
-    else
-      next 0   # Plant Cloak
-    end
-  },
   "getFormOnLeavingBattle" => proc { |pkmn,battle,usedInBattle,endBattle|
-    next if !endBattle || !usedInBattle
-    case battle.environment
-    when :Rock, :Sand, :Cave
-      next 1   # Sandy Cloak
-    when :None
-      next 2   # Trash Cloak
-    else
-      next 0   # Plant Cloak
-    end
+    next 0 if pkmn.fainted? || endBattle
   }
 })
 
 MultipleForms.register(:WORMADAM,{
-  "getFormOnCreation" => proc { |pkmn|
-    case pbGetEnvironment
-    when :Rock, :Sand, :Cave
-      next 1   # Sandy Cloak
-    when :None
-      next 2   # Trash Cloak
-    else
-      next 0   # Plant Cloak
-    end
+  "getFormOnLeavingBattle" => proc { |pkmn,battle,usedInBattle,endBattle|
+    next 0 if pkmn.fainted? || endBattle
   }
 })
 
