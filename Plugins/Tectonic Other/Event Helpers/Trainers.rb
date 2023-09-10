@@ -180,13 +180,13 @@ def setFollowerGone(eventId=0)
 		return
 	end
 	followers.each do |follower|
-		pbSetSelfSwitch(follower.id,'D',true)
+		pbSetSelfSwitch(follower.id,'D',true,$game_map.map_id)
 	end
 end
 
 def getFollowerPokemon(eventId=0)
-	x = get_character(eventId).original_x
-	y = get_character(eventId).original_y
+	x = pbMapInterpreter.get_character(eventId).original_x
+	y = pbMapInterpreter.get_character(eventId).original_y
 	
 	followers = []
 	for event in $game_map.events.values

@@ -182,7 +182,7 @@ module Compiler
     trainerTypeName = match[1]
     return nil if !trainerTypeName || trainerTypeName == ""
     trainerName = match[2]
-    ret.name = "resettrainer(4) - " + trainerTypeName + " " + trainerName
+    ret.name = "resettrainer(4)stinkable - " + trainerTypeName + " " + trainerName
     trainerMaxLevel = match[3]
     ret.pages = [3]
     

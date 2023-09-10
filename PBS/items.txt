@@ -554,3 +554,4 @@
 553,SWEETTOOTH,Sweet Tooth,Sweet Teeth,8,0,"A charm in the shape of a tooth. It increases the EXP gained from EXP Candy by 15%.",0,0,6
 554,BOXLINK,Box Link,Box Links,8,0,"An advanced transporter which allows you to access your Pokémon Storage to withdraw or deposit Pokémon.",2,0,6
 555,STYLINGKIT,Styling Kit,Styling Kits,8,0,"A suite of training tools which allows you to modify your Pokemon's style points.",2,0,6
+556,STINKBOMB,Stink Bomb,Stink Bomb,1,5000,"Rare contraband. Any average solo trainer will flee from the stench of its explosion.",2,0,0
