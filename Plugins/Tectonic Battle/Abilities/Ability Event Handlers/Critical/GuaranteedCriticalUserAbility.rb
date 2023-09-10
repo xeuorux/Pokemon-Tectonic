@@ -33,3 +33,9 @@ BattleHandlers::GuaranteedCriticalUserAbility.add(:LURING,
         next true if target.dizzy?
     }
 )
+
+BattleHandlers::GuaranteedCriticalUserAbility.add(:PERFECTLUCK,
+    proc { |ability, _user, target, _battle|
+        next true
+    }
+)
