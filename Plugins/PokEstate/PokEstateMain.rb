@@ -395,6 +395,7 @@ class PokEstate
 		cmdRename = -1
 		cmdEvolve = -1
 		cmdCancel = -1
+		cmdStyle = -1
 		commands[cmdInteract = commands.length] = _INTL("Interact")
 		commands[cmdTake = commands.length] = _INTL("Take") unless donationBox
 		commands[cmdSummary = commands.length] = _INTL("View Summary")
