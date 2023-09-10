@@ -331,7 +331,12 @@ def getMultiStatUpEffectScore(statUpArray, user, target, fakeStepModifier: 0, ev
         else
             increase = 15
         end
-
+		
+		# Increase the score more if getting offense and defense from same stat
+		increase += 11 if statSymbol == :DEFENSE && user.pbHasMoveFunction?("177") # Body Press
+		increase += 11 if statSymbol == :SPECIAL_DEFENSE && user.pbHasMoveFunction?("540") # Aura Trick
+		increase = 25 if %i[DEFENSE SPECIAL_DEFENSE].include?(statSymbol) && increase >25 # Restrain the ai if it has defense move and took a hit
+		
         increase *= statIncreaseAmount
         step = target.steps[statSymbol] + fakeStepModifier
         increase -= step * 5 # Reduce the score for each existing step

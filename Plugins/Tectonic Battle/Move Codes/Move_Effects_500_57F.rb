@@ -2088,13 +2088,7 @@ class PokeBattle_Move_57B < PokeBattle_StatUpMove
     def initialize(battle, move)
         super
         @statUp = [:SPECIAL_DEFENSE, 5]
-    end
-	
-	def getEffectScore(user, target)
-        score = super
-		score += 0.5 * score if user.pbHasMoveFunction?("540") # Aura Trick
-        return score
-	end		
+    end	
 end
 
 #===============================================================================

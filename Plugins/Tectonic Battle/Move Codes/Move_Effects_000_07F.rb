@@ -642,12 +642,6 @@ class PokeBattle_Move_02A < PokeBattle_MultiStatUpMove
         super
         @statUp = DEFENDING_STATS_2
     end
-	
-	def getEffectScore(user, target)
-        score = super
-		score += 0.5 * score if user.pbHasMoveFunction?("177") or user.pbHasMoveFunction?("540") # Body Press / Aura Trick
-        return score
-	end	
 end
 
 #===============================================================================
@@ -702,12 +696,6 @@ class PokeBattle_Move_02F < PokeBattle_StatUpMove
         super
         @statUp = [:DEFENSE, 4]
     end
-	
-	def getEffectScore(user, target)
-        score = super
-		score += 0.5 * score if user.pbHasMoveFunction?("177") # Body Press
-        return score
-	end	
 end
 
 #===============================================================================
@@ -762,13 +750,7 @@ class PokeBattle_Move_033 < PokeBattle_StatUpMove
     def initialize(battle, move)
         super
         @statUp = [:SPECIAL_DEFENSE, 4]
-    end
-	
-	def getEffectScore(user, target)
-        score = super
-		score += 0.5 * score if user.pbHasMoveFunction?("540") # Aura Trick
-        return score
-	end		
+    end	
 end
 
 #===============================================================================
@@ -815,13 +797,7 @@ class PokeBattle_Move_038 < PokeBattle_StatUpMove
     def initialize(battle, move)
         super
         @statUp = [:DEFENSE, 5]
-    end
-
-	def getEffectScore(user, target)
-        score = super
-		score += 0.5 * score if user.pbHasMoveFunction?("177") # Body Press
-        return score
-	end		
+    end	
 end
 
 #===============================================================================
