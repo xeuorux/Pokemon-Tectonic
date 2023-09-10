@@ -880,7 +880,7 @@ class PokeBattle_PledgeMove < PokeBattle_Move
            user.pbThis, @pledgeOtherUser.pbThis(true)))
         @pledgeOtherUser.applyEffect(:FirstPledge, @function)
         @pledgeOtherUser.applyEffect(:MoveNext)
-        user.onMoveFailed(move) # Treated as a failure for Stomping Tantrum
+        user.onMoveFailed(self) # Treated as a failure for Stomping Tantrum
     end
 
     def pbEffectAfterAllHits(user, _target)
