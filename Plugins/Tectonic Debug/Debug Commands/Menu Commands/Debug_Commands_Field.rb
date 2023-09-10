@@ -83,7 +83,7 @@ DebugMenuCommands.register("warp", {
             switchCommands[cmdD = switchCommands.length] = _INTL("Switch D (#{currentD})")
             pbMessage(_INTL("Which switch would you like to swap?"))
             tileCommand = pbShowCommands(nil, switchCommands, -1)
-            break if tileCommand == 0
+            break if tileCommand <= 0
             switchName = ['A','B','C','D'][tileCommand-1]
             $game_self_switches[[chosenMap, chosenEvent, switchName]] = !$game_self_switches[[chosenMap, chosenEvent, switchName]]
             $MapFactory.getMap(chosenMap, false).need_refresh = true if $MapFactory.hasMap?(chosenMap)
