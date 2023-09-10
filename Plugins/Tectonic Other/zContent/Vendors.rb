@@ -699,6 +699,21 @@ def weirdBerryVendor
 	)
 end
 
+def expCandyVendor
+	expCandyStock = %i[
+		EXPCANDYXS
+		EXPCANDYS
+		EXPCANDYM
+		EXPCANDYL
+		EXPCANDYXL
+	]
+	pbPokemonMart(
+		expCandyStock,
+		_INTL("Welcome to Sweetrock Candy Outlet! How may I serve you?"),
+		!CAN_SELL_IN_VENDORS
+	)
+end
+
 ######################################################
 # Minor food vendors
 ######################################################

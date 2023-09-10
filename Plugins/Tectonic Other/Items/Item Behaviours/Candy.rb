@@ -36,7 +36,7 @@ def pbLevelGivingItem(pkmn, item, scene)
   return true
 end
 
-ItemHandlers::UseOnPokemon.copy(:RARECANDY,:VANILLATULUMBA)
+ItemHandlers::UseOnPokemon.copy(:RARECANDY)
 
 ItemHandlers::UseOnPokemon.add(:EXPCANDYXS,proc { |item,pkmn,scene|
   pbEXPAdditionItem(pkmn,250,item,scene)

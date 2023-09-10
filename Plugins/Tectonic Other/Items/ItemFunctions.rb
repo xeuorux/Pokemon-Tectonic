@@ -582,7 +582,7 @@ def pbAddEXP(pkmn, exp)
     return new_level
 end
 
-def pbEXPAdditionItem(pkmn, exp, item, scene = nil)
+def pbEXPAdditionItem(pkmn, exp, item, scene = nil, oneAtATime = false)
     current_lvl = pkmn.level
     current_exp = pkmn.exp
     level_cap = LEVEL_CAPS_USED ? getLevelCap : growth_rate.max_level
@@ -593,26 +593,32 @@ def pbEXPAdditionItem(pkmn, exp, item, scene = nil)
         return false
     end
 
-    # Ask the player how many they'd like to apply
+    # Max XP and level
     maxxp = pkmn.growth_rate.minimum_exp_for_level(level_cap)
     maxlv = ((maxxp - current_exp) / exp.to_f).ceil
-    maximum = [maxlv, $PokemonBag.pbQuantity(item)].min # Max items which can be used
-    if maximum > 1
-        params = ChooseNumberParams.new
-        params.setRange(1, maximum)
-        params.setInitialValue(1)
-        params.setCancelValue(0)
-        question = _INTL("How many {1} do you want to use?", GameData::Item.get(item).name_plural)
-        qty = pbMessageChooseNumber(question, params)
+
+    if oneAtATime
+      quantity = 1
     else
-        qty = 1
+      # Ask the player how many they'd like to apply
+      maximum = [maxlv, $PokemonBag.pbQuantity(item)].min # Max items which can be used
+      if maximum > 1
+          params = ChooseNumberParams.new
+          params.setRange(1, maximum)
+          params.setInitialValue(1)
+          params.setCancelValue(0)
+          question = _INTL("How many {1} do you want to use?", GameData::Item.get(item).name_plural)
+          quantity = pbMessageChooseNumber(question, params)
+      else
+          quantity = 1
+      end
+      return false if quantity < 1
     end
-    return false if qty < 1
-    $PokemonBag.pbDeleteItem(item, qty - 1)
+    $PokemonBag.pbDeleteItem(item, quantity - 1)
     scene&.pbRefresh
 
     # Apply the new EXP, accounting for the level cap
-    expAmount = exp * qty
+    expAmount = exp * quantity
     expAmount = (expAmount * 1.15).floor if pbHasItem?(:SWEETTOOTH)
     pkmn.exp += expAmount
     pkmn.exp = [pkmn.exp, maxxp].min
@@ -621,7 +627,11 @@ def pbEXPAdditionItem(pkmn, exp, item, scene = nil)
     if new_level == level_cap
         pbSceneDefaultDisplay(_INTL("{1} gained only {3} Exp. Points due to the level cap at level {2}.", pkmn.name, level_cap, display_exp),scene)
     else
-        pbSceneDefaultDisplay(_INTL("{1} gained {2} Exp. Points!", pkmn.name, display_exp),scene)
+        if pbHasItem?(:SWEETTOOTH)
+          pbSceneDefaultDisplay(_INTL("{1} gained a Sweet-Tooth boosted {2} Exp. Points!", pkmn.name, display_exp),scene)
+        else
+          pbSceneDefaultDisplay(_INTL("{1} gained {2} Exp. Points!", pkmn.name, display_exp),scene)
+        end
     end
     scene&.pbRefresh
 
