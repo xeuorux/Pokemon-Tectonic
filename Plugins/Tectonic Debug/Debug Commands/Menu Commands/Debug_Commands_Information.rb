@@ -353,3 +353,30 @@ DebugMenuCommands.register("setmetadata", {
     pbMessage(_INTL("Tribes imported for #{speciesCount} species!"))
   end
   
+  DebugMenuCommands.register("switchgraphicnames", {
+    "parent"      => "othermenu",
+    "name"        => _INTL("Switch Graphics Names"),
+    "description" => _INTL("Bulk change the character graphics used for events across the game."),
+    "effect"      => proc {
+      nameToReplace = pbEnterText(_INTL("Enter name to replace."),0,40)
+      nameToSet = pbEnterText(_INTL("Enter name to put in."),0,40)
+      mapData = Compiler::MapData.new
+      for id in mapData.mapinfos.keys.sort
+          map = mapData.getMap(id)
+          next if !map || !mapData.mapinfos[id]
+          mapName = mapData.mapinfos[id].name
+          changed = false
+          for key in map.events.keys
+              event = map.events[key]
+              next if !event || event.pages.length==0
+              event.pages.each do |page|
+                next if nil_or_empty?(page.graphic.character_name)
+                next unless page.graphic.character_name == nameToReplace
+                page.graphic.character_name = nameToSet
+                changed = true
+              end
+          end
+          mapData.saveMap(id) if changed
+      end
+    }
+  })
