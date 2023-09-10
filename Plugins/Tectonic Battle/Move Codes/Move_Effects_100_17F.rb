@@ -385,10 +385,12 @@ class PokeBattle_Move_112 < PokeBattle_MultiStatUpMove
 
     def getEffectScore(user, target)
         score = super
-        score += 20 if user.pbHasMoveFunction?("113")	# Spit Up
+        score += 20 if user.pbHasMoveFunction?("113") # Spit Up
         score += 20 if user.pbHasMoveFunction?("114") # Swallow
+		score += 20 if user.pbHasMoveFunction?("177") # Body Press
+		score += 20 if user.pbHasMoveFunction?("540") # Aura Trick
         return score
-    end
+	end	
 end
 
 #===============================================================================

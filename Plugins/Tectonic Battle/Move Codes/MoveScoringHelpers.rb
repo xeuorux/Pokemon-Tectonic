@@ -245,18 +245,18 @@ end
 
 def statusSpikesWeightOnSide(side, excludeEffects = [])
     hazardWeight = 0
-    hazardWeight += [0,50,110][side.countEffect(:PoisonSpikes)] unless excludeEffects.include?(:PoisonSpikes)
-    hazardWeight += [0,50,110][side.countEffect(:FlameSpikes)] unless excludeEffects.include?(:FlameSpikes)
-    hazardWeight += [0,50,110][side.countEffect(:FrostSpikes)] unless excludeEffects.include?(:FrostSpikes)
+    hazardWeight += [0,50,150][side.countEffect(:PoisonSpikes)] unless excludeEffects.include?(:PoisonSpikes)
+    hazardWeight += [0,50,150][side.countEffect(:FlameSpikes)] unless excludeEffects.include?(:FlameSpikes)
+    hazardWeight += [0,50,150][side.countEffect(:FrostSpikes)] unless excludeEffects.include?(:FrostSpikes)
     return hazardWeight
 end
 
 def hazardWeightOnSide(side, excludeEffects = [])
     hazardWeight = 0
-    hazardWeight += [0,75,110,140][side.countEffect(:Spikes)] unless excludeEffects.include?(:Spikes)
-    hazardWeight += 90 if side.effectActive?(:StealthRock) && !excludeEffects.include?(:StealthRock)
-    hazardWeight += 90 if side.effectActive?(:FeatherWard) && !excludeEffects.include?(:FeatherWard)
-    hazardWeight += 110 if side.effectActive?(:StickyWeb) && !excludeEffects.include?(:StickyWeb)
+    hazardWeight += [0,80,110,140][side.countEffect(:Spikes)] unless excludeEffects.include?(:Spikes)
+    hazardWeight += 95 if side.effectActive?(:StealthRock) && !excludeEffects.include?(:StealthRock)
+    hazardWeight += 95 if side.effectActive?(:FeatherWard) && !excludeEffects.include?(:FeatherWard)
+    hazardWeight += 115 if side.effectActive?(:StickyWeb) && !excludeEffects.include?(:StickyWeb)
     hazardWeight += statusSpikesWeightOnSide(side, excludeEffects)
     return hazardWeight
 end

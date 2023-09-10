@@ -359,11 +359,14 @@ class PokeBattle_Move_019 < PokeBattle_Move
         end
     end
 
-    def getEffectScore(user, _target)
+    def getEffectScore(user, _target) # over commenting to explain my thought process for critique
         score = 0
+		statusedparty = 0 
+		score -= statusSpikesWeightOnSide(user.pbOwnSide) if user.alliesInReserve? # dont use if 2 layers of status spikes are up, dont want to care about 1 layer but dont know how to do that
         @battle.pbParty(user.index).each do |pkmn|
-            score += 40 if validPokemon(pkmn)
+            statusedparty += 1 if validPokemon(pkmn) # old way was flat, want it to scale so using array, re-purposing by turning into a variable
         end
+		score += [0,125,160,200,200,200,200,200][statusedparty]	# variable gets from an array, theres surely a more direct way to do this. goes to 7 for that 1 yezera curse.
         return score
     end
 end
@@ -639,6 +642,12 @@ class PokeBattle_Move_02A < PokeBattle_MultiStatUpMove
         super
         @statUp = DEFENDING_STATS_2
     end
+	
+	def getEffectScore(user, target)
+        score = super
+		score += 0.5 * score if user.pbHasMoveFunction?("177") or user.pbHasMoveFunction?("540") # Body Press / Aura Trick
+        return score
+	end	
 end
 
 #===============================================================================
@@ -693,6 +702,12 @@ class PokeBattle_Move_02F < PokeBattle_StatUpMove
         super
         @statUp = [:DEFENSE, 4]
     end
+	
+	def getEffectScore(user, target)
+        score = super
+		score += 0.5 * score if user.pbHasMoveFunction?("177") # Body Press
+        return score
+	end	
 end
 
 #===============================================================================
@@ -748,6 +763,12 @@ class PokeBattle_Move_033 < PokeBattle_StatUpMove
         super
         @statUp = [:SPECIAL_DEFENSE, 4]
     end
+	
+	def getEffectScore(user, target)
+        score = super
+		score += 0.5 * score if user.pbHasMoveFunction?("540") # Aura Trick
+        return score
+	end		
 end
 
 #===============================================================================
@@ -795,6 +816,12 @@ class PokeBattle_Move_038 < PokeBattle_StatUpMove
         super
         @statUp = [:DEFENSE, 5]
     end
+
+	def getEffectScore(user, target)
+        score = super
+		score += 0.5 * score if user.pbHasMoveFunction?("177") # Body Press
+        return score
+	end		
 end
 
 #===============================================================================

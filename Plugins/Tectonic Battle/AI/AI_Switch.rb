@@ -86,7 +86,7 @@ class PokeBattle_AI
 
         # More likely to switch when cursed
         if battler.effectActive?(:Curse)
-            stayInRating -= 15
+            stayInRating -= 20
             PBDebug.log("[STAY-IN RATING] #{battler.pbThis} (#{battler.index}) is cursed (-15)")
         end
 
@@ -121,7 +121,15 @@ class PokeBattle_AI
         end
 
         # Less likely to switch when has self-mending
-        stayInRating += 10 if battler.hasActiveAbilityAI?(:SELFMENDING)
+        stayInRating += 15 if battler.hasActiveAbilityAI?(:SELFMENDING)
+		
+		# More likely to switch if weather setter in policy
+		stayInRating -= 13 if battler.ownersPolicies.include?(:SUN_TEAM) && battler.hasActiveAbilityAI?(:DROUGHT)
+		stayInRating -= 13 if battler.ownersPolicies.include?(:RAIN_TEAM) && battler.hasActiveAbilityAI?(:DRIZZLE)
+		stayInRating -= 13 if battler.ownersPolicies.include?(:HAIL_TEAM) && battler.hasActiveAbilityAI?(:SNOWWARNING)
+		stayInRating -= 13 if battler.ownersPolicies.include?(:SAND_TEAM) && battler.hasActiveAbilityAI?(:SANDSTREAM)
+		stayInRating -= 13 if battler.ownersPolicies.include?(:MOONGLOW_TEAM) && battler.hasActiveAbilityAI?(:MOONGAZE)
+		stayInRating -= 13 if battler.ownersPolicies.include?(:ECLIPSE_TEAM) && battler.hasActiveAbilityAI?(:HARBINGER)
 
         return stayInRating
     end
