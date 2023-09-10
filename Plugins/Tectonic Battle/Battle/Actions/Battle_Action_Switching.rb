@@ -553,10 +553,9 @@ class PokeBattle_Battle
                     # Apply status
                     if battler.pbOwnSide.countEffect(effect) >= 2
                         if aiCheck
-                            statusAfflictionScore = getStatusSettingEffectScore(status, nil, battler, ignoreCheck: true)
-							statusAfflictionScore -= 2 * statusAfflictionScore # i dont know how else to make it negative
+                            statusAfflictionScore = -2 * getStatusSettingEffectScore(status, nil, battler, ignoreCheck: true)
                             statusAfflictionScore = (statusAfflictionScore / PokeBattle_AI::EFFECT_SCORE_TO_SWITCH_SCORE_CONVERSION_RATIO).ceil
-                            otherHazardScore += 0.4 * statusAfflictionScore # + a negative instead of - a positive since if this isnt negative, debug will show as + instead of -
+                            otherHazardScore += 0.4 * statusAfflictionScore
                             echoln("\t[HAZARD SCORING] #{battler.pbThis} will be statused by the #{data.real_name} (#{statusAfflictionScore.to_change})")
                         else
                             battler.pbInflictStatus(status)

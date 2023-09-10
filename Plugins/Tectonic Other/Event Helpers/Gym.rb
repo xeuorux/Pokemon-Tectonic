@@ -10,6 +10,8 @@ BADGE_NAMES = [
 	]
 TOTAL_BADGES = 8
 BADGE_COUNT_VARIABLE = 27
+ZAIN_2_BADGES_PHONECALL_GLOBAL = 66
+ZAIN_3_BADGES_PHONECALL_GLOBAL = 67
 GROUZ_AVATAR_PHONECALL_GLOBAL = 61
 CATACOMBS_PHONECALL_GLOBAL = 62
 SURFBOARD_PHONECALL_GLOBAL = 54
@@ -187,12 +189,16 @@ def hasBadge?(badgeNumber) # Index at 1
 	return $game_switches[3 + badgeNumber]
 end
 
+def getBadgeCount
+	return getGlobalVariable(BADGE_COUNT_VARIABLE)
+end
+
 def has6Badges?
-	return getGlobalVariable(BADGE_COUNT_VARIABLE) >= 6
+	return getBadgeCount >= 6
 end
 
 def has7Badges?
-	return getGlobalVariable(BADGE_COUNT_VARIABLE) >= 7
+	return getBadgeCount >= 7
 end
 
 def endGymChoice()
