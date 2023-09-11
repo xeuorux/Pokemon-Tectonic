@@ -288,6 +288,10 @@ class PokeBattle_Battler
             setRecycleItem(item)
             applyEffect(:PickupItem, item)
             applyEffect(:PickupUse, @battle.nextPickupUse)
+            if itemData.is_berry?
+                applyEffect(:CudChew, 2)
+                applyEffect(:CudChewItem, item)
+            end
         end
         setBelched if belch && itemData.is_berry?
         setLustered if belch && itemData.is_gem?

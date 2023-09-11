@@ -1964,3 +1964,32 @@ GameData::BattleEffect.register_effect(:Battler, {
     #     battle.pbDisplay(_INTL("{1} is no longer protected by a bubble!", battler.pbThis))
     # end,
 })
+
+GameData::BattleEffect.register_effect(:Battler, {
+    :id => :CudChew,
+    :real_name => "Chewing Berry",
+    :type => :Integer,
+    :ticks_down => true,
+    :expire_proc => proc do |battle, battler|
+        if battler.effectActive?(:CudChewItem) && battler.hasActiveAbility?(:CUDCHEW)
+            battle.pbShowAbilitySplash(battler, :CUDCHEW)
+            item = battler.effects[:CudChewItem]
+            itemName = getItemName(item)
+            battle.pbDisplay(_INTL("{1} is finished chewing on the {2}!", battler.pbThis, itemName))
+            battler.pbHeldItemTriggerCheck(item, true)
+            battle.pbHideAbilitySplash(battler)
+            battler.setRecycleItem(nil)
+        end
+    end,
+    :sub_effects => %i[CudChewItem],
+})
+
+GameData::BattleEffect.register_effect(:Battler, {
+    :id => :CudChewItem,
+    :real_name => "Chewing Berry",
+    :type => :Item,
+    :apply_proc => proc do |battle, battler, value|
+        itemName = getItemName(value)
+        battle.pbDisplay(_INTL("{1} is chewing on the {2}!", battler.pbThis, itemName))
+    end,
+})

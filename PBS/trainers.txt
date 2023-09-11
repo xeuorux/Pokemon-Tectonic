@@ -960,7 +960,7 @@ Pokemon = MIMIKYU,36
 #-------------------------------
 [SCIENTIST_F3,Viola]
 Pokemon = FARIGIRAF,35
-    AbilityIndex = 0 # Trickster
+    AbilityIndex = 0 # Cud Chew
 Pokemon = COMFEY,35
     AbilityIndex = 0 # Garland Guardian
 Pokemon = BEHEEYEM,35
@@ -1752,7 +1752,7 @@ Pokemon = DHELMISE,70
 Pokemon = CRYOGONAL,70
     AbilityIndex = 0 # Levitate
 Pokemon = GIRAFARIG,70
-    AbilityIndex = 0 # Trickster
+    AbilityIndex = 0 # Cud Chew
 Pokemon = MUSHARNA,70
     AbilityIndex = 0 # Dream Weaver
 Pokemon = CHIMECHO,70

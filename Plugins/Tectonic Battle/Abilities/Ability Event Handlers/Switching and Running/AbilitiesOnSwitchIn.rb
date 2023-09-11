@@ -398,6 +398,15 @@ BattleHandlers::AbilityOnSwitchIn.add(:ODDAURA,
   }
 )
 
+BattleHandlers::AbilityOnSwitchIn.add(:TRICKYAURA,
+  proc { |ability, battler, battle, aiCheck|
+      battle.pbShowAbilitySplash(battler, ability) unless aiCheck
+      score = battle.pbStartRoom(:TrickRoom, battler, aiCheck)
+      battle.pbHideAbilitySplash(battler) unless aiCheck
+      next score
+  }
+)
+
 ##########################################
 # Totem abilities
 ##########################################

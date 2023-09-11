@@ -174,3 +174,4 @@
 173,GRIMNEIGH,Grim Neigh,"Boosts Sp. Atk after knocking out any Pokémon."
 174,ASONEICE,As One,"Possesses two Abilities: Unnerve and Chilling Neigh."
 175,ASONEGHOST,As One,"Possesses two Abilities: Unnerve and Grim Neigh."
+176,CUDCHEW,Cud Chew,"When the Pokémon eats a Berry, it will regurgitate that Berry at the end of the next turn and eat it one more time."

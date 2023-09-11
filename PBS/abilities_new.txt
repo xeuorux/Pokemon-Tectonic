@@ -453,3 +453,4 @@
 1452,TOILANDTROUBLE,Toil and Trouble,"Foes suffer 50% more stat reduction from Burn, Frostbite, and Numb."
 1453,FATIGUED,Fatigued,"After attacking any foe, the Pokémon immediately uses Rest."
 1454,CLOAKING,Cloaking,"It changes form to match the move it selected."
+1455,TRICKYAURA,Tricky Aura,"Upon entry, creates a Trick Room for five turns, inverting the effect of Speed."
