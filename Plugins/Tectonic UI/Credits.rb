@@ -247,6 +247,14 @@ Please support the official games!
 _END_
 
 class Scene_Credits
+	  # Backgrounds to show in credits. Found in Graphics/Titles/ folder
+	  BACKGROUNDS_LIST       = ["credits1", "credits2", "credits3", "credits4", "credits5"]
+	  BGM                    = "Credits"
+	  SCROLL_SPEED           = 40   # Pixels per second
+	  SECONDS_PER_BACKGROUND = 11
+	  TEXT_OUTLINE_COLOR     = Color.new(0, 0, 128, 255)
+	  TEXT_BASE_COLOR        = Color.new(255, 255, 255, 255)
+	  TEXT_SHADOW_COLOR      = Color.new(0, 0, 0, 100)
 
 	def initialize(callback = nil)
 		@callback = callback
@@ -358,15 +366,25 @@ class Scene_Credits
 		pbBGMPlay(previousBGM)
 	end
 
-	  # Checks if credits bitmap has reached its ending point
-	  def last?
-		if @realOY > @total_height + @trim
-		  pbBGMFade(2.0)
-		  @callback.call if @callback
-		  return true
+	# Check if the credits should be cancelled
+	def cancel?
+		if Input.trigger?(Input::SPECIAL)
+			pbBGMFade(2.0)
+			@callback.call if @callback
+			return true
 		end
 		return false
-	  end
+	end
+
+	# Checks if credits bitmap has reached its ending point
+	def last?
+		if @realOY > @total_height + @trim
+			pbBGMFade(2.0)
+			@callback.call if @callback
+			return true
+		end
+		return false
+	end
 
 	def update
 		delta = Graphics.delta_s
@@ -382,8 +400,7 @@ class Scene_Credits
 		return if last?
 		scrollingSpeed = SCROLL_SPEED
 		scrollingSpeed *= 4 if Input.press?(Input::ACTION)
-		scrollingSpeed *= 4 if Input.press?(Input::SPECIAL)
-		scrollingSpeed *= 4 if Input.press?(Input::CTRL)
+		scrollingSpeed *= 4 if Input.press?(Input::USE)
 		@realOY += scrollingSpeed * delta
 		@credit_sprites.each_with_index { |s, i| s.oy = @realOY - @bitmap_height * i }
 	end
