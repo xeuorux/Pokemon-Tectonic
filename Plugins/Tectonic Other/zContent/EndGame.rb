@@ -11,6 +11,7 @@ def defeatedYezeraWhitebloom?
 end
 
 def rollCredits
+    properlySave
     pbWait(20)
     oldScene = $scene
     $PokemonGlobal.creditsPlayed = false
