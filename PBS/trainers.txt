@@ -122,7 +122,7 @@ Pokemon = NICKIT,15
     AbilityIndex = 1 # Sentry
 #-------------------------------
 [LEADER_Lambert,Lambert]
-Policies = LAMBERT
+Policies = LAMBERT,NO_PERFECT
 Pokemon = PANCHAM,15
     Moves = SMASH,TAUNT,LEER,BITE
     AbilityIndex = 1 # Juggernaut
@@ -263,7 +263,7 @@ Pokemon = SLUGMA,20
     AbilityIndex = 1 # Flame Body
 #-------------------------------
 [LEADER_Eko,Eko]
-Policies = PRIORITIZEDOTS,EKO
+Policies = PRIORITIZEDOTS,EKO,NO_PERFECT
 Pokemon = SALANDIT,20
     Moves = POISONGAS,STINKCLOUD,EMBER,IGNITE
     AbilityIndex = 1 # Aloof
@@ -432,7 +432,7 @@ Pokemon = FOMANTIS,19
     AbilityIndex = 1 # Fascinate
 #-------------------------------
 [LEADER_Helena,Helena]
-Policies = HELENA,PRIORITIZEUTURN
+Policies = HELENA,PRIORITIZEUTURN,NO_PERFECT
 Pokemon = LANTURN,25
     Moves = DOUSE,SHOCKWAVE,VOLTSWITCH
     AbilityIndex = 0 # Volt Absorb
@@ -1163,7 +1163,7 @@ Pokemon = GLINOONE,27
     AbilityIndex = 0 # Hooligan
 #-------------------------------
 [LEADER_Rafael,Rafael]
-Policies = RAFAEL
+Policies = RAFAEL,NO_PERFECT
 Pokemon = DHELMISE,30
     Moves = WAILINGBLOW,GYROBALL,ROOTWRACK,THIEF
     AbilityIndex = 1 # Kelp Link
@@ -1959,7 +1959,7 @@ Pokemon = DHELMISE,70
     AbilityIndex = 0 # Rusty Anchor
 #-------------------------------
 [LEADER_Bence,Bence]
-Policies = BENCE
+Policies = BENCE,NO_PERFECT
 Pokemon = STARAPTOR,40
     Moves = DUALWINGBEAT,CLOSECOMBAT,UTURN,QUICKATTACK
     AbilityIndex = 0 # Intimidate
@@ -1993,7 +1993,7 @@ Extends = LEADER_Bence,Bence,0
 Policies = CURSE_NO_MERCY
 #-------------------------------
 [LEADER_Zoe,Zoé]
-Policies = ZOE
+Policies = ZOE,NO_PERFECT
 Pokemon = CRADILY,40
     Moves = GIGADRAIN,DIAMONDFORCE,BRINE,LEECHSEED
     AbilityIndex = 1 # Water Absorb
@@ -2054,7 +2054,7 @@ Pokemon = EMPOLEON,43
     Item = SALACBERRY
 #-------------------------------
 [LEADER_Noel,Noel]
-Policies = NOEL
+Policies = NOEL,NO_PERFECT
 Pokemon = MRRIME,45
     Moves = ICEHAMMER,KINETICGRIP,GREYMIST,CHILL
     AbilityIndex = 1 # Screen Cleaner
@@ -2925,7 +2925,7 @@ Pokemon = HDECIDUEYE,55
     AbilityIndex = 1 # Feather Coat
 #-------------------------------
 [LEADER_Victoire,Victoire]
-Policies = VICTOIRE
+Policies = VICTOIRE,NO_PERFECT
 Pokemon = DECEAT,55
     Moves = METEORMASH,JUSTDESERTS,CRUNCH,SWORDSDANCE
     AbilityIndex = 0 # Power Up
@@ -3271,7 +3271,7 @@ Pokemon = DURANT,60
     AbilityIndex = 0 # Hustle
 #-------------------------------
 [LEADER_Samorn,Samorn]
-Policies = SAMORN
+Policies = SAMORN,NO_PERFECT
 Pokemon = FLYGON,60
     Moves = SANDVORTEX,BUGBUZZ,DRAGONPULSE,SANDBLASTING
     AbilityIndex = 0 # Desert Spirit
