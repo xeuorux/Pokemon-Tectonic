@@ -18,7 +18,7 @@ class PokeBattle_Battle
                 b.participants = []
                 eachInTeam(0, 0) do |_pkmn, i|
                     b.participants.push(i)
-                    pbGainExpOne(i, b, 0, [], [], hasExpJAR)
+                    pbGainExpOne(i, b, 1, [], [], hasExpJAR)
                 end
                 b.boss = false
             end
