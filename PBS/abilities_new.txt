@@ -429,7 +429,7 @@
 1428,PAINPRESENCE,Pain Presence,"Reduces each other battler's HP by 1/12th at the end of each turn."
 1429,DARTER,Darter,"Takes 30% less move damage if a Tailwind is blowing."
 1430,SIGNALJAM,Signal Jam,"The Pokémon and other battlers don't benefit from same-type attacking bonus."
-1431,WHITEKNIGHT,White Knight,"Draws in moves from foes with base power 100 or more."
+1431,WHITEKNIGHT,White Knight,"Draws in moves from foes with base power 100 or more. Takes 15% less move damage."
 1432,SLAPSTICK,Slapstick,"Whenever a foe fails or misses, they take 1/8th HP damage."
 1433,PAINDELAY,Pain Delay,"33% of all move damage taken is instead taken at the end of the next turn."
 1434,VANDAL,Vandal,"Deals 30% damage to targets that have an item. After attacking a foe, destroys their clothing items."
