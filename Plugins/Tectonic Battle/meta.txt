@@ -1,4 +1,4 @@
-Name         = BattleChanges                                     
+Name         = Tectonic Battle                                 
 Version      = 1.0  
 Requires	 = StatTracking  
 Requires	 = MasterDex                                                                    

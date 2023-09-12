@@ -1,13 +1,14 @@
 CHASM_CREDITs = <<_END_
 
 Major Contributors
-Zeu<s>Agentbla
-Divock<s>Brickbat
+Brickbat<s>Zeu
+Divock<s>Agentbla
 Wakarimasensei<s>Drawingbox
 IgitedXSoul<s>LucaSantosSims
 Darlvon<s>Jaggedthorn
 Splitmoon<s>TikiShades
 Valrex<s>Steeb
+Tirankin
 
 Other Contributors
 Arenastellez<s>Zufaix
@@ -21,16 +22,7 @@ Mikomii<s>Lmorgan89
 Valrex<s>Avery
 Destinygreatness<s>Gary Oak
 ali760<s>papper
-lichenprincess
-
-Playtesters
-Sets<s>Licras
-HairyHoopa<s>Robinzh
-Phyrol<s>dragonwarrior
-Tauxins<s>TheBreadDealer
-KickassKT<s>PandaNinjaPants
-Airiii<s>Ghyst
-Ghost<s>Not Reese
+lichenprincess<s>Enigma
 
 {INSERTS_PLUGIN_CREDITS_DO_NOT_REMOVE}
 
@@ -78,19 +70,14 @@ DiegoWT<s>PurpleZaffre
 Taiga
 
 Trainer Sprites
-Mr. Gela/theo#7722
+Mr. Gela<s>theo
 
-Taiga´s Trainer Collection (X/Y)
-Taiga
-DiegoWT
-Neo-Spriteman
-Vanilla Sunshine
-AtomicReactor
-izzyvivious
-Mademoiselle
-PizzaSun
-izzyvicious
-Wolfgang62
+Taiga's Trainer Collection (X/Y)
+Taiga<s>DiegoWT
+Neo-Spriteman<s>Vanilla Sunshine
+AtomicReactor<s>izzyvivious
+Mademoiselle<s>PizzaSun
+izzyvicious<s>Wolfgang62
 Somersault
 
 Megs/Gigantamax Overworld Sprites
@@ -111,35 +98,45 @@ Pre-looped Music Pack
 ENLS
 
 Generation 8 Project
+
 Battler Sprites
-Gen 1-5 Pokemon Sprites - veekun
-Gen 6 Pokemon Sprites - Smogon X/Y Sprite Project
-Gen 7 Pokemon Sprites - Smogon Sun/Moon Sprite Project
-Gen 8 Pokemon Sprites - Smogon Sword/Shield Sprite Project
+Gen 1-5 Pokemon Sprites
+veekun
+Gen 6 Pokemon Sprites
+Smogon X/Y Sprite Project
+Gen 7 Pokemon Sprites
+Smogon Sun/Moon Sprite Project
+Gen 8 Pokemon Sprites
+Smogon Sword/Shield Sprite Project
+
 Overworld Sprites
-Gen 6 Pokemon Overworlds - princess-pheonix, LunarDusk, Wolfang62, TintjeMadelintje101, piphybuilder88
-Gen 7 Pokemon Overworlds - Larry Turbo, princess-pheonix
-Gen 8 Pokemon Overworlds - SageDeoxys, Wolfang62
+princess-pheonix<s>LunarDusk
+Wolfang62<s>TintjeMadelintje101
+piphybuilder88<s>Larry Turbo
+SageDeoxys
 Gen 1-5 Pokemon Overworlds
-MissingLukey, help-14, Kymoyonian, cSc-A7X, 2and2makes5
-Pokegirl4ever, Fernandojl, Silver-Skies, TyranitarDark
-Getsuei-H, Kid1513, Milomilotic11, Kyt666, kdiamo11
-Chocosrawlooid, Syledude, Gallanty, Gizamimi-Pichu
-2and2makes5, Zyon17,LarryTurbo, spritesstealer
+MissingLukey<s>help-14
+Kymoyonian<s>cSc-A7X
+2and2makes5<s>Pokegirl4ever
+Fernandojl<s>Silver-Skies
+TyranitarDark<s>Getsuei-H
+Kid1513<s>Milomilotic11
+Kyt666<s>kdiamo11
+Chocosrawlooid<s>Syledude
+Gallanty<s>Gizamimi-Pichu
+2and2makes5<s>Zyon17
+LarryTurbo<s>spritesstealer
 Icon Sprites
-Gen 1-6 Pokemon Icon Sprites - Alaguesia
-Gen 7 Pokemon Icon Sprites - Marin, MapleBranchWing, DS Styled Gen 7+ Repository
-Gen 8 Icon Sprites - Larry Turbo, Leparagon
+Alaguesia<s>Marin
+MapleBranchWing<s>Repository
+Larry Turbo<s>Leparagon
 Cry Credits
-Gen 1-6 Pokemon Cries - Rhyden
-Gen 7 Pokemon Cries - Marin, Rhyden
-Gen 8 Pokemon Cries - Zeak6464
+Rhyden<s>Marin
+Rhyden<s>Zeak6464
 PBS Credits
 Golisopod User<s>Zerokid
 TheToxic<s>HM100
 KyureJL<s>ErwanBeurier
-EBS Bitmap Wrapper
-Luka S.J.
 Gen 8 Scripts
 Golisopod User<s>Maruno
 Vendily<s>TheToxic
@@ -175,7 +172,7 @@ Pokemon Gen 9 Followers:
 Azria<s>DarkusShadow
 EduarPokeN<s>Carmanekko
 StarWolff<s>Caruban
-Pokemon PLA and Gen 9 Footprints
+PLA and Gen 9 Footprints
 Caruban
 Pokemon Gen 9 Cries:
 Lightblade Absol<s>HeroLinik
@@ -186,7 +183,7 @@ AztecCroc<s>3DJackArt
 Caruban<s>lichenprincess
 Pokemon cries ripped:
 Morningdew
-PLA Pokémon icons:
+PLA Icons:
 LuigiTKO
 PLA Followers:
 Boonzeet<s>DarkusShadow
@@ -197,13 +194,6 @@ Blaquaza<s>KingOfThe-X-Roads
 KattenK<s>Travis
 G.E.Z.<s>SpheX
 Hematite<s>SelenaArmorclaw
-
-Z-Move Scripts
-Marcello
-Zumi<s>Ice Cream Sand Witch
-Amethyst<s>Jan
-Sardines<s>Inuki
-StCooler<s>Lucidious89
 
 "Pokémon Essentials" was created by:
 Flameguru
