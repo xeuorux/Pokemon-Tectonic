@@ -169,3 +169,9 @@
 4168,KALEIDOSCOPE,Kaleidoscope,401,60,FAIRY,Special,100,15,30,NearOther,0,CanProtect;CanMirrorMove,"The target is bombarded by crazy colors. There's a 30% chance it becomes dizzy.",DAZZLINGGLEAM
 4169,COLDSNOT,Cold Snot,005,65,ICE,Physical,100,20,30,NearOther,0,CanProtect;CanMirrorMove,"The user launches snot at the target. This has a 30% chance to poison the target.",SNOWBALL
 4170,ENLIGHTENEDHIT,Enlightened Hit,515,90,FIGHTING,Physical,100,12,100,NearOther,0,CanProtect;CanMirrorMove,"The user is protected from random added effects of moves until their next attack.",KARATECHOP
+4171,VITALTHROW,Vital Throw,0A5,70,FIGHTING,Physical,0,10,0,NearOther,-1,CanMirrorMove,"The user attacks last. In return, it's guaranteed not to miss and bypasses protections.",
+4172,CIRCLETHROW,Circle Throw,0EC,55,FIGHTING,Physical,100,10,0,NearOther,-6,CanProtect;CanMirrorMove,"The user forces the target to switch out, to be replaced at random. In the wild, the battle ends.",
+4173,PSYSTRIKE,Psystrike,122,100,PSYCHIC,Special,100,10,0,NearOther,0,CanProtect;CanMirrorMove,"The user materializes an odd psychic wave to attack the target. This attack does physical damage.",
+4174,PSYSHOCK,Psyshock,122,85,PSYCHIC,Special,100,10,0,NearOther,0,CanProtect;CanMirrorMove,"The user materializes an odd psychic wave to attack the target. This attack does physical damage.",
+4175,SOULCLAW,Soul Claw,506,60,GHOST,Physical,100,20,0,NearOther,0,CanProtect;CanMirrorMove,"The user claws at the target's soul, dealing damage through their Sp. Def rather than their Defense.",SHADOWCLAW
+4176,SKYUPPERCUT,Sky Uppercut,11B,85,FIGHTING,Physical,100,12,0,NearOther,0,CanProtect;CanMirrorMove;Punch,"The user attacks with an uppercut. Deals double damage to targets flying high up.",
