@@ -314,3 +314,10 @@ BattleHandlers::DamageCalcTargetAbility.add(:DARTER,
     end
   }
 )
+
+BattleHandlers::DamageCalcTargetAbility.add(:WHITEKNIGHT,
+  proc { |ability, user, target, _move, mults, _baseDmg, type, aiCheck|
+      mults[:final_damage_multiplier] *= 0.85
+      target.aiLearnsAbility(ability) unless aiCheck
+  }
+)

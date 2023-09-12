@@ -207,7 +207,11 @@ def pbItemRestoreHP(pkmn,restoreHP)
   return hpGain
 end
 
-def pbHPItem(pkmn,restoreHP,scene = nil)
+def pbHPItem(pkmn,restoreHP,scene = nil,revive = false)
+  if pkmn.fainted? && !revive
+    pbSceneDefaultDisplay(_INTL("It won't have any effect."),scene)
+    return false
+  end
   if pkmn.hp == pkmn.totalhp
     pbSceneDefaultDisplay(_INTL("It won't have any effect."),scene)
     return false

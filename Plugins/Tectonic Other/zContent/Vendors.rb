@@ -3,7 +3,6 @@
 ######################################################
 BASIC_MART_STOCK = [
 	:POKEBALL,
-	:POTION,
 	:RARECANDY,
 	:ABILITYCAPSULE,
 ]
