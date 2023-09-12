@@ -264,7 +264,7 @@
 1263,HONORLESSSTING,Honorless Sting,586,105,POISON,Physical,100,12,0,NearOther,0,CanProtect;CanMirrorMove,"The user uses venom that turns the target's body against it. Super effective vs Fighting-types.",POISONSTING
 1264,MURKYFOG,Murky Fog,050,85,POISON,Special,0,10,0,NearOther,0,CanProtect;CanMirrorMove,"The user attacks with a pitch black fog. All of the target's stat changes are returned to normal.",SMOKESCREEN
 1265,SLIMEBALL,Slimeball,18F,80,POISON,Special,100,12,0,NearOther,0,CanProtect;CanMirrorMove,"The user attacks with cloying slime, rendering the target's item sticky and unusable.",SLUDGEBOMB
-1266,AUTUMNBLAST,Autumn Blast,03C,70,GRASS,Special,100,12,0,NearOther,0,CanProtect;CanMirrorMove,"The user sheds its leaves to attack. This lowers the user's defensive stats by two steps each.",LEAFTORNADO
+1266,AUTUMNBLAST,Autumn Blast,03C,75,GRASS,Special,100,12,0,NearOther,0,CanProtect;CanMirrorMove,"The user sheds its leaves to attack. This lowers the user's defensive stats by two steps each.",LEAFTORNADO
 1267,INCISION,Incision,58D,50,DARK,Physical,100,12,0,NearOther,0,CanProtect;CanMirrorMove;Blade,"The user prepares a precise cut. Always a critical hit, but lowers the user's Speed.",NIGHTSLASH
 1268,VIPERSHOCK,Vipershock,58A,80,POISON,Physical,100,5,0,NearOther,0,CanProtect;CanMirrorMove,"The user finishes off its prey. Power is tripled against poisoned targets.",POISONFANG
 1269,ONAROLL,On A Roll,58B,90,GROUND,Physical,100,15,0,NearOther,0,CanProtect;CanMirrorMove,"The user attacks while balled up. This counts as a usage of Fury Cutter, Rock Roll, or Snowball.",ROCKROLL
