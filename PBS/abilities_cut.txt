@@ -118,3 +118,7 @@
 3117,FLASHFIRE,Flash Fire,"Immunity to Fire-type moves and powers up Fire-type attacks if hit by one."
 3118,SWARM,Swarm,"Powers up Bug-type moves in a pinch."
 3119,LOOSESHELL,Loose Shell,"Upon entry in sandstorm, turns its shell into a levitating stone trap."
+3120,LIGHTNINGRIDE,Lightning Ride,"Doubled Speed while charged."
+3121,DAMP,Damp,"Prevents the use of self-destructing moves."
+3122,EXOADAPTION,Exo-Adaption,"User heals by 25% after taking a special attack."
+3123,EGOIST,Egoist,"Fighting-type moves have +1 priority."
