@@ -66,12 +66,15 @@ Pokemon = CHEWTLE,10
 #-------------------------------
 [NINJABOY,Matthew]
 Pokemon = BONSLY,12
+    Moves = SHATTERSHOT,COURAGEBOLT,BLOCK,TEARFULLOOK
     AbilityIndex = 0 # Desiccate
 Pokemon = NINCADA,12
+    Moves = SLURP,HARDEN,RUMBLE,BITE
     AbilityIndex = 0 # Speed Boost
 #-------------------------------
 [FIREBREATHER,Antonio]
 Pokemon = MAGBY,13
+    Moves = EMBER,SMIRK,SMOG,IGNITE
     AbilityIndex = 0 # Mega Launcher
 Pokemon = HOUNDOUR,13
     AbilityIndex = 1 # Berserk
@@ -80,6 +83,7 @@ Pokemon = BULBASAUR,13
 #-------------------------------
 [AROMALADY,Hannah]
 Pokemon = BUDEW,12
+    Moves = LEAFAGE,POISONSTING,ENVENOM,AROMATHERAPY
     AbilityIndex = 1 # Merciless
 Pokemon = FLABEBE,12
     AbilityIndex = 1 # Sentry
@@ -88,28 +92,35 @@ Pokemon = PIPLUP,12
 #-------------------------------
 [SAILOR,Dylan]
 Pokemon = AZURILL,14
+    Moves = WIPEOUT,TICKLE,EAGERTICKLING,CHARM
     AbilityIndex = 1 # Power Up
 Pokemon = WINGULL,14
     AbilityIndex = 0 # Cheek Pouch
 Pokemon = TEPIG,14
+    Moves = FIERYTOUCH,LEER,MUTUAL,CHIBLOCK
     AbilityIndex = 0 # Roast
 #-------------------------------
 [LADY2,Rebecca]
 Pokemon = AMEOWTH,14
     AbilityIndex = 0 # Fur Coat
 Pokemon = CHIKORITA,14
+    Moves = ESSENCEARROW,SUNSHINE,SYNTHESIS,FAIRYWIND
     AbilityIndex = 1 # Heat Savor
 #-------------------------------
 [TUBER_M,Peter]
 Pokemon = SANDYGAST,13
+    Moves = SANDTOSS,DIRGE,WATERGUN,IRONDEFENSE
     AbilityIndex = 1 # Sand Shroud
 Pokemon = EXEGGCUTE,13
+    Moves = ESSENCEARROW,MINDWAVES,MINDLINK,CLASH
     AbilityIndex = 0 # Arcane
 #-------------------------------
 [TUBER_F,Sophie]
 Pokemon = KRABBY,13
+    Moves = WIPEOUT,SHOTPUT,FURYCUTTER,LEER
     AbilityIndex = 0 # Frustrate
 Pokemon = INKAY,13
+    Moves = PILFER,PECK,BLINDSIDE,LEER
     AbilityIndex = 0 # Contrary
 #-------------------------------
 [BATTLEGIRL,Eliza]
