@@ -13296,8 +13296,8 @@ Name = Cranidos
 InternalName = CRANIDOS
 Type1 = ROCK
 # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
-BaseStats = 67,125,40,58,30,30
-# Total = 350
+BaseStats = 67,125,40,58,30,40
+# Total = 360
 GenderRate = Female50Percent
 GrowthRate = Erratic
 BaseEXP = 70
@@ -13329,8 +13329,8 @@ Name = Rampardos
 InternalName = RAMPARDOS
 Type1 = ROCK
 # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
-BaseStats = 97,165,60,58,65,50
-# Total = 495
+BaseStats = 107,165,65,78,45,65
+# Total = 525
 GenderRate = Female50Percent
 GrowthRate = Erratic
 BaseEXP = 173
