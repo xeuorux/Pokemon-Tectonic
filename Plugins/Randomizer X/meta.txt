@@ -1,5 +1,5 @@
-Name         = Randomizer X
+Name         = Randomizer X (Tectonic Modified)
 Version      = 1.0
 Website      = https://luka-sj.com/res/rndx
-Credits      = Luka S.J.
+Credits      = Luka S.J.,Zeu
 Conflicts    = Elite Battle: DX
