@@ -827,7 +827,7 @@ BattleHandlers::AbilityOnSwitchIn.add(:SLUMBERINGDRAKE,
       next 0 unless battler.canSleep?(battler, !aiCheck)
       if aiCheck
           score = 0
-          score -= getSleepEffectScore(nil, target)
+          score -= getSleepEffectScore(nil, battler)
           score += getMultiStatUpEffectScore(ALL_STATS_2, battler, battler)
           next score
       else
