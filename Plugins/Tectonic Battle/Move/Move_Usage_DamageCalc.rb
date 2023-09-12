@@ -339,7 +339,7 @@ class PokeBattle_Move
         # Bushwacker tribe
         if user.hasTribeBonus?(:BUSHWACKER)
             if checkingForAI
-                expectedTypeMod = @battleAI.pbCalcTypeModAI(type, user, target, self)
+                expectedTypeMod = @battle.battleAI.pbCalcTypeModAI(type, user, target, self)
                 multipliers[:final_damage_multiplier] *= 1.5 if Effectiveness.resistant?(expectedTypeMod)
             else
                 multipliers[:final_damage_multiplier] *= 1.5 if Effectiveness.resistant?(target.damageState.typeMod)
@@ -364,7 +364,7 @@ class PokeBattle_Move
         # Warrior tribe
         if user.hasTribeBonus?(:WARRIOR)
             if checkingForAI
-                expectedTypeMod = @battleAI.pbCalcTypeModAI(type, user, target, self)
+                expectedTypeMod = @battle.battleAI.pbCalcTypeModAI(type, user, target, self)
                 multipliers[:final_damage_multiplier] *= 1.12 if Effectiveness.super_effective?(expectedTypeMod)
             else
                 multipliers[:final_damage_multiplier] *= 1.12 if Effectiveness.super_effective?(target.damageState.typeMod)
