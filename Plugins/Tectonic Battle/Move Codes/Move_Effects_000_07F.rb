@@ -353,7 +353,7 @@ class PokeBattle_Move_019 < PokeBattle_Move
     end
 
     def getEffectScore(user, target)
-        next if target && target.index != user.index
+        return if target && target.index != user.index
         score = 0
         score -= statusSpikesWeightOnSide(user.pbOwnSide) if user.alliesInReserve?
         statusesInParty = 0 
