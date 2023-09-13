@@ -6398,28 +6398,38 @@ Pokemon = MNOCTOWL,70
     Moves = BLIZZARD,SNOWSTORM,ROOST,AURORAVEIL
     AbilityIndex = 1 # Winter Insulation
     Item = LIGHTCLAY
+	EV = 10,0,20,20,0,0
 Pokemon = INCINEROAR,70
     Moves = FAKEOUT,IGNITE,FLAREBLITZ,PARTINGSHOT
     AbilityIndex = 0 # Intimidate
     Item = LEFTOVERS
+	EV = 10,10,0,20,0,10
 Pokemon = KYUREM,70
     Form = 3
     Moves = FUSIONFLARE,BLIZZARD,DRACOMETEOR,PREDICTIONSTRIKE
     AbilityIndex = 0 # Mold Breaker
     Item = CHOICESPECS
+	EV = 10,20,0,20,0,0
 Pokemon = ZOROARK,70
     Moves = HEX,DARKPULSE,DREAMDANCE,WEATHERBURST
     AbilityIndex = 0 # Illusion
     Item = CRYSTALVEIL
     ItemType = GHOST
+	EV = 10,20,0,20,0,0
 Pokemon = MANIKLAW,70
     Moves = STITCHUP,PSYCHOBLADE,SOULRIP,SHADOWSNEAK
     AbilityIndex = 0 # Malice
     Item = LIFEORB
+	EV = 10,20,0,20,0,0
 Pokemon = SNEASLER,70
     Moves = DIRECLAW,CLOSECOMBAT,ROCKSLIDE,ACROBATICS
     AbilityIndex = 1 # Frustrate
     Item = AIRBALLOON
+	EV = 10,20,0,20,0,0
+#-------------------------------
+[NIGHTMAREQUEEN_Elise,Elise,1]
+ExtendsVersion = 0
+Policies = CURSE_SELF_DEBUFFING
 #-------------------------------
 [BIRDKEEPER_M2,Vlasta]
 Pokemon = HAWLUCHA,70
