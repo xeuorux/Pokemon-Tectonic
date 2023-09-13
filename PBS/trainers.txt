@@ -416,7 +416,7 @@ Pokemon = CHIMCHAR,23
 Pokemon = DRILBUR,23
     AbilityIndex = 0 # Sand Drilling
 #-------------------------------
-[POKEMANIAC,Travis]
+[CHEF,Travis]
 Pokemon = ADIGLETT,23
     AbilityIndex = 0 # Tangling Hair
 Pokemon = BAGON,23
@@ -2159,40 +2159,78 @@ Pokemon = ARATICATE,48
     AbilityIndex = 0 # Night Life
 #-------------------------------
 [CAMPER,Liam]
-Pokemon = HITMONCHAN,34
+Pokemon = HITMONCHAN,35
     AbilityIndex = 1 # Shifting Fist
-Pokemon = IVYSAUR,33
+Pokemon = VENUSAUR,36
     AbilityIndex = 0 # Poison Absorb
-Pokemon = DRAGONAIR,34
+Pokemon = DRAGONAIR,36
     AbilityIndex = 0 # Shed Skin
     Item = EVIOLITE
-Pokemon = DIGGERSBY,33
+Pokemon = DIGGERSBY,35
     AbilityIndex = 1 # Paranoid
     Item = NORMALGEM
 #-------------------------------
 [POKEMONRANGER_M2,Martel]
-Pokemon = FALINKS,34
+Pokemon = FALINKS,36
     AbilityIndex = 0 # Imperious
-Pokemon = STEENEE,33
+Pokemon = STEENEE,37
     AbilityIndex = 0 # Play Victim
     Item = SITRUSBERRY
-Pokemon = SWALOT,33
+Pokemon = SWALOT,36
     AbilityIndex = 0 # Thick Fat
-Pokemon = CHIMECHO,34
+Pokemon = CHIMECHO,37
     AbilityIndex = 1 # Mending Tones
     Item = SHELLBELL
 #-------------------------------
-[AROMALADY3,Marion]
-Pokemon = VAPOREON,33
-    AbilityIndex = 0 # Hydration
-Pokemon = VIBRAVA,34
-    AbilityIndex = 1 # Siren Song
-    Item = LEFTOVERS
-Pokemon = FLOETTE,33
-    AbilityIndex = 0 # Clover Song
+[POKEMANIAC,Paris]
+Pokemon = WORMADAM,37
+    AbilityIndex = 1 # Cloaking
+Pokemon = MLILLIGANT,38
+    AbilityIndex = 1 # Petty
+    Item = BLACKHERB
+#-------------------------------
+[POKEFAN_F3,Margaret]
+Pokemon = EMBOAR,37
+    AbilityIndex = 0 # Roast
     Item = SITRUSBERRY
-Pokemon = AMUK,34
-    AbilityIndex = 1 # Gluttony
+Pokemon = MTANGROWTH,38
+    AbilityIndex = 0 # Petrifying
+#-------------------------------
+[GARDENER,Jacek]
+Pokemon = BIBAREL,37
+    AbilityIndex = 0 # Simple
+    Item = LUMBERRY
+Pokemon = SANDSLASH,38
+    AbilityIndex = 1 # Tough Claws
+    Item = GROUNDGEM
+Pokemon = MMANDIBUZZ,38
+    AbilityIndex = 0 # Sealing Body
+Pokemon = JOLTEON,37
+    AbilityIndex = 1 # Needle Fur
+#-------------------------------
+[BIRDKEEPER_M2,Bernhard]
+Pokemon = PIDGEOT,35
+    AbilityIndex = 1 # Wind Buffer
+Pokemon = QWILFISH,36
+    AbilityIndex = 1 # Quarrelsome
+    Item = FOCUSSASH
+Pokemon = DUBWOOL,36
+    AbilityIndex = 0 # Fluffy
+Pokemon = RAICHU,35
+    AbilityIndex = 1 # Break Through
+    Item = CHOICESPECS
+#-------------------------------
+[PSYCHIC_M2,Rohan]
+Pokemon = VENOMOTH,35
+    AbilityIndex = 1 # Tinted Lens
+Pokemon = POLIWRATH,36
+    AbilityIndex = 0 # Counter Flow
+    Item = LEFTOVERS
+Pokemon = CACTURNE,36
+    AbilityIndex = 0 # Heartless
+Pokemon = TYPHLOSION,36
+    AbilityIndex = 0 # Burn Skill
+    Item = SHELLBELL
 #-------------------------------
 [HIKER2,Rhys]
 Pokemon = BELLOSSOM,52
