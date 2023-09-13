@@ -314,13 +314,6 @@ end
 #===============================================================================
 # Cures all party Pokémon of permanent status problems. (Aromatherapy, Heal Bell)
 #===============================================================================
-# NOTE: In Gen 5, this move should have a target of UserSide, while in Gen 6+ it
-#       should have a target of UserAndAllies. This is because, in Gen 5, this
-#       move shouldn't call def pbSuccessCheckAgainstTarget for each Pokémon
-#       currently in battle that will be affected by this move (i.e. allies
-#       aren't protected by their substitute/ability/etc., but they are in Gen
-#       6+). We achieve this by not targeting any battlers in Gen 5, since
-#       pbSuccessCheckAgainstTarget is only called for targeted battlers.
 class PokeBattle_Move_019 < PokeBattle_Move
     def worksWithNoTargets?; return true; end
 
@@ -359,14 +352,19 @@ class PokeBattle_Move_019 < PokeBattle_Move
         end
     end
 
-    def getEffectScore(user, _target) # over commenting to explain my thought process for critique
+    def getEffectScore(user, target)
+        next if target && target.index != user.index
         score = 0
-		statusedparty = 0 
-		score -= statusSpikesWeightOnSide(user.pbOwnSide) if user.alliesInReserve? # dont use if 2 layers of status spikes are up, dont want to care about 1 layer but dont know how to do that
+        score -= statusSpikesWeightOnSide(user.pbOwnSide) if user.alliesInReserve?
+        statusesInParty = 0 
         @battle.pbParty(user.index).each do |pkmn|
-            statusedparty += 1 if validPokemon(pkmn) # old way was flat, want it to scale so using array, re-purposing by turning into a variable
+            statusesInParty += 1 if validPokemon(pkmn)
         end
-		score += [0,125,160,200,200,200,200,200][statusedparty]	# variable gets from an array, theres surely a more direct way to do this. goes to 7 for that 1 yezera curse.
+        if statusesInParty > 0
+            statusScore = 80 + statusesInParty * 40
+            statusScore = 200 if statusScore > 200
+            score += statusScore
+        end
         return score
     end
 end
