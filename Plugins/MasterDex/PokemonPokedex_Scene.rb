@@ -65,18 +65,27 @@ class PokemonPokedex_Scene
 		
 		GameData::Trainer.each do |trainerData|
 			next if trainerData.getParentTrainer # Ignore sub-trainers
+			next if trainerData.nameForHashing
 			trainerData.pokemon.each do |partyEntry|
 				species = partyEntry[:species]
 				speciesUsed[species]&.push(trainerData)
 			end
 		end
 		
-		unusedPokemon = []
 		@speciesUseData = {}
 		speciesUsed.each do |species,arrayOfTrainerData|
 			arrayOfTrainerData.uniq!
 			arrayOfTrainerData.compact!
-			@speciesUseData[species] = arrayOfTrainerData.length
+			regularTrainerUseCount = 0
+			monumentTrainerUseCount = 0
+			arrayOfTrainerData.each do |trainerData|
+				if trainerData.monumentTrainer
+					monumentTrainerUseCount += 1
+				else
+					regularTrainerUseCount += 1
+				end
+			end
+			@speciesUseData[species] = [regularTrainerUseCount, monumentTrainerUseCount]
 		end
   end
 
@@ -134,13 +143,13 @@ class PokemonPokedex_Scene
 		  prevos = species_data.get_prevolutions
 		  
 		  if $DEBUG
-		  	useCount = @speciesUseData[species] || 0
+		  	useCounts = @speciesUseData[species] || [0,0]
 		  else
-			useCount = 0
+			useCounts = [0,0]
 		  end
 
 		  ret.push([species, species_data.name, height, weight, i + 1, shift, type1, type2, 
-		  	color, shape, abilities, lvlmoves, tutormoves, eggmoves, evos, prevos, useCount])
+		  	color, shape, abilities, lvlmoves, tutormoves, eggmoves, evos, prevos, useCounts[0], useCounts[1]])
 		end
 		return ret
 	end

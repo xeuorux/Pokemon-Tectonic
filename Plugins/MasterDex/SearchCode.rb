@@ -446,6 +446,7 @@ class PokemonPokedex_Scene
         cmdIsQuarantined = -1
         cmdIsLegendary	= -1
         cmdMovesetConformance	= -1
+        cmdNoMonumentUses = -1
         cmdOneAbility	= -1
         cmdHasSignatureMove = -1
         cmdHasSignatureAbility	= -1
@@ -461,12 +462,12 @@ class PokemonPokedex_Scene
         miscSearches[cmdIsQuarantined = miscSearches.length] = _INTL("Quarantined (D)") if $DEBUG
         miscSearches[cmdIsLegendary = miscSearches.length] = _INTL("Legendary")
         miscSearches[cmdMovesetConformance = miscSearches.length] = _INTL("Moveset Noncomfority (D)") if $DEBUG
+        miscSearches[cmdNoMonumentUses = miscSearches.length] = _INTL("No Monument Uses (D)") if $DEBUG
         miscSearches[cmdOneAbility = miscSearches.length] = _INTL("One Ability (D)") if $DEBUG
         miscSearches[cmdHasSignatureMove = miscSearches.length] = _INTL("Signature Move")
         miscSearches[cmdHasSignatureAbility = miscSearches.length] = _INTL("Signature Ability")
         miscSearches[cmdHasSignature = miscSearches.length] = _INTL("Signature (D)") if $DEBUG
         miscSearches[cmdAvatarData = miscSearches.length] = _INTL("Avatar Data (D)") if $DEBUG
-        miscSearches[cmdHasCoverageType = miscSearches.length] = _INTL("Has Coverage Type (D)") if $DEBUG
         miscSearches[cmdGeneration = miscSearches.length] = _INTL("Generation")
         miscSearches[cmdMultipleForms = miscSearches.length] = _INTL("Multiple Forms")
         miscSearches[cmdInvertList = miscSearches.length] = _INTL("Invert Current")
@@ -488,6 +489,8 @@ class PokemonPokedex_Scene
             return searchByGeneration
         elsif cmdMovesetConformance > -1 && searchSelection == cmdMovesetConformance
             return searchByMovesetConformance
+        elsif cmdNoMonumentUses > -1 && searchSelection == cmdNoMonumentUses
+            return searchByNoMonumentUses
         elsif cmdOneAbility > -1 && searchSelection == cmdOneAbility
             return searchByOneAbility
         elsif cmdHasSignatureMove > -1 && searchSelection == cmdHasSignatureMove
@@ -498,8 +501,6 @@ class PokemonPokedex_Scene
             return searchByHasAvatarData
         elsif cmdHasSignature > -1 && searchSelection == cmdHasSignature
             return searchBySignature
-        elsif cmdHasCoverageType > -1 && searchSelection == cmdHasCoverageType
-            return searchByHasCoverageType
         elsif cmdMultipleForms > -1 && searchSelection == cmdMultipleForms
             return searchByMultipleForms
         elsif cmdInvertList > -1 && searchSelection == cmdInvertList
@@ -815,7 +816,7 @@ class PokemonPokedex_Scene
         commandNoEarlyStab = -1
         commandNoProgressStab = -1
         commandNoBBStab = -1
-        comandDuplicateMoves = -1
+        commandDuplicateMoves = -1
         commands = [_INTL("Cancel")]
         commands[commandAny = commands.length] = _INTL("Any")
         commands[command4Tempo = commands.length] = _INTL("Non-4-Tempo")
@@ -911,6 +912,15 @@ class PokemonPokedex_Scene
             return dexlist
         end
         return nil
+    end
+
+    def searchByNoMonumentUses
+        dexlist = searchStartingList
+        dexlist = dexlist.find_all do |item|
+            monumentTrainerUseCount = item[17]
+            next monumentTrainerUseCount == 0
+        end
+        return dexlist
     end
 
     def searchByLegendary
@@ -1113,6 +1123,8 @@ class PokemonPokedex_Scene
         cmdSortByCatchDifficulty = -1
         cmdSortByExperienceGrant = -1
         cmdSortByTrainerCount = -1
+        cmdSortByNormalTrainerCount = -1
+        cmdSortByMonumentTrainerCount = -1
         cmdSortByCoverageTypesCount = -1
         selections = []
         selections[cmdSortByType = selections.length] = _INTL("Type")
@@ -1122,7 +1134,9 @@ class PokemonPokedex_Scene
         selections[cmdSortByWeight = selections.length] = _INTL("Weight")
         selections[cmdSortByCatchDifficulty = selections.length] = _INTL("Catch Difficulty")
         selections[cmdSortByExperienceGrant = selections.length] = _INTL("Experience Grant")
-        selections[cmdSortByTrainerCount = selections.length] = _INTL("Trainers Using (D)") if $DEBUG
+        selections[cmdSortByTrainerCount = selections.length] = _INTL("Total Using (D)") if $DEBUG
+        selections[cmdSortByNormalTrainerCount = selections.length] = _INTL("Normal Using (D)") if $DEBUG
+        selections[cmdSortByMonumentTrainerCount = selections.length] = _INTL("Monument Using (D)") if $DEBUG
         selections[cmdSortByCoverageTypesCount = selections.length] = _INTL("Coverage Count (D)") if $DEBUG
         selections.push(_INTL("Cancel"))
         selection = pbMessage("Sort by what?", selections, selections.length + 1)
@@ -1168,7 +1182,14 @@ class PokemonPokedex_Scene
             elsif cmdSortByExperienceGrant > -1 && selection == cmdSortByExperienceGrant
                 next speciesData.base_exp
             elsif cmdSortByTrainerCount > -1 && selection == cmdSortByTrainerCount
-                next @speciesUseData[entry[0]] || 0
+                useCounts = @speciesUseData[entry[0]]
+                next (useCounts[0] + useCounts[1]) || 0
+            elsif cmdSortByNormalTrainerCount > -1 && selection == cmdSortByNormalTrainerCount
+                useCounts = @speciesUseData[entry[0]]
+                next useCounts[0]
+            elsif cmdSortByMonumentTrainerCount > -1 && selection == cmdSortByMonumentTrainerCount
+                useCounts = @speciesUseData[entry[0]]
+                next useCounts[1]
             elsif cmdSortByCoverageTypesCount > -1 && selection == cmdSortByCoverageTypesCount
                 next get_bnb_coverage(speciesData).size
             end

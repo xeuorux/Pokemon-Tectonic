@@ -1341,7 +1341,7 @@ sp.form) && !Settings::DEX_SHOWS_ALL_FORMS
             coordinateY += 34
 
             # Use count
-            drawTextEx(overlay, xLeft, coordinateY, 450, 1, "Usage count: #{@dexlist[@index][16]}", base,
+            drawTextEx(overlay, xLeft, coordinateY, 450, 1, "Use count: #{@dexlist[@index][16]}, #{@dexlist[@index][17]}", base,
     shadow)
             coordinateY += 32
 
