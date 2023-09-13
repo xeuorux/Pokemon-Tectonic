@@ -2624,7 +2624,7 @@ Pokemon = TALONFLAME,37
     AbilityIndex = 1 # Gale Wings
     Item = LIFEORB
 Pokemon = TORTERRA,38
-    AbilityIndex = 0 # Refuge
+    AbilityIndex = 1 # Living Armor
     Item = BIGROOT
 #-------------------------------
 [BOARDER,Lev]
