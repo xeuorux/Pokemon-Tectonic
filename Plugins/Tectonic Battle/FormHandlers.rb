@@ -431,7 +431,7 @@ MultipleForms.register(:NECROZMA,{
   },
   "onSetForm" => proc { |pkmn, form, oldForm|
     next if form > 2 || oldForm > 2   # Ultra form changes don't affect moveset
-    form_moves = GameData::Species.form_specific_moves()
+    form_moves = GameData::Species.get(:NECROZMA).form_specific_moves
     if form == 0
       # Turned back into the base form; forget form-specific moves
       move_index = -1
