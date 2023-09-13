@@ -493,3 +493,6 @@
 1492,FLASHSTING,Flash Sting,53A,40,ELECTRIC,Physical,100,12,100,NearOther,1,CanProtect;CanMirrorMove,"For the rest of the round, the target's healing is reversed. Always goes first.",SPARK
 1493,DISCOURAGE,Discourage,0EC,55,FIGHTING,Special,100,10,0,NearOther,-6,CanProtect;CanMirrorMove,"The user forces the target to switch out, to be replaced at random. In the wild, the battle ends.",ROAR
 1494,DRAFT,Draft,403,40,FLYING,Special,100,30,10,NearOther,0,CanProtect;CanMirrorMove;Wind,"The user sends a chilly wind towards the target. This has a 10% chance to frostbite.",
+1495,GUTTURALROAR,Guttural Roar,122,85,DRAGON,Special,100,10,0,NearOther,0,CanProtect;CanMirrorMove;Sound,"The user shakes the target with a deep, rumbling roar. This attack does physical damage.",
+1496,CENTER,Center,5DF,0,NORMAL,Status,0,15,0,User,0,CanSnatch,"The user concentrates to stabilize its mood. It raises the user's Sp. Def by three steps.",
+1497,FIXATE,Fixate,5DD,0,NORMAL,Status,0,15,0,User,0,CanSnatch,"The user stimulates its brain by planning. It raises the user's Sp. Atk by three steps.",

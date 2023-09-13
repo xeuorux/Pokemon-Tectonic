@@ -864,7 +864,7 @@ end
 
 #===============================================================================
 # Target's Defense is used instead of its Special Defense for this move's
-# calculations. (Psyshock, Psystrike, Secret Sword)
+# calculations. (Guttural Roar, Secret Sword)
 #===============================================================================
 class PokeBattle_Move_122 < PokeBattle_Move
     def pbDefendingStat(_user, target)
