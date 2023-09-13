@@ -1604,16 +1604,20 @@ class PokeBattle_Move_0BA < PokeBattle_Move
         return false
     end
 
+    def getTauntTurns(target)
+        return target.boss? ? @tauntTurns / 2 : @tauntTurns
+    end
+
     def pbEffectAgainstTarget(_user, target)
         return if damagingMove?
-        target.applyEffect(:Taunt, @tauntTurns)
+        target.applyEffect(:Taunt, getTauntTurns(target))
     end
 
     def pbAdditionalEffect(user, target)
         return if target.damageState.substitute
         return if target.effectActive?(:Taunt)
         return true if pbMoveFailedAromaVeil?(user, target)
-        target.applyEffect(:Taunt, @tauntTurns)
+        target.applyEffect(:Taunt, getTauntTurns(target))
     end
 
     def getTargetAffectingEffectScore(user, target)
@@ -1629,7 +1633,7 @@ class PokeBattle_Move_0BA < PokeBattle_Move
         lastingScore = 0
         lastingScore += 30 if setupHate
         lastingScore += 30 if hazardHate
-        lastingScore *= (@tauntTurns - 1)
+        lastingScore *= (getTauntTurns(target) - 1)
         score = firstTurnScore + lastingScore
         return score
     end
@@ -1967,23 +1971,27 @@ class PokeBattle_Move_0C7 < PokeBattle_Move
         return false
     end
 
+    def getBarTurns(target)
+        return target.boss? ? @barredTurns / 2 : @barredTurns
+    end
+
     def pbEffectAgainstTarget(_user, target)
         return if damagingMove?
-        target.applyEffect(:Barred, @barredTurns)
+        target.applyEffect(:Barred, getBarTurns(target))
     end
 
     def pbAdditionalEffect(user, target)
         return if target.damageState.substitute
         return if target.effectActive?(:Barred)
         return true if pbMoveFailedAromaVeil?(user, target)
-        target.applyEffect(:Barred, @barredTurns)
+        target.applyEffect(:Barred, getBarTurns(target))
     end
 
     def getTargetAffectingEffectScore(_user, target)
         return 0 if target.substituted? && statusMove?
         return 0 if target.hasActiveAbilityAI?(:MENTALBLOCK)
         return 0 unless target.hasOffTypeMove?
-        return 80
+        return 40 + getBarTurns(target) * 20
     end
 end
 

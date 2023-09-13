@@ -447,6 +447,7 @@ def hackedTMShop
 		TM22
 		TM23
 		TM27
+		TM85
 		TM114
 		TM176
 	]
@@ -469,6 +470,18 @@ def switchOutTMShop
 	pbPokemonMart(
 		tmsStock,
 		_INTL("I'm sure you'll appreciate one of these."),
+		!CAN_SELL_IN_VENDORS
+	)
+end
+
+def rechargeTMShop
+	tmsStock = %i[
+
+	]
+
+	pbPokemonMart(
+		tmsStock,
+		_INTL("Don't delay. Buy now!"),
 		!CAN_SELL_IN_VENDORS
 	)
 end

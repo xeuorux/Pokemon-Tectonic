@@ -175,3 +175,5 @@
 4174,PSYSHOCK,Psyshock,122,85,PSYCHIC,Special,100,10,0,NearOther,0,CanProtect;CanMirrorMove,"The user materializes an odd psychic wave to attack the target. This attack does physical damage.",
 4175,SOULCLAW,Soul Claw,506,60,GHOST,Physical,100,20,0,NearOther,0,CanProtect;CanMirrorMove,"The user claws at the target's soul, dealing damage through their Sp. Def rather than their Defense.",SHADOWCLAW
 4176,SKYUPPERCUT,Sky Uppercut,11B,85,FIGHTING,Physical,100,12,0,NearOther,0,CanProtect;CanMirrorMove;Punch,"The user attacks with an uppercut. Deals double damage to targets flying high up.",
+4177,AQUATAIL,Aqua Tail,000,115,WATER,Physical,80,10,0,NearOther,0,CanProtect;CanMirrorMove,"The user attacks by swinging its tail as if it were a vicious wave in a raging storm.",
+4178,SWOOP,Swoop,0C9,60,FLYING,Physical,100,25,0,NearOther,0,CanProtect;CanMirrorMove,"The user takes an advantageous airborne position, then strikes on the second turn.",FLY
