@@ -12,6 +12,6 @@ PokeBattle_Battle::BattleStartApplyCurse.add(:CURSE_PERISH_SONGED,
 PokeBattle_Battle::BattlerEnterCurseEffect.add(:CURSE_PERISH_SONGED,
     proc { |_curse_policy, battler, _battle|
         next if battler.opposes?
-        battler.applyEffect(:PerishSong, 3)
+        battler.applyEffect(:PerishSong, 4)
     }
 )
