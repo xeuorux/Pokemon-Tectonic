@@ -5905,6 +5905,7 @@ Pokemon = TORTERRA,55
     AbilityIndex = 0 # Refuge
 Pokemon = DONSTER,55
     AbilityIndex = 0 # Aggravate
+    Moves = SLAG,MIASMA,PAINSPLIT,AUTOTOMIZE
 Pokemon = SCARODON,55
     AbilityIndex = 0 # Schadenfreude
 Pokemon = MDUSTOX,55
