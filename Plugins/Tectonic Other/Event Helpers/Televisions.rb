@@ -4,6 +4,13 @@ def displayTVProgram()
 end
 
 def displayNewsProgram(map_id = -1)
+    if $game_switches[12] && !$game_switches[97] # Defeated elite four, haven't unlocked Tri Island
+        pbMessage(_INTL("TO DO: Tri Island news story here."))
+        pbMessage(_INTL("You can now boat to Tri Island."))
+        $game_switches[97] = true
+        return
+    end
+    
     if map_id != -1
         displayWeatherReport(map_id)
     else
