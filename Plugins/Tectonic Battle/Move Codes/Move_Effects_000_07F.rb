@@ -361,7 +361,7 @@ class PokeBattle_Move_019 < PokeBattle_Move
             statusesInParty += 1 if validPokemon(pkmn)
         end
         if statusesInParty > 0
-            statusScore = 80 + statusesInParty * 40
+            statusScore = 70 + statusesInParty * 40
             statusScore = 200 if statusScore > 200
             score += statusScore
         end
