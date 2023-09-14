@@ -489,12 +489,12 @@ class PokeBattle_Move
     end
 
     def flatDamageReductions(finalCalculatedDamage,user,target,aiCheck = false)
-        if target.shouldAbilityApply?(:DRAGONSCALES,aiCheck)
+        if target.shouldAbilityApply?(:DRAGONSCALES,aiCheck) && !@battle.moldBreaker
             finalCalculatedDamage -= target.level
             target.aiLearnsAbility(:DRAGONSCALES) unless aiCheck
         end
 
-        finalCalculatedDamage = 0 if finalCalculatedDamage < 0
+        finalCalculatedDamage = 1 if finalCalculatedDamage < 1
 
         return finalCalculatedDamage
     end
