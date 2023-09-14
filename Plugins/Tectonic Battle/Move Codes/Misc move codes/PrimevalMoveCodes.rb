@@ -769,15 +769,8 @@ class PokeBattle_Move_655 < PokeBattle_Move_005
     include EmpoweredMove
 end
 
-# Empowered Stored Power
-class PokeBattle_Move_656 < PokeBattle_Move_08E
-    include EmpoweredMove
-
-    def pbBaseDamage(_baseDmg, user, _target)
-        mult = 1
-        GameData::Stat.each_battle { |s| mult += user.steps[s.id] if user.steps[s.id] > 0 }
-        return 30 * mult
-    end
+# (Not currently used)
+class PokeBattle_Move_656
 end
 
 # Empowered Bullet Punch

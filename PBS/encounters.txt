@@ -1030,12 +1030,12 @@ Land,20
     20,MNOCTOWL,62,64
     20,WEAVILE,62,64
 #-------------------------------
-[416] # Sunbaked Camp
+[416] # Vernal Clearing
 Land,20
     20,ARCANINE,62,64
     20,CHERRIM,62,64
-    20,SUNFLORA,62,64
     20,PYROAR,62,64
+    20,SUNFLORA,62,64
     20,TALONFLAME,62,64
 #-------------------------------
 [417] # Crackling Cave

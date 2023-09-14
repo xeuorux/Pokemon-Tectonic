@@ -2414,7 +2414,7 @@ BattleBack = snow
 WildBattleBGM = TrainerBattleKanto.ogg
 #-------------------------------
 [416]
-# Sunbaked Camp
+# Vernal Clearing
 Outdoor = true
 ShowArea = true
 Bicycle = true

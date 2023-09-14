@@ -280,14 +280,24 @@ class PokeBattle_Move_08D < PokeBattle_Move
 end
 
 #===============================================================================
-# Power increases with the user's positive stat changes (ignores negative ones).
-# (Power Trip, Stored Power, Trained Outburst)
+# Power increases with the user's positive stat changes (ignores negative ones). (Compounding)
+# This move is physical if user's Attack is higher than its Special Attack
+# (after applying stat steps)
 #===============================================================================
 class PokeBattle_Move_08E < PokeBattle_Move
-    def pbBaseDamage(_baseDmg, user, _target)
-        mult = 1
+    def initialize(battle, move)
+        super
+        @calculated_category = 1
+    end
+
+    def calculateCategory(user, _targets)
+        return selectBestCategory(user)
+    end
+
+    def pbBaseDamage(baseDmg, user, _target)
+        mult = 0
         GameData::Stat.each_battle { |s| mult += user.steps[s.id] if user.steps[s.id] > 0 }
-        return 10 * mult
+        return baseDmg + 10 * mult
     end
 end
 

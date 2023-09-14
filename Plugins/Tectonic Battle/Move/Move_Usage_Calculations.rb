@@ -37,14 +37,6 @@ class PokeBattle_Move
         if target.hasActiveItem?(:RINGTARGET)
             ret = Effectiveness::NORMAL_EFFECTIVE_ONE if Effectiveness.ineffective_type?(moveType, defType)
         end
-        # Foresight/Scrappy
-        if user.hasActiveAbility?(:SCRAPPY) || target.effectActive?(:Foresight)
-            ret = Effectiveness::NORMAL_EFFECTIVE_ONE if defType == :GHOST && Effectiveness.ineffective_type?(moveType, defType)
-        end
-        # Miracle Eye
-        if target.effectActive?(:MiracleEye)
-            ret = Effectiveness::NORMAL_EFFECTIVE_ONE if defType == :DARK && Effectiveness.ineffective_type?(moveType, defType)
-        end
         # Delta Stream's weather
         if @battle.pbWeather == :StrongWinds
             ret = Effectiveness::NORMAL_EFFECTIVE_ONE if defType == :FLYING && Effectiveness.super_effective_type?(moveType, defType)
@@ -187,9 +179,6 @@ class PokeBattle_Move
         # specific values
         modifiers[:accuracy_multiplier] *= 2.0 if @battle.field.effectActive?(:Gravity)
         modifiers[:accuracy_multiplier] *= 1.5 if user.effectActive?(:Spotting)
-
-        modifiers[:evasion_step] = 0 if target.effectActive?(:Foresight) && modifiers[:evasion_step] > 0
-        modifiers[:evasion_step] = 0 if target.effectActive?(:MiracleEye) && modifiers[:evasion_step] > 0
 
         if aiCheck
             modifiers[:evasion_step] = 0 if @function == "0A9" # Chip Away

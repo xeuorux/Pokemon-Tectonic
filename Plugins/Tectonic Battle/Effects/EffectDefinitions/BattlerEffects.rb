@@ -339,14 +339,6 @@ GameData::BattleEffect.register_effect(:Battler, {
 })
 
 GameData::BattleEffect.register_effect(:Battler, {
-    :id => :Foresight,
-    :real_name => "Identified",
-    :apply_proc => proc do |battle, battler, _value|
-        battle.pbDisplay(_INTL("{1} was identified!", battler.pbThis))
-    end,
-})
-
-GameData::BattleEffect.register_effect(:Battler, {
     :id => :GastroAcid,
     :real_name => "Ability Surpressed",
     :baton_passed => true,

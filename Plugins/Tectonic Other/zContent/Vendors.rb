@@ -444,6 +444,11 @@ end
 
 def hackedTMShop
 	tmsStock = %i[
+		TM04
+		TM05
+		TM06
+		TM11
+		TM13
 		TM22
 		TM23
 		TM27
