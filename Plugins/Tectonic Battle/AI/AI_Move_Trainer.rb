@@ -94,12 +94,16 @@ class PokeBattle_AI
             end
             targets.each do |b|
                 score,targetKillInfo = pbGetMoveScore(move, user, b, policies, targets.length, ignoreGeneralEffectScores, killInfoArray)
-                if user.opposes?(b)
-                    totalScore += score
-                    killInfo = targetKillInfo
+                if target_data.targets_foe
+                    if user.opposes?(b)
+                        totalScore += score
+                        killInfo = targetKillInfo
+                    else
+                        next if policies.include?(:EQ_PROTECT) && b.canChooseProtect?
+                        totalScore -= score
+                    end
                 else
-                    next if policies.include?(:EQ_PROTECT) && b.canChooseProtect?
-                    totalScore -= score
+                    totalScore += score
                 end
             end
             newChoice = [totalScore, -1] if totalScore > 0

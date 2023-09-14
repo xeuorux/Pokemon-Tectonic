@@ -18654,6 +18654,7 @@ BattlerEnemyY = 23
 BattlerShadowX = 0
 BattlerShadowSize = 2
 Evolutions = CINCCINO,Level,36
+WildItemUncommon = SILKSCARF
 #-------------------------------
 [573]
 Name = Cinccino
@@ -18684,6 +18685,7 @@ BattlerEnemyX = 2
 BattlerEnemyY = 21
 BattlerShadowX = 0
 BattlerShadowSize = 2
+WildItemUncommon = SILKSCARF
 #-------------------------------
 [574]
 Name = Gothita
