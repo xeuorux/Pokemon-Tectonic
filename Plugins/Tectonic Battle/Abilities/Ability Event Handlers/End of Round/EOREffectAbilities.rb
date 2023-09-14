@@ -175,21 +175,23 @@ BattleHandlers::EOREffectAbility.add(:GROWUP,
   }
 )
 
+EOT_ABILITY_HEALING_FRACTION = 1.0 / 12.0
+
 BattleHandlers::EOREffectAbility.add(:FIGHTINGVIGOR,
   proc { |ability, battler, _battle|
-      battler.applyFractionalHealing(1.0 / 12.0, ability: ability)
+      battler.applyFractionalHealing(EOT_ABILITY_HEALING_FRACTION, ability: ability)
   }
 )
 
 BattleHandlers::EOREffectAbility.add(:GROTESQUEVITALS,
   proc { |ability, battler, _battle|
-      battler.applyFractionalHealing(1.0 / 12.0, ability: ability)
+      battler.applyFractionalHealing(EOT_ABILITY_HEALING_FRACTION, ability: ability)
   }
 )
 
 BattleHandlers::EOREffectAbility.add(:WELLSUPPLIED,
   proc { |ability, battler, _battle|
-      battler.applyFractionalHealing(1.0 / 12.0, ability: ability)
+      battler.applyFractionalHealing(EOT_ABILITY_HEALING_FRACTION, ability: ability)
   }
 )
 

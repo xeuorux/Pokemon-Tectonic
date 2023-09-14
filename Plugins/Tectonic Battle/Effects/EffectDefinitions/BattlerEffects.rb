@@ -1,3 +1,9 @@
+def aquaRingHealingFraction(battler)
+    fraction = 1.0 / 10.0
+    fraction *= 1.3 if battler.hasActiveItem?(:BIGROOT)
+    return fraction
+end
+
 GameData::BattleEffect.register_effect(:Battler, {
     :id => :AquaRing,
     :real_name => "Aqua Ring",
@@ -7,8 +13,7 @@ GameData::BattleEffect.register_effect(:Battler, {
     end,
     :eor_proc => proc do |_battle, battler, _value|
         next unless battler.canHeal?
-        fraction = 1.0 / 10.0
-        fraction *= 1.3 if battler.hasActiveItem?(:BIGROOT)
+        fraction = aquaRingHealingFraction(battler)
         healMessage = _INTL("The ring of water restored {1}'s HP!", battler.pbThis(true))
         battler.applyFractionalHealing(fraction, customMessage: healMessage)
     end,
@@ -146,6 +151,8 @@ GameData::BattleEffect.register_effect(:Battler, {
     end,
 })
 
+CURSE_DAMAGE_FRACTION = 0.25
+
 GameData::BattleEffect.register_effect(:Battler, {
     :id => :Curse,
     :real_name => "Cursed",
@@ -156,7 +163,7 @@ GameData::BattleEffect.register_effect(:Battler, {
     :eor_proc => proc do |battle, battler, _value|
         if battler.takesIndirectDamage?
             battle.pbDisplay(_INTL("{1} is afflicted by the curse!", battler.pbThis))
-            battler.applyFractionalDamage(1.0 / 4.0, false)
+            battler.applyFractionalDamage(CURSE_DAMAGE_FRACTION, false)
         end
     end,
 })
@@ -484,6 +491,12 @@ GameData::BattleEffect.register_effect(:Battler, {
     end,
 })
 
+def ingrainHealingFraction(battler)
+    fraction = 1.0 / 8.0
+    fraction *= 1.3 if battler.hasActiveItem?(:BIGROOT)
+    return fraction
+end
+
 GameData::BattleEffect.register_effect(:Battler, {
     :id => :Ingrain,
     :real_name => "Ingrained",
@@ -494,10 +507,9 @@ GameData::BattleEffect.register_effect(:Battler, {
     end,
     :eor_proc => proc do |_battle, battler, _value|
         next unless battler.canHeal?
-        ratio = 1.0 / 8.0
-        ratio *= 1.3 if battler.hasActiveItem?(:BIGROOT)
+        fraction = ingrainHealingFraction(battler)
         healMessage = _INTL("{1} absorbed nutrients with its roots!", battler.pbThis)
-        battler.applyFractionalHealing(ratio, customMessage: healMessage)
+        battler.applyFractionalHealing(fraction, customMessage: healMessage)
     end,
 })
 
@@ -1119,6 +1131,12 @@ GameData::BattleEffect.register_effect(:Battler, {
     :type => :Species,
 })
 
+def trappingDamageFraction(battler)
+    fraction = 1.0 / 8.0
+    fraction *= 2 if battler.getBattlerPointsTo(:TrappingUser)&.hasActiveItem?(:BINDINGBAND)
+    return fraction
+end
+
 GameData::BattleEffect.register_effect(:Battler, {
     :id => :Trapping,
     :real_name => "Trapping Turns",
@@ -1152,8 +1170,7 @@ GameData::BattleEffect.register_effect(:Battler, {
         else battle.pbCommonAnimation("Wrap", battler)
         end
         if battler.takesIndirectDamage?
-            fraction = 1.0 / 8.0
-            fraction *= 2 if battler.getBattlerPointsTo(:TrappingUser)&.hasActiveItem?(:BINDINGBAND)
+            fraction = trappingDamageFraction(battler)
             battle.pbDisplay(_INTL("{1} is hurt by {2}!", battler.pbThis, moveName))
             battler.applyFractionalDamage(fraction)
         end

@@ -18,7 +18,7 @@ BattleHandlers::SpeedCalcAbility.add(:HYPERSPEED,
 
 BattleHandlers::SpeedCalcAbility.add(:SANDRUSH,
   proc { |ability, battler, mult|
-      next mult * 2 if [:Sandstorm].include?(battler.battle.pbWeather)
+      next mult * 2 if battler.battle.sandy?
   }
 )
 
@@ -30,7 +30,7 @@ BattleHandlers::SpeedCalcAbility.add(:SLOWSTART,
 
 BattleHandlers::SpeedCalcAbility.add(:SLUSHRUSH,
   proc { |ability, battler, mult|
-      next mult * 2 if [:Hail].include?(battler.battle.pbWeather)
+      next mult * 2 if battler.battle.icy?
   }
 )
 
@@ -55,16 +55,6 @@ BattleHandlers::SpeedCalcAbility.add(:SKYHAZARD,
 BattleHandlers::SpeedCalcAbility.add(:UNBURDEN,
   proc { |ability, battler, mult|
       next mult * 2 if battler.effectActive?(:ItemLost) && !battler.hasAnyItem?
-  }
-)
-
-BattleHandlers::SpeedCalcAbility.add(:BROODING,
-  proc { |ability, battler, mult|
-      dragonCount = 0
-      battler.battle.eachInTeamFromBattlerIndex(battler.index) do |pkmn, _i|
-          dragonCount += 1 if pkmn.hasType?(:DRAGON)
-      end
-      next mult * (1.0 + dragonCount * 0.05)
   }
 )
 

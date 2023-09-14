@@ -60,7 +60,8 @@ class PokeBattle_Battler
         end
         reduction *= 0.66 if hasTribeBonus?(:ANIMATED) && !struggle
         reduction = reduction.ceil
-        if showDamageAnimation && !aiCheck
+        showDamageAnimation = false if aiCheck
+        if showDamageAnimation
             @damageState.displayedDamage = reduction
             @battle.scene.pbDamageAnimation(self,0,true)
         end
