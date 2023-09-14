@@ -883,6 +883,14 @@ LandSparse,20
 Special,1
     1,DRIFLOON,14,17
 #-------------------------------
+[304] # Ruined Tower F1
+Cloud,20
+    20,ABSOLUS,37,40
+    20,COALOSSAL,37,40
+    20,GOLURK,37,40
+    20,VICTREEBEL,37,40
+    20,VOLCARONA,37,40
+#-------------------------------
 [305] # Dock Warehouse
 Special,1
     1,GPONYTA,15
