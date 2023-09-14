@@ -1034,7 +1034,7 @@ Land,20
 Land,20
     20,ARCANINE,62,64
     20,CHERRIM,62,64
-    20,PIDGEOT,62,64
+    20,SUNFLORA,62,64
     20,PYROAR,62,64
     20,TALONFLAME,62,64
 #-------------------------------
