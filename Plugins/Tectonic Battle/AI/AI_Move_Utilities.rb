@@ -179,7 +179,9 @@ class PokeBattle_AI
         if modifiers[:base_accuracy] == 0
             return (accuracy / evasion < 1) ? 125 : 100
         end
-        return modifiers[:base_accuracy] * accuracy / evasion
+        finalAccuracy = modifiers[:base_accuracy] * accuracy / evasion
+        finalAccuracy = 100 if finalAccuracy > 100
+        return finalAccuracy
     end
 
     #===========================================================================
