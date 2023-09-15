@@ -593,10 +593,10 @@ def predictedEOTDamage(battle,battler)
     damage += battle.damageFromDOTStatus(battler, :FROSTBITE, true) if battler.frostbitten?
 
     # Curse
-    damage += battler.applyFractionalDamage(CURSE_DAMAGE_FRACTION, aiCheck: true)
+    damage += battler.applyFractionalDamage(CURSE_DAMAGE_FRACTION, aiCheck: true) if battler.effectActive?(:Curse)
 
     # Trapping DOT
-    damage += battler.applyFractionalDamage(trappingDamageFraction(battler), aiCheck: true)
+    damage += battler.applyFractionalDamage(trappingDamageFraction(battler), aiCheck: true) if battler.effectActive?(:Trapping)
 
     # Bad Dreams
     # Pain Presence
