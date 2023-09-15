@@ -218,7 +218,7 @@
 217,PLUCK,Pluck,0F4,60,FLYING,Physical,100,15,0,NearOther,0,CanProtect;CanMirrorMove,"The user pecks the target. If the target is holding a Berry, the user eats it and gains its effect.",
 218,WINGCRASH,Wing Crash,599,55,FLYING,Physical,100,30,0,NearOther,0,CanProtect;CanMirrorMove,"The target is struck with large, imposing wings. The user also takes 20% recoil.",
 219,ACROBATICS,Acrobatics,086,55,FLYING,Physical,100,12,0,NearOther,0,CanProtect;CanMirrorMove,"The user nimbly strikes the foe. Doubles in damage if the user has no item when the move starts.",
-220,GUST,Gust,000,45,FLYING,Special,100,30,10,NearOther,0,CanProtect;CanMirrorMove;Wind,"The user whips up a gust of wind to attack the target.",
+220,GUST,Gust,000,45,FLYING,Special,100,30,0,NearOther,0,CanProtect;CanMirrorMove;Wind,"The user whips up a gust of wind to attack the target.",
 221,PECK,Peck,000,45,FLYING,Physical,100,30,0,NearOther,0,CanProtect;CanMirrorMove,"The target is jabbed with a sharply pointed beak or horn.",
 222,DEFOG,Defog,049,0,FLYING,Status,0,12,0,NearOther,0,CanProtect;CanMagicCoat;CanMirrorMove;Wind,"The user whips up a wind to blow away the target's protective screens. Also removes hazards on both sides.",
 223,FEATHERDANCE,Feather Dance,5F1,0,FLYING,Status,100,12,0,NearOther,0,CanProtect;CanMagicCoat;CanMirrorMove;Dance,"The user covers the target's body with a mass of down that lowers its Attack stat by five steps.",
