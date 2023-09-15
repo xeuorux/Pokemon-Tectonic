@@ -1378,6 +1378,7 @@ class PokemonBoxIcon < IconSprite
     end
   
     def pbHardRefresh
+      echoln("REFRESH")
       oldPartyY = @sprites["boxparty"].y
       @sprites["box"].dispose
       @sprites["box"] = PokemonBoxSprite.new(@storage,@storage.currentBox,@boxviewport)
@@ -1844,7 +1845,6 @@ class PokemonBoxIcon < IconSprite
     
     
     def pbSortBox(type, boxNumber)
-      # @storage = PokemonStorage in rpgmaker scripts.
       box = @storage.boxes[boxNumber]
       return if box.empty? || @heldpkmn
       nitems = box.nitems-1
@@ -1878,16 +1878,14 @@ class PokemonBoxIcon < IconSprite
           if !@storage[boxNumber, i]
             break
           end
-          pbHold([boxNumber, i])
-          targetposition = dicttosort[@heldpkmn]
-          if @storage[boxNumber, targetposition]
-            pbSwap([boxNumber, targetposition])
-            pbPlace([boxNumber, i])
-          else
-            pbPlace([boxNumber, targetposition])
-          end
+          toswap = box[i]
+          destination = dicttosort[toswap]
+          temp = box[destination]
+          box[destination] = toswap
+          box[i] = temp
         end
       end
+      @scene.pbHardRefresh
     end
   
     def pbSwap(selected)
