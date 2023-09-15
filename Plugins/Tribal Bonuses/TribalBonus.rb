@@ -68,6 +68,7 @@ class TribalBonus
         if hasTribeBonus?(:LOYAL)
             smallBonus = getSingleStatBonusSmall(level)
             GameData::Stat.each_main_battle do |stat|
+                next if stat == :SPEED
                 tribeBonuses[stat.id] = smallBonus
             end
         end
@@ -75,6 +76,7 @@ class TribalBonus
         if hasTribeBonus?(:INDUSTRIOUS) && (!@trainer.is_a?(Player) || @trainer.money >= 100_000)
             mediumBonus = getSingleStatBonusMedium(level)
             GameData::Stat.each_main_battle do |stat|
+                next if stat == :SPEED
                 tribeBonuses[stat.id] = mediumBonus
             end
         end
@@ -83,15 +85,15 @@ class TribalBonus
     end
 
     def getSingleStatBonusSmall(level)
-        return 5 + (level / 14).floor
+        return 4 + (level / 16).floor # 4 to 8
     end
 
     def getSingleStatBonusMedium(level)
-        return 8 + (level / 10).floor
+        return 5 + (level / 12).floor # 5 to 10
     end
 
     def getSingleStatBonusLarge(level)
-        return 10 + (level / 8).floor
+        return 6 + (level / 8).floor # 7 to 14
     end
 
     def hasTribeBonus?(tribeID)
