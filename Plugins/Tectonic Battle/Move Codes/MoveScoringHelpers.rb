@@ -658,7 +658,7 @@ def predictedEOTHealing(battle,battler)
         healing += battler.applyFractionalHealing(LEFTOVERS_HEALING_FRACTION, aiCheck: true)
     end
     # Black Sludge
-    healing += battler.applyFractionalHealing(LEFTOVERS_HEALING_FRACTION, aiCheck: true) if battler.hasActiveItem?(:BLACKSLUDGE) && user.pbHasType?(:POISON)
+    healing += battler.applyFractionalHealing(LEFTOVERS_HEALING_FRACTION, aiCheck: true) if battler.hasActiveItem?(:BLACKSLUDGE) && battler.pbHasType?(:POISON)
 
     # Harvest, Larder
 
