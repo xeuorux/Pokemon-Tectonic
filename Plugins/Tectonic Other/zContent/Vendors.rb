@@ -748,8 +748,17 @@ def pubVendor
 		EEVEETICKET
 		SWEETHEART
 	]
-	setPrice(:MOOMOOMILK,800)
 	pbPokemonMart(pubStock,"What can I get you?",true)
+end
+
+def farmVendor
+	pubStock = %i[
+		SWEETAPPLE
+		TARTAPPLE
+		MOOMOOMILK
+	]
+	setPrice(:MOOMOOMILK,800)
+	pbPokemonMart(pubStock,"Farm food, fresh for feastin'.",true)
 end
 
 def arenaVendor()

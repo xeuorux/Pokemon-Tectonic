@@ -347,6 +347,15 @@ BattleHandlers::AbilityOnSwitchIn.add(:TRIAGE,
   }
 )
 
+BattleHandlers::AbilityOnSwitchIn.add(:QUICKKICKS,
+  proc { |ability, battler, battle, aiCheck|
+      next 0 if aiCheck
+      battle.pbShowAbilitySplash(battler, ability)
+      battle.pbDisplay(_INTL("{1} is quick on its feet!", battler.pbThis))
+      battle.pbHideAbilitySplash(battler)
+  }
+)
+
 ##########################################
 # Screen setting abilities
 ##########################################

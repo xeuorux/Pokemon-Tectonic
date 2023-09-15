@@ -216,6 +216,10 @@ class PokeBattle_Battle
             if b.hasActiveAbility?(:RAMMINGSPEED) && move&.recoilMove?
                 b.applyEffect(:RammingSpeed)
             end
+
+            if b.hasActiveAbility?(:QUICKKICKS) && move&.kickMove?
+                b.applyEffect(:QuickKicks)
+            end
         end
         pbCalculatePriority
     end

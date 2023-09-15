@@ -772,8 +772,8 @@ Pokemon = ELECTRIKE,20
     AbilityIndex = 0 # Nerve Number
 Pokemon = STUFFUL,21
     AbilityIndex = 0 # Intimidate
-Pokemon = FLAPPLE,21
-    AbilityIndex = 0 # Ripen
+Pokemon = APPLIN,21
+    AbilityIndex = 0 # Gluttony
     Item = AMWIBERRY
 #-------------------------------
 [KIMONOGIRL,Haera]
@@ -1114,7 +1114,7 @@ Pokemon = FLOATZEL,27
 #-------------------------------
 [AROMALADY,Cheshire]
 Pokemon = STEENEE,28
-    AbilityIndex = 1 # Royal Majesty
+    AbilityIndex = 1 # Quick Kicks
 Pokemon = WATCHOG,28
     AbilityIndex = 0 # Recon
 Pokemon = SHEDINJA,29
@@ -1642,7 +1642,7 @@ Pokemon = AMPHAROS,43
 #-------------------------------
 [BEAUTY,Gretchen]
 Pokemon = TSAREENA,43
-    AbilityIndex = 1 # Royal Majesty
+    AbilityIndex = 1 # Quick Kicks
     Item = LIFEORB
 Pokemon = COFAGRIGUS,43
     AbilityIndex = 1 # Skill Link
@@ -2459,7 +2459,7 @@ Pokemon = STOUTLAND,70
     EV = 20,0,20,0,0,10
 Pokemon = APPLETUN,70
     Moves = SYNTHESIS,DRACOMETEOR,LEECHSEED,THRIVINGFORCE
-    AbilityIndex = 1 # Shed Skin
+    AbilityIndex = 1 # Fire-fighter
     Item = LEFTOVERS
     EV = 20,0,15,0,0,15
 Pokemon = BLAZIKEN,70
@@ -6043,7 +6043,7 @@ Pokemon = PTEROFLYTE,70
 [POKEMONMASTER_Vanya,Vanya,3]
 Policies = NO_PERFECT
 Pokemon = APPLETUN,70
-    AbilityIndex = 1 # Shed Skin
+    AbilityIndex = 1 # Fire-fighter
 Pokemon = LINOONE,70
     AbilityIndex = 1 # Gluttony
 Pokemon = MSEAKING,70

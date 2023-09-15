@@ -1,6 +1,6 @@
 PokeBattle_AI::PlayerPokemonFaintedDialogue.add(:ZAIN,
   proc { |_policy, battler, trainer_speaking, dialogue_array|
-      starters = %i[APPLIN FLAPPLE APPLETUN NUMEL CAMERUPT DROMERUPT KRABBY KINGLER KLAWSAR]
+      starters = %i[BOUNSWEET STEENEE TSAREENA NUMEL CAMERUPT DROMERUPT KRABBY KINGLER KLAWSAR]
       if $Trainer.able_pokemon_count == 0
           dialogue_array.push("Really? That's it? Get back up. That can't be all you've got.")
       elsif starters.include?(battler.species) && !trainer_speaking.policyStates[:StarterDeathDialogue]

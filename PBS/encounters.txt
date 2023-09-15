@@ -136,7 +136,7 @@ FloweryGrass,20
 #-------------------------------
 [035] # Impromptu Lab
 Special,20
-    1,APPLIN,10
+    1,BOUNSWEET,10
     1,KRABBY,10
     1,NUMEL,10
     1,PATRAT,10
@@ -298,7 +298,7 @@ Special,20
 #-------------------------------
 [087] # LuxTech Rec Center
 Special,20
-    1,BOUNSWEET,15
+    1,APPLIN,15
 #-------------------------------
 [090] # Employees' House
 Special,20
@@ -687,7 +687,7 @@ Special,1
 #-------------------------------
 [217] # Sweetrock Harbor
 Land,20
-    25,BOUNSWEET,44,46
+    25,APPLIN,44,46
     25,COMFEY,44,46
     25,FALINKS,44,46
     25,MILCERY,44,46
@@ -840,7 +840,7 @@ Land,20
 #-------------------------------
 [264] # Sweetrock Harbor Mart
 Special,1
-    1,APPLIN,10
+    1,BOUNSWEET,10
 #-------------------------------
 [282] # The Catacombs B1
 LandSparse,20
@@ -1009,7 +1009,7 @@ LandTall,20
 #-------------------------------
 [411] # Tri Island
 Land,20
-    25,APPLIN,8,10
+    25,BOUNSWEET,8,10
     25,CASTFORM,8,10
     25,KRABBY,8,10
     25,NUMEL,8,10

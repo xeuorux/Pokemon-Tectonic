@@ -23,7 +23,7 @@
 1022,STINKCLOUD,Stink Cloud,401,50,POISON,Special,100,20,20,NearOther,0,CanProtect;CanMirrorMove;Wind,"The user gives off a terrible stench towards the target. It has a 20% chance to dizzy.",
 1023,BLINDSIDE,Blind Side,0A5,40,PSYCHIC,Physical,0,30,0,NearOther,0,CanMirrorMove,"The user skillfully attacks around the enemy's guard. Can't miss and skips protections.",ZENHEADBUTT
 1024,SLURP,Slurp,0DD,25,BUG,Physical,100,20,0,NearOther,0,CanProtect;CanMirrorMove,"The user slurps a bit of the target's blood. The user's HP is restored by half the damage dealt.",LEECHLIFE
-1025,KICKSTART,Kickstart,505,40,PSYCHIC,Physical,100,10,0,NearOther,1,CanProtect;CanMirrorMove,"The user encourages the target to attack right after the user. Always goes first.",DOUBLEKICK
+1025,KICKSTART,Kickstart,505,40,PSYCHIC,Physical,100,10,0,NearOther,1,CanProtect;CanMirrorMove;Kicking,"The user encourages the target to attack right after the user. Always goes first.",DOUBLEKICK
 1026,BOREALWIND,Boreal Wind,403,60,FLYING,Special,100,15,20,NearOther,0,CanProtect;CanMirrorMove;Wind,"The user whips up a cold north wind to attack the target. It has a 20% chance to frostbite.",
 1027,COLDFRONT,Cold Front,403,90,FLYING,Special,100,15,10,NearOther,0,CanProtect;CanMirrorMove;Wind,"The user propels a gale-force wind at the target. It has a 10% chance to frostbite.",GUST
 1028,UNDERMINE,Undermine,0CA,125,GROUND,Physical,100,10,0,NearOther,0,CanProtect;CanMirrorMove,"The user burrows deep, then attacks with devastating power on the second turn.",
@@ -184,7 +184,7 @@
 1183,CHIBLOCK,Chi Block,007,0,FIGHTING,Status,100,12,0,NearOther,0,CanProtect;CanMagicCoat;CanMirrorMove,"The user strikes the target's pressure points, numbing it.",
 1184,STUNNINGCURL,Stunning Curl,550,0,BUG,Status,0,3,0,User,4,,"Halves attack damage taken this turn. Numbs any attackers. Fails if used successively.",DEFENSECURL
 1185,FLAMESPIKES,Flame Spikes,551,0,FIRE,Status,0,15,0,FoeSide,0,CanMagicCoat,"The user lays burning spikes on the foe's side. One layer hurts switched in foes, two layers burns.",
-1186,DROPKICK,Drop Kick,0FA,80,FIGHTING,Physical,0,20,100,NearFoe,0,CanProtect;CanMirrorMove,"The user drops onto the target with a kick, dealing 25% recoil to self.",JUMPKICK
+1186,DROPKICK,Drop Kick,0FA,80,FIGHTING,Physical,0,20,100,NearFoe,0,CanProtect;CanMirrorMove;Kicking,"The user drops onto the target with a kick, dealing 25% recoil to self.",JUMPKICK
 1187,MULTISTRIKE,Multi-strike,185,14,NORMAL,Physical,100,30,0,NearOther,0,CanProtect;CanMirrorMove,"The target is hit two to five times in a row. Inflicts physical or special damage based on the user's stats.",
 1188,MOUNTAINCRUSH,Mountain Crush,0FC,200,ROCK,Physical,50,10,0,NearOther,0,CanProtect;CanMirrorMove,"The user slams itself into the target with the power to destroy a mountain, taking 50% recoil.",
 1189,SMUSH,Smush,5E8,40,BUG,Physical,100,15,20,NearOther,0,CanProtect;CanMirrorMove,"Avenging bugs everywhere, the user crushes the target. It has a 20% chance to lower their Defense stat.",
@@ -297,7 +297,7 @@
 1296,SANDASSAULT,Sand Assault,000,120,GROUND,Special,100,5,0,AllNearOthers,0,CanProtect;CanMirrorMove,"The user whips up a flurry of dirt and sand, damaging everything around it.",SCORCHINGSANDS
 1297,RAZORPLUNGE,Razor Plunge,5A3,125,WATER,Physical,100,10,0,NearOther,0,CanProtect;CanMirrorMove,"The user plunges its sharp fangs deep into the target. Lowers the user's Speed by three steps.",LIQUIDATION
 1298,VOLATILETOXIN,Volatile Toxin,5A4,75,POISON,Physical,100,12,0,NearOther,0,CanProtect;CanMirrorMove,"The user injects an unstable toxin into the target. The next Ground-type attack they take deals double damage.",POISONJAB
-1299,RIGHTEOUSKICK,Righteous Kick,54B,70,FIGHTING,Physical,100,20,100,NearOther,0,CanProtect;CanMirrorMove,"A kick that can also eliminate trapping and hazard moves. Also raises user's Speed.",
+1299,RIGHTEOUSKICK,Righteous Kick,54B,70,FIGHTING,Physical,100,20,100,NearOther,0,CanProtect;CanMirrorMove;Kicking,"A kick that can also eliminate trapping and hazard moves. Also raises user's Speed.",
 1300,ROOTSHELTER,Root Shelter,5A5,0,GRASS,Status,0,3,0,User,4,,"Halves attack damage taken this turn. Leeches any attackers. Fails if used successively.",VINEBIND
 1301,DREAMFEAST,Dream Feast,0DE,60,PSYCHIC,Physical,100,12,0,NearOther,0,CanProtect;CanMirrorMove,"The user assaults its foe's dreams. It absorbs half the damage dealt, and doubles in power if the foe is asleep.",
 1302,CRUELKISS,Cruel Kiss,402,65,FAIRY,Special,100,10,100,NearOther,0,CanProtect;CanMagicCoat;CanMirrorMove,"Leeches the target by kissing them with its thin mouth.",DRAININGKISS
@@ -405,7 +405,7 @@
 1404,HONESIGHT,Hone Sight,5E4,0,NORMAL,Status,0,12,0,User,0,CanSnatch,"The user focuses its aim to raise its Sp. Atk and Accuracy by three steps each.",LASERFOCUS
 1405,CURSEDOATH,Cursed Oath,54A,0,GHOST,Status,0,10,0,NearOther,0,CanProtect;CanMagicCoat;CanMirrorMove,"The user spends 1/4th of their max HP to curse the target, damaging their HP by 1/4th each turn.",CURSE
 1406,MINDSAP,Mind Sap,5E5,0,GRASS,Status,100,5,0,NearOther,0,CanProtect;CanMagicCoat;CanMirrorMove,"Lowers the target's Sp. Atk stat, then restores its own HP by the target's Sp. Atk.",STRENGTHSAP
-1407,APPLESURPRISE,Apple Surprise,5F2,45,GRASS,Special,100,10,100,NearOther,1,CanProtect;CanMirrorMove,"An apple falls from high up to strike the foe. Always goes first. Deals double damage in intense Gravity.",GRAVAPPLE
+1407,APPLESURPRISE,Apple Surprise,5F2,40,GRASS,Special,100,10,100,NearOther,1,CanProtect;CanMirrorMove,"An apple falls from high up to strike the foe. Always goes first. Deals double damage in intense Gravity.",GRAVAPPLE
 1408,STARDANCE,Star Dance,5F3,0,PSYCHIC,Status,100,12,0,NearOther,0,CanProtect;CanMagicCoat;CanMirrorMove;Dance,"The user dazzles the target with celestial visions that lowers its Sp. Atk stat by five steps.",COSMICPOWER
 1409,AMPUP,Amp Up,09C,0,ELECTRIC,Status,0,15,0,NearAlly,0,,"The user assists an ally's next move, boosting its power by 50% and letting it move right after the user.",HELPINGHAND
 1410,TRUESENSES,True Senses,5F5,0,PSYCHIC,Status,0,30,0,User,0,CanSnatch,"The user meditates, raising both its Attack and Sp. Atk stats by four steps each.",MEDITATE

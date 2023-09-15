@@ -179,3 +179,9 @@ BattleHandlers::SpeedCalcAbility.add(:SLUGGISH,
       next mult / 2.0
   }
 )
+
+BattleHandlers::SpeedCalcAbility.add(:QUICKKICKS,
+  proc { |ability, battler, mult|
+      next mult * 2 if battler.effectActive?(:QUICKKICKS)
+  }
+)

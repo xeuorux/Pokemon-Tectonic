@@ -78,13 +78,13 @@ PokeBattle_AI::PlayerSendsOutPokemonDialogue.add(:DEBUG,
 
 PokeBattle_AI::PlayerSendsOutPokemonDialogue.add(:REMARKONSTARTER,
   proc { |_policy, battler, trainer_speaking, dialogue_array|
-      next dialogue_array unless %i[APPLIN NUMEL KRABBY].include?(battler.species)
+      next dialogue_array unless %i[BOUNSWEET NUMEL KRABBY].include?(battler.species)
       unless trainer_speaking.policyStates[:RemarkedOnStarter]
           dialogue_array.push("Wow, I've never seen that Pokemon before!")
           dialogue_array.push("I'm gonna check my MasterDex!")
           case battler.species
-          when :APPLIN
-              dialogue_array.push("Applin, it says. A Grass-type, AND a Dragon-type? Crazy!")
+          when :BOUNSWEET
+              dialogue_array.push("Bounsweet, it says. Playful, but a little dangerous!")
           when :NUMEL
               dialogue_array.push("Numel, huh? Fire-type--hope I don't get burned!")
           when :KRABBY

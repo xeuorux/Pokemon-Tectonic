@@ -554,3 +554,5 @@
 553,STYLINGKIT,Styling Kit,Styling Kits,8,0,"A suite of training tools which allows you to modify your Pokémon's style points.",2,0,6
 554,STINKBOMB,Stink Bomb,Stink Bomb,1,5000,"Rare contraband. Any average solo trainer will flee from the stench of its explosion.",2,0,0
 555,RUINEDTOWERKEY,Ruined Tower Key,Ruined Tower Keys,8,0,"A key which unlocks the ruined tower on the Sandstone Estuary coastline.",0,0,6
+556,SWEETAPPLE,Sweet Apple,Sweet Apples,1,2200,"A peculiar apple that can make a certain species of Pokémon evolve. It's exceptionally sweet.",1,0,7
+557,TARTAPPLE,Sweet Apple,Sweet Apples,1,2200,"A peculiar apple that can make a certain species of Pokémon evolve. It's exceptionally tart.",1,0,7

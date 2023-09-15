@@ -130,6 +130,8 @@ module GameData
               category = _INTL("Blade")
           when "Wind"
               category = _INTL("Wind")
+          when "Kicking"
+              category = _INTL("Kick")
           end
         end
         return category

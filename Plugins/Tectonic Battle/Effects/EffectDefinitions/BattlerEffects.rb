@@ -1690,6 +1690,12 @@ GameData::BattleEffect.register_effect(:Battler, {
 })
 
 GameData::BattleEffect.register_effect(:Battler, {
+    :id => :QuickKicks,
+    :real_name => "Quick Kicks",
+    :resets_eor	=> true,
+})
+
+GameData::BattleEffect.register_effect(:Battler, {
     :id => :ShimmeringHeat,
     :real_name => "Shimmering Heat",
     :resets_eor	=> true,

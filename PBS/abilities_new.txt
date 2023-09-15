@@ -451,3 +451,4 @@
 1450,FATIGUED,Fatigued,"After attacking any foe, the Pokémon immediately uses Rest."
 1451,CLOAKING,Cloaking,"It changes form to match the move it selected."
 1452,TRICKYAURA,Tricky Aura,"Upon entry, creates a Trick Room for five turns, inverting the effect of Speed."
+1453,QUICKKICKS,Quick Kicks,"Doubles the speed of kicking moves."

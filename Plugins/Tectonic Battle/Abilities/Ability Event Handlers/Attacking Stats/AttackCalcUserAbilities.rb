@@ -133,7 +133,7 @@ BattleHandlers::AttackCalcUserAbility.add(:SANDSTRENGTH,
   }
 )
 
-BattleHandlers::AttackCalcUserAbility.add(:RAMMINGSPEED,
+BattleHandlers::AttackCalcUserAbility.add(:SLIPSTREAM,
   proc { |ability, user, _battle, attackMult|
       attackMult *= 1.3 if user.pbOwnSide.effectActive?(:Tailwind)
       next attackMult
