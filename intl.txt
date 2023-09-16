@@ -36770,6 +36770,8 @@ Nunca ganó EXP, así que no recibes ningún caramelo.
 Jump
 Saltar
 Wallpaper
+Search
+El Search
 Sort
 El Sort
 Sort All
@@ -36783,6 +36785,10 @@ Pick the wallpaper.
 Elige el fondo.
 Box name?
 ¿Nombre de la caja?
+Pokemon Name?
+¿Nombre de pokemon?
+Which option?
+¿Option?
 Select
 Seleccionar
 Withdraw Item

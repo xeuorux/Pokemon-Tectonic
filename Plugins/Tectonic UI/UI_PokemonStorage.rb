@@ -1205,9 +1205,18 @@ class PokemonBoxIcon < IconSprite
       return pbShowCommands(msg,commands,@storage.currentBox)
     end
 
+    def pbChooseSearch(msg)
+      searchMethods = [_INTL("Name"), _INTL("Species"), _INTL("Type")]
+      return pbShowCommands(msg, searchMethods)
+    end
+
     def pbChooseSort(msg)
       sortMethods = [_INTL("Name"), _INTL("Species"), _INTL("Dex ID"), _INTL("Type"), _INTL("Level")]
       return pbShowCommands(msg,sortMethods)
+    end
+
+    def pbChooseFound(msg, found)
+      return pbShowCommands(msg,found)
     end
   
     def pbBoxName(helptext,minchars,maxchars)
@@ -1220,7 +1229,63 @@ class PokemonBoxIcon < IconSprite
       pbRefresh
       pbFadeInAndShow(@sprites,oldsprites)
     end
-  
+
+    def pbSearch(searchText,minchars,maxchars,searchMethod)
+      oldsprites = pbFadeOutAndHide(@sprites)
+      ret = pbEnterText(searchText,minchars,maxchars)
+      found = []
+      if ret.length > 0   
+        for i in 0...@storage.maxBoxes
+          box = @storage.boxes[i]
+          for j in 0..PokemonBox::BOX_SIZE
+            curpkmn = box[j]
+            if !curpkmn
+              next
+            end
+            if searchMethod==0 #Name
+              if curpkmn.name.downcase==ret.downcase
+                found.push([i,j])
+              end
+            elsif searchMethod==1#Species
+              if curpkmn.speciesName.downcase==ret.downcase
+                found.push([i,j])
+              end
+            elsif searchMethod==2#Type
+              search = GameData::Type.try_get(ret.upcase)
+              if search
+                if curpkmn.hasType?(search.id)
+                  found.push([i,j])
+                end
+              end
+            else
+              echoln("none")
+            end
+          end
+        end
+      end
+      @sprites["box"].refreshBox = true
+      pbRefresh
+      pbFadeInAndShow(@sprites, oldsprites)
+      if found.length >0
+        if found.length ==1
+          pbJumpToBox(found[0][0])
+        else
+          possibleboxes = {}
+          for i in 0..found.length-1
+            opt = "Box "
+            opt += (found[i][0] + 1).to_s
+            possibleboxes[opt] = found[i][0]
+          end
+          if possibleboxes.length==1
+            pbJumpToBox(found[0][0])
+          else
+            foundIndex = pbChooseFound(_INTL("Which option?"),possibleboxes.keys)
+            pbJumpToBox(possibleboxes[possibleboxes.keys[foundIndex]])
+          end
+        end
+      end
+    end
+
     def pbChooseItem(bag)
       ret = nil
       pbFadeOutIn {
@@ -1378,7 +1443,6 @@ class PokemonBoxIcon < IconSprite
     end
   
     def pbHardRefresh
-      echoln("REFRESH")
       oldPartyY = @sprites["boxparty"].y
       @sprites["box"].dispose
       @sprites["box"] = PokemonBoxSprite.new(@storage,@storage.currentBox,@boxviewport)
@@ -2000,6 +2064,7 @@ class PokemonBoxIcon < IconSprite
         jumpCommand = -1
         wallPaperCommand = -1
         nameCommand = -1
+        searchCommand = -1
         sortCommand = -1
         sortAllCommand = -1
         visitEstateCommand = -1
@@ -2007,6 +2072,7 @@ class PokemonBoxIcon < IconSprite
         commands[jumpCommand = commands.length] = _INTL("Jump")
         commands[wallPaperCommand = commands.length] = _INTL("Wallpaper")
         commands[nameCommand = commands.length] = _INTL("Name")
+        commands[searchCommand = commands.length] = _INTL("Search")
         commands[sortCommand = commands.length] = _INTL("Sort")
         commands[sortAllCommand = commands.length] = _INTL("Sort All")
         commands[visitEstateCommand = commands.length] = _INTL("Visit PokÉstate") if defined?(PokEstate) && !$game_switches[ESTATE_DISABLED_SWITCH]
@@ -2039,6 +2105,9 @@ class PokemonBoxIcon < IconSprite
           end
             $PokEstate.transferToEstate(@storage.currentBox,0)
           return true
+        elsif command == searchCommand 
+          searchMethod = @scene.pbChooseSearch(_INTL("Search how?"))
+          @scene.pbSearch(_INTL("Pokemon Name?"),0,12, searchMethod)
         elsif command == sortCommand || command == sortAllCommand
           sortMethod = @scene.pbChooseSort(_INTL("How will you sort?"))
           if sortMethod>=0
