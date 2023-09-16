@@ -1906,10 +1906,22 @@ class PokemonBoxIcon < IconSprite
         @scene.pbRefresh
         @heldpkmn = nil
     end
+
+    def pbChangeLock(boxNumber)
+      box = @storage.boxes[boxNumber]
+      if box.isLocked?
+        box.unlock
+      else
+        box.lock
+      end
+    end
     
     
     def pbSortBox(type, boxNumber)
       box = @storage.boxes[boxNumber]
+      if box.isLocked?
+        return
+      end
       return if box.empty? || @heldpkmn
       nitems = box.nitems-1
       listtosort = []
@@ -2065,6 +2077,7 @@ class PokemonBoxIcon < IconSprite
         wallPaperCommand = -1
         nameCommand = -1
         searchCommand = -1
+        lockCommand = -1
         sortCommand = -1
         sortAllCommand = -1
         visitEstateCommand = -1
@@ -2073,6 +2086,7 @@ class PokemonBoxIcon < IconSprite
         commands[wallPaperCommand = commands.length] = _INTL("Wallpaper")
         commands[nameCommand = commands.length] = _INTL("Name")
         commands[searchCommand = commands.length] = _INTL("Search")
+        commands[lockCommand = commands.length] = _INTL("Sort Lock")
         commands[sortCommand = commands.length] = _INTL("Sort")
         commands[sortAllCommand = commands.length] = _INTL("Sort All")
         commands[visitEstateCommand = commands.length] = _INTL("Visit PokÉstate") if defined?(PokEstate) && !$game_switches[ESTATE_DISABLED_SWITCH]
@@ -2108,10 +2122,16 @@ class PokemonBoxIcon < IconSprite
         elsif command == searchCommand 
           searchMethod = @scene.pbChooseSearch(_INTL("Search how?"))
           @scene.pbSearch(_INTL("Pokemon Name?"),0,12, searchMethod)
+        elsif command == lockCommand
+          pbChangeLock(@storage.currentBox)
         elsif command == sortCommand || command == sortAllCommand
           sortMethod = @scene.pbChooseSort(_INTL("How will you sort?"))
           if sortMethod>=0
             if command == sortCommand
+              if @storage.boxes[@storage.currentBox].isLocked?
+                @scene.pbDisplay(_INTL("This box is locked!"))
+                return
+              end
               pbSortBox(sortMethod, @storage.currentBox)
             else
               for i in 0...@storage.maxBoxes

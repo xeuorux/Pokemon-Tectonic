@@ -36772,6 +36772,10 @@ Saltar
 Wallpaper
 Search
 El Search
+Sort Lock 
+El Sort Lock 
+This box is locked!
+¡El box is locked!
 Sort
 El Sort
 Sort All
