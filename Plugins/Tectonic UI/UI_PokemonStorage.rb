@@ -1272,8 +1272,7 @@ class PokemonBoxIcon < IconSprite
         else
           possibleboxes = {}
           for i in 0..found.length-1
-            opt = "Box "
-            opt += (found[i][0] + 1).to_s
+            opt = @storage.boxes[found[i][0]].name
             possibleboxes[opt] = found[i][0]
           end
           if possibleboxes.length==1
