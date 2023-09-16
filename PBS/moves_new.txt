@@ -16,7 +16,7 @@
 1015,ESSENCEARROW,Essence Arrow,5DC,40,GRASS,Special,100,30,10,NearOther,0,CanProtect;CanMirrorMove,"The user fires a small bolt of energy at the target. It has a 10% chance to raise user's Sp. Atk.",ENERGYBALL
 1016,ROOTWRACK,Rootwrack,504,60,GRASS,Physical,100,20,0,NearOther,0,CanProtect;CanMirrorMove,"The user sends its roots to attack. Deals 25% more damage if the target attacked first.",VINEWHIP
 1017,EAGERTICKLING,Eager Tickling,5E6,40,FAIRY,Physical,100,25,20,NearOther,0,CanProtect;CanMirrorMove,"The user tickles the target excessively, damaging it. This has a 20% chance to lower Attack.",PLAYROUGH
-1018,TREADON,Tread On,5EA,40,GROUND,Physical,100,30,20,NearOther,0,CanProtect;CanMirrorMove,"The user attacks the opposing Pokémon by trampling it. It has a 20% chance to lower Speed.",STOMPINGTANTRUM
+1018,TREADON,Tread On,5EA,40,GROUND,Physical,100,30,20,NearOther,0,CanProtect;CanMirrorMove;Kicking,"The user attacks the opposing Pokémon by trampling it. It has a 20% chance to lower Speed.",STOMPINGTANTRUM
 1019,RUMBLE,Rumble,076,45,GROUND,Physical,100,30,0,AllNearOthers,0,CanProtect;CanMirrorMove,"The user causes the earth to rumble, striking every Pokémon around it and underground.",EARTHQUAKE
 1020,TREMOR,Tremor,076,65,GROUND,Physical,100,15,0,AllNearOthers,0,CanProtect;CanMirrorMove,"The user slams the earth, damaging all Pokémon around it and underground.",
 1021,COLDEMBRACE,Cold Embrace,403,40,ICE,Physical,100,30,10,NearOther,0,CanProtect;CanMirrorMove,"The user grabs the target in a chilly embrace. It has a 10% chance to frostbite.",ICEHAMMER
@@ -83,7 +83,7 @@
 1082,TONGUETWISTER,Tongue Twister,007,120,GHOST,Physical,100,10,50,NearOther,0,CanProtect;CanMirrorMove,"The target is pestered by a giant tongue. This has a 50% chance to numb it.",LICK
 1083,SMOGSTORM,Smog Storm,005,80,POISON,Special,100,5,30,AllNearFoes,0,CanProtect;CanMirrorMove,"Summons a storm of poisonous gas to hit all nearby pokemon with a 30% chance to poison.",SMOG
 1084,ENCHANTINGSONG,Enchanting Song,401,80,FAIRY,Special,100,12,30,AllNearOthers,0,CanProtect;CanMirrorMove;Sound,"An enchanting outcry. It has a 30% chance to dizzy those hit.",SING
-1085,TRAMPLE,Trample,5EA,90,GROUND,Physical,100,15,20,NearOther,0,CanProtect;CanMirrorMove,"The user tramples the target. It has a 20% chance to lower the target's Speed stat.",STOMPINGTANTRUM
+1085,TRAMPLE,Trample,5EA,90,GROUND,Physical,100,15,20,NearOther,0,CanProtect;CanMirrorMove;Kicking,"The user tramples the target. It has a 20% chance to lower the target's Speed stat.",STOMPINGTANTRUM
 1086,DEMONSKISS,Demon's Kiss,526,0,PSYCHIC,Status,100,3,0,NearOther,0,CanProtect;CanMagicCoat;CanMirrorMove,"By sacrificing half its HP, the user jinxes the target with a kiss, making it fall asleep.",LOVELYKISS
 1087,RUIN,Ruin,047,90,NORMAL,Special,100,10,20,NearOther,0,CanProtect;CanMirrorMove,"The user brings down a ruinous power on the target. This has a 20% chance of lowering all the target's stats.",JUDGMENT
 1088,HARDFEELINGS,Hard Feelings,07E,70,NORMAL,Special,100,12,0,NearOther,0,CanProtect;CanMirrorMove,"Doubles its power if the user has a status condition. Ignores frostbite Sp. Atk reduction.",
@@ -92,7 +92,7 @@
 1091,ECHOLOCATE,Echolocate,52E,0,FLYING,Status,0,12,0,AllNearFoes,0,CanMagicCoat;CanMirrorMove;Sound,"Lowers the target's Defense and evasion by two steps each. Can't miss and skips protections.",SUPERSONIC
 1092,WINGSPANECLIPSE,Wingspan Eclipse,52F,0,DRAGON,Status,0,12,0,BothSides,0,CanProtect;CanMagicCoat;CanMirrorMove,"The Pokémon blots out the sky, summoning eclipse for eight turns and lowering each opponent's Attack by two steps.",
 1093,ALLERGY,Allergy,5EB,75,BUG,Special,100,12,100,NearOther,0,CanProtect;CanMirrorMove,"The user makes the target have an allergic reaction. This reduces their Speed by three steps.",
-1094,LIGHTNINGSHRIEK,Lightning Shriek,030,60,ELECTRIC,Special,100,5,100,NearOther,0,CanProtect;CanMirrorMove,"The user lets out an electric roar, raising the user's Speed by four steps.",ROAR
+1094,LIGHTNINGSHRIEK,Lightning Shriek,030,60,ELECTRIC,Special,100,5,100,NearOther,0,CanProtect;CanMirrorMove;Sound,"The user lets out an electric roar, raising the user's Speed by four steps.",ROAR
 1095,IGNITE,Ignite,00A,0,FIRE,Status,100,12,0,NearOther,0,CanProtect;CanMagicCoat;CanMirrorMove,"The user sets the target on fire, inflicting a burn.",EMBER
 1096,HYDROSCYTHE,Hydro Scythe,000,120,WATER,Physical,100,12,0,NearOther,0,CanProtect;CanMirrorMove;HighCriticalHitRate;Blade,"The user uses a jet of water like a sword and attacks by slashing. Critical hits twice as often.",LIQUIDATION
 1097,STAREDOWN,Stare Down,535,100,DARK,Special,100,5,0,NearOther,0,CanProtect;CanMirrorMove,"Stares harshly, dealing double damage if they hurt the user this turn. Only usable on the first turn.",FREEZINGGLARE
@@ -244,7 +244,7 @@
 1243,LEYLINEBURST,Leyline Burst,573,110,GROUND,Special,100,10,0,NearOther,0,CanProtect;CanMirrorMove,"Energy is sent through a conduit, erupting under the target. This move is also Psychic-type.",EARTHPOWER
 1244,HARDPLACE,Hard Place,574,1,ROCK,Physical,0,10,0,NearOther,0,CanProtect;CanMirrorMove,"The user slams the target into a nearby hard object. Increases power the higher the Defense of any ally.",HEADSMASH
 1245,DRAGONRIDE,Dragon Ride,575,0,DRAGON,Status,0,5,0,NearAlly,0,,"Doubles target ally's Attack and Speed. However, if the user faints, so too does that ally.",COACHING
-1246,MAGMAROAR,Magma Roar,530,50,FIRE,Special,0,30,0,NearOther,0,CanSnatch,"The user roars with the force of a volcano, raising the Attack of itself and allies.",HOWL
+1246,MAGMAROAR,Magma Roar,530,50,FIRE,Special,0,30,0,NearOther,0,CanSnatch;Sound,"The user roars with the force of a volcano, raising the Attack of itself and allies.",HOWL
 1247,BLAZINGSPEED,Blazing Speed,000,80,FIRE,Physical,100,5,0,NearOther,2,CanProtect;CanMirrorMove,"The user charges the target at blazing-fast speed. This attack always goes before any other move.",FLAMECHARGE
 1248,ARCHAICDELUGE,Archaic Deluge,576,120,WATER,Special,100,5,0,NearOther,0,CanProtect;CanMirrorMove,"Summons rain for five turns on the first turn, then overwhelms the foe with water on the second.",SURF
 1249,SHIMMERINGHEAT,Shimmering Heat,577,90,FIRE,Special,100,10,0,AllNearFoes,0,CanProtect;CanMirrorMove;Wind,"The user attacks with heat, creating an obscuring wall of haze. The user takes 33% less damage this turn.",HEATWAVE
@@ -415,7 +415,7 @@
 1414,BAR,Bar,0C7,0,FIGHTING,Status,100,15,0,NearOther,0,CanProtect;CanMagicCoat;CanMirrorMove,"The target is barred by rules which prevent it from using off-type moves for three more turns.",IMPRISON
 1415,SHATTEREDENERGY,Shattered Energy,190,80,DRAGON,Special,100,15,0,AllNearOthers,0,CanProtect;CanMirrorMove,"Attacks all near others with dragon energy. Power increases by 50% in eclipse.",DRAGONPULSE
 1416,AIMTRUE,Aim True,501,0,NORMAL,Status,0,25,0,User,0,CanSnatch,"The user steadies its eyes, mind, and body in order to maximize its accuracy.",MINDREADER
-1417,STAMPDOWN,Stamp Down,050,60,GROUND,Physical,0,12,0,NearOther,0,CanProtect;CanMirrorMove,"The user attacks by flattening the target into the ground. The target's stat step changes are returned to normal.",STOMP
+1417,STAMPDOWN,Stamp Down,050,60,GROUND,Physical,0,12,0,NearOther,0,CanProtect;CanMirrorMove;Kicking,"The user attacks by flattening the target into the ground. The target's stat step changes are returned to normal.",STOMP
 1418,GRINDSTONE,Grind Stone,5F8,80,ROCK,Physical,100,12,100,NearOther,0,CanProtect;CanMirrorMove,"The user scratches the target with rough rocks. If in sandstorm, the target's Defense is lowered by 3 steps.",STONEEDGE
 1419,SANDBLASTING,Sand Blasting,5F9,70,GROUND,Special,100,15,0,NearOther,0,CanProtect;CanMirrorMove,"Attacks by blasting sand. This move always goes first in sandstorm.",SANDATTACK
 1420,ROUSINGHULA,Rousing Hula,173,80,FIRE,Special,100,10,100,AllNearOthers,0,CanProtect;CanMirrorMove;Dance,"The user dances rapidly, emitting tropical heat. Any frostbitten Pokémon will be healed by this heat.",HEATWAVE
@@ -433,7 +433,7 @@
 1432,JOUST,Joust,53D,130,STEEL,Physical,50,12,0,NearOther,0,CanProtect;CanMirrorMove,"The user charges at the target to strike it squarely. If it misses, the user's Accuracy and Speed is raised.",SMARTSTRIKE
 1433,SEASONSEND,Season's End,590,95,NORMAL,Physical,100,20,0,NearOther,0,CanProtect;CanMirrorMove,"The user strikes while inviting the power of seasons. The user changes form to the next season.",BODYSLAM
 1434,SCALESCATTER,Scale Scatter,06F,70,BUG,Special,100,15,0,NearOther,0,CanProtect;CanMirrorMove,"The target is plastered with irritating scales, damaging it and changing its type to Bug.",POWDER
-1435,THORNRATTLE,Thorn Rattle,5CC,75,GRASS,Special,100,10,0,NearOther,-1,CanProtect;CanMirrorMove,"The user makes a scary sound by shaking, forcing the target to switch out.",UPROAR
+1435,THORNRATTLE,Thorn Rattle,5CC,75,GRASS,Special,100,10,0,NearOther,-1,CanProtect;CanMirrorMove;Sound,"The user makes a scary sound by shaking, forcing the target to switch out.",UPROAR
 1436,CROSSEXAMINE,Cross Examine,598,0,NORMAL,Status,0,15,0,User,0,,"The user chooses between the three most recent moves used by the opposing team, and uses that move themselves.",AMNESIA
 1437,GENEBOOST,Gene Boost,089,0,PSYCHIC,Status,0,5,0,User,0,,"The user psychically modifies its own genes, transforming into either Mega Muscle form or Mega Mind form.",TRANSFORM
 1438,AURORAFLASH,Aurora Flash,5E6,80,ICE,Special,100,5,100,NearOther,1,CanProtect;CanMirrorMove,"An aurora borealis flashes brightly at the target, lowering their Attack. Always goes first.",AURORABEAM
@@ -452,7 +452,7 @@
 1451,BUTTINGHEADS,Butting Heads,54C,95,NORMAL,Physical,100,12,20,NearOther,0,CanProtect;CanMirrorMove,"The user engages the target in a head-to-head fight. The damage is based on the target's Attack rather than their Defense.",HEADBUTT
 1452,PACKAGE,Package,16F,90,ICE,Special,100,10,0,NearOther,0,CanProtect;CanMirrorMove,"The user throws an exploding package at enemies, or one filled with healing treats at allies.",PRESENT
 1453,SAPPINGSEED,Sapping Seed,552,0,GRASS,Status,100,10,0,NearOther,0,CanProtect;CanMagicCoat;CanMirrorMove,"A parasitic seed leeches the target and reduces both its attacking stats.",LEECHSEED
-1454,MOONHOWLING,Moon Howling,5B0,0,DARK,Status,0,5,0,NearFoe,0,,"Summons moonglow for eight turns and raises the Attack stat of itself and its allies by two steps.",HOWL
+1454,MOONHOWLING,Moon Howling,5B0,0,DARK,Status,0,5,0,NearFoe,0,Sound,"Summons moonglow for eight turns and raises the Attack stat of itself and its allies by two steps.",HOWL
 1455,LUMINOUSBURST,Luminous Burst,046,80,ELECTRIC,Special,100,20,100,NearOther,0,CanProtect;CanMirrorMove,"Cloaking itself in light energy, the user shocks the target, raising the user's Sp. Def by two steps.",DISCHARGE
 1456,FIGHTFOREVER,Fight Forever,094,0,FIGHTING,Status,0,5,0,User,4,,"The user endures attacks with 1 HP. If so, raises its Attack by 2 steps. Fails if used in succession.",ENDURE
 1457,TIDALKINESIS,Tidalkinesis,5FA,100,WATER,Physical,100,10,100,NearOther,0,CanProtect;CanMirrorMove;Biting,"The user bites with added telekinetic force. During eclipse, the target also becomes numbed.",
@@ -495,5 +495,5 @@
 1494,CENTER,Center,5DF,0,NORMAL,Status,0,15,0,User,0,CanSnatch,"The user concentrates to stabilize its mood. It raises the user's Sp. Def by three steps.",CALMMIND
 1495,FIXATE,Fixate,5DD,0,NORMAL,Status,0,15,0,User,0,CanSnatch,"The user stimulates its brain by planning. It raises the user's Sp. Atk by three steps.",NASTYPLOT
 1496,RIPTIDE,Rip Tide,01F,100,WATER,Physical,50,5,100,NearOther,0,CanProtect;CanMirrorMove,"The user crashes into the target on a ripping current. This raises the user's speed by 2 steps.",WATERFALL
-1497,HOP,Hop,401,40,FLYING,Physical,100,25,10,NearOther,0,CanProtect;CanMirrorMove,"The user hops high up to land on the target's head. It has a 10% chance to dizzy.",BOUNCE
+1497,HOP,Hop,401,40,FLYING,Physical,100,25,10,NearOther,0,CanProtect;CanMirrorMove;Kicking,"The user hops high up to land on the target's head. It has a 10% chance to dizzy.",BOUNCE
 1498,COMPOUNDING,Compounding,08E,30,NORMAL,Physical,100,10,0,NearOther,0,CanProtect;CanMirrorMove,"Has 10 more base power for each raised stat step. Inflicts physical or special damage based on the user's stats.",
