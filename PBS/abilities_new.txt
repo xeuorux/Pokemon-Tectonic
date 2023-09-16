@@ -121,7 +121,7 @@
 1120,ERUDITE,Erudite,"Powers up Psychic-type moves by 50%."
 1121,STAGGERINGSLAPS,Staggering Slaps,"Has a 30% chance to dizzy targets when using physical moves."
 1122,FLUSTERFLOCK,Fluster Flock,"Doubles Attack, but the Pokemon becomes Dizzy after attacking."
-1123,ONTHEWIND,On the Wind,"Sets a Tailwind for five turns upon entering the battle, increasing Speed."
+1123,ONTHEWIND,On the Wind,"Sets a Tailwind for four turns upon entering the battle, increasing Speed."
 1124,SEEDSCATTER,Seed Scatter,"Sets Grassy Terrain for five turns when hit by an attack."
 1125,THUNDERSTRUCK,Thunderstruck,"Becomes charged when hit by an attack, doubling the power of its next Electric-type attack."
 1126,MISTCRAFT,Mistcraft,"Sets Fairy Terrain for five turns when hit by an attack."
