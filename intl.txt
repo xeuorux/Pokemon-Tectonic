@@ -7204,6 +7204,8 @@ Yes
 Sí
 No
 No
+Level
+Nivel
 Level 50
 Nivel 50
 Open Level
@@ -36768,6 +36770,18 @@ Nunca ganó EXP, así que no recibes ningún caramelo.
 Jump
 Saltar
 Wallpaper
+Search
+El Search
+Sort Lock 
+El Sort Lock 
+This box is locked!
+¡El box is locked!
+Sort
+El Sort
+Sort All
+El Sort All
+Dex ID
+El Dex ID
 Fondo
 Jump to which Box?
 ¿Saltar a cuál Caja?
@@ -36775,6 +36789,10 @@ Pick the wallpaper.
 Elige el fondo.
 Box name?
 ¿Nombre de la caja?
+Pokemon Name?
+¿Nombre de pokemon?
+Which option?
+¿Option?
 Select
 Seleccionar
 Withdraw Item

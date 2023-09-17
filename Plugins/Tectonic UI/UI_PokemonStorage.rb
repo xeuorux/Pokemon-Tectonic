@@ -970,7 +970,7 @@ class PokemonBoxIcon < IconSprite
     def pbSelectParty(party)
       return pbSelectPartyInternal(party,true)
     end
-  
+
     def pbChangeBackground(wp)
       @sprites["box"].refreshSprites = false
       alpha = 0
@@ -1204,6 +1204,20 @@ class PokemonBoxIcon < IconSprite
       end
       return pbShowCommands(msg,commands,@storage.currentBox)
     end
+
+    def pbChooseSearch(msg)
+      searchMethods = [_INTL("Name"), _INTL("Species"), _INTL("Type")]
+      return pbShowCommands(msg, searchMethods)
+    end
+
+    def pbChooseSort(msg)
+      sortMethods = [_INTL("Name"), _INTL("Species"), _INTL("Dex ID"), _INTL("Type"), _INTL("Level")]
+      return pbShowCommands(msg,sortMethods)
+    end
+
+    def pbChooseFound(msg, found)
+      return pbShowCommands(msg,found)
+    end
   
     def pbBoxName(helptext,minchars,maxchars)
       oldsprites = pbFadeOutAndHide(@sprites)
@@ -1215,7 +1229,62 @@ class PokemonBoxIcon < IconSprite
       pbRefresh
       pbFadeInAndShow(@sprites,oldsprites)
     end
-  
+
+    def pbSearch(searchText,minchars,maxchars,searchMethod)
+      oldsprites = pbFadeOutAndHide(@sprites)
+      ret = pbEnterText(searchText,minchars,maxchars)
+      found = []
+      if ret.length > 0   
+        for i in 0...@storage.maxBoxes
+          box = @storage.boxes[i]
+          for j in 0..PokemonBox::BOX_SIZE
+            curpkmn = box[j]
+            if !curpkmn
+              next
+            end
+            if searchMethod==0 #Name
+              if curpkmn.name.downcase==ret.downcase
+                found.push([i,j])
+              end
+            elsif searchMethod==1#Species
+              if curpkmn.speciesName.downcase==ret.downcase
+                found.push([i,j])
+              end
+            elsif searchMethod==2#Type
+              search = GameData::Type.try_get(ret.upcase)
+              if search
+                if curpkmn.hasType?(search.id)
+                  found.push([i,j])
+                end
+              end
+            else
+              echoln("none")
+            end
+          end
+        end
+      end
+      @sprites["box"].refreshBox = true
+      pbRefresh
+      pbFadeInAndShow(@sprites, oldsprites)
+      if found.length >0
+        if found.length ==1
+          pbJumpToBox(found[0][0])
+        else
+          possibleboxes = {}
+          for i in 0..found.length-1
+            opt = @storage.boxes[found[i][0]].name
+            possibleboxes[opt] = found[i][0]
+          end
+          if possibleboxes.length==1
+            pbJumpToBox(found[0][0])
+          else
+            foundIndex = pbChooseFound(_INTL("Which option?"),possibleboxes.keys)
+            pbJumpToBox(possibleboxes[possibleboxes.keys[foundIndex]])
+          end
+        end
+      end
+    end
+
     def pbChooseItem(bag)
       ret = nil
       pbFadeOutIn {
@@ -1836,7 +1905,63 @@ class PokemonBoxIcon < IconSprite
         @scene.pbRefresh
         @heldpkmn = nil
     end
+
+    def pbChangeLock(boxNumber)
+      box = @storage.boxes[boxNumber]
+      if box.isLocked?
+        box.unlock
+      else
+        box.lock
+      end
+    end
     
+    
+    def pbSortBox(type, boxNumber)
+      box = @storage.boxes[boxNumber]
+      if box.isLocked?
+        return
+      end
+      return if box.empty? || @heldpkmn
+      nitems = box.nitems-1
+      listtosort = []
+      dicttosort = {}
+      for i in 0..PokemonBox::BOX_SIZE
+        if box[i]
+          listtosort.push(box[i])
+        end  
+      end
+      
+      if type==0 # Name
+        listtosort.sort!{ |a,b| a.name <=> b.name }
+      elsif type==1 # Species
+        listtosort.sort!{ |a,b| a.speciesName <=> b.speciesName }
+      elsif type==2 # DexID
+        listtosort.sort!{ |a,b| a.species_data.id_number <=> b.species_data.id_number }
+      elsif type==3 # Type - Type 1 then Type 2 on colissions
+        listtosort.sort!{ |a,b| a.types <=> b.types }
+      elsif type==4 # Level
+        listtosort.sort!{ |a,b| a.level <=> b.level }
+      else
+        echoln("no")
+      end
+      for i in 0..nitems
+        dicttosort[listtosort[i]] = i
+      end
+
+      for i in 0..PokemonBox::BOX_SIZE
+        while dicttosort[@storage[boxNumber, i]] != i
+          if !@storage[boxNumber, i]
+            break
+          end
+          toswap = box[i]
+          destination = dicttosort[toswap]
+          temp = box[destination]
+          box[destination] = toswap
+          box[i] = temp
+        end
+      end
+      @scene.pbHardRefresh
+    end
   
     def pbSwap(selected)
         box = selected[0]
@@ -1950,11 +2075,19 @@ class PokemonBoxIcon < IconSprite
         jumpCommand = -1
         wallPaperCommand = -1
         nameCommand = -1
+        searchCommand = -1
+        lockCommand = -1
+        sortCommand = -1
+        sortAllCommand = -1
         visitEstateCommand = -1
         cancelCommand = -1
         commands[jumpCommand = commands.length] = _INTL("Jump")
         commands[wallPaperCommand = commands.length] = _INTL("Wallpaper")
         commands[nameCommand = commands.length] = _INTL("Name")
+        commands[searchCommand = commands.length] = _INTL("Search")
+        commands[lockCommand = commands.length] = _INTL("Sort Lock")
+        commands[sortCommand = commands.length] = _INTL("Sort")
+        commands[sortAllCommand = commands.length] = _INTL("Sort All")
         commands[visitEstateCommand = commands.length] = _INTL("Visit PokÉstate") if defined?(PokEstate) && !$game_switches[ESTATE_DISABLED_SWITCH]
         commands[cancelCommand = commands.length] = _INTL("Cancel")
         command = pbShowCommands(
@@ -1985,6 +2118,26 @@ class PokemonBoxIcon < IconSprite
           end
             $PokEstate.transferToEstate(@storage.currentBox,0)
           return true
+        elsif command == searchCommand 
+          searchMethod = @scene.pbChooseSearch(_INTL("Search how?"))
+          @scene.pbSearch(_INTL("Pokemon Name?"),0,12, searchMethod)
+        elsif command == lockCommand
+          pbChangeLock(@storage.currentBox)
+        elsif command == sortCommand || command == sortAllCommand
+          sortMethod = @scene.pbChooseSort(_INTL("How will you sort?"))
+          if sortMethod>=0
+            if command == sortCommand
+              if @storage.boxes[@storage.currentBox].isLocked?
+                @scene.pbDisplay(_INTL("This box is locked!"))
+                return
+              end
+              pbSortBox(sortMethod, @storage.currentBox)
+            else
+              for i in 0...@storage.maxBoxes
+                  pbSortBox(sortMethod, i)
+              end
+            end
+          end
         end
         return false
     end
