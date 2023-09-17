@@ -345,8 +345,8 @@ Pokemon = SHIELDON,21
 [SOCIALITE,Elizabeth]
 Pokemon = SNUBBULL,22
     AbilityIndex = 0 # Intimidate
-Pokemon = HONEDGE,22
-    AbilityIndex = 0 # Full Metal Body
+Pokemon = MMUNNA,22
+    AbilityIndex = 1 # Fatigued
 #-------------------------------
 [BIRDKEEPER_F,Chloe]
 Pokemon = ROOKIDEE,22
