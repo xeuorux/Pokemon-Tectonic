@@ -628,7 +628,7 @@ class PokeBattle_HealingMove < PokeBattle_Move
     end
 
     def pbEffectGeneral(user)
-        user.applyFractionalHealing(healRatio(user))
+        user.applyFractionalHealing(healRatio(user)) unless user.fainted?
     end
 
     def getEffectScore(user, target)
