@@ -638,6 +638,7 @@ class PokeBattle_HealingMove < PokeBattle_Move
     end
 
     def pbEffectGeneral(user)
+        return if user.fainted?
         amt = pbHealAmount(user)
         user.pbRecoverHP(amt) if amt > 0
     end
