@@ -642,7 +642,7 @@ class Pokemon
       if value.nil?
         @items = []
       elsif value.is_a?(Array)
-        @items = value
+        @items = value.clone
       else
         @items = [value]
       end
