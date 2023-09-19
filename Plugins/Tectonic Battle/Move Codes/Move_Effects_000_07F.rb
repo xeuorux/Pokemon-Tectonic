@@ -250,9 +250,60 @@ class PokeBattle_Move_013 < PokeBattle_FlinchMove
 end
 
 #===============================================================================
-# (Not currently used)
+# User and the target copies eachothers highest stat steps. (Sharing Smiles)
 #===============================================================================
 class PokeBattle_Move_014 < PokeBattle_Move
+    def ignoresSubstitute?(_user); return true; end
+
+    def pbFailsAgainstTarget?(user, target, show_message)
+        stepInfo = calculateStepInfo(user, target)
+        if stepInfo[0].nil?
+            @battle.pbDisplay(_INTL("But it failed, since {1} doesn't have any positive stat steps!", user.pbThis(true))) if show_message
+            return true
+        end
+        if stepInfo[2].nil?
+            @battle.pbDisplay(_INTL("But it failed, since {1} doesn't have any positive stat steps!", target.pbThis(true))) if show_message
+            return true
+        end
+        if !user.pbCanRaiseStatStep?(stepInfo[2], user, self, false) && !target.pbCanRaiseStatStep?(stepInfo[0], user, self, false)
+            @battle.pbDisplay(_INTL("But it failed, since {1} and {2} can't raise the other's highest stat step!", user.pbThis(true), target.pbThis(true))) if show_message
+            return true
+        end
+        return false
+    end
+
+    def calculateStepInfo(user,target)
+        userHighestStat = nil
+        userHighestStatStep = 0
+        targetHighestStat = nil
+        targetHighestStatStep = 0
+        GameData::Stat.each_battle { |s|
+            if user.steps[s.id] > userHighestStatStep
+                userHighestStatStep = user.steps[s.id]
+                userHighestStat = s.id
+            end
+            if target.steps[s.id] > targetHighestStatStep
+                targetHighestStatStep = target.steps[s.id]
+                targetHighestStat = s.id
+            end
+        }
+        return [userHighestStat,userHighestStatStep,targetHighestStat,targetHighestStatStep]
+    end
+
+    def pbEffectAgainstTarget(user, target)
+        stepInfo = calculateStepInfo(user, target)
+        @battle.pbDisplay(_INTL("{1} and {2} shared their highest stat steps!", user.pbThis, target.pbThis(true)))
+        user.tryRaiseStat(stepInfo[0], user, move: self, increment: stepInfo[1])
+        target.tryRaiseStat(stepInfo[2], user, move: self, increment: stepInfo[3])
+    end
+
+    def getEffectScore(user, target)
+        stepInfo = calculateStepInfo(user, target)
+        score = 0
+        score += getMultiStatUpEffectScore([stepInfo[0],stepInfo[1]], user, user)
+        score += getMultiStatUpEffectScore([stepInfo[2],stepInfo[3]], user, target)
+        return score
+    end
 end
 
 #===============================================================================

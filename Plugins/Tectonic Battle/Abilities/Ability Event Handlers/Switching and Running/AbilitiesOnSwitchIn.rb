@@ -831,6 +831,14 @@ BattleHandlers::AbilityOnSwitchIn.add(:SLUGGISH,
   }
 )
 
+BattleHandlers::AbilityOnSwitchIn.add(:HAUNTED,
+  proc { |ability, battler, battle|
+      battle.pbShowAbilitySplash(battler, ability)
+      battler.applyEffect(:Type3,:GHOST)
+      battle.pbHideAbilitySplash(battler)
+  }
+)
+
 BattleHandlers::AbilityOnSwitchIn.add(:SLUMBERINGDRAKE,
   proc { |ability, battler, battle, aiCheck|
       next 0 unless battler.canSleep?(battler, !aiCheck)

@@ -801,7 +801,7 @@ Pokemon = GARDEVOIR,70
 Pokemon = ROTOM,70
     Form = 4
     Moves = MACHINATE,VOLTSWITCH,DEFOG,WILLOWISP
-    AbilityIndex = 1 # Motor Drive
+    AbilityIndex = 0 # Motor Drive
     Item = SITRUSBERRY
     EV = 20,0,20,10,0,0
 #-------------------------------
