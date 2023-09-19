@@ -610,3 +610,4 @@
 609,HYDROCANNON,Hydro Cannon,0C2,170,WATER,Special,100,5,0,NearOther,0,CanProtect;CanMirrorMove,"The target is hit with a watery blast. The user must rest on the next turn, however.",
 610,FRENZYPLANT,Frenzy Plant,0C2,170,GRASS,Special,100,5,0,NearOther,0,CanProtect;CanMirrorMove,"The user slams the target with an enormous tree. The user can't move on the next turn.",
 611,BLASTBURN,Blast Burn,0C2,170,FIRE,Special,100,5,0,NearOther,0,CanProtect;CanMirrorMove,"The target is razed by a fiery explosion. The user must rest on the next turn, however.",
+612,TWINBEAM,Twin Beam,0BD,50,NORMAL,Special,100,12,0,NearOther,0,CanProtect;CanMirrorMove,"The user shoots mystical beams from its eyes to inflict damage. The target is hit twice in a row.",WHITERAY

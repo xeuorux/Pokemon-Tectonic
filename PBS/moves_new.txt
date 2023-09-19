@@ -497,3 +497,4 @@
 1496,RIPTIDE,Rip Tide,01F,100,WATER,Physical,50,5,100,NearOther,0,CanProtect;CanMirrorMove,"The user crashes into the target on a ripping current. This raises the user's Speed by two steps.",WATERFALL
 1497,HOP,Hop,401,40,FLYING,Physical,100,25,10,NearOther,0,CanProtect;CanMirrorMove;Kicking,"The user hops high up to land on the target's head. It has a 10% chance to dizzy.",BOUNCE
 1498,COMPOUNDING,Compounding,08E,30,NORMAL,Physical,100,10,0,NearOther,0,CanProtect;CanMirrorMove,"Has 10 more base power for each raised stat step. Inflicts physical or special damage based on the user's stats.",
+1499,SHARINGSMILES,Sharing Smiles,014,0,GRASS,Status,0,10,0,NearAlly,0,,"The user and the target each share their highest stat step with the other.",
