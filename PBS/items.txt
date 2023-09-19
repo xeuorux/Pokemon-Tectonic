@@ -439,7 +439,7 @@
 438,LANSATBERRY,Lansat Berry,Lansat Berries,5,0,"If held by a Pokémon, it raises its critical-hit ratio in a pinch.",0,0,5
 439,STARFBERRY,Starf Berry,Starf Berries,5,0,"If held by a Pokémon, it raises one of its stats by three steps in a pinch.",0,0,5
 440,ENIGMABERRY,Enigma Berry,Enigma Berries,5,0,"If held by a Pokémon, it restores its HP if it is hit by any supereffective attack.",0,0,5
-441,MICLEBERRY,Micle Berry,Micle Berries,5,0,"If held by a Pokémon, it raises its Accuracy by 4 steps in a pinch.",0,0,5
+441,MICLEBERRY,Micle Berry,Micle Berries,5,0,"If held by a Pokémon, it raises its accuracy by four steps in a pinch.",0,0,5
 442,CUSTAPBERRY,Custap Berry,Custap Berries,5,0,"If held by a Pokémon, it gets to move first just once in a pinch.",0,0,5
 443,JABOCABERRY,Jaboca Berry,Jaboca Berries,5,0,"If held by a Pokémon and a physical attack hits it, the attacker takes 1/4th HP  damage.",0,0,5
 444,ROWAPBERRY,Rowap Berry,Rowap Berries,5,0,"If held by a Pokémon and a special attack hits it, the attacker takes 1/4th HP damage.",0,0,5

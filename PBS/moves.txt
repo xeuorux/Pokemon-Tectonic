@@ -477,10 +477,10 @@
 476,ACIDSPRAY,Acid Spray,04F,40,POISON,Special,100,15,100,NearOther,0,CanProtect;CanMirrorMove,"The user spits fluid that works to melt the target. This reduces the target's Sp. Def stat by four steps.",
 477,SMOG,Smog,005,30,POISON,Special,100,30,30,NearOther,0,CanProtect;CanMirrorMove,"The target is attacked with a discharge of filthy gases. It has a 30% chance to poison.",
 478,POISONSTING,Poison Sting,005,30,POISON,Physical,100,30,30,NearOther,0,CanProtect;CanMirrorMove,"The user stabs the target with a poisonous stinger. This has a 30% chance to poison.",
-479,COIL,Coil,025,0,POISON,Status,0,15,0,User,0,CanSnatch,"The user coils up and concentrates. This raises its Attack, Defense, and Accuracy by two steps each.",
+479,COIL,Coil,025,0,POISON,Status,0,15,0,User,0,CanSnatch,"The user coils up and concentrates. This raises its Attack, Defense, and accuracy by two steps each.",
 480,POISONGAS,Poison Gas,005,0,POISON,Status,100,30,0,NearFoe,0,CanProtect;CanMagicCoat;CanMirrorMove,"A cloud of poison gas is sprayed in the face of opposing Pokémon. It poisons those hit.",
 481,PURIFY,Purify,15B,0,POISON,Status,0,5,0,NearOther,0,CanProtect;CanMagicCoat;CanMirrorMove,"The user heals the target's status condition. If so, it also restores the user's own HP. ",
-482,TOXICTHREAD,Toxic Thread,159,0,POISON,Status,100,15,0,NearOther,0,CanProtect;CanMagicCoat;CanMirrorMove,"The user shoots poisonous threads to poison the target and lowers the target's Speed stat by 4 steps.",
+482,TOXICTHREAD,Toxic Thread,159,0,POISON,Status,100,15,0,NearOther,0,CanProtect;CanMagicCoat;CanMirrorMove,"The user shoots poisonous threads to poison the target and lowers the target's Speed stat by four steps.",
 483,VENOMDRENCH,Venom Drench,140,0,POISON,Status,100,15,0,AllNearFoes,0,CanProtect;CanMagicCoat,"Nearby poisoned foes have their Attack, Sp. Atk, and Speed lowered by three steps each.",
 484,SHELLSIDEARM,Shell Side Arm,187,90,POISON,Special,100,10,25,NearOther,0,CanProtect;CanMirrorMove,"Inflicts physical or special damage, whichever will be more effective. This has a 25% chance to poison.",
 485,PRISMATICLASER,Prismatic Laser,0C2,170,PSYCHIC,Special,100,10,0,NearOther,0,CanProtect;CanMirrorMove,"The user shoots powerful lasers using the power of a prism. The user can't move on the next turn.",
@@ -602,7 +602,7 @@
 601,LIFEDEW,Life Dew,17E,0,WATER,Status,0,10,0,UserAndAllies,0,CanSnatch,"The user scatters mysterious water around and restores the HP of itself and allies by 25%.",
 602,SURGINGSTRIKES,Surging Strikes,188,25,WATER,Physical,100,5,0,NearOther,0,CanProtect;CanMirrorMove,"Strikes the target thrice, with mastery of the Water style. Always results in a critical hit.",
 603,FLIPTURN,Flip Turn,0EE,70,WATER,Physical,100,5,0,NearOther,0,CanProtect;CanMirrorMove,"After making its attack, the user rushes back to switch places with a party Pokémon in waiting.",
-604,MEMENTO,Memento,0E2,0,DARK,Status,100,10,0,NearOther,0,CanProtect;CanMirrorMove,"The user faints in order to lower the target's Attack and Sp. Atk by 5 steps each.",
+604,MEMENTO,Memento,0E2,0,DARK,Status,100,10,0,NearOther,0,CanProtect;CanMirrorMove,"The user faints in order to lower the target's Attack and Sp. Atk by five steps each.",
 605,SANDSEARSTORM,Sandsear Storm,00A,110,GROUND,Special,80,10,30,AllNearFoes,0,CanProtect;CanMirrorMove,"The user wraps foes in fierce winds and searingly hot sand. It has a 30% chance to burn.",SCORCHINGSANDS
 606,WILDBOLTSTORM,Wildbolt Storm,007,110,ELECTRIC,Special,80,10,30,AllNearFoes,0,CanProtect;CanMirrorMove,"The user savagely attacks foes with lightning and wind. It has a 30% chance to numb.",THUNDER
 607,BLEAKWINDSTORM,Bleakwind Storm,403,110,FLYING,Special,80,10,30,AllNearFoes,0,CanProtect;CanMirrorMove,"The user attacks foes with savagely cold winds. It has a 30% chance to frostbite.",HURRICANE
