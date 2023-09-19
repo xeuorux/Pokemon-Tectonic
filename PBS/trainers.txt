@@ -137,18 +137,22 @@ Policies = LAMBERT,NO_PERFECT
 Pokemon = PANCHAM,15
     Moves = SMASH,TAUNT,LEER,BITE
     AbilityIndex = 1 # Juggernaut
+    EV = 10,10,11,15,10,4
 Pokemon = MACHOP,15
     Moves = MACHPUNCH,LOWKICK,KARATECHOP,BULKUP
     AbilityIndex = 1 # No Guard
+    EV = 18,20,11,0,20,1
 Pokemon = GZIGZAGOON,15
     Moves = SNARL,LICK,TACKLE
     AbilityIndex = 1 # Frustrate
     Item = SITRUSBERRY
+    EV = 20,20,4,2,20,4
 Pokemon = RIOLU,15
     Name = Sangfroid
     Gender = female
     Moves = MAGNETWAVE,SCREECH,COURAGEBOLT,VANGUARD
     AbilityIndex = 1 # Inner Focus
+    EV = 10,20,0,20,20,0
 #-------------------------------
 [LEADER_Lambert_2,Lambert]
 Extends = LEADER_Lambert,Lambert,0
@@ -157,10 +161,12 @@ Pokemon = ZORUA,15
     Moves = HARSHVOICE,GRASSKNOT,SWIFT
     AbilityIndex = 0 # Illusion
     Item = SITRUSBERRY
+    EV = 1,20,10,19,20,0
 Pokemon = CROAGUNK,15
     Moves = FLATTER,NASTYNIP,KARATECHOP,CHIBLOCK
     AbilityIndex = 0 # Prankster
     Item = SITRUSBERRY
+    EV = 20,10,5,0,10,15
 #-------------------------------
 [LEADER_Lambert_2,Lambert,1]
 ExtendsVersion = 0
@@ -278,17 +284,21 @@ Policies = PRIORITIZEDOTS,EKO,NO_PERFECT
 Pokemon = SALANDIT,20
     Moves = POISONGAS,STINKCLOUD,EMBER,IGNITE
     AbilityIndex = 1 # Aloof
+    EV = 20,0,0,20,0,10
 Pokemon = TENTACOOL,20
     Moves = WATERPULSE,SUPERSONIC,BIND,ACID
     AbilityIndex = 1 # Grip Strength
+    EV = 20,20,10,0,20,0
 Pokemon = VULPIX,20
     Moves = FIRESPIN,CONFUSERAY,WILLOWISP,SUBSTITUTE
     AbilityIndex = 0 # Cursed Tail
+    EV = 20,0,5,20,0,5
 Pokemon = FLETCHINDER,20
     Name = Dario
     Moves = FLAMECHARGE,FLAIL,PECK,QUICKATTACK
     AbilityIndex = 0 # Harsh
     Item = LIECHIBERRY
+    EV = 0,20,0,20,20,10
 #-------------------------------
 [LEADER_Eko_2,Eko]
 Extends = LEADER_Eko,Eko,0
@@ -297,10 +307,12 @@ Pokemon = SALANDIT,20
 Pokemon = TYNAMO,20
     Moves = JOLT,NASTYNIP,POISONFANG,LIGHTSCREEN
     AbilityIndex = 0 # Levitate
+    EV = 10,20,0,0,20,20
 Pokemon = CAMERUPT,20
     Moves = TREMOR,FIREPULSE,INCINERATE,MUDTHROW
     AbilityIndex = 1 # Adrenaline Rush
     Item = SITRUSBERRY
+    EV = 1,20,8,13,20,8
 #-------------------------------
 [LEADER_Eko_2,Eko,1]
 ExtendsVersion = 0
@@ -447,30 +459,37 @@ Policies = HELENA,PRIORITIZEUTURN,NO_PERFECT
 Pokemon = LANTURN,25
     Moves = DOUSE,SHOCKWAVE,VOLTSWITCH
     AbilityIndex = 0 # Volt Absorb
+    EV = 14,10,13,0,10,13
 Pokemon = KINGLER,25
     Moves = UTURN,RAZORSHELL,INCISION,GREYMIST
     AbilityIndex = 0 # Frustrate
+    EV = 11,20,8,11,20,0
 Pokemon = WAILMER,25
     Name = Hannibal
     Gender = male
     Moves = DEFOG,CHILL,BOREALWIND,BRINE
-    AbilityIndex = 1 # Gargantuan
+    AbilityIndex = 0 # Pressure
+    EV = 2,20,9,0,20,19
 Pokemon = LUXIO,25
     Moves = FEINTATTACK,THUNDERFANG,ROAR,ICEFANG
     AbilityIndex = 1 # Intimidate
+    EV = 0,20,10,20,20,0
 #-------------------------------
 [LEADER_Helena_2,Helena]
 Extends = LEADER_Helena,Helena,0
 Pokemon = WAILMER,25
     Item = LEFTOVERS
+    EV = 0,20,15,0,20,15
 Pokemon = PRINPLUP,25
     Moves = FLIPTURN,AERIALACE,SHINESHOT,BUBBLEBEAM
     AbilityIndex = 0 # Imperious
     Item = ASSAULTVEST
+    EV = 15,20,0,0,20,15
 Pokemon = TOXTRICITY,25
     Moves = VOLTSWITCH,POISONGAS,PROTECT,STINKCLOUD
     AbilityIndex = 1 # Thunderstruck
     Item = LEFTOVERS
+    EV = 10,20,0,20,20,0
 #-------------------------------
 [LEADER_Helena_2,Helena,1]
 ExtendsVersion = 0
@@ -537,78 +556,97 @@ Pokemon = JOLTIK,15
     Moves = THUNDERSHOCK,LIGHTSHOW,STICKYWEB,NUMB
     AbilityIndex = 1 # Energy Drain
     Item = ELECTRICGEM
+    EV = 9,20,12,9,20,0
 Pokemon = SHELLOS,15
     Moves = MUDTHROW,RECOVER,SPELLBIND,WATERGUN
     AbilityIndex = 0 # Fascinate
     Item = SITRUSBERRY
+    EV = 19,11,11,0,11,9
 Pokemon = GULPIN,15
     Moves = POISONGAS,ACID,STOCKPILE,SPITUP
     AbilityIndex = 1 # Corrosion
     Item = AMWIBERRY
+    EV = 13,20,17,0,20,0
 Pokemon = PANSEAR,15
     Moves = SCRATCH,DISARMINGVOICE,RECYCLE,EMBER
     AbilityIndex = 1 # Ripen
     Item = SITRUSBERRY
+    EV = 2,20,5,20,20,3
 Pokemon = DRIFLOON,15
     Moves = GUST,EMBER,DIRGE,DAZZLE
     AbilityIndex = 0 # Unburden
     Item = FLYINGGEM
+    EV = 0,20,12,0,20,18
 Pokemon = STUNKY,15
     Moves = BITE,QUICKATTACK,NASTYNIP,HONECLAWS
     AbilityIndex = 0 # Stench
     Item = POISONGEM
+    EV = 0,19,14,17,19,0
 #-------------------------------
 [COOLTRAINER_F7,Jade]
 Pokemon = MIMEJR,25
     Moves = MAGICHAND,PERFUMEDPUNCH,BATONPASS,SHARPEN
     AbilityIndex = 0 # Barrier Maker
     Item = TANGABERRY
+    EV = 12,19,0,0,19,19
 Pokemon = GOSSIFLEUR,25
     Moves = LULLABY,HELPINGHAND,LEECHSEED,MEGADRAIN
     AbilityIndex = 1 # On the Wind
     Item = BIGROOT
+    EV = 20,0,10,10,0,10
 Pokemon = MAWILE,25
     Moves = METALCLAW,PERFUMEDPUNCH,FLOWSTATE,BATONPASS
     AbilityIndex = 1 # Intimidate
     Item = SALACBERRY
+    EV = 12,20,0,18,20,0
 Pokemon = MINCCINO,25
     Moves = SWIFT,SHOCKWAVE,PROTECT,NUMB
     AbilityIndex = 1 # Fluffy
     Item = LEFTOVERS
+    EV = 10,20,0,20,20,0
 Pokemon = VAPOREON,25
     Moves = VANGUARD,BRINE,BATONPASS,MENDINGSPRING
     AbilityIndex = 1 # Aqua Sneak
     Item = SITRUSBERRY
+    EV = 0,20,15,0,20,15
 Pokemon = LEDYBA,25
     Moves = FIREPUNCH,MACHPUNCH,BUGBITE,AERIALACE
     AbilityIndex = 1 # Star Guardian
     Item = CHOICEBAND
+    EV = 20,20,10,0,20,0
 #-------------------------------
 [COOLTRAINER_F7,Blaire]
 Pokemon = SNEASLER,40
     Moves = HONECLAWS,CLOSECOMBAT,VENOMORTAR,XSCISSOR
     AbilityIndex = 1 # Frustrate
     Item = FOCUSSASH
+    EV = 0,20,10,20,20,0
 Pokemon = ANINETALES,40
     Moves = CALMMIND,ICEBEAM,MOONBLAST,HEALBELL
     AbilityIndex = 1 # Sudden Chill
     Item = SITRUSBERRY
+    EV = 20,20,0,0,20,10
 Pokemon = DRAGONAIR,40
     Moves = DRAGONDANCE,DRAGONPULSE,ROOST,COLDFRONT
     AbilityIndex = 1 # Multiscale
     Item = LEFTOVERS
+    EV = 20,10,10,0,10,10
 Pokemon = AMAROWAK,40
     Moves = BREAKDANCE,DRAINPUNCH,INFERNOCHARGE,SOULRIP
     AbilityIndex = 1 # Ancestral Dance
     Item = LUCKHERB
+    EV = 14,5,0,11,5,20
 Pokemon = CLAYDOL,40
     Moves = EARTHPOWER,LIGHTSCREEN,REFLECT,PSYCHIC
     AbilityIndex = 1 # Disorienting
     Item = LIGHTCLAY
+    EV = 20,0,20,0,0,10
 Pokemon = FLORGES,40
+    Form = 3
     Moves = AROMATHERAPY,MOONBLAST,WISH,GIGADRAIN
     AbilityIndex = 1 # Sentry
     Item = LEFTOVERS
+    EV = 20,20,10,0,20,0
 #-------------------------------
 [COOLTRAINER_M7,Emir]
 Pokemon = ILLUMISE,45
@@ -1178,19 +1216,23 @@ Policies = RAFAEL,NO_PERFECT
 Pokemon = DHELMISE,30
     Moves = WAILINGBLOW,GYROBALL,ROOTWRACK,THIEF
     AbilityIndex = 1 # Kelp Link
+    EV = 10,20,10,0,20,10
 Pokemon = THWACKEY,30
     Moves = BODYSLAM,KNOCKOFF,RAZORLEAF,MEGAPUNCH
     AbilityIndex = 1 # Vital Rhythm
     Item = SITRUSBERRY
+    EV = 10,20,0,20,20,0
 Pokemon = AMAROWAK,30
     Name = Apotropaia
     Gender = female
     Moves = BONECLUB,SHADOWCLAW,FIRELASH,SWORDSDANCE
     AbilityIndex = 1 # Ancestral Dance
+    EV = 20,12,9,0,12,9
 Pokemon = ORICORIO,30
     Form = 3
     Moves = FEATHERDANCE,TEETERDANCE,LIGHTNINGDANCE,FLAMEDANCE
     AbilityIndex = 1 # Dancer
+    EV = 10,20,0,20,20,0
 #-------------------------------
 [LEADER_Rafael_2,Rafael]
 Extends = LEADER_Rafael,Rafael,0
@@ -1200,10 +1242,12 @@ Pokemon = MISDREAVUS,30
     Moves = HEX,DANGERDITTY,SHIVER,CLEARSMOG
     AbilityIndex = 1 # Shrieking
     Item = LIFEORB
+    EV = 10,20,0,20,20,0
 Pokemon = BELLOSSOM,30
     Moves = MEGADRAIN,FLAMEDANCE,POISONSPIKES,SOLARGLIDE
     AbilityIndex = 1 # Choreography
     Item = SITRUSBERRY
+    EV = 20,20,6,0,20,4
 #-------------------------------
 [LEADER_Rafael_2,Rafael,1]
 ExtendsVersion = 0
@@ -1974,65 +2018,91 @@ Policies = BENCE,NO_PERFECT
 Pokemon = STARAPTOR,40
     Moves = DUALWINGBEAT,CLOSECOMBAT,UTURN,QUICKATTACK
     AbilityIndex = 0 # Intimidate
+    EV = 0,20,0,20,20,10
 Pokemon = JUMPLUFF,40
     Moves = GIGADRAIN,ALLERGY,AIRSLASH,SYNTHESIS
     AbilityIndex = 0 # Aerodynamic
     Item = GRASSGEM
+    EV = 10,20,0,20,20,0
 Pokemon = STONJOURNER,40
     Name = Agnes
     Gender = female
     Moves = BODYPRESS,ROCKSLIDE,STEALTHROCK,HEAVYSLAM
     AbilityIndex = 1 # Berserk
     Item = SALACBERRY
+    EV = 20,0,20,0,0,10
 Pokemon = DREDNAW,40
     Moves = RAZORSHELL,BRUTALSWING,GRANITEHEAD,MEANLOOK
     AbilityIndex = 1 # Trapper
+    EV = 20,10,20,0,10,0
 Pokemon = ARCHEOPS,40
     Moves = PLUCK,STRAFE,ROCKSLIDE,UTURN
     AbilityIndex = 0 # Defeatist
     Item = SITRUSBERRY
+    EV = 0,20,0,20,20,10
 #-------------------------------
 [LEADER_Bence_2,Bence]
 Extends = LEADER_Bence,Bence,0
 Pokemon = STONJOURNER,40
     AbilityIndex = 0 # Power Spot
+    EV = 20,10,20,0,10,0
 RemovePokemon = DREDNAW,40
 RemovePokemon = ARCHEOPS,40
 #-------------------------------
 [LEADER_Bence_2,Bence,1]
 Extends = LEADER_Bence,Bence,0
 Policies = CURSE_NO_MERCY
+Pokemon = STONJOURNER,40
+    AbilityIndex = 0 # Power Spot
+    EV = 20,10,20,0,10,0
+Pokemon = DREDNAW,40
+    EV = 10,20,10,0,20,10
 #-------------------------------
 [LEADER_Zoe,Zoé]
 Policies = ZOE,NO_PERFECT
 Pokemon = CRADILY,40
     Moves = GIGADRAIN,DIAMONDFORCE,BRINE,LEECHSEED
     AbilityIndex = 1 # Water Absorb
+    EV = 20,0,18,0,0,12
 Pokemon = MANTINE,40
     Name = 1 Second
     Gender = male
     Moves = ROOST,AIRSLASH,SCALD,ICYWIND
-    AbilityIndex = 1 # Free Ride
+    AbilityIndex = 0 # Aerodynamic
     Item = LEFTOVERS
+    EV = 20,20,0,0,20,10
 Pokemon = BRAVIARY,40
     Moves = POWERUPPUNCH,MACHPUNCH,DUALWINGBEAT,SHADOWCLAW
     AbilityIndex = 0 # Defiant
     Item = SITRUSBERRY
+    EV = 0,20,5,20,20,5
 Pokemon = SUDOWOODO,40
     Moves = STRENGTHSAP,TEARFULLOOK,POWERGEM,THRIVINGFORCE
     AbilityIndex = 1 # Prankster
+    EV = 20,10,10,0,10,10
 Pokemon = PTEROFLYTE,40
     Moves = HARDPLACE,GRANITEHEAD,BRAVEBIRD,CRUNCH
     AbilityIndex = 0 # Armor Piercing
     Item = SITRUSBERRY
+    EV = 10,20,0,20,20,0
 #-------------------------------
 [LEADER_Zoe_2,Zoé]
 Extends = LEADER_Zoe,Zoé,0
+Pokemon = CRADILY,40
+    EV = 20,20,5,0,20,5
+Pokemon = MANTINE,40
+    AbilityIndex = 1 # Free Ride
+    EV = 20,20,10,0,20,0
 RemovePokemon = BRAVIARY,40
 RemovePokemon = SUDOWOODO,40
 #-------------------------------
 [LEADER_Zoe_2,Zoé,1]
 Extends = LEADER_Zoe,Zoé,0
+Pokemon = CRADILY,40
+    EV = 20,20,5,0,20,5
+Pokemon = MANTINE,40
+    AbilityIndex = 1 # Free Ride
+    EV = 20,20,10,0,20,0
 #-------------------------------
 [TRAINER_Zain,Zain]
 Policies = ZAIN,NO_PERFECT
