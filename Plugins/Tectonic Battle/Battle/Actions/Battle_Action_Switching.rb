@@ -457,7 +457,7 @@ class PokeBattle_Battle
                             echoln("\t[HAZARD SCORING] #{battler.pbThis} will activate Rock Climber (#{rockClimberScore.to_change})")
                         else
                             pbDisplay(_INTL("{1} jumps onto the pointed stones!", battler.pbThis))
-                            battler.tryRaiseStat(:SPEED, ability: :ROCKCLIMBER)
+                            battler.tryRaiseStat(:SPEED, battler, ability: :ROCKCLIMBER)
                         end
                     else # Takes damage
                         if aiCheck
