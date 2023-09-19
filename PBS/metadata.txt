@@ -1132,6 +1132,13 @@ Outdoor = false
 ShowArea = false
 Bicycle = false
 #-------------------------------
+[182]
+# Spirit Atoll
+Outdoor = true
+ShowArea = true
+Bicycle = true
+MapPosition = 0,1,14
+#-------------------------------
 [183]
 # Circuit Cave
 Outdoor = false
@@ -2381,6 +2388,7 @@ Outdoor = true
 ShowArea = true
 Bicycle = true
 MapPosition = 0,23,11
+BattleBack = forest
 WildBattleBGM = TrainerBattleKanto.ogg
 #-------------------------------
 [412]
@@ -2437,3 +2445,10 @@ Outdoor = false
 ShowArea = false
 Bicycle = true
 BattleBack = cave3
+#-------------------------------
+[421]
+# Sage's Abode
+Outdoor = false
+ShowArea = false
+Bicycle = false
+HealingSpot = 182,19,29
