@@ -5967,7 +5967,7 @@ Pokemon = MCARNIVINE,60
     AbilityIndex = 1 # Pestilent
 Pokemon = SHIINOTIC,60
     AbilityIndex = 1 # Fascinate
-Pokemon = MINCCINO,60
+Pokemon = CINCCINO,60
     AbilityIndex = 1 # Fluffy
 #-------------------------------
 [CHALLENGER_Vanya,Vanya]
