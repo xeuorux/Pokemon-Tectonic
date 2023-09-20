@@ -1,13 +1,9 @@
 def startTournamentIfValid
-    if hasAllEightBadges? && defeatedYezeraWhitebloom? && !$game_switches[12] # Won Championship
+    if      hasAllEightBadges? &&
+            $game_switches[69] && # Defeated yezera 5
+            !$game_switches[12] # Won Championship
         $game_switches[64] = true # Tournament Running
     end
-end
-
-def defeatedYezeraWhitebloom?
-    defeated = pbGetSelfSwitch(17, 'B', 258)
-    echoln("Has the player defeated Yezera in Whitebloom? #{defeated}")
-    return defeated
 end
 
 def rollCredits

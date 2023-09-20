@@ -34,8 +34,6 @@ def setProgressionStage(badgeArray=nil)
         setMQStage(:FIND_SEVENTH_GYM)
     elsif !badgeArray[7]
         setMQStage(:FIND_EIGHTH_GYM)
-    elsif !defeatedYezeraWhitebloom?
-        setMQStage(:INVESTIGATE_YEZERA)
     else
         setMQStage(:FIND_CHAMPIONSHIP)
     end
