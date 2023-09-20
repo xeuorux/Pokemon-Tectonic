@@ -2278,6 +2278,18 @@ Pokemon = MMANDIBUZZ,38
 Pokemon = JOLTEON,37
     AbilityIndex = 1 # Needle Fur
 #-------------------------------
+[SWIMMER_M4,Jan]
+Pokemon = MSEAKING,41
+    AbilityIndex = 0 # Irrefutable
+    Item = CHOICESCARF
+Pokemon = SIMISAGE,42
+    AbilityIndex = 1 # Berserk
+Pokemon = HSLIGGOO,41
+    AbilityIndex = 0 # Clingy
+    Item = LEFTOVERS
+Pokemon = ANNIHILAPE,42
+    AbilityIndex = 0 # Defiant
+#-------------------------------
 [BIRDKEEPER_M2,Bernhard]
 Pokemon = PIDGEOT,35
     AbilityIndex = 1 # Wind Buffer
@@ -2314,7 +2326,6 @@ Pokemon = POLTEAGEIST,52
 Pokemon = BIBAREL,53
     Moves = YAWN,SWORDSDANCE,HYPERFANG,WATERFALL
     AbilityIndex = 0 # Simple
-    Item = NORMALGEM
 #-------------------------------
 [SWIMMER_F5,Shreya]
 Pokemon = OVERQWIL,51
