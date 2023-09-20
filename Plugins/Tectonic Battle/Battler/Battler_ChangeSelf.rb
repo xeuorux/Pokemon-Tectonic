@@ -50,34 +50,43 @@ class PokeBattle_Battler
     # Accounts for bosses taking reduced fractional damage
     def applyFractionalDamage(fraction, showDamageAnimation = true, basedOnCurrentHP = false, entryCheck = false, struggle: false, aiCheck: false)
         return 0 unless takesIndirectDamage? || struggle
-        oldHP = @hp
-        fraction /= BOSS_HP_BASED_EFFECT_RESISTANCE if boss?
-        fraction *= 1.5 if @battle.pbCheckOpposingAbility(:AGGRAVATE, @index) && !struggle
-        if basedOnCurrentHP
-            reduction = @hp * fraction
-        else
-            reduction = @totalhp * fraction
-        end
-        reduction *= 0.66 if hasTribeBonus?(:ANIMATED) && !struggle
-        reduction = reduction.ceil
+
+        aggravate = @battle.pbCheckOpposingAbility(:AGGRAVATE, @index) && !struggle
+        damageAmount = getFractionalDamageAmount(fraction,basedOnCurrentHP,aggravate: aggravate)
+        
         showDamageAnimation = false if aiCheck
         if showDamageAnimation
-            @damageState.displayedDamage = reduction
+            @damageState.displayedDamage = damageAmount
             @battle.scene.pbDamageAnimation(self,0,true)
         end
+        damageAmount = @hp if damageAmount > @hp
         if aiCheck
-            return reduction
+            return damageAmount
         else
-            reduction = @hp if reduction > @hp
-            pbReduceHP(reduction, false)
+            oldHP = @hp
+            pbReduceHP(damageAmount, false)
             if entryCheck
                 swapped = pbEntryHealthLossChecks(oldHP)
                 return swapped
             else
                 pbHealthLossChecks(oldHP)
-                return reduction
+                return damageAmount
             end
         end
+    end
+
+    def getFractionalDamageAmount(fraction,basedOnCurrentHP=false,aggravate: false)
+        return 0 unless takesIndirectDamage?
+        fraction /= BOSS_HP_BASED_EFFECT_RESISTANCE if boss?
+        fraction *= 1.5 if aggravate
+        if basedOnCurrentHP
+            damageAmount = @hp * fraction
+        else
+            damageAmount = @totalhp * fraction
+        end
+        damageAmount *= 0.66 if hasTribeBonus?(:ANIMATED) && !struggle
+        damageAmount = damageAmount.ceil
+        return damageAmount
     end
 
     def applyRecoilDamage(damage, showDamageAnimation = true, showMessage = true, recoilMessage = nil, cushionRecoil = false)
@@ -212,8 +221,7 @@ class PokeBattle_Battler
             end
         end
         battle.pbShowAbilitySplash(self, ability) if ability && !aiCheck
-        healAmount = @totalhp * fraction
-        healAmount /= BOSS_HP_BASED_EFFECT_RESISTANCE.to_f if boss?
+        healAmount = getFractionalHealingAmount(fraction)
         actuallyHealed = pbRecoverHP(healAmount, anim, anyAnim, showMessage, customMessage, aiCheck: aiCheck)
         battle.pbHideAbilitySplash(self) if ability && !aiCheck
         if aiCheck
@@ -221,6 +229,13 @@ class PokeBattle_Battler
         else
             return actuallyHealed
         end
+    end
+
+    def getFractionalHealingAmount(fraction)
+        return 0 unless canHeal?
+        healAmount = @totalhp * fraction
+        healAmount /= BOSS_HP_BASED_EFFECT_RESISTANCE.to_f if boss?
+        return healAmount
     end
 
     def pbFaint(showMessage = true)

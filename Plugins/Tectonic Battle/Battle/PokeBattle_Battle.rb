@@ -286,6 +286,19 @@ class PokeBattle_Battle
         end
         return nil
     end
+    
+    def pbCheckOtherAbility(abil, idxBattler = 0, nearOnly = false)
+        eachOtherSideBattler(idxBattler) do |b|
+            next if nearOnly && !b.near?(idxBattler)
+            return b if b.hasActiveAbility?(abil)
+        end
+        eachSameSideBattler(idxBattler) do |b|
+            next if b.index == idxBattler
+            next if nearOnly && !b.near?(idxBattler)
+            return b if b.hasActiveAbility?(abil)
+        end
+        return nil
+    end
 
     # Given a battler index, and using battle side sizes, returns an array of
     # battler indices from the opposing side that are in order of most "opposite".

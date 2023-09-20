@@ -1,3 +1,5 @@
+BAD_DREAMS_DAMAGE_FRACTION = 0.125
+
 BattleHandlers::EOREffectAbility.add(:BADDREAMS,
   proc { |ability, battler, battle|
       battle.eachOtherSideBattler(battler.index) do |b|
@@ -5,7 +7,7 @@ BattleHandlers::EOREffectAbility.add(:BADDREAMS,
           battle.pbShowAbilitySplash(battler, ability)
           next unless b.takesIndirectDamage?(true)
           battle.pbDisplay(_INTL("{1} is pained by its dreams!", b.pbThis))
-          b.applyFractionalDamage(1.0 / 8.0, false)
+          b.applyFractionalDamage(BAD_DREAMS_DAMAGE_FRACTION, false)
           battle.pbHideAbilitySplash(battler)
       end
   }
@@ -121,7 +123,7 @@ BattleHandlers::EOREffectAbility.add(:WARMTHCYCLE,
 BattleHandlers::EOREffectAbility.add(:EXTREMEPOWER,
   proc { |ability, battler, battle|
       battle.pbShowAbilitySplash(battler, ability)
-      battler.applyFractionalDamage(1.0 / 10.0)
+      battler.applyFractionalDamage(EOR_SELF_HARM_ABILITY_DAMAGE_FRACTION)
       battle.pbHideAbilitySplash(battler)
   }
 )
@@ -134,12 +136,6 @@ BattleHandlers::EOREffectAbility.add(:TENDERIZE,
           next unless b.numbed?
           b.pbLowerMultipleStatSteps(DEFENDING_STATS_2, battler, ability: ability)
       end
-  }
-)
-
-BattleHandlers::EOREffectAbility.add(:LIVINGARMOR,
-  proc { |ability, battler, battle|
-      battler.applyFractionalHealing(1.0 / 10.0, ability: ability)
   }
 )
 
@@ -195,6 +191,12 @@ BattleHandlers::EOREffectAbility.add(:WELLSUPPLIED,
   }
 )
 
+BattleHandlers::EOREffectAbility.add(:LIVINGARMOR,
+  proc { |ability, battler, battle|
+      battler.applyFractionalHealing(EOT_ABILITY_HEALING_FRACTION, ability: ability)
+  }
+)
+
 BattleHandlers::EOREffectAbility.add(:PRIMEVALREGENERATOR,
   proc { |ability, battler, _battle|
       battler.applyFractionalHealing(1.0 / 4.0, ability: ability)
@@ -222,13 +224,15 @@ BattleHandlers::EOREffectAbility.add(:LIFELINE,
   }
 )
 
+PAIN_PRESENCE_DAMAGE_FRACTION = 1.0/12.0
+
 BattleHandlers::EOREffectAbility.add(:PAINPRESENCE,
   proc { |ability, battler, battle|
     battler.eachOther do |b|
       battle.pbShowAbilitySplash(battler, ability)
       if b.takesIndirectDamage?(true)
         battle.pbDisplay(_INTL("{1} is pained!", b.pbThis))
-        b.applyFractionalDamage(1.0 / 12.0, false)
+        b.applyFractionalDamage(PAIN_PRESENCE_DAMAGE_FRACTION, false)
       end
       battle.pbHideAbilitySplash(battler)
     end

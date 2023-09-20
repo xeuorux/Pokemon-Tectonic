@@ -87,12 +87,14 @@ BattleHandlers::EORWeatherAbility.add(:DRYSKIN,
       }
   )
 
+  EOR_SELF_HARM_ABILITY_DAMAGE_FRACTION = 0.1 # 1/10
+
   BattleHandlers::EORWeatherAbility.add(:SOLARPOWER,
     proc { |ability, _weather, battler, battle|
         next unless battle.sunny?
         battle.pbShowAbilitySplash(battler, ability)
         battle.pbDisplay(_INTL("{1} was hurt by the sunlight!", battler.pbThis))
-        battler.applyFractionalDamage(1.0 / 10.0)
+        battler.applyFractionalDamage(EOR_SELF_HARM_ABILITY_DAMAGE_FRACTION)
         battle.pbHideAbilitySplash(battler)
     }
   )
@@ -102,7 +104,7 @@ BattleHandlers::EORWeatherAbility.add(:DRYSKIN,
           next unless battle.moonGlowing?
           battle.pbShowAbilitySplash(battler, ability)
           battle.pbDisplay(_INTL("{1} was hurt by the moonlight!", battler.pbThis))
-          battler.applyFractionalDamage(1.0 / 10.0)
+          battler.applyFractionalDamage(EOR_SELF_HARM_ABILITY_DAMAGE_FRACTION)
           battle.pbHideAbilitySplash(battler)
       }
   )

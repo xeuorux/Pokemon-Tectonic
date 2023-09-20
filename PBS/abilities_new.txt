@@ -249,7 +249,7 @@
 1248,HEALINGHOPE,Healing Hope,"Uses Wish after knocking out any Pokémon."
 1249,SUSTAINABLE,Sustainable,"Upon entry in sunshine, regenerates its used berry."
 1250,OXYGENATION,Oxygenation,"Heals status problems each turn if in sunshine."
-1251,LIVINGARMOR,Living Armor,"Heals 1/10th HP every turn. Protected against critical hits."
+1251,LIVINGARMOR,Living Armor,"Heals 1/12th HP every turn. Protected against critical hits."
 1252,VIBRATIONAL,Vibrational,"Moves that hit multiple targets deal 25% more damage instead of 25% less."
 1253,COTTONDECOY,Cotton Decoy,"Upon entry, creates a substitute from 1/4th of its HP."
 1254,VITALRHYTHM,Vital Rhythm,"At the end of each turn, itself and each ally heals for 1/16th of their HP."

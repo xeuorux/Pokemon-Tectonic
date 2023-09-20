@@ -582,7 +582,9 @@ def passingTurnBattlerHealthChange(battler,battle)
 end
 
 def predictedEOTDamage(battle,battler)
+    return 0 unless battler.takesIndirectDamage?
     damage = 0
+    
     # Sandstorm
     # Hail
 
@@ -592,20 +594,33 @@ def predictedEOTDamage(battle,battler)
     damage += battle.damageFromDOTStatus(battler, :BURN, true) if battler.burned?
     damage += battle.damageFromDOTStatus(battler, :FROSTBITE, true) if battler.frostbitten?
 
+    # Check for aggravate
+    aggravate = battle.pbCheckOpposingAbility(:AGGRAVATE, battler.index)
+
     # Curse
-    damage += battler.applyFractionalDamage(CURSE_DAMAGE_FRACTION, aiCheck: true) if battler.effectActive?(:Curse)
+    damage += battler.getFractionalDamageAmount(CURSE_DAMAGE_FRACTION, aggravate: aggravate) if battler.effectActive?(:Curse)
 
     # Trapping DOT
-    damage += battler.applyFractionalDamage(trappingDamageFraction(battler), aiCheck: true) if battler.effectActive?(:Trapping)
+    damage += battler.getFractionalDamageAmount(trappingDamageFraction(battler), aggravate: aggravate) if battler.effectActive?(:Trapping)
 
     # Bad Dreams
+    if battler.asleep? && battle.pbCheckOpposingAbility(:BADDREAMS, battler.index)
+        damage += battler.getFractionalDamageAmount(BAD_DREAMS_DAMAGE_FRACTION, aggravate: aggravate)
+    end
+    
     # Pain Presence
-    # Extreme Energy
-    # Extreme Power
-    # Solar Power
-    # Night Stalker
+    if battler.asleep? && battle.pbCheckOtherAbility(:PAINPRESENCE, battler.index)
+        damage += battler.getFractionalDamageAmount(PAIN_PRESENCE_DAMAGE_FRACTION, aggravate: aggravate)
+    end
+
+    # Extreme Energy, Extreme Power, Solar Power, Night Stalker
+    damage += battler.getFractionalDamageAmount(EOR_SELF_HARM_ABILITY_DAMAGE_FRACTION, aggravate: aggravate) if battler.hasActiveAbilityAI?(:EXTREMEENERGY)
+    damage += battler.getFractionalDamageAmount(EOR_SELF_HARM_ABILITY_DAMAGE_FRACTION, aggravate: aggravate) if battler.hasActiveAbilityAI?(:EXTREMEPOWER)
+    damage += battler.getFractionalDamageAmount(EOR_SELF_HARM_ABILITY_DAMAGE_FRACTION, aggravate: aggravate) if battler.hasActiveAbilityAI?(:SOLARPOWER) && battle.sunny?
+    damage += battler.getFractionalDamageAmount(EOR_SELF_HARM_ABILITY_DAMAGE_FRACTION, aggravate: aggravate) if battler.hasActiveAbilityAI?(:EXTREMEENERGY) && battle.moonGlowing?
 
     # Sticky Barb
+    damage += battler.getFractionalDamageAmount(STICKY_BARB_DAMAGE_FRACTION, aggravate: aggravate) if battler.hasActiveItem?(:STICKYBARB)
 
     return damage
 end
@@ -614,51 +629,61 @@ def predictedEOTHealing(battle,battler)
     healing = 0
 
     # Aqua Ring, Ingrain
-    healing += battler.applyFractionalHealing(aquaRingHealingFraction(battler), aiCheck: true) if battler.effectActive?(:AquaRing)
-    healing += battler.applyFractionalHealing(ingrainHealingFraction(battler), aiCheck: true) if battler.effectActive?(:Ingrain)
+    healing += battler.getFractionalHealingAmount(aquaRingHealingFraction(battler)) if battler.effectActive?(:AquaRing)
+    healing += battler.getFractionalHealingAmount(ingrainHealingFraction(battler)) if battler.effectActive?(:Ingrain)
     
     # Wish
+    if battler.position.effectActive?(:Wish) && battler.position.effects[:Wish] == 1
+        healing += battler.position.effects[:WishAmount]
+    end
 
-    # Grotesque Vitals, Fighting Vigor, Well Supplied
-    healing += battler.applyFractionalHealing(EOT_ABILITY_HEALING_FRACTION, aiCheck: true) if battler.hasActiveAbilityAI?(:GROTESQUEVITALS)
-    healing += battler.applyFractionalHealing(EOT_ABILITY_HEALING_FRACTION, aiCheck: true) if battler.hasActiveAbilityAI?(:FIGHTINGVIGOR)
-    healing += battler.applyFractionalHealing(EOT_ABILITY_HEALING_FRACTION, aiCheck: true) if battler.hasActiveAbilityAI?(:WELLSUPPLIED)
+    # Grotesque Vitals, Fighting Vigor, Well Supplied, Living Armor
+    healing += battler.getFractionalHealingAmount(EOT_ABILITY_HEALING_FRACTION) if battler.hasActiveAbilityAI?(:GROTESQUEVITALS)
+    healing += battler.applyFractionalHealing(EOT_ABILITY_HEALING_FRACTION) if battler.hasActiveAbilityAI?(:FIGHTINGVIGOR)
+    healing += battler.applyFractionalHealing(EOT_ABILITY_HEALING_FRACTION) if battler.hasActiveAbilityAI?(:WELLSUPPLIED)
+    healing += battler.applyFractionalHealing(EOT_ABILITY_HEALING_FRACTION) if battler.hasActiveAbilityAI?(:LIVINGARMOR)
 
     # Weather healing abilities
     if battler.hasActiveAbilityAI?(:RAINDISH) && battler.battle.rainy?
-        healing += battler.applyFractionalHealing(WEATHER_ABILITY_HEALING_FRACTION, aiCheck: true)
+        healing += battler.getFractionalHealingAmount(WEATHER_ABILITY_HEALING_FRACTION)
     end
     if battler.hasActiveAbilityAI?(:DRYSKIN) && battler.battle.rainy?
-        healing += battler.applyFractionalHealing(WEATHER_ABILITY_HEALING_FRACTION, aiCheck: true)
+        healing += battler.getFractionalHealingAmount(WEATHER_ABILITY_HEALING_FRACTION)
     end
     if battler.hasActiveAbilityAI?(:HEATSAVOR) && battler.battle.sunny?
-        healing += battler.applyFractionalHealing(WEATHER_ABILITY_HEALING_FRACTION, aiCheck: true)
+        healing += battler.getFractionalHealingAmount(WEATHER_ABILITY_HEALING_FRACTION)
     end
     if battler.hasActiveAbilityAI?(:FINESUGAR) && battler.battle.sunny?
-        healing += battler.applyFractionalHealing(WEATHER_ABILITY_HEALING_FRACTION, aiCheck: true)
+        healing += battler.getFractionalHealingAmount(WEATHER_ABILITY_HEALING_FRACTION)
     end
     if battler.hasActiveAbilityAI?(:ROCKBODY) && battler.battle.sandy?
-        healing += battler.applyFractionalHealing(WEATHER_ABILITY_HEALING_FRACTION, aiCheck: true)
+        healing += battler.getFractionalHealingAmount(WEATHER_ABILITY_HEALING_FRACTION)
     end
     if battler.hasActiveAbilityAI?(:ICEBODY) && battler.battle.icy?
-        healing += battler.applyFractionalHealing(WEATHER_ABILITY_HEALING_FRACTION, aiCheck: true)
+        healing += battler.getFractionalHealingAmount(WEATHER_ABILITY_HEALING_FRACTION)
     end
     if battler.hasActiveAbilityAI?(:MOONBASKING) && battler.battle.moonGlowing?
-        healing += battler.applyFractionalHealing(WEATHER_ABILITY_HEALING_FRACTION, aiCheck: true)
+        healing += battler.getFractionalHealingAmount(WEATHER_ABILITY_HEALING_FRACTION)
     end
     if battler.hasActiveAbilityAI?(:EXTREMOPHILE) && battler.battle.eclipsed?
-        healing += battler.applyFractionalHealing(WEATHER_ABILITY_HEALING_FRACTION, aiCheck: true)
+        healing += battler.getFractionalHealingAmount(WEATHER_ABILITY_HEALING_FRACTION)
     end
     
     # Vital Rhythm
+    if battle.pbCheckSameSideAbility(:VITALRHYTHM)
+        healing += battler.getFractionalHealingAmount(1.0/16.0, aiCheck: true)
+    end
 
     # Leftovers
     LEFTOVERS_ITEMS.each do |leftoversItem|
         next unless battler.hasActiveItem?(leftoversItem)
-        healing += battler.applyFractionalHealing(LEFTOVERS_HEALING_FRACTION, aiCheck: true)
+        healing += battler.getFractionalHealingAmount(LEFTOVERS_HEALING_FRACTION)
     end
+
     # Black Sludge
-    healing += battler.applyFractionalHealing(LEFTOVERS_HEALING_FRACTION, aiCheck: true) if battler.hasActiveItem?(:BLACKSLUDGE) && battler.pbHasType?(:POISON)
+    if battler.hasActiveItem?(:BLACKSLUDGE) && battler.pbHasType?(:POISON)
+        healing += battler.getFractionalHealingAmount(LEFTOVERS_HEALING_FRACTION)
+    end
 
     # Harvest, Larder
 
