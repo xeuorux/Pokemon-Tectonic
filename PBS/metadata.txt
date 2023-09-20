@@ -1863,6 +1863,13 @@ Bicycle = true
 BattleBack = wcave
 Environment = Cave
 #-------------------------------
+[304]
+# Ruined Tower F1
+Outdoor = false
+ShowArea = true
+Bicycle = true
+BattleBack = distortion
+#-------------------------------
 [309]
 # Cave of Hatching F2
 Outdoor = false
@@ -2095,6 +2102,13 @@ ShowArea = true
 Bicycle = true
 MapPosition = 0,15,16
 #-------------------------------
+[359]
+# Ruined Tower F2
+Outdoor = false
+ShowArea = true
+Bicycle = true
+BattleBack = distortion
+#-------------------------------
 [361]
 # The Catacombs B2
 Outdoor = false
@@ -2120,6 +2134,13 @@ Bicycle = true
 Outdoor = false
 ShowArea = true
 Bicycle = true
+#-------------------------------
+[365]
+# Ruined Tower F3
+Outdoor = false
+ShowArea = true
+Bicycle = true
+BattleBack = distortion
 #-------------------------------
 [366]
 # M. Munna Den 2

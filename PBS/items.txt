@@ -548,11 +548,10 @@
 547,ALLOYEDLUMP,Alloyed Lump,Alloyed Lumps,1,0,"Misshapen, unusual metal. Useless without a way to sharpen it.",2,0,13
 548,ALLOYEDBLADE,Alloyed Blade,Alloyed Blades,1,0,"A fragile blade of unusual metal. Sharp enough to cut alloyed overgrowth.",2,0,13
 549,ALLOYEDWIRE,Alloyed Wire,Alloyed Wires,1,0,"A thin, nearly invisible strand of unusual metal.",2,0,13
-550,RAINBOWFEATHER,Rainbow Feather,Rainbow Feathers,8,0,"A strange feather that gleams in rainbow colors.",0,0,13
-551,SWEETTOOTH,Sweet Tooth,Sweet Teeth,8,0,"A charm in the shape of a tooth. It increases the EXP gained from EXP Candy by 15%.",0,0,6
-552,BOXLINK,Box Link,Box Links,8,0,"An advanced transporter which allows you to access your Pokémon Storage to withdraw or deposit Pokémon.",2,0,6
-553,STYLINGKIT,Styling Kit,Styling Kits,8,0,"A suite of training tools which allows you to modify your Pokémon's style points.",2,0,6
-554,STINKBOMB,Stink Bomb,Stink Bomb,1,5000,"Rare contraband. Any average solo trainer will flee from the stench of its explosion.",2,0,0
-555,RUINEDTOWERKEY,Ruined Tower Key,Ruined Tower Keys,8,0,"A key which unlocks the ruined tower on the Sandstone Estuary coastline.",0,0,6
-556,SWEETAPPLE,Sweet Apple,Sweet Apples,1,2200,"A peculiar apple that can make a certain species of Pokémon evolve. It's exceptionally sweet.",1,0,7
-557,TARTAPPLE,Sweet Apple,Sweet Apples,1,2200,"A peculiar apple that can make a certain species of Pokémon evolve. It's exceptionally tart.",1,0,7
+550,SWEETTOOTH,Sweet Tooth,Sweet Teeth,8,0,"A charm in the shape of a tooth. It increases the EXP gained from EXP Candy by 15%.",0,0,6
+551,BOXLINK,Box Link,Box Links,8,0,"An advanced transporter which allows you to access your Pokémon Storage to withdraw or deposit Pokémon.",2,0,6
+552,STYLINGKIT,Styling Kit,Styling Kits,8,0,"A suite of training tools which allows you to modify your Pokémon's style points.",2,0,6
+553,STINKBOMB,Stink Bomb,Stink Bomb,1,5000,"Rare contraband. Any average solo trainer will flee from the stench of its explosion.",2,0,0
+554,RUINEDTOWERKEY,Ruined Tower Key,Ruined Tower Keys,8,0,"A key which unlocks the ruined tower on the Sandstone Estuary coastline.",0,0,6
+555,SWEETAPPLE,Sweet Apple,Sweet Apples,1,2200,"A peculiar apple that can make a certain species of Pokémon evolve. It's exceptionally sweet.",1,0,7
+556,TARTAPPLE,Sweet Apple,Sweet Apples,1,2200,"A peculiar apple that can make a certain species of Pokémon evolve. It's exceptionally tart.",1,0,7
