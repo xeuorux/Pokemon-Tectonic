@@ -6646,7 +6646,7 @@ Pokemon = ELECTIVIRE,70
 Pokemon = MRMIME,70
     AbilityIndex = 0 # Barrier Maker
 #-------------------------------
-[SAGE,Takashi]
+[SPIRITGUARDIAN2,Sonya]
 Pokemon = CLAYDOL,70
     Moves = LIGHTSCREEN,REFLECT,LEYLINEBURST,ICEBEAM
     AbilityIndex = 0 # Resonance
@@ -6678,7 +6678,7 @@ Pokemon = BEWEAR,70
     Item = UTILITYUMBRELLA
     EV = 20,5,10,5,5,10
 #-------------------------------
-[SAGE,Takashi,1]
+[SPIRITGUARDIAN2,Sonya,1]
 ExtendsVersion = 0
 Policies = CURSE_NO_MERCY_2
 Pokemon = MMUSHARNA,70
@@ -6712,7 +6712,7 @@ Pokemon = DRAGONITE,70
     Item = YACHEBERRY
     EV = 20,10,5,10,10,5
 #-------------------------------
-[SAGE,Takeo]
+[SPIRITGUARDIAN3,Preeti]
 Pokemon = GOTHITELLE,70
     Moves = MOONGLOW,POWERNAP,BLACKOUT,PSYCHIC
     AbilityIndex = 0 # Moon Basking
@@ -6744,11 +6744,11 @@ Pokemon = GOREBYSS,70
     Item = BIGROOT
     EV = 20,0,15,0,0,15
 #-------------------------------
-[SAGE,Takeo,1]
+[SPIRITGUARDIAN3,Preeti,1]
 ExtendsVersion = 0
 Policies = CURSE_DOUBLE_ABILITIES
 #-------------------------------
-[SAGE,Hideo]
+[SPIRITGUARDIAN4,Brigitte]
 Policies = PRESERVE_LAST_POKEMON
 Pokemon = TOGEDEMARU,70
     Moves = NUZZLE,SPIKES,THUNDER,VOLTSWITCH
@@ -6781,6 +6781,6 @@ Pokemon = GYARADOS,70
     Item = WATERGEM
     EV = 10,20,0,20,20,0
 #-------------------------------
-[SAGE,Hideo,1]
+[SPIRITGUARDIAN4,Brigitte,1]
 ExtendsVersion = 0
 Policies = CURSE_TYPE_WEAKENED
