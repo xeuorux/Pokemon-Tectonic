@@ -477,7 +477,7 @@
 1476,DROWN,Drown,5FD,0,GHOST,Status,100,15,0,NearOther,0,CanProtect;CanMagicCoat;CanMirrorMove,"Disables the target's last used move for four turns, then reduces a relevant stat on them by four steps.",AQUARING
 1477,TOXICATTACHMENT,Toxic Attachment,5FE,130,POISON,Physical,100,5,0,NearOther,0,CanProtect;CanMirrorMove,"Grips the target with its entire mouth. The user can’t attack next turn unless the target faints or switches out.",
 1478,SPOTTING,Spotting,5FF,0,DARK,Status,0,15,0,NearAlly,5,,"The user assists an ally by boosting the power and accuracy of its next attack by 50%.",
-1479,POLARIZEDFIELD,Polarized Field,,0,ELECTRIC,Status,0,15,0,UserSide,0,CanSnatch,"This move creates a directional magnetic field which reduces damage from attacks with 100 or more base power for five turns.",
+1479,POLARIZEDFIELD,Polarized Field,12A,0,ELECTRIC,Status,0,15,0,UserSide,0,CanSnatch,"This move creates a directional magnetic field which reduces damage from attacks with 100 or more base power for five turns.",
 1480,MASQUERBLADE,Masquerblade,12B,150,GRASS,Physical,100,5,0,AllNearFoes,-3,CanProtect,"The user hides its blade. If it is hit by a special move, it unsheathes it quickly, slashing all near foes.",CAMOUFLAGE
 1481,PRIDESFLAME,Pride's Flame,12C,90,FIRE,Special,100,10,0,NearOther,0,CanProtect;CanMirrorMove,"A distinguished attack that motivates nearby allies to follow, letting them act immediately after",
 1482,COLDSHOULDER,Cold Shoulder,56A,80,GHOST,Physical,100,12,100,NearOther,0,CanProtect;CanMirrorMove,"The user attacks with bitter emotion. This lowers the target's attacking stats by two steps if in hail.",PHANTOMFORCE
