@@ -1645,7 +1645,7 @@ end
 #===============================================================================
 # Effectiveness against Electric-type is 2x. (Blackout)
 #===============================================================================
-class PokeBattle_Move_562 < PokeBattle_Move
+class PokeBattle_Move_562 < PokeBattle_TypeSuperMove
     def initialize(battle, move)
         super
         @typeHated = :ELECTRIC

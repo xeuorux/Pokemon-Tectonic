@@ -161,7 +161,7 @@ end
 #===============================================================================
 # Effectiveness against Fighting-type is 2x. (Honorless Sting)
 #===============================================================================
-class PokeBattle_Move_586 < PokeBattle_Move
+class PokeBattle_Move_586 < PokeBattle_TypeSuperMove
     def initialize(battle, move)
         super
         @typeHated = :FIGHTING
