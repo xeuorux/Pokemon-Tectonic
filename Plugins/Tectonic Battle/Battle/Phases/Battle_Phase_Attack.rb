@@ -217,7 +217,7 @@ class PokeBattle_Battle
                 b.applyEffect(:RammingSpeed)
             end
 
-            if b.hasActiveAbility?(:QUICKKICKS) && move&.kickMove?
+            if b.hasActiveAbility?(:QUICKKICKS) && move&.kickingMove?
                 b.applyEffect(:QuickKicks)
             end
         end

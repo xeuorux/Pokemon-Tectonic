@@ -137,7 +137,7 @@ class PokeBattle_Move
     def danceMove?;             return @flags[/Dance/]; end
     def bladeMove?;             return @flags[/Blade/]; end
     def windMove?;              return @flags[/Wind/]; end
-    def bitingMove?;            return @flags[/Kicking/]; end
+    def kickingMove?;           return @flags[/Kicking/]; end
     def veryHighCriticalRate?;  return @flags[/VeryHighCriticalHitRate/]; end
     def empoweredMove?;         return @flags[/Empowered/]; end
 
