@@ -639,9 +639,9 @@ def predictedEOTHealing(battle,battler)
 
     # Grotesque Vitals, Fighting Vigor, Well Supplied, Living Armor
     healing += battler.getFractionalHealingAmount(EOT_ABILITY_HEALING_FRACTION) if battler.hasActiveAbilityAI?(:GROTESQUEVITALS)
-    healing += battler.applyFractionalHealing(EOT_ABILITY_HEALING_FRACTION) if battler.hasActiveAbilityAI?(:FIGHTINGVIGOR)
-    healing += battler.applyFractionalHealing(EOT_ABILITY_HEALING_FRACTION) if battler.hasActiveAbilityAI?(:WELLSUPPLIED)
-    healing += battler.applyFractionalHealing(EOT_ABILITY_HEALING_FRACTION) if battler.hasActiveAbilityAI?(:LIVINGARMOR)
+    healing += battler.getFractionalHealingAmount(EOT_ABILITY_HEALING_FRACTION) if battler.hasActiveAbilityAI?(:FIGHTINGVIGOR)
+    healing += battler.getFractionalHealingAmount(EOT_ABILITY_HEALING_FRACTION) if battler.hasActiveAbilityAI?(:WELLSUPPLIED)
+    healing += battler.getFractionalHealingAmount(EOT_ABILITY_HEALING_FRACTION) if battler.hasActiveAbilityAI?(:LIVINGARMOR)
 
     # Weather healing abilities
     if battler.hasActiveAbilityAI?(:RAINDISH) && battler.battle.rainy?
