@@ -123,7 +123,7 @@
 122,CHARM,Charm,04B,0,FAIRY,Status,100,15,0,NearOther,0,CanProtect;CanMagicCoat;CanMirrorMove,"The user gazes charmingly at the target. The target's Attack is lowered by four steps.",
 123,CRAFTYSHIELD,Crafty Shield,14A,0,FAIRY,Status,0,10,0,UserSide,3,,"The user protects itself and its allies from status moves with a mysterious power.",
 124,FAIRYLOCK,Fairy Lock,152,0,FAIRY,Status,0,10,0,BothSides,0,CanMirrorMove,"By locking down the battlefield, the user keeps all Pokémon from fleeing during the next turn.",
-125,FLORALHEALING,Floral Healing,16E,0,FAIRY,Status,0,5,0,NearOther,0,CanProtect;CanMagicCoat,"The user restores the target's HP by 50% of its max hp, or 2/3rds in moonglow.",
+125,FLORALHEALING,Floral Healing,16E,0,FAIRY,Status,0,5,0,NearAlly,0,CanProtect;CanMagicCoat,"The user restores the target's HP by 50% of its max hp, or 2/3rds in moonglow.",
 126,GEOMANCY,Geomancy,14E,0,FAIRY,Status,0,10,0,User,0,,"The user absorbs energy and raises its Sp. Atk, Sp. Def, and Speed by four steps on the next turn.",
 127,NATURESMADNESS,Nature's Madness,06C,1,FAIRY,Special,90,10,0,NearOther,0,CanProtect;CanMirrorMove,"The user hits the target with the force of nature. It halves the target's HP.",
 128,SPIRITBREAK,Spirit Break,045,75,FAIRY,Physical,100,12,100,NearOther,0,CanProtect;CanMirrorMove,"Attacks the target and breaks its spirit. Lowers the target's Sp. Atk by two steps.",
