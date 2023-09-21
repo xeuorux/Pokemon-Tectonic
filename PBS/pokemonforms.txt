@@ -1168,7 +1168,7 @@ Pokedex = Trainers Polteageist trusts will be allowed to experience its distinct
 #-------------------------------
 [INDEEDEE,1]
 FormName = ♀
-BaseStats = 75,80,65,85,80,105
+BaseStats = 80,80,65,85,80,105
 EffortPoints = 0,0,0,0,0,2
 Pokedex = They diligently serve people and Pokémon so they can gather feelings of gratitude. The females are particularly good at babysitting.
 BattlerPlayerY = 23
