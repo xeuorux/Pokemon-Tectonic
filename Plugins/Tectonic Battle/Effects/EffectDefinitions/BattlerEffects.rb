@@ -1960,8 +1960,9 @@ GameData::BattleEffect.register_effect(:Battler, {
             battle.pbShowAbilitySplash(battler, :PAINDELAY)
             battle.pbDisplay(_INTL("The pain caught up to {1}!", battler.pbThis(true)))
             oldHP = battler.hp
-            battler.hp -= damageToApply
             battler.damageState.displayedDamage = damageToApply
+            damageToApply = battler.hp if damageToApply > battler.hp
+            battler.hp -= damageToApply
             battle.scene.pbHitAndHPLossAnimation([[battler, oldHP, 1]], true)
             battler.cleanupPreMoveDamage(battler, oldHP)
             battle.pbHideAbilitySplash(battler)
