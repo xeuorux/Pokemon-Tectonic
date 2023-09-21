@@ -496,5 +496,9 @@
 1495,FIXATE,Fixate,5DD,0,NORMAL,Status,0,15,0,User,0,CanSnatch,"The user stimulates its brain by planning. It raises the user's Sp. Atk by three steps.",NASTYPLOT
 1496,RIPTIDE,Rip Tide,01F,100,WATER,Physical,50,5,100,NearOther,0,CanProtect;CanMirrorMove,"The user crashes into the target on a ripping current. This raises the user's Speed by two steps.",WATERFALL
 1497,HOP,Hop,401,40,FLYING,Physical,100,25,10,NearOther,0,CanProtect;CanMirrorMove;Kicking,"The user hops high up to land on the target's head. It has a 10% chance to dizzy.",BOUNCE
-1498,COMPOUNDING,Compounding,08E,30,NORMAL,Physical,100,10,0,NearOther,0,CanProtect;CanMirrorMove,"Has 10 more base power for each raised stat step. Inflicts physical or special damage based on the user's stats.",
-1499,SHARINGSMILES,Sharing Smiles,014,0,GRASS,Status,0,10,0,NearAlly,0,,"The user and the target each share their highest stat step with the other.",
+1498,COMPOUNDING,Compounding,08E,30,NORMAL,Physical,100,10,0,NearOther,0,CanProtect;CanMirrorMove,"Has 10 more base power for each raised stat step. Inflicts physical or special damage based on the user's stats.",STOREDPOWER
+1499,SHARINGSMILES,Sharing Smiles,014,0,GRASS,Status,0,10,0,NearAlly,0,,"The user and the target each share their highest stat step with the other.",HOLDHANDS
+1500,HOTSHOT,Hot Shot,000,40,FIRE,Special,100,25,0,NearOther,1,CanProtect;CanMirrorMove,"The user shoots the target with a small bolt of fire. This move always goes first.",
+1501,PRESTO,Presto,000,40,FAIRY,Special,100,25,0,NearOther,1,CanProtect;CanMirrorMove,"The user flashes colorful light to damage the target. This move always goes first.",
+1502,POISONDART,Poison Dart,000,40,POISON,Special,100,25,0,NearOther,1,CanProtect;CanMirrorMove,"The user shoots the target with a dart made of poison. This move always goes first.",
+1503,AWESTRIKE,Awe-strike,000,40,DRAGON,Special,100,25,0,NearOther,1,CanProtect;CanMirrorMove,"The user inspires a sudden dread in the target, damaging it. This move always goes first.",
