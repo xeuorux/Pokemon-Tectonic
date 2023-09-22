@@ -2246,6 +2246,12 @@ ShowArea = true
 Bicycle = true
 BattleBack = cave1
 #-------------------------------
+[382]
+# Integration Chamber
+Outdoor = false
+ShowArea = true
+Bicycle = true
+#-------------------------------
 [383]
 # Mirror Tundra
 Outdoor = false
@@ -2396,12 +2402,36 @@ ShowArea = true
 Bicycle = true
 BattleBack = cave1
 #-------------------------------
+[406]
+# Sandstone Switchbox
+Outdoor = false
+ShowArea = true
+Bicycle = true
+#-------------------------------
+[407]
+# Wave Lengths
+Outdoor = false
+ShowArea = true
+Bicycle = true
+#-------------------------------
 [408]
 # Tournament Grounds EQ
 Outdoor = true
 ShowArea = false
 Bicycle = false
 Weather = Overcast,100
+#-------------------------------
+[409]
+# Read Only
+Outdoor = false
+ShowArea = true
+Bicycle = true
+#-------------------------------
+[410]
+# Terminal Confusion
+Outdoor = false
+ShowArea = true
+Bicycle = true
 #-------------------------------
 [411]
 # Tri Island
