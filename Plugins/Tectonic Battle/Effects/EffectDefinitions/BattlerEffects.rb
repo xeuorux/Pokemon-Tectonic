@@ -1796,7 +1796,7 @@ GameData::BattleEffect.register_effect(:Battler, {
 GameData::BattleEffect.register_effect(:Battler, {
     :id => :ProtectFailure,
     :real_name => "Protect Will Fail",
-    :resets_on_move_start => true,
+    :resets_on_move_start_no_special => true,
 })
 
 GameData::BattleEffect.register_effect(:Battler, {

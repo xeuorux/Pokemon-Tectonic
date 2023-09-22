@@ -41,6 +41,10 @@ module GameData
         # This is generally used for effects that track usage counters
         attr_reader :resets_on_move_start
 
+        # Resets to default value when the move begins being used
+        # But only if the move is not a special usage
+        attr_reader :resets_on_move_start_no_special
+
         # If it ticks down at end of round. Only used for integers
         attr_reader :ticks_down
 
@@ -195,6 +199,7 @@ module GameData
             @resets_battlers_eot    = hash[:resets_battlers_eot] || false
             @resets_on_cancel       = hash[:resets_on_cancel] || false
             @resets_on_move_start	= hash[:resets_on_move_start] || false
+            @resets_on_move_start_no_special = hash[:resets_on_move_start_no_special] || false
 
             @ticks_down             = hash[:ticks_down] || false
             @tick_amount            = hash[:tick_amount] || 1
