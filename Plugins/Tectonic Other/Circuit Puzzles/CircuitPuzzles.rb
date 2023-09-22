@@ -1,9 +1,10 @@
 def circuitPuzzle(circuitPuzzleID)
     circuitDefinition = CIRCUIT_PUZZLES[circuitPuzzleID]
     if circuitDefinition
+        circuitBaseGraphic = circuitDefinition[:base_graphic]
         pbFadeOutIn {
-            scene = CircuitPuzzle_Scene.new(circuitDefinition)
-            screen = CircuitPuzzle_Screen.new(scene)
+            scene = CircuitPuzzle_Scene.new(circuitBaseGraphic)
+            screen = CircuitPuzzle_Screen.new(scene,circuitDefinition)
             ret = screen.startPuzzle
         }
     else
@@ -12,15 +13,72 @@ def circuitPuzzle(circuitPuzzleID)
 end
 
 class CircuitPuzzle_Scene
-    def initialize(circuitDefinition)
+    # A hash
+    # Keys are [ComponentType,ComponentUniqueID]
+    # Values are sprites
+    attr_reader :componentSprites
+    attr_reader :cursorX
+    attr_reader :cursorY
+
+    def initialize(circuitBaseGraphic)
         @sprites = {}
         @viewport = Viewport.new(0,0,Graphics.width,Graphics.height)
         @viewport.z = 99999
 
-        backgroundFileName = "Circuit Puzzle/Boards/#{circuitDefinition[:base_graphic]}"
+        backgroundFileName = "Circuit Puzzle/Boards/#{circuitBaseGraphic}"
         addBackgroundPlane(@sprites, "bg", backgroundFileName, @viewport)
         @sprites["bg"].zoom_x = 4
         @sprites["bg"].zoom_y = 4
+        @componentSprites = []
+
+        # Initialize the bitmaps for all possible components
+        @componentBitmaps = {}
+        CIRCUIT_COMPONENTS.each do |key,value|
+            fileName = "Graphics/Pictures/Circuit Puzzle/Components/#{value[:graphic]}"
+            componentBitmap = AnimatedBitmap.new(fileName)
+            @componentBitmaps[key] = componentBitmap
+        end
+
+        @sprites["cursor"] = AnimatedSprite.create("Graphics/Pictures/mapCursor",2,5)
+        @sprites["cursor"].viewport = @viewport
+        @sprites["cursor"].play
+        @sprites["cursor"].zoom_x = 2
+        @sprites["cursor"].zoom_y = 2
+        @sprites["cursor"].z = 10
+        @cursorX = 0
+        @cursorY = 0
+    end
+
+    def addCircuitComponents(circuitDefinition)
+        circuitDefinition[:interactables].each do |circuitComponentDefinition|
+            componentID = circuitComponentDefinition[0]
+            componentX = circuitComponentDefinition[1]
+            componentY = circuitComponentDefinition[2]
+            defaultState = circuitComponentDefinition[3]
+            
+            componentBitmap = @componentBitmaps[componentID]
+            newSprite = SpriteWrapper.new
+            newSprite.bitmap = componentBitmap.bitmap
+            newSprite.viewport = @viewport
+            newSprite.x = componentX * 64 + 8
+            newSprite.y = componentY * 64 + 8
+            newSprite.src_rect.height = 12
+            newSprite.src_rect.y = defaultState * 12
+            newSprite.zoom_x = 4
+            newSprite.zoom_y = 4
+            @sprites["component_#{componentSprites.size}"] = newSprite
+            componentSprites.push(newSprite)
+        end
+    end
+
+    def cursorX=(value)
+        @cursorX = value
+        @sprites["cursor"].x = value * 64
+    end
+
+    def cursorY=(value)
+        @cursorY = value
+        @sprites["cursor"].y = value * 64
     end
 
     # End the scene here
@@ -28,6 +86,9 @@ class CircuitPuzzle_Scene
         pbFadeOutAndHide(@sprites) { update }
         pbDisposeSpriteHash(@sprites)
         # DISPOSE OF BITMAPS HERE #
+        @componentBitmaps.each do |key,value|
+            value.dispose unless value.disposed?
+        end
     end
 
     def update
@@ -36,11 +97,14 @@ class CircuitPuzzle_Scene
 end
 
 class CircuitPuzzle_Screen
-    def initialize(scene)
+    def initialize(scene,circuitDefinition)
         @scene = scene
+        @circuitDefinition = circuitDefinition
     end
     
     def startPuzzle
+        @scene.addCircuitComponents(@circuitDefinition)
+
         @currentState = 0
         loop do
             Graphics.update
@@ -50,6 +114,34 @@ class CircuitPuzzle_Screen
                 endScene
                 pbPlayCloseMenuSE
                 return @currentState
+            elsif Input.trigger?(Input::UP)
+                if @scene.cursorY <= 0
+                    pbPlayBuzzerSE
+                    next
+                end
+                @scene.cursorY -= 1
+                pbPlayCursorSE
+            elsif Input.trigger?(Input::DOWN)
+                if @scene.cursorY >= 5
+                    pbPlayBuzzerSE
+                    next
+                end
+                @scene.cursorY += 1
+                pbPlayCursorSE
+            elsif Input.trigger?(Input::LEFT)
+                if @scene.cursorX <= 0
+                    pbPlayBuzzerSE
+                    next
+                end
+                @scene.cursorX -= 1
+                pbPlayCursorSE
+            elsif Input.trigger?(Input::RIGHT)
+                if @scene.cursorX >= 7
+                    pbPlayBuzzerSE
+                    next
+                end
+                @scene.cursorX += 1
+                pbPlayCursorSE
             end
         end
     end

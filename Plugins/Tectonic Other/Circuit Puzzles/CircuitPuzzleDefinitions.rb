@@ -3,7 +3,7 @@ CIRCUIT_PUZZLES = {
         :base_graphic => "tutorial_basic",
         :interactables =>
         [
-            ["T switch left",3,3,0]
+            [:tswitch_left,3,2,0]
         ]
     }
 }
