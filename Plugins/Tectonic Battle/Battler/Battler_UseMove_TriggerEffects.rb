@@ -278,15 +278,6 @@ user.pbThis(true)))
             b.pbEffectsOnSwitchIn(true) if switchWimpOut.include?(b.index)
         end
         switchWimpOut.each { |idxB| switchedBattlers.push(idxB) }
-        # User's ability (Emergency Exit, Wimp Out)
-        if !switchedBattlers.include?(user.index) && move.damagingMove?
-            hpNow = user.hp if user.hp < hpNow   # In case HP was lost because of Life Orb
-            if user.pbAbilitiesOnDamageTaken(user.initialHP, hpNow)
-                @battle.moldBreaker = false
-                user.pbEffectsOnSwitchIn(true)
-                switchedBattlers.push(user.index)
-            end
-        end
         # User's item (Eject Pack)
         if !switchedBattlers.include?(user.index) && effectActive?(:StatsDropped)
             ejectPacked = []
