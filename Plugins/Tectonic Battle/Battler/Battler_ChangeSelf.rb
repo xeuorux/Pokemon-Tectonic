@@ -429,7 +429,7 @@ class PokeBattle_Battler
         end
     end
 
-    def pbCheckFormOnWeatherChange
+    def pbCheckFormOnWeatherChange(abilityLossCheck = false)
         return if fainted? || effectActive?(:Transform)
         # Castform - Forecast
         if isSpecies?(:CASTFORM)
@@ -464,10 +464,11 @@ class PokeBattle_Battler
             end
         end
         # Eiscue - Ice Face
-        if @species == :EISCUE && hasActiveAbility?(:ICEFACE) && @battle.icy? && (@form == 1)
+        if !abilityLossCheck && @species == :EISCUE && hasActiveAbility?(:ICEFACE) && @battle.icy? && (@form == 1)
             showMyAbilitySplash(:ICEFACE, true)
-            hideMyAbilitySplash
             pbChangeForm(0, _INTL("{1} transformed!", pbThis))
+            hideMyAbilitySplash
+            puts caller
         end
     end
 

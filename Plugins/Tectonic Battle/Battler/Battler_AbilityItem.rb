@@ -185,7 +185,7 @@ class PokeBattle_Battler
         disableEffect(:SlowStart) unless hasAbility?(:SLOWSTART)
         
         # Revert form if Flower Gift/Forecast was lost
-        pbCheckFormOnWeatherChange
+        pbCheckFormOnWeatherChange(true)
 
         # Check for end of primordial weather
         @battle.pbEndPrimordialWeather
