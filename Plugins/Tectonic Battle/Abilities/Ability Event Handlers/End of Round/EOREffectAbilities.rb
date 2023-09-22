@@ -203,9 +203,11 @@ BattleHandlers::EOREffectAbility.add(:PRIMEVALREGENERATOR,
   }
 )
 
+LIFELINE_HEALING_FRACTION = 1.0 / 20.0
+
 BattleHandlers::EOREffectAbility.add(:LIFELINE,
   proc { |ability, battler, battle|
-    healingAmount = battler.applyFractionalHealing(1.0 / 20.0, ability: ability)
+    healingAmount = battler.applyFractionalHealing(LIFELINE_HEALING_FRACTION, ability: ability)
 
     if healingAmount > 0
         potentialHeals = []

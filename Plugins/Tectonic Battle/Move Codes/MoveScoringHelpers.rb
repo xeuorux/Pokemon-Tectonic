@@ -585,8 +585,9 @@ def predictedEOTDamage(battle,battler)
     return 0 unless battler.takesIndirectDamage?
     damage = 0
     
-    # Sandstorm
-    # Hail
+    # Weather DOTs
+    damage += battle.applySandstormDamage(battler, aiCheck: true)
+    damage += battle.applyHailDamage(battler, aiCheck: true)
 
     # Status DOTs
     damage += battle.damageFromDOTStatus(battler, :POISON, true) if battler.poisoned?
@@ -621,6 +622,11 @@ def predictedEOTDamage(battle,battler)
 
     # Sticky Barb
     damage += battler.getFractionalDamageAmount(STICKY_BARB_DAMAGE_FRACTION, aggravate: aggravate) if battler.hasActiveItem?(:STICKYBARB)
+
+    # Black Sludge
+    if battler.hasActiveItem?(:BLACKSLUDGE) && !battler.pbHasType?(:POISON)
+        damage += battler.getFractionalDamageAmount(LEFTOVERS_HEALING_FRACTION)
+    end
 
     return damage
 end
@@ -667,6 +673,11 @@ def predictedEOTHealing(battle,battler)
     end
     if battler.hasActiveAbilityAI?(:EXTREMOPHILE) && battler.battle.eclipsed?
         healing += battler.getFractionalHealingAmount(WEATHER_ABILITY_HEALING_FRACTION)
+    end
+
+    # Lifeline
+    if battler.hasActiveAbilityAI?(:LIFELINE)
+        healing += battler.getFractionalHealingAmount(LIFELINE_HEALING_FRACTION)
     end
     
     # Vital Rhythm

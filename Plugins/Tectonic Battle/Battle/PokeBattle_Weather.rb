@@ -332,7 +332,6 @@ class PokeBattle_Battle
         pbCommonAnimation(weather_data.animation) if weather_data && @field.specialTimer < SPECIAL_EFFECT_WAIT_TURNS - 1
 
         # Effects due to weather
-        curWeather = pbWeather
         showWeatherMessages = $PokemonSystem.weather_messages == 0
         hailDamage = 0
         sandstormDamage = 0
@@ -340,42 +339,13 @@ class PokeBattle_Battle
             # Weather-related abilities
             b.eachActiveAbility do |ability|
                 oldHP = b.hp
-                BattleHandlers.triggerEORWeatherAbility(ability, curWeather, b, self)
+                BattleHandlers.triggerEORWeatherAbility(ability, pbWeather, b, self)
                 break if b.pbHealthLossChecks(oldHP)
             end
-            # Weather damage
-            # NOTE:
-            case curWeather
-            when :Sandstorm
-                next unless b.takesSandstormDamage?
-                damageDoubled = pbCheckGlobalAbility(:IRONSTORM)
-                if showWeatherMessages
-                    if damageDoubled
-                        pbDisplay(_INTL("{1} is shredded by the iron-infused sandstorm!", b.pbThis))
-                    else
-                        pbDisplay(_INTL("{1} is buffeted by the sandstorm!", b.pbThis))
-                    end
-                end
-                fraction = 1.0 / 16.0
-                fraction *= 2 if damageDoubled
-                fraction *= 2 if curseActive?(:CURSE_BOOSTED_SAND)
-                sandstormDamage += b.applyFractionalDamage(fraction)
-            when :Hail
-                next unless b.takesHailDamage?
-                damageDoubled = pbCheckGlobalAbility(:BITTERCOLD)
-                if showWeatherMessages
-                    if damageDoubled
-                        pbDisplay(_INTL("{1} is pummeled by the bitterly cold hail!", b.pbThis))
-                    else
-                        pbDisplay(_INTL("{1} is buffeted by the hail!", b.pbThis))
-                    end
-                end
-                fraction = 1.0 / 16.0
-                fraction *= 2 if damageDoubled
-                fraction *= 2 if curseActive?(:CURSE_BOOSTED_HAIL)
-                hailDamage += b.applyFractionalDamage(fraction)
-            end
+            sandstormDamage += applySandstormDamage(b, showWeatherMessages) if sandy?
+            hailDamage += applyHailDamage(b, showWeatherMessages) if icy?
         end
+        
         # Ectoparticles
         if hailDamage > 0
             priority.each do |b|
@@ -396,6 +366,40 @@ class PokeBattle_Battle
                 pbHideAbilitySplash(b)
             end
         end
+    end
+
+    def applySandstormDamage(battler, showMessages = true, aiCheck: false)
+        return 0 unless battler.takesSandstormDamage?
+        damageDoubled = pbCheckGlobalAbility(:IRONSTORM)
+        if showMessages && !aiCheck
+            if damageDoubled
+                pbDisplay(_INTL("{1} is shredded by the iron-infused sandstorm!", battler.pbThis))
+            else
+                pbDisplay(_INTL("{1} is buffeted by the sandstorm!", battler.pbThis))
+            end
+        end
+        fraction = 1.0 / 16.0
+        fraction *= 2 if damageDoubled
+        fraction *= 2 if curseActive?(:CURSE_BOOSTED_SAND)
+        sandstormDamage = battler.applyFractionalDamage(fraction, aiCheck: aiCheck)
+        return sandstormDamage
+    end
+
+    def applyHailDamage(battler, showMessages = true, aiCheck: false)
+        return 0 unless battler.takesHailDamage?
+        damageDoubled = pbCheckGlobalAbility(:BITTERCOLD)
+        if showMessages && !aiCheck
+            if damageDoubled
+                pbDisplay(_INTL("{1} is pummeled by the bitterly cold hail!", battler.pbThis))
+            else
+                pbDisplay(_INTL("{1} is buffeted by the hail!", battler.pbThis))
+            end
+        end
+        fraction = 1.0 / 16.0
+        fraction *= 2 if damageDoubled
+        fraction *= 2 if curseActive?(:CURSE_BOOSTED_HAIL)
+        hailDamage = battler.applyFractionalDamage(fraction, aiCheck: aiCheck)
+        return hailDamage
     end
 
     #=============================================================================
