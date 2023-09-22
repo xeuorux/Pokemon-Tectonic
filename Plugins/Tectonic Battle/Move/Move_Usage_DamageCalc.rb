@@ -41,8 +41,8 @@ class PokeBattle_Move
 
         # Main damage calculation
         finalCalculatedDamage = calcDamageWithMultipliers(baseDmg,attack,defense,user.level,multipliers)
+        finalCalculatedDamage  = [(finalCalculatedDamage * multipliers[:final_damage_multiplier]).round, 1].max
         finalCalculatedDamage = flatDamageReductions(finalCalculatedDamage,user,target,aiCheck)
-        finalCalculatedDamage  = [(finalCalculatedDamage  * multipliers[:final_damage_multiplier]).round, 1].max
 
         # Pain Delay
         if !@battle.moldBreaker && target.shouldAbilityApply?(:PAINDELAY,aiCheck)
