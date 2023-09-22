@@ -81,6 +81,10 @@ class CircuitPuzzle_Scene
         @sprites["cursor"].y = value * 64
     end
 
+    def updateComponentState(componentIndex,state)
+        componentSprites[componentIndex].src_rect.y = state * 12
+    end
+
     # End the scene here
     def endScene
         pbFadeOutAndHide(@sprites) { update }
@@ -96,14 +100,48 @@ class CircuitPuzzle_Scene
     end
 end
 
+class CircuitComponent
+    attr_reader :componentID
+    attr_accessor :state
+    attr_reader :x
+    attr_reader :y
+
+    def initialize(componentID,x,y)
+        @x = x
+        @y = y
+        componentDefinition = CIRCUIT_COMPONENTS[componentID]
+        @state = 0
+        @legalStates = componentDefinition[:states]
+    end
+
+    def cycleState
+        @state += 1
+        @state = 0 if @state >= @legalStates
+    end
+end
+
 class CircuitPuzzle_Screen
     def initialize(scene,circuitDefinition)
         @scene = scene
         @circuitDefinition = circuitDefinition
+        @components = []
+        @cursorX = 0
+        @cursorY = 0
     end
     
     def startPuzzle
         @scene.addCircuitComponents(@circuitDefinition)
+
+        @circuitDefinition[:interactables].each do |circuitComponentDefinition|
+            componentID = circuitComponentDefinition[0]
+            componentX = circuitComponentDefinition[1]
+            componentY = circuitComponentDefinition[2]
+            defaultState = circuitComponentDefinition[3]
+
+            newComponent = CircuitComponent.new(componentID,componentX,componentY)
+            newComponent.state = defaultState || 0
+            @components.push(newComponent)
+        end
 
         @currentState = 0
         loop do
@@ -114,36 +152,56 @@ class CircuitPuzzle_Screen
                 endScene
                 pbPlayCloseMenuSE
                 return @currentState
+            elsif Input.trigger?(Input::USE)
+                if cursorInteract
+                    pbPlayDecisionSE
+                else
+                    pbPlayBuzzerSE
+                end
             elsif Input.trigger?(Input::UP)
                 if @scene.cursorY <= 0
                     pbPlayBuzzerSE
                     next
                 end
-                @scene.cursorY -= 1
+                @cursorY -= 1
                 pbPlayCursorSE
             elsif Input.trigger?(Input::DOWN)
                 if @scene.cursorY >= 5
                     pbPlayBuzzerSE
                     next
                 end
-                @scene.cursorY += 1
+                @cursorY += 1
                 pbPlayCursorSE
             elsif Input.trigger?(Input::LEFT)
                 if @scene.cursorX <= 0
                     pbPlayBuzzerSE
                     next
                 end
-                @scene.cursorX -= 1
+                @cursorX -= 1
                 pbPlayCursorSE
             elsif Input.trigger?(Input::RIGHT)
                 if @scene.cursorX >= 7
                     pbPlayBuzzerSE
                     next
                 end
-                @scene.cursorX += 1
+                @cursorX += 1
                 pbPlayCursorSE
             end
+
+            @scene.cursorX = @cursorX
+            @scene.cursorY = @cursorY
         end
+    end
+
+    def cursorInteract
+        @components.each_with_index do |component,index|
+            next unless component.x == @cursorX
+            next unless component.y == @cursorY
+            component.cycleState
+            @scene.updateComponentState(index,component.state)
+            return true
+        end
+        return false
     end
 
     def endScene
