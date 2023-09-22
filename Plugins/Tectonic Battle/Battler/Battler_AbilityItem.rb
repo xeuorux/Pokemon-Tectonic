@@ -290,7 +290,7 @@ class PokeBattle_Battler
             applyEffect(:PickupUse, @battle.nextPickupUse)
             if itemData.is_berry?
                 applyEffect(:CudChew, 2)
-                applyEffect(:CudChewItem, item)
+                applyEffect(:CudChewItem, item) if hasActiveAbility?(:CUDCHEW)
             end
         end
         setBelched if belch && itemData.is_berry?
