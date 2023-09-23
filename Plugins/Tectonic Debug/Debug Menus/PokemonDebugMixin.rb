@@ -42,3 +42,7 @@
   class PokemonDebugPartyScreen
     include PokemonDebugMixin
   end
+
+  class TilingCardsPokemonMenu_Scene < TilingCardsMenu_Scene
+    include PokemonDebugMixin
+  end
