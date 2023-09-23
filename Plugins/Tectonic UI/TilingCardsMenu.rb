@@ -146,7 +146,7 @@ class TilingCardsMenu_Scene
 		@tiles.values.each do |tile|
 			tile.bitmap.dispose
 		end
-		#pbDisposeSpriteHash(@sprites)
+		pbDisposeSpriteHash(@sprites)
 		@buttonNameOverlay.dispose
 		@viewport.dispose
 		@tileBitmap.dispose

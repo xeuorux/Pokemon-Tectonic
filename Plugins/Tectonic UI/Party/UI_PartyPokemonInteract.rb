@@ -35,7 +35,7 @@ class TilingCardsPokemonMenu_Scene < TilingCardsMenu_Scene
 			:SWITCH => {
 				:label => inPokestate? ? _INTL("Set Down") : _INTL("Switch"),
 				:active_proc => Proc.new {
-					inPokestate? ? canEditTeam : @party.length > 1
+					inPokestate? ? @party.length > 1 : canEditTeam
 				},
 				:press_proc => Proc.new { |scene|
 					if 	inPokestate?
