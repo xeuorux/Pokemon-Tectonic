@@ -229,18 +229,18 @@ class TilingCardsPokemonMenu_Scene < TilingCardsMenu_Scene
 			currentName = @pkmn.name
 			pbTextEntry("#{currentName}'s nickname?",0,10,5)
 			if pbGet(5)=="" || pbGet(5)==currentName
-			@pkmn.name = currentName
+				@pkmn.name = currentName
 			else
-			@pkmn.name = pbGet(5)
+				@pkmn.name = pbGet(5)
 			return true
 			end
 		elsif cmdEvolve >= 0 && modifyCommand == cmdEvolve
 			pbFadeOutInWithMusic do
-			evo = PokemonEvolutionScene.new
-			evo.pbStartScreen(@pkmn, newspecies)
-			evo.pbEvolution
-			evo.pbEndScreen
-			scene.pbRefresh
+				evo = PokemonEvolutionScene.new
+				evo.pbStartScreen(@pkmn, newspecies)
+				evo.pbEvolution
+				evo.pbEndScreen
+				@summaryScene.pbRefresh
 			end
 			return true
 		elsif cmdStyle >= 0 && modifyCommand == cmdStyle
