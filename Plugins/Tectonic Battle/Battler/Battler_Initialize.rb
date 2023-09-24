@@ -102,6 +102,10 @@ class PokeBattle_Battler
         @dmgResist = 0
     end
 
+    def dummy?
+        return @dummy
+    end
+
     def pbInitPokemon(pkmn, idxParty)
         raise _INTL("An egg can't be an active Pokémon.") if pkmn.egg?
         @name         = pkmn.name
