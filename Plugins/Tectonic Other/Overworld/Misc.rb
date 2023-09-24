@@ -53,7 +53,7 @@ def pbFacingTile(direction=nil,event=nil)
   end
   
   # Returns whether event is able to walk up to the player.
-  def pbEventCanReachPlayer?(event, player, distance)
+  def pbEventCanReachPlayer?(event, player, distance, ignoreCollission = false)
     return false if !pbEventFacesPlayer?(event, player, distance)
     delta_x = (event.direction == 6) ? 1 : (event.direction == 4) ? -1 : 0
     delta_y = (event.direction == 2) ? 1 : (event.direction == 8) ? -1 : 0
@@ -67,7 +67,7 @@ def pbFacingTile(direction=nil,event=nil)
     when 8   # Up
       real_distance = event.y - event.height - player.y
     end
-    if real_distance > 0
+    if real_distance > 0 && !ignoreCollission
       real_distance.times do |i|
         return false if !event.can_move_from_coordinate?(event.x + i * delta_x, event.y + i * delta_y, event.direction)
       end
