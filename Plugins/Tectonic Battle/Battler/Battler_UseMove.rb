@@ -744,7 +744,7 @@ user.pbThis))
     # Attack a single target
     #=============================================================================
     def pbProcessMoveHit(move, user, targets, hitNum, skipAccuracyCheck, fastHitAnimation = false)
-        return false if user.fainted?
+        return false if user.fainted? && !user.dummy?
         # For two-turn attacks being used in a single turn
         move.pbInitialEffect(user, targets, hitNum)
         numTargets = 0 # Number of targets that are affected by this hit
