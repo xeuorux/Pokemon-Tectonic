@@ -350,38 +350,24 @@ def fossilSell()
 	)
 end
 
-def eastEndExclusives(postTourney = false)
-	stock = %i[
-		CHOICEBAND CHOICESPECS CHOICESCARF
-		LEFTOVERS
-		ASSAULTVEST STRIKEVEST
-		LIFEORB
-		ROOMSERVICE THROATSPRAY WHETSTONE
-		ROCKYHELMET HIVISJACKET
-	]
-
-	postTourneyStock = %i[
+def eastEndExclusives
+	exclusiveItemsStock = %i[
+		DYNAMITESTICK
 		ORIGINORE
 		GRASSTOKEN WATERTOKEN FIRETOKEN
 		DIAMONDTIARA
 		RUSTEDSHIELD RUSTEDSWORD
 		REINSOFUNITY
 	]
-	stock = postTourneyStock.concat(stock) if postTourney
 
 	setPrice(:RUSTEDSWORD,20_000)
 	setPrice(:RUSTEDSHIELD,20_000)
 	setPrice(:REINSOFUNITY,20_000)
-
-	if postTourney
-		message = _INTL("Ohoh! I'm honored that you would pay my store a visit, champion.")
-	else
-		message = _INTL("Welcome, trainer. I shall give you limited access to my stock.")
-	end
-
+	setPrice(:DYNAMITESTICK,5_000)
+	
 	pbPokemonMart(
-		stock,
-		message,
+		exclusiveItemsStock,
+		_INTL("Ohoh! I'm honored that you would pay my store a visit, champion."),
 		!CAN_SELL_IN_VENDORS
 	)
 end
@@ -499,12 +485,6 @@ def naturesGallery
 		LIGHTCLAY
 		FLOATSTONE
 		BIGROOT
-		AGILITYHERB STRENGTHHERB INTELLECTHERB
-		WHITEHERB BLACKHERB
-		POWERHERB ENERGYHERB
-		SKILLHERB LUCKHERB
-		MIRRORHERB PARADOXHERB
-		MENTALHERB
 		LUCKYEGG
 		CRYSTALVEIL
 		GALARICAWREATH
@@ -545,6 +525,23 @@ def heldItemShop
 	pbPokemonMart(
 		stock,
 		_INTL("Welcome to Emma's Empolorium! What're you looking for today?"),
+		!CAN_SELL_IN_VENDORS
+	)
+end
+
+def advancedHeldItemsShop
+	advancedHeldItemStock = %i[
+		CHOICEBAND CHOICESPECS CHOICESCARF
+		LEFTOVERS
+		ASSAULTVEST STRIKEVEST
+		LIFEORB
+		ROOMSERVICE THROATSPRAY WHETSTONE
+		ROCKYHELMET HIVISJACKET
+	]
+
+	pbPokemonMart(
+		advancedHeldItemStock,
+		_INTL("I've got the lion's share of powerful items. Buy now!"),
 		!CAN_SELL_IN_VENDORS
 	)
 end
@@ -728,6 +725,23 @@ def expCandyVendor
 		!CAN_SELL_IN_VENDORS
 	)
 end
+
+def herbVendor
+	herbStock = %i[
+		AGILITYHERB STRENGTHHERB INTELLECTHERB
+		WHITEHERB BLACKHERB
+		POWERHERB ENERGYHERB
+		SKILLHERB LUCKHERB
+		MIRRORHERB PARADOXHERB
+		MENTALHERB
+	]
+	pbPokemonMart(
+		herbStock,
+		_INTL("Name's Herbert. Care for any herbs?"),
+		!CAN_SELL_IN_VENDORS
+	)
+end
+
 
 ######################################################
 # Minor food vendors

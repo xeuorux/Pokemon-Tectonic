@@ -53,12 +53,12 @@
 52,POWERLOCK,Power Lock,Power Locks,5,4000,"A held item. In battles, it sets the holder's base Attack stat to 120.",0,0,0
 53,ENERGYLOCK,Energy Lock,Energy Locks,5,4000,"A held item. In battles, it sets the holder's base Sp. Atk stat to 120.",0,0,0
 54,FLOATSTONE,Float Stone,Float Stones,5,4000,"A very light stone. It reduces the weight of a Pokémon when held.",0,0,0
-55,ASSAULTVEST,Assault Vest,Assault Vests,5,10000,"An item to be held by a Pokémon. It raises Sp. Def by 50% but prevents the use of status moves.",0,0,0
-56,STRIKEVEST,Strike Vest,Strike Vests,5,10000,"An item to be held by a Pokémon. It raises Defense by 50% but prevents the use of status moves.",0,0,0
+55,ASSAULTVEST,Assault Vest,Assault Vests,5,8000,"An item to be held by a Pokémon. It raises Sp. Def by 50% but prevents the use of status moves.",0,0,0
+56,STRIKEVEST,Strike Vest,Strike Vests,5,8000,"An item to be held by a Pokémon. It raises Defense by 50% but prevents the use of status moves.",0,0,0
 57,WEAKNESSPOLICY,Weakness Policy,Weakness Policies,5,3000,"An item to be held by a Pokémon. Its Attack and Sp. Atk raise by four steps if hit by a move it's weak to.",0,0,0
 58,ADRENALINEORB,Adrenaline Orb,Adrenaline Orbs,5,4000,"When held, it boosts Speed by two steps when intimidated, fascinated, or frustrated once per battle.",0,0,0
-59,ROCKYHELMET,Rocky Helmet,Rocky Helmets,5,4000,"Damages attackers for 1/6th of their HP when they hit the holder with physical attacks.",0,0,0
-60,HIVISJACKET,Hi-Viz Jacket,Hi-Viz Jackets,5,4000,"Damages attackers for 1/6th of their HP when they hit the holder with special attacks.",0,0,0
+59,ROCKYHELMET,Rocky Helmet,Rocky Helmets,5,6000,"Damages attackers for 1/6th of their HP when they hit the holder with physical attacks.",0,0,0
+60,HIVISJACKET,Hi-Viz Jacket,Hi-Viz Jackets,5,6000,"Damages attackers for 1/6th of their HP when they hit the holder with special attacks.",0,0,0
 61,EJECTBUTTON,Eject Button,Eject Buttons,5,4000,"If the holder is hit by an attack, it will switch with another Pokémon in your party.",0,0,0
 62,REDCARD,Red Card,Red Cards,5,4000,"A card with a mysterious power. When the holder is struck by a foe, the attacker is removed from battle.",0,0,0
 63,SHEDSHELL,Shed Shell,Shed Shells,5,4000,"An item to be held by a Pokémon. This discarded carapace lets the holder switch out of battle without fail.",0,0,0
@@ -67,9 +67,9 @@
 66,AMULETCOIN,Amulet Coin,Amulet Coins,5,10000,"An item to be held by a Pokémon. It doubles a battle's prize money if the holding Pokémon joins in.",0,0,0
 67,SOOTHEBELL,Soothe Bell,Soothe Bells,5,4000,"An item to be held by a Pokémon. The comforting chime of this bell makes it gain happiness twice as fast.",0,0,0
 68,CLEANSETAG,Cleanse Tag,Cleanse Tags,5,5000,"An item to be held by a Pokémon. It prevents wild Pokémon encounters if the holder is the first one in the party.",0,0,0
-69,CHOICEBAND,Choice Band,Choice Bands,5,10000,"Held item which ups Attack by 40%, but allows the use of only one move.",0,0,0
-70,CHOICESPECS,Choice Specs,Choice Specs,5,10000,"Held item which ups Sp. Atk by 40%, but allows the use of only one move.",0,0,0
-71,CHOICESCARF,Choice Scarf,Choice Scarves,5,10000,"Held item which boosts Speed by 40% but allows the use of only one move.",0,0,0
+69,CHOICEBAND,Choice Band,Choice Bands,5,8000,"Held item which ups Attack by 40%, but allows the use of only one move.",0,0,0
+70,CHOICESPECS,Choice Specs,Choice Specs,5,8000,"Held item which ups Sp. Atk by 40%, but allows the use of only one move.",0,0,0
+71,CHOICESCARF,Choice Scarf,Choice Scarves,5,8000,"Held item which boosts Speed by 40% but allows the use of only one move.",0,0,0
 72,HEATROCK,Heat Rock,Heat Rocks,5,4000,"A Pokémon held item. When the holder summons sunshine, it lasts twice as long.",0,0,0
 73,DAMPROCK,Damp Rock,Damp Rocks,5,4000,"A Pokémon held item. When the holder summons rain, it lasts twice as long.",0,0,0
 74,SMOOTHROCK,Smooth Rock,Smooth Rocks,5,4000,"A Pokémon held item. When the holder summons a sandstorm, it lasts twice as long.",0,0,0
@@ -83,7 +83,7 @@
 82,LOADEDDICE,Loaded Dice,Loaded Dices,5,4000,"An item to be held by a Pokémon. It makes multi-hit attacks hit high more consistently.",0,0,0
 83,BIGROOT,Big Root,Big Roots,5,4000,"A held item. The holder recovers 30% more HP from draining moves, Ingrain, Aqua Ring, and leech.",0,0,0
 84,BLACKSLUDGE,Black Sludge,Black Sludges,5,4000,"A held item that gradually restores the HP of Poison-type Pokémon. It inflicts damage on all other types.",0,0,0
-85,LEFTOVERS,Leftovers,Leftovers,5,5000,"A held item. The holder's HP is restored by 1/16th at the end of each turn.",0,0,0
+85,LEFTOVERS,Leftovers,Leftovers,5,8000,"A held item. The holder's HP is restored by 1/16th at the end of each turn.",0,0,0
 86,SHELLBELL,Shell Bell,Shell Bells,5,4000,"An item to be held by a Pokémon. The holder restores 1/6th HP of the damage it deals with moves.",0,0,0
 87,MENTALHERB,Mental Herb,Mental Herbs,5,4000,"An item to be held by a Pokémon. It snaps the holder out of a variety of mental warping effects.",0,0,0
 88,WHITEHERB,White Herb,White Herbs,5,4000,"An item to be held by a Pokémon. It restores any lowered stat in battle.",0,0,0

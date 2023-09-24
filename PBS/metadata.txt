@@ -1878,6 +1878,12 @@ Bicycle = true
 MapPosition = 0,5,4
 BattleBack = rocky
 #-------------------------------
+[310]
+# Old Lab
+Outdoor = false
+ShowArea = false
+Bicycle = false
+#-------------------------------
 [315]
 # Uplifted Abysm
 Outdoor = false
@@ -2503,3 +2509,9 @@ Outdoor = false
 ShowArea = false
 Bicycle = false
 HealingSpot = 182,19,29
+#-------------------------------
+[423]
+# Herbert's Herbs
+Outdoor = false
+ShowArea = false
+Bicycle = false
