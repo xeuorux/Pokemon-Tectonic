@@ -2,6 +2,7 @@ def circuitPuzzle(circuitPuzzleID)
     circuitDefinition = CIRCUIT_PUZZLES[circuitPuzzleID]
     if circuitDefinition
         circuitBaseGraphic = circuitDefinition[:base_graphic]
+        pbSEPlay("Circuit puzzle load")
         pbFadeOutIn {
             scene = CircuitPuzzle_Scene.new(circuitBaseGraphic)
             screen = CircuitPuzzle_Screen.new(scene,circuitDefinition)
@@ -198,6 +199,7 @@ class CircuitPuzzle_Screen
             next unless component.x == @cursorX
             next unless component.y == @cursorY
             component.cycleState
+            pbSEPlay("Anim/Paralyze1")
             @scene.updateComponentState(index,component.state)
             return true
         end
