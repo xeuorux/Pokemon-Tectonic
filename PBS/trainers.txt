@@ -2106,33 +2106,42 @@ Pokemon = MANTINE,40
 #-------------------------------
 [TRAINER_Zain,Zain]
 Policies = ZAIN,NO_PERFECT
-Pokemon = LIEPARD,43
+Pokemon = LIEPARD,45
     Moves = STAREDOWN,SCAM,TAUNT,KNOCKOFF
     AbilityIndex = 0 # Dauntless
-    Item = NORMALGEM
-Pokemon = HARIYAMA,43
-    Moves = BULKUP,BRICKBREAK,FAKEOUT,KNOCKOFF
+    Item = FOCUSSASH
+    EV = 10,20,0,20,20,0
+Pokemon = HARIYAMA,45
+    Moves = ROCKSLIDE,BRICKBREAK,BULLETPUNCH,KNOCKOFF
     AbilityIndex = 1 # Fighting Vigor
     Item = ASSAULTVEST
-Pokemon = FROSMOTH,44
-    Moves = BLIZZARD,SILVERWIND,BUGBUZZ,DAZZLINGGLEAM
-    AbilityIndex = 1 # Bitter
-Pokemon = DONPHAN,43
-    Moves = STEAMROLLER,EARTHQUAKE,PROTECT,THUNDERFANG
+    EV = 10,20,10,0,20,10
+Pokemon = FROSMOTH,45
+    Moves = DRAININGCHILL,CHILL,BUGBUZZ,DAZZLINGGLEAM
+    AbilityIndex = 0 # Ice Scales
+    Item = HEAVYDUTYBOOTS
+    EV = 20,20,0,0,20,10
+Pokemon = DONPHAN,45
+    Moves = STEAMROLLER,EARTHQUAKE,ICESHARD,THUNDERFANG
     AbilityIndex = 1 # Burn Out
     Item = SHELLBELL
-Pokemon = SERPERIOR,43
+    EV = 0,20,20,0,20,10
+Pokemon = SERPERIOR,45
     Moves = GALLINGSPIT,AUTUMNBLAST,SYNTHESIS,PETRIFY
     AbilityIndex = 1 # Eccentric
-    Item = BIGROOT
+    Item = LEFTOVERS
+    EV = 20,10,0,20,10,0
 #-------------------------------
 [TRAINER_Zain,Zain,1]
 ExtendsVersion = 0
 Policies = CURSE_SUBSTITUTED
-Pokemon = EMPOLEON,43
-    Moves = STEELWING,SWORDSDANCE,LIQUIDATION,AQUAJET
+Pokemon = LIEPARD,45
+    Item = DARKGEM
+Pokemon = EMPOLEON,45
+    Moves = SLAY,SWORDSDANCE,LIQUIDATION,AQUAJET
     AbilityIndex = 0 # Imperious
     Item = SALACBERRY
+    EV = 0,20,10,20,20,0
 #-------------------------------
 [LEADER_Noel,Noel]
 Policies = NOEL,NO_PERFECT
