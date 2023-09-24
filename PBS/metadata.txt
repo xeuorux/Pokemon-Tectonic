@@ -2510,6 +2510,12 @@ ShowArea = false
 Bicycle = false
 HealingSpot = 182,19,29
 #-------------------------------
+[422]
+# Leo's Elite Items
+Outdoor = false
+ShowArea = false
+Bicycle = false
+#-------------------------------
 [423]
 # Herbert's Herbs
 Outdoor = false
