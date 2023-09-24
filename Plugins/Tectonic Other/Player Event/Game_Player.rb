@@ -99,7 +99,6 @@ class Game_Player < Game_Character
         next if !event.name[/trainer\((\d+)\)/i]
         distance = $~[1].to_i
         ignoreCollission = event.name[/distanttrainer/i]
-        echoln(ignoreCollission)
         # If event coordinates and triggers are consistent
         if pbEventCanReachPlayer?(event,self,distance,ignoreCollission) && triggers.include?(event.trigger)
           # If starting determinant is front event (other than jumping)
@@ -355,7 +354,6 @@ class Game_Player < Game_Character
             if event.name[/trainer\((\d+)\)/i]
                 distance = $~[1].to_i
                 ignoreCollission = event.name[/distanttrainer/i]
-                echoln(ignoreCollission)
                 next if !pbEventCanReachPlayer?(event,self,distance,ignoreCollission)
             elsif event.name[/counter\((\d+)\)/i]
                 distance = $~[1].to_i
