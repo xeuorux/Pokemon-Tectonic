@@ -2,11 +2,6 @@
 #
 #===============================================================================
 class TilingCardsMenu_Scene
-    BUTTON_COLUMN_LEFT_X = 124
-	BUTTON_COLUMN_RIGHT_X = 266
-    BUTTON_STARTING_Y = 36
-	BUTTON_ROW_HEIGHT = 80
-
 	INACTIVE_BUTTON_COLOR = Color.new(80, 80, 80, 80)
 
 	BASE_TEXT_COLOR         = Color.new(60,60,60)
@@ -14,6 +9,18 @@ class TilingCardsMenu_Scene
 
 	INACTIVE_BASE_TEXT_COLOR = Color.new(105,105,105)
 	INACTIVE_SHADOW_TEXT_COLOR = Color.new(130,130,130)
+
+	attr_accessor :xOffset
+	attr_accessor :yOffset
+
+	def initialize
+		@xOffset = 124
+		@yOffset = 40
+		@buttonRowHeight = 80
+		@buttonColumnWidth = 142
+
+		@columnCount = 2
+	end
 
 	def cursorFileLocation
 		return _INTL("Graphics/Pictures/Pause/cursor_pause")
@@ -44,8 +51,6 @@ class TilingCardsMenu_Scene
 			# 	},
 			# },
 		}
-		@columnLeft = BUTTON_COLUMN_LEFT_X
-		@columnRight = BUTTON_COLUMN_RIGHT_X
 	end
 	
 	def pbStartScene
@@ -96,8 +101,6 @@ class TilingCardsMenu_Scene
 
 		@buttonSelectionIndex = defaultCursorPosition
 
-		pbSEPlay("GUI menu open")
-
 		drawButtons
 	end
 
@@ -106,17 +109,17 @@ class TilingCardsMenu_Scene
 	def xFromIndex(index)
 		info = @cardButtons[@cardButtons.keys[index]]
 		if info[:position]
-			return info[:position][0]
+			return @xOffset + info[:position][0]
 		end
-		return index.even? ? @columnLeft : @columnRight
+		return @xOffset + (index % @columnCount) * @buttonColumnWidth
 	end
 
 	def yFromIndex(index)
 		info = @cardButtons[@cardButtons.keys[index]]
 		if info[:position]
-			return info[:position][1]
+			return @yOffset + info[:position][1]
 		end
-		return BUTTON_STARTING_Y + (index / 2) * BUTTON_ROW_HEIGHT
+		return @yOffset + (index / @columnCount) * @buttonRowHeight
 	end
   
 	def pbShowInfo(text)
@@ -163,8 +166,8 @@ class TilingCardsMenu_Scene
 		buttonNamePositions = []
 		@cardButtons.keys.each_with_index do |buttonID, index|
 			label = @cardButtons[buttonID][:label] || "ERROR"
-			x = xFromIndex(index)+8
-			y = yFromIndex(index)+8
+			x = xFromIndex(index) + 8
+			y = yFromIndex(index) + @tileBitmap.bitmap.height / 2 - 20
 			if buttonActive?(buttonID)
 				baseColor = BASE_TEXT_COLOR
 				shadowColor = SHADOW_TEXT_COLOR
@@ -207,7 +210,6 @@ class TilingCardsMenu_Scene
 			Graphics.update
 			Input.update
 			prevButtonSelectionIndex = @buttonSelectionIndex
-			onDebug = @buttonSelectionIndex == @cardButtons.keys.index(:DEBUG)
 			if Input.trigger?(Input::BACK)
 				closeMenu = true
 			elsif Input.trigger?(Input::USE)
@@ -217,35 +219,30 @@ class TilingCardsMenu_Scene
 				end
 				closeMenu = true if pressButton(@buttonSelectionIndex)
 			elsif Input.trigger?(Input::UP)
-				@buttonSelectionIndex -= 2 unless onDebug
+				@buttonSelectionIndex -= @columnCount
 			elsif Input.trigger?(Input::DOWN)
-				@buttonSelectionIndex += 2 unless onDebug
+				@buttonSelectionIndex += @columnCount
 			elsif Input.trigger?(Input::RIGHT)
-				if $DEBUG && onDebug
-					@buttonSelectionIndex = 0
-				elsif !onDebug
-					if @buttonSelectionIndex.even?
-						@buttonSelectionIndex += 1
-					else
-						@buttonSelectionIndex -= 1
-					end
+				if (@buttonSelectionIndex % @columnCount) < @columnCount - 1
+					@buttonSelectionIndex += 1
+				else
+					@buttonSelectionIndex -= (@columnCount-1)
 				end
 			elsif Input.trigger?(Input::LEFT)
-				if @buttonSelectionIndex == 0 && $DEBUG
-					@buttonSelectionIndex = @cardButtons.keys.index(:DEBUG)
-				elsif !onDebug
-					if @buttonSelectionIndex.even?
-						@buttonSelectionIndex += 1
-					else
-						@buttonSelectionIndex -= 1
-					end
+				if (@buttonSelectionIndex % @columnCount) > 0
+					@buttonSelectionIndex -= 1
+				else
+					@buttonSelectionIndex += (@columnCount - 1)
 				end
 			end
 
-			if @buttonSelectionIndex >= @cardButtons.keys.length
-				@buttonSelectionIndex -= @cardButtons.keys.length
+			buttonCount = @cardButtons.keys.length
+			if @buttonSelectionIndex >= buttonCount
+				@buttonSelectionIndex -= buttonCount + 1
+				@buttonSelectionIndex += 1 while @buttonSelectionIndex < 0
 			elsif @buttonSelectionIndex < 0
-				@buttonSelectionIndex += @cardButtons.keys.length
+				@buttonSelectionIndex += buttonCount + 1
+				@buttonSelectionIndex -= 1 while @buttonSelectionIndex >= buttonCount
 			end
 
 			if closeMenu

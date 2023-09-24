@@ -2,11 +2,6 @@
 #
 #===============================================================================
 class TilingCardsPauseMenu_Scene < TilingCardsMenu_Scene
-	BUTTON_COLUMN_LEFT_X = 124
-	BUTTON_COLUMN_RIGHT_X = 266
-	BUTTON_STARTING_Y = 36
-	BUTTON_ROW_HEIGHT = 80
-
 	def initializeMenuButtons
 		super
 		@cardButtons = {
@@ -159,8 +154,8 @@ class TilingCardsPauseMenu_Scene < TilingCardsMenu_Scene
 			},
 		}
 		if $DEBUG
-			@columnLeft += 48
-			@columnRight += 48
+			@yOffset -= 20
+			@buttonRowHeight -= 8
 			@cardButtons[:DEBUG] = {
 				:label => _INTL("Debug"),
 				:press_proc => Proc.new { |scene|
@@ -170,7 +165,6 @@ class TilingCardsPauseMenu_Scene < TilingCardsMenu_Scene
 						scene.drawButtons
 					}
 				},
-				:position => [@columnLeft - 142, BUTTON_STARTING_Y]
 			}
 		end
 	end
@@ -181,6 +175,11 @@ class TilingCardsPauseMenu_Scene < TilingCardsMenu_Scene
 
 	def defaultCursorPosition
 		$PokemonTemp.menuLastChoice
+	end
+
+	def pbStartScene
+		super
+		pbSEPlay("GUI menu open")
 	end
 end
   

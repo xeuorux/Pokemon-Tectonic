@@ -1,6 +1,4 @@
 class TilingCardsPokemonMenu_Scene < TilingCardsMenu_Scene
-	BUTTON_STARTING_Y = 60
-
     def cursorFileLocation
 		return _INTL("Graphics/Pictures/Party/cursor_pokemon")
 	end
@@ -19,17 +17,27 @@ class TilingCardsPokemonMenu_Scene < TilingCardsMenu_Scene
 		@pkmn = party[pkmnid]
 		@party = party
 		@summaryScene = summaryScene
+		@buttonRowHeight = 68
     end
   
 	def initializeMenuButtons
 		super
       	canEditTeam = teamEditingAllowed?()
-  
+
         @cardButtons = {
 			:SUMMARY => {
 				:label => _INTL("Summary"),
 				:press_proc => Proc.new { |scene|
 					@summaryScene.pbSummary(@pkmnid)
+				},
+			},
+			:ITEM => {
+				:label => _INTL("Item"),
+				:active_proc => Proc.new {
+					canEditTeam
+				},
+				:press_proc => Proc.new { |scene|
+					next true if itemCommandMenu
 				},
 			},
 			:SWITCH => {
@@ -54,15 +62,6 @@ class TilingCardsPokemonMenu_Scene < TilingCardsMenu_Scene
 						end
 						next true
 					end
-				},
-			},
-			:ITEM => {
-				:label => _INTL("Item"),
-				:active_proc => Proc.new {
-					canEditTeam
-				},
-				:press_proc => Proc.new { |scene|
-					next true if itemCommandMenu
 				},
 			},
 			:MODIFY => {
@@ -101,6 +100,17 @@ class TilingCardsPokemonMenu_Scene < TilingCardsMenu_Scene
 				},
 			},
       	}
+
+		if $DEBUG
+			@yOffset -= 16
+			@cardButtons[:DEBUG] = {
+				:label => _INTL("Debug"),
+				:press_proc => Proc.new { |scene|
+					pbPokemonDebug(@pkmn,@pkmnid)
+					next true
+				},
+			}
+		end
     end
   
     def inPokestate?
@@ -208,13 +218,11 @@ class TilingCardsPokemonMenu_Scene < TilingCardsMenu_Scene
   
     def modifyCommandMenu
 		commands   = []
-		cmdDebug   = -1
 		cmdRename  = -1
 		cmdEvolve  = -1
 		cmdStyle = -1
 	
 		# Build the commands
-		commands[cmdDebug = commands.length]        = _INTL("Debug") if $DEBUG
 		commands[cmdRename = commands.length]       = _INTL("Rename")
 		commands[cmdStyle = commands.length]        = _INTL("Set Style") if pbHasItem?(:STYLINGKIT)
 		newspecies = @pkmn.check_evolution_on_level_up
@@ -222,10 +230,7 @@ class TilingCardsPokemonMenu_Scene < TilingCardsMenu_Scene
 		commands[commands.length]                   = _INTL("Cancel")
 		
 		modifyCommand = @summaryScene.pbShowCommands(_INTL("Do what with {1}?",@pkmn.name),commands)
-		if cmdDebug >= 0 && modifyCommand == cmdDebug
-			pbPokemonDebug(@pkmn,@pkmnid)
-			return true
-		elsif cmdRename >= 0 && modifyCommand == cmdRename
+		if cmdRename >= 0 && modifyCommand == cmdRename
 			currentName = @pkmn.name
 			pbTextEntry("#{currentName}'s nickname?",0,10,5)
 			if pbGet(5)=="" || pbGet(5)==currentName
@@ -259,22 +264,6 @@ class TilingCardsPokemonMenu_Scene < TilingCardsMenu_Scene
 			@summaryScene.pbSwitchEnd(oldid,newid)
 		end
     end
-  
-    def xFromIndex(index)
-		info = @cardButtons[@cardButtons.keys[index]]
-		if info[:position]
-			return info[:position][0]
-		end
-		return index.even? ? @columnLeft : @columnRight
-	end
-  
-	def yFromIndex(index)
-		info = @cardButtons[@cardButtons.keys[index]]
-		if info[:position]
-			return info[:position][1]
-		end
-		return BUTTON_STARTING_Y + (index / 2) * BUTTON_ROW_HEIGHT
-	end
   
 	# Interface methods
 	def pbUpdate

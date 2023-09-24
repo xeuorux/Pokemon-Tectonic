@@ -1131,6 +1131,8 @@ end
             next
           end         
           sscene = TilingCardsPokemonMenu_Scene.new(pkmnid,@party,@scene)
+          sscene.xOffset = pkmnid.odd? ? 24 : 204
+          sscene.yOffset = 64
           sscreen = TilingCardsPokemonMenu.new(sscene)
           sscreen.pbStartPokemonMenu
         end
