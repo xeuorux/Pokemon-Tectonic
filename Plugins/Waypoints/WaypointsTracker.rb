@@ -77,18 +77,18 @@ class WaypointsTracker
 		@activeWayPoints = {} if @activeWayPoints.nil?
 		
 		if alternateMessage
-			pbMessage(_INTL("#{WAYPOINT_ACCESS_MESSAGE_ALTERNATE}"))
+			pbMessage(_INTL("#{waypointAccessMessageAlternative}"))
 		else
-			pbMessage(_INTL("#{WAYPOINT_ACCESS_MESSAGE}"))
+			pbMessage(_INTL("#{waypointAccessMessage}"))
 		end
 		
 		unless @activeWayPoints.has_key?(waypointName)
-			pbMessage(_INTL("#{WAYPOINT_REGISTER_MESSAGE}"))
+			pbMessage(_INTL("#{waypointRegisterMessage}"))
 			addWaypoint(waypointName,waypointEvent)
 		end
 		
 		if @activeWayPoints.length <= 1
-			pbMessage(_INTL("#{WAYPOINT_UNABLE_MESSAGE}"))
+			pbMessage(_INTL("#{waypointUnableMessage}"))
 		else
 			warpByWaypoints
 		end
@@ -96,7 +96,7 @@ class WaypointsTracker
 
 	def warpByWaypoints(skipMessage = false)
 		if @activeWayPoints.empty?
-			pbMessage(_INTL("#{NO_WAYPOINTS_MESSAGE}"))
+			pbMessage(_INTL("#{noWaypointsMessage}"))
 			return
 		end
 
@@ -109,13 +109,13 @@ class WaypointsTracker
 			names.each do |name|
 				commands.push(_INTL(name))
 			end
-			chosen = pbMessage(_INTL("#{WAYPOINT_CHOOSE_MESSAGE}"),commands,0)
+			chosen = pbMessage(_INTL("#{waypointChooseMessage}"),commands,0)
 			if chosen != 0
 				chosenKey = names[chosen-1]
 				chosenLocation = @activeWayPoints[chosenKey]
 			end
 		else
-			pbMessage(_INTL("#{WAYPOINT_CHOOSE_MESSAGE}")) unless skipMessage
+			pbMessage(_INTL("#{waypointChooseMessage}")) unless skipMessage
 			chosenKey = nil
 			pbFadeOutIn {
 				scene = PokemonRegionMap_Scene.new(-1,false)
