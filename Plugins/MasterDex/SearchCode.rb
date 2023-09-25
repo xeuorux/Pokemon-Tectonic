@@ -1,6 +1,6 @@
 class PokemonPokedex_Scene
     def searchBySpeciesName
-        nameInput = pbEnterText("Search species...", 0, 12)
+        nameInput = pbEnterText(_INTL("Search species..."), 0, 12)
         if nameInput && nameInput != ""
             reversed = nameInput[0] == "-"
             nameInput = nameInput[1..-1] if reversed
@@ -17,13 +17,13 @@ class PokemonPokedex_Scene
     end
 
     def searchByAbility
-        abilitySearchTypeSelection = pbMessage("Which search?", [_INTL("Name"), _INTL("Description"), _INTL("Cancel")],
+        abilitySearchTypeSelection = pbMessage(_INTL("Which search?"), [_INTL("Name"), _INTL("Description"), _INTL("Cancel")],
 3)
         return if abilitySearchTypeSelection == 2
 
         if abilitySearchTypeSelection == 0
             while true
-                abilityNameInput = pbEnterText("Search abilities...", 0, 20)
+                abilityNameInput = pbEnterText(_INTL("Search abilities..."), 0, 20)
                 if abilityNameInput && abilityNameInput != ""
                     reversed = abilityNameInput[0] == "-"
                     abilityNameInput = abilityNameInput[1..-1] if reversed
@@ -55,7 +55,7 @@ class PokemonPokedex_Scene
                 end
             end
         elsif abilitySearchTypeSelection == 1
-            abilityDescriptionInput = pbEnterText("Search ability desc...", 0, 20)
+            abilityDescriptionInput = pbEnterText(_INTL("Search ability desc..."), 0, 20)
             if abilityDescriptionInput && abilityDescriptionInput != ""
                 reversed = abilityDescriptionInput[0] == "-"
                 abilityDescriptionInput = abilityDescriptionInput[1..-1] if reversed
@@ -83,8 +83,7 @@ class PokemonPokedex_Scene
     end
 
     def searchByMoveLearned
-        learningMethodSelection = pbMessage("Which method?",
-[_INTL("Any"), _INTL("Level Up"), _INTL("By Specific Level"), _INTL("Tutor"), _INTL("Coverage Type"), _INTL("Cancel")], 6)
+        learningMethodSelection = pbMessage(_INTL("Which method?"),[_INTL("Any"), _INTL("Level Up"), _INTL("By Specific Level"), _INTL("Tutor"), _INTL("Coverage Type"), _INTL("Cancel")], 6)
         return if learningMethodSelection == 5
 
         if learningMethodSelection == 2
@@ -148,7 +147,7 @@ class PokemonPokedex_Scene
 
         # All other move searches
         while true
-            moveNameInput = pbEnterText("Move name...", 0, 20)
+            moveNameInput = pbEnterText(_INTL("Move name..."), 0, 20)
             if moveNameInput && moveNameInput != ""
                 reversed = moveNameInput[0] == "-"
                 moveNameInput = moveNameInput[1..-1] if reversed
@@ -222,13 +221,13 @@ class PokemonPokedex_Scene
 
     def searchByType
         selections = [_INTL("Either"), _INTL("Full"), _INTL("Cancel")]
-        learningMethodSelection = pbMessage("Either type or full typing?", selections, selections.length)
+        learningMethodSelection = pbMessage(_INTL("Either type or full typing?"), selections, selections.length)
         return if learningMethodSelection == selections.length - 1
 
         full = learningMethodSelection == 1
 
         while true
-            typesInput = pbEnterText(full ? "Search full typing..." : "Search type...", 0, 100)
+            typesInput = pbEnterText(full ? _INTL("Search full typing...") : _INTL("Search type..."), 0, 100)
             typesInput.downcase!
             if typesInput && typesInput != ""
                 reversed = typesInput[0] == "-"
@@ -284,10 +283,10 @@ class PokemonPokedex_Scene
 
     def searchByEvolutionMethod
         selections = [_INTL("Pre-Evolutions"), _INTL("Evolved Forms"), _INTL("Cancel")]
-        relationSelection = pbMessage("Pre-evolutions, or evolved forms?", selections, selections.length)
+        relationSelection = pbMessage(_INTL("Pre-evolutions, or evolved forms?"), selections, selections.length)
         return if relationSelection == 2
 
-        evoMethodTextInput = pbEnterText("Search method...", 0, 12)
+        evoMethodTextInput = pbEnterText(_INTL("Search method..."), 0, 12)
         if evoMethodTextInput && evoMethodTextInput != ""
             reversed = evoMethodTextInput[0] == "-"
             evoMethodTextInput = evoMethodTextInput[1..-1] if reversed
@@ -313,7 +312,7 @@ class PokemonPokedex_Scene
     end
 
     def searchByAvailableLevel
-        levelTextInput = pbEnterText("Search available by level...", 0, 3)
+        levelTextInput = pbEnterText(_INTL("Search available by level..."), 0, 3)
         if levelTextInput && levelTextInput != ""
             reversed = levelTextInput[0] == "-"
             levelTextInput = levelTextInput[1..-1] if reversed
@@ -335,8 +334,7 @@ class PokemonPokedex_Scene
     end
 
     def searchByCollecting
-        selection = pbMessage("Which search?",
-[_INTL("Starred"), _INTL("Owned"), _INTL("Not Starred"), _INTL("Not Owned"), _INTL("Cancel")], 5)
+        selection = pbMessage(_INTL("Which search?"),[_INTL("Starred"), _INTL("Owned"), _INTL("Not Starred"), _INTL("Not Owned"), _INTL("Cancel")], 5)
         if selection != 4
             dexlist = searchStartingList
 
@@ -362,17 +360,14 @@ class PokemonPokedex_Scene
     end
 
     def searchByStatComparison
-        statSelection = pbMessage("Which stat?", [_INTL("HP"), _INTL("Attack"), _INTL("Defense"),
-                                                  _INTL("Sp. Atk"), _INTL("Sp. Def"), _INTL("Speed"), _INTL("Total"), _INTL("Phys. EHP"), _INTL("Spec. EHP"), _INTL("Cancel"),], 10)
+        statSelection = pbMessage(_INTL("Which stat?"), [_INTL("HP"), _INTL("Attack"), _INTL("Defense"), _INTL("Sp. Atk"), _INTL("Sp. Def"), _INTL("Speed"), _INTL("Total"), _INTL("Phys. EHP"), _INTL("Spec. EHP"), _INTL("Cancel"),], 10)
         return if statSelection == 9
-        comparisonSelection = pbMessage("Which comparison?", [_INTL("Equal to number"),
-                                                              _INTL("Greater than number"), _INTL("Less than number"), _INTL("Equal to stat"),
-                                                              _INTL("Greater than stat"), _INTL("Less than stat"), _INTL("Cancel"),], 7)
+        comparisonSelection = pbMessage(_INTL("Which comparison?"), [_INTL("Equal to number"),_INTL("Greater than number"), _INTL("Less than number"), _INTL("Equal to stat"),_INTL("Greater than stat"), _INTL("Less than stat"), _INTL("Cancel"),], 7)
         return if comparisonSelection == 6
 
         stats = %i[HP ATTACK DEFENSE SPECIAL_ATTACK SPECIAL_DEFENSE SPEED PEHP SEPH]
         if comparisonSelection <= 2
-            statTextInput = pbEnterText("Input value...", 0, 3)
+            statTextInput = pbEnterText(_INTL("Input value..."), 0, 3)
             if statTextInput && statTextInput != ""
                 statIntAttempt = statTextInput.to_i
 
@@ -382,8 +377,7 @@ class PokemonPokedex_Scene
             else
                 return nil
             end
-        elsif statSelectionComparison = pbMessage("Compare to which stat?", [_INTL("HP"), _INTL("Attack"), _INTL("Defense"),
-                                                                             _INTL("Sp. Atk"), _INTL("Sp. Def"), _INTL("Speed"), _INTL("Phys. EHP"), _INTL("Spec. EHP"), _INTL("Cancel"),], 9)
+        elsif statSelectionComparison = pbMessage(_INTL("Compare to which stat?"), [_INTL("HP"), _INTL("Attack"), _INTL("Defense"),_INTL("Sp. Atk"), _INTL("Sp. Def"), _INTL("Speed"), _INTL("Phys. EHP"), _INTL("Spec. EHP"), _INTL("Cancel"),], 9)
             return if statSelectionComparison == 8
 
             comparitorB = stats[statSelectionComparison]
@@ -472,7 +466,7 @@ class PokemonPokedex_Scene
         miscSearches[cmdMultipleForms = miscSearches.length] = _INTL("Multiple Forms")
         miscSearches[cmdInvertList = miscSearches.length] = _INTL("Invert Current")
         miscSearches.push(_INTL("Cancel"))
-        searchSelection = pbMessage("Which search?", miscSearches, miscSearches.length + 1)
+        searchSelection = pbMessage(_INTL("Which search?"), miscSearches, miscSearches.length + 1)
         if cmdCollecting > -1 && searchSelection == cmdCollecting
             return searchByCollecting
         elsif cmdMapFound > -1 && searchSelection == cmdMapFound
@@ -537,7 +531,7 @@ class PokemonPokedex_Scene
             commands.push(getTribeName(tribe.id))
         end
         commands.push(_INTL("Cancel"))
-        command = pbMessage("Which tribe?", commands, commands.length)
+        command = pbMessage(_INTL("Which tribe?"), commands, commands.length)
         return if command == commands.length - 1
 
         chosenTribe = tribes[command]
@@ -560,7 +554,7 @@ class PokemonPokedex_Scene
             commands.push(getTribeName(tribe.id))
         end
         commands.push(_INTL("Cancel"))
-        command = pbMessage("Which tribe?", commands, commands.length)
+        command = pbMessage(_INTL("Which tribe?"), commands, commands.length)
         return if command == commands.length - 1
 
         chosenTribe = tribes[command]
@@ -581,7 +575,7 @@ class PokemonPokedex_Scene
 
     def searchByHasCoverageType
         while true
-            typeInput = pbEnterText("Search type...", 0, 100)
+            typeInput = pbEnterText(_INTL("Search type..."), 0, 100)
             typeInput.downcase!
             next unless typeInput && typeInput != ""
             reversed = typeInput[0] == "-"
@@ -628,7 +622,7 @@ class PokemonPokedex_Scene
     end
 
     def searchBySignatureMove
-        selection = pbMessage("Which search?", [_INTL("Has Signature Move"), _INTL("Doesn't"), _INTL("Cancel")], 3)
+        selection = pbMessage(_INTL("Which search?"), [_INTL("Has Signature Move"), _INTL("Doesn't"), _INTL("Cancel")], 3)
         if selection != 2
             reversed = selection == 1
 
@@ -674,7 +668,7 @@ class PokemonPokedex_Scene
     end
 
     def searchBySignatureAbility
-        selection = pbMessage("Which search?", [_INTL("Has Signature Ability"), _INTL("Doesn't"), _INTL("Cancel")], 3)
+        selection = pbMessage(_INTL("Which search?"), [_INTL("Has Signature Ability"), _INTL("Doesn't"), _INTL("Cancel")], 3)
         if selection != 2
             dexlist = searchStartingList
 
@@ -710,7 +704,7 @@ class PokemonPokedex_Scene
     end
 
     def searchBySignature
-        selection = pbMessage("Which search?", [_INTL("Has Signature"), _INTL("Doesn't"), _INTL("Cancel")], 3)
+        selection = pbMessage(_INTL("Which search?"), [_INTL("Has Signature"), _INTL("Doesn't"), _INTL("Cancel")], 3)
         if selection != 2
             dexlist = searchStartingList
 
@@ -733,7 +727,7 @@ class PokemonPokedex_Scene
     def searchByWildItem
         dexlist = searchStartingList
 
-        wildItemNameTextInput = pbEnterText("Search item name...", 0, 20)
+        wildItemNameTextInput = pbEnterText(_INTL("Search item name..."), 0, 20)
         return if wildItemNameTextInput.blank?
         reversed = wildItemNameTextInput[0] == "-"
         wildItemNameTextInput = wildItemNameTextInput[1..-1] if reversed
@@ -763,7 +757,7 @@ class PokemonPokedex_Scene
     def searchByMapFound
         dexlist = searchStartingList
 
-        mapNameTextInput = pbEnterText("Search map name...", 0, 20)
+        mapNameTextInput = pbEnterText(_INTL("Search map name..."), 0, 20)
         return if mapNameTextInput.blank?
         reversed = mapNameTextInput[0] == "-"
         mapNameTextInput = mapNameTextInput[1..-1] if reversed
@@ -789,7 +783,7 @@ class PokemonPokedex_Scene
     end
 
     def searchByQuarantined
-        selection = pbMessage("Which search?", [_INTL("Quarantined"), _INTL("Not Quarantined"), _INTL("Cancel")], 3)
+        selection = pbMessage(_INTL("Which search?"), [_INTL("Quarantined"), _INTL("Not Quarantined"), _INTL("Cancel")], 3)
         if selection != 2
             dexlist = searchStartingList
 
@@ -827,11 +821,11 @@ class PokemonPokedex_Scene
         commands[commandNoProgressStab = commands.length] = _INTL("No 16-31 Stab")
         commands[commandNoBBStab = commands.length] = _INTL("No 32-44 Stab")
         commands[commandDuplicateMoves = commands.length] = _INTL("Duplicate Moves")
-        selection = pbMessage("Which rulebreakers?", commands, 3)
+        selection = pbMessage(_INTL("Which rulebreakers?"), commands, 3)
         unless selection == 0
             checkedMaxLevel = 70
             if commandMaxLevelUp > -1 && selection == commandMaxLevelUp
-                levelTextInput = pbEnterText("Pick final intended moveset level...", 0, 3)
+                levelTextInput = pbEnterText(_INTL("Pick final intended moveset level..."), 0, 3)
                 if levelTextInput && levelTextInput != ""
                     checkedMaxLevel = levelTextInput.to_i
                     return nil if checkedMaxLevel == 0
@@ -924,7 +918,7 @@ class PokemonPokedex_Scene
     end
 
     def searchByLegendary
-        selection = pbMessage("Which search?", [_INTL("Legendary"), _INTL("Not Legendary"), _INTL("Cancel")], 3)
+        selection = pbMessage(_INTL("Which search?"), [_INTL("Legendary"), _INTL("Not Legendary"), _INTL("Cancel")], 3)
         if selection != 2
             dexlist = searchStartingList
 
@@ -945,7 +939,7 @@ class PokemonPokedex_Scene
 
         generationNumber = 0
         while true
-            generationNumberTextInput = pbEnterText("Search generation number...", 0, 20)
+            generationNumberTextInput = pbEnterText(_INTL("Search generation number..."), 0, 20)
             return if generationNumberTextInput.blank?
             reversed = generationNumberTextInput[0] == "-"
             generationNumberTextInput = generationNumberTextInput[1..-1] if reversed
@@ -983,8 +977,7 @@ class PokemonPokedex_Scene
     end
 
     def searchByTypeMatchup
-        sectionSelection = pbMessage("Which interaction?", [_INTL("Weak To"), _INTL("Resists"),
-                                                            _INTL("Immune To"), _INTL("Neutral To"), _INTL("Has Immunity"), _INTL("Has Hyper Weakness"), _INTL("Cancel"),], 7)
+        sectionSelection = pbMessage(_INTL("Which interaction?"), [_INTL("Weak To"), _INTL("Resists"),_INTL("Immune To"), _INTL("Neutral To"), _INTL("Has Immunity"), _INTL("Has Hyper Weakness"), _INTL("Cancel"),], 7)
         return if sectionSelection == 6
 
         if sectionSelection <= 3
@@ -1019,7 +1012,7 @@ class PokemonPokedex_Scene
 
     def searchByTypeEffectiveness(effectivenessSelection)
         while true
-            typesInput = pbEnterText("Which type(s)?", 0, 100)
+            typesInput = pbEnterText(_INTL("Which type(s)?"), 0, 100)
             typesInput.downcase!
             if typesInput && typesInput != ""
                 typesInputArray = typesInput.split(" ")
@@ -1075,10 +1068,10 @@ class PokemonPokedex_Scene
     end
 
     def sortByStat
-        statSelection = pbMessage("Which stat?", [_INTL("HP"), _INTL("Attack"), _INTL("Defense"),
+        statSelection = pbMessage(_INTL("Which stat?"), [_INTL("HP"), _INTL("Attack"), _INTL("Defense"),
                                                   _INTL("Sp. Atk"), _INTL("Sp. Def"), _INTL("Speed"), _INTL("Total"), _INTL("Phys. EHP"), _INTL("Spec. EHP"), _INTL("Cancel"),], 10)
         return if statSelection == 9
-        sortDirection = pbMessage("Which direction?", [_INTL("Descending"), _INTL("Ascending"), _INTL("Cancel")], 3)
+        sortDirection = pbMessage(_INTL("Which direction?"), [_INTL("Descending"), _INTL("Ascending"), _INTL("Cancel")], 3)
         return if sortDirection == 2
         dexlist = @dexlist
         dexlist.sort_by! do |entry|
@@ -1139,7 +1132,7 @@ class PokemonPokedex_Scene
         selections[cmdSortByMonumentTrainerCount = selections.length] = _INTL("Monument Using (D)") if $DEBUG
         selections[cmdSortByCoverageTypesCount = selections.length] = _INTL("Coverage Count (D)") if $DEBUG
         selections.push(_INTL("Cancel"))
-        selection = pbMessage("Sort by what?", selections, selections.length + 1)
+        selection = pbMessage(_INTL("Sort by what?"), selections, selections.length + 1)
         return if selection >= selections.length - 1
         dexlist = @dexlist
 
