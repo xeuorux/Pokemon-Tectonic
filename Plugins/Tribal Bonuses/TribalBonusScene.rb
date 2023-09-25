@@ -118,7 +118,7 @@ class TribalBonusScene
         overlay = @sprites["overlay"].bitmap
         overlay.clear
 
-        drawFormattedTextEx(overlay, 50, 4, Graphics.width, "<outln2>Tribal Bonus Info</outln2>", @titlebase, @titleshadow, 18)
+        drawFormattedTextEx(overlay, 50, 4, Graphics.width, _INTL("<outln2>Tribal Bonus Info</outln2>"), @titlebase, @titleshadow, 18)
 
         @sprites["scroll_arrow_up"].visible = @offset > 0
         @sprites["scroll_arrow_down"].visible = @offset < @displayText.length - @linesToShow

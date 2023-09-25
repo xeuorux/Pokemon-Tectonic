@@ -160,14 +160,14 @@ def pbListScreenExtra(title,lister,breakOnUse = true)
 	  Input.update
 	  list.update
 	  if list.index != selectedmap
-		lister.refresh(list.index)
-		selectedmap = list.index
+      lister.refresh(list.index)
+      selectedmap = list.index
 	  end
 	  if Input.trigger?(Input::BACK)
-		selectedmap = -1
-		break
+		  selectedmap = -1
+		  break
 	  elsif Input.trigger?(Input::USE) && breakOnUse
-		break
+		  break
 	  end
 	end
 	value = lister.value(selectedmap)
