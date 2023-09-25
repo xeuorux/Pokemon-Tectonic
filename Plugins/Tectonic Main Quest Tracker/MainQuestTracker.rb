@@ -9,13 +9,13 @@ class MainQuestTracker
 	attr_reader :mainQuestState
 	
 	def initialize()
-		@mainQuestState = MAIN_QUEST_STAGES.keys[0]
+		@mainQuestState = getMainQuestStages.keys[0]
 	end
 
 	def setMainQuestStage(newStage)
 		oldStage = @mainQuestState
-		newStage = MAIN_QUEST_STAGES.keys[newStage] if newStage.is_a?(Integer)
-		if !MAIN_QUEST_STAGES.has_key?(newStage)
+		newStage = getMainQuestStages.keys[newStage] if newStage.is_a?(Integer)
+		if !getMainQuestStages.has_key?(newStage)
 			pbMessage("\\wmA recoverable error has occured: #{newStage} is an invalid Main Quest Stage key. The \"What Next?\" will be inaccurate until the next Main Quest update. Please let a programmer know you saw this error, and where.")
 			return
 		end
@@ -28,16 +28,12 @@ class MainQuestTracker
 		return @mainQuestState
 	end
 
-	def getCurrentStageName()
-		return MainQuestTracker.getNiceNameForStageSymbol(@mainQuestState)
+	def getCurrentStageName
+		return _INTL(getMainQuestStages[@mainQuestState][0])
 	end
 
-	def getCurrentStageHelp()
-		return MAIN_QUEST_STAGES[@mainQuestState]
-	end
-
-	def self.getNiceNameForStageSymbol(symbol)
-		return symbol.to_s.downcase.gsub("_"," ").split(/ |\_/).map(&:capitalize).join(" ")
+	def getCurrentStageHelp
+		return _INTL(getMainQuestStages[@mainQuestState][1])
 	end
 end
 
