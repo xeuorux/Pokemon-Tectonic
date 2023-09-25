@@ -784,7 +784,9 @@ BattleHandlers::AbilityOnSwitchIn.add(:COTTONDECOY,
           score += getHPLossEffectScore(battler, 0.25)
           next score
       else
+          battle.pbShowAbilitySplash(battler, ability)
           battler.createSubstitute
+          battle.pbHideAbilitySplash(battler)
       end
   }
 )

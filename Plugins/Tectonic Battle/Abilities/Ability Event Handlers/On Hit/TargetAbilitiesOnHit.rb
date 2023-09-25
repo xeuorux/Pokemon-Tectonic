@@ -159,6 +159,7 @@ BattleHandlers::TargetAbilityOnHit.add(:ADAPTIVESKIN,
 BattleHandlers::TargetAbilityOnHit.add(:WEAKARMOR,
   proc { |ability, user, target, move, battle, aiCheck, aiNumHits|
         next unless move.physicalMove?
+        next if target.fainted?
         if aiCheck
             ret = getMultiStatDownEffectScore([:DEFENSE, 1], target, target)
             ret -= getMultiStatUpEffectScore([:SPEED, 2], target, target, evaluateThreat: false)
@@ -175,6 +176,7 @@ BattleHandlers::TargetAbilityOnHit.add(:WEAKARMOR,
 BattleHandlers::TargetAbilityOnHit.add(:WEAKSPIRIT,
     proc { |ability, user, target, move, battle, aiCheck, aiNumHits|
         next unless move.specialMove?
+        next if target.fainted?
         if aiCheck
             ret = getMultiStatDownEffectScore([:SPECIAL_DEFENSE, 1], target, target)
             ret -= getMultiStatUpEffectScore([:SPEED, 2], target, target, evaluateThreat: false)
