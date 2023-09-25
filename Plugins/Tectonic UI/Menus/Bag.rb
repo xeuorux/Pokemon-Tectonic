@@ -158,6 +158,7 @@ class PokemonBagScreen
       end
     end
     @scene.pbEndScene
+    $PokemonTemp.dependentEvents.refresh_sprite(false)
     return item
   end
 end

@@ -314,6 +314,7 @@ class PokeBattle_Scene
       pbBGMFade(1.0)
       pbFadeOutAndHide(@sprites)
       pbDisposeSprites
+      $PokemonGlobal.call_refresh = [true,false]
     end
   
     #=============================================================================

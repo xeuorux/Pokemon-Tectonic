@@ -60,6 +60,7 @@ def pbPokeCenterPC
         end
     end
     pbSEPlay("PC close")
+    $PokemonTemp.dependentEvents.refresh_sprite(false)
 end
 
 def pbPCItemStorage

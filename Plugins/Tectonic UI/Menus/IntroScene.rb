@@ -3,7 +3,7 @@ class IntroEventScene < EventScene
   # Splash screen images that appear for a few seconds and then disappear.
   SPLASH_IMAGES         = ['splash1']
   # The main title screen background image.
-  TITLE_BG_IMAGE        = 'title'
+  TITLE_BG_IMAGE        = 'tectonic_regigigas_title'
   TITLE_START_IMAGE     = 'start'
   TITLE_START_IMAGE_X   = 0
   TITLE_START_IMAGE_Y   = 322
@@ -60,6 +60,7 @@ class IntroEventScene < EventScene
     @pic2.setXY(0, TITLE_START_IMAGE_X, TITLE_START_IMAGE_Y)
     @pic2.setVisible(0, true)
     @pic2.moveOpacity(0, FADE_TICKS, 255)
+	  addLabel(0,260,Graphics.width,"<c3=FFFFFFFF,000000FF><ac><outln2>Version #{Settings::GAME_VERSION}</outln2></ac></c3>")
     pictureWait
     onUpdate.set(method(:title_screen_update))    # called every frame
     onCTrigger.set(method(:close_title_screen))   # called when C key is pressed
@@ -106,5 +107,14 @@ class IntroEventScene < EventScene
        Input.press?(Input::CTRL)
       close_title_screen_delete(scene, args)
     end
+  end
+end
+
+class Scene_Intro
+  def main
+    Graphics.transition(0)
+    @eventscene = IntroEventScene.new
+    @eventscene.main
+    Graphics.freeze
   end
 end
