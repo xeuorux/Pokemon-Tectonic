@@ -1,8 +1,11 @@
 class PokemonPokedexInfo_Scene
     SIGNATURE_COLOR = Color.new(211, 175, 44)
     SIGNATURE_COLOR_LIGHTER = Color.new(228, 207, 128)
-    PAGE_TITLES = ["INFO", "ABILITIES", "STATS", "DEF. MATCHUPS", "ATK. MATCHUPS", "LEVEL UP MOVES", "TUTOR MOVES",
-                   "EVOLUTIONS", "AREA", "FORMS", "ANALYSIS",]
+
+    def pageTitles
+        return ["INFO", "ABILITIES", "STATS", "DEF. MATCHUPS", "ATK. MATCHUPS", "LEVEL UP MOVES", "TUTOR MOVES",
+                   "EVOLUTIONS", "AREA", "FORMS", "ANALYSIS"]
+    end
 
     def pbStartScene(dexlist, index, region, battle = false, linksEnabled = false)
         @viewport = Viewport.new(0, 0, Graphics.width, Graphics.height)
@@ -191,12 +194,12 @@ sp.form) && !Settings::DEX_SHOWS_ALL_FORMS
         base = Color.new(219, 240, 240)
         shadow = Color.new(88, 88, 80)
         # remove tribes page if not using tribes plugin
-        pageTitle = PAGE_TITLES[page - 1]
+        pageTitle = pageTitles[page - 1]
         drawFormattedTextEx(overlay, 50, 2, Graphics.width, "<outln2>#{pageTitle}</outln2>", base, shadow, 18)
         xPos = 240
         # shift x position so that double digit page number does not overlap with the right facing arrow
         xPos -= 14 if @page >= 10
-        drawFormattedTextEx(overlay, xPos, 2, Graphics.width, "<outln2>[#{page}/#{PAGE_TITLES.length - 1}]</outln2>", base,
+        drawFormattedTextEx(overlay, xPos, 2, Graphics.width, "<outln2>[#{page}/#{pageTitles.length - 1}]</outln2>", base,
   shadow, 18)
         # Draw species name on top right	
         speciesName = GameData::Species.get(@species).name
@@ -1541,7 +1544,7 @@ sp.form) && !Settings::DEX_SHOWS_ALL_FORMS
                     highestRightRepeat = repeats
                     oldpage = @page
                     @page += 1
-                    @page = PAGE_TITLES.length - 1 if @page > PAGE_TITLES.length - 1
+                    @page = pageTitles.length - 1 if @page > pageTitles.length - 1
                     if @page != oldpage
                         @scroll = -1
                         @horizontalScroll = 0
@@ -1572,7 +1575,7 @@ sp.form) && !Settings::DEX_SHOWS_ALL_FORMS
             elsif Input.press?(Input::ACTION) && debugControl
                 @scroll = -1
                 pbPlayCursorSE
-                @page = PAGE_TITLES.length
+                @page = pageTitles.length
                 dorefresh = true
             else
                 highestLeftRepeat = 0

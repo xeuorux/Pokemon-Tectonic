@@ -110,13 +110,13 @@ Events.OnTalkToFollower += proc {|pkmn,x,y,random_val|
 
 # Specific message if the map name is Pokemon Lab
 Events.OnTalkToFollower += proc {|pkmn,x,y,random_val|
-  if $game_map.name == "Lab"
+  if $game_map.name.downcase.include?("lab")
     $scene.spriteset.addUserAnimation(FollowerSettings::Emo_Normal,x,y)
     pbWait(72)
     messages = [
-      "{1} is touching some kind of switch.",
-      "{1} has a cord in its mouth!",
-      "{1} seems to want to touch the machinery."
+      _INTL("{1} is touching some kind of switch."),
+      _INTL("{1} has a cord in its mouth!"),
+      _INTL("{1} seems to want to touch the machinery.")
     ]
     pbMessage(_INTL(messages[rand(messages.length)],pkmn.name,$Trainer.name))
     next true
@@ -125,13 +125,13 @@ Events.OnTalkToFollower += proc {|pkmn,x,y,random_val|
 
 # Specific message if the map name has the players name in it ie the Player's Hpuse
 Events.OnTalkToFollower += proc {|pkmn,x,y,random_val|
-  if $game_map.name.include?($Trainer.name)
+  if $game_map.name.downcase.include?($Trainer.name.downcase)
     $scene.spriteset.addUserAnimation(FollowerSettings::Emo_Happy,x,y)
     pbWait(72)
     messages = [
-      "{1} is sniffing around the room.",
-      "{1} noticed {2}'s mom is nearby.",
-      "{1} seems to want to settle down at home."
+      _INTL("{1} is sniffing around the room."),
+      _INTL("{1} noticed {2}'s mom is nearby."),
+      _INTL("{1} seems to want to settle down at home.")
     ]
     pbMessage(_INTL(messages[rand(messages.length)],pkmn.name,$Trainer.name))
     next true
@@ -140,19 +140,19 @@ Events.OnTalkToFollower += proc {|pkmn,x,y,random_val|
 
 # Specific message if the map name has Pokecenter or Pokemon Center
 Events.OnTalkToFollower += proc {|pkmn,x,y,random_val|
-  if $game_map.name.include?("Center")
+  if $game_map.name.downcase.include?("center")
     $scene.spriteset.addUserAnimation(FollowerSettings::Emo_Happy,x,y)
     pbWait(72)
     messages = [
-      "{1} looks happy to see the nurse.",
-      "{1} looks a little better just being in the Pokémon Center.",
-      "{1} seems fascinated by the healing machinery.",
-      "{1} looks like it wants to take a nap.",
-      "{1} chirped a greeting at the nurse.",
-      "{1} is watching {2} with a playful gaze.",
-      "{1} seems to be completely at ease.",
-      "{1} is making itself comfortable.",
-      "There's a content expression on {1}'s face."
+      _INTL("{1} looks happy to see the nurse."),
+      _INTL("{1} looks a little better just being in the Pokémon Center."),
+      _INTL("{1} seems fascinated by the healing machinery."),
+      _INTL("{1} looks like it wants to take a nap."),
+      _INTL("{1} chirped a greeting at the nurse."),
+      _INTL("{1} is watching {2} with a playful gaze."),
+      _INTL("{1} seems to be completely at ease."),
+      _INTL("{1} is making itself comfortable."),
+      _INTL("There's a content expression on {1}'s face.")
     ]
     pbMessage(_INTL(messages[rand(messages.length)],pkmn.name,$Trainer.name))
     next true
@@ -161,26 +161,26 @@ Events.OnTalkToFollower += proc {|pkmn,x,y,random_val|
 
 # Specific message if the map name has Forest
 Events.OnTalkToFollower += proc {|pkmn,x,y,random_val|
-  if $game_map.name.include?("Forest")
+  if $game_map.name.downcase.include?("forest")
     $scene.spriteset.addUserAnimation(FollowerSettings::Emo_Sing,x,y)
     pbWait(72)
     messages = [
-      "{1} seems highly interested in the trees.",
-      "{1} seems to enjoy the buzzing of the bug Pokémon.",
-      "{1} is jumping around restlessly in the forest.",
-      "{1} is wandering around and listening to the different sounds.",
-      "{1} is munching at the grass.",
-      "{1} is wandering around and enjoying the forest scenery.",
-      "{1} is playing around, plucking bits of grass.",
-      "{1} is staring at the light coming through the trees.",
-      "{1} is playing around with a leaf!",
-      "{1} seems to be listening to the sound of rustling leaves.",
-      "{1} is standing perfectly still and might be imitating a tree...",
-      "{1} got tangled in the branches and almost fell down!",
-      "{1} was surprised when it got hit by a branch!",
-	  "{1} seems highly interested in the trees.",
-      "{1} seems to enjoy the buzzing of the bug Pokémon.",
-      "{1} is jumping around restlessly in the forest."
+      _INTL("{1} seems highly interested in the trees."),
+      _INTL("{1} seems to enjoy the buzzing of the bug Pokémon."),
+      _INTL("{1} is jumping around restlessly in the forest."),
+      _INTL("{1} is wandering around and listening to the different sounds."),
+      _INTL("{1} is munching at the grass."),
+      _INTL("{1} is wandering around and enjoying the forest scenery."),
+      _INTL("{1} is playing around, plucking bits of grass."),
+      _INTL("{1} is staring at the light coming through the trees."),
+      _INTL("{1} is playing around with a leaf!"),
+      _INTL("{1} seems to be listening to the sound of rustling leaves."),
+      _INTL("{1} is standing perfectly still and might be imitating a tree..."),
+      _INTL("{1} got tangled in the branches and almost fell down!"),
+      _INTL("{1} was surprised when it got hit by a branch!"),
+	  _INTL("{1} seems highly interested in the trees."),
+      _INTL("{1} seems to enjoy the buzzing of the bug Pokémon."),
+      _INTL("{1} is jumping around restlessly in the forest.")
     ]
     pbMessage(_INTL(messages[rand(messages.length)],pkmn.name,$Trainer.name))
     next true
@@ -189,20 +189,20 @@ Events.OnTalkToFollower += proc {|pkmn,x,y,random_val|
 
 # Specific message if the map name has Gym in it
 Events.OnTalkToFollower += proc {|pkmn,x,y,random_val|
-  if $game_map.name.include?("Gym")
+  if $game_map.name.downcase.include?("gym")
     $scene.spriteset.addUserAnimation(FollowerSettings::Emo_Hate,x,y)
     pbWait(72)
     messages = [
-      "{1} looks eager to battle!",
-      "{1} is looking at {2} with a determined gleam in its' eye.",
-      "{1} is trying to intimidate the other trainers.",
-      "{1} trusts {2} to come up with a winning strategy.",
-      "{1} is keeping an eye on the gym leader.",
-      "{1} is ready to pick a fight with someone.",
-      "{1} looks like it might be preparing for a big showdown!",
-      "{1} wants to show off how strong it is!",
-      "{1} is...doing warm-up exercises?",
-      "{1} is growling quietly in contemplation..."
+      _INTL("{1} looks eager to battle!"),
+      _INTL("{1} is looking at {2} with a determined gleam in its' eye."),
+      _INTL("{1} is trying to intimidate the other trainers."),
+      _INTL("{1} trusts {2} to come up with a winning strategy."),
+      _INTL("{1} is keeping an eye on the gym leader."),
+      _INTL("{1} is ready to pick a fight with someone."),
+      _INTL("{1} looks like it might be preparing for a big showdown!"),
+      _INTL("{1} wants to show off how strong it is!"),
+      _INTL("{1} is...doing warm-up exercises?"),
+      _INTL("{1} is growling quietly in contemplation...")
     ]
     pbMessage(_INTL(messages[rand(messages.length)],pkmn.name,$Trainer.name))
     next true
@@ -211,21 +211,21 @@ Events.OnTalkToFollower += proc {|pkmn,x,y,random_val|
 
 # Specific message if the map name has Beach in it
 Events.OnTalkToFollower += proc {|pkmn,x,y,random_val|
-  if $game_map.name.include?("Beach")
+  if $game_map.name.downcase.include?("beach")
     $scene.spriteset.addUserAnimation(FollowerSettings::Emo_Happy,x,y)
     pbWait(72)
     messages = [
-      "{1} seems to be enjoying the scenery.",
-      "{1} seems to enjoy the sound of the waves moving the sand.",
-      "{1} looks like it wants to swim!",
-      "{1} can barely look away from the ocean.",
-      "{1} is staring longingly at the water.",
-      "{1} keeps trying to shove {2} towards the water.",
-      "{1} is excited to be looking at the sea!",
-      "{1} is happily watching the waves!",
-      "{1} is playing on the sand!",
-      "{1} is staring at {2}'s footprints in the sand.",
-      "{1} is rolling around in the sand."
+      _INTL("{1} seems to be enjoying the scenery."),
+      _INTL("{1} seems to enjoy the sound of the waves moving the sand."),
+      _INTL("{1} looks like it wants to swim!"),
+      _INTL("{1} can barely look away from the ocean."),
+      _INTL("{1} is staring longingly at the water."),
+      _INTL("{1} keeps trying to shove {2} towards the water."),
+      _INTL("{1} is excited to be looking at the sea!"),
+      _INTL("{1} is happily watching the waves!"),
+      _INTL("{1} is playing on the sand!"),
+      _INTL("{1} is staring at {2}'s footprints in the sand."),
+      _INTL("{1} is rolling around in the sand.")
     ]
     pbMessage(_INTL(messages[rand(messages.length)],pkmn.name,$Trainer.name))
     next true
@@ -239,36 +239,36 @@ Events.OnTalkToFollower += proc {|pkmn,x,y,random_val|
       $scene.spriteset.addUserAnimation(FollowerSettings::Emo_Hate,x,y)
       pbWait(72)
       messages = [
-        "{1} seems very upset by the weather.",
-        "{1} is shivering...",
-        "{1} doesn’t seem to like being all wet...",
-        "{1} keeps trying to shake itself dry...",
-        "{1} moved closer to {2} for comfort.",
-        "{1} is looking up at the sky and scowling.",
-        "{1} seems to be having difficulty moving its body."
+        _INTL("{1} seems very upset by the weather."),
+        _INTL("{1} is shivering..."),
+        _INTL("{1} doesn’t seem to like being all wet..."),
+        _INTL("{1} keeps trying to shake itself dry..."),
+        _INTL("{1} moved closer to {2} for comfort."),
+        _INTL("{1} is looking up at the sky and scowling."),
+        _INTL("{1} seems to be having difficulty moving its body.")
       ]
     elsif pkmn.hasType?(:WATER) || pkmn.hasType?(:GRASS)
       $scene.spriteset.addUserAnimation(FollowerSettings::Emo_Happy,x,y)
       pbWait(72)
       messages = [
-        "{1} seems to be enjoying the weather.",
-        "{1} seems to be happy about the rain!",
-        "{1} seems to be very surprised that it’s raining!",
-        "{1} beamed happily at {2}!",
-        "{1} is gazing up at the rainclouds.",
-        "Raindrops keep falling on {1}.",
-        "{1} is looking up with its mouth gaping open."
+        _INTL("{1} seems to be enjoying the weather."),
+        _INTL("{1} seems to be happy about the rain!"),
+        _INTL("{1} seems to be very surprised that it’s raining!"),
+        _INTL("{1} beamed happily at {2}!"),
+        _INTL("{1} is gazing up at the rainclouds."),
+        _INTL("Raindrops keep falling on {1}."),
+        _INTL("{1} is looking up with its mouth gaping open.")
       ]
     else
       $scene.spriteset.addUserAnimation(FollowerSettings::Emo_Normal,x,y)
       pbWait(72)
       messages = [
-        "{1} is staring up at the sky.",
-        "{1} looks a bit surprised to see rain.",
-        "{1} keeps trying to shake itself dry.",
-        "The rain doesn't seem to bother {1} much.",
-        "{1} is playing in a puddle!",
-        "{1} is slipping in the water and almost fell over!"
+        _INTL("{1} is staring up at the sky."),
+        _INTL("{1} looks a bit surprised to see rain."),
+        _INTL("{1} keeps trying to shake itself dry."),
+        _INTL("The rain doesn't seem to bother {1} much."),
+        _INTL("{1} is playing in a puddle!"),
+        _INTL("{1} is slipping in the water and almost fell over!")
       ]
     end
     pbMessage(_INTL(messages[rand(messages.length)],pkmn.name,$Trainer.name))
@@ -283,23 +283,23 @@ Events.OnTalkToFollower += proc {|pkmn,x,y,random_val|
       $scene.spriteset.addUserAnimation(FollowerSettings::Emo_Happy,x,y)
       pbWait(72)
       messages = [
-        "{1} is staring up at the sky.",
-        "The storm seems to be making {1} excited.",
-        "{1} looked up at the sky and shouted loudly!",
-        "The storm only seems to be energizing {1}!",
-        "{1} is happily zapping and jumping in circles!",
-        "The lightning doesn't bother {1} at all."
+        _INTL("{1} is staring up at the sky."),
+        _INTL("The storm seems to be making {1} excited."),
+        _INTL("{1} looked up at the sky and shouted loudly!"),
+        _INTL("The storm only seems to be energizing {1}!"),
+        _INTL("{1} is happily zapping and jumping in circles!"),
+        _INTL("The lightning doesn't bother {1} at all.")
       ]
     else
       $scene.spriteset.addUserAnimation(FollowerSettings::Emo_Normal,x,y)
       pbWait(72)
       messages = [
-        "{1} is staring up at the sky.",
-        "The storm seems to be making {1} a bit nervous.",
-        "The lightning startled {1}!",
-        "The rain doesn't seem to bother {1} much.",
-        "The weather seems to be putting {1} on edge.",
-        "{1} was startled by the lightning and snuggled up to {2}!"
+        _INTL("{1} is staring up at the sky."),
+        _INTL("The storm seems to be making {1} a bit nervous."),
+        _INTL("The lightning startled {1}!"),
+        _INTL("The rain doesn't seem to bother {1} much."),
+        _INTL("The weather seems to be putting {1} on edge."),
+        _INTL("{1} was startled by the lightning and snuggled up to {2}!")
       ]
     end
     pbMessage(_INTL(messages[rand(messages.length)],pkmn.name,$Trainer.name))
@@ -314,22 +314,22 @@ Events.OnTalkToFollower += proc {|pkmn,x,y,random_val|
       $scene.spriteset.addUserAnimation(FollowerSettings::Emo_Happy,x,y)
       pbWait(72)
       messages = [
-        "{1} is watching the snow fall.",
-        "{1} is thrilled by the snow!",
-        "{1} is staring up at the sky with a smile.",
-        "The snow seems to have put {1} in a good mood.",
-        "{1} is cheerful because of the cold!"
+        _INTL("{1} is watching the snow fall."),
+        _INTL("{1} is thrilled by the snow!"),
+        _INTL("{1} is staring up at the sky with a smile."),
+        _INTL("The snow seems to have put {1} in a good mood."),
+        _INTL("{1} is cheerful because of the cold!")
       ]
     else
       $scene.spriteset.addUserAnimation(FollowerSettings::Emo_Normal,x,y)
       pbWait(72)
       messages = [
-        "{1} is watching the snow fall.",
-        "{1} is nipping at the falling snowflakes.",
-        "{1} wants to catch a snowflake in its' mouth.",
-        "{1} is fascinated by the snow.",
-        "{1}’s teeth are chattering!",
-        "{1} made its body slightly smaller because of the cold..."
+        _INTL("{1} is watching the snow fall."),
+        _INTL("{1} is nipping at the falling snowflakes."),
+        _INTL("{1} wants to catch a snowflake in its' mouth."),
+        _INTL("{1} is fascinated by the snow."),
+        _INTL("{1}'s teeth are chattering!"),
+        _INTL("{1} made its body slightly smaller because of the cold...")
       ]
     end
     pbMessage(_INTL(messages[rand(messages.length)],pkmn.name,$Trainer.name))
@@ -344,21 +344,21 @@ Events.OnTalkToFollower += proc {|pkmn,x,y,random_val|
       $scene.spriteset.addUserAnimation(FollowerSettings::Emo_Happy,x,y)
       pbWait(72)
       messages = [
-        "{1} is watching the hail fall.",
-        "{1} isn't bothered at all by the hail.",
-        "{1} is staring up at the sky with a smile.",
-        "The hail seems to have put {1} in a good mood.",
-        "{1} is gnawing on a piece of hailstone."
+        _INTL("{1} is watching the hail fall."),
+        _INTL("{1} isn't bothered at all by the hail."),
+        _INTL("{1} is staring up at the sky with a smile."),
+        _INTL("The hail seems to have put {1} in a good mood."),
+        _INTL("{1} is gnawing on a piece of hailstone.")
       ]
     else
       $scene.spriteset.addUserAnimation(FollowerSettings::Emo_Hate,x,y)
       pbWait(72)
       messages = [
-        "{1} is getting pelted by hail!",
-        "{1} wants to avoid the hail.",
-        "The hail is hitting {1} painfully.",
-        "{1} looks unhappy.",
-        "{1} is shaking like a leaf!"
+        _INTL("{1} is getting pelted by hail!"),
+        _INTL("{1} wants to avoid the hail."),
+        _INTL("The hail is hitting {1} painfully."),
+        _INTL("{1} looks unhappy."),
+        _INTL("{1} is shaking like a leaf!")
       ]
     end
     pbMessage(_INTL(messages[rand(messages.length)],pkmn.name,$Trainer.name))
@@ -373,28 +373,28 @@ Events.OnTalkToFollower += proc {|pkmn,x,y,random_val|
       $scene.spriteset.addUserAnimation(FollowerSettings::Emo_Happy,x,y)
       pbWait(72)
       messages = [
-        "{1} is coated in sand.",
-        "The weather doesn't seem to bother {1} at all!",
-        "The sand can't slow {1} down!",
-        "{1} is enjoying the weather."
+        _INTL("{1} is coated in sand."),
+        _INTL("The weather doesn't seem to bother {1} at all!"),
+        _INTL("The sand can't slow {1} down!"),
+        _INTL("{1} is enjoying the weather.")
       ]
     elsif pkmn.hasType?(:STEEL)
       $scene.spriteset.addUserAnimation(FollowerSettings::Emo_Normal,x,y)
       pbWait(72)
       messages = [
-        "{1} is coated in sand, but doesn't seem to mind.",
-        "{1} seems unbothered by the sandstorm.",
-        "The sand doesn't slow {1} down.",
-        "{1} doesn't seem to mind the weather."
+        _INTL("{1} is coated in sand, but doesn't seem to mind."),
+        _INTL("{1} seems unbothered by the sandstorm."),
+        _INTL("The sand doesn't slow {1} down."),
+        _INTL("{1} doesn't seem to mind the weather.")
       ]
     else
       $scene.spriteset.addUserAnimation(FollowerSettings::Emo_Hate,x,y)
       pbWait(72)
       messages = [
-        "{1} is covered in sand...",
-        "{1} spat out a mouthful of sand!",
-        "{1} is squinting through the sandstorm.",
-        "The sand seems to be bothering {1}."
+        _INTL("{1} is covered in sand..."),
+        _INTL("{1} spat out a mouthful of sand!"),
+        _INTL("{1} is squinting through the sandstorm."),
+        _INTL("The sand seems to be bothering {1}.")
       ]
     end
     pbMessage(_INTL(messages[rand(messages.length)],pkmn.name,$Trainer.name))
@@ -409,45 +409,45 @@ Events.OnTalkToFollower += proc {|pkmn,x,y,random_val|
       $scene.spriteset.addUserAnimation(FollowerSettings::Emo_Happy,x,y)
       pbWait(72)
       messages = [
-        "{1} seems pleased to be out in the sunshine.",
-        "{1} is soaking up the sunshine.",
-        "The bright sunlight doesn't seem to bother {1} at all.",
-        "{1} sent a ring-shaped cloud of spores into the air!",
-        "{1} is stretched out its body and is relaxing in the sunshine.",
-        "{1} is giving off a floral scent."
+        _INTL("{1} seems pleased to be out in the sunshine."),
+        _INTL("{1} is soaking up the sunshine."),
+        _INTL("The bright sunlight doesn't seem to bother {1} at all."),
+        _INTL("{1} sent a ring-shaped cloud of spores into the air!"),
+        _INTL("{1} is stretched out its body and is relaxing in the sunshine."),
+        _INTL("{1} is giving off a floral scent.")
       ]
     elsif pkmn.hasType?(:FIRE)
       $scene.spriteset.addUserAnimation(FollowerSettings::Emo_Happy,x,y)
       pbWait(72)
       messages = [
-        "{1} seems to be happy about the great weather!",
-        "The bright sunlight doesn't seem to bother {1} at all.",
-        "{1} looks thrilled by the sunshine!",
-        "{1} blew out a fireball.",
-        "{1} is breathing out fire!",
-        "{1} is hot and cheerful!"
+        _INTL("{1} seems to be happy about the great weather!"),
+        _INTL("The bright sunlight doesn't seem to bother {1} at all."),
+        _INTL("{1} looks thrilled by the sunshine!"),
+        _INTL("{1} blew out a fireball."),
+        _INTL("{1} is breathing out fire!"),
+        _INTL("{1} is hot and cheerful!")
       ]
     elsif pkmn.hasType?(:DARK)
       $scene.spriteset.addUserAnimation(FollowerSettings::Emo_Hate,x,y)
       pbWait(72)
       messages = [
-        "{1} is glaring up at the sky.",
-        "{1} seems personally offended by the sunshine.",
-        "The bright sunshine seems to bothering {1}.",
-        "{1} looks upset for some reason.",
-        "{1} is trying to stay in {2}'s shadow.",
-        "{1} keeps looking for shelter from the sunlight.",
+        _INTL("{1} is glaring up at the sky."),
+        _INTL("{1} seems personally offended by the sunshine."),
+        _INTL("The bright sunshine seems to bothering {1}."),
+        _INTL("{1} looks upset for some reason."),
+        _INTL("{1} is trying to stay in {2}'s shadow."),
+        _INTL("{1} keeps looking for shelter from the sunlight."),
       ]
     else
       $scene.spriteset.addUserAnimation(FollowerSettings::Emo_Normal,x,y)
       pbWait(72)
       messages = [
-        "{1} is squinting in the bright sunshine.",
-        "{1} is starting to sweat.",
-        "{1} seems a little uncomfortable in this weather.",
-        "{1} looks a little overheated.",
-        "{1} seems very hot...",
-        "{1} shielded its vision against the sparkling light!",
+        _INTL("{1} is squinting in the bright sunshine."),
+        _INTL("{1} is starting to sweat."),
+        _INTL("{1} seems a little uncomfortable in this weather."),
+        _INTL("{1} looks a little overheated."),
+        _INTL("{1} seems very hot..."),
+        _INTL("{1} shielded its vision against the sparkling light!"),
        ]
     end
     pbMessage(_INTL(messages[rand(messages.length)],pkmn.name,$Trainer.name))
@@ -461,34 +461,34 @@ Events.OnTalkToFollower += proc {|pkmn,x,y,random_val|
     $scene.spriteset.addUserAnimation(FollowerSettings::Emo_Sing,x,y)
     pbWait(72)
     messages = [
-      "{1} seems to want to play with {2}.",
-      "{1} is singing and humming.",
-      "{1} is looking up at {2} with a happy expression.",
-      "{1} swayed and danced around as it pleased.",
-      "{1} is jumping around in a carefree way!",
-      "{1} is showing off its agility!",
-      "{1} is moving around happily!",
-      "Whoa! {1} suddenly started dancing in happiness!",
-      "{1} is steadily keeping up with {2}!",
-      "{1} is happy skipping about.",
-      "{1} is playfully nibbling at the ground.",
-      "{1} is playfully nipping at {2}'s feet!",
-      "{1} is following {2} very closely!",
-      "{1} turns around and looks at {2}.",
-      "{1} is working hard to show off its mighty power!",
-      "{1} looks like it wants to run around!",
-      "{1} is wandering around enjoying the scenery.",
-      "{1} seems to be enjoying this a little bit!",
-      "{1} is cheerful!",
-      "{1} seems to be singing something?",
-      "{1} is dancing around happily!",
-      "{1} is having fun dancing a lively jig!",
-      "{1} is so happy, it started singing!",
-      "{1} looked up and howled!",
-      "{1} seems to be feeling optimistic.",
-      "It looks like {1} feels like dancing!",
-      "{1} Suddenly started to sing! It seems to be feeling great.",
-      "It looks like {1} wants to dance with {2}!"
+      _INTL("{1} seems to want to play with {2}."),
+      _INTL("{1} is singing and humming."),
+      _INTL("{1} is looking up at {2} with a happy expression."),
+      _INTL("{1} swayed and danced around as it pleased."),
+      _INTL("{1} is jumping around in a carefree way!"),
+      _INTL("{1} is showing off its agility!"),
+      _INTL("{1} is moving around happily!"),
+      _INTL("Whoa! {1} suddenly started dancing in happiness!"),
+      _INTL("{1} is steadily keeping up with {2}!"),
+      _INTL("{1} is happy skipping about."),
+      _INTL("{1} is playfully nibbling at the ground."),
+      _INTL("{1} is playfully nipping at {2}'s feet!"),
+      _INTL("{1} is following {2} very closely!"),
+      _INTL("{1} turns around and looks at {2}."),
+      _INTL("{1} is working hard to show off its mighty power!"),
+      _INTL("{1} looks like it wants to run around!"),
+      _INTL("{1} is wandering around enjoying the scenery."),
+      _INTL("{1} seems to be enjoying this a little bit!"),
+      _INTL("{1} is cheerful!"),
+      _INTL("{1} seems to be singing something?"),
+      _INTL("{1} is dancing around happily!"),
+      _INTL("{1} is having fun dancing a lively jig!"),
+      _INTL("{1} is so happy, it started singing!"),
+      _INTL("{1} looked up and howled!"),
+      _INTL("{1} seems to be feeling optimistic."),
+      _INTL("It looks like {1} feels like dancing!"),
+      _INTL("{1} Suddenly started to sing! It seems to be feeling great."),
+      _INTL("It looks like {1} wants to dance with {2}!")
     ]
     value = rand(messages.length)
     case value
@@ -546,16 +546,16 @@ Events.OnTalkToFollower += proc {|pkmn,x,y,random_val|
     $scene.spriteset.addUserAnimation(FollowerSettings::Emo_Hate,x,y)
     pbWait(72)
     messages = [
-      "{1} let out a roar!",
-      "{1} is making a face like it's angry!",
-      "{1} seems to be angry for some reason.",
-      "{1} chewed on {2}'s feet.",
-      "{1} turned to face the other way, showing a defiant expression.",
-      "{1} is trying to intimidate {2}'s foes!",
-      "{1} wants to pick a fight!",
-      "{1} is ready to fight!",
-      "It looks like {1} will fight just about anyone right now!",
-      "{1} is growling in a way that sounds almost like speech..."
+      _INTL("{1} let out a roar!"),
+      _INTL("{1} is making a face like it's angry!"),
+      _INTL("{1} seems to be angry for some reason."),
+      _INTL("{1} chewed on {2}'s feet."),
+      _INTL("{1} turned to face the other way, showing a defiant expression."),
+      _INTL("{1} is trying to intimidate {2}'s foes!"),
+      _INTL("{1} wants to pick a fight!"),
+      _INTL("{1} is ready to fight!"),
+      _INTL("It looks like {1} will fight just about anyone right now!"),
+      _INTL("{1} is growling in a way that sounds almost like speech...")
     ]
     value = rand(messages.length)
     # Special move route to go along with some of the dialogue
@@ -576,39 +576,39 @@ Events.OnTalkToFollower += proc {|pkmn,x,y,random_val|
     $scene.spriteset.addUserAnimation(FollowerSettings::Emo_Normal,x,y)
     pbWait(72)
     messages = [
-      "{1} is looking down steadily.",
-      "{1} is sniffing around.",
-      "{1} is concentrating deeply.",
-      "{1} faced {2} and nodded.",
-      "{1} is glaring straight into {2}'s eyes.",
-      "{1} is surveying the area.",
-      "{1} focused with a sharp gaze!",
-      "{1} is looking around absentmindedly.",
-      "{1} yawned very loudly!",
-      "{1} is relaxing comfortably.",
-      "{1} is focusing its attention on {2}.",
-      "{1} is staring intently at nothing.",
-      "{1} is concentrating.",
-      "{1} faced {2} and nodded.",
-      "{1} is looking at {2}'s footprints.",
-      "{1} seems to want to play and is gazing at {2} expectedly.",
-      "{1} seems to be thinking deeply about something.",
-      "{1} isn't paying attention to {2}...Seems it's thinking about something else.",
-      "{1} seems to be feeling serious.",
-      "{1} seems disinterested.",
-      "{1}'s mind seems to be elsewhere.",
-      "{1} seems to be observing the surroundings instead of watching {2}.",
-      "{1} looks a bit bored.",
-      "{1} has an intense look on its' face.",
-      "{1} is staring off into the distance.",
-      "{1} seems to be carefully examining {2}'s face.",
-      "{1} seems to be trying to communicate with its' eyes.",
-      "...{1} seems to have sneezed!",
-      "...{1} noticed that {2}'s shoes are a bit dirty.",
-      "Seems {1} ate something strange, it's making an odd face... ",
-      "{1} seems to be smelling something good.",
-      "{1} noticed that {2}' Bag has a little dirt on it...",
-      "...... ...... ...... ...... ...... ...... ...... ...... ...... ...... ...... {1} silently nodded!"
+      _INTL("{1} is looking down steadily."),
+      _INTL("{1} is sniffing around."),
+      _INTL("{1} is concentrating deeply."),
+      _INTL("{1} faced {2} and nodded."),
+      _INTL("{1} is glaring straight into {2}'s eyes."),
+      _INTL("{1} is surveying the area."),
+      _INTL("{1} focused with a sharp gaze!"),
+      _INTL("{1} is looking around absentmindedly."),
+      _INTL("{1} yawned very loudly!"),
+      _INTL("{1} is relaxing comfortably."),
+      _INTL("{1} is focusing its attention on {2}."),
+      _INTL("{1} is staring intently at nothing."),
+      _INTL("{1} is concentrating."),
+      _INTL("{1} faced {2} and nodded."),
+      _INTL("{1} is looking at {2}'s footprints."),
+      _INTL("{1} seems to want to play and is gazing at {2} expectedly."),
+      _INTL("{1} seems to be thinking deeply about something."),
+      _INTL("{1} isn't paying attention to {2}...Seems it's thinking about something else."),
+      _INTL("{1} seems to be feeling serious."),
+      _INTL("{1} seems disinterested."),
+      _INTL("{1}'s mind seems to be elsewhere."),
+      _INTL("{1} seems to be observing the surroundings instead of watching {2}."),
+      _INTL("{1} looks a bit bored."),
+      _INTL("{1} has an intense look on its' face."),
+      _INTL("{1} is staring off into the distance."),
+      _INTL("{1} seems to be carefully examining {2}'s face."),
+      _INTL("{1} seems to be trying to communicate with its' eyes."),
+      _INTL("...{1} seems to have sneezed!"),
+      _INTL("...{1} noticed that {2}'s shoes are a bit dirty."),
+      _INTL("Seems {1} ate something strange, it's making an odd face... "),
+      _INTL("{1} seems to be smelling something good."),
+      _INTL("{1} noticed that {2}' Bag has a little dirt on it..."),
+      _INTL("...... ...... ...... ...... ...... ...... ...... ...... ...... ...... ...... {1} silently nodded!")
     ]
     value = rand(messages.length)
     # Special move route to go along with some of the dialogue
@@ -632,34 +632,34 @@ Events.OnTalkToFollower += proc {|pkmn,x,y,random_val|
     $scene.spriteset.addUserAnimation(FollowerSettings::Emo_Happy,x,y)
     pbWait(72)
     messages = [
-      "{1} began poking {2}.",
-      "{1} looks very happy.",
-      "{1} happily cuddled up to {2}.",
-      "{1} is so happy that it can't stand still.",
-      "{1} looks like it wants to lead!",
-      "{1} is coming along happily.",
-      "{1} seems to be feeling great about walking with {2}!",
-      "{1} is glowing with health.",
-      "{1} looks very happy.",
-      "{1} put in extra effort just for {2}!",
-      "{1} is smelling the scents of the surrounding air.",
-      "{1} is jumping with joy!",
-      "{1} is still feeling great!",
-      "{1} stretched out its body and is relaxing.",
-      "{1} is doing its' best to keep up with {2}.",
-      "{1} is happily cuddling up to {2}!",
-      "{1} is full of energy!",
-      "{1} is so happy that it can't stand still!",
-      "{1} is wandering around and listening to the different sounds.",
-      "{1} gives {2} a happy look and a smile.",
-      "{1} started breathing roughly through its nose in excitement!",
-      "{1} is trembling with eagerness!",
-      "{1} is so happy, it started rolling around.",
-      "{1} looks thrilled at getting attention from {2}.",
-      "{1} seems very pleased that {2} is noticing it!",
-      "{1} started wriggling its' entire body with excitement!",
-      "It seems like {1} can barely keep itself from hugging {2}!",
-      "{1} is keeping close to {2}'s feet."
+      _INTL("{1} began poking {2}."),
+      _INTL("{1} looks very happy."),
+      _INTL("{1} happily cuddled up to {2}."),
+      _INTL("{1} is so happy that it can't stand still."),
+      _INTL("{1} looks like it wants to lead!"),
+      _INTL("{1} is coming along happily."),
+      _INTL("{1} seems to be feeling great about walking with {2}!"),
+      _INTL("{1} is glowing with health."),
+      _INTL("{1} looks very happy."),
+      _INTL("{1} put in extra effort just for {2}!"),
+      _INTL("{1} is smelling the scents of the surrounding air."),
+      _INTL("{1} is jumping with joy!"),
+      _INTL("{1} is still feeling great!"),
+      _INTL("{1} stretched out its body and is relaxing."),
+      _INTL("{1} is doing its' best to keep up with {2}."),
+      _INTL("{1} is happily cuddling up to {2}!"),
+      _INTL("{1} is full of energy!"),
+      _INTL("{1} is so happy that it can't stand still!"),
+      _INTL("{1} is wandering around and listening to the different sounds."),
+      _INTL("{1} gives {2} a happy look and a smile."),
+      _INTL("{1} started breathing roughly through its nose in excitement!"),
+      _INTL("{1} is trembling with eagerness!"),
+      _INTL("{1} is so happy, it started rolling around."),
+      _INTL("{1} looks thrilled at getting attention from {2}."),
+      _INTL("{1} seems very pleased that {2} is noticing it!"),
+      _INTL("{1} started wriggling its' entire body with excitement!"),
+      _INTL("It seems like {1} can barely keep itself from hugging {2}!"),
+      _INTL("{1} is keeping close to {2}'s feet.")
     ]
     value = rand(messages.length)
     # Special move route to go along with some of the dialogue
@@ -689,28 +689,28 @@ Events.OnTalkToFollower += proc {|pkmn,x,y,random_val|
     $scene.spriteset.addUserAnimation(FollowerSettings::Emo_Love,x,y)
     pbWait(72)
     messages = [
-      "{1} suddenly started walking closer to {2}.",
-      "Woah! {1} suddenly hugged {2}.",
-      "{1} is rubbing up against {2}.",
-      "{1} is keeping close to {2}.",
-      "{1} blushed.",
-      "{1} loves spending time with {2}!",
-      "{1} is suddenly playful!",
-      "{1} is rubbing against {2}'s legs!",
-      "{1} is regarding {2} with adoration!",
-      "{1} seems to want some affection from {2}.",
-      "{1} seems to want some attention from {2}.",
-      "{1} seems happy travelling with {2}.",
-      "{1} seems to be feeling affectionate towards {2}.",
-      "{1} is looking at {2} with loving eyes.",
-      "{1} looks like it wants a treat from {2}.",
-      "{1} looks like it wants {2} to pet it!",
-      "{1} is rubbing itself against {2} affectionately.",
-      "{1} bumps its' head gently against {2}'s hand.",
-      "{1} rolls over and looks at {2} expectantly.",
-      "{1} is looking at {2} with trusting eyes.",
-      "{1} seems to be begging {2} for some affection!",
-      "{1} mimicked {2}!"
+      _INTL("{1} suddenly started walking closer to {2}."),
+      _INTL("Woah! {1} suddenly hugged {2}."),
+      _INTL("{1} is rubbing up against {2}."),
+      _INTL("{1} is keeping close to {2}."),
+      _INTL("{1} blushed."),
+      _INTL("{1} loves spending time with {2}!"),
+      _INTL("{1} is suddenly playful!"),
+      _INTL("{1} is rubbing against {2}'s legs!"),
+      _INTL("{1} is regarding {2} with adoration!"),
+      _INTL("{1} seems to want some affection from {2}."),
+      _INTL("{1} seems to want some attention from {2}."),
+      _INTL("{1} seems happy travelling with {2}."),
+      _INTL("{1} seems to be feeling affectionate towards {2}."),
+      _INTL("{1} is looking at {2} with loving eyes."),
+      _INTL("{1} looks like it wants a treat from {2}."),
+      _INTL("{1} looks like it wants {2} to pet it!"),
+      _INTL("{1} is rubbing itself against {2} affectionately."),
+      _INTL("{1} bumps its' head gently against {2}'s hand."),
+      _INTL("{1} rolls over and looks at {2} expectantly."),
+      _INTL("{1} is looking at {2} with trusting eyes."),
+      _INTL("{1} seems to be begging {2} for some affection!"),
+      _INTL("{1} mimicked {2}!")
     ]
     value = rand(messages.length)
     case value
@@ -728,30 +728,30 @@ Events.OnTalkToFollower += proc {|pkmn,x,y,random_val|
 Events.OnTalkToFollower += proc {|pkmn,x,y,random_val|
   if random_val == 5
     messages = [
-      "{1} spun around in a circle!",
-      "{1} let out a battle cry.",
-      "{1} is on the lookout!",
-      "{1} is standing patiently.",
-      "{1} is looking around restlessly.",
-      "{1} is wandering around.",
-      "{1} yawned loudly!",
-      "{1} is steadily poking at the ground around {2}'s feet.",
-      "{1} is looking at {2} and smiling.",
-      "{1} is staring intently into the distance.",
-      "{1} is keeping up with {2}.",
-      "{1} looks pleased with itself.",
-      "{1} is still going strong!",
-      "{1} is walking in sync with {2}.",
-      "{1} started spinning around in circles.",
-      "{1} looks at {2} with anticipation.",
-      "{1} fell down and looks a little embarrassed.",
-      "{1} is waiting to see what {2} will do.",
-      "{1} is calmly watching {2}.",
-      "{1} is looking to {2} for some kind of cue.",
-      "{1} is staying in place, waiting for {2} to make a move.",
-      "{1} obediently sat down at {2}'s feet.",
-      "{1} jumped in surprise!",
-      "{1} jumped a little!"
+      _INTL("{1} spun around in a circle!"),
+      _INTL("{1} let out a battle cry."),
+      _INTL("{1} is on the lookout!"),
+      _INTL("{1} is standing patiently."),
+      _INTL("{1} is looking around restlessly."),
+      _INTL("{1} is wandering around."),
+      _INTL("{1} yawned loudly!"),
+      _INTL("{1} is steadily poking at the ground around {2}'s feet."),
+      _INTL("{1} is looking at {2} and smiling."),
+      _INTL("{1} is staring intently into the distance."),
+      _INTL("{1} is keeping up with {2}."),
+      _INTL("{1} looks pleased with itself."),
+      _INTL("{1} is still going strong!"),
+      _INTL("{1} is walking in sync with {2}."),
+      _INTL("{1} started spinning around in circles."),
+      _INTL("{1} looks at {2} with anticipation."),
+      _INTL("{1} fell down and looks a little embarrassed."),
+      _INTL("{1} is waiting to see what {2} will do."),
+      _INTL("{1} is calmly watching {2}."),
+      _INTL("{1} is looking to {2} for some kind of cue."),
+      _INTL("{1} is staying in place, waiting for {2} to make a move."),
+      _INTL("{1} obediently sat down at {2}'s feet."),
+      _INTL("{1} jumped in surprise!"),
+      _INTL("{1} jumped a little!")
     ]
     value = rand(messages.length)
     # Special move route to go along with some of the dialogue
