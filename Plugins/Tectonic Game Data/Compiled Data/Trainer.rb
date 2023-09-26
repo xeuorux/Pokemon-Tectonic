@@ -298,7 +298,7 @@ module GameData
                 if pkmn_data[:ev]
                     pkmn.ev[s.id] = pkmn_data[:ev][s.id]
                 else
-                    pkmn.ev[s.id] = 8
+                    pkmn.ev[s.id] = 10
                 end
             end
 
