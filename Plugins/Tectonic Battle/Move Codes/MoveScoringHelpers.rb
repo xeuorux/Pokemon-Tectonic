@@ -574,8 +574,8 @@ def passingTurnBattlerEffectScore(battler,battle)
 end
 
 def passingTurnBattlerHealthChange(battler,battle)
-    healthChange = predictedEOTHealing(battle,battler)
-    healthChange -= predictedEOTDamage(battle,battler)
+	healthChange = predictedEOTDamage(battle,battler)
+    healthChange -= predictedEOTHealing(battle,battler)
 
     healthPercentageChange = healthChange * 100 / battler.totalhp
     return healthChange,healthPercentageChange
@@ -626,7 +626,7 @@ def predictedEOTDamage(battle,battler)
         damage += battler.getFractionalDamageAmount(LEFTOVERS_HEALING_FRACTION)
     end
 
-    return -damage # if not negative AI assumes its healing
+    return damage
 end
 
 def predictedEOTHealing(battle,battler)
