@@ -586,8 +586,8 @@ def predictedEOTDamage(battle,battler)
     damage = 0
     
     # Weather DOTs
-    damage += battle.applySandstormDamage(battler, aiCheck: true)
-    damage += battle.applyHailDamage(battler, aiCheck: true)
+    damage += battle.applySandstormDamage(battler, aiCheck: true) if battle.sandy?
+    damage += battle.applyHailDamage(battler, aiCheck: true) if battle.icy?
 
     # Status DOTs
     damage += battle.damageFromDOTStatus(battler, :POISON, true) if battler.poisoned?
@@ -610,9 +610,7 @@ def predictedEOTDamage(battle,battler)
     end
     
     # Pain Presence
-    if battler.asleep? && battle.pbCheckOtherAbility(:PAINPRESENCE, battler.index)
-        damage += battler.getFractionalDamageAmount(PAIN_PRESENCE_DAMAGE_FRACTION, aggravate: aggravate)
-    end
+    damage += battler.getFractionalDamageAmount(PAIN_PRESENCE_DAMAGE_FRACTION, aggravate: aggravate) if battle.pbCheckOtherAbility(:PAINPRESENCE, battler.index)
 
     # Extreme Energy, Extreme Power, Solar Power, Night Stalker
     damage += battler.getFractionalDamageAmount(EOR_SELF_HARM_ABILITY_DAMAGE_FRACTION, aggravate: aggravate) if battler.hasActiveAbilityAI?(:EXTREMEENERGY)
@@ -628,7 +626,7 @@ def predictedEOTDamage(battle,battler)
         damage += battler.getFractionalDamageAmount(LEFTOVERS_HEALING_FRACTION)
     end
 
-    return damage
+    return -damage # if not negative AI assumes its healing
 end
 
 def predictedEOTHealing(battle,battler)
