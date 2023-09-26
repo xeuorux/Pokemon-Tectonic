@@ -186,11 +186,11 @@ class PokeBattle_Battle
         @scene.pbBeginAttackPhase
         resetAttackPhaseEffects
         PBDebug.log("")
-        speedAffectingTriggers
         # Calculate move order for this round
         pbCalculatePriority(true)
         # Perform actions
         return if attackPhaseNonMoveActions
+        speedAffectingTriggers
         pbAttackPhaseMoves
     end
 
