@@ -969,8 +969,8 @@ sp.form) && !Settings::DEX_SHOWS_ALL_FORMS
                         methodDescription = describeEvolutionMethod(method, parameter)
                         # Draw preevolution description
                         color = index == @evolutionIndex ? Color.new(255, 100, 80) : base
-                        drawTextEx(overlay, xLeft, coordinateY, 450, 2, _INTL("Evolves from {1} {2}", evolutionName, methodDescription), color,
-                            shadow)
+                        evolutionLineText = _INTL("Evolves from ") + evolutionName + " " + methodDescription
+                        drawTextEx(overlay, xLeft, coordinateY, 450, 2, evolutionLineText, color, shadow)
                         coordinateY += 30
                         coordinateY += 30 if method != :Level
                         index += 1
@@ -1012,13 +1012,11 @@ sp.form) && !Settings::DEX_SHOWS_ALL_FORMS
                         # Draw evolution description
                         color = index == @evolutionIndex ? Color.new(255, 100, 80) : base
                         fromSpeciesName = GameData::Species.get(fromSpecies).name
-                        if fromSpecies == fSpecies.species
-                            drawTextEx(overlay, xLeft, coordinateY, 450, 2, _INTL("Evolves into {1} {2}", evolutionName, methodDescription), color,
-                 shadow)
-                        else
-                            drawTextEx(overlay, xLeft, coordinateY, 450, 2,
-                 _INTL("Evolves into {1} {2} (through {3})", evolutionName, methodDescription, fromSpeciesName), color, shadow)
+                        evolutionTextLine = _INTL("Evolves into ") + evolutionName + " " + methodDescription
+                        if fromSpecies != fSpecies.species
+                            evolutionTextLine = evolutionTextLine + _INTL(" (through {1})",fromSpeciesName)
                         end
+                        drawTextEx(overlay, xLeft, coordinateY, 450, 2, evolutionTextLine, color, shadow)
                         coordinateY += 30
                         coordinateY += 30 if method != :Level || fromSpecies != fSpecies.species
                         index += 1
