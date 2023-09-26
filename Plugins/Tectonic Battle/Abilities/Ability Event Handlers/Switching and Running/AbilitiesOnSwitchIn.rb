@@ -775,7 +775,7 @@ BattleHandlers::AbilityOnSwitchIn.add(:SUSTAINABLE,
 )
 
 BattleHandlers::AbilityOnSwitchIn.add(:COTTONDECOY,
-  proc { |_ability, battler, _battle, aiCheck|
+  proc { |_ability, battler, battle, aiCheck|
       next 0 if battler.substituted?
       next 0 unless battler.hp > battler.totalhp / 4
       if aiCheck
