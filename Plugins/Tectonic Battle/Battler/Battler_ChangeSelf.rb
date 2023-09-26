@@ -260,10 +260,6 @@ class PokeBattle_Battler
         PBDebug.log("[Pokémon fainted] #{pbThis} (#{@index})") unless showMessage
         @battle.scene.pbFaintBattler(self) unless @battle.autoTesting
 
-        lastFoeAttacker.each do |foe|
-            @battle.battlers[foe].pokemon.addToKOCount
-        end
-
         # Trigger battler faint curses
         @battle.curses.each do |curse_policy|
             @battle.triggerBattlerFaintedCurseEffect(curse_policy, self, @battle)
