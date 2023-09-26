@@ -260,7 +260,6 @@ class PokeBattle_Battler
         PBDebug.log("[Pokémon fainted] #{pbThis} (#{@index})") unless showMessage
         @battle.scene.pbFaintBattler(self) unless @battle.autoTesting
 
-        @pokemon.addToFaintCount
         lastFoeAttacker.each do |foe|
             @battle.battlers[foe].pokemon.addToKOCount
         end
