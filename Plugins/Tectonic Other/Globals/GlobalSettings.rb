@@ -1,5 +1,5 @@
 module Settings
-  GAME_VERSION = "2.4.0"
+  GAME_VERSION = "3.0.0"
 
   # The maximum level Pokémon can reach.
   MAXIMUM_LEVEL        = 71
@@ -83,8 +83,8 @@ module Settings
       _INTL("TMs"),
       _INTL("Held Items"),
       _INTL("Sell Items"),
-      _INTL("Battle Items"),
-      _INTL("Key Items")
+      _INTL("Keys"),
+      _INTL("Tools")
     ]
   end
 
