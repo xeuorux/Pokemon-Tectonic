@@ -1377,7 +1377,7 @@ end
 #===============================================================================
 # Effectiveness against Dragon-type is 2x. (Slay)
 #===============================================================================
-class PokeBattle_Move_54F < PokeBattle_Move
+class PokeBattle_Move_54F < PokeBattle_TypeSuperMove
     def initialize(battle, move)
         super
         @typeHated = :DRAGON
