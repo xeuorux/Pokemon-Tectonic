@@ -1,3 +1,9 @@
+if $DEBUG
+	if !safeIsDirectory?("Changelogs")
+		Dir.mkdir("Changelogs") rescue nil
+	end
+end
+
 DebugMenuCommands.register("changelog", {
   "parent"      => "main",
   "name"        => _INTL("Changelogs..."),
@@ -39,9 +45,6 @@ DebugMenuCommands.register("generatechangelogpergen", {
   "name"        => _INTL("Generate changelog per generation"),
   "description" => _INTL("Generate a species changelog per generation of Pokemon"),
   "effect"      => proc { |sprites, viewport|
-	if !safeIsDirectory?("Changelogs")
-		Dir.mkdir("Changelogs") rescue nil
-	end
 	for index in 1...GENERATION_END_IDS.length
 		startID = GENERATION_END_IDS[index-1] + 1
 		endID = GENERATION_END_IDS[index]
@@ -68,9 +71,6 @@ DebugMenuCommands.register("generatedexdocpergen", {
 "name"        => _INTL("Generate dex doc by generation"),
 "description" => _INTL("Generate a series document that describes all current species details like a dex, split by generation"),
 "effect"      => proc { |sprites, viewport|
-		if !safeIsDirectory?("Changelogs")
-			Dir.mkdir("Changelogs") rescue nil
-		end
 		for index in 1...GENERATION_END_IDS.length
 			startID = GENERATION_END_IDS[index-1] + 1
 			endID = GENERATION_END_IDS[index]
@@ -80,7 +80,7 @@ DebugMenuCommands.register("generatedexdocpergen", {
 	}
 })
 
-def createChangeLog(firstID = 0,lastID = 999_999,fileName = "changelog.txt")
+def createChangeLog(firstID = 0,lastID = 999_999,fileName = "Changelogs/changelog.txt")
 	unchanged = []
 		
 	File.open(fileName,"wb") { |f|

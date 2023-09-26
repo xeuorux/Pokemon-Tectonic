@@ -134,6 +134,7 @@ class PokemonEncounters
   # taking into account Repels and ability effects.
   def allow_encounter?(enc_data, repel_active = false)
     return false if !enc_data
+    return false if $catching_minigame.active?
     # Repel
     if repel_active
 		  @chance_accumulator = 0

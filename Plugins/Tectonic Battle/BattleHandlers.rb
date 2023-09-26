@@ -1,3 +1,12 @@
+class AbilityHandlerHash < HandlerHash2
+end
+
+class ItemHandlerHash < HandlerHash2
+end
+
+class MoveHandlerHash < HandlerHash2
+end
+
 module BattleHandlers
     # Battler's speed calculation
     SpeedCalcAbility                    = AbilityHandlerHash.new

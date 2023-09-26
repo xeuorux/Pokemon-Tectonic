@@ -1,3 +1,6 @@
+class SpeciesHandlerHash < HandlerHash2
+end
+
 module MultipleForms
   @@formSpecies = SpeciesHandlerHash.new
 

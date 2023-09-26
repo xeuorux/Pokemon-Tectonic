@@ -47,7 +47,7 @@ class CatchingMinigame
         end
         if score > @highScore
             @highScore = score
-            @highScorePokemonSpeciesName = GameData::Species.get(pokemon.species).real_name
+            @highScorePokemonSpeciesName = GameData::Species.get(pokemon.species).name
             @highScorePokemonLevel = pokemon.level
             pbMessage(_INTL("That's a new high score!"))
         end
@@ -298,13 +298,6 @@ Events.onStepTaken += proc {
     pbStepTakenCatchingContest($PokemonGlobal.repel > 0)
 }
 
-class PokemonEncounters
-    alias minigame_allow_encounter? allow_encounter?
-    def allow_encounter?(enc_data, repel_active = false)
-        return minigame_allow_encounter?(enc_data, repel_active) && !$catching_minigame.active?
-    end
-end
-
 def pbStepTakenCatchingContest(repel_active)
     return if $Trainer.able_pokemon_count == 0
     return if !$PokemonEncounters.encounter_possible_here?
@@ -331,7 +324,7 @@ def hearAboutCatchingMinigameHighScore
   pbMessage(_INTL("It was a #{$catching_minigame.highScorePokemonSpeciesName}, right? At level #{$catching_minigame.highScorePokemonLevel}?"))
   score = $catching_minigame.highScore
   pbMessage(_INTL("That one earned you #{score > 60 ? "a whoppin' " : ""}#{score} points."))
-  if $catching_minigame.highScorePokemonSpeciesName == "Kyogre"
+  if $catching_minigame.highScorePokemonSpeciesName == "Lugia"
     pbMessage(_INTL("..."))
     pbMessage(_INTL("What?! You reeled in the legendary king of the ocean?!"))
     pbMessage(_INTL("I don't know what t'say..."))

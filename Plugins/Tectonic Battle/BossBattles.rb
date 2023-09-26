@@ -18,7 +18,7 @@ def avatarBattleAutoTest(*args)
         setBattleRule("autotesting")
         $game_variables[LEVEL_CAP_VAR] = 70
         pbSmallAvatarBattle(*args)
-        pbHealAll
+        $Trainer.heal_party
         break if debugControl
     end
 end

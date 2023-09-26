@@ -1,4 +1,4 @@
-Name         = Tribal Bonuses                                     
+Name         = Tectonic Tribal Bonuses                                     
 Version      = 1.0                                                                                               
 Link         = todo  
 Credits      = Brickbat, MrPanda1

@@ -173,7 +173,7 @@ def battleAutoTest(trainerID, trainerName)
     setBattleRule(sideSizeRuleDescriptor)
     $game_variables[LEVEL_CAP_VAR] = 70
     pbTrainerBattle(trainerID, trainerName)
-    pbHealAll
+    $Trainer.heal_party
     break if debugControl
   end
 end

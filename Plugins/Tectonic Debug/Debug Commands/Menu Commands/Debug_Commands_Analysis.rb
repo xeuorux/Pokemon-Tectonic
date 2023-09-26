@@ -1,3 +1,9 @@
+if $DEBUG
+    if !safeIsDirectory?("Analysis")
+		Dir.mkdir("Analysis") rescue nil
+	end
+end
+
 DebugMenuCommands.register("findtextinevents", {
     "parent"      => "analysis",
     "name"        => _INTL("Find Text In Events"),
@@ -105,7 +111,7 @@ DebugMenuCommands.register("analyzeitemdistribution", {
     "effect"      => proc { |sprites, viewport|
       mapData = Compiler::MapData.new
       allItemsGiven = []
-      File.open("item_distribution.txt","wb") { |file|
+      File.open("Analysis/item_distribution.txt","wb") { |file|
           for id in mapData.mapinfos.keys.sort
               map = mapData.getMap(id)
               next if !map || !mapData.mapinfos[id]
@@ -126,7 +132,7 @@ DebugMenuCommands.register("analyzeitemdistribution", {
           end
       }
   
-      pbMessage(_INTL("Item distribution analysis written to item_distribution.txt"))
+      pbMessage(_INTL("Item distribution analysis written to Analysis/item_distribution.txt"))
     }}
   )
   
@@ -193,11 +199,11 @@ DebugMenuCommands.register("analyzeitemdistribution", {
     "name"        => _INTL("Analyze Cross-Map Switching"),
     "description" => _INTL("Find the events which affect events on other maps through pbSetSelfSwitch"),
     "effect"      => proc { |sprites, viewport|
-      writeAllCodeInstances(/pbSetSelfSwitch\(([0-9]+),('[A,B,C,D,a,b,c,d]'),((?:true)|(?:false)),([0-9]+)\)/, "switching_analysis.txt")
+      writeAllCodeInstances(/pbSetSelfSwitch\(([0-9]+),('[A,B,C,D,a,b,c,d]'),((?:true)|(?:false)),([0-9]+)\)/, "Analysis/switching_analysis.txt")
     }}
   )
   
-  def WACI(regex, fileName = "code_instances.txt")
+  def WACI(regex, fileName = "Analysis/code_instances.txt")
       writeAllCodeInstances(regex, fileName)
   end
   
@@ -312,7 +318,7 @@ DebugMenuCommands.register("analyzeitemdistribution", {
       
       move_counts = move_counts.sort_by{|move_id,counts| move_id}
       
-      File.open("move_distribution.txt","wb") { |file|
+      File.open("Analysis/move_distribution.txt","wb") { |file|
           file.write("Move, Type, Category, Level Up Count, Tutor Count, Same-Type Count, Off-type Count\r\n")
           move_counts.each do |move_id,counts|
               moveData = GameData::Move.get(move_id)
@@ -320,7 +326,7 @@ DebugMenuCommands.register("analyzeitemdistribution", {
               file.write("#{move_id},#{moveData.type},#{categoryLabel},#{counts[0]},#{counts[1]},#{counts[2]},#{counts[3]}\r\n")
           end
       }
-      pbMessage(_INTL("Move distribution analysis written to move_distribution.txt"))
+      pbMessage(_INTL("Move distribution analysis written to Analysis/move_distribution.txt"))
     }
   })
 
@@ -347,7 +353,7 @@ DebugMenuCommands.register("analyzeitemdistribution", {
         echoln("Ability Name, Weilder")
         abilities = getSignatureAbilities()
       abilities = abilities.sort_by {|ability,weilder| GameData::Species.get(weilder).id_number}
-      File.open("signature_abilities.txt","wb") { |file|
+      File.open("Analysis/signature_abilities.txt","wb") { |file|
           abilities.each do |ability,weilder|
               abilityLine = describeAbility(ability)
               abilityLine += "\r\n"
@@ -355,7 +361,7 @@ DebugMenuCommands.register("analyzeitemdistribution", {
           end
       }
   
-      pbMessage(_INTL("Printed out signature abilities to signature_abilities.txt"))
+      pbMessage(_INTL("Printed out signature abilities to Analysis/signature_abilities.txt"))
     }
   })
   
@@ -392,7 +398,7 @@ DebugMenuCommands.register("analyzeitemdistribution", {
     "effect"      => proc { |sprites, viewport|
         moves = getSignatureMoves()
       moves = moves.sort_by {|move,weilder| GameData::Species.get(weilder).id_number}
-      File.open("signature_moves.txt","wb") { |file|
+      File.open("Analysis/signature_moves.txt","wb") { |file|
           moves.each do |move,weilder|
               moveLine = describeMove(move)
               moveLine += "\r\n"
@@ -400,7 +406,7 @@ DebugMenuCommands.register("analyzeitemdistribution", {
           end
       }
   
-      pbMessage(_INTL("Printed out signature moves to signature_moves.txt."))
+      pbMessage(_INTL("Printed out signature moves to Analysis/signature_moves.txt."))
     }
   })
   
@@ -434,14 +440,14 @@ DebugMenuCommands.register("analyzeitemdistribution", {
           GameData::Type.get(data.type).id_number * 10_000 + data.category * 1000 + data.base_damage
       }
   
-      File.open("canon_moves.txt","wb") { |file|
+      File.open("Analysis/canon_moves.txt","wb") { |file|
           moveDataSorted.each do |moveData|
               moveLine = describeMove(moveData.id)
               moveLine += "\r\n"
               file.write(moveLine)
           end
       }
-      pbMessage(_INTL("Canon moves information written to canon_moves.txt"))
+      pbMessage(_INTL("Canon moves information written to Analysis/canon_moves.txt"))
     }
   })
 
@@ -461,14 +467,14 @@ DebugMenuCommands.register("analyzeitemdistribution", {
           GameData::Type.get(data.type).id_number * 10_000 + data.category * 1000 + data.base_damage
       }
   
-      File.open("new_moves.txt","wb") { |file|
+      File.open("Analysis/new_moves.txt","wb") { |file|
           moveDataSorted.each do |moveData|
               moveLine = describeMove(moveData.id)
               moveLine += "\r\n"
               file.write(moveLine)
           end
       }
-      pbMessage(_INTL("New moves information written to new_moves.txt"))
+      pbMessage(_INTL("New moves information written to Analysis/new_moves.txt"))
     }
   })
 
@@ -488,14 +494,14 @@ DebugMenuCommands.register("analyzeitemdistribution", {
           GameData::Type.get(data.type).id_number * 10_000 + data.category * 1000 + data.base_damage
       }
   
-      File.open("new_moves.txt","wb") { |file|
+      File.open("Analysis/new_moves.txt","wb") { |file|
           moveDataSorted.each do |moveData|
               moveLine = moveData.real_name
               moveLine += "\r\n"
               file.write(moveLine)
           end
       }
-      pbMessage(_INTL("Cut moves information written to cut_moves.txt"))
+      pbMessage(_INTL("Cut moves information written to Analysis/cut_moves.txt"))
     }
   })
 
@@ -515,14 +521,14 @@ DebugMenuCommands.register("analyzeitemdistribution", {
           data.real_name
       }
   
-      File.open("new_abilities.txt","wb") { |file|
+      File.open("Analysis/new_abilities.txt","wb") { |file|
           abilityDataSorted.each do |abilityData|
               abilityLine = describeAbility(abilityData.id)
               abilityLine += "\r\n"
               file.write(abilityLine)
           end
       }
-      pbMessage(_INTL("New ability information written to new_abilities.txt"))
+      pbMessage(_INTL("New ability information written to Analysis/new_abilities.txt"))
     }
   })
 

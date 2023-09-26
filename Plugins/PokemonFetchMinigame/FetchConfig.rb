@@ -1,1 +1,0 @@
-DONATE_POKEMON = false
