@@ -718,27 +718,33 @@ Pokemon = MORPEKO,65
     Moves = GUTCHECK,TAUNT,BELLYDRUM,RAPIDSPIN
     AbilityIndex = 0 # Hunger Switch
     Item = FOCUSSASH
+    EV = 0,20,10,20,20,0
 Pokemon = VENUSAUR,65
     Moves = LIGHTSCREEN,LEECHSEED,POWERWHIP,SLUDGEBOMB
     AbilityIndex = 1 # Thick Fat
     Item = LEFTOVERS
+    EV = 20,10,10,0,10,10
 Pokemon = SAHARICANE,65
     Moves = EARTHPOWER,MIASMA,COLDFRONT,FLAMETHROWER
     AbilityIndex = 1 # Disorienting
     Item = STRIKEVEST
+    EV = 20,20,10,0,20,0
 Pokemon = BLASTOISE,65
     Moves = FLASHCANNON,WATERPULSE,AURASPHERE,DRAGONPULSE
     AbilityIndex = 1 # Mega Launcher
     Item = CHOICESPECS
+    EV = 20,20,0,0,20,10
 Pokemon = CHARIZARD,65
     Moves = OVERHEAT,DRACOMETEOR,MIRAGEFLARE,CRUELTY
     AbilityIndex = 0 # Levitate
     Item = WHITEHERB
+    EV = 10,20,0,20,20,0
 Pokemon = LYCANROC,65
     Form = 2
     Moves = PSYCHICFANGS,ADAMANTINEPRESS,CLOSECOMBAT,SWORDSDANCE
     AbilityIndex = 0 # Tough Claws
     Item = CHOPLEBERRY
+    EV = 10,20,0,20,20,0
 #-------------------------------
 [POKEMONTRAINER_Yezera,Yezera,2]
 Policies = NO_PERFECT
@@ -3440,41 +3446,58 @@ Pokemon = DURANT,60
     AbilityIndex = 0 # Hustle
 #-------------------------------
 [LEADER_Samorn,Samorn]
-Policies = SAMORN,NO_PERFECT
+Policies = SAMORN,NO_PERFECT,SAND_TEAM
 Pokemon = FLYGON,60
     Moves = SANDVORTEX,BUGBUZZ,DRAGONPULSE,SANDBLASTING
     AbilityIndex = 0 # Desert Spirit
     Item = YACHEBERRY
+    EV = 10,20,0,20,20,0
 Pokemon = TOWERPODA,60
     Moves = TAKESHELTER,CRIPPLINGBREATH,SNARL,SANDSTORM
     AbilityIndex = 1 # High-rise
+    EV = 20,10,10,0,10,10
 Pokemon = GARCHOMP,60
-    Moves = OUTRAGE,BRICKBREAK,UNDERMINE,STEALTHROCK
+    Moves = REND,BRICKBREAK,UNDERMINE,GRINDSTONE
     AbilityIndex = 1 # Dune Predator
+    EV = 20,20,5,0,20,5
 Pokemon = VOLCARONA,60
     Moves = QUIVERDANCE,GIGADRAIN,BUGBUZZ,FLAMETHROWER
     AbilityIndex = 1 # Dawn Burst
+    EV = 10,20,0,20,20,0
 Pokemon = SAURENAID,60
     Name = Maxie
     Gender = male
     Moves = HYPERVOICE,DRAGONPULSE,BUBBLEBLAST,PSYCHIC
     AbilityIndex = 0 # Frost Song
     Item = LEFTOVERS
+    EV = 0,20,10,0,20,20
 #-------------------------------
 [LEADER_Samorn_2,Samorn]
 Extends = LEADER_Samorn,Samorn,0
 Pokemon = TOWERPODA,60
     Item = SMOOTHROCK
+Pokemon = GARCHOMP,60
+    Item = ASSAULTVEST
 Pokemon = REAVOR,60
-    Moves = BULLETPUNCH,DUALWINGBEAT,BUGBITE,BULLETTRAIN
+    Moves = BULLETPUNCH,DUALWINGBEAT,BUGBITE,SHATTERVICE
     AbilityIndex = 0 # Technician
     Item = LIFEORB
+    EV = 20,20,0,0,20,10
 #-------------------------------
 [LEADER_Samorn_2,Samorn,1]
 ExtendsVersion = 0
 Policies = CURSE_BOOSTED_SAND
 Pokemon = REAVOR,60
     Position = 1
+Pokemon = TOWERPODA,60
+    Moves = DRACOMETEOR,BODYPRESS,FLASHCANNON,SANDSTORM
+    AbilityIndex = 0 # Stubborn
+    Item = DRAGONGEM
+    EV = 10,20,20,0,20,0
+Pokemon = VOLCARONA,60
+    Moves = PSYCHIC,GIGADRAIN,BUGBUZZ,HEATWAVE
+    Item = FIREGEM
+    EV = 12,20,0,18,20,0
 #-------------------------------
 [FIREBREATHER,Bradley]
 Pokemon = COMFEY,49
