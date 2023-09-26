@@ -56,10 +56,11 @@ def getPoisonEffectScore(user, target, ignoreCheck: false)
     if target && (ignoreCheck || target.canPoison?(user, false))
         score = -10
         if target.takesIndirectDamage?
-            score += 50
-            score += 20 if target.hp == target.totalhp
-            score += 20 if target.hp >= target.totalhp / 2 || target.hp <= target.totalhp / 8
+            score += 70
+            score += 20 if target.hp >= target.totalhp * 0.95
+            score += 40 if target.hp >= target.totalhp / 2 || target.hp <= target.totalhp / 10
             score += 30 if target.trapped?
+			score += 60 if target.hasHealingMove?
             score += NON_ATTACKER_BONUS unless user&.hasDamagingAttack?
             if user
                 score *= 1.5 if user.hasActiveAbilityAI?(:AGGRAVATE)
@@ -151,11 +152,14 @@ def getLeechEffectScore(user, target, ignoreCheck: false)
     if ignoreCheck || canLeech
         score = -10
         if target.takesIndirectDamage?
-            score += 50
-            score += NON_ATTACKER_BONUS * 2 unless user&.hasDamagingAttack?
-            score += 20 if target.hp >= target.totalhp / 2
-            score += 30 if target.totalhp > user&.totalhp * 2
+            score += 60
+            score += NON_ATTACKER_BONUS * 2 unless user&.hasDamagingAttack?			
+            score += 20 if target.hp >= target.totalhp * 0.95
+            score += 40 if target.hp >= target.totalhp / 2 || target.hp <= target.totalhp / 10
+            score += 20 if target.totalhp > user&.totalhp * 1.5			
+            score += 20 if target.totalhp > user&.totalhp * 2
             score -= 30 if target.totalhp < user&.totalhp / 2
+			score += 50 if target.hasHealingMove?
             score *= 2 if user&.hasActiveAbilityAI?(:AGGRAVATE)
             score *= 1.5 if user&.hasActiveAbilityAI?(:ROOTED)
             score *= 1.3 if user&.hasActiveItem?(:BIGROOT)
