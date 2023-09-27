@@ -6856,3 +6856,75 @@ Pokemon = GYARADOS,70
 [SPIRITGUARDIAN4,Brigitte,1]
 ExtendsVersion = 0
 Policies = CURSE_TYPE_WEAKENED
+#-------------------------------
+[SAGE,Takeshi]
+Pokemon = RAMPARDOS,70
+    AbilityIndex = 1 # Sturdy
+    Item = AGILITYHERB
+Pokemon = VESPIQUEN,70
+    AbilityIndex = 1 # Stressful
+Pokemon = DRIFBLIM,70
+    AbilityIndex = 1 # Drifting Mist
+Pokemon = HLILLIGANT,70
+    AbilityIndex = 0 # Energetic
+    Item = LIFEORB
+#-------------------------------
+[VETERANM,Taro]
+Pokemon = MAMOSWINE,70
+    AbilityIndex = 0 # Thick Fat
+Pokemon = LUXRAY,70
+    AbilityIndex = 1 # Intimidate
+    Item = EJECTBUTTON
+Pokemon = MOTHIM,70
+    AbilityIndex = 1 # Moth Burglar
+    Item = EJECTBUTTON
+Pokemon = HTYPHLOSION,70
+    AbilityIndex = 1 # Superstitious
+#-------------------------------
+[MEDIUM,Izumi]
+Pokemon = FROSLASS,70
+    AbilityIndex = 0 # Sealing Body
+Pokemon = CARNIVINE,70
+    AbilityIndex = 0 # Strong Jaw
+    Item = YACHEBERRY
+Pokemon = BASTIODON,70
+    AbilityIndex = 1 # Frustrate
+    Item = CHOPLEBERRY
+Pokemon = SCRAFTY,70
+    AbilityIndex = 1 # Moxie
+#-------------------------------
+[EXPERTF,Kimiko]
+Pokemon = INFERNAPE,70
+    AbilityIndex = 0 # Mystic Fist
+Pokemon = FLOATZEL,70
+    AbilityIndex = 0 # Moxie
+    Item = WATERGEM
+Pokemon = LEAFEON,70
+    AbilityIndex = 1 # Reluctant Blade
+    Item = AMWIBERRY
+Pokemon = METAGROSS,70
+    AbilityIndex = 1 # Robust
+#-------------------------------
+[EXPERTM,Hiroshi]
+Pokemon = ELECTIVIRE,70
+    AbilityIndex = 0 # Shock Style
+Pokemon = GASTRODON,70
+    AbilityIndex = 1 # Water Absorb
+Pokemon = GLACEON,70
+    AbilityIndex = 1 # Brilliant Flurry
+    Item = LEFTOVERS
+Pokemon = MUK,70
+    AbilityIndex = 0 # Toxin Tax
+    Item = SITRUSBERRY
+#-------------------------------
+[TOURISTM,Francois]
+Pokemon = EMPOLEON,70
+    AbilityIndex = 1 # Well Supplied
+Pokemon = FLORGES,70
+    AbilityIndex = 1 # Sentry
+Pokemon = TOUCANNON,70
+    AbilityIndex = 1 # Skill Link
+    Item = CHOICEBAND
+Pokemon = MILTANK,70
+    AbilityIndex = 0 # Thick Fat
+    Item = LEFTOVERS

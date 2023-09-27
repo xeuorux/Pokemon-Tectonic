@@ -344,3 +344,7 @@
 467,SPIRITGUARDIAN2,Spirit Guardian,60,,,ELITETRAINER,Female,,,[]
 468,SPIRITGUARDIAN3,Spirit Guardian,60,,,ELITETRAINER,Female,,,[]
 469,SPIRITGUARDIAN4,Spirit Guardian,60,,,ELITETRAINER,Female,,,[]
+470,EXPERTM,Veteran,80,,,MONK,Male,,,[]
+471,EXPERTF,Veteran,80,,,MONK,Female,,,[]
+472,TOURISTM,Tourist,16,,,BUSINESSMAN,Male,,,[]
+473,TOURISTF,Tourist,16,,,BUSINESSMAN,Male,,,[]
