@@ -2162,48 +2162,6 @@ Pokemon = EMPOLEON,45
     Item = SALACBERRY
     EV = 0,20,10,20,20,0
 #-------------------------------
-[LEADER_Noel,Noel]
-Policies = NOEL,NO_PERFECT
-Pokemon = MRRIME,45
-    Moves = ICEHAMMER,KINETICGRIP,TORMENT,MIRRORSHIELD
-    AbilityIndex = 0 # Slapstick
-    EV = 10,20,10,0,20,10
-Pokemon = METAGROSS,45
-    Name = Armiger
-    Shiny = yes
-    Moves = METEORMASH,TRAMPLE,BRICKBREAK,PREDICTIONSTRIKE
-    AbilityIndex = 1 # Robust
-    EV = 20,20,10,0,20,0
-Pokemon = MPOLTEAGEIST,45
-    Moves = FROSTBREATH,SEANCE,BUBBLEBARRAGE,AROMATHERAPY
-    AbilityIndex = 1 # Chill Out
-    Item = LOADEDDICE
-    EV = 10,20,0,20,20,0
-Pokemon = CRABOMINABLE,45
-    Moves = STORMTHROW,ICEHAMMER,ADAMANTINEPRESS,KNOCKOFF
-    AbilityIndex = 0 # Survivalist
-    EV = 10,20,0,0,20,20
-Pokemon = BRUXISH,45
-    Moves = CRUNCH,PSYCHICFANGS,TIDALKINESIS,FIREFANG
-    AbilityIndex = 1 # Strong Jaw
-    Item = FIREGEM
-    EV = 0,20,5,20,20,5
-#-------------------------------
-[LEADER_Noel_2,Noel]
-Extends = LEADER_Noel,Noel,0
-Pokemon = GDARMANITAN,45
-    Form = 1
-    Moves = BURNUP,COLDCONVERSION,SOLARBEAM,BODYPRESS
-    AbilityIndex = 0 # Phase Shift
-    Item = POWERHERB
-    EV = 0,20,20,0,20,10
-Pokemon = METAGROSS,45
-    Item = SALACBERRY
-#-------------------------------
-[LEADER_Noel_2,Noel,1]
-ExtendsVersion = 0
-Policies = CURSE_EXTRA_TYPES
-#-------------------------------
 [SWIMMER_F3,Bree]
 Pokemon = SCARODON,46
     AbilityIndex = 0 # Schadenfreude
@@ -2409,7 +2367,7 @@ Pokemon = GOLEM,46
 Pokemon = GDARMANITAN,45
     AbilityIndex = 0 # Gorilla Tactics
 Pokemon = STARMIE,45
-    AbilityIndex = 0 # Stars Align
+    AbilityIndex = 1 # Energetic
 Pokemon = MAMOSWINE,45
     AbilityIndex = 0 # Thick Fat
     Item = EXPERTBELT
@@ -2425,10 +2383,34 @@ Pokemon = VENOMOTH,45
 Pokemon = CLAYDOL,45
     AbilityIndex = 1 # Disorienting
 Pokemon = JYNX,45
-    AbilityIndex = 1 # Ice Queen
+    AbilityIndex = 0 # Fascinate
 Pokemon = FROSLASS,45
     AbilityIndex = 0 # Sealing Body
     Item = PETAYABERRY
+#-------------------------------
+[SKIER_F,Natalia]
+Pokemon = GLALIE,45
+    AbilityIndex = 0 # Flash Freeze
+Pokemon = MBEAUTIFLY,45
+    AbilityIndex = 0 # Bitter
+    Item = BUGGEM
+Pokemon = SLOWBRO,45
+    AbilityIndex = 0 # Pain Delay
+    Item = LEFTOVERS
+Pokemon = BRONZONG,45
+    AbilityIndex = 0 # Levitate
+#-------------------------------
+[ARTIST3,Frida]
+Pokemon = MPOLTEAGEIST,45
+    AbilityIndex = 1 # Chill Out
+    Item = FOCUSSASH
+Pokemon = DEWGONG,45
+    AbilityIndex = 0 # Bitter
+Pokemon = FARIGIRAF,45
+    AbilityIndex = 0 # Cud Chew
+    Item = SITRUSBERRY
+Pokemon = DELPHOX,45
+    AbilityIndex = 1 # Fascinate
 #-------------------------------
 [WORKER3,Bruce]
 Policies = HAIL_TEAM
@@ -2442,6 +2424,48 @@ Pokemon = GLACEON,45
 Pokemon = SIGILYPH,45
     AbilityIndex = 0 # Magic Guard
     Item = CUSTAPBERRY
+#-------------------------------
+[LEADER_Noel,Noel]
+Policies = NOEL,NO_PERFECT
+Pokemon = MRRIME,45
+    Moves = ICEHAMMER,KINETICGRIP,TORMENT,MIRRORSHIELD
+    AbilityIndex = 0 # Slapstick
+    EV = 10,20,10,0,20,10
+Pokemon = METAGROSS,45
+    Name = Armiger
+    Shiny = yes
+    Moves = METEORMASH,TRAMPLE,BRICKBREAK,PREDICTIONSTRIKE
+    AbilityIndex = 1 # Robust
+    EV = 20,20,10,0,20,0
+Pokemon = MPOLTEAGEIST,45
+    Moves = FROSTBREATH,SEANCE,BUBBLEBARRAGE,AROMATHERAPY
+    AbilityIndex = 1 # Chill Out
+    Item = LOADEDDICE
+    EV = 10,20,0,20,20,0
+Pokemon = CRABOMINABLE,45
+    Moves = STORMTHROW,ICEHAMMER,ADAMANTINEPRESS,KNOCKOFF
+    AbilityIndex = 0 # Survivalist
+    EV = 10,20,0,0,20,20
+Pokemon = BRUXISH,45
+    Moves = CRUNCH,PSYCHICFANGS,TIDALKINESIS,FIREFANG
+    AbilityIndex = 1 # Strong Jaw
+    Item = FIREGEM
+    EV = 0,20,5,20,20,5
+#-------------------------------
+[LEADER_Noel_2,Noel]
+Extends = LEADER_Noel,Noel,0
+Pokemon = GDARMANITAN,45
+    Form = 1
+    Moves = BURNUP,COLDCONVERSION,SOLARBEAM,BODYPRESS
+    AbilityIndex = 0 # Phase Shift
+    Item = POWERHERB
+    EV = 0,20,20,0,20,10
+Pokemon = METAGROSS,45
+    Item = SALACBERRY
+#-------------------------------
+[LEADER_Noel_2,Noel,1]
+ExtendsVersion = 0
+Policies = CURSE_EXTRA_TYPES
 #-------------------------------
 [BLACKBELT2,Riccardo]
 Policies = SAND_TEAM,NO_PERFECT
