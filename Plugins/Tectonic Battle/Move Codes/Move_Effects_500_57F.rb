@@ -1953,9 +1953,10 @@ class PokeBattle_Move_575 < PokeBattle_Move
     end
 
     def getEffectScore(user, target)
+        return 0 if user.effects[:PerishSong] > 0
         return 0 if user.belowHalfHealth?
         return 0 unless target.hasPhysicalAttack?
-        return 120
+        return 150
     end
 end
 

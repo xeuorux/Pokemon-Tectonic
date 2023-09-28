@@ -306,7 +306,12 @@ def getMultiStatUpEffectScore(statUpArray, user, target, fakeStepModifier: 0, ev
         echoln("\t\t[EFFECT SCORING] Grey Mist is active, scoring 0.")
         return 0
     end
-
+	
+	if user.effects[:PerishSong] > 0
+		echoln("\t\t[EFFECT SCORING] #{user.pbThis} (#{user.index}) has heard the perish song, scoring 0")
+		return 0
+	end
+	
     score = 0
 
     for i in 0...statUpArray.length / 2
@@ -705,8 +710,11 @@ end
 
 def getAquaRingEffectScore(user)
     return 0 if user.effectActive?(:AquaRing)
+	return 0 if user.effects[:PerishSong] > 0
+
     score = 40
-    score += 40 if user.aboveHalfHealth?
+    score += 20 if user.hp > user.totalhp * 0.5
+	score += 20 if user.hp > user.totalhp * 0.75
     return score
 end
 
