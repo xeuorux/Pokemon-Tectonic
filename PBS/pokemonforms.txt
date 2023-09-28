@@ -1347,4 +1347,3 @@ BattlerEnemyY = 17
 FormName = Harvest
 BaseStats = 120,50,81,68,125,81
 Abilities = BADINFLUENCE
-#-------------------------------
