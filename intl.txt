@@ -42217,6 +42217,7 @@ Velocidad
 Other Stats
 Otras Stats
 Growth Rate
+Ratio de Desarollo
 Catch Dif.
 Dif. de Captura
 Exp. Grant
@@ -42865,14 +42866,8 @@ Which direction?
 Which direction?
 Sort by what?
 Sort by what?
-
-
-
-
-
-
-
-
+[26]
+[27]
 [27]
 0
 Animated
@@ -43007,5 +43002,3 @@ Ignora la primera vez en batalla que alguien de tu equipo sea amedrentado u obte
 21
 Your team's 'Super Effective' moves deals 12% more damage.
 Los movimientos “Súper Efectivos” de tu equipo son potenciados un 12%.
-
-
