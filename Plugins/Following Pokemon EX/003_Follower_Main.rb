@@ -62,6 +62,7 @@ def pbTalkToFollower
   random_val = rand(6)
   Events.OnTalkToFollower.trigger(first_pkmn,event.x,event.y,random_val)
   pbTurnTowardEvent(event,$game_player)
+  first_pkmn.changeHappiness("interaction")
 end
 
 #-------------------------------------------------------------------------------

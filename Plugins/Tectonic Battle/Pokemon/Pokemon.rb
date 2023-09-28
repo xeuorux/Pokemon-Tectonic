@@ -1745,6 +1745,8 @@ class Pokemon
         gain = 8
       when "sweetheart"
         gain = 1
+      when "interaction"
+        gain = 1
       end
 
       if gain > 0

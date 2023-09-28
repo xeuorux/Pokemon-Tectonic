@@ -456,6 +456,7 @@ class PokEstate
 				eventCalling.turn_toward_player
 				if defined?(Events.OnTalkToFollower)
 					Events.OnTalkToFollower.trigger(pokemon,eventCalling.x,eventCalling.y,rand(6))
+					pokemon.changeHappiness("interaction")
 				end
 				if rand < 0.5
 					beginWandering(eventCalling.event.pages[0],pokemon)
