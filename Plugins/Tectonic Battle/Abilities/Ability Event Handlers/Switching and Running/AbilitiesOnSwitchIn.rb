@@ -949,10 +949,19 @@ BattleHandlers::AbilityOnSwitchIn.add(:CURIOUSMEDICINE,
               done = true
           end
       end
+	  battler.eachOpposing do |b|
+          next unless b.hasAlteredStatSteps?
+          if aiCheck
+              score += statStepsValueScore(b)
+          else
+              b.pbResetStatSteps
+              done = true
+          end
+      end
       next score if aiCheck
       if done
           battle.pbShowAbilitySplash(battler, ability)
-          battle.pbDisplay(_INTL("All allies' stat changes were eliminated!"))
+          battle.pbDisplay(_INTL("All stat changes were eliminated!"))
           battle.pbHideAbilitySplash(battler)
       end
   }

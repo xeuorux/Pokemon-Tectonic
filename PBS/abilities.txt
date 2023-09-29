@@ -166,7 +166,7 @@
 165,STEELYSPIRIT,Steely Spirit,"Powers up Steel-type moves of itself and its allies by 50%."
 166,WANDERINGSPIRIT,Wandering Spirit,"Taking a physical hit exchanges Abilities."
 167,UNSEENFIST,Unseen Fist,"Physical moves negate all protection effects."
-168,CURIOUSMEDICINE,Curious Medicine,"Upon entry, clears the stat changes of allies."
+168,CURIOUSMEDICINE,Curious Medicine,"Upon entry, clears the stat changes of other Pokémon."
 169,TRANSISTOR,Transistor,"Powers up Electric-type moves by 50%."
 170,DRAGONSMAW,Dragon's Maw,"Powers up Dragon-type moves by 50%."
 171,CHILLINGNEIGH,Chilling Neigh,"Boosts Attack after knocking out any Pokémon."
