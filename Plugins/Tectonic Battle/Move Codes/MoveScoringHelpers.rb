@@ -336,19 +336,19 @@ def getMultiStatUpEffectScore(statUpArray, user, target, fakeStepModifier: 0, ev
 
         # Increase the score more for boosting attacking stats
         if %i[ATTACK SPECIAL_ATTACK].include?(statSymbol)
-            increase = 20
+            increase = 25
         elsif statSymbol == :DEFENSE
-            increase = target.tookPhysicalHitLastRound ? 20 : 10
+            increase = target.tookPhysicalHitLastRound ? 25 : 13
         elsif statSymbol == :SPECIAL_DEFENSE
-            increase = target.tookSpecialHitLastRound ? 20 : 10
+            increase = target.tookSpecialHitLastRound ? 20 : 13
         else
-            increase = 15
+            increase = 19
         end
 		
 		# Increase the score more if getting offense and defense from same stat
-		increase += 11 if statSymbol == :DEFENSE && user.pbHasMoveFunction?("177") # Body Press
-		increase += 11 if statSymbol == :SPECIAL_DEFENSE && user.pbHasMoveFunction?("540") # Aura Trick
-		increase = 25 if %i[DEFENSE SPECIAL_DEFENSE].include?(statSymbol) && increase >25 # Restrain the ai if it has defense move and took a hit
+		increase += 13 if statSymbol == :DEFENSE && user.pbHasMoveFunction?("177") # Body Press
+		increase += 13 if statSymbol == :SPECIAL_DEFENSE && user.pbHasMoveFunction?("540") # Aura Trick
+		increase = 30 if %i[DEFENSE SPECIAL_DEFENSE].include?(statSymbol) && increase >30 # Restrain the ai if it has defense move and took a hit
 		
         increase *= statIncreaseAmount
         step = target.steps[statSymbol] + fakeStepModifier
@@ -371,7 +371,7 @@ def getMultiStatUpEffectScore(statUpArray, user, target, fakeStepModifier: 0, ev
 
     # Stats ups are stronger the less threat the user is under this turn
     # And worse the more threat
-    score += user.defensiveMatchupAI * 2 if evaluateThreat
+    score *= (user.defensiveMatchupAI * 0.8 + 100.0) / 100.0 if evaluateThreat
 
     if target.hasActiveAbilityAI?(:CONTRARY)
         score *= -1
