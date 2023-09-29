@@ -436,6 +436,10 @@ def getMultiStatDownEffectScore(statDownArray, user, target, fakeStepModifier: 0
             scoreIncrease = 15
         end
 
+        # Decreasing attacks matters less for hybrids
+        scoreIncrease /= 2 if statSymbol == :ATTACK && target.hasSpecialAttack?
+        scoreIncrease /= 2 if statSymbol == :SPECIAL_ATTACK && target.hasPhysicalAttack?
+
         scoreIncrease *= statDecreaseAmount
         step = target.steps[statSymbol] + fakeStepModifier
         scoreIncrease += step * 5 # Increase the score for each existing step
