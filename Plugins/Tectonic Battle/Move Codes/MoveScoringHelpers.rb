@@ -238,6 +238,9 @@ def getHazardSettingEffectScore(user, _target, magnitude = 10)
     score += magnitude * user.enemiesInReserveCount
     score += magnitude * user.alliesInReserveCount
     score *= 1.5
+    user.eachOpposing do |b|
+        score -= statStepsValueScore(b)
+    end
     return score
 end
 
@@ -276,11 +279,11 @@ def getSwitchOutEffectScore(switcher, scoreStatSteps = true)
 end
 
 def getForceOutEffectScore(_user, target, random = true)
-    return 0 if target.battle.pbCanChooseNonActive?(target.index)
+    return 0 if !target.battle.pbCanChooseNonActive?(target.index)
     return 0 if target.effectActive?(:Ingrain)
     score = random ? 10 : -15
     score += 0.5 * hazardWeightOnSide(target.pbOwnSide,[:StickyWeb])
-    score += statStepsValueScore(target)
+    score += statStepsValueScore(target)	
     return score
 end
 
@@ -293,7 +296,8 @@ def statStepsValueScore(battler)
         elsif s.id == :SPECIAL_ATTACK
             next unless battler.hasSpecialAttack?
         end
-        score += statStep * 5
+        score += statStep * 30
+        score = 180 if score > 180
     end
     echoln("\t\t[EFFECT SCORING] Scoring the total value of the stat steps on #{battler.pbThis(true)} as #{score}.")
     return score
