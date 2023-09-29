@@ -298,8 +298,8 @@ class PokeBattle_AI
 
         # Set-up counterplay scoring
         if      (battler.hasActiveItem?(:REDCARD) && !opposingBattler.hasActiveItem?(:PROXYFIST)) ||
-                battler.hasActiveAbility?(%i[SMOKEINSINCT PERISHSONG CURIOUSMEDICINE DRIFTINGMIST])
-            matchupScore += statStepsValueScore(battler)
+                battler.hasActiveAbility?(%i[SMOKEINSINCT PERISHBODY CURIOUSMEDICINE DRIFTINGMIST])
+            matchupScore += statStepsValueScore(opposingBattler) * 0.15
         end
 
         # Value of stalling

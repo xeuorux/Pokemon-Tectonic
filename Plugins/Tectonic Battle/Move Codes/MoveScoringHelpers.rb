@@ -748,14 +748,13 @@ def getWeatherResetEffectScore(user)
 end
 
 def getGreyMistSettingEffectScore(user,duration)
-    score = 20
+    score = 0
     user.battle.eachBattler do |b|
         if b.opposes?(user)
             score += statStepsValueScore(b)
-            score += 10 * duration if b.hasStatBoostingMove?
+            score += 15 * duration if b.hasStatBoostingMove? && score = 0
         else
             score -= statStepsValueScore(b)
-            score -= 10 * duration if b.hasStatBoostingMove?
         end
     end
     return score
