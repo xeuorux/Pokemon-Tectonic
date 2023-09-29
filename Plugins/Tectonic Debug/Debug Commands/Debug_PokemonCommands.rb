@@ -340,6 +340,17 @@ module PokemonDebugMenuCommands
       next false
     }
   })
+
+  PokemonDebugMenuCommands.register("resetpersonality", {
+    "parent"      => "levelstats",
+    "name"        => _INTL("Reset Personality"),
+    "always_show" => true,
+    "effect"      => proc { |pkmn, pkmnid, heldpoke, settingUpBattle, screen|
+      pkmn.resetPersonality
+      screen.pbDisplay(_INTL("Reset {1}'s personality.", pkmn.name))
+      next false
+    }
+  })
   
   PokemonDebugMenuCommands.register("conteststats", {
     "parent"      => "levelstats",

@@ -225,6 +225,9 @@ module GameData
         Policy.load
         Avatar.load
         Tribe.load
+        Trait.load
+        Like.load
+        Dislike.load
     end
 end
 

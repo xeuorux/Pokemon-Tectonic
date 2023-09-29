@@ -1,0 +1,106 @@
+SCARYMOVIES,Scary Movies
+PETTING,Petting
+LOUDNOISES,Loud Noises
+SMALLTALK,Smalltalk
+DIRECTIONS,Directions
+INTROSPECTION,Introspection
+SOURFOOD,Sour Food
+BITTERCOFFEE,Bitter Coffee
+SWEETCOFFEE,Sweet Coffee
+THEVET,The Vet
+POLLEN,Pollen
+TIGHTSPACES,Tight Spaces
+CROWDS,Crowds
+COMMUTING,Commuting
+HIKING,Hiking
+IDLENESS,Idleness
+SADSTORIES,Sad Stories
+HEIGHTS,Heights
+STORMS,Storms
+HOTDAYS,Hot Days
+COLDDAYS,Cold Days
+THEDARK,The Dark
+THUNDER,Thunder
+DEFEATISTS,Defeatists
+BABIES,Babies
+FORESTS,Forests
+SAND,Sand
+EXERCISE,Exercise
+BABYSITTING,Babysitting
+LOUDCARS,Loud Cars
+RESPONSIBILITY,Responsibility
+CLEANING,Cleaning
+SPICYFOOD,Spicy Food
+SODA,Soda
+LOUDMUSIC,Loud Music
+COOKING,Cooking
+SNOW,Snow
+ROUTINES,Routines
+FIREWORKS,Fireworks
+ATTENTION,Attention
+BEINGSPOILED,Being Spoiled
+SLOWINTERNET,Slow Internet
+LOUDEATERS,Loud Eaters
+CHALKBOARDS,Chalkboards
+OPENOCEAN,Open Ocean
+BOATS,Boats
+CHORES,Chores
+SNITCHES,Snitches
+AUTHORITY,Authority
+MORNINGS,Mornings
+CHANGE,Change
+DIETING,Dieting
+INTRODUCTIONS,Introductions
+SILENCE,Silence
+EYECONTACT,Eye Contact
+VANDALISM,Vandalism
+WASTEFULNESS,Wastefulness
+HOMEWORK,Homework
+SMALLSPACES,Small Spaces
+CLOWNS,Clowns
+BEINGTICKLED,Being Tickled
+ONEUPPERS,One-uppers
+ADS,Ads
+MAYONNAISE,Mayonnaise
+REALITYTV,Reality TV
+AVOCADOS,Avocados
+TOMATOS,Tomatos
+PINEAPPLES,Pineapples
+CILANTRO,Cilantro
+MUSTARD,Mustard
+CELEBRITIES,Celebrities
+BO,B-O
+JELLY,Jelly
+DENTISTS,Dentists
+OPENSPACES,Open Spaces
+THEABRAPORTER,The Abraporter
+ISOLATION,Isolation
+NEEDLES,Needles
+MIRRORS,Mirrors
+CEMETERIES,Cemeteries
+EMBARRASSMENT,Embarrassment
+AIRPLANES,Airplanes
+WEIGHTGAIN,Weight Gain
+MEDICINE,Medicine
+BEINGWATCHED,Being Watched
+PUBLICSPEAKING,Public Speaking
+BALLOONS,Balloons
+PEANUTBUTTER,Peanut Butter
+CINNAMON,Cinnamon
+OKRA,Okra
+PICKLES,Pickles
+TURNIPS,Turnips
+WAKINGUP,Waking Up
+COPYRIGHT,Copyright
+TAXES,Taxes
+NERDS,Nerds
+POPMUSIC,Pop Music
+ANIME,Anime
+EXAMS,Exams
+MONDAYS,Mondays
+WASABI,Wasabi
+COUNTRYMUSIC,Country Music
+RAPMUSIC,Rap Music
+SNAKES,Snakes
+BEES,Bees
+FORMALCLOTHES,Formal Clothes

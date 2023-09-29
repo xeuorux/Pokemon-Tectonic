@@ -644,20 +644,20 @@ class PokemonSummary_Scene
         # Traits
         memo += _INTL("<c3=F83820,E09890>Traits:<c3=404040,B0B0B0>")
         memo += "\n"
-        memo += _INTL("<c3=404040{2},B0B0B0>{1}", @pokemon.trait1 || "Unknown", @pokemon.trait1 ? "FF" : "77")
+        memo += _INTL("<c3=404040{2},B0B0B0>{1}", @pokemon.displayTrait1, @pokemon.trait1 ? "FF" : "77")
         memo += "\n"
-        memo += _INTL("<c3=404040{2},B0B0B0>{1}", @pokemon.trait2 || "Unknown", @pokemon.trait2 ? "FF" : "77")
+        memo += _INTL("<c3=404040{2},B0B0B0>{1}", @pokemon.displayTrait2, @pokemon.trait2 ? "FF" : "77")
         memo += "\n"
-        memo += _INTL("<c3=404040{2},B0B0B0>{1}", @pokemon.trait3 || "Unknown", @pokemon.trait3 ? "FF" : "77")
+        memo += _INTL("<c3=404040{2},B0B0B0>{1}", @pokemon.displayTrait3, @pokemon.trait3 ? "FF" : "77")
         memo += "\n"
         memo += "\n"
         memo += _INTL("<c3=F83820,E09890>Likes:<c3=404040,B0B0B0>")
         memo += "\n"
-        memo += _INTL("<c3=404040{2},B0B0B0>{1}", @pokemon.like || "Unknown", @pokemon.like ? "FF" : "77")
+        memo += _INTL("<c3=404040{2},B0B0B0>{1}", @pokemon.displayLike, @pokemon.like ? "FF" : "77")
         memo += "\n"
         memo += _INTL("<c3=F83820,E09890>Dislikes:<c3=404040,B0B0B0>")
         memo += "\n"
-        memo += _INTL("<c3=404040{2},B0B0B0>{1}", @pokemon.dislike || "Unknown", @pokemon.dislike ? "FF" : "77")
+        memo += _INTL("<c3=404040{2},B0B0B0>{1}", @pokemon.displayDislike, @pokemon.dislike ? "FF" : "77")
         memo += "\n"
 
         # # Write date received

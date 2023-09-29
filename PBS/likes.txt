@@ -1,0 +1,299 @@
+SCARYMOVIES,Scary Movies
+BERRIES,Berries
+BEACHWALKS,Beach Walks
+SWIMMING,Swimming
+STORIES,Stories
+CAMPING,Camping
+BREEZES,Breezes
+BEACHTRIPS,Beach Trips
+COMEDYMOVIES,Comedy Movies
+EDM,EDM
+INTROSPECTION,Introspection
+SPICYFOOD,Spicy Food
+SODA,Soda
+HIKING,Hiking
+PAINTINGS,Paintings
+PEOPLEWATCHING,People Watching
+BIKERIDES,Bike Rides
+LANGUAGES,Languages
+FISHING,Fishing
+GARDENING,Gardening
+DUMPSTERDIVING,Dumpster Diving
+JUDO,Judo
+SHOPPING,Shopping
+FASHION,Fashion
+JOGGING,Jogging
+CARDGAMES,Card Games
+VIDEOGAMES,Video Games
+COMPUTERS,Computers
+MATH,Math
+CHEMISTRY,Chemistry
+DOCUMENTARIES,Documentaries
+HISTORY,History
+RAINYDAYS,Rainy Days
+TIGHTROPES,Tightropes
+ASTRONOMY,Astronomy
+HOROSCOPES,Horoscopes
+TREECLIMBING,Tree Climbing
+MEDITATION,Meditation
+ACROBATICS,Acrobatics
+CAKES,Cakes
+ICECREAM,Ice Cream
+EXPENSIVEFOOD,Expensive Food
+COOKING,Cooking
+BAKING,Baking
+ACTIONMOVIES,Action Movies
+LOFI,Lo-Fi
+ROCKMUSIC,Rock Music
+ROCKS,Rocks
+SNOW,Snow
+EXERCISE,Exercise
+MARATHONS,Marathons
+WEIGHTLIFTING,Weightlifting
+HEAVYMETAL,Heavy Metal
+COFFEE,Coffee
+ICEDLATTES,Iced Lattes
+HOTCOCAO,Hot Cocao
+CHOCOLATEMILK,Chocolate Milk
+FLOWERS,Flowers
+AVANTGARDE,Avant-garde
+NOVELTY,Novelty
+ROUTINES,Routines
+YOGA,Yoga
+THEOCCULT,The Occult
+SKIING,Skiing
+PLAYS,Plays
+FIREWORKS,Fireworks
+SALSA,Salsa
+NAPS,Naps
+PIZZA,Pizza
+JIGSAWPUZZLES,Jigsaw Puzzles
+FIREMAKING,Firemaking
+FOLLOWINGYOU,Following You
+TAKINGPICTURES,Taking Pictures
+ATTENTION,Attention
+BEINGSPOILED,Being Spoiled
+PARKOUR,Parkour
+DESTRUCTION,Destruction
+POTTERY,Pottery
+WEAVING,Weaving
+REALITYTV,Reality TV
+TOURNAMENTARCS,Tournament Arcs
+COMPETITION,Competition
+BANTER,Banter
+CLEANING,Cleaning
+MILKSHAKES,Milkshakes
+CHESS,Chess
+SEWERS,Sewers
+SILENCE,Silence
+OPERA,Opera
+FENCING,Fencing
+WOODWORKING,Woodworking
+DOLLS,Dolls
+DRAWING,Drawing
+JEWELRY,Jewelry
+ORIGAMI,Origami
+POETRY,Poetry
+CODING,Coding
+TAROT,Tarot
+SURFING,Surfing
+DANCING,Dancing
+GYMNASTICS,Gymnastics
+SKATING,Skating
+PHOTOGRAPHY,Photography
+STREAMS,Streams
+SINGING,Singing
+BOWLING,Bowling
+GRAFFITI,Graffiti
+MAGICTRICKS,Magic Tricks
+JUGGLING,Juggling
+SKYDIVING,Skydiving
+BUNGEEJUMPING,Bungee Jumping
+SALADS,Salads
+LEMONADE,Lemonade
+PUNS,Puns
+MUSHROOMS,Mushrooms
+PUNKROCK,Punk Rock
+KNITTING,Knitting
+DATAANALYTICS,Data Analytics
+CARTOGRAPHY,Cartography
+ACTING,Acting
+SEWING,Sewing
+CARPENTRY,Carpentry
+GLASSBLOWING,Glassblowing
+ART,Art
+LITERATURE,Literature
+WRITING,Writing
+ARCHITECTURE,Architecture
+READING,Reading
+FOOTBALL,Football
+GAMBLING,Gambling
+CHAOS,Chaos
+HUGS,Hugs
+CARTOONS,Cartoons
+COMICS,Comics
+DONUTS,Donuts
+FRESHWATER,Fresh Water
+NEONLIGHTS,Neon Lights
+GEOLOGY,Geology
+ROCKCOLLECTING,Rock Collecting
+GEMSTONES,Gemstones
+VAPORWAVE,Vaporwave
+TRAINS,Trains
+ACROYOGA,Acroyoga
+AQUASCAPING,Aquascaping
+BEATBOXING,Beatboxing
+BONSAI,Bonsai
+CAMPANOLOGY,Campanology
+BOARDGAMES,Board Games
+ARTRESTORATION,Art Restoration
+BREADMAKING,Breadmaking
+JOURNALING,Journaling
+SCRAPBOOKING,Scrapbooking
+THEORYCRAFTING,Theorycrafting
+CHEESEMAKING,Cheesemaking
+CONLANGING,Conlanging
+COSPLAYING,Cosplaying
+CRYPTOGRAPHY,Cryptography
+CROSSWORDS,Crosswords
+SUDOKU,Sudoku
+DECORATING,Decorating
+DJING,DJing
+ELECTRONICS,Electronics
+ENGRAVING,Engraving
+FANTASYSPORTS,Fantasy Sports
+EMBROIDERY,Embroidery
+TEACEREMONIES,Tea Ceremonies
+HAIRSTYLING,Hairstyling
+COSMOLOGY,Cosmology
+LAPIDARY,Lapidary
+LOCKPICKING,Lock Picking
+PHILATELY,Philately
+POSTCROSSING,Postcrossing
+PROVERBS,Proverbs
+PYROGRAPHY,Pyrography
+EDITING,Editing
+PUPPETRY,Puppetry
+QUILLING,Quilling
+QUILTING,Quilting
+JUMPROPE,Jump Rope
+SOAPMAKING,Soapmaking
+SPEEDRUNNING,Speedrunning
+SPREADSHEETS,Spreadsheets
+TATTOOS,Tattoos
+WARGAMING,Wargaming
+WATCHMAKING,Watch Making
+YOYOING,Yo-yoing
+BEACHCOMBING,Beachcombing
+BMX,BMX
+CROQUET,Croquet
+BASKETBALL,Basketball
+SPELUNKING,Spelunking
+FORAGING,Foraging
+GEOCACHING,Geocaching
+LARPING,LARPing
+KITES,Kites
+METEOROLOGY,Meteorology
+MUSEUMS,Museums
+SLEDDING,Sledding
+SURVIVALISM,Survivalism
+STONESKIPPING,Stone Skipping
+PINGPONG,Ping-pong
+TOPIARY,Topiary
+TOURISM,Tourism
+VOLLEYBALL,Volleyball
+ARCHAEOLOGY,Archaeology
+BOTANY,Botany
+BIOLOGY,Biology
+MYCOLOGY,Mycology
+AEROSPACE,Aerospace
+SOCIALSTUDIES,Social Studies
+PHILOSOPHY,Philosophy
+ACTIONFIGURES,Action Figures
+PINS,Pins
+PERFUMES,Perfumes
+SNEAKERS,Sneakers
+ANTIQUES,Antiques
+ROCKBALANCING,Rock Balancing
+SEASHELLS,Seashells
+AIRHOCKEY,Air Hockey
+BACKGAMMON,Backgammon
+BADMINTON,Badminton
+BILLIARDS,Billiards
+BRIDGES,Bridges
+COLORGUARD,Color Guard
+CURLING,Curling
+GO,Go
+WORDGAMES,Word Games
+MAHJONG,Mahjong
+MARBLES,Marbles
+PINBALL,Pinball
+SHOGI,Shogi
+SPEEDCUBING,Speedcubing
+BASEBALL,Baseball
+DISCGOLF,Disc Golf
+GOLF,Golf
+FIGURESKATING,Figure Skating
+LACROSSE,Lacrosse
+SKATEBOARDING,Skateboarding
+LONGBOARDING,Longboarding
+PICKLEBALL,Pickleball
+MONSTERTRUCKS,Monster Trucks
+ROLLERDERBY,Roller Derby
+RUGBY,Rugby
+SOFTBALL,Softball
+TRIATHLONS,Triathlons
+MICROSCOPY,Microscopy
+SWLING,SWLing
+WAILORDWATCHING,Wailord Watching
+ASMR,ASMR
+SELFIES,Selfies
+BOBA,Boba
+ARSON,Arson
+HACKING,Hacking
+GOINGFAST,Going Fast
+TAXEVASION,Tax Evasion
+INVESTING,Investing
+STOCKS,Stocks
+POWERTOOLS,Power Tools
+MACHINES,Machines
+HEAVYMACHINERY,Heavy Machinery
+RADIOS,Radios
+CLASSICALMUSIC,Classical Music
+ANIME,Anime
+ROMCOMS,Rom-coms
+CAMPSTYLE,Camp Style
+CABARET,Cabaret
+TYPEWRITERS,Typewriters
+TECHWEAR,Techwear
+RAP,Rap
+HIPHOP,Hip Hop
+JAZZ,Jazz
+BALLET,Ballet
+TENNIS,Tennis
+RACECARS,Racecars
+DRIFTPHONK,Drift Phonk
+BREAKCORE,Breakcore
+PODCASTS,Podcasts
+CRIMESTORIES,Crime Stories
+DUBSTEP,Dubstep
+DISCO,Disco
+CASTLES,Castles
+CAFES,Cafes
+TEA,Tea
+CIRCUITBOARDS,Circuit Boards
+RETROITEMS,Retro Items
+ETEXTILES,E-textiles
+RGBLIGHTS,RGB Lights
+SOCIALMEDIA,Social Media
+LIGHTFESTIVALS,Light Festivals
+CARNIVALS,Carnivals
+PARADES,Parades
+HYPE,Hype
+SANDWICHES,Sandwiches
+NATURE,Nature
+PONDS,Ponds
+WATERFALLS,Waterfalls
+WHITENOISE,White Noise
+CALMMUSIC,Calm Music
+MASSAGECHAIRS,Massage Chairs
