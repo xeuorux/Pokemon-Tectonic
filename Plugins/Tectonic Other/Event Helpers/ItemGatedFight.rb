@@ -4,6 +4,7 @@ def itemGatedFight(itemID,regularBattleIntroText,itemGateIntroText,requestItemTe
         pbMessage(_INTL(regularBattleIntroText))
     else
         showExclamation
+        pbWait(20)
         pbMessage(_INTL(itemGateIntroText))
         if pbHasItem?(itemID)
             if pbConfirmMessage(requestItemText)
