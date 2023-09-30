@@ -1106,7 +1106,7 @@ module PokemonDebugMenuCommands
     "name"        => _INTL("Delete"),
     "effect"      => proc { |pkmn, pkmnid, heldpoke, settingUpBattle, screen|
       if screen.pbConfirm(_INTL("Are you sure you want to delete this Pokémon?"))
-        if screen.is_a?(PokemonPartyScreen)
+        if screen.is_a?(PokemonPartyScreen) || screen.is_a?(TilingCardsPokemonMenu_Scene)
           screen.party[pkmnid] = nil
           screen.party.compact!
           screen.pbHardRefresh

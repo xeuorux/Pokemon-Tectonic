@@ -1,4 +1,6 @@
 class TilingCardsPokemonMenu_Scene < TilingCardsMenu_Scene
+	attr_reader :party
+
     def cursorFileLocation
 		return _INTL("Graphics/Pictures/Party/cursor_pokemon")
 	end
