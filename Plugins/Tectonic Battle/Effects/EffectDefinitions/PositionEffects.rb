@@ -3,7 +3,7 @@ GameData::BattleEffect.register_effect(:Position, {
     :real_name => "Turns Till Move",
     :type => :Integer,
     :ticks_down => true,
-    :sub_effects => %i[FutureSightMove FutureSightUserPartyIndex FutureSightUserIndex],
+    :sub_effects => %i[FutureSightMove FutureSightUserPartyIndex FutureSightUserIndex FutureSightType],
     :expire_proc => proc do |battle, index, position, battler|
         userIndex = position.effects[:FutureSightUserIndex]
         partyIndex = position.effects[:FutureSightUserPartyIndex]
@@ -58,6 +58,12 @@ GameData::BattleEffect.register_effect(:Position, {
     :real_name => "Foretold Move User Party Index",
     :type => :PartyPosition,
     :info_displayed => false,
+})
+
+GameData::BattleEffect.register_effect(:Position, {
+    :id => :FutureSightType,
+    :real_name => "Incoming Move Type",
+    :type => :Type,
 })
 
 GameData::BattleEffect.register_effect(:Position, {

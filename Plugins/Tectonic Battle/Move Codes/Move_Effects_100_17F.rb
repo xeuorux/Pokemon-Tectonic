@@ -1103,9 +1103,49 @@ class PokeBattle_Move_12C < PokeBattle_Move
 end
 
 #===============================================================================
-# Not currently used.
+# Choose between Ice, Fire, and Electric. This move attacks 1 turn in
+# the future with an attack of that type. (Artillerize)
 #===============================================================================
-class PokeBattle_Move_12D < PokeBattle_Move
+class PokeBattle_Move_12D < PokeBattle_ForetoldMove
+    def initialize(battle, move)
+        super
+        @turnCount = 2
+    end
+
+    def resolutionChoice(user)
+        return if damagingMove?
+        validTypes = %i[FIRE ELECTRIC ICE]
+        validTypeNames = []
+        validTypes.each do |typeID|
+            validTypeNames.push(GameData::Type.get(typeID).name)
+        end
+        if validTypes.length == 1
+            @chosenType = validTypes[0]
+        elsif validTypes.length > 1
+            if @battle.autoTesting
+                @chosenType = validTypes.sample
+            elsif !user.pbOwnedByPlayer? # Trainer AI
+                @chosenType = validTypes[0]
+            else
+                chosenIndex = @battle.scene.pbShowCommands(_INTL("Which type should #{user.pbThis(true)} launch?"),validTypeNames,0)
+                @chosenType = validTypes[chosenIndex]
+            end
+        end
+    end
+
+    def pbEffectAgainstTarget(user, target)
+        super
+        unless @battle.futureSight
+            target.position.applyEffect(:FutureSightType, @chosenType)
+        end
+    end
+
+    def pbDisplayUseMessage(user, targets)
+        super
+        if @battle.futureSight
+            @battle.pbDisplay(_INTL("It's a ball of pure #{GameData::Type.get(@calcType).name}!"))
+        end
+    end
 end
 
 #===============================================================================
@@ -2571,7 +2611,7 @@ end
 class PokeBattle_Move_179 < PokeBattle_MultiStatUpMove
     def initialize(battle, move)
         super
-        @statUp = [:ATTACK, 2, :DEFENSE, 2, :SPECIAL_ATTACK, 2, :SPECIAL_DEFENSE, 2, :SPEED, 2]
+        @statUp = ALL_STATS_2
     end
 
     def pbMoveFailed?(user, targets, show_message)
@@ -2782,7 +2822,7 @@ end
 class PokeBattle_Move_17F < PokeBattle_MultiStatUpMove
     def initialize(battle, move)
         super
-        @statUp = [:ATTACK, 2, :DEFENSE, 2, :SPECIAL_ATTACK, 2, :SPECIAL_DEFENSE, 2, :SPEED, 2]
+        @statUp = ALL_STATS_2
     end
 
     def pbMoveFailed?(user, targets, show_message)

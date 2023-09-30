@@ -1430,7 +1430,7 @@ Pokemon = STUFFUL,25
 [DRAGONTAMER,Georgius,1]
 Pokemon = MARSHADOW,55
     Moves = FAKEOUT,SHADOWPUNCH,DRAINPUNCH
-    AbilityIndex = 1 # Iron Fist
+    AbilityIndex = 1 # Impressionable
 Pokemon = DRUDDIGON,55
     Moves = STANDTOGETHER,FLAMETHROWER,CRUELTY
     AbilityIndex = 1 # Tough
@@ -3313,7 +3313,7 @@ Pokemon = KLINKLANG,55
 Pokemon = REAVOR,55
     AbilityIndex = 0 # Technician
 Pokemon = SHIINOTIC,55
-    AbilityIndex = 1 # Fascinate
+    AbilityIndex = 1 # Torpor Sap
     Item = AMWIBERRY
 #-------------------------------
 [CLERK_F,Rosalie]
@@ -6051,7 +6051,7 @@ Pokemon = QUAGSIRE,60
 Pokemon = MCARNIVINE,60
     AbilityIndex = 1 # Pestilent
 Pokemon = SHIINOTIC,60
-    AbilityIndex = 1 # Fascinate
+    AbilityIndex = 1 # Torpor Sap
 Pokemon = CINCCINO,60
     AbilityIndex = 1 # Fluffy
 #-------------------------------
@@ -6412,7 +6412,7 @@ Pokemon = CORSOLA,70
     AbilityIndex = 0 # Persistent Growth
     Item = LEFTOVERS
 Pokemon = SHIINOTIC,70
-    AbilityIndex = 1 # Fascinate
+    AbilityIndex = 1 # Torpor Sap
     Item = BIGROOT
 Pokemon = ANINETALES,70
     AbilityIndex = 1 # Sudden Chill
@@ -6689,7 +6689,7 @@ Pokemon = MILTANK,70
     AbilityIndex = 0 # Thick Fat
     Item = ROCKYHELMET
 Pokemon = VANILLUXE,70
-    AbilityIndex = 0 # Adrenaline Rush
+    AbilityIndex = 0 # Extra Scoop
 Pokemon = DRIFBLIM,70
     AbilityIndex = 0 # Unburden
     Item = SITRUSBERRY

@@ -91,9 +91,28 @@ class PokeBattle_Move_506 < PokeBattle_Move
 end
 
 #===============================================================================
-# (Not currently used.)
+# All stats raised by 2 steps. Fails unless an opponent is below half life.
+# (Gloat)
 #===============================================================================
-class PokeBattle_Move_507 < PokeBattle_Move
+class PokeBattle_Move_507 < PokeBattle_MultiStatUpMove
+	def initialize(battle, move)
+        super
+        @statUp = ALL_STATS_2
+    end
+	
+	def pbMoveFailed?(user, targets, show_message)
+        anyOppLow = false
+        user.eachOpposing do |b|
+            next if b.aboveHalfHealth?
+            anyOppLow = true
+            break
+        end
+        unless anyOppLow
+            @battle.pbDisplay(_INTL("But it failed, since there were no foes below half health!")) if show_message
+            return true
+        end
+        super
+    end
 end
 
 #===============================================================================
@@ -1818,7 +1837,7 @@ class PokeBattle_Move_56E < PokeBattle_MultiStatUpMove
 
     def initialize(battle, move)
         super
-        @statUp = [:ATTACK, 2, :DEFENSE, 2, :SPECIAL_ATTACK, 2, :SPECIAL_DEFENSE, 2, :SPEED, 2]
+        @statUp = ALL_STATS_2
     end
 
     def pbMoveFailed?(user, targets, show_message)

@@ -315,6 +315,20 @@ BattleHandlers::UserAbilityEndOfMove.add(:ICEQUEEN,
   }
 )
 
+BattleHandlers::UserAbilityEndOfMove.add(:TORPORSAP,
+  proc { |ability, user, targets, move, battle, _switchedBattlers|
+      next if battle.futureSight
+      next unless move.damagingMove?
+      asleepTargets = []
+      targets.each do |target|
+        next unless target.asleep?
+        asleepTargets.push(target)
+      end
+      next if asleepTargets.length == 0
+      user.pbRecoverHPFromMultiDrain(asleepTargets, 0.25, ability: ability)
+  }
+)
+
 BattleHandlers::UserAbilityEndOfMove.add(:ETERNALWINTER,
   proc { |ability, user, targets, _move, battle, _switchedBattlers|
       next if battle.pbAllFainted?(user.idxOpposingSide)

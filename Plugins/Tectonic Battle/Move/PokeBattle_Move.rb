@@ -8,7 +8,7 @@ class PokeBattle_Move
     attr_reader   :name
     attr_reader   :function
     attr_reader   :baseDamage
-    attr_reader   :type
+    attr_accessor :type
     attr_reader   :category
     attr_reader   :accuracy
     attr_accessor :pp

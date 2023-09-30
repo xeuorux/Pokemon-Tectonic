@@ -291,11 +291,22 @@ class PokeBattle_Move
 
     def pbCalcTypeBasedDamageMultipliers(user,target,type,multipliers,checkingForAI=false)
         stabActive = false
-        stabActive = true if type && user.pbHasType?(type)
-        if checkingForAI
-            stabActive = true if user.hasActiveAbilityAI?(%i[PROTEAN FREESTYLE])
-            stabActive = true if user.hasActiveAbilityAI?(:MUTABLE) && !user.effectActive?(:Mutated)
-            stabActive = true if user.hasActiveAbilityAI?(:SHAKYCODE) && @battle.eclipsed?
+        if user.shouldAbilityApply?(:IMPRESSIONABLE,checkingForAI)
+            anyPartyMemberHasType = false
+            user.ownerParty.each do |partyMember|
+                next if partyMember.personalID == user.personalID
+                next unless type && partyMember.hasType?(type)
+                anyPartyMemberHasType = true
+                break
+            end
+            stabActive = true if anyPartyMemberHasType
+        else
+            stabActive = true if type && user.pbHasType?(type)
+            if checkingForAI
+                stabActive = true if user.hasActiveAbilityAI?(%i[PROTEAN FREESTYLE])
+                stabActive = true if user.hasActiveAbilityAI?(:MUTABLE) && !user.effectActive?(:Mutated)
+                stabActive = true if user.hasActiveAbilityAI?(:SHAKYCODE) && @battle.eclipsed?
+            end
         end
         stabActive = false if user.pbOwnedByPlayer? && @battle.curses.include?(:DULLED)
         stabActive = false if @battle.pbCheckGlobalAbility(:SIGNALJAM)

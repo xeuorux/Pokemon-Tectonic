@@ -171,6 +171,11 @@ class PokeBattle_Battler
         else
             choice[2] = PokeBattle_Move.from_pokemon_move(@battle, Pokemon::Move.new(moveID))
             choice[2].pp = -1
+            if @battle.futureSight && target >= 0 && @battle.positions[target].effectActive?(:FutureSightType)
+                choice[2].type = @battle.positions[target].effects[:FutureSightType]
+            else
+                echoln("#{@futureSight},#{target},#{@battle.positions[target].effects[:FutureSightType]}")
+            end
         end
         choice[3] = target     # Target (-1 means no target yet)
         choice[4] = 0

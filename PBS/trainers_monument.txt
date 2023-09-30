@@ -962,7 +962,7 @@ Pokemon = MAGNEZONE,70
     EV = 20,20,10,0,20,0
 Pokemon = SHIINOTIC,70
     Moves = AURATRICK,STRENGTHSAP,SPORE,GIGADRAIN
-    AbilityIndex = 1 # Fascinate
+    AbilityIndex = 1 # Torpor Sap
     Item = LEFTOVERS
     EV = 10,0,20,0,0,20
 #-------------------------------

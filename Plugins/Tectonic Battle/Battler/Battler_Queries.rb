@@ -457,9 +457,9 @@ class PokeBattle_Battler
         return true
     end
 
-    def canHeal?(drain = false)
+    def canHeal?(overheal = false)
         return false if fainted?
-        return false if @hp >= @totalhp && !(drain && hasActiveAbility?(:ENGORGE))
+        return false if @hp >= @totalhp && !overheal
         return false if effectActive?(:HealBlock)
         return false if hasActiveAbility?(:ONEDGE) && @battle.moonGlowing?
         return true

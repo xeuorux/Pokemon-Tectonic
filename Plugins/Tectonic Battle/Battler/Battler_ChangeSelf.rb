@@ -172,7 +172,7 @@ class PokeBattle_Battler
             pbItemHPHealCheck
             pbAbilitiesOnDamageTaken(oldHP)
             pbFaint if fainted?
-        elsif canHeal?(true)
+        elsif canHeal?(hasActiveAbility?(:ENGORGE))
             drainAmount = (drainAmount * 1.3).floor if hasActiveItem?(:BIGROOT)
             pbRecoverHP(drainAmount, true, true, false, canOverheal: hasActiveAbility?(:ENGORGE))
             if overhealed?
@@ -199,7 +199,7 @@ class PokeBattle_Battler
                 totalDamageDealt += damage
             end
         end
-        return if totalDamageDealt <= 0 || !canHeal?
+        return if totalDamageDealt <= 0 || !canHeal?(hasActiveAbility?(:ENGORGE))
         showMyAbilitySplash(ability) if ability
         drainAmount = (totalDamageDealt * ratio).round
         drainAmount = 1 if drainAmount < 1
@@ -208,8 +208,8 @@ class PokeBattle_Battler
         hideMyAbilitySplash if ability
     end
 
-    def applyFractionalHealing(fraction, ability: nil, anim: true, anyAnim: true, showMessage: true, customMessage: nil, item: nil, aiCheck: false)
-        return 0 unless canHeal?
+    def applyFractionalHealing(fraction, ability: nil, anim: true, anyAnim: true, showMessage: true, customMessage: nil, item: nil, canOverheal: false, aiCheck: false)
+        return 0 unless canHeal?(canOverheal)
         if item && !aiCheck
             @battle.pbCommonAnimation("UseItem", self) unless @battle.autoTesting
             unless customMessage
@@ -221,8 +221,8 @@ class PokeBattle_Battler
             end
         end
         battle.pbShowAbilitySplash(self, ability) if ability && !aiCheck
-        healAmount = getFractionalHealingAmount(fraction)
-        actuallyHealed = pbRecoverHP(healAmount, anim, anyAnim, showMessage, customMessage, aiCheck: aiCheck)
+        healAmount = getFractionalHealingAmount(fraction, canOverheal)
+        actuallyHealed = pbRecoverHP(healAmount, anim, anyAnim, showMessage, customMessage, canOverheal: canOverheal, aiCheck: aiCheck)
         battle.pbHideAbilitySplash(self) if ability && !aiCheck
         if aiCheck
             return getHealingEffectScore(actuallyHealed)
@@ -231,8 +231,8 @@ class PokeBattle_Battler
         end
     end
 
-    def getFractionalHealingAmount(fraction)
-        return 0 unless canHeal?
+    def getFractionalHealingAmount(fraction, canOverheal = false)
+        return 0 unless canHeal?(canOverheal)
         healAmount = @totalhp * fraction
         healAmount /= BOSS_HP_BASED_EFFECT_RESISTANCE.to_f if boss?
         return healAmount

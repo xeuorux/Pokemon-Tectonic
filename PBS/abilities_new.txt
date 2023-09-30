@@ -453,3 +453,6 @@
 1452,TRICKYAURA,Tricky Aura,"Upon entry, creates a Trick Room for five turns, inverting the effect of Speed."
 1453,QUICKKICKS,Quick Kicks,"Doubles the speed of kicking moves."
 1454,HAUNTED,Haunted,"The Pokémon is also Ghost-type"
+1455,EXTRASCOOP,Extra Scoop,"Upon entry, the Pokémon heals itself for 1/4th max HP. This can overheal."
+1456,IMPRESSIONABLE,Impressionable,"Its same-type attack bonus is based on its party members rather than itself."
+1457,TORPORSAP,Torpor Sap,"Restores its HP by 25% of the damage it deals to sleeping targets."

@@ -1097,13 +1097,13 @@ class PokeBattle_Move_5B6 < PokeBattle_Move
 end
 
 #===============================================================================
-# All stats raised by 1 step. Fails if the attack was not used the turn after a foe fainted.
+# All stats raised by 2 steps. Fails if the attack was not used the turn after a foe fainted.
 # (Triumphant Dance)
 #===============================================================================
 class PokeBattle_Move_5B7 < PokeBattle_MultiStatUpMove
 	def initialize(battle, move)
         super
-        @statUp = [:ATTACK, 2, :DEFENSE, 2, :SPECIAL_ATTACK, 2, :SPECIAL_DEFENSE, 2, :SPEED, 2]
+        @statUp = ALL_STATS_2
     end
 	
 	def pbMoveFailed?(user, targets, show_message)

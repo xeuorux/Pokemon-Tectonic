@@ -261,9 +261,19 @@ class PokeBattle_Move_18C < PokeBattle_Move
 end
 
 #===============================================================================
-# (Not currently used.)
+# Deals 50% more damage if the target has raised or lowered stat steps. (Bully)
 #===============================================================================
 class PokeBattle_Move_18D < PokeBattle_Move
+    def pbBaseDamage(baseDmg, _user, target)
+        anyChanged = false
+        GameData::Stat.each_battle { |s|
+            next if target.steps[s.id] == 0
+            anyChanged = true
+            break
+        }
+        baseDmg *= 1.5 if anyChanged
+        return baseDmg
+    end
 end
 
 #===============================================================================
