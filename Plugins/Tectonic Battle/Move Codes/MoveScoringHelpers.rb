@@ -570,8 +570,12 @@ end
 def getCurseEffectScore(user, target)
     score = 50
     score += 50 if target.aboveHalfHealth?
+	if user.battle.pbCanSwitch?(target.index)
+	    score += getForceOutEffectScore(user, target) # Encouraging target to switch might be benefical
+	else score += statStepsValueScore(target)
+	end
     score *= 1.5 if user.hasActiveAbilityAI?(:AGGRAVATE)
-    score /= 2 if user.battle.pbCanSwitch?(target.index)
+    score = score * 0.70 if user.battle.pbCanSwitch?(target.index)
     return score
 end
 

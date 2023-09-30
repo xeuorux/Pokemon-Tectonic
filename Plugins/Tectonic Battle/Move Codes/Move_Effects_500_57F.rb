@@ -1293,14 +1293,6 @@ end
 # Curses the target by spending 1/4th of the user's HP. (Cursed Oath)
 #===============================================================================
 class PokeBattle_Move_54A < PokeBattle_Move_10D
-    def pbMoveFailed?(user, targets, show_message)
-        if user.hp <= (user.totalhp / 4)
-            @battle.pbDisplay(_INTL("But it failed, since #{user.pbThis(true)}'s HP is too low!")) if show_message
-            return true
-        end
-        super
-    end
-    
     def pbEffectAgainstTarget(user, target)
         @battle.pbDisplay(_INTL("{1} cut its own HP!", user.pbThis))
         user.applyFractionalDamage(1.0 / 4.0, false)
