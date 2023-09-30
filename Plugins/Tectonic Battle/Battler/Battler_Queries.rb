@@ -858,4 +858,12 @@ class PokeBattle_Battler
             yield abilityID
         end
     end
+
+    def protectedByScreen?
+        pbOwnSide.eachEffect(true) do |effect, _value, data|
+            next unless data.is_screen?
+            return true
+        end
+        return false
+    end
 end

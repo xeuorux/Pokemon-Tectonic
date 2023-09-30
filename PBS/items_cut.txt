@@ -363,3 +363,4 @@
 2362,REVIVE,Revive,Revives,2,500,"A medicine that revives a fainted Pokémon. It restores half the Pokémon's maximum HP.",1,0,0
 2363,MAXREVIVE,Max Revive,Max Revives,2,1000,"A medicine that revives a fainted Pokémon. It fully restores the Pokémon's HP.",1,0,0
 2364,RAINBOWFEATHER,Rainbow Feather,Rainbow Feathers,8,0,"A strange feather that gleams in rainbow colors.",0,0,13
+2365,MEGAUPGRADER,Mega Upgrader,Mega Upgraders,1,0,"A peculiar stone that makes certain species of Pokémon evolve.",1,0,7

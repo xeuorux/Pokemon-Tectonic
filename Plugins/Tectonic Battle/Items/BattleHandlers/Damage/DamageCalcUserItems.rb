@@ -327,3 +327,9 @@ BattleHandlers::DamageCalcUserItem.add(:SCOPELENS,
     mults[:final_damage_multiplier] *= 1.33 if target.damageState.critical
   }
 )
+
+BattleHandlers::DamageCalcUserItem.add(:LUMBERAXE,
+  proc { |item, user, target, move, mults, _baseDmg, type, aiCheck|
+    mults[:final_damage_multiplier] *= 1.3
+  }
+)

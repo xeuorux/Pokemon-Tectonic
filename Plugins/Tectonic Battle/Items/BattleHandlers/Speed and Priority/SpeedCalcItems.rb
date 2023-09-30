@@ -26,3 +26,11 @@ BattleHandlers::SpeedCalcItem.add(:AGILITYHERB,
   }
 )
 
+FRAGILE_LOCKET_STAT_REDUCTION = 0.1
+
+BattleHandlers::SpeedCalcItem.add(:FRAGILELOCKET,
+  proc { |item, battler, mult|
+    mult *= (1.0 - FRAGILE_LOCKET_STAT_REDUCTION)
+    next mult
+  }
+)

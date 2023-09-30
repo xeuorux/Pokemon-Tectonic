@@ -491,7 +491,9 @@ BattleHandlers::DamageCalcUserAbility.add(:PHASESHIFT,
 
 BattleHandlers::DamageCalcUserAbility.add(:ARMORPIERCING,
   proc { |ability, user, target, move, mults, _baseDmg, type, aiCheck|
-    if target.steps[:DEFENSE] > 0 || target.steps[:SPECIAL_DEFENSE] > 0
+    if  target.steps[:DEFENSE] > 0 ||
+        target.steps[:SPECIAL_DEFENSE] > 0 ||
+        target.protectedByScreen?
       mults[:base_damage_multiplier] *= 2.0
       user.aiLearnsAbility(ability) unless aiCheck
     end

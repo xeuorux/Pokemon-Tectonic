@@ -18,3 +18,10 @@ BattleHandlers::AttackCalcUserItem.add(:THICKCLUB,
       next attackMult
   }
 )
+
+BattleHandlers::AttackCalcUserItem.add(:FRAGILELOCKET,
+  proc { |item, user, _battle, attackMult|
+      attackMult *= (1.0 - FRAGILE_LOCKET_STAT_REDUCTION)
+      next attackMult
+  }
+)

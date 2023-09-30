@@ -4,3 +4,10 @@ BattleHandlers::DefenseCalcUserItem.add(:STRIKEVEST,
       next defenseMult
   }
 )
+
+BattleHandlers::DefenseCalcUserItem.add(:FRAGILELOCKET,
+  proc { |item, user, _battle, defenseMult|
+    defenseMult *= (1.0 - FRAGILE_LOCKET_STAT_REDUCTION)
+    next defenseMult
+  }
+)

@@ -23,3 +23,23 @@ BattleHandlers::ItemOnSwitchIn.add(:ALLOYEDLUMP,
         end
     }
 )
+
+BattleHandlers::ItemOnSwitchIn.add(:LUMBERAXE,
+    proc { |item, battler, battle|
+        battler.tryLowerStat(:SPEED, battler, item: item)
+    }
+)
+
+BattleHandlers::ItemOnSwitchIn.add(:WATERBALLOON,
+    proc { |item, battler, battle|
+        battle.pbDisplay(_INTL("{1} dropped its {2}!", battler.pbThis, getItemName(item)))
+        battler.consumeItem(item)
+        battler.applyEffect(:AquaRing)
+    }
+)
+
+BattleHandlers::ItemOnSwitchIn.add(:FRAGILELOCKET,
+    proc { |item, battler, battle|
+        battle.pbDisplay(_INTL("{1} holds a {2} close!", battler.pbThis, getItemName(item)))
+    }
+)

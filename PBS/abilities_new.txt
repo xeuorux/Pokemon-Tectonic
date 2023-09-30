@@ -91,7 +91,7 @@
 1090,DETERRENT,Deterrent,"Enemies which swap in take damage equal to 1/8th their HP."
 1091,ENERGETIC,Energetic,"Can't be numbed, poisoned, or have its Speed reduced."
 1092,STRATAGEM,Stratagem,"Powers up Rock-type moves by 50%."
-1093,ARMORPIERCING,Armor Piercing,"Deals double damage against raised Defense or Sp. Def."
+1093,ARMORPIERCING,Armor Piercing,"Deals double damage against Pokémon that have raised defenses or that are protected by a screen."
 1094,BADLUCK,Bad Luck,"When free from status, non-damaging moves by foes are drawn in."
 1095,SOULREAD,Soul Read,"Double damage to targets who don't share a type with their last-used move."
 1096,SURFSUP,Surf's Up,"Powers up Water-type moves by 50%."

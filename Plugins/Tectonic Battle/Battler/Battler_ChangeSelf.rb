@@ -544,7 +544,11 @@ class PokeBattle_Battler
         applyEffect(:Transform)
         applyEffect(:TransformSpecies, target.species)
         pbChangeTypes(target)
-        setAbility(target.firstAbility)
+        if hasActiveItem?(:FRAGILELOCKET)
+            setAbility(target.abilities)
+        else
+            setAbility(target.firstAbility)
+        end
         @attack = target.attack
         @defense = target.defense
         @spatk = target.spatk
@@ -619,7 +623,9 @@ class PokeBattle_Battler
         @ability_ids  = []
         @ability_ids.push(@pokemon.ability_id) if @pokemon.ability_id
         @ability_ids.concat(@pokemon.extraAbilities)
-        if (@battle.curseActive?(:CURSE_DOUBLE_ABILITIES) && index.odd?) || (TESTING_DOUBLE_QUALITIES && !boss?)
+        if      (@battle.curseActive?(:CURSE_DOUBLE_ABILITIES) && index.odd?) ||
+                (TESTING_DOUBLE_QUALITIES && !boss?) ||
+                hasActiveItem?(:FRAGILELOCKET)
             eachLegalAbility do |legalAbility|
                 @ability_ids.push(legalAbility) unless @ability_ids.include?(legalAbility)
             end

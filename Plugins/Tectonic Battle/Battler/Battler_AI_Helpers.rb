@@ -320,6 +320,7 @@ class PokeBattle_Battler
 
     def aiKnowsAbility?(checkAbility)
         return true unless pbOwnedByPlayer?
+        return true if hasActiveItem?(:FRAGILELOCKET)
         if checkAbility.is_a?(Array)
             checkAbility.each do |specificAbility|
                 return true if @addedAbilities.include?(specificAbility)
