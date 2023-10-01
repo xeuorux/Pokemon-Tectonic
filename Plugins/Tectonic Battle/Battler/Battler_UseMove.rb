@@ -192,7 +192,7 @@ class PokeBattle_Battler
         skipAccuracyCheck = (specialUsage && choice[2] != @battle.struggle)
         # Start using the move
         pbBeginTurn(choice)
-        unless (choice[2]&.empoweredMove? && boss?)
+        unless @battle.futureSight || (choice[2]&.empoweredMove? && boss?)
             # Force the use of certain moves if they're already being used
             if usingMultiTurnAttack? && !@currentMove.nil?
                 choice[2] = PokeBattle_Move.from_pokemon_move(@battle, Pokemon::Move.new(@currentMove))
