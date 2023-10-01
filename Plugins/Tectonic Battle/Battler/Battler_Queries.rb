@@ -351,8 +351,8 @@ class PokeBattle_Battler
                 return true if data.mega_stone == checkitem
             end
         end
-        if checkitem == :LUNCHBOX
-            @battle.pbDisplay(_INTL("But #{pbThis(false)} hold's tightly onto its Lunch Box!")) if showMessages
+        if %i[FRAGILELOCKET LUNCHBOX].include?(checkitem)
+            @battle.pbDisplay(_INTL("But #{pbThis(false)} hold's tightly onto its #{getItemName(checkitem)}!")) if showMessages
             return true
         end
         # Other unlosable items

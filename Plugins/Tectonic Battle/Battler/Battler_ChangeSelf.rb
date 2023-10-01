@@ -623,14 +623,25 @@ class PokeBattle_Battler
         @ability_ids  = []
         @ability_ids.push(@pokemon.ability_id) if @pokemon.ability_id
         @ability_ids.concat(@pokemon.extraAbilities)
-        if      (@battle.curseActive?(:CURSE_DOUBLE_ABILITIES) && index.odd?) ||
-                (TESTING_DOUBLE_QUALITIES && !boss?) ||
-                hasActiveItem?(:FRAGILELOCKET)
+        @addedAbilities.clear
+
+        # Check for "has all legal ability" effects
+        if initialization
+            # Nothing can be disabling the item on initialization
+            # And checking if the item is inactive leads to a crash
+            # since the Embargo effect isn't initialized yet
+            hasLocket = hasItem?(:FRAGILELOCKET)
+        else
+            hasLocket = hasActiveItem?(:FRAGILELOCKET)
+        end
+        if hasLocket || (@battle.curseActive?(:CURSE_DOUBLE_ABILITIES) && index.odd?)
             eachLegalAbility do |legalAbility|
-                @ability_ids.push(legalAbility) unless @ability_ids.include?(legalAbility)
+                next if @ability_ids.include?(legalAbility)
+                @ability_ids.push(legalAbility)
+                @addedAbilities.push(legalAbility)
             end
         end
-        @addedAbilities.clear
+
         unless initialization
             pbOnAbilitiesLost(prevAbilities)
         end
