@@ -911,6 +911,7 @@ class PokemonOptionMenu < PokemonPauseMenu
         cmdBattleOptions = -1
         cmdOverworldOptions = -1
         cmdAdvancedGraphicsOptions = -1
+        cmdControlsMapping = -1
         cmdLanguageSelect = -1
         cmdCancel    = -1
 		optionsCommands = []
@@ -919,6 +920,7 @@ class PokemonOptionMenu < PokemonPauseMenu
 		optionsCommands[cmdBattleOptions = optionsCommands.length] = _INTL("Battle Options")
 		optionsCommands[cmdOverworldOptions = optionsCommands.length] = _INTL("Overworld Options")
         optionsCommands[cmdAdvancedGraphicsOptions = optionsCommands.length] = _INTL("Adv. Graphics Options")
+        optionsCommands[cmdControlsMapping = optionsCommands.length] = _INTL("Controls")
         optionsCommands[cmdLanguageSelect = optionsCommands.length] = _INTL("Language")
         optionsCommands[cmdCancel = optionsCommands.length] = _INTL("Cancel")
 		loop do
@@ -935,6 +937,9 @@ class PokemonOptionMenu < PokemonPauseMenu
                     pbMessage(_INTL("Game language changed to #{languageName}!"))
                 end
                 next
+            elsif cmdControlsMapping > 0 && infoCommand == cmdControlsMapping
+                System.show_settings
+                break
             end
             optionsScene = [
                 PokemonOption_Scene_Audio,
