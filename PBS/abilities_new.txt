@@ -419,7 +419,7 @@
 1418,SICKENING,Sickening,"Special moves against it lower the attacker's Speed and Sp. Atk."
 1419,BIGBOSS,Big Boss,"Boosts Defense by 25%. The Pokémon cannot be flinched."
 1420,TRICKSTER,Trickster,"Creates a Trick Room for five turns when its HP is lowered below half."
-1421,COUNTERFLOW,Counter Flow,"When hit with a special move, hits back instantly with Wipeout."
+1421,COUNTERFLOW,Counter Flow,"When hit with a special move, hits back instantly with Breach."
 1422,APRICORNARMOR,Apricorn Armor,"Takes 50% less damage from attacks by Pokémon who have a status condition."
 1423,SPARESCALES,Spare Scales,"Raises defenses after using a Grass, Ground, or Steel-type move."
 1424,APATHETIC,Apathetic,"Takes no damage from status ailments."

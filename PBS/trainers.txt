@@ -117,7 +117,7 @@ Pokemon = EXEGGCUTE,13
 #-------------------------------
 [TUBER_F,Sophie]
 Pokemon = KRABBY,13
-    Moves = WIPEOUT,SHOTPUT,FURYCUTTER,LEER
+    Moves = BREACH,SHOTPUT,FURYCUTTER,LEER
     AbilityIndex = 0 # Frustrate
 Pokemon = INKAY,13
     Moves = PILFER,PECK,BLINDSIDE,LEER

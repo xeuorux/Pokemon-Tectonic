@@ -312,7 +312,7 @@ BattleHandlers::TargetAbilityOnHit.add(:COUNTERFLOW,
         next unless move.specialMove?
         next if target.fainted?
         next -30 * aiNumHits if aiCheck
-        battle.forceUseMove(target, :WIPEOUT, user.index, ability: ability)
+        battle.forceUseMove(target, :BREACH, user.index, ability: ability)
   }
 )
 
