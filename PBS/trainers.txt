@@ -517,9 +517,9 @@ Pokemon = MIMEJR,25
     AbilityIndex = 0 # Barrier Maker
 Pokemon = GOLBAT,26
     AbilityIndex = 0 # Inner Focus
-    Item = AMWIBERRY
 Pokemon = RATTATA,27
     AbilityIndex = 1 # Gnawing
+    Item = SITRUSBERRY
 #-------------------------------
 [RANCHER,Billy]
 Pokemon = MILTANK,27
