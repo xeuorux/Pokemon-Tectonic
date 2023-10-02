@@ -87,22 +87,22 @@ module GameData
   
       # @return [String] the translated name of this item
       def name
-        return pbGetMessage(MessageTypes::Items, @id_number)
+        return pbGetMessageFromHash(MessageTypes::Items, @real_name)
       end
   
       # @return [String] the translated plural version of the name of this item
       def name_plural
-        return pbGetMessage(MessageTypes::ItemPlurals, @id_number)
+        return pbGetMessageFromHash(MessageTypes::ItemPlurals, @real_name_plural)
       end
   
       # @return [String] the translated description of this item
       def description
         if is_machine?
-            return pbGetMessage(MessageTypes::MoveDescriptions, GameData::Move.get(@move).id_number)
+            return pbGetMessageFromHash(MessageTypes::MoveDescriptions, GameData::Move.get(@move).real_description)
         else
-            return pbGetMessage(MessageTypes::ItemDescriptions, @id_number)
+            return pbGetMessageFromHash(MessageTypes::ItemDescriptions, @real_description)
         end
-    end
+      end
   
       def is_TM?;                   return @field_use == 3; end
       def is_HM?;                   return @field_use == 4; end
@@ -223,9 +223,9 @@ module Compiler
     end
     # Save all data
     GameData::Item.save
-    MessageTypes.setMessages(MessageTypes::Items, item_names)
-    MessageTypes.setMessages(MessageTypes::ItemPlurals, item_names_plural)
-    MessageTypes.setMessages(MessageTypes::ItemDescriptions, item_descriptions)
+    MessageTypes.setMessagesAsHash(MessageTypes::Items, item_names)
+    MessageTypes.setMessagesAsHash(MessageTypes::ItemPlurals, item_names_plural)
+    MessageTypes.setMessagesAsHash(MessageTypes::ItemDescriptions, item_descriptions)
     Graphics.update
   end
 

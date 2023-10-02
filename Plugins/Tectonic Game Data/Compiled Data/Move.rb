@@ -52,12 +52,12 @@ module GameData
   
       # @return [String] the translated name of this move
       def name
-        return pbGetMessage(MessageTypes::Moves, @id_number)
+        return pbGetMessageFromHash(MessageTypes::Moves, @real_name)
       end
   
       # @return [String] the translated description of this move
       def description
-        return pbGetMessage(MessageTypes::MoveDescriptions, @id_number)
+        return pbGetMessageFromHash(MessageTypes::MoveDescriptions, @real_description)
       end
   
       def physical?
@@ -273,8 +273,8 @@ module Compiler
     end
     # Save all data
     GameData::Move.save
-    MessageTypes.setMessages(MessageTypes::Moves, move_names)
-    MessageTypes.setMessages(MessageTypes::MoveDescriptions, move_descriptions)
+    MessageTypes.setMessagesAsHash(MessageTypes::Moves, move_names)
+    MessageTypes.setMessagesAsHash(MessageTypes::MoveDescriptions, move_descriptions)
     Graphics.update
 
     GameData::Move.each do |move_data|

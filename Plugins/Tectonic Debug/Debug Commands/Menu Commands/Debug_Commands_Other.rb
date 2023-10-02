@@ -24,7 +24,11 @@ DebugMenuCommands.register("mysterygift", {
     "description" => _INTL("Import text and converts it into a language file."),
     "always_show" => true,
     "effect"      => proc {
-      pbCompileTextUI
+      begin
+        pbCompileTextUI
+      rescue Exception
+        pbPrintException($!)
+      end
     }
   })
   

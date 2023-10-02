@@ -45,8 +45,8 @@ FileLineData.linereport)
         end
         # Save all data
         GameData::Ability.save
-        MessageTypes.setMessages(MessageTypes::Abilities, ability_names)
-        MessageTypes.setMessages(MessageTypes::AbilityDescs, ability_descriptions)
+        MessageTypes.setMessagesAsHash(MessageTypes::Abilities, ability_names)
+        MessageTypes.setMessagesAsHash(MessageTypes::AbilityDescs, ability_descriptions)
         Graphics.update
     end
 
@@ -157,12 +157,12 @@ module GameData
 
         # @return [String] the translated name of this ability
         def name
-            return pbGetMessage(MessageTypes::Abilities, @id_number)
+            return pbGetMessageFromHash(MessageTypes::Abilities, @real_name)
         end
 
         # @return [String] the translated description of this ability
         def description
-            return pbGetMessage(MessageTypes::AbilityDescs, @id_number)
+            return pbGetMessageFromHash(MessageTypes::AbilityDescs, @real_description)
         end
 
         # The highest evolution of a line
