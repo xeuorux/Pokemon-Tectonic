@@ -1149,6 +1149,8 @@ end
 # (Aura Trick)
 #===============================================================================
 class PokeBattle_Move_540 < PokeBattle_Move
+    def aiAutoKnows?(pokemon); return true; end
+	
     def pbAttackingStat(user, _target)
         return user, :SPECIAL_DEFENSE
     end

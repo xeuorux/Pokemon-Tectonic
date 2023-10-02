@@ -856,6 +856,8 @@ end
 # (Foul Play, Tricky Toxins)
 #===============================================================================
 class PokeBattle_Move_121 < PokeBattle_Move
+    def aiAutoKnows?(pokemon); return true; end
+	
     def pbAttackingStat(_user, target)
         return target, :SPECIAL_ATTACK if specialMove?
         return target, :ATTACK
@@ -2583,6 +2585,8 @@ end
 # (Body Press)
 #===============================================================================
 class PokeBattle_Move_177 < PokeBattle_Move
+    def aiAutoKnows?(pokemon); return true; end
+	
     def pbAttackingStat(user, _target)
         return user, :DEFENSE
     end

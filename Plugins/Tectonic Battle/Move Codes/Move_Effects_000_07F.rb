@@ -2102,6 +2102,8 @@ end
 # Inflicts damage equal to the user's level. (Night Shade, Seismic Toss)
 #===============================================================================
 class PokeBattle_Move_06D < PokeBattle_FixedDamageMove
+    def aiAutoKnows?(pokemon); return true; end
+	
     def pbFixedDamage(user, _target)
         return user.level
     end
