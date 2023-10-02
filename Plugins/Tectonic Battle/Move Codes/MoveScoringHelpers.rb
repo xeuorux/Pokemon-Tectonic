@@ -258,7 +258,7 @@ def statusSpikesWeightOnSide(side, excludeEffects = [])
     return hazardWeight
 end
 
-def hazardWeightOnSide(side, excludeEffects = [])
+def hazardWeightOnSide(side, excludeEffects = []) # does not check for reserves, moves using this must do so
     hazardWeight = 0
     hazardWeight += [0,80,110,140][side.countEffect(:Spikes)] unless excludeEffects.include?(:Spikes)
     hazardWeight += 95 if side.effectActive?(:StealthRock) && !excludeEffects.include?(:StealthRock)

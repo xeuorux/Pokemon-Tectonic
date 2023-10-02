@@ -1007,9 +1007,9 @@ class PokeBattle_Move_538 < PokeBattle_Move
     def getEffectScore(user, target)
         score = 0
         # Dislike removing hazards that affect the enemy
-        score -= hazardWeightOnSide(user.pbOpposingSide)
+        score -= 0.8 * hazardWeightOnSide(target.pbOwnSide) if target.alliesInReserve?
         # Like removing hazards that affect us
-        score += hazardWeightOnSide(user.pbOwnSide)
+        score += hazardWeightOnSide(user.pbOwnSide) if user.alliesInReserve?
         return score
     end
 end
