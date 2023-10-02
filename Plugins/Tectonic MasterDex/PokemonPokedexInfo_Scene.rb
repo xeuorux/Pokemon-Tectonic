@@ -3,8 +3,9 @@ class PokemonPokedexInfo_Scene
     SIGNATURE_COLOR_LIGHTER = Color.new(228, 207, 128)
 
     def pageTitles
-        return ["INFO", "ABILITIES", "STATS", "DEF. MATCHUPS", "ATK. MATCHUPS", "LEVEL UP MOVES", "TUTOR MOVES",
-                   "EVOLUTIONS", "AREA", "FORMS", "ANALYSIS"]
+        return [_INTL("INFO"), _INTL("ABILITIES"), _INTL("STATS"), _INTL("DEF. MATCHUPS"),
+                _INTL("ATK. MATCHUPS"), _INTL("LEVEL UP MOVES"), _INTL("TUTOR MOVES"),
+                _INTL("EVOLUTIONS"), _INTL("AREA"), _INTL("FORMS"), _INTL("ANALYSIS")]
     end
 
     def pbStartScene(dexlist, index, region, battle = false, linksEnabled = false)
@@ -301,7 +302,7 @@ sp.form) && !Settings::DEX_SHOWS_ALL_FORMS
             abilityTextX = 30
             abilityIDLabelX = 380
             ability1Y = 76
-            drawTextEx(overlay, abilityIDLabelX, ability1Y, 450, 1, "Ability 1", base, shadow)
+            drawTextEx(overlay, abilityIDLabelX, ability1Y, 450, 1, _INTL("Ability 1"), base, shadow)
             if abilities[0]
                 ability1 = GameData::Ability.get(abilities[0])
                 abilityNameColor = base
@@ -316,11 +317,11 @@ sp.form) && !Settings::DEX_SHOWS_ALL_FORMS
               abilityNameShadow)
                 drawTextEx(overlay, abilityTextX, ability1Y + 32, 450, 3, ability1.description, base, shadow)
             else
-                drawTextEx(overlay, abilityTextX, 128, 450, 1, "None", base, shadow)
+                drawTextEx(overlay, abilityTextX, 128, 450, 1, _INTL("None"), base, shadow)
             end
             # ability 1
             ability2Y = 236
-            drawTextEx(overlay, abilityIDLabelX, ability2Y, 450, 1, "Ability 2", base, shadow)
+            drawTextEx(overlay, abilityIDLabelX, ability2Y, 450, 1, _INTL("Ability 2"), base, shadow)
             if abilities[1]
                 ability2 = GameData::Ability.get(abilities[1])
                 abilityNameColor = base
@@ -335,33 +336,33 @@ sp.form) && !Settings::DEX_SHOWS_ALL_FORMS
               abilityNameShadow)
                 drawTextEx(overlay, abilityTextX, ability2Y + 32, 450, 3, ability2.description, base, shadow)
             else
-                drawTextEx(overlay, abilityTextX, ability2Y, 450, 1, "None", base, shadow)
+                drawTextEx(overlay, abilityTextX, ability2Y, 450, 1, _INTL("None"), base, shadow)
             end
         end
     end
 
     def genderRateToString(gender)
         case gender
-        when :AlwaysMale then         return "Male"
-        when :FemaleOneEighth then    return "7/8 Male"
-        when :Female25Percent then    return "3/4 Male"
-        when :Female50Percent then    return "50/50"
-        when :Female75Percent then    return "3/4 Fem."
-        when :FemaleSevenEighths then return "7/8 Fem."
-        when :AlwaysFemale then       return "Female"
-        when :Genderless then         return "None"
+        when :AlwaysMale            then    return _INTL("Male")
+        when :FemaleOneEighth       then    return _INTL("7/8 Male")
+        when :Female25Percent       then    return _INTL("3/4 Male")
+        when :Female50Percent       then    return _INTL("50/50")
+        when :Female75Percent       then    return _INTL("3/4 Fem.")
+        when :FemaleSevenEighths    then    return _INTL("7/8 Fem.")
+        when :AlwaysFemale          then    return _INTL("Female")
+        when :Genderless            then    return _INTL("None")
         end
         return "No data"
     end
 
     def growthRateToString(growthRate)
         case growthRate
-        when :Medium then      return "Medium"
-        when :Erratic then     return "Erratic"
-        when :Fluctuating then return "Flux"
-        when :Parabolic then return "Med. Slow"
-        when :Fast then        return "Fast"
-        when :Slow then        return "Slow"
+        when :Medium        then    return _INTL("Medium")
+        when :Erratic       then    return _INTL("Erratic")
+        when :Fluctuating   then    return _INTL("Flux")
+        when :Parabolic     then    return _INTL("Med. Slow")
+        when :Fast          then    return _INTL("Fast")
+        when :Slow          then    return _INTL("Slow")
         end
     end
 
@@ -371,8 +372,8 @@ sp.form) && !Settings::DEX_SHOWS_ALL_FORMS
         formname = ""
         base = Color.new(64, 64, 64)
         shadow = Color.new(176, 176, 176)
-        baseStatNames = ["HP", "Attack", "Defense", "Sp. Atk", "Sp. Def", "Speed"]
-        otherStatNames = ["Gender Rate", "Growth Rate", "Catch Dif.", "Exp. Grant", "PEHP / SEHP"]
+        baseStatNames = [_INTL("HP"), _INTL("Attack"), _INTL("Defense"), _INTL("Sp. Atk"), _INTL("Sp. Def"), _INTL("Speed")]
+        otherStatNames = [_INTL("Gender Rate"), _INTL("Growth Rate"), _INTL("Catch Dif."), _INTL("Exp. Grant"), _INTL("PEHP / SEHP")]
 
         # Everything else
 
@@ -401,7 +402,7 @@ sp.form) && !Settings::DEX_SHOWS_ALL_FORMS
             yBase = 96
 
             # Base stats
-            drawTextEx(overlay, 30, yBase - 40, 450, 1, "Base Stats", base, shadow)
+            drawTextEx(overlay, 30, yBase - 40, 450, 1, _INTL("Base Stats"), base, shadow)
             baseStats = fSpecies.base_stats
             total = 0
             baseStats.each_with_index do |stat, index|
@@ -421,10 +422,10 @@ sp.form) && !Settings::DEX_SHOWS_ALL_FORMS
                 end
                 drawTextEx(overlay, 136, yBase + 32 * index, 450, 1, statString, base, shadow)
             end
-            drawTextEx(overlay, 30, yBase + 32 * 6 + 14, 450, 1, "Total", base, shadow)
+            drawTextEx(overlay, 30, yBase + 32 * 6 + 14, 450, 1, _INTL("Total"), base, shadow)
             drawTextEx(overlay, 136, yBase + 32 * 6 + 14, 450, 1, total.to_s, base, shadow)
             # Other stats
-            drawTextEx(overlay, 250, yBase - 40, 450, 1, "Other Stats", base, shadow)
+            drawTextEx(overlay, 250, yBase - 40, 450, 1, _INTL("Other Stats"), base, shadow)
             otherStats = []
             genderRate = fSpecies.gender_ratio
             genderRateString = genderRateToString(genderRate)
@@ -461,12 +462,12 @@ sp.form) && !Settings::DEX_SHOWS_ALL_FORMS
                     itemsString += ", " if index < items.length - 1
                 end
             else
-                itemsString = "None"
+                itemsString = _INTL("None")
             end
-            drawTextEx(overlay, 230, yBase + 174, 450, 1, "Wild Items", base, shadow)
+            drawTextEx(overlay, 230, yBase + 174, 450, 1, _INTL("Wild Items"), base, shadow)
             drawTextEx(overlay, 230, yBase + 203, 450, 1, itemsString, base, shadow)
 
-            drawTextEx(overlay, 30, yBase + 244, 450, 1, _INTL("Tribes:", @title), base, shadow)
+            drawTextEx(overlay, 30, yBase + 244, 450, 1, _INTL("Tribes:"), base, shadow)
             drawTextEx(overlay, 120, yBase + 244, 800, 1, tribesDescription, base, shadow)
         end
     end
@@ -712,7 +713,7 @@ sp.form) && !Settings::DEX_SHOWS_ALL_FORMS
                 move = learnsetEntry[1]
                 return if !move || !level
                 levelLabel = level.to_s
-                levelLabel = "E" if level == 0
+                levelLabel = _INTL("E") if level == 0
                 # Draw stat line
                 offsetX = 0
                 maxWidth = displayIndex == 0 ? 158 : 170
@@ -770,7 +771,7 @@ sp.form) && !Settings::DEX_SHOWS_ALL_FORMS
                 next movaData.category == 2
             end
             @scrollableLists = [compatiblePhysMoves, compatibleSpecMoves, compatibleStatusMoves]
-            categoryName = %w[Physical Special Status][@horizontalScroll]
+            categoryName = [_INTL("Physical"),_INTL("Special"),_INTL("Status")][@horizontalScroll]
             drawFormattedTextEx(overlay, xLeft, 60, 192, "<ac><b>#{categoryName}</b></ac>", base, shadow)
             displayIndex = 1
             listIndex = -1
@@ -795,7 +796,7 @@ sp.form) && !Settings::DEX_SHOWS_ALL_FORMS
                     break if displayIndex > MAX_LENGTH_MOVE_LIST
                 end
             else
-                drawFormattedTextEx(overlay, xLeft + 60, 90, 450, "None", base, shadow)
+                drawFormattedTextEx(overlay, xLeft + 60, 90, 450, _INTL("None"), base, shadow)
             end
         end
 
@@ -907,16 +908,16 @@ sp.form) && !Settings::DEX_SHOWS_ALL_FORMS
 
             # Foes
             foeColor = targetingData.show_foe_targeting? ? targetableColor : untargetableColor
-            targetingGraphicTextPos.push(["Foe",targetingGraphicColumn1X, targetingGraphicRow1Y, 0, foeColor, shadow])
-            targetingGraphicTextPos.push(["Foe",targetingGraphicColumn2X, targetingGraphicRow1Y, 0, foeColor, shadow])
+            targetingGraphicTextPos.push([_INTL("Foe"),targetingGraphicColumn1X, targetingGraphicRow1Y, 0, foeColor, shadow])
+            targetingGraphicTextPos.push([_INTL("Foe"),targetingGraphicColumn2X, targetingGraphicRow1Y, 0, foeColor, shadow])
 
             # User
             userColor = targetingData.show_user_targeting? ? targetableColor : untargetableColor
-            targetingGraphicTextPos.push(["User",targetingGraphicColumn1X, targetingGraphicRow2Y, 0, userColor, shadow])
+            targetingGraphicTextPos.push([_INTL("User"),targetingGraphicColumn1X, targetingGraphicRow2Y, 0, userColor, shadow])
 
             # Ally
             allyColor = targetingData.show_ally_targeting? ? targetableColor : untargetableColor
-            targetingGraphicTextPos.push(["Ally",targetingGraphicColumn2X, targetingGraphicRow2Y, 0, allyColor, shadow])
+            targetingGraphicTextPos.push([_INTL("Ally"),targetingGraphicColumn2X, targetingGraphicRow2Y, 0, allyColor, shadow])
 
             # Draw the targeting graphic text
             pbSetNarrowFont(overlay)
@@ -1029,33 +1030,33 @@ sp.form) && !Settings::DEX_SHOWS_ALL_FORMS
     def getNameForEncounterType(encounterType)
         case encounterType
         when :Land
-            return "Grass"
+            return _INTL("Grass")
         when :LandSparse
-            return "Sparse Grass"
+            return _INTL("Sparse Grass")
         when :LandTall
-            return "Tall Grass"
+            return _INTL("Tall Grass")
         when :Special
-            return "Other"
+            return _INTL("Other")
         when :FloweryGrass
-            return "Yellow Flowers"
+            return _INTL("Yellow Flowers")
         when :FloweryGrass2
-            return "Blue Flowers"
+            return _INTL("Blue Flowers")
         when :SewerWater
-            return "Sewage"
+            return _INTL("Sewage")
         when :SewerFloor
-            return "Dirty Floor"
+            return _INTL("Dirty Floor")
         when :DarkCave
-            return "Dark Ground"
+            return _INTL("Dark Ground")
         when :Mud
-            return "Mud"
+            return _INTL("Mud")
         when :Puddle
-            return "Puddle"
+            return _INTL("Puddle")
         when :LandTinted
-            return "Secret Grass"
+            return _INTL("Secret Grass")
         when :Cloud
-            return "Dark Clouds"
+            return _INTL("Dark Clouds")
         end
-        return "Unknown"
+        return _INTL("Unknown")
     end
 
     def getEncounterableAreas(species)
@@ -1103,7 +1104,7 @@ sp.form) && !Settings::DEX_SHOWS_ALL_FORMS
   base, shadow)
             coordinateY += 30
             if areas.length == 0
-                drawTextEx(overlay, xLeft, coordinateY, 450, 1, "None", base, shadow)
+                drawTextEx(overlay, xLeft, coordinateY, 450, 1, _INTL("None"), base, shadow)
             else
                 areas.each do |area_name|
                     drawTextEx(overlay, xLeft, coordinateY, 450, 1, area_name, base, shadow)
@@ -1138,7 +1139,7 @@ sp.form) && !Settings::DEX_SHOWS_ALL_FORMS
                       base, shadow)
             coordinateY += 30
             if prevo_areas.length == 0
-                drawTextEx(overlay, xLeft, coordinateY, 450, 1, "None", base, shadow)
+                drawTextEx(overlay, xLeft, coordinateY, 450, 1, _INTL("None"), base, shadow)
             else
                 prevo_areas.each do |area_name, prevo_name|
                     drawTextEx(overlay, xLeft, coordinateY, 450, 1, "#{area_name} (#{prevo_name})", base,
@@ -1342,12 +1343,12 @@ sp.form) && !Settings::DEX_SHOWS_ALL_FORMS
             coordinateY += 34
 
             # Use count
-            drawTextEx(overlay, xLeft, coordinateY, 450, 1, "Use count: #{@dexlist[@index][16]}, #{@dexlist[@index][17]}", base,
+            drawTextEx(overlay, xLeft, coordinateY, 450, 1, _INTL("Use count: #{@dexlist[@index][16]}, #{@dexlist[@index][17]}"), base,
     shadow)
             coordinateY += 32
 
             # Earliest level accessible
-            drawTextEx(overlay, xLeft, coordinateY, 450, 1, "Earliest level: #{fSpecies.earliest_available}", base,
+            drawTextEx(overlay, xLeft, coordinateY, 450, 1, _INTL("Earliest level: #{fSpecies.earliest_available}"), base,
               shadow)
             coordinateY += 32
 
@@ -1366,7 +1367,7 @@ sp.form) && !Settings::DEX_SHOWS_ALL_FORMS
 
             fasterThanPercentOfMetaGame = numberFaster.to_f / total.to_f
             fasterThanPercentOfMetaGame = (fasterThanPercentOfMetaGame * 10_000).floor / 100.0
-            drawTextEx(overlay, xLeft, coordinateY, 450, 1, "Faster than #{fasterThanPercentOfMetaGame}% of final evos", base,
+            drawTextEx(overlay, xLeft, coordinateY, 450, 1, _INTL("Faster than #{fasterThanPercentOfMetaGame}% of final evos"), base,
               shadow)
             coordinateY += 32
 
@@ -1375,7 +1376,7 @@ sp.form) && !Settings::DEX_SHOWS_ALL_FORMS
             currentHP = (totalHP * 0.15).floor
             chanceToCatch = theoreticalCaptureChance(:NONE, currentHP, totalHP, fSpecies.catch_rate)
             chanceToCatch = (chanceToCatch * 10_000).floor / 100.0
-            drawTextEx(overlay, xLeft, coordinateY, 450, 1, "#{chanceToCatch}% chance to catch at level 40, %15 health", base,
+            drawTextEx(overlay, xLeft, coordinateY, 450, 1, _INTL("#{chanceToCatch}% chance to catch at level 40, %15 health"), base,
               shadow)
             coordinateY += 32
 
@@ -1384,7 +1385,7 @@ sp.form) && !Settings::DEX_SHOWS_ALL_FORMS
             typesOfCoverage = get_bnb_coverage(fSpecies)
 
             drawTextEx(overlay, xLeft, coordinateY, 450, 1,
-               "BnB coverage #{typesOfCoverage.length}: #{typesOfCoverage[0..[2, typesOfCoverage.length].min]}", base, shadow)
+                _INTL("BnB coverage #{typesOfCoverage.length}: #{typesOfCoverage[0..[2, typesOfCoverage.length].min]}"), base, shadow)
             coordinateY += 32
             if typesOfCoverage.length > 2
                 for index in 1..10
@@ -1417,11 +1418,11 @@ sp.form) && !Settings::DEX_SHOWS_ALL_FORMS
 
             coversPercentOfMetaGame = numberCovered.to_f / total.to_f
             coversPercentOfMetaGame = (coversPercentOfMetaGame * 10_000).floor / 100.0
-            drawTextEx(overlay, xLeft, coordinateY, 450, 1, "Covers #{coversPercentOfMetaGame}% of final evos", base,
+            drawTextEx(overlay, xLeft, coordinateY, 450, 1, _INTL("Covers #{coversPercentOfMetaGame}% of final evos"), base,
               shadow)
             coordinateY += 32
 
-            drawTextEx(overlay, xLeft, coordinateY, 450, 6, "Notes: #{fSpecies.notes}", base, shadow)
+            drawTextEx(overlay, xLeft, coordinateY, 450, 6, _INTL("Notes: #{fSpecies.notes}"), base, shadow)
             coordinateY += 32
         end
     end
