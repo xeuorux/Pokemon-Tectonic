@@ -371,8 +371,8 @@ class PokeBattle_Battle
     end
 
     def getTypedHazardHPRatio(hazardType, type1, type2 = nil, type3 = nil)
-        eff = Effectiveness.calculate(hazardType, type1, type2, type3)
-        effectivenessMult = eff.to_f / Effectiveness::NORMAL_EFFECTIVE
+        typeMod = Effectiveness.calculate(hazardType, type1, type2, type3)
+        effectivenessMult = typeEffectivenessMult(typeMod)
         return effectivenessMult / 8.0
     end
 

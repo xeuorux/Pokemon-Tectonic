@@ -42,14 +42,14 @@ class PokeBattle_AI
             choices.reject! { |choice| choice[1] <= 0 }
 
             # Seperate the choices that the boss specific AI picked out from the others
-            empoweredDamagingChoices, choices = choices.partition { |choice| user.moves[choice[0]].empoweredMove? }
+            empoweredDamagingChoices, choices = choices.partition { |choice| user.getMoves[choice[0]].empoweredMove? }
             guaranteedChoices, regularChoices = choices.partition { |choice| choice[1] >= 5000 }
 
             if guaranteedChoices.length > 1
                 PBDebug.log("[BOSS AI] #{user.pbThis} (#{user.index}) has more than one guarenteed choices! THIS IS BAD")
             end
 
-            empoweredDamagingChoices.reject! { |choice| user.empoweredTimer < user.moves[choice[0]].turnsBetweenUses }
+            empoweredDamagingChoices.reject! { |choice| user.empoweredTimer < user.getMoves[choice[0]].turnsBetweenUses }
 
             if guaranteedChoices.length == 0
                 if empoweredDamagingChoices.length > 0
@@ -61,7 +61,7 @@ class PokeBattle_AI
                         targetingSize = user.indicesTargetedThisRound.length
                         targetingSize = 2 if targetingSize > 2
                         regularChoices.reject! do |regular_choice|
-                            numTargets = user.moves[regular_choice[0]].pbTarget(user).num_targets
+                            numTargets = user.getMoves[regular_choice[0]].pbTarget(user).num_targets
                             next false if numTargets == 0
                             next numTargets != targetingSize
                         end
@@ -73,7 +73,7 @@ class PokeBattle_AI
                     if AVATARS_DISLIKE_REPEATING_SAME_MOVE && !user.lastMoveChosen.nil?
                         if regularChoices.length >= 2
                             regularChoices.reject! do |regular_choice|
-                                user.moves[regular_choice[0]].id == user.lastMoveChosen
+                                user.getMoves[regular_choice[0]].id == user.lastMoveChosen
                             end
                             PBDebug.log("[BOSS AI] #{user.pbThis} (#{user.index}) will try not to pick #{user.lastMoveChosen} this turn since that was the last move it chose")
                         else
@@ -88,14 +88,14 @@ class PokeBattle_AI
 
                     preferredChoice = sortedChoices[0]
                     unless preferredChoice.nil?
-                        PBDebug.log("[BOSS AI] #{user.pbThis} (#{user.index}) chooses #{user.moves[preferredChoice[0]].name}" +
+                        PBDebug.log("[BOSS AI] #{user.pbThis} (#{user.index}) chooses #{user.getMoves[preferredChoice[0]].name}" +
                             " since is the first listed among its remaining choices")
                     end
                 end
             else
                 preferredChoice = guaranteedChoices[0]
                 unless preferredChoice.nil?
-                    PBDebug.log("[BOSS AI] #{user.pbThis} (#{user.index}) chooses #{user.moves[preferredChoice[0]].name}" +
+                    PBDebug.log("[BOSS AI] #{user.pbThis} (#{user.index}) chooses #{user.getMoves[preferredChoice[0]].name}" +
                         ", since is the first listed among its guaranteed moves")
                 end
             end
@@ -176,7 +176,7 @@ class PokeBattle_AI
     end
 
     def getChoiceForMoveBoss(user, idxMove, choices, bossAI, targetWeak = false, targetingSizeLastRound = -1)
-        move = user.moves[idxMove]
+        move = user.getMoves[idxMove]
 
         # Never ever use empowered status moves normally
         if move.empoweredMove? && !move.damagingMove?(true)
@@ -260,7 +260,7 @@ class PokeBattle_AI
         end
 
         if choice
-            moveForChoice = user.moves[choice[0]]
+            moveForChoice = user.getMoves[choice[0]]
             numTargets = moveForChoice.pbTarget(user).num_targets
 
             # Value moves that have a different targeting size than last turn

@@ -324,7 +324,7 @@ class PokeBattle_Move
 
         # Type effectiveness
         typeMod = target.typeMod(type,target,self,checkingForAI)
-        effectiveness = typeMod / Effectiveness::NORMAL_EFFECTIVE.to_f
+        effectiveness = @battle.typeEffectivenessMult(typeMod)
         multipliers[:final_damage_multiplier] *= effectiveness
 
         echoln("[DAMAGE CALC] Calcing damage based on expected type effectiveness mult of #{effectiveness}") if DAMAGE_CALC_DEBUG
@@ -503,6 +503,10 @@ class PokeBattle_Move
         if target.shouldAbilityApply?(:DRAGONSCALES,aiCheck) && !@battle.moldBreaker
             finalCalculatedDamage -= target.level
             target.aiLearnsAbility(:DRAGONSCALES) unless aiCheck
+        end
+
+        if @battle.field.effectActive?(:WillfulRoom)
+            finalCalculatedDamage -= 30
         end
 
         finalCalculatedDamage = 1 if finalCalculatedDamage < 1

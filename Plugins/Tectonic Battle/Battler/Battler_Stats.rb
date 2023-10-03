@@ -39,7 +39,7 @@ class PokeBattle_Battler
     end
 
     def wonderRoom?
-        return @battle.field.effectActive?(:WonderRoom)
+        return false
     end
 
     def attack

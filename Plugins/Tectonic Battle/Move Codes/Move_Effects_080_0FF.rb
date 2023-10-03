@@ -1340,7 +1340,7 @@ class PokeBattle_Move_0B4 < PokeBattle_Move
 
     def pbEffectGeneral(user)
         choice = getSleepTalkMoves(user).sample
-        user.pbUseMoveSimple(user.moves[choice].id, user.pbDirectOpposing.index)
+        user.pbUseMoveSimple(user.getMoves[choice].id, user.pbDirectOpposing.index)
     end
 
     def getEffectScore(_user, _target)

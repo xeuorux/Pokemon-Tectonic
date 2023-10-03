@@ -17,6 +17,20 @@ class PokeBattle_Battle
 
         pbEORWeather(priority)
 
+        if @field.effectActive?(:EmotionRoom)
+            priority.each { |b|
+                possibleAbilitySwitches = []
+                b.legalAbilities.each do |abil|
+                    next if b.hasAbility?(abil)
+                    possibleAbilitySwitches.push(abil)
+                end
+                next unless possibleAbilitySwitches.length >= 1
+                newAbility = possibleAbilitySwitches.sample
+                pbDisplay(_INTL("{1} was overwhelmed with emotion!", b.pbThis))
+                b.replaceAbility(newAbility)
+            }
+        end
+
         pbEORDamage(priority)
 
         countDownPerishSong(priority)

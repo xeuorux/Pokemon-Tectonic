@@ -72,7 +72,7 @@ class PokeBattle_AI
         if battler.boss?
             pbChooseMovesBoss(idxBattler)
         elsif @battle.wildBattle? && @battle.opposes?(idxBattler) # Checks for opposing because it could be an partner trainer's pokemon
-            @battle.pbRegisterMove(idxBattler, pbAIRandom(battler.moves.length), false)
+            @battle.pbRegisterMove(idxBattler, pbAIRandom(battler.getMoves.length), false)
         else
             return if pbEnemyShouldWithdraw?(idxBattler)
             defensiveMatchupRating,killInfoArray = worstDefensiveMatchupAgainstActiveFoes(battler)
@@ -85,9 +85,9 @@ class PokeBattle_AI
         # Log the available choices
         logMsg = "[AI] Move choices for #{user.pbThis(true)} (#{user.index}): "
         choices.each_with_index do |c, i|
-            logMsg += "#{user.moves[c[0]].name}=#{c[1]}"
+            logMsg += "#{user.getMoves[c[0]].name}=#{c[1]}"
             logMsg += " (target #{c[2]})" if c[2] >= 0
-            logMsg += " [E]" if user.moves[c[0]].empoweredMove?
+            logMsg += " [E]" if user.getMoves[c[0]].empoweredMove?
             logMsg += ", " if i < choices.length - 1
         end
         PBDebug.log(logMsg)
@@ -107,6 +107,6 @@ class PokeBattle_AI
         bestMoveChoices.sort_by! { |choice| -choice[1] }
         moveChoice = bestMoveChoices[0]
         moveIndex = moveChoice[0]
-        return [:UseMove,moveIndex,user.moves[moveIndex],moveChoice[2]]
+        return [:UseMove,moveIndex,user.getMoves[moveIndex],moveChoice[2]]
     end
 end

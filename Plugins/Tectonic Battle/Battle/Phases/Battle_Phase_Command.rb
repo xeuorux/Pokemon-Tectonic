@@ -76,7 +76,7 @@ class PokeBattle_Battle
             end
         end
         if battler.effectActive?(:Encore)
-            encoreMove = battler.moves[battler.pbEncoredMoveIndex]
+            encoreMove = battler.getMoves[battler.pbEncoredMoveIndex]
             if pbDisplayConfirm(_INTL("#{battler.pbThis} must use #{encoreMove.name} if it fights. Go ahead?"))
                 return pbAutoChooseMove(idxBattler)
             else
@@ -90,15 +90,12 @@ class PokeBattle_Battle
         @scene.pbFightMenu(idxBattler, pbCanMegaEvolve?(idxBattler)) do |cmd|
             case cmd
             when -1   # Cancel
-            when -2   # Toggle Mega Evolution
-                pbToggleRegisteredMegaEvolution(idxBattler)
-                next false
             when -3   # Shift
                 pbUnregisterMegaEvolution(idxBattler)
                 pbRegisterShift(idxBattler)
                 ret = true
             else      # Chose a move to use
-                move = @battlers[idxBattler].moves[cmd]
+                move = @battlers[idxBattler].getMoves[cmd]
                 next false if cmd < 0 || move.nil? || move.id.nil?
                 next false unless pbRegisterMove(idxBattler, cmd)
                 target_data = move.pbTarget(battler)
@@ -347,7 +344,7 @@ class PokeBattle_Battle
             @battleAI.pbEvaluateMoveTrainer(user, moveObject)
         end
 
-        user.moves[0] = moveObject
+        user.getMoves[0] = moveObject
 
         @choices[idxBattler][0] = :UseMove # "Use move"
         @choices[idxBattler][1] = 0 # Index of move to be used

@@ -790,7 +790,7 @@ class PokeBattle_Battle
     def resetMoveUsageState
         # Reset the state of all moves
         pbPriority.each do |b|
-            b.moves.each do |move|
+            b.getMoves.each do |move|
                 move.resetMoveUsageState
             end
         end

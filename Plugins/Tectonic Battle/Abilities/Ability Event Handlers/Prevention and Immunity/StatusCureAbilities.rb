@@ -117,5 +117,19 @@ BattleHandlers::StatusCureAbility.add(:SEASURVIVOR,
             battler.battle.pbHideAbilitySplash(battler)
         end
     }
+)
+
+BattleHandlers::StatusCureAbility.add(:RUNNINGFREE,
+    proc { |ability, battler|
+        if battler.hasStatusNoTrigger(:NUMB)
+            battler.battle.pbShowAbilitySplash(battler, ability)
+            battler.pbCureStatus(true, :NUMB)
+            battler.battle.pbHideAbilitySplash(battler)
+        end
+        if battler.hasStatusNoTrigger(:LEECHED)
+            battler.battle.pbShowAbilitySplash(battler, ability)
+            battler.pbCureStatus(true, :LEECHED)
+            battler.battle.pbHideAbilitySplash(battler)
+        end
+    }
   )
-  

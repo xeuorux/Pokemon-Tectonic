@@ -4,7 +4,7 @@ class PokeBattle_Battle
     #=============================================================================
     def pbCanChooseMove?(battler, idxMove, showMessages, sleepTalk = false)
         battler = @battlers[battler] if battler.is_a?(Integer)
-        move = battler.moves[idxMove]
+        move = battler.getMoves[idxMove]
         return false unless move
         return true if move.empoweredMove? && battler.boss?
         if move.pp == 0 && move.total_pp > 0 && !sleepTalk
@@ -48,7 +48,7 @@ class PokeBattle_Battle
         # Encore
         idxEncoredMove = battler.pbEncoredMoveIndex
         if idxEncoredMove >= 0 && pbCanChooseMove?(idxBattler, idxEncoredMove, false)
-            encoreMove = battler.moves[idxEncoredMove]
+            encoreMove = battler.getMoves[idxEncoredMove]
             @choices[idxBattler][0] = :UseMove         # "Use move"
             @choices[idxBattler][1] = idxEncoredMove   # Index of move to be used
             @choices[idxBattler][2] = encoreMove       # PokeBattle_Move object
@@ -71,7 +71,7 @@ class PokeBattle_Battle
 
     def pbRegisterMove(idxBattler, idxMove, showMessages = true)
         battler = @battlers[idxBattler]
-        move = battler.moves[idxMove]
+        move = battler.getMoves[idxMove]
         return false unless pbCanChooseMove?(idxBattler, idxMove, showMessages)
         @choices[idxBattler][0] = :UseMove   # "Use move"
         @choices[idxBattler][1] = idxMove    # Index of move to be used

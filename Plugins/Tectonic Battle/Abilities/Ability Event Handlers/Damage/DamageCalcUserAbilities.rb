@@ -181,6 +181,15 @@ BattleHandlers::DamageCalcUserAbility.add(:SHARPNESS,
 
 BattleHandlers::DamageCalcUserAbility.copy(:SHARPNESS, :RAZORSEDGE)
 
+BattleHandlers::DamageCalcUserAbility.add(:LEGSTRENGTH,
+  proc { |ability, user, target, move, mults, _baseDmg, type, aiCheck|
+    if move.kickingMove?
+      mults[:base_damage_multiplier] *= 1.3
+      user.aiLearnsAbility(ability) unless aiCheck
+    end
+  }
+)
+
 BattleHandlers::DamageCalcUserAbility.add(:ENGORGE,
   proc { |ability, user, target, move, mults, _baseDmg, type, aiCheck|
     if move.healingMove?

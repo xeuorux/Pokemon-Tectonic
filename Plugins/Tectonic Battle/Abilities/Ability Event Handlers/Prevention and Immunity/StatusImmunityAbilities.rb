@@ -68,13 +68,13 @@ BattleHandlers::StatusImmunityAllyAbility.add(:FAEVEIL,
 
 BattleHandlers::StatusImmunityAbility.add(:CANDYVEIL,
   proc { |ability, _battler, status|
-      next true if %i[POISON LEECH DIZZY].include?(status)
+      next true if %i[POISON LEECHED DIZZY].include?(status)
   }
 )
 
 BattleHandlers::StatusImmunityAllyAbility.add(:CANDYVEIL,
   proc { |ability, _battler, status|
-      next true if %i[POISON LEECH DIZZY].include?(status)
+      next true if %i[POISON LEECHED DIZZY].include?(status)
   }
 )
 
@@ -105,5 +105,11 @@ BattleHandlers::StatusImmunityAbility.add(:WELLSUPPLIED,
 BattleHandlers::StatusImmunityAbility.add(:ALOOF,
   proc { |ability, _battler, status|
       next true if status == :DIZZY
+  }
+)
+
+BattleHandlers::StatusImmunityAbility.add(:RUNNINGFREE,
+  proc { |ability, _battler, status|
+      next true if %i[NUMB LEECHED].include?(status)
   }
 )

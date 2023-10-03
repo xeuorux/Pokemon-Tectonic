@@ -113,23 +113,6 @@ GameData::BattleEffect.register_effect(:Field, {
 })
 
 GameData::BattleEffect.register_effect(:Field, {
-    :id => :WonderRoom,
-    :real_name => "Wonder Room",
-    :type => :Integer,
-    :ticks_down => true,
-    :is_room => true,
-    :apply_proc => proc do |battle, _value|
-        battle.pbDisplay(_INTL("A wonderous area appeared! Defense and Sp. Def stats are swapped!"))
-    end,
-    :disable_proc => proc do |battle, _battler|
-        battle.pbDisplay(_INTL("The wonderous area was dispelled!"))
-    end,
-    :expire_proc => proc do |battle, _battler|
-        battle.pbDisplay(_INTL("The wonderous area fell away."))
-    end,
-})
-
-GameData::BattleEffect.register_effect(:Field, {
     :id => :PuzzleRoom,
     :real_name => "Puzzle Room",
     :type => :Integer,
@@ -160,6 +143,74 @@ GameData::BattleEffect.register_effect(:Field, {
     end,
     :expire_proc => proc do |battle, _battler|
         battle.pbDisplay(_INTL("The odd area fell away."))
+    end,
+})
+
+GameData::BattleEffect.register_effect(:Field, {
+    :id => :QualityRoom,
+    :real_name => "Quality Room",
+    :type => :Integer,
+    :ticks_down => true,
+    :is_room => true,
+    :apply_proc => proc do |battle, _value|
+        battle.pbDisplay(_INTL("A high quality area appeared! Type effectiveness is exagerated!"))
+    end,
+    :disable_proc => proc do |battle, _battler|
+        battle.pbDisplay(_INTL("The high quality area was dispelled!"))
+    end,
+    :expire_proc => proc do |battle, _battler|
+        battle.pbDisplay(_INTL("The high quality area fell away."))
+    end,
+})
+
+GameData::BattleEffect.register_effect(:Field, {
+    :id => :InsightRoom,
+    :real_name => "Insight Room",
+    :type => :Integer,
+    :ticks_down => true,
+    :is_room => true,
+    :apply_proc => proc do |battle, _value|
+        battle.pbDisplay(_INTL("An insightful area appeared! Everyone gets a 5th move!"))
+    end,
+    :disable_proc => proc do |battle, _battler|
+        battle.pbDisplay(_INTL("The insightful area was dispelled!"))
+    end,
+    :expire_proc => proc do |battle, _battler|
+        battle.pbDisplay(_INTL("The insightful area fell away."))
+    end,
+})
+
+GameData::BattleEffect.register_effect(:Field, {
+    :id => :EmotionRoom,
+    :real_name => "Emotion Room",
+    :type => :Integer,
+    :ticks_down => true,
+    :is_room => true,
+    :apply_proc => proc do |battle, _value|
+        battle.pbDisplay(_INTL("An emotional area appeared! Everyone switches ability every turn!"))
+    end,
+    :disable_proc => proc do |battle, _battler|
+        battle.pbDisplay(_INTL("The emotional area was dispelled!"))
+    end,
+    :expire_proc => proc do |battle, _battler|
+        battle.pbDisplay(_INTL("The emotional area fell away."))
+    end,
+})
+
+GameData::BattleEffect.register_effect(:Field, {
+    :id => :WillfulRoom,
+    :real_name => "Willful Room",
+    :type => :Integer,
+    :ticks_down => true,
+    :is_room => true,
+    :apply_proc => proc do |battle, _value|
+        battle.pbDisplay(_INTL("A willful area appeared! Everyone takes 30 less damage on hits!"))
+    end,
+    :disable_proc => proc do |battle, _battler|
+        battle.pbDisplay(_INTL("The willful area was dispelled!"))
+    end,
+    :expire_proc => proc do |battle, _battler|
+        battle.pbDisplay(_INTL("The willful area fell away."))
     end,
 })
 

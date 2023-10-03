@@ -97,6 +97,28 @@ class PokeBattle_Battler
         @pokemon.extraMovesPerTurn = val
     end
 
+    def getMoves
+        movesArray = @moves.clone
+        if @battle.field.effectActive?(:InsightRoom)
+            insightMove = getInsightMove
+            movesArray.push(insightMove) if insightMove
+        end
+        return movesArray
+    end
+
+    def getInsightMove
+        return nil if @pokemon.nil?
+        speciesLearnSet = @pokemon.getMoveList.reverse
+        speciesLearnSet.each do |learnSetEntry|
+            moveLevel = learnSetEntry[0]
+            next if moveLevel > @level
+            move = learnSetEntry[1]
+            next if @pokemon.hasMove?(move)
+            return @battle.getBattleMoveInstanceFromID(move)
+        end
+        return nil
+    end
+
     #=============================================================================
     # Properties from Pokémon
     #=============================================================================

@@ -2082,7 +2082,7 @@ class PokeBattle_Move_57A < PokeBattle_Move
     end
 
     def getFirstSlotMove(user)
-        return user.moves[0] || nil
+        return user.getMoves[0] || nil
     end
 
     def pbEffectAgainstTarget(user, target)

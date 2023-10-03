@@ -298,6 +298,18 @@ class PokeBattle_Battle
         return false if againstPredictor && !actionTargets?(@battlers[idxBattler],predictedAction,predictor)
         return true
     end
+
+    def typeEffectivenessMult(typeMod)
+        mult = typeMod / Effectiveness::NORMAL_EFFECTIVE.to_f
+        if @field.effectActive?(:QualityRoom)
+            if Effectiveness.super_effective?(typeMod)
+                mult *= 1.25
+            elsif Effectiveness.not_very_effective?
+                mult *= 0.75
+            end
+        end
+        return mult
+    end
 end
 
 def getAbilityName(ability)

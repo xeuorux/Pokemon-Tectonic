@@ -2195,7 +2195,7 @@ Pokemon = WHIMSICOTT,48
     AbilityIndex = 1 # Power Up
     Item = GRASSGEM
 Pokemon = RAPIDASH,47
-    AbilityIndex = 1 # Harsh
+    AbilityIndex = 1 # Leg Strength
     Item = SHELLBELL
 #-------------------------------
 [JUGGLER,Mikael]
@@ -2516,7 +2516,7 @@ Pokemon = MAGMORTAR,65
     AbilityIndex = 0 # Mega Launcher
     Item = STRIKEVEST
 Pokemon = RAPIDASH,65
-    AbilityIndex = 1 # Harsh
+    AbilityIndex = 1 # Leg Strength
     Item = LIECHIBERRY
 #-------------------------------
 [BLACKBELT,Leo]

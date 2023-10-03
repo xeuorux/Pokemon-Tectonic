@@ -899,13 +899,13 @@ class PokeBattle_Move_123 < PokeBattle_Move
 end
 
 #===============================================================================
-# For 5 rounds, swaps all battlers' base Defense with base Special Defense.
-# (Wonder Room)
+# For 5 rounds, causes SE damage to be 25% higher, and NVE damage to be 25% lower.
+# (Quality Room)
 #===============================================================================
 class PokeBattle_Move_124 < PokeBattle_RoomMove
     def initialize(battle, move)
         super
-        @roomEffect = :WonderRoom
+        @roomEffect = :QualityRoom
     end
 end
 
@@ -2264,7 +2264,7 @@ class PokeBattle_Move_16B < PokeBattle_Move
         target.eachMoveWithIndex do |m, i|
             idxMove = i if m.id == target.lastRegularMoveUsed
         end
-        if target.moves[idxMove].pp == 0 && target.moves[idxMove].total_pp > 0
+        if target.getMoves[idxMove].pp == 0 && target.getMoves[idxMove].total_pp > 0
             if show_message
                 @battle.pbDisplay(_INTL("But it failed, since #{target.pbThis(true)}'s last used move it out of PP!"))
             end

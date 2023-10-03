@@ -290,8 +290,8 @@ Pokemon = WORNET,70
 #-------------------------------
 [POKEMANIAC,Chris]
 Pokemon = MUDSDALE,70
-    Moves = EARTHQUAKE,SMACKDOWN,STEALTHROCK,ROAR
-    AbilityIndex = 0 # Mental Block
+    Moves = TRAMPLE,SMACKDOWN,STEALTHROCK,ROAR
+    AbilityIndex = 0 # Leg Strength
     Item = LEFTOVERS
     EV = 20,20,0,0,20,10
 Pokemon = TROPIUS,70
@@ -729,11 +729,11 @@ Pokemon = PERSIAN,70
     AbilityIndex = 1 # All That Glitters
     Item = GROUNDGEM,DARKGEM
     EV = 0,20,10,20,20,0
-Pokemon = RAPIDASH,70
-    Moves = OVERHEAT,PLAYROUGH,SCORCHINGSANDS,ELECTROSLASH
-    AbilityIndex = 1 # Harsh
-    Item = ENERGYLOCK
-    EV = 0,20,0,20,20,10
+Pokemon = MDUSTOX,70
+    Moves = HUNTDOWN,PROPELLANT,DEFOG,UTURN
+    AbilityIndex = 0 # Harsh
+    Item = HEAVYDUTYBOOTS
+    EV = 10,20,0,20,20,0
 Pokemon = SANDSLASH,70
     Moves = ADAMANTINEPRESS,RAPIDSPIN,EARTHQUAKE,FLAMESPIKES
     AbilityIndex = 1 # Tough Claws

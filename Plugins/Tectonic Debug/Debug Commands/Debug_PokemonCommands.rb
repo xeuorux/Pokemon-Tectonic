@@ -508,7 +508,8 @@ module PokemonDebugMenuCommands
     "name"        => _INTL("Forget move"),
     "always_show" => true,
     "effect"      => proc { |pkmn, pkmnid, heldpoke, settingUpBattle, screen|
-      moveindex = screen.pbChooseMove(pkmn, _INTL("Choose move to forget."))
+      pbChooseMove(pkmn, 2, 4)
+      moveindex = getGlobalVariable(2)
       if moveindex >= 0
         movename = pkmn.moves[moveindex].name
         pkmn.forget_move_at_index(moveindex)

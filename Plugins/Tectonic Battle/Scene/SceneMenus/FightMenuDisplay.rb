@@ -26,6 +26,7 @@ class FightMenuDisplay < BattleMenuBase
   
     def initialize(viewport,z)
         super(viewport)
+        @viewport = viewport
         self.x = 0
         self.y = Graphics.height-96
         @battler   = nil
@@ -50,40 +51,15 @@ class FightMenuDisplay < BattleMenuBase
           @buttons = []
           @highlights = []
           @shaders = []
-          for i in 0..Pokemon::MAX_MOVES do
-            newButton = SpriteWrapper.new(viewport)
-            newButton.bitmap = @buttonBitmap.bitmap
+          for i in 0...Pokemon::MAX_MOVES do
             buttonX = self.x + 4 + (((i%2)==0) ? 0 : @buttonBitmap.width/2-4)
-            newButton.x      = buttonX
             buttonY = self.y + 6 + (((i/2)==0) ? 0 : BUTTON_HEIGHT-4)
-            newButton.y      = buttonY
-            newButton.src_rect.width  = @buttonBitmap.width/2
-            newButton.src_rect.height = BUTTON_HEIGHT
-            addSprite("button_#{i}",newButton)
-            @buttons.push(newButton)
-    
-            newHighlighter = AnimatedSprite.new(["Graphics/Pictures/Battle/cursor_fight_highlight",37,0.5])
-            newHighlighter.viewport = viewport
-            newHighlighter.x = buttonX + 20
-            newHighlighter.y = buttonY + 8
-            newHighlighter.opacity = 80
-            newHighlighter.blend_type = 1
-            addSprite("highlight_#{i}",newHighlighter)
-            @highlights.push(newHighlighter)
-    
-            newShader = SpriteWrapper.new(viewport)
-            newShader.bitmap = @cursorShadeBitmap.bitmap
-            newShader.x = buttonX + 20
-            newShader.y = buttonY + 8
-            newShader.opacity = 80
-            addSprite("shader_#{i}",newShader)
-            @shaders.push(newShader)
+            createButton(buttonX,buttonY,i)
           end
+          createButton(self.x + 4,self.y - BUTTON_HEIGHT,Pokemon::MAX_MOVES)
           
           # Create overlay for buttons (shows move names)
-          @overlay = BitmapSprite.new(Graphics.width,Graphics.height-self.y,viewport)
-          @overlay.x = self.x
-          @overlay.y = self.y
+          @overlay = BitmapSprite.new(Graphics.width,Graphics.height,viewport)
           pbSetNarrowFont(@overlay.bitmap)
           addSprite("overlay",@overlay)
           # Create overlay for selected move's info (shows move's PP)
@@ -92,13 +68,6 @@ class FightMenuDisplay < BattleMenuBase
           @infoOverlay.y = self.y
           pbSetNarrowFont(@infoOverlay.bitmap)
           addSprite("infoOverlay",@infoOverlay)
-          # Create Mega Evolution button
-          @megaButton = SpriteWrapper.new(viewport)
-          @megaButton.bitmap = @megaEvoBitmap.bitmap
-          @megaButton.x      = self.x+120
-          @megaButton.y      = self.y-@megaEvoBitmap.height/2
-          @megaButton.src_rect.height = @megaEvoBitmap.height/2
-          addSprite("megaButton",@megaButton)
           # Create Shift button
           @shiftButton = SpriteWrapper.new(viewport)
           @shiftButton.bitmap = @shiftBitmap.bitmap
@@ -142,6 +111,35 @@ class FightMenuDisplay < BattleMenuBase
           addSprite("cmdWindow",@cmdWindow)
         end
         self.z = z
+    end
+
+    def createButton(buttonX,buttonY,index)
+      echoln("#{index}:#{buttonX},#{buttonY}")
+      newButton = SpriteWrapper.new(@viewport)
+      newButton.bitmap = @buttonBitmap.bitmap
+      newButton.x      = buttonX
+      newButton.y      = buttonY
+      newButton.src_rect.width  = @buttonBitmap.width/2
+      newButton.src_rect.height = BUTTON_HEIGHT
+      addSprite("button_#{index}",newButton)
+      @buttons.push(newButton)
+      
+      newHighlighter = AnimatedSprite.new(["Graphics/Pictures/Battle/cursor_fight_highlight",37,0.5])
+      newHighlighter.viewport = @viewport
+      newHighlighter.x = buttonX + 20
+      newHighlighter.y = buttonY + 8
+      newHighlighter.opacity = 80
+      newHighlighter.blend_type = 1
+      addSprite("highlight_#{index}",newHighlighter)
+      @highlights.push(newHighlighter)
+
+      newShader = SpriteWrapper.new(@viewport)
+      newShader.bitmap = @cursorShadeBitmap.bitmap
+      newShader.x = buttonX + 20
+      newShader.y = buttonY + 8
+      newShader.opacity = 80
+      addSprite("shader_#{index}",newShader)
+      @shaders.push(newShader)
     end
   
     def dispose
@@ -196,7 +194,7 @@ class FightMenuDisplay < BattleMenuBase
     end
   
     def refreshButtonNames
-        moves = (@battler) ? @battler.moves : []
+        moves = (@battler) ? @battler.getMoves : []
         if !USE_GRAPHICS
           # Fill in command window
           commands = []
@@ -214,8 +212,8 @@ class FightMenuDisplay < BattleMenuBase
           @visibility["shader_#{i}"] = false
           next if !@visibility["button_#{i}"]
           move = moves[i]
-          x = button.x-self.x+button.src_rect.width/2
-          y = button.y-self.y+2
+          x = button.x + button.src_rect.width / 2
+          y = button.y + 2
           moveNameBase = TEXT_BASE_COLOR
           if move.type
             # NOTE: This takes a colour from a particular pixel in the button
@@ -283,7 +281,7 @@ class FightMenuDisplay < BattleMenuBase
     end
   
     def refreshSelection
-      moves = (@battler) ? @battler.moves : []
+      moves = (@battler) ? @battler.getMoves : []
       if USE_GRAPHICS
         # Choose appropriate button graphics and z positions
         @buttons.each_with_index do |button,i|
@@ -479,14 +477,6 @@ class FightMenuDisplay < BattleMenuBase
         drawTextEx(overlay,8,96 + 12,500,4,moveData.description,base,shadow)
     end
   
-    def refreshMegaEvolutionButton
-      return if !USE_GRAPHICS
-      @megaButton.src_rect.y    = (@mode - 1) * @megaEvoBitmap.height / 2
-      @megaButton.x             = self.x + ((@shiftMode > 0) ? 204 : 120)
-      @megaButton.z             = self.z - 1
-      @visibility["megaButton"] = (@mode > 0)
-    end
-  
     def refreshShiftButton
       return if !USE_GRAPHICS
       @shiftButton.src_rect.y    = (@shiftMode - 1) * @shiftBitmap.height
@@ -497,7 +487,6 @@ class FightMenuDisplay < BattleMenuBase
     def refresh
       return if !@battler
       refreshSelection
-      refreshMegaEvolutionButton
       refreshShiftButton
     end
 end

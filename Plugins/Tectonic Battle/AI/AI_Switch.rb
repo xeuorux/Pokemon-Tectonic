@@ -328,7 +328,7 @@ class PokeBattle_AI
         choices.each do |c|
             next unless c[1] > maxScore
             maxScore = c[1]
-            bestMove = battler.moves[c[0]].id
+            bestMove = battler.getMoves[c[0]].id
         end
         if opposingBattler
             echoln("[MOVES SCORING] #{battler.pbThis}'s best move against target #{opposingBattler.pbThis(true)} is #{bestMove} at score #{maxScore}")

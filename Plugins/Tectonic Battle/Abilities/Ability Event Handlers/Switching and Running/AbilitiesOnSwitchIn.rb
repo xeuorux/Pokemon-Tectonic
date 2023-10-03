@@ -416,6 +416,42 @@ BattleHandlers::AbilityOnSwitchIn.add(:TRICKYAURA,
   }
 )
 
+BattleHandlers::AbilityOnSwitchIn.add(:QUALITYAURA,
+  proc { |ability, battler, battle, aiCheck|
+      battle.pbShowAbilitySplash(battler, ability) unless aiCheck
+      score = battle.pbStartRoom(:QualityRoom, battler, aiCheck)
+      battle.pbHideAbilitySplash(battler) unless aiCheck
+      next score
+  }
+)
+
+BattleHandlers::AbilityOnSwitchIn.add(:INSIGHTAURA,
+  proc { |ability, battler, battle, aiCheck|
+      battle.pbShowAbilitySplash(battler, ability) unless aiCheck
+      score = battle.pbStartRoom(:InsightRoom, battler, aiCheck)
+      battle.pbHideAbilitySplash(battler) unless aiCheck
+      next score
+  }
+)
+
+BattleHandlers::AbilityOnSwitchIn.add(:EMOTIONAURA,
+  proc { |ability, battler, battle, aiCheck|
+      battle.pbShowAbilitySplash(battler, ability) unless aiCheck
+      score = battle.pbStartRoom(:EmotionRoom, battler, aiCheck)
+      battle.pbHideAbilitySplash(battler) unless aiCheck
+      next score
+  }
+)
+
+BattleHandlers::AbilityOnSwitchIn.add(:WILLAURA,
+  proc { |ability, battler, battle, aiCheck|
+      battle.pbShowAbilitySplash(battler, ability) unless aiCheck
+      score = battle.pbStartRoom(:WillfulRoom, battler, aiCheck)
+      battle.pbHideAbilitySplash(battler) unless aiCheck
+      next score
+  }
+)
+
 ##########################################
 # Totem abilities
 ##########################################

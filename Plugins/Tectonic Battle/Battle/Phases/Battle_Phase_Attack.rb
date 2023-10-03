@@ -197,7 +197,7 @@ class PokeBattle_Battle
     def speedAffectingTriggers
         eachBattler do |b|
             next unless @choices[b.index][0] == :UseMove
-            move = b.moves[@choices[b.index][1]]
+            move = b.getMoves[@choices[b.index][1]]
 
             if b.hasActiveItem?(:AGILITYHERB)
                 b.applyEffect(:AgilityHerb)

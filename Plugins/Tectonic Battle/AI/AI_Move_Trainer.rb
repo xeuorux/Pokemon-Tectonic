@@ -12,7 +12,7 @@ class PokeBattle_AI
             # Determine the most preferred move
             sortedChoices = choices.sort_by { |choice| -choice[1] }
             preferredChoice = sortedChoices[0]
-            PBDebug.log("[AI] #{user.pbThis} (#{user.index}) thinks #{user.moves[preferredChoice[0]].name} is the highest rated choice")
+            PBDebug.log("[AI] #{user.pbThis} (#{user.index}) thinks #{user.getMoves[preferredChoice[0]].name} is the highest rated choice")
             unless preferredChoice.nil?
                 @battle.pbRegisterMove(idxBattler, preferredChoice[0], false)
                 @battle.pbRegisterTarget(idxBattler, preferredChoice[2]) if preferredChoice[2] >= 0
