@@ -196,6 +196,9 @@ KattenK<s>Travis
 G.E.Z.<s>SpheX
 Hematite<s>SelenaArmorclaw
 
+Spanish PokeDex Translations
+Everson
+
 "Pokémon Essentials" was created by:
 Flameguru
 Poccil (Peter O.)
