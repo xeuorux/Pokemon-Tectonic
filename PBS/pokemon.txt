@@ -2039,7 +2039,7 @@ BattlerEnemyX = -2
 BattlerEnemyY = 25
 BattlerShadowX = 0
 BattlerShadowSize = 2
-Evolutions = KADABRA,Level,16
+Evolutions = KADABRA,Level,20
 #-------------------------------
 [64]
 Name = Kadabra
