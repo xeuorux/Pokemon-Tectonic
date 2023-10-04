@@ -26,8 +26,7 @@ class PokemonPartyShowcase_Scene
         # Draw tribal bonus info at the bottom
         playerTribalBonus().updateTribeCount
         bonusesList = $Trainer.tribalBonus.getActiveBonusesList(false)
-        tribesTotal = GameData::Tribe::DATA.keys.count - 1
-        echoln("Total tribes: #{tribesTotal}")
+        tribesTotal = GameData::Tribe::DATA.keys.count
         fullDescription = ""
         if bonusesList.length <= 3
             bonusesList.each_with_index do |label,index|
@@ -35,14 +34,14 @@ class PokemonPartyShowcase_Scene
                 fullDescription += label
             end
         elsif bonusesList.length == tribesTotal
-            fullDescription = "All"
+            fullDescription = _INTL("All")
         else
-            fullDescription = bonusesList.length.to_s + " bonuses"
+            fullDescription = _INTL("#{bonusesList.length.to_s} bonuses")
         end
         if fullDescription.blank?
-            fullDescription = "No Tribal Bonuses"
+            fullDescription = _INTL("No Tribal Bonuses")
         else
-            fullDescription = "Tribes: " + fullDescription
+            fullDescription = _INTL("Tribes: #{fullDescription}") 
         end
         bottomBarY = Graphics.height - 20
         drawFormattedTextEx(@overlay, 8, bottomBarY, Graphics.width, fullDescription, BASE_COLOR, SHADOW_COLOR)
@@ -89,7 +88,7 @@ class PokemonPartyShowcase_Scene
         @sprites["pokemon#{index}"] = newPokemonIcon
 
         # Display pokemon name
-        nameAndLevel = pokemon.name + " Lv. " + pokemon.level.to_s
+        nameAndLevel = _INTL("#{pokemon.name} Lv. #{pokemon.level.to_s}")
         drawTextEx(@overlay, displayX + 14, displayY, 200, 1, nameAndLevel, BASE_COLOR, SHADOW_COLOR)
 
         # Display item icon
@@ -152,7 +151,7 @@ class PokemonPartyShowcase_Scene
         end
 
         # Display ability name
-        abilityName = pokemon.ability&.name || "No Ability"
+        abilityName = pokemon.ability&.name || _INTL("No Ability")
         drawTextEx(@overlay, displayX + 4, mainIconY + POKEMON_ICON_SIZE + 8, 200, 1, abilityName, BASE_COLOR, SHADOW_COLOR)
     
         # Display Style Points
