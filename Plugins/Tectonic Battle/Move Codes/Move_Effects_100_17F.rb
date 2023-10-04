@@ -694,11 +694,16 @@ class PokeBattle_Move_11C < PokeBattle_Move
         target.applyEffect(:SmackDown)
     end
 
-    def getTargetAffectingEffectScore(_user, target)
-        score = 0
+    def getTargetAffectingEffectScore(user, target)
+    score += 5 # Constant score so AI uses on "kills"
         if canSmackDown?(target)
-            score += 20 unless target.effectActive?(:SmackDown)
-            score += 20 if target.inTwoTurnAttack?("0C9", "0CC")
+            score += 25
+            # This is ugly and does not account for 4x
+            if user.pbHasAttackingType?(:GROUND) && !target.effectActive?(:SmackDown)
+                score += 30 if target.pbHasTypeAI?(:FIRE) || target.pbHasTypeAI?(:POISON) || target.pbHasTypeAI?(:STEEL) || target.pbHasTypeAI?(:ROCK) || target.pbHasTypeAI?(:ELECTRIC)
+                score -= 30 if target.pbHasTypeAI?(:BUG) || target.pbHasTypeAI?(:GRASS) || target.pbHasTypeAI?(:ICE)
+            end
+            score += getWantsToBeFasterScore(user, target, 7) if target.inTwoTurnAttack?("0C9", "0CC")
         end
         return score
     end
