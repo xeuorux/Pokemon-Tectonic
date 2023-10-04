@@ -42996,7 +42996,7 @@ Visión Nocturna
 Night Stalker
 Acechador Nocturno
 Werewolf
-Hombre Lobo
+Licántropo
 Toxic Cloud
 Nube Tóxica
 Generator
@@ -52580,3 +52580,1633 @@ Ignora la primera vez en batalla que alguien de tu equipo sea amedrentado u obte
 21
 Your team's 'Super Effective' moves deals 12% more damage.
 Los movimientos “Súper Efectivos” de tu equipo son potenciados un 12%.
+[29]
+0
+Abrasive
+Áspero
+1
+Absentminded
+Distraído
+2
+Adorable
+Adorable
+3
+Adventurous
+Aventurero
+4
+Aggressive
+Agresivo
+5
+Allocentric
+Alocéntrico
+6
+Amiable
+Amigable
+7
+Alert
+Alerta
+8
+Aloof
+Distante
+9
+Ambitious
+Ambicioso
+10
+Anxious
+Ansioso
+11
+Apathetic
+Apático
+12
+Artistic
+Artista
+13
+Ascetic
+Ascético
+14
+Athletic
+Atlético
+15
+Boastful
+Fanfarrón
+16
+Bossy
+Mandón
+17
+Brooding
+Taciturno
+18
+Callous
+Insensible
+19
+Caring
+Solícito
+20
+Careless
+Despreocupado
+21
+Chatterbox
+Charlatán
+22
+Cheerful
+Alegre
+23
+Clever
+Astuto
+24
+Clumsy
+Torpe
+25
+Collector
+Coleccionista
+26
+Composed
+Sereno
+27
+Compassionate
+Compasivo
+28
+Conciliatory
+Conciliatorio
+29
+Confident
+Seguro
+30
+Conformist
+Conformista
+31
+Considerate
+Considerado
+32
+Courageous
+Valiente
+33
+Courteous
+Cortés
+34
+Curious
+Curioso
+35
+Cowardly
+Cobarde
+36
+Cynical
+Cínico
+37
+Debonair
+Caballeroso
+38
+Decadent
+Lujoso
+39
+Deceitful
+Deshonesto
+40
+Dedicated
+Dedicado
+41
+Dignified
+Digno
+42
+Disciplined
+Disciplinado
+43
+Dramatic
+Dramático
+44
+Dull
+Soso
+45
+Earnest
+Sincero
+46
+Elegant
+Elegante
+47
+Energetic
+Energético
+48
+Enigmatic
+Enigmático
+49
+Esthetic
+Estético
+50
+Fickle
+Voluble
+51
+Forgetful
+Olvidadizo
+52
+Forthright
+Franco
+53
+Fretful
+Irritable
+54
+Friendly
+Amigable
+55
+Frugal
+Frugal
+56
+Funny
+Divertido
+57
+Gallant
+Gallardo
+58
+Generous
+Generoso
+59
+Go-getter
+Ambicioso
+60
+Gracious
+Cortés
+61
+Gullible
+Crédulo
+62
+High-minded
+Moralista
+63
+Honest
+Honesto
+64
+Hopeful
+Ilusionado
+65
+Humble
+Humilde
+66
+Imaginative
+Imaginativo
+67
+Impressionable
+Impresionable
+68
+Independent
+Independiente
+69
+Innocent
+Inocente
+70
+Intense
+Intenso
+71
+Inviting
+Tentador
+72
+Irritable
+Irritable
+73
+Judgey
+Juzgador
+74
+Kind
+Amable
+75
+Kleptomaniac
+Cleptomaníaco
+76
+Leaderly
+Líder
+77
+Logical
+Lógico
+78
+Lucky
+Suertudo
+79
+Loyal
+Leal
+80
+Magnanimous
+Magnánimo
+81
+Masochistic
+Masoquista
+82
+Meek
+Dócil
+83
+Melancholic
+Melancólico
+84
+Meticulous
+Meticuloso
+85
+Money-minded
+Codicioso
+86
+Obnoxious
+Detestable
+87
+Observant
+Observador
+88
+Open Book
+Libro Abierto
+89
+Optimistic
+Optimista
+90
+Partier
+Fiestero
+91
+Patient
+Paciente
+92
+Pedantic
+Pedante
+93
+Petty
+Mezquino
+94
+Petulant
+Quisquilloso
+95
+Perfectionist
+Perfeccionista
+96
+Persistent
+Persistente
+97
+Pompous
+Pomposo
+98
+Practical
+Práctico
+99
+Pretentious
+Pretencioso
+100
+Profound
+Profundo
+101
+Protective
+Protector
+102
+Reflective
+Reflexivo
+103
+Reliable
+Confiable
+104
+Reserved
+Reservado
+105
+Rogueish
+Granuja
+106
+Rowdy
+Alborotado
+107
+Sadistic
+Sádico
+108
+Sarcastic
+Sarcástico
+109
+Sardonic
+Sardónico
+110
+Secretive
+Reservado
+111
+Sedentary
+Sedentario
+112
+Self-conscious
+Auto-consciente
+113
+Self-effacing
+Discreto
+114
+Selfless
+Altruista
+115
+Sentimental
+Sentimental
+116
+Showy
+Ostentoso
+117
+Shy
+Tímido
+118
+Slob
+Guarro
+119
+Snide
+Malicioso
+120
+Sociable
+Sociable
+121
+Spontaneous
+Espontáneo
+122
+Steadfast
+Fiel
+123
+Stoic
+Estoico
+124
+Studious
+Estudioso
+125
+Subtle
+Perspicaz
+126
+Superstitious
+Supersticioso
+127
+Sweettooth
+Goloso
+128
+Sycophant
+Adulador
+129
+Teacherly
+Mentor
+130
+Tidy
+Pulcro
+131
+Tinkerer
+Reparador
+132
+Trusting
+Confiado
+133
+Urbane
+Urbano
+134
+Vindictive
+Vindicativo
+135
+Whimsical
+Extravagante
+136
+Witty
+Ingenioso
+[30]
+0
+Scary Movies
+Películas de Miedo
+1
+Berries
+Bayas
+2
+Beach Walks
+Caminar en la Playa
+3
+Swimming
+Nadar
+4
+Stories
+Historias
+5
+Camping
+ACampar
+6
+Breezes
+Brisas
+7
+Beach Trips
+Viajes a la Playa
+8
+Comedy Movies
+Películas de Comedia
+9
+EDM
+Música Electrónica
+10
+Introspection
+Instrospección
+11
+Spicy Food
+Comida Picante
+12
+Soda
+Soda
+13
+Hiking
+Senderismo
+14
+Paintings
+Pinturas
+15
+People Watching
+Gente Mirándole
+16
+Bike Rides
+Andar en Bicicleta
+17
+Languages
+Idiomas
+18
+Fishing
+Pesca
+19
+Gardening
+Jardinería
+20
+Dumpster Diving
+Revolver Basura
+21
+Judo
+Judo
+22
+Shopping
+Comprar
+23
+Fashion
+Moda
+24
+Jogging
+Correr
+25
+Card Games
+Juegos de Cartas
+26
+Video Games
+Videojuegos
+27
+Computers
+Computadoras
+28
+Math
+Matemáticas
+29
+Chemistry
+Química
+30
+Documentaries
+Documentales
+31
+History
+Historia
+32
+Rainy Days
+Días de Lluvia
+33
+Tightropes
+Cuerdas Flojas
+34
+Astronomy
+Astronomía
+35
+Horoscopes
+Horóscopos
+36
+Tree Climbing
+Escalar Árboles
+37
+Meditation
+Meditación
+38
+Acrobatics
+Acrobacias
+39
+Cakes
+Pasteles
+40
+Ice Cream
+Helada
+41
+Expensive Food
+Comida Costosa
+42
+Cooking
+Cocinar
+43
+Baking
+Hornear
+44
+Action Movies
+Películas de Acción
+45
+Lo-Fi
+Lo-Fi
+46
+Rock Music
+Música Rock
+47
+Rocks
+Rocas
+48
+Snow
+Nieve
+49
+Exercise
+Ejercicio
+50
+Marathons
+Maratones
+51
+Weightlifting
+Levantar Pesas
+52
+Heavy Metal
+Heavy Metal
+53
+Coffee
+Café
+54
+Iced Lattes
+Latte Helado
+55
+Hot Cocao
+Chocolatada Fría
+56
+Chocolate Milk
+Chocolatada
+57
+Flowers
+Flores
+58
+Avant-garde
+La Vanguardia
+59
+Novelty
+Lo Nuevo
+60
+Routines
+Rutinas
+61
+Yoga
+Yoga
+62
+The Occult
+Ocultismo
+63
+Skiing
+Esquiar
+64
+Plays
+Obras de Teatro
+65
+Fireworks
+Fuegos Artificiales
+66
+Salsa
+Salsa
+67
+Naps
+Siestas
+68
+Pizza
+Pizza
+69
+Jigsaw Puzzles
+Rompecabezas
+70
+Firemaking
+Iniciar Fuegos
+71
+Following You
+Seguirte
+72
+Taking Pictures
+Tomar Fotos
+73
+Attention
+Atención
+74
+Being Spoiled
+Ser Consentido
+75
+Parkour
+Parkour
+76
+Destruction
+Destrucción
+77
+Pottery
+Cerámica
+78
+Weaving
+Tejer
+79
+Reality TV
+Reality Shows
+80
+Tournament Arcs
+Arcos de Torneo
+81
+Competition
+Competir
+82
+Banter
+Cotorrear
+83
+Cleaning
+Limpiar
+84
+Milkshakes
+Batidos
+85
+Chess
+Ajedrez
+86
+Sewers
+Alcantarillas
+87
+Silence
+Silencio
+88
+Opera
+Ópera
+89
+Fencing
+Esgrima
+90
+Woodworking
+Carpintería
+91
+Dolls
+Muñecos
+92
+Drawing
+Dibujar
+93
+Jewelry
+Joyería
+94
+Origami
+Origami
+95
+Poetry
+Poesía
+96
+Coding
+Programar
+97
+Tarot
+Tarot
+98
+Surfing
+Surfear
+99
+Dancing
+Bailar
+100
+Gymnastics
+Gimnasia
+101
+Skating
+Patinar
+102
+Photography
+Fotografía
+103
+Streams
+Arroyos
+104
+Singing
+Cantar
+105
+Bowling
+Bolos
+106
+Graffiti
+Graffiti
+107
+Magic Tricks
+Trucos de Magia
+108
+Juggling
+Malabarismo
+109
+Skydiving
+Paracaídismo
+110
+Bungee Jumping
+Salto en Bungee
+111
+Salads
+Ensaladas
+112
+Lemonade
+Limonada
+113
+Puns
+Chistes
+114
+Mushrooms
+Setas
+115
+Punk Rock
+Punk Rock
+116
+Knitting
+Tejer
+117
+Data Analytics
+Analizar Datos
+118
+Cartography
+Cartografía
+119
+Acting
+Actuar
+120
+Sewing
+Coser
+121
+Carpentry
+Carpintería
+122
+Glassblowing
+Soplar Vidrio
+123
+Art
+Arte
+124
+Literature
+Literatura
+125
+Writing
+Escribir
+126
+Architecture
+Arquitectura
+127
+Reading
+Leer
+128
+Football
+Fútbol
+129
+Gambling
+Apostar
+130
+Chaos
+Caos
+131
+Hugs
+Abrazos
+132
+Cartoons
+Dibujos Animados
+133
+Comics
+Cómics
+134
+Donuts
+Donuts
+135
+Fresh Water
+Agua Fresca
+136
+Neon Lights
+Luces de Neón
+137
+Geology
+Geología
+138
+Rock Collecting
+Coleccionar Rocas
+139
+Gemstones
+Piedras Preciosas
+140
+Vaporwave
+Vaporwave
+141
+Trains
+Trenes
+142
+Acroyoga
+Acroyoga
+143
+Aquascaping
+Aquascaping
+144
+Beatboxing
+Beatboxing
+145
+Bonsai
+Bonsai
+146
+Campanology
+Campanología
+147
+Board Games
+Juegos de Mesa
+148
+Art Restoration
+Restauración de Arte
+149
+Breadmaking
+Panificar
+150
+Journaling
+Periodismo
+151
+Scrapbooking
+Libros de Recortes
+152
+Theorycrafting
+Crear Teorías
+153
+Cheesemaking
+Hacer Queso
+154
+Conlanging
+Conlang
+155
+Cosplaying
+Cosplays
+156
+Cryptography
+Criptografía
+157
+Crosswords
+Crucigramas
+158
+Sudoku
+Sudoku
+159
+Decorating
+Decorar
+160
+DJing
+Ser DJ
+161
+Electronics
+Electrónica
+162
+Engraving
+Grabados
+163
+Fantasy Sports
+Deportes de Fantasía
+164
+Embroidery
+Bordados
+165
+Tea Ceremonies
+Ceremonias de Té
+166
+Hairstyling
+Peinar
+167
+Cosmology
+Cosmología
+168
+Lapidary
+Lapidar
+169
+Lock Picking
+Cerrajería
+170
+Philately
+Filatelia
+171
+Postcrossing
+Postcrossing
+172
+Proverbs
+Proverbios
+173
+Pyrography
+Pirografía
+174
+Editing
+Editar
+175
+Puppetry
+Marionetas
+176
+Quilling
+Plumas
+177
+Quilting
+Quilts
+178
+Jump Rope
+Saltar en la Cuerda
+179
+Soapmaking
+Hacer Jabones
+180
+Speedrunning
+Speedrunning
+181
+Spreadsheets
+Hojas de Cálculo
+182
+Tattoos
+Tatuajes
+183
+Wargaming
+Simular Guerras
+184
+Watch Making
+Relojes
+185
+Yo-yoing
+Yo-yos
+186
+Beachcombing
+Raquear
+187
+BMX
+BMX
+188
+Croquet
+Cráquet
+189
+Basketball
+Baloncesto
+190
+Spelunking
+Espeología
+191
+Foraging
+Recolectar Alimentos
+192
+Geocaching
+Geocaching
+193
+LARPing
+Rol en Vivo
+194
+Kites
+Cometas
+195
+Meteorology
+Meteorología
+196
+Museums
+Museos
+197
+Sledding
+Trineos
+198
+Survivalism
+Survivalismo
+199
+Stone Skipping
+Lanzar Piedras
+200
+Ping-pong
+Ping-pong
+201
+Topiary
+Topiaria
+202
+Tourism
+Turismo
+203
+Volleyball
+Voleibol
+204
+Archaeology
+Arqueología
+205
+Botany
+Botánica
+206
+Biology
+Biología
+207
+Mycology
+Micología
+208
+Aerospace
+Aeroespacial
+209
+Social Studies
+Estudios Sociales
+210
+Philosophy
+Filosofía
+211
+Action Figures
+Figuras de Acción
+212
+Pins
+Alfileres
+213
+Perfumes
+Perfumes
+214
+Sneakers
+Zapatos Deportivos
+215
+Antiques
+Antigüedad
+216
+Rock Balancing
+Equilibrio sobre Rocas
+217
+Seashells
+Conchas de Mar
+218
+Air Hockey
+Hockey de Mesa
+219
+Backgammon
+Backgammon
+220
+Badminton
+Bádminton
+221
+Billiards
+Billar
+222
+Bridges
+Puentes
+223
+Color Guard
+Abanderar
+224
+Curling
+Curling
+225
+Go
+Go
+226
+Word Games
+Juegos de Palabras
+227
+Mahjong
+Mahjong
+228
+Marbles
+Canicas
+229
+Pinball
+Pinball
+230
+Shogi
+Shogi
+231
+Speedcubing
+Speedcubing
+232
+Baseball
+Baseball
+233
+Disc Golf
+Disco Golf
+234
+Golf
+Golf
+235
+Figure Skating
+Patinaje Artístico
+236
+Lacrosse
+Lacrosse
+237
+Skateboarding
+Skateboarding
+238
+Longboarding
+Longboarding
+239
+Pickleball
+Pickleball
+240
+Monster Trucks
+Camiones Monstruo
+241
+Roller Derby
+Roller Derby
+242
+Rugby
+Rugby
+243
+Softball
+Softball
+244
+Triathlons
+Triatlones
+245
+Microscopy
+Microscopía
+246
+SWLing
+Grúas
+247
+Wailord Watching
+Observar Wailord
+248
+ASMR
+ASMR
+249
+Selfies
+Selfies
+250
+Boba
+Boba
+251
+Arson
+Incendios
+252
+Hacking
+Hacking
+253
+Going Fast
+Ir Rápido
+254
+Tax Evasion
+Evasión de Impuestos
+255
+Investing
+Invertir
+256
+Stocks
+Acciones
+257
+Power Tools
+Herramientas Eléctricas
+258
+Machines
+Máquinas
+259
+Heavy Machinery
+Maquinaria Pesada
+260
+Radios
+Radios
+261
+Classical Music
+Música Clásica
+262
+Anime
+Anime
+263
+Rom-coms
+Rom-coms
+264
+Camp Style
+Estética Camp
+265
+Cabaret
+Cabaré
+266
+Typewriters
+Máquinas de Escribir
+267
+Techwear
+Techwear
+268
+Rap
+Rap
+269
+Hip Hop
+Hip Hop
+270
+Jazz
+Jazz
+271
+Ballet
+Ballet
+272
+Tennis
+Tennis
+273
+Racecars
+Autos de Carrera
+274
+Drift Phonk
+Drift Phonk
+275
+Breakcore
+Breakcore
+276
+Podcasts
+Podcasts
+277
+Crime Stories
+Historias de Crimen
+278
+Dubstep
+Dubstep
+279
+Disco
+Disco
+280
+Castles
+Castillos
+281
+Cafes
+Cafés
+282
+Tea
+Té
+283
+Circuit Boards
+Placa Base
+284
+Retro Items
+Objetos Retro 
+285
+E-textiles
+E-textiles
+286
+RGB Lights
+Luces RGB
+287
+Social Media
+Redes Sociales
+288
+Light Festivals
+Festivales de Luces
+289
+Carnivals
+Carnavales
+290
+Parades
+Desfiles
+291
+Hype
+Hype
+292
+Sandwiches
+Sandwiches
+293
+Nature
+Naturaleza
+294
+Ponds
+Estanques
+295
+Waterfalls
+Cascadas
+296
+White Noise
+Ruido Blanco
+297
+Calm Music
+Música Tranquila
+298
+Massage Chairs
+Sillones de Masaje
+[31]
+0
+Scary Movies
+Películas de Miedo
+1
+Petting
+Caricias
+2
+Loud Noises
+Ruidos Fuertes
+3
+Smalltalk
+Charlar
+4
+Directions
+Direcciones
+5
+Introspection
+Introspección
+6
+Sour Food
+Comida Agria
+7
+Bitter Coffee
+Café Amargo
+8
+Sweet Coffee
+Café Dulce
+9
+The Vet
+El Veterinario
+10
+Pollen
+Polen
+11
+Tight Spaces
+Espacios Cerrados
+12
+Crowds
+Multitudes
+13
+Commuting
+Viajar Demasiado
+14
+Hiking
+Alpinismo
+15
+Idleness
+Ociosidad
+16
+Sad Stories
+Historias Tristes
+17
+Heights
+Alturas
+18
+Storms
+Tormentas
+19
+Hot Days
+Días Calurosos
+20
+Cold Days
+Días Fríos
+21
+The Dark
+La Oscuridad
+22
+Thunder
+Truenos
+23
+Defeatists
+Pesimistas
+24
+Babies
+Bebés
+25
+Forests
+Bosques
+26
+Sand
+Arena
+27
+Exercise
+Ejercicio
+28
+Babysitting
+Cuidar Niños
+29
+Loud Cars
+Autos Ruidosos
+30
+Responsibility
+Responsabilidad
+31
+Cleaning
+Limpiar
+32
+Spicy Food
+Comida Picante
+33
+Soda
+Soda
+34
+Loud Music
+Música Fuerte
+35
+Cooking
+Cocinar
+36
+Snow
+Nieve
+37
+Routines
+Rutina
+38
+Fireworks
+Fuegos Artificiales
+39
+Attention
+Atención
+40
+Being Spoiled
+Ser Consentido
+41
+Slow Internet
+Internet Lento
+42
+Loud Eaters
+Comedores Ruidosos
+43
+Chalkboards
+Pizarrones
+44
+Open Ocean
+Océano Abierto
+45
+Boats
+Barcos
+46
+Chores
+Tareas del Hogar
+47
+Snitches
+Soplones
+48
+Authority
+Autoridad
+49
+Mornings
+Mañanas
+50
+Change
+Cambios
+51
+Dieting
+Dietas
+52
+Introductions
+Introducciones
+53
+Silence
+Silencio
+54
+Eye Contact
+Contacto Visual
+55
+Vandalism
+Vandalismo
+56
+Wastefulness
+Ineficiencia
+57
+Homework
+Tareas
+58
+Small Spaces
+Lugares Pequeños
+59
+Clowns
+Payasos
+60
+Being Tickled
+Cosquillas
+61
+One-uppers
+Soberbios
+62
+Ads
+Anuncios
+63
+Mayonnaise
+Mayones
+64
+Reality TV
+Reality Shows
+65
+Avocados
+Aguacates
+66
+Tomatos
+Tomates
+67
+Pineapples
+Piñas
+68
+Cilantro
+Cilantro
+69
+Mustard
+Mostaza
+70
+Celebrities
+Celebridades
+71
+B-O
+Mal Olor
+72
+Jelly
+Gelatina
+73
+Dentists
+Dentistas
+74
+Open Spaces
+Lugares Abiertos
+75
+The Abraporter
+El TeletransportAbra
+76
+Isolation
+Aislamiento
+77
+Needles
+Agujas
+78
+Mirrors
+Espejos
+79
+Cemeteries
+Cementerios
+80
+Embarrassment
+Vergüenza
+81
+Airplanes
+Aviones
+82
+Weight Gain
+Ganar Peso
+83
+Medicine
+Medicinas
+84
+Being Watched
+Ser Observado
+85
+Public Speaking
+Hablar en Público
+86
+Balloons
+Globos
+87
+Peanut Butter
+Mantequilla de Maní
+88
+Cinnamon
+Canela
+89
+Okra
+Ocra
+90
+Pickles
+Pepinos
+91
+Turnips
+Nabos
+92
+Waking Up
+Despertarse
+93
+Copyright
+Copyright
+94
+Taxes
+Impuestos
+95
+Nerds
+Nerds
+96
+Pop Music
+Música Pop
+97
+Anime
+Anime
+98
+Exams
+Exámenes
+99
+Mondays
+Lunes
+100
+Wasabi
+Wasabi
+101
+Country Music
+Músic Country 
+102
+Rap Music
+Música Rap
+103
+Snakes
+Serpientes
+104
+Bees
+Abejas
+105
+Formal Clothes
+Ropa Formal
+
