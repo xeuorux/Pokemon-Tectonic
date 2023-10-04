@@ -103,12 +103,14 @@ class PokeBattle_Battle
                 next unless move.empoweredMove?
                 b.bossAI.startPhaseChange(b,self)
                 showMessages = $PokemonSystem.avatar_mechanics_messages == 0
-                if PRIMEVAL_MOVES_RESET_DEBUFFS && (b.pbHasAnyStatus? || b.hasLoweredStatSteps?)
+
+                if PRIMEVAL_MOVES_RESET_DEBUFFS
                     pbAnimation(:REFRESH,b,b)
                     pbDisplayBossNarration(_INTL("{1} wiped the slate clean.", b.pbThis)) if showMessages
                     b.pbCureStatus
                     b.pbCureStatus # Duplicated intentionally
                     b.pbResetLoweredStatSteps(true)
+                    b.disableEffect(:Curse)
                 end
                 pbDisplayBossNarration(_INTL("A great energy rises up from inside {1}!", b.pbThis(true))) if showMessages
                 b.lastRoundMoved = 0
@@ -118,6 +120,7 @@ class PokeBattle_Battle
                 break
             end
             next unless usedEmpoweredMove
+
             # Swap to post-empowerment moveset
             b.avatarPhase += 1
             movesetToAssign = avatarData.arrayOfMoveSets[b.avatarPhase - 1]

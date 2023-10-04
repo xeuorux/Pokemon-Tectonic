@@ -114,7 +114,6 @@ class FightMenuDisplay < BattleMenuBase
     end
 
     def createButton(buttonX,buttonY,index)
-      echoln("#{index}:#{buttonX},#{buttonY}")
       newButton = SpriteWrapper.new(@viewport)
       newButton.bitmap = @buttonBitmap.bitmap
       newButton.x      = buttonX
