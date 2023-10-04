@@ -507,3 +507,6 @@
 1506,SNAP,Snap,00F,65,WATER,Physical,100,20,40,NearOther,0,CanProtect;CanMirrorMove;Biting,"The user snaps like a fish at the target. This has a 40% chance to make it flinch.",FISHIOUSREND
 1507,BREACH,Breach,5E8,40,WATER,Physical,100,30,20,NearOther,0,CanProtect;CanMirrorMove,"The user jumps out of the water to attack. Has a 20% chance to reduce Defense.",DIVE
 1508,QUALITYROOM,Quality Room,124,0,STEEL,Status,0,10,0,BothSides,0,CanMirrorMove,"The user creates a high quality area in which super-effective deals 25% more, and not very effective deals 25% less.",WONDERROOM
+1509,MISTLETOE,Mistletoe,402,40,GRASS,Physical,100,30,10,NearOther,0,CanProtect;CanMirrorMove;Kicking,"The user uses their feet to pierce the foe. This has a 10% chance of leeching the target.",TROPKICK
+1510,ROOTDRIVER,Root Driver,402,60,GRASS,Physical,100,20,30,NearOther,0,CanProtect;CanMirrorMove;Kicking,"The user kicks into the target like roots into earth. This has a 30% chance of leeching.",TROPKICK
+1511,WHIPKICK,Root Driver,402,90,GRASS,Physical,100,15,10,NearOther,0,CanProtect;CanMirrorMove;Kicking,"The user whips their legs into the target like a plant. This has a 10% chance of leeching.",TROPKICK
