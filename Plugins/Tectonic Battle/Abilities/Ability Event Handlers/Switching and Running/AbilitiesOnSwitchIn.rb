@@ -366,6 +366,7 @@ BattleHandlers::AbilityOnSwitchIn.add(:BARRIERMAKER,
       else
           battle.pbShowAbilitySplash(battler, ability)
           duration = battler.getScreenDuration(4)
+          battle.pbAnimation(:REFLECT, battler, nil, 0)
           battler.pbOwnSide.applyEffect(:Reflect, duration)
           battle.pbHideAbilitySplash(battler)
       end
@@ -379,6 +380,7 @@ BattleHandlers::AbilityOnSwitchIn.add(:STARGUARDIAN,
       else
           battle.pbShowAbilitySplash(battler, ability)
           duration = battler.getScreenDuration(4)
+          battle.pbAnimation(:LIGHTSCREEN, battler, nil, 0)
           battler.pbOwnSide.applyEffect(:LightScreen, duration)
           battle.pbHideAbilitySplash(battler)
       end
@@ -392,6 +394,7 @@ BattleHandlers::AbilityOnSwitchIn.add(:STARGUARDIAN,
 BattleHandlers::AbilityOnSwitchIn.add(:PUZZLINGAURA,
   proc { |ability, battler, battle, aiCheck|
       battle.pbShowAbilitySplash(battler, ability) unless aiCheck
+      battle.pbAnimation(:TRICKROOM, battler, nil, 0) unless aiCheck
       score = battle.pbStartRoom(:PuzzleRoom, battler, aiCheck)
       battle.pbHideAbilitySplash(battler) unless aiCheck
       next score
@@ -401,6 +404,7 @@ BattleHandlers::AbilityOnSwitchIn.add(:PUZZLINGAURA,
 BattleHandlers::AbilityOnSwitchIn.add(:ODDAURA,
   proc { |ability, battler, battle, aiCheck|
       battle.pbShowAbilitySplash(battler, ability) unless aiCheck
+      battle.pbAnimation(:TRICKROOM, battler, nil, 0) unless aiCheck
       score = battle.pbStartRoom(:OddRoom, battler, aiCheck)
       battle.pbHideAbilitySplash(battler) unless aiCheck
       next score
@@ -410,6 +414,7 @@ BattleHandlers::AbilityOnSwitchIn.add(:ODDAURA,
 BattleHandlers::AbilityOnSwitchIn.add(:TRICKYAURA,
   proc { |ability, battler, battle, aiCheck|
       battle.pbShowAbilitySplash(battler, ability) unless aiCheck
+      battle.pbAnimation(:TRICKROOM, battler, nil, 0) unless aiCheck
       score = battle.pbStartRoom(:TrickRoom, battler, aiCheck)
       battle.pbHideAbilitySplash(battler) unless aiCheck
       next score
@@ -419,6 +424,7 @@ BattleHandlers::AbilityOnSwitchIn.add(:TRICKYAURA,
 BattleHandlers::AbilityOnSwitchIn.add(:QUALITYAURA,
   proc { |ability, battler, battle, aiCheck|
       battle.pbShowAbilitySplash(battler, ability) unless aiCheck
+      battle.pbAnimation(:TRICKROOM, battler, nil, 0) unless aiCheck
       score = battle.pbStartRoom(:QualityRoom, battler, aiCheck)
       battle.pbHideAbilitySplash(battler) unless aiCheck
       next score
@@ -428,6 +434,7 @@ BattleHandlers::AbilityOnSwitchIn.add(:QUALITYAURA,
 BattleHandlers::AbilityOnSwitchIn.add(:INSIGHTAURA,
   proc { |ability, battler, battle, aiCheck|
       battle.pbShowAbilitySplash(battler, ability) unless aiCheck
+      battle.pbAnimation(:TRICKROOM, battler, nil, 0) unless aiCheck
       score = battle.pbStartRoom(:InsightRoom, battler, aiCheck)
       battle.pbHideAbilitySplash(battler) unless aiCheck
       next score
@@ -437,6 +444,7 @@ BattleHandlers::AbilityOnSwitchIn.add(:INSIGHTAURA,
 BattleHandlers::AbilityOnSwitchIn.add(:EMOTIONAURA,
   proc { |ability, battler, battle, aiCheck|
       battle.pbShowAbilitySplash(battler, ability) unless aiCheck
+      battle.pbAnimation(:TRICKROOM, battler, nil, 0) unless aiCheck
       score = battle.pbStartRoom(:EmotionRoom, battler, aiCheck)
       battle.pbHideAbilitySplash(battler) unless aiCheck
       next score
@@ -446,6 +454,7 @@ BattleHandlers::AbilityOnSwitchIn.add(:EMOTIONAURA,
 BattleHandlers::AbilityOnSwitchIn.add(:WILLAURA,
   proc { |ability, battler, battle, aiCheck|
       battle.pbShowAbilitySplash(battler, ability) unless aiCheck
+      battle.pbAnimation(:TRICKROOM, battler, nil, 0) unless aiCheck
       score = battle.pbStartRoom(:WillfulRoom, battler, aiCheck)
       battle.pbHideAbilitySplash(battler) unless aiCheck
       next score
