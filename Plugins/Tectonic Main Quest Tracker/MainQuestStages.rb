@@ -243,7 +243,7 @@ def getMainQuestStages
         :EXPLORE_REGIGIGAS_CHAMBER      => 
 			[
 				_INTL("Explore Regigigas' Chamber"),
-				_INTL("Continue to delve into the Chamber of Regigigas, so you can finally put a stop to Yezera's plan. The Chamber of Regigias is behind a large door in the eastern side of the Hollowed Layer."),
+				_INTL("Continue to delve into the Chamber of Regigigas, so you can finally put a stop to Yezera's plan. The Chamber of Regigigas is behind a large door in the eastern side of the Hollowed Layer."),
 			],
         :DEFEAT_CRIMSON_FINAL           => 
 			[
