@@ -177,3 +177,5 @@
 4176,STOREDPOWER,Stored Power,08E,10,PSYCHIC,Special,100,10,0,NearOther,0,CanProtect;CanMirrorMove,"The user attacks with stored power. The more the user's stats are raised, the greater the damage.",
 4177,POWERTRIP,Power Trip,08E,20,DARK,Physical,100,10,0,NearOther,0,CanProtect;CanMirrorMove,"The user boasts of its strength. Power increases the more the user's stats are raised.",
 4178,AQUAINSTINCT,Aqua Instinct,517,65,WATER,Physical,100,10,0,NearOther,0,CanProtect;CanMirrorMove,"The user preys on the target. This move goes first if the target is below half health.",FISHIOUSREND
+4179,SEISMICTOSS,Seismic Toss,06D,1,FIGHTING,Physical,100,15,0,NearOther,0,CanProtect;CanMirrorMove,"The target is thrown using the power of gravity. It inflicts damage equal to the user's level.",
+4180,NIGHTSHADE,Night Shade,06D,1,GHOST,Special,100,12,0,NearOther,0,CanProtect;CanMirrorMove,"The user makes the foe see a frightening mirage. It inflicts damage matching the user's level.",

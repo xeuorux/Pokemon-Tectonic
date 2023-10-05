@@ -852,7 +852,7 @@ Pokemon = POOCHYENA,25
 [NURSE,Ellen]
 Policies = NO_PERFECT
 Pokemon = CHANSEY,29
-    Moves = SEISMICTOSS,EERIEIMPULSE,CHIBLOCK,LULLABY
+    Moves = LIGHTSCREEN,CHIBLOCK,LULLABY
     AbilityIndex = 0 # Serene Grace
     Item = LEFTOVERS
 Pokemon = STANTLER,30
@@ -1041,10 +1041,10 @@ Pokemon = DOTTLER,26
     AbilityIndex = 0 # Brain Scramble
     Item = SITRUSBERRY
 Pokemon = HERDIER,27
-    Moves = SEISMICTOSS,CHILL,CHARM
+    Moves = NUMB,CHARM,HOWL,HEADBUTT
     AbilityIndex = 0 # Break Through
 Pokemon = CHANSEY,27
-    Moves = SEISMICTOSS,CHIBLOCK,ANGELSKISS
+    Moves = ANGELSKISS,EERIEIMPULSE,MINDLINK,RAPIDSTARS
     AbilityIndex = 0 # Serene Grace
 #-------------------------------
 [INFIELDER,Tajo]
@@ -1281,7 +1281,7 @@ Pokemon = SLURPUFF,60
     AbilityIndex = 0 # Candy Veil
     Item = SITRUSBERRY
 Pokemon = BLISSEY,60
-    Moves = FOLLOWME,SEISMICTOSS,LIGHTSCREEN,LIFEDEW
+    Moves = FOLLOWME,ANGELSKISS,LIGHTSCREEN,LIFEDEW
     AbilityIndex = 0 # Serene Grace
     Item = ROCKYHELMET
 Pokemon = GASTRODON,60
@@ -2592,7 +2592,7 @@ Pokemon = SAWSBUCK,70
     Item = POWERLOCK
     EV = 20,0,5,20,0,5
 Pokemon = STOUTLAND,70
-    Moves = ROAR,SLACKOFF,SEISMICTOSS,TRICKYTOXINS
+    Moves = ROAR,SLACKOFF,REFLECT,TRICKYTOXINS
     AbilityIndex = 0 # Break Through
     Item = LEFTOVERS
     EV = 20,0,20,0,0,10
@@ -4900,7 +4900,7 @@ Pokemon = GIRATINA,70
 [ANOTHERPOSSIBLETAMARIND,Tamarind]
 Policies = ALTERNATE_TAMARIND
 Pokemon = SPIRITOMB,70
-    Moves = NIGHTSHADE,WILLOWISP,HEX,CURSEDOATH
+    Moves = BLACKOUT,WILLOWISP,HEX,CURSEDOATH
     AbilityIndex = 1 # Odd Aura
     Item = REINFORCINGROD
 Pokemon = LEDIAN,70
@@ -5518,7 +5518,7 @@ Pokemon = ROSERADE,70
 [PROFESSOR_Tamarind,Tamarind]
 Policies = NO_PERFECT
 Pokemon = SPIRITOMB,70
-    Moves = NIGHTSHADE,WILLOWISP,STITCHUP,CURSEDOATH
+    Moves = BLACKOUT,WILLOWISP,STITCHUP,CURSEDOATH
     AbilityIndex = 1 # Odd Aura
 Pokemon = UMBREON,70
     Moves = SUCKERPUNCH,QUICKATTACK,RECOVER,FOULPLAY
