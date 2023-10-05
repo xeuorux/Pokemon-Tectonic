@@ -64,22 +64,22 @@ module Compiler
 			  
 			  # Construct avatar hash
 			  avatar_hash = {
-				  :id          		    => avatar_symbol,
-				  :id_number   		    => avatar_number,
-				  :turns		 		      => contents["Turns"],
-				  :form		 		        => contents["Form"],
-				  :moves1		 		      => contents["Moves1"],
-		  :moves2		 		      => contents["Moves2"],
-		  :moves3		 		      => contents["Moves3"],
-		  :moves4		 		      => contents["Moves4"],
-		  :moves5		 		      => contents["Moves5"],
-				  :abilities	 		    => contents["Ability"],
-				  :item		 		        => contents["Item"],
-				  :hp_mult	 		      => contents["HPMult"],
-				  :dmg_mult			      => contents["DMGMult"],
-		  :dmg_resist			    => contents["DMGResist"],
-				  :health_bars	 		  => contents["HealthBars"],
-		  :aggression         => contents["Aggression"],
+				:id				=> avatar_symbol,
+				:id_number		=> avatar_number,
+				:turns			=> contents["Turns"],
+				:form			=> contents["Form"],
+				:moves1			=> contents["Moves1"],
+				:moves2			=> contents["Moves2"],
+				:moves3			=> contents["Moves3"],
+				:moves4			=> contents["Moves4"],
+				:moves5			=> contents["Moves5"],
+				:abilities		=> contents["Ability"],
+				:item			=> contents["Item"],
+				:hp_mult		=> contents["HPMult"],
+				:dmg_mult		=> contents["DMGMult"],
+				:dmg_resist		=> contents["DMGResist"],
+				:health_bars	=> contents["HealthBars"],
+				:aggression		=> contents["Aggression"],
 			  }
 			  avatar_number += 1
 			  # Add trainer avatar's data to records

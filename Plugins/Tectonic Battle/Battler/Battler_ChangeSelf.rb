@@ -131,16 +131,25 @@ class PokeBattle_Battler
             anyAnim = false
         end
         raise _INTL("Told to recover a negative amount") if amt.negative?
+
+        # Apply healing modifiers
         amt *= 1.5 if hasActiveAbility?(:ROOTED)
         amt *= 2.0 if hasActiveAbilityAI?(:GLOWSHROOM) && @battle.moonGlowing?
         amt *= 0.5 if effectActive?(:IcyInjection)
         amt = amt.round
-        amt = @totalhp - @hp if amt > @totalhp - @hp && !canOverheal
+
+        # Cap the healing
+        healingCap = @totalhp
+        healingCap *= 2 if canOverheal
+        amt = healingCap - @hp if amt > @totalhp - @hp
         amt = 1 if amt < 1 && @hp < @totalhp
+
+        # Nerve Break effect
         if effectActive?(:NerveBreak)
             @battle.pbDisplay(_INTL("{1}'s healing is reversed because of their broken nerves!", pbThis)) if showMessage && !aiCheck
             amt *= -1
         end
+
         # Actually perform the HP change
         unless aiCheck
             oldHP = @hp

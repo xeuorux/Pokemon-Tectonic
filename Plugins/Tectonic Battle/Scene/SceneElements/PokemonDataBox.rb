@@ -42,6 +42,7 @@ class PokemonDataBox < SpriteWrapper
 		@typeIcons	  = []
 		@thinBox	  = false
 		@hpBars		  = []
+		@overhealBars = []
 		@numHPBars = 1
 		if @battler.boss
 			@numHPBars = GameData::Avatar.get_from_pokemon(@battler.pokemon).num_health_bars
@@ -129,6 +130,15 @@ class PokemonDataBox < SpriteWrapper
 			newBar.src_rect.width = @hpBarWidth
 			@sprites["hpBar_#{hpBarNum}"] = newBar
 			@hpBars.push(newBar)
+
+			newOverhealBar = SpriteWrapper.new(viewport)
+			newOverhealBar.bitmap = @hpBarBitmap.bitmap
+			newOverhealBar.src_rect.height = @hpBarBitmap.height/4
+			newOverhealBar.src_rect.width = 0
+			newOverhealBar.src_rect.y = 24
+			@sprites["overhealBar_#{hpBarNum}"] = newOverhealBar
+			@overhealBars.push(newOverhealBar)
+
 			hpBarNum += 1
 		end
 		
@@ -174,7 +184,9 @@ class PokemonDataBox < SpriteWrapper
 	def x=(value)
 		super
 		@hpBars.each_with_index do |bar,index|
-			bar.x     = value + @spriteBaseX + 102
+			barX = value + @spriteBaseX + 102
+			bar.x     = barX
+			@overhealBars[index].x = barX
 		end
 	
 		@expBar.x    = value+@spriteBaseX+2
@@ -197,8 +209,10 @@ class PokemonDataBox < SpriteWrapper
 	
 		finalBarY = 0
 		@hpBars.each_with_index do |bar,index|
-			bar.y     = value + 40 + index * 12
-			finalBarY = bar.y
+			barY = value + 40 + index * 12
+			bar.y     = barY
+			@overhealBars[index].y = barY
+			finalBarY = barY
 		end
 	
 		@expBar.y    = finalBarY + 34
@@ -220,6 +234,9 @@ class PokemonDataBox < SpriteWrapper
 		super
 		@hpBars.each_with_index do |bar,index|
 			bar.z = value + 1
+		end
+		@overhealBars.each_with_index do |bar,index|
+			bar.z = value + 2
 		end
 		@expBar.z    = value+1
 		@hpNumbers.z = value+2
@@ -434,17 +451,16 @@ class PokemonDataBox < SpriteWrapper
 	
 	def updateHealthBars
 		healthBarTotal = @numHPBars.to_f
+
+		oneBarsShare = (@battler.totalhp / healthBarTotal)
 		@hpBars.each_with_index do |bar,index|
-			oneBarsShare = (@battler.totalhp / healthBarTotal)
 			w = 0
-			if self.hp > oneBarsShare * index
+			hpbarFloor = oneBarsShare * index
+			if self.hp > hpbarFloor
 			  w = @hpBarWidth
-			  if self.hp < oneBarsShare * (index + 1)
-				w = @hpBarWidth * (self.hp - index * oneBarsShare) / oneBarsShare
-				w = 1 if w<1
-			    # NOTE: The line below snaps the bar's width to the nearest 2 pixels, to
-			    #       fit in with the rest of the graphics which are doubled in size.
-			    #w = ((w/2.0).round)*2
+			  if self.hp < hpbarFloor + oneBarsShare
+				w = @hpBarWidth * (self.hp - hpbarFloor) / oneBarsShare
+				w = 1 if w < 1
 			  end
 			end
 			bar.src_rect.width = w
@@ -453,7 +469,20 @@ class PokemonDataBox < SpriteWrapper
 			hpColor = 1 if self.hp <= @battler.totalhp * (index * 4 + 2) / (4 * healthBarTotal)
 			hpColor = 2 if self.hp <= @battler.totalhp * (index * 4 + 1) / (4 * healthBarTotal)
 			hpColor = 3 if @battler.boss? && AVATAR_OVERKILL_RESISTANCE >= 0.25 && (@numHPBars - index) > @battler.avatarPhase
-			bar.src_rect.y = hpColor * @hpBarBitmap.height / 4
+			bar.src_rect.y = hpColor * @hpBarBitmap.height / 5
+		end
+
+		@overhealBars.each_with_index do |overhealBar, index|
+			w = 0
+			hpbarFloor = @battler.totalhp + oneBarsShare * index
+			if self.hp > hpbarFloor
+			  w = @hpBarWidth
+			  if self.hp < (hpbarFloor + oneBarsShare)
+				w = @hpBarWidth * (self.hp - hpbarFloor) / oneBarsShare
+				w = 1 if w < 1
+			  end
+			end
+			overhealBar.src_rect.width = w
 		end
 	end
   
