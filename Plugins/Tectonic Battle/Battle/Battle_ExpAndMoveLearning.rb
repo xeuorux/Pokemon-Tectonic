@@ -118,9 +118,9 @@ class PokeBattle_Battle
         if trainerBattle?
             exp *= 1.5
             if $PokemonBag.pbHasItem?(:PERFORMANCEANALYZER2)
-                exp *= 1.5
+                exp *= 1.1
             elsif $PokemonBag.pbHasItem?(:PERFORMANCEANALYZER)
-                exp *= 1.4
+                exp *= 1.0
             end
             exp = exp.floor
         end

@@ -96,35 +96,37 @@ def candiesForLevel(level)
   # 55: 9500, 60: 11,500, 65: 13,500
   itemsGiven = []
   case level
-  when 0..12
-	itemsGiven = [:EXPCANDYXS,1] # 250
-  when 13..17
+  when 0..10
 	itemsGiven = [:EXPCANDYXS,2] # 500
-  when 18..22
-	itemsGiven = [:EXPCANDYS,1] # 1000
-  when 23..27
+  when 11..15
+	itemsGiven = [:EXPCANDYXS,4] # 1000
+  when 16..20
 	itemsGiven = [:EXPCANDYS,2] # 2000
-  when 28..32
-	itemsGiven = [:EXPCANDYS,3] # 3000
-  when 33..37
-	itemsGiven = [:EXPCANDYM,1] # 4000
-  when 38..42
-	itemsGiven = [:EXPCANDYM,1,:EXPCANDYS,1] # 5000
-  when 43..47
+  when 21..25
+	itemsGiven = [:EXPCANDYS,4] # 4000
+  when 26..30
 	itemsGiven = [:EXPCANDYM,1,:EXPCANDYS,2] # 6000
-  when 48..52
+  when 31..35
 	itemsGiven = [:EXPCANDYM,2] # 8000
-  when 53..57
+  when 36..40
 	itemsGiven = [:EXPCANDYM,2,:EXPCANDYS,2] # 10000
-  when 58..62
-	itemsGiven = [:EXPCANDYM,3] # 12000
-  when 63..67
-	itemsGiven = [:EXPCANDYL,1] # 16000
-  when 68..72
-	itemsGiven = [:EXPCANDYL,1,:EXPCANDYM,1] # 20000
+  when 41..45
+	itemsGiven = [:EXPCANDYM,2,:EXPCANDYS,4] # 12_000
+  when 46..50
+	itemsGiven = [:EXPCANDYM,4] # 16_000
+  when 51..55
+	itemsGiven = [:EXPCANDYM,4,:EXPCANDYS,4] # 20_000
+  when 56..60
+	itemsGiven = [:EXPCANDYM,6] # 24_000
+  when 61..64
+	itemsGiven = [:EXPCANDYL,2] # 32_000
+  when 65..70
+	itemsGiven = [:EXPCANDYL,2,:EXPCANDYM,2] # 40_000
+  when 71..100
+	itemsGiven = [:EXPCANDYXL,1] # 64_000
   else
 	pbMessage("Unassigned level passed to pbTrainerDropsItem: #{maxTrainerLevel}") if $DEBUG
-	itemsGiven = [:EXPCANDYXS,1] # 250
+	itemsGiven = [:EXPCANDYXS,2] # 500
   end
   return itemsGiven
 end

@@ -43,6 +43,13 @@ def pbItemBall(item, quantity = 1)
     return false
 end
 
+def candyRock(level)
+    itemsGiven = candiesForLevel(level)
+    for i in 0...itemsGiven.length/2
+		pbReceiveItem(itemsGiven[i*2],itemsGiven[i*2 + 1])
+	end
+end
+
 #===============================================================================
 # Being given an item
 #===============================================================================
