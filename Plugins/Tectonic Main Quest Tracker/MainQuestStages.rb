@@ -113,7 +113,7 @@ def getMainQuestStages
         :FIND_DIGIT_SLIPS               => 
 			[
 				_INTL("Find 4 Digit Slips"),
-				_INTL("You found Noel in the south east of Velenz, down a ladder. To unlock the door to his room, you must find at least four Digit Slips somewhere around Velenz. Velenz is west of Repora Forest."),
+				_INTL("You found Rafael in the south east of Velenz, down a ladder. To unlock the door to his room, you must find at least four Digit Slips somewhere around Velenz. Velenz is west of Repora Forest."),
 			],
         :DEFEAT_FOURTH_GYM              => 
 			[
