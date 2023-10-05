@@ -1014,10 +1014,12 @@ end
 
 def savingAllowed?()
 	begin
-		return !GameData::MapMetadata.get($game_map.map_id).saving_blocked
+		return false if GameData::MapMetadata.get($game_map.map_id).saving_blocked
+		return false if $PokemonGlobal.tournament&.tournamentActive?
 	rescue
 		return true
 	end
+	return true
 end
 
 def showSaveBlockMessage()

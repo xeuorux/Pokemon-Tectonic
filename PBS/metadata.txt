@@ -1932,7 +1932,7 @@ ShowArea = false
 Bicycle = false
 HealingSpot = 329,13,21
 TeleportBlocked = true
-SavingBlocked = true
+SavingBlocked = false
 NoTeamEditing = true
 #-------------------------------
 [325]

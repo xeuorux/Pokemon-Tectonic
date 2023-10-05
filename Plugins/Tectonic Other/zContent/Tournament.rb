@@ -32,20 +32,34 @@ end
 class RandomTournament
     attr_reader :matches
     attr_reader :matchesWon
+    attr_reader :attempts
 
     def initialize()
         @matches = []
         @matchesWon = 0
+        @attempts = 0
+
+        prepMatches
+
+        @active = false
+    end
+
+    def beginAttempt
+        @attempts += 1
+        @matchesWon = 0
+        $game_variables[WIN_COUNT_VARIABLE] = 0
+        @active = true
     end
 
     def resetTournament()
         initialize()
     end
 
-    def initializeTournament()
-        @matchesWon = 0
-        $game_variables[WIN_COUNT_VARIABLE] = 0
+    def leaveTournament
+        @active = false
+    end
 
+    def prepMatches()
         firstMatch = POOL_1.sample
         secondMatch = nil
         loop do
@@ -68,6 +82,7 @@ class RandomTournament
     def winMatch()
         @matchesWon += 1
         $game_variables[WIN_COUNT_VARIABLE] = @matchesWon
+        @active = false if tournamentWon?
     end
 
     def nextMatch()
@@ -94,11 +109,15 @@ class RandomTournament
     end
 
     def activateOpponent()
-       pbSetSelfSwitch(opponentEvent().id,'A')
+       pbSetSelfSwitch(opponentEvent.id,'A')
     end
 
     def tournamentWon?
         return @matchesWon >= 5
+    end
+
+    def tournamentActive?
+        return @active
     end
 end
 
@@ -117,15 +136,20 @@ end
 
 def enterTournament()
     $PokemonGlobal.tournament = RandomTournament.new if !$PokemonGlobal.tournament
-    $PokemonGlobal.tournament.initializeTournament()
+    properlySave
+    $PokemonGlobal.tournament.beginAttempt
 end
 
 def resetTournament()
     $PokemonGlobal.tournament.resetTournament()
 end
 
+def leaveTournament
+    $PokemonGlobal.tournament.leaveTournament
+end
+
 def promptForTournamentCommitment()
-    unless $DEBUG
+    if $PokemonGlobal.tournament.nil? || $PokemonGlobal.tournament.attempts == 0
         pbMessage(_INTL("The waiting room for tournament entrants is ahead."))
         pbMessage(_INTL("Once you enter, you will not be able to save or interact with your team in any way until the tournament is complete."))
         pbMessage(_INTL("This means swapping Pokemon, moves, abilities, or items, or even changing your team order."))
