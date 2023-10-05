@@ -32381,12 +32381,12 @@ Color = Gray
 Shape = Head
 Kind = Rage Monkey
 Pokedex = When its anger rose beyond a critical point, this Pokémon gained power that is unfettered by the limits of its physical body.
-BattlerPlayerX = 0
-BattlerPlayerY = 21
+BattlerPlayerX = -1
+BattlerPlayerY = 11
 BattlerEnemyX = 0
 BattlerEnemyY = 16
 BattlerShadowX = 0
-BattlerShadowSize = 2
+BattlerShadowSize = 3
 #-------------------------------
 [2062]
 Name = Farigiraf
@@ -32414,11 +32414,11 @@ Shape = Head
 Kind = Long Neck
 Pokedex = Now that the brain waves from the head and tail are synced up, the psychic power of this Pokémon is 10 times stronger than Girafarig’s.
 BattlerPlayerX = 0
-BattlerPlayerY = 13
-BattlerEnemyX = 0
-BattlerEnemyY = 11
+BattlerPlayerY = 7
+BattlerEnemyX = -13
+BattlerEnemyY = 10
 BattlerShadowX = 0
-BattlerShadowSize = 2
+BattlerShadowSize = 3
 #-------------------------------
 [2063]
 Name = Dudunsparce
@@ -32446,12 +32446,12 @@ Color = Yellow
 Shape = Head
 Kind = Land Snake
 Pokedex = This Pokémon uses its hard tail to make its nest by boring holes into bedrock deep underground. The nest can reach lengths of over six miles.
-BattlerPlayerX = 0
-BattlerPlayerY = 34
-BattlerEnemyX = 0
-BattlerEnemyY = 22
+BattlerPlayerX = -2
+BattlerPlayerY = 31
+BattlerEnemyX = -1
+BattlerEnemyY = 39
 BattlerShadowX = 0
-BattlerShadowSize = 2
+BattlerShadowSize = 3
 #-------------------------------
 [2064]
 Name = Kingambit
@@ -32479,10 +32479,10 @@ Kind = Big Blade
 Pokedex = Only a Bisharp that stands above all others in its vast army can evolve into Kingambit.
 BattlerPlayerX = 0
 BattlerPlayerY = 11
-BattlerEnemyX = 0
-BattlerEnemyY = 17
+BattlerEnemyX = -1
+BattlerEnemyY = 6
 BattlerShadowX = 0
-BattlerShadowSize = 2
+BattlerShadowSize = 3
 #-------------------------------
 [2500]
 Name = M. Zangoose
@@ -33545,9 +33545,9 @@ Shape = Head
 Kind = Anti-Virus
 Pokedex = Rely on LuxTech's literal firewall! Featuring a unique* typing and cutting-edge network threat purgation protocols, this innovative new form has your back.
 BattlerPlayerX = 0
-BattlerPlayerY = 22
-BattlerEnemyX = 0
-BattlerEnemyY = 18
+BattlerPlayerY = 19
+BattlerEnemyX = -2
+BattlerEnemyY = 13
 BattlerShadowX = 0
 BattlerShadowSize = 2
 #-------------------------------
@@ -33576,8 +33576,8 @@ Shape = Head
 Kind = Harvest
 Pokedex = TODO
 BattlerPlayerX = 0
-BattlerPlayerY = 20
-BattlerEnemyX = 0
-BattlerEnemyY = 24
+BattlerPlayerY = 7
+BattlerEnemyX = -2
+BattlerEnemyY = 10
 BattlerShadowX = 0
-BattlerShadowSize = 2
+BattlerShadowSize = 3
