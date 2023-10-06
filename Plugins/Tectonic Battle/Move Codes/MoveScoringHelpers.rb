@@ -35,6 +35,14 @@ def willHealStatus?(target)
     return false
 end
 
+def getNaturalCureScore(user, target, score)
+    return 0 unless user.battle.pbCanSwitch?(target.index)
+    ncScore = score * 0.4
+    ncScore -= getForceOutEffectScore(user, target) # Encouraging target to switch might be benefical
+    return 0 if ncScore <= 0
+    return ncScore
+end    
+
 def getNumbEffectScore(user, target, ignoreCheck: false)
     return 0 if willHealStatus?(target)
     if target && (ignoreCheck || target.canNumb?(user, false))
@@ -45,6 +53,7 @@ def getNumbEffectScore(user, target, ignoreCheck: false)
         score += STATUS_PUNISHMENT_BONUS if user && (user.hasStatusPunishMove? ||
                                             user.pbHasMoveFunction?("07C", "579")) # Smelling Salts, Spectral Tongue
         score += 60 if user&.hasActiveAbilityAI?(:TENDERIZE)
+        score -= getNaturalCureScore(user, target, score) if target.hasActiveAbilityAI?(:NATURALCURE)
     else
         return 0
     end
@@ -69,6 +78,7 @@ def getPoisonEffectScore(user, target, ignoreCheck: false)
         end
         score -= STATUS_UPSIDE_MALUS if target.hasActiveAbilityAI?(%i[TOXICBOOST POISONHEAL].concat(STATUS_UPSIDE_ABILITIES))
         score += STATUS_PUNISHMENT_BONUS if user && (user.hasStatusPunishMove? || user.pbHasMoveFunction?("07B")) # Venoshock
+        score -= getNaturalCureScore(user, target, score) if target.hasActiveAbilityAI?(:NATURALCURE)
     else
         return 0
     end
@@ -97,6 +107,7 @@ def getBurnEffectScore(user, target, ignoreCheck: false)
         
         score -= STATUS_UPSIDE_MALUS if target.hasActiveAbilityAI?(%i[FLAREBOOST BURNHEAL].concat(STATUS_UPSIDE_ABILITIES))
         score += STATUS_PUNISHMENT_BONUS if user && (user.hasStatusPunishMove? || user.pbHasMoveFunction?("50E")) # Flare Up
+        score -= getNaturalCureScore(user, target, score) if target.hasActiveAbilityAI?(:NATURALCURE)
     else
         return 0
     end
@@ -125,6 +136,7 @@ def getFrostbiteEffectScore(user, target, ignoreCheck: false)
 
         score -= STATUS_UPSIDE_MALUS if target.hasActiveAbilityAI?([:FROSTHEAL].concat(STATUS_UPSIDE_ABILITIES))
         score += STATUS_PUNISHMENT_BONUS if user && (user.hasStatusPunishMove? || user.pbHasMoveFunction?("50C")) # Ice Impact
+        score -= getNaturalCureScore(user, target, score) if target.hasActiveAbilityAI?(:NATURALCURE)
     else
         return 0
     end
@@ -168,6 +180,7 @@ def getLeechEffectScore(user, target, ignoreCheck: false)
 
         score -= STATUS_UPSIDE_MALUS if target.hasActiveAbilityAI?(STATUS_UPSIDE_ABILITIES)
         score += STATUS_PUNISHMENT_BONUS if user&.hasStatusPunishMove?
+        score -= getNaturalCureScore(user, target, score) if target.hasActiveAbilityAI?(:NATURALCURE)
     else
         return 0
     end
@@ -175,6 +188,8 @@ def getLeechEffectScore(user, target, ignoreCheck: false)
 end
 
 def getSleepEffectScore(user, target, _policies = [])
+    return 0 if target.hasActiveAbilityAI?(:HYDRATION) && target.battle.rainy?
+    return 0 if target.hasActiveAbilityAI?(:OXYGENATION) && target.battle.sunny?
     score = 150
     score -= 100 if target.hasSleepAttack?
     score += STATUS_PUNISHMENT_BONUS if user&.hasStatusPunishMove?
@@ -182,6 +197,7 @@ def getSleepEffectScore(user, target, _policies = [])
     if target.hasActiveAbilityAI?(:DREAMWEAVER)
         score -= getMultiStatUpEffectScore([:SPECIAL_ATTACK, 2],target,target)
     end
+    score -= getNaturalCureScore(user, target, score) if target.hasActiveAbilityAI?(:NATURALCURE)
     return score
 end
 
