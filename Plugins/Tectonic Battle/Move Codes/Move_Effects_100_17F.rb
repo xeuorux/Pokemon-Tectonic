@@ -190,7 +190,7 @@ class PokeBattle_Move_10A < PokeBattle_Move
     def getEffectScore(_user, target)
         score = 0
         target.pbOwnSide.eachEffect(true) do |effect, value, data|
-            next unless data.is_screen? || @miscEffects.include?(effect)
+            next unless data.is_screen?
 			case value
 				when 2
 					score += 30
@@ -1166,21 +1166,87 @@ class PokeBattle_Move_12D < PokeBattle_ForetoldMove
 end
 
 #===============================================================================
-# Not currently used.
+# Ends target's protections, screens, and substitute immediately. (Siege Breaker)
 #===============================================================================
 class PokeBattle_Move_12E < PokeBattle_Move
+    def ignoresSubstitute?; return true; end
+    def ignoresReflect?; return true; end
+    
+    def pbEffectAgainstTarget(_user, target)
+        removeProtections(target)
+        target.disableEffect(:Substitute)
+    end
+
+    def pbEffectWhenDealingDamage(_user, target)
+        side = target.pbOwnSide
+        side.eachEffect(true) do |effect, _value, data|
+            side.disableEffect(effect) if data.is_screen?
+        end
+    end
+
+    def sideHasScreens?(side)
+        side.eachEffect(true) do |_effect, _value, data|
+            return true if data.is_screen?
+        end
+        return false
+    end
+
+    def pbShowAnimation(id, user, targets, hitNum = 0, showAnimation = true)
+        targets.each do |b|
+            next unless sideHasScreens?(b.pbOwnSide)
+            hitNum = 1 # Wall-breaking anim
+            break
+        end
+        super
+    end
+
+    def getEffectScore(_user, target)
+        score = 0
+        target.pbOwnSide.eachEffect(true) do |effect, value, data|
+            next unless data.is_screen?
+			case value
+				when 2
+					score += 30
+				when 3
+					score += 50
+				when 4..999
+					score += 130
+            end	
+        end
+        score += 20 if target.substituted?
+        return score
+    end
+
+    def shouldHighlight?(_user, target)
+        return true if sideHasScreens?(target.pbOwnSide)
+        return true if target.substituted?
+        return false
+    end
 end
 
 #===============================================================================
-# Not currently used.
+# Allies of the user also attack the target with Slash. (All For One)
 #===============================================================================
 class PokeBattle_Move_12F < PokeBattle_Move
+    def pbEffectAfterAllHits(user, target)
+        user.eachAlly do |b|
+            break if target.fainted?
+            @battle.pbDisplay(_INTL("{1} joins in the attack!", b.pbThis))
+            battle.forceUseMove(b, :SLASH, target.index)
+        end
+    end
 end
 
 #===============================================================================
-# Not currently used.
+# Hits three times by base, and one extra every time the move is used
+# over the course of a battle. (Blades of Grass)
 #===============================================================================
 class PokeBattle_Move_130 < PokeBattle_Move
+    def multiHitMove?; return true; end
+
+    def pbNumHits(user, _targets, _checkingForAI = false)
+        return 3 + user.moveUsageCount(@id)
+    end
 end
 
 #===============================================================================

@@ -276,6 +276,7 @@ class PokeBattle_Battler
         # Record move as having been used
         aiSeesMove(move) if pbOwnedByPlayer? && !boss? # Enemy trainers now know of this move's existence
         aiLearnsAbility(:ILLUSION) if hasActiveAbility?(:ILLUSION) && effectActive?(:Illusion)
+        increaseMoveUsageCount(move.id)
         @lastMoveUsed     = move.id
         @lastMoveUsedType = move.calcType # For Conversion 2
         @lastMoveUsedCategory = move.calculatedCategory

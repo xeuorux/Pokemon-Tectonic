@@ -111,7 +111,7 @@ class PokeBattle_Battle
                     b.pbCureStatus # Duplicated intentionally
                     b.pbResetLoweredStatSteps(true)
                     b.resetAbilities
-                    battler.eachEffect(true) do |effect, _value, data|
+                    b.eachEffect(true) do |effect, _value, data|
                         next unless data.avatars_purge?
                         b.disableEffect(effect)
                     end
