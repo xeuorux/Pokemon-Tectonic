@@ -68,7 +68,7 @@ class PokeBattle_AI_Cobalion < PokeBattle_AI_Boss
     end
 end
 
-class PokeBattle_AI_Cobalion < PokeBattle_AI_Boss
+class PokeBattle_AI_Terrakion < PokeBattle_AI_Boss
     def initialize(user, battle)
         super
         @warnedIFFMove.add(:LATCHON, {
