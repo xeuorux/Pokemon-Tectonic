@@ -179,3 +179,4 @@
 4178,AQUAINSTINCT,Aqua Instinct,517,65,WATER,Physical,100,10,0,NearOther,0,CanProtect;CanMirrorMove,"The user preys on the target. This move goes first if the target is below half health.",FISHIOUSREND
 4179,SEISMICTOSS,Seismic Toss,06D,1,FIGHTING,Physical,100,15,0,NearOther,0,CanProtect;CanMirrorMove,"The target is thrown using the power of gravity. It inflicts damage equal to the user's level.",
 4180,NIGHTSHADE,Night Shade,06D,1,GHOST,Special,100,12,0,NearOther,0,CanProtect;CanMirrorMove,"The user makes the foe see a frightening mirage. It inflicts damage matching the user's level.",
+4181,JUMPKICK,Jump Kick,10B,100,FIGHTING,Physical,90,10,0,NearOther,0,CanProtect;CanMirrorMove;Kicking,"The user jumps up high, then strikes with a kick. If the kick misses, the user hurts itself.",

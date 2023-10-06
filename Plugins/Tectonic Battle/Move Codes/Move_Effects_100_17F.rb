@@ -1250,9 +1250,34 @@ class PokeBattle_Move_130 < PokeBattle_Move
 end
 
 #===============================================================================
-# Not currently used.
+# Removes all Rooms. Fails if there is no Room. (Razing Vines)
 #===============================================================================
 class PokeBattle_Move_131 < PokeBattle_Move
+    def pbMoveFailed?(_user, _targets, show_message)
+        anyRoom = false
+        @battle.field.eachEffect(true) do |effect, _value, effectData|
+            next unless effectData.room?
+            anyRoom = true
+            break
+        end
+
+        unless anyRoom
+            @battle.pbDisplay(_INTL("But it failed, since there is no active room!")) if show_message
+            return true
+        end
+        return false
+    end
+
+    def pbEffectGeneral(user)
+        @battle.field.eachEffect(true) do |effect, _value, effectData|
+            next unless effectData.room?
+            @battle.field.disableEffect(effect)
+        end
+    end
+
+    def getEffectScore(user, _target)
+        return 80
+    end
 end
 
 #===============================================================================

@@ -513,3 +513,5 @@
 1512,SIEGEBREAKER,Siege Breaker,12E,90,ROCK,Physical,100,10,0,NearOther,0,CanMirrorMove;Blade,"The user slams the target with a rocky blade. Destroys screens, substitute, and protection on the target.",ROCKSMASH
 1513,ALLFORONE,All For One,12F,80,STEEL,Physical,100,10,0,NearOther,0,CanProtect;CanMirrorMove;Blade,"The user slashes with gusto, inspiring its allies to follow up by using Slash on the target.",SACREDSWORD
 1514,BLADESOFGRASS,Blades of Grass,130,25,GRASS,Physical,100,10,0,NearOther,0,CanProtect;CanMirrorMove;Blade,"The user gracefully slashes the target three times. The next time this move is used, it will hit one extra time.",RAZORLEAF
+1515,FRONTKICK,Front Kick,000,95,FIGHTING,Physical,100,15,0,NearOther,0,CanProtect;CanMirrorMove;Kicking,"The user kicks the target with a powerful, straightforward technique.",
+1516,RAZINGVINES,Razing Vines,130,131,GRASS,Physical,100,5,0,NearOther,0,CanProtect;CanMirrorMove,"Attacks while destroying rooms. This move fails in the absence of a room.",
