@@ -173,7 +173,7 @@ class PokeBattle_Battler
     # Ability removed
     #=============================================================================
     def pbOnAbilitiesLost(oldAbilities)
-        if illusion? && oldAbilities.include?(:ILLUSION)
+        if illusion? && oldAbilities.include?(:ILLUSION) && !hasAbility?(:ILLUSION)
             disableEffect(:Illusion)
             unless effectActive?(:Transform)
                 @battle.scene.pbChangePokemon(self, @pokemon)
@@ -193,7 +193,7 @@ class PokeBattle_Battler
         if items.length > 1
             droppedItems = false
             GameData::Ability::MULTI_ITEM_ABILITIES.each do |doubleItemAbility|
-                next unless oldAbilities.include?(doubleItemAbility)
+                next unless oldAbilities.include?(doubleItemAbility) && !hasAbility?(doubleItemAbility)
                 itemKept = items[0]
                 setItems(itemKept)
                 @battle.pbDisplay(_INTL("{1} dropped all of its items except {2}!", pbThis, getItemName(itemKept)))

@@ -73,6 +73,7 @@ GameData::BattleEffect.register_effect(:Battler, {
     :id => :BurnUp,
     :real_name => "Burnt Up",
     :info_displayed => false,
+    :avatars_purge => true,
     :apply_proc => proc do |battle, battler, _value|
         battle.pbDisplay(_INTL("{1} burned itself out!", battler.pbThis))
         battle.scene.pbRefresh
@@ -146,6 +147,7 @@ GameData::BattleEffect.register_effect(:Battler, {
 GameData::BattleEffect.register_effect(:Battler, {
     :id => :Warned,
     :real_name => "Curse-Warned",
+    :avatars_purge => true,
     :apply_proc => proc do |battle, battler, _value|
         battle.pbDisplay(_INTL("{1} was warned not to attack it again!", battler.pbThis))
     end,
@@ -157,6 +159,7 @@ GameData::BattleEffect.register_effect(:Battler, {
     :id => :Curse,
     :real_name => "Cursed",
     :baton_passed => true,
+    :avatars_purge => true,
     :apply_proc => proc do |battle, battler, _value|
         battle.pbDisplay(_INTL("{1} is cursed!", battler.pbThis))
     end,
@@ -1211,6 +1214,7 @@ GameData::BattleEffect.register_effect(:Battler, {
     :real_name => "Type 3",
     :type => :Type,
     :info_displayed => false,
+    :avatars_purge => true,
     :apply_proc => proc do |battle, battler, value|
         typeName = GameData::Type.get(value).name
         battle.pbDisplay(_INTL("{1} gained the {2} type!", battler.pbThis, typeName))
@@ -1352,6 +1356,7 @@ GameData::BattleEffect.register_effect(:Battler, {
 GameData::BattleEffect.register_effect(:Battler, {
     :id => :TarShot,
     :real_name => "Covered In Tar",
+    :avatars_purge => true,
     :apply_proc => proc do |battle, battler, _value|
         battle.pbDisplay(_INTL("{1} became weaker to fire!", battler.pbThis))
     end,
@@ -1454,6 +1459,7 @@ GameData::BattleEffect.register_effect(:Battler, {
     :id => :ColdConversion,
     :real_name => "Cold Converted",
     :info_displayed => false,
+    :avatars_purge => true,
     :apply_proc => proc do |battle, battler, _value|
         battle.pbDisplay(_INTL("{1} lost its cold!", battler.pbThis))
         battle.scene.pbRefresh
@@ -1463,6 +1469,7 @@ GameData::BattleEffect.register_effect(:Battler, {
 GameData::BattleEffect.register_effect(:Battler, {
     :id => :CreepOut,
     :real_name => "Weak to Bug",
+    :avatars_purge => true,
     :apply_proc => proc do |battle, battler, _value|
         battle.pbDisplay(_INTL("{1} is now afraid of Bug-type moves!", battler.pbThis))
     end,
