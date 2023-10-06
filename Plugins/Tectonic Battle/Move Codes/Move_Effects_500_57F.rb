@@ -1687,15 +1687,16 @@ class PokeBattle_Move_564 < PokeBattle_Move
     def getEffectScore(user, target)
         score = 0
 
-        score += 50 if user.belowHalfHealth?
-        score += 30 if user.hp < user.totalhp / 4
-        score += 30 if user.pbHasAnyStatus?
-        score -= 50 unless user.hasSleepAttack?
-
-        score -= 50 if target.belowHalfHealth?
-        score -= 30 if target.hp < target.totalhp / 4
-        score -= 30 if target.pbHasAnyStatus?
-        score += 50 unless target.hasSleepAttack?
+        unless user.fullHealth?
+            score += user.applyFractionalHealing(1.0, aiCheck: true)
+            score -= getSleepEffectScore(nil, user) * 0.45
+            score += 45 if user.hasStatusNoSleep?
+        end
+        unless target.fullHealth?
+            score -= target.applyFractionalHealing(1.0, aiCheck: true)
+            score += getSleepEffectScore(nil, target)
+            score -= 45 if target.hasStatusNoSleep?
+        end
         return score
     end
 end

@@ -135,6 +135,15 @@ class PokeBattle_Battler
         return false
     end
 
+    def hasRecoveryMove?
+        eachAIKnownMove do |m|
+            battleMove = @battle.getBattleMoveInstanceFromID(m.id)
+            next unless battleMove.healingMove? && m.category == 2
+            return true
+        end
+        return false
+    end
+
     def hasInaccurateMove?
         eachAIKnownMove do |m|
             next unless m.accuracy <= 85

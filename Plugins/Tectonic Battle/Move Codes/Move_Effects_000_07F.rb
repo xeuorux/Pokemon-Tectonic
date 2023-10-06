@@ -1095,7 +1095,7 @@ class PokeBattle_Move_049 < PokeBattle_Move
 				when 3
 					score += 55
 				when 4..999
-					score += 150
+					score += 140
             end	
         end
         return score

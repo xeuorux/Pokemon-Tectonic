@@ -188,10 +188,17 @@ class PokeBattle_Move_10A < PokeBattle_Move
     end
 
     def getEffectScore(_user, target)
-        side = target.pbOwnSide
         score = 0
-        side.eachEffect(true) do |_effect, _value, data|
-            score += 10 if data.is_screen?
+        target.pbOwnSide.eachEffect(true) do |effect, value, data|
+            next unless data.is_screen? || @miscEffects.include?(effect)
+			case value
+				when 2
+					score += 30
+				when 3
+					score += 50
+				when 4..999
+					score += 130
+            end	
         end
         return score
     end
@@ -695,16 +702,19 @@ class PokeBattle_Move_11C < PokeBattle_Move
     end
 
     def getTargetAffectingEffectScore(user, target)
-    score += 5 # Constant score so AI uses on "kills"
+        score = 0
         if canSmackDown?(target)
-            score += 25
-            # This is ugly and does not account for 4x
-            if user.pbHasAttackingType?(:GROUND) && !target.effectActive?(:SmackDown)
-                score += 30 if target.pbHasTypeAI?(:FIRE) || target.pbHasTypeAI?(:POISON) || target.pbHasTypeAI?(:STEEL) || target.pbHasTypeAI?(:ROCK) || target.pbHasTypeAI?(:ELECTRIC)
-                score -= 30 if target.pbHasTypeAI?(:BUG) || target.pbHasTypeAI?(:GRASS) || target.pbHasTypeAI?(:ICE)
-            end
-            score += getWantsToBeFasterScore(user, target, 7) if target.inTwoTurnAttack?("0C9", "0CC")
+            score += 30
+                if user.pbHasAttackingType?(:GROUND) && !target.effectActive?(:SmackDown)
+                    tTypes = target.pbTypes(true, true)
+                    tTypes.each do |t|
+                        score += 30 if t == :FIRE || t == :POISON || t == :STEEL || t == :ROCK || t == :ELECTRIC
+                        score -= 30 if t == :BUG || t == :GRASS || t == :ICE
+                    end
+                end
+            score += 70 if @battle.battleAI.userMovesFirst?(self, user, target) && target.inTwoTurnAttack?("0C9", "0CC")
         end
+        score = 5 if score <= 5 # Constant score so AI uses on "kills"
         return score
     end
 
