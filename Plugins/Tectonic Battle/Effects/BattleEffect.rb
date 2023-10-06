@@ -45,6 +45,10 @@ module GameData
         # But only if the move is not a special usage
         attr_reader :resets_on_move_start_no_special
 
+        # Avatars purge it from themselves when they transition phases
+        # Only used for Battler effects
+        attr_reader :avatars_purge
+
         # If it ticks down at end of round. Only used for integers
         attr_reader :ticks_down
 
@@ -259,6 +263,8 @@ module GameData
             @is_hazard				= hash[:is_hazard] || false
             @is_mental				= hash[:is_mental] || false
             @is_spike				= hash[:is_spike] || false
+
+            @avatars_purge = hash[:avatars_purge] || false
 
             checkForInvalidDefinitions
         end
