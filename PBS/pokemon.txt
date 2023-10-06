@@ -24833,7 +24833,7 @@ BattlerEnemyX = 0
 BattlerEnemyY = 34
 BattlerShadowX = 0
 BattlerShadowSize = 2
-Evolutions = STEENEE,Level,22
+Evolutions = STEENEE,Level,16
 #-------------------------------
 [762]
 Name = Steenee
@@ -24864,7 +24864,7 @@ BattlerEnemyX = 3
 BattlerEnemyY = 20
 BattlerShadowX = 0
 BattlerShadowSize = 1
-Evolutions = TSAREENA,Level,38
+Evolutions = TSAREENA,Level,36
 #-------------------------------
 [763]
 Name = Tsareena
