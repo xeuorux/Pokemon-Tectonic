@@ -126,14 +126,14 @@ class PokemonDataBox < SpriteWrapper
 		@numHPBars.times do
 			newBar = SpriteWrapper.new(viewport)
 			newBar.bitmap = @hpBarBitmap.bitmap
-			newBar.src_rect.height = @hpBarBitmap.height/4
+			newBar.src_rect.height = @hpBarBitmap.height/5
 			newBar.src_rect.width = @hpBarWidth
 			@sprites["hpBar_#{hpBarNum}"] = newBar
 			@hpBars.push(newBar)
 
 			newOverhealBar = SpriteWrapper.new(viewport)
 			newOverhealBar.bitmap = @hpBarBitmap.bitmap
-			newOverhealBar.src_rect.height = @hpBarBitmap.height/4
+			newOverhealBar.src_rect.height = @hpBarBitmap.height/5
 			newOverhealBar.src_rect.width = 0
 			newOverhealBar.src_rect.y = 24
 			@sprites["overhealBar_#{hpBarNum}"] = newOverhealBar
