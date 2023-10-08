@@ -35,6 +35,7 @@ class PokeBattle_Battle
     attr_reader   :recycleItems
     attr_reader   :belch
     attr_reader   :luster
+    attr_reader   :moveUsageCount
     attr_reader   :usedInBattle     # Whether each Pokémon was used in battle (for Burmy)
     attr_reader   :successStates    # Success states
     attr_accessor :lastMoveUsed     # Last move used
@@ -125,6 +126,7 @@ class PokeBattle_Battle
         @recycleItems      = [Array.new(@party1.length, nil),   Array.new(@party2.length, nil)]
         @belch             = [Array.new(@party1.length, false), Array.new(@party2.length, false)]
         @luster            = [Array.new(@party1.length, false), Array.new(@party2.length, false)]
+        @moveUsageCount    = [Array.new(@party1.length, {}),   Array.new(@party2.length, {})]
         @usedInBattle      = [Array.new(@party1.length, false), Array.new(@party2.length, false)]
         @successStates     = []
         @lastMoveUsed      = nil

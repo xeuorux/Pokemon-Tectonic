@@ -110,7 +110,11 @@ class PokeBattle_Battle
                     b.pbCureStatus
                     b.pbCureStatus # Duplicated intentionally
                     b.pbResetLoweredStatSteps(true)
-                    b.disableEffect(:Curse)
+                    b.resetAbilities
+                    b.eachEffect(true) do |effect, _value, data|
+                        next unless data.avatars_purge
+                        b.disableEffect(effect)
+                    end
                 end
                 pbDisplayBossNarration(_INTL("A great energy rises up from inside {1}!", b.pbThis(true))) if showMessages
                 b.lastRoundMoved = 0

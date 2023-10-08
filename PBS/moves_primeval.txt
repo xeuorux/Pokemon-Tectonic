@@ -4,48 +4,48 @@
 2003,PRIMEVALSUNSHINE,Primeval Sunshine,601,0,FIRE,Status,0,1,0,BothSides,0,Empowered,"The user summons sunshine for 5 turns, boosts its Atk. and Sp. Atk, and becomes Fire-type.",SUNSHINE
 2004,PRIMEVALRAIN,Primeval Rain,602,0,WATER,Status,0,1,0,BothSides,0,Empowered,"The user summons rain for 5 turns, surrounds itself with healing water, and becomes Water-type.",RAIN
 2005,PRIMEVALLEECHSEED,Primeval Leech Seed,603,0,GRASS,Status,100,1,0,AllNearFoes,0,CanProtect;CanMirrorMove;Empowered,"Plants seeds on all near foes, draining HP each turn. User becomes Grass-type.",LEECHSEED
-2006,PRIMEVALLIGHTNINGDANCE,Primeval Lightning Dance,604,0,ELECTRIC,Status,0,1,0,User,0,CanSnatch;Dance;Empowered,"The user raises its Sp. Atk and Speed by two steps, and becomes Electric-type.",LIGHTNINGDANCE
+2006,PRIMEVALLIGHTNINGDANCE,Primeval Lightning Dance,604,0,ELECTRIC,Status,0,1,0,User,0,Dance;Empowered,"The user raises its Sp. Atk and Speed by two steps, and becomes Electric-type.",LIGHTNINGDANCE
 2007,PRIMEVALHAIL,Primeval Hail,605,0,ICE,Status,0,1,0,BothSides,0,Empowered,"The user summons a hail storm for 5 turns, reduces the speed of all enemies by two steps, and becomes Ice-type.",HAIL
-2008,PRIMEVALBULKUP,Primeval Bulk Up,606,0,FIGHTING,Status,0,1,0,User,0,CanSnatch;Empowered,"The user boosts its Attack and Defense, gains a lot of weight, and becomes Fighting-type.",BULKUP
+2008,PRIMEVALBULKUP,Primeval Bulk Up,606,0,FIGHTING,Status,0,1,0,User,0,Empowered,"The user boosts its Attack and Defense, gains a lot of weight, and becomes Fighting-type.",BULKUP
 2009,PRIMEVALSPIKES,Primeval Spikes,607,0,GROUND,Status,0,1,0,FoeSide,0,Empowered,"The user lays 3 layers of spike traps at the foe's feet, and becomes Ground-type.",SPIKES
-2010,PRIMEVALTAILWIND,Primeval Tailwind,608,0,FLYING,Status,0,1,0,UserSide,0,CanSnatch;Empowered,"The user ups the Speed and attack count of itself and allies, and becomes Flying-type.",TAILWIND
-2011,PRIMEVALCALMMIND,Primeval Calm Mind,609,0,PSYCHIC,Status,0,1,0,User,0,CanSnatch;Empowered,"The user raises its Sp. Atk and Sp. Def, maximizes its Accuracy, and becomes Psychic-type.",CALMMIND
+2010,PRIMEVALTAILWIND,Primeval Tailwind,608,0,FLYING,Status,0,1,0,UserSide,0,Empowered,"The user ups the Speed and attack count of itself and allies, and becomes Flying-type.",TAILWIND
+2011,PRIMEVALCALMMIND,Primeval Calm Mind,609,0,PSYCHIC,Status,0,1,0,User,0,Empowered,"The user raises its Sp. Atk and Sp. Def, maximizes its Accuracy, and becomes Psychic-type.",CALMMIND
 2012,PRIMEVALSTRINGSHOT,Primeval String Shot,60A,0,BUG,Status,100,1,0,AllNearFoes,0,CanProtect;CanMirrorMove;Empowered,"Nearby foes are bound with silk, sharply lowering their Speed, Atk., and Sp. Atk User also becomes Bug-type.",STRINGSHOT
 2013,PRIMEVALSANDSTORM,Primeval Sandstorm,60B,0,ROCK,Status,0,1,0,BothSides,0,Empowered,"The user summons a sandstorm for 5 turns, boosts its Def. and Sp. Def, and becomes Rock-type.",SANDSTORM
 2014,PRIMEVALCURSEDOATH,Primeval Cursed Oath,60C,0,GHOST,Status,100,1,0,AllNearFoes,0,CanProtect;CanMirrorMove;Empowered,"The user applies a damaging curse to all nearby foes. User becomes a Ghost-type.",CURSEDOATH
-2015,PRIMEVALDRAGONDANCE,Primeval Dragon Dance,60D,0,DRAGON,Status,0,1,0,User,0,CanSnatch;Dance;Empowered,"The user raises its Attack and Speed by two steps, and becomes Dragon-type.",DRAGONDANCE
+2015,PRIMEVALDRAGONDANCE,Primeval Dragon Dance,60D,0,DRAGON,Status,0,1,0,User,0,Dance;Empowered,"The user raises its Attack and Speed by two steps, and becomes Dragon-type.",DRAGONDANCE
 2016,PRIMEVALTORMENT,Primeval Torment,60E,0,DARK,Status,100,1,0,AllNearFoes,0,CanProtect;CanMirrorMove;Empowered,"The user torments and enrages the foe, making it incapable of using the same move twice in a row.",TORMENT
-2017,PRIMEVALLASERFOCUS,Primeval Laser Focus,60F,0,STEEL,Status,0,1,0,User,0,CanSnatch;Empowered,"The user focuses intently, making every future attack critical. The user becomes a Steel-type.",LASERFOCUS
-2018,PRIMEVALPUZZLEROOM,Primeval Puzzle Room,610,0,FAIRY,Status,0,1,0,User,0,CanSnatch;Empowered,"The user creates a Puzzle Room for 5 turns, raises both of its Attacking stats, and becomes Fairy-type.",PUZZLEROOM
+2017,PRIMEVALLASERFOCUS,Primeval Laser Focus,60F,0,STEEL,Status,0,1,0,User,0,Empowered,"The user focuses intently, making every future attack critical. The user becomes a Steel-type.",LASERFOCUS
+2018,PRIMEVALPUZZLEROOM,Primeval Puzzle Room,610,0,FAIRY,Status,0,1,0,User,0,Empowered,"The user creates a Puzzle Room for 5 turns, raises both of its Attacking stats, and becomes Fairy-type.",PUZZLEROOM
 2019,PRIMEVALPOISONGAS,Primeval Poison Gas,611,0,POISON,Status,100,1,0,AllNearFoes,0,CanProtect;CanMirrorMove;Empowered,"A cloud of poison gas is sprayed at all nearby foes, poisoning them. User becomes a Poison-type.",POISONGAS
 2020,PRIMEVALENDURE,Primeval Endure,612,0,NORMAL,Status,0,1,0,User,4,Empowered,"The user prepares to defend itself. It'll survive the next three hits which would faint it.",ENDURE
 2021,PRIMEVALIGNITE,Primeval Ignite,613,0,FIRE,Status,100,1,0,AllNearFoes,0,CanProtect;CanMirrorMove;Empowered,"The user inflicts burns on all nearby foes. User becomes a Fire-type.",IGNITE
-2022,PRIMEVALFLOWSTATE,Primeval Flow State,614,0,WATER,Status,100,1,100,User,0,CanSnatch;Empowered,"The user TODO, boosts its Atk. and Sp. Def, and becomes a Water-type.",FLOWSTATE
+2022,PRIMEVALFLOWSTATE,Primeval Flow State,614,0,WATER,Status,100,1,100,User,0,Empowered,"The user TODO, boosts its Atk. and Sp. Def, and becomes a Water-type.",FLOWSTATE
 2023,PRIMEVALINGRAIN,Primeval Ingrain,615,0,GRASS,Status,0,1,0,BothSides,0,Empowered,"The user embeds its roots to heal by 1/4th every turn for four turns, and becomes Grass-type.",INGRAIN
 2024,PRIMEVALNUMB,Primeval Numb,616,0,ELECTRIC,Status,0,1,0,BothSides,0,Empowered,"The user inflicts numb on all nearby foes. User becomes an Electric-type.",NUMB
 2025,PRIMEVALECLIPSE,Primeval Eclipse,617,0,PSYCHIC,Status,0,1,0,BothSides,0,Empowered,"Summons eclipse for 5 turns, resets lowered stats, and user becomes Psychic-type.",ECLIPSE
 2026,PRIMEVALMOONGLOW,Primeval Moonglow,618,0,FAIRY,Status,0,1,0,BothSides,0,Empowered,"Summons moonglow for 5 turns, buffs the defending stats of all allies, and user becomes Fairy-type.",MOONGLOW
-2027,PRIMEVALHEALORDER,Primeval Heal Order,619,0,BUG,Status,0,1,0,User,0,CanSnatch;Empowered,"The user restores 1/8th of its HP, summons an allied Combee, and becomes Bug-type",HEALORDER
-2028,PRIMEVALGREYMIST,Primeval Grey Mist,61A,0,POISON,Status,100,1,0,User,0,CanSnatch;Empowered,"The user resets all stats, prevents stat changes, increases their defenses, and becomes Poison-type.",MIST
-2029,PRIMEVALROCKPOLISH,Primeval Rock Polish,61B,0,ROCK,Status,0,1,0,User,0,CanSnatch;Empowered,"The sharply raises its speed, gains an extra two moves per turn, and becomes Rock-type.",ROCKPOLISH
+2027,PRIMEVALHEALORDER,Primeval Heal Order,619,0,BUG,Status,0,1,0,User,0,Empowered,"The user restores 1/8th of its HP, summons an allied Combee, and becomes Bug-type",HEALORDER
+2028,PRIMEVALGREYMIST,Primeval Grey Mist,61A,0,POISON,Status,100,1,0,User,0,Empowered,"The user resets all stats, prevents stat changes, increases their defenses, and becomes Poison-type.",MIST
+2029,PRIMEVALROCKPOLISH,Primeval Rock Polish,61B,0,ROCK,Status,0,1,0,User,0,Empowered,"The sharply raises its speed, gains an extra two moves per turn, and becomes Rock-type.",ROCKPOLISH
 2030,PRIMEVALWHIRLWIND,Primeval Whirlwind,61C,0,FLYING,Status,0,1,0,AllNearFoes,-6,CanMirrorMove;Empowered,"All near foes are forced to switch out, and the user becomes Flying-type.",WHIRLWIND
 2031,PRIMEVALEMBARGO,Primeval Embargo,61D,0,DARK,Status,100,1,0,FoeSide,0,CanProtect;CanMirrorMove;Empowered,"The enemy side is prevented from using items for the rest of the battle, and the user becomes Dark-type.",EMBARGO
 2032,PRIMEVALCHILL,Primeval Chill,61E,0,ICE,Status,100,1,0,AllNearFoes,0,CanProtect;CanMirrorMove;Empowered,"The user inflicts frostbite on all nearby foes. User becomes an Ice-type.",CHILL
 2033,PRIMEVALDESTINYBOND,Primeval Destiny Bond,61F,0,GHOST,Status,0,1,0,User,0,Empowered,"Attackers against the user suffer recoil for the rest of the battle. User becomes a Ghost-type.",DESTINYBOND
-2034,PRIMEVALSHOREUP,Primeval Shore Up,620,0,GROUND,Status,0,1,0,User,0,CanSnatch;Empowered,"The user restores 1/8th of its HP, TODO, and becomes Ground-type.",SHOREUP
+2034,PRIMEVALSHOREUP,Primeval Shore Up,620,0,GROUND,Status,0,1,0,User,0,Empowered,"The user restores 1/8th of its HP, TODO, and becomes Ground-type.",SHOREUP
 2035,PRIMEVALLOOMOVER,Primeval Loom Over,621,0,DRAGON,Status,0,1,0,AllNearFoes,0,CanMirrorMove;Empowered,"The user harshly lowers each near foes best stat, and becomes Dragon-type.",LOOMOVER
 2036,PRIMEVALDETECT,Primeval Detect,622,0,FIGHTING,Status,0,1,0,User,4,Empowered,"The user takes 50% less attack damage for 3 turns, and becomes Fighting-type.",DETECT
-2037,PRIMEVALQUIVERDANCE,Primeval Quiver Dance,623,0,BUG,Status,0,15,0,User,0,CanSnatch;Dance;Empowered,"The user sharply boosts their Sp. Atk, Sp. Def, and Speed, and becomes Bug-type.",QUIVERDANCE
-2038,PRIMEVALSHIVERDANCE,Primeval Shiver Dance,624,0,ICE,Status,0,15,0,User,0,CanSnatch;Dance;Empowered,"The user sharply boosts their Attack, Defense, and Speed, and becomes Ice-type.",SHIVERDANCE
-2039,PRIMEVALIRONDEFENSE,Primeval Iron Defense,625,0,STEEL,Status,0,1,0,User,0,CanSnatch;Empowered,"The user sharply boosts its Defense, gains the ability Filter, and becomes Steel-type.",IRONDEFENSE
-2040,PRIMEVALAMNESIA,Primeval Amnesia,626,0,PSYCHIC,Status,0,1,0,User,0,CanSnatch;Empowered,"The user sharply boosts its Sp. Def, gains the ability Unaware, and becomes Psychic-type.",AMNESIA
-2041,PRIMEVALHOWL,Primeval Howl,627,0,DARK,Status,0,1,0,User,0,CanSnatch;Empowered,"The user summons an allied Poochyena, raises the Attack stat of itself and its allies, and becomes Dark-type.",
-2042,PRIMEVALMINDLINK,Primeval Mind Link,628,0,PSYCHIC,Status,0,1,0,User,0,CanSnatch;Empowered,"The user summons an allied Abra, raises the Sp. Atk stat of itself and its allies, and becomes Psychic-type.",
-2043,PRIMEVALSTANDTOGETHER,Primeval Howl,633,0,FIGHTING,Status,0,1,0,User,0,CanSnatch;Empowered,"The user summons an allied Tyrogue, raises the Defense of itself and its allies by 3 steps, and becomes Fighting-type.",
-2044,PRIMEVALHARMONIZE,Primeval Harmonize,634,0,GRASS,Status,0,1,0,User,0,CanSnatch;Empowered,"The user summons an allied Gossifleur, raises the Sp. Def itself and its allies by 3 steps, and becomes Grass-type.",
+2037,PRIMEVALQUIVERDANCE,Primeval Quiver Dance,623,0,BUG,Status,0,15,0,User,0,Dance;Empowered,"The user sharply boosts their Sp. Atk, Sp. Def, and Speed, and becomes Bug-type.",QUIVERDANCE
+2038,PRIMEVALSHIVERDANCE,Primeval Shiver Dance,624,0,ICE,Status,0,15,0,User,0,Dance;Empowered,"The user sharply boosts their Attack, Defense, and Speed, and becomes Ice-type.",SHIVERDANCE
+2039,PRIMEVALIRONDEFENSE,Primeval Iron Defense,625,0,STEEL,Status,0,1,0,User,0,Empowered,"The user sharply boosts its Defense, gains the ability Filter, and becomes Steel-type.",IRONDEFENSE
+2040,PRIMEVALAMNESIA,Primeval Amnesia,626,0,PSYCHIC,Status,0,1,0,User,0,Empowered,"The user sharply boosts its Sp. Def, gains the ability Unaware, and becomes Psychic-type.",AMNESIA
+2041,PRIMEVALHOWL,Primeval Howl,627,0,DARK,Status,0,1,0,User,0,Empowered,"The user summons an allied Poochyena, raises the Attack stat of itself and its allies, and becomes Dark-type.",
+2042,PRIMEVALMINDLINK,Primeval Mind Link,628,0,PSYCHIC,Status,0,1,0,User,0,Empowered,"The user summons an allied Abra, raises the Sp. Atk stat of itself and its allies, and becomes Psychic-type.",
+2043,PRIMEVALSTANDTOGETHER,Primeval Howl,633,0,FIGHTING,Status,0,1,0,User,0,Empowered,"The user summons an allied Tyrogue, raises the Defense of itself and its allies by 3 steps, and becomes Fighting-type.",
+2044,PRIMEVALHARMONIZE,Primeval Harmonize,634,0,GRASS,Status,0,1,0,User,0,Empowered,"The user summons an allied Gossifleur, raises the Sp. Def itself and its allies by 3 steps, and becomes Grass-type.",
 2045,PRIMEVALYAWN,Primeval Yawn,631,0,NORMAL,Status,0,1,0,AllNearFoes,0,CanProtect;CanMirrorMove;Empowered,"The user yawns, making all near foes drowsy. They'll fall asleep at end of turn next.",
-2046,PRIMEVALDREAMDANCE,Primeval Dream Dance,632,0,FAIRY,Status,0,1,0,User,0,CanSnatch;Dance;Empowered,"The user raises their Sp. Atk by four steps and becomes Fairy-type.",
-2047,PRIMEVALSWORDSDANCE,Primeval Swords Dance,633,0,STEEL,Status,0,1,0,User,0,CanSnatch;Dance;Empowered,"The user raises their Attack by four steps and becomes Steel-type.",
+2046,PRIMEVALDREAMDANCE,Primeval Dream Dance,632,0,FAIRY,Status,0,1,0,User,0,Dance;Empowered,"The user raises their Sp. Atk by four steps and becomes Fairy-type.",
+2047,PRIMEVALSWORDSDANCE,Primeval Swords Dance,633,0,STEEL,Status,0,1,0,User,0,Dance;Empowered,"The user raises their Attack by four steps and becomes Steel-type.",
 2048,EMPOWEREDMETEORMASH,Empowered Meteor Mash,636,180,STEEL,Physical,100,1,100,NearOther,0,CanProtect;CanMirrorMove;Punch;Empowered,"The target is obliterated by a meteoric strike, which raises the user's attack by two steps.",METEORMASH
 2049,EMPOWEREDICEBEAM,Empowered Ice Beam,637,180,ICE,Special,100,1,100,NearOther,0,CanProtect;CanMirrorMove;Empowered,"The target is struck with an absolute zero beam of energy, frostbiting it.",ICEBEAM
 2050,EMPOWEREDROCKTOMB,Empowered Rock Tomb,638,120,ROCK,Physical,100,1,100,AllNearFoes,0,CanProtect;CanMirrorMove;Empowered,"Boulders are hurled at all near enemies, harshly lowering their Speed by preventing their movement.",ROCKTOMB
@@ -70,5 +70,5 @@
 2069,EMPOWEREDBULLETPUNCH,Empowered Bullet Punch,657,60,STEEL,Physical,100,1,0,NearOther,1,CanProtect;CanMirrorMove;Punch;Empowered,"The user strikes the target with 3 punches like bullets. This move always goes first.",
 2070,EMPOWEREDMYSTICALFIRE,Empowered Mystical Fire,657,200,FIRE,Special,100,1,100,NearOther,0,CanProtect;CanMirrorMove;Empowered,"The user attacks by breathing a special, hot fire. This lowers the target's Sp. Atk stat by six steps.",
 2071,STRATOSPHERESCREAM,Stratosphere Scream,700,200,FLYING,Special,0,1,0,AllNearFoes,0,CanProtect;CanMirrorMove;Sound;Empowered,"A move that only the avatar of Rayquaza can use. All enemies struck lose their flinch immunity.",SCREECH
-2072,SEVENSEASEDICT,Seven Seas Edict,701,0,WATER,Status,0,1,0,None,0,CanSnatch;Empowered,"A move that only the avatar of Kyogre can use. The user commands a Luvdisc avatar and a Remoraid avatar to join it.",
+2072,SEVENSEASEDICT,Seven Seas Edict,701,0,WATER,Status,0,1,0,None,0,Empowered,"A move that only the avatar of Kyogre can use. The user commands a Luvdisc avatar and a Remoraid avatar to join it.",
 2073,WARPINGCORE,Warping Core,702,0,GROUND,Status,0,1,0,BothSides,0,Empowered,"A move that only the avatar of Groudon can use. Gravity is intensified for five turns and enemy Pokemon have their weight doubled.",

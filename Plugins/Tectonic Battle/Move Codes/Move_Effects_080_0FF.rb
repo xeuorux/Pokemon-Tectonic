@@ -1633,18 +1633,50 @@ class PokeBattle_Move_0BA < PokeBattle_Move
     def getTargetAffectingEffectScore(user, target)
         return 0 if target.substituted? && statusMove? && !ignoresSubstitute?(user)
         return 0 if target.hasActiveAbilityAI?(:MENTALBLOCK)
-        return 0 unless target.hasStatusMove?
-        setupHate = target.hasStatBoostingMove?
-        hazardHate = target.hasHazardSettingMove?
+        unkownHate = target.unknownMovesCountAI 
+        return 0 unless target.hasStatusMove? || unkownHate == 4
         firstTurnScore = 0
-        firstTurnScore += 100 if setupHate
-        firstTurnScore += 100 if hazardHate
-        firstTurnScore /= 2 unless @battle.battleAI.userMovesFirst?(self, user, target)
-        lastingScore = 0
-        lastingScore += 30 if setupHate
-        lastingScore += 30 if hazardHate
+        lastingScore = 0        
+
+        
+        # AI taunts if it has no idea what target is doing
+        if unkownHate == 4
+            firstTurnScore = 50
+            lastingScore += 30
+        end
+        
+        # Setup
+        if target.hasStatBoostingMove?
+           if target.lastRoundMoveCategory == -1 || target.lastRoundMoveCategory == 2 # No point stopping setup that already happened
+                firstTurnScore = 50
+                lastingScore += 30
+            end    
+        end
+        
+        # Hazard
+        if target.hasHazardSettingMove?
+            firstTurnScore = 50
+            lastingScore += 30           
+        end
+        
+        # Recovery
+        if target.hasRecoveryMove?
+            if target.hp <= target.totalhp * 0.7
+                firstTurnScore = 50
+                lastingScore += 30
+            else
+                lastingScore += 25
+            end
+        end
+
+		if @battle.battleAI.userMovesFirst?(self, user, target)
+            firstTurnScore *= 2
+            firstTurnScore *= 1.3 if user.firstTurn? # Prevent hazards over setting them on lead
+        end
+        
         lastingScore *= (getTauntTurns(target) - 1)
         score = firstTurnScore + lastingScore
+        score = 220 if score >= 220 # AI shouldnt taunt over kills
         return score
     end
 end
@@ -2482,8 +2514,8 @@ class PokeBattle_Move_0D9 < PokeBattle_HealingMove
 
     def getEffectScore(user, target)
         score = super
-        score -= getSleepEffectScore(nil, target)
-        score += 40 if user.hasStatusNoSleep?
+        score -= getSleepEffectScore(nil, target) * 0.45
+        score += 45 if user.hasStatusNoSleep?
         return score
     end
 end

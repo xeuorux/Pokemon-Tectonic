@@ -546,6 +546,24 @@ class PokeBattle_Battler
         @battle.luster[@index & 1][@pokemonIndex] = true
     end
 
+    def moveUsageCount(moveID)
+        moveUsageCountHash = @battle.moveUsageCount[@index & 1][@pokemonIndex]
+        if moveUsageCountHash.key?(moveID)
+            return moveUsageCountHash[moveID]
+        else
+            return 0
+        end
+    end
+
+    def increaseMoveUsageCount(moveID)
+        moveUsageCountHash = @battle.moveUsageCount[@index & 1][@pokemonIndex]
+        if moveUsageCountHash.key?(moveID)
+            moveUsageCountHash[moveID] += 1
+        else
+            moveUsageCountHash[moveID] = 0
+        end
+    end
+
     def empowered?
         return @avatarPhase > 1
     end

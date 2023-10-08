@@ -188,10 +188,17 @@ class PokeBattle_Move_10A < PokeBattle_Move
     end
 
     def getEffectScore(_user, target)
-        side = target.pbOwnSide
         score = 0
-        side.eachEffect(true) do |_effect, _value, data|
-            score += 10 if data.is_screen?
+        target.pbOwnSide.eachEffect(true) do |effect, value, data|
+            next unless data.is_screen?
+			case value
+				when 2
+					score += 30
+				when 3
+					score += 50
+				when 4..999
+					score += 130
+            end	
         end
         return score
     end
@@ -695,16 +702,19 @@ class PokeBattle_Move_11C < PokeBattle_Move
     end
 
     def getTargetAffectingEffectScore(user, target)
-    score += 5 # Constant score so AI uses on "kills"
+        score = 0
         if canSmackDown?(target)
-            score += 25
-            # This is ugly and does not account for 4x
-            if user.pbHasAttackingType?(:GROUND) && !target.effectActive?(:SmackDown)
-                score += 30 if target.pbHasTypeAI?(:FIRE) || target.pbHasTypeAI?(:POISON) || target.pbHasTypeAI?(:STEEL) || target.pbHasTypeAI?(:ROCK) || target.pbHasTypeAI?(:ELECTRIC)
-                score -= 30 if target.pbHasTypeAI?(:BUG) || target.pbHasTypeAI?(:GRASS) || target.pbHasTypeAI?(:ICE)
-            end
-            score += getWantsToBeFasterScore(user, target, 7) if target.inTwoTurnAttack?("0C9", "0CC")
+            score += 30
+                if user.pbHasAttackingType?(:GROUND) && !target.effectActive?(:SmackDown)
+                    tTypes = target.pbTypes(true, true)
+                    tTypes.each do |t|
+                        score += 30 if t == :FIRE || t == :POISON || t == :STEEL || t == :ROCK || t == :ELECTRIC
+                        score -= 30 if t == :BUG || t == :GRASS || t == :ICE
+                    end
+                end
+            score += 70 if @battle.battleAI.userMovesFirst?(self, user, target) && target.inTwoTurnAttack?("0C9", "0CC")
         end
+        score = 5 if score <= 5 # Constant score so AI uses on "kills"
         return score
     end
 
@@ -1156,27 +1166,118 @@ class PokeBattle_Move_12D < PokeBattle_ForetoldMove
 end
 
 #===============================================================================
-# Not currently used.
+# Ends target's protections, screens, and substitute immediately. (Siege Breaker)
 #===============================================================================
 class PokeBattle_Move_12E < PokeBattle_Move
+    def ignoresSubstitute?; return true; end
+    def ignoresReflect?; return true; end
+    
+    def pbEffectAgainstTarget(_user, target)
+        removeProtections(target)
+        target.disableEffect(:Substitute)
+    end
+
+    def pbEffectWhenDealingDamage(_user, target)
+        side = target.pbOwnSide
+        side.eachEffect(true) do |effect, _value, data|
+            side.disableEffect(effect) if data.is_screen?
+        end
+    end
+
+    def sideHasScreens?(side)
+        side.eachEffect(true) do |_effect, _value, data|
+            return true if data.is_screen?
+        end
+        return false
+    end
+
+    def pbShowAnimation(id, user, targets, hitNum = 0, showAnimation = true)
+        targets.each do |b|
+            next unless sideHasScreens?(b.pbOwnSide)
+            hitNum = 1 # Wall-breaking anim
+            break
+        end
+        super
+    end
+
+    def getEffectScore(_user, target)
+        score = 0
+        target.pbOwnSide.eachEffect(true) do |effect, value, data|
+            next unless data.is_screen?
+			case value
+				when 2
+					score += 30
+				when 3
+					score += 50
+				when 4..999
+					score += 130
+            end	
+        end
+        score += 20 if target.substituted?
+        return score
+    end
+
+    def shouldHighlight?(_user, target)
+        return true if sideHasScreens?(target.pbOwnSide)
+        return true if target.substituted?
+        return false
+    end
 end
 
 #===============================================================================
-# Not currently used.
+# Allies of the user also attack the target with Slash. (All For One)
 #===============================================================================
 class PokeBattle_Move_12F < PokeBattle_Move
+    def pbEffectAfterAllHits(user, target)
+        user.eachAlly do |b|
+            break if target.fainted?
+            @battle.pbDisplay(_INTL("{1} joins in the attack!", b.pbThis))
+            battle.forceUseMove(b, :SLASH, target.index)
+        end
+    end
 end
 
 #===============================================================================
-# Not currently used.
+# Hits three times by base, and one extra every time the move is used
+# over the course of a battle. (Blades of Grass)
 #===============================================================================
 class PokeBattle_Move_130 < PokeBattle_Move
+    def multiHitMove?; return true; end
+
+    def pbNumHits(user, _targets, _checkingForAI = false)
+        return 3 + user.moveUsageCount(@id)
+    end
 end
 
 #===============================================================================
-# Not currently used.
+# Removes all Rooms. Fails if there is no Room. (Razing Vines)
 #===============================================================================
 class PokeBattle_Move_131 < PokeBattle_Move
+    def pbMoveFailed?(_user, _targets, show_message)
+        anyRoom = false
+        @battle.field.eachEffect(true) do |effect, _value, effectData|
+            next unless effectData.room?
+            anyRoom = true
+            break
+        end
+
+        unless anyRoom
+            @battle.pbDisplay(_INTL("But it failed, since there is no active room!")) if show_message
+            return true
+        end
+        return false
+    end
+
+    def pbEffectGeneral(user)
+        @battle.field.eachEffect(true) do |effect, _value, effectData|
+            next unless effectData.room?
+            @battle.field.disableEffect(effect)
+        end
+    end
+
+    def getEffectScore(user, _target)
+        return 80
+    end
 end
 
 #===============================================================================
@@ -1846,9 +1947,23 @@ class PokeBattle_Move_154 < PokeBattle_Move
 end
 
 #===============================================================================
-# (Not currently used)
+# User is protected against damaging moves this round. Counterattacks (Cranial Guard)
+# with Granite Head.
 #===============================================================================
-class PokeBattle_Move_155 < PokeBattle_Move
+class PokeBattle_Move_155 < PokeBattle_ProtectMove
+    def initialize(battle, move)
+        super
+        @effect = :CranialGuard
+    end
+
+    def getEffectScore(user, target)
+        score = super
+        # Check only physical attackers
+        user.eachPredictedProtectHitter do |b|
+            score += 100
+        end
+        return score
+    end
 end
 
 #===============================================================================

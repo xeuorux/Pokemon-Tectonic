@@ -73,6 +73,7 @@ GameData::BattleEffect.register_effect(:Battler, {
     :id => :BurnUp,
     :real_name => "Burnt Up",
     :info_displayed => false,
+    :avatars_purge => true,
     :apply_proc => proc do |battle, battler, _value|
         battle.pbDisplay(_INTL("{1} burned itself out!", battler.pbThis))
         battle.scene.pbRefresh
@@ -146,6 +147,7 @@ GameData::BattleEffect.register_effect(:Battler, {
 GameData::BattleEffect.register_effect(:Battler, {
     :id => :Warned,
     :real_name => "Curse-Warned",
+    :avatars_purge => true,
     :apply_proc => proc do |battle, battler, _value|
         battle.pbDisplay(_INTL("{1} was warned not to attack it again!", battler.pbThis))
     end,
@@ -157,6 +159,7 @@ GameData::BattleEffect.register_effect(:Battler, {
     :id => :Curse,
     :real_name => "Cursed",
     :baton_passed => true,
+    :avatars_purge => true,
     :apply_proc => proc do |battle, battler, _value|
         battle.pbDisplay(_INTL("{1} is cursed!", battler.pbThis))
     end,
@@ -403,10 +406,10 @@ GameData::BattleEffect.register_effect(:Battler, {
         battle.pbDisplay(_INTL("{1} was prevented from healing!", battler.pbThis))
     end,
     :disable_proc => proc do |battle, battler|
-        battle.pbDisplay(_INTL("{1} Heal Block was lifted!", battler.pbThis))
+        battle.pbDisplay(_INTL("{1} broke free of the Heal Block!", battler.pbThis))
     end,
     :expire_proc => proc do |battle, battler|
-        battle.pbDisplay(_INTL("{1} Heal Block wore off.", battler.pbThis))
+        battle.pbDisplay(_INTL("{1} can use healing again!", battler.pbThis))
     end,
 })
 
@@ -661,7 +664,7 @@ GameData::BattleEffect.register_effect(:Battler, {
     :real_name => "Imprisoned in ice",
     :trapping => true,
     :apply_proc => proc do |battle, battler, _value|
-        battle.pbDisplay(_INTL("{1} is immprisoned in a tower of ice!", battler.pbThis))
+        battle.pbDisplay(_INTL("{1} is imprisoned in a tower of ice!", battler.pbThis))
     end,
     :disable_proc => proc do |battle, battler|
         battle.pbDisplay(_INTL("The icy prison around {1} shattered!", battler.pbThis(true)))
@@ -1061,7 +1064,7 @@ GameData::BattleEffect.register_effect(:Battler, {
         battle.pbDisplay(_INTL("{1} broke free of the taunting!", battler.pbThis))
     end,
     :expire_proc => proc do |battle, battler|
-        battle.pbDisplay(_INTL("{1} taunt wore off.", battler.pbThis))
+        battle.pbDisplay(_INTL("{1} is no longer being taunted.", battler.pbThis))
     end,
 })
 
@@ -1096,7 +1099,7 @@ GameData::BattleEffect.register_effect(:Battler, {
         battle.pbDisplay(_INTL("{1} lost its electromagnetism!", battler.pbThis))
     end,
     :expire_proc => proc do |battle, battler|
-        battle.pbDisplay(_INTL("{1} electromagnetism wore off.", battler.pbThis))
+        battle.pbDisplay(_INTL("{1}'s electromagnetism wore off.", battler.pbThis))
     end,
 })
 
@@ -1211,6 +1214,7 @@ GameData::BattleEffect.register_effect(:Battler, {
     :real_name => "Type 3",
     :type => :Type,
     :info_displayed => false,
+    :avatars_purge => true,
     :apply_proc => proc do |battle, battler, value|
         typeName = GameData::Type.get(value).name
         battle.pbDisplay(_INTL("{1} gained the {2} type!", battler.pbThis, typeName))
@@ -1352,6 +1356,7 @@ GameData::BattleEffect.register_effect(:Battler, {
 GameData::BattleEffect.register_effect(:Battler, {
     :id => :TarShot,
     :real_name => "Covered In Tar",
+    :avatars_purge => true,
     :apply_proc => proc do |battle, battler, _value|
         battle.pbDisplay(_INTL("{1} became weaker to fire!", battler.pbThis))
     end,
@@ -1454,6 +1459,7 @@ GameData::BattleEffect.register_effect(:Battler, {
     :id => :ColdConversion,
     :real_name => "Cold Converted",
     :info_displayed => false,
+    :avatars_purge => true,
     :apply_proc => proc do |battle, battler, _value|
         battle.pbDisplay(_INTL("{1} lost its cold!", battler.pbThis))
         battle.scene.pbRefresh
@@ -1463,6 +1469,7 @@ GameData::BattleEffect.register_effect(:Battler, {
 GameData::BattleEffect.register_effect(:Battler, {
     :id => :CreepOut,
     :real_name => "Weak to Bug",
+    :avatars_purge => true,
     :apply_proc => proc do |battle, battler, _value|
         battle.pbDisplay(_INTL("{1} is now afraid of Bug-type moves!", battler.pbThis))
     end,
@@ -1538,7 +1545,7 @@ GameData::BattleEffect.register_effect(:Battler, {
     :id => :IcyInjection,
     :real_name => "Healing Halved",
     :apply_proc => proc do |battle, battler, _value|
-        battle.pbDisplay(_INTL("{1}'s is filled with ice!", battler.pbThis))
+        battle.pbDisplay(_INTL("{1}'s filled with ice!", battler.pbThis))
     end,
 })
 
@@ -1919,6 +1926,21 @@ GameData::BattleEffect.register_effect(:Battler, {
                 battle.pbDisplay(_INTL("{1} was hurt!", user.pbThis))
                 user.applyFractionalDamage(1.0 / 8.0)
             end
+        end,
+    },
+})
+
+
+GameData::BattleEffect.register_effect(:Battler, {
+    :id => :CranialGuard,
+    :real_name => "Cranial Guard",
+    :resets_eor	=> true,
+    :protection_info => {
+        :hit_proc => proc do |user, target, move, battle|
+            battle.forceUseMove(user, :GRANITEHEAD, target.index)
+        end,
+        :does_negate_proc => proc do |_user, _target, move, _battle|
+            move.damagingMove?
         end,
     },
 })

@@ -1748,7 +1748,7 @@ MapPosition = 0,14,2
 BattleBack = distortion
 #-------------------------------
 [284]
-# Gamer's House
+# Investigator's House
 Outdoor = false
 ShowArea = false
 Bicycle = false

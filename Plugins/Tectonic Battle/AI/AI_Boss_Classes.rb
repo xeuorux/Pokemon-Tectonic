@@ -56,7 +56,29 @@ end
 class PokeBattle_AI_Cobalion < PokeBattle_AI_Boss
     def initialize(user, battle)
         super
-        secondMoveEveryTurn(:NOBLEROAR)
+        @warnedIFFMove.add(:ALLFORONE, {
+            :condition => proc { |_move, user, _target, battle|
+                next user.hasAlly?
+            },
+            :warning => proc { |_move, user, _targets, _battle|
+                _INTL("#{user.pbThis} begins leading the attack!")
+            },
+        })
+        @dangerMoves.push(:ALLFORONE)
+    end
+end
+
+class PokeBattle_AI_Terrakion < PokeBattle_AI_Boss
+    def initialize(user, battle)
+        super
+        @warnedIFFMove.add(:LATCHON, {
+            :condition => proc { |_move, _user, target, battle|
+                next target.fullHealth?
+            },
+            :warning => proc { |_move, user, _targets, _battle|
+                _INTL("#{user.pbThis} gathers up a swarm of helpers!")
+            },
+        })
     end
 end
 
