@@ -1930,6 +1930,21 @@ GameData::BattleEffect.register_effect(:Battler, {
     },
 })
 
+
+GameData::BattleEffect.register_effect(:Battler, {
+    :id => :CranialGuard,
+    :real_name => "Cranial Guard",
+    :resets_eor	=> true,
+    :protection_info => {
+        :hit_proc => proc do |user, target, move, battle|
+            battle.forceUseMove(user, :GRANITEHEAD, target.index)
+        end,
+        :does_negate_proc => proc do |_user, _target, move, _battle|
+            move.damagingMove?
+        end,
+    },
+})
+
 GameData::BattleEffect.register_effect(:Battler, {
     :id => :VolatileToxin,
     :real_name => "Volatile Toxin",

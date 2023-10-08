@@ -1947,9 +1947,23 @@ class PokeBattle_Move_154 < PokeBattle_Move
 end
 
 #===============================================================================
-# (Not currently used)
+# User is protected against damaging moves this round. Counterattacks (Cranial Guard)
+# with Granite Head.
 #===============================================================================
-class PokeBattle_Move_155 < PokeBattle_Move
+class PokeBattle_Move_155 < PokeBattle_ProtectMove
+    def initialize(battle, move)
+        super
+        @effect = :CranialGuard
+    end
+
+    def getEffectScore(user, target)
+        score = super
+        # Check only physical attackers
+        user.eachPredictedProtectHitter do |b|
+            score += 100
+        end
+        return score
+    end
 end
 
 #===============================================================================
