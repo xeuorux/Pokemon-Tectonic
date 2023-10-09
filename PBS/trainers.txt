@@ -5897,6 +5897,66 @@ Pokemon = NIDOKING,59
     AbilityIndex = 0 # Sheer Force
     Item = MUSCLEBAND
 #-------------------------------
+[SWIMMER_F,Cosmina]
+Pokemon = BARRASKEWDA,60
+    AbilityIndex = 1 # Straight Ahead
+	Item = CHOICEBAND
+Pokemon = CORSOLA,60
+    AbilityIndex = 1 # Persistent Growth
+	Item = LEFTOVERS
+Pokemon = HITMONLEE,60
+    AbilityIndex = 0 # Leg Strength
+Pokemon = DUSTOX,60
+    AbilityIndex = 0 # Vandal
+#-------------------------------
+[SCHOOLKID_F3,Dinah]
+Pokemon = MINUN,60
+    AbilityIndex = 0 # Friend Guard
+    Item = FOCUSSASH
+Pokemon = DODRIO,60
+    AbilityIndex = 0 # Fluster Flock
+Pokemon = MEGANIUM,60
+    AbilityIndex = 0 # Fae Veil
+Pokemon = HGOODRA,60
+    AbilityIndex = 1 # Weak Spirit
+    Item = STEELGEM
+#-------------------------------
+[POKEMONRANGER_M,Alastar]
+Pokemon = ARBOK,60
+    AbilityIndex = 0 # Intimidate
+    Item = EJECTBUTTON
+Pokemon = FARIGIRAF,60
+    AbilityIndex = 0 # Cud Chew
+    Item = SITRUSBERRY
+Pokemon = VANILLUXE,60
+    AbilityIndex = 0 # Extra Scoop
+Pokemon = RAPIDASH,60
+    AbilityIndex = 1 # Leg Strength
+#-------------------------------
+[PILOT,Kurtis]
+Pokemon = SIGILYPH,60
+    AbilityIndex = 0 # Magic Guard
+    Item = LIFEORB
+Pokemon = GIGACHU,60
+    AbilityIndex = 1 # Gargantuan
+Pokemon = FLAPPLE,60
+    AbilityIndex = 0 # Hustle
+    Item = WIDELENS
+Pokemon = DARMANITAN,60
+    AbilityIndex = 1 # Extreme Power
+#-------------------------------
+[DOCTOR,Renaldo]
+Pokemon = MAROMATISSE,60
+    AbilityIndex = 0 # Perish Body
+    Item = LEFTOVERS
+Pokemon = SHUCKLE,60
+    AbilityIndex = 1 # Sticky Mold
+Pokemon = DUGTRIO,60
+    AbilityIndex = 1 # Pitting
+Pokemon = TENTACRUEL,60
+    AbilityIndex = 1 # Grip Strength
+    Item = GRIPCLAW
+#-------------------------------
 [DELINQUENT,Jeralyn]
 Pokemon = DITTO,58
     AbilityIndex = 0 # Imposter
