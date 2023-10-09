@@ -68,6 +68,14 @@ class PokeBattle_AI
     def miscStayInRatingModifiers(battler)
         stayInRating = 0
 
+        # Less likely to switch when coming in later would cause it to die to hazards
+        entryDamage, hazardScore = @battle.applyHazards(battler,true)
+        if entryDamage >= battler.hp
+            stayInRating += 30
+            PBDebug.log("[STAY-IN RATING] #{battler.pbThis} (#{battler.index}) likely to die to hazards if switches back in later (+30)")
+            return stayInRating # Selfish modifiers don't matter
+        end
+        
         # Pokémon is about to faint because of Perish Song
         if battler.effects[:PerishSong] == 2
             stayInRating -= 10
@@ -87,7 +95,7 @@ class PokeBattle_AI
         # More likely to switch when cursed
         if battler.effectActive?(:Curse)
             stayInRating -= 20
-            PBDebug.log("[STAY-IN RATING] #{battler.pbThis} (#{battler.index}) is cursed (-15)")
+            PBDebug.log("[STAY-IN RATING] #{battler.pbThis} (#{battler.index}) is cursed (-20)")
         end
 
         # More likely to switch when drowsy
@@ -113,24 +121,34 @@ class PokeBattle_AI
             end
         end
 
-        # Less likely to switch when coming in later would cause it to die to hazards
-        entryDamage, hazardScore = @battle.applyHazards(battler,true)
-        if entryDamage >= battler.hp
-            stayInRating += 30
-            PBDebug.log("[STAY-IN RATING] #{battler.pbThis} (#{battler.index}) likely to die to hazards if switches back in later (+30)")
-        end
 
         # Less likely to switch when has self-mending
         stayInRating += 15 if battler.hasActiveAbilityAI?(:SELFMENDING)
-		
-		# More likely to switch if weather setter in policy
-		stayInRating -= 13 if battler.ownersPolicies.include?(:SUN_TEAM) && battler.hasActiveAbilityAI?(:DROUGHT)
-		stayInRating -= 13 if battler.ownersPolicies.include?(:RAIN_TEAM) && battler.hasActiveAbilityAI?(:DRIZZLE)
-		stayInRating -= 13 if battler.ownersPolicies.include?(:HAIL_TEAM) && battler.hasActiveAbilityAI?(:SNOWWARNING)
-		stayInRating -= 13 if battler.ownersPolicies.include?(:SAND_TEAM) && battler.hasActiveAbilityAI?(:SANDSTREAM)
-		stayInRating -= 13 if battler.ownersPolicies.include?(:MOONGLOW_TEAM) && battler.hasActiveAbilityAI?(:MOONGAZE)
-		stayInRating -= 13 if battler.ownersPolicies.include?(:ECLIPSE_TEAM) && battler.hasActiveAbilityAI?(:HARBINGER)
-
+        
+        # More likely to switch if weather setter in policy
+        weatherSwitchInfo = [
+        [:SUN_TEAM,@battle.sunny?,:DROUGHT,:HEATROCK],
+        [:RAIN_TEAM,@battle.rainy?,:DRIZZLE,:DAMPROCK],
+        [:SAND_TEAM,@battle.sandy?,:SANDSTREAM,:SMOOTHROCK],
+        [:HAIL_TEAM,@battle.icy?,:SNOWWARNING,:ICYROCK],
+        [:MOONGLOW_TEAM,@battle.moonGlowing?,:MOONGAZE,:MIRROREDROCK],
+        [:ECLIPSE_TEAM,@battle.eclipsed?,:HARBINGER,:PINPOINTROCK]
+        ]
+        weatherSwitchInfo.each do |weatherSwitchEntry|
+            weatherPolicy = weatherSwitchEntry[0]
+            weatherActive = weatherSwitchEntry[1]
+            weatherAbility = weatherSwitchEntry[2]
+            weatherItem = weatherSwitchEntry[3]
+            if battler.ownersPolicies.include?(weatherPolicy)
+                if weatherActive
+                    stayInRating -= 13 if battler.hasActiveAbilityAI?(weatherAbility) || battler.hasItem?(weatherItem)
+                    PBDebug.log("[STAY-IN RATING] #{battler.pbThis} (#{battler.index}) wants to switch to preserve its weather (-13)")
+                else 
+                    stayInRating -= 20 if battler.hasActiveAbilityAI?(weatherAbility)
+                    PBDebug.log("[STAY-IN RATING] #{battler.pbThis} (#{battler.index}) wants to switch so it can reset the weather (-20)")
+                end
+            end
+        end
         return stayInRating
     end
 
