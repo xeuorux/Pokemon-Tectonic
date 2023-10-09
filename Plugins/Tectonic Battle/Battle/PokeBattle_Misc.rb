@@ -311,7 +311,7 @@ class PokeBattle_Battle
         if @field.effectActive?(:QualityRoom)
             if Effectiveness.super_effective?(typeMod)
                 mult *= 1.25
-            elsif Effectiveness.not_very_effective?
+            elsif Effectiveness.not_very_effective?(typeMod)
                 mult *= 0.75
             end
         end

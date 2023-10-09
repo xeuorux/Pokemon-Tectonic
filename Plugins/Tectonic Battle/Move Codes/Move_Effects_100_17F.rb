@@ -1285,7 +1285,7 @@ end
 #===============================================================================
 class PokeBattle_Move_132 < PokeBattle_Move
     def pbBaseDamage(baseDmg, user, target)
-        ownerParty.each do |partyPokemon|
+        user.ownerParty.each do |partyPokemon|
             next if partyPokemon.personalID == user.personalID
             next unless partyPokemon.fainted?
             baseDmg += 20

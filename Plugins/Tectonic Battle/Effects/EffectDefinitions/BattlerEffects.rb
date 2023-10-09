@@ -1946,7 +1946,7 @@ GameData::BattleEffect.register_effect(:Battler, {
     :resets_eor	=> true,
     :protection_info => {
         :hit_proc => proc do |user, target, move, battle|
-            battle.forceUseMove(user, :GRANITEHEAD, target.index)
+            battle.forceUseMove(target, :GRANITEHEAD, user.index)
         end,
         :does_negate_proc => proc do |_user, _target, move, _battle|
             move.damagingMove?
