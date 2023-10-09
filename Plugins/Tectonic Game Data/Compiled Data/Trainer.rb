@@ -162,7 +162,7 @@ module GameData
         parentTrainer = nil
         if @extendsVersion > -1
             parentTrainerData = GameData::Trainer.get(@extendsClass || @trainer_type, @extendsName || @real_name, @extendsVersion)
-            parentTrainer = pbLoadTrainer(parentTrainerData.trainer_type,parentTrainerData.name,parentTrainerData.version)
+            parentTrainer = pbLoadTrainer(parentTrainerData.trainer_type,parentTrainerData.real_name,parentTrainerData.version)
         end
         return parentTrainer
       end
