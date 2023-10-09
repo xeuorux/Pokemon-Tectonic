@@ -9065,7 +9065,7 @@ BattlerEnemyX = 0
 BattlerEnemyY = 14
 BattlerShadowX = 0
 BattlerShadowSize = 2
-Evolutions = PELIPPER,Level,25
+Evolutions = PELIPPER,Level,27
 #-------------------------------
 [279]
 Name = Pelipper
