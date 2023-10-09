@@ -1,4 +1,2 @@
-Name         = Tectonic Heal Resets                                         
-Version      = 1.0                                                                                               
-Link         = https://reliccastle.com/link-to-the-plugin/               
+Name         = Tectonic Heal Resets            
 Credits      = Zeu

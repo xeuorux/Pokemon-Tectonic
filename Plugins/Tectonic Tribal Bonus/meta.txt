@@ -1,4 +1,2 @@
-Name         = Tectonic Tribal Bonuses                                     
-Version      = 1.0                                                                                               
-Link         = todo  
-Credits      = Brickbat, MrPanda1
+Name         = Tectonic Tribal Bonuses
+Credits      = Brickbat, MrPanda1,Zeu

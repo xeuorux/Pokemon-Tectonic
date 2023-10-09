@@ -1,5 +1,3 @@
-Name         = Tectonic UI                                     
-Version      = 1.0
-Link         = https://reliccastle.com/link-to-the-plugin/               
-Credits      = Zeu
+Name         = Tectonic UI
+Credits      = Essentials v19 Team,Zeu
 Scripts		 = Objects and windows/TilingCardsMenu.rb

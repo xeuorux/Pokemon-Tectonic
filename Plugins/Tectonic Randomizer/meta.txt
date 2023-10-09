@@ -1,0 +1,4 @@
+Name         = Tectonic Randomizer
+Requires	 = Tectonic Game Processing
+Credits      = Luka S.J.,Zeu
+Conflicts    = Elite Battle: DX

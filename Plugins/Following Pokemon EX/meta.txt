@@ -1,4 +1,0 @@
-Name         = Following Pokemon EX
-Version      = 2.0.0
-Website      = https://reliccastle.com/resources/featured/
-Credits      = Golisopod User, Help-14, zingzags, Rayd12smitty, Venom12, mej71, PurpleZaffre, Akizakura16, Thundaga, Armrin (Fairies Resource Pack)
