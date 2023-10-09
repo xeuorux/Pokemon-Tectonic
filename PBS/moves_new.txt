@@ -516,3 +516,8 @@
 1515,FRONTKICK,Front Kick,000,95,FIGHTING,Physical,100,15,0,NearOther,0,CanProtect;CanMirrorMove;Kicking,"The user kicks the target with a powerful, straightforward technique.",
 1516,RAZINGVINES,Razing Vines,130,131,GRASS,Physical,100,5,0,NearOther,0,CanProtect;CanMirrorMove,"Attacks while destroying rooms. This move fails in the absence of a room.",
 1517,CRANIALGUARD,Cranial Guard,155,0,ROCK,Status,0,3,0,User,4,,"Protects the user from damage this turn. The user will counter with Granite Head if attacked.",
+1518,CHANNELSPIRITS,Channel Spirits,132,60,GHOST,Physical,0,15,0,NearOther,0,CanProtect;CanMirrorMove,"The user channels its fallen allies to strike the target. This attack has 20 more power per fainted party member.",
+1519,SIROCCO,Sirocco,101,50,GROUND,Special,100,10,0,NearFoe,0,CanProtect;CanMirrorMove,"Hits the target with a sandy wind, then summons sandstorm for eight turns.",SANDSTORM
+1520,HONEYSLATHER,Honey Slather,133,0,GHOST,Status,0,5,0,User,0,CanSnatch,"The user uses honey to fully restore their HP. However, this lures swarming insects, trapping and damaging the user for three turns.",RECOVER
+1521,REMOLD,Remold,134,0,GROUND,Status,0,5,0,NearAlly,0,CanProtect;CanMagicCoat,"The user shapes primal clay to heal a nearby ally for their max HP. This can overheal. The user must recharge next turn.",HEALPULSE
+1522,PRIMALVIGOR,Primal Vigor,135,0,NORMAL,Status,0,15,0,NearAlly,0,,"The user channels ancient energy to grant a nearby ally an extra turn this round.",HELPINGHAND

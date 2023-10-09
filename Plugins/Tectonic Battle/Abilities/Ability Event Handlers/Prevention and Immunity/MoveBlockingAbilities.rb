@@ -20,12 +20,6 @@ BattleHandlers::MoveBlockingAbility.add(:KILLJOY,
     }
 )
 
-BattleHandlers::MoveBlockingAbility.add(:BADINFLUENCE,
-    proc { |ability, _bearer, _user, _targets, move, _battle|
-        next move.healingMove?
-    }
-)
-
 BattleHandlers::MoveBlockingAbility.add(:DESICCATE,
     proc { |ability, _bearer, _user, _targets, move, battle|
         next [:GRASS,:WATER].include?(move.calcType) && battle.sandy?

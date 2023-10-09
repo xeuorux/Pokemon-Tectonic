@@ -122,3 +122,4 @@
 3121,DAMP,Damp,"Prevents the use of self-destructing moves."
 3122,EXOADAPTION,Exo-Adaption,"User heals by 25% after taking a special attack."
 3123,EGOIST,Egoist,"Fighting-type moves have +1 priority."
+3124,BALLFETCH,Ball Fetch,"Fetches the Poké Ball from the first failed throw."

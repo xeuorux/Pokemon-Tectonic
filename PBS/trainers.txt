@@ -1072,7 +1072,7 @@ Pokemon = SEEL,25
 Pokemon = HOUNDOOM,27
     AbilityIndex = 1 # Berserk
 Pokemon = FOONGUS,26
-    AbilityIndex = 1 # Belligerent
+    AbilityIndex = 1 # Ball Mimic
 #-------------------------------
 [POKEFAN_F2,Tsveta]
 Pokemon = EEVEE,27
@@ -2597,7 +2597,7 @@ Pokemon = STOUTLAND,70
     Item = LEFTOVERS
     EV = 20,0,20,0,0,10
 Pokemon = APPLETUN,70
-    Moves = SYNTHESIS,DRACOMETEOR,LEECHSEED,THRIVINGFORCE
+    Moves = HONEYSLATHER,DRACOMETEOR,LEECHSEED,THRIVINGFORCE
     AbilityIndex = 1 # Fire-fighter
     Item = LEFTOVERS
     EV = 20,0,15,0,0,15

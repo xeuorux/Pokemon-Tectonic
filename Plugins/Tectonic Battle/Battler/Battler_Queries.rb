@@ -459,7 +459,11 @@ class PokeBattle_Battler
 
     def canHeal?(overheal = false)
         return false if fainted?
-        return false if @hp >= @totalhp && !overheal
+        if overheal
+            return false if @hp >= @totalhp * 2
+        else
+            return false if @hp >= @totalhp
+        end
         return false if effectActive?(:HealBlock)
         return false if hasActiveAbility?(:ONEDGE) && @battle.moonGlowing?
         return true
@@ -880,6 +884,23 @@ class PokeBattle_Battler
     def protectedByScreen?
         pbOwnSide.eachEffect(true) do |effect, _value, data|
             next unless data.is_screen?
+            return true
+        end
+        return false
+    end
+
+    def healingReversed?(showMessages = false)
+        if effectActive?(:NerveBreak)
+            @battle.pbDisplay(_INTL("{1}'s healing is reversed because of their broken nerves!", pbThis)) if showMessages
+            return true
+        end
+        badInfluencer = @battle.pbCheckOpposingAbility(:BADINFLUENCE,@index)
+        if badInfluencer
+            if showMessages
+                badInfluencer.showMyAbilitySplash(:BADINFLUENCE)
+                @battle.pbDisplay(_INTL("{1}'s healing is reversed!", pbThis))
+                badInfluencer.hideMyAbilitySplash
+            end
             return true
         end
         return false

@@ -185,3 +185,9 @@ BattleHandlers::SpeedCalcAbility.add(:QUICKKICKS,
       next mult * 2 if battler.effectActive?(:QuickKicks)
   }
 )
+
+BattleHandlers::SpeedCalcAbility.add(:RUSHED,
+  proc { |ability, battler, mult|
+      next mult * 1.5
+  }
+)

@@ -128,7 +128,7 @@ BattleHandlers::EOREffectAbility.add(:EXTREMEPOWER,
   }
 )
 
-BattleHandlers::EOREffectAbility.copy(:EXTREMEPOWER,:EXTREMEENERGY)
+BattleHandlers::EOREffectAbility.copy(:EXTREMEPOWER,:EXTREMEENERGY,:RUSHED,:BURDENED)
 
 BattleHandlers::EOREffectAbility.add(:TENDERIZE,
   proc { |ability, battler, _battle|

@@ -321,3 +321,10 @@ BattleHandlers::DamageCalcTargetAbility.add(:WHITEKNIGHT,
       target.aiLearnsAbility(ability) unless aiCheck
   }
 )
+
+BattleHandlers::DamageCalcTargetAbility.add(:BURDENED,
+  proc { |ability, user, target, _move, mults, _baseDmg, type, aiCheck|
+      mults[:final_damage_multiplier] *= 0.5
+      target.aiLearnsAbility(ability) unless aiCheck
+  }
+)

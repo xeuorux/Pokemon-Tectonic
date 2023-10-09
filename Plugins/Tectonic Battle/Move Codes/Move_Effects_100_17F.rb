@@ -1281,27 +1281,77 @@ class PokeBattle_Move_131 < PokeBattle_Move
 end
 
 #===============================================================================
-# Not currently used.
+# Deals 20 extra BP per fainted party member. (Channel Spirits)
 #===============================================================================
 class PokeBattle_Move_132 < PokeBattle_Move
+    def pbBaseDamage(baseDmg, user, target)
+        ownerParty.each do |partyPokemon|
+            next if partyPokemon.personalID == user.personalID
+            next unless partyPokemon.fainted?
+            baseDmg += 20
+        end
+        return baseDmg
+    end
 end
 
 #===============================================================================
-# (Not currently used.)
+# Heals user to full, but traps them with Infestation (Honey Slather)
 #===============================================================================
-class PokeBattle_Move_133 < PokeBattle_Move
+class PokeBattle_Move_133 < PokeBattle_HealingMove
+    def healRatio(_user); return 1.0; end
+
+    def pbMoveFailed?(user, _targets, show_message)
+        if user.effectActive?(:Trapping)
+            @battle.pbDisplay(_INTL("{1}'s HP is unable to gather any honey!", user.pbThis)) if show_message
+            return true
+        end
+        return super
+    end
+
+    def pbEffectGeneral(user)
+        super
+        user.applyEffect(:Trapping, 3)
+        user.applyEffect(:TrappingMove, :INFESTATION)
+        user.pointAt(:TrappingUser, user)
+
+        battle.pbDisplay(_INTL("{1} has been afflicted with an infestation!", b.pbThis))
+    end
 end
 
 #===============================================================================
-# (Not currently used.)
+# Heals a target ally for their entire health bar, with overheal. (Remold)
+# But the user must recharge next turn.
 #===============================================================================
-class PokeBattle_Move_134 < PokeBattle_Move
+class PokeBattle_Move_134 < PokeBattle_Move_0C2
+    def healingRatio(user); return 1.0; end
+
+    def pbFailsAgainstTarget?(_user, target, show_message)
+        unless target.canHeal?(true)
+            @battle.pbDisplay(_INTL("{1} is unaffected!", target.pbThis)) if show_message
+            return true
+        end
+        return false
+    end
+
+    def pbEffectAgainstTarget(user, target)
+        target.applyFractionalHealing(healingRatio(user), canOverheal: true)
+    end
+
+    def getEffectScore(user, target)
+        score = target.applyFractionalHealing(healingRatio(user),aiCheck: true, canOverheal: true)
+        score += super
+        return score
+    end
 end
 
 #===============================================================================
-# (Not currently used.)
+# Gives an ally an extra move this turn. (Primal Vigor)
 #===============================================================================
-class PokeBattle_Move_135 < PokeBattle_FrostbiteMove
+class PokeBattle_Move_135 < PokeBattle_HelpingMove
+    def initialize(battle, move)
+        super
+        @helpingEffect = :PrimalVigor
+    end
 end
 
 #===============================================================================

@@ -252,7 +252,7 @@ BattleHandlers::AbilityOnSwitchIn.add(:BADINFLUENCE,
   proc { |ability, battler, battle, aiCheck|
       next 0 if aiCheck
       battle.pbShowAbilitySplash(battler, ability)
-      battle.pbDisplay(_INTL("{1} is a bad influence! No one can heal!", battler.pbThis))
+      battle.pbDisplay(_INTL("{1} is a bad influence! Healing is reversed!", battler.pbThis))
       battle.pbHideAbilitySplash(battler)
   }
 )

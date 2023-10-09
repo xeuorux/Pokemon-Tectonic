@@ -144,9 +144,8 @@ class PokeBattle_Battler
         amt = healingCap - @hp if amt > @totalhp - @hp
         amt = 1 if amt < 1 && @hp < @totalhp
 
-        # Nerve Break effect
-        if effectActive?(:NerveBreak)
-            @battle.pbDisplay(_INTL("{1}'s healing is reversed because of their broken nerves!", pbThis)) if showMessage && !aiCheck
+        # Nerve Break, Bad Influence
+        if healingReversed?(showMessage && !aiCheck)
             amt *= -1
         end
 

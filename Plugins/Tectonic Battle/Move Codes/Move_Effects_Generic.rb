@@ -1015,7 +1015,7 @@ class PokeBattle_DrainMove < PokeBattle_Move
         drainAmount = damage * drainFactor(user, target)
         drainAmount *= 1.5 if user.hasActiveAbilityAI?(:ROOTED)
         drainAmount *= 1.3 if user.hasActiveItem?(:BIGROOT)
-        drainAmount *= -1 if target.hasActiveAbilityAI?(:LIQUIDOOZE) || user.effectActive?(:NerveBreak)
+        drainAmount *= -1 if target.hasActiveAbilityAI?(:LIQUIDOOZE) || user.healingReversed?
         score = (drainAmount * 2 / user.totalhp).floor
         score *= 2 if user.belowHalfHealth?
         return score

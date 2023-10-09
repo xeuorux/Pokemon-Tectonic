@@ -261,6 +261,7 @@ class PokeBattle_Battle
             # All balls but the beast ball have a 1/10 chance to catch Ultra Beasts
             catch_rate /= 10
         end
+        catch_rate = (catch_rate * 1.5).floor if ballMimicActive?
         return PokeBattle_Battle.captureThresholdCalcInternals(battler.status, battler.hp, battler.totalhp, catch_rate)
     end
 
@@ -290,3 +291,11 @@ class PokeBattle_Battle
         return y
     end
 end
+
+def ballMimicActive?
+    $Trainer.party.each do |partyMember|
+      next unless partyMember
+      return true if partyMember.hasAbility?(:BALLMIMIC)
+    end
+    return false
+  end

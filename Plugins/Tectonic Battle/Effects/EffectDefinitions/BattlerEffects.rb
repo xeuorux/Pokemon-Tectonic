@@ -1621,6 +1621,15 @@ GameData::BattleEffect.register_effect(:Battler, {
 })
 
 GameData::BattleEffect.register_effect(:Battler, {
+    :id => :PrimalVigor,
+    :real_name => "Extra Turn",
+    :resets_eor => true,
+    :apply_proc => proc do |battle, battler, value|
+        battle.pbDisplay(_INTL("{1} gained an extra attack this turn!", battler.pbThis))
+    end,
+})
+
+GameData::BattleEffect.register_effect(:Battler, {
     :id => :EmpoweredMoonlight,
     :real_name => "Stats Swapped Around",
 })

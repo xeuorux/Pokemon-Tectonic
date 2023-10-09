@@ -1258,7 +1258,7 @@ class PokeBattle_Move_5BE < PokeBattle_FixedDamageMove
         score *= 2.0 if user.hasActiveAbilityAI?(:GLOWSHROOM) && user.battle.moonGlowing?
         score *= 1.3 if user.hasActiveItem?(:BIGROOT)
         score *= 2 if user.belowHalfHealth?
-        score *= -1 if target.hasActiveAbilityAI?(:LIQUIDOOZE) || user.effectActive?(:NerveBreak)
+        score *= -1 if target.hasActiveAbilityAI?(:LIQUIDOOZE) || user.healingReversed?
         return score
     end
 end
