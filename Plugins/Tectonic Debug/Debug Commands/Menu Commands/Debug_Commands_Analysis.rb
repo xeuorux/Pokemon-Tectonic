@@ -64,6 +64,7 @@ DebugMenuCommands.register("replacetextinevents", {
 def replace_text_in_events(text_to_find,replacement_text)
     mapData = Compiler::MapData.new
     for id in mapData.mapinfos.keys.sort
+        changed = false
         map = mapData.getMap(id)
         next if !map || !mapData.mapinfos[id]
         mapName = mapData.mapinfos[id].name
