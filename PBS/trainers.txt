@@ -3692,6 +3692,34 @@ Pokemon = ZOROARK,58
     AbilityIndex = 0 # Illusion
     Item = DARKGEM
 #-------------------------------
+[YOUNGSTER,Buzim]
+Pokemon = JOLTEON,47
+    AbilityIndex = 1 # Needle Fur
+    Item = FOCUSSASH
+Pokemon = VAPOREON,47
+    AbilityIndex = 1 # Aqua Sneak
+    Item = AGILITYHERB
+Pokemon = LEAFEON,47
+    AbilityIndex = 1 # Reluctant Blade
+    Item = SHELLBELL
+Pokemon = FLAREON,47
+    AbilityIndex = 1 # Warmth Cycle
+    Item = LEFTOVERS
+#-------------------------------
+[LASS,Rovina]
+Pokemon = UMBREON,47
+    AbilityIndex = 1 # Secretion Secret
+    Item = LEFTOVERS
+Pokemon = ESPEON,47
+    AbilityIndex = 0 # Jasper Charge
+    Item = EJECTBUTTON
+Pokemon = SYLVEON,47
+    AbilityIndex = 1 # Dragon Slayer
+    Item = SHELLBELL
+Pokemon = GLACEON,47
+    AbilityIndex = 1 # Brilliant Flurry
+    Item = WATERBALLOON
+#-------------------------------
 [TUBER_F2,Hana]
 Pokemon = RATICATE,57
     AbilityIndex = 0 # Filthy
@@ -5900,10 +5928,10 @@ Pokemon = NIDOKING,59
 [SWIMMER_F,Cosmina]
 Pokemon = BARRASKEWDA,60
     AbilityIndex = 1 # Straight Ahead
-	Item = CHOICEBAND
+    Item = CHOICEBAND
 Pokemon = CORSOLA,60
     AbilityIndex = 1 # Persistent Growth
-	Item = LEFTOVERS
+    Item = LEFTOVERS
 Pokemon = HITMONLEE,60
     AbilityIndex = 0 # Leg Strength
 Pokemon = DUSTOX,60
