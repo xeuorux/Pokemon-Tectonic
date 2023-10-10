@@ -4022,7 +4022,7 @@ Type2 = PSYCHIC
 # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
 BaseStats = 85,50,55,95,115,115
 # Total = 515
-GenderRate = AlwaysFemale
+GenderRate = Female50Percent
 GrowthRate = Medium
 BaseEXP = 159
 EffortPoints = 0,0,0,0,2,0
@@ -7723,7 +7723,7 @@ Type2 = PSYCHIC
 # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
 BaseStats = 50,30,35,65,90,70
 # Total = 340
-GenderRate = AlwaysFemale
+GenderRate = Female50Percent
 GrowthRate = Medium
 BaseEXP = 61
 EffortPoints = 0,0,0,0,1,0
@@ -10192,7 +10192,7 @@ Type2 = ELECTRIC
 # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
 BaseStats = 65,67,75,85,103,95
 # Total = 490
-GenderRate = AlwaysMale
+GenderRate = Female50Percent
 GrowthRate = Erratic
 BaseEXP = 151
 EffortPoints = 0,0,0,1,0,0
@@ -10225,7 +10225,7 @@ Type2 = FAIRY
 # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
 BaseStats = 95,57,75,85,83,95
 # Total = 490
-GenderRate = AlwaysFemale
+GenderRate = Female50Percent
 GrowthRate = Fluctuating
 BaseEXP = 151
 EffortPoints = 0,0,0,1,0,0
@@ -13462,7 +13462,7 @@ Type2 = GRASS
 # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
 BaseStats = 95,85,105,66,85,105
 # Total = 541
-GenderRate = AlwaysFemale
+GenderRate = Female50Percent
 GrowthRate = Medium
 BaseEXP = 148
 EffortPoints = 0,0,0,0,0,2
@@ -13496,7 +13496,7 @@ Type2 = NORMAL
 # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
 BaseStats = 85,91,87,77,91,87
 # Total = 518
-GenderRate = AlwaysMale
+GenderRate = Female50Percent
 GrowthRate = Medium
 BaseEXP = 148
 EffortPoints = 0,1,0,0,1,0
@@ -20423,7 +20423,7 @@ Type1 = FLYING
 # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
 BaseStats = 70,103,40,60,37,40
 # Total = 350
-GenderRate = AlwaysMale
+GenderRate = Female50Percent
 GrowthRate = Slow
 BaseEXP = 70
 EffortPoints = 0,1,0,0,0,0
@@ -20457,7 +20457,7 @@ Type2 = FIGHTING
 # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
 BaseStats = 100,143,65,80,57,65
 # Total = 510
-GenderRate = AlwaysMale
+GenderRate = Female50Percent
 GrowthRate = Slow
 BaseEXP = 179
 EffortPoints = 0,2,0,0,0,0
@@ -20490,7 +20490,7 @@ Type2 = FLYING
 # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
 BaseStats = 70,55,75,60,45,65
 # Total = 370
-GenderRate = AlwaysFemale
+GenderRate = Female50Percent
 GrowthRate = Slow
 BaseEXP = 74
 EffortPoints = 0,0,1,0,0,0
@@ -20524,7 +20524,7 @@ Type2 = FLYING
 # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
 BaseStats = 110,65,105,80,55,95
 # Total = 510
-GenderRate = AlwaysFemale
+GenderRate = Female50Percent
 GrowthRate = Slow
 BaseEXP = 179
 EffortPoints = 0,0,0,0,2,0
@@ -27872,7 +27872,7 @@ Type2 = FAIRY
 # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
 BaseStats = 51,69,53,44,35,58
 # Total = 310
-GenderRate = AlwaysFemale
+GenderRate = Female50Percent
 GrowthRate = Slow
 BaseEXP = 53
 EffortPoints = 0,0,0,0,1,0
@@ -27906,7 +27906,7 @@ Type2 = FAIRY
 # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
 BaseStats = 67,86,75,49,40,89
 # Total = 406
-GenderRate = AlwaysFemale
+GenderRate = Female50Percent
 GrowthRate = Slow
 BaseEXP = 130
 EffortPoints = 0,0,0,0,2,0
@@ -27938,7 +27938,7 @@ Type2 = FAIRY
 # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
 BaseStats = 87,136,100,29,80,108
 # Total = 540
-GenderRate = AlwaysFemale
+GenderRate = Female50Percent
 GrowthRate = Slow
 BaseEXP = 255
 EffortPoints = 0,0,0,0,3,0
@@ -27969,7 +27969,7 @@ Type2 = FAIRY
 # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
 BaseStats = 45,65,50,50,55,40
 # Total = 305
-GenderRate = AlwaysMale
+GenderRate = Female50Percent
 GrowthRate = Medium
 BaseEXP = 53
 EffortPoints = 0,0,0,0,1,0
@@ -28003,7 +28003,7 @@ Type2 = FAIRY
 # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
 BaseStats = 80,80,75,70,65,55
 # Total = 425
-GenderRate = AlwaysMale
+GenderRate = Female50Percent
 GrowthRate = Medium
 BaseEXP = 130
 EffortPoints = 0,0,0,0,2,0
@@ -28035,7 +28035,7 @@ Type2 = FAIRY
 # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
 BaseStats = 95,120,95,75,65,75
 # Total = 525
-GenderRate = AlwaysMale
+GenderRate = Female50Percent
 GrowthRate = Medium
 BaseEXP = 255
 EffortPoints = 0,3,0,0,0,0
@@ -31835,7 +31835,7 @@ Type2 = PSYCHIC
 # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
 BaseStats = 105,118,95,70,52,70
 # Total = 510
-GenderRate = AlwaysMale
+GenderRate = Female50Percent
 GrowthRate = Slow
 BaseEXP = 179
 EffortPoints = 0,2,0,0,0,0
@@ -33330,7 +33330,7 @@ Type1 = GHOST
 # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
 BaseStats = 80,55,85,35,40,75
 # Total = 370
-GenderRate = AlwaysFemale
+GenderRate = Female50Percent
 GrowthRate = Slow
 BaseEXP = 74
 EffortPoints = 0,0,1,0,0,0
@@ -33364,7 +33364,7 @@ Type2 = POISON
 # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
 BaseStats = 110,75,110,50,60,105
 # Total = 510
-GenderRate = AlwaysFemale
+GenderRate = Female50Percent
 GrowthRate = Slow
 BaseEXP = 179
 EffortPoints = 0,0,0,0,2,0
