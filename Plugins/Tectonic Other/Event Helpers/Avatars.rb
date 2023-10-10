@@ -1,7 +1,3 @@
-class Game_Event < Game_Character
-	attr_accessor :opacity
-end
-
 def defeatBoss(item=nil,count=1,opacityStart=180,opacityTarget=0)
 	$PokemonGlobal.respawnPoint = nil
 

@@ -113,13 +113,3 @@ class Window_TextEntry_Keyboard_Terminal < Window_TextEntry
     Input.gets.each_char { |c| insert(c) }
   end
 end
-
-# Saving the last executed command
-class Game_Temp
-  attr_accessor :lastcommand
-
-  def lastcommand
-    @lastcommand = "" if !@lastcommand
-    return @lastcommand
-  end
-end

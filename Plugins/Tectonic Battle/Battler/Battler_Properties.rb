@@ -2,8 +2,8 @@ class PokeBattle_Battler
     # Fundamental to this object
     attr_reader   :battle
     attr_accessor :index, :pokemonIndex, :species, :type1, :type2, :ability_ids, :moves, :turnCount
-    attr_accessor  :gender, :iv, :attack, :spatk, :speed, :steps, :captured, :effects, :boss, :avatarPhase
-    attr_accessor  :extraMovesPerTurn, :empoweredTimer, :indicesTargetedThisRound, :indicesTargetedLastRound, :dmgMult,
+    attr_accessor  :gender, :iv, :steps, :captured, :effects, :boss, :avatarPhase
+    attr_accessor  :empoweredTimer, :indicesTargetedThisRound, :indicesTargetedLastRound, :dmgMult,
 :dmgResist
     attr_accessor  :participants, :lastAttacker, :lastFoeAttacker, :lastHPLost, :lastHPLostFromFoe
     attr_accessor  :lastMoveUsed, :lastMoveUsedType, :lastMoveUSedCategory
@@ -22,7 +22,8 @@ class PokeBattle_Battler
     # Complex accessors
     #=============================================================================
     attr_reader :level
-    attr_writer :defense, :spdef, :name
+    attr_writer :attack, :spatk, :speed, :defense, :spdef
+    attr_writer :name
 
     def level=(value)
         @level = value

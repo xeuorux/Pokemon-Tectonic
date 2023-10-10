@@ -321,8 +321,8 @@ def speedingUpTime?
 end
 
 class PokemonGlobalMetadata
-    attr_accessor :newFrameCount # Became float when using extra values
-    attr_accessor :extraYears
+    attr_writer :newFrameCount # Became float when using extra values
+    attr_writer :extraYears
 
     def addNewFrameCount
         return if UnrealTime::SWITCH_STOPS > 0 && $game_switches[UnrealTime::SWITCH_STOPS]

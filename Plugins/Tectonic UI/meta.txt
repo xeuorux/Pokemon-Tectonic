@@ -1,3 +1,0 @@
-Name         = Tectonic UI
-Credits      = Essentials v19 Team,Zeu
-Scripts		 = Objects and windows/TilingCardsMenu.rb

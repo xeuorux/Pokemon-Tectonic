@@ -1,6 +1,7 @@
 ﻿Name       = Tileset Rearranger
 Version    = 1.2
 Credits    = Maruno
+Requires   = Tectonic Graphics
 Link       = https://reliccastle.com/resources/794/
 #====================================================================
 # Tileset Rearranger

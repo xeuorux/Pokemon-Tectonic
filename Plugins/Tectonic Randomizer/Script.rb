@@ -418,10 +418,3 @@ def effectiveBST(species)
     ret -= 50 if %i[ARCHEN ARCHEOPS SLAKOTH SLAKING REGIGIGAS]
     return ret
 end
-
-def pbBaseStatTotal(species)
-    baseStats = GameData::Species.get(species).base_stats
-    ret = 0
-    baseStats.each { |_k, v| ret += v }
-    return ret
-end

@@ -500,4 +500,78 @@ class Interpreter
     def setSellPrice(item, sell_price)
         setPrice(item, -1, sell_price)
     end
+
+    SCROLL_SPEED_DEFAULT = 4
+
+
+  #-----------------------------------------------------------------------------
+  # * Map Autoscroll to Coordinates
+  #     x     : x coordinate to scroll to and center on
+  #     y     : y coordinate to scroll to and center on
+  #     speed : (optional) scroll speed (from 1-6, default being 4)
+  #-----------------------------------------------------------------------------
+  def autoscroll(x,y,speed=SCROLL_SPEED_DEFAULT)
+    if $game_map.scrolling?
+      return false
+    elsif !$game_map.valid?(x,y)
+      print 'Map Autoscroll: given x,y is invalid'
+      return command_skip
+    elsif !(1..6).include?(speed)
+      print 'Map Autoscroll: invalid speed (1-6 only)'
+      return command_skip
+    end
+    center_x = (Graphics.width/2 - Game_Map::TILE_WIDTH/2) * 4    # X coordinate in the center of the screen
+    center_y = (Graphics.height/2 - Game_Map::TILE_HEIGHT/2) * 4   # Y coordinate in the center of the screen
+    max_x = ($game_map.width - Graphics.width*1.0/Game_Map::TILE_WIDTH) * 4 * Game_Map::TILE_WIDTH
+    max_y = ($game_map.height - Graphics.height*1.0/Game_Map::TILE_HEIGHT) * 4 * Game_Map::TILE_HEIGHT
+    count_x = ($game_map.display_x - [0,[x*Game_Map::REAL_RES_X-center_x,max_x].min].max)/Game_Map::REAL_RES_X
+    count_y = ($game_map.display_y - [0,[y*Game_Map::REAL_RES_Y-center_y,max_y].min].max)/Game_Map::REAL_RES_Y
+    if !@diag
+      @diag = true
+      dir = nil
+      if count_x > 0
+        if count_y > 0
+          dir = 7
+        elsif count_y < 0
+          dir = 1
+        end
+      elsif count_x < 0
+        if count_y > 0
+          dir = 9
+        elsif count_y < 0
+          dir = 3
+        end
+      end
+      count = [count_x.abs,count_y.abs].min
+    else
+      @diag = false
+      dir = nil
+      if count_x != 0 && count_y != 0
+        return false
+      elsif count_x > 0
+        dir = 4
+      elsif count_x < 0
+        dir = 6
+      elsif count_y > 0
+        dir = 8
+      elsif count_y < 0
+        dir = 2
+      end
+      count = count_x != 0 ? count_x.abs : count_y.abs
+    end
+    $game_map.start_scroll(dir, count, speed) if dir != nil
+    if @diag
+      return false
+    else
+      return true
+    end
+  end
+
+  #-----------------------------------------------------------------------------
+  # * Map Autoscroll (to Player)
+  #     speed : (optional) scroll speed (from 1-6, default being 4)
+  #-----------------------------------------------------------------------------
+  def autoscroll_player(speed=SCROLL_SPEED_DEFAULT)
+    autoscroll($game_player.x,$game_player.y,speed)
+  end
 end

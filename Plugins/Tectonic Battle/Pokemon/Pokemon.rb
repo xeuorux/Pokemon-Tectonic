@@ -76,6 +76,8 @@ class Pokemon
     # @return [Integer] this Pokémon's personal ID
     attr_accessor :personalID
 
+    attr_accessor :assignedPosition
+
     attr_accessor :boss
     attr_accessor :hpMult
     attr_accessor :dmgMult

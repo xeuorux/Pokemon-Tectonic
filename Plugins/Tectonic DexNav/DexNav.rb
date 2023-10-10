@@ -492,66 +492,6 @@ def getRandomMentorMove(species)
 	return moves.sample
 end
 
-
-class PokemonSpeciesIconSprite < SpriteWrapper
-  attr_reader :silhouette
-
-  def initialize(species,viewport=nil)
-    super(viewport)
-    @species      = species
-    @gender       = 0
-    @form         = 0
-    @shiny        = false
-    @numFrames    = 0
-    @currentFrame = 0
-    @counter      = 0
-	@silhouette   = false
-    refresh
-  end
-  
-  def silhouette=(value)
-    @silhouette = value
-    refresh
-  end
-
-  def refresh
-    @animBitmap.dispose if @animBitmap
-    @animBitmap = nil
-    bitmapFileName = GameData::Species.icon_filename(@species, @form, @gender, @shiny)
-    return if !bitmapFileName
-    @animBitmap = AnimatedBitmap.new(bitmapFileName)
-    self.bitmap = @animBitmap.bitmap
-	if @silhouette
-		self.bitmap = @animBitmap.bitmap.clone
-		for x in 0..bitmap.width
-			for y in 0..bitmap.height
-			  bitmap.set_pixel(x,y,Color.new(200,200,200,255)) if bitmap.get_pixel(x,y).alpha > 0
-			end
-		end
-	end
-    self.src_rect.width  = @animBitmap.height
-    self.src_rect.height = @animBitmap.height
-    @numFrames = @animBitmap.width / @animBitmap.height
-    @currentFrame = 0 if @currentFrame>=@numFrames
-    changeOrigin
-  end
-
-  def update
-    return if !@animBitmap
-	return if @silhouette
-    super
-    @animBitmap.update
-    self.bitmap = @animBitmap.bitmap
-    # Update animation
-    @counter += 1
-    if @counter>=self.counterLimit
-      @currentFrame = (@currentFrame+1)%@numFrames
-      @counter = 0
-    end
-    self.src_rect.x = self.src_rect.width*@currentFrame
-  end 
-end
-
 def incrementDexNavCounts(caught)
 	$PokemonGlobal.caughtCountsPerMap = {} if !$PokemonGlobal.caughtCountsPerMap
 	if caught

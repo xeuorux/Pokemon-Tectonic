@@ -6,6 +6,12 @@ end
 # Blacking out animation
 #===============================================================================
 def pbStartOver(_gameover = false)
+    if $catching_minigame.active?
+        $Trainer.heal_party
+        $catching_minigame.endMinigame
+        return
+    end
+
     $Trainer.heal_party
     respawnedYet = false
     unless $PokemonGlobal.respawnPoint.nil?

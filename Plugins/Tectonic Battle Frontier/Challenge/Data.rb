@@ -65,15 +65,6 @@ def pbBattleChallenge
   #===============================================================================
   #
   #===============================================================================
-  class Game_Event
-    def pbInChallenge?
-      return pbBattleChallenge.pbInChallenge?
-    end
-  end
-  
-  #===============================================================================
-  #
-  #===============================================================================
   def pbBattleChallengeGraphic(event)
     nextTrainer = pbBattleChallenge.nextTrainer
     bttrainers = pbGetBTTrainers(pbBattleChallenge.currentChallenge)
