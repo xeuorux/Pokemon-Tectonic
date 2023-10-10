@@ -11,16 +11,6 @@ Events.onStepTaken += proc {
   end
 }
 
-def properlySave
-	if $storenamefilesave.nil?
-		count = FileSave.count
-		SaveData.changeFILEPATH(FileSave.name(count+1))
-		$storenamefilesave = FileSave.name(count+1)
-	end
-	setProperSavePath
-	return Game.save
-end
-
 def autoSave
 	return if $PokemonSystem.autosave == 1
 	return if !savingAllowed?()
@@ -55,19 +45,5 @@ class AutoSaveIcon
 		pbFadeOutAndHide(@sprites) {pbUpdate}
 		pbDisposeSpriteHash(@sprites)
 		@viewport.dispose
-	end
-end
-
-def savingTutorial
-	lines = [
-		"It's important that you save your game frequently!",
-		"You can quicksave by pressing the \"AUX1\" key.",
-		"If you don't know what that is, press the \\c[2]F1\\c[0] key to check your control bindings.",
-		"In fact, you should do that any time that you see a button that you don't understand.",
-		"Also, if you don't want to worry about saving manually, you can also turn on \\c[2]autosave\\c[0] in your options menu.",
-		"Hope all that was helpful, dearie!"
-	]
-	lines.each do |line|
-		pbMessage(_INTL("#{line}"))
 	end
 end

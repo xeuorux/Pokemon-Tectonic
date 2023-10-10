@@ -541,6 +541,8 @@ def pbChooseLanguage
     return pbShowCommands(nil, commands)
 end
 
+DIR_SCREENSHOTS = "Screenshots"
+
 def pbScreenCapture(label = nil, show_message = false)
 	t = Time.now
   	filestart = t.strftime("[%Y-%m-%d] %H_%M_%S.%L")

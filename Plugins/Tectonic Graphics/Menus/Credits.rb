@@ -27,6 +27,9 @@ princessroxie<s>
 
 {INSERTS_PLUGIN_CREDITS_DO_NOT_REMOVE}
 
+Multiple Save Plugin
+bo4p5687<s>mej71
+
 Tilesheets
 Kyle Dove (Kymotonian)<s>Speedialga
 Sagaxxy<s>Magiscarf

@@ -606,17 +606,6 @@ class PokeBattle_Move_633 < PokeBattle_Move_02E
     end
 end
 
-# Empowered Stand Together
-class PokeBattle_Move_633 < PokeBattle_Move_554
-    include EmpoweredMove
-
-    def pbEffectGeneral(user)
-        summonAvatar(user, :TYROGUE, _INTL("#{user.pbThis} joins with an ally!"))
-        super
-        transformType(user, :FIGHTING)
-    end
-end
-
 # Empowered Harmonize
 class PokeBattle_Move_634 < PokeBattle_Move_555
     include EmpoweredMove
@@ -625,6 +614,17 @@ class PokeBattle_Move_634 < PokeBattle_Move_555
         summonAvatar(user, :GOSSIFLEUR, _INTL("#{user.pbThis} connects with their friend!"))
         super
         transformType(user, :GRASS)
+    end
+end
+
+# Empowered Stand Together
+class PokeBattle_Move_635 < PokeBattle_Move_554
+    include EmpoweredMove
+
+    def pbEffectGeneral(user)
+        summonAvatar(user, :TYROGUE, _INTL("#{user.pbThis} joins with an ally!"))
+        super
+        transformType(user, :FIGHTING)
     end
 end
 
