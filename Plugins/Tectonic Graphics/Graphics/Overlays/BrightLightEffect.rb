@@ -241,20 +241,20 @@ class LightEffect_Totem < LightEffect
       return if !@light || !@event
       super
 
-      shouldBeBlue = pbGetSelfSwitch(@event.id,'A') || @event.include?("blue")
+      shouldBeBlue = pbGetSelfSwitch(@event.id,'A') || @event.name.include?("blue")
 
       if !@summonTotem && shouldBeBlue
         echoln("Setting this totem light to the summon version since the #{@event.name}'s A switch is on")
         @light.setBitmap("Graphics/Pictures/ALE_S")
         @summonTotem = true
         @opacityCounter = 0
-        opacifyWavelength = 4.0
+        @opacifyWavelength = 4.0
       elsif @summonTotem && !shouldBeBlue
         echoln("Setting this totem light to the non-summon version since the #{@event.name}'s A switch is off")
         @light.setBitmap("Graphics/Pictures/ALE")
         @summonTotem = false
         @opacityCounter = 0
-        opacifyWavelength = 8.0
+        @opacifyWavelength = 8.0
       end
 
       @opacityCounter += 1
