@@ -1597,23 +1597,4 @@ sp.form) && !Settings::DEX_SHOWS_ALL_FORMS
         end
         return false
     end
-
-    def pbSceneBrief
-        GameData::Species.play_cry_from_species(@species, @form)
-        loop do
-            Graphics.update
-            Input.update
-            pbUpdate
-            if Input.trigger?(Input::A)
-                pbSEStop
-                GameData::Species.play_cry_from_species(@species, @form)
-            elsif Input.trigger?(Input::B)
-                pbPlayCloseMenuSE
-                break
-            elsif Input.trigger?(Input::C)
-                pbPlayDecisionSE
-                break
-            end
-        end
-    end
 end

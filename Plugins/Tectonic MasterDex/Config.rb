@@ -1,6 +1,8 @@
 # Pokemon are assumed to be at this level for calculating EHP
 EHP_LEVEL = 50
 
+SEARCHES_STACK = true
+
 MAPS_AVAILABLE_BY_CAP = {
 	15 =>
 		[

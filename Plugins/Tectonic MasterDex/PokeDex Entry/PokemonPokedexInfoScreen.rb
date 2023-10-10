@@ -1,4 +1,8 @@
 class PokemonPokedexInfoScreen
+  def initialize(scene)
+    @scene = scene
+  end
+
   def pbStartScreen(dexlist,index,region,linksEnabled=false)
     @scene.pbStartScene(dexlist,index,region,false,linksEnabled)
     ret = @scene.pbScene

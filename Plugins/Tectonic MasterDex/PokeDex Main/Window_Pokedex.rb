@@ -1,5 +1,8 @@
+#===============================================================================
+#
+#===============================================================================
 class Window_Pokedex < Window_DrawableCommand
-    def initialize(x,y,width,height,viewport)
+  def initialize(x,y,width,height,viewport)
         @commands = []
         super(x,y,width,height,viewport)
         @selarrow     = AnimatedBitmap.new("Graphics/Pictures/Pokedex/cursor_list")
@@ -11,7 +14,12 @@ class Window_Pokedex < Window_DrawableCommand
         self.windowskin  = nil
     end
 
-    def dispose
+  def commands=(value)
+    @commands = value
+    refresh
+  end
+
+  def dispose
         @selarrow.dispose
         @pokeballOwn.dispose
         @pokeballSeen.dispose
@@ -19,7 +27,15 @@ class Window_Pokedex < Window_DrawableCommand
         super
     end
 
-	def drawItem(index,_count,rect)
+  def species
+    return (@commands.length==0) ? 0 : @commands[self.index][0]
+  end
+
+  def itemCount
+    return @commands.length
+  end
+
+  def drawItem(index,_count,rect)
 		return if index>=self.top_row+self.page_item_max
 		rect = Rect.new(rect.x+16,rect.y,rect.width-16,rect.height)
 		species     = @commands[index][0]
@@ -42,4 +58,23 @@ class Window_Pokedex < Window_DrawableCommand
         pbCopyBitmap(self.contents,@star.bitmap,rect.x+200,rect.y+12)
     end
 	end
+
+  def refresh
+    @item_max = itemCount
+    dwidth  = self.width-self.borderX
+    dheight = self.height-self.borderY
+    self.contents = pbDoEnsureBitmap(self.contents,dwidth,dheight)
+    self.contents.clear
+    for i in 0...@item_max
+      next if i<self.top_item || i>self.top_item+self.page_item_max
+      drawItem(i,@item_max,itemRect(i))
+    end
+    drawCursor(self.index,itemRect(self.index))
+  end
+
+  def update
+    super
+    @uparrow.visible   = false
+    @downarrow.visible = false
+  end
 end

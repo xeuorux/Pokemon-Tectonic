@@ -1,4 +1,4 @@
 Name         = Tectonic Graphics
 Credits      = Essentials v19 Team,Zeu
 Requires	 = Tectonic Game Data
-Scripts		 = Objects and windows/TilingCardsMenu.rb,Sprites/Pokemon Sprites/PokemonSprite.rb,Menus/PC/PokeCenterPC.rb
+Scripts		 = Objects and windows/TilingCardsMenu.rb,Sprites/Pokemon Sprites/PokemonSprite.rb,Menus/PC/PokeCenterPC.rb,Menus/Pause Menu (Essentials)/PokemonPauseMenu.rb
