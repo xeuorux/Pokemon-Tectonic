@@ -894,6 +894,14 @@ class PokeBattle_Battler
             @battle.pbDisplay(_INTL("{1}'s healing is reversed because of their broken nerves!", pbThis)) if showMessages
             return true
         end
+        if hasActiveAbility?(:AUTUMNAL)
+            if showMessages
+                showMyAbilitySplash(:AUTUMNAL)
+                @battle.pbDisplay(_INTL("{1}'s healing is reversed!", pbThis))
+                hideMyAbilitySplash
+            end
+            return true
+        end
         badInfluencer = @battle.pbCheckOpposingAbility(:BADINFLUENCE,@index)
         if badInfluencer
             if showMessages

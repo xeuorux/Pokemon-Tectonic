@@ -242,3 +242,16 @@ GameData::BattleEffect.register_effect(:Field, {
     :id => :Bliss,
     :real_name => "Bliss",
 })
+
+GameData::BattleEffect.register_effect(:Field, {
+    :id => :HerbalPatch,
+    :real_name => "Herbal Patch",
+    :type => :Integer,
+    :ticks_down => true,
+    :eor_proc => proc do |battle, value|
+        battle.eachBattler do |b|
+            next unless b.canHeal?
+            b.applyFractionalHealing(1.0/8.0, customMessage: _INTL("{1} was healed by the Herbal Patch!",b.pbThis))
+        end
+    end,
+})

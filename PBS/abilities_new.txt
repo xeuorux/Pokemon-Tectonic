@@ -465,3 +465,7 @@
 1464,RUSHED,Rushed,"Boosts Speed by 50%, but the Pokémon is hurt for 1/10th HP each turn."
 1465,BURDENED,Burdened,"Receives 33% less move damage, but the Pokémon is hurt for 1/10th HP each turn."
 1466,BALLMIMIC,Ball Mimic,"Your Poké Balls are 50% more effective."
+1467,REAPWHATYOUSOW,Reap What You Sow,"If the Pokémon faints from Perish Song, it is revived in a new form."
+1468,UNCANNYLUCK,Uncanny Luck,"If an attacker would activate a random added effect on the Pokémon, that effect is placed on the attacker instead."
+1469,LONGRECEIVER,Long Receiver,"Copies the Ability of the Pokémon it switches in to replace."
+1470,AUTUMNAL,Autumnal,"Healing on the Pokémon is reversed."

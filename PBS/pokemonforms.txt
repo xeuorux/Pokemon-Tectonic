@@ -1346,7 +1346,7 @@ BattlerEnemyY = 17
 [MAROMATISSE,1]
 FormName = Harvest
 BaseStats = 120,50,81,68,125,81
-Abilities = BADINFLUENCE
+Abilities = AUTUMNAL
 BattlerPlayerY = 20
 BattlerEnemyX = 0
 BattlerEnemyY = 24

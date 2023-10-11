@@ -5975,7 +5975,7 @@ Pokemon = DARMANITAN,60
 #-------------------------------
 [DOCTOR,Renaldo]
 Pokemon = MAROMATISSE,60
-    AbilityIndex = 0 # Perish Body
+    AbilityIndex = 0 # Reap What You Sow
     Item = LEFTOVERS
 Pokemon = SHUCKLE,60
     AbilityIndex = 1 # Sticky Mold
@@ -6765,7 +6765,7 @@ Pokemon = MMUSHARNA,70
 Pokemon = BOLTUND,70
     AbilityIndex = 0 # Strong Jaw
 Pokemon = PASSIMIAN,70
-    AbilityIndex = 0 # Receiver
+    AbilityIndex = 0 # Long Receiver
 Pokemon = MUDSDALE,70
     AbilityIndex = 1 # Stamina
     Item = LEFTOVERS

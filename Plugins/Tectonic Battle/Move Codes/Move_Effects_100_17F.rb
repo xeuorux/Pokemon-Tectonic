@@ -1314,7 +1314,7 @@ class PokeBattle_Move_133 < PokeBattle_HealingMove
         user.applyEffect(:TrappingMove, :INFESTATION)
         user.pointAt(:TrappingUser, user)
 
-        battle.pbDisplay(_INTL("{1} has been afflicted with an infestation!", b.pbThis))
+        battle.pbDisplay(_INTL("{1} has been afflicted with an infestation!", user.pbThis))
     end
 end
 
@@ -1355,15 +1355,49 @@ class PokeBattle_Move_135 < PokeBattle_HelpingMove
 end
 
 #===============================================================================
-# (Not currently used.)
+# Numbs the target and reduces their attacking stats by 1 step each. (Heaven's Eyes)
 #===============================================================================
-class PokeBattle_Move_136 < PokeBattle_Move
+class PokeBattle_Move_136 < PokeBattle_NumbMove
+    def pbFailsAgainstTarget?(user, target, show_message)
+        if  !target.canNumb?(user, false, self) &&
+            !target.pbCanLowerStatStep?(:ATTACK, user, self) &&
+            !target.pbCanLowerStatStep?(:SPECIAL_ATTACK, user, self)
+
+            @battle.pbDisplay(_INTL("But it failed, since #{target.pbThis(true)} can't be numbed or have either of its attacking stats lowered!")) if show_message
+            return true
+        end
+        return false
+    end
+
+    def pbEffectAgainstTarget(user, target)
+        return if damagingMove?
+        target.applyNumb if target.canNumb?(user, false, self)
+        target.pbLowerMultipleStatSteps(ATTACKING_STATS_1, user, move: self)
+    end
 end
 
 #===============================================================================
-# (Not currently used.)
+# Heals every active battler by 1/8th of their HP for the next 5 turns. (Herbal Patch)
 #===============================================================================
 class PokeBattle_Move_137 < PokeBattle_Move
+    def pbEffectGeneral(_user)
+        @battle.field.applyEffect(:HerbalPatch, 5) unless @battle.field.effectActive?(:HerbalPatch)
+    end
+
+    def pbMoveFailed?(_user, _targets, show_message)
+        return false if damagingMove?
+        if @battle.field.effectActive?(:HerbalPatch)
+            if show_message
+                @battle.pbDisplay(_INTL("But it failed, since the field is already shrouded in Grey Mist!"))
+            end
+            return true
+        end
+        return false
+    end
+
+    def getEffectScore(user, _target)
+        return 100
+    end
 end
 
 #===============================================================================
@@ -1379,9 +1413,20 @@ class PokeBattle_Move_138 < PokeBattle_TargetMultiStatUpMove
 end
 
 #===============================================================================
-# (Not currently used)
+# Forces both the user and the target to switch out. (Stink Cover)
 #===============================================================================
-class PokeBattle_Move_139 < PokeBattle_Move
+class PokeBattle_Move_139 < PokeBattle_Move_0EB
+    def pbSwitchOutTargetsEffect(user, targets, numHits, switchedBattlers)
+        return if numHits == 0
+        targets.push(user)
+        forceOutTargets(user, targets, switchedBattlers, true, false)
+    end
+
+    def getTargetAffectingEffectScore(user, target)
+        score = super
+        score += getSwitchOutEffectScore(user)
+        return score
+    end
 end
 
 #===============================================================================
@@ -2017,9 +2062,22 @@ class PokeBattle_Move_155 < PokeBattle_ProtectMove
 end
 
 #===============================================================================
-# (Not currently used)
+# User is protected against damaging moves this round. Disables the last used move
+# of the attacker for 3 turns (Quarantine)
 #===============================================================================
-class PokeBattle_Move_156 < PokeBattle_Move
+class PokeBattle_Move_156 < PokeBattle_ProtectMove
+    def initialize(battle, move)
+        super
+        @effect = :Quarantine
+    end
+
+    def getEffectScore(user, target)
+        score = super
+        user.eachPredictedProtectHitter do |b|
+            score += getDisableEffectScore(target, 3)
+        end
+        return score
+    end
 end
 
 #===============================================================================

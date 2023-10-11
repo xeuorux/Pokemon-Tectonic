@@ -1586,10 +1586,7 @@ class PokeBattle_Move_0B9 < PokeBattle_Move
     end
 
     def getTargetAffectingEffectScore(_user, target)
-        return 0 if target.hasActiveAbilityAI?(:MENTALBLOCK)
-        score = 15 * @disableTurns
-        score *= 1.5 if @battle.pbIsTrapped?(target.index)
-        return score
+        return getDisableEffectScore(target, @disableTurn)
     end
 end
 
@@ -2581,39 +2578,9 @@ class PokeBattle_Move_0DB < PokeBattle_Move
 end
 
 #===============================================================================
-# Seeds the target. Seeded Pokémon lose 1/8 of max HP at the end of each round,
-# and the Pokémon in the user's position gains the same amount. (old!Leech Seed)
+# Not currently used.
 #===============================================================================
 class PokeBattle_Move_0DC < PokeBattle_Move
-    def pbFailsAgainstTarget?(_user, target, show_message)
-        if target.effectActive?(:LeechSeed)
-            @battle.pbDisplay(_INTL("But it failed, since #{target.pbThis(true)} was already seeded!")) if show_message
-            return true
-        end
-        if target.pbHasType?(:GRASS)
-            if show_message
-                @battle.pbDisplay(_INTL("It doesn't affect {1} since it's a Grass-type...",
-  target.pbThis(true)))
-            end
-            return true
-        end
-        return false
-    end
-
-    def pbMissMessage(_user, target)
-        @battle.pbDisplay(_INTL("{1} evaded the attack!", target.pbThis))
-        return true
-    end
-
-    def pbEffectAgainstTarget(user, target)
-        target.pointAt(:LeechSeed, user)
-    end
-
-    def getEffectScore(user, _target)
-        score = 100
-        score += 20 if user.firstTurn?
-        return score
-    end
 end
 
 #===============================================================================

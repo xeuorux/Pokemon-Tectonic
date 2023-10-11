@@ -165,7 +165,7 @@ user.pbThis(true)))
         if user.effectActive?(:ChargeExpended)
             user.disableEffect(:Charge)
         end
-        # Pokémon switching caused by Roar, Whirlwind, Circle Throw, Dragon Tail
+        # Pokémon switching caused by Roar, Whirlwind, Discourage, Dragon Tail
         move.pbSwitchOutTargetsEffect(user, targets, numHits, switchedBattlers)
         # Target's item, user's item, target's ability (all negated by Sheer Force)
         if user.hasActiveAbility?(:SHEERFORCE) && move.randomEffect?

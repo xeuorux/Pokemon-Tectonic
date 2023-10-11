@@ -1119,24 +1119,7 @@ class PokeBattle_Move_53F < PokeBattle_Move
         return if @battle.wildBattle?
         return if user.fainted?
 
-        roarSwitched = []
-        targets.each do |b|
-            next if b.fainted? || b.damageState.substitute
-            next if b.effectActive?(:Ingrain)
-            next if b.hasActiveAbility?(:SUCTIONCUPS) && !@battle.moldBreaker
-            newPkmn = @battle.pbGetReplacementPokemonIndex(b.index, true) # Random
-            next if newPkmn < 0
-            @battle.pbRecallAndReplace(b.index, newPkmn, true)
-            @battle.pbDisplay(_INTL("{1} was dragged out!", b.pbThis))
-            @battle.pbClearChoice(b.index) # Replacement Pokémon does nothing this round
-            roarSwitched.push(b.index)
-        end
-        if roarSwitched.length > 0
-            @battle.moldBreaker = false if roarSwitched.include?(user.index)
-            @battle.pbPriority(true).each do |b|
-                b.pbEffectsOnSwitchIn(true) if roarSwitched.include?(b.index)
-            end
-        end
+        forceOutTargets(user,targets,[],true)
     end
 
     def getEffectScore(user, target)

@@ -35,6 +35,7 @@ class PokeBattle_Battler
         eachActiveAbility do |ability|
             BattleHandlers.triggerAbilityOnSwitchOut(ability, self, @battle, false)
         end
+        position.applyEffect(:PassingAbility, @pokemonIndex) if abilityActive?
         # Caretaker bonus
         pbRecoverHP(@totalhp / 10.0, false, false, false) if hasTribeBonus?(:CARETAKER) && !fainted?
         # Reset form

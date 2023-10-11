@@ -135,7 +135,7 @@ class PokeBattle_Scene
     end
     
     def animateIntroNewAvatar(battlerIndexNew)
-      # Animation of new pokemon appearing
+      # Animation of databox appearing
       dataBoxAnim = DataBoxAppearAnimation.new(@sprites, @viewport, battlerIndexNew)
       @animations.push(dataBoxAnim)
       # Set up wild Pokémon returning to normal colour and playing intro
@@ -143,7 +143,18 @@ class PokeBattle_Scene
       @animations.push(BattleIntroAnimationSolo.new(@sprites, @viewport, battlerIndexNew))
       # Play all the animations
       pbUpdate while inPartyAnimation?
-  end
+    end
+
+    def reviveBattler(idxBattler)
+      # Animation of databox appearing
+      dataBoxAnim = DataBoxAppearAnimation.new(@sprites, @viewport, idxBattler)
+      @animations.push(dataBoxAnim)
+      # Animation of new pokemon reviving
+      reviveAnimation = PokemonReviveAnimation.new(@sprites, @viewport, @battle.battlers[idxBattler])
+      @animations.push(reviveAnimation)
+      # Play all the animations
+      pbUpdate while inPartyAnimation?
+    end
   
     #=============================================================================
     # Animates a Pokémon being recalled into its Poké Ball and its data box hiding

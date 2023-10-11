@@ -784,9 +784,18 @@ GameData::BattleEffect.register_effect(:Battler, {
             battle.pbDisplay(_INTL("{1} heard the Perish Song! It will faint in {2} turns!", battler.pbThis, value))
         end
     end,
-    :expire_proc => proc do |_battle, battler|
+    :expire_proc => proc do |battle, battler|
         battler.pbReduceHP(battler.hp)
         battler.pbFaint if battler.fainted?
+        if battler.hasActiveAbility?(:REAPWHATYOUSOW, true) &&
+                battler.countsAs?(:MAROMATISSE) &&
+                battler.form == 0
+            battler.showMyAbilitySplash(:REAPWHATYOUSOW)
+            battler.hp = battler.totalhp
+            battler.pbChangeForm(1,_INTL("{1} begins the harvest!",battler.pbThis))
+            battle.scene.reviveBattler(battler.index)
+            battler.hideMyAbilitySplash
+        end
     end,
 })
 
@@ -1947,6 +1956,20 @@ GameData::BattleEffect.register_effect(:Battler, {
     :protection_info => {
         :hit_proc => proc do |user, target, move, battle|
             battle.forceUseMove(target, :GRANITEHEAD, user.index)
+        end,
+        :does_negate_proc => proc do |_user, _target, move, _battle|
+            move.damagingMove?
+        end,
+    },
+})
+
+GameData::BattleEffect.register_effect(:Battler, {
+    :id => :Quarantine,
+    :real_name => "Quarantine",
+    :resets_eor	=> true,
+    :protection_info => {
+        :hit_proc => proc do |user, target, move, battle|
+            target.applyEffect(:Disable,3) if target.canBeDisabled?(true,move)
         end,
         :does_negate_proc => proc do |_user, _target, move, _battle|
             move.damagingMove?

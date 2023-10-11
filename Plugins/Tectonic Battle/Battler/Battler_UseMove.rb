@@ -975,7 +975,14 @@ user.pbThis))
                 chance = move.pbAdditionalEffectChance(user, b, move.calcType)
                 next if chance <= 0
                 if @battle.pbRandom(100) < chance && move.canApplyRandomAddedEffects?(user,b,true)
-                    move.pbAdditionalEffect(user, b)
+                    if b.hasActiveAbility?(:UNCANNYLUCK)
+                        b.showMyAbilitySplash(:UNCANNYLUCK)
+                        @battle.pbDisplay(_INTL("{1}'s additional effect was bounced back!", move.name))
+                        move.pbAdditionalEffect(user, user)
+                        b.hideMyAbilitySplash
+                    else
+                        move.pbAdditionalEffect(user, b)
+                    end
                 end
             end
             # Additional effect ensuring Herb consume animation/message

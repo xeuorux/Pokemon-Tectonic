@@ -136,6 +136,26 @@ GameData::BattleEffect.register_effect(:Position, {
 })
 
 GameData::BattleEffect.register_effect(:Position, {
+    :id => :PassingAbility,
+    :real_name => "PassingAbility",
+    :info_displayed => false,
+    :type => :PartyPosition,
+    :swaps_with_battlers => true,
+    :entry_proc => proc do |battle, _index, position, battler|
+        if battler.hasActiveAbility?(:LONGRECEIVER)
+            abilityPasser = battle.pbThisEx(battler.index, position.effects[:PassingAbility])
+            unless battler.hasAbility?(abilityPasser.ability)
+                battler.showMyAbilitySplash(:LONGRECEIVER)
+                battle.pbDisplay(_INTL("{1} passes its ability to {2}!", abilityPasser, battler.pbThis(true)))
+                battler.addAbility(abilityPasser.ability)
+                position.disableEffect(:PassingAbility)
+                battler.hideMyAbilitySplash
+            end
+        end
+    end,
+})
+
+GameData::BattleEffect.register_effect(:Position, {
     :id => :AllyCushion,
     :real_name => "Ally Cushioning",
     :type => :PartyPosition,

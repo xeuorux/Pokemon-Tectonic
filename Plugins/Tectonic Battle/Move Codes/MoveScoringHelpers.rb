@@ -1,4 +1,4 @@
-DOWNSIDE_ABILITIES = %i[SLOWSTART PRIMEVALSLOWSTART DEFEATIST TRUANT]
+DOWNSIDE_ABILITIES = %i[SLOWSTART PRIMEVALSLOWSTART DEFEATIST TRUANT AUTUMNAL]
 
 STATUS_UPSIDE_ABILITIES = %i[GUTS AUDACITY MARVELSCALE MARVELSKIN QUICKFEET]
 
@@ -872,5 +872,13 @@ def getGravityEffectScore(user, duration)
 
         score += bScore
     end
+    return score
+end
+
+def getDisableEffectScore(target, duration)
+    return 0 if target.hasActiveAbilityAI?(:MENTALBLOCK)
+    return 0 unless target.canBeDisabled?
+    score = 15 * duration
+    score *= 1.5 if target.battle.pbIsTrapped?(target.index)
     return score
 end

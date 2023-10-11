@@ -123,3 +123,4 @@
 3122,EXOADAPTION,Exo-Adaption,"User heals by 25% after taking a special attack."
 3123,EGOIST,Egoist,"Fighting-type moves have +1 priority."
 3124,BALLFETCH,Ball Fetch,"Fetches the Poké Ball from the first failed throw."
+3125,RECEIVER,Receiver,"Copies the Ability of a defeated ally."

@@ -521,3 +521,7 @@
 1520,HONEYSLATHER,Honey Slather,133,0,GHOST,Status,0,5,0,User,0,CanSnatch,"The user uses honey to fully restore their HP. However, this lures swarming insects, trapping and damaging the user for three turns.",RECOVER
 1521,REMOLD,Remold,134,0,GROUND,Status,0,5,0,NearAlly,0,CanProtect;CanMagicCoat,"The user shapes primal clay to heal a nearby ally for their max HP. This can overheal. The user must recharge next turn.",HEALPULSE
 1522,PRIMALVIGOR,Primal Vigor,135,0,NORMAL,Status,0,15,0,NearAlly,0,,"The user channels ancient energy to grant a nearby ally an extra turn this round.",HELPINGHAND
+1523,HEAVENSEYES,Heaven's Eyes,136,0,NORMAL,Status,100,10,0,NearOther,0,CanProtect;CanMagicCoat;CanMirrorMove,"The user's eyes glow with divine judgement, numbing the target and reducing both its attacking stats.",GLARE
+1524,QUARANTINE,Quarantine,156,0,ELECTRIC,Status,0,3,0,User,4,,"Protects the user from damage this turn. It disables any attacks against it for 3 turns.",PROTECT
+1525,STINKCOVER,Stink Cover,139,0,POISON,Status,0,10,0,NearFoe,-6,CanMagicCoat;CanMirrorMove;Sound,"The foe is forced is forced to switch out by a stinky cloud, then the user also switches. Always goes last.",STINKCLOUD
+1526,HERBALPATCH,Herbal Patch,137,0,FAIRY,Status,0,10,0,User,0,,"A patch of medicinal herbs sprouts across the battlefield. This heals every battler for 1/8th HP each turn for 5 turns.",GRASSYTERRAIN
