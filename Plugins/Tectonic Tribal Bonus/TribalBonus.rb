@@ -69,7 +69,7 @@ class TribalBonus
             smallBonus = getSingleStatBonusSmall(level)
             GameData::Stat.each_main_battle do |stat|
                 next if stat == :SPEED
-                tribeBonuses[stat.id] = smallBonus
+                tribeBonuses[stat.id] += smallBonus
             end
         end
 
@@ -77,7 +77,7 @@ class TribalBonus
             mediumBonus = getSingleStatBonusMedium(level)
             GameData::Stat.each_main_battle do |stat|
                 next if stat == :SPEED
-                tribeBonuses[stat.id] = mediumBonus
+                tribeBonuses[stat.id] += mediumBonus
             end
         end
 
