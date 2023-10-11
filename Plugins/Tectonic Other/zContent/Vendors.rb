@@ -3,8 +3,8 @@
 ######################################################
 BASIC_MART_STOCK = [
 	:POKEBALL,
-	:RARECANDY,
 	:ABILITYCAPSULE,
+	:REPEL,
 ]
 
 def basicPokeMart
