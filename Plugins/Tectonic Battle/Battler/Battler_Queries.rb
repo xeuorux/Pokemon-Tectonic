@@ -118,8 +118,6 @@ class PokeBattle_Battler
         return abilityActive?(ignore_fainted, true)
     end
 
-    alias hasType? pbHasType?
-
     # Applies to both losing self's ability (i.e. being replaced by another) and
     # having self's ability be negated.
     def unstoppableAbility?(abil = nil)

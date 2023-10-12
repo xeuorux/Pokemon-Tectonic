@@ -320,6 +320,7 @@ class PokeBattle_AI_Donster < PokeBattle_AI_Boss
     def initialize(user, battle)
         super
         rejectPoisonMovesIfBelched
+        secondMoveEveryTurn(:TRASHTREASURE)
     end
 end
 
@@ -550,13 +551,6 @@ class PokeBattle_AI_Slurpuff < PokeBattle_AI_Boss
     def initialize(user, battle)
         super
         secondMoveEveryTurn(:AROMATICMIST)
-    end
-end
-
-class PokeBattle_AI_Donster < PokeBattle_AI_Boss
-    def initialize(user, battle)
-        super
-        secondMoveEveryTurn(:TRASHTREASURE)
     end
 end
 

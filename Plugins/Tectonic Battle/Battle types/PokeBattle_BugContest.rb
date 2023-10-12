@@ -1,18 +1,7 @@
 #===============================================================================
 # Bug Catching Contest battle scene (the visuals of the battle)
 #===============================================================================
-class PokeBattle_Scene
-    alias _bugContest_pbInitSprites pbInitSprites
-  
-    def pbInitSprites
-      _bugContest_pbInitSprites
-      # "helpwindow" shows the currently caught Pokémon's details when asking if
-      # you want to replace it with a newly caught Pokémon.
-      @sprites["helpwindow"] = Window_UnformattedTextPokemon.newWithSize("",0,0,32,32,@viewport)
-      @sprites["helpwindow"].z       = 90
-      @sprites["helpwindow"].visible = false
-    end
-  
+class PokeBattle_Scene 
     def pbShowHelp(text)
       @sprites["helpwindow"].resizeToFit(text,Graphics.width)
       @sprites["helpwindow"].y       = 0
@@ -25,8 +14,6 @@ class PokeBattle_Scene
       @sprites["helpwindow"].visible = false
     end
   end
-  
-  
   
   #===============================================================================
   # Bug Catching Contest battle class

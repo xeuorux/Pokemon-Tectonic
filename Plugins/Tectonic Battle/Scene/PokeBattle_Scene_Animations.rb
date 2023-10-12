@@ -387,6 +387,7 @@ class PokeBattle_Scene
         i += 1
       end
       pbMEStop
+      pbWildBattleSuccess if @battle.is_a?(PokeBattle_SafariZone)
     end
   
     def pbHideCaptureBall(idxBattler)

@@ -17,7 +17,7 @@ class PokeBattle_AI
         scores = []
         target = []
         GameData::Move.each do |move|    # Get any one move
-            next if move.zMove? || move.empoweredMove?
+            next if move.empoweredMove?
             score = 0
             begin
                 moveObject = PokeBattle_Move.from_pokemon_move(@battle, Pokemon::Move.new(move.id))

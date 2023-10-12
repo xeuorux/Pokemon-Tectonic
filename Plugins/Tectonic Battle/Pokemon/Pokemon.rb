@@ -85,7 +85,7 @@ class Pokemon
     attr_accessor :battlingStreak
     attr_accessor :extraMovesPerTurn
     attr_accessor :bossType
-    attr_accessor :itemTypeChosen
+    attr_writer :itemTypeChosen
     attr_accessor :shiny_variant
     attr_reader :afraid
   

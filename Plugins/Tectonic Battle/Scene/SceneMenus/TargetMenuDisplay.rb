@@ -5,7 +5,7 @@
 #===============================================================================
 class TargetMenuDisplay < BattleMenuBase
     attr_accessor :mode
-    attr_accessor :dexSelect
+    attr_reader :dexSelect
   
     # Lists of which button graphics to use in different situations/types of battle.
     MODES = [

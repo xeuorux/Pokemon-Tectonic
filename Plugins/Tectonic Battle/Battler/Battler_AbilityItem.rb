@@ -267,7 +267,6 @@ class PokeBattle_Battler
         applyEffect(:ItemLost) if items.length == 0
         refreshDataBox
     end
-    alias removeItem removeItem
 
     #=========================================
     # Also handles SCAVENGE

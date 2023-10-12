@@ -42,8 +42,6 @@ class PokeBattle_Move
     # Methods for displaying stuff when the move is used
     #=============================================================================
     def pbDisplayUseMessage(user, _targets = [])
-        displayZMoveUseMessage(user) if zMove? && !@specialUseZMove
-
         if empoweredMove?
             unless @battle.autoTesting
                 @battle.pbDisplayWithFormatting(_INTL("\\ss{1} used <c2=06644bd2>{2}</c2>!", user.pbThis,

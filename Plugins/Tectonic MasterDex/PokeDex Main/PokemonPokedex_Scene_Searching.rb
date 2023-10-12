@@ -544,35 +544,6 @@ class PokemonPokedex_Scene
         return dexlist
     end
 
-    def searchByTribe
-        dexlist = searchStartingList
-
-        commands = []
-        tribes = []
-        GameData::Tribe.each do |tribe|
-            tribes.push(tribe.id)
-            commands.push(getTribeName(tribe.id))
-        end
-        commands.push(_INTL("Cancel"))
-        command = pbMessage(_INTL("Which tribe?"), commands, commands.length)
-        return if command == commands.length - 1
-
-        chosenTribe = tribes[command]
-
-        echoln("Searching for the tribe #{chosenTribe}")
-
-        dexlist = dexlist.find_all do |dex_item|
-            next false if autoDisqualifyFromSearch(dex_item[0])
-
-            fSpecies = GameData::Species.get(dex_item[0])
-
-            echoln(fSpecies.tribes)
-
-            next fSpecies.tribes.include?(chosenTribe)
-        end
-        return dexlist
-    end
-
     def searchByHasCoverageType
         while true
             typeInput = pbEnterText(_INTL("Search type..."), 0, 100)

@@ -1229,10 +1229,6 @@ end
       return 1
     end
 
-      def notes
-          return @notes
-      end
-
       def tribes(ignoreInheritance=false)
         allTribes = @tribes.clone
         unless ignoreInheritance

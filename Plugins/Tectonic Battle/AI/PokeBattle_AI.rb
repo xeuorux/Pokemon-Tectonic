@@ -20,11 +20,16 @@ KillInfo = Struct.new(:user, :move, :speed, :priority, :score)
 class PokeBattle_AI
     attr_reader :precalculatedChoices
     attr_reader :precalculatedDefensiveMatchup
+    attr_accessor :battlePalace
+    attr_accessor :battleArena
 
     def initialize(battle)
         @battle = battle
         @precalculatedChoices = {}
         @precalculatedDefensiveMatchup = {}
+        @justswitched = [false,false,false,false]
+        @battleArena = false
+        @battlePalace = false
     end
 
     def pbAIRandom(x); return rand(x); end

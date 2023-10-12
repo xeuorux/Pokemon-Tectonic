@@ -10,10 +10,72 @@ end
 
 class PokeBattle_AI
     def pbEnemyShouldWithdraw?(idxBattler)
+        return false if @battleArena
+        return battlePalaceWithdraw?(idxBattler) if @battleArena
         chosenPartyIndex = pbDetermineSwitch(idxBattler)
         if chosenPartyIndex >= 0
-            @battle.pbRegisterSwitch(idxBattler,chosenPartyIndex)
+            @battle.pbRegisterSwitch(idxBattler, chosenPartyIndex)
             return true
+        end
+        return false
+    end
+
+    def battlePalaceWithdraw?(idxBattler)
+        thispkmn = @battle.battlers[idxBattler]
+        shouldswitch = false
+        if thispkmn.effects[:PerishSong] == 1
+            shouldswitch = true
+        elsif !@battle.pbCanChooseAnyMove?(idxBattler) &&
+              thispkmn.turnCount && thispkmn.turnCount > 5
+            shouldswitch = true
+        else
+            hppercent = thispkmn.hp * 100 / thispkmn.totalhp
+            percents = []
+            maxindex = -1
+            maxpercent = 0
+            factor = 0
+            @battle.pbParty(idxBattler).each_with_index do |pkmn, i|
+                if @battle.pbCanSwitch?(idxBattler, i)
+                    percents[i] = 100 * pkmn.hp / pkmn.totalhp
+                    if percents[i] > maxpercent
+                        maxindex = i
+                        maxpercent = percents[i]
+                    end
+                else
+                    percents[i] = 0
+                end
+            end
+            if hppercent < 50
+                factor = (maxpercent < hppercent) ? 20 : 40
+            end
+            if hppercent < 25
+                factor = (maxpercent < hppercent) ? 30 : 50
+            end
+            case thispkmn.status
+            when :SLEEP, :FROZEN
+                factor += 20
+            when :POISON, :BURN
+                factor += 10
+            when :NUMB
+                factor += 15
+            end
+            if @justswitched[idxBattler]
+                factor -= 60
+                factor = 0 if factor < 0
+            end
+            shouldswitch = (pbAIRandom(100) < factor)
+            if shouldswitch && maxindex >= 0
+                @battle.pbRegisterSwitch(idxBattler, maxindex)
+                return true
+            end
+        end
+        @justswitched[idxBattler] = shouldswitch
+        if shouldswitch
+            @battle.pbParty(idxBattler).each_with_index do |_pkmn, i|
+                next unless @battle.pbCanSwitch?(idxBattler, i)
+                @battle.pbRegisterSwitch(idxBattler, i)
+                return true
+            end
         end
         return false
     end
@@ -26,13 +88,13 @@ class PokeBattle_AI
         PBDebug.log("[AI SWITCH] #{battler.pbThis} (#{battler.index}) is determining whether it should switch out")
 
         # Defensive matchup
-        defensiveMatchupRating,killInfoArray = worstDefensiveMatchupAgainstActiveFoes(battler)
+        defensiveMatchupRating, killInfoArray = worstDefensiveMatchupAgainstActiveFoes(battler)
         defensiveMatchupRating = (0.5 * defensiveMatchupRating).floor
         stayInRating += defensiveMatchupRating
         PBDebug.log("[STAY-IN RATING] #{battler.pbThis} defensive matchup rating: #{defensiveMatchupRating.to_change}")
 
         # Value of its own moves
-        bestMoveScore,killInfo = switchRatingBestMoveScore(battler,killInfoArray: killInfoArray)
+        bestMoveScore, killInfo = switchRatingBestMoveScore(battler, killInfoArray: killInfoArray)
         offensiveMatchupRating = (0.5 * bestMoveScore).floor
         stayInRating += offensiveMatchupRating
         PBDebug.log("[STAY-IN RATING] #{battler.pbThis} offensive matchup rating: #{offensiveMatchupRating.to_change}")
@@ -69,13 +131,13 @@ class PokeBattle_AI
         stayInRating = 0
 
         # Less likely to switch when coming in later would cause it to die to hazards
-        entryDamage, hazardScore = @battle.applyHazards(battler,true)
+        entryDamage, hazardScore = @battle.applyHazards(battler, true)
         if entryDamage >= battler.hp
             stayInRating += 30
             PBDebug.log("[STAY-IN RATING] #{battler.pbThis} (#{battler.index}) likely to die to hazards if switches back in later (+30)")
             return stayInRating # Selfish modifiers don't matter
         end
-        
+
         # Pokémon is about to faint because of Perish Song
         if battler.effects[:PerishSong] == 2
             stayInRating -= 10
@@ -103,7 +165,7 @@ class PokeBattle_AI
             stayInRating -= 25
             PBDebug.log("[STAY-IN RATING] #{battler.pbThis} (#{battler.index}) is drowsy (-25)")
         end
-        
+
         # Less likely to switch when any opponent has a force switch out move
         # Even less likely if the opponent just used such a move
         battler.eachOpposing do |b|
@@ -114,25 +176,24 @@ class PokeBattle_AI
 
             pursuitMove = b.canChoosePursuit?(battler)
             if pursuitMove
-                pursuitScore,pursuitKillInfo = pbGetMoveScore(pursuitMove, b, battler)
+                pursuitScore, pursuitKillInfo = pbGetMoveScore(pursuitMove, b, battler)
                 pursuitScore = (pursuitScore / PokeBattle_AI::EFFECT_SCORE_TO_SWITCH_SCORE_CONVERSION_RATIO).ceil
                 stayInRating += pursuitScore
                 PBDebug.log("[STAY-IN RATING] #{battler.pbThis} (#{battler.index}) has an opponent that can target it with pursuit (#{pursuitScore.to_change})")
             end
         end
 
-
         # Less likely to switch when has self-mending
         stayInRating += 15 if battler.hasActiveAbilityAI?(:SELFMENDING)
-        
+
         # More likely to switch if weather setter in policy
         weatherSwitchInfo = [
-        [:SUN_TEAM,@battle.sunny?,:DROUGHT,:HEATROCK],
-        [:RAIN_TEAM,@battle.rainy?,:DRIZZLE,:DAMPROCK],
-        [:SAND_TEAM,@battle.sandy?,:SANDSTREAM,:SMOOTHROCK],
-        [:HAIL_TEAM,@battle.icy?,:SNOWWARNING,:ICYROCK],
-        [:MOONGLOW_TEAM,@battle.moonGlowing?,:MOONGAZE,:MIRROREDROCK],
-        [:ECLIPSE_TEAM,@battle.eclipsed?,:HARBINGER,:PINPOINTROCK]
+            [:SUN_TEAM, @battle.sunny?, :DROUGHT, :HEATROCK],
+            [:RAIN_TEAM, @battle.rainy?, :DRIZZLE, :DAMPROCK],
+            [:SAND_TEAM, @battle.sandy?, :SANDSTREAM, :SMOOTHROCK],
+            [:HAIL_TEAM, @battle.icy?, :SNOWWARNING, :ICYROCK],
+            [:MOONGLOW_TEAM, @battle.moonGlowing?, :MOONGAZE, :MIRROREDROCK],
+            [:ECLIPSE_TEAM, @battle.eclipsed?, :HARBINGER, :PINPOINTROCK],
         ]
         weatherSwitchInfo.each do |weatherSwitchEntry|
             weatherPolicy = weatherSwitchEntry[0]
@@ -143,7 +204,7 @@ class PokeBattle_AI
                 if weatherActive
                     stayInRating -= 13 if battler.hasActiveAbilityAI?(weatherAbility) || battler.hasItem?(weatherItem)
                     PBDebug.log("[STAY-IN RATING] #{battler.pbThis} (#{battler.index}) wants to switch to preserve its weather (-13)")
-                else 
+                else
                     stayInRating -= 20 if battler.hasActiveAbilityAI?(weatherAbility)
                     PBDebug.log("[STAY-IN RATING] #{battler.pbThis} (#{battler.index}) wants to switch so it can reset the weather (-20)")
                 end
@@ -181,22 +242,22 @@ class PokeBattle_AI
             next unless pkmn.able?
             next if battlerSlot.pokemonIndex == partyIndex
             next unless @battle.pbCanSwitch?(idxBattler, partyIndex)
-            switchScore = getSwitchRatingForPartyMember(pkmn,partyIndex, battlerSlot, safeSwitch)
+            switchScore = getSwitchRatingForPartyMember(pkmn, partyIndex, battlerSlot, safeSwitch)
             list.push([partyIndex, switchScore])
         end
-        list.sort_by! { |entry| entry[1].nil? ? 99999 : -entry[1] }
+        list.sort_by! { |entry| entry[1].nil? ? 99_999 : -entry[1] }
         return list
     end
 
-    def getSwitchRatingForPartyMember(pkmn,partyIndex,battlerSlot, safeSwitch = false)
+    def getSwitchRatingForPartyMember(pkmn, partyIndex, battlerSlot, safeSwitch = false)
         switchScore = 0
 
         # Create a battler to simulate what would happen if the Pokemon was in battle right now
         fakeBattler = PokeBattle_Battler.new(@battle, battlerSlot.index, true)
-        fakeBattler.pbInitializeFake(pkmn,partyIndex)
+        fakeBattler.pbInitializeFake(pkmn, partyIndex)
 
         # Account for hazards
-        hazardSwitchScore,entryDamageTaken,dieingOnEntry = getHazardEvaluationForEnteringBattler(fakeBattler)
+        hazardSwitchScore, entryDamageTaken, dieingOnEntry = getHazardEvaluationForEnteringBattler(fakeBattler)
         switchScore += hazardSwitchScore
 
         # Track the damage taken
@@ -204,7 +265,7 @@ class PokeBattle_AI
 
         # More want to swap if has a entry ability that matters
         # Intentionally checked even if the pokemon will die on entry
-        switchScore += getEntryAbilityEvaluationForEnteringBattler(fakeBattler,dieingOnEntry)
+        switchScore += getEntryAbilityEvaluationForEnteringBattler(fakeBattler, dieingOnEntry)
 
         if safeSwitch
             echoln("[SWITCH SCORING] Evaluating #{fakeBattler.pbThis} as a SAFE switch")
@@ -215,7 +276,7 @@ class PokeBattle_AI
         # Only matters if the pokemon will live
         unless dieingOnEntry
             # Find the worst matchup against the current player battlers
-            defensiveMatchupRating,killInfoArray = worstDefensiveMatchupAgainstActiveFoes(fakeBattler)
+            defensiveMatchupRating, killInfoArray = worstDefensiveMatchupAgainstActiveFoes(fakeBattler)
             if safeSwitch
                 defensiveMatchupRating = (0.5 * defensiveMatchupRating).floor
             else
@@ -228,7 +289,7 @@ class PokeBattle_AI
                 echoln("[SWITCH SCORING] #{fakeBattler.pbThis} defensive matchup rating: #{defensiveMatchupRating.to_change} (thinks can be fainted!)")
             end
 
-            offensiveMatchupRating,killInfo = switchRatingBestMoveScore(fakeBattler, killInfoArray: killInfoArray)
+            offensiveMatchupRating, killInfo = switchRatingBestMoveScore(fakeBattler, killInfoArray: killInfoArray)
             if safeSwitch
                 offensiveMatchupRating = (0.5 * offensiveMatchupRating).floor
             else
@@ -253,7 +314,7 @@ class PokeBattle_AI
 
     def getHazardEvaluationForEnteringBattler(battler)
         # Calculate how much damage the pokemon is likely to take from entry hazards
-        entryDamage, hazardScore = @battle.applyHazards(battler,true)
+        entryDamage, hazardScore = @battle.applyHazards(battler, true)
 
         dieingOnEntry = false
 
@@ -271,10 +332,10 @@ class PokeBattle_AI
             echoln("[SWITCH SCORING] #{battler.pbThis} will take #{percentDamageDisplay} percent HP damage from hazards (#{hazardDamageSwitchMalus.to_change})")
         end
 
-        return hazardScore,entryDamage,dieingOnEntry
+        return hazardScore, entryDamage, dieingOnEntry
     end
 
-    def getEntryAbilityEvaluationForEnteringBattler(battler,dieingOnEntry)
+    def getEntryAbilityEvaluationForEnteringBattler(battler, _dieingOnEntry)
         totalAbilityScore = 0
         battler.eachActiveAbility do |abilityID|
             switchAbilityEffectScore = BattleHandlers.triggerAbilityOnSwitchIn(abilityID, battler, @battle, true)
@@ -290,12 +351,12 @@ class PokeBattle_AI
         matchups = []
         killInfoArray = []
         battler.eachOpposing(true) do |opposingBattler|
-            scoringKey = [battler.personalID,opposingBattler.personalID]
+            scoringKey = [battler.personalID, opposingBattler.personalID]
             if @precalculatedDefensiveMatchup.key?(scoringKey)
-                matchup,killInfo =  @precalculatedDefensiveMatchup[scoringKey]
+                matchup, killInfo = @precalculatedDefensiveMatchup[scoringKey]
             else
-                matchup,killInfo = rateDefensiveMatchup(battler, opposingBattler)
-                @precalculatedDefensiveMatchup[scoringKey] = [matchup,killInfo]
+                matchup, killInfo = rateDefensiveMatchup(battler, opposingBattler)
+                @precalculatedDefensiveMatchup[scoringKey] = [matchup, killInfo]
             end
             matchups.push(matchup)
             killInfoArray.push(killInfo) if killInfo
@@ -305,13 +366,13 @@ class PokeBattle_AI
         else
             worstDefensiveMatchup = matchups.min
         end
-        return worstDefensiveMatchup,killInfoArray
+        return worstDefensiveMatchup, killInfoArray
     end
 
     # The battler passed in could be a real battler, or a fake one
     def rateDefensiveMatchup(battler, opposingBattler)
         # How good are the opponent's moves against me?
-        bestMoveScore,killInfo = switchRatingBestMoveScore(opposingBattler, opposingBattler: battler)
+        bestMoveScore, killInfo = switchRatingBestMoveScore(opposingBattler, opposingBattler: battler)
         matchupScore = -1 * bestMoveScore
 
         # Set-up counterplay scoring
@@ -321,25 +382,27 @@ class PokeBattle_AI
         end
 
         # Value of stalling
-        matchupScore += passingTurnBattlerEffectScore(battler,@battle)
+        matchupScore += passingTurnBattlerEffectScore(battler, @battle)
 
         # Fear of unknown
         matchupScore -= opposingBattler.unknownMovesCountAI * 2
 
-        return matchupScore,killInfo
+        return matchupScore, killInfo
     end
 
     EFFECT_SCORE_TO_SWITCH_SCORE_CONVERSION_RATIO = 2.5
 
     def switchRatingBestMoveScore(battler, opposingBattler: nil, killInfoArray: [])
-        maxScore,killInfo = highestMoveScoreForBattler(battler, opposingBattler: opposingBattler, killInfoArray: killInfoArray)
+        maxScore, killInfo = highestMoveScoreForBattler(battler, opposingBattler: opposingBattler,
+killInfoArray: killInfoArray)
         maxMoveScoreBiasChange = -40
         maxMoveScoreBiasChange += (maxScore / EFFECT_SCORE_TO_SWITCH_SCORE_CONVERSION_RATIO).round
-        return maxMoveScoreBiasChange,killInfo
+        return maxMoveScoreBiasChange, killInfo
     end
 
     def highestMoveScoreForBattler(battler, opposingBattler: nil, killInfoArray: [])
-        choices,killInfo = pbGetBestTrainerMoveChoices(battler, opposingBattler: opposingBattler, killInfoArray: killInfoArray)
+        choices, killInfo = pbGetBestTrainerMoveChoices(battler, opposingBattler: opposingBattler,
+killInfoArray: killInfoArray)
 
         maxScore = 0
         bestMove = nil
@@ -353,6 +416,6 @@ class PokeBattle_AI
         else
             echoln("[MOVES SCORING] #{battler.pbThis}'s best move is #{bestMove} at score #{maxScore}")
         end
-        return maxScore,killInfo
+        return maxScore, killInfo
     end
 end

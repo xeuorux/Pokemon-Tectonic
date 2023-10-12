@@ -143,15 +143,7 @@ class PokeBattle_FakeBattler
       end
       rockAnim.dispose
     end
-  
-    alias __safari__pbThrowSuccess pbThrowSuccess
-    def pbThrowSuccess
-      __safari__pbThrowSuccess
-      pbWildBattleSuccess if @battle.is_a?(PokeBattle_SafariZone)
-    end
   end
-  
-  
   
   #===============================================================================
   # Safari Zone battle class

@@ -98,6 +98,13 @@ class PokeBattle_Scene
       @sprites["turnCountReminder"] = TurnCountReminder.new(-1,@viewport)
       @sprites["turnCountReminder"].x = Graphics.width / 2 + 20
       @sprites["turnCountReminder"].visible = false
+
+      # Bug contest
+      # "helpwindow" shows the currently caught Pokémon's details when asking if
+      # you want to replace it with a newly caught Pokémon.
+      @sprites["helpwindow"] = Window_UnformattedTextPokemon.newWithSize("",0,0,32,32,@viewport)
+      @sprites["helpwindow"].z       = 90
+      @sprites["helpwindow"].visible = false
     end
 
     def resetMessageTextColor

@@ -5,12 +5,10 @@ class PokemonSystem
     attr_accessor :battlescene
     attr_accessor :battlestyle
     attr_reader :frame
-    attr_accessor :textskin
+    attr_reader :textskin
     attr_accessor :screensize
     attr_accessor :language
     attr_accessor :runstyle
-    attr_accessor :bgmvolume
-    attr_accessor :sevolume
     attr_accessor :textinput
     attr_accessor :followers
     attr_accessor :autosave

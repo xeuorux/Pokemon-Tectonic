@@ -227,11 +227,9 @@ end
 # Functions for handling the work that the variables did earlier
 #-------------------------------------------------------------------------------
 class PokemonGlobalMetadata
-  attr_accessor :follower_toggled
-  attr_accessor :call_refresh
-  attr_accessor :time_taken
-  attr_accessor :follower_hold_item
-  attr_writer :dependentEvents
+  attr_writer :follower_toggled
+  attr_writer :time_taken
+  attr_writer :follower_hold_item
 
   def call_refresh
     @call_refresh = [false,false] if !@call_refresh

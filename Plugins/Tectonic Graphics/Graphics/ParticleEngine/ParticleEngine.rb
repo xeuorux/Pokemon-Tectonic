@@ -106,25 +106,3 @@ class Particle_Engine
         end
       end
 end
-
-def pbEventCommentInput(*args)
-    parameters = []
-    list = args[0].list   # Event or event page
-    elements = args[1]    # Number of elements
-    trigger = args[2]     # Trigger
-    return nil if list == nil
-    return nil unless list.is_a?(Array)
-    for item in list
-      next unless item.code == 108 || item.code == 408
-      if item.parameters[0] == trigger
-        start = list.index(item) + 1
-        finish = start + elements
-        for id in start...finish
-          next if !list[id]
-          parameters.push(list[id].parameters[0])
-        end
-        return parameters
-      end
-    end
-    return nil
-end

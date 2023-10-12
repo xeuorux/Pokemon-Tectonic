@@ -201,24 +201,6 @@ class PokeBattle_BattleArena < PokeBattle_Battle
   end
 end
 
-
-
-#===============================================================================
-#
-#===============================================================================
-class PokeBattle_AI
-  attr_accessor :battleArena
-
-  alias _battleArena_pbEnemyShouldWithdraw? pbEnemyShouldWithdraw?
-
-  def pbEnemyShouldWithdraw?(idxBattler)
-    return _battleArena_pbEnemyShouldWithdraw?(idxBattler) if !@battleArena
-    return false
-  end
-end
-
-
-
 #===============================================================================
 #
 #===============================================================================
