@@ -682,3 +682,10 @@ BattleHandlers::DamageCalcUserAbility.add(:TEAMPLAYER,
       user.aiLearnsAbility(ability) unless aiCheck
   }
 )
+
+BattleHandlers::DamageCalcUserAbility.add(:CLEANFREAK,
+  proc { |ability, user, target, move, mults, _baseDmg, type, aiCheck|
+      mults[:attack_multiplier] *= 1.5 if user.pbHasAnyStatus?
+      user.aiLearnsAbility(ability) unless aiCheck
+  }
+)

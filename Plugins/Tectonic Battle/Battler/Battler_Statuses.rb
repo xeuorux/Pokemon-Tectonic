@@ -544,7 +544,19 @@ immuneTypeRealName))
     # Dizzy
     #=============================================================================
     def dizzy?
+        return true if neurotoxined?
         return pbHasStatus?(:DIZZY)
+    end
+
+    def neurotoxined?
+        return false unless poisoned?
+        @battle.pbOpposingParty(@index).each do |enemyPartyMember|
+            next if enemyPartyMember.fainted?
+            next unless enemyPartyMember.hasAbility?(:NEUROTOXIN)
+            next if enemyPartyMember.status == :DIZZY
+            return true
+        end
+        return false
     end
 
     def canDizzy?(user, showMessages, move = nil)

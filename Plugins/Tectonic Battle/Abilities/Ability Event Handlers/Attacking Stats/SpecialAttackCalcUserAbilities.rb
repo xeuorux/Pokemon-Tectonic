@@ -25,13 +25,6 @@ BattleHandlers::SpecialAttackCalcUserAbility.add(:SOLARPOWER,
   }
 )
 
-BattleHandlers::SpecialAttackCalcUserAbility.add(:AUDACITY,
-  proc { |ability, user, _battle, spAtkMult|
-      spAtkMult *= 1.33 if user.pbHasAnyStatus?
-      next spAtkMult
-  }
-)
-
 BattleHandlers::SpecialAttackCalcUserAbility.add(:HEADACHE,
   proc { |ability, _user, _battle, spAtkMult|
       spAtkMult *= 2.0

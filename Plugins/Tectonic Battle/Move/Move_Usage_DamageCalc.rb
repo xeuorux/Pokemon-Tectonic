@@ -206,20 +206,22 @@ class PokeBattle_Move
     def pbCalcStatusesDamageMultipliers(user,target,multipliers,checkingForAI=false)
         toil = @battle.pbCheckOpposingAbility(:TOILANDTROUBLE, user.index)
         # Burn
-        if user.burned? && physicalMove? && damageReducedByBurn? && !user.shouldAbilityApply?(:GUTS,checkingForAI) && !user.shouldAbilityApply?(:BURNHEAL,checkingForAI)
+        if user.burned? && physicalMove? && damageReducedByBurn? && !user.shouldAbilityApply?(:BURNHEAL,checkingForAI)
             damageReduction = (1.0/3.0)
             damageReduction = (1.0/5.0) if user.boss? && AVATAR_DILUTED_STATUS_CONDITIONS
             damageReduction *= 2 if user.pbOwnedByPlayer? && @battle.curseActive?(:CURSE_STATUS_DOUBLED)
             damageReduction *= 1.5 if toil
+            damageReduction *= 2 if user.hasActiveAbility?(:CLEANFREAK)
             damageReduction = 1 if damageReduction > 1
             multipliers[:final_damage_multiplier] *= (1.0 - damageReduction)
         end
         # Frostbite
-        if user.frostbitten? && specialMove? && damageReducedByBurn? && !user.shouldAbilityApply?(:AUDACITY,checkingForAI) && !user.shouldAbilityApply?(:FROSTHEAL,checkingForAI)
+        if user.frostbitten? && specialMove? && damageReducedByBurn? && !user.shouldAbilityApply?(:FROSTHEAL,checkingForAI)
             damageReduction = (1.0/3.0)
             damageReduction = (1.0/5.0) if user.boss? && AVATAR_DILUTED_STATUS_CONDITIONS
             damageReduction *= 2 if user.pbOwnedByPlayer? && @battle.curseActive?(:CURSE_STATUS_DOUBLED)
             damageReduction *= 1.5 if toil
+            damageReduction *= 2 if user.hasActiveAbility?(:CLEANFREAK)
             damageReduction = 1 if damageReduction > 1
             multipliers[:final_damage_multiplier] *= (1.0 - damageReduction)
         end
@@ -229,6 +231,7 @@ class PokeBattle_Move
             damageReduction = (3.0/20.0) if user.boss? && AVATAR_DILUTED_STATUS_CONDITIONS
             damageReduction *= 2 if user.pbOwnedByPlayer? && @battle.curseActive?(:CURSE_STATUS_DOUBLED)
             damageReduction *= 1.5 if toil
+            damageReduction *= 2 if user.hasActiveAbility?(:CLEANFREAK)
             damageReduction = 1 if damageReduction > 1
             multipliers[:final_damage_multiplier] *= (1.0 - damageReduction)
         end
@@ -237,6 +240,7 @@ class PokeBattle_Move
             damageIncrease = (1.0/4.0)
             damageIncrease = (3.0/20.0) if target.boss? && AVATAR_DILUTED_STATUS_CONDITIONS
             damageIncrease *= 2 if target.pbOwnedByPlayer? && @battle.curseActive?(:CURSE_STATUS_DOUBLED)
+            damageIncrease *= 2 if target.hasActiveAbility?(:CLEANFREAK)
             multipliers[:final_damage_multiplier] *= (1.0 + damageIncrease)
         end
     end
@@ -464,6 +468,12 @@ class PokeBattle_Move
             end
         end
 
+        # Mass Attack
+        if @battle.pbCheckGlobalAbility(:MASSATTACK)
+            hpFraction = user.hp / user.totalhp.to_f
+            multipliers[:final_damage_multiplier] *= (1 - hpFraction)
+        end
+
         # Multi-targeting attacks
         if numTargets > 1
             if user.shouldAbilityApply?(:VIBRATIONAL,aiCheck)
@@ -510,6 +520,8 @@ class PokeBattle_Move
         end
 
         finalCalculatedDamage = 1 if finalCalculatedDamage < 1
+
+        finalCalculatedDamage = 0 if user.hasActiveAbility?(:NOBLEBLADE) && target.effectActive?(:ChoseStatus)
 
         return finalCalculatedDamage
     end

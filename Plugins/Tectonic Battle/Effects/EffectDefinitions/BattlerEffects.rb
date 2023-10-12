@@ -2063,3 +2063,9 @@ GameData::BattleEffect.register_effect(:Battler, {
         battle.pbDisplay(_INTL("{1} is chewing on the {2}!", battler.pbThis, itemName))
     end,
 })
+
+GameData::BattleEffect.register_effect(:Battler, {
+    :id => :AutoPilot,
+    :real_name => "Auto-Pilot",
+    :resets_eor => true,
+})

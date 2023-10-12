@@ -541,6 +541,31 @@ class PokeBattle_Battle
             triggerBeginningOfTurnCurseEffect(curse_policy, self)
         end
 
+        # Auto-pilot
+        if @turnCount != 0
+            autoPilots = []
+            [0,1].each do |sideIndex|
+                pbParty(0).each do |partyMember,partyIndex|
+                    next unless partyMember.hasAbility?(:AUTOPILOT)
+                    next if partyMember.status == :DIZZY
+                    next if pokemonIsActiveBattler?(partyMember)
+                    if @turnCount % 5 == 0
+                        autoPilots.push(partyMember)
+                    elsif @turnCount % 5 == 4
+                        pbDisplayPaused(_INTL("{1} will arrive next turn!",pbThisEx(sideIndex,partyIndex)))
+                    end
+                end
+
+                eachSameSideBattler(sideIndex) do |activeBattler|
+                    break if autoPilots.length == 0
+                    autoPilot = autoPilots.pop
+                    pbDisplayPaused(_INTL("{1} pilots into battle!",pbThisEx(sideIndex,autoPilot.pokemonIndex)))
+                    pbRecallAndReplace(activeBattler.index, autoPilot.pokemonIndex)
+                    activeBattler.applyEffect(:AutoPilot)
+                end
+            end
+        end
+
         pbCalculatePriority           # recalculate speeds
         priority = pbPriority(true)   # in order of fastest -> slowest speeds only
         

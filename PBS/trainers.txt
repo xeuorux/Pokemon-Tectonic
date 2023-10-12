@@ -4946,7 +4946,7 @@ Pokemon = MEWTWO,70
     AbilityIndex = 0 # Mental Block
 Pokemon = BLACEPHALON,70
     Moves = MINDBLOWN,MYSTICALFIRE,SHADOWBALL,PSYCHIC
-    AbilityIndex = 1 # Beast Boost
+    AbilityIndex = 1 # Fire Festival
 #-------------------------------
 [ANOTHERPOSSIBLETAMARIND,Tamarind,1]
 ExtendsVersion = 0
@@ -5553,10 +5553,10 @@ Pokemon = UMBREON,70
     AbilityIndex = 0 # Malicious Glow
 Pokemon = PHEROMOSA,70
     Moves = QUIVERDANCE,ELECTROWEB,BUGBUZZ,ICEBEAM
-    AbilityIndex = 0 # Beast Boost
+    AbilityIndex = 0 # Clean Freak
 Pokemon = CELESTEELA,70
     Moves = HEAVYSLAM,LEECHSEED,DIVEBOMB,FLAMETHROWER
-    AbilityIndex = 0 # Beast Boost
+    AbilityIndex = 0 # Auto-Pilot
     Item = LEFTOVERS
 Pokemon = BEHEEYEM,70
     Moves = DREAMDANCE,SHATTEREDENERGY,SUBSTITUTE,SIGNALBEAM
@@ -5564,7 +5564,7 @@ Pokemon = BEHEEYEM,70
     Item = SITRUSBERRY
 Pokemon = BLACEPHALON,70
     Moves = MINDBLOWN,MYSTICALFIRE,SHADOWBALL,PSYCHIC
-    AbilityIndex = 1 # Beast Boost
+    AbilityIndex = 1 # Fire Festival
 #-------------------------------
 [TRAINER_Candy,Candy,1]
 Policies = NO_PERFECT
@@ -5677,7 +5677,7 @@ Pokemon = SALAMENCE,70
     Item = FOCUSSASH
 Pokemon = NAGANADEL,70
     Moves = DRACOMETEOR,SLUDGEWAVE,DREAMDANCE,FLAMETHROWER
-    AbilityIndex = 0 # Beast Boost
+    AbilityIndex = 0 # Malingering
     Item = LIFEORB
 Pokemon = DRAGAPULT,70
     Moves = DRAGONDARTS,UTURN,PSYCHICFANGS,WAILINGBLOW

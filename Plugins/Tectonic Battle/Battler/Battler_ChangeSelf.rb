@@ -265,46 +265,49 @@ class PokeBattle_Battler
                 @battle.pbDisplayBrief(_INTL("{1} fainted!", pbThis))
             end
         end
-        PBDebug.log("[Pokémon fainted] #{pbThis} (#{@index})") unless showMessage
-        @battle.scene.pbFaintBattler(self) unless @battle.autoTesting
+        
+        unless @dummy
+            PBDebug.log("[Pokémon fainted] #{pbThis} (#{@index})") unless showMessage
+            @battle.scene.pbFaintBattler(self) unless @battle.autoTesting
 
-        # Trigger battler faint curses
-        @battle.curses.each do |curse_policy|
-            @battle.triggerBattlerFaintedCurseEffect(curse_policy, self, @battle)
-        end
-
-        @battle.triggerBattlerFaintedDialogue(self)
-
-        if effectActive?(:GivingDragonRideTo, true)
-            otherBattler = @battle.battlers[@effects[:GivingDragonRideTo]] # Do not switch to the helper method
-            damageDealt = otherBattler.hp
-            otherBattler.damageState.displayedDamage = damageDealt
-            @battle.scene.pbDamageAnimation(otherBattler)
-            otherBattler.pbReduceHP(damageDealt, false)
-            @battle.pbDisplay(_INTL("{1} fell to the ground!", otherBattler.pbThis))
-            otherBattler.pbFaint
-        end
-
-        # On-faint effect items
-        if hasActiveItem?(:HOOHSASHES)
-            faintedPartyMembers = []
-            ownerParty.each do |partyPokemon|
-                next if @battle.pbFindBattler(partyIndex, @index)
-                next unless partyPokemon.fainted?
-                faintedPartyMembers.push(partyPokemon)
+            # Trigger battler faint curses
+            @battle.curses.each do |curse_policy|
+                @battle.triggerBattlerFaintedCurseEffect(curse_policy, self, @battle)
             end
-            pbDisplay(_INTL("{1}'s scattered its {2} when fainting.", pbThis, getItemName(:HOOHSASHES)))
-            if faintedPartyMembers.length == 0
-                pbDisplay(_INTL("But there was no one to revive!"))
-            else
-                reviver = faintedPartyMembers.sample
-                reviver.heal_HP
-                reviver.heal_status
-                pbDisplay(_INTL("Its allied #{reviver.name} was revived to full health!"))
-            end
-        end
 
-        pbInitEffects(false)
+            @battle.triggerBattlerFaintedDialogue(self)
+
+            if effectActive?(:GivingDragonRideTo, true)
+                otherBattler = @battle.battlers[@effects[:GivingDragonRideTo]] # Do not switch to the helper method
+                damageDealt = otherBattler.hp
+                otherBattler.damageState.displayedDamage = damageDealt
+                @battle.scene.pbDamageAnimation(otherBattler)
+                otherBattler.pbReduceHP(damageDealt, false)
+                @battle.pbDisplay(_INTL("{1} fell to the ground!", otherBattler.pbThis))
+                otherBattler.pbFaint
+            end
+
+            # On-faint effect items
+            if hasActiveItem?(:HOOHSASHES)
+                faintedPartyMembers = []
+                ownerParty.each do |partyPokemon|
+                    next if @battle.pbFindBattler(partyIndex, @index)
+                    next unless partyPokemon.fainted?
+                    faintedPartyMembers.push(partyPokemon)
+                end
+                pbDisplay(_INTL("{1}'s scattered its {2} when fainting.", pbThis, getItemName(:HOOHSASHES)))
+                if faintedPartyMembers.length == 0
+                    pbDisplay(_INTL("But there was no one to revive!"))
+                else
+                    reviver = faintedPartyMembers.sample
+                    reviver.heal_HP
+                    reviver.heal_status
+                    pbDisplay(_INTL("Its allied #{reviver.name} was revived to full health!"))
+                end
+            end
+
+            pbInitEffects(false)
+        end
 
         # # Reset status on the underlying pokemon
         @pokemon&.status = :NONE
@@ -315,15 +318,17 @@ class PokeBattle_Battler
         @pokemon.makeUnmega if mega?
         @pokemon.makeUnprimal if primal?
 
-        # Do other things
-        @battle.pbClearChoice(@index) # Reset choice
-        pbOwnSide.effects[:LastRoundFainted] = @battle.turnCount
+        unless @dummy
+            # Do other things
+            @battle.pbClearChoice(@index) # Reset choice
+            pbOwnSide.effects[:LastRoundFainted] = @battle.turnCount
 
-        # Check other battlers' abilities that trigger upon a battler fainting
-        pbAbilitiesOnFainting
+            # Check other battlers' abilities that trigger upon a battler fainting
+            pbAbilitiesOnFainting
 
-        # Check for end of primordial weather
-        @battle.pbEndPrimordialWeather
+            # Check for end of primordial weather
+            @battle.pbEndPrimordialWeather
+        end
     end
 
     #=============================================================================

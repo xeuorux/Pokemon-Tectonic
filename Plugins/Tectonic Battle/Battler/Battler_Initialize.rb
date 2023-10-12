@@ -71,7 +71,7 @@ class PokeBattle_Battler
     end
 
     # Used by Future Sight only, when Future Sight's user is no longer in battle.
-    def pbInitDummyPokemon(pkmn, idxParty)
+    def pbInitDummyPokemon(pkmn, idxParty, ability = false)
         raise _INTL("An egg can't be an active Pokémon.") if pkmn.egg?
         @name         = pkmn.name
         @species      = pkmn.species
@@ -81,7 +81,6 @@ class PokeBattle_Battler
         @hp           = pkmn.hp
         @type1        = pkmn.type1
         @type2        = pkmn.type2
-        # ability and item intentionally not copied across here
         @gender       = pkmn.gender
         @attack       = pkmn.attack
         @defense      = pkmn.defense
@@ -92,6 +91,7 @@ class PokeBattle_Battler
         @statusCount  = pkmn.statusCount
         @boss = pkmn.boss
         @pokemon      = pkmn
+        resetAbilities(true) if ability
         @pokemonIndex = idxParty
         @participants = []
         # moves intentionally not copied across here

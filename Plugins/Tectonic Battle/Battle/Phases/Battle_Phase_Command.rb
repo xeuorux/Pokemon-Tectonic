@@ -445,7 +445,7 @@ class PokeBattle_Battle
             next if @choices[idxBattler][0] != :None # Action is forced, can't choose one
             next unless pbCanShowCommands?(idxBattler) # Action is forced, can't choose one
             # AI controls this battler
-            if @controlPlayer || !pbOwnedByPlayer?(idxBattler)
+            if @controlPlayer || !pbOwnedByPlayer?(idxBattler) || battler.effectActive?(:AutoPilot)
                 if @autoTesting
                     chooseAutoTesting(idxBattler)
                     next

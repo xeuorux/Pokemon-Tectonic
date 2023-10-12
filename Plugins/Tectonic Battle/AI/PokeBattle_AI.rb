@@ -55,23 +55,10 @@ class PokeBattle_AI
     end
 
     #=============================================================================
-    # Decide whether the opponent should Mega Evolve their Pokémon
-    #=============================================================================
-    def pbEnemyShouldMegaEvolve?(idxBattler)
-        battler = @battle.battlers[idxBattler]
-        if @battle.pbCanMegaEvolve?(idxBattler) # Simple "always should if possible"
-            PBDebug.log("[AI] #{battler.pbThis} (#{idxBattler}) will Mega Evolve")
-            return true
-        end
-        return false
-    end
-
-    #=============================================================================
     # Choose an action
     #=============================================================================
     def pbDefaultChooseEnemyCommand(idxBattler)
         return if @battle.pbAutoFightMenu(idxBattler) # Battle palace shenanigans
-        @battle.pbRegisterMegaEvolution(idxBattler) if pbEnemyShouldMegaEvolve?(idxBattler)
         battler = @battle.battlers[idxBattler]
 
         if battler.boss?
@@ -79,7 +66,7 @@ class PokeBattle_AI
         elsif @battle.wildBattle? && @battle.opposes?(idxBattler) # Checks for opposing because it could be an partner trainer's pokemon
             @battle.pbRegisterMove(idxBattler, pbAIRandom(battler.getMoves.length), false)
         else
-            return if pbEnemyShouldWithdraw?(idxBattler)
+            return if !battler.effectActive?(:AutoPilot) && pbEnemyShouldWithdraw?(idxBattler)
             defensiveMatchupRating,killInfoArray = worstDefensiveMatchupAgainstActiveFoes(battler)
             bestMoveChoices,killInfo = pbGetBestTrainerMoveChoices(battler, killInfoArray: killInfoArray)
             pbChooseMovesTrainer(idxBattler, bestMoveChoices)

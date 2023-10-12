@@ -171,6 +171,7 @@ class PokeBattle_Battler
             :SEALORD,
             :DUNEPREDATOR,
             :GROWUP,
+            :REAPWHATYOUSOW,
             # Appearance-changing abilities
             :ILLUSION,
             :IMPOSTER,

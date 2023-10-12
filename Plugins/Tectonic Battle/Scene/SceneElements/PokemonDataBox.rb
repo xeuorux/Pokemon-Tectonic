@@ -362,7 +362,7 @@ class PokemonDataBox < SpriteWrapper
 		# Draw shiny icon
 		if @battler.shiny?
 		  shinyX = (@battler.opposes?(0)) ? 220 : -6   # Foe's/player's
-		  shinyIconFileName = @battler.shiny_variant? ? "Graphics/Pictures/shiny_variant" : "Graphics/Pictures/shiny"
+		  shinyIconFileName = @battler.pokemon.shiny_variant? ? "Graphics/Pictures/shiny_variant" : "Graphics/Pictures/shiny"
 		  imagePos.push([shinyIconFileName,@spriteBaseX+shinyX,36])
 		end
 

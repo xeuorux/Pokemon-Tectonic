@@ -26,13 +26,6 @@ BattleHandlers::AttackCalcUserAbility.add(:GORILLATACTICS,
     }
 )
 
-BattleHandlers::AttackCalcUserAbility.add(:GUTS,
-  proc { |ability, user, _battle, attackMult|
-      attackMult *= 1.33 if user.pbHasAnyStatus?
-      next attackMult
-  }
-)
-
 BattleHandlers::AttackCalcUserAbility.add(:TOUGHCLAWS,
   proc { |ability, _user, _battle, attackMult|
       attackMult *= 1.3

@@ -1,7 +1,6 @@
 BattleHandlers::AbilityChangeOnBattlerFainting.add(:POWEROFALCHEMY,
     proc { |ability, battler, fainted, battle|
         next if battler.opposes?(fainted)
-        next if fainted.ungainableAbility?(fainted.firstAbility)
 
         fainted.eachAbility do |abilityID|
             next if GameData::Ability::UNCOPYABLE_ABILITIES.include?(abilityID)
@@ -11,23 +10,34 @@ BattleHandlers::AbilityChangeOnBattlerFainting.add(:POWEROFALCHEMY,
     }
 )
 
-BattleHandlers::AbilityChangeOnBattlerFainting.add(:RECEIVER,
+BattleHandlers::AbilityChangeOnBattlerFainting.add(:ALLCONSUMING,
     proc { |ability, battler, fainted, battle|
-        next if battler.opposes?(fainted)
-        next if fainted.ungainableAbility?(fainted.firstAbility)
-        next if GameData::Ability::UNCOPYABLE_ABILITIES.include?(fainted.firstAbility)
-        next if fainted.firstAbility == :WONDERGUARD
-        battle.pbShowAbilitySplash(battler, ability, true)
-        stolenAbility = fainted.firstAbility
-        battler.setAbility(stolenAbility)
-        battle.pbReplaceAbilitySplash(battler, stolenAbility)
-        battle.pbDisplay(_INTL("{1}'s {2} was taken over!", fainted.pbThis, getAbilityName(stolenAbility)))
-        battle.pbHideAbilitySplash(battler)
+        battler.showMyAbilitySplash(ability)
+        
+        fainted.eachItemWithName do |item, itemName|
+            next if fainted.unlosableItem?(item)
+            fainted.removeItem(item)
+            @battle.pbDisplay(_INTL("{1} ate {2}'s {3}!", user.pbThis, fainted.pbThis, itemName))
+            battler.pbHeldItemTriggerCheck(item, false)
+        end
 
         fainted.eachAbility do |abilityID|
             next if GameData::Ability::UNCOPYABLE_ABILITIES.include?(abilityID)
             next if abilityID == :WONDERGUARD
             battler.addAbility(abilityID, true)
         end
+
+        GameData::Stat.each_main_battle do |s|
+            statValue = battler.steps[s.id]
+            next if statValue == 0
+            if statValue > 0
+                battler.tryLowerStat(s.id, battler, increment: statValue)
+            end
+            if statValue < 0
+                battler.tryLowerStat(s.id, battler, increment: statValue)
+            end
+        end
+
+        battler.hideMyAbilitySplash
     }
 )

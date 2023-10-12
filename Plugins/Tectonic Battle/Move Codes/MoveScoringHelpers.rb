@@ -1,7 +1,5 @@
 DOWNSIDE_ABILITIES = %i[SLOWSTART PRIMEVALSLOWSTART DEFEATIST TRUANT AUTUMNAL]
 
-STATUS_UPSIDE_ABILITIES = %i[GUTS AUDACITY MARVELSCALE MARVELSKIN QUICKFEET]
-
 ALL_STATUS_SCORE_BONUS = 0
 STATUS_UPSIDE_MALUS = 60
 NON_ATTACKER_BONUS = 30
@@ -49,7 +47,6 @@ def getNumbEffectScore(user, target, ignoreCheck: false)
         score = 0
         score += 60 if target.hasDamagingAttack?
         score += 60 if user && target.pbSpeed(true) > user.pbSpeed(true)
-        score -= STATUS_UPSIDE_MALUS if target.hasActiveAbilityAI?(STATUS_UPSIDE_ABILITIES)
         score += STATUS_PUNISHMENT_BONUS if user && (user.hasStatusPunishMove? ||
                                             user.pbHasMoveFunction?("07C", "579")) # Smelling Salts, Spectral Tongue
         score += 60 if user&.hasActiveAbilityAI?(:TENDERIZE)
@@ -76,7 +73,6 @@ def getPoisonEffectScore(user, target, ignoreCheck: false)
                 score *= 2 if user.ownersPolicies.include?(:PRIORITIZEDOTS) && user.opposes?(target)
             end
         end
-        score -= STATUS_UPSIDE_MALUS if target.hasActiveAbilityAI?(%i[TOXICBOOST POISONHEAL].concat(STATUS_UPSIDE_ABILITIES))
         score += STATUS_PUNISHMENT_BONUS if user && (user.hasStatusPunishMove? || user.pbHasMoveFunction?("07B")) # Venoshock
         score -= getNaturalCureScore(user, target, score) if target.hasActiveAbilityAI?(:NATURALCURE)
     else
@@ -105,7 +101,6 @@ def getBurnEffectScore(user, target, ignoreCheck: false)
             score += 30 unless target.hasSpecialAttack?
         end
         
-        score -= STATUS_UPSIDE_MALUS if target.hasActiveAbilityAI?(%i[FLAREBOOST BURNHEAL].concat(STATUS_UPSIDE_ABILITIES))
         score += STATUS_PUNISHMENT_BONUS if user && (user.hasStatusPunishMove? || user.pbHasMoveFunction?("50E")) # Flare Up
         score -= getNaturalCureScore(user, target, score) if target.hasActiveAbilityAI?(:NATURALCURE)
     else
@@ -134,7 +129,6 @@ def getFrostbiteEffectScore(user, target, ignoreCheck: false)
             score += 30 unless target.hasPhysicalAttack?
         end
 
-        score -= STATUS_UPSIDE_MALUS if target.hasActiveAbilityAI?([:FROSTHEAL].concat(STATUS_UPSIDE_ABILITIES))
         score += STATUS_PUNISHMENT_BONUS if user && (user.hasStatusPunishMove? || user.pbHasMoveFunction?("50C")) # Ice Impact
         score -= getNaturalCureScore(user, target, score) if target.hasActiveAbilityAI?(:NATURALCURE)
     else
@@ -149,7 +143,6 @@ def getDizzyEffectScore(user, target, ignoreCheck: false)
         score = 60 # TODO: Some sort of basic AI for rating abilities?
         score += 20 if target.hp >= target.totalhp / 2
         score += 20 if user&.hasDamagingAttack?
-        score -= STATUS_UPSIDE_MALUS if target.hasActiveAbilityAI?(STATUS_UPSIDE_ABILITIES)
         score += STATUS_PUNISHMENT_BONUS if user&.hasStatusPunishMove?
     else
         return 0
@@ -178,7 +171,6 @@ def getLeechEffectScore(user, target, ignoreCheck: false)
             score *= 2 if user&.ownersPolicies.include?(:PRIORITIZEDOTS) && user&.opposes?(target)
         end
 
-        score -= STATUS_UPSIDE_MALUS if target.hasActiveAbilityAI?(STATUS_UPSIDE_ABILITIES)
         score += STATUS_PUNISHMENT_BONUS if user&.hasStatusPunishMove?
         score -= getNaturalCureScore(user, target, score) if target.hasActiveAbilityAI?(:NATURALCURE)
     else

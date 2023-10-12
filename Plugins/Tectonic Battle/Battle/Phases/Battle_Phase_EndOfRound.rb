@@ -32,7 +32,7 @@ class PokeBattle_Battle
             }
         end
 
-        pbEORDamage(priority)
+        pbEORStatusDamage(priority)
 
         countDownPerishSong(priority)
 
@@ -108,6 +108,7 @@ class PokeBattle_Battle
                 fraction = 1.0 / 8.0
             end
             fraction *= 2 if battler.pbOwnedByPlayer? && curseActive?(:CURSE_STATUS_DOUBLED)
+            fraction *= 2 if battler.hasActiveAbility?(:CLEANFREAK)
             if status == :POISON
                 battler.getPoisonDoublings.times do
                     fraction *= 2
@@ -137,9 +138,23 @@ class PokeBattle_Battle
         end
     end
 
-    def pbEORDamage(priority)
+    def pbEORStatusDamage(priority)
+        battlersInOrder = priority.clone
+        if pbCheckGlobalAbility(:MALINGERING)
+            pbParty(0).each do |partyMember, partyIndex|
+                dummyBattler = PokeBattle_Battler.new(self, 0)
+                dummyBattler.pbInitDummyPokemon(partyMember, partyIndex)
+                battlersInOrder.push(dummyBattler)
+            end
+            pbParty(1).each do |partyMember, partyIndex|
+                dummyBattler = PokeBattle_Battler.new(self, 0)
+                dummyBattler.pbInitDummyPokemon(partyMember, partyIndex)
+                battlersInOrder.push(dummyBattler)
+            end
+        end
+
         # Damage from poisoning
-        priority.each do |b|
+        battlersInOrder.each do |b|
             next if b.fainted?
             next unless b.poisoned?
             healFromStatusAbility(:POISONHEAL, b, :POISON, 4) if b.hasActiveAbility?(:POISONHEAL)
@@ -159,14 +174,14 @@ class PokeBattle_Battle
                 priority.each do |b|
                     next unless b.hasActiveAbility?(:TOXINTAX)
                     pbShowAbilitySplash(b, :TOXINTAX)
-                    healingMessage = _INTL("{1} absorbs the damage from the poison", b.pbThis)
+                    healingMessage = _INTL("{1} absorbs the damage from the poison.", b.pbThis)
                     b.pbRecoverHP(damageDealt, true, true, true, healingMessage)
                     pbHideAbilitySplash(b)
                 end
             end
         end
         # Damage from burn
-        priority.each do |b|
+        battlersInOrder.each do |b|
             next if b.fainted?
             next unless b.burned?
             if b.hasActiveAbility?(:BURNHEAL)
@@ -176,7 +191,7 @@ class PokeBattle_Battle
             end
         end
         # Damage from frostbite
-        priority.each do |b|
+        battlersInOrder.each do |b|
             next if b.fainted?
             next unless b.frostbitten?
             if b.hasActiveAbility?(:FROSTHEAL)
@@ -186,7 +201,7 @@ class PokeBattle_Battle
             end
         end
         # Leeched
-        priority.each do |b|
+        battlersInOrder.each do |b|
             next if b.fainted?
             next unless b.leeched?
             enemyCount = 0

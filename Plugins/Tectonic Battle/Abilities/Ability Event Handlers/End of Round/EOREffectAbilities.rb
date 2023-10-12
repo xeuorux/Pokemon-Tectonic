@@ -230,13 +230,71 @@ PAIN_PRESENCE_DAMAGE_FRACTION = 1.0/12.0
 
 BattleHandlers::EOREffectAbility.add(:PAINPRESENCE,
   proc { |ability, battler, battle|
+    battler.showMyAbilitySplash(ability)
     battler.eachOther do |b|
-      battle.pbShowAbilitySplash(battler, ability)
       if b.takesIndirectDamage?(true)
         battle.pbDisplay(_INTL("{1} is pained!", b.pbThis))
         b.applyFractionalDamage(PAIN_PRESENCE_DAMAGE_FRACTION, false)
       end
-      battle.pbHideAbilitySplash(battler)
+    end
+    battler.hideMyAbilitySplash
+  }
+)
+
+BattleHandlers::EOREffectAbility.add(:FIREFESTIVAL,
+  proc { |ability, battler, battle|
+    battler.showMyAbilitySplash(ability)
+    battle.eachBattler do |b|
+      if b.takesIndirectDamage?(true)
+        battle.pbDisplay(_INTL("{1} is splashed with fire!", b.pbThis))
+        bTypes = b.pbTypes(true)
+        damageFraction = battle.getTypedHazardHPRatio(:FIRE, bTypes[0], bTypes[1], bTypes[2])
+        b.applyFractionalDamage(damageFraction, false)
+      end
+    end
+    battler.hideMyAbilitySplash
+  }
+)
+
+BattleHandlers::EOREffectAbility.add(:AUTOSTRUCTURE,
+  proc { |ability, battler, battle|
+    battler.showMyAbilitySplash(ability)
+    
+    # Store the current stats
+    currentStats = {
+      :ATTACK => battler.base_attack,
+      :DEFENSE => battler.base_defense,
+      :SPECIAL_ATTACK => battler.base_special_attack,
+      :SPECIAL_DEFENSE => battler.base_special_defense,
+      :SPEED => battler.base_speed,
+    }
+    # Change the stats
+    battler.applyEffect(:BaseAttack,currentStats[:SPEED])
+    battler.applyEffect(:BaseDefense,currentStats[:ATTACK])
+    battler.applyEffect(:BaseSpecialAttack,currentStats[:DEFENSE])
+    battler.applyEffect(:BaseSpecialDefense,currentStats[:SPECIAL_ATTACK])
+    battler.applyEffect(:BaseSpeed,currentStats[:SPECIAL_DEFENSE])
+
+    battle.pbDisplay(_INTL("{1} has restructured!", battler.pbThis))
+    battler.hideMyAbilitySplash
+  }
+)
+
+DIRECT_CURRENT_HEALING_FRACTION = 1.0/5.0
+
+BattleHandlers::EOREffectAbility.add(:DIRECTCURRENT,
+  proc { |ability, battler, battle|
+    if battler.pbCanLowerStatStep?(:SPECIAL_ATTACK, battler)
+      battler.showMyAbilitySplash(ability)
+      battler.tryLowerStat(:SPECIAL_ATTACK, battler)
+      choices = [_INTL("Speed"),_INTL("Healing")]
+      choice = battle.scene.pbShowCommands(_INTL("Where to direct power"),choices,0)
+      if choice == 0
+        battler.tryRaiseStat(:SPEED, battler)
+      else
+        battler.applyFractionalHealing(DIRECT_CURRENT_HEALING_FRACTION)
+      end
+      battler.hideMyAbilitySplash
     end
   }
 )
