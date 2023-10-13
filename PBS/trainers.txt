@@ -1180,6 +1180,8 @@ Pokemon = GARBODOR,28
 Pokemon = MARILL,28
     Moves = SPATTERINGRAM,MENDINGSPRING,PERFUMEDPUNCH,CHARM
     AbilityIndex = 1 # Power Up
+#-------------------------------
+[REPORTER,Helga]
 Pokemon = ELECTABUZZ,28
     Moves = POWERUPPUNCH,QUICKATTACK,THUNDERPUNCH,CHARGE
     AbilityIndex = 0 # Shock Style
