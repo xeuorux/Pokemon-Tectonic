@@ -479,3 +479,4 @@
 1478,NOBLEBLADE,Noble Blade,"Deals no damage to a target while they are using a status move."
 1479,DIRECTCURRENT,Direct Current,"At the end of each turn, it’s Sp. Atk is lowered. Then, you choose to raise its Speed or heal it for 1/5th HP."
 1480,AUTOPILOT,Auto-Pilot,"At the beginning of every 5th turn, the Pokémon forcibly switches into battle. It chooses which move it will use that turn."
+1481,CAUTIONARY,Cautionary,"Raises Def and Sp. Def by three steps each when its HP is lowered below half."

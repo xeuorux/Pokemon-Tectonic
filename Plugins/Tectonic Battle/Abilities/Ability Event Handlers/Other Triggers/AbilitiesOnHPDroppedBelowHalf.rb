@@ -76,3 +76,10 @@ BattleHandlers::AbilityOnHPDroppedBelowHalf.add(:TRICKSTER,
         next false
   }
 )
+
+BattleHandlers::AbilityOnHPDroppedBelowHalf.add(:CAUTIONARY,
+  proc { |ability, battler, _battle|
+      battler.pbRaiseMultipleStatSteps([:DEFENSE, 3, :SPECIAL_DEFENSE, 3], battler, ability: ability)
+      next false
+  }
+)
