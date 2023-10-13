@@ -6004,6 +6004,9 @@ Pokemon = SYLVEON,59
     Item = STRIKEVEST
 #-------------------------------
 [LOST_RANGER_BLUE,Farid]
+Pokemon = INTELEON,60
+    AbilityIndex = 0 # Sniper
+    Item = SCOPELENS
 Pokemon = DARMANITAN,60
     Form = 1
     AbilityIndex = 0 # Tough
@@ -6012,9 +6015,6 @@ Pokemon = RIOJIN,60
     Item = SHELLBELL
 Pokemon = DONPHAN,60
     AbilityIndex = 1 # Burn Out
-Pokemon = INTELEON,60
-    AbilityIndex = 0 # Sniper
-    Item = SCOPELENS
 Pokemon = KOMALA,60
     AbilityIndex = 0 # Comatose
     Item = ENERGYHERB
