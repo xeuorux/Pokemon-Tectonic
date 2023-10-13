@@ -103,7 +103,7 @@ def battleGuideAbilitiesHash
         _INTL("Ability Effects") => _INTL("Abilities do a wide variety of different things. Understanding your team's abilities, and choosing the right ones, is important to winning."),
         _INTL("Checking Abilities") => _INTL("Check your Pokémon's summary to see what ability they have. Use the MasterDex to read about the abilities of enemy Pokémon during battle."),
         _INTL("Choosing Abilities") => _INTL("A Pokémon's ability is one of the two its species can have, randomly chosen when you get it. You can use Ability Capsules to swap to the other."),
-        _INTL("Conditional Abilities") => _INTL("Many abilities only do things under certain circumstances. Building around Weather and Terrain-synergy abilities is a common strategy."),
+        _INTL("Conditional Abilities") => _INTL("Many abilities only do things under certain circumstances. Building around Weather and Room-synergy abilities is a common strategy."),
         _INTL("Effect Of Evolution") => _INTL("A Pokémon's ability tends to stay the same when evolving, but can change. When this happens, the game will alert you."),
         _INTL("Defeating Abilities") => _INTL("An enemy Trainer's ability too much? Abilities like Neutralizing Gas, and moves like Gastro Acid, can suppress abilities in battle."),
         _INTL("Swapping Abilities") => _INTL("Moves like Skill Swap can be used to give a new ability to Pokémon during battle, enabling unique and creative team synergies."),
