@@ -486,7 +486,7 @@ target.pbThis(true)))
         if target.damageState.critical
             onAddendum = numTargets > 1 ? " on #{target.pbThis(true)}" : ""
             if target.damageState.forced_critical
-                @battle.pbDisplay(_INTL("It was a guarenteed critical hit#{onAddendum}!"))
+                @battle.pbDisplay(_INTL("It was a guaranteed critical hit#{onAddendum}!"))
             else
                 @battle.pbDisplay(_INTL("A critical hit#{onAddendum}!"))
             end
