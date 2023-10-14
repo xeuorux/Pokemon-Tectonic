@@ -1,6 +1,6 @@
 class Game_Event < Game_Character
     attr_reader   :width
-      attr_reader   :height
+    attr_reader   :height
     attr_reader   :map_id
     attr_reader   :trigger
     attr_reader   :list
@@ -11,7 +11,8 @@ class Game_Event < Game_Character
     attr_reader   :event
     attr_accessor :direction_fix
     attr_accessor :pe_refresh
-    attr_writer :id
+    attr_writer   :id
+    attr_reader   :page
   
     def initialize(map_id, event, map=nil)
       @pe_refresh = false

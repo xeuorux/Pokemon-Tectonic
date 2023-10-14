@@ -337,7 +337,7 @@ class PokEstate
 		push_text(firstPage.list,displayedMessage) if displayedMessage
 		push_script(firstPage.list,sprintf("Pokemon.play_cry(:%s, %d)",speciesData.id,form))
 		push_script(firstPage.list,sprintf("$PokEstate.estateChoices(#{event.id},#{pokemon.personalID})",))
-		firstPage.list.push(RPG::EventCommand.new(0,0,[]))
+		push_end(firstPage.list)
 		
 		actualEvent.pages[0] = firstPage
 		

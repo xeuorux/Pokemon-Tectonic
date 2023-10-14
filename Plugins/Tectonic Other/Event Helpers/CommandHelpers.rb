@@ -25,4 +25,8 @@ def push_text(list,text,indent=0)
         end
       end
     end
-  end
+end
+
+def push_end(list)
+  list.push(RPG::EventCommand.new(0,0,[]))
+end

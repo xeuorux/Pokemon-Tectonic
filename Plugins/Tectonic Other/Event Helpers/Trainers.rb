@@ -242,3 +242,42 @@ def wildBattlersFlee(eventIDArray)
 		end
 	}
 end
+
+# Replace placeholder overworld follower sprites
+Events.onMapChange += proc { |_sender,*args|
+	for event in $game_map.events.values
+		match = event.name.match(/follower\(:([a-zA-Z0-9_]+),"(.+)"(?:,([0-9]+))?(?:,([0-9]+))?\)/)
+		next unless match
+		next unless event.event.pages[0].graphic.character_name == "00Overworld Placeholder"
+
+		# Parse the event name
+		trainerClass = match[1].to_sym
+		trainerName = match[2]
+		trainerVersion = match[3].to_i || 0
+		partyIndex = match[4].to_i || 0
+
+		# Create the first page, where the cry happens
+		pokemon = pbLoadTrainer(trainerClass,trainerName,trainerVersion).party[partyIndex]
+
+		firstPage = RPG::Event::Page.new
+		characterName = GameData::Species.ow_sprite_filename(pokemon.species,pokemon.form,pokemon.gender,pokemon.shiny?).gsub!("Graphics/Characters/","")
+		firstPage.graphic.character_name = characterName
+		originalPage = event.event.pages[0]
+		firstPage.graphic.direction = originalPage.graphic.direction
+		firstPage.step_anime = true
+
+		# Set the event interaction
+		firstPage.trigger = 0 # Action button
+		firstPage.list = []
+		push_script(firstPage.list,sprintf("Pokemon.play_cry(:%s, %d)",pokemon.species,pokemon.form))
+		cryOutMessage = _INTL("#{pokemon.name} cries out!")
+		push_script(firstPage.list,sprintf("pbMessage(\"#{cryOutMessage}\")"))
+		push_end(firstPage.list)
+
+		event.event.pages[0] = firstPage
+		
+		event.floats = floatingSpecies?(pokemon.species,pokemon.form)
+		
+		event.refresh()
+    end
+}
