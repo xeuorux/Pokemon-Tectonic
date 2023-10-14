@@ -330,6 +330,6 @@ BattleHandlers::DamageCalcUserItem.add(:SCOPELENS,
 
 BattleHandlers::DamageCalcUserItem.add(:LUMBERAXE,
   proc { |item, user, target, move, mults, _baseDmg, type, aiCheck|
-    mults[:final_damage_multiplier] *= 1.3
+    mults[:final_damage_multiplier] *= 1.25
   }
 )

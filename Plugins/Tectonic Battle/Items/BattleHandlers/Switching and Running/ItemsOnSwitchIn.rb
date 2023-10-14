@@ -26,7 +26,7 @@ BattleHandlers::ItemOnSwitchIn.add(:ALLOYEDLUMP,
 
 BattleHandlers::ItemOnSwitchIn.add(:LUMBERAXE,
     proc { |item, battler, battle|
-        battler.tryLowerStat(:SPEED, battler, item: item)
+        battler.tryLowerStat(:SPEED, battler, item: item, ignoreContrary: true)
     }
 )
 

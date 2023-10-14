@@ -540,18 +540,18 @@ class PokeBattle_Battler
     end
 
     # Fails silently
-    def tryRaiseStat(stat, user, move: nil, increment: 1, showFailMsg: false, showAnim: true, ability: nil, cause: nil, item: nil)
+    def tryRaiseStat(stat, user, move: nil, increment: 1, showFailMsg: false, showAnim: true, ability: nil, cause: nil, item: nil, ignoreContrary: false)
         return false if increment <= 0
         lowered = false
-        if pbCanRaiseStatStep?(stat, user, move, showFailMsg)
+        if pbCanRaiseStatStep?(stat, user, move, showFailMsg, ignoreContrary)
             @battle.pbShowAbilitySplash(user, ability) if ability
             if item
                 cause = GameData::Item.get(item).name
                 @battle.pbCommonAnimation("UseItem", user)
-                lowered = true if pbRaiseStatStepByCause(stat, increment, user, cause, showAnim)
+                lowered = true if pbRaiseStatStepByCause(stat, increment, user, cause, showAnim, ignoreContrary)
             elsif cause
-                lowered = true if pbRaiseStatStepByCause(stat, increment, user, cause, showAnim)
-            elsif pbRaiseStatStep(stat, increment, user, showAnim)
+                lowered = true if pbRaiseStatStepByCause(stat, increment, user, cause, showAnim, ignoreContrary)
+            elsif pbRaiseStatStep(stat, increment, user, showAnim, ignoreContrary)
                 lowered = true
             end
         end
@@ -560,18 +560,18 @@ class PokeBattle_Battler
     end
 
     # Fails silently
-    def tryLowerStat(stat, user, move: nil, increment: 1, showFailMsg: false, showAnim: true, ability: nil, cause: nil, item: nil)
+    def tryLowerStat(stat, user, move: nil, increment: 1, showFailMsg: false, showAnim: true, ability: nil, cause: nil, item: nil, ignoreContrary: false)
         return false if increment <= 0
         lowered = false
-        if pbCanLowerStatStep?(stat, user, move, showFailMsg)
+        if pbCanLowerStatStep?(stat, user, move, showFailMsg, ignoreContrary)
             @battle.pbShowAbilitySplash(user, ability) if ability
             if item
                 cause = GameData::Item.get(item).name
                 @battle.pbCommonAnimation("UseItem", user)
-                lowered = true if pbLowerStatStepByCause(stat, increment, user, cause, showAnim)
+                lowered = true if pbLowerStatStepByCause(stat, increment, user, cause, showAnim, ignoreContrary)
             elsif cause
-                lowered = true if pbLowerStatStepByCause(stat, increment, user, cause, showAnim)
-            elsif pbLowerStatStep(stat, increment, user, showAnim)
+                lowered = true if pbLowerStatStepByCause(stat, increment, user, cause, showAnim, ignoreContrary)
+            elsif pbLowerStatStep(stat, increment, user, showAnim, ignoreContrary)
                 lowered = true
             end
         end
