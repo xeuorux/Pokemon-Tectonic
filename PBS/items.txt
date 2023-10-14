@@ -73,7 +73,7 @@
 72,CHOICEBAND,Choice Band,Choice Bands,5,8000,"Held item which ups Attack by 40%, but allows the use of only one move.",0,0,0
 73,CHOICESPECS,Choice Specs,Choice Specs,5,8000,"Held item which ups Sp. Atk by 40%, but allows the use of only one move.",0,0,0
 74,CHOICESCARF,Choice Scarf,Choice Scarves,5,8000,"Held item which boosts Speed by 40% but allows the use of only one move.",0,0,0
-75,LUMBERAXE,Lumber Axe,Lumber Axes,5,8000,"Held item which boosts move damage by 30%, but lower's the user's Speed by 1 step on entry.",0,0,0
+75,LUMBERAXE,Lumber Axe,Lumber Axes,5,8000,"Held item which boosts move damage by 25%, but lower's the user's Speed by 1 step on entry.",0,0,0
 76,HEATROCK,Heat Rock,Heat Rocks,5,4000,"A Pokémon held item. When the holder summons sunshine, it lasts twice as long.",0,0,0
 77,DAMPROCK,Damp Rock,Damp Rocks,5,4000,"A Pokémon held item. When the holder summons rain, it lasts twice as long.",0,0,0
 78,SMOOTHROCK,Smooth Rock,Smooth Rocks,5,4000,"A Pokémon held item. When the holder summons a sandstorm, it lasts twice as long.",0,0,0
