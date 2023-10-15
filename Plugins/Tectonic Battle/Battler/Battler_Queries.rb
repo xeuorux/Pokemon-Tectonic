@@ -912,4 +912,36 @@ class PokeBattle_Battler
         end
         return false
     end
+    
+    def getSpeedTier # TODO: Merge this with pbSpeed
+        speedTiers = [
+            [0,0], # 0
+            [0,0], # 5
+            [23,33], # 10
+            [26,37], # 15
+            [35,48], # 20
+            [38,55], # 25
+            [41,63], # 30
+            [47,72], # 35
+            [54,84], # 40
+            [57,90], # 45
+            [61,97], # 50
+            [64,103], # 55 
+            [68,109], # 60
+            [71,115], # 65
+            [75,122], # 70
+        ]
+        tierCheck = speedTiers[(level / 5.0).ceil]
+        effectiveSpeed = base_speed
+        effectiveSpeed /= 2 if numbed? && !hasActiveAbility?(:NATURALCURE)
+        effectiveSpeed * 1.4 if hasActiveItem?:CHOICESCARF
+        effectiveSpeed * 1.1 if hasActiveItem?:SEVENLEAGUEBOOTS
+        if effectiveSpeed >= tierCheck[1]
+            return 2 # Fast
+        elsif effectiveSpeed >= tierCheck[0]
+            return 1 # Average
+        else
+            return 0 # Slow
+        end
+    end
 end

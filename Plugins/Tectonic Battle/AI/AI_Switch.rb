@@ -101,13 +101,14 @@ class PokeBattle_AI
 
         # Other things that affect the stay in rating
         stayInRating += miscStayInRatingModifiers(battler)
+        stayInRating += speedTierRating(battler)
 
         # Determine who to swap into if at all
         PBDebug.log("[AI SWITCH] #{battler.pbThis} (#{battler.index}) is trying to find a switch. Staying in is rated: #{stayInRating}.")
         list = pbGetPartyWithSwapRatings(idxBattler)
         listSwapOutCandidates(battler, list)
 
-        # Only considers swapping into pokemon whose rating would be at least a +35 upgrade
+        # Only considers swapping into pokemon whose rating would be at least a +30 upgrade
         upgradeThreshold = 30
         upgradeThreshold -= 5 if owner.tribalBonus.hasTribeBonus?(:CHARMER)
         list.delete_if { |val| val[1] < stayInRating + upgradeThreshold }
@@ -209,6 +210,40 @@ class PokeBattle_AI
                     PBDebug.log("[STAY-IN RATING] #{battler.pbThis} (#{battler.index}) wants to switch so it can reset the weather (-20)")
                 end
             end
+        end      
+        return stayInRating
+    end
+
+    # Less likely to be preserved if needs to "use" HP for turns, and has low HP
+    def speedTierRating(battler)
+        stayInRating = 0
+        if battler.hp <= battler.totalhp * 0.5
+            sTier = battler.getSpeedTier
+            if sTier == 2
+                PBDebug.log("[STAY-IN RATING] #{battler.pbThis} (#{battler.index}) is bloodied and FAST, no penalty")
+                return stayInRating
+            else
+                currentHP = battler.hp.to_f
+                currentHP += battler.totalhp * 0.25 if battler.hasActiveAbilityAI?(:REGENERATOR) || battler.hasActiveAbilityAI?(:HOLIDAYCHEER)
+                currentHP += battler.totalhp * 0.1 if battler.hasTribeBonus?(:CARETAKER)
+                currentHP += battler.totalhp * 0.5 if battler.hasActiveAbilityAI?(:REFRESHMENTS) && battler.ownersPolicies.include?(:SUN_TEAM)
+                if currentHP >= battler.totalhp * 0.5
+                    PBDebug.log("[STAY-IN RATING] #{battler.pbThis} (#{battler.index}) is bloodied but will regenerate, no penalty")
+                    return stayInRating
+                end
+                currentHP /= battler.totalhp * 0.6 # .6 is intentional to bias score
+                if sTier == 1
+                    stayInRating += 23
+                    stayInRating -= 23 * currentHP
+                    PBDebug.log("[STAY-IN RATING] #{battler.pbThis} (#{battler.index}) is bloodied and AVERAGE (+#{stayInRating.round})")
+                    return stayInRating.round
+                else
+                    stayInRating += 42
+                    stayInRating -= 42 * currentHP
+                    PBDebug.log("[STAY-IN RATING] #{battler.pbThis} (#{battler.index}) is bloodied and SLOW (+#{stayInRating.round})")
+                    return stayInRating.round
+                end
+            end    
         end
         return stayInRating
     end
