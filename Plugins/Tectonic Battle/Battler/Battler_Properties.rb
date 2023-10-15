@@ -121,6 +121,18 @@ class PokeBattle_Battler
         return nil
     end
 
+    def getHighestLearnsetMoveID
+        return nil if @pokemon.nil?
+        speciesLearnSet = @pokemon.getMoveList.reverse
+        speciesLearnSet.each do |learnSetEntry|
+            moveLevel = learnSetEntry[0]
+            next if moveLevel > @level
+            move = learnSetEntry[1]
+            return move
+        end
+        return nil
+    end
+
     #=============================================================================
     # Properties from Pokémon
     #=============================================================================

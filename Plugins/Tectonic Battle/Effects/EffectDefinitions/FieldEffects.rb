@@ -171,6 +171,12 @@ GameData::BattleEffect.register_effect(:Field, {
     :is_room => true,
     :apply_proc => proc do |battle, _value|
         battle.pbDisplay(_INTL("An insightful area appeared! Everyone gets a 5th move!"))
+
+        # AI learns of the battler's possible insight room move
+        # It either has it from insight room or has it already
+        battle.eachBattler do |b|
+            b.aiSeesMove(b.getHighestLearnsetMoveID)
+        end
     end,
     :disable_proc => proc do |battle, _battler|
         battle.pbDisplay(_INTL("The insightful area was dispelled!"))
