@@ -248,7 +248,6 @@ Events.onMapChange += proc { |_sender,*args|
 	for event in $game_map.events.values
 		match = event.name.match(/follower\(:([a-zA-Z0-9_]+),"(.+)"(?:,([0-9]+))?(?:,([0-9]+))?\)/)
 		next unless match
-		next unless event.event.pages[0].graphic.character_name == "00Overworld Placeholder"
 
 		# Parse the event name
 		trainerClass = match[1].to_sym
@@ -256,29 +255,43 @@ Events.onMapChange += proc { |_sender,*args|
 		trainerVersion = match[3].to_i || 0
 		partyIndex = match[4].to_i || 0
 
-		# Create the first page, where the cry happens
+		# Find the pokemon that the event represents
 		pokemon = pbLoadTrainer(trainerClass,trainerName,trainerVersion).party[partyIndex]
 
-		firstPage = RPG::Event::Page.new
-		characterName = GameData::Species.ow_sprite_filename(pokemon.species,pokemon.form,pokemon.gender,pokemon.shiny?).gsub!("Graphics/Characters/","")
-		firstPage.graphic.character_name = characterName
-		originalPage = event.event.pages[0]
-		firstPage.graphic.direction = originalPage.graphic.direction
-		firstPage.graphic.opacity = originalPage.graphic.opacity
-		firstPage.step_anime = true
+		newPages = {}
 
-		# Set the event interaction
-		firstPage.trigger = 0 # Action button
-		firstPage.list = []
-		push_script(firstPage.list,sprintf("Pokemon.play_cry(:%s, %d)",pokemon.species,pokemon.form))
-		cryOutMessage = _INTL("#{pokemon.name} cries out!")
-		push_script(firstPage.list,sprintf("pbMessage(\"#{cryOutMessage}\")"))
-		push_end(firstPage.list)
+		# Find all the pages that need to be replaced
+		event.event.pages.each_with_index do |page,pageIndex|
+			next unless page.graphic.character_name == "00Overworld Placeholder"
+			newPages[pageIndex] = createPokemonInteractionEventPage(pokemon,page)
+		end
 
-		event.event.pages[0] = firstPage
+		# Actually replace those pages on the event
+		newPages.each do |pageIndex,newPage|
+			echoln("Replacing page index #{pageIndex}")
+			event.event.pages[pageIndex] = newPage
+		end
 		
 		event.floats = floatingSpecies?(pokemon.species,pokemon.form)
 		
-		event.refresh()
+		event.refresh
     end
 }
+
+def createPokemonInteractionEventPage(pokemon,originalPage = nil)
+	# Create the page where the cry happens
+	newPage = originalPage ? originalPage.clone : RPG::Event::Page.new
+	characterName = GameData::Species.ow_sprite_filename(pokemon.species,pokemon.form,pokemon.gender,pokemon.shiny?).gsub!("Graphics/Characters/","")
+	newPage.graphic.character_name = characterName
+	newPage.step_anime = true
+
+	# Set the event interaction
+	newPage.trigger = 0 # Action button
+	newPage.list = []
+	push_script(newPage.list,sprintf("Pokemon.play_cry(:%s, %d)",pokemon.species,pokemon.form))
+	cryOutMessage = _INTL("#{pokemon.name} cries out!")
+	push_script(newPage.list,sprintf("pbMessage(\"#{cryOutMessage}\")"))
+	push_end(newPage.list)
+
+	return newPage
+end
