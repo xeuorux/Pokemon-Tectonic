@@ -264,6 +264,7 @@ Events.onMapChange += proc { |_sender,*args|
 		firstPage.graphic.character_name = characterName
 		originalPage = event.event.pages[0]
 		firstPage.graphic.direction = originalPage.graphic.direction
+		firstPage.graphic.opacity = originalPage.graphic.opacity
 		firstPage.step_anime = true
 
 		# Set the event interaction
