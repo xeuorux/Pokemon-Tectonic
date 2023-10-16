@@ -39,9 +39,9 @@ end
 def candyBatchCost(level)
     case level
     when 0..15
-        return 250
+        return 300
     when 16..20
-        return 500
+        return 550
     when 21..25
         return 1000
     when 26..30
@@ -49,15 +49,15 @@ def candyBatchCost(level)
     when 31..35
         return 2000
     when 36..40
-        return 2500
-    when 41..45
         return 3000
-    when 46..50
+    when 41..45
         return 4000
-    when 51..55
+    when 46..50
         return 5000
-    when 56..60
+    when 51..55
         return 6000
+    when 56..60
+        return 7000
     when 61..65
         return 8000
     when 65..70

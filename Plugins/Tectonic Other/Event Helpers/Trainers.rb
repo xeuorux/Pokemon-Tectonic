@@ -97,11 +97,11 @@ def candiesForLevel(level)
   itemsGiven = []
   case level
   when 0..10
-	itemsGiven = [:EXPCANDYXS,2] # 500
+	itemsGiven = [:EXPCANDYXS,3] # 750
   when 11..15
-	itemsGiven = [:EXPCANDYXS,4] # 1000
+	itemsGiven = [:EXPCANDYS,1,:EXPCANDYXS,1] # 1250
   when 16..20
-	itemsGiven = [:EXPCANDYS,2] # 2000
+	itemsGiven = [:EXPCANDYS,2,:EXPCANDYXS,1] # 2250
   when 21..25
 	itemsGiven = [:EXPCANDYS,4] # 4000
   when 26..30
@@ -109,15 +109,15 @@ def candiesForLevel(level)
   when 31..35
 	itemsGiven = [:EXPCANDYM,2] # 8000
   when 36..40
-	itemsGiven = [:EXPCANDYM,2,:EXPCANDYS,2] # 10_000
+	itemsGiven = [:EXPCANDYM,3] # 12_000
   when 41..45
-	itemsGiven = [:EXPCANDYM,2,:EXPCANDYS,4] # 12_000
-  when 46..50
 	itemsGiven = [:EXPCANDYM,4] # 16_000
+  when 46..50
+	itemsGiven = [:EXPCANDYL,1,:EXPCANDYM,1] # 20_000
   when 51..55
-	itemsGiven = [:EXPCANDYM,4,:EXPCANDYS,4] # 20_000
+	itemsGiven = [:EXPCANDYL,1,:EXPCANDYM,2] # 24_000
   when 56..60
-	itemsGiven = [:EXPCANDYM,6] # 24_000
+	itemsGiven = [:EXPCANDYL,1,:EXPCANDYM,3] # 28_000
   when 61..65
 	itemsGiven = [:EXPCANDYL,2] # 32_000
   when 65..70
