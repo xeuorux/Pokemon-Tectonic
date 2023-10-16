@@ -1,2 +1,3 @@
 Name         = Tectonic Game Data              
 Credits      = Essentials v19 Team,Zeu
+Scripts		 = Trainers and Player/Trainer.rb
