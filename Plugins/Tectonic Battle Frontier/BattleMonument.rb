@@ -30,13 +30,20 @@ def battleMonumentSinglesRegister
     return false
 end
 
-def battleMonumentSinglesBattle(opponentEventID)
+def battleMonumentSinglesBattle(opponentEventID,followerEventID)
     blackFadeOutIn {
-        event = get_character(opponentEventID)
-        overworldFileName = pbBattleChallenge.nextTrainer.trainer_type.to_s
-        bitmap = AnimatedBitmap.new("Graphics/Characters/" + overworldFileName)
-        bitmap.dispose
-        event.character_name = overworldFileName
+        nextTrainer = pbBattleChallenge.nextTrainer
+
+        # Set the sprite for the opponent
+        opponentCharacterName = nextTrainer.trainer_type.to_s
+        # bitmap = AnimatedBitmap.new("Graphics/Characters/" + overworldFileName)
+        # bitmap.dispose
+        get_character(opponentEventID).character_name = opponentCharacterName
+
+        # Set the sprite for the follower pokemon
+        pokemon = nextTrainer.to_trainer.party[0]
+        followerCharacterName = GameData::Species.ow_sprite_filename(pokemon.species,pokemon.form,pokemon.gender,pokemon.shiny?).gsub!("Graphics/Characters/","")
+	    get_character(followerEventID).character_name = followerCharacterName
     }
     pbMessage(_INTL("The match will now begin!"))
     if pbBattleChallengeBattle
