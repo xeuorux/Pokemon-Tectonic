@@ -318,7 +318,7 @@ class PokeBattle_Battle
         partyOrder[idxParty], partyOrder[idxPartyOld] = partyOrder[idxPartyOld], partyOrder[idxParty]
         # Send out the new Pokémon
         pbSendOut([[idxBattler, party[idxParty]]])
-        pbCalculatePriority(false, [idxBattler]) if Settings::RECALCULATE_TURN_ORDER_AFTER_SPEED_CHANGES
+        pbCalculatePriority(false, [idxBattler])
         if @battlers[idxBattler].boss?
             scene.deleteDataBoxes
             scene.createDataBoxes

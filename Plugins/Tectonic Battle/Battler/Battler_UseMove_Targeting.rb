@@ -142,7 +142,6 @@ move, false, true)
         strength = 100 # Lower strength takes priority
         priority.each do |b|
             next if b.fainted? || b.effectActive?(:SkyDrop)
-            next if b.effects[:RagePowder] && !user.affectedByPowder?
             next if b.effects[:FollowMe] == 0 || b.effects[:FollowMe] >= strength
             next unless b.opposes?(user)
             next if nearOnly && !b.near?(user)

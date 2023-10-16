@@ -1,13 +1,3 @@
-module Settings
-	USE_CURRENT_REGION_DEX = true
-	def self.pokedex_names
-		return [
-		_INTL("National Pokédex")
-		]
-	end
-	DEX_SHOWS_ALL_FORMS = true
-end
-
 def openSingleDexScreen(pokemon)
 	if pokemon.respond_to?('species')
 		$Trainer.pokedex.register_last_seen(pokemon)

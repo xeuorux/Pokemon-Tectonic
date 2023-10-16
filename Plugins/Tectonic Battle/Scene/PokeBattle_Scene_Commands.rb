@@ -126,7 +126,7 @@ class PokeBattle_Scene
     #=============================================================================
     # The player chooses a move for a Pokémon to use
     #=============================================================================
-    def pbFightMenu(idxBattler,megaEvoPossible=false)
+    def pbFightMenu(idxBattler)
       battler = @battle.battlers[idxBattler]
       cw = @sprites["fightWindow"]
       cw.battler = battler
@@ -135,7 +135,7 @@ class PokeBattle_Scene
         moveIndex = @lastMove[idxBattler]
       end
       cw.shiftMode = (@battle.pbCanShift?(idxBattler)) ? 1 : 0
-      cw.setIndexAndMode(moveIndex,(megaEvoPossible) ? 1 : 0)
+      cw.setIndexAndMode(moveIndex,0)
       needFullRefresh = true
       needRefresh = false
       loop do
@@ -146,10 +146,6 @@ class PokeBattle_Scene
           needFullRefresh = false
         end
         if needRefresh
-          if megaEvoPossible
-            newMode = (@battle.pbRegisteredMegaEvolution?(idxBattler)) ? 2 : 1
-            cw.mode = newMode if newMode!=cw.mode
-          end
           needRefresh = false
         end
         oldIndex = cw.index

@@ -261,17 +261,6 @@ BattleHandlers::DamageCalcUserItem.add(:SOFTSAND,
 
 BattleHandlers::DamageCalcUserItem.copy(:SOFTSAND, :EARTHPLATE)
 
-BattleHandlers::DamageCalcUserItem.add(:SOULDEW,
-  proc { |item, user, _target, move, mults, _baseDmg, type, _aiCheck|
-      next if !user.isSpecies?(:LATIAS) && !user.isSpecies?(:LATIOS)
-      if Settings::SOUL_DEW_POWERS_UP_TYPES
-          mults[:final_damage_multiplier] *= 1.2 if %i[PSYCHIC DRAGON].include?(type)
-      elsif move.specialMove? && !user.battle.rules["souldewclause"]
-          mults[:attack_multiplier] *= 1.5
-      end
-  }
-)
-
 BattleHandlers::DamageCalcUserItem.add(:SPELLTAG,
   proc { |item, _user, _target, _move, mults, _baseDmg, type, _aiCheck|
       mults[:base_damage_multiplier] *= 1.2 if type == :GHOST

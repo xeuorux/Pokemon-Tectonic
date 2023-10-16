@@ -6,7 +6,7 @@ class PokeBattle_Battle
         return false if trainerBattle? || bossBattle? # Boss battle
         battler = @battlers[idxBattler]
         return false if !@canRun && !battler.opposes?
-        return true if battler.pbHasType?(:GHOST) && Settings::MORE_TYPE_EFFECTS
+        return true if battler.pbHasType?(:GHOST)
         battler.eachActiveAbility do |ability|
             return true if BattleHandlers.triggerRunFromBattleAbility(ability, battler)
         end   

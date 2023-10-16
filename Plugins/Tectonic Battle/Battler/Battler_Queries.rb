@@ -435,27 +435,6 @@ class PokeBattle_Battler
         return true
     end
 
-    def affectedByPowder?(showMsg = false)
-        return false if fainted?
-        if pbHasType?(:GRASS) && Settings::MORE_TYPE_EFFECTS
-            @battle.pbDisplay(_INTL("{1} is unaffected!", pbThis)) if showMsg
-            return false
-        end
-        if hasActiveAbility?(:OVERCOAT) && !@battle.moldBreaker
-            if showMsg
-                showMyAbilitySplash(:OVERCOAT)
-                @battle.pbDisplay(_INTL("{1} is unaffected!", pbThis))
-                hideMyAbilitySplash
-            end
-            return false
-        end
-        if hasActiveItem?(:SAFETYGOGGLES)
-            @battle.pbDisplay(_INTL("{1} is unaffected because of its {2}!", pbThis, getItemName(:SAFETYGOGGLES))) if showMsg
-            return false
-        end
-        return true
-    end
-
     def canHeal?(overheal = false)
         return false if fainted?
         if overheal

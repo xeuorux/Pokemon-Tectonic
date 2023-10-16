@@ -16,8 +16,6 @@ class PokeBattle_Battle
             item = @choices[idxBattler][1]
             pbReturnUnusedItemToBag(item, idxBattler) if item
         end
-        # If idxBattler chose to Mega Evolve, cancel it
-        pbUnregisterMegaEvolution(idxBattler)
         # Clear idxBattler's choice
         pbClearChoice(idxBattler)
     end
@@ -87,11 +85,10 @@ class PokeBattle_Battle
         return true if pbAutoFightMenu(idxBattler)
         # Regular move selection
         ret = false
-        @scene.pbFightMenu(idxBattler, pbCanMegaEvolve?(idxBattler)) do |cmd|
+        @scene.pbFightMenu(idxBattler) do |cmd|
             case cmd
             when -1   # Cancel
             when -3   # Shift
-                pbUnregisterMegaEvolution(idxBattler)
                 pbRegisterShift(idxBattler)
                 ret = true
             else      # Chose a move to use

@@ -24,7 +24,7 @@ BallHandlers::ModifyCatchRate.add(:SAFARIBALL, proc { |_ball, catchRate, _battle
 })
 
 BallHandlers::ModifyCatchRate.add(:NETBALL, proc { |_ball, catchRate, _battle, battler, _ultraBeast|
-    multiplier = Settings::NEW_POKE_BALL_CATCH_RATES ? 3.5 : 3
+    multiplier = 3.5
     catchRate *= multiplier if battler.pbHasType?(:BUG) || battler.pbHasType?(:WATER)
     next catchRate
 })
@@ -35,7 +35,7 @@ BallHandlers::ModifyCatchRate.add(:DIVEBALL, proc { |_ball, catchRate, battle, _
 })
 
 BallHandlers::ModifyCatchRate.add(:REPEATBALL, proc { |_ball, catchRate, battle, battler, _ultraBeast|
-    multiplier = Settings::NEW_POKE_BALL_CATCH_RATES ? 3.5 : 3
+    multiplier = 3.5
     catchRate *= multiplier if battle.pbPlayer.owned?(battler.species)
     next catchRate
 })
@@ -47,7 +47,7 @@ BallHandlers::ModifyCatchRate.add(:TIMERBALL, proc { |_ball, catchRate, battle, 
 })
 
 BallHandlers::ModifyCatchRate.add(:DUSKBALL, proc { |_ball, catchRate, battle, _battler, _ultraBeast|
-    multiplier = Settings::NEW_POKE_BALL_CATCH_RATES ? 3 : 3.5
+    multiplier = 3
     catchRate *= multiplier if battle.time == 2
     next catchRate
 })
@@ -80,7 +80,7 @@ BallHandlers::ModifyCatchRate.add(:LEVELBALL, proc { |_ball, catchRate, battle, 
 })
 
 BallHandlers::ModifyCatchRate.add(:LUREBALL, proc { |_ball, catchRate, _battle, _battler, _ultraBeast|
-    multiplier = Settings::NEW_POKE_BALL_CATCH_RATES ? 5 : 3
+    multiplier = 5
     catchRate *= multiplier if GameData::EncounterType.get($PokemonTemp.encounterType).type == :fishing
     next [catchRate, 255].min
 })
@@ -88,18 +88,9 @@ BallHandlers::ModifyCatchRate.add(:LUREBALL, proc { |_ball, catchRate, _battle, 
 BallHandlers::ModifyCatchRate.add(:HEAVYBALL, proc { |_ball, catchRate, _battle, battler, _ultraBeast|
     next 0 if catchRate == 0
     weight = battler.pbWeight
-    if Settings::NEW_POKE_BALL_CATCH_RATES
-        if weight >= 3000;    catchRate += 30
-        elsif weight >= 2000; catchRate += 20
-        elsif weight < 1000;  catchRate -= 20
-        end
-    else
-        if weight >= 4096;    catchRate += 40
-        elsif weight >= 3072; catchRate += 30
-        elsif weight >= 2048; catchRate += 20
-        else
-            catchRate -= 20
-        end
+    if weight >= 3000;    catchRate += 30
+    elsif weight >= 2000; catchRate += 20
+    elsif weight < 1000;  catchRate -= 20
     end
     catchRate = [catchRate, 1].max
     next [catchRate, 255].min

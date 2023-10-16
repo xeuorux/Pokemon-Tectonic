@@ -1,2 +1,2 @@
-Name         = Waypoints
+Name         = Tectonic Waypoints
 Credits      = Zeu

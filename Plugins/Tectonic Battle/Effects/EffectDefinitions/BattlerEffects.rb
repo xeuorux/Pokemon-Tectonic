@@ -926,12 +926,6 @@ GameData::BattleEffect.register_effect(:Battler, {
 })
 
 GameData::BattleEffect.register_effect(:Battler, {
-    :id => :RagePowder,
-    :real_name => "Rage Powder",
-    :resets_eor	=> true,
-})
-
-GameData::BattleEffect.register_effect(:Battler, {
     :id => :Roost,
     :real_name => "Roosting",
     :resets_eor	=> true,

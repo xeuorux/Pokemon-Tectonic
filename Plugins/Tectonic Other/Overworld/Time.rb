@@ -138,13 +138,6 @@ module UnrealTime
     NEED_32_BIT_FIX = [""].pack("p").size <= 4
 end
 
-# Essentials V18 and lower compatibility
-if defined?(TIME_SHADING) || defined?(ENABLESHADING)
-    module Settings
-        TIME_SHADING = defined?(ENABLESHADING) ? ENABLESHADING : ::TIME_SHADING
-    end
-end
-
 module PBDayNight
     HourlyTones = [
         Tone.new(-70, -90,  15, 55),   # Night           # Midnight
