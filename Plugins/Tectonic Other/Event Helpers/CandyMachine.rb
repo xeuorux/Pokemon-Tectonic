@@ -12,7 +12,7 @@ def candyMachine(candyAmount,level)
         if $Trainer.money < cost
             pbMessage(_INTL("A batch costs ${1}. You can't afford to pay that much!",cost.to_s_formatted))
         else
-            if pbConfirmMessageSerious(_INTL("Buy some candy for ${1}?",cost.to_s_formatted))
+            if pbConfirmMessage(_INTL("Buy some candy for ${1}?",cost.to_s_formatted))
                 $Trainer.money = $Trainer.money - cost
                 pbMessage(_INTL("You put in $#{cost}."))
 

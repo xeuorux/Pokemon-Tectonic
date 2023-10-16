@@ -551,6 +551,7 @@ immuneTypeRealName))
     def neurotoxined?
         return false unless poisoned?
         @battle.pbOpposingParty(@index).each do |enemyPartyMember|
+            next if enemyPartyMember.nil?
             next if enemyPartyMember.fainted?
             next unless enemyPartyMember.hasAbility?(:NEUROTOXIN)
             next if enemyPartyMember.status == :DIZZY

@@ -12,6 +12,7 @@ PokeBattle_AI::TrainerPokemonTookMoveDamageDialogue.add(:LAMBERT,
   proc { |_policy, _dealer, taker, _move, trainer_speaking, dialogue_array|
       next dialogue_array if trainer_speaking.policyStates[:IllusionComment]
       next dialogue_array if taker.species != :ZORUA
+      next dialogue_array unless taker.effectActive?(:Illusion)
       if taker.damageState.typeMod < Effectiveness::NORMAL_EFFECTIVE
           dialogue_array.push("Hah. Oldest trick in the book.")
       elsif taker.damageState.typeMod > Effectiveness::NORMAL_EFFECTIVE
