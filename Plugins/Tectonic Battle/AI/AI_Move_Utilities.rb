@@ -137,14 +137,26 @@ class PokeBattle_AI
         numHits = move.numberOfHits(user, [target], true)
 
         # Calculate the total estimated damage of all hits
-        totalDamage = damage * numHits
-
-        # Reduce damage down to substitute level
-        if target.substituted? && !move.ignoresSubstitute?(user)
-            totalDamage = [totalDamage,target.effects[:Substitute]].min
+        totalDamage = 0
+        subHP = 0
+        subFaded = false
+        subHP += target.effects[:Substitute] if target.substituted?
+        while numHits > 0
+            numHits -= 1
+            if numHits > 0 && numHits < 1 # for 4-5 hit moves
+                damage *= numHits += 1
+                numHits = 0
+            end
+            if subHP > 0 && !move.ignoresSubstitute?(user)
+                totalDamage += [subHP,damage].min
+                subHP -= damage
+                subFaded = true if subHP <= 0
+            else
+                totalDamage += damage
+            end
         end
 
-        return totalDamage.floor
+        return totalDamage.floor,subFaded
     end
 
     #===========================================================================

@@ -372,7 +372,7 @@ class PokeBattle_AI
     # of the target's current HP)
     #=============================================================================
     def pbGetMoveScoreDamage(move, user, target, numTargets = 1)
-        realDamage,damagePercentage = getDamageAnalysisAI(move, user, target, numTargets)
+        realDamage,damagePercentage,subDestroyed = getDamageAnalysisAI(move, user, target, numTargets)
 
         # Adjust score
         willFaint = false
@@ -382,7 +382,7 @@ class PokeBattle_AI
             willFaint = true
         else
             # Only care about KO thresholds
-            if damagePercentage >= 50
+            if damagePercentage >= 50 || subDestroyed == true # Breaking a sub is as good as doing 50%
                 damageScore = 150 + (damagePercentage - 50)
             elsif damagePercentage >= 33
                 damageScore = 100 + (damagePercentage - 33)
@@ -397,7 +397,7 @@ class PokeBattle_AI
 
     def getDamageAnalysisAI(move, user, target, numTargets = 1)
         # Calculate how much damage the move will do (roughly)
-        realDamage = pbTotalDamageAI(move, user, target, numTargets)
+        realDamage,subDestroyed = pbTotalDamageAI(move, user, target, numTargets)
 
         if playerTribalBonus.hasTribeBonus?(:DECEIVER)
             realDamage *= 1.5
@@ -415,8 +415,9 @@ class PokeBattle_AI
             damagePercentage += eotDamagePercent
             echoln("\t[MOVE SCORING] #{user.pbThis} thinks that move #{move.id} will deal #{realDamage} damage -- #{damagePercentage.round(1)} percent of #{target.pbThis(true)}'s HP.")
             echoln("\t[MOVE SCORING] Additionally, target's HP will change #{eotDamagePercent} percent EOT.") unless eotDamagePercent == 0
+            echoln("\t[MOVE SCORING] Additionally, target's Substitute will break") if subDestroyed == true
         end
 
-        return realDamage,damagePercentage
+        return realDamage,damagePercentage,subDestroyed
     end
 end
