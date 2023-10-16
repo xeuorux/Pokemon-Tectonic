@@ -256,7 +256,7 @@ Events.onMapChange += proc { |_sender,*args|
 		partyIndex = match[4].to_i || 0
 
 		# Find the pokemon that the event represents
-		pokemon = pbLoadTrainer(trainerClass,trainerName,trainerVersion).party[partyIndex]
+		pokemon = pbLoadTrainer(trainerClass,trainerName,trainerVersion).displayPokemonAtIndex(partyIndex)
 
 		newPages = {}
 

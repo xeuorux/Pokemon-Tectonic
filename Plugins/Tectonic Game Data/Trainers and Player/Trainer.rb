@@ -7,9 +7,9 @@ class Trainer
     attr_accessor :id
     attr_accessor :language
     attr_accessor :party
-    attr_reader   	:nameForHashing
-      attr_accessor 	:policies
-      attr_accessor	:tribalBonus
+    attr_reader   :nameForHashing
+    attr_accessor :policies
+    attr_accessor	:tribalBonus
   
     def inspect
       str = super.chop
@@ -131,6 +131,16 @@ class Trainer
       return false if !have_able
       @party.delete_at(index)
       return true
+    end
+
+    # Returns the pokemon at that index in the party
+    # Or the last party member if the first candidate has Illusion
+    def displayPokemonAtIndex(index)
+      pokemonToDisplay = @party[index]
+      if pokemonToDisplay.hasAbility?(:ILLUSION)
+        pokemonToDisplay = @party.last
+      end
+      return pokemonToDisplay
     end
   
     # Checks whether the trainer would still have an unfainted Pokémon if the
