@@ -480,54 +480,6 @@ class PokemonOptionScreen
     end
 end
 
-#===============================================================================
-#
-#===============================================================================
-module MessageConfig
-    def self.systemFrameName
-        frameName = "Graphics/Windowskins/" + Settings::MENU_WINDOWSKINS[$PokemonSystem.frame]
-        frameName += "_dark" if $PokemonSystem.dark_mode == 0
-        return frameName
-    end
-
-    def self.speechFrameName
-        frameName = "Graphics/Windowskins/" + Settings::SPEECH_WINDOWSKINS[$PokemonSystem.textskin]
-        frameName += "_dark" if $PokemonSystem.dark_mode == 0
-        return frameName
-    end
-
-    def self.pbDefaultSystemFrame
-        if $PokemonSystem
-            return pbResolveBitmap(self.systemFrameName) || ""
-        else
-            return pbResolveBitmap("Graphics/Windowskins/" + Settings::MENU_WINDOWSKINS[0]) || ""
-        end
-    end
-    
-    def self.pbDefaultSpeechFrame
-        if $PokemonSystem
-            
-            return pbResolveBitmap(self.speechFrameName) || ""
-        else
-            return pbResolveBitmap("Graphics/Windowskins/" + Settings::SPEECH_WINDOWSKINS[0]) || ""
-        end
-    end
-
-    def self.pbSettingToTextSpeed(speed, slowed = false)
-        modifiedSpeed = speed
-        modifiedSpeed -= 1 if speed && slowed
-        case modifiedSpeed
-        when -1 then return 3
-        when 0 then return 2
-        when 1 then return 1
-        when 2 then return -2
-        when 3 then return -5
-        when 4 then return -20
-        end
-        return TEXT_SPEED || -20
-    end
-end
-
 SaveData.register(:pokemon_system) do
     ensure_class :PokemonSystem
     save_value { $PokemonSystem }
