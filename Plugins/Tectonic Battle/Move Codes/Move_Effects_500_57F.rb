@@ -716,7 +716,7 @@ class PokeBattle_Move_529 < PokeBattle_SleepMove
 end
 
 #===============================================================================
-# Deals 50% more damage if user is statused. (Hard Feelings, Sore Spot)
+# Deals 50% more damage if user is statused. (Sore Spot)
 #===============================================================================
 class PokeBattle_Move_52A < PokeBattle_Move
     def damageReducedByBurn?; return false; end

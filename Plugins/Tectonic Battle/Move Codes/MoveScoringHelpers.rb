@@ -332,7 +332,7 @@ def getMultiStatUpEffectScore(statUpArray, user, target, fakeStepModifier: 0, ev
 
         statIncreaseAmount = [PokeBattle_Battler::STAT_STEP_BOUND,statIncreaseAmount * 2].min if target.hasActiveAbilityAI?(:SIMPLE)
 
-        # Give no extra points for attacking stats you can't use
+        # Give no extra points for stats you can't use
         if statSymbol == :ATTACK && !target.hasPhysicalAttack?
             echoln("\t\t[EFFECT SCORING] Ignoring Attack changes, the target has no physical attacks")
             next
@@ -341,31 +341,124 @@ def getMultiStatUpEffectScore(statUpArray, user, target, fakeStepModifier: 0, ev
             echoln("\t\t[EFFECT SCORING] Ignoring Sp. Atk changes, the target has no special attacks")
             next
         end
-
+        if statSymbol == :ACCURACY
+            unless target.hasActiveAbilityAI?(:HUSTLE) || target.hasActiveAbilityAI?(:FREESTYLE) || target.hasInaccurateMove?
+            echoln("\t\t[EFFECT SCORING] Ignoring Accuracy changes, the target is already accurate")
+            next
+            end
+        end
+        
         # Increase the score more for boosting attacking stats
         if %i[ATTACK SPECIAL_ATTACK].include?(statSymbol)
-            increase = 25
+            increase = 30
         elsif statSymbol == :DEFENSE
-            increase = target.tookPhysicalHitLastRound ? 25 : 13
+            increase = target.tookPhysicalHitLastRound ? 24 : 16
         elsif statSymbol == :SPECIAL_DEFENSE
-            increase = target.tookSpecialHitLastRound ? 20 : 13
-        else
-            increase = 19
+            increase = target.tookSpecialHitLastRound ? 24 : 16
+        elsif statSymbol == :SPEED
+            increase = 23
+        else # Currently only Accuracy
+            increase = 16
         end
 		
 		# Increase the score more if getting offense and defense from same stat
-		increase += 13 if statSymbol == :DEFENSE && user.pbHasMoveFunction?("177") # Body Press
-		increase += 13 if statSymbol == :SPECIAL_DEFENSE && user.pbHasMoveFunction?("540") # Aura Trick
-		increase = 30 if %i[DEFENSE SPECIAL_DEFENSE].include?(statSymbol) && increase >30 # Restrain the ai if it has defense move and took a hit
-		
-        increase *= statIncreaseAmount
-        step = target.steps[statSymbol] + fakeStepModifier
-        increase -= step * 5 # Reduce the score for each existing step
-        increase = 0 if increase < 0
+		increase += 12 if statSymbol == :DEFENSE && target.pbHasMoveFunction?("177") # Body Press
+		increase += 12 if statSymbol == :SPECIAL_DEFENSE && target.pbHasMoveFunction?("540") # Aura Trick
+		increase = 30 if %i[DEFENSE SPECIAL_DEFENSE].include?(statSymbol) && increase > 30 # Restrain the ai if it has defense move and took a hit
 
-        score += increase
-
-        echoln("\t\t[EFFECT SCORING] The change to #{statSymbol} by #{statIncreaseAmount} at step #{step} increases the score by #{increase}")
+        # Different stat steps have different values
+        stepTotal = target.steps[statSymbol] + fakeStepModifier
+        debugStatIncreaseAmount = statIncreaseAmount # For debug reporting
+        debugStep = stepTotal # For debug reporting
+        totalIncrease = 0
+        if %i[ATTACK SPECIAL_ATTACK].include?(statSymbol)
+            while statIncreaseAmount >= 1
+                stepTotal += 1
+                stepTotal = 7 if stepTotal > 9
+                statIncreaseAmount -= 1
+                totalIncrease += increase.to_f * [0,1,1,0.9,0.9,0.8,0.8,0.7,0.6,0.5][stepTotal]
+            end
+        end
+        if %i[DEFENSE SPECIAL_DEFENSE].include?(statSymbol)
+            while statIncreaseAmount >= 1
+                stepTotal += 1
+                stepTotal = 7 if stepTotal > 7
+                statIncreaseAmount -= 1
+                totalIncrease += increase.to_f * [0,1,1,0.9,0.9,0.6,0.4,0.3][stepTotal]
+            end
+        end
+        if statSymbol == :SPEED
+            sTier = target.getSpeedTier
+            while statIncreaseAmount >= 1
+                stepTotal += 1
+                stepTotal = 6 if stepTotal > 6
+                statIncreaseAmount -= 1
+                if sTier == 2
+                    totalIncrease += increase.to_f * [0,1.1,0.9,0.5,0.4,0.1,0.1][stepTotal] # FAST, first 2 enable outspeeding all, rest unnneeded
+                elsif sTier == 1
+                    totalIncrease += increase.to_f * [0,1,1.1,1,1,0.5,0.2][stepTotal] # AVERAGE, first 2 are good, next 4 enable outspeeding all
+                else
+                    totalIncrease += increase.to_f * [0,0.3,0.3,0.5,0.7,1,0.5][stepTotal] # SLOW, speed low value unless in large quantity
+                end
+            end
+        end
+        if statSymbol == :ACCURACY # This should probably have a complicated system behind it, but time is a finite resource
+            stepTotal -= 1 if target.hasActiveAbilityAI?(:HUSTLE) || target.hasActiveAbilityAI?(:FREESTYLE)
+            stepTotal += 1 if target.hasActiveItem?(:WIDELENS) # 35% instead of 25% but close enough
+            while statIncreaseAmount >= 1
+                stepTotal += 1
+                stepTotal = 5 if stepTotal > 5
+                statIncreaseAmount -= 1
+                if target.hasLowAccuracyMove?
+                    totalIncrease += increase.to_f * [1,1,1,1,1,0][stepTotal] # This assumes no moves below 50% accuracy exist           
+                elsif target.hasMediumAccuracyMove?
+                    totalIncrease += increase.to_f * [1,1,1,0,0,0][stepTotal]                  
+                elsif target.hasInaccurateMove?
+                    totalIncrease += increase.to_f * [1,1,0,0,0,0][stepTotal]                   
+                elsif target.hasActiveAbilityAI?(:HUSTLE) || target.hasActiveAbilityAI?(:FREESTYLE)
+                    totalIncrease += increase.to_f * [1,0,0,0,0,0][stepTotal]
+                end
+            end
+        end
+        
+        # Stat ups are worse if you have a relevant status
+        damageStatus = 0
+        if target.pbHasAnyStatus? && !target.hasActiveAbilityAI?(:VICTORYMOLT)
+            if target.burned?
+                if statSymbol == :ATTACK
+                    totalIncrease *= 0.66 unless target.pbHasMoveFunction?("07E") # Facade / Hard Feelings
+                end
+                damageStatus = 1
+            elsif target.frostbitten?
+                if statSymbol == :SPECIAL_ATTACK
+                    totalIncrease *= 0.66 unless target.pbHasMoveFunction?("07E") # Facade / Hard Feelings
+                end
+                damageStatus = 1
+            elsif target.numbed?
+                if statSymbol == :SPEED
+                    totalIncrease *= 0.4
+                elsif
+                    if target.getSpeedTier > 0
+                        totalIncrease *= 0.7
+                    end
+                else
+                    totalIncrease *= 0.85
+                end
+            elsif target.dizzy?
+                totalIncrease *= 0.85 # There should probably be a system for evaluating abilities
+            elsif target.leeched? or target.poisoned?
+                damageStatus = 1
+            end
+            if damageStatus == 1 && !target.hasActiveAbilityAI?(:MAGICGUARD)
+                if %i[DEFENSE SPECIAL_DEFENSE].include?(statSymbol)
+                    totalIncrease *= 0.6
+                else
+                    totalIncrease *= 0.8
+                end
+            end
+        end    
+        score += totalIncrease.round
+        echoln("\t\t[EFFECT SCORING] The change to #{statSymbol} by #{debugStatIncreaseAmount} at step #{debugStep} increases the score by #{totalIncrease.round}")
     end
 
     # Stat ups tend to be stronger on the first turn
@@ -379,13 +472,25 @@ def getMultiStatUpEffectScore(statUpArray, user, target, fakeStepModifier: 0, ev
 
     # Stats ups are stronger the less threat the user is under this turn
     # And worse the more threat
-    score *= (user.defensiveMatchupAI * 0.8 + 100.0) / 100.0 if evaluateThreat
+    threatScore = (user.defensiveMatchupAI * 0.88 + 100.0) / 100.0 if evaluateThreat
+    if threatScore > 1.0
+        threatScore -= 1.0
+        unkownScore = 4
+        target.eachOpposing do |opp|
+            unkownScore -= opp.unknownMovesCountAI # It might not be bad to setup, but its only good to setup if AI really knows its safe.
+        end
+        unkownScore = 0 if unkownScore < 0
+        threatScore *= unkownScore * 0.25
+        threatScore += 1.0
+    end
+    score *= threatScore
 
     if target.hasActiveAbilityAI?(:CONTRARY)
         score *= -1
         echoln("\t\t[EFFECT SCORING] The target has Contrary! Inverting the score.")
     elsif target.hasActiveAbilityAI?(:ECCENTRIC)
         score *= -0.5
+        echoln("\t\t[EFFECT SCORING] The target has Eccentric! Inverting and halving the score.")
     end
 
     if user.opposes?(target)

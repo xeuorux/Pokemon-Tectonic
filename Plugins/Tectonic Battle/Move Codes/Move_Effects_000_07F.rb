@@ -2530,8 +2530,8 @@ class PokeBattle_Move_07D < PokeBattle_Move
 end
 
 #===============================================================================
-# Power is doubled if the user is burned, poisoned or paralyzed. (Facade)
-# Burn's halving of Attack is negated (new mechanics).
+# Power is doubled if the user is statused. (Facade, Hard Feelings)
+# Burn/Frostbite's reduction of damage is negated.
 #===============================================================================
 class PokeBattle_Move_07E < PokeBattle_Move
     def damageReducedByBurn?; return false; end

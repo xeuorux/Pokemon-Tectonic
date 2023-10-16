@@ -144,8 +144,9 @@ class PokeBattle_AI
             stayInRating -= 10
             PBDebug.log("[STAY-IN RATING] #{battler.pbThis} (#{battler.index}) is soon-ish to die to perish song (-10)")
         elsif battler.effects[:PerishSong] == 1
-            stayInRating -= 50
-            PBDebug.log("[STAY-IN RATING] #{battler.pbThis} (#{battler.index}) is about to die to perish song (-50)")
+            stayInRating -= 25
+            stayInRating -= 25 if battler.hp > battler.totalhp / 2
+            PBDebug.log("[STAY-IN RATING] #{battler.pbThis} (#{battler.index}) is about to die to perish song (#{stayInRating})")
         end
 
         # More likely to switch when poison has worsened
