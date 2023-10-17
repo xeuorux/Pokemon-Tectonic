@@ -773,6 +773,12 @@ MapPosition = 0,13,7
 BattleBack = indoor3
 Environment = StillWater
 #-------------------------------
+[123]
+# Novo College
+Outdoor = false
+ShowArea = true
+Bicycle = false
+#-------------------------------
 [124]
 # Clearwater Cave
 Outdoor = false
