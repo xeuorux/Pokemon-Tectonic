@@ -372,10 +372,60 @@ class PokemonStorageScreen
         end
     end
 
+    # Returns how many boxes were sorted
+    def pbSortAll(type)
+        return 0 if @heldpkmn
+        
+        validBoxes = []
+        allPokemonInValidBoxes = []
+        
+        # Store all pokemon in one big list
+        @storage.boxes.each do |box|
+            next if box.isLocked?
+            validBoxes.push(box)
+            box.each do |pokemon|
+                allPokemonInValidBoxes.push(pokemon) if pokemon
+            end
+
+            box.clear
+        end
+
+        return 0 if allPokemonInValidBoxes.empty?
+
+        # Sort the big pokemon list
+        if type == 1 # Name
+            allPokemonInValidBoxes.sort! { |a, b| a.name <=> b.name }
+        elsif type == 2 # Species
+            allPokemonInValidBoxes.sort! { |a, b| a.speciesName <=> b.speciesName }
+        elsif type == 3 # DexID
+            allPokemonInValidBoxes.sort! { |a, b| a.species_data.id_number <=> b.species_data.id_number }
+        elsif type == 4 # Type - Type 1 then Type 2 on colissions
+            allPokemonInValidBoxes.sort! { |a, b| a.types <=> b.types }
+        elsif type == 5 # Level
+            allPokemonInValidBoxes.sort! { |a, b| a.level <=> b.level }
+        end
+
+        # Store all pokemon back into storage
+        validBoxes.each do |box|
+            for indexInBox in 0...PokemonBox::BOX_SIZE
+                pokemonToStore = allPokemonInValidBoxes.shift
+                break unless pokemonToStore
+                box[indexInBox] = pokemonToStore
+            end
+            break if allPokemonInValidBoxes.length == 0
+        end
+
+        @scene.pbHardRefresh
+
+        return validBoxes.length
+    end
+
+    # Returns whether the box was sorted or not
     def pbSortBox(type, boxNumber)
         box = @storage.boxes[boxNumber]
-        return false if box.isLocked?
-        return false if box.empty? || @heldpkmn
+        return false if @heldpkmn
+        return false if box.isLocked?c
+        return false if box.empty?
         nitems = box.nitems - 1
         listtosort = []
         dicttosort = {}
@@ -538,21 +588,19 @@ class PokemonStorageScreen
         command = 0
         loop do
             commands = []
-            commands[jumpCommand = commands.length] = _INTL("Jump")
-            commands[wallPaperCommand = commands.length] = _INTL("Wallpaper")
-            commands[nameCommand = commands.length] = _INTL("Name")
-            commands[searchCommand = commands.length] = _INTL("Search")
-            commands[lockCommand = commands.length] =
+            commands[jumpCommand = commands.length]         = _INTL("Jump")
+            commands[wallPaperCommand = commands.length]    = _INTL("Wallpaper")
+            commands[nameCommand = commands.length]         = _INTL("Name")
+            commands[searchCommand = commands.length]       = _INTL("Search")
+            commands[sortCommand = commands.length]         = _INTL("Sort")
+            commands[sortAllCommand = commands.length]      = _INTL("Sort All")
+            commands[lockCommand = commands.length]         =
                 @storage.boxes[@storage.currentBox].isLocked? ? _INTL("Sort Unlock") : _INTL("Sort Lock")
-            commands[sortCommand = commands.length] = _INTL("Sort")
-            commands[sortAllCommand = commands.length] = _INTL("Sort All")
             if defined?(PokEstate) && !$game_switches[ESTATE_DISABLED_SWITCH]
-                commands[visitEstateCommand = commands.length] =
-                    _INTL("Visit PokÉstate")
+                commands[visitEstateCommand = commands.length] = _INTL("Visit PokÉstate")
             end
-            commands[cancelCommand = commands.length] = _INTL("Cancel")
-            command = pbShowCommands(
-                _INTL("What do you want to do?"), commands, command)
+            commands[cancelCommand = commands.length]       = _INTL("Cancel")
+            command = pbShowCommands(_INTL("What do you want to do?"), commands, command)
             if command == jumpCommand && jumpCommand > -1
                 destbox = @scene.pbChooseBox(_INTL("Jump to which Box?"))
                 @scene.pbJumpToBox(destbox) if destbox >= 0
@@ -608,10 +656,7 @@ class PokemonStorageScreen
                 end
                 sortMethod = @scene.pbChooseSort(_INTL("How will you sort?"))
                 next unless sortMethod > 0
-                boxesSorted = 0
-                for i in 0...@storage.maxBoxes
-                    boxesSorted += 1 if pbSortBox(sortMethod, i)
-                end
+                boxesSorted = pbSortAll(sortMethod)
                 if boxesSorted == 0
                     @scene.pbDisplay(_INTL("No boxes were sorted."))
                 elsif boxesSorted == 1
