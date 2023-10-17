@@ -6086,7 +6086,7 @@ Pokemon = MAGCARGO,58
     Item = BUGGEM
 #-------------------------------
 [BIKER,Knoxx]
-Pokemon = SCRAFTY,55
+Pokemon = SCRAFTY,57
     AbilityIndex = 0 # Shed Skin
 Pokemon = MEOWSTIC,56
     AbilityIndex = 0 # Prankster
