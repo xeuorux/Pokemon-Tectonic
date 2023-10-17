@@ -476,7 +476,7 @@ class PokemonStorageScreen
         return
     end
 
-    CANDY_EXCHANGE_EFFICIENCY = 0.8
+    CANDY_EXCHANGE_EFFICIENCY = 1.0
 
     def candiesFromReleasing(lifetimeEXP)
         lifetimeEXP = (lifetimeEXP * CANDY_EXCHANGE_EFFICIENCY).floor

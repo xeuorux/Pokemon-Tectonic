@@ -2,10 +2,10 @@
 # GENERATION REWARDS
 ##############################################
 
-gen1Rewards = [:POKEBALL,:POKEBALL,:GREATBALL,:GREATBALL,:ULTRABALL,[:ULTRABALL,2]]
+gen1Rewards = [[:EXPCANDYL,1],[:EXPCANDYL,2],[:EXPCANDYL,3],[:EXPCANDYL,4],[:EXPCANDYL,5],[:EXPCANDYL,6]]
 gen1Thresholds = [14,23,36,58,94,151]
 
-gen2Rewards = [:POKEBALL,:POKEBALL,:GREATBALL,:GREATBALL,:ULTRABALL]
+gen2Rewards = [[:EXPCANDYL,1],[:EXPCANDYL,2],[:EXPCANDYL,3],[:EXPCANDYL,4],[:EXPCANDYL,5]]
 gen2Thresholds = [15,25,40,65,100]
 
 gen3Rewards = gen1Rewards
@@ -17,7 +17,7 @@ gen4Thresholds = [16,26,41,66,107]
 gen5Rewards = gen1Rewards
 gen5Thresholds = [15,25,40,60,100,156]
 
-gen6Rewards = [:POKEBALL,:POKEBALL,:GREATBALL,:GREATBALL]
+gen6Rewards = [[:EXPCANDYL,1],[:EXPCANDYL,2],[:EXPCANDYL,3],[:EXPCANDYL,4]]
 gen6Thresholds = [17,28,45,72]
 
 gen7Rewards = gen6Rewards
@@ -55,7 +55,7 @@ end
 # TYPE REWARDS
 ##############################################
 typeThreshold = [10,25,50]
-typeRewards = [:EXPCANDYM,:EXPCANDYL,:EXPCANDYXL]
+typeRewards = [[:EXPCANDYL,2],:EXPCANDYXL,[:EXPCANDYXL,2]]
 
 PokEstate::LoadDataDependentAwards += proc {
     # For every type, create three award event subscribers at different thresholds
@@ -105,7 +105,7 @@ SMALL_ROUTES =
 BIG_ROUTES = 
 [
     38, # Bluepoint Beach
-    53, # The Tangle
+    53, # The Shelf
     301, # County Park
     185, # Eleig Stretch
     211, # Split Peaks
@@ -118,7 +118,7 @@ PokEstate::LoadDataDependentAwards += proc {
         PokEstate::GrantAwards.add(id,
             proc { |pokedex|
                 if pokedex.allOwnedFromRoute?(routeID)
-                    next [:NUGGET,_INTL("all species on #{routeName}")]
+                    next [[:EXPCANDYL,2],_INTL("all species on #{routeName}")]
                 end
                 next
             }
@@ -131,7 +131,7 @@ PokEstate::LoadDataDependentAwards += proc {
         PokEstate::GrantAwards.add(id,
             proc { |pokedex|
                 if pokedex.allOwnedFromRoute?(routeID)
-                    next [:RELICGOLD,_INTL("all species on #{routeName}")]
+                    next [[:EXPCANDYL,3],_INTL("all species on #{routeName}")]
                 end
                 next
             }
