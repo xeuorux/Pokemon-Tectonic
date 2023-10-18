@@ -1115,7 +1115,7 @@ Pokemon = BEHEEYEM,35
 Pokemon = UNFEZANT,35
     AbilityIndex = 1 # Super Luck
 #-------------------------------
-[INFIELDER,Tajo]
+[TOURISTF,Mariana]
 Pokemon = PILOSWINE,26
     Moves = BULLDOZE,ICEFANG,ICESHARD,FLAIL
     AbilityIndex = 0 # Thick Fat
