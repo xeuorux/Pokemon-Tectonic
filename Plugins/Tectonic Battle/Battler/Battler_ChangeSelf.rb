@@ -252,6 +252,11 @@ class PokeBattle_Battler
             return
         end
         return if @fainted # Has already fainted properly
+
+        # In case the user is fainting from their own move
+        # And consumed a gem, etc. in the use of that move
+        consumeMoveTriggeredItems(self)
+
         if showMessage
             if boss?
                 if isSpecies?(:PHIONE)

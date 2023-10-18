@@ -286,8 +286,6 @@ class PokeBattle_Battler
         @battle.triggerBattlerConsumedItemDialogue(self, item)
         if recoverable
             setRecycleItem(item)
-            applyEffect(:PickupItem, item)
-            applyEffect(:PickupUse, @battle.nextPickupUse)
             if itemData.is_berry?
                 applyEffect(:CudChew, 2)
                 applyEffect(:CudChewItem, item) if hasActiveAbility?(:CUDCHEW)

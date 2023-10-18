@@ -127,34 +127,8 @@ user.pbThis(true)))
         user.eachActiveAbility do |ability|
             BattleHandlers.triggerUserAbilityEndOfMove(ability, user, targets, move, @battle, switchedBattlers)
         end
-        # Consume user's agility herb
-        if user.effectActive?(:AgilityHerb)
-            user.consumeItem(:AGILITYHERB)
-        end
-        # Consume user's Gem
-        if user.effectActive?(:GemConsumed)
-            # NOTE: The consume animation and message for Gems are shown immediately
-            #       after the move's animation, but the item is only consumed now.
-            user.consumeItem(user.effects[:GemConsumed])
-        end
-        # Consume user's empowering Herb
-        if user.effectActive?(:EmpoweringHerbConsumed)
-            # NOTE: The consume animation and message for Herbs are shown immediately
-            #       after the move's animation, but the item is only consumed now.
-            user.consumeItem(user.effects[:EmpoweringHerbConsumed])
-        end
-        # Consume user's skill Herb
-        if user.effectActive?(:SkillHerbConsumed)
-            # NOTE: The consume animation and message for Herbs are shown immediately
-            #       after the move's animation, but the item is only consumed now.
-            user.consumeItem(:SKILLHERB)
-        end
-        # Consume user's luck Herb
-        if user.effectActive?(:LuckHerbConsumed)
-            # NOTE: The consume animation and message for Herbs are shown immediately
-            #       after the move's animation, but the item is only consumed now.
-            user.consumeItem(:LUCKHERB)
-        end
+        # Consume gems, etc.
+        consumeMoveTriggeredItems(user)
         # Consume Volatile Toxin
         if move.damagingMove?
             targets.each do |b|
@@ -202,6 +176,42 @@ user.pbThis(true)))
             trySwitchOutUser(user, targets, numHits, switchedBattlers) if fogSending
         end
         @battle.eachBattler { |b| b.pbItemEndOfMoveCheck } if numHits > 0
+    end
+
+    def consumeMoveTriggeredItems(user)
+        # Consume user's agility herb
+        if user.effectActive?(:AgilityHerb,true)
+            user.consumeItem(:AGILITYHERB)
+            user.disableEffect(:AgilityHerb,true)
+        end
+        # Consume user's Gem
+        if user.effectActive?(:GemConsumed,true)
+            # NOTE: The consume animation and message for Gems are shown immediately
+            #       after the move's animation, but the item is only consumed now.
+            user.consumeItem(user.effects[:GemConsumed])
+            user.disableEffect(:GemConsumed,true)
+        end
+        # Consume user's empowering Herb
+        if user.effectActive?(:EmpoweringHerbConsumed,true)
+            # NOTE: The consume animation and message for Herbs are shown immediately
+            #       after the move's animation, but the item is only consumed now.
+            user.consumeItem(user.effects[:EmpoweringHerbConsumed])
+            user.disableEffect(:EmpoweringHerbConsumed,true)
+        end
+        # Consume user's skill Herb
+        if user.effectActive?(:SkillHerbConsumed,true)
+            # NOTE: The consume animation and message for Herbs are shown immediately
+            #       after the move's animation, but the item is only consumed now.
+            user.consumeItem(:SKILLHERB)
+            user.disableEffect(:SkillHerbConsumed,true)
+        end
+        # Consume user's luck Herb
+        if user.effectActive?(:LuckHerbConsumed,true)
+            # NOTE: The consume animation and message for Herbs are shown immediately
+            #       after the move's animation, but the item is only consumed now.
+            user.consumeItem(:LUCKHERB)
+            user.disableEffect(:LuckHerbConsumed,true)
+        end
     end
 
     def trySwitchOutUser(user, targets, numHits, switchedBattlers)
