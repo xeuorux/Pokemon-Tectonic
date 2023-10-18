@@ -384,10 +384,13 @@ class PokeBattle_AI
             # Only care about KO thresholds
             if damagePercentage >= 50 || subDestroyed == true # Breaking a sub is as good as doing 50%
                 damageScore = 150 + (damagePercentage - 50)
+                damageScore *= user.levelNerf(false,true,0.5) if user.level <= 30 && !user.pbOwnedByPlayer? # AI nerf
             elsif damagePercentage >= 33
                 damageScore = 100 + (damagePercentage - 33)
+                damageScore *= user.levelNerf(false,true,1.1) if user.level <= 30 && !user.pbOwnedByPlayer? # AI nerf
             else
                 damageScore = 50 + damagePercentage
+                damageScore *= user.levelNerf(false,true,2) if user.level <= 30 && !user.pbOwnedByPlayer? # AI nerf
             end
         end
         damageScore = damageScore.floor

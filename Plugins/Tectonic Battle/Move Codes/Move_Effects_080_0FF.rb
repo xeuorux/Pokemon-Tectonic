@@ -1643,7 +1643,7 @@ class PokeBattle_Move_0BA < PokeBattle_Move
         end
         
         # Setup
-        if target.hasStatBoostingMove?
+        if target.hasSetupMove?
            if target.lastRoundMoveCategory == -1 || target.lastRoundMoveCategory == 2 # No point stopping setup that already happened
                 firstTurnScore = 50
                 lastingScore += 30
@@ -2402,11 +2402,10 @@ class PokeBattle_Move_0D4 < PokeBattle_FixedDamageMove
         super
     end
 
-    def pbBaseDamageAI(_baseDmg, _user, _target)
-        return 60
-    end
-
     def getEffectScore(user, _target)
+        user.eachOpposing do |b|
+            return 0 if b.pbTypes.include? :GHOST # Bandaid fix, should have complicated score but its bide
+        end
         if user.belowHalfHealth?
             return 0
         else
@@ -2460,7 +2459,8 @@ class PokeBattle_Move_0D7 < PokeBattle_Move
     end
 
     def getEffectScore(user, _target)
-        return (user.totalhp / user.level) * 30
+        score = (user.totalhp / user.level) * 30
+        score *= user.levelNerf(false,false,0.5) if user.level <= 30 && !user.pbOwnedByPlayer? # AI nerf
     end
 end
 

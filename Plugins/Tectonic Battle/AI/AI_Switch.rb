@@ -102,6 +102,7 @@ class PokeBattle_AI
         # Other things that affect the stay in rating
         stayInRating += miscStayInRatingModifiers(battler)
         stayInRating += speedTierRating(battler)
+        stayInRating += battler.levelNerf(true,false,0.4).round if battler.level <= 30 # AI nerf
 
         # Determine who to swap into if at all
         PBDebug.log("[AI SWITCH] #{battler.pbThis} (#{battler.index}) is trying to find a switch. Staying in is rated: #{stayInRating}.")
@@ -211,7 +212,7 @@ class PokeBattle_AI
                     PBDebug.log("[STAY-IN RATING] #{battler.pbThis} (#{battler.index}) wants to switch so it can reset the weather (-20)")
                 end
             end
-        end      
+        end
         return stayInRating
     end
 
@@ -228,6 +229,7 @@ class PokeBattle_AI
                 currentHP += battler.totalhp * 0.25 if battler.hasActiveAbilityAI?(:REGENERATOR) || battler.hasActiveAbilityAI?(:HOLIDAYCHEER)
                 currentHP += battler.totalhp * 0.1 if battler.hasTribeBonus?(:CARETAKER)
                 currentHP += battler.totalhp * 0.5 if battler.hasActiveAbilityAI?(:REFRESHMENTS) && battler.ownersPolicies.include?(:SUN_TEAM)
+                currentHP += battler.totalhp * 0.5 if battler.hasActiveAbilityAI?(:MENDINGTONES) && battler.ownersPolicies.include?(:ECLIPSE_TEAM)
                 if currentHP >= battler.totalhp * 0.5
                     PBDebug.log("[STAY-IN RATING] #{battler.pbThis} (#{battler.index}) is bloodied but will regenerate, no penalty")
                     return stayInRating

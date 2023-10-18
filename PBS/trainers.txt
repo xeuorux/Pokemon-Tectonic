@@ -54,6 +54,7 @@ Pokemon = PONYTA,8
 #-------------------------------
 [HIKER,Dave]
 Pokemon = GEODUDE,8
+    Moves = ROCKTHROW,RUMBLE,ROCKPOLISH
     AbilityIndex = 0 # Unbreakable
 Pokemon = TIMBURR,9
     AbilityIndex = 0 # Expertise
@@ -116,6 +117,7 @@ Pokemon = POLIWAG,13
     AbilityIndex = 0 # Clear Body
 #-------------------------------
 [TUBER_F,Sophie]
+Policies = PRIORITIZESTATDOWN
 Pokemon = TOTODILE,13
     Moves = WIPEOUT,GROWL,BITE,LEER
     AbilityIndex = 1 # Strong Jaw
@@ -127,6 +129,7 @@ Pokemon = TRAPINCH,13
 Pokemon = MAKUHITA,15
     AbilityIndex = 0 # Thick Fat
 Pokemon = SCRAGGY,15
+    Moves = SMASH,SCHEME,QUICKATTACK,PILFER
     AbilityIndex = 1 # Moxie
 Pokemon = NICKIT,15
     Moves = PILFER,HONECLAWS,QUICKATTACK,ENCORE
@@ -163,7 +166,7 @@ Pokemon = ZORUA,15
     Item = SITRUSBERRY
     EV = 1,20,10,19,20,0
 Pokemon = CROAGUNK,15
-    Moves = FLATTER,NASTYNIP,KARATECHOP,CHIBLOCK
+    Moves = ENVENOM,NASTYNIP,KARATECHOP,CHIBLOCK
     AbilityIndex = 0 # Prankster
     Item = SITRUSBERRY
     EV = 20,10,5,0,10,15
@@ -255,6 +258,7 @@ Pokemon = MARSHTOMP,17
     AbilityIndex = 1 # Boulder Nest
 #-------------------------------
 [ARTIST,Evan]
+Policies = PRIORITIZESTATDOWN
 Pokemon = SMEARGLE,17
     Moves = HELPINGHAND,HEALPULSE,SCREECH,NOBLEROAR
     AbilityIndex = 0 # Mental Block
@@ -484,6 +488,7 @@ Pokemon = SEEL,24
     Item = SITRUSBERRY
 #-------------------------------
 [CHEF,Travis]
+Policies = PRIORITIZESTATDOWN
 Pokemon = HQWILFISH,24
     Moves = ASSURANCE,SMUSH,ACIDSPRAY
     AbilityIndex = 0 # Poison Point
@@ -704,7 +709,7 @@ Pokemon = ANINETALES,40
     Item = SITRUSBERRY
     EV = 20,20,0,0,20,10
 Pokemon = DRAGONAIR,40
-    Moves = DRAGONDANCE,DRAGONPULSE,ROOST,COLDFRONT
+    Moves = DRAGONDANCE,DRAGONHAMMER,ROOST,STRAFE
     AbilityIndex = 1 # Multiscale
     Item = LEFTOVERS
     EV = 20,10,10,0,10,10

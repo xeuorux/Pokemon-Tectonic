@@ -334,16 +334,16 @@ def getMultiStatUpEffectScore(statUpArray, user, target, fakeStepModifier: 0, ev
 
         # Give no extra points for stats you can't use
         if statSymbol == :ATTACK && !target.hasPhysicalAttack?
-            echoln("\t\t[EFFECT SCORING] Ignoring Attack changes, the target has no physical attacks")
+            echoln("\t\t[EFFECT SCORING] Ignoring Attack changes, target has no physical attacks")
             next
         end
         if statSymbol == :SPECIAL_ATTACK && !target.hasSpecialAttack?
-            echoln("\t\t[EFFECT SCORING] Ignoring Sp. Atk changes, the target has no special attacks")
+            echoln("\t\t[EFFECT SCORING] Ignoring Sp. Atk changes, target has no special attacks")
             next
         end
         if statSymbol == :ACCURACY
             unless target.hasActiveAbilityAI?(:HUSTLE) || target.hasActiveAbilityAI?(:FREESTYLE) || target.hasInaccurateMove?
-            echoln("\t\t[EFFECT SCORING] Ignoring Accuracy changes, the target is already accurate")
+            echoln("\t\t[EFFECT SCORING] Ignoring Accuracy changes, target is already accurate")
             next
             end
         end
@@ -456,7 +456,7 @@ def getMultiStatUpEffectScore(statUpArray, user, target, fakeStepModifier: 0, ev
                     totalIncrease *= 0.8
                 end
             end
-        end    
+        end
         score += totalIncrease.round
         echoln("\t\t[EFFECT SCORING] The change to #{statSymbol} by #{debugStatIncreaseAmount} at step #{debugStep} increases the score by #{totalIncrease.round}")
     end
@@ -583,7 +583,9 @@ def getMultiStatDownEffectScore(statDownArray, user, target, fakeStepModifier: 0
         score *= -1
         echoln("\t\t[EFFECT SCORING] The target is an ally of the user! Inverting the score.")
     end
-
+    
+    score *= 1.7 if user.ownersPolicies.include?(:PRIORITIZESTATDOWN) && user.opposes?(target)
+    
     return score.ceil
 end
 
@@ -857,7 +859,7 @@ def getSubstituteEffectScore(user)
         end
     end
     score += user.getHealingEffectScore(predictedEOTHealing(user.battle,user)) / 2
-    score += 20 if user.hasStatBoostingMove?
+    score += 20 if user.hasSetupMove?
     score += 20 if user.firstTurn?
     return score
 end
@@ -875,7 +877,7 @@ def getGreyMistSettingEffectScore(user,duration)
     user.battle.eachBattler do |b|
         if b.opposes?(user)
             score += statStepsValueScore(b)
-            score += 15 * duration if b.hasStatBoostingMove? && score = 0
+            score += 15 * duration if b.hasSetupMove? && score = 0
         else
             score -= statStepsValueScore(b)
         end
