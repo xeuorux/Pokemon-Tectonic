@@ -26235,7 +26235,7 @@ InternalName = STAKATAKA
 Type1 = ROCK
 Type2 = STEEL
 # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
-BaseStats = 70,130,160,40,70,100
+BaseStats = 71,127,163,41,67,101
 # Total = 570
 GenderRate = Genderless
 GrowthRate = Slow
