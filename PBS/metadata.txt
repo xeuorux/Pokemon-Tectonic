@@ -2414,6 +2414,13 @@ ShowArea = true
 Bicycle = true
 BattleBack = cave1
 #-------------------------------
+[405]
+# Hoopa's Jar
+Outdoor = false
+ShowArea = false
+Bicycle = false
+Weather = Sandstorm,100
+#-------------------------------
 [406]
 # Sandstone Switchbox
 Outdoor = false

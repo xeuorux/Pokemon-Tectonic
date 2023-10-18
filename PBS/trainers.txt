@@ -6008,6 +6008,7 @@ Pokemon = SYLVEON,59
     Item = STRIKEVEST
 #-------------------------------
 [LOST_RANGER_BLUE,Farid]
+Policies = NO_PERFECT
 Pokemon = INTELEON,60
     AbilityIndex = 0 # Sniper
     Item = SCOPELENS
@@ -6024,6 +6025,7 @@ Pokemon = KOMALA,60
     Item = ENERGYHERB
 #-------------------------------
 [LOST_RANGER_GREEN,Farid]
+Policies = NO_PERFECT
 Pokemon = FERROTHORN,60
     AbilityIndex = 0 # Iron Barbs
 Pokemon = REUNICLUS,60
@@ -6040,6 +6042,7 @@ Pokemon = DRACOZOLT,60
     Item = CHOICESCARF
 #-------------------------------
 [LOST_RANGER_PURPLE,Farid]
+Policies = NO_PERFECT
 Pokemon = NIDOKING,60
     AbilityIndex = 1 # Poison Point
 Pokemon = GRANBULL,60
