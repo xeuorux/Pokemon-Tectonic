@@ -365,6 +365,62 @@ DebugMenuCommands.register("analyzeitemdistribution", {
       pbMessage(_INTL("Printed out signature abilities to Analysis/signature_abilities.txt"))
     }
   })
+
+  DebugMenuCommands.register("listcanonabilities", {
+    "parent"      => "analysis",
+    "name"        => _INTL("List canon abilities"),
+    "description" => _INTL("List all abilities maintained from canon."),
+    "effect"      => proc { |sprites, viewport|
+      
+      abilityDataSorted = []
+      GameData::Ability.each do |abilityData|
+          next if abilityData.cut
+          next if abilityData.tectonic_new
+          next if abilityData.primeval
+          abilityDataSorted.push(abilityData)
+      end
+  
+      abilityDataSorted.sort_by! { |data|
+          data.real_name
+      }
+  
+      File.open("Analysis/canon_abilities.txt","wb") { |file|
+          abilityDataSorted.each do |abilityData|
+              abilityLine = describeAbility(abilityData.id)
+              abilityLine += "\r\n"
+              file.write(abilityLine)
+          end
+      }
+      pbMessage(_INTL("Canon ability information written to Analysis/canon_abilities.txt"))
+    }
+  })
+
+  DebugMenuCommands.register("listnewabilities", {
+    "parent"      => "analysis",
+    "name"        => _INTL("List new abilities"),
+    "description" => _INTL("List all new abilities added to the game."),
+    "effect"      => proc { |sprites, viewport|
+      
+      abilityDataSorted = []
+      GameData::Ability.each do |abilityData|
+          next unless abilityData.tectonic_new
+          abilityDataSorted.push(abilityData)
+      end
+  
+      abilityDataSorted.sort_by! { |data|
+          data.real_name
+      }
+  
+      File.open("Analysis/new_abilities.txt","wb") { |file|
+          abilityDataSorted.each do |abilityData|
+              abilityLine = describeAbility(abilityData.id)
+              abilityLine += "\r\n"
+              file.write(abilityLine)
+          end
+      }
+      pbMessage(_INTL("New ability information written to Analysis/new_abilities.txt"))
+    }
+  })
   
   def describeAbility(abilityID)
       abilityData = GameData::Ability.get(abilityID)
@@ -503,33 +559,6 @@ DebugMenuCommands.register("analyzeitemdistribution", {
           end
       }
       pbMessage(_INTL("Cut moves information written to Analysis/cut_moves.txt"))
-    }
-  })
-
-  DebugMenuCommands.register("listnewabilities", {
-    "parent"      => "analysis",
-    "name"        => _INTL("List new abilities"),
-    "description" => _INTL("List all new abilities added to the game."),
-    "effect"      => proc { |sprites, viewport|
-      
-      abilityDataSorted = []
-      GameData::Ability.each do |abilityData|
-          next unless abilityData.tectonic_new
-          abilityDataSorted.push(abilityData)
-      end
-  
-      abilityDataSorted.sort_by! { |data|
-          data.real_name
-      }
-  
-      File.open("Analysis/new_abilities.txt","wb") { |file|
-          abilityDataSorted.each do |abilityData|
-              abilityLine = describeAbility(abilityData.id)
-              abilityLine += "\r\n"
-              file.write(abilityLine)
-          end
-      }
-      pbMessage(_INTL("New ability information written to Analysis/new_abilities.txt"))
     }
   })
 

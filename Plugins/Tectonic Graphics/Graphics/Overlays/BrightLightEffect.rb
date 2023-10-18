@@ -250,7 +250,7 @@ class LightEffect_SummonTotemAura < LightEffect
   def update
     return if !@light || !@event
     super
-    if !$game_switches[68] || pbGetSelfSwitch(@event.id,'A') # Yezera defeated
+    if !gameWon? || pbGetSelfSwitch(@event.id,'A')
       @light.opacity = 0
       return
     end

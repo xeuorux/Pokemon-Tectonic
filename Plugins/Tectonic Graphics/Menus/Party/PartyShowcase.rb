@@ -10,7 +10,7 @@ class PokemonPartyShowcase_Scene
         @viewport.z = 99999
 
         backgroundFileName = "Party/showcase_bg"
-        backgroundFileName += "_postgame" if $game_switches[68]
+        backgroundFileName += "_postgame" if gameWon?
         addBackgroundPlane(@sprites, "bg", backgroundFileName, @viewport)
 
         @sprites["overlay"] = BitmapSprite.new(Graphics.width, Graphics.height, @viewport)

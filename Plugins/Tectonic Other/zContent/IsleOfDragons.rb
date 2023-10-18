@@ -1,6 +1,6 @@
 def earnedHatcherTrust?
     return true if trainedPseudoDragons?
-    return true if $game_switches[68] # Yezera defeated
+    return true if gameWon? # Yezera defeated
     return false
 end
 

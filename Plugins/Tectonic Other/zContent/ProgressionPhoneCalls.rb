@@ -13,6 +13,10 @@ Events.onBadgeEarned += proc { |_sender,_e|
     end
 }
 
+def gameWon?
+	return $game_switches[68]
+end
+
 Events.onMapChange += proc { |_sender, _e|
 	if playerIsOutdoors?()
 		if $PokemonGlobal.shouldProcGrouzAvatarCall
@@ -30,6 +34,10 @@ Events.onMapChange += proc { |_sender, _e|
 		elsif $PokemonGlobal.shouldProc3BadgesZainCall
 			$game_switches[ZAIN_3_BADGES_PHONECALL_GLOBAL] = true
 			$PokemonGlobal.shouldProc3BadgesZainCall = false
+		end
+	else
+		if gameWon? && !$game_switches[99] # Battle monument unlocked
+			$game_switches[153] = true # Trigger the phonecall from Vanya
 		end
 	end
 }
