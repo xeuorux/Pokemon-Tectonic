@@ -17,7 +17,7 @@
 16,ALOLANWREATH,Alolan Wreath,Alolan Wreathes,1,5000,"A beautiful floral wreath from Alola that makes certain species of Pokémon evolve.",1,0,7
 17,GALARICAWREATH,Galarica Wreath,Galarica Wreaths,1,5000,"A wreath made from woven- Galarica Twigs. It makes certain species of Pokémon evolve.",1,0,7
 18,SWEETAPPLE,Sweet Apple,Sweet Apples,1,2200,"A peculiar apple that can make a certain species of Pokémon evolve. It's exceptionally sweet.",1,0,7
-19,TARTAPPLE,Sweet Apple,Sweet Apples,1,2200,"A peculiar apple that can make a certain species of Pokémon evolve. It's exceptionally tart.",1,0,7
+19,TARTAPPLE,Tart Apple,Tart Apples,1,2200,"A peculiar apple that can make a certain species of Pokémon evolve. It's exceptionally tart.",1,0,7
 20,HELIXFOSSIL,Helix Fossil,Helix Fossils,1,5000,"A fossil of an ancient Pokémon that lived in the sea. It appears to be part of a seashell.",0,0,8
 21,DOMEFOSSIL,Dome Fossil,Dome Fossils,1,5000,"A fossil of an ancient Pokémon that lived in the sea. It appears to be part of a shell.",0,0,8
 22,OLDAMBER,Old Amber,Old Ambers,1,5000,"A piece of amber that contains the genes of an ancient Pokémon. It is clear with a reddish tint.",0,0,8
