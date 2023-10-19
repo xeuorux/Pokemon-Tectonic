@@ -605,9 +605,14 @@ BattleHandlers::AbilityOnSwitchIn.add(:ASSISTANT,
   }
 )
 
-BattleHandlers::AbilityOnSwitchIn.add(:ROLLIN,
+# Only used to force the AI to use Sudden Turn somewhat properly
+BattleHandlers::AbilityOnSwitchIn.add(:SUDDENTURN,
   proc { |ability, battler, battle, aiCheck|
-      next battle.forceUseMove(battler, :RAPIDSPIN, -1, ability: ability, aiCheck: aiCheck)
+    if aiCheck
+      next battle.forceUseMove(battler, :RAPIDSPIN, -1, ability: ability, aiCheck: true)
+    else
+      next 0
+    end
   }
 )
 

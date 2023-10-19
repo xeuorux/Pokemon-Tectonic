@@ -545,12 +545,12 @@ class PokeBattle_Battle
         if @turnCount != 0
             autoPilots = []
             [0,1].each do |sideIndex|
-                pbParty(0).each do |partyMember,partyIndex|
+                pbParty(sideIndex).each_with_index do |partyMember,partyIndex|
                     next unless partyMember.hasAbility?(:AUTOPILOT)
                     next if partyMember.status == :DIZZY
                     next if pokemonIsActiveBattler?(partyMember)
                     if @turnCount % 5 == 0
-                        autoPilots.push(partyMember)
+                        autoPilots.push(partyIndex)
                     elsif @turnCount % 5 == 4
                         pbDisplayPaused(_INTL("{1} will arrive next turn!",pbThisEx(sideIndex,partyIndex)))
                     end
@@ -558,9 +558,10 @@ class PokeBattle_Battle
 
                 eachSameSideBattler(sideIndex) do |activeBattler|
                     break if autoPilots.length == 0
-                    autoPilot = autoPilots.pop
-                    pbDisplayPaused(_INTL("{1} pilots into battle!",pbThisEx(sideIndex,autoPilot.pokemonIndex)))
-                    pbRecallAndReplace(activeBattler.index, autoPilot.pokemonIndex)
+                    autoPilotPartyIndex = autoPilots.pop
+
+                    pbDisplayPaused(_INTL("{1} pilots into battle!",pbThisEx(sideIndex,autoPilotPartyIndex)))
+                    pbRecallAndReplace(activeBattler.index, autoPilotPartyIndex)
                     activeBattler.applyEffect(:AutoPilot)
                 end
             end

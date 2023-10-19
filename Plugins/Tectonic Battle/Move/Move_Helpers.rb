@@ -241,6 +241,20 @@ class PokeBattle_Move
         end
     end
 
+    def switchOutUser(user,switchedBattlers)
+        return unless @battle.pbCanChooseNonActive?(user.index)
+        @battle.pbDisplay(_INTL("{1} went back to {2}!", user.pbThis, @battle.pbGetOwnerName(user.index)))
+        @battle.pbPursuit(user.index)
+        return if user.fainted?
+        newPkmn = @battle.pbGetReplacementPokemonIndex(user.index) # Owner chooses
+        return if newPkmn < 0
+        @battle.pbRecallAndReplace(user.index, newPkmn)
+        @battle.pbClearChoice(user.index) # Replacement Pokémon does nothing this round
+        @battle.moldBreaker = false
+        switchedBattlers.push(user.index)
+        user.pbEffectsOnSwitchIn(true)
+    end
+
     def forceOutTargets(user, targets, switchedBattlers, substituteBlocks = false, random = true, ability: nil)
         return if user.fainted?
         roarSwitched = []

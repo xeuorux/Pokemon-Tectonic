@@ -125,3 +125,4 @@
 3124,BALLFETCH,Ball Fetch,"Fetches the Poké Ball from the first failed throw."
 3125,RECEIVER,Receiver,"Copies the Ability of a defeated ally."
 3126,BEASTBOOST,Beast Boost,"Boosts its best stat each time it deals a KO."
+3127,ROLLIN,Roll In,"Uses Rapid Spin after its first attack to clear hazards, raise Speed, and deal damage."

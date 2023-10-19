@@ -495,7 +495,7 @@ GameData::BattleEffect.register_effect(:Battler, {
 })
 
 def ingrainHealingFraction(battler)
-    fraction = 1.0 / 8.0
+    fraction = 1.0 / 6.0
     fraction *= 1.3 if battler.hasActiveItem?(:BIGROOT)
     return fraction
 end
@@ -540,6 +540,11 @@ GameData::BattleEffect.register_effect(:Battler, {
 
 GameData::BattleEffect.register_effect(:Battler, {
     :id => :Instructed,
+    :real_name => "Instructed",
+})
+
+GameData::BattleEffect.register_effect(:Battler, {
+    :id => :SuddenTurn,
     :real_name => "Instructed",
 })
 

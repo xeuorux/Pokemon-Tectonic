@@ -62,11 +62,10 @@ Turns = 1
 HPMult = 10.0
 #-------------------------------
 [ZERAORA]
-Ability = VOLTABSORB
+Ability = HYBRIDFIGHTER
 Moves1 = THUNDERFANG,PRIMEVALBULKUP
 Moves2 = FORCEPALM,PRIMEVALTAILWIND
 Moves3 = AERIALACE,THUNDERPUNCH
-HPMult = 5.0
 Item = LUMBERRY
 #-------------------------------
 [SHAYMIN]

@@ -16,3 +16,10 @@ BattleHandlers::AbilityOnBattlerFainting.add(:ARCANEFINALE,
 )
 
 BattleHandlers::AbilityOnBattlerFainting.copy(:ARCANEFINALE,:HEROICFINALE)
+
+
+BattleHandlers::AbilityOnBattlerFainting.add(:SCHADENFREUDE,
+    proc { |ability, battler, fainted, _battle|
+        user.applyFractionalHealing(1.0 / 4.0, ability: ability) if battler.opposes?(fainted)
+    }
+)

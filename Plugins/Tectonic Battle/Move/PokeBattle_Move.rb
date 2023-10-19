@@ -130,7 +130,7 @@ class PokeBattle_Move
     def canSnatch?;             return @flags[/CanSnatch/]; end
     def canMirrorMove?;         return @flags[/CanMirrorMove/]; end
     def highCriticalRate?;      return @flags[/HighCriticalHitRate/]; end
-    def bitingMove?;            return @flags[/Bite/]; end
+    def bitingMove?;            return @flags[/Biting/]; end
     def punchingMove?;          return @flags[/Punch/]; end
     def soundMove?;             return @flags[/Sound/]; end
     def pulseMove?;             return @flags[/Pulse/]; end

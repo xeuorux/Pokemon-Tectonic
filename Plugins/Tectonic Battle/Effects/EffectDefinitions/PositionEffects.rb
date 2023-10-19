@@ -143,12 +143,38 @@ GameData::BattleEffect.register_effect(:Position, {
     :swaps_with_battlers => true,
     :entry_proc => proc do |battle, _index, position, battler|
         if battler.hasActiveAbility?(:LONGRECEIVER)
-            abilityPasser = battle.pbThisEx(battler.index, position.effects[:PassingAbility])
+            abilityPasser = battler.ownerParty[position.effects[:PassingAbility]]
+            abilityPasserName = battle.pbThisEx(battler.index, position.effects[:PassingAbility])
             unless battler.hasAbility?(abilityPasser.ability)
                 battler.showMyAbilitySplash(:LONGRECEIVER)
-                battle.pbDisplay(_INTL("{1} passes its ability to {2}!", abilityPasser, battler.pbThis(true)))
-                battler.addAbility(abilityPasser.ability)
+                battle.pbDisplay(_INTL("{1} passes its ability to {2}!", abilityPasserName, battler.pbThis(true)))
+                battler.hideMyAbilitySplash
+                battler.addAbility(abilityPasser.ability,true)
                 position.disableEffect(:PassingAbility)
+            end
+        end
+    end,
+})
+
+GameData::BattleEffect.register_effect(:Position, {
+    :id => :PassingStats,
+    :real_name => "PassingStats",
+    :info_displayed => false,
+    :type => :PartyPosition,
+    :swaps_with_battlers => true,
+    :entry_proc => proc do |battle, _index, position, battler|
+        if battler.hasActiveAbility?(:POURINGHEART)
+            statPasser = battler.ownerParty[position.effects[:PassingStats]]
+            statPasserName = battle.pbThisEx(battler.index, position.effects[:PassingStats])
+            unless battler.hasAbility?(statPasser.ability)
+                battler.showMyAbilitySplash(:POURINGHEART)
+                battle.pbDisplay(_INTL("{1} opens up, and shares its stats with {2}!", statPasserName, battler.pbThis(true)))
+                battler.applyEffect(:BaseAttack,statPasser.attack)
+                battler.applyEffect(:BaseDefense,statPasser.defense)
+                battler.applyEffect(:BaseSpecialAttack,statPasser.spatk)
+                battler.applyEffect(:BaseSpecialDefense,statPasser.spdef)
+                battler.applyEffect(:BaseSpeed,statPasser.speed)
+                position.disableEffect(:PassingStats)
                 battler.hideMyAbilitySplash
             end
         end
