@@ -49,8 +49,6 @@ class LightEffect_Lamp < LightEffect
   end
 end
 
-
-
 class LightEffect_Basic < LightEffect
   def update
     return if !@light || !@event
@@ -331,6 +329,50 @@ class LightEffect_Condensed < LightEffect
   end
 end
 
+class LightEffect_TVGlow < LightEffect
+  def initialize(event,viewport=nil,map=nil,filename=nil)
+    @light = IconSprite.new(0,0,viewport)
+    if filename!=nil && filename!="" && pbResolveBitmap("Graphics/Pictures/"+filename)
+      @light.setBitmap("Graphics/Pictures/"+filename)
+    else
+      @light.setBitmap("Graphics/Pictures/TVLE")
+    end
+    @light.z = 1000
+    @event = event
+    @map = (map) ? map : $game_map
+    @disposed = false
+    @opacityCounter = 0
+    @opacityWavelength = 8.0
+  end
+
+  def update
+    return if !@light || !@event
+    unless specialTVNewsAvailable?
+      @light.opacity = 0
+      return
+    end
+    super
+    @light.opacity = 100
+    @light.ox      = 64
+    @light.oy      = 96
+    if (Object.const_defined?(:ScreenPosHelper) rescue false)
+      @light.x      = ScreenPosHelper.pbScreenX(@event)
+      @light.y      = ScreenPosHelper.pbScreenY(@event)
+      @light.zoom_x = ScreenPosHelper.pbScreenZoomX(@event)
+    else
+      @light.x      = @event.screen_x
+      @light.y      = @event.screen_y
+      @light.zoom_x = 1.0
+    end
+    @light.x -= 32
+    @light.zoom_y = @light.zoom_x
+    @light.tone   = $game_screen.tone
+
+    @opacityCounter += 1
+    @light.opacity = (80 + 40 * Math.sin(@opacityCounter.to_f / @opacityWavelength)).floor
+  end
+end
+
 Events.onSpritesetCreate += proc { |_sender,e|
   spriteset = e[0]      # Spriteset being created
   viewport  = e[1]      # Viewport used for tilemap and characters
@@ -357,6 +399,8 @@ Events.onSpritesetCreate += proc { |_sender,e|
       spriteset.addUserSprite(LightEffect_SummonTotemAura.new(event,viewport,map))
     elsif event.name[/^light$/i] || event.name.include?("lighteffect")
       spriteset.addUserSprite(LightEffect_Basic.new(event,viewport,map))
+    elsif event.name[/newstv/i] && specialTVNewsAvailable?
+      spriteset.addUserSprite(LightEffect_TVGlow.new(event,viewport,map))
     end
   end
   spriteset.addUserSprite(Particle_Engine.new(viewport,map)) if $PokemonSystem.particle_effects == 0
