@@ -530,7 +530,7 @@ Pokemon = MAWILE,18
     Item = STEELGEM
 Pokemon = HSNEASEL,19
     AbilityIndex = 1 # Frustrate
-Pokemon = FOMANTIS,19
+Pokemon = SHELLOS,19
     AbilityIndex = 1 # Fascinate
 #-------------------------------
 [LEADER_Helena,Helena]
@@ -7171,7 +7171,7 @@ Pokemon = VESPIQUEN,70
 Pokemon = DRIFBLIM,70
     AbilityIndex = 1 # Drifting Mist
 Pokemon = HLILLIGANT,70
-    AbilityIndex = 0 # Energetic
+    AbilityIndex = 0 # Fascinate
     Item = LIFEORB
 #-------------------------------
 [VETERANM,Taro]
