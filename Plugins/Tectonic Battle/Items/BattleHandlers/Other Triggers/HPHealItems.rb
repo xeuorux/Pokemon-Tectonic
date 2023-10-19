@@ -102,3 +102,13 @@ BattleHandlers::HPHealItem.add(:STARFBERRY,
       next pbBattleStatIncreasingBerry(battler, battle, item, forced, stat, 3, true, filchedFrom, filchingAbility)
   }
 )
+
+BattleHandlers::HPHealItem.add(:WATERBALLOON,
+  proc { |item, battler, battle, forced, filchedFrom, filchingAbility|
+      next false unless battler.belowHalfHealth?
+      next false if battler.effectActive?(:AquaRing)
+      battle.pbDisplay(_INTL("{1} dropped its {2}!", battler.pbThis, getItemName(item)))
+      battler.applyEffect(:AquaRing)
+      next true
+  }
+)
