@@ -114,6 +114,8 @@ end
 # Changes category based on your better attacking stat.
 #===============================================================================
 class PokeBattle_Move_087 < PokeBattle_Move
+    def aiAutoKnows?(pokemon); return true; end
+
     def immuneToRainDebuff?; return true; end
     def immuneToSunDebuff?; return true; end
     
@@ -1853,8 +1855,14 @@ class PokeBattle_Move_0BF < PokeBattle_Move
         target.transformSpecies(GameData::Species.get(target.technicalSpecies).get_previous_species)
     end
 
-    def getEffectScore(_user, _target)
-        return 80
+    def getEffectScore(user, target)
+        score = 95
+        score += 45 if target.aboveHalfHealth?
+        if user.battle.pbCanSwitch?(target.index)
+            score -= 30
+            score += getForceOutEffectScore(user, target)
+        end
+        return score
     end
 end
 
