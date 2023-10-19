@@ -96,6 +96,16 @@ class PokeBattle_AI
         # Value of its own moves
         bestMoveScore, killInfo = switchRatingBestMoveScore(battler, killInfoArray: killInfoArray)
         offensiveMatchupRating = (0.5 * bestMoveScore).floor
+        
+        urgency = 0
+        if offensiveMatchupRating < 0
+            urgency = battler.getUrgency
+            PBDebug.log("[STAY-IN RATING] Urgency is #{urgency}")
+            offensiveMatchupRating -= urgency
+        else
+            PBDebug.log("[STAY-IN RATING] No Urgency is needed")
+        end
+        
         stayInRating += offensiveMatchupRating
         PBDebug.log("[STAY-IN RATING] #{battler.pbThis} offensive matchup rating: #{offensiveMatchupRating.to_change}")
 
@@ -106,7 +116,7 @@ class PokeBattle_AI
 
         # Determine who to swap into if at all
         PBDebug.log("[AI SWITCH] #{battler.pbThis} (#{battler.index}) is trying to find a switch. Staying in is rated: #{stayInRating}.")
-        list = pbGetPartyWithSwapRatings(idxBattler)
+        list = pbGetPartyWithSwapRatings(idxBattler,urgency)
         listSwapOutCandidates(battler, list)
 
         # Only considers swapping into pokemon whose rating would be at least a +30 upgrade
@@ -230,7 +240,7 @@ class PokeBattle_AI
                 currentHP += battler.totalhp * 0.1 if battler.hasTribeBonus?(:CARETAKER)
                 currentHP += battler.totalhp * 0.5 if battler.hasActiveAbilityAI?(:REFRESHMENTS) && battler.ownersPolicies.include?(:SUN_TEAM)
                 currentHP += battler.totalhp * 0.5 if battler.hasActiveAbilityAI?(:MENDINGTONES) && battler.ownersPolicies.include?(:ECLIPSE_TEAM)
-                if currentHP >= battler.totalhp * 0.5
+                if currentHP > battler.totalhp * 0.5
                     PBDebug.log("[STAY-IN RATING] #{battler.pbThis} (#{battler.index}) is bloodied but will regenerate, no penalty")
                     return stayInRating
                 end
@@ -252,7 +262,8 @@ class PokeBattle_AI
     end
 
     def pbDefaultChooseNewEnemy(idxBattler, safeSwitch = false)
-        list = pbGetPartyWithSwapRatings(idxBattler, safeSwitch)
+        urgency = 0
+        list = pbGetPartyWithSwapRatings(idxBattler, safeSwitch,urgency)
         list.delete_if { |val| !@battle.pbCanSwitchLax?(idxBattler, val[0]) }
         if list.length != 0
             listSwapOutCandidates(@battle.battlers[idxBattler], list)
@@ -272,7 +283,7 @@ class PokeBattle_AI
     end
 
     # Rates every other Pokemon in the trainer's party and returns a sorted list of the indices and swap in rating
-    def pbGetPartyWithSwapRatings(idxBattler, safeSwitch = false)
+    def pbGetPartyWithSwapRatings(idxBattler, safeSwitch = false,urgency)
         list = []
         battlerSlot = @battle.battlers[idxBattler]
 
@@ -280,14 +291,14 @@ class PokeBattle_AI
             next unless pkmn.able?
             next if battlerSlot.pokemonIndex == partyIndex
             next unless @battle.pbCanSwitch?(idxBattler, partyIndex)
-            switchScore = getSwitchRatingForPartyMember(pkmn, partyIndex, battlerSlot, safeSwitch)
+            switchScore = getSwitchRatingForPartyMember(pkmn, partyIndex, battlerSlot, safeSwitch,urgency)
             list.push([partyIndex, switchScore])
         end
         list.sort_by! { |entry| entry[1].nil? ? 99_999 : -entry[1] }
         return list
     end
 
-    def getSwitchRatingForPartyMember(pkmn, partyIndex, battlerSlot, safeSwitch = false)
+    def getSwitchRatingForPartyMember(pkmn, partyIndex, battlerSlot, safeSwitch = false,urgency)
         switchScore = 0
 
         # Create a battler to simulate what would happen if the Pokemon was in battle right now
@@ -329,10 +340,12 @@ class PokeBattle_AI
 
             offensiveMatchupRating, killInfo = switchRatingBestMoveScore(fakeBattler, killInfoArray: killInfoArray)
             if safeSwitch
-                offensiveMatchupRating = (0.5 * offensiveMatchupRating).floor
+                offensiveMatchupRating = (0.5 * offensiveMatchupRating).floor unless urgency >= 20
             else
-                offensiveMatchupRating = (0.25 * offensiveMatchupRating).floor
+                offensiveMatchupRating = (0.25 * offensiveMatchupRating).floor unless urgency >= 20
             end
+            offensiveMatchupRating -= urgency * 0.5 if offensiveMatchupRating <= 0
+            offensiveMatchupRating = offensiveMatchupRating.floor
             switchScore += offensiveMatchupRating
             if killInfo
                 echoln("[SWITCH SCORING] #{fakeBattler.pbThis} offensive matchup rating: #{offensiveMatchupRating.to_change} (thinks can faint a foe!)")

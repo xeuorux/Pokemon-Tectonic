@@ -32,7 +32,7 @@ end
 # Entry hazard. Lays spikes on the opposing side. (Spikes)
 #===============================================================================
 class PokeBattle_Move_103 < PokeBattle_Move
-    def hazardMove?; return true; end
+    def hazardMove?; return true,2; end
     def aiAutoKnows?(pokemon); return true; end
 
     def pbMoveFailed?(user, _targets, show_message)
@@ -66,6 +66,7 @@ end
 # (Poison Spikes)
 #===============================================================================
 class PokeBattle_Move_104 < PokeBattle_StatusSpikeMove
+    def hazardMove?; return true,5; end
     def initialize(battle, move)
         @spikeEffect = :PoisonSpikes
         super
@@ -76,7 +77,7 @@ end
 # Entry hazard. Lays stealth rocks on the opposing side. (Stealth Rock)
 #===============================================================================
 class PokeBattle_Move_105 < PokeBattle_Move
-    def hazardMove?; return true; end
+    def hazardMove?; return true,1; end
     def aiAutoKnows?(pokemon); return true; end
 
     def pbMoveFailed?(user, _targets, show_message)
@@ -1983,7 +1984,7 @@ end
 # Entry hazard. Lays a Speed reducing web on the opposing side. (Sticky Web)
 #===============================================================================
 class PokeBattle_Move_153 < PokeBattle_Move
-    def hazardMove?; return true; end
+    def hazardMove?; return true,4; end
     def aiAutoKnows?(pokemon); return true; end
 
     def pbMoveFailed?(user, _targets, show_message)

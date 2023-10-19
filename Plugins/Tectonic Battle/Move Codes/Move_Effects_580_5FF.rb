@@ -610,7 +610,7 @@ end
 # Entry hazard. Lays Feather Ward on the opposing side. (Feather Ward)
 #===============================================================================
 class PokeBattle_Move_5A1 < PokeBattle_Move
-    def hazardMove?; return true; end
+    def hazardMove?; return true,3; end
     def aiAutoKnows?(pokemon); return true; end
 
     def pbMoveFailed?(user, _targets, show_message)
@@ -2046,6 +2046,8 @@ end
 # Increases the user's defensive stats by 2 steps and gives them the Shell Armor ability.
 #===============================================================================
 class PokeBattle_Move_5E2 < PokeBattle_MultiStatUpMove
+    def aiAutoKnows?(pokemon); return true; end
+    
     def initialize(battle, move)
         super
         @statUp = DEFENDING_STATS_2

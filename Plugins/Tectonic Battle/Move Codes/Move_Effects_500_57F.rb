@@ -1401,6 +1401,7 @@ end
 # (Flame Spikes)
 #===============================================================================
 class PokeBattle_Move_551 < PokeBattle_StatusSpikeMove
+    def hazardMove?; return true,6; end
     def initialize(battle, move)
         @spikeEffect = :FlameSpikes
         super
@@ -1759,6 +1760,7 @@ end
 # (Frost Spikes)
 #===============================================================================
 class PokeBattle_Move_569 < PokeBattle_StatusSpikeMove
+    def hazardMove?; return true,7; end
     def initialize(battle, move)
         @spikeEffect = :FrostSpikes
         super

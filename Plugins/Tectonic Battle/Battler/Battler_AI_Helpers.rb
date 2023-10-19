@@ -202,11 +202,18 @@ class PokeBattle_Battler
         return false
     end
 
+    def hasSetupStatusMove?
+        isSetup, uSM = hasSetupMove?
+        return false unless isSetup && uSM
+        return true
+    end
+
     def hasSetupMove?
         eachAIKnownMove do |m|
             next unless m.is_a?(PokeBattle_StatUpMove) || m.is_a?(PokeBattle_MultiStatUpMove)
             next unless m.statusMove? || m.effectChance == 0 # Moves that always boost stats have 0 effect chance
-            return true
+            uSM = true if m.statusMove?
+            return true,uSM
         end
         return false
     end
@@ -219,12 +226,28 @@ class PokeBattle_Battler
         return false
     end
 
-    def hasHazardSettingMove?
+    def hasUseableHazardMove?
         eachAIKnownMove do |m|
-            next unless m.hazardMove?
-            return true
+            isHazard,hazardType = m.hazardMove?
+            next unless isHazard
+            # TODO: This is terrible, rework ASAP
+            next if hazardType == 1 && pbOpposingSide.effectActive?(:StealthRock)
+            next if hazardType == 2 && pbOpposingSide.countEffect(:Spikes) == 3
+            next if hazardType == 3 && pbOpposingSide.effectActive?(:FeatherWard)
+            next if hazardType == 4 && pbOpposingSide.effectActive?(:StickyWeb)
+            next if hazardType == 5 && pbOpposingSide.countEffect(:PoisonSpikes) == 2
+            next if hazardType == 6 && pbOpposingSide.countEffect(:FlameSpikes) == 2
+            next if hazardType == 7 && pbOpposingSide.countEffect(:FrostSpikes) == 2
+            uSHM = true if m.statusMove?
+            return true,uSHM
         end
         return false
+    end
+
+    def hasUseableStatusHazardMove?
+        isHazard, uSHM = hasUseableHazardMove?
+        return false unless isHazard && uSHM
+        return true
     end
 
     def hasHazardRemovalMove?

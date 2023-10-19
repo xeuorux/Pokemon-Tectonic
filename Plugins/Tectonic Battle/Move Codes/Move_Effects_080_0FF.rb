@@ -1643,15 +1643,15 @@ class PokeBattle_Move_0BA < PokeBattle_Move
         end
         
         # Setup
-        if target.hasSetupMove?
+        if target.hasSetupStatusMove?
            if target.lastRoundMoveCategory == -1 || target.lastRoundMoveCategory == 2 # No point stopping setup that already happened
                 firstTurnScore = 50
                 lastingScore += 30
-            end    
+            end
         end
         
         # Hazard
-        if target.hasHazardSettingMove?
+        if target.hasUseableStatusHazardMove?
             firstTurnScore = 50
             lastingScore += 30           
         end

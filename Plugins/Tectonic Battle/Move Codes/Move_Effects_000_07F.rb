@@ -496,9 +496,11 @@ class PokeBattle_Move_01D < PokeBattle_StatUpMove
 end
 
 #===============================================================================
-# Increases the user's Defense and Sp. Def by 2 steps. User curls up. (Defense Curl)
+# Increases the user's Defense and Sp. Def by 2 steps. User curls up. (Curl Up)
 #===============================================================================
 class PokeBattle_Move_01E < PokeBattle_MultiStatUpMove
+    def aiAutoKnows?(pokemon); return true; end
+
     def initialize(battle, move)
         super
         @statUp = DEFENDING_STATS_2
@@ -687,6 +689,8 @@ end
 # (Cosmic Power, Defend Order)
 #===============================================================================
 class PokeBattle_Move_02A < PokeBattle_MultiStatUpMove
+    def aiAutoKnows?(pokemon); return true; end
+    
     def initialize(battle, move)
         super
         @statUp = DEFENDING_STATS_2
