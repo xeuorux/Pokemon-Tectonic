@@ -1,9 +1,18 @@
 def tutorialBasic(eventIDs)
-    state = circuitPuzzle(:TUTORIAL_BASIC)
+    solved = circuitPuzzle(:TUTORIAL_BASIC)
 
-    if state == 0
-        setSwitchesAll(eventIDs,'A',false)
-    else
+    if solved
         setSwitchesAll(eventIDs,'A',true)
+    else
+        setSwitchesAll(eventIDs,'A',false)
+        electricFenceActivates
     end
+end
+
+def electricFenceDectivates
+    pbSEPlay("Anim/PRSFX- Paralysis", 100, 120)
+end
+
+def electricFenceActivates
+    pbSEPlay("Anim/PRSFX- Paralysis", 100, 120)
 end

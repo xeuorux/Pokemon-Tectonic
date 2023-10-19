@@ -268,7 +268,6 @@ Events.onMapChange += proc { |_sender,*args|
 
 		# Actually replace those pages on the event
 		newPages.each do |pageIndex,newPage|
-			echoln("Replacing page index #{pageIndex}")
 			event.event.pages[pageIndex] = newPage
 		end
 		

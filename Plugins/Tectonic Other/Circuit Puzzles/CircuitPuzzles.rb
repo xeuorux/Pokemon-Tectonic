@@ -3,11 +3,13 @@ def circuitPuzzle(circuitPuzzleID)
     if circuitDefinition
         circuitBaseGraphic = circuitDefinition[:base_graphic]
         pbSEPlay("Circuit puzzle load")
+        ret = nil
         pbFadeOutIn {
             scene = CircuitPuzzle_Scene.new(circuitBaseGraphic)
-            screen = CircuitPuzzle_Screen.new(scene,circuitDefinition)
+            screen = CircuitPuzzle_Screen.new(scene,circuitDefinition,circuitPuzzleID)
             ret = screen.startPuzzle
         }
+        return ret
     else
         pbMessageDisplay(_INTL("Circuit puzzle with ID #{circuitPuzzleID} not found. Aborting."))
     end
@@ -122,15 +124,25 @@ class CircuitComponent
 end
 
 class CircuitPuzzle_Screen
-    def initialize(scene,circuitDefinition)
+    def initialize(scene,circuitDefinition,puzzleID)
         @scene = scene
+        @puzzleID = puzzleID
         @circuitDefinition = circuitDefinition
         @components = []
-        @cursorX = 0
-        @cursorY = 0
+        @cursorX = 3
+        @cursorY = 3
+        @inSolutionState = false
+        @inLegalState = true
+
+        loadPuzzleComponents
+        loadCircuitState
+        detectLegalState
+        unless @inLegalState
+            pbMessageDisplay(_INTL("Circuit puzzle with ID #{circuitPuzzleID} somehow loaded in illegal state."))
+        end
     end
-    
-    def startPuzzle
+
+    def loadPuzzleComponents
         @scene.addCircuitComponents(@circuitDefinition)
 
         @circuitDefinition[:interactables].each do |circuitComponentDefinition|
@@ -143,19 +155,48 @@ class CircuitPuzzle_Screen
             newComponent.state = defaultState || 0
             @components.push(newComponent)
         end
+    end
 
-        @currentState = 0
+    def loadCircuitState
+        tracker = $PokemonGlobal.circuitPuzzleStateTracker
+        savedComponentStates = tracker.loadPuzzleState(@puzzleID)
+        @components.each_with_index do |component,index|
+            component.state = savedComponentStates[index]
+            @scene.updateComponentState(index,component.state)
+        end
+    end
+
+    def saveCircuitState
+        tracker = $PokemonGlobal.circuitPuzzleStateTracker
+        puzzleState = []
+        @components.each do |component|
+            puzzleState.push(component.state)
+        end
+        tracker.savePuzzleState(@puzzleID,puzzleState)
+    end
+    
+    def startPuzzle
+        Graphics.update
+        Input.update
+        detectSolution
         loop do
             Graphics.update
             Input.update
             update
             if Input.trigger?(Input::BACK)
-                endScene
-                pbPlayCloseMenuSE
-                return @currentState
+                if @inLegalState
+                    saveCircuitState
+                    endScene
+                    pbPlayCloseMenuSE
+                    return @inSolutionState
+                else
+                    pbMessageDisplay(_INTL("The circuit is in an illegal state! You can't leave it like this."))
+                end
             elsif Input.trigger?(Input::USE)
                 if cursorInteract
                     pbPlayDecisionSE
+                    detectLegalState
+                    detectSolution
                 else
                     pbPlayBuzzerSE
                 end
@@ -187,6 +228,10 @@ class CircuitPuzzle_Screen
                 end
                 @cursorX += 1
                 pbPlayCursorSE
+            elsif Input.triggerex?(:P) && $DEBUG
+                @components.each_with_index do |component,index|
+                    echoln("Component #{index} is in state #{component.state}")
+                end
             end
 
             @scene.cursorX = @cursorX
@@ -194,7 +239,46 @@ class CircuitPuzzle_Screen
         end
     end
 
+    def detectLegalState
+        @inLegalState = false
+        @circuitDefinition[:legal_states].each do |legalState|
+            thisLegalMatches = true
+            @components.each_with_index do |component,index|
+                legalStateForComponent = legalState[index]
+                next if component.state == legalStateForComponent
+                thisLegalMatches = false
+                break
+            end
+            if thisLegalMatches
+                @inLegalState = true
+                break
+            end
+        end
+    end
+
+    def detectSolution
+        @inSolutionState = false
+        @circuitDefinition[:solution_states].each do |possibleSolution|
+            thisSolutionWorks = true
+            @components.each_with_index do |component,index|
+                solutionStateForComponent = possibleSolution[index]
+                next if component.state == solutionStateForComponent
+                thisSolutionWorks = false
+                break
+            end
+            if thisSolutionWorks
+                @inSolutionState = true
+                break
+            end
+        end
+        if @inSolutionState
+            pbWait(20)
+            pbSEPlay("Mining found all",100,80)
+        end
+    end
+
     def cursorInteract
+        return false if @inSolutionState
         @components.each_with_index do |component,index|
             next unless component.x == @cursorX
             next unless component.y == @cursorY
@@ -214,8 +298,28 @@ class CircuitPuzzle_Screen
         @scene.update
     end
 end
-
 class CircuitPuzzleStateTracker
+    def initialize
+        @puzzleStateData = {}
+    end
+
+    def loadPuzzleState(puzzleID)
+        if @puzzleStateData.key?(puzzleID)
+            return @puzzleStateData[puzzleID]
+        else
+            newPuzzleState = []
+            circuitDefinition = CIRCUIT_PUZZLES[puzzleID]
+            circuitDefinition[:interactables].each do |interactableDefinition|
+                newPuzzleState.push(interactableDefinition[3])
+            end
+            @puzzleStateData[puzzleID] = newPuzzleState
+            return newPuzzleState
+        end
+    end
+    
+    def savePuzzleState(puzzleID,puzzleState)
+        @puzzleStateData[puzzleID] = puzzleState
+    end
 end
 
 class PokemonGlobalMetadata
