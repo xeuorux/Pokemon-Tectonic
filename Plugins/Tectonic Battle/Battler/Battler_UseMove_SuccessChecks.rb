@@ -527,7 +527,7 @@ target.pbThis(true)))
             @battle.pbShowAbilitySplash(b, :SLAPSTICK)
             @battle.pbDisplay(_INTL("{1} worsens {2}'s failure!", b.pbThis, pbThis(true)))
             applyFractionalDamage(1.0 / 8.0) if takesIndirectDamage?(true)
-            @battle.pbHideAbilitySplash(battler)
+            @battle.pbHideAbilitySplash(b)
         end
     end
 end
