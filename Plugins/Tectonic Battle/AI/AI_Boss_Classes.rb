@@ -415,17 +415,6 @@ class PokeBattle_AI_Parasect < PokeBattle_AI_Boss
     end
 end
 
-class PokeBattle_AI_Magnezone < PokeBattle_AI_Boss
-    def initialize(user, battle)
-        super
-        @useMoveIFF.add(:ZAPCANNON, proc { |_move, user, target, _battle|
-            next user.battle.commandPhasesThisRound == 0 && user.pointsAt?(:LockOnPos, target)
-        })
-
-        @lastTurnOnly.push(:LOCKON)
-    end
-end
-
 class PokeBattle_AI_Porygonz < PokeBattle_AI_Boss
     def initialize(user, battle)
         super
@@ -862,5 +851,41 @@ class PokeBattle_AI_Mrmime < PokeBattle_AI_Boss
     def initialize(user, battle)
         super
         secondMoveEveryTurn(:MIMIC)
+    end
+end
+
+class PokeBattle_AI_Magnezone < PokeBattle_AI_Boss
+    def initialize(user, battle)
+        super
+        @warnedIFFMove.add(:MAGNETRISE, {
+            :condition => proc { |_move, _user, target, battle|
+                facingGroundType = false
+                user.eachOpposing do |opp|
+                    next unless opp.hasType?(:GROUND)
+                    facingGroundType = true
+                    break
+                end
+                next facingGroundType
+            },
+            :warning => proc { |_move, user, _targets, _battle|
+                _INTL("#{user.pbThis} is wary of the ground!")
+            },
+        })
+
+        @requiredMoves.push(:POLARIZEDFIELD)
+    end
+end
+
+class PokeBattle_AI_Drifblim < PokeBattle_AI_Boss
+    def initialize(user, battle)
+        super
+        @warnedIFFMove.add(:POISONGAS, {
+            :condition => proc { |_move, _user, target, battle|
+                next target.fullHealth?
+            },
+            :warning => proc { |_move, user, _targets, _battle|
+                _INTL("#{user.pbThis} gathers toxic gas!")
+            },
+        })
     end
 end

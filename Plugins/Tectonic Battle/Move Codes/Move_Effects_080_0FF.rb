@@ -2461,6 +2461,7 @@ class PokeBattle_Move_0D7 < PokeBattle_Move
     def getEffectScore(user, _target)
         score = (user.totalhp / user.level) * 30
         score *= user.levelNerf(false,false,0.5) if user.level <= 30 && !user.pbOwnedByPlayer? # AI nerf
+        return score
     end
 end
 

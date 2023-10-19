@@ -17,7 +17,7 @@ BattleHandlers::AbilityChangeOnBattlerFainting.add(:ALLCONSUMING,
         fainted.eachItemWithName do |item, itemName|
             next if fainted.unlosableItem?(item)
             fainted.removeItem(item)
-            @battle.pbDisplay(_INTL("{1} ate {2}'s {3}!", user.pbThis, fainted.pbThis, itemName))
+            battle.pbDisplay(_INTL("{1} ate {2}'s {3}!", user.pbThis, fainted.pbThis, itemName))
             battler.pbHeldItemTriggerCheck(item, false)
         end
 

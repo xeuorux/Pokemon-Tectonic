@@ -288,7 +288,13 @@ BattleHandlers::EOREffectAbility.add(:DIRECTCURRENT,
       battler.showMyAbilitySplash(ability)
       battler.tryLowerStat(:SPECIAL_ATTACK, battler)
       choices = [_INTL("Speed"),_INTL("Healing")]
-      choice = battle.scene.pbShowCommands(_INTL("Where to direct power?"),choices,0)
+      if battle.autoTesting
+        choice = rand(1)
+      elsif !battler.pbOwnedByPlayer? # Trainer AI
+        choice = 0
+      else
+        choice = battle.scene.pbShowCommands(_INTL("Where to direct power?"),choices,0)
+      end
       if choice == 0
         battler.tryRaiseStat(:SPEED, battler)
       else

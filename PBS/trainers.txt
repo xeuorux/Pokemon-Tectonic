@@ -3600,8 +3600,8 @@ Pokemon = GROVYLE,29
 Pokemon = MANECTRIC,29
     AbilityIndex = 1 # Fascinate
 Pokemon = PHIONE,30
+    Moves = BUBBLEBEAM,DIVE,SUPERSONIC
     AbilityIndex = 1 # Pouring Heart
-	Moves = BUBBLEBEAM,DIVE,SUPERSONIC
 #-------------------------------
 [SCHOOLKID_M3,Jeremy]
 Pokemon = PAWNIARD,9
