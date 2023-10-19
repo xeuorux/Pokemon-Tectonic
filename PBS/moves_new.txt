@@ -399,7 +399,7 @@
 1398,ZEPHYRWING,Zephyr Wing,536,130,FLYING,Physical,100,5,30,NearOther,0,CanProtect;CanMirrorMove,"The user flies up to raise its Sp. Def by four steps in the first turn, then rams the foe on the second.",SKYATTACK
 1399,SWAGGER,Swagger,55D,0,NORMAL,Status,100,12,0,NearOther,0,CanProtect;CanMagicCoat;CanMirrorMove,"The target's Attack stat is raised by three steps. It then hits itself in a rage.",
 1400,FLATTER,Flatter,55E,0,DARK,Status,100,12,0,NearOther,0,CanProtect;CanMagicCoat;CanMirrorMove,"The target's Sp. Atk stat is raised by three steps. It then hurts itself in its mental turmoil.",
-1401,SHELLSHELTER,Shell Shelter,5E2,0,WATER,Status,0,30,0,User,0,CanSnatch,"The user withdraws its body into its hard shell, raising both defensive stats by two steps and gaining Shell Armor.",WITHDRAW
+1401,SHELLSHELTER,Shell Shelter,5E2,0,WATER,Status,0,4,0,User,0,CanSnatch,"The user withdraws its body into its hard shell, raising both defensive stats by two steps and gaining Shell Armor.",WITHDRAW
 1402,TUNEUP,Tune Up,5E3,0,BUG,Status,0,10,0,User,0,CanSnatch,"The user amps itself up for performance, raising its Sp. Atk and Speed by two steps each.",CALMMIND
 1403,HONESIGHT,Hone Sight,5E4,0,NORMAL,Status,0,12,0,User,0,CanSnatch,"The user focuses its aim to raise its Sp. Atk and accuracy by three steps each.",LASERFOCUS
 1404,CURSEDOATH,Cursed Oath,54A,0,GHOST,Status,0,10,0,NearOther,0,CanProtect;CanMagicCoat;CanMirrorMove,"The user loses 1/4th of their max HP to curse the target, damaging their HP by 1/4th each turn.",CURSE
@@ -418,7 +418,7 @@
 1417,GRINDSTONE,Grind Stone,5F8,80,ROCK,Physical,100,12,100,NearOther,0,CanProtect;CanMirrorMove,"The user scratches the target with rough rocks. If in sandstorm, the target's Defense is lowered by three steps.",STONEEDGE
 1418,SANDBLASTING,Sand Blasting,5F9,70,GROUND,Special,100,15,0,NearOther,0,CanProtect;CanMirrorMove,"Attacks by blasting sand. This move always goes first in sandstorm.",SANDATTACK
 1419,ROUSINGHULA,Rousing Hula,173,80,FIRE,Special,100,10,100,AllNearOthers,0,CanProtect;CanMirrorMove;Dance,"The user dances rapidly, emitting tropical heat. Any frostbitten Pokémon will be healed by this heat.",HEATWAVE
-1420,CURLUP,Curl Up,01E,0,NORMAL,Status,0,30,0,User,0,CanSnatch,"The user curls up to conceal weak spots and raise both of its defensive stats.",DEFENSECURL
+1420,CURLUP,Curl Up,01E,0,NORMAL,Status,0,4,0,User,0,CanSnatch,"The user curls up to conceal weak spots and raise both of its defensive stats.",DEFENSECURL
 1421,WHAMBLAM,Wham Blam,000,135,FAIRY,Physical,70,12,0,NearOther,0,CanProtect;CanMirrorMove,"The user pretends to be a hero and strikes their foe with super strength.",SPIRITBREAK
 1422,FIREPULSE,Fire Pulse,00A,60,FIRE,Special,100,15,20,NearOther,0,CanProtect;CanMirrorMove;Pulse,"The user attacks the target with a pulsing blast of fire. It has a 20% chance to burn.",FLAMEBURST
 1423,SHRAPNELCANNON,Shrapnel Cannon,551,30,FIRE,Special,100,12,0,NearOther,0,CanProtect;CanMirrorMove;Pulse,"The user launches shrapnel, dealing damage and setting a layer of flame spikes around the target.",FLAMEBURST
