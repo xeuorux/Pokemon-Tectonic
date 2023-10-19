@@ -374,7 +374,7 @@ def getMultiStatUpEffectScore(statUpArray, user, target, fakeStepModifier: 0, ev
         if %i[ATTACK SPECIAL_ATTACK].include?(statSymbol)
             while statIncreaseAmount >= 1
                 stepTotal += 1
-                stepTotal = 7 if stepTotal > 9
+                stepTotal = 9 if stepTotal > 9
                 statIncreaseAmount -= 1
                 totalIncrease += increase.to_f * [0,1,1,0.9,0.9,0.8,0.8,0.7,0.6,0.5][stepTotal]
             end
@@ -390,6 +390,7 @@ def getMultiStatUpEffectScore(statUpArray, user, target, fakeStepModifier: 0, ev
         if statSymbol == :SPEED
             sTier = target.getSpeedTier
             while statIncreaseAmount >= 1
+                stepTotal = 0 if stepTotal < 0
                 stepTotal += 1
                 stepTotal = 6 if stepTotal > 6
                 statIncreaseAmount -= 1

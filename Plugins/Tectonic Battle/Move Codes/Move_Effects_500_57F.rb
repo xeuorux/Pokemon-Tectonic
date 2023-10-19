@@ -1084,7 +1084,7 @@ class PokeBattle_Move_53C < PokeBattle_Move
 end
 
 #===============================================================================
-# If the move misses, the user gains Accuracy and Speed. (Jouse)
+# If the move misses, the user gains Accuracy and Speed. (Joust)
 #===============================================================================
 class PokeBattle_Move_53D < PokeBattle_Move
     # This method is called if a move fails to hit all of its targets
