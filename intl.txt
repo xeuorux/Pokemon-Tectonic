@@ -32812,7 +32812,7 @@ Alboroto
 Body Slam
 Golpe Cuerpo 
 Extreme Speed
-Velocida Extrema
+Velocidad Extrema
 Hyper Fang
 Hipercolmillo
 Mega Punch
@@ -34413,6 +34413,150 @@ Warping Core
 Núcleo Cambiante
 Shatter Vice
 Prensa Destructiva
+Butting Heads
+Embestida
+Sapping Seed
+Semilla Agotadora
+Moon Howling
+Aullido Lunar
+Luminous Burst
+Estallido Luminoso
+Fight Forever
+Lucha Eterna
+Tidalkinesis
+Mareakinesis
+Mutate
+Mutar
+Gut Check
+Revisión de Apetito
+Wave of Jade
+Ola de Jade
+Glimmer Pulse
+Pulso Brillante
+Bubble Barrage
+Ráfaga Burbuja
+Pulsar
+Pulsar
+Seance
+Espiritista
+Fireworks
+Fuegos Artificiales
+Rapid Hertz
+Hercios Acelerados
+Extinction Axe
+Hacha de Extinción
+Impaling Spike
+Empúalamiento
+Young Again
+Rejuvenecimiento
+Dune Singing
+Canto Desértico
+Wind Tunnel
+Túnel Ventoso
+Suck Blood
+Chupasangre
+Volley
+Asalto Bandada
+Droning
+Sonsonete
+Drown
+Ahogar
+Toxic Attachment
+Sujeción Tóxica
+Spotting
+Vigilia
+Polarized Field
+Campo Polarizado
+Masquerblade
+Filo Farsante
+Disturb
+Perturbar
+Danger Ditty
+Tonada Poderosa
+Bubble Barrier
+Barrera Burbuja
+Rocket Punch
+Puño Cohete
+Prismatic Power
+Poder Prismático
+Capacity Burst
+Sobrecarga
+Weld
+Soldadura
+Flash Sting
+Aguijón Fugaz
+Discourage
+Disuadir
+Draft
+Corriente
+Guttural Roar
+Rúgido Gutural
+Center
+Concentración
+Fixate
+Abstracción
+Rip Tide
+Marea Negra
+Hop
+Salto
+Compounding
+Poder Compuesto
+Sharing Smiles
+Sonrisas Compartidas
+Hot Shot
+Llama Veloz
+Presto
+Presto
+Poison Dart
+Dardo Venenoso
+Awe-strike
+Veneración Fortuita
+Gloat
+Regodearse
+Bully
+Amedrentar
+Artillerize
+Artillería
+Snap
+Mordisqueo
+Quality Room
+Zona Eficaz
+Mistletoe
+Patada Muérdago
+Root Driver
+Punta-Raíz
+Whip Kick
+Patada Látigo
+Siege Breaker
+Asediador
+All For One
+Todo Para Uno
+Blades of Grass
+Espadas de Hierba
+Front Kick
+Patada Frontal
+Razing Vines
+Enredadera
+Cranial Guard
+Guarda-Mente
+Channel Spirits
+Invoca-Espíritus
+Sirocco
+Sirocot
+Honey Slather
+Endulzar
+Remold
+Remoldear
+Primal Vigor
+Vigor Primigenio
+Heaven's Eyes
+Ojos del Edén
+Quarantine
+Cuarentena
+Stink Cover
+Cubierta Apestosa
+Herbal Patch
+Herbolario
 [6]
 Using its tough and impressive horn, the user rams into the target with no letup.
 Usando su impresionante cuerno, el usuario embiste al rival.
@@ -36662,6 +36806,157 @@ A move that only the avatar of Kyogre can use. The user commands a Luvdisc avata
 Un movimiento que sólo el avatar de Kyogre puede utilizar. El usuario llama un avatar de Luvdisc y Remoraid para asistirlo.
 A move that only the avatar of Groudon can use. Gravity is intensified for five turns and enemy Pokemon have their weight doubled.
 Un movimiento que sólo el avatar de Groudon puede utilizar. La gravedad es intensificada cinco turnos y el lado contrario tiene su peso duplicado.
+The user engages the target in a head-to-head fight. The damage is based on the target's Attack rather than their Defense.
+El usuario entabla un duelo a cabezazos con el oponente. El daño está basado en el Ataque del usuario en vez de su Defensa.
+A parasitic seed leeches the target and reduces both its attacking stats.
+Una semilla parasitaria que infecta al objetivo y reduce ambas de sus stats ofensivas.
+Summons moonglow for eight turns and raises the Attack stat of itself and its allies by two steps.
+Invoca el brillo lunar por ocho turnos y aumenta su Ataque y el de sus aliados dos grados.
+Cloaking itself in light energy, the user shocks the target, raising the user's Sp. Def by two steps.
+Envolviéndose en energía lumínica, el usuario asusta el objetivo, aumentando la Defensa Especial del usuario dos grados.
+The user endures attacks with 1 HP. If so, raises its Attack by 2 steps. Fails if used in succession.
+El usuario aguanta ataques con 1 PS. En ese caso, aumenta su Ataque dos grados. Falla si se usa consecutivamente.
+The user bites with added telekinetic force. During eclipse, the target also becomes numbed.
+El usuario muerde con fuerza telekinética. Durante un eclipse, el objetivo también es aturdido.
+The user mutates its genetic code, transforming into any of its 3 other forms. Only useable as Deoxys Normal.
+El usuario muta su código genético, transformándose en cualquiera de sus otras 3 formas. Sólo puede ser usado como Deoxys Normal.
+The user attacks with courage. Sets spikes if Full. If Hangry, deals double damage and is Dark-type.
+El usuario ataca con coraje. Coloca púas si está Saciado. Si es Voraz, duplica su potencia y es tipo Siniestro.
+The user crushes the target in its metallic vices, trapping and damaging it for three turns.
+El usuario aplasta el objetivo en sus prensas metálicas, atrándolo y dañándolo durante tres turnos.
+The user emits a wave of green energy to strike near foes. Deals double damage to those slower than the user.
+El usuario emite una ola de energía verde para atacar a rivales cercanos. Duplica su potencia contra aquellos más lentos que el usuario.
+The user harms the target with gemlike light. Deals double damage if the user has used a gem this battle.
+El usuario ataca al objetivo con una luz similar a una gema. Duplica su potencia si el usuario ha usado una gema en el combate.
+The user creates two to five giant bubbles to explode against the target.
+El usuario crea entre dos a cinco burbujas gigantes para explotarlas contra el objetivo.
+The user sends two to five waves of cosmic energy to overwhelm the target's senses.
+El usuario envía entre dos a cinco ondas de energía cósmica para abrumar los sentidos del objetivo.
+The user summons two to five apparitions that dance around hypnotically before striking.
+El usuario invoca entre dos a cinco apariciones que bailan hipnóticamente alrededor del objetivo antes de atacar.
+The user fires off two to five explosive rounds in a beautiful display.
+El usuario envía entre dos a cinco explosiones maravillosas.
+The target is hit with an electric current two to five times in quick succession. Has a 10% chance to numb.
+El objetivo es atacado entre dos a cinco veces con corrientes eléctricas. Tiene un 10% de probabilidad de aturdir al objetivo.
+The user aims to cut the target in half with its axe head. Deals double damage if its a critical hit.
+El usuario apunta para cortar el objetivo a la mitad con su cabeza de hacha. Duplica su potencia si es un golpe crítico.
+A large spike is shot at the target. If this causes the target to faint, a layer of spikes is set on the ground beneath them.
+Una gran púa es disparada al objetivo. Si esto causa que el objetivo se debilite, una capa de púas es puesta debajo suyo.
+The user conjures up the past, transforming the target into their previous evolutionary form.
+El usuario conjura el pasado, transformando al objetivo en su etapa evolutiva anterior.
+An avalanche of sand causes painful, ringing vibrations.
+Una avalancha de arena causa vibraciones dolorosas.
+Wind rapidly spins the target in place to hit them two to five times. Has a 10% chance to dizzy.
+Viento gira rápidamente al objetivo para atacar entre dos a cinco veces. Tiene un 10% de probabilidad de marear al objetivo.
+The user leeches the target's life. The user's HP is restored by half the damage taken by the target.
+El usuario absorbe la fuerza vital del objetivo. El usuario recupera la mitad de PS que le quite al objetivo.
+The user gets all the party Pokémon to attack the foe with aerial projectiles.
+El usuario hace que todos los Pokémon del equipo ataquen con proyectiles aéreos.
+The user vibrates its wings to make a damaging sound wave. It has a 30% chance to lower Sp. Atk.
+El usuario vibra sus alas para crear una onda de sonido dañina. Tiene un 30% de probabilidad de disminuir el Ataque Especial del objetivo.
+Disables the target's last used move for four turns, then reduces a relevant stat on them by 4 steps.
+Anula el último movimiento usado por el objetivo durante cuatro turnos, luego disminuye su stat más alta 4 grados.
+Grips the target with its entire mouth. The user can’t attack next turn unless the target faints or switches out.
+Sujeta al objetivo con toda su boca. El usuario no puede atacar el siguiente turno a no ser que el objetivo se debilite o vuelva a su Poké Ball.
+The user assists an ally by boosting the power and accuracy of its next attack by 50%.
+El usuario asiste a su aliado potencia la potencia y precisión de su siguiente ataque 50%.
+This move creates a directional magnetic field which reduces damage from attacks with 100 or more base power for five turns.
+Este movimiente crea un campo magnético direccional que reduce el daño de ataques con 100 de potencia o más durante cinco turnos.
+The user hides its blade. If it is hit by a special move, it unsheathes it quickly slashes all near foes.
+El usuario esconde su filo. Si es alcanzado por un movimiento especial, la desenfunda para atacar rápidamente a todos los objetivos cercanos.
+A distinguished attack that motivates nearby allies to follow, letting them act immediately after
+.
+The user attacks with bitter emotion. This lowers the target's attacking stats by 2 steps if in hail.
+El usuario ataca con resentimiento. Esto disminuye las stats ofensivas del objetivo dos grados bajo granizo.
+The target is subjected to a violent and frightening prank. It has a 10% chance to numb.
+El objetivo es sucjeto a una broma violenta y aterradora. Tiene un 10% de probabilidad de aturdir al objetivo.
+The user sings with reckless abandon, annoying the target. There's a 30% chance they become dizzy.
+El usuario canta con abandono temerario, molestando al objetivo. Tiene un 30% de probabilidad de aturdir al objetivo.
+The user creates a bubble to shield their ally. The next time they’re hit, 50% of the move damage is instead dealt back as recoil.
+El usuario crea una burbuja para proteger a su aliado. La próxima vez que sean golpeados, 50% del daño es devuelto como daño de retroceso.
+The user launches a fist with extreme force. This attack is popular with children.
+El usuario dispara un puño con fuerza extrema. Este ataque es popular con niños.
+The user expresses a hidden potential. Changes type to match the user's Gem, Plate, or Crystal Veil.
+El usuario expresa su potencial oculto. Cambia de tipo para coincidir con la Gema, Tabla o Velo Cristalino del usuario.
+The user summons a ton of electricity to shock the target. If it deals less than 50% of the target’s max health, the user takes the difference as recoil.
+El usuario invoca un montón de electricidad para atacar al objetivo. Si daña al objetivo por menos de la mitad de sus PS máximos, el usuario recibe la diferencia como retroceso.
+Welds heavy steel onto the target, giving it Steel type and reducing its Speed by 4 steps.
+Suelda un metal pesado al objetivo, dándole el tipo Acero y reduciendo su Velocidad 4 grados.
+For the rest of the round, the target's healing is reversed. Always goes first.
+Por el resto del turno, la curación del objetivo es invertida. Siempre va primero.
+The user sends a chilly wind towards the target. This has a 10% chance to frostbite.
+El usuario envía un viento helado hacia el objetivo. Tiene un 10% de probabilidad de helar al objetivo.
+The user shakes the target with a deep, rumbling roar. This attack does physical damage.
+El usuario sacude al objetivo con un rugido profundo y retumbante. Este ataque inflige daño físico.
+The user concentrates to stabilize its mood. It raises the user's Sp. Def by three steps.
+El usuario se concentra para estabilizar su estado de ánimo. Aumenta la Defensa Especial tres grados.
+The user stimulates its brain by planning. It raises the user's Sp. Atk by three steps.
+El usuario estimula su cerebro planificando. Aumenta el Ataque Especial tres grados.
+The user crashes into the target on a ripping current. This raises the user's Speed by two steps.
+El usuario choca contra el objetivo en una corriente desgarradora. Esto aumenta la Velocidad del usuario dos grados.
+The user hops high up to land on the target's head. It has a 10% chance to dizzy.
+El usuario salta muy alto para aterrizar en la cabeza del objetivo. Tiene un 10% de probabilidad de marear.
+Has 10 more base power for each raised stat step. Inflicts physical or special damage based on the user's stats.
+Tiene 10 más de potencia base por cada grado de estadística aumentado. Inflige daño físico o especial según las stats del usuario.
+The user and the target each share their highest stat step with the other.
+El usuario y el objetivo comparten su grado de stats más alto con el otro.
+The user shoots the target with a small bolt of fire. This move always goes first.
+El usuario dispara al objetivo con un pequeño disparo de fuego. Siempre va primero.
+The user flashes colorful light to damage the target. This move always goes first.
+El usuario lanza destellos de luz de colores para atacar al objetivo. Siempre va primero.
+The user shoots the target with a dart made of poison. This move always goes first.
+El usuario dispara al objetivo con un dardo hecho de veneno. Siempre va primero.
+The user inspires a sudden dread in the target, damaging it. This move always goes first.
+El usuario inspira un pavor repentino en el objetivo, dañándolo. Siempre va primero.
+The user raises all of their stats by two steps. Fails unless a foe is below half health.
+El usuario aumenta dos grados todas sus stats. Falla a menos que el enemigo esté por debajo de la mitad de su salud.
+This attack deals 50 percent more damage if the target has any raised or lowered stat steps.
+Este ataque inflige un 50% más de daño si el objetivo tiene algún grado de estadística aumentado o bajado.
+The user chooses Fire, Electric, or Ice, then launches a projectile of that type to strike the target in one turn.
+El usuario elige Fuego, Elétrico o Hielo, y lanza un proyectil de ese tipo para golpear al objetivo en un turno.
+The user snaps like a fish at the target. This has a 40% chance to make it flinch.
+El usuario muerde como un pez al objetivo. Tiene un 40% de probabilidad de amedrentarlo.
+The user jumps out of the water to attack. Has a 20% chance to reduce Defense.
+El usuario salta fuera del agua para atacar. Tiene un 20% de probabilidad de reducir la Defensa del objetivo.
+The user creates a high quality area in which super-effective deals 25% more, and not very effective deals 25% less.
+El usuario crea una zona muy eficaz en la que movimientos súper efectivos dañan un 25% más, y los poco efectivos, un 25% menos.
+The user uses their feet to pierce the foe. This has a 10% chance of leeching the target.
+El usuario utiliza los pies para atravesar al enemigo. Esto tiene una probabilidad del 10% de infectar al objetivo.
+The user kicks into the target like roots into earth. This has a 30% chance of leeching.
+El usuario patea al objetivo como las raíces a la tierra. Esto tiene un 30% de probabilidad de infectar al objetivo.
+The user whips their legs into the target like a plant. This has a 10% chance of leeching.
+El usuario azota con sus piernas al objetivo como si fuera una planta. Esto tiene un 10% de probabilidad de infectar al objetivo.
+The user slams the target with a rocky blade. Destroys screens, substitute, and protection on the target.
+El usuario golpea al objetivo con una cuchilla rocosa. Destruye pantallas, sustitutos y protecciones del objetivo.
+The user slashes with gusto, inspiring its allies to follow up by using Slash on the target.
+El usuario acuchilla con gusto, inspirando a sus aliados para que sigan el ataque usando Cuchillada en el objetivo.
+The user gracefully slashes the target three times. The next time this move is used, it will hit one extra time.
+El usuario acuchilla con elegancia al objetivo tres veces. La próxima vez que utilice este movimiento, golpeará una vez más.
+The user kicks the target with a powerful, straightforward technique.
+El usuario patea al objetivo con una técnica potente y directa.
+Attacks while destroying rooms. This move fails in the absence of a room.
+Ataca mientras destruye zonas. Este movimiento falla en ausencia de una zona.
+Protects the user from damage this turn. The user will counter with Granite Head if attacked.
+Protege al usuario del daño por un turno. El usuario contrarrestará con Cabeza de Granito si es atacado.
+The user channels its fallen allies to strike the target. This attack has 20 more power per fainted party member.
+El usuario canaliza a sus aliados caídos para golpear al objetivo. Este ataque tiene 20 puntos más de potencia por cada miembro del equipo debilitado.
+Hits the target with a sandy wind, then summons sandstorm for eight turns.
+Golpea al objetivo con un viento arenoso e invoca una tormenta de arena durante ocho turnos.
+The user uses honey to fully restore their HP. However, this lures swarming insects, trapping and damaging the user for three turns.
+El usuario utiliza miel para restaurar completamente sus PS. Sin embargo, atrae a un enjambre de insectos que atrapan y dañan al usuario durante tres turnos.
+The user shapes primal clay to heal a nearby ally for their max HP. This can overheal. The user must recharge next turn.
+El usuario da forma a la arcilla primigenia para curar por sus PS máximos a un aliado cercano. Esto puede sobrecurar. El usuario debe recargar en el siguiente turno.
+The user channels ancient energy to grant a nearby ally an extra turn this round.
+El usuario canaliza energía ancestral para conceder a un aliado cercano un turno extra por un turno.
+The user's eyes glow with divine judgement, numbing the target and reducing both its attacking stats.
+Los ojos del usuario brillan con juicio divino, aturdiendo al objetivo y reduciendo sus stats ofensivas.
+Protects the user from damage this turn. It disables any attacks against it for three turns.
+Protege al usuario del daño este turno. Anula cualquier ataque contra él durante tres turnos.
+The foe is forced is forced to switch out by a stinky cloud, then the user also switches. Always goes last.
+El enemigo es forzado a cambiar por una nube apestosa, entonces el usuario también cambia. Siempre va el último.
+A patch of medicinal herbs sprouts across the battlefield. This heals every Pokémon for 1/8th HP each turn for 5 turns.
+Un área de hierbas medicinales brota en el campo de batalla. Cura a todos los Pokémon 1/8 de PS en cada turno durante 5 turnos.
+
 [7]
 Repel
 Repelente
@@ -40510,6 +40805,126 @@ Primeval Regenerator
 Regeneración Primitiva
 Primeval Disguise
 Disfraz Primitivo
+Spare Scales
+Escamas Extra
+Egoist
+Egoísta
+Apathetic
+Apático
+Freestyle
+Freestyle
+Slipstream
+Estela
+Lifeline
+Sustento
+Pain Presence
+Presencia Dolorosa
+Darter
+Perdurable
+Signal Jam
+Interferencia
+White Knight
+Caballero Blanco
+Slapstick
+Slapstick
+Pain Delay
+Reacción Tardía
+Vandal
+Vándalo
+Engorge
+Hinchar
+Unidentified
+Sin Identificar 
+Snoozefest
+Aburrimiento
+Team Player
+Trabajo en Equipo
+Sleep Snare
+Atrapasueños
+Stupefying
+Atontar
+MU Protocal
+Protocolo Génesis
+Sluggish
+Baboso
+Deep Teeth
+Colmillos Profundos
+Saturnal Sky
+Cielo Saturnal
+Stygian Night
+Noche de Estigio
+Fire-fighter
+Combustión
+Slumbering Drake
+Dragón Durmiente
+Tendril Trap
+Trampa de Medusa
+Toil and Trouble
+Sufrimiento Incrementado
+Fatigued
+Fatigado
+Cloaking
+Tronco Adaptable
+Tricky Aura
+Aura Rara
+Quick Kicks
+Patadas Rápidas
+Haunted
+Poseído
+Extra Scoop
+Cucharada Extra
+Impressionable
+Influenciable
+Torpor Sap
+Drenado Soporífico
+Running Free
+Errante
+Leg Strength
+Gemelos Fornidos
+Quality Aura
+Aura Eficaz
+Insight Aura
+Aura Esclarecedora
+Emotion Aura
+Aura Emoción
+Will Aura
+Aura Voluntad
+Rushed
+Apresurado
+Burdened
+Agobiado
+Ball Mimic
+Poké Ball Falsa
+Reap What You Sow
+Cosechar lo Sembrado
+Uncanny Luck
+Suerte Insólita
+Long Receiver
+Gran Receptor
+Autumnal
+Otoñal
+Neurotoxin
+Neurotoxina
+Malingering
+Persistencia
+Auto-Structure
+Auto-Estructura
+All-Consuming
+Glotón
+Fire Festival
+Festival de Fuego
+Clean Freak
+Maníaco de la Limpieza
+Mass Attack
+Ataque en Masa
+Noble Blade
+Hoja Noble
+Direct Current
+Corrientazo
+Auto-Pilot
+Auto-Piloto
+Cautionary
+Cuidadoso
 
 [11]
 Attacks have a 50% chance to cause the target to flinch.
@@ -41700,6 +42115,128 @@ When hit with a special move, hits back instantly with Breach.
 Al ser atacado por un movimiento especial, contraataca inmediatamente con Arrastre.
 Takes 50% less damage from attacks by Pokémon who have a status condition.
 Recibe 50% menos de daño por los Pokémon que tengan un problema de estado.
+Raises defenses after using a Grass, Ground, or Steel-type move.
+Aumenta ambas defensas luego de usar movimiento tipo Planta, Tierra o Acero.
+Fighting-type moves have +1 priority.
+Los movimientos tipo lucha tienen +1 prioridad.
+Takes no damage from status ailments.
+No recibe daño por problemas de estado.
+The Pokémon changes type to that of the move it's about to use. However, it's 20% less accurate.
+El Pokémon cambia de tipo al movimiento que esté a punto de usar. Sin embargo, tiene un 20% de precisión.
+Attack is boosted by 30% if a Tailwind is blowing.
+Aumenta su Ataque un 30% si hay un Viento Afín soplando.
+At the end of each turn, heals self by 1/20th and a party member by the amount the Pokémon was healed.
+Al final de cada, se cura a sí mismo 1/20 de sus PS máximos y a un aliado por la cantidad que el Pokémon haya sido curado.
+Reduces each other battler's HP by 1/12th at the end of each turn.
+Reduce los PS de cada Pokémon por 1/12 de sus PS máximos al final de cada turno.
+Takes 30% less move damage if a Tailwind is blowing.
+Recibe 30% menos de daño si hay un Viento Afín soplando.
+The Pokémon and other battlers don't benefit from same-type attacking bonus.
+Tanto el usuario como otros Pokémon no se benefician del bonus del mismo tipo.
+Draws in moves from foes with base power 100 or more.
+Atrae movimientos de rivales con 100 de potencia o más.
+Whenever a foe fails or misses, they take 1/8th HP damage.
+Cada vez que un rival falle un movimiento, pierden 1/8 de sus PS totales.
+33% of all move damage taken is instead taken at the end of the next turn.
+33% de todo daño de ataques es recibido al final del siguiente turno.
+Deals 30% damage to targets that have an item. After attacking a foe, destroys their clothing items.
+Potencia sus ataques 30% contra objetivos que tengan un objeto. Luego de atacar a un rival, destruye su objeto de ropaje.
+Draining moves deal 30% more damage. Can overheal when draining.
+Sus movimientos de drenado son potenciados un 30%. Puede sobrecurarse al drenar.
+The Pokémon is Mutant-type.
+El Pokémon es tipo Mutante.
+Whenever the Pokémon falls asleep, each other battler becomes drowsy.
+Cada vez que el Pokémon duerma, cada otro Pokémon es adormecido.
+If an attack lowers its HP to half or less, the attacker becomes drowsy.
+Si pierde la mitad de sus PS o más, el atacante es adormecido.
+Deals 25% more move damage for each ally in battle.
+Sus ataques son potenciados un 25% por cada aliado en combate.
+Ignores Abilities that would affect its moves. Dizzies opponents that it hits below half health.
+Ignora Habilidades que afectarían sus movimientos. Marea a oponentes que deje menos de la mitad de vida.
+Immune to the type of the memory disc it holds.
+Inmune al tipo del disco que tenga equipado.
+The Pokémon is also Bug-type, but its Speed is halved.
+El Pokémon es también de tipo Bicho, pero su Velocidad es reducida a la mitad.
+Foes aren't released from its trapping moves even when the Pokémon leaves the field.
+Los enemigos no son liberados de sus movimientos atrapantes incluso cuando el Pokémon no esté en el campo.
+Changes the weather to Ring Eclipse, which heralds the Total Ring Eclipse. Lingers for 3 turns after leaving.
+Cambia el clima a un Eclipse de Anillo, que proclama el Eclipse de Anillo Total. Permanece durante 3 turnos luego de regresar a su Poké Ball.
+Changes the weather to Blood Moon, which heralds the Full Blood Moon. Lingers for 3 turns after leaving.
+Cambia el clima a la Luna de Sangre, que proclama la Luna Llena de Sangre. Permanece durante 3 turnos luego de regresar a su Poké Ball.
+Immune to Fire-type moves, and raises both attacking stats if hit by one.
+Inmune a movimientos tipo Fuego, y aumenta ambas stats ofensivas si es alcanzado por uno.
+Falls asleep upon entry, but raises all of its stats by 2 steps.
+Se duerme inmediatamente, pero aumenta todas sus stats 2 grados.
+Prevents foes whose Attack is less than its from fleeing.
+Atrapa a oponentes que tengan menos Ataque que el usuario.
+Foes suffer 50% more stat reduction from Burn, Frostbite, and Numb.
+Los oponentes sufren una reducción de stats un 50% mayor al sufrir una Quemadura, Heladura o Aturdimiento.
+After attacking any foe, the Pokémon immediately uses Rest.
+Luego de atacar a un oponente, el Pokémon usa inmediatamente Descanso.
+It changes form to match the move it selected.
+Cambia de forma para adaptarse al movimiento que ha seleccionado.
+Upon entry, creates a Trick Room for five turns, inverting the effect of Speed.
+Al entrar, crea una Zona Rara durante cinco turnos, invirtiendo el efecto de la Velocidad.
+Doubles the Speed of kicking moves.
+Duplica la Velocidad de los movimientos de patada.
+The Pokémon is also Ghost-type.
+El Pokémon también es de tipo Fantasma.
+Upon entry, the Pokémon heals itself for 1/4th max HP. This can overheal.
+Al entrar al campo, el Pokémon se cura 1/4 de sus PS máximos. Puede sobrecurarse.
+Its same-type attack bonus is based on its party members rather than itself.
+Su bonificación de ataque del mismo tipo se basa en los miembros de su equipo y no en sí mismo.
+Restores its HP by 25% of the damage it deals to sleeping targets.
+Restaura sus PS en un 25% del daño que inflige a los objetivos dormidos.
+Can't be numbed, leeched, trapped, or have its Speed reduced by foes.
+No puede ser aturdido, infectado, atrapado, o tener su Velocidad reducida por los rivales.
+Boosts the power of kicking moves by 30%.
+Aumenta un 30% la potencia de los movimientos de patada.
+Upon entry, creates a Quality Room for five turns, exaggerating type matchups.
+Al entrar, crea una Sala Eficaz durante cinco turnos, exagerando las efectividades de tipo.
+Upon entry, creates an Insight Room for five turns, giving everyone a fifth move.
+Al entrar, crea una Zona Esclarecedora durante cinco turnos, dando a todos un quinto movimiento.
+Upon entry, creates an Emotion Room for five turns, switching Abilities every turn.
+Al entrar, crea una Zona Emocional durante cinco turnos, que cambia Habilidades cada turno.
+Upon entry, creates a Willful Room for five turns, reducing all hits by 30 damage.
+Al entrar, crea una Zona Voluntad durante cinco turnos, reduciendo un 30 de daño todos los ataques.
+Boosts Speed by 50%, but the Pokémon is hurt for 1/10th HP each turn.
+Aumenta la Velocidad un 50%, pero el Pokémon pierde 1/10 de sus PS máximos cada turno.
+Receives 33% less move damage, but the Pokémon is hurt for 1/10th HP each turn.
+Recibe un 33% menos de daño de movimiento, pero el Pokémon pierde 1/10 de sus PS máximos cada turno.
+Your Poké Balls are 50% more effective.
+Tus Poké Balls son un 50% más efectivas.
+If the Pokémon faints from Perish Song, it is revived in a new form.
+Si el Pokémon es debilitado por Canto Mortal, revive con una nueva forma.
+If an attacker would activate a random added effect on the Pokémon, that effect is placed on the attacker instead.
+Si un atacante activaría un efecto secundario aleatorio sobre el Pokémon, ese efecto se aplica al atacante en su lugar.
+Copies the Ability of the Pokémon it switches in to replace.
+Copia la habilidad del Pokémon al que sustituye.
+Healing on the Pokémon is reversed.
+La curación del Pokémon es invertida.
+While the Pokémon is unfainted (in battle or switched out), poisoned foes also suffer from dizzy.
+Mientras el Pokémon no esté debilitado (en combate o cambiado), los enemigos envenenados también estarán mareados.
+Pokémon take damage from status conditions even while switched out.
+Los Pokémon reciben daño de los problemas de estado incluso cuando no están en combate.
+At the end of every turn, its stats shift position (Attack-> Defense -> Sp. Atk -> Sp. Def -> Speed -> Attack...)
+Al final de cada turno, sus estadísticas cambian de posición (Ataque-> Defensa -> Atq. Es. ->Def. Es. -> Velocidad -> Ataque...)
+When another Pokémon faints, consumes their item, ability, and stat steps.
+Cuando otro Pokémon es debilitado, consume su objeto, habilidad y grados de stats.
+At the end of every turn, each Pokémon takes 1/8th HP damage. This is treated as Fire-type.
+Al final de cada turno, cada Pokémon recibe 1/8 de PS de daño. Se considera de tipo Fuego.
+Boosts move damage by 50% while it has a status condition. However, it suffers double effect from status conditions.
+Aumenta el daño de movimiento un 50% mientras tiene un problema de estado. Sin embargo, sufre el doble de efecto de los problemas de estado.
+All Pokémon's damage is decreased proportional to their health remaining.
+El daño de todos los Pokémon disminuye proporcionalmente a su salud restante.
+Deals no damage to a target while they are using a status move.
+No inflige daño a un objetivo mientras esté usando un movimiento de estado.
+At the end of each turn, its Sp. Atk is lowered. Then, you choose to raise its Speed or heal it for 1/5th HP.
+Al final de cada turno, su Ataque Especial se reduce. A continuación, puedes elegir entre aumentar su Velocidad o curarlo por 1/5 de sus PS.
+At the beginning of every 5th turn, the Pokémon forcibly switches into battle. It chooses which move it will use that turn.
+Al inicio de cada quinto turno, el Pokémon entra al combate por la fuerza. Elige qué movimiento va a usar ese turno.
+Raises Def and Sp. Def by three steps each when its HP is lowered below half.
+Aumenta ambas Defensas 3 grados cuando sus PS se reducen por debajo de la mitad.
+
+
 [12]
 0
 Normal
@@ -50422,6 +50959,178 @@ Sort All
 Ordenar Todo
 Marks
 Marcas
+{1} is floating in mid-air!
+¡{1} está flotando en el aire!
+A planetary ring dominates the skyline.
+Un aro planetario domina el cielo.
+The moon is taken by a nightmare.
+La luna es tomada por una pesadilla.
+The planetary ring tightens its grip!
+¡El aro planetario se refuerza!
+he nightmarish moon is unending!
+¡La luna de pesadilla no termina!
+A planetary ring dominates the sky!
+¡Un aro planetario domina el cielo!
+A nightmare possessed the moon!
+¡Una pesadilla poseyó a la luna!
+The planetary ring flew off!
+¡El aro planetario se desvaneció!
+The nightmare is purged from the moon!
+¡La pesadilla desaparece de la luna!
+The skyline is still dominated by a planet!
+¡El cielo sigue dominado por un planeta!
+The nightmarish moon is unaffected!
+¡La luna de pesadilla no es afectada!
+The Total Ring Eclipse arrives!
+¡El Eclipse de Anillo Total llega!
+{1} is severely panicked!
+¡{1} apenas reacciona del pánico!
+The Full Blood Moon rises!
+¡La Luna Llena de Sangre aparece!
+{1} is afflicted by the nightmarish moon!
+¡{1} es afectado por la noche de pesadilla!
+The Total Ring Eclipse is approaching.
+El Eclipse de Anillo Total está llegando.
+The Full Blood Moon is approaching.
+La Luna Llena de Sangre está llegando.
+{1} transformed into a {2}!
+¡{1} se transformó en {2}!
+{1} is still attached to {2}!
+¡{1} sigue unido a {2}!
+{1} concealed its blade!
+¡{1} reveló su filo!
+{1} takes less damage from moves with 100+ base power! This will last for #{value - 1} more turns!
+¡{1} recibe menos daño de movimientos con 100+ poder base! ¡Esto durará por #{value - 1} turnos más!
+{1}'s Polarized Field was broken!
+¡El Campo Polarizado de {1} fue roto!
+{1}'s Polarized Field wore off!
+¡El Campo Polarizado de {1} desapareció!
+But it failed, since #{user.pbThis(true)} is already #{GameData::Type.get(camouflageType).name}-type!
+¡Pero falló, ya que #{user.pbThis(true)} ya es de tipo #{GameData::Type.get(camouflageType).name}!
+But it failed, since #{target.pbThis(true)} is hiding a Masquerblade!
+¡Pero falló, ya que #{target.pbThis(true)} está escondiendo un Filo Farsante!
+But it failed, since #{target.pbThis(true)} has no previous species to transform into!
+¡Pero falló, ya que #{target.pbThis(true)} no tiene una especie anterior a la que transformarse!
+But it failed, since Polarized Field is already active!
+¡Pero falló, ya que el Campo Polarizado ya está activo!
+{1}'s hidden blade trap didn't work!
+¡La trampa oculta de {1} no funcionó!
+{1} is fired up!
+¡{1} está encendido!
+Tri Island
+Isla Elemental
+You recieved a #{speciesDat.name} (#{speciesDat.form_name})
+Recibiste un #{speciesDat.name} (#{speciesDat.form_name})
+\wmSometimes you will receive Pokemon who are at your level cap.\wtnp<<[>>#{messageWait}<<]>><<1>>
+\wmA veces recibirás Pokémon al mismo nivel que tu límite.\wtnp<<[>>#{messageWait}<<]>><<1>>
+\wmDoes this mean you can't evolve them by level up? No!\wtnp<<[>>#{messageWait}<<]>><<1>>
+\wm¿Significa que no puedes evolucionarlos por nivel? ¡No!\wtnp<<[>>#{messageWait}<<]>><<1>>
+\wmJust press the Evolve button in your party screen.\wtnp<<[>>#{messageWait}<<]>><<1>>
+\wmSólo presiona el botón de Evolucionar en tu equipo.\wtnp<<[>>#{messageWait}<<]>><<1>>
+{1} holds a {2} close!
+¡{1} mantiene a su  {2} cerca suyo!
+\i[AIDKIT]Your Aid Kit was refreshed to #{$PokemonGlobal.teamHealerCurrentUses} charges.
+\i[AIDKIT]Tu Botiquín fue recargado con #{$PokemonGlobal.teamHealerCurrentUses} cargas.
+{1} was overwhelmed with emotion!
+¡{1} fue saturado con emoción!
+A high quality area appeared! Type effectiveness is exagerated!
+¡Una zona muy eficaz apareció! ¡La efectividad de los tipos es exagerada!
+The high quality area was dispelled!
+¡La zona muy eficaz fue desvanecida!
+The high quality area fell away.
+La zona muy eficaz se disipó.
+An insightful area appeared! Everyone gets a 5th move!
+¡Una zona esclarecedora apareció! ¡Todos consiguen un quinto movimiento!
+The insightful area was dispelled!
+¡La zona esclarecedora fue desvanecida!
+The insightful area fell away.
+La zona esclarecedora se disipó.
+An emotional area appeared! Everyone switches ability every turn!
+¡Una zona emocional apareció! ¡Todos cambian de habilidad cada turno!
+The emotional area was dispelled!
+¡La zona emocional fue desvanecida!
+The emotional area fell away.
+La zona emocional se disipó.
+A willful area appeared! Everyone takes 30 less damage on hits!
+¡Una zona obstinada apareció! ¡Todos reciben 30 de daños menos por ataques!
+The willful area was dispelled!
+¡La zona obstinada fue desvanecida!
+The willful area fell away.
+La zona obstinada se disipó.
+#{user.pbThis} begins leading the attack!
+¡#{user.pbThis} empieza liderando el ataque!
+#{user.pbThis} gathers up a swarm of helpers!
+¡#{user.pbThis} reúne un enjambre de ayudantes!
+{1} broke free of the Heal Block!
+¡{1} se liberó de Anticura!
+{1} can use healing again!
+¡{1} puede curarse de nuevo!
+{1} is imprisoned in a tower of ice!
+¡{1} es atrapado en una torre de hielo!
+{1} is no longer being taunted.
+{1} ya no está bajo los efectos de la mofa.
+{1}'s electromagnetism wore off.
+El electromagnetismo de {1} se disipó.
+{1}'s filled with ice!
+¡{1} fue llenado con hielo!
+{1} joins in the attack!
+¡{1} se une al ataque!
+But it failed, since there is no active room!
+¡Pero falló, ya que no hay una zona activa!
+{1} is a bad influence! Healing is reversed!
+¡{1} es una mala influencia! ¡La curación es invertida!
+{1}'s healing is reversed!
+¡La curación de {1} es invertida!
+{1} gained an extra attack this turn!
+¡{1} ganó un ataque extra este turno!
+{1}'s HP is unable to gather any honey!
+¡Los PS de {1} no son suficientes para recoger nada de miel!
+{1} has been afflicted with an infestation!
+¡{1} fue afectado por un acoso!
+{1}'s additional effect was bounced back!
+¡El efecto secundario de {1} fue rebotado!
+{1} begins the harvest!
+¡{1} empieza la cosecha!
+{1} was healed by the Herbal Patch!
+{1} fue curado por el Área de Hierba!
+{1} passes its ability to {2}!
+¡{1} le pasa su habilidad a {2}!
+But it failed, since #{target.pbThis(true)} can't be numbed or have either of its attacking stats lowered!
+¡Pero falló, ya que  #{target.pbThis(true)} no puede ser aturdido ni puede tener sus stats ofensivas reducidas!
+A candy machine. It's out of candy.
+Una máquina de caramelos. Ya no tiene caramelos.
+A candy machine. It has one batch of candy.
+Una máquina de caramelos. Tiene una tanda de caramelos.
+A candy machine. It contains #{candyAmount} batches of candy.
+Una máquina de caramelos. Contiene #{candyAmount} tandas de caramelos.
+A batch costs ${1}. You can't afford to pay that much!
+Una tanda cuesta ${1}. ¡No puedes permitirte eso!
+Buy some candy for ${1}?
+¿Compras un poco de caramelo por ${1}?
+You put in $#{cost}.
+Pusiste $#{cost}.
+{1} is splashed with fire!
+¡{1} fue salpicado con fuego!
+{1} has restructured!
+¡{1} fue reestructurado!
+Healing
+Curación
+Where to direct power
+Dónde diriges poder
+{1} ate {2}'s {3}!
+{1} comió el {3} de {2}!
+{1} will arrive next turn!
+¡{1} llegará en el siguiente turno!
+{1} pilots into battle!
+¡{1} pilota al combate!
+{1} absorbs the damage from the poison.
+{1} absorbe el daño del veneno.
+#{pokemon.name} cries out!
+¡#{pokemon.name} chilla!
+\me[Earn battle points]\ptYou've earned #{battlePointsAdded} battle points.\wtnp[70]
+\me[Earn battle points]\ptHas ganado #{battlePointsAdded} puntos de batalla.\wtnp[70]
+
+
 
 [26]
 [27]
