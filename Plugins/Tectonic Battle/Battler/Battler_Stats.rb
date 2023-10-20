@@ -320,8 +320,8 @@ class PokeBattle_Battler
                 aiSpeedMult *= 2.0
             else
                 applyEffect(:AgilityHerb)
-                pbCommonAnimation("UseItem")
-                pbDisplay(_INTL("{1} moves at doubled speed thanks to its {2}!", pbThis, getItemName(:AGILITYHERB)))
+                @battle.pbCommonAnimation("UseItem",self)
+                @battle.pbDisplay(_INTL("{1} moves at doubled speed thanks to its {2}!", pbThis, getItemName(:AGILITYHERB)))
             end
         end
 
