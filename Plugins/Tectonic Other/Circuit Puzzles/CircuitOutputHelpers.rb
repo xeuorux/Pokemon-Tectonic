@@ -1,4 +1,12 @@
-def tutorialBasic(eventIDs)
+def electricFenceDectivates
+    pbSEPlay("Anim/PRSFX- Paralysis", 100, 120)
+end
+
+def electricFenceActivates
+    pbSEPlay("Anim/PRSFX- Paralysis", 100, 120)
+end
+
+def circuitTutorialBasic(eventIDs)
     solved = circuitPuzzle(:TUTORIAL_BASIC)
 
     if solved
@@ -9,10 +17,13 @@ def tutorialBasic(eventIDs)
     end
 end
 
-def electricFenceDectivates
-    pbSEPlay("Anim/PRSFX- Paralysis", 100, 120)
-end
+def circuitTutorialResistors(eventIDs)
+    solved = circuitPuzzle(:TUTORIAL_RESISTORS)
 
-def electricFenceActivates
-    pbSEPlay("Anim/PRSFX- Paralysis", 100, 120)
+    if solved
+        setSwitchesAll(eventIDs,'A',true)
+    else
+        setSwitchesAll(eventIDs,'A',false)
+        electricFenceActivates
+    end
 end

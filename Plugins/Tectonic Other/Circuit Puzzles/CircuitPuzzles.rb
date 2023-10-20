@@ -241,17 +241,21 @@ class CircuitPuzzle_Screen
 
     def detectLegalState
         @inLegalState = false
-        @circuitDefinition[:legal_states].each do |legalState|
-            thisLegalMatches = true
-            @components.each_with_index do |component,index|
-                legalStateForComponent = legalState[index]
-                next if component.state == legalStateForComponent
-                thisLegalMatches = false
-                break
-            end
-            if thisLegalMatches
-                @inLegalState = true
-                break
+        if @circuitDefinition[:legal_states].nil?
+            @inLegalState = true
+        else
+            @circuitDefinition[:legal_states].each do |legalState|
+                thisLegalMatches = true
+                @components.each_with_index do |component,index|
+                    legalStateForComponent = legalState[index]
+                    next if component.state == legalStateForComponent
+                    thisLegalMatches = false
+                    break
+                end
+                if thisLegalMatches
+                    @inLegalState = true
+                    break
+                end
             end
         end
     end
