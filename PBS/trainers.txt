@@ -3125,40 +3125,56 @@ Pokemon = JOLTEON,43
     Item = FOCUSSASH
 #-------------------------------
 [ARTIST2,Frank]
-Pokemon = SUDOWOODO,47
-    AbilityIndex = 1 # Prankster
-    Item = LEFTOVERS
-Pokemon = BRUXISH,48
-    AbilityIndex = 1 # Strong Jaw
-Pokemon = DUDUNSPARCE,48
-    AbilityIndex = 0 # Serene Grace
-Pokemon = LILLIGANT,47
-    AbilityIndex = 1 # Herbalist
-    Item = WHITEHERB,INTELLECTHERB
-#-------------------------------
-[VETERANM,Yoshihiro]
-Pokemon = HELECTRODE,47
-    AbilityIndex = 0 # Self Mending
-    Item = LIGHTCLAY
-Pokemon = HUNTAIL,48
-    AbilityIndex = 0 # Intimidate
-Pokemon = BASTIODON,48
-    AbilityIndex = 1 # Cautionary
-    Item = BINDINGBAND
-Pokemon = HARCANINE,47
-    AbilityIndex = 1 # Rock Head
+Pokemon = SALAZZLE,48
+    Moves = NERVEBREAK,DARKPULSE,LAVAPLUME,SLUDGEBOMB
+    AbilityIndex = 0 # Expertise
+    Item = LUCKHERB
+Pokemon = CORVIKNIGHT,47
+    Moves = SLAY,DRILLPECK,UTURN,HONECLAWS
+    AbilityIndex = 1 # Expertise
+Pokemon = ABSOLUS,48
+    Moves = DOOMDESIRE,WINTERWARNING,SEVER,JUSTDESERTS
+    AbilityIndex = 0 # Bad Omen
+Pokemon = BRELOOM,47
+    Moves = MACHPUNCH,SPORE,BULLETSEED,BULKUP
+    AbilityIndex = 0 # Technician
+    Item = LOADEDDICE
 #-------------------------------
 [REPORTER,Pesha]
-Pokemon = VOLBEAT,48
-    AbilityIndex = 1 # Competitive
-    Item = FOCUSSASH
-Pokemon = KINGDRA,47
-    AbilityIndex = 0 # Serene Grace
-Pokemon = TORKOAL,48
-    AbilityIndex = 0 # Smoke Reflex
+Pokemon = HELECTRODE,47
+    Moves = CHLOROBLAST,EXPLOSION,ELECTROBALL,WOODHAMMER
+    AbilityIndex = 0 # Self Mending
+Pokemon = VOLCARONA,48
+    Moves = QUIVERDANCE,BUGBUZZ,GIGADRAIN,FLAMETHROWER
+    AbilityIndex = 1 # Dawn Burst
+    Item = LEFTOVERS
+Pokemon = PRIMARINA,47
+    Moves = SPARKLINGARIA,ENCHANTINGSONG,HYPERVOICE,ANGELSKISS
+    AbilityIndex = 0 # Maestro
+Pokemon = ANNIHILAPE,48
+    Moves = CROSSCHOP,COLDSHOULDER,BULKUP,FIERYTOUCH
+    AbilityIndex = 0 # Defiant
+    Item = LEFTOVERS
+#-------------------------------
+[VETERANM,Yoshihiro]
+Pokemon = ARIADOS,48
+    Moves = STICKYWEB,TOXICTHREAD,POISONJAB,LEECHLIFE
+    AbilityIndex = 1 # Sentry
     Item = SITRUSBERRY
-Pokemon = MSEAKING,47
-    AbilityIndex = 1 # Unafraid
+Pokemon = ATLACROSS,48
+    Moves = SWORDSDANCE,ARMTHRUST,PINMISSILE,ROCKBLAST
+    AbilityIndex = 0 # Skill Link
+Pokemon = PORYGONMAV,48
+    Moves = QUARANTINE,ELECTROSLASH,INFERNOCHARGE,RECOVER
+    AbilityIndex = 1 # Sharpness
+    Item = WHETSTONE
+Pokemon = SKUNTANK,48
+    Moves = CRUNCH,POISONJAB,SUCKERPUNCH,POISONGAS
+    AbilityIndex = 0 # Stench
+Pokemon = QUAGSIRE,48
+    Moves = WATERFALL,EARTHQUAKE,PLAYROUGH,YAWN
+    AbilityIndex = 1 # Water Absorb
+    Item = LEFTOVERS
 #-------------------------------
 [CLOWN,Dimesmart]
 Pokemon = MISMAGIUS,43
