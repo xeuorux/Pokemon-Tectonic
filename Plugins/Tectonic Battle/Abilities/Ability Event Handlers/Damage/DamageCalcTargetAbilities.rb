@@ -183,9 +183,9 @@ BattleHandlers::DamageCalcTargetAbility.add(:TRAPPER,
 )
 
 BattleHandlers::DamageCalcTargetAbility.add(:FORTIFIED,
-  proc { |ability, user, target, _move, mults, _baseDmg, type, aiCheck|
+  proc { |ability, user, target, move, mults, _baseDmg, type, aiCheck|
     if aiCheck
-      mults[:final_damage_multiplier] *= 0.7 unless user.pbSpeed(true) > target.pbSpeed(true)
+      mults[:final_damage_multiplier] *= 0.7 unless user.pbSpeed(true) > target.pbSpeed(true, move: move)
     elsif !target.movedThisRound?
       mults[:final_damage_multiplier] *= 0.7
       target.aiLearnsAbility(ability)

@@ -19,7 +19,7 @@ class PokeBattle_Move_081 < PokeBattle_Move
     end
 
     def pbBaseDamageAI(baseDmg, user, target)
-        baseDmg *= 2 if user.pbSpeed(true) < target.pbSpeed
+        baseDmg *= 2 if user.pbSpeed(true, move: self) < target.pbSpeed
         return baseDmg
     end
 end
@@ -37,7 +37,7 @@ class PokeBattle_Move_082 < PokeBattle_Move
         fastAllyAttacker = false
         user.eachAlly do |b|
             next unless b.hasDamagingAttack?
-            fastAllyAttacker = true if b.pbSpeed(true) > user.pbSpeed(true)
+            fastAllyAttacker = true if b.pbSpeed(true) > user.pbSpeed(true, move: self)
         end
         baseDmg *= 2 if fastAllyAttacker
         return baseDmg
@@ -84,7 +84,7 @@ class PokeBattle_Move_084 < PokeBattle_Move
     end
 
     def pbBaseDamageAI(baseDmg, user, target)
-        baseDmg *= 2 if user.pbSpeed(true) < target.pbSpeed
+        baseDmg *= 2 if user.pbSpeed(true, move: self) < target.pbSpeed
         return baseDmg
     end
 end
@@ -1776,7 +1776,7 @@ class PokeBattle_Move_0BC < PokeBattle_Move
         return 0 if target.hasActiveAbilityAI?(:MENTALBLOCK)
         score = 60
         score += 40 if @battle.pbIsTrapped?(target.index)
-        userSpeed = user.pbSpeed(true)
+        userSpeed = user.pbSpeed(true, move: self)
         targetSpeed = target.pbSpeed(true)
         if userSpeed > targetSpeed
             return 0 if target.lastRegularMoveUsed.nil?

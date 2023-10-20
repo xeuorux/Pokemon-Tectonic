@@ -193,19 +193,8 @@ def getSleepEffectScore(user, target, _policies = [])
     return score
 end
 
-def userWillHitFirst?(user, target, move)
-    userSpeed = user.pbSpeed(true)
-    targetSpeed = target.pbSpeed(true)
-
-    movePrio = user.battle.getMovePriority(move, user, [target], true)
-
-    return true if movePrio > 0
-    return false if movePrio < 0
-    return userSpeed > targetSpeed
-end
-
 def getFlinchingEffectScore(baseScore, user, target, move)
-    return 0 unless userWillHitFirst?(user, target, move)
+    return 0 unless user.battle.battleAI.userMovesFirst?(move, user, target)
     return 0 if target.hasActiveAbilityAI?(GameData::Ability::FLINCH_IMMUNITY_ABILITIES)
     return 0 if target.substituted? && !move.ignoresSubstitute?(user)
     return 0 if target.effectActive?(:FlinchImmunity)
@@ -219,13 +208,13 @@ def getFlinchingEffectScore(baseScore, user, target, move)
     return score
 end
 
-def getWantsToBeFasterScore(user, other, magnitude = 1)
-    return getWantsToBeSlowerScore(user, other, -magnitude)
+def getWantsToBeFasterScore(user, other, magnitude = 1, move: nil)
+    return getWantsToBeSlowerScore(user, other, -magnitude, move: move)
 end
 
-def getWantsToBeSlowerScore(user, other, magnitude = 1)
-    userSpeed = user.pbSpeed(true)
-    otherSpeed = other.pbSpeed(true)
+def getWantsToBeSlowerScore(user, other, magnitude = 1, move: nil)
+    userSpeed = user.pbSpeed(true, move: move)
+    otherSpeed = other.pbSpeed(true, move: move)
     if userSpeed < otherSpeed
         return 10 * magnitude
     else

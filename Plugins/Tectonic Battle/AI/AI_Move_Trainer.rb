@@ -349,7 +349,7 @@ class PokeBattle_AI
         
         # Create kill info
         if willFaint
-            killInfo = KillInfo.new(user,move,user.pbSpeed(true),@battle.getMovePriority(move, user, [target], true), score)
+            killInfo = KillInfo.new(user,move,user.pbSpeed(true, move: move),@battle.getMovePriority(move, user, [target], true), score)
         else
             killInfo = nil
         end

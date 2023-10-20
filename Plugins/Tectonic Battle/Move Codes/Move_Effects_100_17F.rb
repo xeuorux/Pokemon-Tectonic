@@ -756,7 +756,7 @@ class PokeBattle_Move_11D < PokeBattle_Move
 
     def getEffectScore(user, target)
         return 0 if user.opposes?(target)
-        userSpeed = user.pbSpeed(true)
+        userSpeed = user.pbSpeed(true, move: self)
         targetSpeed = target.pbSpeed(true)
         return 0 if targetSpeed > userSpeed
         return 60
@@ -808,7 +808,7 @@ class PokeBattle_Move_11E < PokeBattle_Move
     def getTargetAffectingEffectScore(user, target)
         return 0 unless user.opposes?(target)
         return 0 unless user.hasAlly?
-        userSpeed = user.pbSpeed(true)
+        userSpeed = user.pbSpeed(true, move: self)
         targetSpeed = target.pbSpeed(true)
         return 0 if targetSpeed > userSpeed
         return 50
@@ -2285,7 +2285,7 @@ class PokeBattle_Move_161 < PokeBattle_Move
     end
 
     def getEffectScore(user, target)
-        score = getWantsToBeSlowerScore(user, target, magnitude = 8)
+        score = getWantsToBeSlowerScore(user, target, 8, move: self)
         return score
     end
 end
@@ -2353,7 +2353,7 @@ class PokeBattle_Move_165 < PokeBattle_Move
     end
 
     def getEffectScore(user, target)
-        score = getWantsToBeSlowerScore(user, target, 3) if !target.substituted? && !target.effectActive?(:GastroAcid)
+        score = getWantsToBeSlowerScore(user, target, 3, move: self) if !target.substituted? && !target.effectActive?(:GastroAcid)
         return score
     end
 end
@@ -2832,7 +2832,7 @@ class PokeBattle_Move_178 < PokeBattle_Move
     end
 
     def pbBaseDamageAI(baseDmg, user, target)
-        baseDmg *= 2 if user.pbSpeed(true) > target.pbSpeed(true)
+        baseDmg *= 2 if user.pbSpeed(true, move: self) > target.pbSpeed(true)
         return baseDmg
     end
 end

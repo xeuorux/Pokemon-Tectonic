@@ -31,8 +31,8 @@ class PokeBattle_Battler
         return mult
     end
 
-    def statAfterStep(stat, step = -1)
-        step = @steps[stat] if step == -1
+    def statAfterStep(stat, step = nil)
+        step = @steps[stat] if step.nil?
         return (getPlainStat(stat) * statMultiplierAtStep(step)).floor
     end
 

@@ -199,27 +199,7 @@ class PokeBattle_Battle
             next unless @choices[b.index][0] == :UseMove
             move = b.getMoves[@choices[b.index][1]]
 
-            if b.hasActiveItem?(:AGILITYHERB)
-                b.applyEffect(:AgilityHerb)
-                pbCommonAnimation("UseItem", b)
-                pbDisplay(_INTL("{1} moves at doubled speed thanks to its {2}!", b.pbThis, getItemName(:AGILITYHERB)))
-            end
-
-            if b.hasActiveAbility?(:MAESTRO) && move&.soundMove?
-                b.applyEffect(:Maestro)
-            end
-
-            if b.hasActiveAbility?(:GALEWINGS) && move&.type == :FLYING
-                b.applyEffect(:GaleWings)
-            end
-
-            if b.hasActiveAbility?(:RAMMINGSPEED) && move&.recoilMove?
-                b.applyEffect(:RammingSpeed)
-            end
-
-            if b.hasActiveAbility?(:QUICKKICKS) && move&.kickingMove?
-                b.applyEffect(:QuickKicks)
-            end
+            b.applySpeedTriggers(move)
         end
         pbCalculatePriority
     end

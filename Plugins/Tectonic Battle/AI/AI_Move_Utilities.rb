@@ -217,7 +217,7 @@ class PokeBattle_AI
             echoln(message)
             return false
         else
-            userSpeed = user.pbSpeed(true)
+            userSpeed = user.pbSpeed(true, move: move)
             opposingSpeed = killInfo&.speed || target.pbSpeed(true)
             movesFirst = userSpeed > opposingSpeed
             movesFirst = !movesFirst if user.battle.field.effectActive?(:TrickRoom)

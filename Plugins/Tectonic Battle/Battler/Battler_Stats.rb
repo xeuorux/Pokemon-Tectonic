@@ -158,7 +158,7 @@ class PokeBattle_Battler
     #=============================================================================
     AI_CHEATS_FOR_STAT_ABILITIES = true
 
-    def pbAttack(aiCheck = false, step = -1)
+    def pbAttack(aiCheck = false, step = nil)
         return 1 if fainted?
         attack = statAfterStep(:ATTACK, step)
         attackMult = 1.0
@@ -185,7 +185,7 @@ class PokeBattle_Battler
         return [(attack * attackMult).round, 1].max
     end
 
-    def pbSpAtk(aiCheck = false, step = -1)
+    def pbSpAtk(aiCheck = false, step = nil)
         return 1 if fainted?
         special_attack = statAfterStep(:SPECIAL_ATTACK, step)
         spAtkMult = 1.0
@@ -209,7 +209,7 @@ class PokeBattle_Battler
         return [(special_attack * spAtkMult).round, 1].max
     end
 
-    def pbDefense(aiCheck = false, step = -1)
+    def pbDefense(aiCheck = false, step = nil)
         return 1 if fainted?
         defense = statAfterStep(:DEFENSE, step)
         defenseMult = 1.0
@@ -243,7 +243,7 @@ class PokeBattle_Battler
         return [(defense * defenseMult).round, 1].max
     end
 
-    def pbSpDef(aiCheck = false, step = -1)
+    def pbSpDef(aiCheck = false, step = nil)
         return 1 if fainted?
         special_defense = statAfterStep(:SPECIAL_DEFENSE, step)
         spDefMult = 1.0
@@ -276,7 +276,7 @@ class PokeBattle_Battler
         return [(special_defense * spDefMult).round, 1].max
     end
 
-    def pbSpeed(aiCheck = false, step = -1)
+    def pbSpeed(aiCheck = false, step = nil, afterSwitching: false, move: nil)
         return 1 if fainted?
         speed = statAfterStep(:SPEED, step)
         speedMult = 1.0
@@ -292,17 +292,72 @@ class PokeBattle_Battler
         end
         
         # Other effects
-        speedMult *= 2 if pbOwnSide.effectActive?(:Tailwind)
-        speedMult /= 2 if pbOwnSide.effectActive?(:Swamp)
-        speedMult *= 2 if effectActive?(:OnDragonRide)
+        unless afterSwitching
+            speedMult *= 2 if pbOwnSide.effectActive?(:Tailwind)
+            speedMult /= 2 if pbOwnSide.effectActive?(:Swamp)
+            speedMult *= 2 if effectActive?(:OnDragonRide)
+        end
         
         # Numb
-        if !shouldAbilityApply?(:QUICKFEET, aiCheck) && numbed?
+        numbRelevant = numbed?
+        numbRelevant = false if afterSwitching && hasActiveAbilityAI?(:NATURALCURE)
+        if numbRelevant
             speedMult /= 2
             speedMult /= 2 if pbOwnedByPlayer? && @battle.curseActive?(:CURSE_STATUS_DOUBLED)
         end
+
+        speedMult *= applySpeedTriggers(move,true) if aiCheck
+
         # Calculation
         return [(speed * speedMult).round, 1].max
+    end
+
+    def applySpeedTriggers(move = nil,aiCheck = false)
+        aiSpeedMult = 1.0
+
+        if hasActiveItem?(:AGILITYHERB)
+            if aiCheck
+                aiSpeedMult *= 2.0
+            else
+                applyEffect(:AgilityHerb)
+                pbCommonAnimation("UseItem")
+                pbDisplay(_INTL("{1} moves at doubled speed thanks to its {2}!", pbThis, getItemName(:AGILITYHERB)))
+            end
+        end
+
+        if hasActiveAbility?(:MAESTRO) && move&.soundMove?
+            if aiCheck
+                aiSpeedMult *= 2.0
+            else
+                applyEffect(:Maestro)
+            end
+        end
+
+        if hasActiveAbility?(:GALEWINGS) && move&.type == :FLYING
+            if aiCheck
+                aiSpeedMult *= 2.0
+            else
+                applyEffect(:GaleWings)
+            end
+        end
+
+        if hasActiveAbility?(:RAMMINGSPEED) && move&.recoilMove?
+            if aiCheck
+                aiSpeedMult *= 2.0
+            else
+                applyEffect(:RammingSpeed)
+            end
+        end
+
+        if hasActiveAbility?(:QUICKKICKS) && move&.kickingMove?
+            if aiCheck
+                aiSpeedMult *= 2.0
+            else
+                applyEffect(:QuickKicks)
+            end
+        end
+
+        return aiSpeedMult
     end
 
     def getFinalStat(stat, aiCheck = false, step = -1)

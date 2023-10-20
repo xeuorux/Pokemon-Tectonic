@@ -56,7 +56,7 @@ class PokeBattle_Move_504 < PokeBattle_Move
     end
 
     def pbBaseDamageAI(baseDmg, user, target)
-        baseDmg *= 1.25 if target.pbSpeed(true) > user.pbSpeed(true)
+        baseDmg *= 1.25 if target.pbSpeed(true) > user.pbSpeed(true, move: self)
         return baseDmg
     end
 end
@@ -707,7 +707,7 @@ class PokeBattle_Move_529 < PokeBattle_SleepMove
 
     def getTargetAffectingEffectScore(user, target)
         return 0 if hasBeenUsed?(user)
-        userSpeed = user.pbSpeed(true)
+        userSpeed = user.pbSpeed(true, move: self)
         targetSpeed = target.pbSpeed(true)
         return 0 if userSpeed > targetSpeed
         return 0 unless target.hasDamagingAttack?
@@ -937,7 +937,7 @@ class PokeBattle_Move_535 < PokeBattle_Move
     end
 
     def getEffectScore(user, target)
-        return getWantsToBeSlowerScore(user, target, 3)
+        return getWantsToBeSlowerScore(user, target, 3, move: self)
     end
 end
 
@@ -1480,7 +1480,7 @@ class PokeBattle_Move_557 < PokeBattle_Move
     end
 
     def getEffectScore(user, target)
-        return getWantsToBeSlowerScore(user, target, 3)
+        return getWantsToBeSlowerScore(user, target, 3, move: self)
     end
 end
 
@@ -1848,7 +1848,7 @@ class PokeBattle_Move_56F < PokeBattle_Move
     end
 
     def getTargetAffectingEffectScore(user, target)
-        return getWantsToBeSlowerScore(user, target, 4)
+        return getWantsToBeSlowerScore(user, target, 4, move: self)
     end
 end
 
