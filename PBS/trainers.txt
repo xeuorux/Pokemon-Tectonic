@@ -531,7 +531,7 @@ Pokemon = MAWILE,18
 Pokemon = HSNEASEL,19
     AbilityIndex = 1 # Frustrate
 Pokemon = SHELLOS,19
-    AbilityIndex = 1 # Fascinate
+    AbilityIndex = 1 # Water Absorb
 #-------------------------------
 [LEADER_Helena,Helena]
 Policies = HELENA,PRIORITIZEUTURN,NO_PERFECT
