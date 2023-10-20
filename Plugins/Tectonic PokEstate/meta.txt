@@ -1,4 +1,4 @@
-Name         = Tectonic Pokemon Estate
+Name         = Tectonic PokEstate
 Requires	 = Tectonic Game Processing
 Credits      = Zeu
 Scripts		 = PokEstateMain.rb

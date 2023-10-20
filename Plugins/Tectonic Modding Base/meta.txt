@@ -1,0 +1,15 @@
+﻿Name      = Tectonic Modding Base
+Requires  = Tectonic Battle
+Requires  = Tectonic Battle Frontier
+Requires  = Tectonic Debug
+Requires  = Tectonic DexNav
+Requires  = Tectonic Follower Pokemon
+Requires  = Tectonic Game Data
+Requires  = Tectonic Game Processing
+Requires  = Tectonic Graphics
+Requires  = Tectonic Main Quest Tracker
+Requires  = Tectonic MasterDex
+Requires  = Tectonic Multiple Save
+Requires  = Tectonic Other
+Requires  = Tectonic PokEstate
+Requires  = Tectonic Randomizer

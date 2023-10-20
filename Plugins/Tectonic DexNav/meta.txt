@@ -1,2 +1,2 @@
-Name 		= Tectonic DexNav              
+Name 		= Tectonic DexNav
 Credits 	= Zeu,Phantombass,Suzerain,Nuri Yuri,SimpleEncounterUI Team

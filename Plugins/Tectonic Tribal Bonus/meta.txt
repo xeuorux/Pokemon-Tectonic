@@ -1,2 +1,0 @@
-Name         = Tectonic Tribal Bonuses
-Credits      = Brickbat, MrPanda1,Zeu

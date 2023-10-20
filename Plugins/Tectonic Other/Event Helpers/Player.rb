@@ -117,11 +117,3 @@ def unlockPlayerInput
 	$game_player.unlock
 	$game_system.menu_disabled = false
 end
-
-module Compiler
-	class MapData
-		def mapFilename(mapID)
-		  	return sprintf("Data/Map%03d.rxdata", mapID)
-		end
-	end
-end

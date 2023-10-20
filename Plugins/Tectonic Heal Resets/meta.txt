@@ -1,2 +1,0 @@
-Name         = Tectonic Heal Resets            
-Credits      = Zeu

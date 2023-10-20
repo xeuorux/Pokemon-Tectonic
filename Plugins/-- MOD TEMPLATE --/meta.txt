@@ -1,0 +1,3 @@
+﻿Name      = YOUR MOD NAME HERE
+Requires  = Tectonic Modding Base
+Credits   = YOUR NAME HERE

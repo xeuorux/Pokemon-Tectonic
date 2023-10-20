@@ -1,2 +1,2 @@
-Name         = MainQuestTracker              
+Name         = Tectonic Main Quest Tracker
 Credits      = Zeu

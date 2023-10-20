@@ -1,3 +1,3 @@
-﻿Name      = Multiple save (v.19)
+﻿Name      = Tectonic Multiple Save
 Version   = 1.0
-Credits   = bo4p5687,mej71
+Credits   = bo4p5687,mej71,Zeu

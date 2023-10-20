@@ -1,2 +1,2 @@
-Name         = Tectonic Game Processing          
+Name         = Tectonic Game Processing
 Credits      = Essentials v19 Team,Zeu

@@ -1,2 +1,2 @@
-Name         = Tectonic Battle Frontier             
+Name         = Tectonic Battle Frontier
 Credits      = Essentials v19 Team,Zeu
