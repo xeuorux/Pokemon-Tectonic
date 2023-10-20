@@ -1324,7 +1324,7 @@ end
 # But the user must recharge next turn.
 #===============================================================================
 class PokeBattle_Move_134 < PokeBattle_Move_0C2
-    def healingRatio(user); return 1.0; end
+    def healingRatio(target); return 1.0; end
 
     def pbFailsAgainstTarget?(_user, target, show_message)
         unless target.canHeal?(true)
@@ -1335,7 +1335,7 @@ class PokeBattle_Move_134 < PokeBattle_Move_0C2
     end
 
     def pbEffectAgainstTarget(user, target)
-        target.applyFractionalHealing(healingRatio(user), canOverheal: true)
+        target.applyFractionalHealing(healingRatio(target), canOverheal: true)
     end
 
     def getEffectScore(user, target)
@@ -1352,6 +1352,18 @@ class PokeBattle_Move_135 < PokeBattle_HelpingMove
     def initialize(battle, move)
         super
         @helpingEffect = :PrimalVigor
+    end
+
+    def pbFailsAgainstTarget?(_user, target, show_message)
+        if target.fainted?
+            @battle.pbDisplay(_INTL("But it failed, since the receiver of the help is gone!")) if show_message
+            return true
+        end
+        if target.effectActive?(@helpingEffect)
+            @battle.pbDisplay(_INTL("But it failed, since #{arget.pbThis(true)} is already being helped!")) if show_message
+            return true
+        end
+        return false
     end
 end
 

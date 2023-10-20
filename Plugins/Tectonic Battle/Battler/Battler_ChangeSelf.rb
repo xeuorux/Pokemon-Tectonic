@@ -139,9 +139,10 @@ class PokeBattle_Battler
         amt = amt.round
 
         # Cap the healing
-        healingCap = @totalhp
-        healingCap *= 2 if canOverheal
-        amt = healingCap - @hp if amt > @totalhp - @hp
+        healthCap = @totalhp
+        healthCap *= 2 if canOverheal
+        maxHeal = healthCap - @hp
+        amt = maxHeal if amt > maxHeal
         amt = 1 if amt < 1 && @hp < @totalhp
 
         # Nerve Break, Bad Influence
