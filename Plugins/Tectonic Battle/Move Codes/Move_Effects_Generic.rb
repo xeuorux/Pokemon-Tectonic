@@ -899,6 +899,12 @@ class PokeBattle_PledgeMove < PokeBattle_Move
         id = @overrideAnim if @overrideAnim
         return super
     end
+    
+    def getEffectScore(user, _target)
+        score = 0
+        score += 60 if user.ownersPolicies.include?(:PRIORITIZEPLEDGES)
+        return score
+    end
 end
 
 class PokeBattle_TargetMultiStatUpMove < PokeBattle_Move
