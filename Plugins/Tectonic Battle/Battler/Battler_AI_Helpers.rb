@@ -23,6 +23,7 @@ class PokeBattle_Battler
         ]
         tierCheck = speedTiers[(level / 5.0).ceil]
         effectiveSpeed = pbSpeed(true, 0, afterSwitching: true, move: move)
+        effectiveSpeed *= 2 if hasActiveAbilityAI?(:RAMMINGSPEED) || hasActiveAbilityAI?(:MAESTRO) || hasActiveAbilityAI?(:GALEWINGS) || hasActiveAbilityAI?(:QUICKKICKS)
         if effectiveSpeed >= tierCheck[1]
             return 2 # Fast
         elsif effectiveSpeed >= tierCheck[0]
