@@ -109,8 +109,9 @@ Pokemon = CHIKORITA,14
     AbilityIndex = 1 # Heat Savor
 #-------------------------------
 [TUBER_M,Peter]
-Pokemon = SNOVER,13
-    Moves = POWDERSNOW,LEAFAGE,ESSENCEARROW,LEER
+Policies = PRIORITIZESTATDOWN
+Pokemon = TYNAMO,13
+    Moves = NASTYNIP,GROWL,JOLT,BITE
     AbilityIndex = 1 # Frustrate
 Pokemon = POLIWAG,13
     Moves = DRAFT,BUBBLE,BREACH,KARATECHOP
