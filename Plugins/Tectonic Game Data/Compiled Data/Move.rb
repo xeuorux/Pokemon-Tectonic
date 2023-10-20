@@ -62,12 +62,12 @@ module GameData
   
       def physical?
         return false if @base_damage == 0
-        return GameData::Type.get(@type).physical?
+        return @category == 0
       end
   
       def special?
         return false if @base_damage == 0
-        return GameData::Type.get(@type).special?
+        return @category == 1
       end
   
       def hidden_move?
