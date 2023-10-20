@@ -750,7 +750,8 @@ class PokeBattle_ProtectMove < PokeBattle_Move
             score += 30 if user.hasAlly?
         end
         score *= 2 if user.belowHalfHealth?
-        score += passingTurnSideEffectScore(@battle,user.pbOwnSide.index)
+        # > DISABLED <
+        #score += passingTurnSideEffectScore(@battle,user.pbOwnSide.index)
         return score
     end
 end

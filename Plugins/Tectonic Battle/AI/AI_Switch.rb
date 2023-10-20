@@ -432,8 +432,8 @@ class PokeBattle_AI
             matchupScore += statStepsValueScore(opposingBattler) * 0.15
         end
 
-        # Value of stalling
-        matchupScore += passingTurnBattlerEffectScore(battler, @battle)
+        # Value of stalling > DISABLED < 
+        #matchupScore += passingTurnBattlerEffectScore(battler, @battle)
 
         # Fear of unknown
         matchupScore -= opposingBattler.unknownMovesCountAI * 2

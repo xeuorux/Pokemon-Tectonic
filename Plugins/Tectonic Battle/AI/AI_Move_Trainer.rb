@@ -434,11 +434,12 @@ class PokeBattle_AI
         if realDamage >= target.hp
             echoln("\t[MOVE SCORING] #{user.pbThis} thinks that move #{move.id} will deal #{realDamage} damage to #{target.pbThis(true)}, fainting it")
         else
-            healthChange,eotDamagePercent = passingTurnBattlerHealthChange(target,@battle)
-            realDamage += healthChange
-            damagePercentage += eotDamagePercent
+            # TODO: Enable and rework EoR damage system, > DISABLED < 
+            #healthChange,eotDamagePercent = passingTurnBattlerHealthChange(target,@battle)
+            #realDamage += healthChange
+            #damagePercentage += eotDamagePercent
             echoln("\t[MOVE SCORING] #{user.pbThis} thinks that move #{move.id} will deal #{realDamage} damage -- #{damagePercentage.round(1)} percent of #{target.pbThis(true)}'s HP.")
-            echoln("\t[MOVE SCORING] Additionally, target's HP will change #{eotDamagePercent} percent EOT.") unless eotDamagePercent == 0
+            #echoln("\t[MOVE SCORING] Additionally, target's HP will change #{eotDamagePercent} percent EOT.") unless eotDamagePercent == 0
             echoln("\t[MOVE SCORING] Additionally, target's Substitute will break") if subDestroyed == true
         end
 
