@@ -223,6 +223,16 @@ class PokeBattle_AI
                 end
             end
         end
+        
+        # Less likely to switch if has stat boosts
+        unless battler.hasActiveAbilityAI?(:DOWNLOAD) || battler.hasActiveAbilityAI?(:EVOARMOR) # This should be a more complicated check but prob not worth time
+            stayInSteps = statStepsValueScore(battler) * 0.06
+            stayInSteps = stayInSteps.round
+            if stayInSteps > 0
+                stayInRating += stayInSteps
+                PBDebug.log("[STAY-IN RATING] #{battler.pbThis} (#{battler.index}) wants to keep its stat steps (#{stayInSteps.to_change})")
+            end
+        end
         return stayInRating
     end
 
