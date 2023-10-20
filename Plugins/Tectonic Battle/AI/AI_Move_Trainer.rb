@@ -49,11 +49,15 @@ class PokeBattle_AI
     def pbGetBestTrainerMoveChoices(user, opposingBattler: nil, killInfoArray: [])
         choices = []
         bestKillInfo = nil
+        urgency = 0
+        urgency = user.getUrgency if !user.pbOwnedByPlayer?
+        slowerDead = false
+        fasterDead = false
         user.eachAIKnownMoveWithIndex do |move, i|
             next unless @battle.pbCanChooseMove?(user, i, false)
             targets = []
             targets.push(opposingBattler) if opposingBattler
-            newChoice,killInfo = pbEvaluateMoveTrainer(user, move, targets: targets, killInfoArray: killInfoArray)
+            newChoice,killInfo,isSlowerDead,isFasterDead = pbEvaluateMoveTrainer(user, move, targets: targets, killInfoArray: killInfoArray)
             
             # If the move would kill the opposing battler, mark as such
             # But only if its better than any kill seen thus far
@@ -70,9 +74,20 @@ class PokeBattle_AI
                     bestKillInfo = killInfo
                 end
             end
+            slowerDead = true if isSlowerDead
+            fasterDead = true if isFasterDead
+            
             # Push a new array of [moveIndex,moveScore,targetIndex]
             # where targetIndex could be -1 for anything thats not single target
             choices.push([i].concat(newChoice)) if newChoice
+        end
+        # Undo the 70 percent drop if urgency is required
+        # TODO: Make this not a garbage system, 2nd round of moves is -70% still but this shouldn't matter
+        if urgency >= 10 && slowerDead && !fasterDead
+            choices.each do |c|
+                c[1] = ((c[1].to_f / 30) * 100).round
+            end
+            echoln("\t[MOVE SCORING] Undoing move cut because Urgency (#{urgency}) might require sacrificing the battler")
         end
         return choices,bestKillInfo
     end
@@ -93,7 +108,7 @@ class PokeBattle_AI
                 end
             end
             targets.each do |b|
-                score,targetKillInfo = pbGetMoveScore(move, user, b, policies, targets.length, ignoreGeneralEffectScores, killInfoArray)
+                score,targetKillInfo,isSlowerDead2,isFasterDead2 = pbGetMoveScore(move, user, b, policies, targets.length, ignoreGeneralEffectScores, killInfoArray)
                 if target_data.targets_foe
                     if user.opposes?(b)
                         totalScore += score
@@ -110,7 +125,7 @@ class PokeBattle_AI
         elsif target_data.num_targets == 0
             if targets.empty?
                 # If move has no targets, affects the user, a side or the whole field
-                score,targetKillInfo = pbGetMoveScore(move, user, user, policies, 0, ignoreGeneralEffectScores, killInfoArray)
+                score,targetKillInfo,isSlowerDead2,isFasterDead2 = pbGetMoveScore(move, user, user, policies, 0, ignoreGeneralEffectScores, killInfoArray)
                 newChoice = [score, -1] if score > 0
             end
         else
@@ -120,7 +135,7 @@ class PokeBattle_AI
                 @battle.eachBattler do |b|
                     next unless @battle.pbMoveCanTarget?(user.index, b.index, target_data)
                     next if target_data.targets_foe && !user.opposes?(b)
-                    score,targetKillInfo = pbGetMoveScore(move, user, b, policies, 1, ignoreGeneralEffectScores, killInfoArray)
+                    score,targetKillInfo,isSlowerDead2,isFasterDead2 = pbGetMoveScore(move, user, b, policies, 1, ignoreGeneralEffectScores, killInfoArray)
                     if user.opposes?(b)
                         totalScore = score
                         battlerCount = 1
@@ -137,7 +152,7 @@ class PokeBattle_AI
                 targets.each do |b|
                     next unless @battle.pbMoveCanTarget?(user.index, b.index, target_data)
                     next if target_data.targets_foe && !user.opposes?(b)
-                    score,targetKillInfo = pbGetMoveScore(move, user, b, policies, 1, ignoreGeneralEffectScores, killInfoArray)
+                    score,targetKillInfo,isSlowerDead2,isFasterDead2 = pbGetMoveScore(move, user, b, policies, 1, ignoreGeneralEffectScores, killInfoArray)
                     scoresAndTargets.push([score, b.index, targetKillInfo]) if score > 0
                 end
             end
@@ -158,7 +173,7 @@ class PokeBattle_AI
                 end
             end
         end
-        return newChoice,killInfo
+        return newChoice,killInfo,isSlowerDead2,isFasterDead2
     end
 
     #=============================================================================
@@ -167,6 +182,8 @@ class PokeBattle_AI
     #=============================================================================
     def pbGetMoveScore(move, user, target, policies = [], numTargets = 1, ignoreGeneralEffectScores = false, killInfoArray = [])
         scoringKey = [move.id, user.personalID, target.personalID, numTargets, ignoreGeneralEffectScores, killInfoArray]
+        isSlowerDead3 = false
+        isFasterDead3 = false
         if @precalculatedChoices.key?(scoringKey)
             precalcedScore,precalcedKillInfo = @precalculatedChoices[scoringKey]
             if precalcedKillInfo
@@ -312,9 +329,13 @@ class PokeBattle_AI
         # If they might kill us this turn, rate this move much less unless it will go before the target
         if !switchPredicted && !killInfoArray.empty?
             killInfoArray.each do |killInfo|
-                next if userMovesFirst?(move, user, target, killInfo: killInfo)
+                if userMovesFirst?(move, user, target, killInfo: killInfo)
+                    isFasterDead3 = true
+                    next
+                end
                 echoln("\t[MOVE SCORING] Cutting score by 70 percent since #{killInfo.user.pbThis(true)} may kill it this turn with #{killInfo.move.id} beforehand")
                 score *= 0.3
+                isSlowerDead3 = true
             end
         end
 
@@ -334,7 +355,7 @@ class PokeBattle_AI
         end
         
         @precalculatedChoices[scoringKey] = [score,killInfo]
-        return score,killInfo
+        return score,killInfo,isSlowerDead3,isFasterDead3
     end
 
     def getMultiplicativeAbilityScore(score, move, user, target)
