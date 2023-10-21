@@ -31,7 +31,7 @@ module Game
       # Set resize factor
       pbSetResizeFactor(1)
       # Set language (and choose language if there is no save file)
-      if Settings::LANGUAGES.length >= 2 && $DEBUG
+      if Settings::LANGUAGES.length >= 2
         $PokemonSystem.language = pbChooseLanguage if save_data.empty?
         pbLoadMessages('Data/' + Settings::LANGUAGES[$PokemonSystem.language][1])
       end
