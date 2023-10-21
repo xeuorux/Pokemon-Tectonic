@@ -11,6 +11,7 @@ class PokemonBox
       @pokemon = []
       @name = name
       @background = 0
+      @maxPokemon = maxPokemon
       for i in 0...maxPokemon
         @pokemon[i] = nil
       end
@@ -19,6 +20,11 @@ class PokemonBox
   
     def length
       return @pokemon.length
+    end
+
+    def maxPokemon
+      @maxPokemon = BOX_SIZE if @maxPokemon.nil?
+      return @maxPokemon
     end
   
     def nitems
@@ -48,7 +54,10 @@ class PokemonBox
     end
   
     def clear
-      @pokemon.clear
+      @pokemon = []
+      for i in 0...self.maxPokemon
+        @pokemon[i] = nil
+      end
     end
     
     def lock
@@ -142,7 +151,7 @@ class PokemonBox
   
     def full?
       for i in 0...self.maxBoxes
-        return false if !@boxes[i].full?
+        return false unless @boxes[i].full?
       end
       return true
     end
@@ -230,9 +239,8 @@ class PokemonBox
     end
   
     def pbStoreCaught(pkmn)
-      if @currentBox>=0
+      if @currentBox >= 0
         pkmn.time_form_set = nil
-        pkmn.form          = 0 if pkmn.isSpecies?(:SHAYMIN)
         pkmn.heal
       end
       for i in 0...maxPokemon(@currentBox)
