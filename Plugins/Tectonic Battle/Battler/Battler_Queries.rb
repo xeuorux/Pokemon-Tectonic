@@ -538,6 +538,11 @@ class PokeBattle_Battler
     end
 
     def increaseMoveUsageCount(moveID)
+        # For battlers summoned partway through the battle
+        if @battle.moveUsageCount[@index & 1][@pokemonIndex].nil?
+            @battle.moveUsageCount[@index & 1][@pokemonIndex] = {}
+        end
+
         moveUsageCountHash = @battle.moveUsageCount[@index & 1][@pokemonIndex]
         if moveUsageCountHash.key?(moveID)
             moveUsageCountHash[moveID] += 1
