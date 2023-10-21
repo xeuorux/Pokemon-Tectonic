@@ -2136,7 +2136,7 @@ Pokemon = BASCULEGION,70
     Item = PRISMATICPLATE
     EV = 10,20,0,20,20,0
 #-------------------------------
-[WILDPACK,ReplaceMe30]
+[COLLECTOR,Finnegan]
 Pokemon = MINUN,70
     Moves = NUZZLE,VOLTSWITCH,GRASSKNOT,SIGNALBEAM
     AbilityIndex = 1 # Magic Shield
@@ -2168,7 +2168,7 @@ Pokemon = FLORGES,70
     Item = LEFTOVERS
     EV = 20,10,0,0,10,20
 #-------------------------------
-[WILDPACK,ReplaceMe31]
+[SWIMMER_M2,Kai]
 Pokemon = RELICANTH,70
     Moves = BEDROCKBREAKER,CRASHDIVE,STEALTHROCK,ACCELEROCK
     AbilityIndex = 0 # Ramming Speed
