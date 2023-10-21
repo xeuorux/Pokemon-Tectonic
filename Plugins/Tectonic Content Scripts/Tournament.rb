@@ -141,11 +141,11 @@ def enterTournament()
 end
 
 def resetTournament()
-    $PokemonGlobal.tournament.resetTournament()
+    $PokemonGlobal.tournament.resetTournament unless $PokemonGlobal.tournament.nil?
 end
 
 def leaveTournament
-    $PokemonGlobal.tournament.leaveTournament
+    $PokemonGlobal.tournament.leaveTournament unless $PokemonGlobal.tournament.nil?
 end
 
 def promptForTournamentCommitment()
