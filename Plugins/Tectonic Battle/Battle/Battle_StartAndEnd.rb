@@ -546,6 +546,7 @@ class PokeBattle_Battle
             autoPilots = []
             [0,1].each do |sideIndex|
                 pbParty(sideIndex).each_with_index do |partyMember,partyIndex|
+                    next if partyMember.fainted?
                     next unless partyMember.hasAbility?(:AUTOPILOT)
                     next if partyMember.status == :DIZZY
                     next if pokemonIsActiveBattler?(partyMember)
