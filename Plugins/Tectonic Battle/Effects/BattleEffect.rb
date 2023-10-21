@@ -326,7 +326,7 @@ module GameData
             when :Position
                 return true # TODO
             when :PartyPosition
-                return value >= -1 && value <= 5
+                return value >= -1
             when :Type
                 return value.nil? || GameData::Type.exists?(value)
             when :Pokemon
