@@ -1,6 +1,18 @@
 ﻿# To localize this text for a particular language, please
 # translate every second line of this file.
 [Map0]
+Breaking News!
+¡Último Momento!
+I'm live here at<imp>Tri Island</imp>, a mysterious island discovered recently off the coast of Makya.
+Estoy en vivo aquí en al <imp>Isla Elemental</imp>, una misteriosa isla descubierta recientemente en la costa de Makya. 
+Trainers from all over the world are making their way over as there have been sightings of extremely rare Pokemon and resources.
+Entrenadores de todo el mundo están llegando aquí ya que han habido avistamientos de Pokémon y recursos extremadamente raros. 
+With no region claiming major jurisdiction over the island, there have been reports of multiple factions creating base camps in the area.
+Al no haber ninguna región reclamando mayor jurisdicción sobre la isla, han habido reportes de múltiples facciones asentándose en el áarea.
+The only thing that's certain here is the battling as Trainers duke it out over territory and access to these new wild areas.
+La única cosa que es segura aquí son los combates que los Entrenadores tienen que realizar para reclamar territorio y acceder a estas áreas.
+But for now, we'll be providing live coverage of the event. Over and out.
+Pero por ahora, les proveeremos cobertura en vivo del evento. Cambio y fuera.
 Uh -- yes? Did you want to ask me something?
 Eh -- ¿Sí? ¿Me querías preguntar algo?
 Well then don't -- can you not -- I'm not a big fan of being stared at.
@@ -319,6 +331,36 @@ Yep!
 ¡Yep!
 Not this again.
 No de nuevo.
+Hey-o! Been a lil' bit but I managed to pry your number from Zain.
+¡Hey! Ha pasado un tiempo pero logré conseguir de tus números de Zain.
+Sucks that I couldn't face you in the Tournament, but I've got a surprise to make up for it!
+Apesta que no pude enfrentarte en el Torneo, ¡Pero tengo una sorpresa para compensártelo!
+Heard about this place called the <imp>Battle Monument</imp>. It's for top trainers to battle.
+Escuché de este lugar llamado <imp>Monumento Batalla</imp>. Es un lugar de combate para los mejores entrenadores.
+They're weird about directly inviting people, but you're a champion so you should just waltz right in. It'll be fine.
+No les gusta invitar directamente a gente, pero eres el campeón así que deberías poder simplementa pasar. Estará bien.
+I'll send the GPS coordinates to you so you can sail on over and give it a looksie.
+Te enviaré las coordinadas GPS para que puedas navegar hasta allí y echarle un vistazo. 
+Oh yeah, guess I didn't say before, but the Battle Monument is a big tower in the middle of the ocean.
+Oh sí, supongo que no te lo dije, pero el Monumento Batalla es una gran torre en el medio del océano.
+If I didn't know better, I'd think it was some evil villainous lair.
+Si no tuviera idea, diría que es algún tipo de base malvada.
+Anyways, I'll still be hanging around the Tournament grounds.
+Como sea, seguiré aquí en las Tierras de Campeonato.
+There's still lots of trainers here, and I've got some new team configurations I really wanna try against them!
+¡Todavía hay un montón de entrenadores aquí, y tengo un par de nuevos equipos y realmente quiero probarlos contra ellos!
+...
+...
+...Ok yeah someone here just asked to battle me, and I'm not gonna turn that down, so I gotta end the call now.
+...Ok sí alguien me acaba de pedir un combate, y no voy a rechazarlo, así que voy a terminar la llamada ahora.
+Hope you're doing well, be safe, make good choices, have fun, et cetera. Bye bye!
+Espero que estés bien, ten cuidado, haz buenas decisiones, diviértete, etcétera. ¡Adiós!
+…They hung up.
+…Colgó.
+They must really want to talk with you.
+Realmente quiere hablar contigo.
+A couple seconds later, you receive a text message with the coordinates to the Battle Monument.
+Un par de segundos después, recibes un mensaje de texto con las coordinadas del Monumento Batalla.
 [Map1]
 Do you need information about the game controls?
 ¿Necesitas información sobre los controles?
@@ -388,33 +430,7 @@ Yes
 Sí
 No
 No
-[Map2]
-Electric bikes rule! All the other punks don't know what they're missing out on!
-¡Las motos eléctricas son lo mejor! ¡Los otros punk no saben lo que se están perdiendo!
-I'm amped up after that one kid, but my bike isn't. Guess, I'll just walk.
-Cargué hacia ese chico, pero creo que mi moto no lo hizo. Supongo, ahora caminaré.
-What, can't a guy look cool on an electric bike in peace?
-¿Qué, acaso un tipo no puede verse genial en su moto eléctrica en paz?
-They really need to build more charging spots in this region...
-Realmente tienen que construir más puestos de carga en esta región...
-A message from the developers of Pokemon Tectonic.
-Un mensaje de los desarrolladores de Pokémon Tectonic.
-This Regi Dungeon was only a preview!
-¡Esta Mazmorra Regi fue sólo una vista previa!
-There will be more content in future versions, especially if we can recruit a puzzle designer.
-Habrá más contenido en versiones futuros, especialmente si podemos reclutar un diseñador de puzzles.
-If interested, please contact us through the recruitment form located at <b>tectonic-game.com/team</b>
-Si te interesa, por favor contáctanos en el formulario de reclutamiento encontrado en  <b>tectonic-game.com/team</b>
-I have a metric ton of speakers coming in. I'm gonna cause a cave in with my music.
-Tengo una buena cantidad de altavoces llegando. Voy a causar un derrumbamiento con mi música.
-Just got the call, gonna go grab them. Now how am I going to sneak those down here...
-Acabo de recibir la llamada, ahora voy a buscarlos. Ahora cómo voy a meterlo aquí abajo...
-Enjoy this place while you can, cause I'm gonna throw the solo of a lifetime.
-Disfurta este lugar mientras puedas, porque voy a presentar un solo único de por vida.
-Hey if you aren't a snitch, you can come listen.
-Hey, si no eres un soplón, puedes venir a escuchar.
-I don't take responsibility for anyone who gets hurt though.
-Pero no me haré responsable si alguien sale herido.
+
 [Map3]
 Oh, so now I can't even go to college because of something my dad did?
 Ah, ¿Así que ahora no puedo ir a la universidad por algo que mi papá hizo?
@@ -8657,6 +8673,20 @@ Open Level
 Nivel Libre
 Cancel
 Cancelar
+I'll take your Pokémon for a few seconds.
+Tomaré a tus Pokémon por un par de segundos.
+First, you should restore your Pokémon to full health.
+Primero, deberíamos restaurar la salud de tus Pokémon.
+We hope you excel!
+¡Te deseamos lo mejor!
+\PN! Nice to see you.
+¡\PN! Es bueno verte.
+I mean, you're the champion, now, so I suppose its only natural that you'd try take on the Battle Monument.
+Osea, ahora eres el campeón, así que supongo que es sólo natural que intentarías enfrentar al Monumento Batalla.
+I did some consulting work on the trainer AI, so I'm very aware that its quite a challenge.
+Hice un poco de trabajo de consultoría en la IA de los entrenadores, así que te puedo asegurar que es todo un desafío.
+Good luck!
+¡Buena suerte!
 
 [Map129]
 
@@ -8858,6 +8888,17 @@ Last time I was late my ol' boss Lainie gave me a earful.
 La última vez que llegué tarde mi jefa Lainie me echó una buena bronca. 
 Great boss though. I wonder where she is now...
 Gran jefe, igual. Me pregunto dónde está ahora...
+I saw a Pokemon hold a key in its mouth. It looked pretty important, hope whoever lost it had a spare.
+Ví a un Pokémon con una llave en su boca. Parecía bastante importante, espero que quien sea que la haya perdido tuviera una de sobra.
+Seaking! We must depart to look for this key! Dive!
+¡Seaking! ¡Debemos partir por esta llave! ¡Buceo!
+I think about that key a lot. What if it leads to treasure?
+Pienso en esa llave bastante. ¿Qué tal si lleva a un tesoro?
+Like, imagine if there's a chest somewhere around here! Or some secret door! Keys open up so many doors!
+Tipo, ¡Imagina si hay un cofre por aquí! ¡O una puerta secreta! ¡Las llaves abren demasiadas puertas!
+Uhhh, literally and figuratively, I guess.
+Ehhh, literalmente y de forma figurada, supongo.
+
 [Map131]
 
 \v[1]
@@ -10507,12 +10548,22 @@ En garde!
 ¡En guardia!
 Amazing! Your darkness is overpowering! Pulverizing! Shattering!
 ¡Increíble! ¡Tu oscuridad es abrumante! ¡Pulverizante! ¡Demoledora!
-You're just the type of Trainer that I'm looking for!
+You're just the type of Trainer that I'm looking for!  One that can withstand dark, crushing depths.
 ¡Eres justo el tipo de Entrenador que estoy buscando!
 Stand ready for now, I will come to you when everything is ready.
 Prepárate por ahora, llegaré a ti cuando todo esté listo.
-(content will be available in a future patch)
-(contenido será disponible en un parche futuro)
+There is a place... far from the safety of the continent.
+Hay un lugar... lejos de la seguridad del continente.
+I once visited there to train. It is where I got my first glimpse of such crushing pressure.
+Una vez lo visite para entrenar. Allí fue donde eché mi primer vistazo a tal presión demoledora.
+The guardians there understand my darkness, and I think they'll appreciate yours as well.
+Los guardianes allí entienden mi oscuridad, y creo que también apreciarán la tuya.
+I've already informed them of your imminent presense. I cannot control you, but your darkness can.
+Ya los he informado de tu presencia inminente. No puedo controlarte, pero tu oscuridad puede.
+Go forth, and master your darkness, Trainer. Great things await you.
+Adelante, y domina tu oscuridad, Entrenador. Grandes cosas te esperan.
+For now... I go.
+Por ahora... me voy.
 I love hanging with my boy Shellder.
 Amo juntarme con mi chico Shellder.
 He justs sits around all day and eats whatever is given to him.
@@ -10973,6 +11024,282 @@ It is different in other places.
 Es diferente en otros lugares.
 Here, it is a Shepard tone.
 Aquí, es un tono de un Pastor.
+The door is securely locked.
+La puerta está fuermente bloqueada.
+The sages wish to reverse the island's death. They are foolish.
+Los sabios desean invertir la muerte de la isla. Son ingenuos.
+The island cannot be saved, I have already seen it among the dead.
+La isla no puede ser salvada, ya la he visto junto a los fallecidos.
+Perhaps an outsider like you has a unique perspective.
+Quizás un foraster como tú tiene una perspectiva única.
+This island is old. There spirits here are tired.
+Esta isla es antigua. Los espíritus aquí están cansados.
+I wonder where they might go, but I am not worried. They seem content.
+Me pregunto a dónde podrán ir, pero no me preouca. Parecen contentos.
+I have seen my own life sink below the waves.
+He visto mi propia vida hundirse bajo las olas.
+I want to save what is left.
+Quiero salvar lo que me queda.
+I am simply enjoy the last of my home. This soothing breeze will the be the last.
+Estoy simplemente disfrutando lo último de mi hogar. Esta relajante brisa será la última.
+Please, you have lived on this island with us for generations for generations!
+¡Por favor, tú que has vivido en esta isla con nosotros por generaciones de generaciones!
+What could we possibly offer now?!
+¡¿Qué más podríamos ofrecer ahora?!
+There is not much time left for my home. I will enjoy it while I can.
+No le queda mucho tiempo a mi hogar. Lo disfrutaré mientras pueda.
+I thank you for giving me an excellent parting memory. Now, it's time to go to my new home.
+Te agradezco por darme una excelente memoria de despedida. Ahora, es hora de ir a mi nuevo hogar.
+I am sad I cannot spend my twilight years here. That is life, I suppose.
+Me entristece no poder pasar mis últimos años aquí. Así es la vida, supongo.
+It is time for a picnic.
+Es hora de un picnic.
+You would not know our devotion, outsider.
+No conocerías nuestra devoción, extranjero.
+It is over. There is nothing left to do but wait.
+Se acabó. No hay nada más que hacer más que esperar.
+Oh, hi! I was expecting ya from Vincent.
+¡Oh, hola! Vincent me contó que llegarías.
+Uhhhhhh... Welcome! To our uhhh... humble abode?
+¡Ehhhhhh... Bienvenido! A nuestra ehhh... ¿Humilde morada?
+We used to get more guests a looooong time ago, but we don't get them much now. I guess a sinking island isn't the best place for investors...
+Solíamos tener más turistas hace muuuuuucho tiempo, pero ya no vienen mucho ahora. Supongo que una isla hundiéndose no es el mejor lugar para los inversores…
+Oh well! Can't save 'em all... just uhh... enjoy it while it lasts? Haha...
+¡Oh bueno! No puedes salvarlo todo… sólo ehh… ¿Disfrútalo mientras puedas? Jaja…
+Anyways! We have a healing center! I'm qualified nurse, actually! Just don't have the typical uniform.
+¡Como sea! ¡Tenemos un centro de curación! ¡Soy una enfermera calificada, de hecho! Sólo no tengo el uniforme típico.
+We certainly like to battle here on this island! Just like uhhh... literally ever other person... So that's cool!
+¡Ciertamente nos gusta combatir en esta isla! Sólo ehhh… pregúntale a literalmente cualquier otra persona… ¡Así que bien!
+Anyways I'll be in that building behind me if you need me! Ummm, enjoy your stay and uhhh... talk with some of the locals!
+¡Como sea, estaré en esa casa detrás mío si me necesitas! Emmm, disfruta tu estadía y ehhh… ¡Habla con algunos locales!
+Leave us to our ways, Trainer.
+Déjanos a lo nuestro, Entrenador.
+You had to meddle. We have lost our traditions due to you, Trainer.
+Tenías que entrometerte. Hemos perdido nuestras tradiciones por tu culpa, Entrenador.
+Ah, a visitor. It is rare to see one nowadays. I can hardly remember the last one's face.
+Ah, un visitante. Es raro ver uno en estos días. Apenas puedo recordar la cara del último.
+It's a shame. Memory is the only thing we have, and the only tool we can work with.
+Es una lástima. La memoria es lo único que tenemos, y la única herramienta con la que podemos trabajar.
+Tell me Trainer, what is your greatest memory?
+Dime Entrenador, ¿Cuál es tu recuerdo más preciado?
+A mighty accomplishment indeed. I wonder, will it be your favorite when you lose the title?
+Por supuesto, un gran logro. Me pregunto, ¿Lo será cuando pierdas el título?
+You possess a full heart, Trainer. I wonder, will it be your favorite after you have seen them for the last time?
+Posees un corazón puro, Entrenador. Me pregunto, ¿Lo será luego de haberlos visto por última vez?
+A feat of courage, and a show of strength! I wonder, will it be your favorite when your anger cools?
+¡Una proeza de valor, y una muestra de fuerza! Me pregunto, ¿Lo será cuando tu enojo desaparezca?
+It is wise to look forward. I wonder, will it be your favorite when you only have the future?
+Es sabio mirar hacia delante. Me pregunto, ¿Lo será cuando sólo tengas el futuro?
+This island, our home, will soon be nothing but a memory. What an awful fate.
+Esta isla, nuestro hogar, no será nada más que un recuerdo. Un destino horrible.
+There is nothing that can be done other than making one last memory.
+No hay nada más que hacer más que crear un último recuerdo.
+A final hurrah before the shore closes in. A battle to shatter this island's very roots.
+Un último hurra antes de que la costa desaparezca. Un combate para destruir los cimientos de esta isla.
+Are you ready, Trainer, to battle?
+¿Estás listo, Entrenador, para combatir?
+There are memories to be made, Trainer. Do not leave me apathetic.
+Hay memorias que formar, Entrenador. No me dejes apático.
+A disappointment, to say the least.
+Decepcionante, por decir lo menos.
+If there is one think I know though, it is that minds can change. Change mine.
+Pero si hay una cosa que sé, es que las mentalidades pueden ser cambiadas. Cambia la mía.
+Very well, I shall be here, looking for another memory.
+Muy bien, estaré aquí, buscando otra memoria.
+I suppose that's that then. A final memory.
+Supongo que así termina entonces. Un último recuerdo.
+It was not unpleasent, Trainer. It was the best we could do in such a short time.
+No fue decepcionante, Entrenador. Fue lo mejor que pudimos hacer en tan poco tiempo.
+If you would like, this is our farewell. Soon, we will fade into each other's memory. Some time after, we will fade even further than that.
+Si te parece, esto es nuestro adiós. Pronto, nos desvaneceremos en la memoria del otro. Un tiempo después de eso, nos desvaneceremos incluso más allá.
+But perhaps, there is something more. I must gather myself inside my little cove. You are free to follow.
+Pero quizás, hay algo más. Debo meditar dentro de mi pequeña bovedilla. Eres libre de seguirme.
+I cannot let all this just happen!
+¡No puedo dejer que todo esto ocurra!
+There is nothing left for us to do...
+No hay nada más que podamos hacer…
+I ache Trainer! There is hole in one's self when they lose their home, it is a heart torn in two!
+¡Me duele Entrenador! ¡Hay un agujero en cada uno cuando pierden su hogar, es un corazón partido en dos!
+The past has always been outside of our reach. And yet, when you cannot see it, it feels even further.
+El pasado siempre ha estado fuera de nuestro alcance. Y aún así, cuando no puedes verlo, se siente incluso más lejano.
+And yet, I do not feel despair. I feel bittersweet. When I think of home, it is impossible to not feel a little bit of warmth inside.
+Y aún así, no me siento desesperado. Es agridulce. Cuando pienso en mi hogar, es imposible no sentir algo de calor dentro de mi.
+Have you felt that conflict before, Trainer? A feeling of warmth and joy that lives within sorrow?
+¿Has sentido ese conflicto antes, Entrenador? ¿Un sentido de calor y felicidad que vive alrededor de la melancolía?
+I know your pain, Trainer.
+Conozco tu dolor, Entrenador.
+The world is never the same after someone leaves, but we are always glad that we got to live in that world.
+El mundo nunca es el mismo luego de que alguien se va, pero siempre estamos contentos de haber vivido en ese mundo.
+We think of the time spent with them, doing nothing. We regret it. Yet, that time is where they became who they are to us.
+Pensamos en el tiempo que pasamos con ellos, sin hacer nada. Lo lamentamos. Y aún así, ese tiempo es cuando se convierten en lo que fueron para nosotros.
+One day, maybe, we can forgive ourselves.
+Un día, quizás, podremos perdonarnos.
+They never look at us the same afterwards.
+Luego nunca nos ven a nosotros del mismo modo.
+You realize you cannot imagine them without thinking about how their expression changed when they learned of your failure.
+Te das cuenta de que no puedes imaginártelos sin pensar en cómo su expresión cuando aprendieron de tu error.
+Sometimes, it is a necessary mistake to make. There is no growth if we let ourselves simmer.
+A veces, es un error necesario que hacer. No hay desarrollo si dejamos que la rabia nos consuma.
+Then you are blessed now and cursed to feel it.
+Entonces estás bendecido ahora y maldito para sentirlo.
+But that is life, young one. You must realize that, as we love to say, it is what it is.
+Pero así es la vida, jóven. Debes darte cuenta de eso, como amamos decir, es lo que hay,
+I am filled with sorrow. It is the price I pay for joy.
+Estoy lleno de melancolía. Es el precio que pago por la felicidad.
+But I am not helpless. I choose to pay again and again. Each time it worth it.
+Pero no estoy indefenso. Deseo pagarlo de nuevo y de nuevo. Y cada vez vale la pena.
+Now, Trainer, will you show me a little bit of the joy you feel in battle?
+Ahora, Entrenador. ¿Me mostrarás un poco de la alegría que sientes en combate?
+There is no joy in battle without the bitterness of frustration. Let us pay your dues to our wiles.
+No hay alegría en combate sin la amargura de la frustración. Déjanos pagar nuestra parte con nuestro tiempo.
+Ahah! Take that!
+¡Jaja! ¡Toma eso!
+A-hem, I mean, frustration is a natural part of growth. Grow, and approach me again, Trainer.
+Ejem, quiero decir, la frustración es la parte natural del desarrollo. Crece, y vuelve conmigo otra vez, Entrenador.
+Afriad? Or cautious? Ah, well, it doesn't matter.
+¿Con miedo? ¿O cauteloso? Oh, bueno, no importa.
+I will be here. We all smile eventually.
+Estaré aquí. Todos sonreíremos eventualmente.
+Perhaps you have caught a glimpse of that feeling, Trainer.
+Quizás has alcanzado a ver una parte de ese sentimiento, Entrenador.
+It matters not, you will feel it soon enough. It will feel wonderful and awful and all of those great things.
+No importa, ya que la sentirás lo suficientemente pronto. Se sentirá maravilloso y horrible y todas esas grandes cosas.
+I will collect my feelings before I leave. I'll be inside.
+Voy a pensar en mis sentimientos antes de irme. Estaré dentro.
+If you would like to follow, you are more than free.
+Si quieres seguirme, eres más que bienvenido.
+A guest! What a pleasant surprise!
+¡Un visitante! ¡Vaya agradable sorpresa!
+Have you come to challenge me? I have a bit of time to test my mettle.
+¿Has venido a desafiarme? Tengo un poco de tiempo para demostrar mi coraje.
+Ah, but before we get too far ahead of myself, I must sate my curiosity.
+Ah, pero antes de ir muy lejos, debo saciar mi curiosidad.
+You seem no stranger to struggle, but tell me, have you ever been broken by challenge?
+Pareces estar familiarizado con las dificultades, pero dime, ¿Alguna vez has sido roto por un desafio?
+Utterly shattered. Reduced. Something you viewed as damningly insurmountable?
+Absolutamente destruído. Reducido. ¿Algo que has visto como irremisiblemente insuperable?
+Hmm, bold. It is one thing to break yourself for another. It is another for them to mock your pieces.
+Hmm, atrevido. Una cosa es romperte a ti mismo por otro. Es otra cosa distinta burlarse de tus piezas.
+It can be a moment that defines your world, and you are not in control of it.
+Puede ser un momento que definte tu mundo, y que tú no tienes control al respecto.
+And you certainly you gained something in the end! Of course, you know as well as any that the real danger lies afterwards.
+¡Y ciertamente has ganado algo al final! Por supuesto, conoces bien como todos que el verdadero peligro yace luego de eso. 
+It is one thing to climb a mountain once. It is another to climb a hill each day.
+Es una cosa escalar una montaña una vez. Otra cosa es escalar una colina cada día.
+If honesty were a virtue, you'd qualify as a saint.
+Si la honestidad fuera una virtud, tú calificarías como un santo.
+Not that it's a good thing.
+No es como si eso fuera algo bueno.
+Then there is something you must do, now! There is a wide open world out there, but you must be torn down for a new life to grow!
+¡Entonces hay algo que debes hacer, ahora! ¡Hay todo un vasto mundo ahí fuera, pero tú debes ser demolido para que una nueva vida crezca!
+But I digress. The force of will takes man and mon far, but it cannot always overcome cold reality.
+Cambiando de tema. La fuerza de voluntad lleva al hombre y al mon lejos, pero no siempre puede superar a la dura realidad.
+This island will be gone. There are some that refute that.
+La isla dejará de ser. Hay algunos que refutan eso.
+Sometimes, there is value in fighting the inevitable. Sometimes. I am never sure about it until it is over.
+A veces, hay valor en combatir lo inevitable. A veces. Nunca estoy seguro al respecto hasta que se acabó.
+There are those who try to preserve this place, as foolish as that might be.
+Están aquellos que intentan preservar el lugar, con lo ingenuo que eso puede sonar.
+I wonder how it will end up for them. It is a good trial, and a proper funeral.
+Me pregunto cómo terminará para ellos. Es una buena prueba, y un funeral digno.
+But that is them. I should focus on myself. I am ready for challenge. Are you ready for battle, Trainer?
+Pero eso son ellos. Debería concentrarme en mí mismo. Estoy listo para un desafío. ¿Estás listo para un combate, Entrenador?
+Excellent!
+¡Excelente!
+Now is the time! Let us break and reform from our struggles!
+¡Ahora es la hora! ¡Déjanos rompernos y reformarnos de nuestras luchas!
+And you lay before me in pieces.
+Y tú recaes ante mí en pedazos.
+There's only one direction to go from here. Regain youself, and try again. You can do better.
+Sólo hay una dirección a la que puedas ir ahora. Recupéerta, e inténtalo de nuevo. Puedes hacerlo mejor.
+Very well, but do not leave me waiting. I abhor idleness.
+Muy bien, pero no me dejes esperando. Aborrezco la ociosidad.
+I am looking for one last trail myself. Are you ready for battle, Trainer?
+Y estoy buscando por un último rastro. ¿Estás listo para combatir, Entrenador?
+Wonderful! It was about time for me to shatter!
+¡Maravilloso! ¡Era hora para que me rompiera!
+I revel in that sting you get when you know you've been outmatched! It is undeniable, how jealous I am!
+¡Me regocijo en la punzada que obtienes cuando sabes que has sido superado! ¡Es innegable lo celoso que estoy!
+But such a feeling is fleeting, for better and for worse.
+Pero tal sentimiento es efímero, para bien o para mal.
+It's time for me to get ready for the next hill. I'll be inside if you need me.
+Es la hora de que vaya a por mi siguiente colina. Estaré dentro si me necesitas.
+These Guardians have been here since before all of us.
+Estos Guardiantes han estado aquí desde antes que todos nosotros.
+If there is a way forward, they will bring us there.
+Si hay un camino hacia delante, ellos nos traerán allí.
+You have snuffed out any hope that we had.
+Has extinguido toda esperanza que nos quedaba.
+I'm not sure that it was a good or bad deed.
+No estoy seguro de que esto haya sido una buena o mala acción.
+We seek its power to heal our home.
+Buscamos su poder para sanar nuestro hogar.
+Please, you must have a plan!
+¡Por favor, debes tener un plan!
+Centuries of guidance cannot end like this!
+¡Centenarios de guianza no pueden terminar así!
+So many here wish to give up our homeland. To what! Simple time and happenstance?
+Tantos aquí desean renunciar a nuestra tierra natal. ¡A qué! ¿Al tiempo y casualidad?
+I will depart, but I will be bitter. The spirit of our island will sink with it.
+Partiré, pero con amargura. El espíritu de nuestra isla se hundirá con ella.
+I am surrounded by fools! The sages are right! We must adapt or perish!
+¡Estoy rodeado de idiotas! ¡Los sabios tienen la razón! ¡Debemos adaptarnos o morir!
+Leave me be, outsider.
+Déjame estar, forastero.
+My Rampardos and I have a unique camaraderie. We suffer from hair loss.
+Mi Rampardos y yo sufrimos una camaradería única. Sufrimos de pérdida capilar.
+I need to get a sick crown like my Rampardos...
+Debo conseguir una tremenda corona como mi Rampardos… 
+I must treat the little hair I have left kindly.
+Debo tratar al poco pelo que me queda con cariño.
+Mmm. Maybe I should buy a hat.
+Mmm. Quizás debería comprar un sombrero.
+Hon hon! This island has exception beauty! It is a shame I will be the last visitor to see it.
+¡Jo jo! ¡Esta isla tiene una maravilla excepcional! Es una lástima que seré el último visitante en verla.
+Oh, are you also foreign to here? Well, that ruins the title of "last visitor".
+¿Oh, también eres extrañero aquí? Bueno, eso arruina el título de “último visitante”.
+Ah, the locals here are so good at battling.
+Ah, los locales aquí son tan buenos en combatir.
+I think I'll enjoy a fine Kalosian wine...
+Creo que disfrutaré un fino vino de Kalos… 
+Look towards the future, Trainer. You might miss how much of a mess the past becomes.
+Mira hacia el futuro, entrenador. Podrías perderte todo el desastre que se convierte el pasado.
+Come, my Pokemon. Let us take a final stroll.
+Ven, mis Pokémon. Déjanos tomar un último paseo. 
+It's a shame how the past has been tainted.
+Es una lástima cómo el pasado se ha manchado.
+We are old minded here. But our ways are nothing in front of nature.
+Somos viejos de mente aquí. Pero nuestros caminos no son nada más que el frente de la naturaleza.
+We like to forget that we are still a part of nature, no matter how high we build ourselves.
+Solemos olvidar que todavía somos parte de la naturaleza, no importa lo alto que nos pongamos.
+Winning the Championship.
+Ganar el Campeonato.
+Helping a friend.
+Ayudar a un amigo.
+Telling someone to buzz off.
+Decirle a alguien que se vaya.
+Letting go of my past.
+Dejar atrás a mi pasado.
+Yes.
+Sí.
+Not right now.
+No ahora mismo.
+Yes, when I lost someone.
+Sí, cuando perdí a alguien.
+Yes, when I failed someone.
+Sí, cuando le fallé a alguien.
+Yes, when I upset someone.
+Sí, cuando molesté a alguien.
+No, I haven't felt that.
+No, no he sentido eso.
+Yes, to help someone.
+Sí, para ayudar a alguien.
+Yes, to gain something.
+Sí, para ganar algo.
+Yes, to avoid my fears.
+Sí, para evitar mis miedos.
+No, I haven't.
+No, no lo he hecho.
 [Map184]
 Helena's food is neatly sorted in the fridge.
 La comida de Helena está perfectamente ordenada en la nevera.
@@ -11675,6 +12002,23 @@ And nature remains untamed! Uncaring to our problems!
 ¡Y la naturaleza continúa indómita! ¡Sin importarle nuestros problemas!
 The air here is so crisp!
 ¡El aire aquí es tan vigorizante!
+LOG RIDE BATTLE! LOG RIDE BATTLE! LOG RIDE BATTLE!
+¡COMBATE SOBRE UN TRONCO! ¡COMBATE SOBRE UN TRONCO! ¡COMBATE SOBRE UN TRONCO!
+You've mastered the ways of the log in such short time... are you some kinda log riding prodigy?
+Has dominado las artes del tronco en tan poco tiempo… ¿Eres un tipo de prodigio de los troncos?
+See you later, log cowboy...
+Nos vemos luego, vaquero del tronco… 
+I've been managing the wildlife here for years, I've become an honorary Bibarel!
+He manejado la fauna aquí por años, ¡Tanto que me he convertido en un Bibarel honorario!
+Whoa! That last move almost smashed the whole dam! I'll get right back to work fixing it up!
+¡Wow! ¡Ese último movimiento casi acabó con toda la presa! ¡Me pondré de inmediato a arreglarlo!
+Another day, another trainer recklessly battled on this new dam. My Pokemon love the thrill!
+Otro día, otro entrenador combatido con fervor en esta nueva presa. ¡Mis Pokémon aman la emoción!
+This is such a nice spot, I should bring a couch out here.
+Este es un buen lugar, debería traer un sillón aquí.
+Used to look a little more pretty before the Biberal cut down the trees, but I appreciate the company.
+Solía ser un poco más bonito antes de que los Bibarel cortaran los árboles, pero aprecio la compañía.
+
 [Map186]
 
 South: Ice Cave
@@ -11749,8 +12093,8 @@ You ever heard of it? Its so comfy!
 ¿Alguna vez has escuchado sobre él? ¡Es tan cómodo!
 That battle was fun, but not as fun as gaming.
 Ese combate fue divertido, pero no tanto como el gaming.
-Sometimes, if I'm feeling brave, I'll ski on the river ice.
-A veces, si me siento valiente, patinaré en el río congelado.
+Hey, don't just slide on past me!
+¡Hey, no pases deslizándote de ese modo!
 The slippery ice makes for a quick getaway!
 ¡El hielo resbaladizo hace una rápida salida!
 I'm not worried about falling into the water. The ice here is rock solid.
@@ -11777,6 +12121,23 @@ I must look like an idiot just standing out here without any extra layers.
 Debo verme como un idiota estando sólo parado aquí sin más ropa.
 Back to the lodge I go.
 Voy de regreso a la posada.
+This river rest is a natural perch for migrating 'mons. There's potential for a killer restaurant here...
+El río es un posadero natural para ‘mons migrantes. Hay potencial para un tremendo restaurante aquí…
+I've been cooked...
+He sido cocinado…
+That's a defeat, served up hot and ready...
+Eso es una derrota, servida bien caliente…
+You think I could get an investment? I bet LuxTech is killing to get such a prime spot.
+¿Crees que podría conseguir una inversión? Apuesto que LuxTech mataría por tener un lugar así.
+ME AND MY POKEMON HAVE HAULED ALL THESE ROCKS FROM DOWNSTREAM! WE ARE AN UNSTOPPABLE FORCE!
+¡MIS POKÉMON Y YO HEMOS ARRASTRADO TODAS ESTAS ROCAS CONTRACORRIENTE! ¡SOMOS UNA FUERZA IMPARABLE!
+I guess you're an immovable object...
+Supongo que eres un objeto inamovible…
+BRAWN OR BRAIN! I AM MASTER OF BOTH! TAKE YOUR WIN PUNY TRAINER AND DESPAIR!
+¡CEREBRO O MÚSCULO! ¡SOY UN MAESTRO DE AMBOS! ¡TOMA TU VICTORIA ENTRENADOR ENCLENQUE Y DESESPERA!
+WEIGHTS IN THE LIBRARY! BOOKS IN THE GYM! WITH MY POWERS I HAVE SCULPTED THE LAND!
+¡PESAS EN LA BIBLIOTECA! ¡LIBROS EN EL GIMNASIO! ¡CON MIS PODERES HE ESCULPIDO LA TIERRA!
+
 [Map187]
 
 Bicycles are the only correct way to get around a dense town like this one.
@@ -12847,6 +13208,24 @@ Heh, poser.
 Je, pretencioso.
 Take a peek behind the bookshelf and you’ll get there alright.
 Echa un vistazo detrás del librero y llegarás en un momento.
+Your fighting style is truly magnificent! I feel the need to take notes.
+¡Tu estilo de combate es verdaderamente magnífico! Siento la necesidad de tomar notas.
+Surely I've left my quill around somewhere...
+Seguramente he dejado mi pluma por aquí…
+You may have bested me in battle, but you'll still struggle against Noel.
+Podrás haberme ganado en combate, pero no será tan fácil contra Noel.
+Leave me be, you nincompoop.
+Déjame estar, bobo.
+Hey, sorry champ, but Noel's policy here is that everybody's gotta move through the gym clockwise.
+Hey, lo siento campeón, pero la política de Noel es que todos deben moverse por el gimnasio en el sentido de las agujas del reloj.
+I'm assuming its got some artsy-fartsy reason.
+Asumo que es por algún motivo artístico o algo.
+So, come on over this way, yeah?
+¿Así que ve por este camino, sí?
+Ugh.... nothing to do but crash at home, I guess.
+Ugh.... nada que hacer más que volver a mi casa, supongo.
+An inspiring battle, fit for feature in my next sculpture!
+Un combate inspirador, ¡Perfecto para mostrarlo en mi siguiente escultura!
 
 [Map197]
 
@@ -13678,8 +14057,8 @@ I couldn't bring myself to leave, even when the Team disbanded.
 No podía forzarme a ir, incluso cuando Chasm se disolvió.
 Ow! Oh, don’t you worry. I’m only bruised.
 ¡Ow! Oh, no te preocupes. Sólo es un moretón.
-Is that the badge my mom gives out? That means you beat her right?
-¿Esa es la medalla que mi mamá da? ¿Eso significa que la venciste cierto?
+Is that the badge my grandma gives out? That means you beat her right?
+¿Esa es la medalla que mi abuela da? ¿Eso significa que la venciste cierto?
 That's hype! When I get better, I'm gonna find you for a rematch.
 ¡Qué emocionante! Cuando sea mejor, te encontraré para una revancha.
 If I'm gonna inherit the Gym one day, I'll have to be able to give Trainers like you a run for their money.
@@ -13718,6 +14097,15 @@ I'm with you.
 Estoy contigo.
 I'm out of here.
 Me voy de aquí.
+Wheewie, this whole Regigigas thing-y going on here is a whole kerfluffle and a half!
+¡Fiuu, todo este tema de Regigigas es tremendo lío!
+Whatever's behind this, I'm sure it's booo-ring! Imma go grab a beer and watch some pro wrestling.
+Lo que sea que esté detrás de esto, ¡Estoy seguro que es aburidooooo! Voy a agarrar una cerveza y ver algo de lucha libre.
+Sheezy, ain't you a little battlin' freak! Would've ran me and my squad broke in the ol' days.
+¡Si acaso eres bueno! Me habrías dado una buena golpiza en los buenos viejos tiempos.
+Regi this, Regi that. How about some of these folk Regigrago touch some grass.
+Regi esto, Regi lo otro. Por qué no van a Regitocar algo de pasto.
+
 [Map213]
 
 Slick Ick
@@ -14250,6 +14638,15 @@ You're cheating, right?
 Estás haciendo trampa, ¿Verdad?
 I'm just here to play my guitar. No idea who the other guy is...
 Sólo estoy aquí para tocar mi guitarra. Ni idea quién es el otro tipo...
+My Pokemon love the trees and grass. They also love battling!
+Mis Pokémon aman los árboles y el pasto. ¡También aman combatir!
+What's that, my Pokemon? You want to go to the pub?
+¿Qué es eso, mi Pokémon? ¿Quiéres ir al pub?
+I have no choice, I must listen to them. Bye bye!
+No tengo elección, debo escucharlos. ¡Adiosito!
+Good battling! You should fight my brother, too. He's all the way at the end of the river.
+¡Buen combate! Deberías combatir contra mi hermano. Él está en el final del río.
+
 [Map217]
 
 It's the bottom of a conveyor belt. It'd be impossible to climb up.
@@ -19284,6 +19681,17 @@ You take the Pokeball from the Zarude.
 Tomas la Poké Ball de Zarude.
 It gives a few grunts as it re-enters its Pokeball.
 Gruñe un poco más mientras re-entra a su Poké Ball.
+I come here to relax with my Pokemon. Though, a battle or two won't hurt, either.
+Vine aquí para relajarme con mis Pokémon. Eso sí, un combate o dos no lastimarán a nadie.
+The Skeevee Eevee needs us, I can feel it.
+El Eevee Mugriento nos necesita, lo puedo sentir.
+Maybe I'll see you there!
+¡Quizás te veré allí!
+That was fun! You should fight my sister, too. She's all the way at the start of the river!
+¡Eso fue divertido! También deberías combatir a mi hermana. ¡Ella está al inicio del río!
+Good battling! You should fight my sister, too. She's all the way at the start of the river!
+¡Eso fue divertido! También deberías combatir a mi hermana. ¡Ella está al inicio del río!
+
 [Map317]
 
 *sniff*
@@ -22130,6 +22538,27 @@ Necesito prepararme.
 Let's rock.
 Vamos a ello.
 
+Hey...
+Hey...
+Could I interest you in a Shiny Charm?
+¿Podría interesarte un Amuleto Iris?
+Its an item that makes shiny Pokemon more likely to appear to you.
+Es un objeto que aumenta la probabilidad de que te encuentres un Pokémon variocolor.
+I'll part with it for 200 Battle Points.
+Partiré de él por 200 Puntos Batalla.
+Just don't ask where I got the charm or what I'm gonna do with the Battle Points.
+Sólo no preguntes de dónde conseguí el amuleto o qué voy a hacer con los Puntos Batalla.
+I'm glad we could come to an understanding.
+Me alegra que podamos haber llegado a un acuerdo.
+Adiue, \PN.
+Adiue, \PN.
+Shame. Well, the offer stands.
+Lástima. Bueno, la oferta permanece.
+Which... it looks like you don't have.
+Los cuales… parece que no tienes.
+Well, the offer stands.
+Bueno, la oferta permanece.
+
 [Map358]
 
 Hello to you, young one.
@@ -22720,6 +23149,24 @@ No abre desde este lado.
 
 You try to get their attention, but they don't react.
 Intentas llamar su atención, pero no reaccionan.
+[Map375]
+Whoa, Uxie! How did it get here?
+¡Wow, Uxie! ¿Cómo llegó hasta aquí?
+It looks at you intently. Before it, your memories are laid bare.
+Mira hacia ti atentamente. Ante él, tus memorias son expuestas.
+It ponders for a moment. With a snap, conjures a Pokeball in its hands.
+Piensa por un momento. Con un chasquido, conjura una Poké Ball en sus manos.
+Uxie wants to join your team. Will you have it?
+Uxie quiere unirse a tu equipo. ¿Lo aceptarás?
+With a content nod, it enters the Pokeball.
+Asintiendo la cabeza, entra a la Poké Ball. 
+You decide to let it be for now. You both have memories to make, after all.
+Lo dejas estar por ahora. Ambos tienen recuerdos que hacer, después de todo.
+Catch Uxie.
+Atrapar a Uxie.
+Leave Uxie.
+Dejar a Uxie.
+
 [Map378]
 
 The inscription is illegible, but you can make out the symbols of a shining star, two rising suns, a field of crystals, and another rising sun.
@@ -23262,6 +23709,78 @@ He lives in the Split Peaks and is always looking for a battle.
 Él vive en los Picos Partidos y nunca rechaza una batalla.
 Come to think of it, most of the former champions hang out somewhere in northern Makya.
 Ahora que lo pienso, la mayoría de campeones antiguos están en algún lugar del norte de Makya.
+[Map406]
+You got to wonder where all this circuitry came from... It feels natural, but it obviously isn't.
+Me pregunto de dónde vinieron todos estos circuitos… se sienten naturales, pero obviamente no lo son.
+Ugh, glad my shift is over. This place gives me the heebie jeebies.
+Ugh, qué bien que mi turno haya terminado. Este lugar me da repelús.
+Obviously Team Chasm had something to do with it, but I don't get paid to ask those kind of questions.
+Obviamente el Team Chasm tuvo algo que ver, pero no me pagan lo suficiente para preguntar ese tipo de cosas.
+Do you think you could run a video game on this cave system?
+¿Crees que podrías correr un videojuego en este sistema de cueva?
+I thought this would be a cool place to fly my RC airplane. I was wrong.
+Pensé que este sería un lugar genial para volar mi avión a control remoto. Me equivocaba.
+This is Tailwind-Actual, signing out...
+Esto es Vientoafín-Actual, retirándose…
+Rest in peace, Tailwind-One.
+Descansa en paz, Vientoafín-Primero.
+I could have bought some nice held items with the money I spent...
+Podría haber comprado un par de buenos objetos equipables con el dinero que gasté… 
+I don't just have a medical degree, I have swag!
+¡No sólo tengo un título en medicina, sino que también le sabo al shitpost!
+I think the proper thing to say is... skull emoji?
+¿Creo que ahora lo que debo decir es… me papearon?
+Maybe I'm trying too hard to connect with the youth...
+Quizás estoy intentando de más conectar con la juventud… 
+My daughter seems to pick up a new dialect every six months...
+Mi hija parece adoptar un nuevo dialecto cada seis meses…
+Wis? Bis? Whatever the emoji of the skull means?
+¿Cheems? ¿Momos? ¿Lo que sea que sea esto del “shitpost”?
+GRAHHHH! I AM TEENAGE REBELLION AT ITS FINEST!
+¡GRAHHHH! ¡SOY UN REBELDE ADOLESCENTE SIN CAUSA!
+Now that I think about it... I'm ten... I still have a few more years until I have to rebel.
+Ahora que lo pienso… tengo diez años… todavía me quedan un par de años más hasta que tenga que rebelarme.
+I AM THE MENACE TO SOCIETY! I EXPLORE DANGEROUS CAVES ON MY OWN!
+¡SOY UNA AMENAZA PARA LA SOCIEDAD! ¡EXPLORO CUEVAS PELIGROSAS POR MI CUENTA!
+GRAHHHHH! I LET THE DEMONS TAKE OVER! FEAR MY WRATH AND DISOBEDIENCE!
+¡GRAHHHHH! ¡DEJO QUE LOS DEMONIOS TOME CONTROL! ¡TEME MI ENOJO Y DESOBEDIENCIA!
+I'm sure there's some sort of danger swimming here. A bunch of loose wires and water don't mix...
+Estoy seguro que hay algún tipo de peligro en nadar aquí. Un par de cables sueltos y wagua no combinan muy bien…
+I'm shocked! Just not physically. Though I am physically stunning, heh.
+¡Estoy en shock! Sólo no físicamente. Aunque físicamente sí te aturdo, je.
+Ehhh, it's probably safe.
+Ehhh, probablemente es seguro.
+I almost drowned swimming in the ocean when I was in Team Chasm.
+Casi me ahogué nadando en el océano cuando estaba en el Team Chasm.
+It was a pretty sick experience, all things considered.
+Fue una experiencia bastante genial, a fin de cuentas.
+Electric bikes rule! All the other punks don't know what they're missing out on!
+¡Las motos eléctricas son lo mejor! ¡Los otros punk no saben lo que se están perdiendo!
+I'm amped up after that one kid, but my bike isn't. Guess, I'll just walk.
+Cargué hacia ese chico, pero creo que mi moto no lo hizo. Supongo, ahora caminaré.
+What, can't a guy look cool on an electric bike in peace?
+¿Qué, acaso un tipo no puede verse genial en su moto eléctrica en paz?
+They really need to build more charging spots in this region...
+Realmente tienen que construir más puestos de carga en esta región...
+A message from the developers of Pokemon Tectonic.
+Un mensaje de los desarrolladores de Pokémon Tectonic.
+This Regi Dungeon was only a preview!
+¡Esta Mazmorra Regi fue sólo una vista previa!
+There will be more content in future versions, especially if we can recruit a puzzle designer.
+Habrá más contenido en versiones futuros, especialmente si podemos reclutar un diseñador de puzzles.
+If interested, please contact us through the recruitment form located at <b>tectonic-game.com/team</b>
+Si te interesa, por favor contáctanos en el formulario de reclutamiento encontrado en  <b>tectonic-game.com/team</b>
+I have a metric ton of speakers coming in. I'm gonna cause a cave in with my music.
+Tengo una buena cantidad de altavoces llegando. Voy a causar un derrumbamiento con mi música.
+Just got the call, gonna go grab them. Now how am I going to sneak those down here...
+Acabo de recibir la llamada, ahora voy a buscarlos. Ahora cómo voy a meterlo aquí abajo...
+Enjoy this place while you can, cause I'm gonna throw the solo of a lifetime.
+Disfurta este lugar mientras puedas, porque voy a presentar un solo único de por vida.
+Hey if you aren't a snitch, you can come listen.
+Hey, si no eres un soplón, puedes venir a escuchar.
+I don't take responsibility for anyone who gets hurt though.
+Pero no me haré responsable si alguien sale herido.
+
 [Map408]
 Year 3: Casey, the Blazing Inferno
 Tercer Año: Casey, el Infierno Abrasador
@@ -23568,6 +24087,98 @@ The couple I serve all require their workers to be Pokemon Trainers.
 La pareja para la que sirvo requiere que todos sus trabajadores sean Entrenadores Pokémon.
 They use our skills for stuff like this. It's exhausting, but I can't say it's boring.
 Usan nuestras habilidades para cosas como esta. Es agotador, pero no puedo decir que es aburrido.
+[Map419]
+
+Whoa, Mesprit! How did it get here?
+¡Wow, Mesprit! ¿Cómo llegó aquí!
+It looks at you intently. Before it, your emotions rise and fall.
+Mira hacia ti atentamente. Ante él, tus emociones ascienden y descienden.
+It chuckles, then falls into a short silence. It points at something behind you.
+Ríe fuertemente, luego se queda en silencio. Apunta a algo detrás de ti.
+You turn around and see nothing there. When you turn back, it is holding a Pokeball.
+Te das la vuelta y no ves nada allí. Cuando vuelves a mirarlo, está sosteniendo una Poké Ball.
+Mesprit wants to join your team. Will you have it?
+Mesprit quiere unirse a tu equipo. ¿Lo aceptarás?
+It does a quick twirl and enters the Pokeball.
+Hace un giro rápido y entra a su Poké Ball.
+You decide to let it be for now. You need more time to gather yourself.
+Decides dejarlo estar por ahora. Necesitas más tiempo para pensar en tus sentimientos.
+Catch Mesprit.
+Atrapar a Mesprit.
+Leave Mesprit.
+Dejar a Mesprit.
+
+[Map420]
+
+Whoa, Azelf! How did it get here?
+¡Wow, Azelf! ¿Cómo llegaste aquí?
+The only thing you can glean from it is the self- assured smirk on it's face.
+Lo único que puedes observar de él es la sonrisa confiada en su cara.
+It leans back in the air, kicking up it's feet. It points towards your hand.
+Se arquea en el aire, moviendo sus pies. Apunta hacia tu mano.
+You were... holding a Pokeball? You look back up to see Azelf shrugging at you, still sporting the same grin.
+¿Estás… sosteniendo una Poké Ball? Miras de vuelta a Azelf encogiendo los hombros, manteniendo la misma sonrisa.
+Azelf wants to join your team. Will you have it?
+Azelf quiere unirse a tu equipo. ¿Lo aceptarás?
+You see a quick salute from Azelf as it enters its ball.
+Ves a Azelf hacer un pequeño saludo mientras entra a la Poké Ball.
+You decide to let it be for now. You'll need to be ready for your next hill.
+Decides dejarlo estar por ahora. Tendrás que prepararte para tu siguiente colina.
+Catch Azelf.
+Atrapar a Azelf.
+Leave Azelf.
+Dejar a Azelf.
+
+[Map421]
+
+The doors are securly locked.
+Las puertas están seguramente bloqueadas.
+I'll take your Pokémon for a few seconds.
+Tomaré a tus Pokémon por unos segundos.
+First, you should restore your Pokémon to full health.
+Primero, deberías recuperar la salud de tus Pokémon.
+We hope you excel!
+¡Te deseamos lo mejor!
+
+[Map422]
+I knew most of the Trainers going in, but man, this X guy is wild.
+Conocía a la mayoría de Entrenadores que iban a entrar, pero hombre, este tal X es increíble.
+No one's ever heard him mention his real name. He just calls himself X.
+Nadie ha escuchado a nadie escuchar su nombre real. Sólo se hace llamar X.
+Rolls with a bunch of Normal and Fairy types. Got a Gardevoir in his back pocket as well that pulls of some nasty reverse sweeps.
+Usa un montón de tipos Normal y Hada. Tiene un Gardevoir como reserva también para barrer de vuelta si es necesario.
+I'll tell you, X is really looking to give it to us this year...
+Te lo diré, X nos va a dar un espectáculo este año…
+You look nervous. Are you?
+Pareces nervioso. ¿Lo estás?
+Hey, gets to the best of us. I bet every single name written on those statues got there in spite of nerves.
+Hey, le pasa a los mejores. Apuesto que cada nombre escrito en esas estatuas llegó allí a pesar de los nervios.
+Sometimes you just gotta go there and do it, ya know.
+A veces debes ir allí y hacerlo, sabes.
+Well look at you hot stuff! The crowd is gonna love you.
+¡Pues mira lo que haces! El público va a amarte.
+Go get 'em then! And don't lose that confidence no matter who you face.
+¡Ve a por ellos! Y no pierdas la confianza no importa dónde vayas.
+Here, take this. On me.
+Ten, toma esto. Yo invito.
+You might need it, you might not. Doesn't matter, I'm feeling generous.
+Podrías necesitarlo, puede que no. No importa, me siento generoso.
+Now have fun out there champ. Err, future champ? You know what I mean.
+Ahora diviértete campeón. Ehh, ¿Futuro campeón? Ya sabes a lo que me refiero.
+What are ya talking to me for? I only got one pep talk in me.
+¿Qué me estás intentando decir? Sólo te puedo dar una charla motivacional.
+Go in there, do your best, and make sure you won't regret anything.
+Ve allí, hazlo lo mejor que puedas, y asegúrate de que no te arrepentirás de nada.
+Well, well, if it isn't the new champion of Makya.
+Bueno, bueno, si acaso no es el nuevo campeón de Makya.
+You really shined out there, almost brough a tear to me eye.
+Realmente brillaste allí, casi me hiciste llorar.
+I can tell you probably aren't native Makyan, but you did the region proud. Wear the title well, Trainer.
+Puedo decir que probablemente no eres nativo de Makya, pero hiciste que la región esté orgullosa. Porta bien el título, Entrenador.
+Yeah.
+Seh.
+Not really.
+No realmente.
 [1]
 29
 Nidoran-F
@@ -32636,7 +33247,7 @@ Voto Planta
 Seed Bomb
 Bomba Germen
 Giga Drain
-Giga Drenado
+Gigadrenado
 Horn Drain
 Asta Drenado
 Trop Kick
@@ -32652,7 +33263,7 @@ Látigo Cepa
 Leafage
 Follaje
 Mega Drain
-Mega Drenado
+Megaagotar
 Bullet Seed
 Semilladora
 Absorb
@@ -34240,7 +34851,7 @@ Destello Aurora
 Crackling Cloud
 Nube Tormentosa
 Flare Lance
-Lanza Ígneo
+Lanza Ígnea
 Icicle Pin
 Trampa Carámbano
 Head Throw
@@ -34557,6 +35168,14 @@ Stink Cover
 Cubierta Apestosa
 Herbal Patch
 Herbolario
+Wipeout
+Oleaje
+Frenzy Plant
+Planta Feroz
+Blast Burn
+Anillo Ígneo
+Hydro Cannon
+Hidrocañón
 [6]
 Using its tough and impressive horn, the user rams into the target with no letup.
 Usando su impresionante cuerno, el usuario embiste al rival.
@@ -36956,7 +37575,14 @@ The foe is forced is forced to switch out by a stinky cloud, then the user also 
 El enemigo es forzado a cambiar por una nube apestosa, entonces el usuario también cambia. Siempre va el último.
 A patch of medicinal herbs sprouts across the battlefield. This heals every Pokémon for 1/8th HP each turn for 5 turns.
 Un área de hierbas medicinales brota en el campo de batalla. Cura a todos los Pokémon 1/8 de PS en cada turno durante 5 turnos.
-
+The user rides a wave, then crashes into the target. Has a 30% chance to cause a flinch.
+El usuario se sube a una ola, luego embiste al objetivo. Tiene un 30% de probabilidad de amedrentar al objetivo.
+The user slams the target with an enourmous tree. El user can't move on the next turn.
+El usuario aplasta al objeto con un árbol gigantesco. El usuario tiene que recargar en el siguiente turno.
+The target is razed by a fiery explosion. The user must rest in the next turn, however.
+El objetivo es incinerado por una gran explosión. El usuario que tiene recargar en el siguiente.
+The target is hit with a watery blast. The user must rest on the next turn, however.
+El objetivo es atacado por un chorro de agua. El usuario tiene que recargar en el siguiente turno.
 [7]
 Repel
 Repelente
@@ -38176,6 +38802,8 @@ Styling Kit
 Kit de Estilo
 Box Link
 PC Portátil
+Sweet Tooth
+Diente Suerte
 [8]
 Repels
 Repelentes
@@ -39590,6 +40218,21 @@ A fragile blade of unusual metal. Sharp enough to cut alloyed overgrowth.
 Un filo frágil hecho con un metal inusual. Lo suficientemente afilado para cortar la vegetación aleada.
 A thin, nearly invisible strand of unusual metal.
 Una hebra fina, casi invisible, de un metal inusual.
+A charm in the shape of a tooth. It increases the EXP gained from EXP Candy by 15%.
+Un amuleto con la forma de un diente. Aumenta la EXP ganada de los Caramelos EXP un 15%.
+A suite of training tools which allows you to modify your Pokémon's style points.
+Un kit de herramientas de entrenamiento que te permiten modificar los puntos de estilo de tus Pokémon.
+A key which unlocks the ruined tower on the Sandstone Estuary coastline.
+Una llave que desbloquea la torre en ruinas en la costa del Estuario Arenisca.
+Held item which boosts move damage by 25%, but lower's the user's Speed by 1 step on entry.
+Un objeto equipable que aumenta todo movimiento un 25%, pero disminuye la Velocidad del usuario 1 grado al entrar al campo.
+A held item. At half health, the holder breaks the balloon and gains an Aqua Ring.
+Un objeto equipable. Al perder la mitad de su salud, el portador rompe el globo y consigue un Acua Aro.
+An item to be held by a Pokémon. The weilder gets both of its legal abilities, but its stats are cut by 10%.
+Un objeto equipable. El portador obtiene sus dos habilidades legales, pero todas sus stats son disminuidas un 10%.
+Rare contraband. Any average solo trainer will flee from the stench of its explosion.
+Objeto raro de contrabando. Cualquier entrenador individual promedia huirá del hedor de su explosión.
+
 [10]
 Stench
 Hedor
@@ -40648,7 +41291,7 @@ Coloso
 Venomdetta
 Desquitóxico 
 Berry Bunch
-Racímo de Bayas
+Racimo de Bayas
 Fashionable
 A la Moda
 All That Glitters
@@ -41399,8 +42042,8 @@ Has a 30% chance to burn targets when using special moves.
 Tiene un 30% de probabilidad de quemar al objetivo al usar un movimiento especial.
 Raises Speed by four steps when its HP is lowered below half.
 Aumenta su Velocidad cuatro grados cuando pierde la mitad de sus PS o más.
-Restores 1/4th health after knocking out any Pokémon.
-Recupera 1/4 de sus PS luego de debilitar a un Pokémon.
+Restores 1/4th health after any foe faints.
+Recupera 1/4 de sus PS luego de que cualquier rival sea debilitado.
 Sets a Light Screen for 4 turns upon entering the battle.
 Pone una Pantalla de Luz por 4 turnos al entrar al campo.
 Sets a Reflect for 4 turns upon entering the battle.
@@ -41740,7 +42383,7 @@ Al entrar al campo durante un eclipse, si no tiene ningún objeto, encuentra y s
 Boosts Attack by 30% in moonglow.
 Aumenta su Ataque un 30% bajo brillo lunar.
 Boosts Sp. Atk by 30% in moonglow.
-Aumenta su Ataque Especialun 30% bajo brillo lunar.
+Aumenta su Ataque Especial un 30% bajo brillo lunar.
 Doubles Speed in moonglow.
 Duplica su Velocidad bajo brillo lunar.
 Doubled Attack during the turn of a Full Moon.
@@ -44002,8 +44645,8 @@ Tienda Prizca Occidental
 Casaba Island
 Isla Casaba 
 182
-Alloyed Thicket - Eastern
-Matorral Aleado - Este
+Spirit Atoll
+Atolón Espiritual
 183
 Circuit Cave
 Cueva Circuito
@@ -44528,7 +45171,7 @@ Isle of Dragons
 Isla de los Dragones
 357
 Battle Monument
-Monument Batalla
+Monumento Batalla
 358
 Dr. Hekata's House
 Casa del Dr. Hekata
@@ -44671,8 +45314,8 @@ Lago Congelado
 Mirror Maze
 Laberinto de Espejos
 405
-Sandstone System Redux
-Estuario Arenisca
+Hoopa's Jar
+Jarrón de Hoopa
 406
 Sandstone Switchbox
 Cambio Arenisca
@@ -51129,9 +51772,48 @@ Dónde diriges poder
 ¡#{pokemon.name} chilla!
 \me[Earn battle points]\ptYou've earned #{battlePointsAdded} battle points.\wtnp[70]
 \me[Earn battle points]\ptHas ganado #{battlePointsAdded} puntos de batalla.\wtnp[70]
-
-
-
+Battle Monument
+Monumento Batalla
+Guardian Island
+Isla de la Guarda
+Eventide Isle
+Isla Ocaso
+Isle of Dragons
+Isla de los Dragones
+Spirit Atoll
+Atolón Espiritual
+Welcome to the battle points shop!
+¡Bienvenido a la tienda de puntos de batalla!
+Welcome to the Battle Monument.
+Bienvenido al Monumento Batalla.
+Take the singles battle challenge?
+¿Tomas el desafío de combates individuales?
+Please choose the four Pokémon that will enter.
+Por favor elige los cuatro Pokémon que entrarán.
+Please come this way.
+Por favor sígueme.
+Sorry, you can't participate. You need four different Pokémon to enter.
+Lo siento, no puedes participar. Necesitas cuatro diferentes Pokémon para entrar.
+They must be of a different species.
+Deben ser de diferentes especies.
+Certain legendary or unusual species are also ineligible.
+Ciertos legendarios o especies inusuales tampoco son permitidos.
+The match will now begin!
+¡Que empiece el combate!
+Let me heal your party.
+Déjame curar a tu equipo.
+Congratulations for winning.
+Felicidades por ganar.
+Please take this prize.
+Por favor toma este premio.
+Thanks for playing.
+Gracias por participar.
+Come back another time.
+Por favor regresa otra vez.
+A critical hit#{onAddendum}!
+¡Un golpe crítico#{onAddendum}!
+It was a guarenteed critical hit#{onAddendum}!
+¡Fue un golpe crítico garantizado#{onAddendum}!
 [26]
 [27]
 [27]
