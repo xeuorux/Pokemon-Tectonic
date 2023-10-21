@@ -713,6 +713,6 @@ def pbSceneDefaultConfirm(message,scene = nil)
   if scene && scene.is_a?(PokemonPartyScreen)
     return scene.pbConfirm(message)
   else
-    return pbConfirm(message)
+    return pbConfirmMessage(message)
   end
 end
