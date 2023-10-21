@@ -34,37 +34,37 @@ CIRCUIT_PUZZLES = {
         ]
     },
     :WL_EXIT => {
-        :base_graphic => "cross_switch",
+        :base_graphic => "wl_exit",
         :interactables =>
         [
             [:tswitch_left,2,2,0],
         ],
         :solution_states =>
         [
-            [], # TODO
+            [1], # ???
         ]
     },
     :RO_PRISON => {
         :base_graphic => "ro_prison",
         :interactables =>
         [
-            [:tswitch_up,2,3,0],
+            [:tswitch_up,3,3,0],
         ],
         :solution_states =>
         [
-            [], # TODO
+            [1], # ???
         ]
     },
     :RO_EXIT => {
         :base_graphic => "ro_exit",
         :interactables =>
         [
-            [:l_turntable,2,3,1],
-            [:tswitch_up,3,2,0],
+            [:turntable,3,3,1],
+            [:tswitch_up,4,2,0],
         ],
         :solution_states =>
         [
-            [], # TODO
+            [0,1], # ???
         ]
     },
     :TC_ENTRANCE => {
@@ -75,7 +75,7 @@ CIRCUIT_PUZZLES = {
         ],
         :solution_states =>
         [
-            [], # TODO
+            [1], # ???
         ]
     },
     :TC_LIMIT2 => {
@@ -87,7 +87,7 @@ CIRCUIT_PUZZLES = {
         ],
         :solution_states =>
         [
-            [], # TODO
+            [3,1], # ???
         ]
     },
     :TC_LIMIT1_LIMIT2 => {
@@ -95,47 +95,47 @@ CIRCUIT_PUZZLES = {
         :interactables =>
         [
             [:tswitch_cross,3,2,0],
-            [:l_turntable,3,3,0],
+            [:turntable,3,3,0],
         ],
         :solution_states =>
         [
-            [], # TODO
+            [2,0], # ???
         ]
     },
     :TC_SIDEPATH => {
         :base_graphic => "tc_sidepath",
         :interactables =>
         [
-            [:l_turntable,2,2,0],
+            [:turntable,2,2,0],
             [:cross_switch,3,2,0],
             [:tswitch_cross,4,3,2],
         ],
         :solution_states =>
         [
-            [], # TODO
+            [1,1,0], # ???
         ]
     },
     :TC_PRISON => {
         :base_graphic => "tc_prison",
         :interactables =>
         [
-            [:tswitch_cross,2,2,1],
-            [:tswitch_cross,2,3,2],
+            [:tswitch_cross,3,2,1],
+            [:tswitch_cross,3,3,2],
         ],
         :solution_states =>
         [
-            [], # TODO
+            [0,0], # ???
         ]
     },
     :TC_EXIT => {
         :base_graphic => "tc_exit",
         :interactables =>
         [
-            [:tswitch_right,2,2,0],
+            [:tswitch_right,3,2,0],
         ],
         :solution_states =>
         [
-            [], # TODO
+            [1], # ???
         ]
     },
     :IC_WAVE => {
@@ -153,9 +153,9 @@ CIRCUIT_PUZZLES = {
         :base_graphic => "ic_avatar_cage",
         :interactables =>
         [
-            [:l_turntable,1,1,3],
+            [:turntable,1,1,3],
             [:cross_switch,1,2,0],
-            [:l_turntable,2,2,1],
+            [:turntable,2,2,1],
             [:tswitch_cross,3,0,2],
         ],
         :solution_states =>
@@ -181,7 +181,7 @@ CIRCUIT_PUZZLES = {
         :interactables =>
         [
             [:tswitch_cross,1,2,1],
-            [:l_turntable,3,3,2],
+            [:turntable,3,3,2],
         ],
         :solution_states =>
         [
