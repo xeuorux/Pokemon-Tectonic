@@ -1,13 +1,5 @@
 ﻿# See the documentation on the wiki to learn how to edit this file.
 #-------------------------------
-[002] # Sandstone System
-DarkCave,21
-    20,EELEKTROSS,53,55
-    20,GYARADOS,53,55
-    20,KROOKODILE,53,55
-    20,PORYGONZ,53,55
-    20,ROTOM,53,55
-#-------------------------------
 [003] # Kilna Turf
 Land,20
     20,DODUO,17,19
@@ -1013,6 +1005,14 @@ LandTall,20
     20,HATTERENE,54,56
     20,JYNX,54,56
     20,MNOCTOWL,54,56
+#-------------------------------
+[406] # Sandstone Switchbox
+DarkCave,21
+    20,EELEKTROSS,53,55
+    20,GYARADOS,53,55
+    20,KROOKODILE,53,55
+    20,PORYGONZ,53,55
+    20,ROTOM,53,55
 #-------------------------------
 [411] # Tri Island
 Land,20

@@ -19,12 +19,6 @@ Outdoor = false
 ShowArea = false
 Bicycle = false
 #-------------------------------
-[002]
-# Sandstone System
-Outdoor = false
-ShowArea = true
-Bicycle = true
-#-------------------------------
 [003]
 # Kilna Turf
 Outdoor = true
