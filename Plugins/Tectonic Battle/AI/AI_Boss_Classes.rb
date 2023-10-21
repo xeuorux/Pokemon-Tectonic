@@ -237,7 +237,7 @@ class PokeBattle_AI_Genesect < PokeBattle_AI_Boss
             :condition => proc { |move, user, target, _battle|
                 damageDealt = user.battle.battleAI.pbTotalDamageAI(move, user, target, 1)
                 
-                next damageDealt >= target.hp
+                next damageDealt[0] >= target.hp
             },
             :warning => proc { |_move, user, targets, _battle|
                 target = targets[0]
