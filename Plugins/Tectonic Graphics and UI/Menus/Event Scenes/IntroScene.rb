@@ -141,6 +141,8 @@ def loadMostRecentVersionNumber
     return latestVersion
   rescue MKXPError
     return nil
+  rescue NameError
+    return nil
   end
 end
 
