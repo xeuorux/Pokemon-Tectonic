@@ -4,7 +4,7 @@
 Breaking News!
 ¡Último Momento!
 I'm live here at<imp>Tri Island</imp>, a mysterious island discovered recently off the coast of Makya.
-Estoy en vivo aquí en al <imp>Isla Elemental</imp>, una misteriosa isla descubierta recientemente en la costa de Makya. 
+Estoy en vivo aquí en la <imp>Isla Elemental</imp>, una misteriosa isla descubierta recientemente en la costa de Makya. 
 Trainers from all over the world are making their way over as there have been sightings of extremely rare Pokemon and resources.
 Entrenadores de todo el mundo están llegando aquí ya que han habido avistamientos de Pokémon y recursos extremadamente raros. 
 With no region claiming major jurisdiction over the island, there have been reports of multiple factions creating base camps in the area.
@@ -23220,6 +23220,11 @@ Has your mother ever told you that you look rather handsome?
 ¿Alguna vez tu madre te ha dicho que eres bastante guapo?
 No? Well, that checks out I suppose.
 ¿No? Bueno, eso tiene sentido, supongo.
+Days... into weeks... into months... Is this what is left of me...?
+Días… y semanas… y meses… ¿Es esto lo que queda de mí…?
+I am fading. I am scared.
+Me estoy desvaneciendo. Tengo miedo.
+
 [Map381]
 Excuse me! I was admiring my reflection.
 ¡Disculpa! Estaba admirando mi reflejo.
@@ -23780,6 +23785,88 @@ Hey if you aren't a snitch, you can come listen.
 Hey, si no eres un soplón, puedes venir a escuchar.
 I don't take responsibility for anyone who gets hurt though.
 Pero no me haré responsable si alguien sale herido.
+[Map403]
+
+This is not the end for me! I will not go out like this!
+¡Esto no es mi final! ¡No me iré de este modo!
+What was I... fighting against?
+¿Contra qué… estaba luchando?
+
+[Map404]
+
+What could this be?
+¿Qué podría ser esto?
+A purple jar. There seems to be something inside beckoning you.
+Un jarrón púrpura. Parece haber algo dentro llamándote.
+Jump in?
+¿Te metes en él?
+A cautious voice in your head convinces you to stay put.
+Una voz cautelosa en tu cabeza te convence de quedarte.
+A jar that contains Hoopa's domain.
+Un jarrón que contiene el dominio de Hoopa.
+You decide to stay out of the jar for now.
+Decides alejarte del jarrón por ahora.
+I... where am I? I don't... remember...
+¿Dónde… dónde estoy? No… lo recuerdo… 
+Yeah... I... I feel dizzy... Just need a moment...
+Seh… me… me siento mareado… Necesito un momento…
+Uhh... I'm... Farid... Squad Leader Farid...
+Ehh... Sor... Farid... Líder de Escuadrón Farid...
+W-what...? No.. I... I don't think so.
+¿Q-qué…? No… no… no lo creo.
+I was here with my squad... We were, umm, searching for something...
+Estaba aquí con mi escuadrón… Estábamos, emmm, buscando por algo…
+They had given up. I was the only one still here.
+Se habían rendido. Yo era el único aún aquí.
+This, ummm, bottle. I was told there was a Pokemon that could grant wishes here.
+Esta, emmm, botella. Me habían contado que podías encontrar un Pokémon que podía conceder deseos aquí.
+I don't know what happened...
+No sé qué ocurrió…
+I... It was to do something. To be ok.
+Era… era para hacer algo. Para estar bien.
+Team Chasm was doing me well but... those things don't last forever, you know.
+El Team Chasm me estaba haciendo bien pero… esas cosas no duran para siempre, sabes.
+I just wanted a way to flat on my feet.
+Sólo quería un modo para respaldarme.
+Hoopa. I was told it had the power to grant wishes. I just... didn't know there was a bit more to the story.
+Hoopa. Me habían contado que tenía el poder de conceder deseos. Yo sólo… no sabía si había algo más en la historia.
+What? I don't know... I don't know what happened to me.
+¿Qué? No sé… no sé qué ocurrió conmigo.
+I... I don't know what happened. It couldn't have been good. I... need some time.
+No… no sé qué ocurrió. No pudo haber sido algo bueno. Necesito… necesito algo de tiempo.
+I'm still confused, but I can tell some time has past. Things feel... different now.
+Sigo confuso, pero puedo decir que algo de tiempo ha pasado. Las cosas se sienten… diferentes ahora.
+I think... I think I'll be ok. I'm going to see what's out there for me.
+Creo… creo que estaré bien. Voy a ver qué hay allí fuera para mí.
+If you want whatever's in this jar, it's yours. I... don't need it anymore.
+Si quieres lo que sea que haya en el jarrón, es tuyo. No… ya no lo necesito.
+Jump in.
+Saltar-
+Not right now.
+No ahora mismo.
+Are you alright?
+¿Estás bien?
+Who are you?
+¿Quién eres?
+Three ghosts ring a bell?
+¿Tres fantasmas te recuerdan algo?
+What was your wish?
+¿Cuál fue tu deseo?
+What Pokemon was it?
+¿Qué Pokémon era?
+The ghosts, man. Ghosts?
+Los fantasmas, hombre. ¿Fantasmas?
+
+[Map405]
+
+It looks like you can jump out from here.
+Parece que puedes saltar desde aquí.
+You'll stay a little longer.
+Te quedas un momento más..
+Jump out.
+Saltar..
+Not right now.
+No ahora mismo.
 
 [Map408]
 Year 3: Casey, the Blazing Inferno
