@@ -18,5 +18,3 @@ end
 def displaySystemInfo()
 	pbMessage(systemInfoString())
 end
-
-echoln(systemInfoString())
