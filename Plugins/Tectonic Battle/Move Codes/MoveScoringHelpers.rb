@@ -499,7 +499,9 @@ def getMultiStatUpEffectScore(statUpArray, user, target, fakeStepModifier: 0, ev
     end
 
     score *= -1 if enemiesCanSteal
-
+    
+    score *= user.levelNerf(false,false,0.6) if user.level <= 30 && !user.pbOwnedByPlayer?
+    
     return score.ceil
 end
 

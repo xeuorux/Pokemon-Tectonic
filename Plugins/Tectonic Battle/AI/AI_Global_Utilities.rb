@@ -18,7 +18,7 @@ def levelNerf(switch,damage,intensity)
         PBDebug.log("[STAY-IN RATING][LEVEL NERF] #{pbThis} (#{index}) is penalizing switching (+#{levelPenalty.round})")
     elsif damage == true
         levelPenalty = levelPenalty / 5 / 10 + 1.0
-        PBDebug.log"[LEVEL NERF] Adjusted score by (+#{((levelPenalty -= 1) * 100).round})%"
+        PBDebug.log"[LEVEL NERF] Adjusted score by (+#{((levelPenalty - 1) * 100).round})%"
     else
         levelPenalty = -levelPenalty / 5 / 10 + 1.0
         PBDebug.log"[LEVEL NERF] Adjusted score by (-#{100 - (levelPenalty * 100).round})%"
