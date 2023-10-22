@@ -424,7 +424,7 @@ class PokemonStorageScreen
     def pbSortBox(type, boxNumber)
         box = @storage.boxes[boxNumber]
         return false if @heldpkmn
-        return false if box.isLocked?c
+        return false if box.isLocked?
         return false if box.empty?
         nitems = box.nitems - 1
         listtosort = []
