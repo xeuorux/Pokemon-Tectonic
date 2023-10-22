@@ -223,7 +223,6 @@ class BattleInfoDisplay < SpriteWrapper
 	calculatedStatInfo = {}
 	
 	# Display the info about each stat
-	statValues = battler.plainStats
 	highestStat = nil
 	highestStatValue = -65536 # I chose these caps somewhat arbitrarily
 	lowestStat = nil

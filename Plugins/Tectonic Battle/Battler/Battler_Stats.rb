@@ -360,7 +360,7 @@ class PokeBattle_Battler
         return aiSpeedMult
     end
 
-    def getFinalStat(stat, aiCheck = false, step = -1)
+    def getFinalStat(stat, aiCheck = false, step = nil)
         case stat
         when :ATTACK
             return pbAttack(aiCheck, step)
