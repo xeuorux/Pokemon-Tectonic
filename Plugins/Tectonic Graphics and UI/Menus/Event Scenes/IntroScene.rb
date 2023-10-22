@@ -134,6 +134,7 @@ class Scene_Intro
 end
 
 def loadMostRecentVersionNumber
+  return nil if System.is_wine?
   begin
     response = HTTPLite.get("https://storage.googleapis.com/chasm_bucket/version_order.txt")
     body = response[:body]
