@@ -35,10 +35,12 @@ Events.onMapChange += proc { |_sender, _e|
 			$game_switches[ZAIN_3_BADGES_PHONECALL_GLOBAL] = true
 			$PokemonGlobal.shouldProc3BadgesZainCall = false
 		end
-	else
-		if gameWon? && !$game_switches[99] # Battle monument unlocked
-			$game_switches[153] = true # Trigger the phonecall from Vanya
-		end
+	end
+
+	if 		gameWon? &&
+			!$game_switches[99] && # Battle monument not yet unlocked
+			$game_map.map_id == 188 # In Prizca Castle
+		$game_switches[153] = true # Trigger the phonecall from Vanya
 	end
 }
 
