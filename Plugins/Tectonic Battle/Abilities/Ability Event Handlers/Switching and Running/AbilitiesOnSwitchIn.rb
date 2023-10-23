@@ -884,7 +884,7 @@ BattleHandlers::AbilityOnSwitchIn.add(:SLUGGISH,
 )
 
 BattleHandlers::AbilityOnSwitchIn.add(:HAUNTED,
-  proc { |ability, battler, battle|
+  proc { |ability, battler, battle, aiCheck|
       next 0 if aiCheck
       battle.pbShowAbilitySplash(battler, ability)
       battler.applyEffect(:Type3,:GHOST)
