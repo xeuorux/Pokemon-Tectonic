@@ -108,6 +108,7 @@ Environment = Forest
 Outdoor = false
 ShowArea = false
 Bicycle = false
+WildBattleBGM = Tectonic_Epitaph_of_the_Demiurge.ogg
 #-------------------------------
 [013]
 # Frost Station 1032
@@ -1954,7 +1955,8 @@ BattleBack = cave3
 Outdoor = false
 ShowArea = true
 Bicycle = true
-BattleBack = wcave
+BattleBack = cave1
+WildBattleBGM = Tectonic_Epitaph_of_the_Demiurge.ogg
 #-------------------------------
 [328]
 # Suspicious Shed
@@ -2003,6 +2005,7 @@ Outdoor = false
 ShowArea = false
 Bicycle = true
 BattleBack = cave1
+WildBattleBGM = Tectonic_Epitaph_of_the_Demiurge.ogg
 #-------------------------------
 [337]
 # Deep Station Backroom
@@ -2086,12 +2089,14 @@ Outdoor = false
 ShowArea = false
 Bicycle = true
 BattleBack = cave1
+WildBattleBGM = Tectonic_Epitaph_of_the_Demiurge.ogg
 #-------------------------------
 [355]
 # Chamber of Registeel
 Outdoor = false
 ShowArea = false
 Bicycle = true
+WildBattleBGM = Tectonic_Epitaph_of_the_Demiurge.ogg
 #-------------------------------
 [356]
 # Isle of Dragons
