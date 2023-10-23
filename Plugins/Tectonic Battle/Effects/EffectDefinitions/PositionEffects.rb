@@ -218,5 +218,6 @@ GameData::BattleEffect.register_effect(:Position, {
             anyPPRestored = true
         end
         battle.pbDisplay(_INTL("{1}'s PP was restored!", sourceMaker, battler.pbThis(true))) if anyPPRestored
+        position.disableEffect(:InfiniteSource)
     end,
 })
