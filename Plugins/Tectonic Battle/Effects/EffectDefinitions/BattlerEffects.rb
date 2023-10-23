@@ -1968,7 +1968,7 @@ GameData::BattleEffect.register_effect(:Battler, {
     :resets_eor	=> true,
     :protection_info => {
         :hit_proc => proc do |user, target, move, battle|
-            target.applyEffect(:Disable,3) if target.canBeDisabled?(true,move)
+            user.applyEffect(:Disable,3) if user.canBeDisabled?(true,move)
         end,
         :does_negate_proc => proc do |_user, _target, move, _battle|
             move.damagingMove?
