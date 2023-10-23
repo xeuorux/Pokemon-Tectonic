@@ -52,7 +52,7 @@ class PokeBattle_Battler
         return 0 unless takesIndirectDamage? || struggle
 
         aggravate = @battle.pbCheckOpposingAbility(:AGGRAVATE, @index) && !struggle
-        damageAmount = getFractionalDamageAmount(fraction,basedOnCurrentHP,aggravate: aggravate)
+        damageAmount = getFractionalDamageAmount(fraction,basedOnCurrentHP,aggravate: aggravate,struggle: struggle)
         
         showDamageAnimation = false if aiCheck
         if showDamageAnimation
@@ -75,7 +75,7 @@ class PokeBattle_Battler
         end
     end
 
-    def getFractionalDamageAmount(fraction,basedOnCurrentHP=false,aggravate: false)
+    def getFractionalDamageAmount(fraction,basedOnCurrentHP=false,aggravate: false,struggle: false)
         return 0 unless takesIndirectDamage?
         fraction /= BOSS_HP_BASED_EFFECT_RESISTANCE if boss?
         fraction *= 1.5 if aggravate
