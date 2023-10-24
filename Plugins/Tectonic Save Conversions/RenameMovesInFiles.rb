@@ -14,6 +14,14 @@ SaveData.register_conversion(:move_renaming_0) do
   end
 end
 
+SaveData.register_conversion(:move_renaming_0) do
+  game_version '3.0.3'
+  display_title '3.0.3 move renames'
+  to_all do |save_data|
+    renameAllSavedMovesInBatch(save_data,2)
+  end
+end
+
 def renameMovesOnPokemon(pokemon, renameHash)
   pokemon.moves.map! { |move|
     moveIDString = move.id.to_s
@@ -51,5 +59,11 @@ end
 def downgradeSaveTo20()
   save_data = SaveData.get_data_from_file(SaveData::FILE_PATH)
   save_data[:game_version] = "2.0.0"
+  File.open(SaveData::FILE_PATH, 'wb') { |file| Marshal.dump(save_data, file) }
+end
+
+def downgradeSaveTo30()
+  save_data = SaveData.get_data_from_file(SaveData::FILE_PATH)
+  save_data[:game_version] = "3.0.0"
   File.open(SaveData::FILE_PATH, 'wb') { |file| Marshal.dump(save_data, file) }
 end

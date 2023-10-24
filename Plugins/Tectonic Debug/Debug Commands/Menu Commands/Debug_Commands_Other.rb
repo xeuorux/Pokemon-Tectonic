@@ -193,14 +193,14 @@ DebugMenuCommands.register("renamemovefromfile", {
 
       Compiler.write_moves
 
-      echoln("Compiling species data")
+      echoln("Writing species data")
       Compiler.write_pokemon
       Compiler.write_pokemon_forms
 
-      echoln("Compiling trainer data")
+      echoln("Writing trainer data")
       Compiler.write_trainers
 
-      echoln("Compiling avatar data")
+      echoln("Writing avatar data")
       Compiler.write_avatars
       pbMessage("Mass rename completed.")
 
