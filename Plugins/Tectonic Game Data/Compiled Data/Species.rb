@@ -304,7 +304,7 @@ module Compiler
           :moves                 => moves,
           :tutor_moves           => contents["TutorMoves"] || base_data.tutor_moves.clone,
           :egg_moves             => contents["EggMoves"] || base_data.egg_moves.clone,
-          :egg_moves             => contents["LineMoves"] || base_data.egg_moves.clone,
+          :line_moves            => contents["LineMoves"] || base_data.egg_moves.clone,
           :abilities             => contents["Abilities"] || base_data.abilities.clone,
           :hidden_abilities      => contents["HiddenAbility"] || base_data.hidden_abilities.clone,
           :wild_item_common      => contents["WildItemCommon"] || base_data.wild_item_common,

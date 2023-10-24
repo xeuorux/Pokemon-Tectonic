@@ -117,7 +117,7 @@ module GameData
             end
         end
         @removedPokemon 	= hash[:removed_pokemon] || []
-        @policies		  	= hash[:policies]		|| []
+        @policies		  	  = hash[:policies]		|| []
         @extendsClass	  	= hash[:extends_class]
         @extendsName	  	= hash[:extends_name]
         @extendsVersion 	= hash[:extends_version] || -1
