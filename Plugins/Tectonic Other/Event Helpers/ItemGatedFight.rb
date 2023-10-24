@@ -14,11 +14,13 @@ def itemGatedFight(itemID,regularBattleIntroText,itemGateIntroText,requestItemTe
             else
                 pbMessage(_INTL(declineGiveText))
                 forcePlayerBackwards
+                get_self.direction = get_self.original_direction
                 command_end # exit event processing
             end
         else
             pbMessage(_INTL(lackingItemText))
             forcePlayerBackwards
+            get_self.direction = get_self.original_direction
             command_end # exit event processing
         end
     end

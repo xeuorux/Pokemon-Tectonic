@@ -2,6 +2,7 @@ class Game_Character
     attr_reader   :id
     attr_reader   :original_x
     attr_reader   :original_y
+    attr_reader   :original_direction
     attr_reader   :x
     attr_reader   :y
     attr_reader   :real_x
