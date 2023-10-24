@@ -423,7 +423,7 @@
 1422,FIREPULSE,Fire Pulse,00A,60,FIRE,Special,100,15,20,NearOther,0,CanProtect;CanMirrorMove;Pulse,"The user attacks the target with a pulsing blast of fire. It has a 20% chance to burn.",FLAMEBURST
 1423,SHRAPNELCANNON,Tephra Cannon,551,30,FIRE,Special,100,12,0,NearOther,0,CanProtect;CanMirrorMove;Pulse,"The user launches volcanic debris, dealing damage and setting a layer of flame spikes around the target.",FLAMEBURST
 1424,STORMDRIVE,Storm Drive,0E6,120,ELECTRIC,Physical,100,10,0,NearOther,0,CanProtect;CanMirrorMove,"The user charges, then attacks on the second turn. Charges instantly in Rain.",WILDCHARGE
-1425,MULTINEEDLE,Manyneedle,0BE,30,BUG,Physical,100,15,20,NearOther,0,CanProtect;CanMirrorMove,"The foe is stabbed once by each of the user's stingers.",TWINEEDLE
+1425,MULTINEEDLE,Manyneedle,0BE,20,BUG,Physical,100,15,20,NearOther,0,CanProtect;CanMirrorMove,"The foe is stabbed once by each of the user's stingers.",TWINEEDLE
 1426,RISINGTIDES,Rising Tide,100,50,WATER,Special,0,10,0,NearFoe,0,CanProtect;CanMirrorMove,"Strikes the target with harbor waters, then summons rain for eight turns.",SURF
 1427,BLOODBITE,Exsanguinate,0A7,75,POISON,Physical,100,15,100,NearOther,0,CanProtect;CanMirrorMove;Biting,"The user steals blood, lowering the target's Attack. If so, raises the user's Attack.",CRUNCH
 1428,GLEEFULGRASP,Gleeful Grasp,048,80,DARK,Physical,100,10,100,NearOther,0,CanProtect;CanMirrorMove,"The user indulges its love of battle by striking a foe. Both of the user's attacking stats are raised.",
