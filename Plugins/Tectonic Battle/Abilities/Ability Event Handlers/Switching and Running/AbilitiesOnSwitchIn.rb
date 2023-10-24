@@ -625,7 +625,7 @@ BattleHandlers::AbilityOnSwitchIn.add(:WIBBLEWOBBLE,
 ##########################################
 # Self buffing
 ##########################################
-BattleHandlers::AbilityOnSwitchIn.add(:DAUNTLESSSWORD,
+BattleHandlers::AbilityOnSwitchIn.add(:INTREPIDSWORD,
   proc { |ability, battler, _battle, aiCheck|
       if aiCheck
           next getMultiStatUpEffectScore([:ATTACK, 1], battler, battler)
