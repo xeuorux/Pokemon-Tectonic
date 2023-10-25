@@ -452,9 +452,9 @@ def renameMoves(renamingHash)
       :version            => trainer_data.version,
       :pokemon            => new_pokemon,
       :policies		        => trainer_data.policies,
-      :extends_class      => trainer_data.extends_class,
-      :extends_name       => trainer_data.extends_name,
-      :extends_version    => trainer_data.extends_version,
+      :extends_class      => trainer_data.extendsClass,
+      :extends_name       => trainer_data.extendsName,
+      :extends_version    => trainer_data.extendsVersion,
       :removed_pokemon    => trainer_data.removedPokemon,
       :monument_trainer   => trainer_data.monumentTrainer,
     }
