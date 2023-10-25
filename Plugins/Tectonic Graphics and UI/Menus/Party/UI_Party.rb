@@ -369,15 +369,15 @@ end
           if !@pokemon.egg?
             if !@text || @text.length==0
               # Draw HP numbers
-              textpos.push([sprintf("% 3d /% 3d",@pokemon.hp,@pokemon.totalhp),224,54,1,basecolor,shadowcolor])
+              textpos.push([sprintf("% 3d /% 3d",self.hp,@pokemon.totalhp),224,54,1,basecolor,shadowcolor])
               # Draw HP bar
-              if @pokemon.hp>0
-                w = @pokemon.hp*96*1.0/@pokemon.totalhp
+              if self.hp>0
+                w = self.hp*96*1.0/@pokemon.totalhp
                 w = 1 if w<1
                 w = ((w/2).round)*2
                 hpzone = 0
-                hpzone = 1 if @pokemon.hp<=(@pokemon.totalhp/2).floor
-                hpzone = 2 if @pokemon.hp<=(@pokemon.totalhp/4).floor
+                hpzone = 1 if self.hp<=(@pokemon.totalhp/2).floor
+                hpzone = 2 if self.hp<=(@pokemon.totalhp/4).floor
                 hprect = Rect.new(0,hpzone*8,w,8)
                 @overlaysprite.bitmap.blt(128,52,@hpbar.bitmap,hprect)
               end
