@@ -285,6 +285,8 @@ def renameMoves(renamingHash)
       :zmove            => oldMoveData.zmove,
     }
     # Add move's data to records
+    GameData::Move::DATA.delete(oldMoveData.id)
+    GameData::Move::DATA.delete(oldMoveData.id_number)
     GameData::Move.register(move_hash)
     GameData::Move.save
   end
@@ -427,6 +429,8 @@ def renameMoves(renamingHash)
         :tribes                => species_data.tribes || base_data.tribes,
       }
     end
+    GameData::Species::DATA.delete(species_data.id)
+    GameData::Species::DATA.delete(species_data.id_number)
     GameData::Species.register(new_species_hash)
     GameData::Species.save
   end
@@ -458,6 +462,8 @@ def renameMoves(renamingHash)
       :removed_pokemon    => trainer_data.removedPokemon,
       :monument_trainer   => trainer_data.monumentTrainer,
     }
+    GameData::Trainer::DATA.delete(trainer_data.id)
+    GameData::Trainer::DATA.delete(trainer_data.id_number)
     GameData::Trainer.register(new_trainer_hash)
 
     # Save all data
@@ -488,6 +494,8 @@ def renameMoves(renamingHash)
       :health_bars	      => avatar_data.num_health_bars,
       :aggression		      => avatar_data.aggression,
     }
+    GameData::Species::DATA.delete(avatar_data.id)
+    GameData::Species::DATA.delete(avatar_data.id_number)
     GameData::Avatar.register(new_avatar_hash)
 
     # Save all data
