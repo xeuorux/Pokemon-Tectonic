@@ -42,6 +42,7 @@ Pokemon = MVULPIX,9
 #-------------------------------
 [YOUNGSTER,Harvey]
 Pokemon = LUVDISC,8
+    Moves = WIPEOUT,GLITTERBOMB,CHARM
     AbilityIndex = 0 # Slick Surface
 Pokemon = SEEDOT,8
     AbilityIndex = 0 # Cloud Nine
@@ -50,19 +51,22 @@ Pokemon = SEEDOT,8
 Pokemon = PICHU,8
     AbilityIndex = 0 # Extreme Voltage
 Pokemon = PONYTA,8
-    AbilityIndex = 0 # Sun Chaser
+    Moves = FIERYTOUCH,TREADON
+    AbilityIndex = 1 # Leg Strength
 #-------------------------------
 [HIKER,Dave]
 Pokemon = GEODUDE,8
     Moves = ROCKTHROW,RUMBLE,ROCKPOLISH
     AbilityIndex = 0 # Unbreakable
 Pokemon = TIMBURR,9
+    Moves = POUND,LOWKICK,BRANCHPOKE
     AbilityIndex = 0 # Expertise
 #-------------------------------
 [GENTLEMAN,Wilfrid]
 Pokemon = GROWLITHE,10
     AbilityIndex = 0 # Intimidate
 Pokemon = CHEWTLE,10
+    Moves = HEADBANG,BREACH,BITE
     AbilityIndex = 0 # Strong Jaw
 #-------------------------------
 [NINJABOY,Matthew]
@@ -105,7 +109,7 @@ Pokemon = TEPIG,14
 Pokemon = AMEOWTH,14
     AbilityIndex = 0 # Fur Coat
 Pokemon = CHIKORITA,14
-    Moves = ESSENCEARROW,SUNSHINE,SYNTHESIS,FAIRYWIND
+    Moves = ESSENCEARROW,SUNSHINE,FAIRYWIND
     AbilityIndex = 1 # Heat Savor
 #-------------------------------
 [TUBER_M,Peter]
