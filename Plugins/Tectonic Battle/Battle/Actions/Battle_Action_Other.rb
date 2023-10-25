@@ -57,7 +57,7 @@ class PokeBattle_Battle
         pbCommonAnimation("MegaEvolution2", battler)
         megaName = battler.pokemon.megaName
         megaName = _INTL("Mega {1}", battler.pokemon.speciesName) if !megaName || megaName == ""
-        pbDisplay(_INTL("{1} has Mega Evolved into {2}!", battler.pbThis, megaName))
+        pbDisplay(_INTL("{1} has transformed into {2}!", battler.pbThis, megaName))
         side  = battler.idxOwnSide
         owner = pbGetOwnerIndexFromBattlerIndex(idxBattler)
         @megaEvolution[side][owner] = -2

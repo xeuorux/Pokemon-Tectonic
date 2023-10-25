@@ -1254,7 +1254,7 @@ BattlerPlayerY = 10
 BattlerEnemyY = 14
 #-------------------------------
 [RAYQUAZA,1]
-FormName = Mega
+FormName = Delta Form
 MegaMove = DRAGONASCENT
 MegaMessage = 1
 BaseStats = 105,180,100,115,180,100
