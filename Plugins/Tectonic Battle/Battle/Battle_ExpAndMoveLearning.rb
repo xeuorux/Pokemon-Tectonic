@@ -124,17 +124,15 @@ class PokeBattle_Battle
             end
             exp = exp.floor
         end
+        exp /= 5
         # Scale the gained Exp based on the gainer's level (or not)
         if Settings::SCALED_EXP_FORMULA
-            exp /= 5
             levelAdjust = (2 * level + 10.0) / (pkmn.level + level + 10.0)
             levelAdjust **= 5
             levelAdjust = Math.sqrt(levelAdjust)
             exp *= levelAdjust
             exp = exp.floor
             exp += 1 if isPartic || hasExpShare
-        else
-            exp /= 7
         end
         # Increase Exp gain based on battling streak
         pkmn.battlingStreak = 0 if pkmn.battlingStreak.nil?
