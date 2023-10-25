@@ -32,11 +32,6 @@ class PokeBattle_Battle
             next if b.asleep?
             next if b.effectActive?(:SkyDrop)
             next if b.hasActiveAbility?(:TRUANT) && !b.effectActive?(:Truant)
-            # Mega Evolve
-            if !wildBattle? || !b.opposes?
-                owner = pbGetOwnerIndexFromBattlerIndex(b.index)
-                pbMegaEvolve(b.index) if @megaEvolution[b.idxOwnSide][owner] == b.index
-            end
             # Use Pursuit
             @choices[b.index][3] = idxSwitcher # Change Pursuit's target
             b.applyEffect(:Pursuit) if b.pbProcessTurn(@choices[b.index], false)
@@ -105,16 +100,6 @@ class PokeBattle_Battle
             pbShowAbilitySplash(b, :CLOAKING)
             b.pbChangeForm(newForm,_INTL("{1} changes its cloak to fit its next move!",b.pbThis))
             pbHideAbilitySplash(b)
-        end
-    end
-
-    def pbAttackPhaseMegaEvolution
-        pbPriority.each do |b|
-            next if wildBattle? && b.opposes?
-            next unless @choices[b.index][0] == :UseMove && !b.fainted?
-            owner = pbGetOwnerIndexFromBattlerIndex(b.index)
-            next if @megaEvolution[b.idxOwnSide][owner] != b.index
-            pbMegaEvolve(b.index)
         end
     end
 
@@ -228,7 +213,6 @@ class PokeBattle_Battle
         return true if @decision > 0
         pbAttackPhaseItems
         return true if @decision > 0
-        pbAttackPhaseMegaEvolution
         pbAttackPhaseCloaking
         return false
     end

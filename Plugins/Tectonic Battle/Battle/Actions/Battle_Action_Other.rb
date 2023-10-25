@@ -26,6 +26,47 @@ class PokeBattle_Battle
     end
 
     #=============================================================================
+    # Mega evolving a battler
+    #=============================================================================
+    def pbMegaEvolve(idxBattler)
+        battler = @battlers[idxBattler]
+        return if !battler || !battler.pokemon
+        return if !battler.hasMega? || battler.mega?
+        # Break Illusion
+        if battler.hasActiveAbility?(:ILLUSION)
+            BattleHandlers.triggerTargetAbilityOnHit(:ILLUSION, nil, battler, nil, self)
+        end
+        # Mega Evolve
+        if !battler.boss
+            trainerName = pbGetOwnerName(idxBattler)
+            pbDisplay(_INTL("{1}'s fervent wish has reached {2}!", trainerName, battler.pbThis))
+        else
+            case battler.pokemon.megaMessage
+            when 1 # Rayquaza
+                pbDisplay(_INTL("{1}'s is inspired by the echo of an ancient wish!", battler.pbThis))
+            else
+                pbDisplay(_INTL("{1}'s reacts to an unknown power!", battler.pbThis))
+            end
+        end
+        pbCommonAnimation("MegaEvolution", battler)
+        battler.pokemon.makeMega
+        battler.form = battler.pokemon.form
+        battler.pbUpdate(true)
+        @scene.pbChangePokemon(battler, battler.pokemon)
+        @scene.pbRefreshOne(idxBattler)
+        pbCommonAnimation("MegaEvolution2", battler)
+        megaName = battler.pokemon.megaName
+        megaName = _INTL("Mega {1}", battler.pokemon.speciesName) if !megaName || megaName == ""
+        pbDisplay(_INTL("{1} has Mega Evolved into {2}!", battler.pbThis, megaName))
+        side  = battler.idxOwnSide
+        owner = pbGetOwnerIndexFromBattlerIndex(idxBattler)
+        @megaEvolution[side][owner] = -2
+        pbCalculatePriority(false, [idxBattler])
+        # Trigger ability
+        battler.pbEffectsOnSwitchIn
+    end
+
+    #=============================================================================
     # Primal Reverting a battler
     #=============================================================================
     def pbPrimalReversion(idxBattler)
