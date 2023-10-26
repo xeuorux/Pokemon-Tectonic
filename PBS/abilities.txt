@@ -20,7 +20,7 @@
 19,SERENEGRACE,Serene Grace,"Doubles the likelihood of the user's random added effects activating."
 20,SWIFTSWIM,Swift Swim,"Doubles the Pokémon's Speed in rain."
 21,CHLOROPHYLL,Chlorophyll,"Doubles the Pokémon's Speed in sunshine."
-22,POWERUP,Power Up,"Raises the Pokémon's Attack by 50%."
+22,POWERUP,Power Up,"Raises the Pokémon's Attack by 50%, including Style Values and other bonuses."
 23,POISONPOINT,Poison Point,"Physical attacks against the Pokémon have a 30% chance to poison the attacker."
 24,INNERFOCUS,Inner Focus,"The Pokémon is protected from flinching, Intimidate, Fascinate, and Frustrate."
 25,HONEYGATHER,Honey Gather,"The Pokémon may gather Honey from somewhere."

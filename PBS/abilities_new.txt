@@ -14,7 +14,7 @@
 1013,SCALDINGSMOKE,Scalding Smoke,"Powers up Poison-type moves by 50%."
 1014,TRAPPER,Trapper,"Takes 25% less damage from Pokémon that are trapped."
 1015,DESERTARMOR,Desert Armor,"Doubles Defense in a sandstorm."
-1016,ENERGYUP,Energy Up,"Raises the Pokémon's Sp. Atk by 50%."
+1016,ENERGYUP,Energy Up,"Raises the Pokémon's Sp. Atk by 50%, including Style Values and other bonuses."
 1017,POISONABSORB,Poison Absorb,"Grants immunity to Poison-type moves and restores HP if hit by one."
 1018,AERODYNAMIC,Aerodynamic,"Grants immunity to Flying-type moves and raises Speed if hit by one."
 1019,HEADACHE,Headache,"Doubles Sp. Atk, but the Pokemon becomes Dizzy after attacking."
