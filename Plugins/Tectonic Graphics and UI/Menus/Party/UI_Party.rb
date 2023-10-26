@@ -297,6 +297,14 @@ end
     end
   
     def hp; return @pokemon.hp; end
+
+    def statusIndex
+      return getStatusIndexForPokemon(@pokemon)
+    end
+
+    def fainted?
+      return @pokemon.fainted
+    end
   
     def refresh
         return if disposed?
@@ -307,13 +315,13 @@ end
             if self.preselected;     @panelbgsprite.changeBitmap("swapsel2")
             elsif @switching;        @panelbgsprite.changeBitmap("swapsel")
             elsif @pokemon.afraid?;  @panelbgsprite.changeBitmap("afraidsel")
-            elsif @pokemon.fainted?; @panelbgsprite.changeBitmap("faintedsel")
+            elsif self.fainted?; @panelbgsprite.changeBitmap("faintedsel")
             else;                    @panelbgsprite.changeBitmap("ablesel")
             end
           else
             if self.preselected;     @panelbgsprite.changeBitmap("swap")
             elsif @pokemon.afraid?;  @panelbgsprite.changeBitmap("afraid")
-            elsif @pokemon.fainted?; @panelbgsprite.changeBitmap("fainted")
+            elsif self.fainted?; @panelbgsprite.changeBitmap("fainted")
             else;                    @panelbgsprite.changeBitmap("able")
             end
           end
@@ -325,7 +333,7 @@ end
           @hpbgsprite.visible = (!@pokemon.egg? && !(@text && @text.length>0))
           if @hpbgsprite.visible
             if self.preselected || (self.selected && @switching); @hpbgsprite.changeBitmap("swap")
-            elsif @pokemon.fainted?;                              @hpbgsprite.changeBitmap("fainted")
+            elsif self.fainted?;                              @hpbgsprite.changeBitmap("fainted")
             else;                                                 @hpbgsprite.changeBitmap("able")
             end
             @hpbgsprite.x     = self.x+96
@@ -369,29 +377,21 @@ end
           if !@pokemon.egg?
             if !@text || @text.length==0
               # Draw HP numbers
-              textpos.push([sprintf("% 3d /% 3d",@pokemon.hp,@pokemon.totalhp),224,54,1,basecolor,shadowcolor])
+              textpos.push([sprintf("% 3d /% 3d",self.hp,@pokemon.totalhp),224,54,1,basecolor,shadowcolor])
               # Draw HP bar
-              if @pokemon.hp>0
-                w = @pokemon.hp*96*1.0/@pokemon.totalhp
+              if self.hp>0
+                w = self.hp*96*1.0/@pokemon.totalhp
                 w = 1 if w<1
                 w = ((w/2).round)*2
                 hpzone = 0
-                hpzone = 1 if @pokemon.hp<=(@pokemon.totalhp/2).floor
-                hpzone = 2 if @pokemon.hp<=(@pokemon.totalhp/4).floor
+                hpzone = 1 if self.hp<=(@pokemon.totalhp/2).floor
+                hpzone = 2 if self.hp<=(@pokemon.totalhp/4).floor
                 hprect = Rect.new(0,hpzone*8,w,8)
                 @overlaysprite.bitmap.blt(128,52,@hpbar.bitmap,hprect)
               end
               # Draw status
-              status = 0
-              if @pokemon.afraid?
-                status = GameData::Status::DATA.keys.length / 2 + 1
-              elsif @pokemon.fainted?
-                status = GameData::Status::DATA.keys.length / 2
-              elsif @pokemon.status != :NONE
-                status = GameData::Status.get(@pokemon.status).id_number
-              end
-              if status >= 1
-                statusrect = Rect.new(0,16*(status-1),44,16)
+              if self.statusIndex >= 1
+                statusrect = Rect.new(0,16*(self.statusIndex-1),44,16)
                 @overlaysprite.bitmap.blt(78,68,@statuses.bitmap,statusrect)
               end
             end
@@ -1214,4 +1214,17 @@ def pbChoosePokemonForTrade(variableNumber,nameVarNumber,wanted)
 	pbChooseTradablePokemon(variableNumber,nameVarNumber,proc { |pkmn|
 		next pkmn.species==wanted
 	})
+end
+
+
+def getStatusIndexForPokemon(pokemon)
+  statusIndex = 0
+  if pokemon.afraid?
+    statusIndex = GameData::Status::DATA.keys.length / 2 + 1
+  elsif pokemon.fainted?
+    statusIndex = GameData::Status::DATA.keys.length / 2
+  elsif pokemon.status != :NONE
+    statusIndex = GameData::Status.get(pokemon.status).id_number
+  end
+  return statusIndex
 end
