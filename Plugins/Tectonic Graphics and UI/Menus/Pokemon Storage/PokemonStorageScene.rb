@@ -634,7 +634,7 @@ class PokemonStorageScene
     end
 
     def pbChooseSearch(msg)
-        searchMethods = [_INTL("Cancel"), _INTL("Name"), _INTL("Species"), _INTL("Type")]
+        searchMethods = [_INTL("Cancel"), _INTL("Name"), _INTL("Species"), _INTL("Type"), _INTL("Tribe")]
         return pbShowCommands(msg, searchMethods)
     end
 
@@ -657,8 +657,6 @@ class PokemonStorageScene
     end
 
     def pbSearch(searchText, minchars, maxchars, searchMethod)
-        oldsprites = pbFadeOutAndHide(@sprites)
-
         ret = pbEnterText(searchText, minchars, maxchars)
 
         # Find search candidates
@@ -680,20 +678,20 @@ class PokemonStorageScene
                         if search
                             fitsSearch = curpkmn.hasType?(search.id)
                         else
-                            pbDisplay(_INTL("\"#{search}\" is not a valid type."))
-                            return
+                            pbDisplay(_INTL("\"#{ret}\" is not a valid type."))
+                            return false
                         end
                     elsif searchMethod == 4 # Tribe
                         search = GameData::Tribe.try_get(ret.upcase)
                         if search
                             curpkmn.tribes.each do |tribe|
-                                next unless tribe.id == search.id
+                                next unless tribe == search.id
                                 fitsSearch = true
                                 break
                             end
                         else
-                            pbDisplay(_INTL("\"#{search}\" is not a valid tribe."))
-                            return
+                            pbDisplay(_INTL("\"#{ret}\" is not a valid tribe."))
+                            return false
                         end
                     end
 
@@ -703,29 +701,31 @@ class PokemonStorageScene
         end
         @sprites["box"].refreshBox = true
         pbRefresh
-        pbFadeInAndShow(@sprites, oldsprites)
 
         # Switch boxes
-        if found.length > 0
-            if found.length == 1
+        possibleboxes = {}
+        unless found.empty?
+            for i in 0..found.length - 1
+                opt = @storage.boxes[found[i][0]].name
+                possibleboxes[opt] = found[i][0]
+            end
+        end
+
+        if possibleboxes.length > 0
+            if possibleboxes.length == 1
                 if found[0][0] == @storage.currentBox
-                    pbDisplay(_INTL("The current box contains the only match."))
+                    if found.length == 1
+                        pbDisplay(_INTL("The current box contains the only match."))
+                    else
+                        pbDisplay(_INTL("The current box contains every match."))
+                    end
                     return false
                 else
                     pbJumpToBox(found[0][0])
                 end
-            else # Select which box to go to
-                possibleboxes = {}
-                for i in 0..found.length - 1
-                    opt = @storage.boxes[found[i][0]].name
-                    possibleboxes[opt] = found[i][0]
-                end
-                if possibleboxes.length == 1
-                    pbJumpToBox(found[0][0])
-                else
-                    foundIndex = pbChooseFound(_INTL("Multiple matches. Jump to which box?"), possibleboxes.keys)
-                    pbJumpToBox(possibleboxes[possibleboxes.keys[foundIndex]])
-                end
+            else
+                foundIndex = pbChooseFound(_INTL("Multiple matches. Jump to which box?"), possibleboxes.keys)
+                pbJumpToBox(possibleboxes[possibleboxes.keys[foundIndex]])
             end
         else
             pbDisplay(_INTL("No matching Pokémon were found."))

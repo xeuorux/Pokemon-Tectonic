@@ -627,7 +627,18 @@ class PokemonStorageScreen
             elsif command == searchCommand && searchCommand > -1
                 searchMethod = @scene.pbChooseSearch(_INTL("Search how?"))
                 next unless searchMethod > 0
-                next unless @scene.pbSearch(_INTL("Pokemon Name?"), 0, 12, searchMethod)
+                case searchMethod
+                when 0
+                    searchPrompt = _INTL("Which name?")
+                when 1
+                    searchPrompt = _INTL("Which species?")
+                when 2
+                    searchPrompt = _INTL("Which type?")
+                when 3
+                    searchPrompt = _INTL("Which trbe?")
+                end
+
+                next unless @scene.pbSearch(searchPrompt, 0, 12, searchMethod)
             elsif command == lockCommand && lockCommand > -1
                 pbChangeLock(@storage.currentBox)
                 next
