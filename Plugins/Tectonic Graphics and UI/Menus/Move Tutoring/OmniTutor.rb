@@ -11,7 +11,7 @@ def useOmniTutor()
         if $game_variables[1] < 0
             break
         else
-            omniTutorScreen(pbGetPokemon(1))
+            omniTutorScreen(pbMapInterpreter.pbGetPokemon(1))
         end
     end
 end
