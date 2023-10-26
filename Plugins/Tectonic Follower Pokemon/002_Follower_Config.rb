@@ -98,7 +98,7 @@ Events.OnTalkToFollower += proc {|pkmn,x,y,random_val|
 
 Events.OnTalkToFollower += proc {|pkmn,x,y,random_val|
   if $PokemonGlobal.follower_hold_item
-    items = [:FULLRESTORE,:MAXREVIVE,:ESCAPEROPE,:ESCAPEROPE,
+    items = [:FULLRESTORE,:FULLRESTORE,:ESCAPEROPE,:ESCAPEROPE,
          :RARECANDY,:RARECANDY,:REPEL,:REPEL,:MAXREPEL,
          :TINYMUSHROOM,:TINYMUSHROOM,:PEARL,:NUGGET,:BIGMUSHROOM,
          :POKEBALL,:POKEBALL,:POKEBALL,:GREATBALL,:GREATBALL,:ULTRABALL
