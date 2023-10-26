@@ -3055,7 +3055,7 @@ class PokeBattle_Move_0EB < PokeBattle_Move
 
     def pbSwitchOutTargetsEffect(user, targets, numHits, switchedBattlers)
         return if numHits == 0
-        forceOutTargets(user, targets, switchedBattlers)
+        forceOutTargets(user, targets, switchedBattlers, substituteBlocks: false)
     end
 
     def getTargetAffectingEffectScore(user, target)
@@ -3081,7 +3081,7 @@ class PokeBattle_Move_0EC < PokeBattle_Move
 
     def pbSwitchOutTargetsEffect(user, targets, numHits, switchedBattlers)
         return if numHits == 0
-        forceOutTargets(user, targets, switchedBattlers, true)
+        forceOutTargets(user, targets, switchedBattlers, substituteBlocks: true)
     end
 
     def getTargetAffectingEffectScore(user, target)

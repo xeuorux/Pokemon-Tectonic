@@ -1116,10 +1116,7 @@ class PokeBattle_Move_53F < PokeBattle_Move
 
     # This method is called if a move fails to hit all of its targets
     def pbAllMissed(user, targets)
-        return if @battle.wildBattle?
-        return if user.fainted?
-
-        forceOutTargets(user,targets,[],true)
+        forceOutTargets(user,targets,[],substituteBlocks: true, invertMissCheck: true)
     end
 
     def getEffectScore(user, target)

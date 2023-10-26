@@ -1432,7 +1432,7 @@ class PokeBattle_Move_139 < PokeBattle_Move_0EB
     def pbSwitchOutTargetsEffect(user, targets, numHits, switchedBattlers)
         return if numHits == 0
         targets.push(user)
-        forceOutTargets(user, targets, switchedBattlers, true, false)
+        forceOutTargets(user, targets, switchedBattlers, substituteBlocks: true, random: false)
     end
 
     def getTargetAffectingEffectScore(user, target)

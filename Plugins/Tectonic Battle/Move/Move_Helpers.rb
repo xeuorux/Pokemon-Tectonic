@@ -255,12 +255,17 @@ class PokeBattle_Move
         user.pbEffectsOnSwitchIn(true)
     end
 
-    def forceOutTargets(user, targets, switchedBattlers, substituteBlocks = false, random = true, ability: nil)
+    def forceOutTargets(user, targets, switchedBattlers, substituteBlocks: false, random: true, ability: nil, invertMissCheck: false)
         return if user.fainted?
         roarSwitched = []
         targets.each do |b|
             next if @battle.wildBattle? && b.opposes? # Can't force out wild pokemon or boss pokemon
-            next if b.fainted? || b.damageState.unaffected
+            next if b.fainted?
+            if invertMissCheck
+                next unless b.damageState.unaffected
+            else
+                next if b.damageState.unaffected
+            end
             next if switchedBattlers.include?(b.index)
             next if b.effectActive?(:Ingrain)
             next if substituteBlocks && b.damageState.substitute

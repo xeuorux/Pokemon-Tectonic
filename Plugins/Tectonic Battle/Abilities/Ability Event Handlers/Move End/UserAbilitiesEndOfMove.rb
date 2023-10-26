@@ -252,7 +252,7 @@ BattleHandlers::UserAbilityEndOfMove.add(:POWERLIFTER,
   proc { |ability, user, targets, move, battle, switchedBattlers|
       next if battle.futureSight
       next unless move.physicalMove?
-      move.forceOutTargets(user, targets, switchedBattlers, true, false, ability: ability)
+      move.forceOutTargets(user, targets, switchedBattlers, substituteBlocks: true, random: false, ability: ability)
   }
 )
 
