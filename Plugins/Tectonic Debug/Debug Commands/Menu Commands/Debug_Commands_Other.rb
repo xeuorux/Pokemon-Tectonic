@@ -209,7 +209,7 @@ DebugMenuCommands.register("renamemovefromfile", {
         " If you see a \"move_renames_2.txt\", rename yours to \"move_renames_3\".txt)")
       pbMessage("Or tell a programmer to do it for you :)")
     rescue
-      pbMessage("Some sort of error has occured.")
+      pbPrintException($!)
     end
   }
 })
@@ -265,7 +265,7 @@ def renameMoves(renamingHash)
     oldMoveData = GameData::Move.get(oldMoveName.to_sym)
     move_hash = {
       :id_number        => oldMoveData.id_number,
-      :id               => newMoveNames[0],
+      :id               => newMoveNames[0].to_sym,
       :name             => newMoveNames[1],
       :function_code    => oldMoveData.function_code,
       :base_damage      => oldMoveData.base_damage,
@@ -288,8 +288,8 @@ def renameMoves(renamingHash)
     GameData::Move::DATA.delete(oldMoveData.id)
     GameData::Move::DATA.delete(oldMoveData.id_number)
     GameData::Move.register(move_hash)
-    GameData::Move.save
   end
+  # GameData::Move.save
 
   GameData::Species.each do |species_data|
     changed = false
@@ -374,7 +374,7 @@ def renameMoves(renamingHash)
         :shadow_x              => species_data.shadow_x,
         :shadow_size           => species_data.shadow_size,
         :notes                 => species_data.notes,
-        :tribes                => species_data.tribes,
+        :tribes                => species_data.tribes(true),
       }
     else
       base_data = GameData::Species.get(species_data.species)
@@ -426,14 +426,12 @@ def renameMoves(renamingHash)
         :unmega_form           => species_data.unmega_form,
         :mega_message          => species_data.mega_message,
         :notes                 => species_data.notes,
-        :tribes                => species_data.tribes || base_data.tribes,
+        :tribes                => species_data.tribes(true) || base_data.tribes(true),
       }
     end
-    GameData::Species::DATA.delete(species_data.id)
-    GameData::Species::DATA.delete(species_data.id_number)
     GameData::Species.register(new_species_hash)
-    GameData::Species.save
   end
+  # GameData::Species.save
 
   renameMovesInArray = Proc.new { |move|
     if renamingHash.has_key?(move.to_s)
@@ -462,13 +460,9 @@ def renameMoves(renamingHash)
       :removed_pokemon    => trainer_data.removedPokemon,
       :monument_trainer   => trainer_data.monumentTrainer,
     }
-    GameData::Trainer::DATA.delete(trainer_data.id)
-    GameData::Trainer::DATA.delete(trainer_data.id_number)
     GameData::Trainer.register(new_trainer_hash)
-
-    # Save all data
-    GameData::Trainer.save
   end
+  # GameData::Trainer.save
 
   GameData::Avatar.each do |avatar_data|
     newMoves1 = avatar_data.moves1.map(&renameMovesInArray)
@@ -494,11 +488,7 @@ def renameMoves(renamingHash)
       :health_bars	      => avatar_data.num_health_bars,
       :aggression		      => avatar_data.aggression,
     }
-    GameData::Species::DATA.delete(avatar_data.id)
-    GameData::Species::DATA.delete(avatar_data.id_number)
     GameData::Avatar.register(new_avatar_hash)
-
-    # Save all data
-    GameData::Avatar.save
   end
+  # GameData::Avatar.save
 end
