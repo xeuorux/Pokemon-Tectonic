@@ -37,17 +37,17 @@ def useAidKit()
 		healAmount = AID_KIT_BASE_HEALING + HEALING_UPGRADE_AMOUNT * $PokemonGlobal.teamHealerUpgrades
 		playerTribalBonus.updateTribeCount
 		healAmount = (healAmount * 1.25).ceil if playerTribalBonus.hasTribeBonus?(:CARETAKER)
-		fullyHealed = true
 		previousHealthValues = []
+		previousStatusIndices = []
 		$Trainer.party.each do |p|
 			next if p.egg?
 			previousHealthValues.push(p.hp)
+			previousStatusIndices.push(getStatusIndexForPokemon(p))
 			pbItemRestoreHP(p,healAmount)
 			p.heal_status
 			p.heal_PP
-			fullyHealed = false if p.hp < p.totalhp
 		end
-		showPartyHealing($Trainer.party,previousHealthValues,fullyHealed)
+		showPartyHealing($Trainer.party,previousHealthValues,previousStatusIndices)
 		refreshFollow(false)
 		return 1
 	end

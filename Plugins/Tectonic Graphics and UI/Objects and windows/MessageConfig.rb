@@ -666,7 +666,7 @@ module MessageConfig
     return visiblesprites
   end
   
-  def pbFadeInAndShow(sprites,visiblesprites=nil)
+  def pbFadeInAndShow(sprites,visiblesprites=nil,duration: 0.4)
     if visiblesprites
       for i in visiblesprites
         if i[1] && sprites[i[0]] && !pbDisposed?(sprites[i[0]])
@@ -674,7 +674,7 @@ module MessageConfig
         end
       end
     end
-    numFrames = (Graphics.frame_rate*0.4).floor
+    numFrames = (Graphics.frame_rate * duration).floor
     numFrames = 1 if $PokemonSystem.skip_fades == 0
     alphaDiff = (255.0/numFrames).ceil
     pbDeactivateWindows(sprites) {
