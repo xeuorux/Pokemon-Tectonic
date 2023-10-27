@@ -48,6 +48,8 @@ def pbPokeCenterPC
         $PokemonGlobal.omnitutor_active = true
     end
 
+    $PokEstate.checkForAwards(false) unless $game_switches[ESTATE_DISABLED_SWITCH]
+
     command = 0
     loop do
         commands = []
@@ -61,7 +63,7 @@ def pbPokeCenterPC
         commands[widthdrawCommand = commands.length] = _INTL("Withdraw Pokémon") 
         commands[depositCommand = commands.length] = _INTL("Deposit Pokémon")
         commands[omniTutorCommand = commands.length] = _INTL("OmniTutor") if $PokemonGlobal.omnitutor_active 
-        commands[visitEstateCommand = commands.length] = _INTL("Visit PokÉstate") if !$game_switches[ESTATE_DISABLED_SWITCH]
+        commands[visitEstateCommand = commands.length] = _INTL("Visit PokÉstate") unless $game_switches[ESTATE_DISABLED_SWITCH]
         commands[logOutCommand = commands.length] = _INTL("Log Out") 
         command = pbShowCommands(nil,commands,-1)
         if command == organizeCommand || command == widthdrawCommand || command == depositCommand

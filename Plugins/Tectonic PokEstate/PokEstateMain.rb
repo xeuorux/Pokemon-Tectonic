@@ -165,64 +165,81 @@ class PokEstate
 	end
 
 	def careTakerInteraction
-		if COMPLETION_AWARDS_FEATURE_AVAILABLE
-			newAwards = findNewAwards()
-			if newAwards.length != 0
-				if newAwards.length == 1
-					pbMessage(_INTL("You've earned a new PokéDex completion reward!"))
-				else
-					pbMessage(_INTL("You've earned #{newAwards.length} new PokéDex completion rewards!"))
-				end
-				if newAwards.length < 5
-					newAwards.each do |newAwardInfo|
-						awardReward = newAwardInfo[0]
-						awardDescription = newAwardInfo[1]
-						pbMessage(_INTL("For collecting #{awardDescription}, please take this."))
-						if awardReward.is_a?(Array)
-							pbReceiveItem(awardReward[0],awardReward[1])
-						else
-							pbReceiveItem(awardReward)
-						end
-						awardsGranted.push(newAwardInfo[2])
-					end
-				else
-					pbMessage(_INTL("That's so many! I'll just give you all the rewards at once."))
-					itemsToGrantHash = {}
-					newAwards.each do |newAwardInfo|
-						awardReward = newAwardInfo[0]
-						awardDescription = newAwardInfo[1]
-						itemCount = 1
-						if awardReward.is_a?(Array)
-							itemGrant = awardReward[0]
-							itemCount = awardReward[1]
-						else
-							itemGrant = awardReward
-						end
-						awardsGranted.push(newAwardInfo[2])
-						if !itemsToGrantHash.has_key?(itemGrant)
-							itemsToGrantHash[itemGrant] = itemCount
-						else
-							itemsToGrantHash[itemGrant] += itemCount
-						end
-					end
-					itemsToGrantHash.each do |item,count|
-						pbReceiveItem(item,count)
-					end
-				end
-			end
-		end
+		checkForAwards(true)
 		caretakerChoices()
 	end
 
+	def checkForAwards(inPerson = true)
+		newAwards = findNewAwards()
+		if newAwards.length != 0
+			if newAwards.length == 1
+				pbMessage(_INTL("\\ME[Bug catching 2nd]You've earned a new PokéDex completion reward!\\wtnp[60]"))
+			else
+				pbMessage(_INTL("\\ME[Bug catching 2nd]You've earned #{newAwards.length} new PokéDex completion rewards!\\wtnp[60]"))
+			end
+			# Give each reward one at a time
+			if newAwards.length < 5
+				newAwards.each do |newAwardInfo|
+					awardReward = newAwardInfo[0]
+					awardDescription = newAwardInfo[1]
+					if inPerson
+						pbMessage(_INTL("For collecting #{awardDescription}, please take this."))
+					else
+						pbMessage(_INTL("For collecting #{awardDescription}, you receive this."))
+					end
+					if awardReward.is_a?(Array)
+						pbReceiveItem(awardReward[0],awardReward[1])
+					else
+						pbReceiveItem(awardReward)
+					end
+					self.awardsGranted.push(newAwardInfo[2])
+				end
+			else # Give them in bulk
+				if inPerson
+					pbMessage(_INTL("That's so many! I'll just give you all the rewards at once."))
+				else
+					pbMessage(_INTL("That's a lot! Beginning bulk transfer of rewards."))
+				end
+				itemsToGrantHash = {}
+				newAwards.each do |newAwardInfo|
+					awardReward = newAwardInfo[0]
+					awardDescription = newAwardInfo[1]
+					itemCount = 1
+					if awardReward.is_a?(Array)
+						itemGrant = awardReward[0]
+						itemCount = awardReward[1]
+					else
+						itemGrant = awardReward
+					end
+					self.awardsGranted.push(newAwardInfo[2])
+					if !itemsToGrantHash.has_key?(itemGrant)
+						itemsToGrantHash[itemGrant] = itemCount
+					else
+						itemsToGrantHash[itemGrant] += itemCount
+					end
+				end
+				itemsToGrantHash.each do |item,count|
+					pbReceiveItem(item,count)
+				end
+			end
+		end
+	end
+
 	def awardGranted?(awardID)
-		return awardsGranted.include?(awardID)
+		return self.awardsGranted.include?(awardID)
 	end
 
 	def findNewAwards
+		# Load all data dependent events
+		LoadDataDependentAwards.trigger
 		newAwardsArray = []
 		$Trainer.pokedex.resetOwnershipCache()
-		newAwardsArray = GrantAwards.trigger(awardsGranted,newAwardsArray)
+		newAwardsArray = GrantAwards.trigger(self.awardsGranted,newAwardsArray)
 		return newAwardsArray
+	end
+
+	def resetAwards
+		@awardsGranted = []
 	end
 	
 	def caretakerChoices()
@@ -241,9 +258,6 @@ class PokEstate
 			changeLandscape()
 		elsif commandReceiveUpdate > -1 && command == commandReceiveUpdate
 			tryHearStory()
-		elsif commandScrubAwards > -1 && command == commandScrubAwards
-			@awardsGranted.clear
-			pbMessage(_INTL("Scrubbed awards."))
 		end
 	end
 
@@ -273,9 +287,6 @@ class PokEstate
 				break
 			end
 		end
-
-		# Load all data dependent events
-		LoadDataDependentAwards.trigger
 	
 		# Load all the pokemon into the placeholders
 		events = $game_map.events.values.shuffle()
