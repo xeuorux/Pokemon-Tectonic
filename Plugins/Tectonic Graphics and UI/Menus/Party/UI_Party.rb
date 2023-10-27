@@ -303,7 +303,7 @@ end
     end
 
     def fainted?
-      return @pokemon.fainted
+      return @pokemon.fainted?
     end
   
     def refresh
