@@ -1161,7 +1161,7 @@ class PokeBattle_Move_12D < PokeBattle_ForetoldMove
     def pbDisplayUseMessage(user, targets)
         super
         if @battle.futureSight
-            @battle.pbDisplay(_INTL("It's a ball of pure #{GameData::Type.get(@calcType).name}!"))
+            @battle.pbDisplay(_INTL("It's an explosion of pure #{GameData::Type.get(@calcType).name}!"))
         end
     end
 end
