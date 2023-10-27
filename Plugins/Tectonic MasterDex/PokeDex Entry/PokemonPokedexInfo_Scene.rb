@@ -762,14 +762,17 @@ sp.form) && !Settings::DEX_SHOWS_ALL_FORMS
                 movaData = GameData::Move.get(move)
                 next movaData.category == 0
             end
+            compatiblePhysMoves.sort_by!{|moveID| GameData::Move.get(moveID).name}
             compatibleSpecMoves = compatibleMoves.select do |move|
                 movaData = GameData::Move.get(move)
                 next movaData.category == 1
             end
+            compatibleSpecMoves.sort_by!{|moveID| GameData::Move.get(moveID).name}
             compatibleStatusMoves = compatibleMoves.select do |move|
                 movaData = GameData::Move.get(move)
                 next movaData.category == 2
             end
+            compatibleStatusMoves.sort_by!{|moveID| GameData::Move.get(moveID).name}
             @scrollableLists = [compatiblePhysMoves, compatibleSpecMoves, compatibleStatusMoves]
             categoryName = [_INTL("Physical"),_INTL("Special"),_INTL("Status")][@horizontalScroll]
             drawFormattedTextEx(overlay, xLeft, 60, 192, "<ac><b>#{categoryName}</b></ac>", base, shadow)
