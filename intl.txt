@@ -2276,7 +2276,7 @@ Oh, ¿Eres un entrenador?
 Would you be interested in taking my Sandshrew?
 ¿Te interesa tomar mi Sandshrew?
 I brought it here from Alola, but I'm far too old to travel now, and it's getting restless.
-Lo traje aquí desde Alola, pero ya estoy vieja para viajar, y se está poniendo inquieto.
+Lo compré aquí desde Alola, pero ya estoy viejo para viajar, y se está poniendo inquieto.
 I'd need $5000 in return. Sorry, but I've got to survive somehow!
 Pero necesito $5000 a cambio. Perdona, ¡Pero tengo que sobrevivir!
 What do you say?
@@ -2388,7 +2388,7 @@ A promise is a promise, have a grab at my loot. I'm down to rematch if you swing
 Una promesa es una promesa, toma mi botín. Estoy para una revancha si te apareces de nuevo.
 Don't think you've impressed me yet. I've still got a bone to pick with your team.
 Aún no creas que me impresionaste. Todavía tengo que ajustar cuentas con tu equipo.
-I just got a Masterdex. I can't wait to use it during battles, it seems very helpful!
+I just got a Pokedex. I can't wait to use it during battles, it seems very helpful!
 Acabo de conseguir una MasterDex. No puedo esperar para usarla durante combates, ¡Se ve muy útil!
 Crushed underfoot...
 Completamente aplastada…
@@ -3072,14 +3072,14 @@ Ah, pardon my indulgence in even asking.
 Ah, perdona mi indulgencia en incluso preguntar.
 Wait a minute sis! This loser doesn't even have two pokemon!
 ¡Un minuto hermana! ¡Este perdedor ni tiene dos Pokémon!
-Really? Teeheehee, get lost, loser.
-¿En serio? Jijiji, pierdete, perdedor.
-Hey! You stepped on our sandcastle!
-¡Hey! ¡Pisaste nuestro castillo de arena!
+<ar>Really? Teeheehee, get lost, loser.</ar>
+<ar>¿En serio? Jijiji, pierdete, perdedor.</ar>
+<ar>Hey! You stepped on our sandcastle!</ar>
+<ar>¡Hey! ¡Pisaste nuestro castillo de arena!</ar>
 Let's rough 'em up sis!
-¡Démosle una lección hermana!
-I'm gonna go tell on you!
-¡Te advierto!
+¡Demosle una lección hermana!
+<ar>I'm gonna go tell on you!</ar>
+<ar>¡Te advierto!</ar>
 Our older brother will beat you up!
 ¡Nuestro hermano mayor te derrotará!
 They beat us sis...
@@ -3405,10 +3405,6 @@ Want me to call up some of my old buddies next time? Oh, whatever.
 ¿Quieres que llame a mis antiguos colegas la próxima vez? Oh, como sea.
 The door is securely locked.
 La puerta está firmemente bloqueada.
-A maroon punching bag.
-Un saco de boxeo color granate.
-A large logo of a Pancham is emblazened on the front and back.
-Está adornado con un gran logo de un Pancham tanto por delante como por detrás.
 
 [Map43]
 
@@ -3677,14 +3673,13 @@ I think we'll get along for a long time.
 Creo que nos llevaremos bien.
 
 [Map49]
-An alarm clock. The alarm's been disabled.
-Una reloj con alarma. La alarma ha sido desactivada.
-My dad bought me a Bonsly, but I don't like it.
-Mi papá me compró este Bonsly, pero no me gusta.
-It cries all the time when I cry, and I cry a lot. I don't like it when others cry, so I cry more.
-Llora todo el tiempo cuadno lloro, y lloro bastante. No me gusta cuando otros lloran, así que lloro más.
-I want a Pokemon that's tough enough to not cry all the time! I want a brave Riolu!
-¡Quiero un Pokémon lo suficientemente duro para que no llore todo el tiempo! ¡Quiero un Riolu valiente!
+
+My dad bought me a Minccino, but I don't like it.
+Mi papá me trajo este Minccino, pero no me gusta.
+It sheds it fur everywhere, and I have to clean it up.
+Deja pelos por todos lados, y luego tengo que limpiarlos.
+I want a cute Pokemon that doesn't make a mess. I want a Stufful.
+Quiero un Pokémon bonito que no haga un lío. ¡Quiero un Stufful!
 Can you trade me one? I WILL cry if you don't.
 ¿Puedes intercambiarme uno! VOY a llorar si no lo haces.
 I feel... the tears... already...
@@ -3693,8 +3688,8 @@ I'm gonna cry, and its going to be your fault!
 Voy a llorar, ¡Y va a ser tu culpa!
 YAY! Let's trade!
 ¡YAY! ¡Intercambiemos!
-\PN traded Riolu for Bonsly!
-¡\PN intercambió a Riolu por Bonsly!
+\PN traded Stufful for Minccino!
+¡\PN intercambió a Stufful por Minccino!
 I'm gonna hug my Stufful now. It'll be cute FOREVER!
 Ahora abrazaré a mi Stufful. ¡Será bonito PARA SIEMPRE! 
 My Stufful is great! I give it lots of hugs.
@@ -3715,30 +3710,19 @@ The people here are so rude!
 ¡La gente aquí es tan maleducada!
 Not just the locals, but even the trainers who come here to fight at the gym.
 No sólo los locales, sino incluso los entrenadores que vienen a desafiar el gimnasio.
-On our first day here, some rich jerk got mad at our little girl for playing on the stairs.
-En nuestro primer día aquí, algún niño rico se enojó con nuestra pequeña porque estaba jugando en las escaleras.
-He shouted at her about "wasting his time" until she ran to me crying.
-Le gritó sobre algo de "que le hacía perder el tiempo" hasta que vinó hacia mí llorando.
-I tried to confront him, but he just ran off, right into the gym.
-Intenté confrontarlo, pero él sólo corrió, directo al gimnasio.
+On our first day here, some rich-kid got mad at our little girl just cause she was playing on the stairs nearby.
+En nuestro primer día aquí, algún niño rico se enojó con nuestra pequeña porque estaba jugando en las escaleras cercanas.
+He shouted at her about some competition he was having with his younger sibling until she ran to me crying.
+Le gritó sobre alguna competición que tenía con su hermano pequeño hasta que ella vino hacia a mi llorando.
+He didn't apologize or nothing, just ran right into the gym.
+Ni siquiera pidió una disculpa o algo, sólo corrió directo al gimnasio.
 Can you believe the nerve of some people?
 ¿Puedes creer el descaro de algunas personas?
 No
 No
 Yes
 Sí
-Oh, don't mind me, I'm just restocking this Vending Machine.
-Oh, no me prestes atención, estoy reabasteciendo esta Máquina Expendedora.
-One of my many hats I wear.
-Una de las tantas labores de las que me tengo que encargar.
-*sigh*
-*sigh*
-The fridge is stocked with a variety of tropical fruits and brand-name drinks.
-El refrigerador está lleno de una variedad de frutas tropicales y bebidas de marca.
-A bouquet of pink flowers.
-Un ramo de flores rosas.
-A tag states that it was gathered from the Eleig river delta.
-Una etiqueta muestra que fueran recogidas del delta del río Eleig.
+
 [Map51]
 
 I'm studying the process of growing berries in caves and cave-like environments.
@@ -3933,18 +3917,18 @@ Will you cease bothering me? I'm trying to massage this data into significance.
 ¿Dejarás de molestarme? Estoy intentando masajear esta información en un significado.
 A'right, sit still for the nice lady and let 'er do 'er job.
 Mu’ bien, sientaté para la señorita y déjale hacer su trabajo.
- Indeed. We need live-fire data on the apparent surplus of experienced trainers in this quadrant of Makya. </ar>
- En efecto. Necesitamos toda la información de la aparente excedente cantidad de entrenadores experimentados en este cuadrante de Makya. </ar>
+<ar> Indeed. We need live-fire data on the apparent surplus of experienced trainers in this quadrant of Makya. </ar>
+<ar> En efecto. Necesitamos toda la información de la aparente excedente cantidad de entrenadores experimentados en este cuadrante de Makya. </ar>
 And you look like just the right kinda mix of jaded and crazy to be one of those trainers. So stand up straight and prepare for the exam!
 Y pareces ser la combinación perfecta de locura y saturación para ser uno de esos entrenadores. ¡Así que ponte firme y preparate para el examen!
- Exceptional! Results in the third quartile, which, yes, I calculated mid-fight, thank you very much. Intriguing... </ar>
- ¡Excepcionall! Los resultados en el tercer cuarto, que sí, calculé en medio del combate, muchas gracias. Intrigantes... </ar>
+<ar> Exceptional! Results in the third quartile, which, yes, I calculated mid-fight, thank you very much. Intriguing... </ar>
+<ar> ¡Excepcionall! Los resultados en el tercer cuarto, que sí, calculé en medio del combate, muchas gracias. Intrigantes... </ar>
 The best thing to do when these kindsa folks get like this is just to ignore them. They'll share what they want either way.
 Lo mejor que hacer cuando esta gente se pone así es sólo ignorarlos. Compartirá qué quieren de todos modos.
- Indeed... perhaps a return to the Academy is warranted. This might even be statistically significant. </ar>
- En efecto… a lo mejor un regreso a la Academia es necesario. Esto incluso puede ser estádisticamente significante..  </ar>
- Results within one standard deviation of the mean... which is, incidentally, exactly the word I'd use to describe most of these trainers. </ar>
- Resultados dentro de una divergencia estándar de lo infame… que es, incidentalmente, exactamente la palabra que usaría para describir a la mayoría de estos entrenadores. </ar> 
+<ar> Indeed... perhaps a return to the Academy is warranted. This might even be statistically significant. </ar>
+<ar> En efecto… a lo mejor un regreso a la Academia es necesario. Esto incluso puede ser estádisticamente significante..  </ar>
+<ar> Results within one standard deviation of the mean... which is, incidentally, exactly the word I'd use to describe most of these trainers. </ar>
+<ar> Resultados dentro de una divergencia estándar de lo infame… que es, incidentalmente, exactamente la palabra que usaría para describir a la mayoría de estos entrenadores. </ar> 
 Ya did good, kiddo. We'll be back to conduct more tests. Y'know how them folks get about their sample sizes.
 Lo hiciste bien, chico. Volveremos a conducir más pruebas. Sabes como esos tipos se ponen sobre sus pruebas de muestra.
 
@@ -4168,8 +4152,8 @@ Yeah, if she thinks we'll stay out here for another week, I've got a bridge to s
 Sí, si ella cree que nos quedaremos aquí otra semana, tengo un puente que venderle… eso, no tiene sentido, ¿Verdad?
 ...Let's just go double-check.
 …Simplemente repasemos un par de cosas.
- Call me the 'sue' chef, because I'm gonna sue Helena for damages... or something... </ar>
- Llámame el “asistente” de cocina, porque voy a ser el primero en buscar un asistente legal para denunciar a Helena por daños… o algo... </ar>
+<ar> Call me the 'sue' chef, because I'm gonna sue Helena for damages... or something... </ar>
+<ar> Llámame el “asistente” de cocina, porque voy a ser el primero en buscar un asistente legal para denunciar a Helena por daños… o algo... </ar>
 Oh, shut up. Let's just get back to the Pokecenter.
 Oh, cállate. Sólo volvamos al Centro Pokémon.
 I hear a Meowth makes you 33% luckier -- so now I'm guaranteed to win!
@@ -9625,16 +9609,14 @@ Cuts all the awkward confusion with the eye contact stuff.
 Quita toda esa incómoda confusión con eso del contacto visual.
 Anyways, now for the real reason I'm here. I'm with Sweetrock Factory R&D.
 Como sea, ahora la verdadera razón por la que estoy aquí. Estoy en la Fábrica Sweetrock I+D.
-Name's Jovan. I'm with Research and Development at Sweetrock Candy Company.
-Mi nombre es Jovan. Estoy junto a I+D de la Compañía de Caramelos Sweetrock.
 I need test subjects. Since you're a licensed trainer, you can help me out. Take this.
 Necesito sujetos de prueba. Ya que eres un entrenador licenciado, puedes ayudarme. Toma esto.
 Once you train your Pokemon enough, this thing will start popping out candies.
 Una vez que entrenes a tus Pokémon lo suficiente, esta cosa empezará a crear caramelos.
 Have your Pokemon eat them. It'll let them grow stronger.
 Haz que tus Pokémon se los coman. Los harán más fuertes.
-Since you're such a good sport about it, I have another treat for you if you find me on the mainland.
-Y ya que te lo estás tomando tan bien, tengo otro regalo para ti si me encuentras en el continente.
+Trust me, it'll work. And since you're such a good sport about it, I have another treat for you if you find me on the mainland.
+Creeme, funcionará. Y ya que te lo estás tomando tan bien, tengo otro regalo para ti si me encuentras en el continente.
 See ya then.
 Te veo luego.
 I dropped my items! Where did they go?
@@ -19480,12 +19462,12 @@ You decide not to pet it.
 Decides no acariciarlo.
 I used to work for the Lab here.
 Solía trabajar para el Laboratorio aquí. 
-I was tasked with breeding exotic Pokemon for new trainers to use as starters.
+I was tasked with breeding exotic Pokémon for new trainers to use as starters.
 Me ocupaba de críar Pokémon exóticos para que sean los iniciales de nuevos entrenadores.
 Eventually landed on Togepi as my main thing. Threw in the occasional Eevee when I felt like it.
 Eventualmente terminé Togepi como mi trabajo principal. De vez en cuando sacaba algún Eevee si me apetecía.
 Made a killing, you know. Didn't even need to get a new job when the Lab closed up shop. 
-Hice una fortuna, sabes. Ni siquiera tuve que conseguir un nuevo trabajo cuando el Laboratorio cerró. 
+Hice una riqueza, sabes. Ni siquiera tuve que conseguir un nuevo trabajo cuando el Laboratorio cerró. 
 Nowadays I spend my days fishing away at the Lake. 
 A día de hoy paso mis días pescando en el Lago. 
 Don't pet the Vulpix.
@@ -23312,10 +23294,8 @@ Empecemos con esto.
 ¡\PN intercambió un Pokémon tipo fuego por Spheal!
 Alright, time to find those losers.
 Bien, hora de encontrar a esos perdedores.
-Bluepoint Beach is teeming with naturally sourced Pokémon.
-La Playa Bluepoint está repleta de Pokémon completamente naturales.
-Many of the tourists fall in love with the immersive experience it offers!
-¡Gran parte de los turistas aman la experiencia inmersiva que ofrece!
+Bluepoint beach is teeming with Pokémon. Tourists come for the immersive experience!
+La playa Bluepoint está repleta de Pokémon. ¡Los turistas vienen por la experiencia inmersiva!
 Lambert came bursting through here not too long ago.
 Lambert vino corriendo por aquí hace no mucho.
 He's usually so cool and collected. I wonder what's got him so worked up.
@@ -23325,8 +23305,8 @@ Have you tried filtering on your Masterdex?
 You can look up specific species of Pokémon using a ton of filters!
 ¡Puedes buscar especies de Pokémon específicas usando un montón de filtros!
 You can even compound searches.
-Puedes incluso combinar búsquedas.
-Want a Rock-type with the Ability Sturdy? No problem!
+Puedes inclusor combinar búsquedas.
+Want a Rock-type with the ability sturdy? No Problem!
 ¿Quieres un tipo Roca con la habilidad Robustez! ¡No hay problema!
 No
 No
@@ -40000,12 +39980,12 @@ Very sweet chocolate. It restores the HP of one Pokémon by only 20 points.
 Un chocolate de gran dulzura. Restaura los PS de un Pokémon por 20 puntos.
 Water with a high mineral content. It restores the HP of one Pokémon by 50 points.
 Agua con alto contenido mineral. Restaura los PS de un Pokémon por 50 puntos.
-A fizzy soda drink. It restores the HP of one Pokémon by 100 points.
-Un refresco burbujeante. Restaura los PS de un Pokémon por 100 puntos.
-A very sweet drink. It restores the HP of one Pokémon by 150 points.
-Una bebida dulce. Restaura los PS de un Pokémon por 150 puntos.
-Nutritious milk. It fully restores the HP and heals any status problems of a single Pokémon.
-Leche nutritiva. Restaura completamente los PS de un Pokémon y cura su problema de estado.
+A fizzy soda drink. It restores the HP of one Pokémon by 60 points.
+Un refresco burbujeante. Restaura los PS de un Pokémon por 60 puntos.
+A very sweet drink. It restores the HP of one Pokémon by 80 points.
+Una bebida dulce. Restaura los PS de un Pokémon por 80 puntos.
+Milk with a very high nutrition content. It restores the HP of one Pokémon by 100 points.
+Leche con alto valor nutritivo. Restaura los PS de un Pokémon por 100 puntos.
 A very bitter medicine powder. It restores the HP of one Pokémon by 50 points.
 Una medicina bastante amarga. Restaura los PS de un Pokémon por 50 puntos.
 A very bitter root. It restores the HP of one Pokémon by 200 points.
@@ -42968,7 +42948,7 @@ No puede ser aturdido, infectado, atrapado, o tener su Velocidad reducida por lo
 Boosts the power of kicking moves by 30%.
 Aumenta un 30% la potencia de los movimientos de patada.
 Upon entry, creates a Quality Room for five turns, exaggerating type matchups.
-Al entrar, crea una Zona Eficaz durante cinco turnos, exagerando las efectividades de tipo.
+Al entrar, crea una Sala Eficaz durante cinco turnos, exagerando las efectividades de tipo.
 Upon entry, creates an Insight Room for five turns, giving everyone a fifth move.
 Al entrar, crea una Zona Esclarecedora durante cinco turnos, dando a todos un quinto movimiento.
 Upon entry, creates an Emotion Room for five turns, switching Abilities every turn.
@@ -45565,12 +45545,12 @@ Your name?
 ¿Tu nombre?
 Enter {1}'s name.
 Poner el nombre de{1}.
-Money:<<n>>{1}</ar>
-Dinero:<<n>>{1}</ar>
-Coins:<<n>>{1}</ar>
-Fichas:<<n>>{1}</ar>
-Battle Points:<<n>>{1}</ar>
-Puntos de Batalla:<<n>>{1}</ar>
+Money:<<n>><ar>{1}</ar>
+Dinero:<<n>><ar>{1}</ar>
+Coins:<<n>><ar>{1}</ar>
+Fichas:<<n>><ar>{1}</ar>
+Battle Points:<<n>><ar>{1}</ar>
+Puntos de Batalla:<<n>><ar>{1}</ar>
 Yes
 Sí
 No
@@ -47423,8 +47403,6 @@ Your party Pokémon in waiting also got Exp. Points!
 ¡{1} consiguió {2} Puntos de Experiencia, aumentados por su Racha!
 {1} learned {2}!
 ¡{1} aprendió {2}!
-LEARNED
-APRENDIDO
 {1} wants to learn {2}, but it already knows {3} moves.
 {1} quiere aprender {2}, pero ya conoce {3} movimientos.
 Which move should be forgotten?
@@ -47522,7 +47500,7 @@ El {1} salvaje
 The ally {1}
 El {1} aliado
 {1} has been added to your party.
-{1} fue añadido a tu equipo.
+{1} fue añadido a tu equipo..
 Box "{1}" on the Pokémon Storage PC was full.
 La Caja "{1}" en el PC está llena.
 {1} was transferred to box "{2}".
@@ -51957,66 +51935,6 @@ Press to instantly mount the Bicycle while in the overworld.
 Presionala para subirte instántaneamente a la Bicicleta fuera de combate.
 You put the {1} away\<<n>>in the <icon=bagPocket{2}>\c<<[>>1<<]>>{3} Pocket\c<<[>>0<<]>>.
 Colocas {1} en el bolsillo \<<n>>in the <icon=bagPocket{2}>\c<<[>>1<<]>>{3} \c<<[>>0<<]>>.
-The morning will see #{morningDescriptor}.
-En la mañana habrá #{morningDescriptor}.
-That weather will continue into the afternoon.
-El clima continuará en la tarde.
-That evening: even more of the same.
-En el atardecer: más de lo mismo.
-However, things will shake up in the evening with #{eveningDescriptor}.
-Sin embargo, las cosas se cambiarán en el atardecer con #{eveningDescriptor}.
-In the afternoon, that will make way for #{afternoonDescriptor}.
-En la tarde, eso pondrá el camino para #{afternoonDescriptor}.
-The day will close out with the same conditions.
-El día terminará con las mismas condiciones.
-More #{eveningDescriptor} will return in the evening.
-Más #{eveningDescriptor} regresará en el atardecer..
-Finally, in the evening we'll get #{eveningDescriptor}.
-Por último, en la tarde tendremos #{eveningDescriptor}.
-Please take caution!
-¡Por favor ten cuidado!
-We warn the viewer to be careful.
-Advertimos a la audiencia que tenga cuidado.
-We recommend citizens stay indoors.
-Recomendamos que los ciudadanos se queden en casa.
-cloudy skies with light rain showers
-cielos nublados con lluvia ligera
-cloudy skies with light snowfall
-cieulos nublados con nevada ligera
-sunny skies with dry, dusty air
-cielo soleado con aire seco
-sunny skies and hot tempuratures
-cielo soleado con altas temperaturas.
-overcast skies with high ambient humidity
-cielo nublado con alta humedad
-total cloud cover and heavy rain with thunder
-completamente nublado
-blizzard conditions with high winds and heavy snowfall
-ventiscas con grandes vientos y fuertes nevadas
-hot and dry sandstorm conditions
-condiciones calientes y tormenta de arena
-cold and wet fog wtih reduced visibility
-niebla fría y húmeda con visión reducida
-smoggy and dangerous conditions
-nuboso y con condiciones peligrosas
-lightly cloudy skies with no precipitation
-ligeramente nublado sin precipitaciones
-first
-primero
-second
-segundo
-third
-tercero
-The fleeing trainer dropped some candies!
-¡El entrenador dejó unos caramelos al escapar!
-your brother
-tu hermano
-professor
-profesora
-\db[#{badgeNum}]\me[Badge get]You've earned the {1} Badge!\wtnp[120]
-\db[#{badgeNum}]\me[Badge get]¡Conseguiste la Medalla {1}!\wtnp[120]
-\wmLevel cap raised to {1}!\me<<[>>Bug catching 3rd<<]>>\wtnp<<[>>80<<]>><<1>>
-\wm¡El límite de nivel subió a {1}!\me<<[>>Bug catching 3rd<<]>>\wtnp<<[>>80<<]>><<1>>
 [26]
 [27]
 [27]
