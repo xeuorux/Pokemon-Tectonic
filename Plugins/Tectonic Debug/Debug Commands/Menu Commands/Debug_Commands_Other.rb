@@ -214,6 +214,17 @@ DebugMenuCommands.register("renamemovefromfile", {
   }
 })
 
+  DebugMenuCommands.register("saveoldinator", {
+    "parent"      => "othermenu",
+    "name"        => _INTL("Set save to 3.0.0"),
+    "description" => _INTL("Set this save to 3.0.0, for conversion testing."),
+    "always_show" => true,
+    "effect"      => proc {
+      downgradeSaveTo30
+      pbMessage("Save has been converted to 3.0.0, please close your game.")
+    }
+  })
+
 def getRenamedMovesBatch(version = -1)
   renamingHash = {}
   if version != -1
