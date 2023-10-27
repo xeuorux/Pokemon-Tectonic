@@ -86,7 +86,7 @@
 1085,DEMONSKISS,Demon's Kiss,526,0,PSYCHIC,Status,100,3,0,NearOther,0,CanProtect;CanMagicCoat;CanMirrorMove,"By sacrificing half its HP, the user jinxes the target with a kiss, making it fall asleep.",LOVELYKISS
 1086,RUIN,Ruin,047,90,NORMAL,Special,100,10,20,NearOther,0,CanProtect;CanMirrorMove,"The user brings down a ruinous power on the target. This has a 20% chance of lowering all the target's stats.",JUDGMENT
 1087,HARDFEELINGS,Hard Feelings,07E,70,NORMAL,Special,100,12,0,NearOther,0,CanProtect;CanMirrorMove,"Doubles its power if the user has a status condition. Ignores frostbite Sp. Atk reduction.",
-1088,SOULEATER,Soul Water,52C,65,GHOST,Special,100,15,100,NearOther,0,CanProtect;CanMirrorMove,"The user absorbs the target's soul, lowering its Sp. Def and draining its life in the process.",NIGHTSHADE
+1088,SOULEATER,Soul Eater,52C,65,GHOST,Special,100,15,100,NearOther,0,CanProtect;CanMirrorMove,"The user absorbs the target's soul, lowering its Sp. Def and draining its life in the process.",NIGHTSHADE
 1089,ABYSSALMIST,Abyssal Mist,587,75,DARK,Special,100,12,0,AllNearOthers,0,CanProtect;CanMagicCoat;CanMirrorMove,"Darkness rolls over the field, damaging all other Pokémon and setting Grey Mist for 5 turns.",
 1090,ECHOLOCATE,Echolocate,52E,0,FLYING,Status,0,12,0,AllNearFoes,0,CanMagicCoat;CanMirrorMove;Sound,"Lowers the target's Defense and evasion by two steps each. Can't miss and skips protections.",SUPERSONIC
 1091,WINGSPANECLIPSE,Wingspan Eclipse,52F,0,DRAGON,Status,0,12,0,BothSides,0,CanProtect;CanMagicCoat;CanMirrorMove,"The Pokémon blots out the sky, summoning eclipse for eight turns and lowering each opponent's Attack by two steps.",
@@ -412,7 +412,7 @@
 1411,VERMINCLOUD,Vermin Cloud,0C9,100,DARK,Physical,100,5,0,NearOther,4,CanProtect;CanMirrorMove,"The user transforms into a cloud of vermin, evading all attacks on the first turn. On the second turn it ambushes the target.",FLY
 1412,ICEDUNGEON,Ice Dungeon,5F7,0,ICE,Status,0,5,0,AllNearFoes,0,CanMagicCoat;CanMirrorMove,"The user imprisons all near foes, reducing their attacking stats by one step each and trapping them until the next time they take a hit.",CHILL
 1413,BAR,Bar,0C7,0,FIGHTING,Status,100,15,0,NearOther,0,CanProtect;CanMagicCoat;CanMirrorMove,"The target is barred by rules which prevent it from using off-type moves for three more turns.",IMPRISON
-1414,OCCULTATION,Occulation,190,80,DRAGON,Special,100,15,0,AllNearOthers,0,CanProtect;CanMirrorMove,"Attacks all near others with dragon energy. Power increases by 50% in eclipse.",DRAGONPULSE
+1414,OCCULTATION,Occultation,190,80,DRAGON,Special,100,15,0,AllNearOthers,0,CanProtect;CanMirrorMove,"Attacks all near others with dragon energy. Power increases by 50% in eclipse.",DRAGONPULSE
 1415,AIMTRUE,Aim True,501,0,NORMAL,Status,0,25,0,User,0,CanSnatch,"The user steadies its eyes, mind, and body in order to maximize its accuracy.",MINDREADER
 1416,STAMPDOWN,Stamp Down,050,60,GROUND,Physical,0,12,0,NearOther,0,CanProtect;CanMirrorMove;Kicking,"The user attacks by flattening the target into the ground. The target's stat step changes are returned to normal.",STOMP
 1417,GRINDSTONE,Grind Stone,5F8,80,ROCK,Physical,100,12,100,NearOther,0,CanProtect;CanMirrorMove,"The user scratches the target with rough rocks. If in sandstorm, the target's Defense is lowered by three steps.",STONEEDGE
