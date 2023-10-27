@@ -218,6 +218,12 @@ module GameData
             next if GameData::Ability.get(abilityID).legal?(true)
             raise _INTL("Cut ability #{abilityID} is assigned to avatar #{@id}!")
 		  end
+
+		  ([@moves1,@moves2,@moves3,@moves4,@moves5].flatten).each do |moveID|
+			moveData = GameData::Move.get(moveID)
+			next unless moveData.cut
+			raise _INTL("Illegal move #{moveID} is assigned to avatar #{@id}!")
+		  end
 		end
 
 		def second_status?
