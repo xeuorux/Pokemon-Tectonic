@@ -24,7 +24,7 @@ gen7Rewards = gen6Rewards.clone
 gen7Thresholds = [20,40,60,81]
 
 gen8Rewards = gen6Rewards.clone
-gen8Thresholds = [20,40,60,81]
+gen8Thresholds = [22,44,67,89]
 
 generationRewardsHash = {
     gen1Thresholds => gen1Rewards,
