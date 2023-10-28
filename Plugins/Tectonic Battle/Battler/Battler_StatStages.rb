@@ -635,9 +635,9 @@ showAnim: showAnim, ability: nil, cause: cause)
             stat = statArray[i * 2]
             increment = statArray[i * 2 + 1]
             next if increment <= 0
-            raisedAnySteps = true if tryLowerStat(stat, user, move: move, increment: increment, showFailMsg: showFailMsg,
+            loweredAnySteps = true if tryLowerStat(stat, user, move: move, increment: increment, showFailMsg: showFailMsg,
 showAnim: showAnim, ability: nil, cause: cause)
-            showAnim = false if raisedAnySteps
+            showAnim = false if loweredAnySteps
         end
         @battle.pbHideAbilitySplash(user) if ability
         return loweredAnySteps

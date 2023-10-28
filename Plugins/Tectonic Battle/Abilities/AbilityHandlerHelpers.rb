@@ -90,9 +90,9 @@ def entryDebuffAbility(ability, battler, battle, statDownArray, aiCheck: false)
         next unless b.near?(battler)
         next if b.blockAteAbilities(battler, ability, !aiCheck)
         if aiCheck
-        score += getMultiStatDownEffectScore(statDownArray,battler,b)
+            score += getMultiStatDownEffectScore(statDownArray,battler,b)
         elsif b.pbLowerMultipleStatSteps(statDownArray, battler, showFailMsg: true)
-        b.pbItemOnIntimidatedCheck
+            b.pbItemOnIntimidatedCheck
         end
     end
     battle.pbHideAbilitySplash(battler) unless aiCheck
