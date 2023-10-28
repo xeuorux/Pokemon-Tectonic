@@ -1250,7 +1250,7 @@ BattlerPlayerY = 10
 BattlerEnemyY = 14
 #-------------------------------
 [RAYQUAZA,1]
-FormName = Delta Form
+FormName = Delta
 MegaMove = DRAGONASCENT
 MegaMessage = 1
 BaseStats = 105,180,100,115,180,100
@@ -1262,7 +1262,7 @@ BattlerEnemyX = -1
 BattlerEnemyY = 1
 #-------------------------------
 [DARMANITAN,1]
-FormName = Zen Mode
+FormName = Zen
 Type1 = FIRE
 Type2 = PSYCHIC
 BaseStats = 105,30,105,55,140,105
@@ -1273,7 +1273,7 @@ Pokedex = When wounded, it stops moving. It goes as still as stone to meditate, 
 BattlerEnemyY = 33
 #-------------------------------
 [GDARMANITAN,1]
-FormName = Zen Mode
+FormName = Zen
 Type1 = ICE
 Type2 = FIRE
 BaseStats = 135,50,105,35,110,105
@@ -1293,7 +1293,7 @@ FormName = Reaper
 BaseStats = 108,155,125,97,100,75
 #-------------------------------
 [GYARADOS,1]
-FormName = Hull Breaker
+FormName = Rampage
 BaseStats = 95,155,109,86,85,115
 #-------------------------------
 [GARDEVOIR,1]
@@ -1304,14 +1304,14 @@ BattlerPlayerY = 9
 BattlerEnemyY = 13
 #-------------------------------
 [GALLADE,1]
-FormName = M. Gallade
+FormName = Finale
 MegaStone = GALLADITE
 BaseStats = 88,125,100,110,75,160
 Abilities = INNERFOCUS
 BattlerPlayerY = 11
 #-------------------------------
 [MEWTWO,1]
-FormName = Mega Muscles
+FormName = Overmatter
 Type1 = PSYCHIC
 Type2 = FIGHTING
 BaseStats = 110,190,100,130,150,100
@@ -1323,7 +1323,7 @@ BattlerPlayerY = 10
 BattlerEnemyY = 18
 #-------------------------------
 [MEWTWO,2]
-FormName = Mega Mind
+FormName = Overmind
 BaseStats = 110,150,70,140,190,120
 Abilities = VITALSPIRIT
 Height = 1.5
