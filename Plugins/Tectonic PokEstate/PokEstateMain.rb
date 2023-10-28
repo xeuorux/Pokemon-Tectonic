@@ -165,64 +165,96 @@ class PokEstate
 	end
 
 	def careTakerInteraction
-		if COMPLETION_AWARDS_FEATURE_AVAILABLE
-			newAwards = findNewAwards()
-			if newAwards.length != 0
-				if newAwards.length == 1
-					pbMessage(_INTL("You've earned a new PokéDex completion reward!"))
-				else
-					pbMessage(_INTL("You've earned #{newAwards.length} new PokéDex completion rewards!"))
-				end
-				if newAwards.length < 5
-					newAwards.each do |newAwardInfo|
-						awardReward = newAwardInfo[0]
-						awardDescription = newAwardInfo[1]
-						pbMessage(_INTL("For collecting #{awardDescription}, please take this."))
-						if awardReward.is_a?(Array)
-							pbReceiveItem(awardReward[0],awardReward[1])
-						else
-							pbReceiveItem(awardReward)
-						end
-						awardsGranted.push(newAwardInfo[2])
-					end
-				else
-					pbMessage(_INTL("That's so many! I'll just give you all the rewards at once."))
-					itemsToGrantHash = {}
-					newAwards.each do |newAwardInfo|
-						awardReward = newAwardInfo[0]
-						awardDescription = newAwardInfo[1]
-						itemCount = 1
-						if awardReward.is_a?(Array)
-							itemGrant = awardReward[0]
-							itemCount = awardReward[1]
-						else
-							itemGrant = awardReward
-						end
-						awardsGranted.push(newAwardInfo[2])
-						if !itemsToGrantHash.has_key?(itemGrant)
-							itemsToGrantHash[itemGrant] = itemCount
-						else
-							itemsToGrantHash[itemGrant] += itemCount
-						end
-					end
-					itemsToGrantHash.each do |item,count|
-						pbReceiveItem(item,count)
-					end
-				end
-			end
-		end
 		caretakerChoices()
 	end
 
+	def checkForAwards(inPerson = true)
+		newAwards = findNewAwards()
+		if newAwards.length != 0
+			unless inPerson
+				pbMessage(_INTL("..."))
+				pbMessage(_INTL("You notice a voice message from #{CARETAKER}, the PokÉstate caretaker."))
+			end
+			
+			pbMessage(_INTL("Greetings, young master. I have good news."))
+
+			if newAwards.length == 1
+				pbMessage(_INTL("\\ME[Bug catching 2nd]You've earned a new PokéDex completion reward!\\wtnp[60]"))
+			else
+				pbMessage(_INTL("\\ME[Bug catching 2nd]You've earned #{newAwards.length} new PokéDex completion rewards!\\wtnp[60]"))
+			end
+			
+			if newAwards.length == 1
+				awardDescription = newAwards[0][1]
+				pbMessage(_INTL("For collecting #{awardDescription}, please take this."))
+			elsif newAwards.length <= 5
+				pbMessage(_INTL("I'll list the feats you've accomplished:"))
+				newAwards.each_with_index do |newAwardInfo, index|
+					awardReward = newAwardInfo[0]
+					awardDescription = newAwardInfo[1]
+					
+					if index == 0
+						pbMessage(_INTL("You've collected #{awardDescription}..."))
+					elsif index == newAwards.length - 1
+						pbMessage(_INTL("...and #{awardDescription}."))
+					else
+						pbMessage(_INTL("...#{awardDescription}..."))
+					end
+				end
+			else
+				if inPerson
+					pbMessage(_INTL("That's so many! I'll just give you all the rewards at once."))
+				else
+					pbMessage(_INTL("That's a lot, so I've lumped all the rewards together."))
+				end
+			end
+
+			pbMessage(_INTL("As you finish reading, the PC materializes a package...")) unless inPerson
+
+			itemsToGrantHash = {}
+			newAwards.each do |newAwardInfo|
+				awardReward = newAwardInfo[0]
+				awardDescription = newAwardInfo[1]
+
+				# Tally the items to give out
+				itemCount = 1
+				if awardReward.is_a?(Array)
+					itemGrant = awardReward[0]
+					itemCount = awardReward[1]
+				else
+					itemGrant = awardReward
+				end
+
+				if !itemsToGrantHash.has_key?(itemGrant)
+					itemsToGrantHash[itemGrant] = itemCount
+				else
+					itemsToGrantHash[itemGrant] += itemCount
+				end
+
+				# Mark this reward as having been granted
+				self.awardsGranted.push(newAwardInfo[2])
+			end
+			itemsToGrantHash.each do |item,count|
+				pbReceiveItem(item,count)
+			end
+		end
+	end
+
 	def awardGranted?(awardID)
-		return awardsGranted.include?(awardID)
+		return self.awardsGranted.include?(awardID)
 	end
 
 	def findNewAwards
+		# Load all data dependent events
+		LoadDataDependentAwards.trigger
 		newAwardsArray = []
 		$Trainer.pokedex.resetOwnershipCache()
-		newAwardsArray = GrantAwards.trigger(awardsGranted,newAwardsArray)
+		newAwardsArray = GrantAwards.trigger(self.awardsGranted,newAwardsArray)
 		return newAwardsArray
+	end
+
+	def resetAwards
+		@awardsGranted = []
 	end
 	
 	def caretakerChoices()
@@ -241,9 +273,6 @@ class PokEstate
 			changeLandscape()
 		elsif commandReceiveUpdate > -1 && command == commandReceiveUpdate
 			tryHearStory()
-		elsif commandScrubAwards > -1 && command == commandScrubAwards
-			@awardsGranted.clear
-			pbMessage(_INTL("Scrubbed awards."))
 		end
 	end
 
@@ -273,9 +302,6 @@ class PokEstate
 				break
 			end
 		end
-
-		# Load all data dependent events
-		LoadDataDependentAwards.trigger
 	
 		# Load all the pokemon into the placeholders
 		events = $game_map.events.values.shuffle()
@@ -354,7 +380,8 @@ class PokEstate
 		firstPage.trigger = 0 # Action button
 		firstPage.list = []
 		push_text(firstPage.list,"Welcome back to the PokÉstate, young master.")
-		push_script(firstPage.list,sprintf("$PokEstate.careTakerInteraction()",))
+		push_script(firstPage.list,sprintf("setSpeaker(CARETAKER)",))
+		push_script(firstPage.list,sprintf("$PokEstate.careTakerInteraction",))
 		firstPage.list.push(RPG::EventCommand.new(0,0,[]))
 		
 		event.event.pages[0] = firstPage

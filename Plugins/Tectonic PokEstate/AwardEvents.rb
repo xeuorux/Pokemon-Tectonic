@@ -1,30 +1,30 @@
 ##############################################
-# GENERATION REWARDS
+# GENERATION REWARDS (40 of them)
 ##############################################
 
-gen1Rewards = [[:EXPCANDYL,1],[:EXPCANDYL,2],[:EXPCANDYL,3],[:EXPCANDYL,4],[:EXPCANDYL,5],[:EXPCANDYL,6]]
+gen1Rewards = [[:EXPCANDYM,4],[:EXPCANDYM,8],[:EXPCANDYL,3],[:EXPCANDYL,4],[:EXPCANDYL,5],[:EXPCANDYL,6]]
 gen1Thresholds = [14,23,36,58,94,151]
 
-gen2Rewards = [[:EXPCANDYL,1],[:EXPCANDYL,2],[:EXPCANDYL,3],[:EXPCANDYL,4],[:EXPCANDYL,5]]
+gen2Rewards = [[:EXPCANDYM,4],[:EXPCANDYM,8],[:EXPCANDYL,3],[:EXPCANDYL,4],[:EXPCANDYL,5]]
 gen2Thresholds = [15,25,40,65,100]
 
-gen3Rewards = gen1Rewards
+gen3Rewards = gen1Rewards.clone
 gen3Thresholds = [12,20,32,52,84,135]
 
-gen4Rewards = gen2Rewards
+gen4Rewards = gen2Rewards.clone
 gen4Thresholds = [16,26,41,66,107]
 
-gen5Rewards = gen1Rewards
+gen5Rewards = gen1Rewards.clone
 gen5Thresholds = [15,25,40,60,100,156]
 
-gen6Rewards = [[:EXPCANDYL,1],[:EXPCANDYL,2],[:EXPCANDYL,3],[:EXPCANDYL,4]]
+gen6Rewards = [[:EXPCANDYM,4],[:EXPCANDYM,8],[:EXPCANDYL,3],[:EXPCANDYL,4]]
 gen6Thresholds = [17,28,45,72]
 
-gen7Rewards = gen6Rewards
+gen7Rewards = gen6Rewards.clone
 gen7Thresholds = [20,40,60,81]
 
-gen8Rewards = gen6Rewards
-gen8Thresholds = gen7Thresholds
+gen8Rewards = gen6Rewards.clone
+gen8Thresholds = [22,44,67,89]
 
 generationRewardsHash = {
     gen1Thresholds => gen1Rewards,
@@ -52,15 +52,16 @@ generationRewardsHash.each_with_index do |kvp,generationIndex|
 end
 
 ##############################################
-# TYPE REWARDS
+# TYPE REWARDS (54 of them)
 ##############################################
 typeThreshold = [10,25,50]
-typeRewards = [[:EXPCANDYL,2],:EXPCANDYXL,[:EXPCANDYXL,2]]
+typeRewards = [[:EXPCANDYM,8],[:EXPCANDYL,4],[:EXPCANDYXL,2]]
 
 PokEstate::LoadDataDependentAwards += proc {
     # For every type, create three award event subscribers at different thresholds
     GameData::Type.each do |type|
-        next if type.pseudo_type 
+        next if type.pseudo_type
+        next if type.id == :MUTANT
         typeThreshold.each_with_index do |threshold,thresholdIndex|
             id = ("TYPE" + type.id.to_s + "AWARD" + thresholdIndex.to_s).to_sym
             PokEstate::GrantAwards.add(id,
@@ -73,7 +74,7 @@ PokEstate::LoadDataDependentAwards += proc {
 }
 
 ##############################################
-# ROUTE REWARDS
+# ROUTE REWARDS (23 of them)
 ##############################################
 SMALL_ROUTES =
 [
@@ -118,7 +119,7 @@ PokEstate::LoadDataDependentAwards += proc {
         PokEstate::GrantAwards.add(id,
             proc { |pokedex|
                 if pokedex.allOwnedFromRoute?(routeID)
-                    next [[:EXPCANDYL,2],_INTL("all species on #{routeName}")]
+                    next [[:EXPCANDYM,8],_INTL("all species on #{routeName}")]
                 end
                 next
             }
