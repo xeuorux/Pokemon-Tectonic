@@ -13,11 +13,20 @@ def typeReward(type,threshold,reward)
     return nil
 end
 
+def tribeReward(tribe,threshold,reward)
+    if $Trainer.pokedex.getOwnedOfTribe(tribe) >= threshold
+        tribeName = GameData::Tribe.get(tribe).name
+        return [reward,_INTL("#{threshold} species in the #{tribeName} tribe")]
+    end
+    return nil
+end
+
 class Player < Trainer
     # Represents the player's Pokédex.
     class Pokedex
         attr_reader :ownedOfType
         attr_reader :ownedFromGeneration
+        attr_reader :ownedOfTribe
 
         def resetOwnershipCache()
             @ownedFromGeneration = {}
@@ -27,6 +36,10 @@ class Player < Trainer
             @ownedOfType = {}
             GameData::Type.each do |typeData|
                 @ownedOfType[typeData.id] = 0
+            end
+            @ownedOfTribe = {}
+            GameData::Tribe.each do |tribeData|
+                @ownedOfTribe[tribeData.id] = 0
             end
             calculateOwnershipCache
         end
@@ -40,6 +53,10 @@ class Player < Trainer
                 
                 @ownedOfType[speciesData.type1] += 1
                 @ownedOfType[speciesData.type2] += 1 if speciesData.type2 != speciesData.type1
+
+                speciesData.tribes.each do |tribeID|
+                    @ownedOfTribe[tribeID] += 1
+                end
             end
         end
 
@@ -62,8 +79,8 @@ class Player < Trainer
             count = 0
             GameData::Species.each do |speciesData|
                 next if speciesData.form != 0
+                next unless @owned[speciesData.species]
                 next if speciesData.generationNumber() != generationNumber
-                next if !@owned[speciesData.species]
                 count += 1
             end
             @ownedFromGeneration[generationNumber] = count
@@ -75,11 +92,24 @@ class Player < Trainer
             count = 0
             GameData::Species.each do |speciesData|
                 next if speciesData.form != 0
+                next unless @owned[speciesData.species]
                 next if speciesData.type1 != type && speciesData.type2 != type
-                next if !@owned[speciesData.species]
                 count += 1
             end
             @ownedOfType[type] = count
+            return count
+        end
+
+        def getOwnedOfTribe(tribe)
+            return @ownedOfTribe[tribe] if @ownedOfTribe.has_key?(tribe)
+            count = 0
+            GameData::Species.each do |speciesData|
+                next if speciesData.form != 0
+                next unless @owned[speciesData.species]
+                next unless speciesData.tribes.include?(tribe)
+                count += 1
+            end
+            @ownedOfTribe[tribe] = count
             return count
         end
     end

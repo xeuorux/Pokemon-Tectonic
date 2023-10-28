@@ -74,6 +74,26 @@ PokEstate::LoadDataDependentAwards += proc {
 }
 
 ##############################################
+# TRIBE REWARDS (66 of them)
+##############################################
+tribeThreshold = [10,20,40]
+tribeRewards = [[:EXPCANDYM,8],[:EXPCANDYL,4],[:EXPCANDYXL,2]]
+
+PokEstate::LoadDataDependentAwards += proc {
+    # For every type, create three award event subscribers at different thresholds
+    GameData::Tribe.each do |tribe|
+        tribeThreshold.each_with_index do |threshold,thresholdIndex|
+            id = ("TRIBE" + tribe.id.to_s + "AWARD" + thresholdIndex.to_s).to_sym
+            PokEstate::GrantAwards.add(id,
+                proc { |pokedex|
+                    next tribeReward(tribe.id,threshold,tribeRewards[thresholdIndex])
+                }
+            )
+        end
+    end
+}
+
+##############################################
 # ROUTE REWARDS (23 of them)
 ##############################################
 SMALL_ROUTES =
