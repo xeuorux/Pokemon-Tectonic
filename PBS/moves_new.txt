@@ -36,7 +36,7 @@
 1035,DIAMETRICBREATH,Diametric Breath,50A,70,DRAGON,Special,100,15,30,NearOther,0,CanProtect;CanMirrorMove,"Exhales magical fumes with a 30% chance to burn or frostbite the target depending on their stats.",DRAGONBREATH
 1036,SCOUR,Scour,00F,80,DRAGON,Special,100,12,30,AllNearFoes,0,CanProtect;CanMirrorMove;Wind,"The user whips up a tornado to tear at the enemy team. It has a 30% chance to make them flinch.",
 1037,HARSHVOICE,Harsh Voice,00F,40,DARK,Special,100,20,30,NearOther,0,CanProtect;CanMirrorMove;Sound,"The target is confronted with painful words. It has a 30% chance to make the target flinch.",
-1038,SLIGHT,Slight,50B,50,DARK,Special,100,20,0,NearOther,0,CanProtect;CanMirrorMove;Sound,"When the user knocks out a target with this move, the user's Sp. Atk stat rises by five steps.",
+1038,FINALIZE,Finalize,50B,50,DARK,Special,100,20,0,NearOther,0,CanProtect;CanMirrorMove;Sound,"When the user knocks out a target with this move, the user's Sp. Atk stat rises by five steps.",
 1039,MASSDESTRUCTION,Mass Destruction,0FC,130,DARK,Special,100,10,0,AllNearOthers,0,CanProtect;CanMirrorMove,"The user emits a wave of anxious feelings which overwhelms all nearby Pokémon, taking 50% recoil.",BRUTALSWING
 1040,ICEPICK,Ice Pick,50C,70,ICE,Physical,100,10,0,NearOther,0,CanProtect;CanMirrorMove,"The user targets the target's coldest spots. Its power doubles if the target is frostbitten.",ICEPUNCH
 1041,HALTINGCOLD,Halting Cold,5EB,75,ICE,Special,100,12,100,NearOther,0,CanProtect;CanMirrorMove;Wind,"The user attacks the target with a frontal cold wind. It reduces the target's Speed by three steps.",ICYWIND
@@ -293,7 +293,7 @@
 1292,SHEDCOAT,Shed Coat,5A2,0,ICE,Status,0,12,0,User,0,CanSnatch,"The user sheds excess covering, raising Sp. Atk and Speed by three steps, but lowering Sp. Def by two steps.",
 1293,FEATHERWARD,Feather Ward,5A1,0,STEEL,Status,0,15,0,FoeSide,0,CanMagicCoat,"The user lays a trap of sharp feathers around the foe. It hurts foes that switch into battle.",
 1294,HYPERJET,Hyper Jet,000,80,WATER,Physical,100,5,0,NearOther,2,CanProtect;CanMirrorMove,"The user swims at the target at blinding speed. This attack always goes before any other move.",AQUAJET
-1295,DUSTMACH,Dust Mach,000,120,GROUND,Special,100,5,0,AllNearOthers,0,CanProtect;CanMirrorMove,"The user whips up dirt at supersonic speeds, damaging everything around it.",SCORCHINGSANDS
+1295,DUSTMACHPULSE,Dustmach Pulse,000,120,GROUND,Special,100,5,0,AllNearOthers,0,CanProtect;CanMirrorMove,"The user whips up dirt at supersonic speeds, damaging everything around it.",SCORCHINGSANDS
 1296,RAMMINGSPEED,Ramming Speed,5A3,125,WATER,Physical,100,10,0,NearOther,0,CanProtect;CanMirrorMove,"The user rams its sharp face right into the target. Lowers the user's Speed by three steps.",LIQUIDATION
 1297,VOLATILETOXIN,Volatile Toxin,5A4,75,POISON,Physical,100,12,0,NearOther,0,CanProtect;CanMirrorMove,"The user injects an unstable toxin into the target. The next Ground-type attack they take deals double damage.",POISONJAB
 1298,RIGHTEOUSKICK,Righteous Kick,54B,70,FIGHTING,Physical,100,20,100,NearOther,0,CanProtect;CanMirrorMove;Kicking,"A kick that can also eliminate trapping and hazard moves. Also raises user's Speed.",
@@ -506,7 +506,7 @@
 1505,FIREFOREFFECT,Fire For Effect,12D,140,NORMAL,Special,100,10,0,NearOther,0,,"The user chooses Fire, Electric, or Ice, then launches a shell of that type to strike the target in one turn.",DOOMDESIRE
 1506,SNAP,Snap,00F,65,WATER,Physical,100,20,40,NearOther,0,CanProtect;CanMirrorMove;Biting,"The user snaps like a fish at the target. This has a 40% chance to make it flinch.",FISHIOUSREND
 1507,BREACH,Breach,5E8,40,WATER,Physical,100,30,20,NearOther,0,CanProtect;CanMirrorMove,"The user jumps out of the water to attack. Has a 20% chance to reduce Defense.",DIVE
-1508,QUALITYROOM,Quality Room,124,0,STEEL,Status,0,10,0,BothSides,0,CanMirrorMove,"The user creates a high quality area in which super-effective deals 25% more, and not very effective deals 25% less.",WONDERROOM
+1508,POLARIZEDROOM,Polarized Room,124,0,STEEL,Status,0,10,0,BothSides,0,CanMirrorMove,"The user creates a high quality area in which super-effective deals 25% more, and not very effective deals 25% less.",WONDERROOM
 1509,MISTLETOE,Mistletoe,402,40,GRASS,Physical,100,30,10,NearOther,0,CanProtect;CanMirrorMove;Kicking,"The user uses their feet to pierce the foe. This has a 10% chance of leeching the target.",TROPKICK
 1510,ROOTDRIVER,Root Driver,402,60,GRASS,Physical,100,20,30,NearOther,0,CanProtect;CanMirrorMove;Kicking,"The user kicks into the target like roots into earth. This has a 30% chance of leeching.",TROPKICK
 1511,WHIPKICK,Whip Kick,402,90,GRASS,Physical,100,15,10,NearOther,0,CanProtect;CanMirrorMove;Kicking,"The user whips their legs into the target like a plant. This has a 10% chance of leeching.",TROPKICK
