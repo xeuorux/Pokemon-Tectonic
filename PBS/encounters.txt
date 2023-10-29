@@ -27,7 +27,7 @@ FloweryGrass2,20
     25,PURRLOIN,19,21
     25,SHINX,19,21
 Special
-    1,SENTRET,15
+    1,GSLOWPOKE,15
 #-------------------------------
 [007] # Repora Forest
 Land,20
@@ -178,7 +178,7 @@ DarkCave,20
 #-------------------------------
 [047] # Grand Hotel
 Special,1
-    1,ZANGOOSE,40
+    1,HEATMOR,40
 #-------------------------------
 [049] # Tourist's House
 Special,20
@@ -239,6 +239,8 @@ FloweryGrass,20
     25,DUCKLETT,14,16
     25,SMOOCHUM,14,16
     25,SWIRLIX,14,16
+Special,20
+    1,EEVEE,15
 #-------------------------------
 [059] # Feebas' Fin
 Land,20
@@ -386,6 +388,7 @@ Special,20
     1,ANORITH,15
     1,ARCHEN,15
     1,CRANIDOS,15
+    1,FURRET,15
     1,KABUTO,15
     1,LILEEP,15
     1,OMANYTE,15
@@ -760,9 +763,13 @@ Special,1
 Special,1
     1,CRYOGONAL,40
 #-------------------------------
+[232] # Biologist's House
+Special,1
+    1,GOLDEEN,40
+#-------------------------------
 [234] # Ranger Recruitment
 Special
-    1,VULPIX,40
+    1,KECLEON,40
 #-------------------------------
 [239] # Ocean Fishing Contest
 FishingContest,20
