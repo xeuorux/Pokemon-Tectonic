@@ -453,32 +453,6 @@ East: Grouz
 Este: Grouz
 North: Gigalith's Guts
 Norte: Tripas de Gigalith
-Hey sweetie! You might not be able to tell since I'm dressed down, but I'm actually a famous model from another region.
-¡Ey cari! Por mi ropa puedes no darte cuenta, pero de hecho soy una famosa modelo de otra región.
-I've got a friend back home wanting a Natu for her team.
-Tengo una amiga en mi región que quiere un Natu en su equipo.
-She's helped me a bit in the past, so I'd like to pay her back.
-Ella me ha ayudado en el pasado, así que quiero regresarle el favor.
-I'd catch one myself, but that means I'd have to go through the suburb to the northwest end.
-Lo atraparía yo misma, pero eso significaría atravesar los suburbios hacia el noroeste [].
-As much as I love the spotlight, I'm on vacation, and I'm trying to avoid creating a crowd.
-Por mucho que me encante ser el centro de atención, estoy de vacaciones, y estoy intentando no crear una multitud.
-How about this? If you could trade a Natu to me, I'll trade you an Elekid that I recently caught.
-¿Qué tal esto? Si me das un Natu, te intercambiaré un Elekid que atrapé recientemente.
-I'll be relaxing here if you change your mind. The scenery is a wonderful change of pace from the city.
-Estaré por aquí si cambias de opinión. Este paisaje es un cambio maravilloso de la ciudad.
-Ah, alright. Check again with me if you change your mind.
-Ah, claro. Ven de nuevo si cambias de opinión.
-Excellent. Let's get started.
-Excelente. Empecemos.
-\PN traded Natu for Elekid!
-\PN intercambió a Natu por Elekid!
-A huge thanks. I'm sure my friend will be excited to meet this little one.
-Muchas gracias. Estoy segura que mi amiga estará emocionada de conocer a este pequeñin.
-I'll be leaving now. If you ever catch me on the job...
-Ahora me retiro. Si me ves en el trabajo… 
-Well, either job, don't be afraid to come say hi!
-Bueno, cualquiera de ellos, ¡No tengas miedo a saludar!
 Formation 4C, Gurdurr!
 ¡Gurdurr, formación 4C!
 Get ready to block 'em!
@@ -15118,7 +15092,7 @@ Los caramelos de Sweetrock son enviados a todo el mundo, pero más del 30% termi
 Those people love their candy.
 Esa gente ama sus caramelos.
 How goes your journey, young master?
-¿Cómo va su travesía, joven maestro?
+¿Cómo va su travesía, jóven maestro?
 I've purchased a Clefable teleportation license, and reserved this pier for our use.
 Compré una licencia de teletransportación Clefable, y reservé este embarcadero para nuestro uso.
 We can travel to and from any of our usual locations.
@@ -23441,7 +23415,32 @@ They have the best coffee around.
 Tienen el mejor café de la zona.
 
 [Map392]
-
+Hey sweetie! You might not be able to tell since I'm dressed down, but I'm actually a famous model from another region.
+¡Ey cari! Por mi ropa puedes no darte cuenta, pero de hecho soy una famosa modelo de otra región.
+I've got a friend back home wanting a Natu for her team.
+Tengo una amiga en mi región que quiere un Natu en su equipo.
+She's helped me a bit in the past, so I'd like to pay her back.
+Ella me ha ayudado en el pasado, así que quiero regresarle el favor.
+I'd catch one myself, but that means I'd have to go through the suburb to the northwest end.
+Lo atraparía yo misma, pero eso significaría atravesar los suburbios hacia el noroeste [].
+As much as I love the spotlight, I'm on vacation, and I'm trying to avoid creating a crowd.
+Por mucho que me encante ser el centro de atención, estoy de vacaciones, y estoy intentando no crear una multitud.
+How about this? If you could trade a Natu to me, I'll trade you an Elekid that I recently caught.
+¿Qué tal esto? Si me das un Natu, te intercambiaré un Elekid que atrapé recientemente.
+I'll be relaxing here if you change your mind. The scenery is a wonderful change of pace from the city.
+Estaré por aquí si cambias de opinión. Este paisaje es un cambio maravilloso de la ciudad.
+Ah, alright. Check again with me if you change your mind.
+Ah, claro. Ven de nuevo si cambias de opinión.
+Excellent. Let's get started.
+Excelente. Empecemos.
+\PN traded Natu for Elekid!
+\PN intercambió a Natu por Elekid!
+A huge thanks. I'm sure my friend will be excited to meet this little one.
+Muchas gracias. Estoy segura que mi amiga estará emocionada de conocer a este pequeñin.
+I'll be leaving now. If you ever catch me on the job...
+Ahora me retiro. Si me ves en el trabajo… 
+Well, either job, don't be afraid to come say hi!
+Bueno, cualquiera de ellos, ¡No tengas miedo a saludar!
 Sometimes I ask myself important questions.
 A veces me pregunto cosas importantes.
 Like, how many bibs can a Bibarel bear if a Bibarel could bear bibs?
@@ -52017,6 +52016,30 @@ profesora
 \db[#{badgeNum}]\me[Badge get]¡Conseguiste la Medalla {1}!\wtnp[120]
 \wmLevel cap raised to {1}!\me<<[>>Bug catching 3rd<<]>>\wtnp<<[>>80<<]>><<1>>
 \wm¡El límite de nivel subió a {1}!\me<<[>>Bug catching 3rd<<]>>\wtnp<<[>>80<<]>><<1>>
+You notice a voice message from #{CARETAKER}, the PokÉstate caretaker.
+Notas un mensaje de voz de #{CARETAKER}, la cuidadora del Terreno.
+Greetings, young master. I have good news.
+Saludos, jóven maestro. Tengo buenas noticias.
+\\ME[Bug catching 2nd]You've earned a new PokéDex completion reward!\\wtnp[60]
+\\ME[Bug catching 2nd]¡Has ganado una nueva recompensa por completar tu PokéDex!\\wtnp[60]
+\\ME[Bug catching 2nd]You've earned #{newAwards.length} new PokéDex completion rewards!\\wtnp[60]
+\\ME[Bug catching 2nd¡Has ganado #{newAwards.length} nuevas recompensas por completar tu PokéDex\\wtnp[60]
+For collecting #{awardDescription}, please take this.
+Por conseguir #{awardDescription}, por favor toma esto.
+I'll list the feats you've accomplished:
+Nombraré todos los hitos que has conseguido:
+You've collected #{awardDescription}...
+Has conseguido #{awardDescription}...
+...and #{awardDescription}.
+...y #{awardDescription}.
+...#{awardDescription}...
+...#{awardDescription}...
+That's so many! I'll just give you all the rewards at once.
+¡Son demasiadas! Sólo te daré todas las recompensas a la vez.
+That's a lot, so I've lumped all the rewards together.
+Esas son demasiadas, así que las he agrupado todas juntas.
+As you finish reading, the PC materializes a package...
+Mientras terminas de leer, la PC materializa un paquete...
 [26]
 [27]
 [27]
