@@ -14,7 +14,6 @@ LandTall,20
     20,PONYTA,17,19
     20,POOCHYENA,17,19
 Special,1
-    1,ELEKID,15
     1,NUMEL,10
 #-------------------------------
 [004] # Scientist's House
@@ -997,6 +996,10 @@ LandTall,20
     20,HATTERENE,54,56
     20,JYNX,54,56
     20,MNOCTOWL,54,56
+#-------------------------------
+[392] # Turf-Grouz Gatehouse
+Special,1
+    1,ELEKID,15
 #-------------------------------
 [403] # Frozen Lake
 LandTall,20
