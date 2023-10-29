@@ -12,8 +12,15 @@ VALID_FORMS = [
     [:SAWSBUCK,3],
 ]
 
+##############################################################
+# Game mode class
+##############################################################
 class TectonicRogueGameMode
     attr_reader :speciesForms
+
+    ##############################################################
+    # Initialization
+    ##############################################################
 
     def initialize
         loadValidSpecies
@@ -28,6 +35,10 @@ class TectonicRogueGameMode
             @speciesForms.push([speciesData.id,speciesData.form])
         end
     end
+
+    ##############################################################
+    # Pokemon selection
+    ##############################################################
 
     def chooseGiftPokemon(numberOfChoices = 3)
         speciesFormChoices = getSpeciesFormChoices(numberOfChoices)
@@ -73,6 +84,9 @@ class TectonicRogueGameMode
         return speciesFormChoices
     end
 
+    ##############################################################
+    # Pokemon generation
+    ##############################################################
     def getRandomSpeciesForm(existingChoices = [])
         newChoice = nil
         while newChoice.nil? || existingChoices.include?(newChoice)
@@ -82,6 +96,18 @@ class TectonicRogueGameMode
     end
 end
 
+##############################################################
+# Level generation
+##############################################################
+Events.onMapChange += proc { |_sender,_e|
+    mapID = $game_map.map_id
+    for event in $game_map.events.values
+		match = event.name.match(/roguetrainer/)
+}
+
+##############################################################
+# Helper methods
+##############################################################
 def enterRogueMode
     setLevelCap(70,false)
     $TectonicRogue = TectonicRogueGameMode.new
