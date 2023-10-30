@@ -49,7 +49,7 @@ def pbSave(safesave = false)
   def savingAllowed?()
     begin
       return false if GameData::MapMetadata.get($game_map.map_id).saving_blocked
-      return false if $PokemonGlobal.tournament&.tournamentActive?
+      #return false if $PokemonGlobal.tournament&.tournamentActive?
     rescue
       return true
     end

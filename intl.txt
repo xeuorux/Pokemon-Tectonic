@@ -50079,7 +50079,7 @@ Este es un error recuperable. Por favor alerta a un programador.
 The waiting room for tournament entrants is ahead.
 La sala de espera para los participantes del torneo está enfrente.
 Once you enter, you will not be able to save or interact with your team in any way until the tournament is complete.
-Una vez entres, no podrás guardar o interactuar con tu equipo de cualquier manera hasta que el torneo termine.
+Una vez entres, no podrás interactuar con tu equipo de cualquier manera hasta que el torneo termine.
 This means swapping Pokemon, moves, abilities, or items, or even changing your team order.
 Esto significa cambiar de Pokémon, movimientos, habilidades, objetos, o incluso cambiar el orden de tu equipo. 
 A nurse is provided, however, for healing between matches.
