@@ -2533,3 +2533,19 @@ Bicycle = false
 Outdoor = false
 ShowArea = false
 Bicycle = false
+#-------------------------------
+[425]
+# Room 1
+Outdoor = false
+#-------------------------------
+[426]
+# Room 2
+Outdoor = false
+#-------------------------------
+[427]
+# Room 3
+Outdoor = false
+#-------------------------------
+[428]
+# Room 4
+Outdoor = false

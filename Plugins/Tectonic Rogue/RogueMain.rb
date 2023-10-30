@@ -12,6 +12,13 @@ VALID_FORMS = [
     [:SAWSBUCK,3],
 ]
 
+FLOOR_MAP_IDS = [
+    425,
+    426,
+    427,
+    428,
+]
+
 ##############################################################
 # Game mode class
 ##############################################################
@@ -24,6 +31,7 @@ class TectonicRogueGameMode
 
     def initialize
         loadValidSpecies
+        @currentFloorTrainers = []
     end
     
     def loadValidSpecies
@@ -94,15 +102,104 @@ class TectonicRogueGameMode
         end
         return newChoice
     end
+
+    ##############################################################
+    # Trainer generation
+    ##############################################################
+    def resetFloorTrainers
+        @currentFloorTrainers.clear
+    end
+    
+    def initializeNextTrainer
+        randomTrainer = getRandomTrainer
+        @currentFloorTrainers.push(randomTrainer)
+        return randomTrainer,@currentFloorTrainers.length-1
+    end
+
+    def getTrainerByLevelID(idNumber)
+        return @currentFloorTrainers[idNumber]
+    end
+
+    def getRandomTrainer
+        trainerData = GameData::Trainer.randomMonumentTrainer
+        actualTrainer = trainerData.to_trainer
+        actualTrainer.party = actualTrainer.party[0..2]
+        return actualTrainer
+    end
+
+    def startTrainerBattle(idNumber)
+        trainer = getTrainerByLevelID(idNumber)
+        
+        setBattleRule("canLose")
+        pbTrainerBattleCore(trainer)
+    end
+
+    ##############################################################
+    # Floor selection and movement
+    ##############################################################
+    def moveToNextFloor
+        pbSEPlay("Battle flee")
+        pbCaveEntrance
+        transferPlayerToEvent(2,Up,getRandomFloorMapID)
+    end
+
+    def getRandomFloorMapID
+        return FLOOR_MAP_IDS.sample
+    end
 end
 
 ##############################################################
-# Level generation
+# Floor generation
 ##############################################################
 Events.onMapChange += proc { |_sender,_e|
+    next unless rogueModeActive?
     mapID = $game_map.map_id
     for event in $game_map.events.values
 		match = event.name.match(/roguetrainer/)
+        next unless match
+        # Reset the trainer's flag
+        pbSetSelfSwitch(event.id,"A",false)
+
+        trainer,trainerID = $TectonicRogue.initializeNextTrainer
+
+        # Construct the first page, in which the battle takes place
+        firstPage = RPG::Event::Page.new
+		firstPage.graphic.character_name = trainer.trainer_type.to_s
+        firstPage.graphic.direction = event.event.pages[0].graphic.direction
+		firstPage.trigger = 2 # event touch
+		firstPage.list = []
+        push_script(firstPage.list,sprintf("noticePlayer"))
+		push_script(firstPage.list,sprintf("$TectonicRogue.startTrainerBattle(#{trainerID})"))
+        push_script(firstPage.list,sprintf("defeatRogueTrainer"))
+        push_script(firstPage.list,sprintf("$Trainer.heal_party"))
+		firstPage.list.push(RPG::EventCommand.new(0,0,[]))
+		
+        # Construct the second page (trainer gone)
+        secondPage = RPG::Event::Page.new
+        secondPage.condition.self_switch_valid = true
+        secondPage.condition.self_switch_ch = "A"
+
+        # Set the pages
+		event.event.pages[0] = firstPage
+        event.event.pages[1] = secondPage
+		event.refresh
+
+        # Modify the follower pokemon
+        followers = getFollowerPokemon(event.id)
+        followers.each do |followerEvent|
+            firstFollowerPage = createPokemonInteractionEventPage(trainer.party[0],followerEvent.event.pages[0])
+            secondFollowerPage = RPG::Event::Page.new
+            secondFollowerPage.condition.self_switch_valid = true
+            secondFollowerPage.condition.self_switch_ch = "D"
+
+            followerEvent.event.pages[0] = firstFollowerPage
+            followerEvent.event.pages[1] = secondFollowerPage
+            followerEvent.refresh
+
+            # Reset the follower's flag
+            pbSetSelfSwitch(event.id,"D",false)
+        end
+    end
 }
 
 ##############################################################
@@ -111,6 +208,14 @@ Events.onMapChange += proc { |_sender,_e|
 def enterRogueMode
     setLevelCap(70,false)
     $TectonicRogue = TectonicRogueGameMode.new
+    3.times do
+        chooseGiftPokemon
+    end
+    $TectonicRogue.moveToNextFloor
+end
+
+def promptMoveToNextFloor
+    $TectonicRogue.moveToNextFloor if pbConfirmMessage(_INTL("Drop down to the next floor?"))
 end
 
 def reloadValidSpecies
