@@ -172,7 +172,7 @@
 1171,EVERNALIZE,Evernalize,096,140,NORMAL,Special,100,12,0,NearOther,0,CanProtect;CanMirrorMove,"The user draws power to attack by using a held Berry. The Berry used determines its type.",NATURALGIFT
 1172,SPOOKYSNUGGLING,Spooky Snuggling,10D,0,GHOST,Status,100,5,0,NearOther,0,CanProtect;CanMirrorMove,"The user harnesses its jealousy to attack the opponent with ghostly hugs, cursing them.",
 1173,BULLETTRAIN,Bullet Train,5E0,90,STEEL,Physical,100,15,10,NearOther,0,CanProtect;CanMirrorMove,"The user becomes a pain train. It has a 10% chance to raise the user's Speed.",HEAVYSLAM
-1174,INFECT,Infect,005,0,GRASS,Status,100,30,0,NearOther,0,CanProtect;CanMagicCoat;CanMirrorMove,"The user attempts to infect the target, poisoning it.",POISONPOWDER
+1174,INFECT,Infect,005,0,GRASS,Status,100,30,0,NearOther,0,CanProtect;CanMagicCoat;CanMirrorMove,"The target is irritated by allergenic plants, poisoning it.",POISONPOWDER
 1175,ANESTHETIZE,Anesthetize,007,0,GRASS,Status,100,12,0,NearOther,0,CanProtect;CanMagicCoat;CanMirrorMove,"The user applies anesthetic substances, numbing the target.",STUNSPORE
 1176,DRAGBENEATH,Drag Beneath,0CF,75,WATER,Physical,100,10,0,NearOther,0,CanProtect;CanMirrorMove,"The user pulls the target under the waves, trapping and damaging it for three turns.",WRAP
 1177,DAZZLE,Dazzle,045,0,NORMAL,Status,100,30,0,AllNearFoes,0,CanProtect;CanMagicCoat;CanMirrorMove,"The user dazzles nearby foes with light or sound. Their Sp. Atk is lowered by two steps.",FLASH
