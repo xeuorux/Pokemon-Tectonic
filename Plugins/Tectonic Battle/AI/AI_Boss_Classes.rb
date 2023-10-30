@@ -872,7 +872,7 @@ class PokeBattle_AI_Magnezone < PokeBattle_AI_Boss
             },
         })
 
-        @requiredMoves.push(:POLARIZEDFIELD)
+        @requiredMoves.push(:REPULSIONFIELD)
     end
 end
 

@@ -460,7 +460,7 @@ Pokemon = SWIRLIX,24
 #-------------------------------
 [TEENAGERF,Naomi]
 Pokemon = IVYSAUR,23
-    Moves = STINKCLOUD,RAZORLEAF,LEECHSEED,INFECT
+    Moves = STINKCLOUD,RAZORLEAF,LEECHSEED,POISONIVY
     AbilityIndex = 0 # Poison Absorb
 Pokemon = TYRUNT,24
     Moves = LASHOUT,GRANITEHEAD,CLASH,DRAGONTAIL
@@ -1497,7 +1497,7 @@ Pokemon = HAPPINY,20
 #-------------------------------
 [POKEMANIAC,Nikos]
 Pokemon = LEAFEON,35
-    Moves = INFECT,SOLARGLIDE,BABYDOLLEYES,WORKUP
+    Moves = POISONIVY,SOLARGLIDE,BABYDOLLEYES,WORKUP
     AbilityIndex = 1 # Reluctant Blade
     Item = GRASSGEM
 Pokemon = WEAVILE,35

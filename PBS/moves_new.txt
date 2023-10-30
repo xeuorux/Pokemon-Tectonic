@@ -172,7 +172,7 @@
 1171,EVERNALIZE,Evernalize,096,140,NORMAL,Special,100,12,0,NearOther,0,CanProtect;CanMirrorMove,"The user draws power to attack by using a held Berry. The Berry used determines its type.",NATURALGIFT
 1172,SPOOKYSNUGGLING,Spooky Snuggling,10D,0,GHOST,Status,100,5,0,NearOther,0,CanProtect;CanMirrorMove,"The user harnesses its jealousy to attack the opponent with ghostly hugs, cursing them.",
 1173,BULLETTRAIN,Bullet Train,5E0,90,STEEL,Physical,100,15,10,NearOther,0,CanProtect;CanMirrorMove,"The user becomes a pain train. It has a 10% chance to raise the user's Speed.",HEAVYSLAM
-1174,INFECT,Infect,005,0,GRASS,Status,100,30,0,NearOther,0,CanProtect;CanMagicCoat;CanMirrorMove,"The target is irritated by allergenic plants, poisoning it.",POISONPOWDER
+1174,POISONIVY,Poison Ivy,005,0,GRASS,Status,100,30,0,NearOther,0,CanProtect;CanMagicCoat;CanMirrorMove,"The target is irritated by allergenic plants, poisoning it.",POISONPOWDER
 1175,ANESTHETIZE,Anesthetize,007,0,GRASS,Status,100,12,0,NearOther,0,CanProtect;CanMagicCoat;CanMirrorMove,"The user applies anesthetic substances, numbing the target.",STUNSPORE
 1176,DRAGBENEATH,Drag Beneath,0CF,75,WATER,Physical,100,10,0,NearOther,0,CanProtect;CanMirrorMove,"The user pulls the target under the waves, trapping and damaging it for three turns.",WRAP
 1177,DAZZLE,Dazzle,045,0,NORMAL,Status,100,30,0,AllNearFoes,0,CanProtect;CanMagicCoat;CanMirrorMove,"The user dazzles nearby foes with light or sound. Their Sp. Atk is lowered by two steps.",FLASH
@@ -476,9 +476,9 @@
 1475,DROWN,Drown,5FD,0,GHOST,Status,100,15,0,NearOther,0,CanProtect;CanMagicCoat;CanMirrorMove,"Disables the target's last used move for four turns, then reduces a relevant stat on them by four steps.",AQUARING
 1476,DEVOURWHOLE,Devour Whole,5FE,130,POISON,Physical,100,5,0,NearOther,0,CanProtect;CanMirrorMove;Bite,"Grips the target with its entire mouth. The user can’t attack next turn unless the target faints or switches out.",
 1477,SPOTTING,Spotting,5FF,0,DARK,Status,0,15,0,NearAlly,5,,"The user assists an ally by boosting the power and accuracy of its next attack by 50%.",
-1478,POLARIZEDFIELD,Polarized Field,12A,0,ELECTRIC,Status,0,15,0,UserSide,0,CanSnatch,"This move creates a directional magnetic field which reduces damage from attacks with 100 or more base power for five turns.",
+1478,REPULSIONFIELD,Repulsion Field,12A,0,ELECTRIC,Status,0,15,0,UserSide,0,CanSnatch,"This move creates a directional magnetic field which reduces damage from attacks with 100 or more base power for five turns.",
 1479,MASQUERBLADE,Masquerblade,12B,150,GRASS,Physical,100,5,0,AllNearFoes,-3,CanProtect,"The user hides its blade. If it is hit by a special move, it unsheathes it quickly, slashing all near foes.",CAMOUFLAGE
-1480,PRIDESFLAME,Pride's Flame,12C,90,FIRE,Special,100,10,0,NearOther,0,CanProtect;CanMirrorMove,"A distinguished attack that motivates nearby allies to follow, letting them act immediately after",
+1480,VAINGLORYFLAMES,Vainglory Flames,12C,90,FIRE,Special,100,10,0,NearOther,0,CanProtect;CanMirrorMove,"A distinguished attack that motivates nearby allies to follow, letting them act immediately after",
 1481,COLDSHOULDER,Cold Shoulder,56A,80,GHOST,Physical,100,12,100,NearOther,0,CanProtect;CanMirrorMove,"The user attacks with bitter emotion. This lowers the target's attacking stats by two steps if in hail.",PHANTOMFORCE
 1482,DISTURB,Disturb,007,90,GHOST,Physical,100,15,10,NearOther,0,CanProtect;CanMirrorMove,"The target is subjected to a violent and frightening prank. It has a 10% chance to numb.",
 1483,BALEFULBOP,Baleful Bop,401,60,FAIRY,Special,100,20,30,NearOther,0,CanProtect;CanMirrorMove;Sound,"The user sings with reckless abandon, annoying the target. There's a 30% chance they become dizzy.",ENCHANTINGSONG
