@@ -398,7 +398,7 @@ class PokeBattle_Battler
             disableEffect(:Type3)
         end
         disableEffect(:BurnUp)
-        disableEffect(:ColdConversion)
+        disableEffect(:Sublimate)
         disableEffect(:Roost)
         if hasActiveAbility?(:UNIDENTIFIED)
             showMyAbilitySplash(:UNIDENTIFIED)

@@ -268,8 +268,8 @@ class PokeBattle_Move
                 end
             end
 
-            # Polarized Field
-            if baseDamage >= 100 && target.pbOwnSide.effectActive?(:PolarizedField)
+            # Repulsion Field
+            if baseDamage >= 100 && target.pbOwnSide.effectActive?(:RepulsionField)
                 if @battle.pbSideBattlerCount(target) > 1
                     multipliers[:final_damage_multiplier] *= 2 / 3.0
                 else

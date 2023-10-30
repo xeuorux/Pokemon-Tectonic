@@ -2286,8 +2286,12 @@ class PokeBattle_Move_0CF < PokeBattle_Move
             msg = _INTL("{1} became trapped by sand!", target.pbThis)
         when :WHIRLPOOL, :MAELSTROM
             msg = _INTL("{1} became trapped in the vortex!", target.pbThis)
-        when :WRAP, :KRAKENCLUTCHES
+        when :WRAP
             msg = _INTL("{1} was wrapped by {2}!", target.pbThis, user.pbThis(true))
+        when :SHATTERVISE
+            msg = _INTL("{1} was caught in {2}'s vises!", target.pbThis, user.pbThis(true))
+        when :DRAGBENEATH
+            msg = _INTL("{1} was dragged beneath the waves!", target.pbThis)
         end
         @battle.pbDisplay(msg)
     end
@@ -3665,7 +3669,7 @@ class PokeBattle_Move_0F8 < PokeBattle_Move
 end
 
 #===============================================================================
-# Heals user by an amount depending on the weather. (Power Nap)
+# Heals user by an amount depending on the weather. (Sweet Selene)
 #===============================================================================
 class PokeBattle_Move_0F9 < PokeBattle_HealingMove
     def healRatio(_user)

@@ -29,7 +29,7 @@ class PokeBattle_Battler
         # Burn Up erases the Fire-type.
         ret.delete(:FIRE) if effectActive?(:BurnUp)
         # Cold Conversion erases the Ice-type.
-        ret.delete(:ICE) if effectActive?(:ColdConversion)
+        ret.delete(:ICE) if effectActive?(:Sublimate)
         # Dry Heat erases the Water-type.
         ret.delete(:WATER) if effectActive?(:DryHeat)
         # Roost erases the Flying-type. If there are no types left, adds the Normal-
@@ -873,8 +873,8 @@ class PokeBattle_Battler
     end
 
     def healingReversed?(showMessages = false)
-        if effectActive?(:NerveBreak)
-            @battle.pbDisplay(_INTL("{1}'s healing is reversed because of their broken nerves!", pbThis)) if showMessages
+        if effectActive?(:HealingReversed)
+            @battle.pbDisplay(_INTL("{1}'s healing is reversed!", pbThis)) if showMessages
             return true
         end
         if hasActiveAbility?(:AUTUMNAL)

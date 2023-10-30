@@ -425,7 +425,7 @@ BattleHandlers::AbilityOnSwitchIn.add(:QUALITYAURA,
   proc { |ability, battler, battle, aiCheck|
       battle.pbShowAbilitySplash(battler, ability) unless aiCheck
       battle.pbAnimation(:TRICKROOM, battler, nil, 0) unless aiCheck
-      score = battle.pbStartRoom(:QualityRoom, battler, aiCheck)
+      score = battle.pbStartRoom(:PolarizedRoom, battler, aiCheck)
       battle.pbHideAbilitySplash(battler) unless aiCheck
       next score
   }

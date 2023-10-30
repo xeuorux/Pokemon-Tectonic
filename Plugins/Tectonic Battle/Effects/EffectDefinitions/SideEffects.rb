@@ -77,8 +77,8 @@ teamName))
 })
 
 GameData::BattleEffect.register_effect(:Side, {
-    :id => :PolarizedField,
-    :real_name => "Polarized Field",
+    :id => :RepulsionField,
+    :real_name => "Repulsion Field",
     :type => :Integer,
     :ticks_down => true,
     :is_screen => true,
@@ -87,10 +87,10 @@ GameData::BattleEffect.register_effect(:Side, {
 teamName))
     end,
     :disable_proc => proc do |battle, _side, teamName|
-        battle.pbDisplay(_INTL("{1}'s Polarized Field was broken!", teamName))
+        battle.pbDisplay(_INTL("{1}'s Repulsion Field was broken!", teamName))
     end,
     :expire_proc => proc do |battle, _side, teamName|
-        battle.pbDisplay(_INTL("{1}'s Polarized Field wore off!", teamName))
+        battle.pbDisplay(_INTL("{1}'s Repulsion Field wore off!", teamName))
     end,
 })
 

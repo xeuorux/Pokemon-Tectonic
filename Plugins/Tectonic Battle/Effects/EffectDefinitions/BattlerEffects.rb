@@ -75,7 +75,7 @@ GameData::BattleEffect.register_effect(:Battler, {
     :info_displayed => false,
     :avatars_purge => true,
     :apply_proc => proc do |battle, battler, _value|
-        battle.pbDisplay(_INTL("{1} burned itself out!", battler.pbThis))
+        battle.pbDisplay(_INTL("{1} lost its Fire-Type!", battler.pbThis))
         battle.scene.pbRefresh
     end,
 })
@@ -1464,12 +1464,12 @@ GameData::BattleEffect.register_effect(:Battler, {
 })
 
 GameData::BattleEffect.register_effect(:Battler, {
-    :id => :ColdConversion,
-    :real_name => "Cold Converted",
+    :id => :Sublimate,
+    :real_name => "Sublimate",
     :info_displayed => false,
     :avatars_purge => true,
     :apply_proc => proc do |battle, battler, _value|
-        battle.pbDisplay(_INTL("{1} lost its cold!", battler.pbThis))
+        battle.pbDisplay(_INTL("{1} lost its Ice-type!", battler.pbThis))
         battle.scene.pbRefresh
     end,
 })
@@ -1541,11 +1541,11 @@ GameData::BattleEffect.register_effect(:Battler, {
 })
 
 GameData::BattleEffect.register_effect(:Battler, {
-    :id => :NerveBreak,
+    :id => :HealingReversed,
     :real_name => "Healing Reversed",
     :resets_eor => true,
     :apply_proc => proc do |battle, battler, _value|
-        battle.pbDisplay(_INTL("{1}'s nerves are strained!", battler.pbThis))
+        battle.pbDisplay(_INTL("{1}'s healing is reversed this turn!", battler.pbThis))
     end,
 })
 
@@ -1629,7 +1629,7 @@ GameData::BattleEffect.register_effect(:Battler, {
 })
 
 GameData::BattleEffect.register_effect(:Battler, {
-    :id => :PrimalVigor,
+    :id => :GreaterGlories,
     :real_name => "Extra Turn",
     :resets_eor => true,
     :apply_proc => proc do |battle, battler, value|
@@ -1845,8 +1845,8 @@ GameData::BattleEffect.register_effect(:Battler, {
 })
 
 GameData::BattleEffect.register_effect(:Battler, {
-    :id => :ShieldShell,
-    :real_name => "Shield Shell",
+    :id => :ShiningShell,
+    :real_name => "Shining Shell",
     :resets_eor	=> true,
     :protection_info => {
         :hit_proc => proc do |user, _target, move, _battle|

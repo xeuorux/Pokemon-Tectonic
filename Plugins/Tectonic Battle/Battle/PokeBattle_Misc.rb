@@ -308,7 +308,7 @@ class PokeBattle_Battle
 
     def typeEffectivenessMult(typeMod)
         mult = typeMod / Effectiveness::NORMAL_EFFECTIVE.to_f
-        if @field.effectActive?(:QualityRoom)
+        if @field.effectActive?(:PolarizedRoom)
             if Effectiveness.super_effective?(typeMod)
                 mult *= 1.25
             elsif Effectiveness.not_very_effective?(typeMod)

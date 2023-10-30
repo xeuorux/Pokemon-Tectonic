@@ -570,7 +570,7 @@ class PokeBattle_TwoTurnMove < PokeBattle_Move
     def pbAttackingTurnMessage(user, targets); end
 
     def pbChargingTurnEffect(user, target)
-        # Skull Bash/Sky Drop/Zephyr Wing are the only two-turn moves with an effect here, and
+        # Skull Bash/Sky Drop/Infinite Wing are the only two-turn moves with an effect here, and
         # the latter just records the target is being Sky Dropped
     end
 
