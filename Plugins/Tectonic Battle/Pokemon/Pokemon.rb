@@ -546,7 +546,32 @@ class Pokemon
     #=============================================================================
     # Nature
     #=============================================================================
+    def tribes
+      if hasAbility?(:FRIENDTOALL) || hasItem?(:WILDCARD)
+          list = []
+          GameData::Tribe.each do |tribeData|
+              list.push(tribeData.id)
+          end
+          return list
+      end
+      fSpecies = GameData::Species.get_species_form(@species, @form)
+      return fSpecies.tribes
+    end
+
+    def hasTribe?(tribeCheck)
+      if tribeCheck.is_a?(Array)
+        tribeCheck.each do |tribeToCheck|
+          return true if tribes.include?(tribeToCheck)
+        end
+        return false
+      else
+        return tribes.include?(tribeCheck)
+      end
+    end
   
+    #=============================================================================
+    # Nature
+    #=============================================================================
     # @return [GameData::Nature, nil] a Nature object corresponding to this Pokémon's nature
     def nature
       @nature = GameData::Nature.get(0).id # ALWAYS RETURN NEUTRAL

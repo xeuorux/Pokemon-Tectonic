@@ -101,20 +101,6 @@ class TribalBonus
     end
 end
 
-class Pokemon
-    def tribes
-        if hasAbility?(:FRIENDTOALL) || hasItem?(:WILDCARD)
-            list = []
-            GameData::Tribe.each do |tribeData|
-                list.push(tribeData.id)
-            end
-            return list
-        end
-        fSpecies = GameData::Species.get_species_form(@species, @form)
-        return fSpecies.tribes
-    end
-end
-
 def playerTribalBonus()
     $Trainer.tribalBonus = TribalBonus.new($Trainer) unless $Trainer.tribalBonus
     $Trainer.tribalBonus.trainer = $Trainer unless $Trainer.tribalBonus.trainer
