@@ -1,4 +1,4 @@
-BattleHandlers::TotalEclipseAbility.add(:TOTALGRASP,
+BattleHandlers::TotalEclipseAbility.add(:MASTERPLAN,
     proc { |ability, battler, _battle|
         battler.pbRaiseMultipleStatSteps([:ATTACK,2,:DEFENSE,2,:SPECIAL_ATTACK,2,:SPECIAL_DEFENSE,2,:SPEED,2], battler, ability: ability)
     }

@@ -101,7 +101,7 @@ class PokeBattle_Battle
     end
 
     def damageFromDOTStatus(battler, status, aiCheck = false)
-        if battler.takesIndirectDamage? && !battler.hasActiveAbility?(:APATHETIC)
+        if battler.takesIndirectDamage? && !battler.hasActiveAbility?(:PLACIDITY)
             if %i[POISON LEECHED].include?(status)
                 fraction = 1.0 / 10.0
             else
@@ -140,7 +140,7 @@ class PokeBattle_Battle
 
     def pbEORStatusDamage(priority)
         battlersInOrder = priority.clone
-        if pbCheckGlobalAbility(:MALINGERING)
+        if pbCheckGlobalAbility(:INEXORABLE)
             pbParty(0).each do |partyMember, partyIndex|
                 dummyBattler = PokeBattle_Battler.new(self, 0)
                 dummyBattler.pbInitDummyPokemon(partyMember, partyIndex)

@@ -96,7 +96,7 @@ BattleHandlers::AbilityOnSwitchIn.add(:DRAMATICLIGHTING,
   }
 )
 
-BattleHandlers::AbilityOnSwitchIn.add(:CRAGTERROR,
+BattleHandlers::AbilityOnSwitchIn.add(:SCOUREDSILHOUETTE,
   proc { |ability, battler, battle, aiCheck|
       next 0 unless battle.sandy?
       next entryDebuffAbility(ability, battler, battle, ATTACKING_STATS_2, aiCheck: aiCheck)
@@ -221,7 +221,7 @@ BattleHandlers::AbilityOnSwitchIn.add(:RUINOUS,
   }
 )
 
-BattleHandlers::AbilityOnSwitchIn.add(:SEALORD,
+BattleHandlers::AbilityOnSwitchIn.add(:CITYRAZER,
   proc { |ability, battler, battle, aiCheck|
       next 0 if aiCheck
       battle.pbShowAbilitySplash(battler, ability)
@@ -230,7 +230,7 @@ BattleHandlers::AbilityOnSwitchIn.add(:SEALORD,
   }
 )
 
-BattleHandlers::AbilityOnSwitchIn.add(:HONORAURA,
+BattleHandlers::AbilityOnSwitchIn.add(:HONORABLE,
   proc { |ability, battler, battle, aiCheck|
       next 0 if aiCheck
       battle.pbShowAbilitySplash(battler, ability)
@@ -266,7 +266,7 @@ BattleHandlers::AbilityOnSwitchIn.add(:SIGNALJAM,
   }
 )
 
-BattleHandlers::AbilityOnSwitchIn.add(:AQUASNEAK,
+BattleHandlers::AbilityOnSwitchIn.add(:BREAKINGWAVE,
   proc { |ability, battler, battle, aiCheck|
       next 0 if aiCheck
       battle.pbShowAbilitySplash(battler, ability)
@@ -320,7 +320,7 @@ BattleHandlers::AbilityOnSwitchIn.add(:GALEWINGS,
   }
 )
 
-BattleHandlers::AbilityOnSwitchIn.add(:RAMMINGSPEED,
+BattleHandlers::AbilityOnSwitchIn.add(:TRENCHCARVER,
   proc { |ability, battler, battle, aiCheck|
       next 0 if aiCheck
       battle.pbShowAbilitySplash(battler, ability)
@@ -347,11 +347,11 @@ BattleHandlers::AbilityOnSwitchIn.add(:TRIAGE,
   }
 )
 
-BattleHandlers::AbilityOnSwitchIn.add(:QUICKKICKS,
+BattleHandlers::AbilityOnSwitchIn.add(:SWIFTSTOMPS,
   proc { |ability, battler, battle, aiCheck|
       next 0 if aiCheck
       battle.pbShowAbilitySplash(battler, ability)
-      battle.pbDisplay(_INTL("{1} is quick on its feet!", battler.pbThis))
+      battle.pbDisplay(_INTL("{1} is ready to stomp the opposition!", battler.pbThis))
       battle.pbHideAbilitySplash(battler)
   }
 )
@@ -391,7 +391,7 @@ BattleHandlers::AbilityOnSwitchIn.add(:STARGUARDIAN,
 # Room setting abilities
 ##########################################
 
-BattleHandlers::AbilityOnSwitchIn.add(:PUZZLINGAURA,
+BattleHandlers::AbilityOnSwitchIn.add(:PUZZLING,
   proc { |ability, battler, battle, aiCheck|
       battle.pbShowAbilitySplash(battler, ability) unless aiCheck
       battle.pbAnimation(:TRICKROOM, battler, nil, 0) unless aiCheck
@@ -401,7 +401,7 @@ BattleHandlers::AbilityOnSwitchIn.add(:PUZZLINGAURA,
   }
 )
 
-BattleHandlers::AbilityOnSwitchIn.add(:ODDAURA,
+BattleHandlers::AbilityOnSwitchIn.add(:ODDITY,
   proc { |ability, battler, battle, aiCheck|
       battle.pbShowAbilitySplash(battler, ability) unless aiCheck
       battle.pbAnimation(:TRICKROOM, battler, nil, 0) unless aiCheck
@@ -411,7 +411,7 @@ BattleHandlers::AbilityOnSwitchIn.add(:ODDAURA,
   }
 )
 
-BattleHandlers::AbilityOnSwitchIn.add(:TRICKYAURA,
+BattleHandlers::AbilityOnSwitchIn.add(:TRICKSTER,
   proc { |ability, battler, battle, aiCheck|
       battle.pbShowAbilitySplash(battler, ability) unless aiCheck
       battle.pbAnimation(:TRICKROOM, battler, nil, 0) unless aiCheck
@@ -421,7 +421,7 @@ BattleHandlers::AbilityOnSwitchIn.add(:TRICKYAURA,
   }
 )
 
-BattleHandlers::AbilityOnSwitchIn.add(:QUALITYAURA,
+BattleHandlers::AbilityOnSwitchIn.add(:POLARIZING,
   proc { |ability, battler, battle, aiCheck|
       battle.pbShowAbilitySplash(battler, ability) unless aiCheck
       battle.pbAnimation(:TRICKROOM, battler, nil, 0) unless aiCheck
@@ -567,7 +567,7 @@ BattleHandlers::AbilityOnSwitchIn.add(:ONTHEWIND,
   }
 )
 
-BattleHandlers::AbilityOnSwitchIn.add(:GRAVITATIONAL,
+BattleHandlers::AbilityOnSwitchIn.add(:GRAVITAS,
   proc { |ability, battler, battle, aiCheck|
       if aiCheck
           next getGravityEffectScore(battler, 5)
@@ -664,7 +664,7 @@ BattleHandlers::AbilityOnSwitchIn.add(:DOWNLOAD,
   }
 )
 
-BattleHandlers::AbilityOnSwitchIn.add(:EVOARMOR,
+BattleHandlers::AbilityOnSwitchIn.add(:SELECTIVESCUTES,
   proc { |ability, battler, battle, aiCheck|
       oppTotalAttack = oppTotalSpAtk = 0
       anyFoes = false
@@ -775,7 +775,7 @@ BattleHandlers::AbilityOnSwitchIn.add(:REFRESHMENTS,
   }
 )
 
-BattleHandlers::AbilityOnSwitchIn.add(:MENDINGTONES,
+BattleHandlers::AbilityOnSwitchIn.add(:TOLLTHEBELLS,
   proc { |ability, battler, battle, aiCheck|
       next 0 unless battle.eclipsed?
       next entryLowestHealingAbility(ability, battler, battle, aiCheck: aiCheck) do |served|
@@ -796,7 +796,7 @@ BattleHandlers::AbilityOnSwitchIn.add(:PEARLSEEKER,
   }
 )
 
-BattleHandlers::AbilityOnSwitchIn.add(:WHIRLER,
+BattleHandlers::AbilityOnSwitchIn.add(:GYRESPINNER,
   proc { |ability, battler, battle, aiCheck|
       next entryTrappingAbility(ability, battler, battle, :WHIRLPOOL, aiCheck: aiCheck) { |trappedFoe|
         _INTL("{1} became trapped in the vortex!", trappedFoe.pbThis)
@@ -804,7 +804,7 @@ BattleHandlers::AbilityOnSwitchIn.add(:WHIRLER,
   }
 )
 
-BattleHandlers::AbilityOnSwitchIn.add(:PITTING,
+BattleHandlers::AbilityOnSwitchIn.add(:SAPPER,
   proc { |ability, battler, battle, aiCheck|
       next entryTrappingAbility(ability, battler, battle, :SANDTOMB, aiCheck: aiCheck) { |trappedFoe|
         _INTL("{1} became trapped in the sand!", trappedFoe.pbThis)
@@ -841,7 +841,7 @@ BattleHandlers::AbilityOnSwitchIn.add(:COTTONDECOY,
   }
 )
 
-BattleHandlers::AbilityOnSwitchIn.add(:PRECHARGED,
+BattleHandlers::AbilityOnSwitchIn.add(:TESLACOILS,
   proc { |ability, battler, battle, aiCheck|
       if aiCheck
           if battler.pbHasAttackingType?(:ELECTRIC)
@@ -865,7 +865,7 @@ BattleHandlers::AbilityOnSwitchIn.add(:INFECTED,
   }
 )
 
-BattleHandlers::AbilityOnSwitchIn.add(:RUSTYANCHOR,
+BattleHandlers::AbilityOnSwitchIn.add(:RUSTWRACK,
   proc { |ability, battler, battle, aiCheck|
       next 10 if aiCheck
       battle.pbShowAbilitySplash(battler, ability)

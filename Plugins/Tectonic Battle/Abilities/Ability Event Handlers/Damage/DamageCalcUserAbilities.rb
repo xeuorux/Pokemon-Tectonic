@@ -1,4 +1,4 @@
-BattleHandlers::DamageCalcUserAbility.add(:FROSTSONG,
+BattleHandlers::DamageCalcUserAbility.add(:ARCTICARIETTE,
   proc { |ability, user, target, move, mults, _baseDmg, type, aiCheck|
       if aiCheck
           mults[:base_damage_multiplier] *= 1.3 if move.soundMove?
@@ -116,7 +116,7 @@ BattleHandlers::DamageCalcUserAbility.add(:IRONFIST,
 )
 BattleHandlers::DamageCalcUserAbility.copy(:IRONFIST, :MYSTICFIST)
 
-BattleHandlers::DamageCalcUserAbility.add(:SUPERFIST,
+BattleHandlers::DamageCalcUserAbility.add(:KNUCKLEDUSTER,
   proc { |ability, user, target, move, mults, _baseDmg, type, aiCheck|
     if move.punchingMove?
       mults[:base_damage_multiplier] *= 1.5
@@ -134,7 +134,7 @@ BattleHandlers::DamageCalcUserAbility.add(:SHIFTINGFIST,
   }
 )
 
-BattleHandlers::DamageCalcUserAbility.add(:WINDY,
+BattleHandlers::DamageCalcUserAbility.add(:BRISK,
   proc { |ability, user, target, move, mults, _baseDmg, type, aiCheck|
     if move.windMove?
       mults[:attack_multiplier] *= 1.3
@@ -161,7 +161,7 @@ BattleHandlers::DamageCalcUserAbility.add(:LOUD,
   }
 )
 
-BattleHandlers::DamageCalcUserAbility.add(:SHRIEKING,
+BattleHandlers::DamageCalcUserAbility.add(:EARSPLITTING,
   proc { |ability, user, target, move, mults, _baseDmg, type, aiCheck|
     if move.soundMove?
       mults[:base_damage_multiplier] *= 1.5
@@ -170,7 +170,7 @@ BattleHandlers::DamageCalcUserAbility.add(:SHRIEKING,
   }
 )
 
-BattleHandlers::DamageCalcUserAbility.add(:SHARPNESS,
+BattleHandlers::DamageCalcUserAbility.add(:SWORDPLAY,
   proc { |ability, user, target, move, mults, _baseDmg, type, aiCheck|
     if move.bladeMove?
       mults[:base_damage_multiplier] *= 1.3
@@ -179,9 +179,9 @@ BattleHandlers::DamageCalcUserAbility.add(:SHARPNESS,
   }
 )
 
-BattleHandlers::DamageCalcUserAbility.copy(:SHARPNESS, :RAZORSEDGE)
+BattleHandlers::DamageCalcUserAbility.copy(:SWORDPLAY, :RAZORSEDGE)
 
-BattleHandlers::DamageCalcUserAbility.add(:LEGSTRENGTH,
+BattleHandlers::DamageCalcUserAbility.add(:IRONHEEL,
   proc { |ability, user, target, move, mults, _baseDmg, type, aiCheck|
     if move.kickingMove?
       mults[:base_damage_multiplier] *= 1.3
@@ -190,7 +190,7 @@ BattleHandlers::DamageCalcUserAbility.add(:LEGSTRENGTH,
   }
 )
 
-BattleHandlers::DamageCalcUserAbility.add(:ENGORGE,
+BattleHandlers::DamageCalcUserAbility.add(:GORGING,
   proc { |ability, user, target, move, mults, _baseDmg, type, aiCheck|
     if move.healingMove?
       mults[:attack_multiplier] *= 1.3
@@ -246,7 +246,7 @@ BattleHandlers::DamageCalcUserAbility.add(:LIMINAL,
   }
 )
 
-BattleHandlers::DamageCalcUserAbility.add(:NINJUTSU,
+BattleHandlers::DamageCalcUserAbility.add(:AFTERIMAGE,
   proc { |ability, user, target, move, mults, _baseDmg, type, aiCheck|
     if target.effectActive?(:SwitchedIn)
       mults[:attack_multiplier] *= 1.5
@@ -338,6 +338,15 @@ BattleHandlers::DamageCalcUserAbility.add(:PALEOLITHIC,
   }
 )
 
+BattleHandlers::DamageCalcUserAbility.add(:SUPERALLOY,
+  proc { |ability, user, target, move, mults, _baseDmg, type, aiCheck|
+    if type == :STEEL
+      mults[:attack_multiplier] *= 1.5
+      user.aiLearnsAbility(ability) unless aiCheck
+    end
+  }
+)
+
 BattleHandlers::DamageCalcUserAbility.add(:SCALDINGSMOKE,
   proc { |ability, user, target, move, mults, _baseDmg, type, aiCheck|
     if type == :POISON
@@ -356,7 +365,7 @@ BattleHandlers::DamageCalcUserAbility.add(:STEELYSPIRIT,
   }
 )
 
-BattleHandlers::DamageCalcUserAbility.add(:GRASSYSPIRIT,
+BattleHandlers::DamageCalcUserAbility.add(:VERDANT,
   proc { |ability, user, target, move, mults, _baseDmg, type, aiCheck|
     if type == :GRASS
       mults[:base_damage_multiplier] *= 1.5
@@ -365,7 +374,7 @@ BattleHandlers::DamageCalcUserAbility.add(:GRASSYSPIRIT,
   }
 )
 
-BattleHandlers::DamageCalcUserAbility.add(:TOXICSPIRIT,
+BattleHandlers::DamageCalcUserAbility.add(:TOXICATTITUDE,
   proc { |ability, user, target, move, mults, _baseDmg, type, aiCheck|
     if type == :POISON
       mults[:base_damage_multiplier] *= 1.5
@@ -435,7 +444,7 @@ BattleHandlers::DamageCalcUserAbility.add(:MIDNIGHTSUN,
   }
 )
 
-BattleHandlers::DamageCalcUserAbility.add(:SANDDEMON,
+BattleHandlers::DamageCalcUserAbility.add(:DARKENEDSKIES,
   proc { |ability, user, target, move, mults, _baseDmg, type, aiCheck|
     if user.battle.sandy? && type == :DARK
       mults[:base_damage_multiplier] *= 1.5
@@ -471,7 +480,7 @@ BattleHandlers::DamageCalcUserAbility.add(:TIDALFORCE,
   }
 )
 
-BattleHandlers::DamageCalcUserAbility.add(:TAIGATRECKER,
+BattleHandlers::DamageCalcUserAbility.add(:TAIGATREKKER,
   proc { |ability, user, target, move, mults, _baseDmg, type, aiCheck|
     if user.battle.icy? && type == :GRASS
       mults[:base_damage_multiplier] *= 1.5
@@ -568,7 +577,7 @@ BattleHandlers::DamageCalcUserAbility.add(:MARINEMENACE,
   }
 )
 
-BattleHandlers::DamageCalcUserAbility.add(:DIGGINGFIST,
+BattleHandlers::DamageCalcUserAbility.add(:EXCAVATOR,
   proc { |ability, user, target, move, mults, _baseDmg, type, aiCheck|
     if move.function == "0CA" # Dig, Undermine
       mults[:base_damage_multiplier] *= 1.5
@@ -632,7 +641,7 @@ BattleHandlers::DamageCalcUserAbility.add(:HARDFALL,
   }
 )
 
-BattleHandlers::DamageCalcUserAbility.add(:CALAMITY,
+BattleHandlers::DamageCalcUserAbility.add(:SCATHINGSYZYGY,
   proc { |ability, user, target, move, mults, _baseDmg, type, aiCheck|
     if user.battle.eclipsed?
       mults[:base_damage_multiplier] *= 1.25
@@ -654,7 +663,7 @@ BattleHandlers::DamageCalcUserAbility.add(:BALLLIGHTNING,
   }
 )
 
-BattleHandlers::DamageCalcUserAbility.add(:CREEPINGSTRENGTH,
+BattleHandlers::DamageCalcUserAbility.add(:LATEBLOOMER,
   proc { |ability, user, target, move, mults, _baseDmg, type, aiCheck|
     if user.pbSpeed < target.pbSpeed
       mults[:base_damage_multiplier] *= 1.3

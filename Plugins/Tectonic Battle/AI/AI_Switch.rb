@@ -197,7 +197,7 @@ class PokeBattle_AI
         end
 
         # Less likely to switch when has self-mending
-        stayInRating += 15 if battler.hasActiveAbilityAI?(:SELFMENDING)
+        stayInRating += 15 if battler.hasActiveAbilityAI?(:PERENNIALPAYLOAD)
 
         # More likely to switch if weather setter in policy
         weatherSwitchInfo = [
@@ -225,7 +225,7 @@ class PokeBattle_AI
         end
         
         # Less likely to switch if has stat boosts
-        unless battler.hasActiveAbilityAI?(:DOWNLOAD) || battler.hasActiveAbilityAI?(:EVOARMOR) # This should be a more complicated check but prob not worth time
+        unless battler.hasActiveAbilityAI?(:DOWNLOAD) || battler.hasActiveAbilityAI?(:SELECTIVESCUTES) # This should be a more complicated check but prob not worth time
             stayInSteps = statStepsValueScore(battler) * 0.06
             stayInSteps = stayInSteps.round
             if stayInSteps > 0
@@ -249,7 +249,7 @@ class PokeBattle_AI
                 currentHP += battler.totalhp * 0.25 if battler.hasActiveAbilityAI?(:REGENERATOR) || battler.hasActiveAbilityAI?(:HOLIDAYCHEER)
                 currentHP += battler.totalhp * 0.1 if battler.hasTribeBonus?(:CARETAKER)
                 currentHP += battler.totalhp * 0.5 if battler.hasActiveAbilityAI?(:REFRESHMENTS) && battler.ownersPolicies.include?(:SUN_TEAM)
-                currentHP += battler.totalhp * 0.5 if battler.hasActiveAbilityAI?(:MENDINGTONES) && battler.ownersPolicies.include?(:ECLIPSE_TEAM)
+                currentHP += battler.totalhp * 0.5 if battler.hasActiveAbilityAI?(:TOLLTHEBELLS) && battler.ownersPolicies.include?(:ECLIPSE_TEAM)
                 if currentHP > battler.totalhp * 0.5
                     PBDebug.log("[STAY-IN RATING] #{battler.pbThis} (#{battler.index}) is bloodied but will regenerate, no penalty")
                     return stayInRating

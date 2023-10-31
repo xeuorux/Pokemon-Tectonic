@@ -185,7 +185,7 @@ def getSleepEffectScore(user, target, _policies = [])
     score = 150
     score -= 100 if target.hasSleepAttack?
     score += STATUS_PUNISHMENT_BONUS if user&.hasStatusPunishMove?
-    score -= 60 if target.hasActiveAbilityAI?(%i[SNORING SNOOZEFEST])
+    score -= 60 if target.hasActiveAbilityAI?(%i[LOUDSLEEPER SNOOZEFEST])
     if target.hasActiveAbilityAI?(:DREAMWEAVER)
         score -= getMultiStatUpEffectScore([:SPECIAL_ATTACK, 2],target,target)
     end
@@ -198,7 +198,7 @@ def getFlinchingEffectScore(baseScore, user, target, move)
     return 0 if target.hasActiveAbilityAI?(GameData::Ability::FLINCH_IMMUNITY_ABILITIES)
     return 0 if target.substituted? && !move.ignoresSubstitute?(user)
     return 0 if target.effectActive?(:FlinchImmunity)
-    return 0 if target.battle.pbCheckSameSideAbility(:HEARTENINGAROMA,target.index)
+    return 0 if target.battle.pbCheckSameSideAbility(:EFFLORESCENT,target.index)
 
     score = baseScore
     score *= 2.0 if user.hasAlly?
@@ -740,15 +740,15 @@ def predictedEOTDamage(battle,battler)
     end
     
     # Pain Presence
-    damage += battler.getFractionalDamageAmount(PAIN_PRESENCE_DAMAGE_FRACTION, aggravate: aggravate) if battle.pbCheckOtherAbility(:PAINPRESENCE, battler.index)
+    damage += battler.getFractionalDamageAmount(NOXIOUS_DAMAGE_FRACTION, aggravate: aggravate) if battle.pbCheckOtherAbility(:NOXIOUS, battler.index)
 
     # Extreme Energy, Extreme Power, Solar Power, Night Stalker
-    damage += battler.getFractionalDamageAmount(EOR_SELF_HARM_ABILITY_DAMAGE_FRACTION, aggravate: aggravate) if battler.hasActiveAbilityAI?(:EXTREMEENERGY)
+    damage += battler.getFractionalDamageAmount(EOR_SELF_HARM_ABILITY_DAMAGE_FRACTION, aggravate: aggravate) if battler.hasActiveAbilityAI?(:EXTREMEVOLTAGE)
     damage += battler.getFractionalDamageAmount(EOR_SELF_HARM_ABILITY_DAMAGE_FRACTION, aggravate: aggravate) if battler.hasActiveAbilityAI?(:EXTREMEPOWER)
     damage += battler.getFractionalDamageAmount(EOR_SELF_HARM_ABILITY_DAMAGE_FRACTION, aggravate: aggravate) if battler.hasActiveAbilityAI?(:SOLARPOWER) && battle.sunny?
     damage += battler.getFractionalDamageAmount(EOR_SELF_HARM_ABILITY_DAMAGE_FRACTION, aggravate: aggravate) if battler.hasActiveAbilityAI?(:NIGHTSTALKER) && battle.moonGlowing?
     damage += battler.getFractionalDamageAmount(EOR_SELF_HARM_ABILITY_DAMAGE_FRACTION, aggravate: aggravate) if battler.hasActiveAbilityAI?(:BURDENED)
-    damage += battler.getFractionalDamageAmount(EOR_SELF_HARM_ABILITY_DAMAGE_FRACTION, aggravate: aggravate) if battler.hasActiveAbilityAI?(:RUSHED)
+    damage += battler.getFractionalDamageAmount(EOR_SELF_HARM_ABILITY_DAMAGE_FRACTION, aggravate: aggravate) if battler.hasActiveAbilityAI?(:LIVEFAST)
 
     # Sticky Barb
     damage += battler.getFractionalDamageAmount(STICKY_BARB_DAMAGE_FRACTION, aggravate: aggravate) if battler.hasActiveItem?(:STICKYBARB)
@@ -776,7 +776,7 @@ def predictedEOTHealing(battle,battler)
     # Grotesque Vitals, Fighting Vigor, Well Supplied, Living Armor
     healing += battler.getFractionalHealingAmount(EOT_ABILITY_HEALING_FRACTION) if battler.hasActiveAbilityAI?(:GROTESQUEVITALS)
     healing += battler.getFractionalHealingAmount(EOT_ABILITY_HEALING_FRACTION) if battler.hasActiveAbilityAI?(:FIGHTINGVIGOR)
-    healing += battler.getFractionalHealingAmount(EOT_ABILITY_HEALING_FRACTION) if battler.hasActiveAbilityAI?(:WELLSUPPLIED)
+    healing += battler.getFractionalHealingAmount(EOT_ABILITY_HEALING_FRACTION) if battler.hasActiveAbilityAI?(:SELFSUFFICIENT)
     healing += battler.getFractionalHealingAmount(EOT_ABILITY_HEALING_FRACTION) if battler.hasActiveAbilityAI?(:LIVINGARMOR)
 
     # Weather healing abilities

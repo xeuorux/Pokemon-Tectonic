@@ -9,7 +9,7 @@ BattleHandlers::UserAbilityOnHit.add(:POISONTOUCH,
   }
 )
 
-BattleHandlers::UserAbilityOnHit.add(:TOXICCLOUD,
+BattleHandlers::UserAbilityOnHit.add(:INTOXICATE,
   proc { |ability, user, target, move, battle, aiCheck, aiNumHits|
     next unless move.specialMove?
     randomStatusProcUserAbility(ability, :POISON, 30, user, target, move, battle, aiCheck, aiNumHits)
@@ -58,7 +58,7 @@ BattleHandlers::UserAbilityOnHit.add(:BRAINSCRAMBLE,
   }
 )
 
-BattleHandlers::UserAbilityOnHit.add(:SWARMIMPACT,
+BattleHandlers::UserAbilityOnHit.add(:PREDATION,
   proc { |ability, user, target, move, battle, aiCheck, aiNumHits|
     next unless move.physicalMove?
     randomStatusProcUserAbility(ability, :LEECHED, 30, user, target, move, battle, aiCheck, aiNumHits)
@@ -107,7 +107,7 @@ BattleHandlers::UserAbilityOnHit.add(:FLAMEWINGS,
   }
 )
 
-BattleHandlers::UserAbilityOnHit.add(:DAWNBURST,
+BattleHandlers::UserAbilityOnHit.add(:DAWNFALL,
   proc { |ability, user, target, move, battle, aiCheck, aiNumHits|
     next unless user.firstTurn?
     randomStatusProcUserAbility(ability, :BURN, 100, user, target, move, battle, aiCheck, aiNumHits)
@@ -158,7 +158,7 @@ BattleHandlers::UserAbilityOnHit.add(:MENTALDAMAGE,
 # Stat change abilities
 #########################################
 
-BattleHandlers::UserAbilityOnHit.add(:GUARDBREAK,
+BattleHandlers::UserAbilityOnHit.add(:SHELLCRACKER,
   proc { |ability, user, target, move, battle, aiCheck, aiNumHits|
     next unless move.physicalMove?
     if aiCheck
@@ -172,7 +172,7 @@ BattleHandlers::UserAbilityOnHit.add(:GUARDBREAK,
   }
 )
 
-BattleHandlers::UserAbilityOnHit.add(:WILLBREAK,
+BattleHandlers::UserAbilityOnHit.add(:BIZARRE,
   proc { |ability, user, target, move, battle, aiCheck, aiNumHits|
     next unless move.specialMove?
     if aiCheck
@@ -219,7 +219,7 @@ BattleHandlers::UserAbilityOnHit.add(:FATCHANCE,
 #########################################
 
 
-BattleHandlers::UserAbilityOnHit.add(:EROSIONCYCLE,
+BattleHandlers::UserAbilityOnHit.add(:COREPROVENANCE,
   proc { |ability, user, target, move, battle, aiCheck, aiNumHits|
     next unless move.physicalMove?
     next if user.pbOwnSide.effectAtMax?(:ErodedRock)

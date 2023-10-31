@@ -37,7 +37,7 @@ BattleHandlers::TargetAbilityOnHit.add(:SUNEATER,
     }
 )
 
-BattleHandlers::TargetAbilityOnHit.add(:LUNARLOYALTY,
+BattleHandlers::TargetAbilityOnHit.add(:LUNARIOT,
     proc { |ability, user, target, move, battle, aiCheck, aiNumHits|
         score = pbBattleWeatherAbility(ability, :Moonglow, target, battle, false, true, aiCheck)
         next score * -1 if aiCheck
@@ -173,7 +173,7 @@ BattleHandlers::TargetAbilityOnHit.add(:WEAKARMOR,
   }
 )
 
-BattleHandlers::TargetAbilityOnHit.add(:WEAKSPIRIT,
+BattleHandlers::TargetAbilityOnHit.add(:IMPETUOUS,
     proc { |ability, user, target, move, battle, aiCheck, aiNumHits|
         next unless move.specialMove?
         next if target.fainted?
@@ -333,7 +333,7 @@ BattleHandlers::TargetAbilityOnHit.add(:CONSTRICTOR,
   }
 )
 
-BattleHandlers::TargetAbilityOnHit.add(:TOTALMIRROR,
+BattleHandlers::TargetAbilityOnHit.add(:FRIGIDREFLECTION,
     proc { |ability, user, target, move, battle, aiCheck, aiNumHits|
         next unless move.specialMove?
         next if target.fainted?
@@ -355,7 +355,7 @@ BattleHandlers::TargetAbilityOnHit.add(:SHOCKRESPONSE,
     }
 )
 
-BattleHandlers::TargetAbilityOnHit.add(:SNORING,
+BattleHandlers::TargetAbilityOnHit.add(:LOUDSLEEPER,
     proc { |ability, user, target, move, battle, aiCheck, aiNumHits|
           next if target.fainted?
           next unless target.asleep?
@@ -431,7 +431,7 @@ BattleHandlers::TargetAbilityOnHit.add(:KELPLINK,
     }
 )
 
-BattleHandlers::TargetAbilityOnHit.add(:PLAYVICTIM,
+BattleHandlers::TargetAbilityOnHit.add(:PUNISHER,
     proc { |ability, user, target, move, battle, aiCheck, aiNumHits|
         next unless move.specialMove?
         randomStatusProcTargetAbility(ability, :LEECHED, 30, user, target, move, battle, aiCheck, aiNumHits)
@@ -631,7 +631,7 @@ BattleHandlers::TargetAbilityOnHit.add(:ILLUSION,
     }
 )
 
-BattleHandlers::TargetAbilityOnHit.add(:EROSIONCYCLE,
+BattleHandlers::TargetAbilityOnHit.add(:COREPROVENANCE,
     proc { |ability, target, battler, move, battle, aiCheck, aiNumHits|
         next unless move.physicalMove?
         next if target.pbOpposingSide.effectAtMax?(:ErodedRock)
@@ -666,4 +666,4 @@ BattleHandlers::TargetAbilityOnHit.add(:MULTISCALE,
 )
 
 # Only does stuff for the AI
-BattleHandlers::TargetAbilityOnHit.copy(:MULTISCALE,:ALOOF,:SHADOWSHIELD)
+BattleHandlers::TargetAbilityOnHit.copy(:MULTISCALE,:DOMINEERING,:SHADOWSHIELD)

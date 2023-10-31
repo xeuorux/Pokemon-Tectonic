@@ -40,10 +40,10 @@ BattleHandlers::AbilityOnSwitchOut.add(:POORCONDUCT,
   }
 )
 
-BattleHandlers::AbilityOnSwitchOut.add(:INFINITESOURCE,
+BattleHandlers::AbilityOnSwitchOut.add(:GAUSSAFTERSHOCK,
   proc { |ability, battler, battle, endOfBattle|
       next if endOfBattle
-      battler.position.applyEffect(:InfiniteSource, battler.pokemonIndex)
+      battler.position.applyEffect(:GaussAftershock, battler.pokemonIndex)
   }
 )
 
@@ -54,7 +54,7 @@ BattleHandlers::AbilityOnSwitchOut.add(:MOTHBURGLAR,
   }
 )
 
-BattleHandlers::AbilityOnSwitchOut.add(:KLUMSYKINESIS,
+BattleHandlers::AbilityOnSwitchOut.add(:CLUMSYKINESIS,
   proc { |ability, battler, battle, endOfBattle|
       next if endOfBattle
       next unless battler.losableItemCount > 0

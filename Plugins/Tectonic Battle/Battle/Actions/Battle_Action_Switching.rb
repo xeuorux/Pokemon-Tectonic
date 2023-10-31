@@ -497,7 +497,7 @@ class PokeBattle_Battle
                 # Spikes
                 if  battler.pbOwnSide.effectActive?(:Spikes) &&
                     battler.takesIndirectDamage?(false,aiCheck) &&
-                    !battler.hasActiveAbility?(:NINJUTSU)
+                    !battler.hasActiveAbility?(:AFTERIMAGE)
 
                     spikesIndex = battler.pbOwnSide.countEffect(:Spikes) - 1
                     spikesDiv = [8,6,4][spikesIndex]
@@ -549,7 +549,7 @@ class PokeBattle_Battle
                     end
                 elsif   battler.pbCanInflictStatus?(status, nil, false) &&
                         !battler.immuneToHazards?(aiCheck) &&
-                        !battler.shouldAbilityApply?(:NINJUTSU,aiCheck)
+                        !battler.shouldAbilityApply?(:AFTERIMAGE,aiCheck)
                     # Apply status
                     if battler.pbOwnSide.countEffect(effect) >= 2
                         if aiCheck

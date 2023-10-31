@@ -22,7 +22,7 @@ BattleHandlers::GuaranteedCriticalUserAbility.add(:WALLNINJA,
     }
 )
 
-BattleHandlers::GuaranteedCriticalUserAbility.add(:AQUASNEAK,
+BattleHandlers::GuaranteedCriticalUserAbility.add(:BREAKINGWAVE,
     proc { |ability, user, _target, _battle|
         next true if user.turnCount <= 1
     }

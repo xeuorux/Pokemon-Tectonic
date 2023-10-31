@@ -40,13 +40,13 @@ BattleHandlers::SpeedCalcAbility.add(:SWIFTSWIM,
   }
 )
 
-BattleHandlers::SpeedCalcAbility.add(:AQUAPROPULSION,
+BattleHandlers::SpeedCalcAbility.add(:CLOUDBURST,
   proc { |ability, battler, mult|
       next mult * 1.25 if battler.battle.rainy?
   }
 )
 
-BattleHandlers::SpeedCalcAbility.add(:SKYHAZARD,
+BattleHandlers::SpeedCalcAbility.add(:DEBRISFIELD,
   proc { |ability, battler, mult|
       next mult * 1.25 if battler.battle.sandy?
   }
@@ -77,7 +77,7 @@ BattleHandlers::SpeedCalcAbility.add(:PRIMEVALSLOWSTART,
   }
 )
 
-BattleHandlers::SpeedCalcAbility.add(:LOCOMOTION,
+BattleHandlers::SpeedCalcAbility.add(:EXOTHERMENGINE,
   proc { |ability, _battler, mult|
       next mult * 1.5
   }
@@ -114,7 +114,7 @@ BattleHandlers::SpeedCalcAbility.add(:NIGHTVISION,
   }
 )
 
-BattleHandlers::SpeedCalcAbility.add(:SANDDRILLING,
+BattleHandlers::SpeedCalcAbility.add(:SANDWORNAUGER,
   proc { |ability, battler, mult|
       next mult * 1.5 if battler.battle.sandy?
   }
@@ -132,13 +132,13 @@ BattleHandlers::SpeedCalcAbility.add(:SANDSNIPER,
   }
 )
 
-BattleHandlers::SpeedCalcAbility.add(:TAIGATRECKER,
+BattleHandlers::SpeedCalcAbility.add(:TAIGATREKKER,
   proc { |ability, battler, mult|
       next mult * 1.5 if battler.battle.icy?
   }
 )
 
-BattleHandlers::SpeedCalcAbility.add(:POLARHUNTER,
+BattleHandlers::SpeedCalcAbility.add(:FROSTFANGED,
   proc { |ability, battler, mult|
       next mult * 1.25 if battler.battle.icy?
   }
@@ -168,9 +168,9 @@ BattleHandlers::SpeedCalcAbility.add(:GALEWINGS,
   }
 )
 
-BattleHandlers::SpeedCalcAbility.add(:RAMMINGSPEED,
+BattleHandlers::SpeedCalcAbility.add(:TRENCHCARVER,
   proc { |ability, battler, mult|
-      next mult * 2 if battler.effectActive?(:RammingSpeed)
+      next mult * 2 if battler.effectActive?(:TrenchCarver)
   }
 )
 
@@ -180,13 +180,13 @@ BattleHandlers::SpeedCalcAbility.add(:SLUGGISH,
   }
 )
 
-BattleHandlers::SpeedCalcAbility.add(:QUICKKICKS,
+BattleHandlers::SpeedCalcAbility.add(:SWIFTSTOMPS,
   proc { |ability, battler, mult|
-      next mult * 2 if battler.effectActive?(:QuickKicks)
+      next mult * 2 if battler.effectActive?(SwiftStomps)
   }
 )
 
-BattleHandlers::SpeedCalcAbility.add(:RUSHED,
+BattleHandlers::SpeedCalcAbility.add(:LIVEFAST,
   proc { |ability, battler, mult|
       next mult * 1.5
   }

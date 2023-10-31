@@ -14,7 +14,7 @@ BattleHandlers::DamageCalcUserAllyAbility.add(:STEELYSPIRIT,
   }
 )
 
-BattleHandlers::DamageCalcUserAllyAbility.add(:GRASSYSPIRIT,
+BattleHandlers::DamageCalcUserAllyAbility.add(:VERDANT,
     proc { |ability, user, _target, _move, mults, _baseDmg, type, aiCheck|
         if type == :GRASS
             mults[:base_damage_multiplier] *= 1.5
@@ -22,7 +22,7 @@ BattleHandlers::DamageCalcUserAllyAbility.add(:GRASSYSPIRIT,
     }
 )
 
-BattleHandlers::DamageCalcUserAllyAbility.add(:TOXICSPIRIT,
+BattleHandlers::DamageCalcUserAllyAbility.add(:TOXICATTITUDE,
     proc { |ability, user, _target, _move, mults, _baseDmg, type, aiCheck|
         if type == :POISON
             mults[:base_damage_multiplier] *= 1.5

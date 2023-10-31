@@ -32,21 +32,21 @@ BattleHandlers::SpecialAttackCalcUserAbility.add(:HEADACHE,
   }
 )
 
-BattleHandlers::SpecialAttackCalcUserAbility.add(:ENERGYUP,
+BattleHandlers::SpecialAttackCalcUserAbility.add(:PUREENERGY,
   proc { |ability, _user, _battle, spAtkMult|
       spAtkMult *= 1.5
       next spAtkMult
   }
 )
 
-BattleHandlers::SpecialAttackCalcUserAbility.add(:AQUAPROPULSION,
+BattleHandlers::SpecialAttackCalcUserAbility.add(:CLOUDBURST,
   proc { |ability, _user, battle, spAtkMult|
       spAtkMult *= 1.25 if battle.rainy?
       next spAtkMult
   }
 )
 
-BattleHandlers::SpecialAttackCalcUserAbility.add(:SKYHAZARD,
+BattleHandlers::SpecialAttackCalcUserAbility.add(:DEBRISFIELD,
   proc { |ability, _user, battle, spAtkMult|
       spAtkMult *= 1.25 if battle.sandy?
       next spAtkMult
@@ -69,28 +69,28 @@ BattleHandlers::SpecialAttackCalcUserAbility.add(:RADIATE,
 
 BattleHandlers::SpecialAttackCalcUserAbility.copy(:RADIATE, :ARCANE)
 
-BattleHandlers::SpecialAttackCalcUserAbility.add(:JASPERCHARGE,
+BattleHandlers::SpecialAttackCalcUserAbility.add(:OVERTHINKING,
   proc { |ability, _user, _battle, spAtkMult|
       spAtkMult *= 1.3
       next spAtkMult
   }
 )
 
-BattleHandlers::SpecialAttackCalcUserAbility.add(:BALANCEOFPOWER,
+BattleHandlers::SpecialAttackCalcUserAbility.add(:MIDDLEWAY,
   proc { |ability, user, _battle, spAtkMult|
       spAtkMult *= 1.5 if user.lastRoundMoveCategory == 0
       next spAtkMult
   }
 )
 
-BattleHandlers::SpecialAttackCalcUserAbility.add(:SHATTERING,
+BattleHandlers::SpecialAttackCalcUserAbility.add(:FELLOMEN,
   proc { |ability, _user, battle, spAtkMult|
       spAtkMult *= 1.3 if battle.eclipsed?
       next spAtkMult
   }
 )
 
-BattleHandlers::SpecialAttackCalcUserAbility.add(:NIGHTLIGHT,
+BattleHandlers::SpecialAttackCalcUserAbility.add(:ILLUMINANCE,
   proc { |ability, _user, battle, spAtkMult|
       spAtkMult *= 1.3 if battle.moonGlowing?
       next spAtkMult
@@ -111,7 +111,7 @@ BattleHandlers::SpecialAttackCalcUserAbility.add(:OVERWHELM,
   }
 )
 
-BattleHandlers::SpecialAttackCalcUserAbility.add(:WINTERWISDOM,
+BattleHandlers::SpecialAttackCalcUserAbility.add(:SUMMITSPIRIT,
   proc { |ability, _user, battle, spAtkMult|
       spAtkMult *= 1.3 if battle.icy?
       next spAtkMult
@@ -125,7 +125,7 @@ BattleHandlers::SpecialAttackCalcUserAbility.add(:COLDCALCULATION,
   }
 )
 
-BattleHandlers::SpecialAttackCalcUserAbility.add(:EXTREMEENERGY,
+BattleHandlers::SpecialAttackCalcUserAbility.add(:EXTREMEVOLTAGE,
   proc { |ability, _user, _battle, spAtkMult|
       spAtkMult *= 1.5
       next spAtkMult

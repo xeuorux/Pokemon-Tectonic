@@ -36,7 +36,7 @@ BattleHandlers::UserAbilityEndOfMove.add(:FOLLOWTHROUGH,
   }
 )
 
-BattleHandlers::UserAbilityEndOfMove.add(:PROVING,
+BattleHandlers::UserAbilityEndOfMove.add(:OUTRIDER,
   proc { |ability, user, targets, _move, battle, _switchedBattlers|
       next if battle.pbAllFainted?(user.idxOpposingSide)
       numFainted = 0
@@ -46,7 +46,7 @@ BattleHandlers::UserAbilityEndOfMove.add(:PROVING,
   }
 )
 
-BattleHandlers::UserAbilityEndOfMove.add(:ENERGYDRAIN,
+BattleHandlers::UserAbilityEndOfMove.add(:OVERCHARGE,
   proc { |ability, user, targets, _move, battle, _switchedBattlers|
       next if battle.pbAllFainted?(user.idxOpposingSide)
       numFainted = 0
@@ -76,7 +76,7 @@ BattleHandlers::UserAbilityEndOfMove.add(:WISEHUNTER,
   }
 )
 
-BattleHandlers::UserAbilityEndOfMove.add(:SEALORD,
+BattleHandlers::UserAbilityEndOfMove.add(:CITYRAZER,
   proc { |ability, user, targets, move, battle, _switchedBattlers|
       next unless user.species == :GYARADOS
       next unless user.form == 0
@@ -86,7 +86,7 @@ BattleHandlers::UserAbilityEndOfMove.add(:SEALORD,
       targets.each { |b| numFainted += 1 if b.damageState.fainted }
       next if numFainted == 0
       battle.pbShowAbilitySplash(user, ability)
-      user.pbChangeForm(1, _INTL("{1}'s anger cannot be sated! It enters its Hull Breaker form!", user.pbThis))
+      user.pbChangeForm(1, _INTL("{1}'s anger cannot be sated! It enters its Rampage form!", user.pbThis))
       battle.pbHideAbilitySplash(user)
   }
 )
@@ -110,7 +110,7 @@ BattleHandlers::UserAbilityEndOfMove.add(:VICTORYMOLT,
   }
 )
 
-BattleHandlers::UserAbilityEndOfMove.add(:HEALINGHOPE,
+BattleHandlers::UserAbilityEndOfMove.add(:JOYOUSSORROW,
   proc { |ability, user, targets, _move, battle, _switchedBattlers|
       next if battle.pbAllFainted?(user.idxOpposingSide)
       numFainted = 0
@@ -224,7 +224,7 @@ BattleHandlers::UserAbilityEndOfMove.add(:SOUNDBARRIER,
   }
 )
 
-BattleHandlers::UserAbilityEndOfMove.add(:WINDBUFFER,
+BattleHandlers::UserAbilityEndOfMove.add(:AEROSHELL,
   proc { |ability, user, _targets, move, _battle, _switchedBattlers|
     next unless move.windMove?
     user.pbRaiseMultipleStatSteps(DEFENDING_STATS_1, user, ability: ability)
@@ -275,7 +275,7 @@ BattleHandlers::UserAbilityEndOfMove.add(:FLUSTERFLOCK,
 
 BattleHandlers::UserAbilityEndOfMove.copy(:FLUSTERFLOCK, :HEADACHE)
 
-BattleHandlers::UserAbilityEndOfMove.add(:GENERATOR,
+BattleHandlers::UserAbilityEndOfMove.add(:DYNAMO,
   proc { |ability, user, _targets, move, battle, _switchedBattlers|
       next if battle.futureSight
       next if move.damagingMove?
@@ -333,7 +333,7 @@ BattleHandlers::UserAbilityEndOfMove.add(:ETERNALWINTER,
   }
 )
 
-BattleHandlers::UserAbilityEndOfMove.add(:EROSIONCYCLE,
+BattleHandlers::UserAbilityEndOfMove.add(:COREPROVENANCE,
   proc { |ability, user, targets, move, battle, _switchedBattlers|
       next if move.damagingMove?
       next unless user.pbOwnSide.effectActive?(:ErodedRock)
@@ -396,7 +396,7 @@ BattleHandlers::UserAbilityEndOfMove.add(:IRREFUTABLE,
   }
 )
 
-BattleHandlers::UserAbilityEndOfMove.add(:JASPERCHARGE,
+BattleHandlers::UserAbilityEndOfMove.add(:OVERTHINKING,
   proc { |ability, user, targets, move, battle, _switchedBattlers|
       next if battle.futureSight
       next unless move.specialMove?
@@ -441,7 +441,7 @@ BattleHandlers::UserAbilityEndOfMove.add(:SIRENSONG,
   }
 )
 
-BattleHandlers::UserAbilityEndOfMove.add(:ROYALVOICE,
+BattleHandlers::UserAbilityEndOfMove.add(:BELLOWER,
   proc { |ability, user, _targets, move, battle, _switchedBattlers|
       next unless move.soundMove?
       battle.pbShowAbilitySplash(user, ability)

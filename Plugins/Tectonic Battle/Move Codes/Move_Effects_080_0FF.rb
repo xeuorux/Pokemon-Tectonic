@@ -2102,7 +2102,7 @@ class PokeBattle_Move_0CA < PokeBattle_TwoTurnMove
     end
 
     def canBecomeReaper?(user)
-        return @battle.sandy? && user.species == :GARCHOMP && user.hasActiveAbility?(:DUNEPREDATOR) && user.form == 0
+        return @battle.sandy? && user.species == :GARCHOMP && user.hasActiveAbility?(:SANDSMACABRE) && user.form == 0
     end
 
     def pbAttackingTurnMessage(user, targets)
@@ -2706,13 +2706,13 @@ class PokeBattle_Move_0E0 < PokeBattle_Move
             end
             user.pbReduceHP(reduction, false)
             @battle.pbHideAbilitySplash(user) if unbreakable
-            if user.hasActiveAbility?(:SELFMENDING,true)
-                @battle.pbShowAbilitySplash(user, :SELFMENDING)
+            if user.hasActiveAbility?(:PERENNIALPAYLOAD,true)
+                @battle.pbShowAbilitySplash(user, :PERENNIALPAYLOAD)
                 @battle.pbDisplay(_INTL("{1} will revive in 3 turns!", user.pbThis))
-                if user.pbOwnSide.effectActive?(:SelfMending)
-                    user.pbOwnSide.effects[:SelfMending][user.pokemonIndex] = 4
+                if user.pbOwnSide.effectActive?(:PerennialPayload)
+                    user.pbOwnSide.effects[:PerennialPayload][user.pokemonIndex] = 4
                 else
-                    user.pbOwnSide.effects[:SelfMending] = {
+                    user.pbOwnSide.effects[:PerennialPayload] = {
                         user.pokemonIndex => 4,
                     }
                 end
@@ -2725,7 +2725,7 @@ class PokeBattle_Move_0E0 < PokeBattle_Move
     def getEffectScore(user, target)
         score = getSelfKOMoveScore(user, target)
         score += 30 if user.bunkeringDown?(true)
-        score += 30 if user.hasActiveAbilityAI?(:SELFMENDING)
+        score += 30 if user.hasActiveAbilityAI?(:PERENNIALPAYLOAD)
         if user.hasActiveAbility?(:SPINESPLODE)
             currentSpikeCount = user.pbOpposingSide.countEffect(:Spikes)
             spikesMax = GameData::BattleEffect.get(:Spikes).maximum

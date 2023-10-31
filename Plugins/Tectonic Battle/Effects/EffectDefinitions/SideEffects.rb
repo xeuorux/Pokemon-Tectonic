@@ -592,8 +592,8 @@ GameData::BattleEffect.register_effect(:Side, {
 })
 
 GameData::BattleEffect.register_effect(:Side, {
-    :id => :SelfMending,
-    :real_name => "Self Mending",
+    :id => :PerennialPayload,
+    :real_name => "Perennial Payload",
     :type => :Hash,
     :eor_proc => proc do |battle, side, _teamName, value|
         value.each_key do |key|

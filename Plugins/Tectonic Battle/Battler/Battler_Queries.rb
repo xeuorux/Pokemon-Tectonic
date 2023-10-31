@@ -168,9 +168,9 @@ class PokeBattle_Battler
             :SHIELDSDOWN,
             :STANCECHANGE,
             :ZENMODE,
-            :SEALORD,
-            :DUNEPREDATOR,
-            :GROWUP,
+            :CITYRAZER,
+            :SANDSMACABRE,
+            :FLOURISHING,
             :REAPWHATYOUSOW,
             # Appearance-changing abilities
             :ILLUSION,
@@ -210,7 +210,7 @@ class PokeBattle_Battler
         # Disallow certain items as 2nd
         if itemCount == 1 && item
             return false if firstItem == item
-            return true if hasActiveAbility?(:KLUMSYKINESIS)
+            return true if hasActiveAbility?(:CLUMSYKINESIS)
             itemData = GameData::Item.get(item)
             if hasActiveAbility?(:ALLTHATGLITTERS)
                 return false if !firstItemData.is_gem? || itemData.is_gem?
@@ -582,7 +582,7 @@ class PokeBattle_Battler
     end
 
     def hasHonorAura?
-        return hasActiveAbility?([:HONORAURA])
+        return hasActiveAbility?([:HONORABLE])
     end
 
     def isLastAlive?
@@ -626,7 +626,7 @@ class PokeBattle_Battler
         ret = baseDuration
         ret += 3 if hasActiveItem?(:LIGHTCLAY)
         ret += 6 if hasActiveItem?(:BRIGHTCLAY)
-        ret *= 2 if hasActiveAbility?(:RESONANCE) && @battle.eclipsed?
+        ret *= 2 if hasActiveAbility?(:PLANARVEIL) && @battle.eclipsed?
         return ret
     end
 
@@ -818,7 +818,7 @@ class PokeBattle_Battler
 
     def ignoreScreens?(checkingForAI)
         return true if shouldAbilityApply?(:INFILTRATOR,checkingForAI)
-        return true if shouldAbilityApply?(:CLEAVING,checkingForAI)
+        return true if shouldAbilityApply?(:RAMPROW,checkingForAI)
         return false
     end
 

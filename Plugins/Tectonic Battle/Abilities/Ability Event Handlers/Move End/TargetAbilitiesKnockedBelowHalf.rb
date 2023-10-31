@@ -27,7 +27,7 @@ BattleHandlers::TargetAbilityKnockedBelowHalf.add(:WRATHINSTINCT,
     }
 )
 
-BattleHandlers::TargetAbilityKnockedBelowHalf.add(:BATTERYBREAK,
+BattleHandlers::TargetAbilityKnockedBelowHalf.add(:EMERGENCYPOWER,
     proc { |ability, target, user, move, _switched, battle|
         battle.forceUseMove(target, :LIGHTNINGDANCE, user.index, ability: ability)
     }
@@ -42,7 +42,7 @@ BattleHandlers::TargetAbilityKnockedBelowHalf.add(:MALICE,
     }
 )
 
-BattleHandlers::TargetAbilityKnockedBelowHalf.add(:SLEEPSNARE,
+BattleHandlers::TargetAbilityKnockedBelowHalf.add(:DREAMYHAZE,
     proc { |ability, target, user, move, _switched, battle|
         next unless user.canSleep?(target, true)
         next if user.effectActive?(:Yawn)

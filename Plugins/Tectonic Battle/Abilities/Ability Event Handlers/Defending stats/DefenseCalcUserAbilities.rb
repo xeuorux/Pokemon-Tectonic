@@ -26,7 +26,7 @@ BattleHandlers::DefenseCalcUserAbility.add(:DESERTARMOR,
     }
 )
 
-BattleHandlers::DefenseCalcUserAbility.add(:MOONBUBBLE,
+BattleHandlers::DefenseCalcUserAbility.add(:SOLONOCTURNE,
     proc { |ability, _user, battle, defenseMult|
         defenseMult *= 2 if battle.moonGlowing?
         next defenseMult

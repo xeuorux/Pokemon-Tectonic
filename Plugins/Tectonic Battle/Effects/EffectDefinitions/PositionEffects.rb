@@ -163,11 +163,11 @@ GameData::BattleEffect.register_effect(:Position, {
     :type => :PartyPosition,
     :swaps_with_battlers => true,
     :entry_proc => proc do |battle, _index, position, battler|
-        if battler.hasActiveAbility?(:POURINGHEART)
+        if battler.hasActiveAbility?(:OVERFLOWINGHEART)
             statPasser = battler.ownerParty[position.effects[:PassingStats]]
             statPasserName = battle.pbThisEx(battler.index, position.effects[:PassingStats])
             unless battler.hasAbility?(statPasser.ability)
-                battler.showMyAbilitySplash(:POURINGHEART)
+                battler.showMyAbilitySplash(:OVERFLOWINGHEART)
                 battle.pbDisplay(_INTL("{1} opens up, and shares its stats with {2}!", statPasserName, battler.pbThis(true)))
                 battler.applyEffect(:BaseAttack,statPasser.attack)
                 battler.applyEffect(:BaseDefense,statPasser.defense)
@@ -182,32 +182,32 @@ GameData::BattleEffect.register_effect(:Position, {
 })
 
 GameData::BattleEffect.register_effect(:Position, {
-    :id => :AllyCushion,
-    :real_name => "Ally Cushioning",
+    :id => :Kickback,
+    :real_name => "Kickback",
     :type => :PartyPosition,
     :swaps_with_battlers => true,
     :entry_proc => proc do |battle, _index, position, battler|
-        cushionAssisted = battle.pbThisEx(battler.index, position.effects[:AllyCushion])
+        cushionAssisted = battle.pbThisEx(battler.index, position.effects[:Kickback])
         battle.pbDisplay(_INTL("{1}'s cushions the blow for {2}!", battler.pbThis(true), cushionAssisted))
-        battler.applyRecoilDamage(position.effects[:AllyCushionAmount], true, false, nil, true)
-        position.disableEffect(:AllyCushion)
+        battler.applyRecoilDamage(position.effects[:KickbackAmount], true, false, nil, true)
+        position.disableEffect(:Kickback)
     end,
-    :sub_effects => [:AllyCushionAmount],
+    :sub_effects => [:KickbackAmount],
 })
 
 GameData::BattleEffect.register_effect(:Position, {
-    :id => :AllyCushionAmount,
-    :real_name => "Ally Cushioning Amount",
+    :id => :KickbackAmount,
+    :real_name => "Kickback Amount",
     :type => :Integer,
 })
 
 GameData::BattleEffect.register_effect(:Position, {
-    :id => :InfiniteSource,
-    :real_name => "Infinite Source",
+    :id => :GaussAftershock,
+    :real_name => "Gauss Aftershock",
     :type => :PartyPosition,
     :swaps_with_battlers => true,
     :entry_proc => proc do |battle, _index, position, battler|
-        sourceMaker = battle.pbThisEx(battler.index, position.effects[:InfiniteSource])
+        sourceMaker = battle.pbThisEx(battler.index, position.effects[:GaussAftershock])
         battle.pbDisplay(_INTL("{1}'s Infinite Source fuels {2}!", sourceMaker, battler.pbThis(true)))
         battler.tryRaiseStat(:SPEED, battler, showFailMsg: true)
         anyPPRestored = false
@@ -218,6 +218,6 @@ GameData::BattleEffect.register_effect(:Position, {
             anyPPRestored = true
         end
         battle.pbDisplay(_INTL("{1}'s PP was restored!", sourceMaker, battler.pbThis(true))) if anyPPRestored
-        position.disableEffect(:InfiniteSource)
+        position.disableEffect(:GaussAftershock)
     end,
 })

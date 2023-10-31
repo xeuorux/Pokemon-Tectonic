@@ -493,9 +493,9 @@ class PokeBattle_Battle
             @turnCount += 1
 
             # Extra fake turn
-            stretcher = pbCheckGlobalAbility(:TIMESTRETCH)
+            stretcher = pbCheckGlobalAbility(:TIMESKIP)
             if stretcher
-                pbShowAbilitySplash(stretcher, :TIMESTRETCH)
+                pbShowAbilitySplash(stretcher, :TIMESKIP)
                 pbDisplay(_INTL("#{stretcher.pbThis} stalls for extra time!"))
                 pbHideAbilitySplash(stretcher)
                 # Start of round phase

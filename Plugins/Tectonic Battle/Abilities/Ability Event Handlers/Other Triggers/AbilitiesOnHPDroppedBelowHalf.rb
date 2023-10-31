@@ -68,7 +68,7 @@ BattleHandlers::AbilityOnHPDroppedBelowHalf.add(:PRIMEVALDISGUISE,
     }
 )
 
-BattleHandlers::AbilityOnHPDroppedBelowHalf.add(:TRICKSTER,
+BattleHandlers::AbilityOnHPDroppedBelowHalf.add(:TRICKYAURA, # Currently unused
   proc { |ability, battler, battle|
         battle.pbShowAbilitySplash(battler, ability)
         battle.pbStartRoom(:TrickRoom, battler)
@@ -77,7 +77,7 @@ BattleHandlers::AbilityOnHPDroppedBelowHalf.add(:TRICKSTER,
   }
 )
 
-BattleHandlers::AbilityOnHPDroppedBelowHalf.add(:CAUTIONARY,
+BattleHandlers::AbilityOnHPDroppedBelowHalf.add(:BATTLEHARDENED,
   proc { |ability, battler, _battle|
       battler.pbRaiseMultipleStatSteps([:DEFENSE, 3, :SPECIAL_DEFENSE, 3], battler, ability: ability)
       next false

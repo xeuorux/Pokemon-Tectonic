@@ -503,8 +503,8 @@ user.pbThis))
             if !targets.empty? && move.damagingMove?
                 targets.each do |b|
                     next if b.damageState.unaffected
-                    next unless b.hasActiveAbility?(:SMOKEREFLEX)
-                    @battle.pbShowAbilitySplash(b, :SMOKEREFLEX)
+                    next unless b.hasActiveAbility?(:PRESSUREVALVE)
+                    @battle.pbShowAbilitySplash(b, :PRESSUREVALVE)
                     user.pbResetStatSteps
                     @battle.pbDisplay(_INTL("{1}'s stat changes were eliminated!", user.pbThis))
                     @battle.pbHideAbilitySplash(b)
