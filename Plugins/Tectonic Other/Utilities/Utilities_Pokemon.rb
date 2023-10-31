@@ -115,7 +115,7 @@ def pbAddPokemon(pkmn, level = 1, see_form = true)
   pkmn.level = getLevelCap if rogueModeActive?
   species_name = pkmn.speciesName
   obtainMessage = _INTL("{1} obtained {2}!", $Trainer.name, species_name)
-  obtainMessage += "\\me[Pkmn get]\\wtnp[#{waitTime}]\1" if $PokemonSystem.bgmvolume > 0
+  obtainMessage += "\\me[Pkmn get]\\wtnp[80]\1" if $PokemonSystem.bgmvolume > 0
   pbMessage(obtainMessage)
   pbNicknameAndStore(pkmn)
   $Trainer.pokedex.register(pkmn) if see_form
