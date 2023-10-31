@@ -74,7 +74,7 @@
 73,DUALCHOP,Dual Chop,0BD,40,DRAGON,Physical,100,12,0,NearOther,0,CanProtect;CanMirrorMove,"The user attacks its target by hitting it with brutal strikes. The target is hit twice in a row.",
 74,TWISTER,Twister,00F,40,DRAGON,Special,100,15,30,AllNearFoes,0,CanProtect;CanMirrorMove;Wind,"A small tornado hits the opposing team. It has a 30% chance to make targets flinch.",
 75,DRAGONRAGE,Dragon Rage,06B,1,DRAGON,Special,100,10,0,NearOther,0,CanProtect;CanMirrorMove,"This attack hits the target with a shock wave of pure rage. This attack always inflicts 40 HP damage.",
-76,DRAGONDANCE,Dragon Dance,026,0,DRAGON,Status,0,15,0,User,0,CanSnatch;Dance,"The user vigorously performs a mystic, powerful dance, raising its Attack by two steps and Speed by 1.",
+76,DRAGONDANCE,Dragon Dance,026,0,DRAGON,Status,0,15,0,User,0,CanSnatch;Dance,"The user vigorously performs a mystic, powerful dance, raising its Attack by two steps and Speed by one.",
 77,BREAKINGSWIPE,Breaking Swipe,042,60,DRAGON,Physical,100,12,100,AllNearFoes,0,CanProtect;CanMirrorMove,"The user swings its tail wildly and attacks opposing Pokémon, lowering their Attack stats by two steps.",
 78,DRAGONDARTS,Dragon Darts,17C,50,DRAGON,Physical,100,10,0,AllNearFoes,0,CanProtect;CanMirrorMove,"The user attacks twice using Dreepy. If there are two targets, this move hits each target once.",
 79,DYNAMAXCANNON,Dynamax Cannon,000,100,DRAGON,Special,100,5,0,NearOther,0,CanProtect,"The user unleashes a strong beam from its core.",
