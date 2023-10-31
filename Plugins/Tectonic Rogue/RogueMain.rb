@@ -30,8 +30,10 @@ class TectonicRogueGameMode
     ##############################################################
 
     def initialize
-        loadValidSpecies
+        @active = false
         @currentFloorTrainers = []
+        @currentFloorMapID = -1
+        @currentFloorDepth = 0
     end
     
     def loadValidSpecies
@@ -42,6 +44,15 @@ class TectonicRogueGameMode
             next if isLegendary?(speciesData.species)
             @speciesForms.push([speciesData.id,speciesData.form])
         end
+    end
+
+    def beginRun
+        @active = true
+        loadValidSpecies
+    end
+
+    def active?
+        return @active
     end
 
     ##############################################################
@@ -111,19 +122,30 @@ class TectonicRogueGameMode
     end
     
     def initializeNextTrainer
-        randomTrainer = getRandomTrainer
+        partySize = getRandomTrainerPartySize
+        randomTrainer = getRandomTrainer(partySize)
         @currentFloorTrainers.push(randomTrainer)
         return randomTrainer,@currentFloorTrainers.length-1
+    end
+
+    def trainersAssigned?
+        return !@currentFloorTrainers.empty?
     end
 
     def getTrainerByLevelID(idNumber)
         return @currentFloorTrainers[idNumber]
     end
 
-    def getRandomTrainer
+    def getRandomTrainer(partySize = 3)
         trainerData = GameData::Trainer.randomMonumentTrainer
         actualTrainer = trainerData.to_trainer
-        actualTrainer.party = actualTrainer.party[0..2]
+        newParty = []
+        newParty.push(actualTrainer.party[0])
+        until newParty.length == partySize
+            newPartyMember = actualTrainer.party.sample
+            newParty.push(newPartyMember) unless newParty.include?(newPartyMember)
+        end
+        actualTrainer.party = newParty
         return actualTrainer
     end
 
@@ -134,13 +156,38 @@ class TectonicRogueGameMode
         pbTrainerBattleCore(trainer)
     end
 
+    def floorDifficulty
+        return 1 + (@currentFloorDepth / 3)
+    end
+
+    def getRandomTrainerPartySize
+        partySize = 2
+        partySize += floorDifficulty / 2
+        partySize += 1 if rand(3) == 0 # A third of the time
+        partySize = 6 if partySize > 6
+        return partySize
+    end
+
     ##############################################################
     # Floor selection and movement
     ##############################################################
     def moveToNextFloor
+        resetFloorTrainers
+        @currentFloorDepth += 1
+
         pbSEPlay("Battle flee")
         pbCaveEntrance
-        transferPlayerToEvent(2,Up,getRandomFloorMapID)
+        nextFloorMapID = chooseNextFloor
+        transferPlayerToEvent(2,Up,nextFloorMapID)
+        @currentFloorMapID = nextFloorMapID
+    end
+
+    def chooseNextFloor
+        newFloor = nil
+        while newFloor.nil? || newFloor == @currentFloorMapID
+            newFloor = getRandomFloorMapID
+        end
+        return newFloor
     end
 
     def getRandomFloorMapID
@@ -153,6 +200,7 @@ end
 ##############################################################
 Events.onMapChange += proc { |_sender,_e|
     next unless rogueModeActive?
+    next if $TectonicRogue.trainersAssigned?
     mapID = $game_map.map_id
     for event in $game_map.events.values
 		match = event.name.match(/roguetrainer/)
@@ -194,10 +242,11 @@ Events.onMapChange += proc { |_sender,_e|
 
             followerEvent.event.pages[0] = firstFollowerPage
             followerEvent.event.pages[1] = secondFollowerPage
-            followerEvent.refresh
 
             # Reset the follower's flag
-            pbSetSelfSwitch(event.id,"D",false)
+            pbSetSelfSwitch(followerEvent.id,"D",false)
+
+            followerEvent.refresh
         end
     end
 }
@@ -207,7 +256,12 @@ Events.onMapChange += proc { |_sender,_e|
 ##############################################################
 def enterRogueMode
     setLevelCap(70,false)
+    $Trainer.party.clear
+    $PokemonBag.clear
+    $game_switches[ESTATE_DISABLED_SWITCH] = true
+
     $TectonicRogue = TectonicRogueGameMode.new
+    $TectonicRogue.beginRun
     3.times do
         chooseGiftPokemon
     end
@@ -227,5 +281,15 @@ def chooseGiftPokemon(numberOfChoices = 3)
 end
 
 def rogueModeActive?
-    return !$TectonicRogue.nil? || false
+    return $TectonicRogue.active? || false
+end
+
+##############################################################
+# Save registration
+##############################################################
+SaveData.register(:tectonic_rogue_mode) do
+	ensure_class :TectonicRogueGameMode
+	save_value { $TectonicRogue }
+	load_value { |value| $TectonicRogue = value }
+	new_game_value { TectonicRogueGameMode.new }
 end
