@@ -902,11 +902,8 @@ class Scene_Map
     message.gsub!("Poke Ball","Poké Ball")
     message.gsub!("Pokeball","Poké Ball")
     message.gsub!("PokEstate","PokÉstate")
-    message.gsub!("Avatar","avatar")
     return message
   end
-  
-  
   
   #===============================================================================
   # Message-displaying functions
