@@ -219,17 +219,21 @@ class TilingCardsPokemonMenu_Scene < TilingCardsMenu_Scene
     end
   
     def modifyCommandMenu
-		commands   = []
-		cmdRename  = -1
-		cmdEvolve  = -1
-		cmdStyle = -1
+		commands   			= []
+		cmdRename  			= -1
+		cmdEvolve  			= -1
+		cmdStyle   			= -1
+		cmdRelearn 			= -1
+		cmdSwitchAbility 	= -1
 	
 		# Build the commands
-		commands[cmdRename = commands.length]       = _INTL("Rename")
-		commands[cmdStyle = commands.length]        = _INTL("Set Style") if pbHasItem?(:STYLINGKIT)
+		commands[cmdRename = commands.length]       	= _INTL("Rename")
+		commands[cmdStyle = commands.length]        	= _INTL("Set Style") if pbHasItem?(:STYLINGKIT) || rogueModeActive?
+		commands[cmdRelearn = commands.length]      	= _INTL("Relearn Moves") if rogueModeActive?
+		commands[cmdSwitchAbility = commands.length] 	= _INTL("Switch Ability") if rogueModeActive?
 		newspecies = @pkmn.check_evolution_on_level_up
-		commands[cmdEvolve = commands.length]       = _INTL("Evolve") if newspecies
-		commands[commands.length]                   = _INTL("Cancel")
+		commands[cmdEvolve = commands.length]       	= _INTL("Evolve") if newspecies
+		commands[commands.length]                   	= _INTL("Cancel")
 		
 		modifyCommand = @summaryScene.pbShowCommands(_INTL("Do what with {1}?",@pkmn.name),commands)
 		if cmdRename >= 0 && modifyCommand == cmdRename
@@ -252,6 +256,10 @@ class TilingCardsPokemonMenu_Scene < TilingCardsMenu_Scene
 			return true
 		elsif cmdStyle >= 0 && modifyCommand == cmdStyle
 			pbStyleValueScreen(@pkmn)
+		elsif cmdRelearn >= 0 && modifyCommand == cmdRelearn
+			pbRelearnMoveScreen(@pkmn)
+		elsif cmdSwitchAbility >= 0 && modifyCommand == cmdSwitchAbility
+			@pkmn.switchAbility
 		end
 	
 		return false

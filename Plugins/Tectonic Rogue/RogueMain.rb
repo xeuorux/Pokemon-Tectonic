@@ -49,6 +49,18 @@ class TectonicRogueGameMode
     def beginRun
         @active = true
         loadValidSpecies
+
+        $TectonicRogue.moveToNextFloor
+
+        chooseStartingPokemon
+        giveStartingItems
+    end
+
+    def giveStartingItems
+        # Nothing yet
+        pbReceiveItem(:SITRUSBERRY)
+        pbReceiveItem(:STRENGTHHERB)
+        pbReceiveItem(:INTELLECTHERB)
     end
 
     def active?
@@ -58,6 +70,12 @@ class TectonicRogueGameMode
     ##############################################################
     # Pokemon selection
     ##############################################################
+
+    def chooseStartingPokemon
+        chooseGiftPokemon(2)
+        chooseGiftPokemon(3)
+        chooseGiftPokemon(4)
+    end
 
     def chooseGiftPokemon(numberOfChoices = 3)
         speciesFormChoices = getSpeciesFormChoices(numberOfChoices)
@@ -80,6 +98,7 @@ class TectonicRogueGameMode
 
             pkmn = Pokemon.new(speciesFormChosen[0], getLevelCap)
             pkmn.form = speciesFormChosen[1]
+            pkmn.reset_moves(50,true)
 
             choicesArray = [_INTL("View MasterDex"), _INTL("Take Pokemon"), _INTL("Cancel")]
             secondResult = pbShowCommands(nil,choicesArray,3)
@@ -139,12 +158,20 @@ class TectonicRogueGameMode
     def getRandomTrainer(partySize = 3)
         trainerData = GameData::Trainer.randomMonumentTrainer
         actualTrainer = trainerData.to_trainer
+
+        # Select only some of the party members of the given trainer
         newParty = []
         newParty.push(actualTrainer.party[0])
         until newParty.length == partySize
             newPartyMember = actualTrainer.party.sample
             newParty.push(newPartyMember) unless newParty.include?(newPartyMember)
         end
+
+        # Remove all items
+        newParty.each do |partyMember|
+            partyMember.removeItems
+        end
+        
         actualTrainer.party = newParty
         return actualTrainer
     end
@@ -255,17 +282,15 @@ Events.onMapChange += proc { |_sender,_e|
 # Helper methods
 ##############################################################
 def enterRogueMode
+    # Setup various data
     setLevelCap(70,false)
     $Trainer.party.clear
     $PokemonBag.clear
     $game_switches[ESTATE_DISABLED_SWITCH] = true
 
+    # Create the roguelike run
     $TectonicRogue = TectonicRogueGameMode.new
     $TectonicRogue.beginRun
-    3.times do
-        chooseGiftPokemon
-    end
-    $TectonicRogue.moveToNextFloor
 end
 
 def promptMoveToNextFloor
