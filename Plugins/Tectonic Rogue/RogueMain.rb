@@ -19,6 +19,8 @@ FLOOR_MAP_IDS = [
     428,
 ]
 
+STARTING_TRAINER_HEALTH = 20
+
 ##############################################################
 # Game mode class
 ##############################################################
@@ -34,6 +36,7 @@ class TectonicRogueGameMode
         @currentFloorTrainers = []
         @currentFloorMapID = -1
         @currentFloorDepth = 0
+        @trainerHealth = STARTING_TRAINER_HEALTH
     end
     
     def loadValidSpecies
@@ -65,6 +68,33 @@ class TectonicRogueGameMode
 
     def active?
         return @active
+    end
+
+    ##############################################################
+    # Health and losing
+    ##############################################################
+    def removeTrainerHealth(amount = 1)
+        @trainerHealth -= amount
+        if amount == 1
+            pbMessage(_INTL("You lost a health point!"))
+        else
+            pbMessage(_INTL("You lost #{amount} health points!"))
+        end
+        if @trainerHealth <= 0
+            loseRun
+        else
+            pbMessage(_INTL("You have #{@trainerHealth} remaining."))
+        end
+    end
+
+    def loseRun
+        pbMessage(_INTL("You've lost this run."))
+        PokemonPartyShowcase_Scene.new($Trainer.party,true) # Take party snapshot
+
+        # Delete the current save
+        SaveData.delete_file($storenamefilesave)
+
+        pbCallTitle # Reset the game
     end
 
     ##############################################################
