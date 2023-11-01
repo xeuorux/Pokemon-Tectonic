@@ -168,7 +168,7 @@ GameData::BattleEffect.register_effect(:Position, {
             statPasserName = battle.pbThisEx(battler.index, position.effects[:PassingStats])
             unless battler.hasAbility?(statPasser.ability)
                 battler.showMyAbilitySplash(:OVERFLOWINGHEART)
-                battle.pbDisplay(_INTL("{1} opens up, and shares its stats with {2}!", statPasserName, battler.pbThis(true)))
+                battle.pbDisplay(_INTL("{2} reads {1}’s heart and gains its stats!", statPasserName, battler.pbThis(true)))
                 battler.applyEffect(:BaseAttack,statPasser.attack)
                 battler.applyEffect(:BaseDefense,statPasser.defense)
                 battler.applyEffect(:BaseSpecialAttack,statPasser.spatk)
@@ -208,7 +208,7 @@ GameData::BattleEffect.register_effect(:Position, {
     :swaps_with_battlers => true,
     :entry_proc => proc do |battle, _index, position, battler|
         sourceMaker = battle.pbThisEx(battler.index, position.effects[:GaussAftershock])
-        battle.pbDisplay(_INTL("{1}'s Infinite Source fuels {2}!", sourceMaker, battler.pbThis(true)))
+        battle.pbDisplay(_INTL("{1} was energized by the aftershock!", sourceMaker, battler.pbThis(true)))
         battler.tryRaiseStat(:SPEED, battler, showFailMsg: true)
         anyPPRestored = false
         battler.pokemon.moves.each_with_index do |m, i|

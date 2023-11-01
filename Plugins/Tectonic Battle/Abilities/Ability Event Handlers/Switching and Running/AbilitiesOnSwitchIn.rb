@@ -270,7 +270,7 @@ BattleHandlers::AbilityOnSwitchIn.add(:BREAKINGWAVE,
   proc { |ability, battler, battle, aiCheck|
       next 0 if aiCheck
       battle.pbShowAbilitySplash(battler, ability)
-      battle.pbDisplay(_INTL("{1} snuck into the water!", battler.pbThis))
+      battle.pbDisplay(_INTL("{1} arrived on a breaking wave!", battler.pbThis))
       battle.pbHideAbilitySplash(battler)
   }
 )

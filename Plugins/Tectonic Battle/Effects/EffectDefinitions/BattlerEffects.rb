@@ -2011,7 +2011,7 @@ GameData::BattleEffect.register_effect(:Battler, {
         end
         if damageToApply > 0
             battle.pbShowAbilitySplash(battler, :DELAYEDREACTION)
-            battle.pbDisplay(_INTL("The pain caught up to {1}!", battler.pbThis(true)))
+            battle.pbDisplay(_INTL("{1} realized it had been attacked!", battler.pbThis(true)))
             oldHP = battler.hp
             battler.damageState.displayedDamage = damageToApply
             damageToApply = battler.hp if damageToApply > battler.hp

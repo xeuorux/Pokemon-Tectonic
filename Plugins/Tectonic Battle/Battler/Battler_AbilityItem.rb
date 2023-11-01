@@ -144,11 +144,11 @@ class PokeBattle_Battler
                 battlerCopying = choices.keys.sample
                 abilitiesCopying = choices[battlerCopying]
                 showMyAbilitySplash(:PLURIPOTENCE)
-                @battle.pbDisplay(_INTL("{1} is acting like a {2}!", pbThis, GameData::Species.get(battlerCopying.species).name))
+                @battle.pbDisplay(_INTL("{2}? {1} can be that, if it wishes.", pbThis, GameData::Species.get(battlerCopying.species).name))
                 echoln("Abilities that Pluripotence is copying: #{abilitiesCopying.to_s}")
                 setAbility(abilitiesCopying)
                 abilitiesCopying.each do |legalAbility|
-                    @battle.pbDisplay(_INTL("{1} mimicked the ability {2}!", pbThis, getAbilityName(legalAbility)))
+                    @battle.pbDisplay(_INTL("{1} imitated the Ability {2}!", pbThis, getAbilityName(legalAbility)))
                 end
                 hideMyAbilitySplash
                 if !onSwitchIn && (unstoppableAbility? || abilityActive?)

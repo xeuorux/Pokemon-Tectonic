@@ -98,7 +98,7 @@ class PokeBattle_Battler
         damage = 1 if damage < 1
         if !cushionRecoil && hasActiveAbility?(:KICKBACK)
             showMyAbilitySplash(:KICKBACK)
-            @battle.pbDisplay(_INTL("{1} looks for an ally to help in avoiding the recoil!", pbThis))
+            @battle.pbDisplay(_INTL("{1} is trying to use an ally to absorb the recoil!", pbThis))
 
             # Can be replaced
             if @battle.pbCanSwitch?(@index) && @battle.pbCanChooseNonActive?(@index)

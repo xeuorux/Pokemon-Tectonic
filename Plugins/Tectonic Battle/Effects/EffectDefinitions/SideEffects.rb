@@ -606,7 +606,7 @@ GameData::BattleEffect.register_effect(:Side, {
                 battle.pbDisplay(_INTL("{1} recovered all the way to full health!", pkmn.name))
                 value[key] = nil
             else
-                battle.pbDisplay(_INTL("{1} is mending.", pkmn.name))
+                battle.pbDisplay(_INTL("{1} is regrowing.", pkmn.name))
             end
         end
         value.compact!

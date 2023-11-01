@@ -108,10 +108,10 @@ BattleHandlers::EOREffectAbility.add(:IGNITIONCYCLE,
       if !battler.statStepAtMax?(:SPEED)
           if battler.tryRaiseStat(:SPEED, battler, increment: 3)
               battler.applyFractionalDamage(1.0 / 8.0, false)
-              battle.pbDisplay(_INTL("{1} warmed up!", battler.pbThis))
+              battle.pbDisplay(_INTL("{1}'s inner fire flared up!", battler.pbThis))
           end
       else
-          battle.pbDisplay(_INTL("{1} vents its accumulated heat!", battler.pbThis))
+          battle.pbDisplay(_INTL("{1} finally cooled off!", battler.pbThis))
           battler.steps[:SPEED] = 0
           battler.pbRecoverHP(battler.totalhp - battler.hp)
       end
@@ -233,7 +233,7 @@ BattleHandlers::EOREffectAbility.add(:NOXIOUS,
     battler.showMyAbilitySplash(ability)
     battler.eachOther do |b|
       if b.takesIndirectDamage?(true)
-        battle.pbDisplay(_INTL("{1} is pained!", b.pbThis))
+        battle.pbDisplay(_INTL("{1} is hurt by the noxious presence!", b.pbThis))
         b.applyFractionalDamage(NOXIOUS_DAMAGE_FRACTION, false)
       end
     end
