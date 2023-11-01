@@ -1188,7 +1188,7 @@ end
 class PokeBattle_Move_5BB < PokeBattle_ProtectMove
     def initialize(battle, move)
         super
-        @effect = :ShieldShell
+        @effect = :ShiningShell
     end
 
     def getEffectScore(user, target)
