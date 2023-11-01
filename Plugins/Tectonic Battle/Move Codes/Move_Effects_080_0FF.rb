@@ -2547,8 +2547,9 @@ class PokeBattle_Move_0DA < PokeBattle_Move
         user.applyEffect(:AquaRing)
     end
 
-    def pbEffectAfterAllHits(user, _target)
+    def pbEffectAfterAllHits(user, target)
         return unless damagingMove?
+        return if target.damageState.unaffected
         user.applyEffect(:AquaRing)
     end
 
