@@ -77,7 +77,7 @@ PokEstate::LoadDataDependentAwards += proc {
 # TRIBE REWARDS (66 of them)
 ##############################################
 tribeThreshold = [10,20,40]
-tribeRewards = [[:EXPCANDYM,8],[:EXPCANDYL,4],[:EXPCANDYXL,2]]
+tribeRewards = [[:EXPCANDYM,6],[:EXPCANDYL,3],[:EXPCANDYL,6]]
 
 PokEstate::LoadDataDependentAwards += proc {
     # For every type, create three award event subscribers at different thresholds
