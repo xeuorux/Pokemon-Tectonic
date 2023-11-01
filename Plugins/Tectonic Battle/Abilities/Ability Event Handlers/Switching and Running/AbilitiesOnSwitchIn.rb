@@ -411,7 +411,7 @@ BattleHandlers::AbilityOnSwitchIn.add(:ODDITY,
   }
 )
 
-BattleHandlers::AbilityOnSwitchIn.add(:TRICKSTER,
+BattleHandlers::AbilityOnSwitchIn.add(:SUBSPACESCHISM,
   proc { |ability, battler, battle, aiCheck|
       battle.pbShowAbilitySplash(battler, ability) unless aiCheck
       battle.pbAnimation(:TRICKROOM, battler, nil, 0) unless aiCheck

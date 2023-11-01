@@ -449,7 +449,7 @@
 1448,TOILANDTROUBLE,Toil and Trouble,"Foes suffer 50% more stat reduction from burn, frostbite, and numb."
 1449,FATIGUED,Fatigued,"After attacking any foe, the Pokémon immediately uses Rest."
 1450,CLOAKING,Cloaking,"It changes form to match the move it selected."
-1451,TRICKSTERTEST,Trickster,"Upon entry, creates a Trick Room for five turns, inverting the effect of Speed."
+1451,SUBSPACESCHISM,Subspace Schism,"Upon entry, creates a Trick Room for five turns, inverting the effect of Speed."
 1452,SWIFTSTOMPS,Swift Stomps,"Doubles the Speed of kicking moves."
 1453,HAUNTED,Haunted,"The Pokémon is also Ghost-type."
 1454,EXTRASCOOP,Extra Scoop,"Upon entry, the Pokémon heals itself for 1/4th max HP. This can overheal."
