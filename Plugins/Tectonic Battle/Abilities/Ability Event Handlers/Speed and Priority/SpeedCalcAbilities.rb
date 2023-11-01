@@ -182,7 +182,7 @@ BattleHandlers::SpeedCalcAbility.add(:SLUGGISH,
 
 BattleHandlers::SpeedCalcAbility.add(:SWIFTSTOMPS,
   proc { |ability, battler, mult|
-      next mult * 2 if battler.effectActive?(SwiftStomps)
+      next mult * 2 if battler.effectActive?(:SwiftStomps)
   }
 )
 

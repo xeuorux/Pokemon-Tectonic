@@ -353,7 +353,7 @@ class PokeBattle_Battler
             if aiCheck
                 aiSpeedMult *= 2.0
             else
-                applyEffect(SwiftStomps)
+                applyEffect(:SwiftStomps)
             end
         end
 
