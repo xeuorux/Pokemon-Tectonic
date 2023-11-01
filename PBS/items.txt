@@ -109,7 +109,7 @@
 108,MUSCLEBAND,Muscle Band,Muscle Bands,5,4000,"An item to be held by a Pokémon. It is a headband that boosts the power of physical moves by 10%.",0,0,0
 109,WISEGLASSES,Wise Glasses,Wise Glasses,5,4000,"An item to be held by a Pokémon. It is a thick pair of glasses that boosts the power of special moves by 10%.",0,0,0
 110,SEVENLEAGUEBOOTS,7-League Boots,7-League Boots,5,4000,"An item to be held by a Pokémon. They are boots that boost Speed by 10%.",0,0,0
-111,SCOPELENS,Scope Lens,Scope Lenses,5,4000,"A held item. Doubles the holder's critical-hit chance, and raises their critical hit damage by 33%.",0,0,0
+111,SCOPELENS,Scope Lens,Scope Lenses,5,4000,"A held item. Doubles the holder's critical-hit chance, and raises their critical hit damage by 20%.",0,0,0
 112,WIDELENS,Wide Lens,Wide Lenses,5,4000,"A held item. It is a magnifying lens that boosts the accuracy of moves by 35%.",0,0,0
 113,LAGGINGTAIL,Lagging Tail,Lagging Tails,5,4000,"An item to be held by a Pokémon. It is tremendously heavy and makes the holder move slower than usual.",0,0,0
 114,FOCUSSASH,Focus Sash,Focus Sashes,5,4000,"An item to be held by a Pokémon. If it has full HP, the holder will endure one potential KO attack, leaving 1 HP.",0,0,0
