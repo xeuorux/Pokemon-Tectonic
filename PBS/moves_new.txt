@@ -288,7 +288,7 @@
 1287,DEFIBRILLATE,Defibrillate,59E,0,ELECTRIC,Status,0,1,0,None,0,,"Restores a fainted party member to 1 HP.",ELECTRICTERRAIN
 1288,ABERRANTMOTE,Aberrant Mote,5EF,85,PSYCHIC,Special,100,12,100,NearOther,0,CanProtect;CanMirrorMove,"The user fires a dimensional mote, lowering the target's Sp. Defense.",LUSTERPURGE
 1289,SINGINGSTONE,Singing Stone,59F,85,ROCK,Special,100,12,100,NearOther,0,CanProtect;CanMirrorMove;Sound,"The user thrums ominously, lowering the target's Attack and Sp. Atk.",ECHOEDVOICE
-1290,THERMALGRADIENT,Thermal Gradient,0DD,80,ICE,Special,100,10,0,NearOther,0,CanProtect;CanMirrorMove,"Drains the heat from the target, restoring HP by half the damage taken by the target.",
+1290,THERMALDRAIN,Thermal Drain,0DD,80,ICE,Special,100,10,0,NearOther,0,CanProtect;CanMirrorMove,"Drains the heat from the target, restoring HP by half the damage taken by the target.",
 1291,SILVERSTORM,Silver Storm,102,50,ICE,Special,100,10,0,NearFoe,0,CanProtect;CanMirrorMove,"The user creates a nascent ice storm, attacking and causing hail for eight turns.",HAIL
 1292,SHEDCOAT,Shed Coat,5A2,0,ICE,Status,0,12,0,User,0,CanSnatch,"The user sheds excess covering, raising Sp. Atk and Speed by three steps, but lowering Sp. Def by two steps.",
 1293,FEATHERWARD,Feather Ward,5A1,0,STEEL,Status,0,15,0,FoeSide,0,CanMagicCoat,"The user lays a trap of sharp feathers around the foe. It hurts foes that switch into battle.",
@@ -417,7 +417,7 @@
 1416,STAMPDOWN,Stamp Down,050,60,GROUND,Physical,0,12,0,NearOther,0,CanProtect;CanMirrorMove;Kicking,"The user attacks by flattening the target into the ground. The target's stat step changes are returned to normal.",STOMP
 1417,GRINDSTONE,Grind Stone,5F8,80,ROCK,Physical,100,12,100,NearOther,0,CanProtect;CanMirrorMove,"The user scratches the target with rough rocks. If in sandstorm, the target's Defense is lowered by three steps.",STONEEDGE
 1418,ERODE,Erode,5F9,70,GROUND,Special,100,15,0,NearOther,0,CanProtect;CanMirrorMove,"Attacks by blasting sand. This move always goes first in sandstorm.",SANDATTACK
-1419,ROUSINGHULA,Rousing Hula,173,80,FIRE,Special,100,10,100,AllNearOthers,0,CanProtect;CanMirrorMove;Dance,"The user dances rapidly, emitting tropical heat. Any frostbitten Pokémon will be healed by this heat.",HEATWAVE
+1419,HEARTHFIREHULA,Hearthfire Hula,173,80,FIRE,Special,100,10,100,AllNearOthers,0,CanProtect;CanMirrorMove;Dance,"The user dances rapidly, emitting tropical heat. Any frostbitten Pokémon will be healed by this heat.",HEATWAVE
 1420,CURLUP,Curl Up,01E,0,NORMAL,Status,0,4,0,User,0,CanSnatch,"The user curls up to conceal weak spots and raise both of its defensive stats.",DEFENSECURL
 1421,MORNINGSTAR,Morningstar,000,135,FAIRY,Physical,70,12,0,NearOther,0,CanProtect;CanMirrorMove,"The user invokes forbidden celestial powers to smite the target.",SPIRITBREAK
 1422,FIREPULSE,Fire Pulse,00A,60,FIRE,Special,100,15,20,NearOther,0,CanProtect;CanMirrorMove;Pulse,"The user attacks the target with a pulsing blast of fire. It has a 20% chance to burn.",FLAMEBURST
