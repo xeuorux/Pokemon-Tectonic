@@ -42188,8 +42188,8 @@ Heals by 1/8th of its max HP each turn if in sunshine.
 Recupera 1/8 de sus PS máximos cada turno bajo sol.
 Summons a hailstorm for four turns when hit by an attack.
 Invoca un granizo durante cuatro turnos al ser atacado.
-Foretold moves hit one turn quicker.
-Movimientos augurados golpean un turno antes.
+Foretold moves hit two turns quicker.
+Movimientos augurados golpean dos turnos antes.
 Sets a Lucky Chant upon entering the battle, protecting from critical hits for 10 turns.
 Invoca un Conjuro al entrar al campo, protegiendo a su equipo de los golpes críticos durante 10 turnos.
 Summons sunshine for four turns when hit by an attack.
