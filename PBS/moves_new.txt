@@ -29,7 +29,7 @@
 1028,UNDERMINE,Undermine,0CA,125,GROUND,Physical,100,10,0,NearOther,0,CanProtect;CanMirrorMove,"The user burrows deep, then attacks with devastating power on the second turn.",
 1029,SOULRIP,Soul Rip,506,85,GHOST,Physical,100,12,0,NearOther,0,CanProtect;CanMirrorMove,"The user rips into the target's soul, dealing damage through their Sp. Def rather than their Defense.",SHADOWCLAW
 1030,NASTYNIP,Nasty Nip,005,40,POISON,Physical,100,30,10,NearOther,0,CanProtect;CanMirrorMove,"The user stabs the opponent with a toxin-infused limb. It has a 10% chance to poison.",
-1031,WINTERWARNING,Looming Winter,111,140,ICE,Special,100,10,0,NearOther,0,,"Two turns after this move is used, extreme winter cold attacks the target.",ICEBURN
+1031,WINTERWARNING,Looming Winter,111,170,ICE,Special,100,10,0,NearOther,0,,"Two turns after this move is used, extreme winter cold attacks the target.",ICEBURN
 1032,CRYSTALCRUSH,Crystal Crush,403,90,ICE,Physical,100,15,10,NearOther,0,CanProtect;CanMirrorMove,"Crushes the target with big chunk of ice. This has a 10% chance to frostbite.",ICEHAMMER
 1033,CHIFLUX,Chi Flux,5EF,55,FIGHTING,Special,100,20,100,NearOther,0,CanProtect;CanMirrorMove,"The user contorts the target's chi with a special technique, lowering its Sp. Def.",AURASPHERE
 1034,REND,Rend,509,90,DRAGON,Physical,100,15,0,NearOther,0,CanProtect;CanMirrorMove,"The user shreds through the opponent's defenses, ignoring positive stat changes and abilities.",
