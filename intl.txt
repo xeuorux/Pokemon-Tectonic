@@ -32785,10 +32785,10 @@ Primigenio
 Mega
 Mega
 2737
-Zen Mode
+Zen
 Modo Daruma
 2738
-Zen Mode
+Zen
 Modo Daruma
 2739
 Ascended
@@ -32797,19 +32797,19 @@ Ascendido
 Reaper
 Guadaña
 2741
-Hull Breaker
+Rampage
 Leviatán
 2742
 Finale
 Clímax
 2743
-M. Gallade
+Finale
 Clímax
 2744
-Mega Muscles
+Overmatter
 Mega Músculos
 2745
-Mega Mind
+Overmind
 Mega Mente
 2746
 Therian
@@ -32878,7 +32878,7 @@ Dark Pulse
 Pulso Umbrío
 Throat Chop
 Golpe Mordaza
-Dark Slash
+Night Slash
 Tajo Oscuro
 Sucker Punch
 Golpe Bajo
@@ -34056,11 +34056,11 @@ Flip Turn
 Viraje
 Memento
 Legado
-Fiery Touch
+Kindle
 Toque Ígnea
 Shatter Shot
 Disparo Añicos
-Fugu Force
+Fugu Frenzy
 Fuerza Fugu
 Dirge
 Canto Fúnebre
@@ -34068,7 +34068,7 @@ Clackaclack
 Clackaclack
 Lightning Dance
 Danza Relámpago
-Crash Dive
+Harbor Breaker
 Choque Abisal
 Shotput
 Bala
@@ -34104,7 +34104,7 @@ Stink Cloud
 Nube Apestosa
 Blind Side
 Flanquear
-Slurp
+Feed On
 Succionar
 Kickstart
 Apurarse
@@ -34118,43 +34118,43 @@ Leap Out
 Aparición
 Soul Claw
 Garra Espíritu
-Soul Rip
+Vim Ripper
 Desgarra Espíritu
 Nasty Nip
 Puñal Malicioso
-Winter Warning
+Looming Winter
 Helada Inminente
-Crystal Crush
+Glacial Ram
 Colisión Cristalina
-Chi Flux
+Aura Flux
 Flujo de Chi
 Rend
 Desgarro
-Crippling Breath
+Diametric Breath
 Aliento Frustrante
-Tornado
+Scour
 Tifón
 Harsh Voice
 Levantar la Voz
-Slight
+Finalize
 Despreciar
 Mass Destruction
 Destrucción Masiva
-Ice Impact
+Ice Pick
 Impacto Helado
 Halting Cold
 Frío Tubitante
-Chi Burst
+Secret Technique
 Estallido de Chi
 Trained Outburst
 Arrebato Preparado
 Bear Hug
 Abrazo de Oso
-Inferno Charge
+Inferno Impact
 Carga Infernal
 Flare Up
 Reavivar
-Perfumed Punch
+Pixie Punch
 Golpe Aromático
 Infinite Force
 Fuerza Infinita
@@ -34176,7 +34176,7 @@ Bluster
 Ráfaga
 Shred Shot
 Lanza Viruta
-Shards
+Shrapnel
 Limadura
 Spiteful Chant
 Conjuro Malicioso
@@ -34188,13 +34188,13 @@ Vanguard
 Vanguardia
 Flow State
 Estilo Fluido
-Cold Conversion
+Sublimate
 Helada Final
 Toxic Taste
 Mal Gusto
-Reflex Overdrive
+Omniscient Blow
 Reflejos Perfectos 
-Douse
+Ebb & Flow
 Humedecer
 Aqua Instinct
 Instinto Acuático
@@ -34204,11 +34204,11 @@ Rockapult
 Rocatapulta
 Star Fall
 Lluvia de Meteoros
-Bubble Blast
+Bubble Blaster
 Ráfaga Burbuja
-Aura Strike
+Concuss
 Golpe Aural
-Courage Bolt
+Valor Bolt
 Descarga de Coraje
 Psychic Overload
 Sobrecarga Mental
@@ -34224,7 +34224,7 @@ Crystal Gleam
 Brillo Cristalino
 Wailing Blow
 Toque Quejumbroso
-Sapping Wind
+Frigid Flurry
 Viento Agotador
 Dream Dance
 Danza Onírica
@@ -34246,7 +34246,7 @@ Ruin
 Ruina
 Hard Feelings
 Resentimientos
-Soul Drain
+Souleater
 Absorbe Alma
 Abyssal Reset
 Reinicio Abisal
@@ -34256,11 +34256,11 @@ Wingspan Eclipse
 Envergadura Eclipsal
 Allergy
 Alergia
-Lightning Shriek
+From the Blue
 Alarido Chisporreante
 Ignite
 Ignición
-Hydro Scythe
+Torrent Scythe
 Hidro Guadaña
 Stare Down
 Amenazar
@@ -34270,11 +34270,11 @@ Breakdance
 Breakdance
 Shiver Dance
 Danza Escarcha
-Ambush
+Nightfelling
 Emboscada
 Stitch Up
 Suturar
-Phantom Break
+Six Feet Under
 Rompe-Espectro
 Loom Over
 Imponerse
@@ -34286,13 +34286,13 @@ Lullaby
 Canción de Cuna 
 Puffball
 Bejín
-Mud Throw
+Mud Sling
 Lanzalodo
-Purifying Water
+As Crystal
 Agua Purificadora
 Critical Error
 Error Crítico
-Primal Impact
+Acedian Impact
 Impacto Primitivo
 Adamantine Press
 Plancha Diamantina
@@ -34300,33 +34300,33 @@ Clamor
 Clamor
 Comet Smash
 Impacto Cometa
-Double Punch
+Double Down
 Doble Puño
 Pulverize
 Pulverizar
 Pummel
 Aporrear
-Slice
+Pale Blade
 Cortar
 Fury
 Furioso
 Spellbind
 Hechizar
-Bird Strike
+Air Strike
 Repiqueteo
 Terraform
 Terraformar
-Prediction Strike
+Seer Strike
 Ataque Predicho
 Rake
 Rastrillaje
-Water Spiral
+Rupture Spring
 Espiral Acuática
 Spattering Ram
 Ariete Salpicante
 Blossom
 Florecer
-Thriving Force
+Energy Ball
 Fuerza Floreciente
 Tera Drain
 Tera Drenaje
@@ -34336,13 +34336,13 @@ Inertia Shock
 Choque de Inercia
 Geyser
 Geíser
-Nervebreak
+Hypothermiate
 Inquietar
 Frost Barb
 Punta Congelada
 Icecalibur
 Filo Helado
-Arctic Beacon
+Supercool
 Faro Ártico
 Hunt Down
 Caza Aérea
@@ -34352,11 +34352,11 @@ Strafe
 Bombardeo
 Swarm Burst
 Estallido de Enjambre
-Beam
+Diffuse Pulse
 Haz Común
-White Ray
+Particle Pulse
 Rayo Blanco
-Rapid Stars
+Stellarate
 Meteoritos Veloces
 Pilfer
 Birlar
@@ -34376,23 +34376,23 @@ Rolling Boulder
 Pedrusco Rodante
 Mind Warp
 Cambio de Mentalidad
-Air Dart
+Squall Dart
 Dardo de Aire
 Miasma
 Miasma
 Venomortar
 Venomortal
-Aura Trick
+Ward Press
 Truco Aural
 Adrenalash
 Látigo de Adrenalina
-Earth Rift
+Earthsplitter
 Grieta Terrestre
 Up In Flames
 En Llamas
 Propellant
 Propulsor
-Psychoblade
+Psychoscission
 Psicotajo
 Chill
 Enfríar
@@ -34400,7 +34400,7 @@ Glitter Bomb
 Bomba Brillante
 Fair Play
 Juego Limpio
-Just Deserts
+Humble
 Tomar su Merecido
 Poison Spikes
 Púas Venenosas
@@ -34412,17 +34412,17 @@ Mind Link
 Conexión Mental
 Bullet Charge
 Carga Bala
-Seed Surprise
+Evernalize
 Semilla Sorpresa
 Spooky Snuggling
 Acurruco Espectral
 Bullet Train
 Tren Bala
-Poison Pollen
+Poison Ivy
 Polen Venenoso
-Para-Pollen
+Anesthetize
 Polen Aturdidor
-Kraken Clutches
+Drag Beneath
 Aferramiento de Kraken
 Dazzle
 Encandilar
@@ -34430,11 +34430,11 @@ Smirk
 Superioridad
 Store Fuel
 Combustión
-Removal Beam
+Null Pulse
 Haz Removedor
 Slay
 Matadragones
-Chi Block
+Nerve Block
 Bloqueo de Chi
 Stunning Curl
 Rizo Paralizador
@@ -34444,7 +34444,7 @@ Drop Kick
 Dropkick
 Multi-strike
 Multi-golpe
-Mountain Crush
+Planetcracker
 Aplasta Montañas
 Smush
 Prensar
@@ -34454,7 +34454,7 @@ Stinging Jealousy
 Envidia Punzante
 Stand Together
 Estar Unidos
-Harmonize
+Symbiosis
 Armonizar
 Tricky Toxins
 Tóxinas Engañosas
@@ -34492,7 +34492,7 @@ Blackout
 Apagón
 Holly Charm
 Muérdamuleto
-Mutual
+Scuffle
 Mutual
 Bedfellows
 Pijamada
@@ -34516,7 +34516,7 @@ Sand Toss
 Lanza Arena
 Dust Devil
 Remolino Arenoso
-Sand Vortex
+Devouring Dust
 Vórtice de Arena
 Puzzle Room
 Zona Enigmática
@@ -34532,7 +34532,7 @@ Thunder Belly
 Plancha Eléctrica
 Volley Stance
 Doble Cañón
-Astral Dream
+Oneiromancy
 Sueño Lúcido
 Vine Maze
 Enredadera
@@ -34562,11 +34562,11 @@ Hard Place
 Caza Agresiva
 Dragon Ride
 Montura Dragón
-Magma Roar
+Like Wildfire
 Rugido Ardiente
 Blazing Speed
 Centella
-Archaic Deluge
+Archean Deluge
 Diluvio Arcaico
 Shimmering Heat
 Tormenta de Hollín
@@ -34606,7 +34606,7 @@ On A Roll
 En Racha
 Mach Flight
 Velocidad Temeraria
-Caltrop Style
+Caltrop Arts
 Truco Ninja
 Cull
 Carroñerox
@@ -34626,7 +34626,7 @@ Heat Gyre
 Giro Ardiente
 Mirror Shield
 Escudo Reflejante
-Unfurl
+Rough & Tumble
 Desenrollar
 Built Different
 La Cosa está Fuerte
@@ -34636,13 +34636,13 @@ Bulwark
 Bastión
 Snowy Sorrows
 Lamento Nevado
-Invoke Sun
+Invite Sun
 Invocar Sol
 Invoke Sand
 Invocar Arena
-Invoke Rain
+Invite Rain
 Invocar Lluvia
-Invoke Hail
+Invite Hail
 Invocar Granizo
 Hateful Haymaker
 Bandido Vengativo
@@ -34652,9 +34652,9 @@ Aberrant Mote
 Risco Aberrante
 Singing Stone
 Piedra Soprana
-Draining Chill
+Thermal Drain
 Hielo Drenado.
-Snowstorm
+Silver Storm
 Helada
 Shed Coat
 Desplumar
@@ -34662,9 +34662,9 @@ Feather Ward
 Espinas Aladas
 Hyper Jet
 Híper Jet
-Sand Assault
+Dustmach Pulse
 Asalto de Arena
-Razor Plunge
+Ramming Speed
 Clavado Afilado
 Volatile Toxin
 Toxina Volátil
@@ -34698,15 +34698,15 @@ Scarring Swing
 Tajo Letal
 Hive Mind
 Mente Colmenta
-Docile Mask
+Innocent Masque
 Engañoso
-Mucus Armor
+Dissolution
 Armadura Mocosa
 Long Shot
 Disparo Adaptativo
 Dry Heat
 Onda Árida
-Icicle Armor
+Ice-Nine Wall
 Coraza Témpano
 Venom Guard
 Guardia Venenosa
@@ -34714,13 +34714,13 @@ Prank
 Bromear
 Grey Mist
 Niebla Gris
-Patient Training
+Patient Blade
 Estilo Estoico
-Martial Mastery
+Art of War
 Dominio Marcial
 Reverb Ward
 Guardia Especial
-Moon Glow
+Moonglow
 Brillo Lunar
 Eclipse
 Eclipse
@@ -34738,23 +34738,23 @@ Bed Time
 Hora de Dormir
 Sky Fall
 Catástrofe
-Heart Stop
+Heartstopper
 Paro Cardíaco
 Psyshield Bash
 Asalto Barrera
 Headlong Rush
 Arremetida
-Purifying Flame
+Impurity Blaze
 Llama Purificadora
 Ceaseless Edge
 Tajo Metralla
 Stone Axe
 Hachazo Pétreo
-Aura Arrows
+Threefold Volley
 Flecha Aural
 Esper Dive
 Picado Aural
-Triumphant Dance
+Foxtrot Finale
 Danza Triunfante
 Icebreaker
 Rompehielos
@@ -34766,43 +34766,43 @@ Chloroblast
 Clorofiláser
 Dire Claw
 Garra Nociva
-Shield Shell
+Shining Shell
 Capararmazón
 Spiky Burst
 Explosión de Púas
-Malefic Phantom
+Malefaction
 Espectro Maléfico
 Hair Curl
 Trampa Velluda
-Stone Signal
+Megalith Rite
 Señal Pétrea
 Contradict
 Contradecir
 Mouthful
 Bocado
-Golem Guard
+Omnishelter
 Guardia de Golem
-Freeze Ray
+Hyperfrost
 Rayo Refrigerador
-Warped Strike
+Everhone
 Ataque Cambiante
-Optimized Action
+Metaform
 Acción Óptima
-Dragon Aspect
+Archmyth
 Aspecto Dragón
 Capoeira
 Capoeira
-Flame Dance
+Smolder Rave
 Danza Flama
-Aqua Waltz
+Wetland Waltz
 Vals Acuático
 Absolute Radiance
 Absoluto Destello
 Magnetize
 Magnetizar
-Magnet Prison
+Faraday Cage
 Prisión Magnética
-Magic Hand
+Mage Hand
 Toque Mágico
 Kinetic Grip
 Agarre Kinético
@@ -34820,11 +34820,11 @@ Silk Blade
 Filo de Seda
 Extreme Effort
 Extreme Effort
-Tranquil Prayer
+Many Blessings
 Plegaria Plácida
 Machinate
 Maquinar
-Dragons Roar
+Banish
 Rugido Dragón
 Checkmate
 Jaque Mate
@@ -34834,7 +34834,7 @@ Shine Shot
 Disparo Brillante
 Tutelage
 Tutoría
-Power Nap
+Sweet Selene
 Siesta Rápida
 Gem Seal
 Sello Precioso
@@ -34850,7 +34850,7 @@ Mist Burst
 Nebudetonación
 Energy Trick
 Intercambio Energético
-Sustained Wind
+Jet Stream
 Viento Prolongado
 Stabilize
 Estabilizar
@@ -34858,7 +34858,7 @@ Thieving Spree
 Cleptómano
 Terror Swarm
 Enjambre Atosigador
-Blight Touch
+Blight
 Peligro Biológico
 Detachment
 Desprendimiento
@@ -34870,13 +34870,13 @@ Regalia
 Gema Real
 Rolling Arsenal
 Rueda Multiuso
-Zephyr Wing
+Infinite Wing
 Ala Céfira
 Swagger
 Contoneo
 Flatter
 Camelo
-Shell Shelter
+Shellter
 Armadura Concha
 Tune Up
 Afinar
@@ -34886,13 +34886,13 @@ Cursed Oath
 Maleficio
 Mind Sap
 Absorbemente
-Apple Surprise
+Classical Physics
 Potencia G
 Star Dance
 Danza Estelar
 Amp Up
 Amplificar
-True Senses
+Anatman
 Paz Interior
 Undying Rush
 Ariete Inmortal
@@ -34902,7 +34902,7 @@ Ice Dungeon
 Mazmorra Helada
 Bar
 Veto
-Shattered Energy
+Occultation
 Vasta Energía
 Aim True
 Mira Perfecto
@@ -34910,9 +34910,9 @@ Stamp Down
 Al Suelo
 Grind Stone
 Piedra Filosa
-Sand Blasting
+Erode
 Ráfaga de Arena
-Rousing Hula
+Hearthfire Hula
 Hula Estimulante
 Curl Up
 Rizo Guardia
@@ -34920,21 +34920,21 @@ Wham Blam
 Golpe Heróico
 Fire Pulse
 Pulso Ígneo
-Shrapnel Cannon
+Tephra Cannon
 Cañón Metralla
 Storm Drive
 Propulsión Tormenta
-Multi-Needle
+Manyneedle
 Multi Aguijón
-Rising Tides
+Rising Tide
 Agua Creciente
-Blood Bite
+Exsanguinate
 Chupasangre
 Gleeful Grasp
 Apretón Alegre
 Play Bite
 Mordida Juguetona
-Mount's Judgement
+Destrier's Whim
 Decisión Equina
 Joust
 Justa
@@ -34946,19 +34946,19 @@ Thorn Rattle
 Maraca Espinosa
 Cross Examine
 Interrogatorio
-Gene Boost
+Genotheosis
 Gen Loco
 Aurora Flash
 Destello Aurora
-Crackling Cloud
+Split the Sky
 Nube Tormentosa
-Flare Lance
+Prominence
 Lanza Ígnea
 Icicle Pin
 Trampa Carámbano
 Head Throw
 Perder la Cabeza
-Triple Bump
+Rotary Headbutt
 Triple Sacudida
 Diamond Field
 Campo de Diamantes
@@ -34968,7 +34968,7 @@ Healthy Cheer
 Baile Saludable
 Death Knell
 Sentencia Mortal
-Silent Wind
+Ghoulish Gale
 Viento Silencioso
 Cursed Roots
 Raíz Maldita
@@ -35124,13 +35124,13 @@ Seven Seas Edict
 Decreto de los Siete Mares
 Warping Core
 Núcleo Cambiante
-Shatter Vice
+Shatter Vise
 Prensa Destructiva
 Butting Heads
 Embestida
 Sapping Seed
 Semilla Agotadora
-Moon Howling
+Midnight Hunt
 Aullido Lunar
 Luminous Burst
 Estallido Luminoso
@@ -35156,13 +35156,13 @@ Fireworks
 Fuegos Artificiales
 Rapid Hertz
 Hercios Acelerados
-Extinction Axe
+Axe to Grind
 Hacha de Extinción
 Impaling Spike
 Empúalamiento
 Young Again
 Rejuvenecimiento
-Dune Singing
+Pulverizer Chord
 Canto Desértico
 Wind Tunnel
 Túnel Ventoso
@@ -35174,7 +35174,7 @@ Droning
 Sonsonete
 Drown
 Ahogar
-Toxic Attachment
+Devour Whole
 Sujeción Tóxica
 Spotting
 Vigilia
@@ -35185,7 +35185,7 @@ Filo Farsante
 Disturb
 Perturbar
 Danger Ditty
-Tonada Poderosa
+Baleful Bop
 Bubble Barrier
 Barrera Burbuja
 Rocket Punch
@@ -35196,7 +35196,7 @@ Capacity Burst
 Sobrecarga
 Weld
 Soldadura
-Flash Sting
+Bad Ending
 Aguijón Fugaz
 Discourage
 Disuadir
@@ -35206,33 +35206,33 @@ Guttural Roar
 Rúgido Gutural
 Center
 Concentración
-Fixate
+Concentrate
 Abstracción
 Rip Tide
 Marea Negra
 Hop
 Salto
-Compounding
+Rising Power
 Poder Compuesto
 Sharing Smiles
 Sonrisas Compartidas
 Hot Shot
 Llama Veloz
-Presto
+Glamour Flash
 Presto
 Poison Dart
 Dardo Venenoso
-Awe-strike
+Dread
 Veneración Fortuita
 Gloat
 Regodearse
 Bully
 Amedrentar
-Artillerize
+Fire for Effect
 Artillería
 Snap
 Mordisqueo
-Quality Room
+Polarized Room
 Zona Eficaz
 Mistletoe
 Patada Muérdago
@@ -35246,21 +35246,21 @@ All For One
 Todo Para Uno
 Blades of Grass
 Espadas de Hierba
-Front Kick
+Scythe Kick
 Patada Frontal
 Razing Vines
 Enredadera
 Cranial Guard
 Guarda-Mente
-Channel Spirits
+From Beyond
 Invoca-Espíritus
 Sirocco
 Sirocot
 Honey Slather
 Endulzar
-Remold
+Paradisiaca
 Remoldear
-Primal Vigor
+Greater Glories
 Vigor Primigenio
 Heaven's Eyes
 Ojos del Edén
@@ -35268,7 +35268,7 @@ Quarantine
 Cuarentena
 Stink Cover
 Cubierta Apestosa
-Herbal Patch
+Floral Gramarye
 Herbolario
 Wipeout
 Oleaje
@@ -40391,7 +40391,7 @@ Swift Swim
 Nado Rápido
 Chlorophyll
 Clorofila
-Power Up
+Pure Force
 Potenciado
 Poison Point
 Punto Tóxico
@@ -40719,11 +40719,11 @@ Paleolithic
 Paleolítico
 Sub Zero
 Sub-Zero
-Adamantite
+Superalloy
 Adamantino
 Midnight Sun
 Sol de Medianoche
-Acclimatize
+Weathered
 Aclimatado
 Stubborn
 Testarudo
@@ -40735,7 +40735,7 @@ Trapper
 Trampero
 Desert Armor
 Guardia Desértica
-Energy Up
+Pure Energy
 Energizado
 Poison Absorb
 Absorbe Veneno
@@ -40779,7 +40779,7 @@ Realist
 Realista
 Beguiling
 Encantador
-Aqua Propulsion
+Cloudburst
 Propulsión Acuática
 Adaptive Skin
 Piel Adaptable
@@ -40821,7 +40821,7 @@ Disorienting
 Desorientar
 Paranoid
 Paranoico
-Sharpness
+Swordplay
 Cortante
 Burn Skill
 Calcinar
@@ -40851,7 +40851,7 @@ Stormbringer
 Portador de la Tormenta
 Arc Conductor
 Arco Voltáico
-Honor Aura
+Honorable
 Honorable
 Gargantuan
 Colosal
@@ -40859,7 +40859,7 @@ Ruinous
 Ruinoso
 Fortified
 Acorazado
-Blizz Boxer
+Sleetshaker
 Poder Nival
 Desert Spirit
 Espíritu Desértico
@@ -40909,7 +40909,7 @@ Envy
 Envidia
 Petrifying
 Petrificante
-Frost Song
+Arctic Ariette
 Melodía Gélida
 Gild
 Toque de Midas
@@ -40925,7 +40925,7 @@ Heroic Finale
 Final Heroico
 Moon Gaze
 Resplandor Lunar
-Lunar Loyalty
+Luna Riot
 Lealtad Lunar
 Harbinger
 Heraldo
@@ -40963,7 +40963,7 @@ Bitter
 Frígido
 Stability
 Estabilidad
-Puzzling Aura
+Puzzling
 Aura Enigmática
 Dire Diversion
 Medida Desesperada
@@ -40975,11 +40975,11 @@ Brilliant Flurry
 Nevisca Brillante
 Industrialize
 Industrializar
-Aqua Sneak
+Breaking Wave
 Escabullida Acuática
 Needle Fur
 Pelaje Tajante
-Warmth Cycle
+Ignition Cycle
 Ciclo de Calor
 Secretion Secret
 Secreción Secreta
@@ -40993,7 +40993,7 @@ Boulder Nest
 Nido Rocoso
 Fly By
 Retirada Turbulenta
-Odd Aura
+Oddity
 Aura Anómala
 Luring
 Atrayente
@@ -41013,13 +41013,13 @@ Ecto-Particles
 Ecto-Partículas
 High-rise
 Rascacielos
-Dawn Burst
+Dawnfall
 Estallido del Amanecer
 Roast
 Rostizar
 Solar Cell
 Célula Solar
-Sand Strength
+Earthshaker
 Vigor Arena
 Aggravate
 Agravar
@@ -41035,7 +41035,7 @@ Rooted
 Arraigado
 Fine Sugar
 Azúcar Refinado
-Ramming Speed
+Trench Carver
 Arremetedor
 Radiate
 Irradiar
@@ -41073,25 +41073,25 @@ Refreshments
 Refrigerios
 Shifting Fist
 Puño Cambiante
-Ally Cushion
+Kickback
 Escudo Aliado
 Tenderize
 Ablandar
 Kelp Link
 Alga Infecciosa
-Play Victim
+Punisher
 Victimizarse
-Swarm Impact
+Predation
 Impacto Enjambre
 Sticky Mold
 Moho Espeso
 Wrath Instinct
 Instinto Furioso
-Dune Predator
+Sands Macabre
 Depredador del Páramo
-Sea Lord
+City Razer
 Señor de los Mares
-Balance of Power
+Middle Way
 Balance de Poder
 Steely Shell
 Caparazón Metálico
@@ -41115,7 +41115,7 @@ Moon Blanket
 Capa Lunar
 Exo-Adaption
 Exo-Adaptación
-Locomotion
+Exotherm Engine
 Locomoción
 Tantalizing
 Tentador
@@ -41135,19 +41135,19 @@ Heat Veil
 Velo Cálido
 Chronic Cold
 Hipotermia
-Time Stretch
+Timeskip
 Grieta Temporal
 Apprehensive
 Ansioso
-Total Grasp
+Master Plan
 Comprensión Total
 Anarchic
 Anárquico
 Extremophile
 Extremófilo
-World Quake
+Worldquake
 Temblor Mundial
-Resonance
+Planar Veil
 Resonancia
 Shaky Code
 Código Inestable
@@ -41155,7 +41155,7 @@ Rock Climber
 Alpinista
 Plot Armor
 Amparo del Cataclismo
-Shattering
+Fell Omen
 Demoledor
 Warping Effect
 Efecto Cambiante
@@ -41163,17 +41163,17 @@ Stars Align
 Astros Alineados
 Toll Danger
 Campana del Apocalipsis
-Calamity
+Scathing Syzygy
 Calamidad
 Dramatic Lighting
 Entrada Drámatica
-Mending Tones
+Toll the Bells
 Tonos Sanadores
 Pearl Seeker
 Busca-Perlas
 Lunatic
 Lunático
-Night Light
+Illuminance
 Luz Nocturna
 Night Life
 Vida Nocturna
@@ -41189,19 +41189,19 @@ Night Vision
 Visión Nocturna
 Night Stalker
 Acechador Nocturno
-Werewolf
+Lycanthrope
 Licántropo
-Toxic Cloud
+Intoxicate
 Nube Tóxica
-Generator
+Dynamo
 Generador
 Lightning Ride
 Surca-Rayos
 Spinesplode
 Explopúas
-Whirler
+Gyre Spinner
 Turbulencias
-Healing Hope
+Joyous Sorrow
 Anhelo Curativo
 Sustainable
 Sustentable
@@ -41209,7 +41209,7 @@ Oxygenation
 Oxigenación
 Living Armor
 Caparazón Viviente
-Vibrational
+Resonant
 Vibratorio
 Cotton Decoy
 Señuelo de Algodón
@@ -41219,11 +41219,11 @@ Kleptomaniac
 Cleptomaníaco
 Assistant
 Asistente
-Metal Cover
+Stainless Steel
 Armazón Metálico
 Strikes Twice
 Doble Choque
-Moon Bubble
+Solo Nocturne
 Burbuja Lunar
 Ice Queen
 Reina Glacial
@@ -41235,7 +41235,7 @@ Heaven's Crown
 Corona del Paraíso
 Night-line
 Cuidado Nocturno
-Lunar Cleansing
+Decontamination
 Limpieza Nocturna
 Rock Body
 Cuerpo Rocoso
@@ -41253,9 +41253,9 @@ Night Owl
 Noctámbuho
 Served Cold
 Plato Frío
-Harsh Training
+Unconquerable
 Entrenamiento Riguroso
-Superstitious
+Exorcist
 Supersticioso
 Poor Conduct
 Mala Conducta
@@ -41265,17 +41265,17 @@ Fiery Spirit
 Espíritu Ardiente
 Fiesta
 Fiesta
-Cleaving
+Ram Prow
 Hacerse Paso
 Investigator
 Investigador
-Weak Spirit
+Impetuous
 Espíritu Frágil
 Clingy
 Pegajoso
-Windy
+Brisk
 Ventoso
-Pre-Charged
+Tesla Coils
 Pre-Cargado
 Mental Damage
 Daño Mental
@@ -41283,11 +41283,11 @@ Flash Freeze
 Helada Súbita
 Frostpitality
 Fría Hospitalidad
-Sand Drilling
+Sandworn Auger
 Impulso Arena
-Sand Demon
+Darkened Skies
 Demonio Desértico
-Crag Terror
+Scoured Silhouette
 Terror Prehistórico
 Magnet Trap
 Trampa Magnética
@@ -41297,49 +41297,49 @@ Loose Shell
 Coraza Suelta
 Eternal Winter
 Invierno Perpetuo
-Taiga Trecker
+Taiga Trekker
 Senderista
 Ice Mirror
 Espejo Glacial
 Winter Insulation
 Aislamiento Invernal
-Polar Hunter
+Frostfanged
 Cazador Polar
-Winter Wisdom
+Summit Spirit
 Sabíduria Invernal
 Larder
 Despensa
-Toxic Spirit
+Toxic Attitude
 Alma Venenosa
 Hooligan
 Gamberro
-Greedy Guts
+Extorter
 Avaricioso
 Gourmand
 Gourmand
 Filthy
 Sucio
-Heartening Aroma
+Efflorescent
 Aroma Alentador
-Grow Up
+Flourishing
 Crecimiento
-Dragon Scales
+Dragon’s Blood
 Escamas Dragón
-Infinite Source
+Gauss Aftershock
 Fuente Ilimitada
-Total Mirror
+Frigid Reflection
 Espejo Absoluto
-Morphing Guard
+Indestructible
 Guardia Mutante
-Erosion Cycle
+Core Provenance
 Ciclo de Erosión
 Ancestral Dance
 Danza Ancestral
+Afterimage
 Ninjutsu
-Ninjutsu
-Self Mending
+Perennial Payload
 Auto-Reparación
-Grassy Spirit
+Verdant
 Alma Natura
 Above It All
 Encima de Todo
@@ -41349,9 +41349,9 @@ Danger Sense
 Instinto de Riesgo
 Glass Firing
 Horneado de Cristal
-Guard Break
+Shellcracker
 Rompe-Guardia
-Will Break
+Bizarre
 Rompe-Mente
 Aurora Prism
 Prisma Aurora
@@ -41359,7 +41359,7 @@ Feel the Burn
 Espíritu Ardiente
 Cold Calculation
 Mente Fría
-Gravitational
+Gravitas
 Gravitacional
 Unassuming
 Modesto
@@ -41371,7 +41371,7 @@ Steel Absorb
 Absorbe Metal
 Seed Sowing
 Disemillador
-Dull
+Unfazed
 Soso
 Well Suited
 Well Suited
@@ -41379,7 +41379,7 @@ Bliss
 Alegría
 Herding
 Arrear
-Extreme Energy
+Extreme Voltage
 Energía Extrema
 Unnerve
 Nerviosismo
@@ -41395,7 +41395,7 @@ Rending Claws
 Garra Cruel
 Fighting Vigor
 Vigor Marcial
-Well Supplied
+Self-Sufficient
 Grandes Reservas
 Grotesque Vitals
 Vitales Grotescas
@@ -41421,7 +41421,7 @@ Bully
 Bully
 Venom Gorger
 Atraca Tóxinas
-Over Acting
+Pluripotence
 Sobre Actuar
 Herbalist
 Herbolario
@@ -41429,21 +41429,21 @@ Traumatizing
 Traumático
 Irrefutable
 Irrefutable
-Wind Buffer
+Aeroshell
 Custodia Ventosa
 Fungal Flurry
 Asalto Fúngico
 Liminal
 Liminal
-Proving
+Outrider
 Validación
-Energy Drain
+Overcharge
 Absorbe Energía
 Dominating
 Dominante
 Wise Hunter
 Cazador Versado
-Klumsy Kinesis
+Clumsy Kinesis
 Kinesis Imperfecta
 Foolhardy
 Insensato
@@ -41453,15 +41453,15 @@ Roll In
 Caer Rodando
 Huggable
 Achuchable
-Plasma Ball
+Plasma Globe
 Bola Plasmática
-Jasper Charge
+Overthinking
 Carga Jaspe
 Straight Ahead
 Directo
 Hyper Speed
 Híper Velocidad
-Sea Survivor
+Leviathan
 Náufrago
 Assault Spines
 Espinas Asalto
@@ -41475,9 +41475,9 @@ Heart of Justice
 Corazón Justiciero
 Choreography
 Coreografía
-Battery Break
+Emergency Power
 Rompe Batería
-Super Fist
+Knuckleduster
 Súper Puño
 Siren Song
 Canción de Sirena
@@ -41491,9 +41491,9 @@ Storm Totem
 Tótem Tormentoso
 Mutable
 Mutable
-Snoring
+Loud Sleeper
 Ronquido Constante
-Shrieking
+Ear-Splitting
 Grito de Banshee
 Eccentric
 Excéntrico
@@ -41519,29 +41519,29 @@ Quarrelsome
 Beligerante
 Grip Strength
 Fuerza de Agarre
-Creeping Strength
+Late Bloomer
 Fuerza Deliberada
 Shock Style
 Descarga Intrépida
 Wish Maker
 Deseoso
-Smoke Reflex
+Pressure Valve
 Humo Cegador
-Evo-Armor
+Selective Scutes
 Coraza Evolutiva
-Royal Voice
+Bellower
 Voz Real
 Full Blubber
 Pura Grasa
-Digging Fist
+Excavator
 Puño Subterráneo
-Aloof
+Domineering
 Distante
-Rusty Anchor
+Rust & Wrack
 Ancla Oxidada
 Steam Power
 Comburente
-Pitting
+Sapper
 Enterrar
 Sickening
 Nauseabundo
@@ -41565,7 +41565,7 @@ Spare Scales
 Escamas Extra
 Egoist
 Egoísta
-Apathetic
+Placidity
 Apático
 Freestyle
 Freestyle
@@ -41573,7 +41573,7 @@ Slipstream
 Estela
 Lifeline
 Sustento
-Pain Presence
+Noxious
 Presencia Dolorosa
 Darter
 Perdurable
@@ -41583,11 +41583,11 @@ White Knight
 Caballero Blanco
 Slapstick
 Slapstick
-Pain Delay
+Delayed Reaction
 Reacción Tardía
 Vandal
 Vándalo
-Engorge
+Gorging
 Hinchar
 Unidentified
 Sin Identificar 
@@ -41595,7 +41595,7 @@ Snoozefest
 Aburrimiento
 Team Player
 Trabajo en Equipo
-Sleep Snare
+Dreamy Haze
 Atrapasueños
 Stupefying
 Atontar
@@ -41609,11 +41609,11 @@ Saturnal Sky
 Cielo Saturnal
 Stygian Night
 Noche de Estigio
-Fire-fighter
+Firefighter
 Combustión
 Slumbering Drake
 Dragón Durmiente
-Tendril Trap
+No Hope
 Trampa de Medusa
 Toil and Trouble
 Sufrimiento Incrementado
@@ -41621,9 +41621,9 @@ Fatigued
 Fatigado
 Cloaking
 Tronco Adaptable
-Tricky Aura
+Trickster
 Aura Rara
-Quick Kicks
+Swift Stomps
 Patadas Rápidas
 Haunted
 Poseído
@@ -41635,9 +41635,9 @@ Torpor Sap
 Drenado Soporífico
 Running Free
 Errante
-Leg Strength
+Iron Heel
 Gemelos Fornidos
-Quality Aura
+Polarizing
 Aura Eficaz
 Insight Aura
 Aura Esclarecedora
@@ -41645,7 +41645,7 @@ Emotion Aura
 Aura Emoción
 Will Aura
 Aura Voluntad
-Rushed
+Live Fast
 Apresurado
 Burdened
 Agobiado
@@ -41661,7 +41661,7 @@ Autumnal
 Otoñal
 Neurotoxin
 Neurotoxina
-Malingering
+Inexorable
 Persistencia
 Auto-Structure
 Auto-Estructura
@@ -41679,7 +41679,7 @@ Direct Current
 Corrientazo
 Auto-Pilot
 Auto-Piloto
-Cautionary
+Battle-Hardened
 Cuidadoso
 
 [11]
@@ -47285,7 +47285,7 @@ No afecta a {1}...
 ¡{1} se cura con la energía del ataque de {2}!
 {1} is damaged by recoil!
 ¡{1} es dañado por el retroceso!
-{1}'s anger cannot be sated! It enters its Hull Breaker form!
+{1}'s anger cannot be sated! It enters its Rampage form!
 ¡La ira de {1} no puede ser saciada! ¡Entra a su forma Leviatán!
 {1} molts into a new shell!
 {1} muda a un nuevo caparazón!
