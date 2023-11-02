@@ -373,7 +373,7 @@
 1372,EXTREMEEFFORT,Extreme Effort,5C9,150,NORMAL,Physical,100,5,0,NearOther,0,CanProtect;CanMirrorMove,"The user uses all their might to attack their opponent, causing them to rest on their next turn.",GIGAIMPACT
 1373,MANYBLESSINGS,Many Blessings,5CA,0,FAIRY,Status,0,15,0,User,0,CanSnatch,"The user doubles its critical strike chance and raises its Sp. Atk and Sp. Def by two steps each.",FOCUSENERGY
 1374,MACHINATE,Machinate,5CB,90,GHOST,Special,100,12,30,NearOther,0,CanProtect;CanMirrorMove,"Changes type based on machine haunted. 30% chance of extra effect based on machine haunted.",SHADOWBALL
-1375,BANISH,Banish,5CC,75,DRAGON,Special,100,10,0,NearOther,-1,CanProtect;CanMirrorMove,"The user roars with explosive ferocity, forcing the target to switch out.",ROAR
+1375,BANISH,Banish,5CC,75,DRAGON,Special,100,10,0,NearOther,-1,CanProtect;CanMirrorMove,"The user dismisses the target, forcing it to switch out.",ROAR
 1376,CHECKMATE,Checkmate,5CD,80,DARK,Physical,100,10,0,NearOther,0,CanProtect;CanMirrorMove,"If the target is the last able member of their party, this attack's power is doubled.",NIGHTSLASH
 1377,WEATHERBURST,Weather Burst,087,100,NORMAL,Physical,100,10,0,NearOther,0,CanProtect;CanMirrorMove,"Type based on weather. Inflicts physical or special damage based on the user's stats.",WEATHERBALL
 1378,SHINESHOT,Shine Shot,5EF,60,STEEL,Special,100,10,30,NearOther,0,CanProtect;CanMirrorMove,"The user looses a flash of energy from its polished body. It has a 30% chance to lower Sp. Def.",MIRRORSHOT
