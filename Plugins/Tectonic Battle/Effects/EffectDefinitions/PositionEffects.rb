@@ -168,7 +168,7 @@ GameData::BattleEffect.register_effect(:Position, {
             statPasserName = battle.pbThisEx(battler.index, position.effects[:PassingStats])
             unless battler.hasAbility?(statPasser.ability)
                 battler.showMyAbilitySplash(:OVERFLOWINGHEART)
-                battle.pbDisplay(_INTL("{2} reads {1}’s heart and gains its stats!", statPasserName, battler.pbThis(true)))
+                battle.pbDisplay(_INTL("{2} reads {1}'s heart and gains its stats!", statPasserName, battler.pbThis(true)))
                 battler.applyEffect(:BaseAttack,statPasser.attack)
                 battler.applyEffect(:BaseDefense,statPasser.defense)
                 battler.applyEffect(:BaseSpecialAttack,statPasser.spatk)
