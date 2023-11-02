@@ -13069,8 +13069,8 @@ Name = Kricketot
 InternalName = KRICKETOT
 Type1 = BUG
 # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
-BaseStats = 75,35,65,25,70,65
-# Total = 335
+BaseStats = 75,40,75,40,80,70
+# Total = 380
 GenderRate = Female50Percent
 GrowthRate = Parabolic
 BaseEXP = 49
@@ -13096,15 +13096,15 @@ BattlerEnemyX = 1
 BattlerEnemyY = 19
 BattlerShadowX = 0
 BattlerShadowSize = 2
-Evolutions = KRICKETUNE,Level,26
+Evolutions = KRICKETUNE,Level,31
 #-------------------------------
 [402]
 Name = Kricketune
 InternalName = KRICKETUNE
 Type1 = BUG
 # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
-BaseStats = 105,55,95,60,105,95
-# Total = 515
+BaseStats = 105,55,105,60,105,95
+# Total = 525
 GenderRate = Female50Percent
 GrowthRate = Parabolic
 BaseEXP = 204
@@ -23268,8 +23268,8 @@ InternalName = NOIBAT
 Type1 = FLYING
 Type2 = DRAGON
 # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
-BaseStats = 50,40,50,85,80,50
-# Total = 355
+BaseStats = 50,40,55,85,80,55
+# Total = 365
 GenderRate = Female50Percent
 GrowthRate = Medium
 BaseEXP = 49
@@ -23294,7 +23294,7 @@ BattlerEnemyX = -1
 BattlerEnemyY = 14
 BattlerShadowX = 0
 BattlerShadowSize = 2
-Evolutions = NOIVERN,Level,36
+Evolutions = NOIVERN,Level,34
 #-------------------------------
 [715]
 Name = Noivern
