@@ -204,12 +204,14 @@ BattleHandlers::UserAbilityOnHit.add(:FATCHANCE,
   proc { |ability, user, target, move, battle, aiCheck, aiNumHits|
     next unless target.damageState.critical
     if aiCheck
+      next unless target.belowHalfHealth?
       ret = 0
       aiNumHits.times do |i|
           ret += getMultiStatUpEffectScore(ALL_STATS_1, user, user, fakeStepModifier: i)
       end
       next ret
     end
+    next unless target.fainted?
     user.pbRaiseMultipleStatSteps(ALL_STATS_1, user, ability: ability)
   }
 )

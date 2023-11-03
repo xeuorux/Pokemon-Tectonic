@@ -394,7 +394,7 @@
 1393,SHRIEKING,Ear-Splitting,"Boosts power of sound-based moves by 50%."
 1394,ECCENTRIC,Eccentric,"If its stats would be changed, instead they're changed half as much in the opposite direction (rounded up)."
 1395,PERFECTLUCK,Perfect Luck,"Maximizes the frequency of multi-strike moves. Always deals critical hits."
-1396,FATCHANCE,Fat Chance,"Raises all of its stats whenever it gets a critical hit."
+1396,FATCHANCE,Fat Chance,"Raises all of its stats whenever it knocks out a Pokémon with a critical hit."
 1397,FUELHUNGRY,Fuel Hungry,"Boosts Attack by 30%, but lowers Attack after using a physical move."
 1398,INTROVERT,Introvert,"Takes 30% less damage until it uses an attack."
 1399,BALLLIGHTNING,Ball Lightning,"Deals more damage to targets the faster it is than them. Up to a 50% bonus at double Speed."
