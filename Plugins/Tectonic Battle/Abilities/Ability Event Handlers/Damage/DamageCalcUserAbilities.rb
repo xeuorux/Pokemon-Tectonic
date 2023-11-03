@@ -190,6 +190,15 @@ BattleHandlers::DamageCalcUserAbility.add(:IRONHEEL,
   }
 )
 
+BattleHandlers::DamageCalcUserAbility.add(:BADOMEN,
+  proc { |ability, user, target, move, mults, _baseDmg, type, aiCheck|
+    if move.foretoldMove?
+      mults[:base_damage_multiplier] *= 1.3
+      user.aiLearnsAbility(ability) unless aiCheck
+    end
+  }
+)
+
 BattleHandlers::DamageCalcUserAbility.add(:GORGING,
   proc { |ability, user, target, move, mults, _baseDmg, type, aiCheck|
     if move.healingMove?

@@ -69,7 +69,7 @@
 1068,FROSTSCATTER,Frost Scatter,"Summons a hailstorm for four turns when hit by an attack."
 1069,POSITIVEOUTLOOK,Positive Outlook,"Raises Electric-type allies' Sp. Atk by 50%."
 1070,NEGATIVEOUTLOOK,Negative Outlook,"Raises Electric-type allies' Sp. Def by 50%."
-1071,BADOMEN,Bad Omen,"Foretold moves hit two turns quicker."
+1071,BADOMEN,Bad Omen,"Foretold moves hit two turns quicker and deal 30% more damage."
 1072,CLOVERSONG,Clover Song,"Sets a Lucky Chant upon entering the battle, protecting from critical hits for 10 turns."
 1073,INNERLIGHT,Inner Light,"Summons sunshine for four turns when hit by an attack."
 1074,STORMBRINGER,Stormbringer,"Summons rain for four turns when hit by an attack."

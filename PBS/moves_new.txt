@@ -29,7 +29,7 @@
 1028,UNDERMINE,Undermine,0CA,125,GROUND,Physical,100,10,0,NearOther,0,CanProtect;CanMirrorMove,"The user burrows deep, then attacks with devastating power on the second turn.",
 1029,VIMRIPPER,Vim Ripper,506,85,GHOST,Physical,100,12,0,NearOther,0,CanProtect;CanMirrorMove,"The user rips into the target's soul, dealing damage through their Sp. Def rather than their Defense.",SHADOWCLAW
 1030,NASTYNIP,Nasty Nip,005,40,POISON,Physical,100,30,10,NearOther,0,CanProtect;CanMirrorMove;Bite,"The user stabs the opponent with a toxin-infused limb. It has a 10% chance to poison.",
-1031,LOOMINGWINTER,Looming Winter,111,170,ICE,Special,100,10,0,NearOther,0,,"Two turns after this move is used, extreme winter cold attacks the target.",ICEBURN
+1031,LOOMINGWINTER,Looming Winter,111,140,ICE,Special,100,10,0,NearOther,0,Foretold,"Two turns after this move is used, extreme winter cold attacks the target.",ICEBURN
 1032,GLACIALRAM,Glacial Ram,403,90,ICE,Physical,100,15,10,NearOther,0,CanProtect;CanMirrorMove,"Rams the target with frigid force. This has a 10% chance to frostbite.",ICEHAMMER
 1033,AURAFLUX,Aura Flux,5EF,55,FIGHTING,Special,100,20,100,NearOther,0,CanProtect;CanMirrorMove,"The user contorts the target's chi with a special technique, lowering its Sp. Def.",AURASPHERE
 1034,REND,Rend,509,90,DRAGON,Physical,100,15,0,NearOther,0,CanProtect;CanMirrorMove,"The user shreds through the opponent's defenses, ignoring positive stat changes and abilities.",
@@ -502,7 +502,7 @@
 1501,DREAD,Dread,000,40,DRAGON,Special,100,25,0,NearOther,1,CanProtect;CanMirrorMove,"The user inspires a sudden dread in the target, damaging it. This move always goes first.",GLARE
 1502,GLOAT,Gloat,507,0,DARK,Status,100,5,0,User,0,CanSnatch,"The user raises all of their stats by two steps. Fails unless a foe is below half health.",NASTYPLOT
 1503,BULLY,Bully,18D,80,DARK,Physical,100,10,0,NearOther,0,CanProtect;CanMirrorMove,"This attack deals 50 percent more damage if the target has any raised or lowered stat steps.",PUNISHMENT
-1504,FIREFOREFFECT,Fire For Effect,12D,140,NORMAL,Special,100,10,0,NearOther,0,,"The user chooses Fire, Electric, or Ice, then launches a shell of that type to strike the target in one turn.",DOOMDESIRE
+1504,FIREFOREFFECT,Fire For Effect,12D,140,NORMAL,Special,100,10,0,NearOther,0,Foretold,"The user chooses Fire, Electric, or Ice, then launches a shell of that type to strike the target in one turn.",DOOMDESIRE
 1505,SNAP,Snap,00F,65,WATER,Physical,100,20,40,NearOther,0,CanProtect;CanMirrorMove;Biting,"The user snaps like a fish at the target. This has a 40% chance to make it flinch.",FISHIOUSREND
 1506,BREACH,Breach,5E8,40,WATER,Physical,100,30,20,NearOther,0,CanProtect;CanMirrorMove,"The user jumps out of the water to attack. Has a 20% chance to reduce Defense.",DIVE
 1507,POLARIZEDROOM,Polarized Room,124,0,STEEL,Status,0,10,0,BothSides,0,CanMirrorMove,"The user creates a high quality area in which super-effective deals 25% more, and not very effective deals 25% less.",WONDERROOM

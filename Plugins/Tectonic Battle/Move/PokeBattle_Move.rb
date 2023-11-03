@@ -138,6 +138,7 @@ class PokeBattle_Move
     def bladeMove?;             return @flags[/Blade/]; end
     def windMove?;              return @flags[/Wind/]; end
     def kickingMove?;           return @flags[/Kicking/]; end
+    def foretoldMove?;          return @flags[/Foretold/]; end
     def veryHighCriticalRate?;  return @flags[/VeryHighCriticalHitRate/]; end
     def empoweredMove?;         return @flags[/Empowered/]; end
 
