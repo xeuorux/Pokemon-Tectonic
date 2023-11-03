@@ -32801,14 +32801,14 @@ Primigenio
 Primal
 Primigenio
 2736
-Mega
-Mega
+Delta
+Delta
 2737
 Zen
-Modo Daruma
+Daruma
 2738
 Zen
-Modo Daruma
+Daruma
 2739
 Ascended
 Ascendido
@@ -32817,7 +32817,7 @@ Reaper
 Guadaña
 2741
 Rampage
-Leviatán
+Desenfrenada
 2742
 Finale
 Clímax
@@ -32826,10 +32826,10 @@ Finale
 Clímax
 2744
 Overmatter
-Mega Músculos
+Extramasa
 2745
 Overmind
-Mega Mente
+Extramente
 2746
 Therian
 Tótem
@@ -32898,7 +32898,7 @@ Pulso Umbrío
 Throat Chop
 Golpe Mordaza
 Night Slash
-Tajo Oscuro
+Tajo Umbrío
 Sucker Punch
 Golpe Bajo
 Knock Off
@@ -34076,11 +34076,11 @@ Viraje
 Memento
 Legado
 Kindle
-Toque Ígnea
+Toque Encendedor
 Shatter Shot
 Disparo Añicos
 Fugu Frenzy
-Fuerza Fugu
+Fugu Feroz
 Dirge
 Canto Fúnebre
 Clackaclack
@@ -34088,7 +34088,7 @@ Clackaclack
 Lightning Dance
 Danza Relámpago
 Harbor Breaker
-Choque Abisal
+Envite Acuático
 Shotput
 Bala
 Breach
@@ -34138,25 +34138,25 @@ Aparición
 Soul Claw
 Garra Espíritu
 Vim Ripper
-Desgarra Espíritu
+Desgarro de Vigor
 Nasty Nip
 Puñal Malicioso
 Looming Winter
 Helada Inminente
 Glacial Ram
-Colisión Cristalina
+Ariete Glacial
 Aura Flux
-Flujo de Chi
+Flujo Aural
 Rend
 Desgarro
 Diametric Breath
-Aliento Frustrante
+Aliento Diametral
 Scour
 Tifón
 Harsh Voice
 Levantar la Voz
 Finalize
-Despreciar
+Finalizar
 Mass Destruction
 Destrucción Masiva
 Ice Pick
@@ -34164,17 +34164,17 @@ Impacto Helado
 Halting Cold
 Frío Tubitante
 Secret Technique
-Estallido de Chi
+Técnica Secreta
 Trained Outburst
 Arrebato Preparado
 Bear Hug
 Abrazo de Oso
 Inferno Impact
-Carga Infernal
+Impacto Infernal
 Flare Up
 Reavivar
 Pixie Punch
-Golpe Aromático
+Puño Feérico
 Infinite Force
 Fuerza Infinita
 Tantrum
@@ -34196,7 +34196,7 @@ Ráfaga
 Shred Shot
 Lanza Viruta
 Shrapnel
-Limadura
+Metralla
 Spiteful Chant
 Conjuro Malicioso
 Enlightened Hit
@@ -34208,13 +34208,13 @@ Vanguardia
 Flow State
 Estilo Fluido
 Sublimate
-Helada Final
+Sublimar
 Toxic Taste
 Mal Gusto
 Omniscient Blow
-Reflejos Perfectos 
+Golpe Omnisciente
 Ebb & Flow
-Humedecer
+Flujo y Reflujo
 Aqua Instinct
 Instinto Acuático
 Creep Out
@@ -34224,11 +34224,11 @@ Rocatapulta
 Star Fall
 Lluvia de Meteoros
 Bubble Blaster
-Ráfaga Burbuja
+Cañón Burbuja
 Concuss
-Golpe Aural
+Conmocionar
 Valor Bolt
-Descarga de Coraje
+Descarga de Valor
 Psychic Overload
 Sobrecarga Mental
 Psypierce
@@ -34244,11 +34244,11 @@ Brillo Cristalino
 Wailing Blow
 Toque Quejumbroso
 Frigid Flurry
-Viento Agotador
+Ráfaga Frígida
 Dream Dance
 Danza Onírica
 Tongue Twister
-Trabalenguas
+Trabalengua
 Smog Storm
 Tormenta Venenosa
 Cold Snot
@@ -34266,7 +34266,7 @@ Ruina
 Hard Feelings
 Resentimientos
 Souleater
-Absorbe Alma
+Engullealma
 Abyssal Reset
 Reinicio Abisal
 Echolocate
@@ -34276,11 +34276,11 @@ Envergadura Eclipsal
 Allergy
 Alergia
 From the Blue
-Alarido Chisporreante
+De la Nada
 Ignite
 Ignición
 Torrent Scythe
-Hidro Guadaña
+Guadaña Torrencial
 Stare Down
 Amenazar
 Inure
@@ -34294,7 +34294,7 @@ Emboscada
 Stitch Up
 Suturar
 Six Feet Under
-Rompe-Espectro
+Tres Metros por Debajo
 Loom Over
 Imponerse
 Summer Daze
@@ -34320,19 +34320,19 @@ Clamor
 Comet Smash
 Impacto Cometa
 Double Down
-Doble Puño
+Doble Impacto
 Pulverize
 Pulverizar
 Pummel
 Aporrear
 Pale Blade
-Cortar
+Filo Pálido
 Fury
 Furioso
 Spellbind
 Hechizar
 Air Strike
-Repiqueteo
+Asalto Aéreo
 Terraform
 Terraformar
 Seer Strike
@@ -34340,15 +34340,15 @@ Ataque Predicho
 Rake
 Rastrillaje
 Rupture Spring
-Espiral Acuática
+Fuente Quebrada
 Spattering Ram
 Ariete Salpicante
 Blossom
 Florecer
 Energy Ball
-Fuerza Floreciente
+Energibola
 Tera Drain
-Tera Drenaje
+Teradrenado
 Mending Spring
 Fuente Reparadora
 Inertia Shock
@@ -34362,7 +34362,7 @@ Punta Congelada
 Icecalibur
 Filo Helado
 Supercool
-Faro Ártico
+Superfrío
 Hunt Down
 Caza Aérea
 Dive Bomb
@@ -34372,11 +34372,11 @@ Bombardeo
 Swarm Burst
 Estallido de Enjambre
 Diffuse Pulse
-Haz Común
+Pulso Sifuso
 Particle Pulse
-Rayo Blanco
+Rayo de Partículas
 Stellarate
-Meteoritos Veloces
+Lluvia de Estrellas
 Pilfer
 Birlar
 Tease
@@ -34402,7 +34402,7 @@ Miasma
 Venomortar
 Venomortal
 Ward Press
-Truco Aural
+Plancha Espiritual
 Adrenalash
 Látigo de Adrenalina
 Earthsplitter
@@ -34412,7 +34412,7 @@ En Llamas
 Propellant
 Propulsor
 Psychoscission
-Psicotajo
+Psicoscición
 Chill
 Enfríar
 Glitter Bomb
@@ -34420,7 +34420,7 @@ Bomba Brillante
 Fair Play
 Juego Limpio
 Humble
-Tomar su Merecido
+Lección de Humildad
 Poison Spikes
 Púas Venenosas
 Envenom
@@ -34438,11 +34438,11 @@ Acurruco Espectral
 Bullet Train
 Tren Bala
 Poison Ivy
-Polen Venenoso
+Hiedra Venenosa
 Anesthetize
-Polen Aturdidor
+Anestesiar
 Drag Beneath
-Aferramiento de Kraken
+Arrastrar a lo Profundo
 Dazzle
 Encandilar
 Smirk
@@ -34450,11 +34450,11 @@ Superioridad
 Store Fuel
 Combustión
 Null Pulse
-Haz Removedor
+Pulso Nulo
 Slay
 Matadragones
 Nerve Block
-Bloqueo de Chi
+Bloqueo Nervioso
 Stunning Curl
 Rizo Paralizador
 Flame Spikes
@@ -34464,7 +34464,7 @@ Dropkick
 Multi-strike
 Multi-golpe
 Planetcracker
-Aplasta Montañas
+Quiebra-Planetas
 Smush
 Prensar
 Acid Bath
@@ -34474,7 +34474,7 @@ Envidia Punzante
 Stand Together
 Estar Unidos
 Symbiosis
-Armonizar
+Simbiosis
 Tricky Toxins
 Tóxinas Engañosas
 Ransack
@@ -34486,7 +34486,7 @@ Puño Corrosivo
 Doll Stitch
 Muñeco Forzoso
 Sever
-Desgarrar
+Amputar
 Dead End
 Sin Salida
 Phantom Gate
@@ -34512,7 +34512,7 @@ Apagón
 Holly Charm
 Muérdamuleto
 Scuffle
-Mutual
+Riña
 Bedfellows
 Pijamada
 Lounge
@@ -34536,7 +34536,7 @@ Lanza Arena
 Dust Devil
 Remolino Arenoso
 Devouring Dust
-Vórtice de Arena
+Polvo Excesivo
 Puzzle Room
 Zona Enigmática
 Shiver
@@ -34552,7 +34552,7 @@ Plancha Eléctrica
 Volley Stance
 Doble Cañón
 Oneiromancy
-Sueño Lúcido
+Sueño Astral
 Vine Maze
 Enredadera
 Joke Jolt
@@ -34582,11 +34582,11 @@ Caza Agresiva
 Dragon Ride
 Montura Dragón
 Like Wildfire
-Rugido Ardiente
+Rugido Magma
 Blazing Speed
 Centella
 Archean Deluge
-Diluvio Arcaico
+Diluvio Arqueo
 Shimmering Heat
 Tormenta de Hollín
 Breathe Life
@@ -34626,7 +34626,7 @@ En Racha
 Mach Flight
 Velocidad Temeraria
 Caltrop Arts
-Truco Ninja
+Arte Ninja
 Cull
 Carroñerox
 Triple Threat
@@ -34656,13 +34656,13 @@ Bastión
 Snowy Sorrows
 Lamento Nevado
 Invite Sun
-Invocar Sol
+Invitar al Sol
 Invoke Sand
 Invocar Arena
 Invite Rain
-Invocar Lluvia
+Invitar a la Lluvia
 Invite Hail
-Invocar Granizo
+Invitar al Granizo
 Hateful Haymaker
 Bandido Vengativo
 Defibrillate
@@ -34672,9 +34672,9 @@ Risco Aberrante
 Singing Stone
 Piedra Soprana
 Thermal Drain
-Hielo Drenado.
+Drenado Térmico
 Silver Storm
-Helada
+Tormenta Plateada
 Shed Coat
 Desplumar
 Feather Ward
@@ -34684,7 +34684,7 @@ Híper Jet
 Dustmach Pulse
 Asalto de Arena
 Ramming Speed
-Clavado Afilado
+Arremetida
 Volatile Toxin
 Toxina Volátil
 Righteous Kick
@@ -34718,9 +34718,9 @@ Tajo Letal
 Hive Mind
 Mente Colmenta
 Innocent Masque
-Engañoso
+Engañar
 Dissolution
-Armadura Mocosa
+Disolución
 Long Shot
 Disparo Adaptativo
 Dry Heat
@@ -34734,9 +34734,9 @@ Bromear
 Grey Mist
 Niebla Gris
 Patient Blade
-Estilo Estoico
+Hoja Paciente
 Art of War
-Dominio Marcial
+Arte de la Guerra
 Reverb Ward
 Guardia Especial
 Moonglow
@@ -34770,11 +34770,11 @@ Tajo Metralla
 Stone Axe
 Hachazo Pétreo
 Threefold Volley
-Flecha Aural
+Ráfaga Triple
 Esper Dive
 Picado Aural
 Foxtrot Finale
-Danza Triunfante
+Foxtrot de Gracia
 Icebreaker
 Rompehielos
 Scheme
@@ -34786,7 +34786,7 @@ Clorofiláser
 Dire Claw
 Garra Nociva
 Shining Shell
-Capararmazón
+Caparazón Brillante
 Spiky Burst
 Explosión de Púas
 Malefaction
@@ -34794,35 +34794,35 @@ Espectro Maléfico
 Hair Curl
 Trampa Velluda
 Megalith Rite
-Señal Pétrea
+Rito del Megalito
 Contradict
 Contradecir
 Mouthful
 Bocado
 Omnishelter
-Guardia de Golem
+Omniguardia
 Hyperfrost
-Rayo Refrigerador
+Híper Helada
 Everhone
-Ataque Cambiante
+Siempre Afilado
 Metaform
 Acción Óptima
 Archmyth
-Aspecto Dragón
+Archimito
 Capoeira
 Capoeira
 Smolder Rave
-Danza Flama
+Velada Ardiente
 Wetland Waltz
-Vals Acuático
+Vals del Pantano
 Absolute Radiance
 Absoluto Destello
 Magnetize
 Magnetizar
 Faraday Cage
-Prisión Magnética
+Jaula de Faraday
 Mage Hand
-Toque Mágico
+Mano Mágico
 Kinetic Grip
 Agarre Kinético
 Liftoff
@@ -34840,11 +34840,11 @@ Filo de Seda
 Extreme Effort
 Extreme Effort
 Many Blessings
-Plegaria Plácida
+Varias Plegarias 
 Machinate
 Maquinar
 Banish
-Rugido Dragón
+Desterrar
 Checkmate
 Jaque Mate
 Weather Burst
@@ -34890,13 +34890,13 @@ Gema Real
 Rolling Arsenal
 Rueda Multiuso
 Infinite Wing
-Ala Céfira
+Ala Infinita
 Swagger
 Contoneo
 Flatter
 Camelo
 Shellter
-Armadura Concha
+Capararmazón
 Tune Up
 Afinar
 Hone Sight
@@ -34906,7 +34906,7 @@ Maleficio
 Mind Sap
 Absorbemente
 Classical Physics
-Potencia G
+Asalto G
 Star Dance
 Danza Estelar
 Amp Up
@@ -34922,15 +34922,15 @@ Mazmorra Helada
 Bar
 Veto
 Occultation
-Vasta Energía
+Ocultación
 Aim True
-Mira Perfecto
+Mira Perfecta
 Stamp Down
 Al Suelo
 Grind Stone
 Piedra Filosa
 Erode
-Ráfaga de Arena
+Erosionar
 Hearthfire Hula
 Hula Estimulante
 Curl Up
@@ -34940,7 +34940,7 @@ Golpe Heróico
 Fire Pulse
 Pulso Ígneo
 Tephra Cannon
-Cañón Metralla
+Cañón Piroclasto
 Storm Drive
 Propulsión Tormenta
 Manyneedle
@@ -34954,7 +34954,7 @@ Apretón Alegre
 Play Bite
 Mordida Juguetona
 Destrier's Whim
-Decisión Equina
+Juicio del Corcel
 Joust
 Justa
 Season's End
@@ -34972,13 +34972,13 @@ Destello Aurora
 Split the Sky
 Nube Tormentosa
 Prominence
-Lanza Ígnea
+Prominencia
 Icicle Pin
 Trampa Carámbano
 Head Throw
 Perder la Cabeza
 Rotary Headbutt
-Triple Sacudida
+Cabezazo Rotatorio
 Diamond Field
 Campo de Diamantes
 Lucky Cheer
@@ -34988,7 +34988,7 @@ Baile Saludable
 Death Knell
 Sentencia Mortal
 Ghoulish Gale
-Viento Silencioso
+Corriente Macabra
 Cursed Roots
 Raíz Maldita
 Mud Slide
@@ -35082,7 +35082,7 @@ Conexión Mental Primitiva
 Primeval Howl
 Aullido Primitivo
 Primeval Symbiosis
-Armonizar Primitivo
+Simbiosis Primitiva
 Primeval Yawn
 Bostezo Primitivo
 Primeval Dream Dance
@@ -35150,7 +35150,7 @@ Embestida
 Sapping Seed
 Semilla Agotadora
 Midnight Hunt
-Aullido Lunar
+Caza Nocturna
 Luminous Burst
 Estallido Luminoso
 Fight Forever
@@ -35194,7 +35194,7 @@ Sonsonete
 Drown
 Ahogar
 Devour Whole
-Sujeción Tóxica
+Devorar por Completo
 Spotting
 Vigilia
 Polarized Field
@@ -35203,8 +35203,8 @@ Masquerblade
 Filo Farsante
 Disturb
 Perturbar
-Danger Ditty
 Baleful Bop
+Tonada Torva
 Bubble Barrier
 Barrera Burbuja
 Rocket Punch
@@ -35216,7 +35216,7 @@ Sobrecarga
 Weld
 Soldadura
 Bad Ending
-Aguijón Fugaz
+Final Malo
 Discourage
 Disuadir
 Draft
@@ -35232,17 +35232,17 @@ Marea Negra
 Hop
 Salto
 Rising Power
-Poder Compuesto
+Poder Latente
 Sharing Smiles
 Sonrisas Compartidas
 Hot Shot
 Llama Veloz
 Glamour Flash
-Presto
+Destello de Glamour
 Poison Dart
 Dardo Venenoso
 Dread
-Veneración Fortuita
+Temor
 Gloat
 Regodearse
 Bully
@@ -35272,15 +35272,15 @@ Enredadera
 Cranial Guard
 Guarda-Mente
 From Beyond
-Invoca-Espíritus
+Del Más Allá
 Sirocco
-Sirocot
+Siroco
 Honey Slather
 Endulzar
 Paradisiaca
-Remoldear
+Paradisíaco
 Greater Glories
-Vigor Primigenio
+Gloria del Titán
 Heaven's Eyes
 Ojos del Edén
 Quarantine
@@ -35288,7 +35288,7 @@ Cuarentena
 Stink Cover
 Cubierta Apestosa
 Floral Gramarye
-Herbolario
+Gramarye Floral
 Wipeout
 Oleaje
 Frenzy Plant
@@ -35297,6 +35297,10 @@ Blast Burn
 Anillo Ígneo
 Hydro Cannon
 Hidrocañón
+Morningstar
+Lucero del Alba
+Vainglory Flames
+Llamas Vanagloria
 [6]
 Using its tough and impressive horn, the user rams into the target with no letup.
 Usando su impresionante cuerno, el usuario embiste al rival.
@@ -35858,8 +35862,8 @@ Protects the user from attacks. Physical attackers take 1/8th HP damage.
 Protege al usuario de ataques. Si es alcanzado por un ataque físico, daña al atacante por 1/8 de sus PS totales.
 The user scatters bursts of spores that induce sleep. Only one use per battle.
 El usuario libera unas esporas que hacen dormir al objetivo. Sólo puedes usarlo una vez por combate.
-Restores its own HP by the target's Attack stat amount, then lowers the target's Attack stat.
-Recupera PS según la cantidad de Ataque del objetivo, luego disminuye el Ataque del objetivo.
+Lowers the target's Attack stat, then restores its own HP by the target's Attack.
+Disminuye el Ataque del objetivo, luego recupera sus propios PS por el Ataque del objetivo.
 The user restores 1/2 of its HP, or 2/3rds in Sunshine.
 El usuario recupera la mitad de sus PS totales, o 2/3 bajo sol.
 A seed that causes worry is planted on the foe. It prevents sleep by making its Ability Insomnia.
@@ -36509,7 +36513,7 @@ El usuario ataca con un horrible sonido retumbante. Tiene un 20% de disminuir el
 The user dances with the speed of lightning, raising its Sp. Atk by two steps and Speed by 1.
 El usuario danza con la velocidad de un relámpago, aumentando su Ataque Especial dos grados y su Velocidad uno.
 The user crashes into the target like a tsunami. The user also takes 33% recoil.
-El usuario carga hacia el objetivo como un submarino. El usuario también recibe un 33% de daño de retroceso.
+El usuario carga hacia el objetivo como un tsunami. El usuario también recibe un 33% de daño de retroceso.
 The user hurls a metal ball at the target.
 El usuario le lanza una bala de metal al objetivo.
 The user rides a wave, then crashes into the target. Has a 20% chance to lower Defense.
@@ -36545,7 +36549,7 @@ El usuario emana un horrible hedor hacia el objetivo. Tiene un 20% de probabilid
 The user skillfully attacks around the enemy's guard. Can't miss and skips protections.
 El usuario esquiva con habilidad la guardia del enemigo. Siempre acierta y atraviesa protecciones.
 The user consumes a bit of the target's blood. The user's HP is restored by half the damage dealt.
-El usuario chupa un poco de sangre del objetivo. El usuario recupera la mitad de los PS que le quite al objetivo.
+El usuario consume un poco de sangre del objetivo. El usuario recupera la mitad de los PS que le quite al objetivo.
 The user encourages the target to attack right after the user. Always goes first.
 El usuario anima al objetivo a atacar justo después del usuario. Siempre va primero.
 The user whips up a cold north wind to attack the target. It has a 20% chance to frostbite.
@@ -36565,7 +36569,7 @@ El usuario atraviesa al objetivo con una extremidad llena de veneno. Tiene un 10
 Two turns after this move is used, extreme winter cold attacks the target.
 El usuario se prepara, y al siguiente turno ataca con una helada extrema.
 Rams the target with frigid force. This has a 10% chance to frostbite.
-El usuario aplasta al objetivo con un gran pedazo de hielo. Tiene un 10% de probabilidad de helar al objetivo.
+El usuario carga hacia el objetivo con fuerza frígida. Tiene un 10% de probabilidad de helar al objetivo.
 The user contorts the target's chi with a special technique, lowering its Defense.
 El usuario contorsiona el chi del objetivo con una técnica especial, disminuyendo su Defensa.
 The user shreds through the opponent's defenses, ignoring positive stat changes and abilities.
@@ -36591,11 +36595,11 @@ El usuario ataca concentrado. La potencia aumenta por cada aumento de stats del 
 The user hugs the target intensely, trapping and damaging it for three turns.
 El usuario abraza al objetivo con fuerza, atrapándolo y dañándolo durante tres turnos.
 The user cloaks itself in a fierce blaze and attacks. It has a 10% chance to raise Speed.
-El usuario se envuelve en un infierno y ataca. Tiene un 10% de aumentar la Velocidad del usuario.
+El usuario se envuelve en llamas y ataca. Tiene un 10% de aumentar la Velocidad del usuario.
 The user targets the opponents soft spots with a fiery strike. Its power doubles if the target is burned.
 El usuario ataca a los puntos débiles del objetivo con un golpe ígneo. Duplica su potencia si el objetivo está quemado.
 The user throws a tricky punch. Can't miss and skips protections.
-El usuario golpea con un ataque que huele bien. Siempre acierta y atraviesa protecciones.
+El usuario golpea con un ataque engañoso. Siempre acierta y atraviesa protecciones.
 The user wields an exaggerated power to strike the target. Lowers the user's Attack by four steps.
 El usuario usa un poder exagerado para atacar al objetivo. Disminuye el Ataque del usuario cuatro grados.
 The user goes on a wild tantrum for three turns.
@@ -36647,7 +36651,7 @@ El usuario lanza una estrella al objetivo. Observar esta estrella suertuda tambi
 A blast of bubbles is shot at the target. It has a 20% chance to lower the target's Speed stat.
 El usuario dispara burbujas al objetivo. Tiene un 20% de probabilidad de disminuir la Velocidad del objetivo.
 The user fires a small shockwave. This has a 30% chance to numb the target.
-El usuario dispara un estallido de aura. tiene un 30% de probabilidad de aturdir al objetivo.
+El usuario dispara una pequeña onda expansiva. Tiene un 30% de probabilidad de aturdir al objetivo.
 The user manifests a bolt of pure courage. This has a 10% chance of raising the user's Sp. Atk.
 El usuario manifiesta un estallido de puro coraje. Tiene un 10% de probabilidad de aumentar el Ataque Especial del usuario.
 The user overloads its mind to attack for three turns.
@@ -36715,7 +36719,7 @@ El usuario ataca por sorpresa al objetivo. No puede fallar bajo brillo lunar.Tie
 The user restores two thirds of its own HP. Then, this move is disabled.
 El usuario recupera dos tercios de sus PS totales. Luego, este movimiento es anulado.
 The user buries the target with somber force. Then, this move is disabled.
-Este movimiento es poderoso, pero es anulado luego de usarlo.
+El usuario entierra al objetivo con fuerza sombría. Luego, este movimiento es anulado.
 The user looms over the target with awful menace, lowering their highest stat by four steps.
 El usuario se impone al objetivo con una gran presencia, disminuyendo su stat más alta cuatro grados.
 The user plays a melody, making the target drowsy. In Sunlight, lowers the target's Attack and Sp. Atk by two steps.
@@ -36789,9 +36793,9 @@ El usuario vuela por lo alto en el primer turno, y luego ataca cayendo en picada
 The user attacks the target while dashing skillfully past it.
 El usuario ataca rápidamente al objetivo yendo a su costado.
 The user shoots a pulse of diffuse energy at the target.
-El usuario dispara un haz de energía común al objetivo.
+El usuario dispara un pulso de energía difusa al objetivo.
 The user shoots a pulse of uncharged particles at the target.
-El usuario dispara un rayo de color blanco brillante al objetivo.
+El usuario dispara un pulso de partículas sin cargar al objetivo.
 A barrage of star-shaped rays are shot at the opposing team, never missing.
 El objetivo dispara una ráfaga de rayos con forma de estrella al lado contrario, siempre acertando.
 The user attacks and steals the foe's held Berry or Gem. It can't steal if the user holds an item.
@@ -36829,7 +36833,7 @@ El usuario envuelve al objetivo con un fuego que destruye cualquier objeto de �
 The user explodes itself into the target. The target is harmed, but also their Speed is raised.
 El usuario explota en el objetivo, dañándolo, pero también aumentando su Velocidad.
 The user cuts using scissor-like blades of psychic energy. Critical hits twice as often.
-El usuario manifiesta una espada psíquica para atacar al objetivo. Tiene el doble de índice de golpe crítico.
+El usuario corta usando unas hojas de energía psíquica. Tiene el doble de índice de golpe crítico.
 The user lowers the target's body temperature, afflicting it with frostbite.
 El usuario baja la temperatura corporal del objetivo, helándolo.
 The user chucks a party favor which explodes in the target's face.
@@ -36837,7 +36841,7 @@ El usuario le hace un regalo al objetivo, que termina explotando en su cara.
 The user attacks the target with just force. Guaranteed critical hit on foes with boosted stats.
 El usuario ataca con fuerza bruta. Siempre es un golpe crítico si el objetivo tiene sus stats aumentadas.
 The user attempts to humble the target, guaranteeing a critical hit on foes with boosted stats.
-El usuario ataca con su sentido de la justicia, garantizando un golpe crítico si el objetivo tiene stats aumentadas.
+El usuario intenta darle una lección de humildad al objetivo, garantizando un golpe crítico si este tiene stats aumentadas.
 The user lays poison spikes on the foe's side. One layer hurts switched in foes, two layers poisons.
 El usuario coloca púas venenosas en el lado contrario. Una capa daña a los oponentes, dos los envenenan.
 Venom is strategically introduced into the target, poisoning it.
@@ -36855,11 +36859,11 @@ El usuario usa su envidia para atacar al objetivo con un abrazo fantasmal, maldi
 The user becomes a pain train. It has a 10% chance to raise the user's Speed.
 El usuario ataca como si fuera un tren. Tiene un 10% de probabilidad de aumentar la Velocidad del usuario.
 The target is irritated by allergenic plants, poisoning it.
-El usuario esparce una nube de polvo venenoso. Envenena al objetivo.
+El usuario irrita al objetivo con plantas 
 The user applies anesthetic substances, numbing the target
-El usuario esparce una nube de polvo doloroso que aturde al objetivo.
+El usuario aplica sustancias anestésicas que aturden al objetivo.
 The user pulls the target under the waves, trapping and damaging it for three turns.
-El usuario sujeta al objetivo con sus tentáculos, atrapándolo y dañándolo durante tres turnos.
+El usuario arrastra al objetivo debajo de las olas, atrapándolo y dañándolo durante tres turnos.
 The user dazzles nearby foes with light or sound. Their Sp. Atk is lowered by two steps.
 El usuario deslumbra objetivos cercanos usando luz o sonido, disminuyendo su Ataque Especial dos grados.
 The user smirks with confidence. The Sp. Def of nearby enemies is reduced.
@@ -36867,7 +36871,7 @@ El usuario sonríe con confianza. Disminuye la Defensa Especial de los objetivos
 The user conserves for future attacks. This raises its Sp. Atk, Sp. Def, and accuracy by two steps each.
 El usuario se prepara para ataques futuros. Aumenta su Ataque Especial, Defensa Especial y Precisión dos grados.
 The target is struck by a pulse of negative energy. It has a 30% chance to numb.
-El objetivo ataca con un rayo de energía negativa. Tiene un 30% de probabilidad de aturdir al objetivo.
+El objetivo ataca con un pulso de energía negativa. Tiene un 30% de probabilidad de aturdir al objetivo.
 The user slashes at the target with a steel blade. Super effective versus Dragon-types.
 El usuario ataca al objetivo usando un filo metálico. Súper efectivo contra tipos Dragón.
 The user strikes the target's pressure points, numbing it.
@@ -36881,7 +36885,7 @@ El usuario se lanza al objetivo con una patada, recibiendo un 25% de daño de re
 The target is hit two to five times in a row.
 El usuario golpea al objetivo entre dos a cinco veces seguidas.
 The user slams itself into the target with absurd force, taking 50% recoil.
-El usuario arrolla al objetivo con el poder de destruir una montaña, recibiendo un 50% de daño de retroceso.
+El usuario arrolla al objetivo con fuerza absurda, recibiendo un 50% de daño de retroceso.
 Avenging bugs everywhere, the user crushes the target. It has a 20% chance to lower their Defense stat.
 El usuario aplasta al objetivo con un enjambre. Tiene un 20% de probabilidad de disminuir la Defensa del objetivo.
 The user and target bathe in acid. Lowers the user's Defense and Sp. Def by two steps each.
@@ -36949,7 +36953,7 @@ El usuario lanza arena abrasadora al objetivo. Tiene 10% de probabilidad de quem
 The user whips up a hot desert twister to attack the target. It has a 20% chance to burn.
 El usuario levanta un ciclón de arena abrasadora para atacar al objetivo. Tiene un 20% de probabilidad de quemar al objetivo.
 The target is consumed by a desert storm, trapping and damaging it for three turns.
-El usuario envía al objetivo en un pozo gigante, atrapándolo y dañándolo durante tres turnos.
+El usuario consume al objetivo en una tormenta deséertica, atrapándolo y dañándolo durante tres turnos.
 The user creates a puzzling area in which Pokémon's base Attack and Sp. Atk are swapped.
 El usuario crea un área enigmática en la cual los Ataques de los Pokémon son intercambiados.
 The user drains heat from the air around the target, afflicting it with frostbite.
@@ -36987,7 +36991,7 @@ El usuario demanda un tributo de sus súbditos. Dinero es ganado luego del comba
 The user makes an offering, then attacks two to five times. Money is earned for each hit.
 El usuario hace una ofrenda, luego atacando entre dos a cinco veces. Dinero es ganado por cada golpe.
 The user attacks with the full force of The Market. Much money is earned after the battle.
-El usuario ataca con toda la fuerza de El Mercado. Dinero es ganado luego del combate.
+El usuario ataca con toda la fuerza de El Mercado. Mucho dinero es ganado luego del combate.
 Energy is sent through a conduit, erupting under the target. This move is also Psychic-type.
 El usuario energía a través de un conducto, explotando debajo del objetivo. Este movimiento también es de tipo Psíquico.
 The user slams the target into a nearby hard object. Increases power the higher the Defense of any ally.
@@ -37069,13 +37073,13 @@ El usuario y sus aliados reciben un 50% menos de daño por un turno. Siempre fal
 The user incants a snowy curse, dealing damage and setting a layer of frost spikes around the target.
 El usuario canta una maldición nevada, atacando y colocando una capa de púas heladas en el lado contrario.
 The user burns the target, then welcomes in sunshine for four turns.
-El usuario quema al objetivo, luego invoca la luz solar durante cuatro turnos.
+El usuario quema al objetivo, luego invita a la luz solar durante cuatro turnos.
 The user dizzies the target, then summons sandstorm for four turns.
 El usuario marea al objetivo, luego invoca una tormenta de arena durante cuatro turnos.
 The user numbs the target, then welcomes in rain for four turns.
-El usuario aturde al objetivo, luego invoca una lluvia durante cuatro turnos.
+El usuario aturde al objetivo, luego invita a la lluvia durante cuatro turnos.
 The user frostbites the target, then welcomes in hail for four turns.
-El usuario hela al objetivo, luego invoca un granizo durante cuatro turnos.
+El usuario hela al objetivo, luego invita al granizo durante cuatro turnos.
 A punch that inflicts double the damage if the user has been hurt by the foe in the same turn.
 Un golpe que duplica su potencia si el usuario fue lastimado por un rival en el mismo turno.
 Restores a fainted party member to 1 HP.
@@ -37085,9 +37089,9 @@ El usuario dispara un risco dimensional, disminuyendo la Defensa Especial del ob
 The user thrums ominously, lowering the target's Attack and Sp. Atk.
 El usuario canturrea ominosamente, disminuyendo el Ataque y Ataque Especial del objetivo.
 Drains the heat from the target, restoring HP by half the damage taken by the target.
-Un disparo de hielo drenador. El usuario recupera la mitad de los PS que le quite al objetivo.
+Drena el calor del objetivo. El usuario recupera la mitad de los PS que le quite al objetivo.
 The user creates a nascent ice storm, attacking and causing hail for eight turns.
-El usuario dispara un rayo frígido, luego invoca un granizo durante ocho turnos.
+El usuario crea una tormenta de hielo, atacando y causando un granizo durante ocho turnos.
 The user sheds excess covering, raising Sp. Atk and Speed by three steps, but lowering Sp. Def by two steps.
 El usuario se despoja de sus plumas en exceso, aumentando su Ataque Especial y Velocidad tres grados, pero disminuyendo su Defensa Especial dos.
 The user lays a trap of sharp feathers around the foe. It hurts foes that switch into battle.
@@ -37097,7 +37101,7 @@ El usuario nada hacia el objetivo rápidamente. Siempre va primero.
 The user whips up dirt at supersonic speeds, damaging everything around it.
 El usuario levanta una ráfaga de arena y tierra, atacando todo a su alrededor.
 The user rams its sharp face right into the target. Lowers the user's Speed by three steps.
-El usuario inserta sus colmillos afilados al objeto. Disminuye la Velocidad del usuario tres grados.
+El usuario inserta sus cara afilada al objetivo. Disminuye la Velocidad del usuario tres grados.
 The user injects an unstable toxin into the target. The next Ground-type attack they take deals double damage.
 El usuario inyecta una toxina inestable al objetivo. Duplica la potencia del siguiente movimiento tipo Tierra que reciban.
 A kick that can also eliminate trapping and hazard moves. Also raises user's Speed.
@@ -37133,7 +37137,7 @@ El usuario hace que su aliado use el primer movimiento del usuario.
 The target is taunted by a deceptive look. It can't use status moves this or next turn. This move always goes first.
 El objetivo mofa al objetivo usando una mirada engañosa, haciendo que no pueda usar movimientos de estado durante dos turnos. Siempre va primero.
 The user partially dissolves, raising its Sp. Def stat by five steps.
-El usuario se protege excretando un moco grueso, aumentando su Defensa Especial cinco grdos.
+El usuario se disuelve parcialmente, aumentando su Defensa Especial cinco grdos.
 Inflicts physical or special damage based on the user's stats. However, it's likely to miss.
 Es físico o especial dependiendo de las stats del usuario. Sin embargo, suele fallar.
 The target is dried out and loses Water-type. Then, it bursts into flame from the heat.
@@ -37203,7 +37207,7 @@ El usuario se protege de cualquier ataque. También reduce el Ataque Especial do
 Exlodes, dealing an extra 50 base power to all foes for each layer of spikes underneath them. The user faints.
 Explota. Tiene un 50 más de potencia por cada capa de púas debajo del lado rival. El usuario es debilitado.
 The user swaps out using a cruel illusion. This move always goes last.
-El usuario cambia usando una ilusión hecha con el odio de su rival. Siempre va último.
+El usuario cambia usando una ilusión cruel. Siempre va último.
 The user curls its metal hair around the target, trapping and damaging it for three turns.
 El usuario envuelve al objetivo con su cabello metálico, atrapándolo y dañándolo durante tres turnos.
 The user calls all rocks to join it, summoning sandstorm for five turns and laying a trap of levitating stones around the target.
@@ -37225,7 +37229,7 @@ Invoca el aspecto de múltiples dragones, usando dos movimientos apropiados segu
 Combining dance and martial art, the user strikes the target and raises its Speed by two steps.
 Combinando la danza y artes marciales, el usuario ataca y aumenta su Velocidad dos grados.
 Cloaked in flames, the user dances wildly, raising its Sp. Atk by two steps.
-Envuelto en llamas, el usuario danza con ritmo, aumentando su Ataque Especial dos grados.
+Envuelto en llamas, el usuario danza locamente, aumentando su Ataque Especial dos grados.
 The user attacks the target using graceful fluid movements, also forming an Aqua Ring around themselves.
 El usuario ataca usando movimientos fluidos, también formando un Acua Aro alrededor de sí mismo.
 Summons sun for five turns on the first turn, then overwhelms the foe with fiery light on the second.
@@ -37233,7 +37237,7 @@ En el primer turno invoca la luz solar durante cinco turnos, y en el segundo abr
 The user strikes the target while magnetizing it, trapping and damaging it for three turns.
 El usuario ataca al objetivo magnétizandolo, atrapándolo y dañándolo durante tres turnos.
 Conductive materials ensnare the target, trapping and damaging it for three turns.
-Imanes gigantes aplastan al objetivo, atrapándolo y dañándolo durante tres turnos.
+Materiales conductores entrampan al objetivo, atrapándolo y dañándolo durante tres turnos.
 The user grabs the target with a conjured hand, trapping and damaging it for three turns.
 El usuario agarra al objetivo con una mano mágica, atrapándolo y dañándolo durante tres turnos.
 The user conjures a giant fist to crush the target, trapping and damaging it for three turns.
@@ -37316,8 +37320,8 @@ The user focuses its aim to raise its Sp. Atk and Accuracy by three steps each.
 El usuario mejora su puntería para aumentar su Ataque Especial y Precisión tres grados.
 The user spends 1/4th of their max HP to curse the target, damaging their HP by 1/4th each turn.
 El usuario pierde 1/4 de sus PS máximos para maldecir al objetivo, quitándole 1/4 de sus PS máximos cada turno.
-Restores its own HP by the target's Sp. Atk stat amount, then lowers the target's Sp. Atk stat.
-Recupera PS según la cantidad de Ataque Especial  del objetivo, luego disminuye el Ataque Especial del objetivo.
+Lowers the target's Sp. Atk stat, then restores its own HP by the target's Sp. Atk.
+Disminuye el Ataque Especial del objetivo, luego recupera sus propios PS por el Ataque Especial del objetivo.
 An apple falls from high up to strike the foe. Always goes first. Deals double damage in intense Gravity.
 El usuario lanza una manzana al objetivo desde arriba. Siempre va primero. Duplica su potencia en Gravedad.
 The user dazzles the target with celestial visions that lowers its Sp. Atk stat by five steps.
@@ -37349,11 +37353,11 @@ El usuario danza con vigor, emitiendo calor tropical. Cualquier Pokémon helado 
 The user curls up to conceal weak spots and raise both of its defensive stats.
 El usuario se hace bolita para aumentar ambas de sus stats defensivas.
 The user invokes forbidden celestial powers to smite the target.
-El usuario finge ser un héroe para golpear su objetivo con toda su fuerza.
+El usuario invoca poderes celestiales prohibidos para destruir al objetivo.
 The user attacks the target with a pulsing blast of fire. It has a 20% chance to burn.
 El usuario ataca con un pulso de fuego. Tiene un 20% de probabilidad de quemar al objetivo.
 The user launches volcanic debris, dealing damage and setting a layer of flame spikes around the target.
-El usuario dispara metralla, atacando y colocando una capa de púas ardientes en el lado contrario.
+El usuario dispara escombros volcánicos, atacando y colocando una capa de púas ardientes en el lado contrario.
 The user charges, then attacks on the second turn. Charges instantly in Rain.
 El usuario carga en el primer turno, luego ataca en el segundo. Carga instantáneamente bajo lluvia.
 The foe is stabbed once by each of the user's stingers.
@@ -37379,7 +37383,7 @@ El usuario vibra para crear un sonido aterrador, forzando al objetivo fuera del 
 The user chooses between the three most recent moves used by the opposing team, and uses that move themselves.
 El usuario elige entre los tres últimos movimientos usados por el lado contrario, y usa ese mismo movimiento.
 The user psychically modifies its own genes, transforming into either Overmatter or Overmind form.
-El usuario modifica psíquicamente sus propios genes, transformándose en su forma Mega Mente o Mega Músculo.
+El usuario modifica psíquicamente sus propios genes, transformándose en su forma Extramasa o Extramente.
 An aurora borealis flashes brightly at the target, lowering their Attack. Always goes first.
 El usuario ataca con una aurora boreal al objetivo, disminuyendo su Ataque. Siempre va primero.
 An electrified cloud zaps the target, lowering their Speed. This has a 50% chance to flinch.
@@ -37605,7 +37609,7 @@ Este movimiente crea un campo magnético direccional que reduce el daño de ataq
 The user hides its blade. If it is hit by a special move, it unsheathes it quickly slashes all near foes.
 El usuario esconde su filo. Si es alcanzado por un movimiento especial, la desenfunda para atacar rápidamente a todos los objetivos cercanos.
 A distinguished attack that motivates nearby allies to follow, letting them act immediately after
-.
+Un ataque distinguido que movita a aliados cercanos que continúen, dejando que actúen inmediatamente.
 The user attacks with bitter emotion. This lowers the target's attacking stats by 2 steps if in hail.
 El usuario ataca con resentimiento. Esto disminuye las stats ofensivas del objetivo dos grados bajo granizo.
 The target is subjected to a violent and frightening prank. It has a 10% chance to numb.
@@ -37695,7 +37699,7 @@ Protege al usuario del daño este turno. Anula cualquier ataque contra él duran
 The foe is forced is forced to switch out by a stinky cloud, then the user also switches. Always goes last.
 El enemigo es forzado a cambiar por una nube apestosa, entonces el usuario también cambia. Siempre va el último.
 A patch of medicinal flowers sprouts across the battlefield. This heals every Pokémon for 1/8th HP each turn for five turns.
-Un área de hierbas medicinales brota en el campo de batalla. Cura a todos los Pokémon 1/8 de PS en cada turno durante 5 turnos.
+Un área de flores medicinales brota en el campo de batalla. Cura a todos los Pokémon 1/8 de PS en cada turno durante cinco turnos.
 The user rides a wave, then crashes into the target. Has a 30% chance to cause a flinch.
 El usuario se sube a una ola, luego embiste al objetivo. Tiene un 30% de probabilidad de amedrentar al objetivo.
 The user slams the target with an enourmous tree. El user can't move on the next turn.
@@ -40737,9 +40741,9 @@ Fascinación
 Paleolithic
 Paleolítico
 Sub Zero
-Sub-Zero
+Bajo Cero
 Superalloy
-Adamantino
+Súper Aleación
 Midnight Sun
 Sol de Medianoche
 Weathered
@@ -40841,7 +40845,7 @@ Desorientar
 Paranoid
 Paranoico
 Swordplay
-Cortante
+Espadachín
 Burn Skill
 Calcinar
 Adrenaline Rush
@@ -40929,7 +40933,7 @@ Envidia
 Petrifying
 Petrificante
 Arctic Ariette
-Melodía Gélida
+Aria Gélida
 Gild
 Toque de Midas
 Luxury Taste
@@ -40983,7 +40987,7 @@ Frígido
 Stability
 Estabilidad
 Puzzling
-Aura Enigmática
+Enigmático
 Dire Diversion
 Medida Desesperada
 Wall Ninja
@@ -40995,11 +40999,11 @@ Nevisca Brillante
 Industrialize
 Industrializar
 Breaking Wave
-Escabullida Acuática
+Ola Demoledora
 Needle Fur
 Pelaje Tajante
 Ignition Cycle
-Ciclo de Calor
+Ciclo de Ignición
 Secretion Secret
 Secreción Secreta
 Dragon Slayer
@@ -41013,7 +41017,7 @@ Nido Rocoso
 Fly By
 Retirada Turbulenta
 Oddity
-Aura Anómala
+Anómalo
 Luring
 Atrayente
 Ultra Adapted
@@ -41054,7 +41058,7 @@ Rooted
 Arraigado
 Fine Sugar
 Azúcar Refinado
-Trench Carver
+Morador de la Fosa
 Arremetedor
 Radiate
 Irradiar
@@ -41099,19 +41103,19 @@ Ablandar
 Kelp Link
 Alga Infecciosa
 Punisher
-Victimizarse
+Castigador
 Predation
-Impacto Enjambre
+Depredación
 Sticky Mold
 Moho Espeso
 Wrath Instinct
 Instinto Furioso
 Sands Macabre
-Depredador del Páramo
+Arenas Macabras
 City Razer
-Señor de los Mares
+Arrasa-Ciudades
 Middle Way
-Balance de Poder
+Camino Medio
 Steely Shell
 Caparazón Metálico
 Mystic Tap
@@ -41135,7 +41139,7 @@ Capa Lunar
 Exo-Adaption
 Exo-Adaptación
 Exotherm Engine
-Locomoción
+Motor Exotérmico
 Tantalizing
 Tentador
 Unbreakable
@@ -41153,13 +41157,13 @@ Niebla Espesa
 Heat Veil
 Velo Cálido
 Chronic Cold
-Hipotermia
+Frío Crónico
 Timeskip
-Grieta Temporal
+Salto Temporal
 Apprehensive
 Ansioso
 Master Plan
-Comprensión Total
+Plan Maesto
 Anarchic
 Anárquico
 Extremophile
@@ -41167,7 +41171,7 @@ Extremófilo
 Worldquake
 Temblor Mundial
 Planar Veil
-Resonancia
+Velo Plano
 Shaky Code
 Código Inestable
 Rock Climber
@@ -41175,7 +41179,7 @@ Alpinista
 Plot Armor
 Amparo del Cataclismo
 Fell Omen
-Demoledor
+Presagio Caído
 Warping Effect
 Efecto Cambiante
 Stars Align
@@ -41183,7 +41187,7 @@ Astros Alineados
 Toll Danger
 Campana del Apocalipsis
 Scathing Syzygy
-Calamidad
+Sizigia Feroz
 Dramatic Lighting
 Entrada Drámatica
 Toll the Bells
@@ -41193,7 +41197,7 @@ Busca-Perlas
 Lunatic
 Lunático
 Illuminance
-Luz Nocturna
+Iluminancia
 Night Life
 Vida Nocturna
 Full Moon Blade
@@ -41211,9 +41215,9 @@ Acechador Nocturno
 Lycanthrope
 Licántropo
 Intoxicate
-Nube Tóxica
+Intoxicar
 Dynamo
-Generador
+Dinamo
 Lightning Ride
 Surca-Rayos
 Spinesplode
@@ -41229,7 +41233,7 @@ Oxigenación
 Living Armor
 Caparazón Viviente
 Resonant
-Vibratorio
+Resonante
 Cotton Decoy
 Señuelo de Algodón
 Vital Rhythm
@@ -41239,11 +41243,11 @@ Cleptomaníaco
 Assistant
 Asistente
 Stainless Steel
-Armazón Metálico
+Acero Impoluto
 Strikes Twice
 Doble Choque
 Solo Nocturne
-Burbuja Lunar
+Solo Nocturno
 Ice Queen
 Reina Glacial
 Ephemerate
@@ -41255,7 +41259,7 @@ Corona del Paraíso
 Night-line
 Cuidado Nocturno
 Decontamination
-Limpieza Nocturna
+Descontaminación
 Rock Body
 Cuerpo Rocoso
 Friend to All
@@ -41273,9 +41277,9 @@ Noctámbuho
 Served Cold
 Plato Frío
 Unconquerable
-Entrenamiento Riguroso
+Inconquistable
 Exorcist
-Supersticioso
+Exorcista
 Poor Conduct
 Mala Conducta
 Feather Coat
@@ -41289,13 +41293,13 @@ Hacerse Paso
 Investigator
 Investigador
 Impetuous
-Espíritu Frágil
+Impetuoso
 Clingy
 Pegajoso
 Brisk
 Ventoso
 Tesla Coils
-Pre-Cargado
+Bobinas de Tesla
 Mental Damage
 Daño Mental
 Flash Freeze
@@ -41303,11 +41307,11 @@ Helada Súbita
 Frostpitality
 Fría Hospitalidad
 Sandworn Auger
-Impulso Arena
+Barrena Arena
 Darkened Skies
-Demonio Desértico
+Cielos Oscurecidos
 Scoured Silhouette
-Terror Prehistórico
+Silueta Imponente
 Magnet Trap
 Trampa Magnética
 Desert Scavenger
@@ -41325,31 +41329,31 @@ Aislamiento Invernal
 Frostfanged
 Cazador Polar
 Summit Spirit
-Sabíduria Invernal
+Espíritu de la Cumbre
 Larder
 Despensa
 Toxic Attitude
-Alma Venenosa
+Actitud Tóxica
 Hooligan
 Gamberro
 Extorter
-Avaricioso
+Extorsionador
 Gourmand
 Gourmand
 Filthy
 Sucio
 Efflorescent
-Aroma Alentador
+Floreciente
 Flourishing
-Crecimiento
+Próspero
 Dragon’s Blood
-Escamas Dragón
+Sangre Dracónica
 Gauss Aftershock
-Fuente Ilimitada
+Repercusión de Gauss
 Frigid Reflection
-Espejo Absoluto
+Reflección Frígida
 Indestructible
-Guardia Mutante
+Indestructible
 Core Provenance
 Ciclo de Erosión
 Ancestral Dance
@@ -41357,9 +41361,9 @@ Danza Ancestral
 Afterimage
 Ninjutsu
 Perennial Payload
-Auto-Reparación
+Munición Perenne 
 Verdant
-Alma Natura
+Vegetación Exhuberante
 Above It All
 Encima de Todo
 Moth Burglar
@@ -41369,9 +41373,9 @@ Instinto de Riesgo
 Glass Firing
 Horneado de Cristal
 Shellcracker
-Rompe-Guardia
+Rompe-Caparazón
 Bizarre
-Rompe-Mente
+Bizarro
 Aurora Prism
 Prisma Aurora
 Feel the Burn
@@ -41379,7 +41383,7 @@ Espíritu Ardiente
 Cold Calculation
 Mente Fría
 Gravitas
-Gravitacional
+Gravitas
 Unassuming
 Modesto
 Recon
@@ -41391,15 +41395,15 @@ Absorbe Metal
 Seed Sowing
 Disemillador
 Unfazed
-Soso
+Impávido
 Well Suited
-Well Suited
+Bien Equipado
 Bliss
 Alegría
 Herding
 Arrear
 Extreme Voltage
-Energía Extrema
+Voltaje Extremo
 Unnerve
 Nerviosismo
 Stressful
@@ -41415,7 +41419,7 @@ Garra Cruel
 Fighting Vigor
 Vigor Marcial
 Self-Sufficient
-Grandes Reservas
+Autosuficiente
 Grotesque Vitals
 Vitales Grotescas
 Juggernaut
@@ -41441,7 +41445,7 @@ Bully
 Venom Gorger
 Atraca Tóxinas
 Pluripotence
-Sobre Actuar
+Pluripotencia
 Herbalist
 Herbolario
 Traumatizing
@@ -41449,15 +41453,15 @@ Traumático
 Irrefutable
 Irrefutable
 Aeroshell
-Custodia Ventosa
+Aeroguardia
 Fungal Flurry
 Asalto Fúngico
 Liminal
 Liminal
 Outrider
-Validación
+Pionero
 Overcharge
-Absorbe Energía
+Sobrecarga
 Dominating
 Dominante
 Wise Hunter
@@ -41468,12 +41472,12 @@ Foolhardy
 Insensato
 Meteoric
 Meteórico
-Roll In
-Caer Rodando
+Sudden Turn
+Turno Súbito
 Huggable
 Achuchable
 Plasma Globe
-Bola Plasmática
+Globo Plasmático
 Overthinking
 Carga Jaspe
 Straight Ahead
@@ -41481,7 +41485,7 @@ Directo
 Hyper Speed
 Híper Velocidad
 Leviathan
-Náufrago
+Leviatán
 Assault Spines
 Espinas Asalto
 Petty
@@ -41495,7 +41499,7 @@ Corazón Justiciero
 Choreography
 Coreografía
 Emergency Power
-Rompe Batería
+Reserva de Emergencia
 Knuckleduster
 Súper Puño
 Siren Song
@@ -41539,29 +41543,29 @@ Beligerante
 Grip Strength
 Fuerza de Agarre
 Late Bloomer
-Fuerza Deliberada
+Auge Tardío
 Shock Style
 Descarga Intrépida
 Wish Maker
 Deseoso
 Pressure Valve
-Humo Cegador
+Válvula de Presión
 Selective Scutes
-Coraza Evolutiva
+Placas Selectivas
 Bellower
-Voz Real
+Bramido
 Full Blubber
 Pura Grasa
 Excavator
-Puño Subterráneo
+Excavador
 Domineering
-Distante
+Autoritario
 Rust & Wrack
 Ancla Oxidada
 Steam Power
 Comburente
 Sapper
-Enterrar
+Zapador
 Sickening
 Nauseabundo
 Big Boss
@@ -41585,7 +41589,7 @@ Escamas Extra
 Egoist
 Egoísta
 Placidity
-Apático
+Placidez
 Freestyle
 Freestyle
 Slipstream
@@ -41593,7 +41597,7 @@ Estela
 Lifeline
 Sustento
 Noxious
-Presencia Dolorosa
+Nocivo
 Darter
 Perdurable
 Signal Jam
@@ -41607,7 +41611,7 @@ Reacción Tardía
 Vandal
 Vándalo
 Gorging
-Hinchar
+Atiborrarse
 Unidentified
 Sin Identificar 
 Snoozefest
@@ -41633,7 +41637,7 @@ Combustión
 Slumbering Drake
 Dragón Durmiente
 No Hope
-Trampa de Medusa
+Sin Esperanza
 Toil and Trouble
 Sufrimiento Incrementado
 Fatigued
@@ -41643,7 +41647,7 @@ Tronco Adaptable
 Trickster
 Aura Rara
 Swift Stomps
-Patadas Rápidas
+Pisada Rauda
 Haunted
 Poseído
 Extra Scoop
@@ -41654,10 +41658,10 @@ Torpor Sap
 Drenado Soporífico
 Running Free
 Errante
-Iron Heel
+Talón Férreo
 Gemelos Fornidos
 Polarizing
-Aura Eficaz
+Eficacia
 Insight Aura
 Aura Esclarecedora
 Emotion Aura
@@ -41681,7 +41685,7 @@ Otoñal
 Neurotoxin
 Neurotoxina
 Inexorable
-Persistencia
+Inexorable
 Auto-Structure
 Auto-Estructura
 All-Consuming
@@ -41699,8 +41703,15 @@ Corrientazo
 Auto-Pilot
 Auto-Piloto
 Battle-Hardened
-Cuidadoso
-
+Endurecido en Combate
+Subspace Schism 
+Cisma Subespacial
+Debris Field
+Campo de Escombros
+Overflowing Heart
+Corazón Rebosante
+Hybdrid Fighter
+Luchador Híbrido
 [11]
 Attacks have a 50% chance to cause the target to flinch.
 Los ataques tienen un 50% de probabilidad de amedrentar al objetivo
@@ -41747,7 +41758,7 @@ Duplica la Velocidad del Pokémon bajo lluvia.
 Doubles the Pokémon's Speed in sunshine.
 Duplica la Velocidad del Pokémon bajo el sol.
 Raises the Pokémon's Attack by 50%, including Style Values and other bonuses.
-Aumenta el Ataque del Pokémon un 50%.
+Aumenta el Ataque del Pokémon un 50%, incluyendo Puntos de Estilo y otros bonuses.
 Physical attacks against the Pokémon have a 30% chance to poison the attacker.
 Cuando el Pokémon es atacado por un movimiento físico, hay un 30% de probabilidad de que envenene al atacante.
 The Pokémon is protected from flinching, Intimidate, Fascinate, and Frustrate.
@@ -42084,7 +42095,7 @@ Recibe 25% menos de daño de Pokémon que estén atrapados.
 Doubles Defense in a sandstorm.
 Duplica su Defensa en tormenta de arena.
 Raises the Pokémon's Sp. Atk by 50%, including Style Values and other bonuses.
-Aumenta el Ataque Especial del Pokémon un 50%.
+Aumenta el Ataque Especial del Pokémon un 50%, incluyendo Puntos de Estilo y otros bonuses.
 Grants immunity to Poison-type moves and restores HP if hit by one.
 Inmune a movimientos tipo Veneno y recupera PS cuando es alcanzado por uno. 
 Grants immunity to Flying-type moves and raises Speed if hit by one.
@@ -42211,7 +42222,7 @@ Aumenta su Ataque un 30% bajo granizo.
 Immune to Ground-type moves. Takes 20% less damage in Sandstorm.
 Inmune a movimientos tipo Tierra. Recibe 20% menos de daño en una tormenta de arena.
 Special moves against the Pokémon have a 30% chance to frostbite the attacker.
-Cuando el Pokémon es alcanzado por un movimiento físico, tiene un 30% de probabilidad de helar al atacante.
+Cuando el Pokémon es alcanzado por un movimiento especial, tiene un 30% de probabilidad de helar al atacante.
 Protects from critical hits and from enemies lowering Defense or Sp. Def.
 Es protegido de golpes críticos y de que sus Defensas sean disminuidas por los rivales.
 Its attacks are critical against burned targets.
@@ -42525,7 +42536,7 @@ Al atacar bajo brillo lunar, usa las stats ofensivas del objetivo en vez de las 
 Using a status move in moonglow extends the weather by a turn.
 Usar un movimiento de estado bajo brillo lunar extiende el clima por un turno.
 When hit in moonglow, steals the attacker's item, or knocks it away.
-Al ser atacado en brillo lunar, roba o remueve el objeto del rival. 
+Al ser atacado bajo brillo lunar, roba o remueve el objeto del rival. 
 During moonglow, Speed is boosted by 50% and twice as likely to crit.
 Su Velocidad es aumentada un 50% y duplica su índice de golpe crítico bajo brillo lunar.
 In moonglow, Attack is boosted by 50%, but the Pokémon is hurt for 1/10th HP each turn.
@@ -42573,11 +42584,11 @@ Los Eclipses Totales ocurren el doble de rápido.
 Prevents Water- or Grass-type moves during sandstorm.
 No permite que movimientos tipo Agua o Planta sean usados en tormenta de arena.
 If the Pokémon witnesses a Total Eclipse, it gets to move twice that turn.
-Si el Pokémon observa un Eclipse Total, podrá usar un movimiento dos veces. 
+Si el Pokémon presencia un Eclipse Total, podrá usar un movimiento dos veces. 
 At the end of each turn in moonglow, heals self by 1/12th of its max HP, and a party member alongside.
 Se cura a sí mismo y a sus aliados 1/12 de sus PS al final de cada turno bajo brillo lunar.
 Prevents Bug- or Poison-type moves during moonglow.
-No permite que movimientos tipo Bicho o Veneno sean usados en brillo lunar.
+No permite que movimientos tipo Bicho o Veneno sean usados bajo brillo lunar.
 Heals 1/8th of its max HP each turn during sandstorm.
 Recupera 1/8 de sus PS máximos cada turno en tormenta de arena.
 Counts as every tribe.
@@ -42603,7 +42614,7 @@ Al volver a su Poké Ball, disminuye ambos Ataques del rival al insultarlo.
 Takes half damage from Ice- and Flying-type attacks.
 Movimientos tipo Hielo y Volador lo dañan por la mitad.
 Special moves against the Pokémon have a 30% chance to burn the attacker.
-Cuando el Pokémon es alcanzado por un movimiento físico, tiene un 30% de probabilidad de quemar al atacante.
+Cuando el Pokémon es alcanzado por un movimiento especial, tiene un 30% de probabilidad de quemar al atacante.
 Heals by 1/8th HP whenever any Pokémon uses a dance or sound move.
 Recupera 1/8 de sus PS máximos cada vez que algún Pokémon use un movimiento de baile o de sonido.
 Ignores screens, Substitute, and Abilities that would affect its moves.
@@ -42788,8 +42799,8 @@ Immune to Psychic-type moves, and boosts Speed when hit by one.
 Inmune a movimientos tipo Psíquico y aumenta su velocidad cuando es alcanzado por uno. 
 Boosts Speed by 50% in sandstorm or hail.
 Aumenta su Velocidad un 50% en tormenta de arena o granizo.
-Uses Rapid Spin upon entry. Clears hazards, raises Speed, and deals damage.
-Usa Giro Rápido al entrar al campo. Quita trampas, aumenta su Velocidad y causa daño.
+Uses Rapid Spin after its first attack to clear hazards, raises Speed, and deals damage.
+Usa Giro Rápido luego de su primer ataque para quitar trampas, aumentar su Velocidad y causar daño.
 When hit by a move with 100 or more base power, hits back instantly with Nuzzle.
 Cuando es alcanzado por un movimiento con 100 o más de potencia, contraataca inmediatamente usando Moflete Estático.
 Attacks against the Pokémon deal 50% more damage, but the attacker takes 100% recoil.
@@ -42838,8 +42849,8 @@ If its stats would be changed, instead they're changed half as much in the oppos
 Invierte los cambios de stats, pero sólo por la mitad (redondeado por arriba).
 Maximizes the frequency of multi-strike moves. Always deals critical hits.
 Maximiza la frecuencia de movimientos que golpean múltiples veces. Sus ataques siempre son críticos.
-Raises all of its stats whenever it gets a critical hit.
-Aumenta todas sus stats cada vez que recibe un golpe crítico.
+Raises all of its stats whenever it knocks out a Pokémon with a critical hit.
+Aumenta todas sus stats cada vez que debilite a un Pokémon con un golpe crítico.
 Boosts Attack by 30%, but lowers Attack after using a physical move.
 Aumenta Ataque un 30%, pero disminuye el Ataque al usar un movimiento físico.
 Takes 30% less damage until it uses an attack.
@@ -43010,8 +43021,12 @@ At the beginning of every 5th turn, the Pokémon forcibly switches into battle. 
 Al inicio de cada quinto turno, el Pokémon entra al combate por la fuerza. Elige qué movimiento va a usar ese turno.
 Raises Def and Sp. Def by three steps each when its HP is lowered below half.
 Aumenta ambas Defensas 3 grados cuando sus PS se reducen por debajo de la mitad.
-
-
+Can't be statused due to its hard shell. Boosts Sp. Atk and Speed by 25% in sandstorm.
+Inmune a problemas de estado debido a su caparazón. Aumenta su Ataque Especial y Velocidad un 25% en tormenta de arena.
+Copies the base stats of the Pokémon it switches in to replace.
+Copia las stats base del Pokémon que entra a reemplazar.
+Punches, Kicks, and Bites combo together to create special effects.
+Puños, Patadas y Mordiscos son combinados para crear efectos especiales.
 [12]
 0
 Normal
@@ -47261,9 +47276,9 @@ No afecta a {1}...
 {1} luxuriated in its fine clothing.
 {1} se deleita en sus finas ropas.
 {1}'s inner fire flared up!
-¡{1} entra en calor!
+¡La llama interior de {1} se enciende!
 {1} finally cooled off!
-¡{1} ventila su calor acumulado!
+¡{1} finalmente se enfrío!
 #{battler.pbThis} grows one size bigger!
 ¡#{battler.pbThis} crece de tamaño!
 #{battler.pbThis} is fully grown!
@@ -47305,7 +47320,7 @@ No afecta a {1}...
 {1} is damaged by recoil!
 ¡{1} es dañado por el retroceso!
 {1}'s anger cannot be sated! It enters its Rampage form!
-¡La ira de {1} no puede ser saciada! ¡Entra a su forma Leviatán!
+¡La ira de {1} no puede ser saciada! ¡Entra a su forma Desenfrenada!
 {1} molts into a new shell!
 {1} muda a un nuevo caparazón!
 {1}'s stat changes were removed!
@@ -47377,7 +47392,7 @@ All allies' stat changes were eliminated!
 {1} is honorable! Status moves lose priority!
 ¡{1} es honorable! ¡Los movimientos de estado pierden prioridad!
 {1} arrived on a breaking wave!
-¡{1} se escondió bajo el agua!
+¡{1} llegó sobre una ola!
 {1} is burdened!
 ¡{1} está agobiado!
 {1} transforms into a stronger version of your entire team!
@@ -47485,7 +47500,7 @@ El cielo es oscuro.
 The battlefield is weird!
 ¡El campo de batalla es extraño!
 Time is dancing to #{stretcher.pbThis}'s tune! This turn is being skipped!
-¡#{stretcher.pbThis} compra más tiempo!
+¡El tiempo baila por el tono de #{stretcher.pbThis}! ¡Este turno es saltado!
 You got ${1} for winning!
 ¡Ganaste ${1} por ganar!
 You picked up ${1}!
@@ -47781,7 +47796,7 @@ Sky Drop won't let {1} go!
 {1} traced {2}'s {3}!
 ¡{1} rastreó {3} de {2}!
 {2}? {1} can be that, if it wishes.
-¡{1} está actuando como un {2}!
+¿{2}? {1} puede ser eso, si así lo desea.
 {1} imitated the Ability {2}!
 ¡{1} imitó la habilidad {2}!
 {1}'s {2} wore off!
@@ -47791,7 +47806,7 @@ Sky Drop won't let {1} go!
 {1} recycled one {2}!
 ¡{1} recicló {2}!
 {1} is trying to use an ally to absorb the recoil!
-¡{1} busca un aliado para que ayude en evitar el retroceso!
+¡{1} intenta usar un aliado para que ayude a evitar el retroceso!
 But it couldn't swap into anybody!
 ¡Pero no pudo cambiar con nadie!
 {1}'s healing is reversed!
@@ -48159,7 +48174,7 @@ The ring of water restored {1}'s HP!
 {1} started heating up its beak!
 ¡{1} empezó a calentar su pico!
 {1} lost its Fire-Type!
-¡{1} se quemó a sí mismo!
+¡{1} perdió su tipo Fuego!
 {1} was dried out!
 ¡{1} se secó!
 {1} began charging power!
@@ -48323,7 +48338,7 @@ El electromagnetismo de {1} se desvaneció.
 {1} will be flinch immune for {2} more turns!
 ¡{1} será inmune a ser amedrentado por {2} turnos más!
 {1} lost its Ice-type!
-¡{1} perdió su frío!
+¡{1} perdió su tipo Hielo!
 {1} is now afraid of Bug-type moves!
 ¡{1} ahora teme movimientos tipo Bicho!
 {1} is blessed by the lucky star!
@@ -48339,7 +48354,7 @@ El electromagnetismo de {1} se desvaneció.
 {1} is now free to escape the battle!
 ¡{1} ya puede escapar del combate!
 {1}'s healing is reversed this turn!
-¡Los nervios de {1} están tensos!
+¡La curación de {1} es invertida este turno!
 {1}'s is filled with ice!
 ¡{1} está lleno de hielo!
 {1} gained an extra attack!
@@ -51779,9 +51794,9 @@ La Luna Llena de Sangre está llegando.
 {1} takes less damage from moves with 100+ base power! This will last for #{value - 1} more turns!
 ¡{1} recibe menos daño de movimientos con 100+ poder base! ¡Esto durará por #{value - 1} turnos más!
 {1}'s Repulsion Field was broken!
-¡El Campo Polarizado de {1} fue roto!
+¡El Campo Repulsivo de {1} fue roto!
 {1}'s Repulsion Field wore off!
-¡El Campo Polarizado de {1} desapareció!
+¡El Campo Repulsivo de {1} desapareció!
 But it failed, since #{user.pbThis(true)} is already #{GameData::Type.get(camouflageType).name}-type!
 ¡Pero falló, ya que #{user.pbThis(true)} ya es de tipo #{GameData::Type.get(camouflageType).name}!
 But it failed, since #{target.pbThis(true)} is hiding a Masquerblade!
@@ -51789,7 +51804,7 @@ But it failed, since #{target.pbThis(true)} is hiding a Masquerblade!
 But it failed, since #{target.pbThis(true)} has no previous species to transform into!
 ¡Pero falló, ya que #{target.pbThis(true)} no tiene una especie anterior a la que transformarse!
 But it failed, since Repulsion Field is already active!
-¡Pero falló, ya que el Campo Polarizado ya está activo!
+¡Pero falló, ya que el Campo Repulsivo ya está activo!
 {1}'s hidden blade trap didn't work!
 ¡La trampa oculta de {1} no funcionó!
 {1} is fired up!
@@ -51869,7 +51884,7 @@ But it failed, since there is no active room!
 {1} begins the harvest!
 ¡{1} empieza la cosecha!
 {1} was healed by the field of flowers!
-{1} fue curado por el Área de Hierba!
+{1} fue curado por un campo de flores!
 {1} passes its ability to {2}!
 ¡{1} le pasa su habilidad a {2}!
 But it failed, since #{target.pbThis(true)} can't be numbed or have either of its attacking stats lowered!
@@ -52040,6 +52055,16 @@ That's a lot, so I've lumped all the rewards together.
 Esas son demasiadas, así que las he agrupado todas juntas.
 As you finish reading, the PC materializes a package...
 Mientras terminas de leer, la PC materializa un paquete...
+But it failed, since the field is already covered in flowers!
+¡Pero falló, ya que el campo ya está cubierto en flores!
+{1} is hurt by the noxious presence!
+¡{1} es lastimado por la presencia nociva!
+{1} realized it had been attacked!
+¡{1} acaba de darse cuenta de que fue atacado!
+{2} reads {1}'s heart and gains its stats!
+¡{2} lee el corazón de {1} y consigue sus stats!
+Which type should #{user.pbThis(true)} launch?
+¿Qué tipo debería disparar #{user.pbThis(true)}?
 [26]
 [27]
 [27]
