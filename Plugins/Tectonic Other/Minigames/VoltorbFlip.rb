@@ -374,7 +374,7 @@ class VoltorbFlip
         pbMessage(_INTL("\\me[Voltorb Flip win]Game clear!\\wtnp[40]"))
 #        pbMessage(_INTL("You've found all of the hidden x2 and x3 cards."))
 #        pbMessage(_INTL("This means you've found all the Coins in this game, so the game is now over."))
-        if forPoints
+        if @forCoins
           pbMessage(_INTL("\\se[Voltorb Flip gain coins]{1} received {2} Coins!",$Trainer.name,@points.to_s_formatted))
         else
           pbMessage(_INTL("\\se[Voltorb Flip gain coins]{1} received {2} Points!",$Trainer.name,@points.to_s_formatted))
