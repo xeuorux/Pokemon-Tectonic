@@ -1292,12 +1292,15 @@ class Pokemon
       
       if !traitUnlocked.nil?
         msgwindow = pbCreateMessageWindow
-        pbMessageDisplay(msgwindow,_INTL("\\wm{1} is happy enough to show off its {2} trait: {3}!\\me[Egg get]\\wtnp[80]\1",name,ordinal,traitUnlocked.name))
+        traitName = traitUnlocked.is_a?(String) ? traitUnlocked : traitUnlocked.name
+        pbMessageDisplay(msgwindow,_INTL("\\wm{1} is happy enough to show off its {2} trait: {3}!\\me[Egg get]\\wtnp[80]\1",name,ordinal,traitName))
         pbDisposeMessageWindow(msgwindow)
       elsif !likeUnlocked.nil? && !dislikeUnlocked.nil?
         msgwindow = pbCreateMessageWindow
         pbMessageDisplay(msgwindow,_INTL("\\wm{1} is at maximum happiness! It loves you so much!\1",name))
-        pbMessageDisplay(msgwindow,_INTL("\\wm{1} reveals that it likes {2} and that it dislikes {3}!\\me[Egg get]\\wtnp[100]\1",name,likeUnlocked.name,dislikeUnlocked.name))
+        likeName = likeUnlocked.is_a?(String) ? likeUnlocked : likeUnlocked.name
+        dislikeName = dislikeUnlocked.is_a?(String) ? dislikeUnlocked : dislikeUnlocked.name
+        pbMessageDisplay(msgwindow,_INTL("\\wm{1} reveals that it likes {2} and that it dislikes {3}!\\me[Egg get]\\wtnp[100]\1",name,likeName,dislikeName))
         pbDisposeMessageWindow(msgwindow)
       end
     end
