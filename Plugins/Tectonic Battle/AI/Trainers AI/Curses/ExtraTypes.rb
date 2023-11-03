@@ -16,13 +16,13 @@ PokeBattle_Battle::BattlerEnterCurseEffect.add(:CURSE_EXTRA_TYPES,
         type = nil
         case battler.species
         when :MRRIME
-            type = :FIRE
+            type = :ROCK
         when :METAGROSS
-            type = :GRASS
+            type = :FAIRY
         when :MPOLTEAGEIST
             type = :WATER
         when :CRABOMINABLE
-            type = :ROCK
+            type = :GHOST
         when :BRUXISH
             type = :POISON
         when :GDARMANITAN
