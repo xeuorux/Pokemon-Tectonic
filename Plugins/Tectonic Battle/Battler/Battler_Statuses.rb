@@ -589,7 +589,7 @@ immuneTypeRealName))
     def flinchImmuneByAbility?(checkingForAI = false)
         unless @battle.moldBreaker
             return true if shouldAbilityApply?(GameData::Ability::FLINCH_IMMUNITY_ABILITIES, checkingForAI)
-            return true if @battle.pbCheckSameSideAbility(:HEARTENINGAROMA,@index)
+            return true if @battle.pbCheckSameSideAbility(:EFFLORESCENT,@index)
         end
         return false
     end

@@ -44,7 +44,7 @@ BattleHandlers::MoveBaseTypeModifierAbility.add(:REFRIGERATE,
   }
 )
 
-BattleHandlers::MoveBaseTypeModifierAbility.add(:FROSTSONG,
+BattleHandlers::MoveBaseTypeModifierAbility.add(:ARCTICARIETTE,
     proc { |ability, _user, move, _type|
         next unless move.soundMove?
         next unless GameData::Type.exists?(:ICE)

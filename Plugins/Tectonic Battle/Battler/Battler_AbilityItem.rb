@@ -127,8 +127,8 @@ class PokeBattle_Battler
                 return
             end
         end
-        # Over-Acting
-        if hasActiveAbility?(:OVERACTING)
+        # Pluripotence
+        if hasActiveAbility?(:PLURIPOTENCE)
             choices = {}
             @battle.eachOtherSideBattler(@index) do |b|
                 copiableAbilities = []
@@ -143,12 +143,12 @@ class PokeBattle_Battler
             unless choices.empty?
                 battlerCopying = choices.keys.sample
                 abilitiesCopying = choices[battlerCopying]
-                showMyAbilitySplash(:OVERACTING)
-                @battle.pbDisplay(_INTL("{1} is acting like a {2}!", pbThis, GameData::Species.get(battlerCopying.species).name))
-                echoln("Abilities that Over-Acting is copying: #{abilitiesCopying.to_s}")
+                showMyAbilitySplash(:PLURIPOTENCE)
+                @battle.pbDisplay(_INTL("{2}? {1} can be that, if it wishes.", pbThis, GameData::Species.get(battlerCopying.species).name))
+                echoln("Abilities that Pluripotence is copying: #{abilitiesCopying.to_s}")
                 setAbility(abilitiesCopying)
                 abilitiesCopying.each do |legalAbility|
-                    @battle.pbDisplay(_INTL("{1} mimicked the ability {2}!", pbThis, getAbilityName(legalAbility)))
+                    @battle.pbDisplay(_INTL("{1} imitated the Ability {2}!", pbThis, getAbilityName(legalAbility)))
                 end
                 hideMyAbilitySplash
                 if !onSwitchIn && (unstoppableAbility? || abilityActive?)
@@ -342,13 +342,13 @@ class PokeBattle_Battler
 
                 @battle.eachBattler { |b|
                     next if b.index == @index
-                    next unless b.hasActiveAbility?(:GREEDYGUTS)
+                    next unless b.hasActiveAbility?(:EXTORTER)
                     filcher = b
                     break
                 }
     
                 # If the berry is being filched
-                if filcher && BattleHandlers.triggerHPHealItem(item, filcher, @battle, false, self, :GREEDYGUTS)
+                if filcher && BattleHandlers.triggerHPHealItem(item, filcher, @battle, false, self, :EXTORTER)
                     filcher.pbHeldItemTriggered(item, false)
                     consumeItem(item)
                 end

@@ -380,7 +380,7 @@ class PokeBattle_Move_517 < PokeBattle_Move
 end
 
 #===============================================================================
-# Heals user by 1/3 of their max health, but does not fail at full health. (Douse)
+# Heals user by 1/3 of their max health, but does not fail at full health. (Ebb & Flow)
 #===============================================================================
 class PokeBattle_Move_518 < PokeBattle_HealingMove
     def healRatio(_user)
@@ -415,7 +415,7 @@ class PokeBattle_Move_51A < PokeBattle_RoomMove
 end
 
 #===============================================================================
-# User loses their Ice type. Fails if user is not Ice-type. (Cold Conversion)
+# User loses their Ice type. Fails if user is not Ice-type. (Sublimate)
 #===============================================================================
 class PokeBattle_Move_51B < PokeBattle_Move
     def pbMoveFailed?(user, _targets, show_message)
@@ -427,7 +427,7 @@ class PokeBattle_Move_51B < PokeBattle_Move
     end
 
     def pbEffectAfterAllHits(user, _target)
-        user.applyEffect(:ColdConversion)
+        user.applyEffect(:Sublimate)
     end
 
     def getEffectScore(_user, _target)
@@ -943,7 +943,7 @@ end
 
 #===============================================================================
 # Two turn attack. Ups user's Special Defense by 4 steps first turn, attacks second turn.
-# (Zephyr Wing)
+# (Infinite Wing)
 #===============================================================================
 class PokeBattle_Move_536 < PokeBattle_TwoTurnMove
     def pbChargingTurnMessage(user, _targets)
@@ -1037,12 +1037,12 @@ class PokeBattle_Move_539 < PokeBattle_Move
 end
 
 #===============================================================================
-# If the target would heal until end of turn, instead they take that much life loss. (Nerve Break)
+# If the target would heal until end of turn, instead they take that much life loss. (Hypothermiate, Bad Ending)
 #===============================================================================
 class PokeBattle_Move_53A < PokeBattle_Move
     def pbAdditionalEffect(_user, target)
         return if target.fainted? || target.damageState.substitute
-        target.applyEffect(:NerveBreak)
+        target.applyEffect(:HealingReversed)
     end
 
     def getEffectScore(_user, target)
@@ -1815,7 +1815,7 @@ class PokeBattle_Move_56D < PokeBattle_Move
 end
 
 #===============================================================================
-# Raises all stats by 2 steps. Fails unless the user is asleep. (Astral Dream)
+# Raises all stats by 2 steps. Fails unless the user is asleep. (Oneiromancy)
 #===============================================================================
 class PokeBattle_Move_56E < PokeBattle_MultiStatUpMove
     def usableWhenAsleep?; return true; end

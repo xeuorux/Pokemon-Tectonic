@@ -28,7 +28,7 @@ BattleHandlers::CriticalCalcUserAbility.add(:NIGHTVISION,
   }
 )
 
-BattleHandlers::CriticalCalcUserAbility.add(:SANDDRILLING,
+BattleHandlers::CriticalCalcUserAbility.add(:SANDWORNAUGER,
   proc { |ability, user, _target, _move, c|
       next c + 1 if user.battle.sandy?
   }

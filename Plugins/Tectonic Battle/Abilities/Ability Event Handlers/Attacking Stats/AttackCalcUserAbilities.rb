@@ -56,7 +56,7 @@ BattleHandlers::AttackCalcUserAbility.add(:FLUSTERFLOCK,
   }
 )
 
-BattleHandlers::AttackCalcUserAbility.add(:POWERUP,
+BattleHandlers::AttackCalcUserAbility.add(:PUREFORCE,
   proc { |ability, _user, _battle, attackMult|
       attackMult *= 1.5
       next attackMult
@@ -91,7 +91,7 @@ BattleHandlers::AttackCalcUserAbility.add(:SUNCHASER,
   }
 )
 
-BattleHandlers::AttackCalcUserAbility.add(:BLIZZBOXER,
+BattleHandlers::AttackCalcUserAbility.add(:SLEETSHAKER,
   proc { |ability, _user, battle, attackMult|
       attackMult *= 1.3 if battle.icy?
       next attackMult
@@ -119,7 +119,7 @@ BattleHandlers::AttackCalcUserAbility.add(:FULLMOONBLADE,
   }
 )
 
-BattleHandlers::AttackCalcUserAbility.add(:SANDSTRENGTH,
+BattleHandlers::AttackCalcUserAbility.add(:EARTHSHAKER,
   proc { |ability, _user, battle, attackMult|
       attackMult *= 1.3 if battle.sandy?
       next attackMult
@@ -140,7 +140,7 @@ BattleHandlers::AttackCalcUserAbility.add(:ROBUST,
   }
 )
 
-BattleHandlers::AttackCalcUserAbility.add(:BALANCEOFPOWER,
+BattleHandlers::AttackCalcUserAbility.add(:MIDDLEWAY,
   proc { |ability, user, _battle, attackMult|
       attackMult *= 1.5 if user.lastRoundMoveCategory == 1
       next attackMult
@@ -160,7 +160,7 @@ BattleHandlers::AttackCalcUserAbility.add(:SERVEDCOLD,
   }
 )
 
-BattleHandlers::AttackCalcUserAbility.add(:POLARHUNTER,
+BattleHandlers::AttackCalcUserAbility.add(:FROSTFANGED,
   proc { |ability, user, battle, attackMult|
       attackMult *= 1.25 if battle.icy?
       next attackMult

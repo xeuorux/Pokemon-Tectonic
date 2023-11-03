@@ -18,7 +18,7 @@ end
 class PokeBattle_AI_Suicune < PokeBattle_AI_Boss
     def initialize(user, battle)
         super
-        @warnedIFFMove.add(:PURIFYINGWATER, {
+        @warnedIFFMove.add(:ASCRYSTAL, {
             :condition => proc { |_move, user, _target, _battle|
                 next user.pbHasAnyStatus?
             },
@@ -32,7 +32,7 @@ end
 class PokeBattle_AI_Raikou < PokeBattle_AI_Boss
     def initialize(user, battle)
         super
-        @warnedIFFMove.add(:LIGHTNINGSHRIEK, {
+        @warnedIFFMove.add(:FROMTHEBLUE, {
             :condition => proc { |_move, user, _target, _battle|
                 next user.steps[:SPEED] < 2
             },
@@ -469,7 +469,7 @@ class PokeBattle_AI_Sawsbuck < PokeBattle_AI_Boss
     FORM_0_MOVESET = %i[PLAYROUGH SEASONSEND]
     FORM_1_MOVESET = %i[HORNDRAIN SEASONSEND]
     FORM_2_MOVESET = %i[TRAMPLE SEASONSEND]
-    FORM_3_MOVESET = %i[CRYSTALCRUSH SEASONSEND]
+    FORM_3_MOVESET = %i[GLACIALRAM SEASONSEND]
     MOVESETS = [FORM_0_MOVESET,FORM_1_MOVESET,FORM_2_MOVESET,FORM_3_MOVESET]
 
     def initialize(user, battle)
@@ -672,7 +672,7 @@ end
 class PokeBattle_AI_Gstunfisk < PokeBattle_AI_Boss
     def initialize(user, battle)
         super
-        secondMoveEveryTurn(:SHELLSHELTER)
+        secondMoveEveryTurn(:SHELLTER)
     end
 end
 
@@ -872,7 +872,7 @@ class PokeBattle_AI_Magnezone < PokeBattle_AI_Boss
             },
         })
 
-        @requiredMoves.push(:POLARIZEDFIELD)
+        @requiredMoves.push(:REPULSIONFIELD)
     end
 end
 

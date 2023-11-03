@@ -48,7 +48,7 @@ BattleHandlers::StatusImmunityAbility.add(:STABILITY,
   }
 )
 
-BattleHandlers::StatusImmunityAbility.add(:SEASURVIVOR,
+BattleHandlers::StatusImmunityAbility.add(:LEVIATHAN,
   proc { |ability, _battler, status|
       next true if %i[BURN FROSTBITE].include?(status)
   }
@@ -96,13 +96,13 @@ BattleHandlers::StatusImmunityAbility.add(:GROTESQUEVITALS,
   }
 )
 
-BattleHandlers::StatusImmunityAbility.add(:WELLSUPPLIED,
+BattleHandlers::StatusImmunityAbility.add(:SELFSUFFICIENT,
   proc { |ability, _battler, status|
       next true if %i[BURN FROSTBITE].include?(status)
   }
 )
 
-BattleHandlers::StatusImmunityAbility.add(:ALOOF,
+BattleHandlers::StatusImmunityAbility.add(:DOMINEERING,
   proc { |ability, _battler, status|
       next true if status == :DIZZY
   }

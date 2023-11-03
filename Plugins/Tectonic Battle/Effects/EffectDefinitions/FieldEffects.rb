@@ -147,19 +147,19 @@ GameData::BattleEffect.register_effect(:Field, {
 })
 
 GameData::BattleEffect.register_effect(:Field, {
-    :id => :QualityRoom,
-    :real_name => "Quality Room",
+    :id => :PolarizedRoom,
+    :real_name => "Polarized Room",
     :type => :Integer,
     :ticks_down => true,
     :is_room => true,
     :apply_proc => proc do |battle, _value|
-        battle.pbDisplay(_INTL("A high quality area appeared! Type effectiveness is exagerated!"))
+        battle.pbDisplay(_INTL("A polarized area appeared! Type effectiveness is exaggerated!"))
     end,
     :disable_proc => proc do |battle, _battler|
-        battle.pbDisplay(_INTL("The high quality area was dispelled!"))
+        battle.pbDisplay(_INTL("The polarized area was dispelled!"))
     end,
     :expire_proc => proc do |battle, _battler|
-        battle.pbDisplay(_INTL("The high quality area fell away."))
+        battle.pbDisplay(_INTL("The polarized area fell away."))
     end,
 })
 
@@ -250,14 +250,14 @@ GameData::BattleEffect.register_effect(:Field, {
 })
 
 GameData::BattleEffect.register_effect(:Field, {
-    :id => :HerbalPatch,
-    :real_name => "Herbal Patch",
+    :id => :FloralGramarye,
+    :real_name => "Floral Gramarye",
     :type => :Integer,
     :ticks_down => true,
     :eor_proc => proc do |battle, value|
         battle.eachBattler do |b|
             next unless b.canHeal?
-            b.applyFractionalHealing(1.0/8.0, customMessage: _INTL("{1} was healed by the Herbal Patch!",b.pbThis))
+            b.applyFractionalHealing(1.0/8.0, customMessage: _INTL("{1} was healed by the field of flowers!",b.pbThis))
         end
     end,
 })

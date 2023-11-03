@@ -341,19 +341,19 @@ class PokeBattle_Battler
             end
         end
 
-        if hasActiveAbility?(:RAMMINGSPEED) && move&.recoilMove?
+        if hasActiveAbility?(:TRENCHCARVER) && move&.recoilMove?
             if aiCheck
                 aiSpeedMult *= 2.0
             else
-                applyEffect(:RammingSpeed)
+                applyEffect(:TrenchCarver)
             end
         end
 
-        if hasActiveAbility?(:QUICKKICKS) && move&.kickingMove?
+        if hasActiveAbility?(:SWIFTSTOMPS) && move&.kickingMove?
             if aiCheck
                 aiSpeedMult *= 2.0
             else
-                applyEffect(:QuickKicks)
+                applyEffect(:SwiftStomps)
             end
         end
 

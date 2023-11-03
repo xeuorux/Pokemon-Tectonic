@@ -44,13 +44,13 @@ class PokeBattle_Move
         finalCalculatedDamage  = [(finalCalculatedDamage * multipliers[:final_damage_multiplier]).round, 1].max
         finalCalculatedDamage = flatDamageReductions(finalCalculatedDamage,user,target,aiCheck)
 
-        # Pain Delay
-        if !@battle.moldBreaker && target.shouldAbilityApply?(:PAINDELAY,aiCheck)
+        # Delayed Reaction
+        if !@battle.moldBreaker && target.shouldAbilityApply?(:DELAYEDREACTION,aiCheck)
             delayedDamage = (finalCalculatedDamage * 0.33).floor
             finalCalculatedDamage -=  delayedDamage
             if delayedDamage > 0 && !aiCheck
-                target.effects[:PainDelay] = [] unless target.effectActive?(:PainDelay)
-                target.effects[:PainDelay].push([2,delayedDamage])
+                target.effects[:DelayedReaction] = [] unless target.effectActive?(:DelayedReaction)
+                target.effects[:DelayedReaction].push([2,delayedDamage])
             end
         end
 
@@ -268,8 +268,8 @@ class PokeBattle_Move
                 end
             end
 
-            # Polarized Field
-            if baseDamage >= 100 && target.pbOwnSide.effectActive?(:PolarizedField)
+            # Repulsion Field
+            if baseDamage >= 100 && target.pbOwnSide.effectActive?(:RepulsionField)
                 if @battle.pbSideBattlerCount(target) > 1
                     multipliers[:final_damage_multiplier] *= 2 / 3.0
                 else
@@ -476,7 +476,7 @@ class PokeBattle_Move
 
         # Multi-targeting attacks
         if numTargets > 1
-            if user.shouldAbilityApply?(:VIBRATIONAL,aiCheck)
+            if user.shouldAbilityApply?(:RESONANT,aiCheck)
                 multipliers[:final_damage_multiplier] *= 1.25
             else
                 multipliers[:final_damage_multiplier] *= 0.75
@@ -510,9 +510,9 @@ class PokeBattle_Move
     end
 
     def flatDamageReductions(finalCalculatedDamage,user,target,aiCheck = false)
-        if target.shouldAbilityApply?(:DRAGONSCALES,aiCheck) && !@battle.moldBreaker
+        if target.shouldAbilityApply?(:DRAGONSBLOOD,aiCheck) && !@battle.moldBreaker
             finalCalculatedDamage -= target.level
-            target.aiLearnsAbility(:DRAGONSCALES) unless aiCheck
+            target.aiLearnsAbility(:DRAGONSBLOOD) unless aiCheck
         end
 
         if @battle.field.effectActive?(:WillfulRoom)

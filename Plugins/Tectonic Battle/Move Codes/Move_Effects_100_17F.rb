@@ -283,7 +283,7 @@ class PokeBattle_Move_10D < PokeBattle_Move
 end
 
 #===============================================================================
-# Burns target if target is a foe, or raises target's Speed by 4 steps an ally. (Mount's Judgement)
+# Burns target if target is a foe, or raises target's Speed by 4 steps an ally. (Destrier's Whim)
 #===============================================================================
 class PokeBattle_Move_10E < PokeBattle_Move
     def pbOnStartUse(user, targets)
@@ -916,12 +916,12 @@ end
 
 #===============================================================================
 # For 5 rounds, causes SE damage to be 25% higher, and NVE damage to be 25% lower.
-# (Quality Room)
+# (Polarized Room)
 #===============================================================================
 class PokeBattle_Move_124 < PokeBattle_RoomMove
     def initialize(battle, move)
         super
-        @roomEffect = :QualityRoom
+        @roomEffect = :PolarizedRoom
     end
 end
 
@@ -1049,19 +1049,19 @@ class PokeBattle_Move_129 < PokeBattle_PartyAttackMove
 end
 
 #===============================================================================
-# For 5 rounds, lowers power of attacks with 100+ BP against the user's side. (Polarized Field)
+# For 5 rounds, lowers power of attacks with 100+ BP against the user's side. (Repulsion Field)
 #===============================================================================
 class PokeBattle_Move_12A < PokeBattle_Move
     def pbMoveFailed?(user, _targets, show_message)
-        if user.pbOwnSide.effectActive?(:PolarizedField)
-            @battle.pbDisplay(_INTL("But it failed, since Polarized Field is already active!")) if show_message
+        if user.pbOwnSide.effectActive?(:RepulsionField)
+            @battle.pbDisplay(_INTL("But it failed, since Repulsion Field is already active!")) if show_message
             return true
         end
         return false
     end
 
     def pbEffectGeneral(user)
-        user.pbOwnSide.applyEffect(:PolarizedField, user.getScreenDuration)
+        user.pbOwnSide.applyEffect(:RepulsionField, user.getScreenDuration)
     end
 
     def getEffectScore(user, _target)
@@ -1161,7 +1161,7 @@ class PokeBattle_Move_12D < PokeBattle_ForetoldMove
     def pbDisplayUseMessage(user, targets)
         super
         if @battle.futureSight
-            @battle.pbDisplay(_INTL("It's a ball of pure #{GameData::Type.get(@calcType).name}!"))
+            @battle.pbDisplay(_INTL("It's an explosion of pure #{GameData::Type.get(@calcType).name}!"))
         end
     end
 end
@@ -1282,7 +1282,7 @@ class PokeBattle_Move_131 < PokeBattle_Move
 end
 
 #===============================================================================
-# Deals 20 extra BP per fainted party member. (Channel Spirits)
+# Deals 20 extra BP per fainted party member. (From Beyond)
 #===============================================================================
 class PokeBattle_Move_132 < PokeBattle_Move
     def pbBaseDamage(baseDmg, user, target)
@@ -1346,12 +1346,12 @@ class PokeBattle_Move_134 < PokeBattle_Move_0C2
 end
 
 #===============================================================================
-# Gives an ally an extra move this turn. (Primal Vigor)
+# Gives an ally an extra move this turn. (GreaterGlories)
 #===============================================================================
 class PokeBattle_Move_135 < PokeBattle_HelpingMove
     def initialize(battle, move)
         super
-        @helpingEffect = :PrimalVigor
+        @helpingEffect = :GreaterGlories
     end
 
     def pbFailsAgainstTarget?(_user, target, show_message)
@@ -1390,18 +1390,18 @@ class PokeBattle_Move_136 < PokeBattle_NumbMove
 end
 
 #===============================================================================
-# Heals every active battler by 1/8th of their HP for the next 5 turns. (Herbal Patch)
+# Heals every active battler by 1/8th of their HP for the next 5 turns. (Floral Gramarye)
 #===============================================================================
 class PokeBattle_Move_137 < PokeBattle_Move
     def pbEffectGeneral(_user)
-        @battle.field.applyEffect(:HerbalPatch, 5) unless @battle.field.effectActive?(:HerbalPatch)
+        @battle.field.applyEffect(:FloralGramarye, 5) unless @battle.field.effectActive?(:FloralGramarye)
     end
 
     def pbMoveFailed?(_user, _targets, show_message)
         return false if damagingMove?
-        if @battle.field.effectActive?(:HerbalPatch)
+        if @battle.field.effectActive?(:FloralGramarye)
             if show_message
-                @battle.pbDisplay(_INTL("But it failed, since the field is already shrouded in Grey Mist!"))
+                @battle.pbDisplay(_INTL("But it failed, since the field is already covered in flowers!"))
             end
             return true
         end

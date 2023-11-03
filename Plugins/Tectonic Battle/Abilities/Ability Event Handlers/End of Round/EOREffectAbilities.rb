@@ -102,16 +102,16 @@ BattleHandlers::EOREffectAbility.add(:LUXURYTASTE,
   }
 )
 
-BattleHandlers::EOREffectAbility.add(:WARMTHCYCLE,
+BattleHandlers::EOREffectAbility.add(:IGNITIONCYCLE,
   proc { |ability, battler, battle|
       battle.pbShowAbilitySplash(battler, ability)
       if !battler.statStepAtMax?(:SPEED)
           if battler.tryRaiseStat(:SPEED, battler, increment: 3)
               battler.applyFractionalDamage(1.0 / 8.0, false)
-              battle.pbDisplay(_INTL("{1} warmed up!", battler.pbThis))
+              battle.pbDisplay(_INTL("{1}'s inner fire flared up!", battler.pbThis))
           end
       else
-          battle.pbDisplay(_INTL("{1} vents its accumulated heat!", battler.pbThis))
+          battle.pbDisplay(_INTL("{1} finally cooled off!", battler.pbThis))
           battler.steps[:SPEED] = 0
           battler.pbRecoverHP(battler.totalhp - battler.hp)
       end
@@ -128,7 +128,7 @@ BattleHandlers::EOREffectAbility.add(:EXTREMEPOWER,
   }
 )
 
-BattleHandlers::EOREffectAbility.copy(:EXTREMEPOWER,:EXTREMEENERGY,:RUSHED,:BURDENED)
+BattleHandlers::EOREffectAbility.copy(:EXTREMEPOWER,:EXTREMEVOLTAGE,:LIVEFAST,:BURDENED)
 
 BattleHandlers::EOREffectAbility.add(:TENDERIZE,
   proc { |ability, battler, _battle|
@@ -156,7 +156,7 @@ BattleHandlers::EOREffectAbility.add(:VITALRHYTHM,
     }
 )
 
-BattleHandlers::EOREffectAbility.add(:GROWUP,
+BattleHandlers::EOREffectAbility.add(:FLOURISHING,
   proc { |ability, battler, battle|
       # A Pokémon's turnCount is 0 if it became active after the beginning of a
       # round
@@ -185,7 +185,7 @@ BattleHandlers::EOREffectAbility.add(:GROTESQUEVITALS,
   }
 )
 
-BattleHandlers::EOREffectAbility.add(:WELLSUPPLIED,
+BattleHandlers::EOREffectAbility.add(:SELFSUFFICIENT,
   proc { |ability, battler, _battle|
       battler.applyFractionalHealing(EOT_ABILITY_HEALING_FRACTION, ability: ability)
   }
@@ -226,15 +226,15 @@ BattleHandlers::EOREffectAbility.add(:LIFELINE,
   }
 )
 
-PAIN_PRESENCE_DAMAGE_FRACTION = 1.0/12.0
+NOXIOUS_DAMAGE_FRACTION = 1.0/12.0
 
-BattleHandlers::EOREffectAbility.add(:PAINPRESENCE,
+BattleHandlers::EOREffectAbility.add(:NOXIOUS,
   proc { |ability, battler, battle|
     battler.showMyAbilitySplash(ability)
     battler.eachOther do |b|
       if b.takesIndirectDamage?(true)
-        battle.pbDisplay(_INTL("{1} is pained!", b.pbThis))
-        b.applyFractionalDamage(PAIN_PRESENCE_DAMAGE_FRACTION, false)
+        battle.pbDisplay(_INTL("{1} is hurt by the noxious presence!", b.pbThis))
+        b.applyFractionalDamage(NOXIOUS_DAMAGE_FRACTION, false)
       end
     end
     battler.hideMyAbilitySplash

@@ -96,15 +96,15 @@ class PokeBattle_Battler
         damage *= 0.66 if hasTribeBonus?(:ANIMATED)
         damage = damage.round
         damage = 1 if damage < 1
-        if !cushionRecoil && hasActiveAbility?(:ALLYCUSHION)
-            showMyAbilitySplash(:ALLYCUSHION)
-            @battle.pbDisplay(_INTL("{1} looks for an ally to help in avoiding the recoil!", pbThis))
+        if !cushionRecoil && hasActiveAbility?(:KICKBACK)
+            showMyAbilitySplash(:KICKBACK)
+            @battle.pbDisplay(_INTL("{1} is trying to use an ally to absorb the recoil!", pbThis))
 
             # Can be replaced
             if @battle.pbCanSwitch?(@index) && @battle.pbCanChooseNonActive?(@index)
-                applyEffect(:AllyCushionSwap)
-                position.applyEffect(:AllyCushion, @pokemonIndex)
-                position.applyEffect(:AllyCushionAmount, damage)
+                applyEffect(:KickbackSwap)
+                position.applyEffect(:Kickback, @pokemonIndex)
+                position.applyEffect(:KickbackAmount, damage)
                 hideMyAbilitySplash
                 return
             else
@@ -181,11 +181,11 @@ class PokeBattle_Battler
             pbItemHPHealCheck
             pbAbilitiesOnDamageTaken(oldHP)
             pbFaint if fainted?
-        elsif canHeal?(hasActiveAbility?(:ENGORGE))
+        elsif canHeal?(hasActiveAbility?(:GORGING))
             drainAmount = (drainAmount * 1.3).floor if hasActiveItem?(:BIGROOT)
-            pbRecoverHP(drainAmount, true, true, false, canOverheal: hasActiveAbility?(:ENGORGE))
+            pbRecoverHP(drainAmount, true, true, false, canOverheal: hasActiveAbility?(:GORGING))
             if overhealed?
-                showMyAbilitySplash(:ENGORGE)
+                showMyAbilitySplash(:GORGING)
                 @battle.pbDisplay(_INTL("{1} is loaded up with fluids!", pbThis))
                 hideMyAbilitySplash
             end
@@ -208,7 +208,7 @@ class PokeBattle_Battler
                 totalDamageDealt += damage
             end
         end
-        return if totalDamageDealt <= 0 || !canHeal?(hasActiveAbility?(:ENGORGE))
+        return if totalDamageDealt <= 0 || !canHeal?(hasActiveAbility?(:GORGING))
         showMyAbilitySplash(ability) if ability
         drainAmount = (totalDamageDealt * ratio).round
         drainAmount = 1 if drainAmount < 1
@@ -398,7 +398,7 @@ class PokeBattle_Battler
             disableEffect(:Type3)
         end
         disableEffect(:BurnUp)
-        disableEffect(:ColdConversion)
+        disableEffect(:Sublimate)
         disableEffect(:Roost)
         if hasActiveAbility?(:UNIDENTIFIED)
             showMyAbilitySplash(:UNIDENTIFIED)

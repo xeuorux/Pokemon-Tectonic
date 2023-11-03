@@ -2102,7 +2102,7 @@ class PokeBattle_Move_0CA < PokeBattle_TwoTurnMove
     end
 
     def canBecomeReaper?(user)
-        return @battle.sandy? && user.species == :GARCHOMP && user.hasActiveAbility?(:DUNEPREDATOR) && user.form == 0
+        return @battle.sandy? && user.species == :GARCHOMP && user.hasActiveAbility?(:SANDSMACABRE) && user.form == 0
     end
 
     def pbAttackingTurnMessage(user, targets)
@@ -2286,8 +2286,12 @@ class PokeBattle_Move_0CF < PokeBattle_Move
             msg = _INTL("{1} became trapped by sand!", target.pbThis)
         when :WHIRLPOOL, :MAELSTROM
             msg = _INTL("{1} became trapped in the vortex!", target.pbThis)
-        when :WRAP, :KRAKENCLUTCHES
+        when :WRAP
             msg = _INTL("{1} was wrapped by {2}!", target.pbThis, user.pbThis(true))
+        when :SHATTERVISE
+            msg = _INTL("{1} was caught in {2}'s vises!", target.pbThis, user.pbThis(true))
+        when :DRAGBENEATH
+            msg = _INTL("{1} was dragged beneath the waves!", target.pbThis)
         end
         @battle.pbDisplay(msg)
     end
@@ -2703,13 +2707,13 @@ class PokeBattle_Move_0E0 < PokeBattle_Move
             end
             user.pbReduceHP(reduction, false)
             @battle.pbHideAbilitySplash(user) if unbreakable
-            if user.hasActiveAbility?(:SELFMENDING,true)
-                @battle.pbShowAbilitySplash(user, :SELFMENDING)
+            if user.hasActiveAbility?(:PERENNIALPAYLOAD,true)
+                @battle.pbShowAbilitySplash(user, :PERENNIALPAYLOAD)
                 @battle.pbDisplay(_INTL("{1} will revive in 3 turns!", user.pbThis))
-                if user.pbOwnSide.effectActive?(:SelfMending)
-                    user.pbOwnSide.effects[:SelfMending][user.pokemonIndex] = 4
+                if user.pbOwnSide.effectActive?(:PerennialPayload)
+                    user.pbOwnSide.effects[:PerennialPayload][user.pokemonIndex] = 4
                 else
-                    user.pbOwnSide.effects[:SelfMending] = {
+                    user.pbOwnSide.effects[:PerennialPayload] = {
                         user.pokemonIndex => 4,
                     }
                 end
@@ -2722,7 +2726,7 @@ class PokeBattle_Move_0E0 < PokeBattle_Move
     def getEffectScore(user, target)
         score = getSelfKOMoveScore(user, target)
         score += 30 if user.bunkeringDown?(true)
-        score += 30 if user.hasActiveAbilityAI?(:SELFMENDING)
+        score += 30 if user.hasActiveAbilityAI?(:PERENNIALPAYLOAD)
         if user.hasActiveAbility?(:SPINESPLODE)
             currentSpikeCount = user.pbOpposingSide.countEffect(:Spikes)
             spikesMax = GameData::BattleEffect.get(:Spikes).maximum
@@ -3666,7 +3670,7 @@ class PokeBattle_Move_0F8 < PokeBattle_Move
 end
 
 #===============================================================================
-# Heals user by an amount depending on the weather. (Power Nap)
+# Heals user by an amount depending on the weather. (Sweet Selene)
 #===============================================================================
 class PokeBattle_Move_0F9 < PokeBattle_HealingMove
     def healRatio(_user)

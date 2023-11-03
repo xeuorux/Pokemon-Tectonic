@@ -148,13 +148,13 @@ user.pbThis(true)))
             pbEffectsAfterMove2(user, targets, move, numHits, switchedBattlers)
         end
         # Ally Cushion
-        if user.effectActive?(:AllyCushionSwap) && !switchedBattlers.include?(user.index)
+        if user.effectActive?(:KickbackSwap) && !switchedBattlers.include?(user.index)
             if @battle.triggeredSwitchOut(user.index)
                 user.pbEffectsOnSwitchIn(true)
                 switchedBattlers.push(user.index)
             else
-                user.disableEffect(:AllyCushionSwap)
-                user.position.disableEffect(:AllyCushion)
+                user.disableEffect(:KickbackSwap)
+                user.position.disableEffect(:Kickback)
             end
         end
         # Some move effects that need to happen here, i.e. U-turn/Volt Switch

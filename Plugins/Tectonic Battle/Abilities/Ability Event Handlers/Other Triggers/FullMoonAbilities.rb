@@ -1,6 +1,6 @@
 # None!
 
-BattleHandlers::FullMoonAbility.add(:WEREWOLF,
+BattleHandlers::FullMoonAbility.add(:LYCANTHROPE,
     proc { |ability, battler, battle|
         next unless battler.species == :LYCANROC
         next unless battler.form == 0

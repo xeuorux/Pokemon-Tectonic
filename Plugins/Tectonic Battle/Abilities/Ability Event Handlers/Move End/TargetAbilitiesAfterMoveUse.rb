@@ -15,14 +15,14 @@ BattleHandlers::TargetAbilityAfterMoveUse.add(:COLORCHANGE,
   }
 )
 
-BattleHandlers::TargetAbilityAfterMoveUse.add(:MORPHINGGUARD,
+BattleHandlers::TargetAbilityAfterMoveUse.add(:INDESTRUCTIBLE,
   proc { |ability, target, _user, move, _switched, battle|
       next unless move.damagingMove?
       next if target.damageState.calcDamage == 0 || target.damageState.substitute
       next if !move.calcType || GameData::Type.get(move.calcType).pseudo_type
       battle.pbShowAbilitySplash(target, ability)
-      target.disableEffect(:MorphingGuard)
-      target.applyEffect(:MorphingGuard,move.calcType)
+      target.disableEffect(:Indestructible)
+      target.applyEffect(:Indestructible,move.calcType)
       battle.pbHideAbilitySplash(target)
   }
 )
@@ -72,7 +72,7 @@ BattleHandlers::TargetAbilityAfterMoveUse.add(:EXOADAPTION,
   }
 )
 
-BattleHandlers::TargetAbilityAfterMoveUse.add(:PLASMABALL,
+BattleHandlers::TargetAbilityAfterMoveUse.add(:PLASMAGLOBE,
   proc { |ability, target, user, move, _switched, battle|
       next unless move.damagingMove?
       next if target.damageState.unaffected

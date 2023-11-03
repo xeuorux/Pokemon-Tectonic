@@ -570,7 +570,7 @@ class PokeBattle_TwoTurnMove < PokeBattle_Move
     def pbAttackingTurnMessage(user, targets); end
 
     def pbChargingTurnEffect(user, target)
-        # Skull Bash/Sky Drop/Zephyr Wing are the only two-turn moves with an effect here, and
+        # Skull Bash/Sky Drop/Infinite Wing are the only two-turn moves with an effect here, and
         # the latter just records the target is being Sky Dropped
     end
 
@@ -1336,7 +1336,7 @@ class PokeBattle_ForetoldMove < PokeBattle_Move
         if @id == :DOOMDESIRE
             @battle.pbDisplay(_INTL("{1} chose Doom Desire as its destiny!", user.pbThis))
         elsif @id == :ARTILLERIZE
-            @battle.pbDisplay(_INTL("{1} shot a missile high in the air!", user.pbThis))
+            @battle.pbDisplay(_INTL("{1} fires a shell high in the air!", user.pbThis))
         else
             @battle.pbDisplay(_INTL("{1} foresaw an attack!", user.pbThis))
         end

@@ -474,12 +474,12 @@ class PokeBattle_Battler
                 hideMyAbilitySplash
             end
             return true
-        elsif @battle.pbCheckSameSideAbility(:HEARTENINGAROMA, @index)
+        elsif @battle.pbCheckSameSideAbility(:EFFLORESCENT, @index)
             if showMessages
-                aromaHolder = @battle.pbCheckSameSideAbility(:HEARTENINGAROMA, @index)
-                @battle.pbShowAbilitySplash(aromaHolder, :HEARTENINGAROMA, true)
+                aromaHolder = @battle.pbCheckSameSideAbility(:EFFLORESCENT, @index)
+                @battle.pbShowAbilitySplash(aromaHolder, :EFFLORESCENT, true)
                 @battle.pbDisplay(_INTL("{1}'s {2} prevented {3}'s {4} from working!",
-                    aromaHolder.pbThis, getAbilityName(:HEARTENINGAROMA), user.pbThis(true), getAbilityName(ability)))
+                    aromaHolder.pbThis, getAbilityName(:EFFLORESCENT), user.pbThis(true), getAbilityName(ability)))
                 @battle.pbHideAbilitySplash(aromaHolder)
             end
             return true

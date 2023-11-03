@@ -26,7 +26,7 @@ BattleHandlers::MoveBlockingAbility.add(:DESICCATE,
     }
 )
 
-BattleHandlers::MoveBlockingAbility.add(:LUNARCLEANSING,
+BattleHandlers::MoveBlockingAbility.add(:DECONTAMINATION,
     proc { |ability, _bearer, _user, _targets, move, battle|
         next [:BUG,:POISON].include?(move.calcType) && battle.moonGlowing?
     }

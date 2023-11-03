@@ -29,7 +29,7 @@
 28,CRUNCH,Crunch,5E8,90,DARK,Physical,100,15,20,NearOther,0,CanProtect;CanMirrorMove;Biting,"The user crunches up the target with sharp fangs. It has a 20% chance to lower Defense.",
 29,DARKPULSE,Dark Pulse,00F,80,DARK,Special,100,12,40,NearOther,0,CanProtect;CanMirrorMove;Pulse,"The user releases an aura imbued with dark thoughts. It has a 40% chance to flinch the target.",
 30,THROATCHOP,Throat Chop,16C,80,DARK,Physical,100,12,100,NearOther,0,CanProtect;CanMirrorMove,"The user attacks the target's throat. The target cannot use sound-based moves for two turns.",
-31,DARKSLASH,Dark Slash,000,70,DARK,Physical,100,12,0,NearOther,0,CanProtect;CanMirrorMove;HighCriticalHitRate;Blade,"The user slashes the target the instant an opportunity arises. Critical hits twice as often.",NIGHTSLASH
+31,NIGHTSLASH,Night Slash,000,70,DARK,Physical,100,12,0,NearOther,0,CanProtect;CanMirrorMove;HighCriticalHitRate;Blade,"The user slashes the target the instant an opportunity arises. Critical hits twice as often.",NIGHTSLASH
 32,SUCKERPUNCH,Sucker Punch,116,70,DARK,Physical,100,5,0,NearOther,1,CanProtect;CanMirrorMove,"This move enables the user to attack first. It fails if the target is not readying an attack, however.",
 33,KNOCKOFF,Knock Off,0F0,65,DARK,Physical,100,15,0,NearOther,0,CanProtect;CanMirrorMove,"The user slaps the target to knock off their item. If they have an item, this deals 50% more damage.",
 34,ASSURANCE,Assurance,082,60,DARK,Physical,100,10,0,NearOther,0,CanProtect;CanMirrorMove,"If the target has already taken some damage in the same turn, this attack's power is doubled.",
@@ -605,4 +605,4 @@
 604,HYDROCANNON,Hydro Cannon,0C2,170,WATER,Special,100,5,0,NearOther,0,CanProtect;CanMirrorMove,"The target is hit with a watery blast. The user must rest on the next turn, however.",
 605,FRENZYPLANT,Frenzy Plant,0C2,170,GRASS,Special,100,5,0,NearOther,0,CanProtect;CanMirrorMove,"The user slams the target with an enormous tree. The user can't move on the next turn.",
 606,BLASTBURN,Blast Burn,0C2,170,FIRE,Special,100,5,0,NearOther,0,CanProtect;CanMirrorMove,"The target is razed by a fiery explosion. The user must rest on the next turn, however.",
-607,TWINBEAM,Twin Beam,0BD,50,NORMAL,Special,100,12,0,NearOther,0,CanProtect;CanMirrorMove,"The user shoots mystical beams from its eyes to inflict damage. The target is hit twice in a row.",WHITERAY
+607,TWINBEAM,Twin Beam,0BD,50,NORMAL,Special,100,12,0,NearOther,0,CanProtect;CanMirrorMove,"The user shoots mystical beams from its eyes to inflict damage. The target is hit twice in a row.",PARTICLEPULSE

@@ -29,7 +29,7 @@ class PokeBattle_Battler
         # Burn Up erases the Fire-type.
         ret.delete(:FIRE) if effectActive?(:BurnUp)
         # Cold Conversion erases the Ice-type.
-        ret.delete(:ICE) if effectActive?(:ColdConversion)
+        ret.delete(:ICE) if effectActive?(:Sublimate)
         # Dry Heat erases the Water-type.
         ret.delete(:WATER) if effectActive?(:DryHeat)
         # Roost erases the Flying-type. If there are no types left, adds the Normal-
@@ -168,9 +168,9 @@ class PokeBattle_Battler
             :SHIELDSDOWN,
             :STANCECHANGE,
             :ZENMODE,
-            :SEALORD,
-            :DUNEPREDATOR,
-            :GROWUP,
+            :CITYRAZER,
+            :SANDSMACABRE,
+            :FLOURISHING,
             :REAPWHATYOUSOW,
             # Appearance-changing abilities
             :ILLUSION,
@@ -210,7 +210,7 @@ class PokeBattle_Battler
         # Disallow certain items as 2nd
         if itemCount == 1 && item
             return false if firstItem == item
-            return true if hasActiveAbility?(:KLUMSYKINESIS)
+            return true if hasActiveAbility?(:CLUMSYKINESIS)
             itemData = GameData::Item.get(item)
             if hasActiveAbility?(:ALLTHATGLITTERS)
                 return false if !firstItemData.is_gem? || itemData.is_gem?
@@ -582,7 +582,7 @@ class PokeBattle_Battler
     end
 
     def hasHonorAura?
-        return hasActiveAbility?([:HONORAURA])
+        return hasActiveAbility?([:HONORABLE])
     end
 
     def isLastAlive?
@@ -626,7 +626,7 @@ class PokeBattle_Battler
         ret = baseDuration
         ret += 3 if hasActiveItem?(:LIGHTCLAY)
         ret += 6 if hasActiveItem?(:BRIGHTCLAY)
-        ret *= 2 if hasActiveAbility?(:RESONANCE) && @battle.eclipsed?
+        ret *= 2 if hasActiveAbility?(:PLANARVEIL) && @battle.eclipsed?
         return ret
     end
 
@@ -818,7 +818,7 @@ class PokeBattle_Battler
 
     def ignoreScreens?(checkingForAI)
         return true if shouldAbilityApply?(:INFILTRATOR,checkingForAI)
-        return true if shouldAbilityApply?(:CLEAVING,checkingForAI)
+        return true if shouldAbilityApply?(:RAMPROW,checkingForAI)
         return false
     end
 
@@ -873,8 +873,8 @@ class PokeBattle_Battler
     end
 
     def healingReversed?(showMessages = false)
-        if effectActive?(:NerveBreak)
-            @battle.pbDisplay(_INTL("{1}'s healing is reversed because of their broken nerves!", pbThis)) if showMessages
+        if effectActive?(:HealingReversed)
+            @battle.pbDisplay(_INTL("{1}'s healing is reversed!", pbThis)) if showMessages
             return true
         end
         if hasActiveAbility?(:AUTUMNAL)

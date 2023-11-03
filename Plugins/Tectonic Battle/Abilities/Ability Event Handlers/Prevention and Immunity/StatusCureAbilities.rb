@@ -104,7 +104,7 @@ BattleHandlers::StatusCureAbility.add(:STABILITY,
 )
 
 
-BattleHandlers::StatusCureAbility.add(:SEASURVIVOR,
+BattleHandlers::StatusCureAbility.add(:LEVIATHAN,
     proc { |ability, battler|
         if battler.hasStatusNoTrigger(:BURN)
             battler.battle.pbShowAbilitySplash(battler, ability)

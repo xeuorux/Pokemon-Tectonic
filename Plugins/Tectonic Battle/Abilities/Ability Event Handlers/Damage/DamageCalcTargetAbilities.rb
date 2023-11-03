@@ -18,7 +18,7 @@ BattleHandlers::DamageCalcTargetAbility.add(:SHIELDWALL,
   }
 )
 
-BattleHandlers::DamageCalcTargetAbility.add(:DULL,
+BattleHandlers::DamageCalcTargetAbility.add(:UNFAZED,
   proc { |ability, user, target, move, mults, _baseDmg, type, aiCheck|
     if Effectiveness.normal?(typeModToCheck(user.battle, type, user, target, move, aiCheck))
       mults[:final_damage_multiplier] *= 0.8
@@ -81,7 +81,7 @@ BattleHandlers::DamageCalcTargetAbility.add(:MULTISCALE,
   }
 )
 
-BattleHandlers::DamageCalcTargetAbility.copy(:MULTISCALE,:ALOOF,:SHADOWSHIELD)
+BattleHandlers::DamageCalcTargetAbility.copy(:MULTISCALE,:DOMINEERING,:SHADOWSHIELD)
 
 BattleHandlers::DamageCalcTargetAbility.add(:THICKFAT,
   proc { |ability, user, target, _move, mults, _baseDmg, type, aiCheck|
@@ -101,7 +101,7 @@ BattleHandlers::DamageCalcTargetAbility.add(:UNAFRAID,
   }
 )
 
-BattleHandlers::DamageCalcTargetAbility.add(:SUPERSTITIOUS,
+BattleHandlers::DamageCalcTargetAbility.add(:EXORCIST,
   proc { |ability, user, target, _move, mults, _baseDmg, type, aiCheck|
     if %i[GHOST PSYCHIC].include?(type)
       mults[:base_damage_multiplier] /= 2
@@ -155,7 +155,7 @@ BattleHandlers::DamageCalcTargetAbility.add(:STEAMPOWER,
   }
 )
 
-BattleHandlers::DamageCalcTargetAbility.add(:ACCLIMATIZE,
+BattleHandlers::DamageCalcTargetAbility.add(:WEATHERED,
   proc { |ability, user, target, _move, mults, _baseDmg, type, aiCheck|
     if user.battle.pbWeather != :None
       mults[:final_damage_multiplier] *= 0.80
@@ -256,7 +256,7 @@ BattleHandlers::DamageCalcTargetAbility.add(:LIMINAL,
   }
 )
 
-BattleHandlers::DamageCalcTargetAbility.add(:PLASMABALL,
+BattleHandlers::DamageCalcTargetAbility.add(:PLASMAGLOBE,
   proc { |ability, user, target, _move, mults, _baseDmg, type, aiCheck|
       mults[:final_damage_multiplier] *= 1.5
       target.aiLearnsAbility(ability) unless aiCheck
@@ -281,7 +281,7 @@ BattleHandlers::DamageCalcTargetAbility.add(:QUARRELSOME,
   }
 )
 
-BattleHandlers::DamageCalcTargetAbility.add(:RUSTYANCHOR,
+BattleHandlers::DamageCalcTargetAbility.add(:RUSTWRACK,
   proc { |ability, user, target, _move, mults, _baseDmg, type, aiCheck|
       mults[:final_damage_multiplier] *= 1.15
       target.aiLearnsAbility(ability) unless aiCheck

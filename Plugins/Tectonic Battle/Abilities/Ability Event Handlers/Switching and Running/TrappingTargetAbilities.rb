@@ -28,7 +28,7 @@ BattleHandlers::TrappingTargetAbility.add(:MAGNETTRAP,
   }
 )
 
-BattleHandlers::TrappingTargetAbility.add(:TENDRILTRAP,
+BattleHandlers::TrappingTargetAbility.add(:NOHOPE,
   proc { |ability, switcher, bearer, _battle|
       next true if bearer.pbAttack > switcher.pbAttack
   }

@@ -75,7 +75,7 @@ GameData::BattleEffect.register_effect(:Battler, {
     :info_displayed => false,
     :avatars_purge => true,
     :apply_proc => proc do |battle, battler, _value|
-        battle.pbDisplay(_INTL("{1} burned itself out!", battler.pbThis))
+        battle.pbDisplay(_INTL("{1} lost its Fire-Type!", battler.pbThis))
         battle.scene.pbRefresh
     end,
 })
@@ -1464,12 +1464,12 @@ GameData::BattleEffect.register_effect(:Battler, {
 })
 
 GameData::BattleEffect.register_effect(:Battler, {
-    :id => :ColdConversion,
-    :real_name => "Cold Converted",
+    :id => :Sublimate,
+    :real_name => "Sublimate",
     :info_displayed => false,
     :avatars_purge => true,
     :apply_proc => proc do |battle, battler, _value|
-        battle.pbDisplay(_INTL("{1} lost its cold!", battler.pbThis))
+        battle.pbDisplay(_INTL("{1} lost its Ice-type!", battler.pbThis))
         battle.scene.pbRefresh
     end,
 })
@@ -1541,11 +1541,11 @@ GameData::BattleEffect.register_effect(:Battler, {
 })
 
 GameData::BattleEffect.register_effect(:Battler, {
-    :id => :NerveBreak,
+    :id => :HealingReversed,
     :real_name => "Healing Reversed",
     :resets_eor => true,
     :apply_proc => proc do |battle, battler, _value|
-        battle.pbDisplay(_INTL("{1}'s nerves are strained!", battler.pbThis))
+        battle.pbDisplay(_INTL("{1}'s healing is reversed this turn!", battler.pbThis))
     end,
 })
 
@@ -1629,7 +1629,7 @@ GameData::BattleEffect.register_effect(:Battler, {
 })
 
 GameData::BattleEffect.register_effect(:Battler, {
-    :id => :PrimalVigor,
+    :id => :GreaterGlories,
     :real_name => "Extra Turn",
     :resets_eor => true,
     :apply_proc => proc do |battle, battler, value|
@@ -1708,14 +1708,14 @@ GameData::BattleEffect.register_effect(:Battler, {
 })
 
 GameData::BattleEffect.register_effect(:Battler, {
-    :id => :RammingSpeed,
-    :real_name => "Ramming Speed",
+    :id => :TrenchCarver,
+    :real_name => "Trench Carver",
     :resets_eor	=> true,
 })
 
 GameData::BattleEffect.register_effect(:Battler, {
-    :id => :QuickKicks,
-    :real_name => "Quick Kicks",
+    :id => :SwiftStomps,
+    :real_name => "Swift Stomps",
     :resets_eor	=> true,
 })
 
@@ -1787,8 +1787,8 @@ battler.pbThis(true)))
 })
 
 GameData::BattleEffect.register_effect(:Battler, {
-    :id => :MorphingGuard,
-    :real_name => "Morphing Guard",
+    :id => :Indestructible,
+    :real_name => "Indestructible",
     :type => :Type,
     :apply_proc => proc do |battle, battler, value|
         battle.pbDisplay(_INTL("{1} is now immune to #{value}-type!", battler.pbThis(true)))
@@ -1796,7 +1796,7 @@ GameData::BattleEffect.register_effect(:Battler, {
 })
 
 GameData::BattleEffect.register_effect(:Battler, {
-    :id => :AllyCushionSwap,
+    :id => :KickbackSwap,
     :real_name => "Swapping to Cushion",
 })
 
@@ -1845,8 +1845,8 @@ GameData::BattleEffect.register_effect(:Battler, {
 })
 
 GameData::BattleEffect.register_effect(:Battler, {
-    :id => :ShieldShell,
-    :real_name => "Shield Shell",
+    :id => :ShiningShell,
+    :real_name => "Shining Shell",
     :resets_eor	=> true,
     :protection_info => {
         :hit_proc => proc do |user, _target, move, _battle|
@@ -1998,20 +1998,20 @@ GameData::BattleEffect.register_effect(:Battler, {
 })
 
 GameData::BattleEffect.register_effect(:Battler, {
-    :id => :PainDelay,
-    :real_name => "Pain Delay",
+    :id => :DelayedReaction,
+    :real_name => "Delayed Reaction",
     :type => :Array,
     :eor_proc => proc do |battle, battler, value|
         damageToApply = 0
-        value.each do |painDelayEntry|
-            painDelayEntry[0] -= 1
-            if painDelayEntry[0] == 0
-                damageToApply += painDelayEntry[1]
+        value.each do |delayedReactionEntry|
+            delayedReactionEntry[0] -= 1
+            if delayedReactionEntry[0] == 0
+                damageToApply += delayedReactionEntry[1]
             end
         end
         if damageToApply > 0
-            battle.pbShowAbilitySplash(battler, :PAINDELAY)
-            battle.pbDisplay(_INTL("The pain caught up to {1}!", battler.pbThis(true)))
+            battle.pbShowAbilitySplash(battler, :DELAYEDREACTION)
+            battle.pbDisplay(_INTL("{1} realized it had been attacked!", battler.pbThis(true)))
             oldHP = battler.hp
             battler.damageState.displayedDamage = damageToApply
             damageToApply = battler.hp if damageToApply > battler.hp

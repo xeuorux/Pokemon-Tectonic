@@ -267,7 +267,7 @@ class PokeBattle_Move_58D < PokeBattle_Move_03E
 end
 
 #===============================================================================
-# Returns user to party for swap and lays a layer of spikes. (Caltrop Style)
+# Returns user to party for swap and lays a layer of spikes. (Caltrop Arts)
 #===============================================================================
 class PokeBattle_Move_58E < PokeBattle_Move_0EE
     def pbMoveFailed?(user, _targets, show_message)
@@ -383,7 +383,7 @@ class PokeBattle_Move_593 < PokeBattle_ProtectMove
 end
 
 #===============================================================================
-# Power doubles if has the Defense Curl effect, which it consumes. (Unfurl)
+# Power doubles if has the Defense Curl effect, which it consumes. (Rough & Tumble)
 #===============================================================================
 class PokeBattle_Move_594 < PokeBattle_Move
     def pbBaseDamage(baseDmg, user, _target)
@@ -779,7 +779,7 @@ class PokeBattle_Move_5A8 < PokeBattle_Move
 end
 
 #===============================================================================
-# Power increases by 20 for each consecutive use. User heals by 50% of damage dealt. (Hearth Rhythm)
+# Power increases by 20 for each consecutive use. User heals by 50% of damage dealt. (Heart Rhythm)
 #===============================================================================
 class PokeBattle_Move_5A9 < PokeBattle_SnowballingMove
     def initialize(battle, move)
@@ -915,7 +915,7 @@ end
 
 #===============================================================================
 # Raises Attack and Defense by 2 steps, and Crit Chance by 1.
-# (Martial Mastery)
+# (Art of War)
 #===============================================================================
 class PokeBattle_Move_5AD < PokeBattle_MultiStatUpMove
     def initialize(battle, move)
@@ -973,7 +973,7 @@ class PokeBattle_Move_5AF < PokeBattle_Move_0EF
 end
 
 #===============================================================================
-# Summons Moonglow for 8 turns. Raises the Attack of itself and all allies by 2 steps. (Moon Howling)
+# Summons Moonglow for 8 turns. Raises the Attack of itself and all allies by 2 steps. (Midnight Hunt)
 #===============================================================================
 class PokeBattle_Move_5B0 < PokeBattle_Move_530
     def pbMoveFailed?(user, _targets, show_message)
@@ -1070,7 +1070,7 @@ end
 
 #===============================================================================
 # Move deals double damage but heals the status condition every active Pokémon
-# if the target has a status condition (Purifying Flame)
+# if the target has a status condition (Impurity Blaze)
 #===============================================================================
 class PokeBattle_Move_5B6 < PokeBattle_Move
     def pbBaseDamage(baseDmg, _user, target)
@@ -1098,7 +1098,7 @@ end
 
 #===============================================================================
 # All stats raised by 2 steps. Fails if the attack was not used the turn after a foe fainted.
-# (Triumphant Dance)
+# (Foxtrot Finale)
 #===============================================================================
 class PokeBattle_Move_5B7 < PokeBattle_MultiStatUpMove
 	def initialize(battle, move)
@@ -1188,7 +1188,7 @@ end
 class PokeBattle_Move_5BB < PokeBattle_ProtectMove
     def initialize(battle, move)
         super
-        @effect = :ShieldShell
+        @effect = :ShiningShell
     end
 
     def getEffectScore(user, target)
@@ -1266,7 +1266,7 @@ end
 #===============================================================================
 # User's side is protected against moves that target multiple battlers this round.
 # This round, user becomes the target of attacks that have single targets.
-# (Golem Guard)
+# (Omnishelter)
 #===============================================================================
 class PokeBattle_Move_5BF < PokeBattle_ProtectMove
     def initialize(battle, move)

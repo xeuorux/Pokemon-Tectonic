@@ -14,13 +14,13 @@ SaveData.register_conversion(:move_renaming_0) do
   end
 end
 
-# SaveData.register_conversion(:move_renaming_0) do
-#   game_version '3.0.3'
-#   display_title '3.0.3 move renames'
-#   to_all do |save_data|
-#     renameAllSavedMovesInBatch(save_data,2)
-#   end
-# end
+SaveData.register_conversion(:move_renaming_0) do
+  game_version '3.0.4'
+  display_title '3.0.4 move renames'
+  to_all do |save_data|
+    renameAllSavedMovesInBatch(save_data,2)
+  end
+end
 
 def renameMovesOnPokemon(pokemon, renameHash)
   pokemon.moves.map! { |move|
