@@ -606,7 +606,7 @@ class PokeBattle_Move_633 < PokeBattle_Move_02E
     end
 end
 
-# Empowered Harmonize
+# Empowered Symbiosis
 class PokeBattle_Move_634 < PokeBattle_Move_555
     include EmpoweredMove
 
