@@ -1,0 +1,3 @@
+Name         = Tectonic Rogue
+Credits      = Zeu
+Requires	 = Tectonic Game Processing

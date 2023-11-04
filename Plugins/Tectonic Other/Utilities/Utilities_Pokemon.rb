@@ -112,8 +112,11 @@ def pbAddPokemon(pkmn, level = 1, see_form = true)
   end
   pkmn = randomizeSpecies(pkmn, false, true)
   pkmn = Pokemon.new(pkmn, level) if !pkmn.is_a?(Pokemon)
+  pkmn.level = getLevelCap if rogueModeActive?
   species_name = pkmn.speciesName
-  pbMessage(_INTL("{1} obtained {2}!\\me[Pkmn get]\\wtnp[80]\1", $Trainer.name, species_name))
+  obtainMessage = _INTL("{1} obtained {2}!", $Trainer.name, species_name)
+  obtainMessage += "\\me[Pkmn get]\\wtnp[80]\1" if $PokemonSystem.bgmvolume > 0
+  pbMessage(obtainMessage)
   pbNicknameAndStore(pkmn)
   $Trainer.pokedex.register(pkmn) if see_form
   return true

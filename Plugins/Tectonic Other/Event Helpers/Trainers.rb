@@ -144,6 +144,13 @@ def defeatDoubleTrainer(event1,event2)
 	setFollowerInactive(event2)
 end
 
+def defeatRogueTrainer
+	blackFadeOutIn() {
+		setMySwitch('A',true)
+		setFollowerGone
+	}
+end
+
 def rejectTooFewPokemon(dialogue,movePlayer=true)
 	if $Trainer.able_pokemon_count <= 1
 		dialogue = "Unable to start double battle with only 1 able Pokemon." unless dialogue

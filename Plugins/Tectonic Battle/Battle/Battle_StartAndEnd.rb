@@ -326,6 +326,8 @@ class PokeBattle_Battle
                 if trainerBattle? && @decision == 1 && !skipPerfecting
                     pbMessage(_INTL("\\me[Battle perfected]You perfected the fight!"))
                 end
+            elsif trainerBattle? && rogueModeActive?
+                $TectonicRogue.removeTrainerHealth(ableBeforeFight - $Trainer.able_pokemon_count) 
             end
             # Update each of the player's pokemon's battling streak
             if (trainerBattle? || bossBattle?) && HOT_STREAKS_ACTIVE

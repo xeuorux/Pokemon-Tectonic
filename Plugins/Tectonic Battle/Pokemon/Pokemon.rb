@@ -534,6 +534,35 @@ class Pokemon
       return ret
     end
 
+    def getPossibleAbilities
+      abilityList = getAbilityList
+      abil1 = nil
+      abil2 = nil
+      for abilityListEntry in abilityList
+        abil1 = abilityListEntry[0] if abilityListEntry[1] == 0
+        abil2 = abilityListEntry[0] if abilityListEntry[1] == 1
+      end
+      return abil1,abil2
+    end
+
+    def canSwitchAbility?(showMessage = false)
+      abil1,abil2 = getPossibleAbilities
+      if abil1.nil? || abil2.nil? || pkmn.isSpecies?(:ZYGARDE)
+        return false
+      end
+      return true
+    end
+
+    def switchAbility(showMessage = true)
+      newabilindex = (ability_index + 1) % 2
+      abil1,abil2 = getPossibleAbilities
+      newabil = GameData::Ability.get((newabilindex==0) ? abil1 : abil2)
+      newabilname = newabil.name
+      self.ability_index = newabilindex
+      pbMessage(_INTL("{1}'s Ability changed to {2}!",name,newabilname)) if showMessage
+      calc_stats
+    end
+
 	  def addExtraAbility(ability)
       @extraAbilities.push(ability) unless @extraAbilities.include?(ability)
     end
