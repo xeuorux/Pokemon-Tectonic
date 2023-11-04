@@ -1694,7 +1694,7 @@ Pokemon = ARAQUANID,35
     Moves = LEECHLIFE,BUBBLEBEAM,WATERFALL,MEGADRAIN
     AbilityIndex = 1 # Water Bubble
 Pokemon = GSLOWKING,35
-    Moves = EERIESPELL,SURF,BELCH
+    Moves = EERIESPELL,BLIGHT,BELCH
     AbilityIndex = 0 # Curious Medicine
     Item = SALACBERRY
 Pokemon = TANGROWTH,35
@@ -1808,7 +1808,7 @@ Pokemon = OBSTAGOON,40
 Pokemon = SIRFETCHD,40
     AbilityIndex = 0 # Break Through
 Pokemon = GSLOWKING,40
-    AbilityIndex = 1 # Hubris
+    AbilityIndex = 1 # Exorcist
     Item = SITRUSBERRY
 #-------------------------------
 [CLERK_M2,Alejandro]
