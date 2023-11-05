@@ -1498,14 +1498,14 @@ class PokeBattle_Move_5C7 < PokeBattle_HalfHealingMove
 
     def pbEffectGeneral(user)
         super
-        user.pbRaiseMultipleStatSteps(DEFENDING_STATS_1, user, move: self)
-        user.incrementEffect(:FocusEnergy, 1) unless user.effectAtMax?(:FocusEnergy)
+        user.pbRaiseMultipleStatSteps(DEFENDING_STATS_2, user, move: self)
+        user.incrementEffect(:FocusEnergy, 2) unless user.effectAtMax?(:FocusEnergy)
     end
 
     def getEffectScore(user, target)
         score = super
-        score += getMultiStatUpEffectScore(DEFENDING_STATS_1, user, target)
-        score += getCriticalRateBuffEffectScore(user, 1)
+        score += getMultiStatUpEffectScore(DEFENDING_STATS_2, user, target)
+        score += getCriticalRateBuffEffectScore(user, 2)
         return score
     end
 end
