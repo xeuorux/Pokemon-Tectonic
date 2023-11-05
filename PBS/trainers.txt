@@ -3940,7 +3940,7 @@ Pokemon = NOIVERN,63
 #-------------------------------
 [PSYCHIC_F3,Felicia]
 Pokemon = MMANDIBUZZ,63
-    Moves = TRICKYTOXINS,MINDSAP,POISONGAS,VIMRIPPER
+    Moves = TRICKYTOXINS,RECOVER,POISONGAS,VIMRIPPER
     AbilityIndex = 0 # Sealing Body
     Item = BLACKSLUDGE
 Pokemon = HYDREIGON,63
