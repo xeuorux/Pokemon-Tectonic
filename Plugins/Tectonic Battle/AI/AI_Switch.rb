@@ -196,7 +196,7 @@ class PokeBattle_AI
             end
         end
 
-        # Less likely to switch when has self-mending
+        # Less likely to switch when has perrenial payload
         stayInRating += 15 if battler.hasActiveAbilityAI?(:PERENNIALPAYLOAD)
 
         # More likely to switch if weather setter in policy
@@ -215,10 +215,12 @@ class PokeBattle_AI
             weatherItem = weatherSwitchEntry[3]
             if battler.ownersPolicies.include?(weatherPolicy)
                 if weatherActive
-                    stayInRating -= 13 if battler.hasActiveAbilityAI?(weatherAbility) || battler.hasItem?(weatherItem)
+                    if battler.hasActiveAbilityAI?(weatherAbility) || battler.hasItem?(weatherItem)
+                    stayInRating -= 13 
                     PBDebug.log("[STAY-IN RATING] #{battler.pbThis} (#{battler.index}) wants to switch to preserve its weather (-13)")
-                else
-                    stayInRating -= 20 if battler.hasActiveAbilityAI?(weatherAbility)
+                    end
+                elsif battler.hasActiveAbilityAI?(weatherAbility)
+                    stayInRating -= 20
                     PBDebug.log("[STAY-IN RATING] #{battler.pbThis} (#{battler.index}) wants to switch so it can reset the weather (-20)")
                 end
             end
@@ -254,7 +256,7 @@ class PokeBattle_AI
                     PBDebug.log("[STAY-IN RATING] #{battler.pbThis} (#{battler.index}) is bloodied but will regenerate, no penalty")
                     return stayInRating
                 end
-                currentHP /= battler.totalhp * 0.6 # .6 is intentional to bias score
+                currentHP /= battler.totalhp * 0.6 # .6 instead of .5 is intentional to bias score
                 if sTier == 1
                     stayInRating += 23
                     stayInRating -= 23 * currentHP
