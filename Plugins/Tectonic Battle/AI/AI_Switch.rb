@@ -199,6 +199,9 @@ class PokeBattle_AI
         # Less likely to switch when has perrenial payload
         stayInRating += 15 if battler.hasActiveAbilityAI?(:PERENNIALPAYLOAD)
 
+        # Less likely to switch if FEAR
+        stayInRating += 30 if battler.ownersPolicies.include?(:FEAR) && battler.level <= 10
+        
         # More likely to switch if weather setter in policy
         weatherSwitchInfo = [
             [:SUN_TEAM, @battle.sunny?, :DROUGHT, :HEATROCK],
@@ -370,6 +373,18 @@ class PokeBattle_AI
         if battlerSlot.ownersPolicies.include?(:PRESERVE_LAST_POKEMON) && partyIndex == @battle.pbParty(battlerSlot.index).length - 1
             switchScore = -50
             echoln("[SWITCH SCORING] #{fakeBattler.pbThis} should be preserved by policy (-50)")
+        end
+
+        # Focus sash Endeavor quick Attack Rattata
+        if battlerSlot.ownersPolicies.include?(:FEAR)
+            if safeSwitch && fakeBattler.level <= 10
+                canEndeavor = false
+                fakeBattler.eachOpposing do |b|
+                    next if b.pbHasType?(:GHOST)
+                    canEndeavor = true
+                switchScore += 30 if canEndeavor
+                end
+            end
         end
 
         return switchScore

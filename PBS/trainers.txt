@@ -3707,10 +3707,12 @@ Pokemon = PHIONE,30
     AbilityIndex = 1 # Overflowing Heart
 #-------------------------------
 [SCHOOLKID_M3,Jeremy]
+Policies = FEAR
 Pokemon = PAWNIARD,9
     Moves = SUCKERPUNCH,BULLETPUNCH,ENDEAVOR
     AbilityIndex = 1 # Sturdy
     Item = SHELLBELL
+    EV = 0,20,15,0,20,15
 #-------------------------------
 [FORMERCHAMP_Chara,Chara]
 Policies = NO_PERFECT
@@ -4145,7 +4147,7 @@ Pokemon = GOLISOPOD,55
 #-------------------------------
 [MASKEDVILLAIN,Crimson,2]
 NameForHashing = Alessa
-Policies = NO_PERFECT
+Policies = NO_PERFECT,FEAR
 Pokemon = REGIROCK,55
     Moves = ADAMANTINEPRESS,ACCELEROCK,BODYPRESS,BULKUP
     AbilityIndex = 1 # Core Provenance
@@ -4155,8 +4157,9 @@ Pokemon = FORRETRESS,55
     Item = OCCABERRY
 Pokemon = RATTATA,10
     Moves = QUICKATTACK,ENDEAVOR
-    AbilityIndex = 0 # Filthy
+    AbilityIndex = 1 # Gnawing
     Item = FOCUSSASH
+    EV = 0,20,15,0,20,15
 Pokemon = PORYGONZ,55
     Moves = STELLARATE,CRITICALERROR,PHANTOMGATE,ICEBEAM
     AbilityIndex = 0 # Realist
@@ -4373,7 +4376,7 @@ Pokemon = GOLISOPOD,65
 #-------------------------------
 [MASKEDVILLAIN2,Teal,2]
 NameForHashing = Alessa
-Policies = NO_PERFECT
+Policies = NO_PERFECT,FEAR
 Pokemon = REGICE,65
     Moves = ICEBEAM,THUNDERBOLT,AURASPHERE,RECOVER
     AbilityIndex = 1 # Frigid Reflection
@@ -4383,8 +4386,9 @@ Pokemon = FORRETRESS,65
     Item = OCCABERRY
 Pokemon = RATTATA,10
     Moves = QUICKATTACK,ENDEAVOR
-    AbilityIndex = 0 # Filthy
+    AbilityIndex = 1 # Gnawing
     Item = FOCUSSASH
+    EV = 0,20,15,0,20,15
 Pokemon = PORYGONZ,65
     Moves = HARDFEELINGS,CRITICALERROR,PHANTOMGATE,ICEBEAM
     AbilityIndex = 0 # Realist
@@ -6037,15 +6041,16 @@ Pokemon = SCEPTILE,70
     AbilityIndex = 0 # Regenerator
 #-------------------------------
 [TRAINER_Alessa,Alessa,5]
-Policies = ALESSA_4,NO_PERFECT
+Policies = ALESSA_4,NO_PERFECT,FEAR
 Pokemon = FORRETRESS,55
     Moves = POISONSPIKES,STEALTHROCK,EXPLOSION
     AbilityIndex = 1 # Weathered
     Item = OCCABERRY
 Pokemon = RATTATA,10
     Moves = QUICKATTACK,ENDEAVOR
-    AbilityIndex = 0 # Filthy
+    AbilityIndex = 1 # Gnawing
     Item = FOCUSSASH
+    EV = 0,20,15,0,20,15
 Pokemon = PORYGONZ,55
     Moves = HARDFEELINGS,CRITICALERROR,PHANTOMGATE,ICEBEAM
     AbilityIndex = 0 # Realist

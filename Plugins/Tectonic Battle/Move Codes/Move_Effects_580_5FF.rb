@@ -2236,7 +2236,7 @@ class PokeBattle_Move_5F4 < PokeBattle_Move_09C
 
     def getEffectScore(user, target)
         score = super
-        score += 50 if @battle.BattleAI.userMovesFirst?(self, user, target)
+        score += 50 if @battle.battleAI.userMovesFirst?(self, user, target)
         return score
     end
 end
