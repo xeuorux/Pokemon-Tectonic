@@ -2683,7 +2683,7 @@ Policies = NOEL,NO_PERFECT
 Pokemon = MRRIME,45
     Moves = ZENHEADBUTT,FROSTSPIKES,TAUNT,DISABLE
     AbilityIndex = 0 # Slapstick
-    EV = 10,20,10,0,20,10
+    EV = 10,0,10,20,0,10
 Pokemon = METAGROSS,45
     Name = Armiger
     Shiny = yes
@@ -2707,6 +2707,9 @@ Pokemon = BRUXISH,45
 #-------------------------------
 [LEADER_Noel_2,Noel]
 Extends = LEADER_Noel,Noel,0
+Pokemon = MRRIME,45
+    Item = FOCUSSASH
+    EV = 10,0,10,20,0,10
 Pokemon = GDARMANITAN,45
     Form = 1
     Moves = BURNUP,SUBLIMATE,SOLARBEAM,BODYPRESS

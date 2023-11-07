@@ -1588,7 +1588,7 @@ class PokeBattle_Move_0B9 < PokeBattle_Move
     end
 
     def getTargetAffectingEffectScore(_user, target)
-        return getDisableEffectScore(target, @disableTurn)
+        return getDisableEffectScore(target, @disableTurns)
     end
 end
 
