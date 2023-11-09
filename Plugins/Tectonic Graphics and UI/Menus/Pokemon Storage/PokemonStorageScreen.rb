@@ -373,7 +373,7 @@ class PokemonStorageScreen
     end
 
     # Returns how many boxes were sorted
-    def pbSortAll(type)
+    def pbSortAll(sortingType)
         return 0 if @heldpkmn
         
         validBoxes = []
@@ -393,17 +393,7 @@ class PokemonStorageScreen
         return 0 if allPokemonInValidBoxes.empty?
 
         # Sort the big pokemon list
-        if type == 1 # Name
-            allPokemonInValidBoxes.sort! { |a, b| a.name <=> b.name }
-        elsif type == 2 # Species
-            allPokemonInValidBoxes.sort! { |a, b| a.speciesName <=> b.speciesName }
-        elsif type == 3 # DexID
-            allPokemonInValidBoxes.sort! { |a, b| a.species_data.id_number <=> b.species_data.id_number }
-        elsif type == 4 # Type - Type 1 then Type 2 on colissions
-            allPokemonInValidBoxes.sort! { |a, b| a.types <=> b.types }
-        elsif type == 5 # Level
-            allPokemonInValidBoxes.sort! { |a, b| a.level <=> b.level }
-        end
+        sortPokemonList(allPokemonInValidBoxes,sortingType)
 
         # Store all pokemon back into storage
         validBoxes.each do |box|
@@ -421,32 +411,22 @@ class PokemonStorageScreen
     end
 
     # Returns whether the box was sorted or not
-    def pbSortBox(type, boxNumber)
+    def pbSortBox(sortingType, boxNumber)
         box = @storage.boxes[boxNumber]
         return false if @heldpkmn
         return false if box.isLocked?
         return false if box.empty?
         nitems = box.nitems - 1
-        listtosort = []
+        listOfPokemon = []
         dicttosort = {}
         for i in 0..PokemonBox::BOX_SIZE
-            listtosort.push(box[i]) if box[i]
+            listOfPokemon.push(box[i]) if box[i]
         end
 
-        if type == 1 # Name
-            listtosort.sort! { |a, b| a.name <=> b.name }
-        elsif type == 2 # Species
-            listtosort.sort! { |a, b| a.speciesName <=> b.speciesName }
-        elsif type == 3 # DexID
-            listtosort.sort! { |a, b| a.species_data.id_number <=> b.species_data.id_number }
-        elsif type == 4 # Type - Type 1 then Type 2 on colissions
-            listtosort.sort! { |a, b| a.types <=> b.types }
-        elsif type == 5 # Level
-            listtosort.sort! { |a, b| a.level <=> b.level }
-        end
+        sortPokemonList(listOfPokemon,sortingType)
 
         for i in 0..nitems
-            dicttosort[listtosort[i]] = i
+            dicttosort[listOfPokemon[i]] = i
         end
 
 		anyMoved = false
@@ -468,6 +448,76 @@ class PokemonStorageScreen
         end
         @scene.pbHardRefresh
         return anyMoved
+    end
+
+    def sortPokemonList(listToSort,sortingType)
+        if sortingType == 1 # Name
+            listToSort.sort! { |a, b|
+                if a.name != b.name
+                    a.name <=> b.name
+                elsif a.species == b.species
+                    a.form <=> b.form
+                else
+                    a.personalID <=> b.personalID
+                end
+            }
+        elsif sortingType == 2 # Species
+            listToSort.sort! { |a, b|
+                if a.speciesName != b.speciesName
+                    a.speciesName <=> b.speciesName
+                elsif a.form != b.form
+                    a.form <=> b.form
+                else
+                    a.personalID <=> b.personalID
+                end
+            }
+        elsif sortingType == 3 # DexID
+            listToSort.sort! { |a, b|
+                if a.species != b.species
+                    idNumberA = GameData::Species.get(a.species).id_number
+                    idNumberB = GameData::Species.get(b.species).id_number
+                    idNumberA <=> idNumberB
+                elsif a.form != b.form
+                    a.form <=> b.form
+                else
+                    a.personalID <=> b.personalID
+                end
+            }
+        elsif sortingType == 4 # Type - Type 1 then Type 2 on colissions
+            listToSort.sort! { |a, b|
+                typeIDListA = []
+                typeIDListB = []
+                a.types.each do |typeSymbol|
+                    typeIDListA.push(GameData::Type.get(typeSymbol).id_number)
+                end
+                b.types.each do |typeSymbol|
+                    typeIDListB.push(GameData::Type.get(typeSymbol).id_number)
+                end
+                typeIDListA.sort!
+                typeIDListB.sort!
+                if typeIDListA != typeIDListB
+                    typeIDListA <=> typeIDListB
+                elsif a.form != b.form
+                    a.form <=> b.form
+                else
+                    a.personalID <=> b.personalID
+                end
+            }   
+        elsif sortingType == 5 # Level
+            listToSort.sort! { |a, b|
+                if a.level != b.level
+                    b.level <=> a.level # Order inverted so higher level is earlier
+                elsif a.species != b.species
+                    idNumberA = GameData::Species.get(a.species).id_number
+                    idNumberB = GameData::Species.get(b.species).id_number
+                    idNumberA <=> idNumberB
+                elsif a.form != b.form
+                    a.form <=> b.form
+                else
+                    a.personalID <=> b.personalID
+                end
+            }
+        end
     end
 
     def pbSwap(selected)
