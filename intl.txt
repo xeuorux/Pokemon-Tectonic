@@ -31279,8 +31279,8 @@ El tejido en la superficie de su cuerpo es curiosamente similar a la composició
 A once-departed soul, returned to life. Derives power from resentment, which rises as energy atop its head and takes on the forms of foes.
 Un alma en pena, devuelta a la vida. Usa el poder del resentimiento, que aumenta la energía en su cabeza y copia la forma de sus rivales.
 2057
-Heedless of its own safety, Zoroark attacks its nemeses with a bitter energy so intense, it lacerates Zoroark's own body.
-Imprudente de su propia seguridad, Zoroark ataca a sus enemigos con una fuerza rencorosa tan intensa que daña a su propio cuerpo.
+It likes to settle grudges and fulfill final wishes. It does so to ensure peaceful passage to the afterlife.
+Le gusta terminar con los rencores y satisfacer deseos finales. Lo hace para asegurarse un paso tranquilo al más allá.
 2058
 Fishers detest this troublesome Pokémon because it sprays poison from its spines, getting it everywhere. A different form of Qwilfish lives in other regions.
 Pescadores odian a este Pokémon porque dispara veneno de sus espinas, que llega a todas partes.
@@ -34372,7 +34372,7 @@ Bombardeo
 Swarm Burst
 Estallido de Enjambre
 Diffuse Pulse
-Pulso Sifuso
+Pulso Difuso
 Particle Pulse
 Rayo de Partículas
 Stellarate
@@ -34486,7 +34486,7 @@ Puño Corrosivo
 Doll Stitch
 Muñeco Forzoso
 Sever
-Amputar
+Destazar
 Dead End
 Sin Salida
 Phantom Gate
@@ -37246,8 +37246,8 @@ The user launches up high, then explodes down on the second turn, taking 33% rec
 El usuario despega en el primer turno, y estrella al objetivo en el segundo, recibiendo un 33% de daño de retroceso.
 Injects supercold liquid into the target, damaging them and halving all future healing.
 El usuario inyecto un líquido congelado al objetivo, dañándolo y diviendo a la mitad toda curación futura.
-The user restores 1/2 of their HP and raises their Defense, Sp. Def, and critical hit chance by one step each.
-El usuario recupera la mitad de sus PS y aumenta su Defensa, Defensa Especial un grado, además de su índice crítico.
+The user restores 1/2 of their HP and raises their Defense, Sp. Def, and critical hit chance by two steps each.
+El usuario recupera la mitad de sus PS y aumenta su Defensa, Defensa Especial dos grados, además de su índice crítico.
 The user hunts with its allies. The more party Pokémon, the more damage. Critical hits twice as often.
 El usuario va de caza con sus aliados, aumentando de potencia cuantos más aliados hayan. Tiene el doble de índice de golpe crítico.
 The user attacks with dark illusions. This also lowers the target's Defense stat.
