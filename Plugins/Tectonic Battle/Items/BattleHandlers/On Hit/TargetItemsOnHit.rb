@@ -92,7 +92,8 @@ BattleHandlers::TargetItemOnHit.add(:MARANGABERRY,
 BattleHandlers::TargetItemOnHit.add(:WEAKNESSPOLICY,
   proc { |item, user, target, move, battle, aiCheck, aiNumHits|
       statUp = [:ATTACK, 4, :SPECIAL_ATTACK, 4]
-      next getMultiStatUpEffectScore(statUp, user, target, evaluateThreat: false) if aiCheck
+      next if aiCheck # aiCheck Disabled until AI item rework, also needs rework for type calculation
+      #next getMultiStatUpEffectScore(statUp, user, target, evaluateThreat: false) if aiCheck 
       next if target.damageState.disguise || target.damageState.iceface
       next unless Effectiveness.super_effective?(target.damageState.typeMod)
       next if !target.pbCanRaiseStatStep?(:ATTACK, target) &&
