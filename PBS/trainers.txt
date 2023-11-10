@@ -5916,7 +5916,7 @@ Pokemon = BASCULEGION,70
     Name = Brokenribs
     Gender = male
     Moves = UNDYINGRUSH,HARBORBREAKER,INFERNOIMPACT,SHADOWSNEAK
-    AbilityIndex = 1 # Adapted
+    AbilityIndex = 1 # Expertise
     Item = SITRUSBERRY
     EV = 0,20,0,20,20,10
 #-------------------------------

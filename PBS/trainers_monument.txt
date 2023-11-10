@@ -1177,7 +1177,7 @@ Pokemon = KECLEON,70
     EV = 10,20,0,20,20,0
 Pokemon = BASCULEGION,70
     Moves = SHADOWSNEAK,FLIPTURN,UNDYINGRUSH,HARBORBREAKER
-    AbilityIndex = 1 # Adapted
+    AbilityIndex = 1 # Expertise
     Item = PRISMATICPLATE
     EV = 10,20,0,20,20,0
 Pokemon = DRAGAPULT,70
@@ -2132,7 +2132,7 @@ Pokemon = DURANT,70
     EV = 10,20,0,20,20,0
 Pokemon = BASCULEGION,70
     Moves = SHADOWSNEAK,FLIPTURN,UNDYINGRUSH,HARBORBREAKER
-    AbilityIndex = 1 # Adapted
+    AbilityIndex = 1 # Expertise
     Item = PRISMATICPLATE
     EV = 10,20,0,20,20,0
 #-------------------------------
