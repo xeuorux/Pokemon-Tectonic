@@ -4,31 +4,31 @@ def pbMapInterpreter
     elsif $game_system
       return $game_system.map_interpreter
     end
-  return nil
+  	return nil
 end
 
 def pbMapInterpreterRunning?
     interp = pbMapInterpreter
-  return interp && interp.running?
+  	return interp && interp.running?
 end
 
 def pbRefreshSceneMap
     if $scene && $scene.is_a?(Scene_Map)
-      if $scene.respond_to?("miniupdate")
-        $scene.miniupdate
-      else
-        $scene.updatemini
-      end
+		if $scene.respond_to?("miniupdate")
+			$scene.miniupdate
+		else
+			$scene.updatemini
+		end
     end
 end
 
 def pbUpdateSceneMap
     if $scene && $scene.is_a?(Scene_Map) && !pbIsFaded?
-      if $scene.respond_to?("miniupdate")
-        $scene.miniupdate
-      else
-        $scene.updatemini
-      end
+		if $scene.respond_to?("miniupdate")
+			$scene.miniupdate
+		else
+			$scene.updatemini
+		end
     end
 end
 
@@ -37,30 +37,30 @@ end
 #===============================================================================
 def pbEventCommentInput(*args)
     parameters = []
-  list = args[0].list   # Event or event page
-  elements = args[1]    # Number of elements
-  trigger = args[2]     # Trigger
-  return nil if list.nil?
-  return nil unless list.is_a?(Array)
-  for item in list
-      next unless item.code == 108 || item.code == 408
-    next unless item.parameters[0] == trigger
-    start = list.index(item) + 1
-    finish = start + elements
-    for id in start...finish
-        next unless list[id]
-      parameters.push(list[id].parameters[0])
-    end
-    return parameters
-  end
-  return nil
+	list = args[0].list   # Event or event page
+	elements = args[1]    # Number of elements
+	trigger = args[2]     # Trigger
+	return nil if list.nil?
+	return nil unless list.is_a?(Array)
+	for item in list
+		next unless item.code == 108 || item.code == 408
+		next unless item.parameters[0] == trigger
+		start = list.index(item) + 1
+		finish = start + elements
+		for id in start...finish
+			next unless list[id]
+		parameters.push(list[id].parameters[0])
+		end
+		return parameters
+	end
+	return nil
 end
 
 def pbCurrentEventCommentInput(elements, trigger)
     return nil unless pbMapInterpreterRunning?
-  event = pbMapInterpreter.get_character(0)
-  return nil unless event
-  return pbEventCommentInput(event, elements, trigger)
+	event = pbMapInterpreter.get_character(0)
+	return nil unless event
+	return pbEventCommentInput(event, elements, trigger)
 end
 
 #===============================================================================
@@ -837,18 +837,18 @@ end
 #===============================================================================
 def pbMessage(message, commands = nil, cmdIfCancel = 0, skin = nil, defaultCmd = 0, &block)
 	ret = 0
-  msgwindow = pbCreateMessageWindow(nil, skin)
-  if commands
+	msgwindow = pbCreateMessageWindow(nil, skin)
+	if commands
 		showCommandsProc = proc { |msgwindow|
-				next pbShowCommands(msgwindow, commands, cmdIfCancel, defaultCmd, &block)
+			next Kernel.pbShowCommands(msgwindow, commands, cmdIfCancel, defaultCmd, &block)
 		}
 		ret = pbMessageDisplay(msgwindow, message, true, showCommandsProc, &block)
-  else
+	else
 		pbMessageDisplay(msgwindow, message, &block)
-  end
-  pbDisposeMessageWindow(msgwindow)
-  Input.update
-  return ret
+	end
+	pbDisposeMessageWindow(msgwindow)
+	Input.update
+	return ret
 end
 
 def pbConfirmMessage(message, &block)
