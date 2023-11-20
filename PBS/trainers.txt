@@ -2060,15 +2060,15 @@ Pokemon = BEWEAR,70
 Pokemon = GALVANTULA,70
     AbilityIndex = 0 # Ocular
 Pokemon = FERALIGATR,70
-    AbilityIndex = 1 # Strong Jaw
+    AbilityIndex = 0 # Ferocious
 Pokemon = CHANDELURE,70
-    AbilityIndex = 1 # Royal Majesty
+    AbilityIndex = 0 # Light Trick
 Pokemon = CROBAT,70
     AbilityIndex = 0 # Inner Focus
 Pokemon = SWALOT,70
     AbilityIndex = 0 # Thick Fat
 Pokemon = HYDREIGON,70
-    AbilityIndex = 1 # Sun Eater
+    AbilityIndex = 0 # Levitate
 #-------------------------------
 [DEVPSYCHIC_M,Waka]
 Pokemon = GLALIE,70
