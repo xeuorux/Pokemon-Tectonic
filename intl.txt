@@ -1432,7 +1432,7 @@ Ten cuidado de Habilidades que conceden una inmunidad a Pokémon que de otro mod
 You might think that a Ground-type attack will knock out your opponant's Eelektross, only to find out that it has Levitate!
 ¡Podrías pensar que un ataque tipo tierra va a tumbar el Eelektross del oponente, sólo para descubrir que tiene Levitación!
 Abilities that grant resistances, such as Realist and Tough, should also be respected.
-Habilidades que conceden resistencias, como Realista y Resistente, también deben ser respetadas.
+Habilidades que conceden resistencias, como Realista y Fuerte, también deben ser respetadas.
 If your Pokemon attacks the same target with the same attack, the damage will always be the same!
 Si tu Pokémon ataca al mismo objetivo con el mismo ataque, ¡El daño siempre será el mismo!
 That means that if you're able to crunch the numbers, you can figure out how many attacks it'll take to knock out an opposing Pokemon!
@@ -36813,7 +36813,7 @@ El usuario invade profundamente la mente del objetivo, infectándolo.
 The user attacks with overwhelming power, ignoring positive stat changes and abilities.
 El usuario ataca con una fuerza abrumadura, ignorando cambios de stats positivos y habilidades.
 If this move misses, the target is forced to switch out. Always goes last.
-Si este movimiento falla, el usuario es forzado a regresar a su Poké Ball. Siempre va último.
+Si este movimiento falla, el objetivo es forzado a regresar a su Poké Ball. Siempre va último.
 The target's psyche is attacked directly. It has a 20% chance to dizzy.
 El usuario ataca directamente a la mente del objetivo, con un 20% de probabilidad de marearlo.
 The user strikes the target with a sudden wind. It has a 40% chance to flinch the target.
@@ -40361,8 +40361,8 @@ Held item which boosts move damage by 25%, but lower's the user's Speed by 1 ste
 Un objeto equipable que aumenta todo movimiento un 25%, pero disminuye la Velocidad del usuario 1 grado al entrar al campo.
 A held item. At half health, the holder breaks the balloon and gains an Aqua Ring.
 Un objeto equipable. Al perder la mitad de su salud, el portador rompe el globo y consigue un Acua Aro.
-An item to be held by a Pokémon. The weilder gets both of its legal abilities, but its stats are cut by 10%.
-Un objeto equipable. El portador obtiene sus dos habilidades legales, pero todas sus stats son disminuidas un 10%.
+An item to be held by a Pokémon. The user get both of its legal abilities, but its stats are cut by 10%.
+Un objeto equipable. El usuario usará sus dos habilidades legales, pero sus stats son disminuidas un 10%.
 Rare contraband. Any average solo trainer will flee from the stench of its explosion.
 Objeto raro de contrabando. Cualquier entrenador individual promedia huirá del hedor de su explosión.
 A peculiar apple that can make a certain species of Pokémon evolve. It's exceptionally sweet.
@@ -41363,7 +41363,7 @@ Ninjutsu
 Perennial Payload
 Munición Perenne 
 Verdant
-Vegetación Exhuberante
+Frondoso
 Above It All
 Encima de Todo
 Moth Burglar
