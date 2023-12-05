@@ -5290,6 +5290,24 @@ Sorry! I’m busy! Drastically, obscenely busy! There is much work to be done, a
 ¡Lo siento! ¡No tengo tiempo! ¡Cero, absolutamente nada! ¡Hay demasiado trabajo que hacer, y para nada puedo contar lo que podría ser!
 Goodbye, \PN. We’ve already had our last battle.
 Adiós, \PN. Ya tuvimos nuestro último combate.
+Heal Bell would be so nice to have for this gym.
+Habría sido tan genial tener Campana Cura para este gimnasio.
+I did a mistake letting my Skitty forget it.
+Cometí el error de dejar que mi Skitty lo olvidara.
+I'll have to visit the Move Maniac so my Skitty can <imp>relearn</imp> Heal Bell.
+Tendré que visitar el Recuerda Movimientos para que mi Skitty <imp>recuerda</imp> Campana Cura.
+He's hanging in the Novo PokeCenter.... and in practically every other PokeCenter, somehow.
+Siempre está en el Centro Pokémon de Novo... y en prácticamente cada Centro Pokémon, de algún modo.
+I thought this gym would be a cinch.
+Pensé que este gimnasio sería pan comido.
+A whole team of fish couldn't possibly lose to a Fire- type gym!
+¡Un equipo entero de peces no podía perder contra un gimnasio de tipo Fuego!
+I totally forgot that Poison is strong against Water.
+Olvidé completamente que Veneno es fuerte contra Agua
+Bruh... this waiting room doesn't have any places to sit down.
+Esta... esta sala de espera no tiene lugares para sentarse.
+No pain, no gain? Must be what Eko's thinking.
+¿Sin esfuerzo no hay recompensa? Eso es lo que Eko debe estar pensando. 
 [Map65]
 
 The Aether Foundation, from Alola, is looking to establish a branch in Makya.
