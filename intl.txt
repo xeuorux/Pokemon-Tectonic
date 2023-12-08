@@ -371,7 +371,7 @@ La función “¿Qué Sigue?” te dice qué hacer para progresar en la historia
 The "Battle Guide" explains the battle mechanics as well as basic battling strategy.
 La “Guía de Combate” explica las mecánicas de combate como estrategia básica.
 What sort of look would you prefer? You can change this later.
-¿Qué tipo de estilo preferirías? Puedes cambiar esto luego.
+¿Qué tipo de apariencia preferirías? Puedes cambiar esto luego.
 .....\ts[10]
 .....\ts[10]
 ...Of course, of course. I can arrange for a ship to take you.
@@ -393,7 +393,7 @@ Así que tu hermano se le metió en su cabeza el ser Campeón. Eso le enseñará
 Not if you become Champion first.
 No si tú eres Campeón primero.
 Your brother <imp>Zain</imp> is already in the <imp>Makya region</imp>, with who knows how many badges.
-Tu hermano <imp>Zain</imp> ya está en la <imp>Makya region</imp>, con quién sabe cuántas medallas ya.
+Tu hermano <imp>Zain</imp> ya está en la <imp>región de Makya</imp>, con quién sabe cuántas medallas ya.
 Fortunately, the regional Professor owes your family a favor, and you just called it in.
 Afortunadamente, la Profesora de la región le debe a tu familia un favor, y acabas de llamar.
 You're leaving tonight.
@@ -415,11 +415,11 @@ Controles
 Not sure
 No estoy seguro
 Masculine Look
-Estilo Masculino
+Apariencia Masculina
 Feminine Look
-Estilo Femenino
+Apariencia Femenina
 Androgynous Look
-Estilo Andrógino 
+Apariencia Andrógina
 "Val"
 "Val"
 Enter with cursor
@@ -3681,6 +3681,8 @@ The previous owners must have left this.
 Los antiguos dueños deben haber dejado esto.
 Think about how rich they must be in order to just leave whole TMs behind!
 ¡Piensa lo ricos que deben ser para haber dejado MTs enteras detrás!
+We're barely affording this trip, ourselves.
+Nosotros apenas nos podemos permitir este viaje.
 I've looked at my bank statement at least four times now.
 Revisé mi extracto bancario por lo menos cuatro veces ya.
 I just don't really want to believe what I'm seeing...
@@ -9615,8 +9617,8 @@ Dunno if you're new here or something, but Trainers in Makya will usually have a
 Ni idea si eres nuevo aquí o algo, pero los Entrenadores en Makya usualmente tendrán un Pokémon a su lado si buscan combatir.
 Cuts all the awkward confusion with the eye contact stuff.
 Quita toda esa incómoda confusión con eso del contacto visual.
-Anyways, now for the real reason I'm here. I'm with Sweetrock Factory R&D.
-Como sea, ahora la verdadera razón por la que estoy aquí. Estoy en la Fábrica Sweetrock I+D.
+Anyways, now for the real reason I'm here.
+Como sea, ahora la verdadera razón por la que estoy aquí. 
 Name's Jovan. I'm with Research and Development at Sweetrock Candy Company.
 Mi nombre es Jovan. Estoy junto a I+D de la Compañía de Caramelos Sweetrock.
 I need test subjects. Since you're a licensed trainer, you can help me out. Take this.
@@ -34420,7 +34422,7 @@ Miasma
 Venomortar
 Venomortal
 Ward Press
-Plancha Espiritual
+Plancha Aural
 Adrenalash
 Látigo de Adrenalina
 Earthsplitter
@@ -42356,7 +42358,7 @@ Cada turno, aumenta su Velocidad tres grados y pierde PS. Si la Velocidad está 
 When targeted by a status move, the offending Pokémon becomes poisoned.
 Al ser alcanzado por un movimiento de estado, envenena al Pokémon que lo haya usado.
 Immune to Dragon-type moves. Deals double damage to Dragon-types.
-Inmune a movimientos tipo Hada. Sus movimientos hacen el doble de daño a tipos Dragón.
+Inmune a movimientos tipo Dragón. Sus movimientos hacen el doble de daño a tipos Dragón.
 Negates enemy status moves that target the Pokémon or create hazards around it.
 Niega todo movimiento de estado de los rivales, incluyendo los que crean trampas.
 Immune to Flying-type moves and deals 50% more damage with them.
@@ -50973,6 +50975,8 @@ Clanes: #{fullDescription}
 #{pokemon.name} Nv. #{pokemon.level.to_s}
 No Ability
 Sin Habilidad
+Kick
+Patada
 {1} is touching some kind of switch.
 {1} está tocando algún tipo de interruptor.
 {1} has a cord in its mouth!
