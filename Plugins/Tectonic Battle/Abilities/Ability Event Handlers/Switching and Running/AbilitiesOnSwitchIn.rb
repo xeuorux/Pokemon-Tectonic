@@ -768,7 +768,7 @@ BattleHandlers::AbilityOnSwitchIn.add(:PRIMEVALIMPOSTER,
 
 BattleHandlers::AbilityOnSwitchIn.add(:REFRESHMENTS,
   proc { |ability, battler, battle, aiCheck|
-      next unless battle.sunny?
+      next 0 unless battle.sunny?
       next entryLowestHealingAbility(ability, battler, battle, aiCheck: aiCheck) do |served|
           _INTL("{1} served {2} some refreshments!", battler.pbThis, served)
       end
@@ -788,7 +788,7 @@ BattleHandlers::AbilityOnSwitchIn.add(:PEARLSEEKER,
   proc { |ability, battler, battle, aiCheck|
       next 0 unless battle.eclipsed?
       next 0 unless battler.canAddItem?(:PEARLOFFATE)
-      next 120 if aiCheck
+      next 8 if aiCheck
       battle.pbShowAbilitySplash(battler, ability)
       battler.giveItem(:PEARLOFFATE)
       battle.pbDisplay(_INTL("{1} discovers the {2}!", battler.pbThis, getItemName(:PEARLOFFATE)))

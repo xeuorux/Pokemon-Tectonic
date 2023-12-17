@@ -136,14 +136,14 @@ def entryLowestHealingAbility(ability, battler, battle, healingFraction = 0.5, a
         end
     end
     lowestIdBattler = battle.battlers[lowestId]
-    return 0 unless lowestIdBattler.canHeal?
-    served = (lowestId == battler.index ? "itself" : lowestIdBattler.pbThis)
-    unless aiCheck
-        battle.pbShowAbilitySplash(battler, ability)
-        healingMessage = block.call(served)
-        battle.pbDisplay(healingMessage)
+    if aiCheck    
+        return 0 unless lowestIdBattler.canHeal?
+        healingScore = lowestIdBattler.applyFractionalHealing(healingFraction, aiCheck: true)
+        return healingScore
     end
-    healingScore = lowestIdBattler.applyFractionalHealing(healingFraction, aiCheck: true)
-    battle.pbHideAbilitySplash(battler) unless aiCheck
-    return healingScore
+    served = (lowestId == battler.index ? "itself" : lowestIdBattler.pbThis)
+    healMessage = block.call(served)
+    battle.pbShowAbilitySplash(battler, ability)
+    lowestIdBattler.applyFractionalHealing(healingFraction, customMessage: healMessage)
+    battle.pbHideAbilitySplash(battler)
 end
