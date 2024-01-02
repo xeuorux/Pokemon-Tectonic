@@ -1181,7 +1181,7 @@ class PokeBattle_Move_542 < PokeBattle_Move
     end
 
     def getTargetAffectingEffectScore(user, target)
-        return -getMultiStatUpEffectScore([:SPEED, 1], user, target)
+        return -getMultiStatUpEffectScore([:SPEED, 1], user, target, evaluateThreat: false)
     end
 end
 
@@ -1571,7 +1571,8 @@ class PokeBattle_Move_55D < PokeBattle_Move
 
     def getTargetAffectingEffectScore(user, target)
         score = -25 # TODO: rework this
-        score -= getMultiStatUpEffectScore([:ATTACK, 3], user, target)
+        score -= getMultiStatUpEffectScore([:ATTACK, 3], user, target, evaluateThreat: false)
+        score -= 70 if target.hasActiveAbilityAI?(:UNAWARE)
         return score
     end
     
@@ -1594,8 +1595,8 @@ selfHitBasePower(target.level))
 
     def getTargetAffectingEffectScore(user, target)
         score = -25 # TODO: rework this
-        score -= getMultiStatUpEffectScore([:SPECIAL_ATTACK, 3], user, target)
-        score -= 50 if target.hasActiveAbilityAI?(:UNAWARE)
+        score -= getMultiStatUpEffectScore([:SPECIAL_ATTACK, 3], user, target, evaluateThreat: false)
+        score -= 70 if target.hasActiveAbilityAI?(:UNAWARE)
         return score
     end
 

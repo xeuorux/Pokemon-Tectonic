@@ -365,7 +365,7 @@
 1364,KINETICGRIP,Kinetic Grip,0CF,75,PSYCHIC,Physical,100,15,0,NearOther,0,CanProtect;CanMirrorMove,"The user conjures a giant fist to crush the target, trapping and damaging it for three turns.",CRUSHGRIP
 1365,LIFTOFF,Liftoff,5C5,160,FIRE,Physical,100,10,0,NearOther,0,CanProtect;CanMirrorMove,"The user launches up high, then explodes down on the second turn, taking 33% recoil.",FLY
 1366,ICYINJECTION,Icy Injection,5C6,90,ICE,Physical,100,12,100,NearOther,0,CanProtect;CanMirrorMove,"Injects supercold liquid into the target, damaging them and halving all future healing.",FROSTBARB
-1367,DIVINATION,Divination,5C7,0,DARK,Status,0,5,0,User,0,CanSnatch,"The user restores 1/2 of their HP and raises their Defense, Sp. Def, and critical hit chance by one step each.",COSMICPOWER
+1367,DIVINATION,Divination,5C7,0,DARK,Status,0,5,0,User,0,CanSnatch,"The user restores 1/2 of their HP and raises their Defense, Sp. Def, and critical hit chance by two steps each.",COSMICPOWER
 1368,WINTEROPS,Winter Ops,0C1,1,ICE,Physical,100,10,0,NearOther,0,CanProtect;CanMirrorMove;HighCriticalHitRate,"The user hunts with its allies. The more party Pokémon, the more damage. Critical hits twice as often.",ICEPUNCH
 1369,GRIMVISIONS,Grim Visions,043,90,DARK,Special,100,10,100,NearOther,0,CanProtect;CanMirrorMove,"The user attacks with dark illusions. This also lowers the target's Defense stat by two steps.",DARKPULSE
 1370,SILKBLADE,Silk Blade,50F,130,BUG,Physical,100,5,0,NearOther,0,CanProtect;CanMirrorMove;HighCriticalHitRate;Blade,"The user slashes using woven silk, lowering the user's Attack by four steps. Critical hits twice as often.",XSCISSOR
@@ -473,7 +473,7 @@
 1472,VOLLEY,Volley,129,1,FLYING,Special,100,10,0,NearOther,0,CanProtect;CanMirrorMove,"The user gets all the party Pokémon to attack the foe with aerial projectiles.",SQUALLDART
 1473,DRONING,Droning,5EC,65,BUG,Special,100,20,30,NearOther,0,CanProtect;CanMirrorMove;Sound,"The user vibrates its wings to make a damaging sound wave. It has a 30% chance to lower Sp. Atk.",BUGBUZZ
 1474,DROWN,Drown,5FD,0,GHOST,Status,100,15,0,NearOther,0,CanProtect;CanMagicCoat;CanMirrorMove,"Disables the target's last used move for four turns, then reduces a relevant stat on them by four steps.",AQUARING
-1475,DEVOURWHOLE,Devour Whole,5FE,130,POISON,Physical,100,5,0,NearOther,0,CanProtect;CanMirrorMove;Bite,"Grips the target with its entire mouth. The user can’t attack next turn unless the target faints or switches out.",
+1475,DEVOURWHOLE,Devour Whole,5FE,130,POISON,Physical,100,5,0,NearOther,0,CanProtect;CanMirrorMove;Bite,"Grips the target with its entire mouth. The user can't attack next turn unless the target faints or switches out.",
 1476,SPOTTING,Spotting,5FF,0,DARK,Status,0,15,0,NearAlly,5,,"The user assists an ally by boosting the power and accuracy of its next attack by 50%.",
 1477,REPULSIONFIELD,Repulsion Field,12A,0,ELECTRIC,Status,0,15,0,UserSide,0,CanSnatch,"This move creates a directional magnetic field which reduces damage from attacks with 100 or more base power for five turns.",
 1478,MASQUERBLADE,Masquerblade,12B,150,GRASS,Physical,100,5,0,AllNearFoes,-3,CanProtect,"The user hides its blade. If it is hit by a special move, it unsheathes it quickly, slashing all near foes.",CAMOUFLAGE

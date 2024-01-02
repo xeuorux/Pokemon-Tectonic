@@ -306,7 +306,7 @@
 1305,FILTHY,Filthy,"Immune to Poison-type moves, and boosts both defensive stats when hit by one."
 1306,EFFLORESCENT,Efflorescent,"The Pokémon and its allies are protected from flinching, Intimidate, Fascinate, and Frustrate."
 1307,FLOURISHING,Flourishing,"Grows at the end of each turn, slowing down but improving other stats."
-1308,DRAGONSBLOOD,Dragon’s Blood,"Reduces the damage of each hit against it by an amount equal to its level."
+1308,DRAGONSBLOOD,Dragon's Blood,"Reduces the damage of each hit against it by an amount equal to its level."
 1309,GAUSSAFTERSHOCK,Gauss Aftershock,"Pokémon that swap in for this have their Speed raised and their PP fully restored."
 1310,FRIGIDREFLECTION,Frigid Reflection,"When hit with a special move, hits back instantly with that same move."
 1311,INDESTRUCTIBLE,Indestructible,"After being attacked, gains immunity to that move's type but loses other morphed immunities."

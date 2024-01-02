@@ -54,7 +54,7 @@ class Game_Event < Game_Character
       @starting = true
       unless pbMapInterpreter.message_waiting
           removeSpeaker
-          echoln("Removing speaker in event #{@event.name} (#{@id})")
+          #echoln("Removing speaker in event #{@event.name} (#{@id})")
       end
     end
   

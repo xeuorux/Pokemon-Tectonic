@@ -302,6 +302,27 @@ class Scene_Map
         end
     end
 
+    def updatemini
+        oldmws = $game_temp.message_window_showing
+        $game_temp.message_window_showing = true
+        loop do
+            $game_map.update
+            $game_player.update
+            $game_system.update
+            if $game_screen
+                $game_screen.update
+            else
+                $game_map.screen.update
+            end
+            break unless $game_temp.player_transferring
+            transfer_player
+            break if $game_temp.transition_processing
+        end
+        $game_temp.message_window_showing = oldmws
+        @spriteset.update if @spriteset
+        @message_window.update if @message_window
+    end
+
     def main
         createSpritesets
         Graphics.transition(20)

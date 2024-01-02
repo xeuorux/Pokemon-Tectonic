@@ -91,13 +91,13 @@ class TilingCardsPokemonMenu_Scene < TilingCardsMenu_Scene
 				},
 				:press_proc => Proc.new { |scene|
 					if pbConfirm(_INTL("Are you sure you'd like to send back #{@pkmn.name}?"))
-					promptToTakeItems(@pkmn)
-					pbStorePokemonInPC(@pkmn)
-					@party[@pkmnid] = nil
-					@party.compact!
-					pbSEPlay("PC close")
-					@summaryScene.pbHardRefresh
-					next true
+						promptToTakeItems(@pkmn)
+						pbStorePokemonInPC(@pkmn)
+						@party[@pkmnid] = nil
+						@party.compact!
+						pbSEPlay("PC close")
+						@summaryScene.pbHardRefresh
+						next true
 					end
 				},
 			},

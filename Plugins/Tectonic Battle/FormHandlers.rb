@@ -376,18 +376,6 @@ MultipleForms.register(:ZYGARDE,{
   }
 })
 
-MultipleForms.register(:HOOPA,{
-  "getForm" => proc { |pkmn|
-    if !pkmn.time_form_set ||
-       pbGetTimeNow.to_i > pkmn.time_form_set.to_i + 60 * 60 * 24 * 3   # 3 days
-      next 0
-    end
-  },
-  "onSetForm" => proc { |pkmn,form,oldForm|
-    pkmn.time_form_set = (form>0) ? pbGetTimeNow.to_i : nil
-  }
-})
-
 MultipleForms.register(:ORICORIO,{
   "getFormOnCreation" => proc { |pkmn|
     next rand(4)   # 0=red, 1=yellow, 2=pink, 3=purple

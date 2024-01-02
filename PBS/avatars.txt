@@ -465,7 +465,7 @@ Turns = 1
 HPMult = 4.0
 #-------------------------------
 [EXCADRILL]
-Ability = MOLDBREAKER
+Ability = JUGGERNAUT
 Moves1 = EARTHQUAKE,IRONHEAD,PRIMEVALDRAGONDANCE
 Moves2 = REND
 HPMult = 4.0

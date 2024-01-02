@@ -38,5 +38,5 @@ def getFormSelectionChoices(species,currentForm=0)
 		possibleFormNames.push(species_data.form_name)
 	end
 	possibleFormNames.push(_INTL("Cancel"))
-	return [possibleForms, possibleFormNames]
+	return possibleForms, possibleFormNames
 end

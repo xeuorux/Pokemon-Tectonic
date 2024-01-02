@@ -193,7 +193,7 @@ def pbChooseMixFossilBody(var = 0)
 	return ret
 end
 
-def styleFurfrou()
+def styleFurfrou
 	pbChoosePokemon(1,3,
 		proc { |poke|
 			!poke.egg? && poke.species == :FURFROU
@@ -202,21 +202,17 @@ def styleFurfrou()
 	return false if pbGet(1) < 0
 	pkmn = $Trainer.party[pbGet(1)]
 	possibleForms, possibleFormNames = getFormSelectionChoices(:FURFROU,pkmn.form)
-	choice = pbMessage(_INTL("What style would you like me to give it?",possibleFormNames,possibleFormNames.length))
+	pbMessage(_INTL("What style would you like me to give it?"))
+	choice = pbShowCommands(nil,possibleFormNames,possibleFormNames.length+1)
 	if choice < possibleForms.length
 		pbMessage(_INTL("#{pkmn.name} swapped to #{possibleFormNames[choice]}!"))
 		
-		showPokemonChanges(pkmn) {
-			pkmn.form = possibleForms[choice].form
-		}
+		pkmn.form = possibleForms[choice].form
 		pkmn.changeHappiness("groom")
+		refreshFollow(false)
 		return true
 	end
 	return false
-end
-
-def canBeOriginized?(pokemon)
-	return %i[QWILFISH VOLTORB GROWLITHE SNEASEL ZORUA].include?(pokemon.species)
 end
 
 def createHisuian
