@@ -50302,7 +50302,7 @@ La tormenta de arena daña a todos los Pokémon al final de cada turno. Los tipo
 Hail deals damage to all Pokémon at the end of each turn. Ice and Ghost-types are immune to this. Additionally, Ice-types get +50% Defense.
 El granizo daña a todos los Pokémon al final de cada turno. Los tipos Hielo y Fantasma son inmunes a esto. Además, los tipo Hielo incrementan su Defensa un 50%.
 Eclipse lowers all stats of all Pokémon every 4 turns (by 2 steps). Psychic and Dragon-types are immune to this. Additionally, Psychic-type attacks are boosted by 30%.
-El eclipse baja todas las stats de un Pokémon cada 4 turnos (por dos grados). Los tipos Psíquico y Dragón son inmunes a esto. Los ataques tipo Psíquico son potenciados un 30%.
+El eclipse baja todas las stats de un Pokémon cada 4 turnos (por dos grados). Los tipos Psíquico y Dragón son inmunes a esto. Ataques tipo Psíquico son potenciados un 30%.
 Moonglow flinches all Pokémon every 4 turns. Fairy and Dark-types are immune to this. Additionally, Fairy-type attacks are boosted by 30%.
 La brillo lunar amedrenta a todos los Pokémon cada 4 turnos. Los tipos Hada y Siniestro son inmunes a esto. Adicionalmente, los ataques tipo Hada se potencian un 30%.
 This ball has a close to {1}% chance of capturing the wild Pokémon.
