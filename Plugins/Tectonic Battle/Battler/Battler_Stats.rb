@@ -304,6 +304,7 @@ class PokeBattle_Battler
         if numbRelevant
             speedMult /= 2
             speedMult /= 2 if pbOwnedByPlayer? && @battle.curseActive?(:CURSE_STATUS_DOUBLED)
+            speedMult /= 2 if shouldAbilityApply?(:CLEANFREAK, aiCheck)
         end
 
         speedMult *= applySpeedTriggers(move,true) if aiCheck
