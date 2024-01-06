@@ -624,26 +624,6 @@ There's a high demand for it, and no one wants to walk through an entire cave ju
 Hay una gran demanda de este, y nadie quiere caminar a través de una cueva entera sólo para visitar la cafetería en Pueblo Novo.
 I've already gotten my daily dose, but it's such a hassle.
 Yo ya tuve mi dosis diaria, pero es toda una molestia.
-I'm an out-of-towner visiting family.
-Soy alguien de afuera visitando a mi familia.
-There aren't many Normal-types where I live. The only one I was able to get was a Sentret.
-No hay muchos tipos Normal donde vivo. El único que logré conseguir fue un Sentret.
-Not the Makyan one.
-No el de Makya.
-If you want it, I'll trade you a Normal-type for it.
-Si lo quieres, te lo intercambiaré por un tipo Normal.
-Ah alright, I'll keep looking for one.
-Está bien, seguiré buscando uno.
-Maybe I'll find something in the area west of here.
-Quizás encontrarás algo en el oeste de aquí.
-Nice! You won't regret this.
-¡Bien! No te arrepentirás.
-\PN traded a Normal-type for Sentret!
-¡\PN intercambió un tipo Normal por un Sentret!
-Sweet, this little guy is gonna go for an adventure.
-Genial, este pequeño va a ir a una aventura.
-I hope you enjoy that Sentret, it's pretty rare here.
-Espero que disfrutes ese Sentret, es bastante raro por aquí.
 You and Helena had something secretive to discuss, is that it?
 Tú y Helena tienen algo secreto a discutir, ¿Eso es?
 I'd love to ask, but, well, I need this job more than I need to satisfy my curiosity.
@@ -2233,7 +2213,7 @@ Eso fue lo que llamamos un <imp>Avatar</imp>.
 They started showing up a few months back.
 Empezaron a aparecer hace algunos meses atrás.
 It's rare to find a trainer that can take one on in a straight-up fight.
-Es raro encontrar un entrenador que pueda tumbar a uno en un combate directa.
+Es raro encontrar un entrenador que pueda tumbar a uno en un combate directo.
 I heard one showed up in here and figured I had to do something before it hurt anyone, but I got cocky.
 Escuché que uno apareció aquí y supe que tenía que hacer algo antes de que lastime a alguien, pero me confié.
 Lemme heal your Pokemon.
@@ -2431,7 +2411,7 @@ Nada atrae a los Vullabies más que la carne fresca, así que ofrezco una recomp
 On top of that, an Eevee Ticket from my stash of 'em. Redeemable in the stinkin' big city up north.
 Además de eso, un Ticket Eevee de todosl os que tenga. Los puedes canjear en la ciudad apestosa al norte.
 However, it won't be easy, as I have a <imp>full 6 Pokemon team</imp>.
-Sin embargo, no será fáacil, ya que tengo un <imp>equipo completo con 6 Pokémon</imp>.
+Sin embargo, no será fácil, ya que tengo un <imp>equipo completo con 6 Pokémon</imp>.
 I'm not just any piece of junk trainer. Only fight me if you're ready for a real scrap!
 No soy cualquier pedazo de entrenador basura. ¡Sólo combate conmigo si estás listo para una verdadera contienda!
 
@@ -2562,7 +2542,36 @@ No
 No
 Yes
 Sí
-
+Hey, you're a Trainer right? Please, I need your help.
+Hey, ¿Eres un Entrenador cierto? Por favor, necesito tu ayuda.
+My Growlithe got spooked when I was talking it for a walk.
+Mi Growlithe fue espantado mientras estaba tomando un paseo.
+He ran off, and I wasn't able to find him again. 
+Se escapó, y no fui capaz de encontrarlo de nuevo.
+He's lost somewhere in Repora Forest.
+Está perdido en algún lado en el Bosque Repora.
+Please find him, we've been together our entire lives.
+Por favor encuentrálo, hemos estado juntos por todas nuestras vidas.
+Here is his Pokeball, and his favorite type of treat.
+Esta es su Poké Ball, y su tipo de premio favorito.
+He's a smart boy, so all you need to do is show him the treat and he'll return to his Pokeball.
+Es un chico inteligente, así que lo único que tienes que hacer es mostrarle el premio y regresará a su Poké Ball.
+Have you found my Growlithe yet?
+¿Has encontrado a mi Growlithe? 
+I'm sure he's just cowering in some corner...
+Estoy seguro sólo está asustado en alguna esquina...
+You saved Growlithe! Thank you thank you thank you!
+¡Salvaste a Growlithe! ¡Gracias gracias gracias!
+I have a gift for you, as thanks for saving my Pokemon!
+Tengo un regalo para ti, ¡Como agradecimiento por salvar a mi Pokémon!
+Trainers are amazing, aren't they Growlithe! Don't you want to become big and strong just like their Pokemon?
+Los entrenadores son increíbles, ¡Cierto Growlithe! ¿No quieres ser grande y fuerte como sus Pokémon? 
+Yeah! One day, I'll grow just as strong as you! I'll help people just like you did.
+¡Sí! Algún día, ¡Seré tan fuerte como tú! Ayudaré a gente como tú lo hiciste.
+Maybe the Rangers that are stationed here will help me get stronger!
+¡Quizá los Rangers que se encuentran por aquí me ayudarán a hacerme más fuerte!
+They fought tons of battles back when Team Chasm was around. They must be total vets!
+Combatieron un montón cuando el Team Chasm seguía en pie. ¡Deben ser todos unos veteranos!
 [Map33]
 
 Lots of Pokemon that live in the sewers help with waste treatment.
@@ -2951,7 +2960,7 @@ Si entras, legalmentes absuelves a los Rangers y a la Operación de Rescate Svai
 "Svait, experience an eternal snow season!"
 “Svait, ¡Experiencia una temporada nevada eterna!”
 "Sister of Icirrus City."
-"Hermana de Ciudad Icirrus."
+"Hermana de Ciudad Teja."
 The Ice Cave is really a unique phenomenon. It spews out extremely cold air.
 La Cueva Hielo es un fenomeno completamente único. Expulsa aire extremadamente frío.
 It cools the area down so much that we get snowfall most of the year.
@@ -3322,7 +3331,7 @@ Go on! I'll be back after I'm done pitying myself!
 Ah, so you made it to me. Congrats. Now, uh, things work a little differently 'round here.
 Ah, llegaste hacia mí. Felicidades. Ahora, eh, las cosas funcionan un poco diferente por aquí.
 Us Gym Leaders have our pared-down teams designed for challengers like you...
-Nosotros, los líderes de gimansio, tenemos unos equipos simplificados diseñados para retadores como tú… 
+Nosotros, los líderes de gimnasio, tenemos unos equipos simplificados diseñados para retadores como tú… 
 ...but we also have our<i>full</i> teams, built for more difficult battles.
 ...pero también tenemos nuestros equipos <i>completos</i>, hechos para combates más díficiles.
 Your choice -- you get the badge either way.
@@ -3656,7 +3665,7 @@ Una reloj con alarma. La alarma ha sido desactivada.
 My dad bought me a Bonsly, but I don't like it.
 Mi papá me compró este Bonsly, pero no me gusta.
 It cries all the time when I cry, and I cry a lot. I don't like it when others cry, so I cry more.
-Llora todo el tiempo cuadno lloro, y lloro bastante. No me gusta cuando otros lloran, así que lloro más.
+Llora todo el tiempo cuando lloro, y lloro bastante. No me gusta cuando otros lloran, así que lloro más.
 I want a Pokemon that's tough enough to not cry all the time! I want a brave Riolu!
 ¡Quiero un Pokémon lo suficientemente duro para que no llore todo el tiempo! ¡Quiero un Riolu valiente!
 Can you trade me one? I WILL cry if you don't.
@@ -4661,36 +4670,7 @@ Eso significa que la hora de procrastinar terminó, y la hora de ser valiente es
 
 [Map57]
 
-Hey, you're a Trainer right? Please, I need your help.
-Hey, ¿Eres un Entrenador cierto? Por favor, necesito tu ayuda.
-My Growlithe got spooked when I was talking it for a walk.
-Mi Growlithe fue espantado mientras estaba tomando un paseo.
-He ran off, and I wasn't able to find him again. 
-Se escapó, y no fui capaz de encontrarlo de nuevo.
-He's lost somewhere in Repora Forest.
-Está perdido en algún lado en el Bosque Repora.
-Please find him, we've been together our entire lives.
-Por favor encuentrálo, hemos estado juntos por todas nuestras vidas.
-Here is his Pokeball, and his favorite type of treat.
-Esta es su Poké Ball, y su tipo de premio favorito.
-He's a smart boy, so all you need to do is show him the treat and he'll return to his Pokeball.
-Es un chico inteligente, así que lo único que tienes que hacer es mostrarle el premio y regresará a su Poké Ball.
-Have you found my Growlithe yet?
-¿Has encontrado a mi Growlithe? 
-I'm sure he's just cowering in some corner...
-Estoy seguro sólo está asustado en alguna esquina...
-You saved Growlithe! Thank you thank you thank you!
-¡Salvaste a Growlithe! ¡Gracias gracias gracias!
-I have a gift for you, as thanks for saving my Pokemon!
-Tengo un regalo para ti, ¡Como agradecimiento por salvar a mi Pokémon!
-Trainers are amazing, aren't they Growlithe! Don't you want to become big and strong just like their Pokemon?
-Los entrenadores son increíbles, ¡Cierto Growlithe! ¿No quieres ser grande y fuerte como sus Pokémon? 
-Yeah! One day, I'll grow just as strong as you! I'll help people just like you did.
-¡Sí! Algún día, ¡Seré tan fuerte como tú! Ayudaré a gente como tú lo hiciste.
-Maybe the Rangers that are stationed here will help me get stronger!
-¡Quizá los Rangers que se encuentran por aquí me ayudarán a hacerme más fuerte!
-They fought tons of battles back when Team Chasm was around. They must be total vets!
-Combatieron un montón cuando el Team Chasm seguía en pie. ¡Deben ser todos unos veteranos!
+
 I'll take your Pokémon for a few seconds.
 Tomaré tus Pokémon por un par de segundos.
 First, you should restore your Pokémon to full health.
@@ -8258,13 +8238,9 @@ We have so many fossils we're just giving them away!
 You can pay to get your fossils revived, too.
 También puedes pagar para revivir tus fósiles.
 Talk to my associate in the room to our left.
-Habla con mi asociado en la habitación a nuestra izquierda.
+Habla con mi asociada en la habitación a nuestra izquierda.
 The classroom door reads "Authorized personnel only!"
-La puerta del salón de clase dice “¡Sólo personal autorizado!”
-So if Ice resists Ground, and Rock resists Ice...does that mean that Rock resists Ground?
-Así que si Hielo resiste Tierra, y Roca resiste Hielo. ¿Eso significa que Roca resiste Tierra?
-Apparently Rock is weak to Ground, actually. Beats me.
-Aparentemente Roca es débil a Tierra, realmente. A saber.
+La puerta del salón de clase dice "¡Sólo personal autorizado!"
 Dolly here got, uh, reappropriated by Team Chasm... how long has it been? Eight years?
 Dolly aquí fue, eh, reapropiada por el Team Chasm… ¿Qué tanto ha sido? ¿Ocho años?
 It’s almost surreal seeing her again.
@@ -8329,14 +8305,12 @@ Acceptance letters will be sent out shortly.
 Cartas de aceptación serán enviadas dentro de pronto.
 LuxTech Scholars will be contacted by a representative on their first week of classes.
 Los estudiantes de LuxTech serán contactados por un representante en su primera semana de clases.
-Our college isn't too grand, but we have three ace topics.
-Nuestra facultad no es muy grande, pero tenemos tres tópicos principales.
+Our college isn't too grand, but we have three ace areas.
+Nuestra facultad no es muy grande, pero tenemos tres áreas principales.
 Paleontology, 3D printing, and electronics.
 Paleontología, impresión 3D y electronicas.
-We've got star projects in all of these subjects individually.
-Tenemos proyectos estelares en todos estos temas individualmente.
-But when you combine them, you get the largest fossil studies and revival program in the world!
-Pero cuando los combinas, ¡Consigues los estudios de fósiles y programas de resurección más grandes en el mundo!
+When you combine them, you get the largest fossil studies and revival program in the world!
+Cuando los combinas, ¡Consigues los estudios de fósiles y programas de resurección más grandes en el mundo!
 No
 No
 Yes
@@ -8453,6 +8427,18 @@ Powerful.
 Poderosos.
 Type-changing.
 Cambian de tipo.
+Premise 1: Ice both resists and is super-effective against Ground.
+Premisa 1: Hielo tanto resiste como es súper efectivo contra Tierra.
+Premise 2: Rock both resists and is super-effective against Ice.
+Premisa 2: Roca tanto resiste como es súper efectivo contra Hielo.
+Final premise: Ground is super-effective against Rock.
+Premisa Final: Tierra es súper efectivo contra Roca.
+Conclusion: To maintain consistency, Ground must resist Rock!
+Conclusión: Para ser consistente, ¡Tierra debe resistir Roca!
+The world is just perfectly balanced, isn't it?
+El mundo es perfectamente balanceado, ¿Me equivoco?
+Now I just need to figure out what's going on with Psychic...
+Ahora sólo debo descifrar qué ocurre con Psíquico...
 [Map124]
 
 Grouz Station Captain, at your service.
@@ -8601,8 +8587,8 @@ Sí
 
 [Map127]
 
-Stat changes affect avatars, but not as much as it does normal Pokemon.
-Cambios de estadísticas afectan a los avatares, pero no tanto como a un Pokémon normal.
+Stat changes affect Avatars, sure, but they have the ability to remove the negative changes somehow.
+Cambios de estadísticas afectan a los Avatares, seguro, pero tienen la habilidad de remover los cambios negativos de de algún modo.
 Perhaps stat-changing moves are more common wherever they come from.
 Quizás movimientos que modifican estadísticas son más comunes de donde sea que vengan.
 I'd rather you not interrupt my lecture.
@@ -8611,14 +8597,16 @@ This information about avatars could save lives.
 Esta información sobre avatares podría salvar vidas.
 If you're a Trainer, think about taking a seat.
 Si eres un Entrenador, piensa en tomar un asiento.
-I tried to face an Ursaring avatar.
-Intenté enfrentar un avatar de Ursaring.
-It only knew Normal-type moves, so I thought I'd be clever and use my Rotom and Dusclops against it.
-Sólo conocía movimientos tipo Normal así que pensé que sería astuto usar mi Rotom y Dusclops contra él.
-I learned the hard way that avatars can deal damage even through immunities.
-Aprendí de forma dura que los avatares pueden causar daño incluso a través de inmunidades.
-The damage was lessened, sure, but it was still enough to send me packin'.
-El damaño fue menor, seguro, pero seguía siendo suficiente para mandarme al centro.
+I tried to face an Ursaring avatar up in the Split Peaks.
+Intenté enfrentar un avatar de Ursaring en los Picos Partidos.
+I thought I'd be clever and use my Sinistea and my Duskull to completely negate its attacks.
+Pensé que eras astuta al usar mi Sinistea y mi Duskull para negar completamente sus ataques.
+I learned the hard way that avatars can ignore immunities. With their Empowered moves, at least.
+Aprendí de forma dura que los avatares pueden ignorar inmunidades. Con sus movimientos Empoderados, al menos.
+The damage was enough to send me packing. Later that day I heard that Victoire was able to take it down.
+El damaño fue suficiente para mandarme fuera. Más tarde ese día escuché que Victoire pudo tumbarlo.
+I bet that battle was a real carnival!
+¡Apuesto a que ese combate fue todo un carnaval!
 If an avatar takes enough damage, it might retaliate with a special kind of move.
 Si un avatar recibe suficiente daño, puede contraatacar con un tipo de movimiento especial.
 Not only is the move powerful, it changes the typing of the avatar itself!
@@ -8633,20 +8621,20 @@ You can have an avatar that's burned and numbed simultaneously!
 ¡Puedes tener un avatar quemado y aturdido simultáneamente!
 It's strange to consider what biological differences might have caused this discrepency.
 Es extraño considerar qué diferencias biologicas podrían haber causado esta discrepancia.
-One of my friends working for the Rangers battled the avatars of Suicune, Raikou, and Entei a while back.
-Uno de mis amigos trabajando para los Rangers batalló a los avatares de Suicune, Raikou y Entei hace un tiempo.
-He won't tell anyone where they're at, something about not encouraging weak Trainers from taking an unnecessary risk.
-Él no dirá a nadie dónde están, algo sobre no animar a Entrenadores débiles a tomar un riesgo innecesario.
-Maybe I'll get stronger by running through the Gym challenge.
-Quizás me volveré más fuerte al atravesar el desafío de los gimnasios.
-My friend has five badges, and he at least lasted a few minutes before wiping, so maybe someone of that caliber could take a shot at it.
-Mi amigo tiene cinco medallas, y él por lo menos aguantó unos cuantos minutos antes de caer, así que quizás alguien de ese calibre podría tener una oportunidad para ello.
-During my field studies, I noticed that the avatars were more aggressive against healthier Pokemon.
-Durante mis investigaciones de campo, me di cuenta que los avatares eran más agresivos contra Pokémon con más salud.
-As my Pokemon took more damage, they seemed to ease off them.
-Mientras mis Pokémon recibían más daño, parecían suavizarse contra ellos.
-A strange act of mercy? Or something more?
-¿Un extraño acto de piedad? ¿O algo más?
+A ranger buddy of mine told me about the Avatars of Entei, Raikou, and Suicune.
+Un ranger amigo mío me dije sobre los Avatares de Entei, Raikou y Suicune.
+He fought them, but won't tell me where at, the coward.
+Los enfrentó, pero no me dirá dónde, el cobarde.
+Though, maybe he's right to not get others involved.
+Aunque puede que tenga razón en no involucrar a otros.
+He's got three badges, and even then he failed to make a dent.
+Tiene tres medallas, e incluso así no pudo hacerle un rasguño.
+During my field studies, I noticed that the avatars rarely attacked the same Pokémon over and over.
+Durante mis investigaciones de campo, me di cuenta que los avatares raramente atacaban el mismo Pokémon una y otra vez.
+They seemed to have a regular rhythm of switching who they were being aggresive against.
+Parecían tener un ritmo regular de cambiar contra quien eran agresivos.
+Holding back to avoid being too lethal? Or something else?
+¿Conteniéndose para evitar ser demasiado letales? ¿O algo más?
 
 [Map128]
 
@@ -9358,7 +9346,7 @@ Pero entre los avatares y, eh, otros asuntos, tengo un par de problemas de los q
 You’re talented and I can make it worth your while.
 Eres talentoso y puedo hacer que valgas la pena.
 Well, keep it in mind.
-Bueno, tenlo en cuento.
+Bueno, tenlo en cuenta.
 See ya, kid.
 Te veo luego, niño.
 Casaba Villa Gym
@@ -9486,9 +9474,9 @@ Tuve un sueño de que encontraría a alguien aquí, ¡Y aquí estás!
 May I read your palm?
 ¿Puedo leer tu palma?
 Oh? Afraid I may hex you?
-¿Oh? ¿Asustado/a de que pueda hechizarte?
+¿Oh? ¿Con miedo a que pueda hechizarte?
 Rest assured, gramarye isn’t my forte.
-Quédate tranquilo/a, la gramaticia no es mi fuerte.
+No lo tengas, la gramaticia no es mi fuerte.
 Very well.
 Muy bien.
 At least take this. It’s designed to ward off evil.
@@ -9502,7 +9490,7 @@ Eres la lanzadera del tejido del destino. Sin lugar a dudas a quien estaba esper
 Your future is fraught with danger, of course, so I made this to ward off evil influences. Please, take it.
 Tu futuro está plagado de peligro, por supuesto, así que he hecho esto para repeler las influencias malvadas. Por favor, tómalo.
 Well, I think my stalker and I shall be off now.
-Bueno, creo que mi acosador y yo vamos a irnos.
+Bueno, creo que mi acosadora y yo vamos a irnos.
 She wishes to visit some <imp>ice cave</imp> or another to prove a point.
 Ella desea visitar alguna <imp>cueva helada</imp> o algo para probar su punto.
 I dare not leave her alone, claiming to be me, so off I go!
@@ -18501,7 +18489,7 @@ Have you been to the Starter Store in Novo?
 It's the only place to get your hands on those highly coveted starter 'mons.
 Es el único lugar en el que puedes hacerte con uno de 'mons iniciales tan codiciados.
 Problem is that they require a token exchange instead of just cash...
-El problema es que requieren un token en vez de sólo dinero...
+El problema es que requieren una ficha en vez de sólo dinero...
 Wish I had one of those instead of the Normal-types that fraud of a professor likes to give out...
 Desearía tener uno de esos en vez de uno de esos tipos Normal que esa fraude de profesora le gusta tanto dar...
 
@@ -21270,7 +21258,26 @@ They're always so cool when they're battlin'. I wanna be like them when I'm olde
 Siempre es genial cuando combaten. Quiero ser como ellas cuando sea mayor.
 
 [Map334]
-
+I'm an out-of-towner visiting family.
+Soy alguien de afuera visitando a mi familia.
+There aren't many Normal-types where I live. The only one I was able to get was a Sentret.
+No hay muchos tipos Normal donde vivo. El único que logré conseguir fue un Sentret.
+Not the Makyan one.
+No el de Makya.
+If you want it, I'll trade you a 'mon in the Loyal tribe for it. Want to keep my team cohesive.
+Si lo quieres, te lo intercambiaré por 'mon en el clan Leal. Quiero mantener a mi equipo cohesivo.
+Ah alright, I'll keep looking for one.
+Está bien, seguiré buscando uno.
+Maybe I'll find something in the area west of here.
+Quizás encontrarás algo en el oeste de aquí.
+Nice! You won't regret this.
+¡Bien! No te arrepentirás.
+\PN traded a Normal-type for Sentret!
+¡\PN intercambió un tipo Normal por un Sentret!
+Sweet, this little guy is gonna go for an adventure.
+Genial, este pequeño va a ir a una aventura.
+I hope you enjoy that Sentret, it's pretty rare here.
+Espero que disfrutes ese Sentret, es bastante raro por aquí.
 Oh?
 ¿Oh?
 They’ll come with me. I couldn’t convince them to stay even if I wanted to.
@@ -34842,7 +34849,7 @@ Magnetizar
 Faraday Cage
 Jaula de Faraday
 Mage Hand
-Mano Mágico
+Mano Mágica
 Kinetic Grip
 Agarre Kinético
 Liftoff
@@ -42646,7 +42653,7 @@ Al ser alcanzado por un movimiento especial, su Defensa Especial es reducida por
 Prevents foes with status conditions from fleeing.
 No permite que rivales con problemas de estado huyan.
 Boosts the power of wind-based moves by 30%.
-Potencia sus movimientos de sonido un 30%.
+Potencia sus movimientos de viento un 30%.
 Becomes charged upon entry, doubling the power of its next Electric-type attack.
 Se carga apenas entrar al campo, duplicando el poder de su siguiente ataque de tipo Eléctrico.
 Disables the opponent's most recently-used move for three turns upon hitting it.
@@ -48322,7 +48329,7 @@ El electromagnetismo de {1} se desvaneció.
 {1} can't use sound-based moves for the next #{value - 1} turns!
 ¡{1} no puede usar movimientos de sonido por los siguientes #{value - 1} turnos!
 {1} was subjected to torment!
-¡{1} fue sometido a la tormenta!
+¡{1} fue sometido al tormento!
 {1} was freed from {2}!
 ¡{1} fue liberado de {2}!
 {1} is no longer trapped by {2}.
@@ -51722,7 +51729,7 @@ Los bonus de los Clanes no son idénticos: cada Clan da un beneficio único. ¡S
 Are they important?
 ¿Son importantes?
 Tribes are not required in any way to complete the game. They are simply an alternative team-building challenge to play with, like Single Type runs.
-Los Clanes no son requeridos en absoluto para completar el juego. Son sólo una alternativa para construir equipos, como una partida donde usarías un Tipo.
+Los Clanes no son requeridos en absoluto para completar el juego. Son sólo una alternativa para construir equipos, como un equipo monotipo.
 How were type matchups changes compared to canon?
 ¿Como fueron cambiadas las relaciones entre tipos en comparación al canon?
 Coverage Type
