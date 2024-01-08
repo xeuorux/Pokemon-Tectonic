@@ -527,7 +527,7 @@
 526,PERFORMANCEANALYZER2,Performance Analyzer 2,Performance Analyzers 2,8,0,"An upgraded, hi-tech recording device. It increases experience earned from battles by 10%.",0,0,6
 527,BATTLEREPORT,Battle Report,Battle Reports,1,0,"A detailed report on how to improve as a trainer. If you decide to read it, your level cap will be raised by 5.",2,0,13
 528,MILKBONETREAT,Milk Bone Treat,Milk Bone Treats,7,0,"It would be a delicious treat if you were a Pokémon.",0,0,6
-529,PRIMALCLAY,Primal Clay,Primal Clay,8,0,"A lump of ancient clay. It glows with a soft golden color.",5,0,0
+529,PRIMALCLAY,Primal Clay,Primal Clay,8,0,"A lump of ancient clay. It glows with a soft golden color.",5,0,6
 530,OMNIDRIVE,OmniDrive,OmniDrives,8,0,"A mysterious data storage device which can be used to upgrade your PC.",5,0,6
 531,ANCIENTSEAWATER,Ancient Sea Water,Ancient Sea Water,1,50000,"A vial of shimmering ocean water. It makes a certain Pokémon evolve.",1,0,7
 532,CUPOFCOFFEE,Cup of Coffee,Cups of Coffee,7,0,"It's a cup filled with warm coffee. You probably shouldn't be keeping this in your backpack.",0,0,13
