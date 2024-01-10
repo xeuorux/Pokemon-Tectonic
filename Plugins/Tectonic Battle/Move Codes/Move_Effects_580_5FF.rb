@@ -1319,7 +1319,7 @@ class PokeBattle_Move_5C0 < PokeBattle_Move
 end
 
 #===============================================================================
-# Changes Category based on which will deal more damage. (Warped Strike)
+# Changes Category based on which will deal more damage. (Everhone)
 # Raises the stat that wasn't selected to be used.
 #===============================================================================
 class PokeBattle_Move_5C1 < PokeBattle_Move

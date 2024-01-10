@@ -219,11 +219,21 @@ class PokeBattle_Move
     # Chooses a move category based on which attacking stat is higher (if no target is provided)
     # Or which will deal more damage to the target
     def selectBestCategory(user, target = nil)
-        real_attack = user.attack
-        real_special_attack = user.spatk
+        if target && target.hasActiveAbility?(:UNAWARE)
+            real_attack = user.getFinalStat(:ATTACK, false, 0)
+            real_special_attack = user.getFinalStat(:SPECIAL_ATTACK, false, 0)
+        else
+            real_attack = user.getFinalStat(:ATTACK)
+            real_special_attack = user.getFinalStat(:SPECIAL_ATTACK)
+        end
         if target
-            real_defense = target.pbDefense
-            real_special_defense = target.pbSpDef
+            if user.hasActiveAbility?(:UNAWARE)
+                real_defense = target.getFinalStat(:DEFENSE, false, 0)
+                real_special_defense = target.getFinalStat(:SPECIAL_DEFENSE, false, 0)
+            else
+                real_defense = target.getFinalStat(:DEFENSE)
+                real_special_defense = target.getFinalStat(:SPECIAL_DEFENSE)
+            end
             # Perform simple damage calculation
             physical_damage = real_attack.to_f / real_defense
             special_damage = real_special_attack.to_f / real_special_defense
