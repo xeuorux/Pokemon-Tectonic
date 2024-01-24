@@ -3,7 +3,7 @@ ItemHandlers::UseFromBag.add(:STINKBOMB,proc { |item|
         pbMessage(_INTL("There's no trainers nearby to use the Stink Bomb on."))
         next 0
     end
-    next 4
+    next 2
 })
 
 def getStinkBombables
@@ -13,6 +13,7 @@ def getStinkBombables
 		xDif = (event.x - $game_player.x).abs
 		yDif = (event.y - $game_player.y).abs
 		next unless xDif <= 3 && yDif <= 3 # Must be nearby
+        next if pbGetSelfSwitch(event.id,'D') # Must not already be fled
 		stinkBombables.push(event)
     end
     return stinkBombables
