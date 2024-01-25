@@ -363,7 +363,7 @@
 1362,FARADAYCAGE,Faraday Cage,0CF,75,STEEL,Physical,100,15,0,NearOther,0,CanProtect;CanMirrorMove,"Conductive materials ensnare the target, trapping and damaging it for three turns.",MAGNETBOMB
 1363,MAGEHAND,Mage Hand,0CF,50,PSYCHIC,Physical,100,15,0,NearOther,0,CanProtect;CanMirrorMove,"The user grabs the target with a conjured hand, trapping and damaging it for three turns.",CRUSHGRIP
 1364,KINETICGRIP,Kinetic Grip,0CF,75,PSYCHIC,Physical,100,15,0,NearOther,0,CanProtect;CanMirrorMove,"The user conjures a giant fist to crush the target, trapping and damaging it for three turns.",CRUSHGRIP
-1365,LIFTOFF,Liftoff,5C5,160,FIRE,Physical,100,10,0,NearOther,0,CanProtect;CanMirrorMove,"The user launches up high, then explodes down on the second turn, taking 33% recoil.",FLY
+1365,LIFTOFF,Liftoff,5C5,160,FIRE,Physical,100,10,0,NearOther,0,CanProtect;CanMirrorMove,"The user launches up high, then explodes down on the second turn, taking 25% recoil.",FLY
 1366,ICYINJECTION,Icy Injection,5C6,90,ICE,Physical,100,12,100,NearOther,0,CanProtect;CanMirrorMove,"Injects supercold liquid into the target, damaging them and halving all future healing.",FROSTBARB
 1367,DIVINATION,Divination,5C7,0,DARK,Status,0,5,0,User,0,CanSnatch,"The user restores 1/2 of their HP and raises their Defense, Sp. Def, and critical hit chance by two steps each.",COSMICPOWER
 1368,WINTEROPS,Winter Ops,0C1,1,ICE,Physical,100,10,0,NearOther,0,CanProtect;CanMirrorMove;HighCriticalHitRate,"The user hunts with its allies. The more party Pokémon, the more damage. Critical hits twice as often.",ICEPUNCH

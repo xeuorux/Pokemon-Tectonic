@@ -1444,7 +1444,7 @@ end
 class PokeBattle_Move_5C5 < PokeBattle_Move_0C9
     include Recoilable
 
-    def recoilFactor; return 0.33; end
+    def recoilFactor; return 0.25; end
 
     def pbEffectAfterAllHits(user, target)
         return unless @damagingTurn

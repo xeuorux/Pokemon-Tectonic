@@ -37332,8 +37332,8 @@ The user grabs the target with a conjured hand, trapping and damaging it for thr
 El usuario agarra al objetivo con una mano mágica, atrapándolo y dañándolo durante tres turnos.
 The user conjures a giant fist to crush the target, trapping and damaging it for three turns.
 El usuario conjura un puño gigante para aplastar al objetivo, atrapándolo y dañándolo durante tres turnos.
-The user launches up high, then explodes down on the second turn, taking 33% recoil.
-El usuario despega en el primer turno, y estrella al objetivo en el segundo, recibiendo un 33% de daño de retroceso.
+The user launches up high, then explodes down on the second turn, taking 25% recoil.
+El usuario despega en el primer turno, y estrella al objetivo en el segundo, recibiendo un 25% de daño de retroceso.
 Injects supercold liquid into the target, damaging them and halving all future healing.
 El usuario inyecto un líquido congelado al objetivo, dañándolo y diviendo a la mitad toda curación futura.
 The user restores 1/2 of their HP and raises their Defense, Sp. Def, and critical hit chance by two steps each.
