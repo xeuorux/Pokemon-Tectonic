@@ -18887,7 +18887,7 @@ InternalName = DUCKLETT
 Type1 = FLYING
 Type2 = FAIRY
 # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
-BaseStats = 62,64,55,60,39,50
+BaseStats = 65,64,55,60,39,50
 # Total = 330
 GenderRate = Female50Percent
 GrowthRate = Medium
@@ -18921,7 +18921,7 @@ InternalName = SWANNA
 Type1 = FLYING
 Type2 = FAIRY
 # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
-BaseStats = 75,117,87,108,77,63
+BaseStats = 80,117,87,108,77,63
 # Total = 527
 GenderRate = Female50Percent
 GrowthRate = Medium

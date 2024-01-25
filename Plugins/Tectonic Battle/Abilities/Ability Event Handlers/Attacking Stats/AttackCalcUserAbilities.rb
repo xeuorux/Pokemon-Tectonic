@@ -128,7 +128,7 @@ BattleHandlers::AttackCalcUserAbility.add(:EARTHSHAKER,
 
 BattleHandlers::AttackCalcUserAbility.add(:SLIPSTREAM,
   proc { |ability, user, _battle, attackMult|
-      attackMult *= 1.3 if user.pbOwnSide.effectActive?(:Tailwind)
+      attackMult *= 1.5 if user.pbOwnSide.effectActive?(:Tailwind)
       next attackMult
   }
 )

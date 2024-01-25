@@ -423,7 +423,7 @@
 1422,SPARESCALES,Spare Scales,"Raises defenses after using a Grass-, Ground-, or Steel-type move."
 1423,PLACIDITY,Placidity,"Takes no damage from status ailments."
 1424,FREESTYLE,Freestyle,"The Pokémon changes type to that of the move it's about to use. However, it's 20% less accurate."
-1425,SLIPSTREAM,Slipstream,"Attack is boosted by 30% if a Tailwind is blowing."
+1425,SLIPSTREAM,Slipstream,"Attack is boosted by 50% if a Tailwind is blowing."
 1426,LIFELINE,Lifeline,"At the end of each turn, heals self by 1/20th and a party member by the amount the Pokémon was healed."
 1427,NOXIOUS,Noxious,"Reduces each other Pokémon's HP by 1/12th at the end of each turn."
 1428,DARTER,Darter,"Takes 30% less move damage if a Tailwind is blowing."
