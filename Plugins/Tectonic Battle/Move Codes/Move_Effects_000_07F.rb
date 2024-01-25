@@ -242,7 +242,7 @@ end
 #===============================================================================
 # Deals double damage on the first turn out. (Play Bite)
 #===============================================================================
-class PokeBattle_Move_013 < PokeBattle_FlinchMove
+class PokeBattle_Move_013 < PokeBattle_Move
     def pbBaseDamage(baseDmg, user, target)
         baseDmg *= 2 if user.firstTurn?
         return baseDmg

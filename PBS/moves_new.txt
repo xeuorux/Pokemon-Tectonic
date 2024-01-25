@@ -426,7 +426,7 @@
 1425,RISINGTIDE,Rising Tide,100,50,WATER,Special,0,10,0,NearFoe,0,CanProtect;CanMirrorMove,"Strikes the target with harbor waters, then summons rain for eight turns.",SURF
 1426,EXSANGUINATE,Exsanguinate,0A7,75,POISON,Physical,100,15,100,NearOther,0,CanProtect;CanMirrorMove;Biting,"The user steals blood, lowering the target's Attack. If so, raises the user's Attack.",CRUNCH
 1427,GLEEFULGRASP,Gleeful Grasp,048,80,DARK,Physical,100,10,100,NearOther,0,CanProtect;CanMirrorMove,"The user indulges its love of battle by striking a foe. Both of the user's attacking stats are raised.",
-1428,PLAYBITE,Play Bite,013,60,FAIRY,Physical,100,15,100,NearOther,0,CanProtect;CanMirrorMove;Biting,"The user bites with playful abandon. This deals double damage on the user's first turn out.",CRUNCH
+1428,PLAYBITE,Play Bite,013,60,FAIRY,Physical,100,15,0,NearOther,0,CanProtect;CanMirrorMove;Biting,"The user bites with playful abandon. This deals double damage on the user's first turn out.",CRUNCH
 1429,DESTRIERSWHIM,Destrier's Whim,10E,0,FIRE,Status,100,12,0,NearOther,0,CanProtect;CanMagicCoat;CanMirrorMove,"The user burns the target if they're a foe, or raises their Speed by four steps if they're an ally.",EMBER
 1430,JOUST,Joust,53D,130,STEEL,Physical,50,12,0,NearOther,0,CanProtect;CanMirrorMove,"The user charges at the target to strike it squarely. If it misses, the user's accuracy and Speed is raised.",SMARTSTRIKE
 1431,SEASONSEND,Season's End,590,95,NORMAL,Physical,100,20,0,NearOther,0,CanProtect;CanMirrorMove,"The user strikes while inviting the power of seasons. The user changes form to the next season.",BODYSLAM
