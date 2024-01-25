@@ -765,6 +765,12 @@ class Game_Character
         @direction_fix = last_direction_fix
     end
 
+    def move_to_original
+        @x = @original_x
+        @y = @original_y
+        @direction = @original_direction
+    end
+
     def jump(x_plus, y_plus)
         if x_plus != 0 || y_plus != 0
             if x_plus.abs > y_plus.abs

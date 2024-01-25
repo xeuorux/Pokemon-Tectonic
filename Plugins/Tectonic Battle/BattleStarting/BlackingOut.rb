@@ -33,6 +33,12 @@ def pbStartOver(_gameover = false)
                 $game_temp.player_new_y         = actualPoint[1]
                 $game_temp.player_new_direction = actualPoint[2] || Down
                 $scene.transfer_player if $scene.is_a?(Scene_Map)
+
+                # Reset all events to original positions
+                for event in $game_map.events.values
+                    event.move_to_original
+                end
+
                 $game_map.refresh
                 pbMapInterpreter.get_self.clear_starting
                 respawnedYet = true
