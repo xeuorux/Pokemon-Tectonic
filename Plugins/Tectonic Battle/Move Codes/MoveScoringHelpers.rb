@@ -34,12 +34,12 @@ def willHealStatus?(target)
 end
 
 def getNaturalCureScore(user, target, score)
-    return 0 unless user.battle.pbCanSwitch?(target.index)
+    return 0 unless target.battle.pbCanSwitch?(target.index)
     ncScore = score * 0.4
     ncScore -= getForceOutEffectScore(user, target) # Encouraging target to switch might be benefical
     return 0 if ncScore <= 0
     return ncScore
-end    
+end
 
 def getNumbEffectScore(user, target, ignoreCheck: false)
     return 0 if willHealStatus?(target)
