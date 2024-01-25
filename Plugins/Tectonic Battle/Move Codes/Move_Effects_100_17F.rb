@@ -2127,18 +2127,23 @@ class PokeBattle_Move_155 < PokeBattle_ProtectMove
 end
 
 #===============================================================================
-# User is protected against damaging moves this round. Disables the last used move
-# of the attacker for 3 turns (Quarantine)
+# User's side is protected against status moves this round. Disables the last used move
+# of the opposing user for 3 turns. (Quarantine)
 #===============================================================================
 class PokeBattle_Move_156 < PokeBattle_ProtectMove
     def initialize(battle, move)
         super
         @effect = :Quarantine
+        @sidedEffect = true
+    end
+
+    def pbProtectMessage(user)
+        @battle.pbDisplay(_INTL("{1} put up a quarantine!", user.pbThis))
     end
 
     def getEffectScore(user, target)
         score = super
-        user.eachPredictedProtectHitter do |b|
+        user.eachPredictedTargeter(2) do |b|
             score += getDisableEffectScore(target, 3)
         end
         return score

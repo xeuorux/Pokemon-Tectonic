@@ -521,7 +521,7 @@
 1520,PARADISIACA,Paradisiaca,134,0,GROUND,Status,0,5,0,NearAlly,0,CanProtect;CanMagicCoat,"The user shapes primal clay to heal a nearby ally for their max HP. This can overheal. The user must recharge next turn.",HEALPULSE
 1521,GREATERGLORIES,Greater Glories,135,0,NORMAL,Status,0,15,0,NearAlly,0,,"The user channels ancient energy to grant a nearby ally an extra turn this round.",HELPINGHAND
 1522,HEAVENSEYES,Heaven's Eyes,136,0,NORMAL,Status,100,10,0,NearOther,0,CanProtect;CanMagicCoat;CanMirrorMove,"The user's eyes glow with divine judgement, numbing the target and reducing both its attacking stats.",GLARE
-1523,QUARANTINE,Quarantine,156,0,ELECTRIC,Status,0,3,0,User,4,,"Protects the user from damage this turn. It disables any attacks against it for three turns.",PROTECT
+1523,QUARANTINE,Quarantine,156,0,ELECTRIC,Status,0,3,0,User,4,,"Protects the user's side from status moves this turn. It disables any moves blocked for three turns.",PROTECT
 1524,STINKCOVER,Stink Cover,139,0,POISON,Status,0,10,0,NearFoe,-6,CanMagicCoat;CanMirrorMove;Sound,"The foe is forced is forced to switch out by a stinky cloud, then the user also switches. Always goes last.",STINKCLOUD
 1525,FLORALGRAMARYE,Floral Gramarye,137,0,FAIRY,Status,0,10,0,User,0,,"A patch of medicinal flowers sprouts across the battlefield. This heals every Pokémon for 1/8th HP each turn for five turns.",GRASSYTERRAIN
 1526,DISCOVEREDPOWER,Discovered Power,13C,0,PSYCHIC,Status,100,15,0,User,0,CanSnatch,"The user ponders ancient wisdom, selecting three random status moves. You choose which one it uses.",METRONOME

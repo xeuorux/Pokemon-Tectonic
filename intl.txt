@@ -47213,6 +47213,8 @@ But it failed, since #{user.pbThis(true)} used a protection move last turn!
 ¡{1} protegió a {2}!
 {1} protected itself!
 ¡{1} se protegió así mismo!
+{1} put up a quarantine!
+{1} puso una cuarentena!
 The two moves have become one! It's a combined move!
 ¡Los dos movimientos se convirtieron en uno! ¡Es un movimiento combinado!
 {1} is waiting for {2}'s move...

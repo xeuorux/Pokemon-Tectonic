@@ -474,6 +474,14 @@ class PokeBattle_Battler
                     end
                 end
             end
+            # Quarantine (for moves which target the whole side)
+            quarantined = false
+            if targets.empty? && user.pbOpposingSide.effectActive?(:Quarantine)
+                @battle.pbDisplay(_INTL("{1} was blocked by the quarantine!", move.name))
+                user.onMoveFailed(move)
+                user.applyEffect(:Disable,3) if user.canBeDisabled?(true,move)
+                quarantined = true
+            end
             # Needle Fur
             if !targets.empty? && move.damagingMove?
                 targets.each do |b|
@@ -522,8 +530,8 @@ user.pbThis))
             # Process each hit in turn
             # Skip all hits if the move is being magic coated, magic bounced, or magic shielded
             realNumHits = 0
-            moveIsMagicked = magicCoater >= 0 || magicBouncer >= 0 || magicShielder >= 0
-            unless moveIsMagicked
+            moveIsBlocked = magicCoater >= 0 || magicBouncer >= 0 || magicShielder >= 0 || quarantined
+            unless moveIsBlocked
                 for i in 0...numHits
                     success = pbProcessMoveHit(move, user, targets, i, skipAccuracyCheck, multiHitAesthetics)
                     unless success

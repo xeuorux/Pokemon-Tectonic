@@ -219,6 +219,20 @@ GameData::BattleEffect.register_effect(:Side, {
     },
 })
 
+GameData::BattleEffect.register_effect(:Side, {
+    :id => :Quarantine,
+    :real_name => "Quarantine",
+    :resets_eor => true,
+    :protection_info => {
+        :hit_proc => proc do |user, target, move, battle|
+            user.applyEffect(:Disable,3) if user.canBeDisabled?(true,move)
+        end,
+        :does_negate_proc => proc do |_user, _target, move, _battle|
+            move.statusMove?
+        end,
+    },
+})
+
 ##########################################
 # Pledge combo effects
 ##########################################
