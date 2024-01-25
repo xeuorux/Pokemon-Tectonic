@@ -1594,6 +1594,7 @@ end
 # Additional effect changes depending on rotom's form. Only usable by rotom.
 #===============================================================================
 class PokeBattle_Move_5CB < PokeBattle_Move
+    def aiAutoKnows?(pokemon); return true; end
     def pbMoveFailed?(user, _targets, show_message)
         unless user.countsAs?(:ROTOM)
             @battle.pbDisplay(_INTL("But {1} can't use the move!", user.pbThis(true))) if show_message
