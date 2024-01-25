@@ -826,19 +826,10 @@ class PokeBattle_Move_5AA < PokeBattle_Move
 end
 
 #===============================================================================
-# User's Defense and Sp. Def are raised. Then, it heals itself based on (Refurbish)
-# current weight. Then, its current weigtht is cut in half.
+# User heals itself based on current weight. (Refurbish)
+# Then, its current weigtht is cut in half.
 #===============================================================================
 class PokeBattle_Move_5AB < PokeBattle_HealingMove
-    def pbMoveFailed?(user, _targets, show_message)
-        if !user.canHeal? && !user.pbCanRaiseStatStep?(:DEFENSE, user, self) &&
-           !user.pbCanRaiseStatStep?(:SPECIAL_DEFENSE, user, self)
-            @battle.pbDisplay(_INTL("But it failed, since #{user.pbThis(true)} can't heal or raise either of its defensive stats!}!")) if show_message
-            return true
-        end
-        return false
-    end
-
     def healRatio(user)
         case user.pbWeight
         when 1024..999_999
@@ -857,7 +848,6 @@ class PokeBattle_Move_5AB < PokeBattle_HealingMove
     end
 
     def pbEffectGeneral(user)
-        user.pbRaiseMultipleStatSteps(DEFENDING_STATS_2, user, move: self)
         super
         user.incrementEffect(:Refurbished)
     end

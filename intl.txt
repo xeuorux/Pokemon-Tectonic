@@ -37214,8 +37214,8 @@ Power increases by 20 each time its used in succession. User heals for half of d
 Es potencia por 20 por cada vez que se use de forma consecutiva. Recupera la mitad del daño causado.
 The shine from scales damages the target. 20% chance to reduce their higher attacking stat.
 El brillo de sus escamas ataca al objetivo. Tiene un 20% de probabilidad de disminuir la stat ofensiva más alta del objetivo.
-The user economizes half of its weight, raising its defenses by two steps and also healing based on the weight lost.
-El usuario economiza la mitad de su peso, aumentando sus defensas dos grados y también curándose según el peso que pierda.
+The user economizes half of its weight, healing based on the weight lost.
+El usuario economiza la mitad de su peso, curándose según el peso que pierda.
 The target eats a strange seed. They become numbed if faster than the user, or leeched if slower.
 El objetivo come una semilla extraña. Es aturdido si es más rápido que el usuario, o infectado si es más lento.
 Diving deep on the first turn, the user rises and strikes with explosive strength on second.

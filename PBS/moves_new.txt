@@ -305,7 +305,7 @@
 1304,PETALTEMPEST,Petal Tempest,000,95,GRASS,Special,100,12,0,AllNearOthers,0,CanProtect;CanMirrorMove;Wind,"The user stirs up a violent petal tempest and attacks everything around it.",PETALBLIZZARD
 1305,HEARTRHYTHM,Heart Rhythm,5A9,60,FAIRY,Special,100,20,0,NearOther,0,CanProtect;CanMirrorMove;Sound,"Power increases by 20 each time it's used in succession. User heals for half of damage dealt.",ROUND
 1306,SCALEGLINT,Scale Glint,5AA,40,DRAGON,Special,100,15,20,NearOther,0,CanProtect;CanMirrorMove,"The shine from scales damages the target. 20% chance to reduce their higher attacking stat.",DAZZLINGGLEAM
-1307,REFURBISH,Refurbish,5AB,0,STEEL,Status,0,15,0,User,0,CanSnatch,"The user economizes half of its weight, raising its defenses by two steps and also healing based on the weight lost.",AUTOTOMIZE
+1307,REFURBISH,Refurbish,5AB,0,STEEL,Status,0,15,0,User,0,CanSnatch,"The user economizes half of its weight, healing based on the weight lost.",AUTOTOMIZE
 1308,MYSTERYSEED,Mystery Seed,5AC,0,GRASS,Status,0,10,0,NearOther,0,CanProtect;CanMagicCoat;CanMirrorMove,"The target eats a strange seed. They become numbed if faster than the user, or leeched if slower.",LEECHSEED
 1309,DEPTHCHARGE,Depth Charge,0CB,120,WATER,Physical,100,10,0,NearOther,0,CanProtect;CanMirrorMove,"Diving deep on the first turn, the user rises and strikes with explosive strength on second.",DIVE
 1310,SCARRINGSWING,Scarring Swing,5E6,90,DARK,Physical,100,10,100,AllNearFoes,0,CanProtect;CanMirrorMove,"The user slashes all around them, creating deep scars. This lowers each target's Attack.",
