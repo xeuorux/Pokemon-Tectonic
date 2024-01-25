@@ -4,7 +4,6 @@ class PokeBattle_Scene
     # Return values: -1=Cancel, 0=Fight, 1=Bag, 2=Pokémon, 3=Run, 4=Call
     #=============================================================================
     def pbCommandMenu(idxBattler,firstAction)
-      shadowTrainer = (GameData::Type.exists?(:SHADOW) && @battle.trainerBattle?)
       cmds = [
         _INTL("",@battle.battlers[idxBattler].name),
         _INTL("Fight"),
@@ -12,13 +11,11 @@ class PokeBattle_Scene
         _INTL("Ball"),
         _INTL("Pokémon"),
         _INTL("Info"),
-        (shadowTrainer) ? _INTL("Call") : (firstAction) ? _INTL("Run") : _INTL("Cancel"),
+        firstAction ? _INTL("Run") : _INTL("Cancel"),
       ]
       wildBattle = !@battle.trainerBattle? && !@battle.bossBattle?
       mode = 0
-      if shadowTrainer
-        mode = 2
-      elsif firstAction
+      if firstAction
         if !wildBattle
           mode = 5
         else

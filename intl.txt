@@ -35389,6 +35389,8 @@ Morningstar
 Lucero del Alba
 Vainglory Flames
 Llamas Vanagloria
+Discovered Power
+Poder Descubrido
 [6]
 Using its tough and impressive horn, the user rams into the target with no letup.
 Usando su impresionante cuerno, el usuario embiste al rival.

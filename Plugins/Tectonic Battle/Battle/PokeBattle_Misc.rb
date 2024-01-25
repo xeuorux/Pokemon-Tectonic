@@ -330,3 +330,9 @@ def getItemName(item)
     return "ERROR" if itemData.nil?
     return itemData.name
 end
+
+def getMoveName(move)
+    moveData = GameData::Move.try_get(move)
+    return "ERROR" if moveData.nil?
+    return moveData.name
+end

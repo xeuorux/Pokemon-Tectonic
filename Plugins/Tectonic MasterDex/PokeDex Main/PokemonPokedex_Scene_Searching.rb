@@ -1108,7 +1108,7 @@ class PokemonPokedex_Scene
         dexlist = @dexlist
 
         typesCount = 0
-        GameData::Type.each { |t| typesCount += 1 if !t.pseudo_type && t.id != :SHADOW }
+        GameData::Type.each { |t| typesCount += 1 if !t.pseudo_type }
 
         dexlist.sort_by! do |entry|
             speciesData = GameData::Species.get(entry[0])

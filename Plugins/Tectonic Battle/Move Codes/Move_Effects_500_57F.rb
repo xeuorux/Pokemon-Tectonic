@@ -2056,7 +2056,7 @@ class PokeBattle_Move_57A < PokeBattle_Move
             @battle.pbDisplay(_INTL("But it failed, since #{user.pbThis(true)} has no moves!")) if show_message
             return true
         end
-        unless GameData::Move.get(getFirstSlotMove(user).id).can_be_forced?
+        if !GameData::Move.get(getFirstSlotMove(user).id).can_be_forced? || getFirstSlotMove(user).callsAnotherMove?
             if show_message
                 @battle.pbDisplay(_INTL("But it failed, since #{user.pbThis(true)}'s first slot move can't be shared!"))
             end

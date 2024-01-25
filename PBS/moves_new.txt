@@ -524,3 +524,4 @@
 1523,QUARANTINE,Quarantine,156,0,ELECTRIC,Status,0,3,0,User,4,,"Protects the user from damage this turn. It disables any attacks against it for three turns.",PROTECT
 1524,STINKCOVER,Stink Cover,139,0,POISON,Status,0,10,0,NearFoe,-6,CanMagicCoat;CanMirrorMove;Sound,"The foe is forced is forced to switch out by a stinky cloud, then the user also switches. Always goes last.",STINKCLOUD
 1525,FLORALGRAMARYE,Floral Gramarye,137,0,FAIRY,Status,0,10,0,User,0,,"A patch of medicinal flowers sprouts across the battlefield. This heals every Pokémon for 1/8th HP each turn for five turns.",GRASSYTERRAIN
+1526,DISCOVEREDPOWER,Discovered Power,13C,0,PSYCHIC,Status,100,15,0,User,0,CanSnatch,"The user ponders ancient wisdom, selecting three random status moves. You choose which one it uses.",METRONOME

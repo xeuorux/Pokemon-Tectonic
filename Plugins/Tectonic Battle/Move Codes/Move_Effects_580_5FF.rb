@@ -1363,7 +1363,6 @@ class PokeBattle_Move_5C2 < PokeBattle_Move
             next if !pkmn || i == user.pokemonIndex
             next unless pkmn.able?
             pkmn.moves.each do |move|
-                next if move.type == :SHADOW
                 next if move.category == 2
                 next unless move.base_damage > optimizedBP
                 battleMove = @battle.getBattleMoveInstanceFromID(move.id)

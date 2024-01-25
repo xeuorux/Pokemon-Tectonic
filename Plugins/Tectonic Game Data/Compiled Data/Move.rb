@@ -138,23 +138,12 @@ module GameData
       def can_be_forced?
         return false if [
           "0D4",   # Bide
-          "14B",   # King's Shield
           # Struggle
           "002",   # Struggle
           # Moves that affect the moveset
           "05C",   # Mimic
           "05D",   # Sketch
           "069",   # Transform
-          # Moves that call other moves
-          "0AE",   # Mirror Move
-          "0AF",   # Copycat
-          "0B0",   # Me First
-          "0B3",   # Nature Power
-          "0B4",   # Sleep Talk
-          "0B5",   # Assist
-          "0B6",   # Metronome
-          "16B",   # Instruct
-          "57A",   # Hive Mind
           # Moves that require a recharge turn
           "0C2",   # Hyper Beam
           # Moves that start focussing at the start of the round

@@ -1488,9 +1488,61 @@ class PokeBattle_Move_13B < PokeBattle_StatDownMove
 end
 
 #===============================================================================
-# (Not currently used.)
+# The user is given the choice of using one of 3 randomly chosen status moves. (Discovered Power)
 #===============================================================================
 class PokeBattle_Move_13C < PokeBattle_Move
+    def callsAnotherMove?; return true; end
+
+    def initialize(battle, move)
+        super
+        @discoverableMoves = []
+        GameData::Move::DATA.keys.each do |move_id|
+            move_data = GameData::Move.get(move_id)
+            next unless move_data.category == 2
+            next if move_data.is_signature?
+            next if move_data.cut
+            next unless move_data.can_be_forced?
+            next if move_data.empoweredMove?
+            moveObject = @battle.getBattleMoveInstanceFromID(move_id)
+            next if moveObject.is_a?(PokeBattle_ProtectMove)
+            next if moveObject.is_a?(PokeBattle_HelpingMove)
+            next if moveObject.callsAnotherMove?
+            @discoverableMoves.push(move_data.id)
+        end
+    end
+
+    def resolutionChoice(user)
+        validMoves = []
+        validMoveNames = []
+        until validMoves.length == 3
+            movePossibility = @discoverableMoves.sample
+            unless validMoves.include?(movePossibility)
+                validMoves.push(movePossibility)
+                validMoveNames.push(getMoveName(movePossibility))
+            end
+        end
+
+        if @battle.autoTesting
+            @chosenMove = validMoves.sample
+        elsif !user.pbOwnedByPlayer? # Trainer AI
+            @chosenMove = validMoves[0]
+        else
+            chosenIndex = @battle.scene.pbShowCommands(_INTL("Which move should #{user.pbThis(true)} use?"),validMoveNames,0)
+            @chosenMove = validMoves[chosenIndex]
+        end
+    end
+
+    def pbEffectGeneral(user)
+        user.pbUseMoveSimple(@chosenMove) if @chosenMove
+    end
+
+    def resetMoveUsageState
+        @chosenMove = nil
+    end
+
+    def getEffectScore(_user, _target)
+        return 80
+    end
 end
 
 #===============================================================================
@@ -2489,7 +2541,7 @@ class PokeBattle_Move_16B < PokeBattle_Move
             @battle.pbDisplay(_INTL("But it failed, since #{target.pbThis(true)} is focusing!")) if show_message
             return true
         end
-        unless GameData::Move.get(target.lastRegularMoveUsed).can_be_forced?
+        if !GameData::Move.get(target.lastRegularMoveUsed).can_be_forced? || getFirstSlotMove(user).callsAnotherMove?
             if show_message
                 @battle.pbDisplay(_INTL("But it failed, since #{target.pbThis(true)}'s last used move cant be instructed!"))
             end

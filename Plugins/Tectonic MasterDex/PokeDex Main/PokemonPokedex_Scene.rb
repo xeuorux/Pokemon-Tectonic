@@ -730,7 +730,7 @@ class PokemonPokedex_Scene
       when 1    then @sprites["searchbg"].setBitmap("Graphics/Pictures/Pokedex/bg_search_name")
       when 2
         count = 0
-        GameData::Type.each { |t| count += 1 if !t.pseudo_type && t.id != :SHADOW }
+        GameData::Type.each { |t| count += 1 if !t.pseudo_type }
         if count == 18
           @sprites["searchbg"].setBitmap("Graphics/Pictures/Pokedex/bg_search_type_18")
         else

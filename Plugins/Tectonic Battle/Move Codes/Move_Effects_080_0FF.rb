@@ -1081,14 +1081,6 @@ class PokeBattle_Move_0AF < PokeBattle_Move
             "071",   # Counter
             "072",   # Mirror Coat
             "073",   # Metal Burst
-            # Moves that call other moves
-            "0AE",   # Mirror Move
-            "0AF",   # Copycat
-            "0B0",   # Me First
-            "0B3",   # Nature Power
-            "0B4",   # Sleep Talk
-            "0B5",   # Assist
-            "0B6",   # Metronome
             # Move-redirecting and stealing moves
             "0B1",   # Magic Coat
             "0B2",   # Snatch
@@ -1106,9 +1098,6 @@ class PokeBattle_Move_0AF < PokeBattle_Move
             "171",   # Shell Trap
             "12B",   # Masquerblade
             "172",   # Beak Blast
-            # Event moves that do nothing
-            "133", # Hold Hands
-            "134", # Celebrate
         ]
     end
 
@@ -1125,7 +1114,8 @@ class PokeBattle_Move_0AF < PokeBattle_Move
         moveObject = @battle.getBattleMoveInstanceFromID(@copied_move)
         if      @moveBlacklist.include?(GameData::Move.get(@copied_move).function_code) || 
                 moveObject.forceSwitchMove? ||
-                moveObject.is_a?(PokeBattle_HelpingMove)
+                moveObject.is_a?(PokeBattle_HelpingMove) ||
+                moveObject.callsAnotherMove?
             @battle.pbDisplay(_INTL("But it failed, since the last used move can't be copied!")) if show_message
             return true
         end
@@ -1299,14 +1289,6 @@ class PokeBattle_Move_0B4 < PokeBattle_Move
             # Moves that affect the moveset (except Transform)
             "05C",   # Mimic
             "05D",   # Sketch
-            # Moves that call other moves
-            "0AE",   # Mirror Move
-            "0AF",   # Copycat
-            "0B0",   # Me First
-            "0B3",   # Nature Power
-            "0B4",   # Sleep Talk
-            "0B5",   # Assist
-            "0B6",   # Metronome
             # Moves that start focussing at the start of the round
             "115",   # Focus Punch
             "171",   # Shell Trap
@@ -1320,6 +1302,7 @@ class PokeBattle_Move_0B4 < PokeBattle_Move
         user.eachMoveWithIndex do |m, i|
             next if @moveBlacklist.include?(m.function)
             next if m.is_a?(PokeBattle_TwoTurnMove)
+            next if m.callsAnotherMove?
             next unless @battle.pbCanChooseMove?(user.index, i, false, true)
             sleepTalkMoves.push(i)
         end
@@ -1370,24 +1353,6 @@ class PokeBattle_Move_0B5 < PokeBattle_Move
             "071",   # Counter
             "072",   # Mirror Coat
             "073",   # Metal Burst
-            # Protection moves
-            "0AA",   # Detect, Protect
-            "0AB",   # Quick Guard
-            "0AC",   # Wide Guard
-            "0E8",   # Endure
-            "149",   # Mat Block
-            "14A",   # Crafty Shield
-            "14B",   # King's Shield
-            "14C",   # Spiky Shield
-            "168",   # Baneful Bunker
-            # Moves that call other moves
-            "0AE",   # Mirror Move
-            "0AF",   # Copycat
-            "0B0",   # Me First
-            "0B3",   # Nature Power
-            "0B4",   # Sleep Talk
-            "0B5",   # Assist
-            "0B6",   # Metronome
             # Move-redirecting and stealing moves
             "0B1",   # Magic Coat
             "0B2",   # Snatch
@@ -1405,11 +1370,6 @@ class PokeBattle_Move_0B5 < PokeBattle_Move
             "171",   # Shell Trap
             "12B",   # Masquerblade
             "172",   # Beak Blast
-            # Event moves that do nothing
-            "133", # Hold Hands
-            "134", # Celebrate
-            # Moves that call other moves
-            "0B3", # Nature Power
         ]
     end
 
@@ -1420,11 +1380,12 @@ class PokeBattle_Move_0B5 < PokeBattle_Move
             next if pkmn.egg?
             pkmn.moves.each do |move|
                 next if @moveBlacklist.include?(move.function_code)
-                next if move.type == :SHADOW
                 battleMoveInstance = @battle.getBattleMoveInstanceFromID(move.id)
                 next if battleMoveInstance.forceSwitchMove?
                 next if battleMoveInstance.is_a?(PokeBattle_TwoTurnMove)
                 next if battleMoveInstance.is_a?(PokeBattle_HelpingMove)
+                next if battleMoveInstance.is_a?(PokeBattle_ProtectMove)
+                next if battleMoveInstance.callsAnotherMove?
                 assistMoves.push(move.id)
             end
         end
@@ -1469,25 +1430,20 @@ class PokeBattle_Move_0B6 < PokeBattle_Move
             "0F1",   # Covet, Thief
             "0F2",   # Switcheroo, Trick
             "0F3",   # Bestow
-            # Event moves that do nothing
-            "133", # Hold Hands
-            "134", # Celebrate
-            # Z-moves
-            "Z000",
         ]
 
         @metronomeMoves = []
         GameData::Move::DATA.keys.each do |move_id|
             move_data = GameData::Move.get(move_id)
-            break if move_data.id_number >= 2000
             next if move_data.is_signature?
+            next if move_data.cut
             next unless move_data.can_be_forced?
-            next if move_data.type == :SHADOW
             next if @moveBlacklist.include?(move_data.function_code)
             next if move_data.empoweredMove?
             moveObject = @battle.getBattleMoveInstanceFromID(move_id)
             next if moveObject.is_a?(PokeBattle_ProtectMove)
             next if moveObject.is_a?(PokeBattle_HelpingMove)
+            next if moveObject.callsAnotherMove?
             @metronomeMoves.push(move_data.id)
         end
     end
