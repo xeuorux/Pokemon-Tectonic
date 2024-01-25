@@ -333,7 +333,7 @@
 1332,PSYSHIELDBASH,Psyshield Bash,01D,80,PSYCHIC,Physical,100,20,100,NearOther,0,CanProtect;CanMirrorMove,"Cloaking itself in psychic energy, the user slams into the target, raising the user's Defense by two steps.",ZENHEADBUTT
 1333,HEADLONGRUSH,Headlong Rush,03C,120,GROUND,Physical,100,5,0,NearOther,0,CanProtect;CanMirrorMove,"The user smashes into the target in a full-body tackle. This cuts the user's Defenses.",STOMPINGTANTRUM
 1334,IMPURITYBLAZE,Impurity Blaze,5B6,80,FIRE,Special,100,10,0,NearOther,0,CanProtect;CanMirrorMove,"If the target has a status condition, this deals double damage and heals every battler's status condition.",HEX
-1335,CEASELESSEDGE,Ceaseless Edge,103,65,DARK,Physical,100,10,0,NearOther,0,CanProtect;CanMirrorMove;Blade,"The user slashes its shell blade at the target. Shell splinters remain scattered under the target as spikes.",NIGHTSLASH
+1335,CEASELESSEDGE,Ceaseless Edge,13E,65,DARK,Physical,100,10,0,NearOther,0,CanProtect;CanMirrorMove;Blade,"The user slashes its shell blade, leaving spikes under the target if none have already been placed.",NIGHTSLASH
 1336,STONEAXE,Stone Axe,105,55,ROCK,Physical,100,10,0,NearOther,0,CanProtect;CanMirrorMove;Blade,"The user swings its stone axes. This leaves stone splinters floating around the target.",STONEEDGE
 1337,THREEFOLDVOLLEY,Threefold Volley,500,30,FIGHTING,Special,100,15,0,NearOther,0,CanProtect;CanMirrorMove;HighCriticalHitRate,"The user shoots three arrows made of Aura with extreme precision. Critical hits twice as often.",AURASPHERE
 1338,ESPERDIVE,Esper Dive,01F,80,PSYCHIC,Physical,100,10,100,NearOther,0,CanProtect;CanMirrorMove,"The user slashes the target with aura-enriched wings. This boosts the user's Speed by two steps.",SKYATTACK

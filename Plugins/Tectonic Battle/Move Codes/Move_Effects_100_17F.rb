@@ -1556,9 +1556,28 @@ class PokeBattle_Move_13D < PokeBattle_TargetStatDownMove
 end
 
 #===============================================================================
-# (Not currently used)
+# Sets spikes, but only if none are present. (Ceaseless Edge)
 #===============================================================================
-class PokeBattle_Move_13E < PokeBattle_Move
+class PokeBattle_Move_13E < PokeBattle_Move_103
+    def pbMoveFailed?(user, _targets, show_message)
+        return false if damagingMove?
+        if user.pbOpposingSide.effectAtMax?(:Spikes)
+            @battle.pbDisplay(_INTL("But it failed, since there's already one layer of Spikes!")) if show_message
+            return true
+        end
+        return false
+    end
+
+    def pbEffectAgainstTarget(_user, target)
+        return unless damagingMove?
+        return if target.pbOwnSide.countEffect(:Spikes) > 0
+        target.pbOwnSide.incrementEffect(:Spikes)
+    end
+
+    def getEffectScore(user, target)
+        return 0 if damagingMove? && target.pbOwnSide.countEffect(:Spikes) > 0
+        return getHazardSettingEffectScore(user, target)
+    end
 end
 
 #===============================================================================

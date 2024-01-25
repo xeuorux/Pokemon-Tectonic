@@ -18888,7 +18888,7 @@ Type1 = FLYING
 Type2 = FAIRY
 # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
 BaseStats = 65,64,55,60,39,50
-# Total = 330
+# Total = 333
 GenderRate = Female50Percent
 GrowthRate = Medium
 BaseEXP = 61
@@ -18922,7 +18922,7 @@ Type1 = FLYING
 Type2 = FAIRY
 # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
 BaseStats = 80,117,87,108,77,63
-# Total = 527
+# Total = 532
 GenderRate = Female50Percent
 GrowthRate = Medium
 BaseEXP = 166

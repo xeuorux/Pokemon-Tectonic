@@ -37272,8 +37272,8 @@ The user smashes into the target in a full-body tackle. This cuts the user's Def
 El usuario arremete al objetivo de lleno. Disminuye las Defensas del usuario.
 If the target has a status condition, this deals double damage and heals every battler's status condition.
 Si el objetivo tiene un problema de estado, duplica su potencia y cura los problemas de todos los Pokémon.
-The user slashes its shell blade at the target. Shell splinters remain scattered under the target as spikes.
-El usuario ataca al objetivo usando su coraza. Partes de ella quedan en el campo como púas en el campo rival.
+The user slashes with its shell blade, leaving spikes under the target if none have already been placed
+El usuario usando su coraza, dejando una capa de púas si aún no se ha colocado ninguna.
 The user swings its stone axes. This leaves stone splinters floating around the target.
 El usuario ataca con su hacha pétrea. Esto deja rocas flotantes en el lado contrario.
 The user shoots three arrows made of Aura with extreme precision. Critical hits twice as often.
@@ -49361,6 +49361,8 @@ But it failed, since #{target.pbThis(true)} is already embargoed!
 ¡Pero falló, ya que #{target.pbThis(true)} ya está bajo los efectos del Embargo!
 But it failed, since there is no room for more Spikes!
 ¡Pero falló, ya que no hay espacio para más Púas!
+But it failed, since there's already one layer of Spikes!
+¡Pero falló, ya que ya hay una capa de Púas!
 But it failed, since pointed stones already float around the opponent!
 ¡Pero falló, ya que ya hay rocas puntiagudas flotando alrededor del oponente!
 {1} kept going and crashed!
