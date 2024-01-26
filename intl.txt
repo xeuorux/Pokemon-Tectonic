@@ -389,7 +389,7 @@ Bueno, gracias por el pasado… patrocinio de tu familia. Me encargaré de los p
 Mom isn't happy. She's sick of us leeching off of the company's success. 'Prove yourselves', she said.
 Mamá no está contenta. Está harta de nosotros aprovechándose del éxito de la compañía. “Demostrad vuestro valor”, ella dijo.
 So now your brother's got it in his head to become a Champion. That'll show her, right?
-Así que tu hermano se le metió en su cabeza el ser Campeón. Eso le enseñará, ¿Cierto?
+Así que a tu hermano se le metió en su cabeza el ser Campeón. Eso le enseñará, ¿Cierto?
 Not if you become Champion first.
 No si tú eres Campeón primero.
 Your brother <imp>Zain</imp> is already in the <imp>Makya region</imp>, with who knows how many badges.
@@ -2673,7 +2673,7 @@ You might want to check in on the other Champions.
 Puede que quieras buscar los otros Campeones. 
 There's a few of us here in town.
 Somos unos cuantos en el pueblo.
-Scilla's at the Ironclad Dojo, and Elise is always holed up in the Castle…
+Scilla's at the Ironclad Dojo, and Elise is always holed up in the Castle...
 Scilla está en el Dojo Férreo, y Elise está siempre metida en el Castillo…
 Tell you what. If you manage to beat one of them in battle, I'll bring my team out of retirement for one last fight.
 Sabes qué. Si logras vencer a uno de ellos en combate, traeré mi equipo fuera de retiro para un último combate.
@@ -9221,7 +9221,7 @@ Nuestra mentora se fue de la nada. Nos dejó a cargo del gimnasio.
 But she left behind instructions: if we find someone as good as her, give them this key, tell them to go through the door, and stand back.
 Pero nos dejó instrucciones: si encontrabamos a alguien tan bueno como ella, le daríamos esta llave, decirle que atraviese esa puerta, y quedarnos atrás.
 That’s you.
-Ese eres tu.
+Ese eres tú.
 Do it.
 Hazlo.
 Meet me at the shed near the river.
@@ -9394,7 +9394,7 @@ Hey!
 I'm bored and want to have fun. Let's play hide and seek!
 Estoy aburrido y quiero divertirme. ¡Juguemos a las escondidas!
 I took some TM from my Pa when he wasn't looking.
-Tomé una par de MTs de mi Pa mientras no estaba mirando.
+Tomé un par de MTs de mi Pa mientras no estaba mirando.
 If you can find me, I'll give the TMs to you.
 Si puedes encontrarme, te daré las MTs.
 I'll be somewhere on the route to the foreclosed tunnel. Smell ya later!
@@ -9432,7 +9432,7 @@ A beautiful name, in my opinion!
 I believe Lambert also has a Croagunk. Or.... two of them?
 Creo que Lambert también tiene un Croagunk. O… ¿Dos?
 I'm not sure, but I swear I saw a sparring match, where the two were nearly identical...
-No estoy seguro, pero juraría ver una duelo, donde los dos eran practicamente idénticos… 
+No estoy seguro, pero juraría ver un duelo, donde los dos eran practicamente idénticos… 
 That was a fun game of hide and seek!
 ¡Eso fue un divertido juego del escondite!
 I've learned that if I offer stolen goods to people, they'll let me do whatever I want!
@@ -10103,10 +10103,10 @@ Oh good. I’ve been looking forward to curbstomping your team since you picked 
 Bien. He estado esperando a pisotear tu equipo desde que elegiste tu inicial.
 Ready to learn some humility?
 ¿Preparado para aprender una lección de humildad?
-…I can’t believe it.
+...I can't believe it.
 …No puedo creerlo.
 I spend MONTHS out here, grinding my ass off to get this far, and you traipse in like it’s nothing.
-Pasé MESES ahí afuera, entrenando mi culo para llegar hasta aquí, y tú llegas como si nada, 
+Pasé MESES ahí afuera, entrenando mi culo para llegar hasta aquí, y tú llegas como si nada.
 Why are you better? Why are you always better?
 ¿Por qué eres mejor? ¿Por qué siempre eres mejor?
 Fine! I guess I’ll see you in the championship.
@@ -12313,12 +12313,10 @@ Noel is such a cool dude.
 Noel es tremendo tipo.
 Everyone focuses on his sculptures, but I know that his true art is in battling!
 Todos se centran en sus esculturas, ¡Pero yo sé que su verdadero arte está en el combate!
-His Girafarig creates a Trick Room whenever it enters battle, and his Metagross can wipe entire teams!
-¡Su Girafarig crea Espacio Raro apenas entra al campo, y su Metagross puede barrer equipos enteros!
-And he's got that Pokemon that looks like a moon!
-¡Y tiene ese Pokémon que se ve como una luna!
-Don't underestimate it, I've seen it demolish unsuspecting enemies.
-No lo subestimes, lo he visto demoler enemigos ignorantes.
+His Pokémon may look a bit goody, but they're all the real deal.
+Sus Pokémon podrán parecer algo chistosos, pero no los subestimes.
+His Metagross and regional Polteageist are plenty strong, but he also has this weird-looking snowman Pokémon that I've seen drop opponents in a single hit!
+¡Su Metagross y su Polteageist regional son bastante fuertes, pero también tiene este extraño Pokémon muñeco de nieve que he visto vencer oponentes en un solo golpe!
 W-what?! You got Noel's badge?
 ¡¿Q-qué?! ¿Conseguiste la medalla de Noel?
 You're sick! Sick! I wish I got to see it!
@@ -12636,7 +12634,7 @@ Ah, te reconozco. Eres el nuevo Entrenador que está arrasando con el Desafío d
 At the rate you're going, I have no doubt that you'll be attending this years tournament?
 Por como vas, ¿No dudo que estarás atendiendo al torneo de este año?
 To be honest, I'm a little nervous -- being the returning champion and all.
-Para serte honesto, estoy un poco nervioso – siendo la campeona recurrente y todo.
+Para serte honesta, estoy un poco nerviosa – siendo la campeona recurrente y todo.
 My name's Elise.
 Mi nombre es Elise.
 I normally just run things around here at the castle. Not too unlike my anscenstors of old, minus the whole royalty deal.
@@ -13018,7 +13016,7 @@ Are you scheduled to speak later today?
 No? Then I'm gonna have to ask you to find a spot to watch the conference.
 ¿No? Entonces voy a tener que pedirte que busques un lugar en el que mirar la conferencia.
 I've lived a life of luxury, in no small part due to my lucrative career as a Trainer.
-He vivido una vida de lujos, en gran parte debido a mi lucrativa carrera como Entrenador.
+He vivido una vida de lujos, en gran parte debido a mi lucrativa carrera como Entrenadora.
 I managed to get my hands on a few of these Amulet Coins.
 Logré tener en mis manos varios de estos Moneda Amuletos.
 They made me a fortune in no time at all.
@@ -15483,63 +15481,63 @@ Voy a ver si encuentro a alguién más por acá.
 Ah, hello. It’s good to see you again.
 Ah, hola. Es bueno verde de nuevo.
 Do not fear: I have no new forms that need combat testing.
-Do not fear: I have no new forms that need combat testing.
+No temas: no tengo ninguna nueva forma que necesite testeo en combate.
 I am studying the biodiversity of Prizca’s underground. It’s...
-I am studying the biodiversity of Prizca’s underground. It’s...
+Estoy estudiando la biodiversidad del subsuela de Prizca. Es...
 That’s not inaccurate. The ecological pressures here are novel, to say the least.
-That’s not inaccurate. The ecological pressures here are novel, to say the least.
+Eso no es erróneo. La presiones ecológicas aquí son únicas, cuando menos.
 I am a biologist. We are accustomed to filth.
-I am a biologist. We are accustomed to filth.
+Soy un biólogo. Estoy acostumbrado a la mugre.
 If one has an aversion to creatures adapting to life in a sepulcher, then yes.
-If one has an aversion to creatures adapting to life in a sepulcher, then yes.
+Si uno tiene una aversión a las criaturas adaptándose a la vida en un sepulcro, entonces sí.
 Perhaps to a trainer. After all, you can catch your preferred selection here just as easily as in the open wilderness, can you not?
-Perhaps to a trainer. After all, you can catch your preferred selection here just as easily as in the open wilderness, can you not?
+Quizás para un entrenador. Después de todo, puedes atrapar a tu selección preferida aquí tan fácilmente como lo harías en el mundo exterior, ¿Me equivoco?
 In any case, it is an understudied biome.
-In any case, it is an understudied biome.
+En cualquier caso, este bioma es uno poco estudiado.
 I had rather hoped to find it in pristine condition – as much as a sewer can be pristine – but the avatars have made that difficult.
-I had rather hoped to find it in pristine condition – as much as a sewer can be pristine – but the avatars have made that difficult.
+Esperaba poder encontrarlo en una condición impoluta - tanto como una alcantarilla pueda estar impoluta - pero los avatares han complicado la tarea.
 This entire region is undergoing dramatic ecological shifts. I have my concerns.
-This entire region is undergoing dramatic ecological shifts. I have my concerns.
+La región entera está atravesando cambios ecológicos drásticos. Esto me preocupa.
 Yes. While avatars do not seem to eat or drink, and they do not prey upon other Pokémon, wild Pokémon still avoid them.
-Yes. While avatars do not seem to eat or drink, and they do not prey upon other Pokémon, wild Pokémon still avoid them.
+Sí. Aunque los avatares no parecen comer o beber, y no cazan a otros Pokémon, los Pokémon salvajes aún los evitan. 
 They are, after all, quite large and threatening.
-They are, after all, quite large and threatening.
+Son, después de todo, bastante grandes y amenazantes.
 I noticed a lack of avatars when I went anywhere you’d been before. I thank you for that.
-I noticed a lack of avatars when I went anywhere you’d been before. I thank you for that.
+Noté una falta de avatares a donde sea que fuera donde tú hayas estado antes. Te agradezco eso.
 I fear a potential climate collapse. That is predicated on very unlikely outcomes, but it is still a sobering idea.
-I fear a potential climate collapse. That is predicated on very unlikely outcomes, but it is still a sobering idea.
+Temo un potencial colapso climático. Eso es predicado en sólo resultados poco probables, pero sigue siendo una idea solemne.
 I plan to return to <imp>Novo College</imp> and seek the advice of the experts.
-I plan to return to <imp>Novo College</imp> and seek the advice of the experts.
+Planeo regresar a la  <imp>Facultad Novo</imp> y buscar el consejo de expertos.
 I plan to... well, I plan to ask them about their observations.
-I plan to... well, I plan to ask them about their observations.
+Planeo... bueno, planeo preguntarles sobre sus observaciones.
 And I would also like to determine if they’ve been performing their due diligence. I have my suspicions about their overall effectiveness.
-And I would also like to determine if they’ve been performing their due diligence. I have my suspicions about their overall effectiveness.
+Y también me gustaría poder determinar si han estado actuando con su diligencia debida. Tengo mis sospechas sobre su efectividad en general.
 To say more at this point would be baseless slander.
-To say more at this point would be baseless slander.
+Decir más a este punto serían calumnias infundadas.
 If you should happen to want to assist me, meet me there. In fact... I could use someone with a position of perceived competence with regards to battling.
-If you should happen to want to assist me, meet me there. In fact... I could use someone with a position of perceived competence with regards to battling.
+Si llegas a querer asistirme, ve conmigo allí, De hecho... me vendría bien alguien con una posición de competencia percebida en combates.
 Could you seek me out after finishing your gym challenge?
-Could you seek me out after finishing your gym challenge?
+¿Podrías verme luego de terminar tu desafío de los gimnasios?
 Between your eight badges and my eight-year degree, I believe our conclusions would demand respect.
-Between your eight badges and my eight-year degree, I believe our conclusions would demand respect.
+Entre tus ocho medallas y mi título de ocho años, creo que nuestras conclusiones demandarían respeto.
 But, no, do not answer me. I have already imposed on you enough, so I’ll leave you be.
-But, no, do not answer me. I have already imposed on you enough, so I’ll leave you be.
+Pero, no, no me reposndas. Ya te he impuestado demasiado, así que te dejaré ser.
 Goodbye, traveler.
-Goodbye, traveler.
+Adiós, viajero.
 Unique?
-Unique?
+¿Singular?
 Gross?
-Gross?
+¿Asqueroso?
 Horrifying?
-Horrifying?
+¿Horripilante?
 Pretty standard?
-Pretty standard?
+¿Bastante estándar?
 About avatars?
-About avatars?
+¿Sobre los avatares?
 I'm doing my part.
-I'm doing my part.
+Hago mi parte.
 How bad?
-How bad?
+¿Qué tan malo?
 
 [Map223]
 Prizca Black Market
@@ -16307,7 +16305,7 @@ Trajé un montón conmigo ya que quería atrapar un par de Pokémon aquí.
 I've caught all the Pokemon I need though, so I'm giving them out to Trainers who need them.
 Pero ya atrapé todo lo que necesitaba, así que las estoy dando a Entrenadores que las necesiten.
 Anything to combat the avatar threat.
-Lo que sea para combatir la amenaza avatar,
+Lo que sea para combatir la amenaza avatar.
 Dunno if you can find dreamballs in Makya, haven't seen any in the shops.
 No sé si puede encontrar Ensueño Balls en Makya, no las he visto en tiendas.
 Maybe a specialty shop, but not one in Prizca.
@@ -23790,7 +23788,7 @@ Intenté comer un Caramelo EXP una vez.
 I figured it would taste good since my Pokémon love it.
 Supuse que tendría buen sabor ya que mis Pokémon los aman.
 I was very wrong. Zero out of ten. Do NOT recommend.
-EStaba muy equivocado. Cero de diez. NO lo recomiendo.
+Estaba muy equivocado. Cero de diez. NO lo recomiendo.
 [Map402]
 My legs are so sore...
 Apenas siento mis piernas...
@@ -33904,7 +33902,7 @@ Bomba Ácida
 Smog
 Polución
 Poison Sting
-Picotazo Venenoso
+Picotazo Veneno
 Coil
 Enrosque
 Poison Gas
@@ -35390,7 +35388,7 @@ Lucero del Alba
 Vainglory Flames
 Llamas Vanagloria
 Discovered Power
-Poder Descubrido
+Poder Revelado
 [6]
 Using its tough and impressive horn, the user rams into the target with no letup.
 Usando su impresionante cuerno, el usuario embiste al rival.
@@ -37273,7 +37271,7 @@ El usuario arremete al objetivo de lleno. Disminuye las Defensas del usuario.
 If the target has a status condition, this deals double damage and heals every battler's status condition.
 Si el objetivo tiene un problema de estado, duplica su potencia y cura los problemas de todos los Pokémon.
 The user slashes with its shell blade, leaving spikes under the target if none have already been placed
-El usuario usando su coraza, dejando una capa de púas si aún no se ha colocado ninguna.
+El usuario usando su coraza deja una capa de púas si aún no se ha colocado ninguna.
 The user swings its stone axes. This leaves stone splinters floating around the target.
 El usuario ataca con su hacha pétrea. Esto deja rocas flotantes en el lado contrario.
 The user shoots three arrows made of Aura with extreme precision. Critical hits twice as often.
@@ -38169,10 +38167,12 @@ Energy Root
 Raíz Energía
 Heal Powder
 Polvo Curación
+Max Repel
+Repelente Máximo
 Revival Herb
 Hierba Revivir
-Candy
-Caramelo
+Rare Candy
+Caramelo Raro
 Vanilla Tulumba
 Tulumba de Vainilla
 Great Ball
@@ -41033,7 +41033,7 @@ Ostentoso
 Chill Out
 Refrescar
 Dauntless
-Intrépido
+Indómito
 Arcane Finale
 Final Arcano
 Heroic Finale
@@ -42177,7 +42177,7 @@ Potencia movimientos tipo Siniestro un 50% bajo sol.
 Immune to weather downsides, and takes 20% less damage from attacks during weather.
 Inmune a los aspectos negativos de los climas, y recibe 20% menos de daño si cualquier clima está presente.
 Prevents its stats from being lowered by more than 1 step at a time.
-Evita que sus estadísticas se reduzcan en más de 1 paso a la vez.
+Evita que sus estadísticas se reduzcan en más de 1 grado a la vez.
 Raises Sp. Atk by one step after knocking out any Pokémon.
 Aumenta el Ataque Especial un grado al debilitar cualquier Pokémon.
 Powers up Poison-type moves by 50%.
@@ -42514,7 +42514,7 @@ Maximiza su Ataque Especial cuando pierde la mitad de sus PS.
 Raises Speed by two steps after knocking out any Pokémon.
 Aumenta la Velocidad dos grados al debilitar cualquier Pokémon.
 Upon entry during sunshine, heals the lowest HP ally or self by 50%.
-Se cura así mismo o a su aliado un 50%, dependiendo de cuál tenga menos PS, al entrar al campo bajo sol.
+Se cura a sí mismo o a su aliado un 50%, dependiendo de cuál tenga menos PS, al entrar al campo bajo sol.
 Punching moves change secondary type and their power is boosted by 30%.
 Cambia de tipo secundario de acuerdo al movimiento de puño que use, además, estos son potenciados un 30%.
 Rather than take recoil damage, it swaps out, and its replacement takes that damage.
@@ -42612,7 +42612,7 @@ Potencia todos sus movimientos un 25% durante un eclipse.
 Upon entry during eclipse, lowers foe's Attack and Sp. Atk by two steps each.
 Disminuye ambos Ataques de los rivales dos grados al entrar al campo durante un eclipse.
 Upon entry during eclipse, heals the lowest HP ally or self by 50%.
-Se cura así mismo o a su aliado un 50%, dependiendo de cuál tenga menos PS, al entrar al campo durante un eclipse.
+Se cura a sí mismo o a su aliado un 50%, dependiendo de cuál tenga menos PS, al entrar al campo durante un eclipse.
 Upon entry during eclipse, if it has no item, finds and equips the Pearl of Fate.
 Al entrar al campo durante un eclipse, si no tiene ningún objeto, encuentra y se equipa la Perla del Destino.
 Boosts Attack by 30% in moonglow.
@@ -42806,9 +42806,9 @@ Aumenta el Ataque Especial un 75%, pero el Pokémon es helado luego de atacar.
 Upon entry, intensifies gravity for five turns.
 Intensifica la gravedad durante cinco turnos al entrar al campo.
 Before using a status move against a single foe, lowers their Defense by two steps.
-Antes de usar un movimiento de estado a un sólo rival, disminuye su Defensa dos grados.
+Antes de usar un movimiento de estado a un solo rival, disminuye su Defensa dos grados.
 Before using a status move against a single foe, lowers their Sp. Def by two steps.
-Antes de usar un movimiento de estado a un sólo rival, disminuye su Defensa Especial dos grados.
+Antes de usar un movimiento de estado a un solo rival, disminuye su Defensa Especial dos grados.
 Also Grass in addition to its other types. When hit by a physical move, the attacker is also infected.
 Obtiene el tipo Planta como tercer tipo. Al ser alcanzado por un movimiento físico, el atacante es contagiado.
 Immune to Steel-type moves and restores HP if hit by one.
@@ -45804,27 +45804,27 @@ You have no more Pokémon that can fight!<<1>>
 You blacked out!
 ¡Estás fuera de combate!
 \me[{1}]You found some \c[1]{2}\c[0]!\wtnp[30]
-\me[{1}]¡Encontraste un \c[1]{2}\c[0]!\wtnp[30]
+\me[{1}]¡Encontraste \c[1]{2}\c[0]!\wtnp[30]
 \me[{1}]You found \c[1]{2} {3}\c[0]!\wtnp[30]
 \me[{1}]¡Encontraste \c[1]{2} {3}\c[0]!\wtnp[30]
 \me[{1}]You found {2} \c[1]{3}\c[0]!\wtnp[30]
 \me[{1}]¡Encontraste {2} \c[1]{3}\c[0]!\wtnp[30]
 \me[{1}]You found an \c[1]{2}\c[0]!\wtnp[30]
-\me[{1}]¡Encontraste un \c[1]{2}\c[0]!\wtnp[30]
+\me[{1}]¡Encontraste \c[1]{2}\c[0]!\wtnp[30]
 \me[{1}]You found a \c[1]{2}\c[0]!\wtnp[30]
-\me[{1}]¡Encontraste un \c[1]{2}\c[0]!\wtnp[30]
+\me[{1}]¡Encontraste \c[1]{2}\c[0]!\wtnp[30]
 You put the {1} away\<<n>>in the <icon=bagPocket{2}>\c<<[>>1<<]>>{3} Pocket\c<<[>>0<<]>>.
 Pusiste {1} \<<n>>en <icon=bagPocket{2}>\c<<[>>1<<]>>{3} Pocket\c<<[>>0<<]>>.
 You found some \c[1]{1}\c[0]!\wtnp[30]
-¡Encontraste un \c[1]{1}\c[0]!\wtnp[30]
+¡Encontraste \c[1]{1}\c[0]!\wtnp[30]
 You found \c[1]{1} {2}\c[0]!\wtnp[30]
 ¡Encontraste \c[1]{1} {2}\c[0]!\wtnp[30]
 You found {1} \c[1]{2}\c[0]!\wtnp[30]
 ¡Encontraste {1} \c[1]{2}\c[0]!\wtnp[30]
 You found an \c[1]{1}\c[0]!\wtnp[30]
-¡Encontraste un \c[1]{1}\c[0]!\wtnp[30]
+¡Encontraste \c[1]{1}\c[0]!\wtnp[30]
 You found a \c[1]{1}\c[0]!\wtnp[30]
-¡Encontraste un \c[1]{1}\c[0]!\wtnp[30]
+¡Encontraste \c[1]{1}\c[0]!\wtnp[30]
 But your Bag is full...
 Pero tu Mochila está llena…
 \me[{1}]You obtained some \c[1]{2}\c[0]!\wtnp[30]
@@ -47200,7 +47200,7 @@ Forcejeo
 {1}'s stats won't go any lower!
 ¡Las stats de {1} no bajarán más!
 {1} became fully charged due to its Power Herb!
-!{1} cargó el movimiento por completo con su Hierba Única!
+¡{1} cargó el movimiento por completo con su Hierba Única!
 {1} began charging up!
 ¡{1} empezó a cargar!
 {1}'s HP is full!
@@ -47214,7 +47214,7 @@ But it failed, since #{user.pbThis(true)} used a protection move last turn!
 {1} protected itself!
 ¡{1} se protegió así mismo!
 {1} put up a quarantine!
-{1} puso una cuarentena!
+¡{1} puso una cuarentena!
 The two moves have become one! It's a combined move!
 ¡Los dos movimientos se convirtieron en uno! ¡Es un movimiento combinado!
 {1} is waiting for {2}'s move...
@@ -47596,7 +47596,7 @@ The battlefield is weird!
 Time is dancing to #{stretcher.pbThis}'s tune! This turn is being skipped!
 ¡El tiempo baila por el tono de #{stretcher.pbThis}! ¡Este turno es saltado!
 You got ${1} for winning!
-¡Ganaste ${1} por ganar!
+¡Obtuviste ${1} por ganar!
 You picked up ${1}!
 ¡Recoges ${1}!
 You gave ${1} to the winner...
@@ -47606,7 +47606,7 @@ Te asustas y sueltas ${1}...
 You defeated {1}!
 ¡Derrotaste a {1}!
 You defeated {1} and {2}!
-íDerrotaste a {1} y {2}!
+¡Derrotaste a {1} y {2}!
 You defeated {1}, {2} and {3}!
 ¡Derrotaste a {1}, {2} y {3}!
 You outlasted {1}.
@@ -47658,7 +47658,7 @@ Elige qué Pokémon será enviado al PC.
 {1} threw a {2}!
 ¡{1} tiró un {2}!
 But there was no target...
-Pero no hubo objetivo…
+Pero no hubo objetivo...
 Oh no! The Pokémon broke free!
 ¡Oh no! ¡El Pokémon escapó!
 Aww! It appeared to be caught!
@@ -48012,7 +48012,7 @@ nthTurnThisRound checks for turns 1 or above!
 {1}'s {2} fell by {3} steps!
 ¡{2} de {1} bajó {3} grados!
 {1} resists the large stat drop!
-¡{1} resiste la gran caída de estadísticos!
+¡{1} resiste la gran caída de stats!
 It'll last the whole battle!
 ¡Durará todo el combate!
 {1}'s {2} lowered its {3}!
@@ -48276,7 +48276,7 @@ The ring of water restored {1}'s HP!
 {1} began charging power!
 ¡{1} empezó a cargar poder!
 {1} became confused! It will hit itself with its own Attack!
-¡{1} se cofundió! ¡Se golpeará así mismo con su propio Ataque!
+¡{1} se cofundió! ¡Se golpeará a sí mismo con su propio Ataque!
 {1} is cursed!
 ¡{1} está maldito!
 {1} is afflicted by the curse!
@@ -48440,7 +48440,7 @@ El electromagnetismo de {1} se desvaneció.
 {1} is blessed by the lucky star!
 ¡{1} es bendecido por la estrella afortunada!
 {1} became charmed! It will hit itself with its own Sp. Atk!
-¡{1} fue encantando! ¡Se golpeará así mismo con su Ataque Especial!
+¡{1} fue encantado! ¡Se golpeará a sí mismo con su Ataque Especial!
 {1} was released from the charm.
 {1} fue liberado del encanto.
 {1} shed its weaknesses!
