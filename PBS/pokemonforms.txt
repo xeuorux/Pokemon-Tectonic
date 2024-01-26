@@ -239,6 +239,15 @@ BattlerPlayerY = 24
 BattlerEnemyX = 0
 BattlerEnemyY = 28
 #-------------------------------
+[CASTFORM,4]
+FormName = Sand
+Type1 = ROCK
+Color = Yellow
+Pokedex = This is the form Castform takes when sand sweeps up. It's body is made of particles that are constantly spinning.
+BattlerPlayerY = 24
+BattlerEnemyX = 0
+BattlerEnemyY = 28
+#-------------------------------
 [DEOXYS,1]
 FormName = Attack
 BaseStats = 50,180,20,150,180,20

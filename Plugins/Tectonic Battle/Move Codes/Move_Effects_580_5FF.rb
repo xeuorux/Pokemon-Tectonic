@@ -515,7 +515,7 @@ end
 #===============================================================================
 # Burns the target and sets Sun
 #===============================================================================
-class PokeBattle_Move_59A < PokeBattle_InvokeMove
+class PokeBattle_Move_59A < PokeBattle_InviteMove
     def initialize(battle, move)
         super
         @weatherType = :Sun
@@ -527,7 +527,7 @@ end
 #===============================================================================
 # Numbs the target and sets Rain
 #===============================================================================
-class PokeBattle_Move_59B < PokeBattle_InvokeMove
+class PokeBattle_Move_59B < PokeBattle_InviteMove
     def initialize(battle, move)
         super
         @weatherType = :Rain
@@ -539,7 +539,7 @@ end
 #===============================================================================
 # Frostbites the target and sets Hail
 #===============================================================================
-class PokeBattle_Move_59C < PokeBattle_InvokeMove
+class PokeBattle_Move_59C < PokeBattle_InviteMove
     def initialize(battle, move)
         super
         @weatherType = :Hail
@@ -551,7 +551,7 @@ end
 #===============================================================================
 # Dizzies the target and sets Sandstorm
 #===============================================================================
-class PokeBattle_Move_59D < PokeBattle_InvokeMove
+class PokeBattle_Move_59D < PokeBattle_InviteMove
     def initialize(battle, move)
         super
         @weatherType = :Sandstorm

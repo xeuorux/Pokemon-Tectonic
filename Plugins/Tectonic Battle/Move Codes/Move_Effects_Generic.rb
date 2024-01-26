@@ -1032,7 +1032,7 @@ end
 #===============================================================================
 # Weather and status inducing move.
 #===============================================================================
-class PokeBattle_InvokeMove < PokeBattle_Move
+class PokeBattle_InviteMove < PokeBattle_Move
     def initialize(battle, move)
         super
         @weatherType = :None

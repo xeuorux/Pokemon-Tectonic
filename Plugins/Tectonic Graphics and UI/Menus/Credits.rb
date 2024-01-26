@@ -199,6 +199,10 @@ KattenK<s>Travis
 G.E.Z.<s>SpheX
 Hematite<s>SelenaArmorclaw
 
+Castform Sandy
+Jumpy<s>Noel
+The FnF Showdown community
+
 Spanish PokeDex Translations
 Everson
 

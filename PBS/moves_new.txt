@@ -280,7 +280,7 @@
 1279,BULWARK,Bulwark,597,0,FIGHTING,Status,0,3,0,UserSide,3,CanSnatch,"The user and its allies take 50% less attack damage this turn. Always fails if used in succession.",
 1280,SNOWYSORROWS,Snowy Sorrows,569,30,ICE,Special,100,12,0,NearOther,0,CanProtect;CanMirrorMove;Sound,"The user incants a snowy curse, dealing damage and setting a layer of frost spikes around the target.",PERISHSONG
 1281,INVITESUN,Invite Sun,59A,0,FIRE,Status,0,10,0,NearOther,0,CanProtect;CanMagicCoat;CanMirrorMove,"The user burns the target, then welcomes in sunshine for four turns.",SUNSHINE
-1282,INVOKESAND,Invite Sand,59D,0,ROCK,Status,0,10,0,NearOther,0,CanProtect;CanMagicCoat;CanMirrorMove,"The user dizzies the target, then summons sandstorm for four turns.",SANDSTORM
+1282,INVITESAND,Invite Sand,59D,0,ROCK,Status,0,10,0,NearOther,0,CanProtect;CanMagicCoat;CanMirrorMove,"The user dizzies the target, then summons sandstorm for four turns.",SANDSTORM
 1283,INVITERAIN,Invite Rain,59B,0,WATER,Status,0,10,0,NearOther,0,CanProtect;CanMagicCoat;CanMirrorMove,"The user numbs the target, then welcomes in rain for four turns.",RAIN
 1284,INVITEHAIL,Invite Hail,59C,0,ICE,Status,0,10,0,NearOther,0,CanProtect;CanMagicCoat;CanMirrorMove,"The user frostbites the target, then welcomes in hail for four turns.",HAIL
 1285,HATEFULHAYMAKER,Hateful Haymaker,081,65,DARK,Physical,100,10,0,NearOther,-4,CanProtect;CanMirrorMove;Punch,"A punch that inflicts double the damage if the user has been hurt by the foe in the same turn.",SUCKERPUNCH
