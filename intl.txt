@@ -4946,8 +4946,8 @@ I'll take care of them there while you are busy with your journey.
 Cuidaré de ellos mientras estés ocupado con tu viaje.
 I love Pokemon variety, so I've prepared some <imp>rewards</imp> to give you as your collection grows.
 Amo ver una variedad de Pokémon, así que preparé algunas <imp>recompensas</imp> para darte cuando tu colección crezca.
-Come visit me at the PokÉstate every so often to claim them.
-Come visit me at the PokÉstate every so often to claim them.
+Once you've earned some, I'll send them to you through the PC.
+Una vez que hayas ganado algunos, te los enviaré a través de la PC.
 Would you like to view the PokÉstate? I can take us over there for a visit.
 ¿Te gustaría ver la tierra? Puedo llevarnos allí para una visita.
 Understood, I'll wait for you on the boat in the mean time.
