@@ -38,7 +38,7 @@ end
 
 def pbBattleTypeWeakingBerry(item, type, moveType, target, mults, feast = false, aiCheck = false)
     return if moveType != type
-    return if Effectiveness.resistant?(target.damageState.typeMod) && moveType != :NORMAL
+    return if !Effectiveness.super_effective?(target.damageState.typeMod) && moveType != :NORMAL
     if target.hasActiveAbility?(:RIPEN)
         mults[:final_damage_multiplier] = (mults[:final_damage_multiplier] / 4).round
     else
