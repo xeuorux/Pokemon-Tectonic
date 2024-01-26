@@ -28,14 +28,14 @@
 1027,COLDFRONT,Cold Front,403,90,FLYING,Special,100,15,10,NearOther,0,CanProtect;CanMirrorMove;Wind,"The user propels a gale-force wind at the target. It has a 10% chance to frostbite.",GUST
 1028,UNDERMINE,Undermine,0CA,125,GROUND,Physical,100,10,0,NearOther,0,CanProtect;CanMirrorMove,"The user burrows deep, then attacks with devastating power on the second turn.",
 1029,VIMRIPPER,Vim Ripper,506,85,GHOST,Physical,100,12,0,NearOther,0,CanProtect;CanMirrorMove,"The user rips into the target's soul, dealing damage through their Sp. Def rather than their Defense.",SHADOWCLAW
-1030,NASTYNIP,Nasty Nip,005,40,POISON,Physical,100,30,10,NearOther,0,CanProtect;CanMirrorMove;Bite,"The user stabs the opponent with a toxin-infused limb. It has a 10% chance to poison.",
+1030,NASTYNIP,Nasty Nip,005,40,POISON,Physical,100,30,10,NearOther,0,CanProtect;CanMirrorMove;Bite,"The user stabs the opponent with a toxin-infused limb. It has a 10% chance to poison.",POISONJAB
 1031,LOOMINGWINTER,Looming Winter,111,140,ICE,Special,100,10,0,NearOther,0,Foretold,"Two turns after this move is used, extreme winter cold attacks the target.",ICEBURN
 1032,GLACIALRAM,Glacial Ram,403,90,ICE,Physical,100,15,10,NearOther,0,CanProtect;CanMirrorMove,"Rams the target with frigid force. This has a 10% chance to frostbite.",ICEHAMMER
 1033,AURAFLUX,Aura Flux,5EF,55,FIGHTING,Special,100,20,100,NearOther,0,CanProtect;CanMirrorMove,"The user contorts the target's chi with a special technique, lowering its Sp. Def.",AURASPHERE
-1034,REND,Rend,509,90,DRAGON,Physical,100,15,0,NearOther,0,CanProtect;CanMirrorMove,"The user shreds through the opponent's defenses, ignoring positive stat changes and abilities.",
+1034,REND,Rend,509,90,DRAGON,Physical,100,15,0,NearOther,0,CanProtect;CanMirrorMove,"The user shreds through the opponent's defenses, ignoring positive stat changes and abilities.",DRAGONCLAW
 1035,DIAMETRICBREATH,Diametric Breath,50A,70,DRAGON,Special,100,15,30,NearOther,0,CanProtect;CanMirrorMove,"Exhales magical fumes with a 30% chance to burn or frostbite the target depending on their stats.",DRAGONBREATH
 1036,SCOUR,Scour,00F,80,DRAGON,Special,100,12,30,AllNearFoes,0,CanProtect;CanMirrorMove;Wind,"The user whips up a tornado to tear at the enemy team. It has a 30% chance to make them flinch.",
-1037,HARSHVOICE,Harsh Voice,00F,40,DARK,Special,100,20,30,NearOther,0,CanProtect;CanMirrorMove;Sound,"The target is confronted with painful words. It has a 30% chance to make the target flinch.",
+1037,HARSHVOICE,Harsh Voice,00F,40,DARK,Special,100,20,30,NearOther,0,CanProtect;CanMirrorMove;Sound,"The target is confronted with painful words. It has a 30% chance to make the target flinch.",DARKPULSE
 1038,FINALIZE,Finalize,50B,50,DARK,Special,100,20,0,NearOther,0,CanProtect;CanMirrorMove,"When the user knocks out a target with this move, the user's Sp. Atk stat rises by five steps.",
 1039,MASSDESTRUCTION,Mass Destruction,0FC,130,DARK,Special,100,10,0,AllNearOthers,0,CanProtect;CanMirrorMove,"The user emits a wave of anxious feelings which overwhelms all nearby Pokémon, taking 50% recoil.",BRUTALSWING
 1040,ICEPICK,Ice Pick,50C,70,ICE,Physical,100,10,0,NearOther,0,CanProtect;CanMirrorMove,"The user targets the target's coldest spots. Its power doubles if the target is frostbitten.",ICEPUNCH
@@ -198,9 +198,9 @@
 1197,SEVER,Sever,000,90,DARK,Physical,100,10,0,NearOther,0,CanProtect;CanMirrorMove;HighCriticalHitRate;Blade,"The user hacks at the target with great violence. Critical hits twice as often.",NIGHTSLASH
 1198,DEADEND,Dead End,080,65,GHOST,Special,100,10,0,NearOther,0,CanProtect;CanMirrorMove,"If the target's HP is half or less, this attack will hit with double the power.",HEX
 1199,PHANTOMGATE,Phantom Gate,53E,120,GHOST,Special,100,5,0,NearOther,0,CanProtect;CanMirrorMove,"The user opens its soul to unleash massive energy. This lowers the user's Sp. Atk and Sp. Def.",OMINOUSWIND
-1200,FRESHSTART,Fresh Start,55B,0,NORMAL,Status,0,12,0,NearOther,0,CanSnatch,"The user reinvigorates itself, healing to full. Only works the first turn the user is in battle.",
-1201,LATCHON,Latch On,402,0,BUG,Status,100,10,0,NearOther,0,CanProtect;CanMagicCoat;CanMirrorMove,"Small bugs swarm the target, causing it to become leeched.",
-1202,GALLINGSPIT,Galling Spit,005,80,DRAGON,Special,100,12,30,NearOther,0,CanProtect;CanMirrorMove,"The user spits venom at the target. It has a 30% chance to poison.",
+1200,FRESHSTART,Fresh Start,55B,0,NORMAL,Status,0,12,0,NearOther,0,CanSnatch,"The user reinvigorates itself, healing to full. Only works the first turn the user is in battle.",RECOVER
+1201,LATCHON,Latch On,402,0,BUG,Status,100,10,0,NearOther,0,CanProtect;CanMagicCoat;CanMirrorMove,"Small bugs swarm the target, causing it to become leeched.",INFESTATION
+1202,GALLINGSPIT,Galling Spit,005,80,DRAGON,Special,100,12,30,NearOther,0,CanProtect;CanMirrorMove,"The user spits venom at the target. It has a 30% chance to poison.",ACIDSPRAY
 1203,CRUELTY,Cruelty,07F,65,DRAGON,Physical,100,10,0,NearOther,0,CanProtect;CanMirrorMove,"The user crushes the target with evil intent. This deals double damage if the target has a status condition.",CRUSHCLAW
 1204,SLAMSHUT,Slam Shut,0CF,75,WATER,Physical,100,12,0,NearOther,0,CanProtect;CanMirrorMove,"The target is crushed in the user's shell or claws, trapping and damaging it for three turns.",CLAMP
 1205,MAELSTROM,Maelstrom,0CF,75,WATER,Special,100,12,0,NearOther,0,CanProtect;CanMirrorMove,"The foe is pulled into a huge whirlpool, trapping and damaging it for three turns.",WHIRLPOOL
