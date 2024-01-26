@@ -47639,8 +47639,8 @@ La Caja "{1}" en el PC está llena.
 {1} fue transferido al PC.
 It was stored in box "{1}".
 Fue guardado en la caja "{1}".
-You check {1}, and discover that its ability is {2}!
-¡Compruebas a {1}, y descubres que su habilidad es {2}!
+You check {1}, and discover that its ability is <imp>{2}</imp>!
+¡Compruebas a {1}, y descubres que su habilidad es <imp>{2}</imp>!
 The {1} is holding an {2}!
 ¡El {1} está sosteniendo un {2}!
 But it mysteriously crumbled to ash...

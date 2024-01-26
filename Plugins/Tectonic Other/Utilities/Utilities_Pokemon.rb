@@ -82,7 +82,7 @@ def pbNicknameAndStore(pkmn)
   $Trainer.pokedex.set_owned(pkmn.species)
 
   # Let the player know info about the individual pokemon they caught
-  pbMessage(_INTL("You check {1}, and discover that its ability is {2}!", pkmn.name, pkmn.ability.name))
+  pbMessage(_INTL("You check {1}, and discover that its ability is <imp>{2}</imp>!", pkmn.name, pkmn.ability.name))
 
   pkmn.items.each do |item|
       pbMessage(_INTL("The {1} is holding an {2}!", pkmn.name, getItemName(item)))
