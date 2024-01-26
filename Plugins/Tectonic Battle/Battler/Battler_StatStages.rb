@@ -259,8 +259,6 @@ class PokeBattle_Battler
                 end
                 return false
             end
-        elsif hasActiveAbility?(:STUBBORN) && !@battle.moldBreaker && !ignoreAbilities
-            return false
         elsif effectActive?(:EmpoweredFlowState)
             @battle.pbDisplay(_INTL("{1} is in a state of total focus!", pbThis)) if showFailMsg
             return false
@@ -331,14 +329,18 @@ class PokeBattle_Battler
             increment = (increment / 2.0).ceil
             return pbRaiseStatStep(stat, increment, user, showAnim, true)
         end
-        # Stubborn
-        return false if hasActiveAbility?(:STUBBORN) && !@battle.moldBreaker
         # Total Focus
         return false if effectActive?(:EmpoweredFlowState)
+        # Stubborn
+        if hasActiveAbility?(:STUBBORN) && !@battle.moldBreaker && increment > 1
+            showMyAbilitySplash(:STUBBORN)
+            @battle.pbDisplay(_INTL("{1} resists the large stat drop!", pbThis))
+            hideMyAbilitySplash
+            increment = 1
+        end
         # Perform the stat step change
         increment = pbLowerStatStepBasic(stat, increment, ignoreContrary)
         return false if increment <= 0
-
         # Stat down animation and message
         trauma = user&.hasActiveAbility?(:TRAUMATIZING) && opposes?(user)
         @battle.pbShowAbilitySplash(user, :TRAUMATIZING) if trauma
@@ -416,10 +418,15 @@ class PokeBattle_Battler
             increment = (increment / 2.0).ceil
             return pbRaiseStatStepByCause(stat, increment, user, cause, showAnim, true)
         end
-        # Stubborn
-        return false if hasActiveAbility?(:STUBBORN) && !@battle.moldBreaker
         # Total Focus
         return false if effectActive?(:EmpoweredFlowState)
+        # Stubborn
+        if hasActiveAbility?(:STUBBORN) && !@battle.moldBreaker && increment > 1
+            showMyAbilitySplash(:STUBBORN)
+            @battle.pbDisplay(_INTL("{1} resists the large stat drop!", pbThis))
+            hideMyAbilitySplash
+            increment = 1
+        end
         # Perform the stat step change
         increment = pbLowerStatStepBasic(stat, increment, ignoreContrary)
         return false if increment <= 0

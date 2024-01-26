@@ -9,7 +9,7 @@
 1008,SUPERALLOY,Superalloy,"Powers up Steel-type moves by 50%."
 1009,MIDNIGHTSUN,Midnight Sun,"Powers up Dark-type moves by 50% in sunshine."
 1010,WEATHERED,Weathered,"Immune to weather downsides, and takes 20% less damage from attacks during weather."
-1011,STUBBORN,Stubborn,"Prevents its stat steps from being lowered, by self or others."
+1011,STUBBORN,Stubborn,"Prevents its stats from being lowered by more than 1 step at a time."
 1012,HUBRIS,Hubris,"Raises Sp. Atk after knocking out any Pokémon."
 1013,SCALDINGSMOKE,Scalding Smoke,"Powers up Poison-type moves by 50%."
 1014,TRAPPER,Trapper,"Takes 25% less damage from Pokémon that are trapped."

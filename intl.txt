@@ -42176,8 +42176,8 @@ Powers up Dark-type moves by 50% in sunshine.
 Potencia movimientos tipo Siniestro un 50% bajo sol.
 Immune to weather downsides, and takes 20% less damage from attacks during weather.
 Inmune a los aspectos negativos de los climas, y recibe 20% menos de daño si cualquier clima está presente.
-Prevents its stat steps from being lowered, by self or others.
-Inmune a disminuciones de estadísticas, ya sea por sí mismo u otros.
+Prevents its stats from being lowered by more than 1 step at a time.
+Evita que sus estadísticas se reduzcan en más de 1 paso a la vez.
 Raises Sp. Atk by one step after knocking out any Pokémon.
 Aumenta el Ataque Especial un grado al debilitar cualquier Pokémon.
 Powers up Poison-type moves by 50%.
@@ -48011,6 +48011,8 @@ nthTurnThisRound checks for turns 1 or above!
 ¡{2} de {1} bajó!
 {1}'s {2} fell by {3} steps!
 ¡{2} de {1} bajó {3} grados!
+{1} resists the large stat drop!
+¡{1} resiste la gran caída de estadísticos!
 It'll last the whole battle!
 ¡Durará todo el combate!
 {1}'s {2} lowered its {3}!
