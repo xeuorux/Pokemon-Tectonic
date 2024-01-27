@@ -2,12 +2,12 @@ def battlePerfected?
 	return $game_switches[94]
 end
 
-def perfectTrainer(maxTrainerLevel=15)
+def perfectTrainer(maxTrainerLevel=15,giveDrop=true)
 	blackFadeOutIn() {
 		setMySwitch('D',true)
 		setFollowerGone
 	}
-	pbTrainerDropsItem(maxTrainerLevel)
+	pbTrainerDropsItem(maxTrainerLevel) if giveDrop
 end
 
 def perfectAncientTrainer
