@@ -404,49 +404,6 @@ class PokeBattle_Move_113 < PokeBattle_Move
 end
 
 #===============================================================================
-# Heals user depending on the user's stockpile (X). Resets the stockpile to 0.
-# Decreases the user's Defense and Special Defense by X steps each. (Swallow)
-#===============================================================================
-class PokeBattle_Move_114 < PokeBattle_HealingMove
-    def healingMove?; return true; end
-
-    def pbMoveFailed?(user, targets, show_message)
-        return true if super
-        unless user.effectActive?(:Stockpile)
-            @battle.pbDisplay(_INTL("But it failed to swallow a thing!")) if show_message
-            return true
-        end
-        return false
-    end
-
-    def healRatio(user)
-        case [user.countEffect(:Stockpile), 1].max
-        when 1
-            return 1.0 / 2.0
-        when 2
-            return 1.0
-        end
-        return 0.0
-    end
-
-    def pbEffectGeneral(user)
-        super
-        @battle.pbDisplay(_INTL("{1}'s stockpiled effect wore off!", user.pbThis))
-        user.disableEffect(:Stockpile)
-    end
-
-    def getEffectScore(user, target)
-        score = super
-        score -= 20 * user.countEffect(:Stockpile)
-        return score
-    end
-
-    def shouldHighlight?(user, _target)
-        return user.effectAtMax?(:Stockpile)
-    end
-end
-
-#===============================================================================
 # Fails if user was hit by a damaging move this round. (Focus Punch)
 #===============================================================================
 class PokeBattle_Move_115 < PokeBattle_Move
@@ -929,30 +886,6 @@ class PokeBattle_Move_125 < PokeBattle_Move
 end
 
 #===============================================================================
-# The user dances to restore an ally by 50% max HP. They're cured of any status conditions. (Healthy Cheer)
-#===============================================================================
-class PokeBattle_Move_126 < PokeBattle_Move_0DF
-    def pbFailsAgainstTarget?(_user, target, show_message)
-       if !target.canHeal? && !target.pbHasAnyStatus?
-            @battle.pbDisplay(_INTL("{1} can't be healed and it has no status conditions!", target.pbThis)) if show_message
-            return true
-        end
-        return false
-    end
-
-    def pbEffectAgainstTarget(user, target)
-        super
-        healStatus(target)
-    end
-
-    def getEffectScore(user, target)
-        score = super
-        score += 40 if target.pbHasAnyStatus?
-        return score
-    end
-end
-
-#===============================================================================
 # User cuts its own HP by 25% to curse all foes and also to set Ingrain. (Cursed Roots)
 #===============================================================================
 class PokeBattle_Move_127 < PokeBattle_Move_0DB
@@ -1001,47 +934,6 @@ end
 class PokeBattle_Move_128 < PokeBattle_Move
     def pbEffectGeneral(user)
         @battle.field.incrementEffect(:PayDay, 8 * user.level) if user.pbOwnedByPlayer?
-    end
-end
-
-
-#===============================================================================
-# Hits X times, where X is the number of non-user unfainted status-free Pokémon
-# in the user's party (not including partner trainers). Fails if X is 0.
-# Base power of each hit depends on the base Sp. Atk stat for the species of that
-# hit's participant. (Volley)
-#===============================================================================
-class PokeBattle_Move_129 < PokeBattle_PartyAttackMove
-    def initialize(battle, move)
-        super
-        @statUsed = :SPECIAL_ATTACK
-    end
-end
-
-#===============================================================================
-# For 5 rounds, lowers power of attacks with 100+ BP against the user's side. (Repulsion Field)
-#===============================================================================
-class PokeBattle_Move_12A < PokeBattle_Move
-    def pbMoveFailed?(user, _targets, show_message)
-        if user.pbOwnSide.effectActive?(:RepulsionField)
-            @battle.pbDisplay(_INTL("But it failed, since Repulsion Field is already active!")) if show_message
-            return true
-        end
-        return false
-    end
-
-    def pbEffectGeneral(user)
-        user.pbOwnSide.applyEffect(:RepulsionField, user.getScreenDuration)
-    end
-
-    def getEffectScore(user, _target)
-        score = 0
-        user.eachOpposing do |b|
-            score += 40 if b.hasDamagingAttack?
-        end
-        score += 15 * user.getScreenDuration
-        score = (score * 1.3).ceil if user.fullHealth?
-        return score
     end
 end
 
@@ -1286,32 +1178,6 @@ class PokeBattle_Move_133 < PokeBattle_HealingMove
         user.pointAt(:TrappingUser, user)
 
         battle.pbDisplay(_INTL("{1} has been afflicted with an infestation!", user.pbThis))
-    end
-end
-
-#===============================================================================
-# Heals a target ally for their entire health bar, with overheal. (Remold)
-# But the user must recharge next turn.
-#===============================================================================
-class PokeBattle_Move_134 < PokeBattle_Move_0C2
-    def healingRatio(target); return 1.0; end
-
-    def pbFailsAgainstTarget?(_user, target, show_message)
-        unless target.canHeal?(true)
-            @battle.pbDisplay(_INTL("{1} is unaffected!", target.pbThis)) if show_message
-            return true
-        end
-        return false
-    end
-
-    def pbEffectAgainstTarget(user, target)
-        target.applyFractionalHealing(healingRatio(target), canOverheal: true)
-    end
-
-    def getEffectScore(user, target)
-        score = target.applyFractionalHealing(healingRatio(user),aiCheck: true, canOverheal: true)
-        score += super
-        return score
     end
 end
 
@@ -1835,46 +1701,6 @@ class PokeBattle_Move_14A < PokeBattle_Move
 end
 
 #===============================================================================
-# User is protected against damaging moves this round. Decreases the Attack of
-# the user of a stopped physical move by 1 step. (King's Shield)
-#===============================================================================
-class PokeBattle_Move_14B < PokeBattle_ProtectMove
-    def initialize(battle, move)
-        super
-        @effect = :KingsShield
-    end
-
-    def getEffectScore(user, target)
-        score = super
-        # Check only physical attackers
-        user.eachPredictedProtectHitter(0) do |b|
-            score += getMultiStatDownEffectScore([:ATTACK,1],user,b)
-        end
-        return score
-    end
-end
-
-#===============================================================================
-# User is protected against moves that target it this round. Damages the user of
-# a stopped physical move by 1/8 of its max HP. (Spiky Shield)
-#===============================================================================
-class PokeBattle_Move_14C < PokeBattle_ProtectMove
-    def initialize(battle, move)
-        super
-        @effect = :SpikyShield
-    end
-
-    def getEffectScore(user, target)
-        score = super
-        # Check only physical attackers
-        user.eachPredictedProtectHitter(0) do |_b|
-            score += 20
-        end
-        return score
-    end
-end
-
-#===============================================================================
 # Two turn attack. Skips first turn, attacks second turn. (Phantom Force)
 # Is invulnerable during use. Ends target's protections upon hit.
 #===============================================================================
@@ -2059,50 +1885,6 @@ class PokeBattle_Move_154 < PokeBattle_Move
     def getTargetAffectingEffectScore(user, target)
         score = 60
         score += getMultiStatDownEffectScore([:SPEED,4],user,target)
-        return score
-    end
-end
-
-#===============================================================================
-# User is protected against damaging moves this round. Counterattacks (Cranial Guard)
-# with Granite Head.
-#===============================================================================
-class PokeBattle_Move_155 < PokeBattle_ProtectMove
-    def initialize(battle, move)
-        super
-        @effect = :CranialGuard
-    end
-
-    def getEffectScore(user, target)
-        score = super
-        # Check only physical attackers
-        user.eachPredictedProtectHitter do |b|
-            score += 100
-        end
-        return score
-    end
-end
-
-#===============================================================================
-# User's side is protected against status moves this round. Disables the last used move
-# of the opposing user for 3 turns. (Quarantine)
-#===============================================================================
-class PokeBattle_Move_156 < PokeBattle_ProtectMove
-    def initialize(battle, move)
-        super
-        @effect = :Quarantine
-        @sidedEffect = true
-    end
-
-    def pbProtectMessage(user)
-        @battle.pbDisplay(_INTL("{1} put up a quarantine!", user.pbThis))
-    end
-
-    def getEffectScore(user, target)
-        score = super
-        user.eachPredictedTargeter(2) do |b|
-            score += getDisableEffectScore(target, 3)
-        end
         return score
     end
 end
@@ -2534,103 +2316,6 @@ class PokeBattle_Move_16D < PokeBattle_HealingMove
     end
 end
 
-# TODO: create a "targeting healing move" parent class
-#===============================================================================
-# Heals target by 1/2 of its max HP, or 2/3 of its max HP in moonglow.
-# (Floral Healing)
-#===============================================================================
-class PokeBattle_Move_16E < PokeBattle_Move
-    def healingMove?; return true; end
-
-    def pbFailsAgainstTarget?(_user, target, show_message)
-        if target.hp == target.totalhp
-            @battle.pbDisplay(_INTL("{1}'s HP is full!", target.pbThis)) if show_message
-            return true
-        elsif !target.canHeal?
-            @battle.pbDisplay(_INTL("{1} is unaffected!", target.pbThis)) if show_message
-            return true
-        end
-        return false
-    end
-
-    def healingRatio(user,target)
-        if @battle.moonGlowing?
-            return 2.0 / 3.0
-        else
-            return 1.0 / 2.0
-        end
-    end
-
-    def pbEffectAgainstTarget(user, target)
-        target.applyFractionalHealing(healingRatio(user,target))
-    end
-
-    def getEffectScore(user, target)
-        return target.applyFractionalHealing(healingRatio(user,target),aiCheck: true)
-    end
-
-    def shouldHighlight?(_user, _target)
-        return @battle.moonGlowing?
-    end
-end
-
-#===============================================================================
-# Damages target if target is a foe, or heals target by 1/2 of its max HP if
-# target is an ally. (Pollen Puff, Package, Water Spiral)
-#===============================================================================
-class PokeBattle_Move_16F < PokeBattle_Move
-    def pbTarget(user)
-        return GameData::Target.get(:NearFoe) if user.effectActive?(:HealBlock)
-        return super
-    end
-
-    def pbOnStartUse(user, targets)
-        @healing = false
-        @healing = !user.opposes?(targets[0]) if targets.length > 0
-    end
-
-    def pbFailsAgainstTarget?(user, target, show_message)
-        return false unless @healing
-        if target.substituted? && !ignoresSubstitute?(user)
-            @battle.pbDisplay(_INTL("#{target.pbThis} is protected behind its substitute!")) if show_message
-            return true
-        end
-        unless target.canHeal?
-            @battle.pbDisplay(_INTL("But it failed, since #{target.pbThis(true)} can't be healed!")) if show_message
-            return true
-        end
-        return false
-    end
-
-    def damagingMove?(aiCheck = false)
-        if aiCheck
-            return super
-        else
-            return false if @healing
-            return super
-        end
-    end
-
-    def pbEffectAgainstTarget(_user, target)
-        return unless @healing
-        target.applyFractionalHealing(1.0 / 2.0)
-    end
-
-    def pbShowAnimation(id, user, targets, hitNum = 0, showAnimation = true)
-        hitNum = 1 if @healing # Healing anim
-        super
-    end
-
-    def getEffectScore(user, target)
-        return target.applyFractionalHealing(1.0 / 2.0, aiCheck: true) unless user.opposes?(target)
-        return 0
-    end
-
-    def resetMoveUsageState
-        @healing = false
-    end
-end
-
 #===============================================================================
 # Damages user by 1/2 of its max HP, even if this move misses. (Mind Blown)
 #===============================================================================
@@ -2986,60 +2671,6 @@ class PokeBattle_Move_17D < PokeBattle_Move
     def getTargetAffectingEffectScore(_user, target)
         return 20 unless target.effectActive?(:JawLock)
         return 0
-    end
-end
-
-#===============================================================================
-# The user restores 1/4 of its maximum HP, rounded half up. If there is and
-# adjacent ally, the user restores 1/4 of both its and its ally's maximum HP,
-# rounded up. (Life Dew)
-#===============================================================================
-class PokeBattle_Move_17E < PokeBattle_Move
-    def ignoresSubstitute?(_user); return true; end
-
-    def healingMove?; return true; end
-
-    def healRatio(_user)
-        return 1.0 / 4.0
-    end
-
-    def pbMoveFailed?(user, _targets, show_message)
-        failed = true
-        @battle.eachSameSideBattler(user) do |b|
-            next if b.hp == b.totalhp
-            failed = false
-            break
-        end
-        if failed
-            @battle.pbDisplay(_INTL("But it failed, since there was no one to heal!")) if show_message
-            return true
-        end
-        return false
-    end
-
-    def pbFailsAgainstTarget?(_user, target, show_message)
-        if target.hp == target.totalhp
-            @battle.pbDisplay(_INTL("{1}'s HP is full!", target.pbThis)) if show_message
-            return true
-        elsif !target.canHeal?
-            @battle.pbDisplay(_INTL("{1} is unaffected!", target.pbThis)) if show_message
-            return true
-        end
-        return false
-    end
-
-    def pbEffectAgainstTarget(_user, target)
-        hpGain = (target.totalhp / 4.0).round
-        target.pbRecoverHP(hpGain)
-    end
-
-    def getEffectScore(_user, target)
-        score = 0
-        if target.canHeal?
-            score += 20
-            score += 40 if target.belowHalfHealth?
-        end
-        return score
     end
 end
 

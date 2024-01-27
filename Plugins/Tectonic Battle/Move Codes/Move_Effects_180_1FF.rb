@@ -1,15 +1,4 @@
 #===============================================================================
-# User is protected against damaging moves this round. Decreases the Defense of
-# the user of a stopped physical move by 2 steps. (Obstruct)
-#===============================================================================
-class PokeBattle_Move_180 < PokeBattle_ProtectMove
-    def initialize(battle, move)
-        super
-        @effect = :Obstruct
-    end
-end
-
-#===============================================================================
 # Lowers target's Defense and Special Defense by 1 step at the end of each
 # turn. Prevents target from retreating. (Octolock)
 #===============================================================================
@@ -183,35 +172,6 @@ end
 class PokeBattle_Move_188 < PokeBattle_Move_0A0
     def multiHitMove?; return true; end
     def pbNumHits(_user, _targets, _checkingForAI = false); return 3; end
-end
-
-#===============================================================================
-# Restore HP and heals any status conditions of itself and its allies
-# (Jungle Healing)
-#===============================================================================
-class PokeBattle_Move_189 < PokeBattle_Move
-    def healingMove?; return true; end
-
-    def pbMoveFailed?(user, targets, show_message)
-        jglheal = 0
-        for i in 0...targets.length
-            jglheal += 1 if (targets[i].hp == targets[i].totalhp || !targets[i].canHeal?) && targets[i].status == :NONE
-        end
-        if jglheal == targets.length
-            @battle.pbDisplay(_INTL("But it failed, since none of #{user.pbThis(true)} or its allies can be healed or have their status conditions removed!")) if show_message
-            return true
-        end
-        return false
-    end
-
-    def pbEffectAgainstTarget(user, target)
-        target.pbCureStatus
-        if target.hp != target.totalhp && target.canHeal?
-            hpGain = (target.totalhp / 4.0).round
-            target.pbRecoverHP(hpGain)
-        end
-        super
-    end
 end
 
 #===============================================================================

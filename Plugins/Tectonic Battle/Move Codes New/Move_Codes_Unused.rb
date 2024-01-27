@@ -18,3 +18,12 @@ end
 
 class PokeBattle_Move_Magnitude < PokeBattle_Move
 end
+
+class PokeBattle_Move_LockOn < PokeBattle_Move
+end
+
+class PokeBattle_Move_SkyDrop < PokeBattle_Move
+end
+
+class PokeBattle_Move_Embargo < PokeBattle_Move
+end

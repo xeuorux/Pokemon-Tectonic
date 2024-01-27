@@ -214,3 +214,35 @@ class PokeBattle_Move_0D4 < PokeBattle_FixedDamageMove
         end
     end
 end
+
+#===============================================================================
+# If user is KO'd before it next moves, the battler that caused it also faints.
+# (Destiny Bond)
+#===============================================================================
+class PokeBattle_Move_0E7 < PokeBattle_Move
+    def pbMoveFailed?(user, _targets, show_message)
+        if user.effectActive?(:DestinyBondPrevious)
+            if show_message
+                @battle.pbDisplay(_INTL("But it failed, since #{user.pbThis(true)} was already waiting to take down others with it!"))
+            end
+            return true
+        end
+        if @battle.bossBattle?
+            @battle.pbDisplay(_INTL("But it failed in the presence of an Avatar!")) if show_message
+            return true
+        end
+        return false
+    end
+
+    def pbEffectGeneral(user)
+        user.applyEffect(:DestinyBond)
+        @battle.pbDisplay(_INTL("{1} is hoping to take its attacker down with it!", user.pbThis))
+    end
+
+    def getEffectScore(user, _target)
+        score = 40
+        score += 40 if user.belowHalfHealth?
+        score += 40 unless user.hasDamagingAttack?
+        return score
+    end
+end

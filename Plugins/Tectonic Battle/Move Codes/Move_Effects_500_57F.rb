@@ -758,26 +758,6 @@ class PokeBattle_Move_535 < PokeBattle_Move
 end
 
 #===============================================================================
-# Two turn attack. Ups user's Special Defense by 4 steps first turn, attacks second turn.
-# (Infinite Wing)
-#===============================================================================
-class PokeBattle_Move_536 < PokeBattle_TwoTurnMove
-    def pbChargingTurnMessage(user, _targets)
-        @battle.pbDisplay(_INTL("{1}'s wings start glowing!", user.pbThis))
-    end
-
-    def pbChargingTurnEffect(user, _target)
-        user.tryRaiseStat(:SPECIAL_DEFENSE, user, increment: 4, move: self)
-    end
-
-    def getEffectScore(user, target)
-        score = super
-        score += getMultiStatUpEffectScore([:SPECIAL_DEFENSE, 2], user, user)
-        return score
-    end
-end
-
-#===============================================================================
 # Frostbites opposing Pokemon that have increased their stats. (Freezing Jealousy)
 #===============================================================================
 class PokeBattle_Move_537 < PokeBattle_JealousyMove
@@ -953,41 +933,6 @@ class PokeBattle_Move_540 < PokeBattle_Move
 end
 
 #===============================================================================
-# Target's "clothing items" are destroyed. (Up In Flames)
-#===============================================================================
-class PokeBattle_Move_541 < PokeBattle_Move
-    def canIncinerateTargetsItem?(target, checkingForAI = false)
-        if checkingForAI
-            return false if target.substituted?
-        elsif target.damageState.substitute
-            return false
-        end
-        return true
-    end
-
-    def pbEffectWhenDealingDamage(user, target)
-        return unless canIncinerateTargetsItem?(target)
-        target.eachItemWithName do |item, itemName|
-            next unless canRemoveItem?(user, target, item)
-            next unless CLOTHING_ITEMS.include?(item)
-            target.removeItem(item)
-            @battle.pbDisplay(_INTL("{1}'s {2} went up in flames!", target.pbThis, itemName))
-        end
-    end
-
-    def getTargetAffectingEffectScore(user, target)
-        return 0 unless canIncinerateTargetsItem?(target)
-        score = 0
-        target.eachItemWithName do |item, itemName|
-            next unless canRemoveItem?(user, target, item, checkingForAI: true)
-            next unless CLOTHING_ITEMS.include?(item)
-            score += 30
-        end
-        return score
-    end
-end
-
-#===============================================================================
 # Target's speed is raised. (Propellant)
 #===============================================================================
 class PokeBattle_Move_542 < PokeBattle_Move
@@ -1154,22 +1099,6 @@ class PokeBattle_Move_54D < PokeBattle_Move
 end
 
 #===============================================================================
-# User is protected against moves with the "B" flag this round. If a Pokémon
-# attacks the user while this effect applies, that Pokémon becomes numbed.
-# (Stunning Curl)
-#===============================================================================
-class PokeBattle_Move_550 < PokeBattle_HalfProtectMove
-    def initialize(battle, move)
-        super
-        @effect = :StunningCurl
-    end
-
-    def getOnHitEffectScore(user,target)
-        return getNumbEffectScore(user, target)
-    end
-end
-
-#===============================================================================
 # Entry hazard. Lays burn spikes on the opposing side.
 # (Flame Spikes)
 #===============================================================================
@@ -1230,30 +1159,6 @@ class PokeBattle_Move_555 < PokeBattle_TeamStatBuffMove
     def initialize(battle, move)
         super
         @statUp = [:SPECIAL_DEFENSE, 3]
-    end
-end
-
-#===============================================================================
-# (Currently unused)
-#===============================================================================
-class PokeBattle_Move_556 < PokeBattle_Move
-end
-
-#===============================================================================
-# Drains 2/3s if target hurt the user this turn (Trap Jaw)
-#===============================================================================
-class PokeBattle_Move_557 < PokeBattle_Move
-    def healingMove?; return true; end
-
-    def pbEffectAgainstTarget(user, target)
-        return if target.damageState.hpLost <= 0
-        return unless user.lastAttacker.include?(target.index)
-        hpGain = (target.damageState.hpLost * 2 / 3).round
-        user.pbRecoverHPFromDrain(hpGain, target)
-    end
-
-    def getEffectScore(user, target)
-        return getWantsToBeSlowerScore(user, target, 3, move: self)
     end
 end
 
@@ -1451,27 +1356,6 @@ class PokeBattle_Move_566 < PokeBattle_Move_0EE
             ret = 40
         end
         return ret
-    end
-end
-
-#===============================================================================
-# User is protected against moves with the "B" flag this round. If a Pokémon
-# attacks with the user with a special attack while this effect applies, that Pokémon is
-# burned. (Red-Hot Retreat)
-#===============================================================================
-class PokeBattle_Move_567 < PokeBattle_ProtectMove
-    def initialize(battle, move)
-        super
-        @effect = :RedHotRetreat
-    end
-
-    def getEffectScore(user, target)
-        score = super
-        # Check only special attackers
-        user.eachPredictedProtectHitter(1) do |b|
-            score += getBurnEffectScore(user, b)
-        end
-        return score
     end
 end
 
@@ -1843,42 +1727,5 @@ class PokeBattle_Move_57D < PokeBattle_Move
             target.applyEffect(:DryHeat)
             target.damageState.typeMod = pbCalcTypeMod(@calcType, user, target)
         end
-    end
-end
-
-#===============================================================================
-# User is protected against moves with the "B" flag this round. If a Pokémon
-# attacks with the user with a physical attack while this effect applies, that Pokémon is
-# frostbitten. (Icicle Armor)
-#===============================================================================
-class PokeBattle_Move_57E < PokeBattle_ProtectMove
-    def initialize(battle, move)
-        super
-        @effect = :IcicleArmor
-    end
-
-    def getEffectScore(user, target)
-        score = super
-        # Check only physical attackers
-        user.eachPredictedProtectHitter(0) do |b|
-            score += getFrostbiteEffectScore(user, b)
-        end
-        return score
-    end
-end
-
-#===============================================================================
-# User is protected against moves with the "B" flag this round. If a Pokémon
-# attacks the user while this effect applies, that Pokémon becomes poisoned.
-# (Venom Guard)
-#===============================================================================
-class PokeBattle_Move_57F < PokeBattle_HalfProtectMove
-    def initialize(battle, move)
-        super
-        @effect = :VenomGuard
-    end
-
-    def getOnHitEffectScore(user,target)
-        return getPoisonEffectScore(user, target)
     end
 end

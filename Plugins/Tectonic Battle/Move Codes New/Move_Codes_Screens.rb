@@ -100,3 +100,30 @@ class PokeBattle_Move_167 < PokeBattle_Move
         return score
     end
 end
+
+#===============================================================================
+# For 5 rounds, lowers power of attacks with 100+ BP against the user's side. (Repulsion Field)
+#===============================================================================
+class PokeBattle_Move_12A < PokeBattle_Move
+    def pbMoveFailed?(user, _targets, show_message)
+        if user.pbOwnSide.effectActive?(:RepulsionField)
+            @battle.pbDisplay(_INTL("But it failed, since Repulsion Field is already active!")) if show_message
+            return true
+        end
+        return false
+    end
+
+    def pbEffectGeneral(user)
+        user.pbOwnSide.applyEffect(:RepulsionField, user.getScreenDuration)
+    end
+
+    def getEffectScore(user, _target)
+        score = 0
+        user.eachOpposing do |b|
+            score += 40 if b.hasDamagingAttack?
+        end
+        score += 15 * user.getScreenDuration
+        score = (score * 1.3).ceil if user.fullHealth?
+        return score
+    end
+end

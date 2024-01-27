@@ -326,27 +326,6 @@ class PokeBattle_Move_592 < PokeBattle_Move_17C
 end
 
 #===============================================================================
-# User is protected against moves with the "B" flag this round. If a Pokémon
-# attacks with the user with a special attack while this effect applies, that Pokémon
-# takes 1/8th chip damage. (Mirror Shield)
-#===============================================================================
-class PokeBattle_Move_593 < PokeBattle_ProtectMove
-    def initialize(battle, move)
-        super
-        @effect = :MirrorShield
-    end
-
-    def getEffectScore(user, target)
-        score = super
-        # Check only special attackers
-        user.eachPredictedProtectHitter(1) do |_b|
-            score += 20
-        end
-        return score
-    end
-end
-
-#===============================================================================
 # Power doubles if has the Defense Curl effect, which it consumes. (Rough & Tumble)
 #===============================================================================
 class PokeBattle_Move_594 < PokeBattle_Move
@@ -389,21 +368,6 @@ class PokeBattle_Move_596 < PokeBattle_Move
 
     def pbEffectAgainstTarget(user, target)
         target.pointAt(:DeathMark, user) unless target.effectActive?(:DeathMark)
-    end
-end
-
-#===============================================================================
-# User's side takes 50% less attack damage this turn. (Bulwark)
-#===============================================================================
-class PokeBattle_Move_597 < PokeBattle_ProtectMove
-    def initialize(battle, move)
-        super
-        @effect      = :Bulwark
-        @sidedEffect = true
-    end
-
-    def pbProtectMessage(user)
-        @battle.pbDisplay(_INTL("{1} spread its arms to guard {2}!", @name, user.pbTeam(true)))
     end
 end
 
@@ -577,22 +541,6 @@ end
 class PokeBattle_Move_5A4 < PokeBattle_Move
     def pbEffectAgainstTarget(_user, target)
         target.applyEffect(:VolatileToxin)
-    end
-end
-
-#===============================================================================
-# User is protected against moves with the "B" flag this round. If a Pokémon
-# attacks the user while this effect applies, that Pokémon become leeched.
-# (Root Haven)
-#===============================================================================
-class PokeBattle_Move_5A5 < PokeBattle_HalfProtectMove
-    def initialize(battle, move)
-        super
-        @effect = :RootShelter
-    end
-
-    def getOnHitEffectScore(user,target)
-        return getLeechEffectScore(user, target)
     end
 end
 
@@ -823,17 +771,6 @@ class PokeBattle_Move_5AD < PokeBattle_MultiStatUpMove
 end
 
 #===============================================================================
-# User is protected against damaging moves this round. Decreases the Sp. Def of
-# the user of a stopped special move by 2 steps. (Reverb Ward)
-#===============================================================================
-class PokeBattle_Move_5AE < PokeBattle_ProtectMove
-    def initialize(battle, move)
-        super
-        @effect = :ReverbWard
-    end
-end
-
-#===============================================================================
 # Target becomes trapped. Summons Eclipse for 8 turns.
 # (Captivating Sight)
 #===============================================================================
@@ -1051,26 +988,6 @@ class PokeBattle_Move_5BA < PokeBattle_MultiStatUpMove
 end
 
 #===============================================================================
-# User is protected against damaging moves this round. Decreases the Sp. Atk of
-# the user of a stopped special move by 1 step. (Shield Shell)
-#===============================================================================
-class PokeBattle_Move_5BB < PokeBattle_ProtectMove
-    def initialize(battle, move)
-        super
-        @effect = :ShiningShell
-    end
-
-    def getEffectScore(user, target)
-        score = super
-        # Check only special attackers
-        user.eachPredictedProtectHitter(1) do |b|
-            score += getMultiStatDownEffectScore([:SPECIAL_ATTACK,1],user,b)
-        end
-        return score
-    end
-end
-
-#===============================================================================
 # User faints, even if the move does nothing else. (Spiky Burst)
 # Deals extra damage per "Spike" on the enemy side.
 #===============================================================================
@@ -1095,46 +1012,6 @@ class PokeBattle_Move_5BD < PokeBattle_Move_105
     def pbEffectGeneral(user)
         super
         @battle.pbStartWeather(user, :Sandstorm, 5, false) unless @battle.primevalWeatherPresent?
-    end
-end
-
-#===============================================================================
-# User's side is protected against moves that target multiple battlers this round.
-# This round, user becomes the target of attacks that have single targets.
-# (Omnishelter)
-#===============================================================================
-class PokeBattle_Move_5BF < PokeBattle_ProtectMove
-    def initialize(battle, move)
-        super
-        @effect      = :WideGuard
-        @sidedEffect = true
-    end
-
-    def pbEffectGeneral(user)
-        super
-        maxFollowMe = 0
-        user.eachAlly do |b|
-            next if b.effects[:FollowMe] <= maxFollowMe
-            maxFollowMe = b.effects[:FollowMe]
-        end
-        user.applyEffect(:FollowMe, maxFollowMe + 1)
-    end
-
-    def getEffectScore(user, _target)
-        score = 0
-        user.eachPredictedProtectHitter do |b|
-            score += 50 if user.hasAlly?
-            score += 50 if b.poisoned?
-            score += 50 if b.leeched?
-            score += 30 if b.burned?
-            score += 30 if b.frostbitten?
-        end
-        score /= 2
-        if user.hasAlly?
-            score += 50
-            score += 25 if user.aboveHalfHealth?
-        end
-        return score
     end
 end
 
@@ -1667,41 +1544,6 @@ class PokeBattle_Move_5D4 < PokeBattle_HalfHealingMove
         score = super
         pbOwnSide.eachEffect(true) do |effect, value, data|
             next unless data.is_screen?
-            score += 30
-        end
-        return score
-    end
-end
-
-#===============================================================================
-# Target's Herb items are destroyed. (Blight Touch)
-#===============================================================================
-class PokeBattle_Move_5D5 < PokeBattle_Move
-    def canBlightTargetsItem?(target, checkingForAI = false)
-        if checkingForAI
-            return false if target.substituted?
-        elsif target.damageState.substitute
-            return false
-        end
-        return true
-    end
-
-    def pbEffectWhenDealingDamage(user, target)
-        return unless canBlightTargetsItem?(target)
-        target.eachItemWithName do |item, itemName|
-            next unless canRemoveItem?(user, target, item)
-            next unless HERB_ITEMS.include?(item)
-            target.removeItem(item)
-            @battle.pbDisplay(_INTL("{1}'s {2} was blighted!", target.pbThis, itemName))
-        end
-    end
-
-    def getTargetAffectingEffectScore(user, target)
-        return 0 unless canBlightTargetsItem?(target)
-        score = 0
-        target.eachItemWithName do |item, itemName|
-            next unless canRemoveItem?(user, target, item, checkingForAI: true)
-            next unless HERB_ITEMS.include?(item)
             score += 30
         end
         return score

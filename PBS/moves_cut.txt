@@ -18,7 +18,7 @@
 4017,SPITE,Spite,10E,0,GHOST,Status,100,10,0,NearOther,0,CanProtect;CanMagicCoat;CanMirrorMove,"The user unleashes its grudge on the move last used by the target by cutting 4 PP from it.",
 4018,WRAP,Wrap,0CF,50,NORMAL,Physical,100,15,0,NearOther,0,CanProtect;CanMirrorMove,"The user binds the target, trapping and damaging it for three turns.",
 4019,CONSTRICT,Constrict,0CF,10,NORMAL,Physical,100,30,10,NearOther,0,CanProtect;CanMirrorMove,"The user squeezes the target, trapping and damaging it for three turns.",
-4020,SKYDROP,Sky Drop,0CE,60,FLYING,Physical,100,10,0,NearOther,0,CanProtect;CanMirrorMove,"The user takes the foe into the sky, then drops it on the next turn. The foe cannot attack while airborne.",
+4020,SKYDROP,Sky Drop,SkyDrop,60,FLYING,Physical,100,10,0,NearOther,0,CanProtect;CanMirrorMove,"The user takes the foe into the sky, then drops it on the next turn. The foe cannot attack while airborne.",
 4021,MAGICROOM,Magic Room,0F9,0,PSYCHIC,Status,0,10,0,BothSides,0,CanMirrorMove,"The user creates a bizarre area in which Pokémon's held items lose their effects for five turns.",
 4022,WATERSPORT,Water Sport,09E,0,WATER,Status,0,12,0,BothSides,0,,"The user soaks itself with water. The move weakens Fire-type moves while the user is in the battle.",
 4023,MUDSPORT,Mud Sport,09D,0,GROUND,Status,0,12,0,BothSides,0,,"The user covers itself with mud. It weakens Electric-type moves while the user is in the battle.",
@@ -126,8 +126,8 @@
 4125,IMPRISON,Imprison,0B8,0,PSYCHIC,Status,0,10,0,User,0,CanSnatch,"If the foe knows any move also known by the user, the foe is prevented from using it.",
 4126,FREEZEDRY,Freeze-Dry,135,70,ICE,Special,100,15,20,NearOther,0,CanProtect;CanMirrorMove,"The user rapidly cools the target. It has a 20% chance to frostbite. Is super-effective on Water types.",
 4127,VITALFORCE,Vital Force,08B,100,FIGHTING,Special,100,5,0,AllNearFoes,0,CanProtect;CanMirrorMove,"The user unleashes a vital energy wave. The lower the user's HP, the less powerful it becomes.",FOCUSBLAST
-4128,LOCKON,Lock-On,0A6,0,NORMAL,Status,0,5,0,NearOther,0,CanProtect;CanMirrorMove,"The user takes sure aim at the target. This ensures the next attack does not miss the target.",
-4129,MINDREADER,Mind Reader,0A6,0,PSYCHIC,Status,0,5,0,NearOther,0,CanProtect;CanMirrorMove,"The user senses the foe's movements with its mind to ensure its next attack does not miss the foe.",
+4128,LOCKON,Lock-On,LockOn,0,NORMAL,Status,0,5,0,NearOther,0,CanProtect;CanMirrorMove,"The user takes sure aim at the target. This ensures the next attack does not miss the target.",
+4129,MINDREADER,Mind Reader,LockOn,0,PSYCHIC,Status,0,5,0,NearOther,0,CanProtect;CanMirrorMove,"The user senses the foe's movements with its mind to ensure its next attack does not miss the foe.",
 4130,DUSTFORCE,Dust Force,54D,110,GROUND,Special,85,12,10,AllNearFoes,0,CanProtect;CanMirrorMove,"The user controls turbulent dust and sand to attack all nearby foes.",SCORCHINGSANDS
 4131,ZAPYAPPING,Zap Yapping,5B9,0,ELECTRIC,Status,0,15,0,User,2,,"This turn, all Enemies attacks becomes Electric-type and can only target the user.",GROWL
 4132,FEVERISHGAS,Feverish Gas,5A0,100,FIRE,Special,100,10,0,NearOther,0,CanProtect;CanMirrorMove,"The user breathes a pheromonal nerve-chilling agent. This move is also Ice-type.",SMOG
