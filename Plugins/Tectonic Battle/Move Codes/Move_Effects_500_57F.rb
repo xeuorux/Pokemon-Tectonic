@@ -36,16 +36,6 @@ class PokeBattle_Move_502 < PokeBattle_RecoilMove
 end
 
 #===============================================================================
-# Increases the user's Sp. Atk by 2 steps, and Speed by 1 step. (Lightning Dance)
-#===============================================================================
-class PokeBattle_Move_503 < PokeBattle_MultiStatUpMove
-    def initialize(battle, move)
-        super
-        @statUp = [:SPECIAL_ATTACK, 2, :SPEED, 1]
-    end
-end
-
-#===============================================================================
 # Increases the move's power by 25% if the target moved this round. (Rootwrack)
 #===============================================================================
 class PokeBattle_Move_504 < PokeBattle_Move
@@ -219,32 +209,12 @@ class PokeBattle_Move_50B < PokeBattle_Move
 end
 
 #===============================================================================
-# Power is doubled if the target is frostbitten. (Ice Impact)
-#===============================================================================
-class PokeBattle_Move_50C < PokeBattle_Move
-    def pbBaseDamage(baseDmg, _user, target)
-        baseDmg *= 2 if target.frostbitten?
-        return baseDmg
-    end
-end
-
-#===============================================================================
 # Accuracy perfect against poisoned targets. (Sludge Slam)
 #===============================================================================
 class PokeBattle_Move_50D < PokeBattle_Move
     def pbBaseAccuracy(user, target)
         return 0 if target.poisoned?
         return super
-    end
-end
-
-#===============================================================================
-# Power is doubled if the target is burned. (Flare Up)
-#===============================================================================
-class PokeBattle_Move_50E < PokeBattle_Move
-    def pbBaseDamage(baseDmg, _user, target)
-        baseDmg *= 2 if target.burned?
-        return baseDmg
     end
 end
 
@@ -288,26 +258,6 @@ class PokeBattle_Move_511 < PokeBattle_Move
 
     def getEffectScore(user, _target)
         return -((user.hp.to_f / user.totalhp.to_f) * 30).floor
-    end
-end
-
-#===============================================================================
-# Increases the user's Attack and Sp. Def by 2 step each. (Flow State)
-#===============================================================================
-class PokeBattle_Move_512 < PokeBattle_MultiStatUpMove
-    def initialize(battle, move)
-        super
-        @statUp = [:ATTACK, 2, :SPECIAL_DEFENSE, 2]
-    end
-end
-
-#===============================================================================
-# Increases the user's Sp. Atk and Sp. Def by 2 steps each. (Vanguard)
-#===============================================================================
-class PokeBattle_Move_513 < PokeBattle_MultiStatUpMove
-    def initialize(battle, move)
-        super
-        @statUp = [:SPECIAL_ATTACK, 2, :DEFENSE, 2]
     end
 end
 
@@ -618,122 +568,6 @@ class PokeBattle_Move_524 < PokeBattle_HealingMove
 end
 
 #===============================================================================
-# Increases the user's Attack and Defense by 2 steps each, and Speed by 1.
-# (Shiver Dance)
-#===============================================================================
-class PokeBattle_Move_525 < PokeBattle_MultiStatUpMove
-    def aiAutoKnows?(pokemon); return true; end
-
-    def initialize(battle, move)
-        super
-        @statUp = [:ATTACK, 2, :DEFENSE, 2, :SPEED, 1]
-    end
-end
-
-#===============================================================================
-# Puts the target to sleep. User loses half of their max HP as recoil. (Demon's Kiss)
-#===============================================================================
-class PokeBattle_Move_526 < PokeBattle_SleepMove
-    def pbEffectAgainstTarget(user, target)
-        target.applySleep
-        user.applyFractionalDamage(1.0 / 2.0)
-    end
-
-    def getEffectScore(user, _target)
-        score = super
-        score += getHPLossEffectScore(user, 0.5)
-        return score
-    end
-end
-
-#===============================================================================
-# Target becomes drowsy. Both of its Attacking stats are lowered by 2 steps.  (Summer Daze)
-#===============================================================================
-class PokeBattle_Move_527 < PokeBattle_Move_004
-    def pbFailsAgainstTarget?(user, target, show_message)
-        if @battle.sunny? && (target.pbCanLowerStatStep?(:ATTACK, user, self) ||
-                target.pbCanLowerStatStep?(:SPECIAL_ATTACK, user, self))
-            return false
-        end
-        super
-    end
-
-    def pbEffectAgainstTarget(user, target)
-        target.applyEffect(:Yawn, 2)
-        target.pbLowerMultipleStatSteps(ATTACKING_STATS_2, user, move: self) if @battle.sunny?
-    end
-
-    def getTargetAffectingEffectScore(user, target)
-        score = super
-        score += getMultiStatDownEffectScore(ATTACKING_STATS_2, user, target) if @battle.sunny?
-        return score
-    end
-
-    def shouldHighlight?(_user, _target)
-        return @battle.sunny?
-    end
-end
-
-#===============================================================================
-# Puts the target to sleep. Fails unless the target is at or below half health. (Lullaby)
-#===============================================================================
-class PokeBattle_Move_528 < PokeBattle_SleepMove
-    def pbFailsAgainstTarget?(user, target, show_message)
-        if target.hp > target.totalhp / 2
-            @battle.pbDisplay(_INTL("But it failed, #{target.pbThis(true)} is above half health!")) if show_message
-            return true
-        end
-        return !target.canSleep?(user, show_message, self)
-    end
-end
-
-#===============================================================================
-# Puts the target to sleep. Fails unless the target dealt damage to the user this turn. (Puff Ball)
-#===============================================================================
-class PokeBattle_Move_529 < PokeBattle_SleepMove
-    def pbFailsAgainstTarget?(user, target, show_message)
-        unless user.lastAttacker.include?(target.index)
-            if show_message
-                @battle.pbDisplay(_INTL("But it failed, since the #{target.pbThis(true)} didn't attack #{user.pbThis(true)} this turn!"))
-            end
-            return true
-        end
-        return !target.canSleep?(user, show_message, self)
-    end
-
-    def pbFailsAgainstTargetAI?(user, target)
-        return !target.canSleep?(user, false, self)
-    end
-
-    def getTargetAffectingEffectScore(user, target)
-        return 0 if hasBeenUsed?(user)
-        userSpeed = user.pbSpeed(true, move: self)
-        targetSpeed = target.pbSpeed(true)
-        return 0 if userSpeed > targetSpeed
-        return 0 unless target.hasDamagingAttack?
-        super
-    end
-end
-
-#===============================================================================
-# Deals 50% more damage if user is statused. (Sore Spot)
-#===============================================================================
-class PokeBattle_Move_52A < PokeBattle_Move
-    def damageReducedByBurn?; return false; end
-
-    def pbBaseDamage(baseDmg, user, _target)
-        baseDmg *= 1.5 if user.status != :NONE
-        return baseDmg
-    end
-end
-
-#===============================================================================
-# TODO: Unused
-#===============================================================================
-class PokeBattle_Move_52B < PokeBattle_Move
-end
-
-#===============================================================================
 # User gains 1/2 the HP it inflicts as damage. Lower's Sp. Def. (Soul Drain)
 #===============================================================================
 class PokeBattle_Move_52C < PokeBattle_DrainMove
@@ -898,24 +732,6 @@ class PokeBattle_Move_532 < PokeBattle_Move
             score -= user.steps[statData.id] * 5
         end
         return score
-    end
-end
-
-#===============================================================================
-# Puts the target to sleep. Fails unless the target is dizzy. (Pacify)
-#===============================================================================
-class PokeBattle_Move_534 < PokeBattle_SleepMove
-    def pbFailsAgainstTarget?(user, target, show_message)
-        unless target.dizzy?
-            @battle.pbDisplay(_INTL("But it failed, since #{target.pbThis(true)} isn't dizzy!")) if show_message
-            return true
-        end
-        return !target.canSleep?(user, show_message, self, true)
-    end
-
-    def pbEffectAgainstTarget(_user, target)
-        target.pbCureStatus(false, :DIZZY)
-        target.applySleep
     end
 end
 
@@ -1186,26 +1002,6 @@ class PokeBattle_Move_542 < PokeBattle_Move
 end
 
 #===============================================================================
-# Power doubles for each consecutive use. (Ice Ball)
-#===============================================================================
-class PokeBattle_Move_543 < PokeBattle_SnowballingMove
-    def initialize(battle, move)
-        @usageCountEffect = :Snowball
-        super
-    end
-end
-
-#===============================================================================
-# Power doubles for each consecutive use. (Rock Roll)
-#===============================================================================
-class PokeBattle_Move_544 < PokeBattle_SnowballingMove
-    def initialize(battle, move)
-        @usageCountEffect = :RockRoll
-        super
-    end
-end
-
-#===============================================================================
 # Heals for 1/3 the damage dealt. (new!Drain Punch)
 #===============================================================================
 class PokeBattle_Move_545 < PokeBattle_DrainMove
@@ -1354,26 +1150,6 @@ end
 class PokeBattle_Move_54D < PokeBattle_Move
     def pbDefendingStat(_user, target)
         return target, :SPECIAL_ATTACK
-    end
-end
-
-#===============================================================================
-# Increases the user's Sp. Atk, Sp. Def and accuracy by 2 steps each. (Store Fuel)
-#===============================================================================
-class PokeBattle_Move_54E < PokeBattle_MultiStatUpMove
-    def initialize(battle, move)
-        super
-        @statUp = [:SPECIAL_ATTACK, 2, :SPECIAL_DEFENSE, 2, :ACCURACY, 2]
-    end
-end
-
-#===============================================================================
-# Effectiveness against Dragon-type is 2x. (Slay)
-#===============================================================================
-class PokeBattle_Move_54F < PokeBattle_TypeSuperMove
-    def initialize(battle, move)
-        super
-        @typeHated = :DRAGON
     end
 end
 
@@ -1618,42 +1394,6 @@ class PokeBattle_Move_55F < PokeBattle_Move
 
     def getEffectScore(_user, _target)
         return -20
-    end
-end
-
-#===============================================================================
-# Decreases the target's Sp. Atk and Sp. Def by 2 steps each. (Prank)
-#===============================================================================
-class PokeBattle_Move_560 < PokeBattle_TargetMultiStatDownMove
-    def initialize(battle, move)
-        super
-        @statDown = [:SPECIAL_ATTACK, 2, :SPECIAL_DEFENSE, 2]
-    end
-end
-
-#===============================================================================
-# #TODO: Currently unused
-#===============================================================================
-class PokeBattle_Move_561 < PokeBattle_Move
-end
-
-#===============================================================================
-# Effectiveness against Electric-type is 2x. (Blackout)
-#===============================================================================
-class PokeBattle_Move_562 < PokeBattle_TypeSuperMove
-    def initialize(battle, move)
-        super
-        @typeHated = :ELECTRIC
-    end
-end
-
-#===============================================================================
-# Effectiveness against Ghost-type is 2x. (Holly Charm)
-#===============================================================================
-class PokeBattle_Move_563 < PokeBattle_TypeSuperMove
-    def initialize(battle, move)
-        super
-        @typeHated = :GHOST
     end
 end
 
@@ -2077,16 +1817,6 @@ class PokeBattle_Move_57A < PokeBattle_Move
         echoln("The AI will never use Hivemind.")
         return -1000
     end
-end
-
-#===============================================================================
-# Increases the user's Sp. Def by 5 steps. (Mucus Armor)
-#===============================================================================
-class PokeBattle_Move_57B < PokeBattle_StatUpMove
-    def initialize(battle, move)
-        super
-        @statUp = [:SPECIAL_DEFENSE, 5]
-    end	
 end
 
 #===============================================================================

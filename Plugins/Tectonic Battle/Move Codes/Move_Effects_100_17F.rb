@@ -1,34 +1,4 @@
 #===============================================================================
-# Starts rainy weather. (Rain)
-#===============================================================================
-class PokeBattle_Move_100 < PokeBattle_WeatherMove
-    def initialize(battle, move)
-        super
-        @weatherType = :Rain
-    end
-end
-
-#===============================================================================
-# Starts sandstorm weather. (Sandstorm)
-#===============================================================================
-class PokeBattle_Move_101 < PokeBattle_WeatherMove
-    def initialize(battle, move)
-        super
-        @weatherType = :Sandstorm
-    end
-end
-
-#===============================================================================
-# Starts hail weather. (Hail)
-#===============================================================================
-class PokeBattle_Move_102 < PokeBattle_WeatherMove
-    def initialize(battle, move)
-        super
-        @weatherType = :Hail
-    end
-end
-
-#===============================================================================
 # Entry hazard. Lays spikes on the opposing side. (Spikes)
 #===============================================================================
 class PokeBattle_Move_103 < PokeBattle_Move
@@ -1346,28 +1316,6 @@ class PokeBattle_Move_134 < PokeBattle_Move_0C2
 end
 
 #===============================================================================
-# Gives an ally an extra move this turn. (GreaterGlories)
-#===============================================================================
-class PokeBattle_Move_135 < PokeBattle_HelpingMove
-    def initialize(battle, move)
-        super
-        @helpingEffect = :GreaterGlories
-    end
-
-    def pbFailsAgainstTarget?(_user, target, show_message)
-        if target.fainted?
-            @battle.pbDisplay(_INTL("But it failed, since the receiver of the help is gone!")) if show_message
-            return true
-        end
-        if target.effectActive?(@helpingEffect)
-            @battle.pbDisplay(_INTL("But it failed, since #{arget.pbThis(true)} is already being helped!")) if show_message
-            return true
-        end
-        return false
-    end
-end
-
-#===============================================================================
 # Numbs the target and reduces their attacking stats by 1 step each. (Heaven's Eyes)
 #===============================================================================
 class PokeBattle_Move_136 < PokeBattle_NumbMove
@@ -1542,16 +1490,6 @@ class PokeBattle_Move_13C < PokeBattle_Move
 
     def getEffectScore(_user, _target)
         return 80
-    end
-end
-
-#===============================================================================
-# Decreases the target's Special Attack by 4 steps. (Eerie Impulse)
-#===============================================================================
-class PokeBattle_Move_13D < PokeBattle_TargetStatDownMove
-    def initialize(battle, move)
-        super
-        @statDown = [:SPECIAL_ATTACK, 4]
     end
 end
 
@@ -2453,38 +2391,6 @@ class PokeBattle_Move_166 < PokeBattle_Move
     def pbBaseDamage(baseDmg, user, _target)
         baseDmg *= 2 if user.lastRoundMoveFailed
         return baseDmg
-    end
-end
-
-#===============================================================================
-# For 5 rounds, lowers power of attacks against the user's side. Fails if
-# weather is not hail. (Aurora Veil)
-#===============================================================================
-class PokeBattle_Move_167 < PokeBattle_Move
-    def pbMoveFailed?(user, _targets, show_message)
-        if @battle.pbWeather != :Hail
-            @battle.pbDisplay(_INTL("But it failed, since it's not Hailing!")) if show_message
-            return true
-        end
-        if user.pbOwnSide.effectActive?(:AuroraVeil)
-            @battle.pbDisplay(_INTL("But it failed, since Aurora Veil is already active!")) if show_message
-            return true
-        end
-        return false
-    end
-
-    def pbEffectGeneral(user)
-        user.pbOwnSide.applyEffect(:AuroraVeil, user.getScreenDuration)
-    end
-
-    def getEffectScore(user, _target)
-        score = 0
-        user.eachOpposing do |b|
-            score += 40 if b.hasDamagingAttack?
-        end
-        score += 15 * user.getScreenDuration
-        score = (score * 1.3).ceil if user.fullHealth?
-        return score
     end
 end
 
