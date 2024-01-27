@@ -537,6 +537,7 @@ BattleHandlers::AbilityOnSwitchIn.add(:GARLANDGUARDIAN,
           next getSafeguardEffectScore(battler, 10)
       else
           battle.pbShowAbilitySplash(battler, ability)
+          battle.pbAnimation(:SAFEGUARD, battler, nil, 0)
           battler.pbOwnSide.applyEffect(:Safeguard, 10)
           battle.pbHideAbilitySplash(battler)
       end
@@ -549,6 +550,7 @@ BattleHandlers::AbilityOnSwitchIn.add(:CLOVERSONG,
           next getLuckyChantEffectScore(battler, 10)
       else
           battle.pbShowAbilitySplash(battler, ability)
+          battle.pbAnimation(:LUCKYCHANT, battler, nil, 0)
           battler.pbOwnSide.applyEffect(:LuckyChant, 10)
           battle.pbHideAbilitySplash(battler)
       end
@@ -561,6 +563,7 @@ BattleHandlers::AbilityOnSwitchIn.add(:ONTHEWIND,
           next getTailwindEffectScore(battler, 4)
       else
           battle.pbShowAbilitySplash(battler, ability)
+          battle.pbAnimation(:TAILWIND, battler, nil, 0)
           battler.pbOwnSide.applyEffect(:Tailwind, 4)
           battle.pbHideAbilitySplash(battler)
       end
@@ -573,6 +576,7 @@ BattleHandlers::AbilityOnSwitchIn.add(:GRAVITAS,
           next getGravityEffectScore(battler, 5)
       else
           battle.pbShowAbilitySplash(battler, ability)
+          battle.pbAnimation(:GRAVITY, battler, nil, 0)
           battle.field.applyEffect(:Gravity, 5)
           battle.pbHideAbilitySplash(battler)
       end
@@ -580,11 +584,14 @@ BattleHandlers::AbilityOnSwitchIn.add(:GRAVITAS,
 )
 
 BattleHandlers::AbilityOnSwitchIn.add(:DRIFTINGMIST,
-  proc { |_ability, battler, battle, aiCheck|
+  proc { |ability, battler, battle, aiCheck|
       if aiCheck
           next getGreyMistSettingEffectScore(battler, 3)
       else
+          battle.pbShowAbilitySplash(battler, ability)
+          battle.pbAnimation(:GREYMIST, battler, nil, 0)
           battle.field.applyEffect(:GreyMist, 3)
+          battle.pbHideAbilitySplash(battler)
       end
   }
 )
