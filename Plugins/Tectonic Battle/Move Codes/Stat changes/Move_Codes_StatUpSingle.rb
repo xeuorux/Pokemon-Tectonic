@@ -38,10 +38,21 @@ class PokeBattle_Move_02E < PokeBattle_StatUpMove
     end
 end
 
+# Empowered Swords Dance
+class PokeBattle_Move_633 < PokeBattle_Move_02E
+    include EmpoweredMove
+
+    def pbEffectGeneral(user)
+        super
+        # TODO
+        transformType(user, :STEEL)
+    end
+end
+
 #===============================================================================
 # Increases the user's Attack by 5 steps.
 #===============================================================================
-class PokeBattle_Move_ < PokeBattle_StatUpMove
+class PokeBattle_Move_RaiseAttack5 < PokeBattle_StatUpMove
     def initialize(battle, move)
         super
         @statUp = [:ATTACK, 5]
@@ -85,6 +96,17 @@ class PokeBattle_Move_02F < PokeBattle_StatUpMove
     def initialize(battle, move)
         super
         @statUp = [:DEFENSE, 4]
+    end
+end
+
+# Empowered Iron Defense
+class PokeBattle_Move_625 < PokeBattle_Move_02F
+    include EmpoweredMove
+
+    def pbEffectGeneral(user)
+        super
+        user.addAbility(:FILTER,true)
+        transformType(user, :STEEL)
     end
 end
 
@@ -144,10 +166,36 @@ class PokeBattle_Move_030 < PokeBattle_StatUpMove
     end
 end
 
+# Empowered Rock Polish
+class PokeBattle_Move_61B < PokeBattle_Move_030
+    include EmpoweredMove
+
+    def pbEffectGeneral(user)
+        super
+        user.applyEffect(:ExtraTurns, 2)
+        transformType(user, :ROCK)
+    end
+end
+
+#===============================================================================
+# The user's Speed raises 4 steps, and it gains the Flying-type. (Mach Flight)
+#===============================================================================
+class PokeBattle_Move_58C < PokeBattle_Move_030
+    def pbMoveFailed?(user, targets, show_message)
+        return false if GameData::Type.exists?(:FLYING) && !user.pbHasType?(:FLYING) && user.canChangeType?
+        super
+    end
+
+    def pbEffectGeneral(user)
+        super
+        user.applyEffect(:Type3, :FLYING)
+    end
+end
+
 #===============================================================================
 # Increases the user's Speed by 5 steps.
 #===============================================================================
-class PokeBattle_Move_ < PokeBattle_StatUpMove
+class PokeBattle_Move_RaiseSpeed5 < PokeBattle_StatUpMove
     def initialize(battle, move)
         super
         @statUp = [:SPEED, 5]
@@ -200,6 +248,17 @@ class PokeBattle_Move_032 < PokeBattle_StatUpMove
     end
 end
 
+# Empowered Dream Dance
+class PokeBattle_Move_632 < PokeBattle_Move_032
+    include EmpoweredMove
+
+    def pbEffectGeneral(user)
+        super
+        # TODO
+        transformType(user, :FAIRY)
+    end
+end
+
 #===============================================================================
 # Increases the user's Special Attack by 5 steps. (Tail Glow)
 #===============================================================================
@@ -223,7 +282,7 @@ end
 #===============================================================================
 # Increases the user's Sp. Def by 2 steps.
 #===============================================================================
-class PokeBattle_Move_ < PokeBattle_StatUpMove
+class PokeBattle_Move_RaiseSpDef5 < PokeBattle_StatUpMove
     def initialize(battle, move)
         super
         @statUp = [:SPECIAL_DEFENSE, 3]
@@ -247,6 +306,17 @@ class PokeBattle_Move_033 < PokeBattle_StatUpMove
     def initialize(battle, move)
         super
         @statUp = [:SPECIAL_DEFENSE, 4]
+    end
+end
+
+# Empowered Amnesia
+class PokeBattle_Move_626 < PokeBattle_Move_033
+    include EmpoweredMove
+
+    def pbEffectGeneral(user)
+        super
+        user.addAbility(:UNAWARE,true)
+        transformType(user, :PSYCHIC)
     end
 end
 

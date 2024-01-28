@@ -8,6 +8,17 @@ class PokeBattle_Move_0AA < PokeBattle_ProtectMove
     end
 end
 
+# Empowered Detect
+class PokeBattle_Move_622 < PokeBattle_Move
+    include EmpoweredMove
+
+    def pbEffectGeneral(user)
+        super
+        user.applyEffect(:EmpoweredDetect, 3)
+        transformType(user, :FIGHTING)
+    end
+end
+
 #===============================================================================
 # User's side is protected against moves with priority greater than 0 this round.
 # (Quick Guard)
@@ -169,6 +180,16 @@ class PokeBattle_Move_0E8 < PokeBattle_ProtectMove
     def getEffectScore(user, target)
         return 0 if user.aboveHalfHealth?
         return super / 2
+    end
+end
+
+# Empowered Endure
+class PokeBattle_Move_612 < PokeBattle_Move
+    include EmpoweredMove
+
+    def pbEffectGeneral(user)
+        super
+        user.applyEffect(:EmpoweredEndure, 3)
     end
 end
 

@@ -27,6 +27,21 @@ class PokeBattle_Move_0B7 < PokeBattle_Move
     end
 end
 
+# Empowered Torment
+class PokeBattle_Move_60E < PokeBattle_Move_0B7
+    include EmpoweredMove
+
+    def pbEffectGeneral(user)
+        super
+        transformType(user, :DARK)
+    end
+
+    def pbEffectAgainstTarget(user, target)
+        target.applyEffect(:Torment)
+        target.pbLowerMultipleStatSteps(ATTACKING_STATS_1, user, move: self)
+    end
+end
+
 #===============================================================================
 # Disables all target's moves that the user also knows. (Imprison)
 #===============================================================================
@@ -486,6 +501,19 @@ class PokeBattle_Move_54A < PokeBattle_Move_10D
         score = super
         score += getHPLossEffectScore(user, 0.25)
         return score
+    end
+end
+
+# Empowered Cursed Oath
+class PokeBattle_Move_60C < PokeBattle_Move
+    include EmpoweredMove
+
+    def pbEffectGeneral(user)
+        super
+        @battle.eachOtherSideBattler(user) do |b|
+            b.applyEffect(:Curse)
+        end
+        transformType(user, :GHOST)
     end
 end
 

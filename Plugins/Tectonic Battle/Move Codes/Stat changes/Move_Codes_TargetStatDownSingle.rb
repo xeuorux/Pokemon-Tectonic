@@ -18,6 +18,16 @@ class PokeBattle_Move_042 < PokeBattle_TargetStatDownMove
     end
 end
 
+# Empowered Growl
+class PokeBattle_Move_629 < PokeBattle_Move_042
+    include EmpoweredMove
+
+    def pbEffectGeneral(user)
+        super
+        user.tryRaiseStat(:ATTACK, user, move: self, increment: 2)
+    end
+end
+
 #===============================================================================
 # Decreases the target's Attack by 3 steps.
 #===============================================================================
@@ -173,6 +183,16 @@ class PokeBattle_Move_045 < PokeBattle_TargetStatDownMove
     end
 end
 
+# Empowered Dazzle
+class PokeBattle_Move_630 < PokeBattle_Move_045
+    include EmpoweredMove
+
+    def pbEffectGeneral(user)
+        super
+        user.tryRaiseStat(:SPECIAL_ATTACK, user, move: self, increment: 2)
+    end
+end
+
 #===============================================================================
 # Decreases the target's Special Attack by 3 steps.
 #===============================================================================
@@ -257,5 +277,16 @@ class PokeBattle_Move_522 < PokeBattle_Move
 
     def getTargetAffectingEffectScore(user, target)
         return getMultiStatDownEffectScore([target.highestStat, 4], user, target)
+    end
+end
+
+# Empowered Loom Over
+class PokeBattle_Move_621 < PokeBattle_Move_522
+    include EmpoweredMove
+
+    def pbEffectGeneral(user)
+        super
+
+        transformType(user, :DRAGON)
     end
 end

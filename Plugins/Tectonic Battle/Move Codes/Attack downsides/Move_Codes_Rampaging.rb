@@ -32,16 +32,6 @@ class PokeBattle_Move_0D1 < PokeBattle_Move
 end
 
 #===============================================================================
-# Hits 2-5 times, for three turns in a row. (Pattern Release)
-#===============================================================================
-class PokeBattle_Move_56C < PokeBattle_Move_0C0
-    def pbEffectAfterAllHits(user, target)
-        user.applyEffect(:Outrage, 3) if !target.damageState.unaffected && !user.effectActive?(:Outrage)
-        user.tickDownAndProc(:Outrage)
-    end
-end
-
-#===============================================================================
 # User must use this move for 2 more rounds. Raises Speed if KOs. (Tyrant's Fit)
 #===============================================================================
 class PokeBattle_Move_5A6 < PokeBattle_Move

@@ -2,4 +2,4 @@ Name         = Tectonic Battle
 Requires	 = Tectonic MasterDex
 Requires	 = Tectonic Game Data
 Credits      = Essentials v19 Team,Zeu,Agentbla,Divock,Brickbat,MrPanda1
-Scripts		 = Effects/EffectHolder.rb,Move/PokeBattle_Move.rb,Move Codes/Move_Effects_Generic.rb,BattleHandlers.rb,Items/PokeBalls/BallHandlers.rb,AI/AI_Boss.rb,AI/AI_Boss_Behaviours.rb,AI/Trainers AI/Curses/CurseEvents.rb,Scene/PokeBattle_Scene_Initialize.rb,Scene/Animation/PokeBattle_Animation.rb,Scene/PokeBattle_Scene_Animations.rb
+Scripts		 = Effects/EffectHolder.rb,Move/PokeBattle_Move.rb,Move Codes/ParentMoveCodes.rb,BattleHandlers.rb,Items/PokeBalls/BallHandlers.rb,AI/AI_Boss.rb,AI/AI_Boss_Behaviours.rb,AI/Trainers AI/Curses/CurseEvents.rb,Scene/PokeBattle_Scene_Initialize.rb,Scene/Animation/PokeBattle_Animation.rb,Scene/PokeBattle_Scene_Animations.rb

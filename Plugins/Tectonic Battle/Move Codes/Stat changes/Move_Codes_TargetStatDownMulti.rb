@@ -79,7 +79,7 @@ end
 #===============================================================================
 # Lowers the target's Sp. Def and Evasion by 2.
 #===============================================================================
-class PokeBattle_Move_ < PokeBattle_TargetMultiStatDownMove
+class PokeBattle_Move_LowerSpDef2Evasion2 < PokeBattle_TargetMultiStatDownMove
     def initialize(battle, move)
         super
         @statDown = [:SPECIAL_DEFENSE, 2, :EVASION, 2]
@@ -123,5 +123,19 @@ class PokeBattle_Move_5C0 < PokeBattle_Move
 
     def getTargetAffectingEffectScore(user, target)
         return getMultiStatDownEffectScore([:SPEED,4,:EVASION,4], user, target)
+    end
+end
+
+# Empowered String Shot
+class PokeBattle_Move_60A < PokeBattle_TargetMultiStatDownMove
+    include EmpoweredMove
+
+    def initialize(battle, move)
+        super
+        @statDown = [:SPEED, 2, :ATTACK, 2, :SPECIAL_ATTACK, 2]
+    end
+
+    def pbEffectGeneral(user)
+        transformType(user, :BUG)
     end
 end

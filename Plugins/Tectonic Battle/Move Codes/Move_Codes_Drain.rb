@@ -95,7 +95,7 @@ end
 #===============================================================================
 # User gains 1/2 the HP it inflicts as damage. Lower's Defense. 
 #===============================================================================
-class PokeBattle_Move_ < PokeBattle_DrainMove
+class PokeBattle_Move_DrainLowerDef < PokeBattle_DrainMove
     def drainFactor(_user, _target); return 0.5; end
 
     def pbAdditionalEffect(user, target)

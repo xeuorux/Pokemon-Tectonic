@@ -43,3 +43,17 @@ class PokeBattle_Move_159 < PokeBattle_Move
         return score
     end
 end
+
+# Empowered Poison Gas
+class PokeBattle_Move_611 < PokeBattle_Move
+    include EmpoweredMove
+
+    def pbEffectGeneral(user)
+        super
+        @battle.eachOtherSideBattler(user) do |b|
+            next unless b.canPoison?(user, true, self)
+            b.applyPoison(user)
+        end
+        transformType(user, :POISON)
+    end
+end

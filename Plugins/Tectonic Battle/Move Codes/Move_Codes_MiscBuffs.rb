@@ -106,6 +106,16 @@ class PokeBattle_Move_15E < PokeBattle_Move
     end
 end
 
+# Empowered Laser Focus
+class PokeBattle_Move_60F < PokeBattle_Move
+    include EmpoweredMove
+
+    def pbEffectGeneral(user)
+        user.applyEffect(:EmpoweredLaserFocus)
+        transformType(user, :STEEL)
+    end
+end
+
 #===============================================================================
 # User takes half damage from Super Effective moves. (Inure)
 #===============================================================================

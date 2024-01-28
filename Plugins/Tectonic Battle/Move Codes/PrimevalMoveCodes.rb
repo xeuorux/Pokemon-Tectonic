@@ -1,57 +1,3 @@
-module EmpoweredMove
-    def pbMoveFailed?(_user, _targets, _show_message); return false; end
-    def pbFailsAgainstTarget?(_user, _target, _show_message); return false; end
-
-    # There must be 2 turns without using a primeval attack to then be able to use it again
-    def turnsBetweenUses(); return 2; end
-
-    def transformType(user, type)
-        user.pbChangeTypes(type)
-        typeName = GameData::Type.get(type).name
-        @battle.pbAnimation(:CONVERSION, user, [user])
-        if user.boss?
-            user.pokemon.bossType = type
-            @battle.scene.pbChangePokemon(user.index, user.pokemon)
-        end
-        @battle.pbDisplay(_INTL("{1} transformed into the {2} type!", user.pbThis, typeName))
-    end
-
-    def summonAvatar(user,species,summonMessage = nil)
-        if @battle.autoTesting
-            echoln("Skipping an Avatar summon")
-            return
-        end
-        if @battle.pbSideSize(user.index) < 3
-            summonMessage ||= _INTL("#{user.pbThis} summons another Avatar!")
-            @battle.pbDisplay(summonMessage)
-            @battle.summonAvatarBattler(species, user.level, user.index % 2)
-        end
-    end
-end
-
-# Empowered Sunshine
-class PokeBattle_Move_601 < PokeBattle_Move_0FF
-    include EmpoweredMove
-
-    def pbEffectGeneral(user)
-        super
-        user.pbRaiseMultipleStatSteps(ATTACKING_STATS_1, user, move: self)
-        transformType(user, :FIRE)
-    end
-end
-
-# Empowered Rain
-class PokeBattle_Move_602 < PokeBattle_Move_100
-    include EmpoweredMove
-
-    def pbEffectGeneral(user)
-        super
-        @battle.pbAnimation(:AQUARING, user, [user])
-        user.applyEffect(:AquaRing)
-        transformType(user, :WATER)
-    end
-end
-
 # Empowered Leech Seed
 class PokeBattle_Move_603 < PokeBattle_Move
     include EmpoweredMove
@@ -77,19 +23,6 @@ class PokeBattle_Move_604 < PokeBattle_MultiStatUpMove
     def pbEffectGeneral(user)
         super
         transformType(user, :ELECTRIC)
-    end
-end
-
-# Empowered Hail
-class PokeBattle_Move_605 < PokeBattle_Move_102
-    include EmpoweredMove
-
-    def pbEffectGeneral(user)
-        super
-        @battle.eachOtherSideBattler(user) do |b|
-            b.tryLowerStat(:SPEED, user, increment: 2, move: self)
-        end
-        transformType(user, :ICE)
     end
 end
 
@@ -152,17 +85,6 @@ class PokeBattle_Move_60A < PokeBattle_TargetMultiStatDownMove
 
     def pbEffectGeneral(user)
         transformType(user, :BUG)
-    end
-end
-
-# Empowered Sandstorm
-class PokeBattle_Move_60B < PokeBattle_Move_101
-    include EmpoweredMove
-
-    def pbEffectGeneral(user)
-        super
-        user.pbRaiseMultipleStatSteps(DEFENDING_STATS_1, user, move: self)
-        transformType(user, :ROCK)
     end
 end
 
@@ -321,7 +243,7 @@ class PokeBattle_Move_615 < PokeBattle_Move
         score = 50
         score += 30 if @battle.pbIsTrapped?(user.index)
         score += 20 if user.firstTurn?
-        score += 20 if user.aboveHalfHealth?
+        score += 20 if user.aboveHalfth?
         score *= 2
         return score
     end
@@ -337,47 +259,6 @@ class PokeBattle_Move_616 < PokeBattle_Move
             b.applyNumb(user) if b.canNumb?(user, true, self)
         end
         transformType(user, :ELECTRIC)
-    end
-end
-
-# Empowered Eclipse
-class PokeBattle_Move_617 < PokeBattle_Move_09D
-    include EmpoweredMove
-
-    def pbEffectGeneral(user)
-        super
-        user.pbRaiseMultipleStatSteps([:ATTACK, 1, :SPECIAL_ATTACK, 1], user, move: self)
-        transformType(user, :PSYCHIC)
-    end
-end
-
-# Empowered Moonglow
-class PokeBattle_Move_618 < PokeBattle_Move_09E
-    include EmpoweredMove
-
-    def pbEffectGeneral(user)
-        super
-
-        @battle.eachSameSideBattler(user) do |b|
-            b.pbRaiseMultipleStatSteps(DEFENDING_STATS_1, user, move: self)
-        end
-
-        transformType(user, :FAIRY)
-    end
-end
-
-# Empowered Heal Order
-class PokeBattle_Move_619 < PokeBattle_HalfHealingMove
-    include EmpoweredMove
-
-    def healingMove?; return true; end
-
-    def pbEffectGeneral(user)
-        super
-
-        summonAvatar(user, :COMBEE, _INTL("{1} summons a helper!", user.pbThis))
-
-        transformType(user, :BUG)
     end
 end
 
@@ -447,19 +328,6 @@ class PokeBattle_Move_61F < PokeBattle_Move
         super
         user.applyEffect(:EmpoweredDestinyBond)
         transformType(user, :GHOST)
-    end
-end
-
-# Empowered Shore Up
-class PokeBattle_Move_620 < PokeBattle_HalfHealingMove
-    include EmpoweredMove
-
-    def pbEffectGeneral(user)
-        super
-
-        user.applyEffect(:EmpoweredShoreUp)
-
-        transformType(user, :GROUND)
     end
 end
 

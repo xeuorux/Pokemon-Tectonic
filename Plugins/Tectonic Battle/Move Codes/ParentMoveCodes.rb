@@ -1454,3 +1454,34 @@ class PokeBattle_TypeSuperMove < PokeBattle_Move
         return effectiveness
     end
 end
+
+module EmpoweredMove
+    def pbMoveFailed?(_user, _targets, _show_message); return false; end
+    def pbFailsAgainstTarget?(_user, _target, _show_message); return false; end
+
+    # There must be 2 turns without using a primeval attack to then be able to use it again
+    def turnsBetweenUses(); return 2; end
+
+    def transformType(user, type)
+        user.pbChangeTypes(type)
+        typeName = GameData::Type.get(type).name
+        @battle.pbAnimation(:CONVERSION, user, [user])
+        if user.boss?
+            user.pokemon.bossType = type
+            @battle.scene.pbChangePokemon(user.index, user.pokemon)
+        end
+        @battle.pbDisplay(_INTL("{1} transformed into the {2} type!", user.pbThis, typeName))
+    end
+
+    def summonAvatar(user,species,summonMessage = nil)
+        if @battle.autoTesting
+            echoln("Skipping an Avatar summon")
+            return
+        end
+        if @battle.pbSideSize(user.index) < 3
+            summonMessage ||= _INTL("#{user.pbThis} summons another Avatar!")
+            @battle.pbDisplay(summonMessage)
+            @battle.summonAvatarBattler(species, user.level, user.index % 2)
+        end
+    end
+end

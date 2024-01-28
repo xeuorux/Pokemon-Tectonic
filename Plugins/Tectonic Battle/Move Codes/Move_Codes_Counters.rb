@@ -247,6 +247,17 @@ class PokeBattle_Move_0E7 < PokeBattle_Move
     end
 end
 
+# Empowered Destiny Bond
+class PokeBattle_Move_61F < PokeBattle_Move
+    include EmpoweredMove
+
+    def pbEffectGeneral(user)
+        super
+        user.applyEffect(:EmpoweredDestinyBond)
+        transformType(user, :GHOST)
+    end
+end
+
 #===============================================================================
 # Fails if user has not been hit by an opponent's physical move this round.
 # (Shell Trap)

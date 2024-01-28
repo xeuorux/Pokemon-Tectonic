@@ -92,3 +92,16 @@ class PokeBattle_Move_136 < PokeBattle_NumbMove
         target.pbLowerMultipleStatSteps(ATTACKING_STATS_1, user, move: self)
     end
 end
+
+# Empowered Numb
+class PokeBattle_Move_616 < PokeBattle_Move
+    include EmpoweredMove
+
+    def pbEffectGeneral(user)
+        super
+        @battle.eachOtherSideBattler(user) do |b|
+            b.applyNumb(user) if b.canNumb?(user, true, self)
+        end
+        transformType(user, :ELECTRIC)
+    end
+end

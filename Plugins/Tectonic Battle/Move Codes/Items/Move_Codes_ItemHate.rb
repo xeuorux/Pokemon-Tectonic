@@ -304,3 +304,38 @@ class PokeBattle_Move_5A8 < PokeBattle_Move
         target.tryLowerStat(:SPECIAL_DEFENSE, user, move: self)
     end
 end
+
+#===============================================================================
+# The target cannnot use its held item, its held item has no
+# effect, and no items can be used on it. (Embargo)
+#===============================================================================
+class PokeBattle_Move_Embargo < PokeBattle_Move
+    def pbFailsAgainstTarget?(_user, target, show_message)
+        if target.effectActive?(:Embargo)
+            if show_message
+                @battle.pbDisplay(_INTL("But it failed, since #{target.pbThis(true)} is already embargoed!"))
+            end
+            return true
+        end
+        return false
+    end
+
+    def pbEffectAgainstTarget(_user, target)
+        target.applyEffect(:Embargo)
+    end
+
+    def getTargetAffectingEffectScore(_user, target)
+        return 0 unless target.hasAnyItem?
+        return 50
+    end
+end
+
+# Empowered Embargo
+class PokeBattle_Move_61D < PokeBattle_Move
+    include EmpoweredMove
+
+    def pbEffectGeneral(user)
+        user.pbOpposingSide.applyEffect(:EmpoweredEmbargo) unless user.pbOpposingSide.effectActive?(:EmpoweredEmbargo)
+        transformType(user, :DARK)
+    end
+end

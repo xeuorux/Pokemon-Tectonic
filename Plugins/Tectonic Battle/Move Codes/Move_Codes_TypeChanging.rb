@@ -356,21 +356,6 @@ class PokeBattle_Move_154 < PokeBattle_Move
 end
 
 #===============================================================================
-# The user's Speed raises 4 steps, and it gains the Flying-type. (Mach Flight)
-#===============================================================================
-class PokeBattle_Move_58C < PokeBattle_Move_030
-    def pbMoveFailed?(user, targets, show_message)
-        return false if GameData::Type.exists?(:FLYING) && !user.pbHasType?(:FLYING) && user.canChangeType?
-        super
-    end
-
-    def pbEffectGeneral(user)
-        super
-        user.applyEffect(:Type3, :FLYING)
-    end
-end
-
-#===============================================================================
 # User's Attack and Defense are raised by one step each, and (Built Different)
 # changes user's type to Rock.
 #===============================================================================

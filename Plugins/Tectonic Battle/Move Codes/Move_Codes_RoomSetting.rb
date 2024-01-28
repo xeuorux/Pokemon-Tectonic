@@ -19,6 +19,17 @@ class PokeBattle_Move_51A < PokeBattle_RoomMove
     end
 end
 
+# Empowered Puzzle Room
+class PokeBattle_Move_610 < PokeBattle_Move_51A
+    include EmpoweredMove
+
+    def pbEffectGeneral(user)
+        super
+        user.pbRaiseMultipleStatSteps(ATTACKING_STATS_1, user, move: self)
+        transformType(user, :FAIRY)
+    end
+end
+
 #===============================================================================
 # For 5 rounds, swaps all battlers' offensive and defensive stats (Sp. Def <-> Sp. Atk and Def <-> Atk).
 # (Odd Room)

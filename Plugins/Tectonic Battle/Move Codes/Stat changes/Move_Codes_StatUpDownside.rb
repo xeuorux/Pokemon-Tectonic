@@ -163,7 +163,7 @@ end
 #===============================================================================
 # Increases the user's Sp. Atk by 6 steps, but lowers its Speed by 6 steps.
 #===============================================================================
-class PokeBattle_Move_ < PokeBattle_StatUpDownMove
+class PokeBattle_Move_Trade6SpeedForSpAtk < PokeBattle_StatUpDownMove
     def initialize(battle, move)
         super
         @statUp   = [:sPECIAL_ATTACK,6]

@@ -18,6 +18,18 @@ class PokeBattle_Move_024 < PokeBattle_MultiStatUpMove
     end
 end
 
+# Empowered Bulk Up
+class PokeBattle_Move_606 < PokeBattle_Move_024
+    include EmpoweredMove
+
+    def pbEffectGeneral(user)
+        super
+        @battle.pbDisplay(_INTL("{1} gained a massive amount of mass!", user.pbThis))
+        user.incrementEffect(:WeightChange, 1000)
+        transformType(user, :FIGHTING)
+    end
+end
+
 #===============================================================================
 # Raises Attack and Defense by 2 steps, and Crit Chance by 1.
 # (Art of War)
@@ -65,6 +77,24 @@ class PokeBattle_Move_512 < PokeBattle_MultiStatUpMove
     end
 end
 
+# Empowered Flow State
+class PokeBattle_Move_614 < PokeBattle_MultiStatUpMove
+    include EmpoweredMove
+
+    def initialize(battle, move)
+        super
+        @statUp = [:ATTACK, 1, :SPECIAL_DEFENSE, 1]
+    end
+
+    def pbEffectGeneral(user)
+        super
+
+        user.applyEffect(:EmpoweredFlowState)
+
+        transformType(user, :WATER)
+    end
+end
+
 #===============================================================================
 # Increases the user's Attack by 2 steps, and Speed by 1. (Dragon Dance)
 #===============================================================================
@@ -72,6 +102,21 @@ class PokeBattle_Move_026 < PokeBattle_MultiStatUpMove
     def initialize(battle, move)
         super
         @statUp = [:ATTACK, 2, :SPEED, 1]
+    end
+end
+
+# Empowered Dragon Dance
+class PokeBattle_Move_60D < PokeBattle_MultiStatUpMove
+    include EmpoweredMove
+
+    def initialize(battle, move)
+        super
+        @statUp = [:ATTACK, 2, :SPEED, 2]
+    end
+
+    def pbEffectGeneral(user)
+        super
+        transformType(user, :DRAGON)
     end
 end
 
@@ -97,6 +142,21 @@ class PokeBattle_Move_525 < PokeBattle_MultiStatUpMove
     def initialize(battle, move)
         super
         @statUp = [:ATTACK, 2, :DEFENSE, 2, :SPEED, 1]
+    end
+end
+
+# Empowered Shiver Dance
+class PokeBattle_Move_624 < PokeBattle_MultiStatUpMove
+    include EmpoweredMove
+
+    def initialize(battle, move)
+        super
+        @statUp = [:ATTACK, 2, :DEFENSE, 2, :SPEED, 2]
+    end
+
+    def pbEffectGeneral(user)
+        super
+        transformType(user, :ICE)
     end
 end
 
@@ -266,6 +326,21 @@ class PokeBattle_Move_503 < PokeBattle_MultiStatUpMove
     end
 end
 
+# Empowered Lightning Dance
+class PokeBattle_Move_604 < PokeBattle_MultiStatUpMove
+    include EmpoweredMove
+
+    def initialize(battle, move)
+        super
+        @statUp = [:SPECIAL_ATTACK, 2, :SPEED, 2]
+    end
+
+    def pbEffectGeneral(user)
+        super
+        transformType(user, :ELECTRIC)
+    end
+end
+
 #===============================================================================
 # Increases the user's Speed and Sp. Atk by 2 steps. (Frolic)
 #===============================================================================
@@ -291,6 +366,21 @@ class PokeBattle_Move_02B < PokeBattle_MultiStatUpMove
     end
 end
 
+# Empowered Quiver Dance
+class PokeBattle_Move_623 < PokeBattle_MultiStatUpMove
+    include EmpoweredMove
+
+    def initialize(battle, move)
+        super
+        @statUp = [:SPECIAL_ATTACK, 2, :SPECIAL_DEFENSE, 2, :SPEED, 2]
+    end
+
+    def pbEffectGeneral(user)
+        super
+        transformType(user, :BUG)
+    end
+end
+
 #===============================================================================
 # Increases the user's Sp. Atk and accuracy by 3 steps each.
 #===============================================================================
@@ -308,6 +398,17 @@ class PokeBattle_Move_02C < PokeBattle_MultiStatUpMove
     def initialize(battle, move)
         super
         @statUp = [:SPECIAL_ATTACK, 2, :SPECIAL_DEFENSE, 2]
+    end
+end
+
+# Empowered Calm Mind
+class PokeBattle_Move_609 < PokeBattle_Move_02C
+    include EmpoweredMove
+
+    def pbEffectGeneral(user)
+        user.pbMaximizeStatStep(:ACCURACY, user, self)
+        super
+        transformType(user, :PSYCHIC)
     end
 end
 

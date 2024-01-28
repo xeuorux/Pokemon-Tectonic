@@ -107,3 +107,16 @@ class PokeBattle_Move_5B2 < PokeBattle_BurnMove
         super
     end
 end
+
+# Empowered Ignite
+class PokeBattle_Move_613 < PokeBattle_Move
+    include EmpoweredMove
+
+    def pbEffectGeneral(user)
+        super
+        @battle.eachOtherSideBattler(user) do |b|
+            b.applyBurn(user) if b.canBurn?(user, true, self)
+        end
+        transformType(user, :FIRE)
+    end
+end

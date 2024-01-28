@@ -5,30 +5,6 @@ class PokeBattle_Move_Sleep < PokeBattle_SleepMove
 end
 
 #===============================================================================
-# Makes the target drowsy; it falls asleep at the end of the next turn. (Yawn)
-#===============================================================================
-class PokeBattle_Move_004 < PokeBattle_Move
-    def pbFailsAgainstTarget?(user, target, show_message)
-        if target.effectActive?(:Yawn)
-            @battle.pbDisplay(_INTL("But it failed, since #{target.pbThis(true)} is already drowsy!")) if show_message
-            return true
-        end
-        return true unless target.canSleep?(user, show_message, self)
-        return false
-    end
-
-    def pbEffectAgainstTarget(_user, target)
-        target.applyEffect(:Yawn, 2)
-    end
-
-    def getEffectScore(user, target)
-        score = getSleepEffectScore(user, target)
-        score -= 60
-        return score
-    end
-end
-
-#===============================================================================
 # Puts the target to sleep, but only if the user is Darkrai. (Dark Void)
 #===============================================================================
 class PokeBattle_Move_077 < PokeBattle_SleepMove
@@ -195,4 +171,33 @@ class PokeBattle_Move_534 < PokeBattle_SleepMove
         target.pbCureStatus(false, :DIZZY)
         target.applySleep
     end
+end
+
+#===============================================================================
+# Makes the target drowsy; it falls asleep at the end of the next turn. (Yawn)
+#===============================================================================
+class PokeBattle_Move_004 < PokeBattle_Move
+    def pbFailsAgainstTarget?(user, target, show_message)
+        if target.effectActive?(:Yawn)
+            @battle.pbDisplay(_INTL("But it failed, since #{target.pbThis(true)} is already drowsy!")) if show_message
+            return true
+        end
+        return true unless target.canSleep?(user, show_message, self)
+        return false
+    end
+
+    def pbEffectAgainstTarget(_user, target)
+        target.applyEffect(:Yawn, 2)
+    end
+
+    def getEffectScore(user, target)
+        score = getSleepEffectScore(user, target)
+        score -= 60
+        return score
+    end
+end
+
+# Empowered Yawn
+class PokeBattle_Move_631 < PokeBattle_Move_004
+    include EmpoweredMove
 end

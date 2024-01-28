@@ -174,3 +174,76 @@ class PokeBattle_Move_5BD < PokeBattle_Move_105
         @battle.pbStartWeather(user, :Sandstorm, 5, false) unless @battle.primevalWeatherPresent?
     end
 end
+
+# Empowered Sunshine
+class PokeBattle_Move_601 < PokeBattle_Move_0FF
+    include EmpoweredMove
+
+    def pbEffectGeneral(user)
+        super
+        user.pbRaiseMultipleStatSteps(ATTACKING_STATS_1, user, move: self)
+        transformType(user, :FIRE)
+    end
+end
+
+# Empowered Rain
+class PokeBattle_Move_602 < PokeBattle_Move_100
+    include EmpoweredMove
+
+    def pbEffectGeneral(user)
+        super
+        @battle.pbAnimation(:AQUARING, user, [user])
+        user.applyEffect(:AquaRing)
+        transformType(user, :WATER)
+    end
+end
+
+# Empowered Hail
+class PokeBattle_Move_605 < PokeBattle_Move_102
+    include EmpoweredMove
+
+    def pbEffectGeneral(user)
+        super
+        @battle.eachOtherSideBattler(user) do |b|
+            b.tryLowerStat(:SPEED, user, increment: 2, move: self)
+        end
+        transformType(user, :ICE)
+    end
+end
+
+# Empowered Sandstorm
+class PokeBattle_Move_60B < PokeBattle_Move_101
+    include EmpoweredMove
+
+    def pbEffectGeneral(user)
+        super
+        user.pbRaiseMultipleStatSteps(DEFENDING_STATS_1, user, move: self)
+        transformType(user, :ROCK)
+    end
+end
+
+# Empowered Eclipse
+class PokeBattle_Move_617 < PokeBattle_Move_09D
+    include EmpoweredMove
+
+    def pbEffectGeneral(user)
+        super
+        user.pbRaiseMultipleStatSteps([:ATTACK, 1, :SPECIAL_ATTACK, 1], user, move: self)
+        transformType(user, :PSYCHIC)
+    end
+end
+
+# Empowered Moonglow
+class PokeBattle_Move_618 < PokeBattle_Move_09E
+    include EmpoweredMove
+
+    def pbEffectGeneral(user)
+        super
+
+        @battle.eachSameSideBattler(user) do |b|
+            b.pbRaiseMultipleStatSteps(DEFENDING_STATS_1, user, move: self)
+        end
+
+        transformType(user, :FAIRY)
+    end
+end

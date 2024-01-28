@@ -25,3 +25,16 @@ class PokeBattle_Move_552 < PokeBattle_LeechMove
         target.pbLowerMultipleStatSteps(ATTACKING_STATS_1, user, move: self)
     end
 end
+
+# Empowered Leech Seed
+class PokeBattle_Move_603 < PokeBattle_Move
+    include EmpoweredMove
+
+    def pbEffectGeneral(user)
+        super
+        @battle.eachOtherSideBattler(user) do |b|
+            b.applyLeeched(user) if b.canLeech?(user, true, self)
+        end
+        transformType(user, :GRASS)
+    end
+end

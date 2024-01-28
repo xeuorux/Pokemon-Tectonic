@@ -422,3 +422,29 @@ class PokeBattle_Move_14E < PokeBattle_TwoTurnMove
         return score
     end
 end
+
+#===============================================================================
+# Heals a target ally for their entire health bar, with overheal. (Paradisiaca)
+# But the user must recharge next turn.
+#===============================================================================
+class PokeBattle_Move_134 < PokeBattle_Move_0C2
+    def healingRatio(target); return 1.0; end
+
+    def pbFailsAgainstTarget?(_user, target, show_message)
+        unless target.canHeal?(true)
+            @battle.pbDisplay(_INTL("{1} is unaffected!", target.pbThis)) if show_message
+            return true
+        end
+        return false
+    end
+
+    def pbEffectAgainstTarget(user, target)
+        target.applyFractionalHealing(healingRatio(target), canOverheal: true)
+    end
+
+    def getEffectScore(user, target)
+        score = target.applyFractionalHealing(healingRatio(user),aiCheck: true, canOverheal: true)
+        score += super
+        return score
+    end
+end

@@ -231,6 +231,35 @@ class PokeBattle_Move_0DB < PokeBattle_Move
     end
 end
 
+# Empowered Ingrain
+class PokeBattle_Move_615 < PokeBattle_Move
+    include EmpoweredMove
+
+    def pbMoveFailed?(user, _targets, show_message)
+        if user.effectActive?(:EmpoweredIngrain)
+            if show_message
+                @battle.pbDisplay(_INTL("But it failed, since #{user.pbThis(true)}'s roots are already planted!"))
+            end
+            return true
+        end
+        return false
+    end
+
+    def pbEffectGeneral(user)
+        user.applyEffect(:EmpoweredIngrain,4)
+        transformType(user, :GRASS)
+    end
+
+    def getEffectScore(user, _target)
+        score = 50
+        score += 30 if @battle.pbIsTrapped?(user.index)
+        score += 20 if user.firstTurn?
+        score += 20 if user.aboveHalfth?
+        score *= 2
+        return score
+    end
+end
+
 #===============================================================================
 # Heals target by 1/2 of its max HP. (Heal Pulse)
 #===============================================================================
@@ -408,32 +437,6 @@ class PokeBattle_Move_16E < PokeBattle_Move
 
     def shouldHighlight?(_user, _target)
         return @battle.moonGlowing?
-    end
-end
-
-#===============================================================================
-# Heals a target ally for their entire health bar, with overheal. (Paradisiaca)
-# But the user must recharge next turn.
-#===============================================================================
-class PokeBattle_Move_134 < PokeBattle_Move_0C2
-    def healingRatio(target); return 1.0; end
-
-    def pbFailsAgainstTarget?(_user, target, show_message)
-        unless target.canHeal?(true)
-            @battle.pbDisplay(_INTL("{1} is unaffected!", target.pbThis)) if show_message
-            return true
-        end
-        return false
-    end
-
-    def pbEffectAgainstTarget(user, target)
-        target.applyFractionalHealing(healingRatio(target), canOverheal: true)
-    end
-
-    def getEffectScore(user, target)
-        score = target.applyFractionalHealing(healingRatio(user),aiCheck: true, canOverheal: true)
-        score += super
-        return score
     end
 end
 
@@ -807,5 +810,33 @@ class PokeBattle_Move_5D4 < PokeBattle_HalfHealingMove
             score += 30
         end
         return score
+    end
+end
+
+# Empowered Shore Up
+class PokeBattle_Move_620 < PokeBattle_HalfHealingMove
+    include EmpoweredMove
+
+    def pbEffectGeneral(user)
+        super
+
+        user.applyEffect(:EmpoweredShoreUp)
+
+        transformType(user, :GROUND)
+    end
+end
+
+# Empowered Heal Order
+class PokeBattle_Move_619 < PokeBattle_HalfHealingMove
+    include EmpoweredMove
+
+    def healingMove?; return true; end
+
+    def pbEffectGeneral(user)
+        super
+
+        summonAvatar(user, :COMBEE, _INTL("{1} summons a helper!", user.pbThis))
+
+        transformType(user, :BUG)
     end
 end

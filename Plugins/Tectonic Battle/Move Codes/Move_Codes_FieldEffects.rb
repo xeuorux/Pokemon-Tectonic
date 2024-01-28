@@ -16,6 +16,19 @@ class PokeBattle_Move_05B < PokeBattle_Move
     end
 end
 
+# Empowered Tailwind
+class PokeBattle_Move_608 < PokeBattle_Move_05B
+    include EmpoweredMove
+
+    def pbEffectGeneral(user)
+        user.pbOwnSide.applyEffect(:Tailwind, 4)
+        @battle.eachSameSideBattler(user) do |b|
+            b.applyEffect(:ExtraTurns, 1)
+        end
+        transformType(user, :FLYING)
+    end
+end
+
 #===============================================================================
 # For 5 rounds, increases gravity on the field. Pokémon cannot become airborne.
 # (Gravity)
@@ -66,5 +79,44 @@ class PokeBattle_Move_5D3 < PokeBattle_Move_05B
     def initialize(battle, move)
         super
         @tailwindDuration = 6
+    end
+end
+
+#===============================================================================
+# Resets all stat steps at end of turn and at the end of the next four turns. (Grey Mist)
+#===============================================================================
+class PokeBattle_Move_587 < PokeBattle_Move
+    def pbEffectGeneral(_user)
+        @battle.field.applyEffect(:GreyMist, 5) unless @battle.field.effectActive?(:GreyMist)
+    end
+
+    def pbMoveFailed?(_user, _targets, show_message)
+        return false if damagingMove?
+        if @battle.field.effectActive?(:GreyMist)
+            if show_message
+                @battle.pbDisplay(_INTL("But it failed, since the field is already shrouded in Grey Mist!"))
+            end
+            return true
+        end
+        return false
+    end
+
+    def getEffectScore(user, _target)
+        return getGreyMistSettingEffectScore(user,5)
+    end
+end
+
+# Empowered Grey Mist
+class PokeBattle_Move_61A < PokeBattle_Move_587
+    include EmpoweredMove
+
+    def pbEffectGeneral(user)
+        super
+
+        itemName = GameData::Item.get(:BLACKSLUDGE).name
+        @battle.pbDisplay(_INTL("{1} crafts itself a {2}!", user.pbThis, itemName))
+        user.giveItem(:BLACKSLUDGE)
+
+        transformType(user, :POISON)
     end
 end

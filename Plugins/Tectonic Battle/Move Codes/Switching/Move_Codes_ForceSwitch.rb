@@ -55,6 +55,15 @@ class PokeBattle_Move_0EB < PokeBattle_Move
     end
 end
 
+# Empowered Whirlwind
+class PokeBattle_Move_61C < PokeBattle_Move_0EB
+    include EmpoweredMove
+
+    def pbEffectGeneral(user)
+        transformType(user, :FLYING)
+    end
+end
+
 #===============================================================================
 # In wild battles, makes target flee. Fails if target is a higher level than the
 # user.

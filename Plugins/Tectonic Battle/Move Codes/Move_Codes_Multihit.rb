@@ -96,6 +96,31 @@ class PokeBattle_Move_185 < PokeBattle_Move
 end
 
 #===============================================================================
+# Attacks two to five times. Gains money for each hit. (Sacred Lots)
+#===============================================================================
+class PokeBattle_Move_589 < PokeBattle_Move_0C0
+    def pbEffectOnNumHits(user, _target, numHits)
+        coinsGenerated = 2 * user.level * numHits
+        @battle.field.incrementEffect(:PayDay, coinsGenerated) if user.pbOwnedByPlayer?
+        if numHits == 10
+            @battle.pbDisplay(_INTL("How fortunate!"))
+        elsif numHits == 0
+            @battle.pbDisplay(_INTL("How unfortunate! Better luck next time."))
+        end
+    end
+end
+
+#===============================================================================
+# Hits 2-5 times, for three turns in a row. (Pattern Release)
+#===============================================================================
+class PokeBattle_Move_56C < PokeBattle_Move_0C0
+    def pbEffectAfterAllHits(user, target)
+        user.applyEffect(:Outrage, 3) if !target.damageState.unaffected && !user.effectActive?(:Outrage)
+        user.tickDownAndProc(:Outrage)
+    end
+end
+
+#===============================================================================
 # Hits X times, where X is the number of non-user unfainted status-free Pokémon
 # in the user's party (not including partner trainers). Fails if X is 0.
 # Base power of each hit depends on the base Attack stat for the species of that
