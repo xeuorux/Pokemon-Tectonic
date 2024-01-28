@@ -53,3 +53,49 @@ class PokeBattle_Move_0FE < PokeBattle_RecoilMove
         return getBurnEffectScore(user, target)
     end
 end
+
+#===============================================================================
+# 100% Recoil Move (Thunder Belly)
+#===============================================================================
+class PokeBattle_Move_56B < PokeBattle_RecoilMove
+    def recoilFactor; return 1.0; end
+end
+
+#===============================================================================
+# If attack misses, user takes crash damage of 1/2 of max HP.
+# (High Jump Kick, Jump Kick)
+#===============================================================================
+class PokeBattle_Move_10B < PokeBattle_Move
+    def recoilMove?;        return true; end
+    def unusableInGravity?; return true; end
+
+    def pbCrashDamage(user)
+        recoilDamage = user.totalhp / 2.0
+        recoilMessage = _INTL("{1} kept going and crashed!", user.pbThis)
+        user.applyRecoilDamage(recoilDamage, true, true, recoilMessage)
+    end
+
+    def getEffectScore(_user, _target)
+        return (@accuracy - 100) * 2
+    end
+end
+
+#===============================================================================
+# If it deals less than 50% of the target’s max health, the user (Capacity Burst)
+# takes the difference as recoil.
+#===============================================================================
+class PokeBattle_Move_197 < PokeBattle_Move
+    def pbEffectAfterAllHits(user, target)
+        return unless target.damageState.totalCalcedDamage < target.totalhp / 2
+        recoilAmount = (target.totalhp / 2) - target.damageState.totalCalcedDamage
+        recoilMessage = _INTL("#{user.pbThis} is hurt by leftover electricity!")
+        user.applyRecoilDamage(recoilAmount, true, true, recoilMessage)
+    end
+
+    def getDamageBasedEffectScore(user,target,damage)
+        return 0 if damage >= target.totalhp / 2
+        recoilDamage = (target.totalhp / 2) - damage
+        score = (-recoilDamage * 2 / user.totalhp).floor
+        return score
+    end
+end

@@ -1,204 +1,4 @@
 #===============================================================================
-# Entry hazard. Lays spikes on the opposing side. (Spikes)
-#===============================================================================
-class PokeBattle_Move_103 < PokeBattle_Move
-    def hazardMove?; return true,2; end
-    def aiAutoKnows?(pokemon); return true; end
-
-    def pbMoveFailed?(user, _targets, show_message)
-        return false if damagingMove?
-        if user.pbOpposingSide.effectAtMax?(:Spikes)
-            @battle.pbDisplay(_INTL("But it failed, since there is no room for more Spikes!")) if show_message
-            return true
-        end
-        return false
-    end
-
-    def pbEffectGeneral(user)
-        return if damagingMove?
-        user.pbOpposingSide.incrementEffect(:Spikes)
-    end
-
-    def pbEffectAgainstTarget(_user, target)
-        return unless damagingMove?
-        return if target.pbOwnSide.effectAtMax?(:Spikes)
-        target.pbOwnSide.incrementEffect(:Spikes)
-    end
-
-    def getEffectScore(user, target)
-        return 0 if damagingMove? && target.pbOwnSide.effectAtMax?(:Spikes)
-        return getHazardSettingEffectScore(user, target)
-    end
-end
-
-#===============================================================================
-# Entry hazard. Lays poison spikes on the opposing side (max. 2 layers).
-# (Poison Spikes)
-#===============================================================================
-class PokeBattle_Move_104 < PokeBattle_StatusSpikeMove
-    def hazardMove?; return true,5; end
-    def initialize(battle, move)
-        @spikeEffect = :PoisonSpikes
-        super
-    end
-end
-
-#===============================================================================
-# Entry hazard. Lays stealth rocks on the opposing side. (Stealth Rock)
-#===============================================================================
-class PokeBattle_Move_105 < PokeBattle_Move
-    def hazardMove?; return true,1; end
-    def aiAutoKnows?(pokemon); return true; end
-
-    def pbMoveFailed?(user, _targets, show_message)
-        return false if damagingMove?
-        if user.pbOpposingSide.effectActive?(:StealthRock)
-            if show_message
-                @battle.pbDisplay(_INTL("But it failed, since pointed stones already float around the opponent!"))
-            end
-            return true
-        end
-        return false
-    end
-
-    def pbEffectGeneral(user)
-        return if damagingMove?
-        user.pbOpposingSide.applyEffect(:StealthRock)
-    end
-
-    def pbEffectAgainstTarget(_user, target)
-        return unless damagingMove?
-        return if target.pbOwnSide.effectActive?(:StealthRock)
-        target.pbOwnSide.applyEffect(:StealthRock)
-    end
-
-    def getEffectScore(user, target)
-        return 0 if damagingMove? && target.pbOwnSide.effectActive?(:StealthRock)
-        return getHazardSettingEffectScore(user, target, 12)
-    end
-end
-
-#===============================================================================
-# Combos with another Pledge move used by the ally. (Grass Pledge)
-# If the move is a combo, power is doubled and causes either a sea of fire or a
-# swamp on the opposing side.
-#===============================================================================
-class PokeBattle_Move_106 < PokeBattle_PledgeMove
-    def initialize(battle, move)
-        super
-        # [Function code to combo with, effect, override type, override animation]
-        @combos = [["107", :SeaOfFire, :FIRE, :FIREPLEDGE],
-                   ["108", :Swamp,     nil,   nil],]
-    end
-end
-
-#===============================================================================
-# Combos with another Pledge move used by the ally. (Fire Pledge)
-# If the move is a combo, power is doubled and causes either a rainbow on the
-# user's side or a sea of fire on the opposing side.
-#===============================================================================
-class PokeBattle_Move_107 < PokeBattle_PledgeMove
-    def initialize(battle, move)
-        super
-        # [Function code to combo with, effect, override type, override animation]
-        @combos = [["108", :Rainbow,   :WATER, :WATERPLEDGE],
-                   ["106", :SeaOfFire, nil,    nil],]
-    end
-end
-
-#===============================================================================
-# Combos with another Pledge move used by the ally. (Water Pledge)
-# If the move is a combo, power is doubled and causes either a swamp on the
-# opposing side or a rainbow on the user's side.
-#===============================================================================
-class PokeBattle_Move_108 < PokeBattle_PledgeMove
-    def initialize(battle, move)
-        super
-        # [Function code to combo with, effect, override type, override animation]
-        @combos = [["106", :Swamp,   :GRASS, :GRASSPLEDGE],
-                   ["107", :Rainbow, nil,    nil],]
-    end
-end
-
-#===============================================================================
-# Scatters coins that the player picks up after winning the battle. (Pay Day)
-#===============================================================================
-class PokeBattle_Move_109 < PokeBattle_Move
-    def pbEffectGeneral(user)
-        @battle.field.incrementEffect(:PayDay, 5 * user.level) if user.pbOwnedByPlayer?
-    end
-end
-
-#===============================================================================
-# Ends the opposing side's screen effects. (Brick Break, Psychic Fangs)
-#===============================================================================
-class PokeBattle_Move_10A < PokeBattle_Move
-    def ignoresReflect?; return true; end
-
-    def pbEffectWhenDealingDamage(_user, target)
-        side = target.pbOwnSide
-        side.eachEffect(true) do |effect, _value, data|
-            side.disableEffect(effect) if data.is_screen?
-        end
-    end
-
-    def sideHasScreens?(side)
-        side.eachEffect(true) do |_effect, _value, data|
-            return true if data.is_screen?
-        end
-        return false
-    end
-
-    def pbShowAnimation(id, user, targets, hitNum = 0, showAnimation = true)
-        targets.each do |b|
-            next unless sideHasScreens?(b.pbOwnSide)
-            hitNum = 1 # Wall-breaking anim
-            break
-        end
-        super
-    end
-
-    def getEffectScore(_user, target)
-        score = 0
-        target.pbOwnSide.eachEffect(true) do |effect, value, data|
-            next unless data.is_screen?
-			case value
-				when 2
-					score += 30
-				when 3
-					score += 50
-				when 4..999
-					score += 130
-            end	
-        end
-        return score
-    end
-
-    def shouldHighlight?(_user, target)
-        return sideHasScreens?(target.pbOwnSide)
-    end
-end
-
-#===============================================================================
-# If attack misses, user takes crash damage of 1/2 of max HP.
-# (High Jump Kick, Jump Kick)
-#===============================================================================
-class PokeBattle_Move_10B < PokeBattle_Move
-    def recoilMove?;        return true; end
-    def unusableInGravity?; return true; end
-
-    def pbCrashDamage(user)
-        recoilDamage = user.totalhp / 2.0
-        recoilMessage = _INTL("{1} kept going and crashed!", user.pbThis)
-        user.applyRecoilDamage(recoilDamage, true, true, recoilMessage)
-    end
-
-    def getEffectScore(_user, _target)
-        return (@accuracy - 100) * 2
-    end
-end
-
-#===============================================================================
 # User turns 1/4 of max HP into a substitute. (Substitute)
 #===============================================================================
 class PokeBattle_Move_10C < PokeBattle_Move
@@ -298,109 +98,9 @@ class PokeBattle_Move_10E < PokeBattle_Move
 end
 
 #===============================================================================
-# Target will lose 1/4 of max HP at end of each round, while asleep. (Nightmare)
-#===============================================================================
-class PokeBattle_Move_10F < PokeBattle_Move
-    def pbFailsAgainstTarget?(_user, target, show_message)
-        unless target.asleep?
-            @battle.pbDisplay(_INTL("But it failed, since #{target.pbThis(true)} isn't asleep!")) if show_message
-            return true
-        end
-        if target.effectActive?(:Nightmare)
-            if show_message
-                @battle.pbDisplay(_INTL("But it failed, since #{target.pbThis(true)} is already afflicted by a Nightmare!"))
-            end
-            return true
-        end
-        return false
-    end
-
-    def pbEffectAgainstTarget(_user, target)
-        target.applyEffect(:Nightmare)
-    end
-
-    def getTargetAffectingEffectScore(_user, target)
-        score = 100
-        score += 50 if target.aboveHalfHealth?
-        return score
-    end
-end
-
-#===============================================================================
-# Currently unused. # TODO
-#===============================================================================
-class PokeBattle_Move_110 < PokeBattle_Move
-end
-
-#===============================================================================
 # Attacks 2 rounds in the future. (Future Sight, etc.)
 #===============================================================================
 class PokeBattle_Move_111 < PokeBattle_ForetoldMove
-end
-
-#===============================================================================
-# Increases the user's Defense and Special Defense by 1 step each. Ups the
-# user's stockpile by 1 (max. 2). (Stockpile)
-#===============================================================================
-class PokeBattle_Move_112 < PokeBattle_MultiStatUpMove
-    def initialize(battle, move)
-        super
-        @statUp = DEFENDING_STATS_1
-    end
-
-    def pbMoveFailed?(user, _targets, show_message)
-        if user.effectAtMax?(:Stockpile)
-            @battle.pbDisplay(_INTL("{1} can't stockpile any more!", user.pbThis)) if show_message
-            return true
-        end
-        return false
-    end
-
-    def pbEffectGeneral(user)
-        user.incrementEffect(:Stockpile)
-        super
-    end
-
-    def getEffectScore(user, target)
-        score = super
-        score += 20 if user.pbHasMoveFunction?("113") # Spit Up
-        score += 20 if user.pbHasMoveFunction?("114") # Swallow
-        return score
-	end	
-end
-
-#===============================================================================
-# Power is 150 multiplied by the user's stockpile (X). Resets the stockpile to
-# 0. Decreases the user's Defense and Special Defense by X steps each. (Spit Up)
-#===============================================================================
-class PokeBattle_Move_113 < PokeBattle_Move
-    def pbMoveFailed?(user, _targets, show_message)
-        unless user.effectActive?(:Stockpile)
-            @battle.pbDisplay(_INTL("But it failed to spit up a thing!")) if show_message
-            return true
-        end
-        return false
-    end
-
-    def pbBaseDamage(_baseDmg, user, _target)
-        return 150 * user.countEffect(:Stockpile)
-    end
-
-    def pbEffectAfterAllHits(user, target)
-        return if user.fainted? || !user.effectActive?(:Stockpile)
-        return if target.damageState.unaffected
-        @battle.pbDisplay(_INTL("{1}'s stockpiled effect wore off!", user.pbThis))
-        return if @battle.pbAllFainted?(target.idxOwnSide)
-        user.disableEffect(:Stockpile)
-    end
-
-    def getEffectScore(user, _target)
-        return -20 * user.countEffect(:Stockpile)
-    end
-
-    def shouldHighlight?(user, _target)
-        return user.effectAtMax?(:Stockpile)
-    end
 end
 
 #===============================================================================
@@ -491,70 +191,6 @@ class PokeBattle_Move_117 < PokeBattle_Move
         return 0 unless user.hasAlly?
         score = 50
         score += 25 if user.aboveHalfHealth?
-        return score
-    end
-end
-
-#===============================================================================
-# For 5 rounds, increases gravity on the field. Pokémon cannot become airborne.
-# (Gravity)
-#===============================================================================
-class PokeBattle_Move_118 < PokeBattle_Move
-    def initialize(battle, move)
-        super
-        @gravityDuration = 5
-    end
-
-    def pbEffectGeneral(_user)
-        @battle.field.applyEffect(:Gravity, @gravityDuration)
-    end
-
-    def getEffectScore(user, _target)
-        return getGravityEffectScore(user, @gravityDuration)
-    end
-end
-
-#===============================================================================
-# For 5 rounds, user becomes airborne. (Magnet Rise)
-#===============================================================================
-class PokeBattle_Move_119 < PokeBattle_Move
-    def unusableInGravity?; return true; end
-
-    def pbMoveFailed?(user, _targets, show_message)
-        if user.effectActive?(:Ingrain)
-            if show_message
-                @battle.pbDisplay(_INTL("But it failed, since #{user.pbThis(true)}'s roots keep it stuck in the ground!"))
-            end
-            return true
-        end
-        if user.effectActive?(:SmackDown)
-            if show_message
-                @battle.pbDisplay(_INTL("But it failed, since #{user.pbThis(true)} was smacked down to the ground!"))
-            end
-            return true
-        end
-        if user.effectActive?(:MagnetRise)
-            if show_message
-                @battle.pbDisplay(_INTL("But it failed, since #{user.pbThis(true)} is already risen up through magnetism!"))
-            end
-            return true
-        end
-        return false
-    end
-
-    def pbEffectGeneral(user)
-        user.applyEffect(:MagnetRise, 5)
-    end
-
-    def getEffectScore(user, _target)
-        score = 20
-        score += 20 if user.firstTurn?
-        user.eachOpposing(true) do |b|
-            if b.pbHasAttackingType?(:GROUND)
-                score += 50
-                score += 25 if b.pbHasType?(:GROUND)
-            end
-        end
         return score
     end
 end
@@ -795,29 +431,6 @@ class PokeBattle_Move_120 < PokeBattle_Move
 end
 
 #===============================================================================
-# Target's attacking stats are used instead of user's Attack for this move's calculations.
-# (Foul Play, Tricky Toxins)
-#===============================================================================
-class PokeBattle_Move_121 < PokeBattle_Move
-    def aiAutoKnows?(pokemon); return true; end
-	
-    def pbAttackingStat(_user, target)
-        return target, :SPECIAL_ATTACK if specialMove?
-        return target, :ATTACK
-    end
-end
-
-#===============================================================================
-# Target's Defense is used instead of its Special Defense for this move's
-# calculations. (Guttural Roar, Secret Sword)
-#===============================================================================
-class PokeBattle_Move_122 < PokeBattle_Move
-    def pbDefendingStat(_user, target)
-        return target, :DEFENSE
-    end
-end
-
-#===============================================================================
 # Only damages Pokémon that share a type with the user. (Synchronoise)
 #===============================================================================
 class PokeBattle_Move_123 < PokeBattle_Move
@@ -925,15 +538,6 @@ class PokeBattle_Move_127 < PokeBattle_Move_0DB
         score = super
         score += getHPLossEffectScore(user, 0.25)
         return score
-    end
-end
-
-#===============================================================================
-# Scatters lots of coins that the player picks up after winning the battle. (Cha-ching)
-#===============================================================================
-class PokeBattle_Move_128 < PokeBattle_Move
-    def pbEffectGeneral(user)
-        @battle.field.incrementEffect(:PayDay, 8 * user.level) if user.pbOwnedByPlayer?
     end
 end
 
@@ -1227,17 +831,7 @@ class PokeBattle_Move_137 < PokeBattle_Move
     end
 end
 
-#===============================================================================
-# Increases target's Defense and Special Defense by 3 steps. (Aromatic Mist)
-#===============================================================================
-class PokeBattle_Move_138 < PokeBattle_TargetMultiStatUpMove
-    def ignoresSubstitute?(_user); return true; end
 
-    def initialize(battle, move)
-        super
-        @statUp = [:DEFENSE, 3, :SPECIAL_DEFENSE, 3]
-    end
-end
 
 #===============================================================================
 # Forces both the user and the target to switch out. (Stink Cover)
@@ -1299,95 +893,6 @@ class PokeBattle_Move_13B < PokeBattle_StatDownMove
     def pbEffectAgainstTarget(_user, target)
         removeProtections(target)
     end
-end
-
-#===============================================================================
-# The user is given the choice of using one of 3 randomly chosen status moves. (Discovered Power)
-#===============================================================================
-class PokeBattle_Move_13C < PokeBattle_Move
-    def callsAnotherMove?; return true; end
-
-    def initialize(battle, move)
-        super
-        @discoverableMoves = []
-        GameData::Move::DATA.keys.each do |move_id|
-            move_data = GameData::Move.get(move_id)
-            next unless move_data.category == 2
-            next if move_data.is_signature?
-            next if move_data.cut
-            next unless move_data.can_be_forced?
-            next if move_data.empoweredMove?
-            moveObject = @battle.getBattleMoveInstanceFromID(move_id)
-            next if moveObject.is_a?(PokeBattle_ProtectMove)
-            next if moveObject.is_a?(PokeBattle_HelpingMove)
-            next if moveObject.callsAnotherMove?
-            @discoverableMoves.push(move_data.id)
-        end
-    end
-
-    def resolutionChoice(user)
-        validMoves = []
-        validMoveNames = []
-        until validMoves.length == 3
-            movePossibility = @discoverableMoves.sample
-            unless validMoves.include?(movePossibility)
-                validMoves.push(movePossibility)
-                validMoveNames.push(getMoveName(movePossibility))
-            end
-        end
-
-        if @battle.autoTesting
-            @chosenMove = validMoves.sample
-        elsif !user.pbOwnedByPlayer? # Trainer AI
-            @chosenMove = validMoves[0]
-        else
-            chosenIndex = @battle.scene.pbShowCommands(_INTL("Which move should #{user.pbThis(true)} use?"),validMoveNames,0)
-            @chosenMove = validMoves[chosenIndex]
-        end
-    end
-
-    def pbEffectGeneral(user)
-        user.pbUseMoveSimple(@chosenMove) if @chosenMove
-    end
-
-    def resetMoveUsageState
-        @chosenMove = nil
-    end
-
-    def getEffectScore(_user, _target)
-        return 80
-    end
-end
-
-#===============================================================================
-# Sets spikes, but only if none are present. (Ceaseless Edge)
-#===============================================================================
-class PokeBattle_Move_13E < PokeBattle_Move_103
-    def pbMoveFailed?(user, _targets, show_message)
-        return false if damagingMove?
-        if user.pbOpposingSide.effectAtMax?(:Spikes)
-            @battle.pbDisplay(_INTL("But it failed, since there's already one layer of Spikes!")) if show_message
-            return true
-        end
-        return false
-    end
-
-    def pbEffectAgainstTarget(_user, target)
-        return unless damagingMove?
-        return if target.pbOwnSide.countEffect(:Spikes) > 0
-        target.pbOwnSide.incrementEffect(:Spikes)
-    end
-
-    def getEffectScore(user, target)
-        return 0 if damagingMove? && target.pbOwnSide.countEffect(:Spikes) > 0
-        return getHazardSettingEffectScore(user, target)
-    end
-end
-
-#===============================================================================
-# (Not currently used)
-#===============================================================================
-class PokeBattle_Move_13F < PokeBattle_Move
 end
 
 #===============================================================================
@@ -1536,21 +1041,6 @@ class PokeBattle_Move_143 < PokeBattle_Move
 end
 
 #===============================================================================
-# Type effectiveness is multiplied by the Flying-type's effectiveness against
-# the target. (Flying Press)
-#===============================================================================
-class PokeBattle_Move_144 < PokeBattle_Move
-    def pbCalcTypeModSingle(moveType, defType, user, target)
-        ret = super
-        if GameData::Type.exists?(:FLYING)
-            flyingEff = Effectiveness.calculate_one(:FLYING, defType)
-            ret *= flyingEff.to_f / Effectiveness::NORMAL_EFFECTIVE_ONE
-        end
-        return ret
-    end
-end
-
-#===============================================================================
 # Target's moves become Electric-type for the rest of the round. (Electrify)
 #===============================================================================
 class PokeBattle_Move_145 < PokeBattle_Move
@@ -1573,26 +1063,6 @@ class PokeBattle_Move_145 < PokeBattle_Move
 
     def getEffectScore(_user, _target)
         return 40 # Move sucks
-    end
-end
-
-#===============================================================================
-# All Normal-type moves become Electric-type for the rest of the round.
-# (Ion Deluge, Plasma Fists)
-#===============================================================================
-class PokeBattle_Move_146 < PokeBattle_Move
-    def pbMoveFailed?(user, _targets, show_message)
-        return false if damagingMove?
-        if @battle.field.effectActive?(:IonDeluge)
-            @battle.pbDisplay(_INTL("But it failed, since ions already shower the field!")) if show_message
-            return true
-        end
-        return true if pbMoveFailedLastInRound?(user, show_message)
-        return false
-    end
-
-    def pbEffectGeneral(_user)
-        @battle.field.applyEffect(:IonDeluge)
     end
 end
 
@@ -1992,12 +1462,6 @@ class PokeBattle_Move_15B < PokeBattle_HalfHealingMove
         end
         return score
     end
-end
-
-#===============================================================================
-# TODO: Currently unused.
-#===============================================================================
-class PokeBattle_Move_15C < PokeBattle_Move
 end
 
 #===============================================================================
@@ -2442,65 +1906,6 @@ class PokeBattle_Move_174 < PokeBattle_Move
 end
 
 #===============================================================================
-# Hits twice. Causes the target to flinch. (Double Iron Bash)
-#===============================================================================
-class PokeBattle_Move_175 < PokeBattle_FlinchMove
-    def multiHitMove?; return true; end
-    def pbNumHits(_user, _targets, _checkingForAI = false); return 2; end
-end
-
-#===============================================================================
-# Only usable by Morpeko. Sets Spikes if Full Belly. (Gut Check)
-# If Hangry, doubles in damage and deals Dark-type damage.
-#===============================================================================
-class PokeBattle_Move_176 < PokeBattle_Move
-    def pbMoveFailed?(user, _targets, show_message)
-        unless user.countsAs?(:MORPEKO)
-            @battle.pbDisplay(_INTL("But {1} can't use the move!", user.pbThis(true))) if show_message
-            return true
-        end
-        return false
-    end
-
-    def pbBaseDamage(baseDmg, user, _target)
-        if user.form == 1
-            baseDmg *= 2
-        end
-        return baseDmg
-    end
-
-    def pbBaseType(user)
-        ret = :ELECTRIC
-        ret = :DARK if user.form == 1
-        return ret
-    end
-
-    def pbAdditionalEffect(user, _target)
-        return unless user.form == 0
-        return if user.pbOpposingSide.effectAtMax?(:Spikes)
-        user.pbOpposingSide.incrementEffect(:Spikes)
-    end
-
-    def getEffectScore(user, target)
-        return 0 unless user.form == 0
-        return 0 if damagingMove? && target.pbOwnSide.effectAtMax?(:Spikes)
-        return getHazardSettingEffectScore(user, target)
-    end
-end
-
-#===============================================================================
-# User's Defense is used instead of user's Attack for this move's calculations.
-# (Body Press)
-#===============================================================================
-class PokeBattle_Move_177 < PokeBattle_Move
-    def aiAutoKnows?(pokemon); return true; end
-	
-    def pbAttackingStat(user, _target)
-        return user, :DEFENSE
-    end
-end
-
-#===============================================================================
 # If the user attacks before the target, or if the target switches in during the
 # turn that Fishious Rend is used, its base power doubles. (Fishious Rend, Bolt Beak)
 #===============================================================================
@@ -2576,17 +1981,6 @@ class PokeBattle_Move_17A < PokeBattle_Move
 
     def getEffectScore(_user, _target)
         return 0 # TODO
-    end
-end
-
-#===============================================================================
-# The user raises the target's Attack and Sp. Atk by 5 steps by decorating
-# the target. (Decorate)
-#===============================================================================
-class PokeBattle_Move_17B < PokeBattle_TargetMultiStatUpMove
-    def initialize(battle, move)
-        super
-        @statUp = [:ATTACK, 5, :SPECIAL_ATTACK, 5]
     end
 end
 

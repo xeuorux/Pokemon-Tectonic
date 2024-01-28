@@ -7,6 +7,22 @@ class PokeBattle_Move_0BD < PokeBattle_Move
 end
 
 #===============================================================================
+# Hits thrice.
+#===============================================================================
+class PokeBattle_Move_500 < PokeBattle_Move
+    def multiHitMove?; return true; end
+    def pbNumHits(_user, _targets, _checkingForAI = false); return 3; end
+end
+
+#===============================================================================
+# Hits 3 times and always critical. (Surging Strikes)
+#===============================================================================
+class PokeBattle_Move_188 < PokeBattle_Move_0A0
+    def multiHitMove?; return true; end
+    def pbNumHits(_user, _targets, _checkingForAI = false); return 3; end
+end
+
+#===============================================================================
 # Hits twice as Beedrill and four times as Wornet. (Multi-Needle)
 #===============================================================================
 class PokeBattle_Move_0BE < PokeBattle_Move
@@ -60,6 +76,23 @@ end
 
 class PokeBattle_Move_0C0 < PokeBattle_Move
     include RandomHitable
+end
+
+#===============================================================================
+# This move is physical if user's Attack is higher than its Special Attack (Multi-Strike)
+# It hits between 2-5 times in a row.
+#===============================================================================
+class PokeBattle_Move_185 < PokeBattle_Move
+    include RandomHitable
+
+    def initialize(battle, move)
+        super
+        @calculated_category = 1
+    end
+
+    def calculateCategory(user, _targets)
+        return selectBestCategory(user)
+    end
 end
 
 #===============================================================================

@@ -5,6 +5,14 @@ class PokeBattle_Move_Flinch < PokeBattle_FlinchMove
 end
 
 #===============================================================================
+# Hits twice. Causes the target to flinch. (Double Iron Bash)
+#===============================================================================
+class PokeBattle_Move_175 < PokeBattle_FlinchMove
+    def multiHitMove?; return true; end
+    def pbNumHits(_user, _targets, _checkingForAI = false); return 2; end
+end
+
+#===============================================================================
 # Causes the target to flinch. Fails if the user is not asleep. (Snore)
 #===============================================================================
 class PokeBattle_Move_FlinchWhileAsleep < PokeBattle_FlinchMove

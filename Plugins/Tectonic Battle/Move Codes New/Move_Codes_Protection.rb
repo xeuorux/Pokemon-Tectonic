@@ -362,3 +362,35 @@ class PokeBattle_Move_57F < PokeBattle_HalfProtectMove
         return getPoisonEffectScore(user, target)
     end
 end
+
+#===============================================================================
+# Creates a bubble to shield the target. The next time they’re attacked, (Bubble Barrier)
+# 50% of the move damage is instead dealt to the attacker
+#===============================================================================
+class PokeBattle_Move_196 < PokeBattle_Move
+    def ignoresSubstitute?(_user); return true; end
+
+    def hitsInvulnerable?; return true; end
+
+    def pbFailsAgainstTarget?(_user, target, show_message)
+        if target.fainted?
+            @battle.pbDisplay(_INTL("But it failed, since the receiver of the barrier is gone!")) if show_message
+            return true
+        end
+        if target.effectActive?(:BubbleBarrier)
+            @battle.pbDisplay(_INTL("But it failed, since #{arget.pbThis(true)} is already protected by a bubble!")) if show_message
+            return true
+        end
+        return false
+    end
+
+    def pbEffectAgainstTarget(_user, target)
+        target.applyEffect(:BubbleBarrier)
+    end
+
+    def getEffectScore(_user, target)
+        score = 50
+        score += 50 if target.aboveHalfHealth?
+        return score
+    end
+end

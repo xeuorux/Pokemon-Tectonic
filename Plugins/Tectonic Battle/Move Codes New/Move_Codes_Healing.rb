@@ -120,6 +120,23 @@ class PokeBattle_Move_0D9 < PokeBattle_HealingMove
 end
 
 #===============================================================================
+# Heals user to 100%. Only usable on first turn. (Fresh Start)
+#===============================================================================
+class PokeBattle_Move_55B < PokeBattle_HealingMove
+    def healRatio(_user)
+        return 1.0
+    end
+
+    def pbMoveFailed?(user, targets, show_message)
+        unless user.firstTurn?
+            @battle.pbDisplay(_INTL("But it failed, since it's not #{user.pbThis(true)}'s first turn!")) if show_message
+            return true
+        end
+        return super
+    end
+end
+
+#===============================================================================
 # Rings the user. Ringed Pokémon gain 1/16 of max HP at the end of each round.
 # (Aqua Ring)
 #===============================================================================

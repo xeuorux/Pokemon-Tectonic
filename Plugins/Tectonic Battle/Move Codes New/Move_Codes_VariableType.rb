@@ -109,3 +109,25 @@ class PokeBattle_Move_09F < PokeBattle_Move
         super
     end
 end
+
+#===============================================================================
+# Changes type to match the user's Gem, Plate, or Crystal Veil. (Prismatic Power)
+#===============================================================================
+class PokeBattle_Move_18A < PokeBattle_Move
+    def pbBaseType(user)
+        ret = :NORMAL
+        if user.hasActiveItem?(%i[CRYSTALVEIL PRISMATICPLATE])
+            ret = user.itemTypeChosen
+        elsif user.hasGem?
+            user.eachActiveItem do |itemID|
+                next unless GameData::Item.get(itemID).is_gem?
+                typeName = itemID.to_s
+                typeName.gsub!("GEM","")
+                typeName.gsub!("RING","")
+                ret = typeName.to_sym
+                break
+            end
+        end
+        return ret
+    end
+end

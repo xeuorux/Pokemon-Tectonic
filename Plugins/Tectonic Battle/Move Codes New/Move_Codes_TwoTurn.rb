@@ -92,6 +92,25 @@ class PokeBattle_Move_0C6 < PokeBattle_TwoTurnMove
 end
 
 #===============================================================================
+# Boosts Sp Atk on 1st Turn and Attacks on 2nd (Meteor Beam)
+#===============================================================================
+class PokeBattle_Move_191 < PokeBattle_TwoTurnMove
+    def pbChargingTurnMessage(user, _targets)
+        @battle.pbDisplay(_INTL("{1} is overflowing with space power!", user.pbThis))
+    end
+
+    def pbChargingTurnEffect(user, _target)
+        user.tryRaiseStat(:SPECIAL_ATTACK, user, move: self, increment: 2)
+    end
+
+    def getEffectScore(user, target)
+        score = super
+        score += getMultiStatUpEffectScore([:SPECIAL_ATTACK,2],user,user)
+        return score
+    end
+end
+
+#===============================================================================
 # Two turn attack. Ups user's Defense by 4 steps first turn, attacks second turn.
 # (Skull Bash)
 #===============================================================================
@@ -259,5 +278,60 @@ class PokeBattle_Move_0CD < PokeBattle_TwoTurnMove
 
     def pbAttackingTurnEffect(_user, target)
         removeProtections(target)
+    end
+end
+
+#===============================================================================
+# Two turn attack. Sets sun first turn, attacks second turn.
+# (Absolute Radiance)
+#===============================================================================
+class PokeBattle_Move_5C4 < PokeBattle_TwoTurnMove
+    def pbChargingTurnMessage(user, _targets)
+        @battle.pbDisplay(_INTL("{1} petitions the sun!", user.pbThis))
+    end
+
+    def pbChargingTurnEffect(user, _target)
+        @battle.pbStartWeather(user, :Sun, 5, false)
+    end
+
+    def getEffectScore(user, _target)
+        score = super
+        score += getWeatherSettingEffectScore(:Sun, user, battle, 5)
+        return score
+    end
+end
+
+#===============================================================================
+# Two turn attack. Sets rain first turn, attacks second turn.
+# (Archaen Deluge)
+#===============================================================================
+class PokeBattle_Move_576 < PokeBattle_TwoTurnMove
+    def pbChargingTurnMessage(user, _targets)
+        @battle.pbDisplay(_INTL("{1} begins the flood!", user.pbThis))
+    end
+
+    def pbChargingTurnEffect(user, _target)
+        @battle.pbStartWeather(user, :Rain, 5, false)
+    end
+
+    def getEffectScore(user, _target)
+        score = super
+        score += getWeatherSettingEffectScore(:Rain, user, battle, 5)
+        return score
+    end
+end
+
+#===============================================================================
+# Two turn attack. Skips first turn, attacks second turn. (Liftoff)
+# (Handled in Battler's pbSuccessCheckPerHit): Is semi-invulnerable during use.
+#===============================================================================
+class PokeBattle_Move_5C5 < PokeBattle_Move_0C9
+    include Recoilable
+
+    def recoilFactor; return 0.25; end
+
+    def pbEffectAfterAllHits(user, target)
+        return unless @damagingTurn
+        super
     end
 end

@@ -109,30 +109,6 @@ class PokeBattle_Move_584 < PokeBattle_Move
 end
 
 #===============================================================================
-# Raises the user's Sp. Atk by 2 steps, and the user's attacks become spread. (Flare Witch)
-#===============================================================================
-class PokeBattle_Move_585 < PokeBattle_Move
-    def pbMoveFailed?(user, _targets, show_message)
-        if user.effectActive?(:FlareWitch) && !user.pbCanRaiseStatStep?(:SPECIAL_ATTACK, user, self, true)
-            @battle.pbDisplay(_INTL("But it failed, since #{user.pbThis(true)} can't raise its Sp. Atk and already activated its witch powers!")) if show_message
-            return true
-        end
-        return false
-    end
-
-    def pbEffectGeneral(user)
-        user.tryRaiseStat(:SPECIAL_ATTACK, user, move: self, increment: 3)
-        user.applyEffect(:FlareWitch)
-    end
-
-    def getEffectScore(user, target)
-        score = getMultiStatUpEffectScore([:SPECIAL_ATTACK,2], user, target)
-        score += 30 unless user.effectActive?(:FlareWitch)
-        return score
-    end
-end
-
-#===============================================================================
 # Resets all stat steps at end of turn and at the end of the next four turns. (Grey Mist)
 #===============================================================================
 class PokeBattle_Move_587 < PokeBattle_Move
@@ -153,41 +129,6 @@ class PokeBattle_Move_587 < PokeBattle_Move
 
     def getEffectScore(user, _target)
         return getGreyMistSettingEffectScore(user,5)
-    end
-end
-
-#===============================================================================
-# If it faints the target, you gain lots of money after the battle. (Plunder)
-#===============================================================================
-class PokeBattle_Move_588 < PokeBattle_Move
-    def pbEffectAfterAllHits(user, target)
-        return unless target.damageState.fainted
-        @battle.field.incrementEffect(:PayDay, 15 * user.level) if user.pbOwnedByPlayer?
-    end
-end
-
-#===============================================================================
-# Attacks two to five times. Gains money for each hit. (Sacred Lots)
-#===============================================================================
-class PokeBattle_Move_589 < PokeBattle_Move_0C0
-    def pbEffectOnNumHits(user, _target, numHits)
-        coinsGenerated = 2 * user.level * numHits
-        @battle.field.incrementEffect(:PayDay, coinsGenerated) if user.pbOwnedByPlayer?
-        if numHits == 10
-            @battle.pbDisplay(_INTL("How fortunate!"))
-        elsif numHits == 0
-            @battle.pbDisplay(_INTL("How unfortunate! Better luck next time."))
-        end
-    end
-end
-
-#===============================================================================
-# Power is tripled if the target is poisoned. (Vipershock)
-#===============================================================================
-class PokeBattle_Move_58A < PokeBattle_Move
-    def pbBaseDamage(baseDmg, _user, target)
-        baseDmg *= 3 if target.poisoned?
-        return baseDmg
     end
 end
 
@@ -228,35 +169,6 @@ end
 #===============================================================================
 class PokeBattle_Move_58D < PokeBattle_Move_03E
     def pbCriticalOverride(_user, _target); return 1; end
-end
-
-#===============================================================================
-# Returns user to party for swap and lays a layer of spikes. (Caltrop Arts)
-#===============================================================================
-class PokeBattle_Move_58E < PokeBattle_Move_0EE
-    def pbMoveFailed?(user, _targets, show_message)
-        return false if damagingMove?
-        if user.pbOpposingSide.effectAtMax?(:Spikes)
-            @battle.pbDisplay(_INTL("But it failed, since there is no room for more Spikes!")) if show_message
-            return true
-        end
-        return false
-    end
-
-    def pbEffectGeneral(user)
-        return if damagingMove?
-        user.pbOpposingSide.incrementEffect(:Spikes)
-    end
-
-    def pbAdditionalEffect(user, _target)
-        return unless damagingMove?
-        return if user.pbOpposingSide.effectAtMax?(:Spikes)
-        user.pbOpposingSide.incrementEffect(:Spikes)
-    end
-
-    def getTargetAffectingEffectScore(user, target)
-        return getHazardSettingEffectScore(user, target) unless user.pbOpposingSide.effectAtMax?(:Spikes)
-    end
 end
 
 #===============================================================================
@@ -1063,118 +975,6 @@ class PokeBattle_Move_5C1 < PokeBattle_Move
 end
 
 #===============================================================================
-# Uses the highest base-power attacking move known by any non-user Pokémon in the user's party. (Optimized Action)
-#===============================================================================
-class PokeBattle_Move_5C2 < PokeBattle_Move
-    def callsAnotherMove?; return true; end
-
-    def getOptimizedMove(user)
-        optimizedMove = nil
-        optimizedBP = -1
-        @battle.pbParty(user.index).each_with_index do |pkmn, i|
-            next if !pkmn || i == user.pokemonIndex
-            next unless pkmn.able?
-            pkmn.moves.each do |move|
-                next if move.category == 2
-                next unless move.base_damage > optimizedBP
-                battleMove = @battle.getBattleMoveInstanceFromID(move.id)
-                next if battleMove.forceSwitchMove?
-                next if battleMove.is_a?(PokeBattle_TwoTurnMove)
-                next if battleMove.is_a?(PokeBattle_HelpingMove)
-                optimizedMove = move.id
-                optimizedBP = move.base_damage
-            end
-        end
-        return optimizedMove
-    end
-
-    def pbMoveFailed?(user, _targets, show_message)
-        unless getOptimizedMove(user)
-            if show_message
-                @battle.pbDisplay(_INTL("But it failed, since there are no moves #{user.pbThis(true)} can use!"))
-            end
-            return true
-        end
-        return false
-    end
-
-    def pbEffectGeneral(user)
-        user.pbUseMoveSimple(getOptimizedMove(user))
-    end
-end
-
-#===============================================================================
-# Uses a random special Dragon-themed move, then a random physical Dragon-themed move. (Dragon Invocation)
-#===============================================================================
-class PokeBattle_Move_5C3 < PokeBattle_Move
-    def callsAnotherMove?; return true; end
-
-    def initialize(battle, move)
-        super
-        @invocationMovesPhysical = [
-            :DRAGONCLAW,
-            :DRAGONCLAW,
-            :CRUNCH,
-            :EARTHQUAKE,
-            :DUALWINGBEAT,
-        ]
-
-        @invocationMovesSpecial = [
-            :DRAGONBREATH,
-            :DRAGONBREATH,
-            :FLAMETHROWER,
-            :MIASMA,
-            :FROSTBREATH,
-        ]
-    end
-
-    def pbEffectGeneral(user)
-        user.pbUseMoveSimple(@invocationMovesSpecial.sample)
-        user.pbUseMoveSimple(@invocationMovesPhysical.sample)
-    end
-
-    def getEffectScore(_user, _target)
-        echoln("The AI will never use Dragon Invocation")
-        return -1000
-    end
-end
-
-#===============================================================================
-# Two turn attack. Sets sun first turn, attacks second turn.
-# (Absolute Radiance)
-#===============================================================================
-class PokeBattle_Move_5C4 < PokeBattle_TwoTurnMove
-    def pbChargingTurnMessage(user, _targets)
-        @battle.pbDisplay(_INTL("{1} petitions the sun!", user.pbThis))
-    end
-
-    def pbChargingTurnEffect(user, _target)
-        @battle.pbStartWeather(user, :Sun, 5, false)
-    end
-
-    def getEffectScore(user, _target)
-        score = super
-        score += getWeatherSettingEffectScore(:Sun, user, battle, 5)
-        return score
-    end
-end
-
-#===============================================================================
-# Two turn attack. Skips first turn, attacks second turn. (Liftoff)
-# (Handled in Battler's pbSuccessCheckPerHit): Is semi-invulnerable during use.
-#===============================================================================
-class PokeBattle_Move_5C5 < PokeBattle_Move_0C9
-    include Recoilable
-
-    def recoilFactor; return 0.25; end
-
-    def pbEffectAfterAllHits(user, target)
-        return unless @damagingTurn
-        super
-    end
-end
-
-#===============================================================================
 # The target's healing is cut in half until they switch out (Icy Injection)
 #===============================================================================
 class PokeBattle_Move_5C6 < PokeBattle_Move
@@ -1397,16 +1197,6 @@ class PokeBattle_Move_5CD < PokeBattle_Move
     def pbBaseDamage(baseDmg, _user, target)
         baseDmg *= 2 if target.isLastAlive?
         return baseDmg
-    end
-end
-
-#===============================================================================
-# Boosts Targets' Sp. Atk and Sp. Def by 2 steps. (Tutelage)
-#===============================================================================
-class PokeBattle_Move_5CE < PokeBattle_TargetMultiStatUpMove
-    def initialize(battle, move)
-        super
-        @statUp = [:SPECIAL_ATTACK, 2, :SPECIAL_DEFENSE, 2]
     end
 end
 
@@ -1701,35 +1491,6 @@ class PokeBattle_Move_5F6 < PokeBattle_RecoilMove
 end
 
 #===============================================================================
-# Target can't switch out or flee until they take a hit. (Ice Dungeon)
-# Their attacking stats are both lowered by 1 step.
-#===============================================================================
-class PokeBattle_Move_5F7 < PokeBattle_Move
-    def pbFailsAgainstTarget?(user, target, show_message)
-        if target.effectActive?(:IceDungeon) && target.pbCanLowerStatStep?(:ATTACK, user, self) &&
-                target.pbCanLowerStatStep?(:SPECIAL_ATTACK, user, self)
-            if show_message
-                @battle.pbDisplay(_INTL("But it failed, since #{target.pbThis(true)} is already imprisoned and its attacking stats can't be reduced!"))
-            end
-            return true
-        end
-        return false
-    end
-
-    def pbEffectAgainstTarget(user, target)
-        target.applyEffect(:IceDungeon)
-        target.pbLowerMultipleStatSteps(ATTACKING_STATS_1, user, move: self)
-    end
-
-    def getTargetAffectingEffectScore(user, target)
-        score = 0
-        score += 40 unless target.effectActive?(:IceDungeon)
-        score += getMultiStatUpEffectScore(ATTACKING_STATS_1, user, target)
-        return score
-    end
-end
-
-#===============================================================================
 # Target's Defense is lowered by 3 steps if in sandstorm. (Grindstone)
 #===============================================================================
 class PokeBattle_Move_5F8 < PokeBattle_TargetStatDownMove
@@ -1752,42 +1513,6 @@ class PokeBattle_Move_5F8 < PokeBattle_TargetStatDownMove
     def shouldHighlight?(_user, _target)
         return @battle.sandy?
     end
-end
-
-#===============================================================================
-# Move has increased Priority in sandstorm (Sand Blasting)
-#===============================================================================
-class PokeBattle_Move_5F9 < PokeBattle_Move
-    def priorityModification(_user, _targets)
-        return 1 if @battle.sandy?
-        return 0
-    end
-
-    def shouldHighlight?(_user, _target)
-        return @battle.sandy?
-    end
-end
-
-#===============================================================================
-# Target is numbed if in eclipse. (Tidalkinesis)
-#===============================================================================
-class PokeBattle_Move_5FA < PokeBattle_NumbMove
-    def pbAdditionalEffect(user, target)
-        return unless @battle.eclipsed?
-        super
-    end
-
-    def getTargetAffectingEffectScore(user, target)
-        return 0 unless @battle.eclipsed?
-        super
-    end
-end
-
-#===============================================================================
-# Multi-hit move that can numb.
-#===============================================================================
-class PokeBattle_Move_5FB < PokeBattle_NumbMove
-    include RandomHitable
 end
 
 #===============================================================================

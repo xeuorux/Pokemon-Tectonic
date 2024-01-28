@@ -1,4 +1,32 @@
 #===============================================================================
+# Renders item unusable (Slime Ball)
+#===============================================================================
+class PokeBattle_Move_18F < PokeBattle_Move
+    def pbEffectAgainstTarget(user, target)
+        return if damagingMove?
+        return unless canknockOffItems?(user, target)
+        knockOffItems(user, target) do |_item, itemName|
+            @battle.pbDisplay(_INTL("{1}'s {2} became unusuable, so it dropped it!", target.pbThis, itemName))
+        end
+    end
+
+    def pbEffectWhenDealingDamage(user, target)
+        return unless canknockOffItems?(user, target)
+        knockOffItems(user, target) do |_item, itemName|
+            @battle.pbDisplay(_INTL("{1}'s {2} became unusuable, so it dropped it!", target.pbThis, itemName))
+        end
+    end
+
+    def getTargetAffectingEffectScore(user, target)
+        score = 0
+        target.eachItem do |item|
+            score += 30 if canRemoveItem?(user, target, item, checkingForAI: true)
+        end
+        return score
+    end
+end
+
+#===============================================================================
 # Target drops its item. It regains the item at the end of the battle. (Knock Off)
 # If target has a losable item, damage is multiplied by 1.5.
 #===============================================================================
@@ -196,5 +224,21 @@ class PokeBattle_Move_0F1 < PokeBattle_Move
 
     def shouldHighlight?(user, target)
         return target.hasAnyItem? && user.canAddItem?
+    end
+end
+
+#===============================================================================
+# Fails if the Target has no Item (Poltergeist)
+#===============================================================================
+class PokeBattle_Move_192 < PokeBattle_Move
+    def pbFailsAgainstTarget?(_user, target, show_message)
+        if target.hasAnyItem?
+            if show_message
+                @battle.pbDisplay(_INTL("{1} is about to be attacked by its {2}!", target.pbThis, target.itemCountD))
+            end
+            return false
+        end
+        @battle.pbDisplay(_INTL("But it failed, since #{target.pbThis(true)} doesn't have any items!")) if show_message
+        return true
     end
 end

@@ -184,3 +184,4 @@
 1118,FURY,Fury,093,60,NORMAL,Physical,100,12,0,NearOther,0,CanProtect;CanMirrorMove,"As long as this move is in use, the user's Attack is raised two steps each time the user is hit.",RAGE
 374,RAGE,Rage,093,30,NORMAL,Physical,100,15,0,NearOther,0,CanProtect;CanMirrorMove,"As long as this move is in use, the user's Attack is raised two steps each time the user is hit.",
 298,MAGNITUDE,Magnitude,095,1,GROUND,Physical,100,25,0,AllNearOthers,0,CanProtect;CanMirrorMove,"The user looses a ground-shaking quake affecting everyone around. Its power varies greatly.",EARTHQUAKE
+344,RAZORWIND,Razor Wind,0C2,80,FLYING,Special,100,10,0,AllNearFoes,0,CanProtect;CanMirrorMove;Blade;Wind,"A two-turn attack. Blades of wind hit the foe on the second turn. Critical hits twice as often.",

@@ -99,6 +99,20 @@ class PokeBattle_Move_528 < PokeBattle_SleepMove
 end
 
 #===============================================================================
+# Puts the target to sleep if they are at or below half health, and raises the user's attack. (Tranquil Tune)
+#===============================================================================
+class PokeBattle_Move_572 < PokeBattle_Move_528
+    def pbEffectAgainstTarget(user, target)
+        super
+        user.tryRaiseStat(:ATTACK, user, move: self)
+    end
+
+    def getEffectScore(user, target)
+        return getMultiStatUpEffectScore([:ATTACK, 1], user, target)
+    end
+end
+
+#===============================================================================
 # Puts the target to sleep. Fails unless the target dealt damage to the user this turn. (Puff Ball)
 #===============================================================================
 class PokeBattle_Move_529 < PokeBattle_SleepMove

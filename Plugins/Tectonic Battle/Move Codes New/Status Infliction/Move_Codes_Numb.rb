@@ -48,3 +48,25 @@ class PokeBattle_Move_NumbFlinch < PokeBattle_Move
         return score
     end
 end
+
+#===============================================================================
+# Target is numbed if in eclipse. (Tidalkinesis)
+#===============================================================================
+class PokeBattle_Move_5FA < PokeBattle_NumbMove
+    def pbAdditionalEffect(user, target)
+        return unless @battle.eclipsed?
+        super
+    end
+
+    def getTargetAffectingEffectScore(user, target)
+        return 0 unless @battle.eclipsed?
+        super
+    end
+end
+
+#===============================================================================
+# Multi-hit move that can numb.
+#===============================================================================
+class PokeBattle_Move_5FB < PokeBattle_NumbMove
+    include RandomHitable
+end

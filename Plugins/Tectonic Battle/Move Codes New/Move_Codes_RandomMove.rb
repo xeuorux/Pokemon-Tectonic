@@ -190,3 +190,97 @@ class PokeBattle_Move_0B6 < PokeBattle_Move
         return -1000
     end
 end
+
+#===============================================================================
+# The user is given the choice of using one of 3 randomly chosen status moves. (Discovered Power)
+#===============================================================================
+class PokeBattle_Move_13C < PokeBattle_Move
+    def callsAnotherMove?; return true; end
+
+    def initialize(battle, move)
+        super
+        @discoverableMoves = []
+        GameData::Move::DATA.keys.each do |move_id|
+            move_data = GameData::Move.get(move_id)
+            next unless move_data.category == 2
+            next if move_data.is_signature?
+            next if move_data.cut
+            next unless move_data.can_be_forced?
+            next if move_data.empoweredMove?
+            moveObject = @battle.getBattleMoveInstanceFromID(move_id)
+            next if moveObject.is_a?(PokeBattle_ProtectMove)
+            next if moveObject.is_a?(PokeBattle_HelpingMove)
+            next if moveObject.callsAnotherMove?
+            @discoverableMoves.push(move_data.id)
+        end
+    end
+
+    def resolutionChoice(user)
+        validMoves = []
+        validMoveNames = []
+        until validMoves.length == 3
+            movePossibility = @discoverableMoves.sample
+            unless validMoves.include?(movePossibility)
+                validMoves.push(movePossibility)
+                validMoveNames.push(getMoveName(movePossibility))
+            end
+        end
+
+        if @battle.autoTesting
+            @chosenMove = validMoves.sample
+        elsif !user.pbOwnedByPlayer? # Trainer AI
+            @chosenMove = validMoves[0]
+        else
+            chosenIndex = @battle.scene.pbShowCommands(_INTL("Which move should #{user.pbThis(true)} use?"),validMoveNames,0)
+            @chosenMove = validMoves[chosenIndex]
+        end
+    end
+
+    def pbEffectGeneral(user)
+        user.pbUseMoveSimple(@chosenMove) if @chosenMove
+    end
+
+    def resetMoveUsageState
+        @chosenMove = nil
+    end
+
+    def getEffectScore(_user, _target)
+        return 80
+    end
+end
+
+#===============================================================================
+# Uses a random special Dragon-themed move, then a random physical Dragon-themed move. (Dragon Invocation)
+#===============================================================================
+class PokeBattle_Move_5C3 < PokeBattle_Move
+    def callsAnotherMove?; return true; end
+
+    def initialize(battle, move)
+        super
+        @invocationMovesPhysical = [
+            :DRAGONCLAW,
+            :DRAGONCLAW,
+            :CRUNCH,
+            :EARTHQUAKE,
+            :DUALWINGBEAT,
+        ]
+
+        @invocationMovesSpecial = [
+            :DRAGONBREATH,
+            :DRAGONBREATH,
+            :FLAMETHROWER,
+            :MIASMA,
+            :FROSTBREATH,
+        ]
+    end
+
+    def pbEffectGeneral(user)
+        user.pbUseMoveSimple(@invocationMovesSpecial.sample)
+        user.pbUseMoveSimple(@invocationMovesPhysical.sample)
+    end
+
+    def getEffectScore(_user, _target)
+        echoln("The AI will never use Dragon Invocation")
+        return -1000
+    end
+end

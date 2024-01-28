@@ -16,3 +16,13 @@ class PokeBattle_Move_0D1 < PokeBattle_Move
         return -20
     end
 end
+
+#===============================================================================
+# Hits 2-5 times, for three turns in a row. (Pattern Release)
+#===============================================================================
+class PokeBattle_Move_56C < PokeBattle_Move_0C0
+    def pbEffectAfterAllHits(user, target)
+        user.applyEffect(:Outrage, 3) if !target.damageState.unaffected && !user.effectActive?(:Outrage)
+        user.tickDownAndProc(:Outrage)
+    end
+end

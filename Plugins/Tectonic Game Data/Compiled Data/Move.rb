@@ -48,6 +48,8 @@ module GameData
         @zmove              = hash[:zmove] || false
         @cut                = hash[:cut] || false
         @tectonic_new       = hash[:tectonic_new] || false
+
+        @function_code = "Invalid" if @cut
       end
   
       # @return [String] the translated name of this move

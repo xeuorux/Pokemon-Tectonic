@@ -5,6 +5,15 @@ class PokeBattle_Move_Basic < PokeBattle_Move
 end
 
 #===============================================================================
+# No additional effect.
+#===============================================================================
+class PokeBattle_Move_Invalid < PokeBattle_Move
+    def initialize(battle, move)
+        raise _INTL("An Invalid move is being instanced. This shouldn't happen!")
+    end
+end
+
+#===============================================================================
 # Does absolutely nothing. (Splash)
 #===============================================================================
 class PokeBattle_Move_DoNothing < PokeBattle_Move
@@ -19,92 +28,6 @@ end
 # Struggle, if defined as a move in moves.txt. Typically it won't be.
 #===============================================================================
 class PokeBattle_Move_Struggle < PokeBattle_Struggle
-end
-
-#===============================================================================
-# User faints, even if the move does nothing else. (Explosion, Self-Destruct)
-#===============================================================================
-class PokeBattle_Move_0E0 < PokeBattle_Move
-    def worksWithNoTargets?; return true; end
-    def pbNumHits(_user, _targets, _checkingForAI = false); return 1; end
-
-    def pbMoveFailed?(user, _targets, show_message)
-        unless @battle.moldBreaker
-            dampHolder = @battle.pbCheckGlobalAbility(:DAMP)
-            unless dampHolder.nil?
-                if show_message
-                    @battle.pbShowAbilitySplash(dampHolder, :DAMP)
-                    @battle.pbDisplay(_INTL("{1} cannot use {2}!", user.pbThis, @name))
-                    @battle.pbHideAbilitySplash(dampHolder)
-                end
-                return true
-            end
-        end
-        return false
-    end
-
-    def shouldShade?(_user, _target)
-        return false
-    end
-
-    def pbMoveFailedAI?(_user, _targets); return false; end
-
-    def pbSelfKO(user)
-        return if user.fainted?
-
-        if user.hasActiveAbility?(:SPINESPLODE)
-            spikesCount = user.pbOpposingSide.incrementEffect(:Spikes, 2)
-            
-            if spikesCount > 0
-                @battle.pbShowAbilitySplash(user, :SPINESPLODE)
-                @battle.pbDisplay(_INTL("#{spikesCount} layers of Spikes were scattered all around #{user.pbOpposingTeam(true)}'s feet!"))
-                @battle.pbHideAbilitySplash(user)
-            end
-        end
-
-        if user.bunkeringDown?
-            @battle.pbShowAbilitySplash(user, :BUNKERDOWN)
-            @battle.pbDisplay(_INTL("{1}'s {2} barely saves it!", user.pbThis, @name))
-            user.pbReduceHP(user.hp - 1, false)
-            @battle.pbHideAbilitySplash(user)
-        else
-            reduction = user.totalhp
-            unbreakable = user.hasActiveAbility?(:UNBREAKABLE)
-            if unbreakable
-                @battle.pbShowAbilitySplash(user, :UNBREAKABLE)
-                @battle.pbDisplay(_INTL("{1} resists the recoil!", user.pbThis))
-                reduction /= 2
-            end
-            user.pbReduceHP(reduction, false)
-            @battle.pbHideAbilitySplash(user) if unbreakable
-            if user.hasActiveAbility?(:PERENNIALPAYLOAD,true)
-                @battle.pbShowAbilitySplash(user, :PERENNIALPAYLOAD)
-                @battle.pbDisplay(_INTL("{1} will revive in 3 turns!", user.pbThis))
-                if user.pbOwnSide.effectActive?(:PerennialPayload)
-                    user.pbOwnSide.effects[:PerennialPayload][user.pokemonIndex] = 4
-                else
-                    user.pbOwnSide.effects[:PerennialPayload] = {
-                        user.pokemonIndex => 4,
-                    }
-                end
-                @battle.pbHideAbilitySplash(user)
-            end
-        end
-        user.pbItemHPHealCheck
-    end
-
-    def getEffectScore(user, target)
-        score = getSelfKOMoveScore(user, target)
-        score += 30 if user.bunkeringDown?(true)
-        score += 30 if user.hasActiveAbilityAI?(:PERENNIALPAYLOAD)
-        if user.hasActiveAbility?(:SPINESPLODE)
-            currentSpikeCount = user.pbOpposingSide.countEffect(:Spikes)
-            spikesMax = GameData::BattleEffect.get(:Spikes).maximum
-            count = [spikesMax, currentSpikeCount + 2].min - currentSpikeCount
-            score += count * getHazardSettingEffectScore(user, target)
-        end
-        return score
-    end
 end
 
 #===============================================================================
@@ -302,5 +225,62 @@ class PokeBattle_Move_0BF < PokeBattle_Move
             score += getForceOutEffectScore(user, target)
         end
         return score
+    end
+end
+
+#===============================================================================
+# Target's last move used loses 3 PP. (Eerie Spell)
+#===============================================================================
+class PokeBattle_Move_198 < PokeBattle_Move
+    def pbEffectAgainstTarget(_user, target)
+        target.eachMove do |m|
+            next if m.id != target.lastRegularMoveUsed
+            reduction = [3, m.pp].min
+            target.pbSetPP(m, m.pp - reduction)
+            @battle.pbDisplay(_INTL("It reduced the PP of {1}'s {2} by {3}!",
+               target.pbThis(true), m.name, reduction))
+            break
+        end
+    end
+end
+
+#===============================================================================
+# Uses the highest base-power attacking move known by any non-user Pokémon in the user's party. (Optimized Action)
+#===============================================================================
+class PokeBattle_Move_5C2 < PokeBattle_Move
+    def callsAnotherMove?; return true; end
+
+    def getOptimizedMove(user)
+        optimizedMove = nil
+        optimizedBP = -1
+        @battle.pbParty(user.index).each_with_index do |pkmn, i|
+            next if !pkmn || i == user.pokemonIndex
+            next unless pkmn.able?
+            pkmn.moves.each do |move|
+                next if move.category == 2
+                next unless move.base_damage > optimizedBP
+                battleMove = @battle.getBattleMoveInstanceFromID(move.id)
+                next if battleMove.forceSwitchMove?
+                next if battleMove.is_a?(PokeBattle_TwoTurnMove)
+                next if battleMove.is_a?(PokeBattle_HelpingMove)
+                optimizedMove = move.id
+                optimizedBP = move.base_damage
+            end
+        end
+        return optimizedMove
+    end
+
+    def pbMoveFailed?(user, _targets, show_message)
+        unless getOptimizedMove(user)
+            if show_message
+                @battle.pbDisplay(_INTL("But it failed, since there are no moves #{user.pbThis(true)} can use!"))
+            end
+            return true
+        end
+        return false
+    end
+
+    def pbEffectGeneral(user)
+        user.pbUseMoveSimple(getOptimizedMove(user))
     end
 end

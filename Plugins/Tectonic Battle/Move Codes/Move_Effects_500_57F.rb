@@ -1,12 +1,4 @@
 #===============================================================================
-# Hits thrice.
-#===============================================================================
-class PokeBattle_Move_500 < PokeBattle_Move
-    def multiHitMove?; return true; end
-    def pbNumHits(_user, _targets, _checkingForAI = false); return 3; end
-end
-
-#===============================================================================
 # Maximizes accuracy.
 #===============================================================================
 class PokeBattle_Move_501 < PokeBattle_Move
@@ -71,16 +63,6 @@ class PokeBattle_Move_505 < PokeBattle_Move
 end
 
 #===============================================================================
-# Target's Special Defense is used instead of its Defense for this move's
-# calculations. (Soul Rip)
-#===============================================================================
-class PokeBattle_Move_506 < PokeBattle_Move
-    def pbDefendingStat(_user, target)
-        return target, :SPECIAL_DEFENSE
-    end
-end
-
-#===============================================================================
 # All stats raised by 2 steps. Fails unless an opponent is below half life.
 # (Gloat)
 #===============================================================================
@@ -114,82 +96,6 @@ class PokeBattle_Move_508 < PokeBattle_StatUpDownMove
         super
         @statUp   = [:ATTACK,6]
         @statDown = [:SPEED,6]
-    end
-end
-
-#===============================================================================
-# This move ignores target's Defense, Special Defense and evasion stat changes.
-# It also ignores their abilities. (Rend)
-#===============================================================================
-class PokeBattle_Move_509 < PokeBattle_Move
-    def pbChangeUsageCounters(user, specialUsage)
-        super
-        @battle.moldBreaker = true unless specialUsage
-    end
-
-    def pbCalcAccuracyMultipliers(user, target, multipliers)
-        super
-        modifiers[EVA_STEP] = 0 # Accuracy stat step
-    end
-
-    def ignoresDefensiveStepBoosts?(_user, _target); return true; end
-
-    def getEffectScore(_user, _target)
-        return 10
-    end
-
-    def shouldHighlight?(_user, target)
-        return target.hasRaisedDefenseSteps?
-    end
-end
-
-#===============================================================================
-# Burns or frostbites the target, whichever hits the target's better base stat.
-# (Crippling Breath)
-#===============================================================================
-class PokeBattle_Move_50A < PokeBattle_Move
-    def pbFailsAgainstTarget?(user, target, show_message)
-        return false if damagingMove?
-        if !target.canBurn?(user, show_message, self) && !target.canFrostbite?(user, show_message, self)
-            if show_message
-                @battle.pbDisplay(_INTL("But it failed, since #{target.pbThis(true)} can neither be burned or frostbitten!"))
-            end
-            return true
-        end
-        return false
-    end
-
-    def pbEffectAgainstTarget(user, target)
-        return if damagingMove?
-        burnOrFrostbite(user, target)
-    end
-
-    def pbAdditionalEffect(user, target)
-        return if target.damageState.substitute
-        burnOrFrostbite(user, target)
-    end
-
-    def burnOrFrostbite(user, target)
-        real_attack = target.pbAttack
-        real_special_attack = target.pbSpAtk
-
-        if target.canBurn?(user, false, self) && real_attack >= real_special_attack
-            target.applyBurn(user)
-        elsif target.canFrostbite?(user, false, self) && real_special_attack >= real_attack
-            target.applyFrostbite(user)
-        end
-    end
-
-    def getTargetAffectingEffectScore(user, target)
-        score = 0
-        real_attack = target.pbAttack
-        real_special_attack = target.pbSpAtk
-        if target.canBurn?(user, false, self) && real_attack >= real_special_attack
-            score += getBurnEffectScore(user, target)
-        elsif target.canFrostbite?(user, false, self) && real_special_attack >= real_attack
-            score += getFrostbiteEffectScore(user, target)
-        end
-        return score
     end
 end
 
@@ -306,26 +212,6 @@ class PokeBattle_Move_516 < PokeBattle_DizzyMove
 
     def shouldHighlight?(_user, _target)
         return @battle.moonGlowing?
-    end
-end
-
-#===============================================================================
-# Priority against Pokemon with half or less health. (Aqua Instinct)
-#===============================================================================
-class PokeBattle_Move_517 < PokeBattle_Move
-    def getsPriorityAgainst?(target)
-        return target.belowHalfHealth?
-    end
-
-    def priorityModification(_user, targets)
-        targets.each do |b|
-            return 1 if getsPriorityAgainst?(b)
-        end
-        return 0
-    end
-
-    def shouldHighlight?(_user, target)
-        return getsPriorityAgainst?(target)
     end
 end
 
@@ -664,16 +550,6 @@ class PokeBattle_Move_52F < PokeBattle_Move_042
 end
 
 #===============================================================================
-# Raises Attack of user and allies by 2 steps. (Howl)
-#===============================================================================
-class PokeBattle_Move_530 < PokeBattle_TeamStatBuffMove
-    def initialize(battle, move)
-        super
-        @statUp = [:ATTACK, 2]
-    end
-end
-
-#===============================================================================
 # User takes half damage from Super Effective moves. (Inure)
 #===============================================================================
 class PokeBattle_Move_531 < PokeBattle_Move
@@ -754,59 +630,6 @@ class PokeBattle_Move_535 < PokeBattle_Move
 
     def getEffectScore(user, target)
         return getWantsToBeSlowerScore(user, target, 3, move: self)
-    end
-end
-
-#===============================================================================
-# Frostbites opposing Pokemon that have increased their stats. (Freezing Jealousy)
-#===============================================================================
-class PokeBattle_Move_537 < PokeBattle_JealousyMove
-    def initialize(battle, move)
-        @statusToApply = :FROSTBITE
-        super
-    end
-end
-
-#===============================================================================
-# Removes all hazards on both sides. (Terraform)
-#===============================================================================
-class PokeBattle_Move_538 < PokeBattle_Move
-    def hazardRemovalMove?; return true; end
-    def aiAutoKnows?(pokemon); return false; end
-
-    def eachHazard(side, isOurSide)
-        side.eachEffect(true) do |effect, _value, data|
-            next unless data.is_hazard?
-            yield effect, data
-        end
-    end
-
-    def removeEffect(user, side, effect, data)
-        side.disableEffect(effect)
-        if data.is_hazard?
-            hazardName = data.name
-            @battle.pbDisplay(_INTL("{1} destroyed {2}!", user.pbThis, hazardName)) unless data.has_expire_proc?
-        end
-    end
-
-    def pbEffectGeneral(user)
-        targetSide = user.pbOpposingSide
-        ourSide = user.pbOwnSide
-        eachHazard(targetSide, false) do |effect, data|
-            removeEffect(user, targetSide, effect, data)
-        end
-        eachHazard(ourSide, true) do |effect, data|
-            removeEffect(user, ourSide, effect, data)
-        end
-    end
-
-    def getEffectScore(user, target)
-        score = 0
-        # Dislike removing hazards that affect the enemy
-        score -= 0.8 * hazardWeightOnSide(target.pbOwnSide) if target.alliesInReserve?
-        # Like removing hazards that affect us
-        score += hazardWeightOnSide(user.pbOwnSide) if user.alliesInReserve?
-        return score
     end
 end
 
@@ -921,18 +744,6 @@ class PokeBattle_Move_53F < PokeBattle_Move
 end
 
 #===============================================================================
-# User's Special Defense is used instead of user's Special Attack for this move's calculations.
-# (Aura Trick)
-#===============================================================================
-class PokeBattle_Move_540 < PokeBattle_Move
-    def aiAutoKnows?(pokemon); return true; end
-	
-    def pbAttackingStat(user, _target)
-        return user, :SPECIAL_DEFENSE
-    end
-end
-
-#===============================================================================
 # Target's speed is raised. (Propellant)
 #===============================================================================
 class PokeBattle_Move_542 < PokeBattle_Move
@@ -954,7 +765,7 @@ class PokeBattle_Move_545 < PokeBattle_DrainMove
 end
 
 #===============================================================================
-# Always critical hit vs Opponents with raised stats (Lunar Justice)
+# Always critical hit vs Opponents with raised stats (Humble)
 #===============================================================================
 class PokeBattle_Move_546 < PokeBattle_Move
     def pbCriticalOverride(_user, target)
@@ -964,27 +775,6 @@ class PokeBattle_Move_546 < PokeBattle_Move
 
     def shouldHighlight?(_user, target)
         return target.hasRaisedStatSteps?
-    end
-end
-
-#===============================================================================
-# Poisons, dizzies, or leeches the target. (Chaos Wheel)
-#===============================================================================
-class PokeBattle_Move_547 < PokeBattle_Move
-    def pbAdditionalEffect(user, target)
-        return if target.damageState.substitute
-        case @battle.pbRandom(3)
-        when 0 then target.applyPoison(user)	if target.canPoison?(user, true, self)
-        when 1 then target.applyDizzy(user)	    if target.canDizzy?(user, true, self)
-        when 2 then target.applyLeeched(user)	if target.canLeech?(user, true, self)
-        end
-    end
-
-    def getTargetAffectingEffectScore(user, target)
-        poisonScore = getPoisonEffectScore(user, target)
-        dizzyScore = getDizzyEffectScore(user, target)
-        leechScore = getLeechEffectScore(user, target)
-        return (poisonScore + dizzyScore + leechScore) / 3
     end
 end
 
@@ -1022,16 +812,6 @@ class PokeBattle_Move_548 < PokeBattle_Move
 end
 
 #===============================================================================
-# Raises Sp. Atk of user and allies by 2 steps. (Mind Link)
-#===============================================================================
-class PokeBattle_Move_549 < PokeBattle_TeamStatBuffMove
-    def initialize(battle, move)
-        super
-        @statUp = [:SPECIAL_ATTACK, 2]
-    end
-end
-
-#===============================================================================
 # Curses the target by spending 1/4th of the user's HP. (Cursed Oath)
 #===============================================================================
 class PokeBattle_Move_54A < PokeBattle_Move_10D
@@ -1045,68 +825,6 @@ class PokeBattle_Move_54A < PokeBattle_Move_10D
         score = super
         score += getHPLossEffectScore(user, 0.25)
         return score
-    end
-end
-
-#===============================================================================
-# Removes trapping moves, entry hazards and Leech Seed on user/user's side. Raises speed by 1.
-# (Rapid Spin)
-#===============================================================================
-class PokeBattle_Move_54B < PokeBattle_StatUpMove
-    def hazardRemovalMove?; return true; end
-    def aiAutoKnows?(pokemon); return false; end
-
-    def initialize(battle, move)
-        super
-        @statUp = [:SPEED, 1]
-    end
-
-    def pbEffectAfterAllHits(user, target)
-        return if user.fainted? || target.damageState.unaffected
-        user.disableEffect(:Trapping)
-        user.pbOwnSide.eachEffect(true) do |effect, _value, data|
-            next unless data.is_hazard?
-            user.pbOwnSide.disableEffect(effect)
-        end
-    end
-
-    def getEffectScore(user, target)
-        score = super
-        score += hazardWeightOnSide(user.pbOwnSide) if user.alliesInReserve?
-        score += 20 if user.effectActive?(:Trapping)
-        return score
-    end
-end
-
-#===============================================================================
-# Target's Attack is used instead of its Defense for this move's
-# calculations. (Butt Heads)
-#===============================================================================
-class PokeBattle_Move_54C < PokeBattle_Move
-    def pbDefendingStat(_user, target)
-        return target, :ATTACK
-    end
-end
-
-#===============================================================================
-# Target's Sp. Atk is used instead of its Sp. Def for this move's
-# calculations.
-#===============================================================================
-class PokeBattle_Move_54D < PokeBattle_Move
-    def pbDefendingStat(_user, target)
-        return target, :SPECIAL_ATTACK
-    end
-end
-
-#===============================================================================
-# Entry hazard. Lays burn spikes on the opposing side.
-# (Flame Spikes)
-#===============================================================================
-class PokeBattle_Move_551 < PokeBattle_StatusSpikeMove
-    def hazardMove?; return true,6; end
-    def initialize(battle, move)
-        @spikeEffect = :FlameSpikes
-        super
     end
 end
 
@@ -1133,112 +851,12 @@ class PokeBattle_Move_552 < PokeBattle_LeechMove
 end
 
 #===============================================================================
-# Poisons opposing Pokemon that have increased their stats. (Stinging Jealousy)
-#===============================================================================
-class PokeBattle_Move_553 < PokeBattle_JealousyMove
-    def initialize(battle, move)
-        @statusToApply = :POISON
-        super
-    end
-end
-
-#===============================================================================
-# Raises Defense of user and allies by 3 steps. (Stand Together)
-#===============================================================================
-class PokeBattle_Move_554 < PokeBattle_TeamStatBuffMove
-    def initialize(battle, move)
-        super
-        @statUp = [:DEFENSE, 3]
-    end
-end
-
-#===============================================================================
-# Raises Attack of user and allies by 3 steps. (Camaraderie)
-#===============================================================================
-class PokeBattle_Move_555 < PokeBattle_TeamStatBuffMove
-    def initialize(battle, move)
-        super
-        @statUp = [:SPECIAL_DEFENSE, 3]
-    end
-end
-
-#===============================================================================
 # Forces the target to use a substitute (Doll Stitch)
 #===============================================================================
 class PokeBattle_Move_558 < PokeBattle_Move
     def pbEffectAgainstTarget(_user, target)
         @battle.forceUseMove(target, :SUBSTITUTE)
     end
-end
-
-#===============================================================================
-# Target becomes Ghost type. (Evaporate)
-#===============================================================================
-class PokeBattle_Move_559 < PokeBattle_Move
-    def pbMoveFailed?(user, _targets, show_message)
-        unless user.canChangeType?
-            @battle.pbDisplay(_INTL("But it failed, since #{user.pbThis(true)} can't change its type!")) if show_message
-            return true
-        end
-        unless user.pbHasOtherType?(:GHOST)
-            if show_message
-                @battle.pbDisplay(_INTL("But it failed, since #{user.pbThis(true)} is already only a Ghost-type!"))
-            end
-            return true
-        end
-        return false
-    end
-
-    def pbEffectGeneral(user)
-        user.pbChangeTypes(:GHOST)
-        typeName = GameData::Type.get(:GHOST).name
-        @battle.pbDisplay(_INTL("{1} transformed into the {2} type!", user.pbThis, typeName))
-    end
-end
-
-#===============================================================================
-# Deals double damage if faster than the target. (Wave of Jade)
-#===============================================================================
-class PokeBattle_Move_55A < PokeBattle_Move
-    def pbBaseDamage(baseDmg, user, target)
-        baseDmg *= 2 if user.pbSpeed > target.pbSpeed
-        return baseDmg
-    end
-end
-
-#===============================================================================
-# Heals user to 100%. Only usable on first turn. (Fresh Start)
-#===============================================================================
-class PokeBattle_Move_55B < PokeBattle_HealingMove
-    def healRatio(_user)
-        return 1.0
-    end
-
-    def pbMoveFailed?(user, targets, show_message)
-        unless user.firstTurn?
-            @battle.pbDisplay(_INTL("But it failed, since it's not #{user.pbThis(true)}'s first turn!")) if show_message
-            return true
-        end
-        return super
-    end
-end
-
-#===============================================================================
-# Two turn attack. Attacks first turn, skips second turn unless the target fainted.
-# TODO: Currently unused
-#===============================================================================
-class PokeBattle_Move_55C < PokeBattle_Move_0C2
-    def pbEffectAfterAllHits(user, target)
-        return if target.damageState.fainted
-        super
-    end
-end
-
-def selfHitBasePower(level)
-    calcLevel = [level, 50].min
-    selfHitBasePower = (20 + calcLevel)
-    selfHitBasePower = selfHitBasePower.ceil
-    return selfHitBasePower
 end
 
 #===============================================================================
@@ -1378,64 +996,12 @@ class PokeBattle_Move_568 < PokeBattle_Move_0EE
 end
 
 #===============================================================================
-# Entry hazard. Lays frostbite spikes on the opposing side.
-# (Frost Spikes)
-#===============================================================================
-class PokeBattle_Move_569 < PokeBattle_StatusSpikeMove
-    def hazardMove?; return true,7; end
-    def initialize(battle, move)
-        @spikeEffect = :FrostSpikes
-        super
-    end
-end
-
-#===============================================================================
 # Debuff's target's attacking stats in hail. (Cold Shoulder)
 #===============================================================================
 class PokeBattle_Move_56A < PokeBattle_Move
     def pbAdditionalEffect(user, target)
         return if target.damageState.substitute
         target.pbLowerMultipleStatSteps(ATTACKING_STATS_2, user, move: self) if @battle.icy?
-    end
-end
-
-#===============================================================================
-# 100% Recoil Move (Thunder Belly)
-#===============================================================================
-class PokeBattle_Move_56B < PokeBattle_RecoilMove
-    def recoilFactor; return 1.0; end
-end
-
-#===============================================================================
-# Hits 2-5 times, for three turns in a row. (Pattern Release)
-#===============================================================================
-class PokeBattle_Move_56C < PokeBattle_Move_0C0
-    def pbEffectAfterAllHits(user, target)
-        user.applyEffect(:Outrage, 3) if !target.damageState.unaffected && !user.effectActive?(:Outrage)
-        user.tickDownAndProc(:Outrage)
-    end
-end
-
-#===============================================================================
-# Future attacks hits twice as many times (Volley Stance)
-#===============================================================================
-class PokeBattle_Move_56D < PokeBattle_Move
-    def pbMoveFailed?(user, _targets, show_message)
-        if user.effectActive?(:VolleyStance)
-            if show_message
-                @battle.pbDisplay(_INTL("But it failed, since #{user.pbThis(true)} is already in a volley stance!"))
-            end
-            return true
-        end
-        return false
-    end
-
-    def pbEffectGeneral(user)
-        user.applyEffect(:VolleyStance)
-    end
-
-    def getEffectScore(user, target)
-        return getMultiStatUpEffectScore([:SPECIAL_ATTACK, 2], user, target) + 10
     end
 end
 
@@ -1471,64 +1037,6 @@ class PokeBattle_Move_56F < PokeBattle_Move
 
     def getTargetAffectingEffectScore(user, target)
         return getWantsToBeSlowerScore(user, target, 4, move: self)
-    end
-end
-
-#===============================================================================
-# Dizzies the target. Accuracy perfect in rain. Hits flying semi-invuln targets. (Hurricane)
-#===============================================================================
-class PokeBattle_Move_570 < PokeBattle_DizzyMove
-    def immuneToRainDebuff?; return true; end
-
-    def hitsFlyingTargets?; return true; end
-
-    def pbBaseAccuracy(user, target)
-        return 0 if @battle.rainy?
-        return super
-    end
-
-    def shouldHighlight?(_user, _target)
-        return @battle.rainy?
-    end
-end
-
-#===============================================================================
-# Power increases if the user is below half health. (Frantic Fang)
-#===============================================================================
-class PokeBattle_Move_571 < PokeBattle_Move
-    def pbBaseDamage(baseDmg, user, _target)
-        ret = baseDmg
-        ret *= 2 if user.belowHalfHealth?
-        return ret
-    end
-end
-
-#===============================================================================
-# Puts the target to sleep if they are at or below half health, and raises the user's attack. (Tranquil Tune)
-#===============================================================================
-class PokeBattle_Move_572 < PokeBattle_Move_528
-    def pbEffectAgainstTarget(user, target)
-        super
-        user.tryRaiseStat(:ATTACK, user, move: self)
-    end
-
-    def getEffectScore(user, target)
-        return getMultiStatUpEffectScore([:ATTACK, 1], user, target)
-    end
-end
-
-#===============================================================================
-# Type effectiveness is multiplied by the Psychic-type's effectiveness against
-# the target. (Leyline Burst)
-#===============================================================================
-class PokeBattle_Move_573 < PokeBattle_Move
-    def pbCalcTypeModSingle(moveType, defType, user, target)
-        ret = super
-        if GameData::Type.exists?(:PSYCHIC)
-            psychicEffectiveness = Effectiveness.calculate_one(:PSYCHIC, defType)
-            ret *= psychicEffectiveness.to_f / Effectiveness::NORMAL_EFFECTIVE_ONE
-        end
-        return ret
     end
 end
 
@@ -1578,26 +1086,6 @@ class PokeBattle_Move_575 < PokeBattle_Move
         return 0 if user.belowHalfHealth?
         return 0 unless target.hasPhysicalAttack?
         return 150
-    end
-end
-
-#===============================================================================
-# Two turn attack. Sets rain first turn, attacks second turn.
-# (Archaic Deluge)
-#===============================================================================
-class PokeBattle_Move_576 < PokeBattle_TwoTurnMove
-    def pbChargingTurnMessage(user, _targets)
-        @battle.pbDisplay(_INTL("{1} begins the flood!", user.pbThis))
-    end
-
-    def pbChargingTurnEffect(user, _target)
-        @battle.pbStartWeather(user, :Rain, 5, false)
-    end
-
-    def getEffectScore(user, _target)
-        score = super
-        score += getWeatherSettingEffectScore(:Rain, user, battle, 5)
-        return score
     end
 end
 

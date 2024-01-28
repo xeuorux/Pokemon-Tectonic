@@ -333,3 +333,58 @@ class PokeBattle_Move_0C7 < PokeBattle_Move
         return 40 + getBarTurns(target) * 20
     end
 end
+
+#===============================================================================
+# Target will lose 1/4 of max HP at end of each round, while asleep. (Nightmare)
+#===============================================================================
+class PokeBattle_Move_10F < PokeBattle_Move
+    def pbFailsAgainstTarget?(_user, target, show_message)
+        unless target.asleep?
+            @battle.pbDisplay(_INTL("But it failed, since #{target.pbThis(true)} isn't asleep!")) if show_message
+            return true
+        end
+        if target.effectActive?(:Nightmare)
+            if show_message
+                @battle.pbDisplay(_INTL("But it failed, since #{target.pbThis(true)} is already afflicted by a Nightmare!"))
+            end
+            return true
+        end
+        return false
+    end
+
+    def pbEffectAgainstTarget(_user, target)
+        target.applyEffect(:Nightmare)
+    end
+
+    def getTargetAffectingEffectScore(_user, target)
+        score = 100
+        score += 50 if target.aboveHalfHealth?
+        return score
+    end
+end
+
+#===============================================================================
+# Decrease 6 steps of speed and weakens target to fire moves. (Tar Shot)
+#===============================================================================
+class PokeBattle_Move_186 < PokeBattle_Move
+    def pbFailsAgainstTarget?(_user, target, show_message)
+        if !target.pbCanLowerStatStep?(:SPEED, target, self) && target.effectActive?(:TarShot)
+            @battle.pbDisplay(_INTL("But it failed, since #{target.pbThis(true)} is already covered in tar and can't have their Speed lowered!")) if show_message
+            return true
+        end
+        return false
+    end
+
+    def pbEffectAgainstTarget(user, target)
+        return if target.damageState.substitute
+        target.tryLowerStat(:SPEED, user, move: self, increment: 6)
+        target.applyEffect(:TarShot)
+    end
+
+    def getTargetAffectingEffectScore(user, target)
+        score = 0
+        score += getMultiStatDownEffectScore([:SPEED, 6], user, target)
+        score += 50 unless target.effectActive?(:TarShot)
+        return score
+    end
+end

@@ -443,3 +443,72 @@ class PokeBattle_Move_0F2 < PokeBattle_Move
         return 0
     end
 end
+
+#===============================================================================
+# Consumes berry and raises the user's Defense and Sp. Def by 3 steps. (Stuff Cheeks)
+#===============================================================================
+class PokeBattle_Move_183 < PokeBattle_Move
+    def pbMoveFailed?(user, _targets, show_message)
+        return false if user.hasAnyBerry?
+        @battle.pbDisplay(_INTL("But it failed, because #{user.pbThis(true)} has no berries!")) if show_message
+        return true
+    end
+
+    def pbEffectGeneral(user)
+        user.pbRaiseMultipleStatSteps([:DEFENSE, 3, :SPECIAL_DEFENSE, 3], user, move: self)
+        user.eachItem do |item|
+            next unless GameData::Item.get(item).is_berry?
+            user.pbHeldItemTriggerCheck(item, false)
+            user.consumeItem(item)
+        end
+    end
+
+    def getEffectScore(user, target)
+        score = getMultiStatUpEffectScore([:DEFENSE, 3, :SPECIAL_DEFENSE, 3], user, target)
+        user.eachItem do |item|
+            next unless GameData::Item.get(item).is_berry?
+            score += 40
+        end
+        return score
+    end
+end
+
+#===============================================================================
+# Forces all active Pokémon to consume their held berries. This move bypasses
+# Substitutes. (Tea Time)
+#===============================================================================
+class PokeBattle_Move_184 < PokeBattle_Move
+    def ignoresSubstitute?(_user); return true; end
+
+    def isValidTarget?(target)
+        return target.hasAnyBerry? && !target.semiInvulnerable?
+    end
+
+    def pbMoveFailed?(_user, _targets, show_message)
+        @battle.eachBattler do |b|
+            return false if isValidTarget?(b)
+        end
+        @battle.pbDisplay(_INTL("But it failed, because no one has any berries!")) if show_message
+        return true
+    end
+
+    def pbEffectGeneral(_user)
+        @battle.pbDisplay(_INTL("It's tea time! Everyone dug in to their Berries!"))
+    end
+
+    def pbFailsAgainstTarget?(_user, target, _show_message)
+        return !isValidTarget?(target)
+    end
+
+    def pbEffectAgainstTarget(_user, target)
+        target.eachItem do |item|
+            next unless GameData::Item.get(item).is_berry?
+            target.pbHeldItemTriggerCheck(item, false)
+            target.consumeItem(item)
+        end
+    end
+
+    def getEffectScore(_user, _target)
+        return 60 # I don't understand the utility of this move
+    end
+end

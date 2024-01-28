@@ -133,6 +133,16 @@ class PokeBattle_Move_07B < PokeBattle_Move
 end
 
 #===============================================================================
+# Power is tripled if the target is poisoned. (Vipershock)
+#===============================================================================
+class PokeBattle_Move_58A < PokeBattle_Move
+    def pbBaseDamage(baseDmg, _user, target)
+        baseDmg *= 3 if target.poisoned?
+        return baseDmg
+    end
+end
+
+#===============================================================================
 # Power is doubled if the target is paralyzed. Cures the target of numb.
 # (Smelling Salts)
 #===============================================================================
@@ -305,6 +315,70 @@ end
 class PokeBattle_Move_086 < PokeBattle_Move
     def pbBaseDamage(baseDmg, user, _target)
         baseDmg *= 2 unless user.hasAnyItem?
+        return baseDmg
+    end
+end
+
+#===============================================================================
+# Deals double damage if faster than the target. (Wave of Jade)
+#===============================================================================
+class PokeBattle_Move_55A < PokeBattle_Move
+    def pbBaseDamage(baseDmg, user, target)
+        baseDmg *= 2 if user.pbSpeed > target.pbSpeed
+        return baseDmg
+    end
+end
+
+#===============================================================================
+# Power increases if the user is below half health. (Frantic Fang)
+#===============================================================================
+class PokeBattle_Move_571 < PokeBattle_Move
+    def pbBaseDamage(baseDmg, user, _target)
+        ret = baseDmg
+        ret *= 2 if user.belowHalfHealth?
+        return ret
+    end
+end
+
+#===============================================================================
+# Double damage if a critical hit. (Extinction Axe)
+#===============================================================================
+class PokeBattle_Move_193 < PokeBattle_Move
+    def criticalHitMultiplier(user,target); return 3.0; end
+end
+
+#===============================================================================
+# Double damage if stats were lowered that turn. (Lash Out)
+#===============================================================================
+class PokeBattle_Move_194 < PokeBattle_Move
+    def pbBaseDamage(baseDmg, user, _target)
+        baseDmg *= 2 if user.effectActive?(:StatsDropped)
+        return baseDmg
+    end
+end
+
+#===============================================================================
+# Power is boosted in Eclipse. (Shattered Energy)
+#===============================================================================
+class PokeBattle_Move_190 < PokeBattle_Move
+    def pbBaseDamage(baseDmg, _user, _target)
+        baseDmg *= 1.5 if @battle.eclipsed?
+        return baseDmg
+    end
+end
+
+#===============================================================================
+# Deals 50% more damage if the target has raised or lowered stat steps. (Bully)
+#===============================================================================
+class PokeBattle_Move_18D < PokeBattle_Move
+    def pbBaseDamage(baseDmg, _user, target)
+        anyChanged = false
+        GameData::Stat.each_battle { |s|
+            next if target.steps[s.id] == 0
+            anyChanged = true
+            break
+        }
+        baseDmg *= 1.5 if anyChanged
         return baseDmg
     end
 end
