@@ -318,3 +318,26 @@ class PokeBattle_Move_621 < PokeBattle_Move_522
         transformType(user, :DRAGON)
     end
 end
+
+#===============================================================================
+# Reduce's the target's highest attacking stat. (Scale Glint)
+#===============================================================================
+class PokeBattle_Move_5AA < PokeBattle_Move
+    def pbAdditionalEffect(user, target)
+        return if target.damageState.substitute
+        if target.pbAttack > target.pbSpAtk
+            target.pbLowerMultipleStatSteps([:ATTACK,1], user, move: self)
+        else
+            target.pbLowerMultipleStatSteps([:SPECIAL_ATTACK,1], user, move: self)
+        end
+    end
+
+    def getTargetAffectingEffectScore(user, target)
+        if target.pbAttack > target.pbSpAtk
+            statDownArray = [:ATTACK,1]
+        else
+            statDownArray = [:SPECIAL_ATTACK,1]
+        end
+        return getMultiStatDownEffectScore(statDownArray, user, target)
+    end
+end

@@ -533,6 +533,13 @@ class PokeBattle_Move_53C < PokeBattle_Move
     end
 end
 
+def selfHitBasePower(level)
+    calcLevel = [level, 50].min
+    selfHitBasePower = (20 + calcLevel)
+    selfHitBasePower = selfHitBasePower.ceil
+    return selfHitBasePower
+end
+
 #===============================================================================
 # Increases the target's Attack by 3 steps, then the target hits itself with its own attack. (Swagger)
 #===============================================================================
@@ -710,5 +717,39 @@ class PokeBattle_Move_702 < PokeBattle_Move
         @battle.eachOtherSideBattler(user) do |b|
             b.applyEffect(:WarpingCore)
         end
+    end
+end
+
+#===============================================================================
+# All Normal-type moves become Electric-type for the rest of the round.
+# (Ion Deluge, Plasma Fists)
+#===============================================================================
+class PokeBattle_Move_146 < PokeBattle_Move
+    def pbMoveFailed?(user, _targets, show_message)
+        return false if damagingMove?
+        if @battle.field.effectActive?(:IonDeluge)
+            @battle.pbDisplay(_INTL("But it failed, since ions already shower the field!")) if show_message
+            return true
+        end
+        return true if pbMoveFailedLastInRound?(user, show_message)
+        return false
+    end
+
+    def pbEffectGeneral(_user)
+        @battle.field.applyEffect(:IonDeluge)
+    end
+end
+
+#===============================================================================
+# Accuracy perfect in moonglow. (Nightfelling)
+#===============================================================================
+class PokeBattle_Move_516 < PokeBattle_Move
+    def pbBaseAccuracy(user, target)
+        return 0 if @battle.moonGlowing?
+        return super
+    end
+
+    def shouldHighlight?(_user, _target)
+        return @battle.moonGlowing?
     end
 end

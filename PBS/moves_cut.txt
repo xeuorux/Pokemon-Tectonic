@@ -185,3 +185,5 @@
 4184,RAGE,Rage,Invalid,30,NORMAL,Physical,100,15,0,NearOther,0,CanProtect;CanMirrorMove,"As long as this move is in use, the user's Attack is raised two steps each time the user is hit.",
 4185,MAGNITUDE,Magnitude,Invalid,1,GROUND,Physical,100,25,0,AllNearOthers,0,CanProtect;CanMirrorMove,"The user looses a ground-shaking quake affecting everyone around. Its power varies greatly.",EARTHQUAKE
 4186,RAZORWIND,Razor Wind,Invalid,80,FLYING,Special,100,10,0,AllNearFoes,0,CanProtect;CanMirrorMove;Blade;Wind,"A two-turn attack. Blades of wind hit the foe on the second turn. Critical hits twice as often.",
+4187,DRAGONRAGE,Dragon Rage,Invalid,1,DRAGON,Special,100,10,0,NearOther,0,CanProtect;CanMirrorMove,"This attack hits the target with a shock wave of pure rage. This attack always inflicts 40 HP damage.",
+4188,SYNCHRONOISE,Synchronoise,Invalid,120,PSYCHIC,Special,100,10,0,AllNearOthers,0,CanProtect;CanMirrorMove;Sound,"Using an odd shock wave, the user damages any Pokémon of the same type as the user.",

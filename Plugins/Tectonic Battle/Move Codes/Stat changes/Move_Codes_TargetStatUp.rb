@@ -113,3 +113,39 @@ class PokeBattle_Move_5C8 < PokeBattle_Move
         end
     end
 end
+
+#===============================================================================
+# Raises the target's worst three stats by one step each. (Guiding Aroma)
+#===============================================================================
+class PokeBattle_Move_584 < PokeBattle_Move
+    def pbFailsAgainstTarget?(user, target, show_message)
+        if statUp(user, target).length == 0
+            @battle.pbDisplay(_INTL("{1}'s stats won't go any higher!", target.pbThis)) if show_message
+            return true
+        end
+        return false
+    end
+
+    def statUp(user, target)
+        statsTargetCanRaise = target.finalStats.select do |stat, _finalValue|
+            next target.pbCanRaiseStatStep?(stat, user, self)
+        end
+        statsRanked = statsTargetCanRaise.sort_by { |_s, v| v }.to_h.keys
+        statUp = []
+        statsRanked.each_with_index do |stat, index|
+            break if index > 2
+            statUp.push(stat)
+            statUp.push(1)
+        end
+        return statUp
+    end
+
+    def pbEffectAgainstTarget(user, target)
+        target.pbRaiseMultipleStatSteps(statUp(user, target), user, move: self)
+    end
+
+    def getEffectScore(user, target)
+        return 0 if statUp(user, target).length == 0
+        return getMultiStatUpEffectScore(statUp(user, target), user, target)
+    end
+end

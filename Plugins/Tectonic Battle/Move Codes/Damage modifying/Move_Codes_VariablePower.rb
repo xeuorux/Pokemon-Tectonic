@@ -174,3 +174,16 @@ class PokeBattle_Move_574 < PokeBattle_Move
         return [highestDefense, 40].max
     end
 end
+
+#===============================================================================
+# Power increases the taller the user is than the target. (Cocodrop)
+#===============================================================================
+class PokeBattle_Move_591 < PokeBattle_Move
+    def pbBaseDamage(_baseDmg, user, target)
+        ret = 40
+        ratio = user.pbHeight.to_f / target.pbHeight.to_f
+        ratio = 10 if ratio > 10
+        ret += ((16 * (ratio**0.75)) / 5).floor * 5
+        return ret
+    end
+end

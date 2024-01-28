@@ -62,6 +62,8 @@ class PokeBattle_Move
         rescue StandardError
           raise "Error while trying to create a move of class #{className}"
         end
+      else
+        raise "A class for move function code #{moveFunction} does not exist!"
       end
       return PokeBattle_UnimplementedMove.new(battle, move)
     end

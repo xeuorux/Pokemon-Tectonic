@@ -29,3 +29,8 @@ end
 class PokeBattle_Move_5FC < PokeBattle_DizzyMove
     include RandomHitable
 end
+
+# Empowered Power Gem
+class PokeBattle_Move_647 < PokeBattle_Move_Dizzy
+    include EmpoweredMove
+end

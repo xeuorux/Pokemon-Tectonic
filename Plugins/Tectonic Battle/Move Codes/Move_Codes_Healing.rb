@@ -232,7 +232,7 @@ class PokeBattle_Move_0DB < PokeBattle_Move
 end
 
 # Empowered Ingrain
-class PokeBattle_Move_615 < PokeBattle_Move
+class PokeBattle_Move_615 < PokeBattle_Move_0DB
     include EmpoweredMove
 
     def pbMoveFailed?(user, _targets, show_message)
@@ -250,11 +250,8 @@ class PokeBattle_Move_615 < PokeBattle_Move
         transformType(user, :GRASS)
     end
 
-    def getEffectScore(user, _target)
-        score = 50
-        score += 30 if @battle.pbIsTrapped?(user.index)
-        score += 20 if user.firstTurn?
-        score += 20 if user.aboveHalfth?
+    def getEffectScore(user, target)
+        score = super
         score *= 2
         return score
     end
