@@ -98,7 +98,7 @@ move, false, true)
             return true unless move.hitsDiggingTargets?
         elsif target.inTwoTurnAttack?("0CB")            # Dive
             return true unless move.hitsDivingTargets?
-        elsif target.inTwoTurnAttack?("0CD", "14D")	# PHANTOMFORCE/SHADOWFORCE in case we have a move that hits them
+        elsif target.inTwoTurnAttack?("0CD")	# PHANTOMFORCE/SHADOWFORCE in case we have a move that hits them
             return true
         end
         

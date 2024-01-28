@@ -60,7 +60,7 @@ class PokeBattle_Move
         begin
           return Object.const_get(className).new(battle, move)
         rescue StandardError
-          puts "Error while trying to create a move of class #{className}"
+          raise "Error while trying to create a move of class #{className}"
         end
       end
       return PokeBattle_UnimplementedMove.new(battle, move)
