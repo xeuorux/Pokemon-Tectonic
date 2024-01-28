@@ -185,3 +185,24 @@ class PokeBattle_Move_170 < PokeBattle_Move
         return getHPLossEffectScore(user, 0.5)
     end
 end
+
+#===============================================================================
+# User takes recoil damage equal to 1/3 of the damage this move dealt. (Undying Rush)
+# But can't faint from that recoil damage.
+#===============================================================================
+class PokeBattle_Move_5F6 < PokeBattle_RecoilMove
+    def recoilFactor;  return (1.0 / 3.0); end
+    
+    def pbRecoilDamage(user, target)
+        damage = (target.damageState.totalHPLost * finalRecoilFactor(user)).round
+        damage = [damage,(user.hp - 1)].min
+        return damage
+    end
+
+    def pbEffectAfterAllHits(user, target)
+        return if target.damageState.unaffected
+        recoilDamage = pbRecoilDamage(user, target)
+        return if recoilDamage <= 0
+        user.applyRecoilDamage(recoilDamage, false, true)
+    end
+end

@@ -333,3 +333,35 @@ class PokeBattle_Move_51F < PokeBattle_Move
         return getMultiStatUpEffectScore([:ACCURACY, 1], user, user) * 0.5
     end
 end
+
+#===============================================================================
+# Changes Category based on which will deal more damage. (Everhone)
+# Raises the stat that wasn't selected to be used.
+#===============================================================================
+class PokeBattle_Move_5C1 < PokeBattle_Move
+    def initialize(battle, move)
+        super
+        @calculated_category = 1
+    end
+
+    def calculateCategory(user, targets)
+        return selectBestCategory(user, targets[0])
+    end
+
+    def pbAdditionalEffect(user, _target)
+        if @calculated_category == 0
+            return user.tryRaiseStat(:SPECIAL_ATTACK, user, increment: 1, move: self)
+        else
+            return user.tryRaiseStat(:ATTACK, user, increment: 1, move: self)
+        end
+    end
+
+    def getEffectScore(user, target)
+        expectedCategory = selectBestCategory(user, target)
+        if expectedCategory == 0
+            return getMultiStatUpEffectScore([:SPECIAL_ATTACK, 1], user, user)
+        else
+            return getMultiStatUpEffectScore([:ATTACK, 1], user, user)
+        end
+    end
+end

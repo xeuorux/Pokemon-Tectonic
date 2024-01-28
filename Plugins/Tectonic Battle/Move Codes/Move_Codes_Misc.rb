@@ -592,3 +592,45 @@ class PokeBattle_Move_577 < PokeBattle_Move
         return getWantsToBeFasterScore(user, target, 3)
     end
 end
+
+#===============================================================================
+# Faints the opponant if they are below 1/4 HP, after dealing damage. (Cull)
+#===============================================================================
+class PokeBattle_Move_58F < PokeBattle_Move
+    def canCull?(target)
+        return target.hp < (target.totalhp / 4)
+    end
+
+    def pbEffectAgainstTarget(user, target)
+        if canCull?(target)
+            @battle.pbDisplay(_INTL("#{user.pbThis} culls #{target.pbThis(true)}!"))
+            target.pbReduceHP(target.hp, false)
+            target.pbItemHPHealCheck
+        end
+    end
+
+    def shouldHighlight?(_user, target)
+        return canCull?(target)
+    end
+end
+
+#===============================================================================
+# The user, if a Deerling or Sawsbuck, changes their form in season order. (Season's End)
+#===============================================================================
+class PokeBattle_Move_590 < PokeBattle_Move
+    def pbMoveFailed?(user, _targets, show_message)
+        unless user.countsAs?(:DEERLING) || user.countsAs?(:SAWSBUCK)
+            @battle.pbDisplay(_INTL("But {1} can't use the move!", user.pbThis)) if show_message
+            return true
+        end
+        return false
+    end
+
+    def pbEffectGeneral(user)
+        if user.countsAs?(:DEERLING) || user.countsAs?(:SAWSBUCK)
+            newForm = (user.form + 1) % 4
+            formChangeMessage = _INTL("The season shifts!")
+            user.pbChangeForm(newForm, formChangeMessage)
+        end
+    end
+end

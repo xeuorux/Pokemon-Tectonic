@@ -80,6 +80,65 @@ class PokeBattle_Move_0B9 < PokeBattle_Move
 end
 
 #===============================================================================
+# For 4 rounds, disables the last move the target used. (Drown)
+# Then debuffs a stat based on what was disabled.
+#===============================================================================
+class PokeBattle_Move_5FD < PokeBattle_Move_0B9
+    def initialize(battle, move)
+        super
+        @disableTurns = 4
+    end
+
+    def pbEffectAgainstTarget(user, target)
+        super
+        statToLower = getDebuffingStat(target)
+        target.pbLowerStatStep(statToLower, 4, user) if target.pbCanLowerStatStep?(statToLower,user,self,true)
+    end
+
+    def getDebuffingStat(battler)
+        return :SPEED unless battler.lastRegularMoveUsed
+        case GameData::Move.get(battler.lastRegularMoveUsed).category
+        when 0
+            return :ATTACK
+        when 1
+            return :SPECIAL_ATTACK
+        when 2
+            return :SPEED
+        end
+    end
+
+    def getEffectScore(user, target)
+        score = super
+        score += getMultiStatDownEffectScore([getDebuffingStat(target),4],user,target)
+        return score
+    end
+end
+
+#===============================================================================
+# For 5 rounds, disables the last move the target used. Also, (Gem Seal)
+# remove 5 PP from it.
+#===============================================================================
+class PokeBattle_Move_5CF < PokeBattle_Move_0B9
+    def pbEffectAgainstTarget(_user, target)
+        super
+        target.eachMove do |m|
+            next if m.id != target.lastRegularMoveUsed
+            reduction = [5, m.pp].min
+            target.pbSetPP(m, m.pp - reduction)
+            @battle.pbDisplay(_INTL("It reduced the PP of {1}'s {2} by {3}!",
+               target.pbThis(true), m.name, reduction))
+            break
+        end
+    end
+
+    def getEffectScore(_user, target)
+        score = super
+        score += 10
+        return score
+    end
+end
+
+#===============================================================================
 # For 4 rounds, disables the target's non-damaging moves. (Taunt)
 #===============================================================================
 class PokeBattle_Move_0BA < PokeBattle_Move

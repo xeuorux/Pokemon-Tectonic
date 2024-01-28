@@ -58,3 +58,13 @@ class PokeBattle_Move_137 < PokeBattle_Move
         return 100
     end
 end
+
+#===============================================================================
+# For 6 rounds, doubles the Speed of all battlers on the user's side. (Sustained Wind)
+#===============================================================================
+class PokeBattle_Move_5D3 < PokeBattle_Move_05B
+    def initialize(battle, move)
+        super
+        @tailwindDuration = 6
+    end
+end

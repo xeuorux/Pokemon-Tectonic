@@ -660,3 +660,152 @@ class PokeBattle_Move_564 < PokeBattle_Move
         return score
     end
 end
+
+#===============================================================================
+# Restores health by 50% and raises Speed by one step. (Mulch Meal)
+#===============================================================================
+class PokeBattle_Move_583 < PokeBattle_HalfHealingMove
+    def pbMoveFailed?(user, _targets, show_message)
+        if !user.canHeal? && !user.pbCanRaiseStatStep?(:SPEED, user, self, true)
+            @battle.pbDisplay(_INTL("But it failed, since #{user.pbThis(true)} can't heal or raise its Speed!")) if show_message
+            return true
+        end
+    end
+
+    def pbEffectGeneral(user)
+        super
+        user.tryRaiseStat(:SPEED, user, move: self)
+    end
+
+    def getEffectScore(user, target)
+        score = super
+        score += 20
+        score -= user.steps[:SPEED] * 20
+        return score
+    end
+end
+
+#===============================================================================
+# User heals itself based on current weight. (Refurbish)
+# Then, its current weigtht is cut in half.
+#===============================================================================
+class PokeBattle_Move_5AB < PokeBattle_HealingMove
+    def healRatio(user)
+        case user.pbWeight
+        when 1024..999_999
+            return 1.0
+        when 512..1023
+            return 0.75
+        when 256..511
+            return 0.5
+        when 128..255
+            return 0.25
+        when 64..127
+            return 0.125
+        else
+            return 0.0625
+        end
+    end
+
+    def pbEffectGeneral(user)
+        super
+        user.incrementEffect(:Refurbished)
+    end
+end
+
+#===============================================================================
+# Heals user by 1/2, raises Defense, Sp. Defense, Crit Chance. (Divination)
+#===============================================================================
+class PokeBattle_Move_5C7 < PokeBattle_HalfHealingMove
+    def pbMoveFailed?(user, _targets, show_message)
+        if user.effectAtMax?(:FocusEnergy) && !user.pbCanRaiseStatStep?(:DEFENSE, user, self) && 
+                !user.pbCanRaiseStatStep?(:SPECIAL_DEFENSE, user, self)
+            return super
+        end
+        return false
+    end
+
+    def pbEffectGeneral(user)
+        super
+        user.pbRaiseMultipleStatSteps(DEFENDING_STATS_2, user, move: self)
+        user.incrementEffect(:FocusEnergy, 2) unless user.effectAtMax?(:FocusEnergy)
+    end
+
+    def getEffectScore(user, target)
+        score = super
+        score += getMultiStatUpEffectScore(DEFENDING_STATS_2, user, target)
+        score += getCriticalRateBuffEffectScore(user, 2)
+        return score
+    end
+end
+
+#===============================================================================
+# The user puts all their effort into attacking their opponent
+# causing them to rest on their next turn. (Extreme Effort)
+#===============================================================================
+class PokeBattle_Move_5C9 < PokeBattle_Move
+    def pbEffectGeneral(user)
+	    user.applyEffect(:ExtremeEffort, 2)
+    end
+
+    def getEffectScore(user, _target)
+        return -getSleepEffectScore(nil, user) / 2
+    end
+end
+
+#===============================================================================
+# Restores health by half and gains an Aqua Ring. (River Rest)
+#===============================================================================
+class PokeBattle_Move_5D0 < PokeBattle_HalfHealingMove
+    def pbMoveFailed?(user, _targets, show_message)
+        if super(user, _targets, false) && user.effectActive?(:AquaRing)
+            @battle.pbDisplay(_INTL("But it failed, since #{user.pbThis} can't heal and already has a veil of water!")) if show_message
+            return true
+        end
+        return false
+    end
+
+    def pbEffectGeneral(user)
+        super
+        user.applyEffect(:AquaRing)
+    end
+
+    def getEffectScore(user, target)
+        score = super
+        score += getAquaRingEffectScore(user)
+        return score
+    end
+end
+
+#===============================================================================
+# User heals for 3/5ths of their HP. (Heal Order)
+#===============================================================================
+class PokeBattle_Move_5D6 < PokeBattle_HealingMove
+    def healRatio(_user)
+        return 3.0 / 5.0
+    end
+end
+
+#===============================================================================
+# Heals user by 1/2 of their HP.
+# Extends the duration of any screens affecting the user's side by 1. (Stabilize)
+#===============================================================================
+class PokeBattle_Move_5D4 < PokeBattle_HalfHealingMove
+    def pbEffectGeneral(user)
+        super
+        pbOwnSide.eachEffect(true) do |effect, value, data|
+            next unless data.is_screen?
+            pbOwnSide.effects[effect] += 1
+            @battle.pbDisplay(_INTL("{1}'s {2} was extended 1 turn!", pbTeam, data.name))
+        end
+    end
+
+    def getEffectScore(user, target)
+        score = super
+        pbOwnSide.eachEffect(true) do |effect, value, data|
+            next unless data.is_screen?
+            score += 30
+        end
+        return score
+    end
+end

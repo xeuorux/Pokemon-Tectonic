@@ -118,3 +118,59 @@ class PokeBattle_Move_52F < PokeBattle_Move_042
         return getWeatherSettingEffectScore(:Eclipse, user, @battle, 8)
     end
 end
+
+#===============================================================================
+# Target becomes trapped. Summons Eclipse for 8 turns.
+# (Captivating Sight)
+#===============================================================================
+class PokeBattle_Move_5AF < PokeBattle_Move_0EF
+    def pbFailsAgainstTarget?(_user, target, show_message)
+        return false unless @battle.primevalWeatherPresent?(false)
+        super
+    end
+
+    def pbEffectGeneral(user)
+        @battle.pbStartWeather(user, :Eclipse, 8, false) unless @battle.primevalWeatherPresent?
+    end
+
+    def getEffectScore(user, _target)
+        score = super
+        score += getWeatherSettingEffectScore(:Eclipse, user, @battle, 8)
+        return score
+    end
+end
+
+#===============================================================================
+# Summons Moonglow for 8 turns. Raises the Attack of itself and all allies by 2 steps. (Midnight Hunt)
+#===============================================================================
+class PokeBattle_Move_5B0 < PokeBattle_Move_530
+    def pbMoveFailed?(user, _targets, show_message)
+        return false unless @battle.primevalWeatherPresent?(false)
+        super
+    end
+
+    def pbEffectGeneral(user)
+        @battle.pbStartWeather(user, :Moonglow, 8, false) unless @battle.primevalWeatherPresent?
+        super
+    end
+
+    def getEffectScore(user, _target)
+        score = super
+        score += getWeatherSettingEffectScore(:Moonglow, user, @battle, 8)
+        return score
+    end
+end
+
+#===============================================================================
+# Sets stealth rock and sandstorm for 5 turns. (Stone Signal)
+#===============================================================================
+class PokeBattle_Move_5BD < PokeBattle_Move_105
+    def pbMoveFailed?(user, _targets, show_message)
+        return false
+    end
+
+    def pbEffectGeneral(user)
+        super
+        @battle.pbStartWeather(user, :Sandstorm, 5, false) unless @battle.primevalWeatherPresent?
+    end
+end

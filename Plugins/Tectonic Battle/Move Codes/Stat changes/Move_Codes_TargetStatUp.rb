@@ -75,3 +75,41 @@ class PokeBattle_Move_575 < PokeBattle_Move
         return 150
     end
 end
+
+#===============================================================================
+# Damages target if target is a foe, or buff's the target's Speed
+# by four steps if it's an ally. (Lightning Spear)
+#===============================================================================
+class PokeBattle_Move_5C8 < PokeBattle_Move
+    def pbOnStartUse(user, targets)
+        @buffing = false
+        @buffing = !user.opposes?(targets[0]) if targets.length > 0
+    end
+
+    def pbFailsAgainstTarget?(user, target, show_message)
+        return false unless @buffing
+        return !target.pbCanRaiseStatStep?(:SPEED, user, self, true)
+    end
+
+    def damagingMove?(aiCheck = false)
+        if aiCheck
+            return super
+        else
+            return false if @buffing
+            return super
+        end
+    end
+
+    def pbEffectAgainstTarget(user, target)
+        return unless @buffing
+        target.pbRaiseMultipleStatSteps([:SPEED, 4], user, move: self)
+    end
+
+    def pbShowAnimation(id, user, targets, hitNum = 0, showAnimation = true)
+        if @buffing
+            @battle.pbAnimation(:CHARGE, user, targets, hitNum) if showAnimation
+        else
+            super
+        end
+    end
+end

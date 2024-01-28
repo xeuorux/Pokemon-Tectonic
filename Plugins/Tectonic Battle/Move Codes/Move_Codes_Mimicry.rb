@@ -303,3 +303,66 @@ class PokeBattle_Move_0B0 < PokeBattle_Move
         return -1000
     end
 end
+
+#===============================================================================
+# The user picks between moves to use, those being the 3 last (Cross Examine)
+# moves used by any foe.
+#===============================================================================
+class PokeBattle_Move_598 < PokeBattle_Move
+    def resolutionChoice(user)
+        @chosenMoveID = :STRUGGLE
+        validMoves = validMoveArray(user)
+        moveChoices = []
+        validMoves.reverse.each do |moveID|
+            next if moveChoices.include?(moveID)
+            moveChoices.push(moveID)
+            break if moveChoices.length == 3
+        end
+
+        moveNames = []
+        moveChoices.each do |moveID|
+            moveNames.push(GameData::Move.get(moveID).name)
+        end
+        if moveChoices.length == 1
+            @chosenMoveID = moveChoices[0]
+        elsif moveChoices.length > 1
+            if @battle.autoTesting
+                @chosenMoveID = moveChoices.sample
+            elsif !user.pbOwnedByPlayer? # Trainer AI
+                @chosenMoveID = moveChoices[0]
+            else
+                chosenIndex = @battle.scene.pbShowCommands(_INTL("Which move should #{user.pbThis(true)} use?"),moveNames,0)
+                @chosenMoveID = moveChoices[chosenIndex]
+            end
+        end
+    end
+
+    def validMoveArray(user)
+        if user.opposes?
+            return @battle.allMovesUsedSide0
+        else
+            return @battle.allMovesUsedSide1
+        end
+    end
+
+    def pbMoveFailed?(user, targets, show_message)
+        if validMoveArray(user).empty?
+            @battle.pbDisplay(_INTL("But it failed, since no foe has yet used a move!")) if show_message
+            return true
+        end
+        super
+    end
+
+    def pbEffectGeneral(user)
+        user.pbUseMoveSimple( @chosenMoveID)
+    end
+
+    def resetMoveUsageState
+        @chosenMoveID = nil
+    end
+
+    def getEffectScore(_user, _target)
+        echoln("The AI will never use Cross-Examine.")
+        return 0
+    end
+end

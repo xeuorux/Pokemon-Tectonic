@@ -183,3 +183,14 @@ class PokeBattle_Move_17C < PokeBattle_Move_0BD
         return [valid_targets[0]]
     end
 end
+
+#===============================================================================
+# Does Dragon-Darts style hit redirection, plus
+# each target hit loses 1 step of Speed. (Tar Volley)
+#===============================================================================
+class PokeBattle_Move_592 < PokeBattle_Move_17C
+    def pbAdditionalEffect(user, target)
+        return if target.damageState.substitute
+        target.tryLowerStat(:SPEED, user, move: self)
+    end
+end

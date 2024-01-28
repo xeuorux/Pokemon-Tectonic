@@ -89,3 +89,53 @@ class PokeBattle_Move_50A < PokeBattle_Move
         return score
     end
 end
+
+#===============================================================================
+# Leeches or numbs the target, depending on how its speed compares to the user.
+# (Mystery Seed)
+#===============================================================================
+class PokeBattle_Move_5AC < PokeBattle_Move
+    def pbFailsAgainstTarget?(user, target, show_message)
+        return false if damagingMove?
+        if !target.canLeech?(user, show_message, self) && !target.canNumb?(user, show_message, self)
+            if show_message
+                @battle.pbDisplay(_INTL("But it failed, since #{target.pbThis(true)} can neither be leeched or numbed!"))
+            end
+            return true
+        end
+        return false
+    end
+
+    def pbEffectAgainstTarget(user, target)
+        return if damagingMove?
+        leechOrNumb(user, target)
+    end
+
+    def pbAdditionalEffect(user, target)
+        return if target.damageState.substitute
+        leechOrNumb(user, target)
+    end
+
+    def leechOrNumb(user, target)
+        target_speed = target.pbSpeed
+        user_speed = user.pbSpeed
+
+        if target.canNumb?(user, false, self) && target_speed >= user_speed
+            target.applyNumb(user)
+        elsif target.canLeech?(user, false, self) && user_speed >= target_speed
+            target.applyLeeched(user)
+        end
+    end
+
+    def getTargetAffectingEffectScore(user, target)
+        target_speed = target.pbSpeed
+        user_speed = user.pbSpeed
+
+        if target.canNumb?(user, false, self) && target_speed >= user_speed
+            return getNumbEffectScore(user, target)
+        elsif target.canLeech?(user, false, self) && user_speed >= target_speed
+            return getLeechEffectScore(user, target)
+        end
+        return 0
+    end
+end

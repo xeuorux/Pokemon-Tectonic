@@ -212,3 +212,20 @@ class PokeBattle_Move_152 < PokeBattle_Move
         return 0 # The move is both annoying and very weak
     end
 end
+
+#===============================================================================
+# The target cannot escape and takes 50% more damage from all attacks. (Death Mark)
+#===============================================================================
+class PokeBattle_Move_596 < PokeBattle_Move
+    def pbFailsAgainstTarget?(user, target, show_message)
+        if target.effectActive?(:DeathMark)
+            @battle.pbDisplay(_INTL("But it failed, since the target is already marked for death!")) if show_message
+            return true
+        end
+        return false
+    end
+
+    def pbEffectAgainstTarget(user, target)
+        target.pointAt(:DeathMark, user) unless target.effectActive?(:DeathMark)
+    end
+end

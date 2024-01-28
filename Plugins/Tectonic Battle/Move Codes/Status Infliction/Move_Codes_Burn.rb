@@ -92,3 +92,18 @@ class PokeBattle_Move_172 < PokeBattle_Move
         end
     end
 end
+
+#===============================================================================
+# Target is burned if in eclipse. (Calamitous Slash)
+#===============================================================================
+class PokeBattle_Move_5B2 < PokeBattle_BurnMove
+    def pbAdditionalEffect(user, target)
+        return unless @battle.eclipsed?
+        super
+    end
+
+    def getTargetAffectingEffectScore(user, target)
+        return 0 unless @battle.eclipsed?
+        super
+    end
+end

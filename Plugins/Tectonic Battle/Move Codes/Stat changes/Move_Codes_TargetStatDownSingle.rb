@@ -79,6 +79,31 @@ class PokeBattle_Move_5E9 < PokeBattle_TargetStatDownMove
 end
 
 #===============================================================================
+# Target's Defense is lowered by 3 steps if in sandstorm. (Grindstone)
+#===============================================================================
+class PokeBattle_Move_5F8 < PokeBattle_TargetStatDownMove
+    def initialize(battle, move)
+        super
+        @statDown = [:DEFENSE, 3]
+    end
+
+    def pbAdditionalEffect(user, target)
+        return if target.damageState.substitute
+        return unless @battle.sandy?
+        target.tryLowerStat(@statDown[0], user, increment: @statDown[1], move: self)
+    end
+
+    def getTargetAffectingEffectScore(user, target)
+        return 0 unless @battle.sandy?
+        return getMultiStatDownEffectScore(@statDown, user, target)
+    end
+
+    def shouldHighlight?(_user, _target)
+        return @battle.sandy?
+    end
+end
+
+#===============================================================================
 # Decreases the target's Defense by 4 steps.
 #===============================================================================
 class PokeBattle_Move_04C < PokeBattle_TargetStatDownMove

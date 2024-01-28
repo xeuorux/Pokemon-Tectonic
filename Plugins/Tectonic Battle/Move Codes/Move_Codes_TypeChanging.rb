@@ -354,3 +354,158 @@ class PokeBattle_Move_154 < PokeBattle_Move
         return score
     end
 end
+
+#===============================================================================
+# The user's Speed raises 4 steps, and it gains the Flying-type. (Mach Flight)
+#===============================================================================
+class PokeBattle_Move_58C < PokeBattle_Move_030
+    def pbMoveFailed?(user, targets, show_message)
+        return false if GameData::Type.exists?(:FLYING) && !user.pbHasType?(:FLYING) && user.canChangeType?
+        super
+    end
+
+    def pbEffectGeneral(user)
+        super
+        user.applyEffect(:Type3, :FLYING)
+    end
+end
+
+#===============================================================================
+# User's Attack and Defense are raised by one step each, and (Built Different)
+# changes user's type to Rock.
+#===============================================================================
+class PokeBattle_Move_595 < PokeBattle_Move_024
+    def pbMoveFailed?(user, targets, show_message)
+        return false if GameData::Type.exists?(:ROCK) && !user.pbHasType?(:ROCK) && user.canChangeType?
+        super
+    end
+
+    def pbEffectGeneral(user)
+        super
+        user.applyEffect(:Type3, :ROCK)
+    end
+end
+
+#===============================================================================
+# Type changes depending on rotom's form. (Machinate)
+# Additional effect changes depending on rotom's form. Only usable by rotom.
+#===============================================================================
+class PokeBattle_Move_5CB < PokeBattle_Move
+    def aiAutoKnows?(pokemon); return true; end
+    def pbMoveFailed?(user, _targets, show_message)
+        unless user.countsAs?(:ROTOM)
+            @battle.pbDisplay(_INTL("But {1} can't use the move!", user.pbThis(true))) if show_message
+            return true
+        end
+        return false
+    end
+
+    def pbBaseType(user)
+        ret = :GHOST
+        case user.form
+        when 1
+            ret = :FIRE if GameData::Type.exists?(:FIRE)
+        when 2
+            ret = :WATER if GameData::Type.exists?(:WATER)
+        when 3
+            ret = :ICE if GameData::Type.exists?(:ICE)
+        when 4
+            ret = :FLYING if GameData::Type.exists?(:FLYING)
+        when 5
+            ret = :GRASS if GameData::Type.exists?(:GRASS)
+        end
+        return ret
+    end
+
+    def pbAdditionalEffect(user, target)
+        return if target.damageState.substitute
+        case user.form
+        when 1
+            target.applyBurn(user) if target.canBurn?(user, true, self)
+        when 2
+            target.applyNumb(user) if target.canNumb?(user, true, self)
+        when 3
+            target.applyFrostbite(user) if target.canFrostbite?(user, true, self)
+        when 4
+            target.applyDizzy(user) if target.canDizzy?(user, true, self)
+        when 5
+            target.applyLeeched(user) if target.canLeech?(user, true, self)
+        end
+    end
+
+    def getTargetAffectingEffectScore(user, target)
+        case user.form
+        when 1
+            return getBurnEffectScore(user, target)
+        when 2
+            return getNumbEffectScore(user, target)
+        when 3
+            return getFrostbiteEffectScore(user, target)
+        when 4
+            return getDizzyEffectScore(user, target)
+        when 5
+            return getLeechEffectScore(user, target)
+        end
+        return 0
+    end
+end
+
+#===============================================================================
+# Target becomes your choice of Dragon, Fairy, or Steel type. (Regalia)
+#===============================================================================
+class PokeBattle_Move_5D7 < PokeBattle_Move
+    def resolutionChoice(user)
+        validTypes = %i[DRAGON FAIRY STEEL]
+        validTypeNames = []
+        validTypes.each do |typeID|
+            validTypeNames.push(GameData::Type.get(typeID).name)
+        end
+        if validTypes.length == 1
+            @chosenType = validTypes[0]
+        elsif validTypes.length > 1
+            if @battle.autoTesting
+                @chosenType = validTypes.sample
+            elsif !user.pbOwnedByPlayer? # Trainer AI
+                @chosenType = validTypes[0]
+            else
+                chosenIndex = @battle.scene.pbShowCommands(_INTL("Which type should #{user.pbThis(true)} gift?"),validTypeNames,0)
+                @chosenType = validTypes[chosenIndex]
+            end
+        end
+    end
+
+    def pbFailsAgainstTarget?(_user, target, show_message)
+        unless GameData::Type.exists?(@chosenType)
+            @battle.pbDisplay(_INTL("But it failed, since the chosen type doesn't exist!")) if show_message
+            return true
+        end
+        unless target.canChangeType?
+            @battle.pbDisplay(_INTL("But it failed, since #{target.pbThis(true)} can't change their type!")) if show_message
+            return true
+        end
+        unless target.pbHasOtherType?(@chosenType)
+            @battle.pbDisplay(_INTL("But it failed, since #{target.pbThis(true)} is already only the chosen type!")) if show_message
+            return true
+        end
+        return false
+    end
+
+    def pbFailsAgainstTargetAI?(_user, target)
+        @chosenType = :DRAGON
+        return pbFailsAgainstTarget?(_user, target, false)
+    end
+
+    def pbEffectAgainstTarget(_user, target)
+        target.pbChangeTypes(@chosenType)
+        typeName = GameData::Type.get(@chosenType).name
+        @battle.pbDisplay(_INTL("{1} transformed into the {2} type!", target.pbThis, typeName))
+    end
+
+    def resetMoveUsageState
+        @chosenType = nil
+    end
+
+    def getEffectScore(_user, _target)
+        return 80
+    end
+end

@@ -511,3 +511,28 @@ class PokeBattle_Move_546 < PokeBattle_Move
         return target.hasRaisedStatSteps?
     end
 end
+
+#===============================================================================
+# Power doubles if has the Defense Curl effect, which it consumes. (Rough & Tumble)
+#===============================================================================
+class PokeBattle_Move_594 < PokeBattle_Move
+    def pbBaseDamage(baseDmg, user, _target)
+        baseDmg *= 2 if user.effectActive?(:DefenseCurl)
+        return baseDmg
+    end
+
+    def pbEffectAfterAllHits(user, _target)
+        user.disableEffect(:DefenseCurl)
+    end
+end
+
+#===============================================================================
+# Power doubles if the target is the last alive on their team.
+# (Checkmate)
+#===============================================================================
+class PokeBattle_Move_5CD < PokeBattle_Move
+    def pbBaseDamage(baseDmg, _user, target)
+        baseDmg *= 2 if target.isLastAlive?
+        return baseDmg
+    end
+end

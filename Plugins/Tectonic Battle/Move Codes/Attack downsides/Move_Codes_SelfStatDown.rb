@@ -101,3 +101,10 @@ class PokeBattle_Move_519 < PokeBattle_StatDownMove
 
     def pbAccuracyCheck(_user, _target); return true; end
 end
+
+#===============================================================================
+# Guaranteed to crit, but lowers the user's speed. (Incision)
+#===============================================================================
+class PokeBattle_Move_58D < PokeBattle_Move_03E
+    def pbCriticalOverride(_user, _target); return 1; end
+end

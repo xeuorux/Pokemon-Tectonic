@@ -96,3 +96,28 @@ class PokeBattle_Move_53F < PokeBattle_Move
         return getForceOutEffectScore(user, target) * 0.5
     end
 end
+
+#===============================================================================
+# In wild battles, makes target flee. Fails if target is a higher level than the
+# user.
+# In trainer battles, target switches out, to be replaced manually. (Dragon's Roar)
+#===============================================================================
+class PokeBattle_Move_5CC < PokeBattle_Move
+    def forceSwitchMove?; return true; end
+
+    def pbEffectAgainstTarget(user, target)
+        if @battle.wildBattle? && target.level <= user.level && @battle.canRun &&
+           (target.substituted? || ignoresSubstitute?(user)) && !target.boss
+            @battle.decision = 3
+        end
+    end
+
+    def pbSwitchOutTargetsEffect(user, targets, numHits, switchedBattlers)
+        return if numHits == 0
+        forceOutTargets(user, targets, switchedBattlers, substituteBlocks: false)
+    end
+
+    def getTargetAffectingEffectScore(user, target)
+        return getForceOutEffectScore(user, target, false)
+    end
+end

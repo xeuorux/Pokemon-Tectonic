@@ -57,3 +57,18 @@ class PokeBattle_Move_172 < PokeBattle_Move
         end
     end
 end
+
+#===============================================================================
+# Target is frostbitten if in moonglow. (Night Chill)
+#===============================================================================
+class PokeBattle_Move_5B1 < PokeBattle_FrostbiteMove
+    def pbAdditionalEffect(user, target)
+        return unless @battle.moonGlowing?
+        super
+    end
+
+    def getTargetAffectingEffectScore(user, target)
+        return 0 unless @battle.moonGlowing?
+        super
+    end
+end

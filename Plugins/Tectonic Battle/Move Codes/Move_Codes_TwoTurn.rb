@@ -24,6 +24,23 @@ class PokeBattle_Move_0C2 < PokeBattle_Move
 end
 
 #===============================================================================
+# Two turn attack. Attacks first turn, skips second turn (if successful).
+# The second-turn skipping it removed if the target fains or switches out.
+#===============================================================================
+class PokeBattle_Move_5FE < PokeBattle_Move_0C2
+    def initialize(battle, move)
+        super
+        @exhaustionTracker = :Attached
+    end
+
+    def pbEffectAfterAllHits(user, target)
+        return if target.damageState.fainted
+        super
+        user.pointAt(:AttachedTo, target)
+    end
+end
+
+#===============================================================================
 # Two turn attack. Skips first turn, attacks second turn. In sunshine, takes 1 turn instead. (Solar Beam)
 #===============================================================================
 class PokeBattle_Move_0C4 < PokeBattle_TwoTurnMove

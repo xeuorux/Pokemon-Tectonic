@@ -29,6 +29,23 @@ class PokeBattle_Move_544 < PokeBattle_SnowballingMove
 end
 
 #===============================================================================
+# Counts as a use of Rock Roll, Snowball, or Furycutter. (On A Roll)
+#===============================================================================
+class PokeBattle_Move_58B < PokeBattle_Move
+    def pbChangeUsageCounters(user, specialUsage)
+        oldEffectValues = {}
+        user.eachEffect(true) do |effect, value, data|
+            oldEffectValues[effect] = value if data.snowballing_move_counter?
+        end
+        super
+        oldEffectValues.each do |effect, oldValue|
+            data = GameData::BattleEffect.get(effect)
+            user.effects[effect] = [oldValue + 1, data.maximum].min
+        end
+    end
+end
+
+#===============================================================================
 # Power is multiplied by the number of consecutive rounds in which this move was
 # used by any Pokémon on the user's side. (Echoed Voice)
 #===============================================================================

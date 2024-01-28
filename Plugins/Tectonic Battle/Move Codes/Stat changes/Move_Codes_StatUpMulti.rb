@@ -484,3 +484,31 @@ class PokeBattle_Move_53D < PokeBattle_Move
         return getMultiStatUpEffectScore([:ACCURACY, 1, :SPEED, 1], user, user) * 0.5
     end
 end
+
+#===============================================================================
+# Increases Speed by 4 steps and Crit Chance by 2 steps. (Deep Breathing)
+#===============================================================================
+class PokeBattle_Move_5D2 < PokeBattle_StatUpMove
+    def initialize(battle, move)
+        super
+        @statUp = [:SPEED, 4]
+    end
+
+    def pbMoveFailed?(user, _targets, show_message)
+        if user.effectAtMax?(:FocusEnergy)
+            return super
+        end
+        return false
+    end
+
+    def pbEffectGeneral(user)
+        super
+        user.incrementEffect(:FocusEnergy, 2)
+    end
+
+    def getEffectScore(user, _target)
+        score = super
+        score += getCriticalRateBuffEffectScore(user, 2)
+        return score
+    end
+end

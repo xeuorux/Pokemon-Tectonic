@@ -119,3 +119,22 @@ class PokeBattle_Move_505 < PokeBattle_Move
         return -1000
     end
 end
+
+#===============================================================================
+# Target moves immediately after the user and deals 50% more damage. (Amp Up)
+#===============================================================================
+class PokeBattle_Move_5F4 < PokeBattle_Move_09C
+    def pbEffectAgainstTarget(_user, target)
+        super
+        target.applyEffect(:MoveNext)
+        @battle.pbDisplay(_INTL("{1} is amped up!", target.pbThis))
+    end
+
+    def pbFailsAgainstTargetAI?(_user, _target); return false; end
+
+    def getEffectScore(user, target)
+        score = super
+        score += 50 if @battle.battleAI.userMovesFirst?(self, user, target)
+        return score
+    end
+end

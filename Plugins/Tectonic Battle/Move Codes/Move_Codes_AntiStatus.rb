@@ -199,6 +199,45 @@ class PokeBattle_Move_01B < PokeBattle_Move
 end
 
 #===============================================================================
+# Transfers the user's status to the target (Vicious Cleaning)
+#===============================================================================
+class PokeBattle_Move_580 < PokeBattle_Move
+    def pbEffectAgainstTarget(user, target)
+        user.getStatuses.each do |status|
+            next if status == :NONE
+            if target.pbCanInflictStatus?(status, user, false, self)
+                case status
+                when :SLEEP
+                    target.applySleep
+                when :POISON
+                    target.applyPoison(user, nil, user.statusCount != 0)
+                when :BURN
+                    target.applyBurn(user)
+                when :NUMB
+                    target.applyNumb(user)
+                when :FROSTBITE
+                    target.applyFrostbite(user)
+                when :DIZZY
+                    target.applyDizzy(user)
+                when :LEECHED
+                    target.applyLeeched(user)
+                end
+            else
+                statusData = GameData::Status.get(status)
+                @battle.pbDisplay(_INTL("{1} tries to transfer its {2} to {3}, but...", user.pbThis, statusData.name,
+target.pbThis(true)))
+                target.pbCanInflictStatus?(status, user, true, self)
+            end
+            user.pbCureStatus(status)
+        end
+    end
+
+    def shouldHighlight?(user, _target)
+        return user.pbHasAnyStatus?
+    end
+end
+
+#===============================================================================
 # Cures the target's frostbite. (Rousing Hula)
 #===============================================================================
 class PokeBattle_Move_173 < PokeBattle_Move

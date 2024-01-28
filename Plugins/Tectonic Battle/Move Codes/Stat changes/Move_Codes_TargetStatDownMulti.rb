@@ -110,3 +110,18 @@ class PokeBattle_Move_0E2 < PokeBattle_TargetMultiStatDownMove
         return score
     end
 end
+
+#===============================================================================
+# Minimizes the target's Speed and Evasiveness. (Freeze Ray)
+#===============================================================================
+class PokeBattle_Move_5C0 < PokeBattle_Move
+    def pbAdditionalEffect(user, target)
+        return if target.damageState.substitute
+        target.pbMinimizeStatStep(:SPEED, user, self)
+        target.pbMinimizeStatStep(:EVASION, user, self)
+    end
+
+    def getTargetAffectingEffectScore(user, target)
+        return getMultiStatDownEffectScore([:SPEED,4,:EVASION,4], user, target)
+    end
+end

@@ -170,3 +170,16 @@ class PokeBattle_Move_ < PokeBattle_StatUpDownMove
         @statDown = [:SPEED,6]
     end
 end
+
+#===============================================================================
+# Decreases the user's Sp. Def.
+# Increases the user's Sp. Atk by 1 step, and Speed by 2 steps.
+# (Shed Coat)
+#===============================================================================
+class PokeBattle_Move_5A2 < PokeBattle_StatUpDownMove
+    def initialize(battle, move)
+        super
+        @statUp   = [:SPEED, 3, :SPECIAL_ATTACK, 3]
+        @statDown = [:SPECIAL_DEFENSE, 2]
+    end
+end
