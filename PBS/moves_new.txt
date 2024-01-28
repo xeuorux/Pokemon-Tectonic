@@ -116,411 +116,411 @@
 1115,PULVERIZE,Pulverize,5D8,75,NORMAL,Physical,100,5,100,NearOther,0,CanProtect;CanMirrorMove;Punch,"The user pulverizes the target with both its fists. This raises the user's Attack.",MEGAPUNCH
 1116,PUMMEL,Pummel,01C,40,NORMAL,Physical,100,15,100,NearOther,0,CanProtect;CanMirrorMove;Punch,"The user warms up by treating the target as a punching bag, damaging them and raising Attack by two steps.",MEGAPUNCH
 1117,PALEBLADE,Pale Blade,Basic,90,NORMAL,Physical,100,12,0,NearOther,0,CanProtect;CanMirrorMove;VeryHighCriticalHitRate;Blade,"The target is cut by a clean slice. Critical hits four times as often.",SLASH
-1119,SPELLBIND,Spellbind,Dizzy,0,FAIRY,Status,100,10,0,NearOther,0,CanProtect;CanMagicCoat;CanMirrorMove,"Dizzies the target by putting them under a magical spell.",CHARM
-1120,AIRSTRIKE,Air Strike,0FA,90,FLYING,Physical,100,15,0,NearOther,0,CanProtect;CanMirrorMove,"A reckless charge attack from the air. It also damages the user by 25% of the damage dealt.",BRAVEBIRD
-1121,TERRAFORM,Terraform,538,70,ROCK,Special,100,12,0,AllNearOthers,0,CanProtect;CanMirrorMove,"Churns nearby rocks, dealing damage to nearby Pokémon and removing hazards from both sides.",
-1122,SEERSTRIKE,Seer Strike,0A5,90,PSYCHIC,Physical,0,15,0,NearOther,0,CanProtect;CanMirrorMove,"The user perfectly predicts the target's future location, then strikes. It lands without fail.",ZENHEADBUTT
-1123,RAKE,Rake,Basic,65,BUG,Physical,100,20,0,NearOther,0,CanProtect;CanMirrorMove;Blade,"The user rakes the target with sharp claws.",FURYCUTTER
-1124,RUPTURESPRING,Rupture Spring,16F,85,WATER,Special,100,12,0,NearOther,0,CanProtect;CanMirrorMove,"Creates a violent spring beneath enemies, or a healing one beneath allies.",WATERPULSE
-1125,SPATTERINGRAM,Spattering Ram,5E8,60,WATER,Physical,100,20,30,NearOther,0,CanProtect;CanMirrorMove,"The user rams the target like a ship. It has a 30% chance to lower Defense.",
-1126,BLOSSOM,Blossom,020,40,GRASS,Special,100,30,100,NearOther,0,CanProtect;CanMirrorMove,"Flowers blooms with intensity, damaging the target and raising the user's Sp. Atk by two steps.",GRASSPLEDGE
-1127,ENERGYBALL,Energy Ball,5DC,90,GRASS,Special,100,15,10,NearOther,0,CanProtect;CanMirrorMove,"The user attacks with the bursting power of nature. It has a 10% chance to raise user's Sp. Atk.",ENERGYBALL
-1128,TERADRAIN,Tera Drain,14F,100,GRASS,Special,50,12,0,NearOther,0,CanProtect;CanMirrorMove,"A nutrient-draining attack. The user's HP is restored by 75% of the damage taken by the target.",GIGADRAIN
-1129,MENDINGSPRING,Mending Spring,0DA,40,WATER,Special,100,12,0,NearOther,0,CanProtect;CanMirrorMove,"The user opens a spring to blast the target, also forming an Aqua Ring around themselves.",WATERGUN
-1130,INERTIASHOCK,Inertia Shock,53B,90,ELECTRIC,Physical,100,10,10,NearOther,0,CanProtect;CanMirrorMove,"Deals 50% more damage if faster than the target. Lowers the user's Speed.",VOLTTACKLE
-1131,GEYSER,Geyser,53E,120,WATER,Special,100,5,0,NearOther,0,CanProtect;CanMirrorMove,"The user propels a geyser of water at the target. Lowers the user's Sp. Atk and Sp. Def by two steps each.",WATERSPOUT
-1132,HYPOTHERMIATE,Hypothermiate,53A,80,ICE,Special,100,12,100,NearOther,0,CanProtect;CanMirrorMove,"For the rest of the round, the target's healing is reversed.",
-1133,FROSTBARB,Frost Barb,5E8,65,ICE,Physical,100,20,20,NearOther,0,CanProtect;CanMirrorMove,"The user jabs the target with a sharp icicle. It has a 20% chance to lower Defense.",
-1134,ICECALIBUR,Icecalibur,5E8,80,ICE,Physical,100,20,30,NearOther,0,CanProtect;CanMirrorMove;Blade,"The user slashes the target with ice like a sword. It has a 30% chance to lower Defense.",ICESHARD
-1135,SUPERCOOL,Supercool,Frostbite,100,ICE,Special,50,5,100,NearOther,0,CanProtect;CanMirrorMove,"The user overwhelmes the target with a frigid ray, frostbiting it.",
-1136,HUNTDOWN,Hunt Down,099,1,FLYING,Physical,100,10,0,NearOther,0,CanProtect;CanMirrorMove,"The user chases the target and strikes it from above. It does more damage the faster the user is.",
-1137,DIVEBOMB,Dive Bomb,0C9,125,FLYING,Physical,100,10,0,NearOther,0,CanProtect;CanMirrorMove,"The user soars up high, then strikes on the second turn by dive bombing the target.",FLY
-1138,STRAFE,Strafe,Basic,95,FLYING,Physical,100,15,0,NearOther,0,CanProtect;CanMirrorMove,"The user attacks the target while dashing skillfully past it.",ACROBATICS
-1139,SWARMBURST,Swarm Burst,0E0,300,BUG,Physical,100,5,0,AllNearOthers,0,CanProtect;CanMirrorMove,"The user explodes to inflict damage on those around it. The user faints upon using this move.",EXPLOSION
-1140,DIFFUSEPULSE,Diffuse Pulse,Basic,45,NORMAL,Special,100,30,0,NearOther,0,CanProtect;CanMirrorMove;Pulse,"The user shoots a pulse of diffuse energy at the target.",SIMPLEBEAM
-1141,PARTICLEPULSE,Particle Pulse,Basic,75,NORMAL,Special,100,20,0,NearOther,0,CanProtect;CanMirrorMove;Pulse,"The user shoots a pulse of uncharged particles at the target.",STOREDPOWER
-1142,STELLARATE,Stellarate,0A5,95,NORMAL,Special,0,15,0,AllNearFoes,0,CanProtect;CanMirrorMove,"A barrage of star-shaped rays are shot at the opposing team, never missing.",SWIFT
-1143,PILFER,Pilfer,539,40,DARK,Physical,100,25,0,NearOther,0,CanProtect;CanMirrorMove,"The user attacks and steals the foe's held Berry or Gem. It can't steal if the user holds an item.",THIEF
-1144,TEASE,Tease,Leech,60,DARK,Special,100,20,20,NearOther,0,CanProtect;CanMirrorMove;Sound,"The user bullies the target, causing mental damage. This has a 20% chance to leech.",
-1145,SCAM,Scam,15D,70,DARK,Special,100,10,0,NearOther,-1,CanProtect;CanMirrorMove,"The user steals the target's stat boosts, and then attacks. Goes last.",SNARL
-1146,DARKALLURE,Dark Allure,Leech,90,DARK,Special,100,15,10,NearOther,0,CanProtect;CanMirrorMove,"The user strikes the target with dark energy. It has a 10% chance to leech.",SNARL
-1147,PLANTDOUBT,Plant Doubt,Leech,20,DARK,Special,100,15,100,NearOther,0,CanProtect;CanMirrorMove,"The user entangles the target's mind with dark thoughts, leeching it.",
-1148,PROFANE,Profane,Leech,100,DARK,Special,50,5,100,NearOther,0,CanProtect;CanMirrorMove,"The user invades deep into the target's mind, leeching it.",SNARL
-1149,SHRED,Shred,509,55,DRAGON,Physical,100,12,0,NearOther,0,CanProtect;CanMirrorMove,"The user attacks with overwhelming power, ignoring positive stat changes and abilities.",DRAGONCLAW
-1150,ROLLINGBOULDER,Rolling Boulder,53F,140,ROCK,Physical,50,10,0,NearOther,-1,CanProtect;CanMirrorMove,"If this move misses, the target is forced to switch out. Always goes last.",SMACKDOWN
-1151,MINDWARP,Mind Warp,Dizzy,80,PSYCHIC,Special,100,12,20,NearOther,0,CanProtect;CanMirrorMove,"The target's psyche is attacked directly. It has a 20% chance to dizzy.",PSYCHIC
-1152,SQUALLDART,Squall Dart,Flinch,60,FLYING,Special,100,12,30,NearOther,0,CanProtect;CanMirrorMove;Wind,"The user strikes the target with a sudden wind. It has a 40% chance to flinch the target.",
-1153,MIASMA,Miasma,5EF,90,POISON,Special,100,15,20,NearOther,0,CanProtect;CanMirrorMove;Wind,"The user envelops the target in a foul wind. It has a 20% chance to lower Sp. Def.",ACIDSPRAY
-1154,VENOMORTAR,Venomortar,Poison,100,POISON,Physical,50,5,100,NearOther,0,CanProtect;CanMirrorMove,"The user blasts a bundle of venom at the target, poisoning it.",
-1155,WARDPRESS,Ward Press,540,80,FAIRY,Special,100,10,0,NearOther,0,CanProtect;CanMirrorMove,"The user attacks with its wards, dealing damage based on the user's Sp. Def stat.",FAIRYWIND
-1156,ADRENALASH,Adrenalash,5DC,90,FIGHTING,Special,100,12,20,NearOther,0,CanProtect;CanMirrorMove,"The user forms their excitement into a lash with a 10% chance of raising the user's Sp. Atk.",FOCUSBLAST
-1157,EARTHSPLITTER,Earthsplitter,50F,130,GROUND,Physical,100,10,0,NearOther,0,CanProtect;CanMirrorMove,"The user cracks the earth under the target with a massive strike. Lowers the user's Attack by four steps.",FISSURE
-1158,UPINFLAMES,Up In Flames,541,80,FIRE,Special,100,10,0,NearOther,0,CanProtect;CanMirrorMove,"The user surrounds the target with fire which also destroys any 'clothing' items it's holding.",INCINERATE
-1159,PROPELLANT,Propellant,542,105,FIRE,Physical,100,10,100,NearOther,0,CanProtect;CanMirrorMove,"The user explodes itself into the target. The target is harmed, but also their Speed is raised.",FLAMECHARGE
-1160,PSYCHOSCISSION,Psychoscission,Basic,90,PSYCHIC,Physical,100,10,0,NearOther,0,CanProtect;CanMirrorMove;HighCriticalHitRate;Blade,"The user cuts using scissor-like blades of psychic energy. Critical hits twice as often.",PSYCHOCUT
-1161,CHILL,Chill,Frostbite,0,ICE,Status,100,12,0,NearOther,0,CanProtect;CanMagicCoat;CanMirrorMove,"The user lowers the target's body temperature, afflicting it with frostbite.",
-1162,GLITTERBOMB,Glitter Bomb,Basic,45,FAIRY,Physical,100,25,0,NearOther,0,CanProtect;CanMirrorMove,"The user chucks a party favor which explodes in the target's face.",MAGNETBOMB
-1163,FAIRPLAY,Fair Play,546,65,FAIRY,Physical,100,15,0,NearOther,0,CanProtect;CanMirrorMove;Blade,"The user attacks the target with just force. Guaranteed critical hit on foes with boosted stats.",PLAYROUGH
-1164,HUMBLE,Humble,546,85,FAIRY,Physical,100,10,0,NearOther,0,CanProtect;CanMirrorMove,"The user attempts to humble the target, guaranteeing a critical hit on foes with boosted stats.",SPIRITBREAK
-1165,POISONSPIKES,Poison Spikes,104,0,POISON,Status,0,15,0,FoeSide,0,CanMagicCoat,"The user lays poison spikes on the foe's side. One layer hurts switched in foes, two layers poisons.",TOXICSPIKES
-1166,ENVENOM,Envenom,Poison,0,POISON,Status,100,30,0,NearFoe,0,CanProtect;CanMagicCoat;CanMirrorMove,"Venom is strategically introduced into the target, poisoning it.",POISONSTING
-1167,CHAOSWHEEL,Chaos Wheel,547,80,NORMAL,Physical,100,10,45,NearOther,0,CanProtect;CanMirrorMove,"The user thrashes while infused with elements. It has a 15% chance each to poison, dizzy, or leech.",FIERYWRATH
-1168,MINDLINK,Mind Link,549,0,PSYCHIC,Status,0,30,0,User,0,CanSnatch,"The user syncs its mind with its teammates, raising the Sp. Atk of itself and its allies by two steps.",CONFUSION
-1169,BULLETCHARGE,Bullet Charge,5E0,60,STEEL,Physical,100,15,30,NearOther,0,CanProtect;CanMirrorMove,"The user uses gunpowder to rocket at its foe. It has a 30% chance to raise its Speed.",BULLETPUNCH
-1170,EVERNALIZE,Evernalize,096,140,NORMAL,Special,100,12,0,NearOther,0,CanProtect;CanMirrorMove,"The user draws power to attack by using a held Berry. The Berry used determines its type.",NATURALGIFT
-1171,SPOOKYSNUGGLING,Spooky Snuggling,10D,0,GHOST,Status,100,5,0,NearOther,0,CanProtect;CanMirrorMove,"The user harnesses its jealousy to attack the opponent with ghostly hugs, cursing them.",
-1172,BULLETTRAIN,Bullet Train,5E0,90,STEEL,Physical,100,15,10,NearOther,0,CanProtect;CanMirrorMove,"The user becomes a pain train. It has a 10% chance to raise the user's Speed.",HEAVYSLAM
-1173,POISONIVY,Poison Ivy,Poison,0,GRASS,Status,100,30,0,NearOther,0,CanProtect;CanMagicCoat;CanMirrorMove,"The target is irritated by allergenic plants, poisoning it.",POISONPOWDER
-1174,ANESTHETIZE,Anesthetize,Numb,0,GRASS,Status,100,12,0,NearOther,0,CanProtect;CanMagicCoat;CanMirrorMove,"The user applies anesthetic substances, numbing the target.",STUNSPORE
-1175,DRAGBENEATH,Drag Beneath,0CF,75,WATER,Physical,100,10,0,NearOther,0,CanProtect;CanMirrorMove,"The user pulls the target under the waves, trapping and damaging it for three turns.",WRAP
-1176,DAZZLE,Dazzle,045,0,NORMAL,Status,100,30,0,AllNearFoes,0,CanProtect;CanMagicCoat;CanMirrorMove,"The user dazzles nearby foes with light or sound. Their Sp. Atk is lowered by two steps.",FLASH
-1177,SMIRK,Smirk,046,0,NORMAL,Status,100,25,0,AllNearFoes,0,CanProtect;CanMagicCoat;CanMirrorMove,"The user smirks with confidence. The Sp. Def of nearby enemies is reduced.",SCARYFACE
-1178,STOREFUEL,Store Fuel,54E,0,FIRE,Status,0,15,0,User,0,CanSnatch,"The user conserves for future attacks. This raises its Sp. Atk, Sp. Def, and accuracy by two steps each.",
-1179,NULLPULSE,Null Pulse,Numb,85,NORMAL,Special,100,12,30,NearOther,0,CanProtect;CanMirrorMove;Pulse,"The target is struck by a pulse of negative energy. It has a 30% chance to numb.",WEATHERBALL
-1180,SLAY,Slay,54F,90,STEEL,Physical,100,12,0,NearOther,0,CanProtect;CanMirrorMove;Blade,"The user slashes at the target with a steel blade. Super effective versus Dragon-types.",SACREDSWORD
-1181,NERVEBLOCK,Nerve Block,Numb,0,FIGHTING,Status,100,12,0,NearOther,0,CanProtect;CanMagicCoat;CanMirrorMove,"The user strikes the target's pressure points, numbing it.",
-1182,STUNNINGCURL,Stunning Curl,550,0,BUG,Status,0,3,0,User,4,,"Halves attack damage taken this turn. Numbs any attackers. Fails if used successively.",DEFENSECURL
-1183,FLAMESPIKES,Flame Spikes,551,0,FIRE,Status,0,15,0,FoeSide,0,CanMagicCoat,"The user lays burning spikes on the foe's side. One layer hurts switched in foes, two layers burns.",
-1184,DROPKICK,Drop Kick,0FA,80,FIGHTING,Physical,0,20,100,NearFoe,0,CanProtect;CanMirrorMove;Kicking,"The user drops onto the target with a kick, dealing 25% recoil to self.",JUMPKICK
-1185,MULTISTRIKE,Multi-strike,185,14,NORMAL,Physical,100,30,0,NearOther,0,CanProtect;CanMirrorMove,"The target is hit two to five times in a row. Inflicts physical or special damage based on the user's stats.",
-1186,PLANETCRACKER,Planetcracker,0FC,200,ROCK,Physical,50,10,0,NearOther,0,CanProtect;CanMirrorMove,"The user slams itself into the target with absurd force, taking 50% recoil.",
-1187,SMUSH,Smush,5E8,40,BUG,Physical,100,15,20,NearOther,0,CanProtect;CanMirrorMove,"Avenging bugs everywhere, the user crushes the target. It has a 20% chance to lower their Defense stat.",
-1188,ACIDBATH,Acid Bath,03C,110,POISON,Special,100,5,0,NearOther,0,CanProtect;CanMirrorMove,"The user and target bathe in acid. Lowers the user's Defense and Sp. Def by two steps each.",ACIDSPRAY
-1189,STINGINGJEALOUSY,Stinging Jealousy,553,70,POISON,Physical,100,12,100,AllNearFoes,0,CanProtect;CanMirrorMove,"Attacks with energy from jealousy. All opposing Pokémon with stat boosts get poisoned.",POISONSTING
-1190,STANDTOGETHER,Stand Together,554,0,FIGHTING,Status,0,30,0,User,0,CanSnatch,"The user holds fast with its teammates, raising the Defense of itself and its allies by three steps.",
-1191,SYMBIOSIS,Symbiosis,555,0,GRASS,Status,0,30,0,User,0,CanSnatch,"The user calms itself and its teammates, raising the Sp. Def of itself and its allies by three steps.",
-1192,TRICKYTOXINS,Tricky Toxins,121,95,POISON,Special,100,12,0,NearOther,0,CanProtect;CanMirrorMove,"Turns the foe's power against it, dealing damage using the target's Sp. Attack stat.",VENOSHOCK
-1193,RANSACK,Ransack,0F1,60,NORMAL,Special,100,20,0,NearOther,0,CanProtect;CanMirrorMove,"The user skillfully blasts the target, then steals their item. Items stolen from wild Pokémon are stored.",
-1194,TRAPJAW,Trap Jaw,557,85,GRASS,Physical,100,12,0,NearOther,0,CanProtect;CanMirrorMove;Biting,"Lures an enemy into its jaws, draining 2/3 of damage dealt if they hit the user this turn.",
-1195,CAUSTICPUNCH,Caustic Punch,0F5,65,POISON,Physical,100,15,0,NearOther,0,CanProtect;CanMirrorMove;Punch,"The user strikes with an acidic punch that destroys Gems and Berries.",
-1196,DOLLSTITCH,Doll Stitch,558,0,GHOST,Status,0,10,0,UserOrNearOther,0,CanProtect;CanMagicCoat,"The user forces itself or the target to make a substitute by turning it into a doll.",
-1197,SEVER,Sever,Basic,90,DARK,Physical,100,10,0,NearOther,0,CanProtect;CanMirrorMove;HighCriticalHitRate;Blade,"The user hacks at the target with great violence. Critical hits twice as often.",NIGHTSLASH
-1198,DEADEND,Dead End,080,65,GHOST,Special,100,10,0,NearOther,0,CanProtect;CanMirrorMove,"If the target's HP is half or less, this attack will hit with double the power.",HEX
-1199,PHANTOMGATE,Phantom Gate,53E,120,GHOST,Special,100,5,0,NearOther,0,CanProtect;CanMirrorMove,"The user opens its soul to unleash massive energy. This lowers the user's Sp. Atk and Sp. Def.",OMINOUSWIND
-1200,FRESHSTART,Fresh Start,55B,0,NORMAL,Status,0,12,0,NearOther,0,CanSnatch,"The user reinvigorates itself, healing to full. Only works the first turn the user is in battle.",RECOVER
-1201,LATCHON,Latch On,Leech,0,BUG,Status,100,10,0,NearOther,0,CanProtect;CanMagicCoat;CanMirrorMove,"Small bugs swarm the target, causing it to become leeched.",INFESTATION
-1202,GALLINGSPIT,Galling Spit,Poison,80,DRAGON,Special,100,12,30,NearOther,0,CanProtect;CanMirrorMove,"The user spits venom at the target. It has a 30% chance to poison.",ACIDSPRAY
-1203,CRUELTY,Cruelty,07F,65,DRAGON,Physical,100,10,0,NearOther,0,CanProtect;CanMirrorMove,"The user crushes the target with evil intent. This deals double damage if the target has a status condition.",CRUSHCLAW
-1204,SLAMSHUT,Slam Shut,0CF,75,WATER,Physical,100,12,0,NearOther,0,CanProtect;CanMirrorMove,"The target is crushed in the user's shell or claws, trapping and damaging it for three turns.",CLAMP
-1205,MAELSTROM,Maelstrom,0CF,75,WATER,Special,100,12,0,NearOther,0,CanProtect;CanMirrorMove,"The foe is pulled into a huge whirlpool, trapping and damaging it for three turns.",WHIRLPOOL
-1206,CRIMSONSTORM,Crimson Storm,0CF,75,FIRE,Special,100,12,0,NearOther,0,CanProtect;CanMirrorMove,"The foe is engulfed in a firestorm, trapping and damaging it for three turns.",FIRESPIN
-1207,VINEBIND,Vinebind,0CF,50,GRASS,Physical,100,15,0,NearOther,0,CanProtect;CanMirrorMove,"Binds the foe with vines, trapping and damaging it for three turns.",GRASSKNOT
-1208,BLACKOUT,Blackout,562,90,DARK,Special,100,12,0,NearOther,0,CanProtect;CanMirrorMove,"The user removes the energy and light around the target. Super effective vs Electric-types.",DARKVOID
-1209,HOLLYCHARM,Holly Charm,563,90,GRASS,Special,100,12,0,NearOther,0,CanProtect;CanMirrorMove,"The user attacks the target with the power of a warding charm. Super effective vs Ghost-types.",MAGICALLEAF
-1210,SCUFFLE,Scuffle,599,55,FIGHTING,Physical,100,25,0,NearOther,0,CanProtect;CanMirrorMove,"The user grabs the target, slamming both of them into the ground. The user takes 20% recoil.",SUBMISSION
-1211,BEDFELLOWS,Bedfellows,564,0,NORMAL,Status,0,5,0,NearFoe,0,CanProtect;CanMagicCoat;CanMirrorMove,"The user and the target both fall asleep, fully restoring their HP and healing any status conditions.",REST
-1212,LOUNGE,Lounge,565,0,NORMAL,Status,0,5,0,User,-1,CanSnatch,"The user lounges around with decadent laziness, restoring its HP by 66%. This move always goes last.",SLACKOFF
-1213,THUNDERCLAP,Thunderclap,Flinch,80,ELECTRIC,Physical,100,15,40,NearOther,0,CanProtect;CanMirrorMove,"The user jabs the target with electric charges. It has a 40% chance to make the target flinch.",SPARK
-1214,SINISTERSPINES,Sinister Spines,116,70,GRASS,Physical,100,5,0,NearOther,1,CanProtect;CanMirrorMove,"This move enables the user to attack first. It fails if the target is not readying an attack, however.",SPIKECANNON
-1215,MIRAGEFLARE,Mirage Flare,Basic,120,FLYING,Special,100,5,0,AllNearOthers,0,CanProtect;CanMirrorMove,"The user creates a storm using its flaming body, damaging everything around it.",
-1216,HAREHEROICS,Hare Heroics,566,1,NORMAL,Physical,100,5,0,NearOther,0,CanProtect;CanMirrorMove,"Deals more damage the less HP the user has. After attacking, the user switches out.",
-1217,RIPTURN,Rip Turn,568,70,WATER,Physical,100,5,100,NearOther,0,CanProtect;CanMirrorMove,"The user rips the target, lowering their Defense by two steps. After attacking, the user switches out.",
-1218,REDHOTRETREAT,Red-Hot Retreat,567,0,FIRE,Status,0,3,0,User,4,,"Protects the user from attacks. Also burns any attacker who specially attacks the user.",WITHDRAW
-1219,FROSTSPIKES,Frost Spikes,569,0,ICE,Status,0,15,0,FoeSide,0,CanMagicCoat,"The user lays frozen spikes on the foe's side. One layer hurts switched in foes, two layers frostbites.",
-1220,SANDTOSS,Sand Toss,Burn,40,GROUND,Special,100,30,10,NearOther,0,CanProtect;CanMirrorMove,"The user tosses hot desert sand on the target. It has a 10% chance to burn.",SCORCHINGSANDS
-1221,DUSTDEVIL,Dust Devil,Burn,60,GROUND,Special,100,20,20,NearOther,0,CanProtect;CanMirrorMove;Wind,"The user whips up a hot desert twister to attack the target. It has a 20% chance to burn.",SCORCHINGSANDS
-1222,DEVOURINGDUST,Devouring Dust,0CF,110,GROUND,Special,100,15,0,NearOther,0,CanProtect;CanMirrorMove,"The target is consumed by a desert storm, trapping and damaging it for three turns.",SANDTOMB
-1223,PUZZLEROOM,Puzzle Room,51A,0,FAIRY,Status,0,10,0,BothSides,0,CanMirrorMove,"The user creates a puzzling area in which Pokémon's base Attack and Sp. Atk are swapped.",MAGICROOM
-1224,SHIVER,Shiver,Frostbite,0,GHOST,Status,100,12,0,NearOther,0,CanProtect;CanMagicCoat;CanMirrorMove,"The user drains heat from the air around the target, afflicting it with frostbite.",
-1225,FRIGIDJEALOUSY,Frigid Jealousy,537,70,ICE,Special,100,12,100,AllNearFoes,0,CanProtect;CanMirrorMove,"Attacks with emotion from jealousy. All opposing Pokémon with stat boosts get frostbitten.",
-1226,CORECOLLAPSE,Core Collapse,0FC,100,PSYCHIC,Special,100,10,0,AllNearOthers,1,CanProtect;CanMirrorMove,"Astral energy explodes around the target. This move always goes first. The user also takes 50% recoil.",EXPANDINGFORCE
-1227,PATTERNRELEASE,Pattern Release,56C,35,PSYCHIC,Physical,100,10,0,RandomNearFoe,0,CanProtect;CanMirrorMove,"Unveiling its ears, the released psychic power causes the user to attack 2-5 times for three turns.",FURYSWIPES
-1228,THUNDERBELLY,Thunder Belly,56B,200,ELECTRIC,Physical,100,10,0,AllNearFoes,0,CanProtect;CanMirrorMove,"The user takes an entire grid of power into its belly to slam the target. The user takes 100% recoil.",BODYSLAM
-1229,VOLLEYSTANCE,Volley Stance,56D,0,STEEL,Status,0,10,0,User,0,CanSnatch,"The user prepares its dual cannons. Until switch out, each special attack hits twice.",FOCUSENERGY
-1230,ONEIROMANCY,Oneiromancy,56E,0,PSYCHIC,Status,0,10,0,User,0,CanSnatch,"This move raises all the user's stats by two steps. Can only be used while asleep.",COSMICPOWER
-1231,JOKEJOLT,Joke Jolt,0BA,60,ELECTRIC,Special,100,10,100,NearOther,0,CanProtect;CanMirrorMove,"The target is pranked by an electric jolt. They are taunted and unable to use status moves for three turns.",THUNDERSHOCK
-1232,PHOTONEDGE,Photon Edge,Numb,85,ELECTRIC,Physical,100,15,50,NearOther,0,CanProtect;CanMirrorMove;HighCriticalHitRate,"The user slices with claws of light that have a 50% chance to numb. Critical hits twice as often.",
-1233,FRANTICFANG,Frantic Fang,571,60,NORMAL,Physical,100,10,0,NearOther,0,CanProtect;CanMirrorMove;Biting,"Channeling fear, the user bites the target. Deals double damage if the user is below half health.",HYPERFANG
-1234,TRANQUILTUNE,Tranquil Tune,572,0,FAIRY,Status,100,10,0,NearOther,0,CanProtect;CanMirrorMove;Sound,"The target is put to sleep, and the user's Attack is raised. Fails unless the target is at or below half health.",SING
-1235,SUGARBALL,Sugar Ball,08D,1,FAIRY,Special,100,5,0,NearOther,0,CanProtect;CanMirrorMove,"The user spins sugar into a ball launched at the target. The slower the user, the greater the damage.",
-1236,SILTSURGE,Silt Surge,044,110,WATER,Special,100,12,100,AllNearFoes,0,CanProtect;CanMirrorMove,"The user attacks with a wave of murky water, which hits all near foes and lowers their Speed by two steps.",MUDDYWATER
-1237,PLUNDER,Plunder,588,90,STEEL,Physical,100,15,0,NearOther,0,CanProtect;CanMirrorMove,"The user attacks the target with a sword. If it faints, tons of money is earned after the battle.",
-1238,ROYALTRIBUTE,Royal Tribute,128,90,DARK,Special,100,15,0,NearOther,0,CanProtect;CanMirrorMove,"The user demands tribute from the target. Much money is earned after the battle.",
-1239,SACREDLOTS,Sacred Lots,589,25,DRAGON,Physical,100,15,0,NearOther,0,CanProtect;CanMirrorMove,"The user makes an offering, then attacks two to five times. Money is earned for each hit.",
-1240,CHACHING,Cha-ching,128,90,NORMAL,Physical,100,15,0,NearOther,0,CanProtect;CanMirrorMove,"The user attacks with the full force of The Market. Much money is earned after the battle.",
-1241,LEYLINEBURST,Leyline Burst,573,110,GROUND,Special,100,10,0,NearOther,0,CanProtect;CanMirrorMove,"Energy is sent through a conduit, erupting under the target. This move is also Psychic-type.",EARTHPOWER
-1242,HARDPLACE,Hard Place,574,1,ROCK,Physical,0,10,0,NearOther,0,CanProtect;CanMirrorMove,"The user slams the target into a nearby hard object. Increases power the higher the Defense of any ally.",HEADSMASH
-1243,DRAGONRIDE,Dragon Ride,575,0,DRAGON,Status,0,5,0,NearAlly,0,,"Doubles target ally's Attack and Speed. However, if the user faints, so too does that ally.",COACHING
-1244,LIKEWILDFIRE,Like Wildfire,530,50,FIRE,Special,0,30,0,NearOther,0,CanSnatch;Sound,"The user roars with the force of a volcano, raising the Attack of itself and allies.",HOWL
-1245,BLAZINGSPEED,Blazing Speed,Basic,80,FIRE,Physical,100,5,0,NearOther,2,CanProtect;CanMirrorMove,"The user charges the target at blazing-fast speed. This attack always goes before any other move.",FLAMECHARGE
-1246,ARCHEANDELUGE,Archean Deluge,576,120,WATER,Special,100,5,0,NearOther,0,CanProtect;CanMirrorMove,"Summons rain for five turns on the first turn, then overwhelms the foe with water on the second.",SURF
-1247,SHIMMERINGHEAT,Shimmering Heat,577,90,FIRE,Special,100,10,0,AllNearFoes,0,CanProtect;CanMirrorMove;Wind,"The user attacks with heat, creating an obscuring wall of haze. The user takes 33% less damage this turn.",HEATWAVE
-1248,BREATHELIFE,Breathe Life,578,0,GRASS,Status,0,1,0,None,0,,"Restores a fainted Grass-type party member to full HP. Only one use per battle.",GRASSYTERRAIN
-1249,SPECTRALTONGUE,Spectral Tongue,579,0,GHOST,Status,100,12,0,NearOther,0,CanProtect;CanMagicCoat;CanMirrorMove,"The user licks the target, numbing them, or cursing them if they're already numbed.",LICK
-1250,VICIOUSCLEANING,Vicious Cleaning,580,80,NORMAL,Special,100,10,0,NearOther,0,CanProtect;CanMirrorMove,"The user flings the dirty oil on its fur. It transfers any status condition to the target.",ACIDSPRAY
-1251,SEDATINGDUST,Sedating Dust,581,0,BUG,Status,100,3,0,NearOther,0,CanProtect;CanMagicCoat;CanMirrorMove,"If the user is faster than the target, puts the target to sleep, then minimizes the user's Speed stat.",POISONPOWDER
-1252,ODDROOM,Odd Room,582,0,PSYCHIC,Status,0,10,0,BothSides,0,CanMirrorMove,"The user creates an odd area in which Pokémon's offensive and defensive stats are swapped.",MAGICROOM
-1253,MULCHMEAL,Mulch Meal,583,0,GRASS,Status,0,10,0,User,0,CanSnatch,"The user eats decaying leaves, restoring its HP by 50% and raising its Speed.",RECOVER
-1254,GUIDINGAROMA,Guiding Aroma,584,0,BUG,Status,0,12,0,NearAlly,0,,"The user raises all of the target's attacking and defensive stats.",AROMATICMIST
-1255,FLAREWITCH,Flare Witch,585,0,FIRE,Status,0,10,0,User,0,CanSnatch,"Raises Sp. Atk by two steps. Until switch out, the user's attacks spread to hit all nearby foes.",
-1256,WHIPTRANCE,Whip Trance,55F,120,FIGHTING,Special,100,10,0,NearOther,0,CanProtect;CanMirrorMove;HighCriticalHitRate,"The user relentlessly attacks with its whip-like hands for three turns. Critical hits twice as often.",
-1257,CRUELWHIPBLADE,Cruel Whipblade,104,30,GRASS,Physical,100,12,0,NearOther,0,CanProtect;CanMirrorMove;Blade,"The user flicks its thorns, dealing damage and setting a layer of poison spikes around the target.",
-1258,HONORLESSSTING,Honorless Sting,586,105,POISON,Physical,100,12,0,NearOther,0,CanProtect;CanMirrorMove,"The user uses venom that turns the target's body against it. Super effective vs Fighting-types.",POISONSTING
-1259,MURKYFOG,Murky Fog,050,85,POISON,Special,0,10,0,NearOther,0,CanProtect;CanMirrorMove,"The user attacks with a pitch black fog. All of the target's stat changes are returned to normal.",SMOKESCREEN
-1260,SLIMEBALL,Slimeball,18F,80,POISON,Special,100,12,0,NearOther,0,CanProtect;CanMirrorMove,"The user attacks with cloying slime, rendering the target's item sticky and unusable.",SLUDGEBOMB
-1261,AUTUMNBLAST,Autumn Blast,03C,75,GRASS,Special,100,12,0,NearOther,0,CanProtect;CanMirrorMove,"The user sheds its leaves to attack. This lowers the user's defensive stats by two steps each.",LEAFTORNADO
-1262,INCISION,Incision,58D,50,DARK,Physical,100,12,0,NearOther,0,CanProtect;CanMirrorMove;Blade,"The user prepares a precise cut. Always a critical hit, but lowers the user's Speed.",NIGHTSLASH
-1263,VIPERSHOCK,Vipershock,58A,80,POISON,Physical,100,5,0,NearOther,0,CanProtect;CanMirrorMove,"The user finishes off its prey. Power is tripled against poisoned targets.",POISONFANG
-1264,ONAROLL,On A Roll,58B,90,GROUND,Physical,100,15,0,NearOther,0,CanProtect;CanMirrorMove,"The user attacks while balled up. This counts as a usage of Fury Cutter, Rock Roll, or Snowball.",ROCKROLL
-1265,MACHFLIGHT,Mach Flight,58C,0,FLYING,Status,0,15,0,User,0,CanSnatch,"The user takes off at sonic speeds, raising its Speed by two steps and gaining the Flying type.",AGILITY
-1266,CALTROPARTS,Caltrop Arts,58E,0,DARK,Status,100,5,100,NearFoe,0,CanProtect;CanMirrorMove,"Defly sets a layer of damaging Spikes around the foe, then switches out.",PARTINGSHOT
-1267,CULL,Cull,58F,40,DARK,Special,100,10,0,NearOther,0,CanProtect;CanMirrorMove,"The user tries to pick off a weak target. After damage, if the target is below 1/4 HP, they instantly faint.",NIGHTSLASH
-1268,TRIPLETHREAT,Triple Threat,017,90,DRAGON,Special,100,10,60,NearOther,0,CanProtect;CanMirrorMove,"The user strikes with a simultaneous three-beam attack. It has a 20% chance each to numb, burn, or frostbite.",TRIATTACK
-1269,ERODINGFOAM,Eroding Foam,5E9,80,WATER,Special,100,20,100,NearOther,0,CanProtect;CanMirrorMove,"The user spews alkaline bubbles that melt the target, drastically lowering their Defense.",BUBBLEBEAM
-1270,COCODROP,Coco Drop,591,1,GRASS,Physical,100,12,0,NearOther,0,CanProtect;CanMirrorMove,"The user drops some heads from high up. The taller the user compared to the target, the greater the damage.",
-1271,LIGHTNINGSPEAR,Lightning Spear,5C8,90,ELECTRIC,Special,100,12,0,NearOther,0,CanProtect;CanMirrorMove,"Shoots a damaging spear at enemies, or a 4-step Speed-increasing electric charge at allies.",THUNDERBOLT
-1272,TARVOLLEY,Tar Volley,592,45,FIRE,Special,100,10,100,AllNearFoes,0,CanProtect;CanMirrorMove,"The user attacks twice with tar globs. If two targets, the hits spread. Reduces targets' Speed.",SMOKESCREEN
-1273,WAXINGLIGHT,Waxing Light,09E,50,FAIRY,Special,0,10,0,NearFoe,0,CanProtect;CanMirrorMove,"Strikes the target with lunar light, then summons moonglow for eight turns.",DAZZLINGGLEAM
-1274,HEATGYRE,Heat Gyre,0FF,50,FIRE,Physical,0,10,0,NearFoe,0,CanProtect;CanMirrorMove,"Spins into the target while emitting heat, then summons sunshine for eight turns.",FLAMEWHEEL
-1275,MIRRORSHIELD,Mirror Shield,593,0,STEEL,Status,0,3,0,User,4,,"Protects the user from attacks. Special attackers take 1/8th HP damage.",PROTECT
-1276,ROUGHTUMBLE,Rough & Tumble,594,100,NORMAL,Physical,100,10,0,NearOther,0,CanProtect;CanMirrorMove,"The user attacks by spreading its body wide. Its power doubles if Curl Up was used previously.",BODYSLAM
-1277,BUILTDIFFERENT,Built Different,595,0,FIGHTING,Status,0,15,0,User,0,CanSnatch,"The user flexes its rocky skin, raising its Attack and Defense and gaining the Rock type.",BULKUP
-1278,DEATHMARK,Death Mark,596,0,GHOST,Status,0,1,0,NearOther,0,CanMagicCoat;CanMirrorMove,"The target becomes unable to flee, and takes 50% more damage from all attacks.",MEANLOOK
-1279,BULWARK,Bulwark,597,0,FIGHTING,Status,0,3,0,UserSide,3,CanSnatch,"The user and its allies take 50% less attack damage this turn. Always fails if used in succession.",
-1280,SNOWYSORROWS,Snowy Sorrows,569,30,ICE,Special,100,12,0,NearOther,0,CanProtect;CanMirrorMove;Sound,"The user incants a snowy curse, dealing damage and setting a layer of frost spikes around the target.",PERISHSONG
-1281,INVITESUN,Invite Sun,59A,0,FIRE,Status,0,10,0,NearOther,0,CanProtect;CanMagicCoat;CanMirrorMove,"The user burns the target, then welcomes in sunshine for four turns.",SUNSHINE
-1282,INVITESAND,Invite Sand,59D,0,ROCK,Status,0,10,0,NearOther,0,CanProtect;CanMagicCoat;CanMirrorMove,"The user dizzies the target, then summons sandstorm for four turns.",SANDSTORM
-1283,INVITERAIN,Invite Rain,59B,0,WATER,Status,0,10,0,NearOther,0,CanProtect;CanMagicCoat;CanMirrorMove,"The user numbs the target, then welcomes in rain for four turns.",RAIN
-1284,INVITEHAIL,Invite Hail,59C,0,ICE,Status,0,10,0,NearOther,0,CanProtect;CanMagicCoat;CanMirrorMove,"The user frostbites the target, then welcomes in hail for four turns.",HAIL
-1285,HATEFULHAYMAKER,Hateful Haymaker,081,65,DARK,Physical,100,10,0,NearOther,-4,CanProtect;CanMirrorMove;Punch,"A punch that inflicts double the damage if the user has been hurt by the foe in the same turn.",SUCKERPUNCH
-1286,DEFIBRILLATE,Defibrillate,59E,0,ELECTRIC,Status,0,1,0,None,0,,"Restores a fainted party member to 1 HP.",ELECTRICTERRAIN
-1287,ABERRANTMOTE,Aberrant Mote,5EF,85,PSYCHIC,Special,100,12,100,NearOther,0,CanProtect;CanMirrorMove,"The user fires a dimensional mote, lowering the target's Sp. Defense.",LUSTERPURGE
-1288,SINGINGSTONE,Singing Stone,59F,85,ROCK,Special,100,12,100,NearOther,0,CanProtect;CanMirrorMove;Sound,"The user thrums ominously, lowering the target's Attack and Sp. Atk.",ECHOEDVOICE
-1289,THERMALDRAIN,Thermal Drain,0DD,80,ICE,Special,100,10,0,NearOther,0,CanProtect;CanMirrorMove,"Drains the heat from the target, restoring HP by half the damage taken by the target.",
-1290,SILVERSTORM,Silver Storm,102,50,ICE,Special,100,10,0,NearFoe,0,CanProtect;CanMirrorMove,"The user creates a nascent ice storm, attacking and causing hail for eight turns.",HAIL
-1291,SHEDCOAT,Shed Coat,5A2,0,ICE,Status,0,12,0,User,0,CanSnatch,"The user sheds excess covering, raising Sp. Atk and Speed by three steps, but lowering Sp. Def by two steps.",
-1292,FEATHERWARD,Feather Ward,5A1,0,STEEL,Status,0,15,0,FoeSide,0,CanMagicCoat,"The user lays a trap of sharp feathers around the foe. It hurts foes that switch into battle.",
-1293,HYPERJET,Hyper Jet,Basic,80,WATER,Physical,100,5,0,NearOther,2,CanProtect;CanMirrorMove,"The user swims at the target at blinding speed. This attack always goes before any other move.",AQUAJET
-1294,DUSTMACHPULSE,Dustmach Pulse,Basic,120,GROUND,Special,100,5,0,AllNearOthers,0,CanProtect;CanMirrorMove;Pulse,"The user whips up dirt at supersonic speeds, damaging everything around it.",SCORCHINGSANDS
-1295,RAMMINGSPEED,Ramming Speed,5A3,125,WATER,Physical,100,10,0,NearOther,0,CanProtect;CanMirrorMove,"The user rams its sharp face right into the target. Lowers the user's Speed by three steps.",LIQUIDATION
-1296,VOLATILETOXIN,Volatile Toxin,5A4,75,POISON,Physical,100,12,0,NearOther,0,CanProtect;CanMirrorMove,"The user injects an unstable toxin into the target. The next Ground-type attack they take deals double damage.",POISONJAB
-1297,RIGHTEOUSKICK,Righteous Kick,54B,70,FIGHTING,Physical,100,20,100,NearOther,0,CanProtect;CanMirrorMove;Kicking,"A kick that can also eliminate trapping and hazard moves. Also raises user's Speed.",
-1298,ROOTSHELTER,Root Shelter,5A5,0,GRASS,Status,0,3,0,User,4,,"Halves attack damage taken this turn. Leeches any attackers. Fails if used successively.",VINEBIND
-1299,DREAMFEAST,Dream Feast,0DE,60,PSYCHIC,Physical,100,12,0,NearOther,0,CanProtect;CanMirrorMove,"The user assaults its foe's dreams. It absorbs half the damage dealt, and doubles in power if the foe is asleep.",
-1300,CRUELKISS,Cruel Kiss,Leech,65,FAIRY,Special,100,10,100,NearOther,0,CanProtect;CanMagicCoat;CanMirrorMove,"Leeches the target by kissing them with its thin mouth.",DRAININGKISS
-1301,TYRANTSFIT,Tyrant's Fit,5A6,120,DRAGON,Physical,100,10,0,RandomNearFoe,0,CanProtect;CanMirrorMove,"The user throws a royal fit for three turns. Raises Speed if a target is knocked out by this move.",OUTRAGE
-1302,TRANSCENDENTENERGY,Transcendent Energy,5A7,0,DRAGON,Status,0,5,0,User,0,,"A two-turn move. The user channels insane amounts of energy the first turn, then transforms.",DAZZLINGGLEAM
-1303,TRASHTREASURE,Trash Treasure,5A8,0,POISON,Status,100,12,0,NearOther,0,CanProtect;CanMagicCoat;CanMirrorMove,"The target is given a Black Sludge, replacing their item if any. Their Sp. Def is lowered.",
-1304,PETALTEMPEST,Petal Tempest,Basic,95,GRASS,Special,100,12,0,AllNearOthers,0,CanProtect;CanMirrorMove;Wind,"The user stirs up a violent petal tempest and attacks everything around it.",PETALBLIZZARD
-1305,HEARTRHYTHM,Heart Rhythm,5A9,60,FAIRY,Special,100,20,0,NearOther,0,CanProtect;CanMirrorMove;Sound,"Power increases by 20 each time it's used in succession. User heals for half of damage dealt.",ROUND
-1306,SCALEGLINT,Scale Glint,5AA,40,DRAGON,Special,100,15,20,NearOther,0,CanProtect;CanMirrorMove,"The shine from scales damages the target. 20% chance to reduce their higher attacking stat.",DAZZLINGGLEAM
-1307,REFURBISH,Refurbish,5AB,0,STEEL,Status,0,15,0,User,0,CanSnatch,"The user economizes half of its weight, healing based on the weight lost.",AUTOTOMIZE
-1308,MYSTERYSEED,Mystery Seed,5AC,0,GRASS,Status,0,10,0,NearOther,0,CanProtect;CanMagicCoat;CanMirrorMove,"The target eats a strange seed. They become numbed if faster than the user, or leeched if slower.",LEECHSEED
-1309,DEPTHCHARGE,Depth Charge,0CB,120,WATER,Physical,100,10,0,NearOther,0,CanProtect;CanMirrorMove,"Diving deep on the first turn, the user rises and strikes with explosive strength on second.",DIVE
-1310,SCARRINGSWING,Scarring Swing,5E6,90,DARK,Physical,100,10,100,AllNearFoes,0,CanProtect;CanMirrorMove,"The user slashes all around them, creating deep scars. This lowers each target's Attack.",
-1311,HIVEMIND,Hive Mind,57A,0,BUG,Status,0,10,0,NearAlly,0,,"The user makes its ally perform the move in the user's first slot.",
-1312,INNOCENTMASQUE,Innocent Masque,0D0,0,FAIRY,Status,100,15,0,NearOther,1,CanProtect;CanMagicCoat;CanMirrorMove,"The target is taunted by a deceptive look. It can't use status moves this or next turn. This move always goes first.",PLAYNICE
-1313,DISSOLUTION,Dissolution,57B,0,POISON,Status,0,10,0,User,0,CanSnatch,"The user partially dissolves, raising its Sp. Def stat by five steps.",
-1314,LONGSHOT,Long Shot,57C,110,NORMAL,Physical,70,25,0,NearOther,0,CanProtect;CanMirrorMove,"Inflicts physical or special damage based on the user's stats. However, it's likely to miss.",
-1315,DRYHEAT,Dry Heat,57D,90,FIRE,Special,100,10,10,NearOther,0,CanProtect;CanMirrorMove,"The target is dried out and loses Water-type. Then, it bursts into flame from the heat.",
-1316,ICENINEWALL,Ice-Nine Wall,57E,0,ICE,Status,0,3,0,User,4,,"Protects the user from attacks. Also frostbites any attacker who physically attacks the user.",DEFENSECURL
-1317,VENOMGUARD,Venom Guard,57F,0,POISON,Status,0,3,0,User,4,,"Halves attack damage taken this turn. Poisons any attackers. Fails if used successively.",DEFENSECURL
-1318,PRANK,Prank,560,0,NORMAL,Status,100,15,0,NearOther,0,CanProtect;CanMagicCoat;CanMirrorMove,"The user pranks the target, surprising it and reducing its Sp. Atk and Sp. Def by two steps each.",SCARYFACE
-1319,GREYMIST,Grey Mist,587,0,POISON,Status,0,10,0,User,0,,"A Grey Mist covers the battlefield. For five turns, stats are reset at the end of each turn.",MIST
-1320,PATIENTBLADE,Patient Blade,508,0,BUG,Status,0,12,0,User,0,CanSnatch,"The user prepares its weapons, raising Attack by six steps but lowering Speed by six steps.",SWORDSDANCE
-1321,ARTOFWAR,Art of War,5AD,0,FIGHTING,Status,0,15,0,User,0,CanSnatch,"The user doubles its critical strike chance and raises its Attack and Defense by two steps each.",FOCUSENERGY
-1322,REVERBWARD,Reverb Ward,5AE,0,PSYCHIC,Status,0,3,0,User,4,,"Protects the user from damage this turn. It also lowers the Sp. Def of special attackers by four steps.",PROTECT
-1323,MOONGLOW,Moonglow,09E,0,FAIRY,Status,0,10,0,BothSides,0,,"Summons moonglow for eight turns, boosting Fairy-type attacks and heralding the Full Moon.",
-1324,ECLIPSE,Eclipse,09D,0,PSYCHIC,Status,0,10,0,BothSides,0,,"Summons eclipse for eight turns, boosting Psychic-type attacks and heralding the Total Eclipse.",
-1325,CAPTIVATINGSIGHT,Captivating Sight,59F,0,PSYCHIC,Status,0,5,0,NearFoe,0,,"Summons eclipse for eight turns. The target becomes obsessed with the sky, trapping it.",MIRACLEEYE
-1326,NIGHTCHILL,Night Chill,5B1,80,DARK,Special,100,12,100,NearOther,0,CanProtect;CanMirrorMove,"Damages the target's life force directly. During moonglow, the target also becomes frostbitten.",DARKVOID
-1327,CALAMITOUSSLASH,Calamitous Slash,5B2,80,DRAGON,Physical,100,10,100,NearOther,0,CanProtect;CanMirrorMove;Blade,"The user slashes the foe while menacing. During eclipse, the target also becomes burned.",DRAGONCLAW
-1328,TAKESHELTER,Take Shelter,5B3,0,STEEL,Status,0,5,0,User,0,CanSnatch,"The user heals itself for 1/2 of its max HP, and extends the current weather by 1 turn.",RECOVER
-1329,BEDTIME,Bed Time,Sleep,0,FAIRY,Status,100,1,0,NearOther,0,CanProtect;CanMagicCoat;CanMirrorMove,"The target is lulled to sleep. Can only be used during a Full Moon.",SING
-1330,SKYFALL,Sky Fall,5B5,130,FLYING,Special,100,5,0,NearOther,0,CanProtect;CanMirrorMove,"Attacks while clearing weather. This move fails in the absence of a weather.",
-1331,HEARTSTOPPER,Heartstopper,53A,90,DARK,Special,100,12,100,AllNearOthers,0,CanProtect;CanMirrorMove,"For the rest of the round, the healing of all damaged Pokemon is reversed.",GLARE
-1332,PSYSHIELDBASH,Psyshield Bash,01D,80,PSYCHIC,Physical,100,20,100,NearOther,0,CanProtect;CanMirrorMove,"Cloaking itself in psychic energy, the user slams into the target, raising the user's Defense by two steps.",ZENHEADBUTT
-1333,HEADLONGRUSH,Headlong Rush,03C,120,GROUND,Physical,100,5,0,NearOther,0,CanProtect;CanMirrorMove,"The user smashes into the target in a full-body tackle. This cuts the user's Defenses.",STOMPINGTANTRUM
-1334,IMPURITYBLAZE,Impurity Blaze,5B6,80,FIRE,Special,100,10,0,NearOther,0,CanProtect;CanMirrorMove,"If the target has a status condition, this deals double damage and heals every battler's status condition.",HEX
-1335,CEASELESSEDGE,Ceaseless Edge,13E,65,DARK,Physical,100,10,0,NearOther,0,CanProtect;CanMirrorMove;Blade,"The user slashes its shell blade, leaving spikes under the target if none have already been placed.",NIGHTSLASH
-1336,STONEAXE,Stone Axe,105,55,ROCK,Physical,100,10,0,NearOther,0,CanProtect;CanMirrorMove;Blade,"The user swings its stone axes. This leaves stone splinters floating around the target.",STONEEDGE
-1337,THREEFOLDVOLLEY,Threefold Volley,500,30,FIGHTING,Special,100,15,0,NearOther,0,CanProtect;CanMirrorMove;HighCriticalHitRate,"The user shoots three arrows made of Aura with extreme precision. Critical hits twice as often.",AURASPHERE
-1338,ESPERDIVE,Esper Dive,01F,80,PSYCHIC,Physical,100,10,100,NearOther,0,CanProtect;CanMirrorMove,"The user slashes the target with aura-enriched wings. This boosts the user's Speed by two steps.",SKYATTACK
-1339,FOXTROTFINALE,Foxtrot Finale,5B7,0,FIGHTING,Status,100,5,0,User,0,CanSnatch;Dance,"The user raises all of their stats by two steps. Fails unless a foe fainted last turn.",WORKUP
-1340,ICEBREAKER,Icebreaker,5B8,120,ROCK,Physical,100,10,0,NearOther,0,CanProtect;CanMirrorMove,"The user sweeps away hazards while charging. User also takes 33% recoil.",HEADSMASH
-1341,SCHEME,Scheme,5BA,0,NORMAL,Status,0,25,0,User,0,CanSnatch,"The user schemes to raise its Attack and Sp. Atk by two steps. During moonglow, also raises Speed by two steps.",NASTYPLOT
-1342,RAGINGFURY,Raging Fury,55F,135,FIRE,Physical,100,10,0,RandomNearFoe,0,CanProtect;CanMirrorMove,"The user rampages and attacks while spewing flames for three turns.",FLAREBLITZ
-1343,CHLOROBLAST,Chloroblast,510,150,GRASS,Special,100,5,100,NearOther,0,CanProtect;CanMirrorMove,"The user launches its amassed chlorophyll to inflict damage on the target. The user loses half its current HP.",SOLARBEAM
-1344,DIRECLAW,Dire Claw,Poison,85,POISON,Physical,100,15,50,NearOther,0,CanProtect;CanMirrorMove;HighCriticalHitRate,"The user lashes out with its claws. 50% chance to poison. Critical hits twice as often.",CROSSPOISON
-1345,SHININGSHELL,Shining Shell,5BB,0,STEEL,Status,0,3,0,User,4,,"Protects the user from damage this turn. It also lowers the Sp. Atk of special attackers by two steps.",PROTECT
-1346,SPIKYBURST,Spiky Burst,5BC,300,DARK,Physical,100,5,0,AllNearOthers,0,CanProtect;CanMirrorMove,"Explodes, dealing an extra 50 base power to all foes for each layer of spikes underneath them. The user faints.",EXPLOSION
-1347,MALEFACTION,Malefaction,0EE,70,GHOST,Special,100,15,0,NearOther,-1,CanProtect;CanMirrorMove,"The user swaps out using a cruel illusion. This move always goes last.",PURSUIT
-1348,HAIRCURL,Hair Curl,0CF,80,STEEL,Special,100,15,0,NearOther,0,CanProtect;CanMirrorMove,"The user curls its metal hair around the target, trapping and damaging it for three turns.",BIND
-1349,MEGALITHRITE,Megalith Rite,5BD,0,ROCK,Status,0,10,0,FoeSide,0,CanMagicCoat,"The user calls all rocks to join it, summoning sandstorm for five turns and laying a trap of levitating stones around the target.",STEALTHROCK
-1350,CONTRADICT,Contradict,Dizzy,60,PSYCHIC,Special,100,12,100,NearOther,0,CanProtect;CanMagicCoat;CanMirrorMove,"The user questions the existence of the target, dealing psychic damage and dizzying them.",AMNESIA
-1351,MOUTHFUL,Mouthful,5BE,1,DARK,Physical,100,10,0,NearOther,0,CanProtect;CanMirrorMove,"The user chomps hard, cutting the target's HP by half, and healing for half of that.",SUPERFANG
-1352,OMNISHELTER,Omnishelter,5BF,0,ROCK,Status,0,5,0,User,3,CanSnatch,"The user and its allies are protected from wide-ranging attacks this turn, and enemies can only target the user. Fails if used in succession.",WIDEGUARD
-1353,HYPERFROST,Hyperfrost,5C0,70,ICE,Special,100,10,100,NearOther,0,CanProtect;CanMirrorMove,"The user freezes the target in place, dealing damage and minimizing their Speed and evasiveness.",ICEBEAM
-1354,EVERHONE,Everhone,5C1,90,STEEL,Physical,100,15,100,NearOther,0,CanProtect;CanMirrorMove;Punch,"Inflicts physical or special damage, whichever deals more. Then, raises the attacking stat which wasn't used.",
-1355,METAFORM,Metaform,5C2,0,ELECTRIC,Status,0,15,0,User,0,,"The user finds the highest base power move among your able party members, and uses it.",
-1356,ARCHMYTH,Archmyth,5C3,0,DRAGON,Status,0,5,0,User,0,,"Invokes the aspects of multiple dragons, striking with two fitting moves in a row.",
-1357,CAPOEIRA,Capoeira,01F,50,FIGHTING,Physical,100,10,100,NearOther,0,CanProtect;CanMirrorMove;Dance,"Combining dance and martial art, the user strikes the target and raises its Speed by two steps.",RAPIDSPIN
-1358,SMOLDERRAVE,Smolder Rave,020,50,FIRE,Special,100,10,100,NearOther,0,CanProtect;CanMirrorMove;Dance,"Cloaked in flames, the user dances wildly, raising its Sp. Atk by two steps.",FIERYDANCE
-1359,WETLANDWALTZ,Wetland Waltz,0DA,65,WATER,Physical,100,10,100,NearOther,0,CanProtect;CanMirrorMove;Dance,"The user attacks the target using graceful fluid movements, also forming an Aqua Ring around themselves.",
-1360,ABSOLUTERADIANCE,Absolute Radiance,5C4,120,FIRE,Special,100,5,0,NearOther,0,CanProtect;CanMirrorMove,"Summons sun for five turns on the first turn, then overwhelms the foe with fiery light on the second.",SURF
-1361,MAGNETIZE,Magnetize,0CF,50,STEEL,Physical,100,15,0,NearOther,0,CanProtect;CanMirrorMove,"The user strikes the target while magnetizing it, trapping and damaging it for three turns.",MAGNETBOMB
-1362,FARADAYCAGE,Faraday Cage,0CF,75,STEEL,Physical,100,15,0,NearOther,0,CanProtect;CanMirrorMove,"Conductive materials ensnare the target, trapping and damaging it for three turns.",MAGNETBOMB
-1363,MAGEHAND,Mage Hand,0CF,50,PSYCHIC,Physical,100,15,0,NearOther,0,CanProtect;CanMirrorMove,"The user grabs the target with a conjured hand, trapping and damaging it for three turns.",CRUSHGRIP
-1364,KINETICGRIP,Kinetic Grip,0CF,75,PSYCHIC,Physical,100,15,0,NearOther,0,CanProtect;CanMirrorMove,"The user conjures a giant fist to crush the target, trapping and damaging it for three turns.",CRUSHGRIP
-1365,LIFTOFF,Liftoff,5C5,160,FIRE,Physical,100,10,0,NearOther,0,CanProtect;CanMirrorMove,"The user launches up high, then explodes down on the second turn, taking 25% recoil.",FLY
-1366,ICYINJECTION,Icy Injection,5C6,90,ICE,Physical,100,12,100,NearOther,0,CanProtect;CanMirrorMove,"Injects supercold liquid into the target, damaging them and halving all future healing.",FROSTBARB
-1367,DIVINATION,Divination,5C7,0,DARK,Status,0,5,0,User,0,CanSnatch,"The user restores 1/2 of their HP and raises their Defense, Sp. Def, and critical hit chance by two steps each.",COSMICPOWER
-1368,WINTEROPS,Winter Ops,0C1,1,ICE,Physical,100,10,0,NearOther,0,CanProtect;CanMirrorMove;HighCriticalHitRate,"The user hunts with its allies. The more party Pokémon, the more damage. Critical hits twice as often.",ICEPUNCH
-1369,GRIMVISIONS,Grim Visions,043,90,DARK,Special,100,10,100,NearOther,0,CanProtect;CanMirrorMove,"The user attacks with dark illusions. This also lowers the target's Defense stat by two steps.",DARKPULSE
-1370,SILKBLADE,Silk Blade,50F,130,BUG,Physical,100,5,0,NearOther,0,CanProtect;CanMirrorMove;HighCriticalHitRate;Blade,"The user slashes using woven silk, lowering the user's Attack by four steps. Critical hits twice as often.",XSCISSOR
-1371,EXTREMEEFFORT,Extreme Effort,5C9,150,NORMAL,Physical,100,5,0,NearOther,0,CanProtect;CanMirrorMove,"The user uses all their might to attack their opponent, causing them to rest on their next turn.",GIGAIMPACT
-1372,MANYBLESSINGS,Many Blessings,5CA,0,FAIRY,Status,0,15,0,User,0,CanSnatch,"The user doubles its critical strike chance and raises its Sp. Atk and Sp. Def by two steps each.",FOCUSENERGY
-1373,MACHINATE,Machinate,5CB,90,GHOST,Special,100,12,30,NearOther,0,CanProtect;CanMirrorMove,"Changes type based on machine haunted. 30% chance of extra effect based on machine haunted.",SHADOWBALL
-1374,BANISH,Banish,5CC,75,DRAGON,Special,100,10,0,NearOther,-1,CanProtect;CanMirrorMove,"The user dismisses the target, forcing it to switch out.",ROAR
-1375,CHECKMATE,Checkmate,5CD,80,DARK,Physical,100,10,0,NearOther,0,CanProtect;CanMirrorMove,"If the target is the last able member of their party, this attack's power is doubled.",NIGHTSLASH
-1376,WEATHERBURST,Weather Burst,087,100,NORMAL,Physical,100,10,0,NearOther,0,CanProtect;CanMirrorMove,"Type based on weather. Inflicts physical or special damage based on the user's stats.",WEATHERBALL
-1377,SHINESHOT,Shine Shot,5EF,60,STEEL,Special,100,10,30,NearOther,0,CanProtect;CanMirrorMove,"The user looses a flash of energy from its polished body. It has a 30% chance to lower Sp. Def.",MIRRORSHOT
-1378,TUTELAGE,Tutelage,5CE,0,PSYCHIC,Status,0,10,0,NearAlly,0,,"The user imparts knowledge on its ally Pokémon, raising their Sp. Atk and Sp. Def stats by two steps.",COACHING
-1379,SWEETSELENE,Sweet Selene,0F9,0,DARK,Status,0,5,0,User,0,CanSnatch,"The user restores 1/2 of its HP, or 2/3rds in moonglow.",REST
-1380,GEMSEAL,Gem Seal,5CF,0,GHOST,Status,100,15,0,NearOther,0,CanProtect;CanMagicCoat;CanMirrorMove,"Disables the target's last used move for five turns, and cuts 5 PP from it.",DISABLE
-1381,RIVERREST,River Rest,5D0,0,WATER,Status,0,10,0,User,0,CanSnatch,"The user rests in a riverbed, restoring its HP by half of max, and forming an Aqua Ring around itself.",REST
-1382,WHALESONG,Whale Song,5D1,0,WATER,Status,0,5,0,UserAndAllies,0,CanSnatch;Sound,"The user's song heals the status problems of all the party Pokémon, and forms an Aqua Ring around itself.",HEALBELL
-1383,DEEPBREATHING,Deep Breathing,5D2,0,FIGHTING,Status,0,15,0,User,0,CanSnatch,"The user breathes deeply, raising its Speed by four steps and quadrupling its critical hit chance.",FOCUSENERGY
-1384,ANGELSKISS,Angel's Kiss,Dizzy,0,FAIRY,Status,100,10,0,NearOther,0,CanProtect;CanMagicCoat;CanMirrorMove,"The user kisses the target with a sweet, angelic cuteness that dizzies the target.",SWEETKISS
-1385,MISTBURST,Mist Burst,510,130,FAIRY,Special,100,5,0,AllNearFoes,0,CanProtect;CanMirrorMove,"Attacks nearby foes with a misty explosion. User is damaged for 50% of their current HP.",MISTYEXPLOSION
-1386,ENERGYTRICK,Energy Trick,056,0,PSYCHIC,Status,0,10,0,User,0,CanSnatch,"The user employs psychic power to switch its base Sp. Atk with its base Sp. Def stat.",POWERTRICK
-1387,JETSTREAM,Jet Stream,5D3,0,FLYING,Status,0,12,0,UserSide,0,CanSnatch;Wind,"The user whips up a lingering tailwind that ups the Speed of all party Pokémon for six turns.",TAILWIND
-1388,STABILIZE,Stabilize,5B3,0,GROUND,Status,0,10,0,User,0,CanSnatch,"The user slathers mud around to heal itself for 1/2 of its max HP, and extends any active screens by 1 turn.",MUDSPORT
-1389,THIEVINGSPREE,Thieving Spree,0F1,80,NORMAL,Physical,100,20,0,AllNearFoes,0,CanProtect;CanMirrorMove,"The user attacks and steals items from all near foes. Items stolen from wild Pokémon are stored.",COVET
-1390,TERRORSWARM,Terror Swarm,0CF,75,BUG,Special,100,15,0,NearOther,0,CanProtect;CanMirrorMove,"The user summons bugs to terrorize the target, trapping and damaging it for three turns.",INFESTATION
-1391,BLIGHT,Blight,5D5,80,POISON,Physical,100,10,0,NearOther,0,CanProtect;CanMirrorMove,"The user infects the target with a touch and also destroys any Herbs its holding.",POISONJAB
-1392,DETACHMENT,Detachment,086,55,FIGHTING,Special,100,12,0,NearOther,0,CanProtect;CanMirrorMove,"The user attacks freed from earthly attachments. Doubles in damage if the user has no item when the move starts.",AURASPHERE
-1393,SWARMORDER,Swarm Order,0AD,90,BUG,Physical,100,12,0,NearOther,0,CanMirrorMove,"The user calls out its underlings to pummel the target. Skips and destroys protections.",INFESTATION
-1394,NOISEORDER,Noise Order,Dizzy,60,BUG,Special,100,12,100,NearOther,0,CanProtect;CanMagicCoat;CanMirrorMove,"The user calls out its underlings to annoy the target with buzzing sounds, dizzying it.",BUGBUZZ
-1395,REGALIA,Regalia,5D7,0,NORMAL,Status,100,15,0,UserOrNearOther,0,CanProtect;CanMagicCoat;CanMirrorMove,"The user adorns itself or the target with precious stones, changing it to your choice of Fairy, Dragon, or Steel-type.",LUCKYCHANT
-1396,ROLLINGARSENAL,Rolling Arsenal,547,90,BUG,Physical,100,10,60,NearOther,0,CanProtect;CanMirrorMove,"The user bites, claws, and stings the target while rolling. It has a 20% chance each to poison, dizzy, or leech.",CHAOSWHEEL
-1397,INFINITEWING,Infinite Wing,536,130,FLYING,Physical,100,5,30,NearOther,0,CanProtect;CanMirrorMove,"The user flies up to raise its Sp. Def by four steps in the first turn, then rams the foe on the second.",SKYATTACK
-1398,SWAGGER,Swagger,55D,0,NORMAL,Status,100,12,0,NearOther,0,CanProtect;CanMagicCoat;CanMirrorMove,"The target's Attack stat is raised by three steps. It then hits itself in a rage.",
-1399,FLATTER,Flatter,55E,0,DARK,Status,100,12,0,NearOther,0,CanProtect;CanMagicCoat;CanMirrorMove,"The target's Sp. Atk stat is raised by three steps. It then hurts itself in its mental turmoil.",
-1400,SHELLTER,Shellter,5E2,0,WATER,Status,0,4,0,User,0,CanSnatch,"The user withdraws its body into its hard shell, raising both defensive stats by two steps and gaining Shell Armor.",WITHDRAW
-1401,TUNEUP,Tune Up,5E3,0,BUG,Status,0,10,0,User,0,CanSnatch,"The user amps itself up for performance, raising its Sp. Atk and Speed by two steps each.",CALMMIND
-1402,HONESIGHT,Hone Sight,5E4,0,NORMAL,Status,0,12,0,User,0,CanSnatch,"The user focuses its aim to raise its Sp. Atk and accuracy by three steps each.",LASERFOCUS
-1403,CURSEDOATH,Cursed Oath,54A,0,GHOST,Status,0,10,0,NearOther,0,CanProtect;CanMagicCoat;CanMirrorMove,"The user loses 1/4th of their max HP to curse the target, damaging their HP by 1/4th each turn.",CURSE
-1404,MINDSAP,Mind Sap,5E5,0,GRASS,Status,100,5,0,NearOther,0,CanProtect;CanMagicCoat;CanMirrorMove,"Lowers the target's Sp. Atk stat, then restores its own HP by the target's Sp. Atk.",STRENGTHSAP
-1405,CLASSICALPHYSICS,Classical Physics,5F2,40,GRASS,Special,100,10,100,NearOther,1,CanProtect;CanMirrorMove,"An apple falls from high up to strike the foe. Always goes first. Deals double damage in intense Gravity.",GRAVAPPLE
-1406,STARDANCE,Star Dance,5F3,0,PSYCHIC,Status,100,12,0,NearOther,0,CanProtect;CanMagicCoat;CanMirrorMove;Dance,"The user dazzles the target with celestial visions that lowers its Sp. Atk stat by five steps.",COSMICPOWER
-1407,AMPUP,Amp Up,09C,0,ELECTRIC,Status,0,15,0,NearAlly,0,,"The user assists an ally's next move, boosting its power by 50% and letting it move right after the user.",HELPINGHAND
-1408,ANATMAN,Anatman,5F5,0,PSYCHIC,Status,0,30,0,User,0,CanSnatch,"The user meditates, raising both its Attack and Sp. Atk stats by four steps each.",MEDITATE
-1409,UNDYINGRUSH,Undying Rush,5F6,120,GHOST,Physical,100,12,0,NearOther,0,CanProtect;CanMirrorMove,"Clad in souls, the user crashes into the target. The user takes 33% recoil, but can't faint from it.",PHANTOMFORCE
-1410,VERMINCLOUD,Vermin Cloud,0C9,100,DARK,Physical,100,5,0,NearOther,4,CanProtect;CanMirrorMove,"The user transforms into a cloud of vermin, evading all attacks on the first turn. On the second turn it ambushes the target.",FLY
-1411,ICEDUNGEON,Ice Dungeon,5F7,0,ICE,Status,0,5,0,AllNearFoes,0,CanMagicCoat;CanMirrorMove,"The user imprisons all near foes, reducing their attacking stats by one step each and trapping them until the next time they take a hit.",CHILL
-1412,BAR,Bar,0C7,0,FIGHTING,Status,100,15,0,NearOther,0,CanProtect;CanMagicCoat;CanMirrorMove,"The target is barred by rules which prevent it from using off-type moves for three more turns.",IMPRISON
-1413,OCCULTATION,Occultation,190,80,DRAGON,Special,100,15,0,AllNearOthers,0,CanProtect;CanMirrorMove,"Attacks all near others with dragon energy. Power increases by 50% in eclipse.",DRAGONPULSE
-1414,AIMTRUE,Aim True,501,0,NORMAL,Status,0,25,0,User,0,CanSnatch,"The user steadies its eyes, mind, and body in order to maximize its accuracy.",MINDREADER
-1415,STAMPDOWN,Stamp Down,050,60,GROUND,Physical,0,12,0,NearOther,0,CanProtect;CanMirrorMove;Kicking,"The user attacks by flattening the target into the ground. The target's stat step changes are returned to normal.",STOMP
-1416,GRINDSTONE,Grind Stone,5F8,80,ROCK,Physical,100,12,100,NearOther,0,CanProtect;CanMirrorMove,"The user scratches the target with rough rocks. If in sandstorm, the target's Defense is lowered by three steps.",STONEEDGE
-1417,ERODE,Erode,5F9,70,GROUND,Special,100,15,0,NearOther,0,CanProtect;CanMirrorMove,"Attacks by blasting sand. This move always goes first in sandstorm.",SANDATTACK
-1418,HEARTHFIREHULA,Hearthfire Hula,173,80,FIRE,Special,100,10,100,AllNearOthers,0,CanProtect;CanMirrorMove;Dance,"The user dances rapidly, emitting tropical heat. Any frostbitten Pokémon will be healed by this heat.",HEATWAVE
-1419,CURLUP,Curl Up,01E,0,NORMAL,Status,0,4,0,User,0,CanSnatch,"The user curls up to conceal weak spots and raise both of its defensive stats.",DEFENSECURL
-1420,MORNINGSTAR,Morningstar,Basic,135,FAIRY,Physical,70,12,0,NearOther,0,CanProtect;CanMirrorMove,"The user invokes forbidden celestial powers to smite the target.",SPIRITBREAK
-1421,FIREPULSE,Fire Pulse,Burn,60,FIRE,Special,100,15,20,NearOther,0,CanProtect;CanMirrorMove;Pulse,"The user attacks the target with a pulsing blast of fire. It has a 20% chance to burn.",FLAMEBURST
-1422,TEPHRACANNON,Tephra Cannon,551,30,FIRE,Special,100,12,0,NearOther,0,CanProtect;CanMirrorMove;Pulse,"The user launches volcanic debris, dealing damage and setting a layer of flame spikes around the target.",FLAMEBURST
-1423,STORMDRIVE,Storm Drive,0E6,120,ELECTRIC,Physical,100,10,0,NearOther,0,CanProtect;CanMirrorMove,"The user charges, then attacks on the second turn. Charges instantly in Rain.",WILDCHARGE
-1424,MANYNEEDLE,Manyneedle,0BE,20,BUG,Physical,100,15,20,NearOther,0,CanProtect;CanMirrorMove,"The foe is stabbed once by each of the user's stingers.",TWINEEDLE
-1425,RISINGTIDE,Rising Tide,100,50,WATER,Special,0,10,0,NearFoe,0,CanProtect;CanMirrorMove,"Strikes the target with harbor waters, then summons rain for eight turns.",SURF
-1426,EXSANGUINATE,Exsanguinate,0A7,75,POISON,Physical,100,15,100,NearOther,0,CanProtect;CanMirrorMove;Biting,"The user steals blood, lowering the target's Attack. If so, raises the user's Attack.",CRUNCH
-1427,GLEEFULGRASP,Gleeful Grasp,048,80,DARK,Physical,100,10,100,NearOther,0,CanProtect;CanMirrorMove,"The user indulges its love of battle by striking a foe. Both of the user's attacking stats are raised.",
-1428,PLAYBITE,Play Bite,013,60,FAIRY,Physical,100,15,0,NearOther,0,CanProtect;CanMirrorMove;Biting,"The user bites with playful abandon. This deals double damage on the user's first turn out.",CRUNCH
-1429,DESTRIERSWHIM,Destrier's Whim,10E,0,FIRE,Status,100,12,0,NearOther,0,CanProtect;CanMagicCoat;CanMirrorMove,"The user burns the target if they're a foe, or raises their Speed by four steps if they're an ally.",EMBER
-1430,JOUST,Joust,53D,130,STEEL,Physical,50,12,0,NearOther,0,CanProtect;CanMirrorMove,"The user charges at the target to strike it squarely. If it misses, the user's accuracy and Speed is raised.",SMARTSTRIKE
-1431,SEASONSEND,Season's End,590,95,NORMAL,Physical,100,20,0,NearOther,0,CanProtect;CanMirrorMove,"The user strikes while inviting the power of seasons. The user changes form to the next season.",BODYSLAM
-1432,SCALESCATTER,Scale Scatter,06F,70,BUG,Special,100,15,0,NearOther,0,CanProtect;CanMirrorMove,"The target is plastered with irritating scales, damaging it and changing its type to Bug.",POWDER
-1433,THORNRATTLE,Thorn Rattle,5CC,75,GRASS,Special,100,10,0,NearOther,-1,CanProtect;CanMirrorMove;Sound,"The user makes a scary sound by shaking, forcing the target to switch out.",UPROAR
-1434,CROSSEXAMINE,Cross Examine,598,0,NORMAL,Status,0,15,0,User,0,,"The user chooses between the three most recent moves used by the opposing team, and uses that move themselves.",AMNESIA
-1435,GENOTHEOSIS,Genotheosis,089,0,PSYCHIC,Status,0,5,0,User,0,,"The user psychically modifies its own genes, transforming into either Overmatter form or Overmind form.",TRANSFORM
-1436,AURORAFLASH,Aurora Flash,5E6,80,ICE,Special,100,5,100,NearOther,1,CanProtect;CanMirrorMove,"An aurora borealis flashes brightly at the target, lowering their Attack. Always goes first.",AURORABEAM
-1437,SPLITTHESKY,Split the Sky,51C,80,ELECTRIC,Special,100,5,100,NearOther,1,CanProtect;CanMirrorMove,"An electrified cloud zaps the target, lowering their Speed. This has a 50% chance to flinch.",THUNDER
-1438,PROMINENCE,Prominence,5EC,80,FIRE,Special,100,5,100,NearOther,0,CanProtect;CanMirrorMove;VeryHighCriticalHitRate,"A lance of fire pierces the target from above, lowering their Sp. Atk. Critical hits four times as often.",SEARINGSHOT
-1439,ICICLEPIN,Icicle Pin,11A,0,ICE,Status,0,5,0,NearOther,0,CanMagicCoat;CanMirrorMove,"The user pins the target down with icy spikes, applying frostbite and making it unable to flee.",ICICLESPEAR
-1440,HEADTHROW,Head Throw,500,40,GRASS,Special,100,15,0,NearOther,0,CanProtect;CanMirrorMove,"Round objects are hurled at the target to strike three times in a row.",BARRAGE
-1441,ROTARYHEADBUTT,Rotary Headbutt,500,40,GROUND,Physical,100,15,0,NearOther,0,CanProtect;CanMirrorMove,"The user hits the target with each of its heads from underground. Strikes three times.",DIG
-1442,DIAMONDFIELD,Diamond Field,022,0,ROCK,Status,0,20,0,UserSide,0,CanSnatch,"A diamond-tough force-field protects the user's side for 10 turns from critical hits or random added effects.",LIGHTSCREEN
-1443,LUCKYCHEER,Lucky Cheer,08A,0,ELECTRIC,Status,0,15,0,NearAlly,5,Dance,"The user dances to encourage its ally. Their attacks this turn will be critical hits.",HELPINGHAND
-1444,HEALTHYCHEER,Healthy Cheer,126,0,ELECTRIC,Status,0,5,0,NearAlly,0,CanProtect;CanMagicCoat;Dance,"The user dances to restore an ally by 50% max HP. They're cured of any status conditions.",HEALPULSE
-1445,DEATHKNELL,Death Knell,Basic,90,GHOST,Special,100,15,20,AllNearOthers,0,CanProtect;CanMirrorMove;Sound,"The user makes a dreadful bell noise, harming all near battlers with visions of impending doom.",SCREECH
-1446,GHOULISHGALE,Ghoulish Gale,0A5,85,GHOST,Special,100,12,20,NearOther,0,CanProtect;CanMirrorMove;Wind,"The target is blasted with an unsettling wind. Can't miss and skips protections.",OMINOUSWIND
-1447,CURSEDROOTS,Cursed Roots,127,0,GRASS,Status,0,15,0,User,0,CanSnatch,"The user spends 25% HP to lay down evil roots. This curses all foes. The user becomes trapped, but heals by 1/8th HP every turn.",
-1448,MUDSLIDE,Mud Slide,5E0,80,GROUND,Special,100,10,100,AllNearOthers,0,CanProtect;CanMirrorMove,"The user rides onto the field on a huge wave of mud, damaging all nearby and raising their own Speed.",MUDBOMB
-1449,BUTTINGHEADS,Butting Heads,54C,95,NORMAL,Physical,100,12,20,NearOther,0,CanProtect;CanMirrorMove,"The user engages the target in a head-to-head fight. The damage is based on the target's Attack rather than their Defense.",HEADBUTT
-1450,PACKAGE,Package,16F,90,ICE,Special,100,10,0,NearOther,0,CanProtect;CanMirrorMove,"The user throws an exploding package at enemies, or one filled with healing treats at allies.",PRESENT
-1451,SAPPINGSEED,Sapping Seed,552,0,GRASS,Status,100,10,0,NearOther,0,CanProtect;CanMagicCoat;CanMirrorMove,"A parasitic seed leeches the target and reduces both its attacking stats.",LEECHSEED
-1452,MIDNIGHTHUNT,Midnight Hunt,5B0,0,DARK,Status,0,5,0,NearFoe,0,,"Summons moonglow for eight turns and raises the Attack stat of itself and its allies by two steps.",HOWL
-1453,LUMINOUSBURST,Luminous Burst,046,80,ELECTRIC,Special,100,20,100,NearOther,0,CanProtect;CanMirrorMove,"Cloaking itself in light energy, the user shocks the target, raising the user's Sp. Def by two steps.",DISCHARGE
-1454,FIGHTFOREVER,Fight Forever,094,0,FIGHTING,Status,0,5,0,User,4,,"The user endures attacks with 1 HP. If so, raises its Attack by two steps. Fails if used in succession.",ENDURE
-1455,TIDALKINESIS,Tidalkinesis,5FA,100,WATER,Physical,100,10,100,NearOther,0,CanProtect;CanMirrorMove;Biting,"The user bites with added telekinetic force. During eclipse, the target also becomes numbed.",
-1456,MUTATE,Mutate,52D,0,MUTANT,Status,0,5,0,User,0,,"The user mutates its genetic code, transforming into any of its 3 other forms. Only useable as Deoxys Normal.",TRANSFORM
-1457,GUTCHECK,Gut Check,176,55,ELECTRIC,Physical,100,25,100,NearOther,0,CanProtect;CanMirrorMove,"The user attacks with courage. Sets spikes if Full. If Hangry, deals double damage and is Dark-type.",SPARK
-1458,SHATTERVISE,Shatter Vise,0CF,90,STEEL,Physical,100,15,0,NearOther,0,CanProtect;CanMirrorMove,"The user crushes the target in its metallic vises, trapping and damaging it for three turns.",METALCLAW
-1459,WAVEOFJADE,Wave of Jade,55A,70,ROCK,Special,100,12,0,AllNearFoes,0,CanProtect;CanMirrorMove,"The user emits a wave of green energy to strike near foes. Deals double damage to those slower than the user.",FLASH
-1460,GLIMMERPULSE,Glimmer Pulse,168,60,ROCK,Special,100,10,0,NearOther,0,CanProtect;Pulse,"The user harms the target with gemlike light. Deals double damage if the user has used a gem this battle.",POWERGEM
-1461,BUBBLEBARRAGE,Bubble Barrage,0C0,25,WATER,Special,100,20,0,NearOther,0,CanProtect;CanMirrorMove,"The user creates two to five giant bubbles to explode against the target.",BUBBLE
-1462,PULSAR,Pulsar,0C0,25,PSYCHIC,Special,100,20,0,NearOther,0,CanProtect;CanMirrorMove,"The user sends two to five waves of cosmic energy to overwhelm the target's senses.",CONFUSION
-1463,SEANCE,Seance,0C0,25,GHOST,Special,100,20,0,NearOther,0,CanProtect;CanMirrorMove,"The user summons two to five apparitions that dance around hypnotically before striking.",WILLOWISP
-1464,FIREWORKS,Fireworks,0C0,25,FIRE,Special,100,20,0,NearOther,0,CanProtect;CanMirrorMove,"The user fires off two to five explosive rounds in a beautiful display.",EMBER
-1465,RAPIDHERTZ,Rapid Hertz,5FB,20,ELECTRIC,Special,100,20,10,NearOther,0,CanProtect;CanMirrorMove,"The target is hit with an electric current two to five times in quick succession. Has a 10% chance to numb.",THUNDERSHOCK
-1466,AXETOGRIND,Axe to Grind,193,80,DRAGON,Physical,100,10,0,NearOther,0,CanProtect;CanMirrorMove,"The user attacks fueled by ire. Deals double damage if it's a critical hit.",SLASH
-1467,IMPALINGSPIKE,Impaling Spike,195,80,STEEL,Physical,100,10,0,NearOther,0,CanProtect;CanMirrorMove,"A large spike is shot at the target. If this causes the target to faint, a layer of spikes is set on the ground beneath them.",SPIKECANNON
-1468,YOUNGAGAIN,Young Again,0BF,0,NORMAL,Status,0,10,0,NearOther,0,CanProtect;CanMirrorMove,"The user conjures up the past, transforming the target into their previous evolutionary form.",TRANSFORM
-1469,PULVERIZERCHORD,Pulverizer Chord,Basic,115,GROUND,Special,80,10,30,AllNearFoes,0,CanProtect;CanMirrorMove;Sound,"The user hits a pitch that turns earth and stone to dust, damaging its foes.",SCORCHINGSANDS
-1470,WINDTUNNEL,Wind Tunnel,5FC,20,FLYING,Special,100,20,10,AllNearFoes,0,CanProtect;CanMirrorMove;Wind,"Wind rapidly spins the target in place to hit them two to five times. Has a 10% chance to dizzy.",GUST
-1471,SUCKBLOOD,Suck Blood,0DD,50,BUG,Physical,100,20,0,NearOther,0,CanProtect;CanMirrorMove,"The user leeches the target's life. The user's HP is restored by half the damage taken by the target.",LEECHLIFE
-1472,VOLLEY,Volley,129,1,FLYING,Special,100,10,0,NearOther,0,CanProtect;CanMirrorMove,"The user gets all the party Pokémon to attack the foe with aerial projectiles.",SQUALLDART
-1473,DRONING,Droning,5EC,65,BUG,Special,100,20,30,NearOther,0,CanProtect;CanMirrorMove;Sound,"The user vibrates its wings to make a damaging sound wave. It has a 30% chance to lower Sp. Atk.",BUGBUZZ
-1474,DROWN,Drown,5FD,0,GHOST,Status,100,15,0,NearOther,0,CanProtect;CanMagicCoat;CanMirrorMove,"Disables the target's last used move for four turns, then reduces a relevant stat on them by four steps.",AQUARING
-1475,DEVOURWHOLE,Devour Whole,5FE,130,POISON,Physical,100,5,0,NearOther,0,CanProtect;CanMirrorMove;Bite,"Grips the target with its entire mouth. The user can't attack next turn unless the target faints or switches out.",
-1476,SPOTTING,Spotting,5FF,0,DARK,Status,0,15,0,NearAlly,5,,"The user assists an ally by boosting the power and accuracy of its next attack by 50%.",
-1477,REPULSIONFIELD,Repulsion Field,12A,0,ELECTRIC,Status,0,15,0,UserSide,0,CanSnatch,"This move creates a directional magnetic field which reduces damage from attacks with 100 or more base power for five turns.",
-1478,MASQUERBLADE,Masquerblade,12B,150,GRASS,Physical,100,5,0,AllNearFoes,-3,CanProtect,"The user hides its blade. If it is hit by a special move, it unsheathes it quickly, slashing all near foes.",CAMOUFLAGE
-1479,VAINGLORYFLAMES,Vainglory Flames,12C,90,FIRE,Special,100,10,0,NearOther,0,CanProtect;CanMirrorMove,"A distinguished attack that motivates nearby allies to follow, letting them act immediately after",
-1480,COLDSHOULDER,Cold Shoulder,56A,80,GHOST,Physical,100,12,100,NearOther,0,CanProtect;CanMirrorMove,"The user attacks with bitter emotion. This lowers the target's attacking stats by two steps if in hail.",PHANTOMFORCE
-1481,DISTURB,Disturb,Numb,90,GHOST,Physical,100,15,10,NearOther,0,CanProtect;CanMirrorMove,"The target is subjected to a violent and frightening prank. It has a 10% chance to numb.",
-1482,BALEFULBOP,Baleful Bop,Dizzy,60,FAIRY,Special,100,20,30,NearOther,0,CanProtect;CanMirrorMove;Sound,"The user sings with reckless abandon, annoying the target. There's a 30% chance they become dizzy.",ENCHANTINGSONG
-1483,BUBBLEBARRIER,Bubble Barrier,196,0,WATER,Status,0,15,0,NearAlly,0,CanMirrorMove,"The user creates a bubble to shield their ally. The next time they’re hit, 50% of the move damage is instead dealt back as recoil.",AQUARING
-1484,ROCKETPUNCH,Rocket Punch,Basic,150,STEEL,Physical,70,10,0,NearOther,0,CanProtect;CanMirrorMove;Punch,"The user launches a fist with extreme force. This attack is popular with children.",BULLETPUNCH
-1485,PRISMATICPOWER,Prismatic Power,18A,100,NORMAL,Special,100,10,0,NearOther,0,CanProtect;CanMirrorMove,"The user expresses a hidden potential. Changes type to match the user's Gem, Plate, or Crystal Veil.",HIDDENPOWER
-1486,CAPACITYBURST,Capacity Burst,197,110,ELECTRIC,Special,100,10,0,NearOther,0,CanProtect;CanMirrorMove,"The user surges with electricity. If it deals less than 50% of the target's max health, the user takes the difference as recoil.",DISCHARGE
-1487,WELD,Weld,154,0,STEEL,Status,100,15,0,NearOther,0,CanProtect;CanMagicCoat,"Welds heavy steel onto the target, giving it the Steel type and reducing its Speed by four steps.",SHOTPUT
-1488,BADENDING,Bad Ending,53A,40,ELECTRIC,Physical,100,12,100,NearOther,1,CanProtect;CanMirrorMove,"For the rest of the round, the target's healing is reversed. Always goes first.",SPARK
-1489,DISCOURAGE,Discourage,0EC,55,FIGHTING,Special,100,10,0,NearOther,-6,CanProtect;CanMirrorMove,"The user forces the target to switch out, to be replaced at random. In the wild, the battle ends.",ROAR
-1490,DRAFT,Draft,Frostbite,40,FLYING,Special,100,30,10,NearOther,0,CanProtect;CanMirrorMove;Wind,"The user sends a chilly wind towards the target. This has a 10% chance to frostbite.",GUST
-1491,GUTTURALROAR,Guttural Roar,122,85,DRAGON,Special,100,10,0,NearOther,0,CanProtect;CanMirrorMove;Sound,"The user shakes the target with a deep, rumbling roar. This attack does physical damage.",ROAR
-1492,CENTER,Center,5DF,0,NORMAL,Status,0,15,0,User,0,CanSnatch,"The user concentrates to stabilize its mood. It raises the user's Sp. Def by three steps.",CALMMIND
-1493,CONCENTRATE,Concentrate,5DD,0,NORMAL,Status,0,15,0,User,0,CanSnatch,"The user stimulates its brain by planning. It raises the user's Sp. Atk by three steps.",NASTYPLOT
-1494,RIPTIDE,Rip Tide,01F,100,WATER,Physical,50,5,100,NearOther,0,CanProtect;CanMirrorMove,"The user crashes into the target on a ripping current. This raises the user's Speed by two steps.",WATERFALL
-1495,HOP,Hop,Dizzy,40,FLYING,Physical,100,25,10,NearOther,0,CanProtect;CanMirrorMove;Kicking,"The user hops high up to land on the target's head. It has a 10% chance to dizzy.",BOUNCE
-1496,RISINGPOWER,Rising Power,08E,30,NORMAL,Physical,100,10,0,NearOther,0,CanProtect;CanMirrorMove,"Has 10 more base power for each raised stat step. Inflicts physical or special damage based on the user's stats.",STOREDPOWER
-1497,SHARINGSMILES,Sharing Smiles,014,0,GRASS,Status,0,10,0,NearAlly,0,,"The user and the target each share their highest stat step with the other.",HOLDHANDS
-1498,HOTSHOT,Hot Shot,Basic,40,FIRE,Special,100,25,0,NearOther,1,CanProtect;CanMirrorMove,"The user shoots the target with a small bolt of fire. This move always goes first.",EMBER
-1499,GLAMOURFLASH,Glamour Flash,Basic,40,FAIRY,Special,100,25,0,NearOther,1,CanProtect;CanMirrorMove,"The user flashes colorful light to damage the target. This move always goes first.",DAZZLINGGLEAM
-1500,POISONDART,Poison Dart,Basic,40,POISON,Special,100,25,0,NearOther,1,CanProtect;CanMirrorMove,"The user shoots the target with a dart made of poison. This move always goes first.",POISONSTING
-1501,DREAD,Dread,Basic,40,DRAGON,Special,100,25,0,NearOther,1,CanProtect;CanMirrorMove,"The user inspires a sudden dread in the target, damaging it. This move always goes first.",GLARE
-1502,GLOAT,Gloat,507,0,DARK,Status,100,5,0,User,0,CanSnatch,"The user raises all of their stats by two steps. Fails unless a foe is below half health.",NASTYPLOT
-1503,BULLY,Bully,18D,80,DARK,Physical,100,10,0,NearOther,0,CanProtect;CanMirrorMove,"This attack deals 50 percent more damage if the target has any raised or lowered stat steps.",PUNISHMENT
-1504,FIREFOREFFECT,Fire For Effect,12D,140,NORMAL,Special,100,10,0,NearOther,0,Foretold,"The user chooses Fire, Electric, or Ice, then launches a shell of that type to strike the target in one turn.",DOOMDESIRE
-1505,SNAP,Snap,Flinch,65,WATER,Physical,100,20,40,NearOther,0,CanProtect;CanMirrorMove;Biting,"The user snaps like a fish at the target. This has a 40% chance to make it flinch.",FISHIOUSREND
-1506,BREACH,Breach,5E8,40,WATER,Physical,100,30,20,NearOther,0,CanProtect;CanMirrorMove,"The user jumps out of the water to attack. Has a 20% chance to reduce Defense.",DIVE
-1507,POLARIZEDROOM,Polarized Room,124,0,STEEL,Status,0,10,0,BothSides,0,CanMirrorMove,"The user creates a high quality area in which super-effective deals 25% more, and not very effective deals 25% less.",WONDERROOM
-1508,MISTLETOE,Mistletoe,Leech,40,GRASS,Physical,100,30,10,NearOther,0,CanProtect;CanMirrorMove;Kicking,"The user uses their feet to pierce the foe. This has a 10% chance of leeching the target.",TROPKICK
-1509,ROOTDRIVER,Root Driver,Leech,60,GRASS,Physical,100,20,30,NearOther,0,CanProtect;CanMirrorMove;Kicking,"The user kicks into the target like roots into earth. This has a 30% chance of leeching.",TROPKICK
-1510,WHIPKICK,Whip Kick,Leech,90,GRASS,Physical,100,15,10,NearOther,0,CanProtect;CanMirrorMove;Kicking,"The user whips their legs into the target like a plant. This has a 10% chance of leeching.",TROPKICK
-1511,SIEGEBREAKER,Siege Breaker,12E,90,ROCK,Physical,100,10,0,NearOther,0,CanMirrorMove;Blade,"The user slams the target with a rocky blade. Destroys screens, substitute, and protection on the target.",ROCKSMASH
-1512,ALLFORONE,All For One,12F,80,STEEL,Physical,100,10,0,NearOther,0,CanProtect;CanMirrorMove;Blade,"The user slashes with gusto, inspiring its allies to follow up by using Slash on the target.",SACREDSWORD
-1513,BLADESOFGRASS,Blades of Grass,130,25,GRASS,Physical,100,10,0,NearOther,0,CanProtect;CanMirrorMove;Blade,"The user gracefully slashes the target three times. The next time this move is used, it will hit one extra time.",RAZORLEAF
-1514,SCYTHEKICK,Scythe Kick,Basic,95,FIGHTING,Physical,100,15,0,NearOther,0,CanProtect;CanMirrorMove;Kicking,"The user kicks the target with a powerful, arcing technique.",
-1515,RAZINGVINES,Razing Vines,131,130,GRASS,Physical,100,5,0,NearOther,0,CanProtect;CanMirrorMove,"Attacks while destroying rooms. This move fails in the absence of a room.",
-1516,CRANIALGUARD,Cranial Guard,155,0,ROCK,Status,0,3,0,User,4,,"Protects the user from damage this turn. The user will counter with Granite Head if attacked.",
-1517,FROMBEYOND,From Beyond,132,60,GHOST,Physical,0,15,0,NearOther,0,CanProtect;CanMirrorMove,"The user channels its fallen allies to strike the target. This attack has 20 more power per fainted party member.",
-1518,SIROCCO,Sirocco,101,50,GROUND,Special,100,10,0,NearFoe,0,CanProtect;CanMirrorMove,"Hits the target with a sandy wind, then summons sandstorm for eight turns.",SANDSTORM
-1519,HONEYSLATHER,Honey Slather,133,0,GHOST,Status,0,5,0,User,0,CanSnatch,"The user uses honey to fully restore their HP. However, this lures swarming insects, trapping and damaging the user for three turns.",RECOVER
-1520,PARADISIACA,Paradisiaca,134,0,GROUND,Status,0,5,0,NearAlly,0,CanProtect;CanMagicCoat,"The user shapes primal clay to heal a nearby ally for their max HP. This can overheal. The user must recharge next turn.",HEALPULSE
-1521,GREATERGLORIES,Greater Glories,135,0,NORMAL,Status,0,15,0,NearAlly,0,,"The user channels ancient energy to grant a nearby ally an extra turn this round.",HELPINGHAND
-1522,HEAVENSEYES,Heaven's Eyes,136,0,NORMAL,Status,100,10,0,NearOther,0,CanProtect;CanMagicCoat;CanMirrorMove,"The user's eyes glow with divine judgement, numbing the target and reducing both its attacking stats.",GLARE
-1523,QUARANTINE,Quarantine,156,0,ELECTRIC,Status,0,3,0,User,4,,"Protects the user's side from status moves this turn. It disables any moves blocked for three turns.",PROTECT
-1524,STINKCOVER,Stink Cover,139,0,POISON,Status,0,10,0,NearFoe,-6,CanMagicCoat;CanMirrorMove;Sound,"The foe is forced is forced to switch out by a stinky cloud, then the user also switches. Always goes last.",STINKCLOUD
-1525,FLORALGRAMARYE,Floral Gramarye,137,0,FAIRY,Status,0,10,0,User,0,,"A patch of medicinal flowers sprouts across the battlefield. This heals every Pokémon for 1/8th HP each turn for five turns.",GRASSYTERRAIN
-1526,DISCOVEREDPOWER,Discovered Power,13C,0,PSYCHIC,Status,100,15,0,User,0,CanSnatch,"The user ponders ancient wisdom, selecting three random status moves. You choose which one it uses.",METRONOME
+1118,SPELLBIND,Spellbind,Dizzy,0,FAIRY,Status,100,10,0,NearOther,0,CanProtect;CanMagicCoat;CanMirrorMove,"Dizzies the target by putting them under a magical spell.",CHARM
+1119,AIRSTRIKE,Air Strike,0FA,90,FLYING,Physical,100,15,0,NearOther,0,CanProtect;CanMirrorMove,"A reckless charge attack from the air. It also damages the user by 25% of the damage dealt.",BRAVEBIRD
+1120,TERRAFORM,Terraform,538,70,ROCK,Special,100,12,0,AllNearOthers,0,CanProtect;CanMirrorMove,"Churns nearby rocks, dealing damage to nearby Pokémon and removing hazards from both sides.",
+1121,SEERSTRIKE,Seer Strike,0A5,90,PSYCHIC,Physical,0,15,0,NearOther,0,CanProtect;CanMirrorMove,"The user perfectly predicts the target's future location, then strikes. It lands without fail.",ZENHEADBUTT
+1122,RAKE,Rake,Basic,65,BUG,Physical,100,20,0,NearOther,0,CanProtect;CanMirrorMove;Blade,"The user rakes the target with sharp claws.",FURYCUTTER
+1123,RUPTURESPRING,Rupture Spring,16F,85,WATER,Special,100,12,0,NearOther,0,CanProtect;CanMirrorMove,"Creates a violent spring beneath enemies, or a healing one beneath allies.",WATERPULSE
+1124,SPATTERINGRAM,Spattering Ram,5E8,60,WATER,Physical,100,20,30,NearOther,0,CanProtect;CanMirrorMove,"The user rams the target like a ship. It has a 30% chance to lower Defense.",
+1125,BLOSSOM,Blossom,020,40,GRASS,Special,100,30,100,NearOther,0,CanProtect;CanMirrorMove,"Flowers blooms with intensity, damaging the target and raising the user's Sp. Atk by two steps.",GRASSPLEDGE
+1126,ENERGYBALL,Energy Ball,5DC,90,GRASS,Special,100,15,10,NearOther,0,CanProtect;CanMirrorMove,"The user attacks with the bursting power of nature. It has a 10% chance to raise user's Sp. Atk.",ENERGYBALL
+1127,TERADRAIN,Tera Drain,14F,100,GRASS,Special,50,12,0,NearOther,0,CanProtect;CanMirrorMove,"A nutrient-draining attack. The user's HP is restored by 75% of the damage taken by the target.",GIGADRAIN
+1128,MENDINGSPRING,Mending Spring,0DA,40,WATER,Special,100,12,0,NearOther,0,CanProtect;CanMirrorMove,"The user opens a spring to blast the target, also forming an Aqua Ring around themselves.",WATERGUN
+1129,INERTIASHOCK,Inertia Shock,53B,90,ELECTRIC,Physical,100,10,10,NearOther,0,CanProtect;CanMirrorMove,"Deals 50% more damage if faster than the target. Lowers the user's Speed.",VOLTTACKLE
+1130,GEYSER,Geyser,53E,120,WATER,Special,100,5,0,NearOther,0,CanProtect;CanMirrorMove,"The user propels a geyser of water at the target. Lowers the user's Sp. Atk and Sp. Def by two steps each.",WATERSPOUT
+1131,HYPOTHERMIATE,Hypothermiate,53A,80,ICE,Special,100,12,100,NearOther,0,CanProtect;CanMirrorMove,"For the rest of the round, the target's healing is reversed.",
+1132,FROSTBARB,Frost Barb,5E8,65,ICE,Physical,100,20,20,NearOther,0,CanProtect;CanMirrorMove,"The user jabs the target with a sharp icicle. It has a 20% chance to lower Defense.",
+1133,ICECALIBUR,Icecalibur,5E8,80,ICE,Physical,100,20,30,NearOther,0,CanProtect;CanMirrorMove;Blade,"The user slashes the target with ice like a sword. It has a 30% chance to lower Defense.",ICESHARD
+1134,SUPERCOOL,Supercool,Frostbite,100,ICE,Special,50,5,100,NearOther,0,CanProtect;CanMirrorMove,"The user overwhelmes the target with a frigid ray, frostbiting it.",
+1135,HUNTDOWN,Hunt Down,099,1,FLYING,Physical,100,10,0,NearOther,0,CanProtect;CanMirrorMove,"The user chases the target and strikes it from above. It does more damage the faster the user is.",
+1136,DIVEBOMB,Dive Bomb,0C9,125,FLYING,Physical,100,10,0,NearOther,0,CanProtect;CanMirrorMove,"The user soars up high, then strikes on the second turn by dive bombing the target.",FLY
+1137,STRAFE,Strafe,Basic,95,FLYING,Physical,100,15,0,NearOther,0,CanProtect;CanMirrorMove,"The user attacks the target while dashing skillfully past it.",ACROBATICS
+1138,SWARMBURST,Swarm Burst,0E0,300,BUG,Physical,100,5,0,AllNearOthers,0,CanProtect;CanMirrorMove,"The user explodes to inflict damage on those around it. The user faints upon using this move.",EXPLOSION
+1139,DIFFUSEPULSE,Diffuse Pulse,Basic,45,NORMAL,Special,100,30,0,NearOther,0,CanProtect;CanMirrorMove;Pulse,"The user shoots a pulse of diffuse energy at the target.",SIMPLEBEAM
+1140,PARTICLEPULSE,Particle Pulse,Basic,75,NORMAL,Special,100,20,0,NearOther,0,CanProtect;CanMirrorMove;Pulse,"The user shoots a pulse of uncharged particles at the target.",STOREDPOWER
+1141,STELLARATE,Stellarate,0A5,95,NORMAL,Special,0,15,0,AllNearFoes,0,CanProtect;CanMirrorMove,"A barrage of star-shaped rays are shot at the opposing team, never missing.",SWIFT
+1142,PILFER,Pilfer,539,40,DARK,Physical,100,25,0,NearOther,0,CanProtect;CanMirrorMove,"The user attacks and steals the foe's held Berry or Gem. It can't steal if the user holds an item.",THIEF
+1143,TEASE,Tease,Leech,60,DARK,Special,100,20,20,NearOther,0,CanProtect;CanMirrorMove;Sound,"The user bullies the target, causing mental damage. This has a 20% chance to leech.",
+1144,SCAM,Scam,15D,70,DARK,Special,100,10,0,NearOther,-1,CanProtect;CanMirrorMove,"The user steals the target's stat boosts, and then attacks. Goes last.",SNARL
+1145,DARKALLURE,Dark Allure,Leech,90,DARK,Special,100,15,10,NearOther,0,CanProtect;CanMirrorMove,"The user strikes the target with dark energy. It has a 10% chance to leech.",SNARL
+1146,PLANTDOUBT,Plant Doubt,Leech,20,DARK,Special,100,15,100,NearOther,0,CanProtect;CanMirrorMove,"The user entangles the target's mind with dark thoughts, leeching it.",
+1147,PROFANE,Profane,Leech,100,DARK,Special,50,5,100,NearOther,0,CanProtect;CanMirrorMove,"The user invades deep into the target's mind, leeching it.",SNARL
+1148,SHRED,Shred,509,55,DRAGON,Physical,100,12,0,NearOther,0,CanProtect;CanMirrorMove,"The user attacks with overwhelming power, ignoring positive stat changes and abilities.",DRAGONCLAW
+1149,ROLLINGBOULDER,Rolling Boulder,53F,140,ROCK,Physical,50,10,0,NearOther,-1,CanProtect;CanMirrorMove,"If this move misses, the target is forced to switch out. Always goes last.",SMACKDOWN
+1150,MINDWARP,Mind Warp,Dizzy,80,PSYCHIC,Special,100,12,20,NearOther,0,CanProtect;CanMirrorMove,"The target's psyche is attacked directly. It has a 20% chance to dizzy.",PSYCHIC
+1151,SQUALLDART,Squall Dart,Flinch,60,FLYING,Special,100,12,30,NearOther,0,CanProtect;CanMirrorMove;Wind,"The user strikes the target with a sudden wind. It has a 40% chance to flinch the target.",
+1152,MIASMA,Miasma,5EF,90,POISON,Special,100,15,20,NearOther,0,CanProtect;CanMirrorMove;Wind,"The user envelops the target in a foul wind. It has a 20% chance to lower Sp. Def.",ACIDSPRAY
+1153,VENOMORTAR,Venomortar,Poison,100,POISON,Physical,50,5,100,NearOther,0,CanProtect;CanMirrorMove,"The user blasts a bundle of venom at the target, poisoning it.",
+1154,WARDPRESS,Ward Press,540,80,FAIRY,Special,100,10,0,NearOther,0,CanProtect;CanMirrorMove,"The user attacks with its wards, dealing damage based on the user's Sp. Def stat.",FAIRYWIND
+1155,ADRENALASH,Adrenalash,5DC,90,FIGHTING,Special,100,12,20,NearOther,0,CanProtect;CanMirrorMove,"The user forms their excitement into a lash with a 10% chance of raising the user's Sp. Atk.",FOCUSBLAST
+1156,EARTHSPLITTER,Earthsplitter,50F,130,GROUND,Physical,100,10,0,NearOther,0,CanProtect;CanMirrorMove,"The user cracks the earth under the target with a massive strike. Lowers the user's Attack by four steps.",FISSURE
+1157,UPINFLAMES,Up In Flames,541,80,FIRE,Special,100,10,0,NearOther,0,CanProtect;CanMirrorMove,"The user surrounds the target with fire which also destroys any 'clothing' items it's holding.",INCINERATE
+1158,PROPELLANT,Propellant,542,105,FIRE,Physical,100,10,100,NearOther,0,CanProtect;CanMirrorMove,"The user explodes itself into the target. The target is harmed, but also their Speed is raised.",FLAMECHARGE
+1159,PSYCHOSCISSION,Psychoscission,Basic,90,PSYCHIC,Physical,100,10,0,NearOther,0,CanProtect;CanMirrorMove;HighCriticalHitRate;Blade,"The user cuts using scissor-like blades of psychic energy. Critical hits twice as often.",PSYCHOCUT
+1160,CHILL,Chill,Frostbite,0,ICE,Status,100,12,0,NearOther,0,CanProtect;CanMagicCoat;CanMirrorMove,"The user lowers the target's body temperature, afflicting it with frostbite.",
+1161,GLITTERBOMB,Glitter Bomb,Basic,45,FAIRY,Physical,100,25,0,NearOther,0,CanProtect;CanMirrorMove,"The user chucks a party favor which explodes in the target's face.",MAGNETBOMB
+1162,FAIRPLAY,Fair Play,546,65,FAIRY,Physical,100,15,0,NearOther,0,CanProtect;CanMirrorMove;Blade,"The user attacks the target with just force. Guaranteed critical hit on foes with boosted stats.",PLAYROUGH
+1163,HUMBLE,Humble,546,85,FAIRY,Physical,100,10,0,NearOther,0,CanProtect;CanMirrorMove,"The user attempts to humble the target, guaranteeing a critical hit on foes with boosted stats.",SPIRITBREAK
+1164,POISONSPIKES,Poison Spikes,104,0,POISON,Status,0,15,0,FoeSide,0,CanMagicCoat,"The user lays poison spikes on the foe's side. One layer hurts switched in foes, two layers poisons.",TOXICSPIKES
+1165,ENVENOM,Envenom,Poison,0,POISON,Status,100,30,0,NearFoe,0,CanProtect;CanMagicCoat;CanMirrorMove,"Venom is strategically introduced into the target, poisoning it.",POISONSTING
+1166,CHAOSWHEEL,Chaos Wheel,547,80,NORMAL,Physical,100,10,45,NearOther,0,CanProtect;CanMirrorMove,"The user thrashes while infused with elements. It has a 15% chance each to poison, dizzy, or leech.",FIERYWRATH
+1167,MINDLINK,Mind Link,549,0,PSYCHIC,Status,0,30,0,User,0,CanSnatch,"The user syncs its mind with its teammates, raising the Sp. Atk of itself and its allies by two steps.",CONFUSION
+1168,BULLETCHARGE,Bullet Charge,5E0,60,STEEL,Physical,100,15,30,NearOther,0,CanProtect;CanMirrorMove,"The user uses gunpowder to rocket at its foe. It has a 30% chance to raise its Speed.",BULLETPUNCH
+1169,EVERNALIZE,Evernalize,096,140,NORMAL,Special,100,12,0,NearOther,0,CanProtect;CanMirrorMove,"The user draws power to attack by using a held Berry. The Berry used determines its type.",NATURALGIFT
+1170,SPOOKYSNUGGLING,Spooky Snuggling,10D,0,GHOST,Status,100,5,0,NearOther,0,CanProtect;CanMirrorMove,"The user harnesses its jealousy to attack the opponent with ghostly hugs, cursing them.",
+1171,BULLETTRAIN,Bullet Train,5E0,90,STEEL,Physical,100,15,10,NearOther,0,CanProtect;CanMirrorMove,"The user becomes a pain train. It has a 10% chance to raise the user's Speed.",HEAVYSLAM
+1172,POISONIVY,Poison Ivy,Poison,0,GRASS,Status,100,30,0,NearOther,0,CanProtect;CanMagicCoat;CanMirrorMove,"The target is irritated by allergenic plants, poisoning it.",POISONPOWDER
+1173,ANESTHETIZE,Anesthetize,Numb,0,GRASS,Status,100,12,0,NearOther,0,CanProtect;CanMagicCoat;CanMirrorMove,"The user applies anesthetic substances, numbing the target.",STUNSPORE
+1174,DRAGBENEATH,Drag Beneath,0CF,75,WATER,Physical,100,10,0,NearOther,0,CanProtect;CanMirrorMove,"The user pulls the target under the waves, trapping and damaging it for three turns.",WRAP
+1175,DAZZLE,Dazzle,045,0,NORMAL,Status,100,30,0,AllNearFoes,0,CanProtect;CanMagicCoat;CanMirrorMove,"The user dazzles nearby foes with light or sound. Their Sp. Atk is lowered by two steps.",FLASH
+1176,SMIRK,Smirk,046,0,NORMAL,Status,100,25,0,AllNearFoes,0,CanProtect;CanMagicCoat;CanMirrorMove,"The user smirks with confidence. The Sp. Def of nearby enemies is reduced.",SCARYFACE
+1177,STOREFUEL,Store Fuel,54E,0,FIRE,Status,0,15,0,User,0,CanSnatch,"The user conserves for future attacks. This raises its Sp. Atk, Sp. Def, and accuracy by two steps each.",
+1178,NULLPULSE,Null Pulse,Numb,85,NORMAL,Special,100,12,30,NearOther,0,CanProtect;CanMirrorMove;Pulse,"The target is struck by a pulse of negative energy. It has a 30% chance to numb.",WEATHERBALL
+1179,SLAY,Slay,54F,90,STEEL,Physical,100,12,0,NearOther,0,CanProtect;CanMirrorMove;Blade,"The user slashes at the target with a steel blade. Super effective versus Dragon-types.",SACREDSWORD
+1180,NERVEBLOCK,Nerve Block,Numb,0,FIGHTING,Status,100,12,0,NearOther,0,CanProtect;CanMagicCoat;CanMirrorMove,"The user strikes the target's pressure points, numbing it.",
+1181,STUNNINGCURL,Stunning Curl,550,0,BUG,Status,0,3,0,User,4,,"Halves attack damage taken this turn. Numbs any attackers. Fails if used successively.",DEFENSECURL
+1182,FLAMESPIKES,Flame Spikes,551,0,FIRE,Status,0,15,0,FoeSide,0,CanMagicCoat,"The user lays burning spikes on the foe's side. One layer hurts switched in foes, two layers burns.",
+1183,DROPKICK,Drop Kick,0FA,80,FIGHTING,Physical,0,20,100,NearFoe,0,CanProtect;CanMirrorMove;Kicking,"The user drops onto the target with a kick, dealing 25% recoil to self.",JUMPKICK
+1184,MULTISTRIKE,Multi-strike,185,14,NORMAL,Physical,100,30,0,NearOther,0,CanProtect;CanMirrorMove,"The target is hit two to five times in a row. Inflicts physical or special damage based on the user's stats.",
+1185,PLANETCRACKER,Planetcracker,0FC,200,ROCK,Physical,50,10,0,NearOther,0,CanProtect;CanMirrorMove,"The user slams itself into the target with absurd force, taking 50% recoil.",
+1186,SMUSH,Smush,5E8,40,BUG,Physical,100,15,20,NearOther,0,CanProtect;CanMirrorMove,"Avenging bugs everywhere, the user crushes the target. It has a 20% chance to lower their Defense stat.",
+1187,ACIDBATH,Acid Bath,03C,110,POISON,Special,100,5,0,NearOther,0,CanProtect;CanMirrorMove,"The user and target bathe in acid. Lowers the user's Defense and Sp. Def by two steps each.",ACIDSPRAY
+1188,STINGINGJEALOUSY,Stinging Jealousy,553,70,POISON,Physical,100,12,100,AllNearFoes,0,CanProtect;CanMirrorMove,"Attacks with energy from jealousy. All opposing Pokémon with stat boosts get poisoned.",POISONSTING
+1189,STANDTOGETHER,Stand Together,554,0,FIGHTING,Status,0,30,0,User,0,CanSnatch,"The user holds fast with its teammates, raising the Defense of itself and its allies by three steps.",
+1190,SYMBIOSIS,Symbiosis,555,0,GRASS,Status,0,30,0,User,0,CanSnatch,"The user calms itself and its teammates, raising the Sp. Def of itself and its allies by three steps.",
+1191,TRICKYTOXINS,Tricky Toxins,121,95,POISON,Special,100,12,0,NearOther,0,CanProtect;CanMirrorMove,"Turns the foe's power against it, dealing damage using the target's Sp. Attack stat.",VENOSHOCK
+1192,RANSACK,Ransack,0F1,60,NORMAL,Special,100,20,0,NearOther,0,CanProtect;CanMirrorMove,"The user skillfully blasts the target, then steals their item. Items stolen from wild Pokémon are stored.",
+1193,TRAPJAW,Trap Jaw,557,85,GRASS,Physical,100,12,0,NearOther,0,CanProtect;CanMirrorMove;Biting,"Lures an enemy into its jaws, draining 2/3 of damage dealt if they hit the user this turn.",
+1194,CAUSTICPUNCH,Caustic Punch,0F5,65,POISON,Physical,100,15,0,NearOther,0,CanProtect;CanMirrorMove;Punch,"The user strikes with an acidic punch that destroys Gems and Berries.",
+1195,DOLLSTITCH,Doll Stitch,558,0,GHOST,Status,0,10,0,UserOrNearOther,0,CanProtect;CanMagicCoat,"The user forces itself or the target to make a substitute by turning it into a doll.",
+1196,SEVER,Sever,Basic,90,DARK,Physical,100,10,0,NearOther,0,CanProtect;CanMirrorMove;HighCriticalHitRate;Blade,"The user hacks at the target with great violence. Critical hits twice as often.",NIGHTSLASH
+1197,DEADEND,Dead End,080,65,GHOST,Special,100,10,0,NearOther,0,CanProtect;CanMirrorMove,"If the target's HP is half or less, this attack will hit with double the power.",HEX
+1198,PHANTOMGATE,Phantom Gate,53E,120,GHOST,Special,100,5,0,NearOther,0,CanProtect;CanMirrorMove,"The user opens its soul to unleash massive energy. This lowers the user's Sp. Atk and Sp. Def.",OMINOUSWIND
+1199,FRESHSTART,Fresh Start,55B,0,NORMAL,Status,0,12,0,NearOther,0,CanSnatch,"The user reinvigorates itself, healing to full. Only works the first turn the user is in battle.",RECOVER
+1200,LATCHON,Latch On,Leech,0,BUG,Status,100,10,0,NearOther,0,CanProtect;CanMagicCoat;CanMirrorMove,"Small bugs swarm the target, causing it to become leeched.",INFESTATION
+1201,GALLINGSPIT,Galling Spit,Poison,80,DRAGON,Special,100,12,30,NearOther,0,CanProtect;CanMirrorMove,"The user spits venom at the target. It has a 30% chance to poison.",ACIDSPRAY
+1202,CRUELTY,Cruelty,07F,65,DRAGON,Physical,100,10,0,NearOther,0,CanProtect;CanMirrorMove,"The user crushes the target with evil intent. This deals double damage if the target has a status condition.",CRUSHCLAW
+1203,SLAMSHUT,Slam Shut,0CF,75,WATER,Physical,100,12,0,NearOther,0,CanProtect;CanMirrorMove,"The target is crushed in the user's shell or claws, trapping and damaging it for three turns.",CLAMP
+1204,MAELSTROM,Maelstrom,0CF,75,WATER,Special,100,12,0,NearOther,0,CanProtect;CanMirrorMove,"The foe is pulled into a huge whirlpool, trapping and damaging it for three turns.",WHIRLPOOL
+1205,CRIMSONSTORM,Crimson Storm,0CF,75,FIRE,Special,100,12,0,NearOther,0,CanProtect;CanMirrorMove,"The foe is engulfed in a firestorm, trapping and damaging it for three turns.",FIRESPIN
+1206,VINEBIND,Vinebind,0CF,50,GRASS,Physical,100,15,0,NearOther,0,CanProtect;CanMirrorMove,"Binds the foe with vines, trapping and damaging it for three turns.",GRASSKNOT
+1207,BLACKOUT,Blackout,562,90,DARK,Special,100,12,0,NearOther,0,CanProtect;CanMirrorMove,"The user removes the energy and light around the target. Super effective vs Electric-types.",DARKVOID
+1208,HOLLYCHARM,Holly Charm,563,90,GRASS,Special,100,12,0,NearOther,0,CanProtect;CanMirrorMove,"The user attacks the target with the power of a warding charm. Super effective vs Ghost-types.",MAGICALLEAF
+1209,SCUFFLE,Scuffle,599,55,FIGHTING,Physical,100,25,0,NearOther,0,CanProtect;CanMirrorMove,"The user grabs the target, slamming both of them into the ground. The user takes 20% recoil.",SUBMISSION
+1210,BEDFELLOWS,Bedfellows,564,0,NORMAL,Status,0,5,0,NearFoe,0,CanProtect;CanMagicCoat;CanMirrorMove,"The user and the target both fall asleep, fully restoring their HP and healing any status conditions.",REST
+1211,LOUNGE,Lounge,565,0,NORMAL,Status,0,5,0,User,-1,CanSnatch,"The user lounges around with decadent laziness, restoring its HP by 66%. This move always goes last.",SLACKOFF
+1212,THUNDERCLAP,Thunderclap,Flinch,80,ELECTRIC,Physical,100,15,40,NearOther,0,CanProtect;CanMirrorMove,"The user jabs the target with electric charges. It has a 40% chance to make the target flinch.",SPARK
+1213,SINISTERSPINES,Sinister Spines,116,70,GRASS,Physical,100,5,0,NearOther,1,CanProtect;CanMirrorMove,"This move enables the user to attack first. It fails if the target is not readying an attack, however.",SPIKECANNON
+1214,MIRAGEFLARE,Mirage Flare,Basic,120,FLYING,Special,100,5,0,AllNearOthers,0,CanProtect;CanMirrorMove,"The user creates a storm using its flaming body, damaging everything around it.",
+1215,HAREHEROICS,Hare Heroics,566,1,NORMAL,Physical,100,5,0,NearOther,0,CanProtect;CanMirrorMove,"Deals more damage the less HP the user has. After attacking, the user switches out.",
+1216,RIPTURN,Rip Turn,568,70,WATER,Physical,100,5,100,NearOther,0,CanProtect;CanMirrorMove,"The user rips the target, lowering their Defense by two steps. After attacking, the user switches out.",
+1217,REDHOTRETREAT,Red-Hot Retreat,567,0,FIRE,Status,0,3,0,User,4,,"Protects the user from attacks. Also burns any attacker who specially attacks the user.",WITHDRAW
+1218,FROSTSPIKES,Frost Spikes,569,0,ICE,Status,0,15,0,FoeSide,0,CanMagicCoat,"The user lays frozen spikes on the foe's side. One layer hurts switched in foes, two layers frostbites.",
+1219,SANDTOSS,Sand Toss,Burn,40,GROUND,Special,100,30,10,NearOther,0,CanProtect;CanMirrorMove,"The user tosses hot desert sand on the target. It has a 10% chance to burn.",SCORCHINGSANDS
+1220,DUSTDEVIL,Dust Devil,Burn,60,GROUND,Special,100,20,20,NearOther,0,CanProtect;CanMirrorMove;Wind,"The user whips up a hot desert twister to attack the target. It has a 20% chance to burn.",SCORCHINGSANDS
+1221,DEVOURINGDUST,Devouring Dust,0CF,110,GROUND,Special,100,15,0,NearOther,0,CanProtect;CanMirrorMove,"The target is consumed by a desert storm, trapping and damaging it for three turns.",SANDTOMB
+1222,PUZZLEROOM,Puzzle Room,51A,0,FAIRY,Status,0,10,0,BothSides,0,CanMirrorMove,"The user creates a puzzling area in which Pokémon's base Attack and Sp. Atk are swapped.",MAGICROOM
+1223,SHIVER,Shiver,Frostbite,0,GHOST,Status,100,12,0,NearOther,0,CanProtect;CanMagicCoat;CanMirrorMove,"The user drains heat from the air around the target, afflicting it with frostbite.",
+1224,FRIGIDJEALOUSY,Frigid Jealousy,537,70,ICE,Special,100,12,100,AllNearFoes,0,CanProtect;CanMirrorMove,"Attacks with emotion from jealousy. All opposing Pokémon with stat boosts get frostbitten.",
+1225,CORECOLLAPSE,Core Collapse,0FC,100,PSYCHIC,Special,100,10,0,AllNearOthers,1,CanProtect;CanMirrorMove,"Astral energy explodes around the target. This move always goes first. The user also takes 50% recoil.",EXPANDINGFORCE
+1226,PATTERNRELEASE,Pattern Release,56C,35,PSYCHIC,Physical,100,10,0,RandomNearFoe,0,CanProtect;CanMirrorMove,"Unveiling its ears, the released psychic power causes the user to attack 2-5 times for three turns.",FURYSWIPES
+1227,THUNDERBELLY,Thunder Belly,56B,200,ELECTRIC,Physical,100,10,0,AllNearFoes,0,CanProtect;CanMirrorMove,"The user takes an entire grid of power into its belly to slam the target. The user takes 100% recoil.",BODYSLAM
+1228,VOLLEYSTANCE,Volley Stance,56D,0,STEEL,Status,0,10,0,User,0,CanSnatch,"The user prepares its dual cannons. Until switch out, each special attack hits twice.",FOCUSENERGY
+1229,ONEIROMANCY,Oneiromancy,56E,0,PSYCHIC,Status,0,10,0,User,0,CanSnatch,"This move raises all the user's stats by two steps. Can only be used while asleep.",COSMICPOWER
+1230,JOKEJOLT,Joke Jolt,0BA,60,ELECTRIC,Special,100,10,100,NearOther,0,CanProtect;CanMirrorMove,"The target is pranked by an electric jolt. They are taunted and unable to use status moves for three turns.",THUNDERSHOCK
+1231,PHOTONEDGE,Photon Edge,Numb,85,ELECTRIC,Physical,100,15,50,NearOther,0,CanProtect;CanMirrorMove;HighCriticalHitRate,"The user slices with claws of light that have a 50% chance to numb. Critical hits twice as often.",
+1232,FRANTICFANG,Frantic Fang,571,60,NORMAL,Physical,100,10,0,NearOther,0,CanProtect;CanMirrorMove;Biting,"Channeling fear, the user bites the target. Deals double damage if the user is below half health.",HYPERFANG
+1233,TRANQUILTUNE,Tranquil Tune,572,0,FAIRY,Status,100,10,0,NearOther,0,CanProtect;CanMirrorMove;Sound,"The target is put to sleep, and the user's Attack is raised. Fails unless the target is at or below half health.",SING
+1234,SUGARBALL,Sugar Ball,08D,1,FAIRY,Special,100,5,0,NearOther,0,CanProtect;CanMirrorMove,"The user spins sugar into a ball launched at the target. The slower the user, the greater the damage.",
+1235,SILTSURGE,Silt Surge,044,110,WATER,Special,100,12,100,AllNearFoes,0,CanProtect;CanMirrorMove,"The user attacks with a wave of murky water, which hits all near foes and lowers their Speed by two steps.",MUDDYWATER
+1236,PLUNDER,Plunder,588,90,STEEL,Physical,100,15,0,NearOther,0,CanProtect;CanMirrorMove,"The user attacks the target with a sword. If it faints, tons of money is earned after the battle.",
+1237,ROYALTRIBUTE,Royal Tribute,128,90,DARK,Special,100,15,0,NearOther,0,CanProtect;CanMirrorMove,"The user demands tribute from the target. Much money is earned after the battle.",
+1238,SACREDLOTS,Sacred Lots,589,25,DRAGON,Physical,100,15,0,NearOther,0,CanProtect;CanMirrorMove,"The user makes an offering, then attacks two to five times. Money is earned for each hit.",
+1239,CHACHING,Cha-ching,128,90,NORMAL,Physical,100,15,0,NearOther,0,CanProtect;CanMirrorMove,"The user attacks with the full force of The Market. Much money is earned after the battle.",
+1240,LEYLINEBURST,Leyline Burst,573,110,GROUND,Special,100,10,0,NearOther,0,CanProtect;CanMirrorMove,"Energy is sent through a conduit, erupting under the target. This move is also Psychic-type.",EARTHPOWER
+1241,HARDPLACE,Hard Place,574,1,ROCK,Physical,0,10,0,NearOther,0,CanProtect;CanMirrorMove,"The user slams the target into a nearby hard object. Increases power the higher the Defense of any ally.",HEADSMASH
+1242,DRAGONRIDE,Dragon Ride,575,0,DRAGON,Status,0,5,0,NearAlly,0,,"Doubles target ally's Attack and Speed. However, if the user faints, so too does that ally.",COACHING
+1243,LIKEWILDFIRE,Like Wildfire,530,50,FIRE,Special,0,30,0,NearOther,0,CanSnatch;Sound,"The user roars with the force of a volcano, raising the Attack of itself and allies.",HOWL
+1244,BLAZINGSPEED,Blazing Speed,Basic,80,FIRE,Physical,100,5,0,NearOther,2,CanProtect;CanMirrorMove,"The user charges the target at blazing-fast speed. This attack always goes before any other move.",FLAMECHARGE
+1245,ARCHEANDELUGE,Archean Deluge,576,120,WATER,Special,100,5,0,NearOther,0,CanProtect;CanMirrorMove,"Summons rain for five turns on the first turn, then overwhelms the foe with water on the second.",SURF
+1246,SHIMMERINGHEAT,Shimmering Heat,577,90,FIRE,Special,100,10,0,AllNearFoes,0,CanProtect;CanMirrorMove;Wind,"The user attacks with heat, creating an obscuring wall of haze. The user takes 33% less damage this turn.",HEATWAVE
+1247,BREATHELIFE,Breathe Life,578,0,GRASS,Status,0,1,0,None,0,,"Restores a fainted Grass-type party member to full HP. Only one use per battle.",GRASSYTERRAIN
+1248,SPECTRALTONGUE,Spectral Tongue,579,0,GHOST,Status,100,12,0,NearOther,0,CanProtect;CanMagicCoat;CanMirrorMove,"The user licks the target, numbing them, or cursing them if they're already numbed.",LICK
+1249,VICIOUSCLEANING,Vicious Cleaning,580,80,NORMAL,Special,100,10,0,NearOther,0,CanProtect;CanMirrorMove,"The user flings the dirty oil on its fur. It transfers any status condition to the target.",ACIDSPRAY
+1250,SEDATINGDUST,Sedating Dust,581,0,BUG,Status,100,3,0,NearOther,0,CanProtect;CanMagicCoat;CanMirrorMove,"If the user is faster than the target, puts the target to sleep, then minimizes the user's Speed stat.",POISONPOWDER
+1251,ODDROOM,Odd Room,582,0,PSYCHIC,Status,0,10,0,BothSides,0,CanMirrorMove,"The user creates an odd area in which Pokémon's offensive and defensive stats are swapped.",MAGICROOM
+1252,MULCHMEAL,Mulch Meal,583,0,GRASS,Status,0,10,0,User,0,CanSnatch,"The user eats decaying leaves, restoring its HP by 50% and raising its Speed.",RECOVER
+1253,GUIDINGAROMA,Guiding Aroma,584,0,BUG,Status,0,12,0,NearAlly,0,,"The user raises all of the target's attacking and defensive stats.",AROMATICMIST
+1254,FLAREWITCH,Flare Witch,585,0,FIRE,Status,0,10,0,User,0,CanSnatch,"Raises Sp. Atk by two steps. Until switch out, the user's attacks spread to hit all nearby foes.",
+1255,WHIPTRANCE,Whip Trance,55F,120,FIGHTING,Special,100,10,0,NearOther,0,CanProtect;CanMirrorMove;HighCriticalHitRate,"The user relentlessly attacks with its whip-like hands for three turns. Critical hits twice as often.",
+1256,CRUELWHIPBLADE,Cruel Whipblade,104,30,GRASS,Physical,100,12,0,NearOther,0,CanProtect;CanMirrorMove;Blade,"The user flicks its thorns, dealing damage and setting a layer of poison spikes around the target.",
+1257,HONORLESSSTING,Honorless Sting,586,105,POISON,Physical,100,12,0,NearOther,0,CanProtect;CanMirrorMove,"The user uses venom that turns the target's body against it. Super effective vs Fighting-types.",POISONSTING
+1258,MURKYFOG,Murky Fog,050,85,POISON,Special,0,10,0,NearOther,0,CanProtect;CanMirrorMove,"The user attacks with a pitch black fog. All of the target's stat changes are returned to normal.",SMOKESCREEN
+1259,SLIMEBALL,Slimeball,18F,80,POISON,Special,100,12,0,NearOther,0,CanProtect;CanMirrorMove,"The user attacks with cloying slime, rendering the target's item sticky and unusable.",SLUDGEBOMB
+1260,AUTUMNBLAST,Autumn Blast,03C,75,GRASS,Special,100,12,0,NearOther,0,CanProtect;CanMirrorMove,"The user sheds its leaves to attack. This lowers the user's defensive stats by two steps each.",LEAFTORNADO
+1261,INCISION,Incision,58D,50,DARK,Physical,100,12,0,NearOther,0,CanProtect;CanMirrorMove;Blade,"The user prepares a precise cut. Always a critical hit, but lowers the user's Speed.",NIGHTSLASH
+1262,VIPERSHOCK,Vipershock,58A,80,POISON,Physical,100,5,0,NearOther,0,CanProtect;CanMirrorMove,"The user finishes off its prey. Power is tripled against poisoned targets.",POISONFANG
+1263,ONAROLL,On A Roll,58B,90,GROUND,Physical,100,15,0,NearOther,0,CanProtect;CanMirrorMove,"The user attacks while balled up. This counts as a usage of Fury Cutter, Rock Roll, or Snowball.",ROCKROLL
+1264,MACHFLIGHT,Mach Flight,58C,0,FLYING,Status,0,15,0,User,0,CanSnatch,"The user takes off at sonic speeds, raising its Speed by two steps and gaining the Flying type.",AGILITY
+1265,CALTROPARTS,Caltrop Arts,58E,0,DARK,Status,100,5,100,NearFoe,0,CanProtect;CanMirrorMove,"Defly sets a layer of damaging Spikes around the foe, then switches out.",PARTINGSHOT
+1266,CULL,Cull,58F,40,DARK,Special,100,10,0,NearOther,0,CanProtect;CanMirrorMove,"The user tries to pick off a weak target. After damage, if the target is below 1/4 HP, they instantly faint.",NIGHTSLASH
+1267,TRIPLETHREAT,Triple Threat,017,90,DRAGON,Special,100,10,60,NearOther,0,CanProtect;CanMirrorMove,"The user strikes with a simultaneous three-beam attack. It has a 20% chance each to numb, burn, or frostbite.",TRIATTACK
+1268,ERODINGFOAM,Eroding Foam,5E9,80,WATER,Special,100,20,100,NearOther,0,CanProtect;CanMirrorMove,"The user spews alkaline bubbles that melt the target, drastically lowering their Defense.",BUBBLEBEAM
+1269,COCODROP,Coco Drop,591,1,GRASS,Physical,100,12,0,NearOther,0,CanProtect;CanMirrorMove,"The user drops some heads from high up. The taller the user compared to the target, the greater the damage.",
+1270,LIGHTNINGSPEAR,Lightning Spear,5C8,90,ELECTRIC,Special,100,12,0,NearOther,0,CanProtect;CanMirrorMove,"Shoots a damaging spear at enemies, or a 4-step Speed-increasing electric charge at allies.",THUNDERBOLT
+1271,TARVOLLEY,Tar Volley,592,45,FIRE,Special,100,10,100,AllNearFoes,0,CanProtect;CanMirrorMove,"The user attacks twice with tar globs. If two targets, the hits spread. Reduces targets' Speed.",SMOKESCREEN
+1272,WAXINGLIGHT,Waxing Light,09E,50,FAIRY,Special,0,10,0,NearFoe,0,CanProtect;CanMirrorMove,"Strikes the target with lunar light, then summons moonglow for eight turns.",DAZZLINGGLEAM
+1273,HEATGYRE,Heat Gyre,0FF,50,FIRE,Physical,0,10,0,NearFoe,0,CanProtect;CanMirrorMove,"Spins into the target while emitting heat, then summons sunshine for eight turns.",FLAMEWHEEL
+1274,MIRRORSHIELD,Mirror Shield,593,0,STEEL,Status,0,3,0,User,4,,"Protects the user from attacks. Special attackers take 1/8th HP damage.",PROTECT
+1275,ROUGHTUMBLE,Rough & Tumble,594,100,NORMAL,Physical,100,10,0,NearOther,0,CanProtect;CanMirrorMove,"The user attacks by spreading its body wide. Its power doubles if Curl Up was used previously.",BODYSLAM
+1276,BUILTDIFFERENT,Built Different,595,0,FIGHTING,Status,0,15,0,User,0,CanSnatch,"The user flexes its rocky skin, raising its Attack and Defense and gaining the Rock type.",BULKUP
+1277,DEATHMARK,Death Mark,596,0,GHOST,Status,0,1,0,NearOther,0,CanMagicCoat;CanMirrorMove,"The target becomes unable to flee, and takes 50% more damage from all attacks.",MEANLOOK
+1278,BULWARK,Bulwark,597,0,FIGHTING,Status,0,3,0,UserSide,3,CanSnatch,"The user and its allies take 50% less attack damage this turn. Always fails if used in succession.",
+1279,SNOWYSORROWS,Snowy Sorrows,569,30,ICE,Special,100,12,0,NearOther,0,CanProtect;CanMirrorMove;Sound,"The user incants a snowy curse, dealing damage and setting a layer of frost spikes around the target.",PERISHSONG
+1280,INVITESUN,Invite Sun,59A,0,FIRE,Status,0,10,0,NearOther,0,CanProtect;CanMagicCoat;CanMirrorMove,"The user burns the target, then welcomes in sunshine for four turns.",SUNSHINE
+1281,INVITESAND,Invite Sand,59D,0,ROCK,Status,0,10,0,NearOther,0,CanProtect;CanMagicCoat;CanMirrorMove,"The user dizzies the target, then summons sandstorm for four turns.",SANDSTORM
+1282,INVITERAIN,Invite Rain,59B,0,WATER,Status,0,10,0,NearOther,0,CanProtect;CanMagicCoat;CanMirrorMove,"The user numbs the target, then welcomes in rain for four turns.",RAIN
+1283,INVITEHAIL,Invite Hail,59C,0,ICE,Status,0,10,0,NearOther,0,CanProtect;CanMagicCoat;CanMirrorMove,"The user frostbites the target, then welcomes in hail for four turns.",HAIL
+1284,HATEFULHAYMAKER,Hateful Haymaker,081,65,DARK,Physical,100,10,0,NearOther,-4,CanProtect;CanMirrorMove;Punch,"A punch that inflicts double the damage if the user has been hurt by the foe in the same turn.",SUCKERPUNCH
+1285,DEFIBRILLATE,Defibrillate,59E,0,ELECTRIC,Status,0,1,0,None,0,,"Restores a fainted party member to 1 HP.",ELECTRICTERRAIN
+1286,ABERRANTMOTE,Aberrant Mote,5EF,85,PSYCHIC,Special,100,12,100,NearOther,0,CanProtect;CanMirrorMove,"The user fires a dimensional mote, lowering the target's Sp. Defense.",LUSTERPURGE
+1287,SINGINGSTONE,Singing Stone,59F,85,ROCK,Special,100,12,100,NearOther,0,CanProtect;CanMirrorMove;Sound,"The user thrums ominously, lowering the target's Attack and Sp. Atk.",ECHOEDVOICE
+1288,THERMALDRAIN,Thermal Drain,0DD,80,ICE,Special,100,10,0,NearOther,0,CanProtect;CanMirrorMove,"Drains the heat from the target, restoring HP by half the damage taken by the target.",
+1289,SILVERSTORM,Silver Storm,102,50,ICE,Special,100,10,0,NearFoe,0,CanProtect;CanMirrorMove,"The user creates a nascent ice storm, attacking and causing hail for eight turns.",HAIL
+1290,SHEDCOAT,Shed Coat,5A2,0,ICE,Status,0,12,0,User,0,CanSnatch,"The user sheds excess covering, raising Sp. Atk and Speed by three steps, but lowering Sp. Def by two steps.",
+1291,FEATHERWARD,Feather Ward,5A1,0,STEEL,Status,0,15,0,FoeSide,0,CanMagicCoat,"The user lays a trap of sharp feathers around the foe. It hurts foes that switch into battle.",
+1292,HYPERJET,Hyper Jet,Basic,80,WATER,Physical,100,5,0,NearOther,2,CanProtect;CanMirrorMove,"The user swims at the target at blinding speed. This attack always goes before any other move.",AQUAJET
+1293,DUSTMACHPULSE,Dustmach Pulse,Basic,120,GROUND,Special,100,5,0,AllNearOthers,0,CanProtect;CanMirrorMove;Pulse,"The user whips up dirt at supersonic speeds, damaging everything around it.",SCORCHINGSANDS
+1294,RAMMINGSPEED,Ramming Speed,5A3,125,WATER,Physical,100,10,0,NearOther,0,CanProtect;CanMirrorMove,"The user rams its sharp face right into the target. Lowers the user's Speed by three steps.",LIQUIDATION
+1295,VOLATILETOXIN,Volatile Toxin,5A4,75,POISON,Physical,100,12,0,NearOther,0,CanProtect;CanMirrorMove,"The user injects an unstable toxin into the target. The next Ground-type attack they take deals double damage.",POISONJAB
+1296,RIGHTEOUSKICK,Righteous Kick,54B,70,FIGHTING,Physical,100,20,100,NearOther,0,CanProtect;CanMirrorMove;Kicking,"A kick that can also eliminate trapping and hazard moves. Also raises user's Speed.",
+1297,ROOTSHELTER,Root Shelter,5A5,0,GRASS,Status,0,3,0,User,4,,"Halves attack damage taken this turn. Leeches any attackers. Fails if used successively.",VINEBIND
+1298,DREAMFEAST,Dream Feast,0DE,60,PSYCHIC,Physical,100,12,0,NearOther,0,CanProtect;CanMirrorMove,"The user assaults its foe's dreams. It absorbs half the damage dealt, and doubles in power if the foe is asleep.",
+1299,CRUELKISS,Cruel Kiss,Leech,65,FAIRY,Special,100,10,100,NearOther,0,CanProtect;CanMagicCoat;CanMirrorMove,"Leeches the target by kissing them with its thin mouth.",DRAININGKISS
+1300,TYRANTSFIT,Tyrant's Fit,5A6,120,DRAGON,Physical,100,10,0,RandomNearFoe,0,CanProtect;CanMirrorMove,"The user throws a royal fit for three turns. Raises Speed if a target is knocked out by this move.",OUTRAGE
+1301,TRANSCENDENTENERGY,Transcendent Energy,5A7,0,DRAGON,Status,0,5,0,User,0,,"A two-turn move. The user channels insane amounts of energy the first turn, then transforms.",DAZZLINGGLEAM
+1302,TRASHTREASURE,Trash Treasure,5A8,0,POISON,Status,100,12,0,NearOther,0,CanProtect;CanMagicCoat;CanMirrorMove,"The target is given a Black Sludge, replacing their item if any. Their Sp. Def is lowered.",
+1303,PETALTEMPEST,Petal Tempest,Basic,95,GRASS,Special,100,12,0,AllNearOthers,0,CanProtect;CanMirrorMove;Wind,"The user stirs up a violent petal tempest and attacks everything around it.",PETALBLIZZARD
+1304,HEARTRHYTHM,Heart Rhythm,5A9,60,FAIRY,Special,100,20,0,NearOther,0,CanProtect;CanMirrorMove;Sound,"Power increases by 20 each time it's used in succession. User heals for half of damage dealt.",ROUND
+1305,SCALEGLINT,Scale Glint,5AA,40,DRAGON,Special,100,15,20,NearOther,0,CanProtect;CanMirrorMove,"The shine from scales damages the target. 20% chance to reduce their higher attacking stat.",DAZZLINGGLEAM
+1306,REFURBISH,Refurbish,5AB,0,STEEL,Status,0,15,0,User,0,CanSnatch,"The user economizes half of its weight, healing based on the weight lost.",AUTOTOMIZE
+1307,MYSTERYSEED,Mystery Seed,5AC,0,GRASS,Status,0,10,0,NearOther,0,CanProtect;CanMagicCoat;CanMirrorMove,"The target eats a strange seed. They become numbed if faster than the user, or leeched if slower.",LEECHSEED
+1308,DEPTHCHARGE,Depth Charge,0CB,120,WATER,Physical,100,10,0,NearOther,0,CanProtect;CanMirrorMove,"Diving deep on the first turn, the user rises and strikes with explosive strength on second.",DIVE
+1309,SCARRINGSWING,Scarring Swing,5E6,90,DARK,Physical,100,10,100,AllNearFoes,0,CanProtect;CanMirrorMove,"The user slashes all around them, creating deep scars. This lowers each target's Attack.",
+1310,HIVEMIND,Hive Mind,57A,0,BUG,Status,0,10,0,NearAlly,0,,"The user makes its ally perform the move in the user's first slot.",
+1311,INNOCENTMASQUE,Innocent Masque,0D0,0,FAIRY,Status,100,15,0,NearOther,1,CanProtect;CanMagicCoat;CanMirrorMove,"The target is taunted by a deceptive look. It can't use status moves this or next turn. This move always goes first.",PLAYNICE
+1312,DISSOLUTION,Dissolution,57B,0,POISON,Status,0,10,0,User,0,CanSnatch,"The user partially dissolves, raising its Sp. Def stat by five steps.",
+1313,LONGSHOT,Long Shot,57C,110,NORMAL,Physical,70,25,0,NearOther,0,CanProtect;CanMirrorMove,"Inflicts physical or special damage based on the user's stats. However, it's likely to miss.",
+1314,DRYHEAT,Dry Heat,57D,90,FIRE,Special,100,10,10,NearOther,0,CanProtect;CanMirrorMove,"The target is dried out and loses Water-type. Then, it bursts into flame from the heat.",
+1315,ICENINEWALL,Ice-Nine Wall,57E,0,ICE,Status,0,3,0,User,4,,"Protects the user from attacks. Also frostbites any attacker who physically attacks the user.",DEFENSECURL
+1316,VENOMGUARD,Venom Guard,57F,0,POISON,Status,0,3,0,User,4,,"Halves attack damage taken this turn. Poisons any attackers. Fails if used successively.",DEFENSECURL
+1317,PRANK,Prank,560,0,NORMAL,Status,100,15,0,NearOther,0,CanProtect;CanMagicCoat;CanMirrorMove,"The user pranks the target, surprising it and reducing its Sp. Atk and Sp. Def by two steps each.",SCARYFACE
+1318,GREYMIST,Grey Mist,587,0,POISON,Status,0,10,0,User,0,,"A Grey Mist covers the battlefield. For five turns, stats are reset at the end of each turn.",MIST
+1319,PATIENTBLADE,Patient Blade,508,0,BUG,Status,0,12,0,User,0,CanSnatch,"The user prepares its weapons, raising Attack by six steps but lowering Speed by six steps.",SWORDSDANCE
+1320,ARTOFWAR,Art of War,5AD,0,FIGHTING,Status,0,15,0,User,0,CanSnatch,"The user doubles its critical strike chance and raises its Attack and Defense by two steps each.",FOCUSENERGY
+1321,REVERBWARD,Reverb Ward,5AE,0,PSYCHIC,Status,0,3,0,User,4,,"Protects the user from damage this turn. It also lowers the Sp. Def of special attackers by four steps.",PROTECT
+1322,MOONGLOW,Moonglow,09E,0,FAIRY,Status,0,10,0,BothSides,0,,"Summons moonglow for eight turns, boosting Fairy-type attacks and heralding the Full Moon.",
+1323,ECLIPSE,Eclipse,09D,0,PSYCHIC,Status,0,10,0,BothSides,0,,"Summons eclipse for eight turns, boosting Psychic-type attacks and heralding the Total Eclipse.",
+1324,CAPTIVATINGSIGHT,Captivating Sight,59F,0,PSYCHIC,Status,0,5,0,NearFoe,0,,"Summons eclipse for eight turns. The target becomes obsessed with the sky, trapping it.",MIRACLEEYE
+1325,NIGHTCHILL,Night Chill,5B1,80,DARK,Special,100,12,100,NearOther,0,CanProtect;CanMirrorMove,"Damages the target's life force directly. During moonglow, the target also becomes frostbitten.",DARKVOID
+1326,CALAMITOUSSLASH,Calamitous Slash,5B2,80,DRAGON,Physical,100,10,100,NearOther,0,CanProtect;CanMirrorMove;Blade,"The user slashes the foe while menacing. During eclipse, the target also becomes burned.",DRAGONCLAW
+1327,TAKESHELTER,Take Shelter,5B3,0,STEEL,Status,0,5,0,User,0,CanSnatch,"The user heals itself for 1/2 of its max HP, and extends the current weather by 1 turn.",RECOVER
+1328,BEDTIME,Bed Time,Sleep,0,FAIRY,Status,100,1,0,NearOther,0,CanProtect;CanMagicCoat;CanMirrorMove,"The target is lulled to sleep. Can only be used during a Full Moon.",SING
+1329,SKYFALL,Sky Fall,5B5,130,FLYING,Special,100,5,0,NearOther,0,CanProtect;CanMirrorMove,"Attacks while clearing weather. This move fails in the absence of a weather.",
+1330,HEARTSTOPPER,Heartstopper,53A,90,DARK,Special,100,12,100,AllNearOthers,0,CanProtect;CanMirrorMove,"For the rest of the round, the healing of all damaged Pokemon is reversed.",GLARE
+1331,PSYSHIELDBASH,Psyshield Bash,01D,80,PSYCHIC,Physical,100,20,100,NearOther,0,CanProtect;CanMirrorMove,"Cloaking itself in psychic energy, the user slams into the target, raising the user's Defense by two steps.",ZENHEADBUTT
+1332,HEADLONGRUSH,Headlong Rush,03C,120,GROUND,Physical,100,5,0,NearOther,0,CanProtect;CanMirrorMove,"The user smashes into the target in a full-body tackle. This cuts the user's Defenses.",STOMPINGTANTRUM
+1333,IMPURITYBLAZE,Impurity Blaze,5B6,80,FIRE,Special,100,10,0,NearOther,0,CanProtect;CanMirrorMove,"If the target has a status condition, this deals double damage and heals every battler's status condition.",HEX
+1334,CEASELESSEDGE,Ceaseless Edge,13E,65,DARK,Physical,100,10,0,NearOther,0,CanProtect;CanMirrorMove;Blade,"The user slashes its shell blade, leaving spikes under the target if none have already been placed.",NIGHTSLASH
+1335,STONEAXE,Stone Axe,105,55,ROCK,Physical,100,10,0,NearOther,0,CanProtect;CanMirrorMove;Blade,"The user swings its stone axes. This leaves stone splinters floating around the target.",STONEEDGE
+1336,THREEFOLDVOLLEY,Threefold Volley,500,30,FIGHTING,Special,100,15,0,NearOther,0,CanProtect;CanMirrorMove;HighCriticalHitRate,"The user shoots three arrows made of Aura with extreme precision. Critical hits twice as often.",AURASPHERE
+1337,ESPERDIVE,Esper Dive,01F,80,PSYCHIC,Physical,100,10,100,NearOther,0,CanProtect;CanMirrorMove,"The user slashes the target with aura-enriched wings. This boosts the user's Speed by two steps.",SKYATTACK
+1338,FOXTROTFINALE,Foxtrot Finale,5B7,0,FIGHTING,Status,100,5,0,User,0,CanSnatch;Dance,"The user raises all of their stats by two steps. Fails unless a foe fainted last turn.",WORKUP
+1339,ICEBREAKER,Icebreaker,5B8,120,ROCK,Physical,100,10,0,NearOther,0,CanProtect;CanMirrorMove,"The user sweeps away hazards while charging. User also takes 33% recoil.",HEADSMASH
+1340,SCHEME,Scheme,5BA,0,NORMAL,Status,0,25,0,User,0,CanSnatch,"The user schemes to raise its Attack and Sp. Atk by two steps. During moonglow, also raises Speed by two steps.",NASTYPLOT
+1341,RAGINGFURY,Raging Fury,55F,135,FIRE,Physical,100,10,0,RandomNearFoe,0,CanProtect;CanMirrorMove,"The user rampages and attacks while spewing flames for three turns.",FLAREBLITZ
+1342,CHLOROBLAST,Chloroblast,510,150,GRASS,Special,100,5,100,NearOther,0,CanProtect;CanMirrorMove,"The user launches its amassed chlorophyll to inflict damage on the target. The user loses half its current HP.",SOLARBEAM
+1343,DIRECLAW,Dire Claw,Poison,85,POISON,Physical,100,15,50,NearOther,0,CanProtect;CanMirrorMove;HighCriticalHitRate,"The user lashes out with its claws. 50% chance to poison. Critical hits twice as often.",CROSSPOISON
+1344,SHININGSHELL,Shining Shell,5BB,0,STEEL,Status,0,3,0,User,4,,"Protects the user from damage this turn. It also lowers the Sp. Atk of special attackers by two steps.",PROTECT
+1345,SPIKYBURST,Spiky Burst,5BC,300,DARK,Physical,100,5,0,AllNearOthers,0,CanProtect;CanMirrorMove,"Explodes, dealing an extra 50 base power to all foes for each layer of spikes underneath them. The user faints.",EXPLOSION
+1346,MALEFACTION,Malefaction,0EE,70,GHOST,Special,100,15,0,NearOther,-1,CanProtect;CanMirrorMove,"The user swaps out using a cruel illusion. This move always goes last.",PURSUIT
+1347,HAIRCURL,Hair Curl,0CF,80,STEEL,Special,100,15,0,NearOther,0,CanProtect;CanMirrorMove,"The user curls its metal hair around the target, trapping and damaging it for three turns.",BIND
+1348,MEGALITHRITE,Megalith Rite,5BD,0,ROCK,Status,0,10,0,FoeSide,0,CanMagicCoat,"The user calls all rocks to join it, summoning sandstorm for five turns and laying a trap of levitating stones around the target.",STEALTHROCK
+1349,CONTRADICT,Contradict,Dizzy,60,PSYCHIC,Special,100,12,100,NearOther,0,CanProtect;CanMagicCoat;CanMirrorMove,"The user questions the existence of the target, dealing psychic damage and dizzying them.",AMNESIA
+1350,MOUTHFUL,Mouthful,5BE,1,DARK,Physical,100,10,0,NearOther,0,CanProtect;CanMirrorMove,"The user chomps hard, cutting the target's HP by half, and healing for half of that.",SUPERFANG
+1351,OMNISHELTER,Omnishelter,5BF,0,ROCK,Status,0,5,0,User,3,CanSnatch,"The user and its allies are protected from wide-ranging attacks this turn, and enemies can only target the user. Fails if used in succession.",WIDEGUARD
+1352,HYPERFROST,Hyperfrost,5C0,70,ICE,Special,100,10,100,NearOther,0,CanProtect;CanMirrorMove,"The user freezes the target in place, dealing damage and minimizing their Speed and evasiveness.",ICEBEAM
+1353,EVERHONE,Everhone,5C1,90,STEEL,Physical,100,15,100,NearOther,0,CanProtect;CanMirrorMove;Punch,"Inflicts physical or special damage, whichever deals more. Then, raises the attacking stat which wasn't used.",
+1354,METAFORM,Metaform,5C2,0,ELECTRIC,Status,0,15,0,User,0,,"The user finds the highest base power move among your able party members, and uses it.",
+1355,ARCHMYTH,Archmyth,5C3,0,DRAGON,Status,0,5,0,User,0,,"Invokes the aspects of multiple dragons, striking with two fitting moves in a row.",
+1356,CAPOEIRA,Capoeira,01F,50,FIGHTING,Physical,100,10,100,NearOther,0,CanProtect;CanMirrorMove;Dance,"Combining dance and martial art, the user strikes the target and raises its Speed by two steps.",RAPIDSPIN
+1357,SMOLDERRAVE,Smolder Rave,020,50,FIRE,Special,100,10,100,NearOther,0,CanProtect;CanMirrorMove;Dance,"Cloaked in flames, the user dances wildly, raising its Sp. Atk by two steps.",FIERYDANCE
+1358,WETLANDWALTZ,Wetland Waltz,0DA,65,WATER,Physical,100,10,100,NearOther,0,CanProtect;CanMirrorMove;Dance,"The user attacks the target using graceful fluid movements, also forming an Aqua Ring around themselves.",
+1359,ABSOLUTERADIANCE,Absolute Radiance,5C4,120,FIRE,Special,100,5,0,NearOther,0,CanProtect;CanMirrorMove,"Summons sun for five turns on the first turn, then overwhelms the foe with fiery light on the second.",SURF
+1360,MAGNETIZE,Magnetize,0CF,50,STEEL,Physical,100,15,0,NearOther,0,CanProtect;CanMirrorMove,"The user strikes the target while magnetizing it, trapping and damaging it for three turns.",MAGNETBOMB
+1361,FARADAYCAGE,Faraday Cage,0CF,75,STEEL,Physical,100,15,0,NearOther,0,CanProtect;CanMirrorMove,"Conductive materials ensnare the target, trapping and damaging it for three turns.",MAGNETBOMB
+1362,MAGEHAND,Mage Hand,0CF,50,PSYCHIC,Physical,100,15,0,NearOther,0,CanProtect;CanMirrorMove,"The user grabs the target with a conjured hand, trapping and damaging it for three turns.",CRUSHGRIP
+1363,KINETICGRIP,Kinetic Grip,0CF,75,PSYCHIC,Physical,100,15,0,NearOther,0,CanProtect;CanMirrorMove,"The user conjures a giant fist to crush the target, trapping and damaging it for three turns.",CRUSHGRIP
+1364,LIFTOFF,Liftoff,5C5,160,FIRE,Physical,100,10,0,NearOther,0,CanProtect;CanMirrorMove,"The user launches up high, then explodes down on the second turn, taking 25% recoil.",FLY
+1365,ICYINJECTION,Icy Injection,5C6,90,ICE,Physical,100,12,100,NearOther,0,CanProtect;CanMirrorMove,"Injects supercold liquid into the target, damaging them and halving all future healing.",FROSTBARB
+1366,DIVINATION,Divination,5C7,0,DARK,Status,0,5,0,User,0,CanSnatch,"The user restores 1/2 of their HP and raises their Defense, Sp. Def, and critical hit chance by two steps each.",COSMICPOWER
+1367,WINTEROPS,Winter Ops,0C1,1,ICE,Physical,100,10,0,NearOther,0,CanProtect;CanMirrorMove;HighCriticalHitRate,"The user hunts with its allies. The more party Pokémon, the more damage. Critical hits twice as often.",ICEPUNCH
+1368,GRIMVISIONS,Grim Visions,043,90,DARK,Special,100,10,100,NearOther,0,CanProtect;CanMirrorMove,"The user attacks with dark illusions. This also lowers the target's Defense stat by two steps.",DARKPULSE
+1369,SILKBLADE,Silk Blade,50F,130,BUG,Physical,100,5,0,NearOther,0,CanProtect;CanMirrorMove;HighCriticalHitRate;Blade,"The user slashes using woven silk, lowering the user's Attack by four steps. Critical hits twice as often.",XSCISSOR
+1370,EXTREMEEFFORT,Extreme Effort,5C9,150,NORMAL,Physical,100,5,0,NearOther,0,CanProtect;CanMirrorMove,"The user uses all their might to attack their opponent, causing them to rest on their next turn.",GIGAIMPACT
+1371,MANYBLESSINGS,Many Blessings,5CA,0,FAIRY,Status,0,15,0,User,0,CanSnatch,"The user doubles its critical strike chance and raises its Sp. Atk and Sp. Def by two steps each.",FOCUSENERGY
+1372,MACHINATE,Machinate,5CB,90,GHOST,Special,100,12,30,NearOther,0,CanProtect;CanMirrorMove,"Changes type based on machine haunted. 30% chance of extra effect based on machine haunted.",SHADOWBALL
+1373,BANISH,Banish,5CC,75,DRAGON,Special,100,10,0,NearOther,-1,CanProtect;CanMirrorMove,"The user dismisses the target, forcing it to switch out.",ROAR
+1374,CHECKMATE,Checkmate,5CD,80,DARK,Physical,100,10,0,NearOther,0,CanProtect;CanMirrorMove,"If the target is the last able member of their party, this attack's power is doubled.",NIGHTSLASH
+1375,WEATHERBURST,Weather Burst,087,100,NORMAL,Physical,100,10,0,NearOther,0,CanProtect;CanMirrorMove,"Type based on weather. Inflicts physical or special damage based on the user's stats.",WEATHERBALL
+1376,SHINESHOT,Shine Shot,5EF,60,STEEL,Special,100,10,30,NearOther,0,CanProtect;CanMirrorMove,"The user looses a flash of energy from its polished body. It has a 30% chance to lower Sp. Def.",MIRRORSHOT
+1377,TUTELAGE,Tutelage,5CE,0,PSYCHIC,Status,0,10,0,NearAlly,0,,"The user imparts knowledge on its ally Pokémon, raising their Sp. Atk and Sp. Def stats by two steps.",COACHING
+1378,SWEETSELENE,Sweet Selene,0F9,0,DARK,Status,0,5,0,User,0,CanSnatch,"The user restores 1/2 of its HP, or 2/3rds in moonglow.",REST
+1379,GEMSEAL,Gem Seal,5CF,0,GHOST,Status,100,15,0,NearOther,0,CanProtect;CanMagicCoat;CanMirrorMove,"Disables the target's last used move for five turns, and cuts 5 PP from it.",DISABLE
+1380,RIVERREST,River Rest,5D0,0,WATER,Status,0,10,0,User,0,CanSnatch,"The user rests in a riverbed, restoring its HP by half of max, and forming an Aqua Ring around itself.",REST
+1381,WHALESONG,Whale Song,5D1,0,WATER,Status,0,5,0,UserAndAllies,0,CanSnatch;Sound,"The user's song heals the status problems of all the party Pokémon, and forms an Aqua Ring around itself.",HEALBELL
+1382,DEEPBREATHING,Deep Breathing,5D2,0,FIGHTING,Status,0,15,0,User,0,CanSnatch,"The user breathes deeply, raising its Speed by four steps and quadrupling its critical hit chance.",FOCUSENERGY
+1383,ANGELSKISS,Angel's Kiss,Dizzy,0,FAIRY,Status,100,10,0,NearOther,0,CanProtect;CanMagicCoat;CanMirrorMove,"The user kisses the target with a sweet, angelic cuteness that dizzies the target.",SWEETKISS
+1384,MISTBURST,Mist Burst,510,130,FAIRY,Special,100,5,0,AllNearFoes,0,CanProtect;CanMirrorMove,"Attacks nearby foes with a misty explosion. User is damaged for 50% of their current HP.",MISTYEXPLOSION
+1385,ENERGYTRICK,Energy Trick,056,0,PSYCHIC,Status,0,10,0,User,0,CanSnatch,"The user employs psychic power to switch its base Sp. Atk with its base Sp. Def stat.",POWERTRICK
+1386,JETSTREAM,Jet Stream,5D3,0,FLYING,Status,0,12,0,UserSide,0,CanSnatch;Wind,"The user whips up a lingering tailwind that ups the Speed of all party Pokémon for six turns.",TAILWIND
+1387,STABILIZE,Stabilize,5B3,0,GROUND,Status,0,10,0,User,0,CanSnatch,"The user slathers mud around to heal itself for 1/2 of its max HP, and extends any active screens by 1 turn.",MUDSPORT
+1388,THIEVINGSPREE,Thieving Spree,0F1,80,NORMAL,Physical,100,20,0,AllNearFoes,0,CanProtect;CanMirrorMove,"The user attacks and steals items from all near foes. Items stolen from wild Pokémon are stored.",COVET
+1389,TERRORSWARM,Terror Swarm,0CF,75,BUG,Special,100,15,0,NearOther,0,CanProtect;CanMirrorMove,"The user summons bugs to terrorize the target, trapping and damaging it for three turns.",INFESTATION
+1390,BLIGHT,Blight,5D5,80,POISON,Physical,100,10,0,NearOther,0,CanProtect;CanMirrorMove,"The user infects the target with a touch and also destroys any Herbs its holding.",POISONJAB
+1391,DETACHMENT,Detachment,086,55,FIGHTING,Special,100,12,0,NearOther,0,CanProtect;CanMirrorMove,"The user attacks freed from earthly attachments. Doubles in damage if the user has no item when the move starts.",AURASPHERE
+1392,SWARMORDER,Swarm Order,0AD,90,BUG,Physical,100,12,0,NearOther,0,CanMirrorMove,"The user calls out its underlings to pummel the target. Skips and destroys protections.",INFESTATION
+1393,NOISEORDER,Noise Order,Dizzy,60,BUG,Special,100,12,100,NearOther,0,CanProtect;CanMagicCoat;CanMirrorMove,"The user calls out its underlings to annoy the target with buzzing sounds, dizzying it.",BUGBUZZ
+1394,REGALIA,Regalia,5D7,0,NORMAL,Status,100,15,0,UserOrNearOther,0,CanProtect;CanMagicCoat;CanMirrorMove,"The user adorns itself or the target with precious stones, changing it to your choice of Fairy, Dragon, or Steel-type.",LUCKYCHANT
+1395,ROLLINGARSENAL,Rolling Arsenal,547,90,BUG,Physical,100,10,60,NearOther,0,CanProtect;CanMirrorMove,"The user bites, claws, and stings the target while rolling. It has a 20% chance each to poison, dizzy, or leech.",CHAOSWHEEL
+1396,INFINITEWING,Infinite Wing,536,130,FLYING,Physical,100,5,30,NearOther,0,CanProtect;CanMirrorMove,"The user flies up to raise its Sp. Def by four steps in the first turn, then rams the foe on the second.",SKYATTACK
+1397,SWAGGER,Swagger,55D,0,NORMAL,Status,100,12,0,NearOther,0,CanProtect;CanMagicCoat;CanMirrorMove,"The target's Attack stat is raised by three steps. It then hits itself in a rage.",
+1398,FLATTER,Flatter,55E,0,DARK,Status,100,12,0,NearOther,0,CanProtect;CanMagicCoat;CanMirrorMove,"The target's Sp. Atk stat is raised by three steps. It then hurts itself in its mental turmoil.",
+1399,SHELLTER,Shellter,5E2,0,WATER,Status,0,4,0,User,0,CanSnatch,"The user withdraws its body into its hard shell, raising both defensive stats by two steps and gaining Shell Armor.",WITHDRAW
+1400,TUNEUP,Tune Up,5E3,0,BUG,Status,0,10,0,User,0,CanSnatch,"The user amps itself up for performance, raising its Sp. Atk and Speed by two steps each.",CALMMIND
+1401,HONESIGHT,Hone Sight,5E4,0,NORMAL,Status,0,12,0,User,0,CanSnatch,"The user focuses its aim to raise its Sp. Atk and accuracy by three steps each.",LASERFOCUS
+1402,CURSEDOATH,Cursed Oath,54A,0,GHOST,Status,0,10,0,NearOther,0,CanProtect;CanMagicCoat;CanMirrorMove,"The user loses 1/4th of their max HP to curse the target, damaging their HP by 1/4th each turn.",CURSE
+1403,MINDSAP,Mind Sap,5E5,0,GRASS,Status,100,5,0,NearOther,0,CanProtect;CanMagicCoat;CanMirrorMove,"Lowers the target's Sp. Atk stat, then restores its own HP by the target's Sp. Atk.",STRENGTHSAP
+1404,CLASSICALPHYSICS,Classical Physics,5F2,40,GRASS,Special,100,10,100,NearOther,1,CanProtect;CanMirrorMove,"An apple falls from high up to strike the foe. Always goes first. Deals double damage in intense Gravity.",GRAVAPPLE
+1405,STARDANCE,Star Dance,5F3,0,PSYCHIC,Status,100,12,0,NearOther,0,CanProtect;CanMagicCoat;CanMirrorMove;Dance,"The user dazzles the target with celestial visions that lowers its Sp. Atk stat by five steps.",COSMICPOWER
+1406,AMPUP,Amp Up,09C,0,ELECTRIC,Status,0,15,0,NearAlly,0,,"The user assists an ally's next move, boosting its power by 50% and letting it move right after the user.",HELPINGHAND
+1407,ANATMAN,Anatman,5F5,0,PSYCHIC,Status,0,30,0,User,0,CanSnatch,"The user meditates, raising both its Attack and Sp. Atk stats by four steps each.",MEDITATE
+1408,UNDYINGRUSH,Undying Rush,5F6,120,GHOST,Physical,100,12,0,NearOther,0,CanProtect;CanMirrorMove,"Clad in souls, the user crashes into the target. The user takes 33% recoil, but can't faint from it.",PHANTOMFORCE
+1409,VERMINCLOUD,Vermin Cloud,0C9,100,DARK,Physical,100,5,0,NearOther,4,CanProtect;CanMirrorMove,"The user transforms into a cloud of vermin, evading all attacks on the first turn. On the second turn it ambushes the target.",FLY
+1410,ICEDUNGEON,Ice Dungeon,5F7,0,ICE,Status,0,5,0,AllNearFoes,0,CanMagicCoat;CanMirrorMove,"The user imprisons all near foes, reducing their attacking stats by one step each and trapping them until the next time they take a hit.",CHILL
+1411,BAR,Bar,0C7,0,FIGHTING,Status,100,15,0,NearOther,0,CanProtect;CanMagicCoat;CanMirrorMove,"The target is barred by rules which prevent it from using off-type moves for three more turns.",IMPRISON
+1412,OCCULTATION,Occultation,190,80,DRAGON,Special,100,15,0,AllNearOthers,0,CanProtect;CanMirrorMove,"Attacks all near others with dragon energy. Power increases by 50% in eclipse.",DRAGONPULSE
+1413,AIMTRUE,Aim True,501,0,NORMAL,Status,0,25,0,User,0,CanSnatch,"The user steadies its eyes, mind, and body in order to maximize its accuracy.",MINDREADER
+1414,STAMPDOWN,Stamp Down,050,60,GROUND,Physical,0,12,0,NearOther,0,CanProtect;CanMirrorMove;Kicking,"The user attacks by flattening the target into the ground. The target's stat step changes are returned to normal.",STOMP
+1415,GRINDSTONE,Grind Stone,5F8,80,ROCK,Physical,100,12,100,NearOther,0,CanProtect;CanMirrorMove,"The user scratches the target with rough rocks. If in sandstorm, the target's Defense is lowered by three steps.",STONEEDGE
+1416,ERODE,Erode,5F9,70,GROUND,Special,100,15,0,NearOther,0,CanProtect;CanMirrorMove,"Attacks by blasting sand. This move always goes first in sandstorm.",SANDATTACK
+1417,HEARTHFIREHULA,Hearthfire Hula,173,80,FIRE,Special,100,10,100,AllNearOthers,0,CanProtect;CanMirrorMove;Dance,"The user dances rapidly, emitting tropical heat. Any frostbitten Pokémon will be healed by this heat.",HEATWAVE
+1418,CURLUP,Curl Up,01E,0,NORMAL,Status,0,4,0,User,0,CanSnatch,"The user curls up to conceal weak spots and raise both of its defensive stats.",DEFENSECURL
+1419,MORNINGSTAR,Morningstar,Basic,135,FAIRY,Physical,70,12,0,NearOther,0,CanProtect;CanMirrorMove,"The user invokes forbidden celestial powers to smite the target.",SPIRITBREAK
+1420,FIREPULSE,Fire Pulse,Burn,60,FIRE,Special,100,15,20,NearOther,0,CanProtect;CanMirrorMove;Pulse,"The user attacks the target with a pulsing blast of fire. It has a 20% chance to burn.",FLAMEBURST
+1421,TEPHRACANNON,Tephra Cannon,551,30,FIRE,Special,100,12,0,NearOther,0,CanProtect;CanMirrorMove;Pulse,"The user launches volcanic debris, dealing damage and setting a layer of flame spikes around the target.",FLAMEBURST
+1422,STORMDRIVE,Storm Drive,0E6,120,ELECTRIC,Physical,100,10,0,NearOther,0,CanProtect;CanMirrorMove,"The user charges, then attacks on the second turn. Charges instantly in Rain.",WILDCHARGE
+1423,MANYNEEDLE,Manyneedle,0BE,20,BUG,Physical,100,15,20,NearOther,0,CanProtect;CanMirrorMove,"The foe is stabbed once by each of the user's stingers.",TWINEEDLE
+1424,RISINGTIDE,Rising Tide,100,50,WATER,Special,0,10,0,NearFoe,0,CanProtect;CanMirrorMove,"Strikes the target with harbor waters, then summons rain for eight turns.",SURF
+1425,EXSANGUINATE,Exsanguinate,0A7,75,POISON,Physical,100,15,100,NearOther,0,CanProtect;CanMirrorMove;Biting,"The user steals blood, lowering the target's Attack. If so, raises the user's Attack.",CRUNCH
+1426,GLEEFULGRASP,Gleeful Grasp,048,80,DARK,Physical,100,10,100,NearOther,0,CanProtect;CanMirrorMove,"The user indulges its love of battle by striking a foe. Both of the user's attacking stats are raised.",
+1427,PLAYBITE,Play Bite,013,60,FAIRY,Physical,100,15,0,NearOther,0,CanProtect;CanMirrorMove;Biting,"The user bites with playful abandon. This deals double damage on the user's first turn out.",CRUNCH
+1428,DESTRIERSWHIM,Destrier's Whim,10E,0,FIRE,Status,100,12,0,NearOther,0,CanProtect;CanMagicCoat;CanMirrorMove,"The user burns the target if they're a foe, or raises their Speed by four steps if they're an ally.",EMBER
+1429,JOUST,Joust,53D,130,STEEL,Physical,50,12,0,NearOther,0,CanProtect;CanMirrorMove,"The user charges at the target to strike it squarely. If it misses, the user's accuracy and Speed is raised.",SMARTSTRIKE
+1430,SEASONSEND,Season's End,590,95,NORMAL,Physical,100,20,0,NearOther,0,CanProtect;CanMirrorMove,"The user strikes while inviting the power of seasons. The user changes form to the next season.",BODYSLAM
+1431,SCALESCATTER,Scale Scatter,06F,70,BUG,Special,100,15,0,NearOther,0,CanProtect;CanMirrorMove,"The target is plastered with irritating scales, damaging it and changing its type to Bug.",POWDER
+1432,THORNRATTLE,Thorn Rattle,5CC,75,GRASS,Special,100,10,0,NearOther,-1,CanProtect;CanMirrorMove;Sound,"The user makes a scary sound by shaking, forcing the target to switch out.",UPROAR
+1433,CROSSEXAMINE,Cross Examine,598,0,NORMAL,Status,0,15,0,User,0,,"The user chooses between the three most recent moves used by the opposing team, and uses that move themselves.",AMNESIA
+1434,GENOTHEOSIS,Genotheosis,089,0,PSYCHIC,Status,0,5,0,User,0,,"The user psychically modifies its own genes, transforming into either Overmatter form or Overmind form.",TRANSFORM
+1435,AURORAFLASH,Aurora Flash,5E6,80,ICE,Special,100,5,100,NearOther,1,CanProtect;CanMirrorMove,"An aurora borealis flashes brightly at the target, lowering their Attack. Always goes first.",AURORABEAM
+1436,SPLITTHESKY,Split the Sky,51C,80,ELECTRIC,Special,100,5,100,NearOther,1,CanProtect;CanMirrorMove,"An electrified cloud zaps the target, lowering their Speed. This has a 50% chance to flinch.",THUNDER
+1437,PROMINENCE,Prominence,5EC,80,FIRE,Special,100,5,100,NearOther,0,CanProtect;CanMirrorMove;VeryHighCriticalHitRate,"A lance of fire pierces the target from above, lowering their Sp. Atk. Critical hits four times as often.",SEARINGSHOT
+1438,ICICLEPIN,Icicle Pin,11A,0,ICE,Status,0,5,0,NearOther,0,CanMagicCoat;CanMirrorMove,"The user pins the target down with icy spikes, applying frostbite and making it unable to flee.",ICICLESPEAR
+1439,HEADTHROW,Head Throw,500,40,GRASS,Special,100,15,0,NearOther,0,CanProtect;CanMirrorMove,"Round objects are hurled at the target to strike three times in a row.",BARRAGE
+1440,ROTARYHEADBUTT,Rotary Headbutt,500,40,GROUND,Physical,100,15,0,NearOther,0,CanProtect;CanMirrorMove,"The user hits the target with each of its heads from underground. Strikes three times.",DIG
+1441,DIAMONDFIELD,Diamond Field,022,0,ROCK,Status,0,20,0,UserSide,0,CanSnatch,"A diamond-tough force-field protects the user's side for 10 turns from critical hits or random added effects.",LIGHTSCREEN
+1442,LUCKYCHEER,Lucky Cheer,08A,0,ELECTRIC,Status,0,15,0,NearAlly,5,Dance,"The user dances to encourage its ally. Their attacks this turn will be critical hits.",HELPINGHAND
+1443,HEALTHYCHEER,Healthy Cheer,126,0,ELECTRIC,Status,0,5,0,NearAlly,0,CanProtect;CanMagicCoat;Dance,"The user dances to restore an ally by 50% max HP. They're cured of any status conditions.",HEALPULSE
+1444,DEATHKNELL,Death Knell,Basic,90,GHOST,Special,100,15,20,AllNearOthers,0,CanProtect;CanMirrorMove;Sound,"The user makes a dreadful bell noise, harming all near battlers with visions of impending doom.",SCREECH
+1445,GHOULISHGALE,Ghoulish Gale,0A5,85,GHOST,Special,100,12,20,NearOther,0,CanProtect;CanMirrorMove;Wind,"The target is blasted with an unsettling wind. Can't miss and skips protections.",OMINOUSWIND
+1446,CURSEDROOTS,Cursed Roots,127,0,GRASS,Status,0,15,0,User,0,CanSnatch,"The user spends 25% HP to lay down evil roots. This curses all foes. The user becomes trapped, but heals by 1/8th HP every turn.",
+1447,MUDSLIDE,Mud Slide,5E0,80,GROUND,Special,100,10,100,AllNearOthers,0,CanProtect;CanMirrorMove,"The user rides onto the field on a huge wave of mud, damaging all nearby and raising their own Speed.",MUDBOMB
+1448,BUTTINGHEADS,Butting Heads,54C,95,NORMAL,Physical,100,12,20,NearOther,0,CanProtect;CanMirrorMove,"The user engages the target in a head-to-head fight. The damage is based on the target's Attack rather than their Defense.",HEADBUTT
+1449,PACKAGE,Package,16F,90,ICE,Special,100,10,0,NearOther,0,CanProtect;CanMirrorMove,"The user throws an exploding package at enemies, or one filled with healing treats at allies.",PRESENT
+1450,SAPPINGSEED,Sapping Seed,552,0,GRASS,Status,100,10,0,NearOther,0,CanProtect;CanMagicCoat;CanMirrorMove,"A parasitic seed leeches the target and reduces both its attacking stats.",LEECHSEED
+1451,MIDNIGHTHUNT,Midnight Hunt,5B0,0,DARK,Status,0,5,0,NearFoe,0,,"Summons moonglow for eight turns and raises the Attack stat of itself and its allies by two steps.",HOWL
+1452,LUMINOUSBURST,Luminous Burst,046,80,ELECTRIC,Special,100,20,100,NearOther,0,CanProtect;CanMirrorMove,"Cloaking itself in light energy, the user shocks the target, raising the user's Sp. Def by two steps.",DISCHARGE
+1453,FIGHTFOREVER,Fight Forever,094,0,FIGHTING,Status,0,5,0,User,4,,"The user endures attacks with 1 HP. If so, raises its Attack by two steps. Fails if used in succession.",ENDURE
+1454,TIDALKINESIS,Tidalkinesis,5FA,100,WATER,Physical,100,10,100,NearOther,0,CanProtect;CanMirrorMove;Biting,"The user bites with added telekinetic force. During eclipse, the target also becomes numbed.",
+1455,MUTATE,Mutate,52D,0,MUTANT,Status,0,5,0,User,0,,"The user mutates its genetic code, transforming into any of its 3 other forms. Only useable as Deoxys Normal.",TRANSFORM
+1456,GUTCHECK,Gut Check,176,55,ELECTRIC,Physical,100,25,100,NearOther,0,CanProtect;CanMirrorMove,"The user attacks with courage. Sets spikes if Full. If Hangry, deals double damage and is Dark-type.",SPARK
+1457,SHATTERVISE,Shatter Vise,0CF,90,STEEL,Physical,100,15,0,NearOther,0,CanProtect;CanMirrorMove,"The user crushes the target in its metallic vises, trapping and damaging it for three turns.",METALCLAW
+1458,WAVEOFJADE,Wave of Jade,55A,70,ROCK,Special,100,12,0,AllNearFoes,0,CanProtect;CanMirrorMove,"The user emits a wave of green energy to strike near foes. Deals double damage to those slower than the user.",FLASH
+1459,GLIMMERPULSE,Glimmer Pulse,168,60,ROCK,Special,100,10,0,NearOther,0,CanProtect;Pulse,"The user harms the target with gemlike light. Deals double damage if the user has used a gem this battle.",POWERGEM
+1460,BUBBLEBARRAGE,Bubble Barrage,0C0,25,WATER,Special,100,20,0,NearOther,0,CanProtect;CanMirrorMove,"The user creates two to five giant bubbles to explode against the target.",BUBBLE
+1461,PULSAR,Pulsar,0C0,25,PSYCHIC,Special,100,20,0,NearOther,0,CanProtect;CanMirrorMove,"The user sends two to five waves of cosmic energy to overwhelm the target's senses.",CONFUSION
+1462,SEANCE,Seance,0C0,25,GHOST,Special,100,20,0,NearOther,0,CanProtect;CanMirrorMove,"The user summons two to five apparitions that dance around hypnotically before striking.",WILLOWISP
+1463,FIREWORKS,Fireworks,0C0,25,FIRE,Special,100,20,0,NearOther,0,CanProtect;CanMirrorMove,"The user fires off two to five explosive rounds in a beautiful display.",EMBER
+1464,RAPIDHERTZ,Rapid Hertz,5FB,20,ELECTRIC,Special,100,20,10,NearOther,0,CanProtect;CanMirrorMove,"The target is hit with an electric current two to five times in quick succession. Has a 10% chance to numb.",THUNDERSHOCK
+1465,AXETOGRIND,Axe to Grind,193,80,DRAGON,Physical,100,10,0,NearOther,0,CanProtect;CanMirrorMove,"The user attacks fueled by ire. Deals double damage if it's a critical hit.",SLASH
+1466,IMPALINGSPIKE,Impaling Spike,195,80,STEEL,Physical,100,10,0,NearOther,0,CanProtect;CanMirrorMove,"A large spike is shot at the target. If this causes the target to faint, a layer of spikes is set on the ground beneath them.",SPIKECANNON
+1467,YOUNGAGAIN,Young Again,0BF,0,NORMAL,Status,0,10,0,NearOther,0,CanProtect;CanMirrorMove,"The user conjures up the past, transforming the target into their previous evolutionary form.",TRANSFORM
+1468,PULVERIZERCHORD,Pulverizer Chord,Basic,115,GROUND,Special,80,10,30,AllNearFoes,0,CanProtect;CanMirrorMove;Sound,"The user hits a pitch that turns earth and stone to dust, damaging its foes.",SCORCHINGSANDS
+1469,WINDTUNNEL,Wind Tunnel,5FC,20,FLYING,Special,100,20,10,AllNearFoes,0,CanProtect;CanMirrorMove;Wind,"Wind rapidly spins the target in place to hit them two to five times. Has a 10% chance to dizzy.",GUST
+1470,SUCKBLOOD,Suck Blood,0DD,50,BUG,Physical,100,20,0,NearOther,0,CanProtect;CanMirrorMove,"The user leeches the target's life. The user's HP is restored by half the damage taken by the target.",LEECHLIFE
+1471,VOLLEY,Volley,129,1,FLYING,Special,100,10,0,NearOther,0,CanProtect;CanMirrorMove,"The user gets all the party Pokémon to attack the foe with aerial projectiles.",SQUALLDART
+1472,DRONING,Droning,5EC,65,BUG,Special,100,20,30,NearOther,0,CanProtect;CanMirrorMove;Sound,"The user vibrates its wings to make a damaging sound wave. It has a 30% chance to lower Sp. Atk.",BUGBUZZ
+1473,DROWN,Drown,5FD,0,GHOST,Status,100,15,0,NearOther,0,CanProtect;CanMagicCoat;CanMirrorMove,"Disables the target's last used move for four turns, then reduces a relevant stat on them by four steps.",AQUARING
+1474,DEVOURWHOLE,Devour Whole,5FE,130,POISON,Physical,100,5,0,NearOther,0,CanProtect;CanMirrorMove;Bite,"Grips the target with its entire mouth. The user can't attack next turn unless the target faints or switches out.",
+1475,SPOTTING,Spotting,5FF,0,DARK,Status,0,15,0,NearAlly,5,,"The user assists an ally by boosting the power and accuracy of its next attack by 50%.",
+1476,REPULSIONFIELD,Repulsion Field,12A,0,ELECTRIC,Status,0,15,0,UserSide,0,CanSnatch,"This move creates a directional magnetic field which reduces damage from attacks with 100 or more base power for five turns.",
+1477,MASQUERBLADE,Masquerblade,12B,150,GRASS,Physical,100,5,0,AllNearFoes,-3,CanProtect,"The user hides its blade. If it is hit by a special move, it unsheathes it quickly, slashing all near foes.",CAMOUFLAGE
+1478,VAINGLORYFLAMES,Vainglory Flames,12C,90,FIRE,Special,100,10,0,NearOther,0,CanProtect;CanMirrorMove,"A distinguished attack that motivates nearby allies to follow, letting them act immediately after",
+1479,COLDSHOULDER,Cold Shoulder,56A,80,GHOST,Physical,100,12,100,NearOther,0,CanProtect;CanMirrorMove,"The user attacks with bitter emotion. This lowers the target's attacking stats by two steps if in hail.",PHANTOMFORCE
+1480,DISTURB,Disturb,Numb,90,GHOST,Physical,100,15,10,NearOther,0,CanProtect;CanMirrorMove,"The target is subjected to a violent and frightening prank. It has a 10% chance to numb.",
+1481,BALEFULBOP,Baleful Bop,Dizzy,60,FAIRY,Special,100,20,30,NearOther,0,CanProtect;CanMirrorMove;Sound,"The user sings with reckless abandon, annoying the target. There's a 30% chance they become dizzy.",ENCHANTINGSONG
+1482,BUBBLEBARRIER,Bubble Barrier,196,0,WATER,Status,0,15,0,NearAlly,0,CanMirrorMove,"The user creates a bubble to shield their ally. The next time they’re hit, 50% of the move damage is instead dealt back as recoil.",AQUARING
+1483,ROCKETPUNCH,Rocket Punch,Basic,150,STEEL,Physical,70,10,0,NearOther,0,CanProtect;CanMirrorMove;Punch,"The user launches a fist with extreme force. This attack is popular with children.",BULLETPUNCH
+1484,PRISMATICPOWER,Prismatic Power,18A,100,NORMAL,Special,100,10,0,NearOther,0,CanProtect;CanMirrorMove,"The user expresses a hidden potential. Changes type to match the user's Gem, Plate, or Crystal Veil.",HIDDENPOWER
+1485,CAPACITYBURST,Capacity Burst,197,110,ELECTRIC,Special,100,10,0,NearOther,0,CanProtect;CanMirrorMove,"The user surges with electricity. If it deals less than 50% of the target's max health, the user takes the difference as recoil.",DISCHARGE
+1486,WELD,Weld,154,0,STEEL,Status,100,15,0,NearOther,0,CanProtect;CanMagicCoat,"Welds heavy steel onto the target, giving it the Steel type and reducing its Speed by four steps.",SHOTPUT
+1487,BADENDING,Bad Ending,53A,40,ELECTRIC,Physical,100,12,100,NearOther,1,CanProtect;CanMirrorMove,"For the rest of the round, the target's healing is reversed. Always goes first.",SPARK
+1488,DISCOURAGE,Discourage,0EC,55,FIGHTING,Special,100,10,0,NearOther,-6,CanProtect;CanMirrorMove,"The user forces the target to switch out, to be replaced at random. In the wild, the battle ends.",ROAR
+1489,DRAFT,Draft,Frostbite,40,FLYING,Special,100,30,10,NearOther,0,CanProtect;CanMirrorMove;Wind,"The user sends a chilly wind towards the target. This has a 10% chance to frostbite.",GUST
+1490,GUTTURALROAR,Guttural Roar,122,85,DRAGON,Special,100,10,0,NearOther,0,CanProtect;CanMirrorMove;Sound,"The user shakes the target with a deep, rumbling roar. This attack does physical damage.",ROAR
+1491,CENTER,Center,5DF,0,NORMAL,Status,0,15,0,User,0,CanSnatch,"The user concentrates to stabilize its mood. It raises the user's Sp. Def by three steps.",CALMMIND
+1492,CONCENTRATE,Concentrate,5DD,0,NORMAL,Status,0,15,0,User,0,CanSnatch,"The user stimulates its brain by planning. It raises the user's Sp. Atk by three steps.",NASTYPLOT
+1493,RIPTIDE,Rip Tide,01F,100,WATER,Physical,50,5,100,NearOther,0,CanProtect;CanMirrorMove,"The user crashes into the target on a ripping current. This raises the user's Speed by two steps.",WATERFALL
+1494,HOP,Hop,Dizzy,40,FLYING,Physical,100,25,10,NearOther,0,CanProtect;CanMirrorMove;Kicking,"The user hops high up to land on the target's head. It has a 10% chance to dizzy.",BOUNCE
+1495,RISINGPOWER,Rising Power,08E,30,NORMAL,Physical,100,10,0,NearOther,0,CanProtect;CanMirrorMove,"Has 10 more base power for each raised stat step. Inflicts physical or special damage based on the user's stats.",STOREDPOWER
+1496,SHARINGSMILES,Sharing Smiles,014,0,GRASS,Status,0,10,0,NearAlly,0,,"The user and the target each share their highest stat step with the other.",HOLDHANDS
+1497,HOTSHOT,Hot Shot,Basic,40,FIRE,Special,100,25,0,NearOther,1,CanProtect;CanMirrorMove,"The user shoots the target with a small bolt of fire. This move always goes first.",EMBER
+1498,GLAMOURFLASH,Glamour Flash,Basic,40,FAIRY,Special,100,25,0,NearOther,1,CanProtect;CanMirrorMove,"The user flashes colorful light to damage the target. This move always goes first.",DAZZLINGGLEAM
+1499,POISONDART,Poison Dart,Basic,40,POISON,Special,100,25,0,NearOther,1,CanProtect;CanMirrorMove,"The user shoots the target with a dart made of poison. This move always goes first.",POISONSTING
+1500,DREAD,Dread,Basic,40,DRAGON,Special,100,25,0,NearOther,1,CanProtect;CanMirrorMove,"The user inspires a sudden dread in the target, damaging it. This move always goes first.",GLARE
+1501,GLOAT,Gloat,507,0,DARK,Status,100,5,0,User,0,CanSnatch,"The user raises all of their stats by two steps. Fails unless a foe is below half health.",NASTYPLOT
+1502,BULLY,Bully,18D,80,DARK,Physical,100,10,0,NearOther,0,CanProtect;CanMirrorMove,"This attack deals 50 percent more damage if the target has any raised or lowered stat steps.",PUNISHMENT
+1503,FIREFOREFFECT,Fire For Effect,12D,140,NORMAL,Special,100,10,0,NearOther,0,Foretold,"The user chooses Fire, Electric, or Ice, then launches a shell of that type to strike the target in one turn.",DOOMDESIRE
+1504,SNAP,Snap,Flinch,65,WATER,Physical,100,20,40,NearOther,0,CanProtect;CanMirrorMove;Biting,"The user snaps like a fish at the target. This has a 40% chance to make it flinch.",FISHIOUSREND
+1505,BREACH,Breach,5E8,40,WATER,Physical,100,30,20,NearOther,0,CanProtect;CanMirrorMove,"The user jumps out of the water to attack. Has a 20% chance to reduce Defense.",DIVE
+1506,POLARIZEDROOM,Polarized Room,124,0,STEEL,Status,0,10,0,BothSides,0,CanMirrorMove,"The user creates a high quality area in which super-effective deals 25% more, and not very effective deals 25% less.",WONDERROOM
+1507,MISTLETOE,Mistletoe,Leech,40,GRASS,Physical,100,30,10,NearOther,0,CanProtect;CanMirrorMove;Kicking,"The user uses their feet to pierce the foe. This has a 10% chance of leeching the target.",TROPKICK
+1508,ROOTDRIVER,Root Driver,Leech,60,GRASS,Physical,100,20,30,NearOther,0,CanProtect;CanMirrorMove;Kicking,"The user kicks into the target like roots into earth. This has a 30% chance of leeching.",TROPKICK
+1509,WHIPKICK,Whip Kick,Leech,90,GRASS,Physical,100,15,10,NearOther,0,CanProtect;CanMirrorMove;Kicking,"The user whips their legs into the target like a plant. This has a 10% chance of leeching.",TROPKICK
+1510,SIEGEBREAKER,Siege Breaker,12E,90,ROCK,Physical,100,10,0,NearOther,0,CanMirrorMove;Blade,"The user slams the target with a rocky blade. Destroys screens, substitute, and protection on the target.",ROCKSMASH
+1511,ALLFORONE,All For One,12F,80,STEEL,Physical,100,10,0,NearOther,0,CanProtect;CanMirrorMove;Blade,"The user slashes with gusto, inspiring its allies to follow up by using Slash on the target.",SACREDSWORD
+1512,BLADESOFGRASS,Blades of Grass,130,25,GRASS,Physical,100,10,0,NearOther,0,CanProtect;CanMirrorMove;Blade,"The user gracefully slashes the target three times. The next time this move is used, it will hit one extra time.",RAZORLEAF
+1513,SCYTHEKICK,Scythe Kick,Basic,95,FIGHTING,Physical,100,15,0,NearOther,0,CanProtect;CanMirrorMove;Kicking,"The user kicks the target with a powerful, arcing technique.",
+1514,RAZINGVINES,Razing Vines,131,130,GRASS,Physical,100,5,0,NearOther,0,CanProtect;CanMirrorMove,"Attacks while destroying rooms. This move fails in the absence of a room.",
+1515,CRANIALGUARD,Cranial Guard,155,0,ROCK,Status,0,3,0,User,4,,"Protects the user from damage this turn. The user will counter with Granite Head if attacked.",
+1516,FROMBEYOND,From Beyond,132,60,GHOST,Physical,0,15,0,NearOther,0,CanProtect;CanMirrorMove,"The user channels its fallen allies to strike the target. This attack has 20 more power per fainted party member.",
+1517,SIROCCO,Sirocco,101,50,GROUND,Special,100,10,0,NearFoe,0,CanProtect;CanMirrorMove,"Hits the target with a sandy wind, then summons sandstorm for eight turns.",SANDSTORM
+1518,HONEYSLATHER,Honey Slather,133,0,GHOST,Status,0,5,0,User,0,CanSnatch,"The user uses honey to fully restore their HP. However, this lures swarming insects, trapping and damaging the user for three turns.",RECOVER
+1519,PARADISIACA,Paradisiaca,134,0,GROUND,Status,0,5,0,NearAlly,0,CanProtect;CanMagicCoat,"The user shapes primal clay to heal a nearby ally for their max HP. This can overheal. The user must recharge next turn.",HEALPULSE
+1520,GREATERGLORIES,Greater Glories,135,0,NORMAL,Status,0,15,0,NearAlly,0,,"The user channels ancient energy to grant a nearby ally an extra turn this round.",HELPINGHAND
+1521,HEAVENSEYES,Heaven's Eyes,136,0,NORMAL,Status,100,10,0,NearOther,0,CanProtect;CanMagicCoat;CanMirrorMove,"The user's eyes glow with divine judgement, numbing the target and reducing both its attacking stats.",GLARE
+1522,QUARANTINE,Quarantine,156,0,ELECTRIC,Status,0,3,0,User,4,,"Protects the user's side from status moves this turn. It disables any moves blocked for three turns.",PROTECT
+1523,STINKCOVER,Stink Cover,139,0,POISON,Status,0,10,0,NearFoe,-6,CanMagicCoat;CanMirrorMove;Sound,"The foe is forced is forced to switch out by a stinky cloud, then the user also switches. Always goes last.",STINKCLOUD
+1524,FLORALGRAMARYE,Floral Gramarye,137,0,FAIRY,Status,0,10,0,User,0,,"A patch of medicinal flowers sprouts across the battlefield. This heals every Pokémon for 1/8th HP each turn for five turns.",GRASSYTERRAIN
+1525,DISCOVEREDPOWER,Discovered Power,13C,0,PSYCHIC,Status,100,15,0,User,0,CanSnatch,"The user ponders ancient wisdom, selecting three random status moves. You choose which one it uses.",METRONOME

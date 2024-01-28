@@ -31,6 +31,22 @@ class PokeBattle_Move_606 < PokeBattle_Move_024
 end
 
 #===============================================================================
+# User's Attack and Defense are raised by one step each, and (Built Different)
+# changes user's type to Rock.
+#===============================================================================
+class PokeBattle_Move_595 < PokeBattle_Move_024
+    def pbMoveFailed?(user, targets, show_message)
+        return false if GameData::Type.exists?(:ROCK) && !user.pbHasType?(:ROCK) && user.canChangeType?
+        super
+    end
+
+    def pbEffectGeneral(user)
+        super
+        user.applyEffect(:Type3, :ROCK)
+    end
+end
+
+#===============================================================================
 # Raises Attack and Defense by 2 steps, and Crit Chance by 1.
 # (Art of War)
 #===============================================================================
@@ -468,6 +484,11 @@ class PokeBattle_Move_02D < PokeBattle_MultiStatUpMove
         super
         @statUp = ALL_STATS_1
     end
+end
+
+# Empowered Ancient Power
+class PokeBattle_Move_639 < PokeBattle_Move_02D
+    include EmpoweredMove
 end
 
 #===============================================================================

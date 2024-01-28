@@ -4,6 +4,11 @@
 class PokeBattle_Move_Numb < PokeBattle_NumbMove
 end
 
+# Empowered Thunderbolt / Dragon Breath
+class PokeBattle_Move_640 < PokeBattle_Move_Numb
+    include EmpoweredMove
+end
+
 #===============================================================================
 # Numbs the target. Accuracy perfect in rain. Hits some
 # semi-invulnerable targets. (Thunder)

@@ -20,6 +20,27 @@ class PokeBattle_Move_627 < PokeBattle_Move_530
 end
 
 #===============================================================================
+# Summons Moonglow for 8 turns. Raises the Attack of itself and all allies by 2 steps. (Midnight Hunt)
+#===============================================================================
+class PokeBattle_Move_5B0 < PokeBattle_Move_530
+    def pbMoveFailed?(user, _targets, show_message)
+        return false unless @battle.primevalWeatherPresent?(false)
+        super
+    end
+
+    def pbEffectGeneral(user)
+        @battle.pbStartWeather(user, :Moonglow, 8, false) unless @battle.primevalWeatherPresent?
+        super
+    end
+
+    def getEffectScore(user, _target)
+        score = super
+        score += getWeatherSettingEffectScore(:Moonglow, user, @battle, 8)
+        return score
+    end
+end
+
+#===============================================================================
 # Raises Defense of user and allies by 3 steps. (Stand Together)
 #===============================================================================
 class PokeBattle_Move_554 < PokeBattle_TeamStatBuffMove

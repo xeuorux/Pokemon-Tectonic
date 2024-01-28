@@ -24,6 +24,11 @@ class PokeBattle_Move_075 < PokeBattle_Move
     end
 end
 
+# Empowered Surf
+class PokeBattle_Move_653 < PokeBattle_Move_075
+    include EmpoweredMove
+end
+
 #===============================================================================
 # Power is doubled if the target is using Dig. Hits digging targets. (Earthquake)
 #===============================================================================
@@ -34,6 +39,11 @@ class PokeBattle_Move_076 < PokeBattle_Move
         baseDmg *= 2 if target.inTwoTurnAttack?("OCA") # Dig
         return baseDmg
     end
+end
+
+# Empowered Earthquake
+class PokeBattle_Move_652 < PokeBattle_Move_076
+    include EmpoweredMove
 end
 
 #===============================================================================
@@ -129,6 +139,16 @@ class PokeBattle_Move_07B < PokeBattle_Move
     def pbBaseDamage(baseDmg, _user, target)
         baseDmg *= 2 if target.poisoned?
         return baseDmg
+    end
+end
+
+# Empowered Cross Poison
+class PokeBattle_Move_645 < PokeBattle_Move
+    include EmpoweredMove
+
+    def pbCriticalOverride(_user, target)
+        return 1 if target.poisoned?
+        return 0
     end
 end
 

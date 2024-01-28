@@ -79,6 +79,27 @@ class PokeBattle_Move_0EF < PokeBattle_Move
 end
 
 #===============================================================================
+# Target becomes trapped. Summons Eclipse for 8 turns.
+# (Captivating Sight)
+#===============================================================================
+class PokeBattle_Move_5AF < PokeBattle_Move_0EF
+    def pbFailsAgainstTarget?(_user, target, show_message)
+        return false unless @battle.primevalWeatherPresent?(false)
+        super
+    end
+
+    def pbEffectGeneral(user)
+        @battle.pbStartWeather(user, :Eclipse, 8, false) unless @battle.primevalWeatherPresent?
+    end
+
+    def getEffectScore(user, _target)
+        score = super
+        score += getWeatherSettingEffectScore(:Eclipse, user, @battle, 8)
+        return score
+    end
+end
+
+#===============================================================================
 # Lowers target's Defense and Special Defense by 1 step at the end of each
 # turn. Prevents target from retreating. (Octolock)
 #===============================================================================

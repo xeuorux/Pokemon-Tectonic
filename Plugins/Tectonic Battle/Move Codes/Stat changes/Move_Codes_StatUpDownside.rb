@@ -33,7 +33,7 @@ end
 #===============================================================================
 # Reduces the user's HP by half of max, and sets its Sp. Atk to maximum.
 #===============================================================================
-class PokeBattle_Move_03A < PokeBattle_Move
+class PokeBattle_Move_SpAtkMaxHalveHealth < PokeBattle_Move
     def statUp; return [:SPECIAL_ATTACK,12]; end
 
     def pbMoveFailed?(user, _targets, show_message)

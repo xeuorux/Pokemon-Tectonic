@@ -8,6 +8,14 @@ class PokeBattle_Move_5D8 < PokeBattle_StatUpMove
     end
 end
 
+# Empowered Metal Claw
+class PokeBattle_Move_642 < PokeBattle_Move_5D8
+    include EmpoweredMove
+
+    def multiHitMove?; return true; end
+    def pbNumHits(_user, _targets, _checkingForAI = false); return 2; end
+end
+
 #===============================================================================
 # Increases the user's Attack by 2 step.
 #===============================================================================
@@ -16,6 +24,11 @@ class PokeBattle_Move_01C < PokeBattle_StatUpMove
         super
         @statUp = [:ATTACK, 2]
     end
+end
+
+# Empowered Meteor Mash
+class PokeBattle_Move_636 < PokeBattle_Move_01C
+    include EmpoweredMove
 end
 
 #===============================================================================

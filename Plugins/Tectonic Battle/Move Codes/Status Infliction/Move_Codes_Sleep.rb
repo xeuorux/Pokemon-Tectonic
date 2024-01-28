@@ -34,34 +34,6 @@ class PokeBattle_Move_526 < PokeBattle_SleepMove
 end
 
 #===============================================================================
-# Target becomes drowsy. Both of its Attacking stats are lowered by 2 steps.  (Summer Daze)
-#===============================================================================
-class PokeBattle_Move_527 < PokeBattle_Move_004
-    def pbFailsAgainstTarget?(user, target, show_message)
-        if @battle.sunny? && (target.pbCanLowerStatStep?(:ATTACK, user, self) ||
-                target.pbCanLowerStatStep?(:SPECIAL_ATTACK, user, self))
-            return false
-        end
-        super
-    end
-
-    def pbEffectAgainstTarget(user, target)
-        target.applyEffect(:Yawn, 2)
-        target.pbLowerMultipleStatSteps(ATTACKING_STATS_2, user, move: self) if @battle.sunny?
-    end
-
-    def getTargetAffectingEffectScore(user, target)
-        score = super
-        score += getMultiStatDownEffectScore(ATTACKING_STATS_2, user, target) if @battle.sunny?
-        return score
-    end
-
-    def shouldHighlight?(_user, _target)
-        return @battle.sunny?
-    end
-end
-
-#===============================================================================
 # Puts the target to sleep. Fails unless the target is at or below half health. (Lullaby)
 #===============================================================================
 class PokeBattle_Move_528 < PokeBattle_SleepMove
@@ -200,4 +172,32 @@ end
 # Empowered Yawn
 class PokeBattle_Move_631 < PokeBattle_Move_004
     include EmpoweredMove
+end
+
+#===============================================================================
+# Target becomes drowsy. Both of its Attacking stats are lowered by 2 steps.  (Summer Daze)
+#===============================================================================
+class PokeBattle_Move_527 < PokeBattle_Move_004
+    def pbFailsAgainstTarget?(user, target, show_message)
+        if @battle.sunny? && (target.pbCanLowerStatStep?(:ATTACK, user, self) ||
+                target.pbCanLowerStatStep?(:SPECIAL_ATTACK, user, self))
+            return false
+        end
+        super
+    end
+
+    def pbEffectAgainstTarget(user, target)
+        target.applyEffect(:Yawn, 2)
+        target.pbLowerMultipleStatSteps(ATTACKING_STATS_2, user, move: self) if @battle.sunny?
+    end
+
+    def getTargetAffectingEffectScore(user, target)
+        score = super
+        score += getMultiStatDownEffectScore(ATTACKING_STATS_2, user, target) if @battle.sunny?
+        return score
+    end
+
+    def shouldHighlight?(_user, _target)
+        return @battle.sunny?
+    end
 end

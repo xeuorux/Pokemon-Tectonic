@@ -199,10 +199,10 @@ class PokeBattle_Move_568 < PokeBattle_Move_0EE
 end
 
 #===============================================================================
-# Reduces the target's defense by two steps.
+# Reduces the target's Sp. Def by two steps.
 # After inflicting damage, user switches out.
 #===============================================================================
-class PokeBattle_Move_568 < PokeBattle_Move_0EE
+class PokeBattle_Move_SwitchOutLowerSpDef2 < PokeBattle_Move_0EE
     def pbAdditionalEffect(user, target)
         return if target.damageState.substitute
         target.tryLowerStat(:SPECIAL_DEFENSE, user, move: self, increment: 2)
@@ -212,5 +212,34 @@ class PokeBattle_Move_568 < PokeBattle_Move_0EE
         score = super
         score += getMultiStatDownEffectScore([:SPECIAL_DEFENSE, 2], user, target)
         return score
+    end
+end
+
+#===============================================================================
+# Returns user to party for swap and lays a layer of spikes. (Caltrop Arts)
+#===============================================================================
+class PokeBattle_Move_58E < PokeBattle_Move_0EE
+    def pbMoveFailed?(user, _targets, show_message)
+        return false if damagingMove?
+        if user.pbOpposingSide.effectAtMax?(:Spikes)
+            @battle.pbDisplay(_INTL("But it failed, since there is no room for more Spikes!")) if show_message
+            return true
+        end
+        return false
+    end
+
+    def pbEffectGeneral(user)
+        return if damagingMove?
+        user.pbOpposingSide.incrementEffect(:Spikes)
+    end
+
+    def pbAdditionalEffect(user, _target)
+        return unless damagingMove?
+        return if user.pbOpposingSide.effectAtMax?(:Spikes)
+        user.pbOpposingSide.incrementEffect(:Spikes)
+    end
+
+    def getTargetAffectingEffectScore(user, target)
+        return getHazardSettingEffectScore(user, target) unless user.pbOpposingSide.effectAtMax?(:Spikes)
     end
 end

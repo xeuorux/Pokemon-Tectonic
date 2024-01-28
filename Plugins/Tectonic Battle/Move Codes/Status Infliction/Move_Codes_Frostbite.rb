@@ -4,6 +4,11 @@
 class PokeBattle_Move_Frostbite < PokeBattle_FrostbiteMove
 end
 
+# Empowered Ice Beam
+class PokeBattle_Move_637 < PokeBattle_Move_Frostbite
+    include EmpoweredMove
+end
+
 #===============================================================================
 # Frostbites the target. Accuracy perfect in hail. (Blizzard)
 #===============================================================================
@@ -44,7 +49,7 @@ end
 # If a Pokémon attacks the user with a special move before it uses this move, the
 # attacker is frostbitten. (Condensate)
 #===============================================================================
-class PokeBattle_Move_172 < PokeBattle_Move
+class PokeBattle_Move_SlowAttackFrostbiteAttackers < PokeBattle_Move
     def pbDisplayChargeMessage(user)
         user.applyEffect(:Condensate)
     end

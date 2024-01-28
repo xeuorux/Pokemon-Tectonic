@@ -4,11 +4,16 @@
 class PokeBattle_Move_Poison < PokeBattle_PoisonMove
 end
 
+# Empowered Sludge Wave
+class PokeBattle_Move_655 < PokeBattle_Move_Poison
+    include EmpoweredMove
+end
+
 #===============================================================================
 # Changes Category based on Opponent's Def and SpDef. Has 20% Chance to Poison
 # (Shell Side Arm)
 #===============================================================================
-class PokeBattle_Move_187 < PokeBattle_Move_005
+class PokeBattle_Move_187 < PokeBattle_Move_Poison
     def initialize(battle, move)
         super
         @calculated_category = 1

@@ -14,6 +14,11 @@ class PokeBattle_Move_500 < PokeBattle_Move
     def pbNumHits(_user, _targets, _checkingForAI = false); return 3; end
 end
 
+# Empowered Bullet Punch
+class PokeBattle_Move_657 < PokeBattle_Move_500
+    include EmpoweredMove
+end
+
 #===============================================================================
 # Hits 3 times and always critical. (Surging Strikes)
 #===============================================================================
@@ -218,4 +223,20 @@ class PokeBattle_Move_592 < PokeBattle_Move_17C
         return if target.damageState.substitute
         target.tryLowerStat(:SPEED, user, move: self)
     end
+end
+
+# Empowered Dragon Darts
+class PokeBattle_Move_650 < PokeBattle_Move_17C
+    include EmpoweredMove
+end
+
+# Empowered Bullet Seed
+class PokeBattle_Move_648 < PokeBattle_Move_17C
+    include EmpoweredMove
+
+    def pbRepeatHit?(hitNum = 0)
+        return hitNum < 5
+    end
+
+    def turnsBetweenUses(); return 3; end
 end

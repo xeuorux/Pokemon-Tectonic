@@ -5,6 +5,11 @@ class PokeBattle_Move_0A0 < PokeBattle_Move
     def pbCriticalOverride(_user, _target); return 1; end
 end
 
+# Empowered Slash
+class PokeBattle_Move_643 < PokeBattle_Move_0A0
+    include EmpoweredMove
+end
+
 #===============================================================================
 # Always hits.
 #===============================================================================
@@ -127,6 +132,32 @@ class PokeBattle_Move_10A < PokeBattle_Move
 
     def shouldHighlight?(_user, target)
         return sideHasScreens?(target.pbOwnSide)
+    end
+end
+
+# Empowered Brick Break
+class PokeBattle_Move_644 < PokeBattle_TargetStatDownMove
+    include EmpoweredMove
+
+    def ignoresReflect?; return true; end
+
+    def pbEffectGeneral(user)
+        user.pbOpposingSide.eachEffect(true) do |effect, _value, data|
+            user.pbOpposingSide.disableEffect(effect) if data.is_screen?
+        end
+    end
+
+    def pbShowAnimation(id, user, targets, hitNum = 0, showAnimation = true)
+        user.pbOpposingSide.eachEffect(true) do |_effect, _value, data|
+            # Wall-breaking anim
+            hitNum = 1 if data.is_screen?
+        end
+        super
+    end
+
+    def initialize(battle, move)
+        super
+        @statDown = [:DEFENSE, 5]
     end
 end
 

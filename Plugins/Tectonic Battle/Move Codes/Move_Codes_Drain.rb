@@ -123,3 +123,10 @@ class PokeBattle_Move_52C < PokeBattle_DrainMove
         return getMultiStatDownEffectScore([:SPECIAL_DEFENSE, 1], user, target)
     end
 end
+
+# Empowered Giga Drain
+class PokeBattle_Move_651 < PokeBattle_DrainMove
+    include EmpoweredMove
+
+    def drainFactor(_user, _target); return 1.0; end
+end

@@ -4,6 +4,11 @@
 class PokeBattle_Move_111 < PokeBattle_ForetoldMove
 end
 
+# Empowered Future Sight
+class PokeBattle_Move_649 < PokeBattle_Move_111
+    include EmpoweredMove
+end
+
 #===============================================================================
 # Choose between Ice, Fire, and Electric. This move attacks 1 turn in
 # the future with an attack of that type. (Artillerize)

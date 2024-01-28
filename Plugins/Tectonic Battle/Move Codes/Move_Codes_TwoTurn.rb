@@ -55,6 +55,11 @@ class PokeBattle_Move_0C4 < PokeBattle_TwoTurnMove
     end
 end
 
+# Empowered Solar Beam
+class PokeBattle_Move_646 < PokeBattle_Move_0C4
+    include EmpoweredMove
+end
+
 #===============================================================================
 # Two turn attack. Skips first turn, attacks second turn. In rain, takes 1 turn instead. (Storm Drive)
 #===============================================================================

@@ -57,35 +57,6 @@ class PokeBattle_Move_13E < PokeBattle_Move_103
 end
 
 #===============================================================================
-# Returns user to party for swap and lays a layer of spikes. (Caltrop Arts)
-#===============================================================================
-class PokeBattle_Move_58E < PokeBattle_Move_0EE
-    def pbMoveFailed?(user, _targets, show_message)
-        return false if damagingMove?
-        if user.pbOpposingSide.effectAtMax?(:Spikes)
-            @battle.pbDisplay(_INTL("But it failed, since there is no room for more Spikes!")) if show_message
-            return true
-        end
-        return false
-    end
-
-    def pbEffectGeneral(user)
-        return if damagingMove?
-        user.pbOpposingSide.incrementEffect(:Spikes)
-    end
-
-    def pbAdditionalEffect(user, _target)
-        return unless damagingMove?
-        return if user.pbOpposingSide.effectAtMax?(:Spikes)
-        user.pbOpposingSide.incrementEffect(:Spikes)
-    end
-
-    def getTargetAffectingEffectScore(user, target)
-        return getHazardSettingEffectScore(user, target) unless user.pbOpposingSide.effectAtMax?(:Spikes)
-    end
-end
-
-#===============================================================================
 # If it faints the target, you set Spikes on the their side of the field. (Impaling Spike)
 #===============================================================================
 class PokeBattle_Move_195 < PokeBattle_Move
@@ -214,6 +185,20 @@ class PokeBattle_Move_105 < PokeBattle_Move
     def getEffectScore(user, target)
         return 0 if damagingMove? && target.pbOwnSide.effectActive?(:StealthRock)
         return getHazardSettingEffectScore(user, target, 12)
+    end
+end
+
+#===============================================================================
+# Sets stealth rock and sandstorm for 5 turns. (Megalith Rite)
+#===============================================================================
+class PokeBattle_Move_5BD < PokeBattle_Move_105
+    def pbMoveFailed?(user, _targets, show_message)
+        return false
+    end
+
+    def pbEffectGeneral(user)
+        super
+        @battle.pbStartWeather(user, :Sandstorm, 5, false) unless @battle.primevalWeatherPresent?
     end
 end
 

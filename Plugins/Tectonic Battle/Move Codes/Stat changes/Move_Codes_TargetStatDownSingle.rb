@@ -29,6 +29,19 @@ class PokeBattle_Move_629 < PokeBattle_Move_042
 end
 
 #===============================================================================
+# Summons Eclipse for 8 turns and lowers the Attack of all enemies by 2 steps. (Wingspan Eclipse)
+#===============================================================================
+class PokeBattle_Move_52F < PokeBattle_Move_042
+    def pbEffectGeneral(user)
+        @battle.pbStartWeather(user, :Eclipse, 8, false) unless @battle.primevalWeatherPresent?
+    end
+
+    def getEffectScore(user, target)
+        return getWeatherSettingEffectScore(:Eclipse, user, @battle, 8)
+    end
+end
+
+#===============================================================================
 # Decreases the target's Attack by 3 steps.
 #===============================================================================
 class PokeBattle_Move_5E7 < PokeBattle_TargetStatDownMove
@@ -163,6 +176,11 @@ class PokeBattle_Move_04D < PokeBattle_TargetStatDownMove
     end
 end
 
+# Empowered Rock Tomb
+class PokeBattle_Move_638 < PokeBattle_Move_04D
+    include EmpoweredMove
+end
+
 #===============================================================================
 # Decreases the target's Special Attack by 1 step.
 #===============================================================================
@@ -220,6 +238,16 @@ class PokeBattle_Move_5F3 < PokeBattle_TargetStatDownMove
     def initialize(battle, move)
         super
         @statDown = [:SPECIAL_ATTACK, 5]
+    end
+end
+
+# Empowered Mystical Fire
+class PokeBattle_Move_658 < PokeBattle_TargetStatDownMove
+    include EmpoweredMove
+
+    def initialize(battle, move)
+        super
+        @statDown = [:SPECIAL_ATTACK, 6]
     end
 end
 

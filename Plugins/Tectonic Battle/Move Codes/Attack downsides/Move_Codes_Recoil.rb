@@ -19,6 +19,11 @@ class PokeBattle_Move_0FB < PokeBattle_RecoilMove
     def recoilFactor;  return (1.0 / 3.0); end
 end
 
+# Empowered Brave Bird
+class PokeBattle_Move_654 < PokeBattle_Move_0FB
+    include EmpoweredMove
+end
+
 #===============================================================================
 # User takes recoil damage equal to 1/3 of the damage this move dealt.
 # May paralyze the target. (Volt Tackle)
@@ -51,6 +56,11 @@ class PokeBattle_Move_0FE < PokeBattle_RecoilMove
     def getTargetAffectingEffectScore(user, target)
         return getBurnEffectScore(user, target)
     end
+end
+
+# Empowered Flareblitz
+class PokeBattle_Move_641 < PokeBattle_Move_0FE
+    include EmpoweredMove
 end
 
 #===============================================================================

@@ -356,22 +356,6 @@ class PokeBattle_Move_154 < PokeBattle_Move
 end
 
 #===============================================================================
-# User's Attack and Defense are raised by one step each, and (Built Different)
-# changes user's type to Rock.
-#===============================================================================
-class PokeBattle_Move_595 < PokeBattle_Move_024
-    def pbMoveFailed?(user, targets, show_message)
-        return false if GameData::Type.exists?(:ROCK) && !user.pbHasType?(:ROCK) && user.canChangeType?
-        super
-    end
-
-    def pbEffectGeneral(user)
-        super
-        user.applyEffect(:Type3, :ROCK)
-    end
-end
-
-#===============================================================================
 # Type changes depending on rotom's form. (Machinate)
 # Additional effect changes depending on rotom's form. Only usable by rotom.
 #===============================================================================

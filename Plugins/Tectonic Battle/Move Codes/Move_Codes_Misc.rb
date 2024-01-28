@@ -634,3 +634,81 @@ class PokeBattle_Move_590 < PokeBattle_Move
         end
     end
 end
+
+########################################################
+### Specific avatar only moves
+########################################################
+
+#===============================================================================
+# Targets struck lose their flinch immunity. Only usable by the avatar of Rayquaza (Stratosphere Scream)
+#===============================================================================
+class PokeBattle_Move_700 < PokeBattle_Move
+    def ignoresSubstitute?(_user); return true; end
+
+    def pbMoveFailed?(user, _targets, show_message)
+        if !user.countsAs?(:RAYQUAZA) || !user.boss?
+            @battle.pbDisplay(_INTL("But {1} can't use the move!", user.pbThis(true))) if show_message
+            return true
+        end
+        return false
+    end
+
+    def pbEffectAfterAllHits(_user, target)
+        return if target.fainted?
+        return if target.damageState.unaffected
+        if target.effectActive?(:FlinchImmunity)
+            target.disableEffect(:FlinchImmunity)
+            @battle.pbDisplay(_INTL("#{target.pbThis} is newly afraid. It can be flinched again!"))
+        end
+    end
+end
+
+#===============================================================================
+# Summons an Avatar of Luvdisc and an Avatar of Remoraid.
+# Only usable by the avatar of Kyogre (Seven Seas Edict)
+#===============================================================================
+class PokeBattle_Move_701 < PokeBattle_Move
+    def pbMoveFailed?(user, _targets, show_message)
+        if !user.countsAs?(:KYOGRE) || !user.boss?
+            @battle.pbDisplay(_INTL("But {1} can't use the move!", user.pbThis(true))) if show_message
+            return true
+        end
+        unless @battle.pbSideSize(user.index) == 1
+            @battle.pbDisplay(_INTL("But there is no room for fish to join!", user.pbThis(true))) if show_message
+            return true
+        end
+        return false
+    end
+
+    def pbEffectGeneral(user)
+        @battle.pbDisplay(_INTL("Fish are drawn to the field!", user.pbThis))
+        @battle.summonAvatarBattler(:LUVDISC, user.level, user.index % 2)
+        @battle.summonAvatarBattler(:REMORAID, user.level, user.index % 2)
+        @battle.pbSwapBattlers(user.index, user.index + 2)
+    end
+end
+
+#===============================================================================
+# Summons Gravity for 10 turn and doubles the weight of Pokemon on the opposing side.
+# Only usable by the avatar of Groudon (Warping Core)
+#===============================================================================
+class PokeBattle_Move_702 < PokeBattle_Move
+    def pbMoveFailed?(user, _targets, show_message)
+        if !user.countsAs?(:GROUDON) || !user.boss?
+            @battle.pbDisplay(_INTL("But {1} can't use the move!", user.pbThis(true))) if show_message
+            return true
+        end
+        if @battle.field.effectActive?(:Gravity)
+            @battle.pbDisplay(_INTL("But gravity is already warped!", user.pbThis(true))) if show_message
+            return true
+        end
+        return false
+    end
+
+    def pbEffectGeneral(user)
+        @battle.field.applyEffect(:Gravity, 5)
+        @battle.eachOtherSideBattler(user) do |b|
+            b.applyEffect(:WarpingCore)
+        end
+    end
+end
