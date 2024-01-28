@@ -414,6 +414,23 @@ class PokeBattle_Move_10D < PokeBattle_Move
 end
 
 #===============================================================================
+# Curses the target by spending 1/4th of the user's HP. (Cursed Oath)
+#===============================================================================
+class PokeBattle_Move_54A < PokeBattle_Move_10D
+    def pbEffectAgainstTarget(user, target)
+        @battle.pbDisplay(_INTL("{1} cut its own HP!", user.pbThis))
+        user.applyFractionalDamage(1.0 / 4.0, false)
+        super
+    end
+
+    def getEffectScore(user, target)
+        score = super
+        score += getHPLossEffectScore(user, 0.25)
+        return score
+    end
+end
+
+#===============================================================================
 # Numb's the target. If they are already numbed, curses them instead. (Spectral Tongue)
 #===============================================================================
 class PokeBattle_Move_579 < PokeBattle_Move
@@ -512,5 +529,147 @@ end
 class PokeBattle_Move_5A4 < PokeBattle_Move
     def pbEffectAgainstTarget(_user, target)
         target.applyEffect(:VolatileToxin)
+    end
+end
+
+#===============================================================================
+# Target gains a weakness to Bug-type attacks. (Creep Out)
+#===============================================================================
+class PokeBattle_Move_51D < PokeBattle_Move
+    def pbFailsAgainstTarget?(_user, target, show_message)
+        return false if damagingMove?
+        if target.effectActive?(:CreepOut)
+            if show_message
+                @battle.pbDisplay(_INTL("But it failed, since #{target.pbThis(true)} is already afraid of Bug-type moves!"))
+            end
+            return true
+        end
+        return false
+    end
+
+    def pbEffectAgainstTarget(_user, target)
+        return if target.damageState.substitute
+        target.applyEffect(:CreepOut)
+    end
+
+    def getTargetAffectingEffectScore(_user, target)
+        return 0 if target.effectActive?(:CreepOut)
+        score = 40
+        score += 40 if target.aboveHalfHealth?
+        return score
+    end
+end
+
+#===============================================================================
+# Grounds the target while it remains active. Hits some semi-invulnerable
+# targets. (Smack Down, Thousand Arrows)
+#===============================================================================
+class PokeBattle_Move_11C < PokeBattle_Move
+    def hitsFlyingTargets?; return true; end
+
+    def pbCalcTypeModSingle(moveType, defType, user, target)
+        return Effectiveness::NORMAL_EFFECTIVE_ONE if moveType == :GROUND && defType == :FLYING
+        return super
+    end
+
+    def canSmackDown?(target, checkingForAI = false)
+        return false if target.fainted?
+        if checkingForAI
+            return false if target.substituted?
+        elsif target.damageState.unaffected || target.damageState.substitute
+            return false
+        end
+        return false if target.inTwoTurnAttack?("0CE") || target.effectActive?(:SkyDrop) # Sky Drop
+        return false if !target.airborne? && !target.inTwoTurnAttack?("0C9", "0CC") # Fly/Bounce
+        return true
+    end
+
+    def pbEffectAfterAllHits(_user, target)
+        return unless canSmackDown?(target)
+        target.applyEffect(:SmackDown)
+    end
+
+    def getTargetAffectingEffectScore(user, target)
+        score = 0
+        if canSmackDown?(target)
+            score += 30
+                if user.pbHasAttackingType?(:GROUND) && !target.effectActive?(:SmackDown)
+                    tTypes = target.pbTypes(true, true)
+                    tTypes.each do |t|
+                        score += 30 if t == :FIRE || t == :POISON || t == :STEEL || t == :ROCK || t == :ELECTRIC
+                        score -= 30 if t == :BUG || t == :GRASS || t == :ICE
+                    end
+                end
+            score += 70 if @battle.battleAI.userMovesFirst?(self, user, target) && target.inTwoTurnAttack?("0C9", "0CC")
+        end
+        score = 5 if score <= 5 # Constant score so AI uses on "kills"
+        return score
+    end
+
+    def shouldHighlight?(_user, target)
+        return canSmackDown?(target)
+    end
+end
+
+#===============================================================================
+# Negates the target's ability while it remains on the field, if it has already
+# performed its action this round. (Core Enforcer)
+#===============================================================================
+class PokeBattle_Move_165 < PokeBattle_Move
+    def pbEffectAgainstTarget(_user, target)
+        return if target.damageState.substitute || target.effectActive?(:GastroAcid)
+        return if target.unstoppableAbility?
+        return if @battle.choices[target.index][0] != :UseItem &&
+                  !((@battle.choices[target.index][0] == :UseMove ||
+                  @battle.choices[target.index][0] == :Shift) && target.movedThisRound?)
+        target.applyEffect(:GastroAcid)
+    end
+
+    def getEffectScore(user, target)
+        score = getWantsToBeSlowerScore(user, target, 3, move: self) if !target.substituted? && !target.effectActive?(:GastroAcid)
+        return score
+    end
+end
+
+#===============================================================================
+# If the target would heal until end of turn, instead they take that much life loss.
+# (Hypothermiate, Heartstopper, Bad Ending)
+#===============================================================================
+class PokeBattle_Move_53A < PokeBattle_Move
+    def pbAdditionalEffect(_user, target)
+        return if target.fainted? || target.damageState.substitute
+        target.applyEffect(:HealingReversed)
+    end
+
+    def getEffectScore(_user, target)
+        if target.hasHealingMove?
+            if target.belowHalfHealth?
+                return 50
+            else
+                return 20
+            end
+        end
+        return 0
+    end
+end
+
+#===============================================================================
+# The target's healing is cut in half until they switch out (Icy Injection)
+#===============================================================================
+class PokeBattle_Move_5C6 < PokeBattle_Move
+    def pbAdditionalEffect(_user, target)
+        return if target.fainted? || target.damageState.substitute
+        target.applyEffect(:IcyInjection)
+    end
+
+    def getEffectScore(_user, target)
+        if target.hasHealingMove?
+            if target.belowHalfHealth?
+                return 45
+            else
+                return 30
+            end
+        end
+        return 0
     end
 end

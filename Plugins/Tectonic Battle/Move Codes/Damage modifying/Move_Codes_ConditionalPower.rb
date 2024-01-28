@@ -209,6 +209,34 @@ class PokeBattle_Move_07F < PokeBattle_Move
 end
 
 #===============================================================================
+# Move deals double damage but heals the status condition every active Pokémon
+# if the target has a status condition (Impurity Blaze)
+#===============================================================================
+class PokeBattle_Move_5B6 < PokeBattle_Move
+    def pbBaseDamage(baseDmg, _user, target)
+        baseDmg *= 2 if target.pbHasAnyStatus?
+        return baseDmg
+    end
+
+    def pbEffectWhenDealingDamage(user, target)
+        return unless target.pbHasAnyStatus?
+        @battle.eachBattler do |b|
+            healStatus(b)
+        end
+    end
+
+    def getEffectScore(_user, _target)
+        score = 0
+        @battle.eachBattler do |b|
+            pkmn = b.pokemon
+            next if !pkmn || !pkmn.able? || pkmn.status == :NONE
+            score += b.opposes? ? 30 : -30
+        end
+        return score
+    end
+end
+
+#===============================================================================
 # Power is doubled if the target's HP is down to 1/2 or less. (Brine, Dead End)
 #===============================================================================
 class PokeBattle_Move_080 < PokeBattle_Move
@@ -451,5 +479,35 @@ class PokeBattle_Move_5F2 < PokeBattle_Move
     def pbBaseDamage(baseDmg, _user, _target)
         baseDmg *= 2.0 if @battle.field.effectActive?(:Gravity)
         return baseDmg
+    end
+end
+
+#===============================================================================
+# Increases the move's power by 25% if the target moved this round. (Rootwrack)
+#===============================================================================
+class PokeBattle_Move_504 < PokeBattle_Move
+    def pbBaseDamage(baseDmg, _user, target)
+        targetChoice = @battle.choices[target.index][0]
+        baseDmg *= 1.25 if targetChoice == :UseMove && target.movedThisRound?
+        return baseDmg
+    end
+
+    def pbBaseDamageAI(baseDmg, user, target)
+        baseDmg *= 1.25 if target.pbSpeed(true) > user.pbSpeed(true, move: self)
+        return baseDmg
+    end
+end
+
+#===============================================================================
+# Always critical hit vs Opponents with raised stats (Humble)
+#===============================================================================
+class PokeBattle_Move_546 < PokeBattle_Move
+    def pbCriticalOverride(_user, target)
+        return 1 if target.hasRaisedStatSteps?
+        return 0
+    end
+
+    def shouldHighlight?(_user, target)
+        return target.hasRaisedStatSteps?
     end
 end

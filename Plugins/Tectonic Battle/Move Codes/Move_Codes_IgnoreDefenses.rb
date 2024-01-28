@@ -131,6 +131,65 @@ class PokeBattle_Move_10A < PokeBattle_Move
 end
 
 #===============================================================================
+# Ends target's protections, screens, and substitute immediately. (Siege Breaker)
+#===============================================================================
+class PokeBattle_Move_12E < PokeBattle_Move
+    def ignoresSubstitute?; return true; end
+    def ignoresReflect?; return true; end
+    
+    def pbEffectAgainstTarget(_user, target)
+        removeProtections(target)
+        target.disableEffect(:Substitute)
+    end
+
+    def pbEffectWhenDealingDamage(_user, target)
+        side = target.pbOwnSide
+        side.eachEffect(true) do |effect, _value, data|
+            side.disableEffect(effect) if data.is_screen?
+        end
+    end
+
+    def sideHasScreens?(side)
+        side.eachEffect(true) do |_effect, _value, data|
+            return true if data.is_screen?
+        end
+        return false
+    end
+
+    def pbShowAnimation(id, user, targets, hitNum = 0, showAnimation = true)
+        targets.each do |b|
+            next unless sideHasScreens?(b.pbOwnSide)
+            hitNum = 1 # Wall-breaking anim
+            break
+        end
+        super
+    end
+
+    def getEffectScore(_user, target)
+        score = 0
+        target.pbOwnSide.eachEffect(true) do |effect, value, data|
+            next unless data.is_screen?
+			case value
+				when 2
+					score += 30
+				when 3
+					score += 50
+				when 4..999
+					score += 130
+            end	
+        end
+        score += 20 if target.substituted?
+        return score
+    end
+
+    def shouldHighlight?(_user, target)
+        return true if sideHasScreens?(target.pbOwnSide)
+        return true if target.substituted?
+        return false
+    end
+end
+
+#===============================================================================
 # Ignores all abilities that alter this move's success or damage.
 # (Moongeist Beam, Sunsteel Strike)
 #===============================================================================

@@ -57,3 +57,30 @@ class PokeBattle_Move_514 < PokeBattle_Move
         return -getPoisonEffectScore(user, user, ignoreCheck: true)
     end
 end
+
+#===============================================================================
+# Move disables self. (Six Feet Under)
+#===============================================================================
+class PokeBattle_Move_523 < PokeBattle_Move
+    def pbEffectAfterAllHits(user, _target)
+        user.applyEffect(:Disable, 5)
+    end
+
+    def getEffectScore(_user, _target)
+        return -30
+    end
+end
+
+#===============================================================================
+# Target's speed is raised. (Propellant)
+#===============================================================================
+class PokeBattle_Move_542 < PokeBattle_Move
+    def pbAdditionalEffect(user, target)
+        return if target.damageState.substitute
+        target.tryRaiseStat(:SPEED, user, move: self)
+    end
+
+    def getTargetAffectingEffectScore(user, target)
+        return -getMultiStatUpEffectScore([:SPEED, 1], user, target, evaluateThreat: false)
+    end
+end

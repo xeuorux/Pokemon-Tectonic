@@ -20,14 +20,6 @@ class PokeBattle_Move_0FB < PokeBattle_RecoilMove
 end
 
 #===============================================================================
-# User takes recoil damage equal to 1/2 of the damage this move dealt.
-# (Head Smash, Light of Ruin)
-#===============================================================================
-class PokeBattle_Move_0FC < PokeBattle_RecoilMove
-    def recoilFactor;  return 0.5; end
-end
-
-#===============================================================================
 # User takes recoil damage equal to 1/3 of the damage this move dealt.
 # May paralyze the target. (Volt Tackle)
 #===============================================================================
@@ -59,6 +51,22 @@ class PokeBattle_Move_0FE < PokeBattle_RecoilMove
     def getTargetAffectingEffectScore(user, target)
         return getBurnEffectScore(user, target)
     end
+end
+
+#===============================================================================
+# User takes recoil damage equal to 1/2 of the damage this move dealt.
+# (Head Smash, Light of Ruin)
+#===============================================================================
+class PokeBattle_Move_0FC < PokeBattle_RecoilMove
+    def recoilFactor;  return 0.5; end
+end
+
+#===============================================================================
+# User takes recoil damage equal to 2/3 of the damage this move dealt.
+# (Head Charge)
+#===============================================================================
+class PokeBattle_Move_502 < PokeBattle_RecoilMove
+    def recoilFactor; return (2.0 / 3.0); end
 end
 
 #===============================================================================

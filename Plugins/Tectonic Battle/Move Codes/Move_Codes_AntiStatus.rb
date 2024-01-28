@@ -80,6 +80,70 @@ class PokeBattle_Move_019 < PokeBattle_Move
 end
 
 #===============================================================================
+# Heals the party of status conditions and gains an Aqua Ring. (Whale Song)
+#===============================================================================
+class PokeBattle_Move_5D1 < PokeBattle_Move_019
+    def worksWithNoTargets?; return true; end
+
+    def pbMoveFailed?(user, _targets, show_message)
+        if super(user, _targets, false) && user.effectActive?(:AquaRing)
+            @battle.pbDisplay(_INTL("But it failed, since #{user.pbThis(true)} already has a veil of water and none of its party members have a status condition!")) if show_message
+            return true
+        end
+        return false
+    end
+
+    def pbEffectGeneral(user)
+        super
+        user.applyEffect(:AquaRing)
+    end
+
+    def pbShowAnimation(id, user, targets, hitNum = 0, showAnimation = true)
+        super
+        @battle.pbDisplay(_INTL("Majestic whale sounds reverberate!"))
+    end
+
+    def getEffectScore(user, _target)
+        score = super
+        score += getAquaRingEffectScore(user)
+        return score
+    end
+end
+
+#===============================================================================
+# Damages, while also healing the team of statuses. (Purifying Water)
+#===============================================================================
+class PokeBattle_Move_548 < PokeBattle_Move
+    def pbEffectAfterAllHits(user, _target)
+        @battle.eachSameSideBattler(user) do |b|
+            healStatus(b)
+        end
+        # Cure all Pokémon in the user's and partner trainer's party.
+        # NOTE: This intentionally affects the partner trainer's inactive Pokémon
+        #       too.
+        @battle.pbParty(user.index).each_with_index do |pkmn, i|
+            next if !pkmn || !pkmn.able?
+            next if @battle.pbFindBattler(i, user) # Skip Pokémon in battle
+            healStatus(pkmn)
+        end
+    end
+
+    def pbShowAnimation(id, user, targets, hitNum = 0, showAnimation = true)
+        super
+        @battle.pbDisplay(_INTL("The area was purified!"))
+    end
+
+    def getEffectScore(user, _target)
+        score = 0
+        statuses = 0
+        @battle.pbParty(user.index).each do |pkmn|
+            score += 40 if pkmn && pkmn.status != :NONE
+        end
+        return score
+    end
+end
+
+#===============================================================================
 # Safeguards the user's side from being inflicted with status problems.
 # (Safeguard)
 #===============================================================================

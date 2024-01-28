@@ -261,6 +261,23 @@ class PokeBattle_Move_57B < PokeBattle_StatUpMove
 end
 
 #===============================================================================
+# Increases the user's critical hit rate. (Starfall)
+#===============================================================================
+class PokeBattle_Move_520 < PokeBattle_Move
+    def pbEffectGeneral(user)
+        user.applyEffect(:LuckyStar)
+    end
+
+    def getEffectScore(user, _target)
+        if user.effectActive?(:LuckyStar)
+            return 0
+        else
+            return getCriticalRateBuffEffectScore(user)
+        end
+    end
+end
+
+#===============================================================================
 # Increases the user's critical hit rate by 2 stages. (Focus Energy)
 #===============================================================================
 class PokeBattle_Move_023 < PokeBattle_Move
@@ -278,5 +295,41 @@ class PokeBattle_Move_023 < PokeBattle_Move
 
     def getEffectScore(user, _target)
         return getCriticalRateBuffEffectScore(user, 2)
+    end
+end
+
+#===============================================================================
+# Maximizes accuracy. (Aim True)
+#===============================================================================
+class PokeBattle_Move_501 < PokeBattle_Move
+    def pbMoveFailed?(user, _targets, show_message)
+        return !user.pbCanRaiseStatStep?(:ACCURACY, user, self, show_message)
+    end
+
+    def pbEffectGeneral(user)
+        user.pbMaximizeStatStep(:ACCURACY, user, self)
+    end
+
+    def getEffectScore(user, _target)
+        score = 60
+        score -= (user.steps[:ACCURACY] - 6) * 10
+        score += 20 if user.hasInaccurateMove?
+        score += 40 if user.hasLowAccuracyMove?
+        return score
+    end
+end
+
+#===============================================================================
+# If the move misses, the user gains Accuracy. (Rockapult)
+#===============================================================================
+class PokeBattle_Move_51F < PokeBattle_Move
+    # This method is called if a move fails to hit all of its targets
+    def pbCrashDamage(user)
+        return unless user.tryRaiseStat(:ACCURACY, user, move: self)
+        @battle.pbDisplay(_INTL("{1} adjusted its aim!", user.pbThis))
+    end
+
+    def getEffectScore(user, _target)
+        return getMultiStatUpEffectScore([:ACCURACY, 1], user, user) * 0.5
     end
 end

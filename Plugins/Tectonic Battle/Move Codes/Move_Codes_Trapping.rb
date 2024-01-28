@@ -189,3 +189,26 @@ class PokeBattle_Move_11A < PokeBattle_Move_0EF
         return score
     end
 end
+
+#===============================================================================
+# No Pokémon can switch out or flee until the end of the next round. (Fairy Lock)
+#===============================================================================
+class PokeBattle_Move_152 < PokeBattle_Move
+    def pbMoveFailed?(_user, _targets, show_message)
+        if @battle.field.effectActive?(:FairyLock)
+            @battle.pbDisplay(_INTL("But it failed, since a Fairy Lock is already active!")) if show_message
+            return true
+        end
+        return false
+    end
+
+    def pbEffectGeneral(_user)
+        @battle.field.applyEffect(:FairyLock, 2)
+        @battle.pbDisplay(_INTL("No one will be able to run away during the next turn!"))
+    end
+
+    def getEffectScore(_user, _target)
+        echoln("The AI will never use Fairy Lock.")
+        return 0 # The move is both annoying and very weak
+    end
+end

@@ -146,3 +146,27 @@ class PokeBattle_Move_538 < PokeBattle_Move
         return score
     end
 end
+
+#===============================================================================
+# Removes entry hazards on user's side. 33% Recoil.
+# (Icebreaker)
+#===============================================================================
+class PokeBattle_Move_5B8 < PokeBattle_RecoilMove
+    def hazardRemovalMove?; return true; end
+
+    def recoilFactor;  return (1.0 / 3.0); end
+
+    def pbEffectAfterAllHits(user, target)
+        return if user.fainted? || target.damageState.unaffected
+        user.pbOwnSide.eachEffect(true) do |effect, _value, data|
+            next unless data.is_hazard?
+            user.pbOwnSide.disableEffect(effect)
+        end
+    end
+
+    def getEffectScore(user, _target)
+        score = super
+        score += hazardWeightOnSide(user.pbOwnSide) if user.alliesInReserve?
+        return score
+    end
+end

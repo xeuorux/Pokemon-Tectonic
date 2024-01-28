@@ -1,4 +1,11 @@
 #===============================================================================
+# Heals for 1/3 the damage dealt. (Drain Punch)
+#===============================================================================
+class PokeBattle_Move_545 < PokeBattle_DrainMove
+    def drainFactor(_user, _target); return (1.0 / 3.0); end
+end
+
+#===============================================================================
 # User gains half the HP it inflicts as damage.
 #===============================================================================
 class PokeBattle_Move_0DD < PokeBattle_DrainMove
@@ -82,5 +89,37 @@ class PokeBattle_Move_05A < PokeBattle_Move
         else
             return 100
         end
+    end
+end
+
+#===============================================================================
+# User gains 1/2 the HP it inflicts as damage. Lower's Defense. 
+#===============================================================================
+class PokeBattle_Move_ < PokeBattle_DrainMove
+    def drainFactor(_user, _target); return 0.5; end
+
+    def pbAdditionalEffect(user, target)
+        return if target.damageState.substitute
+        target.tryLowerStat(:DEFENSE, user, move: self)
+    end
+
+    def getTargetAffectingEffectScore(user, target)
+        return getMultiStatDownEffectScore([:DEFENSE, 1], user, target)
+    end
+end
+
+#===============================================================================
+# User gains 1/2 the HP it inflicts as damage. Lower's Sp. Def. (Soul Eater)
+#===============================================================================
+class PokeBattle_Move_52C < PokeBattle_DrainMove
+    def drainFactor(_user, _target); return 0.5; end
+
+    def pbAdditionalEffect(user, target)
+        return if target.damageState.substitute
+        target.tryLowerStat(:SPECIAL_DEFENSE, user, move: self)
+    end
+
+    def getTargetAffectingEffectScore(user, target)
+        return getMultiStatDownEffectScore([:SPECIAL_DEFENSE, 1], user, target)
     end
 end

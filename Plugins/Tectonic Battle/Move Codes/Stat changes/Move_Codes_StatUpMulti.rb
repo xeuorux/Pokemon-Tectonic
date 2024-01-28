@@ -144,6 +144,29 @@ class PokeBattle_Move_028 < PokeBattle_MultiStatUpMove
 end
 
 #===============================================================================
+# Increases the user's Attack and Sp. Attack by 2 step eachs.
+# In moonglow, also increases the user's Speed by 2 steps. (Scheme)
+#===============================================================================
+class PokeBattle_Move_5BA < PokeBattle_MultiStatUpMove
+    def initialize(battle, move)
+        super
+        @statUp = ATTACKING_STATS_2
+    end
+
+    def pbOnStartUse(_user, _targets)
+        if @battle.moonGlowing?
+            @statUp = [:ATTACK, 1, :SPECIAL_ATTACK, 2, :SPEED, 2]
+        else
+            @statUp = ATTACKING_STATS_2
+        end
+    end
+
+    def shouldHighlight?(_user, _target)
+        return @battle.moonGlowing?
+    end
+end
+
+#===============================================================================
 # Increases the user's Attack and Sp. Attack by 4 step eachs. (True Senses)
 #===============================================================================
 class PokeBattle_Move_5F5 < PokeBattle_MultiStatUpMove
@@ -407,5 +430,57 @@ class PokeBattle_Move_5B7 < PokeBattle_MultiStatUpMove
             return true
         end
         super
+    end
+end
+
+#===============================================================================
+# Raises worst stat four steps, second worst stat by two steps. (Breakdance)
+#===============================================================================
+class PokeBattle_Move_532 < PokeBattle_Move
+    def pbMoveFailed?(user, _targets, show_message)
+        @statArray = []
+        GameData::Stat.each_main_battle do |statData|
+            statID = statData.id
+            @statArray.push(statID) if user.pbCanRaiseStatStep?(statID, user, self)
+        end
+        if @statArray.length == 0
+            @battle.pbDisplay(_INTL("{1}'s stats won't go any higher!", user.pbThis)) if show_message
+            return true
+        end
+        return false
+    end
+
+    def pbEffectGeneral(user)
+        statsUserCanRaise = user.finalStats.select do |stat, _finalValue|
+            next user.pbCanRaiseStatStep?(stat, user, self)
+        end
+        statsRanked = statsUserCanRaise.sort_by { |_s, v| v }
+        user.tryRaiseStat(statsRanked[0][0], user, increment: 3, move: self) if statsRanked.length > 0
+        user.tryRaiseStat(statsRanked[1][0], user, increment: 3, move: self) if statsRanked.length > 1
+    end
+
+    # TODO
+    def getEffectScore(user, _target)
+        score = 100
+        score += 20 if user.firstTurn?
+        GameData::Stat.each_main_battle do |statData|
+            score -= user.steps[statData.id] * 5
+        end
+        return score
+    end
+end
+
+#===============================================================================
+# If the move misses, the user gains Accuracy and Speed. (Joust)
+#===============================================================================
+class PokeBattle_Move_53D < PokeBattle_Move
+    # This method is called if a move fails to hit all of its targets
+    def pbCrashDamage(user)
+        return unless user.pbRaiseMultipleStatSteps([:ACCURACY, 1, :SPEED, 1], user, move: self)
+        @battle.pbDisplay(_INTL("{1} circles back around for a retry!", user.pbThis))
+    end
+
+    def getEffectScore(user, _target)
+        return getMultiStatUpEffectScore([:ACCURACY, 1, :SPEED, 1], user, user) * 0.5
     end
 end

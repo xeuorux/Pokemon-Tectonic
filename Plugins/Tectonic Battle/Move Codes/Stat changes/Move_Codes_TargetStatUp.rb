@@ -40,3 +40,38 @@ class PokeBattle_Move_138 < PokeBattle_TargetMultiStatUpMove
         @statUp = [:DEFENSE, 3, :SPECIAL_DEFENSE, 3]
     end
 end
+
+#===============================================================================
+# Doubles an allies Attack and Speed. The user cannot swap out of battle.
+# If the user faints, so too does that ally. (Dragon Ride)
+#===============================================================================
+class PokeBattle_Move_575 < PokeBattle_Move
+    def pbFailsAgainstTarget?(user, target, show_message)
+        if target.effectActive?(:OnDragonRide)
+            if show_message
+                @battle.pbDisplay(_INTL("But it failed, since #{target.pbThis(true)} is already on a dragon ride!"))
+            end
+            return true
+        end
+        if user.effectActive?(:GivingDragonRideTo)
+            if show_message
+                @battle.pbDisplay(_INTL("But it failed, since #{user.pbThis} is already giving a dragon ride!"))
+            end
+            return true
+        end
+        return false
+    end
+
+    def pbEffectAgainstTarget(user, target)
+        target.applyEffect(:OnDragonRide)
+        user.applyEffect(:GivingDragonRideTo, target.index)
+        @battle.pbDisplay(_INTL("{1} gives {2} a ride on its back!", user.pbThis, target.pbThis(true)))
+    end
+
+    def getEffectScore(user, target)
+        return 0 if user.effects[:PerishSong] > 0
+        return 0 if user.belowHalfHealth?
+        return 0 unless target.hasPhysicalAttack?
+        return 150
+    end
+end

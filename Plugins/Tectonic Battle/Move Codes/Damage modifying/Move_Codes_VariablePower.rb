@@ -160,3 +160,17 @@ class PokeBattle_Move_132 < PokeBattle_Move
         return baseDmg
     end
 end
+
+#===============================================================================
+# Power increases with the highest allies defense. (Hard Place)
+#===============================================================================
+class PokeBattle_Move_574 < PokeBattle_Move
+    def pbBaseDamage(_baseDmg, user, _target)
+        highestDefense = 0
+        user.eachAlly do |ally_battler|
+            real_defense = ally_battler.pbDefense
+            highestDefense = real_defense if real_defense > highestDefense
+        end
+        return [highestDefense, 40].max
+    end
+end

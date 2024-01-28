@@ -217,3 +217,20 @@ class PokeBattle_Move_04F < PokeBattle_TargetStatDownMove
         @statDown = [:SPECIAL_DEFENSE, 4]
     end
 end
+
+#===============================================================================
+# Target's highest stat is lowered by 4 steps. (Loom Over)
+#===============================================================================
+class PokeBattle_Move_522 < PokeBattle_Move
+    def pbFailsAgainstTarget?(user, target, show_message)
+        return !target.pbCanLowerStatStep?(target.highestStat, user, self, show_message)
+    end
+
+    def pbEffectAgainstTarget(user, target)
+        target.tryLowerStat(target.highestStat, user, increment: 4, move: self)
+    end
+
+    def getTargetAffectingEffectScore(user, target)
+        return getMultiStatDownEffectScore([target.highestStat, 4], user, target)
+    end
+end

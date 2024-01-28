@@ -97,6 +97,25 @@ class PokeBattle_Move_16D < PokeBattle_HealingMove
     end
 end
 
+#===============================================================================
+# Heals user by 2/3 of its max HP.
+#===============================================================================
+class PokeBattle_Move_565 < PokeBattle_HealingMove
+    def healRatio(_user)
+        return 2.0 / 3.0
+    end
+end
+
+#===============================================================================
+# Heals user by 1/2 of their HP.
+# In any weather, increases the duration of the weather by 1. (Take Shelter)
+#===============================================================================
+class PokeBattle_Move_5B3 < PokeBattle_HalfHealingMove
+    def pbEffectGeneral(user)
+        super
+        @battle.extendWeather(1) unless @battle.pbWeather == :None
+    end
+end
 
 #===============================================================================
 # Heals user to full HP. User falls asleep for 2 more rounds. (Rest)
@@ -593,5 +612,51 @@ class PokeBattle_Move_5E5 < PokeBattle_StatDrainHealingMove
     def initialize(battle, move)
         super
         @statToReduce = :SPECIAL_ATTACK
+    end
+end
+
+#===============================================================================
+# Heals the user by 2/3 health. Move disables self. (Stitch Up)
+#===============================================================================
+class PokeBattle_Move_524 < PokeBattle_HealingMove
+    def healRatio(_user)
+        return 2.0 / 3.0
+    end
+
+    def pbEffectGeneral(user)
+        super
+        user.applyEffect(:Disable, 5)
+    end
+
+    def getEffectScore(user, _target)
+        score = super
+        score -= 30
+        return score
+    end
+end
+
+#===============================================================================
+# Uses rest on both self and target. (Bedfellows)
+#===============================================================================
+class PokeBattle_Move_564 < PokeBattle_Move
+    def pbEffectAgainstTarget(user, target)
+        @battle.forceUseMove(user, :REST)
+        @battle.forceUseMove(target, :REST)
+    end
+
+    def getEffectScore(user, target)
+        score = 0
+
+        unless user.fullHealth?
+            score += user.applyFractionalHealing(1.0, aiCheck: true)
+            score -= getSleepEffectScore(nil, user) * 0.45
+            score += 45 if user.hasStatusNoSleep?
+        end
+        unless target.fullHealth?
+            score -= target.applyFractionalHealing(1.0, aiCheck: true)
+            score += getSleepEffectScore(nil, target)
+            score -= 45 if target.hasStatusNoSleep?
+        end
+        return score
     end
 end

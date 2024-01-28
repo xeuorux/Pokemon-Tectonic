@@ -73,3 +73,15 @@ class PokeBattle_Move_5A9 < PokeBattle_SnowballingMove
         user.pbRecoverHPFromDrain(hpGain, target)
     end
 end
+
+#===============================================================================
+# Hits three times by base, and one extra every time the move is used
+# over the course of a battle. (Blades of Grass)
+#===============================================================================
+class PokeBattle_Move_130 < PokeBattle_Move
+    def multiHitMove?; return true; end
+
+    def pbNumHits(user, _targets, _checkingForAI = false)
+        return 3 + user.moveUsageCount(@id)
+    end
+end

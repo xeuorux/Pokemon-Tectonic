@@ -521,127 +521,6 @@ class PokeBattle_Move_5B2 < PokeBattle_BurnMove
 end
 
 #===============================================================================
-# Heals user by 1/2 of their HP.
-# In any weather, increases the duration of the weather by 1. (Take Shelter)
-#===============================================================================
-class PokeBattle_Move_5B3 < PokeBattle_HalfHealingMove
-    def pbEffectGeneral(user)
-        super
-        @battle.extendWeather(1) unless @battle.pbWeather == :None
-    end
-end
-
-#===============================================================================
-# Removes all Weather. Fails if there is no Weather (Sky Fall)
-#===============================================================================
-class PokeBattle_Move_5B5 < PokeBattle_Move
-    def pbMoveFailed?(_user, _targets, show_message)
-        if @battle.pbWeather == :None
-            @battle.pbDisplay(_INTL("But it failed, since there is no active weather!")) if show_message
-            return true
-        end
-        return false
-    end
-
-    def pbEffectGeneral(user)
-       @battle.endWeather
-    end
-
-    def getEffectScore(user, _target)
-        return getWeatherResetEffectScore(user)
-    end
-end
-
-#===============================================================================
-# Move deals double damage but heals the status condition every active Pokémon
-# if the target has a status condition (Impurity Blaze)
-#===============================================================================
-class PokeBattle_Move_5B6 < PokeBattle_Move
-    def pbBaseDamage(baseDmg, _user, target)
-        baseDmg *= 2 if target.pbHasAnyStatus?
-        return baseDmg
-    end
-
-    def pbEffectWhenDealingDamage(user, target)
-        return unless target.pbHasAnyStatus?
-        @battle.eachBattler do |b|
-            healStatus(b)
-        end
-    end
-
-    def getEffectScore(_user, _target)
-        score = 0
-        @battle.eachBattler do |b|
-            pkmn = b.pokemon
-            next if !pkmn || !pkmn.able? || pkmn.status == :NONE
-            score += b.opposes? ? 30 : -30
-        end
-        return score
-    end
-end
-
-#===============================================================================
-# Removes entry hazards on user's side. 33% Recoil.
-# (Icebreaker)
-#===============================================================================
-class PokeBattle_Move_5B8 < PokeBattle_RecoilMove
-    def hazardRemovalMove?; return true; end
-
-    def recoilFactor;  return (1.0 / 3.0); end
-
-    def pbEffectAfterAllHits(user, target)
-        return if user.fainted? || target.damageState.unaffected
-        user.pbOwnSide.eachEffect(true) do |effect, _value, data|
-            next unless data.is_hazard?
-            user.pbOwnSide.disableEffect(effect)
-        end
-    end
-
-    def getEffectScore(user, _target)
-        score = super
-        score += hazardWeightOnSide(user.pbOwnSide) if user.alliesInReserve?
-        return score
-    end
-end
-
-#===============================================================================
-# Increases the user's Attack and Sp. Attack by 2 step eachs.
-# In moonglow, also increases the user's Speed by 2 steps. (Scheme)
-#===============================================================================
-class PokeBattle_Move_5BA < PokeBattle_MultiStatUpMove
-    def initialize(battle, move)
-        super
-        @statUp = ATTACKING_STATS_2
-    end
-
-    def pbOnStartUse(_user, _targets)
-        if @battle.moonGlowing?
-            @statUp = [:ATTACK, 1, :SPECIAL_ATTACK, 2, :SPEED, 2]
-        else
-            @statUp = ATTACKING_STATS_2
-        end
-    end
-
-    def shouldHighlight?(_user, _target)
-        return @battle.moonGlowing?
-    end
-end
-
-#===============================================================================
-# User faints, even if the move does nothing else. (Spiky Burst)
-# Deals extra damage per "Spike" on the enemy side.
-#===============================================================================
-class PokeBattle_Move_5BC < PokeBattle_Move_0E0
-    def pbBaseDamage(baseDmg, _user, target)
-        target.pbOwnSide.eachEffect(true) do |effect, value, effectData|
-            next unless effectData.is_spike?
-            baseDmg += 50 * value
-        end
-        return baseDmg
-    end
-end
-
-#===============================================================================
 # Sets stealth rock and sandstorm for 5 turns. (Stone Signal)
 #===============================================================================
 class PokeBattle_Move_5BD < PokeBattle_Move_105
@@ -699,27 +578,6 @@ class PokeBattle_Move_5C1 < PokeBattle_Move
         else
             return getMultiStatUpEffectScore([:ATTACK, 1], user, user)
         end
-    end
-end
-
-#===============================================================================
-# The target's healing is cut in half until they switch out (Icy Injection)
-#===============================================================================
-class PokeBattle_Move_5C6 < PokeBattle_Move
-    def pbAdditionalEffect(_user, target)
-        return if target.fainted? || target.damageState.substitute
-        target.applyEffect(:IcyInjection)
-    end
-
-    def getEffectScore(_user, target)
-        if target.hasHealingMove?
-            if target.belowHalfHealth?
-                return 45
-            else
-                return 30
-            end
-        end
-        return 0
     end
 end
 
@@ -942,37 +800,6 @@ class PokeBattle_Move_5D0 < PokeBattle_HalfHealingMove
     end
 
     def getEffectScore(user, target)
-        score = super
-        score += getAquaRingEffectScore(user)
-        return score
-    end
-end
-
-#===============================================================================
-# Heals the party of status conditions and gains an Aqua Ring. (Whale Song)
-#===============================================================================
-class PokeBattle_Move_5D1 < PokeBattle_Move_019
-    def worksWithNoTargets?; return true; end
-
-    def pbMoveFailed?(user, _targets, show_message)
-        if super(user, _targets, false) && user.effectActive?(:AquaRing)
-            @battle.pbDisplay(_INTL("But it failed, since #{user.pbThis(true)} already has a veil of water and none of its party members have a status condition!")) if show_message
-            return true
-        end
-        return false
-    end
-
-    def pbEffectGeneral(user)
-        super
-        user.applyEffect(:AquaRing)
-    end
-
-    def pbShowAnimation(id, user, targets, hitNum = 0, showAnimation = true)
-        super
-        @battle.pbDisplay(_INTL("Majestic whale sounds reverberate!"))
-    end
-
-    def getEffectScore(user, _target)
         score = super
         score += getAquaRingEffectScore(user)
         return score

@@ -100,3 +100,22 @@ class PokeBattle_Move_12C < PokeBattle_Move
         end
     end
 end
+
+#===============================================================================
+# Target moves immediately after the user, ignoring priority/speed. (Kickstart)
+#===============================================================================
+class PokeBattle_Move_505 < PokeBattle_Move
+    def pbEffectAgainstTarget(_user, target)
+        return if target.fainted?
+        return if pbMoveFailedTargetAlreadyMoved?(target) # Target has already moved this round
+        return if target.effectActive?(:MoveNext) # Target was going to move next anyway (somehow)
+        return if @battle.choices[target.index][2].nil? # Target didn't choose to use a move this round
+        target.applyEffect(:MoveNext)
+        @battle.pbDisplay(_INTL("{1} was kickstarted into action!", target.pbThis))
+    end
+
+    def getEffectScore(_user, _target)
+        echoln("The AI will never use Kickstart.")
+        return -1000
+    end
+end

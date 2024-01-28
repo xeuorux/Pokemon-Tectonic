@@ -228,6 +228,28 @@ class PokeBattle_Move_0F1 < PokeBattle_Move
 end
 
 #===============================================================================
+# Steals the targets first stealable berry or gem. (Pilfer)
+#===============================================================================
+class PokeBattle_Move_539 < PokeBattle_Move
+    def pbEffectAfterAllHits(user, target)
+        return unless target.hasAnyBerry? || target.hasAnyItem?
+        target.eachItem do |item|
+            next unless GameData::Item.get(item).is_berry? || GameData::Item.get(item).is_gem?
+            stealItem(user, target, item)
+        end
+    end
+
+    def getEffectScore(user, target)
+        score = 0
+        target.eachItem do |item|
+            next unless GameData::Item.get(item).is_berry? || GameData::Item.get(item).is_gem?
+            score += 50 if canStealItem?(user, target, item)
+        end
+        return score
+    end
+end
+
+#===============================================================================
 # Fails if the Target has no Item (Poltergeist)
 #===============================================================================
 class PokeBattle_Move_192 < PokeBattle_Move

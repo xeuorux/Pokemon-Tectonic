@@ -113,6 +113,44 @@ self) && user.pbRaiseStatStep(s.id, target.steps[s.id], user, showAnim)
 end
 
 #===============================================================================
+# Reverses all stat changes of the target. (Topsy-Turvy)
+#===============================================================================
+class PokeBattle_Move_141 < PokeBattle_Move
+    def pbFailsAgainstTarget?(_user, target, show_message)
+        failed = true
+        GameData::Stat.each_battle do |s|
+            next if target.steps[s.id] == 0
+            failed = false
+            break
+        end
+        if failed
+            @battle.pbDisplay(_INTL("But it failed, since #{target.pbThis(true)} has no stat changes!")) if show_message
+            return true
+        end
+        return false
+    end
+
+    def pbEffectAgainstTarget(_user, target)
+        GameData::Stat.each_battle { |s| target.steps[s.id] *= -1 }
+        @battle.pbDisplay(_INTL("{1}'s stats were reversed!", target.pbThis))
+    end
+
+    def getTargetAffectingEffectScore(user, target)
+        score = 0
+        netSteps = 0
+        GameData::Stat.each_battle do |s|
+            netSteps += target.steps[s.id]
+        end
+        if user.opposes?(target)
+            score += netSteps * 10
+        else
+            score -= netSteps * 10
+        end
+        return score
+    end
+end
+
+#===============================================================================
 # Swaps the user's Sp Attack and Sp Def stats. (Energy Trick)
 #===============================================================================
 class PokeBattle_Move_056 < PokeBattle_Move
@@ -304,5 +342,96 @@ class PokeBattle_Move_014 < PokeBattle_Move
         score += getMultiStatUpEffectScore([stepInfo[0],stepInfo[1]], user, user)
         score += getMultiStatUpEffectScore([stepInfo[2],stepInfo[3]], user, target)
         return score
+    end
+end
+
+#===============================================================================
+# If this move KO's the target, increases the user's Attack by 5 steps.
+# (Fell Stinger)
+#===============================================================================
+class PokeBattle_Move_150 < PokeBattle_Move
+    def pbEffectAfterAllHits(user, target)
+        return unless target.damageState.fainted
+        user.tryRaiseStat(:ATTACK, user, increment: 5, move: self)
+    end
+
+    def getFaintEffectScore(user, target)
+        return getMultiStatUpEffectScore([:ATTACK, 5], user, user)
+    end
+end
+
+#===============================================================================
+# If this move KO's the target, increases the user's Sp. Atk by 5 steps.
+# (Finalize)
+#===============================================================================
+class PokeBattle_Move_50B < PokeBattle_Move
+    def pbEffectAfterAllHits(user, target)
+        return unless target.damageState.fainted
+        user.tryRaiseStat(:SPECIAL_ATTACK, user, increment: 5, move: self)
+    end
+
+    def getFaintEffectScore(user, target)
+        return getMultiStatUpEffectScore([:SPECIAL_ATTACK, 5], user, user)
+    end
+end
+
+#===============================================================================
+# User and target swap their Speed stats (not their stat steps). (Speed Swap)
+#===============================================================================
+class PokeBattle_Move_161 < PokeBattle_Move
+    def ignoresSubstitute?(_user); return true; end
+
+    def pbEffectAgainstTarget(user, target)
+        userSpeed = user.base_speed
+        targetSpeed = target.base_speed
+        user.applyEffect(:BaseSpeed,targetSpeed)
+        target.applyEffect(:BaseSpeed,userSpeed)
+        @battle.pbDisplay(_INTL("{1} switched base Speed with its target!", user.pbThis))
+    end
+
+    def getEffectScore(user, target)
+        score = getWantsToBeSlowerScore(user, target, 8, move: self)
+        return score
+    end
+end
+
+#===============================================================================
+# Decreases the Attack, Special Attack and Speed of all nearby poisoned foes
+# by 3 steps each. (Venom Drench)
+#===============================================================================
+class PokeBattle_Move_140 < PokeBattle_Move
+    def initialize(battle, move)
+        super
+        @statDown = [:ATTACK, 3, :SPECIAL_ATTACK, 3, :SPEED, 3]
+    end
+
+    def pbMoveFailed?(user, _targets, show_message)
+        @battle.eachBattler do |b|
+            return false if isValidTarget?(user, b)
+        end
+        @battle.pbDisplay(_INTL("But it failed, since it has no valid targets!")) if show_message
+        return true
+    end
+
+    def isValidTarget?(user, target)
+        return false if target.fainted?
+        return false unless target.poisoned?
+        return false if !target.pbCanLowerStatStep?(:ATTACK, user, self) &&
+                        !target.pbCanLowerStatStep?(:SPECIAL_ATTACK, user, self) &&
+                        !target.pbCanLowerStatStep?(:SPEED, user, self)
+        return true
+    end
+
+    def pbFailsAgainstTarget?(user, target, _show_message)
+        return !isValidTarget?(user, target)
+    end
+
+    def pbEffectAgainstTarget(user, target)
+        target.pbLowerMultipleStatSteps(@statDown, user, move: self)
+    end
+
+    def getTargetAffectingEffectScore(user, target)
+        return getMultiStatDownEffectScore(@statDown, user, target) if isValidTarget?(user, target)
+        return 0
     end
 end

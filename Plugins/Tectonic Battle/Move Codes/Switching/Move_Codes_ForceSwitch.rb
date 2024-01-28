@@ -80,3 +80,19 @@ class PokeBattle_Move_0EC < PokeBattle_Move
         return getForceOutEffectScore(user, target)
     end
 end
+
+#===============================================================================
+# If the move misses, all targets are forced to switch out. (Rolling Boulder)
+#===============================================================================
+class PokeBattle_Move_53F < PokeBattle_Move
+    def forceSwitchMove?; return true; end
+
+    # This method is called if a move fails to hit all of its targets
+    def pbAllMissed(user, targets)
+        forceOutTargets(user,targets,[],substituteBlocks: true, invertMissCheck: true)
+    end
+
+    def getEffectScore(user, target)
+        return getForceOutEffectScore(user, target) * 0.5
+    end
+end

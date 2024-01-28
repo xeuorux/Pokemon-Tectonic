@@ -105,3 +105,16 @@ class PokeBattle_Move_59D < PokeBattle_InviteMove
         @statusToApply = :DIZZY
     end
 end
+
+#===============================================================================
+# Summons Eclipse for 8 turns and lowers the Attack of all enemies by 2 steps. (Wingspan Eclipse)
+#===============================================================================
+class PokeBattle_Move_52F < PokeBattle_Move_042
+    def pbEffectGeneral(user)
+        @battle.pbStartWeather(user, :Eclipse, 8, false) unless @battle.primevalWeatherPresent?
+    end
+
+    def getEffectScore(user, target)
+        return getWeatherSettingEffectScore(:Eclipse, user, @battle, 8)
+    end
+end

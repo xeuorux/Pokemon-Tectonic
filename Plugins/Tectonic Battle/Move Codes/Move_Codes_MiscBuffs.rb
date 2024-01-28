@@ -105,3 +105,28 @@ class PokeBattle_Move_15E < PokeBattle_Move
         return 80
     end
 end
+
+#===============================================================================
+# User takes half damage from Super Effective moves. (Inure)
+#===============================================================================
+class PokeBattle_Move_531 < PokeBattle_Move
+    def pbMoveFailed?(user, _targets, show_message)
+        if user.effectActive?(:Inured)
+            @battle.pbDisplay(_INTL("But it failed, since #{user.pbThis(true)} is already inured!")) if show_message
+            return true
+        end
+        return false
+    end
+
+    def pbEffectGeneral(user)
+        user.applyEffect(:Inured)
+    end
+
+    def getEffectScore(user, _target)
+        if user.firstTurn?
+            return 80
+        else
+            return 60
+        end
+    end
+end

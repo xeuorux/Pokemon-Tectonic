@@ -114,3 +114,17 @@ class PokeBattle_Move_0E1 < PokeBattle_FixedDamageMove
         return score
     end
 end
+
+#===============================================================================
+# User faints, even if the move does nothing else. (Spiky Burst)
+# Deals extra damage per "Spike" on the enemy side.
+#===============================================================================
+class PokeBattle_Move_5BC < PokeBattle_Move_0E0
+    def pbBaseDamage(baseDmg, _user, target)
+        target.pbOwnSide.eachEffect(true) do |effect, value, effectData|
+            next unless effectData.is_spike?
+            baseDmg += 50 * value
+        end
+        return baseDmg
+    end
+end

@@ -31,29 +31,6 @@ class PokeBattle_Move_Struggle < PokeBattle_Struggle
 end
 
 #===============================================================================
-# Target's attacking stats are lowered by 5 steps. User faints. (Memento)
-#===============================================================================
-class PokeBattle_Move_0E2 < PokeBattle_TargetMultiStatDownMove
-    def worksWithNoTargets?; return true; end
-
-    def initialize(battle, move)
-        super
-        @statDown = [:ATTACK, 5, :SPECIAL_ATTACK, 5]
-    end
-
-    def pbSelfKO(user)
-        return if user.fainted?
-        user.pbReduceHP(user.totalhp, false)
-        user.pbItemHPHealCheck
-    end
-    
-    def getEffectScore(user, target)
-        score = getSelfKOMoveScore(user, target)
-        return score
-    end
-end
-
-#===============================================================================
 # All current battlers will perish after 3 more rounds. (Perish Song)
 #===============================================================================
 class PokeBattle_Move_0E5 < PokeBattle_Move
@@ -229,18 +206,28 @@ class PokeBattle_Move_0BF < PokeBattle_Move
 end
 
 #===============================================================================
-# Target's last move used loses 3 PP. (Eerie Spell)
+# Target's last move used loses 4 PP. (Spiteful Chant, Eerie Spell)
 #===============================================================================
-class PokeBattle_Move_198 < PokeBattle_Move
+class PokeBattle_Move_521 < PokeBattle_Move
+    def ignoresSubstitute?(_user); return true; end
+
     def pbEffectAgainstTarget(_user, target)
         target.eachMove do |m|
             next if m.id != target.lastRegularMoveUsed
-            reduction = [3, m.pp].min
+            reduction = [4, m.pp].min
             target.pbSetPP(m, m.pp - reduction)
             @battle.pbDisplay(_INTL("It reduced the PP of {1}'s {2} by {3}!",
                target.pbThis(true), m.name, reduction))
             break
         end
+    end
+
+    def getTargetAffectingEffectScore(_user, target)
+        target.eachMove do |m|
+            next if m.id != target.lastRegularMoveUsed
+            return 30
+        end
+        return 0
     end
 end
 
@@ -423,5 +410,185 @@ class PokeBattle_Move_5A7 < PokeBattle_TwoTurnMove
             @battle.pbCommonAnimation("MegaEvolution", user)
             super
         end
+    end
+end
+
+#===============================================================================
+# Transforms the user into one of its forms. (Mutate)
+#===============================================================================
+class PokeBattle_Move_52D < PokeBattle_Move
+    def resolutionChoice(user)
+        if @battle.autoTesting
+            @chosenForm = rand(3) + 1
+        elsif !user.pbOwnedByPlayer? # Trainer AI
+            @chosenForm = 2 # Always chooses mega mind form
+        else
+            form1Name = GameData::Species.get_species_form(:DEOXYS,1).form_name
+            form2Name = GameData::Species.get_species_form(:DEOXYS,2).form_name
+            form3Name = GameData::Species.get_species_form(:DEOXYS,3).form_name
+            formNames = [form1Name,form2Name,form3Name]
+            chosenIndex = @battle.scene.pbShowCommands(_INTL("Which form should #{user.pbThis(true)} take?"),formNames,0)
+            @chosenForm = chosenIndex + 1
+        end
+    end
+
+    def pbCanChooseMove?(user, commandPhase, show_message)
+        unless user.form == 0
+            if show_message
+                msg = _INTL("#{user.pbThis} has already mutated!")
+                commandPhase ? @battle.pbDisplayPaused(msg) : @battle.pbDisplay(msg)
+            end
+            return false
+        end
+        return true
+    end
+
+    def pbMoveFailed?(user, _targets, show_message)
+        unless user.countsAs?(:DEOXYS)
+            @battle.pbDisplay(_INTL("But {1} can't use the move!", user.pbThis)) if show_message
+            return true
+        end
+        unless user.form == 0
+            @battle.pbDisplay(_INTL("But {1} has already mutated!", user.pbThis)) if show_message
+            return true
+        end
+        return false
+    end
+    
+    def pbEffectGeneral(user)
+        user.pbChangeForm(@chosenForm, _INTL("{1} reforms its genes with space energy!", user.pbThis))
+    end
+
+    def resetMoveUsageState
+        @chosenForm = nil
+    end
+
+    def getEffectScore(_user, _target)
+        return 100
+    end
+end
+
+#===============================================================================
+# User switches places with its ally. (Ally Switch)
+#===============================================================================
+class PokeBattle_Move_120 < PokeBattle_Move
+    def pbMoveFailed?(user, _targets, show_message)
+        eachValidSwitch(user) do |_ally|
+            return false
+        end
+        if show_message
+            @battle.pbDisplay(_INTL("But it failed, since #{user.pbThis(true)} has no valid allies to switch with!"))
+        end
+        return true
+    end
+
+    def eachValidSwitch(battler)
+        idxUserOwner = @battle.pbGetOwnerIndexFromBattlerIndex(battler.index)
+        battler.eachAlly do |b|
+            next if @battle.pbGetOwnerIndexFromBattlerIndex(b.index) != idxUserOwner
+            next unless b.near?(battler)
+            yield b
+        end
+    end
+
+    def pbEffectGeneral(user)
+        idxA = user.index
+        idxB = -1
+        eachValidSwitch(user) do |ally|
+            idxB = ally.index
+        end
+        if @battle.pbSwapBattlers(idxA, idxB)
+            @battle.pbDisplay(_INTL("{1} and {2} switched places!",
+               @battle.battlers[idxB].pbThis, @battle.battlers[idxA].pbThis(true)))
+        end
+    end
+
+    def getEffectScore(_user, _target)
+        echoln("The AI will never use Ally Switch.")
+        return 0
+    end
+end
+
+#===============================================================================
+# Allies of the user also attack the target with Slash. (All For One)
+#===============================================================================
+class PokeBattle_Move_12F < PokeBattle_Move
+    def pbEffectAfterAllHits(user, target)
+        user.eachAlly do |b|
+            break if target.fainted?
+            @battle.pbDisplay(_INTL("{1} joins in the attack!", b.pbThis))
+            battle.forceUseMove(b, :SLASH, target.index)
+        end
+    end
+end
+
+#===============================================================================
+# Can't miss if attacking a target that already used an attack this turn. (Power Whip)
+#===============================================================================
+class PokeBattle_Move_53C < PokeBattle_Move
+    def pbAccuracyCheck(user, target)
+        targetChoice = @battle.choices[target.index][0]
+        return true if targetChoice == :UseMove && target.movedThisRound?
+        return super
+    end
+end
+
+#===============================================================================
+# Increases the target's Attack by 3 steps, then the target hits itself with its own attack. (Swagger)
+#===============================================================================
+class PokeBattle_Move_55D < PokeBattle_Move
+    def pbEffectAgainstTarget(user, target)
+        target.tryRaiseStat(:ATTACK, user, increment: 3, move: self)
+        target.pbConfusionDamage(_INTL("It hurt itself in a rage!"), false, false, selfHitBasePower(target.level))
+    end
+
+    def getTargetAffectingEffectScore(user, target)
+        score = -25 # TODO: rework this
+        score -= getMultiStatUpEffectScore([:ATTACK, 3], user, target, evaluateThreat: false)
+        score -= 70 if target.hasActiveAbilityAI?(:UNAWARE)
+        return score
+    end
+    
+    def calculateDamageForHitAI(user,target,type,baseDmg,numTargets)
+        damage = calculateDamageForHit(user,target,type,baseDmg,numTargets,true)
+        damage *= 1.75 unless target.hasActiveAbilityAI?(:UNAWARE)
+        return damage
+    end
+end
+
+#===============================================================================
+# Increases the target's Sp. Atk. by 3 steps, then the target hits itself with its own Sp. Atk. (Flatter)
+#===============================================================================
+class PokeBattle_Move_55E < PokeBattle_Move
+    def pbEffectAgainstTarget(user, target)
+        target.tryRaiseStat(:SPECIAL_ATTACK, user, increment: 3, move: self)
+        target.pbConfusionDamage(_INTL("It hurt itself in mental turmoil!"), true, false, selfHitBasePower(target.level))
+    end
+
+    def getTargetAffectingEffectScore(user, target)
+        score = -25 # TODO: rework this
+        score -= getMultiStatUpEffectScore([:SPECIAL_ATTACK, 3], user, target, evaluateThreat: false)
+        score -= 70 if target.hasActiveAbilityAI?(:UNAWARE)
+        return score
+    end
+
+    def calculateDamageForHitAI(user,target,type,baseDmg,numTargets)
+        damage = calculateDamageForHit(user,target,type,baseDmg,numTargets,true)
+        damage *= 1.75 unless target.hasActiveAbilityAI?(:UNAWARE)
+        return damage
+    end
+end
+
+#===============================================================================
+# The user takes 33% less damage until end of this turn.
+# (Shimmering Heat)
+#===============================================================================
+class PokeBattle_Move_577 < PokeBattle_Move
+    def pbEffectAfterAllHits(user, _target)
+        user.applyEffect(:ShimmeringHeat)
+    end
+
+    def getEffectScore(user, target)
+        return getWantsToBeFasterScore(user, target, 3)
     end
 end

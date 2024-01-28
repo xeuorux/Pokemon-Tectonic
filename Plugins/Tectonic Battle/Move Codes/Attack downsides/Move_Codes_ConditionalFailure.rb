@@ -47,6 +47,28 @@ class PokeBattle_Move_174 < PokeBattle_Move
 end
 
 #===============================================================================
+# Can only be used on the first turn. Deals more damage if the user was hurt this turn. (Stare Down)
+#===============================================================================
+class PokeBattle_Move_535 < PokeBattle_Move
+    def pbMoveFailed?(user, _targets, show_message)
+        unless user.firstTurn?
+            @battle.pbDisplay(_INTL("But it failed, since it isn't #{user.pbThis(true)}'s first turn!")) if show_message
+            return true
+        end
+        return false
+    end
+
+    def pbBaseDamage(baseDmg, user, target)
+        baseDmg *= 2 if user.lastAttacker.include?(target.index)
+        return baseDmg
+    end
+
+    def getEffectScore(user, target)
+        return getWantsToBeSlowerScore(user, target, 3, move: self)
+    end
+end
+
+#===============================================================================
 # Fails unless user has already used all other moves it knows. (Last Resort)
 #===============================================================================
 class PokeBattle_Move_125 < PokeBattle_Move

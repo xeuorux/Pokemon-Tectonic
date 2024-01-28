@@ -1,4 +1,18 @@
 #===============================================================================
+# User must use this move for 2 more rounds. (Outrage, etc.)
+#===============================================================================
+class PokeBattle_Move_55F < PokeBattle_Move
+    def pbEffectAfterAllHits(user, target)
+        user.applyEffect(:Outrage, 3) if !target.damageState.unaffected && !user.effectActive?(:Outrage)
+        user.tickDownAndProc(:Outrage)
+    end
+
+    def getEffectScore(_user, _target)
+        return -20
+    end
+end
+
+#===============================================================================
 # User must use this move for 2 more rounds. No battlers can sleep. (Uproar)
 # NOTE: Bulbapedia claims that an uproar will wake up Pokémon even if they have
 #       Soundproof, and will not allow Pokémon to fall asleep even if they have
