@@ -182,7 +182,7 @@ class PokeBattle_Move
 
         if aiCheck
             modifiers[:evasion_step] = 0 if @function == "0A9" # Chip Away
-            modifiers[:base_accuracy] = 0 if ["0A5", "139", "13A", "13B", "13C", "147"].include?(@name) # "Always hit"
+            modifiers[:base_accuracy] = 0 if ["0A5", "139", "13B", "13C", "147"].include?(@name) # "Always hit"
             modifiers[:base_accuracy] = 0 if user.effectActive?(:LockOn) && user.pointsAt?(:LockOnPos, target)
         end
     end

@@ -1,7 +1,7 @@
 #===============================================================================
 # Increases the user's Attack by 1 step.
 #===============================================================================
-class PokeBattle_Move_5D8 < PokeBattle_StatUpMove
+class PokeBattle_Move_RaiseUserAtk1 < PokeBattle_StatUpMove
     def initialize(battle, move)
         super
         @statUp = [:ATTACK, 1]
@@ -9,7 +9,7 @@ class PokeBattle_Move_5D8 < PokeBattle_StatUpMove
 end
 
 # Empowered Metal Claw
-class PokeBattle_Move_642 < PokeBattle_Move_5D8
+class PokeBattle_Move_EmpoweredMetalClaw < PokeBattle_Move_RaiseUserAtk1
     include EmpoweredMove
 
     def multiHitMove?; return true; end
@@ -19,7 +19,7 @@ end
 #===============================================================================
 # Increases the user's Attack by 2 step.
 #===============================================================================
-class PokeBattle_Move_01C < PokeBattle_StatUpMove
+class PokeBattle_Move_RaiseUserAttack2 < PokeBattle_StatUpMove
     def initialize(battle, move)
         super
         @statUp = [:ATTACK, 2]
@@ -27,14 +27,14 @@ class PokeBattle_Move_01C < PokeBattle_StatUpMove
 end
 
 # Empowered Meteor Mash
-class PokeBattle_Move_636 < PokeBattle_Move_01C
+class PokeBattle_Move_EmpoweredMetalClaw < PokeBattle_Move_RaiseUserAttack2
     include EmpoweredMove
 end
 
 #===============================================================================
 # Increases the user's Attack by 3 steps.
 #===============================================================================
-class PokeBattle_Move_5D9 < PokeBattle_StatUpMove
+class PokeBattle_Move_RaiseUserAtk3 < PokeBattle_StatUpMove
     def initialize(battle, move)
         super
         @statUp = [:ATTACK, 3]
@@ -44,7 +44,7 @@ end
 #===============================================================================
 # Increases the user's Attack by 4 steps. (Swords Dance)
 #===============================================================================
-class PokeBattle_Move_02E < PokeBattle_StatUpMove
+class PokeBattle_Move_RaiseUserAtk4 < PokeBattle_StatUpMove
     def initialize(battle, move)
         super
         @statUp = [:ATTACK, 4]
@@ -52,7 +52,7 @@ class PokeBattle_Move_02E < PokeBattle_StatUpMove
 end
 
 # Empowered Swords Dance
-class PokeBattle_Move_633 < PokeBattle_Move_02E
+class PokeBattle_Move_EmpoweredSwordsDance < PokeBattle_Move_RaiseUserAtk4
     include EmpoweredMove
 
     def pbEffectGeneral(user)
@@ -65,7 +65,7 @@ end
 #===============================================================================
 # Increases the user's Attack by 5 steps.
 #===============================================================================
-class PokeBattle_Move_RaiseAttack5 < PokeBattle_StatUpMove
+class PokeBattle_Move_RaiseUserAtk5 < PokeBattle_StatUpMove
     def initialize(battle, move)
         super
         @statUp = [:ATTACK, 5]
@@ -75,7 +75,7 @@ end
 #===============================================================================
 # Increases the user's Defense by 1 step.
 #===============================================================================
-class PokeBattle_Move_5DA < PokeBattle_StatUpMove
+class PokeBattle_Move_RaiseUserDef1 < PokeBattle_StatUpMove
     def initialize(battle, move)
         super
         @statUp = [:DEFENSE, 1]
@@ -85,7 +85,7 @@ end
 #===============================================================================
 # Increases the user's Defense by 2 steps.
 #===============================================================================
-class PokeBattle_Move_01D < PokeBattle_StatUpMove
+class PokeBattle_Move_RaiseUserDef2 < PokeBattle_StatUpMove
     def initialize(battle, move)
         super
         @statUp = [:DEFENSE, 2]
@@ -95,7 +95,7 @@ end
 #===============================================================================
 # Increases the user's Defense by 3 steps.
 #===============================================================================
-class PokeBattle_Move_5DB < PokeBattle_StatUpMove
+class PokeBattle_Move_RaiseUserDef3 < PokeBattle_StatUpMove
     def initialize(battle, move)
         super
         @statUp = [:DEFENSE, 3]
@@ -105,7 +105,7 @@ end
 #===============================================================================
 # Increases the user's Defense by 4 steps. (Barrier, Iron Defense)
 #===============================================================================
-class PokeBattle_Move_02F < PokeBattle_StatUpMove
+class PokeBattle_Move_RaiseUserDef4 < PokeBattle_StatUpMove
     def initialize(battle, move)
         super
         @statUp = [:DEFENSE, 4]
@@ -113,7 +113,7 @@ class PokeBattle_Move_02F < PokeBattle_StatUpMove
 end
 
 # Empowered Iron Defense
-class PokeBattle_Move_625 < PokeBattle_Move_02F
+class PokeBattle_Move_EmpoweredIronDefense < PokeBattle_Move_RaiseUserDef4
     include EmpoweredMove
 
     def pbEffectGeneral(user)
@@ -126,7 +126,7 @@ end
 #===============================================================================
 # Increases the user's Defense by 5 steps. (Cotton Guard)
 #===============================================================================
-class PokeBattle_Move_038 < PokeBattle_StatUpMove
+class PokeBattle_Move_RaiseUserDefense5 < PokeBattle_StatUpMove
     def initialize(battle, move)
         super
         @statUp = [:DEFENSE, 5]
@@ -136,7 +136,7 @@ end
 #===============================================================================
 # Increases the user's Speed by 1 step.
 #===============================================================================
-class PokeBattle_Move_5E0 < PokeBattle_StatUpMove
+class PokeBattle_Move_RaiseUserSpd1 < PokeBattle_StatUpMove
     def initialize(battle, move)
         super
         @statUp = [:SPEED, 1]
@@ -146,7 +146,7 @@ end
 #===============================================================================
 # Increases the user's Speed by 2 steps.
 #===============================================================================
-class PokeBattle_Move_01F < PokeBattle_StatUpMove
+class PokeBattle_Move_RaiseUserSpd2 < PokeBattle_StatUpMove
     def initialize(battle, move)
         super
         @statUp = [:SPEED, 2]
@@ -156,7 +156,7 @@ end
 #===============================================================================
 # Increases the user's Speed by 3 steps.
 #===============================================================================
-class PokeBattle_Move_5E1 < PokeBattle_StatUpMove
+class PokeBattle_Move_RaiseUserSpd3 < PokeBattle_StatUpMove
     def initialize(battle, move)
         super
         @statUp = [:SPEED, 3]
@@ -166,7 +166,7 @@ end
 #===============================================================================
 # Increases the user's Speed by 4 steps. (Agility, Rock Polish)
 #===============================================================================
-class PokeBattle_Move_030 < PokeBattle_StatUpMove
+class PokeBattle_Move_RaiseUserSpd4 < PokeBattle_StatUpMove
     def initialize(battle, move)
         super
         @statUp = [:SPEED, 4]
@@ -180,7 +180,7 @@ class PokeBattle_Move_030 < PokeBattle_StatUpMove
 end
 
 # Empowered Rock Polish
-class PokeBattle_Move_61B < PokeBattle_Move_030
+class PokeBattle_Move_EmpoweredRockPolish < PokeBattle_Move_RaiseUserSpd4
     include EmpoweredMove
 
     def pbEffectGeneral(user)
@@ -193,7 +193,7 @@ end
 #===============================================================================
 # The user's Speed raises 4 steps, and it gains the Flying-type. (Mach Flight)
 #===============================================================================
-class PokeBattle_Move_58C < PokeBattle_Move_030
+class PokeBattle_Move_RaiseUserSpd4GainFlyingType < PokeBattle_Move_RaiseUserSpd4
     def pbMoveFailed?(user, targets, show_message)
         return false if GameData::Type.exists?(:FLYING) && !user.pbHasType?(:FLYING) && user.canChangeType?
         super
@@ -208,7 +208,7 @@ end
 #===============================================================================
 # Increases the user's Speed by 5 steps.
 #===============================================================================
-class PokeBattle_Move_RaiseSpeed5 < PokeBattle_StatUpMove
+class PokeBattle_Move_RaiseUserSpd5 < PokeBattle_StatUpMove
     def initialize(battle, move)
         super
         @statUp = [:SPEED, 5]
@@ -224,7 +224,7 @@ end
 #===============================================================================
 # Increases the user's Sp. Atk by 1 step.
 #===============================================================================
-class PokeBattle_Move_5DC < PokeBattle_StatUpMove
+class PokeBattle_Move_RaiseUserSpAtk1 < PokeBattle_StatUpMove
     def initialize(battle, move)
         super
         @statUp = [:SPECIAL_ATTACK, 1]
@@ -234,7 +234,7 @@ end
 #===============================================================================
 # Increases the user's Sp. Atk by 2 step.
 #===============================================================================
-class PokeBattle_Move_020 < PokeBattle_StatUpMove
+class PokeBattle_Move_RaiseUserSpAtk2 < PokeBattle_StatUpMove
     def initialize(battle, move)
         super
         @statUp = [:SPECIAL_ATTACK, 2]
@@ -244,7 +244,7 @@ end
 #===============================================================================
 # Increases the user's Sp. Atk by 3 steps.
 #===============================================================================
-class PokeBattle_Move_5DD < PokeBattle_StatUpMove
+class PokeBattle_Move_RaiseUserSpAtk3 < PokeBattle_StatUpMove
     def initialize(battle, move)
         super
         @statUp = [:SPECIAL_ATTACK, 3]
@@ -254,7 +254,7 @@ end
 #===============================================================================
 # Increases the user's Special Attack by 4 steps. (Dream Dance)
 #===============================================================================
-class PokeBattle_Move_032 < PokeBattle_StatUpMove
+class PokeBattle_Move_RaiseUserSpAtk4 < PokeBattle_StatUpMove
     def initialize(battle, move)
         super
         @statUp = [:SPECIAL_ATTACK, 4]
@@ -262,7 +262,7 @@ class PokeBattle_Move_032 < PokeBattle_StatUpMove
 end
 
 # Empowered Dream Dance
-class PokeBattle_Move_632 < PokeBattle_Move_032
+class PokeBattle_Move_EmpoweredDreamDance < PokeBattle_Move_RaiseUserSpAtk4
     include EmpoweredMove
 
     def pbEffectGeneral(user)
@@ -275,7 +275,7 @@ end
 #===============================================================================
 # Increases the user's Special Attack by 5 steps. (Tail Glow)
 #===============================================================================
-class PokeBattle_Move_039 < PokeBattle_StatUpMove
+class PokeBattle_Move_RaiseUserSpAtk5 < PokeBattle_StatUpMove
     def initialize(battle, move)
         super
         @statUp = [:SPECIAL_ATTACK, 5]
@@ -285,7 +285,7 @@ end
 #===============================================================================
 # Increases the user's Sp. Def by 1 step.
 #===============================================================================
-class PokeBattle_Move_5DE < PokeBattle_StatUpMove
+class PokeBattle_Move_RaiseUserSpDef1 < PokeBattle_StatUpMove
     def initialize(battle, move)
         super
         @statUp = [:SPECIAL_DEFENSE, 1]
@@ -295,17 +295,17 @@ end
 #===============================================================================
 # Increases the user's Sp. Def by 2 steps.
 #===============================================================================
-class PokeBattle_Move_RaiseSpDef5 < PokeBattle_StatUpMove
+class PokeBattle_Move_RaiseSpDef2 < PokeBattle_StatUpMove
     def initialize(battle, move)
         super
-        @statUp = [:SPECIAL_DEFENSE, 3]
+        @statUp = [:SPECIAL_DEFENSE, 2]
     end
 end
 
 #===============================================================================
 # Increases the user's Sp. Def by 3 steps.
 #===============================================================================
-class PokeBattle_Move_5DF < PokeBattle_StatUpMove
+class PokeBattle_Move_RaiseUserSpDef3 < PokeBattle_StatUpMove
     def initialize(battle, move)
         super
         @statUp = [:SPECIAL_DEFENSE, 3]
@@ -315,7 +315,7 @@ end
 #===============================================================================
 # Increases the user's Special Defense by 4 steps. (Amnesia)
 #===============================================================================
-class PokeBattle_Move_033 < PokeBattle_StatUpMove
+class PokeBattle_Move_RaiseUserSpDef4 < PokeBattle_StatUpMove
     def initialize(battle, move)
         super
         @statUp = [:SPECIAL_DEFENSE, 4]
@@ -323,7 +323,7 @@ class PokeBattle_Move_033 < PokeBattle_StatUpMove
 end
 
 # Empowered Amnesia
-class PokeBattle_Move_626 < PokeBattle_Move_033
+class PokeBattle_Move_EmpoweredAmnesia < PokeBattle_Move_RaiseUserSpDef4
     include EmpoweredMove
 
     def pbEffectGeneral(user)
@@ -336,7 +336,7 @@ end
 #===============================================================================
 # Increases the user's Sp. Def by 5 steps. (Mucus Armor)
 #===============================================================================
-class PokeBattle_Move_57B < PokeBattle_StatUpMove
+class PokeBattle_Move_RaiseUserSpDef5 < PokeBattle_StatUpMove
     def initialize(battle, move)
         super
         @statUp = [:SPECIAL_DEFENSE, 5]
@@ -346,7 +346,7 @@ end
 #===============================================================================
 # Increases the user's critical hit rate. (Starfall)
 #===============================================================================
-class PokeBattle_Move_520 < PokeBattle_Move
+class PokeBattle_Move_RaiseCriticalHitRate1 < PokeBattle_Move
     def pbEffectGeneral(user)
         user.applyEffect(:LuckyStar)
     end
@@ -363,7 +363,7 @@ end
 #===============================================================================
 # Increases the user's critical hit rate by 2 stages. (Focus Energy)
 #===============================================================================
-class PokeBattle_Move_023 < PokeBattle_Move
+class PokeBattle_Move_RaiseCriticalHitRate2 < PokeBattle_Move
     def pbMoveFailed?(user, _targets, show_message)
         if user.effectAtMax?(:FocusEnergy)
             @battle.pbDisplay(_INTL("But it failed, since it cannot get any more pumped!")) if show_message
@@ -384,7 +384,7 @@ end
 #===============================================================================
 # Maximizes accuracy. (Aim True)
 #===============================================================================
-class PokeBattle_Move_501 < PokeBattle_Move
+class PokeBattle_Move_MaxUserAcc < PokeBattle_Move
     def pbMoveFailed?(user, _targets, show_message)
         return !user.pbCanRaiseStatStep?(:ACCURACY, user, self, show_message)
     end
@@ -405,7 +405,7 @@ end
 #===============================================================================
 # If the move misses, the user gains Accuracy. (Rockapult)
 #===============================================================================
-class PokeBattle_Move_51F < PokeBattle_Move
+class PokeBattle_Move_RaiseUserAccIfMisses < PokeBattle_Move
     # This method is called if a move fails to hit all of its targets
     def pbCrashDamage(user)
         return unless user.tryRaiseStat(:ACCURACY, user, move: self)
@@ -421,7 +421,7 @@ end
 # Changes Category based on which will deal more damage. (Everhone)
 # Raises the stat that wasn't selected to be used.
 #===============================================================================
-class PokeBattle_Move_5C1 < PokeBattle_Move
+class PokeBattle_Move_UsesBetterAttackingStatRaisesUserOtherAttackingStat < PokeBattle_Move
     def initialize(battle, move)
         super
         @calculated_category = 1

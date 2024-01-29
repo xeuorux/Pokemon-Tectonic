@@ -1,7 +1,7 @@
 #===============================================================================
 # Raises Attack of user and allies by 2 steps. (Howl)
 #===============================================================================
-class PokeBattle_Move_530 < PokeBattle_TeamStatBuffMove
+class PokeBattle_Move_RaiseUserAndAlliesAtk2 < PokeBattle_TeamStatBuffMove
     def initialize(battle, move)
         super
         @statUp = [:ATTACK, 2]
@@ -9,7 +9,7 @@ class PokeBattle_Move_530 < PokeBattle_TeamStatBuffMove
 end
 
 # Empowered Howl
-class PokeBattle_Move_627 < PokeBattle_Move_530
+class PokeBattle_Move_EmpoweredHowl < PokeBattle_Move_RaiseUserAndAlliesAtk2
     include EmpoweredMove
 
     def pbEffectGeneral(user)
@@ -22,7 +22,7 @@ end
 #===============================================================================
 # Summons Moonglow for 8 turns. Raises the Attack of itself and all allies by 2 steps. (Midnight Hunt)
 #===============================================================================
-class PokeBattle_Move_5B0 < PokeBattle_Move_530
+class PokeBattle_Move_RaiseUserAndAlliesAtk2StartMoonglow8 < PokeBattle_Move_RaiseUserAndAlliesAtk2
     def pbMoveFailed?(user, _targets, show_message)
         return false unless @battle.primevalWeatherPresent?(false)
         super
@@ -43,7 +43,7 @@ end
 #===============================================================================
 # Raises Defense of user and allies by 3 steps. (Stand Together)
 #===============================================================================
-class PokeBattle_Move_554 < PokeBattle_TeamStatBuffMove
+class PokeBattle_Move_RaiseUserAndAlliesDef3 < PokeBattle_TeamStatBuffMove
     def initialize(battle, move)
         super
         @statUp = [:DEFENSE, 3]
@@ -51,7 +51,7 @@ class PokeBattle_Move_554 < PokeBattle_TeamStatBuffMove
 end
 
 # Empowered Stand Together
-class PokeBattle_Move_635 < PokeBattle_Move_554
+class PokeBattle_Move_EmpoweredStandTogether < PokeBattle_Move_RaiseUserAndAlliesDef3
     include EmpoweredMove
 
     def pbEffectGeneral(user)
@@ -64,7 +64,7 @@ end
 #===============================================================================
 # Raises Sp. Atk of user and allies by 2 steps. (Mind Link)
 #===============================================================================
-class PokeBattle_Move_549 < PokeBattle_TeamStatBuffMove
+class PokeBattle_Move_RaiseUserAndAlliesSpAtk2 < PokeBattle_TeamStatBuffMove
     def initialize(battle, move)
         super
         @statUp = [:SPECIAL_ATTACK, 2]
@@ -72,7 +72,7 @@ class PokeBattle_Move_549 < PokeBattle_TeamStatBuffMove
 end
 
 # Empowered Mind Link
-class PokeBattle_Move_628 < PokeBattle_Move_549
+class PokeBattle_Move_EmpoweredMindLink < PokeBattle_Move_RaiseUserAndAlliesSpAtk2
     include EmpoweredMove
 
     def pbEffectGeneral(user)
@@ -85,7 +85,7 @@ end
 #===============================================================================
 # Raises Sp. Def of user and allies by 3 steps. (Symbiosis)
 #===============================================================================
-class PokeBattle_Move_555 < PokeBattle_TeamStatBuffMove
+class PokeBattle_Move_RaiseUserAndAlliesSpDef3 < PokeBattle_TeamStatBuffMove
     def initialize(battle, move)
         super
         @statUp = [:SPECIAL_DEFENSE, 3]
@@ -93,7 +93,7 @@ class PokeBattle_Move_555 < PokeBattle_TeamStatBuffMove
 end
 
 # Empowered Symbiosis
-class PokeBattle_Move_634 < PokeBattle_Move_555
+class PokeBattle_Move_EmpoweredSymbiosis < PokeBattle_Move_RaiseUserAndAlliesSpDef3
     include EmpoweredMove
 
     def pbEffectGeneral(user)

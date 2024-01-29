@@ -301,7 +301,8 @@ class PokeBattle_Move_16B < PokeBattle_Move
         if targetMove && (targetMove.function == "115" ||   # Focus Punch
                           targetMove.function == "171" ||   # Shell Trap
                           targetMove.function == "12B" ||   # Masquerblade
-                          targetMove.function == "172")     # Beak Blast
+                          targetMove.function == "BurnAttackerBeforeUserActs" ||     # Beak Blast
+                          targetMove.function == "FrostbiteAttackerBeforeUserActs")   # Condensate
             @battle.pbDisplay(_INTL("But it failed, since #{target.pbThis(true)} is focusing!")) if show_message
             return true
         end

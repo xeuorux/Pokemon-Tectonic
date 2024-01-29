@@ -73,7 +73,7 @@ end
 #===============================================================================
 # Target's speed is raised. (Propellant)
 #===============================================================================
-class PokeBattle_Move_RaisesTargetSpeed1 < PokeBattle_Move
+class PokeBattle_Move_RaisesTargetSpd1 < PokeBattle_Move
     def pbAdditionalEffect(user, target)
         return if target.damageState.substitute
         target.tryRaiseStat(:SPEED, user, move: self)

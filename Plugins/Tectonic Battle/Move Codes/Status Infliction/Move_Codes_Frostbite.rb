@@ -12,7 +12,7 @@ end
 #===============================================================================
 # Frostbites the target. Accuracy perfect in hail. (Blizzard)
 #===============================================================================
-class PokeBattle_Move_FrostbiteHailAccurate < PokeBattle_FrostbiteMove
+class PokeBattle_Move_FrostbiteTargetAlwaysHitsInHail < PokeBattle_FrostbiteMove
     def pbBaseAccuracy(user, target)
         return 0 if @battle.icy?
         return super
@@ -22,7 +22,7 @@ end
 #===============================================================================
 # Frostbites the target. May cause the target to flinch. (Ice Fang)
 #===============================================================================
-class PokeBattle_Move_FrostbiteFlinch < PokeBattle_Move
+class PokeBattle_Move_FrostbiteFlinchTarget < PokeBattle_Move
     def flinchingMove?; return true; end
 
     def pbAdditionalEffect(user, target)
@@ -49,7 +49,7 @@ end
 # If a Pokémon attacks the user with a special move before it uses this move, the
 # attacker is frostbitten. (Condensate)
 #===============================================================================
-class PokeBattle_Move_SlowAttackFrostbiteAttackers < PokeBattle_Move
+class PokeBattle_Move_FrostbiteAttackerBeforeUserActs < PokeBattle_Move
     def pbDisplayChargeMessage(user)
         user.applyEffect(:Condensate)
     end
@@ -66,7 +66,7 @@ end
 #===============================================================================
 # Target is frostbitten if in moonglow. (Night Chill)
 #===============================================================================
-class PokeBattle_Move_5B1 < PokeBattle_FrostbiteMove
+class PokeBattle_Move_FrostbitesTargetIfInMoonglow < PokeBattle_FrostbiteMove
     def pbAdditionalEffect(user, target)
         return unless @battle.moonGlowing?
         super
@@ -79,7 +79,7 @@ class PokeBattle_Move_5B1 < PokeBattle_FrostbiteMove
 end
 
 # Empowered Chill
-class PokeBattle_Move_61E < PokeBattle_Move
+class PokeBattle_Move_EmpoweredChill < PokeBattle_Move
     include EmpoweredMove
 
     def pbEffectGeneral(user)

@@ -1,7 +1,7 @@
 #===============================================================================
 # Increases the user's Attack and accuracy by 3 steps each. (Hone Claws)
 #===============================================================================
-class PokeBattle_Move_029 < PokeBattle_MultiStatUpMove
+class PokeBattle_Move_RaiseUserAtkAcc3 < PokeBattle_MultiStatUpMove
     def initialize(battle, move)
         super
         @statUp = [:ATTACK, 3, :ACCURACY, 3]
@@ -11,7 +11,7 @@ end
 #===============================================================================
 # Increases the user's Attack and Defense by 2 steps each. (Bulk Up)
 #===============================================================================
-class PokeBattle_Move_024 < PokeBattle_MultiStatUpMove
+class PokeBattle_Move_RaiseUserAtkDef2 < PokeBattle_MultiStatUpMove
     def initialize(battle, move)
         super
         @statUp = [:ATTACK, 2, :DEFENSE, 2]
@@ -19,7 +19,7 @@ class PokeBattle_Move_024 < PokeBattle_MultiStatUpMove
 end
 
 # Empowered Bulk Up
-class PokeBattle_Move_606 < PokeBattle_Move_024
+class PokeBattle_Move_EmpoweredBulkUp < PokeBattle_Move_RaiseUserAtkDef2
     include EmpoweredMove
 
     def pbEffectGeneral(user)
@@ -34,7 +34,7 @@ end
 # User's Attack and Defense are raised by one step each, and (Built Different)
 # changes user's type to Rock.
 #===============================================================================
-class PokeBattle_Move_595 < PokeBattle_Move_024
+class PokeBattle_Move_RaiseUserAtkDef2SetUserTypesToRock < PokeBattle_Move_RaiseUserAtkDef2
     def pbMoveFailed?(user, targets, show_message)
         return false if GameData::Type.exists?(:ROCK) && !user.pbHasType?(:ROCK) && user.canChangeType?
         super
@@ -50,7 +50,7 @@ end
 # Raises Attack and Defense by 2 steps, and Crit Chance by 1.
 # (Art of War)
 #===============================================================================
-class PokeBattle_Move_5AD < PokeBattle_MultiStatUpMove
+class PokeBattle_Move_RaiseUserAtkDef2CriticalHitRate1 < PokeBattle_MultiStatUpMove
     def initialize(battle, move)
         super
         @statUp = [:ATTACK, 2, :DEFENSE, 2]
@@ -76,7 +76,7 @@ end
 #===============================================================================
 # Increases the user's Attack, Defense and accuracy by 2 steps each. (Coil)
 #===============================================================================
-class PokeBattle_Move_025 < PokeBattle_MultiStatUpMove
+class PokeBattle_Move_RaiseUserAtkDefAcc2 < PokeBattle_MultiStatUpMove
     def initialize(battle, move)
         super
         @statUp = [:ATTACK, 2, :DEFENSE, 2, :ACCURACY, 2]
@@ -86,7 +86,7 @@ end
 #===============================================================================
 # Increases the user's Attack and Sp. Def by 2 step each. (Flow State)
 #===============================================================================
-class PokeBattle_Move_512 < PokeBattle_MultiStatUpMove
+class PokeBattle_Move_RaiseUserAtkSpDef < PokeBattle_MultiStatUpMove
     def initialize(battle, move)
         super
         @statUp = [:ATTACK, 2, :SPECIAL_DEFENSE, 2]
@@ -94,7 +94,7 @@ class PokeBattle_Move_512 < PokeBattle_MultiStatUpMove
 end
 
 # Empowered Flow State
-class PokeBattle_Move_614 < PokeBattle_MultiStatUpMove
+class PokeBattle_Move_EmpoweredFlowState < PokeBattle_MultiStatUpMove
     include EmpoweredMove
 
     def initialize(battle, move)
@@ -114,7 +114,7 @@ end
 #===============================================================================
 # Increases the user's Attack by 2 steps, and Speed by 1. (Dragon Dance)
 #===============================================================================
-class PokeBattle_Move_026 < PokeBattle_MultiStatUpMove
+class PokeBattle_Move_RaiseUserAtk2Spd1 < PokeBattle_MultiStatUpMove
     def initialize(battle, move)
         super
         @statUp = [:ATTACK, 2, :SPEED, 1]
@@ -152,7 +152,7 @@ end
 # Increases the user's Attack and Defense by 2 steps each, and Speed by 1.
 # (Shiver Dance)
 #===============================================================================
-class PokeBattle_Move_525 < PokeBattle_MultiStatUpMove
+class PokeBattle_Move_RaiseUserAtkDef2Spd1 < PokeBattle_MultiStatUpMove
     def aiAutoKnows?(pokemon); return true; end
 
     def initialize(battle, move)
@@ -162,7 +162,7 @@ class PokeBattle_Move_525 < PokeBattle_MultiStatUpMove
 end
 
 # Empowered Shiver Dance
-class PokeBattle_Move_624 < PokeBattle_MultiStatUpMove
+class PokeBattle_Move_EmpoweredShiverDance < PokeBattle_MultiStatUpMove
     include EmpoweredMove
 
     def initialize(battle, move)
@@ -179,7 +179,7 @@ end
 #===============================================================================
 # Increases the user's Attack and Special Attack by 1 steps each.
 #===============================================================================
-class PokeBattle_Move_048 < PokeBattle_MultiStatUpMove
+class PokeBattle_Move_RaiseUserAtkSpAtk1 < PokeBattle_MultiStatUpMove
     def initialize(battle, move)
         super
         @statUp = ATTACKING_STATS_1
@@ -189,7 +189,7 @@ end
 #===============================================================================
 # Increases the user's Attack and Special Attack by 2 steps each. (Work Up)
 #===============================================================================
-class PokeBattle_Move_027 < PokeBattle_MultiStatUpMove
+class PokeBattle_Move_RaiseUserAtkSpAtk2 < PokeBattle_MultiStatUpMove
     def initialize(battle, move)
         super
         @statUp = ATTACKING_STATS_2
@@ -200,7 +200,7 @@ end
 # Increases the user's Attack and Sp. Attack by 2 step eachs.
 # In sunny weather, increases are 4 steps each instead. (Growth)
 #===============================================================================
-class PokeBattle_Move_028 < PokeBattle_MultiStatUpMove
+class PokeBattle_Move_RaiseUserAtkSpAtk2Or4InSun < PokeBattle_MultiStatUpMove
     def initialize(battle, move)
         super
         @statUp = ATTACKING_STATS_2
@@ -223,7 +223,7 @@ end
 # Increases the user's Attack and Sp. Attack by 2 step eachs.
 # In moonglow, also increases the user's Speed by 2 steps. (Scheme)
 #===============================================================================
-class PokeBattle_Move_5BA < PokeBattle_MultiStatUpMove
+class PokeBattle_Move_RaiseUserAtkSpAtk2AndSpeed2InMoonglow < PokeBattle_MultiStatUpMove
     def initialize(battle, move)
         super
         @statUp = ATTACKING_STATS_2
@@ -245,7 +245,7 @@ end
 #===============================================================================
 # Increases the user's Attack and Sp. Attack by 4 step eachs. (True Senses)
 #===============================================================================
-class PokeBattle_Move_5F5 < PokeBattle_MultiStatUpMove
+class PokeBattle_Move_RaiseUserAtkSpAtk4 < PokeBattle_MultiStatUpMove
     def initialize(battle, move)
         super
         @statUp = [:ATTACK, 4, :SPECIAL_ATTACK, 4]
@@ -256,7 +256,7 @@ end
 # Increases the user's Defense and Special Defense by 2 steps each.
 # (Cosmic Power, Defend Order)
 #===============================================================================
-class PokeBattle_Move_02A < PokeBattle_MultiStatUpMove
+class PokeBattle_Move_RaiseUserDefSpDef2 < PokeBattle_MultiStatUpMove
     def aiAutoKnows?(pokemon); return true; end
     
     def initialize(battle, move)
@@ -268,7 +268,7 @@ end
 #===============================================================================
 # Increases the user's Defense and Sp. Def by 2 steps. User curls up. (Curl Up)
 #===============================================================================
-class PokeBattle_Move_01E < PokeBattle_MultiStatUpMove
+class PokeBattle_Move_RaiseUserDefSpDef2CurlsUp < PokeBattle_MultiStatUpMove
     def aiAutoKnows?(pokemon); return true; end
 
     def initialize(battle, move)
@@ -286,7 +286,7 @@ end
 # Increases the user's defensive stats by 2 steps and gives them the (Shellter)
 # Shell Armor ability.
 #===============================================================================
-class PokeBattle_Move_5E2 < PokeBattle_MultiStatUpMove
+class PokeBattle_Move_RaiseUserDefSpDef2GainsShellArmor < PokeBattle_MultiStatUpMove
     def aiAutoKnows?(pokemon); return true; end
     
     def initialize(battle, move)
@@ -304,7 +304,7 @@ end
 # Increases the user's defensive stats by 2 steps each.
 # Charges up user's next attack if it is Electric-type. (Charge)
 #===============================================================================
-class PokeBattle_Move_021 < PokeBattle_MultiStatUpMove
+class PokeBattle_Move_RaiseUserDefSpDef2EmpowersNextElectricAttack < PokeBattle_MultiStatUpMove
     def initialize(battle, move)
         super
         @statUp = DEFENDING_STATS_2
@@ -335,7 +335,7 @@ end
 #===============================================================================
 # Increases the user's Sp. Atk by 2 steps, and Speed by 1 step. (Lightning Dance)
 #===============================================================================
-class PokeBattle_Move_503 < PokeBattle_MultiStatUpMove
+class PokeBattle_Move_RaiseUserSpAtk2Spd1 < PokeBattle_MultiStatUpMove
     def initialize(battle, move)
         super
         @statUp = [:SPECIAL_ATTACK, 2, :SPEED, 1]
@@ -343,7 +343,7 @@ class PokeBattle_Move_503 < PokeBattle_MultiStatUpMove
 end
 
 # Empowered Lightning Dance
-class PokeBattle_Move_604 < PokeBattle_MultiStatUpMove
+class PokeBattle_Move_EmpoweredLightningDance < PokeBattle_MultiStatUpMove
     include EmpoweredMove
 
     def initialize(battle, move)
@@ -360,7 +360,7 @@ end
 #===============================================================================
 # Increases the user's Speed and Sp. Atk by 2 steps. (Frolic)
 #===============================================================================
-class PokeBattle_Move_5E3 < PokeBattle_MultiStatUpMove
+class PokeBattle_Move_RaiseUserSpAtk2Spd2 < PokeBattle_MultiStatUpMove
     def aiAutoKnows?(pokemon); return true; end
 
     def initialize(battle, move)
@@ -373,7 +373,7 @@ end
 # Raises the user's Sp. Attack and Sp. Defense by 2 steps each, and Speed by 1.
 # (Quiver Dance)
 #===============================================================================
-class PokeBattle_Move_02B < PokeBattle_MultiStatUpMove
+class PokeBattle_Move_RaiseUserSpAtkSpDef2Spd1 < PokeBattle_MultiStatUpMove
     def aiAutoKnows?(pokemon); return true; end
 
     def initialize(battle, move)
@@ -383,7 +383,7 @@ class PokeBattle_Move_02B < PokeBattle_MultiStatUpMove
 end
 
 # Empowered Quiver Dance
-class PokeBattle_Move_623 < PokeBattle_MultiStatUpMove
+class PokeBattle_Move_EmpoweredQuiverDance < PokeBattle_MultiStatUpMove
     include EmpoweredMove
 
     def initialize(battle, move)
@@ -400,7 +400,7 @@ end
 #===============================================================================
 # Increases the user's Sp. Atk and accuracy by 3 steps each.
 #===============================================================================
-class PokeBattle_Move_5E4 < PokeBattle_MultiStatUpMove
+class PokeBattle_Move_RaiseUserSpAtkAcc3 < PokeBattle_MultiStatUpMove
     def initialize(battle, move)
         super
         @statUp = [:SPECIAL_ATTACK, 3, :ACCURACY, 3]
@@ -410,7 +410,7 @@ end
 #===============================================================================
 # Raises the user's Sp. Attack and Sp. Defense by 2 step eachs. (Calm Mind)
 #===============================================================================
-class PokeBattle_Move_02C < PokeBattle_MultiStatUpMove
+class PokeBattle_Move_RaiseUserSpAtkSpDef2 < PokeBattle_MultiStatUpMove
     def initialize(battle, move)
         super
         @statUp = [:SPECIAL_ATTACK, 2, :SPECIAL_DEFENSE, 2]
@@ -418,7 +418,7 @@ class PokeBattle_Move_02C < PokeBattle_MultiStatUpMove
 end
 
 # Empowered Calm Mind
-class PokeBattle_Move_609 < PokeBattle_Move_02C
+class PokeBattle_Move_EmpoweredCalmMind < PokeBattle_Move_RaiseUserSpAtkSpDef2
     include EmpoweredMove
 
     def pbEffectGeneral(user)
@@ -432,7 +432,7 @@ end
 # Increases Sp. Atk and Sp. Def by 2 steps, and Crit Chance by 1 step.
 # (Many Blessings)
 #===============================================================================
-class PokeBattle_Move_5CA < PokeBattle_MultiStatUpMove
+class PokeBattle_Move_RaiseUserSpAtkSpDef2CriticalHitRate1 < PokeBattle_MultiStatUpMove
     def initialize(battle, move)
         super
         @statUp = [:SPECIAL_ATTACK, 2, :SPECIAL_DEFENSE, 2]
@@ -458,7 +458,7 @@ end
 #===============================================================================
 # Increases the user's Sp. Atk, Sp. Def and accuracy by 2 steps each. (Store Fuel)
 #===============================================================================
-class PokeBattle_Move_54E < PokeBattle_MultiStatUpMove
+class PokeBattle_Move_RaiseUserSpAtkSpDefAcc2 < PokeBattle_MultiStatUpMove
     def initialize(battle, move)
         super
         @statUp = [:SPECIAL_ATTACK, 2, :SPECIAL_DEFENSE, 2, :ACCURACY, 2]
@@ -466,9 +466,9 @@ class PokeBattle_Move_54E < PokeBattle_MultiStatUpMove
 end
 
 #===============================================================================
-# Increases the user's Sp. Atk and Sp. Def by 2 steps each. (Vanguard)
+# Increases the user's Sp. Atk and Defense by 2 steps each. (Vanguard)
 #===============================================================================
-class PokeBattle_Move_513 < PokeBattle_MultiStatUpMove
+class PokeBattle_Move_RaiseUserSpAtkDef2 < PokeBattle_MultiStatUpMove
     def initialize(battle, move)
         super
         @statUp = [:SPECIAL_ATTACK, 2, :DEFENSE, 2]
@@ -479,7 +479,7 @@ end
 # Raises the user's Attack, Defense, Speed, Special Attack and Special Defense
 # by 1 step each. (Ancient Power, Ominous Wind, Silver Wind)
 #===============================================================================
-class PokeBattle_Move_02D < PokeBattle_MultiStatUpMove
+class PokeBattle_Move_RaiseUserMainStats1 < PokeBattle_MultiStatUpMove
     def initialize(battle, move)
         super
         @statUp = ALL_STATS_1
@@ -487,14 +487,14 @@ class PokeBattle_Move_02D < PokeBattle_MultiStatUpMove
 end
 
 # Empowered Ancient Power
-class PokeBattle_Move_639 < PokeBattle_Move_02D
+class PokeBattle_Move_EmpoweredAncientPower < PokeBattle_Move_RaiseUserMainStats1
     include EmpoweredMove
 end
 
 #===============================================================================
 # Raises all stats by 2 steps. Fails unless the user is asleep. (Oneiromancy)
 #===============================================================================
-class PokeBattle_Move_56E < PokeBattle_MultiStatUpMove
+class PokeBattle_Move_RaiseUserMainStats2IfAsleep < PokeBattle_MultiStatUpMove
     def usableWhenAsleep?; return true; end
 
     def initialize(battle, move)
@@ -515,7 +515,7 @@ end
 # All stats raised by 2 steps. Fails unless an opponent is below half life.
 # (Gloat)
 #===============================================================================
-class PokeBattle_Move_507 < PokeBattle_MultiStatUpMove
+class PokeBattle_Move_RaiseUserMainStats2IfFoeBelowHalf < PokeBattle_MultiStatUpMove
 	def initialize(battle, move)
         super
         @statUp = ALL_STATS_2
@@ -540,7 +540,7 @@ end
 # All stats raised by 2 steps. Fails if the attack was not used the turn after a foe fainted.
 # (Foxtrot Finale)
 #===============================================================================
-class PokeBattle_Move_5B7 < PokeBattle_MultiStatUpMove
+class PokeBattle_Move_RaiseUserMainStats2IfFoeFaintedLastTurn < PokeBattle_MultiStatUpMove
 	def initialize(battle, move)
         super
         @statUp = ALL_STATS_2
@@ -558,7 +558,7 @@ end
 #===============================================================================
 # Raises worst stat four steps, second worst stat by two steps. (Breakdance)
 #===============================================================================
-class PokeBattle_Move_532 < PokeBattle_Move
+class PokeBattle_Move_RaiseUserWorstStat4SecondWorstStat2 < PokeBattle_Move
     def pbMoveFailed?(user, _targets, show_message)
         @statArray = []
         GameData::Stat.each_main_battle do |statData|
@@ -595,7 +595,7 @@ end
 #===============================================================================
 # If the move misses, the user gains Accuracy and Speed. (Joust)
 #===============================================================================
-class PokeBattle_Move_53D < PokeBattle_Move
+class PokeBattle_Move_RaiseUserAccSpd1IfMisses < PokeBattle_Move
     # This method is called if a move fails to hit all of its targets
     def pbCrashDamage(user)
         return unless user.pbRaiseMultipleStatSteps([:ACCURACY, 1, :SPEED, 1], user, move: self)
@@ -610,7 +610,7 @@ end
 #===============================================================================
 # Increases Speed by 4 steps and Crit Chance by 2 steps. (Deep Breathing)
 #===============================================================================
-class PokeBattle_Move_5D2 < PokeBattle_StatUpMove
+class PokeBattle_Move_RaiseUserSpd4CriticalHitRate2 < PokeBattle_StatUpMove
     def initialize(battle, move)
         super
         @statUp = [:SPEED, 4]

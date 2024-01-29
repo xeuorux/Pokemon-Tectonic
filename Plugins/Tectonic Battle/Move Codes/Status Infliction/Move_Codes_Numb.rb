@@ -5,7 +5,7 @@ class PokeBattle_Move_Numb < PokeBattle_NumbMove
 end
 
 # Empowered Thunderbolt / Dragon Breath
-class PokeBattle_Move_640 < PokeBattle_Move_Numb
+class PokeBattle_Move_EmpoweredThunderbolt < PokeBattle_Move_Numb
     include EmpoweredMove
 end
 
@@ -13,7 +13,7 @@ end
 # Numbs the target. Accuracy perfect in rain. Hits some
 # semi-invulnerable targets. (Thunder)
 #===============================================================================
-class PokeBattle_Move_NumbRainAccurateHitsFlyers < PokeBattle_NumbMove
+class PokeBattle_Move_NumbTargetAlwaysHitsInRainHitsTargetInSky < PokeBattle_NumbMove
     def hitsFlyingTargets?; return true; end
 
     def immuneToRainDebuff?; return false; end
@@ -31,7 +31,7 @@ end
 #===============================================================================
 # Numbs the target. May cause the target to flinch. (Thunder Fang)
 #===============================================================================
-class PokeBattle_Move_NumbFlinch < PokeBattle_Move
+class PokeBattle_Move_NumbFlinchTarget < PokeBattle_Move
     def flinchingMove?; return true; end
 
     def pbAdditionalEffect(user, target)
@@ -79,7 +79,7 @@ end
 #===============================================================================
 # Numbs the target and reduces their attacking stats by 1 step each. (Heaven's Eyes)
 #===============================================================================
-class PokeBattle_Move_136 < PokeBattle_NumbMove
+class PokeBattle_Move_NumbTargetLowerTargetAtkSpAtk1 < PokeBattle_NumbMove
     def pbFailsAgainstTarget?(user, target, show_message)
         if  !target.canNumb?(user, false, self) &&
             !target.pbCanLowerStatStep?(:ATTACK, user, self) &&
@@ -99,7 +99,7 @@ class PokeBattle_Move_136 < PokeBattle_NumbMove
 end
 
 # Empowered Numb
-class PokeBattle_Move_616 < PokeBattle_Move
+class PokeBattle_Move_EmpoweredNumb < PokeBattle_Move
     include EmpoweredMove
 
     def pbEffectGeneral(user)

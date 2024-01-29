@@ -53,7 +53,7 @@ end
 #===============================================================================
 # Decreases the user's Speed by 3 steps. (Razor Plunge)
 #===============================================================================
-class PokeBattle_Move_LowerUserSpeed3 < PokeBattle_StatDownMove
+class PokeBattle_Move_LowerUserSpd3 < PokeBattle_StatDownMove
     def initialize(battle, move)
         super
         @statDown = [:SPEED, 3]

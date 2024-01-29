@@ -191,7 +191,7 @@ end
 #===============================================================================
 # Sets stealth rock and sandstorm for 5 turns. (Megalith Rite)
 #===============================================================================
-class PokeBattle_Move_StealthRockSetsSandstorm < PokeBattle_Move_StealthRock
+class PokeBattle_Move_StealthRockStartSandstorm5 < PokeBattle_Move_StealthRock
     def pbMoveFailed?(user, _targets, show_message)
         return false
     end

@@ -7,7 +7,7 @@ end
 #===============================================================================
 # Burns the target. May cause the target to flinch. (Fire Fang)
 #===============================================================================
-class PokeBattle_Move_BurnFlinch < PokeBattle_Move
+class PokeBattle_Move_BurnFlinchTarget < PokeBattle_Move
     def flinchingMove?; return true; end
 
     def pbAdditionalEffect(user, target)
@@ -33,7 +33,7 @@ end
 #===============================================================================
 # Burns target if target is a foe, or raises target's Speed by 4 steps an ally. (Destrier's Whim)
 #===============================================================================
-class PokeBattle_Move_10E < PokeBattle_Move
+class PokeBattle_Move_RaiseAllySpd4OrBurnFoe < PokeBattle_Move
     def pbOnStartUse(user, targets)
         @buffing = false
         @buffing = !user.opposes?(targets[0]) if targets.length > 0
@@ -79,7 +79,7 @@ end
 # If a Pokémon attacks the user with a physical move before it uses this move, the
 # attacker is burned. (Beak Blast)
 #===============================================================================
-class PokeBattle_Move_172 < PokeBattle_Move
+class PokeBattle_Move_BurnAttackerBeforeUserActs < PokeBattle_Move
     def pbDisplayChargeMessage(user)
         user.applyEffect(:BeakBlast)
     end
@@ -96,7 +96,7 @@ end
 #===============================================================================
 # Target is burned if in eclipse. (Calamitous Slash)
 #===============================================================================
-class PokeBattle_Move_5B2 < PokeBattle_BurnMove
+class PokeBattle_Move_BurnTargetIfInEclipse < PokeBattle_BurnMove
     def pbAdditionalEffect(user, target)
         return unless @battle.eclipsed?
         super
@@ -109,7 +109,7 @@ class PokeBattle_Move_5B2 < PokeBattle_BurnMove
 end
 
 # Empowered Ignite
-class PokeBattle_Move_613 < PokeBattle_Move
+class PokeBattle_Move_EmpoweredIgnite < PokeBattle_Move
     include EmpoweredMove
 
     def pbEffectGeneral(user)

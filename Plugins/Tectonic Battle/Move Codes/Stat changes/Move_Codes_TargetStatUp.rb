@@ -2,7 +2,7 @@
 # The user raises the target's Attack and Sp. Atk by 5 steps by decorating
 # the target. (Decorate)
 #===============================================================================
-class PokeBattle_Move_17B < PokeBattle_TargetMultiStatUpMove
+class PokeBattle_Move_RaiseTargetAtkSpAtk5 < PokeBattle_TargetMultiStatUpMove
     def initialize(battle, move)
         super
         @statUp = [:ATTACK, 5, :SPECIAL_ATTACK, 5]
@@ -12,7 +12,7 @@ end
 #===============================================================================
 # Boosts Targets' Attack and Defense by 2 steps each. (Coaching)
 #===============================================================================
-class PokeBattle_Move_18E < PokeBattle_TargetMultiStatUpMove
+class PokeBattle_Move_RaiseTargetAtkDef2 < PokeBattle_TargetMultiStatUpMove
     def initialize(battle, move)
         super
         @statUp = [:ATTACK, 2, :DEFENSE, 2]
@@ -22,7 +22,7 @@ end
 #===============================================================================
 # Boosts Targets' Sp. Atk and Sp. Def by 2 steps. (Tutelage)
 #===============================================================================
-class PokeBattle_Move_5CE < PokeBattle_TargetMultiStatUpMove
+class PokeBattle_Move_RaiseTargetSpAtkSpDef2 < PokeBattle_TargetMultiStatUpMove
     def initialize(battle, move)
         super
         @statUp = [:SPECIAL_ATTACK, 2, :SPECIAL_DEFENSE, 2]
@@ -32,7 +32,7 @@ end
 #===============================================================================
 # Increases target's Defense and Special Defense by 3 steps. (Aromatic Mist)
 #===============================================================================
-class PokeBattle_Move_138 < PokeBattle_TargetMultiStatUpMove
+class PokeBattle_Move_RaiseTargetDefSpDef3 < PokeBattle_TargetMultiStatUpMove
     def ignoresSubstitute?(_user); return true; end
 
     def initialize(battle, move)
@@ -45,7 +45,7 @@ end
 # Doubles an allies Attack and Speed. The user cannot swap out of battle.
 # If the user faints, so too does that ally. (Dragon Ride)
 #===============================================================================
-class PokeBattle_Move_575 < PokeBattle_Move
+class PokeBattle_Move_DragonRide < PokeBattle_Move
     def pbFailsAgainstTarget?(user, target, show_message)
         if target.effectActive?(:OnDragonRide)
             if show_message
@@ -80,7 +80,7 @@ end
 # Damages target if target is a foe, or buff's the target's Speed
 # by four steps if it's an ally. (Lightning Spear)
 #===============================================================================
-class PokeBattle_Move_5C8 < PokeBattle_Move
+class PokeBattle_Move_RaiseAllySpd4OrDamageFoe < PokeBattle_Move
     def pbOnStartUse(user, targets)
         @buffing = false
         @buffing = !user.opposes?(targets[0]) if targets.length > 0
@@ -117,7 +117,7 @@ end
 #===============================================================================
 # Raises the target's worst three stats by one step each. (Guiding Aroma)
 #===============================================================================
-class PokeBattle_Move_584 < PokeBattle_Move
+class PokeBattle_Move_RaiseTargetWorstThreeStats1 < PokeBattle_Move
     def pbFailsAgainstTarget?(user, target, show_message)
         if statUp(user, target).length == 0
             @battle.pbDisplay(_INTL("{1}'s stats won't go any higher!", target.pbThis)) if show_message

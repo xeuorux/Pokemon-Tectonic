@@ -220,7 +220,8 @@ class PokeBattle_Move_0AF < PokeBattle_Move
             "115",   # Focus Punch
             "171",   # Shell Trap
             "12B",   # Masquerblade
-            "172",   # Beak Blast
+            "BurnAttackerBeforeUserActs",   # Beak Blast
+            "FrostbiteAttackerBeforeUserActs",   # Condensate
         ]
     end
 
@@ -276,7 +277,8 @@ class PokeBattle_Move_0B0 < PokeBattle_Move
             "115",   # Focus Punch
             "171",   # Shell Trap
             "12B",   # Masquerblade
-            "172", # Beak Blast
+            "BurnAttackerBeforeUserActs", # Beak Blast
+            "FrostbiteAttackerBeforeUserActs",   # Condensate
         ]
     end
 

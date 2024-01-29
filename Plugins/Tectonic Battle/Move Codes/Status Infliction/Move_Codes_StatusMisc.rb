@@ -1,7 +1,7 @@
 #===============================================================================
 # Burns, frostbites, or numbs the target. (Tri Attack, Triple Threat)
 #===============================================================================
-class PokeBattle_Move_017 < PokeBattle_Move
+class PokeBattle_Move_NumbBurnOrFrostbiteTarget < PokeBattle_Move
     def pbAdditionalEffect(user, target)
         return if target.damageState.substitute
         case @battle.pbRandom(3)
@@ -22,7 +22,7 @@ end
 #===============================================================================
 # Poisons, dizzies, or leeches the target. (Chaos Wheel, Rolling Arsenal)
 #===============================================================================
-class PokeBattle_Move_547 < PokeBattle_Move
+class PokeBattle_Move_PoisonDizzyOrLeechTarget < PokeBattle_Move
     def pbAdditionalEffect(user, target)
         return if target.damageState.substitute
         case @battle.pbRandom(3)
@@ -44,7 +44,7 @@ end
 # Burns or frostbites the target, whichever hits the target's better base stat.
 # (Crippling Breath)
 #===============================================================================
-class PokeBattle_Move_50A < PokeBattle_Move
+class PokeBattle_Move_BurnOrFrostbiteTargetBasedOnHigherStat < PokeBattle_Move
     def pbFailsAgainstTarget?(user, target, show_message)
         return false if damagingMove?
         if !target.canBurn?(user, show_message, self) && !target.canFrostbite?(user, show_message, self)
@@ -94,7 +94,7 @@ end
 # Leeches or numbs the target, depending on how its speed compares to the user.
 # (Mystery Seed)
 #===============================================================================
-class PokeBattle_Move_5AC < PokeBattle_Move
+class PokeBattle_Move_LeechTargetIfSlowerNumbTargetIfFaster < PokeBattle_Move
     def pbFailsAgainstTarget?(user, target, show_message)
         return false if damagingMove?
         if !target.canLeech?(user, show_message, self) && !target.canNumb?(user, show_message, self)

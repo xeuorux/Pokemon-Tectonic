@@ -5,7 +5,7 @@ class PokeBattle_Move_Poison < PokeBattle_PoisonMove
 end
 
 # Empowered Sludge Wave
-class PokeBattle_Move_655 < PokeBattle_Move_Poison
+class PokeBattle_Move_EmpoweredSludgeWave < PokeBattle_Move_Poison
     include EmpoweredMove
 end
 
@@ -13,7 +13,7 @@ end
 # Changes Category based on Opponent's Def and SpDef. Has 20% Chance to Poison
 # (Shell Side Arm)
 #===============================================================================
-class PokeBattle_Move_187 < PokeBattle_Move_Poison
+class PokeBattle_Move_CategoryDependsOnHigherDamagePoisonTarget < PokeBattle_Move_Poison
     def initialize(battle, move)
         super
         @calculated_category = 1
@@ -27,7 +27,7 @@ end
 #===============================================================================
 # Poisons the target and decreases its Speed by 4 steps. (Toxic Thread)
 #===============================================================================
-class PokeBattle_Move_159 < PokeBattle_Move
+class PokeBattle_Move_PoisonTargetLowerTargetSpd4 < PokeBattle_Move
     def pbFailsAgainstTarget?(user, target, show_message)
         if !target.canPoison?(user, false, self) &&
            !target.pbCanLowerStatStep?(:SPEED, user, self)
@@ -50,7 +50,7 @@ class PokeBattle_Move_159 < PokeBattle_Move
 end
 
 # Empowered Poison Gas
-class PokeBattle_Move_611 < PokeBattle_Move
+class PokeBattle_Move_EmpoweredPoisonGas < PokeBattle_Move
     include EmpoweredMove
 
     def pbEffectGeneral(user)

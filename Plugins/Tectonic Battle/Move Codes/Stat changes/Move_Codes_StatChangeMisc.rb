@@ -349,7 +349,7 @@ end
 # If this move KO's the target, increases the user's Attack by 5 steps.
 # (Fell Stinger)
 #===============================================================================
-class PokeBattle_Move_FaintTargetRaiseAttack5 < PokeBattle_Move
+class PokeBattle_Move_RaiseUserAttack5IfTargetFaints < PokeBattle_Move
     def pbEffectAfterAllHits(user, target)
         return unless target.damageState.fainted
         user.tryRaiseStat(:ATTACK, user, increment: 5, move: self)
@@ -364,7 +364,7 @@ end
 # If this move KO's the target, increases the user's Sp. Atk by 5 steps.
 # (Finalize)
 #===============================================================================
-class PokeBattle_Move_FaintTargetRaiseSpAtk5 < PokeBattle_Move
+class PokeBattle_Move_RaiseUserSpAtk5IfTargetFaints < PokeBattle_Move
     def pbEffectAfterAllHits(user, target)
         return unless target.damageState.fainted
         user.tryRaiseStat(:SPECIAL_ATTACK, user, increment: 5, move: self)

@@ -7,7 +7,7 @@ end
 #===============================================================================
 # Puts the target to sleep, but only if the user is Darkrai. (Dark Void)
 #===============================================================================
-class PokeBattle_Move_077 < PokeBattle_SleepMove
+class PokeBattle_Move_SleepTargetIfUserDarkrai < PokeBattle_SleepMove
     def pbMoveFailed?(user, _targets, show_message)
         unless user.countsAs?(:DARKRAI)
             @battle.pbDisplay(_INTL("But {1} can't use the move!", user.pbThis)) if show_message
@@ -20,7 +20,7 @@ end
 #===============================================================================
 # Puts the target to sleep. User loses half of their max HP as recoil. (Demon's Kiss)
 #===============================================================================
-class PokeBattle_Move_526 < PokeBattle_SleepMove
+class PokeBattle_Move_SleepTargetUserLosesHalfMaxHP < PokeBattle_SleepMove
     def pbEffectAgainstTarget(user, target)
         target.applySleep
         user.applyFractionalDamage(1.0 / 2.0)
@@ -36,7 +36,7 @@ end
 #===============================================================================
 # Puts the target to sleep. Fails unless the target is at or below half health. (Lullaby)
 #===============================================================================
-class PokeBattle_Move_528 < PokeBattle_SleepMove
+class PokeBattle_Move_SleepTargetIfBelowHalfHP < PokeBattle_SleepMove
     def pbFailsAgainstTarget?(user, target, show_message)
         if target.hp > target.totalhp / 2
             @battle.pbDisplay(_INTL("But it failed, #{target.pbThis(true)} is above half health!")) if show_message
@@ -49,7 +49,7 @@ end
 #===============================================================================
 # Puts the target to sleep if they are at or below half health, and raises the user's attack. (Tranquil Tune)
 #===============================================================================
-class PokeBattle_Move_572 < PokeBattle_Move_528
+class PokeBattle_Move_SleepTargetIfBelowHalfHPRaiseUserAtk1 < PokeBattle_Move_SleepTargetIfBelowHalfHP
     def pbEffectAgainstTarget(user, target)
         super
         user.tryRaiseStat(:ATTACK, user, move: self)
@@ -63,7 +63,7 @@ end
 #===============================================================================
 # Puts the target to sleep. Fails unless the target dealt damage to the user this turn. (Puff Ball)
 #===============================================================================
-class PokeBattle_Move_529 < PokeBattle_SleepMove
+class PokeBattle_Move_SleepTargetIfDealtDamageToUserThisTurn < PokeBattle_SleepMove
     def pbFailsAgainstTarget?(user, target, show_message)
         unless user.lastAttacker.include?(target.index)
             if show_message
@@ -91,7 +91,7 @@ end
 #===============================================================================
 # Puts the target to sleep if they are slower, then minimizes the user's speed. (Sedating Dust)
 #===============================================================================
-class PokeBattle_Move_581 < PokeBattle_SleepMove
+class PokeBattle_Move_SleepTargetIfSlowerThanUserMinUserSpeed < PokeBattle_SleepMove
     def pbFailsAgainstTarget?(user, target, show_message)
         if target.pbSpeed > user.pbSpeed
             if show_message
@@ -117,7 +117,7 @@ end
 #===============================================================================
 # Target falls asleep. Can only be used during the Full Moon. (Bedtime)
 #===============================================================================
-class PokeBattle_Move_5B4 < PokeBattle_SleepMove
+class PokeBattle_Move_SleepTargetIfInFullMoonglow < PokeBattle_SleepMove
     def pbMoveFailed?(user, _targets, show_message)
         unless @battle.fullMoon?
             @battle.pbDisplay(_INTL("But it failed, since it isn't a Full Moon!")) if show_message
@@ -130,7 +130,7 @@ end
 #===============================================================================
 # Puts the target to sleep. Fails unless the target is dizzy. (Pacify)
 #===============================================================================
-class PokeBattle_Move_534 < PokeBattle_SleepMove
+class PokeBattle_Move_SleepTargetIfDizzy < PokeBattle_SleepMove
     def pbFailsAgainstTarget?(user, target, show_message)
         unless target.dizzy?
             @battle.pbDisplay(_INTL("But it failed, since #{target.pbThis(true)} isn't dizzy!")) if show_message
@@ -148,7 +148,7 @@ end
 #===============================================================================
 # Makes the target drowsy; it falls asleep at the end of the next turn. (Yawn)
 #===============================================================================
-class PokeBattle_Move_004 < PokeBattle_Move
+class PokeBattle_Move_SleepTargetNextTurn < PokeBattle_Move
     def pbFailsAgainstTarget?(user, target, show_message)
         if target.effectActive?(:Yawn)
             @battle.pbDisplay(_INTL("But it failed, since #{target.pbThis(true)} is already drowsy!")) if show_message
@@ -170,14 +170,15 @@ class PokeBattle_Move_004 < PokeBattle_Move
 end
 
 # Empowered Yawn
-class PokeBattle_Move_631 < PokeBattle_Move_004
+class PokeBattle_Move_EmpoweredYawn < PokeBattle_Move_SleepTargetNextTurn
     include EmpoweredMove
 end
 
 #===============================================================================
-# Target becomes drowsy. Both of its Attacking stats are lowered by 2 steps.  (Summer Daze)
+# Target becomes drowsy. Both of its Attacking stats are  (Summer Daze)
+# lowered by 2 steps if in sunshine.
 #===============================================================================
-class PokeBattle_Move_527 < PokeBattle_Move_004
+class PokeBattle_Move_SleepTargetNextTurnLowerTargetAtkSpAtk2IfInSun < PokeBattle_Move_SleepTargetNextTurn
     def pbFailsAgainstTarget?(user, target, show_message)
         if @battle.sunny? && (target.pbCanLowerStatStep?(:ATTACK, user, self) ||
                 target.pbCanLowerStatStep?(:SPECIAL_ATTACK, user, self))

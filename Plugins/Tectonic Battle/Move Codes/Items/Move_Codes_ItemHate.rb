@@ -331,7 +331,7 @@ class PokeBattle_Move_Embargo < PokeBattle_Move
 end
 
 # Empowered Embargo
-class PokeBattle_Move_PrimevalEmbargo < PokeBattle_Move
+class PokeBattle_Move_EmpoweredEmbargo < PokeBattle_Move
     include EmpoweredMove
 
     def pbEffectGeneral(user)
