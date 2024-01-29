@@ -1,21 +1,21 @@
 #===============================================================================
 # Heals for 1/3 the damage dealt. (Drain Punch)
 #===============================================================================
-class PokeBattle_Move_545 < PokeBattle_DrainMove
+class PokeBattle_Move_HealUserByThirdOfDamageDone < PokeBattle_DrainMove
     def drainFactor(_user, _target); return (1.0 / 3.0); end
 end
 
 #===============================================================================
 # User gains half the HP it inflicts as damage.
 #===============================================================================
-class PokeBattle_Move_0DD < PokeBattle_DrainMove
+class PokeBattle_Move_HealUserByHalfOfDamageDone < PokeBattle_DrainMove
     def drainFactor(_user, _target); return 0.5; end
 end
 
 #===============================================================================
 # User gains 3/4 the HP it inflicts as damage. (Draining Kiss, Oblivion Wing)
 #===============================================================================
-class PokeBattle_Move_14F < PokeBattle_DrainMove
+class PokeBattle_Move_HealUserByThreeQuartersOfDamageDone < PokeBattle_DrainMove
     def drainFactor(_user, _target); return 0.75; end
 end
 
@@ -23,7 +23,7 @@ end
 # User gains half the HP it inflicts as damage. Deals double damage if the target is asleep.
 # (Dream Absorb)
 #===============================================================================
-class PokeBattle_Move_0DE < PokeBattle_DrainMove
+class PokeBattle_Move_HealUserByHalfOfDamageDoneDoubleDamageIfTargetAsleep < PokeBattle_DrainMove
     def drainFactor(_user, _target); return 0.5; end
 
     def pbBaseDamage(baseDmg, _user, target)
@@ -35,7 +35,7 @@ end
 #===============================================================================
 # Drains 2/3s if target hurt the user this turn (Trap Jaw)
 #===============================================================================
-class PokeBattle_Move_557 < PokeBattle_Move
+class PokeBattle_Move_HealUserByTwoThirdsOfDamageDoneIfTargetHurtUserThisTurn < PokeBattle_Move
     def healingMove?; return true; end
 
     def pbEffectAgainstTarget(user, target)
@@ -53,7 +53,7 @@ end
 #===============================================================================
 # Averages the user's and target's current HP. (Pain Split)
 #===============================================================================
-class PokeBattle_Move_05A < PokeBattle_Move
+class PokeBattle_Move_UserTargetAverageHP < PokeBattle_Move
     def pbFailsAgainstTarget?(user, target, show_message)
         if target.boss?
             @battle.pbDisplay(_INTL("But it failed, since the target is an avatar!")) if show_message
@@ -93,9 +93,9 @@ class PokeBattle_Move_05A < PokeBattle_Move
 end
 
 #===============================================================================
-# User gains 1/2 the HP it inflicts as damage. Lower's Defense. 
+# User gains 1/2 the HP it inflicts as damage. Lower's Defense.
 #===============================================================================
-class PokeBattle_Move_DrainLowerDef < PokeBattle_DrainMove
+class PokeBattle_Move_UserHealsByHalfOfDamageDoneLowerTargetDef1 < PokeBattle_DrainMove
     def drainFactor(_user, _target); return 0.5; end
 
     def pbAdditionalEffect(user, target)
@@ -111,7 +111,7 @@ end
 #===============================================================================
 # User gains 1/2 the HP it inflicts as damage. Lower's Sp. Def. (Soul Eater)
 #===============================================================================
-class PokeBattle_Move_52C < PokeBattle_DrainMove
+class PokeBattle_Move_UserHealsByHalfOfDamageDoneLowerTargetSpDef1 < PokeBattle_DrainMove
     def drainFactor(_user, _target); return 0.5; end
 
     def pbAdditionalEffect(user, target)
@@ -125,7 +125,7 @@ class PokeBattle_Move_52C < PokeBattle_DrainMove
 end
 
 # Empowered Giga Drain
-class PokeBattle_Move_651 < PokeBattle_DrainMove
+class PokeBattle_Move_EmpoweredGigaDrain < PokeBattle_DrainMove
     include EmpoweredMove
 
     def drainFactor(_user, _target); return 1.0; end

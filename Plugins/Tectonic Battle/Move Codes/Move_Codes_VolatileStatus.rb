@@ -555,7 +555,7 @@ end
 #===============================================================================
 # User cuts its own HP by 25% to curse all foes and also to set Ingrain. (Cursed Roots)
 #===============================================================================
-class PokeBattle_Move_127 < PokeBattle_Move_0DB
+class PokeBattle_Move_127 < PokeBattle_Move_StartHealUserEachTurnTrapUser
     def pbMoveFailed?(user, _targets, show_message)
         if user.hp <= (user.totalhp / 4)
             @battle.pbDisplay(_INTL("But it failed, since #{user.pbThis(true)}'s HP is too low!")) if show_message

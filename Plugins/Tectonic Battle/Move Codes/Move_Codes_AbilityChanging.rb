@@ -1,7 +1,7 @@
 #===============================================================================
 # Target's ability becomes Simple. (Simple Beam)
 #===============================================================================
-class PokeBattle_Move_063 < PokeBattle_Move
+class PokeBattle_Move_SetTargetAbilityToSimple < PokeBattle_Move
     def pbMoveFailed?(_user, _targets, show_message)
         unless GameData::Ability.exists?(:SIMPLE)
             @battle.pbDisplay(_INTL("But it failed, since the ability Simple doesn't exist!")) if show_message
@@ -40,7 +40,7 @@ end
 #===============================================================================
 # Target's ability becomes Insomnia. (Worry Seed)
 #===============================================================================
-class PokeBattle_Move_064 < PokeBattle_Move
+class PokeBattle_Move_SetTargetAbilityToInsomnia < PokeBattle_Move
     def pbMoveFailed?(_user, _targets, show_message)
         unless GameData::Ability.exists?(:INSOMNIA)
             @battle.pbDisplay(_INTL("But it failed, since the ability Insomnia doesn't exist!")) if show_message
@@ -77,7 +77,7 @@ end
 #===============================================================================
 # User copies target's ability. (Role Play)
 #===============================================================================
-class PokeBattle_Move_065 < PokeBattle_Move
+class PokeBattle_Move_SetUserAbilityToTargetAbility < PokeBattle_Move
     def ignoresSubstitute?(_user); return true; end
 
     def pbMoveFailed?(user, _targets, show_message)
@@ -129,7 +129,7 @@ end
 #===============================================================================
 # Target copies user's ability. (Entrainment)
 #===============================================================================
-class PokeBattle_Move_066 < PokeBattle_Move
+class PokeBattle_Move_SetTargetAbilityToUserAbility < PokeBattle_Move
     def pbMoveFailed?(user, _targets, _show_message)
         unless user.firstAbility
             @battle.pbDisplay(_INTL("But it failed, since #{user.pbThis(true)} doesn't have an ability!"))
@@ -173,7 +173,7 @@ end
 #===============================================================================
 # User and target swap abilities. (Skill Swap)
 #===============================================================================
-class PokeBattle_Move_067 < PokeBattle_Move
+class PokeBattle_Move_UserTargetSwapAbilities < PokeBattle_Move
     def ignoresSubstitute?(_user); return true; end
 
     def pbMoveFailed?(user, _targets, _show_message)
@@ -228,34 +228,5 @@ class PokeBattle_Move_067 < PokeBattle_Move
         score = 60
         score += 100 if user.hasActiveAbilityAI?(DOWNSIDE_ABILITIES)
         return score
-    end
-end
-
-#===============================================================================
-# Target's ability is negated. (Gastro Acid)
-#===============================================================================
-class PokeBattle_Move_068 < PokeBattle_Move
-    def pbFailsAgainstTarget?(_user, target, show_message)
-        if target.unstoppableAbility?
-            if show_message
-                @battle.pbDisplay(_INTL("But it failed, since #{target.pbThis(true)}'s ability cannot be supressed!"))
-            end
-            return true
-        end
-        if target.effectActive?(:GastroAcid)
-            if show_message
-                @battle.pbDisplay(_INTL("But it failed, since #{target.pbThis(true)} is already affected by Gastro Acid!"))
-            end
-            return true
-        end
-        return false
-    end
-
-    def pbEffectAgainstTarget(_user, target)
-        target.applyEffect(:GastroAcid)
-    end
-
-    def getEffectScore(user, target)
-        return getSuppressAbilityEffectScore(user, target)
     end
 end

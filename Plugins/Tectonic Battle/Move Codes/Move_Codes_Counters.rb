@@ -2,7 +2,7 @@
 # Counters a physical move used against the user this round, with 2x the power.
 # (Counter)
 #===============================================================================
-class PokeBattle_Move_071 < PokeBattle_FixedDamageMove
+class PokeBattle_Move_CounterPhysicalDamage < PokeBattle_FixedDamageMove
     def pbAddTarget(targets, user)
         target = user.getBattlerPointsTo(:CounterTarget)
         return if target.nil? || !user.opposes?(target)
@@ -35,7 +35,7 @@ end
 # Counters a specical move used against the user this round, with 2x the power.
 # (Mirror Coat)
 #===============================================================================
-class PokeBattle_Move_072 < PokeBattle_FixedDamageMove
+class PokeBattle_Move_CounterSpecialDamage < PokeBattle_FixedDamageMove
     def pbAddTarget(targets, user)
         target = user.getBattlerPointsTo(:MirrorCoatTarget)
         return if target.nil? || !user.opposes?(target)
@@ -68,7 +68,7 @@ end
 # Counters the last damaging move used against the user this round, with 1.5x
 # the power. (Metal Burst)
 #===============================================================================
-class PokeBattle_Move_073 < PokeBattle_FixedDamageMove
+class PokeBattle_Move_CounterDamagePlusHalf < PokeBattle_FixedDamageMove
     def pbAddTarget(targets, user)
         return if user.lastFoeAttacker.length == 0
         lastAttacker = user.lastFoeAttacker.last
@@ -102,7 +102,7 @@ end
 # This round, reflects all moves with the "C" flag targeting the user back at
 # their origin. (Magic Coat)
 #===============================================================================
-class PokeBattle_Move_0B1 < PokeBattle_Move
+class PokeBattle_Move_BounceBackProblemCausingStatusMoves < PokeBattle_Move
     def pbEffectGeneral(user)
         user.applyEffect(:MagicCoat)
     end
@@ -116,7 +116,7 @@ end
 #===============================================================================
 # This round, snatches all used moves with the "D" flag. (Snatch)
 #===============================================================================
-class PokeBattle_Move_0B2 < PokeBattle_Move
+class PokeBattle_Move_StealAndUseBeneficialStatusMove < PokeBattle_Move
     def pbEffectGeneral(user)
         maxSnatch = 0
         @battle.eachBattler do |b|
@@ -137,7 +137,7 @@ end
 # total direct damage it took while biding to the last battler that damaged it.
 # (Bide)
 #===============================================================================
-class PokeBattle_Move_0D4 < PokeBattle_FixedDamageMove
+class PokeBattle_Move_MultiTurnAttackBideThenReturnDoubleDamage < PokeBattle_FixedDamageMove
     def pbAddTarget(targets, user)
         return if user.effects[:Bide] != 1 # Not the attack turn
         target = user.getBattlerPointsTo(:BideTarget)
@@ -219,7 +219,7 @@ end
 # If user is KO'd before it next moves, the battler that caused it also faints.
 # (Destiny Bond)
 #===============================================================================
-class PokeBattle_Move_0E7 < PokeBattle_Move
+class PokeBattle_Move_AttackerFaintsIfUserFaints < PokeBattle_Move
     def pbMoveFailed?(user, _targets, show_message)
         if user.effectActive?(:DestinyBondPrevious)
             if show_message
@@ -248,7 +248,7 @@ class PokeBattle_Move_0E7 < PokeBattle_Move
 end
 
 # Empowered Destiny Bond
-class PokeBattle_Move_61F < PokeBattle_Move
+class PokeBattle_Move_EmpoweredDestinyBond < PokeBattle_Move
     include EmpoweredMove
 
     def pbEffectGeneral(user)
@@ -262,7 +262,7 @@ end
 # Fails if user has not been hit by an opponent's physical move this round.
 # (Shell Trap)
 #===============================================================================
-class PokeBattle_Move_171 < PokeBattle_Move
+class PokeBattle_Move_UsedAfterUserTakesPhysicalDamage < PokeBattle_Move
     def pbDisplayChargeMessage(user)
         user.applyEffect(:ShellTrap)
     end
@@ -295,7 +295,7 @@ end
 # Fails if user has not been hit by an opponent's special move this round.
 # (Masquerblade)
 #===============================================================================
-class PokeBattle_Move_12B < PokeBattle_Move
+class PokeBattle_Move_UsedAfterUserTakesSpecialDamage < PokeBattle_Move
     def pbDisplayChargeMessage(user)
         user.applyEffect(:Masquerblade)
     end

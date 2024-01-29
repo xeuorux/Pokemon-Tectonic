@@ -1,7 +1,7 @@
 #===============================================================================
 # Cures user of any status condition. (Refresh)
 #===============================================================================
-class PokeBattle_Move_018 < PokeBattle_Move
+class PokeBattle_Move_CureUserStatus < PokeBattle_Move
     def pbMoveFailed?(user, _targets, show_message)
         unless user.pbHasAnyStatus?
             if show_message
@@ -24,7 +24,7 @@ end
 #===============================================================================
 # Cures all party Pokémon of permanent status problems. (Aromatherapy, Heal Bell)
 #===============================================================================
-class PokeBattle_Move_019 < PokeBattle_Move
+class PokeBattle_Move_CureUserPartyStatus < PokeBattle_Move
     def worksWithNoTargets?; return true; end
 
     def pbMoveFailed?(user, _targets, show_message)
@@ -82,7 +82,7 @@ end
 #===============================================================================
 # Heals the party of status conditions and gains an Aqua Ring. (Whale Song)
 #===============================================================================
-class PokeBattle_Move_5D1 < PokeBattle_Move_019
+class PokeBattle_Move_CureUserPartyStatusStartHealUserEachTurn < PokeBattle_Move_CureUserPartyStatus
     def worksWithNoTargets?; return true; end
 
     def pbMoveFailed?(user, _targets, show_message)
@@ -113,7 +113,7 @@ end
 #===============================================================================
 # Damages, while also healing the team of statuses. (Purifying Water)
 #===============================================================================
-class PokeBattle_Move_548 < PokeBattle_Move
+class PokeBattle_Move_CureUserPartyStatusDamagingMove < PokeBattle_Move
     def pbEffectAfterAllHits(user, _target)
         @battle.eachSameSideBattler(user) do |b|
             healStatus(b)
@@ -147,7 +147,7 @@ end
 # Safeguards the user's side from being inflicted with status problems.
 # (Safeguard)
 #===============================================================================
-class PokeBattle_Move_01A < PokeBattle_Move
+class PokeBattle_Move_StartUserSideImmunityToInflictedStatus < PokeBattle_Move
     def initialize(battle, move)
         super
         @safeguardDuration = 10
@@ -165,7 +165,7 @@ end
 #===============================================================================
 # User passes its first status problem to the target. (Psycho Shift)
 #===============================================================================
-class PokeBattle_Move_01B < PokeBattle_Move
+class PokeBattle_Move_GiveUserStatusToTarget < PokeBattle_Move
     def pbMoveFailed?(user, _targets, show_message)
         unless user.pbHasAnyStatus?
             if show_message
@@ -201,7 +201,7 @@ end
 #===============================================================================
 # Transfers the user's status to the target (Vicious Cleaning)
 #===============================================================================
-class PokeBattle_Move_580 < PokeBattle_Move
+class PokeBattle_Move_GiveUserStatusToTargetDamagingMove < PokeBattle_Move
     def pbEffectAgainstTarget(user, target)
         user.getStatuses.each do |status|
             next if status == :NONE
@@ -238,32 +238,9 @@ target.pbThis(true)))
 end
 
 #===============================================================================
-# Cures the target's frostbite. (Rousing Hula)
-#===============================================================================
-class PokeBattle_Move_173 < PokeBattle_Move
-    def pbAdditionalEffect(_user, target)
-        return if target.fainted? || target.damageState.substitute
-        return if target.status != :FROSTBITE
-        target.pbCureStatus(true, :FROSTBITE)
-    end
-
-    def getTargetAffectingEffectScore(user, target)
-        score = 0
-        if !target.substituted? && target.frostbitten?
-            if target.opposes?(user)
-                score -= 30
-            else
-                score += 30
-            end
-        end
-        return score
-    end
-end
-
-#===============================================================================
 # Cures the target's burn. (Sparkling Aria)
 #===============================================================================
-class PokeBattle_Move_15A < PokeBattle_Move
+class PokeBattle_Move_CureTargetBurn < PokeBattle_Move
     def pbAdditionalEffect(_user, target)
         return if target.fainted? || target.damageState.substitute
         return if target.status != :BURN
@@ -284,10 +261,33 @@ class PokeBattle_Move_15A < PokeBattle_Move
 end
 
 #===============================================================================
+# Cures the target's frostbite. (Rousing Hula)
+#===============================================================================
+class PokeBattle_Move_CureTargetFrostbite < PokeBattle_Move
+    def pbAdditionalEffect(_user, target)
+        return if target.fainted? || target.damageState.substitute
+        return if target.status != :FROSTBITE
+        target.pbCureStatus(true, :FROSTBITE)
+    end
+
+    def getTargetAffectingEffectScore(user, target)
+        score = 0
+        if !target.substituted? && target.frostbitten?
+            if target.opposes?(user)
+                score -= 30
+            else
+                score += 30
+            end
+        end
+        return score
+    end
+end
+
+#===============================================================================
 # Cures the target's permanent status problems. Heals user by 1/2 of its max HP.
 # (Purify)
 #===============================================================================
-class PokeBattle_Move_15B < PokeBattle_HalfHealingMove
+class PokeBattle_Move_CureTargetStatusHealUserHalfOfTotalHP < PokeBattle_HalfHealingMove
     def pbFailsAgainstTarget?(_user, target, show_message)
         unless target.pbHasAnyStatus?
             if show_message

@@ -1,14 +1,14 @@
 #===============================================================================
 # Heals user by 1/2 of its max HP.
 #===============================================================================
-class PokeBattle_Move_0D5 < PokeBattle_HalfHealingMove
+class PokeBattle_Move_HealUserHalfOfTotalHP < PokeBattle_HalfHealingMove
 end
 
 #===============================================================================
 # Heals user by 1/2 of its max HP. (Roost)
 # User roosts, and its Flying type is ignored for attacks used against it.
 #===============================================================================
-class PokeBattle_Move_0D6 < PokeBattle_HalfHealingMove
+class PokeBattle_Move_HealUserHalfOfTotalHPLoseFlyingTypeThisTurn < PokeBattle_HalfHealingMove
     def pbEffectGeneral(user)
         super
         user.applyEffect(:Roost)
@@ -19,7 +19,7 @@ end
 # Battler in user's position is healed by 1/2 of its max HP, at the end of the
 # next round. (Wish)
 #===============================================================================
-class PokeBattle_Move_0D7 < PokeBattle_Move
+class PokeBattle_Move_HealUserPositionNextTurn < PokeBattle_Move
     def healingMove?; return true; end
 
     def pbMoveFailed?(user, _targets, show_message)
@@ -52,7 +52,7 @@ end
 #===============================================================================
 # Heals user by 1/2 of its max HP, or 2/3 of its max HP in sunshine. (Synthesis)
 #===============================================================================
-class PokeBattle_Move_0D8 < PokeBattle_HealingMove
+class PokeBattle_Move_HealUserDependingOnSunshine < PokeBattle_HealingMove
     def healRatio(_user)
         if @battle.sunny?
             return 2.0 / 3.0
@@ -69,7 +69,7 @@ end
 #===============================================================================
 # Heals user by 1/2 of its max HP, or 2/3 of its max HP in moonglow. (Sweet Selene)
 #===============================================================================
-class PokeBattle_Move_0F9 < PokeBattle_HealingMove
+class PokeBattle_Move_HealUserDependingOnMoonglow < PokeBattle_HealingMove
     def healRatio(_user)
         if @battle.moonGlowing?
             return 2.0 / 3.0
@@ -86,7 +86,7 @@ end
 #===============================================================================
 # Heals user by 1/2 of its max HP, or 2/3 of its max HP in a sandstorm. (Shore Up)
 #===============================================================================
-class PokeBattle_Move_16D < PokeBattle_HealingMove
+class PokeBattle_Move_HealUserDependingOnSandstorm < PokeBattle_HealingMove
     def healRatio(_user)
         return 2.0 / 3.0 if @battle.sandy?
         return 1.0 / 2.0
@@ -97,10 +97,23 @@ class PokeBattle_Move_16D < PokeBattle_HealingMove
     end
 end
 
+# Empowered Shore Up
+class PokeBattle_Move_EmpoweredShoreUp < PokeBattle_HalfHealingMove
+    include EmpoweredMove
+
+    def pbEffectGeneral(user)
+        super
+
+        user.applyEffect(:EmpoweredShoreUp)
+
+        transformType(user, :GROUND)
+    end
+end
+
 #===============================================================================
 # Heals user by 2/3 of its max HP.
 #===============================================================================
-class PokeBattle_Move_565 < PokeBattle_HealingMove
+class PokeBattle_Move_HealUserTwoThirdsOfTotalHP < PokeBattle_HealingMove
     def healRatio(_user)
         return 2.0 / 3.0
     end
@@ -110,7 +123,7 @@ end
 # Heals user by 1/2 of their HP.
 # In any weather, increases the duration of the weather by 1. (Take Shelter)
 #===============================================================================
-class PokeBattle_Move_5B3 < PokeBattle_HalfHealingMove
+class PokeBattle_Move_HealUserHalfOfTotalHPExtendWeather1 < PokeBattle_HalfHealingMove
     def pbEffectGeneral(user)
         super
         @battle.extendWeather(1) unless @battle.pbWeather == :None
@@ -120,7 +133,7 @@ end
 #===============================================================================
 # Heals user to full HP. User falls asleep for 2 more rounds. (Rest)
 #===============================================================================
-class PokeBattle_Move_0D9 < PokeBattle_HealingMove
+class PokeBattle_Move_HealUserFullyAndFallAsleep < PokeBattle_HealingMove
     def healRatio(_user); return 1.0; end
 
     def pbMoveFailed?(user, targets, show_message)
@@ -156,7 +169,7 @@ end
 #===============================================================================
 # Heals user to 100%. Only usable on first turn. (Fresh Start)
 #===============================================================================
-class PokeBattle_Move_55B < PokeBattle_HealingMove
+class PokeBattle_Move_HealUserFullHPFailsIfNotUserFirstTurn < PokeBattle_HealingMove
     def healRatio(_user)
         return 1.0
     end
@@ -174,7 +187,7 @@ end
 # Rings the user. Ringed Pokémon gain 1/16 of max HP at the end of each round.
 # (Aqua Ring)
 #===============================================================================
-class PokeBattle_Move_0DA < PokeBattle_Move
+class PokeBattle_Move_StartHealUserEachTurn < PokeBattle_Move
     def pbMoveFailed?(user, _targets, show_message)
         return false if damagingMove?
         if user.effectActive?(:AquaRing)
@@ -206,7 +219,7 @@ end
 # Ingrains the user. Ingrained Pokémon gain 1/16 of max HP at the end of each
 # round, and cannot flee or switch out. (Ingrain)
 #===============================================================================
-class PokeBattle_Move_0DB < PokeBattle_Move
+class PokeBattle_Move_StartHealUserEachTurnTrapUser < PokeBattle_Move
     def pbMoveFailed?(user, _targets, show_message)
         if user.effectActive?(:Ingrain)
             if show_message
@@ -232,7 +245,7 @@ class PokeBattle_Move_0DB < PokeBattle_Move
 end
 
 # Empowered Ingrain
-class PokeBattle_Move_615 < PokeBattle_Move_0DB
+class PokeBattle_Move_PrimevalIngrain < PokeBattle_Move_StartHealUserEachTurnTrapUser
     include EmpoweredMove
 
     def pbMoveFailed?(user, _targets, show_message)
@@ -260,7 +273,7 @@ end
 #===============================================================================
 # Heals target by 1/2 of its max HP. (Heal Pulse)
 #===============================================================================
-class PokeBattle_Move_0DF < PokeBattle_Move
+class PokeBattle_Move_HealTargetHalfOfTotalHP < PokeBattle_Move
     def healingMove?; return true; end
 
     def pbFailsAgainstTarget?(_user, target, show_message)
@@ -294,7 +307,7 @@ end
 #===============================================================================
 # The user dances to restore an ally by 50% max HP. They're cured of any status conditions. (Healthy Cheer)
 #===============================================================================
-class PokeBattle_Move_126 < PokeBattle_Move_0DF
+class PokeBattle_Move_HealTargetHalfOfTotalHPAndCureStatus < PokeBattle_Move_HealTargetHalfOfTotalHP
     def pbFailsAgainstTarget?(_user, target, show_message)
        if !target.canHeal? && !target.pbHasAnyStatus?
             @battle.pbDisplay(_INTL("{1} can't be healed and it has no status conditions!", target.pbThis)) if show_message
@@ -319,7 +332,7 @@ end
 # Restore HP and heals any status conditions of itself and its allies
 # (Jungle Healing)
 #===============================================================================
-class PokeBattle_Move_189 < PokeBattle_Move
+class PokeBattle_Move_HealUserAndAlliesQuarterOfTotalHPCureStatus < PokeBattle_Move
     def healingMove?; return true; end
 
     def pbMoveFailed?(user, targets, show_message)
@@ -349,7 +362,7 @@ end
 # adjacent ally, the user restores 1/4 of both its and its ally's maximum HP,
 # rounded up. (Life Dew)
 #===============================================================================
-class PokeBattle_Move_17E < PokeBattle_Move
+class PokeBattle_Move_HealUserAndAlliesQuarterOfTotalHP < PokeBattle_Move
     def ignoresSubstitute?(_user); return true; end
 
     def healingMove?; return true; end
@@ -402,7 +415,7 @@ end
 # Heals target by 1/2 of its max HP, or 2/3 of its max HP in moonglow.
 # (Floral Healing)
 #===============================================================================
-class PokeBattle_Move_16E < PokeBattle_Move
+class PokeBattle_Move_HealTargetDependingOnMoonglow < PokeBattle_Move
     def healingMove?; return true; end
 
     def pbFailsAgainstTarget?(_user, target, show_message)
@@ -441,7 +454,7 @@ end
 # Damages target if target is a foe, or heals target by 1/2 of its max HP if
 # target is an ally. (Pollen Puff, Package, Water Spiral)
 #===============================================================================
-class PokeBattle_Move_16F < PokeBattle_Move
+class PokeBattle_Move_HealAllyOrDamageFoe < PokeBattle_Move
     def pbTarget(user)
         return GameData::Target.get(:NearFoe) if user.effectActive?(:HealBlock)
         return super
@@ -498,7 +511,7 @@ end
 # User faints. The Pokémon that replaces the user is fully healed (HP and
 # status). Fails if user won't be replaced. (Healing Wish)
 #===============================================================================
-class PokeBattle_Move_0E3 < PokeBattle_Move
+class PokeBattle_Move_UserFaintsHealAndCureReplacement < PokeBattle_Move
     def healingMove?; return true; end
 
     def pbMoveFailed?(user, _targets, show_message)
@@ -529,7 +542,7 @@ end
 # User faints. The Pokémon that replaces the user is fully healed (HP, PP and
 # status). Fails if user won't be replaced. (Lunar Dance)
 #===============================================================================
-class PokeBattle_Move_0E4 < PokeBattle_Move
+class PokeBattle_Move_UserFaintsHealAndCureReplacementRestorePP < PokeBattle_Move
     def healingMove?; return true; end
 
     def pbMoveFailed?(user, _targets, show_message)
@@ -559,7 +572,7 @@ end
 #===============================================================================
 # Heals user by 1/3 of their max health, but does not fail at full health. (Ebb & Flow)
 #===============================================================================
-class PokeBattle_Move_518 < PokeBattle_HealingMove
+class PokeBattle_Move_HealUserThirdOfTotalHPDamagingMove < PokeBattle_HealingMove
     def healRatio(_user)
         return 1.0 / 3.0
     end
@@ -572,7 +585,7 @@ end
 #===============================================================================
 # Heals user to full, but traps them with Infestation (Honey Slather)
 #===============================================================================
-class PokeBattle_Move_133 < PokeBattle_HealingMove
+class PokeBattle_Move_HealUserFullHPBindsTarget < PokeBattle_HealingMove
     def healRatio(_user); return 1.0; end
 
     def pbMoveFailed?(user, _targets, show_message)
@@ -597,7 +610,7 @@ end
 # Decreases the target's Attack by 1 step. Heals user by an amount equal to the
 # target's Attack stat. (Strength Sap)
 #===============================================================================
-class PokeBattle_Move_160 < PokeBattle_StatDrainHealingMove
+class PokeBattle_Move_HealUserByTargetAtkLowerTargetAtk1 < PokeBattle_StatDrainHealingMove
     def initialize(battle, move)
         super
         @statToReduce = :ATTACK
@@ -608,7 +621,7 @@ end
 # Decreases the target's Sp. Atk by 1 step. Heals user by an amount equal to the
 # target's Sp. Atk stat. (Mind Sap)
 #===============================================================================
-class PokeBattle_Move_5E5 < PokeBattle_StatDrainHealingMove
+class PokeBattle_Move_HealUserByTargetSpAtkLowerTargetSpAtk1 < PokeBattle_StatDrainHealingMove
     def initialize(battle, move)
         super
         @statToReduce = :SPECIAL_ATTACK
@@ -618,7 +631,7 @@ end
 #===============================================================================
 # Heals the user by 2/3 health. Move disables self. (Stitch Up)
 #===============================================================================
-class PokeBattle_Move_524 < PokeBattle_HealingMove
+class PokeBattle_Move_HealUserByTwoThirdsOfTotalHPDisableSelf < PokeBattle_HealingMove
     def healRatio(_user)
         return 2.0 / 3.0
     end
@@ -638,7 +651,7 @@ end
 #===============================================================================
 # Uses rest on both self and target. (Bedfellows)
 #===============================================================================
-class PokeBattle_Move_564 < PokeBattle_Move
+class PokeBattle_Move_ForceUserAndTargetToRest < PokeBattle_Move
     def pbEffectAgainstTarget(user, target)
         @battle.forceUseMove(user, :REST)
         @battle.forceUseMove(target, :REST)
@@ -664,7 +677,7 @@ end
 #===============================================================================
 # Restores health by 50% and raises Speed by one step. (Mulch Meal)
 #===============================================================================
-class PokeBattle_Move_583 < PokeBattle_HalfHealingMove
+class PokeBattle_Move_HealUserHalfOfTotalHPRaiseSpd1 < PokeBattle_HalfHealingMove
     def pbMoveFailed?(user, _targets, show_message)
         if !user.canHeal? && !user.pbCanRaiseStatStep?(:SPEED, user, self, true)
             @battle.pbDisplay(_INTL("But it failed, since #{user.pbThis(true)} can't heal or raise its Speed!")) if show_message
@@ -689,7 +702,7 @@ end
 # User heals itself based on current weight. (Refurbish)
 # Then, its current weigtht is cut in half.
 #===============================================================================
-class PokeBattle_Move_5AB < PokeBattle_HealingMove
+class PokeBattle_Move_HealUserBasedOnWeightHalvesWeight < PokeBattle_HealingMove
     def healRatio(user)
         case user.pbWeight
         when 1024..999_999
@@ -716,7 +729,7 @@ end
 #===============================================================================
 # Heals user by 1/2, raises Defense, Sp. Defense, Crit Chance. (Divination)
 #===============================================================================
-class PokeBattle_Move_5C7 < PokeBattle_HalfHealingMove
+class PokeBattle_Move_HealUserHalfOfTotalHPRaiseDefSpDefCriticalHitRate1 < PokeBattle_HalfHealingMove
     def pbMoveFailed?(user, _targets, show_message)
         if user.effectAtMax?(:FocusEnergy) && !user.pbCanRaiseStatStep?(:DEFENSE, user, self) && 
                 !user.pbCanRaiseStatStep?(:SPECIAL_DEFENSE, user, self)
@@ -743,7 +756,7 @@ end
 # The user puts all their effort into attacking their opponent
 # causing them to rest on their next turn. (Extreme Effort)
 #===============================================================================
-class PokeBattle_Move_5C9 < PokeBattle_Move
+class PokeBattle_Move_UserMustUseRestNextTurn < PokeBattle_Move
     def pbEffectGeneral(user)
 	    user.applyEffect(:ExtremeEffort, 2)
     end
@@ -756,7 +769,7 @@ end
 #===============================================================================
 # Restores health by half and gains an Aqua Ring. (River Rest)
 #===============================================================================
-class PokeBattle_Move_5D0 < PokeBattle_HalfHealingMove
+class PokeBattle_Move_HealUserHalfOfTotalHPStartHealUserEachTurn < PokeBattle_HalfHealingMove
     def pbMoveFailed?(user, _targets, show_message)
         if super(user, _targets, false) && user.effectActive?(:AquaRing)
             @battle.pbDisplay(_INTL("But it failed, since #{user.pbThis} can't heal and already has a veil of water!")) if show_message
@@ -780,7 +793,7 @@ end
 #===============================================================================
 # User heals for 3/5ths of their HP. (Heal Order)
 #===============================================================================
-class PokeBattle_Move_5D6 < PokeBattle_HealingMove
+class PokeBattle_Move_HealUserThreeFifthsOfTotalHP < PokeBattle_HealingMove
     def healRatio(_user)
         return 3.0 / 5.0
     end
@@ -790,7 +803,7 @@ end
 # Heals user by 1/2 of their HP.
 # Extends the duration of any screens affecting the user's side by 1. (Stabilize)
 #===============================================================================
-class PokeBattle_Move_5D4 < PokeBattle_HalfHealingMove
+class PokeBattle_Move_HealUserHalfOfTotalHPExtendScreens1 < PokeBattle_HalfHealingMove
     def pbEffectGeneral(user)
         super
         pbOwnSide.eachEffect(true) do |effect, value, data|
@@ -810,21 +823,8 @@ class PokeBattle_Move_5D4 < PokeBattle_HalfHealingMove
     end
 end
 
-# Empowered Shore Up
-class PokeBattle_Move_620 < PokeBattle_HalfHealingMove
-    include EmpoweredMove
-
-    def pbEffectGeneral(user)
-        super
-
-        user.applyEffect(:EmpoweredShoreUp)
-
-        transformType(user, :GROUND)
-    end
-end
-
 # Empowered Heal Order
-class PokeBattle_Move_619 < PokeBattle_HalfHealingMove
+class PokeBattle_Move_EmpoweredHealOrder < PokeBattle_HalfHealingMove
     include EmpoweredMove
 
     def healingMove?; return true; end

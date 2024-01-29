@@ -1,11 +1,11 @@
 #===============================================================================
 # Attacks 2 rounds in the future. (Future Sight, etc.)
 #===============================================================================
-class PokeBattle_Move_111 < PokeBattle_ForetoldMove
+class PokeBattle_Move_AttackTwoTurnsLater < PokeBattle_ForetoldMove
 end
 
 # Empowered Future Sight
-class PokeBattle_Move_649 < PokeBattle_Move_111
+class PokeBattle_Move_EmpoweredFutureSight < PokeBattle_Move_AttackTwoTurnsLater
     include EmpoweredMove
 end
 
@@ -13,7 +13,7 @@ end
 # Choose between Ice, Fire, and Electric. This move attacks 1 turn in
 # the future with an attack of that type. (Artillerize)
 #===============================================================================
-class PokeBattle_Move_12D < PokeBattle_ForetoldMove
+class PokeBattle_Move_AttackOneTurnLaterChooseIceFireElectricType < PokeBattle_ForetoldMove
     def initialize(battle, move)
         super
         @turnCount = 2

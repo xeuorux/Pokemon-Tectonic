@@ -1,7 +1,7 @@
 #===============================================================================
 # User flees from battle. Switches out, in trainer battles. (Teleport)
 #===============================================================================
-class PokeBattle_Move_0EA < PokeBattle_Move
+class PokeBattle_Move_SwitchOutUserStatusMove < PokeBattle_Move
     def switchOutMove?; return true; end
 
     def pbMoveFailed?(user, _targets, show_message)
@@ -50,7 +50,7 @@ end
 # User switches out. Various effects affecting the user are passed to the
 # replacement. (Baton Pass)
 #===============================================================================
-class PokeBattle_Move_0ED < PokeBattle_Move
+class PokeBattle_Move_SwitchOutUserPassOnEffects < PokeBattle_Move
     def switchOutMove?; return true; end
 
     def pbMoveFailed?(user, _targets, show_message)
@@ -92,7 +92,7 @@ end
 # After inflicting damage, user switches out.
 # (U-turn, Volt Switch, Flip Turn)
 #===============================================================================
-class PokeBattle_Move_0EE < PokeBattle_Move
+class PokeBattle_Move_SwitchOutUserDamagingMove < PokeBattle_Move
     def switchOutMove?; return true; end
 
     def pbEndOfMoveUsageEffect(user, targets, numHits, switchedBattlers)
@@ -109,7 +109,7 @@ end
 # Decreases the target's Attack and Special Attack by 1 step each. Then, user
 # switches out. (Parting Shot)
 #===============================================================================
-class PokeBattle_Move_151 < PokeBattle_TargetMultiStatDownMove
+class PokeBattle_Move_LowerTargetAtkSpAtk1SwitchOutUser < PokeBattle_TargetMultiStatDownMove
     def switchOutMove?; return true; end
 
     def initialize(battle, move)
@@ -145,7 +145,7 @@ end
 #===============================================================================
 # Forces both the user and the target to switch out. (Stink Cover)
 #===============================================================================
-class PokeBattle_Move_139 < PokeBattle_Move_0EB
+class PokeBattle_Move_SwitchOutTargetAndUserStatusMove < PokeBattle_Move_SwitchOutTargetStatusMove
     def pbSwitchOutTargetsEffect(user, targets, numHits, switchedBattlers)
         return if numHits == 0
         targets.push(user)
@@ -162,7 +162,7 @@ end
 #===============================================================================
 # Returns user to party for swap, deals more damage the lower HP the user has. (Hare Heroics)
 #===============================================================================
-class PokeBattle_Move_566 < PokeBattle_Move_0EE
+class PokeBattle_Move_SwitchOutUserDamagingMoveScalesWithLostHP < PokeBattle_Move_SwitchOutUserDamagingMove
     def pbBaseDamage(_baseDmg, user, _target)
         ret = 20
         n = 48 * user.hp / user.totalhp
@@ -185,7 +185,7 @@ end
 # Reduces the target's defense by two steps.
 # After inflicting damage, user switches out. (Rip Turn)
 #===============================================================================
-class PokeBattle_Move_568 < PokeBattle_Move_0EE
+class PokeBattle_Move_SwitchOutUserDamagingMoveLowerTargetDef2 < PokeBattle_Move_SwitchOutUserDamagingMove
     def pbAdditionalEffect(user, target)
         return if target.damageState.substitute
         target.tryLowerStat(:DEFENSE, user, move: self, increment: 2)
@@ -202,7 +202,7 @@ end
 # Reduces the target's Sp. Def by two steps.
 # After inflicting damage, user switches out.
 #===============================================================================
-class PokeBattle_Move_SwitchOutLowerSpDef2 < PokeBattle_Move_0EE
+class PokeBattle_Move_SwitchOutUserDamagingMoveLowerTargetSpDef2 < PokeBattle_Move_SwitchOutUserDamagingMove
     def pbAdditionalEffect(user, target)
         return if target.damageState.substitute
         target.tryLowerStat(:SPECIAL_DEFENSE, user, move: self, increment: 2)
@@ -218,7 +218,7 @@ end
 #===============================================================================
 # Returns user to party for swap and lays a layer of spikes. (Caltrop Arts)
 #===============================================================================
-class PokeBattle_Move_58E < PokeBattle_Move_0EE
+class PokeBattle_Move_SwitchOutUserSetSpikes < PokeBattle_Move_SwitchOutUserDamagingMove
     def pbMoveFailed?(user, _targets, show_message)
         return false if damagingMove?
         if user.pbOpposingSide.effectAtMax?(:Spikes)

@@ -4,7 +4,7 @@
 # In trainer battles, target switches out.
 # For status moves. (Roar, Whirlwind)
 #===============================================================================
-class PokeBattle_Move_0EB < PokeBattle_Move
+class PokeBattle_Move_SwitchOutTargetStatusMove < PokeBattle_Move
     def forceSwitchMove?; return true; end
 
     def ignoresSubstitute?(_user); return true; end
@@ -56,7 +56,7 @@ class PokeBattle_Move_0EB < PokeBattle_Move
 end
 
 # Empowered Whirlwind
-class PokeBattle_Move_61C < PokeBattle_Move_0EB
+class PokeBattle_Move_EmpoweredWhirlwind < PokeBattle_Move_SwitchOutTargetStatusMove
     include EmpoweredMove
 
     def pbEffectGeneral(user)
@@ -70,7 +70,7 @@ end
 # In trainer battles, target switches out, to be replaced at random.
 # For damaging moves. (Circle Throw, Dragon Tail)
 #===============================================================================
-class PokeBattle_Move_0EC < PokeBattle_Move
+class PokeBattle_Move_SwitchOutTargetDamagingMove < PokeBattle_Move
     def forceSwitchMove?; return true; end
 
     def pbEffectAgainstTarget(user, target)
@@ -93,7 +93,7 @@ end
 #===============================================================================
 # If the move misses, all targets are forced to switch out. (Rolling Boulder)
 #===============================================================================
-class PokeBattle_Move_53F < PokeBattle_Move
+class PokeBattle_Move_SwitchOutTargetIfMisses < PokeBattle_Move
     def forceSwitchMove?; return true; end
 
     # This method is called if a move fails to hit all of its targets
@@ -111,7 +111,7 @@ end
 # user.
 # In trainer battles, target switches out, to be replaced manually. (Dragon's Roar)
 #===============================================================================
-class PokeBattle_Move_5CC < PokeBattle_Move
+class PokeBattle_Move_SwitchOutTargetDamagingMoveNonRandom < PokeBattle_Move
     def forceSwitchMove?; return true; end
 
     def pbEffectAgainstTarget(user, target)

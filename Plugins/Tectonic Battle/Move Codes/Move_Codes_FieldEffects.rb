@@ -1,7 +1,7 @@
 #===============================================================================
 # For 4 rounds, doubles the Speed of all battlers on the user's side. (Tailwind)
 #===============================================================================
-class PokeBattle_Move_05B < PokeBattle_Move
+class PokeBattle_Move_StartUserSideDoubleSpeed4 < PokeBattle_Move
     def initialize(battle, move)
         super
         @tailwindDuration = 4
@@ -17,7 +17,7 @@ class PokeBattle_Move_05B < PokeBattle_Move
 end
 
 # Empowered Tailwind
-class PokeBattle_Move_608 < PokeBattle_Move_05B
+class PokeBattle_Move_EmpoweredTailwind < PokeBattle_Move_StartUserSideDoubleSpeed4
     include EmpoweredMove
 
     def pbEffectGeneral(user)
@@ -26,6 +26,16 @@ class PokeBattle_Move_608 < PokeBattle_Move_05B
             b.applyEffect(:ExtraTurns, 1)
         end
         transformType(user, :FLYING)
+    end
+end
+
+#===============================================================================
+# For 6 rounds, doubles the Speed of all battlers on the user's side. (Sustained Wind)
+#===============================================================================
+class PokeBattle_Move_StartUserSideDoubleSpeed6 < PokeBattle_Move_StartUserSideDoubleSpeed4
+    def initialize(battle, move)
+        super
+        @tailwindDuration = 6
     end
 end
 
@@ -51,7 +61,7 @@ end
 #===============================================================================
 # Heals every active battler by 1/8th of their HP for the next 5 turns. (Floral Gramarye)
 #===============================================================================
-class PokeBattle_Move_137 < PokeBattle_Move
+class PokeBattle_Move_StartAllBattlersHealEightOfMaxHPEachTurn5 < PokeBattle_Move
     def pbEffectGeneral(_user)
         @battle.field.applyEffect(:FloralGramarye, 5) unless @battle.field.effectActive?(:FloralGramarye)
     end
@@ -72,20 +82,12 @@ class PokeBattle_Move_137 < PokeBattle_Move
     end
 end
 
-#===============================================================================
-# For 6 rounds, doubles the Speed of all battlers on the user's side. (Sustained Wind)
-#===============================================================================
-class PokeBattle_Move_5D3 < PokeBattle_Move_05B
-    def initialize(battle, move)
-        super
-        @tailwindDuration = 6
-    end
-end
+
 
 #===============================================================================
 # Resets all stat steps at end of turn and at the end of the next four turns. (Grey Mist)
 #===============================================================================
-class PokeBattle_Move_587 < PokeBattle_Move
+class PokeBattle_Move_StartResetAllBattlersStatStepsEachRound5 < PokeBattle_Move
     def pbEffectGeneral(_user)
         @battle.field.applyEffect(:GreyMist, 5) unless @battle.field.effectActive?(:GreyMist)
     end
@@ -107,7 +109,7 @@ class PokeBattle_Move_587 < PokeBattle_Move
 end
 
 # Empowered Grey Mist
-class PokeBattle_Move_61A < PokeBattle_Move_587
+class PokeBattle_Move_EmpoweredGreyMist < PokeBattle_Move_StartResetAllBattlersStatStepsEachRound5
     include EmpoweredMove
 
     def pbEffectGeneral(user)

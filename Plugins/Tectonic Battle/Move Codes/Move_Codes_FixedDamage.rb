@@ -1,7 +1,7 @@
 #===============================================================================
 # Halves the target's current HP. (Nature's Madness, Super Fang)
 #===============================================================================
-class PokeBattle_Move_06C < PokeBattle_FixedDamageMove
+class PokeBattle_Move_FixedDamageHalfTargetHP < PokeBattle_FixedDamageMove
     def pbFixedDamage(_user, target)
         damage = target.hp / 2.0
         damage /= BOSS_HP_BASED_EFFECT_RESISTANCE if target.boss?
@@ -13,7 +13,7 @@ end
 # Halves the target's current HP. (Mouthful)
 # User gains half the HP it inflicts as damage.
 #===============================================================================
-class PokeBattle_Move_5BE < PokeBattle_FixedDamageMove
+class PokeBattle_Move_FixedDamageHalfTargetHealUserByHalfOfDamageDone < PokeBattle_FixedDamageMove
     def healingMove?; return true; end
 
     def drainFactor(_user, _target); return 0.5; end
@@ -46,7 +46,7 @@ end
 #===============================================================================
 # Inflicts damage to bring the target's HP down to equal the user's HP. (Endeavor)
 #===============================================================================
-class PokeBattle_Move_06E < PokeBattle_FixedDamageMove
+class PokeBattle_Move_LowerTargetHPToUserHP < PokeBattle_FixedDamageMove
     def pbFailsAgainstTarget?(user, target, show_message)
         if user.hp >= target.hp
             if show_message

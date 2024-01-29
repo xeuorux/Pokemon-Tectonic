@@ -201,25 +201,25 @@ class PokeBattle_Move_0AF < PokeBattle_Move
             "05D",   # Sketch
             "069",   # Transform
             # Counter moves
-            "071",   # Counter
-            "072",   # Mirror Coat
-            "073",   # Metal Burst
+            "CounterPhysicalDamage",   # Counter
+            "CounterSpecialDamage",   # Mirror Coat
+            "CounterDamagePlusHalf",   # Metal Burst
             # Move-redirecting and stealing moves
-            "0B1",   # Magic Coat
-            "0B2",   # Snatch
+            "BounceBackProblemCausingStatusMoves",   # Magic Coat
+            "StealAndUseBeneficialStatusMove",   # Snatch
             "117",   # Follow Me, Rage Powder
             "16A",   # Spotlight
             # Set up effects that trigger upon KO
             "0E6",   # Grudge
-            "0E7",   # Destiny Bond
+            "AttackerFaintsIfUserFaints",   # Destiny Bond
             # Held item-moving moves
             "StealsItem",   # Covet, Thief
             "SwapItems",   # Switcheroo, Trick
             "GiftItem",   # Bestow
             # Moves that start focussing at the start of the round
             "115",   # Focus Punch
-            "171",   # Shell Trap
-            "12B",   # Masquerblade
+            "UsedAfterUserTakesPhysicalDamage",   # Shell Trap
+            "UsedAfterUserTakesSpecialDamage",   # Masquerblade
             "BurnAttackerBeforeUserActs",   # Beak Blast
             "FrostbiteAttackerBeforeUserActs",   # Condensate
         ]
@@ -270,13 +270,13 @@ class PokeBattle_Move_0B0 < PokeBattle_Move
             # Struggle
             "002",   # Struggle
             # Counter moves
-            "071",   # Counter
-            "072",   # Mirror Coat
-            "073",   # Metal Burst
+            "CounterPhysicalDamage",   # Counter
+            "CounterSpecialDamage",   # Mirror Coat
+            "CounterDamagePlusHalf",   # Metal Burst
             # Moves that start focussing at the start of the round
             "115",   # Focus Punch
-            "171",   # Shell Trap
-            "12B",   # Masquerblade
+            "UsedAfterUserTakesPhysicalDamage",   # Shell Trap
+            "UsedAfterUserTakesSpecialDamage",   # Masquerblade
             "BurnAttackerBeforeUserActs", # Beak Blast
             "FrostbiteAttackerBeforeUserActs",   # Condensate
         ]

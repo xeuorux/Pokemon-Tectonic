@@ -46,7 +46,7 @@ Power = 90
 Accuracy = 100
 TotalPP = 12
 Target = NearOther
-FunctionCode = 16F
+FunctionCode = HealAllyOrDamageFoe
 Flags = CanProtect,CanMirrorMove
 Description = Fires an exploding pollen puff at enemies, or a HP-restoring one at allies.
 #-------------------------------
@@ -58,7 +58,7 @@ Power = 80
 Accuracy = 100
 TotalPP = 10
 Target = NearOther
-FunctionCode = 0DD
+FunctionCode = HealUserByHalfOfDamageDone
 Flags = CanProtect,CanMirrorMove
 Description = The user drains the target's blood. The user's HP is restored by half the damage taken by the target.
 #-------------------------------
@@ -108,7 +108,7 @@ Power = 70
 Accuracy = 100
 TotalPP = 5
 Target = NearOther
-FunctionCode = 0EE
+FunctionCode = SwitchOutUserDamagingMove
 Flags = CanProtect,CanMirrorMove
 Description = After making its attack, the user rushes back to switch places with a party Pokémon in waiting.
 #-------------------------------
@@ -230,7 +230,7 @@ Category = Status
 Accuracy = 0
 TotalPP = 10
 Target = User
-FunctionCode = 5D6
+FunctionCode = HealUserThreeFifthsOfTotalHP
 Flags = CanSnatch
 Description = The user calls out its underlings to heal it. The user regains 3/5ths of its max HP.
 #-------------------------------
@@ -590,7 +590,7 @@ Category = Status
 Accuracy = 100
 TotalPP = 5
 Target = NearOther
-FunctionCode = 151
+FunctionCode = LowerTargetAtkSpAtk1SwitchOutUser
 Flags = CanProtect,CanMagicCoat,CanMirrorMove,Sound
 Description = The user lowers the target's Attack and Sp. Atk by two steps each. Then, the user switches out.
 #-------------------------------
@@ -613,7 +613,7 @@ Accuracy = 0
 TotalPP = 10
 Target = User
 Priority = 4
-FunctionCode = 0B2
+FunctionCode = StealAndUseBeneficialStatusMove
 Description = The user steals the effects of any healing or stat-changing move the foe attempts to use.
 #-------------------------------
 [SWITCHEROO]
@@ -864,7 +864,7 @@ Accuracy = 100
 TotalPP = 10
 Target = NearOther
 Priority = -6
-FunctionCode = 0EC
+FunctionCode = SwitchOutTargetDamagingMove
 Flags = CanProtect,CanMirrorMove
 Description = The user forces the target to switch out, to be replaced at random. In the wild, the battle ends.
 #-------------------------------
@@ -1124,7 +1124,7 @@ Power = 70
 Accuracy = 100
 TotalPP = 5
 Target = NearOther
-FunctionCode = 0EE
+FunctionCode = SwitchOutUserDamagingMove
 Flags = CanProtect,CanMirrorMove
 Description = After making its attack, the user rushes back to switch places with a party Pokémon in waiting.
 #-------------------------------
@@ -1136,7 +1136,7 @@ Power = 85
 Accuracy = 100
 TotalPP = 15
 Target = AllNearOthers
-FunctionCode = 0DD
+FunctionCode = HealUserByHalfOfDamageDone
 Flags = CanProtect,CanMirrorMove
 Description = The user attacks everything around it. The user's HP is restored by half the damage dealt.
 #-------------------------------
@@ -1406,7 +1406,7 @@ Power = 50
 Accuracy = 100
 TotalPP = 10
 Target = NearOther
-FunctionCode = 14F
+FunctionCode = HealUserByThreeQuartersOfDamageDone
 Flags = CanProtect,CanMirrorMove
 Description = The user steals the target's HP with a kiss. The user's HP is restored by 75% of the damage dealt.
 #-------------------------------
@@ -1497,7 +1497,7 @@ Category = Status
 Accuracy = 0
 TotalPP = 5
 Target = NearAlly
-FunctionCode = 16E
+FunctionCode = HealTargetDependingOnMoonglow
 Flags = CanProtect,CanMagicCoat
 Description = The user restores the target's HP by 50% of its max hp, or 2/3rds in moonglow.
 #-------------------------------
@@ -1519,7 +1519,7 @@ Power = 1
 Accuracy = 90
 TotalPP = 10
 Target = NearOther
-FunctionCode = 06C
+FunctionCode = FixedDamageHalfTargetHP
 Flags = CanProtect,CanMirrorMove
 Description = The user hits the target with the force of nature. It halves the target's HP.
 #-------------------------------
@@ -1737,7 +1737,7 @@ Power = 80
 Accuracy = 100
 TotalPP = 10
 Target = NearOther
-FunctionCode = 545
+FunctionCode = HealUserByThirdOfDamageDone
 Flags = CanProtect,CanMirrorMove,Punch
 Description = An energy-draining punch. The user's HP is restored by one third the damage taken by the target.
 #-------------------------------
@@ -1915,7 +1915,7 @@ Accuracy = 100
 TotalPP = 15
 Target = None
 Priority = -5
-FunctionCode = 071
+FunctionCode = CounterPhysicalDamage
 Flags = CanProtect
 Description = A retaliation move that counters any physical attack, inflicting double the damage taken.
 #-------------------------------
@@ -2091,7 +2091,7 @@ Accuracy = 100
 TotalPP = 5
 Target = AllNearFoes
 Priority = -3
-FunctionCode = 171
+FunctionCode = UsedAfterUserTakesPhysicalDamage
 Flags = CanProtect
 Description = The user sets a shell trap. If it is hit by a physical move, the trap explodes and hurts all near foes.
 #-------------------------------
@@ -2553,7 +2553,7 @@ Power = 80
 Accuracy = 100
 TotalPP = 10
 Target = NearOther
-FunctionCode = 14F
+FunctionCode = HealUserByThreeQuartersOfDamageDone
 Flags = CanProtect,CanMirrorMove
 Description = The user absorbs its target's HP. The user's HP is restored by 75% of the damage dealt.
 #-------------------------------
@@ -2694,7 +2694,7 @@ Category = Status
 Accuracy = 0
 TotalPP = 5
 Target = User
-FunctionCode = 0D6
+FunctionCode = HealUserHalfOfTotalHPLoseFlyingTypeThisTurn
 Flags = CanSnatch
 Description = Restores the user's HP by up to half of its max HP. User loses Flying-type this turn.
 #-------------------------------
@@ -2705,7 +2705,7 @@ Category = Status
 Accuracy = 0
 TotalPP = 12
 Target = UserSide
-FunctionCode = 05B
+FunctionCode = StartUserSideDoubleSpeed4
 Flags = CanSnatch,Wind
 Description = The user whips up a turbulent whirlwind that ups the Speed of all party Pokémon for four turns.
 #-------------------------------
@@ -2914,7 +2914,7 @@ Category = Status
 Accuracy = 0
 TotalPP = 5
 Target = User
-FunctionCode = 0E7
+FunctionCode = AttackerFaintsIfUserFaints
 Description = When this move is used, if the user faints, the foe that landed the knockout hit also faints.
 #-------------------------------
 [NIGHTMARE]
@@ -3092,7 +3092,7 @@ Power = 75
 Accuracy = 100
 TotalPP = 10
 Target = NearOther
-FunctionCode = 0DD
+FunctionCode = HealUserByHalfOfDamageDone
 Flags = CanProtect,CanMirrorMove
 Description = A nutrient-draining attack. The user's HP is restored by half the damage taken by the target.
 #-------------------------------
@@ -3178,7 +3178,7 @@ Power = 40
 Accuracy = 100
 TotalPP = 12
 Target = NearOther
-FunctionCode = 0DD
+FunctionCode = HealUserByHalfOfDamageDone
 Flags = CanProtect,CanMirrorMove,HighCriticalHitRate
 Description = A nutrient-draining attack. The user's HP is restored by half the damage taken by the target.
 #-------------------------------
@@ -3202,7 +3202,7 @@ Power = 25
 Accuracy = 100
 TotalPP = 20
 Target = NearOther
-FunctionCode = 0DD
+FunctionCode = HealUserByHalfOfDamageDone
 Flags = CanProtect,CanMirrorMove
 Description = A nutrient-draining attack. The user's HP is restored by half the damage taken by the target.
 #-------------------------------
@@ -3225,7 +3225,7 @@ Category = Status
 Accuracy = 0
 TotalPP = 5
 Target = UserAndAllies
-FunctionCode = 019
+FunctionCode = CureUserPartyStatus
 Flags = CanSnatch
 Description = The user releases a soothing scent that heals all status problems affecting the user's party.
 #-------------------------------
@@ -3269,7 +3269,7 @@ Category = Status
 Accuracy = 0
 TotalPP = 15
 Target = User
-FunctionCode = 0DB
+FunctionCode = StartHealUserEachTurnTrapUser
 Flags = CanSnatch
 Description = The user lays roots that restore 1/8th HP on every turn. Because it is rooted, it can't switch out.
 #-------------------------------
@@ -3313,7 +3313,7 @@ Category = Status
 Accuracy = 100
 TotalPP = 5
 Target = NearOther
-FunctionCode = 160
+FunctionCode = HealUserByTargetAtkLowerTargetAtk1
 Flags = CanProtect,CanMagicCoat,CanMirrorMove
 Description = Lowers the target's Attack stat, then restores its own HP by the target's Attack.
 #-------------------------------
@@ -3324,7 +3324,7 @@ Category = Status
 Accuracy = 0
 TotalPP = 5
 Target = User
-FunctionCode = 0D8
+FunctionCode = HealUserDependingOnSunshine
 Flags = CanSnatch
 Description = The user restores 1/2 of its HP, or 2/3rds in Sunshine.
 #-------------------------------
@@ -3335,7 +3335,7 @@ Category = Status
 Accuracy = 100
 TotalPP = 10
 Target = NearOther
-FunctionCode = 064
+FunctionCode = SetTargetAbilityToInsomnia
 Flags = CanProtect,CanMagicCoat,CanMirrorMove
 Description = A seed that causes worry is planted on the foe. It prevents sleep by making its Ability Insomnia.
 #-------------------------------
@@ -3372,7 +3372,7 @@ Power = 70
 Accuracy = 100
 TotalPP = 15
 Target = NearOther
-FunctionCode = 18C
+FunctionCode = IncreasedPriorityInSunshine
 Flags = CanProtect,CanMirrorMove
 Description = Attacks by gliding on the ground. This move always goes first in sun.
 #-------------------------------
@@ -3383,7 +3383,7 @@ Category = Status
 Accuracy = 0
 TotalPP = 5
 Target = UserAndAllies
-FunctionCode = 189
+FunctionCode = HealUserAndAlliesQuarterOfTotalHPCureStatus
 Description = Restores HP and heals status of itself and its ally Pokémon in battle by using Jungle Powers.
 #-------------------------------
 [PRECIPICEBLADES]
@@ -3589,7 +3589,7 @@ Category = Status
 Accuracy = 0
 TotalPP = 5
 Target = User
-FunctionCode = 16D
+FunctionCode = HealUserDependingOnSandstorm
 Flags = CanSnatch
 Description = The user regains up to half of its max HP. It restores more HP in a sandstorm.
 #-------------------------------
@@ -4341,7 +4341,7 @@ Power = 75
 Accuracy = 100
 TotalPP = 12
 Target = NearOther
-FunctionCode = FlinchWhileAsleep
+FunctionCode = FlinchTargetFailsIfUserNotAsleep
 Flags = CanProtect,CanMirrorMove,Sound
 EffectChance = 50
 Description = An attack that can be used only if the user is asleep. It has a 50% chance to make the target flinch.
@@ -4379,7 +4379,7 @@ Accuracy = 100
 TotalPP = 10
 Target = NearOther
 Priority = 3
-FunctionCode = FlinchFirstTurnUseOnly
+FunctionCode = FlinchTargetFailsIfNotUserFirstTurn
 Flags = CanProtect,CanMirrorMove
 EffectChance = 100
 Description = An attack that hits first and makes the target flinch. It only works the first turn the user is in battle.
@@ -4565,7 +4565,7 @@ Accuracy = 0
 TotalPP = 10
 Target = None
 Priority = 1
-FunctionCode = 0D4
+FunctionCode = MultiTurnAttackBideThenReturnDoubleDamage
 Flags = CanProtect
 Description = The user endures attacks for two turns, then strikes back to cause double the damage taken.
 #-------------------------------
@@ -4589,7 +4589,7 @@ Power = 1
 Accuracy = 100
 TotalPP = 5
 Target = NearOther
-FunctionCode = 06E
+FunctionCode = LowerTargetHPToUserHP
 Flags = CanProtect,CanMirrorMove
 Description = An attack move that cuts down the target's HP to equal the user's HP.
 #-------------------------------
@@ -4650,7 +4650,7 @@ Power = 1
 Accuracy = 100
 TotalPP = 10
 Target = NearOther
-FunctionCode = 06C
+FunctionCode = FixedDamageHalfTargetHP
 Flags = CanProtect,CanMirrorMove
 Description = The user chomps hard on the target with its sharp front fangs. It cuts the target's HP to half.
 #-------------------------------
@@ -4705,7 +4705,7 @@ Category = Status
 Accuracy = 0
 TotalPP = 30
 Target = User
-FunctionCode = 0ED
+FunctionCode = SwitchOutUserPassOnEffects
 Description = The user switches places with a party Pokémon in waiting, passing along any stat step changes.
 #-------------------------------
 [BELLYDRUM]
@@ -4824,7 +4824,7 @@ Category = Status
 Accuracy = 100
 TotalPP = 12
 Target = NearOther
-FunctionCode = 066
+FunctionCode = SetTargetAbilityToUserAbility
 Flags = CanProtect,CanMagicCoat,CanMirrorMove,Dance
 Description = The user dances to compel the target to mimic it, making the target's Ability the same as the user's.
 #-------------------------------
@@ -4901,7 +4901,7 @@ Category = Status
 Accuracy = 0
 TotalPP = 5
 Target = UserAndAllies
-FunctionCode = 019
+FunctionCode = CureUserPartyStatus
 Flags = CanSnatch,Sound
 Description = The user makes a soothing bell chime to heal the status problems of all the party Pokémon.
 #-------------------------------
@@ -4999,7 +4999,7 @@ Category = Status
 Accuracy = 0
 TotalPP = 10
 Target = User
-FunctionCode = 0D5
+FunctionCode = HealUserHalfOfTotalHP
 Flags = CanSnatch
 Description = The user restores its own HP by up to half of its maximum HP.
 #-------------------------------
@@ -5042,7 +5042,7 @@ Category = Status
 Accuracy = 0
 TotalPP = 15
 Target = NearOther
-FunctionCode = 05A
+FunctionCode = UserTargetAverageHP
 Flags = CanProtect,CanMirrorMove
 Description = The user adds its HP to the target's HP, then equally shares the combined HP with the target.
 #-------------------------------
@@ -5085,7 +5085,7 @@ Category = Status
 Accuracy = 0
 TotalPP = 8
 Target = User
-FunctionCode = 0D5
+FunctionCode = HealUserHalfOfTotalHP
 Flags = CanSnatch
 Description = Restoring its own cells, the user restores its own HP by half of its max HP.
 #-------------------------------
@@ -5118,7 +5118,7 @@ Category = Status
 Accuracy = 0
 TotalPP = 15
 Target = User
-FunctionCode = 018
+FunctionCode = CureUserStatus
 Flags = CanSnatch
 Description = The user rests to cure itself of any status condition.
 #-------------------------------
@@ -5130,7 +5130,7 @@ Accuracy = 0
 TotalPP = 15
 Target = NearOther
 Priority = -6
-FunctionCode = 0EB
+FunctionCode = SwitchOutTargetStatusMove
 Flags = CanMagicCoat,CanMirrorMove,Sound
 Description = The foe is forced to switch out to a random ally. Always goes last. Ends wild battles.
 #-------------------------------
@@ -5141,7 +5141,7 @@ Category = Status
 Accuracy = 0
 TotalPP = 20
 Target = UserSide
-FunctionCode = 01A
+FunctionCode = StartUserSideImmunityToInflictedStatus
 Flags = CanSnatch
 Description = The user creates a protective field that prevents status problems for ten turns.
 #-------------------------------
@@ -5196,7 +5196,7 @@ Category = Status
 Accuracy = 100
 TotalPP = 12
 Target = NearOther
-FunctionCode = 063
+FunctionCode = SetTargetAbilityToSimple
 Flags = CanProtect,CanMagicCoat,CanMirrorMove
 Description = The user shoots a mysterious beam that changes the target's Ability to Simple.
 #-------------------------------
@@ -5217,7 +5217,7 @@ Category = Status
 Accuracy = 0
 TotalPP = 8
 Target = User
-FunctionCode = 0D5
+FunctionCode = HealUserHalfOfTotalHP
 Flags = CanSnatch
 Description = The user slacks off, restoring its own HP by up to half of its maximum HP.
 #-------------------------------
@@ -5239,7 +5239,7 @@ Category = Status
 Accuracy = 0
 TotalPP = 10
 Target = User
-FunctionCode = 0D5
+FunctionCode = HealUserHalfOfTotalHP
 Flags = CanSnatch
 Description = The user restores its own HP by up to half of its maximum HP.
 #-------------------------------
@@ -5371,7 +5371,7 @@ Accuracy = 0
 TotalPP = 15
 Target = NearOther
 Priority = -6
-FunctionCode = 0EB
+FunctionCode = SwitchOutTargetStatusMove
 Flags = CanMagicCoat,CanMirrorMove,Wind
 Description = The foe is forced to switch out to a random ally. Always goes last. Ends wild battles.
 #-------------------------------
@@ -5382,7 +5382,7 @@ Category = Status
 Accuracy = 0
 TotalPP = 10
 Target = User
-FunctionCode = 0D7
+FunctionCode = HealUserPositionNextTurn
 Flags = CanSnatch
 Description = One turn after this move is used, the target's HP is restored by half the user's maximum HP.
 #-------------------------------
@@ -5650,7 +5650,7 @@ Category = Status
 Accuracy = 0
 TotalPP = 5
 Target = NearOther
-FunctionCode = 15B
+FunctionCode = CureTargetStatusHealUserHalfOfTotalHP
 Flags = CanProtect,CanMagicCoat,CanMirrorMove
 Description = The user heals the target's status condition. If so, it also restores the user's own HP.
 #-------------------------------
@@ -5721,7 +5721,7 @@ Power = 140
 Accuracy = 100
 TotalPP = 10
 Target = NearOther
-FunctionCode = 111
+FunctionCode = AttackTwoTurnsLater
 Flags = Foretold
 Description = Two turns after this move is used, a hunk of psychic energy attacks the target.
 #-------------------------------
@@ -5733,7 +5733,7 @@ Power = 60
 Accuracy = 100
 TotalPP = 12
 Target = NearOther
-FunctionCode = 0DE
+FunctionCode = HealUserByHalfOfDamageDoneDoubleDamageIfTargetAsleep
 Flags = CanProtect,CanMirrorMove
 Description = Heals the user for 50% of the damage caused. Power doubles if the foe is asleep.
 #-------------------------------
@@ -5899,7 +5899,7 @@ Accuracy = 100
 TotalPP = 15
 Target = None
 Priority = -5
-FunctionCode = 072
+FunctionCode = CounterSpecialDamage
 Flags = CanProtect
 Description = A retaliation move that counters any special attack, inflicting double the damage taken.
 #-------------------------------
@@ -6009,7 +6009,7 @@ Category = Status
 Accuracy = 0
 TotalPP = 5
 Target = NearAlly
-FunctionCode = 0DF
+FunctionCode = HealTargetHalfOfTotalHP
 Flags = CanProtect,CanMagicCoat,Pulse
 Description = The user emits a healing pulse which restores the target's HP by up to half of its max HP.
 #-------------------------------
@@ -6020,7 +6020,7 @@ Category = Status
 Accuracy = 0
 TotalPP = 10
 Target = User
-FunctionCode = 0E3
+FunctionCode = UserFaintsHealAndCureReplacement
 Flags = CanSnatch
 Description = The user faints. In return, the Pokémon taking its place will have its HP restored and status cured.
 #-------------------------------
@@ -6064,7 +6064,7 @@ Category = Status
 Accuracy = 0
 TotalPP = 10
 Target = User
-FunctionCode = 0E4
+FunctionCode = UserFaintsHealAndCureReplacementRestorePP
 Flags = CanSnatch,Dance
 Description = The user faints. In return, the Pokémon taking its place will have its status and HP fully restored.
 #-------------------------------
@@ -6076,7 +6076,7 @@ Accuracy = 0
 TotalPP = 12
 Target = User
 Priority = 4
-FunctionCode = 0B1
+FunctionCode = BounceBackProblemCausingStatusMoves
 Description = Until end of turn, reflects status moves that target the user or create hazards around it.
 #-------------------------------
 [POWERSPLIT]
@@ -6108,7 +6108,7 @@ Category = Status
 Accuracy = 100
 TotalPP = 10
 Target = NearOther
-FunctionCode = 01B
+FunctionCode = GiveUserStatusToTarget
 Flags = CanProtect,CanMirrorMove
 Description = Using its psychic power of suggestion, the user transfers its status problems to the target.
 #-------------------------------
@@ -6130,7 +6130,7 @@ Category = Status
 Accuracy = 0
 TotalPP = 5
 Target = User
-FunctionCode = 0D9
+FunctionCode = HealUserFullyAndFallAsleep
 Flags = CanSnatch
 Description = The user goes to sleep to fully restore their HP and heal any status conditions.
 #-------------------------------
@@ -6141,7 +6141,7 @@ Category = Status
 Accuracy = 0
 TotalPP = 10
 Target = NearOther
-FunctionCode = 065
+FunctionCode = SetUserAbilityToTargetAbility
 Description = The user mimics the target completely, copying the target's natural Ability.
 #-------------------------------
 [SKILLSWAP]
@@ -6151,7 +6151,7 @@ Category = Status
 Accuracy = 0
 TotalPP = 10
 Target = NearOther
-FunctionCode = 067
+FunctionCode = UserTargetSwapAbilities
 Flags = CanProtect,CanMirrorMove
 Description = The user employs its psychic power to exchange Abilities with the target.
 #-------------------------------
@@ -6163,7 +6163,7 @@ Accuracy = 0
 TotalPP = 15
 Target = User
 Priority = -6
-FunctionCode = 0EA
+FunctionCode = SwitchOutUserStatusMove
 Description = Use it to flee from any wild Pokémon, or switch out of other battles.
 #-------------------------------
 [TRICK]
@@ -6440,7 +6440,7 @@ Power = 140
 Accuracy = 100
 TotalPP = 5
 Target = NearOther
-FunctionCode = 111
+FunctionCode = AttackTwoTurnsLater
 Flags = Foretold
 Description = Two turns after this move is used, the user blasts the target with a concentrated bundle of light.
 #-------------------------------
@@ -6554,7 +6554,7 @@ Power = 60
 Accuracy = 100
 TotalPP = 5
 Target = NearOther
-FunctionCode = 175
+FunctionCode = HitTwoTimesFlinchTarget
 Flags = CanProtect
 EffectChance = 30
 Description = The user rotates, centering the hex nut in its chest, and then strikes twice. Each hit has a 30% chance to cause flinching.
@@ -6630,7 +6630,7 @@ Accuracy = 100
 TotalPP = 10
 Target = None
 Priority = -5
-FunctionCode = 073
+FunctionCode = CounterDamagePlusHalf
 Flags = CanProtect,CanMirrorMove
 Description = The user retaliates with much greater power against the target that last inflicted damage on it.
 #-------------------------------
@@ -6807,7 +6807,7 @@ Power = 80
 Accuracy = 100
 TotalPP = 10
 Target = AllNearOthers
-FunctionCode = 15A
+FunctionCode = CureTargetBurn
 Flags = CanProtect,CanMirrorMove,Sound
 EffectChance = 100
 Description = The user bursts into song, emitting many bubbles. Any burnt Pokémon will be healed by these bubbles.
@@ -7065,7 +7065,7 @@ Category = Status
 Accuracy = 0
 TotalPP = 10
 Target = UserAndAllies
-FunctionCode = 17E
+FunctionCode = HealUserAndAlliesQuarterOfTotalHP
 Flags = CanSnatch
 Description = The user scatters mysterious water around and restores the HP of itself and allies by 25%.
 #-------------------------------
@@ -7089,7 +7089,7 @@ Power = 70
 Accuracy = 100
 TotalPP = 5
 Target = NearOther
-FunctionCode = 0EE
+FunctionCode = SwitchOutUserDamagingMove
 Flags = CanProtect,CanMirrorMove
 Description = After making its attack, the user rushes back to switch places with a party Pokémon in waiting.
 #-------------------------------
