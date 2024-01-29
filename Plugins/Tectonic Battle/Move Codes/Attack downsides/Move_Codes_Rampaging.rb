@@ -1,7 +1,7 @@
 #===============================================================================
 # User must use this move for 2 more rounds. (Outrage, etc.)
 #===============================================================================
-class PokeBattle_Move_55F < PokeBattle_Move
+class PokeBattle_Move_Rampage < PokeBattle_Move
     def pbEffectAfterAllHits(user, target)
         user.applyEffect(:Outrage, 3) if !target.damageState.unaffected && !user.effectActive?(:Outrage)
         user.tickDownAndProc(:Outrage)
@@ -19,7 +19,7 @@ end
 #       Soundproof. I think this is an oversight, so I've let Soundproof Pokémon
 #       be unaffected by Uproar waking/non-sleeping effects.
 #===============================================================================
-class PokeBattle_Move_0D1 < PokeBattle_Move
+class PokeBattle_Move_RampagePreventSleeping < PokeBattle_Move
     def pbEffectGeneral(user)
         return if user.effectActive?(:Uproar)
         user.applyEffect(:Uproar, 3)
@@ -34,7 +34,7 @@ end
 #===============================================================================
 # User must use this move for 2 more rounds. Raises Speed if KOs. (Tyrant's Fit)
 #===============================================================================
-class PokeBattle_Move_5A6 < PokeBattle_Move
+class PokeBattle_Move_RampageKOsRaiseSpeed1 < PokeBattle_Move
     def pbEffectAfterAllHits(user, target)
         user.applyEffect(:Outrage, 3) if !target.damageState.unaffected && !user.effectActive?(:Outrage)
         user.tickDownAndProc(:Outrage)

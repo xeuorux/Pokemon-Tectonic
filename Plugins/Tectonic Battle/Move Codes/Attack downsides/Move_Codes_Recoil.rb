@@ -1,26 +1,26 @@
 #===============================================================================
 # User takes recoil damage equal to 1/5 of the damage this move dealt.
 #===============================================================================
-class PokeBattle_Move_599 < PokeBattle_RecoilMove
+class PokeBattle_Move_RecoilFifthOfDamageDealt < PokeBattle_RecoilMove
     def recoilFactor; return 0.2; end
 end
 
 #===============================================================================
 # User takes recoil damage equal to 1/4 of the damage this move dealt.
 #===============================================================================
-class PokeBattle_Move_0FA < PokeBattle_RecoilMove
+class PokeBattle_Move_RecoilQuarterOfDamageDealt < PokeBattle_RecoilMove
     def recoilFactor;  return 0.25; end
 end
 
 #===============================================================================
 # User takes recoil damage equal to 1/3 of the damage this move dealt.
 #===============================================================================
-class PokeBattle_Move_0FB < PokeBattle_RecoilMove
+class PokeBattle_Move_RecoilThirdOfDamageDealt < PokeBattle_RecoilMove
     def recoilFactor;  return (1.0 / 3.0); end
 end
 
 # Empowered Brave Bird
-class PokeBattle_Move_654 < PokeBattle_Move_0FB
+class PokeBattle_Move_EmpoweredBraveBird < PokeBattle_Move_RecoilThirdOfDamageDealt
     include EmpoweredMove
 end
 
@@ -28,7 +28,7 @@ end
 # User takes recoil damage equal to 1/3 of the damage this move dealt.
 # May paralyze the target. (Volt Tackle)
 #===============================================================================
-class PokeBattle_Move_0FD < PokeBattle_RecoilMove
+class PokeBattle_Move_RecoilThirdOfDamageDealtNumbTarget < PokeBattle_RecoilMove
     def recoilFactor;  return (1.0 / 3.0); end
 
     def pbAdditionalEffect(user, target)
@@ -45,7 +45,7 @@ end
 # User takes recoil damage equal to 1/3 of the damage this move dealt.
 # May burn the target. (Flare Blitz)
 #===============================================================================
-class PokeBattle_Move_0FE < PokeBattle_RecoilMove
+class PokeBattle_Move_RecoilThirdOfDamageDealtBurnTarget < PokeBattle_RecoilMove
     def recoilFactor; return (1.0 / 3.0); end
 
     def pbAdditionalEffect(user, target)
@@ -59,7 +59,7 @@ class PokeBattle_Move_0FE < PokeBattle_RecoilMove
 end
 
 # Empowered Flareblitz
-class PokeBattle_Move_641 < PokeBattle_Move_0FE
+class PokeBattle_Move_EmpoweredFlareBlitz < PokeBattle_Move_RecoilThirdOfDamageDealtBurnTarget
     include EmpoweredMove
 end
 
@@ -67,7 +67,7 @@ end
 # User takes recoil damage equal to 1/2 of the damage this move dealt.
 # (Head Smash, Light of Ruin)
 #===============================================================================
-class PokeBattle_Move_0FC < PokeBattle_RecoilMove
+class PokeBattle_Move_RecoilHalfOfDamageDealt < PokeBattle_RecoilMove
     def recoilFactor;  return 0.5; end
 end
 
@@ -75,14 +75,14 @@ end
 # User takes recoil damage equal to 2/3 of the damage this move dealt.
 # (Head Charge)
 #===============================================================================
-class PokeBattle_Move_502 < PokeBattle_RecoilMove
+class PokeBattle_Move_RecoilTwoThirdsOfDamageDealt < PokeBattle_RecoilMove
     def recoilFactor; return (2.0 / 3.0); end
 end
 
 #===============================================================================
 # 100% Recoil Move (Thunder Belly)
 #===============================================================================
-class PokeBattle_Move_56B < PokeBattle_RecoilMove
+class PokeBattle_Move_RecoilFullDamageDealt < PokeBattle_RecoilMove
     def recoilFactor; return 1.0; end
 end
 
@@ -90,7 +90,7 @@ end
 # If attack misses, user takes crash damage of 1/2 of max HP.
 # (High Jump Kick, Jump Kick)
 #===============================================================================
-class PokeBattle_Move_10B < PokeBattle_Move
+class PokeBattle_Move_CrashDamageIfFailsUnusableInGravity < PokeBattle_Move
     def recoilMove?;        return true; end
     def unusableInGravity?; return true; end
 
@@ -109,7 +109,7 @@ end
 # If it deals less than 50% of the target’s max health, the user (Capacity Burst)
 # takes the difference as recoil.
 #===============================================================================
-class PokeBattle_Move_197 < PokeBattle_Move
+class PokeBattle_Move_DamageBelowHalfTakenAsRecoil < PokeBattle_Move
     def pbEffectAfterAllHits(user, target)
         return unless target.damageState.totalCalcedDamage < target.totalhp / 2
         recoilAmount = (target.totalhp / 2) - target.damageState.totalCalcedDamage
@@ -128,7 +128,7 @@ end
 #===============================================================================
 # User loses half their current hp in recoil. (Steel Beam, Mist Burst)
 #===============================================================================
-class PokeBattle_Move_510 < PokeBattle_Move
+class PokeBattle_Move_UserLosesHalfOfCurrentHP < PokeBattle_Move
     def pbEffectAfterAllHits(user, target)
         return if target.damageState.unaffected
         return unless user.takesIndirectDamage?
@@ -145,7 +145,7 @@ end
 #===============================================================================
 # User loses one third of their current hp in recoil. (Shred Shot, Shards)
 #===============================================================================
-class PokeBattle_Move_511 < PokeBattle_Move
+class PokeBattle_Move_UserLosesThirdOfCurrentHP < PokeBattle_Move
     def pbEffectAfterAllHits(user, target)
         return if target.damageState.unaffected
         return unless user.takesIndirectDamage?
@@ -161,7 +161,7 @@ end
 #===============================================================================
 # Damages user by 1/2 of its max HP, even if this move misses. (Mind Blown)
 #===============================================================================
-class PokeBattle_Move_170 < PokeBattle_Move
+class PokeBattle_Move_UserLosesHalfOfTotalHPExplosive < PokeBattle_Move
     def worksWithNoTargets?; return true; end
 
     def pbMoveFailed?(user, _targets, show_message)
@@ -200,7 +200,7 @@ end
 # User takes recoil damage equal to 1/3 of the damage this move dealt. (Undying Rush)
 # But can't faint from that recoil damage.
 #===============================================================================
-class PokeBattle_Move_5F6 < PokeBattle_RecoilMove
+class PokeBattle_Move_RecoilThirdOfDamageDealtButCantFaint < PokeBattle_RecoilMove
     def recoilFactor;  return (1.0 / 3.0); end
     
     def pbRecoilDamage(user, target)

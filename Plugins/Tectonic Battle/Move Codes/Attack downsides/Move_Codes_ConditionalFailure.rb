@@ -2,7 +2,7 @@
 # Fails if the target didn't chose a damaging move to use this round, or has
 # already moved. (Sucker Punch)
 #===============================================================================
-class PokeBattle_Move_116 < PokeBattle_Move
+class PokeBattle_Move_FailsIfTargetActed < PokeBattle_Move
     def pbFailsAgainstTarget?(_user, target, show_message)
         if @battle.choices[target.index][0] != :UseMove
             @battle.pbDisplay(_INTL("But it failed, since #{target.pbThis(true)} didn't choose to attack!")) if show_message
@@ -36,7 +36,7 @@ end
 #===============================================================================
 # Fails if this isn't the user's first turn. (First Impression)
 #===============================================================================
-class PokeBattle_Move_174 < PokeBattle_Move
+class PokeBattle_Move_FailsIfNotUserFirstTurn < PokeBattle_Move
     def pbMoveFailed?(user, _targets, show_message)
         unless user.firstTurn?
             @battle.pbDisplay(_INTL("But it failed, since it isn't #{user.pbThis(true)}'s first turn!")) if show_message
@@ -49,7 +49,7 @@ end
 #===============================================================================
 # Can only be used on the first turn. Deals more damage if the user was hurt this turn. (Stare Down)
 #===============================================================================
-class PokeBattle_Move_535 < PokeBattle_Move
+class PokeBattle_Move_StareDown < PokeBattle_Move
     def pbMoveFailed?(user, _targets, show_message)
         unless user.firstTurn?
             @battle.pbDisplay(_INTL("But it failed, since it isn't #{user.pbThis(true)}'s first turn!")) if show_message
@@ -71,7 +71,7 @@ end
 #===============================================================================
 # Fails unless user has already used all other moves it knows. (Last Resort)
 #===============================================================================
-class PokeBattle_Move_125 < PokeBattle_Move
+class PokeBattle_Move_FailsIfUserHasUnusedMove < PokeBattle_Move
     def pbMoveFailed?(user, _targets, show_message)
         hasThisMove = false
         hasOtherMoves = false

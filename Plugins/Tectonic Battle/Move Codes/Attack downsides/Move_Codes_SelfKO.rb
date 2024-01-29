@@ -1,7 +1,7 @@
 #===============================================================================
 # User faints, even if the move does nothing else. (Explosion, Self-Destruct)
 #===============================================================================
-class PokeBattle_Move_0E0 < PokeBattle_Move
+class PokeBattle_Move_UserFaintsExplosive < PokeBattle_Move
     def worksWithNoTargets?; return true; end
     def pbNumHits(_user, _targets, _checkingForAI = false); return 1; end
 
@@ -88,7 +88,7 @@ end
 # Inflicts fixed damage equal to user's current HP. (Final Gambit)
 # User faints (if successful).
 #===============================================================================
-class PokeBattle_Move_0E1 < PokeBattle_FixedDamageMove
+class PokeBattle_Move_UserFaintsFixedDamageUserHP < PokeBattle_FixedDamageMove
     def pbNumHits(_user, _targets, _checkingForAI = false); return 1; end
 
     def pbOnStartUse(user, _targets)
@@ -119,7 +119,7 @@ end
 # User faints, even if the move does nothing else. (Spiky Burst)
 # Deals extra damage per "Spike" on the enemy side.
 #===============================================================================
-class PokeBattle_Move_5BC < PokeBattle_Move_0E0
+class PokeBattle_Move_UserFaintsExplosiveScalesWithEnemySideSpikes < PokeBattle_Move_UserFaintsExplosive
     def pbBaseDamage(baseDmg, _user, target)
         target.pbOwnSide.eachEffect(true) do |effect, value, effectData|
             next unless effectData.is_spike?

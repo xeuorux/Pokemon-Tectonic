@@ -1,8 +1,7 @@
-
 #===============================================================================
 # User loses their Fire type. Fails if user is not Fire-type. (Burn Up)
 #===============================================================================
-class PokeBattle_Move_162 < PokeBattle_Move
+class PokeBattle_Move_UserLosesFireType < PokeBattle_Move
     def pbMoveFailed?(user, _targets, show_message)
         unless user.pbHasType?(:FIRE)
             @battle.pbDisplay(_INTL("But it failed, since #{user.pbThis(true)} isn't Fire-type!")) if show_message
@@ -23,7 +22,7 @@ end
 #===============================================================================
 # User loses their Ice type. Fails if user is not Ice-type. (Sublimate)
 #===============================================================================
-class PokeBattle_Move_51B < PokeBattle_Move
+class PokeBattle_Move_UserLosesIceType < PokeBattle_Move
     def pbMoveFailed?(user, _targets, show_message)
         unless user.pbHasType?(:ICE)
             @battle.pbDisplay(_INTL("But it failed, since #{user.pbThis(true)} is not Ice-type!")) if show_message
@@ -44,7 +43,7 @@ end
 #===============================================================================
 # Poison's the user, even if normally immune to poison. (Grime Grapple)
 #===============================================================================
-class PokeBattle_Move_514 < PokeBattle_Move
+class PokeBattle_Move_UserIsPoisoned < PokeBattle_Move
     def pbEffectAfterAllHits(user, target)
         return if target.damageState.unaffected
         return if user.poisoned?
@@ -61,7 +60,7 @@ end
 #===============================================================================
 # Move disables self. (Six Feet Under)
 #===============================================================================
-class PokeBattle_Move_523 < PokeBattle_Move
+class PokeBattle_Move_MoveDisablesSelf < PokeBattle_Move
     def pbEffectAfterAllHits(user, _target)
         user.applyEffect(:Disable, 5)
     end
@@ -74,7 +73,7 @@ end
 #===============================================================================
 # Target's speed is raised. (Propellant)
 #===============================================================================
-class PokeBattle_Move_542 < PokeBattle_Move
+class PokeBattle_Move_RaisesTargetSpeed1 < PokeBattle_Move
     def pbAdditionalEffect(user, target)
         return if target.damageState.substitute
         target.tryRaiseStat(:SPEED, user, move: self)
