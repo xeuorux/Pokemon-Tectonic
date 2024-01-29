@@ -48,7 +48,7 @@ def getNumbEffectScore(user, target, ignoreCheck: false)
         score += 60 if target.hasDamagingAttack?
         score += 60 if user && target.pbSpeed(true) > user.pbSpeed(true)
         score += STATUS_PUNISHMENT_BONUS if user && (user.hasStatusPunishMove? ||
-                                            user.pbHasMoveFunction?("07C", "579")) # Smelling Salts, Spectral Tongue
+                                            user.pbHasMoveFunction?("SmellingSalts", "579")) # Smelling Salts, Spectral Tongue
         score += 60 if user&.hasActiveAbilityAI?(:TENDERIZE)
         score -= getNaturalCureScore(user, target, score) if target.hasActiveAbilityAI?(:NATURALCURE)
     else
@@ -73,7 +73,7 @@ def getPoisonEffectScore(user, target, ignoreCheck: false)
                 score *= 2 if user.ownersPolicies.include?(:PRIORITIZEDOTS) && user.opposes?(target)
             end
         end
-        score += STATUS_PUNISHMENT_BONUS if user && (user.hasStatusPunishMove? || user.pbHasMoveFunction?("07B","58A")) # Venoshock/Vipershock
+        score += STATUS_PUNISHMENT_BONUS if user && (user.hasStatusPunishMove? || user.pbHasMoveFunction?("DoubleDamageAgainstPoisoned","TripleDamageAgainstPoisoned")) # Venoshock/Vipershock
         score -= getNaturalCureScore(user, target, score) if target.hasActiveAbilityAI?(:NATURALCURE)
     else
         return 0
@@ -101,7 +101,7 @@ def getBurnEffectScore(user, target, ignoreCheck: false)
             score += 30 unless target.hasSpecialAttack?
         end
         
-        score += STATUS_PUNISHMENT_BONUS if user && (user.hasStatusPunishMove? || user.pbHasMoveFunction?("50E")) # Flare Up
+        score += STATUS_PUNISHMENT_BONUS if user && (user.hasStatusPunishMove? || user.pbHasMoveFunction?("DoubleDamageAgainstBurned")) # Flare Up
         score -= getNaturalCureScore(user, target, score) if target.hasActiveAbilityAI?(:NATURALCURE)
     else
         return 0
@@ -129,7 +129,7 @@ def getFrostbiteEffectScore(user, target, ignoreCheck: false)
             score += 30 unless target.hasPhysicalAttack?
         end
 
-        score += STATUS_PUNISHMENT_BONUS if user && (user.hasStatusPunishMove? || user.pbHasMoveFunction?("50C")) # Ice Impact
+        score += STATUS_PUNISHMENT_BONUS if user && (user.hasStatusPunishMove? || user.pbHasMoveFunction?("DoubleDamageAgainstFrostbitten")) # Ice Impact
         score -= getNaturalCureScore(user, target, score) if target.hasActiveAbilityAI?(:NATURALCURE)
     else
         return 0
@@ -351,8 +351,8 @@ def getMultiStatUpEffectScore(statUpArray, user, target, fakeStepModifier: 0, ev
         end
 		
 		# Increase the score more if getting offense and defense from same stat
-		increase += 12 if statSymbol == :DEFENSE && target.pbHasMoveFunction?("177") # Body Press
-		increase += 12 if statSymbol == :SPECIAL_DEFENSE && target.pbHasMoveFunction?("540") # Aura Trick
+		increase += 12 if statSymbol == :DEFENSE && target.pbHasMoveFunction?("AttacksWithDefense") # Body Press
+		increase += 12 if statSymbol == :SPECIAL_DEFENSE && target.pbHasMoveFunction?("AttacksWithSpDef") # Aura Trick
 		increase = 30 if %i[DEFENSE SPECIAL_DEFENSE].include?(statSymbol) && increase > 30 # Restrain the ai if it has defense move and took a hit
 
         # Different stat steps have different values
@@ -416,12 +416,12 @@ def getMultiStatUpEffectScore(statUpArray, user, target, fakeStepModifier: 0, ev
         if target.pbHasAnyStatus? && !target.hasActiveAbilityAI?(:VICTORYMOLT)
             if target.burned?
                 if statSymbol == :ATTACK
-                    totalIncrease *= 0.66 unless target.pbHasMoveFunction?("07E") # Facade / Hard Feelings
+                    totalIncrease *= 0.66 unless target.pbHasMoveFunction?("DoubleDamageUserStatused") # Facade / Hard Feelings
                 end
                 damageStatus = 1
             elsif target.frostbitten?
                 if statSymbol == :SPECIAL_ATTACK
-                    totalIncrease *= 0.66 unless target.pbHasMoveFunction?("07E") # Facade / Hard Feelings
+                    totalIncrease *= 0.66 unless target.pbHasMoveFunction?("DoubleDamageUserStatused") # Facade / Hard Feelings
                 end
                 damageStatus = 1
             elsif target.numbed?

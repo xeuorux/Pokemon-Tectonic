@@ -1,7 +1,7 @@
 #===============================================================================
 # Resets all target's stat steps to 0. (Clear Smog)
 #===============================================================================
-class PokeBattle_Move_050 < PokeBattle_Move
+class PokeBattle_Move_ResetTargetStatSteps < PokeBattle_Move
     def pbEffectAgainstTarget(_user, target)
         if target.damageState.calcDamage > 0 && !target.damageState.substitute && target.hasAlteredStatSteps?
             target.pbResetStatSteps
@@ -23,7 +23,7 @@ end
 #===============================================================================
 # User and target swap all their stat steps. (Heart Swap)
 #===============================================================================
-class PokeBattle_Move_054 < PokeBattle_Move
+class PokeBattle_Move_SwapStatSteps < PokeBattle_Move
     def ignoresSubstitute?(_user); return true; end
 
     def pbEffectAgainstTarget(user, target)
@@ -49,7 +49,7 @@ end
 #===============================================================================
 # User copies the target's stat steps. (Psych Up)
 #===============================================================================
-class PokeBattle_Move_055 < PokeBattle_Move
+class PokeBattle_Move_CopyStatSteps < PokeBattle_Move
     def ignoresSubstitute?(_user); return true; end
 
     def pbEffectAgainstTarget(user, target)
@@ -76,7 +76,7 @@ end
 # and target's positive stat steps become 0, before damage calculation.
 # (Spectral Thief, Scam)
 #===============================================================================
-class PokeBattle_Move_15D < PokeBattle_Move
+class PokeBattle_Move_StealPositiveStatSteps < PokeBattle_Move
     def statStepStealingMove?; return true; end
     
     def ignoresSubstitute?(_user); return true; end
@@ -115,7 +115,7 @@ end
 #===============================================================================
 # Reverses all stat changes of the target. (Topsy-Turvy)
 #===============================================================================
-class PokeBattle_Move_141 < PokeBattle_Move
+class PokeBattle_Move_ReverseTargetStatSteps < PokeBattle_Move
     def pbFailsAgainstTarget?(_user, target, show_message)
         failed = true
         GameData::Stat.each_battle do |s|
@@ -151,31 +151,9 @@ class PokeBattle_Move_141 < PokeBattle_Move
 end
 
 #===============================================================================
-# Swaps the user's Sp Attack and Sp Def stats. (Energy Trick)
-#===============================================================================
-class PokeBattle_Move_056 < PokeBattle_Move
-    def pbEffectGeneral(user)
-        baseSpAtk = user.base_special_attack
-        baseSpDef = user.base_special_defense
-        user.effects[:BaseSpecialAttack] = baseSpDef
-        user.effects[:BaseSpecialDefense] = baseSpAtk
-        user.effects[:EnergyTrick] = !user.effects[:EnergyTrick]
-        @battle.pbDisplay(_INTL("{1} switched its base Sp. Atk and Sp. Def!", user.pbThis))
-    end
-
-    def getEffectScore(user, _target)
-        return 0 if user.effectActive?(:EnergyTrick) # No flip-flopping
-        baseSpAtk = user.base_special_attack
-        baseSpDef = user.base_special_defense
-        return 100 if baseSpDef > baseSpAtk # Prefer a higher Attack
-        return 0
-    end
-end
-
-#===============================================================================
 # Swaps the user's Attack and Defense stats. (Power Trick)
 #===============================================================================
-class PokeBattle_Move_057 < PokeBattle_Move
+class PokeBattle_Move_SwapPhysicalStats < PokeBattle_Move
     def pbEffectGeneral(user)
         baseAttack = user.base_attack
         baseDefense = user.base_defense
@@ -195,10 +173,32 @@ class PokeBattle_Move_057 < PokeBattle_Move
 end
 
 #===============================================================================
+# Swaps the user's Sp Attack and Sp Def stats. (Energy Trick)
+#===============================================================================
+class PokeBattle_Move_SwapSpecialStats < PokeBattle_Move
+    def pbEffectGeneral(user)
+        baseSpAtk = user.base_special_attack
+        baseSpDef = user.base_special_defense
+        user.effects[:BaseSpecialAttack] = baseSpDef
+        user.effects[:BaseSpecialDefense] = baseSpAtk
+        user.effects[:EnergyTrick] = !user.effects[:EnergyTrick]
+        @battle.pbDisplay(_INTL("{1} switched its base Sp. Atk and Sp. Def!", user.pbThis))
+    end
+
+    def getEffectScore(user, _target)
+        return 0 if user.effectActive?(:EnergyTrick) # No flip-flopping
+        baseSpAtk = user.base_special_attack
+        baseSpDef = user.base_special_defense
+        return 100 if baseSpDef > baseSpAtk # Prefer a higher Attack
+        return 0
+    end
+end
+
+#===============================================================================
 # Averages the user's and target's base Attack.
 # Averages the user's and target's base Special Attack. (Power Split)
 #===============================================================================
-class PokeBattle_Move_058 < PokeBattle_Move
+class PokeBattle_Move_SwapSpecialStats < PokeBattle_Move
     def pbEffectAgainstTarget(user, target)
         newAtk   = ((user.base_attack + target.base_attack) / 2).floor
         newSpAtk = ((user.base_special_attack + target.base_special_attack) / 2).floor
@@ -228,7 +228,7 @@ end
 # Averages the user's and target's base Defense.
 # Averages the user's and target's base Special Defense. (Guard Split)
 #===============================================================================
-class PokeBattle_Move_059 < PokeBattle_Move
+class PokeBattle_Move_AverageUserTargetDefenses < PokeBattle_Move
     def pbEffectAgainstTarget(user, target)
         newDef   = ((user.base_defense + target.base_defense) / 2).floor
         newSpDef = ((user.base_special_defense + target.base_special_defense) / 2).floor
@@ -257,7 +257,7 @@ end
 #===============================================================================
 # Lower's the target's Attack by 1 step. If so, it raises the user's Attack by 1 step. (Blood Bite)
 #===============================================================================
-class PokeBattle_Move_0A7 < PokeBattle_TargetStatDownMove
+class PokeBattle_Move_StealAttack1 < PokeBattle_TargetStatDownMove
     def initialize(battle, move)
         super
         @statDown = [:ATTACK, 1]
@@ -274,7 +274,7 @@ end
 #===============================================================================
 # Lower's the target's Sp. Atk by 1 step. If so, it raises the user's Sp. Atk by 1 step.
 #===============================================================================
-class PokeBattle_Move_0A8 < PokeBattle_TargetStatDownMove
+class PokeBattle_Move_StealSpAtk1 < PokeBattle_TargetStatDownMove
     def initialize(battle, move)
         super
         @statDown = [:SPECIAL_ATTACK, 1]
@@ -291,7 +291,7 @@ end
 #===============================================================================
 # User and the target copies eachothers highest stat steps. (Sharing Smiles)
 #===============================================================================
-class PokeBattle_Move_014 < PokeBattle_Move
+class PokeBattle_Move_SharingSmiles < PokeBattle_Move
     def ignoresSubstitute?(_user); return true; end
 
     def pbFailsAgainstTarget?(user, target, show_message)
@@ -349,7 +349,7 @@ end
 # If this move KO's the target, increases the user's Attack by 5 steps.
 # (Fell Stinger)
 #===============================================================================
-class PokeBattle_Move_150 < PokeBattle_Move
+class PokeBattle_Move_FaintTargetRaiseAttack5 < PokeBattle_Move
     def pbEffectAfterAllHits(user, target)
         return unless target.damageState.fainted
         user.tryRaiseStat(:ATTACK, user, increment: 5, move: self)
@@ -364,7 +364,7 @@ end
 # If this move KO's the target, increases the user's Sp. Atk by 5 steps.
 # (Finalize)
 #===============================================================================
-class PokeBattle_Move_50B < PokeBattle_Move
+class PokeBattle_Move_FaintTargetRaiseSpAtk5 < PokeBattle_Move
     def pbEffectAfterAllHits(user, target)
         return unless target.damageState.fainted
         user.tryRaiseStat(:SPECIAL_ATTACK, user, increment: 5, move: self)
@@ -376,30 +376,10 @@ class PokeBattle_Move_50B < PokeBattle_Move
 end
 
 #===============================================================================
-# User and target swap their Speed stats (not their stat steps). (Speed Swap)
-#===============================================================================
-class PokeBattle_Move_161 < PokeBattle_Move
-    def ignoresSubstitute?(_user); return true; end
-
-    def pbEffectAgainstTarget(user, target)
-        userSpeed = user.base_speed
-        targetSpeed = target.base_speed
-        user.applyEffect(:BaseSpeed,targetSpeed)
-        target.applyEffect(:BaseSpeed,userSpeed)
-        @battle.pbDisplay(_INTL("{1} switched base Speed with its target!", user.pbThis))
-    end
-
-    def getEffectScore(user, target)
-        score = getWantsToBeSlowerScore(user, target, 8, move: self)
-        return score
-    end
-end
-
-#===============================================================================
 # Decreases the Attack, Special Attack and Speed of all nearby poisoned foes
 # by 3 steps each. (Venom Drench)
 #===============================================================================
-class PokeBattle_Move_140 < PokeBattle_Move
+class PokeBattle_Move_VenomDrench < PokeBattle_Move
     def initialize(battle, move)
         super
         @statDown = [:ATTACK, 3, :SPECIAL_ATTACK, 3, :SPEED, 3]

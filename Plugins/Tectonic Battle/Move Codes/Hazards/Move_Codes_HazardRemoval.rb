@@ -2,7 +2,7 @@
 # Ends all barriers and entry hazards for the target's side. (Defog)
 # And all entry hazard's for the user's side.
 #===============================================================================
-class PokeBattle_Move_049 < PokeBattle_Move
+class PokeBattle_Move_Defog < PokeBattle_Move
     def hazardRemovalMove?; return true; end
     def aiAutoKnows?(pokemon); return false; end
 
@@ -78,7 +78,7 @@ end
 # Removes trapping moves, entry hazards and Leech Seed on user/user's side. Raises speed by 1.
 # (Rapid Spin)
 #===============================================================================
-class PokeBattle_Move_54B < PokeBattle_StatUpMove
+class PokeBattle_Move_RapidSpin < PokeBattle_StatUpMove
     def hazardRemovalMove?; return true; end
     def aiAutoKnows?(pokemon); return false; end
 
@@ -107,7 +107,7 @@ end
 #===============================================================================
 # Removes all hazards on both sides. (Terraform)
 #===============================================================================
-class PokeBattle_Move_538 < PokeBattle_Move
+class PokeBattle_Move_RemovesHazardsBothSides < PokeBattle_Move
     def hazardRemovalMove?; return true; end
     def aiAutoKnows?(pokemon); return false; end
 
@@ -151,7 +151,7 @@ end
 # Removes entry hazards on user's side. 33% Recoil.
 # (Icebreaker)
 #===============================================================================
-class PokeBattle_Move_5B8 < PokeBattle_RecoilMove
+class PokeBattle_Move_Icebreaker < PokeBattle_RecoilMove
     def hazardRemovalMove?; return true; end
 
     def recoilFactor;  return (1.0 / 3.0); end

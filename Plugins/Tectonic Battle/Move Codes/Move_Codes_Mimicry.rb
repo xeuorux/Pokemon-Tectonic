@@ -213,9 +213,9 @@ class PokeBattle_Move_0AF < PokeBattle_Move
             "0E6",   # Grudge
             "0E7",   # Destiny Bond
             # Held item-moving moves
-            "0F1",   # Covet, Thief
-            "0F2",   # Switcheroo, Trick
-            "0F3",   # Bestow
+            "StealsItem",   # Covet, Thief
+            "SwapItems",   # Switcheroo, Trick
+            "GiftItem",   # Bestow
             # Moves that start focussing at the start of the round
             "115",   # Focus Punch
             "171",   # Shell Trap
@@ -265,7 +265,7 @@ class PokeBattle_Move_0B0 < PokeBattle_Move
     def initialize(battle, move)
         super
         @moveBlacklist = [
-            "0F1", # Covet, Thief
+            "StealsItem", # Covet, Thief
             # Struggle
             "002",   # Struggle
             # Counter moves

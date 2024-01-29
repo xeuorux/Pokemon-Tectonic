@@ -1,7 +1,7 @@
 #===============================================================================
 # Entry hazard. Lays spikes on the opposing side. (Spikes)
 #===============================================================================
-class PokeBattle_Move_103 < PokeBattle_Move
+class PokeBattle_Move_Spikes < PokeBattle_Move
     def hazardMove?; return true,2; end
     def aiAutoKnows?(pokemon); return true; end
 
@@ -34,7 +34,7 @@ end
 #===============================================================================
 # Sets spikes, but only if none are present. (Ceaseless Edge)
 #===============================================================================
-class PokeBattle_Move_13E < PokeBattle_Move_103
+class PokeBattle_Move_SpikesFirstLayerOnly < PokeBattle_Move_Spikes
     def pbMoveFailed?(user, _targets, show_message)
         return false if damagingMove?
         if user.pbOpposingSide.effectAtMax?(:Spikes)
@@ -59,7 +59,7 @@ end
 #===============================================================================
 # If it faints the target, you set Spikes on the their side of the field. (Impaling Spike)
 #===============================================================================
-class PokeBattle_Move_195 < PokeBattle_Move
+class PokeBattle_Move_SpikesIfTargetFaints < PokeBattle_Move
     def pbEffectAfterAllHits(_user, target)
         return unless target.damageState.fainted
         target.pbOwnSide.incrementEffect(:Spikes)
@@ -70,7 +70,7 @@ end
 # Only usable by Morpeko. Sets Spikes if Full Belly. (Gut Check)
 # If Hangry, doubles in damage and deals Dark-type damage.
 #===============================================================================
-class PokeBattle_Move_176 < PokeBattle_Move
+class PokeBattle_Move_GutCheck < PokeBattle_Move
     def pbMoveFailed?(user, _targets, show_message)
         unless user.countsAs?(:MORPEKO)
             @battle.pbDisplay(_INTL("But {1} can't use the move!", user.pbThis(true))) if show_message
@@ -106,7 +106,7 @@ class PokeBattle_Move_176 < PokeBattle_Move
 end
 
 # Empowered Spikes
-class PokeBattle_Move_607 < PokeBattle_Move_103
+class PokeBattle_Move_EmpoweredSpikes < PokeBattle_Move_Spikes
     include EmpoweredMove
 
     def pbEffectGeneral(user)
@@ -121,7 +121,7 @@ end
 # Entry hazard. Lays poison spikes on the opposing side (max. 2 layers).
 # (Poison Spikes)
 #===============================================================================
-class PokeBattle_Move_104 < PokeBattle_StatusSpikeMove
+class PokeBattle_Move_PoisonSpikes < PokeBattle_StatusSpikeMove
     def hazardMove?; return true,5; end
     def initialize(battle, move)
         @spikeEffect = :PoisonSpikes
@@ -133,7 +133,7 @@ end
 # Entry hazard. Lays burn spikes on the opposing side.
 # (Flame Spikes)
 #===============================================================================
-class PokeBattle_Move_551 < PokeBattle_StatusSpikeMove
+class PokeBattle_Move_FlameSpikes < PokeBattle_StatusSpikeMove
     def hazardMove?; return true,6; end
     def initialize(battle, move)
         @spikeEffect = :FlameSpikes
@@ -145,7 +145,7 @@ end
 # Entry hazard. Lays frostbite spikes on the opposing side.
 # (Frost Spikes)
 #===============================================================================
-class PokeBattle_Move_569 < PokeBattle_StatusSpikeMove
+class PokeBattle_Move_FrostSpikes < PokeBattle_StatusSpikeMove
     def hazardMove?; return true,7; end
     def initialize(battle, move)
         @spikeEffect = :FrostSpikes
@@ -156,7 +156,7 @@ end
 #===============================================================================
 # Entry hazard. Lays stealth rocks on the opposing side. (Stealth Rock)
 #===============================================================================
-class PokeBattle_Move_105 < PokeBattle_Move
+class PokeBattle_Move_StealthRock < PokeBattle_Move
     def hazardMove?; return true,1; end
     def aiAutoKnows?(pokemon); return true; end
 
@@ -191,7 +191,7 @@ end
 #===============================================================================
 # Sets stealth rock and sandstorm for 5 turns. (Megalith Rite)
 #===============================================================================
-class PokeBattle_Move_5BD < PokeBattle_Move_105
+class PokeBattle_Move_StealthRockSetsSandstorm < PokeBattle_Move_StealthRock
     def pbMoveFailed?(user, _targets, show_message)
         return false
     end
@@ -205,7 +205,7 @@ end
 #===============================================================================
 # Entry hazard. Lays Feather Ward on the opposing side. (Feather Ward)
 #===============================================================================
-class PokeBattle_Move_5A1 < PokeBattle_Move
+class PokeBattle_Move_FeatherWard < PokeBattle_Move
     def hazardMove?; return true,3; end
     def aiAutoKnows?(pokemon); return true; end
 
@@ -231,7 +231,7 @@ end
 #===============================================================================
 # Entry hazard. Lays a Speed reducing web on the opposing side. (Sticky Web)
 #===============================================================================
-class PokeBattle_Move_153 < PokeBattle_Move
+class PokeBattle_Move_StickyWeb < PokeBattle_Move
     def hazardMove?; return true,4; end
     def aiAutoKnows?(pokemon); return true; end
 

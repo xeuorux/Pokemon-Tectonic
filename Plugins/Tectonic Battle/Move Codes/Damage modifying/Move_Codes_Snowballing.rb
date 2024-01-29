@@ -1,7 +1,7 @@
 #===============================================================================
 # Power doubles for each consecutive use. (Fury Cutter)
 #===============================================================================
-class PokeBattle_Move_091 < PokeBattle_SnowballingMove
+class PokeBattle_Move_FuryCutter < PokeBattle_SnowballingMove
     def initialize(battle, move)
         @usageCountEffect = :FuryCutter
         super
@@ -11,7 +11,7 @@ end
 #===============================================================================
 # Power doubles for each consecutive use. (Ice Ball)
 #===============================================================================
-class PokeBattle_Move_543 < PokeBattle_SnowballingMove
+class PokeBattle_Move_IceBall < PokeBattle_SnowballingMove
     def initialize(battle, move)
         @usageCountEffect = :Snowball
         super
@@ -21,7 +21,7 @@ end
 #===============================================================================
 # Power doubles for each consecutive use. (Rock Roll)
 #===============================================================================
-class PokeBattle_Move_544 < PokeBattle_SnowballingMove
+class PokeBattle_Move_RockRoll < PokeBattle_SnowballingMove
     def initialize(battle, move)
         @usageCountEffect = :RockRoll
         super
@@ -31,7 +31,7 @@ end
 #===============================================================================
 # Counts as a use of Rock Roll, Snowball, or Furycutter. (On A Roll)
 #===============================================================================
-class PokeBattle_Move_58B < PokeBattle_Move
+class PokeBattle_Move_OnARoll < PokeBattle_Move
     def pbChangeUsageCounters(user, specialUsage)
         oldEffectValues = {}
         user.eachEffect(true) do |effect, value, data|
@@ -49,7 +49,7 @@ end
 # Power is multiplied by the number of consecutive rounds in which this move was
 # used by any Pokémon on the user's side. (Echoed Voice)
 #===============================================================================
-class PokeBattle_Move_092 < PokeBattle_Move
+class PokeBattle_Move_EchoedVoice < PokeBattle_Move
     def pbChangeUsageCounters(user, specialUsage)
         oldCount = user.pbOwnSide.effects[:EchoedVoiceCounter]
         super # Reset all other counters
@@ -70,7 +70,7 @@ end
 #===============================================================================
 # Power increases by 20 for each consecutive use. User heals by 50% of damage dealt. (Heart Rhythm)
 #===============================================================================
-class PokeBattle_Move_5A9 < PokeBattle_SnowballingMove
+class PokeBattle_Move_HeartRhythm < PokeBattle_SnowballingMove
     def initialize(battle, move)
         @usageCountEffect = :HeartRhythm
         super
@@ -95,7 +95,7 @@ end
 # Hits three times by base, and one extra every time the move is used
 # over the course of a battle. (Blades of Grass)
 #===============================================================================
-class PokeBattle_Move_130 < PokeBattle_Move
+class PokeBattle_Move_BladesOfGrass < PokeBattle_Move
     def multiHitMove?; return true; end
 
     def pbNumHits(user, _targets, _checkingForAI = false)

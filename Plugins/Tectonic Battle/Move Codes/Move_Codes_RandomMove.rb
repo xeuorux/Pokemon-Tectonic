@@ -86,9 +86,9 @@ class PokeBattle_Move_0B5 < PokeBattle_Move
             "0E6",   # Grudge
             "0E7",   # Destiny Bond
             # Held item-moving moves
-            "0F1",   # Covet, Thief
-            "0F2",   # Switcheroo, Trick
-            "0F3",   # Bestow
+            "StealsItem",   # Covet, Thief
+            "SwapItems",   # Switcheroo, Trick
+            "GiftItem",   # Bestow
             # Moves that start focussing at the start of the round
             "115",   # Focus Punch
             "171",   # Shell Trap
@@ -151,9 +151,9 @@ class PokeBattle_Move_0B6 < PokeBattle_Move
             "117",   # Follow Me, Rage Powder
             "16A",   # Spotlight
             # Held item-moving moves
-            "0F1",   # Covet, Thief
-            "0F2",   # Switcheroo, Trick
-            "0F3",   # Bestow
+            "StealsItem",   # Covet, Thief
+            "SwapItems",   # Switcheroo, Trick
+            "GiftItem",   # Bestow
         ]
 
         @metronomeMoves = []

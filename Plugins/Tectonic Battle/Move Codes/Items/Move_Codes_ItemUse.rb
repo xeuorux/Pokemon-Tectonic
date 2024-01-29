@@ -1,7 +1,7 @@
 #===============================================================================
 # User gives one of its items to the target. (Bestow)
 #===============================================================================
-class PokeBattle_Move_0F3 < PokeBattle_Move
+class PokeBattle_Move_GiftItem < PokeBattle_Move
     def ignoresSubstitute?(_user); return true; end
 
     def validItem(user,item)
@@ -94,7 +94,7 @@ end
 #===============================================================================
 # User recovers the last item it held and consumed. (Recycle)
 #===============================================================================
-class PokeBattle_Move_0F6 < PokeBattle_Move
+class PokeBattle_Move_Recycle < PokeBattle_Move
     def pbMoveFailed?(user, _targets, show_message)
         unless user.recyclableItem
             if show_message
@@ -123,7 +123,7 @@ end
 #===============================================================================
 # User flings its item at the target. Power/effect depend on the item. (Fling)
 #===============================================================================
-class PokeBattle_Move_0F7 < PokeBattle_Move
+class PokeBattle_Move_Fling < PokeBattle_Move
     def initialize(battle, move)
         super
         @flingPowers = {}
@@ -248,7 +248,7 @@ end
 # Power and type depend on the user's held berry. Destroys the berry.
 # (Natural Gift, Seed Surprise)
 #===============================================================================
-class PokeBattle_Move_096 < PokeBattle_Move
+class PokeBattle_Move_NaturalGift < PokeBattle_Move
     def initialize(battle, move)
         super
         @typeArray = {
@@ -367,7 +367,7 @@ end
 # User and target swap their first items. They remain swapped after wild battles.
 # (Switcheroo, Trick)
 #===============================================================================
-class PokeBattle_Move_0F2 < PokeBattle_Move
+class PokeBattle_Move_SwapItems < PokeBattle_Move
     def pbMoveFailed?(user, _targets, show_message)
         if @battle.wildBattle? && user.opposes? && !user.boss
             @battle.pbDisplay(_INTL("But it failed, since this is a wild battle!")) if show_message
@@ -436,7 +436,7 @@ class PokeBattle_Move_0F2 < PokeBattle_Move
         elsif user.hasActiveItem?(CHOICE_LOCKING_ITEMS)
             return 100
         elsif !user.firstItem && target.firstItem
-            if user.lastMoveUsed && GameData::Move.get(user.lastMoveUsed).function_code == "0F2" # Trick/Switcheroo
+            if user.lastMoveUsed && GameData::Move.get(user.lastMoveUsed).function_code == "SwapItems" # Trick/Switcheroo
                 return 0
             end
         end
@@ -447,7 +447,7 @@ end
 #===============================================================================
 # Consumes berry and raises the user's Defense and Sp. Def by 3 steps. (Stuff Cheeks)
 #===============================================================================
-class PokeBattle_Move_183 < PokeBattle_Move
+class PokeBattle_Move_EatBerryRaiseDefenses3 < PokeBattle_Move
     def pbMoveFailed?(user, _targets, show_message)
         return false if user.hasAnyBerry?
         @battle.pbDisplay(_INTL("But it failed, because #{user.pbThis(true)} has no berries!")) if show_message
@@ -477,7 +477,7 @@ end
 # Forces all active Pokémon to consume their held berries. This move bypasses
 # Substitutes. (Tea Time)
 #===============================================================================
-class PokeBattle_Move_184 < PokeBattle_Move
+class PokeBattle_Move_ForceAllEatBerry < PokeBattle_Move
     def ignoresSubstitute?(_user); return true; end
 
     def isValidTarget?(target)

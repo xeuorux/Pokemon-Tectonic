@@ -212,41 +212,41 @@ module Compiler
       # Read each line of moves.txt at a time and compile it into an move
       pbCompilerEachPreppedLine(path) { |line, line_no|
         idNumber += 1
-        line = pbGetCsvRecord(line, line_no, [0, "vnssueeuuueissN",
-          nil, nil, nil, nil, nil, :Type, ["Physical", "Special", "Status"],
+        line = pbGetCsvRecord(line, line_no, [0, "nssueeuuueissN",
+          nil, nil, nil, nil, :Type, ["Physical", "Special", "Status"],
           nil, nil, nil, :Target, nil, nil, nil, nil
         ])
         move_number = idNumber
-        move_symbol = line[1].to_sym
+        move_symbol = line[0].to_sym
         if GameData::Move::DATA[move_number]
           raise _INTL("Move ID number '{1}' is used twice.\r\n{2}", move_number, FileLineData.linereport)
         elsif GameData::Move::DATA[move_symbol]
           raise _INTL("Move ID '{1}' is used twice.\r\n{2}", move_symbol, FileLineData.linereport)
         end
         # Sanitise data
-        if line[6] == 2 && line[4] != 0
-          raise _INTL("Move {1} is defined as a Status move with a non-zero base damage.\r\n{2}", line[2], FileLineData.linereport)
-        elsif line[6] != 2 && line[4] == 0
-          print _INTL("Warning: Move {1} was defined as Physical or Special but had a base damage of 0. Changing it to a Status move.\r\n{2}", line[2], FileLineData.linereport)
-          line[6] = 2
+        if line[5] == 2 && line[3] != 0
+          raise _INTL("Move {1} is defined as a Status move with a non-zero base damage.\r\n{2}", line[1], FileLineData.linereport)
+        elsif line[5] != 2 && line[3] == 0
+          print _INTL("Warning: Move {1} was defined as Physical or Special but had a base damage of 0. Changing it to a Status move.\r\n{2}", line[1], FileLineData.linereport)
+          line[5] = 2
         end
-        animation_move = line[14].nil? ? nil : line[14].to_sym
+        animation_move = line[13].nil? ? nil : line[13].to_sym
         # Construct move hash
         move_hash = {
           :id_number        => move_number,
           :id               => move_symbol,
-          :name             => line[2],
-          :function_code    => line[3],
-          :base_damage      => line[4],
-          :type             => line[5],
-          :category         => line[6],
-          :accuracy         => line[7],
-          :total_pp         => line[8],
-          :effect_chance    => line[9],
-          :target           => GameData::Target.get(line[10]).id,
-          :priority         => line[11],
-          :flags            => line[12],
-          :description      => line[13],
+          :name             => line[1],
+          :function_code    => line[2],
+          :base_damage      => line[3],
+          :type             => line[4],
+          :category         => line[5],
+          :accuracy         => line[6],
+          :total_pp         => line[7],
+          :effect_chance    => line[8],
+          :target           => GameData::Target.get(line[9]).id,
+          :priority         => line[10],
+          :flags            => line[11],
+          :description      => line[12],
           :animation_move   => animation_move,
           :primeval         => primeval,
           :cut              => cut,
@@ -316,8 +316,7 @@ module Compiler
   end
 
   def write_move(f, m)    
-    f.write(sprintf("%d,%s,%s,%s,%d,%s,%s,%d,%d,%d,%s,%d,%s,%s,%s\r\n",
-      m.id_number,
+    f.write(sprintf("%s,%s,%s,%d,%s,%s,%d,%d,%d,%s,%d,%s,%s,%s\r\n",
       csvQuote(m.id.to_s),
       csvQuote(m.real_name),
       csvQuote(m.function_code),

@@ -158,7 +158,7 @@ class PokeBattle_Battler
     end
 
     def hasStatusPunishMove?
-        return pbHasMoveFunction?("07F") # Hex, Cruelty
+        return pbHasMoveFunction?("DoubleDamageTargetStatused") # Hex, Cruelty
     end
 
     def hasHealingMove?

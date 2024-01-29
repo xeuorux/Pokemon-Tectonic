@@ -1,7 +1,7 @@
 #===============================================================================
 # Renders item unusable (Slime Ball)
 #===============================================================================
-class PokeBattle_Move_18F < PokeBattle_Move
+class PokeBattle_Move_RemovesTargetItem < PokeBattle_Move
     def pbEffectAgainstTarget(user, target)
         return if damagingMove?
         return unless canknockOffItems?(user, target)
@@ -30,7 +30,7 @@ end
 # Target drops its item. It regains the item at the end of the battle. (Knock Off)
 # If target has a losable item, damage is multiplied by 1.5.
 #===============================================================================
-class PokeBattle_Move_0F0 < PokeBattle_Move
+class PokeBattle_Move_RemovesTargetItemDamageBoost50Percent < PokeBattle_Move
     def pbBaseDamage(baseDmg, _user, target)
         if target.hasAnyItem?
             # NOTE: Damage is still boosted even if target has Sticky Hold or a
@@ -67,7 +67,7 @@ end
 #===============================================================================
 # User consumes target's berries and gains its effect. (Bug Bite, Pluck)
 #===============================================================================
-class PokeBattle_Move_0F4 < PokeBattle_Move
+class PokeBattle_Move_ConsumesTargetBerries < PokeBattle_Move
     def canPluckBerry?(_user, target)
         return false if target.fainted?
         return false if target.damageState.berryWeakened
@@ -100,7 +100,7 @@ end
 #===============================================================================
 # Target's berry/Gem is destroyed. (Incinerate)
 #===============================================================================
-class PokeBattle_Move_0F5 < PokeBattle_Move
+class PokeBattle_Move_DestroysBerriesGems < PokeBattle_Move
     def canIncinerateTargetsItem?(target, checkingForAI = false)
         if checkingForAI
             return false if target.substituted?
@@ -137,7 +137,7 @@ end
 #===============================================================================
 # Target's Herb items are destroyed. (Blight)
 #===============================================================================
-class PokeBattle_Move_5D5 < PokeBattle_Move
+class PokeBattle_Move_DestroysHerbs < PokeBattle_Move
     def canBlightTargetsItem?(target, checkingForAI = false)
         if checkingForAI
             return false if target.substituted?
@@ -172,7 +172,7 @@ end
 #===============================================================================
 # Target's "clothing items" are destroyed. (Up In Flames)
 #===============================================================================
-class PokeBattle_Move_541 < PokeBattle_Move
+class PokeBattle_Move_DestroysClothing < PokeBattle_Move
     def canIncinerateTargetsItem?(target, checkingForAI = false)
         if checkingForAI
             return false if target.substituted?
@@ -207,7 +207,7 @@ end
 #===============================================================================
 # User steals the target's items. (Covet, Ransack, Thief)
 #===============================================================================
-class PokeBattle_Move_0F1 < PokeBattle_Move
+class PokeBattle_Move_StealsItem < PokeBattle_Move
     def pbEffectAfterAllHits(user, target)
         target.eachItem do |item|
             stealItem(user, target, item)
@@ -230,7 +230,7 @@ end
 #===============================================================================
 # Steals the targets first stealable berry or gem. (Pilfer)
 #===============================================================================
-class PokeBattle_Move_539 < PokeBattle_Move
+class PokeBattle_Move_StealsBerryGem < PokeBattle_Move
     def pbEffectAfterAllHits(user, target)
         return unless target.hasAnyBerry? || target.hasAnyItem?
         target.eachItem do |item|
@@ -252,7 +252,7 @@ end
 #===============================================================================
 # Fails if the Target has no Item (Poltergeist)
 #===============================================================================
-class PokeBattle_Move_192 < PokeBattle_Move
+class PokeBattle_Move_FailsTargetNoItem < PokeBattle_Move
     def pbFailsAgainstTarget?(_user, target, show_message)
         if target.hasAnyItem?
             if show_message
@@ -269,7 +269,7 @@ end
 # Target is forced to hold a Black Sludge, dropping its item if neccessary. (Trash Treasure)
 # Also lower's the target's Sp. Def.
 #===============================================================================
-class PokeBattle_Move_5A8 < PokeBattle_Move
+class PokeBattle_Move_TrashTreasure < PokeBattle_Move
     def pbFailsAgainstTarget?(user, target, show_message)
         if !target.canAddItem?(:BLACKSLUDGE) && !canRemoveItem?(user, target, target.firstItem) && target.pbCanLowerStatStep?(:SPECIAL_DEFENSE,user,self)
             @battle.pbDisplay(_INTL("But it failed, since #{target.pbThis} can't be given a Black Sludge or have its Sp. Def lowered!")) if show_message
@@ -331,7 +331,7 @@ class PokeBattle_Move_Embargo < PokeBattle_Move
 end
 
 # Empowered Embargo
-class PokeBattle_Move_61D < PokeBattle_Move
+class PokeBattle_Move_PrimevalEmbargo < PokeBattle_Move
     include EmpoweredMove
 
     def pbEffectGeneral(user)
