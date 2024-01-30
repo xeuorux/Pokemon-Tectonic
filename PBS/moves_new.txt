@@ -418,7 +418,7 @@
 1417,ERODE,Erode,5F9,70,GROUND,Special,100,15,0,NearOther,0,CanProtect;CanMirrorMove,"Attacks by blasting sand. This move always goes first in sandstorm.",SANDATTACK
 1418,HEARTHFIREHULA,Hearthfire Hula,173,80,FIRE,Special,100,10,100,AllNearOthers,0,CanProtect;CanMirrorMove;Dance,"The user dances rapidly, emitting tropical heat. Any frostbitten Pokémon will be healed by this heat.",HEATWAVE
 1419,CURLUP,Curl Up,01E,0,NORMAL,Status,0,4,0,User,0,CanSnatch,"The user curls up to conceal weak spots and raise both of its defensive stats.",DEFENSECURL
-1420,MORNINGSTAR,Morningstar,000,135,FAIRY,Physical,70,12,0,NearOther,0,CanProtect;CanMirrorMove,"The user invokes forbidden celestial powers to smite the target.",SPIRITBREAK
+1420,MORNINGSTAR,Morningstar,000,115,FAIRY,Physical,80,12,0,NearOther,0,CanProtect;CanMirrorMove,"The user invokes forbidden celestial powers to smite the target.",SPIRITBREAK
 1421,FIREPULSE,Fire Pulse,00A,60,FIRE,Special,100,15,20,NearOther,0,CanProtect;CanMirrorMove;Pulse,"The user attacks the target with a pulsing blast of fire. It has a 20% chance to burn.",FLAMEBURST
 1422,TEPHRACANNON,Tephra Cannon,551,30,FIRE,Special,100,12,0,NearOther,0,CanProtect;CanMirrorMove;Pulse,"The user launches volcanic debris, dealing damage and setting a layer of flame spikes around the target.",FLAMEBURST
 1423,STORMDRIVE,Storm Drive,0E6,120,ELECTRIC,Physical,100,10,0,NearOther,0,CanProtect;CanMirrorMove,"The user charges, then attacks on the second turn. Charges instantly in Rain.",WILDCHARGE
