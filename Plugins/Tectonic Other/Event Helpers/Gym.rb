@@ -201,6 +201,10 @@ def has7Badges?
 	return getBadgeCount >= 7
 end
 
+def has8Badges?
+	return getBadgeCount >= 8
+end
+
 def endGymChoice()
 	pbTrainerEnd
 	command_end
