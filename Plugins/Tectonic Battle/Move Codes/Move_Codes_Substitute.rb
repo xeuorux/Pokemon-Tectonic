@@ -1,7 +1,7 @@
 #===============================================================================
 # User turns 1/4 of max HP into a substitute. (Substitute)
 #===============================================================================
-class PokeBattle_Move_10C < PokeBattle_Move
+class PokeBattle_Move_UserMakeSubstitute < PokeBattle_Move
     def pbMoveFailed?(user, _targets, show_message)
         if user.substituted?
             @battle.pbDisplay(_INTL("{1} already has a substitute!", user.pbThis)) if show_message
@@ -31,7 +31,7 @@ end
 #===============================================================================
 # Forces the target to use a substitute (Doll Stitch)
 #===============================================================================
-class PokeBattle_Move_558 < PokeBattle_Move
+class PokeBattle_Move_UserOrTargetMakesSubstitute < PokeBattle_Move
     def pbEffectAgainstTarget(_user, target)
         @battle.forceUseMove(target, :SUBSTITUTE)
     end

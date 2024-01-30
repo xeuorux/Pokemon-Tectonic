@@ -2,19 +2,19 @@
 # This move turns into the last move used by the target, until user switches
 # out. (Mimic)
 #===============================================================================
-class PokeBattle_Move_05C < PokeBattle_Move
+class PokeBattle_Move_ReplaceMoveThisBattleWithTargetLastMoveUsed < PokeBattle_Move
     def ignoresSubstitute?(_user); return true; end
 
     def initialize(battle, move)
         super
         @moveBlacklist = [
-            "0B6", # Metronome
+            "UseRandomNonSignatureMove", # Metronome
             # Struggle
-            "002", # Struggle
+            "Struggle", # Struggle
             # Moves that affect the moveset
-            "05C",   # Mimic
-            "05D",   # Sketch
-            "069",   # Transform
+            "ReplaceMoveThisBattleWithTargetLastMoveUsed",   # Mimic
+            "ReplaceMoveWithTargetLastMoveUsed",   # Sketch
+            "TransformUserIntoTarget",   # Transform
         ]
     end
 
@@ -62,14 +62,14 @@ end
 #===============================================================================
 # This move permanently turns into the last move used by the target. (Sketch)
 #===============================================================================
-class PokeBattle_Move_05D < PokeBattle_Move
+class PokeBattle_Move_ReplaceMoveWithTargetLastMoveUsed < PokeBattle_Move
     def ignoresSubstitute?(_user); return true; end
 
     def initialize(battle, move)
         super
         @moveBlacklist = [
-            "05D", # Sketch (this move)
-            "002", # Struggle
+            "ReplaceMoveWithTargetLastMoveUsed", # Sketch (this move)
+            "Struggle", # Struggle
         ]
     end
 
@@ -119,7 +119,7 @@ end
 #===============================================================================
 # User transforms into the target. (Transform)
 #===============================================================================
-class PokeBattle_Move_069 < PokeBattle_Move
+class PokeBattle_Move_TransformUserIntoTarget < PokeBattle_Move
     def pbMoveFailed?(user, _targets, show_message)
         if user.transformed?
             @battle.pbDisplay(_INTL("But it failed, since the user is already transformed!")) if show_message
@@ -154,7 +154,7 @@ end
 #===============================================================================
 # Uses the last move that the target used. (Mirror Move)
 #===============================================================================
-class PokeBattle_Move_0AE < PokeBattle_Move
+class PokeBattle_Move_TransformUserIntoTUseLastMoveUsedByTargetarget < PokeBattle_Move
     def ignoresSubstitute?(_user); return true; end
     def callsAnotherMove?; return true; end
 
@@ -188,18 +188,18 @@ end
 #===============================================================================
 # Uses the last move that was used. (Copycat)
 #===============================================================================
-class PokeBattle_Move_0AF < PokeBattle_Move
+class PokeBattle_Move_UseLastMoveUsed < PokeBattle_Move
     def callsAnotherMove?; return true; end
 
     def initialize(battle, move)
         super
         @moveBlacklist = [
             # Struggle
-            "002",   # Struggle
+            "Struggle",   # Struggle
             # Moves that affect the moveset
-            "05C",   # Mimic
-            "05D",   # Sketch
-            "069",   # Transform
+            "ReplaceMoveThisBattleWithTargetLastMoveUsed",   # Mimic
+            "ReplaceMoveWithTargetLastMoveUsed",   # Sketch
+            "TransformUserIntoTarget",   # Transform
             # Counter moves
             "CounterPhysicalDamage",   # Counter
             "CounterSpecialDamage",   # Mirror Coat
@@ -207,8 +207,8 @@ class PokeBattle_Move_0AF < PokeBattle_Move
             # Move-redirecting and stealing moves
             "BounceBackProblemCausingStatusMoves",   # Magic Coat
             "StealAndUseBeneficialStatusMove",   # Snatch
-            "117",   # Follow Me, Rage Powder
-            "16A",   # Spotlight
+            "RedirectAllMovesToUser",   # Follow Me, Rage Powder
+            "RedirectAllMovesToTarget",   # Spotlight
             # Set up effects that trigger upon KO
             "0E6",   # Grudge
             "AttackerFaintsIfUserFaints",   # Destiny Bond
@@ -259,7 +259,7 @@ end
 # Uses the move the target was about to use this round, with 1.5x power.
 # (Me First)
 #===============================================================================
-class PokeBattle_Move_0B0 < PokeBattle_Move
+class PokeBattle_Move_UseMoveTargetIsAboutToUse < PokeBattle_Move
     def ignoresSubstitute?(_user); return true; end
     def callsAnotherMove?; return true; end
 
@@ -268,7 +268,7 @@ class PokeBattle_Move_0B0 < PokeBattle_Move
         @moveBlacklist = [
             "StealsItem", # Covet, Thief
             # Struggle
-            "002",   # Struggle
+            "Struggle",   # Struggle
             # Counter moves
             "CounterPhysicalDamage",   # Counter
             "CounterSpecialDamage",   # Mirror Coat
@@ -310,7 +310,7 @@ end
 # The user picks between moves to use, those being the 3 last (Cross Examine)
 # moves used by any foe.
 #===============================================================================
-class PokeBattle_Move_598 < PokeBattle_Move
+class PokeBattle_Move_UseChoiceOf3LastUsedMoves < PokeBattle_Move
     def resolutionChoice(user)
         @chosenMoveID = :STRUGGLE
         validMoves = validMoveArray(user)

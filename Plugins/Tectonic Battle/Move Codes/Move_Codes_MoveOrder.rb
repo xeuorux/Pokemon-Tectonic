@@ -1,7 +1,7 @@
 #===============================================================================
 # Target moves immediately after the user, ignoring priority/speed. (After You)
 #===============================================================================
-class PokeBattle_Move_11D < PokeBattle_Move
+class PokeBattle_Move_TargetActsNext < PokeBattle_Move
     def ignoresSubstitute?(_user); return true; end
 
     def pbFailsAgainstTarget?(_user, target, show_message)
@@ -40,7 +40,7 @@ end
 #===============================================================================
 # Target moves last this round, ignoring priority/speed. (Quash)
 #===============================================================================
-class PokeBattle_Move_11E < PokeBattle_Move
+class PokeBattle_Move_TargetActsLast < PokeBattle_Move
     def pbFailsAgainstTarget?(_user, target, show_message)
         return true if pbMoveFailedTargetAlreadyMoved?(target, show_message)
         # Target isn't going to use a move
@@ -92,7 +92,7 @@ end
 #===============================================================================
 # Spurs all allies to move immediately after. (Vainglory Flames)
 #===============================================================================
-class PokeBattle_Move_12C < PokeBattle_Move
+class PokeBattle_Move_AlliesActNext < PokeBattle_Move
     def pbEffectGeneral(user)
         user.eachAlly do |b|
             b.applyEffect(:MoveNext)
@@ -104,7 +104,7 @@ end
 #===============================================================================
 # Target moves immediately after the user, ignoring priority/speed. (Kickstart)
 #===============================================================================
-class PokeBattle_Move_505 < PokeBattle_Move
+class PokeBattle_Move_TargetActsNextDamagingMove < PokeBattle_Move
     def pbEffectAgainstTarget(_user, target)
         return if target.fainted?
         return if pbMoveFailedTargetAlreadyMoved?(target) # Target has already moved this round
@@ -123,7 +123,7 @@ end
 #===============================================================================
 # Target moves immediately after the user and deals 50% more damage. (Amp Up)
 #===============================================================================
-class PokeBattle_Move_5F4 < PokeBattle_Move_09C
+class PokeBattle_Move_TargetActsNextBoostsTheirDamage < PokeBattle_Move_PowerUpAllyMove
     def pbEffectAgainstTarget(_user, target)
         super
         target.applyEffect(:MoveNext)

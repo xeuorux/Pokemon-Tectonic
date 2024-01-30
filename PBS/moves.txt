@@ -195,7 +195,7 @@ Power = 25
 Accuracy = 100
 TotalPP = 15
 Target = NearOther
-FunctionCode = 0C0
+FunctionCode = HitTwoToFiveTimes
 Flags = CanProtect,CanMirrorMove
 Description = Sharp spikes are shot at the target in rapid succession. They hit two to five times in a row.
 #-------------------------------
@@ -299,7 +299,7 @@ Power = 100
 Accuracy = 0
 TotalPP = 5
 Target = NearOther
-FunctionCode = 13B
+FunctionCode = HyperspaceFury
 Flags = CanMirrorMove
 Description = Unleashes a barrage of multi-arm attacks, skipping and destroying protections. Always hits. Lowers the user's Defense by two steps.
 #-------------------------------
@@ -323,7 +323,7 @@ Power = 85
 Accuracy = 100
 TotalPP = 10
 Target = NearOther
-FunctionCode = 0A9
+FunctionCode = IgnoreTargetDefSpDefEvaStatStages
 Flags = CanProtect,CanMirrorMove
 Description = The user swings both arms and hits the target. Ignores the target's stat step changes.
 #-------------------------------
@@ -449,7 +449,7 @@ Power = 60
 Accuracy = 0
 TotalPP = 15
 Target = NearOther
-FunctionCode = 0A5
+FunctionCode = AlwaysHits
 Flags = CanMirrorMove
 Description = The user draws up to the foe disarmingly, then throws a sucker punch. Can't miss and skips protections.
 #-------------------------------
@@ -498,7 +498,7 @@ Power = 40
 Accuracy = 100
 TotalPP = 15
 Target = NearOther
-FunctionCode = 088
+FunctionCode = PursueSwitchingFoe
 Flags = CanProtect,CanMirrorMove
 Description = Inflicts double damage on a target that is switching out.
 #-------------------------------
@@ -510,7 +510,7 @@ Power = 1
 Accuracy = 100
 TotalPP = 10
 Target = NearOther
-FunctionCode = 0C1
+FunctionCode = HitOncePerUserTeamMemberPhysical
 Flags = CanProtect,CanMirrorMove
 Description = The user gets all the party Pokémon to attack the foe with punches and kicks.
 #-------------------------------
@@ -601,7 +601,7 @@ Category = Status
 Accuracy = 100
 TotalPP = 12
 Target = NearOther
-FunctionCode = 11E
+FunctionCode = TargetActsLast
 Flags = CanProtect,CanMirrorMove
 Description = The user suppresses the target and makes its move go last.
 #-------------------------------
@@ -681,7 +681,7 @@ Power = 90
 Accuracy = 0
 TotalPP = 10
 Target = NearOther
-FunctionCode = 0A5
+FunctionCode = AlwaysHits
 Flags = CanMirrorMove
 Description = The user fakes the target out and stabs them with its disheveled hair. Can't miss and skips protections.
 #-------------------------------
@@ -693,7 +693,7 @@ Accuracy = 0
 TotalPP = 3
 Target = User
 Priority = 4
-FunctionCode = 180
+FunctionCode = ProtectUserFromDamagingMovesLowerPhysAttackerDef2
 Description = Protects the user from damage this turn. It also lowers the Defense of physical attackers by four steps.
 #-------------------------------
 [WICKEDBLOW]
@@ -704,7 +704,7 @@ Power = 80
 Accuracy = 100
 TotalPP = 5
 Target = NearOther
-FunctionCode = 0A0
+FunctionCode = AlwaysCriticalHit
 Flags = CanProtect,CanMirrorMove
 Description = The user strikes with a fierce blow of Dark Mastery. It always results in a critical hit.
 #-------------------------------
@@ -876,7 +876,7 @@ Power = 40
 Accuracy = 100
 TotalPP = 12
 Target = NearOther
-FunctionCode = 0BD
+FunctionCode = HitTwoTimes
 Flags = CanProtect,CanMirrorMove
 Description = The user attacks its target by hitting it with brutal strikes. The target is hit twice in a row.
 #-------------------------------
@@ -925,7 +925,7 @@ Power = 50
 Accuracy = 100
 TotalPP = 10
 Target = AllNearFoes
-FunctionCode = 17C
+FunctionCode = HitTwoTimesTargetThenTargetAlly
 Flags = CanProtect,CanMirrorMove
 Description = The user attacks twice using Dreepy. If there are two targets, this move hits each target once.
 #-------------------------------
@@ -1048,7 +1048,7 @@ Power = 100
 Accuracy = 100
 TotalPP = 12
 Target = NearOther
-FunctionCode = 146
+FunctionCode = NormalMovesBecomeElectric
 Flags = CanProtect,CanMirrorMove,Punch
 Description = The user attacks with electrically charged fists. Normal-type moves become Electric-type.
 #-------------------------------
@@ -1174,7 +1174,7 @@ Power = 60
 Accuracy = 0
 TotalPP = 15
 Target = NearOther
-FunctionCode = 0A5
+FunctionCode = AlwaysHits
 Flags = CanMirrorMove
 Description = The user strikes the target with a quick jolt of electricity. Can't miss and skips protections.
 #-------------------------------
@@ -1271,7 +1271,7 @@ Category = Status
 Accuracy = 0
 TotalPP = 10
 Target = User
-FunctionCode = 119
+FunctionCode = StartUserAirborne5
 Flags = CanSnatch
 Description = The user levitates using electrically generated magnetism for five turns.
 #-------------------------------
@@ -1418,7 +1418,7 @@ Power = 40
 Accuracy = 0
 TotalPP = 12
 Target = AllNearFoes
-FunctionCode = 0A5
+FunctionCode = AlwaysHits
 Flags = CanMirrorMove,Sound
 Description = The user does emotional damage to foes. This attack never misses and skips protections.
 #-------------------------------
@@ -1476,7 +1476,7 @@ Accuracy = 0
 TotalPP = 10
 Target = UserSide
 Priority = 3
-FunctionCode = 14A
+FunctionCode = ProtectUserSideFromStatusMoves
 Description = The user protects itself and its allies from status moves with a mysterious power.
 #-------------------------------
 [FAIRYLOCK]
@@ -1653,7 +1653,7 @@ Power = 100
 Accuracy = 100
 TotalPP = 10
 Target = NearOther
-FunctionCode = 144
+FunctionCode = EffectivenessIncludesFlyingType
 Flags = CanProtect,CanMirrorMove
 Description = The user dives down onto the target from the sky. This move is also Flying-type.
 #-------------------------------
@@ -1677,7 +1677,7 @@ Power = 90
 Accuracy = 100
 TotalPP = 12
 Target = NearOther
-FunctionCode = 0A9
+FunctionCode = IgnoreTargetDefSpDefEvaStatStages
 Flags = CanProtect,CanMirrorMove,Blade
 Description = The user attacks by slicing with its long horns. Ignores the target's stat step changes.
 #-------------------------------
@@ -1701,7 +1701,7 @@ Power = 80
 Accuracy = 0
 TotalPP = 15
 Target = NearOther
-FunctionCode = 0A5
+FunctionCode = AlwaysHits
 Flags = CanProtect,CanMirrorMove,Pulse
 Description = The user looses a blast of aura power from deep within its body. This move is certain to hit.
 #-------------------------------
@@ -1725,7 +1725,7 @@ Power = 80
 Accuracy = 100
 TotalPP = 15
 Target = NearOther
-FunctionCode = 10A
+FunctionCode = RemoveScreens
 Flags = CanProtect,CanMirrorMove
 Description = The user attacks with a swift chop. It also breaks any screens protecting the target's side.
 #-------------------------------
@@ -1813,7 +1813,7 @@ Power = 60
 Accuracy = 100
 TotalPP = 10
 Target = NearOther
-FunctionCode = 0A0
+FunctionCode = AlwaysCriticalHit
 Flags = CanProtect,CanMirrorMove
 Description = The user strikes the target with a fierce blow. This attack always results in a critical hit.
 #-------------------------------
@@ -1889,7 +1889,7 @@ Power = 30
 Accuracy = 100
 TotalPP = 25
 Target = NearOther
-FunctionCode = 0BD
+FunctionCode = HitTwoTimes
 Flags = CanProtect,CanMirrorMove,Kicking
 Description = The target is quickly kicked twice in succession using both feet.
 #-------------------------------
@@ -1973,7 +1973,7 @@ Category = Status
 Accuracy = 0
 TotalPP = 3
 Target = UserSide
-FunctionCode = 149
+FunctionCode = ProtectUserSideFromDamagingMovesIfUserFirstTurn
 Flags = CanSnatch
 Description = The user protects itself and allies from damaging moves. It only works the first turn the user is in battle.
 #-------------------------------
@@ -1985,7 +1985,7 @@ Accuracy = 0
 TotalPP = 12
 Target = UserSide
 Priority = 3
-FunctionCode = 0AB
+FunctionCode = ProtectUserSideFromPriorityMoves
 Flags = CanSnatch
 Description = The user protects itself and its allies from priority moves. It always fails if it is used in succession.
 #-------------------------------
@@ -2281,7 +2281,7 @@ Power = 80
 Accuracy = 100
 TotalPP = 10
 Target = NearOther
-FunctionCode = 107
+FunctionCode = FirePledge
 Flags = CanProtect,CanMirrorMove
 Description = A column of fire hits opposing Pokémon. When used with its Grass equivalent, it makes a sea of fire.
 #-------------------------------
@@ -2419,7 +2419,7 @@ Category = Status
 Accuracy = 0
 TotalPP = 10
 Target = BothSides
-FunctionCode = 0FF
+FunctionCode = StartSunshine8
 Description = Summons sunshine for eight turns, boosting Fire-type attacks and hindering most others.
 #-------------------------------
 [WILLOWISP]
@@ -2591,7 +2591,7 @@ Power = 60
 Accuracy = 0
 TotalPP = 15
 Target = NearOther
-FunctionCode = 0A5
+FunctionCode = AlwaysHits
 Flags = CanMirrorMove,Blade
 Description = The user confounds the foe with speed, then slashes. Can't miss and skips protections.
 #-------------------------------
@@ -2684,7 +2684,7 @@ Category = Status
 Accuracy = 0
 TotalPP = 15
 Target = NearOther
-FunctionCode = 0AE
+FunctionCode = TransformUserIntoTUseLastMoveUsedByTargetarget
 Description = The user counters the target by mimicking the target's last move.
 #-------------------------------
 [ROOST]
@@ -2717,7 +2717,7 @@ Power = 40
 Accuracy = 100
 TotalPP = 10
 Target = NearOther
-FunctionCode = 0BD
+FunctionCode = HitTwoTimes
 Flags = CanProtect,CanMirrorMove
 Description = The user slams the target with its wings. The target is hit twice in a row.
 #-------------------------------
@@ -2741,7 +2741,7 @@ Power = 100
 Accuracy = 100
 TotalPP = 5
 Target = NearOther
-FunctionCode = 163
+FunctionCode = IgnoreTargetAbility
 Flags = CanProtect,CanMirrorMove
 Description = The user emits a sinister ray. This move can be used on the target regardless of its Abilities.
 #-------------------------------
@@ -2853,7 +2853,7 @@ Power = 75
 Accuracy = 0
 TotalPP = 15
 Target = NearOther
-FunctionCode = 0A5
+FunctionCode = AlwaysHits
 Flags = CanProtect,CanMirrorMove,Punch
 Description = The user throws a punch from the shadows. The punch lands without fail.
 #-------------------------------
@@ -2995,7 +2995,7 @@ Power = 120
 Accuracy = 70
 TotalPP = 10
 Target = NearOther
-FunctionCode = 53C
+FunctionCode = CantMissAgainstTargetAlreadyAttacked
 Flags = CanProtect,CanMirrorMove
 Description = The user violently whirls to lash the target. Can't miss if the target has already attacked this turn.
 #-------------------------------
@@ -3068,7 +3068,7 @@ Power = 80
 Accuracy = 100
 TotalPP = 10
 Target = NearOther
-FunctionCode = 106
+FunctionCode = GrassPledge
 Flags = CanProtect,CanMirrorMove
 Description = A column of grass hits the foes. When used with its water equivalent, it creates a vast swamp.
 #-------------------------------
@@ -3117,7 +3117,7 @@ Power = 60
 Accuracy = 0
 TotalPP = 15
 Target = NearOther
-FunctionCode = 0A5
+FunctionCode = AlwaysHits
 Flags = CanMirrorMove
 Description = The user scatters leaves that chase the target. Can't miss and skips protections.
 #-------------------------------
@@ -3190,7 +3190,7 @@ Power = 25
 Accuracy = 100
 TotalPP = 25
 Target = NearOther
-FunctionCode = 0C0
+FunctionCode = HitTwoToFiveTimes
 Flags = CanProtect,CanMirrorMove
 Description = The user forcefully shoots seeds at the target. Two to five seeds are shot in rapid succession.
 #-------------------------------
@@ -3292,7 +3292,7 @@ Accuracy = 0
 TotalPP = 3
 Target = User
 Priority = 4
-FunctionCode = 14C
+FunctionCode = ProtectUserHurtPhysAttackerForEightOfTotalHP
 Description = Protects the user from attacks. Physical attackers take 1/8th HP damage.
 #-------------------------------
 [SPORE]
@@ -3554,7 +3554,7 @@ Power = 50
 Accuracy = 100
 TotalPP = 10
 Target = NearOther
-FunctionCode = 0BD
+FunctionCode = HitTwoTimes
 Flags = CanProtect,CanMirrorMove
 Description = The user throws the bone it holds. The bone loops to hit the target twice, coming and going.
 #-------------------------------
@@ -3578,7 +3578,7 @@ Power = 25
 Accuracy = 100
 TotalPP = 10
 Target = NearOther
-FunctionCode = 0C0
+FunctionCode = HitTwoToFiveTimes
 Flags = CanProtect,CanMirrorMove
 Description = The user strikes the target with a hard bone two to five times in a row.
 #-------------------------------
@@ -3767,7 +3767,7 @@ Power = 60
 Accuracy = 100
 TotalPP = 10
 Target = NearOther
-FunctionCode = 0A0
+FunctionCode = AlwaysCriticalHit
 Flags = CanProtect,CanMirrorMove,Wind
 Description = The user blows a cold breath on the target. This attack always results in a critical hit.
 #-------------------------------
@@ -3830,7 +3830,7 @@ Power = 25
 Accuracy = 100
 TotalPP = 25
 Target = NearOther
-FunctionCode = 0C0
+FunctionCode = HitTwoToFiveTimes
 Flags = CanProtect,CanMirrorMove
 Description = The user launches sharp icicles at the target. It strikes two to five times in a row.
 #-------------------------------
@@ -3841,7 +3841,7 @@ Category = Status
 Accuracy = 0
 TotalPP = 15
 Target = UserSide
-FunctionCode = 167
+FunctionCode = StartWeakenDamageAgainstUserSideIfInHail5
 Flags = CanSnatch
 Description = This move reduces damage from attacks for five turns. This can be used only in a hailstorm.
 #-------------------------------
@@ -3852,7 +3852,7 @@ Category = Status
 Accuracy = 0
 TotalPP = 10
 Target = BothSides
-FunctionCode = 102
+FunctionCode = StartHail8
 Description = Summons hail for eight turns. Damages non-Ice, non-Ghost-types every turn.
 #-------------------------------
 [GLACIALLANCE]
@@ -4168,7 +4168,7 @@ Power = 75
 Accuracy = 100
 TotalPP = 10
 Target = AllNearFoes
-FunctionCode = 078
+FunctionCode = ChangeUserMeloettaForm
 Flags = CanProtect,CanMirrorMove,Sound
 EffectChance = 10
 Description = An ancient song appeals to the hearts of those listening. Switches Meloetta's form.
@@ -4181,7 +4181,7 @@ Power = 70
 Accuracy = 100
 TotalPP = 15
 Target = NearOther
-FunctionCode = 0A9
+FunctionCode = IgnoreTargetDefSpDefEvaStatStages
 Flags = CanProtect,CanMirrorMove
 Description = Seeking an opening, the user strikes continually. Ignores the target's stat step changes.
 #-------------------------------
@@ -4329,7 +4329,7 @@ Power = 60
 Accuracy = 0
 TotalPP = 15
 Target = AllNearFoes
-FunctionCode = 0A5
+FunctionCode = AlwaysHits
 Flags = CanMirrorMove
 Description = Star-shaped rays are shot at the opposing team. Can't miss and skips protections.
 #-------------------------------
@@ -4392,7 +4392,7 @@ Power = 40
 Accuracy = 100
 TotalPP = 30
 Target = NearOther
-FunctionCode = 0E9
+FunctionCode = CannotMakeTargetFaint
 Flags = CanProtect,CanMirrorMove
 Description = A restrained attack that prevents the target from fainting. The target is left with at least 1 HP.
 #-------------------------------
@@ -4404,7 +4404,7 @@ Power = 40
 Accuracy = 100
 TotalPP = 30
 Target = NearOther
-FunctionCode = 0E9
+FunctionCode = CannotMakeTargetFaint
 Flags = CanProtect,CanMirrorMove
 Description = The user holds back when it attacks, and the target is left with at least 1 HP.
 #-------------------------------
@@ -4416,7 +4416,7 @@ Power = 50
 Accuracy = 100
 TotalPP = 15
 Target = NearOther
-FunctionCode = 109
+FunctionCode = AddMoneyGainedFromBattle
 Flags = CanProtect,CanMirrorMove
 Description = Numerous coins are hurled at the target to inflict damage. Money is earned after battle.
 #-------------------------------
@@ -4478,7 +4478,7 @@ Power = 35
 Accuracy = 100
 TotalPP = 10
 Target = NearOther
-FunctionCode = 0BD
+FunctionCode = HitTwoTimes
 Flags = CanProtect,CanMirrorMove
 Description = The user slams the target with a long tail, vines, or tentacle. The target is hit twice in a row.
 #-------------------------------
@@ -4491,7 +4491,7 @@ Accuracy = 100
 TotalPP = 10
 Target = NearOther
 Priority = 2
-FunctionCode = 0AD
+FunctionCode = RemoveProtections
 Flags = CanMirrorMove
 Description = An attack that hits a target using Protect or Detect. It also lifts the effects of those moves.
 #-------------------------------
@@ -4516,7 +4516,7 @@ Power = 25
 Accuracy = 100
 TotalPP = 20
 Target = NearOther
-FunctionCode = 0C0
+FunctionCode = HitTwoToFiveTimes
 Flags = CanProtect,CanMirrorMove
 Description = Sharp spikes are shot at the target in rapid succession. They hit two to five times in a row.
 #-------------------------------
@@ -4528,7 +4528,7 @@ Power = 25
 Accuracy = 100
 TotalPP = 12
 Target = NearOther
-FunctionCode = 0C0
+FunctionCode = HitTwoToFiveTimes
 Flags = CanProtect,CanMirrorMove,Blade,HighCriticalHitRate
 Description = The target is raked two to five times. Critical hits twice as often.
 #-------------------------------
@@ -4552,7 +4552,7 @@ Power = 20
 Accuracy = 100
 TotalPP = 15
 Target = NearOther
-FunctionCode = 0C0
+FunctionCode = HitTwoToFiveTimes
 Flags = CanProtect,CanMirrorMove
 Description = The target is jabbed repeatedly with a horn or beak two to five times in a row.
 #-------------------------------
@@ -4638,7 +4638,7 @@ Power = 1
 Accuracy = 100
 TotalPP = 10
 Target = NearOther
-FunctionCode = 113
+FunctionCode = PowerDependsOnUserStockpile
 Flags = CanProtect
 Description = The power stored using the move Stockpile is released all at once in an attack.
 #-------------------------------
@@ -4685,7 +4685,7 @@ Category = Status
 Accuracy = 0
 TotalPP = 12
 Target = NearOther
-FunctionCode = 11D
+FunctionCode = TargetActsNext
 Description = The user helps the target and makes it use its move right after the user.
 #-------------------------------
 [ASSIST]
@@ -4695,7 +4695,7 @@ Category = Status
 Accuracy = 0
 TotalPP = 15
 Target = User
-FunctionCode = 0B5
+FunctionCode = UseRandomMoveFromUserParty
 Description = The user hurriedly and randomly uses a move among those known by other Pokémon in the party.
 #-------------------------------
 [BATONPASS]
@@ -4781,7 +4781,7 @@ Category = Status
 Accuracy = 0
 TotalPP = 15
 Target = User
-FunctionCode = 0AF
+FunctionCode = UseLastMoveUsed
 Description = The user mimics the move used immediately before it. The move fails if no other move has been used yet.
 #-------------------------------
 [DISABLE]
@@ -4814,7 +4814,7 @@ Accuracy = 0
 TotalPP = 10
 Target = User
 Priority = 4
-FunctionCode = 0E8
+FunctionCode = UserEnduresFaintingThisTurn
 Description = The user endures any attack with at least 1 HP. It always fails if it is used in succession.
 #-------------------------------
 [ENTRAINMENT]
@@ -4847,7 +4847,7 @@ Accuracy = 0
 TotalPP = 15
 Target = User
 Priority = 2
-FunctionCode = 117
+FunctionCode = RedirectAllMovesToUser
 Description = The user draws attention to itself, making all targets take aim only at the user.
 #-------------------------------
 [GLARE]
@@ -4913,7 +4913,7 @@ Accuracy = 0
 TotalPP = 15
 Target = NearAlly
 Priority = 5
-FunctionCode = 09C
+FunctionCode = PowerUpAllyMove
 Description = The user assists an ally by boosting the power of its next attack by 50%.
 #-------------------------------
 [HOWL]
@@ -4934,7 +4934,7 @@ Category = Status
 Accuracy = 0
 TotalPP = 25
 Target = User
-FunctionCode = 15E
+FunctionCode = EnsureNextCriticalHit
 Flags = CanSnatch
 Description = The user focuses intensely. The attack on the next turn always results in a critical hit.
 #-------------------------------
@@ -4956,7 +4956,7 @@ Category = Status
 Accuracy = 0
 TotalPP = 25
 Target = UserSide
-FunctionCode = 0A1
+FunctionCode = StartPreventCriticalHitsAgainstUserSide10
 Flags = CanSnatch,Sound
 Description = The user chants an incantation, preventing the foe from landing critical hits for 10 turns.
 #-------------------------------
@@ -4967,7 +4967,7 @@ Category = Status
 Accuracy = 0
 TotalPP = 15
 Target = NearFoe
-FunctionCode = 0B0
+FunctionCode = UseMoveTargetIsAboutToUse
 Flags = CanProtect
 Description = The user tries to cut ahead of the foe to steal and use the foe's intended move with greater power.
 #-------------------------------
@@ -4989,7 +4989,7 @@ Category = Status
 Accuracy = 0
 TotalPP = 10
 Target = User
-FunctionCode = 0B6
+FunctionCode = UseRandomNonSignatureMove
 Description = The user waggles a finger and stimulates its brain into randomly using nearly any move.
 #-------------------------------
 [MILKDRINK]
@@ -5010,7 +5010,7 @@ Category = Status
 Accuracy = 0
 TotalPP = 10
 Target = NearOther
-FunctionCode = 05C
+FunctionCode = ReplaceMoveThisBattleWithTargetLastMoveUsed
 Flags = CanProtect
 Description = The user copies the move last used by the foe. The move can be used until the user is switched out.
 #-------------------------------
@@ -5053,7 +5053,7 @@ Category = Status
 Accuracy = 0
 TotalPP = 5
 Target = AllBattlers
-FunctionCode = 0E5
+FunctionCode = StartPerishCountsForAllBattlers
 Flags = Sound
 Description = Any Pokémon that hears this song faints in three turns, unless it switches out of battle.
 #-------------------------------
@@ -5065,7 +5065,7 @@ Accuracy = 0
 TotalPP = 3
 Target = User
 Priority = 4
-FunctionCode = 0AA
+FunctionCode = ProtectUser
 Description = It enables the user to evade all attacks. It fails if used in succession.
 #-------------------------------
 [PSYCHUP]
@@ -5207,7 +5207,7 @@ Category = Status
 Accuracy = 0
 TotalPP = 1
 Target = NearOther
-FunctionCode = 05D
+FunctionCode = ReplaceMoveWithTargetLastMoveUsed
 Description = It enables the user to permanently learn the move last used by the foe. Once used, Sketch disappears.
 #-------------------------------
 [SLACKOFF]
@@ -5228,7 +5228,7 @@ Category = Status
 Accuracy = 0
 TotalPP = 10
 Target = User
-FunctionCode = 0B4
+FunctionCode = UseRandomUserMoveIfAsleep
 Flags = Sound
 Description = While it is asleep, the user randomly uses one of the moves it knows.
 #-------------------------------
@@ -5250,7 +5250,7 @@ Category = Status
 Accuracy = 0
 TotalPP = 30
 Target = User
-FunctionCode = DoNothing
+FunctionCode = DoesNothingUnusableInGravity
 Description = The user just flops and splashes around to no effect at all...
 #-------------------------------
 [SPOTLIGHT]
@@ -5261,7 +5261,7 @@ Accuracy = 0
 TotalPP = 12
 Target = NearOther
 Priority = 3
-FunctionCode = 16A
+FunctionCode = RedirectAllMovesToTarget
 Flags = CanProtect,CanMagicCoat
 Description = The user shines a spotlight on the target so that only it will be attacked during the turn.
 #-------------------------------
@@ -5272,7 +5272,7 @@ Category = Status
 Accuracy = 0
 TotalPP = 15
 Target = User
-FunctionCode = 112
+FunctionCode = UserAddStockpileRaiseDefSpDef1
 Flags = CanSnatch
 Description = The user charges up power and raises both its Defense and Sp. Def. The move can be used three times.
 #-------------------------------
@@ -5283,7 +5283,7 @@ Category = Status
 Accuracy = 0
 TotalPP = 10
 Target = User
-FunctionCode = 10C
+FunctionCode = UserMakeSubstitute
 Flags = CanSnatch
 Description = The user spends 25% HP to create a doll to protect it from move damage, additional effects, and status moves.
 #-------------------------------
@@ -5305,7 +5305,7 @@ Category = Status
 Accuracy = 0
 TotalPP = 10
 Target = User
-FunctionCode = 114
+FunctionCode = HealUserDependingOnUserStockpile
 Flags = CanSnatch
 Description = The power stored using the move Stockpile is absorbed by the user to heal its HP.
 #-------------------------------
@@ -5360,7 +5360,7 @@ Category = Status
 Accuracy = 0
 TotalPP = 10
 Target = NearOther
-FunctionCode = 069
+FunctionCode = TransformUserIntoTarget
 Description = The user transforms into a copy of the target right down to having the same move set.
 #-------------------------------
 [WHIRLWIND]
@@ -5745,7 +5745,7 @@ Power = 100
 Accuracy = 100
 TotalPP = 5
 Target = NearOther
-FunctionCode = 164
+FunctionCode = CategoryDependsOnHigherDamageIgnoreTargetAbility
 Flags = CanProtect,CanMirrorMove
 Description = The user attacks with a pillar of light. Uses the higher of the user's Attack or Sp. Atk stat.
 #-------------------------------
@@ -5770,7 +5770,7 @@ Power = 80
 Accuracy = 100
 TotalPP = 10
 Target = NearOther
-FunctionCode = 10A
+FunctionCode = RemoveScreens
 Flags = CanProtect,CanMirrorMove,Biting
 Description = The user bites the target using psychic capabilities. Also breaks anys Screens protecting the target's side.
 #-------------------------------
@@ -5795,7 +5795,7 @@ Power = 80
 Accuracy = 0
 TotalPP = 5
 Target = NearOther
-FunctionCode = 147
+FunctionCode = RemoveProtectionsBypassSubstituteAlwaysHits
 Flags = CanMirrorMove
 Description = Using a hyperspace hole, the user appears right next to the target and strikes. Skips and destroys protections and substitutes. Always hits.
 #-------------------------------
@@ -5934,7 +5934,7 @@ Accuracy = 0
 TotalPP = 12
 Target = User
 Priority = 2
-FunctionCode = 120
+FunctionCode = UserSwapsPositionsWithAlly
 Description = The user teleports using a strange power and switches its place with one of its allies.
 #-------------------------------
 [AMNESIA]
@@ -6042,7 +6042,7 @@ Category = Status
 Accuracy = 0
 TotalPP = 12
 Target = NearOther
-FunctionCode = 16B
+FunctionCode = TargetUsesItsLastUsedMoveAgain
 Flags = CanProtect
 Description = The user instructs the target to use the target's last move again.
 #-------------------------------
@@ -6053,7 +6053,7 @@ Category = Status
 Accuracy = 0
 TotalPP = 15
 Target = UserSide
-FunctionCode = 0A3
+FunctionCode = StartWeakenSpecialDamageAgainstUserSide5
 Flags = CanSnatch
 Description = A wondrous wall of light is put up to suppress damage from special attacks for five turns.
 #-------------------------------
@@ -6119,7 +6119,7 @@ Category = Status
 Accuracy = 0
 TotalPP = 15
 Target = UserSide
-FunctionCode = 0A2
+FunctionCode = StartWeakenPhysicalDamageAgainstUserSide5
 Flags = CanSnatch
 Description = A wondrous wall of light is put up to suppress damage from physical attacks for five turns.
 #-------------------------------
@@ -6185,7 +6185,7 @@ Power = 70
 Accuracy = 100
 TotalPP = 10
 Target = NearOther
-FunctionCode = 521
+FunctionCode = LowerPPOfTargetLastMoveBy4
 Flags = CanProtect,CanMirrorMove
 Description = The user casts a horrible spell on the opponent. This removes 4 PP from their last used move.
 #-------------------------------
@@ -6360,7 +6360,7 @@ Power = 25
 Accuracy = 100
 TotalPP = 10
 Target = NearOther
-FunctionCode = 0C0
+FunctionCode = HitTwoToFiveTimes
 Flags = CanProtect,CanMirrorMove
 Description = The user hurls hard rocks at the target. Two to five rocks are launched in quick succession.
 #-------------------------------
@@ -6382,7 +6382,7 @@ Category = Status
 Accuracy = 0
 TotalPP = 10
 Target = BothSides
-FunctionCode = 101
+FunctionCode = StartSandstorm8
 Description = Summons sandstorm for eight turns. Damages non-Rock, non-Ground Pokemon every turn.
 #-------------------------------
 [STEALTHROCK]
@@ -6404,7 +6404,7 @@ Accuracy = 0
 TotalPP = 5
 Target = UserSide
 Priority = 3
-FunctionCode = 0AC
+FunctionCode = ProtectUserSideFromMultiTargetMoves
 Flags = CanSnatch
 Description = The user and its allies are protected from wide-ranging attacks for a turn. Always fails if used in succession.
 #-------------------------------
@@ -6465,7 +6465,7 @@ Power = 100
 Accuracy = 100
 TotalPP = 5
 Target = NearOther
-FunctionCode = 163
+FunctionCode = IgnoreTargetAbility
 Flags = CanProtect,CanMirrorMove
 Description = The user slams into the target with the force of a meteor. Can't be stopped by the target's Ability.
 #-------------------------------
@@ -6529,7 +6529,7 @@ Power = 70
 Accuracy = 0
 TotalPP = 10
 Target = NearOther
-FunctionCode = 0A5
+FunctionCode = AlwaysHits
 Flags = CanMirrorMove
 Description = The user stabs the target with a sharp horn. Can't miss and skips protections.
 #-------------------------------
@@ -6567,7 +6567,7 @@ Power = 45
 Accuracy = 100
 TotalPP = 12
 Target = NearOther
-FunctionCode = 0BD
+FunctionCode = HitTwoTimes
 Flags = CanProtect,CanMirrorMove
 Description = The user attacks by grinding two of its steel gears against the target.
 #-------------------------------
@@ -6664,7 +6664,7 @@ Accuracy = 0
 TotalPP = 3
 Target = User
 Priority = 4
-FunctionCode = 14B
+FunctionCode = ProtectUserFromDamagingMovesLowerAttackerAtk1
 Description = Protects the user from damage this turn. It also lowers the Attack of physical attackers by two steps.
 #-------------------------------
 [METALSOUND]
@@ -6870,7 +6870,7 @@ Power = 80
 Accuracy = 100
 TotalPP = 10
 Target = NearOther
-FunctionCode = 108
+FunctionCode = WaterPledge
 Flags = CanProtect,CanMirrorMove
 Description = A column of water strikes the target. When combined with its fire equivalent, it makes a rainbow.
 #-------------------------------
@@ -7009,7 +7009,7 @@ Accuracy = 100
 TotalPP = 15
 Target = NearOther
 Priority = 1
-FunctionCode = 0C0
+FunctionCode = HitTwoToFiveTimes
 Flags = CanProtect,CanMirrorMove
 Description = The user hits the target with throwing stars 2-5 times in a row. This move always goes first.
 #-------------------------------
@@ -7020,7 +7020,7 @@ Category = Status
 Accuracy = 0
 TotalPP = 10
 Target = BothSides
-FunctionCode = 100
+FunctionStartRain8
 Description = Summons rain for eight turns, boosting Water-type attacks and hindering most others.
 #-------------------------------
 [SOAK]
@@ -7042,7 +7042,7 @@ Power = 90
 Accuracy = 100
 TotalPP = 12
 Target = NearOther
-FunctionCode = 182
+FunctionCode = CannotBeRedirected
 Flags = CanProtect,CanMirrorMove,HighCriticalHitRate
 Description = Ignores all attempts at redirection, allowing this move to hit the chosen target. Critical hits twice as often.
 #-------------------------------
@@ -7077,7 +7077,7 @@ Power = 25
 Accuracy = 100
 TotalPP = 5
 Target = NearOther
-FunctionCode = 188
+FunctionCode = HitThreeTimesAlwaysCriticalHit
 Flags = CanProtect,CanMirrorMove
 Description = Strikes the target thrice, with mastery of the Water style. Always results in a critical hit.
 #-------------------------------
@@ -7204,7 +7204,7 @@ Power = 50
 Accuracy = 100
 TotalPP = 12
 Target = NearOther
-FunctionCode = 0BD
+FunctionCode = HitTwoTimes
 Flags = CanProtect,CanMirrorMove
 Description = The user shoots mystical beams from its eyes to inflict damage. The target is hit twice in a row.
 Animation = PARTICLEPULSE

@@ -2,7 +2,7 @@
 # This round, user becomes the target of attacks that have single targets.
 # (Follow Me)
 #===============================================================================
-class PokeBattle_Move_117 < PokeBattle_Move
+class PokeBattle_Move_RedirectAllMovesToUser < PokeBattle_Move
     def redirectionMove?; return true; end
 
     def pbEffectGeneral(user)
@@ -26,7 +26,7 @@ end
 # This round, target becomes the target of attacks that have single targets.
 # (Spotlight)
 #===============================================================================
-class PokeBattle_Move_16A < PokeBattle_Move
+class PokeBattle_Move_RedirectAllMovesToTarget < PokeBattle_Move
     def redirectionMove?; return true; end
 
     def pbEffectAgainstTarget(_user, target)

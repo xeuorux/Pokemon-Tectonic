@@ -1,7 +1,7 @@
 #===============================================================================
 # Hits twice.
 #===============================================================================
-class PokeBattle_Move_0BD < PokeBattle_Move
+class PokeBattle_Move_HitTwoTimes < PokeBattle_Move
     def multiHitMove?; return true; end
     def pbNumHits(_user, _targets, _checkingForAI = false); return 2; end
 end
@@ -9,28 +9,28 @@ end
 #===============================================================================
 # Hits thrice.
 #===============================================================================
-class PokeBattle_Move_500 < PokeBattle_Move
+class PokeBattle_Move_HitThreeTimes < PokeBattle_Move
     def multiHitMove?; return true; end
     def pbNumHits(_user, _targets, _checkingForAI = false); return 3; end
 end
 
 # Empowered Bullet Punch
-class PokeBattle_Move_657 < PokeBattle_Move_500
+class PokeBattle_Move_EmpoweredBulletPunch < PokeBattle_Move_HitThreeTimes
     include EmpoweredMove
 end
 
 #===============================================================================
 # Hits 3 times and always critical. (Surging Strikes)
 #===============================================================================
-class PokeBattle_Move_188 < PokeBattle_Move_0A0
+class PokeBattle_Move_HitThreeTimesAlwaysCriticalHit < PokeBattle_Move_AlwaysCriticalHit
     def multiHitMove?; return true; end
     def pbNumHits(_user, _targets, _checkingForAI = false); return 3; end
 end
 
 #===============================================================================
-# Hits twice as Beedrill and four times as Wornet. (Multi-Needle)
+# Hits three times as Beedrill and five times as Wornet. (Multi-Needle)
 #===============================================================================
-class PokeBattle_Move_0BE < PokeBattle_Move
+class PokeBattle_Move_HitsThreeTimesAsBeedrillFiveTimesAsWornet < PokeBattle_Move
     def multiHitMove?; return true; end
 
     def pbMoveFailed?(user, _targets, show_message)
@@ -79,7 +79,7 @@ module RandomHitable
     end
 end
 
-class PokeBattle_Move_0C0 < PokeBattle_Move
+class PokeBattle_Move_HitTwoToFiveTimes < PokeBattle_Move
     include RandomHitable
 end
 
@@ -87,7 +87,7 @@ end
 # This move is physical if user's Attack is higher than its Special Attack (Multi-Strike)
 # It hits between 2-5 times in a row.
 #===============================================================================
-class PokeBattle_Move_185 < PokeBattle_Move
+class PokeBattle_Move_HitTwoToFiveTimesUsesBetterAttackingStat < PokeBattle_Move
     include RandomHitable
 
     def initialize(battle, move)
@@ -103,7 +103,7 @@ end
 #===============================================================================
 # Attacks two to five times. Gains money for each hit. (Sacred Lots)
 #===============================================================================
-class PokeBattle_Move_589 < PokeBattle_Move_0C0
+class PokeBattle_Move_HitTwoToFiveTimesAddMoneyGainedFromBattleEachHit < PokeBattle_Move_HitTwoToFiveTimes
     def pbEffectOnNumHits(user, _target, numHits)
         coinsGenerated = 2 * user.level * numHits
         @battle.field.incrementEffect(:PayDay, coinsGenerated) if user.pbOwnedByPlayer?
@@ -118,7 +118,7 @@ end
 #===============================================================================
 # Hits 2-5 times, for three turns in a row. (Pattern Release)
 #===============================================================================
-class PokeBattle_Move_56C < PokeBattle_Move_0C0
+class PokeBattle_Move_Rampage3HitTwoToFiveTimes < PokeBattle_Move_HitTwoToFiveTimes
     def pbEffectAfterAllHits(user, target)
         user.applyEffect(:Outrage, 3) if !target.damageState.unaffected && !user.effectActive?(:Outrage)
         user.tickDownAndProc(:Outrage)
@@ -131,7 +131,7 @@ end
 # Base power of each hit depends on the base Attack stat for the species of that
 # hit's participant. (Beat Up)
 #===============================================================================
-class PokeBattle_Move_0C1 < PokeBattle_PartyAttackMove
+class PokeBattle_Move_HitOncePerUserTeamMemberPhysical < PokeBattle_PartyAttackMove
     def initialize(battle, move)
         super
         @statUsed = :ATTACK
@@ -144,7 +144,7 @@ end
 # Base power of each hit depends on the base Sp. Atk stat for the species of that
 # hit's participant. (Volley)
 #===============================================================================
-class PokeBattle_Move_129 < PokeBattle_PartyAttackMove
+class PokeBattle_Move_HitOncePerUserTeamMemberSpecial < PokeBattle_PartyAttackMove
     def initialize(battle, move)
         super
         @statUsed = :SPECIAL_ATTACK
@@ -162,7 +162,7 @@ end
 #       check in turn). This is considered unimportant, and since correcting it
 #       would involve extensive code rewrites, it is being ignored.
 #===============================================================================
-class PokeBattle_Move_17C < PokeBattle_Move_0BD
+class PokeBattle_Move_HitTwoTimesTargetThenTargetAlly < PokeBattle_Move_HitTwoTimes
     def pbNumHits(_user, _targets, checkingForAI = false)
         if checkingForAI
             return 2
@@ -218,7 +218,7 @@ end
 # Does Dragon-Darts style hit redirection, plus
 # each target hit loses 1 step of Speed. (Tar Volley)
 #===============================================================================
-class PokeBattle_Move_592 < PokeBattle_Move_17C
+class PokeBattle_Move_HitTwoTimesTargetThenTargetAllyLowerTargetSpd1 < PokeBattle_Move_HitTwoTimesTargetThenTargetAlly
     def pbAdditionalEffect(user, target)
         return if target.damageState.substitute
         target.tryLowerStat(:SPEED, user, move: self)
@@ -226,12 +226,12 @@ class PokeBattle_Move_592 < PokeBattle_Move_17C
 end
 
 # Empowered Dragon Darts
-class PokeBattle_Move_650 < PokeBattle_Move_17C
+class PokeBattle_Move_EmpoweredDragonDarts < PokeBattle_Move_HitTwoTimesTargetThenTargetAlly
     include EmpoweredMove
 end
 
 # Empowered Bullet Seed
-class PokeBattle_Move_648 < PokeBattle_Move_17C
+class PokeBattle_Move_EmpoweredBulletSeed < PokeBattle_Move_HitTwoTimesTargetThenTargetAlly
     include EmpoweredMove
 
     def pbRepeatHit?(hitNum = 0)

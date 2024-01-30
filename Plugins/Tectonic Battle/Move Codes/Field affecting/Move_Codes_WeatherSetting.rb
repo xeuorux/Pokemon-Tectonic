@@ -1,7 +1,7 @@
 #===============================================================================
 # Starts sunny weather. (Sunshine)
 #===============================================================================
-class PokeBattle_Move_0FF < PokeBattle_WeatherMove
+class PokeBattle_Move_StartSunshine8 < PokeBattle_WeatherMove
     def initialize(battle, move)
         super
         @weatherType = :Sun
@@ -9,7 +9,7 @@ class PokeBattle_Move_0FF < PokeBattle_WeatherMove
 end
 
 # Empowered Sunshine
-class PokeBattle_Move_601 < PokeBattle_Move_0FF
+class PokeBattle_Move_EmpoweredSunshine < PokeBattle_Move_StartSunshine8
     include EmpoweredMove
 
     def pbEffectGeneral(user)
@@ -22,7 +22,7 @@ end
 #===============================================================================
 # Burns the target and sets Sun
 #===============================================================================
-class PokeBattle_Move_59A < PokeBattle_InviteMove
+class PokeBattle_Move_BurnTargetStartSunshine4 < PokeBattle_InviteMove
     def initialize(battle, move)
         super
         @weatherType = :Sun
@@ -34,7 +34,7 @@ end
 #===============================================================================
 # Starts rainy weather. (Rain)
 #===============================================================================
-class PokeBattle_Move_100 < PokeBattle_WeatherMove
+class PokeBattle_MoveStartRain8 < PokeBattle_WeatherMove
     def initialize(battle, move)
         super
         @weatherType = :Rain
@@ -42,7 +42,7 @@ class PokeBattle_Move_100 < PokeBattle_WeatherMove
 end
 
 # Empowered Rain
-class PokeBattle_Move_602 < PokeBattle_Move_100
+class PokeBattle_Move_602 < PokeBattle_MoveStartRain8
     include EmpoweredMove
 
     def pbEffectGeneral(user)
@@ -56,7 +56,7 @@ end
 #===============================================================================
 # Numbs the target and sets Rain
 #===============================================================================
-class PokeBattle_Move_59B < PokeBattle_InviteMove
+class PokeBattle_Move_NumbTargetStartRain4 < PokeBattle_InviteMove
     def initialize(battle, move)
         super
         @weatherType = :Rain
@@ -68,7 +68,7 @@ end
 #===============================================================================
 # Starts sandstorm weather. (Sandstorm)
 #===============================================================================
-class PokeBattle_Move_101 < PokeBattle_WeatherMove
+class PokeBattle_Move_StartSandstorm8 < PokeBattle_WeatherMove
     def initialize(battle, move)
         super
         @weatherType = :Sandstorm
@@ -76,7 +76,7 @@ class PokeBattle_Move_101 < PokeBattle_WeatherMove
 end
 
 # Empowered Sandstorm
-class PokeBattle_Move_60B < PokeBattle_Move_101
+class PokeBattle_Move_EmpoweredSandstorm < PokeBattle_Move_StartSandstorm8
     include EmpoweredMove
 
     def pbEffectGeneral(user)
@@ -89,7 +89,7 @@ end
 #===============================================================================
 # Dizzies the target and sets Sandstorm
 #===============================================================================
-class PokeBattle_Move_59D < PokeBattle_InviteMove
+class PokeBattle_Move_DizzyTargetStartSandstorm4 < PokeBattle_InviteMove
     def initialize(battle, move)
         super
         @weatherType = :Sandstorm
@@ -101,7 +101,7 @@ end
 #===============================================================================
 # Starts hail weather. (Hail)
 #===============================================================================
-class PokeBattle_Move_102 < PokeBattle_WeatherMove
+class PokeBattle_Move_StartHail8 < PokeBattle_WeatherMove
     def initialize(battle, move)
         super
         @weatherType = :Hail
@@ -109,7 +109,7 @@ class PokeBattle_Move_102 < PokeBattle_WeatherMove
 end
 
 # Empowered Hail
-class PokeBattle_Move_605 < PokeBattle_Move_102
+class PokeBattle_Move_EmpoweredHail < PokeBattle_Move_StartHail8
     include EmpoweredMove
 
     def pbEffectGeneral(user)
@@ -124,7 +124,7 @@ end
 #===============================================================================
 # Frostbites the target and sets Hail
 #===============================================================================
-class PokeBattle_Move_59C < PokeBattle_InviteMove
+class PokeBattle_Move_FrostbiteTargetStartHail4 < PokeBattle_InviteMove
     def initialize(battle, move)
         super
         @weatherType = :Hail
@@ -136,7 +136,7 @@ end
 #===============================================================================
 # Starts eclipse weather. (Eclipse)
 #===============================================================================
-class PokeBattle_Move_09D < PokeBattle_WeatherMove
+class PokeBattle_Move_StartEclipse8 < PokeBattle_WeatherMove
     def initialize(battle, move)
         super
         @weatherType = :Eclipse
@@ -144,7 +144,7 @@ class PokeBattle_Move_09D < PokeBattle_WeatherMove
 end
 
 # Empowered Eclipse
-class PokeBattle_Move_617 < PokeBattle_Move_09D
+class PokeBattle_Move_EmpoweredEclipse < PokeBattle_Move_StartEclipse8
     include EmpoweredMove
 
     def pbEffectGeneral(user)
@@ -157,7 +157,7 @@ end
 #===============================================================================
 # Starts moonlight weather. (Moonglow)
 #===============================================================================
-class PokeBattle_Move_09E < PokeBattle_WeatherMove
+class PokeBattle_Move_StartMoonglow8 < PokeBattle_WeatherMove
     def initialize(battle, move)
         super
         @weatherType = :Moonglow
@@ -165,7 +165,7 @@ class PokeBattle_Move_09E < PokeBattle_WeatherMove
 end
 
 # Empowered Moonglow
-class PokeBattle_Move_618 < PokeBattle_Move_09E
+class PokeBattle_Move_EmpoweredMoonglow < PokeBattle_Move_StartMoonglow8
     include EmpoweredMove
 
     def pbEffectGeneral(user)

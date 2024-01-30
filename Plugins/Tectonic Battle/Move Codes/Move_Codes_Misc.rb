@@ -16,7 +16,7 @@ end
 #===============================================================================
 # Does absolutely nothing. (Splash)
 #===============================================================================
-class PokeBattle_Move_DoNothing < PokeBattle_Move
+class PokeBattle_Move_DoesNothingUnusableInGravity < PokeBattle_Move
     def unusableInGravity?; return true; end
 
     def pbEffectGeneral(_user)
@@ -33,7 +33,7 @@ end
 #===============================================================================
 # All current battlers will perish after 3 more rounds. (Perish Song)
 #===============================================================================
-class PokeBattle_Move_0E5 < PokeBattle_Move
+class PokeBattle_Move_StartPerishCountsForAllBattlers < PokeBattle_Move
     def pbMoveFailed?(_user, targets, show_message)
         failed = true
         targets.each do |b|
@@ -70,14 +70,14 @@ end
 # If target would be KO'd by this attack, it survives with 1HP instead.
 # (False Swipe, Hold Back)
 #===============================================================================
-class PokeBattle_Move_0E9 < PokeBattle_Move
+class PokeBattle_Move_CannotMakeTargetFaint < PokeBattle_Move
     def nonLethal?(_user, _target); return true; end
 end
 
 #===============================================================================
 # Swaps form if the user is Meloetta. (Relic Song)
 #===============================================================================
-class PokeBattle_Move_078 < PokeBattle_Move
+class PokeBattle_Move_ChangeUserMeloettaForm < PokeBattle_Move
     def pbEndOfMoveUsageEffect(user, _targets, numHits, _switchedBattlers)
         return if numHits == 0
         return if user.fainted? || user.transformed?
@@ -93,7 +93,7 @@ end
 # is doubled in that case. (Pursuit)
 # (Handled in Battle's pbAttackPhase): Makes this attack happen before switching.
 #===============================================================================
-class PokeBattle_Move_088 < PokeBattle_Move
+class PokeBattle_Move_PursueSwitchingFoe < PokeBattle_Move
     def pbAccuracyCheck(user, target)
         return true if @battle.switching
         return super
@@ -113,7 +113,7 @@ end
 #===============================================================================
 # Transforms the user into one of its Mega Forms. (Gene Boost)
 #===============================================================================
-class PokeBattle_Move_089 < PokeBattle_Move
+class PokeBattle_Move_ChangeUserMewtwoChoiceOfForm < PokeBattle_Move
     def resolutionChoice(user)
         if @battle.autoTesting
             @chosenForm = rand(2) + 1
@@ -167,7 +167,7 @@ end
 #===============================================================================
 # Target transforms into their pre-evolution. (Young Again)
 #===============================================================================
-class PokeBattle_Move_0BF < PokeBattle_Move
+class PokeBattle_Move_TransformTargetPreEvolution < PokeBattle_Move
     def pbFailsAgainstTarget?(_user, target, show_message)
         if target.illusion?
             if show_message
@@ -208,7 +208,7 @@ end
 #===============================================================================
 # Target's last move used loses 4 PP. (Spiteful Chant, Eerie Spell)
 #===============================================================================
-class PokeBattle_Move_521 < PokeBattle_Move
+class PokeBattle_Move_LowerPPOfTargetLastMoveBy4 < PokeBattle_Move
     def ignoresSubstitute?(_user); return true; end
 
     def pbEffectAgainstTarget(_user, target)
@@ -234,7 +234,7 @@ end
 #===============================================================================
 # Uses the highest base-power attacking move known by any non-user Pokémon in the user's party. (Optimized Action)
 #===============================================================================
-class PokeBattle_Move_5C2 < PokeBattle_Move
+class PokeBattle_Move_UseHighestBasePowerMoveFromUserParty < PokeBattle_Move
     def callsAnotherMove?; return true; end
 
     def getOptimizedMove(user)
@@ -275,7 +275,7 @@ end
 #===============================================================================
 # The target uses its most recent move again. (Instruct)
 #===============================================================================
-class PokeBattle_Move_16B < PokeBattle_Move
+class PokeBattle_Move_TargetUsesItsLastUsedMoveAgain < PokeBattle_Move
     def ignoresSubstitute?(_user); return true; end
 
     def pbFailsAgainstTarget?(_user, target, show_message)
@@ -343,7 +343,7 @@ end
 #===============================================================================
 # Target is forced to use this Pokemon's first move slot. (Hivemind)
 #===============================================================================
-class PokeBattle_Move_57A < PokeBattle_Move
+class PokeBattle_Move_TargetUsesMoveInUserFirstSlot < PokeBattle_Move
     def pbMoveFailed?(user, _targets, show_message)
         unless getFirstSlotMove(user)
             @battle.pbDisplay(_INTL("But it failed, since #{user.pbThis(true)} has no moves!")) if show_message
@@ -376,7 +376,7 @@ end
 # Two turn attack. Skips first turn, and transforms the user into their second form
 # on the 2nd turn. Only ampharos can use it. (Transcendant Energy)
 #===============================================================================
-class PokeBattle_Move_5A7 < PokeBattle_TwoTurnMove
+class PokeBattle_Move_TwoTurnChangeUserAmpharosForm < PokeBattle_TwoTurnMove
     def pbMoveFailed?(user, _targets, show_message)
         if !user.countsAs?(:AMPHAROS)
             @battle.pbDisplay(_INTL("But {1} can't use the move!", user.pbThis(true))) if show_message
@@ -417,7 +417,7 @@ end
 #===============================================================================
 # Transforms the user into one of its forms. (Mutate)
 #===============================================================================
-class PokeBattle_Move_52D < PokeBattle_Move
+class PokeBattle_Move_ChangeUserDeoxusChoiceOfForm < PokeBattle_Move
     def resolutionChoice(user)
         if @battle.autoTesting
             @chosenForm = rand(3) + 1
@@ -472,7 +472,7 @@ end
 #===============================================================================
 # User switches places with its ally. (Ally Switch)
 #===============================================================================
-class PokeBattle_Move_120 < PokeBattle_Move
+class PokeBattle_Move_UserSwapsPositionsWithAlly < PokeBattle_Move
     def pbMoveFailed?(user, _targets, show_message)
         eachValidSwitch(user) do |_ally|
             return false
@@ -513,7 +513,7 @@ end
 #===============================================================================
 # Allies of the user also attack the target with Slash. (All For One)
 #===============================================================================
-class PokeBattle_Move_12F < PokeBattle_Move
+class PokeBattle_Move_AlliesAlsoUseSlashAgainstTarget < PokeBattle_Move
     def pbEffectAfterAllHits(user, target)
         user.eachAlly do |b|
             break if target.fainted?
@@ -526,7 +526,7 @@ end
 #===============================================================================
 # Can't miss if attacking a target that already used an attack this turn. (Power Whip)
 #===============================================================================
-class PokeBattle_Move_53C < PokeBattle_Move
+class PokeBattle_Move_CantMissAgainstTargetAlreadyAttacked < PokeBattle_Move
     def pbAccuracyCheck(user, target)
         targetChoice = @battle.choices[target.index][0]
         return true if targetChoice == :UseMove && target.movedThisRound?
@@ -544,7 +544,7 @@ end
 #===============================================================================
 # Increases the target's Attack by 3 steps, then the target hits itself with its own attack. (Swagger)
 #===============================================================================
-class PokeBattle_Move_55D < PokeBattle_Move
+class PokeBattle_Move_RaiseTargetAtk3TargetHitsSelfPhysical < PokeBattle_Move
     def pbEffectAgainstTarget(user, target)
         target.tryRaiseStat(:ATTACK, user, increment: 3, move: self)
         target.pbConfusionDamage(_INTL("It hurt itself in a rage!"), false, false, selfHitBasePower(target.level))
@@ -567,7 +567,7 @@ end
 #===============================================================================
 # Increases the target's Sp. Atk. by 3 steps, then the target hits itself with its own Sp. Atk. (Flatter)
 #===============================================================================
-class PokeBattle_Move_55E < PokeBattle_Move
+class PokeBattle_Move_RaiseTargetSpAtk3TargetHitsSelfSpecial < PokeBattle_Move
     def pbEffectAgainstTarget(user, target)
         target.tryRaiseStat(:SPECIAL_ATTACK, user, increment: 3, move: self)
         target.pbConfusionDamage(_INTL("It hurt itself in mental turmoil!"), true, false, selfHitBasePower(target.level))
@@ -591,7 +591,7 @@ end
 # The user takes 33% less damage until end of this turn.
 # (Shimmering Heat)
 #===============================================================================
-class PokeBattle_Move_577 < PokeBattle_Move
+class PokeBattle_Move_UserTakesThirdLessDamageThisTurn < PokeBattle_Move
     def pbEffectAfterAllHits(user, _target)
         user.applyEffect(:ShimmeringHeat)
     end
@@ -604,7 +604,7 @@ end
 #===============================================================================
 # Faints the opponant if they are below 1/4 HP, after dealing damage. (Cull)
 #===============================================================================
-class PokeBattle_Move_58F < PokeBattle_Move
+class PokeBattle_Move_FaintsTargetBelowQuarterOfTotalHP < PokeBattle_Move
     def canCull?(target)
         return target.hp < (target.totalhp / 4)
     end
@@ -625,7 +625,7 @@ end
 #===============================================================================
 # The user, if a Deerling or Sawsbuck, changes their form in season order. (Season's End)
 #===============================================================================
-class PokeBattle_Move_590 < PokeBattle_Move
+class PokeBattle_Move_ChangeUserDeerlingSawsbuckForm < PokeBattle_Move
     def pbMoveFailed?(user, _targets, show_message)
         unless user.countsAs?(:DEERLING) || user.countsAs?(:SAWSBUCK)
             @battle.pbDisplay(_INTL("But {1} can't use the move!", user.pbThis)) if show_message
@@ -650,7 +650,7 @@ end
 #===============================================================================
 # Targets struck lose their flinch immunity. Only usable by the avatar of Rayquaza (Stratosphere Scream)
 #===============================================================================
-class PokeBattle_Move_700 < PokeBattle_Move
+class PokeBattle_Move_RayquazaTargetLosesFlinchImmunity < PokeBattle_Move
     def ignoresSubstitute?(_user); return true; end
 
     def pbMoveFailed?(user, _targets, show_message)
@@ -675,7 +675,7 @@ end
 # Summons an Avatar of Luvdisc and an Avatar of Remoraid.
 # Only usable by the avatar of Kyogre (Seven Seas Edict)
 #===============================================================================
-class PokeBattle_Move_701 < PokeBattle_Move
+class PokeBattle_Move_KyogreSummonAvatarLuvdiscRemoraid < PokeBattle_Move
     def pbMoveFailed?(user, _targets, show_message)
         if !user.countsAs?(:KYOGRE) || !user.boss?
             @battle.pbDisplay(_INTL("But {1} can't use the move!", user.pbThis(true))) if show_message
@@ -700,7 +700,7 @@ end
 # Summons Gravity for 10 turn and doubles the weight of Pokemon on the opposing side.
 # Only usable by the avatar of Groudon (Warping Core)
 #===============================================================================
-class PokeBattle_Move_702 < PokeBattle_Move
+class PokeBattle_Move_GroudonStartGravity10DoubleFoeWeight < PokeBattle_Move
     def pbMoveFailed?(user, _targets, show_message)
         if !user.countsAs?(:GROUDON) || !user.boss?
             @battle.pbDisplay(_INTL("But {1} can't use the move!", user.pbThis(true))) if show_message
@@ -725,7 +725,7 @@ end
 # All Normal-type moves become Electric-type for the rest of the round.
 # (Ion Deluge, Plasma Fists)
 #===============================================================================
-class PokeBattle_Move_146 < PokeBattle_Move
+class PokeBattle_Move_NormalMovesBecomeElectric < PokeBattle_Move
     def pbMoveFailed?(user, _targets, show_message)
         return false if damagingMove?
         if @battle.field.effectActive?(:IonDeluge)
@@ -744,7 +744,7 @@ end
 #===============================================================================
 # Accuracy perfect in moonglow. (Nightfelling)
 #===============================================================================
-class PokeBattle_Move_516 < PokeBattle_Move
+class PokeBattle_Move_CantMissIfInMoonglow < PokeBattle_Move
     def pbBaseAccuracy(user, target)
         return 0 if @battle.moonGlowing?
         return super

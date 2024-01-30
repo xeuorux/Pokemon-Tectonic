@@ -2,7 +2,7 @@
 # For 5 rounds, causes SE damage to be 25% higher, and NVE damage to be 25% lower.
 # (Polarized Room)
 #===============================================================================
-class PokeBattle_Move_124 < PokeBattle_RoomMove
+class PokeBattle_Move_StartPolarizeTypeMatchups5 < PokeBattle_RoomMove
     def initialize(battle, move)
         super
         @roomEffect = :PolarizedRoom
@@ -12,7 +12,7 @@ end
 #===============================================================================
 # For 5 rounds, Pokemon's Attack and Sp. Atk are swapped. (Puzzle Room)
 #===============================================================================
-class PokeBattle_Move_51A < PokeBattle_RoomMove
+class PokeBattle_Move_StartSwapAttackingStats5 < PokeBattle_RoomMove
     def initialize(battle, move)
         super
         @roomEffect = :PuzzleRoom
@@ -20,7 +20,7 @@ class PokeBattle_Move_51A < PokeBattle_RoomMove
 end
 
 # Empowered Puzzle Room
-class PokeBattle_Move_610 < PokeBattle_Move_51A
+class PokeBattle_Move_EmpoweredPuzzleRoom < PokeBattle_Move_StartSwapAttackingStats5
     include EmpoweredMove
 
     def pbEffectGeneral(user)
@@ -34,7 +34,7 @@ end
 # For 5 rounds, swaps all battlers' offensive and defensive stats (Sp. Def <-> Sp. Atk and Def <-> Atk).
 # (Odd Room)
 #===============================================================================
-class PokeBattle_Move_582 < PokeBattle_RoomMove
+class PokeBattle_Move_StartSwapOffensiveAndDefensiveStats5 < PokeBattle_RoomMove
     def initialize(battle, move)
         super
         @roomEffect = :OddRoom

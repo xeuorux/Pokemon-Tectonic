@@ -1,7 +1,7 @@
 #===============================================================================
 # User is protected against moves with the "B" flag this round. (Detect, Protect)
 #===============================================================================
-class PokeBattle_Move_0AA < PokeBattle_ProtectMove
+class PokeBattle_Move_ProtectUser < PokeBattle_ProtectMove
     def initialize(battle, move)
         super
         @effect = :Protect
@@ -9,7 +9,7 @@ class PokeBattle_Move_0AA < PokeBattle_ProtectMove
 end
 
 # Empowered Detect
-class PokeBattle_Move_622 < PokeBattle_Move
+class PokeBattle_Move_EmpoweredDetect < PokeBattle_Move
     include EmpoweredMove
 
     def pbEffectGeneral(user)
@@ -23,7 +23,7 @@ end
 # User's side is protected against moves with priority greater than 0 this round.
 # (Quick Guard)
 #===============================================================================
-class PokeBattle_Move_0AB < PokeBattle_ProtectMove
+class PokeBattle_Move_ProtectUserSideFromPriorityMoves < PokeBattle_ProtectMove
     def initialize(battle, move)
         super
         @effect      = :QuickGuard
@@ -34,7 +34,7 @@ end
 #===============================================================================
 # User's side is protected against status moves this round. (Crafty Shield)
 #===============================================================================
-class PokeBattle_Move_14A < PokeBattle_Move
+class PokeBattle_Move_ProtectUserSideFromStatusMoves < PokeBattle_Move
     def pbMoveFailed?(user, _targets, show_message)
         if user.pbOwnSide.effectActive?(:CraftyShield)
             if show_message
@@ -66,7 +66,7 @@ end
 # User's side is protected against moves that target multiple battlers this round.
 # (Wide Guard)
 #===============================================================================
-class PokeBattle_Move_0AC < PokeBattle_ProtectMove
+class PokeBattle_Move_ProtectUserSideFromMultiTargetMoves < PokeBattle_ProtectMove
     def initialize(battle, move)
         super
         @effect      = :WideGuard
@@ -79,7 +79,7 @@ end
 # This round, user becomes the target of attacks that have single targets.
 # (Omnishelter)
 #===============================================================================
-class PokeBattle_Move_5BF < PokeBattle_ProtectMove
+class PokeBattle_Move_ProtectUserSideFromMultiTargetMovesRedirectAllMovesToUser < PokeBattle_ProtectMove
     def initialize(battle, move)
         super
         @effect      = :WideGuard
@@ -117,7 +117,7 @@ end
 #===============================================================================
 # User's side takes 50% less attack damage this turn. (Bulwark)
 #===============================================================================
-class PokeBattle_Move_597 < PokeBattle_ProtectMove
+class PokeBattle_Move_UserAndAlliesTakeHalfDamageThisTurn < PokeBattle_ProtectMove
     def initialize(battle, move)
         super
         @effect      = :Bulwark
@@ -132,7 +132,7 @@ end
 #===============================================================================
 # This round, the user's side is unaffected by damaging moves. (Mat Block)
 #===============================================================================
-class PokeBattle_Move_149 < PokeBattle_Move
+class PokeBattle_Move_ProtectUserSideFromDamagingMovesIfUserFirstTurn < PokeBattle_Move
     def pbMoveFailed?(user, _targets, show_message)
         unless user.firstTurn?
             @battle.pbDisplay(_INTL("But it failed, since it isn't #{user.pbThis(true)}'s first turn!")) if show_message
@@ -167,7 +167,7 @@ end
 #===============================================================================
 # If user would be KO'd this round, it survives with 1 HP instead. (Endure)
 #===============================================================================
-class PokeBattle_Move_0E8 < PokeBattle_ProtectMove
+class PokeBattle_Move_UserEnduresFaintingThisTurn < PokeBattle_ProtectMove
     def initialize(battle, move)
         super
         @effect = :Endure
@@ -184,7 +184,7 @@ class PokeBattle_Move_0E8 < PokeBattle_ProtectMove
 end
 
 # Empowered Endure
-class PokeBattle_Move_612 < PokeBattle_Move
+class PokeBattle_Move_EmpoweredEndure < PokeBattle_Move
     include EmpoweredMove
 
     def pbEffectGeneral(user)
@@ -197,7 +197,7 @@ end
 # If user would be KO'd this round, it survives with 1 HP instead. (Fight Forever)
 # Then, it's Attack is raised by 2
 #===============================================================================
-class PokeBattle_Move_094 < PokeBattle_ProtectMove
+class PokeBattle_Move_UserEnduresFaintingThisTurnRaiseUserAtk2IfActivates < PokeBattle_ProtectMove
     def initialize(battle, move)
         super
         @effect = :FightForever
@@ -217,7 +217,7 @@ end
 # User is protected against damaging moves this round. Decreases the Attack of
 # the user of a stopped physical move by 1 step. (King's Shield)
 #===============================================================================
-class PokeBattle_Move_14B < PokeBattle_ProtectMove
+class PokeBattle_Move_ProtectUserFromDamagingMovesLowerAttackerAtk1 < PokeBattle_ProtectMove
     def initialize(battle, move)
         super
         @effect = :KingsShield
@@ -237,7 +237,7 @@ end
 # User is protected against damaging moves this round. Decreases the Sp. Atk of
 # the user of a stopped special move by 1 step. (Shield Shell)
 #===============================================================================
-class PokeBattle_Move_5BB < PokeBattle_ProtectMove
+class PokeBattle_Move_ProtectUserFromDamagingMovesLowerAttackerSpAtk1 < PokeBattle_ProtectMove
     def initialize(battle, move)
         super
         @effect = :ShiningShell
@@ -257,7 +257,7 @@ end
 # User is protected against damaging moves this round. Decreases the Defense of
 # the user of a stopped physical move by 2 steps. (Obstruct)
 #===============================================================================
-class PokeBattle_Move_180 < PokeBattle_ProtectMove
+class PokeBattle_Move_ProtectUserFromDamagingMovesLowerPhysAttackerDef2 < PokeBattle_ProtectMove
     def initialize(battle, move)
         super
         @effect = :Obstruct
@@ -268,7 +268,7 @@ end
 # User is protected against damaging moves this round. Decreases the Sp. Def of
 # the user of a stopped special move by 2 steps. (Reverb Ward)
 #===============================================================================
-class PokeBattle_Move_5AE < PokeBattle_ProtectMove
+class PokeBattle_Move_ProtectUserFromDamagingMovesLowerSpecAttackerSpDef2 < PokeBattle_ProtectMove
     def initialize(battle, move)
         super
         @effect = :ReverbWard
@@ -279,7 +279,7 @@ end
 # User is protected against moves that target it this round. Damages the user of
 # a stopped physical move by 1/8 of its max HP. (Spiky Shield)
 #===============================================================================
-class PokeBattle_Move_14C < PokeBattle_ProtectMove
+class PokeBattle_Move_ProtectUserHurtPhysAttackerForEightOfTotalHP < PokeBattle_ProtectMove
     def initialize(battle, move)
         super
         @effect = :SpikyShield
@@ -300,7 +300,7 @@ end
 # attacks with the user with a special attack while this effect applies, that Pokémon
 # takes 1/8th chip damage. (Mirror Shield)
 #===============================================================================
-class PokeBattle_Move_593 < PokeBattle_ProtectMove
+class PokeBattle_Move_ProtectUserHurtSpecAttackerForEightOfTotalHP < PokeBattle_ProtectMove
     def initialize(battle, move)
         super
         @effect = :MirrorShield
@@ -321,7 +321,7 @@ end
 # attacks with the user with a special attack while this effect applies, that Pokémon is
 # burned. (Red-Hot Retreat)
 #===============================================================================
-class PokeBattle_Move_567 < PokeBattle_ProtectMove
+class PokeBattle_Move_ProtectUserBurnSpecAttacker < PokeBattle_ProtectMove
     def initialize(battle, move)
         super
         @effect = :RedHotRetreat
@@ -342,7 +342,7 @@ end
 # attacks with the user with a physical attack while this effect applies, that Pokémon is
 # frostbitten. (Icicle Armor)
 #===============================================================================
-class PokeBattle_Move_57E < PokeBattle_ProtectMove
+class PokeBattle_Move_ProtectUserFrostbitePhysAttacker < PokeBattle_ProtectMove
     def initialize(battle, move)
         super
         @effect = :IcicleArmor
@@ -362,7 +362,7 @@ end
 # User's side is protected against status moves this round. Disables the last used move
 # of the opposing user for 3 turns. (Quarantine)
 #===============================================================================
-class PokeBattle_Move_156 < PokeBattle_ProtectMove
+class PokeBattle_Move_ProtectUserFromStatusMovesDisableBlockedMoves3 < PokeBattle_ProtectMove
     def initialize(battle, move)
         super
         @effect = :Quarantine
@@ -386,7 +386,7 @@ end
 # User is protected against damaging moves this round. Counterattacks (Cranial Guard)
 # with Granite Head.
 #===============================================================================
-class PokeBattle_Move_155 < PokeBattle_ProtectMove
+class PokeBattle_Move_ProtectUserFromDamagingMovesUseGraniteHeadAgainstAttackers < PokeBattle_ProtectMove
     def initialize(battle, move)
         super
         @effect = :CranialGuard
@@ -403,11 +403,11 @@ class PokeBattle_Move_155 < PokeBattle_ProtectMove
 end
 
 #===============================================================================
-# User is protected against moves with the "B" flag this round. If a Pokémon
+# User takes half damage from all damaging moves this turn. If a Pokémon
 # attacks the user while this effect applies, that Pokémon becomes numbed.
 # (Stunning Curl)
 #===============================================================================
-class PokeBattle_Move_550 < PokeBattle_HalfProtectMove
+class PokeBattle_Move_UserTakesHalfDamageThisTurnNumbAttackers < PokeBattle_HalfProtectMove
     def initialize(battle, move)
         super
         @effect = :StunningCurl
@@ -419,11 +419,11 @@ class PokeBattle_Move_550 < PokeBattle_HalfProtectMove
 end
 
 #===============================================================================
-# User is protected against moves with the "B" flag this round. If a Pokémon
+# User takes half damage from all damaging moves this turn. If a Pokémon
 # attacks the user while this effect applies, that Pokémon become leeched.
 # (Root Haven)
 #===============================================================================
-class PokeBattle_Move_5A5 < PokeBattle_HalfProtectMove
+class PokeBattle_Move_UserTakesHalfDamageThisTurnLeechAttackers < PokeBattle_HalfProtectMove
     def initialize(battle, move)
         super
         @effect = :RootShelter
@@ -435,11 +435,11 @@ class PokeBattle_Move_5A5 < PokeBattle_HalfProtectMove
 end
 
 #===============================================================================
-# User is protected against moves with the "B" flag this round. If a Pokémon
+# User takes half damage from all damaging moves this turn. If a Pokémon
 # attacks the user while this effect applies, that Pokémon becomes poisoned.
 # (Venom Guard)
 #===============================================================================
-class PokeBattle_Move_57F < PokeBattle_HalfProtectMove
+class PokeBattle_Move_UserTakesHalfDamageThisTurnPoisonAttackers < PokeBattle_HalfProtectMove
     def initialize(battle, move)
         super
         @effect = :VenomGuard
@@ -454,7 +454,7 @@ end
 # Creates a bubble to shield the target. The next time they’re attacked, (Bubble Barrier)
 # 50% of the move damage is instead dealt to the attacker
 #===============================================================================
-class PokeBattle_Move_196 < PokeBattle_Move
+class PokeBattle_Move_TargetTakesHalfDamageNextAttackAttackerTakesRecoil < PokeBattle_Move
     def ignoresSubstitute?(_user); return true; end
 
     def hitsInvulnerable?; return true; end

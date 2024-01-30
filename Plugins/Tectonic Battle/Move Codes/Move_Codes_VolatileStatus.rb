@@ -286,19 +286,19 @@ class PokeBattle_Move_0BC < PokeBattle_Move
         @moveBlacklist = [
             "0BC", # Encore
             # Struggle
-            "002", # Struggle
+            "Struggle", # Struggle
             # Moves that affect the moveset
-            "05C",   # Mimic
-            "05D",   # Sketch
-            "069",   # Transform
+            "ReplaceMoveThisBattleWithTargetLastMoveUsed",   # Mimic
+            "ReplaceMoveWithTargetLastMoveUsed",   # Sketch
+            "TransformUserIntoTarget",   # Transform
             # Moves that call other moves
-            "0AE", # Mirror Move
-            "0AF",   # Copycat
-            "0B0",   # Me First
+            "TransformUserIntoTUseLastMoveUsedByTargetarget", # Mirror Move
+            "UseLastMoveUsed",   # Copycat
+            "UseMoveTargetIsAboutToUse",   # Me First
             "0B3",   # Nature Power
-            "0B4",   # Sleep Talk
-            "0B5",   # Assist
-            "0B6", # Metronome
+            "UseRandomUserMoveIfAsleep",   # Sleep Talk
+            "UseRandomMoveFromUserParty",   # Assist
+            "UseRandomNonSignatureMove", # Metronome
         ]
     end
 

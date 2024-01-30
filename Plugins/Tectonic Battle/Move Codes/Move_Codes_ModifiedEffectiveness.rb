@@ -1,7 +1,7 @@
 #===============================================================================
 # Effectiveness against Dragon-type is 2x. (Slay)
 #===============================================================================
-class PokeBattle_Move_54F < PokeBattle_TypeSuperMove
+class PokeBattle_Move_SuperEffectiveAgainstDragon < PokeBattle_TypeSuperMove
     def initialize(battle, move)
         super
         @typeHated = :DRAGON
@@ -11,7 +11,7 @@ end
 #===============================================================================
 # Effectiveness against Electric-type is 2x. (Blackout)
 #===============================================================================
-class PokeBattle_Move_562 < PokeBattle_TypeSuperMove
+class PokeBattle_Move_SuperEffectiveAgainstElectric < PokeBattle_TypeSuperMove
     def initialize(battle, move)
         super
         @typeHated = :ELECTRIC
@@ -21,7 +21,7 @@ end
 #===============================================================================
 # Effectiveness against Ghost-type is 2x. (Holly Charm)
 #===============================================================================
-class PokeBattle_Move_563 < PokeBattle_TypeSuperMove
+class PokeBattle_Move_SuperEffectiveAgainstGhost < PokeBattle_TypeSuperMove
     def initialize(battle, move)
         super
         @typeHated = :GHOST
@@ -31,7 +31,7 @@ end
 #===============================================================================
 # Effectiveness against Fighting-type is 2x. (Honorless Sting)
 #===============================================================================
-class PokeBattle_Move_586 < PokeBattle_TypeSuperMove
+class PokeBattle_Move_SuperEffectiveAgainstFighting < PokeBattle_TypeSuperMove
     def initialize(battle, move)
         super
         @typeHated = :FIGHTING
@@ -42,7 +42,7 @@ end
 # Type effectiveness is multiplied by the Flying-type's effectiveness against
 # the target. (Flying Press)
 #===============================================================================
-class PokeBattle_Move_144 < PokeBattle_Move
+class PokeBattle_Move_EffectivenessIncludesFlyingType < PokeBattle_Move
     def pbCalcTypeModSingle(moveType, defType, user, target)
         ret = super
         if GameData::Type.exists?(:FLYING)
@@ -57,7 +57,7 @@ end
 # Type effectiveness is multiplied by the Psychic-type's effectiveness against
 # the target. (Leyline Burst)
 #===============================================================================
-class PokeBattle_Move_573 < PokeBattle_Move
+class PokeBattle_Move_EffectivenessIncludesPsychicType < PokeBattle_Move
     def pbCalcTypeModSingle(moveType, defType, user, target)
         ret = super
         if GameData::Type.exists?(:PSYCHIC)

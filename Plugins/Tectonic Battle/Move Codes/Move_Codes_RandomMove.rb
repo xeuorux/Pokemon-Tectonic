@@ -1,7 +1,7 @@
 #===============================================================================
 # Uses a random move the user knows. Fails if user is not asleep. (Sleep Talk)
 #===============================================================================
-class PokeBattle_Move_0B4 < PokeBattle_Move
+class PokeBattle_Move_UseRandomUserMoveIfAsleep < PokeBattle_Move
     def usableWhenAsleep?; return true; end
     def callsAnotherMove?; return true; end
 
@@ -9,10 +9,10 @@ class PokeBattle_Move_0B4 < PokeBattle_Move
         super
         @moveBlacklist = [
             # Struggle
-            "002",   # Struggle
+            "Struggle",   # Struggle
             # Moves that affect the moveset (except Transform)
-            "05C",   # Mimic
-            "05D",   # Sketch
+            "ReplaceMoveThisBattleWithTargetLastMoveUsed",   # Mimic
+            "ReplaceMoveWithTargetLastMoveUsed",   # Sketch
             # Moves that start focussing at the start of the round
             "115",   # Focus Punch
             "UsedAfterUserTakesPhysicalDamage",   # Shell Trap
@@ -62,18 +62,18 @@ end
 #===============================================================================
 # Uses a random move known by any non-user Pokémon in the user's party. (Assist)
 #===============================================================================
-class PokeBattle_Move_0B5 < PokeBattle_Move
+class PokeBattle_Move_UseRandomMoveFromUserParty < PokeBattle_Move
     def callsAnotherMove?; return true; end
 
     def initialize(battle, move)
         super
         @moveBlacklist = [
             # Struggle
-            "002",   # Struggle
+            "Struggle",   # Struggle
             # Moves that affect the moveset
-            "05C",   # Mimic
-            "05D",   # Sketch
-            "069",   # Transform
+            "ReplaceMoveThisBattleWithTargetLastMoveUsed",   # Mimic
+            "ReplaceMoveWithTargetLastMoveUsed",   # Sketch
+            "TransformUserIntoTarget",   # Transform
             # Counter moves
             "CounterPhysicalDamage",   # Counter
             "CounterSpecialDamage",   # Mirror Coat
@@ -81,8 +81,8 @@ class PokeBattle_Move_0B5 < PokeBattle_Move
             # Move-redirecting and stealing moves
             "BounceBackProblemCausingStatusMoves",   # Magic Coat
             "StealAndUseBeneficialStatusMove",   # Snatch
-            "117",   # Follow Me, Rage Powder
-            "16A",   # Spotlight
+            "RedirectAllMovesToUser",   # Follow Me, Rage Powder
+            "RedirectAllMovesToTarget",   # Spotlight
             # Set up effects that trigger upon KO
             "0E6",   # Grudge
             "AttackerFaintsIfUserFaints",   # Destiny Bond
@@ -138,20 +138,20 @@ end
 #===============================================================================
 # Uses a random move that exists. (Metronome)
 #===============================================================================
-class PokeBattle_Move_0B6 < PokeBattle_Move
+class PokeBattle_Move_UseRandomNonSignatureMove < PokeBattle_Move
     def callsAnotherMove?; return true; end
 
     def initialize(battle, move)
         super
         @moveBlacklist = [
             "011",   # Snore
-            "11D",   # After You
-            "11E",   # Quash
+            "TargetActsNext",   # After You
+            "TargetActsLast",   # Quash
             # Move-redirecting and stealing moves
             "BounceBackProblemCausingStatusMoves",   # Magic Coat
             "StealAndUseBeneficialStatusMove",   # Snatch
-            "117",   # Follow Me, Rage Powder
-            "16A",   # Spotlight
+            "RedirectAllMovesToUser",   # Follow Me, Rage Powder
+            "RedirectAllMovesToTarget",   # Spotlight
             # Held item-moving moves
             "StealsItem",   # Covet, Thief
             "SwapItems",   # Switcheroo, Trick
@@ -196,7 +196,7 @@ end
 #===============================================================================
 # The user is given the choice of using one of 3 randomly chosen status moves. (Discovered Power)
 #===============================================================================
-class PokeBattle_Move_13C < PokeBattle_Move
+class PokeBattle_Move_UseChoiceOf3RandomNonSignatureStatusMoves < PokeBattle_Move
     def callsAnotherMove?; return true; end
 
     def initialize(battle, move)
@@ -254,7 +254,7 @@ end
 #===============================================================================
 # Uses a random special Dragon-themed move, then a random physical Dragon-themed move. (Dragon Invocation)
 #===============================================================================
-class PokeBattle_Move_5C3 < PokeBattle_Move
+class PokeBattle_Move_UseTwoRandomDragonThemedMoves < PokeBattle_Move
     def callsAnotherMove?; return true; end
 
     def initialize(battle, move)

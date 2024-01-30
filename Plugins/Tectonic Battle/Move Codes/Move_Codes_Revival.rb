@@ -1,7 +1,7 @@
 #===============================================================================
 # Revives a fainted Grass-type party member back to 100% HP. (Breathe Life)
 #===============================================================================
-class PokeBattle_Move_578 < PokeBattle_PartyMemberEffectMove
+class PokeBattle_Move_ReviveGrassTypePartyMemberToFullHP < PokeBattle_PartyMemberEffectMove
     def legalChoice(pokemon)
         return false unless super
         return false unless pokemon.fainted?
@@ -22,7 +22,7 @@ end
 #===============================================================================
 # Revives a fainted party member back to 1 HP. (Defibrillate)
 #===============================================================================
-class PokeBattle_Move_59E < PokeBattle_PartyMemberEffectMove
+class PokeBattle_Move_RevivePartyMemberTo1HP < PokeBattle_PartyMemberEffectMove
     def legalChoice(pokemon)
         return false unless super
         return false unless pokemon.fainted?

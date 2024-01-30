@@ -2,7 +2,7 @@
 # Increases the user's Defense and Special Defense by 1 step each. Ups the
 # user's stockpile by 1 (max. 2). (Stockpile)
 #===============================================================================
-class PokeBattle_Move_112 < PokeBattle_MultiStatUpMove
+class PokeBattle_Move_UserAddStockpileRaiseDefSpDef1 < PokeBattle_MultiStatUpMove
     def initialize(battle, move)
         super
         @statUp = DEFENDING_STATS_1
@@ -23,8 +23,8 @@ class PokeBattle_Move_112 < PokeBattle_MultiStatUpMove
 
     def getEffectScore(user, target)
         score = super
-        score += 20 if user.pbHasMoveFunction?("113") # Spit Up
-        score += 20 if user.pbHasMoveFunction?("114") # Swallow
+        score += 20 if user.pbHasMoveFunction?("PowerDependsOnUserStockpile") # Spit Up
+        score += 20 if user.pbHasMoveFunction?("HealUserDependingOnUserStockpile") # Swallow
         return score
 	end	
 end
@@ -33,7 +33,7 @@ end
 # Power is 150 multiplied by the user's stockpile (X). Resets the stockpile to
 # 0. Decreases the user's Defense and Special Defense by X steps each. (Spit Up)
 #===============================================================================
-class PokeBattle_Move_113 < PokeBattle_Move
+class PokeBattle_Move_PowerDependsOnUserStockpile < PokeBattle_Move
     def pbMoveFailed?(user, _targets, show_message)
         unless user.effectActive?(:Stockpile)
             @battle.pbDisplay(_INTL("But it failed to spit up a thing!")) if show_message
@@ -67,7 +67,7 @@ end
 # Heals user depending on the user's stockpile (X). Resets the stockpile to 0.
 # Decreases the user's Defense and Special Defense by X steps each. (Swallow)
 #===============================================================================
-class PokeBattle_Move_114 < PokeBattle_HealingMove
+class PokeBattle_Move_HealUserDependingOnUserStockpile < PokeBattle_HealingMove
     def healingMove?; return true; end
 
     def pbMoveFailed?(user, targets, show_message)

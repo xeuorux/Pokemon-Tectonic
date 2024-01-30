@@ -4,12 +4,12 @@
 # If the move is a combo, power is doubled and causes either a sea of fire or a
 # swamp on the opposing side.
 #===============================================================================
-class PokeBattle_Move_106 < PokeBattle_PledgeMove
+class PokeBattle_Move_GrassPledge < PokeBattle_PledgeMove
     def initialize(battle, move)
         super
         # [Function code to combo with, effect, override type, override animation]
-        @combos = [["107", :SeaOfFire, :FIRE, :FIREPLEDGE],
-                   ["108", :Swamp,     nil,   nil],]
+        @combos = [["FirePledge", :SeaOfFire, :FIRE, :FIREPLEDGE],
+                   ["WaterPledge", :Swamp,     nil,   nil],]
     end
 end
 
@@ -18,12 +18,12 @@ end
 # If the move is a combo, power is doubled and causes either a rainbow on the
 # user's side or a sea of fire on the opposing side.
 #===============================================================================
-class PokeBattle_Move_107 < PokeBattle_PledgeMove
+class PokeBattle_Move_FirePledge < PokeBattle_PledgeMove
     def initialize(battle, move)
         super
         # [Function code to combo with, effect, override type, override animation]
-        @combos = [["108", :Rainbow,   :WATER, :WATERPLEDGE],
-                   ["106", :SeaOfFire, nil,    nil],]
+        @combos = [["WaterPledge", :Rainbow,   :WATER, :WATERPLEDGE],
+                   ["GrassPledge", :SeaOfFire, nil,    nil],]
     end
 end
 
@@ -32,11 +32,11 @@ end
 # If the move is a combo, power is doubled and causes either a swamp on the
 # opposing side or a rainbow on the user's side.
 #===============================================================================
-class PokeBattle_Move_108 < PokeBattle_PledgeMove
+class PokeBattle_Move_WaterPledge < PokeBattle_PledgeMove
     def initialize(battle, move)
         super
         # [Function code to combo with, effect, override type, override animation]
-        @combos = [["106", :Swamp,   :GRASS, :GRASSPLEDGE],
-                   ["107", :Rainbow, nil,    nil],]
+        @combos = [["GrassPledge", :Swamp,   :GRASS, :GRASSPLEDGE],
+                   ["FirePledge", :Rainbow, nil,    nil],]
     end
 end

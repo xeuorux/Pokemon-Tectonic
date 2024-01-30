@@ -81,7 +81,7 @@ class PokeBattle_Struggle < PokeBattle_Move
         @realMove   = nil # Not associated with a move
         @id         = move ? move.id : :STRUGGLE
         @name       = move ? move.name : _INTL("Struggle")
-        @function   = "002"
+        @function   = "Struggle"
         @baseDamage = 50
         @type       = nil
         @category   = 0

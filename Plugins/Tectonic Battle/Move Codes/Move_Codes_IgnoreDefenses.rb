@@ -1,19 +1,19 @@
 #===============================================================================
 # This attack is always a critical hit. (Frost Breath, Storm Throw)
 #===============================================================================
-class PokeBattle_Move_0A0 < PokeBattle_Move
+class PokeBattle_Move_AlwaysCriticalHit < PokeBattle_Move
     def pbCriticalOverride(_user, _target); return 1; end
 end
 
 # Empowered Slash
-class PokeBattle_Move_643 < PokeBattle_Move_0A0
+class PokeBattle_Move_EmpoweredSlash < PokeBattle_Move_AlwaysCriticalHit
     include EmpoweredMove
 end
 
 #===============================================================================
 # Always hits.
 #===============================================================================
-class PokeBattle_Move_0A5 < PokeBattle_Move
+class PokeBattle_Move_AlwaysHits < PokeBattle_Move
     def pbAccuracyCheck(_user, _target); return true; end
 end
 
@@ -21,7 +21,7 @@ end
 # This move ignores target's Defense, Special Defense and evasion stat changes.
 # (Chip Away, Darkest Lariat, Sacred Sword)
 #===============================================================================
-class PokeBattle_Move_0A9 < PokeBattle_Move
+class PokeBattle_Move_IgnoreTargetDefSpDefEvaStatStages < PokeBattle_Move
     def pbCalcAccuracyMultipliers(user, target, multipliers)
         super
         modifiers[:evasion_step] = 0
@@ -37,7 +37,7 @@ end
 #===============================================================================
 # Ends target's protections immediately. (Feint)
 #===============================================================================
-class PokeBattle_Move_0AD < PokeBattle_Move
+class PokeBattle_Move_RemoveProtections < PokeBattle_Move
     def pbEffectAgainstTarget(_user, target)
         removeProtections(target)
     end
@@ -46,7 +46,7 @@ end
 #===============================================================================
 # Always hits. Ends target's protections immediately. (Hyperspace Hole)
 #===============================================================================
-class PokeBattle_Move_147 < PokeBattle_Move
+class PokeBattle_Move_RemoveProtectionsBypassSubstituteAlwaysHits < PokeBattle_Move
     def ignoresSubstitute?(_user); return true; end
     def pbAccuracyCheck(_user, _target); return true; end
 
@@ -59,7 +59,7 @@ end
 # Decreases the user's Defense by 1 step. Always hits. Ends target's
 # protections immediately. (Hyperspace Fury)
 #===============================================================================
-class PokeBattle_Move_13B < PokeBattle_StatDownMove
+class PokeBattle_Move_HyperspaceFury < PokeBattle_StatDownMove
     def ignoresSubstitute?(_user); return true; end
 
     def initialize(battle, move)
@@ -88,7 +88,7 @@ end
 #===============================================================================
 # Ends the opposing side's screen effects. (Brick Break, Psychic Fangs)
 #===============================================================================
-class PokeBattle_Move_10A < PokeBattle_Move
+class PokeBattle_Move_RemoveScreens < PokeBattle_Move
     def ignoresReflect?; return true; end
 
     def pbEffectWhenDealingDamage(_user, target)
@@ -136,7 +136,7 @@ class PokeBattle_Move_10A < PokeBattle_Move
 end
 
 # Empowered Brick Break
-class PokeBattle_Move_644 < PokeBattle_TargetStatDownMove
+class PokeBattle_Move_EmpoweredBrickBreak < PokeBattle_TargetStatDownMove
     include EmpoweredMove
 
     def ignoresReflect?; return true; end
@@ -164,7 +164,7 @@ end
 #===============================================================================
 # Ends target's protections, screens, and substitute immediately. (Siege Breaker)
 #===============================================================================
-class PokeBattle_Move_12E < PokeBattle_Move
+class PokeBattle_Move_RemoveScreensSubstituteProtections < PokeBattle_Move
     def ignoresSubstitute?; return true; end
     def ignoresReflect?; return true; end
     
@@ -224,7 +224,7 @@ end
 # Ignores all abilities that alter this move's success or damage.
 # (Moongeist Beam, Sunsteel Strike)
 #===============================================================================
-class PokeBattle_Move_163 < PokeBattle_Move
+class PokeBattle_Move_IgnoreTargetAbility < PokeBattle_Move
     def pbChangeUsageCounters(user, specialUsage)
         super
         @battle.moldBreaker = true unless specialUsage
@@ -235,7 +235,7 @@ end
 # This move ignores target's Defense, Special Defense and evasion stat changes.
 # It also ignores their abilities. (Rend)
 #===============================================================================
-class PokeBattle_Move_509 < PokeBattle_Move
+class PokeBattle_Move_IgnoreTargetDefSpDefEvaStatStagesAndTargetAbility < PokeBattle_Move
     def pbChangeUsageCounters(user, specialUsage)
         super
         @battle.moldBreaker = true unless specialUsage
@@ -262,7 +262,7 @@ end
 # physical if user's Attack is higher than its Special Attack (after applying
 # stat steps), and special otherwise. (Photon Geyser)
 #===============================================================================
-class PokeBattle_Move_164 < PokeBattle_Move_163
+class PokeBattle_Move_CategoryDependsOnHigherDamageIgnoreTargetAbility < PokeBattle_Move_IgnoreTargetAbility
     def initialize(battle, move)
         super
         @calculated_category = 1
@@ -276,6 +276,6 @@ end
 #===============================================================================
 # Ignores move redirection from abilities and moves. (Snipe Shot)
 #===============================================================================
-class PokeBattle_Move_182 < PokeBattle_Move
+class PokeBattle_Move_CannotBeRedirected < PokeBattle_Move
     def cannotRedirect?; return true; end
 end

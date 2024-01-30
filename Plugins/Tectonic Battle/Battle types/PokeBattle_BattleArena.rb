@@ -94,8 +94,8 @@ class PokeBattle_BattleArena < PokeBattle_Battle
   end
 
   def pbMindScore(move)
-    if move.function=="0AA" ||   # Detect/Protect
-       move.function=="0E8" ||   # Endure
+    if move.function=="ProtectUser" ||   # Detect/Protect
+       move.function=="UserEnduresFaintingThisTurn" ||   # Endure
        move.function=="012"      # Fake Out
       return -1
     end

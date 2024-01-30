@@ -1,7 +1,7 @@
 #===============================================================================
 # Powers up the ally's attack this round by 1.5. (Helping Hand)
 #===============================================================================
-class PokeBattle_Move_09C < PokeBattle_HelpingMove
+class PokeBattle_Move_PowerUpAllyMove < PokeBattle_HelpingMove
     def initialize(battle, move)
         super
         @helpingEffect = :HelpingHand
@@ -11,7 +11,7 @@ end
 #===============================================================================
 # Powers up the ally's attack this round by making it crit. (Lucky Cheer)
 #===============================================================================
-class PokeBattle_Move_08A < PokeBattle_HelpingMove
+class PokeBattle_Move_AllyAttackGuaranteedCrit < PokeBattle_HelpingMove
     def initialize(battle, move)
         super
         @helpingEffect = :LuckyCheer
@@ -27,7 +27,7 @@ end
 #===============================================================================
 # Gives an ally an extra move this turn. (Greater Glories)
 #===============================================================================
-class PokeBattle_Move_135 < PokeBattle_HelpingMove
+class PokeBattle_Move_AllyGainsExtraMoveThisTurn < PokeBattle_HelpingMove
     def initialize(battle, move)
         super
         @helpingEffect = :GreaterGlories
@@ -49,7 +49,7 @@ end
 #===============================================================================
 # Powers up the ally's attack this round by boosting its damage and accuracy by 50%. (Spotting)
 #===============================================================================
-class PokeBattle_Move_5FF < PokeBattle_HelpingMove
+class PokeBattle_Move_PowerUpAndIncreaseAccOfAllyMove < PokeBattle_HelpingMove
     def initialize(battle, move)
         super
         @helpingEffect = :Spotting

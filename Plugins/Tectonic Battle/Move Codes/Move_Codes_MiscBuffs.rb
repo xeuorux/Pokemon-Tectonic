@@ -1,7 +1,7 @@
 #===============================================================================
 # For 5 rounds, user becomes airborne. (Magnet Rise)
 #===============================================================================
-class PokeBattle_Move_119 < PokeBattle_Move
+class PokeBattle_Move_StartUserAirborne5 < PokeBattle_Move
     def unusableInGravity?; return true; end
 
     def pbMoveFailed?(user, _targets, show_message)
@@ -46,7 +46,7 @@ end
 #===============================================================================
 # Future attacks hits twice as many times (Volley Stance)
 #===============================================================================
-class PokeBattle_Move_56D < PokeBattle_Move
+class PokeBattle_Move_StartUserHitsTwiceWithSpecial < PokeBattle_Move
     def pbMoveFailed?(user, _targets, show_message)
         if user.effectActive?(:VolleyStance)
             if show_message
@@ -69,7 +69,7 @@ end
 #===============================================================================
 # Raises the user's Sp. Atk by 2 steps, and the user's attacks become spread. (Flare Witch)
 #===============================================================================
-class PokeBattle_Move_585 < PokeBattle_Move
+class PokeBattle_Move_RaiseUserSpAtk2StartUserAttacksSpread < PokeBattle_Move
     def pbMoveFailed?(user, _targets, show_message)
         if user.effectActive?(:FlareWitch) && !user.pbCanRaiseStatStep?(:SPECIAL_ATTACK, user, self, true)
             @battle.pbDisplay(_INTL("But it failed, since #{user.pbThis(true)} can't raise its Sp. Atk and already activated its witch powers!")) if show_message
@@ -94,7 +94,7 @@ end
 # Until the end of the next round, the user's moves will always be critical hits.
 # (Laser Focus)
 #===============================================================================
-class PokeBattle_Move_15E < PokeBattle_Move
+class PokeBattle_Move_EnsureNextCriticalHit < PokeBattle_Move
     def pbEffectGeneral(user)
         user.applyEffect(:LaserFocus, 2)
         @battle.pbDisplay(_INTL("{1} concentrated intensely!", user.pbThis))
@@ -107,7 +107,7 @@ class PokeBattle_Move_15E < PokeBattle_Move
 end
 
 # Empowered Laser Focus
-class PokeBattle_Move_60F < PokeBattle_Move
+class PokeBattle_Move_EmpoweredLaserFocus < PokeBattle_Move
     include EmpoweredMove
 
     def pbEffectGeneral(user)
@@ -119,7 +119,7 @@ end
 #===============================================================================
 # User takes half damage from Super Effective moves. (Inure)
 #===============================================================================
-class PokeBattle_Move_531 < PokeBattle_Move
+class PokeBattle_Move_StartUserShedTypeWeaknesses < PokeBattle_Move
     def pbMoveFailed?(user, _targets, show_message)
         if user.effectActive?(:Inured)
             @battle.pbDisplay(_INTL("But it failed, since #{user.pbThis(true)} is already inured!")) if show_message
