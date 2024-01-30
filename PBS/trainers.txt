@@ -410,7 +410,7 @@ Pokemon = ROSELIA,22
 #-------------------------------
 [GAMBLER,Gregor]
 Pokemon = MEOWTH,21
-    Moves = PAYDAY,ASSURANCE,TREADON
+    Moves = PAYDAY,FEINT,STAMPDOWN
     AbilityIndex = 1 # All That Glitters
     Item = NORMALGEM,GROUNDGEM
 Pokemon = AMEOWTH,22
