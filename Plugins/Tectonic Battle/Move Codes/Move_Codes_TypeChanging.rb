@@ -3,7 +3,7 @@
 # already has (even partially), OR changes to the user's first move's type.
 # (Conversion)
 #===============================================================================
-class PokeBattle_Move_05E < PokeBattle_Move
+class PokeBattle_Move_SetUserTypesToUserMoveType < PokeBattle_Move
     def pbMoveFailed?(user, _targets, show_message)
         unless user.canChangeType?
             @battle.pbDisplay(_INTL("But it failed, since #{user.pbThis(true)} can't have its type changed!"))
@@ -36,7 +36,7 @@ end
 # Changes user's type to a random one that resists/is immune to the last move
 # used by the target. (Conversion 2)
 #===============================================================================
-class PokeBattle_Move_05F < PokeBattle_Move
+class PokeBattle_Move_SetUserTypesToResistLastAttack < PokeBattle_Move
     def ignoresSubstitute?(_user); return true; end
 
     def pbMoveFailed?(user, _targets, show_message)
@@ -79,7 +79,7 @@ end
 #===============================================================================
 # Changes user's type depending on the environment. (Camouflage)
 #===============================================================================
-class PokeBattle_Move_060 < PokeBattle_Move
+class PokeBattle_Move_SetUserTypesBasedOnEnvironment < PokeBattle_Move
     def pbMoveFailed?(user, _targets, show_message)
         unless user.canChangeType?
             if show_message
@@ -144,7 +144,7 @@ end
 #===============================================================================
 # Target becomes Water type. (Soak)
 #===============================================================================
-class PokeBattle_Move_061 < PokeBattle_Move
+class PokeBattle_Move_SetTargetTypesToWater < PokeBattle_Move
     def pbFailsAgainstTarget?(_user, target, show_message)
         unless GameData::Type.exists?(:WATER)
             @battle.pbDisplay(_INTL("But it failed, since the Water-type doesn't exist!")) if show_message
@@ -175,7 +175,7 @@ end
 #===============================================================================
 # User copes target's types. (Reflect Type)
 #===============================================================================
-class PokeBattle_Move_062 < PokeBattle_Move
+class PokeBattle_Move_SetUserTypesToTargetTypes < PokeBattle_Move
     def ignoresSubstitute?(_user); return true; end
 
     def pbMoveFailed?(user, _targets, show_message)
@@ -211,7 +211,7 @@ end
 #===============================================================================
 # Target becomes Bug type. (Scale Scatter)
 #===============================================================================
-class PokeBattle_Move_06F < PokeBattle_Move
+class PokeBattle_Move_SetTargetTypesToBug < PokeBattle_Move
     def pbFailsAgainstTarget?(_user, target, show_message)
         unless GameData::Type.exists?(:BUG)
             @battle.pbDisplay(_INTL("But it failed, since the Bug-type doesn't exist!")) if show_message
@@ -242,7 +242,7 @@ end
 #===============================================================================
 # The target loses their Water-type before the move strikes. (Dry Heat)
 #===============================================================================
-class PokeBattle_Move_57D < PokeBattle_Move
+class PokeBattle_Move_RemoveTargetWaterType < PokeBattle_Move
     def pbEffectBeforeDealingDamage(user, target)
         if target.pbHasType?(:WATER)
             target.applyEffect(:DryHeat)
@@ -254,7 +254,7 @@ end
 #===============================================================================
 # Gives target the Ghost type. (Trick-or-Treat)
 #===============================================================================
-class PokeBattle_Move_142 < PokeBattle_Move
+class PokeBattle_Move_AddGhostTypeToTarget < PokeBattle_Move
     def pbFailsAgainstTarget?(_user, target, show_message)
         unless GameData::Type.exists?(:GHOST)
             @battle.pbDisplay(_INTL("But it failed, since the Ghost-type doesn't exist!")) if show_message
@@ -287,7 +287,7 @@ end
 #===============================================================================
 # Gives target the Grass type. (Forest's Curse)
 #===============================================================================
-class PokeBattle_Move_143 < PokeBattle_Move
+class PokeBattle_Move_AddGrassTypeToTarget < PokeBattle_Move
     def pbFailsAgainstTarget?(_user, target, show_message)
         unless GameData::Type.exists?(:GRASS)
             @battle.pbDisplay(_INTL("But it failed, since the Grass-type doesn't exist!")) if show_message
@@ -320,7 +320,7 @@ end
 #===============================================================================
 # Gives the target the Steel type and reduces its Speed by 4 steps. (Weld)
 #===============================================================================
-class PokeBattle_Move_154 < PokeBattle_Move
+class PokeBattle_Move_AddSteelTypeToTargetLowerTargetSpd4 < PokeBattle_Move
     def pbFailsAgainstTarget?(user, target, show_message)
         unless target.pbCanLowerStatStep?(:SPEED, user, self)
             unless GameData::Type.exists?(:STEEL)
@@ -359,7 +359,7 @@ end
 # Type changes depending on rotom's form. (Machinate)
 # Additional effect changes depending on rotom's form. Only usable by rotom.
 #===============================================================================
-class PokeBattle_Move_5CB < PokeBattle_Move
+class PokeBattle_Move_TypeAndEffectDependsOnUserRotomForm < PokeBattle_Move
     def aiAutoKnows?(pokemon); return true; end
     def pbMoveFailed?(user, _targets, show_message)
         unless user.countsAs?(:ROTOM)
@@ -422,7 +422,7 @@ end
 #===============================================================================
 # Target becomes your choice of Dragon, Fairy, or Steel type. (Regalia)
 #===============================================================================
-class PokeBattle_Move_5D7 < PokeBattle_Move
+class PokeBattle_Move_SetTargetTypesToChoiceOfDragonFairySteel < PokeBattle_Move
     def resolutionChoice(user)
         validTypes = %i[DRAGON FAIRY STEEL]
         validTypeNames = []

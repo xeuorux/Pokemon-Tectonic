@@ -1,7 +1,7 @@
 #===============================================================================
 # Effect depends on the environment. (Secret Power)
 #===============================================================================
-class PokeBattle_Move_0A4 < PokeBattle_Move
+class PokeBattle_Move_EffectDependsOnEnvironment < PokeBattle_Move
     def flinchingMove?; return [6, 10, 12].include?(@secretPower); end
 
     def pbOnStartUse(_user, _targets)
@@ -97,7 +97,7 @@ end
 #       where it targets the user. It makes more sense for it to target another
 #       Pokémon.
 #===============================================================================
-class PokeBattle_Move_0B3 < PokeBattle_Move
+class PokeBattle_Move_UseMoveDependingOnEnvironment < PokeBattle_Move
     def callsAnotherMove?; return true; end
 
     def calculateNaturePower

@@ -298,7 +298,7 @@ class PokeBattle_Move_TargetUsesItsLastUsedMoveAgain < PokeBattle_Move
             return true
         end
         targetMove = @battle.choices[target.index][2]
-        if targetMove && (targetMove.function == "115" ||   # Focus Punch
+        if targetMove && (targetMove.function == "FailsIfUserDamagedThisTurn" ||   # Focus Punch
                           targetMove.function == "UsedAfterUserTakesPhysicalDamage" ||   # Shell Trap
                           targetMove.function == "UsedAfterUserTakesSpecialDamage" ||   # Masquerblade
                           targetMove.function == "BurnAttackerBeforeUserActs" ||     # Beak Blast

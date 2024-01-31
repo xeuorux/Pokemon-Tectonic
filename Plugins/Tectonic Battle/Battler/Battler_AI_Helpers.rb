@@ -476,7 +476,7 @@ class PokeBattle_Battler
 
     def eachPredictedProtectHitter(categoryOnly = -1)
         eachPredictedTargeter(categoryOnly) do |b|
-            next if b.inTwoTurnAttack?("0CD")
+            next if b.inTwoTurnAttack?("TwoTurnAttackInvulnerableRemoveProtections")
             yield b
         end
 

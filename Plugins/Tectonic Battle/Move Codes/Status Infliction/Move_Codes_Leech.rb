@@ -7,7 +7,7 @@ end
 #===============================================================================
 # Leeches the target and reduces their attacking stats by 1 step each. (Sapping Seed)
 #===============================================================================
-class PokeBattle_Move_LeechTargetLowerTargetAtkSpAtk1< PokeBattle_LeechMove
+class PokeBattle_Move_LeechTargetLowerTargetAtkSpAtk1 < PokeBattle_LeechMove
     def pbFailsAgainstTarget?(user, target, show_message)
         if  !target.canLeech?(user, false, self) &&
             !target.pbCanLowerStatStep?(:ATTACK, user, self) &&

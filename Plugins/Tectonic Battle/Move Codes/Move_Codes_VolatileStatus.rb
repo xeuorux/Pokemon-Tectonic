@@ -1,7 +1,7 @@
 #===============================================================================
 # The target can no longer use the same move twice in a row. (Torment)
 #===============================================================================
-class PokeBattle_Move_0B7 < PokeBattle_Move
+class PokeBattle_Move_DisableTargetUsingSameMoveConsecutively < PokeBattle_Move
     def ignoresSubstitute?(_user); return true; end
 
     def pbFailsAgainstTarget?(user, target, show_message)
@@ -28,7 +28,7 @@ class PokeBattle_Move_0B7 < PokeBattle_Move
 end
 
 # Empowered Torment
-class PokeBattle_Move_60E < PokeBattle_Move_0B7
+class PokeBattle_Move_EmpoweredTorment < PokeBattle_Move_DisableTargetUsingSameMoveConsecutively
     include EmpoweredMove
 
     def pbEffectGeneral(user)
@@ -45,7 +45,7 @@ end
 #===============================================================================
 # Disables all target's moves that the user also knows. (Imprison)
 #===============================================================================
-class PokeBattle_Move_0B8 < PokeBattle_Move
+class PokeBattle_Move_DisableTargetMovesKnownByUser < PokeBattle_Move
     def pbMoveFailed?(user, _targets, show_message)
         if user.effectActive?(:Imprison)
             if show_message
@@ -69,7 +69,7 @@ end
 #===============================================================================
 # For 5 rounds, disables the last move the target used. (Disable)
 #===============================================================================
-class PokeBattle_Move_0B9 < PokeBattle_Move
+class PokeBattle_Move_DisableTargetLastMoveUsed < PokeBattle_Move
     def ignoresSubstitute?(_user); return true; end
 
     def initialize(battle, move)
@@ -98,7 +98,7 @@ end
 # For 4 rounds, disables the last move the target used. (Drown)
 # Then debuffs a stat based on what was disabled.
 #===============================================================================
-class PokeBattle_Move_5FD < PokeBattle_Move_0B9
+class PokeBattle_Move_DisableTargetLastMoveUsedLowerTargetRelevantStat4 < PokeBattle_Move_DisableTargetLastMoveUsed
     def initialize(battle, move)
         super
         @disableTurns = 4
@@ -133,7 +133,7 @@ end
 # For 5 rounds, disables the last move the target used. Also, (Gem Seal)
 # remove 5 PP from it.
 #===============================================================================
-class PokeBattle_Move_5CF < PokeBattle_Move_0B9
+class PokeBattle_Move_DisableTargetLastMoveUsedReduceItsPPBy5 < PokeBattle_Move_DisableTargetLastMoveUsed
     def pbEffectAgainstTarget(_user, target)
         super
         target.eachMove do |m|
@@ -156,7 +156,7 @@ end
 #===============================================================================
 # For 4 rounds, disables the target's non-damaging moves. (Taunt)
 #===============================================================================
-class PokeBattle_Move_0BA < PokeBattle_Move
+class PokeBattle_Move_DisableTargetStatusMoves4 < PokeBattle_Move
     def ignoresSubstitute?(user); return statusMove?; end
 
     def initialize(battle, move)
@@ -244,7 +244,7 @@ end
 #===============================================================================
 # For 2 rounds, disables the target's non-damaging moves. (Docile Mask)
 #===============================================================================
-class PokeBattle_Move_0D0 < PokeBattle_Move_0BA
+class PokeBattle_Move_DisableTargetStatusMoves2 < PokeBattle_Move_DisableTargetStatusMoves4
     def initialize(battle, move)
         super
         @tauntTurns = 2
@@ -254,7 +254,7 @@ end
 #===============================================================================
 # For 5 rounds, disables the target's healing moves. (Heal Block)
 #===============================================================================
-class PokeBattle_Move_0BB < PokeBattle_Move
+class PokeBattle_Move_DisableTargetHealingMoves5 < PokeBattle_Move
     def pbFailsAgainstTarget?(user, target, show_message)
         if target.effectActive?(:HealBlock)
             @battle.pbDisplay(_INTL("But it failed, since the target's healing is already blocked!")) if show_message
@@ -278,13 +278,13 @@ end
 #===============================================================================
 # For 4 rounds, the target must use the same move each round. (Encore)
 #===============================================================================
-class PokeBattle_Move_0BC < PokeBattle_Move
+class PokeBattle_Move_DisableTargetUsingDifferentMove4 < PokeBattle_Move
     def ignoresSubstitute?(_user); return true; end
 
     def initialize(battle, move)
         super
         @moveBlacklist = [
-            "0BC", # Encore
+            "DisableTargetUsingDifferentMove4", # Encore
             # Struggle
             "Struggle", # Struggle
             # Moves that affect the moveset
@@ -295,7 +295,7 @@ class PokeBattle_Move_0BC < PokeBattle_Move
             "TransformUserIntoTUseLastMoveUsedByTargetarget", # Mirror Move
             "UseLastMoveUsed",   # Copycat
             "UseMoveTargetIsAboutToUse",   # Me First
-            "0B3",   # Nature Power
+            "UseMoveDependingOnEnvironment",   # Nature Power
             "UseRandomUserMoveIfAsleep",   # Sleep Talk
             "UseRandomMoveFromUserParty",   # Assist
             "UseRandomNonSignatureMove", # Metronome
@@ -366,7 +366,7 @@ end
 #===============================================================================
 # For 4 rounds, disables the target's off-type moves. (Bar)
 #===============================================================================
-class PokeBattle_Move_0C7 < PokeBattle_Move
+class PokeBattle_Move_DisableTargetUsingOffTypeMove4 < PokeBattle_Move
     def ignoresSubstitute?(_user); return statusMove?; end
 
     def initialize(battle, move)
@@ -411,7 +411,7 @@ end
 #===============================================================================
 # Target will lose 1/4 of max HP at end of each round, while asleep. (Nightmare)
 #===============================================================================
-class PokeBattle_Move_10F < PokeBattle_Move
+class PokeBattle_Move_StartDamageTargetEachTurnIfTargetAsleep < PokeBattle_Move
     def pbFailsAgainstTarget?(_user, target, show_message)
         unless target.asleep?
             @battle.pbDisplay(_INTL("But it failed, since #{target.pbThis(true)} isn't asleep!")) if show_message
@@ -440,7 +440,7 @@ end
 #===============================================================================
 # Decrease 6 steps of speed and weakens target to fire moves. (Tar Shot)
 #===============================================================================
-class PokeBattle_Move_186 < PokeBattle_Move
+class PokeBattle_Move_LowerTargetSpeed6MakeTargetWeakerToFire < PokeBattle_Move
     def pbFailsAgainstTarget?(_user, target, show_message)
         if !target.pbCanLowerStatStep?(:SPEED, target, self) && target.effectActive?(:TarShot)
             @battle.pbDisplay(_INTL("But it failed, since #{target.pbThis(true)} is already covered in tar and can't have their Speed lowered!")) if show_message
@@ -466,7 +466,7 @@ end
 #===============================================================================
 # User curses the target.
 #===============================================================================
-class PokeBattle_Move_10D < PokeBattle_Move
+class PokeBattle_Move_CurseTarget < PokeBattle_Move
     def ignoresSubstitute?(_user); return true; end
 
     def pbFailsAgainstTarget?(user, target, show_message)
@@ -490,7 +490,7 @@ end
 #===============================================================================
 # Curses the target by spending 1/4th of the user's HP. (Cursed Oath)
 #===============================================================================
-class PokeBattle_Move_54A < PokeBattle_Move_10D
+class PokeBattle_Move_CurseTargetUserPaysQuarterOfTotalHP < PokeBattle_Move_CurseTarget
     def pbEffectAgainstTarget(user, target)
         @battle.pbDisplay(_INTL("{1} cut its own HP!", user.pbThis))
         user.applyFractionalDamage(1.0 / 4.0, false)
@@ -505,7 +505,7 @@ class PokeBattle_Move_54A < PokeBattle_Move_10D
 end
 
 # Empowered Cursed Oath
-class PokeBattle_Move_60C < PokeBattle_Move
+class PokeBattle_Move_EmpoweredCursedOath < PokeBattle_Move
     include EmpoweredMove
 
     def pbEffectGeneral(user)
@@ -520,7 +520,7 @@ end
 #===============================================================================
 # Numb's the target. If they are already numbed, curses them instead. (Spectral Tongue)
 #===============================================================================
-class PokeBattle_Move_579 < PokeBattle_Move
+class PokeBattle_Move_NumbTargetOrCurseIfNumb < PokeBattle_Move
     def pbFailsAgainstTarget?(user, target, show_message)
         if target.numbed?
             if target.effectActive?(:Curse) && show_message
@@ -555,7 +555,7 @@ end
 #===============================================================================
 # User cuts its own HP by 25% to curse all foes and also to set Ingrain. (Cursed Roots)
 #===============================================================================
-class PokeBattle_Move_127 < PokeBattle_Move_StartHealUserEachTurnTrapUser
+class PokeBattle_Move_CurseAllFoesUserPaysQuarterOfTotalHPStartsIngrain < PokeBattle_Move_StartHealUserEachTurnTrapUser
     def pbMoveFailed?(user, _targets, show_message)
         if user.hp <= (user.totalhp / 4)
             @battle.pbDisplay(_INTL("But it failed, since #{user.pbThis(true)}'s HP is too low!")) if show_message
@@ -598,7 +598,7 @@ end
 #===============================================================================
 # Target cannot use sound-based moves for 2 more rounds. (Throat Chop)
 #===============================================================================
-class PokeBattle_Move_16C < PokeBattle_Move
+class PokeBattle_Move_DisableTargetSoundMoves3 < PokeBattle_Move
     def pbAdditionalEffect(_user, target)
         return if target.fainted? || target.damageState.substitute
         target.applyEffect(:ThroatChop, 3)
@@ -613,7 +613,7 @@ end
 #===============================================================================
 # The next ground type move to hit the target deals double damage. (Volatile Toxin)
 #===============================================================================
-class PokeBattle_Move_5A4 < PokeBattle_Move
+class PokeBattle_Move_TargetTakesDoubleDamageFromNextGroundAttack < PokeBattle_Move
     def pbEffectAgainstTarget(_user, target)
         target.applyEffect(:VolatileToxin)
     end
@@ -622,7 +622,7 @@ end
 #===============================================================================
 # Target gains a weakness to Bug-type attacks. (Creep Out)
 #===============================================================================
-class PokeBattle_Move_51D < PokeBattle_Move
+class PokeBattle_Move_MakeTargetWeakerToBug < PokeBattle_Move
     def pbFailsAgainstTarget?(_user, target, show_message)
         return false if damagingMove?
         if target.effectActive?(:CreepOut)
@@ -651,7 +651,7 @@ end
 # Grounds the target while it remains active. Hits some semi-invulnerable
 # targets. (Smack Down, Thousand Arrows)
 #===============================================================================
-class PokeBattle_Move_11C < PokeBattle_Move
+class PokeBattle_Move_HitsTargetInSkyGroundsTarget < PokeBattle_Move
     def hitsFlyingTargets?; return true; end
 
     def pbCalcTypeModSingle(moveType, defType, user, target)
@@ -666,8 +666,8 @@ class PokeBattle_Move_11C < PokeBattle_Move
         elsif target.damageState.unaffected || target.damageState.substitute
             return false
         end
-        return false if target.inTwoTurnAttack?("0CE") || target.effectActive?(:SkyDrop) # Sky Drop
-        return false if !target.airborne? && !target.inTwoTurnAttack?("0C9", "0CC") # Fly/Bounce
+        return false if !target.airborne? &&
+            !target.inTwoTurnSkyAttack?
         return true
     end
 
@@ -687,7 +687,8 @@ class PokeBattle_Move_11C < PokeBattle_Move
                         score -= 30 if t == :BUG || t == :GRASS || t == :ICE
                     end
                 end
-            score += 70 if @battle.battleAI.userMovesFirst?(self, user, target) && target.inTwoTurnAttack?("0C9", "0CC")
+            score += 70 if @battle.battleAI.userMovesFirst?(self, user, target) &&
+                target.inTwoTurnSkyAttack?
         end
         score = 5 if score <= 5 # Constant score so AI uses on "kills"
         return score
@@ -702,7 +703,7 @@ end
 # Negates the target's ability while it remains on the field, if it has already
 # performed its action this round. (Core Enforcer)
 #===============================================================================
-class PokeBattle_Move_165 < PokeBattle_Move
+class PokeBattle_Move_NegateTargetAbilityIfTargetActed < PokeBattle_Move
     def pbEffectAgainstTarget(_user, target)
         return if target.damageState.substitute || target.effectActive?(:GastroAcid)
         return if target.unstoppableAbility?
@@ -722,7 +723,7 @@ end
 # If the target would heal until end of turn, instead they take that much life loss.
 # (Hypothermiate, Heartstopper, Bad Ending)
 #===============================================================================
-class PokeBattle_Move_53A < PokeBattle_Move
+class PokeBattle_Move_ReverseTargetHealingThisTurn < PokeBattle_Move
     def pbAdditionalEffect(_user, target)
         return if target.fainted? || target.damageState.substitute
         target.applyEffect(:HealingReversed)
@@ -743,7 +744,7 @@ end
 #===============================================================================
 # The target's healing is cut in half until they switch out (Icy Injection)
 #===============================================================================
-class PokeBattle_Move_5C6 < PokeBattle_Move
+class PokeBattle_Move_TargetHasHalvedHealing < PokeBattle_Move
     def pbAdditionalEffect(_user, target)
         return if target.fainted? || target.damageState.substitute
         target.applyEffect(:IcyInjection)

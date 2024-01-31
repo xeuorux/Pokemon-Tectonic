@@ -139,7 +139,7 @@ end
 #===============================================================================
 # Increases the user's Attack and Speed by 2 steps each. (Shift Gear)
 #===============================================================================
-class PokeBattle_Move_036 < PokeBattle_MultiStatUpMove
+class PokeBattle_Move_RaiseUserAtkSpd2 < PokeBattle_MultiStatUpMove
     def aiAutoKnows?(pokemon); return true; end
 
     def initialize(battle, move)

@@ -481,8 +481,21 @@ class PokeBattle_Battler
         return false
     end
 
+    def inTwoTurnSkyAttack?
+        return inTwoTurnAttack?(
+                "TwoTurnAttackInvulnerableInSky",
+                "TwoTurnAttackInvulnerableInSkyNumbTarget",
+                "TwoTurnAttackInvulnerableInSkyRecoilQuarterOfDamageDealt"
+            )
+    end
+
     def semiInvulnerable?
-        return inTwoTurnAttack?("0C9", "0CA", "0CB", "0CC", "0CD", "0CE", "14D", "5C5")
+        return inTwoTurnAttack?("TwoTurnAttackInvulnerableInSky",
+        "TwoTurnAttackInvulnerableUnderground",
+        "TwoTurnAttackInvulnerableUnderwater",
+        "TwoTurnAttackInvulnerableInSkyNumbTarget",
+        "TwoTurnAttackInvulnerableRemoveProtections",
+        "TwoTurnAttackInvulnerableInSkyRecoilQuarterOfDamageDealt")
     end
 
     def pbEncoredMoveIndex

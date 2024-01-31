@@ -2,7 +2,7 @@
 # Trapping move. Traps for 3 or 6 rounds. Trapped Pokémon lose 1/16 of max HP
 # at end of each round.
 #===============================================================================
-class PokeBattle_Move_0CF < PokeBattle_Move
+class PokeBattle_Move_BindTarget3 < PokeBattle_Move
     def pbEffectAgainstTarget(user, target)
         return if target.fainted? || target.damageState.substitute
         return if target.effectActive?(:Trapping)
@@ -49,7 +49,7 @@ end
 # Target can no longer switch out or flee, as long as the user remains active.
 # (Anchor Shot, Block, Mean Look, Spider Web, Spirit Shackle, Thousand Waves)
 #===============================================================================
-class PokeBattle_Move_0EF < PokeBattle_Move
+class PokeBattle_Move_TrapTarget < PokeBattle_Move
     def pbFailsAgainstTarget?(_user, target, show_message)
         return false if damagingMove?
         if target.effectActive?(:MeanLook)
@@ -82,7 +82,7 @@ end
 # Target becomes trapped. Summons Eclipse for 8 turns.
 # (Captivating Sight)
 #===============================================================================
-class PokeBattle_Move_5AF < PokeBattle_Move_0EF
+class PokeBattle_Move_TrapTargetStartEclipse8 < PokeBattle_Move_TrapTarget
     def pbFailsAgainstTarget?(_user, target, show_message)
         return false unless @battle.primevalWeatherPresent?(false)
         super
@@ -100,10 +100,10 @@ class PokeBattle_Move_5AF < PokeBattle_Move_0EF
 end
 
 #===============================================================================
-# Lowers target's Defense and Special Defense by 1 step at the end of each
+# Lowers target's Defense and Special Defense by 2 steps at the end of each
 # turn. Prevents target from retreating. (Octolock)
 #===============================================================================
-class PokeBattle_Move_181 < PokeBattle_Move
+class PokeBattle_Move_TrapTargeLowerTargetDefSpDef2EachTurn < PokeBattle_Move
     def pbFailsAgainstTarget?(_user, target, show_message)
         if target.effectActive?(:Octolock)
             if show_message
@@ -137,7 +137,7 @@ end
 # Target can't switch out or flee until they take a hit. (Ice Dungeon)
 # Their attacking stats are both lowered by 1 step.
 #===============================================================================
-class PokeBattle_Move_5F7 < PokeBattle_Move
+class PokeBattle_Move_TrapTargetUntilHitLowerTargetAtkSpAtk1 < PokeBattle_Move
     def pbFailsAgainstTarget?(user, target, show_message)
         if target.effectActive?(:IceDungeon) && target.pbCanLowerStatStep?(:ATTACK, user, self) &&
                 target.pbCanLowerStatStep?(:SPECIAL_ATTACK, user, self)
@@ -165,7 +165,7 @@ end
 #===============================================================================
 # Prevents both the user and the target from escaping. (Jaw Lock)
 #===============================================================================
-class PokeBattle_Move_17D < PokeBattle_Move
+class PokeBattle_Move_TrapUserAndTarget < PokeBattle_Move
     def pbEffectAgainstTarget(user, target)
         return if target.damageState.substitute
         if !user.effectActive?(:JawLock) && !target.effectActive?(:JawLock)
@@ -186,7 +186,7 @@ end
 #===============================================================================
 # Traps the target and frostbites them. (Icicle Pin)
 #===============================================================================
-class PokeBattle_Move_11A < PokeBattle_Move_0EF
+class PokeBattle_Move_TrapAndFrostbiteTarget < PokeBattle_Move_TrapTarget
     def pbFailsAgainstTarget?(user, target, show_message)
         return false if damagingMove?
         if target.effectActive?(:MeanLook) && !target.canFrostbite?(user, false, self)
@@ -214,7 +214,7 @@ end
 #===============================================================================
 # No Pokémon can switch out or flee until the end of the next round. (Fairy Lock)
 #===============================================================================
-class PokeBattle_Move_152 < PokeBattle_Move
+class PokeBattle_Move_TrapAllBattlersForOneTurn < PokeBattle_Move
     def pbMoveFailed?(_user, _targets, show_message)
         if @battle.field.effectActive?(:FairyLock)
             @battle.pbDisplay(_INTL("But it failed, since a Fairy Lock is already active!")) if show_message
@@ -237,7 +237,7 @@ end
 #===============================================================================
 # The target cannot escape and takes 50% more damage from all attacks. (Death Mark)
 #===============================================================================
-class PokeBattle_Move_596 < PokeBattle_Move
+class PokeBattle_Move_TrapTargetTargetTakes50PercentMoreDamage < PokeBattle_Move
     def pbFailsAgainstTarget?(user, target, show_message)
         if target.effectActive?(:DeathMark)
             @battle.pbDisplay(_INTL("But it failed, since the target is already marked for death!")) if show_message

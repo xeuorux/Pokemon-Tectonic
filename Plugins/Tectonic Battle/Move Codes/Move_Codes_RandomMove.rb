@@ -14,7 +14,7 @@ class PokeBattle_Move_UseRandomUserMoveIfAsleep < PokeBattle_Move
             "ReplaceMoveThisBattleWithTargetLastMoveUsed",   # Mimic
             "ReplaceMoveWithTargetLastMoveUsed",   # Sketch
             # Moves that start focussing at the start of the round
-            "115",   # Focus Punch
+            "FailsIfUserDamagedThisTurn",   # Focus Punch
             "UsedAfterUserTakesPhysicalDamage",   # Shell Trap
             "UsedAfterUserTakesSpecialDamage",   # Masquerblade
             "BurnAttackerBeforeUserActs", # Beak Blast
@@ -84,14 +84,13 @@ class PokeBattle_Move_UseRandomMoveFromUserParty < PokeBattle_Move
             "RedirectAllMovesToUser",   # Follow Me, Rage Powder
             "RedirectAllMovesToTarget",   # Spotlight
             # Set up effects that trigger upon KO
-            "0E6",   # Grudge
             "AttackerFaintsIfUserFaints",   # Destiny Bond
             # Held item-moving moves
             "StealsItem",   # Covet, Thief
             "SwapItems",   # Switcheroo, Trick
             "GiftItem",   # Bestow
             # Moves that start focussing at the start of the round
-            "115",   # Focus Punch
+            "FailsIfUserDamagedThisTurn",   # Focus Punch
             "UsedAfterUserTakesPhysicalDamage",   # Shell Trap
             "UsedAfterUserTakesSpecialDamage",   # Masquerblade
             "BurnAttackerBeforeUserActs",   # Beak Blast
@@ -144,7 +143,7 @@ class PokeBattle_Move_UseRandomNonSignatureMove < PokeBattle_Move
     def initialize(battle, move)
         super
         @moveBlacklist = [
-            "011",   # Snore
+            "FlinchTargetFailsIfUserNotAsleep",   # Snore
             "TargetActsNext",   # After You
             "TargetActsLast",   # Quash
             # Move-redirecting and stealing moves
@@ -156,6 +155,8 @@ class PokeBattle_Move_UseRandomNonSignatureMove < PokeBattle_Move
             "StealsItem",   # Covet, Thief
             "SwapItems",   # Switcheroo, Trick
             "GiftItem",   # Bestow
+            # Invalid moves
+            "Invalid",
         ]
 
         @metronomeMoves = []
@@ -204,6 +205,7 @@ class PokeBattle_Move_UseChoiceOf3RandomNonSignatureStatusMoves < PokeBattle_Mov
         @discoverableMoves = []
         GameData::Move::DATA.keys.each do |move_id|
             move_data = GameData::Move.get(move_id)
+            next if move_data.function_code == "Invalid"
             next unless move_data.category == 2
             next if move_data.is_signature?
             next if move_data.cut

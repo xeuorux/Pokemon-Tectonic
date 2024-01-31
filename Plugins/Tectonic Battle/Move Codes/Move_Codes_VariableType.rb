@@ -2,7 +2,7 @@
 # Type changes depending on the weather. (Weather Burst)
 # Changes category based on your better attacking stat.
 #===============================================================================
-class PokeBattle_Move_087 < PokeBattle_Move
+class PokeBattle_Move_TypeDependsOnWeatherUsesBetterAttackingStat < PokeBattle_Move
     def aiAutoKnows?(pokemon); return true; end
 
     def immuneToRainDebuff?; return true; end
@@ -48,7 +48,7 @@ end
 #===============================================================================
 # Type depends on the user's held item. (Judgment, Multi-Attack, Techno Blast)
 #===============================================================================
-class PokeBattle_Move_09F < PokeBattle_Move
+class PokeBattle_Move_TypeDependsOnUserSpecialItem < PokeBattle_Move
     def initialize(battle, move)
         super
         if @id == :TECHNOBLAST
@@ -113,7 +113,7 @@ end
 #===============================================================================
 # Changes type to match the user's Gem, Plate, or Crystal Veil. (Prismatic Power)
 #===============================================================================
-class PokeBattle_Move_18A < PokeBattle_Move
+class PokeBattle_Move_TypeDependsOnUserGemPlateVeil < PokeBattle_Move
     def pbBaseType(user)
         ret = :NORMAL
         if user.hasActiveItem?(%i[CRYSTALVEIL PRISMATICPLATE])
@@ -135,7 +135,7 @@ end
 #===============================================================================
 # This move's type is the same as the user's first type. (Revelation Dance)
 #===============================================================================
-class PokeBattle_Move_169 < PokeBattle_Move
+class PokeBattle_Move_TypeIsUserFirstType < PokeBattle_Move
     def pbBaseType(user)
         userTypes = user.pbTypes(true)
         return userTypes[0]

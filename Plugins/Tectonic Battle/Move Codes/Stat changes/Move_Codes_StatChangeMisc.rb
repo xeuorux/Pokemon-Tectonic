@@ -255,9 +255,9 @@ class PokeBattle_Move_AverageUserTargetDefenses < PokeBattle_Move
 end
 
 #===============================================================================
-# Lower's the target's Attack by 1 step. If so, it raises the user's Attack by 1 step. (Blood Bite)
+# Lower's the target's Attack by 1 step. If so, it raises the user's Attack by 1 step. (Exsanguinate)
 #===============================================================================
-class PokeBattle_Move_StealAttack1 < PokeBattle_TargetStatDownMove
+class PokeBattle_Move_StealAtk1 < PokeBattle_TargetStatDownMove
     def initialize(battle, move)
         super
         @statDown = [:ATTACK, 1]

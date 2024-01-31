@@ -207,7 +207,7 @@ Power = 50
 Accuracy = 100
 TotalPP = 15
 Target = NearOther
-FunctionCode = 0CF
+FunctionCode = BindTarget3
 Flags = CanProtect,CanMirrorMove
 Description = The user summons bugs to swarm the target, trapping and damaging it for three turns.
 #-------------------------------
@@ -361,7 +361,7 @@ Power = 80
 Accuracy = 100
 TotalPP = 12
 Target = NearOther
-FunctionCode = 16C
+FunctionCode = DisableTargetSoundMoves3
 Flags = CanProtect,CanMirrorMove
 EffectChance = 100
 Description = The user attacks the target's throat. The target cannot use sound-based moves for two turns.
@@ -634,7 +634,7 @@ Category = Status
 Accuracy = 100
 TotalPP = 15
 Target = NearOther
-FunctionCode = 0BA
+FunctionCode = DisableTargetStatusMoves4
 Flags = CanProtect,CanMagicCoat,CanMirrorMove
 Description = The target is taunted into a rage that prevents it from using status moves for three more turns.
 #-------------------------------
@@ -657,7 +657,7 @@ Category = Status
 Accuracy = 100
 TotalPP = 12
 Target = NearOther
-FunctionCode = 0B7
+FunctionCode = DisableTargetUsingSameMoveConsecutively
 Flags = CanProtect,CanMagicCoat,CanMirrorMove
 Description = The user torments and enrages the foe, making it incapable of using the same move twice in a row.
 #-------------------------------
@@ -669,7 +669,7 @@ Power = 80
 Accuracy = 100
 TotalPP = 10
 Target = NearOther
-FunctionCode = 17D
+FunctionCode = TrapUserAndTarget
 Flags = CanProtect,CanMirrorMove,Biting
 Description = Prevents the user and target from switching out until either of them faints or is switched out.
 #-------------------------------
@@ -742,7 +742,7 @@ Power = 170
 Accuracy = 100
 TotalPP = 5
 Target = NearOther
-FunctionCode = 0C2
+FunctionCode = TwoTurnAttack
 Flags = CanProtect,CanMirrorMove
 Description = The user blasts the target with power that distorts even time. The user must rest on the next turn.
 #-------------------------------
@@ -790,7 +790,7 @@ Power = 100
 Accuracy = 100
 TotalPP = 10
 Target = AllNearFoes
-FunctionCode = 165
+FunctionCode = NegateTargetAbilityIfTargetActed
 Flags = CanProtect,CanMirrorMove
 Description = If the target has already moved this turn, the effect of its Ability is negated.
 #-------------------------------
@@ -949,7 +949,7 @@ Power = 170
 Accuracy = 100
 TotalPP = 5
 Target = NearOther
-FunctionCode = 0C2
+FunctionCode = TwoTurnAttack
 Flags = CanProtect,CanMirrorMove
 Description = Eternatus's most powerful attack in its original form. The user can't move on the next turn.
 #-------------------------------
@@ -1331,7 +1331,7 @@ Power = 75
 Accuracy = 100
 TotalPP = 12
 Target = NearOther
-FunctionCode = 0CF
+FunctionCode = BindTarget3
 Flags = CanProtect,CanMirrorMove
 Description = The user throws a cage of electricity around the target, trapping and damaging it for three turns.
 #-------------------------------
@@ -1486,7 +1486,7 @@ Category = Status
 Accuracy = 0
 TotalPP = 10
 Target = BothSides
-FunctionCode = 152
+FunctionCode = TrapAllBattlersForOneTurn
 Flags = CanMirrorMove
 Description = By locking down the battlefield, the user keeps all Pokémon from fleeing during the next turn.
 #-------------------------------
@@ -1508,7 +1508,7 @@ Category = Status
 Accuracy = 0
 TotalPP = 10
 Target = User
-FunctionCode = 14E
+FunctionCode = TwoTurnAttackRaiseUserSpAtkSpDefSpd4
 Description = The user absorbs energy and raises its Sp. Atk, Sp. Def, and Speed by four steps on the next turn.
 #-------------------------------
 [NATURESMADNESS]
@@ -1568,7 +1568,7 @@ Accuracy = 100
 TotalPP = 15
 Target = NearOther
 Priority = -3
-FunctionCode = 115
+FunctionCode = FailsIfUserDamagedThisTurn
 Flags = CanProtect,Punch
 Description = The user focuses its mind before launching a punch. It will fail if the user is hit before it is used.
 #-------------------------------
@@ -1592,7 +1592,7 @@ Power = 110
 Accuracy = 100
 TotalPP = 5
 Target = NearOther
-FunctionCode = LowerUserDefenses2
+FunctionCode = LowerUserDefSpDef2
 Flags = CanProtect,CanMirrorMove
 Description = The user fights the foe up close without guarding itself. This cuts the user's Defenses by two steps.
 #-------------------------------
@@ -1996,7 +1996,7 @@ Category = Status
 Accuracy = 100
 TotalPP = 12
 Target = NearOther
-FunctionCode = 181
+FunctionCode = TrapTargeLowerTargetDefSpDef2EachTurn
 Flags = CanProtect,CanMirrorMove
 Description = Locks the target in and prevents fleeing. Lowers target's Defense and Sp. Def by two steps every turn.
 #-------------------------------
@@ -2008,7 +2008,7 @@ Power = 170
 Accuracy = 100
 TotalPP = 5
 Target = NearOther
-FunctionCode = 0C2
+FunctionCode = TwoTurnAttack
 Flags = CanProtect,CanMirrorMove
 Description = Attacks wildly with swords or fists. The user can't move on the next turn.
 #-------------------------------
@@ -2054,7 +2054,7 @@ Power = 180
 Accuracy = 100
 TotalPP = 5
 Target = NearOther
-FunctionCode = LowerUserSpeedDefenses2
+FunctionCode = LowerUserSpdDefSpDef2
 Flags = CanProtect,CanMirrorMove
 Description = With a fiery forehead, the user hurls itself at the foe. Lowers the user's Defense, Sp. Def, and Speed by two steps each.
 #-------------------------------
@@ -2191,7 +2191,7 @@ Power = 100
 Accuracy = 100
 TotalPP = 5
 Target = NearOther
-FunctionCode = 0CF
+FunctionCode = BindTarget3
 Flags = CanProtect,CanMirrorMove
 Description = The user spews magma around the target, trapping and damaging it for three turns.
 #-------------------------------
@@ -2396,7 +2396,7 @@ Power = 50
 Accuracy = 100
 TotalPP = 15
 Target = NearOther
-FunctionCode = 0CF
+FunctionCode = BindTarget3
 Flags = CanProtect,CanMirrorMove
 Description = The user engulfs the target in fierce flames, trapping and damaging it for three turns.
 #-------------------------------
@@ -2479,7 +2479,7 @@ Power = 120
 Accuracy = 100
 TotalPP = 5
 Target = NearOther
-FunctionCode = LowerUserDefenses2
+FunctionCode = LowerUserDefSpDef2
 Flags = CanProtect,CanMirrorMove
 Description = The user soars upward and drops at high speeds. This lowers the user's defensive stats.
 #-------------------------------
@@ -2516,7 +2516,7 @@ Power = 90
 Accuracy = 100
 TotalPP = 12
 Target = NearOther
-FunctionCode = 0C9
+FunctionCode = TwoTurnAttackInvulnerableInSky
 Flags = CanProtect,CanMirrorMove
 Description = The user soars, then strikes on the second turn.
 #-------------------------------
@@ -2528,7 +2528,7 @@ Power = 85
 Accuracy = 100
 TotalPP = 12
 Target = NearOther
-FunctionCode = 0CC
+FunctionCode = TwoTurnAttackInvulnerableInSkyNumbTarget
 Flags = CanProtect,CanMirrorMove,Kicking
 EffectChance = 30
 Description = The user bounces up high, then drops on the foe on the second turn. It has a 30% chance to numb.
@@ -2729,7 +2729,7 @@ Power = 120
 Accuracy = 100
 TotalPP = 5
 Target = NearOther
-FunctionCode = 0CD
+FunctionCode = TwoTurnAttackInvulnerableRemoveProtections
 Flags = CanMirrorMove
 Description = The user disappears, then strikes the foe on the second turn. It hits even if the foe protects itself.
 #-------------------------------
@@ -2753,7 +2753,7 @@ Power = 90
 Accuracy = 100
 TotalPP = 10
 Target = NearOther
-FunctionCode = 0CD
+FunctionCode = TwoTurnAttackInvulnerableRemoveProtections
 Flags = CanMirrorMove
 Description = The user vanishes somewhere, then strikes on the next turn. Skips and destroys protections.
 #-------------------------------
@@ -2803,7 +2803,7 @@ Power = 80
 Accuracy = 100
 TotalPP = 10
 Target = NearOther
-FunctionCode = 0EF
+FunctionCode = TrapTarget
 Flags = CanProtect,CanMirrorMove
 EffectChance = 100
 Description = The user attacks while also stitching the target's shadow to the ground to prevent it fleeing.
@@ -2924,7 +2924,7 @@ Category = Status
 Accuracy = 100
 TotalPP = 12
 Target = NearOther
-FunctionCode = 10F
+FunctionCode = StartDamageTargetEachTurnIfTargetAsleep
 Flags = CanProtect,CanMirrorMove
 Description = A sleeping target sees a nightmare that inflicts some damage every turn.
 #-------------------------------
@@ -2935,7 +2935,7 @@ Category = Status
 Accuracy = 100
 TotalPP = 15
 Target = NearOther
-FunctionCode = 142
+FunctionCode = AddGhostTypeToTarget
 Flags = CanProtect,CanMagicCoat,CanMirrorMove
 Description = The user takes the target trick-or-treating. This adds Ghost type to the target's type.
 #-------------------------------
@@ -3020,7 +3020,7 @@ Power = 120
 Accuracy = 100
 TotalPP = 10
 Target = NearOther
-FunctionCode = 0C4
+FunctionCode = TwoTurnAttackOneTurnInSun
 Flags = CanProtect,CanMirrorMove
 Description = The user charges, then attacks on the second turn. Charges instantly in Sunshine.
 #-------------------------------
@@ -3258,7 +3258,7 @@ Category = Status
 Accuracy = 100
 TotalPP = 15
 Target = NearOther
-FunctionCode = 143
+FunctionCode = AddGrassTypeToTarget
 Flags = CanProtect,CanMagicCoat,CanMirrorMove
 Description = The user puts a forest curse on the target. The target is now Grass type as well.
 #-------------------------------
@@ -3455,7 +3455,7 @@ Power = 90
 Accuracy = 100
 TotalPP = 10
 Target = AllNearFoes
-FunctionCode = 11C
+FunctionCode = HitsTargetInSkyGroundsTarget
 Flags = CanProtect,CanMirrorMove
 Description = This move also hits Pokémon that are in the air. Those Pokémon are knocked down to the ground.
 #-------------------------------
@@ -3467,7 +3467,7 @@ Power = 90
 Accuracy = 100
 TotalPP = 10
 Target = AllNearFoes
-FunctionCode = 0EF
+FunctionCode = TrapTarget
 Flags = CanProtect,CanMirrorMove
 Description = The user attacks with a wave that crawls along the ground. Those it hits can't flee from battle.
 #-------------------------------
@@ -3479,7 +3479,7 @@ Power = 90
 Accuracy = 100
 TotalPP = 10
 Target = NearOther
-FunctionCode = 0CA
+FunctionCode = TwoTurnAttackInvulnerableUnderground
 Flags = CanProtect,CanMirrorMove
 Description = The user burrows, then attacks on the second turn.
 #-------------------------------
@@ -3566,7 +3566,7 @@ Power = 50
 Accuracy = 100
 TotalPP = 15
 Target = NearOther
-FunctionCode = 0CF
+FunctionCode = BindTarget3
 Flags = CanProtect,CanMirrorMove
 Description = The user spins a sandstorm around the target, trapping and damaging it for three turns.
 #-------------------------------
@@ -3625,7 +3625,7 @@ Power = 140
 Accuracy = 100
 TotalPP = 5
 Target = NearOther
-FunctionCode = 0C5
+FunctionCode = TwoTurnAttackParalyzeTarget
 Flags = CanProtect,CanMirrorMove
 EffectChance = 30
 Description = On the second turn, the user hits the foe with electrically charged ice. It has a 30% chance to numb.
@@ -3638,7 +3638,7 @@ Power = 140
 Accuracy = 100
 TotalPP = 5
 Target = NearOther
-FunctionCode = 0C6
+FunctionCode = TwoTurnAttackBurnTarget
 Flags = CanProtect,CanMirrorMove
 EffectChance = 30
 Description = On the second turn, an ultracold, freezing wind surrounds the foe. It has a 30% chance to burn.
@@ -3899,7 +3899,7 @@ Power = 200
 Accuracy = 100
 TotalPP = 5
 Target = NearOther
-FunctionCode = 0C2
+FunctionCode = TwoTurnAttack
 Flags = CanProtect,CanMirrorMove
 Description = The user charges at the target using every bit of its power. The user must rest on the next turn.
 #-------------------------------
@@ -3911,7 +3911,7 @@ Power = 200
 Accuracy = 100
 TotalPP = 5
 Target = NearOther
-FunctionCode = 0C2
+FunctionCode = TwoTurnAttack
 Flags = CanProtect,CanMirrorMove
 Description = The foe is attacked with a powerful beam. The user must rest on the next turn to regain its energy.
 #-------------------------------
@@ -3947,7 +3947,7 @@ Power = 140
 Accuracy = 100
 TotalPP = 10
 Target = NearOther
-FunctionCode = 0C8
+FunctionCode = TwoTurnAttackChargeRaiseUserDef1
 Flags = CanProtect,CanMirrorMove
 Description = The user tucks in to raise its Defense by four steps in the first turn, then rams the foe on the second.
 #-------------------------------
@@ -3983,7 +3983,7 @@ Power = 120
 Accuracy = 100
 TotalPP = 5
 Target = NearOther
-FunctionCode = 09F
+FunctionCode = TypeDependsOnUserSpecialItem
 Flags = CanProtect,CanMirrorMove
 Description = The user fires a beam of light at its target. The type changes depending on the Drive the user holds.
 #-------------------------------
@@ -4019,7 +4019,7 @@ Power = 100
 Accuracy = 100
 TotalPP = 10
 Target = NearOther
-FunctionCode = 09F
+FunctionCode = TypeDependsOnUserSpecialItem
 Flags = CanProtect,CanMirrorMove
 Description = The user releases countless shots of light. Its type varies with the kind of Plate the user is holding.
 #-------------------------------
@@ -4043,7 +4043,7 @@ Power = 120
 Accuracy = 100
 TotalPP = 10
 Target = NearOther
-FunctionCode = 09F
+FunctionCode = TypeDependsOnUserSpecialItem
 Flags = CanProtect,CanMirrorMove
 Description = Cloaking itself in high energy, the user slams into the target. This move's type depends on the held memory.
 #-------------------------------
@@ -4055,7 +4055,7 @@ Power = 90
 Accuracy = 100
 TotalPP = 12
 Target = NearOther
-FunctionCode = 169
+FunctionCode = TypeIsUserFirstType
 Flags = CanProtect,CanMirrorMove,Dance
 Description = The user attacks the target by dancing very hard. The user's type determines the type of this move.
 #-------------------------------
@@ -4243,7 +4243,7 @@ Power = 70
 Accuracy = 100
 TotalPP = 15
 Target = NearOther
-FunctionCode = 0A4
+FunctionCode = EffectDependsOnEnvironment
 Flags = CanProtect,CanMirrorMove
 EffectChance = 30
 Description = The user attacks with a secret power. Its added effects vary depending on the user's environment.
@@ -4540,7 +4540,7 @@ Power = 40
 Accuracy = 100
 TotalPP = 15
 Target = NearOther
-FunctionCode = 0CF
+FunctionCode = BindTarget3
 Flags = CanProtect,CanMirrorMove
 Description = The user squeezes the target, trapping and damaging it for three turns.
 #-------------------------------
@@ -4737,7 +4737,7 @@ Category = Status
 Accuracy = 0
 TotalPP = 5
 Target = NearOther
-FunctionCode = 0EF
+FunctionCode = TrapTarget
 Flags = CanMagicCoat,CanMirrorMove
 Description = The user blocks the target's way with arms spread wide to prevent escape.
 #-------------------------------
@@ -4760,7 +4760,7 @@ Category = Status
 Accuracy = 0
 TotalPP = 25
 Target = User
-FunctionCode = 05E
+FunctionCode = SetUserTypesToUserMoveType
 Flags = CanSnatch
 Description = The user changes its type to become the same type as one of its moves.
 #-------------------------------
@@ -4771,7 +4771,7 @@ Category = Status
 Accuracy = 0
 TotalPP = 25
 Target = NearOther
-FunctionCode = 05F
+FunctionCode = SetUserTypesToResistLastAttack
 Description = The user changes its type to make itself resistant to the type of the attack the opponent used last.
 #-------------------------------
 [COPYCAT]
@@ -4791,7 +4791,7 @@ Category = Status
 Accuracy = 100
 TotalPP = 15
 Target = NearOther
-FunctionCode = 0B9
+FunctionCode = DisableTargetLastMoveUsed
 Flags = CanProtect,CanMagicCoat,CanMirrorMove
 Description = For five turns, this move prevents the target from using the move it last used.
 #-------------------------------
@@ -4802,7 +4802,7 @@ Category = Status
 Accuracy = 100
 TotalPP = 5
 Target = NearOther
-FunctionCode = 0BC
+FunctionCode = DisableTargetUsingDifferentMove4
 Flags = CanProtect,CanMagicCoat,CanMirrorMove
 Description = The user compels the target to keep using only the move it last used for three turns.
 #-------------------------------
@@ -4978,7 +4978,7 @@ Category = Status
 Accuracy = 0
 TotalPP = 5
 Target = NearOther
-FunctionCode = 0EF
+FunctionCode = TrapTarget
 Flags = CanMagicCoat,CanMirrorMove
 Description = The user pins the target with a dark, arresting look. The target becomes unable to flee.
 #-------------------------------
@@ -5021,7 +5021,7 @@ Category = Status
 Accuracy = 0
 TotalPP = 15
 Target = NearOther
-FunctionCode = 0B3
+FunctionCode = UseMoveDependingOnEnvironment
 Description = An attack that makes use of nature's power. Its effects vary depending on the user's environment.
 #-------------------------------
 [NOBLEROAR]
@@ -5107,7 +5107,7 @@ Category = Status
 Accuracy = 0
 TotalPP = 12
 Target = NearOther
-FunctionCode = 062
+FunctionCode = SetUserTypesToTargetTypes
 Flags = CanProtect
 Description = The user reflects the target's type, making it the same type as the target.
 #-------------------------------
@@ -5697,7 +5697,7 @@ Power = 170
 Accuracy = 100
 TotalPP = 10
 Target = NearOther
-FunctionCode = 0C2
+FunctionCode = TwoTurnAttack
 Flags = CanProtect,CanMirrorMove
 Description = The user shoots powerful lasers using the power of a prism. The user can't move on the next turn.
 #-------------------------------
@@ -5911,7 +5911,7 @@ Power = 1
 Accuracy = 100
 TotalPP = 12
 Target = NearOther
-FunctionCode = 06F
+FunctionCode = SetTargetTypesToBug
 Flags = CanProtect,CanMirrorMove
 Description = The target is attacked with an odd psychic wave. The attack varies in intensity.
 #-------------------------------
@@ -5998,7 +5998,7 @@ Category = Status
 Accuracy = 100
 TotalPP = 12
 Target = AllNearFoes
-FunctionCode = 0BB
+FunctionCode = DisableTargetHealingMoves5
 Flags = CanProtect,CanMagicCoat,CanMirrorMove
 Description = For five turns, the foe is prevented from using any moves, Abilities, or held items that recover HP.
 #-------------------------------
@@ -6222,7 +6222,7 @@ Power = 170
 Accuracy = 100
 TotalPP = 5
 Target = NearOther
-FunctionCode = 0C2
+FunctionCode = TwoTurnAttack
 Flags = CanProtect,CanMirrorMove
 Description = The user launches a huge boulder at the target to attack. It must rest on the next turn, however.
 #-------------------------------
@@ -6322,7 +6322,7 @@ Power = 50
 Accuracy = 100
 TotalPP = 12
 Target = NearOther
-FunctionCode = 11C
+FunctionCode = HitsTargetInSkyGroundsTarget
 Flags = CanProtect,CanMirrorMove
 Description = The user throws a stone or projectile to attack. A flying Pokémon will fall to the ground when hit.
 #-------------------------------
@@ -6416,7 +6416,7 @@ Accuracy = 0
 TotalPP = 12
 Target = NearOther
 Priority = 3
-FunctionCode = 186
+FunctionCode = LowerTargetSpeed6MakeTargetWeakerToFire
 Flags = CanProtect,CanMagicCoat,CanMirrorMove
 Description = Pours sticky tar over the target, lowering its Speed by six steps and making it weak to Fire.
 #-------------------------------
@@ -6428,7 +6428,7 @@ Power = 120
 Accuracy = 100
 TotalPP = 10
 Target = NearOther
-FunctionCode = 191
+FunctionCode = TwoTurnAttackChargeRaiseUserSpAtk1
 Flags = CanProtect,CanMirrorMove
 Description = Gathers space power and boosts its Sp. Atk by two steps on one turn, then attacks on the next turn.
 #-------------------------------
@@ -6490,7 +6490,7 @@ Power = 80
 Accuracy = 100
 TotalPP = 15
 Target = NearOther
-FunctionCode = 0EF
+FunctionCode = TrapTarget
 Flags = CanProtect,CanMirrorMove
 EffectChance = 100
 Description = The user entangles the target with its anchor chain. The target becomes unable to flee.
@@ -6721,7 +6721,7 @@ Power = 75
 Accuracy = 100
 TotalPP = 12
 Target = NearOther
-FunctionCode = 0CF
+FunctionCode = BindTarget3
 Flags = CanProtect,CanMirrorMove
 Description = The user snares the target, trapping and damaging it for three turns.
 #-------------------------------
@@ -6845,7 +6845,7 @@ Power = 90
 Accuracy = 100
 TotalPP = 10
 Target = NearOther
-FunctionCode = 0CB
+FunctionCode = TwoTurnAttackInvulnerableUnderwater
 Flags = CanProtect,CanMirrorMove
 Description = Diving on the first turn, the user rises and hits from below water on the next turn.
 #-------------------------------
@@ -6984,7 +6984,7 @@ Power = 50
 Accuracy = 100
 TotalPP = 15
 Target = NearOther
-FunctionCode = 0CF
+FunctionCode = BindTarget3
 Flags = CanProtect,CanMirrorMove
 Description = The user clamps onto the target, trapping and damaging it for three turns.
 #-------------------------------
@@ -6996,7 +6996,7 @@ Power = 50
 Accuracy = 100
 TotalPP = 15
 Target = NearOther
-FunctionCode = 0CF
+FunctionCode = BindTarget3
 Flags = CanProtect,CanMirrorMove
 Description = The user swirls the target in a whirlpool, trapping and damaging it for three turns.
 #-------------------------------
@@ -7020,7 +7020,7 @@ Category = Status
 Accuracy = 0
 TotalPP = 10
 Target = BothSides
-FunctionStartRain8
+FunctionCode = 
 Description = Summons rain for eight turns, boosting Water-type attacks and hindering most others.
 #-------------------------------
 [SOAK]
@@ -7030,7 +7030,7 @@ Category = Status
 Accuracy = 100
 TotalPP = 15
 Target = NearOther
-FunctionCode = 061
+FunctionCode = SetTargetTypesToWater
 Flags = CanProtect,CanMagicCoat,CanMirrorMove
 Description = The user shoots a torrent of water at the target and changes the target's type to Water.
 #-------------------------------
@@ -7168,7 +7168,7 @@ Power = 170
 Accuracy = 100
 TotalPP = 5
 Target = NearOther
-FunctionCode = 0C2
+FunctionCode = TwoTurnAttack
 Flags = CanProtect,CanMirrorMove
 Description = The target is hit with a watery blast. The user must rest on the next turn, however.
 #-------------------------------
@@ -7180,7 +7180,7 @@ Power = 170
 Accuracy = 100
 TotalPP = 5
 Target = NearOther
-FunctionCode = 0C2
+FunctionCode = TwoTurnAttack
 Flags = CanProtect,CanMirrorMove
 Description = The user slams the target with an enormous tree. The user can't move on the next turn.
 #-------------------------------
@@ -7192,7 +7192,7 @@ Power = 170
 Accuracy = 100
 TotalPP = 5
 Target = NearOther
-FunctionCode = 0C2
+FunctionCode = TwoTurnAttack
 Flags = CanProtect,CanMirrorMove
 Description = The target is razed by a fiery explosion. The user must rest on the next turn, however.
 #-------------------------------

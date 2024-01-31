@@ -22,7 +22,7 @@ class PokeBattle_Confusion < PokeBattle_Move
         @realMove   = move
         @id         = 0
         @name       = ""
-        @function   = "000"
+        @function   = "Basic"
         @baseDamage = basePower
         @type       = nil
         @category   = 0
@@ -51,7 +51,7 @@ class PokeBattle_Charm < PokeBattle_Move
         @realMove   = move
         @id         = 0
         @name       = ""
-        @function   = "000"
+        @function   = "Basic"
         @baseDamage = basePower
         @type       = nil
         @category   = 1
@@ -555,7 +555,12 @@ class PokeBattle_TwoTurnMove < PokeBattle_Move
                 # Moves that would make the user semi-invulnerable will hide the user
                 # after the charging animation, so the "UseItem" animation shouldn't show
                 # for it
-                @battle.pbCommonAnimation("UseItem", user) unless %w[0C9 0CA 0CB 0CC 0CD 0CE].include?(@function)
+                @battle.pbCommonAnimation("UseItem", user) unless %w[
+                    TwoTurnAttackInvulnerableInSky
+                    TwoTurnAttackInvulnerableUnderground
+                    TwoTurnAttackInvulnerableUnderwater
+                    TwoTurnAttackInvulnerableInSkyNumbTarget
+                    TwoTurnAttackInvulnerableRemoveProtections].include?(@function)
                 @battle.pbDisplay(_INTL("{1} became fully charged due to its Power Herb!", user.pbThis))
                 user.consumeItem(:POWERHERB)
             end

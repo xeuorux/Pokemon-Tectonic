@@ -6,7 +6,7 @@ class PokeBattle_Move_HitsDivers < PokeBattle_Move
     def hitsDivingTargets?; return true; end
 
     def pbBaseDamage(baseDmg, _user, target)
-        baseDmg *= 2 if target.inTwoTurnAttack?("0CB") # Dive
+        baseDmg *= 2 if target.inTwoTurnAttack?("TwoTurnAttackInvulnerableUnderwater") # Dive
         return baseDmg
     end
 
@@ -36,7 +36,7 @@ class PokeBattle_Move_HitsDiggers < PokeBattle_Move
     def hitsDiggingTargets?; return true; end
 
     def pbBaseDamage(baseDmg, _user, target)
-        baseDmg *= 2 if target.inTwoTurnAttack?("OCA") # Dig
+        baseDmg *= 2 if target.inTwoTurnAttack?("TwoTurnAttackInvulnerableUnderground") # Dig
         return baseDmg
     end
 end

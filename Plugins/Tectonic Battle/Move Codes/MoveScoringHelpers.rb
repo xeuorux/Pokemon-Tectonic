@@ -48,7 +48,7 @@ def getNumbEffectScore(user, target, ignoreCheck: false)
         score += 60 if target.hasDamagingAttack?
         score += 60 if user && target.pbSpeed(true) > user.pbSpeed(true)
         score += STATUS_PUNISHMENT_BONUS if user && (user.hasStatusPunishMove? ||
-                                            user.pbHasMoveFunction?("SmellingSalts", "579")) # Smelling Salts, Spectral Tongue
+                                            user.pbHasMoveFunction?("SmellingSalts", "NumbTargetOrCurseIfNumb")) # Smelling Salts, Spectral Tongue
         score += 60 if user&.hasActiveAbilityAI?(:TENDERIZE)
         score -= getNaturalCureScore(user, target, score) if target.hasActiveAbilityAI?(:NATURALCURE)
     else

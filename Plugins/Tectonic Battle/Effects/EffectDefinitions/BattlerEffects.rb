@@ -992,7 +992,7 @@ GameData::BattleEffect.register_effect(:Battler, {
     :id => :SmackDown,
     :real_name => "Smacked Down",
     :apply_proc => proc do |battle, battler, _value|
-        if battler.inTwoTurnAttack?("0C9", "0CC") # Fly/Bounce. NOTE: Not Sky Drop.
+        if battler.inTwoTurnSkyAttack?
             battler.disableEffect(:TwoTurnAttack)
             battle.pbClearChoice(battler.index) unless battler.movedThisRound?
         end

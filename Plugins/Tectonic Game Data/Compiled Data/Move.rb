@@ -274,6 +274,13 @@ module Compiler
               move_names.push(move_hash[:name])
             when "Description"
               move_descriptions.push(move_hash[:description])
+            when "FunctionCode"
+              moveFunction = move_hash[:function_code]
+              className = sprintf("PokeBattle_Move_%s", moveFunction)
+              unless Object.const_defined?(className)
+                raise _INTL("A class for the move function code #{moveFunction} given for move #{move_hash[:id]}
+                  does not exist!\r\n{1}",FileLineData.linereport)
+              end
           end
         end
       }

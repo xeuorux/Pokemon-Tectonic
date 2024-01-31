@@ -22,7 +22,7 @@ end
 # Decreases the user's Defense and Special Defense by 2 steps each.
 # (Close Combat, Dragon Ascent)
 #===============================================================================
-class PokeBattle_Move_LowerUserDefenses2 < PokeBattle_StatDownMove
+class PokeBattle_Move_LowerUserDefSpDef2 < PokeBattle_StatDownMove
     def initialize(battle, move)
         super
         @statDown = DEFENDING_STATS_2
@@ -33,7 +33,7 @@ end
 # Decreases the user's Defense, Special Defense and Speed by 2 steps each.
 # (V-create)
 #===============================================================================
-class PokeBattle_Move_LowerUserSpeedDefenses2 < PokeBattle_StatDownMove
+class PokeBattle_Move_LowerUserSpdDefSpDef2 < PokeBattle_StatDownMove
     def initialize(battle, move)
         super
         @statDown = [:SPEED, 2, :DEFENSE, 2, :SPECIAL_DEFENSE, 2]
@@ -43,7 +43,7 @@ end
 #===============================================================================
 # Decreases the user's Speed by 2 steps. (Hammer Arm, Ice Hammer)
 #===============================================================================
-class PokeBattle_Move_LowerUserSpeed2 < PokeBattle_StatDownMove
+class PokeBattle_Move_LowerUserSpd2 < PokeBattle_StatDownMove
     def initialize(battle, move)
         super
         @statDown = [:SPEED, 2]
@@ -105,6 +105,6 @@ end
 #===============================================================================
 # Guaranteed to crit, but lowers the user's speed. (Incision)
 #===============================================================================
-class PokeBattle_Move_AlwaysCritialLowerUserSpeed1 < PokeBattle_Move_LowerUserSpeed2
+class PokeBattle_Move_AlwaysCritialLowerUserSpeed1 < PokeBattle_Move_LowerUserSpd2
     def pbCriticalOverride(_user, _target); return 1; end
 end
