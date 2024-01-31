@@ -55,7 +55,7 @@ end
 def pbMentorMoveScreen(pkmn)
 	mentorableMoves = getMentorableMoves(pkmn)
 	return false if mentorableMoves.empty?
-	return moveLearningScreen(pkmn,mentorableMoves)
+	return moveLearningScreen(pkmn,mentorableMoves,true)
 end
 
 class Pokemon

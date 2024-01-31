@@ -1,4 +1,4 @@
-def moveLearningScreen(pkmn,moves)
+def moveLearningScreen(pkmn,moves,addFirstMove=false)
 	return [] if !pkmn || pkmn.egg?
 
 	if !teamEditingAllowed?()
@@ -20,7 +20,7 @@ def moveLearningScreen(pkmn,moves)
 	pbFadeOutIn {
 	  scene = MoveLearner_Scene.new
 	  screen = MoveLearnerScreen.new(scene)
-	  retval = screen.pbStartScreen(pkmn,moves)
+	  retval = screen.pbStartScreen(pkmn,moves,addFirstMove)
 	}
 	return retval
 end

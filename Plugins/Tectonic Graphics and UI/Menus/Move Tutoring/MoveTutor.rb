@@ -3,7 +3,7 @@ class Pokemon
         return false if egg?
         species_data = GameData::Species.get(@species)
         species_data.tutor_moves.each { |m| 
-            return true if !hasMove?(m)
+            return true unless hasMove?(m)
         }
         return false
     end
@@ -22,7 +22,7 @@ def pbTutorMoveScreen(pkmn)
     pbFadeOutIn {
         scene = MoveLearner_Scene.new
         screen = MoveLearnerScreen.new(scene)
-        retval = screen.pbStartScreen(pkmn,moves)
+        retval = screen.pbStartScreen(pkmn,moves,true)
     }
     return retval
 end

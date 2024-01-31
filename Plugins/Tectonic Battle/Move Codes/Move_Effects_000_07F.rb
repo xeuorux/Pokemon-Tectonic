@@ -1560,7 +1560,7 @@ class PokeBattle_Move_05D < PokeBattle_Move
             user.moves[i] = PokeBattle_Move.from_pokemon_move(@battle, newMove)
             @battle.pbDisplay(_INTL("{1} learned {2}!", user.pbThis, newMove.name))
             user.pbCheckFormOnMovesetChange
-            user.pokemon.first_moves.push(newMove.id)
+            user.pokemon.add_first_move(newMove.id)
             break
         end
     end

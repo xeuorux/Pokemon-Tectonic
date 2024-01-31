@@ -43,7 +43,7 @@ def getOmniMoves(pkmn)
 end
 
 def omniTutorScreen(pkmn)
-    return moveLearningScreen(pkmn,getOmniMoves(pkmn))
+    return moveLearningScreen(pkmn,getOmniMoves(pkmn),true)
 end
 
 class Pokemon
