@@ -264,12 +264,10 @@ Pokemon = MARSHTOMP,17
 #-------------------------------
 [ARTIST,Evan]
 Policies = PRIORITIZESTATDOWN
-Pokemon = SMEARGLE,17
 Pokemon = SMEARGLE,18
     Moves = HELPINGHAND,HEALPULSE,SCREECH,NOBLEROAR
     AbilityIndex = 0 # Mental Block
     Item = SITRUSBERRY
-Pokemon = MISDREAVUS,17
 Pokemon = MISDREAVUS,16
     Moves = DISARMINGVOICE,OMINOUSWIND
     AbilityIndex = 1 # Ear-Splitting
