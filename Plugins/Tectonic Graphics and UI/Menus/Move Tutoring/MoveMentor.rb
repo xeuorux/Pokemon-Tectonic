@@ -1,3 +1,7 @@
+# Whether or not a Pokemon's "previously known moves" can also be mentored to other mons
+# This means any move that shows up when using the move relearner
+CAN_MENTOR_PREVIOUS_MOVES = true
+
 def mentorCoordinator(skipExplanation=false)
 	if !teamEditingAllowed?()
 		showNoTeamEditingMessage()
@@ -29,20 +33,21 @@ def mentorCoordinator(skipExplanation=false)
 	end
 end
 
-def getMovesKnownByMentors()
+def getMovesKnownByMentors(pokemonToSkip = nil)
 	movesKnownByMentors = []
 	eachPokemonInPartyOrStorage do |otherPkmn|
+		next if pokemonToSkip && pokemonToSkip.personalID == otherPkmn.personalID
 		otherPkmn.moves.each do |m|
 			movesKnownByMentors.push(m.id)
 		end
+		movesKnownByMentors.concat(getRelearnableMoves(otherPkmn)) if CAN_MENTOR_PREVIOUS_MOVES
 	end
 	movesKnownByMentors.uniq!
-	movesKnownByMentors.compact!
 	return movesKnownByMentors
 end
 
 def getMentorableMoves(pkmn)
-	movesKnownByMentors = getMovesKnownByMentors()
+	movesKnownByMentors = getMovesKnownByMentors(pkmn)
 	mentorableMoves = pkmn.learnable_moves & movesKnownByMentors
 	return mentorableMoves
 end
@@ -56,6 +61,22 @@ end
 class Pokemon
 	def can_mentor_move?
 		return false if egg?
-		return !getMentorableMoves(self).empty?
+
+		ourLearnableMoves = learnable_moves
+		eachPokemonInPartyOrStorage do |otherPkmn|
+			next if otherPkmn.personalID == @personalID
+			otherPkmn.moves.each do |m|
+				next unless ourLearnableMoves.include?(m.id)
+				return true
+			end
+			if CAN_MENTOR_PREVIOUS_MOVES
+				getRelearnableMoves(otherPkmn).each do |m|
+					next unless ourLearnableMoves.include?(m)
+					return true
+				end
+			end
+		end
+
+		return false
 	end
 end
