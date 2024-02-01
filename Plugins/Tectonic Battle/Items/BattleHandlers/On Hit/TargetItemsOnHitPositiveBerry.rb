@@ -38,7 +38,6 @@ BattleHandlers::TargetItemOnHitPositiveBerry.add(:ENIGMABERRY,
   proc { |item, battler, battle, forced|
       next false unless battler.canHeal?
       next false if !forced && !battler.canConsumeBerry?
-      battle.pbCommonAnimation("Nom", battler) unless forced
       healFromBerry(battler, 1.0 / 4.0, item, forced = false)
       next true
   }
