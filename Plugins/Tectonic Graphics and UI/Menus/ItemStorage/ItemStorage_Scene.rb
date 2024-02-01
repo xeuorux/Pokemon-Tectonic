@@ -4,6 +4,8 @@
 class ItemStorage_Scene
     ITEMLISTBASECOLOR   = Color.new(88,88,80)
     ITEMLISTSHADOWCOLOR = Color.new(168,184,184)
+    ITEMLISTBASECOLOR_DARK   = Color.new(248,248,248)
+    ITEMLISTSHADOWCOLOR_DARK = Color.new(0,0,0)
     ITEMTEXTBASECOLOR   = Color.new(248,248,248)
     ITEMTEXTSHADOWCOLOR = Color.new(0,0,0)
     TITLEBASECOLOR      = Color.new(248,248,248)
@@ -24,14 +26,16 @@ class ItemStorage_Scene
       @bag = bag
       @sprites = {}
       @sprites["background"] = IconSprite.new(0,0,@viewport)
-      @sprites["background"].setBitmap("Graphics/Pictures/pcItembg")
+      bg_path = "Graphics/Pictures/pcItembg"
+      bg_path += "_dark" if $PokemonSystem.dark_mode == 0
+      @sprites["background"].setBitmap(bg_path)
       @sprites["icon"] = ItemIconSprite.new(50,334,nil,@viewport)
       # Item list
       @sprites["itemwindow"] = Window_PokemonItemStorage.new(@bag,98,14,334,32+ITEMSVISIBLE*32)
       @sprites["itemwindow"].viewport    = @viewport
       @sprites["itemwindow"].index       = 0
-      @sprites["itemwindow"].baseColor   = ITEMLISTBASECOLOR
-      @sprites["itemwindow"].shadowColor = ITEMLISTSHADOWCOLOR
+      @sprites["itemwindow"].baseColor   = $PokemonSystem.dark_mode == 0 ? ITEMLISTBASECOLOR_DARK : ITEMLISTBASECOLOR
+      @sprites["itemwindow"].shadowColor = $PokemonSystem.dark_mode == 0 ? ITEMLISTSHADOWCOLOR_DARK : ITEMLISTSHADOWCOLOR
       @sprites["itemwindow"].refresh
       # Title
       @sprites["pocketwindow"] = BitmapSprite.new(88,64,@viewport)
