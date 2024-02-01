@@ -275,7 +275,7 @@
 398,DEVJANITOR,Developer,80,,,,Male,,,[]
 399,DEVRICHBOY,Developer,80,,,,Male,,,[]
 400,DEVJUGGLER,Developer,80,,,,Male,,,[]
-401,DEVCOOLTRAINER_M4,Developer,80,,,,Male,,,[]
+401,DEVCOOLTRAINER_F,Developer,80,,,,Male,,,[]
 402,DEVPSYCHIC_M,Developer,80,,,,Male,,,[]
 403,DEVSUPERNERD,Developer,80,,,,Male,,,[]
 404,DEVDRAGONTAMER2,Developer,80,,,,Male,,,[]
