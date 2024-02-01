@@ -834,6 +834,7 @@ user.pbThis))
             else
                 @battle.pbDisplay(_INTL("The {1} strengthened {2}'s power!", getItemName(user.effects[:GemConsumed]), move.name))
             end
+            aiLearnsItem(user.effects[:GemConsumed])
         end
         # Attack/Sp. Atk boosting Herb consume animation/message
         if effectActive?(:EmpoweringHerbConsumed) && hitNum == 0
@@ -841,6 +842,7 @@ user.pbThis))
             #       actual removal of the item happens in def pbEffectsAfterMove.
             @battle.pbCommonAnimation("UseItem", user)
             @battle.pbDisplay(_INTL("The {1} supplemented {2}'s power!", getItemName(user.effects[:EmpoweringHerbConsumed]), move.name))
+            aiLearnsItem(user.effects[:EmpoweringHerbConsumed])
         end
         # Accuracy ensuring Herb consume animation/message
         if effectActive?(:SkillHerbConsumed) && hitNum == 0
@@ -848,6 +850,7 @@ user.pbThis))
             #       actual removal of the item happens in def pbEffectsAfterMove.
             @battle.pbCommonAnimation("UseItem", user)
             @battle.pbDisplay(_INTL("The {1} ensured {2} would hit!", getItemName(:SKILLHERB), move.name))
+            aiLearnsItem(:SKILLHERB)
         end
         # Mystic tribe
         if hasTribeBonus?(:MYSTIC) && user.lastRoundMoveCategory == 2 && move.damagingMove? # Status
@@ -999,6 +1002,7 @@ user.pbThis))
                 #       actual removal of the item happens in def pbEffectsAfterMove.
                 @battle.pbCommonAnimation("UseItem", user)
                 @battle.pbDisplay(_INTL("The {1} ensured {2}'s additional effect!", getItemName(:LUCKHERB), move.name))
+                aiLearnsItem(:LUCKHERB)
             end
         end
         # Make the target flinch (because of an item/ability)

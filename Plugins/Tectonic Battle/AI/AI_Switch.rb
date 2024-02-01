@@ -454,8 +454,8 @@ class PokeBattle_AI
         matchupScore = -1 * bestMoveScore
 
         # Set-up counterplay scoring
-        if      (battler.hasActiveItem?(:REDCARD) && !opposingBattler.hasActiveItem?(:PROXYFIST)) ||
-                battler.hasActiveAbility?(%i[SMOKEINSINCT PERISHBODY CURIOUSMEDICINE DRIFTINGMIST])
+        if      (battler.hasActiveItemAI?(:REDCARD) && !opposingBattler.hasActiveItemAI?(:PROXYFIST)) ||
+                battler.hasActiveAbilityAI?(%i[SMOKEINSINCT PERISHBODY CURIOUSMEDICINE DRIFTINGMIST])
             matchupScore += statStepsValueScore(opposingBattler) * 0.15
         end
 

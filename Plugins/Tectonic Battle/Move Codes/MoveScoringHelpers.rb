@@ -167,7 +167,7 @@ def getLeechEffectScore(user, target, ignoreCheck: false)
 			score += 50 if target.hasHealingMove?
             score *= 2 if user&.hasActiveAbilityAI?(:AGGRAVATE)
             score *= 1.5 if user&.hasActiveAbilityAI?(:ROOTED)
-            score *= 1.3 if user&.hasActiveItem?(:BIGROOT)
+            score *= 1.3 if user&.hasActiveItemAI?(:BIGROOT)
             score *= 2 if user&.ownersPolicies.include?(:PRIORITIZEDOTS) && user&.opposes?(target)
         end
 
@@ -751,10 +751,10 @@ def predictedEOTDamage(battle,battler)
     damage += battler.getFractionalDamageAmount(EOR_SELF_HARM_ABILITY_DAMAGE_FRACTION, aggravate: aggravate) if battler.hasActiveAbilityAI?(:LIVEFAST)
 
     # Sticky Barb
-    damage += battler.getFractionalDamageAmount(STICKY_BARB_DAMAGE_FRACTION, aggravate: aggravate) if battler.hasActiveItem?(:STICKYBARB)
+    damage += battler.getFractionalDamageAmount(STICKY_BARB_DAMAGE_FRACTION, aggravate: aggravate) if battler.hasActiveItemAI?(:STICKYBARB)
 
     # Black Sludge
-    if battler.hasActiveItem?(:BLACKSLUDGE) && !battler.pbHasType?(:POISON)
+    if battler.hasActiveItemAI?(:BLACKSLUDGE) && !battler.pbHasType?(:POISON)
         damage += battler.getFractionalDamageAmount(LEFTOVERS_HEALING_FRACTION)
     end
 
@@ -817,12 +817,12 @@ def predictedEOTHealing(battle,battler)
 
     # Leftovers
     LEFTOVERS_ITEMS.each do |leftoversItem|
-        next unless battler.hasActiveItem?(leftoversItem)
+        next unless battler.hasActiveItemAI?(leftoversItem)
         healing += battler.getFractionalHealingAmount(LEFTOVERS_HEALING_FRACTION)
     end
 
     # Black Sludge
-    if battler.hasActiveItem?(:BLACKSLUDGE) && battler.pbHasType?(:POISON)
+    if battler.hasActiveItemAI?(:BLACKSLUDGE) && battler.pbHasType?(:POISON)
         healing += battler.getFractionalHealingAmount(LEFTOVERS_HEALING_FRACTION)
     end
 
@@ -888,7 +888,7 @@ def getReflectEffectScore(user, baseDuration = nil, move = nil)
             score += 60 if !move || user.battle.battleAI.userMovesFirst?(move, user, b)
         end
     end
-    duration = baseDuration ? user.getScreenDuration(baseDuration) : user.getScreenDuration
+    duration = baseDuration ? user.getScreenDuration(baseDuration,aiCheck: true) : user.getScreenDuration(aiCheck: true)
     duration -= user.pbOwnSide.countEffect(:Reflect) if user.pbOwnSide.effectActive?(:Reflect)
     score += 10 * duration
     score = (score * 1.3).ceil if user.fullHealth?
@@ -904,7 +904,7 @@ def getLightScreenEffectScore(user, baseDuration = nil, move = nil)
             score += 60 if !move || user.battle.battleAI.userMovesFirst?(move, user, b)
         end
     end
-    duration = baseDuration ? user.getScreenDuration(baseDuration) : user.getScreenDuration
+    duration = baseDuration ? user.getScreenDuration(baseDuration,aiCheck: true) : user.getScreenDuration(aiCheck: true)
     duration -= user.pbOwnSide.countEffect(:LightScreen) if user.pbOwnSide.effectActive?(:LightScreen)
     score += 10 * duration
     score = (score * 1.3).ceil if user.fullHealth?

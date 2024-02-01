@@ -95,7 +95,7 @@ class PokeBattle_Move_StartWeakenDamageAgainstUserSideIfInHail5 < PokeBattle_Mov
         user.eachOpposing do |b|
             score += 40 if b.hasDamagingAttack?
         end
-        score += 15 * user.getScreenDuration
+        score += 15 * user.getScreenDuration(aiCheck: true)
         score = (score * 1.3).ceil if user.fullHealth?
         return score
     end
@@ -122,7 +122,7 @@ class PokeBattle_Move_StartWeaken100PowerOrHigherDamageAgainstUserSide5 < PokeBa
         user.eachOpposing do |b|
             score += 40 if b.hasDamagingAttack?
         end
-        score += 15 * user.getScreenDuration
+        score += 15 * user.getScreenDuration(aiCheck: true)
         score = (score * 1.3).ceil if user.fullHealth?
         return score
     end

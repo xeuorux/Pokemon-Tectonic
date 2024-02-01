@@ -395,7 +395,7 @@ class PokeBattle_Battler
     end
 
     def activatesTargetAbilities?(aiCheck = false)
-        return false if hasActiveItem?(:PROXYFIST)
+        return false if shouldItemApply?(:PROXYFIST,aiCheck)
         return false if shouldAbilityApply?(:JUGGERNAUT, aiCheck)
         return true
     end
@@ -405,13 +405,13 @@ class PokeBattle_Battler
     end
 
     def airborne?(checkingForAI = false)
-        return false if hasActiveItem?(:IRONBALL)
+        return false if shouldItemApply?(:IRONBALL,checkingForAI)
         return false if effectActive?(:Ingrain)
         return false if effectActive?(:SmackDown)
         return false if @battle.field.effectActive?(:Gravity)
         return true if shouldTypeApply?(:FLYING, checkingForAI)
         return true if hasLevitate?(checkingForAI) && !@battle.moldBreaker
-        return true if hasActiveItem?(LEVITATION_ITEMS)
+        return true if shouldItemApply?(LEVITATION_ITEMS,checkingForAI)
         return true if effectActive?(:MagnetRise)
         return true if effectActive?(:Telekinesis)
         return false
@@ -627,19 +627,19 @@ class PokeBattle_Battler
         return shouldAbilityApply?(:BUNKERDOWN, checkingForAI) && @hp == @totalhp
     end
 
-    def getRoomDuration
-        if hasActiveItem?(:REINFORCINGROD)
+    def getRoomDuration(aiCheck = false)
+        if shouldItemApply?(:REINFORCINGROD,aiCheck)
             return 8
         else
             return 5
         end
     end
 
-    def getScreenDuration(baseDuration = 5)
+    def getScreenDuration(baseDuration = 5,aiCheck: false)
         ret = baseDuration
-        ret += 3 if hasActiveItem?(:LIGHTCLAY)
-        ret += 6 if hasActiveItem?(:BRIGHTCLAY)
-        ret *= 2 if hasActiveAbility?(:PLANARVEIL) && @battle.eclipsed?
+        ret += 3 if shouldItemApply?(:LIGHTCLAY,aiCheck)
+        ret += 6 if shouldItemApply?(:BRIGHTCLAY,aiCheck)
+        ret *= 2 if shouldAbilityApply?(:PLANARVEIL,aiCheck) && @battle.eclipsed?
         return ret
     end
 
@@ -852,7 +852,10 @@ class PokeBattle_Battler
     end
 
     def immuneToHazards?(aiCheck = false)
-        return true if hasActiveItem?(:HEAVYDUTYBOOTS)
+        if shouldItemApply?(:HEAVYDUTYBOOTS,aiCheck)
+            aiLearnsItem(:HEAVYDUTYBOOTS) unless aiCheck
+            return true
+        end
         return shouldAbilityApply?(GameData::Ability::HAZARD_IMMUNITY_ABILITIES, aiCheck)
     end
 

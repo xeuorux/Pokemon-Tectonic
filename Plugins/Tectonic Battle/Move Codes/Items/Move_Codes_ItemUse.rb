@@ -79,8 +79,8 @@ class PokeBattle_Move_GiftItem < PokeBattle_Move
     end
 
     def getEffectScore(user, target)
-        if user.hasActiveItem?(%i[FLAMEORB POISONORB FROSTORB STICKYBARB
-                                  IRONBALL]) || user.hasActiveItem?(CHOICE_LOCKING_ITEMS)
+        if user.hasActiveItemAI?(%i[FLAMEORB POISONORB FROSTORB STICKYBARB
+                                  IRONBALL]) || user.hasActiveItemAI?(CHOICE_LOCKING_ITEMS)
             if user.opposes?(target)
                 return 100
             else
@@ -431,9 +431,9 @@ class PokeBattle_Move_SwapItems < PokeBattle_Move
     end
 
     def getEffectScore(user, target)
-        if user.hasActiveItem?(%i[FLAMEORB POISONORB STICKYBARB IRONBALL])
+        if user.hasActiveItemAI?(%i[FLAMEORB POISONORB STICKYBARB IRONBALL])
             return 130
-        elsif user.hasActiveItem?(CHOICE_LOCKING_ITEMS)
+        elsif user.hasActiveItemAI?(CHOICE_LOCKING_ITEMS)
             return 100
         elsif !user.firstItem && target.firstItem
             if user.lastMoveUsed && GameData::Move.get(user.lastMoveUsed).function_code == "SwapItems" # Trick/Switcheroo
@@ -456,7 +456,7 @@ class PokeBattle_Move_EatBerryRaiseDefenses3 < PokeBattle_Move
 
     def pbEffectGeneral(user)
         user.pbRaiseMultipleStatSteps([:DEFENSE, 3, :SPECIAL_DEFENSE, 3], user, move: self)
-        user.eachItem do |item|
+        user.eachActiveItem do |item|
             next unless GameData::Item.get(item).is_berry?
             user.pbHeldItemTriggerCheck(item, false)
             user.consumeItem(item)
@@ -465,7 +465,7 @@ class PokeBattle_Move_EatBerryRaiseDefenses3 < PokeBattle_Move
 
     def getEffectScore(user, target)
         score = getMultiStatUpEffectScore([:DEFENSE, 3, :SPECIAL_DEFENSE, 3], user, target)
-        user.eachItem do |item|
+        user.eachAIKnownActiveItem do |item|
             next unless GameData::Item.get(item).is_berry?
             score += 40
         end
@@ -501,7 +501,7 @@ class PokeBattle_Move_ForceAllEatBerry < PokeBattle_Move
     end
 
     def pbEffectAgainstTarget(_user, target)
-        target.eachItem do |item|
+        target.eachActiveItem do |item|
             next unless GameData::Item.get(item).is_berry?
             target.pbHeldItemTriggerCheck(item, false)
             target.consumeItem(item)
@@ -509,6 +509,6 @@ class PokeBattle_Move_ForceAllEatBerry < PokeBattle_Move
     end
 
     def getEffectScore(_user, _target)
-        return 60 # I don't understand the utility of this move
+        return 60 # TODO: I don't understand the utility of this move
     end
 end

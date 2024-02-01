@@ -425,10 +425,10 @@ class PokeBattle_Move
         pbCalcTribeBasedDamageMultipliers(user,target,type,multipliers,aiCheck)
 
         # Item effects that alter damage
-        user.eachActiveItem do |item|
+        user.eachItemShouldApply(aiCheck) do |item|
             BattleHandlers.triggerDamageCalcUserItem(item,user,target,self,multipliers,baseDmg,type,aiCheck)
         end
-        target.eachActiveItem do |item|
+        target.eachItemShouldApply(aiCheck) do |item|
             BattleHandlers.triggerDamageCalcTargetItem(item,user,target,self,multipliers,baseDmg,type,aiCheck)
         end
 

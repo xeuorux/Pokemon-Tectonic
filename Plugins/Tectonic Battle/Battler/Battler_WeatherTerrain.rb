@@ -24,7 +24,6 @@ class PokeBattle_Battler
     def takesSandstormDamage?(checkingForAI = false)
         return false unless affectedByWeatherDownsides?(checkingForAI)
         return false unless takesIndirectDamage?
-        return false if hasActiveItem?(:SAFETYGOGGLES)
         return false if shouldTypeApply?(:GROUND,checkingForAI) || shouldTypeApply?(:ROCK,checkingForAI)
         return false if shouldAbilityApply?(GameData::Ability::SAND_ABILITIES, checkingForAI)
         return true
@@ -33,7 +32,6 @@ class PokeBattle_Battler
     def takesHailDamage?(checkingForAI = false)
         return false unless affectedByWeatherDownsides?(checkingForAI)
         return false unless takesIndirectDamage?
-        return false if hasActiveItem?(:SAFETYGOGGLES)
         return false if shouldTypeApply?(:ICE,checkingForAI) || shouldTypeApply?(:GHOST,checkingForAI)
         return false if shouldAbilityApply?(GameData::Ability::HAIL_ABILITIES, checkingForAI)
         return true

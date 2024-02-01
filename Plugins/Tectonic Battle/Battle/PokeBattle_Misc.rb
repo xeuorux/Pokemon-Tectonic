@@ -246,6 +246,27 @@ class PokeBattle_Battle
         end
     end
 
+    def aiLearnsItem(battler, item)
+        return unless battler.pbOwnedByPlayer?
+        return if @knownItems[battler.pokemon.personalID].include?(item)
+        @knownItems[battler.pokemon.personalID].push(item)
+        echoln("[AI LEARNING] The AI is now aware of #{battler.pbThis(true)}'s item #{item}")
+    end
+
+    # If given an array, returns true if the AI knows of ANY of the listed abilities
+    def aiKnowsItem?(pokemon,checkItem)
+        knownItemsOfMon = @knownItems[pokemon.personalID]
+        return false if knownItemsOfMon.nil?
+        if checkItem.is_a?(Array)
+            checkItem.each do |specificItem|
+                return true if knownItemsOfMon.include?(specificItem)
+            end
+            return false
+        else
+            return knownItemsOfMon.include?(checkItem)
+        end
+    end
+
     def aiSeesMove(battler, moveID)
         return unless battler.pbOwnedByPlayer?
         return if battler.boss?

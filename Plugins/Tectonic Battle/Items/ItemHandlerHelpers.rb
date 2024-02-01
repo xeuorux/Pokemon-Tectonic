@@ -60,3 +60,10 @@ def pbBattleGem(item, user, type, move, mults, moveType, aiCheck = false)
     user.applyEffect(:GemConsumed, item) unless aiCheck
     mults[:base_damage_multiplier] *= 1.5
 end
+
+def typeBoostingItem(item, user, type, mults, moveType, aiCheck = false)
+    if moveType == type
+        mults[:base_damage_multiplier] *= 1.2
+        user.aiLearnsItem(item) unless aiCheck
+    end
+end

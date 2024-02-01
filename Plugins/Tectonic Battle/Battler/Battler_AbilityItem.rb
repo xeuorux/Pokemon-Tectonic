@@ -199,6 +199,7 @@ class PokeBattle_Battler
                 itemKept = items[0]
                 setItems(itemKept)
                 @battle.pbDisplay(_INTL("{1} dropped all of its items except {2}!", pbThis, getItemName(itemKept)))
+                aiLearnsItem(itemKept)
                 droppedItems = true
                 break
             end
@@ -215,6 +216,8 @@ class PokeBattle_Battler
         disableEffect(:ItemLost)
         @pokemon.giveItem(item)
         refreshDataBox
+
+        @addedItems.push(item)
     end
     
     def setItems(value)
@@ -306,7 +309,10 @@ class PokeBattle_Battler
                 BattleHandlers.triggerOnBerryConsumedAbility(ability, self, item_to_use, ownitem, @battle)
             end
         end
-        consumeItem(item_to_use) if ownitem
+        if ownitem
+            consumeItem(item_to_use)
+            aiLearnsItem(item_to_use)
+        end
     end
 
     #=============================================================================

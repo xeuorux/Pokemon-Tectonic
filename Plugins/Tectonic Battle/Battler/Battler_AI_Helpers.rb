@@ -396,7 +396,7 @@ class PokeBattle_Battler
 
     def aiKnowsAbility?(checkAbility)
         return true unless pbOwnedByPlayer?
-        return true if hasActiveItem?(:FRAGILELOCKET)
+        return true if hasActiveItemAI?(:FRAGILELOCKET)
         if checkAbility.is_a?(Array)
             checkAbility.each do |specificAbility|
                 return true if @addedAbilities.include?(specificAbility)
@@ -420,6 +420,61 @@ class PokeBattle_Battler
         return false unless aiKnowsAbility?(checkAbility)
         return hasActiveAbility?(checkAbility, ignore_fainted)
     end
+
+    ###############################################################################
+    # Understanding the battler's items
+    ###############################################################################
+    def aiLearnsItem(itemID)
+        @battle.aiLearnsItem(self,itemID)
+    end
+
+    def aiKnowsItem?(checkItem)
+        return true unless pbOwnedByPlayer?
+        if checkItem.is_a?(Array)
+            checkItem.each do |specificItem|
+                return true if @addedItems.include?(specificItem)
+            end
+        else
+            return true if @addedItems.include?(checkItem)
+        end
+        return @battle.aiKnowsItem?(@pokemon,checkItem)
+    end
+
+    def eachAIKnownItem
+        eachItem do |itemID|
+            next unless aiKnowsItem?(itemID)
+            yield itemID
+        end
+    end
+
+    def eachAIKnownActiveItem
+        eachActiveItem do |itemID|
+            next unless aiKnowsItem?(itemID)
+            yield itemID
+        end
+    end
+
+    def eachItemShouldApply(aiCheck)
+        eachActiveItem do |itemID|
+            next unless shouldItemApply?(itemID, aiCheck)
+            yield itemID
+        end
+    end
+
+    # A helper method that diverts to an AI-based check or a true calculation check as appropriate
+    def shouldItemApply?(checkItem, checkingForAI)
+        if checkingForAI
+            return hasActiveItemAI?(checkItem)
+        else
+            return hasActiveItem?(checkItem)
+        end
+    end
+
+    def hasActiveItemAI?(checkItem, ignore_fainted = false)
+        return false unless aiKnowsItem?(checkItem)
+        return hasActiveItem?(checkItem, ignore_fainted)
+    end
+
 
     ###############################################################################
     # Understanding the battler's type

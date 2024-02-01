@@ -23,8 +23,9 @@ class PokeBattle_AI
 
     def pbCalcTypeModAI(moveType, user, target, move)
         return Effectiveness::NORMAL_EFFECTIVE unless moveType
-        return Effectiveness::NORMAL_EFFECTIVE if moveType == :GROUND &&
-                                                  target.pbHasTypeAI?(:FLYING) && target.hasActiveItem?(:IRONBALL)
+        if moveType == :GROUND && target.pbHasTypeAI?(:FLYING) && target.hasActiveItemAI?(:IRONBALL)
+            return Effectiveness::NORMAL_EFFECTIVE
+        end
         # Determine types
         allowIllusion = !target.aiKnowsAbility?(:ILLUSION)
         tTypes = target.pbTypes(true, allowIllusion)

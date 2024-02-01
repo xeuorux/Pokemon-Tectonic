@@ -373,7 +373,7 @@ class PokeBattle_StatDownMove < PokeBattle_Move
     end
 
     def getEffectScore(user, _target)
-        if user.hasActiveItem?(:EJECTPACK)
+        if user.hasActiveItemAI?(:EJECTPACK)
             return getSwitchOutEffectScore(user)
         else
             statDownAI = []
@@ -596,7 +596,7 @@ class PokeBattle_TwoTurnMove < PokeBattle_Move
 
     def getEffectScore(user, _target)
         score = 0
-        unless user.hasActiveItem?(:POWERHERB) || skipChargingTurn?(user)
+        unless user.hasActiveItemAI?(:POWERHERB) || skipChargingTurn?(user)
             score -= 50
             score -= 30 unless user.firstTurn?
             score -= 30 if user.belowHalfHealth?
@@ -1026,7 +1026,7 @@ class PokeBattle_DrainMove < PokeBattle_Move
     def getDamageBasedEffectScore(user,target,damage)
         drainAmount = damage * drainFactor(user, target)
         drainAmount *= 1.5 if user.hasActiveAbilityAI?(:ROOTED)
-        drainAmount *= 1.3 if user.hasActiveItem?(:BIGROOT)
+        drainAmount *= 1.3 if user.hasActiveItemAI?(:BIGROOT)
         drainAmount *= -1 if target.hasActiveAbilityAI?(:LIQUIDOOZE) || user.healingReversed?
         score = (drainAmount * 2 / user.totalhp).floor
         score *= 2 if user.belowHalfHealth?
