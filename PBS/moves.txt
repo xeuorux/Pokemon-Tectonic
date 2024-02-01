@@ -6186,7 +6186,7 @@ Accuracy = 100
 TotalPP = 10
 Target = NearOther
 FunctionCode = LowerPPOfTargetLastMoveBy4
-Flags = CanProtect,CanMirrorMove
+Flags = CanProtect,CanMirrorMove,Sound
 Description = The user casts a horrible spell on the opponent. This removes 4 PP from their last used move.
 #-------------------------------
 [FREEZINGGLARE]
