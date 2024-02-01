@@ -4,6 +4,10 @@ TRIBAL_BOOSTED_BASE = Color.new(70, 130, 76)
 
 FADED_EFFECT_BASE = Color.new(120,120,120)
 
+HIGHEST_STAT_BASE_DARK = Color.new(255,52,34)
+LOWEST_STAT_BASE_DARK = Color.new(160,160,255)
+FADED_EFFECT_BASE_DARK = Color.new(200,200,200)
+
 DEBUGGING_EFFECT_DISPLAY = false
 
 class BattleInfoDisplay < SpriteWrapper
@@ -70,8 +74,8 @@ class BattleInfoDisplay < SpriteWrapper
   end
   
   def drawWholeBattleInfo()
-	base   = Color.new(88,88,80)
-	shadow = Color.new(168,184,184)
+	base   = $PokemonSystem.dark_mode == 0 ? Color.new(248, 248, 248) : Color.new(88,88,80)
+	shadow = $PokemonSystem.dark_mode == 0 ?  Color.new(104, 104, 104) : Color.new(168,184,184)
 	textToDraw = []
 	
 	# Draw the
@@ -107,7 +111,7 @@ class BattleInfoDisplay < SpriteWrapper
 	
 	weatherY = 336
 	weatherMessage = "No Weather"
-	weatherColor = FADED_EFFECT_BASE
+	weatherColor = $PokemonSystem.dark_mode == 0 ? FADED_EFFECT_BASE_DARK : FADED_EFFECT_BASE
 	if @battle.field.weather != :None
 		weatherColor = base
 		weatherName = GameData::BattleWeather.get(@battle.field.weather).name
@@ -173,7 +177,7 @@ class BattleInfoDisplay < SpriteWrapper
 			end
 		end
 	else
-		textToDraw.push(["None",wholeFieldX,44,0,FADED_EFFECT_BASE,shadow])
+		textToDraw.push(["None",wholeFieldX,44,0,$PokemonSystem.dark_mode == 0 ? FADED_EFFECT_BASE_DARK : FADED_EFFECT_BASE,shadow])
 	end
 	
 	# Reset the scrolling once its scrolled through the entire list once
@@ -183,8 +187,8 @@ class BattleInfoDisplay < SpriteWrapper
   end
   
   def drawIndividualBattlerInfo(battler)
-	base   = Color.new(88,88,80)
-    shadow = Color.new(168,184,184)
+	base   = $PokemonSystem.dark_mode == 0 ? Color.new(248, 248, 248) : Color.new(88,88,80)
+	shadow = $PokemonSystem.dark_mode == 0 ? Color.new(104, 104, 104) : Color.new(168,184,184)
 	textToDraw = []
 	
 	battlerName = battler.name
@@ -278,10 +282,10 @@ class BattleInfoDisplay < SpriteWrapper
 		y = statStepsSectionTopY + 40 + 40 * index
 		statValueAddendum = ""
 		if stat == highestStat
-			finalStatColor = HIGHEST_STAT_BASE
+			finalStatColor = $PokemonSystem.dark_mode == 0 ? HIGHEST_STAT_BASE_DARK : HIGHEST_STAT_BASE
 			statValueAddendum = " H"
 		elsif stat == lowestStat
-			finalStatColor = LOWEST_STAT_BASE
+			finalStatColor = $PokemonSystem.dark_mode == 0 ? LOWEST_STAT_BASE_DARK : LOWEST_STAT_BASE
 			statValueAddendum = " L"
 		else
 			finalStatColor = base
@@ -342,7 +346,7 @@ class BattleInfoDisplay < SpriteWrapper
 			end
 		end
 	else
-		textToDraw.push(["None",battlerEffectsX,statStepsSectionTopY + 36,0,FADED_EFFECT_BASE,shadow])
+		textToDraw.push(["None",battlerEffectsX,statStepsSectionTopY + 36,0,$PokemonSystem.dark_mode == 0 ? FADED_EFFECT_BASE_DARK : FADED_EFFECT_BASE,shadow])
 	end
 	
 	# Reset the scrolling once its scrolled through the entire list once
