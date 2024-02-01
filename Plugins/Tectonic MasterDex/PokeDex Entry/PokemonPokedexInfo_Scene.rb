@@ -1531,7 +1531,7 @@ sp.form) && !Settings::DEX_SHOWS_ALL_FORMS
                     highestLeftRepeat = repeats
                     oldpage = @page
                     @page -= 1
-                    @page = 1 if @page < 1
+                    @page = pageTitles.length - 1 if @page < 1 # Wrap around
                     if @page != oldpage
                         @scroll = -1
                         @horizontalScroll = 0
@@ -1546,7 +1546,7 @@ sp.form) && !Settings::DEX_SHOWS_ALL_FORMS
                     highestRightRepeat = repeats
                     oldpage = @page
                     @page += 1
-                    @page = pageTitles.length - 1 if @page > pageTitles.length - 1
+                    @page = 1 if @page > pageTitles.length - 1 # Wrap around
                     if @page != oldpage
                         @scroll = -1
                         @horizontalScroll = 0
