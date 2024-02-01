@@ -6086,7 +6086,7 @@ Category = Status
 Accuracy = 0
 TotalPP = 10
 Target = NearOther
-FunctionCode = SwapSpecialStats
+FunctionCode = AverageUserTargetOffenses
 Flags = CanProtect
 Description = The user employs psychic power to average its base Attack and base Sp. Atk stats with those of the target.
 #-------------------------------

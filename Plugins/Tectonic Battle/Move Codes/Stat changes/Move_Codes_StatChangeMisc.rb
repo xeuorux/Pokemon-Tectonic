@@ -198,7 +198,7 @@ end
 # Averages the user's and target's base Attack.
 # Averages the user's and target's base Special Attack. (Power Split)
 #===============================================================================
-class PokeBattle_Move_SwapSpecialStats < PokeBattle_Move
+class PokeBattle_Move_AverageUserTargetOffenses < PokeBattle_Move
     def pbEffectAgainstTarget(user, target)
         newAtk   = ((user.base_attack + target.base_attack) / 2).floor
         newSpAtk = ((user.base_special_attack + target.base_special_attack) / 2).floor
