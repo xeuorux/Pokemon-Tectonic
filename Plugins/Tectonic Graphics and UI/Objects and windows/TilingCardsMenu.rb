@@ -163,7 +163,10 @@ class TilingCardsMenu_Scene
 	end
   
 	def drawButtons
+		# reload the tile bitmap so that dark mode changes are updated. there's gotta be a better way
+		@tileBitmap = AnimatedBitmap.new(tileFileLocation)
 		@tiles.each_pair do |buttonID, tileSprite|
+			@sprites["button_#{buttonID.to_s}"].bitmap = @tileBitmap.bitmap
 			next if buttonActive?(buttonID)
 			tileSprite.color =  INACTIVE_BUTTON_COLOR
 		end
