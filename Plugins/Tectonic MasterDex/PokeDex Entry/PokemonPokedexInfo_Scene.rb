@@ -19,7 +19,9 @@ class PokemonPokedexInfo_Scene
         @evolutionIndex = -1
         @typebitmap = AnimatedBitmap.new(_INTL("Graphics/Pictures/Pokedex/icon_types"))
         @types_emphasized_bitmap = AnimatedBitmap.new(_INTL("Graphics/Pictures/Pokedex/icon_types_emphasized"))
-        @moveInfoDisplayBitmap = AnimatedBitmap.new(_INTL("Graphics/Pictures/Pokedex/move_info_display_dex"))
+        move_path = "Graphics/Pictures/Pokedex/move_info_display_dex"
+        move_path += "_dark" if $PokemonSystem.dark_mode == 0
+        @moveInfoDisplayBitmap = AnimatedBitmap.new(_INTL(move_path))
         @sprites = {}
         @sprites["background"] = IconSprite.new(0, 0, @viewport)
         @sprites["infosprite"] = PokemonSprite.new(@viewport)
@@ -225,10 +227,12 @@ sp.form) && !Settings::DEX_SHOWS_ALL_FORMS
     end
 
     def drawPageInfo
-        @sprites["background"].setBitmap(_INTL("Graphics/Pictures/Pokedex/bg_info"))
+        bg_path = "Graphics/Pictures/Pokedex/bg_info"
+        bg_path += "_dark" if $PokemonSystem.dark_mode == 0
+        @sprites["background"].setBitmap(_INTL(bg_path))
         overlay = @sprites["overlay"].bitmap
-        base   = Color.new(88, 88, 80)
-        shadow = Color.new(168, 184, 184)
+        base   = $PokemonSystem.dark_mode == 0 ? Color.new(248,248,248) : Color.new(88, 88, 80)
+        shadow = $PokemonSystem.dark_mode == 0 ? Color.new(0,0,0) : Color.new(168, 184, 184)
         imagepos = []
         imagepos.push([_INTL("Graphics/Pictures/Pokedex/overlay_info"), 0, 0]) if @brief
         species_data = GameData::Species.get_species_form(@species, @form)
@@ -289,11 +293,13 @@ sp.form) && !Settings::DEX_SHOWS_ALL_FORMS
     end
 
     def drawPageAbilities
-        @sprites["background"].setBitmap(_INTL("Graphics/Pictures/Pokedex/bg_abilities"))
+        bg_path = "Graphics/Pictures/Pokedex/bg_abilities"
+        bg_path += "_dark" if $PokemonSystem.dark_mode == 0
+        @sprites["background"].setBitmap(_INTL(bg_path))
         overlay = @sprites["overlay"].bitmap
         formname = ""
-        base = Color.new(64, 64, 64)
-        shadow = Color.new(176, 176, 176)
+        base   = $PokemonSystem.dark_mode == 0 ? Color.new(248,248,248) : Color.new(64, 64, 64)
+        shadow = $PokemonSystem.dark_mode == 0 ? Color.new(0,0,0) : Color.new(176, 176, 176)
         for i in @available
             next unless i[2] == @form
             fSpecies = GameData::Species.get_species_form(@species, i[2])
@@ -311,7 +317,7 @@ sp.form) && !Settings::DEX_SHOWS_ALL_FORMS
                 if ability1.is_signature?
                     abilityNameText = "<outln2>" + abilityNameText + "</outln2>"
                     abilityNameColor = SIGNATURE_COLOR_LIGHTER
-                    abilityNameShadow = base
+                    abilityNameShadow = $PokemonSystem.dark_mode == 0 ? shadow : base
                 end
                 drawFormattedTextEx(overlay, abilityTextX, ability1Y, 450, abilityNameText, abilityNameColor,
               abilityNameShadow)
@@ -319,7 +325,7 @@ sp.form) && !Settings::DEX_SHOWS_ALL_FORMS
             else
                 drawTextEx(overlay, abilityTextX, 128, 450, 1, _INTL("None"), base, shadow)
             end
-            # ability 1
+            # ability 2
             ability2Y = 236
             drawTextEx(overlay, abilityIDLabelX, ability2Y, 450, 1, _INTL("Ability 2"), base, shadow)
             if abilities[1]
@@ -330,7 +336,7 @@ sp.form) && !Settings::DEX_SHOWS_ALL_FORMS
                 if ability2.is_signature?
                     abilityNameText = "<outln2>" + abilityNameText + "</outln2>"
                     abilityNameColor = SIGNATURE_COLOR_LIGHTER
-                    abilityNameShadow = base
+                    abilityNameShadow = $PokemonSystem.dark_mode == 0 ? shadow : base
                 end
                 drawFormattedTextEx(overlay, abilityTextX, ability2Y, 450, abilityNameText, abilityNameColor,
               abilityNameShadow)
@@ -367,11 +373,13 @@ sp.form) && !Settings::DEX_SHOWS_ALL_FORMS
     end
 
     def drawPageStats
-        @sprites["background"].setBitmap(_INTL("Graphics/Pictures/Pokedex/bg_stats"))
+        bg_path = "Graphics/Pictures/Pokedex/bg_stats"
+        bg_path += "_dark" if $PokemonSystem.dark_mode == 0
+        @sprites["background"].setBitmap(_INTL(bg_path))
         overlay = @sprites["overlay"].bitmap
         formname = ""
-        base = Color.new(64, 64, 64)
-        shadow = Color.new(176, 176, 176)
+        base   = $PokemonSystem.dark_mode == 0 ? Color.new(248,248,248) : Color.new(64, 64, 64)
+        shadow = $PokemonSystem.dark_mode == 0 ? Color.new(0,0,0) : Color.new(176, 176, 176)
         baseStatNames = [_INTL("HP"), _INTL("Attack"), _INTL("Defense"), _INTL("Sp. Atk"), _INTL("Sp. Def"), _INTL("Speed")]
         otherStatNames = [_INTL("Gender Rate"), _INTL("Growth Rate"), _INTL("Catch Dif."), _INTL("Exp. Grant"), _INTL("PEHP / SEHP")]
 
@@ -473,11 +481,13 @@ sp.form) && !Settings::DEX_SHOWS_ALL_FORMS
     end
 
     def drawPageMatchups
-        @sprites["background"].setBitmap(_INTL("Graphics/Pictures/Pokedex/bg_matchups"))
+        bg_path = "Graphics/Pictures/Pokedex/bg_matchups"
+        bg_path += "_dark" if $PokemonSystem.dark_mode == 0
+        @sprites["background"].setBitmap(_INTL(bg_path))
         overlay = @sprites["overlay"].bitmap
         formname = ""
-        base = Color.new(64, 64, 64)
-        shadow = Color.new(176, 176, 176)
+        base   = $PokemonSystem.dark_mode == 0 ? Color.new(248,248,248) : Color.new(64, 64, 64)
+        shadow = $PokemonSystem.dark_mode == 0 ? Color.new(0,0,0) : Color.new(176, 176, 176)
         xLeft = 36
         yBase = 60
         for i in @available
@@ -558,11 +568,13 @@ sp.form) && !Settings::DEX_SHOWS_ALL_FORMS
     end
 
     def drawPageMatchups2
-        @sprites["background"].setBitmap(_INTL("Graphics/Pictures/Pokedex/bg_matchups"))
+        bg_path = "Graphics/Pictures/Pokedex/bg_matchups"
+        bg_path += "_dark" if $PokemonSystem.dark_mode == 0
+        @sprites["background"].setBitmap(_INTL(bg_path))
         overlay = @sprites["overlay"].bitmap
         formname = ""
-        base = Color.new(64, 64, 64)
-        shadow = Color.new(176, 176, 176)
+        base   = $PokemonSystem.dark_mode == 0 ? Color.new(248,248,248) : Color.new(64, 64, 64)
+        shadow = $PokemonSystem.dark_mode == 0 ? Color.new(0,0,0) : Color.new(176, 176, 176)
         xLeft = 36
         yBase = 60
         for i in @available
@@ -667,7 +679,7 @@ sp.form) && !Settings::DEX_SHOWS_ALL_FORMS
             moveName = "<i>#{moveName}</i>"
         end
 
-        color = Color.new(64, 64, 64)
+        color = $PokemonSystem.dark_mode == 0 ? Color.new(248,248,248) : Color.new(64, 64, 64)
         if move_data.is_signature?
             if isSTAB
                 moveName = "<outln2>" + moveName + "</outln2>"
@@ -676,7 +688,7 @@ sp.form) && !Settings::DEX_SHOWS_ALL_FORMS
             end
             shadow = SIGNATURE_COLOR
         else
-            shadow = Color.new(176, 176, 176)
+            shadow = $PokemonSystem.dark_mode == 0 ? Color.new(0,0,0) : Color.new(176, 176, 176)
         end
         return moveName, color, shadow
     end
@@ -695,7 +707,9 @@ sp.form) && !Settings::DEX_SHOWS_ALL_FORMS
     MOVE_LIST_STARTING_Y = 54
 
     def drawPageLevelUpMoves
-        @sprites["background"].setBitmap(_INTL("Graphics/Pictures/Pokedex/bg_moves"))
+        bg_path = "Graphics/Pictures/Pokedex/bg_moves"
+        bg_path += "_dark" if $PokemonSystem.dark_mode == 0
+        @sprites["background"].setBitmap(_INTL(bg_path))
         overlay = @sprites["overlay"].bitmap
         formname = ""
         selected_move = nil
@@ -738,11 +752,13 @@ sp.form) && !Settings::DEX_SHOWS_ALL_FORMS
     end
 
     def drawPageTutorMoves
-        @sprites["background"].setBitmap(_INTL("Graphics/Pictures/Pokedex/bg_moves"))
+        bg_path = "Graphics/Pictures/Pokedex/bg_moves"
+        bg_path += "_dark" if $PokemonSystem.dark_mode == 0
+        @sprites["background"].setBitmap(_INTL(bg_path))
         overlay = @sprites["overlay"].bitmap
         formname = ""
-        base = Color.new(64, 64, 64)
-        shadow = Color.new(176, 176, 176)
+        base   = $PokemonSystem.dark_mode == 0 ? Color.new(248,248,248) : Color.new(64, 64, 64)
+        shadow = $PokemonSystem.dark_mode == 0 ? Color.new(0,0,0) : Color.new(176, 176, 176)
 
         selected_move = nil
         xLeft = 36
@@ -814,9 +830,9 @@ sp.form) && !Settings::DEX_SHOWS_ALL_FORMS
             moveData = GameData::Move.get(selected_move)
 
             # Prepare values
-            base   = Color.new(248, 248, 248)
-            faded_base = Color.new(110,110,110)
-            shadow = Color.new(104, 104, 104)
+            base       = $PokemonSystem.dark_mode == 0 ? Color.new(248,248,248) : Color.new(64, 64, 64)
+            faded_base = $PokemonSystem.dark_mode == 0 ? Color.new(145,145,145) : Color.new(110,110,110)
+            shadow     = $PokemonSystem.dark_mode == 0 ? Color.new(0,0,0) : Color.new(176, 176, 176)
             column1LabelX = 246
             column2LabelX = 322
             column3LabelX = 430
@@ -861,8 +877,8 @@ sp.form) && !Settings::DEX_SHOWS_ALL_FORMS
             ])
 
             # Values #
-            base = Color.new(64,64,64)
-            shadow = Color.new(176,176,176)
+            base   = $PokemonSystem.dark_mode == 0 ? Color.new(248,248,248) : Color.new(64, 64, 64)
+            shadow = $PokemonSystem.dark_mode == 0 ? Color.new(0,0,0) : Color.new(176, 176, 176)
 
             # Row 1
             # Draw selected move's damage category icon and type icon
@@ -906,7 +922,7 @@ sp.form) && !Settings::DEX_SHOWS_ALL_FORMS
             targetingGraphicRow1Y = row3LabelY + 4
             targetingGraphicRow2Y = targetingGraphicRow1Y + 26
 
-            targetableColor = Color.new(120,5,5)
+            targetableColor = $PokemonSystem.dark_mode == 0 ? Color.new(240,5,5) : Color.new(120,5,5)
             untargetableColor = faded_base
 
             # Foes
@@ -937,11 +953,13 @@ sp.form) && !Settings::DEX_SHOWS_ALL_FORMS
     end
 
     def drawPageEvolution
-        @sprites["background"].setBitmap(_INTL("Graphics/Pictures/Pokedex/bg_evolution"))
+        bg_path = "Graphics/Pictures/Pokedex/bg_evolution"
+        bg_path += "_dark" if $PokemonSystem.dark_mode == 0
+        @sprites["background"].setBitmap(_INTL(bg_path))
         overlay = @sprites["overlay"].bitmap
         formname = ""
-        base = Color.new(64, 64, 64)
-        shadow = Color.new(176, 176, 176)
+        base   = $PokemonSystem.dark_mode == 0 ? Color.new(248,248,248) : Color.new(64, 64, 64)
+        shadow = $PokemonSystem.dark_mode == 0 ? Color.new(0,0,0) : Color.new(176, 176, 176)
         xLeft = 36
         for i in @available
             next unless i[2] == @form
@@ -1090,11 +1108,12 @@ sp.form) && !Settings::DEX_SHOWS_ALL_FORMS
     end
 
     def drawPageArea
-        @sprites["background"].setBitmap(_INTL("Graphics/Pictures/Pokedex/bg_area"))
+        bg_path = "Graphics/Pictures/Pokedex/bg_area"
+        bg_path += "_dark" if $PokemonSystem.dark_mode == 0
+        @sprites["background"].setBitmap(_INTL(bg_path))
         overlay = @sprites["overlay"].bitmap
-        base   = Color.new(88, 88, 80)
-        shadow = Color.new(168, 184, 184)
-
+        base   = $PokemonSystem.dark_mode == 0 ? Color.new(248,248,248) : Color.new(64, 64, 64)
+        shadow = $PokemonSystem.dark_mode == 0 ? Color.new(0,0,0) : Color.new(176, 176, 176)
         xLeft = 36
         for i in @available
             next unless i[2] == @form
@@ -1154,10 +1173,12 @@ sp.form) && !Settings::DEX_SHOWS_ALL_FORMS
     end
 
     def drawPageForms
-        @sprites["background"].setBitmap(_INTL("Graphics/Pictures/Pokedex/bg_forms"))
+        bg_path = "Graphics/Pictures/Pokedex/bg_forms"
+        bg_path += "_dark" if $PokemonSystem.dark_mode == 0
+        @sprites["background"].setBitmap(_INTL(bg_path))
         overlay = @sprites["overlay"].bitmap
-        base   = Color.new(88, 88, 80)
-        shadow = Color.new(168, 184, 184)
+        base   = $PokemonSystem.dark_mode == 0 ? Color.new(248,248,248) : Color.new(64, 64, 64)
+        shadow = $PokemonSystem.dark_mode == 0 ? Color.new(0,0,0) : Color.new(176, 176, 176)
         # Write species and form name
         formname = ""
         for i in @available
@@ -1331,7 +1352,9 @@ sp.form) && !Settings::DEX_SHOWS_ALL_FORMS
     end
 
     def drawPageDEBUG
-        @sprites["background"].setBitmap(_INTL("Graphics/Pictures/Pokedex/bg_evolution"))
+        @bg_path = "Graphics/Pictures/Pokedex/bg_evolution"
+        bg_path += "_dark" if $PokemonSystem.dark_mode == 0
+        @sprites["background"].setBitmap(_INTL(bg_path))
         overlay = @sprites["overlay"].bitmap
         base = Color.new(64, 64, 64)
         shadow = Color.new(176, 176, 176)

@@ -27,9 +27,17 @@ class PokemonPokedex_Scene
         @sprites = {}
         @viewport = Viewport.new(0,0,Graphics.width,Graphics.height)
         @viewport.z = 99999
-        addBackgroundPlane(@sprites,"background","Pokedex/bg_list",@viewport)
-        addBackgroundPlane(@sprites,"searchbg","Pokedex/bg_search",@viewport)
-      addBackgroundPlane(@sprites,"searchbg2","Pokedex/bg_search_2",@viewport)
+        list_path     = "Pokedex/bg_list"
+        search_path   = "Pokedex/bg_search"
+        search_2_path = "Pokedex/bg_search_2"
+        if $PokemonSystem.dark_mode == 0
+          list_path += "_dark"
+          search_path += "_dark"
+          search_2_path += "_dark"
+        end
+        addBackgroundPlane(@sprites,"background",list_path,@viewport)
+        addBackgroundPlane(@sprites,"searchbg",search_path,@viewport)
+      addBackgroundPlane(@sprites,"searchbg2",search_2_path,@viewport)
         @sprites["searchbg"].visible = false
       @sprites["searchbg2"].visible = false
         @sprites["pokedex"] = Window_Pokedex.new(206,30,276,364,@viewport)
@@ -227,19 +235,17 @@ class PokemonPokedex_Scene
       @sprites["pokedex"].commands = @dexlist
       @sprites["pokedex"].index    = index
       @sprites["pokedex"].refresh
-      if @searchResults
-        @sprites["background"].setBitmap("Graphics/Pictures/Pokedex/bg_listsearch")
-      else
-        @sprites["background"].setBitmap("Graphics/Pictures/Pokedex/bg_list")
-      end
+      path = @searchResults ? "Graphics/Pictures/Pokedex/bg_listsearch" : "Graphics/Pictures/Pokedex/bg_list"
+      path += "_dark" if $PokemonSystem.dark_mode == 0
+      @sprites["background"].setBitmap(path)
       pbRefresh
     end
   
     def pbRefresh
       overlay = @sprites["overlay"].bitmap
       overlay.clear
-      base   = Color.new(88,88,80)
-      shadow = Color.new(168,184,184)
+      base   = $PokemonSystem.dark_mode == 0 ? Color.new(248,248,248) : Color.new(88,88,80)
+      shadow = $PokemonSystem.dark_mode == 0 ? Color.new(0,0,0) : Color.new(168,184,184)
       zBase = Color.new(248,248,248)
       zShadow = Color.new(0,0,0)
       iconspecies = @sprites["pokedex"].species
@@ -691,7 +697,9 @@ class PokemonPokedex_Scene
             # Species isn't in the current search, so scrap that search and go to it through its index on a reset dexlist
             @dexlist = pbGetDexList()
             @searchResults = false
-            @sprites["background"].setBitmap("Graphics/Pictures/Pokedex/bg_list")
+            path = "Graphics/Pictures/Pokedex/bg_list"
+            path += "_dark" if $PokemonSystem.dark_mode == 0
+            @sprites["background"].setBitmap(path)
             @sprites["pokedex"].commands = @dexlist
             
             @dexlist.each_with_index do |dexListEntry,index|
@@ -904,12 +912,14 @@ class PokemonPokedex_Scene
       oldindex = index
     
     # Write the button names onto the overlay
-    base   = Color.new(104,104,104)
-      shadow = Color.new(248,248,248)
+    base   = $PokemonSystem.dark_mode == 0 ? Color.new(248,248,248) : Color.new(104,104,104)
+    shadow = $PokemonSystem.dark_mode == 0 ? Color.new(0,0,0) : Color.new(248,248,248)
+    title_base = $PokemonSystem.dark_mode == 0 ? base : shadow
+    title_shadow = $PokemonSystem.dark_mode == 0 ? shadow : base
     xLeft = 92
     xLeft2 = 316
     page1textpos = [
-       [_INTL("Choose a Search"),Graphics.width/2,-2,2,shadow,base],
+       [_INTL("Choose a Search"),Graphics.width/2,-2,2,title_base,title_shadow],
          [_INTL("Name"),xLeft,68,0,base,shadow],
          [_INTL("Types"),xLeft2,68,0,base,shadow],
          [_INTL("Abilities"),xLeft,164,0,base,shadow],
@@ -920,7 +930,7 @@ class PokemonPokedex_Scene
     xLeft += 4
     xLeft2 += 4
     page2textpos = [
-       [_INTL("Choose a Search"),Graphics.width/2,-2,2,shadow,base],
+       [_INTL("Choose a Search"),Graphics.width/2,-2,2,title_base,title_shadow],
          [_INTL("Tribe"),xLeft,68,0,base,shadow],
        [_INTL("Matchups"),xLeft2,68,0,base,shadow],
          [_INTL("Stats"),xLeft,164,0,base,shadow],
@@ -1039,11 +1049,9 @@ class PokemonPokedex_Scene
       end
     end
     pbFadeOutAndHide(@sprites)
-    if @searchResults
-        @sprites["background"].setBitmap("Graphics/Pictures/Pokedex/bg_listsearch")
-      else
-        @sprites["background"].setBitmap("Graphics/Pictures/Pokedex/bg_list")
-      end
+    path = @searchResults ? "Graphics/Pictures/Pokedex/bg_listsearch" : "Graphics/Pictures/Pokedex/bg_list"
+    path += "_dark" if $PokemonSystem.dark_mode == 0
+    @sprites["background"].setBitmap(path)
     pbRefresh
       pbFadeInAndShow(@sprites,oldsprites)
     Input.update
@@ -1068,7 +1076,9 @@ class PokemonPokedex_Scene
           @sprites["pokedex"].index    = 0
           @sprites["pokedex"].refresh
           @searchResults = true
-          @sprites["background"].setBitmap("Graphics/Pictures/Pokedex/bg_listsearch")
+          path = "Graphics/Pictures/Pokedex/bg_listsearch"
+          path += "_dark" if $PokemonSystem.dark_mode == 0
+          @sprites["background"].setBitmap(path)
         end
         rescue
         pbMessage(_INTL("An unknown error has occured."))
