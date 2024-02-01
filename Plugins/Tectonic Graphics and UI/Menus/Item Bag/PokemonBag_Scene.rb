@@ -4,6 +4,8 @@
 class PokemonBag_Scene
     ITEMLISTBASECOLOR     = Color.new(88,88,80)
     ITEMLISTSHADOWCOLOR   = Color.new(168,184,184)
+    ITEMLISTBASECOLOR_DARK     = Color.new(248,248,248)
+    ITEMLISTSHADOWCOLOR_DARK   = Color.new(0,0,0)
     ITEMTEXTBASECOLOR     = Color.new(248,248,248)
     ITEMTEXTSHADOWCOLOR   = Color.new(0,0,0)
     POCKETNAMEBASECOLOR   = Color.new(88,88,80)
@@ -71,8 +73,8 @@ class PokemonBag_Scene
       @sprites["itemlist"].viewport    = @viewport
       @sprites["itemlist"].pocket      = lastpocket
       @sprites["itemlist"].index       = @bag.getChoice(lastpocket)
-      @sprites["itemlist"].baseColor   = ITEMLISTBASECOLOR
-      @sprites["itemlist"].shadowColor = ITEMLISTSHADOWCOLOR
+      @sprites["itemlist"].baseColor   = $PokemonSystem.dark_mode == 0 ? ITEMLISTBASECOLOR_DARK : ITEMLISTBASECOLOR
+      @sprites["itemlist"].shadowColor = $PokemonSystem.dark_mode == 0 ? ITEMLISTSHADOWCOLOR_DARK : ITEMLISTSHADOWCOLOR
       @sprites["itemicon"] = ItemIconSprite.new(48,Graphics.height-48,nil,@viewport)
       @sprites["itemtext"] = Window_UnformattedTextPokemon.newWithSize("",
          72, 270, Graphics.width - 72 - 24, 128, @viewport)
@@ -128,7 +130,9 @@ class PokemonBag_Scene
   
     def pbRefresh
       # Set the background image
-      @sprites["background"].setBitmap(sprintf("Graphics/Pictures/Bag/bg_#{@bag.lastpocket}"))
+      bg_path = sprintf("Graphics/Pictures/Bag/bg_#{@bag.lastpocket}")
+      bg_path += "_dark" if $PokemonSystem.dark_mode == 0
+      @sprites["background"].setBitmap(bg_path)
       # Set the bag sprite
       fbagexists = pbResolveBitmap(sprintf("Graphics/Pictures/Bag/bag_#{@bag.lastpocket}_f"))
       if $Trainer.female? && fbagexists
