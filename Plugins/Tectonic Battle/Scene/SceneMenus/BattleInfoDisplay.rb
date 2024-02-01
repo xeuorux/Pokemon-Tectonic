@@ -26,7 +26,7 @@ class BattleInfoDisplay < SpriteWrapper
     @spriteY      			= 0
 	@selected	  			= 0
 	@individual   			= nil
-	@field					= 
+	@field					= false
 	battleInfoMainPath       = "Graphics/Pictures/Battle/battle_info_main"
 	battleInfoMainPath       += "_dark" if $PokemonSystem.dark_mode == 0
 	@battleInfoMain			 = AnimatedBitmap.new(battleInfoMainPath)

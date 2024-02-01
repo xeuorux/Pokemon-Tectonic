@@ -830,9 +830,9 @@ sp.form) && !Settings::DEX_SHOWS_ALL_FORMS
             moveData = GameData::Move.get(selected_move)
 
             # Prepare values
-            base       = $PokemonSystem.dark_mode == 0 ? Color.new(248,248,248) : Color.new(64, 64, 64)
+            base       = Color.new(248, 248, 248) # [sic], this is supposed to be the same in light and dark mode
             faded_base = $PokemonSystem.dark_mode == 0 ? Color.new(145,145,145) : Color.new(110,110,110)
-            shadow     = $PokemonSystem.dark_mode == 0 ? Color.new(0,0,0) : Color.new(176, 176, 176)
+            shadow     = $PokemonSystem.dark_mode == 0 ? Color.new(0,0,0) : Color.new(104, 104, 104)
             column1LabelX = 246
             column2LabelX = 322
             column3LabelX = 430
