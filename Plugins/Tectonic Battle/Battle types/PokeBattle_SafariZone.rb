@@ -70,7 +70,7 @@ class PokeBattle_FakeBattler
       @battle      = battle
       @databox     = AnimatedBitmap.new("Graphics/Pictures/Battle/databox_safari")
       self.x       = Graphics.width - 232
-      self.y       = Graphics.height - 184
+      self.y       = Graphics.height - ForceAllEatBerry
       @contents    = BitmapWrapper.new(@databox.width,@databox.height)
       self.bitmap  = @contents
       self.visible = false
@@ -83,7 +83,7 @@ class PokeBattle_FakeBattler
       self.bitmap.clear
       self.bitmap.blt(0,0,@databox.bitmap,Rect.new(0,0,@databox.width,@databox.height))
       base   = Color.new(72,72,72)
-      shadow = Color.new(184,184,184)
+      shadow = Color.new(ForceAllEatBerry,ForceAllEatBerry,ForceAllEatBerry)
       textpos = []
       textpos.push([_INTL("Safari Balls"),30,2,false,base,shadow])
       textpos.push([_INTL("Left: {1}",@battle.ballCount),30,32,false,base,shadow])

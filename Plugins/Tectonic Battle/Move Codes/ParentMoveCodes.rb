@@ -22,7 +22,7 @@ class PokeBattle_Confusion < PokeBattle_Move
         @realMove   = move
         @id         = 0
         @name       = ""
-        @function   = "000"
+        @function   = "Basic"
         @baseDamage = basePower
         @type       = nil
         @category   = 0
@@ -51,7 +51,7 @@ class PokeBattle_Charm < PokeBattle_Move
         @realMove   = move
         @id         = 0
         @name       = ""
-        @function   = "000"
+        @function   = "Basic"
         @baseDamage = basePower
         @type       = nil
         @category   = 1
@@ -81,7 +81,7 @@ class PokeBattle_Struggle < PokeBattle_Move
         @realMove   = nil # Not associated with a move
         @id         = move ? move.id : :STRUGGLE
         @name       = move ? move.name : _INTL("Struggle")
-        @function   = "002"
+        @function   = "Struggle"
         @baseDamage = 50
         @type       = nil
         @category   = 0
@@ -555,7 +555,12 @@ class PokeBattle_TwoTurnMove < PokeBattle_Move
                 # Moves that would make the user semi-invulnerable will hide the user
                 # after the charging animation, so the "UseItem" animation shouldn't show
                 # for it
-                @battle.pbCommonAnimation("UseItem", user) unless %w[0C9 0CA 0CB 0CC 0CD 0CE 14D].include?(@function)
+                @battle.pbCommonAnimation("UseItem", user) unless %w[
+                    TwoTurnAttackInvulnerableInSky
+                    TwoTurnAttackInvulnerableUnderground
+                    TwoTurnAttackInvulnerableUnderwater
+                    TwoTurnAttackInvulnerableInSkyNumbTarget
+                    TwoTurnAttackInvulnerableRemoveProtections].include?(@function)
                 @battle.pbDisplay(_INTL("{1} became fully charged due to its Power Herb!", user.pbThis))
                 user.consumeItem(:POWERHERB)
             end
@@ -1452,5 +1457,36 @@ class PokeBattle_TypeSuperMove < PokeBattle_Move
         return effectiveness if Effectiveness.ineffective?(effectiveness)
         return Effectiveness::SUPER_EFFECTIVE_ONE if defType == @typeHated
         return effectiveness
+    end
+end
+
+module EmpoweredMove
+    def pbMoveFailed?(_user, _targets, _show_message); return false; end
+    def pbFailsAgainstTarget?(_user, _target, _show_message); return false; end
+
+    # There must be 2 turns without using a primeval attack to then be able to use it again
+    def turnsBetweenUses(); return 2; end
+
+    def transformType(user, type)
+        user.pbChangeTypes(type)
+        typeName = GameData::Type.get(type).name
+        @battle.pbAnimation(:CONVERSION, user, [user])
+        if user.boss?
+            user.pokemon.bossType = type
+            @battle.scene.pbChangePokemon(user.index, user.pokemon)
+        end
+        @battle.pbDisplay(_INTL("{1} transformed into the {2} type!", user.pbThis, typeName))
+    end
+
+    def summonAvatar(user,species,summonMessage = nil)
+        if @battle.autoTesting
+            echoln("Skipping an Avatar summon")
+            return
+        end
+        if @battle.pbSideSize(user.index) < 3
+            summonMessage ||= _INTL("#{user.pbThis} summons another Avatar!")
+            @battle.pbDisplay(summonMessage)
+            @battle.summonAvatarBattler(species, user.level, user.index % 2)
+        end
     end
 end

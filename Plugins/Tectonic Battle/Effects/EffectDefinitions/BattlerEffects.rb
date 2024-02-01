@@ -43,6 +43,17 @@ GameData::BattleEffect.register_effect(:Battler, {
 })
 
 GameData::BattleEffect.register_effect(:Battler, {
+    :id => :Condensate,
+    :real_name => "Condensate",
+    :resets_battlers_eot => true,
+    :resets_battlers_sot => true,
+    :apply_proc => proc do |battle, battler, _value|
+        battle.pbCommonAnimation("Shiver", battler)
+        battle.pbDisplay(_INTL("{1} rapidly cooled the air!", battler.pbThis))
+    end,
+})
+
+GameData::BattleEffect.register_effect(:Battler, {
     :id => :Bide,
     :real_name => "Bide Turns",
     :type => :Integer,
@@ -981,7 +992,7 @@ GameData::BattleEffect.register_effect(:Battler, {
     :id => :SmackDown,
     :real_name => "Smacked Down",
     :apply_proc => proc do |battle, battler, _value|
-        if battler.inTwoTurnAttack?("0C9", "0CC") # Fly/Bounce. NOTE: Not Sky Drop.
+        if battler.inTwoTurnSkyAttack?
             battler.disableEffect(:TwoTurnAttack)
             battle.pbClearChoice(battler.index) unless battler.movedThisRound?
         end

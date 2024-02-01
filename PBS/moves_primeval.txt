@@ -1,74 +1,907 @@
 ﻿# See the documentation on the wiki to learn how to edit this file.
-2001,PRIMEVALGROWL,Primeval Growl,629,0,NORMAL,Status,0,1,0,AllNearFoes,0,CanProtect;CanMirrorMove;Empowered,"The user growls fiercly, lowering each foe's Attack by two steps and raising its own Attack by two steps.",GROWL
-2002,PRIMEVALDAZZLE,Primeval Dazzle,630,0,NORMAL,Status,0,1,0,AllNearFoes,0,CanProtect;CanMirrorMove;Empowered,"The user gleams with light, lowering each foe's Sp. Atk by two steps and raising its own Sp. Atk by two steps.",DAZZLE
-2003,PRIMEVALSUNSHINE,Primeval Sunshine,601,0,FIRE,Status,0,1,0,BothSides,0,Empowered,"The user summons sunshine for 5 turns, boosts its Atk. and Sp. Atk, and becomes Fire-type.",SUNSHINE
-2004,PRIMEVALRAIN,Primeval Rain,602,0,WATER,Status,0,1,0,BothSides,0,Empowered,"The user summons rain for 5 turns, surrounds itself with healing water, and becomes Water-type.",RAIN
-2005,PRIMEVALLEECHSEED,Primeval Leech Seed,603,0,GRASS,Status,100,1,0,AllNearFoes,0,CanProtect;CanMirrorMove;Empowered,"Plants seeds on all near foes, draining HP each turn. User becomes Grass-type.",LEECHSEED
-2006,PRIMEVALLIGHTNINGDANCE,Primeval Lightning Dance,604,0,ELECTRIC,Status,0,1,0,User,0,Dance;Empowered,"The user raises its Sp. Atk and Speed by two steps, and becomes Electric-type.",LIGHTNINGDANCE
-2007,PRIMEVALHAIL,Primeval Hail,605,0,ICE,Status,0,1,0,BothSides,0,Empowered,"The user summons a hail storm for 5 turns, reduces the speed of all enemies by two steps, and becomes Ice-type.",HAIL
-2008,PRIMEVALBULKUP,Primeval Bulk Up,606,0,FIGHTING,Status,0,1,0,User,0,Empowered,"The user boosts its Attack and Defense, gains a lot of weight, and becomes Fighting-type.",BULKUP
-2009,PRIMEVALSPIKES,Primeval Spikes,607,0,GROUND,Status,0,1,0,FoeSide,0,Empowered,"The user lays 3 layers of spike traps at the foe's feet, and becomes Ground-type.",SPIKES
-2010,PRIMEVALTAILWIND,Primeval Tailwind,608,0,FLYING,Status,0,1,0,UserSide,0,Empowered,"The user ups the Speed and attack count of itself and allies, and becomes Flying-type.",TAILWIND
-2011,PRIMEVALCALMMIND,Primeval Calm Mind,609,0,PSYCHIC,Status,0,1,0,User,0,Empowered,"The user raises its Sp. Atk and Sp. Def, maximizes its Accuracy, and becomes Psychic-type.",CALMMIND
-2012,PRIMEVALSTRINGSHOT,Primeval String Shot,60A,0,BUG,Status,100,1,0,AllNearFoes,0,CanProtect;CanMirrorMove;Empowered,"Nearby foes are bound with silk, sharply lowering their Speed, Atk., and Sp. Atk User also becomes Bug-type.",STRINGSHOT
-2013,PRIMEVALSANDSTORM,Primeval Sandstorm,60B,0,ROCK,Status,0,1,0,BothSides,0,Empowered,"The user summons a sandstorm for 5 turns, boosts its Def. and Sp. Def, and becomes Rock-type.",SANDSTORM
-2014,PRIMEVALCURSEDOATH,Primeval Cursed Oath,60C,0,GHOST,Status,100,1,0,AllNearFoes,0,CanProtect;CanMirrorMove;Empowered,"The user applies a damaging curse to all nearby foes. User becomes a Ghost-type.",CURSEDOATH
-2015,PRIMEVALDRAGONDANCE,Primeval Dragon Dance,60D,0,DRAGON,Status,0,1,0,User,0,Dance;Empowered,"The user raises its Attack and Speed by two steps, and becomes Dragon-type.",DRAGONDANCE
-2016,PRIMEVALTORMENT,Primeval Torment,60E,0,DARK,Status,100,1,0,AllNearFoes,0,CanProtect;CanMirrorMove;Empowered,"The user torments and enrages the foe, making it incapable of using the same move twice in a row.",TORMENT
-2017,PRIMEVALLASERFOCUS,Primeval Laser Focus,60F,0,STEEL,Status,0,1,0,User,0,Empowered,"The user focuses intently, making every future attack critical. The user becomes a Steel-type.",LASERFOCUS
-2018,PRIMEVALPUZZLEROOM,Primeval Puzzle Room,610,0,FAIRY,Status,0,1,0,User,0,Empowered,"The user creates a Puzzle Room for 5 turns, raises both of its Attacking stats, and becomes Fairy-type.",PUZZLEROOM
-2019,PRIMEVALPOISONGAS,Primeval Poison Gas,611,0,POISON,Status,100,1,0,AllNearFoes,0,CanProtect;CanMirrorMove;Empowered,"A cloud of poison gas is sprayed at all nearby foes, poisoning them. User becomes a Poison-type.",POISONGAS
-2020,PRIMEVALENDURE,Primeval Endure,612,0,NORMAL,Status,0,1,0,User,4,Empowered,"The user prepares to defend itself. It'll survive the next three hits which would faint it.",ENDURE
-2021,PRIMEVALIGNITE,Primeval Ignite,613,0,FIRE,Status,100,1,0,AllNearFoes,0,CanProtect;CanMirrorMove;Empowered,"The user inflicts burns on all nearby foes. User becomes a Fire-type.",IGNITE
-2022,PRIMEVALFLOWSTATE,Primeval Flow State,614,0,WATER,Status,100,1,100,User,0,Empowered,"The user TODO, boosts its Atk. and Sp. Def, and becomes a Water-type.",FLOWSTATE
-2023,PRIMEVALINGRAIN,Primeval Ingrain,615,0,GRASS,Status,0,1,0,BothSides,0,Empowered,"The user embeds its roots to heal by 1/4th every turn for four turns, and becomes Grass-type.",INGRAIN
-2024,PRIMEVALNUMB,Primeval Numb,616,0,ELECTRIC,Status,0,1,0,BothSides,0,Empowered,"The user inflicts numb on all nearby foes. User becomes an Electric-type.",NUMB
-2025,PRIMEVALECLIPSE,Primeval Eclipse,617,0,PSYCHIC,Status,0,1,0,BothSides,0,Empowered,"Summons eclipse for 5 turns, resets lowered stats, and user becomes Psychic-type.",ECLIPSE
-2026,PRIMEVALMOONGLOW,Primeval Moonglow,618,0,FAIRY,Status,0,1,0,BothSides,0,Empowered,"Summons moonglow for 5 turns, buffs the defending stats of all allies, and user becomes Fairy-type.",MOONGLOW
-2027,PRIMEVALHEALORDER,Primeval Heal Order,619,0,BUG,Status,0,1,0,User,0,Empowered,"The user restores 1/8th of its HP, summons an allied Combee, and becomes Bug-type",HEALORDER
-2028,PRIMEVALGREYMIST,Primeval Grey Mist,61A,0,POISON,Status,100,1,0,User,0,Empowered,"The user resets all stats, prevents stat changes, increases their defenses, and becomes Poison-type.",MIST
-2029,PRIMEVALROCKPOLISH,Primeval Rock Polish,61B,0,ROCK,Status,0,1,0,User,0,Empowered,"The sharply raises its speed, gains an extra two moves per turn, and becomes Rock-type.",ROCKPOLISH
-2030,PRIMEVALWHIRLWIND,Primeval Whirlwind,61C,0,FLYING,Status,0,1,0,AllNearFoes,-6,CanMirrorMove;Empowered,"All near foes are forced to switch out, and the user becomes Flying-type.",WHIRLWIND
-2031,PRIMEVALEMBARGO,Primeval Embargo,61D,0,DARK,Status,100,1,0,FoeSide,0,CanProtect;CanMirrorMove;Empowered,"The enemy side is prevented from using items for the rest of the battle, and the user becomes Dark-type.",EMBARGO
-2032,PRIMEVALCHILL,Primeval Chill,61E,0,ICE,Status,100,1,0,AllNearFoes,0,CanProtect;CanMirrorMove;Empowered,"The user inflicts frostbite on all nearby foes. User becomes an Ice-type.",CHILL
-2033,PRIMEVALDESTINYBOND,Primeval Destiny Bond,61F,0,GHOST,Status,0,1,0,User,0,Empowered,"Attackers against the user suffer recoil for the rest of the battle. User becomes a Ghost-type.",DESTINYBOND
-2034,PRIMEVALSHOREUP,Primeval Shore Up,620,0,GROUND,Status,0,1,0,User,0,Empowered,"The user restores 1/8th of its HP, TODO, and becomes Ground-type.",SHOREUP
-2035,PRIMEVALLOOMOVER,Primeval Loom Over,621,0,DRAGON,Status,0,1,0,AllNearFoes,0,CanMirrorMove;Empowered,"The user harshly lowers each near foes best stat, and becomes Dragon-type.",LOOMOVER
-2036,PRIMEVALDETECT,Primeval Detect,622,0,FIGHTING,Status,0,1,0,User,4,Empowered,"The user takes 50% less attack damage for 3 turns, and becomes Fighting-type.",DETECT
-2037,PRIMEVALQUIVERDANCE,Primeval Quiver Dance,623,0,BUG,Status,0,15,0,User,0,Dance;Empowered,"The user sharply boosts their Sp. Atk, Sp. Def, and Speed, and becomes Bug-type.",QUIVERDANCE
-2038,PRIMEVALSHIVERDANCE,Primeval Shiver Dance,624,0,ICE,Status,0,15,0,User,0,Dance;Empowered,"The user sharply boosts their Attack, Defense, and Speed, and becomes Ice-type.",SHIVERDANCE
-2039,PRIMEVALIRONDEFENSE,Primeval Iron Defense,625,0,STEEL,Status,0,1,0,User,0,Empowered,"The user sharply boosts its Defense, gains the ability Filter, and becomes Steel-type.",IRONDEFENSE
-2040,PRIMEVALAMNESIA,Primeval Amnesia,626,0,PSYCHIC,Status,0,1,0,User,0,Empowered,"The user sharply boosts its Sp. Def, gains the ability Unaware, and becomes Psychic-type.",AMNESIA
-2041,PRIMEVALHOWL,Primeval Howl,627,0,DARK,Status,0,1,0,User,0,Empowered,"The user summons an allied Poochyena, raises the Attack stat of itself and its allies, and becomes Dark-type.",
-2042,PRIMEVALMINDLINK,Primeval Mind Link,628,0,PSYCHIC,Status,0,1,0,User,0,Empowered,"The user summons an allied Abra, raises the Sp. Atk stat of itself and its allies, and becomes Psychic-type.",
-2043,PRIMEVALSTANDTOGETHER,Primeval Howl,635,0,FIGHTING,Status,0,1,0,User,0,Empowered,"The user summons an allied Tyrogue, raises the Defense of itself and its allies by 3 steps, and becomes Fighting-type.",
-2044,PRIMEVALHARMONIZE,Primeval Harmonize,634,0,GRASS,Status,0,1,0,User,0,Empowered,"The user summons an allied Gossifleur, raises the Sp. Def itself and its allies by 3 steps, and becomes Grass-type.",
-2045,PRIMEVALYAWN,Primeval Yawn,631,0,NORMAL,Status,0,1,0,AllNearFoes,0,CanProtect;CanMirrorMove;Empowered,"The user yawns, making all near foes drowsy. They'll fall asleep at end of turn next.",
-2046,PRIMEVALDREAMDANCE,Primeval Dream Dance,632,0,FAIRY,Status,0,1,0,User,0,Dance;Empowered,"The user raises their Sp. Atk by four steps and becomes Fairy-type.",
-2047,PRIMEVALSWORDSDANCE,Primeval Swords Dance,633,0,STEEL,Status,0,1,0,User,0,Dance;Empowered,"The user raises their Attack by four steps and becomes Steel-type.",
-2048,EMPOWEREDMETEORMASH,Empowered Meteor Mash,636,180,STEEL,Physical,100,1,100,NearOther,0,CanProtect;CanMirrorMove;Punch;Empowered,"The target is obliterated by a meteoric strike, which raises the user's attack by two steps.",METEORMASH
-2049,EMPOWEREDICEBEAM,Empowered Ice Beam,637,180,ICE,Special,100,1,100,NearOther,0,CanProtect;CanMirrorMove;Empowered,"The target is struck with an absolute zero beam of energy, frostbiting it.",ICEBEAM
-2050,EMPOWEREDROCKTOMB,Empowered Rock Tomb,638,120,ROCK,Physical,100,1,100,AllNearFoes,0,CanProtect;CanMirrorMove;Empowered,"Boulders are hurled at all near enemies, harshly lowering their Speed by preventing their movement.",ROCKTOMB
-2051,EMPOWEREDANCIENTPOWER,Empowered Ancient Power,639,120,ROCK,Special,100,1,100,NearOther,0,CanProtect;CanMirrorMove;Empowered,"The user attacks with a prehistoric power which raises all its stats",ANCIENTPOWER
-2052,EMPOWEREDTHUNDERBOLT,Empowered Thunderbolt,640,180,ELECTRIC,Special,100,1,100,NearOther,0,CanProtect;CanMirrorMove;Empowered,"A powerful electric blast is let loose on the target, numbing it.",THUNDERBOLT
-2053,EMPOWEREDFLAREBLITZ,Empowered Flare Blitz,641,220,FIRE,Physical,100,1,100,NearOther,0,CanProtect;CanMirrorMove;Empowered,"The user cloaks itself in fire and charges at the foe, burning it. The user also takes 33% recoil.",FLAREBLITZ
-2054,EMPOWEREDMETALCLAW,Empowered Metal Claw,642,80,STEEL,Physical,100,1,100,NearOther,0,CanProtect;CanMirrorMove;Empowered,"The target is raked with steel claws twice. The user raises its attack after each hit.",METALCLAW
-2055,EMPOWEREDSLASH,Empowered Slash,643,150,NORMAL,Physical,100,1,0,NearOther,0,CanProtect;CanMirrorMove;Blade;Empowered,"The target is attacked with a slash of claws or blades, always critting.",SLASH
-2056,EMPOWEREDBRICKBREAK,Empowered Brick Break,644,160,FIGHTING,Physical,100,1,100,NearOther,0,CanProtect;CanMirrorMove;Empowered,"The user attacks with a swift chop, destroying barriers, and reducing the target's defense by five steps.",BRICKBREAK
-2057,EMPOWEREDCROSSPOISON,Empowered Cross Poison,645,90,POISON,Physical,100,1,10,AllNearFoes,0,CanProtect;CanMirrorMove;Blade;Empowered,"The user slashes all near foes with with poisonous blades or edges. Will be critical against poisoned targets.",CROSSPOISON
-2058,EMPOWEREDSOLARBEAM,Empowered Solar Beam,646,220,GRASS,Special,100,1,0,AllNearFoes,0,CanProtect;CanMirrorMove;Empowered,"A two-turn attack. The user gathers light, then blasts all near foes on the second turn.",SOLARBEAM
-2059,EMPOWEREDPOWERGEM,Empowered Power Gem,647,180,ROCK,Special,100,1,100,NearOther,0,CanProtect;CanMirrorMove;Empowered,"The user attacks with a sparkling gem-like ray, dizzying the target.",POWERGEM
-2060,EMPOWEREDBULLETSEED,Empowered Bullet Seed,648,50,GRASS,Physical,100,1,0,AllNearFoes,0,CanProtect;CanMirrorMove;Empowered,"The user forcefully shoots 6 seeds in rapid succession, spread among nearby enemies.",BULLETSEED
-2061,EMPOWEREDFUTURESIGHT,Empowered Future Sight,649,300,PSYCHIC,Special,100,1,0,NearOther,0,Empowered,"Two turns after this move is used, a hunk of psychic energy attacks the target.",FUTURESIGHT
-2062,EMPOWEREDDRAGONDARTS,Empowered Dragon Darts,650,150,DRAGON,Physical,100,1,0,AllNearFoes,0,CanProtect;CanMirrorMove;Empowered,"The user attacks twice using Dreepy, spreading the hits.",DRAGONDARTS
-2063,EMPOWEREDGIGADRAIN,Empowered Giga Drain,651,150,GRASS,Special,100,1,0,NearOther,0,CanProtect;CanMirrorMove;Empowered,"A nutrient-draining attack. The user's HP is restored by all the damage taken by the target.",GIGADRAIN
-2064,EMPOWEREDEARTHQUAKE,Empowered Earthquake,652,190,GROUND,Physical,100,1,0,AllNearOthers,0,CanProtect;CanMirrorMove;Empowered,"The user sets off an earthquake that strikes every Pokémon around it and underground.",EARTHQUAKE
-2065,EMPOWEREDSURF,Empowered Surf,653,190,WATER,Special,100,1,0,AllNearOthers,0,CanProtect;CanMirrorMove;Empowered,"It swamps the area with a giant wave, hitting every battler nearby and underwater.",SURF
-2066,EMPOWEREDBRAVEBIRD,Empowered Brave Bird,641,240,FLYING,Physical,100,1,100,NearOther,0,CanProtect;CanMirrorMove;Empowered,"The user tucks in its wings and charges from a low altitude. The user also takes 33% recoil.",BRAVEBIRD
-2067,EMPOWEREDSLUDGEWAVE,Empowered Sludge Wave,655,180,POISON,Special,100,1,100,AllNearOthers,0,CanProtect;CanMirrorMove;Empowered,"It swamps the area around the user with a giant sludge wave, poisoning everyone struck.",
-2068,EMPOWEREDDRAGONBREATH,Empowered Dragon Breath,007,120,DRAGON,Special,100,1,100,NearOther,0,CanProtect;CanMirrorMove;Empowered,"The user exhales a mighty gust that inflicts damage and numbs the target.",
-2069,EMPOWEREDBULLETPUNCH,Empowered Bullet Punch,657,60,STEEL,Physical,100,1,0,NearOther,1,CanProtect;CanMirrorMove;Punch;Empowered,"The user strikes the target with 3 punches like bullets. This move always goes first.",
-2070,EMPOWEREDMYSTICALFIRE,Empowered Mystical Fire,657,200,FIRE,Special,100,1,100,NearOther,0,CanProtect;CanMirrorMove;Empowered,"The user attacks by breathing a special, hot fire. This lowers the target's Sp. Atk stat by six steps.",
-2071,STRATOSPHERESCREAM,Stratosphere Scream,700,200,FLYING,Special,0,1,0,AllNearFoes,0,CanProtect;CanMirrorMove;Sound;,"A move that only the avatar of Rayquaza can use. All enemies struck lose their flinch immunity.",SCREECH
-2072,SEVENSEASEDICT,Seven Seas Edict,701,0,WATER,Status,0,1,0,None,0,,"A move that only the avatar of Kyogre can use. The user commands a Luvdisc avatar and a Remoraid avatar to join it.",
-2073,WARPINGCORE,Warping Core,702,0,GROUND,Status,0,1,0,BothSides,0,,"A move that only the avatar of Groudon can use. Gravity is intensified for five turns and enemy Pokemon have their weight doubled.",
+#-------------------------------
+[PRIMEVALGROWL]
+Name = Primeval Growl
+Type = NORMAL
+Category = Status
+Accuracy = 0
+TotalPP = 1
+Target = AllNearFoes
+FunctionCode = EmpoweredGrowl
+Flags = CanProtect,CanMirrorMove,Empowered
+Description = The user growls fiercly, lowering each foe's Attack by two steps and raising its own Attack by two steps.
+Animation = GROWL
+#-------------------------------
+[PRIMEVALDAZZLE]
+Name = Primeval Dazzle
+Type = NORMAL
+Category = Status
+Accuracy = 0
+TotalPP = 1
+Target = AllNearFoes
+FunctionCode = EmpoweredDazzle
+Flags = CanProtect,CanMirrorMove,Empowered
+Description = The user gleams with light, lowering each foe's Sp. Atk by two steps and raising its own Sp. Atk by two steps.
+Animation = DAZZLE
+#-------------------------------
+[PRIMEVALSUNSHINE]
+Name = Primeval Sunshine
+Type = FIRE
+Category = Status
+Accuracy = 0
+TotalPP = 1
+Target = BothSides
+FunctionCode = EmpoweredSunshine
+Flags = Empowered
+Description = The user summons sunshine for 5 turns, boosts its Atk. and Sp. Atk, and becomes Fire-type.
+Animation = SUNSHINE
+#-------------------------------
+[PRIMEVALRAIN]
+Name = Primeval Rain
+Type = WATER
+Category = Status
+Accuracy = 0
+TotalPP = 1
+Target = BothSides
+FunctionCode = EmpoweredRain
+Flags = Empowered
+Description = The user summons rain for 5 turns, surrounds itself with healing water, and becomes Water-type.
+Animation = RAIN
+#-------------------------------
+[PRIMEVALLEECHSEED]
+Name = Primeval Leech Seed
+Type = GRASS
+Category = Status
+Accuracy = 100
+TotalPP = 1
+Target = AllNearFoes
+FunctionCode = EmpoweredLeechSeed
+Flags = CanProtect,CanMirrorMove,Empowered
+Description = Plants seeds on all near foes, draining HP each turn. User becomes Grass-type.
+Animation = LEECHSEED
+#-------------------------------
+[PRIMEVALLIGHTNINGDANCE]
+Name = Primeval Lightning Dance
+Type = ELECTRIC
+Category = Status
+Accuracy = 0
+TotalPP = 1
+Target = User
+FunctionCode = EmpoweredLightningDance
+Flags = Dance,Empowered
+Description = The user raises its Sp. Atk and Speed by two steps, and becomes Electric-type.
+Animation = LIGHTNINGDANCE
+#-------------------------------
+[PRIMEVALHAIL]
+Name = Primeval Hail
+Type = ICE
+Category = Status
+Accuracy = 0
+TotalPP = 1
+Target = BothSides
+FunctionCode = EmpoweredHail
+Flags = Empowered
+Description = The user summons a hail storm for 5 turns, reduces the speed of all enemies by two steps, and becomes Ice-type.
+Animation = HAIL
+#-------------------------------
+[PRIMEVALBULKUP]
+Name = Primeval Bulk Up
+Type = FIGHTING
+Category = Status
+Accuracy = 0
+TotalPP = 1
+Target = User
+FunctionCode = EmpoweredBulkUp
+Flags = Empowered
+Description = The user boosts its Attack and Defense, gains a lot of weight, and becomes Fighting-type.
+Animation = BULKUP
+#-------------------------------
+[PRIMEVALSPIKES]
+Name = Primeval Spikes
+Type = GROUND
+Category = Status
+Accuracy = 0
+TotalPP = 1
+Target = FoeSide
+FunctionCode = EmpoweredSpikes
+Flags = Empowered
+Description = The user lays 3 layers of spike traps at the foe's feet, and becomes Ground-type.
+Animation = SPIKES
+#-------------------------------
+[PRIMEVALTAILWIND]
+Name = Primeval Tailwind
+Type = FLYING
+Category = Status
+Accuracy = 0
+TotalPP = 1
+Target = UserSide
+FunctionCode = EmpoweredTailwind
+Flags = Empowered
+Description = The user ups the Speed and attack count of itself and allies, and becomes Flying-type.
+Animation = TAILWIND
+#-------------------------------
+[PRIMEVALCALMMIND]
+Name = Primeval Calm Mind
+Type = PSYCHIC
+Category = Status
+Accuracy = 0
+TotalPP = 1
+Target = User
+FunctionCode = EmpoweredCalmMind
+Flags = Empowered
+Description = The user raises its Sp. Atk and Sp. Def, maximizes its Accuracy, and becomes Psychic-type.
+Animation = CALMMIND
+#-------------------------------
+[PRIMEVALSTRINGSHOT]
+Name = Primeval String Shot
+Type = BUG
+Category = Status
+Accuracy = 100
+TotalPP = 1
+Target = AllNearFoes
+FunctionCode = EmpoweredStringShot
+Flags = CanProtect,CanMirrorMove,Empowered
+Description = Nearby foes are bound with silk, sharply lowering their Speed, Atk., and Sp. Atk User also becomes Bug-type.
+Animation = STRINGSHOT
+#-------------------------------
+[PRIMEVALSANDSTORM]
+Name = Primeval Sandstorm
+Type = ROCK
+Category = Status
+Accuracy = 0
+TotalPP = 1
+Target = BothSides
+FunctionCode = EmpoweredSandstorm
+Flags = Empowered
+Description = The user summons a sandstorm for 5 turns, boosts its Def. and Sp. Def, and becomes Rock-type.
+Animation = SANDSTORM
+#-------------------------------
+[PRIMEVALCURSEDOATH]
+Name = Primeval Cursed Oath
+Type = GHOST
+Category = Status
+Accuracy = 100
+TotalPP = 1
+Target = AllNearFoes
+FunctionCode = EmpoweredCursedOath
+Flags = CanProtect,CanMirrorMove,Empowered
+Description = The user applies a damaging curse to all nearby foes. User becomes a Ghost-type.
+Animation = CURSEDOATH
+#-------------------------------
+[PRIMEVALDRAGONDANCE]
+Name = Primeval Dragon Dance
+Type = DRAGON
+Category = Status
+Accuracy = 0
+TotalPP = 1
+Target = User
+FunctionCode = 60D
+Flags = Dance,Empowered
+Description = The user raises its Attack and Speed by two steps, and becomes Dragon-type.
+Animation = DRAGONDANCE
+#-------------------------------
+[PRIMEVALTORMENT]
+Name = Primeval Torment
+Type = DARK
+Category = Status
+Accuracy = 100
+TotalPP = 1
+Target = AllNearFoes
+FunctionCode = EmpoweredTorment
+Flags = CanProtect,CanMirrorMove,Empowered
+Description = The user torments and enrages the foe, making it incapable of using the same move twice in a row.
+Animation = TORMENT
+#-------------------------------
+[PRIMEVALLASERFOCUS]
+Name = Primeval Laser Focus
+Type = STEEL
+Category = Status
+Accuracy = 0
+TotalPP = 1
+Target = User
+FunctionCode = EmpoweredLaserFocus
+Flags = Empowered
+Description = The user focuses intently, making every future attack critical. The user becomes a Steel-type.
+Animation = LASERFOCUS
+#-------------------------------
+[PRIMEVALPUZZLEROOM]
+Name = Primeval Puzzle Room
+Type = FAIRY
+Category = Status
+Accuracy = 0
+TotalPP = 1
+Target = User
+FunctionCode = EmpoweredPuzzleRoom
+Flags = Empowered
+Description = The user creates a Puzzle Room for 5 turns, raises both of its Attacking stats, and becomes Fairy-type.
+Animation = PUZZLEROOM
+#-------------------------------
+[PRIMEVALPOISONGAS]
+Name = Primeval Poison Gas
+Type = POISON
+Category = Status
+Accuracy = 100
+TotalPP = 1
+Target = AllNearFoes
+FunctionCode = EmpoweredPoisonGas
+Flags = CanProtect,CanMirrorMove,Empowered
+Description = A cloud of poison gas is sprayed at all nearby foes, poisoning them. User becomes a Poison-type.
+Animation = POISONGAS
+#-------------------------------
+[PRIMEVALENDURE]
+Name = Primeval Endure
+Type = NORMAL
+Category = Status
+Accuracy = 0
+TotalPP = 1
+Target = User
+Priority = 4
+FunctionCode = EmpoweredEndure
+Flags = Empowered
+Description = The user prepares to defend itself. It'll survive the next three hits which would faint it.
+Animation = ENDURE
+#-------------------------------
+[PRIMEVALIGNITE]
+Name = Primeval Ignite
+Type = FIRE
+Category = Status
+Accuracy = 100
+TotalPP = 1
+Target = AllNearFoes
+FunctionCode = EmpoweredIgnite
+Flags = CanProtect,CanMirrorMove,Empowered
+Description = The user inflicts burns on all nearby foes. User becomes a Fire-type.
+Animation = IGNITE
+#-------------------------------
+[PRIMEVALFLOWSTATE]
+Name = Primeval Flow State
+Type = WATER
+Category = Status
+Accuracy = 100
+TotalPP = 1
+Target = User
+FunctionCode = EmpoweredFlowState
+Flags = Empowered
+EffectChance = 100
+Description = The user TODO, boosts its Atk. and Sp. Def, and becomes a Water-type.
+Animation = FLOWSTATE
+#-------------------------------
+[PRIMEVALINGRAIN]
+Name = Primeval Ingrain
+Type = GRASS
+Category = Status
+Accuracy = 0
+TotalPP = 1
+Target = BothSides
+FunctionCode = PrimevalIngrain
+Flags = Empowered
+Description = The user embeds its roots to heal by 1/4th every turn for four turns, and becomes Grass-type.
+Animation = INGRAIN
+#-------------------------------
+[PRIMEVALNUMB]
+Name = Primeval Numb
+Type = ELECTRIC
+Category = Status
+Accuracy = 0
+TotalPP = 1
+Target = BothSides
+FunctionCode = EmpoweredNumb
+Flags = Empowered
+Description = The user inflicts numb on all nearby foes. User becomes an Electric-type.
+Animation = NUMB
+#-------------------------------
+[PRIMEVALECLIPSE]
+Name = Primeval Eclipse
+Type = PSYCHIC
+Category = Status
+Accuracy = 0
+TotalPP = 1
+Target = BothSides
+FunctionCode = EmpoweredEclipse
+Flags = Empowered
+Description = Summons eclipse for 5 turns, resets lowered stats, and user becomes Psychic-type.
+Animation = ECLIPSE
+#-------------------------------
+[PRIMEVALMOONGLOW]
+Name = Primeval Moonglow
+Type = FAIRY
+Category = Status
+Accuracy = 0
+TotalPP = 1
+Target = BothSides
+FunctionCode = EmpoweredMoonglow
+Flags = Empowered
+Description = Summons moonglow for 5 turns, buffs the defending stats of all allies, and user becomes Fairy-type.
+Animation = MOONGLOW
+#-------------------------------
+[PRIMEVALHEALORDER]
+Name = Primeval Heal Order
+Type = BUG
+Category = Status
+Accuracy = 0
+TotalPP = 1
+Target = User
+FunctionCode = EmpoweredHealOrder
+Flags = Empowered
+Description = The user restores 1/8th of its HP, summons an allied Combee, and becomes Bug-type
+Animation = HEALORDER
+#-------------------------------
+[PRIMEVALGREYMIST]
+Name = Primeval Grey Mist
+Type = POISON
+Category = Status
+Accuracy = 100
+TotalPP = 1
+Target = User
+FunctionCode = EmpoweredGreyMist
+Flags = Empowered
+Description = The user resets all stats, prevents stat changes, increases their defenses, and becomes Poison-type.
+Animation = MIST
+#-------------------------------
+[PRIMEVALROCKPOLISH]
+Name = Primeval Rock Polish
+Type = ROCK
+Category = Status
+Accuracy = 0
+TotalPP = 1
+Target = User
+FunctionCode = EmpoweredRockPolish
+Flags = Empowered
+Description = The sharply raises its speed, gains an extra two moves per turn, and becomes Rock-type.
+Animation = ROCKPOLISH
+#-------------------------------
+[PRIMEVALWHIRLWIND]
+Name = Primeval Whirlwind
+Type = FLYING
+Category = Status
+Accuracy = 0
+TotalPP = 1
+Target = AllNearFoes
+Priority = -6
+FunctionCode = EmpoweredWhirlwind
+Flags = CanMirrorMove,Empowered
+Description = All near foes are forced to switch out, and the user becomes Flying-type.
+Animation = WHIRLWIND
+#-------------------------------
+[PRIMEVALEMBARGO]
+Name = Primeval Embargo
+Type = DARK
+Category = Status
+Accuracy = 100
+TotalPP = 1
+Target = FoeSide
+FunctionCode = EmpoweredEmbargo
+Flags = CanProtect,CanMirrorMove,Empowered
+Description = The enemy side is prevented from using items for the rest of the battle, and the user becomes Dark-type.
+Animation = EMBARGO
+#-------------------------------
+[PRIMEVALCHILL]
+Name = Primeval Chill
+Type = ICE
+Category = Status
+Accuracy = 100
+TotalPP = 1
+Target = AllNearFoes
+FunctionCode = EmpoweredChill
+Flags = CanProtect,CanMirrorMove,Empowered
+Description = The user inflicts frostbite on all nearby foes. User becomes an Ice-type.
+Animation = CHILL
+#-------------------------------
+[PRIMEVALDESTINYBOND]
+Name = Primeval Destiny Bond
+Type = GHOST
+Category = Status
+Accuracy = 0
+TotalPP = 1
+Target = User
+FunctionCode = EmpoweredDestinyBond
+Flags = Empowered
+Description = Attackers against the user suffer recoil for the rest of the battle. User becomes a Ghost-type.
+Animation = DESTINYBOND
+#-------------------------------
+[PRIMEVALSHOREUP]
+Name = Primeval Shore Up
+Type = GROUND
+Category = Status
+Accuracy = 0
+TotalPP = 1
+Target = User
+FunctionCode = EmpoweredShoreUp
+Flags = Empowered
+Description = The user restores 1/8th of its HP, TODO, and becomes Ground-type.
+Animation = SHOREUP
+#-------------------------------
+[PRIMEVALLOOMOVER]
+Name = Primeval Loom Over
+Type = DRAGON
+Category = Status
+Accuracy = 0
+TotalPP = 1
+Target = AllNearFoes
+FunctionCode = EmpoweredLoomOver
+Flags = CanMirrorMove,Empowered
+Description = The user harshly lowers each near foes best stat, and becomes Dragon-type.
+Animation = LOOMOVER
+#-------------------------------
+[PRIMEVALDETECT]
+Name = Primeval Detect
+Type = FIGHTING
+Category = Status
+Accuracy = 0
+TotalPP = 1
+Target = User
+Priority = 4
+FunctionCode = EmpoweredDetect
+Flags = Empowered
+Description = The user takes 50% less attack damage for 3 turns, and becomes Fighting-type.
+Animation = DETECT
+#-------------------------------
+[PRIMEVALQUIVERDANCE]
+Name = Primeval Quiver Dance
+Type = BUG
+Category = Status
+Accuracy = 0
+TotalPP = 15
+Target = User
+FunctionCode = EmpoweredQuiverDance
+Flags = Dance,Empowered
+Description = The user sharply boosts their Sp. Atk, Sp. Def, and Speed, and becomes Bug-type.
+Animation = QUIVERDANCE
+#-------------------------------
+[PRIMEVALSHIVERDANCE]
+Name = Primeval Shiver Dance
+Type = ICE
+Category = Status
+Accuracy = 0
+TotalPP = 15
+Target = User
+FunctionCode = EmpoweredShiverDance
+Flags = Dance,Empowered
+Description = The user sharply boosts their Attack, Defense, and Speed, and becomes Ice-type.
+Animation = SHIVERDANCE
+#-------------------------------
+[PRIMEVALIRONDEFENSE]
+Name = Primeval Iron Defense
+Type = STEEL
+Category = Status
+Accuracy = 0
+TotalPP = 1
+Target = User
+FunctionCode = EmpoweredIronDefense
+Flags = Empowered
+Description = The user sharply boosts its Defense, gains the ability Filter, and becomes Steel-type.
+Animation = IRONDEFENSE
+#-------------------------------
+[PRIMEVALAMNESIA]
+Name = Primeval Amnesia
+Type = PSYCHIC
+Category = Status
+Accuracy = 0
+TotalPP = 1
+Target = User
+FunctionCode = EmpoweredAmnesia
+Flags = Empowered
+Description = The user sharply boosts its Sp. Def, gains the ability Unaware, and becomes Psychic-type.
+Animation = AMNESIA
+#-------------------------------
+[PRIMEVALHOWL]
+Name = Primeval Howl
+Type = DARK
+Category = Status
+Accuracy = 0
+TotalPP = 1
+Target = User
+FunctionCode = EmpoweredHowl
+Flags = Empowered
+Description = The user summons an allied Poochyena, raises the Attack stat of itself and its allies, and becomes Dark-type.
+#-------------------------------
+[PRIMEVALMINDLINK]
+Name = Primeval Mind Link
+Type = PSYCHIC
+Category = Status
+Accuracy = 0
+TotalPP = 1
+Target = User
+FunctionCode = EmpoweredMindLink
+Flags = Empowered
+Description = The user summons an allied Abra, raises the Sp. Atk stat of itself and its allies, and becomes Psychic-type.
+#-------------------------------
+[PRIMEVALSTANDTOGETHER]
+Name = Primeval Howl
+Type = FIGHTING
+Category = Status
+Accuracy = 0
+TotalPP = 1
+Target = User
+FunctionCode = EmpoweredStandTogether
+Flags = Empowered
+Description = The user summons an allied Tyrogue, raises the Defense of itself and its allies by 3 steps, and becomes Fighting-type.
+#-------------------------------
+[PRIMEVALHARMONIZE]
+Name = Primeval Harmonize
+Type = GRASS
+Category = Status
+Accuracy = 0
+TotalPP = 1
+Target = User
+FunctionCode = EmpoweredSymbiosis
+Flags = Empowered
+Description = The user summons an allied Gossifleur, raises the Sp. Def itself and its allies by 3 steps, and becomes Grass-type.
+#-------------------------------
+[PRIMEVALYAWN]
+Name = Primeval Yawn
+Type = NORMAL
+Category = Status
+Accuracy = 0
+TotalPP = 1
+Target = AllNearFoes
+FunctionCode = EmpoweredYawn
+Flags = CanProtect,CanMirrorMove,Empowered
+Description = The user yawns, making all near foes drowsy. They'll fall asleep at end of turn next.
+#-------------------------------
+[PRIMEVALDREAMDANCE]
+Name = Primeval Dream Dance
+Type = FAIRY
+Category = Status
+Accuracy = 0
+TotalPP = 1
+Target = User
+FunctionCode = EmpoweredDreamDance
+Flags = Dance,Empowered
+Description = The user raises their Sp. Atk by four steps and becomes Fairy-type.
+#-------------------------------
+[PRIMEVALSWORDSDANCE]
+Name = Primeval Swords Dance
+Type = STEEL
+Category = Status
+Accuracy = 0
+TotalPP = 1
+Target = User
+FunctionCode = EmpoweredSwordsDance
+Flags = Dance,Empowered
+Description = The user raises their Attack by four steps and becomes Steel-type.
+#-------------------------------
+[EMPOWEREDMETEORMASH]
+Name = Empowered Meteor Mash
+Type = STEEL
+Category = Physical
+Power = 180
+Accuracy = 100
+TotalPP = 1
+Target = NearOther
+FunctionCode = EmpoweredMetalClaw
+Flags = CanProtect,CanMirrorMove,Punch,Empowered
+EffectChance = 100
+Description = The target is obliterated by a meteoric strike, which raises the user's attack by two steps.
+Animation = METEORMASH
+#-------------------------------
+[EMPOWEREDICEBEAM]
+Name = Empowered Ice Beam
+Type = ICE
+Category = Special
+Power = 180
+Accuracy = 100
+TotalPP = 1
+Target = NearOther
+FunctionCode = 637
+Flags = CanProtect,CanMirrorMove,Empowered
+EffectChance = 100
+Description = The target is struck with an absolute zero beam of energy, frostbiting it.
+Animation = ICEBEAM
+#-------------------------------
+[EMPOWEREDROCKTOMB]
+Name = Empowered Rock Tomb
+Type = ROCK
+Category = Physical
+Power = 120
+Accuracy = 100
+TotalPP = 1
+Target = AllNearFoes
+FunctionCode = EmpoweredRockTomb
+Flags = CanProtect,CanMirrorMove,Empowered
+EffectChance = 100
+Description = Boulders are hurled at all near enemies, harshly lowering their Speed by preventing their movement.
+Animation = ROCKTOMB
+#-------------------------------
+[EMPOWEREDANCIENTPOWER]
+Name = Empowered Ancient Power
+Type = ROCK
+Category = Special
+Power = 120
+Accuracy = 100
+TotalPP = 1
+Target = NearOther
+FunctionCode = EmpoweredAncientPower
+Flags = CanProtect,CanMirrorMove,Empowered
+EffectChance = 100
+Description = The user attacks with a prehistoric power which raises all its stats
+Animation = ANCIENTPOWER
+#-------------------------------
+[EMPOWEREDTHUNDERBOLT]
+Name = Empowered Thunderbolt
+Type = ELECTRIC
+Category = Special
+Power = 180
+Accuracy = 100
+TotalPP = 1
+Target = NearOther
+FunctionCode = EmpoweredThunderbolt
+Flags = CanProtect,CanMirrorMove,Empowered
+EffectChance = 100
+Description = A powerful electric blast is let loose on the target, numbing it.
+Animation = THUNDERBOLT
+#-------------------------------
+[EMPOWEREDFLAREBLITZ]
+Name = Empowered Flare Blitz
+Type = FIRE
+Category = Physical
+Power = 220
+Accuracy = 100
+TotalPP = 1
+Target = NearOther
+FunctionCode = EmpoweredFlareBlitz
+Flags = CanProtect,CanMirrorMove,Empowered
+EffectChance = 100
+Description = The user cloaks itself in fire and charges at the foe, burning it. The user also takes 33% recoil.
+Animation = FLAREBLITZ
+#-------------------------------
+[EMPOWEREDMETALCLAW]
+Name = Empowered Metal Claw
+Type = STEEL
+Category = Physical
+Power = 80
+Accuracy = 100
+TotalPP = 1
+Target = NearOther
+FunctionCode = EmpoweredMetalClaw
+Flags = CanProtect,CanMirrorMove,Empowered
+EffectChance = 100
+Description = The target is raked with steel claws twice. The user raises its attack after each hit.
+Animation = METALCLAW
+#-------------------------------
+[EMPOWEREDSLASH]
+Name = Empowered Slash
+Type = NORMAL
+Category = Physical
+Power = 150
+Accuracy = 100
+TotalPP = 1
+Target = NearOther
+FunctionCode = EmpoweredSlash
+Flags = CanProtect,CanMirrorMove,Blade,Empowered
+Description = The target is attacked with a slash of claws or blades, always critting.
+Animation = SLASH
+#-------------------------------
+[EMPOWEREDBRICKBREAK]
+Name = Empowered Brick Break
+Type = FIGHTING
+Category = Physical
+Power = 160
+Accuracy = 100
+TotalPP = 1
+Target = NearOther
+FunctionCode = EmpoweredBrickBreak
+Flags = CanProtect,CanMirrorMove,Empowered
+EffectChance = 100
+Description = The user attacks with a swift chop, destroying barriers, and reducing the target's defense by five steps.
+Animation = BRICKBREAK
+#-------------------------------
+[EMPOWEREDCROSSPOISON]
+Name = Empowered Cross Poison
+Type = POISON
+Category = Physical
+Power = 90
+Accuracy = 100
+TotalPP = 1
+Target = AllNearFoes
+FunctionCode = 645
+Flags = CanProtect,CanMirrorMove,Blade,Empowered
+EffectChance = 10
+Description = The user slashes all near foes with with poisonous blades or edges. Will be critical against poisoned targets.
+Animation = CROSSPOISON
+#-------------------------------
+[EMPOWEREDSOLARBEAM]
+Name = Empowered Solar Beam
+Type = GRASS
+Category = Special
+Power = 220
+Accuracy = 100
+TotalPP = 1
+Target = AllNearFoes
+FunctionCode = 646
+Flags = CanProtect,CanMirrorMove,Empowered
+Description = A two-turn attack. The user gathers light, then blasts all near foes on the second turn.
+Animation = SOLARBEAM
+#-------------------------------
+[EMPOWEREDPOWERGEM]
+Name = Empowered Power Gem
+Type = ROCK
+Category = Special
+Power = 180
+Accuracy = 100
+TotalPP = 1
+Target = NearOther
+FunctionCode = EmpoweredPowerGem
+Flags = CanProtect,CanMirrorMove,Empowered
+EffectChance = 100
+Description = The user attacks with a sparkling gem-like ray, dizzying the target.
+Animation = POWERGEM
+#-------------------------------
+[EMPOWEREDBULLETSEED]
+Name = Empowered Bullet Seed
+Type = GRASS
+Category = Physical
+Power = 50
+Accuracy = 100
+TotalPP = 1
+Target = AllNearFoes
+FunctionCode = EmpoweredBulletSeed
+Flags = CanProtect,CanMirrorMove,Empowered
+Description = The user forcefully shoots 6 seeds in rapid succession, spread among nearby enemies.
+Animation = BULLETSEED
+#-------------------------------
+[EMPOWEREDFUTURESIGHT]
+Name = Empowered Future Sight
+Type = PSYCHIC
+Category = Special
+Power = 300
+Accuracy = 100
+TotalPP = 1
+Target = NearOther
+FunctionCode = EmpoweredFutureSight
+Flags = Empowered
+Description = Two turns after this move is used, a hunk of psychic energy attacks the target.
+Animation = FUTURESIGHT
+#-------------------------------
+[EMPOWEREDDRAGONDARTS]
+Name = Empowered Dragon Darts
+Type = DRAGON
+Category = Physical
+Power = 150
+Accuracy = 100
+TotalPP = 1
+Target = AllNearFoes
+FunctionCode = EmpoweredDragonDarts
+Flags = CanProtect,CanMirrorMove,Empowered
+Description = The user attacks twice using Dreepy, spreading the hits.
+Animation = DRAGONDARTS
+#-------------------------------
+[EMPOWEREDGIGADRAIN]
+Name = Empowered Giga Drain
+Type = GRASS
+Category = Special
+Power = 150
+Accuracy = 100
+TotalPP = 1
+Target = NearOther
+FunctionCode = EmpoweredGigaDrain
+Flags = CanProtect,CanMirrorMove,Empowered
+Description = A nutrient-draining attack. The user's HP is restored by all the damage taken by the target.
+Animation = GIGADRAIN
+#-------------------------------
+[EMPOWEREDEARTHQUAKE]
+Name = Empowered Earthquake
+Type = GROUND
+Category = Physical
+Power = 190
+Accuracy = 100
+TotalPP = 1
+Target = AllNearOthers
+FunctionCode = 652
+Flags = CanProtect,CanMirrorMove,Empowered
+Description = The user sets off an earthquake that strikes every Pokémon around it and underground.
+Animation = EARTHQUAKE
+#-------------------------------
+[EMPOWEREDSURF]
+Name = Empowered Surf
+Type = WATER
+Category = Special
+Power = 190
+Accuracy = 100
+TotalPP = 1
+Target = AllNearOthers
+FunctionCode = 653
+Flags = CanProtect,CanMirrorMove,Empowered
+Description = It swamps the area with a giant wave, hitting every battler nearby and underwater.
+Animation = SURF
+#-------------------------------
+[EMPOWEREDBRAVEBIRD]
+Name = Empowered Brave Bird
+Type = FLYING
+Category = Physical
+Power = 240
+Accuracy = 100
+TotalPP = 1
+Target = NearOther
+FunctionCode = EmpoweredFlareBlitz
+Flags = CanProtect,CanMirrorMove,Empowered
+EffectChance = 100
+Description = The user tucks in its wings and charges from a low altitude. The user also takes 33% recoil.
+Animation = BRAVEBIRD
+#-------------------------------
+[EMPOWEREDSLUDGEWAVE]
+Name = Empowered Sludge Wave
+Type = POISON
+Category = Special
+Power = 180
+Accuracy = 100
+TotalPP = 1
+Target = AllNearOthers
+FunctionCode = EmpoweredSludgeWave
+Flags = CanProtect,CanMirrorMove,Empowered
+EffectChance = 100
+Description = It swamps the area around the user with a giant sludge wave, poisoning everyone struck.
+#-------------------------------
+[EMPOWEREDDRAGONBREATH]
+Name = Empowered Dragon Breath
+Type = DRAGON
+Category = Special
+Power = 120
+Accuracy = 100
+TotalPP = 1
+Target = NearOther
+FunctionCode = EmpoweredThunderbolt
+Flags = CanProtect,CanMirrorMove,Empowered
+EffectChance = 100
+Description = The user exhales a mighty gust that inflicts damage and numbs the target.
+#-------------------------------
+[EMPOWEREDBULLETPUNCH]
+Name = Empowered Bullet Punch
+Type = STEEL
+Category = Physical
+Power = 60
+Accuracy = 100
+TotalPP = 1
+Target = NearOther
+Priority = 1
+FunctionCode = EmpoweredBulletPunch
+Flags = CanProtect,CanMirrorMove,Punch,Empowered
+Description = The user strikes the target with 3 punches like bullets. This move always goes first.
+#-------------------------------
+[EMPOWEREDMYSTICALFIRE]
+Name = Empowered Mystical Fire
+Type = FIRE
+Category = Special
+Power = 200
+Accuracy = 100
+TotalPP = 1
+Target = NearOther
+FunctionCode = EmpoweredBulletPunch
+Flags = CanProtect,CanMirrorMove,Empowered
+EffectChance = 100
+Description = The user attacks by breathing a special, hot fire. This lowers the target's Sp. Atk stat by six steps.
+#-------------------------------
+[STRATOSPHERESCREAM]
+Name = Stratosphere Scream
+Type = FLYING
+Category = Special
+Power = 200
+Accuracy = 0
+TotalPP = 1
+Target = AllNearFoes
+FunctionCode = RayquazaTargetLosesFlinchImmunity
+Flags = CanProtect,CanMirrorMove,Sound,Empowered
+Description = A move that only the avatar of Rayquaza can use. All enemies struck lose their flinch immunity.
+Animation = SCREECH
+#-------------------------------
+[SEVENSEASEDICT]
+Name = Seven Seas Edict
+Type = WATER
+Category = Status
+Accuracy = 0
+TotalPP = 1
+Target = None
+FunctionCode = KyogreSummonAvatarLuvdiscRemoraid
+Flags = Empowered
+Description = A move that only the avatar of Kyogre can use. The user commands a Luvdisc avatar and a Remoraid avatar to join it.
+#-------------------------------
+[WARPINGCORE]
+Name = Warping Core
+Type = GROUND
+Category = Status
+Accuracy = 0
+TotalPP = 1
+Target = BothSides
+FunctionCode = GroudonStartGravity10DoubleFoeWeight
+Flags = Empowered
+Description = A move that only the avatar of Groudon can use. Gravity is intensified for five turns and enemy Pokemon have their weight doubled.

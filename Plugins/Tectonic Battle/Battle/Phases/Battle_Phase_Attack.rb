@@ -25,7 +25,7 @@ class PokeBattle_Battle
         @switching = true
         pbPriority.each do |b|
             next if b.fainted? || !b.opposes?(idxSwitcher) # Shouldn't hit an ally
-            next if b.movedThisRound? || !pbChoseMoveFunctionCode?(b.index, "088") # Pursuit
+            next if b.movedThisRound? || !pbChoseMoveFunctionCode?(b.index, "PursueSwitchingFoe") # Pursuit
             # Check whether Pursuit can be used
             next unless pbMoveCanTarget?(b.index, idxSwitcher, @choices[b.index][2].pbTarget(b))
             next unless pbCanChooseMove?(b.index, @choices[b.index][1], false)

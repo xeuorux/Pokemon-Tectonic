@@ -579,7 +579,7 @@ BattleHandlers::DamageCalcUserAbility.add(:TIMEINTERLOPER,
 
 BattleHandlers::DamageCalcUserAbility.add(:MARINEMENACE,
   proc { |ability, user, target, move, mults, _baseDmg, type, aiCheck|
-    if move.function == "0CB" # Dive, # Depth Charge
+    if move.function == "TwoTurnAttackInvulnerableUnderwater" # Dive, # Depth Charge
       mults[:base_damage_multiplier] *= 1.5
       user.aiLearnsAbility(ability) unless aiCheck
     end
@@ -588,7 +588,7 @@ BattleHandlers::DamageCalcUserAbility.add(:MARINEMENACE,
 
 BattleHandlers::DamageCalcUserAbility.add(:EXCAVATOR,
   proc { |ability, user, target, move, mults, _baseDmg, type, aiCheck|
-    if move.function == "0CA" # Dig, Undermine
+    if move.function == "TwoTurnAttackInvulnerableUnderground" # Dig, Undermine
       mults[:base_damage_multiplier] *= 1.5
       user.aiLearnsAbility(ability) unless aiCheck
     end
@@ -597,7 +597,7 @@ BattleHandlers::DamageCalcUserAbility.add(:EXCAVATOR,
 
 BattleHandlers::DamageCalcUserAbility.add(:STEEPFLYING,
   proc { |ability, user, target, move, mults, _baseDmg, type, aiCheck|
-    if move.function == "0C9" # Fly, Divebomb
+    if move.function == "TwoTurnAttackInvulnerableInSky" # Fly, Divebomb
       mults[:base_damage_multiplier] *= 1.5
       user.aiLearnsAbility(ability) unless aiCheck
     end
@@ -606,7 +606,7 @@ BattleHandlers::DamageCalcUserAbility.add(:STEEPFLYING,
 
 BattleHandlers::DamageCalcUserAbility.add(:GRIPSTRENGTH,
   proc { |ability, user, target, move, mults, _baseDmg, type, aiCheck|
-    if move.function == "0CF" # 3-turn DOT trapping moves
+    if move.function == "BindTarget3" # 3-turn DOT trapping moves
       mults[:base_damage_multiplier] *= 1.5
       user.aiLearnsAbility(ability) unless aiCheck
     end

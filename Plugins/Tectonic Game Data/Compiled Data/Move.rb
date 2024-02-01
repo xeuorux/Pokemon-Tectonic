@@ -23,6 +23,22 @@ module GameData
   
       DATA = {}
       DATA_FILENAME = "moves.dat"
+
+      SCHEMA = {
+      "Name"         => [:name,           "s"],
+      "Type"         => [:type,           "e", :Type],
+      "Category"     => [:category,       "e", ["Physical", "Special", "Status"]],
+      "Power"        => [:base_damage,    "u"],
+      "Accuracy"     => [:accuracy,       "u"],
+      "TotalPP"      => [:total_pp,       "u"],
+      "Target"       => [:target,         "e", :Target],
+      "Priority"     => [:priority,       "i"],
+      "FunctionCode" => [:function_code,  "s"],
+      "Flags"        => [:flags,          "*s"],
+      "EffectChance" => [:effect_chance,  "u"],
+      "Description"  => [:description,    "q"],
+      "Animation"    => [:animation_move, "q"],
+    }
   
       extend ClassMethods
       include InstanceMethods
@@ -32,15 +48,15 @@ module GameData
         @id_number          = hash[:id_number]   || -1
         @real_name          = hash[:name]        || "Unnamed"
         @function_code      = hash[:function_code]
-        @base_damage        = hash[:base_damage]
+        @base_damage        = hash[:base_damage] || 0
         @type               = hash[:type]
         @category           = hash[:category]
         @accuracy           = hash[:accuracy]
         @total_pp           = hash[:total_pp]
-        @effect_chance      = hash[:effect_chance]
+        @effect_chance      = hash[:effect_chance] || 0
         @target             = hash[:target]
-        @priority           = hash[:priority]
-        @flags              = hash[:flags]
+        @priority           = hash[:priority] || 0
+        @flags              = hash[:flags] || []
         @real_description   = hash[:description] || "???"
         @animation_move     = hash[:animation_move]
         @signature_of       = nil
@@ -48,6 +64,8 @@ module GameData
         @zmove              = hash[:zmove] || false
         @cut                = hash[:cut] || false
         @tectonic_new       = hash[:tectonic_new] || false
+
+        @function_code = "Invalid" if @cut
       end
   
       # @return [String] the translated name of this move
@@ -95,7 +113,7 @@ module GameData
       end
 
       def empoweredMove?
-        return @flags[/Empowered/]
+        return @flags.include?("Empowered")
       end
 
       def categoryLabel
@@ -112,7 +130,7 @@ module GameData
 
       def tagLabel
         category = nil
-        @flags.split(";").each do |flag|
+        @flags.each do |flag|
           case flag
           when "Biting"
               category = _INTL("Bite")
@@ -198,66 +216,88 @@ module Compiler
   #=============================================================================
   def compile_moves
     GameData::Move::DATA.clear
+    schema = GameData::Move::SCHEMA
     move_names        = []
     move_descriptions = []
-    idBase = 0
+    move_hash         = nil
+    idx = 0
     ["PBS/moves.txt","PBS/moves_new.txt","PBS/moves_primeval.txt","PBS/moves_z.txt","PBS/moves_cut.txt"].each do |path|
-      idNumber = idBase
       primeval = path == "PBS/moves_primeval.txt"
       cut = path == "PBS/moves_cut.txt"
       tectonic_new = path == "PBS/moves_new.txt"
       zmove = path == "PBS/moves_z.txt"
-      # Read each line of moves.txt at a time and compile it into an move
+
       pbCompilerEachPreppedLine(path) { |line, line_no|
-        idNumber += 1
-        line = pbGetCsvRecord(line, line_no, [0, "vnssueeuuueissN",
-          nil, nil, nil, nil, nil, :Type, ["Physical", "Special", "Status"],
-          nil, nil, nil, :Target, nil, nil, nil, nil
-        ])
-        move_number = idNumber
-        move_symbol = line[1].to_sym
-        if GameData::Move::DATA[move_number]
-          raise _INTL("Move ID number '{1}' is used twice.\r\n{2}", move_number, FileLineData.linereport)
-        elsif GameData::Move::DATA[move_symbol]
-          raise _INTL("Move ID '{1}' is used twice.\r\n{2}", move_symbol, FileLineData.linereport)
+        echo "." if idx % 500 == 0
+        idx += 1
+        if line[/^\s*\[\s*(.+)\s*\]\s*$/]   # New section [move_id]
+          # Add previous move's data to records
+          if move_hash
+            # Sanitise data
+            if (move_hash[:category] || 2) == 2 && (move_hash[:base_damage] || 0) != 0
+              raise _INTL("Move {1} is defined as a Status move with a non-zero base damage.\r\n{2}",
+                          move_hash[:name], FileLineData.linereport)
+            elsif (move_hash[:category] || 2) != 2 && (move_hash[:base_damage] || 0) == 0
+              print _INTL("Warning: Move {1} was defined as Physical or Special but had a base damage of 0. Changing it to a Status move.\r\n{2}",
+                          move_hash[:name], FileLineData.linereport)
+              move_hash[:category] = 2
+            end
+            GameData::Move.register(move_hash)
+          end
+          # Parse move ID
+          move_id = $~[1].to_sym
+          if GameData::Move.exists?(move_id)
+            raise _INTL("Move ID '{1}' is used twice.\r\n{2}", move_id, FileLineData.linereport)
+          end
+          # Construct move hash
+          move_hash = {
+            :id_number        => idx,
+            :id               => move_id,
+            :primeval         => primeval,
+            :cut              => cut,
+            :tectonic_new     => tectonic_new,
+            :zmove            => zmove,
+          }
+        elsif line[/^\s*(\w+)\s*=\s*(.*)\s*$/]   # XXX=YYY lines
+          if !move_hash
+            raise _INTL("Expected a section at the beginning of the file.\r\n{1}", FileLineData.linereport)
+          end
+          # Parse property and value
+          property_name = $~[1]
+          line_schema = schema[property_name]
+          next if !line_schema
+          property_value = pbGetCsvRecord($~[2], line_no, line_schema)
+          # Record XXX=YYY setting
+          move_hash[line_schema[0]] = property_value
+          case property_name
+            when "Name"
+              move_names.push(move_hash[:name])
+            when "Description"
+              move_descriptions.push(move_hash[:description])
+            when "FunctionCode"
+              moveFunction = move_hash[:function_code]
+              className = sprintf("PokeBattle_Move_%s", moveFunction)
+              unless Object.const_defined?(className)
+                raise _INTL("A class for the move function code #{moveFunction} given for move #{move_hash[:id]}
+                  does not exist!\r\n{1}",FileLineData.linereport)
+              end
+          end
         end
-        # Sanitise data
-        if line[6] == 2 && line[4] != 0
-          raise _INTL("Move {1} is defined as a Status move with a non-zero base damage.\r\n{2}", line[2], FileLineData.linereport)
-        elsif line[6] != 2 && line[4] == 0
-          print _INTL("Warning: Move {1} was defined as Physical or Special but had a base damage of 0. Changing it to a Status move.\r\n{2}", line[2], FileLineData.linereport)
-          line[6] = 2
-        end
-        animation_move = line[14].nil? ? nil : line[14].to_sym
-        # Construct move hash
-        move_hash = {
-          :id_number        => move_number,
-          :id               => move_symbol,
-          :name             => line[2],
-          :function_code    => line[3],
-          :base_damage      => line[4],
-          :type             => line[5],
-          :category         => line[6],
-          :accuracy         => line[7],
-          :total_pp         => line[8],
-          :effect_chance    => line[9],
-          :target           => GameData::Target.get(line[10]).id,
-          :priority         => line[11],
-          :flags            => line[12],
-          :description      => line[13],
-          :animation_move   => animation_move,
-          :primeval         => primeval,
-          :cut              => cut,
-          :tectonic_new     => tectonic_new,
-          :zmove            => zmove,
-        }
-        # Add move's data to records
-        GameData::Move.register(move_hash)
-        move_names[move_number]        = move_hash[:name]
-        move_descriptions[move_number] = move_hash[:description]
       }
-      idBase += 1000
     end
+
+    # Add last move's data to records
+    if move_hash
+      # Sanitise data
+      if (move_hash[:category] || 2) == 2 && (move_hash[:base_damage] || 0) != 0
+        raise _INTL("Move {1} is defined as a Status move with a non-zero base damage.\r\n{2}", line[2], FileLineData.linereport)
+      elsif (move_hash[:category] || 2) != 2 && (move_hash[:base_damage] || 0) == 0
+        print _INTL("Warning: Move {1} was defined as Physical or Special but had a base damage of 0. Changing it to a Status move.\r\n{2}", line[2], FileLineData.linereport)
+        move_hash[:category] = 2
+      end
+      GameData::Move.register(move_hash)
+    end
+
     # Save all data
     GameData::Move.save
     MessageTypes.setMessagesAsHash(MessageTypes::Moves, move_names)
@@ -313,57 +353,22 @@ module Compiler
     Graphics.update
   end
 
-  def write_move(f, m)    
-    f.write(sprintf("%d,%s,%s,%s,%d,%s,%s,%d,%d,%d,%s,%d,%s,%s,%s\r\n",
-      m.id_number,
-      csvQuote(m.id.to_s),
-      csvQuote(m.real_name),
-      csvQuote(m.function_code),
-      m.base_damage,
-      m.type.to_s,
-      ["Physical", "Special", "Status"][m.category],
-      m.accuracy,
-      m.total_pp,
-      m.effect_chance,
-      m.target,
-      m.priority,
-      csvQuote(m.flags),
-      csvQuoteAlways(m.real_description),
-      m.animation_move.nil? ? "" : m.animation_move.to_s
-    ))
-  end
-
-  def rework_flags(move)
-    prunedFlags = m.flags.clone
-    prunedFlags.gsub!("a","")
-    prunedFlags.gsub!("f","")
-    prunedFlags.gsub!("g","")
-    prunedFlags.gsub!("l","")
-    prunedFlags.gsub!("n","")
-    prunedFlags.split("")
-
-    newFlags = []
-    flagMap = {
-      "b" => "CanProtect",
-      "c" => "CanMagicCoat",
-      "d" => "CanSnatch",
-      "e" => "CanMirrorMove",
-      "h" => "HighCriticalHitRate",
-      "i" => "Biting",
-      "j" => "Punch",
-      "k" => "Sound",
-      "m" => "Pulse",
-      "o" => "Dance",
-      "p" => "Blade",
-      "q" => "Wind",
-      "r" => "VeryHighCriticalHitRate",
-      "y" => "Empowered",
-    }
-    prunedFlags.split("").each do |flagLetter|
-      newFlags.push(flagMap[flagLetter])
-    end
-
-    newFlagsString = newFlags.join(";")
-    return newFlagsString
+  def write_move(f, move)    
+    f.write("\#-------------------------------\r\n")
+    f.write("[#{move.id}]\r\n")
+    f.write("Name = #{move.real_name}\r\n")
+    f.write("Type = #{move.type.to_s}\r\n")
+    category = ["Physical", "Special", "Status"][move.category]
+    f.write("Category = #{category}\r\n")
+    f.write("Power = #{move.base_damage}\r\n") if move.base_damage > 0
+    f.write("Accuracy = #{move.accuracy}\r\n")
+    f.write("TotalPP = #{move.total_pp}\r\n")
+    f.write("Target = #{move.target}\r\n")
+    f.write("Priority = #{move.priority}\r\n") if move.priority != 0
+    f.write("FunctionCode = #{move.function_code}\r\n")
+    f.write("Flags = #{move.flags.join(',')}\r\n") if move.flags.length > 0
+    f.write("EffectChance = #{move.effect_chance}\r\n") if move.effect_chance > 0
+    f.write("Description = #{move.real_description}\r\n")
+    f.write("Animation = #{move.animation_move.to_s}\r\n") if move.animation_move
   end
 end
