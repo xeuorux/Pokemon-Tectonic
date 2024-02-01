@@ -34,7 +34,7 @@ end
 #===============================================================================
 # Starts rainy weather. (Rain)
 #===============================================================================
-class PokeBattle_MoveStartRain8 < PokeBattle_WeatherMove
+class PokeBattle_Move_StartRain8 < PokeBattle_WeatherMove
     def initialize(battle, move)
         super
         @weatherType = :Rain
@@ -42,7 +42,7 @@ class PokeBattle_MoveStartRain8 < PokeBattle_WeatherMove
 end
 
 # Empowered Rain
-class PokeBattle_Move_602 < PokeBattle_MoveStartRain8
+class PokeBattle_Move_EmpoweredRain < PokeBattle_Move_StartRain8
     include EmpoweredMove
 
     def pbEffectGeneral(user)

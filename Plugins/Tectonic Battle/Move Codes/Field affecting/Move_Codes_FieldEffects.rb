@@ -43,7 +43,7 @@ end
 # For 5 rounds, increases gravity on the field. Pokémon cannot become airborne.
 # (Gravity)
 #===============================================================================
-class PokeBattle_Move_118 < PokeBattle_Move
+class PokeBattle_Move_StartGravity5 < PokeBattle_Move
     def initialize(battle, move)
         super
         @gravityDuration = 5

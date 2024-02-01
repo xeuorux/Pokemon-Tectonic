@@ -960,7 +960,7 @@ Category = Status
 Accuracy = 100
 TotalPP = 5
 Target = User
-FunctionCode = 179
+FunctionCode = RaiseUserMainStats2LoseThirdOfTotalHP
 Flags = CanSnatch,Sound
 Description = The user raises all its stats by two steps, at the cost of 1/3rd of its max HP.
 #-------------------------------
@@ -1901,7 +1901,7 @@ Power = 20
 Accuracy = 100
 TotalPP = 15
 Target = NearOther
-FunctionCode = 5FB
+FunctionCode = HitTwoToFiveTimesNumb
 Flags = CanProtect,CanMirrorMove
 EffectChance = 10
 Description = The user looses a flurry of open-palmed arm thrusts that hit two to five times in a row. Has a 10% chance to numb.
@@ -2020,7 +2020,7 @@ Accuracy = 0
 TotalPP = 5
 Target = User
 Priority = 3
-FunctionCode = 17F
+FunctionCode = RaiseUserMainStats2TrapUser
 Flags = CanSnatch
 Description = The user traps itself into the battle and raises all of their stats by two steps.
 #-------------------------------
@@ -2684,7 +2684,7 @@ Category = Status
 Accuracy = 0
 TotalPP = 15
 Target = NearOther
-FunctionCode = TransformUserIntoTUseLastMoveUsedByTargetarget
+FunctionCode = UseLastMoveUsedByTarget
 Description = The user counters the target by mimicking the target's last move.
 #-------------------------------
 [ROOST]
@@ -4715,7 +4715,7 @@ Category = Status
 Accuracy = 0
 TotalPP = 10
 Target = User
-FunctionCode = 03A
+FunctionCode = MaxUserAtkLoseHalfOfTotalHP
 Flags = CanSnatch,Sound
 Description = The user maximizes its Attack stat in exchange for HP equal to half its max HP.
 #-------------------------------
@@ -5185,7 +5185,7 @@ Category = Status
 Accuracy = 0
 TotalPP = 12
 Target = User
-FunctionCode = 035
+FunctionCode = LowerUserDefSpDef2RaiseUserAtkSpAtkSpd3
 Flags = CanSnatch
 Description = The user breaks its shell, lowering its defensive stats by two steps but raising attacking and Speed stats by three steps each.
 #-------------------------------
@@ -5977,7 +5977,7 @@ Category = Status
 Accuracy = 0
 TotalPP = 5
 Target = BothSides
-FunctionCode = 118
+FunctionCode = StartGravity5
 Description = Gravity is intensified for five turns, forcing Pokemon down from the air and doubling all move accuracy.
 #-------------------------------
 [GUARDSPLIT]
@@ -6641,7 +6641,7 @@ Category = Status
 Accuracy = 0
 TotalPP = 12
 Target = User
-FunctionCode = 031
+FunctionCode = RaiseUserSpeed4LowerUserWeight
 Flags = CanSnatch
 Description = The user sheds part of its body to make itself lighter and raise its Speed by four steps.
 #-------------------------------
@@ -7020,7 +7020,7 @@ Category = Status
 Accuracy = 0
 TotalPP = 10
 Target = BothSides
-FunctionCode = 
+FunctionCode = StartRain8
 Description = Summons rain for eight turns, boosting Water-type attacks and hindering most others.
 #-------------------------------
 [SOAK]

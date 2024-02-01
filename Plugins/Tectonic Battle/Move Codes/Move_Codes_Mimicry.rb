@@ -154,7 +154,7 @@ end
 #===============================================================================
 # Uses the last move that the target used. (Mirror Move)
 #===============================================================================
-class PokeBattle_Move_TransformUserIntoTUseLastMoveUsedByTargetarget < PokeBattle_Move
+class PokeBattle_Move_UseLastMoveUsedByTarget < PokeBattle_Move
     def ignoresSubstitute?(_user); return true; end
     def callsAnotherMove?; return true; end
 

@@ -2,7 +2,7 @@
 # Reduces the user's HP by half of max, and sets its Attack to maximum.
 # (Belly Drum)
 #===============================================================================
-class PokeBattle_Move_03A < PokeBattle_Move
+class PokeBattle_Move_MaxUserAtkLoseHalfOfTotalHP < PokeBattle_Move
     def statUp; return [:ATTACK,12]; end
 
     def pbMoveFailed?(user, _targets, show_message)
@@ -33,7 +33,7 @@ end
 #===============================================================================
 # Reduces the user's HP by half of max, and sets its Sp. Atk to maximum.
 #===============================================================================
-class PokeBattle_Move_SpAtkMaxHalveHealth < PokeBattle_Move
+class PokeBattle_Move_MaxUserSpAtkLoseHalfOfTotalHP < PokeBattle_Move
     def statUp; return [:SPECIAL_ATTACK,12]; end
 
     def pbMoveFailed?(user, _targets, show_message)
@@ -66,7 +66,7 @@ end
 # Increases the user's Attack, Speed and Special Attack by 3 steps each.
 # (Shell Smash)
 #===============================================================================
-class PokeBattle_Move_035 < PokeBattle_StatUpDownMove
+class PokeBattle_Move_LowerUserDefSpDef2RaiseUserAtkSpAtkSpd3 < PokeBattle_StatUpDownMove
     def initialize(battle, move)
         super
         @statUp   = [:ATTACK, 3, :SPECIAL_ATTACK, 3, :SPEED, 3]
@@ -78,7 +78,7 @@ end
 # Increases the user's Speed by 4 steps. Lowers user's weight by 100kg.
 # (Autotomize)
 #===============================================================================
-class PokeBattle_Move_031 < PokeBattle_StatUpMove
+class PokeBattle_Move_RaiseUserSpeed4LowerUserWeight < PokeBattle_StatUpMove
     def initialize(battle, move)
         super
         @statUp = [:SPEED, 4]
@@ -97,7 +97,7 @@ end
 # Raises all user's stats by 2 steps in exchange for the user losing 1/3 of its
 # maximum HP, rounded down. Fails if the user would faint. (Clangorous Soul)
 #===============================================================================
-class PokeBattle_Move_179 < PokeBattle_MultiStatUpMove
+class PokeBattle_Move_RaiseUserMainStats2LoseThirdOfTotalHP < PokeBattle_MultiStatUpMove
     def initialize(battle, move)
         super
         @statUp = ALL_STATS_2
@@ -126,7 +126,7 @@ end
 #===============================================================================
 # Increases each stat by 1 step. Prevents user from fleeing. (No Retreat)
 #===============================================================================
-class PokeBattle_Move_17F < PokeBattle_MultiStatUpMove
+class PokeBattle_Move_RaiseUserMainStats2TrapUser < PokeBattle_MultiStatUpMove
     def initialize(battle, move)
         super
         @statUp = ALL_STATS_2
@@ -176,7 +176,7 @@ end
 # Increases the user's Sp. Atk by 1 step, and Speed by 2 steps.
 # (Shed Coat)
 #===============================================================================
-class PokeBattle_Move_5A2 < PokeBattle_StatUpDownMove
+class PokeBattle_Move_RaiseUserSpAtk1Speed2LowerUserSpDef1 < PokeBattle_StatUpDownMove
     def initialize(battle, move)
         super
         @statUp   = [:SPEED, 3, :SPECIAL_ATTACK, 3]

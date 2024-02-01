@@ -292,7 +292,7 @@ class PokeBattle_Move_DisableTargetUsingDifferentMove4 < PokeBattle_Move
             "ReplaceMoveWithTargetLastMoveUsed",   # Sketch
             "TransformUserIntoTarget",   # Transform
             # Moves that call other moves
-            "TransformUserIntoTUseLastMoveUsedByTargetarget", # Mirror Move
+            "UseLastMoveUsedByTarget", # Mirror Move
             "UseLastMoveUsed",   # Copycat
             "UseMoveTargetIsAboutToUse",   # Me First
             "UseMoveDependingOnEnvironment",   # Nature Power
