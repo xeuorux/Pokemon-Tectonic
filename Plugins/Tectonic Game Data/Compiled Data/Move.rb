@@ -228,7 +228,6 @@ module Compiler
       zmove = path == "PBS/moves_z.txt"
 
       pbCompilerEachPreppedLine(path) { |line, line_no|
-        echo "." if idx % 500 == 0
         idx += 1
         if line[/^\s*\[\s*(.+)\s*\]\s*$/]   # New section [move_id]
           # Add previous move's data to records
