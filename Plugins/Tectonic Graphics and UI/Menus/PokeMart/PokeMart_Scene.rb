@@ -29,7 +29,9 @@ class PokemonMart_Scene
       @adapter = adapter
       @sprites = {}
       @sprites["background"] = IconSprite.new(0, 0, @viewport)
-      @sprites["background"].setBitmap("Graphics/Pictures/martScreen")
+      bg_path = "Graphics/Pictures/martScreen"
+      bg_path += "_dark" if $PokemonSystem.dark_mode == 0
+      @sprites["background"].setBitmap(bg_path)
       @sprites["icon"] = ItemIconSprite.new(36, Graphics.height - 50, nil, @viewport)
       winAdapter = buying ? BuyAdapter.new(adapter) : SellAdapter.new(adapter)
       @sprites["itemwindow"] = Window_PokemonMart.new(stock, winAdapter,
