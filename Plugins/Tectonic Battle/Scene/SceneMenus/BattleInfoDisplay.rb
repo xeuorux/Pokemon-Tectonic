@@ -26,9 +26,14 @@ class BattleInfoDisplay < SpriteWrapper
     @spriteY      			= 0
 	@selected	  			= 0
 	@individual   			= nil
-	@field					= false
-	@battleInfoMain			= AnimatedBitmap.new("Graphics/Pictures/Battle/battle_info_main")
-	@battleInfoIndividual	= AnimatedBitmap.new("Graphics/Pictures/Battle/battle_info_individual")
+	@field					= 
+	battleInfoMainPath       = "Graphics/Pictures/Battle/battle_info_main"
+	battleInfoMainPath       += "_dark" if $PokemonSystem.dark_mode == 0
+	@battleInfoMain			 = AnimatedBitmap.new(battleInfoMainPath)
+	battleInfoIndividualPath = "Graphics/Pictures/Battle/battle_info_individual"
+	battleInfoIndividualPath += "_dark" if $PokemonSystem.dark_mode == 0
+	@battleInfoIndividual	 = AnimatedBitmap.new(battleInfoIndividualPath)
+
 	@backgroundBitmap  		= @battleInfoMain
 	@statusCursorBitmap  	= AnimatedBitmap.new("Graphics/Pictures/Battle/cursor_status")
 	
