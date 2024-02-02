@@ -6,7 +6,9 @@ class PokemonBoxPartySprite < SpriteWrapper
     def initialize(party, viewport = nil)
         super(viewport)
         @party = party
-        @boxbitmap = AnimatedBitmap.new("Graphics/Pictures/Storage/overlay_party")
+        party_path = "Graphics/Pictures/Storage/overlay_party"
+        party_path += "_dark" if $PokemonSystem.dark_mode == 0
+        @boxbitmap = AnimatedBitmap.new(party_path)
         @pokemonsprites = []
         for i in 0...Settings::MAX_PARTY_SIZE
             @pokemonsprites[i] = nil
