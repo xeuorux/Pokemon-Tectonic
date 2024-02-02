@@ -375,6 +375,8 @@ class PokeBattle_StatDownMove < PokeBattle_Move
     def getEffectScore(user, _target)
         if user.hasActiveItemAI?(:EJECTPACK)
             return getSwitchOutEffectScore(user)
+        elsif user.hasActiveAbilityAI?(:WHITEHERB)
+            return -5 # Uses up the white herb
         else
             statDownAI = []
             for i in 0...@statDown.length / 2
