@@ -221,13 +221,13 @@ class PokeBattle_Battler
                 return true
             end
             if hasActiveAbility?(:HERBALIST)
-                return false if !HERB_ITEMS.include?(firstItem)
-                return false if !HERB_ITEMS.include?(item)
+                return false if !GameData::Item.get(firstItem).is_herb?
+                return false if !GameData::Item.get(item).is_herb?
                 return true
             end
             if hasActiveAbility?(:FASHIONABLE)
-                clothingA = CLOTHING_ITEMS.include?(firstItem)
-                clothingB = CLOTHING_ITEMS.include?(item)
+                clothingA = GameData::Item.get(firstItem).is_clothing?
+                clothingB = GameData::Item.get(item).is_clothing?
                 return clothingA != clothingB
             end
         end
@@ -411,7 +411,7 @@ class PokeBattle_Battler
         return false if @battle.field.effectActive?(:Gravity)
         return true if shouldTypeApply?(:FLYING, checkingForAI)
         return true if hasLevitate?(checkingForAI) && !@battle.moldBreaker
-        return true if shouldItemApply?(LEVITATION_ITEMS,checkingForAI)
+        return true if shouldItemApply?(GameData::Item::LEVITATION_ITEMS,checkingForAI)
         return true if effectActive?(:MagnetRise)
         return true if effectActive?(:Telekinesis)
         return false

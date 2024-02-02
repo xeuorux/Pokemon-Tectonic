@@ -22,7 +22,7 @@ BattleHandlers::EORGainItemAbility.add(:LARDER,
 BattleHandlers::EORGainItemAbility.add(:GOURMAND,
     proc { |ability, battler, battle|
         itemsCanAdd = []
-        PINCH_BERRIES.each do |pinch|
+        GameData::Item::PINCH_BERRIES.each do |pinch|
             next if GameData::Item.get(pinch).super
             next unless battler.canAddItem?(pinch)
             itemsCanAdd.push(pinch) 

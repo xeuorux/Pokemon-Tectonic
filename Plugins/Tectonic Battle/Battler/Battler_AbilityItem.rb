@@ -266,7 +266,7 @@ class PokeBattle_Battler
         unless itemIndex
             raise _INTL("Error: Asked to remove item #{item} from #{pbThis(true)}, but it doesn't have that item")
         end
-        disableEffect(:ChoiceBand) if CHOICE_LOCKING_ITEMS.include?(item)
+        disableEffect(:ChoiceBand) if GameData::Item.get(item).is_choice_locking?
         items.delete_at(itemIndex)
         applyEffect(:ItemLost) if items.length == 0
         refreshDataBox

@@ -21,20 +21,20 @@ module GameData
       DATA_FILENAME = "items.dat"
 
       SCHEMA = {
-      "Name"        => [:name,        "s"],
-      "NamePlural"  => [:name_plural, "s"],
-      "Pocket"      => [:pocket,      "v"],
-      "Price"       => [:price,       "u"],
-      "SellPrice"   => [:sell_price,  "u"],
-      "Description" => [:description, "q"],
-      "FieldUse"    => [:field_use,   "e", { "OnPokemon" => 1, "Direct" => 2, "TM" => 3,
-                                             "HM" => 4, "TR" => 5 }],
-      "BattleUse"   => [:battle_use,  "e", { "OnPokemon" => 1, "OnMove" => 2, "OnBattler" => 3,
-                                             "OnFoe" => 4, "Direct" => 5 }],
-      "Consumable"  => [:consumable,  "b"],
-      "Flags"       => [:flags,       "*s"],
-      "Move"        => [:move,        "e", :Move]
-    }
+        "Name"        => [:name,        "s"],
+        "NamePlural"  => [:name_plural, "s"],
+        "Pocket"      => [:pocket,      "v"],
+        "Price"       => [:price,       "u"],
+        "SellPrice"   => [:sell_price,  "u"],
+        "Description" => [:description, "q"],
+        "FieldUse"    => [:field_use,   "e", { "OnPokemon" => 1, "Direct" => 2, "TM" => 3,
+                                              "HM" => 4, "TR" => 5 }],
+        "BattleUse"   => [:battle_use,  "e", { "OnPokemon" => 1, "OnMove" => 2, "OnBattler" => 3,
+                                              "OnFoe" => 4, "Direct" => 5 }],
+        "Consumable"  => [:consumable,  "b"],
+        "Flags"       => [:flags,       "*s"],
+        "Move"        => [:move,        "e", :Move]
+      }
   
       extend ClassMethods
       include InstanceMethods
@@ -87,6 +87,13 @@ module GameData
         ret = sprintf("Graphics/Pictures/Mail/mail_%s", item_data.id)
         return pbResolveBitmap(ret) ? ret : nil
       end
+      
+      CLOTHING_ITEMS = []
+      CHOICE_LOCKING_ITEMS = []
+      NO_STATUS_USE_ITEMS = []
+      LEVITATION_ITEMS = []
+      FULL_HP_ENDURE_ITEMS = []
+      PINCH_BERRIES = []
   
       def initialize(hash)
         if !hash[:sell_price] && hash[:price]
@@ -110,6 +117,13 @@ module GameData
         @move             = hash[:move]
         @super            = hash[:super]       || false
         @cut              = hash[:cut]       || false
+
+        CLOTHING_ITEMS.push(@id) if is_clothing?
+        CHOICE_LOCKING_ITEMS.push(@id) if is_choice_locking?
+        NO_STATUS_USE_ITEMS.push(@id) if is_no_status_use?
+        LEVITATION_ITEMS.push(@id) if is_levitation?
+        FULL_HP_ENDURE_ITEMS.push(@id) if is_endure?
+        PINCH_BERRIES.push(@id) if is_pinch?
       end
   
       # @return [String] the translated name of this item
@@ -152,7 +166,7 @@ module GameData
         return @flags.include?("Clothing")
       end
 
-      def is_choice?
+      def is_choice_locking?
         return @flags.include?("ChoiceLocking")
       end
 

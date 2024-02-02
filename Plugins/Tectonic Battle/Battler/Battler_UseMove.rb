@@ -109,7 +109,7 @@ class PokeBattle_Battler
             end
         end
         # Choice Items
-        if !effectActive?(:ChoiceBand) && hasActiveItem?(CHOICE_LOCKING_ITEMS)
+        if !effectActive?(:ChoiceBand) && hasActiveItem?(GameData::Item::CHOICE_LOCKING_ITEMS)
             if !@lastMoveUsed.nil? && pbHasMove?(@lastMoveUsed)
                 applyEffect(:ChoiceBand, @lastMoveUsed)
             elsif !@lastRegularMoveUsed.nil? && pbHasMove?(@lastRegularMoveUsed)

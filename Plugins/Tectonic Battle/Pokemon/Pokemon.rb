@@ -795,7 +795,7 @@ class Pokemon
       if hasAbility?(:HERBALIST)
         allHerbs = true
         itemSet.each do |item|
-            next if HERB_ITEMS.include?(item)
+            next if GameData::Item.get(item).is_herb?
             allHerbs = false
             break
         end
@@ -810,7 +810,7 @@ class Pokemon
       if hasAbility?(:FASHIONABLE)
           clothingCount = 0
           itemSet.each do |item|
-              next unless CLOTHING_ITEMS.include?(item)
+              next unless GameData::Item.get(item).is_clothing?
               clothingCount += 1
           end
           if clothingCount == 0

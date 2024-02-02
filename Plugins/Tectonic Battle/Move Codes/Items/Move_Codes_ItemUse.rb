@@ -80,7 +80,7 @@ class PokeBattle_Move_GiftItem < PokeBattle_Move
 
     def getEffectScore(user, target)
         if user.hasActiveItemAI?(%i[FLAMEORB POISONORB FROSTORB STICKYBARB
-                                  IRONBALL]) || user.hasActiveItemAI?(CHOICE_LOCKING_ITEMS)
+                                  IRONBALL]) || user.hasActiveItemAI?(GameData::Item::CHOICE_LOCKING_ITEMS)
             if user.opposes?(target)
                 return 100
             else
@@ -124,23 +124,6 @@ end
 # User flings its item at the target. Power/effect depend on the item. (Fling)
 #===============================================================================
 class PokeBattle_Move_Fling < PokeBattle_Move
-    def initialize(battle, move)
-        super
-        @flingPowers = {}
-
-        # Highest BP
-        category1 = %i[IRONBALL PEARLOFFATE]
-
-        # Middle BP
-        category2 = []
-        category2.concat(CHOICE_LOCKING_ITEMS)
-        category2.concat(WEATHER_ROCK_ITEMS)
-        category2.concat(RECOIL_ITEMS)
-
-        @flingPowers[150] = category1
-        @flingPowers[100] = category2
-    end
-
     def validItem(user,item)
         return !(user.unlosableItem?(item) || GameData::Item.get(item).is_mega_stone?)
     end
@@ -206,8 +189,16 @@ class PokeBattle_Move_Fling < PokeBattle_Move
     def pbNumHits(_user, _targets, _checkingForAI = false); return 1; end
 
     def pbBaseDamage(_baseDmg, user, _target)
-        @flingPowers.each do |power, items|
-            return power if items.include?(@chosenItem)
+        if @chosenItem
+            if %i[IRONBALL PEARLOFFATE].include?(@chosenItem)
+                return 150
+            end
+            itemData = GameData::Item.get(@chosenItem)
+            if itemData.is_choice_locking? ||
+                itemData.is_weather_rock? ||
+                itemData.is_attacker_recoil?
+                return 100
+            end
         end
         return 75
     end
@@ -433,7 +424,7 @@ class PokeBattle_Move_SwapItems < PokeBattle_Move
     def getEffectScore(user, target)
         if user.hasActiveItemAI?(%i[FLAMEORB POISONORB STICKYBARB IRONBALL])
             return 130
-        elsif user.hasActiveItemAI?(CHOICE_LOCKING_ITEMS)
+        elsif user.hasActiveItemAI?(GameData::Item::CHOICE_LOCKING_ITEMS)
             return 100
         elsif !user.firstItem && target.firstItem
             if user.lastMoveUsed && GameData::Move.get(user.lastMoveUsed).function_code == "SwapItems" # Trick/Switcheroo

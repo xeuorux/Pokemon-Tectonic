@@ -165,7 +165,7 @@ class PokeBattle_Move_DestroysHerbs < PokeBattle_Move
         return unless canBlightTargetsItem?(target)
         target.eachItemWithName do |item, itemName|
             next unless canRemoveItem?(user, target, item)
-            next unless HERB_ITEMS.include?(item)
+            next unless GameData::Item.get(item).is_herb?
             target.removeItem(item)
             @battle.pbDisplay(_INTL("{1}'s {2} was blighted!", target.pbThis, itemName))
         end
@@ -176,7 +176,7 @@ class PokeBattle_Move_DestroysHerbs < PokeBattle_Move
         score = 0
         target.eachAIKnownItem do |item|
             next unless canRemoveItem?(user, target, item, checkingForAI: true)
-            next unless HERB_ITEMS.include?(item)
+            next unless GameData::Item.get(item).is_herb?
             score += 30
         end
         return score
@@ -200,7 +200,7 @@ class PokeBattle_Move_DestroysClothing < PokeBattle_Move
         return unless canIncinerateTargetsItem?(target)
         target.eachItemWithName do |item, itemName|
             next unless canRemoveItem?(user, target, item)
-            next unless CLOTHING_ITEMS.include?(item)
+            next unless GameData::Item.get(item).is_clothing?
             target.removeItem(item)
             @battle.pbDisplay(_INTL("{1}'s {2} went up in flames!", target.pbThis, itemName))
         end
@@ -211,7 +211,7 @@ class PokeBattle_Move_DestroysClothing < PokeBattle_Move
         score = 0
         target.eachAIKnownItem do |item|
             next unless canRemoveItem?(user, target, item, checkingForAI: true)
-            next unless CLOTHING_ITEMS.include?(item)
+            next unless GameData::Item.get(item).is_clothing?
             score += 30
         end
         return score
