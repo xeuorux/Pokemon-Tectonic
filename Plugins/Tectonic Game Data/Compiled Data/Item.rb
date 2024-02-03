@@ -150,6 +150,14 @@ module GameData
       def is_TR?;                   return @field_use == 6; end
       def is_machine?;              return is_TM? || is_HM? || is_TR?; end
 
+      def is_poke_ball?
+        return @flags.include?("PokeBall")
+      end
+
+      def is_snag_ball?
+        return @flags.include?("SnagBall")
+      end
+
       def is_mail?
         return @flags.include?("Mail")
       end
