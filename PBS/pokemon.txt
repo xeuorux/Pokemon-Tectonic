@@ -17440,7 +17440,7 @@ InternalName = PALPITOAD
 Type1 = POISON
 Type2 = GROUND
 # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
-BaseStats = 75,70,60,79,70,55
+BaseStats = 80,70,65,65,80,60
 # Total = 409
 GenderRate = Female50Percent
 GrowthRate = Parabolic
