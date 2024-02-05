@@ -364,10 +364,13 @@ class PokeBattle_Battle
         pbStartBattleSendOut(sendOuts) unless @autoTesting
         # Curses apply if at all
         if @opponent && $PokemonGlobal.tarot_amulet_active
+            @statItemsAreMetagameRevealed = false
             @opponent.each do |opponent|
                 opponent.policies.each do |policy|
                     cursesToAdd = triggerBattleStartApplyCurse(policy, self, [])
                     curses.concat(cursesToAdd)
+
+                    @metaGamingStatItems = true if policy == :METAGAMES_STAT_ITEMS
                 end
             end
         end

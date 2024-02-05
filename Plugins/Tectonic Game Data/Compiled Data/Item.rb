@@ -94,6 +94,7 @@ module GameData
       LEVITATION_ITEMS = []
       FULL_HP_ENDURE_ITEMS = []
       PINCH_BERRIES = []
+      LEFTOVERS_ITEMS = []
   
       def initialize(hash)
         if !hash[:sell_price] && hash[:price]
@@ -124,6 +125,7 @@ module GameData
         LEVITATION_ITEMS.push(@id) if is_levitation?
         FULL_HP_ENDURE_ITEMS.push(@id) if is_endure?
         PINCH_BERRIES.push(@id) if is_pinch?
+        LEFTOVERS_ITEMS.push(@id) if is_leftovers?
       end
   
       # @return [String] the translated name of this item

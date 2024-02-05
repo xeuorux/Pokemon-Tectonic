@@ -21,6 +21,14 @@ class PokeBattle_Battler
         if switchIn
             eachActiveItem do |item|
                 BattleHandlers.triggerItemOnSwitchIn(item, self, @battle)
+
+                if @battle.statItemsAreMetagameRevealed
+                    # Auto reveal vests and choice items
+                    itemData = GameData::Item.get(item)
+                    if itemData.is_no_status_use? || itemData.is_choice_locking?
+                        aiLearnsItem(item)
+                    end 
+                end
             end
         end
         # Berry check, status-curing ability check

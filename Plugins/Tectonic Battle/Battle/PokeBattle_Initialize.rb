@@ -62,6 +62,7 @@ class PokeBattle_Battle
     attr_accessor :turnsToSurvive
     attr_accessor :playerAmbushing
     attr_accessor :foeAmbushing
+    attr_reader   :statItemsAreMetagameRevealed
 
     #=============================================================================
     # Creating the battle class

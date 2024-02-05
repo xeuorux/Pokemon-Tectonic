@@ -58,26 +58,6 @@ class PokeBattle_Move_TypeDependsOnUserSpecialItem < PokeBattle_Move
                 :CHILLDRIVE => :ICE,
                 :DOUSEDRIVE => :WATER,
             }
-        elsif @id == :MULTIATTACK
-            @itemTypes = {
-                :FIGHTINGMEMORY => :FIGHTING,
-                :FLYINGMEMORY   => :FLYING,
-                :POISONMEMORY   => :POISON,
-                :GROUNDMEMORY   => :GROUND,
-                :ROCKMEMORY     => :ROCK,
-                :BUGMEMORY      => :BUG,
-                :GHOSTMEMORY    => :GHOST,
-                :STEELMEMORY    => :STEEL,
-                :FIREMEMORY     => :FIRE,
-                :WATERMEMORY    => :WATER,
-                :GRASSMEMORY    => :GRASS,
-                :ELECTRICMEMORY => :ELECTRIC,
-                :PSYCHICMEMORY  => :PSYCHIC,
-                :ICEMEMORY      => :ICE,
-                :DRAGONMEMORY   => :DRAGON,
-                :DARKMEMORY     => :DARK,
-                :FAIRYMEMORY    => :FAIRY,
-            }
         end
     end
 
@@ -107,6 +87,14 @@ class PokeBattle_Move_TypeDependsOnUserSpecialItem < PokeBattle_Move
             hitNum = 4 if t == :WATER
         end
         super
+    end
+    
+    def pbEffectAfterAllHits(user, target)
+        if @id == :TECHNOBLAST
+            @itemTypes.keys.each do |driveItem|
+                user.aiLearnsItem(driveItem)
+            end
+        end
     end
 end
 
