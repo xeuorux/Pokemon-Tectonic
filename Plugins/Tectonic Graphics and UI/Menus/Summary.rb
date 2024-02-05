@@ -238,7 +238,7 @@ class PokemonSummary_Scene
         @sprites["extraInfoOverlay"] = @extraInfoOverlay
         @extraInfoOverlay.y = moveInfoDisplayY
 
-        drawSelectedMove(new_move, @pokemon.moves[0])
+        drawSelectedMove(new_move, new_move)
         pbFadeInAndShow(@sprites)
     end
 
