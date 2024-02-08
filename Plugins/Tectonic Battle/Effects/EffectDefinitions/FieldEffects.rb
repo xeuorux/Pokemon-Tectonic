@@ -34,7 +34,7 @@ GameData::BattleEffect.register_effect(:Field, {
         battle.pbDisplay(_INTL("Gravity intensified!"))
         battle.eachBattler do |b|
             showMessage = false
-            if b.inTwoTurnAttack?("0C9", "0CC", "0CE")   # Fly/Bounce/Sky Drop
+            if b.inTwoTurnSkyAttack?
                 b.disableEffect(:TwoTurnAttack)
                 battle.pbClearChoice(b.index) unless b.movedThisRound?
                 showMessage = true

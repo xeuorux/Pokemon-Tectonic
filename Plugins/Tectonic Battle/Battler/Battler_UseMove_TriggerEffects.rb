@@ -57,6 +57,11 @@ class PokeBattle_Battler
                 PBDebug.log("[Lingering effect] #{target.pbThis}'s Beak Blast")
                 user.applyBurn(target) if move.physicalMove? && user.canBurn?(target, true, move)
             end
+            # Condensate
+            if target.effectActive?(:Condensate)
+                PBDebug.log("[Lingering effect] #{target.pbThis}'s Condensate")
+                user.applyFrostbite(target) if move.specialMove? && user.canFrostbite?(target, true, move)
+            end
             # Are set to move, but haven't yet
             if @battle.choices[target.index][0] == :UseMove && !target.movedThisRound?
                 # Shell Trap (make the trapper move next if the trap was triggered)

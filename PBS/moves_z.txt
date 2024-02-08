@@ -1,19 +1,199 @@
 ﻿# See the documentation on the wiki to learn how to edit this file.
-3001,BREAKNECKBLITZ,Breakneck Blitz,Z000,1,NORMAL,Physical,0,1,0,NearOther,0,,"The user builds up its momentum using its Z-Power and crashes into the target at full speed.",
-3002,ALLOUTPUMMELING,All-Out Pummeling,Z000,1,FIGHTING,Physical,0,1,0,NearOther,0,,"The user rams an energy orb created by its Z-Power into the target with full force.",
-3003,SUPERSONICSKYSTRIKE,Supersonic Skystrike,Z000,1,FLYING,Physical,0,1,0,NearOther,0,,"The user soars up with its Z-Power and plummets toward the target at full speed.",
-3004,ACIDDOWNPOUR,Acid Downpour,Z000,1,POISON,Physical,0,1,0,NearOther,0,,"The user creates a poisonous swamp using its Z-Power and sinks the target into it at full force.",
-3005,TECTONICRAGE,Tectonic Rage,Z000,1,GROUND,Physical,0,1,0,NearOther,0,,"The user burrows deep into the ground and slams into the target with the full force of its Z-Power.",
-3006,CONTINENTALCRUSH,Continental Crush,Z000,1,ROCK,Physical,0,1,0,NearOther,0,,"The user summons a huge rock mountain using its Z-Power and drops it onto the target with full force.",
-3007,SAVAGESPINOUT,Savage Spin-Out,Z000,1,BUG,Physical,0,1,0,NearOther,0,,"The user binds the target with full force with threads of silk that the user spits using its Z-Power.",
-3008,NEVERENDINGNIGHTMARE,Never-Ending Nightmare,Z000,1,GHOST,Physical,0,1,0,NearOther,0,,"Deep-seated grudges summoned by the user's Z-Power trap the target.",
-3009,CORKSCREWCRASH,Corkscrew Crash,Z000,1,STEEL,Physical,0,1,0,NearOther,0,,"The user spins very fast and rams into the target with the full force of its Z-Power.",
-3010,INFERNOOVERDRIVE,Inferno Overdrive,Z000,1,FIRE,Physical,0,1,0,NearOther,0,,"The user breathes a stream of intense fire toward the target with the full force of its Z-Power.",
-3011,HYDROVORTEX,Hydro Vortex,Z000,1,WATER,Physical,0,1,0,NearOther,0,,"The user creates a huge whirling current using its Z-Power to swallow the target with full force.",
-3012,BLOOMDOOM,Bloom Doom,Z000,1,GRASS,Physical,0,1,0,NearOther,0,,"The user collects energy from plants using its Z-Power and attacks the target with full force.",
-3013,GIGAVOLTHAVOC,Gigavolt Havoc,Z000,1,ELECTRIC,Physical,0,1,0,NearOther,0,,"The user hits the target with a powerful electric current collected by its Z-Power.",
-3014,SHATTEREDPSYCHE,Shattered Psyche,Z000,1,PSYCHIC,Physical,0,1,0,NearOther,0,,"The user controls the target with its Z-Power and hurts the target with full force.",
-3015,SUBZEROSLAMMER,Subzero Slammer,Z000,1,ICE,Physical,0,1,0,NearOther,0,,"The user dramatically drops the temperature using its Z-Power and freezes the target with full force.",
-3016,DEVASTATINGDRAKE,Devastating Drake,Z000,1,DRAGON,Physical,0,1,0,NearOther,0,,"The user materializes its aura using its Z-Power and attacks the target with full force.",
-3017,BLACKHOLEECLIPSE,Black Hole Eclipse,Z000,1,DARK,Physical,0,1,0,NearOther,0,,"The user gathers dark energy using its Z-Power and sucks the target into it.",
-3018,TWINKLETACKLE,Twinkle Tackle,Z000,1,FAIRY,Physical,0,1,0,NearOther,0,,"The user creates a very charming space using its Z-Power and totally toys with the target.",
+#-------------------------------
+[BREAKNECKBLITZ]
+Name = Breakneck Blitz
+Type = NORMAL
+Category = Physical
+Power = 1
+Accuracy = 0
+TotalPP = 1
+Target = NearOther
+FunctionCode = Invalid
+Description = The user builds up its momentum using its Z-Power and crashes into the target at full speed.
+#-------------------------------
+[ALLOUTPUMMELING]
+Name = All-Out Pummeling
+Type = FIGHTING
+Category = Physical
+Power = 1
+Accuracy = 0
+TotalPP = 1
+Target = NearOther
+FunctionCode = Invalid
+Description = The user rams an energy orb created by its Z-Power into the target with full force.
+#-------------------------------
+[SUPERSONICSKYSTRIKE]
+Name = Supersonic Skystrike
+Type = FLYING
+Category = Physical
+Power = 1
+Accuracy = 0
+TotalPP = 1
+Target = NearOther
+FunctionCode = Invalid
+Description = The user soars up with its Z-Power and plummets toward the target at full speed.
+#-------------------------------
+[ACIDDOWNPOUR]
+Name = Acid Downpour
+Type = POISON
+Category = Physical
+Power = 1
+Accuracy = 0
+TotalPP = 1
+Target = NearOther
+FunctionCode = Invalid
+Description = The user creates a poisonous swamp using its Z-Power and sinks the target into it at full force.
+#-------------------------------
+[TECTONICRAGE]
+Name = Tectonic Rage
+Type = GROUND
+Category = Physical
+Power = 1
+Accuracy = 0
+TotalPP = 1
+Target = NearOther
+FunctionCode = Invalid
+Description = The user burrows deep into the ground and slams into the target with the full force of its Z-Power.
+#-------------------------------
+[CONTINENTALCRUSH]
+Name = Continental Crush
+Type = ROCK
+Category = Physical
+Power = 1
+Accuracy = 0
+TotalPP = 1
+Target = NearOther
+FunctionCode = Invalid
+Description = The user summons a huge rock mountain using its Z-Power and drops it onto the target with full force.
+#-------------------------------
+[SAVAGESPINOUT]
+Name = Savage Spin-Out
+Type = BUG
+Category = Physical
+Power = 1
+Accuracy = 0
+TotalPP = 1
+Target = NearOther
+FunctionCode = Invalid
+Description = The user binds the target with full force with threads of silk that the user spits using its Z-Power.
+#-------------------------------
+[NEVERENDINGNIGHTMARE]
+Name = Never-Ending Nightmare
+Type = GHOST
+Category = Physical
+Power = 1
+Accuracy = 0
+TotalPP = 1
+Target = NearOther
+FunctionCode = Invalid
+Description = Deep-seated grudges summoned by the user's Z-Power trap the target.
+#-------------------------------
+[CORKSCREWCRASH]
+Name = Corkscrew Crash
+Type = STEEL
+Category = Physical
+Power = 1
+Accuracy = 0
+TotalPP = 1
+Target = NearOther
+FunctionCode = Invalid
+Description = The user spins very fast and rams into the target with the full force of its Z-Power.
+#-------------------------------
+[INFERNOOVERDRIVE]
+Name = Inferno Overdrive
+Type = FIRE
+Category = Physical
+Power = 1
+Accuracy = 0
+TotalPP = 1
+Target = NearOther
+FunctionCode = Invalid
+Description = The user breathes a stream of intense fire toward the target with the full force of its Z-Power.
+#-------------------------------
+[HYDROVORTEX]
+Name = Hydro Vortex
+Type = WATER
+Category = Physical
+Power = 1
+Accuracy = 0
+TotalPP = 1
+Target = NearOther
+FunctionCode = Invalid
+Description = The user creates a huge whirling current using its Z-Power to swallow the target with full force.
+#-------------------------------
+[BLOOMDOOM]
+Name = Bloom Doom
+Type = GRASS
+Category = Physical
+Power = 1
+Accuracy = 0
+TotalPP = 1
+Target = NearOther
+FunctionCode = Invalid
+Description = The user collects energy from plants using its Z-Power and attacks the target with full force.
+#-------------------------------
+[GIGAVOLTHAVOC]
+Name = Gigavolt Havoc
+Type = ELECTRIC
+Category = Physical
+Power = 1
+Accuracy = 0
+TotalPP = 1
+Target = NearOther
+FunctionCode = Invalid
+Description = The user hits the target with a powerful electric current collected by its Z-Power.
+#-------------------------------
+[SHATTEREDPSYCHE]
+Name = Shattered Psyche
+Type = PSYCHIC
+Category = Physical
+Power = 1
+Accuracy = 0
+TotalPP = 1
+Target = NearOther
+FunctionCode = Invalid
+Description = The user controls the target with its Z-Power and hurts the target with full force.
+#-------------------------------
+[SUBZEROSLAMMER]
+Name = Subzero Slammer
+Type = ICE
+Category = Physical
+Power = 1
+Accuracy = 0
+TotalPP = 1
+Target = NearOther
+FunctionCode = Invalid
+Description = The user dramatically drops the temperature using its Z-Power and freezes the target with full force.
+#-------------------------------
+[DEVASTATINGDRAKE]
+Name = Devastating Drake
+Type = DRAGON
+Category = Physical
+Power = 1
+Accuracy = 0
+TotalPP = 1
+Target = NearOther
+FunctionCode = Invalid
+Description = The user materializes its aura using its Z-Power and attacks the target with full force.
+#-------------------------------
+[BLACKHOLEECLIPSE]
+Name = Black Hole Eclipse
+Type = DARK
+Category = Physical
+Power = 1
+Accuracy = 0
+TotalPP = 1
+Target = NearOther
+FunctionCode = Invalid
+Description = The user gathers dark energy using its Z-Power and sucks the target into it.
+#-------------------------------
+[TWINKLETACKLE]
+Name = Twinkle Tackle
+Type = FAIRY
+Category = Physical
+Power = 1
+Accuracy = 0
+TotalPP = 1
+Target = NearOther
+FunctionCode = Invalid
+Description = The user creates a very charming space using its Z-Power and totally toys with the target.

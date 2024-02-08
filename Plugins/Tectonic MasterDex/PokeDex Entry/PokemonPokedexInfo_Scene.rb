@@ -704,7 +704,7 @@ sp.form) && !Settings::DEX_SHOWS_ALL_FORMS
     end
 
     MAX_LENGTH_MOVE_LIST = 7
-    MOVE_LIST_STARTING_Y = 54
+    MOVE_LIST_SUMMARY_MOVE_NAMES_Y_INIT = 54
 
     def drawPageLevelUpMoves
         bg_path = "Graphics/Pictures/Pokedex/bg_moves"
@@ -736,7 +736,7 @@ sp.form) && !Settings::DEX_SHOWS_ALL_FORMS
                     offsetX = 12
                     selected_move = move
                 end
-                moveDrawY = MOVE_LIST_STARTING_Y + 30 * displayIndex
+                moveDrawY = MOVE_LIST_SUMMARY_MOVE_NAMES_Y_INIT + 30 * displayIndex
                 drawTextEx(overlay, xLeft + offsetX, moveDrawY, 450, 1, levelLabel, moveColor, moveShadow)
                 drawFormattedTextEx(overlay, xLeft + 30 + offsetX, moveDrawY, 450, moveName, moveColor, moveShadow)
                 if listIndex == @scroll
@@ -805,7 +805,7 @@ sp.form) && !Settings::DEX_SHOWS_ALL_FORMS
                         selected_move = move
                         offsetX = 12
                     end
-                    moveDrawY = MOVE_LIST_STARTING_Y + 30 * displayIndex
+                    moveDrawY = MOVE_LIST_SUMMARY_MOVE_NAMES_Y_INIT + 30 * displayIndex
                     drawFormattedTextEx(overlay, xLeft + offsetX, moveDrawY, 450, moveName, moveColor, moveShadow)
                     if listIndex == @scroll
                         @sprites["selectionarrow"].y = moveDrawY - 4
@@ -1554,7 +1554,7 @@ sp.form) && !Settings::DEX_SHOWS_ALL_FORMS
                     highestLeftRepeat = repeats
                     oldpage = @page
                     @page -= 1
-                    @page = 1 if @page < 1
+                    @page = pageTitles.length - 1 if @page < 1 # Wrap around
                     if @page != oldpage
                         @scroll = -1
                         @horizontalScroll = 0
@@ -1569,7 +1569,7 @@ sp.form) && !Settings::DEX_SHOWS_ALL_FORMS
                     highestRightRepeat = repeats
                     oldpage = @page
                     @page += 1
-                    @page = pageTitles.length - 1 if @page > pageTitles.length - 1
+                    @page = 1 if @page > pageTitles.length - 1 # Wrap around
                     if @page != oldpage
                         @scroll = -1
                         @horizontalScroll = 0

@@ -158,7 +158,7 @@ class PokeBattle_Battler
     end
 
     def hasStatusPunishMove?
-        return pbHasMoveFunction?("07F") # Hex, Cruelty
+        return pbHasMoveFunction?("DoubleDamageTargetStatused") # Hex, Cruelty
     end
 
     def hasHealingMove?
@@ -309,7 +309,7 @@ class PokeBattle_Battler
 
     def canChoosePursuit?(target)
         eachAIKnownMoveWithIndex do |move, i|
-            next unless move.function == "088"
+            next unless move.function == "PursueSwitchingFoe"
             next unless @battle.pbCanChooseMove?(index, i, false)
             next if @battle.battleAI.aiPredictsFailure?(move, self, target)
             return move
@@ -476,7 +476,7 @@ class PokeBattle_Battler
 
     def eachPredictedProtectHitter(categoryOnly = -1)
         eachPredictedTargeter(categoryOnly) do |b|
-            next if b.inTwoTurnAttack?("0CD")
+            next if b.inTwoTurnAttack?("TwoTurnAttackInvulnerableRemoveProtections")
             yield b
         end
 

@@ -2056,7 +2056,7 @@ Pokemon = CINCCINO,70
 Pokemon = BEWEAR,70
     AbilityIndex = 0 # Intimidate
 #-------------------------------
-[DEVCOOLTRAINER_M4,Zeu]
+[DEVCOOLTRAINER_F,Zeu]
 Pokemon = GALVANTULA,70
     AbilityIndex = 0 # Ocular
 Pokemon = FERALIGATR,70

@@ -1,7 +1,6 @@
 BattleHandlers::AbilityOnHPDroppedBelowHalf.add(:EMERGENCYEXIT,
     proc { |ability, battler, battle|
         next false if battler.fainted?
-        next false if battler.effectActive?(:SkyDrop) || battler.inTwoTurnAttack?("0CE")   # Sky Drop
         # In wild battles
         if battle.wildBattle?
             next false if battler.opposes? && battle.pbSideBattlerCount(battler.index) > 1

@@ -181,8 +181,8 @@ class PokeBattle_Move
         modifiers[:accuracy_multiplier] *= 1.5 if user.effectActive?(:Spotting)
 
         if aiCheck
-            modifiers[:evasion_step] = 0 if @function == "0A9" # Chip Away
-            modifiers[:base_accuracy] = 0 if ["0A5", "139", "13A", "13B", "13C", "147"].include?(@name) # "Always hit"
+            modifiers[:evasion_step] = 0 if @function == "IgnoreTargetDefSpDefEvaStatStages" # Chip Away
+            modifiers[:base_accuracy] = 0 if ["AlwaysHits", "RemoveProtectionsBypassSubstituteAlwaysHits", "HyperspaceFury"].include?(@name) # "Always hit"
             modifiers[:base_accuracy] = 0 if user.effectActive?(:LockOn) && user.pointsAt?(:LockOnPos, target)
         end
     end
