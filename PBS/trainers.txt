@@ -795,11 +795,11 @@ Pokemon = APERSIAN,55
     AbilityIndex = 0 # Fur Coat
     Item = MENTALHERB
     EV = 20,20,5,0,20,5
-Pokemon = PERRSERKER,55
-    Moves = BULLETTRAIN,CLOSECOMBAT,DEEPBREATHING,NIGHTFELLING
-    AbilityIndex = 1 # Steely Spirit
+Pokemon = ADUGTRIO,55
+    Moves = SCORCHINGSANDS,FLASHCANNON,MIASMA,STARDANCE
+    AbilityIndex = 1 # Fascinate
     Item = UTILITYUMBRELLA
-    EV = 9,20,1,19,20,1
+    EV = 0,20,10,10,20,10
 #-------------------------------
 [COOLTRAINER_M7,Nero]
 Pokemon = MORPEKO,65
