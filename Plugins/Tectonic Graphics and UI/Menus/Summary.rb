@@ -128,7 +128,9 @@ class PokemonSummary_Scene
         @forget = false
         @typebitmap    = AnimatedBitmap.new(_INTL("Graphics/Pictures/types"))
         @markingbitmap = AnimatedBitmap.new("Graphics/Pictures/Summary/markings")
-        @moveInfoDisplayBitmap = AnimatedBitmap.new(_INTL("Graphics/Pictures/move_info_display_3x3"))
+        info_path = "Graphics/Pictures/move_info_display_3x3"
+        info_path += "_dark" if $PokemonSystem.dark_mode == 0
+        @moveInfoDisplayBitmap = AnimatedBitmap.new(_INTL(info_path))
         @sprites = {}
         @sprites["background"] = IconSprite.new(0, 0, @viewport)
         @sprites["pokemon"] = PokemonSprite.new(@viewport)
@@ -204,7 +206,9 @@ class PokemonSummary_Scene
         @page = 4
         @forget = true
         @typebitmap = AnimatedBitmap.new(_INTL("Graphics/Pictures/types"))
-        @moveInfoDisplayBitmap = AnimatedBitmap.new(_INTL("Graphics/Pictures/move_info_display_3x3"))
+        info_path = "Graphics/Pictures/move_info_display_3x3"
+        info_path += "_dark" if $PokemonSystem.dark_mode == 0
+        @moveInfoDisplayBitmap = AnimatedBitmap.new(_INTL(info_path))
         @sprites = {}
         @sprites["background"] = IconSprite.new(0, 0, @viewport)
         @sprites["overlay"] = BitmapSprite.new(Graphics.width, Graphics.height, @viewport)
@@ -862,8 +866,6 @@ class PokemonSummary_Scene
         overlay.clear
         base   = Color.new(248, 248, 248)
         shadow = Color.new(104, 104, 104)
-        moveBase   = $PokemonSystem.dark_mode == 0 ? Color.new(248, 248, 248) : Color.new(64, 64, 64)
-        moveShadow = $PokemonSystem.dark_mode == 0 ? Color.new(104, 104, 104) : Color.new(176, 176, 176)
         @sprites["pokemon"].visible = false
         @sprites["pokeicon"].visible = false
         textpos  = [[_INTL("MOVES"), 26, 10, 0, base, shadow]]
@@ -875,8 +877,8 @@ class PokemonSummary_Scene
     end
 
     def drawMoveNames(textpos,extra_move = nil)
-        moveBase   = Color.new(64, 64, 64)
-        moveShadow = Color.new(176, 176, 176)
+        moveBase   = $PokemonSystem.dark_mode == 0 ? Color.new(248, 248, 248) : Color.new(64, 64, 64)
+        moveShadow = $PokemonSystem.dark_mode == 0 ? Color.new(104, 104, 104) : Color.new(176, 176, 176)
         # Write move names
         for i in 0...Pokemon::MAX_MOVES
             move = @pokemon.moves[i]
@@ -905,8 +907,6 @@ class PokemonSummary_Scene
         overlay.clear
         base   = Color.new(248, 248, 248)
         shadow = Color.new(104, 104, 104)
-        moveBase   = $PokemonSystem.dark_mode == 0 ? Color.new(248, 248, 248) : Color.new(64, 64, 64)
-        moveShadow = $PokemonSystem.dark_mode == 0 ? Color.new(104, 104, 104) : Color.new(176, 176, 176)
         # Set background image
         if move_to_learn
             path = "Graphics/Pictures/Summary/bg_learnmove"
