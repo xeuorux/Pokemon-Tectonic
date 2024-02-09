@@ -255,7 +255,7 @@ class PokeBattle_AI
             unless user.hasActiveItemAI?(:PROXYFIST)
                 begin
                     scoreModifierTargetItem = 0
-                    target.eachActiveItem do |item|
+                    target.eachAIKnownActiveItem do |item|
                         scoreModifierTargetItem += 
                             BattleHandlers.triggerTargetItemOnHitAI(item, user, target, move, @battle, numHits)
                     end
