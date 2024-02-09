@@ -37,7 +37,7 @@ BattleHandlers::TargetItemOnHit.add(:ROCKYHELMET,
       next -10 * aiNumHits if aiCheck
       battle.pbDisplay(_INTL("{1} was hurt by the {2}!", user.pbThis, getItemName(item)))
       user.applyFractionalDamage(1.0 / 6.0)
-      user.aiLearnsItem(item)
+      target.aiLearnsItem(item)
   }
 )
 
@@ -48,7 +48,7 @@ BattleHandlers::TargetItemOnHit.add(:HIVISJACKET,
       next -10 * aiNumHits if aiCheck
       battle.pbDisplay(_INTL("{1} was hurt by the {2}!", user.pbThis, getItemName(item)))
       user.applyFractionalDamage(1.0 / 6.0)
-      user.aiLearnsItem(item)
+      target.aiLearnsItem(item)
   }
 )
 
@@ -114,6 +114,5 @@ BattleHandlers::TargetItemOnHit.add(:STICKYBARB,
       target.removeItem(item)
       battle.pbDisplay(_INTL("{1}'s {2} was transferred to {3}!",
          target.pbThis, getItemName(item), user.pbThis(true)))
-      user.aiLearnsItem(item)
   }
 )
