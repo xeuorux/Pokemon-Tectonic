@@ -177,7 +177,7 @@ class PokeBattle_Move_DestroysHerbs < PokeBattle_Move
         target.eachAIKnownItem do |item|
             next unless canRemoveItem?(user, target, item, checkingForAI: true)
             next unless GameData::Item.get(item).is_herb?
-            score += 30
+            score += 50
         end
         return score
     end
@@ -212,7 +212,7 @@ class PokeBattle_Move_DestroysClothing < PokeBattle_Move
         target.eachAIKnownItem do |item|
             next unless canRemoveItem?(user, target, item, checkingForAI: true)
             next unless GameData::Item.get(item).is_clothing?
-            score += 30
+            score += 50
         end
         return score
     end
