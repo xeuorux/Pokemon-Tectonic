@@ -40313,8 +40313,8 @@ Reins that people presented to the king. They enable Calyrex to connect and comm
 Riendas que se entregaron como ofrenda al rey. Permiten el entendimiento mutuo entre aquellos que están unidos y separan a Calyrex de su amado corcel.
 A charm that increases the Exp. Points that Pokémon can get. A machine-like object is inside the charm.
 Amuleto que aumenta los Puntos de Experiencia que reciben los Pokémon. Su interior contiene una especie de mecanismo.
-Holding it is said to increase the chance of getting a critical catch. Curiously, the charm doesn't shake much.
-Aumenta la probabilidad de lograr una captura crítica al llevarlo equipado. Curiosamente, apenas vibra,
+A charm that doubles the chance of getting a critical catch.
+Amuleto que duplica las posibilidades de conseguir una captura crítica.
 A long, durable rope. Use it to escape instantly from a cave or a dungeon.
 Cuerda larga y resistente que sirve para huir de cuevas y sitios cerrados en general. 
 A token which can be exchanged for a Grass-type at the Starter Store.

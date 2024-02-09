@@ -310,6 +310,7 @@ class PokeBattle_Battler
     end
 
     def refreshDataBox
+        return if @fake
         @battle.scene.pbRefreshOne(@index) if @battle.scene
     end
 
