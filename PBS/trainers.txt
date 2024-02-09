@@ -799,7 +799,7 @@ Pokemon = ADUGTRIO,55
     Moves = SCORCHINGSANDS,FLASHCANNON,MIASMA,STARDANCE
     AbilityIndex = 1 # Fascinate
     Item = UTILITYUMBRELLA
-    EV = 0,20,10,10,20,10
+    EV = 10,10,0,20,10,10
 #-------------------------------
 [COOLTRAINER_M7,Nero]
 Pokemon = MORPEKO,65
