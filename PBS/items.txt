@@ -792,6 +792,7 @@ Name = Luck Herb
 NamePlural = Luck Herbs
 Pocket = 5
 Price = 4000
+Flags = Herb
 Description = An item to be held by a Pokémon. Ensures a random additional affect activates once per battle.
 #-------------------------------
 [SKILLHERB]
@@ -799,6 +800,7 @@ Name = Skill Herb
 NamePlural = Skill Herbs
 Pocket = 5
 Price = 4000
+Flags = Herb
 Description = An item to be held by a Pokémon. Ensures a less than full accuracy move lands once per battle.
 #-------------------------------
 [LIFEORB]
