@@ -604,6 +604,19 @@ Pokemon = PRIMEAPE,25
     Moves = FIREFANG,ARMTHRUST,SHADOWPUNCH,BULKUP
     AbilityIndex = 1 # Dominating
 #-------------------------------
+[CLERK_F,Lily]
+Pokemon = PIKACHU,23
+    Moves = ELECTROBALL,AGILITY,NUZZLE,DRAININGKISS
+    AbilityIndex = 0 # Extreme Voltage
+Pokemon = SEALEO,24
+    Moves = AURORABEAM,WATERPULSE,YAWN,SYMBIOSIS
+    AbilityIndex = 0 # Full Blubber
+Pokemon = MFRILLISH,23
+    Gender = female
+    Moves = WILLOWISP,SPARK,JOLT,ASTONISH
+    AbilityIndex = 0 # Ruinous
+    Item = SITRUSBERRY
+#-------------------------------
 [PSYCHIC_F2,Ludmila]
 Pokemon = MIMEJR,26
     Moves = ENCORE,MAGEHAND,PIXIEPUNCH,ICEPUNCH
