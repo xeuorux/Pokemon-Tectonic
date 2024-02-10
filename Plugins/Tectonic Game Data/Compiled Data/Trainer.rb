@@ -31,12 +31,12 @@ module GameData
         "Moves"        		=> [:moves,             "*e",   :Move],
         "Ability"      		=> [:ability,           "s"],
         "AbilityIndex" 		=> [:ability_index,     "u"],
+        "ExtraAbilities" 	=> [:extra_abilities,   "*s"],
         "Item"         		=> [:item,              "*e",   :Item],
         "ItemType"        => [:item_type,         "e",    :Type],
         "Gender"       		=> [:gender,            "e", { "M" => 0, "m" => 0, "Male" => 0, "male" => 0, "0" => 0,
                                                       "F" => 1, "f" => 1, "Female" => 1, "female" => 1, "1" => 1 }],
         "Nature"       		=> [:nature,            "e",    :Nature],
-        "IV"           		=> [:iv,                "uUUUUU"],
         "EV"           		=> [:ev,               "uUUUUU"],
         "Happiness"   		=> [:happiness,         "u"],
         "Shiny"        		=> [:shininess,         "b"],
@@ -112,8 +112,7 @@ module GameData
         @pokemon        = hash[:pokemon]      || []
         @pokemon.each do |pkmn|
             GameData::Stat.each_main do |s|
-            pkmn[:iv][s.id] ||= 0 if pkmn[:iv]
-            pkmn[:ev][s.id] ||= 0 if pkmn[:ev]
+              pkmn[:ev][s.id] ||= 0 if pkmn[:ev]
             end
         end
         @removedPokemon 	= hash[:removed_pokemon] || []
@@ -214,7 +213,7 @@ module GameData
                     end
                 end
                 
-                trainer.party.push(parentPartyMember.clone) if !hasRemoveMatch
+                trainer.party.push(parentPartyMember.clone) unless hasRemoveMatch
             end
         end
 
@@ -241,6 +240,7 @@ module GameData
                 end
             end
 
+            # No base pkmn to inherit from found
             if pkmn.nil?
                 pkmn = Pokemon.new(species, level, trainer, false)
                 trainer.party.push(pkmn)
@@ -260,6 +260,12 @@ module GameData
               pkmn.ability_index = pkmn_data[:ability_index]
             elsif !pkmn_data[:ability].nil?
               pkmn.ability = pkmn_data[:ability]
+            end
+
+            if pkmn_data[:extra_abilities]
+              pkmn_data[:extra_abilities].each do |extraAbilityID|
+                pkmn.addExtraAbility(extraAbilityID)
+              end
             end
 
             itemInfo = pkmn_data[:item]
@@ -411,13 +417,6 @@ module Compiler
             property_value = [property_value] if !property_value.is_a?(Array)
             property_value.uniq!
             property_value.compact!
-          when "IV"
-            property_value = [property_value] if !property_value.is_a?(Array)
-            property_value.compact!
-            property_value.each do |iv|
-              next if iv <= Pokemon::IV_STAT_LIMIT
-              raise _INTL("Bad IV: {1} (must be 0-{2}).\r\n{3}", iv, Pokemon::IV_STAT_LIMIT, FileLineData.linereport)
-            end
           when "EV"
             property_value = [property_value] if !property_value.is_a?(Array)
             property_value.compact!
@@ -495,6 +494,17 @@ module Compiler
               else
                 current_pkmn[line_schema[0]] = property_value.to_sym
               end
+            when "ExtraAbilities"
+              extraAbilityArray = []
+              property_value.each do |extraAbilityText|
+                extraAbilitySymbol = extraAbilityText.to_sym
+                if !GameData::Ability.exists?(extraAbilitySymbol)
+                  raise _INTL("Value {1} isn't a defined Ability.\r\n{2}", extraAbilitySymbol, FileLineData.linereport)
+                else
+                  extraAbilityArray.push(extraAbilitySymbol)
+                end
+              end
+              current_pkmn[line_schema[0]] = extraAbilityArray
             when "IV", "EV"
               value_hash = {}
               GameData::Stat.each_main do |s|
@@ -606,6 +616,7 @@ module Compiler
       abilityName = GameData::Ability.get(abilityID).real_name
       f.write(sprintf("    AbilityIndex = %d # %s\r\n", pkmn[:ability_index], abilityName))
     end
+    f.write(sprintf("    ExtraAbilities = %s\r\n", pkmn[:extra_abilities].join(","))) if pkmn[:extra_abilities] && pkmn[:extra_abilities].length > 0
     itemInfo = pkmn[:item]
     if !itemInfo.nil?
       if itemInfo.is_a?(Array)
@@ -620,10 +631,8 @@ module Compiler
     evs_array = []
     GameData::Stat.each_main do |s|
       next if s.pbs_order < 0
-      ivs_array[s.pbs_order] = pkmn[:iv][s.id] if pkmn[:iv]
       evs_array[s.pbs_order] = pkmn[:ev][s.id] if pkmn[:ev]
     end
-    f.write(sprintf("    IV = %s\r\n", ivs_array.join(","))) if pkmn[:iv]
     f.write(sprintf("    EV = %s\r\n", evs_array.join(","))) if pkmn[:ev]
     f.write(sprintf("    Happiness = %d\r\n", pkmn[:happiness])) if pkmn[:happiness]
     f.write(sprintf("    Ball = %s\r\n", pkmn[:poke_ball])) if pkmn[:poke_ball]

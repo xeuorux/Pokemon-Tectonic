@@ -3839,19 +3839,26 @@ Pokemon = REAVOR,60
 #-------------------------------
 [LEADER_Samorn_2,Samorn,1]
 ExtendsVersion = 0
-Policies = CURSE_BOOSTED_SAND
-Pokemon = REAVOR,60
-    Position = 1
-    EV = 20,20,0,0,20,10
+Policies = CURSE_SAND_ABILITIES
+Pokemon = FLYGON,60
+    ExtraAbilities = SIRENSONG
 Pokemon = TOWERPODA,60
     Moves = DRACOMETEOR,BODYPRESS,FLASHCANNON,SANDSTORM
     AbilityIndex = 0 # Stubborn
+    ExtraAbilities = DESERTARMOR
     Item = DRAGONGEM
     EV = 10,20,20,0,20,0
+Pokemon = GARCHOMP,60
+    ExtraAbilities = SCOUREDSILHOUETTE
 Pokemon = VOLCARONA,60
     Moves = PSYCHIC,GIGADRAIN,BUGBUZZ,HEATWAVE
+    ExtraAbilities = SANDRUSH
     Item = FIREGEM
     EV = 12,20,0,18,20,0
+Pokemon = SAURENAID,60
+    ExtraAbilities = SANDSTREAM
+Pokemon = REAVOR,60
+    ExtraAbilities = SANDBURST
 #-------------------------------
 [FIREBREATHER,Bradley]
 Pokemon = COMFEY,49

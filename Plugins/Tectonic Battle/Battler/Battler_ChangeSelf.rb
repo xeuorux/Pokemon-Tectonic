@@ -645,6 +645,8 @@ class PokeBattle_Battler
         @ability_ids.concat(@pokemon.extraAbilities)
         @addedAbilities.clear
 
+        @addedAbilities.concat(@pokemon.extraAbilities)
+
         # Check for "has all legal ability" effects
         if initialization
             # Nothing can be disabling the item on initialization

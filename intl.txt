@@ -47319,6 +47319,8 @@ The battle begins with Hail. The effects of Hail are doubled.
 El combate empieza con Granizo. Los efectos del Granizo son duplicados.
 The battle begins with Sandstorm. The effects of Sandstorm are doubled.
 El combate empieza con Tormenta de Arena. Los efectos de la Tormenta de Arena son duplicados.
+The battle begins with Sandstorm. The foe has extra Sandstorm abilities!
+El combate empieza con Tormenta de Arena. ¡El enemigo tiene habilidades adicionales de Tormenta de Arena!
 Your Pokemon lose 10 levels for this fight. EXP goes to the Dispenser.
 Tus Pokémon pierden 10 niveles por esta pelea. La EXP va al Dispensador.
 Enemy Pokemon have all of their legal abilities!
