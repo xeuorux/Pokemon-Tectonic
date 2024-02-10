@@ -2113,6 +2113,12 @@ ShowArea = true
 Bicycle = true
 MapPosition = 0,15,16
 #-------------------------------
+[358]
+# Dr. Hekata's House
+Outdoor = false
+ShowArea = false
+Bicycle = false
+#-------------------------------
 [359]
 # Ruined Tower F2
 Outdoor = false
