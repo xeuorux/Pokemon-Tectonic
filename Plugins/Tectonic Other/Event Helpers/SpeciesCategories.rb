@@ -66,3 +66,8 @@ def isPirateCrew?(species)
 	array = [:EMPOLEON,:AMBIPOM,:DHELMISE,:OCTILLERY,:SCARODON,:RUBARIOR,:CHATOT,:BLASTOISE,:CRAWDAUNT]
 	return array.include?(species)
 end
+
+def isMushroom?(species)
+	array = [:PARAS,:PARASECT,:SHROOMISH,:BRELOOM,:FOONGUS,:AMOONGUSS,:MORELULL,:SHIINOTIC]
+	return array.include?(species)
+end
