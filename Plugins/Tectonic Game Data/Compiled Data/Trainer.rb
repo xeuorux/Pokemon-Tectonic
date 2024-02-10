@@ -45,6 +45,7 @@ module GameData
         "ExtendsVersion" 	=> [:extends_version,   "u"],
         "Extends"		 		  => [:extends,		        "esu",  :TrainerType],
         "Position"	 		  => [:assigned_position, "u"],
+        "ExtraTypes"      => [:extra_types,       "*e",   :Type]
       }
   
       extend ClassMethods
@@ -265,6 +266,12 @@ module GameData
             if pkmn_data[:extra_abilities]
               pkmn_data[:extra_abilities].each do |extraAbilityID|
                 pkmn.addExtraAbility(extraAbilityID)
+              end
+            end
+
+            if pkmn_data[:extra_types]
+              pkmn_data[:extra_types].each do |extraTypeID|
+                pkmn.addExtraType(extraTypeID)
               end
             end
 
@@ -606,7 +613,7 @@ module Compiler
     f.write(sprintf("    Form = %d\r\n", pkmn[:form])) if pkmn[:form] && pkmn[:form] > 0
     f.write(sprintf("    Gender = %s\r\n", (pkmn[:gender] == 1) ? "female" : "male")) if pkmn[:gender]
     f.write("    Shiny = yes\r\n") if pkmn[:shininess]
-    f.write("    Shadow = yes\r\n") if pkmn[:shadowness]
+    f.write(sprintf("    ExtraTypes = %s\r\n", pkmn[:extra_types].join(","))) if pkmn[:extra_types] && pkmn[:extra_types].length > 0
     f.write(sprintf("    Moves = %s\r\n", pkmn[:moves].join(","))) if pkmn[:moves] && pkmn[:moves].length > 0
     f.write(sprintf("    Ability = %s\r\n", pkmn[:ability])) if pkmn[:ability]
     if pkmn[:ability_index]

@@ -370,6 +370,10 @@ class Pokemon
       sp_data = species_data
       ret = [sp_data.type1]
       ret.push(sp_data.type2) if sp_data.type2 && sp_data.type2 != sp_data.type1
+      extraTypes.each do |extraType|
+        next if ret.include?(extraType)
+        ret.push(extraType)
+      end
       return ret
     end
   
@@ -385,6 +389,15 @@ class Pokemon
       likelySTABTypes = types
       likelySTABTypes.push(@itemTypeChosen) if hasItem?(:CRYSTALVEIL)
       return likelySTABTypes.include?(type)
+    end
+
+    def addExtraType(extraType)
+      extraTypes.push(extraType) unless extraTypes.include?(extraType)
+    end
+
+    def extraTypes
+      @extraTypes = [] if @extraTypes.nil?
+      return @extraTypes
     end
   
     #=============================================================================
@@ -1580,6 +1593,7 @@ class Pokemon
               reset_moves if withMoves
           end
       end
+      @extraTypes = []
   end
 
   def regeneratePersonalID

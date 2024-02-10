@@ -2736,6 +2736,18 @@ Pokemon = METAGROSS,45
 [LEADER_Noel_2,Noel,1]
 ExtendsVersion = 0
 Policies = CURSE_EXTRA_TYPES
+Pokemon = MRRIME,45
+    ExtraTypes = ROCK
+Pokemon = METAGROSS,45
+    ExtraTypes = FAIRY
+Pokemon = MPOLTEAGEIST,45
+    ExtraTypes = WATER
+Pokemon = CRABOMINABLE,45
+    ExtraTypes = GHOST
+Pokemon = BRUXISH,45
+    ExtraTypes = POISON
+Pokemon = GDARMANITAN,45
+    ExtraTypes = FIGHTING
 #-------------------------------
 [BLACKBELT2,Riccardo]
 Policies = SAND_TEAM,NO_PERFECT
