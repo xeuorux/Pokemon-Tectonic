@@ -41,7 +41,7 @@ class PokeBattle_Battler
 
     def inWeatherTeam
         policies = ownersPolicies
-        %i[SUN_TEAM RAIN_TEAM SAND_TEAM HAIL_TEAM ECLIPSE_TEAM MOONGLOW_TEAM].each do |weatherPolicy|
+        %i[SUN_TEAM RAIN_TEAM SANDSTORM_TEAM HAIL_TEAM ECLIPSE_TEAM MOONGLOW_TEAM].each do |weatherPolicy|
             return true if policies.include?(weatherPolicy)
         end
         return false

@@ -1453,7 +1453,7 @@ Pokemon = HAVALUGG,70
     EV = 20,20,10,0,20,0
 #-------------------------------
 [COWGIRL,Belle]
-Policies = SAND_TEAM
+Policies = SANDSTORM_TEAM
 Pokemon = HIPPOWDON,70
     Moves = STEALTHROCK,ROAR,ERODE,IGNITE
     AbilityIndex = 0 # Sand Stream
@@ -1718,7 +1718,7 @@ Pokemon = BEWEAR,70
     EV = 10,20,15,0,20,5
 #-------------------------------
 [RUINMANIAC2,Vladislav]
-Policies = SAND_TEAM
+Policies = SANDSTORM_TEAM
 Pokemon = RUNERIGUS,70
     Moves = ADAMANTINEPRESS,STEALTHROCK,WILLOWISP,CURSEDOATH
     AbilityIndex = 1 # Sand Stream

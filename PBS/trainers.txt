@@ -2001,7 +2001,7 @@ Pokemon = LAIRON,40
     AbilityIndex = 0 # Rock Head
 #-------------------------------
 [ROUGHNECK,Reese]
-Policies = SAND_TEAM
+Policies = SANDSTORM_TEAM
 Pokemon = PUPITAR,40
     AbilityIndex = 0 # Sand Burst
     Item = LEFTOVERS
@@ -2742,7 +2742,7 @@ Pokemon = GDARMANITAN,45
     ExtraTypes = FIGHTING
 #-------------------------------
 [BLACKBELT2,Riccardo]
-Policies = SAND_TEAM,NO_PERFECT
+Policies = SANDSTORM_TEAM,NO_PERFECT
 Pokemon = HIPPOWDON,53
     AbilityIndex = 0 # Sand Stream
     Item = SMOOTHROCK
@@ -3683,7 +3683,7 @@ Pokemon = CURSOLA,47
     Item = SITRUSBERRY
 #-------------------------------
 [POKEMONRANGER_M3,Grant]
-Policies = SAND_TEAM
+Policies = SANDSTORM_TEAM
 Pokemon = HIPPOWDON,47
     AbilityIndex = 0 # Sand Stream
     Item = EJECTBUTTON
@@ -3799,7 +3799,7 @@ Pokemon = DURANT,60
     AbilityIndex = 0 # Hustle
 #-------------------------------
 [LEADER_Samorn,Samorn]
-Policies = SAMORN,NO_PERFECT,SAND_TEAM
+Policies = SAMORN,NO_PERFECT,SANDSTORM_TEAM
 Pokemon = FLYGON,60
     Moves = DEVOURINGDUST,BUGBUZZ,DRAGONPULSE,ERODE
     AbilityIndex = 0 # Desert Spirit
@@ -6915,7 +6915,7 @@ Pokemon = LUDICOLO,70
     Item = KEBIABERRY
 #-------------------------------
 [WILDPACK,Arid]
-Policies = SAND_TEAM,NO_PERFECT
+Policies = SANDSTORM_TEAM,NO_PERFECT
 Pokemon = HIPPOWDON,70
     AbilityIndex = 0 # Sand Stream
     Item = SMOOTHROCK
