@@ -1,8 +1,9 @@
 SUMMARY_MOVE_NAMES_X_INIT = 10
 SUMMARY_MOVE_NAMES_X_OFFSET = 240
-SUMMARY_MOVE_NAMES_Y_INIT = 67
-SUMMARY_MOVE_NAMES_Y_OFFSET = 50
-SUMMARY_LEARNING_MOVE_NAME_Y = 2
+SUMMARY_MOVE_NAMES_Y_INIT = 69
+SUMMARY_MOVE_NAMES_Y_OFFSET = 44
+SUMMARY_LEARNING_MOVE_NAME_Y = 4
+MOVE_SEL_Y_OFFSET = 4
 
 #===============================================================================
 #
@@ -42,10 +43,10 @@ class MoveSelectionSprite < SpriteWrapper
         h = @movesel.height / 2
         if @fifthmove && index == Pokemon::MAX_MOVES
             self.x = SUMMARY_MOVE_NAMES_X_INIT + SUMMARY_MOVE_NAMES_X_OFFSET
-            self.y = SUMMARY_LEARNING_MOVE_NAME_Y
+            self.y = SUMMARY_LEARNING_MOVE_NAME_Y + MOVE_SEL_Y_OFFSET
         else
             self.x = SUMMARY_MOVE_NAMES_X_INIT + (index % 2) * SUMMARY_MOVE_NAMES_X_OFFSET
-            self.y = SUMMARY_MOVE_NAMES_Y_INIT + (index / 2) * SUMMARY_MOVE_NAMES_Y_OFFSET
+            self.y = SUMMARY_MOVE_NAMES_Y_INIT + (index / 2) * SUMMARY_MOVE_NAMES_Y_OFFSET + MOVE_SEL_Y_OFFSET
         end
         self.bitmap = @movesel.bitmap
         if preselected
