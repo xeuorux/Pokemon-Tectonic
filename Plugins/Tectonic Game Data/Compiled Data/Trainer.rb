@@ -158,13 +158,14 @@ module GameData
         return pbGetMessageFromHash(MessageTypes::TrainerLoseText, @real_lose_text)
       end
   
-      def getParentTrainer
-        parentTrainer = nil
+      def getParentTrainer(justData = false)
         if @extendsVersion > -1
             parentTrainerData = GameData::Trainer.get(@extendsClass || @trainer_type, @extendsName || @real_name, @extendsVersion)
+            return parentTrainerData if justData
             parentTrainer = pbLoadTrainer(parentTrainerData.trainer_type,parentTrainerData.real_name,parentTrainerData.version)
+            return parentTrainer
         end
-        return parentTrainer
+        return nil
       end
 
       # Creates a battle-ready version of a trainer's data.
@@ -306,13 +307,10 @@ module GameData
 
             pkmn.nature = 0
 
-            GameData::Stat.each_main do |s|
-                pkmn.iv[s.id] = 0
-                if pkmn_data[:ev]
-                    pkmn.ev[s.id] = pkmn_data[:ev][s.id]
-                else
-                    pkmn.ev[s.id] = DEFAULT_STYLE_VALUE
-                end
+            if pkmn_data[:ev]
+              GameData::Stat.each_main do |s|
+                pkmn.ev[s.id] = pkmn_data[:ev][s.id]
+              end
             end
 
             pkmn.happiness = pkmn_data[:happiness] if !pkmn_data[:happiness].nil?
@@ -512,7 +510,7 @@ module Compiler
                 end
               end
               current_pkmn[line_schema[0]] = extraAbilityArray
-            when "IV", "EV"
+            when "EV"
               value_hash = {}
               GameData::Stat.each_main do |s|
                 next if s.pbs_order < 0
@@ -578,6 +576,7 @@ module Compiler
     else
       f.write(sprintf("[%s,%s]\r\n", trainer.trainer_type, trainer.real_name))
     end
+    parentTrainer = trainer.getParentTrainer(true)
     if trainer.extendsVersion >= 0
       if !trainer.extendsClass.nil? && !trainer.extendsName.nil?
         f.write(sprintf("Extends = %s,%s,%s\r\n", trainer.extendsClass.to_s, trainer.extendsName.to_s, trainer.extendsVersion.to_s))
@@ -589,17 +588,30 @@ module Compiler
       f.write(sprintf("NameForHashing = %s\r\n", trainer.nameForHashing.to_s))
     end
     if trainer.policies && trainer.policies.length > 0
-      policiesString = ""
-      trainer.policies.each_with_index do |policy_symbol,index|
-        policiesString += policy_symbol.to_s
-        policiesString += "," if index < trainer.policies.length - 1
-      end
-      f.write(sprintf("Policies = %s\r\n", policiesString))
+      uniquePolicies = trainer.policies
+      uniquePolicies -= parentTrainer.policies if parentTrainer
+      f.write(sprintf("Policies = %s\r\n", uniquePolicies.join(",")))
     end
     f.write(sprintf("Items = %s\r\n", trainer.items.join(","))) if trainer.items.length > 0
+
     trainer.pokemon.each do |pkmn|
       f.write(sprintf("Pokemon = %s,%d\r\n", pkmn[:species], pkmn[:level]))
-      writePartyMember(f,pkmn)
+
+      inheritingPkmn = nil
+      if parentTrainer
+        parentTrainer.pokemon.each do |existingPokemon|
+          next if existingPokemon[:species] != pkmn[:species]
+          if existingPokemon[:level] == pkmn[:level]
+            inheritingPkmn = existingPokemon
+              break
+          elsif pkmn[:name] && pkmn[:name] == existingPokemon[:name]
+              inheritingPkmn = existingPokemon
+              break
+          end
+        end
+      end
+
+      writePartyMember(f,pkmn,inheritingPkmn)
     end
     trainer.removedPokemon.each do |pkmn|
       f.write(sprintf("RemovePokemon = %s,%d\r\n", pkmn[:species], pkmn[:level]))
@@ -607,41 +619,63 @@ module Compiler
     end
   end
 
-  def writePartyMember(f,pkmn)
+  def writePartyMember(f,pkmn,inheritingPkmn = nil)
     f.write(sprintf("    Position = %s\r\n", pkmn[:assigned_position])) if !pkmn[:assigned_position].nil?
     f.write(sprintf("    Name = %s\r\n", pkmn[:name])) if pkmn[:name] && !pkmn[:name].empty?
-    f.write(sprintf("    Form = %d\r\n", pkmn[:form])) if pkmn[:form] && pkmn[:form] > 0
-    f.write(sprintf("    Gender = %s\r\n", (pkmn[:gender] == 1) ? "female" : "male")) if pkmn[:gender]
-    f.write("    Shiny = yes\r\n") if pkmn[:shininess]
-    f.write(sprintf("    ExtraTypes = %s\r\n", pkmn[:extra_types].join(","))) if pkmn[:extra_types] && pkmn[:extra_types].length > 0
-    f.write(sprintf("    Moves = %s\r\n", pkmn[:moves].join(","))) if pkmn[:moves] && pkmn[:moves].length > 0
-    f.write(sprintf("    Ability = %s\r\n", pkmn[:ability])) if pkmn[:ability]
-    if pkmn[:ability_index]
+    if pkmn[:form] && pkmn[:form] > 0 && (inheritingPkmn.nil? || pkmn[:form] != inheritingPkmn[:form])
+      f.write(sprintf("    Form = %d\r\n", pkmn[:form]))
+    end
+    if pkmn[:gender] && (inheritingPkmn.nil? || pkmn[:gender] != inheritingPkmn[:gender])
+      f.write(sprintf("    Gender = %s\r\n", (pkmn[:gender] == 1) ? "female" : "male"))
+    end
+    if pkmn[:shininess] && (inheritingPkmn.nil? || pkmn[:shininess] != inheritingPkmn[:shininess])
+      f.write("    Shiny = yes\r\n")
+    end
+    if pkmn[:extra_types] && pkmn[:extra_types].length > 0 && (inheritingPkmn.nil? || pkmn[:extra_types] != inheritingPkmn[:extra_types])
+      f.write(sprintf("    ExtraTypes = %s\r\n", pkmn[:extra_types].join(",")))
+    end
+    if pkmn[:moves] && pkmn[:moves].length > 0 && (inheritingPkmn.nil? || pkmn[:moves] != inheritingPkmn[:moves])
+      f.write(sprintf("    Moves = %s\r\n", pkmn[:moves].join(",")))
+    end
+    if pkmn[:ability] && (inheritingPkmn.nil? || pkmn[:ability] != inheritingPkmn[:ability])
+      f.write(sprintf("    Ability = %s\r\n", pkmn[:ability]))
+    end
+    if pkmn[:ability_index] && (inheritingPkmn.nil? || pkmn[:ability_index] != inheritingPkmn[:ability_index])
       form = pkmn[:form] || 0
       sp_data = GameData::Species.get_species_form(pkmn[:species],form)
       abilityID = sp_data.abilities[pkmn[:ability_index]] || sp_data.abilities[0]
       abilityName = GameData::Ability.get(abilityID).real_name
       f.write(sprintf("    AbilityIndex = %d # %s\r\n", pkmn[:ability_index], abilityName))
     end
-    f.write(sprintf("    ExtraAbilities = %s\r\n", pkmn[:extra_abilities].join(","))) if pkmn[:extra_abilities] && pkmn[:extra_abilities].length > 0
-    itemInfo = pkmn[:item]
-    if !itemInfo.nil?
-      if itemInfo.is_a?(Array)
+    if pkmn[:extra_abilities] && pkmn[:extra_abilities].length > 0 && (inheritingPkmn.nil? || pkmn[:extra_abilities] != inheritingPkmn[:extra_abilities])
+      f.write(sprintf("    ExtraAbilities = %s\r\n", pkmn[:extra_abilities].join(",")))
+    end 
+    if pkmn[:item] && (inheritingPkmn.nil? || pkmn[:item] != inheritingPkmn[:item])
+      if pkmn[:item].is_a?(Array)
         f.write(sprintf("    Item = %s\r\n", pkmn[:item].join(","))) 
       else
         f.write(sprintf("    Item = %s\r\n", pkmn[:item])) 
       end
     end
-    f.write(sprintf("    ItemType = %s\r\n", pkmn[:item_type])) if pkmn[:item_type]
-    f.write(sprintf("    Nature = %s\r\n", pkmn[:nature])) if pkmn[:nature]
-    ivs_array = []
-    evs_array = []
-    GameData::Stat.each_main do |s|
-      next if s.pbs_order < 0
-      evs_array[s.pbs_order] = pkmn[:ev][s.id] if pkmn[:ev]
+    if pkmn[:item_type] && (inheritingPkmn.nil? || pkmn[:item_type] != inheritingPkmn[:item_type])
+      f.write(sprintf("    ItemType = %s\r\n", pkmn[:item_type]))
     end
-    f.write(sprintf("    EV = %s\r\n", evs_array.join(","))) if pkmn[:ev]
-    f.write(sprintf("    Happiness = %d\r\n", pkmn[:happiness])) if pkmn[:happiness]
-    f.write(sprintf("    Ball = %s\r\n", pkmn[:poke_ball])) if pkmn[:poke_ball]
+    if pkmn[:nature] && (inheritingPkmn.nil? || pkmn[:nature] != inheritingPkmn[:nature])
+      f.write(sprintf("    Nature = %s\r\n", pkmn[:nature]))
+    end
+    if pkmn[:ev] && (inheritingPkmn.nil? || pkmn[:ev] != inheritingPkmn[:ev])
+      evs_array = []
+      GameData::Stat.each_main do |s|
+        next if s.pbs_order < 0
+        evs_array[s.pbs_order] = pkmn[:ev][s.id]
+      end
+      f.write(sprintf("    EV = %s\r\n", evs_array.join(",")))
+    end
+    if pkmn[:happiness] && (inheritingPkmn.nil? || pkmn[:happiness] != inheritingPkmn[:happiness])
+      f.write(sprintf("    Happiness = %d\r\n", pkmn[:happiness]))
+    end
+    if pkmn[:poke_ball] && (inheritingPkmn.nil? || pkmn[:poke_ball] != inheritingPkmn[:poke_ball])
+      f.write(sprintf("    Ball = %s\r\n", pkmn[:poke_ball]))
+    end
   end
 end

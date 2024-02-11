@@ -239,37 +239,3 @@ def pbBalancedLevel(party)
   mean = mLevel if mean > mLevel
   return mean
 end
-
-#===============================================================================
-# Calculates a Pokémon's size (in millimeters)
-#===============================================================================
-def pbSize(pkmn)
-  baseheight = pkmn.height
-  hpiv = pkmn.iv[:HP] & 15
-  ativ = pkmn.iv[:ATTACK] & 15
-  dfiv = pkmn.iv[:DEFENSE] & 15
-  saiv = pkmn.iv[:SPECIAL_ATTACK] & 15
-  sdiv = pkmn.iv[:SPECIAL_DEFENSE] & 15
-  spiv = pkmn.iv[:SPEED] & 15
-  m = pkmn.personalID & 0xFF
-  n = (pkmn.personalID >> 8) & 0xFF
-  s = (((ativ ^ dfiv) * hpiv) ^ m) * 256 + (((saiv ^ sdiv) * spiv) ^ n)
-  xyz = []
-  if s < 10;       xyz = [ 290,   1,     0]
-  elsif s < 110;   xyz = [ 300,   1,    10]
-  elsif s < 310;   xyz = [ 400,   2,   110]
-  elsif s < 710;   xyz = [ 500,   4,   310]
-  elsif s < 2710;  xyz = [ 600,  20,   710]
-  elsif s < 7710;  xyz = [ 700,  50,  2710]
-  elsif s < 17710; xyz = [ 800, 100,  7710]
-  elsif s < 32710; xyz = [ 900, 150, 17710]
-  elsif s < 47710; xyz = [1000, 150, 32710]
-  elsif s < 57710; xyz = [1100, 100, 47710]
-  elsif s < 62710; xyz = [1200,  50, 57710]
-  elsif s < 64710; xyz = [1300,  20, 62710]
-  elsif s < 65210; xyz = [1400,   5, 64710]
-  elsif s < 65410; xyz = [1500,   2, 65210]
-  else;            xyz = [1700,   1, 65510]
-  end
-  return (((s - xyz[2]) / xyz[1] + xyz[0]).floor * baseheight / 10).floor
-end

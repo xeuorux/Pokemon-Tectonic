@@ -42,12 +42,6 @@ class Pokemon
     attr_accessor :poke_ball
     # @return [Integer] this Pokémon's markings, one bit per marking
     attr_accessor :markings
-    # @return [Hash<Integer>] a hash of IV values for HP, Atk, Def, Speed, Sp. Atk and Sp. Def
-    attr_accessor :iv
-    # An array of booleans indicating whether a stat is made to have maximum IVs
-    # (for Hyper Training). Set like @ivMaxed[:ATTACK] = true
-    # @return [Hash<Boolean>] a hash of booleans that max each IV value
-    attr_accessor :ivMaxed
     # @return [Hash<Integer>] this Pokémon's effort values
     attr_accessor :ev
     # @return [Integer] calculated stats
@@ -1388,18 +1382,6 @@ class Pokemon
       return ret
     end
   
-    # Returns this Pokémon's effective IVs, taking into account Hyper Training.
-    # Only used for calculating stats.
-    # @return [Hash<Integer>] hash containing this Pokémon's effective IVs
-    def calcIV
-      this_ivs = self.iv
-      ret = {}
-      GameData::Stat.each_main do |s|
-        ret[s.id] = (@ivMaxed[s.id]) ? IV_STAT_LIMIT : this_ivs[s.id]
-      end
-      return ret
-    end
-  
     # @return [Integer] the maximum HP of this Pokémon
     def calcHP(base, level, iv, ev)
       return 1 if base == 1   # For Shedinja
@@ -1500,12 +1482,8 @@ class Pokemon
     # @return [Pokemon] a copy of this Pokémon
     def clone
       ret = super
-      ret.iv          = {}
-      ret.ivMaxed     = {}
       ret.ev          = {}
       GameData::Stat.each_main do |s|
-        ret.iv[s.id]      = @iv[s.id]
-        ret.ivMaxed[s.id] = @ivMaxed[s.id]
         ret.ev[s.id]      = @ev[s.id]
       end
       ret.moves       = []
@@ -1553,11 +1531,8 @@ class Pokemon
       @happiness        = species_data.happiness
       @poke_ball        = :POKEBALL
       @markings         = 0
-      @iv               = {}
-      @ivMaxed          = {}
       @ev               = {}
       GameData::Stat.each_main do |s|
-          @iv[s.id] = 0
           @ev[s.id] = DEFAULT_STYLE_VALUE
       end
       if owner.is_a?(Owner)

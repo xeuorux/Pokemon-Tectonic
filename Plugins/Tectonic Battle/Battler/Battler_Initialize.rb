@@ -55,8 +55,6 @@ class PokeBattle_Battler
         @pokemonIndex   = -1
         @participants   = []
         @moves          = []
-        @iv             = {}
-        GameData::Stat.each_main { |s| @iv[s.id] = 0 }
         @boss	= false
         @bossStatus	= :NONE
         @bossStatusCount = 0
@@ -95,8 +93,6 @@ class PokeBattle_Battler
         @pokemonIndex = idxParty
         @participants = []
         # moves intentionally not copied across here
-        @iv           = {}
-        GameData::Stat.each_main { |s| @iv[s.id] = pkmn.iv[s.id] }
         @dummy = true
         @dmgMult   = 1
         @dmgResist = 0
@@ -135,8 +131,6 @@ class PokeBattle_Battler
         pkmn.moves.each_with_index do |m, i|
             @moves[i] = PokeBattle_Move.from_pokemon_move(@battle, m)
         end
-        @iv = {}
-        GameData::Stat.each_main { |s| @iv[s.id] = pkmn.iv[s.id] }
         @bossAI = PokeBattle_AI_Boss.from_boss_battler(self) if @pokemon.boss?
     end
 

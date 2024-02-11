@@ -262,7 +262,6 @@ class BugContestState
   def pbBugContestScore(pkmn)
     levelscore = pkmn.level * 4
     ivscore = 0
-    pkmn.iv.each_value { |iv| ivscore += iv.to_f / Pokemon::IV_STAT_LIMIT }
     ivscore = (ivscore * 100).floor
     hpscore = (100.0 * pkmn.hp / pkmn.totalhp).floor
     catch_rate = pkmn.species_data.catch_rate
