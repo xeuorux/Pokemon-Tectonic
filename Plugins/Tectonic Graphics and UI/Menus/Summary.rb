@@ -1267,21 +1267,21 @@ class PokemonSummary_Scene
                 pbPlayDecisionSE
                 break
             elsif Input.trigger?(Input::UP)
-                if selmove >= 2
+                if selmove >= 2 && selmove < Pokemon::MAX_MOVES
                     selmove -= 2
                 elsif selmove == 1
                     selmove = Pokemon::MAX_MOVES # New move
                 end
             elsif Input.trigger?(Input::DOWN)
-                if selmove < Pokemon::MAX_MOVES - 2
-                    selmove += 2 
-                elsif Pokemon::MAX_MOVES
+                if selmove < 2
+                    selmove += 2
+                elsif selmove == Pokemon::MAX_MOVES
                     selmove = 1
                 end
             elsif Input.trigger?(Input::LEFT)
-                selmove -= 1 if selmove % 2 == 1
+                selmove -= 1 if selmove % 2 == 1 && selmove != Pokemon::MAX_MOVES
             elsif Input.trigger?(Input::RIGHT)
-                selmove += 1 if selmove % 2 == 0
+                selmove += 1 if selmove % 2 == 0 && selmove != Pokemon::MAX_MOVES
             end
 
             if selmove != selmove_prev
