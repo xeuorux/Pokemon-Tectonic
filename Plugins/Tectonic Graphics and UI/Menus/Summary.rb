@@ -224,8 +224,16 @@ class PokemonSummary_Scene
         @sprites["movesel"] = MoveSelectionSprite.new(@viewport, !move_to_learn.nil?)
         @sprites["movesel"].visible = false
         @sprites["movesel"].visible = true
-        @sprites["movesel"].index   = Pokemon::MAX_MOVES
-        new_move = move_to_learn ? Pokemon::Move.new(move_to_learn) : nil
+
+        if move_to_learn
+            @sprites["movesel"].index = Pokemon::MAX_MOVES
+            new_move = Pokemon::Move.new(move_to_learn)
+            move_selected = new_move
+        else # Move deleter screen
+            @sprites["movesel"].index = 0
+            new_move = nil
+            move_selected = @pokemon.moves[0]
+        end
 
         # Create the move extra info display
         moveInfoDisplayY = Graphics.height - @moveInfoDisplayBitmap.height
@@ -239,7 +247,7 @@ class PokemonSummary_Scene
         @sprites["extraInfoOverlay"] = @extraInfoOverlay
         @extraInfoOverlay.y = moveInfoDisplayY
 
-        drawSelectedMove(new_move, new_move)
+        drawSelectedMove(new_move, move_selected)
         pbFadeInAndShow(@sprites)
     end
 
@@ -842,6 +850,7 @@ class PokemonSummary_Scene
 
     def drawMoveNames(textpos,extra_move = nil)
         moveBase   = Color.new(64, 64, 64)
+        fadedBase = Color.new(110,110,110)
         moveShadow = Color.new(176, 176, 176)
         # Write move names
         for i in 0...Pokemon::MAX_MOVES
@@ -851,7 +860,7 @@ class PokemonSummary_Scene
             if move
                 textpos.push([move.name, xPos, yPos, 2, moveBase, moveShadow])
             else
-                textpos.push(["-", xPos, yPos, 2, moveBase, moveShadow])
+                textpos.push(["---", xPos, yPos, 2, fadedBase, moveShadow])
             end
         end
 
@@ -1043,9 +1052,15 @@ class PokemonSummary_Scene
             end
 
             if selmove != selmove_prev
-                @sprites["movesel"].index = selmove
-                pbPlayCursorSE
-                drawSelectedMove(nil, @pokemon.moves[selmove])
+                selected_move = (selmove == Pokemon::MAX_MOVES) ? new_move : @pokemon.moves[selmove]
+                if selected_move
+                    @sprites["movesel"].index = selmove
+                    pbPlayCursorSE
+                    drawSelectedMove(nil, selected_move)
+                else
+                    selmove = selmove_prev
+                    pbPlayBuzzerSE
+                end
             end
         end
         @sprites["movesel"].visible = false
@@ -1252,7 +1267,7 @@ class PokemonSummary_Scene
 
     def pbChooseMoveToForget(move_to_learn)
         new_move = move_to_learn ? Pokemon::Move.new(move_to_learn) : nil
-        selmove = Pokemon::MAX_MOVES
+        selmove = move_to_learn ? Pokemon::MAX_MOVES : 0
         @sprites["pokemon"].visible = true unless @forget
         hideItems
         loop do
@@ -1270,7 +1285,7 @@ class PokemonSummary_Scene
             elsif Input.trigger?(Input::UP)
                 if selmove >= 2 && selmove < Pokemon::MAX_MOVES
                     selmove -= 2
-                elsif selmove == 1
+                elsif selmove == 1 && move_to_learn
                     selmove = Pokemon::MAX_MOVES # New move
                 end
             elsif Input.trigger?(Input::DOWN)
@@ -1286,10 +1301,15 @@ class PokemonSummary_Scene
             end
 
             if selmove != selmove_prev
-                @sprites["movesel"].index = selmove
-                pbPlayCursorSE
                 selected_move = (selmove == Pokemon::MAX_MOVES) ? new_move : @pokemon.moves[selmove]
-                drawSelectedMove(new_move, selected_move)
+                if selected_move
+                    @sprites["movesel"].index = selmove
+                    pbPlayCursorSE
+                    drawSelectedMove(new_move, selected_move)
+                else
+                    selmove = selmove_prev
+                    pbPlayBuzzerSE
+                end
             end
         end
         return (selmove == Pokemon::MAX_MOVES) ? -1 : selmove
