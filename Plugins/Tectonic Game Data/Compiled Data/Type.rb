@@ -9,6 +9,7 @@ module GameData
       attr_reader :resistances
       attr_reader :immunities
       attr_reader :color
+      attr_reader :dark_color
   
       DATA = {}
       DATA_FILENAME = "types.dat"
@@ -17,11 +18,12 @@ module GameData
         "Name"          => [1, "s"],
         "InternalName"  => [2, "s"],
         "Color"         => [3, "uuu"],
-        "IsPseudoType"  => [4, "b"],
-        "IsSpecialType" => [5, "b"],
-        "Weaknesses"    => [6, "*s"],
-        "Resistances"   => [7, "*s"],
-        "Immunities"    => [8, "*s"],
+        "DarkColor"     => [4, "uuu"],
+        "IsPseudoType"  => [5, "b"],
+        "IsSpecialType" => [6, "b"],
+        "Weaknesses"    => [7, "*s"],
+        "Resistances"   => [8, "*s"],
+        "Immunities"    => [9, "*s"],
     }
   
       extend ClassMethods
@@ -42,6 +44,8 @@ module GameData
 
         rgb = hash[:color]
         @color        = Color.new(rgb[0],rgb[1],rgb[2]) if rgb
+        dark_rgb = hash[:dark_color]
+        @dark_color   = Color.new(dark_rgb[0],dark_rgb[1],dark_rgb[2]) if dark_rgb
       end
   
       # @return [String] the translated name of this item
@@ -214,6 +218,7 @@ module Compiler
           :resistances  => contents["Resistances"],
           :immunities   => contents["Immunities"],
           :color        => contents["Color"],
+          :dark_color   => contents["DarkColor"],
         }
         # Add type's data to records
         GameData::Type.register(type_hash)
@@ -256,6 +261,10 @@ module Compiler
         if type.color
           rgb = [type.color.red.to_i,type.color.green.to_i,type.color.blue.to_i]
           f.write("Color = #{rgb.join(",")}\r\n")
+        end
+        if type.dark_color
+          dark_rgb = [type.dark_color.red.to_i,type.dark_color.green.to_i,type.dark_color.blue.to_i]
+          f.write("DarkColor = #{dark_rgb.join(",")}\r\n")
         end
         f.write("IsPseudoType = true\r\n") if type.pseudo_type
         f.write("IsSpecialType = true\r\n") if type.special?

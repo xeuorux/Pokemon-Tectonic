@@ -851,14 +851,18 @@ class PokemonSummary_Scene
     def drawMoveNames(textpos,extra_move = nil)
         moveBase   = Color.new(64, 64, 64)
         fadedBase = Color.new(110,110,110)
-        moveShadow = Color.new(176, 176, 176)
+        moveShadow = Color.new(160, 160, 168)
         # Write move names
         for i in 0...Pokemon::MAX_MOVES
             move = @pokemon.moves[i]
             xPos = SUMMARY_MOVE_NAMES_X_INIT + 126 + (i % 2) * SUMMARY_MOVE_NAMES_X_OFFSET
             yPos = SUMMARY_MOVE_NAMES_Y_INIT + 10 + (i/2) * SUMMARY_MOVE_NAMES_Y_OFFSET
             if move
-                textpos.push([move.name, xPos, yPos, 2, moveBase, moveShadow])
+                individualMoveBaseColor = moveBase
+                if move.type
+                    individualMoveBaseColor = GameData::Type.get(move.type).dark_color
+                end
+                textpos.push([move.name, xPos, yPos, 2, individualMoveBaseColor, moveShadow])
             else
                 textpos.push(["---", xPos, yPos, 2, fadedBase, moveShadow])
             end
@@ -867,7 +871,11 @@ class PokemonSummary_Scene
         if extra_move
             xPos = SUMMARY_MOVE_NAMES_X_INIT + 126 + SUMMARY_MOVE_NAMES_X_OFFSET
             yPos = SUMMARY_LEARNING_MOVE_NAME_Y + 10
-            textpos.push([extra_move.name, xPos, yPos, 2, moveBase, moveShadow])
+            extraMoveBaseColor = moveBase
+            if extra_move.type
+                extraMoveBaseColor = GameData::Type.get(extra_move.type).dark_color
+            end
+            textpos.push([extra_move.name, xPos, yPos, 2, extraMoveBaseColor, moveShadow])
         end
     end
 
