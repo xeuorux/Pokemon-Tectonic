@@ -32804,9 +32804,9 @@ Shape = Head
 Kind = Ice Tea
 Pokedex = Despite its refreshing scent, those who drink of its colorful liquid are swiftly put into a deep sleep.
 BattlerPlayerX = 0
-BattlerPlayerY = 10
-BattlerEnemyX = -4
-BattlerEnemyY = 10
+BattlerPlayerY = 8
+BattlerEnemyX = -5
+BattlerEnemyY = 8
 BattlerShadowX = 0
 BattlerShadowSize = 2
 #-------------------------------
