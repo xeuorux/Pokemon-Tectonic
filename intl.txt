@@ -877,6 +877,38 @@ It's ever so compelling, don't you agree?
 De cierta forma, es bastante cautivador, ¿No lo crees?
 Maybe they're up to something...something suspicious?
 Quizás están haciendo algo... ¿Algo sospechoso?
+My last batch of mushrooms went rancid.
+Mi última tanda de hongos se pudrió.
+Which stinks!
+¡Lo que apesta!
+Well, to tell you the truth, I couldn't smell the difference.
+Bueno, para serte sincero, no puedo oler la diferencia.
+So I need to meself acquainted with the smell of healthy mushrooms.
+Así que necesito hacerme familiar con el olor de hongos saludables.
+Could you do me a favor and bring me a mushroom Pokémon so I can get me a whiff?
+¿Puedes hacerme el favor de traerme un Pokémon hongo así puedo olerlo?
+I don't have much in the way of rewards.
+No tengo mucho en recompensas.
+Suppose I could give ya what I confiscated from my nephew.
+Supongo que puedo darte lo que le confisqué a mi sobrino.
+He crafted something mighty gross outta my failed harvest.
+Hizo algo bien asqueroso con mi cosecha fallida.
+So, you gots one of them mushroom 'mons?
+Entonces, ¿Tienes uno de esos 'mons hongos?
+It's called <i>my</i>cology because <i>i</i> need it!
+¡Se llama <i>mi</i>cología porque <i>yo</i> la necesito!
+Just what the Nurse Joy ordered!
+¡Justo lo que la Enfermera Joy ordenó!
+Appreciate it. Now, lemme get this over with.
+Lo aprecio. Ahora, terminemos con esto.
+The pokemon rancher studies your Pokémons's smell closely and carefully.
+El ranchero estudia el olor de tu Pokémon de cerca y con cuidado.
+Hah...I can see it now. The cash rollin' in from a full healthy forest.
+Ja...Puedo verlo ahora. El efectivo aparece desde un bosque lleno de vida.
+Anyways, my side of the bargain...
+Como sea, mi parte del trato....
+Suppose I'll get outta yer hair now.
+Supongo que ahora te dejaré en paz.
 [Map8]
 Hey there. Miss me?
 Buenas. ¿Me extrañabas?
@@ -3363,7 +3395,7 @@ Buena elección. Bueno, hasta ahora hemos sido los mejores amigos, pero es hora 
 I haven’t gone soft just yet. Ready? Go!
 Todavía no soy blando. ¿Listo? ¡Vamos! 
 Impressive. You’re a damn sight better than most of the folks 'round here.
-Impresivo. Pareces ser demasiado mejor que la mayoria gente por aquí.
+Impresionante. Pareces ser demasiado mejor que la mayoria gente por aquí.
 Might even be Champion material. Let me get your Pokémon back into tip-top shape.
 Hasta podrías ser material de Campeón. Déjame devolver a tus Pokémon a su mejor estado.
 As for you, here: the Loyalty Badge. It ain’t much, but you earned it.
@@ -12747,6 +12779,12 @@ Don’t dive too deep – we’re getting out of here soon. Fend them off.
 No te pases – nos iremos de aquí pronto. Ahuyentalos. 
 But if they put up a fight… crush them.
 Pero si se resisten… aplástalos.
+I can't - you make Alessa look like a rand-and-file grunt.
+No puedo - haces parecer a Alesssa un recluta de pacotilla.
+Well. I've gotten what I came for; slowed you down.
+Bueno. Obtuve lo que quise; ralentizarte.
+I'm... glad to be your rival. Thanks.
+Estoy... agradecida de ser tu rival. Gracias.
 I – uhf. I crippled one of their teams, but they got away. They’re good, dammit. And I’m out of practice.
 Yo – uf. Destruí uno de sus equipos, pero se escaparon. Son buenos, maldita sea. Y estoy oxidada.
 Here – I can heal your Pokémon. Mine are going to need a little care before I’m ready to move out. But you go on ahead. Here.
@@ -15744,6 +15782,48 @@ No
 No
 Yes
 Sí
+This place's got some sick stuff.
+Este lugar tiene un montón de cosas geniales.
+Sometimes, the hacker lady gives me rips of old games.
+A veces, la señorita hacker me da copias de juegos viejos.
+The publisher isn't gonna like that, heh.
+Al publisher no le va a gustar eso, je.
+I'm just here for business kid.
+Sólo estoy aquí por negocios niño.
+Doing a run for a few friends.
+Haciendo los mandados para un par de amigos.
+Getting these berries into Makya is no joke.
+Entrar estas bayas a Makya no es ninguna broma.
+Thankfully I've got my cute charms and a stolen idol outfit!
+¡Por suerte tengo mis encantos y un outfit de cantante robado!
+I see that spark of rebellion in your eye.
+Veo esa chispa de rebeldía en tus ojos.
+I gotta special offer. The iconic vessel of mayhem, a Stink Bomb.
+Tengo una oferta especial. La icónica agente del caos, una Bomba Apestosa. 
+As payment, any Evolution Stone will do.
+Como pago, cualquier Piedra Evolutiva es suficiente.
+Got the goods? An Evolution Stone, I mean.
+¿Tienes la mercancía? Una Piedra Evolutiva, me refiero.
+I used to just leave these around to inspire chaos.
+Solía sólo dejar estas por ahí para inspirar caos.
+But now I've got people I want to support.
+Pero ahora tengo gente que quiero ayudar.
+Yes! The kids will love this.
+¡Sí! Los niños van a amar esto,
+...
+...
+THINK FAST!
+¡PIENSA RÁPIDO!
+Nice catch!
+¡Buena atrapada!
+And with that, I'm gone!
+¡Y con eso, me voy!
+Hey, I didn't say you could prank ME!
+¡Hey, nunca dije que pudieras hacerme a MI una broma!
+I don't have any right now.
+No tengo una ahora mismo.
+Yeah, I've got one for you.
+Seh, tengo una para ti.
 [Map224]
 
 Well hey! I saw you on Lapras Shore!
@@ -16668,11 +16748,11 @@ Avatar?
 [Map255]
 
 So it was an avatar after all. Two, in fact! How delightful!
-Así que sí era un avatar después de todo. ¡Dos, de hecho! ¡Que encantador!
+Así que sí era un avatar después de todo. ¡Dos, de hecho! ¡Qué encantador!
 Such grace, such magnificent power, such… oh, words fail me.
 Tanta gracia, tan magnífico poder, tan… oh, las palabras no les hacen justicia.
 But it is a little convenient, isn’t it? The two of us come here.
-Pero es un poco conveniento, ¿No? Que nosotros dos hayamos venido aquí.
+Pero es un poco conveniente, ¿No? Que nosotros dos hayamos venido aquí.
 I, the sensitive soul, the pilgrim, and you, the knight, the protector.
 Yo, el alma sensitiva, el peregrino, y tú, el caballero, el protector.
 And what should we find but a Gallade and a Gardevoir.
@@ -23373,7 +23453,7 @@ You can look up specific species of Pokémon using a ton of filters!
 You can even compound searches.
 Puedes incluso combinar búsquedas.
 Want a Rock-type with the Ability Sturdy? No problem!
-¿Quieres un tipo Roca con la habilidad Robustez! ¡No hay problema!
+¿Quieres un tipo Roca con la habilidad Robustez? ¡No hay problema!
 No
 No
 Yes
@@ -23648,6 +23728,24 @@ It snows there year round and there are plenty of places to ice skate!
 ¡Allí cae nieve todo el año y varios lugares donde puedes patinar sobre hielo!
 I don't recommend going to the Barren Crater. It's rather unsightly.
 No recomiendo ir al Cráter Desértico. No es muy vistoso.
+I was just given a Minccino from my family. I appreciate the thought, but this creature here just ain't it.
+Mi familia me acaba de dar este Minccino. Aprecio la idea, pero esta criatura no me va.
+It ain't suited to all the dirt me and my team get on us. Doesn't seem too happy with it's circumstance.
+No es apto para toda la tierra que nos cubre a mi equipo. No parece muy feliz con sus circunstancias.
+Tell you what Trainer, I'll give you the 'mon free of charge, so long as you promise to take care of it.
+Sabes qué Entrenador, te daré el 'mon sin cargos, siempre y cuando prometas que vas a cuidar de él.
+That's fair enough. Needs to feel like a good fit.
+Eso es justo. Necesita poder encajar. 
+I take those promises seriously. Make sure it gets something out of ya.
+Me tomo esas promesas en serio. Asegúrate de que te aporte algo de valor.
+Take care, Trainer.
+Cuídate, Entrenador.
+Word of advice. If it cares about it's fur routine, don't run it on a weather team.
+Un consejo. Si le importa su rutina de pelaje, no lo uses en un equipo climático.
+No thanks.
+No gracias.
+I promise.
+Lo prometo.
 [Map397]
 
 Gym challengers keep getting off track and wandering through here.
@@ -23768,6 +23866,36 @@ Here you go.
 Aquí tienes.
 No way!
 ¡Ni hablar!
+Hello, Trainer. It seems we meet at the end of my long and painful journey with hubris.
+Hola, Entrenador. Parece que llegamos al final de mi largo y doloroso soberbio camino.
+I thought, with the power of science, that I could end the eons long rivalry between Zangoose and Seviper.
+Pensé que, con el poder de la ciencia, podría terminar eónes de rivalidad entre Zangoose y Seviper.
+Social engineering, genetic modification, cognitive behavioral therapy, lo-fi hip hop music to study and relax to...
+Ingeniería social, modificación genética, terapia de comportamiento cognitiva, música lo-fi hip hop para estudiar y relajarte...
+Nothing worked. And here I am, begging a stranger to take one of them. They will never be happy otherwise.
+Nada funcionó. Y aquí estoy, rogándole a un extraño para que tome uno de ellos. Nunca serán felices de otro modo.
+Oh... not another rejection.
+Oh... no otro rechazo.
+Please, Trainer. They're rowdy, but they're got a heart of gold. I swear.
+Por favor, Entrenador. Son alborotadores, pero tienen un corazón de oro. Lo juro.
+Thank you Trainer. They deserve a better life away from each other.
+Gracias Entrenador. Merecen una mejor vida lejos del uno a otro.
+I think I will use the rest of my time in this region to reflect.
+Creo que usaré el resto de mi tiempo en la región para reflexionar.
+Oh, hello there.
+Oh, buenas.
+The other specimen is doing fine. I saw them smile, for the first time.
+El otro espécimen está bien. Lo vi sonreir, por primera vez.
+Here you go.
+Aquí tienes.
+No way!
+¡Ni hablar!
+I'll pass.
+Paso.
+Sure, I'll take the Zangoose.
+Seguro, tomaré el Zangoose.
+Sure, I'll take the Seviper.
+Seguro, tomaré el Seviper.
 [Map401]
 I was just a kid when Yezera won the first tournament.
 Era sólo un niño cuando Yezera ganó el primer torneo.
@@ -35348,7 +35476,7 @@ Patada Látigo
 Siege Breaker
 Asediador
 All For One
-Todo Para Uno
+Todos Para Uno
 Blades of Grass
 Espadas de Hierba
 Scythe Kick
@@ -46402,7 +46530,7 @@ Elige Pokémon o cancela.
 This Pokémon can't be chosen.
 Este Pokémon no puede ser elegido,
 Choose a Pokémon. (D for Showcase)
-Elige un Pokémon. (D para Detalles)
+Elige un Pokémon. (D para Muestra)
 Move to where?
 ¿Mover adónde?
 Set Down
@@ -50252,7 +50380,7 @@ Aún No Nombrado
 Yo, I'm Adam, the gem guy. Gonna buy some gems, or what?
 Hey, soy Adam, el chico de las gemas. ¿Vas a comprar un par de gemas, o qué?
 Some of these are illegal to import. Don't get me caught.
-Algunas de estas son ilegales de importar. No hagas que sea capturado.
+Algunas de estas son ilegales de importar. No hagas que sea capturada.
 \i[EXPEZDISPENSER]{1} exp was stored in the EXP-EZ Dispenser this battle.
 \i[EXPEZDISPENSER]{1} puntos de experiencia fueron guardados en el Dispensador EXP-EZ en este combate.
 FORMS
@@ -50772,7 +50900,7 @@ Un Tótem Avatar místico. Late con energía vital antigua.
 A mystical Avatar Totem. It pulses with an unusual frequency.
 Un Tótem Avatar místico. Late con una frecuencia inusual.
 You see it glow with extra intensity, and sense somehow that a connection has been created.
-Los ves brilla con más intensidad, y sientes que de algún modo una conexión ha sido creada.
+Lo ves brillar con más intensidad, y sientes que de algún modo una conexión ha sido creada.
 However, it does not react further. Perhaps you must find more like it?
 Sin embargo, no parece reaccionar más allá. ¿Quizás tienes que encontrar más como este?
 You sense the connection to the other totems. Choose your warp location.
