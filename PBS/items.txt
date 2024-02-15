@@ -4103,7 +4103,7 @@ NamePlural = Catching Charms
 Pocket = 7
 Price = 0
 Flags = KeyItem
-Description = Holding it is said to increase the chance of getting a critical catch. Curiously, the charm doesn't shake much.
+Description = A charm that doubles the chance of getting a critical catch.
 #-------------------------------
 [INFINITEROPE]
 Name = Escape Rope
