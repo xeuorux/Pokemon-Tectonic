@@ -47,6 +47,7 @@ class PokeBattle_Battler
         @type1 = @type2 = nil
         @ability_ids     = []
         @addedAbilities  = []
+        @addedItems  = []
         @gender         = 0
         @attack = @defense = @spatk = @spdef = @speed = 0
         @status         = :NONE

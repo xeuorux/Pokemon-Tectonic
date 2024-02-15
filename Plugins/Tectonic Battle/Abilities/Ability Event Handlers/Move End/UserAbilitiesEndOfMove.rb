@@ -464,7 +464,7 @@ BattleHandlers::UserAbilityEndOfMove.add(:VANDAL,
       next if battle.futureSight
       next unless move.damagingMove?
       clothingItemProc = proc do |item|
-        CLOTHING_ITEMS.include?(item)
+        GameData::Item.get(item).is_clothing?
       end
       targets.each do |b|
         move.knockOffItems(user, b, ability: ability, validItemProc: clothingItemProc)

@@ -62,6 +62,7 @@ class PokeBattle_Battle
     attr_accessor :turnsToSurvive
     attr_accessor :playerAmbushing
     attr_accessor :foeAmbushing
+    attr_reader   :statItemsAreMetagameRevealed
 
     #=============================================================================
     # Creating the battle class
@@ -158,6 +159,7 @@ class PokeBattle_Battle
         else
             @struggle = PokeBattle_Struggle.new(self, nil)
         end
+        # System for learning the player's abilities
         @knownAbilities = {}
         @party1.each do |pokemon|
             knownAlready = false
@@ -167,6 +169,8 @@ class PokeBattle_Battle
             @knownAbilities[pokemon.personalID].push(abilityToKnow)
             echoln("Player's side pokemon #{pokemon.name}'s ability #{abilityToKnow} is known by the AI") if knownAlready
         end
+
+        # System for learning the player's moves
         @knownMoves = {}
         echoln("===PARTY 1 KNOWN MOVES===")
         @party1.each do |pokemon|
@@ -175,6 +179,16 @@ class PokeBattle_Battle
         echoln("===PARTY 2 KNOWN MOVES===")
         @party2.each do |pokemon|
             initializeKnownMoves(pokemon)
+        end
+
+        @knownItems = {}
+        echoln("===PARTY 1 KNOWN ITEMS===")
+        @party1.each do |pokemon|
+            initializeKnownItems(pokemon)
+        end
+        echoln("===PARTY 2 KNOWN ITEMS===")
+        @party2.each do |pokemon|
+            initializeKnownItems(pokemon)
         end
     end
 
@@ -185,6 +199,16 @@ class PokeBattle_Battle
             next unless pokemon.boss? || aiAutoKnowsMove?(move,pokemon)
             knownMovesArray.push(move.id)
             echoln("Pokemon #{pokemon.name}'s move #{move.name} is known by the AI")
+        end
+    end
+
+    def initializeKnownItems(pokemon)
+        knownItemsArray = []
+        @knownItems[pokemon.personalID] = knownItemsArray
+        pokemon.items.each do |item|
+            next # TO DO
+            knownItemsArray.push(item)
+            echoln("Pokemon #{pokemon.name}'s item #{getItemName(item)} is known by the AI")
         end
     end
 

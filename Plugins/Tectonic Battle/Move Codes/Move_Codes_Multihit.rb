@@ -74,7 +74,7 @@ module RandomHitable
 
     def pbNumHitsAI(user, _targets)
         return 5 if user.hasActiveAbilityAI?(%i[SKILLLINK PERFECTLUCK])
-        return 4.5 if user.hasActiveItem?(:LOADEDDICE)
+        return 4.5 if user.hasActiveItemAI?(:LOADEDDICE)
         return 19.0 / 6.0 # Average
     end
 end

@@ -362,8 +362,8 @@ target.pbThis(true)))
                 target.damageState.survivalist = true
                 damage -= 1
                 damageAdjusted = true
-            elsif target.hasActiveItem?(FULL_ENDURE_ITEMS) && target.fullHealth?
-                target.damageState.focusSash = target.hasActiveItem?(FULL_ENDURE_ITEMS)
+            elsif target.hasActiveItem?(GameData::Item::FULL_HP_ENDURE_ITEMS) && target.fullHealth?
+                target.damageState.focusSash = target.hasActiveItem?(GameData::Item::FULL_HP_ENDURE_ITEMS)
                 damage -= 1
                 damageAdjusted = true
             elsif target.hasActiveItem?(:CLARITYSASH)

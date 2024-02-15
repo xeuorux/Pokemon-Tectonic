@@ -96,7 +96,7 @@ BattleHandlers::EOREffectAbility.add(:HUNGERSWITCH,
 
 BattleHandlers::EOREffectAbility.add(:LUXURYTASTE,
   proc { |ability, battler, battle|
-      next unless battler.hasActiveItem?(CLOTHING_ITEMS)
+      next unless battler.hasActiveItem?(GameData::Item::CLOTHING_ITEMS)
       healingMessage = _INTL("{1} luxuriated in its fine clothing.", battler.pbThis)
       battler.applyFractionalHealing(1.0 / 8.0, ability: ability, customMessage: healingMessage)
   }

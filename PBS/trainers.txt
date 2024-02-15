@@ -181,7 +181,7 @@ ExtendsVersion = 0
 Policies = CURSE_TORMENTED
 #-------------------------------
 [POKEMONTRAINER_Yezera,Yezera]
-Policies = YEZERA,NO_PERFECT
+Policies = YEZERA,NO_PERFECT,METAGAMES_STAT_ITEMS
 Pokemon = BUNNELBY,17
     Moves = TREADON,HOP,TACKLE,BABYDOLLEYES
     AbilityIndex = 1 # Paranoid
@@ -847,7 +847,7 @@ Pokemon = LYCANROC,65
     EV = 10,20,0,20,20,0
 #-------------------------------
 [POKEMONTRAINER_Yezera,Yezera,2]
-Policies = NO_PERFECT
+Policies = NO_PERFECT,METAGAMES_STAT_ITEMS
 Pokemon = MORGREM,25
     Moves = REFLECT,ASSURANCE,PIXIEPUNCH
     AbilityIndex = 1 # Ruinous
@@ -881,7 +881,7 @@ Pokemon = DARTRIX,25
     EV = 20,20,6,0,20,4
 #-------------------------------
 [POKEMONTRAINER_Yezera,Yezera,4]
-Policies = YEZERA,NO_PERFECT
+Policies = YEZERA,NO_PERFECT,METAGAMES_STAT_ITEMS
 Pokemon = RHYDON,35
     Moves = GRANITEHEAD,STEALTHROCK,BULLDOZE,BRICKBREAK
     AbilityIndex = 0 # Reckless
@@ -3539,7 +3539,7 @@ Pokemon = MAMOSWINE,50
     Item = LEFTOVERS
 #-------------------------------
 [POKEMONTRAINER_Yezera,Yezera,6]
-Policies = YEZERA4,NO_PERFECT
+Policies = YEZERA4,NO_PERFECT,METAGAMES_STAT_ITEMS
 Pokemon = TOGEKISS,65
     Name = Artemisia
     Gender = female
@@ -4079,7 +4079,7 @@ Pokemon = KLAWSAR,58
     Item = LIFEORB
 #-------------------------------
 [POKEMONTRAINER_Yezera,Yezera,8]
-Policies = NO_PERFECT
+Policies = NO_PERFECT,METAGAMES_STAT_ITEMS
 Pokemon = REGIDRAGO,65
     Moves = DRAGONENERGY,HARDFEELINGS,HAMMERARM,CRUNCH
     AbilityIndex = 1 # Dragon's Blood
@@ -5798,7 +5798,7 @@ Pokemon = GOLURK,70
     Item = SEVENLEAGUEBOOTS
 #-------------------------------
 [POKEMONTRAINER_Yezera,Yezera,10]
-Policies = YEZERA6,NO_PERFECT
+Policies = YEZERA6,NO_PERFECT,METAGAMES_STAT_ITEMS
 Pokemon = TYRANITAR,70
     Name = Autochthon
     Gender = male

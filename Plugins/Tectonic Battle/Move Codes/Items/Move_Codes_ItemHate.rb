@@ -4,24 +4,36 @@
 class PokeBattle_Move_RemovesTargetItem < PokeBattle_Move
     def pbEffectAgainstTarget(user, target)
         return if damagingMove?
-        return unless canknockOffItems?(user, target)
+        return unless canKnockOffItems?(user, target)
         knockOffItems(user, target) do |_item, itemName|
             @battle.pbDisplay(_INTL("{1}'s {2} became unusuable, so it dropped it!", target.pbThis, itemName))
         end
     end
 
     def pbEffectWhenDealingDamage(user, target)
-        return unless canknockOffItems?(user, target)
+        return unless canKnockOffItems?(user, target)
         knockOffItems(user, target) do |_item, itemName|
             @battle.pbDisplay(_INTL("{1}'s {2} became unusuable, so it dropped it!", target.pbThis, itemName))
         end
     end
 
     def getTargetAffectingEffectScore(user, target)
+        return 0 unless canKnockOffItems?(user, target, true)
         score = 0
-        target.eachItem do |item|
-            score += 30 if canRemoveItem?(user, target, item, checkingForAI: true)
+        target.eachItem do |itemID|
+            score += 50
         end
+        target.eachAIKnownItem do |itemID|
+            case itemID
+            when :EVIOLITE
+                score += 50
+            when :CRYSTALVEIL
+                score += 20
+            when :POWERLOCK,:ENERGYLOCK
+                score += 20
+            end
+        end
+        score /= 2 unless target.itemActive?
         return score
     end
 end
@@ -41,15 +53,17 @@ class PokeBattle_Move_RemovesTargetItemDamageBoost50Percent < PokeBattle_Move
     end
 
     def pbEffectWhenDealingDamage(user, target)
-        return unless canknockOffItems?(user, target)
+        return unless canKnockOffItems?(user, target)
         knockOffItems(user, target)
     end
 
     def getTargetAffectingEffectScore(user, target)
-        return 0 unless canknockOffItems?(user, target, true)
+        return 0 unless canKnockOffItems?(user, target, true)
         score = 0
         target.eachItem do |itemID|
             score += 50
+        end
+        target.eachAIKnownItem do |itemID|
             case itemID
             when :EVIOLITE
                 score += 50
@@ -88,7 +102,7 @@ class PokeBattle_Move_ConsumesTargetBerries < PokeBattle_Move
     def getEffectScore(user, target)
         return 0 unless canPluckBerry?(user, target)
         score = 0
-        target.eachItem do |item|
+        target.eachAIKnownItem do |item|
             next unless canRemoveItem?(user, target, item, checkingForAI: true)
             next unless GameData::Item.get(item).is_berry?
             score += 50
@@ -124,7 +138,7 @@ class PokeBattle_Move_DestroysBerriesGems < PokeBattle_Move
     def getTargetAffectingEffectScore(user, target)
         return 0 unless canIncinerateTargetsItem?(target)
         score = 0
-        target.eachItemWithName do |item, itemName|
+        target.eachAIKnownItem do |item|
             next unless canRemoveItem?(user, target, item, checkingForAI: true)
             itemData = GameData::Item.get(item)
             next unless itemData.is_berry? || itemData.is_gem?
@@ -151,7 +165,7 @@ class PokeBattle_Move_DestroysHerbs < PokeBattle_Move
         return unless canBlightTargetsItem?(target)
         target.eachItemWithName do |item, itemName|
             next unless canRemoveItem?(user, target, item)
-            next unless HERB_ITEMS.include?(item)
+            next unless GameData::Item.get(item).is_herb?
             target.removeItem(item)
             @battle.pbDisplay(_INTL("{1}'s {2} was blighted!", target.pbThis, itemName))
         end
@@ -160,10 +174,10 @@ class PokeBattle_Move_DestroysHerbs < PokeBattle_Move
     def getTargetAffectingEffectScore(user, target)
         return 0 unless canBlightTargetsItem?(target)
         score = 0
-        target.eachItemWithName do |item, itemName|
+        target.eachAIKnownItem do |item|
             next unless canRemoveItem?(user, target, item, checkingForAI: true)
-            next unless HERB_ITEMS.include?(item)
-            score += 30
+            next unless GameData::Item.get(item).is_herb?
+            score += 50
         end
         return score
     end
@@ -186,7 +200,7 @@ class PokeBattle_Move_DestroysClothing < PokeBattle_Move
         return unless canIncinerateTargetsItem?(target)
         target.eachItemWithName do |item, itemName|
             next unless canRemoveItem?(user, target, item)
-            next unless CLOTHING_ITEMS.include?(item)
+            next unless GameData::Item.get(item).is_clothing?
             target.removeItem(item)
             @battle.pbDisplay(_INTL("{1}'s {2} went up in flames!", target.pbThis, itemName))
         end
@@ -195,10 +209,10 @@ class PokeBattle_Move_DestroysClothing < PokeBattle_Move
     def getTargetAffectingEffectScore(user, target)
         return 0 unless canIncinerateTargetsItem?(target)
         score = 0
-        target.eachItemWithName do |item, itemName|
+        target.eachAIKnownItem do |item|
             next unless canRemoveItem?(user, target, item, checkingForAI: true)
-            next unless CLOTHING_ITEMS.include?(item)
-            score += 30
+            next unless GameData::Item.get(item).is_clothing?
+            score += 50
         end
         return score
     end
@@ -302,6 +316,19 @@ class PokeBattle_Move_TrashTreasure < PokeBattle_Move
         end
         
         target.tryLowerStat(:SPECIAL_DEFENSE, user, move: self)
+    end
+
+    def getTargetAffectingEffectScore(user, target)
+        score = 0
+        if target.canAddItem?(:BLACKSLUDGE) && canRemoveItem?(user, target, target.firstItem, checkingForAI: true)
+            if target.pbHasTypeAI?(:POISON)
+                score -= 50
+            else
+                score += 50
+            end
+        end
+        score += getMultiStatDownEffectScore([:SPECIAL_DEFENSE,1],user,target)
+        return score
     end
 end
 
