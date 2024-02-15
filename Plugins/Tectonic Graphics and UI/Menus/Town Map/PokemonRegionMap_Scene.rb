@@ -77,7 +77,7 @@ class PokemonRegionMap_Scene
               @sprites["map2"].y = @sprites["map"].y
             end
             pbDrawImagePositions(@sprites["map2"].bitmap,[
-               ["Graphics/Pictures/#{hidden[4]}",hidden[2]*SQUAREWIDTH,hidden[3]*SQUAREHEIGHT]
+               ["Graphics/Pictures/Map Extras/#{hidden[4]}",hidden[2]*SQUAREWIDTH,hidden[3]*SQUAREHEIGHT]
             ])
           end
         end

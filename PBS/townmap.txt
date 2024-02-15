@@ -2,7 +2,7 @@
 #-------------------------------
 [0]
 Name = Makya
-Filename = mapRegion2.png
+Filename = Map_Makya.png
 Point = 22,18,Casaba Villa,,,,,
 Point = 22,17,Scenic Trail,,,,,
 Point = 21,18,Casaba Villa,,,,,
@@ -110,3 +110,4 @@ Point = 23,8,Isle of Dragons,,,,,87
 Point = 24,11,Tri Island,,,,,98
 Point = 23,11,Tri Island,,,,,98
 Point = 15,16,Battle Monument,,,,,100
+Point = 22,11,Tri Island,,,,,
