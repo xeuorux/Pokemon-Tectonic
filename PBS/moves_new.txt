@@ -6720,3 +6720,15 @@ FunctionCode = UseChoiceOf3RandomNonSignatureStatusMoves
 Flags = CanSnatch
 Description = The user ponders ancient wisdom, selecting three random status moves. You choose which one it uses.
 Animation = METRONOME
+#-------------------------------
+[SHIVERSQUIRM]
+Name = Shiver Squirm
+Type = ICE
+Category = Physical
+Power = 1
+Accuracy = 100
+TotalPP = 12
+Target = NearOther
+FunctionCode = ScalesWithLostHP
+Flags = CanProtect,CanMirrorMove
+Description = The user flips, flaps, fumbles, then flounders. It becomes more powerful the less HP the user has.
