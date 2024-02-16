@@ -46191,6 +46191,8 @@ Female
 Hembra
 One Form
 Forma Normal
+{1} Pokémon
+Pokémon {1}
 CLOSE BAG
 CERRAR MOCHILA
 Close bag.
