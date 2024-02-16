@@ -5022,10 +5022,6 @@ Seems like the whole job was a bust, so just take it.
 Parece que todo el trabajo fue un fracaso, así que sólo tómala. 
 You never saw me, and I didn't cause you any problems. Peace.
 Nunca me viste, y no te causé ningún problema. Paz.
-\wmYou can set a keyboard shortcut to use your bicycle quickly.
-\wmPuedes asignar un atajo de teclado para usar tu bicicleta rápidamente.
-\wmAccess your control setttings with \c[2]F1\c[0] to set it to whatever you like.
-\wmAccede a tus ajustes de control con \c[2]F1\c[0] para asignarlo a lo que quieras.
 It looks excited to take on the next shipment!
 ¡Parece emocionado en tomar el siguiente cargamento!
 The berry plant is growing.
@@ -47641,12 +47637,6 @@ Which item should #{battler.pbThis(true)} drop?
 ¡{1} soltó su {2}!
 #{switcher.pbThis} can switch out regardless!
 ¡#{switcher.pbThis} puede cambiar de todos modos!
-\wmWild Pokemon don't give experience in Pokemon Tectonic.\wtnp<<[>>#{dur}<<]>><<1>>
-\wmLos Pokémon salvajes no dan experiencia en Pokemon Tectonic.\wtnp<<[>>#{dur}<<]>><<1>>
-\wmDon't worry, there's an abundance of experience to gain in other ways.\wtnp<<[>>#{dur}<<]>><<1>>
-\wmNo te preocupes, puedes ganar mucha experiencia de otras formas.\wtnp<<[>>#{dur}<<]>><<1>>
-\wmIf you encounter a Pokemon you don't want, run away. It's guaranteed!\wtnp<<[>>#{dur}<<]>><<1>>
-\wmSi encuentras un Pokémon que no quieres, huye. ¡Está garantizado!\wtnp<<[>>#{dur}<<]>><<1>>
 Each Pokémon in your party got Exp. Points!
 ¡Todos los Pokémon en tu equipo ganan Puntos de Experiencia!
 Your party Pokémon in waiting also got Exp. Points!
@@ -49927,12 +49917,6 @@ Super
 Súper
 Hyper
 Híper
-\wmAfter a full party heal, defeated enemy trainers will be battle ready again!\wtnp<<[>>#{dur}<<]>><<1>>
-\wm¡Luego de que tu equipo se cure completamente, entrenadores rivales derrotados estarán listos para combatir otra vez!\wtnp<<[>>#{dur}<<]>><<1>>
-\wmFor example, healing at a Pokemon Center triggers this.\wtnp<<[>>#{dur}<<]>><<1>>
-\wmPor ejemplo, curarse en un Centro Pokémon activa esto.\wtnp<<[>>#{dur}<<]>><<1>>
-\wmTrainers who fled won't come back, however.\wtnp<<[>>#{dur}<<]>><<1>>
-\wmEso sí, los Entrenadores que hayan huído no regresarán.\wtnp<<[>>#{dur}<<]>><<1>>
 {1} is suffering the effects of being poisoned.
 {1} sufre los efectos de estar envenenado.
 {1}'s burn looks painful.
@@ -50109,10 +50093,6 @@ Congratulations, you have won the raffle! Here is your #{speciesName}, as promis
 ¡Felicidades, ganaste la rifa! Aquí tienes tu #{speciesName}, como prometido.
 No luck! Try again next time.
 ¡Mala suerte! Inténtalo de nuevo la próxima vez.
-\wmYou can set a keyboard shortcut to use your bicycle quickly.\wtnp<<[>>#{dur}<<]>><<1>>
-\wmPuedes asignar un atajo del teclado para usar tu bicicleta rápidamente.\wtnp<<[>>#{dur}<<]>><<1>>
-\wmAccess your control setttings with <imp>F1</imp> to set it to whatever you like.\wtnp<<[>>#{dur}<<]>><<1>>
-\wmAccede a los ajustes de control con <imp>F1</imp> para asignarlo a lo que quieras.\wtnp<<[>>#{dur}<<]>><<1>>
 ...It's {1}. Pick up the phone?
 ...Es {1}. ¿Atiendes el teléfono?
 Hello, and welcome to the Starters Store!
@@ -50419,48 +50399,60 @@ Your foe was ambushed! You get a free turn!
 ¡Tu rival fue emboscado! ¡Obtienes un turno libre!
 You were ambushed! The foe gets a free turn!
 ¡Fuiste emboscado! ¡El rival obtiene un turno libre!
-\wmWild Pokemon don't give experience in Pokemon Tectonic.\wtnp<<[>>#{messageWait}<<]>><<1>>
-\wmLos Pokémon salvajes no dan experiencia en Pokémon Tectonic.\wtnp<<[>>#{messageWait}<<]>><<1>>
-\wmDon't worry, there's an abundance of experience to gain in other ways.\wtnp<<[>>#{messageWait}<<]>><<1>>
-\wmNo te preocupes, hay plenitud de experiencia que ganar en otros modos.\wtnp<<[>>#{messageWait}<<]>><<1>>
-\wmIf you encounter a Pokemon you don't want, run away. It's guaranteed!\wtnp<<[>>#{messageWait}<<]>><<1>>
-\wmSi encuentras un Pokémon que no quieres, sólo escapa. ¡Está garantizado!\wtnp<<[>>#{messageWait}<<]>><<1>>
-\wmAfter a full party heal, defeated enemy trainers will be battle ready again!\wtnp<<[>>#{messageWait}<<]>><<1>>
-\wm¡Luego de curar tu equipo por completo, entrenadores rivales derrotados estarán listos para combatir de nuevo!\wtnp<<[>>#{messageWait}<<]>><<1>>
-\wmFor example, healing at a Pokemon Center triggers this.\wtnp<<[>>#{messageWait}<<]>><<1>>
-\wmPor ejemplo, curar en un Centro Pokémon activa esto.\wtnp<<[>>#{messageWait}<<]>><<1>>
-\wmTrainers who fled won't come back, however.\wtnp<<[>>#{messageWait}<<]>><<1>>
-\wmEso sí, Entrenadores que hayan huído no regresarán.\wtnp<<[>>#{messageWait}<<]>><<1>>
-\wmYou can set a keyboard shortcut to use your bicycle quickly.\wtnp<<[>>#{messageWait}<<]>><<1>>
-\wmPuedes asignar un atajo de teclado para usar tu bicicleta rápidamente.\wtnp<<[>>#{messageWait}<<]>><<1>>
-\wmAccess your control setttings with <imp>F1</imp> to set it to whatever you like.\wtnp<<[>>#{messageWait}<<]>><<1>>
-\wmAccede a los ajustes de control con <imp>F1</imp> para asignarlo a lo que quieras.\wtnp<<[>>#{messageWait}<<]>><<1>>
-\wmIndividual Pokemon have unique Traits, Likes, and Dislikes.\wtnp<<[>>#{messageWait}<<]>><<1>>
-\wmLos Pokémon individuales tienen Rasgos, Gustos y Disgustos únicos.\wtnp<<[>>#{messageWait}<<]>><<1>>
-\wmThese have no effect on battle. They're just for fun!\wtnp<<[>>#{messageWait}<<]>><<1>>
-\wmEstos no tienen efecto en combate. ¡Sólo existen por diversión!\wtnp<<[>>#{messageWait}<<]>><<1>>
-\wmTo customize your stats, adjust Style Points in any PokeCenter.\wtnp<<[>>#{messageWait}<<]>><<1>>
-\wmPara customizar tus stats, ajusta los Puntos de Estilo en cualquier Centro Pokémon.\wtnp<<[>>#{messageWait}<<]>><<1>>
-\wmStats can be changed during battle by 'stat steps'.\wtnp<<[>>#{messageWait}<<]>><<1>>
-\wmLas stats pueden ser cambiadas en medio de un combate mediante los ‘grados de stats'.\wtnp<<[>>#{messageWait}<<]>><<1>>
-\wmCheck the Info menu to see the active steps and their effects on the battlers.\wtnp<<[>>#{messageWait}<<]>><<1>>
-\wmComprueba el menú Info para ver los grados activos y sus efectos en los combatientes.\wtnp<<[>>#{messageWait}<<]>><<1>>
-\wmTectonic introduced many options that let you customize the game speed, especially in battles.\wtnp<<[>>#{messageWait}<<]>><<1>>
-\wmTectonic introdujo varias opciones que te dejan personalizar la velocidad del juego, especialmente en combates.\wtnp<<[>>#{messageWait}<<]>><<1>>
-\wmMake sure to go over all the options to determine what you want to enable.\wtnp<<[>>#{messageWait}<<]>><<1>>
-\wmAségurate de ir por todas las opciones para determinar qué quieres activar.\wtnp<<[>>#{messageWait}<<]>><<1>>
-\wmWant to learn about your active battler's moves?\wtnp<<[>>#{messageWait}<<]>><<1>>
-\wm¿Quieres aprender sobre los movimientos de tu Pokémon activo?\wtnp<<[>>#{messageWait}<<]>><<1>>
-\wmActivate the Move Info Panel! It's a feature of the Fight screen.\wtnp<<[>>#{messageWait}<<]>><<1>>
-\wm¡Activa el Panel Info de Movel! Es una función de la pantalla de Lucha.\wtnp<<[>>#{messageWait}<<]>><<1>>
-\wmPress your "Action" key (Z/Shift by default) to toggle it on or off.\wtnp<<[>>#{messageWait}<<]>><<1>>
-\wmPresiona la tecla “Acción” (Z/Shift por predeterminada) para activarla o desactivarla.\wtnp<<[>>#{messageWait}<<]>><<1>>
-\wmMany type matchups were changed in Pokemon Tectonic.\wtnp<<[>>#{messageWait}<<]>><<1>>
-\wmVarias interacciones entre tipos fueron cambiadas en Pokémon Tectonic.\wtnp<<[>>#{messageWait}<<]>><<1>>
-\wmTo strengthen some types, we had to be weaken others.\wtnp<<[>>#{messageWait}<<]>><<1>>
-\wmPara hacer más fuertes ciertos tipos, otros tuvieron que ser debilitados.\wtnp<<[>>#{messageWait}<<]>><<1>>
-\wmCheck the Masterdex or the Battle Guide to learn these changes.\wtnp<<[>>#{messageWait}<<]>><<1>>
-\wmComprueba la MasterDex o la Guía de Combate para aprender estos cambios.\wtnp<<[>>#{messageWait}<<]>><<1>>
+Wild Pokemon don't give experience in Pokemon Tectonic.
+Los Pokémon salvajes no dan experiencia en Pokémon Tectonic.
+Don't worry, there's an abundance of experience to gain in other ways.
+No te preocupes, hay plenitud de experiencia que ganar en otros modos.
+If you encounter a Pokemon you don't want, run away. It's guaranteed!
+Si encuentras un Pokémon que no quieres, sólo escapa. ¡Está garantizado!
+After a full party heal, defeated enemy trainers will be battle ready again!
+¡Luego de curar tu equipo por completo, entrenadores rivales derrotados estarán listos para combatir de nuevo!
+For example, healing at a Pokemon Center triggers this.
+Por ejemplo, curar en un Centro Pokémon activa esto.
+Trainers who fled won't come back, however.
+Eso sí, Entrenadores que hayan huído no regresarán.
+You can set a keyboard shortcut to use your bicycle quickly.
+Puedes asignar un atajo de teclado para usar tu bicicleta rápidamente.
+Access your control setttings with <imp>F1</imp> to set it to whatever you like.
+Accede a los ajustes de control con <imp>F1</imp> para asignarlo a lo que quieras.
+There's a shortcut key to instantly mount the bicycle while walking.
+Hay una tecla de acceso directo para montar instantáneamente la bicicleta mientras camina.
+Access your control setttings with <imp>F1</imp> to customize it.
+Accede a la configuración de tu control con <imp>F1</imp> para personalizarlo.
+Individual Pokemon have unique Traits, Likes, and Dislikes.
+Los Pokémon individuales tienen Rasgos, Gustos y Disgustos únicos.
+These have no effect on battle. They're just for fun!
+Estos no tienen efecto en combate. ¡Sólo existen por diversión!
+To customize your stats, adjust Style Points in any PokeCenter.
+Para customizar tus stats, ajusta los Puntos de Estilo en cualquier Centro Pokémon.
+Stats can be changed during battle by 'stat steps'.
+Las stats pueden ser cambiadas en medio de un combate mediante los ‘grados de stats'.
+A step is a small change! At +1 steps, only 25% is added to the stat.
+¡Un grado es un pequeño cambio! A +1 grado, sólo un 25% es añadido a la estadística.
+Check the Info menu to see the active steps and their effects on the battlers.
+Comprueba el menú Info para ver los grados activos y sus efectos en los combatientes.
+Tectonic introduced many options that let you customize the game speed, especially in battles.
+Tectonic introdujo varias opciones que te dejan personalizar la velocidad del juego, especialmente en combates.
+Make sure to go over all the options to determine what you want to enable.
+Aségurate de ir por todas las opciones para determinar qué quieres activar.
+Want to learn about your active battler's moves?
+¿Quieres aprender sobre los movimientos de tu Pokémon activo?
+Activate the Move Info Panel! It's a feature of the Fight screen.
+¡Activa el Panel Info de Movel! Es una función de la pantalla de Lucha.
+Press your "Action" key (Z/Shift by default) to toggle it on or off.
+Presiona la tecla “Acción” (Z/Shift por predeterminada) para activarla o desactivarla.
+Many type matchups were changed in Pokemon Tectonic.
+Varias interacciones entre tipos fueron cambiadas en Pokémon Tectonic.
+To strengthen some types, we had to weaken others.
+Para hacer más fuertes ciertos tipos, otros tuvieron que ser debilitados.
+Check the Masterdex or the Battle Guide to learn these changes.
+Comprueba la MasterDex o la Guía de Combate para aprender estos cambios.
+Sometimes you will receive Pokemon who are at your level cap.
+A veces recibirás Pokémon al mismo nivel que tu límite.
+Does this mean you can't evolve them by level up? No!
+¿Significa que no puedes evolucionarlos por nivel? ¡No!
+Just press the Evolve button in your party screen.
+Sólo presiona el botón de Evolucionar en tu equipo.
 Advanced Tutorials
 Tutorials Avanzados
 Avatar Mechanics Msgs
@@ -50889,8 +50881,6 @@ Deposit Item
 Depositar Objeto
 Toss Item
 Tirar Objeto
-\wmA step is a small change! At +1 steps, only 25% is added to the stat.\wtnp<<[>>#{messageWait}<<]>><<1>>
-\wm¡Un grado es un pequeño cambio! A +1 grado, sólo un 25% es añadido a la estadística.\wtnp<<[>>#{messageWait}<<]>><<1>>
 \se[]{1} saved the game.\me[GUI save game]\wtnp[30]
 \se[]{1} guardó la partida.\me[GUI save game]\wtnp[30]
 I've got the lion's share of powerful items. Buy now!
@@ -52045,12 +52035,6 @@ Tri Island
 Isla Elemental
 You recieved a #{speciesDat.name} (#{speciesDat.form_name})
 Recibiste un #{speciesDat.name} (#{speciesDat.form_name})
-\wmSometimes you will receive Pokemon who are at your level cap.\wtnp<<[>>#{messageWait}<<]>><<1>>
-\wmA veces recibirás Pokémon al mismo nivel que tu límite.\wtnp<<[>>#{messageWait}<<]>><<1>>
-\wmDoes this mean you can't evolve them by level up? No!\wtnp<<[>>#{messageWait}<<]>><<1>>
-\wm¿Significa que no puedes evolucionarlos por nivel? ¡No!\wtnp<<[>>#{messageWait}<<]>><<1>>
-\wmJust press the Evolve button in your party screen.\wtnp<<[>>#{messageWait}<<]>><<1>>
-\wmSólo presiona el botón de Evolucionar en tu equipo.\wtnp<<[>>#{messageWait}<<]>><<1>>
 {1} holds a {2} close!
 ¡{1} mantiene a su  {2} cerca suyo!
 \i[AIDKIT]Your Aid Kit was refreshed to #{$PokemonGlobal.teamHealerCurrentUses} charges.
