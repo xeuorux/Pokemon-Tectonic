@@ -48169,7 +48169,7 @@ Its special damage is reduced by a third
 Su daño especial es reducido por un tercio
 Its Speed is halved, and it'll deal less damage
 Su Velocidad es reducida a la mitad, y hará menos daño
-It's ability is supressed, and it'll take more damage
+Its ability is suppressed, and it'll take more damage
 Su habilidad es suprimida, y recibirá más daño
 Its HP will be siphoned by the opposing side
 Sus PS serán absorbidos por el lado contrario
