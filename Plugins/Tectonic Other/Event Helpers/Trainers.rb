@@ -232,9 +232,11 @@ def allEventsExclaim(eventIDArray)
 	end
 end
 
-def wildBattlersFlee(eventIDArray)
-	allEventsExclaim(eventIDArray)
-	pbWait(20)
+def wildBattlersFlee(eventIDArray,exclaim = true)
+	if exclaim
+		allEventsExclaim(eventIDArray)
+		pbWait(20)
+	end
 	blackFadeOutIn {
 		pbSEPlay('Battle flee')
 		eventIDArray.each do |id|
