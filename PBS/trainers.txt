@@ -278,7 +278,7 @@ Pokemon = ANORITH,17
     AbilityIndex = 0 # Selective Scutes
 Pokemon = BELDUM,17
     Moves = BULLETPUNCH,JOLT,BLINDSIDE
-    AbilityIndex = 1 # Robust
+    AbilityIndex = 1 # Mithril Body
 #-------------------------------
 [SCIENTIST_M2,Dexter]
 Policies = PRIORITIZEDOTS
@@ -1190,7 +1190,7 @@ Pokemon = CARBINK,26
     AbilityIndex = 0 # Clear Body
 Pokemon = METANG,28
     Moves = MAGNETIZE,BULLETPUNCH,PSYCHOCUT,THUNDERPUNCH
-    AbilityIndex = 1 # Robust
+    AbilityIndex = 1 # Mithril Body
 #-------------------------------
 [CYCLIST_M,Mitron]
 Pokemon = MDUSTOX,28
@@ -2695,7 +2695,7 @@ Pokemon = METAGROSS,45
     Name = Armiger
     Shiny = yes
     Moves = METEORMASH,TRAMPLE,BRICKBREAK,SEERSTRIKE
-    AbilityIndex = 1 # Robust
+    AbilityIndex = 1 # Mithril Body
     EV = 20,20,10,0,20,0
 Pokemon = MPOLTEAGEIST,45
     Moves = FROSTBREATH,SEANCE,BUBBLEBARRAGE,FROSTSPIKES
@@ -3985,7 +3985,7 @@ Pokemon = HYDREIGON,63
     Item = LEFTOVERS
 Pokemon = METAGROSS,64
     Moves = ELECTROSLASH,OMNISCIENTBLOW,BULLETPUNCH,METEORMASH
-    AbilityIndex = 1 # Robust
+    AbilityIndex = 1 # Mithril Body
 Pokemon = ARMALDO,63
     Moves = ADAMANTINEPRESS,XSCISSOR,SWORDSDANCE,LIQUIDATION
     AbilityIndex = 0 # Selective Scutes
@@ -7086,7 +7086,7 @@ Pokemon = VILEPLUME,70
 Pokemon = BOUFFALANT,70
     AbilityIndex = 0 # Reckless
 Pokemon = EISCUE,70
-    AbilityIndex = 1 # Ice Face
+    AbilityIndex = 1 # Sturdy
 #-------------------------------
 [BIRDKEEPER_F,Danika]
 Pokemon = MMANDIBUZZ,70
@@ -7165,7 +7165,7 @@ Pokemon = NINETALES,70
     AbilityIndex = 0 # Cursed Tail
     Item = ASSAULTVEST
 Pokemon = METAGROSS,70
-    AbilityIndex = 0 # Full Metal Body
+    AbilityIndex = 0 # Psyforce
 Pokemon = WEEZING,70
     AbilityIndex = 1 # Fumigate
     Item = LEFTOVERS
@@ -7369,7 +7369,7 @@ Pokemon = LEAFEON,70
     AbilityIndex = 1 # Reluctant Blade
     Item = AMWIBERRY
 Pokemon = METAGROSS,70
-    AbilityIndex = 1 # Robust
+    AbilityIndex = 1 # Mithril Body
 #-------------------------------
 [EXPERTM,Hiroshi]
 Pokemon = ELECTIVIRE,70

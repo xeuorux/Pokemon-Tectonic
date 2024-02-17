@@ -9,7 +9,7 @@ BattleHandlers::StatLossImmunityAbility.add(:CLEARBODY,
   }
 )
 
-BattleHandlers::StatLossImmunityAbility.copy(:CLEARBODY, :WHITESMOKE, :FULLMETALBODY, :STAINLESSSTEEL)
+BattleHandlers::StatLossImmunityAbility.copy(:CLEARBODY, :WHITESMOKE, :FULLMETALBODY, :STAINLESSSTEEL, :MITHRILBODY)
 
 BattleHandlers::StatLossImmunityAbility.add(:ANCIENTSCALES,
   proc { |ability, battler, _stat, battle, showMessages|

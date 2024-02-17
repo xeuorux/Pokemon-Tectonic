@@ -15,3 +15,9 @@ BattleHandlers::WeightCalcAbility.add(:ROBUST,
         next weight * 2
     }
 )
+
+BattleHandlers::WeightCalcAbility.add(:MITHRILBODY,
+    proc { |ability, _battler, weight|
+        next weight * 2
+    }
+)

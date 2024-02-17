@@ -232,3 +232,4 @@
 3231,ADAMANTITE,Adamantite,"Powers up Steel-type moves by 50%."
 3232,TRICKYAURA,Tricky Aura,"Upon entry, creates a Trick Room for five turns, inverting the effect of Speed."
 3233,MOLDBREAKER,Mold Breaker,"Ignores Abilities that would affect its moves."
+3234,ROBUST,Robust,"Double the Pokémon's weight, and boost its Attack by 20%."
