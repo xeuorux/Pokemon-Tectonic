@@ -132,7 +132,7 @@ module GameData
       end
   
       def self.icon_filename_from_pokemon(pkmn)
-        return self.icon_filename(pkmn.species, pkmn.form, pkmn.gender, pkmn.shiny?, pkmn.shadowPokemon?, pkmn.egg?)
+        return self.icon_filename(pkmn.species, pkmn.form, pkmn.gender, pkmn.shiny?, false, pkmn.egg?)
       end
   
       def self.egg_icon_bitmap(species, form)
@@ -146,7 +146,7 @@ module GameData
       end
   
       def self.icon_bitmap_from_pokemon(pkmn)
-        return self.icon_bitmap(pkmn.species, pkmn.form, pkmn.gender, pkmn.shiny?, pkmn.shadowPokemon?, pkmn.egg?)
+        return self.icon_bitmap(pkmn.species, pkmn.form, pkmn.gender, pkmn.shiny?, false, pkmn.egg?)
       end
   
       #===========================================================================

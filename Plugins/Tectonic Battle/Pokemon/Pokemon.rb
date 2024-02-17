@@ -39,7 +39,7 @@ class Pokemon
     # @return [Integer] this Pokémon's current happiness (an integer between 0 and 255)
     attr_accessor :happiness
     # @return [Symbol] the item ID of the Poké Ball this Pokémon is in
-    attr_accessor :poke_ball
+    attr_writer :poke_ball
     # @return [Integer] this Pokémon's markings, one bit per marking
     attr_accessor :markings
     # @return [Hash<Integer>] this Pokémon's effort values
@@ -1575,7 +1575,11 @@ class Pokemon
     @personalID = rand(2**16) | rand(2**16) << 16
   end
 
-  def shadowPokemon?
-    return false
+  def poke_ball
+    if @poke_ball == :BALLLAUNCHER
+      return :POKEBALL
+    else
+      return @poke_ball
+    end
   end
 end
