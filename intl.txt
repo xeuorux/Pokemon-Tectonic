@@ -44828,8 +44828,8 @@ Capa Hueca
 Kilna Ascent
 Ascenso Kilna
 122
-Prizca Sewers South
-Alcantarillas Prizca Sur
+LuxTech Sewers
+Alcantarillas LuxTech
 123
 Novo College
 Facultad Novo 
@@ -45128,8 +45128,8 @@ Alcantarillas Prizca Oriental
 Prizca Sewers
 Alcantarillas Prizca
 222
-Prizca Sewers Tunnel
-Túnel Alcantarillas Prizca
+Sewers Junction
+Cruce de Alcantarillas
 223
 Prizca Sewers West
 Alcantarillas Prizca Occidental

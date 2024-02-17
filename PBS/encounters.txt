@@ -371,7 +371,7 @@ Land,20
 Special,20
     1,HAPPINY,15
 #-------------------------------
-[122] # Prizca Sewers South
+[122] # LuxTech Sewers
 Special,20
     1,VOLTORB,21,23
 SewerFloor,20

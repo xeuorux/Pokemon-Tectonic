@@ -886,7 +886,7 @@ MapSize = 1,111
 Environment = Rock
 #-------------------------------
 [122]
-# Prizca Sewers South
+# LuxTech Sewers
 Outdoor = false
 ShowArea = true
 Bicycle = true
@@ -1605,7 +1605,7 @@ Bicycle = false
 MapPosition = 0,12,6
 #-------------------------------
 [222]
-# Prizca Sewers Tunnel
+# Sewer Junction
 Outdoor = false
 ShowArea = true
 Bicycle = true
