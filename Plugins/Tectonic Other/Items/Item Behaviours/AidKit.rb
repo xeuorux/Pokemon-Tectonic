@@ -1,19 +1,32 @@
 AID_KIT_BASE_HEALING = 25
+AID_KIT_BASE_CHARGES = 3
 HEALING_UPGRADE_AMOUNT = 10
+# Equal to the number of Kit Expansions in the game
+MAX_AID_KIT_CHARGES = 8
+# Equal the number of Medical Upgrades in the game
+MAX_AID_KIT_UPGRADES = 8
 
 def initializeAidKit()
 	$PokemonGlobal.teamHealerUpgrades 		= 0
-	$PokemonGlobal.teamHealerMaxUses 		= 3
-	$PokemonGlobal.teamHealerCurrentUses 	= 3
+	$PokemonGlobal.teamHealerMaxUses 		= AID_KIT_BASE_CHARGES
+	$PokemonGlobal.teamHealerCurrentUses 	= AID_KIT_BASE_CHARGES
+end
+
+def getAidKitMaxCharges
+	return [$PokemonGlobal.teamHealerMaxUses,AID_KIT_BASE_CHARGES + MAX_AID_KIT_CHARGES].min
 end
 
 def refillAidKit(doubled = false)
-	refillCharges = $PokemonGlobal.teamHealerMaxUses
+	refillCharges = getAidKitMaxCharges
 	refillCharges *= 2 if doubled
 	if $PokemonBag.pbHasItem?(:AIDKIT)
 		$PokemonGlobal.teamHealerCurrentUses = refillCharges
 		pbMessage(_INTL("\\i[AIDKIT]Your Aid Kit was refreshed to #{$PokemonGlobal.teamHealerCurrentUses} charges."))
 	end
+end
+
+def getAidKitHealingAmount
+	return AID_KIT_BASE_HEALING + HEALING_UPGRADE_AMOUNT * [$PokemonGlobal.teamHealerUpgrades,MAX_AID_KIT_UPGRADES].min
 end
 
 def useAidKit()
@@ -34,7 +47,7 @@ def useAidKit()
 		return 0
 	else
 		$PokemonGlobal.teamHealerCurrentUses -= 1
-		healAmount = AID_KIT_BASE_HEALING + HEALING_UPGRADE_AMOUNT * $PokemonGlobal.teamHealerUpgrades
+		healAmount = getAidKitHealingAmount
 		playerTribalBonus.updateTribeCount
 		healAmount = (healAmount * 1.25).ceil if playerTribalBonus.hasTribeBonus?(:CARETAKER)
 		previousHealthValues = []
@@ -70,10 +83,15 @@ ItemHandlers::UseFromBag.add(:KITEXPANSION,proc { |item|
 		pbMessage(_INTL("You don't have a Aid Kit to upgrade."))
 		next 0
 	end
-	charges = $PokemonGlobal.teamHealerMaxUses
-	pbMessage(_INTL("Your Aid Kit has been increased to #{charges+1} charges."))
-	$PokemonGlobal.teamHealerMaxUses	 	+= 1
-	$PokemonGlobal.teamHealerCurrentUses 	+= 1
+	if $PokemonGlobal.teamHealerMaxUses >= AID_KIT_BASE_CHARGES + MAX_AID_KIT_CHARGES
+		pbMessage(_INTL("Your Aid Kit already has the maximum number of charges."))
+		next 0
+	else
+		charges = $PokemonGlobal.teamHealerMaxUses
+		pbMessage(_INTL("Your Aid Kit has been increased to #{charges+1} charges."))
+		$PokemonGlobal.teamHealerMaxUses	 	+= 1
+		$PokemonGlobal.teamHealerCurrentUses 	+= 1
+	end
 	next 3
 })
 
@@ -82,9 +100,13 @@ ItemHandlers::UseFromBag.add(:MEDICALUPGRADE,proc { |item|
 		pbMessage(_INTL("You don't have a Aid Kit to upgrade."))
 		next 0
 	end
-	charges = $PokemonGlobal.teamHealerMaxUses
-	pbMessage(_INTL("Your Aid Kit now heals an additional #{HEALING_UPGRADE_AMOUNT} HP per charge."))
-	$PokemonGlobal.teamHealerUpgrades	 	+= 1
+	if $PokemonGlobal.teamHealerUpgrades >= MAX_AID_KIT_UPGRADES
+		pbMessage(_INTL("Your Aid Kit already has the maximum healing amount."))
+		next 0
+	else
+		pbMessage(_INTL("Your Aid Kit now heals an additional #{HEALING_UPGRADE_AMOUNT} HP per charge."))
+		$PokemonGlobal.teamHealerUpgrades	 	+= 1
+	end
 	next 3
 })
 
