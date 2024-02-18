@@ -72,7 +72,7 @@ def pbStorePokemonInPC(pkmn)
   end
 end
 
-def pbNicknameAndStore(pkmn)
+def pbNicknameAndStore(pkmn,nickname = true)
   if pbBoxesFull?
       pbMessage(_INTL("There's no more room for Pokémon!\1"))
       pbMessage(_INTL("The Pokémon Boxes are full and can't accept any more!"))
@@ -80,18 +80,13 @@ def pbNicknameAndStore(pkmn)
   end
   $Trainer.pokedex.set_seen(pkmn.species)
   $Trainer.pokedex.set_owned(pkmn.species)
-
-  # Let the player know info about the individual pokemon they caught
-  pbMessage(_INTL("You check {1}, and discover that its ability is <imp>{2}</imp>!", pkmn.name, pkmn.ability.name))
-
-  pkmn.items.each do |item|
-      pbMessage(_INTL("The {1} is holding an {2}!", pkmn.name, getItemName(item)))
-  end
+  
+  discoverPokemon(pkmn)
 
   # Increase the caught count for the global metadata
   incrementDexNavCounts(false) if defined?(incrementDexNavCounts)
 
-  if !defined?($PokemonSystem.nicknaming_prompt) || $PokemonSystem.nicknaming_prompt == 0
+  if $PokemonSystem.nicknaming_prompt == 0 && nickname
       pbNickname(pkmn)
   end
 
@@ -100,10 +95,18 @@ def pbNicknameAndStore(pkmn)
   evolutionButtonCheck(pkmn)
 end
 
+def discoverPokemon(pkmn)
+  pbMessage(_INTL("You check {1}, and discover that its ability is <imp>{2}</imp>!", pkmn.name, pkmn.ability.name))
+
+  pkmn.items.each do |item|
+      pbMessage(_INTL("The {1} is holding an {2}!", pkmn.name, getItemName(item)))
+  end
+end
+
 #===============================================================================
 # Giving Pokémon to the player (will send to storage if party is full)
 #===============================================================================
-def pbAddPokemon(pkmn, level = 1, see_form = true)
+def pbAddPokemon(pkmn, level = 1)
   return false if !pkmn
   if pbBoxesFull?
     pbMessage(_INTL("There's no more room for Pokémon!\1"))
@@ -115,15 +118,13 @@ def pbAddPokemon(pkmn, level = 1, see_form = true)
   species_name = pkmn.speciesName
   pbMessage(_INTL("{1} obtained {2}!\\me[Pkmn get]\\wtnp[80]\1", $Trainer.name, species_name))
   pbNicknameAndStore(pkmn)
-  $Trainer.pokedex.register(pkmn) if see_form
   return true
 end
 
-def pbAddPokemonSilent(pkmn, level = 1, see_form = true)
+def pbAddPokemonSilent(pkmn, level = 1)
   return false if !pkmn || pbBoxesFull?
   pkmn = randomizeSpecies(pkmn, false, true)
   pkmn = Pokemon.new(pkmn, level) if !pkmn.is_a?(Pokemon)
-  $Trainer.pokedex.register(pkmn) if see_form
   $Trainer.pokedex.set_owned(pkmn.species)
   pkmn.record_first_moves
   if $Trainer.party_full?
@@ -131,6 +132,17 @@ def pbAddPokemonSilent(pkmn, level = 1, see_form = true)
   else
     $Trainer.party[$Trainer.party.length] = pkmn
   end
+  return true
+end
+
+def pbAddPokemonFromTrade(pkmn)
+  return false if !pkmn
+  if pbBoxesFull?
+    pbMessage(_INTL("There's no more room for Pokémon!\1"))
+    pbMessage(_INTL("The Pokémon Boxes are full and can't accept any more!"))
+    return false
+  end
+  pbNicknameAndStore(pkmn)
   return true
 end
 

@@ -210,32 +210,53 @@ class PokemonTrade_Scene
   def pbStartTrade(pokemonIndex,newpoke,nickname,trainerName,trainerGender=0)
     myPokemon = $Trainer.party[pokemonIndex]
     pbTakeItemsFromPokemon(myPokemon) if myPokemon.hasItem?
+    receivingPokemon = createTradedPokemon(newpoke,myPokemon.level,nickname,trainerName,trainerGender)
+    pbStartTradeGraphics(myPokemon,receivingPokemon,trainerName)
+    $Trainer.party[pokemonIndex] = receivingPokemon
+    refreshFollow(false)
+  end
+
+  def pbStartBoxTrade(myPokemon,storageLocation,newpoke,nickname,trainerName,trainerGender=0)
+    storageBox = storageLocation[0]
+    boxIndex = storageLocation[1]
+    pbTakeItemsFromPokemon(myPokemon) if myPokemon.hasItem?
+    receivingPokemon = createTradedPokemon(newpoke,myPokemon.level,nickname,trainerName,trainerGender)
+    pbStartTradeGraphics(myPokemon,receivingPokemon,trainerName)
+    if storageBox == -1
+      $Trainer.party[boxIndex] = receivingPokemon
+      discoverPokemon(receivingPokemon)
+      refreshFollow(false) if storageBox == -1
+    else
+      $PokemonStorage.pbDelete(storageBox, boxIndex)
+      pbAddPokemonFromTrade(receivingPokemon)
+    end
+  end
+
+  def createTradedPokemon(newpoke,level,nickname,trainerName,trainerGender)
     opponent = NPCTrainer.new(trainerName,trainerGender)
     opponent.id = $Trainer.make_foreign_ID
-    yourPokemon = nil
-    resetmoves = true
     if newpoke.is_a?(Pokemon)
       newpoke.owner = Pokemon::Owner.new_from_trainer(opponent)
-      yourPokemon = newpoke
-      resetmoves = false
+      receivingPokemon = newpoke
     else
       species_data = GameData::Species.try_get(newpoke)
       raise _INTL("Species does not exist ({1}).", newpoke) if !species_data
-      yourPokemon = Pokemon.new(species_data.id, myPokemon.level, opponent)
+      receivingPokemon = Pokemon.new(species_data.id, level, opponent)
+      receivingPokemon.reset_moves
     end
-    yourPokemon.name          = nickname
-    yourPokemon.obtain_method = 2   # traded
-    yourPokemon.reset_moves if resetmoves
-    yourPokemon.record_first_moves
-    $Trainer.pokedex.register(yourPokemon)
-    $Trainer.pokedex.set_owned(yourPokemon.species)
+    receivingPokemon.name          = nickname
+    receivingPokemon.obtain_method = 2   # traded
+    receivingPokemon.record_first_moves
+    $Trainer.pokedex.register(receivingPokemon)
+    $Trainer.pokedex.set_owned(receivingPokemon.species)
+    return receivingPokemon
+  end
+  
+  def pbStartTradeGraphics(myPokemon,yourPokemon,opponentName)
     pbFadeOutInWithMusic {
       evo = PokemonTrade_Scene.new
-      evo.pbStartScreen(myPokemon,yourPokemon,$Trainer.name,opponent.name)
+      evo.pbStartScreen(myPokemon,yourPokemon,$Trainer.name,opponentName)
       evo.pbTrade
       evo.pbEndScreen
     }
-    $Trainer.party[pokemonIndex] = yourPokemon
-    refreshFollow(false)
   end
-  

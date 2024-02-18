@@ -1164,11 +1164,11 @@ def pbChoosePokemon(variableNumber,nameVarNumber,ableProc=nil,allowIneligible=fa
 		scene = PokemonParty_Scene.new
 		screen = PokemonPartyScreen.new(scene,$Trainer.party)
 		if ableProc
-		chosen=screen.pbChooseAblePokemon(ableProc,allowIneligible)
+		  chosen=screen.pbChooseAblePokemon(ableProc,allowIneligible)
 		else
-		screen.pbStartScene(_INTL("Choose a Pokémon."),false)
-		chosen = screen.pbChoosePokemon
-		screen.pbEndScene
+      screen.pbStartScene(_INTL("Choose a Pokémon."),false)
+      chosen = screen.pbChoosePokemon
+      screen.pbEndScene
 		end
 	}
 	pbSet(variableNumber,chosen)
