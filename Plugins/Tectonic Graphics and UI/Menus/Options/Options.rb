@@ -35,6 +35,7 @@ class PokemonSystem
     attr_accessor :tutorial_popups
     attr_accessor :dark_mode
     attr_accessor :forced_time_tint
+    attr_accessor :aid_kit_animation
 
     def bgmvolume
         return @bgmvolume / VOLUME_FAKERY_MULT
@@ -99,6 +100,7 @@ class PokemonSystem
         @party_snapshots          = $DEBUG ? 1 : 0 # (0=true, 1=false)
         @tutorial_popups          = $DEBUG ? 1 : 0 # (0=true, 1=false)
         @bag_sorting              = 0 # (0=none,1=alphabetical,2=ID)
+        @aid_kit_animation        = 0 # (0=true, 1=false)
     end
 
     def frame=(value)
@@ -637,6 +639,10 @@ class PokemonOption_Scene_UserInterface < PokemonOption_Scene_Base
 				proc { |value|
 					$PokemonSystem.prompt_level_moves = value
 				}
+			),
+            EnumOption.new(_INTL("Aid Kit Animation"), [_INTL("On"), _INTL("Off")],
+				proc { $PokemonSystem.aid_kit_animation },
+				proc { |value| $PokemonSystem.aid_kit_animation = value }
 			),
             EnumOption.new(_INTL("Advanced Tutorials"), [_INTL("On"), _INTL("Off")],
 				proc { $PokemonSystem.tutorial_popups },
