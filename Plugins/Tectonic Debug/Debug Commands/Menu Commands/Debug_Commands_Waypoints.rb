@@ -21,7 +21,7 @@
                               waypointName = match[1]
                               begin
                                   echoln("Unlocking: #{waypointName}")
-                                  $waypoints_tracker.addWaypoint(waypointName,[id,event.id],false)
+                                  $waypoints_tracker.addWaypoint(waypointName,[id,event.id])
                               rescue => exception
                                   pbMessage(_INTL("Unable to unlock waypoint: #{waypointName}"))
                               end
@@ -44,5 +44,15 @@
     "description" => _INTL("Choose a waypoint to warp to."),
     "effect"      => proc { |sprites, viewport|
       $waypoints_tracker.warpByWaypoints()
+    }}
+  )
+
+  DebugMenuCommands.register("wipeallwaypoints", {
+    "parent"      => "waypoints",
+    "name"        => _INTL("Wipe all waypoints."),
+    "description" => _INTL("Unregister all waypoints."),
+    "effect"      => proc { |sprites, viewport|
+      $waypoints_tracker.deleteAllWaypoints
+      pbMessage(_INTL("All waypoints deregistered."))
     }}
   )

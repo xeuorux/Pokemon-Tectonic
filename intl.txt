@@ -52224,6 +52224,80 @@ But it failed, since the field is already covered in flowers!
 ¡{2} lee el corazón de {1} y consigue sus stats!
 Which type should #{user.pbThis(true)} launch?
 ¿Qué tipo debería disparar #{user.pbThis(true)}?
+Sandstone System
+Sandstone System
+Frostflow Secret
+Frostflow Secret
+Six Spire Cave
+Six Spire Cave
+Alloyed Thicket
+Alloyed Thicket
+Chasm HQ Chamber
+Chasm HQ Chamber
+Bluepoint Grotto
+Bluepoint Grotto
+Casaba Villa Chamber
+Casaba Villa Chamber
+Shipping Lane Chamber
+Shipping Lane Chamber
+Velenz Chamber
+Velenz Chamber
+Hollowed Layer
+Hollowed Layer
+Clearwater Cave
+Clearwater Cave
+Volcanic Cave
+Volcanic Cave
+Nebula Ruins
+Nebula Ruins
+Eleig Crossing Chamber
+Eleig Crossing Chamber
+Spirit Atoll
+Spirit Atoll
+Riverside Houses
+Riverside Houses
+Catacombs Entryway
+Catacombs Entryway
+Boiling Cave
+Boiling Cave
+Prizca East Chamber
+Prizca East Chamber
+Velenz Menagerie
+Velenz Menagerie
+Tempest Realm
+Tempest Realm
+Abyssal Cavern
+Abyssal Cavern
+Criminal Sewers
+Criminal Sewers
+Prizca Property
+Prizca Property
+Whitebloom Nook
+Whitebloom Nook
+Underpeak Tunnels
+Underpeak Tunnels
+Sweetrock Harbor Chamber
+Sweetrock Harbor Chamber
+Skyward Ascent
+Skyward Ascent
+Path of Genesis
+Path of Genesis
+Suspicious Shed
+Suspicious Shed
+King's Chamber
+King's Chamber
+Crumbling Canyon
+Crumbling Canyon
+Catacomb Depths
+Catacomb Depths
+Guardian Island
+Guardian Island
+Mirror Tundra
+Mirror Tundra
+Tri Island
+Tri Island
+Eventide Peak
+Eventide Peak
 [26]
 [27]
 [27]

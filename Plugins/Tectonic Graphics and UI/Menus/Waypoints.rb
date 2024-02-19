@@ -14,11 +14,9 @@ class WaypointsTracker
 		@legendsMaterialized = []
 	end
 
-	def overwriteWaypoint(waypointName,mapID,wayPointInfo)
-		if @activeWayPoints.has_key?(waypointName)
-			@activeWayPoints[waypointName] = [mapID,wayPointInfo]
-		elsif debugControl
-			setWaypoint(waypointName,mapID,wayPointInfo)
+	def overwriteWaypoint(waypointName,event)
+		if @activeWayPoints.has_key?(waypointName) || debugControl
+			addWaypoint(waypointName,event)
 		end
 	end
 
@@ -28,6 +26,10 @@ class WaypointsTracker
 
 	def deleteWaypoint(waypointName)
 		@activeWayPoints.delete(waypointName)
+	end
+
+	def deleteAllWaypoints
+		@activeWayPoints = {}
 	end
 
 	def mapPositionHash
@@ -53,7 +55,7 @@ class WaypointsTracker
 		return nil
 	end
 
-	def addWaypoint(waypointName,event,message = true)
+	def addWaypoint(waypointName,event)
 		if event.is_a?(Array)
 			@activeWayPoints[waypointName] = event
 		else

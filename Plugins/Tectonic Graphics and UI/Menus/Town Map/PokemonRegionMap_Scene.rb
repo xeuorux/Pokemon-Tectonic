@@ -248,7 +248,7 @@ class PokemonRegionMap_Scene
             @sprites["cursor"].y = newY-yOffset
             next
           end
-          @sprites["mapbottom"].waypointName = $waypoints_tracker.getWaypointAtMapPosition(@mapX,@mapY) || ""
+          @sprites["mapbottom"].waypointName = _INTL($waypoints_tracker.getWaypointAtMapPosition(@mapX,@mapY)) || ""
           @sprites["mapbottom"].maplocation = pbGetMapLocation(@mapX,@mapY)
           @sprites["mapbottom"].mapdetails  = pbGetMapDetails(@mapX,@mapY)
           ox = 0
