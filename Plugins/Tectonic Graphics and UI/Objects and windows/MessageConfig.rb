@@ -348,7 +348,7 @@ module MessageConfig
   #===============================================================================
   # Determine which text colours to use based on the darkness of the background
   #===============================================================================
-  def getSkinColor(windowskin,color,isDarkSkin)
+  def getSkinColor(windowskin,color,isDarkSkin,asTag = true)
     if !windowskin || windowskin.disposed? ||
        windowskin.width!=128 || windowskin.height!=128
       # Base color, shadow color (these are reversed on dark windowskins)
@@ -369,24 +369,48 @@ module MessageConfig
             colorToRgb32(MessageConfig::LIGHT_TEXT_SHADOW_COLOR)   # 12 Light default
       ]
       if color==0 || color>textcolors.length/2   # No special colour, use default
-        if isDarkSkin   # Dark background, light text
-          return shadowc3tag(MessageConfig::LIGHT_TEXT_MAIN_COLOR, MessageConfig::LIGHT_TEXT_SHADOW_COLOR)
+        if isDarkSkin # Dark background, light text
+          if asTag
+            return shadowc3tag(MessageConfig::LIGHT_TEXT_MAIN_COLOR, MessageConfig::LIGHT_TEXT_SHADOW_COLOR)
+          else
+            return [MessageConfig::LIGHT_TEXT_MAIN_COLOR, MessageConfig::LIGHT_TEXT_SHADOW_COLOR]
+          end
+        else # Light background, dark text
+          if asTag
+            return shadowc3tag(MessageConfig::DARK_TEXT_MAIN_COLOR, MessageConfig::DARK_TEXT_SHADOW_COLOR)
+          else
+            return [MessageConfig::DARK_TEXT_MAIN_COLOR, MessageConfig::DARK_TEXT_SHADOW_COLOR]
+          end
         end
-        # Light background, dark text
-        return shadowc3tag(MessageConfig::DARK_TEXT_MAIN_COLOR, MessageConfig::DARK_TEXT_SHADOW_COLOR)
       end
       # Special colour as listed above
-      if isDarkSkin && color!=12   # Dark background, light text
-        return sprintf("<c3=%s,%s>",textcolors[2*(color-1)+1],textcolors[2*(color-1)])
+      if isDarkSkin && color != 12   # Dark background, light text
+        base = textcolors[2*(color-1)+1]
+        shadow = textcolors[2*(color-1)]
+        if asTag
+          return sprintf("<c3=%s,%s>",base,shadow)
+        else
+          return [base,shadow]
+        end
+      else # Light background, dark text
+        base = textcolors[2*(color-1)]
+        shadow = textcolors[2*(color-1)+1]
+        if asTag
+          return sprintf("<c3=%s,%s>",base,base)
+        else
+          return [base,shadow]
+        end
       end
-      # Light background, dark text
-      return sprintf("<c3=%s,%s>",textcolors[2*(color-1)],textcolors[2*(color-1)+1])
     else   # VX windowskin
       color = 0 if color>=32
       x = 64 + (color % 8) * 8
       y = 96 + (color / 8) * 8
       pixel = windowskin.get_pixel(x, y)
-      return shadowctagFromColor(pixel)
+      if asTag
+        return shadowctagFromColor(pixel)
+      else
+        return [colorToRgb32(pixel),colorToRgb32(getContrastColor(pixel))]
+      end
     end
   end
   

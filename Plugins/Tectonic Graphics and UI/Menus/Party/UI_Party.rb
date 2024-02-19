@@ -130,6 +130,54 @@ end
          @commands[index],base,shadow)
     end
   end
+
+  class Window_CommandPokemonAlternatingColor < Window_CommandPokemon
+    BASE_WEIGHT = 2
+    COLOR_WEIGHT = 1
+    TOTAL_WEIGHT = BASE_WEIGHT + COLOR_WEIGHT
+
+    def initialize(commands,width=nil)
+      super
+      
+      firstFullColor = getSkinColor(self.windowskin,1,isDarkWindowskin(self.windowskin),false)
+      firstFullBaseColor = rgbToColor(firstFullColor[0])
+      firstFullShadowColor = rgbToColor(firstFullColor[1])
+      firstBaseRed = (self.baseColor.red * BASE_WEIGHT + firstFullBaseColor.red * COLOR_WEIGHT) / TOTAL_WEIGHT
+      firstBaseGreen = (self.baseColor.green * BASE_WEIGHT + firstFullBaseColor.green * COLOR_WEIGHT) / TOTAL_WEIGHT
+      firstBaseBlue = (self.baseColor.blue * BASE_WEIGHT + firstFullBaseColor.blue * COLOR_WEIGHT) / TOTAL_WEIGHT
+      @firstBaseColor = Color.new(firstBaseRed,firstBaseGreen,firstBaseBlue)
+      firstShadowRed = (self.shadowColor.red * BASE_WEIGHT + firstFullShadowColor.red * COLOR_WEIGHT) / TOTAL_WEIGHT
+      firstShadowGreen = (self.shadowColor.green * BASE_WEIGHT + firstFullShadowColor.green * COLOR_WEIGHT) / TOTAL_WEIGHT
+      firstShadowBlue = (self.shadowColor.blue * BASE_WEIGHT + firstFullShadowColor.blue * COLOR_WEIGHT) / TOTAL_WEIGHT
+      @firstShadowColor = Color.new(firstShadowRed,firstShadowGreen,firstShadowBlue)
+
+      secondFullColor = getSkinColor(self.windowskin,2,isDarkWindowskin(self.windowskin),false)
+      secondFullBaseColor = rgbToColor(secondFullColor[0])
+      secondFullShadowColor = rgbToColor(secondFullColor[1])
+      secondBaseRed = (self.baseColor.red * BASE_WEIGHT + secondFullBaseColor.red * COLOR_WEIGHT) / TOTAL_WEIGHT
+      secondBaseGreen = (self.baseColor.green * BASE_WEIGHT + secondFullBaseColor.green * COLOR_WEIGHT) / TOTAL_WEIGHT
+      secondBaseBlue = (self.baseColor.blue * BASE_WEIGHT + secondFullBaseColor.blue * COLOR_WEIGHT) / TOTAL_WEIGHT
+      @secondBaseColor = Color.new(secondBaseRed,secondBaseGreen,secondBaseBlue)
+      secondShadowRed = (self.shadowColor.red * BASE_WEIGHT + secondFullShadowColor.red * COLOR_WEIGHT) / TOTAL_WEIGHT
+      secondShadowGreen = (self.shadowColor.green * BASE_WEIGHT + secondFullShadowColor.green * COLOR_WEIGHT) / TOTAL_WEIGHT
+      secondShadowBlue = (self.shadowColor.blue * BASE_WEIGHT + secondFullShadowColor.blue * COLOR_WEIGHT) / TOTAL_WEIGHT
+      @secondShadowColor = Color.new(secondShadowRed,secondShadowGreen,secondShadowBlue)
+    end
+
+    def drawItem(index,_count,rect)
+      pbSetSystemFont(self.contents) if @starting
+      rect = drawCursor(index,rect)
+      if index % 2 == 0
+        base   = @firstBaseColor
+        shadow = @firstShadowColor
+      else
+        base   = @secondBaseColor
+        shadow = @secondShadowColor
+      end
+      pbDrawShadowText(self.contents,rect.x,rect.y,rect.width,rect.height,
+         @commands[index],base,shadow)
+    end
+  end
   
   #===============================================================================
   # Blank party panel

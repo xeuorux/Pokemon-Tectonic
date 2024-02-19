@@ -2,21 +2,21 @@ class BattleGuideLister
     attr_reader :guideHash
 
     def initialize(hash, startingIndex = 0)
-        @pkmnList = Window_UnformattedTextPokemon.newWithSize("",
-          Graphics.width / 2, 64, Graphics.width / 2, Graphics.height - 64)
-        @pkmnList.z = 3
+        @explanationWindow = Window_AdvancedTextPokemon.newWithSize("",
+          Graphics.width / 2, 0, Graphics.width / 2, Graphics.height)
+        @explanationWindow.z = 3
         @selection = @index = startingIndex
         @guideHash = hash
         @commands = []
         @ids = []
-      end
+    end
     
     def dispose
-        @pkmnList.dispose
+        @explanationWindow.dispose
     end
     
     def setViewport(viewport)
-        @pkmnList.viewport = viewport
+        @explanationWindow.viewport = viewport
     end
     
     def startIndex
@@ -39,6 +39,10 @@ class BattleGuideLister
     def refresh(index)
         return if index < 0
         text = @guideHash[@commands[index]]
-        @pkmnList.text = text
+        @explanationWindow.text = text
+    end
+
+    def update
+        @explanationWindow.update
     end
 end
