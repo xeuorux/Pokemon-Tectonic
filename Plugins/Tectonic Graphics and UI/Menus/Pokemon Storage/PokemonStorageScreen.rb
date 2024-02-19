@@ -23,14 +23,14 @@ class PokemonStorageScreen
                         pbDisplay(_INTL("You're holding a Pokémon!"))
                         next
                     end
-                    next if pbConfirm(_INTL("Continue Box operations?"))
+                    next if command != 4 && pbConfirm(_INTL("Continue Box operations?"))
                     break
                 elsif selected[0] == -3   # Close box
                     if pbHeldPokemon
                         pbDisplay(_INTL("You're holding a Pokémon!"))
                         next
                     end
-                    if pbConfirm(_INTL("Exit from the Box?"))
+                    if command == 4 || pbConfirm(_INTL("Exit from the Box?"))
                         pbSEPlay("PC close")
                         break
                     end
@@ -131,7 +131,7 @@ class PokemonStorageScreen
             loop do
                 selected = @scene.pbSelectBox(@storage.party)
                 if selected.nil?
-                    next if pbConfirm(_INTL("Continue Box operations?"))
+                    next if command == 4 || pbConfirm(_INTL("Continue Box operations?"))
                     break
                 else
                     case selected[0]
@@ -236,7 +236,11 @@ class PokemonStorageScreen
             @scene.pbStartBox(self, command)
             @scene.pbCloseBox
         end
-        return false
+        if command == 4
+            return [nil,nil,nil]
+        else
+            return false
+        end
     end
 
     def pbUpdate # For debug
@@ -823,4 +827,8 @@ def pbChooseBoxPokemon(variableNumber,storageLocVarNumber,ableProc=nil)
 	}
 	pbSet(variableNumber,chosenPkmn)
 	pbSet(storageLocVarNumber,[storageBox,boxLocation])
+end
+
+def boxPokemonChosen?
+    return pbGet(1).is_a?(Pokemon)
 end
