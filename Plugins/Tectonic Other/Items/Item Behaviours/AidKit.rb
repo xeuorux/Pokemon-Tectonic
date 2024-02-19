@@ -16,9 +16,9 @@ def getAidKitMaxCharges
 	return [$PokemonGlobal.teamHealerMaxUses,AID_KIT_BASE_CHARGES + MAX_AID_KIT_CHARGES].min
 end
 
-def refillAidKit(doubled = false)
+def refillAidKit(boostAmount = 0)
 	refillCharges = getAidKitMaxCharges
-	refillCharges *= 2 if doubled
+	refillCharges += boostAmount
 	if $PokemonBag.pbHasItem?(:AIDKIT)
 		$PokemonGlobal.teamHealerCurrentUses = refillCharges
 		pbMessage(_INTL("\\i[AIDKIT]Your Aid Kit was refreshed to #{$PokemonGlobal.teamHealerCurrentUses} charges."))
