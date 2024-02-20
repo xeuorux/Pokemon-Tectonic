@@ -181,7 +181,7 @@ ExtendsVersion = 0
 Policies = CURSE_TORMENTED
 #-------------------------------
 [POKEMONTRAINER_Yezera,Yezera]
-Policies = YEZERA,NO_PERFECT
+Policies = YEZERA,NO_PERFECT,METAGAMES_STAT_ITEMS
 Pokemon = BUNNELBY,17
     Moves = TREADON,HOP,TACKLE,BABYDOLLEYES
     AbilityIndex = 1 # Paranoid
@@ -278,7 +278,7 @@ Pokemon = ANORITH,17
     AbilityIndex = 0 # Selective Scutes
 Pokemon = BELDUM,17
     Moves = BULLETPUNCH,JOLT,BLINDSIDE
-    AbilityIndex = 1 # Robust
+    AbilityIndex = 1 # Mithril Body
 #-------------------------------
 [SCIENTIST_M2,Dexter]
 Policies = PRIORITIZEDOTS
@@ -327,7 +327,6 @@ Pokemon = FLETCHINDER,20
 Extends = LEADER_Eko,Eko,0
 Pokemon = SALANDIT,20
     Item = AIRBALLOON
-    EV = 20,0,0,20,0,10
 Pokemon = TYNAMO,20
     Moves = JOLT,NASTYNIP,POISONFANG,LIGHTSCREEN
     AbilityIndex = 0 # Levitate
@@ -604,6 +603,19 @@ Pokemon = PRIMEAPE,25
     Moves = FIREFANG,ARMTHRUST,SHADOWPUNCH,BULKUP
     AbilityIndex = 1 # Dominating
 #-------------------------------
+[CLERK_F,Lily]
+Pokemon = PIKACHU,23
+    Moves = ELECTROBALL,AGILITY,NUZZLE,DRAININGKISS
+    AbilityIndex = 0 # Extreme Voltage
+Pokemon = SEALEO,24
+    Moves = AURORABEAM,WATERPULSE,YAWN,SYMBIOSIS
+    AbilityIndex = 0 # Full Blubber
+Pokemon = MFRILLISH,23
+    Gender = female
+    Moves = WILLOWISP,SPARK,JOLT,ASTONISH
+    AbilityIndex = 0 # Ruinous
+    Item = SITRUSBERRY
+#-------------------------------
 [PSYCHIC_F2,Ludmila]
 Pokemon = MIMEJR,26
     Moves = ENCORE,MAGEHAND,PIXIEPUNCH,ICEPUNCH
@@ -795,11 +807,11 @@ Pokemon = APERSIAN,55
     AbilityIndex = 0 # Fur Coat
     Item = MENTALHERB
     EV = 20,20,5,0,20,5
-Pokemon = PERRSERKER,55
-    Moves = BULLETTRAIN,CLOSECOMBAT,DEEPBREATHING,NIGHTFELLING
-    AbilityIndex = 1 # Steely Spirit
+Pokemon = ADUGTRIO,55
+    Moves = SCORCHINGSANDS,FLASHCANNON,MIASMA,STARDANCE
+    AbilityIndex = 1 # Fascinate
     Item = UTILITYUMBRELLA
-    EV = 9,20,1,19,20,1
+    EV = 10,10,0,20,10,10
 #-------------------------------
 [COOLTRAINER_M7,Nero]
 Pokemon = MORPEKO,65
@@ -835,7 +847,7 @@ Pokemon = LYCANROC,65
     EV = 10,20,0,20,20,0
 #-------------------------------
 [POKEMONTRAINER_Yezera,Yezera,2]
-Policies = NO_PERFECT
+Policies = NO_PERFECT,METAGAMES_STAT_ITEMS
 Pokemon = MORGREM,25
     Moves = REFLECT,ASSURANCE,PIXIEPUNCH
     AbilityIndex = 1 # Ruinous
@@ -869,7 +881,7 @@ Pokemon = DARTRIX,25
     EV = 20,20,6,0,20,4
 #-------------------------------
 [POKEMONTRAINER_Yezera,Yezera,4]
-Policies = YEZERA,NO_PERFECT
+Policies = YEZERA,NO_PERFECT,METAGAMES_STAT_ITEMS
 Pokemon = RHYDON,35
     Moves = GRANITEHEAD,STEALTHROCK,BULLDOZE,BRICKBREAK
     AbilityIndex = 0 # Reckless
@@ -903,13 +915,10 @@ Pokemon = MILTANK,35
     EV = 20,10,10,0,10,10
 Pokemon = MALAMAR,35
     Item = LIFEORB
-    EV = 0,20,0,20,20,10
 Pokemon = FLAAFFY,35
     Item = LUMBERRY
-    EV = 10,20,20,0,20,0
 Pokemon = SKIPLOOM,35
     Item = LOADEDDICE
-    EV = 0,20,0,20,20,10
 #-------------------------------
 [SCHOOLKID_M,Louis]
 Policies = NO_PERFECT
@@ -1181,7 +1190,7 @@ Pokemon = CARBINK,26
     AbilityIndex = 0 # Clear Body
 Pokemon = METANG,28
     Moves = MAGNETIZE,BULLETPUNCH,PSYCHOCUT,THUNDERPUNCH
-    AbilityIndex = 1 # Robust
+    AbilityIndex = 1 # Mithril Body
 #-------------------------------
 [CYCLIST_M,Mitron]
 Pokemon = MDUSTOX,28
@@ -1422,7 +1431,6 @@ Pokemon = ORICORIO,30
 Extends = LEADER_Rafael,Rafael,0
 Pokemon = ORICORIO,30
     Item = MENTALHERB
-    EV = 10,20,0,20,20,0
 Pokemon = MISDREAVUS,30
     Moves = HEX,BALEFULBOP,SHIVER,CLEARSMOG
     AbilityIndex = 1 # Ear-Splitting
@@ -1993,7 +2001,7 @@ Pokemon = LAIRON,40
     AbilityIndex = 0 # Rock Head
 #-------------------------------
 [ROUGHNECK,Reese]
-Policies = SAND_TEAM
+Policies = SANDSTORM_TEAM
 Pokemon = PUPITAR,40
     AbilityIndex = 0 # Sand Burst
     Item = LEFTOVERS
@@ -2408,7 +2416,6 @@ ExtendsVersion = 0
 Policies = CURSE_SUBSTITUTED
 Pokemon = LIEPARD,45
     Item = DARKGEM
-    EV = 10,20,0,20,20,0
 Pokemon = EMPOLEON,45
     Moves = SLAY,SWORDSDANCE,LIQUIDATION,AQUAJET
     AbilityIndex = 0 # Imperious
@@ -2688,7 +2695,7 @@ Pokemon = METAGROSS,45
     Name = Armiger
     Shiny = yes
     Moves = METEORMASH,TRAMPLE,BRICKBREAK,SEERSTRIKE
-    AbilityIndex = 1 # Robust
+    AbilityIndex = 1 # Mithril Body
     EV = 20,20,10,0,20,0
 Pokemon = MPOLTEAGEIST,45
     Moves = FROSTBREATH,SEANCE,BUBBLEBARRAGE,FROSTSPIKES
@@ -2709,7 +2716,6 @@ Pokemon = BRUXISH,45
 Extends = LEADER_Noel,Noel,0
 Pokemon = MRRIME,45
     Item = FOCUSSASH
-    EV = 10,0,10,20,0,10
 Pokemon = GDARMANITAN,45
     Form = 1
     Moves = BURNUP,SUBLIMATE,SOLARBEAM,BODYPRESS
@@ -2718,14 +2724,25 @@ Pokemon = GDARMANITAN,45
     EV = 0,20,20,0,20,10
 Pokemon = METAGROSS,45
     Item = SALACBERRY
-    EV = 20,20,10,0,20,0
 #-------------------------------
 [LEADER_Noel_2,Noel,1]
 ExtendsVersion = 0
 Policies = CURSE_EXTRA_TYPES
+Pokemon = MRRIME,45
+    ExtraTypes = ROCK
+Pokemon = METAGROSS,45
+    ExtraTypes = FAIRY
+Pokemon = MPOLTEAGEIST,45
+    ExtraTypes = WATER
+Pokemon = CRABOMINABLE,45
+    ExtraTypes = GHOST
+Pokemon = BRUXISH,45
+    ExtraTypes = POISON
+Pokemon = GDARMANITAN,45
+    ExtraTypes = FIGHTING
 #-------------------------------
 [BLACKBELT2,Riccardo]
-Policies = SAND_TEAM,NO_PERFECT
+Policies = SANDSTORM_TEAM,NO_PERFECT
 Pokemon = HIPPOWDON,53
     AbilityIndex = 0 # Sand Stream
     Item = SMOOTHROCK
@@ -3467,10 +3484,8 @@ Pokemon = DECEAT,55
     EV = 20,20,10,0,20,0
 Pokemon = AGGRON,55
     Item = FOCUSSASH
-    EV = 10,20,0,20,20,0
 Pokemon = HYMNUS,55
     AbilityIndex = 1 # Rain Prism
-    EV = 20,10,5,10,10,5
 RemovePokemon = VANILLUXE,55
 #-------------------------------
 [LEADER_Victoire_2,Victoire,1]
@@ -3524,7 +3539,7 @@ Pokemon = MAMOSWINE,50
     Item = LEFTOVERS
 #-------------------------------
 [POKEMONTRAINER_Yezera,Yezera,6]
-Policies = YEZERA4,NO_PERFECT
+Policies = YEZERA4,NO_PERFECT,METAGAMES_STAT_ITEMS
 Pokemon = TOGEKISS,65
     Name = Artemisia
     Gender = female
@@ -3668,7 +3683,7 @@ Pokemon = CURSOLA,47
     Item = SITRUSBERRY
 #-------------------------------
 [POKEMONRANGER_M3,Grant]
-Policies = SAND_TEAM
+Policies = SANDSTORM_TEAM
 Pokemon = HIPPOWDON,47
     AbilityIndex = 0 # Sand Stream
     Item = EJECTBUTTON
@@ -3784,7 +3799,7 @@ Pokemon = DURANT,60
     AbilityIndex = 0 # Hustle
 #-------------------------------
 [LEADER_Samorn,Samorn]
-Policies = SAMORN,NO_PERFECT,SAND_TEAM
+Policies = SAMORN,NO_PERFECT,SANDSTORM_TEAM
 Pokemon = FLYGON,60
     Moves = DEVOURINGDUST,BUGBUZZ,DRAGONPULSE,ERODE
     AbilityIndex = 0 # Desert Spirit
@@ -3814,10 +3829,8 @@ Pokemon = SAURENAID,60
 Extends = LEADER_Samorn,Samorn,0
 Pokemon = TOWERPODA,60
     Item = SMOOTHROCK
-    EV = 20,10,10,0,10,10
 Pokemon = GARCHOMP,60
     Item = ASSAULTVEST
-    EV = 20,20,5,0,20,5
 Pokemon = REAVOR,60
     Moves = BULLETPUNCH,DUALWINGBEAT,BUGBITE,SHATTERVISE
     AbilityIndex = 0 # Technician
@@ -3826,19 +3839,26 @@ Pokemon = REAVOR,60
 #-------------------------------
 [LEADER_Samorn_2,Samorn,1]
 ExtendsVersion = 0
-Policies = CURSE_BOOSTED_SAND
-Pokemon = REAVOR,60
-    Position = 1
-    EV = 20,20,0,0,20,10
+Policies = CURSE_SAND_ABILITIES
+Pokemon = FLYGON,60
+    ExtraAbilities = SIRENSONG
 Pokemon = TOWERPODA,60
     Moves = DRACOMETEOR,BODYPRESS,FLASHCANNON,SANDSTORM
     AbilityIndex = 0 # Stubborn
+    ExtraAbilities = DESERTARMOR
     Item = DRAGONGEM
     EV = 10,20,20,0,20,0
+Pokemon = GARCHOMP,60
+    ExtraAbilities = SCOUREDSILHOUETTE
 Pokemon = VOLCARONA,60
     Moves = PSYCHIC,GIGADRAIN,BUGBUZZ,HEATWAVE
+    ExtraAbilities = SANDRUSH
     Item = FIREGEM
     EV = 12,20,0,18,20,0
+Pokemon = SAURENAID,60
+    ExtraAbilities = SANDSTREAM
+Pokemon = REAVOR,60
+    ExtraAbilities = SANDBURST
 #-------------------------------
 [FIREBREATHER,Bradley]
 Pokemon = COMFEY,49
@@ -3965,7 +3985,7 @@ Pokemon = HYDREIGON,63
     Item = LEFTOVERS
 Pokemon = METAGROSS,64
     Moves = ELECTROSLASH,OMNISCIENTBLOW,BULLETPUNCH,METEORMASH
-    AbilityIndex = 1 # Robust
+    AbilityIndex = 1 # Mithril Body
 Pokemon = ARMALDO,63
     Moves = ADAMANTINEPRESS,XSCISSOR,SWORDSDANCE,LIQUIDATION
     AbilityIndex = 0 # Selective Scutes
@@ -4059,7 +4079,7 @@ Pokemon = KLAWSAR,58
     Item = LIFEORB
 #-------------------------------
 [POKEMONTRAINER_Yezera,Yezera,8]
-Policies = NO_PERFECT
+Policies = NO_PERFECT,METAGAMES_STAT_ITEMS
 Pokemon = REGIDRAGO,65
     Moves = DRAGONENERGY,HARDFEELINGS,HAMMERARM,CRUNCH
     AbilityIndex = 1 # Dragon's Blood
@@ -4100,13 +4120,10 @@ ExtendsVersion = 8
 Policies = CURSE_AVATAR_GUARD,PRESERVE_LAST_POKEMON
 Pokemon = REGIDRAGO,65
     Item = DRAGONGEM
-    EV = 0,10,20,0,10,20
 Pokemon = REGIELEKI,65
     Item = FOCUSSASH
-    EV = 0,20,10,20,20,0
 Pokemon = TYRANITAR,65
     Item = ASSAULTVEST
-    EV = 10,20,0,0,20,20
 #-------------------------------
 [MASKEDVILLAIN_DOUBLE,Crimson]
 NameForHashing = Imogene
@@ -4218,7 +4235,6 @@ Pokemon = ABSOLUS,55
 Pokemon = ASANDSLASH,55
     Item = CUSTAPBERRY
 Pokemon = FLORGES,55
-    Item = OCCABERRY
 Pokemon = PALMANTRA,55
     Item = LIFEORB
 #-------------------------------
@@ -4733,24 +4749,17 @@ ExtendsVersion = 2
 Policies = CURSE_SUPER_ITEMS
 Pokemon = RUNERIGUS,70
     Item = SMOOTHSASH
-    EV = 20,0,15,0,0,15
 Pokemon = FLYGON,70
     Item = LUNUSBERRY
-    EV = 10,20,0,20,20,0
 Pokemon = SAURENAID,70
     Name = Maxie
-    Gender = male
     Item = LUNCHBOX
-    EV = 0,10,20,0,10,20
 Pokemon = ARMALDO,70
     Item = WATERRING
-    EV = 10,20,0,20,20,0
 Pokemon = GOLEM,70
     Item = RINDOFEAST
-    EV = 20,20,0,0,20,10
 Pokemon = WORNET,70
     Item = STRIKECORSET
-    EV = 0,20,10,20,20,0
 #-------------------------------
 [LEADER_Lambert_2,Lambert,2]
 Policies = NO_PERFECT
@@ -4789,24 +4798,18 @@ ExtendsVersion = 2
 Policies = CURSE_SUPER_ITEMS
 Pokemon = ZOROARK,70
     Item = CLARITYSASH
-    EV = 0,20,10,20,20,0
 Pokemon = RIOJIN,70
     Name = Sangfroid
-    Gender = female
     Item = ZALAKABERRY
     EV = 20,20,10,0,20,0
 Pokemon = PANGORO,70
     Item = ROSELIFEAST
-    EV = 20,20,10,0,20,0
 Pokemon = EXCADRILL,70
     Item = LUNCHBOX
-    EV = 0,20,0,20,20,10
 Pokemon = INFERNAPE,70
     Item = LUCENTGEM
-    EV = 0,20,10,20,20,0
 Pokemon = AEGISLASH,70
     Item = SPELLBELL
-    EV = 20,20,5,0,20,5
 #-------------------------------
 [LEADER_Eko_2,Eko,2]
 Policies = NO_PERFECT
@@ -4845,24 +4848,17 @@ ExtendsVersion = 2
 Policies = CURSE_SUPER_ITEMS
 Pokemon = INCINEROAR,70
     Item = SITREONBERRY
-    EV = 20,10,0,0,10,20
 Pokemon = SALAZZLE,70
     Item = POWERKEY
-    EV = 0,20,0,20,20,10
 Pokemon = TALONFLAME,70
     Name = Dario
-    Gender = male
     Item = CLARITYSASH
-    EV = 0,20,10,20,20,0
 Pokemon = EELEKTROSS,70
     Item = WHITEBOUGH
-    EV = 18,20,6,0,20,6
 Pokemon = SCOLIPEDE,70
     Item = DEATHORB
-    EV = 0,20,20,10,20,0
 Pokemon = ARAICHU,70
     Item = LUCENTGEM
-    EV = 10,20,0,20,20,0
 #-------------------------------
 [COOLTRAINER_M7,X]
 Policies = PRESERVE_LAST_POKEMON,NO_PERFECT
@@ -4899,19 +4895,14 @@ ExtendsVersion = 0
 Policies = CURSE_SUPER_ITEMS
 Pokemon = MRMIME,70
     Item = BRIGHTCLAY
-    EV = 20,0,10,0,0,20
 Pokemon = SENSIBELLE,70
     Item = LUNCHBOX
-    EV = 10,20,0,0,20,20
 Pokemon = INDEEDEE,70
     Item = PINPOINTROCK
-    EV = 10,20,0,0,20,20
 Pokemon = MIMIKYU,70
     Item = LUNUSBERRY
-    EV = 20,20,0,10,20,0
 Pokemon = GARDEVOIR,70
     Item = DEATHORB
-    EV = 10,20,0,20,20,0
 #-------------------------------
 [FORMERCHAMP_Elise,Elise,1]
 Policies = PRESERVE_LAST_POKEMON,HAIL_TEAM,NO_PERFECT
@@ -4948,22 +4939,16 @@ ExtendsVersion = 1
 Policies = CURSE_SUPER_ITEMS
 Pokemon = FROSLASS,70
     Item = CLARITYSASH
-    EV = 10,20,0,20,20,0
 Pokemon = MAMOSWINE,70
     Item = CHOICECROWN
-    EV = 0,20,11,19,20,0
 Pokemon = DROMERUPT,70
     Item = NORMALRING
-    EV = 0,20,6,18,20,6
 Pokemon = GOLURK,70
     Item = ZALAKABERRY
-    EV = 10,20,10,0,20,10
 Pokemon = CHIMECHO,70
     Item = STRIKECORSET
-    EV = 0,20,10,20,20,0
 Pokemon = WEAVILE,70
     Item = DEATHORB
-    EV = 10,20,0,20,20,0
 #-------------------------------
 [TRAINER_Alessa,Alessa,3]
 Policies = NO_PERFECT
@@ -5000,22 +4985,16 @@ ExtendsVersion = 3
 Policies = CURSE_SUPER_ITEMS
 Pokemon = FORRETRESS,70
     Item = LUNCHBOX
-    EV = 20,10,0,0,10,20
 Pokemon = ROSERADE,70
     Item = STRIKECORSET
-    EV = 0,20,10,20,20,0
 Pokemon = SWAMPERT,70
     Item = RINDOFEAST
-    EV = 10,20,10,0,20,10
 Pokemon = CRUSTLE,70
     Item = WHITEBOUGH
-    EV = 20,20,0,0,20,10
 Pokemon = DURANT,70
     Item = ASSAULTCORSET
-    EV = 10,20,0,20,20,0
 Pokemon = CLAYDOL,70
     Item = LUNUSBERRY
-    EV = 20,20,0,0,20,10
 #-------------------------------
 [TRAINER_Eifion,Eifion,1]
 Policies = NO_PERFECT
@@ -5052,22 +5031,16 @@ ExtendsVersion = 1
 Policies = CURSE_SUPER_ITEMS
 Pokemon = DELPHOX,70
     Item = HEATSASH
-    EV = 10,20,0,20,20,0
 Pokemon = HOUNDOMINUS,70
     Item = DEATHORB
-    EV = 0,20,0,20,20,10
 Pokemon = PHIONE,70
     Item = LUNCHBOX
-    EV = 18,20,6,0,20,6
 Pokemon = TOXAPEX,70
     Item = JAGGEDHELMET
-    EV = 20,0,20,0,0,10
 Pokemon = OCTILLERY,70
     Item = ALLPURPOSEVEST
-    EV = 10,20,10,0,20,10
 Pokemon = SLOWBRO,70
     Item = SITREONBERRY
-    EV = 20,10,0,0,10,20
 #-------------------------------
 [LEADER_Helena_2,Helena,2]
 Policies = NO_PERFECT
@@ -5106,24 +5079,17 @@ ExtendsVersion = 2
 Policies = CURSE_SUPER_ITEMS
 Pokemon = PINCURCHIN,70
     Item = BIGREDBUTTON
-    EV = 20,10,10,0,10,10
 Pokemon = WAILORD,70
     Name = Hannibal
-    Gender = male
     Item = LUNCHBOX
-    EV = 0,20,15,0,20,15
 Pokemon = LANTURN,70
     Item = ZENITHSPECS
-    EV = 10,20,10,0,20,10
 Pokemon = SKARMORY,70
     Item = JAGGEDHELMET
-    EV = 20,10,20,0,10,0
 Pokemon = FEAROW,70
     Item = ASSAULTCORSET
-    EV = 20,10,0,0,10,20
 Pokemon = ARCLAMOR,70
     Item = LEADBALLOON
-    EV = 10,20,0,20,20,0
 #-------------------------------
 [LEADER_Bence_2,Bence,2]
 Policies = NO_PERFECT
@@ -5166,18 +5132,13 @@ Pokemon = ARCHEOPS,70
     EV = 0,20,0,20,20,10
 Pokemon = STONJOURNER,70
     Name = Agnes
-    Gender = female
     Item = ALLPURPOSEVEST
-    EV = 20,20,0,0,20,10
 Pokemon = JUMPLUFF,70
     Item = HOOHSASHES
-    EV = 10,20,0,20,20,0
 Pokemon = HAWLUCHA,70
     Item = CLARITYSASH
-    EV = 0,20,10,20,20,0
 Pokemon = PALMANTRA,70
     Item = BUGRING
-    EV = 10,20,0,20,20,0
 Pokemon = DRAGONITE,70
     Moves = ROOST,DRAGONDANCE,OUTRAGE,INFINITEWING
     Item = LUNCHBOX
@@ -5221,22 +5182,17 @@ ExtendsVersion = 2
 Policies = CURSE_SUPER_ITEMS
 Pokemon = FERROTHORN,70
     Item = OCCAFEAST
-    EV = 20,0,20,0,0,10
 Pokemon = SENSIBELLE,70
     Item = LUNUSBERRY
-    EV = 20,0,10,0,0,20
 Pokemon = SERPERIOR,70
     Item = SITREONBERRY
-    EV = 10,10,10,20,10,0
 Pokemon = EMPOLEON,70
     Item = STRIKECORSET
-    EV = 10,20,20,0,20,0
 Pokemon = BLAZIKEN,70
     Item = DEATHORB
     EV = 10,10,20,10,10,0
 Pokemon = MGIGALITH,70
     Item = ASSAULTCORSET
-    EV = 10,20,0,0,20,20
 #-------------------------------
 [TRAINER_Sang,Sang,4]
 Policies = EQ_PROTECT,NO_PERFECT
@@ -5842,7 +5798,7 @@ Pokemon = GOLURK,70
     Item = SEVENLEAGUEBOOTS
 #-------------------------------
 [POKEMONTRAINER_Yezera,Yezera,10]
-Policies = YEZERA6,NO_PERFECT
+Policies = YEZERA6,NO_PERFECT,METAGAMES_STAT_ITEMS
 Pokemon = TYRANITAR,70
     Name = Autochthon
     Gender = male
@@ -6959,7 +6915,7 @@ Pokemon = LUDICOLO,70
     Item = KEBIABERRY
 #-------------------------------
 [WILDPACK,Arid]
-Policies = SAND_TEAM,NO_PERFECT
+Policies = SANDSTORM_TEAM,NO_PERFECT
 Pokemon = HIPPOWDON,70
     AbilityIndex = 0 # Sand Stream
     Item = SMOOTHROCK
@@ -7130,7 +7086,7 @@ Pokemon = VILEPLUME,70
 Pokemon = BOUFFALANT,70
     AbilityIndex = 0 # Reckless
 Pokemon = EISCUE,70
-    AbilityIndex = 1 # Ice Face
+    AbilityIndex = 1 # Sturdy
 #-------------------------------
 [BIRDKEEPER_F,Danika]
 Pokemon = MMANDIBUZZ,70
@@ -7209,7 +7165,7 @@ Pokemon = NINETALES,70
     AbilityIndex = 0 # Cursed Tail
     Item = ASSAULTVEST
 Pokemon = METAGROSS,70
-    AbilityIndex = 0 # Full Metal Body
+    AbilityIndex = 0 # Psyforce
 Pokemon = WEEZING,70
     AbilityIndex = 1 # Fumigate
     Item = LEFTOVERS
@@ -7413,7 +7369,7 @@ Pokemon = LEAFEON,70
     AbilityIndex = 1 # Reluctant Blade
     Item = AMWIBERRY
 Pokemon = METAGROSS,70
-    AbilityIndex = 1 # Robust
+    AbilityIndex = 1 # Mithril Body
 #-------------------------------
 [EXPERTM,Hiroshi]
 Pokemon = ELECTIVIRE,70

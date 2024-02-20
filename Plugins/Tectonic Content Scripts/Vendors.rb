@@ -216,8 +216,13 @@ def styleFurfrou
 end
 
 def createHisuian
-	speciesArray = ["None","Hisuian Growlithe","Hisuian Voltorb","Hisuian Qwilfish","Hisuian Sneasel","Hisuian Zorua"]
-	actualSpecies = [nil,:HGROWLITHE,:HVOLTORB,:HQWILFISH,:HSNEASEL,:HZORUA]
+	actualSpecies = [:HGROWLITHE,:HVOLTORB,:HQWILFISH,:HSNEASEL,:HZORUA]
+	speciesArray = []
+	actualSpecies.each do |speciesID|
+		speciesArray.push(GameData::Species.get(speciesID).name)
+	end
+	actualSpecies.unshift(nil)
+	speciesArray.unshift(_INTL("None"))
 	
 	while true
 		result = pbShowCommands(nil,speciesArray)
@@ -226,7 +231,6 @@ def createHisuian
 			pbMessage(_INTL("Ah, I was looking forward to flexing my skills today."))
 			break
 		else
-			chosenName = speciesArray[result]
 			chosenSpecies = actualSpecies[result]
 
 			choicesArray = [_INTL("View MasterDex"), _INTL("Buy Pokemon"), _INTL("Cancel")]
@@ -287,6 +291,46 @@ def shinifyPokemonVendor
 	pbMessage(_INTL("The money isn't bad either..."))
 
 	return false
+end
+
+def cloneMinorLegend
+	actualSpecies = [:PHIONE,:TYPENULL,:COSMOG,:MELTAN,:KUBFU]
+	speciesArray = []
+	actualSpecies.each do |speciesID|
+		speciesArray.push(GameData::Species.get(speciesID).name)
+	end
+	actualSpecies.unshift(nil)
+	speciesArray.unshift(_INTL("None"))
+	
+	while true
+		result = pbShowCommands(nil,speciesArray)
+
+		if result == 0
+			pbMessage(_INTL("Ah, lacking in miraculous materials, are we?"))
+			break
+		else
+			chosenSpecies = actualSpecies[result]
+
+			choicesArray = [_INTL("View MasterDex"), _INTL("Clone Pokemon"), _INTL("Cancel")]
+			secondResult = pbShowCommands(nil,choicesArray,3)
+			case secondResult
+			when 1
+				item_data = GameData::Item.get(:ORIGINORE)
+				pbMessage(_INTL("\\PN hands over the #{item_data.name}."))
+				pbMessage(_INTL("Now just to work my magicks..."))
+				blackFadeOutIn(30) {
+					$PokemonBag.pbDeleteItem(:ORIGINORE)
+				}
+				pbMessage(_INTL("Poof! And so the impossible has been made possible!"))
+				pbAddPokemon(chosenSpecies,10)
+				pbMessage(_INTL("My hopes go with you. Live the legend!"))
+				break
+			when 0
+				openSingleDexScreen(chosenSpecies)
+			end
+			next
+		end
+	end
 end
 
 ######################################################

@@ -12,9 +12,9 @@ class PokemonStorageScreen
         @pbHeldPokemon = nil
     end
 
-    def pbStartScreen(command)
+    def pbStartScreen(command,ableProc = nil)
         @heldpkmn = nil
-        if command == 0 # Organise
+        if command == 0 || command == 4 # Organise or Select
             @scene.pbStartBox(self, command)
             loop do
                 selected = @scene.pbSelectBox(@storage.party)
@@ -23,25 +23,35 @@ class PokemonStorageScreen
                         pbDisplay(_INTL("You're holding a Pokémon!"))
                         next
                     end
-                    next if pbConfirm(_INTL("Continue Box operations?"))
+                    next if command != 4 && pbConfirm(_INTL("Continue Box operations?"))
                     break
                 elsif selected[0] == -3   # Close box
                     if pbHeldPokemon
                         pbDisplay(_INTL("You're holding a Pokémon!"))
                         next
                     end
-                    if pbConfirm(_INTL("Exit from the Box?"))
+                    if command == 4 || pbConfirm(_INTL("Exit from the Box?"))
                         pbSEPlay("PC close")
                         break
                     end
                     next
                 elsif selected[0] == -4   # Box name
-                    if pbBoxCommands
+                    if pbBoxCommands(command == 4)
                         @scene.pbCloseBox
                         return true
                     end
                 else
                     pokemon = @storage[selected[0], selected[1]]
+                    if pokemon && command == 4
+                        if ableProc.nil? || ableProc.call(pokemon)
+                            @scene.pbCloseBox
+                            return pokemon,selected[0],selected[1]
+                        else
+                            pbPlayBuzzerSE
+                            pbDisplay(_INTL("That Pokémon is not a valid choice!"))
+                            next
+                        end
+                    end
                     heldpoke = pbHeldPokemon
                     next if !pokemon && !heldpoke
                     if @scene.quickswap
@@ -121,7 +131,7 @@ class PokemonStorageScreen
             loop do
                 selected = @scene.pbSelectBox(@storage.party)
                 if selected.nil?
-                    next if pbConfirm(_INTL("Continue Box operations?"))
+                    next if command == 4 || pbConfirm(_INTL("Continue Box operations?"))
                     break
                 else
                     case selected[0]
@@ -226,7 +236,11 @@ class PokemonStorageScreen
             @scene.pbStartBox(self, command)
             @scene.pbCloseBox
         end
-        return false
+        if command == 4
+            return [nil,nil,nil]
+        else
+            return false
+        end
     end
 
     def pbUpdate # For debug
@@ -625,7 +639,7 @@ class PokemonStorageScreen
         @scene.pbHardRefresh if pbTakeItemsFromPokemon(pokemon) > 0
     end
 
-    def pbBoxCommands
+    def pbBoxCommands(selectionMode = false)
         jumpCommand = -1
         wallPaperCommand = -1
         nameCommand = -1
@@ -639,15 +653,19 @@ class PokemonStorageScreen
         loop do
             commands = []
             commands[jumpCommand = commands.length]         = _INTL("Jump")
-            commands[wallPaperCommand = commands.length]    = _INTL("Wallpaper")
-            commands[nameCommand = commands.length]         = _INTL("Name")
+            unless selectionMode
+                commands[wallPaperCommand = commands.length]    = _INTL("Wallpaper")
+                commands[nameCommand = commands.length]         = _INTL("Name")
+            end
             commands[searchCommand = commands.length]       = _INTL("Search")
-            commands[sortCommand = commands.length]         = _INTL("Sort")
-            commands[sortAllCommand = commands.length]      = _INTL("Sort All")
-            commands[lockCommand = commands.length]         =
-                @storage.boxes[@storage.currentBox].isLocked? ? _INTL("Sort Unlock") : _INTL("Sort Lock")
-            if defined?(PokEstate) && !$game_switches[ESTATE_DISABLED_SWITCH]
-                commands[visitEstateCommand = commands.length] = _INTL("Visit PokÉstate")
+            unless selectionMode
+                commands[sortCommand = commands.length]         = _INTL("Sort")
+                commands[sortAllCommand = commands.length]      = _INTL("Sort All")
+                commands[lockCommand = commands.length]         =
+                    @storage.boxes[@storage.currentBox].isLocked? ? _INTL("Sort Unlock") : _INTL("Sort Lock")
+                if defined?(PokEstate) && !$game_switches[ESTATE_DISABLED_SWITCH]
+                    commands[visitEstateCommand = commands.length] = _INTL("Visit PokÉstate")
+                end
             end
             commands[cancelCommand = commands.length]       = _INTL("Cancel")
             command = pbShowCommands(_INTL("What do you want to do?"), commands, command)
@@ -678,14 +696,14 @@ class PokemonStorageScreen
                 searchMethod = @scene.pbChooseSearch(_INTL("Search how?"))
                 next unless searchMethod > 0
                 case searchMethod
-                when 0
-                    searchPrompt = _INTL("Which name?")
                 when 1
-                    searchPrompt = _INTL("Which species?")
+                    searchPrompt = _INTL("Which name?")
                 when 2
-                    searchPrompt = _INTL("Which type?")
+                    searchPrompt = _INTL("Which species?")
                 when 3
-                    searchPrompt = _INTL("Which trbe?")
+                    searchPrompt = _INTL("Which type?")
+                when 4
+                    searchPrompt = _INTL("Which tribe?")
                 end
 
                 next unless @scene.pbSearch(searchPrompt, 0, 12, searchMethod)
@@ -796,4 +814,21 @@ class PokemonStorageScreen
         @scene.pbCloseBox
         return retval
     end
+end
+
+def pbChooseBoxPokemon(variableNumber,storageLocVarNumber,ableProc=nil)
+	chosenPkmn = nil
+    storageBox = nil
+    boxLocation = nil
+	pbFadeOutIn {
+		scene = PokemonStorageScene.new
+        screen = PokemonStorageScreen.new(scene, $PokemonStorage)
+		chosenPkmn,storageBox,boxLocation = screen.pbStartScreen(4,ableProc)
+	}
+	pbSet(variableNumber,chosenPkmn)
+	pbSet(storageLocVarNumber,[storageBox,boxLocation])
+end
+
+def boxPokemonChosen?
+    return pbGet(1).is_a?(Pokemon)
 end

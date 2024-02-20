@@ -19,6 +19,12 @@ Outdoor = false
 ShowArea = false
 Bicycle = false
 #-------------------------------
+[002]
+# Sandstone System
+Outdoor = false
+ShowArea = false
+Bicycle = false
+#-------------------------------
 [003]
 # Kilna Turf
 Outdoor = true
@@ -116,6 +122,12 @@ Outdoor = false
 ShowArea = false
 Bicycle = false
 HealingSpot = 37,35,11
+#-------------------------------
+[014]
+# LuxTech Buildings
+Outdoor = false
+ShowArea = false
+Bicycle = false
 #-------------------------------
 [015]
 # LuxTech Mart
@@ -330,6 +342,12 @@ Bicycle = true
 BattleBack = wcave
 Environment = Cave
 #-------------------------------
+[043]
+# Novo Apartments F2
+Outdoor = false
+ShowArea = false
+Bicycle = false
+#-------------------------------
 [044]
 # Lambert's House
 Outdoor = false
@@ -354,8 +372,20 @@ Outdoor = false
 ShowArea = false
 Bicycle = false
 #-------------------------------
+[048]
+# Name Rater's House
+Outdoor = false
+ShowArea = false
+Bicycle = false
+#-------------------------------
 [049]
 # Tourist's House
+Outdoor = false
+ShowArea = false
+Bicycle = false
+#-------------------------------
+[050]
+# Casaba Buildings
 Outdoor = false
 ShowArea = false
 Bicycle = false
@@ -385,6 +415,12 @@ BattleBack = forest
 MapSize = 3,111
 Environment = Forest
 #-------------------------------
+[054]
+# Yezera's House
+Outdoor = false
+ShowArea = false
+Bicycle = false
+#-------------------------------
 [055]
 # Lingering Delta
 Outdoor = true
@@ -412,6 +448,12 @@ ShowArea = false
 Bicycle = false
 BicycleAlways = false
 HealingSpot = 56,43,27
+#-------------------------------
+[058]
+# Grouz Buildings
+Outdoor = false
+ShowArea = false
+Bicycle = false
 #-------------------------------
 [059]
 # Feebas' Fin
@@ -446,6 +488,12 @@ ShowArea = false
 Bicycle = false
 BattleBack = elite8
 TeleportBlocked = true
+#-------------------------------
+[063]
+# Novo Buildings
+Outdoor = false
+ShowArea = false
+Bicycle = false
 #-------------------------------
 [064]
 # M. Munna Den
@@ -544,6 +592,12 @@ Outdoor = false
 ShowArea = false
 Bicycle = false
 #-------------------------------
+[080]
+# Berry Farmer's House
+Outdoor = false
+ShowArea = false
+Bicycle = false
+#-------------------------------
 [081]
 # East Tunnel
 Outdoor = false
@@ -575,6 +629,12 @@ Bicycle = true
 BattleBack = wcave
 Environment = Cave
 #-------------------------------
+[085]
+# Worried Man's House
+Outdoor = false
+ShowArea = false
+Bicycle = false
+#-------------------------------
 [086]
 # Zigzagoon Nest
 Outdoor = false
@@ -595,8 +655,68 @@ Outdoor = false
 ShowArea = false
 Bicycle = false
 #-------------------------------
+[089]
+# Svait Lodge
+Outdoor = false
+ShowArea = false
+Bicycle = false
+#-------------------------------
+[090]
+# Employees' House
+Outdoor = false
+ShowArea = false
+Bicycle = false
+#-------------------------------
+[091]
+# Svait Lodge F2
+Outdoor = false
+ShowArea = false
+Bicycle = false
+#-------------------------------
+[092]
+# Svait Lodge Room 2
+Outdoor = false
+ShowArea = false
+Bicycle = false
+#-------------------------------
+[093]
+# Rescue Operations Center
+Outdoor = false
+ShowArea = false
+Bicycle = false
+#-------------------------------
+[094]
+# Svait Lodge Room 1
+Outdoor = false
+ShowArea = false
+Bicycle = false
+#-------------------------------
 [095]
 # Snowbird's House F2
+Outdoor = false
+ShowArea = false
+Bicycle = false
+#-------------------------------
+[096]
+# LuxTech Cold Storage
+Outdoor = false
+ShowArea = false
+Bicycle = false
+#-------------------------------
+[097]
+# LuxTech Server Room
+Outdoor = false
+ShowArea = false
+Bicycle = false
+#-------------------------------
+[098]
+# LuxTech Cold Storage Basement
+Outdoor = false
+ShowArea = false
+Bicycle = false
+#-------------------------------
+[099]
+# Velenz Buildings
 Outdoor = false
 ShowArea = false
 Bicycle = false
@@ -733,6 +853,12 @@ MapPosition = 0,7,7
 BattleBack = cave1
 Environment = Ice
 #-------------------------------
+[118]
+# Svait Buildings
+Outdoor = false
+ShowArea = false
+Bicycle = false
+#-------------------------------
 [119]
 # Ranger Hangout
 Outdoor = false
@@ -760,7 +886,7 @@ MapSize = 1,111
 Environment = Rock
 #-------------------------------
 [122]
-# Prizca Sewers South
+# LuxTech Sewers
 Outdoor = false
 ShowArea = true
 Bicycle = true
@@ -801,6 +927,12 @@ MapPosition = 0,6,9
 BattleBack = cave1
 Environment = Cave
 #-------------------------------
+[127]
+# Lecture Hall
+Outdoor = false
+ShowArea = false
+Bicycle = false
+#-------------------------------
 [128]
 # Monument Lobby
 Outdoor = false
@@ -838,6 +970,18 @@ TeleportBlocked = true
 SavingBlocked = true
 NoTeamEditing = false
 #-------------------------------
+[132]
+# Waterlogged House
+Outdoor = false
+ShowArea = false
+Bicycle = false
+#-------------------------------
+[133]
+# Fossil Hall
+Outdoor = false
+ShowArea = false
+Bicycle = false
+#-------------------------------
 [134]
 # Prizca West Gym
 Outdoor = false
@@ -866,6 +1010,12 @@ BattleBack = field
 MapSize = 2,11
 Environment = Grass
 #-------------------------------
+[137]
+# Svait Lodge Room 3
+Outdoor = false
+ShowArea = false
+Bicycle = false
+#-------------------------------
 [138]
 # Scenic Trail
 Outdoor = true
@@ -875,6 +1025,12 @@ MapPosition = 0,22,17
 BattleBack = forest
 MapSize = 1,1
 Environment = Forest
+#-------------------------------
+[139]
+# Starters Store
+Outdoor = false
+ShowArea = false
+Bicycle = false
 #-------------------------------
 [140]
 # Starters Store - Grass
@@ -914,6 +1070,12 @@ Bicycle = false
 #-------------------------------
 [146]
 # Fancy House F2
+Outdoor = false
+ShowArea = false
+Bicycle = false
+#-------------------------------
+[147]
+# PokEstate
 Outdoor = false
 ShowArea = false
 Bicycle = false
@@ -967,6 +1129,12 @@ ShowArea = true
 Bicycle = true
 MapPosition = 0,9,3
 MapSize = 2,1111
+#-------------------------------
+[156]
+# Prizca West Buildings
+Outdoor = false
+ShowArea = false
+Bicycle = false
 #-------------------------------
 [157]
 # Traffic Control
@@ -1203,6 +1371,12 @@ MapPosition = 0,14,3
 BattleBack = indoor3
 Environment = None
 #-------------------------------
+[190]
+# Prizca East Buildings
+Outdoor = false
+ShowArea = false
+Bicycle = false
+#-------------------------------
 [191]
 # Prizca East Center
 Outdoor = false
@@ -1251,6 +1425,12 @@ Environment = Volcano
 #-------------------------------
 [197]
 # Noel's House
+Outdoor = false
+ShowArea = false
+Bicycle = false
+#-------------------------------
+[198]
+# Hidden Room
 Outdoor = false
 ShowArea = false
 Bicycle = false
@@ -1425,7 +1605,7 @@ Bicycle = false
 MapPosition = 0,12,6
 #-------------------------------
 [222]
-# Prizca Sewers Tunnel
+# Sewer Junction
 Outdoor = false
 ShowArea = true
 Bicycle = true
@@ -1442,6 +1622,30 @@ Weather = ToxicFog,100
 MapPosition = 0,11,4
 BattleBack = indoor3
 Environment = StillWater
+#-------------------------------
+[224]
+# Farmer's House
+Outdoor = false
+ShowArea = false
+Bicycle = false
+#-------------------------------
+[225]
+# Farmer's House F2
+Outdoor = false
+ShowArea = false
+Bicycle = false
+#-------------------------------
+[226]
+# Beekeeper's House
+Outdoor = false
+ShowArea = false
+Bicycle = false
+#-------------------------------
+[227]
+# Yezera's House F2
+Outdoor = false
+ShowArea = false
+Bicycle = false
 #-------------------------------
 [228]
 # Hidden Laboratory
@@ -1523,14 +1727,62 @@ Bicycle = false
 BattleBack = water
 TeleportBlocked = true
 #-------------------------------
+[240]
+# County Park Burrow
+Outdoor = false
+ShowArea = false
+Bicycle = false
+#-------------------------------
 [241]
 # Grouz Mine Sinkhole
 Outdoor = false
 ShowArea = false
 Bicycle = false
 #-------------------------------
+[242]
+# Goomy Den
+Outdoor = false
+ShowArea = false
+Bicycle = false
+#-------------------------------
 [243]
 # Chasm Base Mess Hall
+Outdoor = false
+ShowArea = false
+Bicycle = false
+#-------------------------------
+[244]
+# Gible Den
+Outdoor = false
+ShowArea = false
+Bicycle = false
+#-------------------------------
+[245]
+# Deino Den
+Outdoor = false
+ShowArea = false
+Bicycle = false
+#-------------------------------
+[246]
+# Jangmo-o Den
+Outdoor = false
+ShowArea = false
+Bicycle = false
+#-------------------------------
+[247]
+# Dreepy Den
+Outdoor = false
+ShowArea = false
+Bicycle = false
+#-------------------------------
+[248]
+# Bagon Den
+Outdoor = false
+ShowArea = false
+Bicycle = false
+#-------------------------------
+[249]
+# Dratini Den
 Outdoor = false
 ShowArea = false
 Bicycle = false
@@ -1606,6 +1858,18 @@ ShowArea = true
 Bicycle = true
 BattleBack = cave3
 Environment = Cave
+#-------------------------------
+[261]
+# Dratini Den 2
+Outdoor = false
+ShowArea = false
+Bicycle = false
+#-------------------------------
+[262]
+# Sweetrock Harbor Buildings
+Outdoor = false
+ShowArea = false
+Bicycle = false
 #-------------------------------
 [263]
 # Sweetrock Harbor Center
@@ -1748,6 +2012,12 @@ Bicycle = true
 MapPosition = 0,14,2
 BattleBack = distortion
 #-------------------------------
+[283]
+# Pokéball Depot
+Outdoor = false
+ShowArea = false
+Bicycle = false
+#-------------------------------
 [284]
 # Investigator's House
 Outdoor = false
@@ -1779,6 +2049,12 @@ ShowArea = true
 Bicycle = true
 BattleBack = cave3
 Environment = Cave
+#-------------------------------
+[289]
+# Sweetrock Candy Outlet
+Outdoor = false
+ShowArea = false
+Bicycle = false
 #-------------------------------
 [290]
 # Sweetrock Lighthouse F1
@@ -1819,6 +2095,24 @@ TeleportBlocked = true
 #-------------------------------
 [295]
 # Chasm Vacation Home
+Outdoor = false
+ShowArea = false
+Bicycle = false
+#-------------------------------
+[296]
+# South
+Outdoor = false
+ShowArea = false
+Bicycle = false
+#-------------------------------
+[297]
+# North
+Outdoor = false
+ShowArea = false
+Bicycle = false
+#-------------------------------
+[298]
+# Feebas' Fin Buildings
 Outdoor = false
 ShowArea = false
 Bicycle = false
@@ -1871,6 +2165,30 @@ ShowArea = true
 Bicycle = true
 BattleBack = distortion
 #-------------------------------
+[305]
+# Dock Warehouse
+Outdoor = false
+ShowArea = false
+Bicycle = false
+#-------------------------------
+[306]
+# Alessa's House
+Outdoor = false
+ShowArea = false
+Bicycle = false
+#-------------------------------
+[307]
+# Alessa's House F2
+Outdoor = false
+ShowArea = false
+Bicycle = false
+#-------------------------------
+[308]
+# Gible Den 2
+Outdoor = false
+ShowArea = false
+Bicycle = false
+#-------------------------------
 [309]
 # Cave of Hatching F2
 Outdoor = false
@@ -1881,6 +2199,30 @@ BattleBack = rocky
 #-------------------------------
 [310]
 # Old Lab
+Outdoor = false
+ShowArea = false
+Bicycle = false
+#-------------------------------
+[311]
+# Togepi Breeder's House
+Outdoor = false
+ShowArea = false
+Bicycle = false
+#-------------------------------
+[312]
+# Togepi Breeder's House F2
+Outdoor = false
+ShowArea = false
+Bicycle = false
+#-------------------------------
+[313]
+# Wren's House
+Outdoor = false
+ShowArea = false
+Bicycle = false
+#-------------------------------
+[314]
+# Wren's House F2
 Outdoor = false
 ShowArea = false
 Bicycle = false
@@ -1919,12 +2261,36 @@ ShowArea = true
 Bicycle = true
 MapPosition = 0,12,2
 #-------------------------------
+[319]
+# Grouz Station Backroom
+Outdoor = false
+ShowArea = false
+Bicycle = false
+#-------------------------------
 [320]
 # Svait Station Backroom
 Outdoor = false
 ShowArea = false
 Bicycle = false
 Weather = Fog,100
+#-------------------------------
+[321]
+# Crater Station Backroom
+Outdoor = false
+ShowArea = false
+Bicycle = false
+#-------------------------------
+[322]
+# Canal Station Backroom
+Outdoor = false
+ShowArea = false
+Bicycle = false
+#-------------------------------
+[323]
+# HQ Station Backroom
+Outdoor = false
+ShowArea = false
+Bicycle = false
 #-------------------------------
 [324]
 # Waiting Room
@@ -1984,6 +2350,18 @@ ShowArea = false
 Bicycle = false
 HealingSpot = 186,34,15
 #-------------------------------
+[332]
+# Frostflow Farms Buildings
+Outdoor = false
+ShowArea = false
+Bicycle = false
+#-------------------------------
+[333]
+# Gym Puzzles Testing
+Outdoor = false
+ShowArea = false
+Bicycle = false
+#-------------------------------
 [334]
 # The Present
 Outdoor = false
@@ -2020,6 +2398,12 @@ ShowArea = false
 Bicycle = false
 HealingSpot = 315,28,31
 #-------------------------------
+[339]
+# Underpeak Escape B1
+Outdoor = false
+ShowArea = false
+Bicycle = false
+#-------------------------------
 [340]
 # Illuminant Helix
 Outdoor = false
@@ -2027,6 +2411,12 @@ ShowArea = true
 Bicycle = true
 MapPosition = 0,14,11
 BattleBack = wcave
+#-------------------------------
+[341]
+# Underpeak Escape B2
+Outdoor = false
+ShowArea = false
+Bicycle = false
 #-------------------------------
 [342]
 # Carnation Tower F1
@@ -2040,11 +2430,29 @@ Outdoor = false
 ShowArea = false
 Bicycle = true
 #-------------------------------
+[344]
+# Eleig Stretch Buildings
+Outdoor = false
+ShowArea = false
+Bicycle = false
+#-------------------------------
 [345]
 # Eleig Boating and Fishing
 Outdoor = false
 ShowArea = false
 Bicycle = true
+#-------------------------------
+[346]
+# Executive's House
+Outdoor = false
+ShowArea = false
+Bicycle = false
+#-------------------------------
+[347]
+# Worker's Bunk
+Outdoor = false
+ShowArea = false
+Bicycle = false
 #-------------------------------
 [348]
 # UB Containment
@@ -2113,12 +2521,24 @@ ShowArea = true
 Bicycle = true
 MapPosition = 0,15,16
 #-------------------------------
+[358]
+# Dr. Hekata's House
+Outdoor = false
+ShowArea = false
+Bicycle = false
+#-------------------------------
 [359]
 # Ruined Tower F2
 Outdoor = false
 ShowArea = true
 Bicycle = true
 BattleBack = distortion
+#-------------------------------
+[360]
+# Velenz Caves
+Outdoor = false
+ShowArea = false
+Bicycle = false
 #-------------------------------
 [361]
 # The Catacombs B2
@@ -2220,6 +2640,18 @@ Outdoor = false
 ShowArea = true
 Bicycle = true
 BattleBack = cave2
+#-------------------------------
+[375]
+# Cavern of Knowledge
+Outdoor = false
+ShowArea = false
+Bicycle = false
+#-------------------------------
+[376]
+# Islands
+Outdoor = false
+ShowArea = false
+Bicycle = false
 #-------------------------------
 [377]
 # Guardian Island
@@ -2514,6 +2946,18 @@ Outdoor = false
 ShowArea = false
 Bicycle = true
 BattleBack = cave3
+#-------------------------------
+[419]
+# Cavern of Emotion
+Outdoor = false
+ShowArea = false
+Bicycle = false
+#-------------------------------
+[420]
+# Cavern of Willpower
+Outdoor = false
+ShowArea = false
+Bicycle = false
 #-------------------------------
 [421]
 # Sage's Abode

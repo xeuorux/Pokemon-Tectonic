@@ -877,6 +877,38 @@ It's ever so compelling, don't you agree?
 De cierta forma, es bastante cautivador, ¿No lo crees?
 Maybe they're up to something...something suspicious?
 Quizás están haciendo algo... ¿Algo sospechoso?
+My last batch of mushrooms went rancid.
+Mi última tanda de hongos se pudrió.
+Which stinks!
+¡Lo que apesta!
+Well, to tell you the truth, I couldn't smell the difference.
+Bueno, para serte sincero, no puedo oler la diferencia.
+So I need to meself acquainted with the smell of healthy mushrooms.
+Así que necesito hacerme familiar con el olor de hongos saludables.
+Could you do me a favor and bring me a mushroom Pokémon so I can get me a whiff?
+¿Puedes hacerme el favor de traerme un Pokémon hongo así puedo olerlo?
+I don't have much in the way of rewards.
+No tengo mucho en recompensas.
+Suppose I could give ya what I confiscated from my nephew.
+Supongo que puedo darte lo que le confisqué a mi sobrino.
+He crafted something mighty gross outta my failed harvest.
+Hizo algo bien asqueroso con mi cosecha fallida.
+So, you gots one of them mushroom 'mons?
+Entonces, ¿Tienes uno de esos 'mons hongos?
+It's called <i>my</i>cology because <i>i</i> need it!
+¡Se llama <i>mi</i>cología porque <i>yo</i> la necesito!
+Just what the Nurse Joy ordered!
+¡Justo lo que la Enfermera Joy ordenó!
+Appreciate it. Now, lemme get this over with.
+Lo aprecio. Ahora, terminemos con esto.
+The pokemon rancher studies your Pokémons's smell closely and carefully.
+El ranchero estudia el olor de tu Pokémon de cerca y con cuidado.
+Hah...I can see it now. The cash rollin' in from a full healthy forest.
+Ja...Puedo verlo ahora. El efectivo aparece desde un bosque lleno de vida.
+Anyways, my side of the bargain...
+Como sea, mi parte del trato....
+Suppose I'll get outta yer hair now.
+Supongo que ahora te dejaré en paz.
 [Map8]
 Hey there. Miss me?
 Buenas. ¿Me extrañabas?
@@ -1461,8 +1493,6 @@ Come back if you can find a Fairy-type!
 ¡Regresa si puedes encontrar un tipo Hada!
 Oh this little one is perfect, I'm sure our regulars will love it.
 Oh, este pequeñín es perfecto, estoy segura que los regulares van a amarlo.
-\PN traded a Fairy-type for Milcery!
-¡\PN intercambió un tipo Hada por Milcery!
 Thank you dear, people will be excited to meet the new face here.
 Gracias cariño, la gente va a estar emocionada de conocer una nueva cara por aquí.
 Things are going well dear, your Pokemon has been quite the hit with our customers.
@@ -2313,8 +2343,6 @@ I'll be here if you change your mind.
 Estaré aquí si cambias de opinión.
 Ah, thanks. Hopefully you're a better fit than I was.
 Oh, gracias. Espero que seas un mejor dueño/a de lo que fui.
-\PN traded a Pokemon for G. Meowth!
-¡\PN intercambió un Pokémon por Meowth G.!
 Now my furnature can rest in peace.
 Ahora mis muebles pueden descansar en paz.
 My cats and my furnature thank you.
@@ -2538,8 +2566,6 @@ This Vulpix needs a good home! I'll be here if you change your mind!
 ¡Este Vulpix necesita un buen hogar! ¡Estaré aquí si cambias de opinión!
 Thank you thank you thank you!
 ¡Gracias gracias gracias!
-\PN traded a Pokemon for M. Vulpix!
-¡\PN intercambió un Pokémon por Vulpix M.!
 Thanks, now I have a Pokemon my parents will be happy with.
 Gracias, ahora tengo un Pokémon con el que mis padres estén conformes.
 I'm having a lot of fun with your Pokemon.
@@ -3043,8 +3069,6 @@ Come back when you find a Fire-type Pokemon.
 Vuelve cuando encuentres un Pokémon de tipo Fuego.
 Let's get this started.
 Empecemos con esto.
-\PN traded a Pokemon for Spheal!
-¡\PN intercambió un Pokémon tipo fuego por Spheal!
 Alright, time to find those losers.
 Bien, hora de encontrar a esos perdedores.
 I see some prize money on the horizon!
@@ -3363,7 +3387,7 @@ Buena elección. Bueno, hasta ahora hemos sido los mejores amigos, pero es hora 
 I haven’t gone soft just yet. Ready? Go!
 Todavía no soy blando. ¿Listo? ¡Vamos! 
 Impressive. You’re a damn sight better than most of the folks 'round here.
-Impresivo. Pareces ser demasiado mejor que la mayoria gente por aquí.
+Impresionante. Pareces ser demasiado mejor que la mayoria gente por aquí.
 Might even be Champion material. Let me get your Pokémon back into tip-top shape.
 Hasta podrías ser material de Campeón. Déjame devolver a tus Pokémon a su mejor estado.
 As for you, here: the Loyalty Badge. It ain’t much, but you earned it.
@@ -3527,10 +3551,11 @@ You shouldn't be talking to a door now.
 No deberías estar hablando a una puerta ahora mismo.
 My parents are going to kill me.
 Mis padres van a matarme.
-I brought back a non-Native Pokemon from my trip to Hoenn.
-Traje un Pokémon no nativo desde mi viaje a Hoenn.
-It's a Zangoose, and it always looks like it wants to punch something.
-Es un Zangoose, y siempre parece que quiere pegarle un puñetazo a algo.
+I brought back a non-Native Pokemon from my trip to Unova.
+Traje un Pokémon no nativo desde mi viaje a Unova.
+It's a Heatmor, and it always looks like it wants to 
+burn something.
+Es un Heatmor, y siempre parece que quiere quemar algo.
 I'm honestly worried about my health.
 Honestamente estoy preocupado por mi salud.
 Having a Dark-type is something I can also brag about, maybe with less black eye potential.
@@ -3545,9 +3570,7 @@ I thought you'd have one for sure.
 Estaba seguro que tendrías uno.
 Whoa! That Pokemon looks sick!
 ¡Wow! ¡Ese Pokémon se ve genial!
-\PN traded a Dark-type for Zangoose!
-¡\PN un tipo Siniestro por Zangoose!
-Definately gonna take a few photoes of this guy.
+Definately gonna take a few photos of this guy.
 Definitivamente voy a tomar unas cuantas fotos de este chico.
 Everyone I know is going wild over the Pokemon you traded me.
 Todos están locos por el Pokémon que me intercambiaste.
@@ -4073,8 +4096,6 @@ How do I make a living wrestling fish?
 ¿Qué cómo me dedico a luchar contra peces?
 Hah, that's a good question.
 Ja, esa es una buena pregunta.
-\PN traded a Pokemon for Remoraidl!
-¡\PN intercambió un Pokémon por Remoraid!
 Farewell, my friend. I'll be out in the waters.
 Adiós, amigo mío. Estaré allí fuera en las aguas.
 I wonder if I can teach this 'mon how to wrestle...
@@ -4551,8 +4572,6 @@ Well, I'm not really going anywhere till I get rid of this Eevee.
 Bueno, no me voy a ir a ningún lado hasta que me deshaga de este Eevee.
 Pleasure doing business with you.
 Un gusto hacer negocios contigo.
-\PN traded a Normal-type for Eevee!
-¡\PN intercambió un tipo Normal por Eevee!
 Take care of the little guy, ya hear?
 Cuida bien de este pequeñín, ¿Me escuchas?
 How's the little guy treating you?
@@ -4974,8 +4993,6 @@ All good, mate. Show me when ya got one.
 No hay bronca. Muéstrame cuando tengas uno.
 Right on.
 Chido.
-\PN traded a Bug-type for Carvanha!
-¡\PN intercambió un tipo Bicho por Carvanha!
 Reckon I could get a few more in a couple days.
 Pienso que podría conseguir un par más en unos cuantos días.
 Make a real sick collection of Bug-types, ya?
@@ -4990,10 +5007,6 @@ Seems like the whole job was a bust, so just take it.
 Parece que todo el trabajo fue un fracaso, así que sólo tómala. 
 You never saw me, and I didn't cause you any problems. Peace.
 Nunca me viste, y no te causé ningún problema. Paz.
-\wmYou can set a keyboard shortcut to use your bicycle quickly.
-\wmPuedes asignar un atajo de teclado para usar tu bicicleta rápidamente.
-\wmAccess your control setttings with \c[2]F1\c[0] to set it to whatever you like.
-\wmAccede a tus ajustes de control con \c[2]F1\c[0] para asignarlo a lo que quieras.
 It looks excited to take on the next shipment!
 ¡Parece emocionado en tomar el siguiente cargamento!
 The berry plant is growing.
@@ -5458,8 +5471,6 @@ Please don't bother me, it makes the pain worse.
 Por favor no me molestes, hace al dolor mucho peor.
 Thank you, you've done me a huge favor.
 Gracias, me hiciste un gran favor.
-\PN traded a Fighting-type for Mareanie!
-¡\PN intercambió un tipo Lucha por Mareanie!
 Please, take it somewhere it can be as mean as it wants. Just not to me.
 Por favor, llévalo a cualquier lugar en el que pueda ser tan malo como quiera. Pero no hacia a mi.
 Thank you friend. I feel better now.
@@ -6159,8 +6170,6 @@ This fish is really ugly. I don't want to be by it much longer.
 Este pez es demasiado feo. No quiero estar junto a él por más tiempo.
 Goodbye, ugly fish!
 ¡Adiós, feo pez!
-\PN traded a Grass-type for Frillish!
-¡\PN intercambió un tipo Planta por Frillish!
 The ugly fish is gone! Hurray!
 ¡El pez feo se fue! ¡Hurra! 
 I'm going to go fishing later!
@@ -6229,8 +6238,6 @@ Ah, you got its hopes up. Mean.
 Oh, le subiste las esperanzas. Mezquino.
 Sweet, let's get this show on the road.
 Genial, pongamonos en marcha.
-\PN traded a Ghost-type for Bounsweet!
-¡\PN intercambió un tipo Fantasma por Bounsweet!
 Dope. I think this Pokemon will enjoy watching me beat this high score.
 Excelente. Creo que este Pokémon disfrutará viéndome vencer esta puntuación alta.
 The top score is attributed to "HEL"? I wonder who that could be.
@@ -6343,8 +6350,6 @@ Ah, you got its hopes up. Mean.
 Ah, you got its hopes up. Mean.
 Sweet, let's get this show on the road.
 Sweet, let's get this show on the road.
-\PN traded a Ghost-type for Bounsweet!
-\PN traded a Ghost-type for Bounsweet!
 Dope. I think this Pokemon will enjoy watching me beat this high score.
 Dope. I think this Pokemon will enjoy watching me beat this high score.
 A puzzle game is being played.
@@ -6457,8 +6462,6 @@ Rude.
 Rudo.
 Great, now I have something that at least looks pretty good.
 Genial, ahora tengo algo que al menos luce bastante bien.
-\PN traded a Pokemon for Snubbull!
-¡\PN intercambió un Pokémon por Snubbull!
 If this thing does nothing but stare at me all day, that's a plus.
 Si esta cosa no hace nada más que mirar hacia mi todo el día, es un plus.
 The Pokemon you gave me is nice. It cleans up after itself and its a great conversation partner.
@@ -6712,8 +6715,6 @@ Hmm. Come back if you manage to get an Ice-type.
 Hmm. Vuelve cuando puedas conseguir un tipo Hielo.
 Great, let's get this started.
 Genial, empecemos con esto.
-\PN traded an Ice-type for Sewaddle!
-¡\PN intercambió un tipo Hielo por Sewaddle!
 Time to put this guy to work! Thanks!
 ¡Hora de poner a este chico a trabajar! ¡Gracias!
 This Pokemon is going to be cooling rooms like nobody's business.
@@ -8835,8 +8836,6 @@ A minute I will not get back.
 Un minuto que no recuperaré.
 I'd like to thank you, but I really should be apologizing.
 Me gustaría agradecerte, pero realmente debería disculparme.
-\PN traded a Fire-type for Darumaka!
-¡\PN intercambió un tipo Fuego por Darumaka!
 Finally, the nightmare is over.
 Finalmente, la pesadilla se terminó.
 I suppose I'll have to go foraging for my next meal.
@@ -10513,8 +10512,6 @@ Asking my manager for another huge purchuse is gonna suck...
 Pedirle a mi manager otra compra grande va a apestar… 
 Oh wow! Yeah, that Pokemon is perfect!
 ¡Oh wow! ¡Sí, ese Pokémon es perfecto!
-\PN traded a Pokemon for Oricorio!
-¡\PN intercambió un Pokémon por Oricorio!
 This Pokemon is exactly what I needed.
 Este Pokémon es exactamente lo que necesitaba.
 Thanks for the help, gotta get back to work now.
@@ -12092,8 +12089,6 @@ Maybe I'll ask my husband to get one the next time he's in town.
 Quizás tendré que preguntarle a mi marido que consiga uno la próxima vez que vaya al pueblo.
 Why aren't you a sweetie!
 ¡Sí que eres una dulzura!
-\PN traded a Pokemon for Castform!
-¡\PN intercambió un Pokémon por Castform!
 This little one's gonna be just what I need!
 ¡Este pequeñín será justo lo que necesito!
 I'll tell you what, we're gonna have our highest crop yield in our whole seven years of operation!
@@ -12275,6 +12270,8 @@ You are boy, you are!
 ¡Tú lo eres, sí que sí!
 What was once a printed notice has been painted over with a scene of a beautiful glacier at sunrise.
 Lo que una vez fue una noticia impresa ha sido pintada encima con una escena de un glaciar maravilloso en el amanecer.
+Florian Park
+Parque florián
 I'll take your Pokémon for a --
 Tomaré a tus Pokémon por un –
 ...
@@ -12335,8 +12332,8 @@ My Snubbull is simply the most creative Pokemon this side of the Eleig River.
 Mi Snubbull es simplemente el Pokémon más creativo en este lado del Río Eleig.
 Don't you agree? You can clearly see it on her face!
 ¿No estás de acuerdo? ¡Puedes verlo claramente en su cara!
-The West end of Prizca was constructed rapidly over the last seven or so years.
-La punta Occidental de Prizca fue construida rápidamente al pasar de los últimos siete años o por ahí.
+The West end of Prizca was constructed rapidly over the last thirty or so years.
+La punta Occidental de Prizca fue construida rápidamente al pasar de los últimos trienta años o por ahí.
 No time for beauty or community to form, it's all very lifeless over there.
 Nada de tiempo para que la belleza o una comunidad se formen, está todo muy inerte por allí.
 This side of the city is much more charming.
@@ -12365,8 +12362,6 @@ If you get your hands on an Fairy-type, I'd appreciate a trade.
 Si llegas a obtener un tipo Hada, apreciaría un intercambio.
 Oh, you're a dear! Let's get this trade going.
 Oh, ¡Muchas gracias! Empecemos este intercambio.
-\PN traded a Fairy-type for Seviper!
-¡\PN intercambió un tipo Hada por Seviper!
 Sweet, I'm off to find another avatar to battle!
 Bien, ¡Me voy para buscar otro avatar que enfrentar!
 I got a lot of energy, but my Rockruff somehow has even more.
@@ -12747,6 +12742,12 @@ Don’t dive too deep – we’re getting out of here soon. Fend them off.
 No te pases – nos iremos de aquí pronto. Ahuyentalos. 
 But if they put up a fight… crush them.
 Pero si se resisten… aplástalos.
+I can't - you make Alessa look like a rand-and-file grunt.
+No puedo - haces parecer a Alesssa un recluta de pacotilla.
+Well. I've gotten what I came for; slowed you down.
+Bueno. Obtuve lo que quise; ralentizarte.
+I'm... glad to be your rival. Thanks.
+Estoy... agradecida de ser tu rival. Gracias.
 I – uhf. I crippled one of their teams, but they got away. They’re good, dammit. And I’m out of practice.
 Yo – uf. Destruí uno de sus equipos, pero se escaparon. Son buenos, maldita sea. Y estoy oxidada.
 Here – I can heal your Pokémon. Mine are going to need a little care before I’m ready to move out. But you go on ahead. Here.
@@ -13360,8 +13361,6 @@ Ahhh, I really don't want to spend this cash...
 Ahhh, realmente no quiero gastar este dinero… 
 Nice, now I don't have to fork over a ton of cash!
 Bien, ¡Ahora no tengo que soltar un montón de dinero!
-\PN traded a Pokemon for Oricorio!
-¡\PN intercambió un Pokémon por Oricorio!
 Well, it's been great.
 Bueno, ha sido genial.
 I'm gonna start on my hike ASAP.
@@ -15600,8 +15599,6 @@ Yeah, that ain't it chief...
 Eh, eso no es lo que pido… 
 Ah, nice! Patrol's about to become a cake walk!
 ¡Ah, bien! ¡Con esto la patrulla va a ser un paseo en el parque!
-\PN traded a Pokemon for Wailmer!
-¡\PN intercambió un Pokémon por Wailmer!
 Well, 'bout to kick it now. Hit me up if the world ends or something.
 Bueno, hora de relajarse. Contactame si el mundo termina o algo.
 There's a ton of avatars 'round these parts...
@@ -15744,6 +15741,48 @@ No
 No
 Yes
 Sí
+This place's got some sick stuff.
+Este lugar tiene un montón de cosas geniales.
+Sometimes, the hacker lady gives me rips of old games.
+A veces, la señorita hacker me da copias de juegos viejos.
+The publisher isn't gonna like that, heh.
+Al publisher no le va a gustar eso, je.
+I'm just here for business kid.
+Sólo estoy aquí por negocios niño.
+Doing a run for a few friends.
+Haciendo los mandados para un par de amigos.
+Getting these berries into Makya is no joke.
+Entrar estas bayas a Makya no es ninguna broma.
+Thankfully I've got my cute charms and a stolen idol outfit!
+¡Por suerte tengo mis encantos y un outfit de cantante robado!
+I see that spark of rebellion in your eye.
+Veo esa chispa de rebeldía en tus ojos.
+I gotta special offer. The iconic vessel of mayhem, a Stink Bomb.
+Tengo una oferta especial. La icónica agente del caos, una Bomba Apestosa. 
+As payment, any Evolution Stone will do.
+Como pago, cualquier Piedra Evolutiva es suficiente.
+Got the goods? An Evolution Stone, I mean.
+¿Tienes la mercancía? Una Piedra Evolutiva, me refiero.
+I used to just leave these around to inspire chaos.
+Solía sólo dejar estas por ahí para inspirar caos.
+But now I've got people I want to support.
+Pero ahora tengo gente que quiero ayudar.
+Yes! The kids will love this.
+¡Sí! Los niños van a amar esto,
+...
+...
+THINK FAST!
+¡PIENSA RÁPIDO!
+Nice catch!
+¡Buena atrapada!
+And with that, I'm gone!
+¡Y con eso, me voy!
+Hey, I didn't say you could prank ME!
+¡Hey, nunca dije que pudieras hacerme a MI una broma!
+I don't have any right now.
+No tengo una ahora mismo.
+Yeah, I've got one for you.
+Seh, tengo una para ti.
 [Map224]
 
 Well hey! I saw you on Lapras Shore!
@@ -16023,8 +16062,6 @@ Maybe it'll start working if I just wait for a bit..
 Quizás empezará a funcionar si espero un poco más… 
 Heck yeah! Our viewing experience is saved!
 ¡Vamos! ¡Nuestra maratón está salvada!
-\PN traded an Electric-type for Cryogonal!
-¡\PN intercambió un tipo Eléctrico por Cryogonal!
 Time to start it up!
 ¡Hora de hacerla funcionar!
 The stinkin' TV is broken. How am I supposed to watch Marnie in action now?!
@@ -16131,8 +16168,6 @@ I can understand the difficulties of finding such a Pokemon.
 Puedo entender las dificultades de encontrar un Pokémon así.
 Wonderful! What a fascinating specimen!
 ¡Maravilloso! ¡Qué espécimen fascinante! 
-\PN traded a Pokemon for Chinchou!
-¡\PN intercambió un Pokémon por Chinchou!
 My research will begin immediately. This will take years I'm sure, but imagine what we might learn!
 Mi investigación empezará inmediatamente. Seguro tomará años, ¡Pero imagina lo que podremos aprender!
 The mystery of systems far away from our own...
@@ -16223,8 +16258,6 @@ Unfortunate. Maybe a Trainer from Hoenn will have one, with all that water in th
 Desafortunado. Quizás un Entrenador de Hoenn tendrá uno, con toda esa agua en su región.
 Oh! This is exactly what I needed.
 ¡Oh! Esto es exactamente lo que necesitaba.
-\PN traded a Water-type for Vulpix!
-¡\PN intercambió un tipo Agua por Vulpix!
 Now I just have to finish my registration.
 Ahora sólo tengo que terminar mi registro.
 Hopefully I won't be stuck here forever.
@@ -16372,8 +16405,6 @@ I'd go find one myself, but, well, it's a catch 22 of sorts...
 Buscaría uno yo mismo/a, pero bueno,
 Yes! A bat! Exactly what I wanted!
 ¡Sí! ¡Un murciélago! ¡Justo lo que necesito!
-\PN traded a Pokemon for Dewpider!
-¡\PN intercambió un Pokémon por Dewpider!
 Finally, the routes might start making sense.
 Finalmente, las rutas empezarán a cobrar sentido.
 With your Pokemon, I can head back and forth from home in under an hour!
@@ -16668,11 +16699,11 @@ Avatar?
 [Map255]
 
 So it was an avatar after all. Two, in fact! How delightful!
-Así que sí era un avatar después de todo. ¡Dos, de hecho! ¡Que encantador!
+Así que sí era un avatar después de todo. ¡Dos, de hecho! ¡Qué encantador!
 Such grace, such magnificent power, such… oh, words fail me.
 Tanta gracia, tan magnífico poder, tan… oh, las palabras no les hacen justicia.
 But it is a little convenient, isn’t it? The two of us come here.
-Pero es un poco conveniento, ¿No? Que nosotros dos hayamos venido aquí.
+Pero es un poco conveniente, ¿No? Que nosotros dos hayamos venido aquí.
 I, the sensitive soul, the pilgrim, and you, the knight, the protector.
 Yo, el alma sensitiva, el peregrino, y tú, el caballero, el protector.
 And what should we find but a Gallade and a Gardevoir.
@@ -18843,8 +18874,6 @@ Sounds good. I ain't doing anything else.
 Suena bien. No estoy haciendo nada más.
 Glad that I'll have a Pokemon that won't fly me away in my sleep.
 Estoy agaradecido de poder tener un Pokémon que no me vaya a llevar volando mientras duermo.
-\PN traded a Ground-type for Drifloon!
-¡\PN intercambió un tipo Tierra por Drifloon!
 Best of luck out there.
 Te deseo lo mejor allí fuera.
 I'm just hanging out here.
@@ -19022,8 +19051,6 @@ Hmm, maybe I just need to take more breaks.
 Hmm, quizás sólo necesito tomar más descansos.
 That Pokemon seems just right for the job.
 Este Pokémon parece ser ideal para el trabajo.
-\PN traded a Fighting-type for Galarian Ponyta!
-¡\PN intercambió un tipo Lucha por Ponyta de Galar!
 I'll put this guy right to work, yeah?
 Pondré a este chico a trabajar ahora mismo.
 My back and legs thank you, Trainer. The Pokemon you traded me is loving all the exercise too.
@@ -20360,8 +20387,6 @@ Dang, thought I had a break here. Come back if you ever get your hands on an Ele
 Rayos, pensé que tenía un descanso aquí. Vuelve si alguna vez consigues un tipo Eléctrico.
 Hehe, yeah. This'll do.
 Jeje, seh. Esto funcionará.
-\PN traded an Electric-type for Kangaskhan!
-¡\PN intercambió un tipo Eléctrico por Kangaskhan!
 Hehehe, time to get to work.
 Jejeje, hora empezar con esto.
 Yeah, it's all coming together...
@@ -20443,10 +20468,8 @@ Dang, it was worth a shot.
 Ay, valía la pena intentarlo.
 I hope I don't lose my job...
 Espero no perder mi trabajo… 
-Thanks man, you're a lifesaver.
+Thanks, you're a lifesaver.
 Muchas gracias, me estás salvando la vida.
-\PN traded a dragon type for Wimpod!
-¡\PN intercambió un tipo Dragón por Wimpod!
 You're the best!
 ¡Eres lo mejor!
 I think my boss will be happy. You've done a great service to me, my boss, and science.
@@ -21317,8 +21340,6 @@ Maybe I'll find something in the area west of here.
 Quizás encontrarás algo en el oeste de aquí.
 Nice! You won't regret this.
 ¡Bien! No te arrepentirás.
-\PN traded a Normal-type for Sentret!
-¡\PN intercambió un tipo Normal por un Sentret!
 Sweet, this little guy is gonna go for an adventure.
 Genial, este pequeño va a ir a una aventura.
 I hope you enjoy that Sentret, it's pretty rare here.
@@ -23354,8 +23375,6 @@ Come back when you find a Fire-type Pokemon.
 Vuelve cuando encuentres un Pokémon de tipo Fuego.
 Let's get this started.
 Empecemos con esto.
-\PN traded a Pokemon for Spheal!
-¡\PN intercambió un Pokémon tipo fuego por Spheal!
 Alright, time to find those losers.
 Bien, hora de encontrar a esos perdedores.
 Bluepoint Beach is teeming with naturally sourced Pokémon.
@@ -23373,7 +23392,7 @@ You can look up specific species of Pokémon using a ton of filters!
 You can even compound searches.
 Puedes incluso combinar búsquedas.
 Want a Rock-type with the Ability Sturdy? No problem!
-¿Quieres un tipo Roca con la habilidad Robustez! ¡No hay problema!
+¿Quieres un tipo Roca con la habilidad Robustez? ¡No hay problema!
 No
 No
 Yes
@@ -23648,6 +23667,24 @@ It snows there year round and there are plenty of places to ice skate!
 ¡Allí cae nieve todo el año y varios lugares donde puedes patinar sobre hielo!
 I don't recommend going to the Barren Crater. It's rather unsightly.
 No recomiendo ir al Cráter Desértico. No es muy vistoso.
+I was just given a Minccino from my family. I appreciate the thought, but this creature here just ain't it.
+Mi familia me acaba de dar este Minccino. Aprecio la idea, pero esta criatura no me va.
+It ain't suited to all the dirt me and my team get on us. Doesn't seem too happy with it's circumstance.
+No es apto para toda la tierra que nos cubre a mi equipo. No parece muy feliz con sus circunstancias.
+Tell you what Trainer, I'll give you the 'mon free of charge, so long as you promise to take care of it.
+Sabes qué Entrenador, te daré el 'mon sin cargos, siempre y cuando prometas que vas a cuidar de él.
+That's fair enough. Needs to feel like a good fit.
+Eso es justo. Necesita poder encajar. 
+I take those promises seriously. Make sure it gets something out of ya.
+Me tomo esas promesas en serio. Asegúrate de que te aporte algo de valor.
+Take care, Trainer.
+Cuídate, Entrenador.
+Word of advice. If it cares about it's fur routine, don't run it on a weather team.
+Un consejo. Si le importa su rutina de pelaje, no lo uses en un equipo climático.
+No thanks.
+No gracias.
+I promise.
+Lo prometo.
 [Map397]
 
 Gym challengers keep getting off track and wandering through here.
@@ -23768,6 +23805,36 @@ Here you go.
 Aquí tienes.
 No way!
 ¡Ni hablar!
+Hello, Trainer. It seems we meet at the end of my long and painful journey with hubris.
+Hola, Entrenador. Parece que llegamos al final de mi largo y doloroso soberbio camino.
+I thought, with the power of science, that I could end the eons long rivalry between Zangoose and Seviper.
+Pensé que, con el poder de la ciencia, podría terminar eónes de rivalidad entre Zangoose y Seviper.
+Social engineering, genetic modification, cognitive behavioral therapy, lo-fi hip hop music to study and relax to...
+Ingeniería social, modificación genética, terapia de comportamiento cognitiva, música lo-fi hip hop para estudiar y relajarte...
+Nothing worked. And here I am, begging a stranger to take one of them. They will never be happy otherwise.
+Nada funcionó. Y aquí estoy, rogándole a un extraño para que tome uno de ellos. Nunca serán felices de otro modo.
+Oh... not another rejection.
+Oh... no otro rechazo.
+Please, Trainer. They're rowdy, but they're got a heart of gold. I swear.
+Por favor, Entrenador. Son alborotadores, pero tienen un corazón de oro. Lo juro.
+Thank you Trainer. They deserve a better life away from each other.
+Gracias Entrenador. Merecen una mejor vida lejos del uno a otro.
+I think I will use the rest of my time in this region to reflect.
+Creo que usaré el resto de mi tiempo en la región para reflexionar.
+Oh, hello there.
+Oh, buenas.
+The other specimen is doing fine. I saw them smile, for the first time.
+El otro espécimen está bien. Lo vi sonreir, por primera vez.
+Here you go.
+Aquí tienes.
+No way!
+¡Ni hablar!
+I'll pass.
+Paso.
+Sure, I'll take the Zangoose.
+Seguro, tomaré el Zangoose.
+Sure, I'll take the Seviper.
+Seguro, tomaré el Seviper.
 [Map401]
 I was just a kid when Yezera won the first tournament.
 Era sólo un niño cuando Yezera ganó el primer torneo.
@@ -35348,7 +35415,7 @@ Patada Látigo
 Siege Breaker
 Asediador
 All For One
-Todo Para Uno
+Todos Para Uno
 Blades of Grass
 Espadas de Hierba
 Scythe Kick
@@ -40313,8 +40380,8 @@ Reins that people presented to the king. They enable Calyrex to connect and comm
 Riendas que se entregaron como ofrenda al rey. Permiten el entendimiento mutuo entre aquellos que están unidos y separan a Calyrex de su amado corcel.
 A charm that increases the Exp. Points that Pokémon can get. A machine-like object is inside the charm.
 Amuleto que aumenta los Puntos de Experiencia que reciben los Pokémon. Su interior contiene una especie de mecanismo.
-Holding it is said to increase the chance of getting a critical catch. Curiously, the charm doesn't shake much.
-Aumenta la probabilidad de lograr una captura crítica al llevarlo equipado. Curiosamente, apenas vibra,
+A charm that doubles the chance of getting a critical catch.
+Amuleto que duplica las posibilidades de conseguir una captura crítica.
 A long, durable rope. Use it to escape instantly from a cave or a dungeon.
 Cuerda larga y resistente que sirve para huir de cuevas y sitios cerrados en general. 
 A token which can be exchanged for a Grass-type at the Starter Store.
@@ -44611,17 +44678,17 @@ Alojamiento Svait
 Employees' House
 Casa de los Empleados
 91
-Ice Rink Lodge F2
-Alojamiento Pista Hielo P2
+Svait Lodge F2
+Alojamiento Svait Hielo P2
 92
-Ice Rink Lodge F2 Left Room
-Alojamiento Pista Hielo P2 Hab. Izq.
+Svait Lodge Room 1
+Alojamiento Svait Hab. 1
 93
 Rescue Operations Center
 Centro de Operaciones de Rescate
 94
-Ice Rink Lodge F2 Right Room
-Alojamiento Pista Hielo P2 Hab. Der.
+Svait Lodge Room 3
+Alojamiento Svait Hab. 1
 95
 Snowbird's House F2
 Casa del Pinzón P2
@@ -44704,8 +44771,8 @@ Capa Hueca
 Kilna Ascent
 Ascenso Kilna
 122
-Prizca Sewers South
-Alcantarillas Prizca Sur
+LuxTech Sewers
+Alcantarillas LuxTech
 123
 Novo College
 Facultad Novo 
@@ -44749,8 +44816,8 @@ Ruinas Nebulosa
 Casaba Villa
 Villa Casaba
 137
-Ice Rink Lodge F2 Lefter Room
-Alojamiento Pista Hielo P2 Hab. Izq.
+Svait Lodge F2 Room 3
+Alojamiento Svait Hab. 3
 138
 Scenic Trail
 Senda Escénica
@@ -45004,8 +45071,8 @@ Alcantarillas Prizca Oriental
 Prizca Sewers
 Alcantarillas Prizca
 222
-Prizca Sewers Tunnel
-Túnel Alcantarillas Prizca
+Sewers Junction
+Cruce de Alcantarillas
 223
 Prizca Sewers West
 Alcantarillas Prizca Occidental
@@ -46063,6 +46130,8 @@ Female
 Hembra
 One Form
 Forma Normal
+{1} Pokémon
+Pokémon {1}
 CLOSE BAG
 CERRAR MOCHILA
 Close bag.
@@ -46402,7 +46471,7 @@ Elige Pokémon o cancela.
 This Pokémon can't be chosen.
 Este Pokémon no puede ser elegido,
 Choose a Pokémon. (D for Showcase)
-Elige un Pokémon. (D para Detalles)
+Elige un Pokémon. (D para Muestra)
 Move to where?
 ¿Mover adónde?
 Set Down
@@ -46417,8 +46486,8 @@ Set Item Type
 Elegir Tipo del Objeto
 You can't send back your only able Pokémon!
 ¡No puedes enviar a tu único Pokémon disponible!
-Are you sure you'd like to send back #{pkmn.name}?
-¿Estás seguro que quieres enviar a #{pkmn.name}?
+Are you sure you'd like to send back #{@pkmn.name}?
+¿Estás seguro que quieres enviar a #{@pkmn.name}?
 What type should #{pkmn.name} become?
 ¿En qué tipo debería #{pkmn.name} transformarse?
 #{pkmn.name} changed its #{getItemName(typeSettingItem)} to #{typeCommands[chosenNumber]}-type!
@@ -47319,6 +47388,8 @@ The battle begins with Hail. The effects of Hail are doubled.
 El combate empieza con Granizo. Los efectos del Granizo son duplicados.
 The battle begins with Sandstorm. The effects of Sandstorm are doubled.
 El combate empieza con Tormenta de Arena. Los efectos de la Tormenta de Arena son duplicados.
+The battle begins with Sandstorm. The foe has extra Sandstorm abilities!
+El combate empieza con Tormenta de Arena. ¡El enemigo tiene habilidades adicionales de Tormenta de Arena!
 Your Pokemon lose 10 levels for this fight. EXP goes to the Dispenser.
 Tus Pokémon pierden 10 niveles por esta pelea. La EXP va al Dispensador.
 Enemy Pokemon have all of their legal abilities!
@@ -47509,12 +47580,6 @@ Which item should #{battler.pbThis(true)} drop?
 ¡{1} soltó su {2}!
 #{switcher.pbThis} can switch out regardless!
 ¡#{switcher.pbThis} puede cambiar de todos modos!
-\wmWild Pokemon don't give experience in Pokemon Tectonic.\wtnp<<[>>#{dur}<<]>><<1>>
-\wmLos Pokémon salvajes no dan experiencia en Pokemon Tectonic.\wtnp<<[>>#{dur}<<]>><<1>>
-\wmDon't worry, there's an abundance of experience to gain in other ways.\wtnp<<[>>#{dur}<<]>><<1>>
-\wmNo te preocupes, puedes ganar mucha experiencia de otras formas.\wtnp<<[>>#{dur}<<]>><<1>>
-\wmIf you encounter a Pokemon you don't want, run away. It's guaranteed!\wtnp<<[>>#{dur}<<]>><<1>>
-\wmSi encuentras un Pokémon que no quieres, huye. ¡Está garantizado!\wtnp<<[>>#{dur}<<]>><<1>>
 Each Pokémon in your party got Exp. Points!
 ¡Todos los Pokémon en tu equipo ganan Puntos de Experiencia!
 Your party Pokémon in waiting also got Exp. Points!
@@ -48039,7 +48104,7 @@ Its special damage is reduced by a third
 Su daño especial es reducido por un tercio
 Its Speed is halved, and it'll deal less damage
 Su Velocidad es reducida a la mitad, y hará menos daño
-It's ability is supressed, and it'll take more damage
+Its ability is suppressed, and it'll take more damage
 Su habilidad es suprimida, y recibirá más daño
 Its HP will be siphoned by the opposing side
 Sus PS serán absorbidos por el lado contrario
@@ -49711,7 +49776,7 @@ Heavy Rain
 Diluvio
 Strong Winds
 Turbulencias
-Moonlight
+Moonglow
 Brillo Lunar
 Frostbitten
 Helado
@@ -49795,12 +49860,6 @@ Super
 Súper
 Hyper
 Híper
-\wmAfter a full party heal, defeated enemy trainers will be battle ready again!\wtnp<<[>>#{dur}<<]>><<1>>
-\wm¡Luego de que tu equipo se cure completamente, entrenadores rivales derrotados estarán listos para combatir otra vez!\wtnp<<[>>#{dur}<<]>><<1>>
-\wmFor example, healing at a Pokemon Center triggers this.\wtnp<<[>>#{dur}<<]>><<1>>
-\wmPor ejemplo, curarse en un Centro Pokémon activa esto.\wtnp<<[>>#{dur}<<]>><<1>>
-\wmTrainers who fled won't come back, however.\wtnp<<[>>#{dur}<<]>><<1>>
-\wmEso sí, los Entrenadores que hayan huído no regresarán.\wtnp<<[>>#{dur}<<]>><<1>>
 {1} is suffering the effects of being poisoned.
 {1} sufre los efectos de estar envenenado.
 {1}'s burn looks painful.
@@ -49977,10 +50036,6 @@ Congratulations, you have won the raffle! Here is your #{speciesName}, as promis
 ¡Felicidades, ganaste la rifa! Aquí tienes tu #{speciesName}, como prometido.
 No luck! Try again next time.
 ¡Mala suerte! Inténtalo de nuevo la próxima vez.
-\wmYou can set a keyboard shortcut to use your bicycle quickly.\wtnp<<[>>#{dur}<<]>><<1>>
-\wmPuedes asignar un atajo del teclado para usar tu bicicleta rápidamente.\wtnp<<[>>#{dur}<<]>><<1>>
-\wmAccess your control setttings with <imp>F1</imp> to set it to whatever you like.\wtnp<<[>>#{dur}<<]>><<1>>
-\wmAccede a los ajustes de control con <imp>F1</imp> para asignarlo a lo que quieras.\wtnp<<[>>#{dur}<<]>><<1>>
 ...It's {1}. Pick up the phone?
 ...Es {1}. ¿Atiendes el teléfono?
 Hello, and welcome to the Starters Store!
@@ -50250,7 +50305,7 @@ Aún No Nombrado
 Yo, I'm Adam, the gem guy. Gonna buy some gems, or what?
 Hey, soy Adam, el chico de las gemas. ¿Vas a comprar un par de gemas, o qué?
 Some of these are illegal to import. Don't get me caught.
-Algunas de estas son ilegales de importar. No hagas que sea capturado.
+Algunas de estas son ilegales de importar. No hagas que sea capturada.
 \i[EXPEZDISPENSER]{1} exp was stored in the EXP-EZ Dispenser this battle.
 \i[EXPEZDISPENSER]{1} puntos de experiencia fueron guardados en el Dispensador EXP-EZ en este combate.
 FORMS
@@ -50287,48 +50342,60 @@ Your foe was ambushed! You get a free turn!
 ¡Tu rival fue emboscado! ¡Obtienes un turno libre!
 You were ambushed! The foe gets a free turn!
 ¡Fuiste emboscado! ¡El rival obtiene un turno libre!
-\wmWild Pokemon don't give experience in Pokemon Tectonic.\wtnp<<[>>#{messageWait}<<]>><<1>>
-\wmLos Pokémon salvajes no dan experiencia en Pokémon Tectonic.\wtnp<<[>>#{messageWait}<<]>><<1>>
-\wmDon't worry, there's an abundance of experience to gain in other ways.\wtnp<<[>>#{messageWait}<<]>><<1>>
-\wmNo te preocupes, hay plenitud de experiencia que ganar en otros modos.\wtnp<<[>>#{messageWait}<<]>><<1>>
-\wmIf you encounter a Pokemon you don't want, run away. It's guaranteed!\wtnp<<[>>#{messageWait}<<]>><<1>>
-\wmSi encuentras un Pokémon que no quieres, sólo escapa. ¡Está garantizado!\wtnp<<[>>#{messageWait}<<]>><<1>>
-\wmAfter a full party heal, defeated enemy trainers will be battle ready again!\wtnp<<[>>#{messageWait}<<]>><<1>>
-\wm¡Luego de curar tu equipo por completo, entrenadores rivales derrotados estarán listos para combatir de nuevo!\wtnp<<[>>#{messageWait}<<]>><<1>>
-\wmFor example, healing at a Pokemon Center triggers this.\wtnp<<[>>#{messageWait}<<]>><<1>>
-\wmPor ejemplo, curar en un Centro Pokémon activa esto.\wtnp<<[>>#{messageWait}<<]>><<1>>
-\wmTrainers who fled won't come back, however.\wtnp<<[>>#{messageWait}<<]>><<1>>
-\wmEso sí, Entrenadores que hayan huído no regresarán.\wtnp<<[>>#{messageWait}<<]>><<1>>
-\wmYou can set a keyboard shortcut to use your bicycle quickly.\wtnp<<[>>#{messageWait}<<]>><<1>>
-\wmPuedes asignar un atajo de teclado para usar tu bicicleta rápidamente.\wtnp<<[>>#{messageWait}<<]>><<1>>
-\wmAccess your control setttings with <imp>F1</imp> to set it to whatever you like.\wtnp<<[>>#{messageWait}<<]>><<1>>
-\wmAccede a los ajustes de control con <imp>F1</imp> para asignarlo a lo que quieras.\wtnp<<[>>#{messageWait}<<]>><<1>>
-\wmIndividual Pokemon have unique Traits, Likes, and Dislikes.\wtnp<<[>>#{messageWait}<<]>><<1>>
-\wmLos Pokémon individuales tienen Rasgos, Gustos y Disgustos únicos.\wtnp<<[>>#{messageWait}<<]>><<1>>
-\wmThese have no effect on battle. They're just for fun!\wtnp<<[>>#{messageWait}<<]>><<1>>
-\wmEstos no tienen efecto en combate. ¡Sólo existen por diversión!\wtnp<<[>>#{messageWait}<<]>><<1>>
-\wmTo customize your stats, adjust Style Points in any PokeCenter.\wtnp<<[>>#{messageWait}<<]>><<1>>
-\wmPara customizar tus stats, ajusta los Puntos de Estilo en cualquier Centro Pokémon.\wtnp<<[>>#{messageWait}<<]>><<1>>
-\wmStats can be changed during battle by 'stat steps'.\wtnp<<[>>#{messageWait}<<]>><<1>>
-\wmLas stats pueden ser cambiadas en medio de un combate mediante los ‘grados de stats'.\wtnp<<[>>#{messageWait}<<]>><<1>>
-\wmCheck the Info menu to see the active steps and their effects on the battlers.\wtnp<<[>>#{messageWait}<<]>><<1>>
-\wmComprueba el menú Info para ver los grados activos y sus efectos en los combatientes.\wtnp<<[>>#{messageWait}<<]>><<1>>
-\wmTectonic introduced many options that let you customize the game speed, especially in battles.\wtnp<<[>>#{messageWait}<<]>><<1>>
-\wmTectonic introdujo varias opciones que te dejan personalizar la velocidad del juego, especialmente en combates.\wtnp<<[>>#{messageWait}<<]>><<1>>
-\wmMake sure to go over all the options to determine what you want to enable.\wtnp<<[>>#{messageWait}<<]>><<1>>
-\wmAségurate de ir por todas las opciones para determinar qué quieres activar.\wtnp<<[>>#{messageWait}<<]>><<1>>
-\wmWant to learn about your active battler's moves?\wtnp<<[>>#{messageWait}<<]>><<1>>
-\wm¿Quieres aprender sobre los movimientos de tu Pokémon activo?\wtnp<<[>>#{messageWait}<<]>><<1>>
-\wmActivate the Move Info Panel! It's a feature of the Fight screen.\wtnp<<[>>#{messageWait}<<]>><<1>>
-\wm¡Activa el Panel Info de Movel! Es una función de la pantalla de Lucha.\wtnp<<[>>#{messageWait}<<]>><<1>>
-\wmPress your "Action" key (Z/Shift by default) to toggle it on or off.\wtnp<<[>>#{messageWait}<<]>><<1>>
-\wmPresiona la tecla “Acción” (Z/Shift por predeterminada) para activarla o desactivarla.\wtnp<<[>>#{messageWait}<<]>><<1>>
-\wmMany type matchups were changed in Pokemon Tectonic.\wtnp<<[>>#{messageWait}<<]>><<1>>
-\wmVarias interacciones entre tipos fueron cambiadas en Pokémon Tectonic.\wtnp<<[>>#{messageWait}<<]>><<1>>
-\wmTo strengthen some types, we had to be weaken others.\wtnp<<[>>#{messageWait}<<]>><<1>>
-\wmPara hacer más fuertes ciertos tipos, otros tuvieron que ser debilitados.\wtnp<<[>>#{messageWait}<<]>><<1>>
-\wmCheck the Masterdex or the Battle Guide to learn these changes.\wtnp<<[>>#{messageWait}<<]>><<1>>
-\wmComprueba la MasterDex o la Guía de Combate para aprender estos cambios.\wtnp<<[>>#{messageWait}<<]>><<1>>
+Wild Pokemon don't give experience in Pokemon Tectonic.
+Los Pokémon salvajes no dan experiencia en Pokémon Tectonic.
+Don't worry, there's an abundance of experience to gain in other ways.
+No te preocupes, hay plenitud de experiencia que ganar en otros modos.
+If you encounter a Pokemon you don't want, run away. It's guaranteed!
+Si encuentras un Pokémon que no quieres, sólo escapa. ¡Está garantizado!
+After a full party heal, defeated enemy trainers will be battle ready again!
+¡Luego de curar tu equipo por completo, entrenadores rivales derrotados estarán listos para combatir de nuevo!
+For example, healing at a Pokemon Center triggers this.
+Por ejemplo, curar en un Centro Pokémon activa esto.
+Trainers who fled won't come back, however.
+Eso sí, Entrenadores que hayan huído no regresarán.
+You can set a keyboard shortcut to use your bicycle quickly.
+Puedes asignar un atajo de teclado para usar tu bicicleta rápidamente.
+Access your control setttings with <imp>F1</imp> to set it to whatever you like.
+Accede a los ajustes de control con <imp>F1</imp> para asignarlo a lo que quieras.
+There's a shortcut key to instantly mount the bicycle while walking.
+Hay una tecla de acceso directo para montar instantáneamente la bicicleta mientras camina.
+Access your control setttings with <imp>F1</imp> to customize it.
+Accede a la configuración de tu control con <imp>F1</imp> para personalizarlo.
+Individual Pokemon have unique Traits, Likes, and Dislikes.
+Los Pokémon individuales tienen Rasgos, Gustos y Disgustos únicos.
+These have no effect on battle. They're just for fun!
+Estos no tienen efecto en combate. ¡Sólo existen por diversión!
+To customize your stats, adjust Style Points in any PokeCenter.
+Para customizar tus stats, ajusta los Puntos de Estilo en cualquier Centro Pokémon.
+Stats can be changed during battle by 'stat steps'.
+Las stats pueden ser cambiadas en medio de un combate mediante los ‘grados de stats'.
+A step is a small change! At +1 steps, only 25% is added to the stat.
+¡Un grado es un pequeño cambio! A +1 grado, sólo un 25% es añadido a la estadística.
+Check the Info menu to see the active steps and their effects on the battlers.
+Comprueba el menú Info para ver los grados activos y sus efectos en los combatientes.
+Tectonic introduced many options that let you customize the game speed, especially in battles.
+Tectonic introdujo varias opciones que te dejan personalizar la velocidad del juego, especialmente en combates.
+Make sure to go over all the options to determine what you want to enable.
+Aségurate de ir por todas las opciones para determinar qué quieres activar.
+Want to learn about your active battler's moves?
+¿Quieres aprender sobre los movimientos de tu Pokémon activo?
+Activate the Move Info Panel! It's a feature of the Fight screen.
+¡Activa el Panel Info de Movel! Es una función de la pantalla de Lucha.
+Press your "Action" key (Z/Shift by default) to toggle it on or off.
+Presiona la tecla “Acción” (Z/Shift por predeterminada) para activarla o desactivarla.
+Many type matchups were changed in Pokemon Tectonic.
+Varias interacciones entre tipos fueron cambiadas en Pokémon Tectonic.
+To strengthen some types, we had to weaken others.
+Para hacer más fuertes ciertos tipos, otros tuvieron que ser debilitados.
+Check the Masterdex or the Battle Guide to learn these changes.
+Comprueba la MasterDex o la Guía de Combate para aprender estos cambios.
+Sometimes you will receive Pokemon who are at your level cap.
+A veces recibirás Pokémon al mismo nivel que tu límite.
+Does this mean you can't evolve them by level up? No!
+¿Significa que no puedes evolucionarlos por nivel? ¡No!
+Just press the Evolve button in your party screen.
+Sólo presiona el botón de Evolucionar en tu equipo.
 Advanced Tutorials
 Tutorials Avanzados
 Avatar Mechanics Msgs
@@ -50699,6 +50766,8 @@ Continue Box operations?
 ¿Continuar usando la Caja?
 Exit from the Box?
 ¿Salir de la Caja?
+That Pokémon is not a valid choice!
+¡Ese Pokémon no es una elección válida!
 Shift
 Cambiar
 Place
@@ -50757,8 +50826,6 @@ Deposit Item
 Depositar Objeto
 Toss Item
 Tirar Objeto
-\wmA step is a small change! At +1 steps, only 25% is added to the stat.\wtnp<<[>>#{messageWait}<<]>><<1>>
-\wm¡Un grado es un pequeño cambio! A +1 grado, sólo un 25% es añadido a la estadística.\wtnp<<[>>#{messageWait}<<]>><<1>>
 \se[]{1} saved the game.\me[GUI save game]\wtnp[30]
 \se[]{1} guardó la partida.\me[GUI save game]\wtnp[30]
 I've got the lion's share of powerful items. Buy now!
@@ -50770,7 +50837,7 @@ Un Tótem Avatar místico. Late con energía vital antigua.
 A mystical Avatar Totem. It pulses with an unusual frequency.
 Un Tótem Avatar místico. Late con una frecuencia inusual.
 You see it glow with extra intensity, and sense somehow that a connection has been created.
-Los ves brilla con más intensidad, y sientes que de algún modo una conexión ha sido creada.
+Lo ves brillar con más intensidad, y sientes que de algún modo una conexión ha sido creada.
 However, it does not react further. Perhaps you must find more like it?
 Sin embargo, no parece reaccionar más allá. ¿Quizás tienes que encontrar más como este?
 You sense the connection to the other totems. Choose your warp location.
@@ -51913,12 +51980,6 @@ Tri Island
 Isla Elemental
 You recieved a #{speciesDat.name} (#{speciesDat.form_name})
 Recibiste un #{speciesDat.name} (#{speciesDat.form_name})
-\wmSometimes you will receive Pokemon who are at your level cap.\wtnp<<[>>#{messageWait}<<]>><<1>>
-\wmA veces recibirás Pokémon al mismo nivel que tu límite.\wtnp<<[>>#{messageWait}<<]>><<1>>
-\wmDoes this mean you can't evolve them by level up? No!\wtnp<<[>>#{messageWait}<<]>><<1>>
-\wm¿Significa que no puedes evolucionarlos por nivel? ¡No!\wtnp<<[>>#{messageWait}<<]>><<1>>
-\wmJust press the Evolve button in your party screen.\wtnp<<[>>#{messageWait}<<]>><<1>>
-\wmSólo presiona el botón de Evolucionar en tu equipo.\wtnp<<[>>#{messageWait}<<]>><<1>>
 {1} holds a {2} close!
 ¡{1} mantiene a su  {2} cerca suyo!
 \i[AIDKIT]Your Aid Kit was refreshed to #{$PokemonGlobal.teamHealerCurrentUses} charges.
@@ -52165,6 +52226,80 @@ But it failed, since the field is already covered in flowers!
 ¡{2} lee el corazón de {1} y consigue sus stats!
 Which type should #{user.pbThis(true)} launch?
 ¿Qué tipo debería disparar #{user.pbThis(true)}?
+Sandstone System
+Sandstone System
+Frostflow Secret
+Frostflow Secret
+Six Spire Cave
+Six Spire Cave
+Alloyed Thicket
+Alloyed Thicket
+Chasm HQ Chamber
+Chasm HQ Chamber
+Bluepoint Grotto
+Bluepoint Grotto
+Casaba Villa Chamber
+Casaba Villa Chamber
+Shipping Lane Chamber
+Shipping Lane Chamber
+Velenz Chamber
+Velenz Chamber
+Hollowed Layer
+Hollowed Layer
+Clearwater Cave
+Clearwater Cave
+Volcanic Cave
+Volcanic Cave
+Nebula Ruins
+Nebula Ruins
+Eleig Crossing Chamber
+Eleig Crossing Chamber
+Spirit Atoll
+Spirit Atoll
+Riverside Houses
+Riverside Houses
+Catacombs Entryway
+Catacombs Entryway
+Boiling Cave
+Boiling Cave
+Prizca East Chamber
+Prizca East Chamber
+Velenz Menagerie
+Velenz Menagerie
+Tempest Realm
+Tempest Realm
+Abyssal Cavern
+Abyssal Cavern
+Criminal Sewers
+Criminal Sewers
+Prizca Property
+Prizca Property
+Whitebloom Nook
+Whitebloom Nook
+Underpeak Tunnels
+Underpeak Tunnels
+Sweetrock Harbor Chamber
+Sweetrock Harbor Chamber
+Skyward Ascent
+Skyward Ascent
+Path of Genesis
+Path of Genesis
+Suspicious Shed
+Suspicious Shed
+King's Chamber
+King's Chamber
+Crumbling Canyon
+Crumbling Canyon
+Catacomb Depths
+Catacomb Depths
+Guardian Island
+Guardian Island
+Mirror Tundra
+Mirror Tundra
+Tri Island
+Tri Island
+Eventide Peak
+Eventide Peak
 [26]
 [27]
 [27]

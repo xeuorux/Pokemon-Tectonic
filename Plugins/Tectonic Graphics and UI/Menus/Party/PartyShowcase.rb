@@ -1,9 +1,12 @@
 class PokemonPartyShowcase_Scene
     POKEMON_ICON_SIZE = 64
-    BASE_COLOR   = Color.new(80, 80, 88)
-    SHADOW_COLOR = Color.new(160, 160, 168)
+    base   = Color.new(80, 80, 88)
+    shadow = Color.new(160, 160, 168)
 
     def initialize(party,snapshot = false,snapShotName=nil)
+        base = MessageConfig::DARK_TEXT_MAIN_COLOR
+        shadow = MessageConfig::DARK_TEXT_SHADOW_COLOR
+
         @sprites = {}
         @party = party
         @viewport = Viewport.new(0,0,Graphics.width,Graphics.height)
@@ -44,15 +47,15 @@ class PokemonPartyShowcase_Scene
             fullDescription = _INTL("Tribes: #{fullDescription}") 
         end
         bottomBarY = Graphics.height - 20
-        drawFormattedTextEx(@overlay, 8, bottomBarY, Graphics.width, fullDescription, BASE_COLOR, SHADOW_COLOR)
+        drawFormattedTextEx(@overlay, 8, bottomBarY, Graphics.width, fullDescription, base, shadow)
 
         # Show player name
         playerName = "<ar>#{$Trainer.name}</ar>"
-        drawFormattedTextEx(@overlay, Graphics.width - 168, bottomBarY, 160, playerName, BASE_COLOR, SHADOW_COLOR)
+        drawFormattedTextEx(@overlay, Graphics.width - 168, bottomBarY, 160, playerName, base, shadow)
 
         # Show game version
         settingsLabel = "v#{Settings::GAME_VERSION}"
-        drawFormattedTextEx(@overlay, Graphics.width / 2 + 64, bottomBarY, 160, settingsLabel, BASE_COLOR, SHADOW_COLOR)
+        drawFormattedTextEx(@overlay, Graphics.width / 2 + 64, bottomBarY, 160, settingsLabel, base, shadow)
 
         # Show randomizer icon
         if Randomizer.on?
@@ -78,6 +81,9 @@ class PokemonPartyShowcase_Scene
     MAX_MOVE_NAME_WIDTH = 140
 
     def renderShowcaseInfo(index,pokemon)
+        base = MessageConfig::DARK_TEXT_MAIN_COLOR
+        shadow = MessageConfig::DARK_TEXT_SHADOW_COLOR
+        
         displayX = ((index % 2) * (Graphics.width / 2)) + 6
         displayY = (index / 2) * (Graphics.height / 3 - 8) + 6
 
@@ -89,7 +95,7 @@ class PokemonPartyShowcase_Scene
 
         # Display pokemon name
         nameAndLevel = _INTL("#{pokemon.name} Lv. #{pokemon.level.to_s}")
-        drawTextEx(@overlay, displayX + 14, displayY, 200, 1, nameAndLevel, BASE_COLOR, SHADOW_COLOR)
+        drawTextEx(@overlay, displayX + 14, displayY, 200, 1, nameAndLevel, base, shadow)
 
         # Display item icon
         if pokemon.hasItem?
@@ -147,12 +153,12 @@ class PokemonPartyShowcase_Scene
                 shavedName = shavedName[0..-1] if shavedName[shavedName.length-1] == " "
                 moveName = shavedName + "..."
             end
-            drawTextEx(@overlay, displayX + POKEMON_ICON_SIZE + 8, mainIconY + 2 + moveIndex * 16, 200, 1, moveName, BASE_COLOR, SHADOW_COLOR)
+            drawTextEx(@overlay, displayX + POKEMON_ICON_SIZE + 8, mainIconY + 2 + moveIndex * 16, 200, 1, moveName, base, shadow)
         end
 
         # Display ability name
         abilityName = pokemon.ability&.name || _INTL("No Ability")
-        drawTextEx(@overlay, displayX + 4, mainIconY + POKEMON_ICON_SIZE + 8, 200, 1, abilityName, BASE_COLOR, SHADOW_COLOR)
+        drawTextEx(@overlay, displayX + 4, mainIconY + POKEMON_ICON_SIZE + 8, 200, 1, abilityName, base, shadow)
     
         # Display Style Points
         styleValueX = displayX + 222
@@ -160,9 +166,9 @@ class PokemonPartyShowcase_Scene
         styleValues = [styleHash[:HP],styleHash[:ATTACK],styleHash[:DEFENSE],styleHash[:SPECIAL_ATTACK],styleHash[:SPECIAL_DEFENSE],styleHash[:SPEED]]
         styleValues.each_with_index do |styleValue,styleIndex|
             #styleOpacity = (0.5 + styleValue / 40.0) * 255
-            thisColor = BASE_COLOR.clone
+            thisColor = base.clone
             thisColor.alpha = 120 if styleValue == 0
-            thisShadow = SHADOW_COLOR.clone
+            thisShadow = shadow.clone
             thisShadow.alpha = 120 if styleValue == 0
             drawTextEx(@overlay, styleValueX, 2 + displayY + 18 * styleIndex, 80, 1, styleValue.to_s, thisColor, thisShadow)
         end

@@ -18,7 +18,7 @@ class PokeBattle_Move_TwoTurnAttack < PokeBattle_Move
     end
 
     def getEffectScore(user, _target)
-        return -70 unless user.hasActiveItem?(:ENERGYHERB)
+        return -70 unless user.hasActiveItemAI?(:ENERGYHERB)
         return 0
     end
 end

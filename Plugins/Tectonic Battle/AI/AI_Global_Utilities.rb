@@ -45,7 +45,7 @@ def getUrgency
         weatherInfo = [
             [:SUN_TEAM, @battle.sunny?, :DROUGHT, :HEATROCK],
             [:RAIN_TEAM, @battle.rainy?, :DRIZZLE, :DAMPROCK],
-            [:SAND_TEAM, @battle.sandy?, :SANDSTREAM, :SMOOTHROCK],
+            [:SANDSTORM_TEAM, @battle.sandy?, :SANDSTREAM, :SMOOTHROCK],
             [:HAIL_TEAM, @battle.icy?, :SNOWWARNING, :ICYROCK],
             [:MOONGLOW_TEAM, @battle.moonGlowing?, :MOONGAZE, :MIRROREDROCK],
             [:ECLIPSE_TEAM, @battle.eclipsed?, :HARBINGER, :PINPOINTROCK],

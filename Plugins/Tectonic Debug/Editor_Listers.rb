@@ -1,8 +1,12 @@
 #===============================================================================
 # Core lister script
 #===============================================================================
-def pbListWindow(cmds, width = Graphics.width / 2)
-  list = Window_CommandPokemon.newWithSize(cmds, 0, 0, width, Graphics.height)
+def pbListWindow(cmds, width = Graphics.width / 2, color = false)
+  if color
+    list = Window_CommandPokemonAlternatingColor.newWithSize(cmds, 0, 0, width, Graphics.height)
+  else
+    list = Window_CommandPokemon.newWithSize(cmds, 0, 0, width, Graphics.height)
+  end
   list.index     = 0
   list.rowHeight = 24
   pbSetSmallFont(list.contents)
@@ -159,6 +163,58 @@ def pbListScreenExtra(title,lister,breakOnUse = true)
 	  Graphics.update
 	  Input.update
 	  list.update
+    lister.update
+	  if list.index != selectedmap
+      lister.refresh(list.index)
+      selectedmap = list.index
+	  end
+	  if Input.trigger?(Input::BACK)
+		  selectedmap = -1
+		  break
+	  elsif Input.trigger?(Input::USE) && breakOnUse
+		  break
+	  end
+	end
+	value = lister.value(selectedmap)
+	finalListIndex = list.index
+	lister.dispose
+	title.dispose
+	list.dispose
+	viewport.dispose
+	Input.update
+	return value, finalListIndex
+end
+
+def pbListScreenGuide(title,lister,breakOnUse = true)
+	viewport = Viewport.new(0,0,Graphics.width,Graphics.height)
+	viewport.z = 99999
+	list = pbListWindow([], Graphics.width/2, true)
+	list.viewport = viewport
+	list.z        = 2
+  list.y = 64
+  list.height = Graphics.height - 64
+	title = Window_UnformattedTextPokemon.newWithSize(title,
+	   0, 0, Graphics.width / 2, 64, viewport)
+	title.z = 2
+	lister.setViewport(viewport)
+	selectedmap = -1
+	commands = lister.commands
+	selindex = lister.startIndex
+	if commands.length == 0
+	  value = lister.value(-1)
+	  lister.dispose
+	  title.dispose
+	  list.dispose
+	  viewport.dispose
+	  return value
+	end
+	list.commands = commands
+	list.index    = selindex
+	loop do
+	  Graphics.update
+	  Input.update
+	  list.update
+    lister.update
 	  if list.index != selectedmap
       lister.refresh(list.index)
       selectedmap = list.index

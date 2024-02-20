@@ -182,7 +182,10 @@ class PokeBattle_Battler
             pbAbilitiesOnDamageTaken(oldHP)
             pbFaint if fainted?
         elsif canHeal?(hasActiveAbility?(:GORGING))
-            drainAmount = (drainAmount * 1.3).floor if hasActiveItem?(:BIGROOT)
+            if hasActiveItem?(:BIGROOT)
+                drainAmount = (drainAmount * 1.3).floor
+                aiLearnsItem(:BIGROOT)
+            end
             pbRecoverHP(drainAmount, true, true, false, canOverheal: hasActiveAbility?(:GORGING))
             if overhealed?
                 showMyAbilitySplash(:GORGING)
@@ -212,7 +215,10 @@ class PokeBattle_Battler
         showMyAbilitySplash(ability) if ability
         drainAmount = (totalDamageDealt * ratio).round
         drainAmount = 1 if drainAmount < 1
-        drainAmount = (drainAmount * 1.3).floor if hasActiveItem?(:BIGROOT)
+        if hasActiveItem?(:BIGROOT)
+            drainAmount = (drainAmount * 1.3).floor
+            aiLearnsItem(:BIGROOT)
+        end
         pbRecoverHP(drainAmount, true, true, false)
         hideMyAbilitySplash if ability
     end
@@ -644,6 +650,8 @@ class PokeBattle_Battler
         @ability_ids.push(@pokemon.ability_id) if @pokemon.ability_id
         @ability_ids.concat(@pokemon.extraAbilities)
         @addedAbilities.clear
+
+        @addedAbilities.concat(@pokemon.extraAbilities)
 
         # Check for "has all legal ability" effects
         if initialization

@@ -10,6 +10,7 @@ BattleHandlers::UserItemAfterMoveUse.add(:LIFEORB,
         next unless hitBattler
         battle.pbDisplay(_INTL("{1} lost some of its HP!", user.pbThis))
         user.applyFractionalDamage(1.0 / 10.0, false)
+        user.aiLearnsItem(item)
     }
 )
 
@@ -23,6 +24,7 @@ BattleHandlers::UserItemAfterMoveUse.add(:SHELLBELL,
       healAmount = 1 if healAmount < 1
       recoverMessage = _INTL("{1} restored a little HP using its {2}!", user.pbThis, getItemName(item))
       user.pbRecoverHP(healAmount, true, true, true, recoverMessage)
+      user.aiLearnsItem(item)
   }
 )
 
@@ -43,5 +45,4 @@ BattleHandlers::UserItemAfterMoveUse.add(:WHETSTONE,
         next if !move.bladeMove? || numHits == 0
         user.pbHeldItemTriggered(item) if user.tryRaiseStat(:ATTACK, user, item: item, increment: 2)
     }
-  )
-  
+)

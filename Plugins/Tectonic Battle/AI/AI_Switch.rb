@@ -206,7 +206,7 @@ class PokeBattle_AI
         weatherSwitchInfo = [
             [:SUN_TEAM, @battle.sunny?, :DROUGHT, :HEATROCK],
             [:RAIN_TEAM, @battle.rainy?, :DRIZZLE, :DAMPROCK],
-            [:SAND_TEAM, @battle.sandy?, :SANDSTREAM, :SMOOTHROCK],
+            [:SANDSTORM_TEAM, @battle.sandy?, :SANDSTREAM, :SMOOTHROCK],
             [:HAIL_TEAM, @battle.icy?, :SNOWWARNING, :ICYROCK],
             [:MOONGLOW_TEAM, @battle.moonGlowing?, :MOONGAZE, :MIRROREDROCK],
             [:ECLIPSE_TEAM, @battle.eclipsed?, :HARBINGER, :PINPOINTROCK],
@@ -454,8 +454,8 @@ class PokeBattle_AI
         matchupScore = -1 * bestMoveScore
 
         # Set-up counterplay scoring
-        if      (battler.hasActiveItem?(:REDCARD) && !opposingBattler.hasActiveItem?(:PROXYFIST)) ||
-                battler.hasActiveAbility?(%i[SMOKEINSINCT PERISHBODY CURIOUSMEDICINE DRIFTINGMIST])
+        if      (battler.hasActiveItemAI?(:REDCARD) && !opposingBattler.hasActiveItemAI?(:PROXYFIST)) ||
+                battler.hasActiveAbilityAI?(%i[SMOKEINSINCT PERISHBODY CURIOUSMEDICINE DRIFTINGMIST])
             matchupScore += statStepsValueScore(opposingBattler) * 0.15
         end
 

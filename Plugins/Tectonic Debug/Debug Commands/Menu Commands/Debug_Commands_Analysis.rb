@@ -242,6 +242,54 @@ DebugMenuCommands.register("analyzeitemdistribution", {
           end
       end
   end
+
+  def RACI(regex, newText)
+    replaceAllCodeInstances(regex, newText)
+  end
+
+def replaceAllCodeInstances(regex, newText)
+    mapData = Compiler::MapData.new
+    for id in mapData.mapinfos.keys.sort
+        map = mapData.getMap(id)
+        next if !map || !mapData.mapinfos[id]
+        mapName = mapData.mapinfos[id].name
+        changed = false
+        for key in map.events.keys
+            changed = true if replaceCodeInstances(id,mapName,map.events[key],regex,newText)
+        end
+        mapData.saveMap(id) if changed
+    end
+end
+
+def change
+    replaceAllCodeInstances("pbGet\(1\)\.nil\?","!boxPokemonChosen?")
+end
+
+def replaceCodeInstances(map_id,map_name,event,regex,newText)
+    return [] if !event || event.pages.length==0
+    changed = false
+    event.pages.each do |page|
+        page.list.each do |eventCommand|
+            eventCommand.parameters.map! { |parameter|
+                next parameter unless parameter.is_a?(String)
+                oldParam = parameter.clone
+                newParam = parameter.gsub!(regex,newText)
+                if newParam
+                    eventName = event.name.gsub(",","")
+
+                    echoln "Map #{map_name} (#{map_id}), event #{eventName} (#{event.id}):\r\n"
+                    echoln("\tParameter #{oldParam} changed to #{newParam}")
+
+                    changed = true
+                    
+                    next newParam
+                end
+                next parameter
+            }
+        end
+    end
+    return changed
+end
   
 
   DebugMenuCommands.register("analyzedistribution", {

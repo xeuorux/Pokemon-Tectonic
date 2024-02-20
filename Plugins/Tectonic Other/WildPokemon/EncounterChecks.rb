@@ -103,16 +103,20 @@ class PokemonEncounters
     return false if $game_system.encounter_disabled
     return false if !$Trainer
     return false if debugControl
+    return false if $PokemonGlobal.noise_machine_state == 1
     # Check if enc_type has a defined step chance/encounter table
     return false if !@step_chances[enc_type] || @step_chances[enc_type] == 0
     return false if !has_encounter_type?(enc_type)
+    encountersDrawnIn = $PokemonGlobal.noise_machine_state == 2
     # Get base encounter chance and minimum steps grace period
     encounter_chance = @step_chances[enc_type].to_f
     min_steps_needed = (8 - encounter_chance / 10).clamp(0, 8).to_f
+    min_steps_needed /= 2 if encountersDrawnIn
     # Apply modifiers to the encounter chance and the minimum steps amount
     if triggered_by_step
       encounter_chance += @chance_accumulator / 200
       encounter_chance *= 0.8 if $PokemonGlobal.bicycle
+      encounter_chance *= 2.0 if encountersDrawnIn
     end
     # Wild encounters are much less likely to happen for the first few steps
     # after a previous wild encounter

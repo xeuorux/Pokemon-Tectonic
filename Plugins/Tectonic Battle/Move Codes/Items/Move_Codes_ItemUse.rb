@@ -79,8 +79,8 @@ class PokeBattle_Move_GiftItem < PokeBattle_Move
     end
 
     def getEffectScore(user, target)
-        if user.hasActiveItem?(%i[FLAMEORB POISONORB FROSTORB STICKYBARB
-                                  IRONBALL]) || user.hasActiveItem?(CHOICE_LOCKING_ITEMS)
+        if user.hasActiveItemAI?(%i[FLAMEORB POISONORB FROSTORB STICKYBARB
+                                  IRONBALL]) || user.hasActiveItemAI?(GameData::Item::CHOICE_LOCKING_ITEMS)
             if user.opposes?(target)
                 return 100
             else
@@ -124,23 +124,6 @@ end
 # User flings its item at the target. Power/effect depend on the item. (Fling)
 #===============================================================================
 class PokeBattle_Move_Fling < PokeBattle_Move
-    def initialize(battle, move)
-        super
-        @flingPowers = {}
-
-        # Highest BP
-        category1 = %i[IRONBALL PEARLOFFATE]
-
-        # Middle BP
-        category2 = []
-        category2.concat(CHOICE_LOCKING_ITEMS)
-        category2.concat(WEATHER_ROCK_ITEMS)
-        category2.concat(RECOIL_ITEMS)
-
-        @flingPowers[150] = category1
-        @flingPowers[100] = category2
-    end
-
     def validItem(user,item)
         return !(user.unlosableItem?(item) || GameData::Item.get(item).is_mega_stone?)
     end
@@ -206,8 +189,16 @@ class PokeBattle_Move_Fling < PokeBattle_Move
     def pbNumHits(_user, _targets, _checkingForAI = false); return 1; end
 
     def pbBaseDamage(_baseDmg, user, _target)
-        @flingPowers.each do |power, items|
-            return power if items.include?(@chosenItem)
+        if @chosenItem
+            if %i[IRONBALL PEARLOFFATE].include?(@chosenItem)
+                return 150
+            end
+            itemData = GameData::Item.get(@chosenItem)
+            if itemData.is_choice_locking? ||
+                itemData.is_weather_rock? ||
+                itemData.is_attacker_recoil?
+                return 100
+            end
         end
         return 75
     end
@@ -431,9 +422,9 @@ class PokeBattle_Move_SwapItems < PokeBattle_Move
     end
 
     def getEffectScore(user, target)
-        if user.hasActiveItem?(%i[FLAMEORB POISONORB STICKYBARB IRONBALL])
+        if user.hasActiveItemAI?(%i[FLAMEORB POISONORB STICKYBARB IRONBALL])
             return 130
-        elsif user.hasActiveItem?(CHOICE_LOCKING_ITEMS)
+        elsif user.hasActiveItemAI?(GameData::Item::CHOICE_LOCKING_ITEMS)
             return 100
         elsif !user.firstItem && target.firstItem
             if user.lastMoveUsed && GameData::Move.get(user.lastMoveUsed).function_code == "SwapItems" # Trick/Switcheroo
@@ -456,7 +447,7 @@ class PokeBattle_Move_EatBerryRaiseDefenses3 < PokeBattle_Move
 
     def pbEffectGeneral(user)
         user.pbRaiseMultipleStatSteps([:DEFENSE, 3, :SPECIAL_DEFENSE, 3], user, move: self)
-        user.eachItem do |item|
+        user.eachActiveItem do |item|
             next unless GameData::Item.get(item).is_berry?
             user.pbHeldItemTriggerCheck(item, false)
             user.consumeItem(item)
@@ -465,7 +456,7 @@ class PokeBattle_Move_EatBerryRaiseDefenses3 < PokeBattle_Move
 
     def getEffectScore(user, target)
         score = getMultiStatUpEffectScore([:DEFENSE, 3, :SPECIAL_DEFENSE, 3], user, target)
-        user.eachItem do |item|
+        user.eachAIKnownActiveItem do |item|
             next unless GameData::Item.get(item).is_berry?
             score += 40
         end
@@ -501,7 +492,7 @@ class PokeBattle_Move_ForceAllEatBerry < PokeBattle_Move
     end
 
     def pbEffectAgainstTarget(_user, target)
-        target.eachItem do |item|
+        target.eachActiveItem do |item|
             next unless GameData::Item.get(item).is_berry?
             target.pbHeldItemTriggerCheck(item, false)
             target.consumeItem(item)
@@ -509,6 +500,6 @@ class PokeBattle_Move_ForceAllEatBerry < PokeBattle_Move
     end
 
     def getEffectScore(_user, _target)
-        return 60 # I don't understand the utility of this move
+        return 60 # TODO: I don't understand the utility of this move
     end
 end

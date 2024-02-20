@@ -82,7 +82,7 @@ GameData::BattleWeather.register({
 
 GameData::BattleWeather.register({
   :id        => :Moonglow,
-  :name      => _INTL("Moonlight"),
+  :name      => _INTL("Moonglow"),
   :animation => "Moonlight",
 })
 

@@ -334,6 +334,7 @@ class PokeBattle_Move
     end
 
     def forcedPhysical?(user,target,checkingForAI=false)
+        return true if user.shouldAbilityApply?([:PSYFORCE],checkingForAI)
         return false
     end
 
@@ -385,9 +386,10 @@ class PokeBattle_Move
             end
             return false
         end
-        if target.hasActiveItem?(:COVERTCLOAK) && user.opposes?(target)
+        if target.shouldAbilityApply?(:COVERTCLOAK,aiCheck) && user.opposes?(target)
             if showMessages
                 battle.pbDisplay(_INTL("#{target.pbThis}'s #{getItemName(:COVERTCLOAK)} protects it from a random added effect!"))
+                target.aiLearnsItem(:COVERTCLOAK)
             end
             return false
         end
@@ -409,7 +411,7 @@ class PokeBattle_Move
         ret *= 2 if user.pbOwnSide.effectActive?(:Rainbow)
         ret /= 2 if applyRainDebuff?(user,type)
         ret /= 2 if target.hasTribeBonus?(:SERENE)
-        if ret < 100 && user.hasActiveItem?(:LUCKHERB)
+        if ret < 100 && user.shouldItemApply?(:LUCKHERB,aiCheck)
             ret = 100
             user.applyEffect(:LuckHerbConsumed) unless aiCheck
         end

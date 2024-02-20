@@ -26,6 +26,11 @@ class PokeBattle_Battler
             ret.push(@type2) if @type2 != @type1
         end
         ret = [@pokemon.itemTypeChosen] if itemActive? && hasItem?(:CRYSTALVEIL)
+        # Extra types
+        @pokemon.extraTypes.each do |extraPkmnType|
+            next if ret.include?(extraPkmnType)
+            ret.push(extraPkmnType)
+        end
         # Burn Up erases the Fire-type.
         ret.delete(:FIRE) if effectActive?(:BurnUp)
         # Cold Conversion erases the Ice-type.
@@ -221,13 +226,13 @@ class PokeBattle_Battler
                 return true
             end
             if hasActiveAbility?(:HERBALIST)
-                return false if !HERB_ITEMS.include?(firstItem)
-                return false if !HERB_ITEMS.include?(item)
+                return false if !GameData::Item.get(firstItem).is_herb?
+                return false if !GameData::Item.get(item).is_herb?
                 return true
             end
             if hasActiveAbility?(:FASHIONABLE)
-                clothingA = CLOTHING_ITEMS.include?(firstItem)
-                clothingB = CLOTHING_ITEMS.include?(item)
+                clothingA = GameData::Item.get(firstItem).is_clothing?
+                clothingB = GameData::Item.get(item).is_clothing?
                 return clothingA != clothingB
             end
         end
@@ -395,7 +400,7 @@ class PokeBattle_Battler
     end
 
     def activatesTargetAbilities?(aiCheck = false)
-        return false if hasActiveItem?(:PROXYFIST)
+        return false if shouldItemApply?(:PROXYFIST,aiCheck)
         return false if shouldAbilityApply?(:JUGGERNAUT, aiCheck)
         return true
     end
@@ -405,13 +410,13 @@ class PokeBattle_Battler
     end
 
     def airborne?(checkingForAI = false)
-        return false if hasActiveItem?(:IRONBALL)
+        return false if shouldItemApply?(:IRONBALL,checkingForAI)
         return false if effectActive?(:Ingrain)
         return false if effectActive?(:SmackDown)
         return false if @battle.field.effectActive?(:Gravity)
         return true if shouldTypeApply?(:FLYING, checkingForAI)
         return true if hasLevitate?(checkingForAI) && !@battle.moldBreaker
-        return true if hasActiveItem?(LEVITATION_ITEMS)
+        return true if shouldItemApply?(GameData::Item::LEVITATION_ITEMS,checkingForAI)
         return true if effectActive?(:MagnetRise)
         return true if effectActive?(:Telekinesis)
         return false
@@ -627,19 +632,19 @@ class PokeBattle_Battler
         return shouldAbilityApply?(:BUNKERDOWN, checkingForAI) && @hp == @totalhp
     end
 
-    def getRoomDuration
-        if hasActiveItem?(:REINFORCINGROD)
+    def getRoomDuration(aiCheck = false)
+        if shouldItemApply?(:REINFORCINGROD,aiCheck)
             return 8
         else
             return 5
         end
     end
 
-    def getScreenDuration(baseDuration = 5)
+    def getScreenDuration(baseDuration = 5,aiCheck: false)
         ret = baseDuration
-        ret += 3 if hasActiveItem?(:LIGHTCLAY)
-        ret += 6 if hasActiveItem?(:BRIGHTCLAY)
-        ret *= 2 if hasActiveAbility?(:PLANARVEIL) && @battle.eclipsed?
+        ret += 3 if shouldItemApply?(:LIGHTCLAY,aiCheck)
+        ret += 6 if shouldItemApply?(:BRIGHTCLAY,aiCheck)
+        ret *= 2 if shouldAbilityApply?(:PLANARVEIL,aiCheck) && @battle.eclipsed?
         return ret
     end
 
@@ -852,7 +857,10 @@ class PokeBattle_Battler
     end
 
     def immuneToHazards?(aiCheck = false)
-        return true if hasActiveItem?(:HEAVYDUTYBOOTS)
+        if shouldItemApply?(:HEAVYDUTYBOOTS,aiCheck)
+            aiLearnsItem(:HEAVYDUTYBOOTS) unless aiCheck
+            return true
+        end
         return shouldAbilityApply?(GameData::Ability::HAZARD_IMMUNITY_ABILITIES, aiCheck)
     end
 

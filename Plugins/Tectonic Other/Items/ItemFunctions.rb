@@ -542,6 +542,17 @@ def pbChooseFossil(var = 0)
   return ret
 end
 
+def pbChooseEvolutionStone(var = 0)
+  ret = nil
+  pbFadeOutIn {
+    scene = PokemonBag_Scene.new
+    screen = PokemonBagScreen.new(scene,$PokemonBag)
+    ret = screen.pbChooseItemScreen(Proc.new { |item| GameData::Item.get(item).is_evolution_stone? })
+  }
+  $game_variables[var] = ret || :NONE if var > 0
+  return ret
+end
+
 # Shows a list of items to choose from, with the chosen item's ID being stored
 # in the given Global Variable. Only items which the player has are listed.
 def pbChooseItemFromList(message, variable, *args)

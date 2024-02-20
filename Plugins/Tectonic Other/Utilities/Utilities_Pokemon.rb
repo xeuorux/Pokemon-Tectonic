@@ -72,7 +72,7 @@ def pbStorePokemonInPC(pkmn)
   end
 end
 
-def pbNicknameAndStore(pkmn)
+def pbNicknameAndStore(pkmn,nickname = true)
   if pbBoxesFull?
       pbMessage(_INTL("There's no more room for Pokémon!\1"))
       pbMessage(_INTL("The Pokémon Boxes are full and can't accept any more!"))
@@ -80,18 +80,13 @@ def pbNicknameAndStore(pkmn)
   end
   $Trainer.pokedex.set_seen(pkmn.species)
   $Trainer.pokedex.set_owned(pkmn.species)
-
-  # Let the player know info about the individual pokemon they caught
-  pbMessage(_INTL("You check {1}, and discover that its ability is <imp>{2}</imp>!", pkmn.name, pkmn.ability.name))
-
-  pkmn.items.each do |item|
-      pbMessage(_INTL("The {1} is holding an {2}!", pkmn.name, getItemName(item)))
-  end
+  
+  discoverPokemon(pkmn)
 
   # Increase the caught count for the global metadata
   incrementDexNavCounts(false) if defined?(incrementDexNavCounts)
 
-  if !defined?($PokemonSystem.nicknaming_prompt) || $PokemonSystem.nicknaming_prompt == 0
+  if $PokemonSystem.nicknaming_prompt == 0 && nickname
       pbNickname(pkmn)
   end
 
@@ -100,10 +95,18 @@ def pbNicknameAndStore(pkmn)
   evolutionButtonCheck(pkmn)
 end
 
+def discoverPokemon(pkmn)
+  pbMessage(_INTL("You check {1}, and discover that its ability is <imp>{2}</imp>!", pkmn.name, pkmn.ability.name))
+
+  pkmn.items.each do |item|
+      pbMessage(_INTL("The {1} is holding an {2}!", pkmn.name, getItemName(item)))
+  end
+end
+
 #===============================================================================
 # Giving Pokémon to the player (will send to storage if party is full)
 #===============================================================================
-def pbAddPokemon(pkmn, level = 1, see_form = true)
+def pbAddPokemon(pkmn, level = 1)
   return false if !pkmn
   if pbBoxesFull?
     pbMessage(_INTL("There's no more room for Pokémon!\1"))
@@ -115,15 +118,13 @@ def pbAddPokemon(pkmn, level = 1, see_form = true)
   species_name = pkmn.speciesName
   pbMessage(_INTL("{1} obtained {2}!\\me[Pkmn get]\\wtnp[80]\1", $Trainer.name, species_name))
   pbNicknameAndStore(pkmn)
-  $Trainer.pokedex.register(pkmn) if see_form
   return true
 end
 
-def pbAddPokemonSilent(pkmn, level = 1, see_form = true)
+def pbAddPokemonSilent(pkmn, level = 1)
   return false if !pkmn || pbBoxesFull?
   pkmn = randomizeSpecies(pkmn, false, true)
   pkmn = Pokemon.new(pkmn, level) if !pkmn.is_a?(Pokemon)
-  $Trainer.pokedex.register(pkmn) if see_form
   $Trainer.pokedex.set_owned(pkmn.species)
   pkmn.record_first_moves
   if $Trainer.party_full?
@@ -131,6 +132,17 @@ def pbAddPokemonSilent(pkmn, level = 1, see_form = true)
   else
     $Trainer.party[$Trainer.party.length] = pkmn
   end
+  return true
+end
+
+def pbAddPokemonFromTrade(pkmn)
+  return false if !pkmn
+  if pbBoxesFull?
+    pbMessage(_INTL("There's no more room for Pokémon!\1"))
+    pbMessage(_INTL("The Pokémon Boxes are full and can't accept any more!"))
+    return false
+  end
+  pbNicknameAndStore(pkmn)
   return true
 end
 
@@ -238,38 +250,4 @@ def pbBalancedLevel(party)
   # Adjust level to maximum
   mean = mLevel if mean > mLevel
   return mean
-end
-
-#===============================================================================
-# Calculates a Pokémon's size (in millimeters)
-#===============================================================================
-def pbSize(pkmn)
-  baseheight = pkmn.height
-  hpiv = pkmn.iv[:HP] & 15
-  ativ = pkmn.iv[:ATTACK] & 15
-  dfiv = pkmn.iv[:DEFENSE] & 15
-  saiv = pkmn.iv[:SPECIAL_ATTACK] & 15
-  sdiv = pkmn.iv[:SPECIAL_DEFENSE] & 15
-  spiv = pkmn.iv[:SPEED] & 15
-  m = pkmn.personalID & 0xFF
-  n = (pkmn.personalID >> 8) & 0xFF
-  s = (((ativ ^ dfiv) * hpiv) ^ m) * 256 + (((saiv ^ sdiv) * spiv) ^ n)
-  xyz = []
-  if s < 10;       xyz = [ 290,   1,     0]
-  elsif s < 110;   xyz = [ 300,   1,    10]
-  elsif s < 310;   xyz = [ 400,   2,   110]
-  elsif s < 710;   xyz = [ 500,   4,   310]
-  elsif s < 2710;  xyz = [ 600,  20,   710]
-  elsif s < 7710;  xyz = [ 700,  50,  2710]
-  elsif s < 17710; xyz = [ 800, 100,  7710]
-  elsif s < 32710; xyz = [ 900, 150, 17710]
-  elsif s < 47710; xyz = [1000, 150, 32710]
-  elsif s < 57710; xyz = [1100, 100, 47710]
-  elsif s < 62710; xyz = [1200,  50, 57710]
-  elsif s < 64710; xyz = [1300,  20, 62710]
-  elsif s < 65210; xyz = [1400,   5, 64710]
-  elsif s < 65410; xyz = [1500,   2, 65210]
-  else;            xyz = [1700,   1, 65510]
-  end
-  return (((s - xyz[2]) / xyz[1] + xyz[0]).floor * baseheight / 10).floor
 end

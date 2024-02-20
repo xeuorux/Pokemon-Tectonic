@@ -100,7 +100,7 @@ def entryDebuffAbility(ability, battler, battle, statDownArray, aiCheck: false)
 end
 
 def entryTrappingAbility(ability, battler, battle, trappingMove, trappingDuration: 2, aiCheck: false, &block)
-    trappingDuration *= 2 if battler.hasActiveItem?(:GRIPCLAW)
+    trappingDuration *= 2 if battler.shouldItemApply?(:GRIPCLAW,aiCheck )
 
     score = 0
     battle.pbShowAbilitySplash(battler, ability) unless aiCheck

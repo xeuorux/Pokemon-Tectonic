@@ -252,10 +252,10 @@ class PokeBattle_AI
             end
 
             # Account for the items of the target
-            unless user.hasActiveItem?(:PROXYFIST)
+            unless user.hasActiveItemAI?(:PROXYFIST)
                 begin
                     scoreModifierTargetItem = 0
-                    target.eachActiveItem do |item|
+                    target.eachAIKnownActiveItem do |item|
                         scoreModifierTargetItem += 
                             BattleHandlers.triggerTargetItemOnHitAI(item, user, target, move, @battle, numHits)
                     end
@@ -313,7 +313,7 @@ class PokeBattle_AI
         # ! All score changes from this point forward must be multiplicative !
 
         # Pick a good move for the Choice items
-        if !damagingMove && (user.hasActiveItem?(CHOICE_LOCKING_ITEMS) || user.hasActiveAbilityAI?(CHOICE_LOCKING_ABILITIES))
+        if !damagingMove && (user.hasActiveItemAI?(GameData::Item::CHOICE_LOCKING_ITEMS) || user.hasActiveAbilityAI?(CHOICE_LOCKING_ABILITIES))
             echoln("\t[MOVE SCORING] Score is halved: Don't choice-lock into a status move.")
             score /= 2
         end

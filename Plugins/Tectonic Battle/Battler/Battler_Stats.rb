@@ -316,7 +316,7 @@ class PokeBattle_Battler
     def applySpeedTriggers(move = nil,aiCheck = false)
         aiSpeedMult = 1.0
 
-        if hasActiveItem?(:AGILITYHERB)
+        if shouldItemApply?(:AGILITYHERB,aiCheck)
             if aiCheck
                 aiSpeedMult *= 2.0
             else
@@ -326,7 +326,7 @@ class PokeBattle_Battler
             end
         end
 
-        if hasActiveAbility?(:MAESTRO) && move&.soundMove?
+        if hasActiveAbilityAI?(:MAESTRO) && move&.soundMove?
             if aiCheck
                 aiSpeedMult *= 2.0
             else
@@ -334,7 +334,7 @@ class PokeBattle_Battler
             end
         end
 
-        if hasActiveAbility?(:GALEWINGS) && move&.type == :FLYING
+        if hasActiveAbilityAI?(:GALEWINGS) && move&.type == :FLYING
             if aiCheck
                 aiSpeedMult *= 2.0
             else
@@ -342,7 +342,7 @@ class PokeBattle_Battler
             end
         end
 
-        if hasActiveAbility?(:TRENCHCARVER) && move&.recoilMove?
+        if hasActiveAbilityAI?(:TRENCHCARVER) && move&.recoilMove?
             if aiCheck
                 aiSpeedMult *= 2.0
             else
@@ -350,7 +350,7 @@ class PokeBattle_Battler
             end
         end
 
-        if hasActiveAbility?(:SWIFTSTOMPS) && move&.kickingMove?
+        if hasActiveAbilityAI?(:SWIFTSTOMPS) && move&.kickingMove?
             if aiCheck
                 aiSpeedMult *= 2.0
             else

@@ -107,11 +107,14 @@ BattleHandlers::DamageCalcTargetItem.add(:YACHEBERRY,
 )
 
 BattleHandlers::DamageCalcTargetItem.add(:EVIOLITE,
-  proc { |item, _user, target, _move, mults, _baseDmg, _type|
+  proc { |item, _user, target, _move, mults, _baseDmg, _type, aiCheck|
       # NOTE: Eviolite cares about whether the Pokémon itself can evolve, which
       #       means it also cares about the Pokémon's form. Some forms cannot
       #       evolve even if the species generally can, and such forms are not
       #       affected by Eviolite.
-      mults[:defense_multiplier] *= 1.5 unless target.pokemon.species_data.get_evolutions(true).empty?
+      unless target.pokemon.species_data.get_evolutions(true).empty?
+        mults[:defense_multiplier] *= 1.5
+        user.aiLearnsItem(item) unless aiCheck
+      end
   }
 )

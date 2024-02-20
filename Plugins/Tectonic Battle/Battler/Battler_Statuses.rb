@@ -1,9 +1,9 @@
-BURNED_EXPLANATION = _INTL("Its physical damage is reduced by a third")
-POISONED_EXPLANATION = _INTL("The poison will worsen over time")
-FROSTBITE_EXPLANATION = _INTL("Its special damage is reduced by a third")
-NUMBED_EXPLANATION = _INTL("Its Speed is halved, and it'll deal less damage")
-DIZZY_EXPLANATION = _INTL("Its ability is suppressed, and it'll take more damage")
-LEECHED_EXPLANATION = _INTL("Its HP will be siphoned by the opposing side")
+def getBurnExplanation; return _INTL("Its physical damage is reduced by a third"); end
+def getPoisonExplanation; return _INTL("The poison will worsen over time"); end
+def getFrostbiteExplanation; return _INTL("Its special damage is reduced by a third"); end
+def getNumbExplanation; return _INTL("Its Speed is halved, and it'll deal less damage"); end
+def getDizzyExplanation; return _INTL("Its ability is suppressed, and it'll take more damage"); end
+def getLeechExplanation; return _INTL("Its HP will be siphoned by the opposing side"); end
 
 POISON_DOUBLING_TURNS = 2
 
@@ -364,17 +364,17 @@ immuneTypeRealName))
                 when :SLEEP
                     @battle.pbDisplay(_INTL("{1} fell asleep!", pbThis))
                 when :POISON
-                    @battle.pbDisplay(_INTL("{1} was poisoned! {2}!", pbThis, POISONED_EXPLANATION))
+                    @battle.pbDisplay(_INTL("{1} was poisoned! {2}!", pbThis, getPoisonExplanation))
                 when :BURN
-                    @battle.pbDisplay(_INTL("{1} was burned! {2}!", pbThis, BURNED_EXPLANATION))
+                    @battle.pbDisplay(_INTL("{1} was burned! {2}!", pbThis, getBurnExplanation))
                 when :NUMB
-                    @battle.pbDisplay(_INTL("{1} is numbed! {2}!", pbThis, NUMBED_EXPLANATION))
+                    @battle.pbDisplay(_INTL("{1} is numbed! {2}!", pbThis, getNumbExplanation))
                 when :FROSTBITE
-                    @battle.pbDisplay(_INTL("{1} was frostbitten! {2}!", pbThis, FROSTBITE_EXPLANATION))
+                    @battle.pbDisplay(_INTL("{1} was frostbitten! {2}!", pbThis, getFrostbiteExplanation))
                 when :DIZZY
-                    @battle.pbDisplay(_INTL("{1} is dizzy! {2}!", pbThis, DIZZY_EXPLANATION))
+                    @battle.pbDisplay(_INTL("{1} is dizzy! {2}!", pbThis, getDizzyExplanation))
                 when :LEECHED
-                    @battle.pbDisplay(_INTL("{1} became leeched! {2}!", pbThis, LEECHED_EXPLANATION))
+                    @battle.pbDisplay(_INTL("{1} became leeched! {2}!", pbThis, getLeechExplanation))
                 end
             end
         end

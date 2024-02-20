@@ -221,19 +221,7 @@ class PokeBattle_Battle
         y = captureThresholdCalc(pkmn, battler, catch_rate, ball)
         # Critical capture check
         if Settings::ENABLE_CRITICAL_CAPTURES
-            c = 0
-            numOwned = $Trainer.pokedex.owned_count
-            if numOwned > 600
-                c = 20
-            elsif numOwned > 450
-                c = 16
-            elsif numOwned > 300
-                c = 12
-            elsif numOwned > 150
-                c = 8
-            elsif numOwned > 50
-                c = 4
-            end
+            c = criticalCaptureChance
             # Calculate the number of shakes
             if c > 0 && pbRandom(100) < c && (pbRandom(CATCH_BASE_CHANCE) < y)
                 @criticalCapture = true
@@ -247,6 +235,26 @@ class PokeBattle_Battle
             numShakes += 1 if pbRandom(CATCH_BASE_CHANCE) < y
         end
         return numShakes
+    end
+
+    def criticalCaptureChance
+        c = 0
+        numOwned = $Trainer.pokedex.owned_count
+        if numOwned > 600
+            c = 20
+        elsif numOwned > 450
+            c = 16
+        elsif numOwned > 300
+            c = 12
+        elsif numOwned > 150
+            c = 8
+        elsif numOwned > 50
+            c = 4
+        end
+        $PokemonBag.pbQuantity(:CATCHINGCHARM).times do
+            c *= 2
+        end
+        return c
     end
 
     def captureThresholdCalc(pkmn, battler, catch_rate, ball)
@@ -298,4 +306,32 @@ def ballMimicActive?
       return true if partyMember.hasAbility?(:BALLMIMIC)
     end
     return false
-  end
+end
+
+def runCaptureTest(species = :MEWTWO,level = 50,hpPercentile = 0.2,status = :SLEEP,ball=:ULTRABALL,trialCount = 500)
+    scene = pbNewBattleScene
+    enemyTrainer = pbLoadTrainer(:BATTLEGIRL,"Tester")
+    fakeBattle = PokeBattle_Battle.new(scene, $Trainer.party, enemyTrainer.party, [$Trainer], [enemyTrainer])
+    fakeBattler = PokeBattle_Battler.new(fakeBattle, 0, true)
+    pokemon = Pokemon.new(species,level)
+    fakeBattler.pbInitializeFake(pokemon, 0)
+    fakeBattler.status = status
+    fakeBattler.hp = (fakeBattler.totalhp * hpPercentile).ceil
+
+    echoln("\r\n")
+    echoln("=========================================================================")
+    echoln("Running capture test on species #{species} at level #{level}")
+    echoln("with status #{status} at #{hpPercentile} HP fraction.")
+    echoln("Ball mimic active? #{ballMimicActive?}")
+    echoln("Critical capture chance? #{fakeBattle.criticalCaptureChance} percent with #{$PokemonBag.pbQuantity(:CATCHINGCHARM)} capture charms.")
+
+    successes = 0
+    trialCount.times do
+        next if fakeBattle.pbCaptureCalc(pokemon, fakeBattler, nil, :ULTRABALL) < 4
+        successes += 1
+    end
+
+    percentile = ((successes.to_f / trialCount.to_f) * 100).truncate(1)
+    echoln("The pokemon was captured #{percentile} percent of the time in #{trialCount} trials.")
+    echoln("=========================================================================")
+end

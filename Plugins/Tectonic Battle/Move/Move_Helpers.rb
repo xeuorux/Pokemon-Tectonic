@@ -38,11 +38,11 @@ class PokeBattle_Move
     end
 
     def canRemoveItem?(user, target, item, checkingForAI: false)
-        return false unless canknockOffItems?(user, target, checkingForAI)
+        return false unless canKnockOffItems?(user, target, checkingForAI)
         return !target.unlosableItem?(item)
     end
 
-    def canknockOffItems?(user, target, checkingForAI = false, ignoreTargetFainted = false)
+    def canKnockOffItems?(user, target, checkingForAI = false, ignoreTargetFainted = false)
         if @battle.wildBattle? && user.opposes? && !user.boss # Wild Pokémon can't knock off, but bosses can
             return false
         end
@@ -60,7 +60,7 @@ class PokeBattle_Move
 
     def canStealItem?(user, target, item, checkingForAI: false)
         return false if item.nil?
-        return false unless canknockOffItems?(user, target, checkingForAI, true)
+        return false unless canKnockOffItems?(user, target, checkingForAI, true)
         return false if target.unlosableItem?(item, !checkingForAI)
         return false if !user.canAddItem?(item, true) && @battle.trainerBattle?
         return false if user.unlosableItem?(item)
@@ -70,7 +70,7 @@ class PokeBattle_Move
     # Returns whether the item was removed
     # Can pass a block to overwrite the removal message and do other effects at the same time
     def knockOffItems(remover, victim, ability: nil, firstItemOnly: false, validItemProc: nil)
-        return false unless canknockOffItems?(remover, victim)
+        return false unless canKnockOffItems?(remover, victim)
         battle.pbShowAbilitySplash(remover, ability) if ability
         if victim.hasActiveAbility?(:STICKYHOLD)
             battle.pbShowAbilitySplash(victim, :STICKYHOLD) if remover.opposes?(victim)

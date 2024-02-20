@@ -21,6 +21,14 @@ class PokeBattle_Battler
         if switchIn
             eachActiveItem do |item|
                 BattleHandlers.triggerItemOnSwitchIn(item, self, @battle)
+
+                if @battle.statItemsAreMetagameRevealed
+                    # Auto reveal vests and choice items
+                    itemData = GameData::Item.get(item)
+                    if itemData.is_no_status_use? || itemData.is_choice_locking?
+                        aiLearnsItem(item)
+                    end 
+                end
             end
         end
         # Berry check, status-curing ability check
@@ -199,6 +207,7 @@ class PokeBattle_Battler
                 itemKept = items[0]
                 setItems(itemKept)
                 @battle.pbDisplay(_INTL("{1} dropped all of its items except {2}!", pbThis, getItemName(itemKept)))
+                aiLearnsItem(itemKept)
                 droppedItems = true
                 break
             end
@@ -215,6 +224,8 @@ class PokeBattle_Battler
         disableEffect(:ItemLost)
         @pokemon.giveItem(item)
         refreshDataBox
+
+        @addedItems.push(item)
     end
     
     def setItems(value)
@@ -263,7 +274,7 @@ class PokeBattle_Battler
         unless itemIndex
             raise _INTL("Error: Asked to remove item #{item} from #{pbThis(true)}, but it doesn't have that item")
         end
-        disableEffect(:ChoiceBand) if CHOICE_LOCKING_ITEMS.include?(item)
+        disableEffect(:ChoiceBand) if GameData::Item.get(item).is_choice_locking?
         items.delete_at(itemIndex)
         applyEffect(:ItemLost) if items.length == 0
         refreshDataBox
@@ -306,7 +317,10 @@ class PokeBattle_Battler
                 BattleHandlers.triggerOnBerryConsumedAbility(ability, self, item_to_use, ownitem, @battle)
             end
         end
-        consumeItem(item_to_use) if ownitem
+        if ownitem
+            consumeItem(item_to_use)
+            aiLearnsItem(item_to_use)
+        end
     end
 
     #=============================================================================
