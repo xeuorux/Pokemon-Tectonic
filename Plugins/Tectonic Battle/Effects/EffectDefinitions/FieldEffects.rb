@@ -27,7 +27,7 @@ GameData::BattleEffect.register_effect(:Field, {
 
 GameData::BattleEffect.register_effect(:Field, {
     :id => :Gravity,
-    :real_name => "Gravity Turns",
+    :real_name => "Gravity",
     :type => :Integer,
     :ticks_down => true,
     :apply_proc => proc do |battle, _value|

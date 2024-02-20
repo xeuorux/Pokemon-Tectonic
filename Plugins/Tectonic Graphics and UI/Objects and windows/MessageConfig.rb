@@ -24,18 +24,18 @@ module MessageConfig
     @@narrowFont      = nil
 
     def self.pbDefaultTextMainColor(opposite: false)
-      if opposite ^ $PokemonSystem&.dark_mode == 0
-        return DARK_TEXT_MAIN_COLOR
-      else
+      if opposite ^ ($PokemonSystem&.dark_mode == 0)
         return LIGHT_TEXT_MAIN_COLOR
+      else
+        return DARK_TEXT_MAIN_COLOR
       end
     end
 
     def self.pbDefaultTextShadowColor(opposite: false)
-      if opposite ^ $PokemonSystem&.dark_mode == 0
-        return DARK_TEXT_SHADOW_COLOR
-      else
+      if opposite ^ ($PokemonSystem&.dark_mode == 0)
         return LIGHT_TEXT_SHADOW_COLOR
+      else
+        return DARK_TEXT_SHADOW_COLOR
       end
     end
 
