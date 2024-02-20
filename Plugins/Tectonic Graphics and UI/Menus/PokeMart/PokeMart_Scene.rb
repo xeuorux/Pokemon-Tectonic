@@ -61,8 +61,8 @@ class PokemonMart_Scene
       @sprites["moneywindow"].y = 0
       @sprites["moneywindow"].width = 190
       @sprites["moneywindow"].height = @adapter.moneyOnNewLine? ? 96 : 64
-      @sprites["moneywindow"].baseColor = $PokemonSystem.dark_mode == 0 ? Color.new(248,248,248) : Color.new(88, 88, 80)
-      @sprites["moneywindow"].shadowColor = $PokemonSystem.dark_mode == 0 ? Color.new(104,104,104) : Color.new(168, 184, 184)
+      @sprites["moneywindow"].baseColor = MessageConfig.pbDefaultTextMainColor
+      @sprites["moneywindow"].shadowColor = MessageConfig.pbDefaultTextShadowColor
       pbDeactivateWindows(@sprites)
       @buying = buying
       pbRefresh
@@ -114,8 +114,8 @@ class PokemonMart_Scene
       @sprites["moneywindow"].y = 0
       @sprites["moneywindow"].width = 186
       @sprites["moneywindow"].height = 96
-      @sprites["moneywindow"].baseColor = $PokemonSystem.dark_mode == 0 ? Color.new(248,248,248) : Color.new(88, 88, 80)
-      @sprites["moneywindow"].shadowColor = $PokemonSystem.dark_mode == 0 ? Color.new(104,104,104) : Color.new(168, 184, 184)
+      @sprites["moneywindow"].baseColor = MessageConfig.pbDefaultTextMainColor
+      @sprites["moneywindow"].shadowColor = MessageConfig.pbDefaultTextShadowColor
       pbDeactivateWindows(@sprites)
       @buying = false
       pbRefresh
