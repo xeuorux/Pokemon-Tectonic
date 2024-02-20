@@ -244,15 +244,15 @@ class PokemonPokedex_Scene
     def pbRefresh
       overlay = @sprites["overlay"].bitmap
       overlay.clear
-      base   = $PokemonSystem.dark_mode == 0 ? Color.new(248,248,248) : Color.new(88,88,80)
-      shadow = $PokemonSystem.dark_mode == 0 ? Color.new(0,0,0) : Color.new(168,184,184)
-      zBase = Color.new(248,248,248)
-      zShadow = Color.new(0,0,0)
+      base   = MessageConfig.pbDefaultTextMainColor
+      shadow = MessageConfig.pbDefaultTextShadowColor
+      zBase = MessageConfig::LIGHT_TEXT_MAIN_COLOR
+      zShadow = MessageConfig::LIGHT_TEXT_SHADOW_COLOR
       iconspecies = @sprites["pokedex"].species
       iconspecies = nil if isLegendary(iconspecies) && !$Trainer.seen?(iconspecies) && !$DEBUG
       dexname = _INTL("MasterDex")
       textpos = [
-         [dexname,Graphics.width/8,-2,2,Color.new(248,248,248),Color.new(0,0,0)]
+         [dexname,Graphics.width/8,-2,2,zBase,zShadow]
       ]
       textpos.push([GameData::Species.get(iconspecies).name,112,46,2,base,shadow]) if iconspecies
       
@@ -912,10 +912,10 @@ class PokemonPokedex_Scene
       oldindex = index
     
     # Write the button names onto the overlay
-    base   = $PokemonSystem.dark_mode == 0 ? Color.new(248,248,248) : Color.new(104,104,104)
-    shadow = $PokemonSystem.dark_mode == 0 ? Color.new(0,0,0) : Color.new(248,248,248)
-    title_base = $PokemonSystem.dark_mode == 0 ? base : shadow
-    title_shadow = $PokemonSystem.dark_mode == 0 ? shadow : base
+    base   = MessageConfig.pbDefaultTextMainColor
+    shadow = MessageConfig.pbDefaultTextShadowColor
+    title_base   = MessageConfig::LIGHT_TEXT_MAIN_COLOR
+    title_shadow = MessageConfig::LIGHT_TEXT_SHADOW_COLOR
     xLeft = 92
     xLeft2 = 316
     page1textpos = [

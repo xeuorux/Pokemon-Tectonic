@@ -231,8 +231,8 @@ sp.form) && !Settings::DEX_SHOWS_ALL_FORMS
         bg_path += "_dark" if $PokemonSystem.dark_mode == 0
         @sprites["background"].setBitmap(_INTL(bg_path))
         overlay = @sprites["overlay"].bitmap
-        base   = $PokemonSystem.dark_mode == 0 ? Color.new(248,248,248) : Color.new(88, 88, 80)
-        shadow = $PokemonSystem.dark_mode == 0 ? Color.new(0,0,0) : Color.new(168, 184, 184)
+        base   = MessageConfig.pbDefaultTextMainColor
+        shadow = MessageConfig.pbDefaultTextShadowColor
         imagepos = []
         imagepos.push([_INTL("Graphics/Pictures/Pokedex/overlay_info"), 0, 0]) if @brief
         species_data = GameData::Species.get_species_form(@species, @form)
@@ -298,8 +298,8 @@ sp.form) && !Settings::DEX_SHOWS_ALL_FORMS
         @sprites["background"].setBitmap(_INTL(bg_path))
         overlay = @sprites["overlay"].bitmap
         formname = ""
-        base   = $PokemonSystem.dark_mode == 0 ? Color.new(248,248,248) : Color.new(64, 64, 64)
-        shadow = $PokemonSystem.dark_mode == 0 ? Color.new(0,0,0) : Color.new(176, 176, 176)
+        base   = MessageConfig.pbDefaultTextMainColor
+        shadow = MessageConfig.pbDefaultTextShadowColor
         for i in @available
             next unless i[2] == @form
             fSpecies = GameData::Species.get_species_form(@species, i[2])
@@ -378,8 +378,8 @@ sp.form) && !Settings::DEX_SHOWS_ALL_FORMS
         @sprites["background"].setBitmap(_INTL(bg_path))
         overlay = @sprites["overlay"].bitmap
         formname = ""
-        base   = $PokemonSystem.dark_mode == 0 ? Color.new(248,248,248) : Color.new(64, 64, 64)
-        shadow = $PokemonSystem.dark_mode == 0 ? Color.new(0,0,0) : Color.new(176, 176, 176)
+        base   = MessageConfig.pbDefaultTextMainColor
+        shadow = MessageConfig.pbDefaultTextShadowColor
         baseStatNames = [_INTL("HP"), _INTL("Attack"), _INTL("Defense"), _INTL("Sp. Atk"), _INTL("Sp. Def"), _INTL("Speed")]
         otherStatNames = [_INTL("Gender Rate"), _INTL("Growth Rate"), _INTL("Catch Dif."), _INTL("Exp. Grant"), _INTL("PEHP / SEHP")]
 
@@ -486,8 +486,8 @@ sp.form) && !Settings::DEX_SHOWS_ALL_FORMS
         @sprites["background"].setBitmap(_INTL(bg_path))
         overlay = @sprites["overlay"].bitmap
         formname = ""
-        base   = $PokemonSystem.dark_mode == 0 ? Color.new(248,248,248) : Color.new(64, 64, 64)
-        shadow = $PokemonSystem.dark_mode == 0 ? Color.new(0,0,0) : Color.new(176, 176, 176)
+        base   = MessageConfig.pbDefaultTextMainColor
+        shadow = MessageConfig.pbDefaultTextShadowColor
         xLeft = 36
         yBase = 60
         for i in @available
@@ -573,8 +573,8 @@ sp.form) && !Settings::DEX_SHOWS_ALL_FORMS
         @sprites["background"].setBitmap(_INTL(bg_path))
         overlay = @sprites["overlay"].bitmap
         formname = ""
-        base   = $PokemonSystem.dark_mode == 0 ? Color.new(248,248,248) : Color.new(64, 64, 64)
-        shadow = $PokemonSystem.dark_mode == 0 ? Color.new(0,0,0) : Color.new(176, 176, 176)
+        base   = MessageConfig.pbDefaultTextMainColor
+        shadow = MessageConfig.pbDefaultTextShadowColor
         xLeft = 36
         yBase = 60
         for i in @available
@@ -679,7 +679,7 @@ sp.form) && !Settings::DEX_SHOWS_ALL_FORMS
             moveName = "<i>#{moveName}</i>"
         end
 
-        color = $PokemonSystem.dark_mode == 0 ? Color.new(248,248,248) : Color.new(64, 64, 64)
+        color = MessageConfig.pbDefaultTextMainColor
         if move_data.is_signature?
             if isSTAB
                 moveName = "<outln2>" + moveName + "</outln2>"
@@ -688,7 +688,7 @@ sp.form) && !Settings::DEX_SHOWS_ALL_FORMS
             end
             shadow = SIGNATURE_COLOR
         else
-            shadow = $PokemonSystem.dark_mode == 0 ? Color.new(0,0,0) : Color.new(176, 176, 176)
+            shadow = MessageConfig.pbDefaultTextShadowColor
         end
         return moveName, color, shadow
     end
@@ -757,8 +757,8 @@ sp.form) && !Settings::DEX_SHOWS_ALL_FORMS
         @sprites["background"].setBitmap(_INTL(bg_path))
         overlay = @sprites["overlay"].bitmap
         formname = ""
-        base   = $PokemonSystem.dark_mode == 0 ? Color.new(248,248,248) : Color.new(64, 64, 64)
-        shadow = $PokemonSystem.dark_mode == 0 ? Color.new(0,0,0) : Color.new(176, 176, 176)
+        base   = MessageConfig.pbDefaultTextMainColor
+        shadow = MessageConfig.pbDefaultTextShadowColor
 
         selected_move = nil
         xLeft = 36
@@ -830,9 +830,9 @@ sp.form) && !Settings::DEX_SHOWS_ALL_FORMS
             moveData = GameData::Move.get(selected_move)
 
             # Prepare values
-            base       = Color.new(248, 248, 248) # [sic], this is supposed to be the same in light and dark mode
+            base       = MessageConfig::LIGHT_TEXT_MAIN_COLOR # [sic], this is supposed to be the same in light and dark mode
             faded_base = $PokemonSystem.dark_mode == 0 ? Color.new(145,145,145) : Color.new(110,110,110)
-            shadow     = $PokemonSystem.dark_mode == 0 ? Color.new(0,0,0) : Color.new(104, 104, 104)
+            shadow     = MessageConfig.pbDefaultTextShadowColor
             column1LabelX = 246
             column2LabelX = 322
             column3LabelX = 430
@@ -877,8 +877,8 @@ sp.form) && !Settings::DEX_SHOWS_ALL_FORMS
             ])
 
             # Values #
-            base   = $PokemonSystem.dark_mode == 0 ? Color.new(248,248,248) : Color.new(64, 64, 64)
-            shadow = $PokemonSystem.dark_mode == 0 ? Color.new(0,0,0) : Color.new(176, 176, 176)
+            base   = MessageConfig.pbDefaultTextMainColor
+            shadow = MessageConfig.pbDefaultTextShadowColor
 
             # Row 1
             # Draw selected move's damage category icon and type icon
@@ -958,8 +958,8 @@ sp.form) && !Settings::DEX_SHOWS_ALL_FORMS
         @sprites["background"].setBitmap(_INTL(bg_path))
         overlay = @sprites["overlay"].bitmap
         formname = ""
-        base   = $PokemonSystem.dark_mode == 0 ? Color.new(248,248,248) : Color.new(64, 64, 64)
-        shadow = $PokemonSystem.dark_mode == 0 ? Color.new(0,0,0) : Color.new(176, 176, 176)
+        base   = MessageConfig.pbDefaultTextMainColor
+        shadow = MessageConfig.pbDefaultTextShadowColor
         xLeft = 36
         for i in @available
             next unless i[2] == @form
@@ -1112,8 +1112,8 @@ sp.form) && !Settings::DEX_SHOWS_ALL_FORMS
         bg_path += "_dark" if $PokemonSystem.dark_mode == 0
         @sprites["background"].setBitmap(_INTL(bg_path))
         overlay = @sprites["overlay"].bitmap
-        base   = $PokemonSystem.dark_mode == 0 ? Color.new(248,248,248) : Color.new(64, 64, 64)
-        shadow = $PokemonSystem.dark_mode == 0 ? Color.new(0,0,0) : Color.new(176, 176, 176)
+        base   = MessageConfig.pbDefaultTextMainColor
+        shadow = MessageConfig.pbDefaultTextShadowColor
         xLeft = 36
         for i in @available
             next unless i[2] == @form
@@ -1177,8 +1177,8 @@ sp.form) && !Settings::DEX_SHOWS_ALL_FORMS
         bg_path += "_dark" if $PokemonSystem.dark_mode == 0
         @sprites["background"].setBitmap(_INTL(bg_path))
         overlay = @sprites["overlay"].bitmap
-        base   = $PokemonSystem.dark_mode == 0 ? Color.new(248,248,248) : Color.new(64, 64, 64)
-        shadow = $PokemonSystem.dark_mode == 0 ? Color.new(0,0,0) : Color.new(176, 176, 176)
+        base   = MessageConfig.pbDefaultTextMainColor
+        shadow = MessageConfig.pbDefaultTextShadowColor
         # Write species and form name
         formname = ""
         for i in @available
