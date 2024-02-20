@@ -66,15 +66,15 @@ class MoveLearner_Scene
         overlay.blt(366,70,@typebitmap.bitmap,type1rect)
         overlay.blt(436,70,@typebitmap.bitmap,type2rect)
       end
-      title_base = $PokemonSystem.dark_mode == 0 ? Color.new(248,248,248) : Color.new(88,88,80)
-      title_shadow = $PokemonSystem.dark_mode == 0 ? Color.new(0,0,0) : Color.new(168,184,184)
+      title_base = MessageConfig::DARK_TEXT_MAIN_COLOR
+      title_shadow = MessageConfig::DARK_TEXT_SHADOW_COLOR
       textpos=[
          [_INTL("Teach which move?"),16,2,0,title_base,title_shadow]
       ]
       imagepos=[]
       yPos=76
-      base = $PokemonSystem.dark_mode == 0 ? Color.new(248,248,248) : Color.new(64,64,64)
-      shadow = $PokemonSystem.dark_mode == 0 ? Color.new(0,0,0) : Color.new(176,176,176)
+      base = MessageConfig.pbDefaultTextMainColor
+      shadow = MessageConfig.pbDefaultTextShadowColor
       for i in 0...VISIBLEMOVES
         moveobject=@moves[@sprites["commands"].top_item+i]
         if moveobject
