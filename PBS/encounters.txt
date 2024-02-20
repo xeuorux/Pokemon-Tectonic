@@ -297,7 +297,7 @@ Special,20
 Special,20
     1,SNUBBULL,15
 #-------------------------------
-[092] # Ice Rink Lodge F2 Left Room
+[092] # Svait Lodge Room 2
 Special,1
     1,AGRIMER,15
 #-------------------------------

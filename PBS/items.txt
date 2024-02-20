@@ -4330,6 +4330,15 @@ FieldUse = Direct
 Flags = KeyItem
 Description = If reversed, gym leaders and story fights will become harder through unique curses.
 #-------------------------------
+[NOISEMACHINE]
+Name = Noise Machine
+NamePlural = Noise Machines
+Pocket = 8
+Price = 0
+FieldUse = Direct
+Flags = KeyItem
+Description = A versatile machine that can be used to repel wild Pokémon, or draw them near.
+#-------------------------------
 [HOUSEDEED1]
 Name = House Deed
 NamePlural = House Deeds
