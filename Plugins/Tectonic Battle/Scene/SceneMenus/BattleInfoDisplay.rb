@@ -148,59 +148,67 @@ class BattleInfoDisplay < SpriteWrapper
         textToDraw.push([weatherMessage, weatherX, 0, 2, weatherColor, shadow])
 
         # Whole field effects
-        wholeFieldX = 324
-        wholeFieldY = 58
-        textToDraw.push([_INTL("Field Effects"), wholeFieldX + 60, wholeFieldY, 2, lightBase, lightShadow])
+        wholeFieldX = 320
+        wholeFieldY = 54
+        textToDraw.push([_INTL("Field Effects"), wholeFieldX, wholeFieldY, 0, lightBase, lightShadow])
+        drawFieldEffects(@battle.field,wholeFieldX,wholeFieldY)
 
-        # Compile array of descriptors of each field effect
-        fieldEffects = []
-        pushEffectDescriptorsToArray(@battle.field, fieldEffects)
-        @battle.sides.each do |side|
-            thisSideEffects = []
-            pushEffectDescriptorsToArray(side, thisSideEffects)
-            if side.index == 1
-                thisSideEffects.map do |descriptor|
-                    "#{descriptor} [O]"
-                end
-            end
-            fieldEffects.concat(thisSideEffects)
-        end
-
-        fieldEffects.concat($Trainer.tribalBonus.getActiveBonusesList(true, false))
+        wholeFieldY += 112
+        textToDraw.push([_INTL("Our Side"), wholeFieldX, wholeFieldY, 0, lightBase, lightShadow])
+        ourTribesList = $Trainer.tribalBonus.getActiveBonusesList(true, false)
+        drawFieldEffects(@battle.sides[0],wholeFieldX,wholeFieldY,ourTribesList)
+        
+        wholeFieldY += 112
+        textToDraw.push([_INTL("Their Side"), wholeFieldX, wholeFieldY, 0, lightBase, lightShadow])
+        theirTribesList = []
         @battle.opponent&.each do |opponent|
-            fieldEffects.concat(opponent.tribalBonus.getActiveBonusesList(true, true))
+            theirTribesList.concat(opponent.tribalBonus.getActiveBonusesList(true, true))
         end
+        drawFieldEffects(@battle.sides[1],wholeFieldX,wholeFieldY,theirTribesList)
+
+        pbDrawTextPositions(bitmap, textToDraw)
+    end
+
+    def drawFieldEffects(effectHolder, xStart, yStart, tribesList = [])
+        base = MessageConfig::DARK_TEXT_MAIN_COLOR
+        shadow = MessageConfig::DARK_TEXT_SHADOW_COLOR
+
+        textToDraw = []
+
+        fieldEffects = []
+        pushEffectDescriptorsToArray(effectHolder, fieldEffects)
+        fieldEffects.concat(tribesList)
 
         # Render out the field effects
-        baseEffectY = wholeFieldY + 36
-        scrollingBoundYMin = wholeFieldY + 36
-        scrollingBoundYMax = wholeFieldY + 290
+        baseEffectY = yStart + 12
+        scrollingBoundYMin = yStart + 32
+        scrollingBoundYMax = yStart + 70
         if fieldEffects.length != 0
-            scrolling = true if fieldEffects.length > 8
+            scrolling = true if fieldEffects.length > 2
             index = 0
             repeats = scrolling ? 2 : 1
             for repeat in 0...repeats
                 fieldEffects.each do |effectName|
                     index += 1
-                    calcedY = baseEffectY + 32 * index
+                    calcedY = baseEffectY + 24 * index
                     if scrolling
                         calcedY -= @fieldScrollingValue
-                        calcedY += 8
+                        calcedY += 12
+                        next if calcedY < scrollingBoundYMin || calcedY > scrollingBoundYMax
                     end
-                    next if calcedY < scrollingBoundYMin || calcedY > scrollingBoundYMax
                     distanceFromFade = [calcedY - scrollingBoundYMin, scrollingBoundYMax - calcedY].min
                     textAlpha = scrolling ? ([distanceFromFade / 20.0, 1.0].min * 255).floor : 255
                     textBase = Color.new(base.red, base.blue, base.green, textAlpha)
                     textShadow = Color.new(shadow.red, shadow.blue, shadow.green, textAlpha)
-                    textToDraw.push([effectName, wholeFieldX, calcedY, 0, textBase, textShadow])
+                    textToDraw.push([effectName, xStart, calcedY, 0, textBase, textShadow])
                 end
             end
         else
-            textToDraw.push(["None", wholeFieldX, baseEffectY, 0, FADED_EFFECT_BASE, shadow])
+            textToDraw.push(["None", xStart, baseEffectY + 24, 0, FADED_EFFECT_BASE, shadow])
         end
 
         # Reset the scrolling once its scrolled through the entire list once
-        @fieldScrollingValue = 0 if @fieldScrollingValue > fieldEffects.length * 32
+        @fieldScrollingValue = 0 if @fieldScrollingValue > (fieldEffects.length + 2) * 32 + 6
 
         pbDrawTextPositions(bitmap, textToDraw)
     end
@@ -373,14 +381,14 @@ class BattleInfoDisplay < SpriteWrapper
         end
     end
 
-    def update(_frameCounter = 0)
+    def update(frameCounter = 0)
         super()
         pbUpdateSpriteHash(@sprites)
         if @individual.nil?
             @battlerScrollingValue = 0
-            @fieldScrollingValue += 1
+            @fieldScrollingValue += 1 if frameCounter % 2 == 0
         else
-            @battlerScrollingValue += 1
+            @battlerScrollingValue += 1 if frameCounter % 2 == 0
             @fieldScrollingValue = 0
         end
     end

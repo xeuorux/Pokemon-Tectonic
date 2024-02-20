@@ -40,7 +40,6 @@ class TribalBonus
         @tribesGivingBonus.each do |tribeID|
             description = getTribeName(tribeID)
             description += _INTL(" Tribe") if concat
-            description += _INTL(" [O]") if foe
             list.push(description)
         end
 

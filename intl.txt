@@ -49846,6 +49846,10 @@ Turns Left: #{@turnCount}
 Turnos Restantes: #{@turnCount}
 Field Effects
 Efectos en el Campo
+Our Side
+Nuestro Lado
+Their Side
+Su Lado
 Toggle Info:
 Mostrar Info:
 ACTION/Z
