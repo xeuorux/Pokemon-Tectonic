@@ -4,12 +4,6 @@
 class TilingCardsMenu_Scene
 	INACTIVE_BUTTON_COLOR = Color.new(80, 80, 80, 80)
 
-	BASE_TEXT_COLOR       = Color.new(60,60,60)
-  	SHADOW_TEXT_COLOR     = Color.new(200,200,200)
-
-	BASE_TEXT_COLOR_DARK   = Color.new(248, 248, 248)
-	SHADOW_TEXT_COLOR_DARK = Color.new(104, 104, 104)
-
 	INACTIVE_BASE_TEXT_COLOR = Color.new(105,105,105)
 	INACTIVE_SHADOW_TEXT_COLOR = Color.new(130,130,130)
 
@@ -176,12 +170,9 @@ class TilingCardsMenu_Scene
 			label = @cardButtons[buttonID][:label] || "ERROR"
 			x = xFromIndex(index) + 8
 			y = yFromIndex(index) + @tileBitmap.bitmap.height / 2 - 20
-			if buttonActive?(buttonID) and $PokemonSystem.dark_mode == 0
-				baseColor = BASE_TEXT_COLOR_DARK
-				shadowColor = SHADOW_TEXT_COLOR_DARK
-			elsif buttonActive?(buttonID)
-				baseColor = BASE_TEXT_COLOR
-				shadowColor = SHADOW_TEXT_COLOR
+			if buttonActive?(buttonID) 
+				baseColor = MessageConfig.pbDefaultTextMainColor
+				shadowColor = MessageConfig.pbDefaultTextShadowColor
 			else
 				baseColor = INACTIVE_BASE_TEXT_COLOR
 				shadowColor = INACTIVE_SHADOW_TEXT_COLOR
