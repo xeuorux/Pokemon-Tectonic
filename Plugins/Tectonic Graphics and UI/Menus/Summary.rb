@@ -470,8 +470,8 @@ class PokemonSummary_Scene
         refreshItemIcons
         overlay = @sprites["overlay"].bitmap
         overlay.clear
-        base   = Color.new(248, 248, 248)
-        shadow = Color.new(104, 104, 104)
+        base   = MessageConfig::LIGHT_TEXT_MAIN_COLOR
+        shadow = MessageConfig::LIGHT_TEXT_SHADOW_COLOR
         # Set background image
         bg_path = "Graphics/Pictures/Summary/bg_#{page}"
         bg_path += "_dark" if $PokemonSystem.dark_mode == 0
@@ -510,8 +510,8 @@ class PokemonSummary_Scene
                     _INTL("MOVES"),
                     _INTL("RIBBONS"),][page - 1]
         # text colour for things like level and held item
-        misc_base = $PokemonSystem.dark_mode == 0 ? Color.new(248, 248, 248) : Color.new(64, 64, 64)
-        misc_shadow = $PokemonSystem.dark_mode == 0 ? Color.new(104, 104, 104) : Color.new(176, 176, 176)
+        misc_base = MessageConfig.pbDefaultTextMainColor
+        misc_shadow = MessageConfig.pbDefaultTextShadowColor
         textpos = [
             [pagename, 26, 10, 0, base, shadow],
             [@pokemon.name, 46, 56, 0, base, shadow],
@@ -564,10 +564,10 @@ class PokemonSummary_Scene
 
     def drawPageOne
         overlay = @sprites["overlay"].bitmap
-        base   = Color.new(248, 248, 248)
-        shadow = Color.new(104, 104, 104)
-        blackBase = $PokemonSystem.dark_mode == 0 ? base : Color.new(64, 64, 64)
-        blackShadow = $PokemonSystem.dark_mode == 0 ? shadow : Color.new(176, 176, 176)
+        base   = MessageConfig::LIGHT_TEXT_MAIN_COLOR
+        shadow = MessageConfig::LIGHT_TEXT_SHADOW_COLOR
+        blackBase = MessageConfig.pbDefaultTextMainColor
+        blackShadow = MessageConfig.pbDefaultTextShadowColor
         # Write various bits of text
         infoTextLabelX = 238
         infoTextInsertedX = 435
@@ -789,16 +789,16 @@ class PokemonSummary_Scene
     def drawPageThree
         hideItems
         overlay = @sprites["overlay"].bitmap
-        base   = Color.new(248, 248, 248)
-        shadow = Color.new(104, 104, 104)
+        base   = MessageConfig::LIGHT_TEXT_MAIN_COLOR
+        shadow = MessageConfig::LIGHT_TEXT_SHADOW_COLOR
         # Determine which stats are boosted and lowered by the Pokémon's nature
         statshadows = {}
         GameData::Stat.each_main { |s| statshadows[s.id] = shadow }
         # Write various bits of text
         statTotalX = 472
         evAmountX  = 372
-        stat_value_color_base   = $PokemonSystem.dark_mode == 0 ? Color.new(248, 248, 248) : Color.new(64, 64, 64)
-        stat_value_color_shadow = $PokemonSystem.dark_mode == 0 ? Color.new(104, 104, 104) : Color.new(176, 176, 176)
+        stat_value_color_base   = MessageConfig.pbDefaultTextMainColor
+        stat_value_color_shadow = MessageConfig.pbDefaultTextShadowColor
         ev_color_base   = $PokemonSystem.dark_mode == 0 ? Color.new(200, 200, 248) : Color.new(128, 128, 200)
         ev_color_shadow = $PokemonSystem.dark_mode == 0 ? Color.new(104, 104, 104) : Color.new(220, 220, 220)
         textpos = [
@@ -844,8 +844,8 @@ class PokemonSummary_Scene
         # Draw ability name and description
         ability = @pokemon.ability
         if ability
-            ability_base   = $PokemonSystem.dark_mode == 0 ? Color.new(248, 248, 248) : Color.new(64, 64, 64)
-            ability_shadow = $PokemonSystem.dark_mode == 0 ? Color.new(104, 104, 104) : Color.new(176, 176, 176)
+            ability_base   = MessageConfig.pbDefaultTextMainColor
+            ability_shadow = MessageConfig.pbDefaultTextShadowColor
             textpos.push([ability.name, 138, 278, 0, ability_base, ability_shadow])
             drawTextEx(overlay, 8, 320, Graphics.width, 2, ability.description, ability_base, ability_shadow)
         end
@@ -897,7 +897,8 @@ class PokemonSummary_Scene
             if move
                 individualMoveBaseColor = moveBase
                 if move.type
-                    individualMoveBaseColor = GameData::Type.get(move.type).dark_color
+                    move_type = GameData::Type.get(move.type)
+                    individualMoveBaseColor = $PokemonSystem.dark_mode == 0 ? move_type.color : move_type.dark_color
                 end
                 textpos.push([move.name, xPos, yPos, 2, individualMoveBaseColor, moveShadow])
             else
@@ -910,7 +911,8 @@ class PokemonSummary_Scene
             yPos = SUMMARY_LEARNING_MOVE_NAME_Y + 10
             extraMoveBaseColor = moveBase
             if extra_move.type
-                extraMoveBaseColor = GameData::Type.get(extra_move.type).dark_color
+                move_type = GameData::Type.get(extra_move.type)
+                extraMoveBaseColor = $PokemonSystem.dark_mode == 0 ? move_type.color : move_type.dark_color
             end
             textpos.push([extra_move.name, xPos, yPos, 2, extraMoveBaseColor, moveShadow])
         end
