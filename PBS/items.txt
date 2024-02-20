@@ -4324,7 +4324,7 @@ Description = A suite of training tools which allows you to modify your Pokémon
 [TAROTAMULET]
 Name = Tarot Amulet
 NamePlural = Tarot Amulets
-Pocket = 7
+Pocket = 8
 Price = 0
 FieldUse = Direct
 Flags = KeyItem
@@ -4337,7 +4337,7 @@ Pocket = 8
 Price = 0
 FieldUse = Direct
 Flags = KeyItem
-Description = A versatile machine that can be used to repel wild Pokémon, or draw them near.
+Description = A small, versatile machine that can be used to repel wild Pokémon, or draw them near.
 #-------------------------------
 [HOUSEDEED1]
 Name = House Deed
