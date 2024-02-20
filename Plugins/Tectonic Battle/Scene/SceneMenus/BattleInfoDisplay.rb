@@ -68,73 +68,89 @@ class BattleInfoDisplay < SpriteWrapper
     end
 
     def drawWholeBattleInfo
-        base   = MessageConfig::DARK_TEXT_MAIN_COLOR
-        shadow = MessageConfig::DARK_TEXT_SHADOW_COLOR
+        base        = MessageConfig::DARK_TEXT_MAIN_COLOR
+        shadow      = MessageConfig::DARK_TEXT_SHADOW_COLOR
+        lightBase   = MessageConfig::LIGHT_TEXT_MAIN_COLOR
+        lightShadow = MessageConfig::LIGHT_TEXT_SHADOW_COLOR
+
         textToDraw = []
 
-        # Draw the
-        battlerNameX = 16
-        battlerCursorX = 152
-        yPos = 8
+        # Draw the title
+        battleInfoTitleX = 102
+        textToDraw.push([_INTL("BATTLE INFO"), battleInfoTitleX, 0, 2, lightBase, lightShadow])
+
+        # Draw the individual battler selection buttons
+        battlerNameX = 8
+        battlerCursorX = 148
+        yourPokemonStartingY = 62
+        theirPokemonStartingY = yourPokemonStartingY + 164
+        distanceBetweenButtons = 54
+        battlerNameOffset = 4
+
         battlerIndex = 0
+        yPos = yourPokemonStartingY
 
         # Entries for allies
         @battle.eachSameSideBattler do |b|
             next if b.nil?
-            textToDraw.push([b.name, battlerNameX, yPos + 8, 0, base, shadow])
+            textToDraw.push([b.name, battlerNameX, yPos + battlerNameOffset, 0, base, shadow])
             cursorX = @selected == battlerIndex ? @statusCursorBitmap.width / 2 : 0
             bitmap.blt(battlerCursorX, yPos, @statusCursorBitmap.bitmap,
   				Rect.new(cursorX, 0, @statusCursorBitmap.width / 2, @statusCursorBitmap.height))
-            if @turnOrder.key?(b.index)
-                textToDraw.push([@turnOrder[b.index].to_s, battlerCursorX + 140, yPos + 4, 0, base,
-                                 shadow,])
-            end
+            # if @turnOrder.key?(b.index)
+            #     turnDescription = _INTL("# {1}", @turnOrder[b.index].to_s)
+            #     textToDraw.push([turnDescription, battlerCursorX + 140, yPos + 4, 0, base,
+            #                      shadow,])
+            # end
 
-            yPos += 52
+            yPos += distanceBetweenButtons
             battlerIndex += 1
         end
 
         # Entries for enemies
-        yPos = 180
+        yPos = theirPokemonStartingY
         @battle.eachOtherSideBattler do |b|
             next if b.nil?
-            textToDraw.push([b.name, battlerNameX, yPos + 4, 0, base, shadow])
+            textToDraw.push([b.name, battlerNameX, yPos + battlerNameOffset, 0, base, shadow])
             cursorX = @selected == battlerIndex ? @statusCursorBitmap.width / 2 : 0
             bitmap.blt(battlerCursorX, yPos, @statusCursorBitmap.bitmap,
   				Rect.new(cursorX, 0, @statusCursorBitmap.width / 2, @statusCursorBitmap.height))
-            if @turnOrder.key?(b.index)
-                textToDraw.push([@turnOrder[b.index].to_s, battlerCursorX + 140, yPos + 4, 0, base,
-                                 shadow,])
-            end
+            # if @turnOrder.key?(b.index)
+            #     turnDescription = _INTL("# {1}", @turnOrder[b.index].to_s)
+            #     textToDraw.push([turnDescription, battlerCursorX + 140, yPos + 4, 0, base,
+            #                      shadow,])
+            # end
 
-            yPos += 52
+            yPos += distanceBetweenButtons
             battlerIndex += 1
         end
 
-        weatherY = 336
-        weatherMessage = "No Weather"
+        # Draw the turn count
+        turnCountX = battleInfoTitleX + 152
+        turnCountMessage = "Turn #{@battle.turnCount + 1}"
+        textToDraw.push([turnCountMessage, turnCountX, 0, 2, base, shadow])
+
+        # Draw the weather name with duration
+        weatherMessage = _INTL("No Weather")
         weatherColor = FADED_EFFECT_BASE
         if @battle.field.weather != :None
             weatherColor = base
             weatherName = GameData::BattleWeather.get(@battle.field.weather).name
             weatherDuration = @battle.field.weatherDuration
-            weatherDuration = "Infinite" if weatherDuration < 0
-            if %i[Eclipse RingEclipse Moonglow BloodMoon].include?(@battle.field.weather)
-                turnsTillActivation = PokeBattle_Battle::SPECIAL_EFFECT_WAIT_TURNS - @battle.field.specialTimer
-                weatherMessage = _INTL("{1} ({2},{3})", weatherName, weatherDuration, turnsTillActivation)
-            else
-                weatherMessage = _INTL("{1} ({2})", weatherName, weatherDuration)
-            end
+            weatherDuration = _INTL("Inf.") if weatherDuration < 0
+            weatherMessage = _INTL("{1} ({2})", weatherName, weatherDuration)
+            # if %i[Eclipse RingEclipse Moonglow BloodMoon].include?(@battle.field.weather)
+            #     turnsTillActivation = PokeBattle_Battle::SPECIAL_EFFECT_WAIT_TURNS - @battle.field.specialTimer
+            #     weatherMessage = _INTL("{1} ({2},{3})", weatherName, weatherDuration, turnsTillActivation)
+            # end
         end
-
-        textToDraw.push([weatherMessage, 24, weatherY, 0, weatherColor, shadow])
-
-        turnCountMessage = "Turn Count: #{@battle.turnCount + 1}"
-        textToDraw.push([turnCountMessage, 256 + 24, weatherY, 0, base, shadow])
+        weatherX = turnCountX + 152
+        textToDraw.push([weatherMessage, weatherX, 0, 2, weatherColor, shadow])
 
         # Whole field effects
         wholeFieldX = 324
-        textToDraw.push([_INTL("Field Effects"), wholeFieldX + 60, 0, 2, base, shadow])
+        wholeFieldY = 58
+        textToDraw.push([_INTL("Field Effects"), wholeFieldX + 60, wholeFieldY, 2, lightBase, lightShadow])
 
         # Compile array of descriptors of each field effect
         fieldEffects = []
@@ -156,8 +172,9 @@ class BattleInfoDisplay < SpriteWrapper
         end
 
         # Render out the field effects
-        scrollingBoundYMin = 36
-        scrollingBoundYMax = 300
+        baseEffectY = wholeFieldY + 36
+        scrollingBoundYMin = wholeFieldY + 36
+        scrollingBoundYMax = wholeFieldY + 290
         if fieldEffects.length != 0
             scrolling = true if fieldEffects.length > 8
             index = 0
@@ -165,7 +182,7 @@ class BattleInfoDisplay < SpriteWrapper
             for repeat in 0...repeats
                 fieldEffects.each do |effectName|
                     index += 1
-                    calcedY = 60 + 32 * index
+                    calcedY = baseEffectY + 32 * index
                     if scrolling
                         calcedY -= @fieldScrollingValue
                         calcedY += 8
@@ -179,7 +196,7 @@ class BattleInfoDisplay < SpriteWrapper
                 end
             end
         else
-            textToDraw.push(["None", wholeFieldX, 44, 0, FADED_EFFECT_BASE, shadow])
+            textToDraw.push(["None", wholeFieldX, baseEffectY, 0, FADED_EFFECT_BASE, shadow])
         end
 
         # Reset the scrolling once its scrolled through the entire list once
@@ -319,8 +336,8 @@ class BattleInfoDisplay < SpriteWrapper
         scrolling = true if battlerEffects.length > 8
 
         # Print all the battler effects to screen
-        scrollingBoundYMin = 84
-        scrollingBoundYMax = 336
+        scrollingBoundYMin = statStepsSectionTopY + 36
+        scrollingBoundYMax = statStepsSectionTopY + 290
         index = 0
         repeats = scrolling ? 2 : 1
         if battlerEffects.length != 0
