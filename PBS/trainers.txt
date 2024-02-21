@@ -3063,20 +3063,25 @@ Pokemon = ABSOL,37
 [SCIENTIST_F,Zofia]
 Policies = NO_PERFECT
 Pokemon = VESPIQUEN,35
+    Moves = FELLSTINGER,AERIALACE,DEFOG,HEALORDER
     AbilityIndex = 1 # Stressful
     Item = AMWIBERRY
 Pokemon = LANTURN,36
+    Moves = DISCHARGE,BUBBLEBEAM,DAZZLINGGLEAM,NUMB
     AbilityIndex = 0 # Volt Absorb
     Item = ELECTRICGEM
 Pokemon = BEEDRILL,36
+    Moves = PINMISSILE,POISONJAB,FURYPECKS,STINGINGJEALOUSY
     AbilityIndex = 0 # Deep Sting
-    Item = SHELLBELL
+    Item = LOADEDDICE
 Pokemon = TALONFLAME,37
+    Moves = BRAVEBIRD,STEELWING,FLAREUP,TAILWIND
     AbilityIndex = 1 # Gale Wings
     Item = LIFEORB
 Pokemon = TORTERRA,38
+    Moves = EARTHQUAKE,SNAPTRAP,BRUTALSWING,POLARIZEDROOM
     AbilityIndex = 1 # Living Armor
-    Item = BIGROOT
+    Item = SITRUSBERRY
 #-------------------------------
 [BOARDER,Lev]
 Pokemon = JYNX,30
