@@ -26,7 +26,7 @@ class MoveLearner_Scene
       @viewport.z=99999
       @sprites={}
       bg_path = "reminderbg"
-      bg_path += "_dark" if $PokemonSystem.dark_mode == 0
+      bg_path += "_dark" if darkMode?
       addBackgroundPlane(@sprites,"bg",bg_path,@viewport)
       @sprites["pokeicon"]=PokemonIconSprite.new(@pokemon,@viewport)
       @sprites["pokeicon"].setOffset(PictureOrigin::Center)
@@ -34,7 +34,7 @@ class MoveLearner_Scene
       @sprites["pokeicon"].y=84
       @sprites["background"]=IconSprite.new(0,0,@viewport)
       sel_path = "Graphics/Pictures/reminderSel"
-      sel_path += "_dark" if $PokemonSystem.dark_mode == 0
+      sel_path += "_dark" if darkMode?
       @sprites["background"].setBitmap(sel_path)
       @sprites["background"].y=78
       @sprites["background"].src_rect=Rect.new(0,72,258,72)

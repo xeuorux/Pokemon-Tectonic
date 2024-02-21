@@ -1,5 +1,3 @@
-FADED_EFFECT_BASE = Color.new(120, 120, 120)
-
 DEBUGGING_EFFECT_DISPLAY = false
 
 class BattleInfoDisplay < SpriteWrapper
@@ -20,10 +18,10 @@ class BattleInfoDisplay < SpriteWrapper
         @individual = nil
         @field	= false
         main_path = "Graphics/Pictures/Battle/battle_info_main"
-        main_path += "_dark" if $PokemonSystem.dark_mode == 0
+        main_path += "_dark" if darkMode?
         @battleInfoMain	= AnimatedBitmap.new(main_path)
         individual_path = "Graphics/Pictures/Battle/battle_info_individual"
-        individual_path += "_dark" if $PokemonSystem.dark_mode == 0
+        individual_path += "_dark" if darkMode?
         @battleInfoIndividual	= AnimatedBitmap.new(individual_path)
         @backgroundBitmap = @battleInfoMain
         @statusCursorBitmap	= AnimatedBitmap.new("Graphics/Pictures/Battle/cursor_status")
@@ -76,6 +74,7 @@ class BattleInfoDisplay < SpriteWrapper
         shadow      = MessageConfig.pbDefaultTextShadowColor
         lightBase   = MessageConfig::LIGHT_TEXT_MAIN_COLOR # we want light text to stay light regardless of mode
         lightShadow = MessageConfig::LIGHT_TEXT_SHADOW_COLOR
+        fadedColor  = MessageConfig.pbDefaultFadedTextColor
 
         textToDraw = []
 
@@ -136,7 +135,7 @@ class BattleInfoDisplay < SpriteWrapper
 
         # Draw the weather name with duration
         weatherMessage = _INTL("No Weather")
-        weatherColor = FADED_EFFECT_BASE
+        weatherColor = fadedColor
         if @battle.field.weather != :None
             weatherColor = base
             weatherName = GameData::BattleWeather.get(@battle.field.weather).name
@@ -176,6 +175,7 @@ class BattleInfoDisplay < SpriteWrapper
     def drawFieldEffects(effectHolder, xStart, yStart, tribesList = [])
         base = MessageConfig::DARK_TEXT_MAIN_COLOR
         shadow = MessageConfig::DARK_TEXT_SHADOW_COLOR
+        fadedColor = MessageConfig::DARK_FADED_TEXT_COLOR
 
         textToDraw = []
 
@@ -208,7 +208,7 @@ class BattleInfoDisplay < SpriteWrapper
                 end
             end
         else
-            textToDraw.push(["None", xStart, baseEffectY + 24, 0, FADED_EFFECT_BASE, shadow])
+            textToDraw.push(["None", xStart, baseEffectY + 24, 0, fadedColor, shadow])
         end
 
         # Reset the scrolling once its scrolled through the entire list once
@@ -222,6 +222,7 @@ class BattleInfoDisplay < SpriteWrapper
         shadow = MessageConfig.pbDefaultTextShadowColor
 		lightBase = MessageConfig::LIGHT_TEXT_MAIN_COLOR
     	lightShadow = MessageConfig::LIGHT_TEXT_SHADOW_COLOR
+        fadedColor = MessageConfig::DARK_FADED_TEXT_COLOR
         textToDraw = []
 
         battlerName = battler.name
@@ -367,7 +368,7 @@ class BattleInfoDisplay < SpriteWrapper
                 end
             end
         else
-            textToDraw.push(["None", battlerEffectsX, statStepsSectionTopY + 36, 0, FADED_EFFECT_BASE, shadow])
+            textToDraw.push(["None", battlerEffectsX, statStepsSectionTopY + 36, 0, fadedColor, shadow])
         end
 
         # Reset the scrolling once its scrolled through the entire list once

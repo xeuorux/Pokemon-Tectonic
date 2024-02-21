@@ -30,7 +30,7 @@ class PokemonMart_Scene
       @sprites = {}
       @sprites["background"] = IconSprite.new(0, 0, @viewport)
       bg_path = "Graphics/Pictures/martScreen"
-      bg_path += "_dark" if $PokemonSystem.dark_mode == 0
+      bg_path += "_dark" if darkMode?
       @sprites["background"].setBitmap(bg_path)
       @sprites["icon"] = ItemIconSprite.new(36, Graphics.height - 50, nil, @viewport)
       winAdapter = buying ? BuyAdapter.new(adapter) : SellAdapter.new(adapter)
@@ -53,7 +53,7 @@ class PokemonMart_Scene
       @sprites["moneywindow"] = Window_AdvancedTextPokemon.new("")
       pbPrepareWindow(@sprites["moneywindow"])
       skin_path = "Graphics/Windowskins/goldskin"
-      skin_path += "_dark" if $PokemonSystem.dark_mode == 0
+      skin_path += "_dark" if darkMode?
       @sprites["moneywindow"].setSkin(skin_path)
       @sprites["moneywindow"].visible = true
       @sprites["moneywindow"].viewport = @viewport
@@ -106,7 +106,7 @@ class PokemonMart_Scene
       @sprites["moneywindow"] = Window_AdvancedTextPokemon.new("")
       pbPrepareWindow(@sprites["moneywindow"])
       skin_path = "Graphics/Windowskins/goldskin"
-      skin_path += "_dark" if $PokemonSystem.dark_mode == 0
+      skin_path += "_dark" if darkMode?
       @sprites["moneywindow"].setSkin(skin_path)
       @sprites["moneywindow"].visible = false
       @sprites["moneywindow"].viewport = @viewport

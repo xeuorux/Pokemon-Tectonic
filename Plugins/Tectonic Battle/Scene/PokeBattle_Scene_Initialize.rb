@@ -27,7 +27,7 @@ class PokeBattle_Scene
       pbCreateBackdropSprites
       # Create message box graphic
       overlayMessageName = "Graphics/Pictures/Battle/overlay_message"
-      overlayMessageName += "_dark" if $PokemonSystem.dark_mode == 0
+      overlayMessageName += "_dark" if darkMode?
       messageBox = pbAddSprite("messageBox",0,Graphics.height-96,overlayMessageName,@viewport)
       messageBox.z = 195
       # Create message window (displays the message)

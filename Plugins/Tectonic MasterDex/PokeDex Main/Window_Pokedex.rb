@@ -9,8 +9,8 @@ class Window_Pokedex < Window_DrawableCommand
         @pokeballOwn  = AnimatedBitmap.new("Graphics/Pictures/Pokedex/icon_own")
         @pokeballSeen = AnimatedBitmap.new("Graphics/Pictures/Pokedex/icon_seen")
         @star         = AnimatedBitmap.new("Graphics/Pictures/Pokedex/star")
-        self.baseColor   = $PokemonSystem.dark_mode == 0 ? Color.new(248,248,248) : Color.new(88,88,80)
-        self.shadowColor = $PokemonSystem.dark_mode == 0 ? Color.new(0,0,0) : Color.new(168,184,184)
+        self.baseColor   = darkMode? ? Color.new(248,248,248) : Color.new(88,88,80)
+        self.shadowColor = darkMode? ? Color.new(0,0,0) : Color.new(168,184,184)
         self.windowskin  = nil
     end
 

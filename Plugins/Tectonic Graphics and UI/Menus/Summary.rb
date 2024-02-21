@@ -130,7 +130,7 @@ class PokemonSummary_Scene
         @typebitmap    = AnimatedBitmap.new(_INTL("Graphics/Pictures/types"))
         @markingbitmap = AnimatedBitmap.new("Graphics/Pictures/Summary/markings")
         info_path = "Graphics/Pictures/move_info_display_3x3"
-        info_path += "_dark" if $PokemonSystem.dark_mode == 0
+        info_path += "_dark" if darkMode?
         @moveInfoDisplayBitmap = AnimatedBitmap.new(_INTL(info_path))
         @sprites = {}
         @sprites["background"] = IconSprite.new(0, 0, @viewport)
@@ -208,7 +208,7 @@ class PokemonSummary_Scene
         @forget = true
         @typebitmap = AnimatedBitmap.new(_INTL("Graphics/Pictures/types"))
         info_path = "Graphics/Pictures/move_info_display_3x3"
-        info_path += "_dark" if $PokemonSystem.dark_mode == 0
+        info_path += "_dark" if darkMode?
         @moveInfoDisplayBitmap = AnimatedBitmap.new(_INTL(info_path))
         @sprites = {}
         @sprites["background"] = IconSprite.new(0, 0, @viewport)
@@ -321,9 +321,9 @@ class PokemonSummary_Scene
 
     def createItemIcons
         path_1 = "Graphics/Pictures/Summary/item_bg"
-        path_1 += "_dark" if $PokemonSystem.dark_mode == 0
+        path_1 += "_dark" if darkMode?
         path_2 = "Graphics/Pictures/Summary/item_bg2"
-        path_2 += "_dark" if $PokemonSystem.dark_mode == 0
+        path_2 += "_dark" if darkMode?
         @itemBackground = AnimatedBitmap.new(path_1)
         @itemBackground2 = AnimatedBitmap.new(path_2)
         @sprites["itembackground"] = IconSprite.new(0, 0, @viewport)
@@ -474,7 +474,7 @@ class PokemonSummary_Scene
         shadow = MessageConfig::LIGHT_TEXT_SHADOW_COLOR
         # Set background image
         bg_path = "Graphics/Pictures/Summary/bg_#{page}"
-        bg_path += "_dark" if $PokemonSystem.dark_mode == 0
+        bg_path += "_dark" if darkMode?
         @sprites["background"].setBitmap(bg_path)
         imagepos = []
         # Show the Poké Ball containing the Pokémon
@@ -540,8 +540,8 @@ class PokemonSummary_Scene
                 end
                 itemText.push([itemName, itemNameX, itemNameY, 0, misc_base, misc_shadow])
             else
-                no_item_base = $PokemonSystem.dark_mode == 0 ? Color.new(208, 208, 208) : Color.new(192, 200, 208)
-                no_item_shadow = $PokemonSystem.dark_mode == 0 ? Color.new(104, 104, 104) : Color.new(208, 216, 224)
+                no_item_base = darkMode? ? Color.new(208, 208, 208) : Color.new(192, 200, 208)
+                no_item_shadow = darkMode? ? Color.new(104, 104, 104) : Color.new(208, 216, 224)
                 itemText.push([_INTL("None"), 16, 346, 0, no_item_base, no_item_shadow])
             end
 			overlay.font.name = MessageConfig.pbGetNarrowFontName
@@ -597,8 +597,8 @@ class PokemonSummary_Scene
         mapname = pbGetMapNameFromId(@pokemon.obtain_map)
         mapname = @pokemon.obtain_text if @pokemon.obtain_text && !@pokemon.obtain_text.empty?
         mapname = _INTL("a faraway place") if nil_or_empty?(mapname)
-        met_base = $PokemonSystem.dark_mode == 0 ? Color.new(136, 168, 208) : Color.new(24, 112, 216)
-        met_shadow = $PokemonSystem.dark_mode == 0 ? Color.new(24, 112, 216) : Color.new(136, 168, 208)
+        met_base = darkMode? ? Color.new(136, 168, 208) : Color.new(24, 112, 216)
+        met_shadow = darkMode? ? Color.new(24, 112, 216) : Color.new(136, 168, 208)
         textpos.push([mapname, infoTextLabelX, infoLabelBaseY + 32 * 6 - 2, 0, met_base, met_shadow])
         # Write experience point info
         endexp = @pokemon.growth_rate.minimum_exp_for_level(@pokemon.level + 1)
@@ -655,7 +655,7 @@ class PokemonSummary_Scene
         ]
         # Write the held item's name
         if @pokemon.hasItem?
-            textpos.push([@pokemon.item.name, 16, 346, 0, Color.new(64, 64, 64), Color.new(176, 176, 176)])
+            textpos.push([@pokemon.item.name, 16, 346, 0, MessageConfig::DARK_TEXT_MAIN_COLOR, MessageConfig::DARK_TEXT_SHADOW_COLOR])
         else
             textpos.push([_INTL("None"), 16, 346, 0, Color.new(192, 200, 208), Color.new(208, 216, 224)])
         end
@@ -703,7 +703,7 @@ class PokemonSummary_Scene
         memo = ""
 
         # Traits
-        if $PokemonSystem.dark_mode == 0
+        if darkMode?
             # repeating this is a bit ugly but not as ugly as iffing in the middle of all of these strings
             memo += _INTL("<c3=E09890,F83820>Traits:<c3=F8F8F8,686868>")
             memo += "\n"
@@ -799,8 +799,8 @@ class PokemonSummary_Scene
         evAmountX  = 372
         stat_value_color_base   = MessageConfig.pbDefaultTextMainColor
         stat_value_color_shadow = MessageConfig.pbDefaultTextShadowColor
-        ev_color_base   = $PokemonSystem.dark_mode == 0 ? Color.new(200, 200, 248) : Color.new(128, 128, 200)
-        ev_color_shadow = $PokemonSystem.dark_mode == 0 ? Color.new(104, 104, 104) : Color.new(220, 220, 220)
+        ev_color_base   = darkMode? ? Color.new(200, 200, 248) : Color.new(128, 128, 200)
+        ev_color_shadow = darkMode? ? Color.new(104, 104, 104) : Color.new(220, 220, 220)
         textpos = [
             [_INTL("HP"), 292, 70, 2, base, statshadows[:HP]],
             [format("%d/%d", @pokemon.hp, @pokemon.totalhp), statTotalX, 70, 1, stat_value_color_base],
@@ -886,9 +886,9 @@ class PokemonSummary_Scene
     end
 
     def drawMoveNames(textpos,extra_move = nil)
-        moveBase   = Color.new(64, 64, 64)
-        fadedBase = Color.new(110,110,110)
-        moveShadow = Color.new(160, 160, 168)
+        moveBase   = MessageConfig::pbDefaultTextMainColor
+        fadedBase  = MessageConfig.pbDefaultFadedTextColor
+        moveShadow = MessageConfig::pbDefaultTextShadowColor
         # Write move names
         for i in 0...Pokemon::MAX_MOVES
             move = @pokemon.moves[i]
@@ -898,7 +898,7 @@ class PokemonSummary_Scene
                 individualMoveBaseColor = moveBase
                 if move.type
                     move_type = GameData::Type.get(move.type)
-                    individualMoveBaseColor = $PokemonSystem.dark_mode == 0 ? move_type.color : move_type.dark_color
+                    individualMoveBaseColor = darkMode? ? move_type.color : move_type.dark_color
                 end
                 textpos.push([move.name, xPos, yPos, 2, individualMoveBaseColor, moveShadow])
             else
@@ -912,7 +912,7 @@ class PokemonSummary_Scene
             extraMoveBaseColor = moveBase
             if extra_move.type
                 move_type = GameData::Type.get(extra_move.type)
-                extraMoveBaseColor = $PokemonSystem.dark_mode == 0 ? move_type.color : move_type.dark_color
+                extraMoveBaseColor = darkMode? ? move_type.color : move_type.dark_color
             end
             textpos.push([extra_move.name, xPos, yPos, 2, extraMoveBaseColor, moveShadow])
         end
@@ -930,11 +930,11 @@ class PokemonSummary_Scene
         # Set background image
         if move_to_learn
             path = "Graphics/Pictures/Summary/bg_learnmove"
-            path += "_dark" if $PokemonSystem.dark_mode == 0
+            path += "_dark" if darkMode?
             @sprites["background"].setBitmap(path)
         else
             path = "Graphics/Pictures/Summary/bg_movedetail"
-            path += "_dark" if $PokemonSystem.dark_mode == 0
+            path += "_dark" if darkMode?
             @sprites["background"].setBitmap(path)
         end
         # Write various bits of text
@@ -969,8 +969,8 @@ class PokemonSummary_Scene
         @sprites["downarrow"].visible = false
         # Write various bits of text
         textpos = [
-            [_INTL("No. of Ribbons:"), 234, 326, 0, Color.new(64, 64, 64), Color.new(176, 176, 176)],
-            [@pokemon.numRibbons.to_s, 450, 326, 1, Color.new(64, 64, 64), Color.new(176, 176, 176)],
+            [_INTL("No. of Ribbons:"), 234, 326, 0, MessageConfig::DARK_TEXT_MAIN_COLOR, MessageConfig::DARK_TEXT_SHADOW_COLOR],
+            [@pokemon.numRibbons.to_s, 450, 326, 1, MessageConfig::DARK_TEXT_MAIN_COLOR, MessageConfig::DARK_TEXT_SHADOW_COLOR],
         ]
         # Draw all text
         pbDrawTextPositions(overlay, textpos)
@@ -995,8 +995,8 @@ class PokemonSummary_Scene
         drawPage(5)
         # Set various values
         overlay = @sprites["overlay"].bitmap
-        base   = Color.new(64, 64, 64)
-        shadow = Color.new(176, 176, 176)
+        base   = MessageConfig::DARK_TEXT_MAIN_COLOR
+        shadow = MessageConfig::DARK_TEXT_SHADOW_COLOR
         nameBase   = Color.new(248, 248, 248)
         nameShadow = Color.new(104, 104, 104)
         # Get data for selected ribbon
@@ -1386,7 +1386,7 @@ class PokemonSummary_Scene
         textpos = [
             [pagename, 26, 10, 0, base, shadow],
             [@pokemon.name, 46, 56, 0, base, shadow],
-            [@pokemon.level.to_s, 46, 86, 0, Color.new(64, 64, 64), Color.new(176, 176, 176)],
+            [@pokemon.level.to_s, 46, 86, 0, MessageConfig::DARK_TEXT_MAIN_COLOR, MessageConfig::DARK_TEXT_SHADOW_COLOR],
         ]
         # Write the gender symbol
         if @pokemon.male?
@@ -1402,26 +1402,26 @@ class PokemonSummary_Scene
         # Write various bits of text
         textpos = [
             [_INTL("HP"), 292, 70, 2, base, shadow],
-            [format("%d/%d", @pokemon.hp, @pokemon.totalhp), 462, 70, 1, Color.new(64, 64, 64),
-             Color.new(176, 176, 176),],
+            [format("%d/%d", @pokemon.hp, @pokemon.totalhp), 462, 70, 1, MessageConfig::DARK_TEXT_MAIN_COLOR,
+             MessageConfig::DARK_TEXT_SHADOW_COLOR,],
             [_INTL("Attack"), 248, 114, 0, base, shadow],
-            [format("%d", @pokemon.attack), 456, 114, 1, Color.new(64, 64, 64), Color.new(176, 176, 176)],
+            [format("%d", @pokemon.attack), 456, 114, 1, MessageConfig::DARK_TEXT_MAIN_COLOR, MessageConfig::DARK_TEXT_SHADOW_COLOR],
             [_INTL("Defense"), 248, 146, 0, base, shadow],
-            [format("%d", @pokemon.defense), 456, 146, 1, Color.new(64, 64, 64), Color.new(176, 176, 176)],
+            [format("%d", @pokemon.defense), 456, 146, 1, MessageConfig::DARK_TEXT_MAIN_COLOR, MessageConfig::DARK_TEXT_SHADOW_COLOR],
             [_INTL("Sp. Atk"), 248, 178, 0, base, shadow],
-            [format("%d", @pokemon.spatk), 456, 178, 1, Color.new(64, 64, 64), Color.new(176, 176, 176)],
+            [format("%d", @pokemon.spatk), 456, 178, 1, MessageConfig::DARK_TEXT_MAIN_COLOR, MessageConfig::DARK_TEXT_SHADOW_COLOR],
             [_INTL("Sp. Def"), 248, 210, 0, base, shadow],
-            [format("%d", @pokemon.spdef), 456, 210, 1, Color.new(64, 64, 64), Color.new(176, 176, 176)],
+            [format("%d", @pokemon.spdef), 456, 210, 1, MessageConfig::DARK_TEXT_MAIN_COLOR, MessageConfig::DARK_TEXT_SHADOW_COLOR],
             [_INTL("Speed"), 248, 242, 0, base, shadow],
-            [format("%d", @pokemon.speed), 456, 242, 1, Color.new(64, 64, 64), Color.new(176, 176, 176)],
+            [format("%d", @pokemon.speed), 456, 242, 1, MessageConfig::DARK_TEXT_MAIN_COLOR, MessageConfig::DARK_TEXT_SHADOW_COLOR],
             [_INTL("Ability"), 16, 278, 0, base, shadow],
         ]
         # Draw ability name and description
         ability = @pokemon.ability
         if ability
-            textpos.push([ability.name, 138, 278, 0, Color.new(64, 64, 64), Color.new(176, 176, 176)])
-            drawTextEx(overlay, 8, 320, Graphics.width - 12, 2, ability.description, Color.new(64, 64, 64),
-  Color.new(176, 176, 176))
+            textpos.push([ability.name, 138, 278, 0, MessageConfig::DARK_TEXT_MAIN_COLOR, MessageConfig::DARK_TEXT_SHADOW_COLOR])
+            drawTextEx(overlay, 8, 320, Graphics.width - 12, 2, ability.description, MessageConfig::DARK_TEXT_MAIN_COLOR,
+  MessageConfig::DARK_TEXT_SHADOW_COLOR)
         end
         # Draw Pokémon's type icon(s)
         type1_number = GameData::Type.get(@pokemon.type1).id_number

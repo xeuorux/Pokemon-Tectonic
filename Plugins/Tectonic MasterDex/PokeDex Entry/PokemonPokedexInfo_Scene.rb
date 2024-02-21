@@ -20,7 +20,7 @@ class PokemonPokedexInfo_Scene
         @typebitmap = AnimatedBitmap.new(_INTL("Graphics/Pictures/Pokedex/icon_types"))
         @types_emphasized_bitmap = AnimatedBitmap.new(_INTL("Graphics/Pictures/Pokedex/icon_types_emphasized"))
         move_path = "Graphics/Pictures/Pokedex/move_info_display_dex"
-        move_path += "_dark" if $PokemonSystem.dark_mode == 0
+        move_path += "_dark" if darkMode?
         @moveInfoDisplayBitmap = AnimatedBitmap.new(_INTL(move_path))
         @sprites = {}
         @sprites["background"] = IconSprite.new(0, 0, @viewport)
@@ -228,7 +228,7 @@ sp.form) && !Settings::DEX_SHOWS_ALL_FORMS
 
     def drawPageInfo
         bg_path = "Graphics/Pictures/Pokedex/bg_info"
-        bg_path += "_dark" if $PokemonSystem.dark_mode == 0
+        bg_path += "_dark" if darkMode?
         @sprites["background"].setBitmap(_INTL(bg_path))
         overlay = @sprites["overlay"].bitmap
         base   = MessageConfig.pbDefaultTextMainColor
@@ -294,7 +294,7 @@ sp.form) && !Settings::DEX_SHOWS_ALL_FORMS
 
     def drawPageAbilities
         bg_path = "Graphics/Pictures/Pokedex/bg_abilities"
-        bg_path += "_dark" if $PokemonSystem.dark_mode == 0
+        bg_path += "_dark" if darkMode?
         @sprites["background"].setBitmap(_INTL(bg_path))
         overlay = @sprites["overlay"].bitmap
         formname = ""
@@ -317,7 +317,7 @@ sp.form) && !Settings::DEX_SHOWS_ALL_FORMS
                 if ability1.is_signature?
                     abilityNameText = "<outln2>" + abilityNameText + "</outln2>"
                     abilityNameColor = SIGNATURE_COLOR_LIGHTER
-                    abilityNameShadow = $PokemonSystem.dark_mode == 0 ? shadow : base
+                    abilityNameShadow = darkMode? ? shadow : base
                 end
                 drawFormattedTextEx(overlay, abilityTextX, ability1Y, 450, abilityNameText, abilityNameColor,
               abilityNameShadow)
@@ -336,7 +336,7 @@ sp.form) && !Settings::DEX_SHOWS_ALL_FORMS
                 if ability2.is_signature?
                     abilityNameText = "<outln2>" + abilityNameText + "</outln2>"
                     abilityNameColor = SIGNATURE_COLOR_LIGHTER
-                    abilityNameShadow = $PokemonSystem.dark_mode == 0 ? shadow : base
+                    abilityNameShadow = darkMode? ? shadow : base
                 end
                 drawFormattedTextEx(overlay, abilityTextX, ability2Y, 450, abilityNameText, abilityNameColor,
               abilityNameShadow)
@@ -374,7 +374,7 @@ sp.form) && !Settings::DEX_SHOWS_ALL_FORMS
 
     def drawPageStats
         bg_path = "Graphics/Pictures/Pokedex/bg_stats"
-        bg_path += "_dark" if $PokemonSystem.dark_mode == 0
+        bg_path += "_dark" if darkMode?
         @sprites["background"].setBitmap(_INTL(bg_path))
         overlay = @sprites["overlay"].bitmap
         formname = ""
@@ -482,7 +482,7 @@ sp.form) && !Settings::DEX_SHOWS_ALL_FORMS
 
     def drawPageMatchups
         bg_path = "Graphics/Pictures/Pokedex/bg_matchups"
-        bg_path += "_dark" if $PokemonSystem.dark_mode == 0
+        bg_path += "_dark" if darkMode?
         @sprites["background"].setBitmap(_INTL(bg_path))
         overlay = @sprites["overlay"].bitmap
         formname = ""
@@ -569,7 +569,7 @@ sp.form) && !Settings::DEX_SHOWS_ALL_FORMS
 
     def drawPageMatchups2
         bg_path = "Graphics/Pictures/Pokedex/bg_matchups"
-        bg_path += "_dark" if $PokemonSystem.dark_mode == 0
+        bg_path += "_dark" if darkMode?
         @sprites["background"].setBitmap(_INTL(bg_path))
         overlay = @sprites["overlay"].bitmap
         formname = ""
@@ -708,7 +708,7 @@ sp.form) && !Settings::DEX_SHOWS_ALL_FORMS
 
     def drawPageLevelUpMoves
         bg_path = "Graphics/Pictures/Pokedex/bg_moves"
-        bg_path += "_dark" if $PokemonSystem.dark_mode == 0
+        bg_path += "_dark" if darkMode?
         @sprites["background"].setBitmap(_INTL(bg_path))
         overlay = @sprites["overlay"].bitmap
         formname = ""
@@ -753,7 +753,7 @@ sp.form) && !Settings::DEX_SHOWS_ALL_FORMS
 
     def drawPageTutorMoves
         bg_path = "Graphics/Pictures/Pokedex/bg_moves"
-        bg_path += "_dark" if $PokemonSystem.dark_mode == 0
+        bg_path += "_dark" if darkMode?
         @sprites["background"].setBitmap(_INTL(bg_path))
         overlay = @sprites["overlay"].bitmap
         formname = ""
@@ -830,8 +830,8 @@ sp.form) && !Settings::DEX_SHOWS_ALL_FORMS
             moveData = GameData::Move.get(selected_move)
 
             # Prepare values
-            base       = MessageConfig::LIGHT_TEXT_MAIN_COLOR # [sic], this is supposed to be the same in light and dark mode
-            faded_base = $PokemonSystem.dark_mode == 0 ? Color.new(145,145,145) : Color.new(110,110,110)
+            base       = MessageConfig::LIGHT_TEXT_MAIN_COLOR # This is the same in light and dark mode
+            faded_base = MessageConfig.pbDefaultFadedTextColor
             shadow     = MessageConfig.pbDefaultTextShadowColor
             column1LabelX = 246
             column2LabelX = 322
@@ -922,7 +922,7 @@ sp.form) && !Settings::DEX_SHOWS_ALL_FORMS
             targetingGraphicRow1Y = row3LabelY + 4
             targetingGraphicRow2Y = targetingGraphicRow1Y + 26
 
-            targetableColor = $PokemonSystem.dark_mode == 0 ? Color.new(240,5,5) : Color.new(120,5,5)
+            targetableColor = darkMode? ? Color.new(240,5,5) : Color.new(120,5,5)
             untargetableColor = faded_base
 
             # Foes
@@ -954,7 +954,7 @@ sp.form) && !Settings::DEX_SHOWS_ALL_FORMS
 
     def drawPageEvolution
         bg_path = "Graphics/Pictures/Pokedex/bg_evolution"
-        bg_path += "_dark" if $PokemonSystem.dark_mode == 0
+        bg_path += "_dark" if darkMode?
         @sprites["background"].setBitmap(_INTL(bg_path))
         overlay = @sprites["overlay"].bitmap
         formname = ""
@@ -1109,7 +1109,7 @@ sp.form) && !Settings::DEX_SHOWS_ALL_FORMS
 
     def drawPageArea
         bg_path = "Graphics/Pictures/Pokedex/bg_area"
-        bg_path += "_dark" if $PokemonSystem.dark_mode == 0
+        bg_path += "_dark" if darkMode?
         @sprites["background"].setBitmap(_INTL(bg_path))
         overlay = @sprites["overlay"].bitmap
         base   = MessageConfig.pbDefaultTextMainColor
@@ -1174,7 +1174,7 @@ sp.form) && !Settings::DEX_SHOWS_ALL_FORMS
 
     def drawPageForms
         bg_path = "Graphics/Pictures/Pokedex/bg_forms"
-        bg_path += "_dark" if $PokemonSystem.dark_mode == 0
+        bg_path += "_dark" if darkMode?
         @sprites["background"].setBitmap(_INTL(bg_path))
         overlay = @sprites["overlay"].bitmap
         base   = MessageConfig.pbDefaultTextMainColor
@@ -1353,11 +1353,11 @@ sp.form) && !Settings::DEX_SHOWS_ALL_FORMS
 
     def drawPageDEBUG
         @bg_path = "Graphics/Pictures/Pokedex/bg_evolution"
-        bg_path += "_dark" if $PokemonSystem.dark_mode == 0
+        bg_path += "_dark" if darkMode?
         @sprites["background"].setBitmap(_INTL(bg_path))
         overlay = @sprites["overlay"].bitmap
-        base = Color.new(64, 64, 64)
-        shadow = Color.new(176, 176, 176)
+        base = MessageConfig::DARK_TEXT_MAIN_COLOR
+        shadow = MessageConfig::DARK_TEXT_SHADOW_COLOR
         xLeft = 36
         for i in @available
             next unless i[2] == @form

@@ -20,11 +20,11 @@ module PokeBattle_SceneConstants
     FOE_BASE_Y    = (Settings::SCREEN_HEIGHT * 3 / 4) - 112
 
     def self.getBaseColor
-      return $PokemonSystem.dark_mode == 0 ? MESSAGE_BASE_COLOR_DARK : MESSAGE_BASE_COLOR
+      return darkMode? ? MESSAGE_BASE_COLOR_DARK : MESSAGE_BASE_COLOR
     end
 
     def self.getShadowColor
-      return $PokemonSystem.dark_mode == 0 ? MESSAGE_SHADOW_COLOR_DARK : MESSAGE_SHADOW_COLOR
+      return darkMode? ? MESSAGE_SHADOW_COLOR_DARK : MESSAGE_SHADOW_COLOR
     end
   
     # Returns where the centre bottom of a battler's sprite should be, given its

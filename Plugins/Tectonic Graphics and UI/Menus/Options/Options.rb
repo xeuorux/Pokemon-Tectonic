@@ -110,7 +110,7 @@ class PokemonSystem
 
     def setSystemFrame
         windowSkinName = "Graphics/Windowskins/" + Settings::MENU_WINDOWSKINS[@frame]
-        windowSkinName += "_dark" if $PokemonSystem.dark_mode == 0
+        windowSkinName += "_dark" if darkMode?
         MessageConfig.pbSetSystemFrame(windowSkinName)
     end
 
@@ -121,7 +121,7 @@ class PokemonSystem
 
     def setSpeechFrame
         windowSkinName = "Graphics/Windowskins/" + Settings::SPEECH_WINDOWSKINS[@textskin]
-        windowSkinName += "_dark" if $PokemonSystem.dark_mode == 0
+        windowSkinName += "_dark" if darkMode?
         MessageConfig.pbSetSpeechFrame(windowSkinName)
     end
 end
@@ -652,6 +652,11 @@ class PokemonOption_Scene_UserInterface < PokemonOption_Scene_Base
 			),
 		])
 	end
+end
+
+def darkMode?
+    return false if $PokemonSystem.nil?
+    return $PokemonSystem.dark_mode == 0
 end
 
 #===============================================================================

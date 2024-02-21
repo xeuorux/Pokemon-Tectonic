@@ -16,8 +16,8 @@ module MoveInfoDisplay
     def writeMoveInfoToInfoOverlay3x3(overlay,move)
         moveData = GameData::Move.get(move.id)
 
-        base   = $PokemonSystem.dark_mode == 0 ? Color.new(248, 248, 248) : Color.new(64, 64, 64)
-        shadow = $PokemonSystem.dark_mode == 0 ? Color.new(104, 104, 104) : Color.new(176, 176, 176)
+        base   = darkMode? ? Color.new(248, 248, 248) : MessageConfig::DARK_TEXT_MAIN_COLOR
+        shadow = darkMode? ? Color.new(104, 104, 104) : MessageConfig::DARK_TEXT_SHADOW_COLOR
 
         overlay.clear
               
@@ -55,9 +55,9 @@ module MoveInfoDisplay
           ]
         )
         
-        base       = $PokemonSystem.dark_mode == 0 ? Color.new(248, 248, 248) : Color.new(64, 64, 64)
-        faded_base = $PokemonSystem.dark_mode == 0 ? Color.new(145, 145, 145) : Color.new(110, 110, 110)
-        shadow     = $PokemonSystem.dark_mode == 0 ? Color.new(104, 104, 104) : Color.new(176, 176, 176)
+        base       = darkMode? ? Color.new(248, 248, 248) : MessageConfig::DARK_TEXT_MAIN_COLOR
+        faded_base = darkMode? ? Color.new(145, 145, 145) : Color.new(110, 110, 110)
+        shadow     = darkMode? ? Color.new(104, 104, 104) : MessageConfig::DARK_TEXT_SHADOW_COLOR
         moveInfoColumn1ValueX = moveInfoColumn1LabelX + 134
         moveInfoColumn2ValueX = moveInfoColumn2LabelX + 134 - 40
         moveInfoColumn3ValueX = moveInfoColumn3LabelX + 134
@@ -86,7 +86,7 @@ module MoveInfoDisplay
         # PP
         if moveData.total_pp > 0
           ppFraction = [(4.0*move.pp/move.total_pp).ceil,3].min
-          color_map = $PokemonSystem.dark_mode == 0 ? PP_COLORS_DARK : PP_COLORS
+          color_map = darkMode? ? PP_COLORS_DARK : PP_COLORS
           textpos.push([_INTL("{1}/{2}",move.pp,move.total_pp),moveInfoColumn2ValueX, 32, 2, color_map[ppFraction*2], color_map[ppFraction*2+1]])
         else
           textpos.push(["---", moveInfoColumn2ValueX, 32, 2, faded_base, shadow])
@@ -109,7 +109,7 @@ module MoveInfoDisplay
         targetingGraphicRow1Y = 38
         targetingGraphicRow2Y = targetingGraphicRow1Y + 26
       
-        targetableColor = $PokemonSystem.dark_mode == 0 ? Color.new(240,5,5) : Color.new(120,5,5)
+        targetableColor = darkMode? ? Color.new(240,5,5) : Color.new(120,5,5)
         untargetableColor = faded_base
       
         # Foes

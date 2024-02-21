@@ -35,7 +35,9 @@ class FightMenuDisplay < BattleMenuBase
           @typeBitmap    			    = AnimatedBitmap.new(_INTL("Graphics/Pictures/types"))
           @megaEvoBitmap 			    = AnimatedBitmap.new(_INTL("Graphics/Pictures/Battle/cursor_mega"))
           @shiftBitmap   			    = AnimatedBitmap.new(_INTL("Graphics/Pictures/Battle/cursor_shift"))
-          @moveInfoDisplayBitmap  = AnimatedBitmap.new(_INTL("Graphics/Pictures/move_info_display_3x3"))
+          moveInfoDisplayFileName = _INTL("Graphics/Pictures/move_info_display_3x3")
+          moveInfoDisplayFileName += "_dark" if darkMode?
+          @moveInfoDisplayBitmap  = AnimatedBitmap.new(moveInfoDisplayFileName)
           @ppUsageUpBitmap        = AnimatedBitmap.new(_INTL("Graphics/Pictures/Battle/pp_usage_up"))
           @cursorShadeBitmap      = AnimatedBitmap.new(_INTL("Graphics/Pictures/Battle/cursor_fight_shade"))
           # Create background graphic
@@ -297,7 +299,7 @@ class FightMenuDisplay < BattleMenuBase
         return unless move
 
         base   = Color.new(248,248,248)
-        faded_base = Color.new(110,110,110)
+        faded_base = MessageConfig.pbDefaultFadedTextColor
         shadow = Color.new(104,104,104)
 
         pbSetNarrowFont(@infoOverlay.bitmap)

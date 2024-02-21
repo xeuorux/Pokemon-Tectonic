@@ -7,7 +7,7 @@ class TilingCardsPokemonMenu_Scene < TilingCardsMenu_Scene
 
 	def tileFileLocation
 		path = "Graphics/Pictures/Party/pokemon_menu_tile"
-		path += "_dark" if $PokemonSystem.dark_mode == 0
+		path += "_dark" if darkMode?
 		return _INTL(path)
 	end
 

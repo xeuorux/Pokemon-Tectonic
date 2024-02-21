@@ -24,7 +24,7 @@ class TilingCardsMenu_Scene
 	end
 	def tileFileLocation
 		path = "Graphics/Pictures/Pause/pause_menu_tile"
-		path += "_dark" if $PokemonSystem.dark_mode == 0
+		path += "_dark" if darkMode?
 		return _INTL(path)
 	end
 	def backgroundFadeFileLocation

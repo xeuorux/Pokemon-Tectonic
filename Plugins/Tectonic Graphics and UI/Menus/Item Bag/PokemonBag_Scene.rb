@@ -123,7 +123,7 @@ class PokemonBag_Scene
     def pbRefresh
       # Set the background image
       bg_path = sprintf("Graphics/Pictures/Bag/bg_#{@bag.lastpocket}")
-      bg_path += "_dark" if $PokemonSystem.dark_mode == 0
+      bg_path += "_dark" if darkMode?
       @sprites["background"].setBitmap(bg_path)
       # Set the bag sprite
       fbagexists = pbResolveBitmap(sprintf("Graphics/Pictures/Bag/bag_#{@bag.lastpocket}_f"))

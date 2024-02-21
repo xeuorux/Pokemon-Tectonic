@@ -10,7 +10,7 @@ class TribalBonusScene
         # Set up all the sprites
         @sprites["background"] = IconSprite.new(0,0,@viewport1)
         bg_path = "Graphics/Pictures/bg_tribes"
-        bg_path += "_dark" if $PokemonSystem.dark_mode == 0
+        bg_path += "_dark" if darkMode?
         @sprites["background"].setBitmap(_INTL(bg_path))
 
         @sprites["overlay"] = BitmapSprite.new(Graphics.width,Graphics.height,@viewport1)

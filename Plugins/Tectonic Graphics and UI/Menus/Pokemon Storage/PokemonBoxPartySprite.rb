@@ -7,7 +7,7 @@ class PokemonBoxPartySprite < SpriteWrapper
         super(viewport)
         @party = party
         party_path = "Graphics/Pictures/Storage/overlay_party"
-        party_path += "_dark" if $PokemonSystem.dark_mode == 0
+        party_path += "_dark" if darkMode?
         @boxbitmap = AnimatedBitmap.new(party_path)
         @pokemonsprites = []
         for i in 0...Settings::MAX_PARTY_SIZE

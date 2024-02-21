@@ -92,8 +92,8 @@ class StyleValueScene
         textpos.push([_INTL("Adjust {1}'s Style", @pokemon.name),Graphics.width / 2,0,2,Color.new(88,88,80),Color.new(168,184,184)])
 
         # Place the pokemon's Style Points (stored as EVs)
-        numberBase = Color.new(64, 64, 64)
-        numberShadow = Color.new(176, 176, 176)
+        numberBase = MessageConfig::DARK_TEXT_MAIN_COLOR
+        numberShadow = MessageConfig::DARK_TEXT_SHADOW_COLOR
         textpos.concat([
                            [_INTL("Style Points"), styleValueLabelX, styleValueY, 0, base, shadow],
                            [_INTL("HP"), styleValueLabelX, styleValueY + 40, 0, base, shadow],

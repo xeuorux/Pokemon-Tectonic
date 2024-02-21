@@ -30,7 +30,7 @@ class PokemonPokedex_Scene
         list_path     = "Pokedex/bg_list"
         search_path   = "Pokedex/bg_search"
         search_2_path = "Pokedex/bg_search_2"
-        if $PokemonSystem.dark_mode == 0
+        if darkMode?
           list_path += "_dark"
           search_path += "_dark"
           search_2_path += "_dark"
@@ -236,7 +236,7 @@ class PokemonPokedex_Scene
       @sprites["pokedex"].index    = index
       @sprites["pokedex"].refresh
       path = @searchResults ? "Graphics/Pictures/Pokedex/bg_listsearch" : "Graphics/Pictures/Pokedex/bg_list"
-      path += "_dark" if $PokemonSystem.dark_mode == 0
+      path += "_dark" if darkMode?
       @sprites["background"].setBitmap(path)
       pbRefresh
     end
@@ -698,7 +698,7 @@ class PokemonPokedex_Scene
             @dexlist = pbGetDexList()
             @searchResults = false
             path = "Graphics/Pictures/Pokedex/bg_list"
-            path += "_dark" if $PokemonSystem.dark_mode == 0
+            path += "_dark" if darkMode?
             @sprites["background"].setBitmap(path)
             @sprites["pokedex"].commands = @dexlist
             
@@ -1050,7 +1050,7 @@ class PokemonPokedex_Scene
     end
     pbFadeOutAndHide(@sprites)
     path = @searchResults ? "Graphics/Pictures/Pokedex/bg_listsearch" : "Graphics/Pictures/Pokedex/bg_list"
-    path += "_dark" if $PokemonSystem.dark_mode == 0
+    path += "_dark" if darkMode?
     @sprites["background"].setBitmap(path)
     pbRefresh
       pbFadeInAndShow(@sprites,oldsprites)
@@ -1077,7 +1077,7 @@ class PokemonPokedex_Scene
           @sprites["pokedex"].refresh
           @searchResults = true
           path = "Graphics/Pictures/Pokedex/bg_listsearch"
-          path += "_dark" if $PokemonSystem.dark_mode == 0
+          path += "_dark" if darkMode?
           @sprites["background"].setBitmap(path)
         end
         rescue

@@ -1,8 +1,10 @@
 module MessageConfig
-    LIGHT_TEXT_MAIN_COLOR   = Color.new(248, 248, 248)
-    LIGHT_TEXT_SHADOW_COLOR = Color.new(72, 80, 88)
-    DARK_TEXT_MAIN_COLOR    = Color.new(80, 80, 88)
-    DARK_TEXT_SHADOW_COLOR  = Color.new(160, 160, 168)
+    LIGHT_TEXT_MAIN_COLOR       = Color.new(248, 248, 248)
+    LIGHT_TEXT_SHADOW_COLOR     = Color.new(72, 80, 88)
+    DARK_TEXT_MAIN_COLOR        = Color.new(80, 80, 88)
+    DARK_TEXT_SHADOW_COLOR      = Color.new(160, 160, 168)
+    LIGHT_FADED_TEXT_COLOR      = Color.new(145,145,145)
+    DARK_FADED_TEXT_COLOR       = Color.new(110,110,110)
     FONT_NAME               = "Power Green"
     FONT_SIZE               = 29
     SMALL_FONT_NAME         = "Power Green Small"
@@ -24,30 +26,38 @@ module MessageConfig
     @@narrowFont      = nil
 
     def self.pbDefaultTextMainColor(opposite: false)
-      if opposite ^ ($PokemonSystem&.dark_mode == 0)
-        return LIGHT_TEXT_MAIN_COLOR
-      else
-        return DARK_TEXT_MAIN_COLOR
-      end
+        if opposite ^ ($PokemonSystem&.dark_mode == 0)
+            return LIGHT_TEXT_MAIN_COLOR
+        else
+            return DARK_TEXT_MAIN_COLOR
+        end
     end
 
     def self.pbDefaultTextShadowColor(opposite: false)
-      if opposite ^ ($PokemonSystem&.dark_mode == 0)
-        return LIGHT_TEXT_SHADOW_COLOR
-      else
-        return DARK_TEXT_SHADOW_COLOR
-      end
+        if opposite ^ ($PokemonSystem&.dark_mode == 0)
+            return LIGHT_TEXT_SHADOW_COLOR
+        else
+            return DARK_TEXT_SHADOW_COLOR
+        end
+    end
+
+    def self.pbDefaultFadedTextColor(opposite: false)
+        if opposite ^ ($PokemonSystem&.dark_mode == 0)
+            return LIGHT_FADED_TEXT_COLOR
+        else
+            return DARK_FADED_TEXT_COLOR
+        end
     end
 
     def self.systemFrameName
         frameName = "Graphics/Windowskins/" + Settings::MENU_WINDOWSKINS[$PokemonSystem.frame]
-        frameName += "_dark" if $PokemonSystem.dark_mode == 0
+        frameName += "_dark" if darkMode?
         return frameName
     end
 
     def self.speechFrameName
         frameName = "Graphics/Windowskins/" + Settings::SPEECH_WINDOWSKINS[$PokemonSystem.textskin]
-        frameName += "_dark" if $PokemonSystem.dark_mode == 0
+        frameName += "_dark" if darkMode?
         return frameName
     end
 

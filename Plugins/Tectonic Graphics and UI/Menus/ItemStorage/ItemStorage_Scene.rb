@@ -19,7 +19,7 @@ class ItemStorage_Scene
       @sprites = {}
       @sprites["background"] = IconSprite.new(0,0,@viewport)
       bg_path = "Graphics/Pictures/pcItembg"
-      bg_path += "_dark" if $PokemonSystem.dark_mode == 0
+      bg_path += "_dark" if darkMode?
       @sprites["background"].setBitmap(bg_path)
       @sprites["icon"] = ItemIconSprite.new(50,334,nil,@viewport)
       # Item list

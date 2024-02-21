@@ -22,7 +22,7 @@ class NewDexNav
 	# Set up all the sprites
 	@sprites["background"] = IconSprite.new(0,0,@viewport1)
 	bg_path = "Graphics/Pictures/Pokedex/dexnav"
-	bg_path += "_dark" if $PokemonSystem.dark_mode == 0
+	bg_path += "_dark" if darkMode?
 	@sprites["background"].setBitmap(_INTL(bg_path))
 	
 	@sprites["overlay"] = BitmapSprite.new(Graphics.width,Graphics.height,@viewport1)
@@ -305,9 +305,9 @@ class NewDexNav
   def drawInformation()
 	overlay = @sprites["overlay"].bitmap
 	
-	base       = $PokemonSystem.dark_mode == 0 ? Color.new(248, 248, 248) : Color.new(88, 88, 80)
-	faded_base = $PokemonSystem.dark_mode == 0 ? Color.new(145,145,145) : Color.new(110,110,110)
-    shadow     = $PokemonSystem.dark_mode == 0 ? Color.new(0,0,0) : Color.new(168, 184, 184)
+	base       = MessageConfig.pbDefaultTextMainColor
+	faded_base = MessageConfig.pbDefaultFadedTextColor
+    shadow     = MessageConfig.pbDefaultTextShadowColor
 	
 	xLeft = 40
 	textpos = [[_INTL("DexNav: #{$game_map.name}"),40,-4,0,Color.new(248, 248, 248),Color.new(0, 0, 0)]]
