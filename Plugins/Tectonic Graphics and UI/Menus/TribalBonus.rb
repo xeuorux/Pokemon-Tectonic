@@ -91,11 +91,11 @@ class TribalBonusScene
 
         pbFadeInAndShow(@sprites) { pbUpdate }
 
-        @base   = $PokemonSystem.dark_mode == 0 ? Color.new(248, 248, 248) : Color.new(88,88,88)
-        @shadow = $PokemonSystem.dark_mode == 0 ? Color.new(104, 104, 104) : Color.new(168,184,184)
+        @base   = MessageConfig.pbDefaultTextMainColor
+        @shadow = MessageConfig.pbDefaultTextShadowColor
 
-        @titlebase = Color.new(219, 240, 240)
-        @titleshadow   = Color.new(88, 88, 80)
+        @titlebase = MessageConfig::LIGHT_TEXT_MAIN_COLOR
+        @titleshadow = MessageConfig::LIGHT_TEXT_SHADOW_COLOR
         
         drawPage()
     end
