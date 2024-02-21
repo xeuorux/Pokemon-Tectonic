@@ -947,8 +947,8 @@ class PokemonStorageScene
             return
         end
         @sprites["pokemon"].visible = true
-        base   = $PokemonSystem.dark_mode == 0 ? Color.new(248, 248, 248) : Color.new(88, 88, 80)
-        shadow = $PokemonSystem.dark_mode == 0 ? Color.new(80, 80, 80) : Color.new(168, 184, 184)
+        base   = MessageConfig.pbDefaultTextMainColor
+        shadow = MessageConfig.pbDefaultTextShadowColor
         nonbase   = Color.new(208, 208, 208)
         nonshadow = Color.new(224, 224, 224)
         pokename = pokemon.name
