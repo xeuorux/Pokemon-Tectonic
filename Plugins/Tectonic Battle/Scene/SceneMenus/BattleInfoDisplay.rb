@@ -96,7 +96,7 @@ class BattleInfoDisplay < SpriteWrapper
             textToDraw.push([b.name, battlerNameX, yPos + battlerNameOffset, 0, base, shadow])
             cursorX = @selected == battlerIndex ? @statusCursorBitmap.width / 2 : 0
             bitmap.blt(battlerCursorX, yPos, @statusCursorBitmap.bitmap,
-  				Rect.new(cursorX, 0, @statusCursorBitmap.width / 2, @statusCursorBitmap.height))
+  				Rect.new(cursorX, 0, @statusCursorBitmap.width / 2, @statusCursorBitmap.height / 2))
             # if @turnOrder.key?(b.index)
             #     turnDescription = _INTL("# {1}", @turnOrder[b.index].to_s)
             #     textToDraw.push([turnDescription, battlerCursorX + 140, yPos + 4, 0, base,
@@ -114,7 +114,7 @@ class BattleInfoDisplay < SpriteWrapper
             textToDraw.push([b.name, battlerNameX, yPos + battlerNameOffset, 0, base, shadow])
             cursorX = @selected == battlerIndex ? @statusCursorBitmap.width / 2 : 0
             bitmap.blt(battlerCursorX, yPos, @statusCursorBitmap.bitmap,
-  				Rect.new(cursorX, 0, @statusCursorBitmap.width / 2, @statusCursorBitmap.height))
+  				Rect.new(cursorX, @statusCursorBitmap.height / 2, @statusCursorBitmap.width / 2, @statusCursorBitmap.height / 2))
             # if @turnOrder.key?(b.index)
             #     turnDescription = _INTL("# {1}", @turnOrder[b.index].to_s)
             #     textToDraw.push([turnDescription, battlerCursorX + 140, yPos + 4, 0, base,
