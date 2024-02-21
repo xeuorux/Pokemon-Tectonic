@@ -2,14 +2,6 @@
 # Bag visuals
 #===============================================================================
 class PokemonBag_Scene
-    ITEMLISTBASECOLOR     = Color.new(88,88,80)
-    ITEMLISTSHADOWCOLOR   = Color.new(168,184,184)
-    ITEMLISTBASECOLOR_DARK     = Color.new(248,248,248)
-    ITEMLISTSHADOWCOLOR_DARK   = Color.new(0,0,0)
-    ITEMTEXTBASECOLOR     = Color.new(248,248,248)
-    ITEMTEXTSHADOWCOLOR   = Color.new(0,0,0)
-    POCKETNAMEBASECOLOR   = Color.new(88,88,80)
-    POCKETNAMESHADOWCOLOR = Color.new(168,184,184)
     ITEMSVISIBLE          = 7
   
     def pbUpdate
@@ -73,13 +65,13 @@ class PokemonBag_Scene
       @sprites["itemlist"].viewport    = @viewport
       @sprites["itemlist"].pocket      = lastpocket
       @sprites["itemlist"].index       = @bag.getChoice(lastpocket)
-      @sprites["itemlist"].baseColor   = $PokemonSystem.dark_mode == 0 ? ITEMLISTBASECOLOR_DARK : ITEMLISTBASECOLOR
-      @sprites["itemlist"].shadowColor = $PokemonSystem.dark_mode == 0 ? ITEMLISTSHADOWCOLOR_DARK : ITEMLISTSHADOWCOLOR
+      @sprites["itemlist"].baseColor   = MessageConfig.pbDefaultTextMainColor
+      @sprites["itemlist"].shadowColor = MessageConfig.pbDefaultTextShadowColor
       @sprites["itemicon"] = ItemIconSprite.new(48,Graphics.height-48,nil,@viewport)
       @sprites["itemtext"] = Window_UnformattedTextPokemon.newWithSize("",
          72, 270, Graphics.width - 72 - 24, 128, @viewport)
-      @sprites["itemtext"].baseColor   = ITEMTEXTBASECOLOR
-      @sprites["itemtext"].shadowColor = ITEMTEXTSHADOWCOLOR
+      @sprites["itemtext"].baseColor   = MessageConfig::LIGHT_TEXT_MAIN_COLOR
+      @sprites["itemtext"].shadowColor = MessageConfig::LIGHT_TEXT_SHADOW_COLOR
       @sprites["itemtext"].visible     = true
       @sprites["itemtext"].windowskin  = nil
       @sprites["helpwindow"] = Window_UnformattedTextPokemon.new("")
@@ -164,7 +156,7 @@ class PokemonBag_Scene
       overlay.clear
       # Draw the pocket name
       pbDrawTextPositions(overlay,[
-         [PokemonBag.pocketNames[@bag.lastpocket],94,176,2,POCKETNAMEBASECOLOR,POCKETNAMESHADOWCOLOR]
+         [PokemonBag.pocketNames[@bag.lastpocket],94,176,2,MessageConfig::DARK_TEXT_MAIN_COLOR,MessageConfig::DARK_TEXT_SHADOW_COLOR]
       ])
       # Draw slider arrows
       showslider = false
