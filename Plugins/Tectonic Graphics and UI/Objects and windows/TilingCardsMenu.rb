@@ -4,9 +4,6 @@
 class TilingCardsMenu_Scene
 	INACTIVE_BUTTON_COLOR = Color.new(80, 80, 80, 80)
 
-	BASE_TEXT_COLOR         = Color.new(60,60,60)
-  	SHADOW_TEXT_COLOR       = Color.new(200,200,200)
-
 	INACTIVE_BASE_TEXT_COLOR = Color.new(105,105,105)
 	INACTIVE_SHADOW_TEXT_COLOR = Color.new(130,130,130)
 
@@ -26,7 +23,9 @@ class TilingCardsMenu_Scene
 		return _INTL("Graphics/Pictures/Pause/cursor_pause")
 	end
 	def tileFileLocation
-		return _INTL("Graphics/Pictures/Pause/pause_menu_tile")
+		path = "Graphics/Pictures/Pause/pause_menu_tile"
+		path += "_dark" if $PokemonSystem.dark_mode == 0
+		return _INTL(path)
 	end
 	def backgroundFadeFileLocation
 		return _INTL("Graphics/Pictures/Pause/background_fade")
@@ -158,7 +157,10 @@ class TilingCardsMenu_Scene
 	end
   
 	def drawButtons
+		# reload the tile bitmap so that dark mode changes are updated. there's gotta be a better way
+		@tileBitmap = AnimatedBitmap.new(tileFileLocation)
 		@tiles.each_pair do |buttonID, tileSprite|
+			@sprites["button_#{buttonID.to_s}"].bitmap = @tileBitmap.bitmap
 			next if buttonActive?(buttonID)
 			tileSprite.color =  INACTIVE_BUTTON_COLOR
 		end
@@ -168,9 +170,9 @@ class TilingCardsMenu_Scene
 			label = @cardButtons[buttonID][:label] || "ERROR"
 			x = xFromIndex(index) + 8
 			y = yFromIndex(index) + @tileBitmap.bitmap.height / 2 - 20
-			if buttonActive?(buttonID)
-				baseColor = BASE_TEXT_COLOR
-				shadowColor = SHADOW_TEXT_COLOR
+			if buttonActive?(buttonID) 
+				baseColor = MessageConfig.pbDefaultTextMainColor
+				shadowColor = MessageConfig.pbDefaultTextShadowColor
 			else
 				baseColor = INACTIVE_BASE_TEXT_COLOR
 				shadowColor = INACTIVE_SHADOW_TEXT_COLOR

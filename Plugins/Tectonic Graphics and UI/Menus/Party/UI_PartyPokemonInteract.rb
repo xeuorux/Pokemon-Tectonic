@@ -6,7 +6,9 @@ class TilingCardsPokemonMenu_Scene < TilingCardsMenu_Scene
 	end
 
 	def tileFileLocation
-		return _INTL("Graphics/Pictures/Party/pokemon_menu_tile")
+		path = "Graphics/Pictures/Party/pokemon_menu_tile"
+		path += "_dark" if $PokemonSystem.dark_mode == 0
+		return _INTL(path)
 	end
 
 	def backgroundFadeFileLocation

@@ -29,7 +29,9 @@ class PokemonMart_Scene
       @adapter = adapter
       @sprites = {}
       @sprites["background"] = IconSprite.new(0, 0, @viewport)
-      @sprites["background"].setBitmap("Graphics/Pictures/martScreen")
+      bg_path = "Graphics/Pictures/martScreen"
+      bg_path += "_dark" if $PokemonSystem.dark_mode == 0
+      @sprites["background"].setBitmap(bg_path)
       @sprites["icon"] = ItemIconSprite.new(36, Graphics.height - 50, nil, @viewport)
       winAdapter = buying ? BuyAdapter.new(adapter) : SellAdapter.new(adapter)
       @sprites["itemwindow"] = Window_PokemonMart.new(stock, winAdapter,
@@ -50,15 +52,17 @@ class PokemonMart_Scene
       pbBottomLeftLines(@sprites["helpwindow"], 1)
       @sprites["moneywindow"] = Window_AdvancedTextPokemon.new("")
       pbPrepareWindow(@sprites["moneywindow"])
-      @sprites["moneywindow"].setSkin("Graphics/Windowskins/goldskin")
+      skin_path = "Graphics/Windowskins/goldskin"
+      skin_path += "_dark" if $PokemonSystem.dark_mode == 0
+      @sprites["moneywindow"].setSkin(skin_path)
       @sprites["moneywindow"].visible = true
       @sprites["moneywindow"].viewport = @viewport
       @sprites["moneywindow"].x = 0
       @sprites["moneywindow"].y = 0
       @sprites["moneywindow"].width = 190
       @sprites["moneywindow"].height = @adapter.moneyOnNewLine? ? 96 : 64
-      @sprites["moneywindow"].baseColor = Color.new(88, 88, 80)
-      @sprites["moneywindow"].shadowColor = Color.new(168, 184, 184)
+      @sprites["moneywindow"].baseColor = MessageConfig.pbDefaultTextMainColor
+      @sprites["moneywindow"].shadowColor = MessageConfig.pbDefaultTextShadowColor
       pbDeactivateWindows(@sprites)
       @buying = buying
       pbRefresh
@@ -101,15 +105,17 @@ class PokemonMart_Scene
       pbBottomLeftLines(@sprites["helpwindow"], 1)
       @sprites["moneywindow"] = Window_AdvancedTextPokemon.new("")
       pbPrepareWindow(@sprites["moneywindow"])
-      @sprites["moneywindow"].setSkin("Graphics/Windowskins/goldskin")
+      skin_path = "Graphics/Windowskins/goldskin"
+      skin_path += "_dark" if $PokemonSystem.dark_mode == 0
+      @sprites["moneywindow"].setSkin(skin_path)
       @sprites["moneywindow"].visible = false
       @sprites["moneywindow"].viewport = @viewport
       @sprites["moneywindow"].x = 0
       @sprites["moneywindow"].y = 0
       @sprites["moneywindow"].width = 186
       @sprites["moneywindow"].height = 96
-      @sprites["moneywindow"].baseColor = Color.new(88, 88, 80)
-      @sprites["moneywindow"].shadowColor = Color.new(168, 184, 184)
+      @sprites["moneywindow"].baseColor = MessageConfig.pbDefaultTextMainColor
+      @sprites["moneywindow"].shadowColor = MessageConfig.pbDefaultTextShadowColor
       pbDeactivateWindows(@sprites)
       @buying = false
       pbRefresh

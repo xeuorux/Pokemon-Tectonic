@@ -1,17 +1,23 @@
 module MoveInfoDisplay
-    # Text colours of PP of selected move
+    # Text colours of PP of selected 
     PP_COLORS = [
        Color.new(248,72,72),Color.new(136,48,48),    # Red, zero PP
        Color.new(248,136,32),Color.new(144,72,24),   # Orange, 1/4 of total PP or less
        Color.new(248,192,0),Color.new(144,104,0),    # Yellow, 1/2 of total PP or less
-       Color.new(80, 80, 88),Color.new(160, 160, 168)       # Black, more than 1/2 of total PP
+       Color.new(80,80,88),Color.new(160,160,168)    # Black, more than 1/2 of total PP
     ]
+    PP_COLORS_DARK = [
+      Color.new(248,72,72),Color.new(136,48,48),    # Red, zero PP
+      Color.new(248,136,32),Color.new(144,72,24),   # Orange, 1/4 of total PP or less
+      Color.new(248,192,0),Color.new(144,104,0),    # Yellow, 1/2 of total PP or less
+      Color.new(248,248,248),Color.new(104,104,104) # White, more than 1/2 of total PP
+   ]
 
     def writeMoveInfoToInfoOverlay3x3(overlay,move)
         moveData = GameData::Move.get(move.id)
 
-        base = Color.new(64, 64, 64)
-        shadow = Color.new(176, 176, 176)
+        base   = $PokemonSystem.dark_mode == 0 ? Color.new(248, 248, 248) : Color.new(64, 64, 64)
+        shadow = $PokemonSystem.dark_mode == 0 ? Color.new(104, 104, 104) : Color.new(176, 176, 176)
 
         overlay.clear
               
@@ -49,9 +55,9 @@ module MoveInfoDisplay
           ]
         )
         
-        base = Color.new(64,64,64)
-        faded_base = Color.new(110,110,110)
-        shadow = Color.new(176,176,176)
+        base       = $PokemonSystem.dark_mode == 0 ? Color.new(248, 248, 248) : Color.new(64, 64, 64)
+        faded_base = $PokemonSystem.dark_mode == 0 ? Color.new(145, 145, 145) : Color.new(110, 110, 110)
+        shadow     = $PokemonSystem.dark_mode == 0 ? Color.new(104, 104, 104) : Color.new(176, 176, 176)
         moveInfoColumn1ValueX = moveInfoColumn1LabelX + 134
         moveInfoColumn2ValueX = moveInfoColumn2LabelX + 134 - 40
         moveInfoColumn3ValueX = moveInfoColumn3LabelX + 134
@@ -80,7 +86,8 @@ module MoveInfoDisplay
         # PP
         if moveData.total_pp > 0
           ppFraction = [(4.0*move.pp/move.total_pp).ceil,3].min
-          textpos.push([_INTL("{1}/{2}",move.pp,move.total_pp),moveInfoColumn2ValueX, 32, 2, PP_COLORS[ppFraction*2], PP_COLORS[ppFraction*2+1]])
+          color_map = $PokemonSystem.dark_mode == 0 ? PP_COLORS_DARK : PP_COLORS
+          textpos.push([_INTL("{1}/{2}",move.pp,move.total_pp),moveInfoColumn2ValueX, 32, 2, color_map[ppFraction*2], color_map[ppFraction*2+1]])
         else
           textpos.push(["---", moveInfoColumn2ValueX, 32, 2, faded_base, shadow])
         end
@@ -102,7 +109,7 @@ module MoveInfoDisplay
         targetingGraphicRow1Y = 38
         targetingGraphicRow2Y = targetingGraphicRow1Y + 26
       
-        targetableColor = Color.new(120,5,5)
+        targetableColor = $PokemonSystem.dark_mode == 0 ? Color.new(240,5,5) : Color.new(120,5,5)
         untargetableColor = faded_base
       
         # Foes

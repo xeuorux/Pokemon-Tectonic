@@ -9,7 +9,9 @@ class TribalBonusScene
 
         # Set up all the sprites
         @sprites["background"] = IconSprite.new(0,0,@viewport1)
-        @sprites["background"].setBitmap(_INTL("Graphics/Pictures/bg_tribes"))
+        bg_path = "Graphics/Pictures/bg_tribes"
+        bg_path += "_dark" if $PokemonSystem.dark_mode == 0
+        @sprites["background"].setBitmap(_INTL(bg_path))
 
         @sprites["overlay"] = BitmapSprite.new(Graphics.width,Graphics.height,@viewport1)
         pbSetSystemFont(@sprites["overlay"].bitmap)
@@ -89,11 +91,11 @@ class TribalBonusScene
 
         pbFadeInAndShow(@sprites) { pbUpdate }
 
-        @base = Color.new(88,88,88)
-        @shadow = Color.new(168,184,184)
+        @base   = MessageConfig.pbDefaultTextMainColor
+        @shadow = MessageConfig.pbDefaultTextShadowColor
 
-        @titlebase = Color.new(219, 240, 240)
-        @titleshadow   = Color.new(88, 88, 80)
+        @titlebase = MessageConfig::LIGHT_TEXT_MAIN_COLOR
+        @titleshadow = MessageConfig::LIGHT_TEXT_SHADOW_COLOR
         
         drawPage()
     end

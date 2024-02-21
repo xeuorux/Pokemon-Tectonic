@@ -25,13 +25,17 @@ class MoveLearner_Scene
       @viewport=Viewport.new(0,0,Graphics.width,Graphics.height)
       @viewport.z=99999
       @sprites={}
-      addBackgroundPlane(@sprites,"bg","reminderbg",@viewport)
+      bg_path = "reminderbg"
+      bg_path += "_dark" if $PokemonSystem.dark_mode == 0
+      addBackgroundPlane(@sprites,"bg",bg_path,@viewport)
       @sprites["pokeicon"]=PokemonIconSprite.new(@pokemon,@viewport)
       @sprites["pokeicon"].setOffset(PictureOrigin::Center)
       @sprites["pokeicon"].x=320
       @sprites["pokeicon"].y=84
       @sprites["background"]=IconSprite.new(0,0,@viewport)
-      @sprites["background"].setBitmap("Graphics/Pictures/reminderSel")
+      sel_path = "Graphics/Pictures/reminderSel"
+      sel_path += "_dark" if $PokemonSystem.dark_mode == 0
+      @sprites["background"].setBitmap(sel_path)
       @sprites["background"].y=78
       @sprites["background"].src_rect=Rect.new(0,72,258,72)
       @sprites["overlay"]=BitmapSprite.new(Graphics.width,Graphics.height,@viewport)
@@ -62,25 +66,28 @@ class MoveLearner_Scene
         overlay.blt(366,70,@typebitmap.bitmap,type1rect)
         overlay.blt(436,70,@typebitmap.bitmap,type2rect)
       end
+      title_base = MessageConfig::DARK_TEXT_MAIN_COLOR
+      title_shadow = MessageConfig::DARK_TEXT_SHADOW_COLOR
       textpos=[
-         [_INTL("Teach which move?"),16,2,0,Color.new(88,88,80),Color.new(168,184,184)]
+         [_INTL("Teach which move?"),16,2,0,title_base,title_shadow]
       ]
       imagepos=[]
       yPos=76
+      base = MessageConfig.pbDefaultTextMainColor
+      shadow = MessageConfig.pbDefaultTextShadowColor
       for i in 0...VISIBLEMOVES
         moveobject=@moves[@sprites["commands"].top_item+i]
         if moveobject
           moveData=GameData::Move.get(moveobject)
           type_number = GameData::Type.get(moveData.type).id_number
           imagepos.push(["Graphics/Pictures/types", 12, yPos + 8, 0, type_number * 28, 64, 28])
-          textpos.push([moveData.name,80,yPos,0,Color.new(248,248,248),Color.new(0,0,0)])
+          textpos.push([moveData.name,80,yPos,0,base,shadow])
           if moveData.total_pp>0
-            textpos.push([_INTL("PP"),112,yPos+32,0,Color.new(64,64,64),Color.new(176,176,176)])
-            textpos.push([_INTL("{1}/{1}",moveData.total_pp),230,yPos+32,1,
-               Color.new(64,64,64),Color.new(176,176,176)])
+            textpos.push([_INTL("PP"),112,yPos+32,0,base,shadow])
+            textpos.push([_INTL("{1}/{1}",moveData.total_pp),230,yPos+32,1,base,shadow])
           else
-            textpos.push(["-",80,yPos,0,Color.new(64,64,64),Color.new(176,176,176)])
-            textpos.push(["--",228,yPos+32,1,Color.new(64,64,64),Color.new(176,176,176)])
+            textpos.push(["-",80,yPos,0,base,shadow])
+            textpos.push(["--",228,yPos+32,1,base,shadow])
           end
         end
         yPos+=64
@@ -92,13 +99,13 @@ class MoveLearner_Scene
       basedamage=selMoveData.base_damage
       category=selMoveData.category
       accuracy=selMoveData.accuracy
-      textpos.push([_INTL("CATEGORY"),272,108,0,Color.new(248,248,248),Color.new(0,0,0)])
-      textpos.push([_INTL("POWER"),272,140,0,Color.new(248,248,248),Color.new(0,0,0)])
+      textpos.push([_INTL("CATEGORY"),272,108,0,base,shadow])
+      textpos.push([_INTL("POWER"),272,140,0,base,shadow])
       textpos.push([basedamage<=1 ? basedamage==1 ? "???" : "---" : sprintf("%d",basedamage),
-            468,140,2,Color.new(64,64,64),Color.new(176,176,176)])
-      textpos.push([_INTL("ACCURACY"),272,172,0,Color.new(248,248,248),Color.new(0,0,0)])
+            468,140,2,base,shadow])
+      textpos.push([_INTL("ACCURACY"),272,172,0,base,shadow])
       textpos.push([accuracy==0 ? "---" : "#{accuracy}%",
-            468,172,2,Color.new(64,64,64),Color.new(176,176,176)])
+            468,172,2,base,shadow])
       pbDrawTextPositions(overlay,textpos)
       imagepos.push(["Graphics/Pictures/category",436,116,0,category*28,64,28])
       if @sprites["commands"].index<@moves.length-1
@@ -109,7 +116,7 @@ class MoveLearner_Scene
       end
       pbDrawImagePositions(overlay,imagepos)
       drawTextEx(overlay,272,214,230,5,selMoveData.description,
-         Color.new(64,64,64),Color.new(176,176,176))
+      base,shadow)
     end
   
     # Processes the scene

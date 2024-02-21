@@ -19,8 +19,12 @@ class BattleInfoDisplay < SpriteWrapper
         @selected	= 0
         @individual = nil
         @field	= false
-        @battleInfoMain	= AnimatedBitmap.new("Graphics/Pictures/Battle/battle_info_main")
-        @battleInfoIndividual	= AnimatedBitmap.new("Graphics/Pictures/Battle/battle_info_individual")
+        main_path = "Graphics/Pictures/Battle/battle_info_main"
+        main_path += "_dark" if $PokemonSystem.dark_mode == 0
+        @battleInfoMain	= AnimatedBitmap.new(main_path)
+        individual_path = "Graphics/Pictures/Battle/battle_info_individual"
+        individual_path += "_dark" if $PokemonSystem.dark_mode == 0
+        @battleInfoIndividual	= AnimatedBitmap.new(individual_path)
         @backgroundBitmap = @battleInfoMain
         @statusCursorBitmap	= AnimatedBitmap.new("Graphics/Pictures/Battle/cursor_status")
 
@@ -68,9 +72,9 @@ class BattleInfoDisplay < SpriteWrapper
     end
 
     def drawWholeBattleInfo
-        base        = MessageConfig::DARK_TEXT_MAIN_COLOR
-        shadow      = MessageConfig::DARK_TEXT_SHADOW_COLOR
-        lightBase   = MessageConfig::LIGHT_TEXT_MAIN_COLOR
+        base        = MessageConfig.pbDefaultTextMainColor
+        shadow      = MessageConfig.pbDefaultTextShadowColor
+        lightBase   = MessageConfig::LIGHT_TEXT_MAIN_COLOR # we want light text to stay light regardless of mode
         lightShadow = MessageConfig::LIGHT_TEXT_SHADOW_COLOR
 
         textToDraw = []
@@ -214,8 +218,8 @@ class BattleInfoDisplay < SpriteWrapper
     end
 
     def drawIndividualBattlerInfo(battler)
-        base = MessageConfig::DARK_TEXT_MAIN_COLOR
-        shadow = MessageConfig::DARK_TEXT_SHADOW_COLOR
+        base = MessageConfig.pbDefaultTextMainColor
+        shadow = MessageConfig.pbDefaultTextShadowColor
 		lightBase = MessageConfig::LIGHT_TEXT_MAIN_COLOR
     	lightShadow = MessageConfig::LIGHT_TEXT_SHADOW_COLOR
         textToDraw = []

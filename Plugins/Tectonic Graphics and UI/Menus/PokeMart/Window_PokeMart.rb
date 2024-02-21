@@ -7,8 +7,8 @@ class Window_PokemonMart < Window_DrawableCommand
       @adapter     = adapter
       super(x, y, width, height, viewport)
       @selarrow    = AnimatedBitmap.new("Graphics/Pictures/martSel")
-      @baseColor   = Color.new(88,88,80)
-      @shadowColor = Color.new(168,184,184)
+      @baseColor   = $PokemonSystem.dark_mode == 0 ? Color.new(248,248,248) : Color.new(88,88,80)
+      @shadowColor = $PokemonSystem.dark_mode == 0 ? Color.new(104,104,104) : Color.new(168,184,184)
       self.windowskin = nil
     end
   

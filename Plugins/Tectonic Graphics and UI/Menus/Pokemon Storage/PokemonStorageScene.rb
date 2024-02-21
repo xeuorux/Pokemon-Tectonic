@@ -29,7 +29,9 @@ class PokemonStorageScene
         addBackgroundPlane(@sprites, "background", "Storage/bg", @bgviewport)
         @sprites["box"] = PokemonBoxSprite.new(@storage, @storage.currentBox, @boxviewport)
         @sprites["boxsides"] = IconSprite.new(0, 0, @boxsidesviewport)
-        @sprites["boxsides"].setBitmap("Graphics/Pictures/Storage/overlay_main")
+        overlay_path = "Graphics/Pictures/Storage/overlay_main"
+        overlay_path += "_dark" if $PokemonSystem.dark_mode == 0
+        @sprites["boxsides"].setBitmap(overlay_path)
         @sprites["overlay"] = BitmapSprite.new(Graphics.width, Graphics.height, @boxsidesviewport)
         pbSetSystemFont(@sprites["overlay"].bitmap)
         @sprites["pokemon"] = AutoMosaicPokemonSprite.new(@boxsidesviewport)
@@ -41,9 +43,13 @@ class PokemonStorageScene
             @sprites["boxparty"].x = 182
             @sprites["boxparty"].y = Graphics.height
         end
-        @markingbitmap = AnimatedBitmap.new("Graphics/Pictures/Storage/markings")
+        marking_path = "Graphics/Pictures/Storage/markings"
+        marking_path += "_dark" if $PokemonSystem.dark_mode == 0
+        @markingbitmap = AnimatedBitmap.new(marking_path)
         @sprites["markingbg"] = IconSprite.new(292, 68, @boxsidesviewport)
-        @sprites["markingbg"].setBitmap("Graphics/Pictures/Storage/overlay_marking")
+        markingbg_path = "Graphics/Pictures/Storage/overlay_marking"
+        markingbg_path += "_dark" if $PokemonSystem.dark_mode == 0
+        @sprites["markingbg"].setBitmap(markingbg_path)
         @sprites["markingbg"].visible = false
         @sprites["markingoverlay"] = BitmapSprite.new(Graphics.width, Graphics.height, @boxsidesviewport)
         @sprites["markingoverlay"].visible = false
@@ -941,8 +947,8 @@ class PokemonStorageScene
             return
         end
         @sprites["pokemon"].visible = true
-        base   = Color.new(88, 88, 80)
-        shadow = Color.new(168, 184, 184)
+        base   = MessageConfig.pbDefaultTextMainColor
+        shadow = MessageConfig.pbDefaultTextShadowColor
         nonbase   = Color.new(208, 208, 208)
         nonshadow = Color.new(224, 224, 224)
         pokename = pokemon.name
@@ -956,7 +962,9 @@ class PokemonStorageScene
             elsif pokemon.female?
                 textstrings.push([_INTL("♀"), 148, 2, false, Color.new(248, 56, 32), Color.new(224, 152, 144)])
             end
-            imagepos.push(["Graphics/Pictures/Storage/overlay_lv", 6, 246])
+            lv_path = "Graphics/Pictures/Storage/overlay_lv"
+            lv_path += "_dark" if $PokemonSystem.dark_mode == 0
+            imagepos.push([lv_path, 6, 246])
             textstrings.push([pokemon.level.to_s, 28, 228, false, base, shadow])
             if pokemon.ability
                 textstrings.push([pokemon.ability.name, 86, 300, 2, base, shadow])
