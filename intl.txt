@@ -3510,9 +3510,7 @@ I'll wait here until you've defeated the thing. Not much else as important as th
 Esperaré hasta que hayas derrotado esa cosa. No hay nada más importante que esto.
 Even the avatar of Zeraora couldn't stop you. You continue to impress!
 Incluso el avatar del Zeraora no pudo pararte. ¡Continúas impresionandome!
-
 [Map47]
-
 I found some of these token things in my room.
 Encontré un par de estas fichas en mi habitación.
 Now I'm foreign to Makya, but I can tell when I've got something valuable.
@@ -3553,8 +3551,7 @@ My parents are going to kill me.
 Mis padres van a matarme.
 I brought back a non-Native Pokemon from my trip to Unova.
 Traje un Pokémon no nativo desde mi viaje a Unova.
-It's a Heatmor, and it always looks like it wants to 
-burn something.
+It's a Heatmor, and it always looks like it wants to burn something.
 Es un Heatmor, y siempre parece que quiere quemar algo.
 I'm honestly worried about my health.
 Honestamente estoy preocupado por mi salud.
@@ -47040,34 +47037,6 @@ todas las especies en #{routeName}
 #{threshold} especies tipo #{typeName}
 The previous save file has been backed up.\wtnp[30]
 El archivo de guardado anterior fue respaldado.\wtnp[30]
-when leveled up while it has high happiness
-cuando es subido de nivel mientras tiene amistad alta
-when leveled up while it has maximum happiness
-cuando es subido de nivel mientras tiene la amistad máxima
-when leveled up while it has maximum beauty
-cuando es subido de nivel mientras tiene la belleza máxima
-when leveled up while it knows the move #{GameData::Move.get(parameter).real_name}
-cuando es subido de nivel mientras conoce #{GameData::Move.get(parameter).real_name}
-when leveled up while it knows a move of the #{GameData::Move.get(parameter).real_name} type
-cuando es subido de nivel mientras conoce un movimiento de tipo #{GameData::Move.get(parameter).real_name} 
-when leveled up near a special location
-cuando es subido de nivel cerca de una localización especial
-when a #{GameData::Item.get(parameter).real_name} is used on it
-cuando #{GameData::Item.get(parameter).real_name} es usado en él
-when a #{GameData::Item.get(parameter).real_name} is used on it if it's male
-cuando una #{GameData::Item.get(parameter).real_name} es usada en él si es macho
-when a #{GameData::Item.get(parameter).real_name} is used on it if it's female
-cuando una #{GameData::Item.get(parameter).real_name} es usada en ella si es hembra
-when traded
-cuando es intercambiado
-when traded holding an #{GameData::Item.get(parameter).real_name}
-cuando es intercambiado sosteniendo #{GameData::Item.get(parameter).real_name}
-when leveled up while a #{GameData::Species.get(parameter).name} is also in the party
-cuando es subido de nivel mientras un #{GameData::Species.get(parameter).name} está también en el equipo.
-also if you have an empty pokeball and party slot
-también si tienes una poké ball y un espacio de equipo vacío
-when a #{GameData::Item.get(:ORIGINORE).real_name} is used on it at level #{parameter}
-cuando un #{GameData::Item.get(:ORIGINORE).real_name} es usado al nivel #{parameter}
 Tribes:
 Clanes:
 Weak:
@@ -51824,16 +51793,44 @@ Oh Euforia Agonal, Perdónanos y No a Nuestras Agonías
 Tarjeta de #{$Trainer.name}
 Controls
 Controles
-when a #{GameData::Item.get(parameter).name} is used on it
-cuando #{GameData::Item.get(parameter).name} es usada en él
-when a #{GameData::Item.get(:ORIGINORE).name} is used on it at level #{parameter}
-cuando #{GameData::Item.get(:ORIGINORE).name} es usada al #{parameter}
-at level #{parameter}
-al nivel #{parameter}
-at level #{parameter} if it has the first of its possible abilities
-al nivel #{parameter} si tiene la primera de sus posibles habilidades
-at level #{parameter} if it has the second of its possible abilities
-al nivel #{parameter} si tiene la segunda de sus posibles habilidades
+when a {1} is used on it
+cuando {1} es usada en él
+when a {1} is used on it at level {2}
+cuando {1} es usada al nivel {2}
+at level {1}
+al nivel {1}
+at level {1} if it has the first of its possible abilities
+al nivel {1} si tiene la primera de sus posibles habilidades
+at level {1} if it has the second of its possible abilities
+al nivel {1} si tiene la segunda de sus posibles habilidades
+when leveled up while it has high happiness
+cuando es subido de nivel mientras tiene amistad alta
+when leveled up while it has maximum happiness
+cuando es subido de nivel mientras tiene la amistad máxima
+when leveled up while it has maximum beauty
+cuando es subido de nivel mientras tiene la belleza máxima
+when leveled up while it knows the move {1}
+cuando es subido de nivel mientras conoce {1}
+when leveled up while it knows a move of the {1} type
+cuando es subido de nivel mientras conoce un movimiento de tipo {1} 
+when leveled up near a special location
+cuando es subido de nivel cerca de una localización especial
+when a {1} is used on it
+cuando {1} es usado en él
+when a {1} is used on it if it's male
+cuando una {1} es usada en él si es macho
+when a {1} is used on it if it's female
+cuando una {1} es usada en ella si es hembra
+when traded
+cuando es intercambiado
+when traded holding an {1}
+cuando es intercambiado sosteniendo {1}
+when leveled up while a {1} is also in the party
+cuando es subido de nivel mientras un {1} está también en el equipo.
+also if you have an empty pokeball and party slot
+también si tienes una poké ball y un espacio de equipo vacío
+when a {1} is used on it at level {1}
+cuando un {1} es usado al nivel {1}
 Type Chart
 Tabla de Tipos
 Psychic vs Steel
