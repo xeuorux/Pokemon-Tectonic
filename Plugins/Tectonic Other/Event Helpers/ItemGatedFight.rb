@@ -1,24 +1,24 @@
 def itemGatedFight(itemID,regularBattleIntroText,itemGateIntroText,requestItemText,confirmGiveText,declineGiveText,lackingItemText)
     if getMySwitch("B")
         noticePlayer
-        pbMessage(_INTL(regularBattleIntroText))
+        pbMessage(regularBattleIntroText)
     else
         showExclamation
         pbWait(20)
-        pbMessage(_INTL(itemGateIntroText))
+        pbMessage(itemGateIntroText)
         if pbHasItem?(itemID)
             if pbConfirmMessage(requestItemText)
                 pbDeleteItem(itemID)
-                pbMessage(_INTL(confirmGiveText))
+                pbMessage(confirmGiveText)
                 setMySwitch("B")
             else
-                pbMessage(_INTL(declineGiveText))
+                pbMessage(declineGiveText)
                 forcePlayerBackwards
                 get_self.direction = get_self.original_direction
                 command_end # exit event processing
             end
         else
-            pbMessage(_INTL(lackingItemText))
+            pbMessage(lackingItemText)
             forcePlayerBackwards
             get_self.direction = get_self.original_direction
             command_end # exit event processing
