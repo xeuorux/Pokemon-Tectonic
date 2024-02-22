@@ -51789,8 +51789,8 @@ Thy Inimitability, Incapable Imposture. My Immanence, Inconceivable Immaculacy.
 Su Inimitabilidad, Impostura Incompetente. Mi Inmanencia, Inmaculación Inconcebible.
 O Agonal Ecstasies, Spare Us Not Our Agonies
 Oh Euforia Agonal, Perdónanos y No a Nuestras Agonías
-#{$Trainer.name}'s Card
-Tarjeta de #{$Trainer.name}
+{1}'s Card
+Tarjeta de {1}
 Controls
 Controles
 when a {1} is used on it

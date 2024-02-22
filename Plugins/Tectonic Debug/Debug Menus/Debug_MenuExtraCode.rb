@@ -554,6 +554,7 @@ def pbCompileTextUI
         pbMessageDisplay(msgwindow, _INTL("Failed to compile text: {1}", $!.message))
     end
     pbDisposeMessageWindow(msgwindow)
+    loadLanguage
 end
 
 #===============================================================================
