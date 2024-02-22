@@ -13,7 +13,7 @@ class TribeSplashBar < SpriteWrapper
       @tribeName = nil
       @trainerName = nil
       # Create sprite wrapper that displays background graphic
-      @bgBitmap = AnimatedBitmap.new(_INTL("Graphics/Pictures/Battle/tribal_bar"))
+      @bgBitmap = AnimatedBitmap.new(addLanguageSuffix(("Graphics/Pictures/Battle/tribal_bar")))
       @bgSprite = SpriteWrapper.new(viewport)
       @bgSprite.bitmap = @bgBitmap.bitmap
       @bgSprite.src_rect.y      = (side==0) ? 0 : @bgBitmap.height/2

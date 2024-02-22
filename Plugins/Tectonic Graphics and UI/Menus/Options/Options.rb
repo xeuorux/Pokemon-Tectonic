@@ -852,10 +852,6 @@ class PokemonOption_Scene
     end
 end
 
-def loadLanguage
-    pbLoadMessages('Data/' + Settings::LANGUAGES[$PokemonSystem.language][1])
-end
-
 class PokemonOptionMenu < PokemonPauseMenu
 	def pbStartPokemonMenu
 		if !$Trainer

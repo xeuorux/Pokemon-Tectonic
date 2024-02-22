@@ -2,7 +2,7 @@ class TilingCardsPokemonMenu_Scene < TilingCardsMenu_Scene
 	attr_reader :party
 
     def cursorFileLocation
-		return _INTL("Graphics/Pictures/Party/cursor_pokemon")
+		return addLanguageSuffix(("Graphics/Pictures/Party/cursor_pokemon"))
 	end
 
 	def tileFileLocation
@@ -12,7 +12,7 @@ class TilingCardsPokemonMenu_Scene < TilingCardsMenu_Scene
 	end
 
 	def backgroundFadeFileLocation
-		return _INTL("Graphics/Pictures/Party/background_fade")
+		return addLanguageSuffix(("Graphics/Pictures/Party/background_fade"))
 	end
   
     def initialize(pkmnid,party,summaryScene)

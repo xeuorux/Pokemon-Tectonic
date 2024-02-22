@@ -31,8 +31,8 @@ class TargetMenuDisplay < BattleMenuBase
 		# NOTE: @mode is for which buttons are shown as selected.
 		#       0=select 1 button (@index), 1=select all buttons with text
 		# Create bitmaps
-		@buttonBitmap = AnimatedBitmap.new(_INTL("Graphics/Pictures/Battle/cursor_target"))
-		@dexReminderBitmap 		= AnimatedBitmap.new(_INTL("Graphics/Pictures/Battle/pokedex_reminder"))
+		@buttonBitmap = AnimatedBitmap.new(addLanguageSuffix(("Graphics/Pictures/Battle/cursor_target")))
+		@dexReminderBitmap 		= AnimatedBitmap.new(addLanguageSuffix(("Graphics/Pictures/Battle/pokedex_reminder")))
 		# Create target buttons
 		@buttons = Array.new(maxIndex+1) do |i|
 		  numButtons = @sideSizes[i%2]

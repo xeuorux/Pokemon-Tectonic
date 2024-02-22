@@ -65,7 +65,7 @@ module MoveInfoDisplay
         # Column 1
         # Draw selected move's damage category icon and type icon
         imagepos = [
-          ["Graphics/Pictures/types", moveInfoColumn1ValueX - 28, 8, 0, GameData::Type.get(moveData.type).id_number * 28, 64, 28],
+          [addLanguageSuffix("Graphics/Pictures/types"), moveInfoColumn1ValueX - 28, 8, 0, GameData::Type.get(moveData.type).id_number * 28, 64, 28],
           ["Graphics/Pictures/category", moveInfoColumn1ValueX - 28, 32 + 8, 0, moveData.category * 28, 64, 28],
         ]
         pbDrawImagePositions(overlay, imagepos)

@@ -127,7 +127,7 @@ class PokemonSummary_Scene
         @battle     = battle
         @page = 1
         @forget = false
-        @typebitmap    = AnimatedBitmap.new(_INTL("Graphics/Pictures/types"))
+        @typebitmap    = AnimatedBitmap.new(addLanguageSuffix(("Graphics/Pictures/types")))
         @markingbitmap = AnimatedBitmap.new("Graphics/Pictures/Summary/markings")
         info_path = "Graphics/Pictures/move_info_display_3x3"
         info_path += "_dark" if darkMode?
@@ -206,7 +206,7 @@ class PokemonSummary_Scene
         @pokemon    = @party[@partyindex]
         @page = 4
         @forget = true
-        @typebitmap = AnimatedBitmap.new(_INTL("Graphics/Pictures/types"))
+        @typebitmap = AnimatedBitmap.new(addLanguageSuffix(("Graphics/Pictures/types")))
         info_path = "Graphics/Pictures/move_info_display_3x3"
         info_path += "_dark" if darkMode?
         @moveInfoDisplayBitmap = AnimatedBitmap.new(_INTL(info_path))
@@ -263,7 +263,7 @@ class PokemonSummary_Scene
         @pokemon    = pokemon
         @battle     = nil
         @page = 1
-        @typebitmap    = AnimatedBitmap.new("Graphics/Pictures/types")
+        @typebitmap    = AnimatedBitmap.new(addLanguageSuffix("Graphics/Pictures/types"))
         @markingbitmap = AnimatedBitmap.new("Graphics/Pictures/Summary/markings")
         @sprites = {}
         @sprites["background"] = IconSprite.new(0, 0, @viewport)

@@ -76,7 +76,7 @@ class PokemonDataBox < SpriteWrapper
 			bgFilename = "#{bgFilename}_#{@numHPBars}"
 		end
 
-		@databoxBitmap  = AnimatedBitmap.new(bgFilename)
+		@databoxBitmap  = AnimatedBitmap.new(addLanguageSuffix(bgFilename))
 
 		# Determine the co-ordinates of the data box and the left edge padding width
 		if onPlayerSide
@@ -108,9 +108,9 @@ class PokemonDataBox < SpriteWrapper
 	  
 	def initializeOtherGraphics(viewport)
 		# Create other bitmaps
-		@numbersBitmap = AnimatedBitmap.new(_INTL("Graphics/Pictures/Battle/icon_numbers_white"))
-		@hpBarBitmap   = AnimatedBitmap.new(_INTL("Graphics/Pictures/Battle/overlay_hp"))
-		@expBarBitmap  = AnimatedBitmap.new(_INTL("Graphics/Pictures/Battle/overlay_exp"))
+		@numbersBitmap = AnimatedBitmap.new(addLanguageSuffix(("Graphics/Pictures/Battle/icon_numbers_white")))
+		@hpBarBitmap   = AnimatedBitmap.new(addLanguageSuffix(("Graphics/Pictures/Battle/overlay_hp")))
+		@expBarBitmap  = AnimatedBitmap.new(addLanguageSuffix(("Graphics/Pictures/Battle/overlay_exp")))
 		typeIconFileName = @thinBox ? "Graphics/Pictures/Battle/icon_types_thin" : "Graphics/Pictures/Battle/icon_types"
 		@typeBitmap    = AnimatedBitmap.new(_INTL(typeIconFileName))
 	
@@ -356,7 +356,7 @@ class PokemonDataBox < SpriteWrapper
 		pbDrawTextPositions(self.bitmap,textPos)
 
 		# Draw Pokémon's level
-		imagePos.push(["Graphics/Pictures/Battle/overlay_lv",@spriteBaseX+140,16])
+		imagePos.push([addLanguageSuffix("Graphics/Pictures/Battle/overlay_lv"),@spriteBaseX+140,16])
 		pbDrawNumber(@battler.level,self.bitmap,@spriteBaseX+162,16)
 
 		# Draw shiny icon
@@ -396,7 +396,7 @@ class PokemonDataBox < SpriteWrapper
 		firstStatusY = 36 + (@numHPBars - 1) * 2
 		statuses = @battler.getStatuses()
 		statusID = GameData::Status.get(statuses[0]).id_number
-		imagePos.push(["Graphics/Pictures/Battle/icon_statuses",@spriteBaseX+statusX,firstStatusY,
+		imagePos.push([addLanguageSuffix("Graphics/Pictures/Battle/icon_statuses"),@spriteBaseX+statusX,firstStatusY,
 			 0,statusID*STATUS_ICON_HEIGHT,-1,STATUS_ICON_HEIGHT])
 
 		# Draw status icon for bosses
@@ -404,7 +404,7 @@ class PokemonDataBox < SpriteWrapper
 			statusID2 = GameData::Status.get(statuses[1]).id_number
 			x = @spriteBaseX + statusX
 			y = firstStatusY + STATUS_ICON_HEIGHT + 4
-			imagePos.push(["Graphics/Pictures/Battle/icon_statuses",x,y,
+			imagePos.push([addLanguageSuffix("Graphics/Pictures/Battle/icon_statuses"),x,y,
 				 0,statusID2*STATUS_ICON_HEIGHT,-1,STATUS_ICON_HEIGHT])
 		end
 

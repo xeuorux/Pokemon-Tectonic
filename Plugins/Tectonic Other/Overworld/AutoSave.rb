@@ -31,7 +31,7 @@ class AutoSaveIcon
 		viewport.z = 99999
 		@sprites = {}
 		@sprites["saveicon"] = IconSprite.new(0,0,viewport)
-		@sprites["saveicon"].setBitmap(_INTL("Graphics/Pictures/shiny"))
+		@sprites["saveicon"].setBitmap(addLanguageSuffix(("Graphics/Pictures/shiny")))
 		Graphics.update
 	end
 	

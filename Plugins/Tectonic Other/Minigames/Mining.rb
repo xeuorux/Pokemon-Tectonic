@@ -12,7 +12,7 @@ class MiningGameCounter < BitmapSprite
     @viewport.z=99999
     super(416,60,@viewport)
     @hits=0
-    @image=AnimatedBitmap.new(_INTL("Graphics/Pictures/Mining/cracks"))
+    @image=AnimatedBitmap.new(addLanguageSuffix(("Graphics/Pictures/Mining/cracks")))
     update
   end
 
@@ -48,7 +48,7 @@ class MiningGameTile < BitmapSprite
     elsif r<85; @layer = 5   # 25%
     else;       @layer = 6   # 15%
     end
-    @image=AnimatedBitmap.new(_INTL("Graphics/Pictures/Mining/tiles"))
+    @image=AnimatedBitmap.new(addLanguageSuffix(("Graphics/Pictures/Mining/tiles")))
     update
   end
 
@@ -83,9 +83,9 @@ class MiningGameCursor < BitmapSprite
     @mode     = mode
     @hit      = 0   # 0=regular, 1=hit item, 2=hit iron
     @counter  = 0
-    @cursorbitmap = AnimatedBitmap.new(_INTL("Graphics/Pictures/Mining/cursor"))
-    @toolbitmap   = AnimatedBitmap.new(_INTL("Graphics/Pictures/Mining/tools"))
-    @hitsbitmap   = AnimatedBitmap.new(_INTL("Graphics/Pictures/Mining/hits"))
+    @cursorbitmap = AnimatedBitmap.new(addLanguageSuffix(("Graphics/Pictures/Mining/cursor")))
+    @toolbitmap   = AnimatedBitmap.new(addLanguageSuffix(("Graphics/Pictures/Mining/tools")))
+    @hitsbitmap   = AnimatedBitmap.new(addLanguageSuffix(("Graphics/Pictures/Mining/hits")))
     update
   end
 
@@ -223,8 +223,8 @@ class MiningGameScene
     @viewport.z=99999
     addBackgroundPlane(@sprites,"bg","Mining/miningbg",@viewport)
     @sprites["itemlayer"]=BitmapSprite.new(Graphics.width,Graphics.height,@viewport)
-    @itembitmap=AnimatedBitmap.new(_INTL("Graphics/Pictures/Mining/items"))
-    @ironbitmap=AnimatedBitmap.new(_INTL("Graphics/Pictures/Mining/irons"))
+    @itembitmap=AnimatedBitmap.new(addLanguageSuffix(("Graphics/Pictures/Mining/items")))
+    @ironbitmap=AnimatedBitmap.new(addLanguageSuffix(("Graphics/Pictures/Mining/irons")))
     @items=[]
     @itemswon=[]
     @iron=[]

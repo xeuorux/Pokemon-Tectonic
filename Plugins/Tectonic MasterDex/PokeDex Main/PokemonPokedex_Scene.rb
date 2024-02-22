@@ -18,12 +18,12 @@ class PokemonPokedex_Scene
       generateSignaturesData() if $DEBUG
     
         @sliderbitmap       	= AnimatedBitmap.new("Graphics/Pictures/Pokedex/icon_slider")
-        @typebitmap         	= AnimatedBitmap.new(_INTL("Graphics/Pictures/Pokedex/icon_types"))
+        @typebitmap         	= AnimatedBitmap.new(addLanguageSuffix(("Graphics/Pictures/Pokedex/icon_types")))
         @shapebitmap        	= AnimatedBitmap.new("Graphics/Pictures/Pokedex/icon_shapes")
         @hwbitmap           	= AnimatedBitmap.new("Graphics/Pictures/Pokedex/icon_hw")
         @selbitmap          	= AnimatedBitmap.new("Graphics/Pictures/Pokedex/icon_searchsel")
-        @searchsliderbitmap 	= AnimatedBitmap.new(_INTL("Graphics/Pictures/Pokedex/icon_searchslider"))
-      @search2Cursorbitmap	= AnimatedBitmap.new(_INTL("Graphics/Pictures/Pokedex/cursor_search"))
+        @searchsliderbitmap 	= AnimatedBitmap.new(addLanguageSuffix(("Graphics/Pictures/Pokedex/icon_searchslider")))
+      @search2Cursorbitmap	= AnimatedBitmap.new(addLanguageSuffix(("Graphics/Pictures/Pokedex/cursor_search")))
         @sprites = {}
         @viewport = Viewport.new(0,0,Graphics.width,Graphics.height)
         @viewport.z = 99999
@@ -52,7 +52,7 @@ class PokemonPokedex_Scene
       @sprites["search2cursor"] = SpriteWrapper.new(@viewport)
       @sprites["search2cursor"].bitmap = @search2Cursorbitmap.bitmap
         @sprites["search2cursor"].visible = false
-      @searchPopupbitmap = AnimatedBitmap.new(_INTL("Graphics/Pictures/Pokedex/z_header_filled"))
+      @searchPopupbitmap = AnimatedBitmap.new(addLanguageSuffix(("Graphics/Pictures/Pokedex/z_header_filled")))
       @sprites["z_header"] = SpriteWrapper.new(@viewport)
     
       @sprites["z_header"].bitmap = @searchPopupbitmap.bitmap

@@ -239,9 +239,9 @@ end
         @panelbgsprite.addBitmap("swapsel2","Graphics/Pictures/Party/panel_rect_swap_sel2")
         @hpbgsprite = ChangelingSprite.new(0,0,viewport)
         @hpbgsprite.z = self.z+1
-        @hpbgsprite.addBitmap("able","Graphics/Pictures/Party/overlay_hp_back")
-        @hpbgsprite.addBitmap("fainted","Graphics/Pictures/Party/overlay_hp_back_faint")
-        @hpbgsprite.addBitmap("swap","Graphics/Pictures/Party/overlay_hp_back_swap")
+        @hpbgsprite.addBitmap("able",addLanguageSuffix("Graphics/Pictures/Party/overlay_hp_back"))
+        @hpbgsprite.addBitmap("fainted",addLanguageSuffix("Graphics/Pictures/Party/overlay_hp_back_faint"))
+        @hpbgsprite.addBitmap("swap",addLanguageSuffix("Graphics/Pictures/Party/overlay_hp_back_swap"))
         @ballsprite = ChangelingSprite.new(0,0,viewport)
         @ballsprite.z = self.z+1
         @ballsprite.addBitmap("desel","Graphics/Pictures/Party/icon_ball")
@@ -260,7 +260,7 @@ end
         @overlaysprite = BitmapSprite.new(Graphics.width,Graphics.height,viewport)
         @overlaysprite.z = self.z+4
         @hpbar    = AnimatedBitmap.new("Graphics/Pictures/Party/overlay_hp")
-        @statuses = AnimatedBitmap.new(_INTL("Graphics/Pictures/statuses"))
+        @statuses = AnimatedBitmap.new(addLanguageSuffix(("Graphics/Pictures/statuses")))
         @selected      = false
         @preselected   = false
         @switching     = false

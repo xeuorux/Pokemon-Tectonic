@@ -20,7 +20,7 @@ class TilingCardsMenu_Scene
 	end
 
 	def cursorFileLocation
-		return _INTL("Graphics/Pictures/Pause/cursor_pause")
+		return addLanguageSuffix(("Graphics/Pictures/Pause/cursor_pause"))
 	end
 	def tileFileLocation
 		path = "Graphics/Pictures/Pause/pause_menu_tile"
@@ -28,7 +28,7 @@ class TilingCardsMenu_Scene
 		return _INTL(path)
 	end
 	def backgroundFadeFileLocation
-		return _INTL("Graphics/Pictures/Pause/background_fade")
+		return addLanguageSuffix(("Graphics/Pictures/Pause/background_fade"))
 	end
 
 	def initializeMenuButtons 

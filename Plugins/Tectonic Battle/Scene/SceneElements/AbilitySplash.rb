@@ -17,8 +17,8 @@ class AbilitySplashBar < SpriteWrapper
         @battler = nil
         @abilityName = nil
         # Create sprite wrapper that displays background graphic
-        @bgBitmap = AnimatedBitmap.new(_INTL("Graphics/Pictures/Battle/ability_bar"))
-        @bgPrimevalBitmap = AnimatedBitmap.new(_INTL("Graphics/Pictures/Battle/ability_bar_primeval"))
+        @bgBitmap = AnimatedBitmap.new(addLanguageSuffix(("Graphics/Pictures/Battle/ability_bar")))
+        @bgPrimevalBitmap = AnimatedBitmap.new(addLanguageSuffix(("Graphics/Pictures/Battle/ability_bar_primeval")))
         setBGSprite(@bgBitmap)
         # Create bitmap that displays the text
         @contents = BitmapWrapper.new(@bgBitmap.width,@bgBitmap.height/2)

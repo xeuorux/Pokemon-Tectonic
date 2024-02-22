@@ -31,15 +31,15 @@ class FightMenuDisplay < BattleMenuBase
         #       0=don't show, 1=show unpressed, 2=show pressed
         if USE_GRAPHICS
           # Create bitmaps
-          @buttonBitmap  			    = AnimatedBitmap.new(_INTL("Graphics/Pictures/Battle/cursor_fight"))
-          @typeBitmap    			    = AnimatedBitmap.new(_INTL("Graphics/Pictures/types"))
-          @megaEvoBitmap 			    = AnimatedBitmap.new(_INTL("Graphics/Pictures/Battle/cursor_mega"))
-          @shiftBitmap   			    = AnimatedBitmap.new(_INTL("Graphics/Pictures/Battle/cursor_shift"))
-          moveInfoDisplayFileName = _INTL("Graphics/Pictures/move_info_display_3x3")
+          @buttonBitmap  			    = AnimatedBitmap.new(addLanguageSuffix(("Graphics/Pictures/Battle/cursor_fight")))
+          @typeBitmap    			    = AnimatedBitmap.new(addLanguageSuffix(("Graphics/Pictures/types")))
+          @megaEvoBitmap 			    = AnimatedBitmap.new(addLanguageSuffix(("Graphics/Pictures/Battle/cursor_mega")))
+          @shiftBitmap   			    = AnimatedBitmap.new(addLanguageSuffix(("Graphics/Pictures/Battle/cursor_shift")))
+          moveInfoDisplayFileName = addLanguageSuffix(("Graphics/Pictures/move_info_display_3x3"))
           moveInfoDisplayFileName += "_dark" if darkMode?
           @moveInfoDisplayBitmap  = AnimatedBitmap.new(moveInfoDisplayFileName)
-          @ppUsageUpBitmap        = AnimatedBitmap.new(_INTL("Graphics/Pictures/Battle/pp_usage_up"))
-          @cursorShadeBitmap      = AnimatedBitmap.new(_INTL("Graphics/Pictures/Battle/cursor_fight_shade"))
+          @ppUsageUpBitmap        = AnimatedBitmap.new(addLanguageSuffix(("Graphics/Pictures/Battle/pp_usage_up")))
+          @cursorShadeBitmap      = AnimatedBitmap.new(addLanguageSuffix(("Graphics/Pictures/Battle/cursor_fight_shade")))
           # Create background graphic
           background = IconSprite.new(0,Graphics.height-96,viewport)
           background.setBitmap("Graphics/Pictures/Battle/overlay_fight")
@@ -315,7 +315,7 @@ class FightMenuDisplay < BattleMenuBase
         if move.damagingMove?(true)
           begin
             if move.is_a?(PokeBattle_FixedDamageMove)
-              effectivenessDescription = "Neutral"
+              effectivenessDescription = _INTL("Neutral")
               effectivenessColor = EFFECTIVENESS_COLORS[3]
             else
               typeOfMove = move.pbCalcType(@battler)
@@ -344,11 +344,11 @@ class FightMenuDisplay < BattleMenuBase
             effectivenessTextPos = [effectivenessDescription,effectivenessTextX,effectivenessTextY,2,
             effectivenessColor,EFFECTIVENESS_SHADOW_COLOR]
           rescue
-            effectivenessTextPos = ["ERROR",effectivenessTextX,effectivenessTextY,2,TEXT_BASE_COLOR,TEXT_SHADOW_COLOR]
+            effectivenessTextPos = [_INTL("ERROR"),effectivenessTextX,effectivenessTextY,2,TEXT_BASE_COLOR,TEXT_SHADOW_COLOR]
           end
         # Apply a highlight to moves that are in an extra useful state
         else
-          effectivenessTextPos = ["Status",effectivenessTextX,effectivenessTextY,2,TEXT_BASE_COLOR,TEXT_SHADOW_COLOR]
+          effectivenessTextPos = [_INTL("Status"),effectivenessTextX,effectivenessTextY,2,TEXT_BASE_COLOR,TEXT_SHADOW_COLOR]
         end
 
         pbDrawTextPositions(@infoOverlay.bitmap,[effectivenessTextPos]) if !effectivenessTextPos.nil?

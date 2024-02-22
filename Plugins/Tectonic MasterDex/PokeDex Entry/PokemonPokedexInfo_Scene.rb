@@ -17,8 +17,8 @@ class PokemonPokedexInfo_Scene
         @page = battle ? 2 : 1
         @linksEnabled = linksEnabled
         @evolutionIndex = -1
-        @typebitmap = AnimatedBitmap.new(_INTL("Graphics/Pictures/Pokedex/icon_types"))
-        @types_emphasized_bitmap = AnimatedBitmap.new(_INTL("Graphics/Pictures/Pokedex/icon_types_emphasized"))
+        @typebitmap = AnimatedBitmap.new(addLanguageSuffix(("Graphics/Pictures/Pokedex/icon_types")))
+        @types_emphasized_bitmap = AnimatedBitmap.new(addLanguageSuffix(("Graphics/Pictures/Pokedex/icon_types_emphasized")))
         move_path = "Graphics/Pictures/Pokedex/move_info_display_dex"
         move_path += "_dark" if darkMode?
         @moveInfoDisplayBitmap = AnimatedBitmap.new(_INTL(move_path))
@@ -234,7 +234,7 @@ sp.form) && !Settings::DEX_SHOWS_ALL_FORMS
         base   = MessageConfig.pbDefaultTextMainColor
         shadow = MessageConfig.pbDefaultTextShadowColor
         imagepos = []
-        imagepos.push([_INTL("Graphics/Pictures/Pokedex/overlay_info"), 0, 0]) if @brief
+        imagepos.push([addLanguageSuffix(("Graphics/Pictures/Pokedex/overlay_info")), 0, 0]) if @brief
         species_data = GameData::Species.get_species_form(@species, @form)
         # Write various bits of text
         indexText = "???"
@@ -883,7 +883,7 @@ sp.form) && !Settings::DEX_SHOWS_ALL_FORMS
             # Row 1
             # Draw selected move's damage category icon and type icon
             imagepos = [
-                ["Graphics/Pictures/types", column1LabelX, row1ValueY + 8, 0, GameData::Type.get(moveData.type).id_number * 28, 64, 28],
+                [addLanguageSuffix("Graphics/Pictures/types"), column1LabelX, row1ValueY + 8, 0, GameData::Type.get(moveData.type).id_number * 28, 64, 28],
                 ["Graphics/Pictures/category", column2LabelX + 16, row1ValueY + 8, 0, moveData.category * 28, 64, 28],
             ]
             pbDrawImagePositions(overlay, imagepos)
