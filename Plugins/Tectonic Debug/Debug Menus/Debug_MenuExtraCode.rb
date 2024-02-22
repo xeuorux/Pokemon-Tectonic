@@ -547,10 +547,9 @@ def pbCompileTextUI
     msgwindow = pbCreateMessageWindow
     pbMessageDisplay(msgwindow, _INTL("Please wait.\\wtnp[0]"))
     begin
-        pbCompileText
-        pbMessageDisplay(msgwindow, _INTL("Successfully compiled text and saved it to intl.dat.\1"))
-        pbMessageDisplay(msgwindow,
-  _INTL("To use the file in a game, place the file in the Data folder under a different name, and edit the Settings::LANGUAGES array in the scripts."))
+        pbCompileText { |fileName|
+            pbMessageDisplay(msgwindow, _INTL("Successfully compiled text and saved it to {1}.\1",fileName))
+        }
     rescue RuntimeError
         pbMessageDisplay(msgwindow, _INTL("Failed to compile text: {1}", $!.message))
     end
