@@ -4,7 +4,7 @@ Major Contributors
 Brickbat<s>Zeu
 Divock<s>Agentbla
 Wakarimasensei<s>Drawingbox
-IgitedXSoul<s>LucaSantosSims
+IgnitedxSoul<s>LucaSantosSims
 Darlvon<s>Jaggedthorn
 Splitmoon<s>TikiShades
 Valrex<s>Steeb
