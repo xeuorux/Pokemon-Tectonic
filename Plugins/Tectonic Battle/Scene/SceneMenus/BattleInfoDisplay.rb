@@ -130,7 +130,7 @@ class BattleInfoDisplay < SpriteWrapper
 
         # Draw the turn count
         turnCountX = battleInfoTitleX + 152
-        turnCountMessage = "Turn #{@battle.turnCount + 1}"
+        turnCountMessage = _INTL("Turn #{@battle.turnCount + 1}")
         textToDraw.push([turnCountMessage, turnCountX, 0, 2, base, shadow])
 
         # Draw the weather name with duration
@@ -208,7 +208,7 @@ class BattleInfoDisplay < SpriteWrapper
                 end
             end
         else
-            textToDraw.push(["None", xStart, baseEffectY + 24, 0, fadedColor, shadow])
+            textToDraw.push([_INTL("None"), xStart, baseEffectY + 24, 0, fadedColor, shadow])
         end
 
         # Reset the scrolling once its scrolled through the entire list once
@@ -240,19 +240,19 @@ class BattleInfoDisplay < SpriteWrapper
         statMultX = 162
         statValueX = 224
         battlerEffectsX = 308
-        textToDraw.push(["Stat", statLabelX, statStepsSectionTopY, 0, lightBase, lightShadow])
-        textToDraw.push(["Step", statStepX - 16, statStepsSectionTopY, 0, lightBase, lightShadow])
-        textToDraw.push(["Mult", statMultX, statStepsSectionTopY, 0, lightBase, lightShadow])
-        textToDraw.push(["Value", statValueX, statStepsSectionTopY, 0, lightBase, lightShadow])
+        textToDraw.push([_INTL("Stat"), statLabelX, statStepsSectionTopY, 0, lightBase, lightShadow])
+        textToDraw.push([_INTL("Step"), statStepX - 16, statStepsSectionTopY, 0, lightBase, lightShadow])
+        textToDraw.push([_INTL("Mult"), statMultX, statStepsSectionTopY, 0, lightBase, lightShadow])
+        textToDraw.push([_INTL("Value"), statValueX, statStepsSectionTopY, 0, lightBase, lightShadow])
 
         statsToNames = {
-            :ATTACK => "Atk",
-            :DEFENSE => "Def",
-            :SPECIAL_ATTACK => "Sp. Atk",
-            :SPECIAL_DEFENSE => "Sp. Def",
-            :SPEED => "Speed",
-            :ACCURACY => "Acc",
-            :EVASION => "Evade",
+            :ATTACK => _INTL("Atk"),
+            :DEFENSE => _INTL("Def"),
+            :SPECIAL_ATTACK => _INTL("Sp. Atk"),
+            :SPECIAL_DEFENSE => _INTL("Sp. Def"),
+            :SPEED => _INTL("Speed"),
+            :ACCURACY => _INTL("Acc"),
+            :EVASION => _INTL("Evade"),
         }
 
         # Hash containing info about each stat
@@ -334,7 +334,7 @@ class BattleInfoDisplay < SpriteWrapper
         end
 
         # Effects
-        textToDraw.push(["Battler Effects", battlerEffectsX, statStepsSectionTopY, 0, lightBase, lightShadow])
+        textToDraw.push([_INTL("Battler Effects"), battlerEffectsX, statStepsSectionTopY, 0, lightBase, lightShadow])
 
         # Compile a descriptor for each effect on the battler or its position
         battlerEffects = []
@@ -343,7 +343,7 @@ class BattleInfoDisplay < SpriteWrapper
 
         # List abilities that were added by effects
         battler.addedAbilities.each do |abilityID|
-            battlerEffects.push("Ability: #{getAbilityName(abilityID)}")
+            battlerEffects.push(_INTL("Ability: #{getAbilityName(abilityID)}"))
         end
 
         scrolling = true if battlerEffects.length > 8
@@ -368,7 +368,7 @@ class BattleInfoDisplay < SpriteWrapper
                 end
             end
         else
-            textToDraw.push(["None", battlerEffectsX, statStepsSectionTopY + 36, 0, fadedColor, shadow])
+            textToDraw.push([_INTL("None"), battlerEffectsX, statStepsSectionTopY + 36, 0, fadedColor, shadow])
         end
 
         # Reset the scrolling once its scrolled through the entire list once
