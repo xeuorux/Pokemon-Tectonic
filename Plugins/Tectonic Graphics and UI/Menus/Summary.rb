@@ -1484,7 +1484,7 @@ class PokemonSummary_Scene
                 oldpage = @page
                 @page -= 1
                 @page = 1 if @page < 1
-                @page = 5 if @page > 5
+                @page = 4 if @page > 4
                 if @page != oldpage   # Move to next page
                     pbSEPlay("GUI summary change page")
                     @ribbonOffset = 0
@@ -1494,7 +1494,7 @@ class PokemonSummary_Scene
                 oldpage = @page
                 @page += 1
                 @page = 1 if @page < 1
-                @page = 5 if @page > 5
+                @page = 4 if @page > 4
                 if @page != oldpage   # Move to next page
                     pbSEPlay("GUI summary change page")
                     @ribbonOffset = 0
