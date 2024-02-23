@@ -42117,8 +42117,6 @@ It can't be statused while it has its shell. Below half HP its shell breaks and 
 Es inmune a problemas de estado mientras tenga su coraza. Una vez pierda la mitad de sus PS la coraza es destruida y se vuelve agresivo.
 Weakens incoming Fire-type moves, and doubles Water-type damage.
 Es resistente a movimientos tipo Fuego, y la potencia de sus movimientos tipo Agua es duplicada.
-Powers up Steel-type moves by 50%.
-Potencia movimientos tipo Acero un 50%.
 Raises Atk and Sp. Atk by two steps each when its HP is lowered below half.
 Aumenta el Ataque y Ataque Especial por dos grados una vez pierda la mitad de sus PS.
 Doubles the Pokémon's Speed stat in a hailstorm.
@@ -42183,7 +42181,6 @@ Doubles the Pokémon's Sp. Def.
 Duplica la Defensa Especial del Pokémon.
 Raises Attack when the Pokémon enters a battle.
 Aumenta el Ataque cuando el Pokémon entra al combate.
-Cuando el Pokémon es alcanzado por un movimiento físico, tiene un 30% de probabilidad de helar al atacante.
 The Pokémon changes type to that of the move it's about to use. However, it's 20% less accurate.
 Antes de usar un movimiento, cambia al mismo tipo que este. Sin embargo, tiene un 20% menos de precisión.
 Bounces back stat-lowering effects.
@@ -42304,6 +42301,7 @@ The user's critical hit chance raises or lowers with its Speed.
 El índice de golpe crítico del usuario aumenta o baja de acuerdo a su Velocidad.
 When entering battle, heals self and allies for 25% of their max health.
 Al entrar al campo, se cura a sí mismo y a sus aliados por un 25% de sus PS totales.
+Cuando el Pokémon es alcanzado por un movimiento físico, tiene un 30% de probabilidad de helar al atacante.
 Physical moves against the Pokémon have a 30% chance to frostbite the attacker.
 Enemies which wake up have all their stats lowered by two steps.
 Rivales que despierten tienen todas sus estadísticas disminuidas por dos grados.
