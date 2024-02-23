@@ -1271,7 +1271,7 @@ Déjame adivinar. ¿Nacido rico? ¿Relaciones familiares tóxicas? ¿Un desenfre
 Well, you look like the perfect fit for this Skitty I've managed to get.
 Bueno, tú eres el tipo perfecto para este Skitty que logré conseguir.
 For the absolute steal of $200,000, I'll let you get your hands on one. And guess what -- it's shiny.
-Por el absoluto robo de $200.000, te dejaré en tus manos uno. Y adivina qué – es shiny.
+Por el absoluto robo de $200.000, te dejaré en tus manos uno. Y adivina qué – es variocolor.
 Show that to your... mom? Dad? No, definately mom. Probably a sibling in there as well, huh?
 Muestrale esto a tu… ¿Madre? ¿Padre? No, definitivamente madre. Probablemente un hermano de por medio, ¿eh?
 I'm sure you'll get at least a week's worth of self- worth flaunting that to them. All that quality time for just $200,000.
@@ -1287,7 +1287,7 @@ Adiós idio- ehh, cliente.
 With that trifling sum? Surely you can do better than that.
 ¿Con esa suma insignificante? Seguramente puedes hacerlo mejor que eso.
 Ah, so you've finally caved? $200,000 for the shiny Skitty. No more, no less.
-Ah, ¿Así que finalmente cedes? $200.000 por el Skitty shiny. Nada más ni nada menos.
+Ah, ¿Así que finalmente cedes? $200.000 por el Skitty variocolor. Nada más ni nada menos.
 Are you going into the sauna?
 ¿Vas a ir al sauna?
 Careful to not go into the underground area. It's where we keep the wild Pokemon that heat up the place.
@@ -23605,7 +23605,7 @@ La propia Helena ha empezado a vivir en el recientemente fundado Parque del Cond
 [Map395]
 
 There's a tourist family causing all kinds of chaos in the west part of town.
-Hay una familia de turistas causando todo tipo de caos en la parte oriental del pueblo.
+Hay una familia de turistas causando todo tipo de caos en la parte occidental del pueblo.
 They're offering evolution stones for anyone who can beat them all in a battle.
 Están ofreciendo piedras evolutivas para cualquiera que pueda vencerlos en una batalla.
 I wish they would just pack up and go home.
@@ -37209,7 +37209,7 @@ El usuario ataca con una lanza a enemigos, o una carga eléctrica que aumenta cu
 The user attacks twice with tar globs. If two targets, the hits spread. Reduces targets' Speed.
 El usuario ataca dos veces disparando alquitrán. Ataca a ambos rivales en un combate doble. Disminuye la Velocidad del objetivo.
 Strikes the target with lunar light, then summons moonglow for eight turns.
-El usuario ataca con un destello lunar, para luego invocar la brillo lunar durante ocho turnos.
+El usuario ataca con un destello lunar, para luego invocar el brillo lunar durante ocho turnos.
 Spins into the target while emitting heat, then summons sunshine for eight turns.
 Gira hacia el objetivo emitiendo calor, para luego invocar la luz solar durante ocho turnos.
 Protects the user from attacks. Special attackers take 1/8th HP damage.
@@ -37489,7 +37489,7 @@ El usuario se transforma en una nube de moscas, evitando todo ataque en el prime
 The user imprisons all near foes, reducing their attacking stats by one step each and trapping them until the next time they take a hit.
 El usuario aprisiona al lado contrario, disminuyendo sus stats ofensivas un grado y atrapándolos hasta que sean golpeados.
 The target is barred by rules which prevent it from using off-type moves for three more turns.
-El objetivo veta al objetivo de usar movimientos que no sean de su propio tipo durante tres turnos.
+El usuario veta al objetivo de usar movimientos que no sean de su propio tipo durante tres turnos.
 Attacks with dragon energy. Power increases and damages all nearby in eclipse.
 Ataca con energía dracónica. Es potenciado y daña a todo el lado contrario en eclipse.
 The user steadies its eyes, mind, and body in order to maximize its accuracy.
@@ -40462,7 +40462,7 @@ Un dispositivo de registro de alta tecnología mejorado que incrementa la experi
 A detailed report on how to improve as a trainer. If you decide to read it, your level cap will be raised by 5.
 Un informe detallado sobre cómo mejorar como entrenador. Si decides leerlo, tu límite de niveles se incrementará por 5.
 An ID card which unlocks Team Chasm gates and doors, giving access to dangers and rewards.
-Una Tarjeda ID que desbloquea puertas y verjas del Team Chasm, dando acceso a peligros y recopmensas.
+Una Tarjeta ID que desbloquea puertas y verjas del Team Chasm, dando acceso a peligros y recompensas.
 A miniature Avatar Totem. Use it to teleport to any unlocked Avatar Totems throughout Makya.
 Un Tótem Avatar en miniatura. Úsalo para teletransportarte a cualquier Tótem Avatar a lo largo de todo Makya.
 The left half of the sigil of an ancient order of knights.
@@ -42604,7 +42604,7 @@ Aumenta su Ataque un 50% si su último movimiento usado fue especial, y vicevers
 Steel-type attacks deal 50% more damage, and the Pokemon is protected from critical hits.
 Potencia movimientos tipo Acero un 50%, y es protegido de los movimientos críticos.
 Gets double healing from all sources during moonglow.
-Se cura el doble mediante cualquier método bajo la brillo lunar.
+Se cura el doble mediante cualquier método bajo el brillo lunar.
 Speed is raised each turn. Speed is reset when hit, but the attacker takes 1/8th HP damage for each step lost.
 La Velocidad es aumentada cada turno. Su Velocidad es reiniciada al ser golpeado, pero el atacante pierde 1/8 de sus PS totales por cada grado perdido.
 Powers up Ice-type moves by 50%.
@@ -44949,7 +44949,7 @@ Casaba Island
 Isla Casaba 
 182
 Spirit Atoll
-Atolón Espiritual
+Atolón Espíritu
 183
 Circuit Cave
 Cueva Circuito
@@ -45284,8 +45284,8 @@ Secreto Isla Creciente
 Chasm Vacation Home
 Casa Vacacional Chasm
 294
-Eden
-Eden
+Nascent Garden
+Jardín Naciente
 295
 Chasm Vacation Home
 Casa Vacacional Chasm
@@ -45347,8 +45347,8 @@ Casa de Wren
 Wren's House F2
 Casa de Wren
 315
-Path of Genesis
-Camino al Genesis
+Uplifted Abysm
+Abismo en Aumento
 316
 Sandstone Estuary
 Estuario Arenisca
@@ -45422,8 +45422,8 @@ Estación Profunda
 Underpeak Escape B1
 Escape Bajopico S1
 340
-The Hexicle
-El Hexículo
+Illuminant Helix
+Helix Iluminante
 341
 Underpeak Escape B2
 Escape Bajopico S2
@@ -47432,7 +47432,7 @@ No afecta a {1}...
 {1} was hurt by the sunlight!
 ¡{1} fue lastimado por el sol!
 {1} was hurt by the moonlight!
-¡{1} fue lastimado por la brillo lunar!
+¡{1} fue lastimado por el brillo lunar!
 {1} soaks up the heat.
 {1} absorbe el calor.
 {1} was hurt by the rain!
@@ -47444,7 +47444,7 @@ No afecta a {1}...
 {1} rests in safety.
 {1} descansa en seguridad.
 {1} absorbs the moonlight.
-{1} absorbe la brillo lunar..
+{1} absorbe el brillo lunar..
 {1} sends out a signal, healing #{healTarget.name}!
 ¡{1} envía una señal, curando a #{healTarget.name}!
 {1}'s {2} made it the {3} type!
@@ -47760,7 +47760,7 @@ El granizó paró.
 The eclipse ended.
 El eclipse terminó.
 The moonlight faded.
-La brillo lunar se desvaneció.
+El brillo lunar se desvaneció.
 The heavy rain has lifted!
 ¡El diluvió terminó!
 The harsh sunlight faded!
@@ -47802,7 +47802,7 @@ La Luna Llena está llegando.
 {1} is buffeted by the hail!
 ¡{1} es lastimado por el granizo!
 {1} absorbs the moonlight!
-¡{1} absorbe la brillo lunar!
+¡{1} absorbe el brillo lunar!
 {1} shares the healing with #{healTarget.name}!
 ¡{1} comparte la curación con #{healTarget.name}!
 {1} absorbs the suffering from the hailstorm.
@@ -50332,7 +50332,7 @@ Puedes asignar un atajo de teclado para usar tu bicicleta rápidamente.
 Access your control setttings with <imp>F1</imp> to set it to whatever you like.
 Accede a los ajustes de control con <imp>F1</imp> para asignarlo a lo que quieras.
 There's a shortcut key to instantly mount the bicycle while walking.
-Hay una tecla de acceso directo para montar instantáneamente la bicicleta mientras camina.
+Hay un atajo de teclado para subirte instantáneamente a la bicicleta mientras caminas.
 Access your control setttings with <imp>F1</imp> to customize it.
 Accede a la configuración de tu control con <imp>F1</imp> para personalizarlo.
 Individual Pokemon have unique Traits, Likes, and Dislikes.
@@ -50422,7 +50422,7 @@ El granizo daña a todos los Pokémon al final de cada turno. Los tipos Hielo y 
 Eclipse lowers all stats of all Pokémon every 4 turns (by 2 steps). Psychic and Dragon-types are immune to this. Additionally, Psychic-type attacks are boosted by 30%.
 El eclipse baja todas las stats de un Pokémon cada 4 turnos (por dos grados). Los tipos Psíquico y Dragón son inmunes a esto. Ataques tipo Psíquico son potenciados un 30%.
 Moonglow flinches all Pokémon every 4 turns. Fairy and Dark-types are immune to this. Additionally, Fairy-type attacks are boosted by 30%.
-La brillo lunar amedrenta a todos los Pokémon cada 4 turnos. Los tipos Hada y Siniestro son inmunes a esto. Adicionalmente, los ataques tipo Hada se potencian un 30%.
+El brillo lunar amedrenta a todos los Pokémon cada 4 turnos. Los tipos Hada y Siniestro son inmunes a esto. Adicionalmente, los ataques tipo Hada se potencian un 30%.
 This ball has a close to {1}% chance of capturing the wild Pokémon.
 Esta ball tiene cerca de un {1}% de probabilidad de atrapar el Pokémon salvaje.
 Bicycle Music
@@ -52092,7 +52092,7 @@ Isla Ocaso
 Isle of Dragons
 Isla de los Dragones
 Spirit Atoll
-Atolón Espiritual
+Atolón Espíritu
 Welcome to the battle points shop!
 ¡Bienvenido a la tienda de puntos de batalla!
 Welcome to the Battle Monument.
@@ -52228,139 +52228,147 @@ But it failed, since the field is already covered in flowers!
 Which type should #{user.pbThis(true)} launch?
 ¿Qué tipo debería disparar #{user.pbThis(true)}?
 Sandstone System
-Sandstone System
+Sistema Arenisca
 Frostflow Secret
-Frostflow Secret
+Secreto Escarcha
 Six Spire Cave
-Six Spire Cave
+Cueva Seis Chapiteles
 Alloyed Thicket
-Alloyed Thicket
+Matorral Aleado
 Chasm HQ Chamber
-Chasm HQ Chamber
+Cámara Base Chasm
 Bluepoint Grotto
-Bluepoint Grotto
+Gruta Bluepoint
 Casaba Villa Chamber
-Casaba Villa Chamber
+Cámara Villa Casaba
 Shipping Lane Chamber
-Shipping Lane Chamber
+Cámara Ruta Pezquera
 Velenz Chamber
-Velenz Chamber
+Cámara Velenz
 Hollowed Layer
-Hollowed Layer
+Capa Hueca
 Clearwater Cave
-Clearwater Cave
+Cueva Aguaclara
 Volcanic Cave
-Volcanic Cave
+Cueva Volcánica
 Nebula Ruins
-Nebula Ruins
+Ruinas Nebulosa 
 Eleig Crossing Chamber
-Eleig Crossing Chamber
+Cámara Cruce Eleig
 Spirit Atoll
-Spirit Atoll
+Atolón Espíritu
 Riverside Houses
-Riverside Houses
+Casa en la Ribera
 Catacombs Entryway
-Catacombs Entryway
+Entrada Catacumbas
 Boiling Cave
-Boiling Cave
+Cueva Hirviente
 Prizca East Chamber
-Prizca East Chamber
+Cámara Prizca Oriental
 Velenz Menagerie
-Velenz Menagerie
+Muestra de Velenz
 Tempest Realm
-Tempest Realm
+Reino de la Tempestad
 Abyssal Cavern
-Abyssal Cavern
+Cueva Abisal
 Criminal Sewers
-Criminal Sewers
+Alcantarillas Criminales
 Prizca Property
-Prizca Property
+Propiedad Prizca
 Whitebloom Nook
-Whitebloom Nook
+Rincón Whitebloom 
 Underpeak Tunnels
-Underpeak Tunnels
+Túneles Bajopico
 Sweetrock Harbor Chamber
-Sweetrock Harbor Chamber
+Cámara Puerto Sweetrock 
 Skyward Ascent
-Skyward Ascent
+Ascenso al Cielo
 Path of Genesis
-Path of Genesis
+Camino al Genesis
 Suspicious Shed
-Suspicious Shed
+Cobertizo Sospechoso
 King's Chamber
-King's Chamber
+Cámara del Rey
 Crumbling Canyon
-Crumbling Canyon
+Cañón Derruido
 Catacomb Depths
-Catacomb Depths
+Profundidad Catacumbas
 Guardian Island
-Guardian Island
+Isla de la Guarda
 Mirror Tundra
-Mirror Tundra
+Tundra Reflejante
 Tri Island
-Tri Island
+Isla Elemental
 Eventide Peak
-Eventide Peak
+Pico Ocaso
 I'm energized and ready to go!
-I'm energized and ready to go!
+¡Estoy llena de energía y lista para ir!
 I don't spend my energy needlessly. Grab me a Sweet Heart and I'll consider battling.
-I don't spend my energy needlessly. Grab me a Sweet Heart and I'll consider battling.
+No tengo que gastar mi energía innecesariamente. Consígueme un Corazón Dulce y consideraré combatir.
 So, you got one?
-So, you got one?
+Así que, ¿Tienes uno?
 Wow, you actually did it. With this much energy, I'm unstoppable!
-Wow, you actually did it. With this much energy, I'm unstoppable!
+Wow, así que de hecho lo hiciste. Con toda esta energía, ¡Soy imparable!
 It's much too cold in here to battle without a pick-me-up.
-It's much too cold in here to battle without a pick-me-up.
+Hace demasiado frío aquí para combatir sin un energizante.
 They're the Skeevee Eevee specialty. Where? East side of town, duh!
-They're the Skeevee Eevee specialty. Where? East side of town, duh!
+Son la especialidad del Eevee Mugriento. ¿Dónde? ¡Al lado este del pueblo, obviamente!
 Witness my brilliant battling!
-Witness my brilliant battling!
+¡Atestigua mis brillantes habilidades!
 Minerals are great reference material. You wouldn't happen to have, say, an Eviolite?
-Minerals are great reference material. You wouldn't happen to have, say, an Eviolite?
+Los minerales son geniales materiales de referencia. ¿De casualidad no tendrás, digamos, un Mineral Evolutivo? 
 It's quite obscure, so...please part with it.
-It's quite obscure, so...please part with it.
+Es bastante obscuro, así que... por favor parte con ello.
 Ahh...spectacular. I hope this battle is just as beautiful!
-Ahh...spectacular. I hope this battle is just as beautiful!
+Ahh...espectacular. ¡Espero que este combate sea igual de maravilloso!
 ...shading like this, coloring like that... sorry, what? Did you need something?
-...shading like this, coloring like that... sorry, what? Did you need something?
+...sombreando de este modo, coloreando de este, lo siento, ¿Qué? ¿Necesitas algo?
 No? Well, they're quite rare. Perhaps Emma offers them...just north of here.
-No? Well, they're quite rare. Perhaps Emma offers them...just north of here.
+¿No? Bueno, son bastante raros. Quizás Emma las ofrece...justo al norte de aquí.
 Style and substance are one and the same!
-Style and substance are one and the same!
+¡El estilo y la sustancia son lo mismo!
 Compared to Noel, my fashion is lacking. But with a Ninja Scarf, I'd stand right out!
-Compared to Noel, my fashion is lacking. But with a Ninja Scarf, I'd stand right out!
+Comparado a Noel, mi estilo es insuficiente. Pero una una Bufanda Ninja, ¡Podría destacar!
 Could I gently request one from you... perhaps?
-Could I gently request one from you... perhaps?
+¿Quizás... podría gentilmente pedirte una?
 To express my gratitude, we shall battle. A chance to show off your style!
-To express my gratitude, we shall battle. A chance to show off your style!
+Para expresar mi gratidud, combatiremos. ¡Una oportunidad para demostrar tu estilo!
 My reputation lies in tatters. How will I ever live up to Noel's standard?
-My reputation lies in tatters. How will I ever live up to Noel's standard?
+Mi reputación está en ruinas. ¿Cómo voy a estar a las alturas de los estándares de Noel?
 I heard a rumor that they're being sold in Prizca Castle. A man by the name of Diego.
-I heard a rumor that they're being sold in Prizca Castle. A man by the name of Diego.
+Escuché un rumor de que son vendidos en el Castillo de Prizca. Por un hombre llamado Diego.
 It's time to bring you down!
-It's time to bring you down!
+¡Es hora de llevarte al suelo!
 Hauling sculptures is too hard. It'd be much easier with a Float Stone.
-Hauling sculptures is too hard. It'd be much easier with a Float Stone.
+Transportar esculturas es muy díficil. Sería mucho más facil con una Piedra Pómez.
 Got one on hand?
-Got one on hand?
+¿Tienes una a mano?
 Efficient! There'll be time enough for a battle now!
-Efficient! There'll be time enough for a battle now!
+¡Eficiente! ¡Ahora habrá suficiente tiempo para combatir!
 Sorry, but I won't be able to battle if I throw out my back!
-Sorry, but I won't be able to battle if I throw out my back!
+¡Lo siento, pero no podré combatir contigo si arruino mi espalda!
 You don't have one. Well, Nature's Gallery will have them in stock. That's two shops to the east.
-You don't have one. Well, Nature's Gallery will have them in stock. That's two shops to the east.
+No tienes una. Bueno, la Galería Natura debería tener inventario. Está a dos tiendas al este.
 I'm skilled in everything. That includes battling!
-I'm skilled in everything. That includes battling!
+Soy habilidoso en todo. ¡Eso incluye combatir!
 You look ready to help me find a Knight Helmet. Don't ask why I need it.
-You look ready to help me find a Knight Helmet. Don't ask why I need it.
+Pareces listo para ayudarme a encontrar un Casco de Caballero. No preguntes por qué lo necesito.
 So, cough it up.
-So, cough it up.
+Así que, suéltalo.
 My safety comes first. En guard!
-My safety comes first. En guard!
+Mi seguridad viene primero. ¡En guardia!
 Don't you know who I am? I can't keep risking my head every day!
-Don't you know who I am? I can't keep risking my head every day!
+¿No sabes quién soy? ¡No puedo seguir arriesgando mi cabeza cada día!
 Tch, don't have one? They sell them in the castle courtyard. Diego's something or another.
-Tch, don't have one? They sell them in the castle courtyard. Diego's something or another.
+Tch, ¿No tienes uno? Los venden al frente del castillo. La nosequé de Diego.
+A critical hit!
+¡Es un golpe crítico!
+It was a guaranteed critical hit!
+¡Fue un golpe crítico garantizado!
+CATEGORY
+CATEGORÍA
+POWER
+PODER
 [26]
 [27]
 [27]
