@@ -41,7 +41,7 @@ class PokemonPokedexInfo_Scene
         for hidden in Settings::REGION_MAP_EXTRAS
             next unless hidden[0] == @region && hidden[1] > 0 && $game_switches[hidden[1]]
             pbDrawImagePositions(@sprites["areamap"].bitmap, [
-                                     ["Graphics/Pictures/Map Extras/#{hidden[4]}",
+                                     ["Graphics/Pictures/Town Map/Map Extras/#{hidden[4]}",
                                       hidden[2] * PokemonRegionMap_Scene::SQUAREWIDTH,
                                       hidden[3] * PokemonRegionMap_Scene::SQUAREHEIGHT,],
                                  ])

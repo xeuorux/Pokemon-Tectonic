@@ -79,7 +79,7 @@ class TriadCard
     def self.createBack(type = nil, noback = false)
       bitmap = BitmapWrapper.new(80, 96)
       if !noback
-        cardbitmap = AnimatedBitmap.new(addLanguageSuffix(("Graphics/Pictures/triad_card_opponent")))
+        cardbitmap = AnimatedBitmap.new(("Graphics/Pictures/Triple Triad/triad_card_opponent"))
         bitmap.blt(0, 0, cardbitmap.bitmap, Rect.new(0, 0, cardbitmap.width, cardbitmap.height))
         cardbitmap.dispose
       end
@@ -97,13 +97,13 @@ class TriadCard
       return TriadCard.createBack if owner == 0
       bitmap = BitmapWrapper.new(80, 96)
       if owner == 2   # Opponent
-        cardbitmap = AnimatedBitmap.new(addLanguageSuffix(("Graphics/Pictures/triad_card_opponent")))
+        cardbitmap = AnimatedBitmap.new(("Graphics/Pictures/Triple Triad/triad_card_opponent"))
       else            # Player
-        cardbitmap = AnimatedBitmap.new(addLanguageSuffix(("Graphics/Pictures/triad_card_player")))
+        cardbitmap = AnimatedBitmap.new(("Graphics/Pictures/Triple Triad/triad_card_player"))
       end
       typebitmap = AnimatedBitmap.new(addLanguageSuffix(("Graphics/Pictures/types")))
       iconbitmap = AnimatedBitmap.new(GameData::Species.icon_filename(@species, @form))
-      numbersbitmap = AnimatedBitmap.new(addLanguageSuffix(("Graphics/Pictures/triad_numbers")))
+      numbersbitmap = AnimatedBitmap.new(("Graphics/Pictures/Triple Triad/triad_numbers"))
       # Draw card background
       bitmap.blt(0, 0, cardbitmap.bitmap, Rect.new(0, 0, cardbitmap.width, cardbitmap.height))
       # Draw type icon
@@ -163,7 +163,7 @@ class TriadCard
       # Allocate viewport
       @viewport = Viewport.new(0,0,Graphics.width,Graphics.height)
       @viewport.z = 99999
-      addBackgroundPlane(@sprites,"background","triad_bg",@viewport)
+      addBackgroundPlane(@sprites,"background","Triple Triad/triad_bg",@viewport)
       @sprites["helpwindow"] = Window_AdvancedTextPokemon.newWithSize("",
          0,Graphics.height-64,Graphics.width,64,@viewport)
       for i in 0...@battle.width*@battle.height

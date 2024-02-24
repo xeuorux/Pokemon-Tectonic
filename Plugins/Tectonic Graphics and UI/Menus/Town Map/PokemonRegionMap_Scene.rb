@@ -63,9 +63,9 @@ class PokemonRegionMap_Scene
           pbMessage(_INTL("The map data cannot be found."))
           return false
         end
-        addBackgroundOrColoredPlane(@sprites,"background","mapbg",Color.new(0,0,0),@viewport)
+        addBackgroundOrColoredPlane(@sprites,"background","Town Map/mapbg",Color.new(0,0,0),@viewport)
         @sprites["map"] = IconSprite.new(0,0,@viewport)
-        @sprites["map"].setBitmap("Graphics/Pictures/#{@map[1]}")
+        @sprites["map"].setBitmap("Graphics/Pictures/Town Map/Region Maps/#{@map[1]}")
         @sprites["map"].x += (Graphics.width-@sprites["map"].bitmap.width)/2
         @sprites["map"].y += (Graphics.height-@sprites["map"].bitmap.height)/2
         for hidden in Settings::REGION_MAP_EXTRAS
@@ -77,7 +77,7 @@ class PokemonRegionMap_Scene
               @sprites["map2"].y = @sprites["map"].y
             end
             pbDrawImagePositions(@sprites["map2"].bitmap,[
-               ["Graphics/Pictures/Map Extras/#{hidden[4]}",hidden[2]*SQUAREWIDTH,hidden[3]*SQUAREHEIGHT]
+               ["Graphics/Pictures/Town Map/Map Extras/#{hidden[4]}",hidden[2]*SQUAREWIDTH,hidden[3]*SQUAREHEIGHT]
             ])
           end
         end
@@ -97,7 +97,7 @@ class PokemonRegionMap_Scene
             for j in TOP..BOTTOM
               healspot = pbGetHealingSpot(i,j)
               if healspot && $PokemonGlobal.visitedMaps[healspot[0]]
-                @sprites["point#{k}"] = AnimatedSprite.create("Graphics/Pictures/mapFly",2,16)
+                @sprites["point#{k}"] = AnimatedSprite.create("Graphics/Pictures/Town Map/mapFly",2,16)
                 @sprites["point#{k}"].viewport = @viewport
                 @sprites["point#{k}"].x        = -SQUAREWIDTH/2+(i*SQUAREWIDTH)+(Graphics.width-@sprites["map"].bitmap.width)/2
                 @sprites["point#{k}"].y        = -SQUAREHEIGHT/2+(j*SQUAREHEIGHT)+(Graphics.height-@sprites["map"].bitmap.height)/2
@@ -118,14 +118,14 @@ class PokemonRegionMap_Scene
             end
             xPos = mapDisplayPosition[1]
             yPos = mapDisplayPosition[2]
-            @sprites["point#{index}"] = AnimatedSprite.create("Graphics/Pictures/mapTotem",2,16)
+            @sprites["point#{index}"] = AnimatedSprite.create("Graphics/Pictures/Town Map/mapTotem",2,16)
             @sprites["point#{index}"].viewport = @viewport
             @sprites["point#{index}"].x        = -SQUAREWIDTH / 2 + (xPos * SQUAREWIDTH) + (Graphics.width - @sprites["map"].bitmap.width) / 2
             @sprites["point#{index}"].y        = -SQUAREHEIGHT / 2 + (yPos * SQUAREHEIGHT) + (Graphics.height - @sprites["map"].bitmap.height) / 2
             @sprites["point#{index}"].play
           end
         end
-        @sprites["cursor"] = AnimatedSprite.create("Graphics/Pictures/mapCursor",2,5)
+        @sprites["cursor"] = AnimatedSprite.create("Graphics/Pictures/Town Map/mapCursor",2,5)
         @sprites["cursor"].viewport = @viewport
         @sprites["cursor"].x        = -SQUAREWIDTH / 2 + (@mapX * SQUAREWIDTH) + (Graphics.width - @sprites["map"].bitmap.width) / 2
         @sprites["cursor"].y        = -SQUAREHEIGHT / 2 + (@mapY * SQUAREHEIGHT) + (Graphics.height - @sprites["map"].bitmap.height) / 2

@@ -42,7 +42,7 @@ class CircuitPuzzle_Scene
             @componentBitmaps[key] = componentBitmap
         end
 
-        @sprites["cursor"] = AnimatedSprite.create("Graphics/Pictures/mapCursor",2,5)
+        @sprites["cursor"] = AnimatedSprite.create("Graphics/Pictures/Town Map/mapCursor",2,5)
         @sprites["cursor"].viewport = @viewport
         @sprites["cursor"].play
         @sprites["cursor"].zoom_x = 2

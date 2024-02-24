@@ -4,10 +4,10 @@
 class LightEffect
   def initialize(event,viewport=nil,map=nil,filename=nil)
     @light = IconSprite.new(0,0,viewport)
-    if filename!=nil && filename!="" && pbResolveBitmap("Graphics/Pictures/"+filename)
-      @light.setBitmap("Graphics/Pictures/"+filename)
+    if filename!=nil && filename!="" && pbResolveBitmap("Graphics/Pictures/Light Effects/"+filename)
+      @light.setBitmap("Graphics/Pictures/Light Effects/"+filename)
     else
-      @light.setBitmap("Graphics/Pictures/LE")
+      @light.setBitmap("Graphics/Pictures/Light Effects/base_light")
     end
     @light.z = 1000
     @event = event
@@ -35,7 +35,7 @@ end
 
 class LightEffect_Lamp < LightEffect
   def initialize(event,viewport=nil,map=nil)
-    lamp = AnimatedBitmap.new("Graphics/Pictures/LE")
+    lamp = AnimatedBitmap.new("Graphics/Pictures/Light Effects/base_light")
     @light = Sprite.new(viewport)
     @light.bitmap  = Bitmap.new(128,64)
     src_rect = Rect.new(0, 0, 64, 64)
@@ -108,10 +108,10 @@ end
 class LightEffect_Abyss < LightEffect
   def initialize(event,viewport=nil,map=nil,filename=nil)
     @light = IconSprite.new(0,0,viewport)
-    if filename!=nil && filename!="" && pbResolveBitmap("Graphics/Pictures/"+filename)
-      @light.setBitmap("Graphics/Pictures/"+filename)
+    if filename!=nil && filename!="" && pbResolveBitmap("Graphics/Pictures/Light Effects/"+filename)
+      @light.setBitmap("Graphics/Pictures/Light Effects/"+filename)
     else
-      @light.setBitmap("Graphics/Pictures/LEAbyssal")
+      @light.setBitmap("Graphics/Pictures/Light Effects/abyssal_light")
     end
     @light.z = 1000
     @event = event
@@ -143,7 +143,7 @@ end
 class LightEffect_Crystal < LightEffect
   def initialize(event,viewport=nil,map=nil)
     @light = IconSprite.new(0,0,viewport)
-    @light.setBitmap("Graphics/Pictures/LE")
+    @light.setBitmap("Graphics/Pictures/Light Effects/basic_light")
     @light.z = 1000
     @event = event
     @map = (map) ? map : $game_map
@@ -185,7 +185,7 @@ end
 class LightEffect_Totem < LightEffect
     def initialize(event,viewport=nil,map=nil)
       @light = IconSprite.new(0,0,viewport)
-      @light.setBitmap("Graphics/Pictures/ALE")
+      @light.setBitmap("Graphics/Pictures/Light Effects/totem_light")
       @light.z = 1000
       @event = event
       @map = (map) ? map : $game_map
@@ -203,13 +203,13 @@ class LightEffect_Totem < LightEffect
 
       if !@summonTotem && shouldBeBlue
         echoln("Setting this totem light to the summon version since the #{@event.name}'s A switch is on")
-        @light.setBitmap("Graphics/Pictures/ALE_S")
+        @light.setBitmap("Graphics/Pictures/Light Effects/totem_light_blue")
         @summonTotem = true
         @opacityCounter = 0
         @opacifyWavelength = 4.0
       elsif @summonTotem && !shouldBeBlue
         echoln("Setting this totem light to the non-summon version since the #{@event.name}'s A switch is off")
-        @light.setBitmap("Graphics/Pictures/ALE")
+        @light.setBitmap("Graphics/Pictures/Light Effects/totem_light")
         @summonTotem = false
         @opacityCounter = 0
         @opacifyWavelength = 8.0
@@ -236,7 +236,7 @@ end
 class LightEffect_SummonTotemAura < LightEffect
   def initialize(event,viewport=nil,map=nil)
     @light = IconSprite.new(0,0,viewport)
-    @light.setBitmap("Graphics/Pictures/ALE_S")
+    @light.setBitmap("Graphics/Pictures/Light Effects/totem_light_blue")
     @light.z = 1000
     @event = event
     @map = (map) ? map : $game_map
@@ -274,7 +274,7 @@ end
 class LightEffect_DragonFlame < LightEffect
   def initialize(event,viewport=nil,map=nil)
     super
-    @light.setBitmap("Graphics/Pictures/DFLE")
+    @light.setBitmap("Graphics/Pictures/Light Effects/dragon_flame")
     @opacityCounter = 0
   end
 
@@ -298,7 +298,7 @@ end
 class LightEffect_Condensed < LightEffect
   def initialize(event,viewport=nil,map=nil)
     super
-    @light.setBitmap("Graphics/Pictures/HLE")
+    @light.setBitmap("Graphics/Pictures/Light Effects/halo_light")
     @opacityCounter = 0
     @light.ox      = (@light.bitmap.width * 2) / 4
     @light.oy      = (@light.bitmap.height * 2) / 4
@@ -332,10 +332,10 @@ end
 class LightEffect_TVGlow < LightEffect
   def initialize(event,viewport=nil,map=nil,filename=nil)
     @light = IconSprite.new(0,0,viewport)
-    if filename!=nil && filename!="" && pbResolveBitmap("Graphics/Pictures/"+filename)
-      @light.setBitmap("Graphics/Pictures/"+filename)
+    if filename!=nil && filename!="" && pbResolveBitmap("Graphics/Pictures/Light Effects/"+filename)
+      @light.setBitmap("Graphics/Pictures/Light Effects/"+filename)
     else
-      @light.setBitmap("Graphics/Pictures/TVLE")
+      @light.setBitmap("Graphics/Pictures/Light Effects/television_glow")
     end
     @light.z = 1000
     @event = event

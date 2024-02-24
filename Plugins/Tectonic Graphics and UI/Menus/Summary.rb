@@ -493,7 +493,7 @@ class PokemonSummary_Scene
             status = GameData::Status.get(@pokemon.status).id_number
         end
         status -= 1
-        imagepos.push(["Graphics/Pictures/statuses", 124, 100, 0, 16 * status, 44, 16]) if status >= 0
+        imagepos.push([addLanguageSuffix("Graphics/Pictures/statuses"), 124, 100, 0, 16 * status, 44, 16]) if status >= 0
         # Show hot streak icon
         imagepos.push([sprintf("Graphics/Pictures/Summary/hot_streak"), 176, 100]) if @pokemon.onHotStreak?
         # Show shininess star

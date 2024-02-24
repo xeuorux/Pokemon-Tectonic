@@ -182,10 +182,10 @@ class SlotMachineReel < BitmapSprite
           Input.update
           update
           @sprites["window2"].bitmap.clear if @sprites["window2"].bitmap
-          @sprites["window1"].setBitmap(sprintf("Graphics/Pictures/Slot Machine/win"))
+          @sprites["window1"].setBitmap(sprintf(addLanguageSuffix("Graphics/Pictures/Slot Machine/win")))
           @sprites["window1"].src_rect.set(152*((frame/timePerFrame)%4),0,152,208)
           if bonus>0
-            @sprites["window2"].setBitmap(sprintf("Graphics/Pictures/Slot Machine/bonus"))
+            @sprites["window2"].setBitmap(sprintf(addLanguageSuffix("Graphics/Pictures/Slot Machine/bonus")))
             @sprites["window2"].src_rect.set(152*(bonus-1),0,152,208)
           end
           @sprites["light1"].visible=true
@@ -230,7 +230,7 @@ class SlotMachineReel < BitmapSprite
           Input.update
           update
           @sprites["window2"].bitmap.clear if @sprites["window2"].bitmap
-          @sprites["window1"].setBitmap(sprintf("Graphics/Pictures/Slot Machine/lose"))
+          @sprites["window1"].setBitmap(sprintf(addLanguageSuffix("Graphics/Pictures/Slot Machine/lose")))
           @sprites["window1"].src_rect.set(152*((frame/timePerFrame)%2),0,152,208)
           frame += 1
         end
@@ -242,7 +242,7 @@ class SlotMachineReel < BitmapSprite
       @sprites={}
       @viewport=Viewport.new(0,0,Graphics.width,Graphics.height)
       @viewport.z=99999
-      addBackgroundPlane(@sprites,"bg","Slot Machine/bg",@viewport)
+      addBackgroundPlane(@sprites,"bg",addLanguageSuffix("Slot Machine/bg"),@viewport)
       @sprites["reel1"]=SlotMachineReel.new(64,112,difficulty)
       @sprites["reel2"]=SlotMachineReel.new(144,112,difficulty)
       @sprites["reel3"]=SlotMachineReel.new(224,112,difficulty)
@@ -266,7 +266,7 @@ class SlotMachineReel < BitmapSprite
       @sprites["light2"].mirror=true
       @sprites["light2"].visible=false
       @sprites["window1"]=IconSprite.new(358,96,@viewport)
-      @sprites["window1"].setBitmap(sprintf("Graphics/Pictures/Slot Machine/insert"))
+      @sprites["window1"].setBitmap(sprintf(addLanguageSuffix("Graphics/Pictures/Slot Machine/insert")))
       @sprites["window1"].src_rect.set(0,0,152,208)
       @sprites["window2"]=IconSprite.new(358,96,@viewport)
       @sprites["credit"]=SlotMachineScore.new(360,66,$Trainer.coins)
@@ -293,7 +293,7 @@ class SlotMachineReel < BitmapSprite
           pbMessage(_INTL("You've run out of Coins.\nGame over!"))
           break
         elsif @gameRunning   # Reels are spinning
-          @sprites["window1"].setBitmap(sprintf("Graphics/Pictures/Slot Machine/stop"))
+          @sprites["window1"].setBitmap(sprintf(addLanguageSuffix("Graphics/Pictures/Slot Machine/stop")))
           @sprites["window1"].src_rect.set(152*((frame/spinFrameTime)%4),0,152,208)
           if Input.trigger?(Input::USE)
             pbSEPlay("Slots stop")

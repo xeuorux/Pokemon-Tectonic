@@ -82,11 +82,11 @@ class Window_PokemonBag < Window_DrawableCommand
             if itemData.is_important? && !itemData.is_consumable_key_item?
               if @bag.pbIsRegistered?(item)
                 pbDrawImagePositions(self.contents,[
-                   ["Graphics/Pictures/Bag/icon_register",rect.x+rect.width-72,rect.y+8,0,0,-1,24]
+                   [addLanguageSuffix("Graphics/Pictures/Bag/icon_register"),rect.x+rect.width-72,rect.y+8,0,0,-1,24]
                 ])
               elsif pbCanRegisterItem?(item)
                 pbDrawImagePositions(self.contents,[
-                   ["Graphics/Pictures/Bag/icon_register",rect.x+rect.width-72,rect.y+8,0,24,-1,24]
+                   [addLanguageSuffix("Graphics/Pictures/Bag/icon_register"),rect.x+rect.width-72,rect.y+8,0,24,-1,24]
                 ])
               end
             else

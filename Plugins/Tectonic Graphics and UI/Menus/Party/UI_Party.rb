@@ -460,7 +460,7 @@ end
           # Draw level text
           if !@pokemon.egg?
             pbDrawImagePositions(@overlaysprite.bitmap,[[
-               "Graphics/Pictures/Party/overlay_lv",20,70,0,0,22,14]])
+              addLanguageSuffix("Graphics/Pictures/Party/overlay_lv"),20,70,0,0,22,14]])
             pbSetSmallFont(@overlaysprite.bitmap)
             pbDrawTextPositions(@overlaysprite.bitmap,[
                [@pokemon.level.to_s,42,57,0,basecolor,shadowcolor]

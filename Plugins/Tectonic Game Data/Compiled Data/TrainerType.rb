@@ -63,12 +63,12 @@ module GameData
       end
   
       def self.map_icon_filename(tr_type)
-        return self.check_file(tr_type, "Graphics/Pictures/mapPlayer")
+        return self.check_file(tr_type, "Graphics/Pictures/Town Map/Player Icons/mapPlayer")
       end
   
       def self.player_map_icon_filename(tr_type)
         outfit = ($Trainer) ? $Trainer.outfit : 0
-        return self.check_file(tr_type, "Graphics/Pictures/mapPlayer", sprintf("_%d", outfit))
+        return self.check_file(tr_type, "Graphics/Pictures/Town Map/Player Icons/mapPlayer", sprintf("_%d", outfit))
       end
   
       def initialize(hash)

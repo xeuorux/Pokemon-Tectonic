@@ -25,7 +25,7 @@ class MoveLearner_Scene
       @viewport=Viewport.new(0,0,Graphics.width,Graphics.height)
       @viewport.z=99999
       @sprites={}
-      bg_path = "reminderbg"
+      bg_path = "Move Tutor/reminderbg"
       bg_path += "_dark" if darkMode?
       addBackgroundPlane(@sprites,"bg",bg_path,@viewport)
       @sprites["pokeicon"]=PokemonIconSprite.new(@pokemon,@viewport)
@@ -33,7 +33,7 @@ class MoveLearner_Scene
       @sprites["pokeicon"].x=320
       @sprites["pokeicon"].y=84
       @sprites["background"]=IconSprite.new(0,0,@viewport)
-      sel_path = "Graphics/Pictures/reminderSel"
+      sel_path = "Graphics/Pictures/Move Tutor/reminderSel"
       sel_path += "_dark" if darkMode?
       @sprites["background"].setBitmap(sel_path)
       @sprites["background"].y=78
@@ -46,7 +46,7 @@ class MoveLearner_Scene
       @sprites["msgwindow"]=Window_AdvancedTextPokemon.new("")
       @sprites["msgwindow"].visible=false
       @sprites["msgwindow"].viewport=@viewport
-      @typebitmap=AnimatedBitmap.new(addLanguageSuffix(("Graphics/Pictures/types")))
+      @typebitmap=AnimatedBitmap.new(addLanguageSuffix("Graphics/Pictures/types"))
       pbDrawMoveList
       pbDeactivateWindows(@sprites)
       # Fade in all sprites
@@ -80,7 +80,7 @@ class MoveLearner_Scene
         if moveobject
           moveData=GameData::Move.get(moveobject)
           type_number = GameData::Type.get(moveData.type).id_number
-          imagepos.push(["Graphics/Pictures/types", 12, yPos + 8, 0, type_number * 28, 64, 28])
+          imagepos.push([addLanguageSuffix("Graphics/Pictures/types"), 12, yPos + 8, 0, type_number * 28, 64, 28])
           textpos.push([moveData.name,80,yPos,0,base,shadow])
           if moveData.total_pp>0
             textpos.push([_INTL("PP"),112,yPos+32,0,base,shadow])
@@ -92,7 +92,9 @@ class MoveLearner_Scene
         end
         yPos+=64
       end
-      imagepos.push(["Graphics/Pictures/reminderSel",
+      sel_path = "Graphics/Pictures/Move Tutor/reminderSel"
+      sel_path += "_dark" if darkMode?
+      imagepos.push([sel_path,
          0,78+(@sprites["commands"].index-@sprites["commands"].top_item)*64,
          0,0,258,72])
       selMoveData=GameData::Move.get(@moves[@sprites["commands"].index])
@@ -109,10 +111,10 @@ class MoveLearner_Scene
       pbDrawTextPositions(overlay,textpos)
       imagepos.push(["Graphics/Pictures/category",436,116,0,category*28,64,28])
       if @sprites["commands"].index<@moves.length-1
-        imagepos.push(["Graphics/Pictures/reminderButtons",48,350,0,0,76,32])
+        imagepos.push(["Graphics/Pictures/Move Tutor/reminderButtons",48,350,0,0,76,32])
       end
       if @sprites["commands"].index>0
-        imagepos.push(["Graphics/Pictures/reminderButtons",134,350,76,0,76,32])
+        imagepos.push(["Graphics/Pictures/Move Tutor/reminderButtons",134,350,76,0,76,32])
       end
       pbDrawImagePositions(overlay,imagepos)
       drawTextEx(overlay,272,214,230,5,selMoveData.description,

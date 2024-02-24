@@ -964,6 +964,7 @@ class PokemonStorageScene
             end
             lv_path = "Graphics/Pictures/Storage/overlay_lv"
             lv_path += "_dark" if darkMode?
+            lv_path = addLanguageSuffix(lv_path)
             imagepos.push([lv_path, 6, 246])
             textstrings.push([pokemon.level.to_s, 28, 228, false, base, shadow])
             if pokemon.ability
