@@ -178,7 +178,6 @@ Outdoor = false
 ShowArea = true
 Bicycle = false
 BattleBack = elite2
-TeleportBlocked = true
 #-------------------------------
 [022]
 # False-Front House
@@ -332,7 +331,6 @@ Outdoor = false
 ShowArea = false
 Bicycle = false
 BattleBack = elite3
-TeleportBlocked = true
 #-------------------------------
 [042]
 # Zeraora's Chamber
@@ -487,7 +485,6 @@ Outdoor = false
 ShowArea = false
 Bicycle = false
 BattleBack = elite8
-TeleportBlocked = true
 #-------------------------------
 [063]
 # Novo Buildings
@@ -989,7 +986,6 @@ ShowArea = false
 Bicycle = false
 BattleBack = elite7
 Environment = None
-TeleportBlocked = true
 #-------------------------------
 [135]
 # Nebula Ruins
@@ -1412,7 +1408,6 @@ Outdoor = false
 ShowArea = false
 Bicycle = false
 BattleBack = elite5
-TeleportBlocked = true
 #-------------------------------
 [196]
 # Boiling Cave
@@ -1509,7 +1504,6 @@ Bicycle = false
 Outdoor = false
 ShowArea = false
 Bicycle = false
-TeleportBlocked = true
 #-------------------------------
 [211]
 # Split Peaks
@@ -1947,7 +1941,6 @@ HealingSpot = 129,32,37
 Outdoor = false
 ShowArea = false
 Bicycle = false
-TeleportBlocked = false
 #-------------------------------
 [275]
 # Sweetrock Harbor Gym Tour
@@ -1956,7 +1949,6 @@ ShowArea = false
 Bicycle = false
 BattleBack = indoor3
 Environment = None
-TeleportBlocked = true
 #-------------------------------
 [276]
 # Sweetrock Harbor Gym Tour Part 1
@@ -1965,7 +1957,6 @@ ShowArea = false
 Bicycle = false
 BattleBack = indoor3
 Environment = None
-TeleportBlocked = true
 #-------------------------------
 [277]
 # Sweetrock Harbor Gym Tour Part 2
@@ -1974,7 +1965,6 @@ ShowArea = false
 Bicycle = false
 BattleBack = indoor3
 Environment = None
-TeleportBlocked = true
 #-------------------------------
 [278]
 # Sweetrock Harbor Gym Hallways
@@ -2132,7 +2122,6 @@ Outdoor = false
 ShowArea = true
 Bicycle = false
 BattleBack = champion1
-TeleportBlocked = true
 #-------------------------------
 [301]
 # County Park
