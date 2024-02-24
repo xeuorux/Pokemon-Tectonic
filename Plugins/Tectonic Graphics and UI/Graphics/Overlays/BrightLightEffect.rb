@@ -354,7 +354,7 @@ class LightEffect_TVGlow < LightEffect
     super
     @light.opacity = 100
     @light.ox      = 64
-    @light.oy      = 96
+    @light.oy      = 107
     if (Object.const_defined?(:ScreenPosHelper) rescue false)
       @light.x      = ScreenPosHelper.pbScreenX(@event)
       @light.y      = ScreenPosHelper.pbScreenY(@event)
@@ -369,7 +369,7 @@ class LightEffect_TVGlow < LightEffect
     @light.tone   = $game_screen.tone
 
     @opacityCounter += 1
-    @light.opacity = (80 + 40 * Math.sin(@opacityCounter.to_f / @opacityWavelength)).floor
+    @light.opacity = (100 + 50 * Math.sin(@opacityCounter.to_f / @opacityWavelength)).floor
   end
 end
 
