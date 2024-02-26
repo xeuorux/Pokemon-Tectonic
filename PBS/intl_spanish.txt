@@ -34098,7 +34098,7 @@ Antiaéreo
 Accelerock
 Roca Veloz
 Rock Roll
-Rocamiento
+Rueda Roca
 Rock Blast
 Pedrada
 Rock Polish
@@ -34888,7 +34888,7 @@ Hoja Paciente
 Art of War
 Arte de la Guerra
 Reverb Ward
-Muro Espectral
+Muro Especial
 Moonglow
 Brillo Lunar
 Eclipse
@@ -35018,7 +35018,7 @@ Beso de Ángel
 Mist Burst
 Nebudetonación
 Energy Trick
-Intercambio Energético
+Truco Energía
 Jet Stream
 Viento Prolongado
 Stabilize
@@ -35347,8 +35347,8 @@ Devour Whole
 Devorar por Completo
 Spotting
 Vigilia
-Polarized Field
-Campo Polarizado
+Repulsion Field
+Campo Repulsivo
 Masquerblade
 Filo Farsante
 Disturb
@@ -35420,7 +35420,7 @@ Patada Frontal
 Razing Vines
 Enredadera
 Cranial Guard
-Guarda-Mente
+Guardia Craneal
 From Beyond
 Del Más Allá
 Sirocco
@@ -41502,10 +41502,14 @@ Efflorescent
 Floreciente
 Flourishing
 Próspero
-Dragon’s Blood
+Dragon's Blood
 Sangre Dracónica
 Gauss Aftershock
 Repercusión de Gauss
+Iron Heel
+Talón Férreo
+Trench Carver
+Nato en la Fosa
 Frigid Reflection
 Reflección Frígida
 Indestructible
@@ -47056,7 +47060,7 @@ PREC.
 PRIORITY
 PRIOR.
 TAG
-MARCA
+CLASE
 TARGET
 OBJET.
 Pre-Evolutions of {1}
@@ -52364,7 +52368,7 @@ A critical hit!
 It was a guaranteed critical hit!
 ¡Fue un golpe crítico garantizado!
 CATEGORY
-CATEGORÍA
+CATEGOR.
 POWER
 PODER
 [26]
@@ -54136,546 +54140,546 @@ Ropa Formal
 Aqua Ring
 Acua Aro
 Attract
-Attract
+Atracción
 Beak Blast
-Beak Blast
+Pico Cañón
 Condensate
-Condensate
+Condensar
 Bide Turns
-Bide Turns
+Turnos Venganza
 Bide Damage
-Bide Damage
+Daño Venganza
 Bide Target
-Bide Target
+Objetivo Venganza
 Burnt Up
-Burnt Up
+Post-Llama Final
 Dried Out
-Dried Out
+Seco
 Charged
-Charged
+Cargado
 Charge Expended
-Charge Expended
+Carga Usada
 Choice Locked
-Choice Locked
+Objeto Elección
 Confusion Turns
-Confusion Turns
+Turnos Confusión
 Counter Damage
-Counter Damage
+Daño Contraataque
 Counter Target
-Counter Target
+Objetivo Contraataque
 Curse-Warned
-Curse-Warned
+Advertencia-Maldición
 Cursed
-Cursed
+Maldito
 Dancer
-Dancer
+Pareja de Baile
 Curled Up
-Curled Up
+Rizo Guardia
 Destiny Bond
-Destiny Bond
+Mismo Destino
 Destiny Bond Previous
-Destiny Bond Previous
+Mismo Destino Anterior
 Destiny Bond Target
-Destiny Bond Target
+Objetivo Mismo Destino
 Disable Turns
-Disable Turns
+Turnos Anulación
 Disabled Move
-Disabled Move
+Movimiento Anulado
 Electrify
-Electrify
+Electrificación
 Embargoed
-Embargoed
+Embargado
 Encore Turns
-Encore Turns
+Turnos Otra Vez
 Must Use
-Must Use
+Debe Usar
 Endure
-Endure
+Otra Vez
 Fight Forever
-Fight Forever
+Lucha Eterna
 First Pledge
-First Pledge
+Primer Voto
 Flinch
-Flinch
+Amedrentado
 Crit Chance Up
-Crit Chance Up
+Índice Crítico Alto
 Focus Punch
-Focus Punch
+Puño Certero
 Follow Me
-Follow Me
-Ability Surpressed
-Ability Surpressed
+Señuleo
+Ability Supressed
+Habilidad Suprimida
 Gem Consumed
-Gem Consumed
+Gema Consumida
 Empowering Herb Consumed
-Empowering Herb Consumed
+Hierba Potenciadora Consumida
 Skill Herb Consumed
-Skill Herb Consumed
+Hierba Ajuste Consumida
 Luck Herb Consumed
-Luck Herb Consumed
+Hierba Suerte Consumida
 Grudge
-Grudge
+Rabia
 Healing Blocked
-Healing Blocked
+Curación Bloqueada
 Helping Hand
-Helping Hand
+Refuerzo
 Lucky Cheer
-Lucky Cheer
+Baile Suertudo
 Spotting
-Spotting
+Vigilia
 Recharging
-Recharging
+Recargando
 Attached
-Attached
+Atado
 Attached To
-Attached To
+Atado A
 Illusion
-Illusion
+Ilusión
 Moves Imprisoned
-Moves Imprisoned
+MovimientoS Sellados
 Ingrained
-Ingrained
+Arraigado
 Deeply Ingrained
-Deeply Ingrained
+Fuertemente Arraigado
 Instruct
-Instruct
+Mandato
 Instructed
-Instructed
+Mandado
 Laser Focus Turns
-Laser Focus Turns
+Turnos Aguzar
 Seeded
-Seeded
+Sembrado
 Locked On
-Locked On
+Fijando Blanco
 Locked On To
-Locked On To
+Fijando Blanco A  
 Magic Bounce
-Magic Bounce
+Espejo Mágico
 Magic Coat
-Magic Coat
+Capa Mágica
 Magnet Risen
-Magnet Risen
+Levitón
 Cannot Escape
-Cannot Escape
+No Puede Escapar
 Marked for Death
-Marked for Death
+Marca Mortal
 Imprisoned in ice
-Imprisoned in ice
+Atrapado en Hielo
 Me First
-Me First
+Yo Primero
 Metronome Count
-Metronome Count
+Contador Metrónomo
 Micle Berry
-Micle Berry
+Baya Lagro
 Minimized
-Minimized
+Minimizado
 Miracle Eye
-Miracle Eye
+Gran Ojo
 Mirror Coat Damage
-Mirror Coat Damage
+Daño Manto Espejo
 Mirror Coat Target
-Mirror Coat Target
+Objetivo Manto ESpejo
 Will Move Next
-Will Move Next
+Se Moverá Luego
 Nightmared
-Nightmared
+En Pesadilla
 Rampage Turns
-Rampage Turns
+Turnos Arrasando
 Parental Bond
-Parental Bond
+Amor Filial
 Perish Song Turns
-Perish Song Turns
+Turnos Canto Mortal
 Pickup Item
-Pickup Item
+Objeto Recogida
 Pickup Use
-Pickup Use
+Usado Recogida
 Pinch
-Pinch
+Apuro
 Powder
-Powder
+Polvo Explosivo
 Power Tricked
-Power Tricked
+Truco Fuerza
 Energy Tricked
-Energy Tricked
+Truco Energía
 Base Attack Set
-Base Attack Set
+Ataque Base
 Base Sp. Atk Set
-Base Sp. Atk Set
+Ataque Es. Base
 Base Defense Set
-Base Defense Set
+Defensa Base
 Base Sp. Def Set
-Base Sp. Def Set
+Defensa Es. Base
 Base Speed Set
-Base Speed Set
+Velocidad Base
 Agility Herb
-Agility Herb
+Hierba Agilidad
 Prankster
-Prankster
+Bromista
 Priority Ability
-Priority Ability
+Habilidad Prioridad
 Priority Item
-Priority Item
+Objeto Prioridad
 Pursuit
-Pursuit
+Persecución
 Quash
-Quash
+Último Lugar
 Rage
-Rage
+Furia
 Roosting
-Roosting
+Respiro
 Shell Trap
-Shell Trap
+Coraza Trampa
 Masquerblade
-Masquerblade
+Filo Farsante
 Sky Drop
-Sky Drop
+Caída Libre
 Slow Start Turns
-Slow Start Turns
+Turnos Inicio Lento
 Smacked Down
-Smacked Down
+Antiaéreo
 Snatch
-Snatch
+Robo
 Spotlight
-Spotlight
+Foco
 Stockpile Charges
-Stockpile Charges
+Cargas Reserva
 Stockpile Def
-Stockpile Def
+Def Reserva
 Stockpile Sp Def
-Stockpile Sp Def
+Def Es. Reserva
 Substitute Health
-Substitute Health
+Salud del Sustituto
 Taunted Turns
-Taunted Turns
+Turnos en Mofa
 Barred Turns
-Barred Turns
+Turnos en Veto
 Telekinesis Turns
-Telekinesis Turns
+Turnos en Telekinesis
 Throat Injured Turns
-Throat Injured Turns
+Turnos con Golpe Mordaza
 Tormented
-Tormented
+Atormentado
 Transformed
-Transformed
+Transformado
 Transformed Into
-Transformed Into
+Transformado en
 Trapping Turns
-Trapping Turns
+Turnos Atrapando
 Trapping Move
-Trapping Move
+Movimientos Atrapando
 Trapped By
-Trapped By
+Atrapado por
 Not Slacking Off
-Not Slacking Off
+No Relajándose
 Two Turn Attack
-Two Turn Attack
+Ataque Dos Turnos
 Type 3
-Type 3
+Tipo 3
 Item Lost
-Item Lost
+Objetio Perdido
 Uproar Turns
-Uproar Turns
+Turnos Alboroto
 Weight Changed
-Weight Changed
+Camibios en Peso
 Weight Doubled
-Weight Doubled
+Peso Duplicado
 Weight Halved
-Weight Halved
+Mitad de Peso
 Drowsy
-Drowsy
+Adormecido
 Choice Locking
-Choice Locking
+Objeto Elección
 BallFetch
 BallFetch
 Stats Dropped
-Stats Dropped
+Stats Disminuidas
 Burning Jealousy
-Burning Jealousy
+Envidia Ardiente
 Jaw Lock
-Jaw Lock
+Presa Maxilar
 Jaw Locker
-Jaw Locker
+Apresando
 Covered In Tar
-Covered In Tar
+Cubierto en Alquitrán
 Octolocked
-Octolocked
+Octopresado
 Octolocked By
-Octolocked By
+Octopresado Por
 Blunder Policy
-Blunder Policy
+Seguro Fallo
 Switched Ally
-Switched Ally
+Aliado Cambiado
 Chose Status
-Chose Status
+Eligió Estado
 Chose Attack
-Chose Attack
+Eligió Ataque
 Assisting
-Assisting
+Asistiendo
 Confusion Chance
-Confusion Chance
+Chance de Confusión
 Flinch Immune
-Flinch Immune
+Inmune a ser Amedrentado
 Ignores Added Effects
-Ignores Added Effects
+Ignora Efectos Secundarios
 Sublimate
-Sublimate
+Sublimado
 Weak to Bug
-Weak to Bug
+Débil a Bicho
 Added Crit Chance
-Added Crit Chance
+Índice Crítico Aumentado
 Charm Turns
-Charm Turns
+Turnos Encanto
 Charm Chance
-Charm Chance
+Probabilidad Encanto
 No Weaknesses
-No Weaknesses
+Sin Debilidades
 No Retreat!!
-No Retreat!!
+¡¡Bastión Final!!
 Healing Reversed
-Healing Reversed
+Curación Invertida
 Healing Halved
-Healing Halved
+Cura Dividido a la Mitad
 Fury Cutter Count
-Fury Cutter Count
+Contador Corte Furia
 Snowball Count
-Snowball Count
+Contador Bola de Nieve
 Rock Roll Count
-Rock Roll Count
+Contador Rueda Roca
 Heart Rhythm Count
-Heart Rhythm Count
+Contador Ritmo Cardíaco
 Stunning Curl
-Stunning Curl
+Rizo Paralizador
 Venom Guard
-Venom Guard
+Guardia Venenoso
 Root Shelter
-Root Shelter
+Refugio Forestal
 Extra Turns
-Extra Turns
+Turnos Extra
 Extra Turn
-Extra Turn
+Turno Extra
 Stats Swapped Around
-Stats Swapped Around
+Stats Intercambiadas
 Enduring Turns
-Enduring Turns
+Turnos Aguante
 Laser Focus
-Laser Focus
+Aguzar
 Empowered Bond
-Empowered Bond
+Fuerte Afecto
 Volley Stance
-Volley Stance
+Doble Cañón
 Carrying
-Carrying
+Llevando
 Riding Dragon
-Riding Dragon
+Montando Dragón
 Maestro
 Maestro
 GaleWings
-GaleWings
+Alas Vendaval
 Trench Carver
-Trench Carver
+Nato en la Fosa
 Swift Stomps
-Swift Stomps
+Pisada Rauda
 Shimmering Heat
-Shimmering Heat
+Tormenta de Hollín
 Flare Witch
-Flare Witch
+Fulgor Embrujado
 Halving Damage Turns
-Halving Damage Turns
+Turnos con Mitad de Daño
 Echo
-Echo
+Eco
 Eroding
-Eroding
+Erosionando
 Total Focus
-Total Focus
+Concentración Total
 Indestructible
 Indestructible
 Swapping to Cushion
-Swapping to Cushion
+Cambiando a Aliado
 Exhaustion
-Exhaustion
+Agotamiento
 Protect Will Fail
-Protect Will Fail
+Protección Fallará
 Protect
-Protect
+Protección
 King's Shield
-King's Shield
+Escudo Real
 Shining Shell
-Shining Shell
+Caparazón Brillante
 Obstruct
-Obstruct
+Obstrucción
 Reverb Ward
-Reverb Ward
+Muro Especial
 Baneful Bunker
-Baneful Bunker
+Búnker
 Red-Hot Retreat
-Red-Hot Retreat
+Caparazón Incandescente
 Icicle Armor
-Icicle Armor
+Coraza Tépano
 Spiky Shield
-Spiky Shield
+Barrera Espinosa
 Mirror Shield
-Mirror Shield
+Escudo Reflejante
 Cranial Guard
-Cranial Guard
+Guardia Craneal
 Volatile Toxin
-Volatile Toxin
+Toxina Volatil
 Switched In
-Switched In
+Entrando al Campo
 Mutated
-Mutated
+Mutado
 Delayed Reaction
-Delayed Reaction
+Reacción Tardía
 Bubble Barrier
-Bubble Barrier
+Barrera Burbuga
 Chewing Berry
-Chewing Berry
+Masticando Baya
 Auto-Pilot
-Auto-Pilot
+Auto-Piloto
 Amulet Coin
-Amulet Coin
+Moneda Amuleto
 Fairy Lock
-Fairy Lock
+Cerrojo Feérico
 Fusion Bolt
-Fusion Bolt
+Rayo Fusión
 Fusion Flare
-Fusion Flare
+Llama Fusión
 Gravity Turns
-Gravity Turns
+Turnos Gravedad
 Happy Hour
-Happy Hour
+Paga Extra
 Ion Deluge
-Ion Deluge
+Aluvión de Iones
 Money Dropped
-Money Dropped
+Moneda Soltada
 Fortune
-Fortune
+Fortuna
 Neutralizing Gas
-Neutralizing Gas
+Gas Reactivo
 Trick Room
-Trick Room
+Zona Rara
 Puzzle Room
-Puzzle Room
+Zona Enigmática
 Odd Room
-Odd Room
+Zona Anómala
 Polarized Room
-Polarized Room
+Zona Eficaz
 Insight Room
-Insight Room
+Zona Esclarecedora
 Emotion Room
-Emotion Room
+Zona Emocional
 Willful Room
-Willful Room
+Zona Voluntad
 Grey Mist Turns
-Grey Mist Turns
+Turnos Niebla Gris
 Bliss
-Bliss
+Alegría
 Floral Gramarye
-Floral Gramarye
+Gramarye Floral
 Turns Till Move
-Turns Till Move
+Turnos Hasta Movimiento
 Incoming Move
-Incoming Move
+Movimiento Venidero
 Foretold Move User Index
-Foretold Move User Index
+Usuario Movimiento Predicho
 Foretold Move User Party Index
-Foretold Move User Party Index
+Equipo Usuario Movimiento Predicho
 Incoming Move Type
-Incoming Move Type
+Tipo de Movimiento Venidero
 Healing Wish
-Healing Wish
+Deseo Cura
 Lunar Dance
-Lunar Dance
+Danza Lunar
 Turns Till Wish
-Turns Till Wish
+Turnos Hasta Deseo
 Wish Heal Amount
-Wish Heal Amount
+Cantidad Curación Deseo
 Wish Maker
-Wish Maker
+Usuario de Deseo
 Refuge
-Refuge
+Refugio
 PassingAbility
-PassingAbility
+HabilidadPasada
 PassingStats
-PassingStats
+StatsPasados
 Kickback
-Kickback
+Escudo Aliado
 Kickback Amount
-Kickback Amount
+Cantidad Escudo Aliado
 Gauss Aftershock
-Gauss Aftershock
+Repercusión de Gauss 
 Echoed Voice Counter
-Echoed Voice Counter
+Contador Eco Voz
 Echoed Voice Used
-Echoed Voice Used
+Eco Voz Usado
 Round Singers
-Round Singers
+Usuarios Canon
 Reflect
-Reflect
+Reflejo
 Light Screen
-Light Screen
+Pantalla de Luz
 Aurora Veil
-Aurora Veil
+Velo Aurora
 Repulsion Field
-Repulsion Field
+Campo de Repulsión
 Lucky Chant
-Lucky Chant
+Conjuro
 Mist
-Mist
+Niebla
 Safeguard
-Safeguard
+Velo Sagrado
 Diamond Field
-Diamond Field
+Campo de Diamantes
 Crafty Shield
-Crafty Shield
+Truco Defensa
 Mat Block
-Mat Block
+Escudo Tatami
 Quick Guard
-Quick Guard
+Anticipo
 Wide Guard
-Wide Guard
+Vastaguardia
 Quarantine
-Quarantine
+Cuarentena
 Rainbow Turns
-Rainbow Turns
+Turnos Arcoíris
 Sea of Fire Turns
-Sea of Fire Turns
+Turnos Mar de Llamas
 Swamp Turns
-Swamp Turns
+Turnos Pantano
 Spikes
-Spikes
+Púas
 Poison Spikes
-Poison Spikes
+Púas Venenosas
 Flame Spikes
-Flame Spikes
+Púas Ardientes
 Frost Spikes
-Frost Spikes
+Púas Heladas
 Stealth Rock
-Stealth Rock
+Trampa Rocas
 Feather Ward
-Feather Ward
+Espinas Aladas
 Sticky Web
-Sticky Web
+Red Viscosa
 Misdirecting Fog
-Misdirecting Fog
+Niebla Ilusoria
 Primal Forest
-Primal Forest
+Bosque Primitivo
 Cruel Cocoon
-Cruel Cocoon
+Crisálida Cruel
 Turbulent Sky
-Turbulent Sky
+Cielo Turbulento
 Last Round Fainted
-Last Round Fainted
+Debilitado Última Ronda
 Spent Tyrannical Immunity
-Spent Tyrannical Immunity
+Inmunidad Tiránico Gastada
 Tailwind Turns
 Turnos de Viento Afín
 Items Supressed
-Items Supressed
+Objetos Suprimidos
 Bulwark
-Bulwark
+Bastión
 Eroded Rocks
-Eroded Rocks
+Rocas Erosionadas
 Perennial Payload
-Perennial Payload
+Munición Perenne
 Traumatized
-Traumatized
+Traumatizado
