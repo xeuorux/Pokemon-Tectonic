@@ -72,8 +72,8 @@ class BattleInfoDisplay < SpriteWrapper
     def drawWholeBattleInfo
         base        = MessageConfig.pbDefaultTextMainColor
         shadow      = MessageConfig.pbDefaultTextShadowColor
-        lightBase   = MessageConfig::LIGHT_TEXT_MAIN_COLOR # we want light text to stay light regardless of mode
-        lightShadow = MessageConfig::LIGHT_TEXT_SHADOW_COLOR
+        lightBase   = MessageConfig::pbDefaultTextMainColor(opposite: true)
+        lightShadow = MessageConfig::pbDefaultTextShadowColor(opposite: true)
         fadedColor  = MessageConfig.pbDefaultFadedTextColor
 
         textToDraw = []
@@ -173,9 +173,9 @@ class BattleInfoDisplay < SpriteWrapper
     end
 
     def drawFieldEffects(effectHolder, xStart, yStart, tribesList = [])
-        base = MessageConfig::DARK_TEXT_MAIN_COLOR
-        shadow = MessageConfig::DARK_TEXT_SHADOW_COLOR
-        fadedColor = MessageConfig::DARK_FADED_TEXT_COLOR
+        base = MessageConfig::pbDefaultTextMainColor
+        shadow = MessageConfig::pbDefaultTextShadowColor
+        fadedColor = MessageConfig::pbDefaultFadedTextColor
 
         textToDraw = []
 
@@ -220,9 +220,9 @@ class BattleInfoDisplay < SpriteWrapper
     def drawIndividualBattlerInfo(battler)
         base = MessageConfig.pbDefaultTextMainColor
         shadow = MessageConfig.pbDefaultTextShadowColor
-		lightBase = MessageConfig::LIGHT_TEXT_MAIN_COLOR
-    	lightShadow = MessageConfig::LIGHT_TEXT_SHADOW_COLOR
-        fadedColor = MessageConfig::DARK_FADED_TEXT_COLOR
+		lightBase = MessageConfig::pbDefaultTextMainColor(opposite: true)
+    	lightShadow = MessageConfig::pbDefaultTextShadowColor(opposite: true)
+        fadedColor = MessageConfig::pbDefaultFadedTextColor
         textToDraw = []
 
         battlerName = battler.name
