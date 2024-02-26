@@ -163,17 +163,17 @@ def getMainQuestStages
         :FIND_THE_CATACOMBS             => 
 			[
 				_INTL("Find the Catacombs"),
-				_INTL("Professor Tamarind called you, requesting your urgent help dealing with a problem in the Prizca Catacombs. The Catacombs can be found in the Sewers underneath Prizca East."),
+				_INTL("Professor Tamarind called you, requesting your urgent help dealing with a problem in the Prizca Catacombs. The Catacombs can be found in the eastern part of the Prizca Sewers."),
 			],
         :INVESTIGATE_THE_CATACOMBS      => 
 			[
 				_INTL("Investigate the Catacombs"),
-				_INTL("Go with Professor Tamarind to confront the thieves inside of the Catacombs. The Catacombs can be found in the Sewers underneath Prizca East."),
+				_INTL("Go with Professor Tamarind to confront the thieves inside of the Catacombs. The Catacombs can be found in the eastern part of the Prizca Sewers."),
 			],
         :DEFEAT_YEZERA_CATACOMBS        => 
 			[
 				_INTL("Defeat Yezera in the Catacombs"),
-				_INTL("Confront Yezera, who appears to be leading a small group to steal Regidrago. The Catacombs can be found in the Sewers underneath Prizca East."),
+				_INTL("Confront Yezera, who appears to be leading a small group to steal Regidrago. The Catacombs can be found in the eastern part of the Prizca Sewers."),
 			],
         :DEFEAT_SANG_CATACOMBS          => 
 			[

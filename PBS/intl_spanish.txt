@@ -50945,16 +50945,16 @@ Defeat Noel, leader of Prizca East gym. Prizca East is east of the Battle Plaza,
 Vence a Noel, líder del gimnasio de Prizca Oriental. Prizca Oriental está al este de la Plaza Batalla, encontrada al este de Prizca Occidental. Su gimnasio está al centro del pueblo, al este del Edificio de la Capital de Makya.
 Find the Catacombs
 Encuentra las Catacumbas
-Professor Tamarind called you, requesting your urgent help dealing with a problem in the Prizca Catacombs. The Catacombs can be found in the Sewers underneath Prizca East.
-La Profesora Tamarind te llamó, pidiendo tu ayuda urgente para lidiar con un problema en las Catacumbas de Prizca. Las Catacumbas pueden ser encontradas en las Alcantarillas debajo de Prizca Oriental.
+Professor Tamarind called you, requesting your urgent help dealing with a problem in the Prizca Catacombs. The Catacombs can be found in the eastern part of the Prizca Sewers.
+La Profesora Tamarind te llamó, pidiendo tu ayuda urgente para lidiar con un problema en las Catacumbas de Prizca. Las Catacumbas pueden ser encontradas en el parte este de las Alcantarillas Prizca.
 Investigate the Catacombs
 Investiga las Catacumbas
-Go with Professor Tamarind to confront the thieves inside of the Catacombs. The Catacombs can be found in the Sewers underneath Prizca East.
-Ve con la Profesora Tamarind para confrontar a los ladrones dentro de las Catacumbas. Las Catacumbas pueden ser encontradas en las Alcantarillas debajo de Prizca Oriental.
+Go with Professor Tamarind to confront the thieves inside of the Catacombs. The Catacombs can be found in the eastern part of the Prizca Sewers.
+Ve con la Profesora Tamarind para confrontar a los ladrones dentro de las Catacumbas. Las Catacumbas pueden ser encontradas en el parte este de las Alcantarillas Prizca.
 Defeat Yezera in the Catacombs
 Vence a Yezera en las catacumbas
-Confront Yezera, who appears to be leading a small group to steal Regidrago. The Catacombs can be found in the Sewers underneath Prizca East.
-Confronta a Yezera, quien parece liderar un pequeño grupo para robar a Regidrago. Las Catacumbas pueden ser encontradas en las Alcantarillas debajo de Prizca Oriental.
+Confront Yezera, who appears to be leading a small group to steal Regidrago. The Catacombs can be found in the eastern part of the Prizca Sewers.
+Confronta a Yezera, quien parece liderar un pequeño grupo para robar a Regidrago. Las Catacumbas pueden ser encontradas en el parte este de las Alcantarillas Prizca.
 Defeat the Catacombs Straggler
 Vence al Rezagado de las Catacumbas
 Go further into the Catacombs to confront the fourth member of Yezera's group, who stayed behind while the others fled with Regidrago.
