@@ -38,8 +38,8 @@ FileLineData.linereport)
                 }
                 # Add ability's data to records
                 GameData::Ability.register(ability_hash)
-                ability_names[ability_number]        = ability_hash[:name]
-                ability_descriptions[ability_number] = ability_hash[:description]
+                ability_names.push(ability_hash[:name])
+                ability_descriptions.push(ability_hash[:description])
             end
             idBase += 1000
         end

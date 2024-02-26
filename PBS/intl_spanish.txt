@@ -54132,4 +54132,550 @@ Abejas
 105
 Formal Clothes
 Ropa Formal
-
+[32]
+Aqua Ring
+Acua Aro
+Attract
+Attract
+Beak Blast
+Beak Blast
+Condensate
+Condensate
+Bide Turns
+Bide Turns
+Bide Damage
+Bide Damage
+Bide Target
+Bide Target
+Burnt Up
+Burnt Up
+Dried Out
+Dried Out
+Charged
+Charged
+Charge Expended
+Charge Expended
+Choice Locked
+Choice Locked
+Confusion Turns
+Confusion Turns
+Counter Damage
+Counter Damage
+Counter Target
+Counter Target
+Curse-Warned
+Curse-Warned
+Cursed
+Cursed
+Dancer
+Dancer
+Curled Up
+Curled Up
+Destiny Bond
+Destiny Bond
+Destiny Bond Previous
+Destiny Bond Previous
+Destiny Bond Target
+Destiny Bond Target
+Disable Turns
+Disable Turns
+Disabled Move
+Disabled Move
+Electrify
+Electrify
+Embargoed
+Embargoed
+Encore Turns
+Encore Turns
+Must Use
+Must Use
+Endure
+Endure
+Fight Forever
+Fight Forever
+First Pledge
+First Pledge
+Flinch
+Flinch
+Crit Chance Up
+Crit Chance Up
+Focus Punch
+Focus Punch
+Follow Me
+Follow Me
+Ability Surpressed
+Ability Surpressed
+Gem Consumed
+Gem Consumed
+Empowering Herb Consumed
+Empowering Herb Consumed
+Skill Herb Consumed
+Skill Herb Consumed
+Luck Herb Consumed
+Luck Herb Consumed
+Grudge
+Grudge
+Healing Blocked
+Healing Blocked
+Helping Hand
+Helping Hand
+Lucky Cheer
+Lucky Cheer
+Spotting
+Spotting
+Recharging
+Recharging
+Attached
+Attached
+Attached To
+Attached To
+Illusion
+Illusion
+Moves Imprisoned
+Moves Imprisoned
+Ingrained
+Ingrained
+Deeply Ingrained
+Deeply Ingrained
+Instruct
+Instruct
+Instructed
+Instructed
+Laser Focus Turns
+Laser Focus Turns
+Seeded
+Seeded
+Locked On
+Locked On
+Locked On To
+Locked On To
+Magic Bounce
+Magic Bounce
+Magic Coat
+Magic Coat
+Magnet Risen
+Magnet Risen
+Cannot Escape
+Cannot Escape
+Marked for Death
+Marked for Death
+Imprisoned in ice
+Imprisoned in ice
+Me First
+Me First
+Metronome Count
+Metronome Count
+Micle Berry
+Micle Berry
+Minimized
+Minimized
+Miracle Eye
+Miracle Eye
+Mirror Coat Damage
+Mirror Coat Damage
+Mirror Coat Target
+Mirror Coat Target
+Will Move Next
+Will Move Next
+Nightmared
+Nightmared
+Rampage Turns
+Rampage Turns
+Parental Bond
+Parental Bond
+Perish Song Turns
+Perish Song Turns
+Pickup Item
+Pickup Item
+Pickup Use
+Pickup Use
+Pinch
+Pinch
+Powder
+Powder
+Power Tricked
+Power Tricked
+Energy Tricked
+Energy Tricked
+Base Attack Set
+Base Attack Set
+Base Sp. Atk Set
+Base Sp. Atk Set
+Base Defense Set
+Base Defense Set
+Base Sp. Def Set
+Base Sp. Def Set
+Base Speed Set
+Base Speed Set
+Agility Herb
+Agility Herb
+Prankster
+Prankster
+Priority Ability
+Priority Ability
+Priority Item
+Priority Item
+Pursuit
+Pursuit
+Quash
+Quash
+Rage
+Rage
+Roosting
+Roosting
+Shell Trap
+Shell Trap
+Masquerblade
+Masquerblade
+Sky Drop
+Sky Drop
+Slow Start Turns
+Slow Start Turns
+Smacked Down
+Smacked Down
+Snatch
+Snatch
+Spotlight
+Spotlight
+Stockpile Charges
+Stockpile Charges
+Stockpile Def
+Stockpile Def
+Stockpile Sp Def
+Stockpile Sp Def
+Substitute Health
+Substitute Health
+Taunted Turns
+Taunted Turns
+Barred Turns
+Barred Turns
+Telekinesis Turns
+Telekinesis Turns
+Throat Injured Turns
+Throat Injured Turns
+Tormented
+Tormented
+Transformed
+Transformed
+Transformed Into
+Transformed Into
+Trapping Turns
+Trapping Turns
+Trapping Move
+Trapping Move
+Trapped By
+Trapped By
+Not Slacking Off
+Not Slacking Off
+Two Turn Attack
+Two Turn Attack
+Type 3
+Type 3
+Item Lost
+Item Lost
+Uproar Turns
+Uproar Turns
+Weight Changed
+Weight Changed
+Weight Doubled
+Weight Doubled
+Weight Halved
+Weight Halved
+Drowsy
+Drowsy
+Choice Locking
+Choice Locking
+BallFetch
+BallFetch
+Stats Dropped
+Stats Dropped
+Burning Jealousy
+Burning Jealousy
+Jaw Lock
+Jaw Lock
+Jaw Locker
+Jaw Locker
+Covered In Tar
+Covered In Tar
+Octolocked
+Octolocked
+Octolocked By
+Octolocked By
+Blunder Policy
+Blunder Policy
+Switched Ally
+Switched Ally
+Chose Status
+Chose Status
+Chose Attack
+Chose Attack
+Assisting
+Assisting
+Confusion Chance
+Confusion Chance
+Flinch Immune
+Flinch Immune
+Ignores Added Effects
+Ignores Added Effects
+Sublimate
+Sublimate
+Weak to Bug
+Weak to Bug
+Added Crit Chance
+Added Crit Chance
+Charm Turns
+Charm Turns
+Charm Chance
+Charm Chance
+No Weaknesses
+No Weaknesses
+No Retreat!!
+No Retreat!!
+Healing Reversed
+Healing Reversed
+Healing Halved
+Healing Halved
+Fury Cutter Count
+Fury Cutter Count
+Snowball Count
+Snowball Count
+Rock Roll Count
+Rock Roll Count
+Heart Rhythm Count
+Heart Rhythm Count
+Stunning Curl
+Stunning Curl
+Venom Guard
+Venom Guard
+Root Shelter
+Root Shelter
+Extra Turns
+Extra Turns
+Extra Turn
+Extra Turn
+Stats Swapped Around
+Stats Swapped Around
+Enduring Turns
+Enduring Turns
+Laser Focus
+Laser Focus
+Empowered Bond
+Empowered Bond
+Volley Stance
+Volley Stance
+Carrying
+Carrying
+Riding Dragon
+Riding Dragon
+Maestro
+Maestro
+GaleWings
+GaleWings
+Trench Carver
+Trench Carver
+Swift Stomps
+Swift Stomps
+Shimmering Heat
+Shimmering Heat
+Flare Witch
+Flare Witch
+Halving Damage Turns
+Halving Damage Turns
+Echo
+Echo
+Eroding
+Eroding
+Total Focus
+Total Focus
+Indestructible
+Indestructible
+Swapping to Cushion
+Swapping to Cushion
+Exhaustion
+Exhaustion
+Protect Will Fail
+Protect Will Fail
+Protect
+Protect
+King's Shield
+King's Shield
+Shining Shell
+Shining Shell
+Obstruct
+Obstruct
+Reverb Ward
+Reverb Ward
+Baneful Bunker
+Baneful Bunker
+Red-Hot Retreat
+Red-Hot Retreat
+Icicle Armor
+Icicle Armor
+Spiky Shield
+Spiky Shield
+Mirror Shield
+Mirror Shield
+Cranial Guard
+Cranial Guard
+Volatile Toxin
+Volatile Toxin
+Switched In
+Switched In
+Mutated
+Mutated
+Delayed Reaction
+Delayed Reaction
+Bubble Barrier
+Bubble Barrier
+Chewing Berry
+Chewing Berry
+Auto-Pilot
+Auto-Pilot
+Amulet Coin
+Amulet Coin
+Fairy Lock
+Fairy Lock
+Fusion Bolt
+Fusion Bolt
+Fusion Flare
+Fusion Flare
+Gravity Turns
+Gravity Turns
+Happy Hour
+Happy Hour
+Ion Deluge
+Ion Deluge
+Money Dropped
+Money Dropped
+Fortune
+Fortune
+Neutralizing Gas
+Neutralizing Gas
+Trick Room
+Trick Room
+Puzzle Room
+Puzzle Room
+Odd Room
+Odd Room
+Polarized Room
+Polarized Room
+Insight Room
+Insight Room
+Emotion Room
+Emotion Room
+Willful Room
+Willful Room
+Grey Mist Turns
+Grey Mist Turns
+Bliss
+Bliss
+Floral Gramarye
+Floral Gramarye
+Turns Till Move
+Turns Till Move
+Incoming Move
+Incoming Move
+Foretold Move User Index
+Foretold Move User Index
+Foretold Move User Party Index
+Foretold Move User Party Index
+Incoming Move Type
+Incoming Move Type
+Healing Wish
+Healing Wish
+Lunar Dance
+Lunar Dance
+Turns Till Wish
+Turns Till Wish
+Wish Heal Amount
+Wish Heal Amount
+Wish Maker
+Wish Maker
+Refuge
+Refuge
+PassingAbility
+PassingAbility
+PassingStats
+PassingStats
+Kickback
+Kickback
+Kickback Amount
+Kickback Amount
+Gauss Aftershock
+Gauss Aftershock
+Echoed Voice Counter
+Echoed Voice Counter
+Echoed Voice Used
+Echoed Voice Used
+Round Singers
+Round Singers
+Reflect
+Reflect
+Light Screen
+Light Screen
+Aurora Veil
+Aurora Veil
+Repulsion Field
+Repulsion Field
+Lucky Chant
+Lucky Chant
+Mist
+Mist
+Safeguard
+Safeguard
+Diamond Field
+Diamond Field
+Crafty Shield
+Crafty Shield
+Mat Block
+Mat Block
+Quick Guard
+Quick Guard
+Wide Guard
+Wide Guard
+Quarantine
+Quarantine
+Rainbow Turns
+Rainbow Turns
+Sea of Fire Turns
+Sea of Fire Turns
+Swamp Turns
+Swamp Turns
+Spikes
+Spikes
+Poison Spikes
+Poison Spikes
+Flame Spikes
+Flame Spikes
+Frost Spikes
+Frost Spikes
+Stealth Rock
+Stealth Rock
+Feather Ward
+Feather Ward
+Sticky Web
+Sticky Web
+Misdirecting Fog
+Misdirecting Fog
+Primal Forest
+Primal Forest
+Cruel Cocoon
+Cruel Cocoon
+Turbulent Sky
+Turbulent Sky
+Last Round Fainted
+Last Round Fainted
+Spent Tyrannical Immunity
+Spent Tyrannical Immunity
+Tailwind Turns
+Turnos de Viento Afín
+Items Supressed
+Items Supressed
+Bulwark
+Bulwark
+Eroded Rocks
+Eroded Rocks
+Perennial Payload
+Perennial Payload
+Traumatized
+Traumatized

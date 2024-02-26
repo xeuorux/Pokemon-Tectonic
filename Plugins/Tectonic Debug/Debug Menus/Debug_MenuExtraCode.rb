@@ -535,11 +535,13 @@ def pbExtractText
         return
     end
     pbMessageDisplay(msgwindow, _INTL("Please wait.\\wtnp[0]"))
-    MessageTypes.extract("intl.txt")
-    pbMessageDisplay(msgwindow, _INTL("All text in the game was extracted and saved to intl.txt.\1"))
+    MessageTypes.extract("PBS\\intl_.txt")
+    pbMessageDisplay(msgwindow, _INTL("All text in the game was extracted and saved to PBS\intl_.txt.\1"))
     pbMessageDisplay(msgwindow,
-  _INTL("To localize the text for a particular language, translate every second line in the file.\1"))
-    pbMessageDisplay(msgwindow, _INTL("After translating, choose \"Compile Text.\""))
+        _INTL("To localize the text for a particular language, translate every second line in the file.\1"))
+    pbMessageDisplay(msgwindow,
+        _INTL("Also add the language name after the underscore. Use the same name as you put in the LANGUAGES setting.\1"))
+    pbMessageDisplay(msgwindow, _INTL("After translating and editing the name, choose \"Compile Text.\""))
     pbDisposeMessageWindow(msgwindow)
 end
 
