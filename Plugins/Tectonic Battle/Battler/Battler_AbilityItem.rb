@@ -119,7 +119,7 @@ class PokeBattle_Battler
         if hasActiveAbility?(:TRACE)
             choices = []
             @battle.eachOtherSideBattler(@index) do |b|
-                next if b.ungainableAbility?(b.firstAbility) || UNCOPYABLE_ABILITIES.include?(b.firstAbility)
+                next if b.ungainableAbility?(b.firstAbility) || GameData::Ability.get(b.firstAbility).is_uncopyable_ability?
                 choices.push(b)
             end
             unless choices.empty?
@@ -142,7 +142,7 @@ class PokeBattle_Battler
                 copiableAbilities = []
                 b.eachLegalAbility do |abilityID|
                     next if b.ungainableAbility?(abilityID)
-                    next if GameData::Ability::UNCOPYABLE_ABILITIES.include?(abilityID)
+                    next if GameData::Ability.get(abilityID).is_uncopyable_ability?
                     copiableAbilities.push(abilityID)
                 end
                 next if copiableAbilities.empty?

@@ -406,7 +406,7 @@ class PokeBattle_Battler
     end
 
     def canChangeType?
-        return !%i[MULTITYPE RKSSYSTEM].include?(@ability_id)
+        return !hasActiveAbility?(%i[MULTITYPE RKSSYSTEM])
     end
 
     def airborne?(checkingForAI = false)

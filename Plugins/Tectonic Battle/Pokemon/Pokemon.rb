@@ -731,7 +731,7 @@ class Pokemon
 
     def canHaveMultipleItems?(inBattle = false)
       return true if @ability == :STICKYFINGERS && inBattle
-      return GameData::Ability::MULTI_ITEM_ABILITIES.include?(@ability)
+      return GameData::Ability.get(@ability).is_multiple_item_ability?
     end
 
     def canHaveItem?(itemCheck, showMessages = false)
@@ -763,7 +763,7 @@ class Pokemon
         return false
       end
 
-      if GameData::Ability::MULTI_ITEM_ABILITIES.include?(@ability) && itemSet.length > 2
+      if GameData::Ability.get(@ability).is_multiple_item_ability? && itemSet.length > 2
         pbMessage(_INTL("#{name} can't hold more than two items!")) if showMessages
         return false
       end

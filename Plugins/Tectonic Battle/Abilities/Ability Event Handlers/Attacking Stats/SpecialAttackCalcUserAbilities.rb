@@ -5,19 +5,6 @@ BattleHandlers::SpecialAttackCalcUserAbility.add(:FLAREBOOST,
     }
 )
 
-BattleHandlers::SpecialAttackCalcUserAbility.add(:MINUS,
-  proc { |ability, user, _battle, spAtkMult|
-      user.eachAlly do |b|
-          next unless b.hasActiveAbility?(%i[MINUS PLUS])
-          spAtkMult *= 1.5
-          break
-      end
-      next spAtkMult
-  }
-)
-
-BattleHandlers::SpecialAttackCalcUserAbility.copy(:MINUS, :PLUS)
-
 BattleHandlers::SpecialAttackCalcUserAbility.add(:SOLARPOWER,
   proc { |ability, _user, battle, spAtkMult|
       spAtkMult *= 1.5 if battle.sunny?

@@ -69,7 +69,7 @@ GameData::Move.get(@effects[:ChoiceBand]).name)
         end
         # Gorilla Tactics
         if effectActive?(:GorillaTactics)
-            choiceLockingAbility = hasActiveAbility?(CHOICE_LOCKING_ABILITIES)
+            choiceLockingAbility = hasActiveAbility?(GameData::Ability::CHOICE_LOCKING_ABILITIES)
             if choiceLockingAbility
                 if move.id != @effects[:GorillaTactics]
                     msg = _INTL("{1} allows the use of only {2}!", getAbilityName(choiceLockingAbility),

@@ -638,7 +638,7 @@ def getWeatherSettingEffectScore(weatherType, user, battle, finalDuration = 4, c
         score *= 4
     elsif user.aboveHalfHealth?
         score *= 1.5 if hasSynergisticType
-        score *= 1.5 if user.hasActiveAbilityAI?(GameData::Ability::GENERAL_WEATHER_ABILITIES)
+        score *= 1.5 if user.hasActiveAbilityAI?(GameData::Ability::ALL_WEATHER_ABILITIES)
     end
    
     return score

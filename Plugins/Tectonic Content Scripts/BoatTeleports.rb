@@ -65,10 +65,10 @@ DOCK_LOCATIONS = {
     },
 }
 
-def unlockBoatingSpot(dockID)
+def unlockBoatingSpot(dockID,ignoreAlreadyActive=false)
     dockInfo = DOCK_LOCATIONS[dockID]
     raise _INTL("Dock ID {1} has no unlock_switch defined. Cannot unlock!",dockID) if dockInfo[:unlock_switch].nil?
-    return if getGlobalSwitch(dockInfo[:unlock_switch])
+    return if getGlobalSwitch(dockInfo[:unlock_switch]) && !ignoreAlreadyActive
     mapName = _INTL(dockInfo[:map_name])
     text = _INTL("You can now travel to <imp>{1}</imp> on your boat!",mapName)
     pbMessage("\\wm#{text}\\me[Slots win]\\wtnp[80]\1")
