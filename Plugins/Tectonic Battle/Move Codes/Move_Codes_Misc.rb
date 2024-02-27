@@ -306,7 +306,7 @@ class PokeBattle_Move_TargetUsesItsLastUsedMoveAgain < PokeBattle_Move
             @battle.pbDisplay(_INTL("But it failed, since #{target.pbThis(true)} is focusing!")) if show_message
             return true
         end
-        if !GameData::Move.get(target.lastRegularMoveUsed).can_be_forced? || getFirstSlotMove(user).callsAnotherMove?
+        if !GameData::Move.get(target.lastRegularMoveUsed).can_be_forced?
             if show_message
                 @battle.pbDisplay(_INTL("But it failed, since #{target.pbThis(true)}'s last used move cant be instructed!"))
             end
