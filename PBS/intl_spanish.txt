@@ -22159,9 +22159,7 @@ More like the type to own a boat!
 ¡Eres más del tipo que es dueño de un barco!
 For a fee I can let ya park your boat on the dock out front.
 Por un precio, puedo dejarte aparcar tu bote en el puerto al frente.
-Whaddya say to $10,000 for renter's rights?
-Que dices a $10,000 por derechos de alquiler?
-Alright, just sign here... and, it's legally yours to use.
+Alright, just sign here... and, its legally yours to use.
 Muy bien, sólo firma aquí… y, es legalmente tuyo para usarlo.
 Hope your trips on the Eleig are enjoyable!
 ¡Espero disfrutes tus viajes en el Eleig!
@@ -29775,10 +29773,10 @@ It habitually mimics foes. Once mimicked, the foe cannot take its eyes off this 
 Habitualmente imita a los enemigos. Una vez imitado, el enemigo no puede apartar los ojos de este Pokémon.
 440
 It loves round white things. It carries an egg-shaped rock in imitation of Chansey.
-Le encantan las cosas blancas y redondas. Lleva una piedra en forma de huevo a imitación de Chansey.
+Le encantan las cosas blancas y redondas. Lleva una piedra en forma de huevo como imitación de Chansey.
 441
 It can learn and speak human words. If they gather, they all learn the same saying.
-Puede aprender y hablar palabras humanas. Si se juntan, todos aprenden el mismo dicho.
+Puede aprender y hablar palabras humanas. Si se agrupan, todos aprenden el mismo dicho.
 442
 A Pokémon that was formed by 108 spirits. It is bound to a fissure in an odd keystone.
 Un Pokémon que fue formado por 108 espíritus. Está ligado a una fisura en una extraña piedra angular.
@@ -29847,7 +29845,7 @@ It wraps things with its extensible tongue. Getting too close to it will leave y
 Envuelve las cosas con su lengua extensible. Si te acercas demasiado a él, te quedarás empapado de baba.
 464
 It puts rocks in holes in its palms and uses its muscles to shoot them. Geodude are shot at rare times.
-Pone rocas en agujeros en sus palmas y usa sus músculos para dispararles. Los Geodude reciben disparos en raras ocasiones.
+Pone rocas en agujeros en sus palmas y usa sus músculos para dispararles. Los Geodude son disparados en raras ocasiones.
 465
 It ensnares prey by extending arms made of vines. Losing arms to predators does not trouble it.
 Atrapa a sus presas extendiendo los brazos hechos de enredaderas. Perder los brazos ante los depredadores no le preocupa.
@@ -30006,7 +30004,7 @@ The high-pressure water expelled from its tail is so powerful, it can destroy a 
 El agua a alta presión expulsada de su cola es tan poderosa que puede destruir un muro de hormigón.
 517
 It eats the dreams of people and Pokémon. When it eats a pleasant dream, it expels pink-colored mist.
-Se come los sueños de las personas y Pokémon. Cuando se come un sueño placentero, expulsa una niebla de color rosa.
+Se come los sueños de las personas y Pokémon. Cuando come un sueño placentero, expulsa una niebla de color rosa.
 518
 With the mist from its forehead, it can create shapes of things from dreams it has eaten.
 Con la niebla de su frente, puede crear formas de cosas de los sueños que ha comido.
@@ -30027,13 +30025,13 @@ When this ill-tempered Pokémon runs wild, it shoots lightning from its mane in 
 Cuando este Pokémon malhumorado se vuelve loco, lanza rayos desde su melena en todas direcciones.
 524
 They were discovered a hundred years ago in an earthquake fissure. Inside each one is an energy core.
-Fueron descubiertas hace cien años en una fisura de un terremoto. Dentro de cada una hay un núcleo de energía.
+Fueron descubiertos hace cien años en una fisura de un terremoto. Dentro de cada uno hay un núcleo de energía.
 525
 Because its energy was too great to be contained, the energy leaked and formed orange crystals.
 Debido a que su energía era demasiado grande para ser contenida, la energía se filtró y formó cristales naranjas.
 526
 The solar energy absorbed by its body's orange crystals is magnified internally and fired from its mouth.
-En la mitología de Makya, nacieron desde los meteoros que cayeron cuando la luna fue destruída por un dios furioso. Su armadura increíblemente densa desvía cualquier ataque.
+En la mitología de Makya, nacieron desde los meteoros que cayeron cuando la luna fue destruída por un dios furioso. Su armadura densa desvía todo ataque.
 527
 Suction from its nostrils enables it to stick to cave walls during sleep. It leaves a heart-shaped mark behind.
 La succión de sus fosas nasales le permite adherirse a las paredes de la cueva durante el sueño. Deja una marca en forma de corazón detrás.
@@ -30105,7 +30103,7 @@ The fragrance of the garland on its head has a relaxing effect. It withers if a 
 La fragancia de la guirnalda en su cabeza tiene un efecto relajante. Se marchita si un Entrenador no la cuida bien.
 550
 Red and blue Basculin usually do not get along, but sometimes members of one school mingle with the other's school.
-Los basculin rojos y azules no suelen llevarse bien, pero a veces los miembros de una escuela se mezclan con la escuela de la otra.
+Los basculin rojos y azules no suelen llevarse bien, pero a veces los miembros de un cardumen se mezclan con el cardumen del otro.
 551
 It moves along below the sand's surface, except for its nose and eyes. A dark membrane shields its eyes from the sun.
 Se mueve por debajo de la superficie de la arena, excepto por la nariz y los ojos. Una membrana oscura protege sus ojos del sol.
@@ -30177,7 +30175,7 @@ Their white fur feels amazing to touch. Their fur repels dust and prevents stati
 Su pelaje blanco se siente increíble al tacto. Su pelaje repele el polvo y evita que se acumule electricidad estática.
 574
 They intently observe both Trainers and Pokémon. Apparently, they are looking at something that only Gothita can see.
-Observan atentamente tanto a los Entrenadores como a los Pokémon. Aparentemente, están mirando algo que solo Gothita puede ver.
+Observan atentamente tanto a los Entrenadores como a los Pokémon. Aparentemente, están mirando algo que sólo Gothita puede ver.
 575
 Starlight is the source of their power. At night, they mark star positions by using psychic power to float stones.
 La luz de las estrellas es la fuente de su poder. Por la noche, marcan las posiciones de las estrellas usando el poder psíquico en piedras.
@@ -30261,7 +30259,7 @@ The gear with the red core is rotated at high speed for a rapid energy charge.
 El engranaje con el núcleo rojo gira a alta velocidad para una rápida carga de energía.
 602
 These Pokémon move in schools. They have an electricity-generating organ, so they discharge electricity if in danger.
-Estos Pokémon se mueven en escuelas. Tienen un órgano generador de electricidad, por lo que descargan electricidad si están en peligro.
+Estos Pokémon se mueven en cardúmenes. Tienen un órgano generador de electricidad, por lo que descargan electricidad si están en peligro.
 603
 These Pokémon have a big appetite. When they spot their prey, they attack it and paralyze it with electricity.
 Estos Pokémon tienen un gran apetito. Cuando ven a su presa, la atacan y la paralizan con electricidad.
@@ -30342,7 +30340,7 @@ The more scars they have, the more respect these brave soldiers of the sky get f
 Cuantas más cicatrices tienen, más respeto obtienen estos valientes soldados del cielo de sus compañeros.
 629
 They tend to guard their posteriors with suitable bones they have found. They pursue weak Pokémon.
-Tienden a proteger sus traseros con huesos adecuados que han encontrado. Persiguen Pokémon débiles.
+Tienden a proteger sus posaderas con huesos adecuados que han encontrado. Persiguen a Pokémon débiles.
 630
 Watching from the sky, they swoop to strike weakened Pokémon on the ground. They decorate themselves with bones.
 Observando desde el cielo, se abalanzan para atacar a Pokémon debilitados en el suelo. Se decoran con huesos.
@@ -30456,7 +30454,7 @@ Vivillon with many different patterns are found all over the world. These patter
 Vivillon con muchos patrones diferentes se encuentran en todo el mundo. Estos patrones se ven afectados por el clima de su hábitat.
 667
 They set off on their own from their pride and live by themselves to become stronger. These hot-blooded Pokémon are quick to fight.
-Parten solos de su orgullo y viven solos para volverse más fuertes. Estos Pokémon de sangre caliente son rápidos para luchar.
+Parten solos de su manada y viven solos para volverse más fuertes. Estos Pokémon de sangre caliente son rápidos para luchar.
 668
 With fiery breath of more than 10,000 degrees Fahrenheit, they viciously threaten any challenger. The females protect the pride's cubs.
 Con un aliento de fuego de más de 5,500º C, amenazan brutalmente a cualquier retador. Las hembras protegen a los cachorros de la manada.
@@ -30624,7 +30622,7 @@ Silently it glides, drawing near its targets. Before they even notice it, it beg
 Se desliza en silencio, acercándose a sus objetivos. Antes de que lo noten, comienza a lanzarles patadas feroces.
 723
 A bit of a dandy, it spends its free time preening its wings. Its preoccupation with any dirt on its plumage can leave it unable to battle.
-Un poco dandy, pasa su tiempo libre acicalándose las alas. Su preocupación por la suciedad en su plumaje puede dejarlo incapaz de luchar.
+Un poco coqueto, pasa su tiempo libre acicalándose las alas. Su preocupación por la suciedad en su plumaje puede dejarlo incapaz de luchar.
 724
 Although basically cool and cautious, when it is caught by surprise, it iss seized by panic.
 Aunque básicamente es frío y cauteloso, cuando es cogido por sorpresa, es presa del pánico.
@@ -30639,7 +30637,7 @@ This Pokémon has a violent, selfish disposition. If it is not in the mood to li
 Este Pokémon tiene es violento y egoísta. Si no está de humor para escuchar, ignorará las órdenes de su Entrenador con total indiferencia.
 728
 This Pokémon snorts body fluids from its nose, blowing balloons to smash into its foes. It is famous for being a hard worker.
-Este Pokémon aspira fluidos corporales por la nariz, infla globos para aplastar a sus enemigos. Es famoso por ser muy trabajador.
+Este Pokémon aspira fluidos corporales por la nariz, inflando globos para aplastar a sus enemigos. Es famoso por ser muy trabajador.
 729
 It cares deeply for its companions. When its Trainer is feeling down, it performs a cheery dance to try and help.
 Se preocupa profundamente por sus compañeros. Cuando su Entrenador se siente deprimido, realiza un baile alegre para tratar de ayudar.
@@ -30675,7 +30673,7 @@ It punches so much, its pincers often come off from overuse, but they grow back 
 Golpea tanto que sus pinzas a menudo se desprenden por el uso excesivo, pero vuelven a crecer rápidamente. Su carne es rica y deliciosa.
 740
 It just throws punches indiscriminately. In times of desperation, it can lop off its own pincers and fire them like rockets.
-Simplemente lanza puñetazos indiscriminadamente. En momentos de desesperación, puede cortarse sus propias pinzas y dispararlas como cohetes.
+Lanza puñetazos indiscriminadamente. En momentos de desesperación, puede cortarse sus propias pinzas y dispararlas como cohetes.
 741
 It beats its wings together to create fire. As it moves in the steps of its beautiful dance, it bathes opponents in intense flames.
 Golpea sus alas para crear fuego. A medida que avanza en los pasos de su hermosa danza, baña a los oponentes en llamas intensas.
@@ -30723,7 +30721,7 @@ It scatters spores that flicker and glow. Anyone seeing these lights falls into 
 Dispersa esporas que parpadean y brillan. Cualquiera que vea estas luces cae en un sueño profundo.
 756
 Forests where Shiinotic live are treacherous to enter at night. People confused by its strange lights can never find their way home again.
-Los bosques donde viven los shiinóticos son traicioneros por la noche. Las personas confundidas por sus extrañas luces nunca vuelven a casa.
+Los bosques donde viven los Shiinotic son traicioneros por la noche. Las personas confundidas por sus extrañas luces nunca vuelven a casa.
 757
 It burns its bodily fluids to create a poisonous gas. When its enemies become disoriented from inhaling the gas, it attacks them.
 Quema sus fluidos corporales para crear un gas venenoso. Cuando sus enemigos se desorientan por inhalar el gas, los ataca.
@@ -30753,7 +30751,7 @@ Deep in the jungle, high in the lofty canopy, this Pokémon abides. On rare occa
 En lo alto de las altas copas de los árboles de la jungla, habita este Pokémon. A veces aparece en la playa para competir con Slowking.
 766
 They form groups of roughly 20 individuals. Their mutual bond is remarkable-- they will never let down a comrade.
-Forman grupos de aproximadamente 20 personas. Su vínculo mutuo es notable: nunca defraudarán a un camarada.
+Forman grupos de aproximadamente 20 individuos. Su vínculo mutuo es notable: nunca defraudarán a un camarada.
 767
 This Pokémon is a coward. As it desperately dashes off, the flailing of its many legs leaves a sparkling clean path in its wake.
 Este Pokémon es un cobarde. A medida que sale corriendo, el movimiento de sus muchas patas deja un camino limpio y reluciente a su paso.
@@ -30834,7 +30832,7 @@ It is said to be a female evolution of Cosmog. When its third eye activates, awa
 Se dice que es una evolución femenina de Cosmog. Cuando se activa su tercer ojo, vuela a otro mundo.
 793
 One of several mysterious Ultra Beasts. People on the street report observing those infested by it suddenly becoming violent.
-Una de varias ultrabestias misteriosas. La gente en la calle informa haber observado que los infestados por ella se vuelven violentos.
+Una de varias Ultraentes misteriosas. La gente en la calle informa haber observado que los infestados por ella se vuelven violentos.
 794
 This Ultra Beast appeared from another world. It shows off its body, but whether that display is a boast or a threat remains unclear.
 Este Ultraente apareció de otro mundo. Muestra su cuerpo, pero no está claro si esa exhibición es un alarde o una amenaza.
@@ -30846,10 +30844,10 @@ One of the mysterious life-forms known as Ultra Beasts. Astonishing electric sho
 Una de las misteriosas formas de vida conocidas como Ultraentes. Asombrosas descargas eléctricas emanan de todo su cuerpo, según testigos.
 797
 One kind of Ultra Beast. Witnesses have seen it burn down a forest by expelling gas from its two arms.
-Un tipo de Ultra Bestia. Los testigos lo han visto quemar un bosque expulsando gas de sus dos brazos.
+Un tipo de Ultraente. Los testigos lo han visto quemar un bosque expulsando gas de sus dos brazos.
 798
 One of the Ultra Beast life-forms, it was observed cutting down a gigantic steel tower with one stroke of its blade.
-Una de las formas de vida de Ultra Beast, se observó cortando una gigantesca torre de acero con un golpe de su espada.
+Una de las formas de vida conocidas como Ultraentes, se observó cortando una gigantesca torre de acero con un golpe de su espada.
 799
 A dangerous Ultra Beast, it appears to be eating constantly, but for some reason its droppings have never been found.
 Un Ultraente peligroso, parece estar comiendo constantemente, pero por alguna razón nunca se han encontrado sus excrementos.
@@ -30858,7 +30856,7 @@ Light is the source of its energy. If it is not devouring light, impurities buil
 La luz es la fuente de su energía. Si no es luz devoradora, las impurezas se acumulan en ella, y Necrozma se oscurece y deja de moverse.
 801
 Its mechanized body is merely a vessel. Its true self is its Soul-Heart, an artificial soul.
-Su cuerpo mecanizado es simplemente un recipiente. Su verdadero yo es su Alma-Corazón, un alma artificial.
+Su cuerpo mecanizado es simplemente un recipiente. Su verdadero yo es su Coránima, un alma artificial.
 802
 Able to conceal itself in shadows, it never appears before humans, so its very existence was the stuff of myth.
 Capaz de ocultarse en las sombras, nunca aparece ante los humanos, por lo que su existencia misma era materia de mito.
@@ -30867,13 +30865,13 @@ An Ultra Beast that lives in a different world, it cackles wildly as it sprays i
 Un Ultraente que vive en un mundo diferente, se ríe salvajemente mientras rocía a sus oponentes con veneno de las agujas en su cabeza.
 804
 One kind of Ultra Beast, it fires a glowing, venomous liquid from its needles. This liquid is also immensely adhesive.
-Un tipo de Ultra Bestia, dispara un líquido brillante y venenoso de sus agujas. Este líquido también es inmensamente adhesivo.
+Un tipo de Ultraente, dispara un líquido brillante y venenoso de sus agujas. Este líquido también es inmensamente adhesivo.
 805
 It appeared from an Ultra Wormhole. Each one appears to be made up of many life-forms stacked one on top of each other.
 Apareció de un Ultraumbral. Cada uno parece estar formado por muchas formas de vida apiladas una encima de la otra.
 806
 It slithers toward people. Then, without warning, it triggers the explosion of its own head. It is apparently one kind of Ultra Beast.
-Se desliza hacia la gente. Luego, sin previo aviso, desencadena la explosión de su propia cabeza. Aparentemente es un tipo de Ultra Bestia.
+Se desliza hacia la gente. Luego, sin previo aviso, desencadena la explosión de su propia cabeza. Aparentemente es un tipo de Ultraente.
 807
 It electrifies its claws and tears its opponents apart with them. Even if they dodge its attack, they'll be electrocuted by the flying sparks.
 Electrifica sus garras y desgarra a sus oponentes con ellas. Incluso si esquivan su ataque, serán electrocutados por las chispas voladoras.
@@ -30995,8 +30993,8 @@ Este Pokémon hambriento se traga entero a Arrokuda. A veces, comete un error y 
 After it's eaten its fill, its movements become extremely sluggish. That's when Cramorant swallows it up.
 Después de que ha comido hasta saciarse, sus movimientos se vuelven extremadamente lentos. Ahí es cuando Cramorant se lo traga.
 847
-After it's eaten its fill, its movements become extremely sluggish. That's when Cramorant swallows it up.
-Después de que ha comido hasta saciarse, sus movimientos se vuelven extremadamente lentos. Ahí es cuando Cramorant se lo traga.
+It spins its fail tins to propel itself, surging forward at speeds of over 100 knots before ramming prey and spearing into them.
+Hace girar su aleta caudal para impulsarse y arremeter contra la presa, a la que ensarta a una velocidad que supera los 100 nudos.
 848
 It manipulates the chemical makeup of its poison to produce electricity. The voltage is weak, but it can cause a tingling paralysis.
 Manipula la composición química de su veneno para producir electricidad. El voltaje es débil, pero puede causar una parálisis hormigueante.
@@ -31068,7 +31066,7 @@ The six of them work together as one Pokémon. Teamwork is also their battle str
 Los seis trabajan juntos como un Pokémon. El trabajo en equipo también es su estrategia de batalla, y cambian su formación mientras luchan.
 871
 It stores electricity in each spine. Even if one gets broken off, it still continues to emit electricity for at least three hours.
-Almacena electricidad en cada columna. Incluso si una se rompe, continúa emitiendo electricidad durante al menos tres horas".
+Almacena electricidad en cada columna. Incluso si una se rompe, continúa emitiendo electricidad durante al menos tres horas.
 872
 It eats snow that piles up on the ground. The more snow it eats, the bigger and more impressive the spikes on its back grow.
 Come nieve que se amontona en el suelo. Cuanta más nieve come, más grandes e impresionantes crecen las púas de su espalda.
@@ -31131,16 +31129,16 @@ If Kubfu pulls the long white hair on its head, its fighting spirit heightens an
 Si Kubfu tira de su pelo blanco, su espíritu de lucha aumenta y un gran poder brota desde el interior de su barriga.
 892
 Inhabiting the mountains of a distant region, this Pokémon races across sheer cliffs, training its legs and refining its moves.
-Habitando las montañas de una distante región, este Pokémon corre a través de precipiios, entrenando sus piernas y refinando su movimiento.
+Habitando las montañas de una distante región, este Pokémon corre a través de precipicios, entrenando sus piernas y refinando su movimiento.
 893
 Once the vines on Zarude's body tear off, they become nutrients in the soil. This helps the plants of the forest grow.
 Una vez que las lianas del cuerpo de Zarude son arrancadas, se convierten en nutrientes. Esto ayuda a que las plantas del bosque crezcan.
 894
 The fifth of the titans, built to commemorate an era of electricity. It is as inscrutable as a cutting-edge supercomputer.
-El quinto de los titanes, construído para conmemorar una era de electricidad. Es tan inescrutable como una súpero computador.
+El quinto de los titanes, construído para conmemorar una era de electricidad. Es tan inescrutable como una súper computadora.
 895
 The first of the titans, built to commemorate an era when dragons ruled. It is as terrifying as an apex predator.
-El primero de los titanes, construído para conmeroar una era donde los dragones reinaban. Es tan terrorífico como un antiguo depredador.
+El primero de los titanes, construído para conmemorar una era donde los dragones reinaban. Es tan terrorífico como un antiguo depredador.
 896
 Glastrier has tremendous physical strength, and the mask of ice covering its face is 100 times harder than diamond.
 Glastrier tiene una fuerza física tremenda, y la máscara helada que cubre su cara es 100 veces más dura que el diamante.
@@ -31164,7 +31162,7 @@ Mother and daughter fight alongside each other, delivering blows in quick succes
 Madre e hija luchan lado a lado, golpeando rápidamente. Su vínculo es impenetrable.
 902
 They are the steeds of the Elite Four of the Apocalypse, and their howls will ring in the end of days... or so the stories go.
-Son los corceles del Alto Mando del Apocalipsis, y sus aullidos se escucharán en el final de los tiempos… o así dicen las historias.
+Son los corceles del Alto Mando del Apocalipsis, y sus aullidos se escucharán en el final de los tiempos... o así dicen las historias.
 903
 Attackers find their weaknesses and regrets reflected in the jewel Rubarior carries. If it feels unloved, it will make its Trainer cry.
 Atacantes verán sus debilidades y lamentos reflejados en la gema de Rubarior. Si no se amado, hará a su Entrenador llorar.
@@ -31179,7 +31177,7 @@ If not calmed during storms, it will cause havoc by trying to race lightning bol
 Si no es calmado durante una tormenta, causará estragos al tratar de perseguir rayos.
 907
 Its propulsion system is the basis for many ramjet engine designs. It eats four times its body weight in food before a battle and will still be hungry by the end.
-Su sistema de propulsión es la base para varios diseños de ramjets. Come el cuádruple de su tamaño antes de un combate y estará hambriento para caundo termine.
+Su sistema de propulsión es la base para varios diseños de ramjets. Come el cuádruple de su tamaño antes de un combate y estará hambriento al terminar.
 908
 Magma builds up in its body over time. If this Pokémon does not regularly erupt, it might accidentally destroy the area around it.
 El magma en su interior crece sin parar. Si este Pokémon no estalla regularmente, podría accidentalmente destruir el área a su alrededor.
@@ -31188,10 +31186,10 @@ This Pokémon's singing can bring even the most stoic Trainers to tears. Those w
 El canto de este Pokémon puede hacer llorar a cualquier Entrenador. Aquellos que se duermen ante él dicen experienciar sueños maravillosos.
 910
 Its pink claws and feet appear to be made of flesh, but are actually raw negative energy. When it is finally fully unzipped, it moves on to its next life.
-Sus garras y pies rosas parecen estar hechos de carne, pero realmente son energía negativa pura. Cuando se desabrocha por completo, va a su siguiente vida.
+Sus garras y pies parecen estar hechos de carne, pero son energía negativa pura. Cuando se desabrocha por completo, va a su siguiente vida.
 911
 It's loved for its elegantly intimidating looks. It may herald a coming cataclysm, but nothing gets between a trainer and a fashionable Pokémon.
-Es amado por su estilo elegante e intimidante. Podrá ser el precursor de un cataclismo inminente, pero nada se pone encima de un entrenador y su Pokémon con estilo.
+Es amado por su estilo elegante e intimidante. Podrá ser el precursor de un cataclismo, pero nada se pone encima de un entrenador y su Pokémon con estilo.
 912
 It patterns its fur and attacks after human fighters it looks up to. Only the most over-the-top action movies can inspire it to reach its true potential.
 Ataca y se ve como luchadores humanos que admira. Sólo las películas de acción más exageradas pueden inspirarle a llegar a su verdadero potencial.
@@ -31203,7 +31201,7 @@ They are brought into hospitals when conventional medicine fails. They can hear 
 Son traídos a hospitales cuando la medicina convencional falla. Pueden escuchar los latidos restantes de una persona, pero nunca lo dirán.
 915
 Its rough belly scales can pulverize entire quarries for sand to use in battle. Its fights with Flygon in the center of desert storms are the stuff of legend.
-Sus escamas en la barriga pueden pulverizar una cantera de arena para usar en batalla. Sus batallas contra Flygon en el ojo de las tormentas desérticas son legendarias.
+Sus escamas en la barriga pueden pulverizar una cantera de arena para usar en batalla. Sus batallas contra Flygon en el ojo de las tormentas son legendarias.
 916
 Its claw has become so large that if it finds itself unable to clamp its opponent, it will just smack them with the blunt side.
 Sus garras son tan grandes que si no puede aplastar a su oponente, simplemente los golpeara con el costado de estas.
@@ -31224,7 +31222,7 @@ They can be seen watching the sky, trying to find a place to stand for when they
 Se los puede ver observando al cielo, intentando encontrar un lugar en el que pararse cuando inevitablemente intenten cargar el mundo.
 922
 The musical staff around its body is made of ice particles. The symbols are indecipherable, but some say they've heard Saurenaid speak its own language.
-El pentagrama alrededor de su cuerpo está hecho de partículas de hielo. Los símbolos son indescrifrables, pero algunos dicen que escuchar a Saurenaid hablar su propio idioma.
+El pentagrama alrededor de su cuerpo está hecho de partículas de hielo. Los símbolos son indescifrables, pero algunos dicen haberlo escuchado hablando su propio idioma.
 923
 It's unclear what the objects embedded in its body are or where they came from. More must be added over time, though, as anything it absorbs is quickly dissolved.
 Es desconocido qué son los objetos en su cuerpo o de dónde vienen. Pero más deben ser agregados con el tiempo, ya que disuelve rápidamente todo lo que absorbe.
@@ -31317,7 +31315,7 @@ If this Pokémon squeezes the tongue of the Shellder biting it, the Shellder wil
 Si aprieta la lengua del Shellder en su brazo, este disparará veneno desde la punta de su caparazón. 
 2019
 The stalks of leeks are thicker and longer in the Galar region. Farfetch'd that adapted to these stalks took on a unique form.
-Los puerros en Galar son más grandes y gruesos. Los Farfetch’d que se adaptaron a estos tomaron una forma única.
+Los puerros en Galar son más grandes y gruesos. Los Farfetch'd que se adaptaron a estos tomaron una forma única.
 2020
 A Grimer, which had been brought in to solve a problem with garbage, developed over time into this form.
 Un Grimer que fue traído para resolver un problema con la basura tomó esta forma con el tiempo.
@@ -31332,19 +31330,19 @@ Its custom is to mourn its lost companions. Mounds of dirt by the side of the ro
 Acostumbra lamentar a sus compañeros perdidos. Montones de tierra en los costados de un camino marcan las tumbas de los Marowak.
 2024
 Long ago, during a time when droves of factories fouled the air with pollution, Weezing changed into this form for some reason.
-Hace tiempo, cuando el humo de las fábricas contaminaban el aire, Weezing cambió a esta forma por alguna razón. 
+Hace tiempo, cuando el humo de las fábricas contaminaban el aire, Weezing cambió a esta forma por algún motivo.
 2025
 It can radiate chilliness from the bottoms of its feet. It'll spend the whole day tap-dancing on a frozen floor.
 Puede irradiar frío desde sus pies. Pasará todo el día bailando tap en un piso congelado.
 2026
-It's said that this Pokémon's beautiful blue wings are made of ice. Articuno flies over snowy mountains, its long tail fluttering along behind it.
-Es un Pokémon pájaro legendario que controla el hielo. El aleteo de sus alas enfría el aire. Se dice que cuando este Pokémon vuela, cae nieve.
+Its feather-like blades are composed of psychic energy and can shear through thick iron sheets as if they were paper.
+Sus hojas similares a plumas están formadas de energía psíquica que puede cortar un hierro grueso como si fuera papel.
 2027
-Zapdos is a legendary bird Pokémon. It's said that when Zapdos rubs its feathers together, lightning will fall immediately after.
-Es un pájaro legendario con la capacidad de controlar la electricidad. Vive en las nubes de tormenta. Obtiene poder si es alcanzado por rayos.
+One kick from its powerful legs will pulverize a dump truck. Supposedly, this Pokémon runs through the mountains at over 180 mph.
+Una patada de sus fuertes piernas pueden pulverizar un cambión. Supuestamente, corre a través montañas a velocidades superiores a 180 m/h.
 2028
-It's one of the legendary bird Pokémon. When Moltres flaps its flaming wings, they glimmer with a dazzling red glow.
-Es un Pokémon pájaro legendario que puede controlar el fuego. Si está herido, se sumerge en el magma fundido de un volcán para quemarse y curarse.
+This Pokémon's sinister, flame-like aura will consume the spirit of any creature it hits. Victims become burned-out shadows of themselves.
+Su aura siniestra similar al fuego consumirá el espíritu de cualquier criatura que golpee. Las victimas se convierten en sombras de sí mismas.
 2029
 Slowking can solve any problem present to it, but no one can understand a thing Slowking says.
 Slowking puede resolver cualquier problema que se le presente, pero nadie puede entender lo que dice.
@@ -31401,7 +31399,7 @@ Able to freely control the hardness of its metallic shell. It loathes solitude a
 Puede controlar la dureza de su coraza metálica. Detesta la soledad y se pondrá furioso si aquellos que aprecia lo dejan de lado.
 2048
 Its well-developed legs were the result of a life spent on mountains covered in deep snow. The scent it exudes from its flower crown heartens those in proximity.
-Sus piernas bien desarrolladas son el resultado de una vida en las montañas cubierto de nieve. El aroma de su flor anima a aquellos a su alrededor.
+Sus piernas bien desarrolladas son el resultado de una vida en las montañas cubiertas de nieve. El aroma de su flor anima a aquellos a su alrededor.
 2049
 This Pokémon barrels along steep mountain paths, cleaving through the deep snow with its hard icy armor.
 Este Pokémon arrasa caminos de montaña, atravesando la nieve con su armadura helada.
@@ -31434,7 +31432,7 @@ Fishers detest this troublesome Pokémon because it sprays poison from its spine
 Pescadores odian a este Pokémon porque dispara veneno de sus espinas, que llega a todas partes.
 2059
 Its lancelike spikes and savage temperament have earned it the nickname "sea fiend." It slurps up poison to nourish itself.
-Sus espinas con forma de lanza y temperamento salvaje le ganaron el apodo de “Demonio del Mar”. Se alimenta de veneno para curarse.
+Sus espinas con forma de lanza y temperamento salvaje le ganaron el apodo de "Demonio del Mar". Se alimenta de veneno para curarse.
 2060
 According to legend, this Pokémon's love gave rise to the budding of fresh life across Hisui.
 De acuerdo a la leyenda, el amor de este Pokémon dió vida fresca a través de todo Hisui.
@@ -31503,7 +31501,7 @@ It is more comfortable in alien dimensions than on Earth. The rocky parts of its
 Se siente más cómodo en dimensiones alienígenas que en la Tierra. Las partes rocosas de su cuerpo no pueden ser analizadas por la ciencia moderna.
 2517
 They can't be understood or predicted, making them dangerous opponents. At the end of their lifespan they return to their home universe, reporting to a higher will.
-No pueden ser entendidos ni predecidos, haciéndolos oponentes peligrosos. Al final de su vida regresarán a su universo de origen, reportándose a una entidad superior.
+No pueden ser entendidos ni predecidos, haciéndolos peligrosos. Al final de su vida regresarán a su universo de origen, reportándose a una entidad superior.
 2518
 Its down insulates it against any cold. In winter it will lay dormant beneath snow banks, only to pop out during spring.
 Su plumaje lo insula de todo frío. En invierno dormirá entre montones de nieve, para sólo salir durante la primavera.
@@ -31536,13 +31534,13 @@ When a Munna egg is placed in the care of a brooding dragon, it hatches into thi
 Cuando un huevo de Munna es colocado al cuidado de un dragón, incuba en esta forma. No parará de darle cabezazos a un Togepi si es colocado junto a uno.
 2528
 Excess psychic energy is vented as smoke from the hole where its gem once was. Its heart functions as a second brain that lets it communicate telepathically.
-Ventila energía psíquica de sobra como humo desde el hueco donde su gema solía estar. Su corazón funciona como un segundo cerebro que le permite comunicarse telepáticamente.
+Ventila energía psíquica como humo desde el hueco donde su gema solía estar. Su corazón funciona como un segundo cerebro que le permite usar telepatía.
 2529
 They are drawn to mysterious machinery and internet influencers. Because of this, they are common in online horror media.
 Son atraídos a maquinaria misteriosa e influencers. Debido a esto, son comunes en juegos online de terror.
 2530
 They led explorers to an ancient sunken city in the abyss. Its people had uploaded their minds into machines that slowly failed over the ages.
-Llevaron exploradores a una antigua ciudad hundida en el abismo. Su gente había subido sus mentes a las máquinas que lentamente fallaron a través del tiempo.
+Llevaron exploradores a una antigua ciudad hundida en el abismo. Su gente había subido sus mentes a las máquinas que fallaron a través del tiempo.
 2531
 Rely on LuxTech's literal firewall! Featuring a unique* typing and cutting-edge network threat purgation protocols, this innovative new form has your back.
 ¡Confía en la literal firewall de LuxTech! Presentando un tipo único* y protocolos de purgación de punta, esta nueva forma es todo lo que necesitas.
@@ -32154,7 +32152,7 @@ Legend says that by using its power to see all events from past to future, this 
 Las leyendas dicen que usando su poder para ver todos los eventos pasados y futuros, este Pokémon salvó las criaturas de un bosque del impacto de un meteorito.
 2734
 Kyogre is said to be the personification of the sea itself. Legends tell of its many clashes against Groudon, as each sought to gain the power of nature.
-Kyogre ha aparecido en la mitología como el creador del mar. Después de largos años de pelea con Groudon, se llevó a dormir al fondo del mar.
+Kyogre ha aparecido en la mitología como el creador del mar. Después de largos años de pelea con Groudon, fue a dormir al fondo del mar.
 2735
 Groudon is said to be the personification of the land itself. Legends tell of its many clashes against Kyogre, as each sought to gain the power of nature.
 Apareció en la mitología como el creador de la tierra. Duerme en el magma subterráneo y cree que los volcanes entran en erupción al despertar.
@@ -41784,7 +41782,7 @@ Dreamy Haze
 Atrapasueños
 Stupefying
 Atontar
-MU Protocal
+MU Protocol
 Protocolo Génesis
 Sluggish
 Baboso
@@ -41968,7 +41966,7 @@ Aumenta la Velocidad si un objeto equipable es consumido en batalla.
 Stat changes in the Pokemon are doubled.
 Si un cambio de estadísticas afecta al Pokémon, este es duplicado.
 Restores 1/8 HP in rain, 1/4 when hit by Water-type moves. Loses 1/8 in sunshine, takes 25% more from Fire-type moves.
-Restaura 1/8 de sus PS bajo lluvia, 1/4 si es alcanzado por un movimiento tipo Agua. Pierde 1/8 bajo sol, movimientos tipo Fuego lo dañan un 25% más.
+Restaura 1/8 PS bajo lluvia, 1/4 si es alcanzado por un movimiento Agua. Pierde 1/8 bajo sol, recibe 25% más daño por ataques Fuego. 
 Boosts one Attacking stat by two steps according to the foe's defenses.
 Aumenta una stat ofensiva por dos grados de acuerdo a la defensa mjs baja del rival.
 Boosts the power of punching moves by 30%.
@@ -42061,8 +42059,8 @@ Raises Attack after knocking out any Pokémon.
 Aumenta el Ataque un grado al debilitar cualquier Pokémon.
 Reflects enemy status moves that target the Pokémon or create hazards around it.
 Refleja movimientos de estado rivales que le afecten directamente o que pongan trampas a su alrededor.
-Immune to Grass-type moves, and boosts Attack when hit by one.
-Inmune a movimientos tipo Planta, y su Ataque es aumentado cuando es alcanzado por uno.
+Immune to Grass-type moves, and raises both attacking stats when hit by one.
+Inmune a movimientos tipo Planta, y aumenta ambas stats 
 Gives priority to status moves, but makes Dark-types immune to them.
 Da prioridad a movimientos de estado, pero hace que los tipo Siniestro sean inmunes a ellos.
 Boosts Sp. Atk by 30% in sandstorm.
@@ -42569,7 +42567,7 @@ Heals 1/12th HP per turn if there's a weather. Immune to weather downsides.
 Recupera 1/12 se sus PS totales cada turno si hay un clima presente, además, es inmune a las desventajas de este.
 Room-creating moves have priority.
 Los movimientos que crean Zonas tienen prioridad aumentada.
-Increases Attack by 50%, but the Pokémon is hurt for 1/10 HP each turn.
+Increases Attack by 50%, but the Pokémon is hurt for 1/10th HP each turn.
 Aumenta su Ataque un 50%, pero pierde 1/10 de sus PS totales cada turno.
 Raises Sp. Atk by two steps whenever any battler falls asleep.
 Aumenta su Ataque Especial dos grados cada vez que un Pokémon sea dormido.
@@ -42754,7 +42752,7 @@ Recupera 1/8 de sus PS máximos cada turno en tormenta de arena.
 Counts as every tribe.
 Cuenta como un miembro de todos los clanes.
 Moves that can flinch are 50% more likely. Deals 50% more damage to Pokemon with flinch immunity.
-Movimientos que pueden amedrentar tienen un 50% más de probabilidad de hacerlo. Sus movimientos son un 50% más fuertes contra objetivos con inmunidad a ser amedrentados.
+Movimientos que amedrentan tienen 50% más de probabilidad de hacerlo. Potencia 50% contra inmunes a ser amedrentados.
 Moves that can flinch are twice as likely to do so.
 Movimientos que pueden amedrentar tienen el doble de probabilidad de hacerlo.
 At the end of each of its turns, Speed is lowered but every other stat is raised.
@@ -42847,8 +42845,8 @@ Using or being hit by a physical move leaves a rock on the field. Status moves c
 Al usar o ser alcanzado por un movimiento físico deja una roca en el campo. Las recolecta al usar un movimiento de estado, curándose 1/4 por cada roca presente.
 Raises both defensive stats whenever any Pokémon uses a dance move.
 Aumenta ambas stats defensivas cada vez que cualquier Pokémon use un movimiento de baile.
-Slips past hazards. Deals double damage to a target's replacement.
-Ignora trampas en el campo. Si el rival cambia, ataca a su reemplazo con el doble de potencia.
+Slips pasts all types of spikes. Deals 50% more damage to targets that switched in this turn.
+Ignora todo tipo de púas en el campo. Potencia sus ataques un 50% contra enemigos que hayan cambiado en el turno.
 After fainting from exploding, revives after three turns.
 Al debilitarse luego de explotar, revivirá después de tres turnos.
 Powers up Grass-type moves of itself and its allies by 50%.
@@ -42944,7 +42942,7 @@ Al usar un movimiento de viento, aumenta ambas stats defensivas del Pokémon.
 On the first turn, its attacks leech the target.
 En su primer turno, sus ataques infectan al objetivo.
 Deals 50% more damage to targets that switched in this turn. Takes 50% less damage if it switched in this turn.
-Sus ataques son un 50% más fuertes en objetivos que hayan cambiado en el mismo turno. Recibe 50% menos de daño si cambió en el mismo turno.
+Potencia ataques un 50% en objetivos que hayan cambiado en el mismo turno. Recibe 50% menos de daño en el mismo turno.
 After knocking out any Pokémon, raises its Attack and Speed.
 Al debilitar cualquier Pokémon, aumenta tanto su Ataque como Velocidad.
 After knocking out any Pokémon, raises its Sp. Atk and Speed.
@@ -42959,7 +42957,7 @@ Immune to Psychic-type moves, and boosts Speed when hit by one.
 Inmune a movimientos tipo Psíquico y aumenta su velocidad cuando es alcanzado por uno. 
 Boosts Speed by 50% in sandstorm or hail.
 Aumenta su Velocidad un 50% en tormenta de arena o granizo.
-Uses Rapid Spin after its first attack to clear hazards, raises Speed, and deals damage.
+Uses Rapid Spin after its first attack to clear hazards, raise Speed, and deal damage.
 Usa Giro Rápido luego de su primer ataque para quitar trampas, aumentar su Velocidad y causar daño.
 When hit by a move with 100 or more base power, hits back instantly with Nuzzle.
 Cuando es alcanzado por un movimiento con 100 o más de potencia, contraataca inmediatamente usando Moflete Estático.
@@ -43073,7 +43071,7 @@ Attack is boosted by 50% if a Tailwind is blowing.
 Aumenta su Ataque un 50% si hay un Viento Afín soplando.
 At the end of each turn, heals self by 1/20th and a party member by the amount the Pokémon was healed.
 Al final de cada, se cura a sí mismo 1/20 de sus PS máximos y a un aliado por la cantidad que el Pokémon haya sido curado.
-Reduces each other battler's HP by 1/12th at the end of each turn.
+Reduces each other Pokémon's HP by 1/12th at the end of each turn.
 Reduce los PS de cada Pokémon por 1/12 de sus PS máximos al final de cada turno.
 Takes 30% less move damage if a Tailwind is blowing.
 Recibe 30% menos de daño si hay un Viento Afín soplando.
@@ -49946,7 +49944,7 @@ Puerto Sweetrock
 Where would you like to go?
 ¿A dónde te gustaría ir?
 You can now travel to <imp>{1}</imp> on your boat!
-Ahora puedes viajar a <imp>{1}</imp> en tu barco!
+¡Ahora puedes viajar a <imp>{1}</imp> en tu barco!
 The flame refuses to budge!
 ¡La llama no cede!
 You are already holding a dragon flame!
@@ -50008,7 +50006,7 @@ Estamos organizando una rifa. ¿Te gustaría pagar $#{cost} para una oportunidad
 I'm sorry, but you don't seem to have enough money.
 Lo siento, pero no parece que tengas el dinero.
 You hand over ${1}.
-Pagas los  ${1}.
+Pagas los ${1}.
 You hand over the {1}.
 Das el {1}.
 Alright, let me roll for you...\|
