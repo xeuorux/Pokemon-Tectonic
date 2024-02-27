@@ -22159,7 +22159,9 @@ More like the type to own a boat!
 ¡Eres más del tipo que es dueño de un barco!
 For a fee I can let ya park your boat on the dock out front.
 Por un precio, puedo dejarte aparcar tu bote en el puerto al frente.
-Alright, just sign here... and, its legally yours to use.
+Whaddya say to $10,000 for renter's rights?
+Que dices a $10,000 por derechos de alquiler?
+Alright, just sign here... and, it's legally yours to use.
 Muy bien, sólo firma aquí… y, es legalmente tuyo para usarlo.
 Hope your trips on the Eleig are enjoyable!
 ¡Espero disfrutes tus viajes en el Eleig!
@@ -49943,6 +49945,8 @@ Sweetrock Harbor
 Puerto Sweetrock 
 Where would you like to go?
 ¿A dónde te gustaría ir?
+You can now travel to <imp>{1}</imp> on your boat!
+Ahora puedes viajar a <imp>{1}</imp> en tu barco!
 The flame refuses to budge!
 ¡La llama no cede!
 You are already holding a dragon flame!
@@ -50003,8 +50007,10 @@ We're running a raffle. Would you like to spend $#{cost} on a chance to win a #{
 Estamos organizando una rifa. ¿Te gustaría pagar $#{cost} para una oportunidad de ganar un #{speciesName}?
 I'm sorry, but you don't seem to have enough money.
 Lo siento, pero no parece que tengas el dinero.
-You hand over $#{cost}.
-Pagas los  $#{cost}.
+You hand over ${1}.
+Pagas los  ${1}.
+You hand over the {1}.
+Das el {1}.
 Alright, let me roll for you...\|
 Muy bien, déjame hacer la tirada...\|
 Congratulations, you have won the raffle! Here is your #{speciesName}, as promised.

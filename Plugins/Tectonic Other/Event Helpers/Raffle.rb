@@ -11,7 +11,7 @@ def pokemonRaffle(species,level=10,cost=200,baseChance=5.0,chanceIncrease=1.5,di
 			pbMessage(_INTL("I'm sorry, but you don't seem to have enough money."))
 		else
 			$Trainer.money -= cost
-			pbMessage(_INTL("You hand over $#{cost}."))
+			pbMessage(_INTL("You hand over ${1}.",cost))
 			chance = baseChance + chanceIncrease * $PokemonGlobal.raffleChancesTried[species]
 			roll = rand(100)
 			echoln("Raffle chance and roll: #{chance},#{roll}")
