@@ -9,6 +9,7 @@ module GameData
       attr_reader :real_lose_text
       attr_reader :pokemon
       attr_reader :policies
+      attr_reader :flags
       attr_reader :extendsClass
       attr_reader :extendsName
       attr_reader :extendsVersion
@@ -23,6 +24,7 @@ module GameData
         "Items"        		=> [:items,             "*e",   :Item],
         "LoseText"     		=> [:lose_text,         "s"],
         "Policies"	 		  => [:policies,		      "*e",   :Policy],
+        "Flags"           => [:flags,             "*s"],
         "Pokemon"      		=> [:pokemon,           "ev",   :Species],   # Species, level
         "RemovePokemon"		=> [:removed_pokemon,   "ev",   :Species],   # Species, level
         "Form"         		=> [:form,              "u"],
@@ -116,8 +118,9 @@ module GameData
               pkmn[:ev][s.id] ||= 0 if pkmn[:ev]
             end
         end
-        @removedPokemon 	= hash[:removed_pokemon] || []
-        @policies		  	  = hash[:policies]		|| []
+        @removedPokemon 	= hash[:removed_pokemon]  || []
+        @policies		  	  = hash[:policies]		      || []
+        @flags		  	    = hash[:flags]		        || []
         @extendsClass	  	= hash[:extends_class]
         @extendsName	  	= hash[:extends_name]
         @extendsVersion 	= hash[:extends_version] || -1
@@ -186,12 +189,14 @@ module GameData
         trainer.lose_text  = @lose_text
         trainer.policies   = @policies.clone
         trainer.policies.concat(GameData::TrainerType.get(@trainer_type).policies)
+        trainer.flags      = @flags.clone
 
         parentTrainer = getParentTrainer
         if parentTrainer
             trainer.items.concat(parentTrainer.items.clone)
             trainer.lose_text = parentTrainer.lose_text if @lose_text.nil? || @lose_text == "..."
             trainer.policies.concat(parentTrainer.policies.clone)
+            trainer.flags.concat(parentTrainer.flags.clone)
         end
 
         trainer.policies.uniq!
@@ -385,6 +390,7 @@ module Compiler
             :version          => line_data[2] || 0,
             :pokemon          => [],
             :policies		      => [],
+            :flags		        => [],
             :extends          => -1,
             :removed_pokemon  => [],
             :monument_trainer => isMonument,
@@ -462,7 +468,7 @@ module Compiler
           end
           # Record XXX=YYY setting
           case property_name
-          when "Items", "LoseText","Policies","NameForHashing"
+          when "Items", "LoseText","Policies","NameForHashing","Flags"
             trainer_hash[line_schema[0]] = property_value
             trainer_lose_texts[trainer_id] = property_value if property_name == "LoseText"
           when "Extends"
@@ -568,6 +574,10 @@ module Compiler
   end
 
   def write_trainer_to_file(trainer, f)
+    # if trainer.policies.include?(:NO_PERFECT)
+    #   trainer.flags.push("NoPerfect")
+    #   trainer.policies.delete(:NO_PERFECT)
+    # end
     pbSetWindowText(_INTL("Writing trainer {1}...", trainer.id_number))
     Graphics.update if trainer.id_number % 50 == 0
     f.write("\#-------------------------------\r\n")
@@ -591,6 +601,11 @@ module Compiler
       uniquePolicies = trainer.policies
       uniquePolicies -= parentTrainer.policies if parentTrainer
       f.write(sprintf("Policies = %s\r\n", uniquePolicies.join(",")))
+    end
+    if trainer.flags && trainer.flags.length > 0
+      uniqueFlags = trainer.flags
+      uniqueFlags -= parentTrainer.flags if parentTrainer
+      f.write(sprintf("Flags = %s\r\n", uniqueFlags.join(",")))
     end
     f.write(sprintf("Items = %s\r\n", trainer.items.join(","))) if trainer.items.length > 0
 

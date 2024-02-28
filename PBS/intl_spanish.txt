@@ -43249,1033 +43249,690 @@ Hada
 Mutant
 Mutante
 [13]
-0
 Pokémon Trainer
 Entrenador Pokémon
-1
 Pokémon Trainer
 Entrenador Pokémon
-2
 Pokémon Trainer
 Entrenadora Pokémon
-3
 Pokémon Trainer
 Entrenador Pokémon
-4
 Pokémon Trainer
 Entrenador Pokémon
-5
 Youngster
 Jóven
-6
 Youngster
 Jóven
-7
 Youngster
 Jóven
-8
 Lass
 Chica
-9
 Lass
 Chica
-10
 Lass
 Chica
-11
 School Kid
 Escolar
-12
 School Kid
 Escolar
-13
 School Kid
 Escolar
-14
 School Kid
 Escolar
-15
 School Kid
 Escolar
-16
 Bug Catcher
 Cazabichos
-17
 Bug Catcher
 Cazabichos
-18
 Camper
 Campista
-19
 Picnicker
 Dominguera
-20
 Ninja Boy
 Chico Ninja
-21
 Poké Kid
 Pokéchica
-22
 Preschooler
 Preescolar
-23
 Preschooler
 Preescolar
-24
 Tuber
 Playero
-25
 Tuber
 Playero
-26
 Swimmer
 Nadador
-27
 Swimmer
 Nadador
-28
 Swimmer
 Nadador
-29
 Swimmer
 Nadadora
-30
 Swimmer
 Nadadora
-31
 Swimmer
 Nadadora
-32
 Fisherman
 Nadador
-33
 Fisherman
 Nadador
-34
 Black Belt
 Karateka
-35
 Black Belt
 Karateka
-36
 Black Belt
 Karateka
-37
 Battle Girl
 Luchadora
-38
 Battle Girl
 Luchadora
-39
 Jogger
 Corredor
-40
 Cyclist
 Ciclista
-41
 Cyclist
 Ciclista
-42
 Cyclist
 Ciclista
-43
 Cyclist
 Ciclista
-44
 Hiker
 Montañero
-45
 Hiker
 Montañero
-46
 Backpacker
 Mochilero
-47
 Backpacker
 Mochilera
-48
 Scientist
 Científico
-49
 Scientist
 Científico
-50
 Scientist
 Científico
-51
 Scientist
 Científica
-52
 Collector
 Científico
-53
 Super Nerd
 Super Necio
-54
 Psychic
 Médium
-55
 Psychic
 Médium
-56
 Psychic
 Médium
-57
 Psychic
 Médium
-58
 Sage
 Sabio
-59
 Elder
 Anciano
-60
 Medium
 Médium
-61
 Kimono Girl
 Chica Kimono
-62
 Beauty
 Bella
-63
 Beauty
 Bella
-64
 Beauty
 Bella
-65
 Cameraman
 Camarógrafo
-66
 Reporter
 Reportera
-67
 Teacher
 Profesora
-68
 Nursery Aide
 Enfermera
-69
 Rich Boy
 Niño Bien
-70
 Rich Boy
 Niño Bien
-71
 Lady
 Damisela
-72
 Lady
 Damisela
-73
 Parasol Lady
 Dama Parasol
-74
 Parasol Lady
 Dama Parasol
-75
 Hoopster
 Pívot
-76
 Linebacker
 Quarterback
-77
 Striker
 Delantero
-78
 Infielder
 Pitcher
-79
 Smasher
 Tenista
-80
 Skier
 Esquiador
-81
 Boarder
 Snow-Boarder
-82
 Skier
 Esquiadora
-83
 Skier
 Esquiador
-84
 Guitarist
 Guitarrista
-85
 Guitarist
 Guitarrista
-86
 Dancer
 Breakdancer
-87
 Idol
 Famosa
-88
 Clown
 Payaso
-89
 Juggler
 Malabarista
-90
 Harlequin
 Arlequín
-91
 Firebreather
 Comefuego
-92
 Artist
 Artista
-93
 Artist
 Artista
-94
 Baker
 Pastelera
-95
 Waiter
 Camarero
-96
 Waiter
 Camarero
-97
 Waitress
 Camarera
-98
 Waitress
 Camarera
-99
 Maid
 Criada
-100
 Maid
 Criada
-101
 Worker
 Operario
-102
 Worker
 Operario
-103
 Worker
 Operario
-104
 Policeman
 Policía
-105
 Policeman
 Policía
-106
 Burglar
 Ladrón
-107
 Gambler
 Jugón
-108
 Roughneck
 Calvo
-109
 Roughneck
 Calvo
-110
 Biker
 Motorista
-111
 Biker
 Motorista
-112
 Janitor
 Limpiador
-113
 Clerk
 Empresario
-114
 Clerk
 Empresario
-115
 Clerk
 Empresaria
-116
 Poké Maniac
 Pokémaníaco
-117
 Dragon Tamer
 Domadragón
-118
 Pokémon Breeder
 Criapokémon
-119
 Pokémon Breeder
 Criapokémon
-120
 Pokémon Breeder
 Criapokémon
-121
 Pokémon Breeder
 Criapokémon
-122
 Depot Agent
 Ferroviario
-123
 Pilot
 Piloto
-124
 Pokémon Ranger
 Pokémon Ranger
-125
 Pokémon Ranger
 Pokémon Ranger
-126
 Pokémon Ranger
 Pokémon Ranger
-127
 Pokémon Ranger
 Pokémon Ranger
-128
 Aroma Lady
 Señorita Aroma
-129
 Ruin Maniac
 Ruimaníaco
-130
 Bird Keeper
 Ornitólogo
-131
 Bird Keeper
 Ornitóloga
-132
 Rancher
 Ranchero
-133
 Cowgirl
 Vaquera
-134
 Poké Fan
 Pokéfan
-135
 Poké Fan
 Pokéfan
-136
 Poké Fan
 Pokéfan
-137
 Poké Fan
 Pokéfan
-138
 Doctor
 Enfermero
-139
 Nurse
 Enfermera
-140
 Sailor
 Marinero
-141
 Gentleman
 Caballero
-142
 Gentleman
 Caballero
-143
 Gentleman
 Caballero
-144
 Socialite
 Marquesa
-145
 Socialite
 Marquesa
-146
 Veteran
 Veterano
-147
 Veteran
 Veterano
-148
 Veteran
 Veterano
-149
 Cooltrainer
 Entrenador Guay
-150
 Cooltrainer
 Entrenador Guay
-151
 Cooltrainer
 Entrenador Guay
-152
 Cooltrainer
 Entrenador Guay
-153
 Cooltrainer
 Entrenadora Guay
-154
 Cooltrainer
 Entrenadora Guay
-155
 Cooltrainer
 Entrenadora Guay
-156
 Cooltrainer
 Entrenadora Guay
-157
 Champion
 Campeón
-158
 Champion
 Campeona
-159
 Backers
 Animadoras
-160
 Backers
 Animadores
-161
 Belle & Pa
 Padre e Hija
-162
 Double Team
 Dúo
-163
 Double Team
 Dúo
-164
 Hooligans
 Pandilleros
-165
 Interviewers
 Periodistas
-166
 Sis and Bro
 Hermanos
-167
 Twins
 Gemelas
-168
 Twins
 Gemelas
-169
 Twins
 Gemelas
-170
 Young Couple
 Pareja Joven
-171
 Young Couple
 Pareja Joven
-172
 Guitarist
 Guitarrista
-173
 Cosplayer
 Cosplayer
-174
 Pokémon Trainer
 Entrenador Pokémon
-175
 Pokémon Trainer
 Entrenadora Pokémon
-176
 CEO
 CEO
-177
 Lady
 Damisela
-178
 Waitress
 Camarera
-179
 Waiter
 Camarero
-180
 Artist
 Artista
-181
 Swimmer
 Nadadora
-182
 Swimmer
 Nadadora
-183
 Swimmer
 Nadador
-184
 Aroma Lady
 Señorita Aroma
-185
 Aroma Lady
 Señorita Aroma
-186
 Black Belt
 Karateka
-187
 Beauty
 Bella
-188
 Beauty
 Bella
-189
 Battle Girl
 Luchadora
-190
 Battle Girl
 Luchadora
-191
 Pro Trainer
 Profesional
-192
 Pro Trainer
 Profesional
-193
 Scientist
 Científica
-194
 Scientist
 Científico
-195
 Scientist
 Científico
-196
 Beauty
 Bella
-197
 Worker
 Obrero
-198
 Worker
 Obrero
-199
 Worker
 Obrero
-200
 Lass
 Chica
-201
 Lass
 Chica
-202
 Lass
 Chica
-203
 Swimmer
 Nadador
-204
 Swimmer
 Nadador
-205
 Swimmer
 Nadador
-206
 Camper
 Campista
-207
 Camper
 Campista
-208
 Pokémon Ranger
 Pokémon Ranger
-209
 Pokémon Ranger
 Pokémon Ranger
-210
 Pokémon Ranger
 Pokémon Ranger
-211
 Pokémon Ranger
 Pokémon Ranger
-212
 Ruin Maniac
 Ruimaníaco
-213
 Bug Catcher
 Cazabichos
-214
 Dandy
 Dandi
-215
 Psychic
 Médium
-216
 Psychic
 Médium
-217
 Sailor
 Marinero
-218
 Tuber
 Playero
-219
 Tuber
 Playera
-220
 Teenager
 Adolescente
-221
 Teenager
 Adolescente
-222
 Fairy Tale Girl
 Niña Soñadora
-223
 Gardener
 Jardinero
-224
 Psychic
 Médium
-225
 Hex Maniac
 Bruja
-226
 Rich Boy
 Niño Bien
-227
 Rich Boy
 Niño Bien
-228
 Cameraman
 Camarógrafo
-229
 Delinquent
 Macarra
-290
 Pokémon Trainer
 Entrenador Pokémon
-291
 Pokémon Trainer
 Entrenador Pokémon
-292
 Pokémon Trainer
 Entrenador Pokémon
-293
 Pokémon Trainer
 Entrenadora Pokémon
-294
 Pokémon Trainer
 Entrenador Pokémon
-295
 Pokémon Trainer
 Entrenadora Pokémon
-296
 Pokémon Trainer
 Entrenadora Pokémon
-297
 Pokémon Trainer
 Entrenadora Pokémon
-298
 Your Brother
 Tu Hermano
-299
 Archfriend
 Archiamiga
-300
 Pokémon Trainer
 Entrenadora Pokémon
-301
 Gym Leader
 Líder de Gimnasio
-302
 Gym Leader
 Líder de Gimnasio
-303
 Gym Leader
 Líder de Gimnasio
-304
 Gym Leader
 Líder de Gimnasio
-305
 Gym Leader
 Líder de Gimnasio
-306
 Gym Leader
 Líder de Gimnasio
-307
 Gym Leader
 Líder de Gimnasio
-308
 Gym Leader
 Líder de Gimnasio
-309
 Gym Leader
 Líder de Gimnasio
-310
 Gym Leader
 Líder de Gimnasio
-311
 Gym Leader
 Líder de Gimnasio
-312
 Gym Leader
 Líder de Gimnasio
-313
 Gym Leader
 Líder de Gimnasio
-314
 Gym Leader
 Líder de Gimnasio
-315
 Gym Leader
 Líder de Gimnasio
-316
 Gym Leader
 Líder de Gimnasio
-317
 Gym Leader
 Líder de Gimnasio
-318
 Gym Leader
 Líder de Gimnasio
-319
 Masked Villain
 Villano Enmascarado
-320
 Masked Villain
 Villano Enmascarado
-321
 Professor
 Profesora
-350
 Former Champion
 Antiguo Campeón
-351
 Former Champion
 Antigua Campeona
-352
 Former Champion
 Antigua Campeona
-353
 Ultra
 Ultra
-354
 Former Champion
 Antigua Campeona
-355
 Former Champion
 Antiguo Campeón
-356
 Former Champion
 Antiguo Campeón
-357
 Former Champion
 Antiguo Campeón
-400
 Developer
 Desarrollador
-401
 Developer
 Desarrollador
-402
 Developer
 Desarrollador
-403
 Developer
 Desarrollador
-404
 Developer
 Desarrollador
-405
 Developer
 Desarrollador
-406
 Developer
 Desarrolladora
-407
 Developer
 Desarrollador
-408
 Developer
 Desarrollador
-409
 Developer
 Desarrolladora
-410
 Developer
 Desarrolladora
-411
 Developer
 Desarrollador
-412
 Wild
 Salvaje
-413
 Another Possible
 Alterno
-414
 Another Possible
 Alterno
-415
 Another Possible
 Alterno
-416
 Shadow
 Sombra
-417
 Ancient Priest
 Antiguo Sacerdote
-418
 School Kid
 Escolar
-419
 School Kid
 Escolar
-420
 Masked Villains
 Villanos Enmascarados
-421
 Masked Villains
 Villanos Enmascarados
-422
 Punk
 Punk
-423
 Punk
 Punk
-424
 Artist
 Artista
-425
 Rising Star
 Jóven Promesa
-426
 Rising Star
 Jóven Promesa
-427
 Rising Star
 Jóven Promesa
-428
 Rising Star
 Jóven Promesa
-429
 Challenger
 Aspirante
-430
 Wild Party
 Salvaje
-431
 Wild Party
 Salvaje
-432
 Wild Party
 Salvaje
-433
 Wild Party
 Salvaje
-434
 Guardian Deity
 Deidad Protectora
-435
 Guardian Deity
 Deidad Protectora
-436
 Guardian Deity
 Deidad Protectora
-437
 Guardian Deity
 Deidad Protectora
-438
 Wild Pack
 Jauría
-439
 Hiker
 Montañero
-440
 Camper
 Campista
-441
 Hiker
 Montañero
-442
 Aroma Lady
 Señorita Aroma
-443
 Pokémon Ranger
 Pokémon Ranger
-444
 Pokémon Master
 Maestro Pokémon
-445
 Pro Trainer
 Profesional
-446
 Pokémon Ranger
 Pokémon Ranger
-447
 Pokémon Ranger
 Pokémon Ranger
-448
 Pokémon Ranger
 Pokémon Ranger
-449
 Pokémon Breeder
 Críapokémon
-450
 Pokémon Breeder
 Críapokémon
-451
 Pokémon Breeder
 Críapokémon
-452
 Pokémon Breeder
 Críapokémon
-453
 Dragon Tamer
 Domadragón
-454
 Nightmare of
 Pesadilla de
-455
 Nightmare Queen
 Reina Pesadilla
-456
 Bird Keeper
 Ornitólogo
-457
 Suspicious Man
 Hombre Sospechoso
-458
 Butler
 Mayordomo
-459
 Criminal Team
 Equipo Criminal
-460
 Cool Squad
 Escuadrón Guay
-461
 Rich Couple
 Pareja Rica
-462
 Chef
 Chef
-463
 Poké Fan
 Pokéfan
-464
 Neckbeard
 Calvo
-465
 Reporter
 Reportera
-467
 Spirit Guardian
 Esíritu Guardián
-468
 Spirit Guardian
 Esíritu Guardián
-469
 Spirit Guardian
 Esíritu Guardián
-470
 Veteran
 Veterano
-471
 Veteran
 Veterana
-472
 Tourist
 Turista
-473
 Tourist
 Turista
 [14]
@@ -45717,6 +45374,10 @@ Hey, listen!  I almost caught \TE the other day.\mOh, it was sooooooo close, too
 Guess what happened the other day. I missed catching \TE again.\mMaybe I'm not very good at this.
 Guess what happened the other day.  I missed catching \TE again.\mMaybe I'm not very good at this.
 [24]
+Clone of 
+Clon de
+Mysterious Trainer
+Entrenador Extraño
 Bill
 Dinero
 Items

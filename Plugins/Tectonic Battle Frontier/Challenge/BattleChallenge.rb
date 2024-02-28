@@ -104,7 +104,7 @@ class BattleChallenge
       trainerdata = bttrainers[self.nextTrainer]
     else
       opponent = self.nextTrainer.to_trainer
-      opponent.policies.push(:NO_PERFECT)
+      opponent.flags.push("NoPerfect")
     end
     ret = pbOrganizedBattleEx(opponent,self.rules)
     return ret
