@@ -9,13 +9,13 @@ module Compiler
         schema = GameData::Ability::SCHEMA
         ability_names        = []
         ability_descriptions = []
-        ability_hash         = nil
         ["PBS/abilities.txt", "PBS/abilities_new.txt", "PBS/abilities_primeval.txt",
          "PBS/abilities_cut.txt",].each do |path|
             cutAbility = path == "PBS/abilities_cut.txt"
             primevalAbility = path == "PBS/abilities_primeval.txt"
             newAbility = ["PBS/abilities_new.txt", "PBS/abilities_primeval.txt"].include?(path)
-
+            
+            ability_hash         = nil
             pbCompilerEachPreppedLine(path) { |line, line_no|
                 if line[/^\s*\[\s*(.+)\s*\]\s*$/]   # New section [ability_id]
                     # Add previous ability's data to records
@@ -51,9 +51,9 @@ module Compiler
                     end
                 end
             }
+            # Add last ability's data to records
+            GameData::Ability.register(ability_hash) if ability_hash
         end
-        # Add last ability's data to records
-        GameData::Ability.register(ability_hash) if ability_hash
         # Save all data
         GameData::Ability.save
         MessageTypes.setMessagesAsHash(MessageTypes::Abilities, ability_names)
@@ -117,7 +117,7 @@ module GameData
         DATA = {}
         DATA_FILENAME = "abilities.dat"
 
-        extend ClassMethods
+        extend ClassMethodsSymbols
         include InstanceMethods
 
         SCHEMA = {
