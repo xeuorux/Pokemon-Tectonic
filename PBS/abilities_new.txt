@@ -248,6 +248,7 @@ Description = Physical moves have a 30% chance to frostbite targets.
 [CITYRAZER]
 Name = City Razer
 Description = After knocking out any Pokémon with Waterfall, transforms into its Rampage form. Ability becomes Mold Breaker.
+Flags = Immutable
 #-------------------------------
 [CLEANFREAK]
 Name = Clean Freak
@@ -426,6 +427,7 @@ Flags = RainSynergy
 [DRIFTINGMIST]
 Name = Drifting Mist
 Description = Creates Grey Mist for three turns when entering the battlefield.
+Flags = SetupCounterAI
 #-------------------------------
 [DYNAMO]
 Name = Dynamo
@@ -610,6 +612,7 @@ Description = On the first turn, its attacks frostbite the target.
 [FLOURISHING]
 Name = Flourishing
 Description = Grows at the end of each turn, slowing down but improving other stats.
+Flags = Immutable
 #-------------------------------
 [FLUSTERFLOCK]
 Name = Fluster Flock
@@ -662,6 +665,7 @@ Description = The Pokémon changes type to that of the move it's about to use. H
 [FRIENDTOALL]
 Name = Friend to All
 Description = Counts as every tribe.
+Flags = Immutable
 #-------------------------------
 [FRIGIDREFLECTION]
 Name = Frigid Reflection
@@ -1356,6 +1360,7 @@ Description = Has a 30% chance to leech targets when using physical moves.
 [PRESSUREVALVE]
 Name = Pressure Valve
 Description = Right before the Pokémon is attacked, the attacker's stat changes are reset.
+Flags = SetupCounterAI
 #-------------------------------
 [PSYFORCE]
 Name = Psyforce
@@ -1414,6 +1419,7 @@ Description = Takes half damage from Dragon- and Fairy-type attacks.
 [REAPWHATYOUSOW]
 Name = Reap What You Sow
 Description = If the Pokémon faints from Perish Song, it is revived in a new form.
+Flags = Immutable
 #-------------------------------
 [REAWAKENEDPOWER]
 Name = Reawakened Power
@@ -1488,6 +1494,7 @@ Description = Boosts Speed by 50% in sand. Can't miss during sandstorm.
 [SANDSMACABRE]
 Name = Sands Macabre
 Description = When it attacks from underground in sandstorm, it'll transform into Reaper form.
+Flags = Immutable
 #-------------------------------
 [SANDWORNAUGER]
 Name = Sandworn Auger
@@ -1755,6 +1762,7 @@ Description = Changes the weather to Blood Moon, which heralds the Full Blood Mo
 [STYLISH]
 Name = Stylish
 Description = The Pokémon benefits twice as much from style points.
+Flags = Immutable
 #-------------------------------
 [SUBZERO]
 Name = Sub Zero
@@ -1936,6 +1944,7 @@ Description = Takes 20% less damage from neutrally effective attacks.
 [UNIDENTIFIED]
 Name = Unidentified
 Description = The Pokémon is Mutant-type.
+Flags = Immutable
 #-------------------------------
 [UNNERVE]
 Name = Unnerve

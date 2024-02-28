@@ -45,7 +45,7 @@ Pokemon = LUVDISC,8
     Moves = WIPEOUT,GLITTERBOMB,CHARM
     AbilityIndex = 0 # Slick Surface
 Pokemon = SEEDOT,8
-    AbilityIndex = 0 # Cloud Nine
+    AbilityIndex = 0 # Air Lock
 #-------------------------------
 [LASS2,Sienna]
 Pokemon = PICHU,8

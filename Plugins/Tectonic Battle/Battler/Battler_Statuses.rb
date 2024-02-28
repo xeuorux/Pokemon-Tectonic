@@ -168,7 +168,7 @@ class PokeBattle_Battler
                 end
             end
             # Downside abilities
-            unstoppableAbility = unstoppableAbility?
+            unstoppableAbility = immutableAbility?
             if unstoppableAbility
                 if showMessages
                     showMyAbilitySplash(unstoppableAbility)

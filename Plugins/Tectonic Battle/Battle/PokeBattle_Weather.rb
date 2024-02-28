@@ -9,7 +9,7 @@ class PokeBattle_Battle
 
     def weatherSuppressed?
         eachBattler do |b|
-            return true if b.hasActiveAbility?(%i[CLOUDNINE AIRLOCK])
+            return true if b.hasActiveAbility?(:AIRLOCK)
         end
         return false
     end

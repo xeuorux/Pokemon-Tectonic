@@ -364,7 +364,7 @@ GameData::BattleEffect.register_effect(:Battler, {
     :real_name => "Ability Surpressed",
     :baton_passed => true,
     :pass_value_proc => proc do |battler, value|
-        next false if battler.unstoppableAbility?
+        next false if battler.immutableAbility?
         next value
     end,
     :apply_proc => proc do |battle, battler, _value|

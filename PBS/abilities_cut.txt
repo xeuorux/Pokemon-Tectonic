@@ -113,6 +113,10 @@ Description = Raises Def and Sp. Def by three steps each when its HP is lowered 
 Name = Cleaving
 Description = Ignores screens, Substitute, and Abilities that would affect its moves.
 #-------------------------------
+[CLOUDNINE]
+Name = Cloud Nine
+Description = Eliminates the effects of weather.
+#-------------------------------
 [KLUMSYKINESIS]
 Name = Clumsy Kinesis
 Description = Can hold two items, but drops one when swapping out.
@@ -941,3 +945,4 @@ Description = Upon entry, creates a Wonder Room for five turns, swapping base De
 [ZENMODE]
 Name = Zen Mode
 Description = Changes the Pokémon's shape when HP is halved.
+Flags = Immutable

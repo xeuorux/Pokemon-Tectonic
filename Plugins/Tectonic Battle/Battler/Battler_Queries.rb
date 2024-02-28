@@ -123,84 +123,13 @@ class PokeBattle_Battler
         return abilityActive?(ignore_fainted, true)
     end
 
-    # Applies to both losing self's ability (i.e. being replaced by another) and
-    # having self's ability be negated.
-    def unstoppableAbility?(abil = nil)
-        ability_blacklist = [
-            # Form-changing abilities
-            :DISGUISE,
-            :MULTITYPE,
-            :POWERCONSTRUCT,
-            :SCHOOLING,
-            :SHIELDSDOWN,
-            :STANCECHANGE,
-            :ZENMODE,
-            :ICEFACE,
-            # Abilities intended to be inherent properties of a certain species
-            :COMATOSE,
-            :RKSSYSTEM,
-            :GULPMISSILE,
-            :ASONEICE,
-            :ASONEGHOST,
-            # Abilities with undefined behaviour if they were replaced or moved around
-            :STYLISH,
-            :FRIENDTOALL,
-            :PRIMEVALDISGUISE,
-            :UNIDENTIFIED,
-        ]
-
-        if abil
-            abil = GameData::Ability.try_get(abil)
-            return ability_blacklist.include?(abil.id)
-        else
-            eachAbility do |ability|
-                return ability if ability_blacklist.include?(ability)
-            end
-            return false
+    # Returns whether the user has an immutable ability or not
+    # and, if so, which ability it is
+    def immutableAbility?
+        eachAbility do |ability|
+            return ability if GameData::Ability.get(ability).is_immutable_ability?
         end
-    end
-
-    # Applies to gaining the ability.
-    def ungainableAbility?(abil = nil)
-        ability_blacklist = [
-            # Form-changing abilities
-            :DISGUISE,
-            :FLOWERGIFT,
-            :FORECAST,
-            :MULTITYPE,
-            :POWERCONSTRUCT,
-            :SCHOOLING,
-            :SHIELDSDOWN,
-            :STANCECHANGE,
-            :ZENMODE,
-            :CITYRAZER,
-            :SANDSMACABRE,
-            :FLOURISHING,
-            :REAPWHATYOUSOW,
-            # Appearance-changing abilities
-            :ILLUSION,
-            :IMPOSTER,
-            # Abilities intended to be inherent properties of a certain species
-            :COMATOSE,
-            :RKSSYSTEM,
-            :NEUTRALIZINGGAS,
-            :HUNGERSWITCH,
-            # Abilities with undefined behaviour if they were replaced or moved around
-            :STYLISH,
-            :FRIENDTOALL,
-            :PRIMEVALDISGUISE,
-            :UNIDENTIFIED,
-        ]
-
-        if abil
-            abil = GameData::Ability.try_get(abil)
-            return ability_blacklist.include?(abil.id)
-        else
-            eachAbility do |ability|
-                return ability if ability_blacklist.include?(ability)
-            end
-            return false
-        end
+        return false
     end
 
     TESTING_DOUBLE_QUALITIES = false

@@ -139,6 +139,7 @@ module GameData
         HAZARD_IMMUNITY_ABILITIES = []
         MOLD_BREAKING_ABILITIES = []
         CHOICE_LOCKING_ABILITIES = []
+        SETUP_COUNTER_ABILITIES_AI = []
 
         def initialize(hash)
             @id               = hash[:id]
@@ -163,6 +164,7 @@ module GameData
             HAZARD_IMMUNITY_ABILITIES.push(@id) if is_hazard_immunity_ability?
             MOLD_BREAKING_ABILITIES.push(@id) if is_mold_breaking_ability?
             CHOICE_LOCKING_ABILITIES.push(@id) if is_choice_locking_ability?
+            SETUP_COUNTER_ABILITIES_AI.push(@id) if is_setup_counter_ability_ai?
         end
 
         # @return [String] the translated name of this ability
@@ -227,6 +229,7 @@ module GameData
         end
 
         def is_uncopyable_ability?
+            return true if is_immutable_ability?
             return @flags.include?("Uncopyable")
         end
 
@@ -240,6 +243,14 @@ module GameData
 
         def is_choice_locking_ability?
             return @flags.include?("ChoiceLocking")
+        end
+
+        def is_setup_counter_ability_ai?
+            return @flags.include?("SetupCounterAI")
+        end
+
+        def is_immutable_ability?
+            return @flags.include?("Immutable")
         end
     end
 end
