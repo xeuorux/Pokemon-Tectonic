@@ -28,14 +28,14 @@ Description = Slips past all types of spikes. Deals 50% more damage to targets t
 Name = Aggravate
 Description = HP-fraction-based damage effects deal 50% more damage to opponents.
 #-------------------------------
+[ALLCONSUMING]
+Name = All-Consuming
+Description = When another Pokémon faints, consumes their item, ability, and stat steps.
+#-------------------------------
 [ALLTHATGLITTERS]
 Name = All That Glitters
 Description = Can hold two different items, if both are Gems.
 Flags = MultipleItems
-#-------------------------------
-[ALLCONSUMING]
-Name = All-Consuming
-Description = When another Pokémon faints, consumes their item, ability, and stat steps.
 #-------------------------------
 [ANARCHIC]
 Name = Anarchic
@@ -55,11 +55,6 @@ Flags = EclipseSynergy
 Name = Apricorn Armor
 Description = Takes 50% less damage from attacks by Pokémon who have a status condition.
 #-------------------------------
-[ARCCONDUCTOR]
-Name = Arc Conductor
-Description = Inflicts 1/6th max HP damage to the foe when damaged during rain.
-Flags = RainSynergy
-#-------------------------------
 [ARCANE]
 Name = Arcane
 Description = Increases Sp. Atk by 30%.
@@ -67,6 +62,11 @@ Description = Increases Sp. Atk by 30%.
 [ARCANEFINALE]
 Name = Arcane Finale
 Description = Turns to Finale Form when only unfainted on team. Ability becomes Synchronize.
+#-------------------------------
+[ARCCONDUCTOR]
+Name = Arc Conductor
+Description = Inflicts 1/6th max HP damage to the foe when damaged during rain.
+Flags = RainSynergy
 #-------------------------------
 [ARCHVILLAIN]
 Name = Archvillain
@@ -184,14 +184,14 @@ Description = Lays a trap of levitating stones around the opponent when its HP i
 Name = Brain Scramble
 Description = Has a 30% chance to dizzy targets when using special moves.
 #-------------------------------
-[BREAKTHROUGH]
-Name = Break Through
-Description = Moves ignore immunities due to typing.
-#-------------------------------
 [BREAKINGWAVE]
 Name = Breaking Wave
 Description = Slips past hazards. On the first turn, its attacks are always critical.
 Flags = HazardImmunity
+#-------------------------------
+[BREAKTHROUGH]
+Name = Break Through
+Description = Moves ignore immunities due to typing.
 #-------------------------------
 [BRILLIANTFLURRY]
 Name = Brilliant Flurry
@@ -229,13 +229,13 @@ Description = Prevents itself and allies from being poisoned, leeched, or dizzie
 Name = Challenger
 Description = Immune to Fighting-type moves, and boosts Speed when hit by one.
 #-------------------------------
-[CHILLOUT]
-Name = Chill Out
-Description = Has a 30% chance to frostbite targets when using special moves.
-#-------------------------------
 [CHILLEDBODY]
 Name = Chilled Body
 Description = Physical moves against the Pokémon have a 30% chance to frostbite the attacker.
+#-------------------------------
+[CHILLOUT]
+Name = Chill Out
+Description = Has a 30% chance to frostbite targets when using special moves.
 #-------------------------------
 [CHOREOGRAPHY]
 Name = Choreography
@@ -374,13 +374,13 @@ Description = Prevents Water- or Grass-type moves during sandstorm.
 Name = Deterrent
 Description = Enemies which swap in take damage equal to 1/8th their HP.
 #-------------------------------
-[DIREDIVERSION]
-Name = Dire Diversion
-Description = It can avoid being knocked out by sacrificing its held item.
-#-------------------------------
 [DIRECTCURRENT]
 Name = Direct Current
 Description = At the end of each turn, its Sp. Atk is lowered. Then, you choose to raise its Speed or heal it for 1/5th HP.
+#-------------------------------
+[DIREDIVERSION]
+Name = Dire Diversion
+Description = It can avoid being knocked out by sacrificing its held item.
 #-------------------------------
 [DISORIENTING]
 Name = Disorienting
@@ -398,13 +398,13 @@ Description = Reduces move damage taken by 50% when HP is full. Can't be dizzied
 Name = Double Check
 Description = Deals 50% more damage to targets who have already taken damage this turn.
 #-------------------------------
-[DRAGONSLAYER]
-Name = Dragon Slayer
-Description = Immune to Dragon-type moves. Deals double damage to Dragon-types.
-#-------------------------------
 [DRAGONSBLOOD]
 Name = Dragon's Blood
 Description = Reduces the damage of each hit against it by an amount equal to its level.
+#-------------------------------
+[DRAGONSLAYER]
+Name = Dragon Slayer
+Description = Immune to Dragon-type moves. Deals double damage to Dragon-types.
 #-------------------------------
 [DRAMATICLIGHTING]
 Name = Dramatic Lighting
@@ -671,15 +671,6 @@ Flags = Immutable
 Name = Frigid Reflection
 Description = When hit with a special move, hits back instantly with that same move.
 #-------------------------------
-[FROSTSCATTER]
-Name = Frost Scatter
-Description = Summons a hailstorm for four turns when hit by an attack.
-Flags = HailSynergy
-#-------------------------------
-[FROSTWINGS]
-Name = Frost Wings
-Description = Flying-type attacks have a 40% chance to frostbite.
-#-------------------------------
 [FROSTFANGED]
 Name = Frostfanged
 Description = Boosts Attack and Speed by 25% in hail.
@@ -688,6 +679,15 @@ Flags = HailSynergy
 [FROSTPITALITY]
 Name = Frostpitality
 Description = Prevents the foe from escaping during hail.
+#-------------------------------
+[FROSTSCATTER]
+Name = Frost Scatter
+Description = Summons a hailstorm for four turns when hit by an attack.
+Flags = HailSynergy
+#-------------------------------
+[FROSTWINGS]
+Name = Frost Wings
+Description = Flying-type attacks have a 40% chance to frostbite.
 #-------------------------------
 [FRUSTRATE]
 Name = Frustrate
@@ -791,13 +791,13 @@ Description = The Pokémon is also Ghost-type.
 Name = Headache
 Description = Doubles Sp. Atk, but the Pokemon becomes dizzy after attacking.
 #-------------------------------
-[HEARTOFJUSTICE]
-Name = Heart of Justice
-Description = Immune to Dark-type moves, and boosts both attacking stats when hit by one.
-#-------------------------------
 [HEARTLESS]
 Name = Heartless
 Description = Immune to Fairy-type moves and restores HP if hit by one.
+#-------------------------------
+[HEARTOFJUSTICE]
+Name = Heart of Justice
+Description = Immune to Dark-type moves, and boosts both attacking stats when hit by one.
 #-------------------------------
 [HEATSAVOR]
 Name = Heat Savor
@@ -1058,10 +1058,6 @@ Name = Lycanthrope
 Description = Transforms into Midnight Form at the Full Moon. Ability becomes No Guard.
 Flags = MoonglowSynergy
 #-------------------------------
-[MUPROTOCOL]
-Name = MU Protocol
-Description = Immune to the type of the memory disc it holds.
-#-------------------------------
 [MAESTRO]
 Name = Maestro
 Description = Doubles the speed of Sound-based moves.
@@ -1154,6 +1150,10 @@ Flags = MoonglowSynergy
 Name = Moth Burglar
 Description = Hits opponent with Thief when withdrawn from battle.
 #-------------------------------
+[MUPROTOCOL]
+Name = MU Protocol
+Description = Immune to the type of the memory disc it holds.
+#-------------------------------
 [MUTABLE]
 Name = Mutable
 Description = It changes type to that of the move it's about to use. This works only once each time the Pokémon enters battle.
@@ -1208,13 +1208,13 @@ Name = Night Vision
 Description = During moonglow, Speed is boosted by 50% and twice as likely to crit.
 Flags = MoonglowSynergy
 #-------------------------------
-[NOHOPE]
-Name = No Hope
-Description = Prevents foes whose Attack is less than its from fleeing.
-#-------------------------------
 [NOBLEBLADE]
 Name = Noble Blade
 Description = Deals no damage to a target while they are using a status move.
+#-------------------------------
+[NOHOPE]
+Name = No Hope
+Description = Prevents foes whose Attack is less than its from fleeing.
 #-------------------------------
 [NOXIOUS]
 Name = Noxious
@@ -1487,14 +1487,14 @@ Name = Sand Burst
 Description = Summons a sandstorm for four turns when hit by an attack.
 Flags = SandSynergy
 #-------------------------------
-[SANDSNIPER]
-Name = Sand Sniper
-Description = Boosts Speed by 50% in sand. Can't miss during sandstorm.
-#-------------------------------
 [SANDSMACABRE]
 Name = Sands Macabre
 Description = When it attacks from underground in sandstorm, it'll transform into Reaper form.
 Flags = Immutable
+#-------------------------------
+[SANDSNIPER]
+Name = Sand Sniper
+Description = Boosts Speed by 50% in sand. Can't miss during sandstorm.
 #-------------------------------
 [SANDWORNAUGER]
 Name = Sandworn Auger
@@ -1719,14 +1719,14 @@ Flags = MultipleItems
 Name = Sticky Mold
 Description = If an attack lowers its HP to half or less, leeches the attacker.
 #-------------------------------
-[STORMTOTEM]
-Name = Storm Totem
-Description = Upon entry, summons a Turbulent Sky on the Pokémon's side for 6 turns.
-#-------------------------------
 [STORMBRINGER]
 Name = Stormbringer
 Description = Summons rain for four turns when hit by an attack.
 Flags = RainSynergy
+#-------------------------------
+[STORMTOTEM]
+Name = Storm Totem
+Description = Upon entry, summons a Turbulent Sky on the Pokémon's side for 6 turns.
 #-------------------------------
 [STRAIGHTAHEAD]
 Name = Straight Ahead
@@ -1764,13 +1764,13 @@ Name = Stylish
 Description = The Pokémon benefits twice as much from style points.
 Flags = Immutable
 #-------------------------------
-[SUBZERO]
-Name = Sub Zero
-Description = Powers up Ice-type moves by 50%.
-#-------------------------------
 [SUBSPACESCHISM]
 Name = Subspace Schism
 Description = Upon entry, creates a Trick Room for five turns, inverting the effect of Speed.
+#-------------------------------
+[SUBZERO]
+Name = Sub Zero
+Description = Powers up Ice-type moves by 50%.
 #-------------------------------
 [SUDDENCHILL]
 Name = Sudden Chill
@@ -1962,13 +1962,13 @@ Description = Powers up moves different than the last move by 50%.
 Name = Vengeance
 Description = After an attack reduces its HP to half or less, deals 1/4 of the attacker's HP back to the attacker.
 #-------------------------------
-[VENOMGORGER]
-Name = Venom Gorger
-Description = Whenever a foe's poison worsens, the Pokémon heals for 50% max HP.
-#-------------------------------
 [VENOMDETTA]
 Name = Venomdetta
 Description = Immune to Poison-type moves, and raises both attacking stats if hit by one.
+#-------------------------------
+[VENOMGORGER]
+Name = Venom Gorger
+Description = Whenever a foe's poison worsens, the Pokémon heals for 50% max HP.
 #-------------------------------
 [VERDANT]
 Name = Verdant

@@ -410,14 +410,14 @@ Name = Power Construct
 Description = Changes with other Cells if HP becomes half or less.
 Flags = Immutable
 #-------------------------------
-[POWERSPOT]
-Name = Power Spot
-Description = Powers up nearby allies moves by 30%.
-#-------------------------------
 [POWEROFALCHEMY]
 Name = Power of Alchemy
 Description = When an ally faints, the Pokémon also gains their ability or abilities.
 Flags = Uncopyable
+#-------------------------------
+[POWERSPOT]
+Name = Power Spot
+Description = Powers up nearby allies moves by 30%.
 #-------------------------------
 [PRANKSTER]
 Name = Prankster
@@ -444,11 +444,6 @@ Description = It changes type to that of the move it's about to use.
 Name = Pure Force
 Description = Raises the Pokémon's Attack by 50%, including Style Values and other bonuses.
 #-------------------------------
-[RKSSYSTEM]
-Name = RKS System
-Description = Its type matches the memory disc it holds.
-Flags = Immutable
-#-------------------------------
 [RAINDISH]
 Name = Rain Dish
 Description = Heals 1/8th of its max HP each turn if in rain.
@@ -465,6 +460,11 @@ Description = Restores 25% of max HP when withdrawn from battle.
 [RIPEN]
 Name = Ripen
 Description = Ripens Berries and doubles their effect.
+#-------------------------------
+[RKSSYSTEM]
+Name = RKS System
+Description = Its type matches the memory disc it holds.
+Flags = Immutable
 #-------------------------------
 [ROCKHEAD]
 Name = Rock Head
