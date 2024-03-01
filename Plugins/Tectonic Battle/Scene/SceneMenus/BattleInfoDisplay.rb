@@ -338,6 +338,10 @@ class BattleInfoDisplay < SpriteWrapper
 
         # Compile a descriptor for each effect on the battler or its position
         battlerEffects = []
+        if battler.form != 0
+            formName = GameData::Species.get_species_form(battler.species_data.id,battler.form).form_name
+            battlerEffects.push(_INTL("{1} Form",formName)) unless formName.blank?
+        end
         pushEffectDescriptorsToArray(battler, battlerEffects)
         pushEffectDescriptorsToArray(@battle.positions[battler.index], battlerEffects)
 

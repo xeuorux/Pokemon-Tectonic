@@ -249,7 +249,7 @@ class PokeBattle_Battler
         @lastRoundMoveFailed   = false
         @movesUsed             = []
         @turnCount             = 0
-        @avatarPhase = 1
+        @avatarPhase           = 1
         @empoweredTimer		   = 0
         @extraMovesPerTurn = 0
         @indicesTargetedLastRound = []

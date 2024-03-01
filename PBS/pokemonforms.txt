@@ -1350,7 +1350,3 @@ BattlerEnemyY = 17
 FormName = Harvest
 BaseStats = 120,130,81,68,130,81
 Abilities = AUTUMNAL
-BattlerPlayerY = 20
-BattlerEnemyX = 0
-BattlerEnemyY = 24
-BattlerShadowSize = 2

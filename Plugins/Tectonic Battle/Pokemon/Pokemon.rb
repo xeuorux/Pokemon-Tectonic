@@ -79,9 +79,9 @@ class Pokemon
     attr_accessor :battlingStreak
     attr_accessor :extraMovesPerTurn
     attr_accessor :bossType
-    attr_writer :itemTypeChosen
+    attr_writer   :itemTypeChosen
     attr_accessor :shiny_variant
-    attr_reader :afraid
+    attr_reader   :afraid
   
     # Max total IVs
     IV_STAT_LIMIT = 31

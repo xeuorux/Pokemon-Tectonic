@@ -809,6 +809,7 @@ GameData::BattleEffect.register_effect(:Battler, {
             battler.showMyAbilitySplash(:REAPWHATYOUSOW)
             battler.hp = battler.totalhp
             battler.pbChangeForm(1,_INTL("{1} begins the harvest!",battler.pbThis))
+            battler.pbChangeTypes(battler.species_data.id)
             battle.scene.reviveBattler(battler.index)
             battler.hideMyAbilitySplash
         end

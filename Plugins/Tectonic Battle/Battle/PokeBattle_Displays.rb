@@ -33,13 +33,17 @@ class PokeBattle_Battle
         pbDisplayWithFormatting(_INTL("\\ss#{msg}\\1")) if showMessages?
     end
 
+    def bossNarrationDuration
+        return 20 - $PokemonSystem.textspeed * 2
+    end
+
     def pbDisplayBossNarration(msg)
         @scene.sprites["messageWindow"].visible = false
         @scene.sprites["messageBox"].visible = false
         windowSkinName = "speech_avatar"
         windowSkinName += "_dark" if darkMode?
         msgwindow = pbCreateMessageWindow
-        narrationText = "\\wm\\w[#{windowSkinName}]\\ss#{msg}\\wt[20]"
+        narrationText = "\\wm\\w[#{windowSkinName}]\\ss#{msg}\\wt[#{bossNarrationDuration}]"
         pbMessageDisplay(msgwindow,narrationText)
         pbDisposeMessageWindow(msgwindow)
     end

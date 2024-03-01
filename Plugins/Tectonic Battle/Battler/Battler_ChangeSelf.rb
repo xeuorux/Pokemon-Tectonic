@@ -330,6 +330,10 @@ class PokeBattle_Battler
         @pokemon.makeUnmega if mega?
         @pokemon.makeUnprimal if primal?
 
+        # Reset avatar phase progress
+        @avatarPhase = 1
+        self.bossType = nil # To trigger sprite refresh
+
         unless @dummy
             # Do other things
             @battle.pbClearChoice(@index) # Reset choice
