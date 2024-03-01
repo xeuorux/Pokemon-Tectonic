@@ -48,7 +48,7 @@ class PokeBattle_Battler
         # Choice Items
         if effectActive?(:ChoiceBand)
             choiceItem = nil
-            GameData::Item::CHOICE_LOCKING_ITEMS.each do |choiceLockItem|
+            GameData::Item.getByFlag("ChoiceLocking").each do |choiceLockItem|
                 next unless hasActiveItem?(choiceLockItem)
                 choiceItem = choiceLockItem
                 break
@@ -69,7 +69,7 @@ GameData::Move.get(@effects[:ChoiceBand]).name)
         end
         # Gorilla Tactics
         if effectActive?(:GorillaTactics)
-            choiceLockingAbility = hasActiveAbility?(GameData::Ability::CHOICE_LOCKING_ABILITIES)
+            choiceLockingAbility = hasActiveAbility?(GameData::Ability.getByFlag("ChoiceLocking"))
             if choiceLockingAbility
                 if move.id != @effects[:GorillaTactics]
                     msg = _INTL("{1} allows the use of only {2}!", getAbilityName(choiceLockingAbility),
@@ -125,7 +125,7 @@ GameData::Move.get(@effects[:GorillaTactics]).name)
         # Assault Vest and Strike Vest (prevents choosing status moves but doesn't prevent
         # executing them)
         if move.statusMove? && commandPhase
-            statusPreventingItem = hasActiveItem?(GameData::Item::NO_STATUS_USE_ITEMS)
+            statusPreventingItem = hasActiveItem?(GameData::Item.getByFlag("NoStatusUse"))
             if statusPreventingItem
                 msg = _INTL("The effects of the {1} prevent status moves from being used!", getItemName(statusPreventingItem))
                 if showMessages
@@ -455,7 +455,7 @@ target.pbThis(true)))
                 end
                 return true
             end
-            GameData::Item::LEVITATION_ITEMS.each do |levitationItem|
+            GameData::Item.getByFlag("Levitation").each do |levitationItem|
                 if target.hasActiveItem?(levitationItem)
                     if showMessages
                         @battle.pbDisplay(_INTL("{1}'s {2} makes Ground moves miss!", target.pbThis, getItemName(levitationItem)))

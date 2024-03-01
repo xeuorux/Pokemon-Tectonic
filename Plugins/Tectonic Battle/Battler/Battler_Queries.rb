@@ -325,7 +325,7 @@ class PokeBattle_Battler
     end
 
     def hasMoldBreaker?
-        return hasActiveAbility?(GameData::Ability::MOLD_BREAKING_ABILITIES)
+        return hasActiveAbility?(GameData::Ability.getByFlag("MoldBreaking"))
     end
 
     def activatesTargetAbilities?(aiCheck = false)
@@ -345,7 +345,7 @@ class PokeBattle_Battler
         return false if @battle.field.effectActive?(:Gravity)
         return true if shouldTypeApply?(:FLYING, checkingForAI)
         return true if hasLevitate?(checkingForAI) && !@battle.moldBreaker
-        return true if shouldItemApply?(GameData::Item::LEVITATION_ITEMS,checkingForAI)
+        return true if shouldItemApply?(GameData::Item.getByFlag("Levitation"),checkingForAI)
         return true if effectActive?(:MagnetRise)
         return true if effectActive?(:Telekinesis)
         return false
@@ -790,7 +790,7 @@ class PokeBattle_Battler
             aiLearnsItem(:HEAVYDUTYBOOTS) unless aiCheck
             return true
         end
-        return shouldAbilityApply?(GameData::Ability::HAZARD_IMMUNITY_ABILITIES, aiCheck)
+        return shouldAbilityApply?(GameData::Ability.getByFlag("HazardImmunity"), aiCheck)
     end
 
     def hasGem?

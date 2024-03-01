@@ -201,7 +201,7 @@ class PokeBattle_Battler
         
         if items.length > 1
             droppedItems = false
-            GameData::Ability::MULTI_ITEM_ABILITIES.each do |doubleItemAbility|
+            GameData::Ability.getByFlag("MultipleItems").each do |doubleItemAbility|
                 next unless oldAbilities.include?(doubleItemAbility) && !hasAbility?(doubleItemAbility)
                 itemKept = items[0]
                 setItems(itemKept)

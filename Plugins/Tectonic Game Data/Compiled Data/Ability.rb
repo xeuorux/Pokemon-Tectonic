@@ -117,6 +117,9 @@ module GameData
         DATA = {}
         DATA_FILENAME = "abilities.dat"
 
+        FLAG_INDEX = {}
+        FLAGS_INDEX_DATA_FILENAME = "abilities_indexed_by_flag.dat"
+
         extend ClassMethodsSymbols
         include InstanceMethods
 
@@ -126,21 +129,6 @@ module GameData
             "Flags"        => [:flags,       "*s"]
         }
         
-        SUN_ABILITIES = []
-        RAIN_ABILITIES = []
-        SAND_ABILITIES = []
-        HAIL_ABILITIES = []
-        ECLIPSE_ABILITIES = []
-        MOONGLOW_ABILITIES = []
-        ALL_WEATHER_ABILITIES = []
-        MULTI_ITEM_ABILITIES = []
-        FLINCH_IMMUNITY_ABILITIES = []
-        UNCOPYABLE_ABILITIES = []
-        HAZARD_IMMUNITY_ABILITIES = []
-        MOLD_BREAKING_ABILITIES = []
-        CHOICE_LOCKING_ABILITIES = []
-        SETUP_COUNTER_ABILITIES_AI = []
-
         def initialize(hash)
             @id               = hash[:id]
             @id_number        = hash[:id_number]    || -1
@@ -151,20 +139,13 @@ module GameData
             @primeval         = hash[:primeval]     || false
             @tectonic_new     = hash[:tectonic_new] || false
 
-            SUN_ABILITIES.push(@id) if is_sun_synergy_ability?
-            RAIN_ABILITIES.push(@id) if is_rain_synergy_ability?
-            SAND_ABILITIES.push(@id) if is_sand_synergy_ability?
-            HAIL_ABILITIES.push(@id) if is_hail_synergy_ability?
-            ECLIPSE_ABILITIES.push(@id) if is_eclipse_synergy_ability?
-            MOONGLOW_ABILITIES.push(@id) if is_moonglow_synergy_ability?
-            ALL_WEATHER_ABILITIES.push(@id) if is_all_weather_synergy_ability?
-            MULTI_ITEM_ABILITIES.push(@id) if is_multiple_item_ability?
-            FLINCH_IMMUNITY_ABILITIES.push(@id) if is_flinch_immunity_ability?
-            UNCOPYABLE_ABILITIES.push(@id) if is_uncopyable_ability?
-            HAZARD_IMMUNITY_ABILITIES.push(@id) if is_hazard_immunity_ability?
-            MOLD_BREAKING_ABILITIES.push(@id) if is_mold_breaking_ability?
-            CHOICE_LOCKING_ABILITIES.push(@id) if is_choice_locking_ability?
-            SETUP_COUNTER_ABILITIES_AI.push(@id) if is_setup_counter_ability_ai?
+            @flags.each do |flag|
+                if FLAG_INDEX.key?(flag)
+                    FLAG_INDEX[flag].push(@id)
+                else
+                    FLAG_INDEX[flag] = [@id]
+                end
+            end
         end
 
         # @return [String] the translated name of this ability
@@ -251,6 +232,24 @@ module GameData
 
         def is_immutable_ability?
             return @flags.include?("Immutable")
+        end
+
+        def self.getByFlag(flag)
+            if FLAG_INDEX.key?(flag)
+              return FLAG_INDEX[flag]
+            else
+              return []
+            end
+        end
+
+        def self.load
+            super
+            const_set(:FLAG_INDEX, load_data("Data/#{self::FLAGS_INDEX_DATA_FILENAME}"))
+        end
+    
+        def self.save
+            super
+            save_data(self::FLAG_INDEX, "Data/#{self::FLAGS_INDEX_DATA_FILENAME}")
         end
     end
 end

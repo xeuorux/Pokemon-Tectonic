@@ -195,7 +195,7 @@ end
 
 def getFlinchingEffectScore(baseScore, user, target, move)
     return 0 unless user.battle.battleAI.userMovesFirst?(move, user, target)
-    return 0 if target.hasActiveAbilityAI?(GameData::Ability::FLINCH_IMMUNITY_ABILITIES)
+    return 0 if target.hasActiveAbilityAI?(GameData::Ability.getByFlag("FlinchImmunity"))
     return 0 if target.substituted? && !move.ignoresSubstitute?(user)
     return 0 if target.effectActive?(:FlinchImmunity)
     return 0 if target.battle.pbCheckSameSideAbility(:EFFLORESCENT,target.index)
@@ -609,27 +609,27 @@ def getWeatherSettingEffectScore(weatherType, user, battle, finalDuration = 4, c
     case weatherType
     when :Sun
         weatherMatchesPolicy = true if user.ownersPolicies.include?(:SUN_TEAM)
-        hasSynergyAbility = true if user.hasActiveAbilityAI?(GameData::Ability::SUN_ABILITIES)
+        hasSynergyAbility = true if user.hasActiveAbilityAI?(GameData::Ability.getByFlag("SunSynergy"))
         hasSynergisticType = true if user.pbHasAttackingType?(:FIRE)
     when :Rain
         weatherMatchesPolicy = true if user.ownersPolicies.include?(:RAIN_TEAM)
-        hasSynergyAbility = true if user.hasActiveAbilityAI?(GameData::Ability::RAIN_ABILITIES)
+        hasSynergyAbility = true if user.hasActiveAbilityAI?(GameData::Ability.getByFlag("RainSynergy"))
         hasSynergisticType = true if user.pbHasAttackingType?(:WATER)
     when :Sandstorm
         weatherMatchesPolicy = true if user.ownersPolicies.include?(:SANDSTORM_TEAM)
-        hasSynergyAbility = true if user.hasActiveAbilityAI?(GameData::Ability::SAND_ABILITIES)
+        hasSynergyAbility = true if user.hasActiveAbilityAI?(GameData::Ability.getByFlag("SandSynergy"))
         hasSynergisticType = true if user.pbHasTypeAI?(:ROCK)
     when :Hail
         weatherMatchesPolicy = true if user.ownersPolicies.include?(:HAIL_TEAM)
-        hasSynergyAbility = true if user.hasActiveAbilityAI?(GameData::Ability::HAIL_ABILITIES)
+        hasSynergyAbility = true if user.hasActiveAbilityAI?(GameData::Ability.getByFlag("HailSynergy"))
         hasSynergisticType = true if user.pbHasTypeAI?(:ICE)
     when :Moonglow
         weatherMatchesPolicy = true if user.ownersPolicies.include?(:MOONGLOW_TEAM)
-        hasSynergyAbility = true if user.hasActiveAbilityAI?(GameData::Ability::MOONGLOW_ABILITIES)
+        hasSynergyAbility = true if user.hasActiveAbilityAI?(GameData::Ability.getByFlag("MoonglowSynergy"))
         hasSynergisticType = true if user.pbHasAttackingType?(:FAIRY)
     when :Eclipse
         weatherMatchesPolicy = true if user.ownersPolicies.include?(:ECLIPSE_TEAM)
-        hasSynergyAbility = true if user.hasActiveAbilityAI?(GameData::Ability::ECLIPSE_ABILITIES)
+        hasSynergyAbility = true if user.hasActiveAbilityAI?(GameData::Ability.getByFlag("EclipseSynergy"))
         hasSynergisticType = true if user.pbHasAttackingType?(:PSYCHIC)
     end
     
@@ -638,7 +638,7 @@ def getWeatherSettingEffectScore(weatherType, user, battle, finalDuration = 4, c
         score *= 4
     elsif user.aboveHalfHealth?
         score *= 1.5 if hasSynergisticType
-        score *= 1.5 if user.hasActiveAbilityAI?(GameData::Ability::ALL_WEATHER_ABILITIES)
+        score *= 1.5 if user.hasActiveAbilityAI?(GameData::Ability.getByFlag("AllWeatherSynergy"))
     end
    
     return score
