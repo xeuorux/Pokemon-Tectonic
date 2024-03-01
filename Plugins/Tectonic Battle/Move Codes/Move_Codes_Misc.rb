@@ -53,7 +53,7 @@ class PokeBattle_Move_StartPerishCountsForAllBattlers < PokeBattle_Move
     end
 
     def pbEffectAgainstTarget(user, target)
-        if target.boss?
+        if target.boss? && user != target
             target.applyEffect(:PerishSong, 12)
         else
             target.applyEffect(:PerishSong, 3)

@@ -1554,7 +1554,7 @@ Outdoor = true
 ShowArea = true
 Bicycle = true
 MapPosition = 0,5,5
-BattleBack = cave3
+BattleBack = forest
 MapSize = 1,11
 #-------------------------------
 [217]

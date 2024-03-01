@@ -20,14 +20,14 @@ Description = Boosts move power when the Pokémon moves last by 30%.
 Name = Arena Trap
 Description = Prevents the foe from fleeing unless it is airborne.
 #-------------------------------
-[ASONEICE]
-Name = As One
-Description = Possesses two Abilities: Unnerve and Chilling Neigh.
-Flags = Immutable
-#-------------------------------
 [ASONEGHOST]
 Name = As One
 Description = Possesses two Abilities: Unnerve and Grim Neigh.
+Flags = Immutable
+#-------------------------------
+[ASONEICE]
+Name = As One
+Description = Possesses two Abilities: Unnerve and Chilling Neigh.
 Flags = Immutable
 #-------------------------------
 [AURABREAK]

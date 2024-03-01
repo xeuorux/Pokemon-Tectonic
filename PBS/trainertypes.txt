@@ -5,11 +5,6 @@ Name = Ancient Priest
 Gender = Unknown
 BaseMoney = 0
 #-------------------------------
-[ANOTHERPOSSIBLEZAIN]
-Name = Another Possible
-Gender = Male
-BaseMoney = 80
-#-------------------------------
 [ANOTHERPOSSIBLETAMARIND]
 Name = Another Possible
 Gender = Female
@@ -20,16 +15,16 @@ Name = Another Possible
 Gender = Female
 BaseMoney = 80
 #-------------------------------
+[ANOTHERPOSSIBLEZAIN]
+Name = Another Possible
+Gender = Male
+BaseMoney = 80
+#-------------------------------
 [ARCHFRIEND_Lainie]
 Name = Archfriend
 Gender = Female
 BaseMoney = 100
 BattleBGM = Battle champion iris
-#-------------------------------
-[AROMALADY3]
-Name = Aroma Lady
-Gender = Female
-BaseMoney = 32
 #-------------------------------
 [AROMALADY]
 Name = Aroma Lady
@@ -42,6 +37,11 @@ Gender = Female
 BaseMoney = 32
 #-------------------------------
 [AROMALADY2]
+Name = Aroma Lady
+Gender = Female
+BaseMoney = 32
+#-------------------------------
+[AROMALADY3]
 Name = Aroma Lady
 Gender = Female
 BaseMoney = 32
@@ -66,24 +66,24 @@ Name = Artist
 Gender = Male
 BaseMoney = 32
 #-------------------------------
-[BACKERS_M]
-Name = Backers
-Gender = Unknown
-BaseMoney = 128
-#-------------------------------
 [BACKERS_F]
 Name = Backers
 Gender = Unknown
 BaseMoney = 128
 #-------------------------------
-[BACKPACKER_F]
-Name = Backpacker
-Gender = Female
-BaseMoney = 32
+[BACKERS_M]
+Name = Backers
+Gender = Unknown
+BaseMoney = 128
 #-------------------------------
 [BACKPACKER_M]
 Name = Backpacker
 Gender = Male
+BaseMoney = 32
+#-------------------------------
+[BACKPACKER_F]
+Name = Backpacker
+Gender = Female
 BaseMoney = 32
 #-------------------------------
 [BAKER]
@@ -111,11 +111,6 @@ Name = Battle Girl
 Gender = Female
 BaseMoney = 16
 #-------------------------------
-[BEAUTY5]
-Name = Beauty
-Gender = Female
-BaseMoney = 56
-#-------------------------------
 [BEAUTY2]
 Name = Beauty
 Gender = Female
@@ -141,6 +136,11 @@ Name = Beauty
 Gender = Female
 BaseMoney = 56
 #-------------------------------
+[BEAUTY5]
+Name = Beauty
+Gender = Female
+BaseMoney = 56
+#-------------------------------
 [BELLEANDPA]
 Name = Belle & Pa
 Gender = Unknown
@@ -156,11 +156,6 @@ Name = Biker
 Gender = Male
 BaseMoney = 16
 #-------------------------------
-[BIRDKEEPER_M]
-Name = Bird Keeper
-Gender = Male
-BaseMoney = 32
-#-------------------------------
 [BIRDKEEPER_F]
 Name = Bird Keeper
 Gender = Female
@@ -171,10 +166,10 @@ Name = Bird Keeper
 Gender = Male
 BaseMoney = 32
 #-------------------------------
-[BLACKBELT3]
-Name = Black Belt
+[BIRDKEEPER_M]
+Name = Bird Keeper
 Gender = Male
-BaseMoney = 24
+BaseMoney = 32
 #-------------------------------
 [BLACKBELT]
 Name = Black Belt
@@ -187,6 +182,11 @@ Gender = Male
 BaseMoney = 24
 #-------------------------------
 [BLACKBELT2]
+Name = Black Belt
+Gender = Male
+BaseMoney = 24
+#-------------------------------
+[BLACKBELT3]
 Name = Black Belt
 Gender = Male
 BaseMoney = 24
@@ -236,11 +236,6 @@ Name = Cameraman
 Gender = Male
 BaseMoney = 32
 #-------------------------------
-[DITTO_CAMPER]
-Name = Camper
-Gender = Male
-BaseMoney = 16
-#-------------------------------
 [CAMPER_M]
 Name = Camper
 Gender = Male
@@ -256,19 +251,24 @@ Name = Camper
 Gender = Female
 BaseMoney = 16
 #-------------------------------
+[DITTO_CAMPER]
+Name = Camper
+Gender = Male
+BaseMoney = 16
+#-------------------------------
 [CHALLENGER_Vanya]
 Name = Challenger
 Gender = Unknown
 BaseMoney = 100
 #-------------------------------
-[CHAMPION_F]
-Name = Champion
-Gender = Female
-BaseMoney = 60
-#-------------------------------
 [CHAMPION_M]
 Name = Champion
 Gender = Male
+BaseMoney = 60
+#-------------------------------
+[CHAMPION_F]
+Name = Champion
+Gender = Female
 BaseMoney = 60
 #-------------------------------
 [CHEF]
@@ -486,22 +486,22 @@ Name = Doctor
 Gender = Male
 BaseMoney = 60
 #-------------------------------
-[DOUBLETEAM2]
-Name = Double Team
-Gender = Unknown
-BaseMoney = 128
-#-------------------------------
 [DOUBLETEAM]
 Name = Double Team
 Gender = Unknown
 BaseMoney = 128
 #-------------------------------
-[DRAGONTAMER]
+[DOUBLETEAM2]
+Name = Double Team
+Gender = Unknown
+BaseMoney = 128
+#-------------------------------
+[DRAGONTAMER2]
 Name = Dragon Tamer
 Gender = Male
 BaseMoney = 32
 #-------------------------------
-[DRAGONTAMER2]
+[DRAGONTAMER]
 Name = Dragon Tamer
 Gender = Male
 BaseMoney = 32
@@ -531,12 +531,12 @@ Name = Firebreather
 Gender = Male
 BaseMoney = 32
 #-------------------------------
-[FISHERMAN]
+[FISHERMAN2]
 Name = Fisherman
 Gender = Male
 BaseMoney = 32
 #-------------------------------
-[FISHERMAN2]
+[FISHERMAN]
 Name = Fisherman
 Gender = Male
 BaseMoney = 32
@@ -593,17 +593,17 @@ Name = Gardener
 Gender = Male
 BaseMoney = 32
 #-------------------------------
-[GENTLEMAN2]
-Name = Gentleman
-Gender = Male
-BaseMoney = 200
-#-------------------------------
 [GENTLEMAN]
 Name = Gentleman
 Gender = Male
 BaseMoney = 200
 #-------------------------------
 [GENTLEMAN3]
+Name = Gentleman
+Gender = Male
+BaseMoney = 200
+#-------------------------------
+[GENTLEMAN2]
 Name = Gentleman
 Gender = Male
 BaseMoney = 200
@@ -628,11 +628,6 @@ Name = Guardian Deity
 Gender = wild
 BaseMoney = 0
 #-------------------------------
-[GUITARIST3]
-Name = Guitarist
-Gender = Female
-BaseMoney = 24
-#-------------------------------
 [GUITARIST2]
 Name = Guitarist
 Gender = Male
@@ -641,6 +636,11 @@ BaseMoney = 24
 [GUITARIST]
 Name = Guitarist
 Gender = Male
+BaseMoney = 24
+#-------------------------------
+[GUITARIST3]
+Name = Guitarist
+Gender = Female
 BaseMoney = 24
 #-------------------------------
 [LEADER_Samorn]
@@ -761,11 +761,6 @@ Name = Hex Maniac
 Gender = Female
 BaseMoney = 32
 #-------------------------------
-[DITTO_HIKER]
-Name = Hiker
-Gender = Male
-BaseMoney = 32
-#-------------------------------
 [HIKER2]
 Name = Hiker
 Gender = Male
@@ -777,6 +772,11 @@ Gender = Male
 BaseMoney = 32
 #-------------------------------
 [HIKER3]
+Name = Hiker
+Gender = Male
+BaseMoney = 32
+#-------------------------------
+[DITTO_HIKER]
 Name = Hiker
 Gender = Male
 BaseMoney = 32
@@ -826,17 +826,17 @@ Name = Kimono Girl
 Gender = Female
 BaseMoney = 120
 #-------------------------------
-[LADY]
-Name = Lady
-Gender = Female
-BaseMoney = 160
-#-------------------------------
 [LADY3]
 Name = Lady
 Gender = Female
 BaseMoney = 160
 #-------------------------------
 [LADY2]
+Name = Lady
+Gender = Female
+BaseMoney = 160
+#-------------------------------
+[LADY]
 Name = Lady
 Gender = Female
 BaseMoney = 160
@@ -876,22 +876,22 @@ Name = Linebacker
 Gender = Male
 BaseMoney = 32
 #-------------------------------
-[MAID2]
-Name = Maid
-Gender = Female
-BaseMoney = 40
-#-------------------------------
 [MAID]
 Name = Maid
 Gender = Female
 BaseMoney = 40
 #-------------------------------
-[MASKEDVILLAIN2]
+[MAID2]
+Name = Maid
+Gender = Female
+BaseMoney = 40
+#-------------------------------
+[MASKEDVILLAIN]
 Name = Masked Villain
 Gender = Unknown
 BaseMoney = 0
 #-------------------------------
-[MASKEDVILLAIN]
+[MASKEDVILLAIN2]
 Name = Masked Villain
 Gender = Unknown
 BaseMoney = 0
@@ -941,12 +941,12 @@ Name = Nursery Aide
 Gender = Female
 BaseMoney = 48
 #-------------------------------
-[PARASOLLADY2]
+[PARASOLLADY]
 Name = Parasol Lady
 Gender = Female
 BaseMoney = 32
 #-------------------------------
-[PARASOLLADY]
+[PARASOLLADY2]
 Name = Parasol Lady
 Gender = Female
 BaseMoney = 32
@@ -960,11 +960,6 @@ BaseMoney = 16
 Name = Pilot
 Gender = Male
 BaseMoney = 40
-#-------------------------------
-[POKEFAN_M2]
-Name = Poké Fan
-Gender = Male
-BaseMoney = 64
 #-------------------------------
 [POKEFAN_F2]
 Name = Poké Fan
@@ -982,6 +977,11 @@ Gender = Female
 BaseMoney = 64
 #-------------------------------
 [POKEFAN_M]
+Name = Poké Fan
+Gender = Male
+BaseMoney = 64
+#-------------------------------
+[POKEFAN_M2]
 Name = Poké Fan
 Gender = Male
 BaseMoney = 64
@@ -1182,31 +1182,25 @@ Name = Pokémon Trainer
 Gender = Male
 BaseMoney = 100
 #-------------------------------
-[POLICEMAN]
-Name = Policeman
-Gender = Male
-BaseMoney = 40
-#-------------------------------
 [POLICEMAN2]
 Name = Policeman
 Gender = Male
 BaseMoney = 40
 #-------------------------------
-[PRESCHOOLER_M]
-Name = Preschooler
+[POLICEMAN]
+Name = Policeman
 Gender = Male
-BaseMoney = 20
+BaseMoney = 40
 #-------------------------------
 [PRESCHOOLER_F]
 Name = Preschooler
 Gender = Female
 BaseMoney = 20
 #-------------------------------
-[COOLTRAINER_M7]
-Name = Pro Trainer
+[PRESCHOOLER_M]
+Name = Preschooler
 Gender = Male
-BaseMoney = 60
-Policies = PROACTIVE_MATCHUP_SWAPPER
+BaseMoney = 20
 #-------------------------------
 [DITTO_PROTRAINER]
 Name = Pro Trainer
@@ -1220,15 +1214,16 @@ Gender = Female
 BaseMoney = 60
 Policies = PROACTIVE_MATCHUP_SWAPPER
 #-------------------------------
+[COOLTRAINER_M7]
+Name = Pro Trainer
+Gender = Male
+BaseMoney = 60
+Policies = PROACTIVE_MATCHUP_SWAPPER
+#-------------------------------
 [PROFESSOR_Tamarind]
 Name = Professor
 Gender = Female
 BaseMoney = 100
-#-------------------------------
-[PSYCHIC_M]
-Name = Psychic
-Gender = Male
-BaseMoney = 32
 #-------------------------------
 [PSYCHIC_M2]
 Name = Psychic
@@ -1260,6 +1255,11 @@ Name = Psychic
 Gender = Female
 BaseMoney = 32
 #-------------------------------
+[PSYCHIC_M]
+Name = Psychic
+Gender = Male
+BaseMoney = 32
+#-------------------------------
 [PUNKF]
 Name = Punk
 Gender = Female
@@ -1275,20 +1275,15 @@ Name = Rancher
 Gender = Male
 BaseMoney = 40
 #-------------------------------
-[REPORTER]
-Name = Reporter
-Gender = Female
-BaseMoney = 40
-#-------------------------------
 [REPORTER2]
 Name = Reporter
 Gender = Female
 BaseMoney = 40
 #-------------------------------
-[RICHBOY2]
-Name = Rich Boy
-Gender = Male
-BaseMoney = 160
+[REPORTER]
+Name = Reporter
+Gender = Female
+BaseMoney = 40
 #-------------------------------
 [RICHBOY]
 Name = Rich Boy
@@ -1305,15 +1300,15 @@ Name = Rich Boy
 Gender = Male
 BaseMoney = 160
 #-------------------------------
+[RICHBOY2]
+Name = Rich Boy
+Gender = Male
+BaseMoney = 160
+#-------------------------------
 [RICHCOUPLE]
 Name = Rich Couple
 Gender = Unknown
 BaseMoney = 100
-#-------------------------------
-[RISINGSTAR_M2]
-Name = Rising Star
-Gender = Male
-BaseMoney = 60
 #-------------------------------
 [RISINGSTAR_M]
 Name = Rising Star
@@ -1330,12 +1325,17 @@ Name = Rising Star
 Gender = Female
 BaseMoney = 60
 #-------------------------------
-[ROUGHNECK2]
+[RISINGSTAR_M2]
+Name = Rising Star
+Gender = Male
+BaseMoney = 60
+#-------------------------------
+[ROUGHNECK]
 Name = Roughneck
 Gender = Male
 BaseMoney = 24
 #-------------------------------
-[ROUGHNECK]
+[ROUGHNECK2]
 Name = Roughneck
 Gender = Male
 BaseMoney = 24
@@ -1355,12 +1355,12 @@ Name = Sage
 Gender = Male
 BaseMoney = 48
 #-------------------------------
-[SAILOR]
+[SAILOR2]
 Name = Sailor
 Gender = Male
 BaseMoney = 32
 #-------------------------------
-[SAILOR2]
+[SAILOR]
 Name = Sailor
 Gender = Male
 BaseMoney = 32
@@ -1445,11 +1445,6 @@ Name = Sis and Bro
 Gender = Unknown
 BaseMoney = 64
 #-------------------------------
-[SKIER_M]
-Name = Skier
-Gender = Male
-BaseMoney = 32
-#-------------------------------
 [SKIER_F]
 Name = Skier
 Gender = Female
@@ -1458,6 +1453,11 @@ BaseMoney = 32
 [SKIER_F2]
 Name = Skier
 Gender = Female
+BaseMoney = 32
+#-------------------------------
+[SKIER_M]
+Name = Skier
+Gender = Male
 BaseMoney = 32
 #-------------------------------
 [SMASHER]
@@ -1475,11 +1475,6 @@ Name = Socialite
 Gender = Female
 BaseMoney = 200
 #-------------------------------
-[SPIRITGUARDIAN4]
-Name = Spirit Guardian
-Gender = Female
-BaseMoney = 60
-#-------------------------------
 [SPIRITGUARDIAN]
 Name = Spirit Guardian
 Gender = Female
@@ -1491,6 +1486,11 @@ Gender = Female
 BaseMoney = 60
 #-------------------------------
 [SPIRITGUARDIAN2]
+Name = Spirit Guardian
+Gender = Female
+BaseMoney = 60
+#-------------------------------
+[SPIRITGUARDIAN4]
 Name = Spirit Guardian
 Gender = Female
 BaseMoney = 60
@@ -1575,14 +1575,14 @@ Name = Teacher
 Gender = Female
 BaseMoney = 48
 #-------------------------------
-[TEENAGERM]
-Name = Teenager
-Gender = Male
-BaseMoney = 20
-#-------------------------------
 [TEENAGERF]
 Name = Teenager
 Gender = Female
+BaseMoney = 20
+#-------------------------------
+[TEENAGERM]
+Name = Teenager
+Gender = Male
 BaseMoney = 20
 #-------------------------------
 [TOURISTM]
@@ -1595,11 +1595,6 @@ Name = Tourist
 Gender = Male
 BaseMoney = 16
 #-------------------------------
-[TUBER_F2]
-Name = Tuber
-Gender = Female
-BaseMoney = 4
-#-------------------------------
 [TUBER_M2]
 Name = Tuber
 Gender = Male
@@ -1611,6 +1606,11 @@ Gender = Male
 BaseMoney = 4
 #-------------------------------
 [TUBER_F]
+Name = Tuber
+Gender = Female
+BaseMoney = 4
+#-------------------------------
+[TUBER_F2]
 Name = Tuber
 Gender = Female
 BaseMoney = 4
@@ -1636,11 +1636,6 @@ Gender = Female
 BaseMoney = 100
 BattleBGM = Battle champion iris
 #-------------------------------
-[VETERAN_F]
-Name = Veteran
-Gender = Female
-BaseMoney = 80
-#-------------------------------
 [VETERANM_2]
 Name = Veteran
 Gender = Male
@@ -1651,10 +1646,10 @@ Name = Veteran
 Gender = Male
 BaseMoney = 80
 #-------------------------------
-[WAITER3]
-Name = Waiter
-Gender = Male
-BaseMoney = 32
+[VETERAN_F]
+Name = Veteran
+Gender = Female
+BaseMoney = 80
 #-------------------------------
 [WAITER]
 Name = Waiter
@@ -1662,6 +1657,11 @@ Gender = Male
 BaseMoney = 32
 #-------------------------------
 [WAITER2]
+Name = Waiter
+Gender = Male
+BaseMoney = 32
+#-------------------------------
+[WAITER3]
 Name = Waiter
 Gender = Male
 BaseMoney = 32
@@ -1691,11 +1691,6 @@ Name = Wild Pack
 Gender = wild
 BaseMoney = 0
 #-------------------------------
-[WILDPARTY_LELE]
-Name = Wild Party
-Gender = wild
-BaseMoney = 0
-#-------------------------------
 [WILDPARTY_FINI]
 Name = Wild Party
 Gender = wild
@@ -1707,6 +1702,11 @@ Gender = wild
 BaseMoney = 0
 #-------------------------------
 [WILDPARTY_BULU]
+Name = Wild Party
+Gender = wild
+BaseMoney = 0
+#-------------------------------
+[WILDPARTY_LELE]
 Name = Wild Party
 Gender = wild
 BaseMoney = 0
@@ -1741,20 +1741,15 @@ Name = Worker
 Gender = Male
 BaseMoney = 40
 #-------------------------------
-[YOUNGCOUPLE]
-Name = Young Couple
-Gender = Unknown
-BaseMoney = 128
-#-------------------------------
 [YOUNGCOUPLE2]
 Name = Young Couple
 Gender = Unknown
 BaseMoney = 128
 #-------------------------------
-[YOUNGSTER]
-Name = Youngster
-Gender = Male
-BaseMoney = 16
+[YOUNGCOUPLE]
+Name = Young Couple
+Gender = Unknown
+BaseMoney = 128
 #-------------------------------
 [YOUNGSTER2]
 Name = Youngster
@@ -1762,6 +1757,11 @@ Gender = Male
 BaseMoney = 16
 #-------------------------------
 [YOUNGSTER3]
+Name = Youngster
+Gender = Male
+BaseMoney = 16
+#-------------------------------
+[YOUNGSTER]
 Name = Youngster
 Gender = Male
 BaseMoney = 16
