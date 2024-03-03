@@ -3522,9 +3522,9 @@ Price = 0
 Flags = Berry
 Description = It may be held by a Pokémon to restore a move's PP by 10.
 #-------------------------------
-[AMWIBERRY]
-Name = Amwi Berry
-NamePlural = Amwi Berries
+[CADOBERRY]
+Name = Cado Berry
+NamePlural = Cado Berries
 Pocket = 5
 Price = 0
 Flags = Berry,Pinch

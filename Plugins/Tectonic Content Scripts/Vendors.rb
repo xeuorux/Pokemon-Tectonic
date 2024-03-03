@@ -680,7 +680,7 @@ def evoStoneVendor(expanded = false)
 end
 
 def berryVendor
-	setPrice(:AMWIBERRY,1000)
+	setPrice(:CADOBERRY,1000)
 	setPrice(:SITRUSBERRY,1000)
 	setPrice(:LUMBERRY,1000)
 	setPrice(:LEPPABERRY,500)
@@ -694,7 +694,7 @@ def berryVendor
 	setPrice(:SPELONBERRY,500)
 
 	berryStock = %i[
-		AMWIBERRY SITRUSBERRY
+		CADOBERRY SITRUSBERRY
 		LUMBERRY
 		LEPPABERRY
 		RAWSTBERRY ASPEARBERRY
