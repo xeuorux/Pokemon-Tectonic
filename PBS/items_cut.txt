@@ -2843,4 +2843,12 @@ Name = Room Service
 NamePlural = Room Services
 Pocket = 5
 Price = 4000
-Description = An item to be held by a Pokémon. Lowers Speed by four steps when Trick Room takes effect.
+Description = An item to be held by a Pokémon. It casts a tricky glare that lowers the opponent's accuracy.
+#-------------------------------
+[AMWIBERRY]
+Name = Amwi Berry
+NamePlural = Amwi Berries
+Pocket = 5
+Price = 0
+Flags = Berry,Pinch
+Description = It may be held by a Pokémon to heal the user by 33% in a pinch (below 25% HP).

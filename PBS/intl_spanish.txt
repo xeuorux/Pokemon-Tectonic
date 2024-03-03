@@ -38689,8 +38689,8 @@ Aspear Berry
 Baya Perasi
 Leppa Berry
 Baya Zanama
-Amwi Berry
-Baya Amara
+Cado Berry
+Baya Guaca
 Persim Berry
 Baya Caquic
 Lum Berry
@@ -39514,8 +39514,8 @@ Aspear Berries
 Bayas Perasi
 Leppa Berries
 Bayas Zanama
-Amwi Berries
-Bayas Amara
+Cado Berries
+Bayas Guaca
 Persim Berries
 Bayas Caquic
 Lum Berries
@@ -46418,8 +46418,8 @@ Berries are a common held item. During battles, Pokémon will eat the berry to g
 Las Bayas son un objeto equipable común. Durante los combates, los Pokémon comerán una baya para obtener un beneficio. Consigue bayas cosechándolas en Árboles.
 Sitrus and Amwi Berry
 Bayas Amara y Zidra
-Sitrus Berry and Oran Berry are common berries which heal your Pokémon when at low health. If in doubt about what item to give a Pokémon, give them one of these.
-La Baya Amara y la Baya Zidra son bayas comunes que curan a un Pokémon con baja salud. Si tienes dudas en qué equipar, equipa una de estas.
+Sitrus Berry and Cado Berry are common berries which heal your Pokémon when at low health. If in doubt about what item to give a Pokémon, give them one of these.
+La Baya Amara y la Baya Guaca son bayas comunes que curan a un Pokémon con baja salud. Si tienes dudas en qué equipar, equipa una de estas.
 Rematerializer
 Rematerializador
 In Pokémon Tectonic, the Rematerializer regenerates held items which are consumed in battle. You'll never run out of berries!

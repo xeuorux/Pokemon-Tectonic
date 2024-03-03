@@ -73,7 +73,7 @@ BattleHandlers::HPHealItem.add(:LANSATBERRY,
   }
 )
 
-BattleHandlers::HPHealItem.add(:ORANBERRY,
+BattleHandlers::HPHealItem.add(:CADOBERRY,
   proc { |item, battler, battle, forced, filchedFrom, filchingAbility|
       next false unless battler.canHeal?
       next false if !forced && !battler.canConsumePinchBerry?(true)
@@ -81,8 +81,6 @@ BattleHandlers::HPHealItem.add(:ORANBERRY,
       next true
   }
 )
-
-BattleHandlers::HPHealItem.copy(:ORANBERRY,:AMWIBERRY)
 
 BattleHandlers::HPHealItem.add(:SITRUSBERRY,
   proc { |item, battler, battle, forced, filchedFrom, filchingAbility|
