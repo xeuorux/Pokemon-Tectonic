@@ -1,235 +1,948 @@
 ﻿# See the documentation on the wiki to learn how to edit this file.
-3001,JUSTIFIED,Justified,"Raises Attack when hit by a Dark-type move."
-3002,ADAPTABILITY,Adaptability,"Powers up moves of the same type."
-3003,HUGEPOWER,Huge Power,"Raises the Pokémon's Attack stat."
-3004,MAGMAARMOR,Magma Armor,"Prevents the Pokémon from becoming frozen."
-3005,QUEENLYMAJESTY,Queenly Majesty,"Makes foes unable to use priority attacks."
-3006,PUNKROCK,Punk Rock,"Boosts power and resistance of sound moves."
-3007,MISTYSURGE,Misty Surge,"Turns the ground into Fairy Terrain for 5 turns when entering battle."
-3008,SANDSPIT,Sand Spit,"Summons a sandstorm for 4 turns when hit by an attack."
-3009,PICKUP,Pickup,"The Pokémon may pick up items."
-3010,COMPOUNDEYES,Compound Eyes,"The Pokémon's accuracy is boosted."
-3011,BATTLEARMOR,Battle Armor,"The Pokémon is protected against critical hits."
-3012,INSOMNIA,Insomnia,"Prevents the Pokémon from falling asleep."
-3013,COLORCHANGE,Color Change,"Changes the Pokémon's type to the foe's move."
-3014,IMMUNITY,Immunity,"Prevents the Pokémon from getting poisoned."
-3015,SYMBIOSIS,Symbiosis,"Copies its held item to an ally that has used theirs."
-3016,TOXICBOOST,Toxic Boost,"Boosts Attack by 50% when poisoned."
-3017,FLAREBOOST,Flare Boost,"Boosts Sp. Atk by 50% attacks when burned."
-3018,HARVEST,Harvest,"At end of turn, 50% chance to regenerate used berry. 100% in sunshine."
-3019,TRACE,Trace,"The Pokémon copies a foe's Ability."
-3020,GUTS,Guts,"Boosts Attack by 33% if has a status condition. Ignores burn physical damage reduction."
-3021,MARVELSCALE,Marvel Scale,"Boosts Defense by 50% if has a status condition. Ignores dizzy defenses reduction."
-3022,LIQUIDOOZE,Liquid Ooze,"Damages attackers using any draining move."
-3023,OVERGROW,Overgrow,"Powers up Grass-type moves in a pinch."
-3024,BLAZE,Blaze,"Powers up Fire-type moves in a pinch."
-3025,TORRENT,Torrent,"Powers up Water-type moves in a pinch."
-3026,AUDACITY,Audacity,"Boosts Sp. Atk by 33% if has a status condition. Ignores frostbite special damage reduction."
-3027,MARVELSKIN,Marvel Skin,"Boosts Sp. Def by 50% if has a status condition. Ignores dizzy defenses reduction."
-3028,ANTICIPATION,Anticipation,"Senses a foe's dangerous moves."
-3029,FOREWARN,Forewarn,"Determines what moves a foe has."
-3030,POISONHEAL,Poison Heal,"Before taking damage from poison, heal 1/4th HP."
-3031,STALL,Stall,"The Pokémon moves after all other Pokémon do."
-3032,KLUTZ,Klutz,"The Pokémon can't use any held items."
-3033,FROSTHEAL,Frost Heal,"Restores 1/12th HP each turn if frostbitten. Ignores frostbite special damage reduction."
-3034,BURNHEAL,Burn Heal,"Restores 1/12th HP each turn if burned. Ignores burn physical damage reduction."
-3035,CONVICTION,Conviction,"Upon entry, uses the move Endure on itself."
-3036,RATTLED,Rattled,"Bug-, Dark- and Ghost-type moves scare it and boost its Speed."
-3037,PROPELLERTAIL,Propeller Tail,"Ignores effects changing the target of a move."
-3038,LIMBER,Limber,"The Pokémon is protected from numbing."
-3039,OBLIVIOUS,Oblivious,"Prevents it from becoming infatuated."
-3040,SUCTIONCUPS,Suction Cups,"Can't be forced to switch out. Boosts accuracy when hit."
-3041,LIGHTNINGROD,Lightning Rod,"Draws in Electric-type moves, is immune to them, and boosts Sp. Atk when hit."
-3042,ILLUMINATE,Illuminate,"Prevents other Pokémon from lowering accuracy."
-3043,COLDPROOF,Cold Proof,"Takes 50% less damage from Ice-type moves."
-3044,WATERVEIL,Water Veil,"Prevents the Pokémon from getting a burn."
-3045,MAGNETPULL,Magnet Pull,"Prevents Steel-type Pokémon from escaping."
-3046,SOUNDPROOF,Soundproof,"Gives full immunity to all sound-based moves."
-3047,HEATPROOF,Heatproof,"Takes 50% less damage from Fire-type moves."
-3048,EARLYBIRD,Early Bird,"The Pokémon awakens quickly from sleep."
-3049,RUNAWAY,Run Away,"Enables a sure getaway from wild Pokémon."
-3050,KEENEYE,Keen Eye,"Prevents other Pokémon from lowering accuracy."
-3051,HYPERCUTTER,Hyper Cutter,"Prevents other Pokémon from lowering its Attack or Sp. Atk stat."
-3052,CUTECHARM,Cute Charm,"Physical moves against the Pokémon have a 30% chance to cause infatuation."
-3053,PLUS,Plus,"Ups Sp. Atk if another Pokémon has Plus or Minus."
-3054,MINUS,Minus,"Ups Sp. Atk if another Pokémon has Plus or Minus."
-3055,STICKYHOLD,Sticky Hold,"Protects the Pokémon from item theft."
-3056,SHELLARMOR,Shell Armor,"The Pokémon is protected against critical hits."
-3057,RIVALRY,Rivalry,"Deals more damage to a foe of the same gender."
-3058,STEADFAST,Steadfast,"Raises Speed each time the Pokémon flinches."
-3059,SCRAPPY,Scrappy,"Enables moves to hit Ghost-type Pokémon."
-3060,STORMDRAIN,Storm Drain,"Draws in Water-type moves, is immune to them, and boosts Sp. Atk when hit."
-3061,LIGHTMETAL,Light Metal,"Halves the Pokémon's weight."
-3062,OVERCOAT,Overcoat,"Protects the Pokémon from damage from weather."
-3063,BIGPECKS,Big Pecks,"Protects from Def-lowering or Sp. Def-lowering."
-3064,WONDERSKIN,Wonder Skin,"Makes status-changing moves more likely to miss."
-3065,ZENMODE,Zen Mode,"Changes the Pokémon's shape when HP is halved."
-3066,TURBOBLAZE,Turboblaze,"Moves can be used regardless of Abilities."
-3067,TERAVOLT,Teravolt,"Moves can be used regardless of Abilities."
-3068,AROMAVEIL,Aroma Veil,"Protects against attacks that limit move choices."
-3069,BULLETPROOF,Bulletproof,"Protects the Pokémon from some ball and bomb moves."
-3070,REFRIGERATE,Refrigerate,"Normal-type moves become Ice-type and power up by 30%."
-3071,SWEETVEIL,Sweet Veil,"Prevents itself and allies from falling asleep."
-3072,FLOURISHPELT,Flourish Pelt,"Doubles Defense in sunshine."
-3073,PIXILATE,Pixilate,"Normal-type moves become Fairy-type and power up by 30%."
-3074,STAKEOUT,Stakeout,"Deals double damage to a target's replacement."
-3075,LONGREACH,Long Reach,"Uses moves without making contact with the target."
-3076,SURGESURFER,Surge Surfer,"Doubles Speed on Electric Terrain."
-3077,DAZZLING,Dazzling,"Makes foes unable to use priority attacks."
-3078,PASTELVEIL,Pastel Veil,"Protects it and ally Pokémon from being poisoned."
-3079,QUICKDRAW,Quick Draw,"Enables the Pokémon to move first occasionally."
-3080,QUICKFEET,Quick Feet,"Doubles Speed if there is a status problem. Ignores numb Speed reduction."
-3081,PUREPOWER,Pure Power,"Raises the Pokémon's Attack stat by 50%."
-3082,SNOWVEIL,Snow Veil,"Takes 25% less damage in a hailstorm."
-3083,CURSEDBODY,Cursed Body,"Moves used on the Pokémon are disabled for 3 turns."
-3084,LIQUIDVOICE,Liquid Voice,"Its sound-based moves become Water-type."
-3085,OWNTEMPO,Own Tempo,"Prevents the Pokémon from becoming confused."
-3086,STOUT,Stout,"Immune to weather downsides, and 20% less damage from attacks during weather."
-3087,UNCONCERNED,Unconcerned,"Takes 20% less damage from neutrally effective attacks."
-3088,TANGLEDFEET,Tangled Feet,"Raises evasion if the Pokémon is confused."
-3089,EFFECTSPORE,Effect Spore,"Contact with the Pokémon may inflict poison, sleep, or paralysis on the attacker."
-3090,SANDFORCE,Sand Force,"Boosts the power of Rock-, Ground-, and Steel-type moves in a sandstorm."
-3091,ANGERPOINT,Anger Point,"The Pokémon is angered when it takes a critical hit, and that maxes its Attack stat."
-3092,AFTERMATH,Aftermath,"Damages the attacker if it knocks out the Pokémon with a move that makes direct contact."
-3093,GRASSPELT,Grass Pelt,"Boosts the Pokémon's Defense stat on Grassy Terrain."
-3094,WATERCOMPACTION,Water Compaction,"Boosts the Defense stat sharply when the Pokémon is hit by a Water-type move."
-3095,NEERDOWELL,Ne'er-do-well,"Gives priority to status moves in moonglow."
-3096,WEATHERSENSES,Weather Senses,"Takes 7% less move damage for each turn remaining on the current weather."
-3097,FAUXLIAGE,Fauxliage,"Gain priority with Grass-type moves."
-3098,BROODING,Brooding,"Deals 5% more damage and takes 5% less damage for each other Dragon on team."
-3099,BLADETRAINED,Blade Trained,"Blade moves turn Fighting-type and are boosted by 50%."
-3100,ASTRALBODY,Astral Body,"Heals by 1/8th of its max HP each turn if in moonglow."
-3101,SNAKEPIT,Snake Pit,"Grassy Terrain harms opponents rather than healing them."
-3102,WONDROUSAURA,Wondrous Aura,"Upon entry, creates a Wonder Room for five turns, swapping base Defense and Sp. Def."
-3103,BURROWER,Burrower,"Dig and Undermine hit instantly."
-3104,TOXICSPIRIT,Toxic Spirit,"Powers up Poison-type moves of itself and its allies by 50%."
-3105,LIVEWIRE,Live Wire,"Special attacks against the Pokémon has a 30% chance to cause numbing."
-3106,STEAMENGINE,Steam Engine,"Maximizes Speed when hit by a Fire- or Water-type move."
-3107,ELECTRICSURGE,Electric Surge,"Turns the ground into Electric Terrain for 5 turns when entering battle."
-3108,PSYCHICSURGE,Psychic Surge,"Turns the ground into Psychic Terrain for 5 turns when entering battle."
-3109,FAIRYSURGE,Fairy Surge,"Turns the ground into Fairy Terrain for 5 turns when entering battle."
-3110,GRASSYSURGE,Grassy Surge,"Turns the ground into Grassy Terrain for 5 turns when entering battle."
-3111,TRICKSTERAURA,Trickster Aura,"Upon entry, creates a Trick Room for five turns, inverting the effect of Speed."
-3112,FRISK,Frisk,"The Pokémon can check a foe's held item. Makes wild Pokémon have items more often."
-3113,DANGERSENSE,Danger Sense,"It avoids hazards and can't be knocked out with one hit."
-3114,LIBERO,Libero,"The Pokémon changes type to that of the move it's about to use."
-3115,NIGHTLINE,Night-line,"At the end of each turn in moonglow, heals self by 1/12th of its max HP, and a party member alongside."
-3116,EPICHERO,Epic Hero,"Draws in moves from foes with base power 100 or more."
-3117,FLASHFIRE,Flash Fire,"Immunity to Fire-type moves and powers up Fire-type attacks if hit by one."
-3118,SWARM,Swarm,"Powers up Bug-type moves in a pinch."
-3119,LOOSESHELL,Loose Shell,"Upon entry in sandstorm, turns its shell into a levitating stone trap."
-3120,LIGHTNINGRIDE,Lightning Ride,"Doubled Speed while charged."
-3121,DAMP,Damp,"Prevents the use of self-destructing moves."
-3122,EXOADAPTION,Exo-Adaption,"User heals by 25% after taking a special attack."
-3123,EGOIST,Egoist,"Fighting-type moves have +1 priority."
-3124,BALLFETCH,Ball Fetch,"Fetches the Poké Ball from the first failed throw."
-3125,RECEIVER,Receiver,"Copies the Ability of a defeated ally."
-3126,BEASTBOOST,Beast Boost,"Boosts its best stat each time it deals a KO."
-3127,ROLLIN,Roll In,"Uses Rapid Spin after its first attack to clear hazards, raise Speed, and deal damage."
-3128,TRICKSTER,Trickster,"Creates a Trick Room for five turns when its HP is lowered below half."
-3129,SEALORD,Sea Lord,"After knocking out any Pokémon with Waterfall, transforms into its Hullbreaker form. Ability becomes Mold Breaker."
-3130,DUNEPREDATOR,Sands Macabre,"When it attacks from underground in sandstorm, it'll transform into Reaper form."
-3131,DAWNBURST,Dawnfall,"On the first turn, its attacks burn the target."
-3132,SWARMIMPACT,Predation,"Has a 30% chance to leech targets when using physical moves."
-3133,PLAYVICTIM,Punisher,"Special moves against the Pokémon have a 30% chance to leech the attacker."
-3134,ALLYCUSHION,Kickback,"Rather than take recoil damage, it swaps out, and its replacement takes that damage."
-3135,AQUASNEAK,Breaking Wave,"Slips past hazards. On the first turn, its attacks are always critical."
-3136,WARMTHCYCLE,Ignition Cycle,"Each turn, raises Speed by three steps and loses HP. If Speed was maxed, instead Speed and HP are reset."
-3137,BALANCEOFPOWER,Middle Way,"Boosts Attack by 50% if it used a special move last turn, or boosts Sp. Atk if physical."
-3138,SHARPNESS,Swordplay,"Boosts the power of blade moves by 30%."
-3139,FROSTSONG,Arctic Ariette,"Sound-based attacks turn Ice-type and are boosted by 30%."
-3140,WINDY,Windy,"Boosts the power of wind-based moves by 30%."
-3141,CLEAVING,Cleaving,"Ignores screens, Substitute, and Abilities that would affect its moves."
-3142,SUPERSTITIOUS,Exorcist,"Takes half damage from Psychic- and Ghost-type attacks."
-3143,INFINITESOURCE,Infinite Source,"Pokémon that swap in for this have their Speed raised and their PP fully restored."
-3144,DRAGONSCALES,Dragon Scales,"Reduces the damage of each hit against it by an amount equal to its level."
-3145,TOTALMIRROR,Total Mirror,"When hit with a special move, hits back instantly with that same move."
-3146,MORPHINGGUARD,Morphing Guard,"After being attacked, gains immunity to that move's type but loses other morphed immunities."
-3147,EROSIONCYCLE,Erosion Cycle,"Using or being hit by a physical move leaves a rock on the field. Status moves collect them, healing by 1/4th each."
-3148,NINJUTSU,Ninjutsu,"Slips past all types of spikes. Deals 50% more damage to targets that switched in this turn."
-3149,SELFMENDING,Perennial Payload,"After fainting from exploding, revives after three turns."
-3150,ODDAURA,Odd Aura,"Upon entry, creates an Odd Room for five turns, swapping offensive and defensive stats."
-3151,PUZZLINGAURA,Puzzling Aura,"Upon entry, creates a Puzzle Room for five turns, swapping base Attack and Sp. Atk."
-3152,QUALITYAURA,Quality Aura,"Upon entry, creates a Quality Room for five turns, exaggerating type matchups."
-3153,WHIRLER,Whirler,"Upon entry, traps each opponent in a whirlpool for two turns."
-3154,AQUAPROPULSION,Aqua Propulsion,"Boosts Sp. Atk and Speed by 25% in rain."
-3155,WINDBUFFER,Wind Buffer,"After using a wind move, raises both of the Pokémon's defensive stats."
-3156,HONORAURA,Honorable,"Lowers priority of status moves used by any Pokémon."
-3157,SEASURVIVOR,Leviathan,"Protected from critical hits. Can't be burned or frostbitten."
-3158,JASPERCHARGE,Jasper Charge,"Boosts Sp. Atk by 30%, but lowers Sp. Atk after using a special move."
-3159,PLASMABALL,Plasma Ball,"Attacks against the Pokémon deal 50% more damage, but the attacker takes 100% recoil."
-3160,KLUMSYKINESIS,Clumsy Kinesis,"Can hold two items, but drops one when swapping out."
-3161,PROVING,Outrider,"After knocking out any Pokémon, raises its Attack and Speed."
-3162,ENERGYDRAIN,Overcharge,"After knocking out any Pokémon, raises its Sp. Atk and Speed."
-3163,OVERACTING,Over Acting,"At the first chance, copies an opponent's species' legal Abilities."
-3164,WELLSUPPLIED,Self-Sufficient,"Heals 1/12th HP every turn. Protected from being burned or frostbitten."
-3165,EXTREMEENERGY,Extreme Voltage,"Increases Sp. Atk by 50%, but the Pokémon is hurt for 1/10th HP each turn."
-3166,DULL,Unfazed,"Takes 20% less damage from neutrally effective attacks."
-3167,GRAVITATIONAL,Gravitational,"Upon entry, intensifies gravity for five turns."
-3168,WILLBREAK,Bizarre,"Its special attacks reduce the target's Sp. Def."
-3169,GUARDBREAK,Shellcracker,"Its physical attacks reduce the target's Defense."
-3170,GROWUP,Grow Up,"Grows at the end of each turn, slowing down but improving other stats."
-3171,HEARTENINGAROMA,Heartening Aroma,"The Pokémon and its allies are protected from flinching, Intimidate, Fascinate, and Frustrate."
-3172,GREEDYGUTS,Greedy Guts,"At low health, eats other battlers' low-health triggered berries."
-3173,GRASSYSPIRIT,Grassy Spirit,"Powers up Grass-type moves of itself and its allies by 50%."
-3174,WINTERWISDOM,Summit Spirit,"Boosts Sp. Atk by 30% in hail."
-3175,POLARHUNTER,Frostfanged,"Boosts Attack and Speed by 25% in hail."
-3176,TAIGATRECKER,Taiga Trecker,"During hail, boosts Speed and Grass-type damage by 50%."
-3177,CRAGTERROR,Crag Terror,"Upon entry during sandstorm, lowers foe's Attack and Sp. Atk by two steps each."
-3178,SANDDEMON,Sand Demon,"Powers up Dark-type moves by 50% in sandstorm."
-3179,SANDDRILLING,Sand Drilling,"During sandstorm, Speed is boosted by 50% and twice as likely to crit."
-3180,WEAKSPIRIT,Weak Spirit,"Special attacks against the Pokémon raise its Speed by two steps but lower its Sp. Def."
-3181,HARSHTRAINING,Harsh Training,"Blocks random added effects of attacks taken, and prevents critical hits."
-3182,LUNARCLEANSING,Lunar Cleansing,"Prevents Bug- or Poison-type moves during moonglow."
-3183,MOONBUBBLE,Moon Bubble,"Doubles Defense in moonglow."
-3184,METALCOVER,Stainless Steel,"Prevents other Pokémon from lowering its stat steps. Immune to weather downsides."
-3185,VIBRATIONAL,Resonant,"Moves that hit multiple targets deal 25% more damage instead of 25% less."
-3186,GENERATOR,Dynamo,"Whenever it uses a status move, becomes charged, doubling the power of its next Electric-type attack."
-3187,TOXICCLOUD,Intoxicate,"Special moves have a 30% chance to poison targets."
-3188,WEREWOLF,Werewolf,"Transforms into Midnight Form at the Full Moon. Ability becomes No Guard."
-3189,NIGHTLIGHT,Night Light,"Boosts Sp. Atk by 30% in moonglow."
-3190,MENDINGTONES,Mending Tones,"Upon entry during eclipse, heals the lowest HP ally or self by 50%."
-3191,CALAMITY,Calamity,"Boosts all of the Pokémon's move damage by 25% during eclipse."
-3192,TOTALGRASP,Master Plan,"Raises each stat by two steps when a Total Eclipse happens."
-3193,TIMESTRETCH,Time Stretch,"Between each turn there's another turn where no one moves."
-3194,LOCOMOTION,Locomotion,"Boosts Speed by 50% but the user is locked into the first move they use."
-3195,SANDSTRENGTH,Earthshaker,"In sandstorm, Attack is boosted by 30%."
-3196,LUNARLOYALTY,Lunar Loyalty,"Summons moonglow for four turns when hit by an attack."
-3197,BLIZZBOXER,Sleetshaker,"Boosts Attack by 30% in hailstorms."
-3198,ENERGYUP,Energy Up,"Raises the Pokémon's Sp. Atk by 50%, including Style Values and other bonuses."
-3199,POWERUP,Power Up,"Raises the Pokémon's Attack by 50%, including Style Values and other bonuses."
-3200,ACCLIMATIZE,Acclimatize,"Immune to weather downsides, and takes 20% less damage from attacks during weather."
-3201,BATTERYBREAK,Emergency Power,"Uses Lightning Dance if an attack lowers its HP to half or below."
-3202,PRECHARGED,Pre-Charged,"Becomes charged upon entry, doubling the power of its next Electric-type attack."
-3203,SUPERFIST,Super Fist,"Boosts the power of punching moves by 50%."
-3204,RESONANCE,Planar Veil,"Sets screens for twice as long during eclipse."
-3205,SHATTERING,Shattering,"During eclipse, gets a 30% boost to Sp. Atk."
-3206,HEALINGHOPE,Healing Hope,"Uses Wish after knocking out any Pokémon."
-3207,SNORING,Snoring,"When hit while asleep, hits back instantly with Snore."
-3208,PITTING,Pitting,"Upon entry, traps each opponent in a sand tomb for two turns."
-3209,CREEPINGSTRENGTH,Late Bloomer,"Deals 30% more damage when it's slower than the target."
-3210,ROYALVOICE,Royal Voice,"After using a sound move, all foes are tormented."
-3211,SHRIEKING,Ear-Splitting,"Boosts power of sound-based moves by 50%."
-3212,SMOKEREFLEX,Pressure Valve,"Right before the Pokémon is attacked, the attacker's stat changes are reset."
-3213,EVOARMOR,Evo-Armor,"Boosts one defending stat by two steps according to the foe's attacking stats."
-3214,DIGGINGFIST,Excavator,"Dig and Undermine deal 50% more damage."
-3215,ALOOF,Aloof,"Reduces move damage taken by 50% when HP is full. Can't be dizzied."
-3216,RUSTYANCHOR,Rusty Anchor,"The Pokémon is also Steel-type, but it takes 15% more damage from moves."
-3217,RAMMINGSPEED,Ramming Speed,"Doubles the speed of recoil moves."
-3218,APATHETIC,Apathetic,"Takes no damage from status ailments."
-3219,PAINPRESENCE,Noxious,"Reduces each other Pokémon's HP by 1/12th at the end of each turn."
-3220,PAINDELAY,Pain Delay,"33% of all move damage taken is instead taken at the end of the next turn."
-3221,ENGORGE,Engorging,"Draining moves deal 30% more damage. Can overheal when draining."
-3222,SLEEPSNARE,Dreamy Haze,"If an attack lowers its HP to half or less, the attacker becomes drowsy."
-3223,TENDRILTRAP,Tendril Trap,"Prevents foes whose Attack is less than its from fleeing."
-3224,SKYHAZARD,Debris Field,"Can't be statused due to its hard shell. Boosts Sp. Atk and Speed by 25% in sandstorm."
-3225,LEGSTRENGTH,Leg Strength,"Boosts the power of kicking moves by 30%."
-3226,QUICKKICKS,Quick Kicks,"Doubles the Speed of kicking moves."
-3227,RUSHED,Rushed,"Boosts Speed by 50%, but the Pokémon is hurt for 1/10th HP each turn."
-3228,MALINGERING,Malingering,"Pokémon take damage from status conditions even while switched out."
-3229,CAUTIONARY,Cautionary,"Raises Def and Sp. Def by three steps each when its HP is lowered below half."
-3230,POURINGHEART,Pouring Heart,"Copies the base stats of the Pokémon it switches in to replace."
-3231,ADAMANTITE,Adamantite,"Powers up Steel-type moves by 50%."
-3232,TRICKYAURA,Tricky Aura,"Upon entry, creates a Trick Room for five turns, inverting the effect of Speed."
-3233,MOLDBREAKER,Mold Breaker,"Ignores Abilities that would affect its moves."
-3234,ROBUST,Robust,"Double the Pokémon's weight, and boost its Attack by 20%."
+#-------------------------------
+[ACCLIMATIZE]
+Name = Acclimatize
+Description = Immune to weather downsides, and takes 20% less damage from attacks during weather.
+#-------------------------------
+[ADAMANTITE]
+Name = Adamantite
+Description = Powers up Steel-type moves by 50%.
+#-------------------------------
+[ADAPTABILITY]
+Name = Adaptability
+Description = Powers up moves of the same type.
+#-------------------------------
+[AFTERMATH]
+Name = Aftermath
+Description = Damages the attacker if it knocks out the Pokémon with a move that makes direct contact.
+#-------------------------------
+[ALLYCUSHION]
+Name = Kickback
+Description = Rather than take recoil damage, it swaps out, and its replacement takes that damage.
+#-------------------------------
+[ALOOF]
+Name = Aloof
+Description = Reduces move damage taken by 50% when HP is full. Can't be dizzied.
+#-------------------------------
+[ANGERPOINT]
+Name = Anger Point
+Description = The Pokémon is angered when it takes a critical hit, and that maxes its Attack stat.
+#-------------------------------
+[ANTICIPATION]
+Name = Anticipation
+Description = Senses a foe's dangerous moves.
+#-------------------------------
+[APATHETIC]
+Name = Apathetic
+Description = Takes no damage from status ailments.
+#-------------------------------
+[AQUAPROPULSION]
+Name = Aqua Propulsion
+Description = Boosts Sp. Atk and Speed by 25% in rain.
+#-------------------------------
+[AQUASNEAK]
+Name = Breaking Wave
+Description = Slips past hazards. On the first turn, its attacks are always critical.
+#-------------------------------
+[AROMAVEIL]
+Name = Aroma Veil
+Description = Protects against attacks that limit move choices.
+#-------------------------------
+[ASTRALBODY]
+Name = Astral Body
+Description = Heals by 1/8th of its max HP each turn if in moonglow.
+Flags = MoonglowSynergy
+#-------------------------------
+[AUDACITY]
+Name = Audacity
+Description = Boosts Sp. Atk by 33% if has a status condition. Ignores frostbite special damage reduction.
+#-------------------------------
+[BALANCEOFPOWER]
+Name = Middle Way
+Description = Boosts Attack by 50% if it used a special move last turn, or boosts Sp. Atk if physical.
+#-------------------------------
+[BALLFETCH]
+Name = Ball Fetch
+Description = Fetches the Poké Ball from the first failed throw.
+#-------------------------------
+[BATTERYBREAK]
+Name = Emergency Power
+Description = Uses Lightning Dance if an attack lowers its HP to half or below.
+#-------------------------------
+[BATTLEARMOR]
+Name = Battle Armor
+Description = The Pokémon is protected against critical hits.
+#-------------------------------
+[BEASTBOOST]
+Name = Beast Boost
+Description = Boosts its best stat each time it deals a KO.
+#-------------------------------
+[BIGPECKS]
+Name = Big Pecks
+Description = Protects from Def-lowering or Sp. Def-lowering.
+#-------------------------------
+[BLADETRAINED]
+Name = Blade Trained
+Description = Blade moves turn Fighting-type and are boosted by 50%.
+#-------------------------------
+[BLAZE]
+Name = Blaze
+Description = Powers up Fire-type moves in a pinch.
+#-------------------------------
+[BLIZZBOXER]
+Name = Sleetshaker
+Description = Boosts Attack by 30% in hailstorms.
+#-------------------------------
+[BROODING]
+Name = Brooding
+Description = Deals 5% more damage and takes 5% less damage for each other Dragon on team.
+#-------------------------------
+[BULLETPROOF]
+Name = Bulletproof
+Description = Protects the Pokémon from some ball and bomb moves.
+#-------------------------------
+[BURNHEAL]
+Name = Burn Heal
+Description = Restores 1/12th HP each turn if burned. Ignores burn physical damage reduction.
+#-------------------------------
+[BURROWER]
+Name = Burrower
+Description = Dig and Undermine hit instantly.
+#-------------------------------
+[CALAMITY]
+Name = Calamity
+Description = Boosts all of the Pokémon's move damage by 25% during eclipse.
+#-------------------------------
+[CAUTIONARY]
+Name = Cautionary
+Description = Raises Def and Sp. Def by three steps each when its HP is lowered below half.
+#-------------------------------
+[CLEAVING]
+Name = Cleaving
+Description = Ignores screens, Substitute, and Abilities that would affect its moves.
+#-------------------------------
+[CLOUDNINE]
+Name = Cloud Nine
+Description = Eliminates the effects of weather.
+#-------------------------------
+[COLDPROOF]
+Name = Cold Proof
+Description = Takes 50% less damage from Ice-type moves.
+#-------------------------------
+[COLORCHANGE]
+Name = Color Change
+Description = Changes the Pokémon's type to the foe's move.
+#-------------------------------
+[COMPOUNDEYES]
+Name = Compound Eyes
+Description = The Pokémon's accuracy is boosted.
+#-------------------------------
+[CONVICTION]
+Name = Conviction
+Description = Upon entry, uses the move Endure on itself.
+#-------------------------------
+[CRAGTERROR]
+Name = Crag Terror
+Description = Upon entry during sandstorm, lowers foe's Attack and Sp. Atk by two steps each.
+#-------------------------------
+[CREEPINGSTRENGTH]
+Name = Late Bloomer
+Description = Deals 30% more damage when it's slower than the target.
+#-------------------------------
+[CURSEDBODY]
+Name = Cursed Body
+Description = Moves used on the Pokémon are disabled for 3 turns.
+#-------------------------------
+[CUTECHARM]
+Name = Cute Charm
+Description = Physical moves against the Pokémon have a 30% chance to cause infatuation.
+#-------------------------------
+[DAMP]
+Name = Damp
+Description = Prevents the use of self-destructing moves.
+#-------------------------------
+[DANGERSENSE]
+Name = Danger Sense
+Description = It avoids hazards and can't be knocked out with one hit.
+#-------------------------------
+[DAWNBURST]
+Name = Dawnfall
+Description = On the first turn, its attacks burn the target.
+#-------------------------------
+[DAZZLING]
+Name = Dazzling
+Description = Makes foes unable to use priority attacks.
+#-------------------------------
+[DIGGINGFIST]
+Name = Excavator
+Description = Dig and Undermine deal 50% more damage.
+#-------------------------------
+[DRAGONSCALES]
+Name = Dragon Scales
+Description = Reduces the damage of each hit against it by an amount equal to its level.
+#-------------------------------
+[DULL]
+Name = Unfazed
+Description = Takes 20% less damage from neutrally effective attacks.
+#-------------------------------
+[DUNEPREDATOR]
+Name = Sands Macabre
+Description = When it attacks from underground in sandstorm, it'll transform into Reaper form.
+#-------------------------------
+[EARLYBIRD]
+Name = Early Bird
+Description = The Pokémon awakens quickly from sleep.
+#-------------------------------
+[EFFECTSPORE]
+Name = Effect Spore
+Description = Contact with the Pokémon may inflict poison, sleep, or paralysis on the attacker.
+#-------------------------------
+[EGOIST]
+Name = Egoist
+Description = Fighting-type moves have +1 priority.
+#-------------------------------
+[ELECTRICSURGE]
+Name = Electric Surge
+Description = Turns the ground into Electric Terrain for 5 turns when entering battle.
+#-------------------------------
+[ENERGYDRAIN]
+Name = Overcharge
+Description = After knocking out any Pokémon, raises its Sp. Atk and Speed.
+#-------------------------------
+[ENERGYUP]
+Name = Energy Up
+Description = Raises the Pokémon's Sp. Atk by 50%, including Style Values and other bonuses.
+#-------------------------------
+[ENGORGE]
+Name = Engorging
+Description = Draining moves deal 30% more damage. Can overheal when draining.
+#-------------------------------
+[EPICHERO]
+Name = Epic Hero
+Description = Draws in moves from foes with base power 100 or more.
+#-------------------------------
+[EROSIONCYCLE]
+Name = Erosion Cycle
+Description = Using or being hit by a physical move leaves a rock on the field. Status moves collect them, healing by 1/4th each.
+#-------------------------------
+[EVOARMOR]
+Name = Evo-Armor
+Description = Boosts one defending stat by two steps according to the foe's attacking stats.
+#-------------------------------
+[EXOADAPTION]
+Name = Exo-Adaption
+Description = User heals by 25% after taking a special attack.
+#-------------------------------
+[EXTREMEENERGY]
+Name = Extreme Voltage
+Description = Increases Sp. Atk by 50%, but the Pokémon is hurt for 1/10th HP each turn.
+#-------------------------------
+[FAIRYSURGE]
+Name = Fairy Surge
+Description = Turns the ground into Fairy Terrain for 5 turns when entering battle.
+#-------------------------------
+[FAUXLIAGE]
+Name = Fauxliage
+Description = Gain priority with Grass-type moves.
+#-------------------------------
+[FLAREBOOST]
+Name = Flare Boost
+Description = Boosts Sp. Atk by 50% attacks when burned.
+#-------------------------------
+[FLASHFIRE]
+Name = Flash Fire
+Description = Immunity to Fire-type moves and powers up Fire-type attacks if hit by one.
+#-------------------------------
+[FLOURISHPELT]
+Name = Flourish Pelt
+Description = Doubles Defense in sunshine.
+#-------------------------------
+[FOREWARN]
+Name = Forewarn
+Description = Determines what moves a foe has.
+#-------------------------------
+[FRISK]
+Name = Frisk
+Description = The Pokémon can check a foe's held item. Makes wild Pokémon have items more often.
+#-------------------------------
+[FROSTHEAL]
+Name = Frost Heal
+Description = Restores 1/12th HP each turn if frostbitten. Ignores frostbite special damage reduction.
+#-------------------------------
+[FROSTSONG]
+Name = Arctic Ariette
+Description = Sound-based attacks turn Ice-type and are boosted by 30%.
+#-------------------------------
+[GENERATOR]
+Name = Dynamo
+Description = Whenever it uses a status move, becomes charged, doubling the power of its next Electric-type attack.
+#-------------------------------
+[GRASSPELT]
+Name = Grass Pelt
+Description = Boosts the Pokémon's Defense stat on Grassy Terrain.
+#-------------------------------
+[GRASSYSPIRIT]
+Name = Grassy Spirit
+Description = Powers up Grass-type moves of itself and its allies by 50%.
+#-------------------------------
+[GRASSYSURGE]
+Name = Grassy Surge
+Description = Turns the ground into Grassy Terrain for 5 turns when entering battle.
+#-------------------------------
+[GRAVITATIONAL]
+Name = Gravitational
+Description = Upon entry, intensifies gravity for five turns.
+#-------------------------------
+[GREEDYGUTS]
+Name = Greedy Guts
+Description = At low health, eats other battlers' low-health triggered berries.
+#-------------------------------
+[GROWUP]
+Name = Grow Up
+Description = Grows at the end of each turn, slowing down but improving other stats.
+#-------------------------------
+[GUARDBREAK]
+Name = Shellcracker
+Description = Its physical attacks reduce the target's Defense.
+#-------------------------------
+[GUTS]
+Name = Guts
+Description = Boosts Attack by 33% if has a status condition. Ignores burn physical damage reduction.
+#-------------------------------
+[HARSHTRAINING]
+Name = Harsh Training
+Description = Blocks random added effects of attacks taken, and prevents critical hits.
+#-------------------------------
+[HARVEST]
+Name = Harvest
+Description = At end of turn, 50% chance to regenerate used berry. 100% in sunshine.
+Flags = SunSynergy
+#-------------------------------
+[HEALINGHOPE]
+Name = Healing Hope
+Description = Uses Wish after knocking out any Pokémon.
+#-------------------------------
+[HEARTENINGAROMA]
+Name = Heartening Aroma
+Description = The Pokémon and its allies are protected from flinching, Intimidate, Fascinate, and Frustrate.
+#-------------------------------
+[HEATPROOF]
+Name = Heatproof
+Description = Takes 50% less damage from Fire-type moves.
+#-------------------------------
+[HONORAURA]
+Name = Honorable
+Description = Lowers priority of status moves used by any Pokémon.
+#-------------------------------
+[HUGEPOWER]
+Name = Huge Power
+Description = Raises the Pokémon's Attack stat.
+#-------------------------------
+[HYPERCUTTER]
+Name = Hyper Cutter
+Description = Prevents other Pokémon from lowering its Attack or Sp. Atk stat.
+#-------------------------------
+[ILLUMINATE]
+Name = Illuminate
+Description = Prevents other Pokémon from lowering accuracy.
+#-------------------------------
+[IMMUNITY]
+Name = Immunity
+Description = Prevents the Pokémon from getting poisoned.
+#-------------------------------
+[INFINITESOURCE]
+Name = Infinite Source
+Description = Pokémon that swap in for this have their Speed raised and their PP fully restored.
+#-------------------------------
+[INSOMNIA]
+Name = Insomnia
+Description = Prevents the Pokémon from falling asleep.
+#-------------------------------
+[JASPERCHARGE]
+Name = Jasper Charge
+Description = Boosts Sp. Atk by 30%, but lowers Sp. Atk after using a special move.
+#-------------------------------
+[JUSTIFIED]
+Name = Justified
+Description = Raises Attack when hit by a Dark-type move.
+#-------------------------------
+[KEENEYE]
+Name = Keen Eye
+Description = Prevents other Pokémon from lowering accuracy.
+#-------------------------------
+[KLUMSYKINESIS]
+Name = Clumsy Kinesis
+Description = Can hold two items, but drops one when swapping out.
+#-------------------------------
+[KLUTZ]
+Name = Klutz
+Description = The Pokémon can't use any held items.
+#-------------------------------
+[LEGSTRENGTH]
+Name = Leg Strength
+Description = Boosts the power of kicking moves by 30%.
+#-------------------------------
+[LIBERO]
+Name = Libero
+Description = The Pokémon changes type to that of the move it's about to use.
+#-------------------------------
+[LIGHTMETAL]
+Name = Light Metal
+Description = Halves the Pokémon's weight.
+#-------------------------------
+[LIGHTNINGRIDE]
+Name = Lightning Ride
+Description = Doubled Speed while charged.
+#-------------------------------
+[LIGHTNINGROD]
+Name = Lightning Rod
+Description = Draws in Electric-type moves, is immune to them, and boosts Sp. Atk when hit.
+#-------------------------------
+[LIMBER]
+Name = Limber
+Description = The Pokémon is protected from numbing.
+#-------------------------------
+[LIQUIDOOZE]
+Name = Liquid Ooze
+Description = Damages attackers using any draining move.
+#-------------------------------
+[LIQUIDVOICE]
+Name = Liquid Voice
+Description = Its sound-based moves become Water-type.
+#-------------------------------
+[LIVEWIRE]
+Name = Live Wire
+Description = Special attacks against the Pokémon has a 30% chance to cause numbing.
+#-------------------------------
+[LOCOMOTION]
+Name = Locomotion
+Description = Boosts Speed by 50% but the user is locked into the first move they use.
+#-------------------------------
+[LONGREACH]
+Name = Long Reach
+Description = Uses moves without making contact with the target.
+#-------------------------------
+[LOOSESHELL]
+Name = Loose Shell
+Description = Upon entry in sandstorm, turns its shell into a levitating stone trap.
+#-------------------------------
+[LUNARCLEANSING]
+Name = Lunar Cleansing
+Description = Prevents Bug- or Poison-type moves during moonglow.
+#-------------------------------
+[LUNARLOYALTY]
+Name = Lunar Loyalty
+Description = Summons moonglow for four turns when hit by an attack.
+#-------------------------------
+[MAGMAARMOR]
+Name = Magma Armor
+Description = Prevents the Pokémon from becoming frozen.
+#-------------------------------
+[MAGNETPULL]
+Name = Magnet Pull
+Description = Prevents Steel-type Pokémon from escaping.
+#-------------------------------
+[MALINGERING]
+Name = Malingering
+Description = Pokémon take damage from status conditions even while switched out.
+#-------------------------------
+[MARVELSCALE]
+Name = Marvel Scale
+Description = Boosts Defense by 50% if has a status condition. Ignores dizzy defenses reduction.
+#-------------------------------
+[MARVELSKIN]
+Name = Marvel Skin
+Description = Boosts Sp. Def by 50% if has a status condition. Ignores dizzy defenses reduction.
+#-------------------------------
+[MENDINGTONES]
+Name = Mending Tones
+Description = Upon entry during eclipse, heals the lowest HP ally or self by 50%.
+#-------------------------------
+[METALCOVER]
+Name = Stainless Steel
+Description = Prevents other Pokémon from lowering its stat steps. Immune to weather downsides.
+#-------------------------------
+[MINUS]
+Name = Minus
+Description = Ups Sp. Atk if another Pokémon has Plus or Minus.
+#-------------------------------
+[MISTYSURGE]
+Name = Misty Surge
+Description = Turns the ground into Fairy Terrain for 5 turns when entering battle.
+#-------------------------------
+[MOLDBREAKER]
+Name = Mold Breaker
+Description = Ignores Abilities that would affect its moves.
+Flags = MoldBreaking
+#-------------------------------
+[MOONBUBBLE]
+Name = Moon Bubble
+Description = Doubles Defense in moonglow.
+#-------------------------------
+[MORPHINGGUARD]
+Name = Morphing Guard
+Description = After being attacked, gains immunity to that move's type but loses other morphed immunities.
+#-------------------------------
+[NEERDOWELL]
+Name = Ne'er-do-well
+Description = Gives priority to status moves in moonglow.
+#-------------------------------
+[NIGHTLIGHT]
+Name = Night Light
+Description = Boosts Sp. Atk by 30% in moonglow.
+#-------------------------------
+[NIGHTLINE]
+Name = Night-line
+Description = At the end of each turn in moonglow, heals self by 1/12th of its max HP, and a party member alongside.
+#-------------------------------
+[NINJUTSU]
+Name = Ninjutsu
+Description = Slips past all types of spikes. Deals 50% more damage to targets that switched in this turn.
+#-------------------------------
+[OBLIVIOUS]
+Name = Oblivious
+Description = Prevents it from becoming infatuated.
+#-------------------------------
+[ODDAURA]
+Name = Odd Aura
+Description = Upon entry, creates an Odd Room for five turns, swapping offensive and defensive stats.
+#-------------------------------
+[OVERACTING]
+Name = Over Acting
+Description = At the first chance, copies an opponent's species' legal Abilities.
+#-------------------------------
+[OVERCOAT]
+Name = Overcoat
+Description = Protects the Pokémon from damage from weather.
+#-------------------------------
+[OVERGROW]
+Name = Overgrow
+Description = Powers up Grass-type moves in a pinch.
+#-------------------------------
+[OWNTEMPO]
+Name = Own Tempo
+Description = Prevents the Pokémon from becoming confused.
+#-------------------------------
+[PAINDELAY]
+Name = Pain Delay
+Description = 33% of all move damage taken is instead taken at the end of the next turn.
+#-------------------------------
+[PAINPRESENCE]
+Name = Noxious
+Description = Reduces each other Pokémon's HP by 1/12th at the end of each turn.
+#-------------------------------
+[PASTELVEIL]
+Name = Pastel Veil
+Description = Protects it and ally Pokémon from being poisoned.
+#-------------------------------
+[PICKUP]
+Name = Pickup
+Description = The Pokémon may pick up items.
+#-------------------------------
+[PITTING]
+Name = Pitting
+Description = Upon entry, traps each opponent in a sand tomb for two turns.
+#-------------------------------
+[PIXILATE]
+Name = Pixilate
+Description = Normal-type moves become Fairy-type and power up by 30%.
+#-------------------------------
+[PLASMABALL]
+Name = Plasma Ball
+Description = Attacks against the Pokémon deal 50% more damage, but the attacker takes 100% recoil.
+#-------------------------------
+[PLAYVICTIM]
+Name = Punisher
+Description = Special moves against the Pokémon have a 30% chance to leech the attacker.
+#-------------------------------
+[PLUS]
+Name = Plus
+Description = Ups Sp. Atk if another Pokémon has Plus or Minus.
+#-------------------------------
+[POISONHEAL]
+Name = Poison Heal
+Description = Before taking damage from poison, heal 1/4th HP.
+#-------------------------------
+[POLARHUNTER]
+Name = Frostfanged
+Description = Boosts Attack and Speed by 25% in hail.
+#-------------------------------
+[POURINGHEART]
+Name = Pouring Heart
+Description = Copies the base stats of the Pokémon it switches in to replace.
+#-------------------------------
+[POWERUP]
+Name = Power Up
+Description = Raises the Pokémon's Attack by 50%, including Style Values and other bonuses.
+#-------------------------------
+[PRECHARGED]
+Name = Pre-Charged
+Description = Becomes charged upon entry, doubling the power of its next Electric-type attack.
+#-------------------------------
+[PROPELLERTAIL]
+Name = Propeller Tail
+Description = Ignores effects changing the target of a move.
+#-------------------------------
+[PROVING]
+Name = Outrider
+Description = After knocking out any Pokémon, raises its Attack and Speed.
+#-------------------------------
+[PSYCHICSURGE]
+Name = Psychic Surge
+Description = Turns the ground into Psychic Terrain for 5 turns when entering battle.
+#-------------------------------
+[PUNKROCK]
+Name = Punk Rock
+Description = Boosts power and resistance of sound moves.
+#-------------------------------
+[PUREPOWER]
+Name = Pure Power
+Description = Raises the Pokémon's Attack stat by 50%.
+#-------------------------------
+[PUZZLINGAURA]
+Name = Puzzling Aura
+Description = Upon entry, creates a Puzzle Room for five turns, swapping base Attack and Sp. Atk.
+#-------------------------------
+[QUALITYAURA]
+Name = Quality Aura
+Description = Upon entry, creates a Quality Room for five turns, exaggerating type matchups.
+#-------------------------------
+[QUEENLYMAJESTY]
+Name = Queenly Majesty
+Description = Makes foes unable to use priority attacks.
+#-------------------------------
+[QUICKDRAW]
+Name = Quick Draw
+Description = Enables the Pokémon to move first occasionally.
+#-------------------------------
+[QUICKFEET]
+Name = Quick Feet
+Description = Doubles Speed if there is a status problem. Ignores numb Speed reduction.
+#-------------------------------
+[QUICKKICKS]
+Name = Quick Kicks
+Description = Doubles the Speed of kicking moves.
+#-------------------------------
+[RAMMINGSPEED]
+Name = Ramming Speed
+Description = Doubles the speed of recoil moves.
+#-------------------------------
+[RATTLED]
+Name = Rattled
+Description = Bug-, Dark- and Ghost-type moves scare it and boost its Speed.
+#-------------------------------
+[RECEIVER]
+Name = Receiver
+Description = Copies the Ability of a defeated ally.
+Flags = Uncopyable
+#-------------------------------
+[REFRIGERATE]
+Name = Refrigerate
+Description = Normal-type moves become Ice-type and power up by 30%.
+#-------------------------------
+[RESONANCE]
+Name = Planar Veil
+Description = Sets screens for twice as long during eclipse.
+#-------------------------------
+[RIVALRY]
+Name = Rivalry
+Description = Deals more damage to a foe of the same gender.
+#-------------------------------
+[ROBUST]
+Name = Robust
+Description = Double the Pokémon's weight, and boost its Attack by 20%.
+#-------------------------------
+[ROLLIN]
+Name = Roll In
+Description = Uses Rapid Spin after its first attack to clear hazards, raise Speed, and deal damage.
+#-------------------------------
+[ROYALVOICE]
+Name = Royal Voice
+Description = After using a sound move, all foes are tormented.
+#-------------------------------
+[RUNAWAY]
+Name = Run Away
+Description = Enables a sure getaway from wild Pokémon.
+#-------------------------------
+[RUSHED]
+Name = Rushed
+Description = Boosts Speed by 50%, but the Pokémon is hurt for 1/10th HP each turn.
+#-------------------------------
+[RUSTYANCHOR]
+Name = Rusty Anchor
+Description = The Pokémon is also Steel-type, but it takes 15% more damage from moves.
+#-------------------------------
+[SANDDEMON]
+Name = Sand Demon
+Description = Powers up Dark-type moves by 50% in sandstorm.
+#-------------------------------
+[SANDDRILLING]
+Name = Sand Drilling
+Description = During sandstorm, Speed is boosted by 50% and twice as likely to crit.
+#-------------------------------
+[SANDFORCE]
+Name = Sand Force
+Description = Boosts the power of Rock-, Ground-, and Steel-type moves in a sandstorm.
+#-------------------------------
+[SANDSPIT]
+Name = Sand Spit
+Description = Summons a sandstorm for 4 turns when hit by an attack.
+#-------------------------------
+[SANDSTRENGTH]
+Name = Earthshaker
+Description = In sandstorm, Attack is boosted by 30%.
+#-------------------------------
+[SCRAPPY]
+Name = Scrappy
+Description = Enables moves to hit Ghost-type Pokémon.
+#-------------------------------
+[SEALORD]
+Name = Sea Lord
+Description = After knocking out any Pokémon with Waterfall, transforms into its Hullbreaker form. Ability becomes Mold Breaker.
+#-------------------------------
+[SEASURVIVOR]
+Name = Leviathan
+Description = Protected from critical hits. Can't be burned or frostbitten.
+#-------------------------------
+[SELFMENDING]
+Name = Perennial Payload
+Description = After fainting from exploding, revives after three turns.
+#-------------------------------
+[SHARPNESS]
+Name = Swordplay
+Description = Boosts the power of blade moves by 30%.
+#-------------------------------
+[SHATTERING]
+Name = Shattering
+Description = During eclipse, gets a 30% boost to Sp. Atk.
+#-------------------------------
+[SHELLARMOR]
+Name = Shell Armor
+Description = The Pokémon is protected against critical hits.
+#-------------------------------
+[SHRIEKING]
+Name = Ear-Splitting
+Description = Boosts power of sound-based moves by 50%.
+#-------------------------------
+[SKYHAZARD]
+Name = Debris Field
+Description = Can't be statused due to its hard shell. Boosts Sp. Atk and Speed by 25% in sandstorm.
+#-------------------------------
+[SLEEPSNARE]
+Name = Dreamy Haze
+Description = If an attack lowers its HP to half or less, the attacker becomes drowsy.
+#-------------------------------
+[SMOKEREFLEX]
+Name = Pressure Valve
+Description = Right before the Pokémon is attacked, the attacker's stat changes are reset.
+#-------------------------------
+[SNAKEPIT]
+Name = Snake Pit
+Description = Grassy Terrain harms opponents rather than healing them.
+#-------------------------------
+[SNORING]
+Name = Snoring
+Description = When hit while asleep, hits back instantly with Snore.
+#-------------------------------
+[SNOWVEIL]
+Name = Snow Veil
+Description = Takes 25% less damage in a hailstorm.
+#-------------------------------
+[SOUNDPROOF]
+Name = Soundproof
+Description = Gives full immunity to all sound-based moves.
+#-------------------------------
+[STAKEOUT]
+Name = Stakeout
+Description = Deals double damage to a target's replacement.
+#-------------------------------
+[STALL]
+Name = Stall
+Description = The Pokémon moves after all other Pokémon do.
+#-------------------------------
+[STEADFAST]
+Name = Steadfast
+Description = Raises Speed each time the Pokémon flinches.
+#-------------------------------
+[STEAMENGINE]
+Name = Steam Engine
+Description = Maximizes Speed when hit by a Fire- or Water-type move.
+#-------------------------------
+[STICKYHOLD]
+Name = Sticky Hold
+Description = Protects the Pokémon from item theft.
+#-------------------------------
+[STORMDRAIN]
+Name = Storm Drain
+Description = Draws in Water-type moves, is immune to them, and boosts Sp. Atk when hit.
+#-------------------------------
+[STOUT]
+Name = Stout
+Description = Immune to weather downsides, and 20% less damage from attacks during weather.
+Flags = AllWeatherSynergy
+#-------------------------------
+[SUCTIONCUPS]
+Name = Suction Cups
+Description = Can't be forced to switch out. Boosts accuracy when hit.
+#-------------------------------
+[SUPERFIST]
+Name = Super Fist
+Description = Boosts the power of punching moves by 50%.
+#-------------------------------
+[SUPERSTITIOUS]
+Name = Exorcist
+Description = Takes half damage from Psychic- and Ghost-type attacks.
+#-------------------------------
+[SURGESURFER]
+Name = Surge Surfer
+Description = Doubles Speed on Electric Terrain.
+#-------------------------------
+[SWARM]
+Name = Swarm
+Description = Powers up Bug-type moves in a pinch.
+#-------------------------------
+[SWARMIMPACT]
+Name = Predation
+Description = Has a 30% chance to leech targets when using physical moves.
+#-------------------------------
+[SWEETVEIL]
+Name = Sweet Veil
+Description = Prevents itself and allies from falling asleep.
+#-------------------------------
+[SYMBIOSIS]
+Name = Symbiosis
+Description = Copies its held item to an ally that has used theirs.
+#-------------------------------
+[TAIGATRECKER]
+Name = Taiga Trecker
+Description = During hail, boosts Speed and Grass-type damage by 50%.
+#-------------------------------
+[TANGLEDFEET]
+Name = Tangled Feet
+Description = Raises evasion if the Pokémon is confused.
+#-------------------------------
+[TENDRILTRAP]
+Name = Tendril Trap
+Description = Prevents foes whose Attack is less than its from fleeing.
+#-------------------------------
+[TERAVOLT]
+Name = Teravolt
+Description = Moves can be used regardless of Abilities.
+#-------------------------------
+[TIMESTRETCH]
+Name = Time Stretch
+Description = Between each turn there's another turn where no one moves.
+#-------------------------------
+[TORRENT]
+Name = Torrent
+Description = Powers up Water-type moves in a pinch.
+#-------------------------------
+[TOTALGRASP]
+Name = Master Plan
+Description = Raises each stat by two steps when a Total Eclipse happens.
+#-------------------------------
+[TOTALMIRROR]
+Name = Total Mirror
+Description = When hit with a special move, hits back instantly with that same move.
+#-------------------------------
+[TOXICBOOST]
+Name = Toxic Boost
+Description = Boosts Attack by 50% when poisoned.
+#-------------------------------
+[TOXICCLOUD]
+Name = Intoxicate
+Description = Special moves have a 30% chance to poison targets.
+#-------------------------------
+[TOXICSPIRIT]
+Name = Toxic Spirit
+Description = Powers up Poison-type moves of itself and its allies by 50%.
+#-------------------------------
+[TRACE]
+Name = Trace
+Description = The Pokémon copies a foe's Ability.
+Flags = Uncopyable
+#-------------------------------
+[TRICKSTER]
+Name = Trickster
+Description = Creates a Trick Room for five turns when its HP is lowered below half.
+#-------------------------------
+[TRICKSTERAURA]
+Name = Trickster Aura
+Description = Upon entry, creates a Trick Room for five turns, inverting the effect of Speed.
+#-------------------------------
+[TRICKYAURA]
+Name = Tricky Aura
+Description = Upon entry, creates a Trick Room for five turns, inverting the effect of Speed.
+#-------------------------------
+[TURBOBLAZE]
+Name = Turboblaze
+Description = Moves can be used regardless of Abilities.
+#-------------------------------
+[UNCONCERNED]
+Name = Unconcerned
+Description = Takes 20% less damage from neutrally effective attacks.
+#-------------------------------
+[VIBRATIONAL]
+Name = Resonant
+Description = Moves that hit multiple targets deal 25% more damage instead of 25% less.
+#-------------------------------
+[WARMTHCYCLE]
+Name = Ignition Cycle
+Description = Each turn, raises Speed by three steps and loses HP. If Speed was maxed, instead Speed and HP are reset.
+#-------------------------------
+[WATERCOMPACTION]
+Name = Water Compaction
+Description = Boosts the Defense stat sharply when the Pokémon is hit by a Water-type move.
+#-------------------------------
+[WATERVEIL]
+Name = Water Veil
+Description = Prevents the Pokémon from getting a burn.
+#-------------------------------
+[WEAKSPIRIT]
+Name = Weak Spirit
+Description = Special attacks against the Pokémon raise its Speed by two steps but lower its Sp. Def.
+#-------------------------------
+[WEATHERSENSES]
+Name = Weather Senses
+Description = Takes 7% less move damage for each turn remaining on the current weather.
+#-------------------------------
+[WELLSUPPLIED]
+Name = Self-Sufficient
+Description = Heals 1/12th HP every turn. Protected from being burned or frostbitten.
+#-------------------------------
+[WEREWOLF]
+Name = Werewolf
+Description = Transforms into Midnight Form at the Full Moon. Ability becomes No Guard.
+#-------------------------------
+[WHIRLER]
+Name = Whirler
+Description = Upon entry, traps each opponent in a whirlpool for two turns.
+#-------------------------------
+[WILLBREAK]
+Name = Bizarre
+Description = Its special attacks reduce the target's Sp. Def.
+#-------------------------------
+[WINDBUFFER]
+Name = Wind Buffer
+Description = After using a wind move, raises both of the Pokémon's defensive stats.
+#-------------------------------
+[WINDY]
+Name = Windy
+Description = Boosts the power of wind-based moves by 30%.
+#-------------------------------
+[WINTERWISDOM]
+Name = Summit Spirit
+Description = Boosts Sp. Atk by 30% in hail.
+#-------------------------------
+[WONDERSKIN]
+Name = Wonder Skin
+Description = Makes status-changing moves more likely to miss.
+#-------------------------------
+[WONDROUSAURA]
+Name = Wondrous Aura
+Description = Upon entry, creates a Wonder Room for five turns, swapping base Defense and Sp. Def.
+#-------------------------------
+[ZENMODE]
+Name = Zen Mode
+Description = Changes the Pokémon's shape when HP is halved.
+Flags = Immutable

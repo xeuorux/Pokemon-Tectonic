@@ -1,89 +1,114 @@
-CASABA_VILLA_DOCK = _INTL("Casaba Villa")
-MAINLAND_DOCK = _INTL("Feebas' Fin")
-ELEIG_BOATING_DOCK = _INTL("Eleig Boating Dock")
-SWEETROCK_DOCK = _INTL("Sweetrock Harbor")
-TAPU_ISLAND = _INTL("Guardian Island")
-EVENTIDE_ISLE = _INTL("Eventide Isle")
-DRAGON_ISLAND = _INTL("Isle of Dragons")
-TRI_ISLAND = _INTL("Tri Island")
-MONUMENT_ISLAND = _INTL("Battle Monument")
-SPIRIT_ATOLL = _INTL("Spirit Atoll")
+DOCK_LOCATIONS = {
+    :CASABA_VILLA_DOCK => {
+        :map_name => "Casaba Villa",
+        :map_id => 136,
+        :event_id => 39,
+    },
+    :FEEBAS_FIN => {
+        :map_name => "Feebas' Fin",
+        :map_id => 59,
+        :event_id => 24,
+    },
+    :ELEIG_BOATING_DOCK => {
+        :map_name => "Eleig Boating Dock",
+        :map_id => 185,
+        :event_id => 5,
+        :unlock_switch => 70,
+    },
+    :SWEETROCK_DOCK => {
+        :map_name => "Sweetrock Harbor",
+        :map_id => 217,
+        :event_id => 57,
+        :unlock_switch => 71,
+    },
+    :TAPU_ISLAND => {
+        :map_name => "Guardian Island",
+        :map_id => 377,
+        :event_id => 93,
+        :visit_switch => 55,
+        :unlock_switch => 81,
+    },
+    :EVENTIDE_ISLE => {
+        :map_name =>  "Eventide Isle",
+        :map_id => 413,
+        :event_id => 13,
+        :visit_switch => 85,
+        :unlock_switch => 84,
+    },
+    :DRAGON_ISLAND => {
+        :map_name => "Isle of Dragons",
+        :map_id => 356,
+        :event_id => 38,
+        :visit_switch => 87,
+        :unlock_switch => 86,
+    },
+    :TRI_ISLAND => {
+        :map_name => "Tri Island",
+        :map_id => 411,
+        :event_id => 23,
+        :visit_switch => 98,
+        :unlock_switch => 97,
+    },
+    :MONUMENT_ISLAND => {
+        :map_name => "Battle Monument",
+        :map_id => 357,
+        :event_id => 4,
+        :visit_switch => 100,
+        :unlock_switch => 99,
+    },
+    :SPIRIT_ATOLL => {
+        :map_name => "Spirit Atoll",
+        :map_id => 182,
+        :event_id => 19,
+        :visit_switch => 152,
+        :unlock_switch => 151,
+    },
+}
 
-def boatTravel(currentDock = "")
-    casabaVillaCommand = -1
-    mainlandDockCommand = -1
-    sweetrockHarborCommand = -1
-    eleigBoatingCommand = -1
-    tapuIslandCommand = -1
-    eventideIsleCommand = -1
-    dragonIslandCommand = -1
-    triIslandCommand = -1
-    monumentIslandCommand = -1
-    spiritAtollCommand = -1
+def unlockBoatingSpot(dockID,ignoreAlreadyActive=false)
+    dockInfo = DOCK_LOCATIONS[dockID]
+    raise _INTL("Dock ID {1} has no unlock_switch defined. Cannot unlock!",dockID) if dockInfo[:unlock_switch].nil?
+    return if getGlobalSwitch(dockInfo[:unlock_switch]) && !ignoreAlreadyActive
+    mapName = _INTL(dockInfo[:map_name])
+    text = _INTL("You can now travel to <imp>{1}</imp> on your boat!",mapName)
+    pbMessage("\\wm#{text}\\me[Slots win]\\wtnp[80]\1")
+    pbSetGlobalSwitch(dockInfo[:unlock_switch])
+end
 
+def unlockAllBoatingSpots
+    DOCK_LOCATIONS.each do |dockID, dockInfo|
+        next unless dockInfo[:unlock_switch]
+        pbSetGlobalSwitch(dockInfo[:unlock_switch])
+    end
+    pbMessage("All boating spots were unlocked.")
+end
+
+def boatTravel(currentDock = nil)
     commands = []
-    commands[casabaVillaCommand = commands.length] = _INTL(CASABA_VILLA_DOCK) if currentDock != CASABA_VILLA_DOCK
-    commands[mainlandDockCommand = commands.length] = _INTL(MAINLAND_DOCK) if currentDock != MAINLAND_DOCK
-    commands[eleigBoatingCommand = commands.length] = _INTL(ELEIG_BOATING_DOCK) if $game_switches[70] && currentDock != ELEIG_BOATING_DOCK
-    commands[sweetrockHarborCommand = commands.length] = _INTL(SWEETROCK_DOCK) if $game_switches[71] && currentDock != SWEETROCK_DOCK
-    commands[tapuIslandCommand = commands.length] = _INTL(TAPU_ISLAND) if $game_switches[81] && currentDock != TAPU_ISLAND
-    commands[eventideIsleCommand = commands.length] = _INTL(EVENTIDE_ISLE) if $game_switches[84] && currentDock != EVENTIDE_ISLE
-    commands[dragonIslandCommand = commands.length] = _INTL(DRAGON_ISLAND) if $game_switches[86] && currentDock != DRAGON_ISLAND
-    commands[triIslandCommand = commands.length] = _INTL(TRI_ISLAND) if $game_switches[97] && currentDock != TRI_ISLAND
-    commands[monumentIslandCommand = commands.length] = _INTL(MONUMENT_ISLAND) if $game_switches[99] && currentDock != MONUMENT_ISLAND
-    commands[spiritAtollCommand = commands.length] = _INTL(SPIRIT_ATOLL) if $game_switches[151] && currentDock != SPIRIT_ATOLL
+    validDockIDs = []
+
+    DOCK_LOCATIONS.each do |dockID, dockInfo|
+        next if dockID == currentDock
+        next if dockInfo[:unlock_switch] && !getGlobalSwitch(dockInfo[:unlock_switch])
+        commands.push(_INTL(dockInfo[:map_name]))
+        validDockIDs.push(dockID)
+    end
+
     commands.push(_INTL("Cancel"))
 
-    choice = pbMessage(_INTL("Where would you like to go?"),commands,commands.length)
-    if casabaVillaCommand >= -1 && choice == casabaVillaCommand
-        transferPlayer(30,42,Up,136)
-    elsif mainlandDockCommand >= -1 && choice == mainlandDockCommand
-        transferPlayer(38,31,Up,59)
-    elsif eleigBoatingCommand > -1 && choice == eleigBoatingCommand
-        transferPlayer(23,18,Up,185)
-    elsif sweetrockHarborCommand > -1 && choice == sweetrockHarborCommand
-        transferPlayer(18,55,Up,217)
-    elsif tapuIslandCommand > -1 && choice == tapuIslandCommand
-        teleportToGuardianIsland
-    elsif eventideIsleCommand > -1 && choice == eventideIsleCommand
-        teleportToEventideIsle
-    elsif dragonIslandCommand > -1 && choice == dragonIslandCommand
-        teleportToDragonIsle
-    elsif triIslandCommand > -1 && choice == triIslandCommand
-        teleportToTriIsland
-    elsif monumentIslandCommand > -1 && choice == monumentIslandCommand
-        teleportToMonumentIsland
-    elsif spiritAtollCommand > -1 && choice == spiritAtollCommand
-        teleportToSpiritAtoll
-    end
+    choiceNumber = pbMessage(_INTL("Where would you like to go?"),commands,commands.length)
+
+    return if choiceNumber == commands.length - 1 # Cancel
+
+    chosenDockID = validDockIDs[choiceNumber]
+
+    warpToBoatWaypoint(chosenDockID)
 end
 
-def teleportToGuardianIsland
-    $game_switches[55] = true # Mark player as having visited this island
-    transferPlayer(49,60,Up,377)
-end
+def warpToBoatWaypoint(dockID)
+    dockInfo = DOCK_LOCATIONS[dockID]
+    pbSetGlobalSwitch(dockInfo[:visit_switch]) if dockInfo[:visit_switch]
 
-def teleportToEventideIsle
-    $game_switches[85] = true # Mark player as having visited this island
-    transferPlayer(21,37,Up,413)
-end
-
-def teleportToDragonIsle
-    $game_switches[87] = true # Mark player as having visited this island
-    transferPlayer(21,28,Up,356)
-end
-
-def teleportToTriIsland
-    $game_switches[98] = true # Mark player as having visited this island
-    transferPlayer(54,49,Up,411)
-end
-
-def teleportToMonumentIsland
-    $game_switches[100] = true # Mark player as having visited this island
-    transferPlayer(31,48,Up,357)
-end
-
-def teleportToSpiritAtoll
-    $game_switches[152] = true # Mark player as having visited this island
-    transferPlayer(20,37,Up,182)
+    direction = dockInfo[:direction] || Up
+    transferPlayerToEvent(dockInfo[:event_id],direction,dockInfo[:map_id])
 end

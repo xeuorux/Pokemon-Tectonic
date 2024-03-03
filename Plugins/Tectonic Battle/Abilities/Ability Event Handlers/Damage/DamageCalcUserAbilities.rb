@@ -181,6 +181,15 @@ BattleHandlers::DamageCalcUserAbility.add(:SWORDPLAY,
 
 BattleHandlers::DamageCalcUserAbility.copy(:SWORDPLAY, :RAZORSEDGE)
 
+BattleHandlers::DamageCalcUserAbility.add(:SHARPNESS,
+  proc { |ability, user, target, move, mults, _baseDmg, type, aiCheck|
+    if move.bladeMove?
+      mults[:base_damage_multiplier] *= 1.5
+      user.aiLearnsAbility(ability) unless aiCheck
+    end
+  }
+)
+
 BattleHandlers::DamageCalcUserAbility.add(:IRONHEEL,
   proc { |ability, user, target, move, mults, _baseDmg, type, aiCheck|
     if move.kickingMove?

@@ -552,6 +552,8 @@ class PokemonSummary_Scene
         # Make move info invisible
         @moveInfoDisplay.visible = false
         @extraInfoOverlay.visible = false
+        # Assume pokemon is visible
+        @sprites["pokemon"].visible = true
         # Draw page-specific information
         case page
         when 1 then drawPageOne

@@ -3,8 +3,7 @@ BattleHandlers::AbilityChangeOnBattlerFainting.add(:POWEROFALCHEMY,
         next if battler.opposes?(fainted)
 
         fainted.eachAbility do |abilityID|
-            next if GameData::Ability::UNCOPYABLE_ABILITIES.include?(abilityID)
-            next if abilityID == :WONDERGUARD
+            next if GameData::Ability.get(abilityID).is_uncopyable_ability?
             battler.addAbility(abilityID, true)
         end
     }
@@ -22,8 +21,7 @@ BattleHandlers::AbilityChangeOnBattlerFainting.add(:ALLCONSUMING,
         end
 
         fainted.eachAbility do |abilityID|
-            next if GameData::Ability::UNCOPYABLE_ABILITIES.include?(abilityID)
-            next if abilityID == :WONDERGUARD
+            next if GameData::Ability.get(abilityID).is_uncopyable_ability?
             battler.addAbility(abilityID, true)
         end
 

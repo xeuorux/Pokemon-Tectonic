@@ -20,6 +20,9 @@ module GameData
       DATA = {}
       DATA_FILENAME = "items.dat"
 
+      FLAG_INDEX = {}
+      FLAGS_INDEX_DATA_FILENAME = "items_indexed_by_flag.dat"
+
       SCHEMA = {
         "Name"        => [:name,        "s"],
         "NamePlural"  => [:name_plural, "s"],
@@ -87,14 +90,6 @@ module GameData
         ret = sprintf("Graphics/Pictures/Mail/mail_%s", item_data.id)
         return pbResolveBitmap(ret) ? ret : nil
       end
-      
-      CLOTHING_ITEMS = []
-      CHOICE_LOCKING_ITEMS = []
-      NO_STATUS_USE_ITEMS = []
-      LEVITATION_ITEMS = []
-      FULL_HP_ENDURE_ITEMS = []
-      PINCH_BERRIES = []
-      LEFTOVERS_ITEMS = []
   
       def initialize(hash)
         if !hash[:sell_price] && hash[:price]
@@ -119,13 +114,13 @@ module GameData
         @super            = hash[:super]       || false
         @cut              = hash[:cut]       || false
 
-        CLOTHING_ITEMS.push(@id) if is_clothing?
-        CHOICE_LOCKING_ITEMS.push(@id) if is_choice_locking?
-        NO_STATUS_USE_ITEMS.push(@id) if is_no_status_use?
-        LEVITATION_ITEMS.push(@id) if is_levitation?
-        FULL_HP_ENDURE_ITEMS.push(@id) if is_endure?
-        PINCH_BERRIES.push(@id) if is_pinch?
-        LEFTOVERS_ITEMS.push(@id) if is_leftovers?
+        @flags.each do |flag|
+          if FLAG_INDEX.key?(flag)
+            FLAG_INDEX[flag].push(@id)
+          else
+            FLAG_INDEX[flag] = [@id]
+          end
+        end
       end
   
       # @return [String] the translated name of this item
@@ -294,6 +289,24 @@ module GameData
         return false if @cut
         return false if @super && !isTrainer
         return true
+      end
+
+      def self.getByFlag(flag)
+        if FLAG_INDEX.key?(flag)
+          return FLAG_INDEX[flag]
+        else
+          return []
+        end
+      end
+
+      def self.load
+        super
+        const_set(:FLAG_INDEX, load_data("Data/#{self::FLAGS_INDEX_DATA_FILENAME}"))
+      end
+
+      def self.save
+        super
+        save_data(self::FLAG_INDEX, "Data/#{self::FLAGS_INDEX_DATA_FILENAME}")
       end
     end
 end

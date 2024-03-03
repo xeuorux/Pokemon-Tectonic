@@ -14,8 +14,23 @@ module GameData
   
       DATA = {}
       DATA_FILENAME = "trainer_types.dat"
+
+      SCHEMA = {
+      "Name"       => [:name,        "s"],
+      "Gender"     => [:gender,      "e", { "Male" => 0, "male" => 0, "M" => 0, "m" => 0, "0" => 0,
+                                           "Female" => 1, "female" => 1, "F" => 1, "f" => 1, "1" => 1,
+                                           "Unknown" => 2, "unknown" => 2, "Other" => 2, "other" => 2,
+                                           "Mixed" => 2, "mixed" => 2, "X" => 2, "x" => 2, "2" => 2,
+                                           "Wild" => 2, "wild" => 3, "W" => 3, "w" => 3, "3" => 3 }],
+      "BaseMoney"  => [:base_money,  "u"],
+      "SkillLevel" => [:skill_level, "u"],
+      "Policies"   => [:policies,    "*s"],
+      "IntroBGM"   => [:intro_ME,   "s"],
+      "BattleBGM"  => [:battle_BGM,  "s"],
+      "VictoryBGM" => [:victory_ME, "s"]
+    }
   
-      extend ClassMethods
+      extend ClassMethodsSymbols
       include InstanceMethods
   
       def self.check_file(tr_type, path, optional_suffix = "", suffix = "")
@@ -88,7 +103,7 @@ module GameData
   
       # @return [String] the translated name of this trainer type
       def name
-        return pbGetMessage(MessageTypes::TrainerTypes, @id_number)
+        return pbGetMessageFromHash(MessageTypes::TrainerTypes, @real_name)
       end
   
       def male?;   return @gender == 0; end
@@ -106,49 +121,39 @@ module Compiler
     #=============================================================================
     def compile_trainer_types(path = "PBS/trainertypes.txt")
         GameData::TrainerType::DATA.clear
+        schema = GameData::TrainerType::SCHEMA
         tr_type_names = []
-        # Read each line of trainertypes.txt at a time and compile it into a trainer type
-        pbCompilerEachCommentedLine(path) { |line, line_no|
-        line = pbGetCsvRecord(line, line_no, [0, "unsUSSSeUSs",
-            nil, nil, nil, nil, nil, nil, nil, {
-            "Male"   => 0, "M" => 0, "0" => 0,
-            "Female" => 1, "F" => 1, "1" => 1,
-            "Mixed"  => 2, "X" => 2, "2" => 2, "" => 2,
-            "Wild"   => 3, "W" => 3, "3" => 3
-            }, nil, nil, nil]
-        )
-        type_number = line[0]
-        type_symbol = line[1].to_sym
-        if GameData::TrainerType::DATA[type_number]
-            raise _INTL("Trainer type ID number '{1}' is used twice.\r\n{2}", type_number, FileLineData.linereport)
-        elsif GameData::TrainerType::DATA[type_symbol]
-            raise _INTL("Trainer type ID '{1}' is used twice.\r\n{2}", type_symbol, FileLineData.linereport)
-        end
-        policies_array = []
-        if line[10]
-            policies_string_array = line[10].gsub('[','').gsub(']','').split(',')
-            policies_string_array.each do |policy_string|
-            policies_array.push(policy_string.to_sym)
+        tr_type_hash  = nil
+        # Read each line of trainer_types.txt at a time and compile it into a trainer type
+        pbCompilerEachPreppedLine(path) { |line, line_no|
+          if line[/^\s*\[\s*(.+)\s*\]\s*$/]   # New section [tr_type_id]
+            # Add previous trainer type's data to records
+            GameData::TrainerType.register(tr_type_hash) if tr_type_hash
+            # Parse trainer type ID
+            tr_type_id = $~[1].to_sym
+            if GameData::TrainerType.exists?(tr_type_id)
+              raise _INTL("Trainer Type ID '{1}' is used twice.\r\n{2}", tr_type_id, FileLineData.linereport)
             end
-        end
-        # Construct trainer type hash
-        type_hash = {
-            :id_number   => type_number,
-            :id          => type_symbol,
-            :name        => line[2],
-            :base_money  => line[3],
-            :battle_BGM  => line[4],
-            :victory_ME  => line[5],
-            :intro_ME    => line[6],
-            :gender      => line[7],
-            :skill_level => line[8],
-            :skill_code  => line[9],
-            :policies    => policies_array,
+            # Construct trainer type hash
+            tr_type_hash = {
+              :id => tr_type_id
+            }
+          elsif line[/^\s*(\w+)\s*=\s*(.*)\s*$/]   # XXX=YYY lines
+            if !tr_type_hash
+              raise _INTL("Expected a section at the beginning of the file.\r\n{1}", FileLineData.linereport)
+            end
+            # Parse property and value
+            property_name = $~[1]
+            line_schema = schema[property_name]
+            next if !line_schema
+            property_value = pbGetCsvRecord($~[2], line_no, line_schema)
+            # Record XXX=YYY setting
+            tr_type_hash[line_schema[0]] = property_value
+            tr_type_names.push(tr_type_hash[:name]) if property_name == "Name"
+          end   # Old format
         }
-        # Add trainer type's data to records
-        GameData::TrainerType.register(type_hash)
-        tr_type_names[type_number] = type_hash[:name]
-        }
+        # Add last trainer type's data to records
+        GameData::TrainerType.register(tr_type_hash) if tr_type_hash
         # Save all data
         GameData::TrainerType.save
         MessageTypes.setMessages(MessageTypes::TrainerTypes, tr_type_names)
@@ -160,33 +165,20 @@ module Compiler
     #=============================================================================
     def write_trainer_types
         File.open("PBS/trainertypes.txt", "wb") { |f|
-        add_PBS_header_to_file(f)
-        f.write("\#-------------------------------\r\n")
-        GameData::TrainerType.each do |t|
-            policiesString = ""
-            if t.policies
-            policiesString += "["
-            t.policies.each_with_index do |policy_symbol,index|
-                policiesString += policy_symbol.to_s
-                policiesString += "," if index < t.policies.length - 1
-            end
-            policiesString += "]"
-            end
-        
-            f.write(sprintf("%d,%s,%s,%d,%s,%s,%s,%s,%s,%s,%s\r\n",
-            t.id_number,
-            csvQuote(t.id.to_s),
-            csvQuote(t.real_name),
-            t.base_money,
-            csvQuote(t.battle_BGM),
-            csvQuote(t.victory_ME),
-            csvQuote(t.intro_ME),
-            ["Male", "Female", "Mixed", "Wild"][t.gender],
-            (t.skill_level == t.base_money) ? "" : t.skill_level.to_s,
-            csvQuote(t.skill_code),
-            policiesString
-            ))
-        end
+          add_PBS_header_to_file(f)
+          GameData::TrainerType.each do |t|
+            f.write("\#-------------------------------\r\n")
+            f.write(sprintf("[%s]\r\n", t.id))
+            f.write(sprintf("Name = %s\r\n", t.real_name))
+            gender = GameData::TrainerType::SCHEMA["Gender"][2].key(t.gender)
+            f.write(sprintf("Gender = %s\r\n", gender))
+            f.write(sprintf("BaseMoney = %d\r\n", t.base_money))
+            f.write(sprintf("SkillLevel = %d\r\n", t.skill_level)) if t.skill_level != t.base_money
+            f.write(sprintf("Policies = %s\r\n", t.policies.join(","))) if t.policies.length > 0
+            f.write(sprintf("IntroME = %s\r\n", t.intro_ME)) if !nil_or_empty?(t.intro_ME)
+            f.write(sprintf("BattleBGM = %s\r\n", t.battle_BGM)) if !nil_or_empty?(t.battle_BGM)
+            f.write(sprintf("VictoryME = %s\r\n", t.victory_ME)) if !nil_or_empty?(t.victory_ME)
+          end
         }
         Graphics.update
     end

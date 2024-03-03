@@ -3,21 +3,12 @@ def displayTVProgram()
     displayNewsProgram()
 end
 
-def displayNewsProgram(map_id = -1)
-    if $game_switches[12] && !$game_switches[97] # Defeated elite four, haven't unlocked Tri Island
-        $game_switches[154] = true # Display Tri Island unlock cutscene
-        return
-    end
-    
+def displayNewsProgram(map_id = -1)   
     if map_id != -1
         displayWeatherReport(map_id)
     else
         displayInterestingWeatherReport()
     end
-end
-
-def specialTVNewsAvailable?
-    return $game_switches[12] && !$game_switches[97]
 end
 
 WEATHER_REPORT_MAPS = {

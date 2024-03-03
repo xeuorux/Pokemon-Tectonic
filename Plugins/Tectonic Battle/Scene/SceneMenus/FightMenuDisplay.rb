@@ -244,7 +244,7 @@ class FightMenuDisplay < BattleMenuBase
               shouldHighlight = false
     
               if targetingData.num_targets == 0
-                shouldHighlight = move.shouldHighlight?(user,nil)
+                shouldHighlight = move.shouldHighlight?(@battler,nil)
               else
                 @battler.eachOpposing do |opposingBattler|
                   next unless @battler.battle.pbMoveCanTarget?(@battler.index,opposingBattler.index,targetingData)

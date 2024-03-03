@@ -364,7 +364,7 @@ GameData::BattleEffect.register_effect(:Battler, {
     :real_name => "Ability Surpressed",
     :baton_passed => true,
     :pass_value_proc => proc do |battler, value|
-        next false if battler.unstoppableAbility?
+        next false if battler.immutableAbility?
         next value
     end,
     :apply_proc => proc do |battle, battler, _value|
@@ -809,6 +809,7 @@ GameData::BattleEffect.register_effect(:Battler, {
             battler.showMyAbilitySplash(:REAPWHATYOUSOW)
             battler.hp = battler.totalhp
             battler.pbChangeForm(1,_INTL("{1} begins the harvest!",battler.pbThis))
+            battler.pbChangeTypes(battler.species_data.id)
             battle.scene.reviveBattler(battler.index)
             battler.hideMyAbilitySplash
         end

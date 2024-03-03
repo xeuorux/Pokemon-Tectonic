@@ -25,9 +25,9 @@ class PokemonReviveAnimation < PokeBattle_Animation
       col = getBattlerColorFromPokeBall(poke_ball)
       col.alpha = 255
       # Calculate start and end coordinates for battler sprite movement
-      ballPos = PokeBattle_SceneConstants.pbBattlerPosition(@battler.index,batSprite.sideSize)
-      battlerStartX = ballPos[0]   # Is also where the Ball needs to end
-      battlerStartY = ballPos[1]   # Is also where the Ball needs to end + 18
+      finalPosition = PokeBattle_SceneConstants.pbBattlerPosition(@battler.index,batSprite.sideSize)
+      battlerStartX = finalPosition[0]
+      battlerStartY = finalPosition[1]
       battlerEndX = batSprite.x
       battlerEndY = batSprite.y
       # Set up battler sprite

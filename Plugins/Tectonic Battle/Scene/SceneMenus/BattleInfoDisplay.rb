@@ -72,8 +72,8 @@ class BattleInfoDisplay < SpriteWrapper
     def drawWholeBattleInfo
         base        = MessageConfig.pbDefaultTextMainColor
         shadow      = MessageConfig.pbDefaultTextShadowColor
-        lightBase   = MessageConfig::LIGHT_TEXT_MAIN_COLOR # we want light text to stay light regardless of mode
-        lightShadow = MessageConfig::LIGHT_TEXT_SHADOW_COLOR
+        lightBase   = MessageConfig::pbDefaultTextMainColor(opposite: true)
+        lightShadow = MessageConfig::pbDefaultTextShadowColor(opposite: true)
         fadedColor  = MessageConfig.pbDefaultFadedTextColor
 
         textToDraw = []
@@ -173,9 +173,9 @@ class BattleInfoDisplay < SpriteWrapper
     end
 
     def drawFieldEffects(effectHolder, xStart, yStart, tribesList = [])
-        base = MessageConfig::DARK_TEXT_MAIN_COLOR
-        shadow = MessageConfig::DARK_TEXT_SHADOW_COLOR
-        fadedColor = MessageConfig::DARK_FADED_TEXT_COLOR
+        base = MessageConfig::pbDefaultTextMainColor
+        shadow = MessageConfig::pbDefaultTextShadowColor
+        fadedColor = MessageConfig::pbDefaultFadedTextColor
 
         textToDraw = []
 
@@ -220,9 +220,9 @@ class BattleInfoDisplay < SpriteWrapper
     def drawIndividualBattlerInfo(battler)
         base = MessageConfig.pbDefaultTextMainColor
         shadow = MessageConfig.pbDefaultTextShadowColor
-		lightBase = MessageConfig::LIGHT_TEXT_MAIN_COLOR
-    	lightShadow = MessageConfig::LIGHT_TEXT_SHADOW_COLOR
-        fadedColor = MessageConfig::DARK_FADED_TEXT_COLOR
+		lightBase = MessageConfig::pbDefaultTextMainColor(opposite: true)
+    	lightShadow = MessageConfig::pbDefaultTextShadowColor(opposite: true)
+        fadedColor = MessageConfig::pbDefaultFadedTextColor
         textToDraw = []
 
         battlerName = battler.name
@@ -338,6 +338,10 @@ class BattleInfoDisplay < SpriteWrapper
 
         # Compile a descriptor for each effect on the battler or its position
         battlerEffects = []
+        if battler.form != 0
+            formName = GameData::Species.get_species_form(battler.species_data.id,battler.form).form_name
+            battlerEffects.push(_INTL("{1} Form",formName)) unless formName.blank?
+        end
         pushEffectDescriptorsToArray(battler, battlerEffects)
         pushEffectDescriptorsToArray(@battle.positions[battler.index], battlerEffects)
 

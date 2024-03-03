@@ -168,7 +168,7 @@ class PokeBattle_Battler
                 end
             end
             # Downside abilities
-            unstoppableAbility = unstoppableAbility?
+            unstoppableAbility = immutableAbility?
             if unstoppableAbility
                 if showMessages
                     showMyAbilitySplash(unstoppableAbility)
@@ -588,7 +588,7 @@ immuneTypeRealName))
     #=============================================================================
     def flinchImmuneByAbility?(checkingForAI = false)
         unless @battle.moldBreaker
-            return true if shouldAbilityApply?(GameData::Ability::FLINCH_IMMUNITY_ABILITIES, checkingForAI)
+            return true if shouldAbilityApply?(GameData::Ability.getByFlag("FlinchImmunity"), checkingForAI)
             return true if @battle.pbCheckSameSideAbility(:EFFLORESCENT,@index)
         end
         return false

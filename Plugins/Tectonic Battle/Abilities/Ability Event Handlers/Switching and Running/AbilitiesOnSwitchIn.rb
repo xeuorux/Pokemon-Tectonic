@@ -107,7 +107,7 @@ BattleHandlers::AbilityOnSwitchIn.add(:SCOUREDSILHOUETTE,
 # Ability warnings on entry
 #######################################################
 
-GameData::Ability::MOLD_BREAKING_ABILITIES.each do |abilityID|
+GameData::Ability.getByFlag("MoldBreaking").each do |abilityID|
     BattleHandlers::AbilityOnSwitchIn.add(abilityID,
         proc { |ability, battler, battle, aiCheck|
             next 0 if aiCheck

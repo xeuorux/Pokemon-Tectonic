@@ -455,7 +455,7 @@ class PokeBattle_AI
 
         # Set-up counterplay scoring
         if      (battler.hasActiveItemAI?(:REDCARD) && !opposingBattler.hasActiveItemAI?(:PROXYFIST)) ||
-                battler.hasActiveAbilityAI?(%i[SMOKEINSINCT PERISHBODY CURIOUSMEDICINE DRIFTINGMIST])
+                battler.hasActiveAbilityAI?(GameData::Ability.getByFlag("SetupCounterAI"))
             matchupScore += statStepsValueScore(opposingBattler) * 0.15
         end
 

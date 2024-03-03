@@ -123,84 +123,13 @@ class PokeBattle_Battler
         return abilityActive?(ignore_fainted, true)
     end
 
-    # Applies to both losing self's ability (i.e. being replaced by another) and
-    # having self's ability be negated.
-    def unstoppableAbility?(abil = nil)
-        ability_blacklist = [
-            # Form-changing abilities
-            :DISGUISE,
-            :MULTITYPE,
-            :POWERCONSTRUCT,
-            :SCHOOLING,
-            :SHIELDSDOWN,
-            :STANCECHANGE,
-            :ZENMODE,
-            :ICEFACE,
-            # Abilities intended to be inherent properties of a certain species
-            :COMATOSE,
-            :RKSSYSTEM,
-            :GULPMISSILE,
-            :ASONEICE,
-            :ASONEGHOST,
-            # Abilities with undefined behaviour if they were replaced or moved around
-            :STYLISH,
-            :FRIENDTOALL,
-            :PRIMEVALDISGUISE,
-            :UNIDENTIFIED,
-        ]
-
-        if abil
-            abil = GameData::Ability.try_get(abil)
-            return ability_blacklist.include?(abil.id)
-        else
-            eachAbility do |ability|
-                return ability if ability_blacklist.include?(ability)
-            end
-            return false
+    # Returns whether the user has an immutable ability or not
+    # and, if so, which ability it is
+    def immutableAbility?
+        eachAbility do |ability|
+            return ability if GameData::Ability.get(ability).is_immutable_ability?
         end
-    end
-
-    # Applies to gaining the ability.
-    def ungainableAbility?(abil = nil)
-        ability_blacklist = [
-            # Form-changing abilities
-            :DISGUISE,
-            :FLOWERGIFT,
-            :FORECAST,
-            :MULTITYPE,
-            :POWERCONSTRUCT,
-            :SCHOOLING,
-            :SHIELDSDOWN,
-            :STANCECHANGE,
-            :ZENMODE,
-            :CITYRAZER,
-            :SANDSMACABRE,
-            :FLOURISHING,
-            :REAPWHATYOUSOW,
-            # Appearance-changing abilities
-            :ILLUSION,
-            :IMPOSTER,
-            # Abilities intended to be inherent properties of a certain species
-            :COMATOSE,
-            :RKSSYSTEM,
-            :NEUTRALIZINGGAS,
-            :HUNGERSWITCH,
-            # Abilities with undefined behaviour if they were replaced or moved around
-            :STYLISH,
-            :FRIENDTOALL,
-            :PRIMEVALDISGUISE,
-            :UNIDENTIFIED,
-        ]
-
-        if abil
-            abil = GameData::Ability.try_get(abil)
-            return ability_blacklist.include?(abil.id)
-        else
-            eachAbility do |ability|
-                return ability if ability_blacklist.include?(ability)
-            end
-            return false
-        end
+        return false
     end
 
     TESTING_DOUBLE_QUALITIES = false
@@ -396,7 +325,7 @@ class PokeBattle_Battler
     end
 
     def hasMoldBreaker?
-        return hasActiveAbility?(GameData::Ability::MOLD_BREAKING_ABILITIES)
+        return hasActiveAbility?(GameData::Ability.getByFlag("MoldBreaking"))
     end
 
     def activatesTargetAbilities?(aiCheck = false)
@@ -406,7 +335,7 @@ class PokeBattle_Battler
     end
 
     def canChangeType?
-        return !%i[MULTITYPE RKSSYSTEM].include?(@ability_id)
+        return !hasActiveAbility?(%i[MULTITYPE RKSSYSTEM])
     end
 
     def airborne?(checkingForAI = false)
@@ -416,7 +345,7 @@ class PokeBattle_Battler
         return false if @battle.field.effectActive?(:Gravity)
         return true if shouldTypeApply?(:FLYING, checkingForAI)
         return true if hasLevitate?(checkingForAI) && !@battle.moldBreaker
-        return true if shouldItemApply?(GameData::Item::LEVITATION_ITEMS,checkingForAI)
+        return true if shouldItemApply?(GameData::Item.getByFlag("Levitation"),checkingForAI)
         return true if effectActive?(:MagnetRise)
         return true if effectActive?(:Telekinesis)
         return false
@@ -861,7 +790,7 @@ class PokeBattle_Battler
             aiLearnsItem(:HEAVYDUTYBOOTS) unless aiCheck
             return true
         end
-        return shouldAbilityApply?(GameData::Ability::HAZARD_IMMUNITY_ABILITIES, aiCheck)
+        return shouldAbilityApply?(GameData::Ability.getByFlag("HazardImmunity"), aiCheck)
     end
 
     def hasGem?

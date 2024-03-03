@@ -313,7 +313,7 @@ class PokeBattle_AI
         # ! All score changes from this point forward must be multiplicative !
 
         # Pick a good move for the Choice items
-        if !damagingMove && (user.hasActiveItemAI?(GameData::Item::CHOICE_LOCKING_ITEMS) || user.hasActiveAbilityAI?(CHOICE_LOCKING_ABILITIES))
+        if !damagingMove && (user.hasActiveItemAI?(GameData::Item.getByFlag("ChoiceLocking")) || user.hasActiveAbilityAI?(GameData::Ability.getByFlag("ChoiceLocking")))
             echoln("\t[MOVE SCORING] Score is halved: Don't choice-lock into a status move.")
             score /= 2
         end

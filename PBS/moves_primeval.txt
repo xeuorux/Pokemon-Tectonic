@@ -517,8 +517,8 @@ FunctionCode = EmpoweredStandTogether
 Flags = Empowered
 Description = The user summons an allied Tyrogue, raises the Defense of itself and its allies by 3 steps, and becomes Fighting-type.
 #-------------------------------
-[PRIMEVALHARMONIZE]
-Name = Primeval Harmonize
+[PRIMEVALSYMBIOSIS]
+Name = Primeval Symbiosis
 Type = GRASS
 Category = Status
 Accuracy = 0

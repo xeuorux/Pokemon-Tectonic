@@ -543,7 +543,7 @@ BattleHandlers::TargetAbilityOnHit.add(:MUMMY,
     proc { |ability, user, target, move, battle, aiCheck, aiNumHits|
         next unless move.physicalMove?
         next if user.fainted?
-        next if user.unstoppableAbility?
+        next if user.immutableAbility?
         next if user.hasAbility?(ability)
         next -10 if aiCheck
         user.replaceAbility(ability, user.opposes?(target))
@@ -554,7 +554,7 @@ BattleHandlers::TargetAbilityOnHit.add(:INFECTED,
     proc { |ability, user, target, move, battle, aiCheck, aiNumHits|
         next unless move.physicalMove?
         next if user.fainted?
-        next if user.unstoppableAbility?
+        next if user.immutableAbility?
         next if user.hasAbility?(ability)
         next unless user.canChangeType?
         next -15 if aiCheck
@@ -567,7 +567,7 @@ BattleHandlers::TargetAbilityOnHit.add(:WANDERINGSPIRIT,
     proc { |ability, user, target, move, battle, aiCheck, aiNumHits|
         next unless move.physicalMove?
         next if user.fainted?
-        next if user.unstoppableAbility?
+        next if user.immutableAbility?
         next if user.hasAbility?(ability)
         oldAbil = user.firstAbility
         next unless oldAbil

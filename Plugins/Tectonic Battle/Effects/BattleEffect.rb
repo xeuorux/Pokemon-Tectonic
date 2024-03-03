@@ -270,8 +270,7 @@ module GameData
         end
 
         def name
-            # TODO: Add support for translation
-            return @real_name
+            return pbGetMessageFromHash(MessageTypes::BattleEffects, @real_name)
         end
 
         def checkForInvalidDefinitions
@@ -585,6 +584,21 @@ module GameData
                 next if data.location != :Field
                 yield data
             end
+        end
+
+        def self.each_effect
+            each do |data|
+                yield data
+            end
+        end
+
+        # For translation
+        def self.set_effect_names_hash
+            effect_names = []
+            each_effect do |data|
+                effect_names.push(data.real_name)
+            end
+            MessageTypes.setMessagesAsHash(MessageTypes::BattleEffects, effect_names)
         end
     end
 end

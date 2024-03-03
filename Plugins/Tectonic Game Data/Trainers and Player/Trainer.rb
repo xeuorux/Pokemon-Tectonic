@@ -202,24 +202,37 @@ class Trainer
     attr_accessor :items
     attr_accessor :lose_text
     attr_accessor :policyStates
+    attr_accessor :flags
   
-      def initialize(name, trainer_type, nameForHashing = nil)
-          super(name, trainer_type)
-          @items     = []
-          @lose_text = nil
-          @policyStates = {}
-          @nameForHashing = nameForHashing || name
+    def initialize(name, trainer_type, nameForHashing = nil)
+      super(name, trainer_type)
+      @items     = []
+      @lose_text = nil
+      @policyStates = {}
+      @nameForHashing = nameForHashing || name
+    end
+
+    def full_name
+      return _INTL("Mysterious Trainer") if is_hide_name?
+      return super
+    end
+
+    def is_no_perfect?
+      return @flags.include?("NoPerfect")
+    end
+
+    def is_hide_name?
+      return @flags.include?("HideIdentity")
+    end
+
+    def self.cloneFromPlayer(playerObject)
+      trainerClone = NPCTrainer.new("Clone of " + playerObject.name, playerObject.trainer_type)
+      trainerClone.id = playerObject.id
+
+      playerObject.party.each do |partyMember|
+          trainerClone.party.push(partyMember.clone)
       end
-  
-      def self.cloneFromPlayer(playerObject)
-          trainerClone = NPCTrainer.new("Clone of " + playerObject.name, playerObject.trainer_type)
-          trainerClone.id = playerObject.id
-  
-          playerObject.party.each do |partyMember|
-              trainerClone.party.push(partyMember.clone)
-          end
-  
-          return trainerClone
-      end
-  end
-  
+
+      return trainerClone
+    end
+end

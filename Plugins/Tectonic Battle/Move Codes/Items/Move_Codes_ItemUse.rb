@@ -80,7 +80,7 @@ class PokeBattle_Move_GiftItem < PokeBattle_Move
 
     def getEffectScore(user, target)
         if user.hasActiveItemAI?(%i[FLAMEORB POISONORB FROSTORB STICKYBARB
-                                  IRONBALL]) || user.hasActiveItemAI?(GameData::Item::CHOICE_LOCKING_ITEMS)
+                                  IRONBALL]) || user.hasActiveItemAI?(GameData::Item.getByFlag("ChoiceLocking"))
             if user.opposes?(target)
                 return 100
             else
@@ -250,7 +250,7 @@ class PokeBattle_Move_NaturalGift < PokeBattle_Move
             :GRASS    => %i[RAWSTBERRY PINAPBERRY RINDOBERRY LIECHIBERRY],
             :ICE      => %i[ASPEARBERRY POMEGBERRY YACHEBERRY GANLONBERRY],
             :FIGHTING => %i[LEPPABERRY KELPSYBERRY CHOPLEBERRY SALACBERRY],
-            :POISON   => %i[AMWIBERRY QUALOTBERRY KEBIABERRY PETAYABERRY],
+            :POISON   => %i[CADOBERRY QUALOTBERRY KEBIABERRY PETAYABERRY],
             :GROUND   => %i[PERSIMBERRY HONDEWBERRY SHUCABERRY APICOTBERRY],
             :FLYING   => %i[LUMBERRY GREPABERRY COBABERRY LANSATBERRY],
             :PSYCHIC  => %i[SITRUSBERRY TAMATOBERRY PAYAPABERRY STARFBERRY],
@@ -424,7 +424,7 @@ class PokeBattle_Move_SwapItems < PokeBattle_Move
     def getEffectScore(user, target)
         if user.hasActiveItemAI?(%i[FLAMEORB POISONORB STICKYBARB IRONBALL])
             return 130
-        elsif user.hasActiveItemAI?(GameData::Item::CHOICE_LOCKING_ITEMS)
+        elsif user.hasActiveItemAI?(GameData::Item.getByFlag("ChoiceLocking"))
             return 100
         elsif !user.firstItem && target.firstItem
             if user.lastMoveUsed && GameData::Move.get(user.lastMoveUsed).function_code == "SwapItems" # Trick/Switcheroo

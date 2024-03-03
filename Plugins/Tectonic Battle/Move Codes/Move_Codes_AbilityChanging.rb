@@ -11,7 +11,7 @@ class PokeBattle_Move_SetTargetAbilityToSimple < PokeBattle_Move
     end
 
     def pbFailsAgainstTarget?(_user, target, show_message)
-        if target.unstoppableAbility?
+        if target.immutableAbility?
             if show_message
                 @battle.pbDisplay(_INTL("But it failed, since #{target.pbThis(true)}'s ability can't be supressed!"))
             end
@@ -50,7 +50,7 @@ class PokeBattle_Move_SetTargetAbilityToInsomnia < PokeBattle_Move
     end
 
     def pbFailsAgainstTarget?(_user, target, show_message)
-        if target.unstoppableAbility?
+        if target.immutableAbility?
             if show_message
                 @battle.pbDisplay(_INTL("But it failed, since #{target.pbThis(true)}'s ability can't be supressed!"))
             end
@@ -81,7 +81,7 @@ class PokeBattle_Move_SetUserAbilityToTargetAbility < PokeBattle_Move
     def ignoresSubstitute?(_user); return true; end
 
     def pbMoveFailed?(user, _targets, show_message)
-        if user.unstoppableAbility?
+        if user.immutableAbility?
             if show_message
                 @battle.pbDisplay(_INTL("But it failed, since #{user.pbThis(true)}'s ability can't be changed!"))
             end
@@ -97,14 +97,13 @@ class PokeBattle_Move_SetUserAbilityToTargetAbility < PokeBattle_Move
             end
             return true
         end
-        if user.firstAbility == target.firstAbility
+        if user.hasAbility?(target.firstAbility)
             if show_message
                 @battle.pbDisplay(_INTL("But it failed, since the #{target.pbThis(true)} and #{user.pbThis(true)} have the same ability!"))
             end
             return true
         end
-        if user.ungainableAbility?(target.firstAbility) || GameData::Ability::UNCOPYABLE_ABILITIES.include?(target.firstAbility) ||
-                target.firstAbility == :WONDERGUARD
+        if GameData::Ability.get(target.firstAbility).is_uncopyable_ability?
             if show_message
                 @battle.pbDisplay(_INTL("But it failed, since #{target.pbThis(true)}'s ability can't be copied!"))
             end
@@ -135,7 +134,7 @@ class PokeBattle_Move_SetTargetAbilityToUserAbility < PokeBattle_Move
             @battle.pbDisplay(_INTL("But it failed, since #{user.pbThis(true)} doesn't have an ability!"))
             return true
         end
-        if user.ungainableAbility?(user.firstAbility) || GameData::Ability::UNCOPYABLE_ABILITIES.include?(user.firstAbility)
+        if GameData::Ability.get(user.firstAbility).is_uncopyable_ability?
             @battle.pbDisplay(_INTL("But it failed, since #{user.pbThis(true)}'s ability cannot be copied!"))
             return true
         end
@@ -143,7 +142,7 @@ class PokeBattle_Move_SetTargetAbilityToUserAbility < PokeBattle_Move
     end
 
     def pbFailsAgainstTarget?(_user, target, show_message)
-        if target.unstoppableAbility?
+        if target.immutableAbility?
             if show_message
                 @battle.pbDisplay(_INTL("But it failed, since #{target.pbThis(true)}'s ability can't be supressed!"))
             end
@@ -181,11 +180,11 @@ class PokeBattle_Move_UserTargetSwapAbilities < PokeBattle_Move
             @battle.pbDisplay(_INTL("But it failed, since #{user.pbThis(true)} doesn't have an ability!"))
             return true
         end
-        if user.unstoppableAbility?(user.firstAbility)
+        if GameData::Ability.get(user.firstAbility).is_immutable_ability?
             @battle.pbDisplay(_INTL("But it failed, since #{user.pbThis(true)}'s ability cannot be changed!"))
             return true
         end
-        if user.ungainableAbility?(user.firstAbility) || user.firstAbility == :WONDERGUARD
+        if GameData::Ability.get(user.firstAbility).is_uncopyable_ability?
             @battle.pbDisplay(_INTL("But it failed, since #{user.pbThis(true)}'s ability cannot be copied!"))
             return true
         end
@@ -199,13 +198,13 @@ class PokeBattle_Move_UserTargetSwapAbilities < PokeBattle_Move
             end
             return true
         end
-        if target.unstoppableAbility?(target.firstAbility)
+        if GameData::Ability.get(target.firstAbility).is_immutable_ability?
             if show_message
                 @battle.pbDisplay(_INTL("But it failed, since #{target.pbThis(true)}'s ability can't be supressed!"))
             end
             return true
         end
-        if target.ungainableAbility?(target.firstAbility) || target.firstAbility == :WONDERGUARD
+        if GameData::Ability.get(target.firstAbility).is_uncopyable_ability?
             if show_message
                 @battle.pbDisplay(_INTL("But it failed, since #{target.pbThis(true)}'s ability can't be copied!"))
             end

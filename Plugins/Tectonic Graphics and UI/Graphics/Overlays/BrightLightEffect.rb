@@ -347,7 +347,7 @@ class LightEffect_TVGlow < LightEffect
 
   def update
     return if !@light || !@event
-    unless specialTVNewsAvailable?
+    unless televisionNewsEvent?
       @light.opacity = 0
       return
     end
@@ -399,7 +399,7 @@ Events.onSpritesetCreate += proc { |_sender,e|
       spriteset.addUserSprite(LightEffect_SummonTotemAura.new(event,viewport,map))
     elsif event.name[/^light$/i] || event.name.include?("lighteffect")
       spriteset.addUserSprite(LightEffect_Basic.new(event,viewport,map))
-    elsif event.name[/newstv/i] && specialTVNewsAvailable?
+    elsif event.name[/newstv/i] && televisionNewsEvent?
       spriteset.addUserSprite(LightEffect_TVGlow.new(event,viewport,map))
     end
   end

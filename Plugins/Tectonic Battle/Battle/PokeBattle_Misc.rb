@@ -106,7 +106,7 @@ class PokeBattle_Battle
 
                 if PRIMEVAL_MOVES_RESET_DEBUFFS
                     pbAnimation(:REFRESH,b,b)
-                    pbDisplayBossNarration(_INTL("{1} wiped the slate clean.", b.pbThis)) if showMessages
+                    pbDisplaySlower(_INTL("{1} wiped the slate clean.", b.pbThis)) if showMessages
                     b.pbCureStatus
                     b.pbCureStatus # Duplicated intentionally
                     b.pbResetLoweredStatSteps(true)
@@ -116,7 +116,7 @@ class PokeBattle_Battle
                         b.disableEffect(effect)
                     end
                 end
-                pbDisplayBossNarration(_INTL("A great energy rises up from inside {1}!", b.pbThis(true))) if showMessages
+                pbDisplaySlower(_INTL("A great energy rises up from inside {1}!", b.pbThis(true))) if showMessages
                 b.lastRoundMoved = 0
                 b.pbCancelMoves # Cancels multi-turn moves
                 b.pbUseMove([:UseMove, index, move, -1, 0])
