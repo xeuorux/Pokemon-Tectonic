@@ -3192,7 +3192,16 @@ Need to be rested up before the championship, right?
 Hay que estar descansados antes del campeonato, ¿No?
 
 [Map40]
-
+You looking for the missing package?
+¿Estás buscando el paquete perdido?
+Too bad, I'm gonna find it first!
+¡Qué mal, porque voy a encontrarlo primero!
+I'm here unofficially, so there won't be any paper trail linking me to this fiasco.
+Estoy aquí extraoficialmente, así que no habrá ningún camino de papeles que me conecten a este fiasco.
+Wait, paper trail? Hmm...
+Espera, ¿Camino de papeles? Hmm...
+All of this could have been avoided with better planning...
+Todo esto podría haber sido evitado con mejor planeación...
 South: Kilna Turf
 Sur: Campo Kilna
 North: County Park
@@ -6359,13 +6368,20 @@ Some sort of fighting game is being played, with two players.
 Algún tipo de juego de lucha está siendo jugado, con dos jugadores.
 
 [Map88]
-Pokemon live in the sewers, and they have a penchant for attacking people who come along.
-Hay Pokémon viviendo en las alcantarillas, y tienen cierta afición por atacar a gente que viene por aquí.
-Luckily my pal here fights them off. He even eats the sludge the other workers track in.
-Afortunadamente mi amigo aquí combate contra ellos. Incluso come los residuos que otros trabajadores tiran.
+My pal here eats the sludge the other workers track in.
+Mi compañero aquí come los residuos que los otros trabajadores encuentran.
 He really likes biting my sleeves though...
 Eso sí, realmente le gusta morder mis mangas...
-
+I wouldn't advise exploring the sewers, Trainer.
+No aconsejaría explorar las alcantarillas, Entrenador.
+The Voltorbs in there have always been jumpy, but lately they've been straight up dastardly.
+Los Voltorbs aquí siempre han sido nerviosos, pero últimamente han sido ya viles.
+I can't help but think its that avatar to blame.
+No puedo dejar de pensar que ese avatar es el culpable.
+Some legendary or another, can't remember the name.
+Un legendario u algo así, no puedo recordar el nombre.
+It's guardin' the junction that connects our here sewer system to the big one under Prizca.
+Está protegiendo el cruce que conecta el sistema de alcantarillas aquí con el grande debajo de Prizca.
 [Map89]
 
 Everyone makes a fuss about how unreasonably cold it is in this little corner of Makya.
@@ -7704,7 +7720,7 @@ Oh, hola.
 You might be able to tell, but a certain Nurse aid in training is feeling a bit wild today...
 Como puedes observar, una cierta Enfermera en entrenamiento se está sintiendo con energía hoy… 
 This Happiny has been a troublemaker since day one, always trying to battle the patients.
-Este Happiny no ha dejado de causar problemas desde el priemer día, no deja de combatir con los pacientes.
+Este Happiny no ha dejado de causar problemas desde el primer día, no deja de combatir con los pacientes.
 I got an idea. If you can beat it in a battle, it'll demand to join your team.
 Tengo una idea. Si puedes vencerla en un combate, demandará unirse a tu equipo.
 It'll thrive with a trainer. What do you say?
@@ -8968,7 +8984,12 @@ No
 No
 
 [Map133]
-
+Novo College has plenty of field opportunities.
+La Facultad Novo tiene un montón de oportunidades de campo.
+One of my colleagues studies Galarian Fossils over at our camp in Gigalith's Guts.
+Una de mis colegas estudia estudia los Fósiles de Galar en nuestro campamento en las Tripas de Gigalith.
+Fun fact, it was constructed by some old Team Chasm crews. A lot of the scientists there decided to just keep using it and enroll with the college.
+Dato curiosio, fue construído por algunos antiguos miembros del Team Chasm. Muchos científicos allí decidieron seguirlo usando y matricularse en la facultad.
 "Armaldo, Amphibious Predator"
 “Armaldo, Depredador Anfibio”
 It lived on land and went out into the sea to hunt for prey. Its sharp claws were its greatest weapon.
@@ -10339,7 +10360,8 @@ Not that it already isn't, with the bridge collapse and the service tunnel to Sw
 Tampoco es como si no lo fuera, con el puente colapsado y el túnel hacia Sweetrock destruído por el crecimiento de plantas.
 
 [Map158]
-
+Thanks to my Swoobat's ability, it's completely code compliant for construction!
+¡Gracias a la habilidad de mi Swoobat, cumple al pie de la letra el código para la construcción!
 I'll take your Pokémon for a few seconds.
 Tomaré tus Pokémon por un par de segundos.
 First, you should restore your Pokémon to full health.
@@ -15474,6 +15496,14 @@ No leads huh? That's fine!
 I'll find one somewhere around here.
 Voy a ver si encuentro a alguién más por acá.
 [Map222]
+The Pokemon looks forward with steadfast attention.
+El Pokémon mira adelante con atención impasible.
+The Poochyena is raring to go!
+¡El Poochyena está deseoso para ir!
+The Poochyena looks ready to attack you!
+¡El Poochyena parece listo para atacarte!
+Oh? Looks like it changed its mind.
+¿Oh? Parece que cambió de opinión.
 Ah, hello. It’s good to see you again.
 Ah, hola. Es bueno verde de nuevo.
 Do not fear: I have no new forms that need combat testing.
@@ -15536,6 +15566,12 @@ How bad?
 ¿Qué tan malo?
 
 [Map223]
+Sorry if the prices are high for these TMs, the mons down here have been gettin' real bitey.
+Lo siento si los precios son altos por estas MTs, los mons aquí abajo se han estado poniendo bastante inquietos.
+Ever since that Cobalion showed up, they're like LuxTech narcs...
+Desde que ese Cobalion apareció, son como los soplones de LuxTech...
+I swear they've got patrols running and everything. Can't take my normal routes anymore.
+Juro que tienen patrullas por ahí y todo. Ya ni puedo tomar mis rutas normales.
 Prizca Black Market
 Mercado Negro Prizca
 You want power enlargement pills?
@@ -17279,8 +17315,8 @@ We hope you excel!
 
 The shipment of fruit from Frostflow got done without a hitch.
 El cargamento de fruta de Escarcha se hizo sin problemas.
-Or so I thought. This here Applin tagged along, the rascal, and now I don't know what to do with it.
-O eso pensé. Este Applin se coló, el muy pillo, y ahora no sé qué hacer con él.
+Or so I thought. This here Bounsweet tagged along, the rascal, and now I don't know what to do with it.
+O eso pensé. Este Bounsweet se coló, el muy pillo, y ahora no sé qué hacer con él.
 It may be cute, but I'm raising enough Pokemon back at the farm as is.
 Podrá ser lindo, pero ya estoy cuidando suficientes Pokémon en la granja.
 That's why I'll offer 'em to you for $5000.
@@ -17859,10 +17895,10 @@ Déjame mostrarte lo que realmente vales.
 …Ah, que así sea. Dudo que pudiera infundir algo de humildad a tráves de tu dura cabeza de todos modos.
 You’re good at playing shallow games – good for you.
 Eres bueno jugando a los juegos superficiales – bien por ti.
-Ibis, get us out of here. I’ve seen more than enough.
-Ibis, sácanos de aquí. Ya he visto más que suficiente.
-They got away. They won. A few that were masked, including whoever the hell THAT was. And Yezera…
-Se escaparon. Ganaron. Algunos que estaban enmascarados, incluyendo quién demonios fuera ESO. Y Yezera… 
+A Totem calls. I’ve seen more than enough.
+Un Tótem llama. Ya he visto más que suficiente.
+They got away. They won. A few that were masked, including whoever the hell THAT was. And Yezera...
+Se escaparon. Ganaron. Algunos que estaban enmascarados, incluyendo quién demonios fuera ESO. Y Yezera...
 Wish I knew. That guy was a narcissist and an asshole, I can tell you that much.
 Ojalá supiera. Ese tipo era un narcisista y un idiota, eso es todo lo que te puedo decir.
 The rest of them… who knows.
@@ -17980,7 +18016,7 @@ Why are you doing this?
 Shut up, edgelord.
 Cállate, edgelord.
 Who are they?
-¿Quién eres?
+¿Quién era?
 What do they want?
 ¿Qué es lo que quieren?
 Why Yezera?
@@ -23855,6 +23891,33 @@ I figured it would taste good since my Pokémon love it.
 Supuse que tendría buen sabor ya que mis Pokémon los aman.
 I was very wrong. Zero out of ten. Do NOT recommend.
 Estaba muy equivocado. Cero de diez. NO lo recomiendo.
+Oh dearie, you look like a strong trainer! Perhaps you can satisfy a bucket list item of mine?
+¡Oh cariño, pareces como un entrenador fuerte! ¿Quizás puedas satisfacer un deseo que tengo?
+I've always wanted to see a legendary Pokemon. Not everyone gets to see one, you know.
+Siempre he querido ver un Pokémon legendario. No todos pueden ver uno, sabes.
+If you happen to have one in your party, would you mind showing it to me? I'll make sure you get something out of it as well.
+Si por casualidad tienes uno en tu equipo, ¿Te importaría mostrármelo? También me aseguraré de conseguirte algo a cambio.
+Oh dearie, your Pokemon are nice! Just... not legendary.
+¡Oh cariño, tu Pokémon es bonito! Sólo... no legendario.
+Oh! A legendary Pokemon in the flesh!
+¡Oh! ¡Un Pokémon legendario en carne y hueso!
+...
+...
+Could I pet it?
+¿Puedo acariciarlo?
+The lady spends a few moments admiring your Pokemon.
+La mujer pasa un par de momentos admirando a tu Pokémon.
+You have no idea what this means for me.
+No tienes idea lo que esto significa para mi.
+Here, for your troubles.
+Toma, por tus molestias.
+You don't see many of those. Use it well.
+No ves muchos de esos. Dale un buen uso.
+For my next bucket list item, I'd like to fly a supersonic jet.
+Para mi siguiente deseo, me gustaría volar un jet supersónico.
+I think I'll have to pull deep from my contacts list for that...
+Creo que tendré que buscar profundo en mi lista de contactos para eso...
+
 [Map402]
 My legs are so sore...
 Apenas siento mis piernas...
@@ -35849,7 +35912,7 @@ El usuario ataca con una columna de fuego. Al ser usado junto a su equivalente d
 The target is punched with a fiery fist. It has a 10% chance to burn.
 El usuario ataca con un puño ígneo. Tiene un 10% de probabilidad de quemar al objetivo.
 The user attacks by breathing a special, hot fire. This also lowers the target's Sp. Atk stat by two steps.
-El usuario ataca con un aliento de fuego especial. Disminuye el Ataque Especial del usuario dos grados.
+El usuario ataca con un aliento de fuego especial. Disminuye el Ataque Especial del objetivo dos grados.
 The user bites with flame-cloaked fangs. It has a 10% chance to flinch and a 10% chance to burn.
 El usuario muerde con unos colmillos ardientes. Tiene un 10% de probabilidad de amedrentar al objetivo y un 10% de quemarlo.
 The user cloaks itself in fire and charges at the target. It has a 20% chance to burn.
@@ -37717,7 +37780,7 @@ El usuario aguanta ataques con 1 PS. En ese caso, aumenta su Ataque dos grados. 
 The user bites with added telekinetic force. During eclipse, the target also becomes numbed.
 El usuario muerde con fuerza telekinética. Durante un eclipse, el objetivo también es aturdido.
 The user mutates its genetic code, transforming into any of its 3 other forms. Only useable as Deoxys Normal.
-El usuario muta su código genético, transformándose en cualquiera de sus otras 3 formas. Sólo puede ser usado como Deoxys Normal.
+El usuario muta su código genético, transformándose en una de sus otras 3 formas. Sólo puede ser usado como Deoxys Normal.
 The user attacks with courage. Sets spikes if Full. If Hangry, deals double damage and is Dark-type.
 El usuario ataca con coraje. Coloca púas si está Saciado. Si es Voraz, duplica su potencia y es tipo Siniestro.
 The user crushes the target in its metallic vises, trapping and damaging it for three turns.
@@ -38277,6 +38340,12 @@ Disable Ball
 Anula Ball
 Royal Ball
 Magni Ball
+Fast Ball
+Rapid Ball
+Heavy Ball
+Peso Ball
+Love Ball
+Amor Ball
 TM00
 MT00
 TM01
@@ -40221,6 +40290,12 @@ A mentally disrupting Poké Ball that disables the Pokemon's last used move for 
 Una Poké Ball que altera mentalmente al Pokémon y anula su último movimiento usado por 10 turnos si falla en atraparlo.
 A ball whose striking appearance makes it popular despite its poor performance.
 Una ball cuya apariencia llamativa la hace bastante popular a pesar de su baja efectividad.
+A Poké Ball with 4x strength against Pokémon species with 100 or more base Speed.
+Una Poké Ball con 4x efectividad contra Pokémon con 100 o más de Velocidad base.
+A Poké Ball whose strength varies with the Pokémon's weight.
+Una Poké Ball cuya efectividad varía con el peso del Pokémon.
+A Poké Ball with 8x strength against Pokémon that are the opposite gender, but same species, as yours.
+Una Poké Ball con 8x efectividad contra Pokémon del mismo género, pero misma especie que el tuyo.
 It may be held by a Pokémon to recover from numbing.
 Puede ser equipada a un Pokémon para recuperarlo del aturdimiento.
 It may be held by a Pokémon to recover from sleep.
@@ -40359,8 +40434,8 @@ A candy that is packed with energy. When consumed, it will grant a single Pokém
 Un caramelo rebosante de energía. Al ser consumido, el Pokémon ganará 1000 Puntos de Experiencia.
 A candy that is packed with energy. When consumed, it will grant a single Pokémon 4,000 Exp. Points.
 Un caramelo rebosante de energía. Al ser consumido, el Pokémon ganará 4000 Puntos de Experiencia.
-A candy that is packed with energy. When consumed, it will grant a single Pokémon 12,000 Exp. Points.
-Un caramelo rebosante de energía. Al ser consumido, el Pokémon ganará 12000 Puntos de Experiencia.
+A candy that is packed with energy. When consumed, it will grant a single Pokémon 16,000 Exp. Points.
+Un caramelo rebosante de energía. Al ser consumido, el Pokémon ganará 16000 Puntos de Experiencia.
 A candy that is packed with energy. When consumed, it will grant a single Pokémon 50,000 Exp. Points.
 Un caramelo rebosante de energía. Al ser consumido, el Pokémon ganará 50000 Puntos de Experiencia.
 The fossil of an ancient Pokémon that once soared through the sky. What it looked like is a mystery.
@@ -40526,6 +40601,8 @@ Una peculiar manzana que permite evolucionar a cierta especie de Pokémon. Es ex
 A peculiar apple that can make a certain species of Pokémon evolve. It's exceptionally tart.
 Una peculiar manzana que permite evolucionar a cierta especie de Pokémon. Es excepcionalmente ácida.
 [10]
+Cud Chew
+Rumia
 Survivalist
 Survivalista
 Stench
@@ -41433,7 +41510,7 @@ Regocijo Lunar
 Night Owl
 Noctámbuho
 Served Cold
-Plato Frío
+Fría Venganza
 Unconquerable
 Inconquistable
 Exorcist
@@ -41875,6 +41952,8 @@ Corazón Rebosante
 Hybdrid Fighter
 Luchador Híbrido
 [11]
+When the Pokémon eats a Berry, it will regurgigate that Berry at the end of the next turn and eat it one more time.
+Cuando el Pokémon come una Baya, regurgita esa Baya al final del siguiente turno y la come una vez más.
 Attacks have a 50% chance to cause the target to flinch.
 Los ataques tienen un 50% de probabilidad de amedrentar al objetivo
 Summons rain for 4 turns when it enters battle.
@@ -45374,6 +45453,12 @@ Hey, listen!  I almost caught \TE the other day.\mOh, it was sooooooo close, too
 Guess what happened the other day. I missed catching \TE again.\mMaybe I'm not very good at this.
 Guess what happened the other day.  I missed catching \TE again.\mMaybe I'm not very good at this.
 [24]
+Oh? {1} is holding something!
+¿Oh? ¡{1} está sosteniendo algo!
+It seems to be a strange key!
+¡Parece ser una llave extraña!
+It seems to be a lump of metal!
+¡Parece ser un bulto de metal!
 Clone of 
 Clon de
 Mysterious Trainer
@@ -48063,7 +48148,7 @@ The icy prison around {1} shattered!
 {1} is locked in a nightmare!
 ¡{1} está atrapado en una pesadilla!
 {1} spun down from its attack.
-{1} giró fuera de su ataque.
+{1} se libró de su ataque.
 {1} continues to rampage!
 ¡{1} continúa arrasando!
 {1} heard the Perish Song! It will faint in {2} turns!
