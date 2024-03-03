@@ -38759,7 +38759,7 @@ Baya Perasi
 Leppa Berry
 Baya Zanama
 Cado Berry
-Baya Guaca
+Baya Gualta
 Persim Berry
 Baya Caquic
 Lum Berry
@@ -39584,7 +39584,7 @@ Bayas Perasi
 Leppa Berries
 Bayas Zanama
 Cado Berries
-Bayas Guaca
+Bayas Gualta
 Persim Berries
 Bayas Caquic
 Lum Berries
@@ -46504,7 +46504,7 @@ Las Bayas son un objeto equipable común. Durante los combates, los Pokémon com
 Sitrus and Amwi Berry
 Bayas Amara y Zidra
 Sitrus Berry and Cado Berry are common berries which heal your Pokémon when at low health. If in doubt about what item to give a Pokémon, give them one of these.
-La Baya Amara y la Baya Guaca son bayas comunes que curan a un Pokémon con baja salud. Si tienes dudas en qué equipar, equipa una de estas.
+La Baya Amara y la Baya Gualta son bayas comunes que curan a un Pokémon con baja salud. Si tienes dudas en qué equipar, equipa una de estas.
 Rematerializer
 Rematerializador
 In Pokémon Tectonic, the Rematerializer regenerates held items which are consumed in battle. You'll never run out of berries!
