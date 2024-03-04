@@ -1592,7 +1592,7 @@ BattleBack = indoor3
 Environment = StillWater
 #-------------------------------
 [221]
-# Prizca Sewers
+# Sewers
 Outdoor = false
 ShowArea = false
 Bicycle = false

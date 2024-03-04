@@ -638,7 +638,9 @@ module Compiler
     f.write(sprintf("    Position = %s\r\n", pkmn[:assigned_position])) if !pkmn[:assigned_position].nil?
     f.write(sprintf("    Name = %s\r\n", pkmn[:name])) if pkmn[:name] && !pkmn[:name].empty?
     if pkmn[:form] && pkmn[:form] > 0 && (inheritingPkmn.nil? || pkmn[:form] != inheritingPkmn[:form])
-      f.write(sprintf("    Form = %d\r\n", pkmn[:form]))
+      formName = GameData::Species.get_species_form(pkmn[:species],pkmn[:form]).form_name
+      formName += " Form"
+      f.write(sprintf("    Form = %d # %s\r\n", pkmn[:form], formName))
     end
     if pkmn[:gender] && (inheritingPkmn.nil? || pkmn[:gender] != inheritingPkmn[:gender])
       f.write(sprintf("    Gender = %s\r\n", (pkmn[:gender] == 1) ? "female" : "male"))
@@ -684,6 +686,7 @@ module Compiler
         next if s.pbs_order < 0
         evs_array[s.pbs_order] = pkmn[:ev][s.id]
       end
+      f.write("    # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def\r\n")
       f.write(sprintf("    EV = %s\r\n", evs_array.join(",")))
     end
     if pkmn[:happiness] && (inheritingPkmn.nil? || pkmn[:happiness] != inheritingPkmn[:happiness])

@@ -1,4 +1,4 @@
-# See the documentation on the wiki to learn how to edit this file.
+﻿# See the documentation on the wiki to learn how to edit this file.
 #-------------------------------
 [ABSOL]
 Name = Wild
@@ -12,6 +12,7 @@ BaseMoney = 0
 #-------------------------------
 [ANOTHERPOSSIBLEALESSA]
 Name = Another Possible
+Gender = Female
 BaseMoney = 80
 BattleBGM = Battle another
 #-------------------------------
