@@ -1,4 +1,4 @@
-﻿# See the documentation on the wiki to learn how to edit this file.
+# See the documentation on the wiki to learn how to edit this file.
 #-------------------------------
 [ABSOL]
 Name = Wild
@@ -12,24 +12,26 @@ BaseMoney = 0
 #-------------------------------
 [ANOTHERPOSSIBLEALESSA]
 Name = Another Possible
-Gender = Female
 BaseMoney = 80
+BattleBGM = Battle another
 #-------------------------------
 [ANOTHERPOSSIBLETAMARIND]
 Name = Another Possible
 Gender = Female
 BaseMoney = 80
+BattleBGM = Battle another
 #-------------------------------
 [ANOTHERPOSSIBLEZAIN]
 Name = Another Possible
 Gender = Male
 BaseMoney = 80
+BattleBGM = Battle another
 #-------------------------------
 [ARCHFRIEND_Lainie]
 Name = Archfriend
 Gender = Female
 BaseMoney = 100
-BattleBGM = Battle champion iris
+BattleBGM = Battle lainie
 #-------------------------------
 [AROMALADY]
 Name = Aroma Lady
@@ -255,6 +257,7 @@ BaseMoney = 100
 Name = Challenger
 Gender = Unknown
 BaseMoney = 100
+BattleBGM = Battle vanya
 #-------------------------------
 [CHAMPION_F]
 Name = Champion
@@ -326,6 +329,7 @@ Name = Pro Trainer
 Gender = Female
 BaseMoney = 60
 Policies = PROACTIVE_MATCHUP_SWAPPER
+BattleBGM = Battle pro
 #-------------------------------
 [COOLTRAINER_M]
 Name = Cooltrainer
@@ -352,6 +356,7 @@ Name = Pro Trainer
 Gender = Male
 BaseMoney = 60
 Policies = PROACTIVE_MATCHUP_SWAPPER
+BattleBGM = Battle pro
 #-------------------------------
 [COWGIRL]
 Name = Cowgirl
@@ -503,6 +508,7 @@ Name = Pro Trainer
 Gender = Female
 BaseMoney = 32
 Policies = PROACTIVE_MATCHUP_SWAPPER
+BattleBGM = Battle pro
 #-------------------------------
 [DITTO_RANGER]
 Name = Pokémon Ranger
@@ -913,21 +919,25 @@ BaseMoney = 40
 Name = Masked Villain
 Gender = Unknown
 BaseMoney = 0
+BattleBGM = Battle villain
 #-------------------------------
 [MASKEDVILLAIN2]
 Name = Masked Villain
 Gender = Unknown
 BaseMoney = 0
+BattleBGM = Battle villain
 #-------------------------------
 [MASKEDVILLAIN2_DOUBLE]
 Name = Masked Villains
 Gender = Unknown
 BaseMoney = 0
+BattleBGM = Battle villain
 #-------------------------------
 [MASKEDVILLAIN_DOUBLE]
 Name = Masked Villains
 Gender = Unknown
 BaseMoney = 0
+BattleBGM = Battle villain
 #-------------------------------
 [MEDIUM]
 Name = Medium
@@ -1063,6 +1073,7 @@ BaseMoney = 16
 Name = Pokémon Master
 Gender = Unknown
 BaseMoney = 200
+BattleBGM = Battle vanya final
 #-------------------------------
 [POKEMONRANGER_F]
 Name = Pokémon Ranger
@@ -1159,6 +1170,7 @@ BaseMoney = 20
 Name = Professor
 Gender = Female
 BaseMoney = 100
+BattleBGM = Battle tamarind
 #-------------------------------
 [PSYCHIC]
 Name = Psychic
@@ -1554,31 +1566,37 @@ BaseMoney = 16
 Name = Pokémon Trainer
 Gender = Female
 BaseMoney = 100
+BattleBGM = Battle alessa
 #-------------------------------
 [TRAINER_Candy]
 Name = Pokémon Trainer
 Gender = Female
 BaseMoney = 100
+BattleBGM = Battle candy
 #-------------------------------
 [TRAINER_Eifion]
 Name = Pokémon Trainer
 Gender = Male
 BaseMoney = 100
+BattleBGM = Battle eifion
 #-------------------------------
 [TRAINER_Imogene_A]
 Name = Pokémon Trainer
 Gender = Female
 BaseMoney = 100
+BattleBGM = Battle imogene
 #-------------------------------
 [TRAINER_Imogene_B]
 Name = Pokémon Trainer
 Gender = Female
 BaseMoney = 100
+BattleBGM = Battle imogene
 #-------------------------------
 [TRAINER_Keoni]
 Name = Pokémon Trainer
 Gender = Male
 BaseMoney = 100
+BattleBGM = Battle keoni
 #-------------------------------
 [TRAINER_Lucile]
 Name = Pokémon Trainer
@@ -1589,11 +1607,13 @@ BaseMoney = 100
 Name = Pokémon Trainer
 Gender = Male
 BaseMoney = 100
+BattleBGM = Battle sang
 #-------------------------------
 [TRAINER_Skyler]
 Name = Pokémon Trainer
 Gender = Male
 BaseMoney = 100
+BattleBGM = Battle skyler
 #-------------------------------
 [TRAINER_Vincent]
 Name = Pokémon Trainer
@@ -1604,6 +1624,7 @@ BaseMoney = 100
 Name = Your Brother
 Gender = Male
 BaseMoney = 100
+BattleBGM = Battle zain
 #-------------------------------
 [TUBER_F]
 Name = Tuber
@@ -1644,7 +1665,7 @@ BaseMoney = 32
 Name = Ultra
 Gender = Female
 BaseMoney = 100
-BattleBGM = Battle champion iris
+BattleBGM = Battle lainie ultra
 #-------------------------------
 [VETERANM]
 Name = Veteran
