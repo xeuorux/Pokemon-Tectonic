@@ -128,36 +128,27 @@ class PokeBattle_Battle
         return 0
     end
 
-    def healFromStatusAbility(ability, battler, status, denom = 12)
-        statusEffectMessages = !defined?($PokemonSystem.status_effect_messages) || $PokemonSystem.status_effect_messages == 0
-        if battler.canHeal?
-            anim_name = GameData::Status.get(status).animation
-            pbCommonAnimation(anim_name, battler) if anim_name
-            ratio = 1.0 / denom.to_f
-            battler.applyFractionalHealing(ratio, ability: ability, showMessage: statusEffectMessages)
-        end
-    end
-
     def pbEORStatusDamage(priority)
-        battlersInOrder = priority.clone
         if pbCheckGlobalAbility(:INEXORABLE)
+            battlersInOrder = []
             pbParty(0).each do |partyMember, partyIndex|
                 dummyBattler = PokeBattle_Battler.new(self, 0)
                 dummyBattler.pbInitDummyPokemon(partyMember, partyIndex)
                 battlersInOrder.push(dummyBattler)
             end
             pbParty(1).each do |partyMember, partyIndex|
-                dummyBattler = PokeBattle_Battler.new(self, 0)
+                dummyBattler = PokeBattle_Battler.new(self, 1)
                 dummyBattler.pbInitDummyPokemon(partyMember, partyIndex)
                 battlersInOrder.push(dummyBattler)
             end
+        else
+            battlersInOrder = priority.clone
         end
 
         # Damage from poisoning
         battlersInOrder.each do |b|
             next if b.fainted?
             next unless b.poisoned?
-            healFromStatusAbility(:POISONHEAL, b, :POISON, 4) if b.hasActiveAbility?(:POISONHEAL)
             damageDealt = damageFromDOTStatus(b, :POISON)
 
             # Venom Gorger
@@ -184,21 +175,13 @@ class PokeBattle_Battle
         battlersInOrder.each do |b|
             next if b.fainted?
             next unless b.burned?
-            if b.hasActiveAbility?(:BURNHEAL)
-                healFromStatusAbility(:BURNHEAL, b, :BURN)
-            else
-                damageFromDOTStatus(b, :BURN)
-            end
+            damageFromDOTStatus(b, :BURN)
         end
         # Damage from frostbite
         battlersInOrder.each do |b|
             next if b.fainted?
             next unless b.frostbitten?
-            if b.hasActiveAbility?(:FROSTHEAL)
-                healFromStatusAbility(:FROSTHEAL, b, :FROSTBITE)
-            else
-                damageFromDOTStatus(b, :FROSTBITE)
-            end
+            damageFromDOTStatus(b, :FROSTBITE)
         end
         # Leeched
         battlersInOrder.each do |b|
