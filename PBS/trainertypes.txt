@@ -12,6 +12,7 @@ BaseMoney = 0
 #-------------------------------
 [ANOTHERPOSSIBLEALESSA]
 Name = Another Possible
+Gender = Female
 BaseMoney = 80
 BattleBGM = Battle another
 #-------------------------------
