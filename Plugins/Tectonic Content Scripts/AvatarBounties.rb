@@ -10,8 +10,8 @@ def avatarMonkeysDefeated?
     return pbGetSelfSwitch(15,'A',53) # In The Shelf
 end
 
-def avatarWhiscashDefeated?
-    return pbGetSelfSwitch(14,'A',216) # In Highland Lake
+def avatarMAromatisseDefeated?
+    return pbGetSelfSwitch(5,'A',216) # In Highland Lake
 end
 
 def allDigitSlipsCollected?
