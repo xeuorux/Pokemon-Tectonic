@@ -1471,11 +1471,6 @@ GameData::BattleEffect.register_effect(:Battler, {
 })
 
 GameData::BattleEffect.register_effect(:Battler, {
-    :id => :Enlightened,
-    :real_name => "Ignores Added Effects",
-})
-
-GameData::BattleEffect.register_effect(:Battler, {
     :id => :Sublimate,
     :real_name => "Sublimate",
     :info_displayed => false,

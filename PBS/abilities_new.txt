@@ -969,7 +969,7 @@ Description = Rather than take recoil damage, it swaps out, and its replacement 
 #-------------------------------
 [KILLJOY]
 Name = Killjoy
-Description = Pokémon can't dance.
+Description = Pokémon can't dance or use sound-based moves.
 #-------------------------------
 [KLEPTOMANIAC]
 Name = Kleptomaniac

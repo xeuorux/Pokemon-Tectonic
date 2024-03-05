@@ -4214,33 +4214,6 @@ EffectChance = 100
 Description = For the rest of the round, the healing of all damaged Pokemon is reversed.
 Animation = GLARE
 #-------------------------------
-[PSYSHIELDBASH]
-Name = Psyshield Bash
-Type = PSYCHIC
-Category = Physical
-Power = 80
-Accuracy = 100
-TotalPP = 20
-Target = NearOther
-FunctionCode = RaiseUserDef2
-Flags = CanProtect,CanMirrorMove
-EffectChance = 100
-Description = Cloaking itself in psychic energy, the user slams into the target, raising the user's Defense by two steps.
-Animation = ZENHEADBUTT
-#-------------------------------
-[HEADLONGRUSH]
-Name = Headlong Rush
-Type = GROUND
-Category = Physical
-Power = 120
-Accuracy = 100
-TotalPP = 5
-Target = NearOther
-FunctionCode = LowerUserDefSpDef2
-Flags = CanProtect,CanMirrorMove
-Description = The user smashes into the target in a full-body tackle. This cuts the user's Defenses.
-Animation = STOMPINGTANTRUM
-#-------------------------------
 [IMPURITYBLAZE]
 Name = Impurity Blaze
 Type = FIRE
@@ -4254,32 +4227,6 @@ Flags = CanProtect,CanMirrorMove
 Description = If the target has a status condition, this deals double damage and heals every battler's status condition.
 Animation = HEX
 #-------------------------------
-[CEASELESSEDGE]
-Name = Ceaseless Edge
-Type = DARK
-Category = Physical
-Power = 65
-Accuracy = 100
-TotalPP = 10
-Target = NearOther
-FunctionCode = SpikesFirstLayerOnly
-Flags = CanProtect,CanMirrorMove,Blade
-Description = The user slashes its shell blade, leaving spikes under the target if none have already been placed.
-Animation = NIGHTSLASH
-#-------------------------------
-[STONEAXE]
-Name = Stone Axe
-Type = ROCK
-Category = Physical
-Power = 55
-Accuracy = 100
-TotalPP = 10
-Target = NearOther
-FunctionCode = StealthRock
-Flags = CanProtect,CanMirrorMove,Blade
-Description = The user swings its stone axes. This leaves stone splinters floating around the target.
-Animation = STONEEDGE
-#-------------------------------
 [THREEFOLDVOLLEY]
 Name = Threefold Volley
 Type = FIGHTING
@@ -4292,20 +4239,6 @@ FunctionCode = HitThreeTimes
 Flags = CanProtect,CanMirrorMove,HighCriticalHitRate
 Description = The user shoots three arrows made of Aura with extreme precision. Critical hits twice as often.
 Animation = AURASPHERE
-#-------------------------------
-[ESPERDIVE]
-Name = Esper Dive
-Type = PSYCHIC
-Category = Physical
-Power = 80
-Accuracy = 100
-TotalPP = 10
-Target = NearOther
-FunctionCode = RaiseUserSpd2
-Flags = CanProtect,CanMirrorMove
-EffectChance = 100
-Description = The user slashes the target with aura-enriched wings. This boosts the user's Speed by two steps.
-Animation = SKYATTACK
 #-------------------------------
 [FOXTROTFINALE]
 Name = Foxtrot Finale
@@ -4343,47 +4276,6 @@ FunctionCode = RaiseUserAtkSpAtk2AndSpeed2InMoonglow
 Flags = CanSnatch
 Description = The user schemes to raise its Attack and Sp. Atk by two steps. During moonglow, also raises Speed by two steps.
 Animation = NASTYPLOT
-#-------------------------------
-[RAGINGFURY]
-Name = Raging Fury
-Type = FIRE
-Category = Physical
-Power = 135
-Accuracy = 100
-TotalPP = 10
-Target = RandomNearFoe
-FunctionCode = Rampage
-Flags = CanProtect,CanMirrorMove
-Description = The user rampages and attacks while spewing flames for three turns.
-Animation = FLAREBLITZ
-#-------------------------------
-[CHLOROBLAST]
-Name = Chloroblast
-Type = GRASS
-Category = Special
-Power = 150
-Accuracy = 100
-TotalPP = 5
-Target = NearOther
-FunctionCode = UserLosesHalfOfCurrentHP
-Flags = CanProtect,CanMirrorMove
-EffectChance = 100
-Description = The user launches its amassed chlorophyll to inflict damage on the target. The user loses half its current HP.
-Animation = SOLARBEAM
-#-------------------------------
-[DIRECLAW]
-Name = Dire Claw
-Type = POISON
-Category = Physical
-Power = 85
-Accuracy = 100
-TotalPP = 15
-Target = NearOther
-FunctionCode = Poison
-Flags = CanProtect,CanMirrorMove,HighCriticalHitRate
-EffectChance = 50
-Description = The user lashes out with its claws. 50% chance to poison. Critical hits twice as often.
-Animation = CROSSPOISON
 #-------------------------------
 [SHININGSHELL]
 Name = Shining Shell
@@ -4731,7 +4623,7 @@ TotalPP = 5
 Target = NearOther
 FunctionCode = UserMustUseRestNextTurn
 Flags = CanProtect,CanMirrorMove
-Description = The user uses all their might to attack their opponent, causing them to rest on their next turn.
+Description = The user uses all their might to attack their opponent, causing the user to rest on their next turn.
 Animation = GIGAIMPACT
 #-------------------------------
 [MANYBLESSINGS]
@@ -5637,7 +5529,7 @@ TotalPP = 20
 Target = UserSide
 FunctionCode = StartPreventCriticalHitsAndRandomEffectsAgainstUserSide10
 Flags = CanSnatch
-Description = A diamond-tough force-field protects the user's side for 10 turns from critical hits or random added effects.
+Description = A diamond-tough force-field protects the user's side for 5 turns from critical hits and reduces damage against them.
 Animation = LIGHTSCREEN
 #-------------------------------
 [LUCKYCHEER]
@@ -6732,3 +6624,16 @@ Target = NearOther
 FunctionCode = ScalesWithLostHP
 Flags = CanProtect,CanMirrorMove
 Description = The user flips, flaps, fumbles, then flounders. It becomes more powerful the less HP the user has.
+#-------------------------------
+[GRUNGE]
+Name = Grunge
+Type = POISON
+Category = Special
+Power = 90
+Accuracy = 100
+TotalPP = 20
+Target = NearOther
+FunctionCode = Dizzy
+Flags = CanProtect,CanMirrorMove,Sound
+EffectChance = 30
+Description = The user creates distorted guitar sounds to attack the target. It has a 30% chance to dizzy.

@@ -1286,18 +1286,6 @@ FunctionCode = Numb
 Flags = CanProtect,CanMagicCoat,CanMirrorMove
 Description = A weak electric charge is launched to numb the target.
 #-------------------------------
-[OVERDRIVE]
-Name = Overdrive
-Type = ELECTRIC
-Category = Special
-Power = 80
-Accuracy = 100
-TotalPP = 10
-Target = AllNearFoes
-FunctionCode = Basic
-Flags = CanProtect,CanMirrorMove,Sound
-Description = Attacks opposing Pokémon by twanging a guitar or bass guitar.
-#-------------------------------
 [BOLTBEAK]
 Name = Bolt Beak
 Type = ELECTRIC
@@ -7208,3 +7196,98 @@ FunctionCode = HitTwoTimes
 Flags = CanProtect,CanMirrorMove
 Description = The user shoots mystical beams from its eyes to inflict damage. The target is hit twice in a row.
 Animation = PARTICLEPULSE
+#-------------------------------
+[PSYSHIELDBASH]
+Name = Psyshield Bash
+Type = PSYCHIC
+Category = Physical
+Power = 80
+Accuracy = 100
+TotalPP = 20
+Target = NearOther
+FunctionCode = RaiseUserDef2
+Flags = CanProtect,CanMirrorMove
+EffectChance = 100
+Description = Cloaking itself in psychic energy, the user slams into the target, raising the user's Defense by two steps.
+Animation = ZENHEADBUTT
+#-------------------------------
+[CEASELESSEDGE]
+Name = Ceaseless Edge
+Type = DARK
+Category = Physical
+Power = 65
+Accuracy = 100
+TotalPP = 10
+Target = NearOther
+FunctionCode = SpikesFirstLayerOnly
+Flags = CanProtect,CanMirrorMove,Blade
+Description = The user slashes its shell blade, leaving spikes under the target if none have already been placed.
+Animation = NIGHTSLASH
+#-------------------------------
+[STONEAXE]
+Name = Stone Axe
+Type = ROCK
+Category = Physical
+Power = 55
+Accuracy = 100
+TotalPP = 10
+Target = NearOther
+FunctionCode = StealthRock
+Flags = CanProtect,CanMirrorMove,Blade
+Description = The user swings its stone axes. This leaves stone splinters floating around the target.
+Animation = STONEEDGE
+#-------------------------------
+[ESPERDIVE]
+Name = Esper Dive
+Type = PSYCHIC
+Category = Physical
+Power = 80
+Accuracy = 100
+TotalPP = 10
+Target = NearOther
+FunctionCode = RaiseUserSpd2
+Flags = CanProtect,CanMirrorMove
+EffectChance = 100
+Description = The user slashes the target with aura-enriched wings. This boosts the user's Speed by two steps.
+Animation = SKYATTACK
+#-------------------------------
+[RAGINGFURY]
+Name = Raging Fury
+Type = FIRE
+Category = Physical
+Power = 135
+Accuracy = 100
+TotalPP = 10
+Target = RandomNearFoe
+FunctionCode = Rampage
+Flags = CanProtect,CanMirrorMove
+Description = The user rampages and attacks while spewing flames for three turns.
+Animation = FLAREBLITZ
+#-------------------------------
+[CHLOROBLAST]
+Name = Chloroblast
+Type = GRASS
+Category = Special
+Power = 150
+Accuracy = 100
+TotalPP = 5
+Target = NearOther
+FunctionCode = UserLosesHalfOfCurrentHP
+Flags = CanProtect,CanMirrorMove
+EffectChance = 100
+Description = The user launches its amassed chlorophyll to inflict damage on the target. The user loses half its current HP.
+Animation = SOLARBEAM
+#-------------------------------
+[DIRECLAW]
+Name = Dire Claw
+Type = POISON
+Category = Physical
+Power = 85
+Accuracy = 100
+TotalPP = 15
+Target = NearOther
+FunctionCode = Poison
+Flags = CanProtect,CanMirrorMove,HighCriticalHitRate
+EffectChance = 50
+Description = The user lashes out with its claws. 50% chance to poison. Critical hits twice as often.
+Animation = CROSSPOISON

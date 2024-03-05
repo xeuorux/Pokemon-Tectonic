@@ -266,6 +266,12 @@ class PokeBattle_Move
                 else
                     multipliers[:final_damage_multiplier] *= 0.5
                 end
+            elsif target.pbOwnSide.effectActive?(:DiamondField)
+                if @battle.pbSideBattlerCount(target) > 1
+                    multipliers[:final_damage_multiplier] *= 3 / 4.0
+                else
+                    multipliers[:final_damage_multiplier] *= 2 / 3.0
+                end
             end
 
             # Repulsion Field

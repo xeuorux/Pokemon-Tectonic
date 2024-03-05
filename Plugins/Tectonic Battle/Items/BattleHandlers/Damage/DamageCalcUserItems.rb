@@ -311,15 +311,6 @@ BattleHandlers::DamageCalcUserItem.add(:INTELLECTHERB,
   }
 )
 
-BattleHandlers::DamageCalcUserItem.add(:SCOPELENS,
-  proc { |item, user, target, move, mults, _baseDmg, type, aiCheck|
-    if target.damageState.critical
-      mults[:final_damage_multiplier] *= 1.2
-      user.aiLearnsItem(item) unless aiCheck
-    end
-  }
-)
-
 BattleHandlers::DamageCalcUserItem.add(:LUMBERAXE,
   proc { |item, user, target, move, mults, _baseDmg, type, aiCheck|
     mults[:final_damage_multiplier] *= 1.25

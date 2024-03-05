@@ -37471,7 +37471,7 @@ The user attacks with dark illusions. This also lowers the target's Defense stat
 El usuario ataca con ilusiones oscuras. Siempre disminuye la Defensa del objetivo.
 The user slashes using woven silk, lowering the user's Attack by four steps. Critical hits twice as often.
 El usuario desgarra usando seda, disminuyendo el Ataque del usuario 4 grados. Tiene el doble de índice de golpe crítico.
-The user uses all their might to attack their opponent, causing them to rest on their next turn.
+The user uses all their might to attack their opponent, causing the user to rest on their next turn.
 El usuario usa toda su fuerza para atacar al objetivo. Tendrá que descansar en el siguiente turno.
 The user doubles its critical strike chance and raises its Sp. Atk and Sp. Def.
 El usuario duplica su índice de golpe crítico y aumenta su Ataque Especial y Defensa Especial.
@@ -37613,8 +37613,8 @@ Round objects are hurled at the target to strike three times in a row.
 El usuario lanza esferas al objetivo tres veces seguidas.
 The user hits the target with each of its heads from underground. Strikes three times.
 El usuario golpea al objetivo con cada una de sus cabezas desde abajo. Golpea tres veces seguidas.
-A diamond-tough force-field protects the user’s side for 10 turns from critical hits or random added effects.
-Un campo de fuerza diamantina protege al lado aliado de golpes críticos o efectos secundarios aleatorios durante 10 turnos.
+A diamond-tough force-field protects the user's side for 5 turns from critical hits y reduce el daño contra ellos.
+Un campo de fuerza diamantina protege al lado aliado de golpes críticos 
 The user dances to encourage its ally. Their attacks this turn will be critical hits.
 El usuario baila para animar a su aliado, haciendo que sus ataques ese turno sean críticos.
 The user dances to restore an ally by 50% max HP. They're cured of any status conditions.
@@ -42400,8 +42400,8 @@ Boosts Sp. Atk by 30% in rain.
 Aumenta su Ataque Especial un 30% bajo lluvia.
 Has a 30% chance to dizzy targets when using special moves.
 Tiene un 30% de probabilidad de marear a enemigos al usar movimientos especiales.
-Pokémon can't dance.
-Los Pokémon no pueden bailar.
+Pokémon can't dance or use sound-based moves.
+Los Pokémon no pueden bailar o usan movimientos de sonido.
 The effect of healing on foes is reversed.
 La curación para los rivales es invertida.
 Immune to Fighting-type moves, and boosts Speed when hit by one.
@@ -48387,6 +48387,14 @@ They'll be protected from status ailments for #{value - 1} more turns!
 ¡El Velo Sagrado de {1} fue removido!
 {1} is no longer protected by Safeguard.
 {1} ya no está protegido por el Velo Sagrado.
+{1} is protected by a diamond sheen!
+{1} is protected by a diamond sheen!
+They can't be crit and take less damage for #{value - 1} more turns!
+¡Será protegido de movimientos críticos y parte de daño por #{value - 1} turnos más!
+{1}'s Diamond Field was removed!
+¡El Campo de Diamantes de {1} fue removido!
+{1} is no longer protected by Diamond Field.
+{1} ya no está protegido por el Campo de Diamantes.
 Crafty Shield protected {1}!
 ¡El Truco Defensa protegió a {1}!
 The kicked up mat will block attacks against #{teamName} this turn!

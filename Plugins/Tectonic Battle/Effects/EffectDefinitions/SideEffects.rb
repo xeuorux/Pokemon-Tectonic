@@ -153,9 +153,10 @@ GameData::BattleEffect.register_effect(:Side, {
     :real_name => "Diamond Field",
     :type => :Integer,
     :ticks_down => true,
+    :is_screen => true,
     :apply_proc => proc do |battle, _side, teamName, value|
         battle.pbDisplay(_INTL("{1} is protected by a diamond sheen!", teamName))
-        battle.pbDisplay(_INTL("They'll be protected from critical hits and random added effects for #{value - 1} more turns!", value))
+        battle.pbDisplay(_INTL("They can't be crit and take less damage for #{value - 1} more turns!", value))
     end,
     :disable_proc => proc do |battle, _side, teamName|
         battle.pbDisplay(_INTL("{1}'s Diamond Field was removed!", teamName))

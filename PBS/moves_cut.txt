@@ -2212,3 +2212,28 @@ Target = AllNearOthers
 FunctionCode = Invalid
 Flags = CanProtect,CanMirrorMove,Sound
 Description = Using an odd shock wave, the user damages any Pokémon of the same type as the user.
+#-------------------------------
+[HEADLONGRUSH]
+Name = Headlong Rush
+Type = GROUND
+Category = Physical
+Power = 120
+Accuracy = 100
+TotalPP = 5
+Target = NearOther
+FunctionCode = Invalid
+Flags = CanProtect,CanMirrorMove
+Description = The user smashes into the target in a full-body tackle. This cuts the user's Defenses.
+Animation = STOMPINGTANTRUM
+#-------------------------------
+[OVERDRIVE]
+Name = Overdrive
+Type = ELECTRIC
+Category = Special
+Power = 80
+Accuracy = 100
+TotalPP = 10
+Target = AllNearFoes
+FunctionCode = Invalid
+Flags = CanProtect,CanMirrorMove,Sound
+Description = Attacks opposing Pokémon by twanging a guitar or bass guitar.

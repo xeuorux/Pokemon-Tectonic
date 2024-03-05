@@ -401,7 +401,7 @@ Pokemon = PRINPLUP,21
 [RUINMANIAC,Spencer]
 Pokemon = BALTOY,21
     Moves = CONFIDE,RAPIDSPIN,PSYBEAM,MUDSHOT
-    AbilityIndex = 1 # Disorienting
+    AbilityIndex = 1 # Magic Bounce
     Item = CADOBERRY
 Pokemon = BUIZEL,21
     Moves = QUICKATTACK,FAKEOUT,WIPEOUT,DAZZLE
@@ -783,7 +783,7 @@ Pokemon = AMAROWAK,40
     EV = 14,5,0,11,5,20
 Pokemon = CLAYDOL,40
     Moves = EARTHPOWER,LIGHTSCREEN,REFLECT,PSYCHIC
-    AbilityIndex = 1 # Disorienting
+    AbilityIndex = 1 # Magic Bounce
     Item = LIGHTCLAY
     # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
     EV = 20,0,20,0,0,10
@@ -2188,7 +2188,7 @@ Pokemon = KRICKETUNE,70
 Pokemon = WHISCASH,70
     AbilityIndex = 0 # Mental Block
 Pokemon = MFURRET,70
-    AbilityIndex = 0 # Soul Read
+    AbilityIndex = 0 # Filter
 Pokemon = DIGNIPHITE,70
     AbilityIndex = 1 # Fascinate
 #-------------------------------
@@ -2753,7 +2753,7 @@ Pokemon = VENOMOTH,45
     AbilityIndex = 0 # Fluffy
     Item = SHELLBELL
 Pokemon = CLAYDOL,45
-    AbilityIndex = 1 # Disorienting
+    AbilityIndex = 1 # Magic Bounce
 Pokemon = JYNX,45
     AbilityIndex = 0 # Fascinate
 Pokemon = FROSLASS,45
@@ -3061,7 +3061,7 @@ Pokemon = ARCANINE,40
 [TRAINER_Keoni,Keoni]
 Flags = NoPerfect
 Pokemon = MSENTRET,22
-    AbilityIndex = 0 # Soul Read
+    AbilityIndex = 0 # Filter
     Item = PSYCHICGEM
 Pokemon = ARATTATA,22
     AbilityIndex = 0 # Night Life
@@ -3479,11 +3479,11 @@ Pokemon = CONKELDURR,52
     Moves = ADAMANTINEPRESS,WOODHAMMER,DRAINPUNCH,METEORMASH
     AbilityIndex = 0 # Expertise
 Pokemon = ARCLAMOR,52
-    Moves = OVERDRIVE,MIASMA,LIGHTNINGDANCE,HYPERVOICE
+    Moves = DISCHARGE,GRUNGE,LIGHTNINGDANCE,HYPERVOICE
     AbilityIndex = 0 # Loud
 Pokemon = MFURRET,53
     Moves = STOMPINGTANTRUM,PSYCHICFANGS,IGNITE,KICKSTART
-    AbilityIndex = 0 # Soul Read
+    AbilityIndex = 0 # Filter
     Item = LEFTOVERS
 #-------------------------------
 [BACKPACKER_F,Mia]
@@ -3755,7 +3755,7 @@ Pokemon = MZANGOOSE,56
 #-------------------------------
 [YOUNGSTER2,Davor]
 Pokemon = RUBARIOR,58
-    AbilityIndex = 0 # Magic Bounce
+    AbilityIndex = 0 # Magic Shield
     Item = ASSAULTVEST
 Pokemon = GOREBYSS,57
     AbilityIndex = 0 # Fascinate
@@ -5228,7 +5228,7 @@ Pokemon = DURANT,70
     EV = 10,20,0,20,20,0
 Pokemon = CLAYDOL,70
     Moves = LEYLINEBURST,CALMMIND,COSMICPOWER,REST
-    AbilityIndex = 1 # Disorienting
+    AbilityIndex = 1 # Magic Bounce
     # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
     EV = 20,20,0,0,20,10
 #-------------------------------
@@ -5333,7 +5333,7 @@ Pokemon = FEAROW,70
     # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
     EV = 20,10,0,0,10,20
 Pokemon = ARCLAMOR,70
-    Moves = OVERDRIVE,MIASMA,LIGHTNINGDANCE,RISINGPOWER
+    Moves = DISCHARGE,GRUNGE,LIGHTNINGDANCE,RISINGPOWER
     AbilityIndex = 1 # Thunderstruck
     # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
     EV = 10,20,0,20,20,0
@@ -6676,7 +6676,7 @@ Pokemon = GOLEM,59
     AbilityIndex = 0 # Unbreakable
     Item = PASSHOBERRY
 Pokemon = RUBARIOR,59
-    AbilityIndex = 0 # Magic Bounce
+    AbilityIndex = 0 # Magic Shield
 Pokemon = LINOONE,59
     AbilityIndex = 0 # Dire Diversion
     Item = LIECHIBERRY
@@ -6938,7 +6938,7 @@ Pokemon = WATCHOG,70
 Pokemon = MZANGOOSE,70
     AbilityIndex = 1 # Mental Damage
 Pokemon = RUBARIOR,70
-    AbilityIndex = 0 # Magic Bounce
+    AbilityIndex = 0 # Magic Shield
 Pokemon = DECEAT,70
     AbilityIndex = 0 # Pure Force
 Pokemon = PTEROFLYTE,70

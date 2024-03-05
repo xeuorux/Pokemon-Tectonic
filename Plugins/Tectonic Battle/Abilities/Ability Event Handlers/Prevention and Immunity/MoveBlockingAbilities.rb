@@ -16,7 +16,7 @@ BattleHandlers::MoveBlockingAbility.copy(:DAZZLING, :QUEENLYMAJESTY, :ROYALMAJES
 
 BattleHandlers::MoveBlockingAbility.add(:KILLJOY,
     proc { |ability, _bearer, _user, _targets, move, _battle|
-        next move.danceMove?
+        next move.danceMove? || move.soundMove?
     }
 )
 

@@ -375,17 +375,6 @@ class PokeBattle_Move
                 end
             end
         end
-        if target.pbOwnSide.effectActive?(:DiamondField) && !(user && user.hasActiveAbility?(:INFILTRATOR))
-            if showMessages
-                battle.pbDisplay(_INTL("The Diamond Field protects #{target.pbThis} from a random added effect!"))
-            end
-        end
-        if target.effectActive?(:Enlightened)
-            if showMessages
-                battle.pbDisplay(_INTL("#{target.pbThis} is enlightened, and so ignores a random added effect!"))
-            end
-            return false
-        end
         if target.shouldAbilityApply?(:COVERTCLOAK,aiCheck) && user.opposes?(target)
             if showMessages
                 battle.pbDisplay(_INTL("#{target.pbThis}'s #{getItemName(:COVERTCLOAK)} protects it from a random added effect!"))
