@@ -8,6 +8,8 @@ class MoveHandlerHash < HandlerHash2
 end
 
 module BattleHandlers
+    # Battler's type calculation
+    TypeCalcAbility                     = AbilityHandlerHash.new
     # Battler's speed calculation
     SpeedCalcAbility                    = AbilityHandlerHash.new
     SpeedCalcItem                       = ItemHandlerHash.new
@@ -131,6 +133,13 @@ module BattleHandlers
     # Special Weather Effect abilities
     TotalEclipseAbility                 = AbilityHandlerHash.new
     FullMoonAbility                     = AbilityHandlerHash.new
+
+    #=============================================================================
+
+    def self.triggerTypeCalcability(ability, battler, types)
+        ret = TypeCalcAbility.trigger(ability, battler, types)
+        return !ret.nil? ? ret : types
+    end
 
     #=============================================================================
 

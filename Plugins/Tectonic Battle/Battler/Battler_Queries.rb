@@ -26,7 +26,11 @@ class PokeBattle_Battler
             ret.push(@type2) if @type2 != @type1
         end
         ret = [@pokemon.itemTypeChosen] if itemActive? && hasItem?(:CRYSTALVEIL)
-        # Extra types
+        # Type changes from ability
+        eachActiveAbility do |abilityID|
+            ret = BattleHandlers.triggerTypeCalcability(abilityID, self, ret)
+        end
+        # Extra types (used for a curse)
         @pokemon.extraTypes.each do |extraPkmnType|
             next if ret.include?(extraPkmnType)
             ret.push(extraPkmnType)
@@ -45,6 +49,8 @@ class PokeBattle_Battler
         end
         # Add the third type specially.
         ret.push(@effects[:Type3]) if withType3 && effectActive?(:Type3) && !ret.include?(@effects[:Type3])
+        ret.uniq!
+        ret.compact!
         return ret
     end
 

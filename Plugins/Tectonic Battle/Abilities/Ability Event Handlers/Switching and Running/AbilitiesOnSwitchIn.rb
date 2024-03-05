@@ -284,15 +284,6 @@ BattleHandlers::AbilityOnSwitchIn.add(:LEVITATE,
   }
 )
 
-BattleHandlers::AbilityOnSwitchIn.add(:UNIDENTIFIED,
-  proc { |ability, battler, battle, aiCheck|
-      next 0 if aiCheck
-      battle.pbShowAbilitySplash(battler, ability)
-      battle.pbDisplay(_INTL("{1} is Mutant-type!", battler.pbThis))
-      battle.pbHideAbilitySplash(battler)
-  }
-)
-
 BattleHandlers::AbilityOnSwitchIn.add(:MAESTRO,
   proc { |ability, battler, battle, aiCheck|
       next 0 if aiCheck
@@ -864,11 +855,20 @@ BattleHandlers::AbilityOnSwitchIn.add(:TESLACOILS,
   }
 )
 
+BattleHandlers::AbilityOnSwitchIn.add(:UNIDENTIFIED,
+  proc { |ability, battler, battle, aiCheck|
+      next 0 if aiCheck
+      battle.pbShowAbilitySplash(battler, ability)
+      battle.pbDisplay(_INTL("{1} is Mutant-type!", battler.pbThis))
+      battle.pbHideAbilitySplash(battler)
+  }
+)
+
 BattleHandlers::AbilityOnSwitchIn.add(:INFECTED,
   proc { |ability, battler, battle, aiCheck|
       next 10 if aiCheck
       battle.pbShowAbilitySplash(battler, ability)
-      battler.applyEffect(:Type3, :GRASS)
+      battle.pbDisplay(_INTL("{1} is infected!", battler.pbThis))
       battle.pbHideAbilitySplash(battler)
   }
 )
@@ -877,7 +877,7 @@ BattleHandlers::AbilityOnSwitchIn.add(:RUSTWRACK,
   proc { |ability, battler, battle, aiCheck|
       next 10 if aiCheck
       battle.pbShowAbilitySplash(battler, ability)
-      battler.applyEffect(:Type3, :STEEL)
+      battle.pbDisplay(_INTL("{1} is rusty!", battler.pbThis))
       battle.pbHideAbilitySplash(battler)
   }
 )
@@ -886,7 +886,7 @@ BattleHandlers::AbilityOnSwitchIn.add(:SLUGGISH,
   proc { |ability, battler, battle, aiCheck|
       next 10 if aiCheck
       battle.pbShowAbilitySplash(battler, ability)
-      battler.applyEffect(:Type3, :BUG)
+      battle.pbDisplay(_INTL("{1} is sluggish!", battler.pbThis))
       battle.pbHideAbilitySplash(battler)
   }
 )
@@ -895,7 +895,7 @@ BattleHandlers::AbilityOnSwitchIn.add(:HAUNTED,
   proc { |ability, battler, battle, aiCheck|
       next 0 if aiCheck
       battle.pbShowAbilitySplash(battler, ability)
-      battler.applyEffect(:Type3,:GHOST)
+      battle.pbDisplay(_INTL("{1} is haunted!", battler.pbThis))
       battle.pbHideAbilitySplash(battler)
   }
 )
