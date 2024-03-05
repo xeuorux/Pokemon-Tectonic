@@ -25,3 +25,10 @@ BattleHandlers::TypeCalcAbility.add(:SLUGGISH,
         next types
     }
 )
+
+BattleHandlers::TypeCalcAbility.add(:UNIDENTIFIED,
+    proc { |ability, battler, types|
+        types.push(:MUTANT) unless types.include?(:MUTaNT)
+        next types
+    }
+)
