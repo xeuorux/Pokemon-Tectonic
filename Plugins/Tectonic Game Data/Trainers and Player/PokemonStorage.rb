@@ -111,7 +111,7 @@ class PokemonBox
 
     def addDonationBoxes(maxBoxes = Settings::NUM_STORAGE_BOXES, maxDonationBoxes = Settings::NUM_DONATION_BOXES, maxPokemon = PokemonBox::BOX_SIZE)
       for i in 0...maxDonationBoxes
-        @boxes[i + maxBoxes] = PokemonBox.new(_INTL("Donation Box {1}",i+1),maxPokemon)
+        @boxes[i + maxBoxes] = PokemonBox.new(_INTL("Box {1} (D)",i+1),maxPokemon)
         @boxes[i + maxBoxes].background = i % BASICWALLPAPERQTY
         @boxes[i + maxBoxes].setDonationBox
         echoln("Added donation box #{i+1}")

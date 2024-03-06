@@ -655,7 +655,12 @@ class PokemonStorageScene
 
     def pbBoxName(helptext, minchars, maxchars)
         oldsprites = pbFadeOutAndHide(@sprites)
-        ret = pbEnterBoxName(helptext, minchars, maxchars)
+        # TODO: Remove this if when a suitable icon is present on donation boxes
+        if @storage[@storage.currentBox].isDonationBox?
+            ret = pbEnterBoxName(helptext, minchars, maxchars-3) + "(D)"
+        else
+            ret = pbEnterBoxName(helptext, minchars, maxchars)
+        end
         @storage[@storage.currentBox].name = ret if ret.length > 0
         @sprites["box"].refreshBox = true
         pbRefresh

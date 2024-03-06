@@ -687,7 +687,7 @@ class PokemonStorageScreen
                 commands[nameCommand = commands.length]         = _INTL("Name")
             end
             commands[searchCommand = commands.length]       = _INTL("Search")
-            unless selectionMode
+            unless selectionMode || @storage.boxes[@storage.currentBox].isDonationBox?
                 commands[sortCommand = commands.length]         = _INTL("Sort")
                 commands[sortAllCommand = commands.length]      = _INTL("Sort All")
                 commands[lockCommand = commands.length]         =
@@ -716,11 +716,11 @@ class PokemonStorageScreen
                 @scene.pbBoxName(_INTL("Box name?"), 0, 12)
             elsif command == visitEstateCommand && visitEstateCommand > -1
                 if heldpkmn
-                    @scene.pbDisplay(INTL("Can't Visit the PokÉstate while you have a Pokémon in your hand!"))
+                    @scene.pbDisplay("Can't Visit the PokÉstate while you have a Pokémon in your hand!")
                     return false
                 end
                 if @storage.boxes[@storage.currentBox].isDonationBox?
-                    @scene.pbDisplay(INTL("Can't visit donation boxes."))
+                    @scene.pbDisplay("Can't visit donation boxes.")
                     return false
                 end
                 $PokEstate.transferToEstate(@storage.currentBox, 0)
