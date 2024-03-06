@@ -45825,6 +45825,12 @@ Can't visit donation boxes.
 Can't visit donation boxes.
 Can't Visit the PokÉstate while you have a Pokémon in your hand!
 Can't Visit the PokÉstate while you have a Pokémon in your hand!
+Are you sure you want to release this pokemon?
+Are you sure you want to release this pokemon?
+They will be gone forever. Are you sure?
+They will be gone forever. Are you sure?
+Release
+Release
 City
 Ciudad
 Desert

@@ -93,7 +93,7 @@ class PokemonStorageScreen
                         commands[cmdGiveItem = commands.length]     = _INTL("Give Item")
                         commands[cmdTakeItem = commands.length]     = _INTL("Take Item") if selectedPokemon.hasItem?
                         commands[cmdMark = commands.length]     = _INTL("Mark")
-                        commands[cmdRelease = commands.length]  = _INTL("Candy Exchange")
+                        commands[cmdRelease = commands.length]  = _INTL("Release")
                         commands[cmdDebug = commands.length]    = _INTL("Debug") if $DEBUG
                         commands[cmdCancel = commands.length]   = _INTL("Cancel")
                         command = pbShowCommands(helptext, commands)
@@ -162,7 +162,7 @@ class PokemonStorageScreen
                     commands[cmdSummary = commands.length] = _INTL("Summary")
                     commands[cmdPokedex = commands.length] = _INTL("MasterDex") if $Trainer.has_pokedex
                     commands[cmdMark = commands.length] = _INTL("Mark")
-                    commands[cmdRelease = commands.length] = _INTL("Candy Exchange")
+                    commands[cmdRelease = commands.length] = _INTL("Release")
                     commands.push(_INTL("Cancel"))
                     command = pbShowCommands(_INTL("{1} is selected.", pokemon.name), commands)
                     if cmdWithdraw > -1 && command == cmdWithdraw
@@ -210,7 +210,7 @@ class PokemonStorageScreen
                     commands[cmdSummary = commands.length] = _INTL("Summary")
                     commands[cmdPokedex = commands.length] = _INTL("MasterDex") if $Trainer.has_pokedex
                     commands[cmdMark = commands.length] = _INTL("Mark")
-                    commands[cmdRelease = commands.length] = _INTL("Candy Exchange")
+                    commands[cmdRelease = commands.length] = _INTL("Release")
                     commands.push(_INTL("Cancel"))
                     command = pbShowCommands(_INTL("{1} is selected.", pokemon.name), commands)
                     if cmdStore > -1 && command == cmdStore
@@ -395,7 +395,7 @@ class PokemonStorageScreen
                 pkmnname = heldpokemon.name
                 lifetimeEXP = heldpokemon.exp - heldpokemon.growth_rate.minimum_exp_for_level(heldpokemon.obtain_level)
                 pbDisplay(_INTL("{1} was stored forever.", pkmnname))
-                candiesFromReleasing(lifetimeEXP)
+                candiesFromDonating(lifetimeEXP)
                 pbDisplay(_INTL("Bye-bye, {1}!", pkmnname))
             else return false
             end
@@ -600,28 +600,29 @@ class PokemonStorageScreen
             pbDisplay(_INTL("That's your last Pokémon!"))
             return
         end
-        command = pbShowCommands(_INTL("Release this Pokémon in exchange for Candies?"), [_INTL("No"), _INTL("Yes")])
+        command = pbShowCommands(_INTL("Are you sure you want to release this pokemon?"), [_INTL("No"), _INTL("Yes")])
         if command == 1
-            pkmnname = pokemon.name
-            lifetimeEXP = pokemon.exp - pokemon.growth_rate.minimum_exp_for_level(pokemon.obtain_level)
-            @scene.pbRelease(selected, heldpoke)
-            if heldpoke
-                @heldpkmn = nil
-            else
-                @storage.pbDelete(box, index)
+            command = pbShowCommands(_INTL("They will be gone forever. Are you sure?"), [_INTL("No"), _INTL("Yes")])
+            if command == 1
+                pkmnname = pokemon.name
+                @scene.pbRelease(selected, heldpoke)
+                if heldpoke
+                    @heldpkmn = nil
+                else
+                    @storage.pbDelete(box, index)
+                end
+                @scene.pbRefresh
+                pbDisplay(_INTL("{1} was released.", pkmnname))
+                pbDisplay(_INTL("Bye-bye, {1}!", pkmnname))
+                @scene.pbRefresh
             end
-            @scene.pbRefresh
-            pbDisplay(_INTL("{1} was released.", pkmnname))
-            pbDisplay(_INTL("Bye-bye, {1}!", pkmnname))
-            @scene.pbRefresh
-            candiesFromReleasing(lifetimeEXP)
         end
         return
     end
 
     CANDY_EXCHANGE_EFFICIENCY = 1.0
 
-    def candiesFromReleasing(lifetimeEXP)
+    def candiesFromDonating(lifetimeEXP)
         lifetimeEXP = (lifetimeEXP * CANDY_EXCHANGE_EFFICIENCY).floor
         if lifetimeEXP > 0
             xsCandyTotal, sCandyTotal, mCandyTotal, _lCandyTotal = calculateCandySplitForEXP(lifetimeEXP)
