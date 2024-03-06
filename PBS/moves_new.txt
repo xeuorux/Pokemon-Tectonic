@@ -4623,7 +4623,7 @@ TotalPP = 5
 Target = NearOther
 FunctionCode = UserMustUseRestNextTurn
 Flags = CanProtect,CanMirrorMove
-Description = The user uses all their might to attack their opponent, causing the user to rest on their next turn.
+Description = The user uses all their might to attack their opponent, forcing the user to use Rest on their next turn.
 Animation = GIGAIMPACT
 #-------------------------------
 [MANYBLESSINGS]

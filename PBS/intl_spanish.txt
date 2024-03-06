@@ -37471,7 +37471,7 @@ The user attacks with dark illusions. This also lowers the target's Defense stat
 El usuario ataca con ilusiones oscuras. Siempre disminuye la Defensa del objetivo.
 The user slashes using woven silk, lowering the user's Attack by four steps. Critical hits twice as often.
 El usuario desgarra usando seda, disminuyendo el Ataque del usuario 4 grados. Tiene el doble de índice de golpe crítico.
-The user uses all their might to attack their opponent, causing the user to rest on their next turn.
+The user uses all their might to attack their opponent, forcing the user to use Rest on their next turn.
 El usuario usa toda su fuerza para atacar al objetivo. Tendrá que descansar en el siguiente turno.
 The user doubles its critical strike chance and raises its Sp. Atk and Sp. Def.
 El usuario duplica su índice de golpe crítico y aumenta su Ataque Especial y Defensa Especial.
@@ -48275,7 +48275,7 @@ The next Ground-type attack against {1} will deal double damage!
 ¡El siguiente ataque tipo Tierra contra {1} causará el doble de daño!
 {1} is now immune to #{value}-type!
 ¡{1} ahora es inmune al tipo #{value}!
-{1} is exhausted. They must rest next turn.
+{1} is exhausted. They must Rest next turn.
 {1} está exhausto. Tendrá que descansar el siguiente turno.
 {1} was hurt!
 ¡{1} fue dañado!

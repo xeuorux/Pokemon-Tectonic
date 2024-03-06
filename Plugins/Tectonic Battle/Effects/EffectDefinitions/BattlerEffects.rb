@@ -1814,7 +1814,7 @@ GameData::BattleEffect.register_effect(:Battler, {
     :ticks_down => true,
     :multi_turn_tracker => true,
     :apply_proc => proc do |battle, battler, _value|
-        battle.pbDisplay(_INTL("{1} is exhausted. They must rest next turn.", battler.pbThis))
+        battle.pbDisplay(_INTL("{1} is exhausted. They must Rest next turn.", battler.pbThis))
         battler.currentMove = :REST 
     end,
 })
