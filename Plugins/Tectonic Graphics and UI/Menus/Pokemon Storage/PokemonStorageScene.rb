@@ -669,6 +669,7 @@ class PokemonStorageScene
         found = []
         if ret.length > 0
             for i in 0...@storage.maxBoxes
+                next if @storage.boxes[i].isDonationBox?
                 box = @storage.boxes[i]
                 for j in 0..PokemonBox::BOX_SIZE
                     curpkmn = box[j]

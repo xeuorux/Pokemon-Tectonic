@@ -287,6 +287,10 @@ class PokemonStorageScreen
     def pbWithdraw(selected, heldpoke)
         box = selected[0]
         index = selected[1]
+        if @storage[box].isDonationBox?
+            pbDisplay(_INTL("Can't withdraw from a donation box")) 
+            return false
+        end
         raise _INTL("Can't withdraw from party...") if box == -1
         if @storage.party_full?
             pbDisplay(_INTL("Your party's full!"))
@@ -313,7 +317,9 @@ class PokemonStorageScreen
         else
             loop do
                 destbox = @scene.pbChooseBox(_INTL("Deposit in which Box?"))
-                if destbox >= 0
+                if @storage[destbox].isDonationBox?
+                    pbStoreDonation(heldpoke || @storage[-1, index])
+                elsif destbox >= 0
                     firstfree = @storage.pbFirstFreePos(destbox)
                     if firstfree < 0
                         pbDisplay(_INTL("The Box is full."))
@@ -347,6 +353,9 @@ class PokemonStorageScreen
             pbPlayBuzzerSE
             pbDisplay(_INTL("That's your last Pokémon!"))
             return
+        elsif box > -1 && @storage[box].isDonationBox?
+            pbDisplay(_INTL("Can't withdraw from a donation box")) 
+            return false
         end
         @scene.pbHold(selected)
         @heldpkmn = @storage[box, index]
@@ -362,6 +371,9 @@ class PokemonStorageScreen
             pbDisplay("Can't place that there.")
             return
         end
+        if box > -1 && @storage[box].isDonationBox?
+            return if !pbStoreDonation(@heldpkmn)
+        end
         if box >= 0
             @heldpkmn.time_form_set = nil
             @heldpkmn.form = 0 if @heldpkmn.isSpecies?(:SHAYMIN)
@@ -373,6 +385,23 @@ class PokemonStorageScreen
         @storage.party.compact! if box == -1
         @scene.pbRefresh
         @heldpkmn = nil
+    end
+
+    def pbStoreDonation(heldpokemon)
+        command = pbShowCommands(_INTL("Permanently store this Pokémon in exchange for Candies?"), [_INTL("No"), _INTL("Yes")])
+        if command == 1
+            command = pbShowCommands(_INTL("This Pokémon will not be retrievable after this. Are you sure?"), [_INTL("No"), _INTL("Yes")])
+            if command == 1
+                pkmnname = heldpokemon.name
+                lifetimeEXP = heldpokemon.exp - heldpokemon.growth_rate.minimum_exp_for_level(heldpokemon.obtain_level)
+                pbDisplay(_INTL("{1} was stored forever.", pkmnname))
+                candiesFromReleasing(lifetimeEXP)
+                pbDisplay(_INTL("Bye-bye, {1}!", pkmnname))
+            else return false
+            end
+        else return false
+        end
+        return true
     end
 
     def pbChangeLock(boxNumber)
@@ -395,7 +424,7 @@ class PokemonStorageScreen
         
         # Store all pokemon in one big list
         @storage.boxes.each do |box|
-            next if box.isLocked?
+            next if box.isLocked? || box.isDonationBox?
             validBoxes.push(box)
             box.each do |pokemon|
                 allPokemonInValidBoxes.push(pokemon) if pokemon
@@ -687,7 +716,11 @@ class PokemonStorageScreen
                 @scene.pbBoxName(_INTL("Box name?"), 0, 12)
             elsif command == visitEstateCommand && visitEstateCommand > -1
                 if heldpkmn
-                    @scene.pbDisplay("Can't Visit the PokÉstate while you have a Pokémon in your hand!")
+                    @scene.pbDisplay(INTL("Can't Visit the PokÉstate while you have a Pokémon in your hand!"))
+                    return false
+                end
+                if @storage.boxes[@storage.currentBox].isDonationBox?
+                    @scene.pbDisplay(INTL("Can't visit donation boxes."))
                     return false
                 end
                 $PokEstate.transferToEstate(@storage.currentBox, 0)

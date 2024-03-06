@@ -126,6 +126,7 @@ class PokEstate
 		boxChoice = pbMessageChooseNumber(_INTL("Which plot would you like to visit?"),params)
 		boxChoice -= 1
 		return false if boxChoice <= -1
+		return false if $PokemonStorage[boxChoice].isDonationBox?
 		return false if isInEstate?() && boxChoice == estate_box
 		transferToEstate(boxChoice,0)
 		return true
@@ -591,7 +592,8 @@ class PokEstate
 		if @stories_progress > STEPS_TILL_NEW_STORY
 			@stories_progress = 0
 			for box in -1...$PokemonStorage.maxBoxes
-				next if @stories_count[box] >= MAX_STORIES_STORAGE
+				# To avoid donation boxes or maxed story boxes
+				next if box >= Settings::NUM_STORAGE_BOXES || @stories_count[box] >= MAX_STORIES_STORAGE 
 				count = 0
 				$PokemonStorage[box].each { |pkmn| count += 1 if !pkmn.nil? }
 				chance = NEW_STORY_PERCENT_CHANCE_PER_POKEMON * count

@@ -16,6 +16,7 @@ class PokemonBox
         @pokemon[i] = nil
       end
       @locked = 0
+      @isDonationBox = 0
     end
   
     def length
@@ -67,6 +68,18 @@ class PokemonBox
     def unlock
       @locked = 0
     end
+
+    def isDonationBox?
+      return @isDonationBox == 1
+    end
+
+    def setDonationBox
+      @isDonationBox = 1
+    end
+
+    def unSetDonationBox
+      @isDonationBox = 0
+    end
     
     def isLocked?
       return @locked == 1
@@ -87,11 +100,21 @@ class PokemonBox
         @boxes[i] = PokemonBox.new(_INTL("Box {1}",i+1),maxPokemon)
         @boxes[i].background = i % BASICWALLPAPERQTY
       end
+      addDonationBoxes()
       @currentBox = 0
       @boxmode = -1
       @unlockedWallpapers = []
       for i in 0...allWallpapers.length
         @unlockedWallpapers[i] = false
+      end
+    end
+
+    def addDonationBoxes(maxBoxes = Settings::NUM_STORAGE_BOXES, maxDonationBoxes = Settings::NUM_DONATION_BOXES, maxPokemon = PokemonBox::BOX_SIZE)
+      for i in 0...maxDonationBoxes
+        @boxes[i + maxBoxes] = PokemonBox.new(_INTL("Donation Box {1}",i+1),maxPokemon)
+        @boxes[i + maxBoxes].background = i % BASICWALLPAPERQTY
+        @boxes[i + maxBoxes].setDonationBox
+        echoln("Added donation box #{i+1}")
       end
     end
   
@@ -250,6 +273,7 @@ class PokemonBox
         end
       end
       for j in 0...self.maxBoxes
+        next if self[j].isDonationBox?
         for i in 0...maxPokemon(j)
           if self[j,i]==nil
             self[j,i] = pkmn
