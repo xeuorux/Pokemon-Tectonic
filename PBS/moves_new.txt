@@ -4125,17 +4125,6 @@ Target = BothSides
 FunctionCode = StartEclipse8
 Description = Summons eclipse for eight turns, boosting Psychic-type attacks and heralding the Total Eclipse.
 #-------------------------------
-[CAPTIVATINGSIGHT]
-Name = Captivating Sight
-Type = PSYCHIC
-Category = Status
-Accuracy = 0
-TotalPP = 5
-Target = NearFoe
-FunctionCode = TrapTargetStartEclipse8
-Description = Summons eclipse for eight turns. The target becomes obsessed with the sky, trapping it.
-Animation = MIRACLEEYE
-#-------------------------------
 [NIGHTCHILL]
 Name = Night Chill
 Type = DARK
@@ -6637,3 +6626,16 @@ FunctionCode = Dizzy
 Flags = CanProtect,CanMirrorMove,Sound
 EffectChance = 30
 Description = The user creates distorted guitar sounds to attack the target. It has a 30% chance to dizzy.
+#-------------------------------
+[PENUMBRA]
+Name = Penumbra
+Type = PSYCHIC
+Category = Special
+Power = 50
+Accuracy = 100
+TotalPP = 10
+Target = NearFoe
+FunctionCode = StartEclipse8
+Flags = CanProtect,CanMirrorMove
+Description = Psychic energy assaults the foe and darkens the sky, summoning Eclipse for 8 turns.
+Animation = DARKVOID

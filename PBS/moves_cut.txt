@@ -2237,3 +2237,14 @@ Target = AllNearFoes
 FunctionCode = Invalid
 Flags = CanProtect,CanMirrorMove,Sound
 Description = Attacks opposing Pokémon by twanging a guitar or bass guitar.
+#-------------------------------
+[CAPTIVATINGSIGHT]
+Name = Captivating Sight
+Type = PSYCHIC
+Category = Status
+Accuracy = 0
+TotalPP = 5
+Target = NearFoe
+FunctionCode = TrapTargetStartEclipse8
+Description = Summons eclipse for eight turns. The target becomes obsessed with the sky, trapping it.
+Animation = MIRACLEEYE
