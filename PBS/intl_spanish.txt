@@ -45811,6 +45811,26 @@ No puedes usar eso mientras estás en la bicicleta.
 1,\wt<<[>>16<<]>> 2, y\wt<<[>>16<<]>>...\wt<<[>>16<<]>> ...\wt<<[>>16<<]>> ... ¡Ta-da!\se<<[>>Battle ball drop<<]>><<1>>
 Box {1}
 Caja {1}
+Box {1} (D)
+Caja {1} (D)
+Can't withdraw from a donation box.
+Can't withdraw from a donation box.
+Permanently store this Pokémon in exchange for Candies?
+Permanently store this Pokémon in exchange for Candies?
+This Pokémon will not be retrievable after this. Are you sure?
+This Pokémon will not be retrievable after this. Are you sure?
+{1} was stored forever.
+{1} was stored forever.
+Can't visit donation boxes.
+Can't visit donation boxes.
+Can't Visit the PokÉstate while you have a Pokémon in your hand!
+Can't Visit the PokÉstate while you have a Pokémon in your hand!
+Are you sure you want to release this pokemon?
+Are you sure you want to release this pokemon?
+They will be gone forever. Are you sure?
+They will be gone forever. Are you sure?
+Release
+Release
 City
 Ciudad
 Desert

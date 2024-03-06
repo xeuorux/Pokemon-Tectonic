@@ -24,3 +24,13 @@ SaveData.register_conversion(:amwi_berry_rename_310) do
     end
   end
 end
+
+
+SaveData.register_conversion(:donation_boxes_310) do 
+  game_version '3.1.0'
+  display_title 'Adding Donation Boxes.'
+  to_all do |save_data|
+    storage = save_data[:storage_system]
+    storage.addDonationBoxes()
+  end
+end

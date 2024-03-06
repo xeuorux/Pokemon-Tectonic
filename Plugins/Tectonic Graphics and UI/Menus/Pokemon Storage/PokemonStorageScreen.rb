@@ -93,7 +93,7 @@ class PokemonStorageScreen
                         commands[cmdGiveItem = commands.length]     = _INTL("Give Item")
                         commands[cmdTakeItem = commands.length]     = _INTL("Take Item") if selectedPokemon.hasItem?
                         commands[cmdMark = commands.length]     = _INTL("Mark")
-                        commands[cmdRelease = commands.length]  = _INTL("Candy Exchange")
+                        commands[cmdRelease = commands.length]  = _INTL("Release")
                         commands[cmdDebug = commands.length]    = _INTL("Debug") if $DEBUG
                         commands[cmdCancel = commands.length]   = _INTL("Cancel")
                         command = pbShowCommands(helptext, commands)
@@ -162,7 +162,7 @@ class PokemonStorageScreen
                     commands[cmdSummary = commands.length] = _INTL("Summary")
                     commands[cmdPokedex = commands.length] = _INTL("MasterDex") if $Trainer.has_pokedex
                     commands[cmdMark = commands.length] = _INTL("Mark")
-                    commands[cmdRelease = commands.length] = _INTL("Candy Exchange")
+                    commands[cmdRelease = commands.length] = _INTL("Release")
                     commands.push(_INTL("Cancel"))
                     command = pbShowCommands(_INTL("{1} is selected.", pokemon.name), commands)
                     if cmdWithdraw > -1 && command == cmdWithdraw
@@ -210,7 +210,7 @@ class PokemonStorageScreen
                     commands[cmdSummary = commands.length] = _INTL("Summary")
                     commands[cmdPokedex = commands.length] = _INTL("MasterDex") if $Trainer.has_pokedex
                     commands[cmdMark = commands.length] = _INTL("Mark")
-                    commands[cmdRelease = commands.length] = _INTL("Candy Exchange")
+                    commands[cmdRelease = commands.length] = _INTL("Release")
                     commands.push(_INTL("Cancel"))
                     command = pbShowCommands(_INTL("{1} is selected.", pokemon.name), commands)
                     if cmdStore > -1 && command == cmdStore
@@ -287,6 +287,10 @@ class PokemonStorageScreen
     def pbWithdraw(selected, heldpoke)
         box = selected[0]
         index = selected[1]
+        if @storage[box].isDonationBox?
+            pbDisplay(_INTL("Can't withdraw from a donation box.")) 
+            return false
+        end
         raise _INTL("Can't withdraw from party...") if box == -1
         if @storage.party_full?
             pbDisplay(_INTL("Your party's full!"))
@@ -313,7 +317,9 @@ class PokemonStorageScreen
         else
             loop do
                 destbox = @scene.pbChooseBox(_INTL("Deposit in which Box?"))
-                if destbox >= 0
+                if @storage[destbox].isDonationBox?
+                    pbStoreDonation(heldpoke || @storage[-1, index])
+                elsif destbox >= 0
                     firstfree = @storage.pbFirstFreePos(destbox)
                     if firstfree < 0
                         pbDisplay(_INTL("The Box is full."))
@@ -347,6 +353,9 @@ class PokemonStorageScreen
             pbPlayBuzzerSE
             pbDisplay(_INTL("That's your last Pokémon!"))
             return
+        elsif box > -1 && @storage[box].isDonationBox?
+            pbDisplay(_INTL("Can't withdraw from a donation box.")) 
+            return false
         end
         @scene.pbHold(selected)
         @heldpkmn = @storage[box, index]
@@ -362,6 +371,9 @@ class PokemonStorageScreen
             pbDisplay("Can't place that there.")
             return
         end
+        if box > -1 && @storage[box].isDonationBox?
+            return if !pbStoreDonation(@heldpkmn)
+        end
         if box >= 0
             @heldpkmn.time_form_set = nil
             @heldpkmn.form = 0 if @heldpkmn.isSpecies?(:SHAYMIN)
@@ -373,6 +385,23 @@ class PokemonStorageScreen
         @storage.party.compact! if box == -1
         @scene.pbRefresh
         @heldpkmn = nil
+    end
+
+    def pbStoreDonation(heldpokemon)
+        command = pbShowCommands(_INTL("Permanently store this Pokémon in exchange for Candies?"), [_INTL("No"), _INTL("Yes")])
+        if command == 1
+            command = pbShowCommands(_INTL("This Pokémon will not be retrievable after this. Are you sure?"), [_INTL("No"), _INTL("Yes")])
+            if command == 1
+                pkmnname = heldpokemon.name
+                lifetimeEXP = heldpokemon.exp - heldpokemon.growth_rate.minimum_exp_for_level(heldpokemon.obtain_level)
+                pbDisplay(_INTL("{1} was stored forever.", pkmnname))
+                candiesFromDonating(lifetimeEXP)
+                pbDisplay(_INTL("Bye-bye, {1}!", pkmnname))
+            else return false
+            end
+        else return false
+        end
+        return true
     end
 
     def pbChangeLock(boxNumber)
@@ -395,7 +424,7 @@ class PokemonStorageScreen
         
         # Store all pokemon in one big list
         @storage.boxes.each do |box|
-            next if box.isLocked?
+            next if box.isLocked? || box.isDonationBox?
             validBoxes.push(box)
             box.each do |pokemon|
                 allPokemonInValidBoxes.push(pokemon) if pokemon
@@ -571,28 +600,29 @@ class PokemonStorageScreen
             pbDisplay(_INTL("That's your last Pokémon!"))
             return
         end
-        command = pbShowCommands(_INTL("Release this Pokémon in exchange for Candies?"), [_INTL("No"), _INTL("Yes")])
+        command = pbShowCommands(_INTL("Are you sure you want to release this pokemon?"), [_INTL("No"), _INTL("Yes")])
         if command == 1
-            pkmnname = pokemon.name
-            lifetimeEXP = pokemon.exp - pokemon.growth_rate.minimum_exp_for_level(pokemon.obtain_level)
-            @scene.pbRelease(selected, heldpoke)
-            if heldpoke
-                @heldpkmn = nil
-            else
-                @storage.pbDelete(box, index)
+            command = pbShowCommands(_INTL("They will be gone forever. Are you sure?"), [_INTL("No"), _INTL("Yes")])
+            if command == 1
+                pkmnname = pokemon.name
+                @scene.pbRelease(selected, heldpoke)
+                if heldpoke
+                    @heldpkmn = nil
+                else
+                    @storage.pbDelete(box, index)
+                end
+                @scene.pbRefresh
+                pbDisplay(_INTL("{1} was released.", pkmnname))
+                pbDisplay(_INTL("Bye-bye, {1}!", pkmnname))
+                @scene.pbRefresh
             end
-            @scene.pbRefresh
-            pbDisplay(_INTL("{1} was released.", pkmnname))
-            pbDisplay(_INTL("Bye-bye, {1}!", pkmnname))
-            @scene.pbRefresh
-            candiesFromReleasing(lifetimeEXP)
         end
         return
     end
 
     CANDY_EXCHANGE_EFFICIENCY = 1.0
 
-    def candiesFromReleasing(lifetimeEXP)
+    def candiesFromDonating(lifetimeEXP)
         lifetimeEXP = (lifetimeEXP * CANDY_EXCHANGE_EFFICIENCY).floor
         if lifetimeEXP > 0
             xsCandyTotal, sCandyTotal, mCandyTotal, _lCandyTotal = calculateCandySplitForEXP(lifetimeEXP)
@@ -658,7 +688,7 @@ class PokemonStorageScreen
                 commands[nameCommand = commands.length]         = _INTL("Name")
             end
             commands[searchCommand = commands.length]       = _INTL("Search")
-            unless selectionMode
+            unless selectionMode || @storage.boxes[@storage.currentBox].isDonationBox?
                 commands[sortCommand = commands.length]         = _INTL("Sort")
                 commands[sortAllCommand = commands.length]      = _INTL("Sort All")
                 commands[lockCommand = commands.length]         =
@@ -688,6 +718,10 @@ class PokemonStorageScreen
             elsif command == visitEstateCommand && visitEstateCommand > -1
                 if heldpkmn
                     @scene.pbDisplay("Can't Visit the PokÉstate while you have a Pokémon in your hand!")
+                    return false
+                end
+                if @storage.boxes[@storage.currentBox].isDonationBox?
+                    @scene.pbDisplay("Can't visit donation boxes.")
                     return false
                 end
                 $PokEstate.transferToEstate(@storage.currentBox, 0)

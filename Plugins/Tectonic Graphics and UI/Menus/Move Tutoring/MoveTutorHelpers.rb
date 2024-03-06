@@ -30,7 +30,7 @@ def eachPokemonInPartyOrStorage()
 		yield pkmn
 	end
 
-	for i in 0...$PokemonStorage.maxBoxes
+	for i in 0...Settings::NUM_STORAGE_BOXES
 		for j in 0...$PokemonStorage.maxPokemon(i)
 			pkmn = $PokemonStorage[i, j]
 			yield pkmn if pkmn
