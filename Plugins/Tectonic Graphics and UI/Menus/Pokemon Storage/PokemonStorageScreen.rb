@@ -288,7 +288,7 @@ class PokemonStorageScreen
         box = selected[0]
         index = selected[1]
         if @storage[box].isDonationBox?
-            pbDisplay(_INTL("Can't withdraw from a donation box")) 
+            pbDisplay(_INTL("Can't withdraw from a donation box.")) 
             return false
         end
         raise _INTL("Can't withdraw from party...") if box == -1
@@ -354,7 +354,7 @@ class PokemonStorageScreen
             pbDisplay(_INTL("That's your last Pokémon!"))
             return
         elsif box > -1 && @storage[box].isDonationBox?
-            pbDisplay(_INTL("Can't withdraw from a donation box")) 
+            pbDisplay(_INTL("Can't withdraw from a donation box.")) 
             return false
         end
         @scene.pbHold(selected)
