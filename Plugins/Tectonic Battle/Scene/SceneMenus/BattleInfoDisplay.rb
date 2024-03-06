@@ -84,7 +84,7 @@ class BattleInfoDisplay < SpriteWrapper
 
         # Draw the individual battler selection buttons
         battlerNameX = 8
-        battlerCursorX = 148
+        battlerCursorX = 132
         yourPokemonStartingY = 62
         theirPokemonStartingY = yourPokemonStartingY + 164
         distanceBetweenButtons = 54
@@ -100,11 +100,11 @@ class BattleInfoDisplay < SpriteWrapper
             cursorX = @selected == battlerIndex ? @statusCursorBitmap.width / 2 : 0
             bitmap.blt(battlerCursorX, yPos, @statusCursorBitmap.bitmap,
   				Rect.new(cursorX, 0, @statusCursorBitmap.width / 2, @statusCursorBitmap.height / 2))
-            # if @turnOrder.key?(b.index)
-            #     turnDescription = _INTL("# {1}", @turnOrder[b.index].to_s)
-            #     textToDraw.push([turnDescription, battlerCursorX + 140, yPos + 4, 0, base,
-            #                      shadow,])
-            # end
+            if @turnOrder.key?(b.index)
+                turnDescription = @turnOrder[b.index].to_s
+                textToDraw.push([turnDescription, battlerCursorX + 140, yPos + 4, 0, base,
+                                 shadow,])
+            end
 
             yPos += distanceBetweenButtons
             battlerIndex += 1
@@ -118,11 +118,11 @@ class BattleInfoDisplay < SpriteWrapper
             cursorX = @selected == battlerIndex ? @statusCursorBitmap.width / 2 : 0
             bitmap.blt(battlerCursorX, yPos, @statusCursorBitmap.bitmap,
   				Rect.new(cursorX, @statusCursorBitmap.height / 2, @statusCursorBitmap.width / 2, @statusCursorBitmap.height / 2))
-            # if @turnOrder.key?(b.index)
-            #     turnDescription = _INTL("# {1}", @turnOrder[b.index].to_s)
-            #     textToDraw.push([turnDescription, battlerCursorX + 140, yPos + 4, 0, base,
-            #                      shadow,])
-            # end
+            if @turnOrder.key?(b.index)
+                turnDescription = @turnOrder[b.index].to_s
+                textToDraw.push([turnDescription, battlerCursorX + 140, yPos + 4, 0, base,
+                                 shadow,])
+            end
 
             yPos += distanceBetweenButtons
             battlerIndex += 1
