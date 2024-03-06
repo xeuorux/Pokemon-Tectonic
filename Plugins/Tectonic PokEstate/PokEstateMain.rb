@@ -396,7 +396,7 @@ class PokEstate
 		currentBox = -1
 		donationBox = false
 		currentSlot = -1
-		for box in -1...$PokemonStorage.maxBoxes
+		for box in -1...Settings::NUM_STORAGE_BOXES
 			for slot in 0...$PokemonStorage.maxPokemon(box)
 				pkmn = $PokemonStorage[box][slot]
 				next if pkmn.nil?
@@ -591,9 +591,8 @@ class PokEstate
 		@stories_progress += 1
 		if @stories_progress > STEPS_TILL_NEW_STORY
 			@stories_progress = 0
-			for box in -1...$PokemonStorage.maxBoxes
-				# To avoid donation boxes or maxed story boxes
-				next if box >= Settings::NUM_STORAGE_BOXES || @stories_count[box] >= MAX_STORIES_STORAGE 
+			for box in -1...Settings::NUM_STORAGE_BOXES
+				next if @stories_count[box] >= MAX_STORIES_STORAGE 
 				count = 0
 				$PokemonStorage[box].each { |pkmn| count += 1 if !pkmn.nil? }
 				chance = NEW_STORY_PERCENT_CHANCE_PER_POKEMON * count

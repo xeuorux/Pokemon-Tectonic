@@ -434,6 +434,15 @@ class PokemonBox
       end
     end
   end
+
+  def pbEachNonDonationPokemon
+    for i in -1...Settings::NUM_STORAGE_BOXES
+      for j in 0...$PokemonStorage.maxPokemon(i)
+        pkmn = $PokemonStorage[i][j]
+        yield(pkmn,i) if pkmn
+      end
+    end
+  end    
   
   # Yields every Pokémon in storage in turn.
   def pbEachNonEggPokemon
