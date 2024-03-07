@@ -6637,5 +6637,5 @@ TotalPP = 10
 Target = NearFoe
 FunctionCode = StartEclipse8
 Flags = CanProtect,CanMirrorMove
-Description = Psychic energy assaults the foe and darkens the sky, summoning Eclipse for 8 turns.
+Description = Psychic energy assaults the foe and darkens the sky, summoning eclipse for 8 turns.
 Animation = DARKVOID
