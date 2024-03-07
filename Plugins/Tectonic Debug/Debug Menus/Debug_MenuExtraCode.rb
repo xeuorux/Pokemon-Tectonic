@@ -536,7 +536,7 @@ def pbExtractText
     end
     pbMessageDisplay(msgwindow, _INTL("Please wait.\\wtnp[0]"))
     MessageTypes.extract("PBS\\intl_.txt")
-    pbMessageDisplay(msgwindow, _INTL("All text in the game was extracted and saved to PBS\intl_.txt.\1"))
+    pbMessageDisplay(msgwindow, _INTL("All text in the game was extracted and saved to PBS\\intl_.txt.\1"))
     pbMessageDisplay(msgwindow,
         _INTL("To localize the text for a particular language, translate every second line in the file.\1"))
     pbMessageDisplay(msgwindow,
