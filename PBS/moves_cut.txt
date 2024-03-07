@@ -2245,6 +2245,6 @@ Category = Status
 Accuracy = 0
 TotalPP = 5
 Target = NearFoe
-FunctionCode = TrapTargetStartEclipse8
+FunctionCode = Invalid
 Description = Summons eclipse for eight turns. The target becomes obsessed with the sky, trapping it.
 Animation = MIRACLEEYE

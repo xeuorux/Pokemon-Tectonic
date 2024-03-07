@@ -31,9 +31,11 @@ class PokeBattle_Battler
             ret = BattleHandlers.triggerTypeCalcability(abilityID, self, ret)
         end
         # Extra types (used for a curse)
-        @pokemon.extraTypes.each do |extraPkmnType|
-            next if ret.include?(extraPkmnType)
-            ret.push(extraPkmnType)
+        if @pokemon
+            @pokemon.extraTypes.each do |extraPkmnType|
+                next if ret.include?(extraPkmnType)
+                ret.push(extraPkmnType)
+            end
         end
         # Burn Up erases the Fire-type.
         ret.delete(:FIRE) if effectActive?(:BurnUp)
