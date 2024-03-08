@@ -49795,28 +49795,28 @@ No luck! Try again next time.
 ...Es {1}. ¿Atiendes el teléfono?
 Hello, and welcome to the Starters Store!
 ¡Hola, y bienvenido a la Tienda Inicial!
-I'm the #{typeName}-type starters salesperson!
-¡Soy el vendedor de los iniciales de tipo #{typeName}!
-You can buy a #{typeName}-type starter Pokemon from me if you have $#{price} and a #{tokenName}.
-Puedes comprarme un Pokémon inicial de tipo #{typeName} si tienes $#{price} y una #{tokenName}.
-You can buy a #{typeName}-type starter Pokemon from me if you have a #{tokenName}.
-Puedes comprarme un Pokémon inicial de tipo #{typeName} si tienes una #{tokenName}.
+I'm the {1}-type starters salesperson!
+¡Soy el vendedor de los iniciales de tipo {1}!
+You can buy a {1}-type starter Pokemon from me if you have ${2} and a {3}.
+Puedes comprarme un Pokémon inicial de tipo {1} si tienes ${2} y una {3}.
+You can buy a {1}-type starter Pokemon from me if you have a {2}.
+Puedes comprarme un Pokémon inicial de tipo {1} si tienes una {2}.
 I'm sorry, but it seems as though you don't have that much money.
 Lo siento, pero parece que no tienes el suficiente dinero.
-I'm sorry, but it seems as though you don't have a #{tokenName}.
-Lo siento, pero parece que no tienes una #{tokenName}.
-Which #{typeName}-type starter Pokemon would you like to look at?
-¿Cúal Pokémon inicial de tipo #{typeName} te gustaría observar?
-Understood, please come back if there's a #{typeName}-type starter Pokemon you'd like to purchase!
-¡Entendido, regresa en cualquier momento si quieres comprar un Pokémon inicial de tipo #{typeName}!
+I'm sorry, but it seems as though you don't have a {1}.
+Lo siento, pero parece que no tienes una {1}.
+Which {1}-type starter Pokemon would you like to look at?
+¿Cúal Pokémon inicial de tipo {1} te gustaría observar?
+Understood, please come back if there's a {1}-type starter Pokemon you'd like to purchase!
+¡Entendido, regresa en cualquier momento si quieres comprar un Pokémon inicial de tipo {1}!
 View Pokedex
 Ver Pokédex
 Buy Pokemon
 Comprar Pokémon
-\PN handed over $#{price} and a #{tokenName} in exchange.
-\PN paga los $#{price} y una #{tokenName} a cambio.
-\PN handed over a #{tokenName} in exchange.
-\PN da una #{tokenName} a cambio.
+\\PN handed over ${1} and a {2} in exchange.
+\PN paga los ${1} y una {2} a cambio.
+\PN handed over a {1} in exchange.
+\PN da una {1} a cambio.
 Thank you for shopping here at the Starters Store!
 ¡Gracias por comprar en la Tienda Inicial!
 My apologies, I don't know what to do with this type of fossil.

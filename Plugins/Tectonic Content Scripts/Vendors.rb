@@ -26,22 +26,22 @@ def purchaseStarters(type,price=0)
 	token = (type.to_s + "TOKEN").to_sym
 	tokenName = GameData::Item.get(token).name
 	
-	pbMessage(_INTL("Hello, and welcome to the Starters Store!"))
-	pbMessage(_INTL("I'm the #{typeName}-type starters salesperson!"))
+	pbMessage(_INTL("Hello, and welcome to the Starters Store!",typeName))
+	pbMessage(_INTL("I'm the {1}-type starters salesperson!",typeName))
 	if price > 0
-		pbMessage(_INTL("You can buy a #{typeName}-type starter Pokemon from me if you have $#{price} and a #{tokenName}."))
+		pbMessage(_INTL("You can buy a {1}-type starter Pokemon from me if you have ${2} and a {3}.",typeName,price,tokenName))
 	else
-		pbMessage(_INTL("You can buy a #{typeName}-type starter Pokemon from me if you have a #{tokenName}."))
+		pbMessage(_INTL("You can buy a {1}-type starter Pokemon from me if you have a {2}.",typeName,tokenName))
 	end
 	if $Trainer.money < price
 		pbMessage(_INTL("I'm sorry, but it seems as though you don't have that much money."))
 		return
 	end
 	if !$PlayerBag.pbHasItem?(token)
-		pbMessage(_INTL("I'm sorry, but it seems as though you don't have a #{tokenName}."))
+		pbMessage(_INTL("I'm sorry, but it seems as though you don't have a {1}.",tokenName))
 		return
 	end
-	pbMessage(_INTL("Which #{typeName}-type starter Pokemon would you like to look at?"))
+	pbMessage(_INTL("Which {1}-type starter Pokemon would you like to look at?",typeName))
 	
 	starterArray = []
 	case type
@@ -59,7 +59,7 @@ def purchaseStarters(type,price=0)
 		result = pbShowCommands(nil,starterArray)
 
 		if result == 0
-			pbMessage(_INTL("Understood, please come back if there's a #{typeName}-type starter Pokemon you'd like to purchase!"))
+			pbMessage(_INTL("Understood, please come back if there's a {1}-type starter Pokemon you'd like to purchase!",typeName))
 			break
 		else
 			starterChosenName = starterArray[result]
@@ -71,9 +71,9 @@ def purchaseStarters(type,price=0)
 			when 1
 				pbAddPokemon(starterSpecies,10)
 				if price > 0
-					pbMessage(_INTL("\\PN handed over $#{price} and a #{tokenName} in exchange."))
+					pbMessage(_INTL("\\PN handed over ${1} and a {2} in exchange.",price,tokenName))
 				else
-					pbMessage(_INTL("\\PN handed over a #{tokenName} in exchange."))
+					pbMessage(_INTL("\\PN handed over a {1} in exchange.",tokenName))
 				end
 				$Trainer.money -= price
 				$PlayerBag.pbDeleteItem(token)
