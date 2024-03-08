@@ -342,7 +342,7 @@ BattleHandlers::TargetAbilityOnHit.add(:FRIGIDREFLECTION,
     }
 )
 
-BattleHandlers::TargetAbilityOnHit.add(:SHOCKRESPONSE,
+BattleHandlers::TargetAbilityOnHit.add(:HUGGABLE,
     proc { |ability, user, target, move, battle, aiCheck, aiNumHits|
           next if target.fainted?
           next unless move.baseDamage >= 100
