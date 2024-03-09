@@ -710,10 +710,6 @@ Flags = MoonglowSynergy
 Name = Fumigate
 Description = Random added effects of wind-based moves are +50% more likely likely to occur.
 #-------------------------------
-[FUNGALFLURRY]
-Name = Fungal Flurry
-Description = On the first turn, its attacks leech the target.
-#-------------------------------
 [GALEFORCE]
 Name = Gale Force
 Description = Boosts the power of wind-based moves by 50%.
@@ -850,7 +846,7 @@ Description = Raises Sp. Atk after knocking out any Pokémon.
 #-------------------------------
 [HUGGABLE]
 Name = Huggable
-Description = When hit by a move with 100 or more base power, hits back instantly with Nuzzle.
+Description = When hit by a move with 95 or more base power, hits back instantly with Nuzzle.
 #-------------------------------
 [HYBRIDFIGHTER]
 Name = Hybrid Fighter
@@ -1006,10 +1002,6 @@ Description = Deals 50% more damage to targets that switched in this turn. Takes
 [LINEBACKER]
 Name = Linebacker
 Description = Doubles the damage of recoil moves.
-#-------------------------------
-[LINGERINGDAZE]
-Name = Lingering Daze
-Description = Enemies which wake up have all their stats lowered by two steps.
 #-------------------------------
 [LIVEFAST]
 Name = Live Fast
@@ -1648,6 +1640,10 @@ Flags = MoonglowSynergy
 Name = Soul Read
 Description = Double damage to targets who don't share a type with their last-used move.
 #-------------------------------
+[SOULSNIPE]
+Name = Soul Snipe
+Description = On the first turn, its attacks leech the target.
+#-------------------------------
 [SOUNDBARRIER]
 Name = Sound Barrier
 Description = After using a sound move, raises both of the Pokémon's defensive stats.
@@ -1968,7 +1964,7 @@ Description = Immune to Poison-type moves, and raises both attacking stats if hi
 #-------------------------------
 [VENOMGORGER]
 Name = Venom Gorger
-Description = Whenever a foe's poison worsens, the Pokémon heals for 50% max HP.
+Description = Whenever a foe's poison worsens, the Pokémon heals for 25% max HP.
 #-------------------------------
 [VERDANT]
 Name = Verdant

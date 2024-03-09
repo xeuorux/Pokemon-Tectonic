@@ -273,6 +273,10 @@ Description = Restores 1/12th HP each turn if frostbitten. Ignores frostbite spe
 Name = Arctic Ariette
 Description = Sound-based attacks turn Ice-type and are boosted by 30%.
 #-------------------------------
+[FUNGALFLURRY]
+Name = Fungal Flurry
+Description = On the first turn, its attacks leech the target.
+#-------------------------------
 [GENERATOR]
 Name = Dynamo
 Description = Whenever it uses a status move, becomes charged, doubling the power of its next Electric-type attack.
@@ -401,6 +405,10 @@ Description = Draws in Electric-type moves, is immune to them, and boosts Sp. At
 [LIMBER]
 Name = Limber
 Description = The Pokémon is protected from numbing.
+#-------------------------------
+[LINGERINGDAZE]
+Name = Lingering Daze
+Description = Enemies which wake up have all their stats lowered by two steps.
 #-------------------------------
 [LIQUIDOOZE]
 Name = Liquid Ooze

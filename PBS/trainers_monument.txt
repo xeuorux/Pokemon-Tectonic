@@ -7,10 +7,10 @@ Pokemon = SWAMPERT,70
     Item = STRIKEVEST
     # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
     EV = 10,20,20,0,20,0
-Pokemon = GCORSOLA,70
+Pokemon = CURSOLA,70
     Moves = WILLOWISP,STRENGTHSAP,TERRAFORM,HEX
     AbilityIndex = 1 # Perish Body
-    Item = EVIOLITE
+    Item = LEFTOVERS
     # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
     EV = 20,0,20,0,0,10
 Pokemon = HYMNUS,70
@@ -636,7 +636,7 @@ Pokemon = HBRAVIARY,70
     # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
     EV = 0,20,20,10,20,0
 Pokemon = SNEASLER,70
-    Moves = DIRECLAW,CLOSECOMBAT,SWORDSDANCE,UTURN
+    Moves = DIRECLAW,CROSSCHOP,SWORDSDANCE,XSCISSOR
     AbilityIndex = 1 # Frustrate
     Item = FIGHTINGGEM
     # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
@@ -1242,7 +1242,7 @@ Pokemon = SERPERIOR,70
     # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
     EV = 20,10,0,0,10,20
 Pokemon = SNEASLER,70
-    Moves = DIRECLAW,CLOSECOMBAT,ROCKSLIDE,UTURN
+    Moves = DIRECLAW,CROSSCHOP,ROCKSLIDE,XSCISSOR
     AbilityIndex = 1 # Frustrate
     Item = ROCKGEM
     # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
@@ -1933,7 +1933,7 @@ Pokemon = SEISMAW,70
     # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
     EV = 20,20,10,0,20,0
 Pokemon = MMANDIBUZZ,70
-    Moves = WILLOWISP,SHIVER,RECOVER,UTURN
+    Moves = WILLOWISP,SHIVER,RECOVER,RAPIDSPIN
     AbilityIndex = 1 # Toil and Trouble
     Item = BLACKSLUDGE
     # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
@@ -2311,7 +2311,7 @@ Pokemon = ARAQUANID,70
     # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
     EV = 20,20,10,0,20,0
 Pokemon = SNEASLER,70
-    Moves = DIRECLAW,CLOSECOMBAT,ROCKSLIDE,UTURN
+    Moves = DIRECLAW,CROSSCHOP,ROCKSLIDE,XSCISSOR
     AbilityIndex = 1 # Frustrate
     Item = STRIKEVEST
     # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
@@ -2399,7 +2399,7 @@ Pokemon = BLASFEMMIE,70
     # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
     EV = 20,20,0,0,20,10
 Pokemon = SNEASLER,70
-    Moves = DIRECLAW,CLOSECOMBAT,ROCKSLIDE,SWORDSDANCE
+    Moves = DIRECLAW,CROSSCHOP,ROCKSLIDE,SWORDSDANCE
     AbilityIndex = 1 # Frustrate
     Item = POISONGEM
     # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def

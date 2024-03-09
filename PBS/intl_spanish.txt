@@ -43008,8 +43008,8 @@ Deals 30% more move damage to Pokémon that are taller than it.
 Sus movimientos son potenciados un 30% si ataca a un Pokémon más alto.
 Takes 30% less move damage from Pokémon that are shorter than it.
 Sus movimientos son potenciados un 30% si ataca a un Pokémon más bajo.
-Whenever a foe's poison worsens, heal for 33% for each level of worsening.
-Cada vez que el veneno de un oponente empeore, se cura un 33% de PS por cada nivel de gravedad.
+Whenever a foe's poison worsens, heal for 25% for each level of worsening.
+Cada vez que el veneno de un oponente empeore, se cura un 25% de PS por cada nivel de gravedad.
 At the first chance, copies an opponent's species' legal Abilities.
 A la primera oportunidad, copia una de las Habilidades legales del oponente.
 Can hold two different items, if both are Herbs.
@@ -43040,8 +43040,8 @@ Boosts Speed by 50% in sandstorm or hail.
 Aumenta su Velocidad un 50% en tormenta de arena o granizo.
 Uses Rapid Spin after its first attack to clear hazards, raise Speed, and deal damage.
 Usa Giro Rápido luego de su primer ataque para quitar trampas, aumentar su Velocidad y causar daño.
-When hit by a move with 100 or more base power, hits back instantly with Nuzzle.
-Cuando es alcanzado por un movimiento con 100 o más de potencia, contraataca inmediatamente usando Moflete Estático.
+When hit by a move with 95 or more base power, hits back instantly with Nuzzle.
+Cuando es alcanzado por un movimiento con 95 o más de potencia, contraataca inmediatamente usando Moflete Estático.
 Attacks against the Pokémon deal 50% more damage, but the attacker takes 100% recoil.
 Ataques contra el Pokémon son un 50% más fuertes, pero el atacante recibe 100% de daño de retroceso.
 Boosts Sp. Atk by 30%, but lowers Sp. Atk after using a special move.

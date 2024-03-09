@@ -336,7 +336,7 @@ Pokemon = VULPIX,20
     EV = 20,0,5,20,0,5
 Pokemon = FLETCHINDER,20
     Name = Dario
-    Moves = FLAMECHARGE,FLAIL,PECK,QUICKATTACK
+    Moves = FLAMECHARGE,FLAIL,WINGCRASH,QUICKATTACK
     AbilityIndex = 0 # Harsh
     Item = LIECHIBERRY
     # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
@@ -758,7 +758,7 @@ Pokemon = LEDYBA,25
 #-------------------------------
 [COOLTRAINER_F7,Blaire]
 Pokemon = SNEASLER,40
-    Moves = HONECLAWS,CLOSECOMBAT,VENOMORTAR,XSCISSOR
+    Moves = HONECLAWS,CROSSCHOP,VENOMORTAR,XSCISSOR
     AbilityIndex = 1 # Frustrate
     Item = FOCUSSASH
     # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
@@ -946,8 +946,8 @@ Pokemon = SANDACONDA,25
     # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
     EV = 20,20,10,0,20,0
 Pokemon = DARTRIX,25
-    Moves = SHADOWSNEAK,MEANLOOK,RAZORLEAF,PLUCK
-    AbilityIndex = 1 # Trapper
+    Moves = SHADOWSNEAK,SHARPEN,RAZORLEAF,PLUCK
+    AbilityIndex = 1 # Infiltrator
     Item = GHOSTGEM
     # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
     EV = 20,20,6,0,20,4
@@ -3432,6 +3432,7 @@ Pokemon = RHYPERIOR,43
 Pokemon = AMPHAROS,43
     Moves = RECOVER,SIGNALBEAM,DRAGONPULSE,THUNDERCAGE
     AbilityIndex = 0 # Static
+    Item = SITRUSBERRY
 Pokemon = HSAMUROTT,44
     Moves = FLIPTURN,SEVER,CEASELESSEDGE,LOWSWEEP
     AbilityIndex = 0 # Poor Conduct
@@ -3440,9 +3441,8 @@ Pokemon = BRONZONG,43
     AbilityIndex = 0 # Levitate
     Item = BINDINGBAND
 Pokemon = DECIDUEYE,43
-    Moves = SPIRITSHACKLE,SNAPTRAP,EERIEIMPULSE,FEATHERDANCE
-    AbilityIndex = 1 # Trapper
-    Item = LEFTOVERS
+    Moves = SPIRITSHACKLE,SNAPTRAP,SHADOWSNEAK,ACROBATICS
+    AbilityIndex = 1 # Soul Snipe
 #-------------------------------
 [SCIENTIST_M3,Gunter]
 Pokemon = CRUSTLE,55
@@ -6807,7 +6807,7 @@ Pokemon = WAILORD,59
 Pokemon = GRENINJA,59
     AbilityIndex = 0 # Mutable
 Pokemon = SPINDA,59
-    AbilityIndex = 0 # Disorienting
+    AbilityIndex = 0 # Wibble Wobble
     Item = SITRUSBERRY
 Pokemon = TREVENANT,59
     AbilityIndex = 1 # Frustrate
@@ -7210,7 +7210,7 @@ Pokemon = FLYGON,70
     AbilityIndex = 0 # Desert Spirit
     Item = GRIPCLAW
 Pokemon = DECIDUEYE,70
-    AbilityIndex = 1 # Trapper
+    AbilityIndex = 1 # Soul Snipe
     Item = MENTALHERB
 Pokemon = TAUROS,70
     AbilityIndex = 0 # Intimidate
@@ -7485,7 +7485,7 @@ Pokemon = MANIKLAW,70
     # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
     EV = 10,20,0,20,20,0
 Pokemon = SNEASLER,70
-    Moves = DIRECLAW,CLOSECOMBAT,ROCKSLIDE,ACROBATICS
+    Moves = DIRECLAW,CROSSCHOP,ROCKSLIDE,ACROBATICS
     AbilityIndex = 1 # Frustrate
     Item = AIRBALLOON
     # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
