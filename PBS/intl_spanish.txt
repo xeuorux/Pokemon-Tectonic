@@ -7321,7 +7321,7 @@ If not, forgive this flight of fancy wasting your time. Remember: SHE came up wi
 Si no, perdona esta elucubración por hacer perder tu tiempo. Recuerda: a ELLA se le ocurrió la idea.
 Hmm… maybe this trip was worth more than that changeling imagines.
 Hmm… Quizás este viaje valió más que esa imaginación de un cambio.  
-If you ever find yourself in the urban expanse with naught to do, find me.
+If you ever find yourself in the <imp>urban expanse</imp> of Prizca with naught to do, find me.
 Si te encuentras a ti mismo en la <imp>extensión urbana</imp> de Prizca con nada que hacer, encuéntrame.
 I’ll be at the riverside, like as not. I have plans involving you and yours.
 Estaré en la ribera, como si nada. Tengo planes que te involucran.
@@ -14711,7 +14711,16 @@ I have no choice, I must listen to them. Bye bye!
 No tengo elección, debo escucharlos. ¡Adiosito!
 Good battling! You should fight my brother, too. He's all the way at the end of the river.
 ¡Buen combate! Deberías combatir contra mi hermano. Él está en el final del río.
-
+Welp, I'll have to abandon my Cave of Hatching visit...
+Bueno, tendré que abandonar mi visita a la Cueva del Albor...
+The entrance is blocked, and I stupidly didn't bring any climbing gear.
+La entrada está bloqueda, y estúpidamente no traje mi equipo de escalada.
+If I did, I could have climbed around, but alas.
+Si lo hubiera hecho, podría haber escalado, pero en fin.
+All I wanted was to experience the legend...
+Todo lo que quería era experimentar la leyenda...
+Take this item, I'm clearly not worthy of it...
+Toma este objeto, claramente no soy digno de él...
 [Map217]
 
 It's the bottom of a conveyor belt. It'd be impossible to climb up.
@@ -52151,6 +52160,90 @@ CATEGORY
 CATEGOR.
 POWER
 PODER
+{1} notices a flammable item amongst your Pokémon!
+¡{1} nota un objeto inflamable entre tus Pokémon!
+{1} inspects it's status conditions.
+{1} inspecciona sus problemas de estado.
+{1} opens its mouth up wide!
+¡{1} abre por completo su boca!
+{1} begins leading the attack!
+¡{1} empieza liderando el ataque!
+{1} gathers up a swarm!
+¡{1} reúne un enjambre!
+{1} is gathering energy for a massive attack!
+¡{1} está reuniendo energía para un ataque masivo!
+{1} is gathering energy for an attack!
+¡{1} está reuniendo energía para un ataque!
+You feel the ground begin to bend towards {1}.
+Sientes que la tierra empieza a doblarse hacia {1}.
+An air of authority surrounds {1}.
+Un aire de autoridad rodea a {1}.
+{1} looks to the Ozone Layer above!
+¡{1} mira arriba hacia la Capa de Ozono!
+{1}'s rage is at at its peak!
+¡La furia de {1} está en su límite!
+{1} aims its stinger at {2}!
+¡{1} apunta su aguijón hacia {2}!
+{1} can't find any!
+¡{1} no puede encontrar ninguno!
+{1} loads a {2}!
+¡{1} carga un {2}!
+{1} is fully charged. Its about to explode!
+{1} está completamente cargado. ¡Está a punto de explotar!
+{1} is charging up.
+{1} está cargando.
+{1} turns remain!
+¡Quedan {1} turnos!
+{1} eyes {2}'s {3} with jealousy!
+¡{1} mira {3} de {2} con envidia!
+{1}'s shroom stalks perk up!
+¡El tallo del hongo de {1} se levanta!
+{1} is flying erratically. It looks unstable!
+{1} está volando erráticamente. ¡Parece inestable!
+{1} is jealous of #{targets[0]}'s good fortune!
+¡{1} está celoso de la buena fortunda de #{targets[0]}!
+{1} shuns the cave's darkness!
+¡{1} evade la oscuridad de la caverna!
+{1} is feeling exposed!
+¡{1} se siente expuesto!
+{1} is looking to butter up #{2}!
+¡{1} busca camelar a #{2}!
+{1} is studying {2}'s personality!
+¡{1} está estudiando la personalidad de {2}!
+{1}'s wind whips in {2}'s direction!
+¡El viento de {1} sopla hacia la dirección de {2}!
+{1} is molding its clay for physical defense!
+¡{1} moldea su arcilla para su defensa física!
+{1} is molding its clay for special defense!
+¡{1} moldea su arcilla para su defensa especial!
+{1} detects weakened mental defenses!
+¡{1} detecta las defensas mentales debilitadas!
+{1} aims to eliminate sound protection!
+¡{1} busca eliminar la protección del sonido!
+{1} positions itself to make a terrible noise!
+¡{1} se posiciona para hacer un terrible sonido!
+{1} wants a hug from someone healthy!
+¡{1} quiere un abrazo de alguien saludable!
+{1} locks onto {2}'s item!
+¡{1} se aferra al objeto de {2}!
+{1} is a big fan of {2}'s last used move!
+¡{1} es un gran fan del último movimiento usado por {2}!
+{1} envies {2}'s Attack!
+¡{1} envidia el Ataque de {2}!
+#{user.pbThis} is warming up its haunting voice!
+¡#{user.pbThis} está calentando su voz inquietante!
+{1} Form
+{1} Forma
+{1} is infected!
+¡{1} está infectado!
+{1} is rusty!
+¡{1} está oxidado!
+{1} is sluggish!
+¡{1} es un baboso!
+{1} is haunted!
+{1} está poseído!
+They can't be crit and take less damage for #{value - 1} more turns!
+¡Es inmune a golpes críticos y recibe menos daño por #{value - 1} turnos más!
 [26]
 [27]
 [27]
