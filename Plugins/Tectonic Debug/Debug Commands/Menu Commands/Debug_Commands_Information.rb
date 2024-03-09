@@ -396,3 +396,13 @@ DebugMenuCommands.register("setmetadata", {
       end
     }
   })
+
+DebugMenuCommands.register("tileset_rearranger", {
+  "parent"      => "editorsmenu",
+  "name"        => _INTL("Tileset Rearranger"),
+  "description" => _INTL("Rearrange tiles in tilesets."),
+  "always_show" => true,
+  "effect"      => proc { |sprites, viewport|
+    pbFadeOutIn { TilesetRearranger.new.main }
+  }
+})

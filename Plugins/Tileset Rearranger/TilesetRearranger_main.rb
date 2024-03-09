@@ -173,27 +173,3 @@ class TilesetRearranger
     close_screen
   end
 end
-
-#===============================================================================
-#
-#===============================================================================
-if Kernel.const_defined?(:MenuHandlers)   # Essentials v20+
-  MenuHandlers.add(:debug_menu, :tileset_rearranger, {
-    "name"        => _INTL("Tileset Rearranger"),
-    "parent"      => :editors_menu,
-    "description" => _INTL("Rearrange tiles in tilesets."),
-    "effect"      => proc {
-      pbFadeOutIn { TilesetRearranger.new.main }
-    }
-  })
-elsif Kernel.const_defined?(:DebugMenuCommands)   # Essentials v19.1 and earlier
-  DebugMenuCommands.register("tileset_rearranger", {
-    "parent"      => "editorsmenu",
-    "name"        => _INTL("Tileset Rearranger"),
-    "description" => _INTL("Rearrange tiles in tilesets."),
-    "always_show" => true,
-    "effect"      => proc { |sprites, viewport|
-      pbFadeOutIn { TilesetRearranger.new.main }
-    }
-  })
-end
