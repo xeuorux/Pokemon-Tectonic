@@ -582,6 +582,7 @@ BattleHandlers::TargetAbilityOnHit.add(:THUNDERSTRUCK,
         if aiCheck
             next target.pbHasAttackingType?(:ELECTRIC) ? -40 : 0
         else
+            next if target.fainted? || target.effectActive?(:Charge)
             target.showMyAbilitySplash(ability)
             target.applyEffect(:Charge)
             target.hideMyAbilitySplash

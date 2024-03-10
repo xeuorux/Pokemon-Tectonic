@@ -658,7 +658,7 @@ Pokemon = RATTATA,27
 #-------------------------------
 [YOUNGSTER3,Sorin]
 Pokemon = FROGADIER,26
-    Moves = TEASE,BUBBLEBARRAGE,ROUND,ICYWIND
+    Moves = TEASE,BUBBLEBEAM,ROUND,ICYWIND
     AbilityIndex = 0 # Mutable
 Pokemon = BRAIXEN,26
     Moves = FIRESPIN,PSYBEAM,EERIEIMPULSE,WILLOWISP

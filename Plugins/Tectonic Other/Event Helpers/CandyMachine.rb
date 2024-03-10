@@ -2,17 +2,19 @@ def candyMachine(candyAmount,level)
     if candyAmount == 0
         pbMessage(_INTL("A candy machine. It's out of candy."))
     else
-        if candyAmount == 1
-            pbMessage(_INTL("A candy machine. It has one batch of candy."))
-        else
-            pbMessage(_INTL("A candy machine. It contains #{candyAmount} batches of candy."))
+        unless isTempSwitchOn?("A")
+            if candyAmount == 1
+                pbMessage(_INTL("A candy machine. It has one batch of candy."))
+            else
+                pbMessage(_INTL("A candy machine. It contains #{candyAmount} batches of candy."))
+            end
         end
-
         cost = candyBatchCost(level)
         if $Trainer.money < cost
             pbMessage(_INTL("A batch costs ${1}. You can't afford to pay that much!",cost.to_s_formatted))
         else
             if pbConfirmMessage(_INTL("Buy some candy for ${1}?",cost.to_s_formatted))
+                setTempSwitchOn("A")
                 $Trainer.money = $Trainer.money - cost
                 pbMessage(_INTL("You put in $#{cost}."))
 
