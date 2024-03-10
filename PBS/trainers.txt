@@ -3129,7 +3129,7 @@ Pokemon = MZANGOOSE,70
     AbilityIndex = 1 # Mental Damage
 #-------------------------------
 [TRAINER_Alessa,Alessa]
-Flags = NoPerfect
+Flags = NoPerfect,HideIdentity
 Pokemon = COTTONEE,19
     AbilityIndex = 1 # Pure Force
     Item = KEEBERRY
@@ -3144,7 +3144,7 @@ Pokemon = VANILLISH,20
 #-------------------------------
 [TRAINER_Alessa,Alessa,1]
 Policies = SUN_TEAM
-Flags = NoPerfect
+Flags = NoPerfect,HideIdentity
 Pokemon = TRUBBISH,26
     AbilityIndex = 1 # Vengeance
 Pokemon = SWADLOON,26
