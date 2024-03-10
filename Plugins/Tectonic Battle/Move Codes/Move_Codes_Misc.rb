@@ -331,12 +331,17 @@ class PokeBattle_Move_TargetUsesItsLastUsedMoveAgain < PokeBattle_Move
         return false
     end
 
+    def pbFailsAgainstTargetAI?(user, target)
+        return false if user.pbSpeed(true) < target.pbSpeed(true) # Assume target will actually use a move
+        return pbFailsAgainstTarget?(user, target, false)
+    end
+
     def pbEffectAgainstTarget(_user, target)
         target.applyEffect(:Instruct)
     end
 
     def getEffectScore(_user, _target)
-        return 0 # Much too chaotic of a move to allow the AI to use
+        return 130 # Score assumes you put Instruct on the team for a reason, do not put Instruct on a team without really thinking about it
     end
 end
 
