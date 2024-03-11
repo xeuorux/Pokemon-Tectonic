@@ -32556,134 +32556,134 @@ Lluvia
 Hail
 Granizo
 2577
+Sandstorm
+Tormenta de Arena
+2578
 Attack
 Ataque
-2578
+2579
 Defense
 Defensa
-2579
+2580
 Speed
 Velocidad
-2580
-Sand
-Arena
 2581
-Trash
-Basura
-2582
 Sand
 Arena
-2583
+2582
 Trash
 Basura
+2583
+Sand
+Arena
 2584
+Trash
+Basura
+2585
 Sun
 Sol
-2585
-East Sea
-Mar Este
 2586
 East Sea
 Mar Este
 2587
+East Sea
+Mar Este
+2588
 Heat
 Calor
-2588
+2589
 Wash
 Lavado
-2589
+2590
 Frost
 Frío
-2590
+2591
 Fan
 Ventilador
-2591
+2592
 Mow
 Corte
-2592
+2593
 Origin
 Origen
-2593
+2594
 Sky
 Cielo
-2594
+2595
 Fighting Type
 Tipo
-2595
+2596
 Flying Type
 Tipo Volador
-2596
+2597
 Poison Type
 Tipo Veneno
-2597
+2598
 Ground Type
 Tipo Tierra
-2598
+2599
 Rock Type
 Tipo Roca
-2599
+2600
 Bug Type
 Tipo Bicho
-2600
+2601
 Ghost Type
 Tipo Fantasma
-2601
+2602
 Steel Type
 Tipo Acero
-2602
+2603
 Unknown Type
 Tipo Desconocido
-2603
+2604
 Fire Type
 Tipo Fuego
-2604
+2605
 Water Type
 Tipo Agua
-2605
+2606
 Grass Type
 Tipo Planta
-2606
+2607
 Electric Type
 Tipo Eléctrico
-2607
+2608
 Psychic Type
 Tipo Psíquico
-2608
+2609
 Ice Type
 Tipo Hielo
-2609
+2610
 Dragon Type
 Tipo Dragón
-2610
+2611
 Dark Type
 Tipo Siniestro
-2611
+2612
 Fairy Type
 Tipo Hada
-2612
+2613
 Blue-Striped
 Raya Azul
-2613
+2614
 Summer
 Verano
-2614
+2615
 Autumn
 Otoño
-2615
+2616
 Winter
 Invierno
-2616
+2617
 Summer
 Verano
-2617
+2618
 Autumn
 Otoño
-2618
+2619
 Winter
 Invierno 
-2619
-Therian
-Tótem
 2620
 Therian
 Tótem
@@ -32691,369 +32691,372 @@ Tótem
 Therian
 Tótem
 2622
+Therian
+Tótem
+2623
 White
 Blanco
-2623
+2624
 Black
 Negro
-2626
+2627
 Resolute
 Brío
-2627
+2628
 Pirouette
 Danza
-2628
+2629
 Shock Drive
 FulgoROM
-2629
+2630
 Burn Drive
 PiroROM
-2630
+2631
 Chill Drive
 CríoROM
-2631
+2632
 Douse Drive
 HidroROM
-2632
+2633
 Continental Pattern
 Motivo Continental
-2633
+2634
 Elegant Pattern
 Motivo Oriental
-2634
+2635
 Garden Pattern
 Motivo Vergel
-2635
+2636
 High Plains Pattern
 Motivo Estepa
-2636
+2637
 Icy Snow Pattern
 Motivo Polar
-2637
+2638
 Jungle Pattern
 Motivo Jungla
-2638
+2639
 Marine Pattern
 Motivo Marino
-2639
+2640
 Archipelago Pattern
 Motivo Isleño
-2640
+2641
 Modern Pattern
 Motivo Moderno
-2641
+2642
 Monsoon Pattern
 Motivo Monzón
-2642
+2643
 Ocean Pattern
 Motivo Océano
-2643
+2644
 Polar Pattern
 Motivo Taiga
-2644
+2645
 River Pattern
 Motivo Oasis
-2645
+2646
 Sandstorm Pattern
 Motivo Desierto
-2646
+2647
 Savanna Pattern
 Motivo Pantano
-2647
+2648
 Sun Pattern
 Motivo Solar
-2648
+2649
 Tundra Pattern
 Motivo Tundra
-2649
+2650
 Fancy Pattern
 Motivo Fantasía
-2650
+2651
 Poké Ball Pattern
 Motivo Poké Ball
-2651
-Yellow Flower
-Flor Amarilla
 2652
-Orange Flower
-Flor Naranja
+Yellow Flower
+Flor Amarilla
 2653
-Blue Flower
-Flor Azul
+Orange Flower
+Flor Naranja
 2654
-White Flower
-Flor Blanca
+Blue Flower
+Flor Azul
 2655
-Yellow Flower
-Flor Amarilla
+White Flower
+Flor Blanca
 2656
-Orange Flower
-Flor Naranja
-2657
-Blue Flower
-Flor Azul
-2658
-White Flower
-Flor Blanca
-2659
 Yellow Flower
 Flor Amarilla
-2660
+2657
 Orange Flower
 Flor Naranja
-2661
+2658
 Blue Flower
 Flor Azul
-2662
+2659
 White Flower
 Flor Blanca
+2660
+Yellow Flower
+Flor Amarilla
+2661
+Orange Flower
+Flor Naranja
+2662
+Blue Flower
+Flor Azul
 2663
+White Flower
+Flor Blanca
+2664
 Heart Trim
 Corte Corazón
-2664
+2665
 Star Trim
 Corte Estrella
-2665
+2666
 Diamond Trim
 Corte Rombo
-2666
+2667
 Debutante Trim
 Corte Señorita
-2667
+2668
 Matron Trim
 Corte Dama
-2668
+2669
 Dandy Trim
 Corte Caballero
-2669
+2670
 La Reine Trim
 Corte Aristocrático
-2670
+2671
 Kabuki Trim
 Corte Kabuki
-2671
+2672
 Pharaoh Trim
 Corte Faraónico
-2672
-Meowstic♀
-Meowstic♀
 2673
+Meowstic♀
+Meowstic♀
+2674
 Blade
 Filo
-2674
-Average Size
-Tamaño Normal
 2675
-Large Size
-Tamaño Grande
-2676
-Super Size
-Tamaño Extragrande
-2677
 Average Size
 Tamaño Normal
-2678
+2676
 Large Size
 Tamaño Grande
-2679
+2677
 Super Size
 Tamaño Extragrande
+2678
+Average Size
+Tamaño Normal
+2679
+Large Size
+Tamaño Grande
 2680
+Super Size
+Tamaño Extragrande
+2681
 Active Mode
 Forma Activa
-2681
-10%
-10%
 2682
+10%
+10%
+2683
 Complete
 Completa
-2684
+2685
 Unbound
 Desatado
-2685
+2686
 Pom-Pom Style
 Estilo Animado
-2686
+2687
 Pa'u Style
 Estilo Plácido
-2687
+2688
 Sensu Style
 Estilo Apasionado
-2688
+2689
 Midnight
 Nocturno
-2689
+2690
 Dusk
 Crepuscular
-2690
+2691
 School
 Banco
-2691
+2692
 Type: Fighting
 Tipo: Lucha
-2692
+2693
 Type: Flying
 Tipo: Volador
-2693
+2694
 Type: Poison
 Tipo: Veneno
-2694
+2695
 Type: Ground
 Tipo: Tierra
-2695
+2696
 Type: Rock
 Tipo: Roca
-2696
+2697
 Type: Bug
 Tipo: Bicho
-2697
+2698
 Type: Ghost
 Tipo: Fantasma
-2698
+2699
 Type: Steel
 Tipo: Acero
-2699
+2700
 Type: Unknown
 Tipo: Desconocido
-2700
+2701
 Type: Fire
 Tipo: Fuego
-2701
+2702
 Type: Water
 Tipo: Agua
-2702
+2703
 Type: Grass
 Tipo: Planta
-2703
+2704
 Type: Electric
 Tipo: Eléctrico
-2704
+2705
 Type: Psychic
 Tipo: Psíquico
-2705
+2706
 Type: Ice
 Tipo: Hielo
-2706
+2707
 Type: Dragon
 Tipo: Dragón
-2707
+2708
 Type: Dark
 Tipo: Siniestro
-2708
+2709
 Type: Fairy
 Tipo: Hada
-2709
+2710
 Red
 Rojo
-2710
+2711
 Orange
 Naranja
-2711
+2712
 Yellow
 Amarillo
-2712
+2713
 Green
 Verde
-2713
+2714
 Blue
 Azul
-2714
+2715
 Indigo
 Añil
-2715
+2716
 Violet
 Violeta
-2716
+2717
 Busted Form
 Forma Descubierta
-2717
+2718
 Dusk Mane
 Melena Crepuscular
-2718
+2719
 Dawn Wings
 Alas del Alba
-2719
+2720
 Ultra
 Ultra
-2721
+2722
 Original Color
 Color Vetusto
-2722
+2723
 Gulping
 Tragatodo
-2723
+2724
 Gorging
 Engulletodo
-2724
+2725
 Melted
 Deshielo
-2725
-Antique
-Genuina
 2726
 Antique
 Genuina
 2727
-♀
-♀
+Antique
+Genuina
 2728
+♀
+♀
+2729
 Hangry
 Voraz
-2729
-Crowned
-Espada Suprema
 2730
 Crowned
-Escudo Supremo
+Espada Suprema
 2731
+Crowned
+Escudo Supremo
+2732
 Rapid Strike
 Estilo Fluido
-2732
+2733
 Ice
 Glacial
-2733
+2734
 Shadow
 Espectral
-2734
-Primal
-Primigenio
 2735
 Primal
 Primigenio
 2736
-Delta
-Delta
+Primal
+Primigenio
 2737
-Zen
-Daruma
+Delta
+Delta
 2738
 Zen
 Daruma
 2739
+Zen
+Daruma
+2740
 Ascended
 Ascendido
-2740
+2741
 Reaper
 Guadaña
-2741
+2742
 Rampage
 Desenfrenada
-2742
-Finale
-Clímax
 2743
 Finale
 Clímax
 2744
+Finale
+Clímax
+2745
 Overmatter
 Extramasa
-2745
+2746
 Overmind
 Extramente
-2746
+2747
 Therian
 Tótem
-2747
+2748
 Harvest
 Cosecha
 [5]
