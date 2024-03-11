@@ -244,9 +244,10 @@ FormName = Sand
 Type1 = ROCK
 Color = Yellow
 Pokedex = This is the form Castform takes when sand sweeps up. Its body is made of particles that are constantly spinning.
-BattlerPlayerY = 24
-BattlerEnemyX = 0
-BattlerEnemyY = 28
+BattlerPlayerX = -5
+BattlerPlayerY = 20
+BattlerEnemyX = 3
+BattlerEnemyY = 21
 #-------------------------------
 [DEOXYS,1]
 FormName = Attack
