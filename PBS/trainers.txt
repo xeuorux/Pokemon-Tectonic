@@ -3158,6 +3158,7 @@ Pokemon = SUNKERN,27
     Item = HEATROCK
 #-------------------------------
 [TRAINER_Alessa,Alessa,2]
+NameForHashing = Zain
 Flags = NoPerfect
 Pokemon = WALREIN,44
     AbilityIndex = 0 # Full Blubber
