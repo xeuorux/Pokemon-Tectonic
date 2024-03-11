@@ -164,7 +164,7 @@ class PokemonBox
     end
   
     def maxBoxes
-      return @boxes.length
+      return Settings::NUM_STORAGE_BOXES
     end
   
     def maxPokemon(box)
