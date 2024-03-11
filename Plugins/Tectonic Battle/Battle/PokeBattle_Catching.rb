@@ -14,7 +14,10 @@ class PokeBattle_Battle
         # Messages saying the Pokémon was stored in a PC box
         curBoxName = @peer.pbBoxName(currentBox)
         boxName    = @peer.pbBoxName(storedBox)
-        if storedBox != currentBox
+        if $PokemonStorage[currentBox].isDonationBox?
+            pbDisplayPaused(_INTL("Box \"{1}\" is a donation box.", curBoxName))      
+            pbDisplayPaused(_INTL("{1} was transferred to box \"{2}\".", pkmn.name, boxName))
+        elsif storedBox != currentBox 
             pbDisplayPaused(_INTL("Box \"{1}\" on the Pokémon Storage PC was full.", curBoxName))
             pbDisplayPaused(_INTL("{1} was transferred to box \"{2}\".", pkmn.name, boxName))
         else

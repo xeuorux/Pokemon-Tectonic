@@ -266,10 +266,12 @@ class PokemonBox
         pkmn.time_form_set = nil
         pkmn.heal
       end
-      for i in 0...maxPokemon(@currentBox)
-        if self[@currentBox,i]==nil
-          self[@currentBox,i] = pkmn
-          return @currentBox
+      if !@boxes[@currentBox].isDonationBox?
+        for i in 0...maxPokemon(@currentBox)
+          if self[@currentBox,i]==nil
+            self[@currentBox,i] = pkmn
+            return @currentBox
+          end
         end
       end
       for j in 0...self.maxBoxes
