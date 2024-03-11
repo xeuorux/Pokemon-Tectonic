@@ -3158,7 +3158,6 @@ Pokemon = SUNKERN,27
     Item = HEATROCK
 #-------------------------------
 [TRAINER_Alessa,Alessa,2]
-NameForHashing = Zain
 Flags = NoPerfect
 Pokemon = WALREIN,44
     AbilityIndex = 0 # Full Blubber
@@ -4493,7 +4492,7 @@ Pokemon = RILLABOOM,55
     Item = FLYINGGEM
 #-------------------------------
 [MASKEDVILLAIN,Crimson,4]
-NameForHashing = Skylar
+NameForHashing = Skyler
 Flags = NoPerfect
 Pokemon = REGIROCK,55
     Moves = ADAMANTINEPRESS,ACCELEROCK,BODYPRESS,BULKUP
@@ -4518,7 +4517,7 @@ Pokemon = PALMANTRA,55
 #-------------------------------
 [MASKEDVILLAIN,Crimson,5]
 ExtendsVersion = 4
-NameForHashing = Skylar
+NameForHashing = Skyler
 Policies = CURSE_TYPE_WEAKENED
 Pokemon = REGIROCK,55
     Item = ROCKGEM
@@ -4723,7 +4722,7 @@ Pokemon = RILLABOOM,65
     Item = FLYINGGEM
 #-------------------------------
 [MASKEDVILLAIN2,Teal,4]
-NameForHashing = Skylar
+NameForHashing = Skyler
 Flags = NoPerfect
 Pokemon = REGICE,65
     Moves = ICEBEAM,THUNDERBOLT,AURASPHERE,RECOVER
@@ -4748,7 +4747,7 @@ Pokemon = PALMANTRA,65
 #-------------------------------
 [MASKEDVILLAIN2,Teal,5]
 ExtendsVersion = 4
-NameForHashing = Skylar
+NameForHashing = Skyler
 Policies = CURSE_PERFECT_LUCK
 Pokemon = REGICE,65
     Item = ICEGEM
@@ -5806,7 +5805,7 @@ Pokemon = CRUSTLE,70
     Item = SEVENLEAGUEBOOTS
 #-------------------------------
 [MASKEDVILLAIN,Crimson,16]
-NameForHashing = Skylar
+NameForHashing = Skyler
 Flags = NoPerfect
 Pokemon = PALMANTRA,70
     Moves = OMNISCIENTBLOW,DRAINPUNCH,FAKEOUT,POISONJAB
@@ -5831,7 +5830,7 @@ Pokemon = FLORGES,70
 #-------------------------------
 [MASKEDVILLAIN,Crimson,17]
 ExtendsVersion = 16
-NameForHashing = Skylar
+NameForHashing = Skyler
 Policies = CURSE_TORMENTED
 Pokemon = PALMANTRA,70
     Item = FOCUSSASH
@@ -6033,7 +6032,7 @@ Pokemon = CRUSTLE,70
     Item = SEVENLEAGUEBOOTS
 #-------------------------------
 [MASKEDVILLAIN2,Teal,16]
-NameForHashing = Skylar
+NameForHashing = Skyler
 Flags = NoPerfect
 Pokemon = PALMANTRA,70
     Moves = OMNISCIENTBLOW,DRAINPUNCH,FAKEOUT,POISONJAB
@@ -6058,7 +6057,7 @@ Pokemon = FLORGES,70
 #-------------------------------
 [MASKEDVILLAIN2,Teal,17]
 ExtendsVersion = 16
-NameForHashing = Skylar
+NameForHashing = Skyler
 Policies = CURSE_SELF_DEBUFFING
 Pokemon = PALMANTRA,70
     Item = FOCUSSASH
