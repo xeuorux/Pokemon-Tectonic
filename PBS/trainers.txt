@@ -1063,12 +1063,12 @@ Pokemon = GIGACHU,35
 #-------------------------------
 [BAKER,Margerie]
 Flags = NoPerfect
-Pokemon = BLASFEMMIE,45
-    AbilityIndex = 1 # Hubris
-    Item = FAIRYGEM
 Pokemon = ARCANINE,45
     AbilityIndex = 1 # Heart of Justice
     Item = SALACBERRY
+Pokemon = BLASFEMMIE,45
+    AbilityIndex = 1 # Hubris
+    Item = FAIRYGEM
 Pokemon = HYPNO,45
     AbilityIndex = 1 # Knuckleduster
 Pokemon = STOUTLAND,45
