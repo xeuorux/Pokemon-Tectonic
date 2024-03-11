@@ -174,7 +174,6 @@ class PokemonBox
   
     def full?
       for i in 0...self.maxBoxes-Settings::NUM_DONATION_BOXES
-        echoln("Box number: #{i}")
         return false unless @boxes[i].full?
       end
       return true
