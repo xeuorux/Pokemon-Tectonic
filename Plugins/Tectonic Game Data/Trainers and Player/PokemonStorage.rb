@@ -164,7 +164,7 @@ class PokemonBox
     end
   
     def maxBoxes
-      return Settings::NUM_STORAGE_BOXES
+      return @boxes.length
     end
   
     def maxPokemon(box)
@@ -173,7 +173,8 @@ class PokemonBox
     end
   
     def full?
-      for i in 0...self.maxBoxes
+      for i in 0...self.maxBoxes-Settings::NUM_DONATION_BOXES
+        echoln("Box number: #{i}")
         return false unless @boxes[i].full?
       end
       return true
