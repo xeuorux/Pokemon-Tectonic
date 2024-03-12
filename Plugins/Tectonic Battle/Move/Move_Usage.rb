@@ -368,7 +368,7 @@ target.pbThis(true)))
                 target.damageState.archVillain = user
                 damage -= 1
                 damageAdjusted = true
-            elsif target.hasActiveAbility?(:ICEBLOCK) && !@battle.moldBreaker
+            elsif target.hasActiveAbility?(:ICEBLOCK) && target.form == 0 && !@battle.moldBreaker
                 target.damageState.iceBlock = true
                 damage -= 1
                 damageAdjusted = true
