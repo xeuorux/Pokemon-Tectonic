@@ -46569,16 +46569,16 @@ Frostbite
 Helado
 Poison
 Veneno
-When poisoned, a Pokémon loses 1/8th HP every turn. This doubles every 3 turns. Poison- and Grass-types do the most poisoning. Poison/Steel are immune.
-Al ser envenenado, un Pokémon pierde 1/8 cada turno--duplicando cada 3 turnos hasta ser cambiado. Los tipo Veneno y Planta envenenan más seguido. Veneno/Acero son inmunes.
+When poisoned, a Pokémon loses 1/10th HP every turn. This doubles every 2 turns. Poison- and Grass-types do the most poisoning. Poison/Steel are immune.
+Al ser envenenado, un Pokémon pierde 1/10 cada turno--duplicando cada 2 turnos hasta ser cambiado. Los tipo Veneno y Planta envenenan más seguido. Veneno/Acero son inmunes.
 Numb
 Aturdimiento
 Dizzy
 Mareo
 Leeched
 Infectado
-When leeched, a Pokémon loses 1/8th HP every turn, and its opponent(s) split that health. Bug- and Dark-types do the most leeching. Grass is immune.
-Al ser infectado, un Pokémon pierde 1/8 PS cada turno, y cada oponente restaura salud. Los tipo Bicho y Siniestro infectan más seguido. Planta es inmune.
+When leeched, a Pokémon loses 1/10th HP every turn, and its opponent(s) split that health. Bug- and Dark-types do the most leeching. Grass is immune.
+Al ser infectado, un Pokémon pierde 1/10 PS cada turno, y cada oponente restaura salud. Los tipo Bicho y Siniestro infectan más seguido. Planta es inmune.
 Sleep
 Sueño
 A rarer status that causes a Pokémon to be unable to do anything for 2 turns. Psychic- and Grass-types put Pokémon to sleep the most often.
