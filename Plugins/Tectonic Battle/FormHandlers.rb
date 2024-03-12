@@ -519,6 +519,12 @@ MultipleForms.register(:MAROMATISSE, {
   },
 })
 
+MultipleForms.register(:EISCUE, {
+  "getFormOnLeavingBattle" => proc { |pkmn, _battle, _usedInBattle, endBattle|
+      next 0 if pkmn.form == 1 && (pkmn.fainted? || endBattle)
+  },
+})
+
 MultipleForms.register(:URSHIFU,{
   "onSetForm" => proc { |pkmn, form, oldForm|
     form_moves = GameData::Species.get(:URSHIFU).form_specific_moves
