@@ -4172,7 +4172,7 @@ Pokemon = PELIPPER,50
     AbilityIndex = 0 # Cheek Pouch
     Item = WACANBERRY
 Pokemon = EISCUE,51
-    AbilityIndex = 0 # Ice Face
+    AbilityIndex = 0 # Ice Block
     Item = LEFTOVERS
 Pokemon = MORPEKO,52
     AbilityIndex = 0 # Hunger Switch
@@ -7503,7 +7503,7 @@ Pokemon = VILEPLUME,70
 Pokemon = BOUFFALANT,70
     AbilityIndex = 0 # Reckless
 Pokemon = EISCUE,70
-    AbilityIndex = 1 # Sturdy
+    AbilityIndex = 1 # Ice Block
 #-------------------------------
 [BIRDKEEPER_F,Danika]
 Pokemon = MMANDIBUZZ,70

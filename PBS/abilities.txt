@@ -257,11 +257,6 @@ Name = Ice Body
 Description = Heals 1/8th of its max HP each turn in a hailstorm.
 Flags = HailSynergy
 #-------------------------------
-[ICEFACE]
-Name = Ice Face
-Description = Prevents a physical attack. Restored if its hailing when it enters, or when hail begins.
-Flags = HailSynergy,Immutable
-#-------------------------------
 [ICESCALES]
 Name = Ice Scales
 Description = Doubles the Pokémon's Sp. Def.

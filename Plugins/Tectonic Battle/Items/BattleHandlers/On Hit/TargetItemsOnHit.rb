@@ -55,7 +55,7 @@ BattleHandlers::TargetItemOnHit.add(:HIVISJACKET,
 BattleHandlers::TargetItemOnHit.add(:ENIGMABERRY,
   proc { |item, user, target, move, battle, aiCheck, aiNumHits|
       next if aiCheck
-      next if target.damageState.substitute || target.damageState.disguise || target.damageState.iceface
+      next if target.damageState.substitute || target.damageState.disguise
       next unless Effectiveness.super_effective?(target.damageState.typeMod)
       if BattleHandlers.triggerTargetItemOnHitPositiveBerry(item, target, battle, false)
           target.pbHeldItemTriggered(item)
@@ -95,8 +95,8 @@ BattleHandlers::TargetItemOnHit.add(:WEAKNESSPOLICY,
   proc { |item, user, target, move, battle, aiCheck, aiNumHits|
       statUp = [:ATTACK, 4, :SPECIAL_ATTACK, 4]
       next if aiCheck # aiCheck Disabled until AI item rework, also needs rework for type calculation
-      #next getMultiStatUpEffectScore(statUp, user, target, evaluateThreat: false) if aiCheck 
-      next if target.damageState.disguise || target.damageState.iceface
+      #next getMultiStatUpEffectScore(statUp, user, target, evaluateThreat: false) if aiCheck
+      next if target.damageState.disguise
       next unless Effectiveness.super_effective?(target.damageState.typeMod)
       next if !target.pbCanRaiseStatStep?(:ATTACK, target) &&
               !target.pbCanRaiseStatStep?(:SPECIAL_ATTACK, target)

@@ -26,7 +26,7 @@ class PokeBattle_DamageState
 	attr_accessor :fightforever	   		# Damage was endured by fight forever
 	attr_accessor :archVillain	   		# Arch Villain prevented the kill
 	attr_accessor :berryWeakened   		# Whether a type-resisting berry was used
-	attr_accessor :iceface         		# Ice Face ability activated
+	attr_accessor :iceBlock         	# Ice Block ability activated
 	attr_accessor :direDiversion   		# Dire Diversion ability activated
 	attr_accessor :endureBerry	   		# Cass Berry activated
 	attr_accessor :feastWeakened   		# Whether a type-resisting feast was used (wont be consumed)
@@ -68,7 +68,7 @@ class PokeBattle_DamageState
 		@fightforever		= false
 		@berryWeakened 		= nil
 		@feastWeakened		= nil
-		@iceface       		= false
+		@iceBlock       	= false
 		@forced_critical	= false
 		@direDiversion		= false
 		@endureBerry		= false

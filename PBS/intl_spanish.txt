@@ -40935,6 +40935,8 @@ Hunger Switch
 Mutapetito
 Ice Face
 Cara de Hielo
+Ice Block
+Bloque de Hielo
 Ice Scales
 Escama de Hielo
 Intrepid Sword

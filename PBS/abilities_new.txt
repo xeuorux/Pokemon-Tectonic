@@ -857,6 +857,11 @@ Name = Hyper Speed
 Description = Doubles Speed. Dashes to avoid hazards when entering.
 Flags = HazardImmunity
 #-------------------------------
+[ICEBLOCK]
+Name = Ice Block
+Description = It can avoid being knocked out by using its face. The face then melts.
+Flags = Immutable
+#-------------------------------
 [ICEMIRROR]
 Name = Ice Mirror
 Description = Doubles Sp. Def in hail.

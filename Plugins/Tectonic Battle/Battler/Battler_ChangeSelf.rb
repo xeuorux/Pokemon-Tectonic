@@ -483,13 +483,6 @@ class PokeBattle_Battler
                 pbChangeForm(0, _INTL("{1} transformed!", pbThis))
             end
         end
-        # Eiscue - Ice Face
-        if !abilityLossCheck && @species == :EISCUE && hasActiveAbility?(:ICEFACE) && @battle.icy? && (@form == 1)
-            showMyAbilitySplash(:ICEFACE, true)
-            pbChangeForm(0, _INTL("{1} transformed!", pbThis))
-            hideMyAbilitySplash
-            puts caller
-        end
     end
 
     # Checks the Pokémon's form and updates it if necessary. Used for when a
