@@ -113,11 +113,13 @@ BattleHandlers::DamageCalcUserItem.add(:NEVERMELTICE,
 
 BattleHandlers::DamageCalcUserItem.copy(:NEVERMELTICE, :ICICLEPLATE)
 
-BattleHandlers::DamageCalcUserItem.add(:PIXIEPLATE,
+BattleHandlers::DamageCalcUserItem.add(:FAIRYFEATHER,
   proc { |item, user, _target, _move, mults, _baseDmg, type, aiCheck|
     typeBoostingItem(item, user, :FAIRY, mults, type, aiCheck)
   }
 )
+
+BattleHandlers::DamageCalcUserItem.copy(:FAIRYFEATHER, :PIXIEPLATE)
 
 BattleHandlers::DamageCalcUserItem.add(:POISONBARB,
   proc { |item, user, _target, _move, mults, _baseDmg, type, aiCheck|

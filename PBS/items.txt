@@ -4652,3 +4652,10 @@ FieldUse = Direct
 Consumable = true
 Flags = KeyItem
 Description = A thin, nearly invisible strand of unusual metal.
+#-------------------------------
+[FAIRYFEATHER]
+Name = Fairy Feather
+NamePlural = Fairy Feathers
+Pocket = 5
+Price = 1000
+Description = A gleaming feather that boosts the holder's Fairy-type moves by 20%.
