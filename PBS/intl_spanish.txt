@@ -29892,7 +29892,7 @@ Its knuckle claws secrete a toxin so vile that even a scratch could prove fatal.
 Sus garras en los nudillos secretan una toxina tan vil que incluso un rasguño podría resultar fatal.
 455
 It attracts prey with its sweet-smelling saliva, then chomps down. It takes a whole day to eat prey.
-Atrae a la presa con su saliva de olor dulce, luego la muerde. Se necesita un día entero para comer presa.
+Atrae a la presa con su saliva de olor dulce, luego la muerde. Necesita un día entero para comer una presa.
 456
 After long exposure to sunlight, the patterns on its tail fins shine vividly when darkness arrives.
 Después de una larga exposición a la luz del sol, los patrones en las aletas de su cola brillan vívidamente cuando llega la oscuridad.
@@ -35530,6 +35530,12 @@ Vainglory Flames
 Llamas Vanagloria
 Discovered Power
 Poder Revelado
+Shiver Squirm
+Salto Escalofrío
+Grunge
+Grunge
+Penumbra
+Penumbra
 [6]
 Using its tough and impressive horn, the user rams into the target with no letup.
 Usando su impresionante cuerno, el usuario embiste al rival.
@@ -37937,6 +37943,14 @@ The target is razed by a fiery explosion. The user must rest in the next turn, h
 El objetivo es incinerado por una gran explosión. El usuario que tiene recargar en el siguiente.
 The target is hit with a watery blast. The user must rest on the next turn, however.
 El objetivo es atacado por un chorro de agua. El usuario tiene que recargar en el siguiente turno.
+The user ponders ancient wisdom, selecting three random status moves. You choose which one it uses.
+El usuario medita en una sabiduría antigua, eligiendo tres movimientos de estado. Tú eliges cual usar.
+The user flips, flaps, fumbles, then flounders. It becomes more powerful the less HP the user has.
+El usuario aletea contra el enemigo. Se vuelve más fuerte cuanto menos PS tenga el usuario.
+The user creates distorted guitar sounds to attack the target. It has a 30% chance to dizzy.
+El usuario crea un sonido de guitarra distorsionado para atacar al objetivo. Tiene un 30% de probabilidad de marear.
+Psychic energy assaults the foe and darkens the sky, summoning eclipse for 8 turns.
+Energía psíquica asalta al rival y oscurece el cielo, invocando un eclipse por 8 turnos.
 [7]
 Repel
 Repelente
@@ -41707,8 +41721,8 @@ Irrefutable
 Irrefutable
 Aeroshell
 Aeroguardia
-Fungal Flurry
-Asalto Fúngico
+Soul Snipe
+Disparo al Alma
 Liminal
 Liminal
 Outrider
@@ -41872,7 +41886,7 @@ Aburrimiento
 Team Player
 Trabajo en Equipo
 Dreamy Haze
-Atrapasueños
+Niebla Onírica
 Stupefying
 Atontar
 MU Protocol
@@ -41965,8 +41979,12 @@ Overflowing Heart
 Corazón Rebosante
 Hybdrid Fighter
 Luchador Híbrido
+Psyforce
+Psicofuerza
+Mithril Body
+Cuerpo de Mithril
 [11]
-When the Pokémon eats a Berry, it will regurgigate that Berry at the end of the next turn and eat it one more time.
+When the Pokémon eats a Berry, it will regurgitate that Berry at the end of the next turn and eat it one more time.
 Cuando el Pokémon come una Baya, regurgita esa Baya al final del siguiente turno y la come una vez más.
 Attacks have a 50% chance to cause the target to flinch.
 Los ataques tienen un 50% de probabilidad de amedrentar al objetivo
@@ -42061,7 +42079,7 @@ Aumenta la Velocidad si un objeto equipable es consumido en batalla.
 Stat changes in the Pokemon are doubled.
 Si un cambio de estadísticas afecta al Pokémon, este es duplicado.
 Restores 1/8 HP in rain, 1/4 when hit by Water-type moves. Loses 1/8 in sunshine, takes 25% more from Fire-type moves.
-Restaura 1/8 PS bajo lluvia, 1/4 si es alcanzado por un movimiento Agua. Pierde 1/8 bajo sol, recibe 25% más daño por ataques Fuego. 
+Restaura 1/8 PS bajo lluvia, 1/4 al recibir un movimiento Agua. Pierde 1/8 bajo sol, recibe 25% más daño por Fuego. 
 Boosts one Attacking stat by two steps according to the foe's defenses.
 Aumenta una stat ofensiva por dos grados de acuerdo a la defensa mjs baja del rival.
 Boosts the power of punching moves by 30%.
@@ -42124,8 +42142,8 @@ Heals ally's status conditions at the end of turn.
 Cura los problemas de estado de sus aliados al final de cada turno.
 Reduces damage done to allies by 25%.
 Reduce el daño que reciben sus aliados un 25%.
-Physical attacks against the Pokémon lower Defense by one step and raise Speed by two steps.
-Cuando es alcanzado por un movimiento físico, su Defensa es reducida por un grado pero su Velocidad es aumentada por dos grados.
+Physical attacks against the Pokémon raise its speed by two steps but lower its Defense.
+Cuando es alcanzado por un movimiento físico aumenta su velocidad dos grados pero aumenta su Defensa.
 Doubles the Pokémon's weight.
 Duplica el peso del Pokémon.
 Reduces move damage taken by 50% when HP is full.
@@ -42202,7 +42220,7 @@ Changes the weather to Heavy Rain, which nullifies Fire-type moves. Lingers for 
 Cambia el clima a Diluvio, nulificando movimientos de tipo Fuego. Perdura por 3 turnos luego de regresar a su Poké Ball.
 Changes the weather to Harsh Sunlight, which nullifies Water-type moves. Lingers for 3 turns after leaving.
 Cambia el clima a Sol Abrasador, nulificando movimientos de tipo Agua. Perdura por 3 turnos luego de regresar a su Poké Ball.
-Changes the weather to Strong Winds, which remove Flying-type's weakness. Lingers for 3 turns after leaving.
+Changes the weather to Strong Winds, which remove Flying-type's weaknesses. Lingers for 3 turns after leaving.
 Cambia el clima a Turbulencias, que remueve las debilidades del tipo Volador. Perdura por 3 turnos luego de que regrese a la Poké Ball.
 Boosts Defense by two steps when hit by an attack.
 Aumenta la Defensa por dos grados si es alcanzado por un ataque.
@@ -42213,7 +42231,7 @@ Si pierde la mitad de sus PS o más, el Pokémon regresa a su Poké Ball.
 Its attacks are critical against poisoned targets.
 Sus ataques son críticos contra objetivos envenenados.
 It can't be statused while it has its shell. Below half HP its shell breaks and it becomes aggressive.
-Es inmune a problemas de estado mientras tenga su coraza. Una vez pierda la mitad de sus PS la coraza es destruida y se vuelve agresivo.
+Inmune a problemas de estado al tener su coraza. Una vez pierda la mitad de sus PS esta es destruida y se vuelve agresivo.
 Weakens incoming Fire-type moves, and doubles Water-type damage.
 Es resistente a movimientos tipo Fuego, y la potencia de sus movimientos tipo Agua es duplicada.
 Raises Atk and Sp. Atk by two steps each when its HP is lowered below half.
@@ -42293,7 +42311,7 @@ Potencia movimientos de aliados un 30%.
 Ripens Berries and doubles their effect.
 Duplica el efecto de Bayas equipadas.
 Screens are nullified when entering battle.
-Las pantallas son nulificadas al entrar a batalla.
+Las pantallas son nulificadas al entrar al combate.
 Ignores effects changing the target of a move.
 Ignora efectos que cambiarían el objetivo de un movimiento.
 Powers up Steel-type moves of itself and its allies by 50%.
@@ -42302,8 +42320,8 @@ Taking a physical hit exchanges Abilities.
 Al recibir un ataque físico, intercambia Habilidades con su atacante.
 Physical moves negate all protection effects.
 Movimientos físicos atraviesan todas las protecciones.
-Stat changes are cleared upon entering battle.
-Elimina cambios de estadísticas al entrar al campo.
+Upon entry, clears the stat changes of other Pokémon.
+Al entrar al campo, reinicia los cambios de stats de otros Pokémon.
 Powers up Electric-type moves by 50%.
 Potencia movimientos tipo Eléctricos un 50%.
 Powers up Dragon-type moves by 50%.
@@ -42394,14 +42412,14 @@ Boosts Sp. Atk and Speed by 25% in rain.
 Potencia su Ataque Especial y Velocidad un 25% bajo lluvia.
 The user raises the related defensive stat by two steps after each hit taken.
 Al ser atacado, el usuario aumenta la stat defensiva correspondiente por dos grados.
-Boosts Speed by 50% in sandstorm. Can't miss during sandstorm.
+Boosts Speed by 50% in sand. Can't miss during sandstorm.
 Aumenta su Velocidad un 50% en tormenta de arena. No puede fallar dentro de esta.
 The user's critical hit chance raises or lowers with its Speed.
 El índice de golpe crítico del usuario aumenta o baja de acuerdo a su Velocidad.
 When entering battle, heals self and allies for 25% of their max health.
 Al entrar al campo, se cura a sí mismo y a sus aliados por un 25% de sus PS totales.
-Cuando el Pokémon es alcanzado por un movimiento físico, tiene un 30% de probabilidad de helar al atacante.
 Physical moves against the Pokémon have a 30% chance to frostbite the attacker.
+Cuando el Pokémon es alcanzado por un movimiento físico, tiene un 30% de probabilidad de helar al atacante.
 Enemies which wake up have all their stats lowered by two steps.
 Rivales que despierten tienen todas sus estadísticas disminuidas por dos grados.
 Takes 50% less damage from hyper effective attacks.
@@ -42415,7 +42433,7 @@ Aumenta su Ataque Especial un 30% bajo lluvia.
 Has a 30% chance to dizzy targets when using special moves.
 Tiene un 30% de probabilidad de marear a enemigos al usar movimientos especiales.
 Pokémon can't dance or use sound-based moves.
-Los Pokémon no pueden bailar o usan movimientos de sonido.
+Los Pokémon no pueden bailar o usar movimientos de sonido.
 The effect of healing on foes is reversed.
 La curación para los rivales es invertida.
 Immune to Fighting-type moves, and boosts Speed when hit by one.
@@ -42550,14 +42568,14 @@ Raises both attacking stats by two steps when hit by a not-very-effective move.
 Al ser alcanzado por un movimiento no muy efectivo, ambas stats ofensivas son aumentadas dos grados.
 After using a sound move, raises both of the Pokémon's defensive stats.
 Aumenta ambas stats defensivas del Pokémon al usar un movimiento de sonido.
-Boosts both attacking stats by three steps when a stat is lowered.
+Boosts both attacking stats by three steps when a stat is lowered by a foe.
 Aumenta ambas stats ofensias cuatro grados cuando una estadística es disminuida por un rival.
 Powers up Psychic-type moves by 50%.
 Potencia movimientos tipo Psíquico un 50%.
 Has a 30% chance to dizzy targets when using physical moves.
 Al usar un movimiento físico, tiene un 30% de probabilidad de marear al objetivo.
-Doubles Attack, but the Pokemon becomes Dizzy after attacking.
-Duplica el Ataque, pero el Pokémon es Mareado luego de atacar.
+Doubles Attack, but the Pokemon becomes dizzy after attacking.
+Duplica el Ataque, pero el Pokémon es mareado luego de atacar.
 Sets a Tailwind for four turns upon entering the battle, increasing Speed.
 Levanta un Viento Afín durante cuatro turnos al entrar al campo, aumentando la Velocidad de tu equipo.
 Becomes charged when hit by an attack, doubling the power of its next Electric-type attack.
@@ -42606,11 +42624,11 @@ Its attacks are critical against dizzy targets.
 Sus ataques son críticos contra objetivos mareados.
 Powers up moves of the same type by 50%.
 Potencia movimientos del mismo tipo un 50%.
-Raises Speed by four steps when a stat is lowered.
+Raises Speed by four steps when a stat is lowered by a foe.
 Aumenta su Velocidad cuatro grados cuando una estadística es disminuida por un rival.
 Pokémon that swap in for this have their status effects healed.
 Cura los problemas del estado de los Pokémon que salgan después del usuario 
-Move damage that's decreased by sun is decreased twice as much.
+Move damage that's decreased by sunshine is decreased twice as much.
 Duplica la reducción del daño causado por el sol.
 Move damage that's decreased by rain is decreased twice as much.
 Duplica la reducción del daño causada por la lluvia.
@@ -42641,7 +42659,7 @@ Los puntos de estilo afectan x2 a este Pokémon.
 Gets 50% more healing from all sources.
 Se cura un 50% más mediante cualquier método curativo.
 Restores 1/8 HP in sunshine, 1/4 when hit by Fire-type moves. Loses 1/8 in rain, takes 25% more from Water-type moves.
-Restaura 1/8 de sus PS bajo sol, 1/4 si es alcanzado por un movimiento tipo Fuego. Pierde 1/8 bajo lluvia, movimientos tipo Agualo dañan un 25% más
+Restaura 1/8 de sus PS bajo sol, 1/4 al recibir un movimiento Fuego. Pierde 1/8 bajo lluvia, recibe 25% más daño por Fuego.
 Doubles the speed of recoil moves.
 Duplica la velocidad de movimientos de retroceso.
 Increases Sp. Atk by 30%.
@@ -42703,7 +42721,7 @@ Potencia movimientos tipo Acero un 50%, y es protegido de los movimientos críti
 Gets double healing from all sources during moonglow.
 Se cura el doble mediante cualquier método bajo el brillo lunar.
 Speed is raised each turn. Speed is reset when hit, but the attacker takes 1/8th HP damage for each step lost.
-La Velocidad es aumentada cada turno. Su Velocidad es reiniciada al ser golpeado, pero el atacante pierde 1/8 de sus PS totales por cada grado perdido.
+Velocidad aumenta cada turno. Es reiniciada al ser golpeado, pero el atacante pierde 1/8 PS totales por cada grado perdido.
 Powers up Ice-type moves by 50%.
 Potencia movimientos tipo Hielo un 50%.
 Boosts the power of blade moves by 30%. They're twice as likely to crit.
@@ -42874,8 +42892,8 @@ Ignores screens, Substitute, and Abilities that would affect its moves.
 Ignora pantallas, Sustitutos y Habilidades que afectarían sus movimientos.
 At the beginning of each turn, gives clues about a foe's plan.
 Da pistas sobre el plan del rival al inicio de cada turno.
-Special attacks against the Pokémon lower Sp. Def by one step and raise Speed by two steps.
-Al ser alcanzado por un movimiento especial, su Defensa Especial es reducida por un grado, pero su Velocidad es aumentada por dos.
+Special attacks against the Pokémon raise its Speed by two steps but lower its Sp. Def.
+Al ser alcanzado por un movimiento especial, su Velocidad aumenta dos grados pero disminuye su Def. Es.
 Prevents foes with status conditions from fleeing.
 No permite que rivales con problemas de estado huyan.
 Boosts the power of wind-based moves by 30%.
@@ -42940,7 +42958,7 @@ Using or being hit by a physical move leaves a rock on the field. Status moves c
 Al usar o ser alcanzado por un movimiento físico deja una roca en el campo. Las recolecta al usar un movimiento de estado, curándose 1/4 por cada roca presente.
 Raises both defensive stats whenever any Pokémon uses a dance move.
 Aumenta ambas stats defensivas cada vez que cualquier Pokémon use un movimiento de baile.
-Slips pasts all types of spikes. Deals 50% more damage to targets that switched in this turn.
+Slips past all types of spikes. Deals 50% more damage to targets that switched in this turn.
 Ignora todo tipo de púas en el campo. Potencia sus ataques un 50% contra enemigos que hayan cambiado en el turno.
 After fainting from exploding, revives after six turns.
 Al debilitarse luego de explotar, revivirá después de seis turnos.
@@ -43022,8 +43040,8 @@ Deals 30% more move damage to Pokémon that are taller than it.
 Sus movimientos son potenciados un 30% si ataca a un Pokémon más alto.
 Takes 30% less move damage from Pokémon that are shorter than it.
 Sus movimientos son potenciados un 30% si ataca a un Pokémon más bajo.
-Whenever a foe's poison worsens, heal for 25% for each level of worsening.
-Cada vez que el veneno de un oponente empeore, se cura un 25% de PS por cada nivel de gravedad.
+Whenever a foe's poison worsens, the Pokémon heals for 25% max HP.
+Cada vez que el veneno de un oponente empeore, recupera un 25% de sus PS máximos.
 At the first chance, copies an opponent's species' legal Abilities.
 A la primera oportunidad, copia una de las Habilidades legales del oponente.
 Can hold two different items, if both are Herbs.
@@ -43042,9 +43060,9 @@ After knocking out any Pokémon, raises its Attack and Speed.
 Al debilitar cualquier Pokémon, aumenta tanto su Ataque como Velocidad.
 After knocking out any Pokémon, raises its Sp. Atk and Speed.
 Al debilitar cualquier Pokémon, aumenta tanto su Ataque Especial como Velocidad.
-After knocking out any Pokémon, raises its Attack and Defense by one step each.
+After knocking out any Pokémon, raises its Attack and Defense.
 Al debilitar cualquier Pokémon, aumenta tanto su Ataque como Defensa un grado.
-After knocking out any Pokémon, raises its Sp. Atk and Sp. Def by one step each.
+After knocking out any Pokémon, raises its Sp. Atk and Sp. Def.
 Al debilitar cualquier Pokémon, aumenta tanto su Ataque Especial como Defensa Especial un grado.
 Can hold two items, but drops one when swapping out.
 Puedes equiparle dos objetos, pero suelta uno al regresar a su Poké Ball.
@@ -43172,14 +43190,14 @@ Takes 30% less move damage if a Tailwind is blowing.
 Recibe 30% menos de daño si hay un Viento Afín soplando.
 The Pokémon and other battlers don't benefit from same-type attacking bonus.
 Tanto el usuario como otros Pokémon no se benefician del bonus del mismo tipo.
-Draws in moves from foes with base power 100 or more.
-Atrae movimientos de rivales con 100 de potencia o más.
+Draws in moves from foes with base power 100 or more. Takes 15% less move damage.
+Atrae movimientos de rivales con 100 de potencia o más. Recibe 15% menos daño directo.
 Whenever a foe fails or misses, they take 1/8th HP damage.
 Cada vez que un rival falle un movimiento, pierden 1/8 de sus PS totales.
 33% of all move damage taken is instead taken at the end of the next turn.
 33% de todo daño de ataques es recibido al final del siguiente turno.
 Deals 30% more damage to targets that have an item. After attacking a foe, destroys their clothing items.
-Potencia sus ataques 30% contra objetivos que tengan un objeto. Luego de atacar, destruye su objeto de ropaje.
+Potencia sus ataques 30% contra objetivos que tengan un objeto. Luego de atacar, destruye su objeto de vestimenta.
 Draining moves deal 30% more damage. Can overheal when draining.
 Sus movimientos de drenado son potenciados un 30%. Puede sobrecurarse al drenar.
 The Pokémon is Mutant-type.
@@ -43204,12 +43222,12 @@ Changes the weather to Blood Moon, which heralds the Full Blood Moon. Lingers fo
 Cambia el clima a la Luna de Sangre, que proclama la Luna Llena de Sangre. Permanece durante 3 turnos luego de regresar a su Poké Ball.
 Immune to Fire-type moves, and raises both attacking stats if hit by one.
 Inmune a movimientos tipo Fuego, y aumenta ambas stats ofensivas si es alcanzado por uno.
-Falls asleep upon entry, but raises all of its stats by 2 steps.
-Se duerme inmediatamente, pero aumenta todas sus stats 2 grados.
+Falls asleep upon entry, but raises all of its stats by two steps.
+Se duerme inmediatamente, pero aumenta todas sus stats dos grados.
 Prevents foes whose Attack is less than its from fleeing.
 Atrapa a oponentes que tengan menos Ataque que el usuario.
-Foes suffer 50% more stat reduction from Burn, Frostbite, and Numb.
-Los oponentes sufren una reducción de stats un 50% mayor al sufrir una Quemadura, Heladura o Aturdimiento.
+Foes suffer 50% more stat reduction from burn, frostbite, and numb.
+Los oponentes sufren una reducción de stats un 50% mayor al sufrir una quemadura, heladura o aturdimiento.
 After attacking any foe, the Pokémon immediately uses Rest.
 Luego de atacar a un oponente, el Pokémon usa inmediatamente Descanso.
 It changes form to match the move it selected.
@@ -43280,6 +43298,12 @@ Copies the base stats of the Pokémon it switches in to replace.
 Copia las stats base del Pokémon que entra a reemplazar.
 Punches, Kicks, and Bites combo together to create special effects.
 Puños, Patadas y Mordiscos son combinados para crear efectos especiales.
+Its attacks are always physical attacks.
+Sus ataques son siempre ataques físicos.
+Prevents other Pokémon from lowering its stat steps, and its weight is doubled.
+No permite que otros Pokémon disminuyan sus stats, y su peso es duplicado.
+It can avoid being knocked out by using its face. The face then melts.
+Puede evitar ser debilitado usando su cara. La cara luego se derrite.
 [12]
 0
 Normal
