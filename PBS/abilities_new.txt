@@ -1006,7 +1006,7 @@ Description = Deals 50% more damage to targets that switched in this turn. Takes
 #-------------------------------
 [LINEBACKER]
 Name = Linebacker
-Description = Doubles the damage of recoil moves.
+Description = Doubles the damage and recoil of recoil moves.
 #-------------------------------
 [LIVEFAST]
 Name = Live Fast

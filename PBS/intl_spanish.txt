@@ -42732,7 +42732,7 @@ Has a 30% chance to burn targets when using physical moves.
 Al usar un movimiento físico, tiene un 30% de probabilidad de quemar al objetivo.
 Can't be leeched, drained, or trapped.
 No puede ser infectado, drenado ni atrapado.
-Doubles the damage of recoil moves.
+Doubles the damage and recoil of recoil moves.
 Duplica la potencia de los movimientos con retroceso.
 Creates Grey Mist for three turns when entering the battlefield.
 Crea una Niebla Gris por tres turnos al entrar al campo.

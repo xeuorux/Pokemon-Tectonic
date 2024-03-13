@@ -2726,7 +2726,7 @@ Pokemon = PLUSLE,52
 #-------------------------------
 [SWIMMER_F2,Astrid]
 Pokemon = TENTACRUEL,50
-    AbilityIndex = 0 # Clear Body
+    AbilityIndex = 0 # Sap Sipper
 Pokemon = VOLBEAT,51
     AbilityIndex = 1 # Competitive
     Item = LIFEORB
@@ -3017,7 +3017,7 @@ Pokemon = SAWSBUCK,70
     # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
     EV = 20,0,5,20,0,5
 Pokemon = STOUTLAND,70
-    Moves = ROAR,SLACKOFF,REFLECT,TRICKYTOXINS
+    Moves = ROAR,BODYSLAM,REFLECT,LIGHTSCREEN
     AbilityIndex = 0 # Break Through
     Item = LEFTOVERS
     # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
@@ -5386,7 +5386,7 @@ Pokemon = OCTILLERY,70
     # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
     EV = 10,20,10,0,20,10
 Pokemon = SLOWBRO,70
-    Moves = SLACKOFF,SCALD,PSYCHIC,FLIPTURN
+    Moves = SLACKOFF,SCALD,PSYCHIC,TELEPORT
     AbilityIndex = 0 # Delayed Reaction
     Item = SITRUSBERRY
     # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def

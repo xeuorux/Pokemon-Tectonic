@@ -665,6 +665,7 @@ module Recoilable
         return 0 if user.shouldAbilityApply?(:ROCKHEAD, checkingForAI)
         factor = recoilFactor
         factor /= 2 if user.shouldAbilityApply?(:UNBREAKABLE, checkingForAI)
+        factor *= 2 if user.shouldAbilityApply?(:LINEBACKER, checkingForAI)
         return factor
     end
 
