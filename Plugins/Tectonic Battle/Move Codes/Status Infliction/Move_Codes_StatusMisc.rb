@@ -97,7 +97,7 @@ end
 class PokeBattle_Move_LeechTargetIfSlowerNumbTargetIfFaster < PokeBattle_Move
     def pbFailsAgainstTarget?(user, target, show_message)
         return false if damagingMove?
-        if !target.canLeech?(user, show_message, self) && !target.canNumb?(user, show_message, self)
+        if !target.canLeech?(user, false, self) && !target.canNumb?(user, false, self)
             if show_message
                 @battle.pbDisplay(_INTL("But it failed, since #{target.pbThis(true)} can neither be leeched or numbed!"))
             end

@@ -42942,8 +42942,8 @@ Raises both defensive stats whenever any Pokémon uses a dance move.
 Aumenta ambas stats defensivas cada vez que cualquier Pokémon use un movimiento de baile.
 Slips pasts all types of spikes. Deals 50% more damage to targets that switched in this turn.
 Ignora todo tipo de púas en el campo. Potencia sus ataques un 50% contra enemigos que hayan cambiado en el turno.
-After fainting from exploding, revives after three turns.
-Al debilitarse luego de explotar, revivirá después de tres turnos.
+After fainting from exploding, revives after six turns.
+Al debilitarse luego de explotar, revivirá después de seis turnos.
 Powers up Grass-type moves of itself and its allies by 50%.
 Potencia sus movimientos tipo Planta y los de sus aliados un 50%.
 After being attacked, uses Parting Shot to switch out.
@@ -49119,8 +49119,8 @@ No afecta a {1} ya que es un tipo Planta...
 ¡{2} de {1} apenas lo salva!
 {1} resists the recoil!
 ¡{1} resiste el retroceso!
-{1} will revive in 3 turns!
-¡{1} revivirá en 3 turnos!
+{1} will revive in six turns!
+¡{1} revivirá en seis turnos!
 But it failed, since #{user.pbThis(true)} has no party allies to replace it!
 ¡Pero falló, ya que #{user.pbThis(true)} no tiene aliados en su equipo para reemplazar!
 But it failed, since everyone has heard the song already!

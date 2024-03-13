@@ -56,12 +56,12 @@ class PokeBattle_Move_UserFaintsExplosive < PokeBattle_Move
             @battle.pbHideAbilitySplash(user) if unbreakable
             if user.hasActiveAbility?(:PERENNIALPAYLOAD,true)
                 @battle.pbShowAbilitySplash(user, :PERENNIALPAYLOAD)
-                @battle.pbDisplay(_INTL("{1} will revive in 3 turns!", user.pbThis))
+                @battle.pbDisplay(_INTL("{1} will revive in six turns!", user.pbThis))
                 if user.pbOwnSide.effectActive?(:PerennialPayload)
-                    user.pbOwnSide.effects[:PerennialPayload][user.pokemonIndex] = 4
+                    user.pbOwnSide.effects[:PerennialPayload][user.pokemonIndex] = 7
                 else
                     user.pbOwnSide.effects[:PerennialPayload] = {
-                        user.pokemonIndex => 4,
+                        user.pokemonIndex => 7,
                     }
                 end
                 @battle.pbHideAbilitySplash(user)
