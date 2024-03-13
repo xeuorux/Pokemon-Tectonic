@@ -42733,7 +42733,7 @@ Al usar un movimiento físico, tiene un 30% de probabilidad de quemar al objetiv
 Can't be leeched, drained, or trapped.
 No puede ser infectado, drenado ni atrapado.
 Doubles the damage and recoil of recoil moves.
-Duplica la potencia de los movimientos con retroceso.
+Duplica la potencia y el retroceso de los movimientos con retroceso.
 Creates Grey Mist for three turns when entering the battlefield.
 Crea una Niebla Gris por tres turnos al entrar al campo.
 Doubled Sp. Def in sunshine.
