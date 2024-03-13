@@ -743,7 +743,7 @@ Accuracy = 100
 TotalPP = 5
 Target = NearOther
 FunctionCode = TwoTurnAttack
-Flags = CanProtect,CanMirrorMove
+Flags = CanProtect,CanMirrorMove,CantForce
 Description = The user blasts the target with power that distorts even time. The user must rest on the next turn.
 #-------------------------------
 [DRACOMETEOR]
@@ -950,7 +950,7 @@ Accuracy = 100
 TotalPP = 5
 Target = NearOther
 FunctionCode = TwoTurnAttack
-Flags = CanProtect,CanMirrorMove
+Flags = CanProtect,CanMirrorMove,CantForce
 Description = Eternatus's most powerful attack in its original form. The user can't move on the next turn.
 #-------------------------------
 [CLANGOROUSSOUL]
@@ -1557,7 +1557,7 @@ TotalPP = 15
 Target = NearOther
 Priority = -3
 FunctionCode = FailsIfUserDamagedThisTurn
-Flags = CanProtect,Punch
+Flags = CanProtect,Punch,CantForce
 Description = The user focuses its mind before launching a punch. It will fail if the user is hit before it is used.
 #-------------------------------
 [HIGHJUMPKICK]
@@ -1904,7 +1904,7 @@ TotalPP = 15
 Target = None
 Priority = -5
 FunctionCode = CounterPhysicalDamage
-Flags = CanProtect
+Flags = CanProtect,CantForce
 Description = A retaliation move that counters any physical attack, inflicting double the damage taken.
 #-------------------------------
 [FINALGAMBIT]
@@ -1997,7 +1997,7 @@ Accuracy = 100
 TotalPP = 5
 Target = NearOther
 FunctionCode = TwoTurnAttack
-Flags = CanProtect,CanMirrorMove
+Flags = CanProtect,CanMirrorMove,CantForce
 Description = Attacks wildly with swords or fists. The user can't move on the next turn.
 #-------------------------------
 [NORETREAT]
@@ -2080,7 +2080,7 @@ TotalPP = 5
 Target = AllNearFoes
 Priority = -3
 FunctionCode = UsedAfterUserTakesPhysicalDamage
-Flags = CanProtect
+Flags = CanProtect,CantForce
 Description = The user sets a shell trap. If it is hit by a physical move, the trap explodes and hurts all near foes.
 #-------------------------------
 [BLUEFLARE]
@@ -2493,7 +2493,7 @@ TotalPP = 12
 Target = NearOther
 Priority = -3
 FunctionCode = BurnAttackerBeforeUserActs
-Flags = CanProtect
+Flags = CanProtect,CantForce
 Description = The user heats up its beak before attacking. Physically attacking in this time results in a burn.
 #-------------------------------
 [FLY]
@@ -3888,7 +3888,7 @@ Accuracy = 100
 TotalPP = 5
 Target = NearOther
 FunctionCode = TwoTurnAttack
-Flags = CanProtect,CanMirrorMove
+Flags = CanProtect,CanMirrorMove,CantForce
 Description = The user charges at the target using every bit of its power. The user must rest on the next turn.
 #-------------------------------
 [HYPERBEAM]
@@ -3900,7 +3900,7 @@ Accuracy = 100
 TotalPP = 5
 Target = NearOther
 FunctionCode = TwoTurnAttack
-Flags = CanProtect,CanMirrorMove
+Flags = CanProtect,CanMirrorMove,CantForce
 Description = The foe is attacked with a powerful beam. The user must rest on the next turn to regain its energy.
 #-------------------------------
 [BOOMBURST]
@@ -4343,7 +4343,7 @@ Accuracy = 0
 TotalPP = 1
 Target = RandomNearFoe
 FunctionCode = Struggle
-Flags = CanProtect
+Flags = CanProtect,CantForce
 Description = Used only if the user has no PP. Uses the higher of the user's Attack or Sp. Atk stat. It also hurts the user.
 #-------------------------------
 [ECHOEDVOICE]
@@ -4554,7 +4554,7 @@ TotalPP = 10
 Target = None
 Priority = 1
 FunctionCode = MultiTurnAttackBideThenReturnDoubleDamage
-Flags = CanProtect
+Flags = CanProtect,CantForce
 Description = The user endures attacks for two turns, then strikes back to cause double the damage taken.
 #-------------------------------
 [CRUSHGRIP]
@@ -4999,7 +4999,7 @@ Accuracy = 0
 TotalPP = 10
 Target = NearOther
 FunctionCode = ReplaceMoveThisBattleWithTargetLastMoveUsed
-Flags = CanProtect
+Flags = CanProtect,CantForce
 Description = The user copies the move last used by the foe. The move can be used until the user is switched out.
 #-------------------------------
 [NATUREPOWER]
@@ -5196,6 +5196,7 @@ Accuracy = 0
 TotalPP = 1
 Target = NearOther
 FunctionCode = ReplaceMoveWithTargetLastMoveUsed
+Flags = CantForce
 Description = It enables the user to permanently learn the move last used by the foe. Once used, Sketch disappears.
 #-------------------------------
 [SLACKOFF]
@@ -5349,6 +5350,7 @@ Accuracy = 0
 TotalPP = 10
 Target = NearOther
 FunctionCode = TransformUserIntoTarget
+Flags = CantForce
 Description = The user transforms into a copy of the target right down to having the same move set.
 #-------------------------------
 [WHIRLWIND]
@@ -5686,7 +5688,7 @@ Accuracy = 100
 TotalPP = 10
 Target = NearOther
 FunctionCode = TwoTurnAttack
-Flags = CanProtect,CanMirrorMove
+Flags = CanProtect,CanMirrorMove,CantForce
 Description = The user shoots powerful lasers using the power of a prism. The user can't move on the next turn.
 #-------------------------------
 [PSYCHOBOOST]
@@ -5888,7 +5890,7 @@ TotalPP = 15
 Target = None
 Priority = -5
 FunctionCode = CounterSpecialDamage
-Flags = CanProtect
+Flags = CanProtect,CantForce
 Description = A retaliation move that counters any special attack, inflicting double the damage taken.
 #-------------------------------
 [PSYWAVE]
@@ -6211,7 +6213,7 @@ Accuracy = 100
 TotalPP = 5
 Target = NearOther
 FunctionCode = TwoTurnAttack
-Flags = CanProtect,CanMirrorMove
+Flags = CanProtect,CanMirrorMove,CantForce
 Description = The user launches a huge boulder at the target to attack. It must rest on the next turn, however.
 #-------------------------------
 [DIAMONDSTORM]
@@ -6619,7 +6621,7 @@ TotalPP = 10
 Target = None
 Priority = -5
 FunctionCode = CounterDamagePlusHalf
-Flags = CanProtect,CanMirrorMove
+Flags = CanProtect,CanMirrorMove,CantForce
 Description = The user retaliates with much greater power against the target that last inflicted damage on it.
 #-------------------------------
 [AUTOTOMIZE]
@@ -7157,7 +7159,7 @@ Accuracy = 100
 TotalPP = 5
 Target = NearOther
 FunctionCode = TwoTurnAttack
-Flags = CanProtect,CanMirrorMove
+Flags = CanProtect,CanMirrorMove,CantForce
 Description = The target is hit with a watery blast. The user must rest on the next turn, however.
 #-------------------------------
 [FRENZYPLANT]
@@ -7169,7 +7171,7 @@ Accuracy = 100
 TotalPP = 5
 Target = NearOther
 FunctionCode = TwoTurnAttack
-Flags = CanProtect,CanMirrorMove
+Flags = CanProtect,CanMirrorMove,CantForce
 Description = The user slams the target with an enormous tree. The user can't move on the next turn.
 #-------------------------------
 [BLASTBURN]
@@ -7181,12 +7183,12 @@ Accuracy = 100
 TotalPP = 5
 Target = NearOther
 FunctionCode = TwoTurnAttack
-Flags = CanProtect,CanMirrorMove
+Flags = CanProtect,CanMirrorMove,CantForce
 Description = The target is razed by a fiery explosion. The user must rest on the next turn, however.
 #-------------------------------
 [TWINBEAM]
 Name = Twin Beam
-Type = NORMAL
+Type = PSYCHIC
 Category = Special
 Power = 50
 Accuracy = 100

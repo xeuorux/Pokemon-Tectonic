@@ -154,27 +154,7 @@ module GameData
       end
 
       def can_be_forced?
-        return false if [
-          "0D4",   # Bide
-          # Struggle
-          "002",   # Struggle
-          # Moves that affect the moveset
-          "05C",   # Mimic
-          "05D",   # Sketch
-          "069",   # Transform
-          # Moves that require a recharge turn
-          "0C2",   # Hyper Beam
-          # Moves that start focussing at the start of the round
-          "115",   # Focus Punch
-          "171",   # Shell Trap
-          "12B",   # Masquerblade
-          "172",   # Beak Blast
-          # Counter moves
-          "071",   # Counter
-          "072",   # Mirror Coat
-          "073",   # Metal Burst
-        ].include?(@function_code)
-        return true
+        return !@flags.include?("CantForce")
       end
 
       def learnable?

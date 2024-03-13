@@ -5945,7 +5945,7 @@ Accuracy = 100
 TotalPP = 5
 Target = NearOther
 FunctionCode = TwoTurnAttackRechargeSkippedIfTargetLeaves
-Flags = CanProtect,CanMirrorMove,Bite
+Flags = CanProtect,CanMirrorMove,Bite,CantForce
 Description = Grips the target with its entire mouth. The user can't attack next turn unless the target faints or switches out.
 #-------------------------------
 [SPOTTING]
@@ -5980,7 +5980,7 @@ TotalPP = 5
 Target = AllNearFoes
 Priority = -3
 FunctionCode = UsedAfterUserTakesSpecialDamage
-Flags = CanProtect
+Flags = CanProtect,CantForce
 Description = The user hides its blade. If it is hit by a special move, it unsheathes it quickly, slashing all near foes.
 Animation = CAMOUFLAGE
 #-------------------------------
