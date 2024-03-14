@@ -129,9 +129,6 @@ class PokemonSummary_Scene
         @forget = false
         @typebitmap    = AnimatedBitmap.new(addLanguageSuffix(("Graphics/Pictures/types")))
         @markingbitmap = AnimatedBitmap.new("Graphics/Pictures/Summary/markings")
-        info_path = "Graphics/Pictures/move_info_display_3x3"
-        info_path += "_dark" if darkMode?
-        @moveInfoDisplayBitmap = AnimatedBitmap.new(_INTL(info_path))
         @sprites = {}
         @sprites["background"] = IconSprite.new(0, 0, @viewport)
         @sprites["pokemon"] = PokemonSprite.new(@viewport)
@@ -182,6 +179,17 @@ class PokemonSummary_Scene
         @sprites["messagebox"].visible        = false
         @sprites["messagebox"].letterbyletter = true
         pbBottomLeftLines(@sprites["messagebox"], 2)
+        createMoveInfoDisplay
+        
+        drawPage(@page)
+        pbFadeInAndShow(@sprites) { pbUpdate }
+    end
+
+    def createMoveInfoDisplay
+        info_path = "Graphics/Pictures/move_info_display_3x3"
+        info_path += "_dark" if darkMode?
+        @moveInfoDisplayBitmap = AnimatedBitmap.new(_INTL(info_path))
+
         # Create the move extra info display
         moveInfoDisplayY = Graphics.height - @moveInfoDisplayBitmap.height
         @moveInfoDisplay = SpriteWrapper.new(@viewport)
@@ -193,9 +201,6 @@ class PokemonSummary_Scene
         pbSetNarrowFont(@extraInfoOverlay.bitmap)
         @sprites["extraInfoOverlay"] = @extraInfoOverlay
         @extraInfoOverlay.y = moveInfoDisplayY
-        
-        drawPage(@page)
-        pbFadeInAndShow(@sprites) { pbUpdate }
     end
 
     def pbStartForgetScene(party, partyindex, move_to_learn)
@@ -207,9 +212,6 @@ class PokemonSummary_Scene
         @page = 4
         @forget = true
         @typebitmap = AnimatedBitmap.new(addLanguageSuffix(("Graphics/Pictures/types")))
-        info_path = "Graphics/Pictures/move_info_display_3x3"
-        info_path += "_dark" if darkMode?
-        @moveInfoDisplayBitmap = AnimatedBitmap.new(_INTL(info_path))
         @sprites = {}
         @sprites["background"] = IconSprite.new(0, 0, @viewport)
         @sprites["overlay"] = BitmapSprite.new(Graphics.width, Graphics.height, @viewport)
@@ -239,17 +241,7 @@ class PokemonSummary_Scene
             move_selected = @pokemon.moves[0]
         end
 
-        # Create the move extra info display
-        moveInfoDisplayY = Graphics.height - @moveInfoDisplayBitmap.height
-        @moveInfoDisplay = SpriteWrapper.new(@viewport)
-        @moveInfoDisplay.bitmap = @moveInfoDisplayBitmap.bitmap
-        @moveInfoDisplay.y = moveInfoDisplayY
-        @sprites["moveInfoDisplay"] = @moveInfoDisplay
-        # Create overlay for selected move's extra info (shows move's BP, description)
-        @extraInfoOverlay = BitmapSprite.new(Graphics.width, Graphics.height,  @viewport)
-        pbSetNarrowFont(@extraInfoOverlay.bitmap)
-        @sprites["extraInfoOverlay"] = @extraInfoOverlay
-        @extraInfoOverlay.y = moveInfoDisplayY
+        createMoveInfoDisplay
 
         drawSelectedMove(new_move, move_selected)
         pbFadeInAndShow(@sprites)
@@ -315,6 +307,9 @@ class PokemonSummary_Scene
         @sprites["messagebox"].visible        = false
         @sprites["messagebox"].letterbyletter = true
         pbBottomLeftLines(@sprites["messagebox"], 2)
+
+        createMoveInfoDisplay
+
         drawPage(@page)
         pbFadeInAndShow(@sprites) { pbUpdate }
     end
