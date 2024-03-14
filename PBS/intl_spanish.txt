@@ -52273,6 +52273,22 @@ Un aire de autoridad rodea a {1}.
 {1} está poseído!
 They can't be crit and take less damage for #{value - 1} more turns!
 ¡Es inmune a golpes críticos y recibe menos daño por #{value - 1} turnos más!
+Harsh Noise
+Ruido Fuerte
+Soothing Sounds
+Sonidos Relajantes
+Place the Noise Machine on which setting?
+¿En qué configuración colocar la Máquina de Ruido?
+The Noise Machine is now off.
+La Máquina de Ruidos ya está apagada.
+The Noise Machine begins playing a high-pitched noise.
+La Máquina de Ruido comienza a reproducir un ruido agudo.
+Wild Pokémon are now repelled!
+¡Los Pokémon salvajes ahora son repelidos!
+The Noise Machine begins playing soothing sounds.
+La Máquina de Ruido comienza a reproducir sonidos relajantes.
+Wild Pokémon are now drawn to you!
+¡Los Pokémon salvajes ahora se sienten atraídos por ti!
 [26]
 [27]
 [27]
