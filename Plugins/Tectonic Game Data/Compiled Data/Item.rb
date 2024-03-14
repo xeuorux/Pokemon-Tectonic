@@ -164,7 +164,7 @@ module GameData
       end
 
       def is_berry?
-        return @flags.include?("PokeBall")
+        return @flags.include?("Berry")
       end
 
       def is_clothing?
