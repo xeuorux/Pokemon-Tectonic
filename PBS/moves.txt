@@ -974,7 +974,7 @@ TotalPP = 5
 Target = AllNearFoes
 FunctionCode = ScalesWithUserHP
 Flags = CanProtect,CanMirrorMove
-Description = Attacks all enemy Pokémon with pure vitality. Weakens in damage as the user loses HP, at its weakest when the user is at half or less.
+Description = Attacks all enemy Pokémon with pure vitality. Weakens in damage as the user loses HP. Weakest at half HP.
 #-------------------------------
 [BOLTSTRIKE]
 Name = Bolt Strike
@@ -2056,7 +2056,7 @@ TotalPP = 5
 Target = AllNearFoes
 FunctionCode = ScalesWithUserHP
 Flags = CanProtect,CanMirrorMove
-Description = The user attacks in an explosive fury. Weakens in damage as the user loses HP, at its weakest when the user is at half or less.
+Description = The user attacks in an explosive fury. Weakens in damage as the user loses HP. Weakest at half HP.
 #-------------------------------
 [MINDBLOWN]
 Name = Mind Blown
@@ -6738,7 +6738,7 @@ TotalPP = 5
 Target = AllNearFoes
 FunctionCode = ScalesWithUserHP
 Flags = CanProtect,CanMirrorMove
-Description = The user spouts water to damage the foe. Weakens in damage as the user loses HP, at its weakest when the user is at half or less.
+Description = The user spouts water to damage the foe. Weakens in damage as the user loses HP. Weakest at half HP.
 #-------------------------------
 [HYDROPUMP]
 Name = Hydro Pump
