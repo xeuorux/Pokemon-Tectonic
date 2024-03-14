@@ -4299,67 +4299,92 @@ Pokemon = ABSOL,20
     # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
     EV = 20,0,15,0,0,15
 #-------------------------------
+[YOUNGSTER,Buzim]
+Pokemon = JOLTEON,48
+    Moves = DISCHARGE,NUMB,ELECTROBALL,SHOUT
+    AbilityIndex = 1 # Needle Fur
+    Item = FOCUSSASH
+Pokemon = VAPOREON,48
+    Moves = MENDINGSPRING,SCALD,GREYMIST,BABYDOLLEYES
+    AbilityIndex = 1 # Breaking Wave
+Pokemon = LEAFEON,48
+    Moves = POISONIVY,LEAFBLADE,BABYDOLLEYES,REST
+    AbilityIndex = 1 # Reluctant Blade
+Pokemon = FLAREON,48
+    Moves = IGNITE,FIRELASH,INFERNOIMPACT,WORKUP
+    AbilityIndex = 1 # Ignition Cycle
+Pokemon = GIGANTEON,48
+    Moves = RETALIATE,COPYCAT,QUICKATTACK,DOUBLEEDGE
+    AbilityIndex = 0 # Ultra Adapted
+    Item = AGILITYHERB
+#-------------------------------
 [SWIMMER_F4,Yvonne]
 Pokemon = BEHEEYEM,56
+    Moves = METEORMASH,ZENHEADBUTT,PSYCHOBOOST,OCCULTATION
     AbilityIndex = 1 # Puzzling
     Item = REINFORCINGROD
 Pokemon = ABSOLUS,57
+    Moves = INFINITEFORCE,DARKALLURE,ENCHANTINGSONG,ICEBEAM
     AbilityIndex = 1 # Vengeance
 Pokemon = EMPOLEON,58
-    AbilityIndex = 0 # Imperious
-    Item = STEELGEM
-Pokemon = RHYPERIOR,57
-    AbilityIndex = 0 # Reckless
+    Moves = HARBORBREAKER,FLASHCANNON,DRILLPECK,AQUAJET
+    AbilityIndex = 1 # Self-Sufficient
+Pokemon = DRAGONITE,57
+    Moves = TEMPEST,COLDFRONT,DRAGONPULSE,SURF
+    AbilityIndex = 1 # Multiscale
+    Item = SKILLHERB
 #-------------------------------
 [SWIMMER_F6,Kiana]
 Pokemon = JELLICENT,58
+    Moves = EBBFLOW,HEX,SHIVER,RECOVER
     AbilityIndex = 1 # Sentry
-    Item = SITRUSBERRY
-Pokemon = DIGNIPHITE,59
-    AbilityIndex = 0 # Heavy Metal
-Pokemon = TSAREENA,60
-    AbilityIndex = 0 # Punisher
-    Item = STRIKEVEST
+    Item = LEFTOVERS
+Pokemon = WORMADAM,59
+    Moves = GIGADRAIN,SCORCHINGSANDS,IRONHEAD,LEECHLIFE
+    AbilityIndex = 1 # Cloaking
+Pokemon = KABUTOPS,60
+    Moves = TORRENTSCYTHE,SEVER,BEDROCKBREAKER,XSCISSOR
+    AbilityIndex = 0 # Super Luck
+    Item = SCOPELENS
 Pokemon = BEWEAR,59
+    Moves = BEARHUG,CHAOSWHEEL,BABYDOLLEYES,MACHPUNCH
     AbilityIndex = 0 # Intimidate
 #-------------------------------
 [SAILOR2,Angelo]
-Pokemon = DELCATTY,57
-    AbilityIndex = 0 # Above It All
-Pokemon = RILLABOOM,58
-    AbilityIndex = 1 # Vital Rhythm
-Pokemon = STARAPTOR,59
-    AbilityIndex = 1 # Reckless
-    Item = LIFEORB
-Pokemon = ZOROARK,58
-    AbilityIndex = 0 # Illusion
-    Item = DARKGEM
-#-------------------------------
-[YOUNGSTER,Buzim]
-Pokemon = JOLTEON,47
-    AbilityIndex = 1 # Needle Fur
-    Item = FOCUSSASH
-Pokemon = VAPOREON,47
-    AbilityIndex = 1 # Breaking Wave
-Pokemon = LEAFEON,47
-    AbilityIndex = 1 # Reluctant Blade
-Pokemon = FLAREON,47
-    AbilityIndex = 1 # Ignition Cycle
-Pokemon = GIGANTEON,47
-    AbilityIndex = 1 # Friend to All
-    Item = AGILITYHERB
+Pokemon = QUAGSIRE,60
+    Moves = RIVERREST,EARTHQUAKE,PLAYROUGH,LIQUIDATION
+    AbilityIndex = 0 # Unaware
+Pokemon = TENTACRUEL,58
+    Moves = ENVENOM,LIQUIDATION,SLUDGEWAVE,MAELSTROM
+    AbilityIndex = 0 # Sap Sipper
+Pokemon = UNFEZANT,59
+    Moves = SEVER,STRAFE,PALEBLADE,HONECLAWS
+    AbilityIndex = 0 # Deterrent
+    Item = FLYINGGEM
+Pokemon = GSTUNFISK,58
+    Moves = EARTHQUAKE,FARADAYCAGE,SHOREUP,STEALTHROCK
+    AbilityIndex = 1 # Deterrent
+    Item = HIVISJACKET
 #-------------------------------
 [TUBER_F2,Hana]
-Pokemon = RATICATE,57
-    AbilityIndex = 0 # Filthy
-    Item = NORMALGEM
-Pokemon = CONKELDURR,58
-    AbilityIndex = 1 # Quick Build
-Pokemon = SAHARICANE,59
-    AbilityIndex = 1 # Disorienting
-Pokemon = KLAWSAR,58
-    AbilityIndex = 0 # Frustrate
-    Item = LIFEORB
+Pokemon = OVERQWIL,60
+    Moves = POISONSPIKES,TRICKYTOXINS,CRUNCH,ENVENOM
+    AbilityIndex = 1 # Venom Gorger
+    Item = LEFTOVERS
+Pokemon = GSLOWBRO,60
+    Moves = ENVENOM,PSYCHOBOOST,VENOSHOCK,SHELLSIDEARM
+    AbilityIndex = 1 # Merciless
+    Item = SITRUSBERRY
+Pokemon = HYMNUS,59
+    Moves = CRUELTY,WARDPRESS,DRAGONPULSE,STRAFE
+    AbilityIndex = 0 # Levitate
+Pokemon = ROSERADE,59
+    Moves = CRUELWHIPBLADE,LEAFBLADE,POISONJAB,PALEBLADE
+    AbilityIndex = 1 # Merciless
+    Item = FOCUSSASH
+Pokemon = DRAPION,60
+    Moves = HONORLESSSTING,KNOCKOFF,XSCISSOR,POISONSPIKES
+    AbilityIndex = 1 # Merciless
 #-------------------------------
 [POKEMONTRAINER_Yezera,Yezera,8]
 Policies = METAGAMES_STAT_ITEMS
