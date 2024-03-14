@@ -3313,16 +3313,20 @@ Pokemon = PINSIR,30
     AbilityIndex = 1 # Juggernaut
 #-------------------------------
 [TUBER_M,Derek]
-Pokemon = LUDICOLO,40
-    AbilityIndex = 0 # Fiesta
-Pokemon = TOXTRICITY,40
-    AbilityIndex = 1 # Thunderstruck
-    Item = POISONGEM
-Pokemon = NIDOKING,41
-    AbilityIndex = 0 # Sheer Force
-Pokemon = MILLIBLAZE,42
-    AbilityIndex = 1 # Exotherm Engine
-    Item = LIFEORB
+Pokemon = INTELEON,41
+    Moves = SNIPESHOT,DARKPULSE,SHINESHOT
+    AbilityIndex = 1 # Illusion
+    Item = WATERGEM
+Pokemon = SANDSLASH,41
+    Moves = ONAROLL,FURYCUTTER,ROCKROLL
+    AbilityIndex = 1 # Tough Claws
+Pokemon = MLILLIGANT,41
+    Moves = GLACIALRAM,PLAYROUGH,SPATTERINGRAM,FLATTER
+    AbilityIndex = 0 # Tangling Hair
+Pokemon = DARMANITAN,41
+    Moves = FIRELASH,FLAREBLITZ,THRASH,SEERSTRIKE
+    AbilityIndex = 0 # Extreme Power
+    Item = CHOICESCARF
 #-------------------------------
 [ARTIST2,Frank]
 Pokemon = SALAZZLE,48
