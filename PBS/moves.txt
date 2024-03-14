@@ -968,13 +968,13 @@ Description = The user raises all its stats by two steps, at the cost of 1/3rd o
 Name = Dragon Energy
 Type = DRAGON
 Category = Special
-Power = 1
+Power = 130
 Accuracy = 100
 TotalPP = 5
 Target = AllNearFoes
 FunctionCode = ScalesWithUserHP
 Flags = CanProtect,CanMirrorMove
-Description = Attacks all enemy Pokémon with pure vitality. Its power decreases with the user's HP.
+Description = Attacks all enemy Pokémon with pure vitality. Weakens in damage as the user loses HP, at its weakest when the user is at half or less.
 #-------------------------------
 [BOLTSTRIKE]
 Name = Bolt Strike
@@ -2050,13 +2050,13 @@ Description = With a fiery forehead, the user hurls itself at the foe. Lowers th
 Name = Eruption
 Type = FIRE
 Category = Special
-Power = 1
+Power = 130
 Accuracy = 100
 TotalPP = 5
 Target = AllNearFoes
 FunctionCode = ScalesWithUserHP
 Flags = CanProtect,CanMirrorMove
-Description = The user attacks in an explosive fury. The lower the user's HP, the less powerful this attack becomes.
+Description = The user attacks in an explosive fury. Weakens in damage as the user loses HP, at its weakest when the user is at half or less.
 #-------------------------------
 [MINDBLOWN]
 Name = Mind Blown
@@ -6732,13 +6732,13 @@ Description = Fires a beam of steel that it collected from its entire body. The 
 Name = Water Spout
 Type = WATER
 Category = Special
-Power = 1
+Power = 130
 Accuracy = 100
 TotalPP = 5
 Target = AllNearFoes
 FunctionCode = ScalesWithUserHP
 Flags = CanProtect,CanMirrorMove
-Description = The user spouts water to damage the foe. The lower the user's HP, the less powerful it becomes.
+Description = The user spouts water to damage the foe. Weakens in damage as the user loses HP, at its weakest when the user is at half or less.
 #-------------------------------
 [HYDROPUMP]
 Name = Hydro Pump

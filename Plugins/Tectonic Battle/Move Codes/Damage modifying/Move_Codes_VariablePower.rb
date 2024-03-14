@@ -3,9 +3,10 @@
 #===============================================================================
 class PokeBattle_Move_ScalesWithUserHP < PokeBattle_Move
     def pbBaseDamage(_baseDmg, user, _target)
-        # From 0 to 150 in increments of 5
-        basePower = (30 * user.hp / user.totalhp).floor * 5
-        basePower = 1 if basePower < 1
+        # From 65 to 130 in increments of 5, Overhealed caps at 150
+        basePower = (26 * user.hp / user.totalhp).floor * 5
+        basePower = 65 if basePower < 65
+        basePower = 150 if basePower > 150 # Cap overhealing, but give a lil bonus for it
         return basePower
     end
 end
