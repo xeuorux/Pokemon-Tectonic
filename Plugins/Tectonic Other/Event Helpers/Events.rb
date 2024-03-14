@@ -68,6 +68,15 @@ def toggleSwitches(eventsArray,switchName="A")
 	$MapFactory.getMap(mapid, false).need_refresh = true
 end
 
+def fadeEventsIn(eventIDs)
+	for i in 20..180 do
+		eventIDs.each do |eventID|
+			get_event(eventID).opacity = i
+		end
+		pbWait(1)
+	end
+end
+
 ###############################################################
 # Global switches
 ###############################################################
