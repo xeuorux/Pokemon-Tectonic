@@ -1,8 +1,12 @@
 def useNoiseMachine()
     $PokemonGlobal.noise_machine_state = 0 if $PokemonGlobal.noise_machine_state.nil?
-	$PokemonGlobal.noise_machine_state += 1
-    $PokemonGlobal.noise_machine_state = 0 if $PokemonGlobal.noise_machine_state > 2
-    case $PokemonGlobal.noise_machine_state
+    commands = []
+    commands.push(_INTL("Off"))
+    commands.push(_INTL("Harsh Noise"))
+    commands.push(_INTL("Soothing Sounds"))
+    commands.push(_INTL("Cancel"))
+    choice = pbMessage(_INTL("Place the Noise Machine on which setting?"),commands,commands.length)
+    case choice
     when 0
         pbMessage(_INTL("The Noise Machine is now off."))
     when 1
@@ -11,7 +15,10 @@ def useNoiseMachine()
     when 2
         pbMessage(_INTL("The Noise Machine begins playing soothing sounds."))
         pbMessage(_INTL("Wild Pokémon are now drawn to you!"))
+    else
+        return false
     end
+    $PokemonGlobal.noise_machine_state = choice
 	return true
 end
 
