@@ -8,24 +8,29 @@ def mentorCoordinator(skipExplanation=false)
 		return
 	end
 
+	skipExplanation = true if $PokemonSystem.brief_team_building_npcs
+
 	if isTempSwitchOff?("A") && !skipExplanation
 		pbMessage(_INTL("I help your Pokemon to teach each other moves through mentorships!"))
 		pbMessage(_INTL("Pokemon can teach any move they know to any other Pokemon you have who can learn that move."))
 		pbMessage(_INTL("Any Pokemon in your party or in your PC can be a mentor!"))
 		setTempSwitchOn("A")
 	end
-	if pbConfirmMessage(_INTL("Would you like one of your party members to learn a move through mentoring?"))
+	if skipExplanation || pbConfirmMessage(_INTL("Would you like one of your party members to learn a move through mentoring?"))
+		pbMessage(_INTL("Choose the party member to mentor.")) if skipExplanation
 		while true do
 			pbChoosePokemon(1,3,proc{|p|
 				p.can_mentor_move?
 			},false)
 			if $game_variables[1] < 0
-				pbMessage(_INTL("If your Pokémon need to mentor each other, come to me."))
+				pbMessage(_INTL("If your Pokémon need to mentor each other, come to me.")) unless skipExplanation
 				break
 			elsif !pbGetPokemon(1).can_mentor_move?
 				pbMessage(_INTL("Sorry, it doesn't appear that #{1} can have any moves mentored to it at the moment..",p.name))
 			else
-				pbMentorMoveScreen(pbGetPokemon(1))
+				loop do
+					break unless pbMentorMoveScreen(pbGetPokemon(1))
+				end
 			end
 		end
 	else

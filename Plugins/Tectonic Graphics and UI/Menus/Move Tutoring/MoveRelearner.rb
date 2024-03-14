@@ -4,24 +4,29 @@ def moveRelearner(skipExplanation=false)
 		return
 	end
 
+	skipExplanation = true if $PokemonSystem.brief_team_building_npcs
+
 	if isTempSwitchOff?("A") && !skipExplanation
 		pbMessage(_INTL("I'm the Pokémon Move Maniac."))
 		pbMessage(_INTL("I know every single move that Pokémon learn while leveling up or evolving."))
 		pbMessage(_INTL("I can teach moves to your Pokémon -- at no cost!"))
 		setTempSwitchOn("A")
 	end
-	if pbConfirmMessage(_INTL("Do you want me to teach one of your Pokémon a move?"))
+	if skipExplanation || pbConfirmMessage(_INTL("Do you want me to teach one of your Pokémon a move?"))
+		pbMessage(_INTL("Choose the party member who will relearn a move.")) if skipExplanation
 		while true do
 			pbChoosePokemon(1,3,proc{|p|
 				p.can_relearn_move?
 			},false)
 			if $game_variables[1] < 0
-				pbMessage(_INTL("If your Pokémon need to learn a move, come to me!"))
+				pbMessage(_INTL("If your Pokémon need to learn a move, come to me!")) unless skipExplanation
 				break
 			elsif !pbGetPokemon(1).can_relearn_move?
 				pbMessage(_INTL("Sorry, it doesn't appear as if I have any move I can teach to your \v[3]."))
 			else
-				pbRelearnMoveScreen(pbGetPokemon(1))
+				loop do
+					break unless pbRelearnMoveScreen(pbGetPokemon(1))
+				end
 			end
 		end
 	else

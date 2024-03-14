@@ -4,8 +4,8 @@ class PokemonSystem
     attr_accessor :textspeed
     attr_accessor :battlescene
     attr_accessor :battlestyle
-    attr_reader :frame
-    attr_reader :textskin
+    attr_reader   :frame
+    attr_reader   :textskin
     attr_accessor :screensize
     attr_accessor :language
     attr_accessor :runstyle
@@ -36,6 +36,7 @@ class PokemonSystem
     attr_accessor :dark_mode
     attr_accessor :forced_time_tint
     attr_accessor :aid_kit_animation
+    attr_accessor :brief_team_building_npcs
 
     def bgmvolume
         return @bgmvolume / VOLUME_FAKERY_MULT
@@ -101,6 +102,7 @@ class PokemonSystem
         @tutorial_popups          = $DEBUG ? 1 : 0 # (0=true, 1=false)
         @bag_sorting              = 0 # (0=none,1=alphabetical,2=ID)
         @aid_kit_animation        = 0 # (0=true, 1=false)
+        @brief_team_building_npcs = 1 # (0=true, 1=false)
     end
 
     def frame=(value)
@@ -567,6 +569,17 @@ class PokemonOption_Scene_UserInterface < PokemonOption_Scene_Base
                 end
                 }
             ),
+            EnumOption.new(_INTL("Dark Mode"), [_INTL("On"), _INTL("Off")],
+				proc { $PokemonSystem.dark_mode },
+				proc { |value|
+                    $PokemonSystem.dark_mode = value
+                    $PokemonSystem.setSystemFrame
+                    $PokemonSystem.setSpeechFrame
+                    @sprites["textbox"].setSkin(MessageConfig.pbGetSpeechFrame)
+                    @sprites["option"].setSkin(MessageConfig.pbGetSystemFrame)
+                    @sprites["title"].setSkin(MessageConfig.pbGetSystemFrame)
+                }
+			),
 			NumberOption.new(_INTL("Speech Frame"), 1, Settings::SPEECH_WINDOWSKINS.length,
 				proc { $PokemonSystem.textskin },
 				proc { |value|
@@ -581,17 +594,6 @@ class PokemonOption_Scene_UserInterface < PokemonOption_Scene_Base
                     @sprites["option"].setSkin(MessageConfig.pbGetSystemFrame)
                     @sprites["title"].setSkin(MessageConfig.pbGetSystemFrame)
 				}
-			),
-            EnumOption.new(_INTL("Dark Mode"), [_INTL("On"), _INTL("Off")],
-				proc { $PokemonSystem.dark_mode },
-				proc { |value|
-                    $PokemonSystem.dark_mode = value
-                    $PokemonSystem.setSystemFrame
-                    $PokemonSystem.setSpeechFrame
-                    @sprites["textbox"].setSkin(MessageConfig.pbGetSpeechFrame)
-                    @sprites["option"].setSkin(MessageConfig.pbGetSystemFrame)
-                    @sprites["title"].setSkin(MessageConfig.pbGetSystemFrame)
-                }
 			),
 			EnumOption.new(_INTL("Text Entry"), [_INTL("Cursor"), _INTL("Keyboard")],
 				proc { $PokemonSystem.textinput },
@@ -643,6 +645,10 @@ class PokemonOption_Scene_UserInterface < PokemonOption_Scene_Base
             EnumOption.new(_INTL("Aid Kit Animation"), [_INTL("On"), _INTL("Off")],
 				proc { $PokemonSystem.aid_kit_animation },
 				proc { |value| $PokemonSystem.aid_kit_animation = value }
+			),
+            EnumOption.new(_INTL("Brief Team NPCs"), [_INTL("On"), _INTL("Off")],
+				proc { $PokemonSystem.brief_team_building_npcs },
+				proc { |value| $PokemonSystem.brief_team_building_npcs = value }
 			),
             EnumOption.new(_INTL("Advanced Tutorials"), [_INTL("On"), _INTL("Off")],
 				proc { $PokemonSystem.tutorial_popups },

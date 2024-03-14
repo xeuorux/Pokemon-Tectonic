@@ -48753,6 +48753,8 @@ To add Style Points to a stat, you'll have to remove them from another.
 Para añadir Puntos de Estilo a una stat, tendrás que removerla de otra.
 Would you like to adjust the Style Points of any of your Pokémon?
 ¿Te gustaría ajustar los Puntos de Estilo de alguno de tus Pokémon?
+Choose the party member to adjust.
+Elige el miembro del equipo para ajustar.
 If your Pokémon need to have their Style Points adjusted, come to me.
 Si necesitas ajustar los Puntos de Estilo de tu Pokémon, ven conmigo.
 {1}'s {2} cannot be removed!
@@ -50433,6 +50435,10 @@ Dark Mode
 Modo Oscuro
 Prompt Level Moves
 Mostrar Movimientos Aprendidos
+Aid Kit Animation
+Anim. por Botiquín
+Brief Team NPCs
+Breve PNJ del equipo
 Advanced Tutorials
 Tutoriales Avanzados
 Battle Options
@@ -50503,6 +50509,8 @@ I can teach moves to your Pokémon -- at no cost!
 Puedo enseñarle movimientos a tus Pokémon – ¡Sin costo!
 Do you want me to teach one of your Pokémon a move?
 ¿Quieres que le enseñe un movimiento a tus Pokémon?
+Choose the party member who will relearn a move.
+Elige el miembro del equipo que volverá a aprender un movimiento.
 If your Pokémon need to learn a move, come to me!
 Si tu Pokémon necesita aprender un movimiento, ¡Habla conmigo!
 Sorry, it doesn't appear as if I have any move I can teach to your \v[3].
@@ -50515,6 +50523,8 @@ Any Pokemon in your party or in your PC can be a mentor!
 ¡Cualquier Pokémon en tu equipo o en el PC puede ser un mentor!
 Would you like one of your party members to learn a move through mentoring?
 ¿Quieres que alguien de tu equipo aprenda un movimiento a través de la mentoría?
+Choose the party member to mentor.
+Elige a qué miembro del equipo para mentor.
 If your Pokémon need to mentor each other, come to me.
 Si tus Pokémon necesitan enseñarse un movimiento entre ellos, vuelve conmigo. 
 Sorry, it doesn't appear that #{1} can have any moves mentored to it at the moment..
