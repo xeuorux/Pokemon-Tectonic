@@ -854,7 +854,7 @@ Name = Scope Lens
 NamePlural = Scope Lenses
 Pocket = 5
 Price = 4000
-Description = A held item. Doubles the holder's critical-hit chance, and raises their critical hit damage by 20%.
+Description = A held item. Doubles the holder's critical-hit chance.
 #-------------------------------
 [WIDELENS]
 Name = Wide Lens

@@ -510,6 +510,7 @@ class PokeBattle_AI_SUNFLORA < PokeBattle_AI_Boss
     def initialize(user, battle)
         super
         secondMoveEveryOtherTurn(:GROWTH)
+        secondMoveEveryOtherTurn(:SUMMERDAZE)
     end
 end
 

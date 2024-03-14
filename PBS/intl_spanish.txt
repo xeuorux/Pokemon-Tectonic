@@ -35701,8 +35701,8 @@ Eternatus's most powerful attack in its original form. The user can't move on th
 El movimiento más fuerte de Eternatus, realizado por su forma original. El usuario no puede moverse en su siguiente turno.
 The user raises all its stats by two steps, at the cost of 1/3rd of its max HP.
 El usuario aumenta todas sus stats dos grados, al costo de un 1/3 de sus PS máximos.
-Attacks all enemy Pokémon with pure vitality. Its power decreases with the user's HP.
-Ataca al Pokémon rival con pura vitalidad. Su poder disminuye con los PS del usuario.
+Attacks all enemy Pokémon with pure vitality. Weakens in damage as the user loses HP, at its weakest when the user is at half or less.
+Se debilita en daño a medida que el usuario pierde HP, y es más débil cuando el usuario tiene la mitad o menos.
 The user charges at its foe, surrounding itself with lightning. It has a 20% chance to numb.
 El usuario carga hacia el objetivo, cargado en electricidad. Tiene un 20% de probabilidad de aturdir.
 The user charges at the foe while electrified. The user also takes 33% recoil. This has a 10% chance to numb.
@@ -35891,8 +35891,8 @@ The user slams into the opponent, dealing damage based on the user's Defense sta
 El usuario aplasta al objetivo, usando su stat de Defensa para atacar.
 With a fiery forehead, the user hurls itself at the foe. Lowers the user's Defense, Sp. Def, and Speed by two steps each.
 Con una cabeza incandescente, el usuario se lanza hacia el objetivo. Disminuye la Defensa, Defensa Especial y Velocidad del usuario dos grados.
-The user attacks in an explosive fury. The lower the user's HP, the less powerful this attack becomes.
-El usuario ataca con una furia explosiva. Cuanto menos PS tenga el usuario, más débil es este movimiento.
+The user attacks in an explosive fury. Weakens in damage as the user loses HP, at its weakest when the user is at half or less.
+Se debilita en daño a medida que el usuario pierde HP, y es más débil cuando el usuario tiene la mitad o menos.
 The user attacks everything by causing its own head to explode. This also damages the user.
 El usuario ataca a todo explotando su propia cabeza. Esto también daña al usuario.
 The user sets a shell trap. If it is hit by a physical move, the trap explodes and hurts the attacker.
@@ -36677,8 +36677,8 @@ The user snares the target, trapping and damaging it for three turns.
 El usuario atrapa al objetivo, dañandolo y no dejándole escapar durante tres turnos.
 Fires a beam of steel that it collected from its entire body. The user loses half its current HP.
 El usuario dispara un rayo conformado por el metal de su propio cuerpo. El usuario pierde la mitad de sus PS actuales.
-The user spouts water to damage the foe. The lower the user's HP, the less powerful it becomes.
-El usuario salpica agua para atacar al rival. Cuantos más PS tenga el usuario, más fuerte es el movimiento.
+The user spouts water to damage the foe. Weakens in damage as the user loses HP, at its weakest when the user is at half or less.
+Se debilita en daño a medida que el usuario pierde HP, y es más débil cuando el usuario tiene la mitad o menos.
 The target is blasted by a huge volume of water launched under great pressure.
 El usuario dispara un gran volumen de agua a alta presión.
 The user attacks opposing Pokémon with countless beams of light that glow a deep and brilliant blue.
@@ -40104,8 +40104,8 @@ An item to be held by a Pokémon. It is a thick pair of glasses that boosts the 
 Un objeto equipable. Este par de lentes gruesos potencia los movimientos especiales un 10%.
 An item to be held by a Pokémon. They are boots that boost Speed by 10%.
 Un objeto equipable. Estas botas potencian la Velocidad un 10%.
-A held item. Doubles the holder's critical-hit chance, and raises their critical hit damage by 33%.
-Un objeto equipable. Duplica el ratio de críticos del portador, y aumenta el daño de sus golpes críticos un 33%.
+A held item. Doubles the holder's critical-hit chance.
+Un objeto equipable. Duplica el ratio de críticos del portador.
 A held item. It is a magnifying lens that boosts the accuracy of moves by 35%.
 Un objeto equipable. Esta lupa aumenta la precisión de los movimientos un 35%.
 An item to be held by a Pokémon. It is tremendously heavy and makes the holder move slower than usual.
