@@ -383,7 +383,8 @@ def getSkinColor(windowskin, color, isDarkSkin, asTag = true)
             colorToRgb32(MessageConfig::LIGHT_TEXT_MAIN_COLOR),
             colorToRgb32(MessageConfig::LIGHT_TEXT_SHADOW_COLOR), # 12 Light default
         ]
-        if color == 0 || color > textcolors.length / 2 # No special colour, use default
+        # No special colour, use default
+        if color == 0 || color > textcolors.length / 2
             if isDarkSkin # Dark background, light text
                 if asTag
                     return shadowc3tag(MessageConfig::LIGHT_TEXT_MAIN_COLOR, MessageConfig::LIGHT_TEXT_SHADOW_COLOR)
@@ -395,23 +396,24 @@ def getSkinColor(windowskin, color, isDarkSkin, asTag = true)
             else
                 return [MessageConfig::DARK_TEXT_MAIN_COLOR, MessageConfig::DARK_TEXT_SHADOW_COLOR]
             end
-        end
-        # Special colour as listed above
-        if isDarkSkin && color != 12 # Dark background, light text
-            base = textcolors[2 * (color - 1) + 1]
-            shadow = textcolors[2 * (color - 1)]
-            if asTag
-                return format("<c3=%s,%s>", base, shadow)
-            else
-                return [base, shadow]
-            end
-        else # Light background, dark text
-            base = textcolors[2 * (color - 1)]
-            shadow = textcolors[2 * (color - 1) + 1]
-            if asTag
-                return format("<c3=%s,%s>", base, base)
-            else
-                return [base, shadow]
+        else
+            # Special colour as listed above
+            if isDarkSkin && color != 12 # Dark background, light text
+                base = textcolors[2 * (color - 1) + 1]
+                shadow = textcolors[2 * (color - 1)]
+                if asTag
+                    return format("<c3=%s,%s>", base, shadow)
+                else
+                    return [base, shadow]
+                end
+            else # Light background, dark text
+                base = textcolors[2 * (color - 1)]
+                shadow = textcolors[2 * (color - 1) + 1]
+                if asTag
+                    return format("<c3=%s,%s>", base, shadow)
+                else
+                    return [base, shadow]
+                end
             end
         end
     else # VX windowskin
