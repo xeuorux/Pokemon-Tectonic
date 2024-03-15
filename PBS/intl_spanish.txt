@@ -16343,6 +16343,13 @@ Luego de un corto descanso, ¡Estás listo para continuar!
 [Map236]
 You stuff your Aid Kit full from your large stack of supplies!
 ¡Llenas tu Botiquín con tu gran cantidad de suministros!
+You take some swings at the punching bag.
+Das algunos golpes al saco de boxeo.
+You're pumped up! Experience gain from battles is 
+boosted until the next time you heal.
+¡Estás entusiasmado! La experiencia adquirida en las batallas es potenciado hasta la próxima vez que te recuperes.
+You're already feeling pumped up.
+Ya te sientes entusiasmado.
 [Map237]
 
 Anyone who wants to help with the avatar threat can join the Rangers.
@@ -52299,6 +52306,8 @@ The Noise Machine begins playing soothing sounds.
 La Máquina de Ruido comienza a reproducir sonidos relajantes.
 Wild Pokémon are now drawn to you!
 ¡Los Pokémon salvajes ahora se sienten atraídos por ti!
+You no longer feel pumped up.
+Ya no te sientes entusiasmado.
 [26]
 [27]
 [27]

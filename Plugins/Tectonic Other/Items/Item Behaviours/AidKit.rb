@@ -23,6 +23,7 @@ def refillAidKit(boostAmount = 0)
 		$PokemonGlobal.teamHealerCurrentUses = refillCharges
 		pbMessage(_INTL("\\i[AIDKIT]Your Aid Kit was refreshed to #{$PokemonGlobal.teamHealerCurrentUses} charges."))
 	end
+	resetEXPBonus
 end
 
 def getAidKitHealingAmount

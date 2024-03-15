@@ -89,6 +89,16 @@ def healPartyWithDelay()
 	refillAidKit()
 end
 
+def pumpedUp?
+	return $PokemonGlobal.exp_multiplier > 1.0
+end
+
+def resetEXPBonus
+	return unless pumpedUp?
+	$PokemonGlobal.exp_multiplier = 1.0
+	pbMessage(_INTL("You no longer feel pumped up."))
+end
+
 def nonLegendarySpeciesCount(owned = false)
     count = 0
     GameData::Species.each do |speciesData|
@@ -100,7 +110,7 @@ def nonLegendarySpeciesCount(owned = false)
     return count
 end
 
-def dexCompletionPercent(dexNumber = -1)
+def dexCompletionPercent
     ownedCount = nonLegendarySpeciesCount(true)
     totalCount = nonLegendarySpeciesCount
 	ratio = 100.0 * ownedCount.to_f / totalCount.to_f

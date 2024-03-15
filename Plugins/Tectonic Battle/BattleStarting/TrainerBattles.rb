@@ -119,7 +119,7 @@ def loadPartnerTrainer(playerTrainers, playerParty, playerPartyStarts)
         setBattleRule("double") unless $PokemonTemp.battleRules["size"]
         return playerParty
     end
-    return
+    return playerParty
 end
 
 #===============================================================================

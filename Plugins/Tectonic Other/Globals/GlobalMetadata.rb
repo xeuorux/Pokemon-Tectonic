@@ -70,6 +70,8 @@ class PokemonGlobalMetadata
     attr_accessor :omnitutor_active
     # Noise Machine
     attr_accessor :noise_machine_state # 0 = off, 1 = stopping encounters, 2 = increasing encounter rate
+    # Punching bag in player house
+    attr_accessor :exp_multiplier
 	
 	def initialize
         # Movement
@@ -133,6 +135,7 @@ class PokemonGlobalMetadata
         @stored_search		  = nil
         @omnitutor_active     = false
         @noise_machine_state  = 0
+        @exp_multiplier       = 1.0
     end
 
     ####################################################

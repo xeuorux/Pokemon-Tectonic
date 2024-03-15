@@ -141,6 +141,7 @@ class PokeBattle_Battle
         end
         exp  = (exp * 1.1).floor if playerTribalBonus.hasTribeBonus?(:LOYAL)
         exp  = (exp * 1.5).floor if @field.effectActive?(:Bliss)
+        exp  = (exp * $PokemonGlobal.exp_multiplier).floor if $PokemonGlobal.exp_multiplier
         modifiedEXP = exp
         pkmn.items.each do |item|
             modifiedEXP = BattleHandlers.triggerExpGainModifierItem(item, pkmn, modifiedEXP)
