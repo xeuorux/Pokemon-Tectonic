@@ -334,7 +334,7 @@ class PokeBattle_Move
     end
 
     def forcedPhysical?(user,target,checkingForAI=false)
-        return true if user.shouldAbilityApply?([:PSYFORCE],checkingForAI)
+        return true if user.shouldAbilityApply?([:BRUTEFORCE],checkingForAI)
         return false
     end
 

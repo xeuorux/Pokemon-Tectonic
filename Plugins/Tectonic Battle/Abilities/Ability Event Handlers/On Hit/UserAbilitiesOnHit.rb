@@ -121,7 +121,7 @@ BattleHandlers::UserAbilityOnHit.add(:FLASHFREEZE,
   }
 )
 
-BattleHandlers::UserAbilityOnHit.add(:SOULSNIPE,
+BattleHandlers::UserAbilityOnHit.add(:SIPHONSNIPER,
   proc { |ability, user, target, move, battle, aiCheck, aiNumHits|
     next unless user.firstTurn?
     randomStatusProcUserAbility(ability, :LEECHED, 100, user, target, move, battle, aiCheck, aiNumHits)

@@ -292,7 +292,7 @@ Pokemon = ANORITH,17
     AbilityIndex = 0 # Selective Scutes
 Pokemon = BELDUM,17
     Moves = BULLETPUNCH,JOLT,BLINDSIDE
-    AbilityIndex = 1 # Mithril Body
+    AbilityIndex = 1 # Optimized Alloy
 #-------------------------------
 [SCIENTIST_M2,Dexter]
 Policies = PRIORITIZEDOTS
@@ -1269,7 +1269,7 @@ Pokemon = CARBINK,26
     AbilityIndex = 0 # Clear Body
 Pokemon = METANG,28
     Moves = MAGNETIZE,BULLETPUNCH,PSYCHOCUT,THUNDERPUNCH
-    AbilityIndex = 1 # Mithril Body
+    AbilityIndex = 1 # Optimized Alloy
 #-------------------------------
 [CYCLIST_M,Mitron]
 Pokemon = MDUSTOX,28
@@ -2888,7 +2888,7 @@ Pokemon = METAGROSS,45
     Name = Armiger
     Shiny = yes
     Moves = METEORMASH,TRAMPLE,BRICKBREAK,SEERSTRIKE
-    AbilityIndex = 1 # Mithril Body
+    AbilityIndex = 1 # Optimized Alloy
     # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
     EV = 20,20,10,0,20,0
 Pokemon = MPOLTEAGEIST,45
@@ -3504,7 +3504,7 @@ Pokemon = BRONZONG,43
     Item = BINDINGBAND
 Pokemon = DECIDUEYE,43
     Moves = SPIRITSHACKLE,SNAPTRAP,SHADOWSNEAK,ACROBATICS
-    AbilityIndex = 1 # Soul Snipe
+    AbilityIndex = 1 # Siphon Sniper
 #-------------------------------
 [SCIENTIST_M3,Gunter]
 Pokemon = CRUSTLE,55
@@ -4370,7 +4370,7 @@ Pokemon = HYDREIGON,63
     Item = LEFTOVERS
 Pokemon = METAGROSS,64
     Moves = ELECTROSLASH,OMNISCIENTBLOW,BULLETPUNCH,METEORMASH
-    AbilityIndex = 1 # Mithril Body
+    AbilityIndex = 1 # Optimized Alloy
 Pokemon = ARMALDO,63
     Moves = ADAMANTINEPRESS,XSCISSOR,SWORDSDANCE,LIQUIDATION
     AbilityIndex = 0 # Selective Scutes
@@ -7325,7 +7325,7 @@ Pokemon = FLYGON,70
     AbilityIndex = 0 # Desert Spirit
     Item = GRIPCLAW
 Pokemon = DECIDUEYE,70
-    AbilityIndex = 1 # Soul Snipe
+    AbilityIndex = 1 # Siphon Sniper
     Item = MENTALHERB
 Pokemon = TAUROS,70
     AbilityIndex = 0 # Intimidate
@@ -7697,7 +7697,7 @@ Pokemon = NINETALES,70
     AbilityIndex = 0 # Cursed Tail
     Item = ASSAULTVEST
 Pokemon = METAGROSS,70
-    AbilityIndex = 0 # Psyforce
+    AbilityIndex = 0 # Brute Force
 Pokemon = WEEZING,70
     AbilityIndex = 1 # Fumigate
     Item = LEFTOVERS
@@ -7925,7 +7925,7 @@ Pokemon = LEAFEON,70
     AbilityIndex = 1 # Reluctant Blade
     Item = CADOBERRY
 Pokemon = METAGROSS,70
-    AbilityIndex = 1 # Mithril Body
+    AbilityIndex = 1 # Optimized Alloy
 #-------------------------------
 [EXPERTM,Hiroshi]
 Pokemon = ELECTIVIRE,70

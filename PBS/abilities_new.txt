@@ -201,6 +201,10 @@ Description = If an attack lowers its HP to half or less, lowers all of the atta
 Name = Brisk
 Description = Boosts the power of wind-based moves by 30%.
 #-------------------------------
+[BRUTEFORCE]
+Name = Brute Force
+Description = Its attacks are always physical attacks.
+#-------------------------------
 [BULLY]
 Name = Bully
 Description = Takes 30% less move damage from Pokémon that are shorter than it.
@@ -1120,10 +1124,6 @@ Flags = SunSynergy
 Name = Mistcraft
 Description = Sets Fairy Terrain for five turns when hit by an attack.
 #-------------------------------
-[MITHRILBODY]
-Name = Mithril Body
-Description = Prevents other Pokémon from lowering its stat steps, and its weight is doubled.
-#-------------------------------
 [MOONBASKING]
 Name = Moon Basking
 Description = Heals 1/8th of its max HP each turn if in moonglow.
@@ -1232,6 +1232,10 @@ Description = Upon entry, creates an Odd Room for five turns, swapping offensive
 [ONTHEWIND]
 Name = On the Wind
 Description = Sets a Tailwind for four turns upon entering the battle, increasing Speed.
+#-------------------------------
+[OPTIMIZEDALLOY]
+Name = Optimized Alloy
+Description = Prevents other Pokémon from lowering its stat steps, and its weight is doubled.
 #-------------------------------
 [OUTRIDER]
 Name = Outrider
@@ -1358,10 +1362,6 @@ Description = Has a 30% chance to leech targets when using physical moves.
 Name = Pressure Valve
 Description = Right before the Pokémon is attacked, the attacker's stat changes are reset.
 Flags = SetupCounterAI
-#-------------------------------
-[PSYFORCE]
-Name = Psyforce
-Description = Its attacks are always physical attacks.
 #-------------------------------
 [PUNISHER]
 Name = Punisher
@@ -1589,6 +1589,10 @@ Description = Special moves against it lower the attacker's Speed and Sp. Atk.
 Name = Signal Jam
 Description = The Pokémon and other battlers don't benefit from same-type attacking bonus.
 #-------------------------------
+[SIPHONSNIPER]
+Name = Siphon Sniper
+Description = On the first turn, its attacks leech the target.
+#-------------------------------
 [SIRENSONG]
 Name = Siren Song
 Description = After using a sound move, lowers one of each foe's attacking stats, whichever is higher.
@@ -1644,10 +1648,6 @@ Flags = MoonglowSynergy
 [SOULREAD]
 Name = Soul Read
 Description = Double damage to targets who don't share a type with their last-used move.
-#-------------------------------
-[SOULSNIPE]
-Name = Soul Snipe
-Description = On the first turn, its attacks leech the target.
 #-------------------------------
 [SOUNDBARRIER]
 Name = Sound Barrier

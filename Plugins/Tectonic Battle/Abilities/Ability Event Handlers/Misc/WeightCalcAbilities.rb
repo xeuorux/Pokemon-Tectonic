@@ -16,7 +16,7 @@ BattleHandlers::WeightCalcAbility.add(:ROBUST,
     }
 )
 
-BattleHandlers::WeightCalcAbility.add(:MITHRILBODY,
+BattleHandlers::WeightCalcAbility.add(:OPTIMIZEDALLOY,
     proc { |ability, _battler, weight|
         next weight * 2
     }
