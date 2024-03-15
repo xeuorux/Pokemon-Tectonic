@@ -7,7 +7,7 @@ def pbRegisterPartner(tr_type, tr_name, tr_id = 0)
       i.owner = Pokemon::Owner.new_from_trainer(trainer)
       i.calc_stats
     end
-    $PokemonGlobal.partner = [tr_type, tr_name, trainer.id, trainer.party]
+    $PokemonGlobal.partner = [tr_type, tr_name, trainer.id, trainer.party, trainer.flags]
   end
   
   def pbDeregisterPartner

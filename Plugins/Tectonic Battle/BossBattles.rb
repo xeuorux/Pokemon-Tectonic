@@ -62,17 +62,7 @@ def pbAvatarBattleCore(*args)
        !%w[single 1v1 1v2 1v3].include?($PokemonTemp.battleRules["size"])
         room_for_partner = true
     end
-    if $PokemonGlobal.partner && !$PokemonTemp.battleRules["noPartner"] && room_for_partner
-        ally = NPCTrainer.new($PokemonGlobal.partner[1], $PokemonGlobal.partner[0])
-        ally.id    = $PokemonGlobal.partner[2]
-        ally.party = $PokemonGlobal.partner[3]
-        playerTrainers.push(ally)
-        playerParty = []
-        $Trainer.party.each { |pkmn| playerParty.push(pkmn) }
-        playerPartyStarts.push(playerParty.length)
-        ally.party.each { |pkmn| playerParty.push(pkmn) }
-        setBattleRule("double") unless $PokemonTemp.battleRules["size"]
-    end
+    playerParty = loadPartnerTrainer(playerTrainers,playerParty,playerPartyStarts) if room_for_partner if room_for_partner
     # Create the battle scene (the visual side of it)
     scene = pbNewBattleScene
     # Create the battle class (the mechanics side of it)
@@ -147,6 +137,7 @@ def setAvatarProperties(pkmn)
         pkmn.learn_move(move, true)
     end
 
+    pkmn.removeItems
     pkmn.giveItem(avatar_data.item)
     pkmn.ability = avatar_data.abilities[0]
     avatar_data.abilities.each_with_index do |ability, index|

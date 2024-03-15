@@ -595,7 +595,7 @@ class PokeBattle_AI_WATCHOG < PokeBattle_AI_Boss
                 next target.fullHealth?
             },
             :warning => proc { |_move, user, targets, _battle|
-                _INTL("{1} is looking to butter up #{2}!",user.pbThis,targets[0].pbThis(true))
+                _INTL("{1} is looking to butter up {2}!",user.pbThis,targets[0].pbThis(true))
             },
         })
     end

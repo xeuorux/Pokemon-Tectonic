@@ -574,10 +574,6 @@ module Compiler
   end
 
   def write_trainer_to_file(trainer, f)
-    # if trainer.policies.include?(:NO_PERFECT)
-    #   trainer.flags.push("NoPerfect")
-    #   trainer.policies.delete(:NO_PERFECT)
-    # end
     pbSetWindowText(_INTL("Writing trainer {1}...", trainer.id_number))
     Graphics.update if trainer.id_number % 50 == 0
     f.write("\#-------------------------------\r\n")

@@ -185,14 +185,14 @@ class Trainer
     #=============================================================================
   
     def initialize(name, trainer_type)
-          @trainer_type = trainer_type
-          @name         = name
-          @id           = rand(2 ** 16) | rand(2 ** 16) << 16
-          @language     = pbGetLanguage
-          @party        = []
-          @policies 	  = []
-          @tribalBonus  = TribalBonus.new(self)
-      end
+      @trainer_type = trainer_type
+      @name         = name
+      @id           = rand(2 ** 16) | rand(2 ** 16) << 16
+      @language     = pbGetLanguage
+      @party        = []
+      @policies 	  = []
+      @tribalBonus  = TribalBonus.new(self)
+    end
   end
   
   #===============================================================================
@@ -210,6 +210,7 @@ class Trainer
       @lose_text = nil
       @policyStates = {}
       @nameForHashing = nameForHashing || name
+      @flags     = []
     end
 
     def full_name
