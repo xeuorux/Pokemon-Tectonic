@@ -2238,6 +2238,34 @@ Any other memories?
 ¿Algún otro recuerdo?
 Where is she now?
 ¿Dónde está ahora?
+I wanted to be a Water-type trainer before, but now I don't.
+Quería ser una Entrenadora de tipo Agua antes, pero ahora no.
+That's because I caught this Tentacool. It's super dumb. It's so dumb that I quit being a Trainer.
+Eso es porque atrapé este Tentacool. Es super mudo. Es tan tonto que dejé de ser Entrenadora.
+Maybe I'll want to be a Trainer again if I see a cool Water-type Pokemon, but if any Pokemon is as dumb as this Tentacool, I might die.
+Tal vez quiera volver a ser Entrenadora si veo un Pokémon de tipo Agua genial, pero si algún Pokémon es tan tonto como este Tentacool, podría morir.
+Do you have a cool Water-type Pokemon that you could show me?
+¿Tienes algún Pokémon genial de tipo Agua que puedas mostrarme?
+I'll give you my dumb Pokemon if you do.
+Te daré mi tonto Pokémon si lo haces.
+That's cool, maybe.
+Eso es genial, tal vez.
+Oh. That's dumb. You are dumb.
+Oh. Eso es tonto. Usted es tonto.
+Wow. That Water-type is pretty cool.
+Guau. Ese tipo agua es genial.
+I still don't want to be a Trainer anymore.
+Todavía no quiero ser entrenador.
+Take this dumb Tentacool because I don't want to see or think or hear or touch it again.
+Toma este tonto Tentacool porque no quiero verlo, ni pensar, ni oírlo, ni tocarlo otra vez.
+It is your dumb problem now.
+Es tu tonto problema ahora.
+Ok. I'll keep holding on to this dumb Pokemon.
+De acuerdo. Seguiré aferrándome a este tonto Pokémon.
+I'll show you one.
+Te mostraré uno.
+Some other time.
+En otro momento.
 [Map26]
 
 What the...
@@ -16345,8 +16373,7 @@ You stuff your Aid Kit full from your large stack of supplies!
 ¡Llenas tu Botiquín con tu gran cantidad de suministros!
 You take some swings at the punching bag.
 Das algunos golpes al saco de boxeo.
-You're pumped up! Experience gain from battles is 
-boosted until the next time you heal.
+You're pumped up! Experience gain from battles is boosted until the next time you heal.
 ¡Estás entusiasmado! La experiencia adquirida en las batallas es potenciado hasta la próxima vez que te recuperes.
 You're already feeling pumped up.
 Ya te sientes entusiasmado.
