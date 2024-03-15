@@ -6764,7 +6764,7 @@ Pokemon = SEAKING,58
 #-------------------------------
 [BEAUTY4,Brunhilda]
 Pokemon = MBEAUTIFLY,59
-    AbilityIndex = 1 # Mental Block
+    AbilityIndex = 1 # Schadenfreude
 Pokemon = GOLDUCK,58
     AbilityIndex = 1 # Stupefying
     Item = SITRUSBERRY
@@ -7002,7 +7002,7 @@ Pokemon = ZOROARK,60
 #-------------------------------
 [ANCIENTPRIEST,Dobromil]
 Pokemon = MBEAUTIFLY,60
-    AbilityIndex = 1 # Mental Block
+    AbilityIndex = 1 # Schadenfreude
 Pokemon = PURUGLY,60
     AbilityIndex = 0 # Extorter
 Pokemon = QUAGSIRE,60
