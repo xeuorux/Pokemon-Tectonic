@@ -68,7 +68,6 @@ class PokemonStorageScreen
                         cmdWithdraw = -1
                         cmdGiveItem = -1
                         cmdTakeItem = -1
-                        cmdMark     = -1
                         cmdRelease  = -1
                         cmdPokedex  = -1
                         cmdDebug    = -1
@@ -92,7 +91,7 @@ class PokemonStorageScreen
                             (selected[0] == -1) ? _INTL("Store") : _INTL("Withdraw")
                         commands[cmdGiveItem = commands.length]     = _INTL("Give Item")
                         commands[cmdTakeItem = commands.length]     = _INTL("Take Item") if selectedPokemon.hasItem?
-                        commands[cmdMark = commands.length]     = _INTL("Mark")
+                        commands[cmdUseItem = commands.length]     = _INTL("Use Item")
                         commands[cmdRelease = commands.length]  = _INTL("Release")
                         commands[cmdDebug = commands.length]    = _INTL("Debug") if $DEBUG
                         commands[cmdCancel = commands.length]   = _INTL("Cancel")
@@ -111,8 +110,8 @@ class PokemonStorageScreen
                             pbGiveItem(selectedPokemon)
                         elsif cmdTakeItem >= 0 && command == cmdTakeItem   # Take Item
                             pbTakeItem(selectedPokemon)
-                        elsif cmdMark >= 0 && command == cmdMark # Mark
-                            pbMark(selected, @heldpkmn)
+                        elsif command == cmdUseItem && cmdUseItem > -1
+                            pbUseItem(selectedPokemon)
                         elsif cmdRelease >= 0 && command == cmdRelease # Release
                             pbRelease(selected, @heldpkmn)
                         elsif cmdPokedex >= 0 && command == cmdPokedex # Pokedex
@@ -155,13 +154,11 @@ class PokemonStorageScreen
                     cmdWithdraw = -1
                     cmdSummary = -1
                     cmdPokedex = -1
-                    cmdMark = -1
                     cmdRelease = -1
                     commands = []
                     commands[cmdWithdraw = commands.length] = _INTL("Withdraw")
                     commands[cmdSummary = commands.length] = _INTL("Summary")
                     commands[cmdPokedex = commands.length] = _INTL("MasterDex") if $Trainer.has_pokedex
-                    commands[cmdMark = commands.length] = _INTL("Mark")
                     commands[cmdRelease = commands.length] = _INTL("Release")
                     commands.push(_INTL("Cancel"))
                     command = pbShowCommands(_INTL("{1} is selected.", pokemon.name), commands)
@@ -169,8 +166,6 @@ class PokemonStorageScreen
                         pbWithdraw(selected, nil)
                     elsif cmdSummary > -1 && command == cmdSummary
                         pbSummary(selected, nil)
-                    elsif cmdMark > -1 && command == cmdMark
-                        pbMark(selected, nil)
                     elsif	cmdRelease > -1 && command == cmdRelease
                         pbRelease(selected, nil)
                     elsif	cmdPokedex > -1 && command == cmdPokedex
@@ -203,13 +198,11 @@ class PokemonStorageScreen
                     cmdStore = -1
                     cmdSummary = -1
                     cmdPokedex = -1
-                    cmdMark = -1
                     cmdRelease = -1
                     commands = []
                     commands[cmdStore = commands.length] = _INTL("Store")
                     commands[cmdSummary = commands.length] = _INTL("Summary")
                     commands[cmdPokedex = commands.length] = _INTL("MasterDex") if $Trainer.has_pokedex
-                    commands[cmdMark = commands.length] = _INTL("Mark")
                     commands[cmdRelease = commands.length] = _INTL("Release")
                     commands.push(_INTL("Cancel"))
                     command = pbShowCommands(_INTL("{1} is selected.", pokemon.name), commands)
@@ -217,8 +210,6 @@ class PokemonStorageScreen
                         pbStore([-1, selected], nil)
                     elsif cmdSummary > -1 && command == cmdSummary
                         pbSummary([-1, selected], nil)
-                    elsif cmdMark > -1 && command == cmdMark
-                        pbMark([-1, selected], nil)
                     elsif	cmdRelease > -1 && command == cmdRelease
                         pbRelease([-1, selected], nil)
                     elsif	cmdPokedex > -1 && command == cmdPokedex
@@ -669,6 +660,13 @@ class PokemonStorageScreen
         @scene.pbHardRefresh if pbTakeItemsFromPokemon(pokemon) > 0
     end
 
+    def pbUseItem(pokemon)
+        item = selectItemForUseOnPokemon($PokemonBag,pokemon)
+        return unless item
+        pbUseItemOnPokemon(item,pokemon)
+        @scene.pbHardRefresh
+    end
+
     def pbBoxCommands(selectionMode = false)
         jumpCommand = -1
         wallPaperCommand = -1
@@ -810,7 +808,7 @@ class PokemonStorageScreen
                 cmdWithdraw = -1
                 cmdGiveItem = -1
                 cmdTakeItem = -1
-                cmdMark = -1
+                cmdUseItem = -1
                 commands = []
                 commands[cmdSelect = commands.length] = _INTL("Select")
                 commands[cmdSummary = commands.length] = _INTL("Summary")
@@ -821,7 +819,7 @@ class PokemonStorageScreen
                 end
                 commands[cmdGiveItem = commands.length] = _INTL("Give Item")
                 commands[cmdTakeItem = commands.length] = _INTL("Take Item") if pokemon.hasItem?
-                commands[cmdMark = commands.length] = _INTL("Mark")
+                commands[cmdUseItem = commands.length]     = _INTL("Use Item")
                 commands.push(_INTL("Cancel"))
                 helptext = _INTL("{1} is selected.", pokemon.name)
                 command = pbShowCommands(helptext, commands)
@@ -840,8 +838,8 @@ class PokemonStorageScreen
                     pbGiveItem(selected)
                 elsif command == cmdTakeItem && cmdTakeItem > -1
                     pbTakeItem(selected)
-                elsif command == cmdMark && cmdMark > 1
-                    pbMark(selected, nil)
+                elsif command == cmdUseItem && cmdUseItem > -1
+                    pbUseItem(selected)
                 end
             end
         end

@@ -148,55 +148,55 @@ class TilingCardsPokemonMenu_Scene < TilingCardsMenu_Scene
 		command = @summaryScene.pbShowCommands(_INTL("Do what with an item?"),itemcommands)
 		if cmdUseItem>=0 && command==cmdUseItem   # Use
 			item = selectItemForUseOnPokemon($PokemonBag,@pkmn) {
-			@summaryScene.pbSetHelpText((@party.length>1) ? _INTL("Choose a Pokémon.") : _INTL("Choose Pokémon or cancel."))
+				@summaryScene.pbSetHelpText((@party.length>1) ? _INTL("Choose a Pokémon.") : _INTL("Choose Pokémon or cancel."))
 			}
 			if item
-			used = pbUseItemOnPokemon(item,@pkmn,self)
-			pbRefreshSingle(@pkmnid)
-			return true if used
+				used = pbUseItemOnPokemon(item,@pkmn,self)
+				pbRefreshSingle(@pkmnid)
+				return true if used
 			end
 		elsif cmdGiveItem>=0 && command==cmdGiveItem   # Give
 			item = @summaryScene.pbChooseItem($PokemonBag) {
-			pbSetHelpText((@party.length>1) ? _INTL("Choose a Pokémon.") : _INTL("Choose Pokémon or cancel."))
+				pbSetHelpText((@party.length>1) ? _INTL("Choose a Pokémon.") : _INTL("Choose Pokémon or cancel."))
 			}
 			if item
-			if pbGiveItemToPokemon(item,@pkmn,self)
-				pbRefreshSingle(@pkmnid)
-			end
+				if pbGiveItemToPokemon(item,@pkmn,self)
+					pbRefreshSingle(@pkmnid)
+				end
 			end
 		elsif cmdTakeItems>=0 && command==cmdTakeItems   # Take/ Take All
 			if pbTakeItemsFromPokemon(@pkmn) > 0
-			pbRefreshSingle(@pkmnid)
+				pbRefreshSingle(@pkmnid)
 			end
-		elsif cmdTakeOneItem>=0 && command==cmdTakeOneItem # Take One
+		elsif cmdTakeOneItem >= 0 && command == cmdTakeOneItem # Take One
 			if pbTakeOneItemFromPokemon(@pkmn)
-			pbRefreshSingle(@pkmnid)
+				pbRefreshSingle(@pkmnid)
 			end
-		elsif cmdSwapItemOrder>=0 && command==cmdSwapItemOrder # Swap Item Order
+		elsif cmdSwapItemOrder >= 0 && command == cmdSwapItemOrder # Swap Item Order
 			@pkmn.setItems(@pkmn.items.reverse)
 			firstItemName = getItemName(@pkmn.items[0])
 			secondItemName = getItemName(@pkmn.items[1])
 			pbDisplay(_INTL("{1}'s {2} and {3} swapped order.",@pkmn.name,firstItemName,secondItemName))
 			pbRefreshSingle(@pkmnid)
-		elsif cmdMoveItem>=0 && command==cmdMoveItem   # Move
+		elsif cmdMoveItem >= 0 && command == cmdMoveItem   # Move
 			hideTileMenu
 			item = @pkmn.firstItem
 			@summaryScene.pbSetHelpText(_INTL("Move {1} to where?",getItemName(item)))
 			loop do
-			@summaryScene.pbPreSelect(@pkmnid)
-			newpkmnid = @summaryScene.pbChoosePokemon(true,@pkmnid)
-			break if newpkmnid<0
-			newpkmn = @party[newpkmnid]
-			break if newpkmnid==@pkmnid
-			if pbGiveItemToPokemon(item,newpkmn,self,false)
-				@pkmn.removeItem(item)
-				@summaryScene.pbClearSwitching
-				pbRefresh
-				break
-			end
+				@summaryScene.pbPreSelect(@pkmnid)
+				newpkmnid = @summaryScene.pbChoosePokemon(true,@pkmnid)
+				break if newpkmnid < 0
+				newpkmn = @party[newpkmnid]
+				break if newpkmnid == @pkmnid
+				if pbGiveItemToPokemon(item,newpkmn,self,false)
+					@pkmn.removeItem(item)
+					@summaryScene.pbClearSwitching
+					pbRefresh
+					break
+				end
 			end
 			showTileMenu
-		elsif cmdSetItemType>=0 && command==cmdSetItemType
+		elsif cmdSetItemType >= 0 && command == cmdSetItemType
 			setItemType
 		end
 		return false
