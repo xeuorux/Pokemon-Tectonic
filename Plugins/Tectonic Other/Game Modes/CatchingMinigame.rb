@@ -253,7 +253,7 @@ def pbCatchingMinigameWildBattleCore(*args)
        !["single", "1v1", "1v2", "1v3"].include?($PokemonTemp.battleRules["size"])
       room_for_partner = true
     end
-    loadPartnerTrainer
+    loadPartnerTrainer(playerTrainers, playerParty, playerPartyStarts)
     # Create the battle scene (the visual side of it)
     scene = pbNewBattleScene
     # Create the battle class (the mechanics side of it)
