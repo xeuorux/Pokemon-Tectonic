@@ -417,7 +417,7 @@ def pbUseItem(bag,item,bagscene=nil)
         pkmn = $Trainer.party[chosen]
         if pbCheckUseOnPokemon(item,pkmn,screen)
           ret = ItemHandlers.triggerUseOnPokemon(item,pkmn,screen)
-          if ret && useType==1   # Usable on Pokémon, consumed
+          if ret && itm.consumed_after_use?   # Usable on Pokémon, consumed
             bag.pbDeleteItem(item)
             if !bag.pbHasItem?(item)
               pbMessage(_INTL("You used your last {1}.",itm.name)) { screen.pbUpdate }
@@ -473,8 +473,7 @@ def pbUseItemOnPokemon(item,pkmn,scene = nil)
   ret = ItemHandlers.triggerUseOnPokemon(item,pkmn,scene)
   scene&.pbClearAnnotations
   scene&.pbHardRefresh
-  useType = itm.field_use
-  if ret && useType==1   # Usable on Pokémon, consumed
+  if ret && itm.consumed_after_use?   # Usable on Pokémon, consumed
     $PokemonBag.pbDeleteItem(item)
     if !$PokemonBag.pbHasItem?(item)
       pbMessage(_INTL("You used your last {1}.",itm.name)) { scene&.pbUpdate }
