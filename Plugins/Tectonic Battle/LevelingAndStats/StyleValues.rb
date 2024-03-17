@@ -551,7 +551,7 @@ def styleValuesTrainer(skipExplanation = false)
         return
     end
 
-    skipExplanation = true if $PokemonSystem.brief_team_building_npcs
+    skipExplanation = true if $PokemonSystem.brief_team_building_npcs == 0
 
     if isTempSwitchOff?("A") && !skipExplanation
         pbMessage(_INTL("I'm the Style Points adjuster. I can adjust your Pokémon's Style Points any time."))

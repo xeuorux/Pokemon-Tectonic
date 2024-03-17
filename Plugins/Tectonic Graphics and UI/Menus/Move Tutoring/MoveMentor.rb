@@ -8,7 +8,7 @@ def mentorCoordinator(skipExplanation=false)
 		return
 	end
 
-	skipExplanation = true if $PokemonSystem.brief_team_building_npcs
+	skipExplanation = true if $PokemonSystem.brief_team_building_npcs == 0
 
 	if isTempSwitchOff?("A") && !skipExplanation
 		pbMessage(_INTL("I help your Pokemon to teach each other moves through mentorships!"))
