@@ -308,27 +308,28 @@ class PokemonStorageScreen
         else
             loop do
                 destbox = @scene.pbChooseBox(_INTL("Deposit in which Box?"))
-                if @storage[destbox].isDonationBox?
-                    pbStoreDonation(heldpoke || @storage[-1, index])
-                elsif destbox >= 0
-                    firstfree = @storage.pbFirstFreePos(destbox)
-                    if firstfree < 0
-                        pbDisplay(_INTL("The Box is full."))
-                        next
-                    end
-                    if heldpoke || selected[0] == -1
-                        p = heldpoke || @storage[-1, index]
-                        p.time_form_set = nil
-                        p.form          = 0 if p.isSpecies?(:SHAYMIN)
-                        p.heal
-                        promptToTakeItems(p)
-                    end
-                    @scene.pbStore(selected, heldpoke, destbox, firstfree)
-                    if heldpoke
-                        @storage.pbMoveCaughtToBox(heldpoke, destbox)
-                        @heldpkmn = nil
+                if destbox >= 0
+                    if @storage[destbox].isDonationBox?
+                        pbStoreDonation(heldpoke || @storage[-1, index])
                     else
-                        @storage.pbMove(destbox, -1, -1, index)
+                        firstfree = @storage.pbFirstFreePos(destbox)
+                        if firstfree < 0
+                            pbDisplay(_INTL("The Box is full."))
+                            next
+                        end
+                        if heldpoke || selected[0] == -1
+                            p = heldpoke || @storage[-1, index]
+                            p.time_form_set = nil
+                            p.heal
+                            promptToTakeItems(p)
+                        end
+                        @scene.pbStore(selected, heldpoke, destbox, firstfree)
+                        if heldpoke
+                            @storage.pbMoveCaughtToBox(heldpoke, destbox)
+                            @heldpkmn = nil
+                        else
+                            @storage.pbMove(destbox, -1, -1, index)
+                        end
                     end
                 end
                 break
@@ -367,7 +368,6 @@ class PokemonStorageScreen
         end
         if box >= 0
             @heldpkmn.time_form_set = nil
-            @heldpkmn.form = 0 if @heldpkmn.isSpecies?(:SHAYMIN)
             @heldpkmn.heal
             # promptToTakeItems(@heldpkmn)
         end
@@ -565,7 +565,6 @@ class PokemonStorageScreen
         end
         if box >= 0
             @heldpkmn.time_form_set = nil
-            @heldpkmn.form = 0 if @heldpkmn.isSpecies?(:SHAYMIN)
             @heldpkmn.heal
             promptToTakeItems(@heldpkmn)
         end
