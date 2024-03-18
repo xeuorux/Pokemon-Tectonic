@@ -70,7 +70,9 @@ class PokeBattle_Move_TypeDependsOnUserSpecialItem < PokeBattle_Move
                     ret = itemType if GameData::Type.exists?(itemType)
                     break
                 end
-            else
+            elsif @id == :MULTIATTACK && user.hasItem?(:MEMORYSET)
+                return user.itemTypeChosen
+            elsif @id == :JUDGMENT && user.hasItem?(:PRISMATICPLATE)
                 return user.itemTypeChosen
             end
         end
