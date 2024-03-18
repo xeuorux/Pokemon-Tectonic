@@ -123,14 +123,23 @@ DebugMenuCommands.register("analyzeitemdistribution", {
               end
           end
   
-          file.write("All the items which have not a single distribution:")
+          file.write("\r\nAll the items which have not a single distribution:\r\n")
           writeIndex = 0
           GameData::Item.each do |itemData|
               next if allItemsGiven.include?(itemData.id)
-              str = itemData.id.to_s + (writeIndex % 6 == 0 ? "\r\n" : ", ")
+              next if itemData.cut
+              str = itemData.id.to_s + (writeIndex % 6 == 5 ? "\r\n" : ", ")
               writeIndex += 1
               file.write(str) 
           end
+
+          file.write("\r\nAll the machines, and which are distributed:\r\n")
+          GameData::Item.each do |itemData|
+            next unless itemData.is_machine?
+            used = allItemsGiven.include?(itemData.id)
+            str = "#{itemData.real_name},#{itemData.move},#{used}\r\n"
+            file.write(str) 
+        end
       }
   
       pbMessage(_INTL("Item distribution analysis written to Analysis/item_distribution.txt"))
