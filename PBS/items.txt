@@ -1681,7 +1681,6 @@ Pocket = 4
 Price = 5000
 FieldUse = TM
 Move = RANSACK
-Description = 
 #-------------------------------
 [TM01]
 Name = TM01
@@ -1690,7 +1689,6 @@ Pocket = 4
 Price = 5000
 FieldUse = TM
 Move = COVET
-Description = 
 #-------------------------------
 [TM02]
 Name = TM02
@@ -1699,7 +1697,6 @@ Pocket = 4
 Price = 5000
 FieldUse = TM
 Move = PAYDAY
-Description = 
 #-------------------------------
 [TM03]
 Name = TM03
@@ -1708,7 +1705,6 @@ Pocket = 4
 Price = 5000
 FieldUse = TM
 Move = CHAOSWHEEL
-Description = 
 #-------------------------------
 [TM04]
 Name = TM04
@@ -1717,7 +1713,6 @@ Pocket = 4
 Price = 5000
 FieldUse = TM
 Move = FRENZYPLANT
-Description = 
 #-------------------------------
 [TM05]
 Name = TM05
@@ -1726,7 +1721,6 @@ Pocket = 4
 Price = 5000
 FieldUse = TM
 Move = BLASTBURN
-Description = 
 #-------------------------------
 [TM06]
 Name = TM06
@@ -1735,7 +1729,6 @@ Pocket = 4
 Price = 5000
 FieldUse = TM
 Move = HYDROCANNON
-Description = 
 #-------------------------------
 [TM07]
 Name = TM07
@@ -1744,7 +1737,6 @@ Pocket = 4
 Price = 5000
 FieldUse = TM
 Move = CRUELTY
-Description = 
 #-------------------------------
 [TM08]
 Name = TM08
@@ -1753,7 +1745,6 @@ Pocket = 4
 Price = 5000
 FieldUse = TM
 Move = HYPERBEAM
-Description = 
 #-------------------------------
 [TM09]
 Name = TM09
@@ -1762,7 +1753,6 @@ Pocket = 4
 Price = 5000
 FieldUse = TM
 Move = GIGAIMPACT
-Description = 
 #-------------------------------
 [TM10]
 Name = TM10
@@ -1771,7 +1761,6 @@ Pocket = 4
 Price = 5000
 FieldUse = TM
 Move = GREYMIST
-Description = 
 #-------------------------------
 [TM11]
 Name = TM11
@@ -1780,7 +1769,6 @@ Pocket = 4
 Price = 5000
 FieldUse = TM
 Move = ROCKWRECKER
-Description = 
 #-------------------------------
 [TM12]
 Name = TM12
@@ -1789,7 +1777,6 @@ Pocket = 4
 Price = 5000
 FieldUse = TM
 Move = FOLLOWME
-Description = 
 #-------------------------------
 [TM13]
 Name = TM13
@@ -1798,7 +1785,6 @@ Pocket = 4
 Price = 5000
 FieldUse = TM
 Move = METEORASSAULT
-Description = 
 #-------------------------------
 [TM14]
 Name = TM14
@@ -1807,7 +1793,6 @@ Pocket = 4
 Price = 5000
 FieldUse = TM
 Move = NUMB
-Description = 
 #-------------------------------
 [TM15]
 Name = TM15
@@ -1816,7 +1801,6 @@ Pocket = 4
 Price = 5000
 FieldUse = TM
 Move = DIG
-Description = 
 #-------------------------------
 [TM16]
 Name = TM16
@@ -1825,7 +1809,6 @@ Pocket = 4
 Price = 5000
 FieldUse = TM
 Move = SCREECH
-Description = 
 #-------------------------------
 [TM17]
 Name = TM17
@@ -1834,7 +1817,6 @@ Pocket = 4
 Price = 5000
 FieldUse = TM
 Move = LIGHTSCREEN
-Description = 
 #-------------------------------
 [TM18]
 Name = TM18
@@ -1843,7 +1825,6 @@ Pocket = 4
 Price = 5000
 FieldUse = TM
 Move = REFLECT
-Description = 
 #-------------------------------
 [TM19]
 Name = TM19
@@ -1852,7 +1833,6 @@ Pocket = 4
 Price = 5000
 FieldUse = TM
 Move = SAFEGUARD
-Description = 
 #-------------------------------
 [TM20]
 Name = TM20
@@ -1861,7 +1841,6 @@ Pocket = 4
 Price = 5000
 FieldUse = TM
 Move = SELFDESTRUCT
-Description = 
 #-------------------------------
 [TM21]
 Name = TM21
@@ -1870,7 +1849,6 @@ Pocket = 4
 Price = 5000
 FieldUse = TM
 Move = REST
-Description = 
 #-------------------------------
 [TM22]
 Name = TM22
@@ -1879,7 +1857,6 @@ Pocket = 4
 Price = 5000
 FieldUse = TM
 Move = EXPLOSION
-Description = 
 #-------------------------------
 [TM23]
 Name = TM23
@@ -1888,7 +1865,6 @@ Pocket = 4
 Price = 5000
 FieldUse = TM
 Move = MEMENTO
-Description = 
 #-------------------------------
 [TM24]
 Name = TM24
@@ -1897,7 +1873,6 @@ Pocket = 4
 Price = 5000
 FieldUse = TM
 Move = SNORE
-Description = 
 #-------------------------------
 [TM25]
 Name = TM25
@@ -1906,7 +1881,6 @@ Pocket = 4
 Price = 5000
 FieldUse = TM
 Move = PROTECT
-Description = 
 #-------------------------------
 [TM26]
 Name = TM26
@@ -1915,7 +1889,6 @@ Pocket = 4
 Price = 5000
 FieldUse = TM
 Move = SCARYFACE
-Description = 
 #-------------------------------
 [TM27]
 Name = TM27
@@ -1924,7 +1897,6 @@ Pocket = 4
 Price = 5000
 FieldUse = TM
 Move = RAPIDSPIN
-Description = 
 #-------------------------------
 [TM28]
 Name = TM28
@@ -1933,7 +1905,6 @@ Pocket = 4
 Price = 5000
 FieldUse = TM
 Move = ENERGYBALL
-Description = 
 #-------------------------------
 [TM29]
 Name = TM29
@@ -1942,7 +1913,6 @@ Pocket = 4
 Price = 5000
 FieldUse = TM
 Move = SMACKDOWN
-Description = 
 #-------------------------------
 [TM30]
 Name = TM30
@@ -1951,7 +1921,6 @@ Pocket = 4
 Price = 5000
 FieldUse = TM
 Move = STEELWING
-Description = 
 #-------------------------------
 [TM31]
 Name = TM31
@@ -1960,7 +1929,6 @@ Pocket = 4
 Price = 5000
 FieldUse = TM
 Move = ATTRACT
-Description = 
 #-------------------------------
 [TM32]
 Name = TM32
@@ -1969,7 +1937,6 @@ Pocket = 4
 Price = 5000
 FieldUse = TM
 Move = SANDSTORM
-Description = 
 #-------------------------------
 [TM33]
 Name = TM33
@@ -1978,7 +1945,6 @@ Pocket = 4
 Price = 5000
 FieldUse = TM
 Move = RAIN
-Description = 
 #-------------------------------
 [TM34]
 Name = TM34
@@ -1987,7 +1953,6 @@ Pocket = 4
 Price = 5000
 FieldUse = TM
 Move = SUNSHINE
-Description = 
 #-------------------------------
 [TM35]
 Name = TM35
@@ -1996,7 +1961,6 @@ Pocket = 4
 Price = 5000
 FieldUse = TM
 Move = HAIL
-Description = 
 #-------------------------------
 [TM36]
 Name = TM36
@@ -2005,7 +1969,6 @@ Pocket = 4
 Price = 5000
 FieldUse = TM
 Move = WHIRLPOOL
-Description = 
 #-------------------------------
 [TM37]
 Name = TM37
@@ -2014,7 +1977,6 @@ Pocket = 4
 Price = 5000
 FieldUse = TM
 Move = BEATUP
-Description = 
 #-------------------------------
 [TM38]
 Name = TM38
@@ -2023,7 +1985,6 @@ Pocket = 4
 Price = 5000
 FieldUse = TM
 Move = WILLOWISP
-Description = 
 #-------------------------------
 [TM39]
 Name = TM39
@@ -2032,7 +1993,6 @@ Pocket = 4
 Price = 5000
 FieldUse = TM
 Move = FACADE
-Description = 
 #-------------------------------
 [TM40]
 Name = TM40
@@ -2041,7 +2001,6 @@ Pocket = 4
 Price = 5000
 FieldUse = TM
 Move = SWIFT
-Description = 
 #-------------------------------
 [TM41]
 Name = TM41
@@ -2050,7 +2009,6 @@ Pocket = 4
 Price = 5000
 FieldUse = TM
 Move = HELPINGHAND
-Description = 
 #-------------------------------
 [TM42]
 Name = TM42
@@ -2059,7 +2017,6 @@ Pocket = 4
 Price = 5000
 FieldUse = TM
 Move = REVENGE
-Description = 
 #-------------------------------
 [TM43]
 Name = TM43
@@ -2068,7 +2025,6 @@ Pocket = 4
 Price = 5000
 FieldUse = TM
 Move = BRICKBREAK
-Description = 
 #-------------------------------
 [TM44]
 Name = TM44
@@ -2077,7 +2033,6 @@ Pocket = 4
 Price = 5000
 FieldUse = TM
 Move = IMPRISON
-Description = 
 #-------------------------------
 [TM45]
 Name = TM45
@@ -2086,7 +2041,6 @@ Pocket = 4
 Price = 5000
 FieldUse = TM
 Move = DIVE
-Description = 
 #-------------------------------
 [TM46]
 Name = TM46
@@ -2095,7 +2049,6 @@ Pocket = 4
 Price = 5000
 FieldUse = TM
 Move = WEATHERBURST
-Description = 
 #-------------------------------
 [TM47]
 Name = TM47
@@ -2104,7 +2057,6 @@ Pocket = 4
 Price = 5000
 FieldUse = TM
 Move = FAKETEARS
-Description = 
 #-------------------------------
 [TM48]
 Name = TM48
@@ -2113,7 +2065,6 @@ Pocket = 4
 Price = 5000
 FieldUse = TM
 Move = STRAFE
-Description = 
 #-------------------------------
 [TM49]
 Name = TM49
@@ -2122,7 +2073,6 @@ Pocket = 4
 Price = 5000
 FieldUse = TM
 Move = MEGAPUNCH
-Description = 
 #-------------------------------
 [TM50]
 Name = TM50
@@ -2131,7 +2081,6 @@ Pocket = 4
 Price = 5000
 FieldUse = TM
 Move = BULLETSEED
-Description = 
 #-------------------------------
 [TM51]
 Name = TM51
@@ -2140,7 +2089,6 @@ Pocket = 4
 Price = 5000
 FieldUse = TM
 Move = GLACIALRAM
-Description = 
 #-------------------------------
 [TM52]
 Name = TM52
@@ -2149,7 +2097,6 @@ Pocket = 4
 Price = 5000
 FieldUse = TM
 Move = BOUNCE
-Description = 
 #-------------------------------
 [TM53]
 Name = TM53
@@ -2158,7 +2105,6 @@ Pocket = 4
 Price = 5000
 FieldUse = TM
 Move = MUDSHOT
-Description = 
 #-------------------------------
 [TM54]
 Name = TM54
@@ -2167,7 +2113,6 @@ Pocket = 4
 Price = 5000
 FieldUse = TM
 Move = WAILINGBLOW
-Description = 
 #-------------------------------
 [TM55]
 Name = TM55
@@ -2176,7 +2121,6 @@ Pocket = 4
 Price = 5000
 FieldUse = TM
 Move = BRINE
-Description = 
 #-------------------------------
 [TM56]
 Name = TM56
@@ -2185,7 +2129,6 @@ Pocket = 4
 Price = 5000
 FieldUse = TM
 Move = UTURN
-Description = 
 #-------------------------------
 [TM57]
 Name = TM57
@@ -2194,7 +2137,6 @@ Pocket = 4
 Price = 5000
 FieldUse = TM
 Move = PAYBACK
-Description = 
 #-------------------------------
 [TM58]
 Name = TM58
@@ -2203,7 +2145,6 @@ Pocket = 4
 Price = 5000
 FieldUse = TM
 Move = ASSURANCE
-Description = 
 #-------------------------------
 [TM59]
 Name = TM59
@@ -2212,7 +2153,6 @@ Pocket = 4
 Price = 5000
 FieldUse = TM
 Move = FLING
-Description = 
 #-------------------------------
 [TM60]
 Name = TM60
@@ -2221,7 +2161,6 @@ Pocket = 4
 Price = 5000
 FieldUse = TM
 Move = POWERSWAP
-Description = 
 #-------------------------------
 [TM61]
 Name = TM61
@@ -2230,7 +2169,6 @@ Pocket = 4
 Price = 5000
 FieldUse = TM
 Move = GUARDSWAP
-Description = 
 #-------------------------------
 [TM62]
 Name = TM62
@@ -2239,7 +2177,6 @@ Pocket = 4
 Price = 5000
 FieldUse = TM
 Move = HEARTSWAP
-Description = 
 #-------------------------------
 [TM63]
 Name = TM63
@@ -2248,7 +2185,6 @@ Pocket = 4
 Price = 5000
 FieldUse = TM
 Move = DRAINPUNCH
-Description = 
 #-------------------------------
 [TM64]
 Name = TM64
@@ -2257,7 +2193,6 @@ Pocket = 4
 Price = 5000
 FieldUse = TM
 Move = AVALANCHE
-Description = 
 #-------------------------------
 [TM65]
 Name = TM65
@@ -2266,7 +2201,6 @@ Pocket = 4
 Price = 5000
 FieldUse = TM
 Move = SHADOWCLAW
-Description = 
 #-------------------------------
 [TM66]
 Name = TM66
@@ -2275,7 +2209,6 @@ Pocket = 4
 Price = 5000
 FieldUse = TM
 Move = THUNDERFANG
-Description = 
 #-------------------------------
 [TM67]
 Name = TM67
@@ -2284,7 +2217,6 @@ Pocket = 4
 Price = 5000
 FieldUse = TM
 Move = ICEFANG
-Description = 
 #-------------------------------
 [TM68]
 Name = TM68
@@ -2293,7 +2225,6 @@ Pocket = 4
 Price = 5000
 FieldUse = TM
 Move = FIREFANG
-Description = 
 #-------------------------------
 [TM69]
 Name = TM69
@@ -2302,7 +2233,6 @@ Pocket = 4
 Price = 5000
 FieldUse = TM
 Move = HONECLAWS
-Description = 
 #-------------------------------
 [TM70]
 Name = TM70
@@ -2311,7 +2241,6 @@ Pocket = 4
 Price = 5000
 FieldUse = TM
 Move = POLARIZEDROOM
-Description = 
 #-------------------------------
 [TM71]
 Name = TM71
@@ -2320,7 +2249,6 @@ Pocket = 4
 Price = 5000
 FieldUse = TM
 Move = WONDERROOM
-Description = 
 #-------------------------------
 [TM72]
 Name = TM72
@@ -2329,7 +2257,6 @@ Pocket = 4
 Price = 5000
 FieldUse = TM
 Move = PUZZLEROOM
-Description = 
 #-------------------------------
 [TM73]
 Name = TM73
@@ -2338,7 +2265,6 @@ Pocket = 4
 Price = 5000
 FieldUse = TM
 Move = CROSSPOISON
-Description = 
 #-------------------------------
 [TM74]
 Name = TM74
@@ -2347,7 +2273,6 @@ Pocket = 4
 Price = 5000
 FieldUse = TM
 Move = VENOSHOCK
-Description = 
 #-------------------------------
 [TM75]
 Name = TM75
@@ -2356,7 +2281,6 @@ Pocket = 4
 Price = 5000
 FieldUse = TM
 Move = LOWSWEEP
-Description = 
 #-------------------------------
 [TM76]
 Name = TM76
@@ -2365,7 +2289,6 @@ Pocket = 4
 Price = 5000
 FieldUse = TM
 Move = ROUND
-Description = 
 #-------------------------------
 [TM77]
 Name = TM77
@@ -2374,7 +2297,6 @@ Pocket = 4
 Price = 5000
 FieldUse = TM
 Move = HEX
-Description = 
 #-------------------------------
 [TM78]
 Name = TM78
@@ -2383,7 +2305,6 @@ Pocket = 4
 Price = 5000
 FieldUse = TM
 Move = ACROBATICS
-Description = 
 #-------------------------------
 [TM79]
 Name = TM79
@@ -2392,7 +2313,6 @@ Pocket = 4
 Price = 5000
 FieldUse = TM
 Move = RETALIATE
-Description = 
 #-------------------------------
 [TM80]
 Name = TM80
@@ -2401,7 +2321,6 @@ Pocket = 4
 Price = 5000
 FieldUse = TM
 Move = VOLTSWITCH
-Description = 
 #-------------------------------
 [TM81]
 Name = TM81
@@ -2410,7 +2329,6 @@ Pocket = 4
 Price = 5000
 FieldUse = TM
 Move = BULLDOZE
-Description = 
 #-------------------------------
 [TM82]
 Name = TM82
@@ -2419,7 +2337,6 @@ Pocket = 4
 Price = 5000
 FieldUse = TM
 Move = ELECTROWEB
-Description = 
 #-------------------------------
 [TM83]
 Name = TM83
@@ -2428,7 +2345,6 @@ Pocket = 4
 Price = 5000
 FieldUse = TM
 Move = RAZORSHELL
-Description = 
 #-------------------------------
 [TM84]
 Name = TM84
@@ -2437,7 +2353,6 @@ Pocket = 4
 Price = 5000
 FieldUse = TM
 Move = DEEPBREATHING
-Description = 
 #-------------------------------
 [TM85]
 Name = TM85
@@ -2446,7 +2361,6 @@ Pocket = 4
 Price = 5000
 FieldUse = TM
 Move = FINALGAMBIT
-Description = 
 #-------------------------------
 [TM86]
 Name = TM86
@@ -2455,7 +2369,6 @@ Pocket = 4
 Price = 5000
 FieldUse = TM
 Move = PHANTOMFORCE
-Description = 
 #-------------------------------
 [TM87]
 Name = TM87
@@ -2464,7 +2377,6 @@ Pocket = 4
 Price = 5000
 FieldUse = TM
 Move = TRICKYTOXINS
-Description = 
 #-------------------------------
 [TM88]
 Name = TM88
@@ -2473,7 +2385,6 @@ Pocket = 4
 Price = 5000
 FieldUse = TM
 Move = VOLTSWITCH
-Description = 
 #-------------------------------
 [TM89]
 Name = TM89
@@ -2482,7 +2393,6 @@ Pocket = 4
 Price = 5000
 FieldUse = TM
 Move = UTURN
-Description = 
 #-------------------------------
 [TM90]
 Name = TM90
@@ -2491,7 +2401,6 @@ Pocket = 4
 Price = 5000
 FieldUse = TM
 Move = FLIPTURN
-Description = 
 #-------------------------------
 [TM91]
 Name = TM91
@@ -2500,7 +2409,6 @@ Pocket = 4
 Price = 5000
 FieldUse = TM
 Move = PARTINGSHOT
-Description = 
 #-------------------------------
 [TM92]
 Name = TM92
@@ -2509,7 +2417,6 @@ Pocket = 4
 Price = 5000
 FieldUse = TM
 Move = MEMENTO
-Description = 
 #-------------------------------
 [TM93]
 Name = TM93
@@ -2518,7 +2425,6 @@ Pocket = 4
 Price = 5000
 FieldUse = TM
 Move = EERIEIMPULSE
-Description = 
 #-------------------------------
 [TM94]
 Name = TM94
@@ -2527,7 +2433,6 @@ Pocket = 4
 Price = 5000
 FieldUse = TM
 Move = CHARM
-Description = 
 #-------------------------------
 [TM95]
 Name = TM95
@@ -2536,7 +2441,6 @@ Pocket = 4
 Price = 5000
 FieldUse = TM
 Move = COLDFRONT
-Description = 
 #-------------------------------
 [TM96]
 Name = TM96
@@ -2545,7 +2449,6 @@ Pocket = 4
 Price = 5000
 FieldUse = TM
 Move = BUBBLEBLASTER
-Description = 
 #-------------------------------
 [TM97]
 Name = TM97
@@ -2554,7 +2457,6 @@ Pocket = 4
 Price = 5000
 FieldUse = TM
 Move = BRUTALSWING
-Description = 
 #-------------------------------
 [TM98]
 Name = TM98
@@ -2563,7 +2465,6 @@ Pocket = 4
 Price = 5000
 FieldUse = TM
 Move = STOMPINGTANTRUM
-Description = 
 #-------------------------------
 [TM99]
 Name = TM99
@@ -2572,7 +2473,6 @@ Pocket = 4
 Price = 5000
 FieldUse = TM
 Move = BREAKINGSWIPE
-Description = 
 #-------------------------------
 [TM100]
 Name = TM100
@@ -2581,7 +2481,6 @@ Pocket = 4
 Price = 5000
 FieldUse = TM
 Move = FLOWSTATE
-Description = 
 #-------------------------------
 [TM101]
 Name = TM101
@@ -2590,7 +2489,6 @@ Pocket = 4
 Price = 5000
 FieldUse = TM
 Move = BODYSLAM
-Description = 
 #-------------------------------
 [TM102]
 Name = TM102
@@ -2599,7 +2497,6 @@ Pocket = 4
 Price = 5000
 FieldUse = TM
 Move = FLAMETHROWER
-Description = 
 #-------------------------------
 [TM103]
 Name = TM103
@@ -2608,7 +2505,6 @@ Pocket = 4
 Price = 5000
 FieldUse = TM
 Move = TAILWIND
-Description = 
 #-------------------------------
 [TM104]
 Name = TM104
@@ -2617,7 +2513,6 @@ Pocket = 4
 Price = 5000
 FieldUse = TM
 Move = SURF
-Description = 
 #-------------------------------
 [TM105]
 Name = TM105
@@ -2626,7 +2521,6 @@ Pocket = 4
 Price = 5000
 FieldUse = TM
 Move = ICEBEAM
-Description = 
 #-------------------------------
 [TM106]
 Name = TM106
@@ -2635,7 +2529,6 @@ Pocket = 4
 Price = 5000
 FieldUse = TM
 Move = HONESIGHT
-Description = 
 #-------------------------------
 [TM107]
 Name = TM107
@@ -2644,7 +2537,6 @@ Pocket = 4
 Price = 5000
 FieldUse = TM
 Move = LOWKICK
-Description = 
 #-------------------------------
 [TM108]
 Name = TM108
@@ -2653,7 +2545,6 @@ Pocket = 4
 Price = 5000
 FieldUse = TM
 Move = THUNDERBOLT
-Description = 
 #-------------------------------
 [TM109]
 Name = TM109
@@ -2662,7 +2553,6 @@ Pocket = 4
 Price = 5000
 FieldUse = TM
 Move = THUNDER
-Description = 
 #-------------------------------
 [TM110]
 Name = TM110
@@ -2671,7 +2561,6 @@ Pocket = 4
 Price = 5000
 FieldUse = TM
 Move = EARTHQUAKE
-Description = 
 #-------------------------------
 [TM111]
 Name = TM111
@@ -2680,7 +2569,6 @@ Pocket = 4
 Price = 5000
 FieldUse = TM
 Move = PSYCHIC
-Description = 
 #-------------------------------
 [TM112]
 Name = TM112
@@ -2689,7 +2577,6 @@ Pocket = 4
 Price = 5000
 FieldUse = TM
 Move = AGILITY
-Description = 
 #-------------------------------
 [TM113]
 Name = TM113
@@ -2698,7 +2585,6 @@ Pocket = 4
 Price = 5000
 FieldUse = TM
 Move = FOCUSENERGY
-Description = 
 #-------------------------------
 [TM114]
 Name = TM114
@@ -2707,7 +2593,6 @@ Pocket = 4
 Price = 5000
 FieldUse = TM
 Move = AIMTRUE
-Description = 
 #-------------------------------
 [TM115]
 Name = TM115
@@ -2716,7 +2601,6 @@ Pocket = 4
 Price = 5000
 FieldUse = TM
 Move = FIREBLAST
-Description = 
 #-------------------------------
 [TM116]
 Name = TM116
@@ -2725,7 +2609,6 @@ Pocket = 4
 Price = 5000
 FieldUse = TM
 Move = WATERFALL
-Description = 
 #-------------------------------
 [TM117]
 Name = TM117
@@ -2734,7 +2617,6 @@ Pocket = 4
 Price = 5000
 FieldUse = TM
 Move = AMNESIA
-Description = 
 #-------------------------------
 [TM118]
 Name = TM118
@@ -2743,7 +2625,6 @@ Pocket = 4
 Price = 5000
 FieldUse = TM
 Move = LEECHLIFE
-Description = 
 #-------------------------------
 [TM119]
 Name = TM119
@@ -2752,7 +2633,6 @@ Pocket = 4
 Price = 5000
 FieldUse = TM
 Move = TRIATTACK
-Description = 
 #-------------------------------
 [TM120]
 Name = TM120
@@ -2761,7 +2641,6 @@ Pocket = 4
 Price = 5000
 FieldUse = TM
 Move = SUBSTITUTE
-Description = 
 #-------------------------------
 [TM121]
 Name = TM121
@@ -2770,7 +2649,6 @@ Pocket = 4
 Price = 5000
 FieldUse = TM
 Move = REVERSAL
-Description = 
 #-------------------------------
 [TM122]
 Name = TM122
@@ -2779,7 +2657,6 @@ Pocket = 4
 Price = 5000
 FieldUse = TM
 Move = SLUDGEBOMB
-Description = 
 #-------------------------------
 [TM123]
 Name = TM123
@@ -2788,7 +2665,6 @@ Pocket = 4
 Price = 5000
 FieldUse = TM
 Move = SPIKES
-Description = 
 #-------------------------------
 [TM124]
 Name = TM124
@@ -2797,7 +2673,6 @@ Pocket = 4
 Price = 5000
 FieldUse = TM
 Move = OUTRAGE
-Description = 
 #-------------------------------
 [TM125]
 Name = TM125
@@ -2806,7 +2681,6 @@ Pocket = 4
 Price = 5000
 FieldUse = TM
 Move = PSYSHOCK
-Description = 
 #-------------------------------
 [TM126]
 Name = TM126
@@ -2815,7 +2689,6 @@ Pocket = 4
 Price = 5000
 FieldUse = TM
 Move = ENDURE
-Description = 
 #-------------------------------
 [TM127]
 Name = TM127
@@ -2824,7 +2697,6 @@ Pocket = 4
 Price = 5000
 FieldUse = TM
 Move = SLEEPTALK
-Description = 
 #-------------------------------
 [TM128]
 Name = TM128
@@ -2833,7 +2705,6 @@ Pocket = 4
 Price = 5000
 FieldUse = TM
 Move = MEGAHORN
-Description = 
 #-------------------------------
 [TM129]
 Name = TM129
@@ -2842,7 +2713,6 @@ Pocket = 4
 Price = 5000
 FieldUse = TM
 Move = BATONPASS
-Description = 
 #-------------------------------
 [TM130]
 Name = TM130
@@ -2851,7 +2721,6 @@ Pocket = 4
 Price = 5000
 FieldUse = TM
 Move = ENCORE
-Description = 
 #-------------------------------
 [TM131]
 Name = TM131
@@ -2860,7 +2729,6 @@ Pocket = 4
 Price = 5000
 FieldUse = TM
 Move = IRONTAIL
-Description = 
 #-------------------------------
 [TM132]
 Name = TM132
@@ -2869,7 +2737,6 @@ Pocket = 4
 Price = 5000
 FieldUse = TM
 Move = CRUNCH
-Description = 
 #-------------------------------
 [TM133]
 Name = TM133
@@ -2878,7 +2745,6 @@ Pocket = 4
 Price = 5000
 FieldUse = TM
 Move = SHADOWBALL
-Description = 
 #-------------------------------
 [TM134]
 Name = TM134
@@ -2887,7 +2753,6 @@ Pocket = 4
 Price = 5000
 FieldUse = TM
 Move = FROSTSPIKES
-Description = 
 #-------------------------------
 [TM135]
 Name = TM135
@@ -2896,7 +2761,6 @@ Pocket = 4
 Price = 5000
 FieldUse = TM
 Move = UPROAR
-Description = 
 #-------------------------------
 [TM136]
 Name = TM136
@@ -2905,7 +2769,6 @@ Pocket = 4
 Price = 5000
 FieldUse = TM
 Move = BAR
-Description = 
 #-------------------------------
 [TM137]
 Name = TM137
@@ -2914,7 +2777,6 @@ Pocket = 4
 Price = 5000
 FieldUse = TM
 Move = TAUNT
-Description = 
 #-------------------------------
 [TM138]
 Name = TM138
@@ -2923,7 +2785,6 @@ Pocket = 4
 Price = 5000
 FieldUse = TM
 Move = TRICK
-Description = 
 #-------------------------------
 [TM139]
 Name = TM139
@@ -2932,7 +2793,6 @@ Pocket = 4
 Price = 5000
 FieldUse = TM
 Move = SUPERPOWER
-Description = 
 #-------------------------------
 [TM140]
 Name = TM140
@@ -2941,7 +2801,6 @@ Pocket = 4
 Price = 5000
 FieldUse = TM
 Move = SKILLSWAP
-Description = 
 #-------------------------------
 [TM141]
 Name = TM141
@@ -2950,7 +2809,6 @@ Pocket = 4
 Price = 5000
 FieldUse = TM
 Move = INFERNOIMPACT
-Description = 
 #-------------------------------
 [TM142]
 Name = TM142
@@ -2959,7 +2817,6 @@ Pocket = 4
 Price = 5000
 FieldUse = TM
 Move = HYPERVOICE
-Description = 
 #-------------------------------
 [TM143]
 Name = TM143
@@ -2968,7 +2825,6 @@ Pocket = 4
 Price = 5000
 FieldUse = TM
 Move = OVERHEAT
-Description = 
 #-------------------------------
 [TM144]
 Name = TM144
@@ -2977,7 +2833,6 @@ Pocket = 4
 Price = 5000
 FieldUse = TM
 Move = COSMICPOWER
-Description = 
 #-------------------------------
 [TM145]
 Name = TM145
@@ -2986,7 +2841,6 @@ Pocket = 4
 Price = 5000
 FieldUse = TM
 Move = ODDROOM
-Description = 
 #-------------------------------
 [TM146]
 Name = TM146
@@ -2995,7 +2849,6 @@ Pocket = 4
 Price = 5000
 FieldUse = TM
 Move = IRONDEFENSE
-Description = 
 #-------------------------------
 [TM147]
 Name = TM147
@@ -3004,7 +2857,6 @@ Pocket = 4
 Price = 5000
 FieldUse = TM
 Move = REND
-Description = 
 #-------------------------------
 [TM148]
 Name = TM148
@@ -3013,7 +2865,6 @@ Pocket = 4
 Price = 5000
 FieldUse = TM
 Move = BULKUP
-Description = 
 #-------------------------------
 [TM149]
 Name = TM149
@@ -3022,7 +2873,6 @@ Pocket = 4
 Price = 5000
 FieldUse = TM
 Move = CALMMIND
-Description = 
 #-------------------------------
 [TM150]
 Name = TM150
@@ -3031,7 +2881,6 @@ Pocket = 4
 Price = 5000
 FieldUse = TM
 Move = LEAFBLADE
-Description = 
 #-------------------------------
 [TM151]
 Name = TM151
@@ -3040,7 +2889,6 @@ Pocket = 4
 Price = 5000
 FieldUse = TM
 Move = FLAMESPIKES
-Description = 
 #-------------------------------
 [TM152]
 Name = TM152
@@ -3049,7 +2897,6 @@ Pocket = 4
 Price = 5000
 FieldUse = TM
 Move = GYROBALL
-Description = 
 #-------------------------------
 [TM153]
 Name = TM153
@@ -3058,7 +2905,6 @@ Pocket = 4
 Price = 5000
 FieldUse = TM
 Move = CLOSECOMBAT
-Description = 
 #-------------------------------
 [TM154]
 Name = TM154
@@ -3067,7 +2913,6 @@ Pocket = 4
 Price = 5000
 FieldUse = TM
 Move = POISONSPIKES
-Description = 
 #-------------------------------
 [TM155]
 Name = TM155
@@ -3076,7 +2921,6 @@ Pocket = 4
 Price = 5000
 FieldUse = TM
 Move = FLAREBLITZ
-Description = 
 #-------------------------------
 [TM156]
 Name = TM156
@@ -3085,7 +2929,6 @@ Pocket = 4
 Price = 5000
 FieldUse = TM
 Move = AURASPHERE
-Description = 
 #-------------------------------
 [TM157]
 Name = TM157
@@ -3094,7 +2937,6 @@ Pocket = 4
 Price = 5000
 FieldUse = TM
 Move = POISONJAB
-Description = 
 #-------------------------------
 [TM158]
 Name = TM158
@@ -3103,7 +2945,6 @@ Pocket = 4
 Price = 5000
 FieldUse = TM
 Move = DARKALLURE
-Description = 
 #-------------------------------
 [TM159]
 Name = TM159
@@ -3112,7 +2953,6 @@ Pocket = 4
 Price = 5000
 FieldUse = TM
 Move = NULLPULSE
-Description = 
 #-------------------------------
 [TM160]
 Name = TM160
@@ -3121,7 +2961,6 @@ Pocket = 4
 Price = 5000
 FieldUse = TM
 Move = XSCISSOR
-Description = 
 #-------------------------------
 [TM161]
 Name = TM161
@@ -3130,7 +2969,6 @@ Pocket = 4
 Price = 5000
 FieldUse = TM
 Move = BUGBUZZ
-Description = 
 #-------------------------------
 [TM162]
 Name = TM162
@@ -3139,7 +2977,6 @@ Pocket = 4
 Price = 5000
 FieldUse = TM
 Move = DRAGONPULSE
-Description = 
 #-------------------------------
 [TM163]
 Name = TM163
@@ -3148,7 +2985,6 @@ Pocket = 4
 Price = 5000
 FieldUse = TM
 Move = POWERGEM
-Description = 
 #-------------------------------
 [TM164]
 Name = TM164
@@ -3157,7 +2993,6 @@ Pocket = 4
 Price = 5000
 FieldUse = TM
 Move = FOCUSBLAST
-Description = 
 #-------------------------------
 [TM165]
 Name = TM165
@@ -3166,7 +3001,6 @@ Pocket = 4
 Price = 5000
 FieldUse = TM
 Move = ENERGYBALL
-Description = 
 #-------------------------------
 [TM166]
 Name = TM166
@@ -3175,7 +3009,6 @@ Pocket = 4
 Price = 5000
 FieldUse = TM
 Move = BRAVEBIRD
-Description = 
 #-------------------------------
 [TM167]
 Name = TM167
@@ -3184,7 +3017,6 @@ Pocket = 4
 Price = 5000
 FieldUse = TM
 Move = EARTHPOWER
-Description = 
 #-------------------------------
 [TM168]
 Name = TM168
@@ -3193,7 +3025,6 @@ Pocket = 4
 Price = 5000
 FieldUse = TM
 Move = VANGUARD
-Description = 
 #-------------------------------
 [TM169]
 Name = TM169
@@ -3202,7 +3033,6 @@ Pocket = 4
 Price = 5000
 FieldUse = TM
 Move = SEERSTRIKE
-Description = 
 #-------------------------------
 [TM170]
 Name = TM170
@@ -3211,7 +3041,6 @@ Pocket = 4
 Price = 5000
 FieldUse = TM
 Move = FLASHCANNON
-Description = 
 #-------------------------------
 [TM171]
 Name = TM171
@@ -3220,7 +3049,6 @@ Pocket = 4
 Price = 5000
 FieldUse = TM
 Move = LEAFSTORM
-Description = 
 #-------------------------------
 [TM172]
 Name = TM172
@@ -3229,7 +3057,6 @@ Pocket = 4
 Price = 5000
 FieldUse = TM
 Move = POWERWHIP
-Description = 
 #-------------------------------
 [TM173]
 Name = TM173
@@ -3238,7 +3065,6 @@ Pocket = 4
 Price = 5000
 FieldUse = TM
 Move = GUNKSHOT
-Description = 
 #-------------------------------
 [TM174]
 Name = TM174
@@ -3247,7 +3073,6 @@ Pocket = 4
 Price = 5000
 FieldUse = TM
 Move = BULLETTRAIN
-Description = 
 #-------------------------------
 [TM175]
 Name = TM175
@@ -3256,7 +3081,6 @@ Pocket = 4
 Price = 5000
 FieldUse = TM
 Move = ADAMANTINEPRESS
-Description = 
 #-------------------------------
 [TM176]
 Name = TM176
@@ -3265,7 +3089,6 @@ Pocket = 4
 Price = 5000
 FieldUse = TM
 Move = STEALTHROCK
-Description = 
 #-------------------------------
 [TM177]
 Name = TM177
@@ -3274,7 +3097,6 @@ Pocket = 4
 Price = 5000
 FieldUse = TM
 Move = GRASSKNOT
-Description = 
 #-------------------------------
 [TM178]
 Name = TM178
@@ -3283,7 +3105,6 @@ Pocket = 4
 Price = 5000
 FieldUse = TM
 Move = MIASMA
-Description = 
 #-------------------------------
 [TM179]
 Name = TM179
@@ -3292,7 +3113,6 @@ Pocket = 4
 Price = 5000
 FieldUse = TM
 Move = HEAVYSLAM
-Description = 
 #-------------------------------
 [TM180]
 Name = TM180
@@ -3301,7 +3121,6 @@ Pocket = 4
 Price = 5000
 FieldUse = TM
 Move = ELECTROBALL
-Description = 
 #-------------------------------
 [TM181]
 Name = TM181
@@ -3310,7 +3129,6 @@ Pocket = 4
 Price = 5000
 FieldUse = TM
 Move = FOULPLAY
-Description = 
 #-------------------------------
 [TM182]
 Name = TM182
@@ -3319,7 +3137,6 @@ Pocket = 4
 Price = 5000
 FieldUse = TM
 Move = STOREDPOWER
-Description = 
 #-------------------------------
 [TM183]
 Name = TM183
@@ -3328,7 +3145,6 @@ Pocket = 4
 Price = 5000
 FieldUse = TM
 Move = ALLYSWITCH
-Description = 
 #-------------------------------
 [TM184]
 Name = TM184
@@ -3337,7 +3153,6 @@ Pocket = 4
 Price = 5000
 FieldUse = TM
 Move = SCALD
-Description = 
 #-------------------------------
 [TM185]
 Name = TM185
@@ -3346,7 +3161,6 @@ Pocket = 4
 Price = 5000
 FieldUse = TM
 Move = WORKUP
-Description = 
 #-------------------------------
 [TM186]
 Name = TM186
@@ -3355,7 +3169,6 @@ Pocket = 4
 Price = 5000
 FieldUse = TM
 Move = ELECTROSLASH
-Description = 
 #-------------------------------
 [TM187]
 Name = TM187
@@ -3364,7 +3177,6 @@ Pocket = 4
 Price = 5000
 FieldUse = TM
 Move = TRAMPLE
-Description = 
 #-------------------------------
 [TM188]
 Name = TM188
@@ -3373,7 +3185,6 @@ Pocket = 4
 Price = 5000
 FieldUse = TM
 Move = HEATCRASH
-Description = 
 #-------------------------------
 [TM189]
 Name = TM189
@@ -3382,7 +3193,6 @@ Pocket = 4
 Price = 5000
 FieldUse = TM
 Move = STORMDRIVE
-Description = 
 #-------------------------------
 [TM190]
 Name = TM190
@@ -3391,7 +3201,6 @@ Pocket = 4
 Price = 5000
 FieldUse = TM
 Move = PLAYROUGH
-Description = 
 #-------------------------------
 [TM191]
 Name = TM191
@@ -3400,7 +3209,6 @@ Pocket = 4
 Price = 5000
 FieldUse = TM
 Move = VENOMDRENCH
-Description = 
 #-------------------------------
 [TM192]
 Name = TM192
@@ -3409,7 +3217,6 @@ Pocket = 4
 Price = 5000
 FieldUse = TM
 Move = MOONBLAST
-Description = 
 #-------------------------------
 [TM193]
 Name = TM193
@@ -3418,7 +3225,6 @@ Pocket = 4
 Price = 5000
 FieldUse = TM
 Move = WARDPRESS
-Description = 
 #-------------------------------
 [TM194]
 Name = TM194
@@ -3427,7 +3233,6 @@ Pocket = 4
 Price = 5000
 FieldUse = TM
 Move = SCORCHINGSANDS
-Description = 
 #-------------------------------
 [TM195]
 Name = TM195
@@ -3436,7 +3241,6 @@ Pocket = 4
 Price = 5000
 FieldUse = TM
 Move = THROATCHOP
-Description = 
 #-------------------------------
 [TM196]
 Name = TM196
@@ -3445,7 +3249,6 @@ Pocket = 4
 Price = 5000
 FieldUse = TM
 Move = MOONGLOW
-Description = 
 #-------------------------------
 [TM197]
 Name = TM197
@@ -3454,7 +3257,6 @@ Pocket = 4
 Price = 5000
 FieldUse = TM
 Move = ECLIPSE
-Description = 
 #-------------------------------
 [TM198]
 Name = TM198
@@ -3463,7 +3265,6 @@ Pocket = 4
 Price = 5000
 FieldUse = TM
 Move = LIQUIDATION
-Description = 
 #-------------------------------
 [TM199]
 Name = TM199
@@ -3472,7 +3273,6 @@ Pocket = 4
 Price = 5000
 FieldUse = TM
 Move = BODYPRESS
-Description = 
 #-------------------------------
 [CHERIBERRY]
 Name = Cheri Berry

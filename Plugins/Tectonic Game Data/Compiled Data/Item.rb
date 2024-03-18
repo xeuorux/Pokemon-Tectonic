@@ -103,7 +103,7 @@ module GameData
         @pocket           = hash[:pocket]      || 1
         @price            = hash[:price]       || 0
         @sell_price       = hash[:sell_price]  || 0
-        @real_description = hash[:description] || "???"
+        @real_description = hash[:description] || ""
         @field_use        = hash[:field_use]   || 0
         @battle_use       = hash[:battle_use]  || 0
         @type             = hash[:type]        || 0
@@ -426,6 +426,6 @@ module Compiler
     end
     f.write(sprintf("Flags = %s\r\n", item.flags.join(","))) if item.flags.length > 0
     f.write(sprintf("Move = %s\r\n", item.move)) if item.move
-    f.write(sprintf("Description = %s\r\n", item.real_description)) if item.real_description
+    f.write(sprintf("Description = %s\r\n", item.real_description)) unless item.real_description.blank?
   end
 end
