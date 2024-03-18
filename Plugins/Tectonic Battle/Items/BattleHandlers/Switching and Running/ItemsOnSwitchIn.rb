@@ -51,7 +51,7 @@ BattleHandlers::ItemOnSwitchIn.add(:CRYSTALVEIL,
 
 BattleHandlers::ItemOnSwitchIn.add(:MEMORYSET,
     proc { |item, battler, battle|
-        battler.aiLearnsItem(item) if battler.isSpecies?(:SILVALLY)
+        battler.aiLearnsItem(item) if battler.isSpecies?(:SILVALLY) && battler.hasActiveAbility?(:RKSSYSTEM)
     }
 )
 
