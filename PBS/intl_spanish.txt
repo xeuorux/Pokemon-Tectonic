@@ -51995,6 +51995,8 @@ Press to quicksave while in the overworld.
 Presionala para hacer un guardado rápido fuera de combate.
 Press to instantly mount the Bicycle while in the overworld.
 Presionala para subirte instántaneamente a la Bicicleta fuera de combate.
+Press to reset to the main menu.
+Presionala para restablecer el menú principal.
 You put the {1} away\<<n>>in the <icon=bagPocket{2}>\c<<[>>1<<]>>{3} Pocket\c<<[>>0<<]>>.
 Colocas {1} en el bolsillo \<<n>>in the <icon=bagPocket{2}>\c<<[>>1<<]>>{3} \c<<[>>0<<]>>.
 The morning will see #{morningDescriptor}.

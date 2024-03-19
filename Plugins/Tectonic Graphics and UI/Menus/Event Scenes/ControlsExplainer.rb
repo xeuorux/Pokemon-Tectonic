@@ -14,31 +14,34 @@ class ButtonEventScene < EventScene
       @labels = []
       @label_screens = []
       @keys = []
-      @key_screens = []
+      @key_screens = []   
   
-      addImageForScreen(1, 44, 122, "Graphics/Pictures/Controls help/help_f1")
-      addImageForScreen(1, 44, 252, "Graphics/Pictures/Controls help/help_f8")
-      addLabelForScreen(1, 134, 84, 352, _INTL("Opens the Key Bindings window, where you can choose which keyboard keys to use for each control."))
-      addLabelForScreen(1, 134, 244, 352, _INTL("Take a screenshot. It is put in the Screenshots folder, near your Save Game folder."))
+      addImageForScreen(1, 16, 158, "Graphics/Pictures/Controls help/help_arrows")
+      addLabelForScreen(1, 134, 100, 352, _INTL("Use the Arrow keys to move the main character.\r\n\r\nYou can also use the Arrow keys to select entries and navigate menus."))
   
-      addImageForScreen(2, 16, 158, "Graphics/Pictures/Controls help/help_arrows")
-      addLabelForScreen(2, 134, 100, 352, _INTL("Use the Arrow keys to move the main character.\r\n\r\nYou can also use the Arrow keys to select entries and navigate menus."))
+      addImageForScreen(2, 16, 106, addLanguageSuffix("Graphics/Pictures/Controls help/help_usekey"))
+      addImageForScreen(2, 16, 236, addLanguageSuffix("Graphics/Pictures/Controls help/help_backkey"))
+      addLabelForScreen(2, 134, 84, 352, _INTL("Used to confirm a choice, interact with people and things, and move through text. (Default: C)"))
+      addLabelForScreen(2, 134, 212, 352, _INTL("Used to exit, cancel a choice, and cancel a mode. Also used to open the Pause Menu. (Default: X)"))
   
-      addImageForScreen(3, 16, 106, addLanguageSuffix("Graphics/Pictures/Controls help/help_usekey"))
-      addImageForScreen(3, 16, 236, addLanguageSuffix("Graphics/Pictures/Controls help/help_backkey"))
-      addLabelForScreen(3, 134, 84, 352, _INTL("Used to confirm a choice, interact with people and things, and move through text. (Default: C)"))
-      addLabelForScreen(3, 134, 212, 352, _INTL("Used to exit, cancel a choice, and cancel a mode. Also used to open the Pause Menu. (Default: X)"))
+      addImageForScreen(3, 16, 90, addLanguageSuffix("Graphics/Pictures/Controls help/help_actionkey"))
+      addImageForScreen(3, 16, 252, addLanguageSuffix("Graphics/Pictures/Controls help/help_specialkey"))
+      addLabelForScreen(3, 134, 52, 352, _INTL("Has various functions depending on context. While moving around, hold to move at a different speed. (Default: Z)"))
+      addLabelForScreen(3, 134, 212, 352, _INTL("Press to open the Ready Menu, where registered items and available field moves can be used. (Default: D)"))
   
-      addImageForScreen(4, 16, 90, addLanguageSuffix("Graphics/Pictures/Controls help/help_actionkey"))
-      addImageForScreen(4, 16, 252, addLanguageSuffix("Graphics/Pictures/Controls help/help_specialkey"))
-      addLabelForScreen(4, 134, 52, 352, _INTL("Has various functions depending on context. While moving around, hold to move at a different speed. (Default: Z)"))
-      addLabelForScreen(4, 134, 212, 352, _INTL("Press to open the Ready Menu, where registered items and available field moves can be used. (Default: D)"))
-  
-      addImageForScreen(5, 44, 90, "Graphics/Pictures/Controls help/help_q")
-      addImageForScreen(5, 16, 252, "Graphics/Pictures/Controls help/help_space")
-      addLabelForScreen(5, 134, 84, 352, _INTL("Press to quicksave while in the overworld."))
-      addLabelForScreen(5, 134, 244, 352, _INTL("Press to instantly mount the Bicycle while in the overworld."))
+      addImageForScreen(4, 44, 90, "Graphics/Pictures/Controls help/help_q")
+      addImageForScreen(4, 24, 252, "Graphics/Pictures/Controls help/help_space")
+      addLabelForScreen(4, 134, 84, 352, _INTL("Press to quicksave while in the overworld."))
+      addLabelForScreen(4, 134, 244, 352, _INTL("Press to instantly mount the Bicycle while in the overworld."))
 
+      addImageForScreen(5, 44, 122, "Graphics/Pictures/Controls help/help_f1")
+      addLabelForScreen(5, 134, 84, 352, _INTL("Opens the Key Bindings window, where you can choose which keyboard keys to use for each control."))
+
+      addImageForScreen(6, 44, 90, "Graphics/Pictures/Controls help/help_f12")
+      addImageForScreen(6, 44, 252, "Graphics/Pictures/Controls help/help_f8")
+      addLabelForScreen(6, 134, 100, 352, _INTL("Press to reset to the main menu."))
+      addLabelForScreen(6, 134, 236, 352, _INTL("Take a screenshot. It is put in the Screenshots folder, near your Save Game folder."))
+      
       set_up_screen(@current_screen)
       Graphics.transition(20)
       # Go to next screen when user presses USE
@@ -83,4 +86,7 @@ class ButtonEventScene < EventScene
       end
     end
 end
-  
+
+def showControlsHelper
+  pbEventScreen(ButtonEventScene)
+end
