@@ -266,28 +266,27 @@ class PokemonStorageScreen
         else
             loop do
                 destbox = @scene.pbChooseBox(_INTL("Deposit in which Box?"))
+                firstfree = @storage.pbFirstFreePos(destbox)
+                if firstfree < 0
+                    pbDisplay(_INTL("The Box is full."))
+                    next
+                end
                 if destbox >= 0
                     if @storage[destbox].isDonationBox?
-                        pbStoreDonation(heldpoke || @storage[-1, index])
+                        next unless pbStoreDonation(heldpoke || @storage[-1, index])
+                    end
+                    if heldpoke || selected[0] == -1
+                        p = heldpoke || @storage[-1, index]
+                        p.time_form_set = nil
+                        p.heal
+                        promptToTakeItems(p)
+                    end
+                    @scene.pbStore(selected, heldpoke, destbox, firstfree)
+                    if heldpoke
+                        @storage.pbMoveCaughtToBox(heldpoke, destbox)
+                        @heldpkmn = nil
                     else
-                        firstfree = @storage.pbFirstFreePos(destbox)
-                        if firstfree < 0
-                            pbDisplay(_INTL("The Box is full."))
-                            next
-                        end
-                        if heldpoke || selected[0] == -1
-                            p = heldpoke || @storage[-1, index]
-                            p.time_form_set = nil
-                            p.heal
-                            promptToTakeItems(p)
-                        end
-                        @scene.pbStore(selected, heldpoke, destbox, firstfree)
-                        if heldpoke
-                            @storage.pbMoveCaughtToBox(heldpoke, destbox)
-                            @heldpkmn = nil
-                        else
-                            @storage.pbMove(destbox, -1, -1, index)
-                        end
+                        @storage.pbMove(destbox, -1, -1, index)
                     end
                 end
                 break
@@ -341,7 +340,7 @@ class PokemonStorageScreen
         if command == 1
             command = pbShowCommands(_INTL("This Pokémon will not be retrievable after this. Are you sure?"), [_INTL("No"), _INTL("Yes")])
             if command == 1
-                pbTakeItemsFromPokemon(heldpokemon)
+                pbTakeItemsFromPokemon(heldpokemon) if heldpokemon.hasItem?
                 pkmnname = heldpokemon.name
                 lifetimeEXP = heldpokemon.exp - heldpokemon.growth_rate.minimum_exp_for_level(heldpokemon.obtain_level)
                 pbDisplay(_INTL("{1} was stored forever.", pkmnname))
