@@ -34,13 +34,18 @@ class TilingCardsStorageInteractionMenu_Scene < TilingCardsMenu_Scene
   
 	def initializeMenuButtons
 		super
-      	canEditTeam = teamEditingAllowed?()
+      	canEditTeam = teamEditingAllowed?
+		inDonationBox = !@heldpoke && @selected[0] > -1 && @storageScreen.storage.boxes[@selected[0]].isDonationBox?
 
-		if @command == 0
+		case @command
+		when 0
 			if @heldpoke
 				if @storageScreen.storage[@selected[0], @selected[1]] # Is there a pokemon in the spot?
 					@cardButtons[:SHIFT] = {
 						:label => _INTL("Shift"),
+						:active_proc => Proc.new {
+							next canEditTeam && !inDonationBox
+						},
 						:press_proc => Proc.new { |scene|
 							@storageScreen.pbSwap(@selected)
 							next true
@@ -49,6 +54,9 @@ class TilingCardsStorageInteractionMenu_Scene < TilingCardsMenu_Scene
 				else
 					@cardButtons[:PLACE] = {
 						:label => _INTL("Place"),
+						:active_proc => Proc.new {
+							next canEditTeam
+						},
 						:press_proc => Proc.new { |scene|
 							@storageScreen.pbPlace(@selected)
 							next true
@@ -58,31 +66,43 @@ class TilingCardsStorageInteractionMenu_Scene < TilingCardsMenu_Scene
 			elsif @pkmn
 				@cardButtons[:MOVE] = {
 					:label => _INTL("Move"),
+					:active_proc => Proc.new {
+						next canEditTeam && !inDonationBox
+					},
 					:press_proc => Proc.new { |scene|
 						@storageScreen.pbHold(@selected)
 						next true
 					},
 				}
 			end
-		elsif @command == 1
+		when 1
 			@cardButtons[:WITHDRAW] = {
 					:label => _INTL("Withdraw"),
+					:active_proc => Proc.new {
+						next canEditTeam && !inDonationBox
+					},
 					:press_proc => Proc.new { |scene|
 						@storageScreen.pbWithdraw(@selected, @heldpoke)
 						next true
 					},
 				}
-		elsif @command == 2
+		when 2
 			@cardButtons[:STORE] = {
 					:label => _INTL("Store"),
+					:active_proc => Proc.new {
+						next canEditTeam
+					},
 					:press_proc => Proc.new { |scene|
 						@storageScreen.pbStore(@selected, nil)
 						next true
 					},
 				}
-		elsif @command == 5
+		when 5
 			@cardButtons[:SELECT] = {
 				:label => _INTL("Select"),
+				:active_proc => Proc.new {
+						next canEditTeam && !inDonationBox
+					},
 				:press_proc => Proc.new { |scene|
 					@retValWrapper[0] = true
 					next true
@@ -110,7 +130,7 @@ class TilingCardsStorageInteractionMenu_Scene < TilingCardsMenu_Scene
 		@cardButtons[:ITEM] = {
 				:label => _INTL("Item"),
 				:active_proc => Proc.new {
-					canEditTeam
+					canEditTeam && !inDonationBox
 				},
 				:press_proc => Proc.new { |scene|
 					next true if itemCommandMenu
@@ -120,7 +140,7 @@ class TilingCardsStorageInteractionMenu_Scene < TilingCardsMenu_Scene
 		@cardButtons[:MODIFY] = {
 				:label => _INTL("Modify"),
 				:active_proc => Proc.new {
-					canEditTeam && !@pkmn.egg?
+					canEditTeam && !@pkmn.egg? && !inDonationBox
 				},
 				:press_proc => Proc.new { |scene|
 					next true if modifyCommandMenu
