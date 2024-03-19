@@ -46,3 +46,7 @@
   class TilingCardsPokemonMenu_Scene < TilingCardsMenu_Scene
     include PokemonDebugMixin
   end
+
+  class TilingCardsStorageInteractionMenu_Scene < TilingCardsMenu_Scene
+    include PokemonDebugMixin
+  end

@@ -286,13 +286,6 @@ class TilingCardsMenu_Screen
 	end
 
 	def pbStartPokemonMenu
-		if !$Trainer
-		  if $DEBUG
-			pbMessage(_INTL("The player trainer was not defined, so the pause menu can't be displayed."))
-			pbMessage(_INTL("Please see the documentation to learn how to set up the trainer player."))
-		  end
-		  return
-		end
 		@scene.pbStartScene
 		@scene.promptButtons
 		@scene.pbEndScene
