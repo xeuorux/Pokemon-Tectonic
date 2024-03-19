@@ -1162,7 +1162,7 @@ Accuracy = 100
 TotalPP = 20
 Target = NearOther
 FunctionCode = NumbFlinchTarget
-Flags = CanProtect,CanMirrorMove,Biting
+Flags = CanProtect,CanMirrorMove,Biting,FakeRandomEffect
 EffectChance = 100
 Description = The user bites with electrified fangs. It has a 10% chance to flinch and a 10% chance to numb.
 #-------------------------------
@@ -2321,7 +2321,7 @@ Accuracy = 100
 TotalPP = 20
 Target = NearOther
 FunctionCode = BurnFlinchTarget
-Flags = CanProtect,CanMirrorMove,Biting
+Flags = CanProtect,CanMirrorMove,Biting,FakeRandomEffect
 EffectChance = 100
 Description = The user bites with flame-cloaked fangs. It has a 10% chance to flinch and a 10% chance to burn.
 #-------------------------------
@@ -3730,7 +3730,7 @@ Accuracy = 100
 TotalPP = 20
 Target = NearOther
 FunctionCode = FrostbiteFlinchTarget
-Flags = CanProtect,CanMirrorMove,Biting
+Flags = CanProtect,CanMirrorMove,Biting,FakeRandomEffect
 EffectChance = 100
 Description = The user bites with cold-infused fangs. It has a 10% chance to flinch and a 10% chance to frostbite.
 #-------------------------------

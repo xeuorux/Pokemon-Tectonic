@@ -167,10 +167,12 @@ class PokeBattle_Move
     def hitsInvulnerable?; return false; end
 
     def randomEffect?
+      return true if @flags.include?("FakeRandomEffect")
       return @effectChance > 0 && @effectChance < 100
     end
 
     def guaranteedEffect?
+      return false if @flags.include?("FakeRandomEffect")
       return @effectChance >= 100
     end
   end
