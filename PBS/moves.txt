@@ -5530,7 +5530,7 @@ Accuracy = 0
 TotalPP = 12
 Target = NearOther
 FunctionCode = ResetTargetStatSteps
-Flags = CanProtect,CanMirrorMove
+Flags = CanProtect,CanMirrorMove,Wind
 Description = The user attacks with a cloud of white smoke. All of the target's stat step changes are returned to normal.
 #-------------------------------
 [POISONFANG]
@@ -5594,7 +5594,7 @@ Accuracy = 100
 TotalPP = 30
 Target = NearOther
 FunctionCode = Poison
-Flags = CanProtect,CanMirrorMove
+Flags = CanProtect,CanMirrorMove,Wind
 EffectChance = 30
 Description = The target is attacked with a discharge of filthy gases. It has a 30% chance to poison.
 #-------------------------------
