@@ -28,6 +28,8 @@ class TilingCardsStorageInteractionMenu_Scene < TilingCardsMenu_Scene
 		@storageScene = storageScene
 		@buttonRowHeight = 68
 		@retValWrapper = retValWrapper
+		@xOffset = 204
+		@yOffset = 48
     end
   
 	def initializeMenuButtons
@@ -174,7 +176,7 @@ class TilingCardsStorageInteractionMenu_Scene < TilingCardsMenu_Scene
 		end
 		itemcommands[cmdUseItem=itemcommands.length]  = _INTL("Use")
 		itemcommands[itemcommands.length]             = _INTL("Cancel")
-		command = @storageScene.pbShowCommands(_INTL("Do what with an item?"),itemcommands)
+		command = pbShowCommands(_INTL("Do what with an item?"),itemcommands)
 		if cmdUseItem>=0 && command==cmdUseItem   # Use
 			item = selectItemForUseOnPokemon($PokemonBag,@pkmn)
 			if item
@@ -219,7 +221,7 @@ class TilingCardsStorageInteractionMenu_Scene < TilingCardsMenu_Scene
 		end
 		typeCommands.push("Cancel")
 		existingIndex = typesArray.find_index(@pkmn.itemTypeChosen)
-		chosenNumber = @storageScene.pbShowCommands(_INTL("What type should #{@pkmn.name} become?"),typeCommands,existingIndex)
+		chosenNumber = pbShowCommands(_INTL("What type should #{@pkmn.name} become?"),typeCommands,existingIndex)
 		if chosenNumber > -1 && chosenNumber < typeCommands.length - 1
 			typeSettingItem = @pkmn.hasTypeSetterItem?
 			pbDisplay(_INTL("#{@pkmn.name} changed its #{getItemName(typeSettingItem)} to #{typeCommands[chosenNumber]}-type!"))
@@ -243,7 +245,7 @@ class TilingCardsStorageInteractionMenu_Scene < TilingCardsMenu_Scene
 		newspecies = @pkmn.check_evolution_on_level_up
 		commands[cmdEvolve = commands.length]       = _INTL("Evolve") if newspecies
 		commands[commands.length]                   = _INTL("Cancel")
-		modifyCommand = @storageScene.pbShowCommands(_INTL("Do what with {1}?",@pkmn.name),commands)
+		modifyCommand = pbShowCommands(_INTL("Do what with {1}?",@pkmn.name),commands)
 		if cmdRename >= 0 && modifyCommand == cmdRename
 			currentName = @pkmn.name
 			pbTextEntry("#{currentName}'s nickname?",0,10,5)
