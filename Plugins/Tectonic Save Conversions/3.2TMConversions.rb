@@ -107,13 +107,13 @@ TM_CONVERSION_HASH = {
     :TM13 => :TMMETEORASSAULT,
 }
 
-SaveData.register_conversion(:misc_fixes_v2) do
-    game_version '3.2.0'
-    display_title 'Swapping TMs over to their new ID representation'
-    to_all do |save_data|
-        TM_CONVERSION_HASH.each do |key,value|
-            save_data[:bag].pbChangeItem(:key,:value)
-        end
-    end
-end
+# SaveData.register_conversion(:misc_fixes_v2) do
+#     game_version '3.2.0'
+#     display_title 'Swapping TMs over to their new ID representation'
+#     to_all do |save_data|
+#         TM_CONVERSION_HASH.each do |key,value|
+#             save_data[:bag].pbChangeItem(:key,:value)
+#         end
+#     end
+# end
   
