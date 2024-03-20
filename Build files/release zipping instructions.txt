@@ -1,0 +1,8 @@
+These are the files used to create zip files of the game. Move them all into the containing folder to begin.
+
+generate_patch_zip.bat will include only files that are different between the currently loaded GitHub branch and main.
+generate_install_zip.bat will include all the files listed in install_files.txt
+
+Neither of these "build" the game files. Run a full compile beforehand manually.
+
+The way these batch files zip their files for some reason creates ZIPs that don't work well on Linux. Simply unzip them and re-zip them with another program to fix this issue.

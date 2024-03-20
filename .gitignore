@@ -15,11 +15,9 @@ Save Game/
 Screenshots/
 Changelogs/
 Analysis/
-Chasm Launcher.jar
 *_backup*
 *.lnk
 Game.ini
 *.code-workspace
-install_files.txt
 towersingleteams.rxdata
 towersingle.rxdata

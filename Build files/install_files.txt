@@ -1,0 +1,27 @@
+/Audio
+/Data
+/Fonts
+/Graphics
+/lib64
+/PBS
+/Plugins
+zlib1.dll
+x64-msvcrt-ruby310.dll
+townmapgen.html
+soundfont.sf2
+selpoint.bmp
+RGSS104E.dll
+README.md
+Project Chasm.rxproj
+Project Chasm.ini
+mkxp.json
+LICENSE
+knownpoints.bmp
+GitIgnored Files for Project Chasm.zip
+Game.ini
+Game.exe
+extendtext.txt
+extendtext.exe
+Essentials Docs Wiki.URL
+animaker.exe
+Game Linux.x86_64
