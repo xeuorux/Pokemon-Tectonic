@@ -140,7 +140,6 @@ class PokeBattle_Battler
             @battle.eachOtherSideBattler(@index) do |b|
                 copiableAbilities = []
                 b.eachLegalAbility do |abilityID|
-                    next if b.immutableAbility?(abilityID)
                     next if GameData::Ability.get(abilityID).is_uncopyable_ability?
                     copiableAbilities.push(abilityID)
                 end
