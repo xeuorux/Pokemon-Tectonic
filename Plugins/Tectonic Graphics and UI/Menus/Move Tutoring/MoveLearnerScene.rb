@@ -39,7 +39,7 @@ class MoveLearner_Scene
         sel_path = "Graphics/Pictures/Move Tutor/reminderSel"
         sel_path += "_dark" if darkMode?
         @sprites["background"].setBitmap(sel_path)
-        @sprites["background"].y = 78
+        @sprites["background"].y = 74
         @sprites["background"].src_rect = Rect.new(0, 48, 254, 48)
         @sprites["overlay"] = BitmapSprite.new(Graphics.width, Graphics.height, @viewport)
         pbSetSystemFont(@sprites["overlay"].bitmap)
