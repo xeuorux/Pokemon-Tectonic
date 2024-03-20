@@ -281,7 +281,21 @@ class PokeBattle_Move_DoubleDamageTargetHitUser < PokeBattle_Move
         return baseDmg
     end
 end
+#===============================================================================
+# Power is increased by 50% if the user has lost HP due to the target's move this round.
+# (Pressure Burst)
+#===============================================================================
+class PokeBattle_Move_DamageBoost50PercentTargetHitUser < PokeBattle_Move
+    def pbBaseDamage(baseDmg, user, target)
+        baseDmg *= 1.5 if user.lastAttacker.include?(target.index)
+        return baseDmg
+    end
 
+    def pbBaseDamageAI(baseDmg, user, target)
+        baseDmg *= 1.5 if user.pbSpeed(true, move: self) < target.pbSpeed
+        return baseDmg
+    end
+end
 #===============================================================================
 # Power is doubled if the target has already lost HP this round. (Assurance)
 #===============================================================================
@@ -433,16 +447,17 @@ end
 
 #===============================================================================
 # If the user attacks before the target, or if the target switches in during the
-# turn that Fishious Rend is used, its base power doubles. (Fishious Rend, Bolt Beak)
+# turn that Fishious Rend is used, its base power increases by 50%.
+# (Fishious Rend, Bolt Beak)
 #===============================================================================
-class PokeBattle_Move_DoubleDamageTargetNotAttacked < PokeBattle_Move
+class PokeBattle_Move_DamageBoost50PercentTargetNotAttacked < PokeBattle_Move
     def pbBaseDamage(baseDmg, _user, target)
-        baseDmg *= 2 unless target.movedThisRound?
+        baseDmg *= 1.5 unless target.movedThisRound?
         return baseDmg
     end
 
     def pbBaseDamageAI(baseDmg, user, target)
-        baseDmg *= 2 if user.pbSpeed(true, move: self) > target.pbSpeed(true)
+        baseDmg *= 1.5 if user.pbSpeed(true, move: self) > target.pbSpeed(true)
         return baseDmg
     end
 end
@@ -555,4 +570,15 @@ class PokeBattle_Move_PowerDoublesTargetLastAlive < PokeBattle_Move
         baseDmg *= 2 if target.isLastAlive?
         return baseDmg
     end
+end
+#===============================================================================
+# Power is increased by 50% if this isnt the target's first turn.
+# (Volt Seekers)
+#===============================================================================
+class PokeBattle_Move_DamageBoost50PercentNotTargetFirstTurn < PokeBattle_Move
+    def pbBaseDamage(baseDmg, user, target)
+        baseDmg *= 1.5 unless target.firstTurn?
+        return baseDmg
+    end
+    # AI does not understand this buff, unsure of how to code it
 end

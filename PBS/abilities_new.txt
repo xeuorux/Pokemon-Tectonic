@@ -231,7 +231,7 @@ Description = Prevents itself and allies from being poisoned, leeched, or dizzie
 #-------------------------------
 [CHALLENGER]
 Name = Challenger
-Description = Immune to Fighting-type moves, and boosts Speed when hit by one.
+Description = Immune to Fighting-type moves, and raises both attacking stats if hit by one.
 #-------------------------------
 [CHILLEDBODY]
 Name = Chilled Body
@@ -644,7 +644,7 @@ Description = Raises Speed by two steps after knocking out any Pokémon.
 #-------------------------------
 [FOOLHARDY]
 Name = Foolhardy
-Description = Immune to Psychic-type moves, and boosts Speed when hit by one.
+Description = Immune to Psychic-type moves, and raises both attacking stats if hit by one.
 #-------------------------------
 [FORCEREVERSAL]
 Name = Force Reversal

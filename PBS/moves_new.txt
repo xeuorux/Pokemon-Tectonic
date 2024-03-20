@@ -1952,8 +1952,8 @@ TotalPP = 12
 Target = NearOther
 FunctionCode = Dizzy
 Flags = CanProtect,CanMirrorMove
-EffectChance = 20
-Description = The target's psyche is attacked directly. It has a 20% chance to dizzy.
+EffectChance = 30
+Description = The target's psyche is attacked directly. It has a 30% chance to dizzy.
 Animation = PSYCHIC
 #-------------------------------
 [SQUALLDART]
@@ -6639,3 +6639,27 @@ FunctionCode = StartEclipse8
 Flags = CanProtect,CanMirrorMove
 Description = Psychic energy assaults the foe and darkens the sky, summoning eclipse for 8 turns.
 Animation = DARKVOID
+#-------------------------------
+[VOLTSEEKERS]
+Name = Volt Seekers
+Type = ELECTRIC
+Category = Special
+Power = 90
+Accuracy = 100
+TotalPP = 10
+Target = NearOther
+FunctionCode = DamageBoost50PercentNotTargetFirstTurn
+Flags = CanProtect,CanMirrorMove
+Description = Launches many homing bolts. Deals 50% more damage unless it's the first turn the target is in battle.
+#-------------------------------
+[PRESSUREBURST]
+Name = Pressure Burst
+Type = WATER
+Category = Special
+Power = 90
+Accuracy = 100
+TotalPP = 10
+Target = NearOther
+FunctionCode = DamageBoost50PercentTargetHitUser
+Flags = CanProtect,CanMirrorMove
+Description = Attacks with pressurized water. Deals 50% more damage if the user has been hurt by the foe in the same turn.

@@ -1290,13 +1290,13 @@ Description = A weak electric charge is launched to numb the target.
 Name = Bolt Beak
 Type = ELECTRIC
 Category = Physical
-Power = 85
+Power = 90
 Accuracy = 100
 TotalPP = 10
 Target = NearOther
-FunctionCode = DoubleDamageTargetNotAttacked
+FunctionCode = DamageBoost50PercentTargetNotAttacked
 Flags = CanProtect,CanMirrorMove
-Description = Attacks with an electrified beak. Power doubles unless the target has moved this turn.
+Description = Attacks with an electrified beak. Deals 50% more damage unless the target has moved this turn.
 #-------------------------------
 [THUNDEROUSKICK]
 Name = Thunderous Kick
@@ -7040,13 +7040,13 @@ Description = Ignores all attempts at redirection, allowing this move to hit the
 Name = Fishious Rend
 Type = WATER
 Category = Physical
-Power = 85
+Power = 90
 Accuracy = 100
 TotalPP = 10
 Target = NearOther
-FunctionCode = DoubleDamageTargetNotAttacked
+FunctionCode = DamageBoost50PercentTargetNotAttacked
 Flags = CanProtect,CanMirrorMove,Biting
-Description = Rends the target with its hard gills. Power doubles unless the target has moved this turn.
+Description = Rends the target with its hard gills. Deals 50% more damage unless the target has moved this turn.
 #-------------------------------
 [LIFEDEW]
 Name = Life Dew

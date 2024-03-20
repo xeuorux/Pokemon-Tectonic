@@ -35789,7 +35789,7 @@ Attacks opposing Pokémon by twanging a guitar or bass guitar.
 Ataca al objetivo haciendo vibrar una guitarra o bajo.
 Type changes depending on the user's form. It has a 10% chance to numb.
 Cambia de tipo dependiendo de la forma del usuario. Tiene un 10% de probabilidad de aturdir.
-Attacks with an electrified beak. Power doubles unless the target has moved this turn.
+Attacks with an electrified beak. Deals 50% more damage unless the target has moved this turn.
 Ataca con un pico electrificado. Duplica su potencia a no ser que el objetivo haya usado un movimiento primero ese turno.
 The user kicks the target with lightning-like movement. It lowers the target's Defense by two steps.
 El usuario patea al objetivo con un movimiento rápido como el rayo. Disminuye la Defensa del objetivo dos grados.
@@ -36761,7 +36761,7 @@ The user shoots a torrent of water at the target and changes the target's type t
 El usuario empapa al oponente con una corriente de agua, cambiando su tipo al Agua.
 Ignores all attempts at redirection, allowing this move to hit the chosen target. Critical hits twice as often.
 Ignora cualquier intento de redirección. Tiene el doble de índice de golpe crítico.
-Rends the target with its hard gills. Power doubles unless the target has moved this turn.
+Rends the target with its hard gills. Deals 50% more damage unless the target has moved this turn.
 Aplasta el objetivo con sus branquias. Duplica su potencia si ataca primero que el objetivo.
 The user scatters mysterious water around and restores the HP of itself and allies by 25%.
 El usuario esparce una misteriosa agua que restaura el 25% de los PS totales de sí mismo y el de sus aliados.
@@ -37083,8 +37083,8 @@ The user attacks with overwhelming power, ignoring positive stat changes and abi
 El usuario ataca con una fuerza abrumadura, ignorando cambios de stats positivos y habilidades.
 If this move misses, the target is forced to switch out. Always goes last.
 Si este movimiento falla, el objetivo es forzado a regresar a su Poké Ball. Siempre va último.
-The target's psyche is attacked directly. It has a 20% chance to dizzy.
-El usuario ataca directamente a la mente del objetivo, con un 20% de probabilidad de marearlo.
+The target's psyche is attacked directly. It has a 30% chance to dizzy.
+El usuario ataca directamente a la mente del objetivo, con un 30% de probabilidad de marearlo.
 The user strikes the target with a sudden wind. It has a 40% chance to flinch the target.
 El usuario ataca levantando un viento de forma repentina. Tiene un 40% de probabilidad de amedrentar al objetivo.
 The user envelops the target in a foul wind. It has a 20% chance to lower Sp. Def.
@@ -42470,8 +42470,8 @@ Pokémon can't dance or use sound-based moves.
 Los Pokémon no pueden bailar o usar movimientos de sonido.
 The effect of healing on foes is reversed.
 La curación para los rivales es invertida.
-Immune to Fighting-type moves, and boosts Speed when hit by one.
-Inmune a movimientos tipo Lucha y aumenta su Velocidad cuando es alcanzado por uno.
+Immune to Fighting-type moves, and raises both attacking stats if hit by one.
+Inmune a movimientos tipo Lucha y aumenta ambas stats ofensivas si es alcanzado por uno.
 Boosts the accuracy of its allies and itself by 50%.
 Aumenta su precisión y la de sus aliados un 50%.
 The Pokemon can't be Taunted, Encored, Tormented, Heal Blocked, Disabled, Barred, Dizzied, or Flinched.
@@ -43100,8 +43100,8 @@ After knocking out any Pokémon, raises its Sp. Atk and Sp. Def.
 Al debilitar cualquier Pokémon, aumenta tanto su Ataque Especial como Defensa Especial un grado.
 Can hold two items, but drops one when swapping out.
 Puedes equiparle dos objetos, pero suelta uno al regresar a su Poké Ball.
-Immune to Psychic-type moves, and boosts Speed when hit by one.
-Inmune a movimientos tipo Psíquico y aumenta su velocidad cuando es alcanzado por uno. 
+Immune to Psychic-type moves, and raises both attacking stats if hit by one.
+Inmune a movimientos tipo Psíquico y aumenta ambas stats ofensivas si es alcanzado por uno.
 Boosts Speed by 50% in sandstorm or hail.
 Aumenta su Velocidad un 50% en tormenta de arena o granizo.
 Uses Rapid Spin after its first attack to clear hazards, raise Speed, and deal damage.
