@@ -36857,8 +36857,8 @@ The user targets the target's coldest spots. Its power doubles if the target is 
 El usuario apunta a los puntos más fríos del objetivo. Duplica su potencia si el objetivo está helado.
 The user attacks the target with a frontal cold wind. It reduces the target's Speed by three steps.
 El usuario ataca al objetivo con un viento frontal helado. También reduce la Velocidad del objetivo tres grados.
-The user attacks with a burst of inner energy. Lowers the user's Sp. Atk by two steps.
-El usuario ataca con un estallido de energía interna. Disminuye el Ataque Especial del usuario dos grados.
+The user attacks with a burst of inner energy. Lowers the user's Sp. Atk by four steps.
+El usuario ataca con un estallido de energía interna. Disminuye el Ataque Especial del usuario quatro grados.
 The user attacks with focus. The more the user's stats are raised, the greater the damage.
 El usuario ataca concentrado. La potencia aumenta por cada aumento de stats del usuario.
 The user hugs the target intensely, trapping and damaging it for three turns.

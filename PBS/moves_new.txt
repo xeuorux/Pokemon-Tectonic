@@ -551,7 +551,7 @@ TotalPP = 5
 Target = NearOther
 FunctionCode = LowerUserSpAtk4
 Flags = CanProtect,CanMirrorMove
-Description = The user attacks with a burst of inner energy. Lowers the user's Sp. Atk by two steps.
+Description = The user attacks with a burst of inner energy. Lowers the user's Sp. Atk by four steps.
 Animation = AURASPHERE
 #-------------------------------
 [BEARHUG]

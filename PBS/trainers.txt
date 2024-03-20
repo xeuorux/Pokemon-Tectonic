@@ -3584,17 +3584,14 @@ Pokemon = GLALIE,53
 #-------------------------------
 [RUINMANIAC,Matteo]
 Pokemon = ARCTOZOLT,52
-    Moves = BOLTBEAK,BUBBLEBLASTER,FROSTBREATH,CHILL
     AbilityIndex = 1 # Adrenaline Rush
     Item = ELECTRICGEM
 Pokemon = DRACOZOLT,53
-    Moves = NUMB,HUMBLE,BOLTBEAK,REND
     AbilityIndex = 1 # Challenger
 Pokemon = DRACOVISH,53
     Moves = PSYCHICFANGS,FISHIOUSREND,GALLINGSPIT,CRUNCH
     AbilityIndex = 0 # Live Fast
 Pokemon = ARCTOVISH,52
-    Moves = FISHIOUSREND,SUBLIMATE,EBBFLOW,STORMTHROW
     AbilityIndex = 0 # Burdened
     Item = CADOBERRY
 #-------------------------------
@@ -4147,7 +4144,6 @@ Pokemon = HGOODRA,60
     AbilityIndex = 1 # Impetuous
     Item = CADOBERRY
 Pokemon = DRACOZOLT,60
-    Moves = FLEURCANNON,DRACOMETEOR,BOLTBEAK,NUMB
     AbilityIndex = 1 # Challenger
 Pokemon = MASQUERAIN,60
     Moves = BUBBLEBLASTER,BUGBUZZ,BLUSTER,SIGNALOVERLOAD
@@ -5103,7 +5099,6 @@ Pokemon = CRADILY,70
     # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
     EV = 20,0,15,0,0,15
 Pokemon = DRACOZOLT,70
-    Moves = BOLTBEAK,DRACOMETEOR,HUMBLE,TRAMPLE
     AbilityIndex = 0 # Foolhardy
     Item = WHITEHERB
     # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
@@ -7550,7 +7545,6 @@ Pokemon = GLACEON,70
     AbilityIndex = 1 # Brilliant Flurry
     Item = SKILLHERB
 Pokemon = DRACOZOLT,70
-    Moves = BOLTBEAK,DISSOLUTION,DRACOMETEOR,HUMBLE
     AbilityIndex = 1 # Challenger
 #-------------------------------
 [NIGHTMARE_TRAINER,Torment]
