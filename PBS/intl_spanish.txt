@@ -4997,8 +4997,8 @@ I've set up a system that sends the Pokemon you store in your PC to this <imp>Po
 Instalé un sistema que envía a los Pokémon que guardas en tu PC a este <imp>Terreno</imp>.
 I'll take care of them there while you are busy with your journey.
 Cuidaré de ellos mientras estés ocupado con tu viaje.
-I love Pokemon variety, so I've prepared some <imp>rewards</imp> to give you as your collection grows.
-Amo ver una variedad de Pokémon, así que preparé algunas <imp>recompensas</imp> para darte cuando tu colección crezca.
+I love Pokemon variety, so I've prepared <imp>lots of EXP Candy</imp> to give you as your collection grows.
+Amo ver una variedad de Pokémon, así que preparé <imp>muchos Caramelos EXP</imp> para darte cuando tu colección crezca.
 Once you've earned some, I'll send them to you through the PC.
 Una vez que hayas ganado algunos, te los enviaré a través de la PC.
 Would you like to view the PokÉstate? I can take us over there for a visit.
