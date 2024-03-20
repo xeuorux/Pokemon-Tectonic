@@ -894,7 +894,7 @@ sp.form) && !Settings::DEX_SHOWS_ALL_FORMS
                 drawTextEx(overlay, xLeft, coordinateY, 450, 7, _INTL("Evolves into Vaporeon with a Water Stone, " +
                     _INTL("Jolteon with a Thunder Stone, Flareon with a Fire Stone, Espeon with a Dawn Stone, ") +
                         _INTL("Umbreon with a Dusk Stone, Leafeon with a Leaf Stone, Glaceon with an Ice Stone, ") +
-                            _INTL("Sylveon with a Moon Stone, and Giganteon at level 42.")
+                            _INTL("Sylveon with a Moon Stone, and Giganteon at level 40.")
                                                                      ), base, shadow)
             else
                 allEvolutions.each do |fromSpecies, evolutions|

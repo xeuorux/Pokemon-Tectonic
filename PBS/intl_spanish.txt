@@ -46915,8 +46915,8 @@ Jolteon with a Thunder Stone, Flareon with a Fire Stone, Espeon with a Dawn Ston
 Jolteon con una Piedra Trueno, Flareon con una Piedra Fuego, Espeon con una Piedra Alba,
 Umbreon with a Dusk Stone, Leafeon with a Leaf Stone, Glaceon with an Ice Stone,
 Umbreon con una Piedra Noche, Leafeon con una Piedra Hoja, Glaceon con una Piedra Hielo,
-Sylveon with a Moon Stone, and Giganteon at level 42.
-Sylveon con una Piedra Lunar, y Giganteon al nivel 42. 
+Sylveon with a Moon Stone, and Giganteon at level 40.
+Sylveon con una Piedra Lunar, y Giganteon al nivel 40. 
 Evolves into {1} {2}
 Evoluciona a {1} {2}
 Evolves into {1} {2} (through {3})
