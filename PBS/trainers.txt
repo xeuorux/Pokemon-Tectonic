@@ -5103,7 +5103,7 @@ Pokemon = CRADILY,70
     # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
     EV = 20,0,15,0,0,15
 Pokemon = DRACOZOLT,70
-    Moves = DRACOMETEOR,FLEURCANNON,VOLTSEEKERS,BULLETTRAIN
+    Moves = DRACOMETEOR,DARKPULSE,VOLTSEEKERS,BULLETTRAIN
     AbilityIndex = 0 # Foolhardy
     Item = WHITEHERB
     # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
