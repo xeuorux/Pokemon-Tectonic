@@ -90,7 +90,7 @@ def healPartyWithDelay()
 end
 
 def pumpedUp?
-	return $PokemonGlobal.exp_multiplier && $PokemonGlobal.exp_multiplier > 1.0
+	return !$PokemonGlobal.exp_multiplier.nil? && $PokemonGlobal.exp_multiplier > 1.0
 end
 
 def resetEXPBonus
