@@ -1,0 +1,32 @@
+﻿#-------------------------------
+[934]
+Name = Megadon
+InternalName = GREATTUSK
+Type1 = GROUND
+Type2 = FIGHTING
+# HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
+BaseStats = 111,61,121,71,101,65
+# Total = 520
+GenderRate = Female50Percent
+GrowthRate = Medium
+BaseEXP = 175
+EffortPoints = 0,1,1,0,0,0
+Rareness = 60
+Happiness = 70
+Abilities = TOUGH,SENTRY
+Moves = 0,BODYPRESS,1,BODYPRESS,1,TAKEDOWN,1,TREADON,1,GROWL,4,CURLUP,8,FLAIL,12,ROCKROLL,16,BULLDOZE,20,NATURALGIFT,24,ENDURE,28,ROCKSLIDE,32,CHARM,36,TRAMPLE,40,EARTHPOWER,44,DARKPULSE,48,SHOREUP,52,DISCOURAGE,56,FOULPLAY,60,DETACHMENT
+TutorMoves = BULKUP,VANGUARD,DUSTDEVIL,EARTHPOWER,ERODE,PULVERIZERCHORD,ADRENALASH,DARKALLURE,HARSHVOICE,MUDSHOT,VALORBOLT,NERVEBLOCK,CONCUSS,SECRETTECHNIQUE,CRIMSONSTORM,FIREPULSE,FIRESPIN,FLAMETHROWER,FIREBLAST,BURNINGJEALOUSY
+Compatibility = Field
+StepsToHatch = 5355
+Height = 2.2
+Weight = 320.0
+Color = Gray
+Shape = Head
+Kind = Armor
+Pokedex = TBA
+BattlerPlayerX = 0
+BattlerPlayerY = 24
+BattlerEnemyX = -8
+BattlerEnemyY = 22
+BattlerShadowX = 0
+BattlerShadowSize = 3

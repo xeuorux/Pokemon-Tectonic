@@ -1,0 +1,3 @@
+Name         = Tectonic Paradox Pokemon
+Requires	 = Tectonic Modding Base
+Credits      = Valrex
