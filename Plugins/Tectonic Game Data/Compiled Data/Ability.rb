@@ -9,11 +9,16 @@ module Compiler
         schema = GameData::Ability::SCHEMA
         ability_names        = []
         ability_descriptions = []
-        ["PBS/abilities.txt", "PBS/abilities_new.txt", "PBS/abilities_primeval.txt",
-         "PBS/abilities_cut.txt",].each do |path|
+        baseFiles = ["PBS/abilities.txt", "PBS/abilities_new.txt", "PBS/abilities_primeval.txt", "PBS/abilities_cut.txt"]
+        abilityTextFiles = []
+        abilityTextFiles.concat(baseFiles)
+        abilityExtensions = Compiler.get_extensions("abilities")
+        abilityTextFiles.concat(abilityExtensions)
+        abilityTextFiles.each do |path|
             cutAbility = path == "PBS/abilities_cut.txt"
             primevalAbility = path == "PBS/abilities_primeval.txt"
-            newAbility = ["PBS/abilities_new.txt", "PBS/abilities_primeval.txt"].include?(path)
+            newAbility = ["PBS/abilities_new.txt", "PBS/abilities_primeval.txt"].include?(path) || abilityExtensions.include?(path)
+            baseFile = baseFiles.include?(path)
             
             ability_hash         = nil
             pbCompilerEachPreppedLine(path) { |line, line_no|

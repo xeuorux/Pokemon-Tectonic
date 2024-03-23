@@ -1,0 +1,51 @@
+#-------------------------------
+[MERCILESSASSAULT]
+Name = Merciless Assault
+Type = FIGHTING
+Category = Physical
+Power = 120
+Accuracy = 100
+TotalPP = 5
+Target = NearOther
+Flags = CanProtect,CanMirrorMove
+Description = The user jumps to the target and attacks with no hesitation.
+Animation = CLOSECOMBAT
+#-------------------------------
+[HIGHPRESSURE]
+Name = High Pressure
+Type = WATER
+Category = Special
+Power = 120
+Accuracy = 100
+TotalPP = 5
+Target = NearOther
+Flags = CanProtect,CanMirrorMove
+Description = The user uses its water reserves to overwhelm the target. 
+Animation = HYDROPUMP
+#-------------------------------
+[SHOCKER]
+Name = Shocker
+Type = ELECTRIC
+Category = Physical
+Power = 65
+Accuracy = 100
+TotalPP = 10
+Target = NearOther
+FunctionCode = Numb
+Flags = CanProtect,CanMirrorMove
+EffectChance = 100
+Description = The user uses its electric hands to attack the target, numbing it.
+Animation = NUZZLE
+#-------------------------------
+[MACHTWO]
+Name = Mach Two
+Type = FLYING
+Category = Physical
+Power = 25
+Accuracy = 100
+TotalPP = 20
+Target = NearOther
+Priority = 1
+FunctionCode = HitTwoTimes
+Flags = CanProtect,CanMirrorMove
+Description = The user launches its hands at high speeds to attack two times, it always goes first.
