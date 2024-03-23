@@ -307,8 +307,13 @@ module GameData
                 pkmn.reset_moves([pkmn.level,50].min,true)
             end
             
-            pkmn.gender = pkmn_data[:gender] || ((trainer.male?) ? 0 : 1)
-            pkmn.shiny = (pkmn_data[:shininess]) ? true : false if !pkmn_data[:shininess].nil?
+            pkmn.gender = pkmn_data[:gender] unless pkmn_data[:gender].nil?
+            
+            unless pkmn_data[:shininess].nil?
+              pkmn.shiny = (pkmn_data[:shininess]) ? true : false
+            end
+
+            pkmn.personalID
 
             pkmn.nature = 0
 
@@ -319,12 +324,6 @@ module GameData
             end
 
             pkmn.happiness = pkmn_data[:happiness] if !pkmn_data[:happiness].nil?
-
-            if pkmn_data[:shadowness]
-                pkmn.makeShadow
-                pkmn.update_shadow_moves(true)
-                pkmn.shiny = false
-            end
 
             pkmn.poke_ball = pkmn_data[:poke_ball] if !pkmn_data[:poke_ball].nil?
 
