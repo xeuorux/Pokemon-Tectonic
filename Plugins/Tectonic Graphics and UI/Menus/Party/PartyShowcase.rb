@@ -3,7 +3,7 @@ class PokemonPartyShowcase_Scene
     base   = Color.new(80, 80, 88)
     shadow = Color.new(160, 160, 168)
 
-    def initialize(trainer,snapshot = false,snapShotName=nil)
+    def initialize(trainer,snapshot = false,snapShotName=nil,fastSnapshot=false)
         base = MessageConfig::DARK_TEXT_MAIN_COLOR
         shadow = MessageConfig::DARK_TEXT_SHADOW_COLOR
 
@@ -64,13 +64,13 @@ class PokemonPartyShowcase_Scene
 
         pbFadeInAndShow(@sprites) { pbUpdate }
 
-        pbScreenCapture(snapShotName, true) if snapshot
+        pbScreenCapture(snapShotName, !fastSnapshot) if snapshot
 
         loop do
             Graphics.update
             Input.update
             pbUpdate
-            if Input.trigger?(Input::BACK)
+            if Input.trigger?(Input::BACK) || fastSnapshot
                 pbEndScene
                 pbPlayCloseMenuSE
                 return
@@ -195,4 +195,14 @@ def trainerShowcase(trainer)
     pbFadeOutIn {
         PokemonPartyShowcase_Scene.new(trainer)
     }
+end
+
+def createVisualTrainerDocumentation
+    GameData::Trainer.each do |trainerData|
+        trainer = pbLoadTrainer(trainerData.trainer_type,trainerData.name,trainerData.version)
+        screenshotName = "#{trainerData.trainer_type} #{trainerData.name}"
+        screenshotName += " (#{trainerData.version})" if trainerData.version > 0
+        screenshotName += " "
+        PokemonPartyShowcase_Scene.new(trainer,true,screenshotName,true)
+    end
 end
