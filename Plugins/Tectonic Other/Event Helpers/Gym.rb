@@ -60,7 +60,7 @@ def teamSnapshot(label=nil)
 	makeBackupSave
 	return if $PokemonSystem.party_snapshots == 1
 	pbMessage(_INTL("\\wmTaking team snapshot."))
-	PokemonPartyShowcase_Scene.new($Trainer.party,true,label)
+	PokemonPartyShowcase_Scene.new($Trainer,true,label)
 end
 
 def updateTotalBadgesVar

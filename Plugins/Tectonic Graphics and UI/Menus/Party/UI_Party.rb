@@ -768,9 +768,7 @@ end
               return @activecmd
             end
           elsif Input.trigger?(Input::SPECIAL)
-            pbFadeOutIn {
-                        PokemonPartyShowcase_Scene.new($Trainer.party)
-                    }
+            trainerShowcase($Trainer)
           end
         end
     end
