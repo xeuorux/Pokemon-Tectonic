@@ -953,6 +953,10 @@ sp.form) && !Settings::DEX_SHOWS_ALL_FORMS
             return _INTL("Secret Grass")
         when :Cloud
             return _INTL("Dark Clouds")
+        when :ActiveWater
+            return _INTL("Deep Water")
+        when :FishingContest
+            return _INTL("Surfing")
         end
         return _INTL("Unknown")
     end
