@@ -30,11 +30,9 @@ class PokeBattle_Move_UserFaintsExplosive < PokeBattle_Move
         return if user.fainted?
 
         if user.hasActiveAbility?(:SPINESPLODE)
-            spikesCount = user.pbOpposingSide.incrementEffect(:Spikes, 2)
-            
             if spikesCount > 0
                 @battle.pbShowAbilitySplash(user, :SPINESPLODE)
-                @battle.pbDisplay(_INTL("#{spikesCount} layers of Spikes were scattered all around #{user.pbOpposingTeam(true)}'s feet!"))
+                user.pbOpposingSide.incrementEffect(:Spikes, 2)
                 @battle.pbHideAbilitySplash(user)
             end
         end

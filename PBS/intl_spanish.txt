@@ -7603,10 +7603,14 @@ Myths made real.
 Mitos hechos realidad.
 I don't care.
 No me importa.
-Once you enter, events will unfold in a way that cannot be undone.
-Una vez entres, los eventos se desarrollarán de una manera en la que no podrán ser deshechos.
-If you believe there is still more work to be done, this is your last chance to do so.
-Si crees que hay más trabajo que hacer, esta es tú última oportunidad de hacerlo.
+\wm\ss\l[3]By entering this door, you will cause events that <imp>cannot be undone</imp>.
+\wm\ss\l[3]Al entrar por esta puerta, provocarás eventos que <imp>no se pueden deshacer</imp>.
+\wm\ss\l[3]If there are still more stories to live, this is your <imp>last chance</imp> to do so.
+\wm\ss\l[3]Si aún quedan más historias por vivir, esta es tu <imp>última oportunidad</imp> de hacerlo.
+Stay out.
+Quedarse fuera.
+Enter.
+Ingresar.
 ...Ain’t really feelin’ it today, \PN.
 ...Hoy no me siento muy bien, \PN.
 Y’know, I’m a fan of yours, gotta admit. Like your style. Like how you move. Like how you fight.
