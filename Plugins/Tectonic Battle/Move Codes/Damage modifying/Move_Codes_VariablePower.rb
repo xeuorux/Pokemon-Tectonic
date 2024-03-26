@@ -85,22 +85,14 @@ end
 #===============================================================================
 # Power increases the less HP the user has. (Flail, Reversal)
 #===============================================================================
+def flailBasePowerFormula(ratio)
+    return [(20 / ((ratio * 5)**0.75)).floor * 5,200].min
+end
+
 class PokeBattle_Move_ScalesWithLostHP < PokeBattle_Move
     def pbBaseDamage(_baseDmg, user, _target)
-        ret = 20
-        n = 48 * user.hp / user.totalhp
-        if n < 2
-            ret = 200
-        elsif n < 5
-            ret = 150
-        elsif n < 10
-            ret = 100
-        elsif n < 17
-            ret = 80
-        elsif n < 33
-            ret = 40
-        end
-        return ret
+        ratio = user.hp.to_f / user.totalhp.to_f
+        return flailBasePowerFormula(ratio)
     end
 end
 

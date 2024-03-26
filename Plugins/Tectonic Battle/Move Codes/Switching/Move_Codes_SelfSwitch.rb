@@ -164,20 +164,8 @@ end
 #===============================================================================
 class PokeBattle_Move_SwitchOutUserDamagingMoveScalesWithLostHP < PokeBattle_Move_SwitchOutUserDamagingMove
     def pbBaseDamage(_baseDmg, user, _target)
-        ret = 20
-        n = 48 * user.hp / user.totalhp
-        if n < 2
-            ret = 200
-        elsif n < 5
-            ret = 150
-        elsif n < 10
-            ret = 100
-        elsif n < 17
-            ret = 80
-        elsif n < 33
-            ret = 40
-        end
-        return ret
+        ratio = user.hp.to_f / user.totalhp.to_f
+        return flailBasePowerFormula(ratio)
     end
 end
 
