@@ -473,7 +473,7 @@ class Interpreter
     end
 
     def pbTrainerIntro(symbol)
-        return true if $DEBUG && !GameData::TrainerType.exists?(symbol)
+        return true unless GameData::TrainerType.exists?(symbol)
         tr_type = GameData::TrainerType.get(symbol).id
         pbGlobalLock
         pbPlayTrainerIntroME(tr_type)
