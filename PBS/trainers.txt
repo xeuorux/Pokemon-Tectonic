@@ -3222,7 +3222,7 @@ Pokemon = WALREIN,44
     AbilityIndex = 0 # Full Blubber
     Item = ICEGEM
 Pokemon = MEGANIUM,44
-    AbilityIndex = 1 # Heat Savor
+    AbilityIndex = 0 # Fae Veil
     Item = CADOBERRY
 Pokemon = INCINEROAR,45
     AbilityIndex = 0 # Intimidate
@@ -5423,7 +5423,7 @@ Pokemon = WEAVILE,70
 Flags = NoPerfect
 Pokemon = FORRETRESS,70
     Moves = SWARMBURST,POISONSPIKES,SPIKES
-    AbilityIndex = 0 # Natural Cure
+    AbilityIndex = 1 # Weathered
     Item = LEFTOVERS
     # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
     EV = 20,10,0,0,10,20
@@ -5902,10 +5902,10 @@ Pokemon = RILLABOOM,70
     AbilityIndex = 1 # Vital Rhythm
 Pokemon = DIGNIPHITE,70
     Moves = HEAVYSLAM,EARTHQUAKE,TANTRUM,HEATCRASH
-    AbilityIndex = 1 # Fascinate
+    AbilityIndex = 0 # Heavy Metal
 Pokemon = CRUSTLE,70
     Moves = SHELLSMASH,LEECHLIFE,EARTHQUAKE,BEDROCKBREAKER
-    AbilityIndex = 1 # Impervious
+    AbilityIndex = 0 # Stratagem
 #-------------------------------
 [MASKEDVILLAIN,Crimson,15]
 ExtendsVersion = 14
@@ -6129,10 +6129,10 @@ Pokemon = RILLABOOM,70
     AbilityIndex = 1 # Vital Rhythm
 Pokemon = DIGNIPHITE,70
     Moves = HEAVYSLAM,EARTHQUAKE,TANTRUM,HEATCRASH
-    AbilityIndex = 1 # Fascinate
+    AbilityIndex = 0 # Heavy Metal
 Pokemon = CRUSTLE,70
     Moves = SHELLSMASH,LEECHLIFE,EARTHQUAKE,BEDROCKBREAKER
-    AbilityIndex = 1 # Impervious
+    AbilityIndex = 0 # Stratagem
 #-------------------------------
 [MASKEDVILLAIN2,Teal,15]
 ExtendsVersion = 14
@@ -6555,7 +6555,7 @@ Pokemon = DRAGAPULT,70
     Item = CHOICEBAND
 Pokemon = HAXORUS,70
     Moves = DRAGONDANCE,OUTRAGE,POISONJAB,SUPERPOWER
-    AbilityIndex = 0 # Anarchic
+    AbilityIndex = 1 # Stressful
     Item = LUMBERRY
 Pokemon = PROBOPASS,70
     Moves = EARTHPOWER,STEELBEAM,STEALTHROCK,DIAMONDFORCE
