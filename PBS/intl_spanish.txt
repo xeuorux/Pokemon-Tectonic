@@ -35190,8 +35190,6 @@ Grim Visions
 Visiones Nefastas
 Silk Blade
 Filo de Seda
-Extreme Effort
-Extreme Effort
 Many Blessings
 Varias Plegarias 
 Machinate
@@ -35657,11 +35655,13 @@ Llamas Vanagloria
 Discovered Power
 Poder Revelado
 Shiver Squirm
-Salto Escalofrío
-Grunge
-Grunge
-Penumbra
-Penumbra
+Salturreo
+Extreme Effort
+Esfuerzo Extremo
+Volt Seekers
+Buscarrayos
+Pressure Burst
+Aplastapresión
 [6]
 Using its tough and impressive horn, the user rams into the target with no letup.
 Usando su impresionante cuerno, el usuario embiste al rival.
@@ -37616,7 +37616,7 @@ El usuario ataca con ilusiones oscuras. Siempre disminuye la Defensa del objetiv
 The user slashes using woven silk, lowering the user's Attack by four steps. Critical hits twice as often.
 El usuario desgarra usando seda, disminuyendo el Ataque del usuario 4 grados. Tiene el doble de índice de golpe crítico.
 The user uses all their might to attack their opponent, forcing the user to use Rest on their next turn.
-El usuario usa toda su fuerza para atacar al objetivo. Tendrá que descansar en el siguiente turno.
+El usuario usa toda su fuerza para atacar al objetivo, forzándolo a usar Descanso en el siguiente turno.
 The user doubles its critical strike chance and raises its Sp. Atk and Sp. Def.
 El usuario duplica su índice de golpe crítico y aumenta su Ataque Especial y Defensa Especial.
 Changes type based on machine haunted. 30% chance of extra effect based on machine haunted.
@@ -38077,6 +38077,10 @@ The user creates distorted guitar sounds to attack the target. It has a 30% chan
 El usuario crea un sonido de guitarra distorsionado para atacar al objetivo. Tiene un 30% de probabilidad de marear.
 Psychic energy assaults the foe and darkens the sky, summoning eclipse for 8 turns.
 Energía psíquica asalta al rival y oscurece el cielo, invocando un eclipse por 8 turnos.
+Launches many homing bolts. Deals 50% more damage unless it's the first turn the target is in battle.
+Dispara varios rayos dirigidos. Es potenciado un 50% a no ser que sea el primer turno del objetivo en combate.
+Attacks with pressurized water. Deals 50% more damage if the user has been hurt by the foe in the same turn.
+Ataca con agua presurizada. Es potenciado un 50% si el usuario fue lastimado por el oponente en el mismo turno.
 [7]
 Repel
 Repelente
@@ -41849,7 +41853,7 @@ Irrefutable
 Irrefutable
 Aeroshell
 Aeroguardia
-Soul Snipe
+Siphon Sniper
 Disparo al Alma
 Liminal
 Liminal
@@ -42107,10 +42111,10 @@ Overflowing Heart
 Corazón Rebosante
 Hybdrid Fighter
 Luchador Híbrido
-Psyforce
-Psicofuerza
-Mithril Body
-Cuerpo de Mithril
+Brute Force
+Fuerza Bruta
+Optimized Alloy
+Aleación Óptima
 [11]
 When the Pokémon eats a Berry, it will regurgitate that Berry at the end of the next turn and eat it one more time.
 Cuando el Pokémon come una Baya, regurgita esa Baya al final del siguiente turno y la come una vez más.
