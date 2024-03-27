@@ -4309,7 +4309,7 @@ Animation = PURSUIT
 Name = Hair Curl
 Type = STEEL
 Category = Special
-Power = 80
+Power = 90
 Accuracy = 100
 TotalPP = 15
 Target = NearOther
@@ -5721,9 +5721,9 @@ Power = 90
 Accuracy = 100
 TotalPP = 15
 Target = NearOther
-FunctionCode = BindTarget3
+FunctionCode = RemoveScreens
 Flags = CanProtect,CanMirrorMove
-Description = The user crushes the target in its metallic vises, trapping and damaging it for three turns.
+Description = The user crushes the target in its metallic vises, breaking any screens protecting the target's side.
 Animation = METALCLAW
 #-------------------------------
 [WAVEOFJADE]
