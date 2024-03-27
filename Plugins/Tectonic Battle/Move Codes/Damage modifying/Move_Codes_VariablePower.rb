@@ -18,7 +18,7 @@ end
 class PokeBattle_Move_ScalesWithTargetHP < PokeBattle_Move
     def pbBaseDamage(_baseDmg, _user, target)
         # From 20 to 120 in increments of 5
-        basePower = (20 * target.hp / target.totalhp).floor * 5
+        basePower = (20 * target.hp.to_f / target.totalhp.to_f).floor * 5
         basePower += 20
         return basePower
     end
@@ -29,7 +29,11 @@ end
 #===============================================================================
 class PokeBattle_Move_ScalesSlowerThanTarget < PokeBattle_Move
     def pbBaseDamage(_baseDmg, user, target)
-        return [[(25 * target.pbSpeed / user.pbSpeed).floor, 150].min, 1].max
+        ratio = target.pbSpeed.to_f / user.pbSpeed.to_f
+        basePower = 5 * (5 * ratio).floor
+        basePower = 150 if basePower > 150
+        basePower = 40 if basePower < 40
+        return basePower
     end
 end
 
@@ -101,18 +105,11 @@ end
 #===============================================================================
 class PokeBattle_Move_ScalesFasterThanTarget < PokeBattle_Move
     def pbBaseDamage(_baseDmg, user, target)
-        ret = 40
-        n = user.pbSpeed / target.pbSpeed
-        if n >= 4
-            ret = 150
-        elsif n >= 3
-            ret = 120
-        elsif n >= 2
-            ret = 80
-        elsif n >= 1
-            ret = 60
-        end
-        return ret
+        ratio = user.pbSpeed.to_f / target.pbSpeed.to_f
+        basePower = 10 + (7 * ratio).floor * 5
+        basePower = 150 if basePower > 150
+        basePower = 40 if basePower < 150
+        return basePower
     end
 end
 
