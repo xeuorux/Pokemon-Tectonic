@@ -448,7 +448,7 @@ class PokEstate
 				}
 			elsif cmdRename > -1 && command == cmdRename
 				currentName = pokemon.name
-				pbTextEntry("#{currentName}'s nickname?",0,10,5)
+				pbTextEntry("#{currentName}'s nickname?",0,Pokemon::MAX_NAME_SIZE,5)
 				if pbGet(5)=="" || pbGet(5) == currentName
 				  pokemon.name = currentName
 				else

@@ -269,7 +269,7 @@ class TilingCardsStorageInteractionMenu_Scene < TilingCardsMenu_Scene
 		modifyCommand = pbShowCommands(_INTL("Do what with {1}?",@pkmn.name),commands)
 		if cmdRename >= 0 && modifyCommand == cmdRename
 			currentName = @pkmn.name
-			pbTextEntry("#{currentName}'s nickname?",0,10,5)
+			pbTextEntry("#{currentName}'s nickname?",0,Pokemon::MAX_NAME_SIZE,5)
 			if pbGet(5) == "" || pbGet(5) == currentName
 				@pkmn.name = currentName
 			else
