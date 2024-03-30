@@ -171,9 +171,6 @@ class PokeBattle_Battler
         end
     end
 
-    def technicalSpeciesData
-    end
-
     def countsAs?(speciesCheck)
         return isSpecies?(speciesCheck) || transformedInto?(speciesCheck)
     end
