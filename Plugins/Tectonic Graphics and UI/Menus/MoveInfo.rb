@@ -169,7 +169,8 @@ module MoveInfoDisplay
       textpos = []
       
       # Start with the name
-      textpos.push([moveData.name, nameX, nameY, 2, base, shadow]) if drawName
+      name_base = MessageConfig::pbDefaultTextMainColor
+      textpos.push([moveData.name, nameX, nameY, 2, name_base, shadow]) if drawName
 
       # Row 1
       textpos.concat([
