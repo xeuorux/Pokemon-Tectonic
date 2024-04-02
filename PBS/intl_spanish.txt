@@ -37757,8 +37757,8 @@ Round objects are hurled at the target to strike three times in a row.
 El usuario lanza esferas al objetivo tres veces seguidas.
 The user hits the target with each of its heads from underground. Strikes three times.
 El usuario golpea al objetivo con cada una de sus cabezas desde abajo. Golpea tres veces seguidas.
-A diamond-tough force-field protects the user's side for 5 turns from critical hits y reduce el daño contra ellos.
-Un campo de fuerza diamantina protege al lado aliado de golpes críticos 
+A diamond-tough force-field protects the user's side for 5 turns from critical hits, and reduces move damage taken.
+Un campo de fuerza diamantina protege al lado aliado de golpes críticos, y reduce el daño que recibe.
 The user dances to encourage its ally. Their attacks this turn will be critical hits.
 El usuario baila para animar a su aliado, haciendo que sus ataques ese turno sean críticos.
 The user dances to restore an ally by 50% max HP. They're cured of any status conditions.

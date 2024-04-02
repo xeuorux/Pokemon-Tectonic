@@ -5518,7 +5518,7 @@ TotalPP = 20
 Target = UserSide
 FunctionCode = StartPreventCriticalHitsAndRandomEffectsAgainstUserSide10
 Flags = CanSnatch
-Description = A diamond-tough force-field protects the user's side for 5 turns from critical hits and reduces damage against them.
+Description = A diamond-tough force-field protects the user's side for 5 turns from critical hits, and reduces move damage taken.
 Animation = LIGHTSCREEN
 #-------------------------------
 [LUCKYCHEER]
