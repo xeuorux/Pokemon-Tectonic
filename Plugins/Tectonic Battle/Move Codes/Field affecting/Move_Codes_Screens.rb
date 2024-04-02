@@ -17,8 +17,7 @@ class PokeBattle_Move_StartPreventCriticalHitsAgainstUserSide10 < PokeBattle_Mov
 end
 
 #===============================================================================
-# Protects the user's side from critical hits and random added effects for 10 turns.
-# (Diamond Field)
+# Protects the user's side from critical hits and some damage. (Diamond Field)
 #===============================================================================
 class PokeBattle_Move_StartPreventCriticalHitsAndRandomEffectsAgainstUserSide10 < PokeBattle_Move
     def pbMoveFailed?(user, _targets, show_message)
@@ -30,13 +29,13 @@ class PokeBattle_Move_StartPreventCriticalHitsAndRandomEffectsAgainstUserSide10 
     end
 
     def pbEffectGeneral(user)
-        user.pbOwnSide.applyEffect(:DiamondField, 10)
+        user.pbOwnSide.applyEffect(:DiamondField, user.getScreenDuration)
     end
 
     def getEffectScore(user, _target)
-        score = 20
         @battle.eachSameSideBattler(user.index) do |b|
-            score += 30 if b.aboveHalfHealth?
+            score += 40
+            score += 40 if b.aboveHalfHealth?
         end
         return score
     end
