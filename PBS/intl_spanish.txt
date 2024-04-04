@@ -36555,8 +36555,8 @@ The user just flops and splashes around to no effect at all...
 El usuario sólo salpica, evidentemente, sin hacer ningún efecto…
 The user shines a spotlight on the target so that only it will be attacked during the turn.
 El usuario pone un foco en el objetivo, así sólo él podrá ser atacado durante ese turno.
-The user charges up power and raises both its Defense and Sp. Def. The move can be used three times.
-El usuario recarga energías para aumentar su Defensa y Defensa Especial. Este movimiento sólo puede ser usado tres veces.
+The user charges up power and raises both its Defense and Sp. Def. The move can be used twice.
+El usuario recarga energías para aumentar su Defensa y Defensa Especial. Este movimiento sólo puede ser usado dos veces.
 The user spends 25% HP to create a doll to protect it from move damage, additional affects, and status moves.
 El usuario pierde un 25% de sus PS para crear un muñeco que lo protege de ataques, efectos secundarios y movimientos de estado.
 The user generates odd sound waves from its body. The target becomes dizzy.

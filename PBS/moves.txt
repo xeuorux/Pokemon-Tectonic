@@ -5263,7 +5263,7 @@ TotalPP = 15
 Target = User
 FunctionCode = UserAddStockpileRaiseDefSpDef1
 Flags = CanSnatch
-Description = The user charges up power and raises both its Defense and Sp. Def. The move can be used three times.
+Description = The user charges up power and raises both its Defense and Sp. Def. The move can be used twice.
 #-------------------------------
 [SUBSTITUTE]
 Name = Substitute

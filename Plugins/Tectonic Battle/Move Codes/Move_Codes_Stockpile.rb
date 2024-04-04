@@ -13,7 +13,7 @@ class PokeBattle_Move_UserAddStockpileRaiseDefSpDef1 < PokeBattle_MultiStatUpMov
             @battle.pbDisplay(_INTL("{1} can't stockpile any more!", user.pbThis)) if show_message
             return true
         end
-        return false
+        return super
     end
 
     def pbEffectGeneral(user)
@@ -26,7 +26,7 @@ class PokeBattle_Move_UserAddStockpileRaiseDefSpDef1 < PokeBattle_MultiStatUpMov
         score += 20 if user.pbHasMoveFunction?("PowerDependsOnUserStockpile") # Spit Up
         score += 20 if user.pbHasMoveFunction?("HealUserDependingOnUserStockpile") # Swallow
         return score
-	end	
+    end
 end
 
 #===============================================================================
