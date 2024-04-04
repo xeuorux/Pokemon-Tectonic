@@ -881,7 +881,7 @@ Pokemon = MORPEKO,65
     EV = 0,20,10,20,20,0
 Pokemon = VENUSAUR,65
     Moves = LIGHTSCREEN,LEECHSEED,POWERWHIP,SLUDGEBOMB
-    AbilityIndex = 1 # Thick Fat
+    AbilityIndex = 0 # Poison Absorb
     Item = LEFTOVERS
     # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
     EV = 20,10,10,0,10,10
@@ -3576,7 +3576,7 @@ Pokemon = DUDUNSPARCE,52
     AbilityIndex = 0 # Serene Grace
 Pokemon = VENUSAUR,51
     Moves = SAPPINGSEED,SLUDGEWAVE,SYNTHESIS,POWERWHIP
-    AbilityIndex = 1 # Thick Fat
+    AbilityIndex = 0 # Poison Absorb
     Item = LUMBERAXE
 Pokemon = GLALIE,53
     Moves = GLACIALRAM,SUCKERPUNCH,SHIVER,CRUNCH
