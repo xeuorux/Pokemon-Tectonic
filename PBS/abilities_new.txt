@@ -368,7 +368,7 @@ Flags = SandSynergy
 [DESERTSPIRIT]
 Name = Desert Spirit
 Description = Immune to Ground-type moves. Takes 20% less damage in Sandstorm.
-Flags = SandSynergy
+Flags = SandSynergy,Levitation
 #-------------------------------
 [DESICCATE]
 Name = Desiccate

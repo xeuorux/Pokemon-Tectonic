@@ -550,6 +550,14 @@ class Pokemon
       @extraAbilities = [] if @extraAbilities.nil?
       return @extraAbilities
     end
+
+    def immuneToWeatherDownsides?
+      return true if hasItem?(:UTILITYUMBRELLA)
+      GameData::Ability.getByFlag("AllWeatherSynergy").each do |weatherAbilityID|
+        return true if hasAbility?(weatherAbilityID)
+      end
+      return false
+    end
   
     #=============================================================================
     # Nature

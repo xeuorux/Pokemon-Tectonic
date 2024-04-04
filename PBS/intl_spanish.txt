@@ -51241,6 +51241,12 @@ The hail seems to have put {1} in a good mood.
 La nieve parece haber puesto a {1} de buen humor.
 {1} is gnawing on a piece of hailstone.
 {1} está mordisqueando un pedazo de hielo.
+{1} is coated in ice, but doesn't seem to mind.
+{1} está cubierto de escarcha, pero no parece importarle.
+{1} seems unbothered by the hail.
+{1} no parece molestarle el hielo.
+The hail doesn't slow {1} down.
+El hielo no ralentiza a {1}.
 {1} is getting pelted by hail!
 ¡{1} está siendo lastimado por el granizo!
 {1} wants to avoid the hail.

@@ -273,7 +273,7 @@ Events.onMapChange += proc { |_sender,*args|
 			event.event.pages[pageIndex] = newPage
 		end
 		
-		event.floats = floatingSpecies?(pokemon.species,pokemon.form)
+		event.floats = floatingPokemon?(pokemon)
 		
 		event.refresh
     end

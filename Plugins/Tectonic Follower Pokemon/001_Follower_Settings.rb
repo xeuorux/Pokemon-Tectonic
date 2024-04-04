@@ -13,6 +13,7 @@ module FollowerSettings
   Emo_Poison          = 17
   Emo_Sing            = 12
   Emo_Love            = 9
+  Emo_Confused        = 4
 
   #Status tones to be used, if this is true (Red,Green,Blue,Gray)
   APPLYSTATUSTONES = true

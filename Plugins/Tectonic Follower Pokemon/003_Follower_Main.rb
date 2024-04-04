@@ -59,10 +59,18 @@ def pbTalkToFollower
   GameData::Species.play_cry(first_pkmn)
   echo GameData::Species.cry_filename_from_pokemon(first_pkmn)
   event = pbGetFollowerDependentEvent
-  random_val = rand(6)
-  Events.OnTalkToFollower.trigger(first_pkmn,event.x,event.y,random_val)
+  interactWithFollowerPokemon(first_pkmn,event)
   pbTurnTowardEvent(event,$game_player)
   first_pkmn.changeHappiness("interaction")
+end
+
+def interactWithFollowerPokemon(pokemon, event=nil)
+  begin
+    event = pbGetFollowerDependentEvent if event.nil?
+    Events.OnTalkToFollower.trigger(pokemon,event,rand(6))
+  rescue
+    pbMessage(_INTL("An unknown error has occured."))
+  end
 end
 
 #-------------------------------------------------------------------------------
