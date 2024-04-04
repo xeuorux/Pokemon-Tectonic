@@ -793,7 +793,7 @@ GameData::BattleEffect.register_effect(:Battler, {
     :type => :Integer,
     :baton_passed => true,
     :apply_proc => proc do |battle, battler, value|
-        if battler.boss?
+        if value > 5
             battle.pbDisplay(_INTL("{1} heard the Perish Song, but weakly!", battler.pbThis, value))
             battle.pbDisplay(_INTL("It will faint in {2} turns!", battler.pbThis, value))
         else
@@ -810,6 +810,8 @@ GameData::BattleEffect.register_effect(:Battler, {
             battler.hp = battler.totalhp
             battler.pbChangeForm(1,_INTL("{1} begins the harvest!",battler.pbThis))
             battler.pbChangeTypes(battler.species_data.id)
+            setDefaultAvatarMoveset(battler.pokemon) if battler.boss?
+            battler.resetMoves
             battle.scene.reviveBattler(battler.index)
             battler.hideMyAbilitySplash
         end

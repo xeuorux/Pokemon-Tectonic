@@ -132,10 +132,7 @@ def setAvatarProperties(pkmn)
     pkmn.owner = Pokemon::Owner.new_foreign
     pkmn.forced_form = avatar_data.form if avatar_data.form != 0
 
-    pkmn.forget_all_moves
-    avatar_data.moves1.each do |move|
-        pkmn.learn_move(move, true)
-    end
+    setDefaultAvatarMoveset(pkmn)
 
     pkmn.removeItems
     pkmn.giveItem(avatar_data.item)
@@ -150,6 +147,14 @@ def setAvatarProperties(pkmn)
     pkmn.extraMovesPerTurn = avatar_data.num_turns - 1
 
     pkmn.calc_stats
+end
+
+def setDefaultAvatarMoveset(pkmn)
+    avatar_data = GameData::Avatar.get_from_pokemon(pkmn)
+    pkmn.forget_all_moves
+    avatar_data.moves1.each do |move|
+        pkmn.learn_move(move, true)
+    end
 end
 
 def pbPlayCrySpecies(species, form = 0, volume = 90, pitch = nil)
@@ -407,18 +412,42 @@ class PokeBattle_Battle
         end
     end
 
-    def addBattlerSlot(newPokemon,sideIndex,partyIndex)
-        indexOnSide = @sideSizes[sideIndex]
+    def roomToSummon?(sideIndex)
+        sideIndex = sideIndex % 2
+        if sideIndex == 0
+            return getLowestSummonableIndex(sideIndex) <= 4
+        else
+            return getLowestSummonableIndex(sideIndex) <= 5
+        end
+    end
 
+    def getLowestSummonableIndex(sideIndex)
+        sideIndex = sideIndex % 2
+        indexOnSide = @sideSizes[sideIndex]
+        maxNewBattlerIndex = indexOnSide * 2 + sideIndex
+        battlerIndexNew = maxNewBattlerIndex
+        0.upto(maxNewBattlerIndex) do |idxBattler|
+            next unless idxBattler % 2 == sideIndex # Only check same side
+            battlerSlotAtIndex = @battlers[idxBattler]
+            next unless battlerSlotAtIndex.nil? || battlerSlotAtIndex.pokemon.nil? || battlerSlotAtIndex.fainted?
+            battlerIndexNew = idxBattler
+            break
+        end
+        return battlerIndexNew
+    end
+
+    def addBattlerSlot(newPokemon,sideIndex,partyIndex)
+        sideIndex = sideIndex % 2
+        
         # Put the battler into the battle
-        battlerIndexNew = indexOnSide * 2 + sideIndex
+        battlerIndexNew = getLowestSummonableIndex(sideIndex)
         if @battlers[battlerIndexNew].nil?
             pbCreateBattler(battlerIndexNew, newPokemon, partyIndex)
+            sideSizes[sideIndex] += 1
         else
             @battlers[battlerIndexNew].pbInitialize(newPokemon, partyIndex)
         end
         newBattler = @battlers[battlerIndexNew]
-        sideSizes[sideIndex] += 1
         @scene.lastMove[battlerIndexNew] = 0
         @scene.lastCmd[battlerIndexNew] = 0
 
@@ -452,8 +481,7 @@ class PokeBattle_Battle
     end
 
     def summonAvatarBattler(species, level, sideIndex = 1)
-        indexOnSide = @sideSizes[sideIndex]
-        if indexOnSide > 3
+        unless roomToSummon?(sideIndex)
             echoln("Cannot create new avatar battler on side #{sideIndex} since the side is already full!")
             return false
         end
@@ -464,10 +492,6 @@ class PokeBattle_Battle
         # Put the pokemon into the party
         partyIndex = pbParty(sideIndex).length
         pbParty(sideIndex)[partyIndex] = newPokemon
-
-        # Put the pokemon's party index into the party order tracker
-        partyOrder = [@party1order, @party2order]
-        partyOrder.insert(indexOnSide, partyIndex)
 
         addBattlerSlot(newPokemon,sideIndex,partyIndex)
 

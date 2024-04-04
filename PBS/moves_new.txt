@@ -5062,7 +5062,7 @@ Category = Status
 Accuracy = 0
 TotalPP = 15
 Target = NearAlly
-FunctionCode = PowerUpAllyMove
+FunctionCode = TargetActsNextBoostsTheirDamage
 Description = The user assists an ally's next move, boosting its power by 50% and letting it move right after the user.
 Animation = HELPINGHAND
 #-------------------------------
