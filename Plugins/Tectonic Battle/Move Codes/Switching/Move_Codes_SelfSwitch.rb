@@ -27,17 +27,7 @@ class PokeBattle_Move_SwitchOutUserStatusMove < PokeBattle_Move
             @battle.decision = 3 # Escaped
         else
             return if user.fainted?
-            return unless @battle.pbCanChooseNonActive?(user.index)
-            @battle.pbDisplay(_INTL("{1} teleported, and went back to {2}!", user.pbThis,
-              @battle.pbGetOwnerName(user.index)))
-            @battle.pbPursuit(user.index)
-            return if user.fainted?
-            newPkmn = @battle.pbGetReplacementPokemonIndex(user.index) # Owner chooses
-            return if newPkmn < 0
-            @battle.pbRecallAndReplace(user.index, newPkmn)
-            @battle.pbClearChoice(user.index) # Replacement Pokémon does nothing this round
-            @battle.moldBreaker = false
-            user.pbEffectsOnSwitchIn(true)
+            switchOutUser(user)
         end
     end
 
@@ -65,16 +55,7 @@ class PokeBattle_Move_SwitchOutUserPassOnEffects < PokeBattle_Move
 
     def pbEndOfMoveUsageEffect(user, _targets, numHits, switchedBattlers)
         return if user.fainted? || numHits == 0
-        return unless @battle.pbCanChooseNonActive?(user.index)
-        @battle.pbPursuit(user.index)
-        return if user.fainted?
-        newPkmn = @battle.pbGetReplacementPokemonIndex(user.index) # Owner chooses
-        return if newPkmn < 0
-        @battle.pbRecallAndReplace(user.index, newPkmn, false, true)
-        @battle.pbClearChoice(user.index) # Replacement Pokémon does nothing this round
-        @battle.moldBreaker = false
-        switchedBattlers.push(user.index)
-        user.pbEffectsOnSwitchIn(true)
+        switchOutUser(user, switchedBattlers, true, false, true)
     end
 
     def getEffectScore(user, target)
@@ -124,17 +105,7 @@ class PokeBattle_Move_LowerTargetAtkSpAtk1SwitchOutUser < PokeBattle_TargetMulti
             switcher = b if b.effectActive?(:MagicCoat) || b.effectActive?(:MagicBounce)
         end
         return if switcher.fainted? || numHits == 0
-        return unless @battle.pbCanChooseNonActive?(switcher.index)
-        @battle.pbDisplay(_INTL("{1} went back to {2}!", switcher.pbThis, @battle.pbGetOwnerName(switcher.index)))
-        @battle.pbPursuit(switcher.index)
-        return if switcher.fainted?
-        newPkmn = @battle.pbGetReplacementPokemonIndex(switcher.index) # Owner chooses
-        return if newPkmn < 0
-        @battle.pbRecallAndReplace(switcher.index, newPkmn)
-        @battle.pbClearChoice(switcher.index) # Replacement Pokémon does nothing this round
-        @battle.moldBreaker = false if switcher.index == user.index
-        switchedBattlers.push(switcher.index)
-        switcher.pbEffectsOnSwitchIn(true)
+        switchOutUser(switcher,switchedBattlers,switcher.index == user.index)
     end
 
     def getEffectScore(user, target)
