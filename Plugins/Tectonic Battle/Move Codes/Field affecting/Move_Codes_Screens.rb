@@ -33,6 +33,7 @@ class PokeBattle_Move_StartPreventCriticalHitsAndRandomEffectsAgainstUserSide10 
     end
 
     def getEffectScore(user, _target)
+        score = 0
         @battle.eachSameSideBattler(user.index) do |b|
             score += 40
             score += 40 if b.aboveHalfHealth?
