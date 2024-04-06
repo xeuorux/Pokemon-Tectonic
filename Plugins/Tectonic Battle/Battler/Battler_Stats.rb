@@ -357,6 +357,14 @@ class PokeBattle_Battler
                 applyEffect(:SwiftStomps)
             end
         end
+        
+        if hasActiveAbility?(:ROCKETHANDS) && move&.punchingMove?
+            if aiCheck
+                aiSpeedMult *= 2.0
+            else
+                applyEffect(:RocketHands)
+            end
+        end
 
         return aiSpeedMult
     end

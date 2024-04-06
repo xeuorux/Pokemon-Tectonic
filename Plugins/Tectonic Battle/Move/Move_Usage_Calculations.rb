@@ -394,6 +394,7 @@ class PokeBattle_Move
         ret += 20 if user.hasTribeBonus?(:FORTUNE)
         ret += 50 if windMove? && user.hasActiveAbility?(:FUMIGATE)
         ret += 50 if bitingMove? && user.hasActiveAbility?(:GNAWING)
+        ret += 50 if soundMove? && user.hasActiveAbility?(:PRIMALECHO)
         ret *= 1.5 if flinchingMove? && user.hasActiveAbility?(:RATTLEEM)
         ret *= 2 if flinchingMove? && user.hasActiveAbility?(:TERRORIZE)
         ret *= 2 if user.hasActiveAbility?(:SERENEGRACE)

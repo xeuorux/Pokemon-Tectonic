@@ -2064,3 +2064,14 @@ GameData::BattleEffect.register_effect(:Battler, {
     :real_name => "Auto-Pilot",
     :resets_eor => true,
 })
+
+GameData::BattleEffect.register_effect(:Battler, {
+    :id => :Thunderstorm,
+    :real_name => "Thunderstorm",
+})
+
+GameData::BattleEffect.register_effect(:Battler, {
+    :id => :RocketHands,
+    :real_name => "Rocket Hands",
+    :resets_eor	=> true,
+})

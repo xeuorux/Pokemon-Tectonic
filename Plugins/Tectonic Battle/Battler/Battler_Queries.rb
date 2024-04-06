@@ -153,6 +153,7 @@ class PokeBattle_Battler
         if itemCount == 1 && item
             return false if firstItem == item
             return true if hasActiveAbility?(:CLUMSYKINESIS)
+            return true if hasActiveAbility?(:WELLEQUIPPED)
             itemData = GameData::Item.get(item)
             if hasActiveAbility?(:ALLTHATGLITTERS)
                 return false if !firstItemData.is_gem? || itemData.is_gem?

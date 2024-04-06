@@ -842,6 +842,7 @@ class Pokemon
 
       # Clumsy Kinesis
       return true if hasAbility?(:CLUMSYKINESIS)
+      return true if hasAbility?(:WELLEQUIPPED)
     end
 
     def removeInvalidItems
