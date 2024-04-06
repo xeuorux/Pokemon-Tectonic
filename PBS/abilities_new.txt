@@ -2038,3 +2038,46 @@ Flags = EclipseSynergy
 [WRATHINSTINCT]
 Name = Wrath Instinct
 Description = Uses Dragon Dance if an attack lowers its HP to half or below.
+#-------------------------------
+[ALLTERRAIN]
+Name = All-Terrain
+Description = Prevents hazard damage and weather downsides.
+Flags = HazardImmunity,AllWeatherSynergy
+#-------------------------------
+[PRIMALECHO]
+Name = Primal Echo
+Description = Random added effects of sound attacks are +50% more likely to occur.
+#-------------------------------
+[BANSHEESMELISMA]
+Name = Banshee's Melisma
+Description = Boosts Special Attack by 50% but the user is locked into the first move they use.
+Flags = ChoiceLocking
+#-------------------------------
+[STRONGMAGNETISM]
+Name = Strong Magnetism
+Description = Uses Magnet Rise after losing half of its HP.
+#-------------------------------
+[CRIMSONSKIES]
+Name = Crimson Skies
+Description = Dragon-type moves deal 50% more damage in moonglow.
+#-------------------------------
+[ROCKETHANDS]
+Name = Rocket Hands
+Description = Doubles the speed of Punch-based moves.
+#-------------------------------
+[SOLARPANEL]
+Name = Solar Panel
+Description = Heals 1/8th of its HP and takes 35% less damage under sunlight.
+#-------------------------------
+[WELLEQUIPPED]
+Name = Well-Equipped
+Description = Can hold two items, but loses 1/10th HP each turn and takes 15% more damage.
+Flags = MultipleItems
+#-------------------------------
+[ANCIENTDANCE]
+Name = Ancient Dance
+Description = Uses Dragon Dance after a Total Eclipse.
+#-------------------------------
+[THUNDERSTORM]
+Name = Thunderstorm
+Description = Once per switch-in, Charges in sandstorm, doubling the power of its next Electric-type move.
