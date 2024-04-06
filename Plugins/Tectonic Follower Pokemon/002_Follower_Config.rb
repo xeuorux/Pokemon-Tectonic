@@ -2,27 +2,33 @@
 # These are used to define whether the follower should appear or disappear when
 # refreshing it. "next true" will let it stay and "next false" will make it disappear
 #===============================================================================
-Events.FollowerRefresh += proc{|pkmn|
-# The Pokemon disappears if the player is cycling
+Events.FollowerRefresh += proc{|pokemon|
+  # The Pokemon disappears if the player is cycling
   next false if $PokemonGlobal.bicycle
-# Pokeride Compatibility
+  # Pokeride Compatibility
   next false if $PokemonGlobal.mount if defined?($PokemonGlobal.mount)
-  
   if $PokemonGlobal.surfing
-    next true if swimmingSpecies?(pkmn.species,pkmn.form)
-    next true if floatingSpecies?(pkmn.species,pkmn.form)
+    next true if swimmingSpecies?(pokemon.species,pokemon.form)
+    next true if floatingPokemon?(pokemon)
     next false
   elsif $PokemonGlobal.diving
-    next true if pkmn.hasType?(:WATER)
+    next true if pokemon.hasType?(:WATER)
     next false
   end
 }
 
 def swimmingSpecies?(species,form=0)
 	species_data = GameData::Species.get_species_form(species,form)
-    return false if FollowerSettings::SURFING_FOLLOWERS_EXCEPTIONS.any?{|s| s == species || s.to_s == "#{species}_#{form}" }
+  return false if FollowerSettings::SURFING_FOLLOWERS_EXCEPTIONS.any?{|s| s == species || s.to_s == "#{species}_#{form}" }
 	return true if species_data.type1 == :WATER || species_data.type2 == :WATER
 	return false
+end
+
+def floatingPokemon?(pokemon)
+  GameData::Item.getByFlag("Levitation").each do |levitationItem|
+    return true if pokemon.hasItem?(levitationItem)
+  end
+  return floatingSpecies?(pokemon.species,pokemon.form)
 end
 
 def floatingSpecies?(species,form=0)
@@ -37,66 +43,45 @@ def floatingSpecies?(species,form=0)
 	return false
 end
 
-=begin
-Events.FollowerRefresh += proc{|pkmn|
-  metadata = GameData::MapMetadata.try_get($game_map.map_id)
-  if metadata && metadata.outdoor_map != true
-    # The Pokemon disappears if it's height is greater than 2.5 meters and there are no encounters ie a building or something
-    height =  GameData::Species.get_species_form(pkmn.species,pkmn.form).height
-    next false if (height/10.0) > 2.5 && !$PokemonEncounters.encounter_possible_here?
-  end
-}
-=end
-
 #-------------------------------------------------------------------------------
 # These are used to define what the Follower will say when spoken to
 #-------------------------------------------------------------------------------
-
-# Amie Compatibility
-if defined?(pokemonAmieRefresh)
-  Events.OnTalkToFollower += proc {|pkmn,x,y,random_val|
-    cmd = pbMessage("What would you like to do?",["Play","Talk","Cancel"])
-    pokemonAmieRefresh if cmd == 0
-    next true if [0,2].include?(cmd)
-  }
-end
-
-Events.OnTalkToFollower += proc {|pkmn,x,y,random_val|
+Events.OnTalkToFollower += proc {|pkmn,event,random_val|
 # Special Dialogue when statused
   case pkmn.status
   when :POISON
-    $scene.spriteset.addUserAnimation(FollowerSettings::Emo_Poison,x,y)
+    $scene.spriteset.addUserAnimation(FollowerSettings::Emo_Poison, event.x, event.y)
     pbWait(72)
     pbMessage(_INTL("{1} is suffering the effects of being poisoned.",pkmn.name))
   when :BURN
-    $scene.spriteset.addUserAnimation(FollowerSettings::Emo_Hate,x,y)
+    $scene.spriteset.addUserAnimation(FollowerSettings::Emo_Hate, event.x, event.y)
     pbWait(72)
     pbMessage(_INTL("{1}'s burn looks painful.",pkmn.name))
   when :FROSTBITE
-    $scene.spriteset.addUserAnimation(FollowerSettings::Emo_Hate,x,y)
+    $scene.spriteset.addUserAnimation(FollowerSettings::Emo_Hate, event.x, event.y)
     pbWait(72)
     pbMessage(_INTL("{1} frostbite looks painful.",pkmn.name))
   when :SLEEP
-    $scene.spriteset.addUserAnimation(FollowerSettings::Emo_Normal, x, y)
+    $scene.spriteset.addUserAnimation(FollowerSettings::Emo_Normal, event.x, event.y)
     pbWait(72)
     pbMessage(_INTL("{1} seems really tired.",pkmn.name))
   when :NUMB
-    $scene.spriteset.addUserAnimation(FollowerSettings::Emo_Normal,x,y)
+    $scene.spriteset.addUserAnimation(FollowerSettings::Emo_Normal, event.x, event.y)
     pbWait(72)
     pbMessage(_INTL("{1} is standing still and twitching.",pkmn.name))
   when :DIZZY
-    $scene.spriteset.addUserAnimation(4,x,y)
+    $scene.spriteset.addUserAnimation(FollowerSettings::Emo_Confused, event.x, event.y)
     pbWait(72)
     pbMessage(_INTL("{1} looks dazed and confused.",pkmn.name))
   when :LEECHED
-    $scene.spriteset.addUserAnimation(FollowerSettings::Emo_Normal,x,y)
+    $scene.spriteset.addUserAnimation(FollowerSettings::Emo_Normal, event.x, event.y)
     pbWait(72)
     pbMessage(_INTL("{1} energy is slowly being leeched away.",pkmn.name))
   end
   next true if pkmn.status != :NONE
 }
 
-Events.OnTalkToFollower += proc {|pkmn,x,y,random_val|
+Events.OnTalkToFollower += proc {|pkmn,event,random_val|
   if $PokemonGlobal.follower_hold_item
     items = [:FULLRESTORE,:FULLRESTORE,:ESCAPEROPE,:ESCAPEROPE,
          :RARECANDY,:RARECANDY,:REPEL,:REPEL,:MAXREPEL,
@@ -109,9 +94,9 @@ Events.OnTalkToFollower += proc {|pkmn,x,y,random_val|
 }
 
 # Specific message if the map name is Pokemon Lab
-Events.OnTalkToFollower += proc {|pkmn,x,y,random_val|
+Events.OnTalkToFollower += proc {|pkmn,event,random_val|
   if $game_map.name.downcase.include?("lab")
-    $scene.spriteset.addUserAnimation(FollowerSettings::Emo_Normal,x,y)
+    $scene.spriteset.addUserAnimation(FollowerSettings::Emo_Normal,event.x,event.y)
     pbWait(72)
     messages = [
       _INTL("{1} is touching some kind of switch."),
@@ -124,9 +109,9 @@ Events.OnTalkToFollower += proc {|pkmn,x,y,random_val|
 }
 
 # Specific message if the map name has the players name in it ie the Player's Hpuse
-Events.OnTalkToFollower += proc {|pkmn,x,y,random_val|
+Events.OnTalkToFollower += proc {|pkmn,event,random_val|
   if $game_map.name.downcase.include?($Trainer.name.downcase)
-    $scene.spriteset.addUserAnimation(FollowerSettings::Emo_Happy,x,y)
+    $scene.spriteset.addUserAnimation(FollowerSettings::Emo_Happy,event.x,event.y)
     pbWait(72)
     messages = [
       _INTL("{1} is sniffing around the room."),
@@ -139,9 +124,9 @@ Events.OnTalkToFollower += proc {|pkmn,x,y,random_val|
 }
 
 # Specific message if the map name has Pokecenter or Pokemon Center
-Events.OnTalkToFollower += proc {|pkmn,x,y,random_val|
+Events.OnTalkToFollower += proc {|pkmn,event,random_val|
   if $game_map.name.downcase.include?("center")
-    $scene.spriteset.addUserAnimation(FollowerSettings::Emo_Happy,x,y)
+    $scene.spriteset.addUserAnimation(FollowerSettings::Emo_Happy,event.x,event.y)
     pbWait(72)
     messages = [
       _INTL("{1} looks happy to see the nurse."),
@@ -160,9 +145,9 @@ Events.OnTalkToFollower += proc {|pkmn,x,y,random_val|
 }
 
 # Specific message if the map name has Forest
-Events.OnTalkToFollower += proc {|pkmn,x,y,random_val|
+Events.OnTalkToFollower += proc {|pkmn,event,random_val|
   if $game_map.name.downcase.include?("forest")
-    $scene.spriteset.addUserAnimation(FollowerSettings::Emo_Sing,x,y)
+    $scene.spriteset.addUserAnimation(FollowerSettings::Emo_Sing,event.x,event.y)
     pbWait(72)
     messages = [
       _INTL("{1} seems highly interested in the trees."),
@@ -178,7 +163,7 @@ Events.OnTalkToFollower += proc {|pkmn,x,y,random_val|
       _INTL("{1} is standing perfectly still and might be imitating a tree..."),
       _INTL("{1} got tangled in the branches and almost fell down!"),
       _INTL("{1} was surprised when it got hit by a branch!"),
-	  _INTL("{1} seems highly interested in the trees."),
+      _INTL("{1} seems highly interested in the trees."),
       _INTL("{1} seems to enjoy the buzzing of the bug Pokémon."),
       _INTL("{1} is jumping around restlessly in the forest.")
     ]
@@ -188,9 +173,9 @@ Events.OnTalkToFollower += proc {|pkmn,x,y,random_val|
 }
 
 # Specific message if the map name has Gym in it
-Events.OnTalkToFollower += proc {|pkmn,x,y,random_val|
+Events.OnTalkToFollower += proc {|pkmn,event,random_val|
   if $game_map.name.downcase.include?("gym")
-    $scene.spriteset.addUserAnimation(FollowerSettings::Emo_Hate,x,y)
+    $scene.spriteset.addUserAnimation(FollowerSettings::Emo_Hate,event.x,event.y)
     pbWait(72)
     messages = [
       _INTL("{1} looks eager to battle!"),
@@ -210,9 +195,9 @@ Events.OnTalkToFollower += proc {|pkmn,x,y,random_val|
 }
 
 # Specific message if the map name has Beach in it
-Events.OnTalkToFollower += proc {|pkmn,x,y,random_val|
+Events.OnTalkToFollower += proc {|pkmn,event,random_val|
   if $game_map.name.downcase.include?("beach")
-    $scene.spriteset.addUserAnimation(FollowerSettings::Emo_Happy,x,y)
+    $scene.spriteset.addUserAnimation(FollowerSettings::Emo_Happy,event.x,event.y)
     pbWait(72)
     messages = [
       _INTL("{1} seems to be enjoying the scenery."),
@@ -233,22 +218,10 @@ Events.OnTalkToFollower += proc {|pkmn,x,y,random_val|
 }
 
 # Rain specific message for multiple types
-Events.OnTalkToFollower += proc {|pkmn,x,y,random_val|
+Events.OnTalkToFollower += proc {|pkmn,event,random_val|
   if [:Rain,:HeavyRain].include?($game_screen.weather_type)
-    if pkmn.hasType?(:FIRE) || pkmn.hasType?(:GROUND) || pkmn.hasType?(:ROCK)
-      $scene.spriteset.addUserAnimation(FollowerSettings::Emo_Hate,x,y)
-      pbWait(72)
-      messages = [
-        _INTL("{1} seems very upset by the weather."),
-        _INTL("{1} is shivering..."),
-        _INTL("{1} doesn’t seem to like being all wet..."),
-        _INTL("{1} keeps trying to shake itself dry..."),
-        _INTL("{1} moved closer to {2} for comfort."),
-        _INTL("{1} is looking up at the sky and scowling."),
-        _INTL("{1} seems to be having difficulty moving its body.")
-      ]
-    elsif pkmn.hasType?(:WATER) || pkmn.hasType?(:GRASS)
-      $scene.spriteset.addUserAnimation(FollowerSettings::Emo_Happy,x,y)
+    if pkmn.hasType?(:WATER) || pkmn.hasType?(:ELECTRIC)
+      $scene.spriteset.addUserAnimation(FollowerSettings::Emo_Happy,event.x,event.y)
       pbWait(72)
       messages = [
         _INTL("{1} seems to be enjoying the weather."),
@@ -259,8 +232,20 @@ Events.OnTalkToFollower += proc {|pkmn,x,y,random_val|
         _INTL("Raindrops keep falling on {1}."),
         _INTL("{1} is looking up with its mouth gaping open.")
       ]
+    elsif (pkmn.hasType?(:FIRE) || pkmn.hasType?(:GROUND) || pkmn.hasType?(:ROCK)) && !pkmn.immuneToWeatherDownsides?
+      $scene.spriteset.addUserAnimation(FollowerSettings::Emo_Hate,event.x,event.y)
+      pbWait(72)
+      messages = [
+        _INTL("{1} seems very upset by the weather."),
+        _INTL("{1} is shivering..."),
+        _INTL("{1} doesn’t seem to like being all wet..."),
+        _INTL("{1} keeps trying to shake itself dry..."),
+        _INTL("{1} moved closer to {2} for comfort."),
+        _INTL("{1} is looking up at the sky and scowling."),
+        _INTL("{1} seems to be having difficulty moving its body.")
+      ]
     else
-      $scene.spriteset.addUserAnimation(FollowerSettings::Emo_Normal,x,y)
+      $scene.spriteset.addUserAnimation(FollowerSettings::Emo_Normal,event.x,event.y)
       pbWait(72)
       messages = [
         _INTL("{1} is staring up at the sky."),
@@ -277,10 +262,10 @@ Events.OnTalkToFollower += proc {|pkmn,x,y,random_val|
 }
 
 # Storm Weather specific message for multiple types
-Events.OnTalkToFollower += proc {|pkmn,x,y,random_val|
+Events.OnTalkToFollower += proc {|pkmn,event,random_val|
   if :Storm == $game_screen.weather_type
-    if pkmn.hasType?(:ELECTRIC)
-      $scene.spriteset.addUserAnimation(FollowerSettings::Emo_Happy,x,y)
+    if pkmn.hasType?(:WATER) || pkmn.hasType?(:ELECTRIC)
+      $scene.spriteset.addUserAnimation(FollowerSettings::Emo_Happy,event.x,event.y)
       pbWait(72)
       messages = [
         _INTL("{1} is staring up at the sky."),
@@ -291,7 +276,7 @@ Events.OnTalkToFollower += proc {|pkmn,x,y,random_val|
         _INTL("The lightning doesn't bother {1} at all.")
       ]
     else
-      $scene.spriteset.addUserAnimation(FollowerSettings::Emo_Normal,x,y)
+      $scene.spriteset.addUserAnimation(FollowerSettings::Emo_Normal,event.x,event.y)
       pbWait(72)
       messages = [
         _INTL("{1} is staring up at the sky."),
@@ -308,10 +293,10 @@ Events.OnTalkToFollower += proc {|pkmn,x,y,random_val|
 }
 
 # Snow Weather specific message for multiple types
-Events.OnTalkToFollower += proc {|pkmn,x,y,random_val|
+Events.OnTalkToFollower += proc {|pkmn,event,random_val|
   if :Snow == $game_screen.weather_type
-    if pkmn.hasType?(:ICE)
-      $scene.spriteset.addUserAnimation(FollowerSettings::Emo_Happy,x,y)
+    if pkmn.hasType?(:ICE) || pkmn.hasType?(:GHOST)
+      $scene.spriteset.addUserAnimation(FollowerSettings::Emo_Happy,event.x,event.y)
       pbWait(72)
       messages = [
         _INTL("{1} is watching the snow fall."),
@@ -321,7 +306,7 @@ Events.OnTalkToFollower += proc {|pkmn,x,y,random_val|
         _INTL("{1} is cheerful because of the cold!")
       ]
     else
-      $scene.spriteset.addUserAnimation(FollowerSettings::Emo_Normal,x,y)
+      $scene.spriteset.addUserAnimation(FollowerSettings::Emo_Normal,event.x,event.y)
       pbWait(72)
       messages = [
         _INTL("{1} is watching the snow fall."),
@@ -338,10 +323,10 @@ Events.OnTalkToFollower += proc {|pkmn,x,y,random_val|
 }
 
 # Blizzard Weather specific message for multiple types
-Events.OnTalkToFollower += proc {|pkmn,x,y,random_val|
+Events.OnTalkToFollower += proc {|pkmn,event,random_val|
   if :Blizzard == $game_screen.weather_type
-    if pkmn.hasType?(:ICE)
-      $scene.spriteset.addUserAnimation(FollowerSettings::Emo_Happy,x,y)
+    if pkmn.hasType?(:ICE) || pkmn.hasType?(:GHOST)
+      $scene.spriteset.addUserAnimation(FollowerSettings::Emo_Happy,event.x,event.y)
       pbWait(72)
       messages = [
         _INTL("{1} is watching the hail fall."),
@@ -350,8 +335,17 @@ Events.OnTalkToFollower += proc {|pkmn,x,y,random_val|
         _INTL("The hail seems to have put {1} in a good mood."),
         _INTL("{1} is gnawing on a piece of hailstone.")
       ]
+    elsif pkmn.immuneToWeatherDownsides?
+      $scene.spriteset.addUserAnimation(FollowerSettings::Emo_Normal,event.x,event.y)
+      pbWait(72)
+      messages = [
+        _INTL("{1} is coated in ice, but doesn't seem to mind."),
+        _INTL("{1} seems unbothered by the frost."),
+        _INTL("The hail doesn't slow {1} down."),
+        _INTL("{1} doesn't seem to mind the weather.")
+      ]
     else
-      $scene.spriteset.addUserAnimation(FollowerSettings::Emo_Hate,x,y)
+      $scene.spriteset.addUserAnimation(FollowerSettings::Emo_Hate,event.x,event.y)
       pbWait(72)
       messages = [
         _INTL("{1} is getting pelted by hail!"),
@@ -367,10 +361,10 @@ Events.OnTalkToFollower += proc {|pkmn,x,y,random_val|
 }
 
 # Sandstorm Weather specific message for multiple types
-Events.OnTalkToFollower += proc {|pkmn,x,y,random_val|
+Events.OnTalkToFollower += proc {|pkmn,event,random_val|
   if :Sandstorm == $game_screen.weather_type
     if pkmn.hasType?(:ROCK) || pkmn.hasType?(:GROUND)
-      $scene.spriteset.addUserAnimation(FollowerSettings::Emo_Happy,x,y)
+      $scene.spriteset.addUserAnimation(FollowerSettings::Emo_Happy,event.x,event.y)
       pbWait(72)
       messages = [
         _INTL("{1} is coated in sand."),
@@ -378,8 +372,8 @@ Events.OnTalkToFollower += proc {|pkmn,x,y,random_val|
         _INTL("The sand can't slow {1} down!"),
         _INTL("{1} is enjoying the weather.")
       ]
-    elsif pkmn.hasType?(:STEEL)
-      $scene.spriteset.addUserAnimation(FollowerSettings::Emo_Normal,x,y)
+    elsif pkmn.immuneToWeatherDownsides?
+      $scene.spriteset.addUserAnimation(FollowerSettings::Emo_Normal,event.x,event.y)
       pbWait(72)
       messages = [
         _INTL("{1} is coated in sand, but doesn't seem to mind."),
@@ -388,7 +382,7 @@ Events.OnTalkToFollower += proc {|pkmn,x,y,random_val|
         _INTL("{1} doesn't seem to mind the weather.")
       ]
     else
-      $scene.spriteset.addUserAnimation(FollowerSettings::Emo_Hate,x,y)
+      $scene.spriteset.addUserAnimation(FollowerSettings::Emo_Hate,event.x,event.y)
       pbWait(72)
       messages = [
         _INTL("{1} is covered in sand..."),
@@ -403,10 +397,10 @@ Events.OnTalkToFollower += proc {|pkmn,x,y,random_val|
 }
 
 # Sunny Weather specific message for multiple types
-Events.OnTalkToFollower += proc {|pkmn,x,y,random_val|
+Events.OnTalkToFollower += proc {|pkmn,event,random_val|
   if :Sun == $game_screen.weather_type
     if pkmn.hasType?(:GRASS)
-      $scene.spriteset.addUserAnimation(FollowerSettings::Emo_Happy,x,y)
+      $scene.spriteset.addUserAnimation(FollowerSettings::Emo_Happy,event.x,event.y)
       pbWait(72)
       messages = [
         _INTL("{1} seems pleased to be out in the sunshine."),
@@ -417,7 +411,7 @@ Events.OnTalkToFollower += proc {|pkmn,x,y,random_val|
         _INTL("{1} is giving off a floral scent.")
       ]
     elsif pkmn.hasType?(:FIRE)
-      $scene.spriteset.addUserAnimation(FollowerSettings::Emo_Happy,x,y)
+      $scene.spriteset.addUserAnimation(FollowerSettings::Emo_Happy,event.x,event.y)
       pbWait(72)
       messages = [
         _INTL("{1} seems to be happy about the great weather!"),
@@ -427,8 +421,8 @@ Events.OnTalkToFollower += proc {|pkmn,x,y,random_val|
         _INTL("{1} is breathing out fire!"),
         _INTL("{1} is hot and cheerful!")
       ]
-    elsif pkmn.hasType?(:DARK)
-      $scene.spriteset.addUserAnimation(FollowerSettings::Emo_Hate,x,y)
+    elsif pkmn.hasType?(:WATER) || pkmn.hasType?(:GHOST)
+      $scene.spriteset.addUserAnimation(FollowerSettings::Emo_Hate,event.x,event.y)
       pbWait(72)
       messages = [
         _INTL("{1} is glaring up at the sky."),
@@ -439,7 +433,7 @@ Events.OnTalkToFollower += proc {|pkmn,x,y,random_val|
         _INTL("{1} keeps looking for shelter from the sunlight."),
       ]
     else
-      $scene.spriteset.addUserAnimation(FollowerSettings::Emo_Normal,x,y)
+      $scene.spriteset.addUserAnimation(FollowerSettings::Emo_Normal,event.x,event.y)
       pbWait(72)
       messages = [
         _INTL("{1} is squinting in the bright sunshine."),
@@ -456,9 +450,9 @@ Events.OnTalkToFollower += proc {|pkmn,x,y,random_val|
 }
 
 # All dialogues with the Music Note animation
-Events.OnTalkToFollower += proc {|pkmn,x,y,random_val|
+Events.OnTalkToFollower += proc {|pkmn,event,random_val|
   if random_val == 0
-    $scene.spriteset.addUserAnimation(FollowerSettings::Emo_Sing,x,y)
+    $scene.spriteset.addUserAnimation(FollowerSettings::Emo_Sing,event.x,event.y)
     pbWait(72)
     messages = [
       _INTL("{1} seems to want to play with {2}."),
@@ -495,45 +489,81 @@ Events.OnTalkToFollower += proc {|pkmn,x,y,random_val|
     # Special move route to go along with some of the dialogue
     when 3, 9
         pbMoveRoute($game_player,[PBMoveRoute::Wait,65])
-        follower_move_route([
-        PBMoveRoute::TurnRight,PBMoveRoute::Wait,4,
-        PBMoveRoute::Jump,0,0,PBMoveRoute::Wait,10,
-        PBMoveRoute::TurnUp,PBMoveRoute::Wait,4,
-        PBMoveRoute::Jump,0,0,PBMoveRoute::Wait,10,
-        PBMoveRoute::TurnLeft,PBMoveRoute::Wait,4,
-        PBMoveRoute::Jump,0,0,PBMoveRoute::Wait,10,
-        PBMoveRoute::TurnDown,PBMoveRoute::Wait,4,PBMoveRoute::Jump,0,0])
+        pbMoveRoute(event,  [
+          PBMoveRoute::TurnRight,
+          PBMoveRoute::Wait,4,
+          PBMoveRoute::Jump,0,0,
+          PBMoveRoute::Wait,10,
+          PBMoveRoute::TurnUp,
+          PBMoveRoute::Wait,4,
+          PBMoveRoute::Jump,0,0,
+          PBMoveRoute::Wait,10,
+          PBMoveRoute::TurnLeft,
+          PBMoveRoute::Wait,4,
+          PBMoveRoute::Jump,0,0,
+          PBMoveRoute::Wait,10,
+          PBMoveRoute::TurnDown,
+          PBMoveRoute::Wait,4,
+          PBMoveRoute::Jump,0,0
+        ])
     when 4, 5
         pbMoveRoute($game_player,[PBMoveRoute::Wait,40])
-        follower_move_route([
-        PBMoveRoute::Jump,0,0,PBMoveRoute::Wait,10,
-        PBMoveRoute::Jump,0,0,PBMoveRoute::Wait,10,PBMoveRoute::Jump,0,0])
+        pbMoveRoute(event,  [
+          PBMoveRoute::Jump,0,0,
+          PBMoveRoute::Wait,10,
+          PBMoveRoute::Jump,0,0,
+          PBMoveRoute::Wait,10,
+          PBMoveRoute::Jump,0,0
+        ])
     when 6, 17
         pbMoveRoute($game_player,[PBMoveRoute::Wait,20])
-        follower_move_route([
-        PBMoveRoute::TurnRight,PBMoveRoute::Wait,4,
-        PBMoveRoute::TurnDown,PBMoveRoute::Wait,4,
-        PBMoveRoute::TurnLeft,PBMoveRoute::Wait,4,PBMoveRoute::TurnUp])
+        pbMoveRoute(event,  [
+          PBMoveRoute::TurnRight,
+          PBMoveRoute::Wait,4,
+          PBMoveRoute::TurnDown,
+          PBMoveRoute::Wait,4,
+          PBMoveRoute::TurnLeft,
+          PBMoveRoute::Wait,4,
+          PBMoveRoute::TurnUp
+        ])
     when 7, 28
         pbMoveRoute($game_player,[PBMoveRoute::Wait,60])
-        follower_move_route([
-        PBMoveRoute::TurnRight,PBMoveRoute::Wait,4,
-        PBMoveRoute::TurnUp,PBMoveRoute::Wait,4,
-        PBMoveRoute::TurnLeft,PBMoveRoute::Wait,4,
-        PBMoveRoute::TurnDown,PBMoveRoute::Wait,4,
-        PBMoveRoute::TurnRight,PBMoveRoute::Wait,4,
-        PBMoveRoute::TurnUp,PBMoveRoute::Wait,4,
-        PBMoveRoute::TurnLeft,PBMoveRoute::Wait,4,
-        PBMoveRoute::TurnDown,PBMoveRoute::Wait,4,
-        PBMoveRoute::Jump,0,0,PBMoveRoute::Wait,10,PBMoveRoute::Jump,0,0])
+        pbMoveRoute(event,  [
+          PBMoveRoute::TurnRight,
+          PBMoveRoute::Wait,4,
+          PBMoveRoute::TurnUp,
+          PBMoveRoute::Wait,4,
+          PBMoveRoute::TurnLeft,
+          PBMoveRoute::Wait,4,
+          PBMoveRoute::TurnDown,
+          PBMoveRoute::Wait,4,
+          PBMoveRoute::TurnRight,
+          PBMoveRoute::Wait,4,
+          PBMoveRoute::TurnUp,
+          PBMoveRoute::Wait,4,
+          PBMoveRoute::TurnLeft,
+          PBMoveRoute::Wait,4,
+          PBMoveRoute::TurnDown,
+          PBMoveRoute::Wait,4,
+          PBMoveRoute::Jump,0,0,
+          PBMoveRoute::Wait,10,
+          PBMoveRoute::Jump,0,0
+        ])
     when 21, 22
         pbMoveRoute($game_player,[PBMoveRoute::Wait,50])
-        follower_move_route([
-        PBMoveRoute::TurnRight,PBMoveRoute::Wait,4,
-        PBMoveRoute::TurnUp,PBMoveRoute::Wait,4,
-        PBMoveRoute::TurnLeft,PBMoveRoute::Wait,4,
-        PBMoveRoute::TurnDown,PBMoveRoute::Wait,4,
-        PBMoveRoute::Jump,0,0,PBMoveRoute::Wait,10,PBMoveRoute::Jump,0,0])
+        pbMoveRoute(event,  [
+          PBMoveRoute::TurnRight,
+          PBMoveRoute::Wait,4,
+          PBMoveRoute::TurnUp,
+          PBMoveRoute::Wait,4,
+          PBMoveRoute::TurnLeft,
+          PBMoveRoute::Wait,4,
+          PBMoveRoute::TurnDown,
+          PBMoveRoute::Wait,4,
+          PBMoveRoute::Jump,0,0,
+          PBMoveRoute::Wait,10,
+          PBMoveRoute::Jump,0,0
+        ])
     end
     pbMessage(_INTL(messages[value],pkmn.name,$Trainer.name))
     next true
@@ -541,9 +571,9 @@ Events.OnTalkToFollower += proc {|pkmn,x,y,random_val|
 }
 
 # All dialogues with the Angry animation
-Events.OnTalkToFollower += proc {|pkmn,x,y,random_val|
+Events.OnTalkToFollower += proc {|pkmn,event,random_val|
   if random_val == 1
-    $scene.spriteset.addUserAnimation(FollowerSettings::Emo_Hate,x,y)
+    $scene.spriteset.addUserAnimation(FollowerSettings::Emo_Hate,event.x,event.y)
     pbWait(72)
     messages = [
       _INTL("{1} let out a roar!"),
@@ -562,8 +592,11 @@ Events.OnTalkToFollower += proc {|pkmn,x,y,random_val|
     case value
     when 6, 7, 8
       pbMoveRoute($game_player,[PBMoveRoute::Wait,25])
-      follower_move_route([
-        PBMoveRoute::Jump,0,0,PBMoveRoute::Wait,10,PBMoveRoute::Jump,0,0])
+      pbMoveRoute(event,  [
+        PBMoveRoute::Jump,0,0,
+        PBMoveRoute::Wait,10,
+        PBMoveRoute::Jump,0,0
+      ])
     end
     pbMessage(_INTL(messages[value],pkmn.name,$Trainer.name))
     next true
@@ -571,9 +604,9 @@ Events.OnTalkToFollower += proc {|pkmn,x,y,random_val|
 }
 
 # All dialogues with the Neutral Animation
-Events.OnTalkToFollower += proc {|pkmn,x,y,random_val|
+Events.OnTalkToFollower += proc {|pkmn,event,random_val|
   if random_val == 2
-    $scene.spriteset.addUserAnimation(FollowerSettings::Emo_Normal,x,y)
+    $scene.spriteset.addUserAnimation(FollowerSettings::Emo_Normal,event.x,event.y)
     pbWait(72)
     messages = [
       _INTL("{1} is looking down steadily."),
@@ -615,11 +648,15 @@ Events.OnTalkToFollower += proc {|pkmn,x,y,random_val|
     case value
     when  1, 5, 7, 20, 21
       pbMoveRoute($game_player,[PBMoveRoute::Wait,35])
-      follower_move_route([
-        PBMoveRoute::TurnRight,PBMoveRoute::Wait,10,
-        PBMoveRoute::TurnUp,PBMoveRoute::Wait,10,
-        PBMoveRoute::TurnLeft,PBMoveRoute::Wait,10,
-        PBMoveRoute::TurnDown])
+      pbMoveRoute(event,  [
+        PBMoveRoute::TurnRight,
+        PBMoveRoute::Wait,10,
+        PBMoveRoute::TurnUp,
+        PBMoveRoute::Wait,10,
+        PBMoveRoute::TurnLeft,
+        PBMoveRoute::Wait,10,
+        PBMoveRoute::TurnDown
+      ])
     end
     pbMessage(_INTL(messages[value],pkmn.name,$Trainer.name))
     next true
@@ -627,9 +664,9 @@ Events.OnTalkToFollower += proc {|pkmn,x,y,random_val|
 }
 
 # All dialogues with the Happy animation
-Events.OnTalkToFollower += proc {|pkmn,x,y,random_val|
+Events.OnTalkToFollower += proc {|pkmn,event,random_val|
   if random_val == 3
-    $scene.spriteset.addUserAnimation(FollowerSettings::Emo_Happy,x,y)
+    $scene.spriteset.addUserAnimation(FollowerSettings::Emo_Happy,event.x,event.y)
     pbWait(72)
     messages = [
       _INTL("{1} began poking {2}."),
@@ -666,17 +703,28 @@ Events.OnTalkToFollower += proc {|pkmn,x,y,random_val|
     case value
     when 3
       pbMoveRoute($game_player,[PBMoveRoute::Wait,45])
-      follower_move_route([
-        PBMoveRoute::TurnRight,PBMoveRoute::Wait,4,
-        PBMoveRoute::TurnUp,PBMoveRoute::Wait,4,
-        PBMoveRoute::TurnLeft,PBMoveRoute::Wait,4,
-        PBMoveRoute::TurnDown,PBMoveRoute::Wait,4,
-        PBMoveRoute::Jump,0,0,PBMoveRoute::Wait,10,PBMoveRoute::Jump,0,0])
+      pbMoveRoute(event,  [
+        PBMoveRoute::TurnRight,
+        PBMoveRoute::Wait,4,
+        PBMoveRoute::TurnUp,
+        PBMoveRoute::Wait,4,
+        PBMoveRoute::TurnLeft,
+        PBMoveRoute::Wait,4,
+        PBMoveRoute::TurnDown,
+        PBMoveRoute::Wait,4,
+        PBMoveRoute::Jump,0,0,
+        PBMoveRoute::Wait,10,
+        PBMoveRoute::Jump,0,0
+      ])
     when 11, 16, 17, 24
       pbMoveRoute($game_player,[PBMoveRoute::Wait,40])
-      follower_move_route([
-        PBMoveRoute::Jump,0,0,PBMoveRoute::Wait,10,
-        PBMoveRoute::Jump,0,0,PBMoveRoute::Wait,10,PBMoveRoute::Jump,0,0])
+      pbMoveRoute(event,  [
+        PBMoveRoute::Jump,0,0,
+        PBMoveRoute::Wait,10,
+        PBMoveRoute::Jump,0,0,
+        PBMoveRoute::Wait,10,
+        PBMoveRoute::Jump,0,0
+      ])
     end
     pbMessage(_INTL(messages[value],pkmn.name,$Trainer.name))
     next true
@@ -684,9 +732,9 @@ Events.OnTalkToFollower += proc {|pkmn,x,y,random_val|
 }
 
 # All dialogues with the Heart animation
-Events.OnTalkToFollower += proc {|pkmn,x,y,random_val|
+Events.OnTalkToFollower += proc {|pkmn,event,random_val|
   if random_val == 4
-    $scene.spriteset.addUserAnimation(FollowerSettings::Emo_Love,x,y)
+    $scene.spriteset.addUserAnimation(FollowerSettings::Emo_Love,event.x,event.y)
     pbWait(72)
     messages = [
       _INTL("{1} suddenly started walking closer to {2}."),
@@ -716,8 +764,7 @@ Events.OnTalkToFollower += proc {|pkmn,x,y,random_val|
     case value
     when 1, 6,
       pbMoveRoute($game_player,[PBMoveRoute::Wait,10])
-      follower_move_route([
-        PBMoveRoute::Jump,0,0])
+      pbMoveRoute(event, [PBMoveRoute::Jump,0,0])
     end
     pbMessage(_INTL(messages[value],pkmn.name,$Trainer.name))
     next true
@@ -725,7 +772,7 @@ Events.OnTalkToFollower += proc {|pkmn,x,y,random_val|
 }
 
 # All dialogues with no animation
-Events.OnTalkToFollower += proc {|pkmn,x,y,random_val|
+Events.OnTalkToFollower += proc {|pkmn,event,random_val|
   if random_val == 5
     messages = [
       _INTL("{1} spun around in a circle!"),
@@ -758,34 +805,56 @@ Events.OnTalkToFollower += proc {|pkmn,x,y,random_val|
     case value
     when 0
       pbMoveRoute($game_player,[PBMoveRoute::Wait,15])
-      follower_move_route([
-        PBMoveRoute::TurnRight,PBMoveRoute::Wait,4,
-        PBMoveRoute::TurnUp,PBMoveRoute::Wait,4,
-        PBMoveRoute::TurnLeft,PBMoveRoute::Wait,4,PBMoveRoute::TurnDown])
+      pbMoveRoute(event,  [
+        PBMoveRoute::TurnRight,
+        PBMoveRoute::Wait,4,
+        PBMoveRoute::TurnUp,
+        PBMoveRoute::Wait,4,
+        PBMoveRoute::TurnLeft,
+        PBMoveRoute::Wait,4,
+        PBMoveRoute::TurnDown
+      ])
     when 2,4
       pbMoveRoute($game_player,[PBMoveRoute::Wait,35])
-      follower_move_route([
-        PBMoveRoute::TurnRight,PBMoveRoute::Wait,10,
-        PBMoveRoute::TurnUp,PBMoveRoute::Wait,10,
-        PBMoveRoute::TurnLeft,PBMoveRoute::Wait,10,PBMoveRoute::TurnDown])
+      pbMoveRoute(event,  [
+        PBMoveRoute::TurnRight,
+        PBMoveRoute::Wait,10,
+        PBMoveRoute::TurnUp,
+        PBMoveRoute::Wait,10,
+        PBMoveRoute::TurnLeft,
+        PBMoveRoute::Wait,10,
+        PBMoveRoute::TurnDown
+      ])
     when 14
       pbMoveRoute($game_player,[PBMoveRoute::Wait,50])
-      follower_move_route([
-        PBMoveRoute::TurnRight,PBMoveRoute::Wait,4,
-        PBMoveRoute::TurnUp,PBMoveRoute::Wait,4,
-        PBMoveRoute::TurnLeft,PBMoveRoute::Wait,4,
-        PBMoveRoute::TurnDown,PBMoveRoute::Wait,4,
-        PBMoveRoute::TurnRight,PBMoveRoute::Wait,4,
-        PBMoveRoute::TurnUp,PBMoveRoute::Wait,4,
-        PBMoveRoute::TurnLeft,PBMoveRoute::Wait,4,
-        PBMoveRoute::TurnDown,PBMoveRoute::Wait,4,
-        PBMoveRoute::TurnRight,PBMoveRoute::Wait,4,
-        PBMoveRoute::TurnUp,PBMoveRoute::Wait,4,
-        PBMoveRoute::TurnLeft,PBMoveRoute::Wait,4,PBMoveRoute::TurnDown])
+      pbMoveRoute(event,  [
+        PBMoveRoute::TurnRight,
+        PBMoveRoute::Wait,4,
+        PBMoveRoute::TurnUp,
+        PBMoveRoute::Wait,4,
+        PBMoveRoute::TurnLeft,
+        PBMoveRoute::Wait,4,
+        PBMoveRoute::TurnDown,
+        PBMoveRoute::Wait,4,
+        PBMoveRoute::TurnRight,
+        PBMoveRoute::Wait,4,
+        PBMoveRoute::TurnUp,
+        PBMoveRoute::Wait,4,
+        PBMoveRoute::TurnLeft,
+        PBMoveRoute::Wait,4,
+        PBMoveRoute::TurnDown,
+        PBMoveRoute::Wait,4,
+        PBMoveRoute::TurnRight,
+        PBMoveRoute::Wait,4,
+        PBMoveRoute::TurnUp,
+        PBMoveRoute::Wait,4,
+        PBMoveRoute::TurnLeft,
+        PBMoveRoute::Wait,4,
+        PBMoveRoute::TurnDown
+      ])
     when 22, 23
       pbMoveRoute($game_player,[PBMoveRoute::Wait,10])
-      follower_move_route([
-        PBMoveRoute::Jump,0,0])
+      pbMoveRoute(event,[PBMoveRoute::Jump,0,0])
     end
     pbMessage(_INTL(messages[value],pkmn.name,$Trainer.name))
     next true

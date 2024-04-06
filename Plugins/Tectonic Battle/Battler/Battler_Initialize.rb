@@ -128,11 +128,15 @@ class PokeBattle_Battler
         resetAbilities(true)
         @pokemonIndex = idxParty
         @participants = [] # Participants earn Exp. if this battler is defeated
+        resetMoves
+        @bossAI = PokeBattle_AI_Boss.from_boss_battler(self) if @pokemon.boss?
+    end
+
+    def resetMoves
         @moves        = []
-        pkmn.moves.each_with_index do |m, i|
+        @pokemon.moves.each_with_index do |m, i|
             @moves[i] = PokeBattle_Move.from_pokemon_move(@battle, m)
         end
-        @bossAI = PokeBattle_AI_Boss.from_boss_battler(self) if @pokemon.boss?
     end
 
     def pbInitialize(pkmn, idxParty, batonPass = false)

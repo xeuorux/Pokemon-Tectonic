@@ -3,12 +3,12 @@ class PokemonPartyShowcase_Scene
     base   = Color.new(80, 80, 88)
     shadow = Color.new(160, 160, 168)
 
-    def initialize(party,snapshot = false,snapShotName=nil)
+    def initialize(trainer,snapshot = false,snapShotName=nil,fastSnapshot=false)
         base = MessageConfig::DARK_TEXT_MAIN_COLOR
         shadow = MessageConfig::DARK_TEXT_SHADOW_COLOR
 
         @sprites = {}
-        @party = party
+        @party = trainer.party
         @viewport = Viewport.new(0,0,Graphics.width,Graphics.height)
         @viewport.z = 99999
 
@@ -27,8 +27,8 @@ class PokemonPartyShowcase_Scene
         end
 
         # Draw tribal bonus info at the bottom
-        playerTribalBonus().updateTribeCount
-        bonusesList = $Trainer.tribalBonus.getActiveBonusesList(false)
+        trainer.tribalBonus.updateTribeCount
+        bonusesList = trainer.tribalBonus.getActiveBonusesList(false)
         tribesTotal = GameData::Tribe::DATA.keys.count
         fullDescription = ""
         if bonusesList.length <= 3
@@ -50,7 +50,7 @@ class PokemonPartyShowcase_Scene
         drawFormattedTextEx(@overlay, 8, bottomBarY, Graphics.width, fullDescription, base, shadow)
 
         # Show player name
-        playerName = "<ar>#{$Trainer.name}</ar>"
+        playerName = "<ar>#{trainer.name}</ar>"
         drawFormattedTextEx(@overlay, Graphics.width - 168, bottomBarY, 160, playerName, base, shadow)
 
         # Show game version
@@ -64,13 +64,13 @@ class PokemonPartyShowcase_Scene
 
         pbFadeInAndShow(@sprites) { pbUpdate }
 
-        pbScreenCapture(snapShotName, true) if snapshot
+        pbScreenCapture(snapShotName, !fastSnapshot) if snapshot
 
         loop do
             Graphics.update
             Input.update
             pbUpdate
-            if Input.trigger?(Input::BACK)
+            if Input.trigger?(Input::BACK) || fastSnapshot
                 pbEndScene
                 pbPlayCloseMenuSE
                 return
@@ -183,5 +183,26 @@ class PokemonPartyShowcase_Scene
 
     def pbUpdate
         pbUpdateSpriteHash(@sprites)
+    end
+end
+
+def enemyTrainerShowcase(trainerClass,trainerName,version=0)
+    trainer = pbLoadTrainer(trainerClass,trainerName,version)
+    trainerShowcase(trainer)
+end
+
+def trainerShowcase(trainer)
+    pbFadeOutIn {
+        PokemonPartyShowcase_Scene.new(trainer)
+    }
+end
+
+def createVisualTrainerDocumentation
+    GameData::Trainer.each do |trainerData|
+        trainer = pbLoadTrainer(trainerData.trainer_type,trainerData.name,trainerData.version)
+        screenshotName = "#{trainerData.trainer_type} #{trainerData.name}"
+        screenshotName += " (#{trainerData.version})" if trainerData.version > 0
+        screenshotName += " "
+        PokemonPartyShowcase_Scene.new(trainer,true,screenshotName,true)
     end
 end

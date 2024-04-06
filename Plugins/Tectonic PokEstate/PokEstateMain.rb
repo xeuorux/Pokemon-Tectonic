@@ -368,7 +368,7 @@ class PokEstate
 		
 		actualEvent.pages[0] = firstPage
 		
-		event.floats = floatingSpecies?(pokemon.species,pokemon.form)
+		event.floats = floatingPokemon?(pokemon)
 		
 		event.refresh()
 	end
@@ -448,7 +448,7 @@ class PokEstate
 				}
 			elsif cmdRename > -1 && command == cmdRename
 				currentName = pokemon.name
-				pbTextEntry("#{currentName}'s nickname?",0,10,5)
+				pbTextEntry("#{currentName}'s nickname?",0,Pokemon::MAX_NAME_SIZE,5)
 				if pbGet(5)=="" || pbGet(5) == currentName
 				  pokemon.name = currentName
 				else
@@ -482,8 +482,8 @@ class PokEstate
 				prev_direction = eventCalling.direction
 				eventCalling.direction_fix = false
 				eventCalling.turn_toward_player
-				if defined?(Events.OnTalkToFollower)
-					Events.OnTalkToFollower.trigger(pokemon,eventCalling.x,eventCalling.y,rand(6))
+				if defined?(interactWithFollowerPokemon)
+					interactWithFollowerPokemon(pokemon, eventCalling)
 					pokemon.changeHappiness("interaction")
 				end
 				if rand < 0.5
@@ -522,7 +522,7 @@ class PokEstate
 		speciesData = GameData::Species.get(pokemon.species)
 		page.direction_fix = false
 		page.move_type = 1 # Random
-		page.step_anime = stepAnimation || floatingSpecies?(pokemon.species,pokemon.form)
+		page.step_anime = stepAnimation || floatingPokemon?(pokemon)
 		page.move_frequency = [[speciesData.base_stats[:SPEED] / 25,0].max,5].min
 	end
 	

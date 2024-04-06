@@ -36,6 +36,7 @@ class TilingCardsStorageInteractionMenu_Scene < TilingCardsMenu_Scene
 		super
       	canEditTeam = teamEditingAllowed?
 		inDonationBox = !@heldpoke && @selected[0] > -1 && @storageScreen.storage.boxes[@selected[0]].isDonationBox?
+		lastPokemonInParty = @pkmn && @selected[0] == -1 && @storageScreen.pbAbleCount <= 1 && @storageScreen.pbAble?(@pkmn)
 
 		case @command
 		when 0
@@ -67,7 +68,7 @@ class TilingCardsStorageInteractionMenu_Scene < TilingCardsMenu_Scene
 				@cardButtons[:MOVE] = {
 					:label => _INTL("Move"),
 					:active_proc => Proc.new {
-						next canEditTeam && !inDonationBox
+						next canEditTeam && !inDonationBox && !lastPokemonInParty
 					},
 					:press_proc => Proc.new { |scene|
 						@storageScreen.pbHold(@selected)
@@ -90,7 +91,7 @@ class TilingCardsStorageInteractionMenu_Scene < TilingCardsMenu_Scene
 			@cardButtons[:STORE] = {
 					:label => _INTL("Store"),
 					:active_proc => Proc.new {
-						next canEditTeam
+						next canEditTeam && !lastPokemonInParty
 					},
 					:press_proc => Proc.new { |scene|
 						@storageScreen.pbStore(@selected, nil)
@@ -150,7 +151,7 @@ class TilingCardsStorageInteractionMenu_Scene < TilingCardsMenu_Scene
 		@cardButtons[:RELEASE] = {
 				:label => _INTL("Release"),
 				:active_proc => Proc.new {
-					canEditTeam && !@pkmn.egg?
+					canEditTeam && !@pkmn.egg? && !lastPokemonInParty
 				},
 				:press_proc => Proc.new { |scene|
 					@storageScreen.pbRelease(@selected, @heldpoke)
@@ -268,7 +269,7 @@ class TilingCardsStorageInteractionMenu_Scene < TilingCardsMenu_Scene
 		modifyCommand = pbShowCommands(_INTL("Do what with {1}?",@pkmn.name),commands)
 		if cmdRename >= 0 && modifyCommand == cmdRename
 			currentName = @pkmn.name
-			pbTextEntry("#{currentName}'s nickname?",0,10,5)
+			pbTextEntry("#{currentName}'s nickname?",0,Pokemon::MAX_NAME_SIZE,5)
 			if pbGet(5) == "" || pbGet(5) == currentName
 				@pkmn.name = currentName
 			else

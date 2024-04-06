@@ -114,7 +114,7 @@ def pbSpindaSpots(pkmn,bitmap)
      [0,0,1,1,1,1,1,1,1,1,0,0],
      [0,0,0,0,1,1,1,1,1,0,0,0]
   ]
-  id = pkmn.personalID
+  id = pkmn.aestheticsID
   h = (id>>28)&15
   g = (id>>24)&15
   f = (id>>20)&15

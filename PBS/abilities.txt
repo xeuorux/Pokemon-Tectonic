@@ -308,6 +308,7 @@ Flags = SunSynergy
 [LEVITATE]
 Name = Levitate
 Description = Gives full immunity to all Ground-type moves.
+Flags = Levitation
 #-------------------------------
 [MAGICBOUNCE]
 Name = Magic Bounce

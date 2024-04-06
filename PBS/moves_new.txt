@@ -1168,7 +1168,7 @@ Accuracy = 100
 TotalPP = 12
 Target = AllNearOthers
 FunctionCode = StartResetAllBattlersStatStepsEachRound5
-Flags = CanProtect,CanMagicCoat,CanMirrorMove
+Flags = CanProtect,CanMirrorMove
 Description = Darkness rolls over the field, damaging all other Pokémon and setting Grey Mist for 5 turns.
 #-------------------------------
 [ECHOLOCATE]
@@ -3833,7 +3833,7 @@ Accuracy = 100
 TotalPP = 10
 Target = NearOther
 FunctionCode = Leech
-Flags = CanProtect,CanMagicCoat,CanMirrorMove
+Flags = CanProtect,CanMirrorMove
 EffectChance = 100
 Description = Leeches the target by kissing them with its thin mouth.
 Animation = DRAININGKISS
@@ -4309,7 +4309,7 @@ Animation = PURSUIT
 Name = Hair Curl
 Type = STEEL
 Category = Special
-Power = 80
+Power = 90
 Accuracy = 100
 TotalPP = 15
 Target = NearOther
@@ -4339,7 +4339,7 @@ Accuracy = 100
 TotalPP = 12
 Target = NearOther
 FunctionCode = Dizzy
-Flags = CanProtect,CanMagicCoat,CanMirrorMove
+Flags = CanProtect,CanMirrorMove
 EffectChance = 100
 Description = The user questions the existence of the target, dealing psychic damage and dizzying them.
 Animation = AMNESIA
@@ -4901,7 +4901,7 @@ Accuracy = 100
 TotalPP = 12
 Target = NearOther
 FunctionCode = Dizzy
-Flags = CanProtect,CanMagicCoat,CanMirrorMove
+Flags = CanProtect,CanMirrorMove
 EffectChance = 100
 Description = The user calls out its underlings to annoy the target with buzzing sounds, dizzying it.
 Animation = BUGBUZZ
@@ -5062,7 +5062,7 @@ Category = Status
 Accuracy = 0
 TotalPP = 15
 Target = NearAlly
-FunctionCode = PowerUpAllyMove
+FunctionCode = TargetActsNextBoostsTheirDamage
 Description = The user assists an ally's next move, boosting its power by 50% and letting it move right after the user.
 Animation = HELPINGHAND
 #-------------------------------
@@ -5518,7 +5518,7 @@ TotalPP = 20
 Target = UserSide
 FunctionCode = StartPreventCriticalHitsAndRandomEffectsAgainstUserSide10
 Flags = CanSnatch
-Description = A diamond-tough force-field protects the user's side for 5 turns from critical hits and reduces damage against them.
+Description = A diamond-tough force-field protects the user's side for 5 turns from critical hits, and reduces move damage taken.
 Animation = LIGHTSCREEN
 #-------------------------------
 [LUCKYCHEER]
@@ -5721,9 +5721,9 @@ Power = 90
 Accuracy = 100
 TotalPP = 15
 Target = NearOther
-FunctionCode = BindTarget3
+FunctionCode = RemoveScreens
 Flags = CanProtect,CanMirrorMove
-Description = The user crushes the target in its metallic vises, trapping and damaging it for three turns.
+Description = The user crushes the target in its metallic vises, breaking any screens protecting the target's side.
 Animation = METALCLAW
 #-------------------------------
 [WAVEOFJADE]

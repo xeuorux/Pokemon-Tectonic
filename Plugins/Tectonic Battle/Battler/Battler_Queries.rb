@@ -360,7 +360,7 @@ class PokeBattle_Battler
     end
 
     def hasLevitate?(checkingForAI = false)
-        return shouldAbilityApply?(%i[LEVITATE DESERTSPIRIT], checkingForAI)
+        return shouldAbilityApply?(GameData::Ability.getByFlag("Levitation"), checkingForAI)
     end
 
     def takesIndirectDamage?(showMsg = false, aiCheck = false)

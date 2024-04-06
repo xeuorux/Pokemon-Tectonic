@@ -191,6 +191,7 @@ GameData::Target.register({
   :name             => _INTL("All Near Others"),
   :num_targets      => 2,
   :targets_foe      => true,
+  :targets_ally     => true,
 })
 
 # Most Flying-type moves, pulse moves (hits non-near targets)
