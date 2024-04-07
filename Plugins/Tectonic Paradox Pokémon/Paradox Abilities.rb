@@ -77,3 +77,27 @@ BattleHandlers::SpecialAttackCalcUserAbility.add(:BANSHEESMELISMA,
       next spAtkMult
   }
 )
+
+BattleHandlers::AbilityOnSwitchIn.add(:ORICHALCHUMPRESENCE,
+  proc { |ability, battler, battle, aiCheck|
+      pbBattleWeatherAbility(ability, :DarkenedSun, battler, battle, true, true, aiCheck)
+  }
+)
+
+BattleHandlers::AbilityOnSwitchIn.add(:PROTOINSTINCT,
+  proc { |ability, battler, battle, aiCheck|
+      if battle.eclipsed?
+      if aiCheck
+          next getMultiStatUpEffectScore([:ATTACK, 1], battler, battler)
+      else
+          battler.tryRaiseStat(:ATTACK, battler, ability: ability)
+      if battle.sunny?
+      next entryDebuffAbility(ability, battler, battle, ATTACKING_STATS_2, aiCheck: aiCheck)
+      end
+    end 
+      elsif battle.sunny?
+      next entryDebuffAbility(ability, battler, battle, ATTACKING_STATS_2, aiCheck: aiCheck) 
+      end   
+    }
+)
+
