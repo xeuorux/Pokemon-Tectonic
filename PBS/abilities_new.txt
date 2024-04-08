@@ -2089,3 +2089,11 @@ Flags = EclipseSynergy
 [WRATHINSTINCT]
 Name = Wrath Instinct
 Description = Uses Dragon Dance if an attack lowers its HP to half or below.
+#-------------------------------
+[HADRONSYSTEM]
+Name = Hadron System
+Description = Combines moonglow and rain.
+#-------------------------------
+[QUARKPROTOCOL]
+Name = Quark Protocol
+Description = On switch-in, raises both offensive stats in rain, or lowers the enemy's in moonglow.

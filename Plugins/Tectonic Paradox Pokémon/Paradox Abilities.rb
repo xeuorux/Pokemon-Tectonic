@@ -101,3 +101,25 @@ BattleHandlers::AbilityOnSwitchIn.add(:PROTOINSTINCT,
     }
 )
 
+BattleHandlers::AbilityOnSwitchIn.add(:HADRONSYSTEM,
+  proc { |ability, battler, battle, aiCheck|
+      pbBattleWeatherAbility(ability, :BrilliantRain, battler, battle, true, true, aiCheck)
+  }
+)
+
+BattleHandlers::AbilityOnSwitchIn.add(:QUARKPROTOCOL,
+  proc { |ability, battler, battle, aiCheck|
+      if battle.rainy?
+      if aiCheck
+          next getMultiStatUpEffectScore([:ATTACK, 1], battler, battler)
+      else
+          battler.tryRaiseStat(:ATTACK, battler, ability: ability)
+      if battle.moonGlowing?
+      next entryDebuffAbility(ability, battler, battle, ATTACKING_STATS_2, aiCheck: aiCheck)
+      end
+    end 
+      elsif battle.moonGlowing?
+      next entryDebuffAbility(ability, battler, battle, ATTACKING_STATS_2, aiCheck: aiCheck) 
+      end   
+    }
+)

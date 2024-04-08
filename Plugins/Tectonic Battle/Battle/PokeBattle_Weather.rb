@@ -82,6 +82,7 @@ class PokeBattle_Battle
         when :RingEclipse   then pbDisplay(_INTL("The planetary ring tightens its grip!"))
         when :BloodMoon     then pbDisplay(_INTL("he nightmarish moon is unending!"))
         when :DarkenedSun   then pbDisplay(_INTL("The darkened sunshine continues!"))
+        when :BrilliantRain then pbDisplay(_INTL("The brilliant rain continues!"))
         end
     end
 
@@ -99,6 +100,7 @@ class PokeBattle_Battle
         when :RingEclipse   then pbDisplay(_INTL("A planetary ring dominates the sky!"))
         when :BloodMoon     then pbDisplay(_INTL("A nightmare possessed the moon!"))
         when :DarkenedSun   then pbDisplay(_INTL("An eclipse covers the shining sun!"))
+        when :BrilliantRain then pbDisplay(_INTL("The moon shines behind the storm!"))
         end
     end
 
@@ -117,6 +119,7 @@ class PokeBattle_Battle
         when :RingEclipse   then pbDisplay(_INTL("The planetary ring flew off!"))
         when :BloodMoon     then pbDisplay(_INTL("The nightmare is purged from the moon!"))
         when :DarkenedSun   then pbDisplay(_INTL("The darkened sun ends."))
+        when :BrilliantRain then pbDisplay(_INTL("The brilliant rain ends."))
         end
         oldWeather = @field.weather
         @field.weather	= :None
@@ -158,6 +161,10 @@ class PokeBattle_Battle
             if !pbCheckGlobalAbility(:ORICHALCHUMPRESENCE) && @field.defaultWeather != :RingEclipse
                 @field.weatherDuration = 3
                 pbDisplay("The darkened sun begins to fade!")
+            when :BrilliantRain
+                if !pbCheckGlobalAbility(:HADRONSYSTEM) && @field.defaultWeather != :RingEclipse
+                    @field.weatherDuration = 3
+                    pbDisplay("The brilliant rain begins to fade!")
             end
         end
     end
@@ -197,6 +204,9 @@ class PokeBattle_Battle
             return true
         when :DarkenedSun
             pbDisplay(_INTL("The darkened sun doesn't retreat!")) if showMessages
+            return true
+        when :BrilliantRain
+            pbDisplay(_INTL("The brilliant rain doesn't retreat!")) if showMessages
             return true
         end
         return false
@@ -247,7 +257,7 @@ class PokeBattle_Battle
                         BattleHandlers.triggerTotalEclipseAbility(ability, b, self)
                     end
                 end
-            when :Moonglow, :BloodMoon
+            when :Moonglow, :BloodMoon, :BrilliantRain
                 primevalVariant = curWeather == :BloodMoon
                 if showWeatherMessages
                     if primevalVariant
@@ -418,7 +428,7 @@ class PokeBattle_Battle
     end
 
     def rainy?
-        return %i[Rain HeavyRain].include?(pbWeather)
+        return %i[Rain HeavyRain BrilliantRain].include?(pbWeather)
     end
 
     def sandy?
@@ -434,7 +444,7 @@ class PokeBattle_Battle
     end
 
     def moonGlowing?
-        return %i[Moonglow BloodMoon].include?(pbWeather)
+        return %i[Moonglow BloodMoon BrilliantRain].include?(pbWeather)
     end
 
     def partialEclipse?
