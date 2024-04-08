@@ -364,15 +364,9 @@ class PokeBattle_Move
     #=============================================================================
     def canApplyRandomAddedEffects?(user,target,showMessages=false,aiCheck=false)
         unless @battle.moldBreaker
-            %i[SHIELDDUST UNCONQUERABLE RUGGEDSCALES].each do |ability|
-                if target.shouldAbilityApply?(ability,aiCheck)
-                    if showMessages
-                        battle.pbShowAbilitySplash(target,ability)
-                        battle.pbDisplay(_INTL("#{target.pbThis} prevents a random added effect!"))
-                        battle.pbHideAbilitySplash(target)
-                    end
-                    return false
-                end
+            target.eachAbilityShouldApply(aiCheck) do |ability|
+                next unless BattleHandlers.triggerPreventAddedEffectTargetAbility(ability, @battle, user, target, self, showMessages)
+                return false
             end
         end
         if target.shouldAbilityApply?(:COVERTCLOAK,aiCheck) && user.opposes?(target)
@@ -386,17 +380,29 @@ class PokeBattle_Move
     end
 
     def pbAdditionalEffectChance(user,target,type,effectChance=0,aiCheck = false)
-        return 100 if user.hasActiveAbility?(:STARSALIGN) && @battle.eclipsed?
-        return 100 if user.hasActiveAbility?(:WISHMAKER) || target.hasActiveAbility?(:WISHMAKER)
+        # Abilities ensure effect chance
+        user.eachAbilityShouldApply(aiCheck) do |ability|
+            return 100 if BattleHandlers.triggerCertainAddedEffectUserAbility(ability, @battle, user, target, self)
+        end
+
+        return 100 if target.hasActiveAbility?(:WISHMAKER)
         return 100 if !user.pbOwnedByPlayer? && @battle.curseActive?(:CURSE_PERFECT_LUCK)
         ret = effectChance > 0 ? effectChance : @effectChance
         return 100 if ret >= 100 || debugControl
         ret += 20 if user.hasTribeBonus?(:FORTUNE)
-        ret += 50 if windMove? && user.hasActiveAbility?(:FUMIGATE)
-        ret += 50 if bitingMove? && user.hasActiveAbility?(:GNAWING)
-        ret *= 1.5 if flinchingMove? && user.hasActiveAbility?(:RATTLEEM)
-        ret *= 2 if flinchingMove? && user.hasActiveAbility?(:TERRORIZE)
-        ret *= 2 if user.hasActiveAbility?(:SERENEGRACE)
+
+        # User's abilities modify effect chance
+        user.eachAbilityShouldApply(aiCheck) do |ability|
+            ret = BattleHandlers.triggerAddedEffectChanceModifierUserAbility(ability, user, target, self, ret)
+        end
+
+        # Target's abilities modify effect chance
+        unless @battle.moldBreaker
+            target.eachAbilityShouldApply(aiCheck) do |ability|
+                ret = BattleHandlers.triggerAddedEffectChanceModifierTargetAbility(ability, user, target, self, ret)
+            end
+        end
+
         ret *= 2 if user.pbOwnSide.effectActive?(:Rainbow)
         ret /= 2 if applyRainDebuff?(user,type)
         ret /= 2 if target.hasTribeBonus?(:SERENE)

@@ -816,7 +816,7 @@ def predictedEOTHealing(battle,battler)
     end
 
     # Leftovers
-    GameData::Item::LEFTOVERS_ITEMS.each do |leftoversItem|
+    GameData::Item.getByFlag("Leftovers").each do |leftoversItem|
         next unless battler.hasActiveItemAI?(leftoversItem)
         healing += battler.getFractionalHealingAmount(LEFTOVERS_HEALING_FRACTION)
     end

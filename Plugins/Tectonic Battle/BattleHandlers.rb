@@ -134,9 +134,15 @@ module BattleHandlers
     TotalEclipseAbility                 = AbilityHandlerHash.new
     FullMoonAbility                     = AbilityHandlerHash.new
 
+    # Added effects
+    CertainAddedEffectUserAbility           = AbilityHandlerHash.new
+    AddedEffectChanceModifierUserAbility    = AbilityHandlerHash.new
+    PreventAddedEffectTargetAbility         = AbilityHandlerHash.new
+    AddedEffectChanceModifierTargetAbility  = AbilityHandlerHash.new  
+
     #=============================================================================
 
-    def self.triggerTypeCalcability(ability, battler, types)
+    def self.triggerTypeCalcAbility(ability, battler, types)
         ret = TypeCalcAbility.trigger(ability, battler, types)
         return !ret.nil? ? ret : types
     end
@@ -647,5 +653,27 @@ module BattleHandlers
 
     def self.triggerFullMoonAbility(ability, battler, battle)
         FullMoonAbility.trigger(ability, battler, battle)
+    end
+
+    #=============================================================================
+
+    def self.triggerCertainAddedEffectUserAbility(ability, battle, user, target, move)
+        ret = CertainAddedEffectUserAbility.trigger(ability, battle, target, user, move)
+        return !ret.nil? ? ret : false
+    end
+
+    def self.triggerAddedEffectChanceModifierUserAbility(ability, user, target, move, chance)
+        ret = AddedEffectChanceModifierUserAbility.trigger(ability, user, target, move, chance)
+        return !ret.nil? ? ret : chance
+    end
+
+    def self.triggerPreventAddedEffectTargetAbility(ability, battle, user, target, move, showMessages)
+        ret = PreventAddedEffectTargetAbility.trigger(ability, battle, user, target, move, showMessages)
+        return !ret.nil? ? ret : false
+    end
+
+    def self.triggerAddedEffectChanceModifierTargetAbility(ability, user, target, move, chance)
+        ret = AddedEffectChanceModifierTargetAbility.trigger(ability, user, target, move, chance)
+        return !ret.nil? ? ret : chance
     end
 end

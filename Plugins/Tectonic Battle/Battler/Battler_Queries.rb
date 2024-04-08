@@ -28,7 +28,7 @@ class PokeBattle_Battler
         ret = [@pokemon.itemTypeChosen] if itemActive? && hasItem?(:CRYSTALVEIL)
         # Type changes from ability
         eachActiveAbility do |abilityID|
-            ret = BattleHandlers.triggerTypeCalcability(abilityID, self, ret)
+            ret = BattleHandlers.triggerTypeCalcAbility(abilityID, self, ret)
         end
         # Extra types (used for a curse)
         if @pokemon
