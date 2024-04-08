@@ -788,6 +788,10 @@ Description = Heals 1/12th HP every turn. Protected from being poisoned.
 Name = Gyre Spinner
 Description = Upon entry, traps each opponent in a whirlpool for two turns.
 #-------------------------------
+[HADRONSYSTEM]
+Name = Hadron System
+Description = Combines moonglow and rain.
+#-------------------------------
 [HARBINGER]
 Name = Harbinger
 Description = Summons eclipse for four turns when it enters battle.
@@ -1404,6 +1408,10 @@ Description = Raises the Pokémon's Sp. Atk by 50%, including Style Values and o
 [PUZZLING]
 Name = Puzzling
 Description = Upon entry, creates a Puzzle Room for five turns, swapping base Attack and Sp. Atk.
+#-------------------------------
+[QUARKPROTOCOL]
+Name = Quark Protocol
+Description = On switch-in, raises both offensive stats in rain, or lowers the enemy's in moonglow.
 #-------------------------------
 [QUARRELSOME]
 Name = Quarrelsome
@@ -2089,11 +2097,3 @@ Flags = EclipseSynergy
 [WRATHINSTINCT]
 Name = Wrath Instinct
 Description = Uses Dragon Dance if an attack lowers its HP to half or below.
-#-------------------------------
-[HADRONSYSTEM]
-Name = Hadron System
-Description = Combines moonglow and rain.
-#-------------------------------
-[QUARKPROTOCOL]
-Name = Quark Protocol
-Description = On switch-in, raises both offensive stats in rain, or lowers the enemy's in moonglow.

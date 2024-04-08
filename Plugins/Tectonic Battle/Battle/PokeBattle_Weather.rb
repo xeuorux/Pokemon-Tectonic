@@ -161,6 +161,7 @@ class PokeBattle_Battle
             if !pbCheckGlobalAbility(:ORICHALCHUMPRESENCE) && @field.defaultWeather != :RingEclipse
                 @field.weatherDuration = 3
                 pbDisplay("The darkened sun begins to fade!")
+            end 
             when :BrilliantRain
                 if !pbCheckGlobalAbility(:HADRONSYSTEM) && @field.defaultWeather != :RingEclipse
                     @field.weatherDuration = 3
