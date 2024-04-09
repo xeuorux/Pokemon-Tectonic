@@ -148,6 +148,8 @@ module BattleHandlers
     # Start of move
     UserAbilityStartOfMove              = AbilityHandlerHash.new
     TargetAbilityStartOfMove            = AbilityHandlerHash.new
+    # Multi-item interactions
+    DisallowItemSetAbility              = AbilityHandlerHash.new
 
     #=============================================================================
 
@@ -703,5 +705,12 @@ module BattleHandlers
 
     def self.triggerTargetAbilityStartOfMove(ability, user, target, move, battle)
         TargetAbilityStartOfMove.trigger(ability, user, target, move, battle)
+    end
+
+    #=============================================================================
+
+    def self.triggerDisallowItemSetAbility(ability, pokemon, itemSet, showMessages)
+        ret = DisallowItemSetAbility.trigger(ability, pokemon, itemSet, showMessages)
+        return !ret.nil? ? ret : false
     end
 end
