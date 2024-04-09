@@ -97,15 +97,3 @@ GameData::BattleWeather.register({
   :name      => _INTL("Blood Moon"),
   :animation => "Moonlight",
 })
-
-GameData::BattleWeather.register({
-  :id        => :DarkenedSun,
-  :name      => _INTL("Darkened Sun"),
-  :animation => "Eclipse",
-})
-
-GameData::BattleWeather.register({
-  :id        => :BrilliantRain,
-  :name      => _INTL("Brilliant Rain"),
-  :animation => "Moonlight",
-})

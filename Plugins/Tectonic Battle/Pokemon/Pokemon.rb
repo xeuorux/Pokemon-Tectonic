@@ -785,6 +785,8 @@ class Pokemon
 
       # Some abilities restrict which specific items you can have when the Pokemon has 2
       return false if BattleHandlers.triggerDisallowItemSetAbility(ability, self, itemSet, showMessages)
+
+      return true
     end
 
     def removeInvalidItems

@@ -390,6 +390,19 @@ class PokeBattle_Move
         ret = effectChance > 0 ? effectChance : @effectChance
         return 100 if ret >= 100 || debugControl
         ret += 20 if user.hasTribeBonus?(:FORTUNE)
+
+        # User's abilities modify effect chance
+        user.eachAbilityShouldApply(aiCheck) do |ability|
+            ret = BattleHandlers.triggerAddedEffectChanceModifierUserAbility(ability, user, target, self, ret)
+        end
+
+        # Target's abilities modify effect chance
+        unless @battle.moldBreaker
+            target.eachAbilityShouldApply(aiCheck) do |ability|
+                ret = BattleHandlers.triggerAddedEffectChanceModifierTargetAbility(ability, user, target, self, ret)
+            end
+        end
+
         ret *= 2 if user.pbOwnSide.effectActive?(:Rainbow)
         ret /= 2 if applyRainDebuff?(user,type)
         ret /= 2 if target.hasTribeBonus?(:SERENE)

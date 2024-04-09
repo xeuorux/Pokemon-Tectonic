@@ -150,7 +150,18 @@ class PokeBattle_Battler
             return true if item.nil?
             return !isIllegalItem?(item)
         end
- 
+        
+        # Sticky fingers is weird and needs it own check here
+        if hasActiveAbility?(:STICKYFINGERS)
+            return itemCount <= 1 && stolen
+        end
+
+        # Check for multi-item legality
+        if item
+            newItemSet = items.clone
+            newItemSet.push(item)
+
+            return legalItemSet?(newItemSet)
         end
 
         return false

@@ -2046,25 +2046,3 @@ GameData::BattleEffect.register_effect(:Battler, {
     :real_name => "Auto-Pilot",
     :resets_eor => true,
 })
-
-GameData::BattleEffect.register_effect(:Battler, {
-    :id => :Thunderstorm,
-    :real_name => "Thunderstorm",
-})
-
-GameData::BattleEffect.register_effect(:Battler, {
-    :id => :RocketHands,
-    :real_name => "Rocket Hands",
-    :resets_eor	=> true,
-})
-
-GameData::BattleEffect.register_effect(:Battler, {
-    :id => :BurningBalwark,
-    :real_name => "Burning Balwark",
-    :resets_eor	=> true,
-    :protection_info => {
-        :hit_proc => proc do |user, target, move, _battle|
-            user.applyBurn(target) if move.physicalMove? && user.canBurn?(target, false)
-        end,
-    },
-})

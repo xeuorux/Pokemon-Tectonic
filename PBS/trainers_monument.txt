@@ -573,7 +573,7 @@ Pokemon = MILOTIC,70
     EV = 10,20,0,0,20,20
 #-------------------------------
 [COOLTRAINER_M2,Lucas]
-Pokemon = IRONTREADS,70
+Pokemon = DONPHAN,70
     Moves = STEALTHROCK,RAPIDSPIN,EARTHQUAKE,ICESHARD
     AbilityIndex = 1 # Burn Out
     Item = LEFTOVERS
@@ -1685,9 +1685,9 @@ Pokemon = LEAVANNY,70
     EV = 0,20,10,20,20,0
 #-------------------------------
 [JUGGLER,Daan]
-Pokemon = BRUTEBONNET,70
+Pokemon = AMOONGUSS,70
     Moves = SPORE,BELCH,GIGADRAIN,SYNTHESIS
-    AbilityIndex = 1 # Ball Mimic
+    AbilityIndex = 0 # Regenerator
     Item = LEPPABERRY
     # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
     EV = 10,0,20,0,0,20
@@ -1912,8 +1912,8 @@ Pokemon = TITANIX,70
     Item = ASSAULTVEST
     # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
     EV = 20,20,0,0,20,10
-Pokemon = IRONHANDS,70
-    Moves = POWERUPPUNCH,BULLETPUNCH,KNOCKOFF,THUNDERPUNCH
+Pokemon = HARIYAMA,70
+    Moves = POWERUPPUNCH,BULLETPUNCH,KNOCKOFF,ADAMANTINEPRESS
     AbilityIndex = 1 # Fighting Vigor
     Item = STRIKEVEST
     # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def

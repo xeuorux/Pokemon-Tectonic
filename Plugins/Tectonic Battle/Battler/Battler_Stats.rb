@@ -329,14 +329,6 @@ class PokeBattle_Battler
         eachAbilityShouldApply(aiCheck) do |ability|
             aiSpeedMult = BattleHandlers.triggerMoveSpeedModifierAbility(ability, self, move, @battle, aiSpeedMult, aiCheck)
         end
-        
-        if hasActiveAbility?(:ROCKETHANDS) && move&.punchingMove?
-            if aiCheck
-                aiSpeedMult *= 2.0
-            else
-                applyEffect(:RocketHands)
-            end
-        end
 
         return aiSpeedMult
     end
