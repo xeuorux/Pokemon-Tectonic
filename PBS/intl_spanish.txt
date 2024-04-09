@@ -54443,8 +54443,8 @@ Not Slacking Off
 No Relajándose
 Two Turn Attack
 Ataque Dos Turnos
-Type 3
-Tipo 3
+Added Type
+Tipo Añadido
 Item Lost
 Objetio Perdido
 Uproar Turns

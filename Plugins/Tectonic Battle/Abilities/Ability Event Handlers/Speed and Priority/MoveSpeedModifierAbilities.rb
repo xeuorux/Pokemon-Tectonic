@@ -4,7 +4,7 @@ BattleHandlers::MoveSpeedModifierAbility.add(:MAESTRO,
         if aiCheck
             next mult * 2.0
         else
-            applyEffect(:MoveSpeedDoubled,ability)
+            battler.applyEffect(:MoveSpeedDoubled,ability)
         end
     }
 )
@@ -15,7 +15,7 @@ BattleHandlers::MoveSpeedModifierAbility.add(:GALEWINGS,
         if aiCheck
             next mult * 2.0
         else
-            applyEffect(:MoveSpeedDoubled,ability)
+            battler.applyEffect(:MoveSpeedDoubled,ability)
         end
     }
 )
@@ -26,7 +26,7 @@ BattleHandlers::MoveSpeedModifierAbility.add(:TRENCHCARVER,
         if aiCheck
             next mult * 2.0
         else
-            applyEffect(:MoveSpeedDoubled,ability)
+            battler.applyEffect(:MoveSpeedDoubled,ability)
         end
     }
 )
@@ -37,7 +37,7 @@ BattleHandlers::MoveSpeedModifierAbility.add(:SWIFTSTOMPS,
         if aiCheck
             next mult * 2.0
         else
-            applyEffect(:MoveSpeedDoubled,ability)
+            battler.applyEffect(:MoveSpeedDoubled,ability)
         end
     }
 )

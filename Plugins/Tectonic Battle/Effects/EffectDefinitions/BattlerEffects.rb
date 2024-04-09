@@ -1233,9 +1233,8 @@ GameData::BattleEffect.register_effect(:Battler, {
 
 GameData::BattleEffect.register_effect(:Battler, {
     :id => :Type3,
-    :real_name => "Type 3",
+    :real_name => "Added Type",
     :type => :Type,
-    :info_displayed => false,
     :avatars_purge => true,
     :apply_proc => proc do |battle, battler, value|
         typeName = GameData::Type.get(value).name
