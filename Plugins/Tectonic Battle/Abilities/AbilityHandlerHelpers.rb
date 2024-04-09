@@ -147,3 +147,21 @@ def entryLowestHealingAbility(ability, battler, battle, healingFraction = 0.5, a
     lowestIdBattler.applyFractionalHealing(healingFraction, customMessage: healMessage)
     battle.pbHideAbilitySplash(battler)
 end
+
+# Protean and such
+def moveUseTypeChangeAbility(ability, user, move, battle, thirdType = false)
+    return false if move.callsAnotherMove?
+    return false if move.snatched
+    return false if GameData::Type.get(move.calcType).pseudo_type
+    return false unless user.pbHasOtherType?(move.calcType)
+    battle.pbShowAbilitySplash(user, ability)
+    if thirdType
+        user.applyEffect(:Type3, move.calcType)
+    else
+        user.pbChangeTypes(move.calcType)
+        typeName = GameData::Type.get(move.calcType).name
+        battle.pbDisplay(_INTL("{1} transformed into the {2} type!", user.pbThis, typeName))
+    end
+    battle.pbHideAbilitySplash(user)
+    return true
+end

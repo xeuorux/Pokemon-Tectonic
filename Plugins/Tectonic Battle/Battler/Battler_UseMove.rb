@@ -367,20 +367,6 @@ class PokeBattle_Battler
         move.calculated_category = newCategory
         # Display messages about BP adjustment and weather debuffing
         move.displayDamagingMoveMessages(self, move.calcType, newCategory, targets) if move.damagingMove?
-        # Powder
-        if user.effectActive?(:Powder) && move.calcType == :FIRE
-            @battle.pbCommonAnimation("Powder", user)
-            @battle.pbDisplay(_INTL("When the flame touched the powder on the Pokémon, it exploded!"))
-            user.onMoveFailed(move)
-            if user.takesIndirectDamage?(true)
-                oldHP = user.hp
-                user.pbReduceHP((user.totalhp / 4.0).round, false)
-                cleanupPreMoveDamage(user, oldHP)
-            end
-            pbCancelMoves
-            pbEndTurn(choice)
-            return
-        end
         # Primordial Sea, Desolate Land
         if move.damagingMove?
             case @battle.pbWeather
@@ -402,29 +388,10 @@ class PokeBattle_Battler
                 end
             end
         end
-        # Protean
-        proteanAbility = nil
-        proteanAbility = :PROTEAN if user.hasActiveAbility?(:PROTEAN)
-        proteanAbility = :FREESTYLE if user.hasActiveAbility?(:FREESTYLE)
-        proteanAbility = :SHAKYCODE if user.hasActiveAbility?(:SHAKYCODE) && @battle.eclipsed?
-        proteanAbility = :MUTABLE if user.hasActiveAbility?(:MUTABLE) && !effectActive?(:Mutated)
-        if proteanAbility && !move.callsAnotherMove? &&
-           !move.snatched && user.pbHasOtherType?(move.calcType) && !GameData::Type.get(move.calcType).pseudo_type
-            @battle.pbShowAbilitySplash(user, proteanAbility)
-            user.pbChangeTypes(move.calcType)
-            typeName = GameData::Type.get(move.calcType).name
-            @battle.pbDisplay(_INTL("{1} transformed into the {2} type!", user.pbThis, typeName))
-            applyEffect(:Mutated) if proteanAbility == :MUTABLE
-            @battle.pbHideAbilitySplash(user)
-        end
-        # Shifting Fist
-        if user.hasActiveAbility?(:SHIFTINGFIST) && !move.callsAnotherMove? && !move.snatched &&
-           user.pbHasOtherType?(move.calcType) && !GameData::Type.get(move.calcType).pseudo_type && move.punchingMove?
-            @battle.pbShowAbilitySplash(user, :SHIFTINGFIST)
-            user.applyEffect(:Type3, move.calcType)
-            typeName = GameData::Type.get(move.calcType).name
-            #@battle.pbDisplay(_INTL("{1} shifted into a {2} stance!", user.pbThis, typeName))
-            @battle.pbHideAbilitySplash(user)
+        # Abilities that trigger before a move starts
+        # E.g. Protean
+        user.eachActiveAbility do |ability|
+            BattleHandlers.triggerUserAbilityStartOfMove(ability, user, targets, move, @battle)
         end
         #---------------------------------------------------------------------------
         magicCoater  = -1
@@ -482,40 +449,11 @@ class PokeBattle_Battler
                 user.applyEffect(:Disable,3) if user.canBeDisabled?(true,move)
                 quarantined = true
             end
-            # Needle Fur
-            if !targets.empty? && move.damagingMove?
-                targets.each do |b|
-                    next if b.damageState.unaffected
-                    next unless b.hasActiveAbility?(:NEEDLEFUR)
-                    @battle.pbShowAbilitySplash(b, :NEEDLEFUR)
-                    if user.takesIndirectDamage?(true)
-                        @battle.scene.pbDamageAnimation(user)
-                        upgradedNeedleFur = b.hp < b.totalhp / 2
-                        reduction = user.totalhp / 10
-                        reduction /= BOSS_HP_BASED_EFFECT_RESISTANCE if user.boss?
-                        reduction *= 2 if upgradedNeedleFur
-                        oldHP = user.hp
-                        user.pbReduceHP(reduction, false)
-                        if !upgradedNeedleFur
-                            @battle.pbDisplay(_INTL("{1} is hurt!", user.pbThis))
-                        else
-                            @battle.pbDisplay(_INTL("{1}'s fur is standing sharp! {2} is hurt!", b.pbThis,
-user.pbThis))
-                        end
-                        cleanupPreMoveDamage(user, oldHP)
-                    end
-                    @battle.pbHideAbilitySplash(b)
-                end
-            end
-            # Smoke Reflex
-            if !targets.empty? && move.damagingMove?
-                targets.each do |b|
-                    next if b.damageState.unaffected
-                    next unless b.hasActiveAbility?(:PRESSUREVALVE)
-                    @battle.pbShowAbilitySplash(b, :PRESSUREVALVE)
-                    user.pbResetStatSteps
-                    @battle.pbDisplay(_INTL("{1}'s stat changes were eliminated!", user.pbThis))
-                    @battle.pbHideAbilitySplash(b)
+            # The target's abilities that trigger on the start of the move
+            targets.each do |target|
+                next if target.damageState.unaffected
+                target.eachActiveAbility do |ability|
+                    BattleHandlers.triggerTargetAbilityStartOfMove(ability, user, target, self, @battle)
                 end
             end
             # Get the number of hits
@@ -651,8 +589,7 @@ user.pbThis))
                 # Empowered Destiny Bond
                 if targetBattler.effectActive?(:EmpoweredDestinyBond) && targetBattler.damageState.totalHPLost > 0 
                     recoilDamage = targetBattler.damageState.totalHPLost / 3.0
-                    recoilMessage = _INTL("{1}'s destiny is bonded with {2}!", user.pbThis,
-    targetBattler.pbThis(true))
+                    recoilMessage = _INTL("{1}'s destiny is bonded with {2}!", user.pbThis, targetBattler.pbThis(true))
                     user.applyRecoilDamage(recoilDamage, false, true, recoilMessage)
                 end
             end
@@ -685,31 +622,13 @@ user.pbThis))
         @battle.scene.pbRefresh
         # End of move usage
         pbEndTurn(choice)
+
+        # Abilities that trigger from being in the presence of a successful move
         moveSucceeded = !user.lastMoveFailed && realNumHits > 0 && !move.snatched && magicCoater < 0
-        # Fiesta
-        if moveSucceeded && @battle.pbCheckGlobalAbility(:FIESTA) && (move.soundMove? || move.danceMove?)
-            @battle.pbPriority(true).each do |b|
-                next unless b.hasActiveAbility?(:FIESTA)
-                b.applyFractionalHealing(1.0 / 8.0, ability: :FIESTA)
-			end
-        end
-        # Ancestral Dance
-		if moveSucceeded && (move.danceMove?)
-            if @battle.pbCheckGlobalAbility(:ANCESTRALDANCE)
-				@battle.pbPriority(true).each do |b|
-					next unless b.hasActiveAbility?(:ANCESTRALDANCE)
-					b.pbRaiseMultipleStatSteps(DEFENDING_STATS_1, user, ability: :ANCESTRALDANCE)
-				end
-			end
-        end
-        # Choreography
-		if moveSucceeded && (move.danceMove?)
-            if @battle.pbCheckGlobalAbility(:CHOREOGRAPHY)
-				@battle.pbPriority(true).each do |b|
-					next unless b.hasActiveAbility?(:CHOREOGRAPHY)
-					b.pbRaiseMultipleStatSteps([:SPEED, 1], user, ability: :CHOREOGRAPHY)
-				end
-			end
+        @battle.pbPriority(true).each do |b|
+            b.eachActiveAbility do |ability|
+                BattleHandlers.triggerAnyoneAbilityEndOfMove(ability, b, user, targets, move, @battle)
+            end
         end
         # Instruct
         @battle.eachBattler do |b|

@@ -501,7 +501,7 @@ class PokeBattle_Battler
         elsif hasActiveAbility?(:ECCENTRIC) && !ignoreContrary
             aiLearnsAbility(:ECCENTRIC)
             increment = ((STAT_STEP_BOUND + @steps[stat]) / 2.0).ceil
-            tryRaiseStat(stat, user, move, increment: increment, ability: ability)
+            tryRaiseStat(stat, user, move: move, increment: increment, ability: ability)
         elsif pbCanLowerStatStep?(stat, user, move, true, ignoreContrary)
             @battle.pbShowAbilitySplash(user, ability) if ability
             @steps[stat] = -STAT_STEP_BOUND
@@ -535,7 +535,7 @@ class PokeBattle_Battler
         elsif hasActiveAbility?(:ECCENTRIC) && !ignoreContrary
             aiLearnsAbility(:ECCENTRIC)
             increment = ((STAT_STEP_BOUND + @steps[stat]) / 2.0).ceil
-            tryLowerStat(stat, user, move, increment: increment, ability: ability)
+            tryLowerStat(stat, user, move: move, increment: increment, ability: ability)
         elsif pbCanRaiseStatStep?(stat, user, move, true, ignoreContrary)
             @battle.pbShowAbilitySplash(user, ability) if ability
             @steps[stat] = STAT_STEP_BOUND
