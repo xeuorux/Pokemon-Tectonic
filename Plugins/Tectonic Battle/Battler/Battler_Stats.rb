@@ -326,36 +326,8 @@ class PokeBattle_Battler
             end
         end
 
-        if hasActiveAbilityAI?(:MAESTRO) && move&.soundMove?
-            if aiCheck
-                aiSpeedMult *= 2.0
-            else
-                applyEffect(:Maestro)
-            end
-        end
-
-        if hasActiveAbilityAI?(:GALEWINGS) && move&.type == :FLYING
-            if aiCheck
-                aiSpeedMult *= 2.0
-            else
-                applyEffect(:GaleWings)
-            end
-        end
-
-        if hasActiveAbilityAI?(:TRENCHCARVER) && move&.recoilMove?
-            if aiCheck
-                aiSpeedMult *= 2.0
-            else
-                applyEffect(:TrenchCarver)
-            end
-        end
-
-        if hasActiveAbilityAI?(:SWIFTSTOMPS) && move&.kickingMove?
-            if aiCheck
-                aiSpeedMult *= 2.0
-            else
-                applyEffect(:SwiftStomps)
-            end
+        eachAbilityShouldApply(aiCheck) do |ability|
+            aiSpeedMult = BattleHandlers.triggerMoveSpeedModifierAbility(ability, self, move, @battle, aiSpeedMult, aiCheck)
         end
 
         return aiSpeedMult

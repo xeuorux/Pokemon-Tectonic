@@ -452,7 +452,7 @@ class PokeBattle_Battle
                 numExtraPhasesThisTurn = b.extraMovesPerTurn if b.extraMovesPerTurn > numExtraPhasesThisTurn
             end
 
-            # Boss phases after main phases
+            # Extra phases after main phases
             if numExtraPhasesThisTurn > 0
                 for i in 1..numExtraPhasesThisTurn do
                     echoln("Extra phase begins")

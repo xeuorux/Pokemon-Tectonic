@@ -1705,27 +1705,11 @@ GameData::BattleEffect.register_effect(:Battler, {
 })
 
 GameData::BattleEffect.register_effect(:Battler, {
-    :id => :Maestro,
-    :real_name => "Maestro",
-    :resets_eor	=> true,
-})
-
-GameData::BattleEffect.register_effect(:Battler, {
-    :id => :GaleWings,
-    :real_name => "GaleWings",
-    :resets_eor	=> true,
-})
-
-GameData::BattleEffect.register_effect(:Battler, {
-    :id => :TrenchCarver,
-    :real_name => "Trench Carver",
-    :resets_eor	=> true,
-})
-
-GameData::BattleEffect.register_effect(:Battler, {
-    :id => :SwiftStomps,
-    :real_name => "Swift Stomps",
-    :resets_eor	=> true,
+    :id => :MoveSpeedDoubled,
+    :real_name => "Move Speed Doubled",
+    :type => :Ability,
+    :resets_on_cancel => true,
+    :resets_battlers_eot => true,
 })
 
 GameData::BattleEffect.register_effect(:Battler, {
