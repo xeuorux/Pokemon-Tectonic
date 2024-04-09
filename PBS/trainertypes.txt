@@ -444,9 +444,19 @@ Name = Developer
 Gender = Male
 BaseMoney = 80
 #-------------------------------
+[DEVHARLEQUIN]
+Name = Developer
+Gender = Male
+BaseMoney = 80
+#-------------------------------
 [DEVHEXMANIAC]
 Name = Developer
 Gender = Female
+BaseMoney = 80
+#-------------------------------
+[DEVHIKER]
+Name = Developer
+Gender = Male
 BaseMoney = 80
 #-------------------------------
 [DEVJANITOR]
@@ -479,9 +489,19 @@ Name = Developer
 Gender = Male
 BaseMoney = 80
 #-------------------------------
+[DEVRICHBOY4]
+Name = Developer
+Gender = Male
+BaseMoney = 80
+#-------------------------------
 [DEVROUGHNECK2]
 Name = Developer
 Gender = Male
+BaseMoney = 80
+#-------------------------------
+[DEVSCIENTIST_F]
+Name = Developer
+Gender = Female
 BaseMoney = 80
 #-------------------------------
 [DEVSUPERNERD]
