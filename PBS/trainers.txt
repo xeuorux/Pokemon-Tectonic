@@ -2442,8 +2442,8 @@ Pokemon = ZEBSTRIKA,70
 Pokemon = SIGILYPH,70
     AbilityIndex = 0 # Magic Guard
 Pokemon = SMEARGLE,70
-    AbilityIndex = 0 # Mental Block
     Moves = EXPLOSION
+    AbilityIndex = 0 # Mental Block
 Pokemon = DRACOVISH,70
     AbilityIndex = 0 # Live Fast
 Pokemon = HARCANINE,70
@@ -2466,18 +2466,20 @@ Pokemon = DECIDUEYE,70
     AbilityIndex = 1 # Siphon Sniper
 #-------------------------------
 [DEVHIKER,Valrex]
-Pokemon = FURRET,70
+Pokemon = MFURRET,70
     Name = Pauline
+    Gender = female
     Shiny = yes
-    AbilityIndex = 1 # Slinky
+    AbilityIndex = 0 # Filter
 Pokemon = UNFEZANT,70
+    Gender = female
     AbilityIndex = 0 # Deterrent
 Pokemon = KOMMOO,70
     AbilityIndex = 0 # Sound Barrier
 Pokemon = FARFETCHD,70
-    AbilityIndex = 0 # Perfect Luck
+    AbilityIndex = 1 # Fat Chance
 Pokemon = MMUSHARNA,70
-    AbilityIndex = 1 # Fatigued
+    AbilityIndex = 0 # Slumbering Drake
 Pokemon = HLILLIGANT,70
     AbilityIndex = 0 # Fascinate
 #-------------------------------
