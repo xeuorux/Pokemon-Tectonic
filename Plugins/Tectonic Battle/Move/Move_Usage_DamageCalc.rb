@@ -164,7 +164,7 @@ class PokeBattle_Move
     def pbCalcWeatherDamageMultipliers(user,target,type,multipliers,checkingForAI=false)
         weather = @battle.pbWeather
         case weather
-        when :Sun, :HarshSun
+        when :Sun, :HarshSun, :DarkenedSun
             if type == :FIRE
                 damageBonus = weather == :HarshSun ? 0.5 : 0.3
                 damageBonus *= 2 if @battle.curseActive?(:CURSE_BOOSTED_SUN)
@@ -175,7 +175,7 @@ class PokeBattle_Move
                 damageReduction *= 2 if @battle.curseActive?(:CURSE_BOOSTED_SUN)
                 multipliers[:final_damage_multiplier] *= (1 - damageReduction)
             end
-        when :Rain, :HeavyRain
+        when :Rain, :HeavyRain, :BrilliantRain
             if type == :WATER
                 damageBonus = weather == :HeavyRain ? 0.5 : 0.3
                 damageBonus *= 2 if @battle.curseActive?(:CURSE_BOOSTED_RAIN)
@@ -186,7 +186,7 @@ class PokeBattle_Move
                 damageReduction *= 2 if @battle.curseActive?(:CURSE_BOOSTED_RAIN)
                 multipliers[:final_damage_multiplier] *= (1 - damageReduction)
             end
-        when :Eclipse,:RingEclipse
+        when :Eclipse,:RingEclipse,:DarkenedSun
             if type == :PSYCHIC || (type == :DRAGON && weather == :RingEclipse)
                 damageBonus = weather == :RingEclipse ? 0.5 : 0.3
                 multipliers[:final_damage_multiplier] *= (1 + damageBonus)
@@ -195,7 +195,7 @@ class PokeBattle_Move
             if @battle.pbCheckOpposingAbility(:DISTRESSING,user.index)
                 multipliers[:final_damage_multiplier] *= 0.8
             end
-        when :Moonglow,:BloodMoon
+        when :Moonglow,:BloodMoon,:BrilliantRain
             if type == :FAIRY || (type == :DARK && weather == :BloodMoon)
                 damageBonus = weather == :BloodMoon ? 0.5 : 0.3
                 multipliers[:final_damage_multiplier] *= (1 + damageBonus)
