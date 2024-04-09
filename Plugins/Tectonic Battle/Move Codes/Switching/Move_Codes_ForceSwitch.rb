@@ -10,14 +10,6 @@ class PokeBattle_Move_SwitchOutTargetStatusMove < PokeBattle_Move
     def ignoresSubstitute?(_user); return true; end
 
     def pbFailsAgainstTarget?(user, target, show_message)
-        if target.hasActiveAbility?(:SUCTIONCUPS) && !@battle.moldBreaker
-            if show_message
-                @battle.pbShowAbilitySplash(target, ability)
-                @battle.pbDisplay(_INTL("{1} anchors itself!", target.pbThis))
-                @battle.pbHideAbilitySplash(target)
-            end
-            return true
-        end
         if target.effectActive?(:Ingrain)
             @battle.pbDisplay(_INTL("{1} anchored itself with its roots!", target.pbThis)) if show_message
             return true

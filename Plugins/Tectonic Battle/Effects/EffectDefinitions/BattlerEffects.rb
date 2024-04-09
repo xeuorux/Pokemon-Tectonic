@@ -1267,7 +1267,6 @@ GameData::BattleEffect.register_effect(:Battler, {
         battle.pbDisplay(_INTL("{1} caused an uproar!", battler.pbThis))
         battle.pbPriority(true).each do |b|
             next if b.fainted?
-            next if b.hasActiveAbility?(:SOUNDPROOF)
             b.pbCureStatus(true, :SLEEP)
         end
     end,

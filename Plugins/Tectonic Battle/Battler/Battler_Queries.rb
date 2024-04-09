@@ -429,7 +429,6 @@ class PokeBattle_Battler
             return false if @hp >= @totalhp
         end
         return false if effectActive?(:HealBlock)
-        return false if hasActiveAbility?(:ONEDGE) && @battle.moonGlowing?
         return true
     end
 
@@ -578,10 +577,6 @@ class PokeBattle_Battler
     def nthTurnThisRound?(turnCheck)
         raise _INTL("nthTurnThisRound checks for turns 1 or above!") if turnCheck <= 0
         return @battle.commandPhasesThisRound == (turnCheck - 1)
-    end
-
-    def hasHonorAura?
-        return hasActiveAbility?([:HONORABLE])
     end
 
     def isLastAlive?
