@@ -764,84 +764,29 @@ class Pokemon
       itemSet.each do |item|
         return false unless canHaveItem?(item, showMessages)
       end
+
+      # Pokemon can always hold 1 item
       return true unless itemSet.length > 1
 
-      # Item set contains duplicates
+      # Only pokemon with multiple item abilities can hold more than 1 item
+      return false unless GameData::Ability.get(@ability).is_multiple_item_ability?
+
+      # Item sets cannot contain duplicates
       if itemSet.length != itemSet.uniq.length
         pbMessage(_INTL("#{name} can't hold two of the same item!")) if showMessages
         return false
       end
 
-      if GameData::Ability.get(@ability).is_multiple_item_ability? && itemSet.length > 2
+      # No multiple item abilities allow holding more than 2 items
+      if itemSet.length > 2
         pbMessage(_INTL("#{name} can't hold more than two items!")) if showMessages
         return false
       end
 
-      # All That Glitters
-      if hasAbility?(:ALLTHATGLITTERS)
-          allGems = true
-          itemSet.each do |item|
-              next if GameData::Item.get(item).is_gem?
-              allGems = false
-              break
-          end
-          unless allGems
-              pbMessage(_INTL("For #{name} to have two items, both must be Gems!")) if showMessages
-              return false
-          end
-          return true
-      end
+      # Some abilities restrict which specific items you can have when the Pokemon has 2
+      return false if BattleHandlers.triggerDisallowItemSetAbility(ability, self, itemSet, showMessages)
 
-      # Berry Bunch
-      if hasAbility?(:BERRYBUNCH)
-          allBerries = true
-          itemSet.each do |item|
-              next if GameData::Item.get(item).is_berry?
-              allBerries = false
-              break
-          end
-          unless allBerries
-              pbMessage(_INTL("For #{name} to have two items, both must be Berries!")) if showMessages
-              return false
-          end
-          return true
-      end
-
-      # Herbalist
-      if hasAbility?(:HERBALIST)
-        allHerbs = true
-        itemSet.each do |item|
-            next if GameData::Item.get(item).is_herb?
-            allHerbs = false
-            break
-        end
-        unless allHerbs
-            pbMessage(_INTL("For #{name} to have two items, both must be Herbs!")) if showMessages
-            return false
-        end
-        return true
-      end
-
-      # Fashionable
-      if hasAbility?(:FASHIONABLE)
-          clothingCount = 0
-          itemSet.each do |item|
-              next unless GameData::Item.get(item).is_clothing?
-              clothingCount += 1
-          end
-          if clothingCount == 0
-              pbMessage(_INTL("For #{name} to have two items, at least one must be Clothing!")) if showMessages
-              return false
-          end
-          if clothingCount > 1
-              pbMessage(_INTL("For #{name} to have two items, only one can be Clothing!")) if showMessages
-              return false
-          end
-          return true
-      end
-
-      # Clumsy Kinesis
-      return true if hasAbility?(:CLUMSYKINESIS)
+      return true
     end
 
     def removeInvalidItems

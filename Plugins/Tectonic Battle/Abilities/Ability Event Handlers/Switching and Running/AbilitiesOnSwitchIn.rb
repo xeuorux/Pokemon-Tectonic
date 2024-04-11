@@ -127,24 +127,6 @@ proc { |ability, battler, battle, aiCheck|
 }
 )
 
-BattleHandlers::AbilityOnSwitchIn.add(:TERAVOLT,
-  proc { |ability, battler, battle, aiCheck|
-      next 0 if aiCheck
-      battle.pbShowAbilitySplash(battler, ability)
-      battle.pbDisplay(_INTL("{1} is radiating a bursting aura!", battler.pbThis))
-      battle.pbHideAbilitySplash(battler)
-  }
-)
-
-BattleHandlers::AbilityOnSwitchIn.add(:TURBOBLAZE,
-  proc { |ability, battler, battle, aiCheck|
-      next 0 if aiCheck
-      battle.pbShowAbilitySplash(battler, ability)
-      battle.pbDisplay(_INTL("{1} is radiating a blazing aura!", battler.pbThis))
-      battle.pbHideAbilitySplash(battler)
-  }
-)
-
 BattleHandlers::AbilityOnSwitchIn.add(:UNNERVE,
 proc { |ability, battler, battle, aiCheck|
     next 0 if aiCheck

@@ -156,33 +156,9 @@ BattleHandlers::SpeedCalcAbility.add(:METEORIC,
   }
 )
 
-BattleHandlers::SpeedCalcAbility.add(:MAESTRO,
-  proc { |ability, battler, mult|
-      next mult * 2 if battler.effectActive?(:Maestro)
-  }
-)
-
-BattleHandlers::SpeedCalcAbility.add(:GALEWINGS,
-  proc { |ability, battler, mult|
-      next mult * 2 if battler.effectActive?(:GaleWings)
-  }
-)
-
-BattleHandlers::SpeedCalcAbility.add(:TRENCHCARVER,
-  proc { |ability, battler, mult|
-      next mult * 2 if battler.effectActive?(:TrenchCarver)
-  }
-)
-
 BattleHandlers::SpeedCalcAbility.add(:SLUGGISH,
   proc { |ability, battler, mult|
       next mult / 2.0
-  }
-)
-
-BattleHandlers::SpeedCalcAbility.add(:SWIFTSTOMPS,
-  proc { |ability, battler, mult|
-      next mult * 2 if battler.effectActive?(:SwiftStomps)
   }
 )
 

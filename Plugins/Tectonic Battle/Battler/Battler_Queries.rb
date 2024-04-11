@@ -28,7 +28,7 @@ class PokeBattle_Battler
         ret = [@pokemon.itemTypeChosen] if itemActive? && hasItem?(:CRYSTALVEIL)
         # Type changes from ability
         eachActiveAbility do |abilityID|
-            ret = BattleHandlers.triggerTypeCalcability(abilityID, self, ret)
+            ret = BattleHandlers.triggerTypeCalcAbility(abilityID, self, ret)
         end
         # Extra types (used for a curse)
         if @pokemon
@@ -144,37 +144,81 @@ class PokeBattle_Battler
 
     def canAddItem?(item = nil, stolen = false)
         return false if fainted?
+
+        # Pokemon can always have a single item
+        if itemCount == 0
+            return true if item.nil?
+            return !isIllegalItem?(item)
+        end
         
-        if hasActiveAbility?(:STICKYFINGERS) && stolen
-            return itemCount < 2
+        # Sticky fingers is weird and needs it own check here
+        if hasActiveAbility?(:STICKYFINGERS)
+            return itemCount <= 1 && stolen
         end
 
-        # Disallow certain items as 2nd
-        if itemCount == 1 && item
-            return false if firstItem == item
-            return true if hasActiveAbility?(:CLUMSYKINESIS)
-            itemData = GameData::Item.get(item)
-            if hasActiveAbility?(:ALLTHATGLITTERS)
-                return false if !firstItemData.is_gem? || itemData.is_gem?
-                return true
-            end
-            if hasActiveAbility?(:BERRYBUNCH)
-                return false if !firstItemData.is_berry? || itemData.is_berry?
-                return true
-            end
-            if hasActiveAbility?(:HERBALIST)
-                return false if !GameData::Item.get(firstItem).is_herb?
-                return false if !GameData::Item.get(item).is_herb?
-                return true
-            end
-            if hasActiveAbility?(:FASHIONABLE)
-                clothingA = GameData::Item.get(firstItem).is_clothing?
-                clothingB = GameData::Item.get(item).is_clothing?
-                return clothingA != clothingB
-            end
+        # Check for multi-item legality
+        if item
+            newItemSet = items.clone
+            newItemSet.push(item)
+
+            return legalItemSet?(newItemSet)
         end
 
-        return itemCount == 0
+        return false
+    end
+
+    def legalItemSet?(itemSet, showMessages = false)
+        return true if itemSet.empty?
+
+        # No pokemon is allowed more than 2 items
+        return false if itemSet.length > 2
+
+        # If just 1 item, check for its individual legality
+        return allItemsLegal?(itemSet) if itemSet.length == 1
+
+        # Must have a multi item ability to have more than 1 item
+        hasMultiItemAbility = false
+        eachActiveAbility do |ability|
+            next unless GameData::Ability.get(ability).is_multiple_item_ability?
+            hasMultiItemAbility = true
+            break
+        end
+        return false unless hasMultiItemAbility
+
+        # Cannot have duplicates of the same item
+        return false if itemSet.length != itemSet.uniq.length
+
+        # Must have a base pokemon to check for item set legality
+        return false if @pokemon.nil?
+
+        # Check for abilities that restrict which items you're allowed to have in multi-sets
+        itemSetIsAllowed = true
+        eachActiveAbility do |ability|
+            next unless BattleHandlers.triggerDisallowItemSetAbility(ability, @pokemon, itemSet, showMessages)
+            itemSetIsAllowed = false
+            break
+        end
+        return itemSetIsAllowed
+    end
+
+    def allItemsLegal?(itemSet)
+        allItemsLegal = true
+        itemSet.each do |item|
+            next unless isIllegalItem?(item)
+            allItemsLegal = false
+            break
+        end
+        return allItemsLegal
+    end
+
+    def isIllegalItem?(itemCheck, showMessages = false)
+        # TODO: replace this check with an event-subscription
+        # also use that same event trigger in the Pokemon class
+        if itemCheck == :CRYSTALVEIL && hasActiveAbility?(:WONDERGUARD)
+            pbMessage(_INTL("#{pbThis} can't hold a #{getItemName(:CRYSTALVEIL)}!")) if showMessages
+            return true
+        end
+        return false
     end
 
     def items
@@ -385,7 +429,6 @@ class PokeBattle_Battler
             return false if @hp >= @totalhp
         end
         return false if effectActive?(:HealBlock)
-        return false if hasActiveAbility?(:ONEDGE) && @battle.moonGlowing?
         return true
     end
 
@@ -534,10 +577,6 @@ class PokeBattle_Battler
     def nthTurnThisRound?(turnCheck)
         raise _INTL("nthTurnThisRound checks for turns 1 or above!") if turnCheck <= 0
         return @battle.commandPhasesThisRound == (turnCheck - 1)
-    end
-
-    def hasHonorAura?
-        return hasActiveAbility?([:HONORABLE])
     end
 
     def isLastAlive?

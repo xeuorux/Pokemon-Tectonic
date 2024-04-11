@@ -1,3 +1,9 @@
+class HandlerHash2 # overwriting, TODO: merge this in
+    def eachKey
+        @hash.each { |key, value| yield key }
+    end
+end
+
 class AbilityHandlerHash < HandlerHash2
 end
 
@@ -13,6 +19,7 @@ module BattleHandlers
     # Battler's speed calculation
     SpeedCalcAbility                    = AbilityHandlerHash.new
     SpeedCalcItem                       = ItemHandlerHash.new
+    MoveSpeedModifierAbility     = AbilityHandlerHash.new
     # Battler's weight calculation
     WeightCalcAbility                   = AbilityHandlerHash.new
     WeightCalcItem                      = ItemHandlerHash.new # Float Stone
@@ -44,7 +51,7 @@ module BattleHandlers
     AbilityOnFlinch                     = AbilityHandlerHash.new # Steadfast
     MoveBlockingAbility                 = AbilityHandlerHash.new
     MoveImmunityTargetAbility           = AbilityHandlerHash.new
-    MoveImmunityAllyAbility = AbilityHandlerHash.new
+    MoveImmunityAllyAbility             = AbilityHandlerHash.new
     # Move usage
     MoveBaseTypeModifierAbility         = AbilityHandlerHash.new
     # Accuracy calculation
@@ -61,26 +68,26 @@ module BattleHandlers
     DamageCalcUserItem                  = ItemHandlerHash.new
     DamageCalcTargetItem                = ItemHandlerHash.new
     # Attack calculation
-    AttackCalcUserAbility = AbilityHandlerHash.new
-    AttackCalcAllyAbility = AbilityHandlerHash.new
+    AttackCalcUserAbility               = AbilityHandlerHash.new
+    AttackCalcAllyAbility               = AbilityHandlerHash.new
     AttackCalcUserItem                  = ItemHandlerHash.new
     # Special Attack calculation
     SpecialAttackCalcUserAbility        = AbilityHandlerHash.new
     SpecialAttackCalcAllyAbility        = AbilityHandlerHash.new
     SpecialAttackCalcUserItem           = ItemHandlerHash.new
     # Defense calculation
-    DefenseCalcUserAbility = AbilityHandlerHash.new
-    DefenseCalcAllyAbility = AbilityHandlerHash.new
+    DefenseCalcUserAbility              = AbilityHandlerHash.new
+    DefenseCalcAllyAbility              = AbilityHandlerHash.new
     DefenseCalcUserItem                  = ItemHandlerHash.new
     # Special Defense calculation
     SpecialDefenseCalcUserAbility        = AbilityHandlerHash.new
     SpecialDefenseCalcAllyAbility        = AbilityHandlerHash.new
     SpecialDefenseCalcUserItem           = ItemHandlerHash.new
     # Critical hit calculation
-    CriticalCalcUserAbility = AbilityHandlerHash.new
-    GuaranteedCriticalUserAbility	= AbilityHandlerHash.new
-    CriticalCalcTargetAbility = AbilityHandlerHash.new
-    CriticalPreventTargetAbility	= AbilityHandlerHash.new
+    CriticalCalcUserAbility             = AbilityHandlerHash.new
+    GuaranteedCriticalUserAbility	    = AbilityHandlerHash.new
+    CriticalCalcTargetAbility           = AbilityHandlerHash.new
+    CriticalPreventTargetAbility	    = AbilityHandlerHash.new
     CriticalCalcUserItem                = ItemHandlerHash.new
     CriticalCalcTargetItem              = ItemHandlerHash.new # None!
     # Upon a move hitting a target
@@ -90,6 +97,7 @@ module BattleHandlers
     TargetItemOnHitPositiveBerry        = ItemHandlerHash.new
     # Abilities/items that trigger at the end of using a move
     UserAbilityEndOfMove                = AbilityHandlerHash.new
+    AnyoneAbilityEndOfMove              = AbilityHandlerHash.new
     TargetItemAfterMoveUse              = ItemHandlerHash.new
     UserItemAfterMoveUse                = ItemHandlerHash.new
     TargetAbilityAfterMoveUse           = AbilityHandlerHash.new
@@ -115,7 +123,7 @@ module BattleHandlers
     TrappingTargetItem                  = ItemHandlerHash.new   # None!
     AbilityOnSwitchIn                   = AbilityHandlerHash.new
     AbilityOnEnemySwitchIn              = AbilityHandlerHash.new
-    ItemOnSwitchIn = ItemHandlerHash.new # Air Balloon
+    ItemOnSwitchIn                      = ItemHandlerHash.new # Air Balloon
     ItemOnIntimidated                   = ItemHandlerHash.new # Adrenaline Orb
     AbilityOnSwitchOut                  = AbilityHandlerHash.new
     AbilityChangeOnBattlerFainting      = AbilityHandlerHash.new
@@ -129,14 +137,23 @@ module BattleHandlers
     ItemOnEnemyStatGain                 = ItemHandlerHash.new
     ItemOnStatLoss                      = ItemHandlerHash.new
     FieldEffectStatLossItem	            = ItemHandlerHash.new
-
     # Special Weather Effect abilities
     TotalEclipseAbility                 = AbilityHandlerHash.new
     FullMoonAbility                     = AbilityHandlerHash.new
+    # Added effects
+    CertainAddedEffectUserAbility           = AbilityHandlerHash.new
+    AddedEffectChanceModifierUserAbility    = AbilityHandlerHash.new
+    PreventAddedEffectTargetAbility         = AbilityHandlerHash.new
+    AddedEffectChanceModifierTargetAbility  = AbilityHandlerHash.new
+    # Start of move
+    UserAbilityStartOfMove              = AbilityHandlerHash.new
+    TargetAbilityStartOfMove            = AbilityHandlerHash.new
+    # Multi-item interactions
+    DisallowItemSetAbility              = AbilityHandlerHash.new
 
     #=============================================================================
 
-    def self.triggerTypeCalcability(ability, battler, types)
+    def self.triggerTypeCalcAbility(ability, battler, types)
         ret = TypeCalcAbility.trigger(ability, battler, types)
         return !ret.nil? ? ret : types
     end
@@ -150,6 +167,11 @@ module BattleHandlers
 
     def self.triggerSpeedCalcItem(item, battler, mult)
         ret = SpeedCalcItem.trigger(item, battler, mult)
+        return !ret.nil? ? ret : mult
+    end
+
+    def self.triggerMoveSpeedModifierAbility(ability, battler, move, battle, mult, aiCheck)
+        ret = MoveSpeedModifierAbility.trigger(ability, battler, move, battle, mult, aiCheck)
         return !ret.nil? ? ret : mult
     end
 
@@ -482,6 +504,10 @@ module BattleHandlers
         UserAbilityEndOfMove.trigger(ability, user, targets, move, battle, switchedBattlers)
     end
 
+    def self.triggerAnyoneAbilityEndOfMove(ability, battler, user, targets, move, battle)
+        AnyoneAbilityEndOfMove.trigger(ability, battler, user, targets, move, battle)
+    end
+
     def self.triggerTargetItemAfterMoveUse(item, battler, user, move, switched, battle)
         TargetItemAfterMoveUse.trigger(item, battler, user, move, switched, battle)
     end
@@ -647,5 +673,44 @@ module BattleHandlers
 
     def self.triggerFullMoonAbility(ability, battler, battle)
         FullMoonAbility.trigger(ability, battler, battle)
+    end
+
+    #=============================================================================
+
+    def self.triggerCertainAddedEffectUserAbility(ability, battle, user, target, move)
+        ret = CertainAddedEffectUserAbility.trigger(ability, battle, target, user, move)
+        return !ret.nil? ? ret : false
+    end
+
+    def self.triggerAddedEffectChanceModifierUserAbility(ability, user, target, move, chance)
+        ret = AddedEffectChanceModifierUserAbility.trigger(ability, user, target, move, chance)
+        return !ret.nil? ? ret : chance
+    end
+
+    def self.triggerPreventAddedEffectTargetAbility(ability, battle, user, target, move, showMessages)
+        ret = PreventAddedEffectTargetAbility.trigger(ability, battle, user, target, move, showMessages)
+        return !ret.nil? ? ret : false
+    end
+
+    def self.triggerAddedEffectChanceModifierTargetAbility(ability, user, target, move, chance)
+        ret = AddedEffectChanceModifierTargetAbility.trigger(ability, user, target, move, chance)
+        return !ret.nil? ? ret : chance
+    end
+
+    #=============================================================================
+
+    def self.triggerUserAbilityStartOfMove(ability, user, targets, move, battle)
+        UserAbilityStartOfMove.trigger(ability, user, targets, move, battle)
+    end
+
+    def self.triggerTargetAbilityStartOfMove(ability, user, target, move, battle)
+        TargetAbilityStartOfMove.trigger(ability, user, target, move, battle)
+    end
+
+    #=============================================================================
+
+    def self.triggerDisallowItemSetAbility(ability, pokemon, itemSet, showMessages)
+        ret = DisallowItemSetAbility.trigger(ability, pokemon, itemSet, showMessages)
+        return !ret.nil? ? ret : false
     end
 end

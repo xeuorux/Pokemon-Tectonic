@@ -2190,8 +2190,8 @@ Pokemon = KECLEON,70
     AbilityIndex = 1 # Protean
 Pokemon = CINCCINO,70
     AbilityIndex = 0 # Skill Link
-Pokemon = BEWEAR,70
-    AbilityIndex = 0 # Intimidate
+Pokemon = DELCATTY,70
+    AbilityIndex = 0 # Above It All
 #-------------------------------
 [DEVCOOLTRAINER_F,Zeu]
 Pokemon = GALVANTULA,70
@@ -2420,6 +2420,68 @@ Pokemon = YANMEGA,70
     AbilityIndex = 1 # Tinted Lens
 Pokemon = DHELMISE,70
     AbilityIndex = 0 # Rust & Wrack
+#-------------------------------
+[DEVRICHBOY4,Darlvon]
+Pokemon = PURUGLY,70
+    AbilityIndex = 1 # Competitive
+Pokemon = METAGROSS,70
+    AbilityIndex = 0 # Brute Force
+Pokemon = WEAVILE,70
+    AbilityIndex = 0 # Inner Focus
+Pokemon = WHIMSICOTT,70
+    Shiny = yes
+    AbilityIndex = 0 # Cotton Decoy
+Pokemon = AGGRON,70
+    AbilityIndex = 1 # Motor Drive
+Pokemon = GOLISOPOD,70
+    AbilityIndex = 0 # Emergency Exit
+#-------------------------------
+[DEVHARLEQUIN,Minty]
+Pokemon = ZEBSTRIKA,70
+    AbilityIndex = 1 # Reckless
+Pokemon = SIGILYPH,70
+    AbilityIndex = 0 # Magic Guard
+Pokemon = SMEARGLE,70
+    Moves = EXPLOSION
+    AbilityIndex = 0 # Mental Block
+Pokemon = DRACOVISH,70
+    AbilityIndex = 0 # Live Fast
+Pokemon = HARCANINE,70
+    AbilityIndex = 1 # Rock Head
+Pokemon = REAVOR,70
+    AbilityIndex = 0 # Technician
+#-------------------------------
+[DEVSCIENTIST_F,LunaFlare]
+Pokemon = ESPEON,70
+    AbilityIndex = 0 # Overthinking
+Pokemon = SNEASLER,70
+    AbilityIndex = 0 # Tough
+Pokemon = PRIMARINA,70
+    AbilityIndex = 0 # Maestro
+Pokemon = VOLCARONA,70
+    AbilityIndex = 1 # Dawnfall
+Pokemon = NOCTOWL,70
+    AbilityIndex = 1 # Fascinate
+Pokemon = DECIDUEYE,70
+    AbilityIndex = 1 # Siphon Sniper
+#-------------------------------
+[DEVHIKER,Valrex]
+Pokemon = MFURRET,70
+    Name = Pauline
+    Gender = female
+    Shiny = yes
+    AbilityIndex = 0 # Filter
+Pokemon = UNFEZANT,70
+    Gender = female
+    AbilityIndex = 0 # Deterrent
+Pokemon = KOMMOO,70
+    AbilityIndex = 0 # Sound Barrier
+Pokemon = FARFETCHD,70
+    AbilityIndex = 1 # Fat Chance
+Pokemon = MMUSHARNA,70
+    AbilityIndex = 0 # Slumbering Drake
+Pokemon = HLILLIGANT,70
+    AbilityIndex = 0 # Fascinate
 #-------------------------------
 [LEADER_Bence,Bence]
 Policies = BENCE

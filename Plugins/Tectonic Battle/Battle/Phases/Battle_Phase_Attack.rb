@@ -224,6 +224,7 @@ class PokeBattle_Battle
         pbCalculatePriority(true)
         # Perform actions
         return if attackPhaseNonMoveActions
+        speedAffectingTriggers
         pbPriority.each do |battler|
             next if battler.fainted?
             next unless @choices[battler.index][0] == :UseMove

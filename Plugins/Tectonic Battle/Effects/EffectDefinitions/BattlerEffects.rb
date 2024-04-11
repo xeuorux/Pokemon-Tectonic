@@ -1233,9 +1233,8 @@ GameData::BattleEffect.register_effect(:Battler, {
 
 GameData::BattleEffect.register_effect(:Battler, {
     :id => :Type3,
-    :real_name => "Type 3",
+    :real_name => "Added Type",
     :type => :Type,
-    :info_displayed => false,
     :avatars_purge => true,
     :apply_proc => proc do |battle, battler, value|
         typeName = GameData::Type.get(value).name
@@ -1268,7 +1267,6 @@ GameData::BattleEffect.register_effect(:Battler, {
         battle.pbDisplay(_INTL("{1} caused an uproar!", battler.pbThis))
         battle.pbPriority(true).each do |b|
             next if b.fainted?
-            next if b.hasActiveAbility?(:SOUNDPROOF)
             b.pbCureStatus(true, :SLEEP)
         end
     end,
@@ -1705,27 +1703,11 @@ GameData::BattleEffect.register_effect(:Battler, {
 })
 
 GameData::BattleEffect.register_effect(:Battler, {
-    :id => :Maestro,
-    :real_name => "Maestro",
-    :resets_eor	=> true,
-})
-
-GameData::BattleEffect.register_effect(:Battler, {
-    :id => :GaleWings,
-    :real_name => "GaleWings",
-    :resets_eor	=> true,
-})
-
-GameData::BattleEffect.register_effect(:Battler, {
-    :id => :TrenchCarver,
-    :real_name => "Trench Carver",
-    :resets_eor	=> true,
-})
-
-GameData::BattleEffect.register_effect(:Battler, {
-    :id => :SwiftStomps,
-    :real_name => "Swift Stomps",
-    :resets_eor	=> true,
+    :id => :MoveSpeedDoubled,
+    :real_name => "Move Speed Doubled",
+    :type => :Ability,
+    :resets_on_cancel => true,
+    :resets_battlers_eot => true,
 })
 
 GameData::BattleEffect.register_effect(:Battler, {
