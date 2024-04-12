@@ -19,7 +19,7 @@ BattleHandlers::UserAbilityStartOfMove.add(:MUTABLE,
   proc { |ability, user, targets, move, battle|
     next if user.effectActive?(:Mutated)
     next unless moveUseTypeChangeAbility(ability, user, move, battle)
-    applyEffect(:Mutated)
+    user.applyEffect(:Mutated)
   }
 )
 
