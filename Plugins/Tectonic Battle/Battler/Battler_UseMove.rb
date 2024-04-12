@@ -453,7 +453,7 @@ class PokeBattle_Battler
             targets.each do |target|
                 next if target.damageState.unaffected
                 target.eachActiveAbility do |ability|
-                    BattleHandlers.triggerTargetAbilityStartOfMove(ability, user, target, self, @battle)
+                    BattleHandlers.triggerTargetAbilityStartOfMove(ability, user, target, move, @battle)
                 end
             end
             # Get the number of hits
