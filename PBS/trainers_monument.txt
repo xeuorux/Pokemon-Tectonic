@@ -1325,7 +1325,7 @@ Pokemon = AEGISLASH,70
     # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
     EV = 20,20,10,0,20,0
 Pokemon = LINOONE,70
-    Moves = EXTREMESPEED,THROATCHOP,STOMPINGTANTRUM,BELLYDRUM
+    Moves = EXTREMESPEED,THROATCHOP,LEAFBLADE,BELLYDRUM
     AbilityIndex = 0 # Dire Diversion
     Item = POWERLOCK
     # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
