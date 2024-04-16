@@ -175,6 +175,12 @@ class PokeBattle_Move_TransformTargetPreEvolution < PokeBattle_Move
             end
             return true
         end
+        if target.boss?
+            if show_message
+                @battle.pbDisplay(_INTL("But it failed, since #{target.pbThis(true)} is an avatar!"))
+            end
+            return true
+        end
         unless target.species_data
             if show_message
                 @battle.pbDisplay(_INTL("But it failed, since #{target.pbThis(true)} doesn't have a defined species somehow!"))
