@@ -2460,8 +2460,8 @@ Pokemon = PRIMARINA,70
     AbilityIndex = 0 # Maestro
 Pokemon = VOLCARONA,70
     AbilityIndex = 1 # Dawnfall
-Pokemon = NOCTOWL,70
-    AbilityIndex = 1 # Fascinate
+Pokemon = MNOCTOWL,70
+    AbilityIndex = 0 # Fascinate
 Pokemon = DECIDUEYE,70
     AbilityIndex = 1 # Siphon Sniper
 #-------------------------------
