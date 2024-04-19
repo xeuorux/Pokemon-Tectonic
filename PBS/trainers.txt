@@ -2461,7 +2461,7 @@ Pokemon = PRIMARINA,70
 Pokemon = VOLCARONA,70
     AbilityIndex = 1 # Dawnfall
 Pokemon = MNOCTOWL,70
-    AbilityIndex = 0 # Fascinate
+    AbilityIndex = 0 # Sentry
 Pokemon = DECIDUEYE,70
     AbilityIndex = 1 # Siphon Sniper
 #-------------------------------
