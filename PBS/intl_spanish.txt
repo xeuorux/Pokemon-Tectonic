@@ -10390,6 +10390,8 @@ Tampoco es como si no lo fuera, con el puente colapsado y el túnel hacia Sweetr
 [Map158]
 Thanks to my Swoobat's ability, it's completely code compliant for construction!
 ¡Gracias a la habilidad de mi Swoobat, cumple al pie de la letra el código para la construcción!
+Thanks to it's ability, Swoobat can wear two pieces of saftey gear! It can work on construction sites!
+Gracias a su habilidad, Swoobat puede usar dos piezas.de equipo de seguridad! Puede funcionar en la construcción sitios!
 I'll take your Pokémon for a few seconds.
 Tomaré tus Pokémon por un par de segundos.
 First, you should restore your Pokémon to full health.
