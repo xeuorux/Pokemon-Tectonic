@@ -9757,14 +9757,14 @@ Sí
 
 [Map145]
 
-You and the maid move to pincer the Deerling...
-Tú y la criada se mueven para interceptar al Deerling…
-The maid moves into position...
-La criada se mueve a la posición.
-You tackle the Deerling before it can react!
-¡Embistes al Deerling antes de que pueda reaccionar!
-The maid hands you a Pokeball to catch the Deerling!
-¡La criada te alcanza un Pokémon para atrapar el Deerling!
+You walk over to the Deerling, and the maid hands you a Pokeball...
+Te acercas al Deerling y la doncella te entrega eres una pokebola...
+You move into position...
+Te colocas en posición...
+And tackle the Deerling before it can react!
+¡Y enfréntate al Deerling antes de que pueda reaccionar!
+You toss the Pokeball to catch the Deerling!
+¡Lanzas la Pokebola para atrapar al Deerling!
 Whew...
 Whew...
 Good work. I thought I'd be working for hours to fix a mess caused by that Deerling.
@@ -9781,14 +9781,10 @@ This Deerling wandered in. Help me here, would you?
 Este Deerling deambuló hasta aquí. ¿Me puedes ayudar por aquí?
 If you could get around this table, we might be able to trap it between us.
 Si puedes ir alrededor de la mesa, podríamos atraparlo entre nosotros.
-Make sure it doesn't spot you until you get close.
-Aségurate de que no te vea hasta que estés cerca. 
-It'll get spooked and wreck the place.
-Se asustará y destrozará el lugar.
-You almost spooked the Deerling!
-¡Casi asustas al Deerling!
-Time to take a step back...
-Hora de retroceder… 
+Go up and catch it while it's not looking at us.
+Sube y atrápalo mientras no nos mira.
+Just sneak up to it, it seems like it's tired.
+Acércate sigilosamente, parece que está cansado.
 
 
 [Map146]
