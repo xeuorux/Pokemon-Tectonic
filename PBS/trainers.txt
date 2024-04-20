@@ -2483,6 +2483,20 @@ Pokemon = MMUSHARNA,70
 Pokemon = HLILLIGANT,70
     AbilityIndex = 0 # Fascinate
 #-------------------------------
+[DEVWORKER5,Jbsundown]
+Pokemon = SUDOWOODO,70
+    AbilityIndex = 1 # Prankster
+Pokemon = DRAGONITE,70
+    AbilityIndex = 1 # Multiscale
+Pokemon = NIDOKING,70
+    AbilityIndex = 0 # Sheer Force
+Pokemon = HATTERENE,70
+    AbilityIndex = 1 # Sleetshaker
+Pokemon = POLTEAGEIST,70
+    AbilityIndex = 0 # Frostpitality
+Pokemon = TYPHLOSION,70
+    AbilityIndex = 0 # Burn Skill
+#-------------------------------
 [LEADER_Bence,Bence]
 Policies = BENCE
 Flags = NoPerfect

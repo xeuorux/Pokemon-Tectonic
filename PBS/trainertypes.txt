@@ -509,6 +509,11 @@ Name = Developer
 Gender = Male
 BaseMoney = 80
 #-------------------------------
+[DEVWORKER5]
+Name = Developer
+Gender = Male
+BaseMoney = 80
+#-------------------------------
 [DITTO_AROMALADY]
 Name = Aroma Lady
 Gender = Female
