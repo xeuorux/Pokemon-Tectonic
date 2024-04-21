@@ -2491,9 +2491,9 @@ Pokemon = DRAGONITE,70
 Pokemon = NIDOKING,70
     AbilityIndex = 0 # Sheer Force
 Pokemon = HATTERENE,70
-    AbilityIndex = 1 # Sleetshaker
-Pokemon = POLTEAGEIST,70
-    AbilityIndex = 0 # Frostpitality
+    AbilityIndex = 0 # Killjoy
+Pokemon = MPOLTEAGEIST,70
+    AbilityIndex = 1 # Chill Out
 Pokemon = TYPHLOSION,70
     AbilityIndex = 0 # Burn Skill
 #-------------------------------
