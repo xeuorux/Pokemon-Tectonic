@@ -28,3 +28,4 @@ Game Linux.x86_64
 Debug Game.bat
 Debug Game With Compile.bat
 Tectonic Updater.jar
+release_version.txt
