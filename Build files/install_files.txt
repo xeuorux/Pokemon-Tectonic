@@ -25,3 +25,6 @@ extendtext.exe
 Essentials Docs Wiki.URL
 animaker.exe
 Game Linux.x86_64
+Debug Game.bat
+Debug Game With Compile.bat
+Tectonic Updater.jar

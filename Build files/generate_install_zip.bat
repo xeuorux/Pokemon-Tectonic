@@ -1,1 +1,1 @@
-java -jar "Chasm Launcher.jar" /z "install_files.txt" "" "false"
+java -jar "Tectonic Builder.jar" /z "install_files.txt" "" "false"
