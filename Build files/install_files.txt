@@ -1,10 +1,10 @@
-/Audio
-/Data
-/Fonts
-/Graphics
-/lib64
-/PBS
-/Plugins
+Audio
+Data
+Fonts
+Graphics
+lib64
+PBS
+Plugins
 zlib1.dll
 x64-msvcrt-ruby310.dll
 townmapgen.html
