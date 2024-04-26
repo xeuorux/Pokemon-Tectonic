@@ -3429,8 +3429,8 @@ Might even be Champion material. Let me get your Pokémon back into tip-top shap
 Hasta podrías ser material de Campeón. Déjame devolver a tus Pokémon a su mejor estado.
 As for you, here: the Loyalty Badge. It ain’t much, but you earned it.
 Y para ti, toma: la Medalla Lealtad. No es mucho, pero te la ganaste.
-Come see me again some time. I’m itching for a rematch.
-Vuelve cuando tengas tiempo. Estoy impaciente por una revancha.
+Come see me again some time. I’m itching for a <imp>rematch</imp>.
+Vuelve cuando tengas tiempo. Estoy impaciente por una <imp>revancha</imp>.
 Oh, I was hoping you’d say that. You ain’t facing Gym Leader Lambert today.
 Oh, estaba esperando que dijeras eso. Hoy no te estás enfrentando al Líder de Gimnasio Lambert.
 No, this is former Team Chasm Captain Lambert, at your service.
