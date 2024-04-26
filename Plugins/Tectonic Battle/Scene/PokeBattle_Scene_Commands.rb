@@ -1,3 +1,5 @@
+TRIPLE_BATTLE_SHIFT_ENABLED = false
+
 class PokeBattle_Scene
     #=============================================================================
     # The player chooses a main command for a Pokémon
@@ -131,7 +133,7 @@ class PokeBattle_Scene
       if battler.getMoves[@lastMove[idxBattler]] && battler.getMoves[@lastMove[idxBattler]].id
         moveIndex = @lastMove[idxBattler]
       end
-      cw.shiftMode = (@battle.pbCanShift?(idxBattler)) ? 1 : 0
+      cw.shiftMode = (@battle.pbCanShift?(idxBattler) && TRIPLE_BATTLE_SHIFT_ENABLED) ? 1 : 0
       cw.setIndexAndMode(moveIndex,0)
       needFullRefresh = true
       needRefresh = false
@@ -184,7 +186,7 @@ class PokeBattle_Scene
           cw.toggleExtraInfo()
           needRefresh = true
         elsif Input.trigger?(Input::SPECIAL)   # Shift
-          if cw.shiftMode>0
+          if cw.shiftMode > 0 && TRIPLE_BATTLE_SHIFT_ENABLED
             pbPlayDecisionSE
             break if yield -3
             needRefresh = true
