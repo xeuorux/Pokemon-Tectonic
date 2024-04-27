@@ -11706,7 +11706,8 @@ Care to exchange business cards?
 ¿Intercambiamos tarjetas de presentación?
 
 [Map185]
-
+Sewage Maintenance
+Mantenimiento de Alcantarillas
 Eleig Boating and Fishing
 Navegación y Pesca Eleig
 Oh, so it’s you again. You’ve arrived at a rather fortuitous time.
@@ -11918,7 +11919,7 @@ O que, como, ¿Le di un golpe en primer lugar? Porque la respuesta sí, soy una 
 Really, I let her off easy. But, um, I didn’t really let her off.
 Realmente, la dejé ir fácilmente. Pero, eh, realmente no la deje ir.
 I kinda... got hired? Like, I do not trust that hag for a second, so I’m gonna stick to her like a Remoraid.
-De cierto moo... ¿Fui contratada? Osea, no confío en esa bruja por un segundo, pero me pegaré a ella como un Remoraid.
+De cierto modo... ¿Fui contratada? Osea, no confío en esa bruja por un segundo, pero me pegaré a ella como un Remoraid.
 She’s gonna fix all the messed-up stuff that she and her cronies caused.
 Ella va a arreglar todas las cosas jodidas que ella y sus amigotes causaron.
 And she’s, like, totally overworked, so, um... yeah. I’m her aide now!
@@ -12961,7 +12962,7 @@ Big ol' conspiracy, huh? Been lied to? Yeah, well, comes with the territory. Bet
 'Course. We’re confidants, Yezera and I. Nearly decked her when she told me, too.
 Claro. Somos confidentes, Yezera y yo. Casi le di un buen golpe cando me dijo.
 But she always was the smarter one 'tween us. Who the hell am I to second-guess her?
-Pero siempre fue la más inteligente entre nosostros. ¿Quién demonios soy yo para cuestionarla?
+Pero siempre fue la más inteligente entre nosotros. ¿Quién demonios soy yo para cuestionarla?
 Maybe I am, maybe I ain't. Don't matter much, do it? You plannin' on arresting me? Hah.
 Quizá lo estoy, quizá no. Tampoco importa mucho, ¿No crees? ¿Acaso planeas arrestarme? Ja.
 Looking right as rain, ain'tcha? Heard from a fortune teller that you’ve got a steel core to you.
@@ -14350,7 +14351,6 @@ El orgullo tiene razón.
 Don't beat yourself up.
 No te mortifiques.
 [Map214]
-
 Some loose paper displaying the LuxTech logo.
 Un papel suelto mostrando el logo de LuxTech.
 Leaving through -- oh. You -- you’re looking for something down here.
@@ -14602,7 +14602,6 @@ Nah.
 Where?
 ¿Dónde?
 [Map216]
-
 Phione! \PN! What just happened here?
 ¡Phione! ¡\PN! ¿Qué acaba de pasar?
 What? They can do that? Like, Phione BECAME an avatar? That’s insane!
@@ -15083,7 +15082,7 @@ Pero, em, como que me interrumpiste. ¿Así que puedo sólo decirte lo que quier
 Welp. Listen, uh, Makya’s kinda in a weird place right now.
 Bueh. Escucha, eh, Makya está en un lugar raro ahora mismo.
 Team Chasm ran roughshod over this whole region and then kinda just… got away with it?
-El Team Chasm pisoteado sobre toda la región, y luego simplemente… ¿Se salieron con la suya?
+El Team Chasm ha pisoteado sobre toda la región, y luego simplemente… ¿Se salieron con la suya?
 So, uh, yeah, if you ever wanted proof that humans can’t get even the most black-and-white justice right, there you are.
 Así que, eh, seh, si alguna vez quisiste prueba de que los humanos ni pueden lograr la mayor justicia blanca-y-negra correctamente, ahí la tienes.
 Would’ve been simple to fix that little screw-up. But they didn’t.
@@ -15101,7 +15100,7 @@ And I’ve got just the tool!
 It is simple, you – you idiot!
 Es simple, Idi– ¡Idiota!
 I can track down every ex-Chasm criminal and haul them up to the courts myself if I have to!
-¡Puedo rastrear a cualquier ex-Chasm y llevarlos a la corte yo mismo/a si tengo que hacerlo!
+¡Puedo rastrear a cualquier ex-Chasm y llevarlos a la corte yo misma si tengo que hacerlo!
 They just won’t do anything if I did! So I have to do things personally, yeah?
 ¡Pero simplemente no harían nada! Así que tengo que hacer las cosas personalmente, ¿Entiendes?
 Sorry. Nothing… personal.
@@ -15209,7 +15208,7 @@ Sur: Estuario Arenisca
 "Sweetrock Harbor, satisfying the world's sweettooth!"
 “¡Puerto Sweetrock, satisfaciendo la melosidad del mundo!”
 "A sister city of Canalave!"
-“¡La ciudad hermana de Canalave!”
+“¡La ciudad hermana de Canal!”
 I work at Sweetrock Candy factory, like many in town.
 Trabajo en la Fábrica de Dulces Sweetrock, como varios en el pueblo.
 That said, I rarely get to see Victoire, the manager and gym leader.
@@ -16470,14 +16469,16 @@ Quizás en alguna tienda específica, pero no aquí en Prizca.
 
 Hello there. Perhaps you have come looking to purchase exclusive items?
 Buenos días. ¿Quizás hayas venido con interés en comprar objetos exclusivos?
-Unfortunately, I don't deal to just any Trainer. Some of these items are rather powerful, and I can't just let them fall into anyone's hands.
-Desafortunadamente, no lidio con cualquier Entrenador. Algunos de estos objetos son especialmente poderosos, y no puedo dejar que caigan en las manos de cualquiera.
+Unfortunately, I don't deal to just any Trainer.
+Desafortunadamente, no lidio con cualquier Entrenador.
+Some of these items are rather powerful, and I can't let them fall into the wrong hands.
+Algunos de estos objetos son bastantes poderosos, y no puedo dejarlos caer en malas manos.
 We don't sell to everyone, dearie.
 No le vendemos a cualquiera, cariño.
 We don't want to enable Trainers with poor intentions, so we only sell to Trainers we can trust.
 No queremos habilitar Entrenadores con malas intenciones, así que sólo le vendemos a Entrenadores que podemos confiar.
-You'll probably make a few headlines once you beat the Gym circuit, so check back with us later. We'll consider your character in the meantime.
-Probablemente aparezcas en un par de titulares una vez termines el circuite de los Gimnasios, así que vuelve aquí luego. Te consideraremos mientras tanto.
+That said, only 8 people have ever managed it!
+¡Dicho esto, sólo 8 personas lo han logrado!
 Oh, \PN dearie! A pleasure seeing you.
 Oh, ¡\PN, cariño! Un gusto verte.
 Check with my husband, we've decided to give you access to some of our stock.
@@ -16490,15 +16491,14 @@ We've racked up quite the collection of artifacts, though now that we're older i
 Acumulamos una gran colección de artefactos, pero ahora que estamos en la vejez estamos intentando encontrarle un nuevo hogar a estos objetos.
 They're not coming wherever we're going.
 No van a ir a donde sea que vayamos.
-Those fools over at Aegis Insurance called us up and tried to convince us to sign up for "adventuring insurance".
+Those fools over at Aegis Insurance called and tried to convince us to register for "adventuring insurance".
 Esos idiotas de Aseguradora Aegis nos llamaron y trataron de convencernos de registrarnos para un "seguro de aventuras".
-A good idea on the surface, but the fine print restricted us from going in any ancient tombs!
-Suena como una buena idea a primera vista, ¡Pero la letra pequeña nos prohibía ir a ninguna tumba antigua!
+A good idea on the surface, but the fine print restricted us from entering ancient tombs!
+Suena como una buena idea a primera vista, ¡Pero la letra pequeña nos prohibía entrar a ninguna tumba antigua!
 To think, that they would try and pull the wool over our eyes with that scam.
 Y pensar que intentarían engañarnos con esa estafa.
 Clearly they have no respect for treasure hunters!
 ¡Claramente no tienen respeto para los cazadores de tesoros!
-
 [Map243]
 
 Most of the Makyan Rangers were former Team Chasm grunts.
@@ -16524,7 +16524,7 @@ Al menos así no tendré que hacer el viaje…
 They can't be too hard to find right? We are in a cave after all.
 ¿No pueden ser muy difíciles de encontrar cierto? Estamos en una cueva después de todo.
 I'd go find one myself, but, well, it's a catch 22 of sorts...
-Buscaría uno yo mismo/a, pero bueno,
+Buscaría uno yo mismo, pero bueno,
 Yes! A bat! Exactly what I wanted!
 ¡Sí! ¡Un murciélago! ¡Justo lo que necesito!
 Finally, the routes might start making sense.
@@ -17128,7 +17128,7 @@ Rehacer el mundo.
 The era of human dominance is at an end. With Regigigas’s power, I’ll reset everything back to the beginning.
 La era de la dominación humana llegó a su fin. Con el poder de Regigigas, reiniciaré todo a sus albores.
 When the world was new… full of potential…
-Cuando el mundo fue nueno… lleno de potencial..
+Cuando el mundo fue nuevo... lleno de potencial..
 I want a world free from this constant boredom.
 Quiero un mundo libre de este aburrimiento constante.
 I want a world in which the ancient power of Pokémon is set free.
@@ -17780,7 +17780,7 @@ De todos modos, ¡Todavía nos queda una cosa para terminar este tour!
 Kindly return with me to the hallway.
 Por favor regresa conmigo a la galería.
 Here we are at our assembly line! We process tens of thousands of pieces here each day.
-¡Aquí estamos en la línea de ensamblaje! Procemos decenas de miles de piezas aquí cada día.
+¡Aquí estamos en la línea de ensamblaje! Procesamos decenas de miles de piezas aquí cada día.
 Feel free to look around, but please refrain from taking any candy.
 Sientente libre de pasear, pero por favor abstente de tomar ningún caramelo.
 Doing so is theft, and we prosecute all thieves.
@@ -20248,7 +20248,7 @@ No realmente.
 I've done what I set out to do: defeat every gym leader without losing a single 'mon, and never using any held items.
 He hecho lo que me propuse: vencer a cada líder de gimnasio sin perder un sólo 'mon, y sin usar nunca un objeto equipable.
 So, I guess I can't be too mad about scrubbing out in the very first round of the tournament...
-Por lo tanto, supongo que no puedo enojarme demasiado por haber pedido en la primer ronda del torneo...
+Por lo tanto, supongo que no puedo enojarme demasiado por haber perdido en la primer ronda del torneo...
 I heard you got a first-round bye, and were seeded in the opposite bracket from mine.
 Escuché que te dieron un pase para la primera ronda, y estabas en la llave contraria a la mía.
 Means you'll get to avoid the guy who ended up sweeping me with his Serperior.
@@ -22284,7 +22284,7 @@ Candy, is it? Good to meet you in person... I suppose.
 You know where I stand. And I know where you do.
 Sabes cual es mi postura. Y sé cual es la tuya.
 I’ve just settled things with \PN, so why don’t we have a chat in private? \PN, be a dear for me and leave us. I’d like to end this grudge here and now.
-Acabo de resolver las cosas con \PN, ¿Así por qué no hablas en privado? \PN, pórtate bien y déjanos. Quiero terminar este rencor aquí y ahora.
+Acabo de resolver las cosas con \PN, ¿Así por qué no hablamos en privado? \PN, pórtate bien y déjanos. Quiero terminar este rencor aquí y ahora.
 ...Alright. This is between you and me, anyways. \PN, you can go, like, wait outside.
 ...Muy bien. Esto es entre tú y yo, de todos modos. \PN, puedes, ya sabes, ir afuera.
 Just for a minute. This’ll be quick.
@@ -36865,7 +36865,7 @@ The user scatters mysterious water around and restores the HP of itself and alli
 El usuario esparce una misteriosa agua que restaura el 25% de los PS totales de sí mismo y el de sus aliados.
 Strikes the target thrice, with mastery of the Water style. Always results in a critical hit.
 El usuario ataca tres veces con la maestría del Estilo Fluido. Siempre resulta en un golpe crítico.
-The user faints in order to lower the target's Attack and Sp. Atk by 5 steps each.
+The user faints in order to lower the target's Attack and Sp. Atk by five steps each.
 El usuario se debilita para disminuir ambos Ataques del objetivo cinco grados.
 The user warms up its body and attacks the target. It has a 10% chance to burn.
 El usuario calienta su cuerpo y ataca al objetivo. Tiene un 10% de probabilidad de quemar al objetivo.
@@ -37045,7 +37045,7 @@ Summons a storm of poisonous gas to hit all nearby pokemon with a a 30% chance t
 El usuario invoca una tormenta de gas venenoso para atacar a todos los Pokémon cercanos, con un 30% de probabilidad de envenenarlos.
 The user launches snot at the target. This has a 30% chance to poison the target.
 El usuario lanza un moco al objetivo. Tiene un 30% de probabilidad de envenenar al objetivo.
-An enchanting outcry. It has a 30% chance to dizzy every target.
+An enchanting outcry. It has a 30% chance to dizzy those hit.
 Un alarido encantador. Tiene un 30% de probabilidad de marear a sus objetivos.
 The target is bombarded by crazy colors. There's a 30% chance it becomes dizzy.
 El objetivo es bombardeado por una gran cantidad de colores. Tiene un 30% de probabilidad de marear al objetivo.
@@ -37190,7 +37190,7 @@ El usuario envuelve al objetivo en un viento sucio. Tiene un 20% de probabilidad
 The user blasts a bundle of venom at the target, poisoning it.
 El usuario dispara una buena cantidad de veneno al objetivo, envenenándolo.
 The user attacks with its wards, dealing damage based on the user's Sp. Def stat.
-El usuario ataca con su aura. Este ataque inflige daño especial.
+El usuario ataca con su aura, inflige daño basado en la Defensa Especial del usuario.
 The user forms their excitement into a lash with a 10% chance of raising the user's Sp. Atk.
 El usuario crea un látigo con su entusiasmo. Tiene un 10% de probabilidad de aumentar el Ataque Especial del usuario.
 The user cracks the earth under the target with a massive strike. Lowers the user's Attack by four steps.
@@ -37933,8 +37933,8 @@ The user mutates its genetic code, transforming into any of its 3 other forms. O
 El usuario muta su código genético, transformándose en una de sus otras 3 formas. Sólo puede ser usado como Deoxys Normal.
 The user attacks with courage. Sets spikes if Full. If Hangry, deals double damage and is Dark-type.
 El usuario ataca con coraje. Coloca púas si está Saciado. Si es Voraz, duplica su potencia y es tipo Siniestro.
-The user crushes the target in its metallic vises, trapping and damaging it for three turns.
-El usuario aplasta el objetivo en sus prensas metálicas, atrándolo y dañándolo durante tres turnos.
+The user crushes the target in its metallic vises, breaking any screens protecting the target's side.
+El usuario aplasta el objetivo en sus prensas metálicas, rompiendo cualquier pantalla que proteja el lado enemigo.
 The user emits a wave of green energy to strike near foes. Deals double damage to those slower than the user.
 El usuario emite una ola de energía verde para atacar a rivales cercanos. Duplica su potencia contra aquellos más lentos que el usuario.
 The user harms the target with gemlike light. Deals double damage if the user has used a gem this battle.
@@ -38087,6 +38087,8 @@ Launches many homing bolts. Deals 50% more damage unless it's the first turn the
 Dispara varios rayos dirigidos. Es potenciado un 50% a no ser que sea el primer turno del objetivo en combate.
 Attacks with pressurized water. Deals 50% more damage if the user has been hurt by the foe in the same turn.
 Ataca con agua presurizada. Es potenciado un 50% si el usuario fue lastimado por el oponente en el mismo turno.
+The user loses 1/4th of their max HP to curse the target, damaging their HP by 1/4th each turn.
+El usuario pierde 1/4 de sus PS totales para maldecir al objetivo, dañándolo por 1/4 de sus PS totales cada turno.
 [7]
 Repel
 Repelente
@@ -40764,6 +40766,8 @@ A peculiar apple that can make a certain species of Pokémon evolve. It's except
 Una peculiar manzana que permite evolucionar a cierta especie de Pokémon. Es excepcionalmente dulce.
 A peculiar apple that can make a certain species of Pokémon evolve. It's exceptionally tart.
 Una peculiar manzana que permite evolucionar a cierta especie de Pokémon. Es excepcionalmente ácida.
+A key which unlocks the Ultra Beast Containment Room at Novo College.
+Una llave que desbloquea el Contenimiendo de Ultraentes en la Facultad Novo.
 [10]
 Cud Chew
 Rumia
@@ -41696,7 +41700,7 @@ Investigador
 Impetuous
 Impetuoso
 Clingy
-Pegajoso
+Apegado
 Brisk
 Ventoso
 Tesla Coils
@@ -42823,7 +42827,7 @@ Aumenta su Ataque un 50%, pero pierde 1/10 de sus PS totales cada turno.
 Raises Sp. Atk by two steps whenever any battler falls asleep.
 Aumenta su Ataque Especial dos grados cada vez que un Pokémon sea dormido.
 Attacks hit twice for half damage, drain 25% of damage dealt and become special.
-Los ataques del Pokémon golpean dos veces, con la mitad de potencia cada golpe, drenan 25% del daño causado y se vuelven especiales.
+Los ataques del Pokémon golpean dos veces con la mitad de potencia, drenan 25% del daño causado y se vuelven especiales.
 Its attacks have priority, deal 25% less damage and become special.
 Los ataques del Pokémon tienen prioridad, son un 25% más débiles y se vuelven especiales.
 Maximizes Sp. Atk when its HP is lowered below half.
@@ -47722,7 +47726,7 @@ The extremely harsh sunlight was not lessened at all!
 There is no relief from this heavy rain!
 ¡No hay descanso de este diluvio!
 The mysterious air current blows on regardless!
-¡La corriente de aire se desvanece de todos modos!
+¡La corriente de aire sopla de todos modos!
 The Total Eclipse arrives!
 ¡El Eclipse Total llega!
 {1} is panicked!
