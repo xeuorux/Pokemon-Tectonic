@@ -45990,23 +45990,23 @@ Caja {1}
 Box {1} (D)
 Caja {1} (D)
 Can't withdraw from a donation box.
-Can't withdraw from a donation box.
+No se puede retirar de una caja de donaciones.
 Permanently store this Pokémon in exchange for Candies?
-Permanently store this Pokémon in exchange for Candies?
+¿Almacenar permanentemente este Pokémon a cambio de caramelos?
 This Pokémon will not be retrievable after this. Are you sure?
-This Pokémon will not be retrievable after this. Are you sure?
+Este Pokémon no podrá recuperarse después de esto. ¿Está seguro?
 {1} was stored forever.
-{1} was stored forever.
+{1} fue almacenado para siempre.
 Can't visit donation boxes.
-Can't visit donation boxes.
+No puedo visitar las cajas de donaciones.
 Can't Visit the PokÉstate while you have a Pokémon in your hand!
-Can't Visit the PokÉstate while you have a Pokémon in your hand!
+¡No puedes visitar el PokÉstate mientras tengas un Pokémon en tu mano!
 Are you sure you want to release this pokemon?
-Are you sure you want to release this pokemon?
+¿Estás seguro de que quieres lanzar este pokemon?
 They will be gone forever. Are you sure?
-They will be gone forever. Are you sure?
+Se habrán ido para siempre. ¿Está seguro?
 Release
-Release
+Lanzar
 City
 Ciudad
 Desert
@@ -50709,6 +50709,8 @@ Exit from the Box?
 ¿Salir de la Caja?
 That Pokémon is not a valid choice!
 ¡Ese Pokémon no es una elección válida!
+You cannot select a donated Pokémon!
+¡No puedes seleccionar un Pokémon donado!
 Shift
 Cambiar
 Place
