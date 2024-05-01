@@ -51655,40 +51655,56 @@ Evoluciona a {1} {2} (a través de {3})
 \wm<i>Una visión aparece en tu mente...</i>
 Groceries from the south, Customers from the north.
 Comestibles del sur, Clientes del norte.
-That strange room at the end of the corridor, why is it guarded?
-Esa extraña habitación al final del pasillo, ¿por qué está vigilada?
+The path is full of crates. Not that he minds, he's out of the way.
+El camino está lleno de cajas. No es que le importe, está fuera del camino.
+A lab opens its door to bones. Just next door is closed shut, however.
+Un laboratorio abre sus puertas a los huesos. La puerta de al lado, sin embargo, está cerrada.
 A place of learning. It has its secrets, too.
 Un lugar de aprendizaje. También tiene sus secretos.
-Green turns to brown...but Jade remains.
-El verde se vuelve marrón... pero Jade permanece.
+Green grass fades to brown...but Jade remains.
+La hierba verde se vuelve marrón... pero Jade permanece.
+Broken houses and broken wills, tough ones linger still.
+Casas rotas y voluntades rotas, las más duras aún persisten.
 Grass, mud, and weeds taller than people.
-Hierba, barro y maleza más altos que las personas.
-A pitiful town, it's all fallen down.
-Un pueblo lamentable, está todo caído.
-A bit of order in the chaos. Visitors must be pruned.
-Un poco de orden en el caos. Los visitantes deben ser podados.
+Hierba, barro y malezas apestosas más altas que las personas.
+Verdant forest. Layers of land and leaves.
+Bosque verde. Capas de tierra y hojas.
+A pitiful town, it's all fallen down. She's got her place.
+Un pueblo lamentable, está todo caído. Ella tiene su lugar.
+A bit of order planted in the chaos. Visitors must be pruned.
+Un poco de orden plantado en el caos. Los visitantes deben ser podados.
 A musician makes their mark in the Medusa's mandate.
 Un músico deja su huella en el mandato de Medusa.
+Statues, statues, eerie indeed. But the show must go on.
+Estatuas, estatuas, realmente inquietantes. Pero el espectáculo debe continuar.
 A city of chain links. Why not go somewhere else?
 Una ciudad de eslabones de cadenas. ¿Por qué no ir a otro lugar?
 A road with no cars. Must you buy your way to freedom?
 Una carretera sin coches. ¿Debes comprar tu camino hacia la libertad?
-Teaming bureaucracy. Old bricks.
-Burocracia en equipo. Ladrillos viejos.
-A tiny bit of cliff. You can barely see the honey from here.
-Un pedacito de acantilado. Apenas se puede ver la miel desde aquí.
-The path less traveled. Southern facing mountains.
-El camino menos transitado. Montañas orientadas al sur.
-Flora migration. Orre's Cacti.
-Migración de flora. Los cactus de Orre.
+Old bricks look down upon you. You're not in charge, here.
+Los ladrillos viejos te miran con desprecio. Aquí no estás a cargo.
+Big city, big buildings. The halls of government.
+Gran ciudad, grandes edificios. Los pasillos del gobierno.
+A tiny bit of cliff. You can just barely smell the honey.
+Un pedacito de acantilado. Apenas se puede oler la miel.
+Seas of wheat beckon you to cross. What a view!
+Mares de trigo te invitan a cruzar. ¡Que vista!
+The rocky path less traveled. Southern brother.
+El camino pedregoso menos transitado. Hermano del sur.
+The easy way is a whole forest away. Take a hike!
+La manera fácil está a todo un bosque de distancia. ¡Hacer una caminata!
+Sun on sand on water. A maze of tributaries.
+Sol sobre arena sobre agua. Un laberinto de afluentes.
 One man works to keep back the tide of sand.
 Un hombre trabaja para contener la marea de arena.
-The Cave where the First Champion came to be.
-La cueva donde llegó la primera campeona.
-A proving ground, underground. Overwhelming, isn't it?
-Un campo de pruebas, bajo tierra. Abrumador, ¿no?
+A view of where the First Champion was hatched.
+Una vista de donde el Primer Campeón fue incubada.
+A proving ground, underground. A home for would-be mothers.
+Un campo de pruebas, bajo tierra. Un hogar para futuras madres.
 Past the guardian dragon. Climb, climb, climb!
 Más allá del dragón guardián. ¡Sube, sube, sube!
+Thick clouds and stars not right. But you're above all that, now.
+Las nubes espesas y las estrellas extranjeras. Pero ahora estás por encima de todo eso.
 A maiden of the east. Poor clothes for mountain-climbing.
 Una doncella del este. Ropa pobre para escalar montañas.
 Think you can handle whatever strategy I'm hiding?

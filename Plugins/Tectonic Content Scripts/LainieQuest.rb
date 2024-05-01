@@ -4,28 +4,32 @@ CONDENSED_LIGHT_LOCATIONS = {
     # Guitarist Reece in the Shipping Lane
     [18, "D", 60]   => [
         "Groceries from the south, Customers from the north.",
+        "The path is full of crates. Not that he minds, he's out of the way.",
     ],
     # Security Guard in Novo College (Novo Town)
     [17, "A", 123]  => [
-        "That strange room at the end of the corridor, why is it guarded?",
+        "A lab opens its door to bones. Just next door is closed shut, however.",
         "A place of learning. It has its secrets, too.",
     ],
     # Pro Trainer Jade in Grouz
     [21, "D", 25]   => [
-        "Green turns to brown...but Jade remains.",
+        "Green grass fades to brown...but Jade remains.",
+        "Broken houses and broken wills, tough ones linger still.",
     ],
     # Dandy Charles in The Shelf
     [16, "D", 53]   => [
-        "Grass, mud, and weeds taller than people.",
+        "Grass, mud, and stink-weeds taller than people.",
+        "Verdant forest. Layers of land and leaves.",
     ],
     # Aroma Lady Cheshire in the House of Leaves (Velenz)
     [1, "D", 9]     => [
-        "A pitiful town, it's all fallen down.",
-        "A bit of order in the chaos. Visitors must be pruned.",
+        "A pitiful town, it's all fallen down. She's got her place.",
+        "A bit of order planted in the chaos. Visitors must be pruned.",
     ],
     # Guitarist in the Crater Station Backroom (Barren Crater)
     [2, "A", 321]   => [
         "A musician makes their mark in the Medusa's mandate.",
+        "Statues, statues, eerie indeed. But the show must go on.",
     ],
     # Tourist in the Travel Agency (Prizca West)
     [23, "A", 159]  => [
@@ -34,30 +38,33 @@ CONDENSED_LIGHT_LOCATIONS = {
     ],
     # Camera Man in the Makyan Capitol Building (Prizca East)
     [24, "A", 194]  => [
-        "Teaming bureaucracy. Old bricks.",
+        "Old bricks look down upon you. You're not in charge, here.",
+        "Big city, big buildings. The halls of government.",
     ],
     # NPC on the cliff in Frostflow Farms
     [21, "A", 186]  => [
-        "A tiny bit of cliff. You can barely see the honey from here.",
+        "A tiny bit of cliff. You can just barely smell the honey from here.",
+        "Seas of wheat beckon you to cross. What a view!",
     ],
     # Cyclist Lukka in the Split Peaks
     [19, "D", 211]  => [
-        "The path less traveled. Southern facing mountains.",
+        "The rocky path less traveled. Southern brother.",
+        "The easy way is a whole forest away. Take a hike!",
     ],
     # Worker Seamus in the Canal Desert
     [14, "D", 130]  => [
-        "Flora migration. Orre's Cacti.",
+        "Sun on sand on water. A maze of tributaries.",
         "One man works to keep back the tide of sand.",
     ],
     # Psychic Felicia in the Cave of Hatching
     [11, "D", 257]  => [
-        "The Cave where the First Champion came to be.",
-        "A proving ground, underground. Overwhelming, isn't it?",
+        "A view of where the First Champion was hatched.",
+        "A proving ground, underground. A home for would-be mothers.",
     ],
     # Kimono Girl Chiyo in the Kilna Ascent
     [19, "D", 121]  => [
         "Past the guardian dragon. Climb, climb, climb!",
-        "A maiden of the east. Poor clothes for mountain-climbing.",
+        "Thick clouds and stars not right. But you're above all that, now.",
     ],
 }
 
