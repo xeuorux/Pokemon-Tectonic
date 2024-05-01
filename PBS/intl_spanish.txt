@@ -1255,6 +1255,10 @@ I guess?
 ¿Supongo?
 They make good tools.
 Son buenas herramientas.
+I totally lost my surfboard!
+¡Perdí totalmente mi tabla de surf!
+At least I can swim.
+Al menos sé nadar.
 
 [Map13]
 
@@ -51633,12 +51637,60 @@ Evolves into {1} {2}
 Evoluciona a {1} {2}
 Evolves into {1} {2} (through {3})
 Evoluciona a {1} {2} (a través de {3})
-<i>You get the sense that you've collected enough light.</i>
-<i>Tienes la sensación de que has recolectado suficiente luz.</i>
-<i>Your friend will be very pleased.</i>
-<i>Tu amiga estará muy contenta.</i>
-<i>You should visit her in her very nice house.</i>
-<i>Deberías visitarla en su muy bonita casa.</i>
+\wm<i>You get the sense that you've collected enough light.</i>
+\wm<i>Tienes la sensación de que has recolectado suficiente luz.</i>
+\wm<i>Your friend will be very pleased.</i>
+\wm<i>Tu amiga estará muy contenta.</i>
+\wm<i>You should visit her in her very nice house.</i>
+\wm<i>Deberías visitarla en su muy bonita casa.</i>
+\wm<i>You get the sense that you've found about half the light you need.</i>
+\wm<i>Tienes la sensación de que has encontrado aproximadamente la mitad de la luz que necesitas.</i>
+\wm<i>Your friend is waiting with anticipation.</i>
+\wm<i>Tu amiga está esperando con anticipación.</i>
+\wm<i>Continue your collection.</i>
+\wm<i>Continúa tu colección.</i>
+\wm<i>You're getting close, now.</i>
+\wm<i>Ya te estás acercando.</i>
+\wm<i>A vision appears in your mind...</i>
+\wm<i>Una visión aparece en tu mente...</i>
+Groceries from the south, Customers from the north.
+Comestibles del sur, Clientes del norte.
+That strange room at the end of the corridor, why is it guarded?
+Esa extraña habitación al final del pasillo, ¿por qué está vigilada?
+A place of learning. It has its secrets, too.
+Un lugar de aprendizaje. También tiene sus secretos.
+Green turns to brown...but Jade remains.
+El verde se vuelve marrón... pero Jade permanece.
+Grass, mud, and weeds taller than people.
+Hierba, barro y maleza más altos que las personas.
+A pitiful town, it's all fallen down.
+Un pueblo lamentable, está todo caído.
+A bit of order in the chaos. Visitors must be pruned.
+Un poco de orden en el caos. Los visitantes deben ser podados.
+A musician makes their mark in the Medusa's mandate.
+Un músico deja su huella en el mandato de Medusa.
+A city of chain links. Why not go somewhere else?
+Una ciudad de eslabones de cadenas. ¿Por qué no ir a otro lugar?
+A road with no cars. Must you buy your way to freedom?
+Una carretera sin coches. ¿Debes comprar tu camino hacia la libertad?
+Teaming bureaucracy. Old bricks.
+Burocracia en equipo. Ladrillos viejos.
+A tiny bit of cliff. You can barely see the honey from here.
+Un pedacito de acantilado. Apenas se puede ver la miel desde aquí.
+The path less traveled. Southern facing mountains.
+El camino menos transitado. Montañas orientadas al sur.
+Flora migration. Orre's Cacti.
+Migración de flora. Los cactus de Orre.
+One man works to keep back the tide of sand.
+Un hombre trabaja para contener la marea de arena.
+The Cave where the First Champion came to be.
+La cueva donde llegó la primera campeona.
+A proving ground, underground. Overwhelming, isn't it?
+Un campo de pruebas, bajo tierra. Abrumador, ¿no?
+Past the guardian dragon. Climb, climb, climb!
+Más allá del dragón guardián. ¡Sube, sube, sube!
+A maiden of the east. Poor clothes for mountain-climbing.
+Una doncella del este. Ropa pobre para escalar montañas.
 Think you can handle whatever strategy I'm hiding?
 ¿Crees que podrás soportar cualquier estrategia que estoy escondiendo?
 Ah, my dear friend \PN, care for another battle?
@@ -51756,7 +51808,9 @@ Una Letanía de Arrullos, Infrecuentemente Cantadas
 Every Beat Betrays the Beast's Burden
 Cada Impacto Traiciona la Carga de la Bestia
 Gored Upon the Horns of the Dilemma - Boredom or the Path of Thorns?
-Acorneado por los Cuernos del Dilema - ¿Aburrimiento o un Camino de Espinas? 
+Acorneado por los Cuernos del Dilema - ¿Aburrimiento o un Camino de Espinas?
+One layer of spikes will be placed on your side each turn!
+¡Se colocará una capa de púas a tu lado en cada turno!
 Pyres raised<<n>>Here we meet<<n>>Spirits razed<<n>>Reduced to meat
 Llamas crecen<<n>>Aquí nos encontramos<<n>>Espíritus arrasados<<n>>Reducidos a ceniza
 Shall Our Truth Lay Asunder Thy Masque and Thee?
