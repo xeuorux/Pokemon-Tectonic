@@ -1374,7 +1374,7 @@ class PokeBattle_HelpingMove < PokeBattle_Move
             return true
         end
         if target.effectActive?(@helpingEffect)
-            @battle.pbDisplay(_INTL("But it failed, since #{arget.pbThis(true)} is already being helped!")) if show_message
+            @battle.pbDisplay(_INTL("But it failed, since #{target.pbThis(true)} is already being helped!")) if show_message
             return true
         end
         return true if pbMoveFailedTargetAlreadyMoved?(target, show_message)
