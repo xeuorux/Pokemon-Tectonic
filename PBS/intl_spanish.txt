@@ -44986,8 +44986,8 @@ Caverna Abisal
 Stone Nest
 Nido Rocoso
 220
-Prizca Sewers East
-Alcantarillas Prizca Oriental
+Ancient Sewers
+Alcantarillas Antiguas
 221
 Prizca Sewers
 Alcantarillas Prizca
@@ -44995,8 +44995,8 @@ Alcantarillas Prizca
 Sewers Junction
 Cruce de Alcantarillas
 223
-Prizca Sewers West
-Alcantarillas Prizca Occidental
+Battle Plaza Underground
+Plaza de Batalla Subterránea
 224
 Farmer's House
 Casa del Granjero
@@ -45597,6 +45597,9 @@ Objetos Élite de Leo
 423
 Herbert's Herbs
 Hierbas Herbert
+426
+Prizca Black Market
+Mercado Negro Prizca
 [22]
 How are your Pokémon doing?\mMy \TP's really energetic. It's a handful!\mOh yeah, I managed to beat a tough \TE.\mI need to make my party stronger.
 How are your Pokémon doing?\mMy \TP's really energetic.  It's a handful!\mOh yeah, I managed to beat a tough \TE.\mI need to make my party stronger.
