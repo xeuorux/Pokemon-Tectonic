@@ -3510,17 +3510,14 @@ Pokemon = QUAGSIRE,48
     Item = LEFTOVERS
 #-------------------------------
 [CLOWN,Dimesmart]
-Pokemon = MIMIKYU,43
+Pokemon = MIMIKYU,42
     Moves = PLAYROUGH,VIMRIPPER,HONECLAWS,SHADOWSNEAK
     AbilityIndex = 0 # Disguise
-Pokemon = GIGACHU,43
+    Item = LIFEORB
+Pokemon = GIGACHU,42
     Moves = THUNDERBELLY,THUNDERBOLT,NUZZLE,BODYSLAM
     AbilityIndex = 0 # Arc Conductor
-Pokemon = BASTIODON,44
-    Moves = BODYPRESS,GRINDSTONE,FARADAYCAGE,STEALTHROCK
-    AbilityIndex = 1 # Battle-Hardened
-    Item = LEFTOVERS
-Pokemon = FLYGON,43
+Pokemon = FLYGON,42
     Moves = DEVOURINGDUST,SCOUR,BUGBUZZ,BUGBITE
     AbilityIndex = 0 # Desert Spirit
     Item = GROUNDGEM
