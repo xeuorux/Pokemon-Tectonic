@@ -1582,7 +1582,7 @@ Bicycle = true
 BattleBack = cave2
 #-------------------------------
 [220]
-# Prizca Sewers East
+# Ancient Sewers
 Outdoor = false
 ShowArea = true
 Bicycle = true
@@ -1608,7 +1608,7 @@ BattleBack = indoor3
 Environment = StillWater
 #-------------------------------
 [223]
-# Prizca Sewers West
+# Battle Plaza Underground
 Outdoor = false
 ShowArea = true
 Bicycle = true

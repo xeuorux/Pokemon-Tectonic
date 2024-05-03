@@ -645,9 +645,9 @@ FloweryGrass,20
 DarkCave,21
     20,ADIGLETT,25,27
     20,AGEODUDE,25,27
+    20,BURMY,25,27
     20,GMEOWTH,25,27
     20,ROGGENROLA,25,27
-    20,BURMY,25,27
 Mud,20
     20,CARNIVINE,34,36
     20,CRAMORANT,34,36
@@ -740,14 +740,14 @@ DarkCave,20
     10,NIDORANfE,25,27
     10,NIDORANmA,25,27
 #-------------------------------
-[220] # Prizca Sewers East
+[220] # Ancient Sewers
 LandSparse,20
     25,DRUDDIGON,41,43
     25,MIMIKYU,41,43
     25,SPIRITOMB,41,43
     25,YAMASK,41,43
 #-------------------------------
-[223] # Prizca Sewers West
+[223] # Battle Plaza Underground
 LandSparse,20
     25,ELGYEM,35,37
     25,GOLETT,35,37

@@ -2379,8 +2379,10 @@ Pokemon = CORVIKNIGHT,70
 #-------------------------------
 [DEVJANITOR,Steeb]
 Pokemon = BEWEAR,70
+    Name = Nene
+    Gender = female
     Shiny = yes
-    AbilityIndex = 1 # Lunatic
+    AbilityIndex = 0 # Intimidate
 Pokemon = OCTILLERY,70
     AbilityIndex = 0 # Juggernaut
 Pokemon = MAROWAK,70
