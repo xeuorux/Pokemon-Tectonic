@@ -2752,29 +2752,23 @@ Pokemon = EELEKTROSS,47
     Item = BLACKSLUDGE
 #-------------------------------
 [CAMPER,Liam]
-Pokemon = HITMONCHAN,36
+Pokemon = HITMONCHAN,35
     Moves = MACHPUNCH,FIREPUNCH,THUNDERPUNCH,ICEPUNCH
     AbilityIndex = 1 # Shifting Fist
     Item = LUCKHERB
-Pokemon = ELECTIVIRE,36
+Pokemon = ELECTIVIRE,35
     Moves = FLOWSTATE,ELECTROSLASH,DRAINPUNCH
     AbilityIndex = 1 # Adrenaline Rush
     Item = LIECHIBERRY
 Pokemon = CACTURNE,36
     Moves = SUCKERPUNCH,NEEDLEARM,PAYBACK,LEECHSEED
     AbilityIndex = 0 # Heartless
-Pokemon = GRUMPIG,36
-    Moves = ZENHEADBUTT,SHADOWPUNCH,KICKSTART,TEETERDANCE
-    AbilityIndex = 0 # Thick Fat
 #-------------------------------
 [POKEMONRANGER_M2,Martel]
-Pokemon = APPLETUN,36
+Pokemon = APPLETUN,35
     Moves = DRAGONPULSE,GIGADRAIN,LEECHSEED,CONFIDE
     AbilityIndex = 0 # Ripen
     Item = SITRUSBERRY
-Pokemon = DUBWOOL,37
-    Moves = BUTTINGHEADS,SCYTHEKICK,BATONPASS,TAKEDOWN
-    AbilityIndex = 1 # Cold Reception
 Pokemon = MNINETALES,36
     Moves = SOULEATER,FLASHCANNON,DEADEND,IRONDEFENSE
     AbilityIndex = 0 # Gild
@@ -2784,25 +2778,23 @@ Pokemon = MCARNIVINE,37
     AbilityIndex = 1 # Pestilent
 #-------------------------------
 [POKEMANIAC,Paris]
-Pokemon = QWILFISH,37
+Pokemon = QWILFISH,36
     Moves = FUGUFRENZY,AQUAJET,POISONTAIL
     AbilityIndex = 1 # Quarrelsome
     Item = FOCUSSASH
-Pokemon = LINOONE,38
+Pokemon = LINOONE,37
     Moves = EXTREMESPEED,COVET,THROATCHOP
     AbilityIndex = 0 # Dire Diversion
-    Item = HIVISJACKET
 #-------------------------------
 [POKEFAN_F3,Margaret]
 Pokemon = GRIMMSNARL,38
     Moves = FALSESURRENDER,FAKEOUT,PLAYROUGH,SUCKERPUNCH
     AbilityIndex = 1 # Ruinous
     Item = EJECTBUTTON
-Pokemon = MJELLICENT,37
+Pokemon = MJELLICENT,36
     Gender = female
     Moves = BADENDING,BLIGHT,THUNDERCLAP,SHADOWCLAW
     AbilityIndex = 0 # Ruinous
-    Item = ELECTRICGEM
 #-------------------------------
 [GARDENER,Jacek]
 Pokemon = BIBAREL,37
