@@ -49992,14 +49992,16 @@ You clambor into the den!
 ¡Te metes dentro del nido!
 You clambor out of the den!
 ¡Sales del nido!
-\me[Badge get]You've earned the {1} Badge.
-\me[Badge get]Obtienes la Medalla {1}.
+\db[{1}]\me[Badge get]You've earned the {2} Badge!\wtnp[120]
+\db[{1}]\me[Badge get]Obtienes la Medalla {2}.\wtnp[120]
 Badge #{badgeNum} Team
 Equipo de la Medalla #{badgeNum} 
 \wmTaking team snapshot.
-\wmTomando la captura del equipo
-The Performance Analyzer whirs, then begins printing.
-El Revisor de Desempeño vibra, y luego empieza a imprimir. 
+\wmTomando la captura del equipo.
+\i[PERFORMANCEANALYZER]The Performance Analyzer whirs, then begins printing.
+\i[PERFORMANCEANALYZER]El Revisor de Desempeño vibra, y luego empieza a imprimir. 
+Screenshot saved to folder {1}\1
+Captura de pantalla guardada en la carpeta {1}\1
 I'm not sure
 No estoy seguro
 Basic Team
@@ -51130,14 +51132,12 @@ Which direction?
 ¿Cuál dirección?
 Sort by what?
 ¿Ordenar por qué?
-All
-Todos
-#{bonusesList.length.to_s} bonuses
-#{bonusesList.length.to_s} bonus
-No Tribal Bonuses
-Sin Bonuses de Clanes
-Tribes: #{fullDescription}
-Clanes: #{fullDescription}
+No Tribes
+Sin Clanes
+All Tribes
+Todos Los Clanes
+{1} Tribes
+{1} Clanes
 #{pokemon.name} Lv. #{pokemon.level.to_s}
 #{pokemon.name} Nv. #{pokemon.level.to_s}
 No Ability
@@ -52254,8 +52254,8 @@ Press to instantly mount the Bicycle while in the overworld.
 Presionala para subirte instántaneamente a la Bicicleta fuera de combate.
 Press to reset to the main menu.
 Presionala para restablecer el menú principal.
-You put the {1} away\<<n>>in the <icon=bagPocket{2}>\c<<[>>1<<]>>{3} Pocket\c<<[>>0<<]>>.
-Colocas {1} en el bolsillo \<<n>>in the <icon=bagPocket{2}>\c<<[>>1<<]>>{3} \c<<[>>0<<]>>.
+You put the {1} away\nin the <icon=bagPocket{2}>\c<<[>>1<<]>>{3} Pocket\c<<[>>0<<]>>.
+Colocas {1} en el bolsillo \nin the <icon=bagPocket{2}>\c<<[>>1<<]>>{3} \c<<[>>0<<]>>.
 The morning will see #{morningDescriptor}.
 En la mañana habrá #{morningDescriptor}.
 That weather will continue into the afternoon.
@@ -52312,8 +52312,6 @@ your brother
 tu hermano
 professor
 profesora
-\db[#{badgeNum}]\me[Badge get]You've earned the {1} Badge!\wtnp[120]
-\db[#{badgeNum}]\me[Badge get]¡Conseguiste la Medalla {1}!\wtnp[120]
 \wmLevel cap raised to {1}!\me<<[>>Bug catching 3rd<<]>>\wtnp<<[>>80<<]>><<1>>
 \wm¡El límite de nivel subió a {1}!\me<<[>>Bug catching 3rd<<]>>\wtnp<<[>>80<<]>><<1>>
 You notice a voice message from #{CARETAKER}, the PokÉstate caretaker.

@@ -35,7 +35,7 @@ def earnBadge(badgeNum)
 	end
 
 	name = BADGE_NAMES[badgeNum-1]
-	pbMessage(_INTL("\\db[#{badgeNum}]\\me[Badge get]You've earned the {1} Badge!\\wtnp[120]",name))
+	pbMessage(_INTL("\\db[{1}]\\me[Badge get]You've earned the {2} Badge!\\wtnp[120]",badgeNum,name))
 	$Trainer.badges[badgeNum-1] = true
 	$game_switches[3+badgeNum] = true # "Defeated Gym X" switch
 	
@@ -45,22 +45,29 @@ def earnBadge(badgeNum)
 		badgesEarnedArray.push(hasBadge)
 	end
 
-	updateTotalBadgesVar()
+	updateTotalBadgesVar
 	
 	Events.onBadgeEarned.trigger(self,badgeNum-1,$game_variables[BADGE_COUNT_VARIABLE],badgesEarnedArray)
 	
-	giveBattleReport()
+	giveBattleReport
 
-	teamSnapshot(_INTL("Badge #{badgeNum} Team"))
+	postBattleTeamSnapshot(_INTL("Badge #{badgeNum} Team"),true)
 	
-	refreshMapEvents()
+	refreshMapEvents
 end
 
-def teamSnapshot(label=nil)
+def postBattleTeamSnapshot(label=nil,curseMatters=false)
+	snapshotFlags = []
+	snapshotFlags.push("perfect") if battlePerfected?
+	snapshotFlags.push("cursed") if curseMatters && $PokemonGlobal.tarot_amulet_active
+	teamSnapshot(label,snapshotFlags)
+end
+
+def teamSnapshot(label=nil,flags=[])
 	makeBackupSave
 	return if $PokemonSystem.party_snapshots == 1
 	pbMessage(_INTL("\\wmTaking team snapshot."))
-	PokemonPartyShowcase_Scene.new($Trainer,true,label)
+	PokemonPartyShowcase_Scene.new($Trainer,snapshot: true,snapShotName: label,flags: flags)
 end
 
 def updateTotalBadgesVar
