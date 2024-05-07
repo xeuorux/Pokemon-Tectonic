@@ -2106,7 +2106,7 @@ Pokemon = TROPIUS,70
     # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
     EV = 10,20,10,0,20,10
 Pokemon = URSALUNA,70
-    Moves = TRAMPLE,GIGAIMPACT,CRUNCH,ADAMANTINEPRESS
+    Moves = EARTHQUAKE,GIGAIMPACT,CRUNCH,ADAMANTINEPRESS
     AbilityIndex = 1 # Tough
     Item = ENERGYHERB
     # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
@@ -2335,7 +2335,7 @@ Pokemon = WEAVILE,70
     # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
     EV = 10,20,0,20,20,0
 Pokemon = EMPOLEON,70
-    Moves = DEFOG,FLIPTURN,BULLETCHARGE,ICEBEAM
+    Moves = DEFOG,FLIPTURN,BULLETTRAIN,ICEBEAM
     AbilityIndex = 1 # Self-Sufficient
     Item = LEFTOVERS
     # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def

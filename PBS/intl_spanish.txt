@@ -36157,8 +36157,8 @@ The user soars, then strikes on the second turn.
 El usuario se eleva hacia el cielo, luego ataca en el segundo turno.
 The user bounces up high, then drops on the foe on the second turn. It has a 30% chance to numb.
 El usuario da un gran salto, luego ataca al rival en el segundo turno. Tiene un 30% de probabilidad de aturdir al objetivo.
-A corkscrewing attack with the sharp beak acting as a drill.
-El usuario ataca girando su pico como un taladro.
+A corkscrewing attack with the sharp beak acting as a drill. Critical hits twice as often.
+El usuario ataca girando su pico como un taladro. Tiene el doble de índice de golpe crítico.
 The user absorbs its target's HP. The user's HP is restored by 75% of the damage dealt.
 El usuario absorbe la salud del usuario. El usuario recupera un 75% del daño que cause.
 The user attacks with a blade of air that slices even the sky. It has a 40% chance to flinch the target.

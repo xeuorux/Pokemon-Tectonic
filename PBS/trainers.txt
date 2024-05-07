@@ -2649,8 +2649,8 @@ Policies = CURSE_SUBSTITUTED
 Pokemon = LIEPARD,45
     Item = DARKGEM
 Pokemon = EMPOLEON,45
-    Moves = BULLETCHARGE,SWORDSDANCE,LIQUIDATION,AQUAJET
-    AbilityIndex = 0 # Imperious
+    Moves = BULLETTRAIN,SWORDSDANCE,HARBORBREAKER,SUBMISSION
+    AbilityIndex = 1 # Self-Sufficient
     Item = SALACBERRY
     # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
     EV = 0,20,10,20,20,0
@@ -5728,7 +5728,7 @@ Pokemon = SERPERIOR,70
     # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
     EV = 10,10,10,20,10,0
 Pokemon = EMPOLEON,70
-    Moves = COLDFRONT,HARBORBREAKER,FLASHCANNON,SEVER
+    Moves = COLDFRONT,HARBORBREAKER,FLASHCANNON,KNOCKOFF
     AbilityIndex = 0 # Imperious
     Item = STRIKEVEST
     # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
