@@ -2530,8 +2530,8 @@ Accuracy = 100
 TotalPP = 15
 Target = NearOther
 FunctionCode = Basic
-Flags = CanProtect,CanMirrorMove
-Description = A corkscrewing attack with the sharp beak acting as a drill.
+Flags = CanProtect,CanMirrorMove,HighCriticalHitRate
+Description = A corkscrewing attack with the sharp beak acting as a drill. Critical hits twice as often.
 #-------------------------------
 [OBLIVIONWING]
 Name = Oblivion Wing
