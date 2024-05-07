@@ -395,8 +395,8 @@ Pokemon = GOLDEEN,20
     AbilityIndex = 1 # Volt Absorb
     Item = WATERGEM
 Pokemon = PRINPLUP,21
-    Moves = MENDINGSPRING,SHINESHOT,FURYPECKS,AQUAJET
-    AbilityIndex = 0 # Imperious
+    Moves = WATERPULSE,SHINESHOT,SUPERSONIC,AQUAJET
+    AbilityIndex = 1 # Self-Sufficient
 #-------------------------------
 [RUINMANIAC,Spencer]
 Pokemon = BALTOY,21
@@ -592,7 +592,7 @@ Pokemon = WAILMER,25
     # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
     EV = 0,20,15,0,20,15
 Pokemon = PRINPLUP,25
-    Moves = FLIPTURN,AERIALACE,SHINESHOT,BUBBLEBEAM
+    Moves = FLIPTURN,AERIALACE,SHINESHOT,WATERPULSE
     AbilityIndex = 0 # Imperious
     Item = ASSAULTVEST
     # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
@@ -803,7 +803,7 @@ Pokemon = ILLUMISE,45
     # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
     EV = 20,0,15,0,0,15
 Pokemon = EMPOLEON,45
-    Moves = MENDINGSPRING,CHILL,PROTECT,STEALTHROCK
+    Moves = SURF,YAWN,PROTECT,STEALTHROCK
     AbilityIndex = 1 # Self-Sufficient
     Item = LEFTOVERS
     # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
@@ -2649,7 +2649,7 @@ Policies = CURSE_SUBSTITUTED
 Pokemon = LIEPARD,45
     Item = DARKGEM
 Pokemon = EMPOLEON,45
-    Moves = SLAY,SWORDSDANCE,LIQUIDATION,AQUAJET
+    Moves = BULLETCHARGE,SWORDSDANCE,LIQUIDATION,AQUAJET
     AbilityIndex = 0 # Imperious
     Item = SALACBERRY
     # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
@@ -4484,7 +4484,7 @@ Pokemon = ABSOLUS,57
     Moves = INFINITEFORCE,DARKALLURE,ENCHANTINGSONG,ICEBEAM
     AbilityIndex = 1 # Vengeance
 Pokemon = EMPOLEON,58
-    Moves = HARBORBREAKER,FLASHCANNON,DRILLPECK,AQUAJET
+    Moves = HARBORBREAKER,FLASHCANNON,BRAVEBIRD,AQUAJET
     AbilityIndex = 1 # Self-Sufficient
 Pokemon = DRAGONITE,57
     Moves = TEMPEST,COLDFRONT,DRAGONPULSE,SURF
@@ -5728,7 +5728,7 @@ Pokemon = SERPERIOR,70
     # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
     EV = 10,10,10,20,10,0
 Pokemon = EMPOLEON,70
-    Moves = DRILLPECK,HARBORBREAKER,EBBFLOW,SLAY
+    Moves = COLDFRONT,HARBORBREAKER,FLASHCANNON,SEVER
     AbilityIndex = 0 # Imperious
     Item = STRIKEVEST
     # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
