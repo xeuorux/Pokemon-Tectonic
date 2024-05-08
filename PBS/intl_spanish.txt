@@ -1024,8 +1024,8 @@ South: Barren Crater
 Sur: Cráter Desértico
 There's supposed to be a gym leader around here, but he's not keen on taking challengers.
 Se supone que hay un líder de gimnasio por aquí, pero no está interesado en aceptar aspirantes.
-He lives <imp>underground</imp>. like some hermit.
-Vive bajo tierra como un ermitaño.
+He lives <imp>underground</imp> like some hermit.
+Vive <imp>bajo tierra</imp> como un ermitaño.
 Even locked himself up to make it harder to get in.
 Incluso se encerró para que sea más difícil llegar a él.
 Apparently the <imp>lock combination code</imp> is somewhere in the town. 
@@ -1690,7 +1690,7 @@ Muéstrame quién de nosotros lo será.
 No! I can’t -- how?
 ¡No! No puede – ¿Cómo?
 Eight years and I still can’t beat an arrogant child!
-¡Ocho años y no todavía no puedo vencer a un niño arrogante!
+¡Ocho años y todavía no puedo vencer a un niño arrogante!
 No, no, you and your Pokémon deserve the Patience Badge.
 No, no, tú y tus Pokémon merecen la Medalla Paciencia.
 Just do me a favor and beat Tamarind just as badly someday.
@@ -1944,20 +1944,18 @@ Truly you've struck the motherload of moves!
 ¡Verdaderamente has encontrado lo mejor en movimientos!
 Fine... I just wanted something to do now that the mine's closed...
 Bien… sólo quería algo que hacer ahora que la mina que la mina cerró…
-I used to be part of Team Chasm, but now I'm just a humble Ranger.
-Solía ser parte del Team Chasm, pero ahora sólo soy un modesto Ranger.
-I used to use a lot of Life Orbs. Didn't care if my Pokemon got hurt so long as they got the job done.
-Solía usar un montón de Vidasferas. No me importaba si mis Pokémon se lastimaban siempre y cuando terminaran el trabajo.
+I used to use a lot of Life Orbs. Didn't care if my Pokemon got hurt so long as they did the work.
+Solía usar un montón de Vidasferas. No me importaba si mis Pokémon se lastimaban siempre y cuando hicieran el trabajo.
 But I'm not that kind of person any more. I'm looking to rid myself of them.
-Pero ya no soy ese tipo de persona. Busco deshacerme de ellas.
+Pero ya no soy ese tipo de personas. Estoy intentando deshacerme de ellas.
 I've just got one left. I'll sell it to you for $10,000. Fair market value.
-Sólo me queda una. Te la venderé por $10.000. Valor de mercado.
+Sólo me queda una. Te la venderé por $10.000. Precio de mercado.
 Sounds good. I'll be on patrol for awhile now, so hit me up if you change your mind.
-Suena bien. Estaré patrullando por un rato, así que encuentrame si cambias de opinión.
+Suena bien. Estaré en patrulla por un rato ahora, así que háblame si cambias de opinión.
 Here ya go, pleasure doing business.
-Aquí tienes, un gusto hacer negocios contigo.
+Aquí tienes, un gusto hacer negocios.
 \PN hands over $10000 in exchange.
-\PN paga los $10000.
+\PN da los $10000.
 Guess I'll go back on patrol now.
 Supongo que volveré a patrullar.
 Looks like you're a bit short on cash.
@@ -3335,7 +3333,7 @@ Algunos papeles sueltos mostrando el logo de LuxTech.
 Where is it?
 ¿Dónde está?
 Use your Aid Kit.
-Usa tu Botiquín.
+Usar tu Botiquín.
 Give a Fresh Water.
 Dar una Agua Fresca.
 Sorry, but no.
@@ -3974,7 +3972,22 @@ Ya did good, kiddo. We'll be back to conduct more tests.
 Lo hiciste bien, chico. Volveremos para hacer más pruebas.
 Y'know how them folks get about their sample sizes.
 Ya sabes cómo se ponen los tipos con los tamaños de sus pruebas.
-
+The nature of Makya is so enduring! It's so charming how undeveloped everything is!
+¡La naturaleza de Makya es tan duradera! ¡Es tan encantador lo poco desarrollado que está todo!
+What a lovely encounter with a local! Novo was so quaint, but I must go see Prizca!
+¡Qué encuentro más encantador con un local! ¡Novo fue tan pintoresca, pero debo ver Prizca!
+And Maykan battling is so fierce! It must be in such a rough and tumble region.
+¡Y los combates de Makya son tan fieros! Por supuesto que lo es, en una región tan brusca como esta.
+You know, I heard that this region doesn't even have a proper GTS network! How do trainers manage?!
+¡Ya sabes, escuché que esta región ni siquiera tiene una red de GPS! ¡¿Cómo se las arreglan los entrenadores?!
+Does that girl over there have a Johtoan Furret? I've never seen one myself, only the ones here in Makya.
+¿Acaso esa chica tiene un Furret de Johto? Nunca he visto uno yo misma, sólo a los que están aquí en Makya.
+I should steal that Furret. I used to do that all the time.
+Debería robar ese Furret. Solía hacer eso todo el tiempo.
+I wonder if Johtoan Furrets are sought after...
+Me pregunto si los Furrets de Makya son valiosos...
+I bet Johtoan Furrets are worth quite a pretty penny here in Makya...
+Apuesto a que los Furrets de Johto valen lo suyo aquí en Makya...
 [Map54]
 
 My friend invited me to Makya. She failed to mention how untamed the region is. I presume you're another ruffian.
@@ -6772,11 +6785,11 @@ The first is to cut server running costs by keeping the hardware at low temperat
 La primera es cortar gastos de correr el servidor al mantener el hardware a temperaturas bajas.
 The second is to act as a physical storage area for frozen products.
 El segundo es actuar como un área de depósito físico para productos congelados.
-Occasionally a Pokémon will fail out of our cold survival training course.
+Occasionally a Pokemon will fail out of our cold survival training course.
 Ocasionalmente un Pokémon fallará uno de nuestros cursos de entrenamiento de supervivencia al frío.
 This Sewaddle didn't make it through.
 Este Sewaddle no lo logró.
-I need a Pokémon that'll definitively fill the slot. 
+I need a Pokemon that'll definitely fill the slot.
 Necesito un Pokémon que definitivamente ocupa el lugar.
 Pretty much any Ice-type should do. If you have one, I'll trade you for it.
 Cualquier tipo Hielo debería servir. Si tienes uno, te lo intercambiaré por este.
@@ -7856,7 +7869,7 @@ Oh, eres adorable. Tan pura criatura.
 Yes, my love. Always gifts. I’ll get you anything you desire, always. You’re worth more than any material object.
 Sí, mi amor. Siempre regalos. Te conseguiré lo que desees, siempre. Vales más que cualquier objeto material.
 ...But that must come later.
-...Pero eso debe benir luego.
+...Pero eso debe venir luego.
 \PN. I had planned to propose to you here. But then I was gifted a miracle.
 \PN. Tenía planeado proponerte matrimonio aquí. Pero luego fui bendecido por un milagro.
 My undying, fervent wish was made real before my eyes. Our love was consecrated in the eyes of the heavens.
@@ -7866,7 +7879,7 @@ Sabía que este regalo para nosotros fue para ser usado de sólo un modo. Tú er
 I’ve been so selfish, using my words to express how wonderful you are. I should’ve been speaking your language.
 He sido tan egoísta, usando mis palabras para expresar la maravilla que eres. Debería haber estado hablando tu idioma.
 Let me show you my love. Let me show you the sign I have received. Let our love be made immortal by this glorious omen, shining in the passions of combat.
-Déjame mostrarte mi amora. Déjame mostrarte la señal que he recibido. Deja que nuestro amor se haga inmortal por este glorioso augurio, brillando en las pasiones de un combate.
+Déjame mostrarte mi amor. Déjame mostrarte la señal que he recibido. Deja que nuestro amor se haga inmortal por este glorioso augurio, brillando en las pasiones de un combate.
 Of course, my love. Make yourself ready.
 Por supuesto, mi amor. Prepárate.
 I love you. Allow me to show you just how much.
@@ -10099,7 +10112,7 @@ Lo haría yo mismo, pero conocen mi cara.
 Tell ya what, I left a forged ID card under a tree to the west of their building. By the river.
 Sabes qué, dejé un ID falsificado bajo un árbol hacia el oeste de su edificio. Cerca del río.
 It'll let you get in. Be ready for a real tough fight, they probably got a team of minions ready to battle.
-Te dejará entrar. Prepárate para un combate muy dura, probablemente tienen un equipo de secuaces listos para combatir.
+Te dejará entrar. Prepárate para un combate muy duro, probablemente tienen un equipo de secuaces listos para combatir.
 If you get the evidence, I'll make sure you're rewarded.
 Si consigues la evidencia, me aseguraré de recompensarte.
 Any luck? Did you get the ID card under the tree? It's by the river, near the Mart.
@@ -13974,7 +13987,7 @@ There's a creepy person in a Mask using a Regirock to scare people away from Swe
 I tried to escape through the tunnel here, but I forgot that its blocked up by that stupid Virizion.
 Intenté escapar a través del túnel, pero olvidé que fue bloqueado por ese estúpido Virizion.
 Then these avatars appeared and I just... I just panicked.
-Luego esos avatares aparecieron y yo sólo… entré en pánico.
+Luego esos avatares aparecieron y yo sólo... entré en pánico.
 I don't know what the hell is going on, but I'm out of here!
 No sé qué rayos está ocurriendo, ¡Pero yo me voy de aquí!
 Have you come to this peak seeking my advice? To receive it, you must first impress me in battle.
@@ -15448,7 +15461,11 @@ Got a good look at Victoire, I take it?
 She as quirky as they say? I don't know why I bother asking. I'll be finding out soon myself.
 ¿Realmente es tan extravagante como dicen? No sé por qué me molesto en preguntar. Voy a descubrirlo pronto por mi cuenta.
 The 7th badge... oh so sweet will it taste!
-¡La séptima medalla... ya puedo sentir su dulzura!
+¡La séptima medalla... ya puedo sentir su dulzura!.
+Artisan Orbs
+Orbes Artesanos
+Sweetrock Elementary School
+Escuela Elemental Sweetrock
 [Map218]
 
 A cap of rock is holding back a geyser of boiling water.
@@ -15479,7 +15496,7 @@ Oh. Uh, yeah, thanks.
 Oh. Eh, seh, gracias.
 Um. I didn’t really have a lot to do with it. Phione came down here, danced around in the water here, and then it just kinda... transformed.
 Em. No creo que haya tenido mucho que ver al respecto. Phione vino aquí, bailó alrededor del agua aquí, y luego sólo se... transformó.
-Unbelievable. A Manaphy. I raised a Pokémon like this, all by my self.
+Unbelievable. A Manaphy. I raised a Pokémon like this, all by myself.
 No puedo creerlo. Un Manaphy. Crié un Pokémon como este, por mi cuenta.
 It’s a Pokémon from myth. Supposedly they live at the ocean floor and can befriend anything and anyone.
 Es un Pokémon de mitos. Supuestamente viven en el fondo marino y pueden hacerse amigos de cualquiera.
@@ -15540,7 +15557,7 @@ Bueno, quizás no siempre. Tengo a mis Pokémon que cuidar. Pero sabes a lo que 
 I’ve done some stuff I’m not proud of.
 He hecho cosas de las que no estoy orgulloso.
 I’m gonna come clean: I’ve been working with Yezera on her plans for a while now.
-Voya confesarme: he estado trabajando con Yezera en sus planos por un tiempo ya.
+Voy a confesarme: he estado trabajando con Yezera en sus planos por un tiempo ya.
 Never felt like I was good enough. Didn’t feel like anyone was good enough for the love we got from our Pokémon. But maybe that was just me projecting.
 Nunca sentí que era lo suficientemente bueno. No sentía que era lo suficientemente bueno para el amor de nuestros Pokémon. Pero quizás eso era sólo yo proyectándome.
 Maybe I’m the asshole, y’know? And I’ve known that forever – I’m not that stupid – but it takes a wake-up call to realize it. And this was it.
@@ -15558,7 +15575,7 @@ Voy a intentar convertirme en el Campeón el siguiente año, creo. Probablemente
 Future’s uncertain. And you... you’ve got stuff to do, I know.
 El futuro es incierto. Y tú... tienes cosas que hacer, lo sé.
 I wish you the best. I’m gonna be thinking about you, I know.
-Te deseo lo mejor. Voya estar pensando en ti, lo sé.
+Te deseo lo mejor. Voy a estar pensando en ti, lo sé.
 And if you need me, you damn well better ask me, OK? You’ve taken a weight off my shoulders.
 Y si me necesitas, no dudes nunca en preguntarme, ¿Ok? Me has quitado un peso de encima.
 See you around, \PN.
@@ -18262,7 +18279,7 @@ What are you, a cop? You can't make me leave.
 Doesn't open from this side.
 No abre desde este lado.
 If I don't keep swimming, I'll fall down the waterfall and potentially die. What a motivator!
-Si no sigo nadando, voy a caer por la cascada y potencilamente morir. ¡Qué motivador!
+Si no sigo nadando, voy a caer por la cascada y potencialmente morir. ¡Qué motivador!
 Whoa, my adrenaline high is wearing off. Thankfully, the water washes away my reactions.
 Wow, mi adrenalina se está acabando.  Afortunadamente, el agua desvanece mis reacciones.
 WOOO! What a RUSH! 
@@ -20559,7 +20576,7 @@ Getting this thing working is no joke.
 Hacer que esta cosa funcione no es ninguna broma.
 I might need something to jumpstart it, but I don't want to make any purchases that'll trace back to me.
 Necesito algo para darle un empujón, pero no quiero hacer ninguna compra con la que podrían rastrearme.
-Hmm, an Electric-type Pokémon might do the trick. I'll trade you my Carnivine for one if you have it. It's one of the local ones.
+Hmm, an Electric-type Pokemon might do the trick. I'll trade you my Carnivine for one if you have it. It's one of the local ones.
 Hmm, un Pokémon tipo Eléctrico podría funcionar. Te intercambiaré mi Carnivine si tienes uno. Uno de los locales.
 Damn. Guess I'll have to risk the feds for this.
 Maldita sea. Supongo que tendré que arriesgarme con los federales para esto.
@@ -22410,13 +22427,12 @@ It's a real beauty.
 Es una maravilla.
 Got any good fishing spots?
 ¿Conoces un buen lugar de pesca?
-Myself, I got a secret spot up on the the Highland Lake.
+Myself, I got a secret spot up on the Highland Lake.
 De mi parte, conozco un un lugar secreto en el Lago Montañoso.
-Or maybe I should say "down" in the highland lake.
+Or maybe I should say "down" in the Highland Lake.
 O quizás debería decir “debajo” del lago.
 ...maybe I've said too much.
 ...quizás ya dije demasiado.
-
 [Map346]
 
 It's hard for me to fit in here.
@@ -35504,6 +35520,8 @@ Primeval Dream Dance
 Danza Onírica Primitiva
 Primeval Swords Dance
 Danza Espada Primitiva
+Primeval Harmonize
+Armonizar Primitivo
 Empowered Meteor Mash
 Puño Meteoro Empoderado
 Empowered Ice Beam
@@ -35609,7 +35627,7 @@ Sonsonete
 Drown
 Ahogar
 Devour Whole
-Devorar por Completo
+Devorar
 Spotting
 Vigilia
 Repulsion Field
@@ -35728,6 +35746,8 @@ Pressure Burst
 Aplastapresión
 Invite Sand
 Invitar a la Arena
+Twin Beam
+Láser Doble
 [6]
 Using its tough and impressive horn, the user rams into the target with no letup.
 Usando su impresionante cuerno, el usuario embiste al rival.
@@ -37472,7 +37492,7 @@ El usuario despega a velocidades sónicas, aumentando su Velocidad dos grados y 
 Attacks and sets a layer of spikes. After attacking, the user switches out.
 Ataca y coloca una capa de púas. Luego de atacar, el usuario regresa a su Poké Ball.
 The user tries to pick off a weak target. After damage, if the target is below 1/4 HP, they instantly faint.
-El usuario intenta derribar al objetivo. Luego de atacar, si el objetivo tiene 1/4 de sus PS o menos, son instantáneamente debilitados.
+El usuario intenta derribar al objetivo. Luego de atacar, si el objetivo tiene 1/4 de sus PS o menos, es instantáneamente debilitado.
 The user strikes with a simultaneous three-beam attack. It has a 20% chance each to numb, burn, or frostbite.
 El usuario ataca simultáneamente con tres rayos. Tiene un 20% de probabilidad de aturdir, quemar o helar al objetivo.
 The user spews alkaline bubbles that melt the target, drastically lowering their Defense.
@@ -38153,6 +38173,12 @@ Protects the user's side from status moves this turn. It disables any moves bloc
 Protege al lado del usuario de movimientos de estado por un turno. Anula cualquier movimiento bloqueado durante tres turnos.
 The target is hit two to five times in a row. Inflicts physicaly or special damage based on the user's stats.
 El usuario golpea de dos a cinco veces seguidos. Es físico o especial basado en las stats del usuario.
+The user contorts the target's chi with a special technique, lowering its Sp. Def.
+El usuario retorce el chi del objetivo con una técnica especial, disminuyendo su Defensa Especial. 
+The foe is attacked with an intense blast of all-consuming fire.
+El usuario ataca con una enorme ráfaga de fuego.  
+The user shoots mystical beams from its eyes to inflict damage. The target is hit twice in a row.
+El usuario dispara rayos místicos desde sus ojos, golpeando dos veces seguidas.
 [7]
 Repel
 Repelente
@@ -40657,7 +40683,7 @@ Aumenta el Ataque Especial por dos grados cuando el Pokémon usa un movimiento d
 Raises Attack by two steps when the Pokémon uses a blade move the first time each battle.
 Aumenta el Ataque por dos grados cuando el Pokémon usa un movimiento de corte por primera vez en el combate.
 A held item. The holder is protected from the negative effects of weather.
-Un objeto equipable. El portador recibe un 10% menos de daño, y es protegido de los efectos negativos del clima.
+Un objeto equipable. El portador es protegido de los efectos negativos del clima.
 A candy that is packed with energy. When consumed, it will grant a single Pokémon 250 Exp. Points.
 Un caramelo rebosante de energía. Al ser consumido, el Pokémon ganará 250 Puntos de Experiencia.
 A candy that is packed with energy. When consumed, it will grant a single Pokémon 1000 Exp. Points.
@@ -42461,7 +42487,7 @@ Forma un poderoso banco mientras tenga más de la mitad de sus PS.
 Its shroud protects it from an attack just once.
 Su disfraz lo protege del primer ataque que reciba.
 Changes with other Cells if HP becomes half or less.
-Llama a sus otras Células si pierde la mitad de sus PS o menos.
+Llama a sus otras Células si pierde la mitad de sus PS o más.
 Can poison the target even if it's a Steel or Poison type.
 Puede envenenar al objetivo incluso si es un tipo Veneno o Acero.
 It's always drowsing, and attacks without waking.
@@ -42741,7 +42767,7 @@ Los movimientos físicos del Pokémon tienen un 30% de probabilidad de aturdir a
 Special moves have a 30% chance to numb targets.
 Los movimientos especiales del Pokémon tienen un 30% de probabilidad de aturdir a su objetivo.
 After an attack reduces its HP to half or less, deals 1/4 of the attacker's HP back to the attacker.
-Luego de perder la mitad de sus PS o menos debido a un atacante, daña al atacante por un 1/4 de sus PS totales. 
+Luego de perder la mitad de sus PS o más debido a un atacante, daña al atacante por un 1/4 de sus PS totales. 
 Causes sandstorm to deal double damage and increase Sp. Def of Rock types by 2.0x instead of 1.5x.
 Duplica el daño causado por la tormenta de arena e incrementa la Defensa Especial de los tipo Roca por 2.0x en vez de 1.5x.
 Causes hail to deal double damage and increase Defense of Ice types by 2.0x instead of 1.5x.
@@ -42829,7 +42855,7 @@ Niega todo movimiento de estado de los rivales, incluyendo los que crean trampas
 Immune to Flying-type moves and deals 50% more damage with them.
 Sus movimientos tipo Volador son potenciados un 50%, además, es inmune a otros ataque de este tipo.
 Lays a trap of levitating stones around the opponent when its HP is lowered below half.
-Cuando pierde la mitad de sus PS o menos, coloca una trampa de rocas levitantes alrededor del oponente.
+Cuando pierde la mitad de sus PS o más, coloca una trampa de rocas levitantes alrededor del oponente.
 Hits opponent with Gust when withdrawn from battle.
 Golpea al oponente usando Tornado al regresar a su Poké Ball.
 Upon entry, creates an Odd Room for five turns, swapping offensive and defensive stats.
@@ -43047,7 +43073,7 @@ Se cura cualquier problema de estado cada turno bajo sol.
 Heals 1/12th HP every turn. Protected against critical hits.
 Recupera 1/12 de sus PS totales cada turno. Es inmune a golpes críticos.
 Moves that hit multiple targets deal 25% more damage instead of 25% less.
-Movimientos que golpean múltiples objetivos dañan un 25% más en vez de 25%.
+Movimientos que golpean múltiples objetivos dañan un 25% más en vez de un 25% menos.
 Upon entry, creates a substitute from 1/4th of its HP.
 Crea un sustituto con 1/4 de sus PS máximos al entrar al campo.
 At the end of each turn, itself and each ally heals for 1/16th of their HP.
@@ -43257,7 +43283,7 @@ Sus movimientos son potenciados un 30% si ataca a un Pokémon más bajo.
 Whenever a foe's poison worsens, the Pokémon heals for 25% max HP.
 Cada vez que el veneno de un oponente empeore, recupera un 25% de sus PS máximos.
 At the first chance, copies an opponent's species' legal Abilities.
-A la primera oportunidad, copia una de las Habilidades legales del oponente.
+A la primera oportunidad, copia ambas Habilidades legales del oponente.
 Can hold two different items, if both are Herbs.
 Puedes equiparle dos objetos diferentes, si ambos son Hierbas.
 Foes whose stats are lowered by the Pokémon keep those lowered stats even after switching.
@@ -52592,6 +52618,54 @@ Wild Pokémon are now drawn to you!
 ¡Los Pokémon salvajes ahora se sienten atraídos por ti!
 You no longer feel pumped up.
 Ya no te sientes entusiasmado.
+Attacks against {1} will incur recoil!
+¡Ataques contra {1} causarán retroceso!
+#{battler.pbThis} grows one size bigger!
+¡#{battler.pbThis} crece un tamaño!
+#{battler.pbThis} is fully grown!
+¡#{battler.pbThis} creció por completo!
+A tattered notebook sits on the table.
+Un cuaderno andrajoso se encuentra en la mesa.
+It's titled "Tapu Log Book."
+Se titula "Registro Tapu."
+Notes: Cruel Cocoon
+Notas: Crisálida Cruel
+Notes: Turbulent Sky
+Notas: Cielo Turbulento
+Notes: Primal Forest
+Notas: Bosque Primitivo
+Notes: Misdirecting Fog
+Notas: Niebla Ilusoria
+Stop Reading
+Dejar de Leer
+Which section would you like to read?
+¿Qué sección quieres leer?
+Tapu Lele's ability "Flutter Totem" creates a "Cruel Cocoon" upon entry that only affects its side and lasts for 6 turns.
+La habilidad de Tapu Lele "Tótem Ondulante" crea una "Crisálida Cruel" al entrar al campo que sólo afecta a su lado y dura 6 turnos.
+At the end of each turn, it heals Pokemon on its side by 1/8th of their max HP.
+Al final de cada turno, cura a los Pokémon en su lado por 1/8 de sus PS máximos.
+However, they also lose 1 PP from each of their moves. Cruel indeed.
+Sin embargo, también perderán 1 PP en cada uno de sus movimientos. Ciertamente cruel.
+Tapu Koko's ability "Storm Totem" creates a "Turbulent Sky" upon entry that only affects its side and lasts for 6 turns.
+La habilidad de Tapu Koko "Tótem Tormentoso" crea un "Cielo Turbulento" al entrar al campo que sólo afecta a su lado y dura 6 turnos. 
+Pokemon on its side get a 30% move damage boost, but they are prevented from using moves that are the same type as the move they most recently used.
+Los Pokémon en su lado obtienen un aumento de daño en sus movimientos de 30%, pero no podrán usar movimientos que sean del mismo tipo de su último movimiento usado.
+Or, to state it another way, they can't use the same move type twice in a row.
+O, por ponerlo en otras palabras, no pueden usar el mismo tipo de movimiento dos veces seguidas.
+Tapu Bulu's ability "Wild Totem" creates a "Primal Forest" upon entry that only affects its side and lasts for 6 turns.
+La habilidad de Tapu Bulu "Tótem Salvaje" crea un "Bosque Primitivo" al entrar al campo que sólo afecta a su lado y dura 6 turnos.
+Whenever a Pokemon on its side is hit by an offensive attack, it becomes enraged.
+Cada vez que un Pokémon en su lado sea atacado por un movimiento ofensivo, se pondrá furioso.
+Thereby, its defense stats are both lowered by 1 step and its attack stats are both raised by 1 step.
+Por ende, sus stats defensivadas serán disminuidas por 1 grado y sus stats ofensivas serán aumentadas por 1 grado.
+Tapu Fini's ability "Fog Totem" creates a "Misdirecting Fog" upon entry that only affects its side and lasts for 6 turns.
+La habilidad de Tapu Fini "Tótem Neboloso" crea una "Niebla Ilusoria" al entrar al campo que sólo afecta a su lado y dura 6 turnos.
+Whenever a foe finishes attacking a Pokemon on its side, the attacker is forced to switch out of battle.
+Cada vez que un rival termine de atacar a un Pokémon en su lado, el atacante es forzado a regresar a su Poké Ball.
+Unlike moves such as Roar or Whirlwind, however, the trainer has enough time to select the replacement themselves.
+Sin embargo, a diferencia de Rugido o Remolino, el entrenador tiene suficiente tiempo para elegir el reemplazo que desee.
+You put down the book.
+Dejas el libro en la mesa.
 [26]
 [27]
 [27]
