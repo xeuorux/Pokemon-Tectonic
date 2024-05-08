@@ -54,7 +54,7 @@ class PokemonPartyShowcase_Scene
 
         # Show game version
         settingsLabel = "v#{Settings::GAME_VERSION}"
-        drawFormattedTextEx(@overlay, Graphics.width / 2 + 88, bottomBarY, 160, settingsLabel, base, shadow)
+        drawFormattedTextEx(@overlay, Graphics.width / 2 + 60, bottomBarY, 160, settingsLabel, base, shadow)
 
         numIcons = 0
         numIcons += 1 if Randomizer.on?
