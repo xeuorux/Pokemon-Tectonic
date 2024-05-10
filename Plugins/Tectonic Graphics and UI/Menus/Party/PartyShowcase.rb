@@ -62,22 +62,23 @@ class PokemonPartyShowcase_Scene
         numIcons += 1 if flags.include?("cursed")
 
         # Show randomizer icon
-        bottomIconX = Graphics.width / 2 - (numIcons * 24) / 2
+        distanceBetweenIcons = 28
+        bottomIconX = Graphics.width / 2 - (numIcons * distanceBetweenIcons) / 2
         if Randomizer.on?
             pbDrawImagePositions(@overlay,[["Graphics/Pictures/Party/icon_randomizer",bottomIconX,bottomBarY-4]])
-            bottomIconX += 24
+            bottomIconX += distanceBetweenIcons
         end
 
         # Show cursed icon
         if flags.include?("cursed")
-            pbDrawImagePositions(@overlay,[["Graphics/Pictures/Party/icon_cursed",bottomIconX,bottomBarY-4]])
-            bottomIconX += 24
+            pbDrawImagePositions(@overlay,[["Graphics/Pictures/Party/icon_cursed",bottomIconX+2,bottomBarY-4]])
+            bottomIconX += distanceBetweenIcons
         end
 
         # Show perfect icon
         if flags.include?("cursed")
             pbDrawImagePositions(@overlay,[["Graphics/Pictures/Party/icon_perfect",bottomIconX,bottomBarY-4]])
-            bottomIconX += 24
+            bottomIconX += distanceBetweenIcons
         end
 
         pbFadeInAndShow(@sprites) { pbUpdate }
