@@ -76,7 +76,7 @@ class PokemonPartyShowcase_Scene
         end
 
         # Show perfect icon
-        if flags.include?("cursed")
+        if flags.include?("perfect")
             pbDrawImagePositions(@overlay,[["Graphics/Pictures/Party/icon_perfect",bottomIconX,bottomBarY-4]])
             bottomIconX += distanceBetweenIcons
         end
