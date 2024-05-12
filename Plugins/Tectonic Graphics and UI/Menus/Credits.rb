@@ -24,7 +24,7 @@ Destinygreatness<s>Gary Oak
 ali760<s>papper
 lichenprincess<s>Enigma
 princessroxie<s>Joaquín Arellano
-M1ntyFr3shD4n
+M1ntyFr3shD4n<s>pechapanda
 
 {INSERTS_PLUGIN_CREDITS_DO_NOT_REMOVE}
 
