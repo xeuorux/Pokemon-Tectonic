@@ -6,8 +6,7 @@ class PokeBattle_Move_MaxUserAtkLoseHalfOfTotalHP < PokeBattle_Move
     def statUp; return [:ATTACK,12]; end
 
     def pbMoveFailed?(user, _targets, show_message)
-        hpLoss = [user.totalhp / 2, 1].max
-        if user.hp <= hpLoss
+        if user.hp <= hpLoss(user)
             @battle.pbDisplay(_INTL("But it failed, since #{user.pbThis(true)}'s HP is too low!")) if show_message
             return true
         end
@@ -15,9 +14,12 @@ class PokeBattle_Move_MaxUserAtkLoseHalfOfTotalHP < PokeBattle_Move
         return false
     end
 
+    def hpLoss(battler)
+        return [(battler.totalhp / 2.0).ceil, 1].max
+    end
+
     def pbEffectGeneral(user)
-        hpLoss = [user.totalhp / 2, 1].max
-        user.pbReduceHP(hpLoss, false)
+        user.pbReduceHP(hpLoss(user), false)
         user.pbMaximizeStatStep(:ATTACK, user, self)
         user.pbItemHPHealCheck
     end
