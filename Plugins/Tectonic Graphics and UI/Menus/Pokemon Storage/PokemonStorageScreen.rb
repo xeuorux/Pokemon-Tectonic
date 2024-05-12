@@ -43,7 +43,8 @@ class PokemonStorageScreen
                 else
                     pokemon = @storage[selected[0], selected[1]]
                     if pokemon && command == 4
-                        if @storage[selected[0]].isDonationBox?
+                        selectedBox = selected[0]
+                        if selectedBox > -1 && @storage[selectedBox].isDonationBox?
                             pbPlayBuzzerSE
                             pbDisplay(_INTL("You cannot select a donated Pokémon!"))
                             next
