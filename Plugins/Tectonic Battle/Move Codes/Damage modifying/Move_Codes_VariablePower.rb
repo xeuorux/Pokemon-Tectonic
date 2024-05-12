@@ -101,14 +101,14 @@ class PokeBattle_Move_ScalesWithLostHP < PokeBattle_Move
 end
 
 #===============================================================================
-# Power increases the quicker the user is than the target. (Electro Ball)
+# Power increases the quicker the user is than the target. (Electro Ball, Hunt Down)
 #===============================================================================
 class PokeBattle_Move_ScalesFasterThanTarget < PokeBattle_Move
     def pbBaseDamage(_baseDmg, user, target)
         ratio = user.pbSpeed.to_f / target.pbSpeed.to_f
         basePower = 10 + (7 * ratio).floor * 5
         basePower = 150 if basePower > 150
-        basePower = 40 if basePower < 150
+        basePower = 40 if basePower < 40
         return basePower
     end
 end
