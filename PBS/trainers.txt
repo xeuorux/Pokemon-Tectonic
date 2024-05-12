@@ -2222,18 +2222,31 @@ Pokemon = CHIMECHO,70
     AbilityIndex = 1 # Toll the Bells
 #-------------------------------
 [DEVSUPERNERD,Agentbla]
-Pokemon = BEARTIC,70
-    AbilityIndex = 1 # Chronic Cold
-Pokemon = NINETALES,70
-    AbilityIndex = 1 # Feedback
-Pokemon = KRICKETUNE,70
-    AbilityIndex = 0 # Fascinate
-Pokemon = WHISCASH,70
-    AbilityIndex = 0 # Mental Block
-Pokemon = MFURRET,70
-    AbilityIndex = 0 # Filter
-Pokemon = DIGNIPHITE,70
-    AbilityIndex = 1 # Fascinate
+Pokemon = WHIMSICOTT,70
+	Name = Joe
+	Gender = male
+	Shiny = yes
+	AbilityIndex = 0 # Cotton Decoy
+Pokemon = HARCANINE,70
+	Name = Jun
+	Gender = male
+	AbilityIndex = 1 # ROCKHEAD
+Pokemon = MANIKLAW,70
+	Name = Jumble
+	Gender = female
+	AbilityIndex = 0 # Malice
+Pokemon = ESPEON,70
+	Name = June
+	Gender = female
+	AbilityIndex = 0 # Overthinking
+Pokemon = CORVIKNIGHT,70
+	Name = Joan
+	Gender = female
+	AbilityIndex = 0 # Mirror Armor
+Pokemon = SWAMPERT,70
+	Name = John
+	Gender = male
+	AbilityIndex = 1 # Boulder Nest
 #-------------------------------
 [DEVDRAGONTAMER2,Divock]
 Pokemon = DRAGONITE,70
