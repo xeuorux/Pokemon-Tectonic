@@ -619,6 +619,70 @@ end
     }
   })
 
+  DebugMenuCommands.register("listhelditems", {
+    "parent"      => "analysis",
+    "name"        => _INTL("List held items"),
+    "description" => _INTL("List all items that the player's Pokemon can hold for use in battle."),
+    "effect"      => proc { |sprites, viewport|
+      
+      itemDataSorted = []
+      GameData::Item.each do |itemData|
+          next if itemData.super
+          next if itemData.cut
+          next unless itemData.pocket == 5
+          itemDataSorted.push(itemData)
+      end
+  
+      itemDataSorted.sort_by! { |data|
+          data.real_name
+      }
+  
+      File.open("Analysis/held_items.txt","wb") { |file|
+        itemDataSorted.each do |itemData|
+              itemLine = describeItem(itemData.id)
+              itemLine += "\r\n"
+              file.write(itemLine)
+          end
+      }
+      pbMessage(_INTL("Held item information written to Analysis/held_items.txt"))
+    }
+  })
+
+  DebugMenuCommands.register("listsuperitems", {
+    "parent"      => "analysis",
+    "name"        => _INTL("List super items"),
+    "description" => _INTL("List all super items used in curses."),
+    "effect"      => proc { |sprites, viewport|
+      
+        itemDataSorted = []
+        GameData::Item.each do |itemData|
+            next unless itemData.super
+            next if itemData.cut
+            next unless itemData.pocket == 5
+            itemDataSorted.push(itemData)
+        end
+
+        itemDataSorted.sort_by! { |data|
+            data.real_name
+        }
+
+        File.open("Analysis/held_items_super.txt","wb") { |file|
+            itemDataSorted.each do |itemData|
+                itemLine = describeItem(itemData.id)
+                itemLine += "\r\n"
+                file.write(itemLine)
+            end
+        }
+        pbMessage(_INTL("Held item information written to Analysis/held_items_super.txt"))
+    }
+  })
+  
+  def describeItem(itemID)
+      itemData = GameData::Item.get(itemID)
+      itemLine = "#{itemData.real_name},\"#{itemData.description}\""
+      return itemLine
+  end
+
   DebugMenuCommands.register("counttribes", {
     "parent"      => "analysis",
     "name"        => _INTL("Count tribes"),
