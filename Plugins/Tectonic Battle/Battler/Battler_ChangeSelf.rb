@@ -604,7 +604,8 @@ class PokeBattle_Battler
         pbChangeTypes(newSpecies)
         refreshDataBox
         @battle.pbDisplay(_INTL("{1} transformed into a {2}!", pbThis, newSpeciesData.name))
-        newAbility = newSpeciesData.legalAbilities[@pokemon.ability_index]
+        legalAbilities = newSpeciesData.legalAbilities
+        newAbility = legalAbilities[@pokemon.ability_index] || legalAbilities[0]
         replaceAbility(newAbility) unless hasAbility?(newAbility)
 
         newStats = @pokemon.getCalculatedStats(newSpecies)
