@@ -8498,7 +8498,7 @@ BattlerEnemyX = 0
 BattlerEnemyY = 24
 BattlerShadowX = 0
 BattlerShadowSize = 2
-Evolutions = MIGHTYENA,Level,32
+Evolutions = MIGHTYENA,Level,30
 #-------------------------------
 [262]
 Name = Mightyena
