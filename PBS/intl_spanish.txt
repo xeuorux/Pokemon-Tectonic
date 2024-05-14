@@ -35685,7 +35685,7 @@ Artillería
 Snap
 Mordisqueo
 Polarized Room
-Zona Eficaz
+Zona Polarizada
 Mistletoe
 Patada Muérdago
 Root Driver
@@ -43488,8 +43488,8 @@ Can't be numbed, leeched, trapped, or have its Speed reduced by foes.
 No puede ser aturdido, infectado, atrapado, o tener su Velocidad reducida por los rivales.
 Boosts the power of kicking moves by 30%.
 Aumenta un 30% la potencia de los movimientos de patada.
-Upon entry, creates a Quality Room for five turns, exaggerating type matchups.
-Al entrar, crea una Zona Eficaz durante cinco turnos, exagerando las efectividades de tipo.
+Upon entry, creates a Polarized Room for five turns, exaggerating type matchups.
+Al entrar, crea una Zona Polarizada durante cinco turnos, exagerando las efectividades de tipo.
 Upon entry, creates an Insight Room for five turns, giving everyone a fifth move.
 Al entrar, crea una Zona Esclarecedora durante cinco turnos, dando a todos un quinto movimiento.
 Upon entry, creates an Emotion Room for five turns, switching Abilities every turn.
@@ -54857,7 +54857,7 @@ Zona Enigmática
 Odd Room
 Zona Anómala
 Polarized Room
-Zona Eficaz
+Zona Polarizada
 Insight Room
 Zona Esclarecedora
 Emotion Room
