@@ -4176,7 +4176,7 @@ Pokemon = KINGAMBIT,70
     # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
     EV = 0,20,0,20,20,10
 Pokemon = RIOJIN,70
-    Moves = SECRETTECHNIQUE,EARTHPOWER,STEELBEAM,SHADOWBALL
+    Moves = SECRETTECHNIQUE,EARTHPOWER,STEELBEAM,DARKALLURE
     AbilityIndex = 1 # Inner Focus
     Item = WISEGLASSES
     # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
