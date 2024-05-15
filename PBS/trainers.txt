@@ -166,7 +166,7 @@ Pokemon = RIOLU,15
     # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
     EV = 10,20,0,20,20,0
 Pokemon = CROAGUNK,15
-    Moves = ENVENOM,NASTYNIP,KARATECHOP,NERVEBLOCK
+    Moves = FAKEOUT,NASTYNIP,KARATECHOP,NERVEBLOCK
     AbilityIndex = 0 # Prankster
     # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
     EV = 20,10,5,0,10,15
@@ -180,6 +180,8 @@ Pokemon = PANCHAM,15
     Moves = SMASH,TAUNT,BULKUP,BITE
 Pokemon = BINACLE,15
     Item = SITRUSBERRY
+Pokemon = RIOLU,15
+    Moves = MAGNETWAVE,SHATTERSHOT,VALORBOLT,VANGUARD
 Pokemon = EKANS,15
     Position = 4
     Moves = ACID,BITE,GLARE,WIPEOUT
@@ -187,6 +189,7 @@ Pokemon = EKANS,15
     # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
     EV = 9,11,10,20,11,0
 Pokemon = CROAGUNK,15
+    Moves = MACHPUNCH,NASTYNIP,KARATECHOP,NERVEBLOCK
     Item = LUMBERRY
 #-------------------------------
 [POKEMONTRAINER_Yezera,Yezera]
@@ -575,7 +578,7 @@ Pokemon = WAILMER,25
     # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
     EV = 2,20,9,0,20,19
 Pokemon = LUXIO,25
-    Moves = FEINTATTACK,THUNDERFANG,ROAR,ICEFANG
+    Moves = FEINTATTACK,THUNDERFANG,FIREFANG,ICEFANG
     AbilityIndex = 1 # Intimidate
     # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
     EV = 0,20,10,20,20,0
@@ -600,7 +603,7 @@ Pokemon = WAILMER,25
 Pokemon = LUXIO,25
     Moves = FEINTATTACK,THUNDERFANG,VOLTSWITCH,ICEFANG
 Pokemon = PRINPLUP,25
-    Moves = FLIPTURN,SHRAPNEL,SUPERSONIC
+    Moves = FLIPTURN,SHRAPNEL,SUPERSONIC,AURAFLUX
 Pokemon = TOXTRICITY,25
     Item = AIRBALLOON
 Pokemon = KINGLER,25
@@ -1554,7 +1557,7 @@ Pokemon = MNINETALES,30
     # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
     EV = 10,20,0,20,20,0
 Pokemon = DHELMISE,30
-    Moves = WAILINGBLOW,ROOTWRACK,GYROBALL,SHADOWSNEAK
+    Moves = ROCKSLIDE,ROOTWRACK,GYROBALL,SHADOWSNEAK
     AbilityIndex = 0 # Rust & Wrack
     Item = OCCABERRY
     # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
