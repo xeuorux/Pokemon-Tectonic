@@ -48116,6 +48116,8 @@ It'll last the whole battle!
 ¡{1} maximizó su {2}!
 {1}'s negative stat changes were eliminated!
 ¡Los cambios de estadísticos negativos de {1} fueron eliminados!
+It'll skip its next two moves
+Se saltará sus próximos dos movimientos
 Its physical damage is reduced by a third
 Su daño físico es reducido por un tercio
 The poison will worsen over time
@@ -48174,8 +48176,8 @@ No afecta a {1} porque es un tipo {2}...
 ¡El equipo de {1} es protegido por Velo Sagrado!
 {1} refuses to gain a status condition!
 ¡{1} rechaza obtener un problema de estado!
-{1} fell asleep!
-¡{1} cae dormido!
+{1} fell asleep! {2}!
+¡{1} cae dormido! ¡{2}!
 {1} was poisoned! {2}!
 ¡{1} fue envenenado! ¡{2}!
 {1} was burned! {2}!
@@ -48188,6 +48190,20 @@ No afecta a {1} porque es un tipo {2}...
 ¡{1} fue mareado! ¡{2}!
 {1} became leeched! {2}!
 ¡{1} fue infectado! ¡{2}!
+{1} fell asleep!
+¡{1} cae dormido!
+{1} was poisoned!
+¡{1} fue envenenado!
+{1} was burned!
+¡{1} fue quemado!
+{1} is numbed!
+¡{1} fue aturdido!
+{1} was frostbitten!
+¡{1} fue helado!
+{1} is dizzy!
+¡{1} fue mareado!
+{1} became leeched!
+¡{1} fue infectado!
 {1} is fast asleep.
 {1} está dormido como un tronco.
 {1} was hurt by poison!

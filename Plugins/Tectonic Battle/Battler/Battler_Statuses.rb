@@ -1,3 +1,4 @@
+def getSleepExplanation; return _INTL("It'll skip its next two moves"); end
 def getBurnExplanation; return _INTL("Its physical damage is reduced by a third"); end
 def getPoisonExplanation; return _INTL("The poison will worsen over time"); end
 def getFrostbiteExplanation; return _INTL("Its special damage is reduced by a third"); end
@@ -179,42 +180,8 @@ class PokeBattle_Battler
             end
         end
         # Type immunities
-        hasImmuneType = false
-        immuneType = nil
-        case newStatus
-        when :POISON
-            unless user&.hasActiveAbility?(:CORROSION)
-                if pbHasType?(:POISON)
-                    hasImmuneType = true
-                    immuneType = :POISON
-                end
-                if pbHasType?(:STEEL)
-                    hasImmuneType = true
-                    immuneType = :STEEL
-                end
-            end
-        when :BURN
-            if pbHasType?(:FIRE)
-                hasImmuneType = true
-                immuneType = :FIRE
-            end
-        when :NUMB
-            if pbHasType?(:ELECTRIC)
-                hasImmuneType = true
-                immuneType = :ELECTRIC
-            end
-        when :FROSTBITE
-            if pbHasType?(:ICE)
-                hasImmuneType = true
-                immuneType = :ICE
-            end
-        when :LEECHED
-            if pbHasType?(:GRASS)
-                hasImmuneType = true
-                immuneType = :GRASS
-            end
-        end
-        if hasImmuneType
+        immuneType = hasTypeImmunityToStatus?(newStatus, user)
+        if immuneType
             immuneTypeRealName = GameData::Type.get(immuneType).name
             if showMessages
                 @battle.pbDisplay(_INTL("It doesn't affect {1} since it's an {2}-type...", pbThis(true),
@@ -277,25 +244,10 @@ immuneTypeRealName))
         return false if fainted?
         # Trying to replace a status problem with another one
         return false unless hasSpotsForStatus
+        # Already has that status
+        return false if getStatuses.include?(newStatus)
         # Type immunities
-        hasImmuneType = false
-        case newStatus
-        when :POISON
-            # NOTE: target will have Synchronize, so it can't have Corrosion.
-            unless target&.hasActiveAbility?(:CORROSION)
-                hasImmuneType |= pbHasType?(:POISON)
-                hasImmuneType |= pbHasType?(:STEEL)
-            end
-        when :BURN
-            hasImmuneType |= pbHasType?(:FIRE)
-        when :NUMB
-            hasImmuneType |= pbHasType?(:ELECTRIC)
-        when :FROSTBITE
-            hasImmuneType |= pbHasType?(:ICE)
-        when :LEECHED
-            hasImmuneType |= pbHasType?(:GRASS)
-        end
-        return false if hasImmuneType
+        return false if hasTypeImmunityToStatus?(newStatus, applicator)
         # Ability immunity
         eachActiveAbility do |ability|
             return false if BattleHandlers.triggerStatusImmunityAbilityNonIgnorable(ability, self, newStatus)
@@ -314,6 +266,28 @@ immuneTypeRealName))
         # Safeguard immunity
         return false if pbOwnSide.effectActive?(:Safeguard) && !(target && target.hasActiveAbility?(:INFILTRATOR))
         return true
+    end
+
+    # Returns which type is providing the immunity
+    # Or nil if no immunity present
+    def hasTypeImmunityToStatus?(status, applicator)
+        immuneType = nil
+        case status
+        when :POISON
+            unless applicator&.hasActiveAbility?(:CORROSION)
+                immuneType = :STEEL if pbHasType?(:STEEL)
+                immuneType = :POISON if pbHasType?(:POISON)
+            end
+        when :BURN
+            immuneType = :FIRE if pbHasType?(:FIRE)
+        when :NUMB
+            immuneType = :ELECTRIC if pbHasType?(:ELECTRIC)
+        when :FROSTBITE
+            immuneType = :ICE if pbHasType?(:ICE)
+        when :LEECHED
+            immuneType = :GRASS if pbHasType?(:GRASS)
+        end
+        return immuneType
     end
 
     #=============================================================================
@@ -360,21 +334,40 @@ immuneTypeRealName))
             if msg && !msg.empty?
                 @battle.pbDisplay(msg)
             else
-                case newStatus
-                when :SLEEP
-                    @battle.pbDisplay(_INTL("{1} fell asleep!", pbThis))
-                when :POISON
-                    @battle.pbDisplay(_INTL("{1} was poisoned! {2}!", pbThis, getPoisonExplanation))
-                when :BURN
-                    @battle.pbDisplay(_INTL("{1} was burned! {2}!", pbThis, getBurnExplanation))
-                when :NUMB
-                    @battle.pbDisplay(_INTL("{1} is numbed! {2}!", pbThis, getNumbExplanation))
-                when :FROSTBITE
-                    @battle.pbDisplay(_INTL("{1} was frostbitten! {2}!", pbThis, getFrostbiteExplanation))
-                when :DIZZY
-                    @battle.pbDisplay(_INTL("{1} is dizzy! {2}!", pbThis, getDizzyExplanation))
-                when :LEECHED
-                    @battle.pbDisplay(_INTL("{1} became leeched! {2}!", pbThis, getLeechExplanation))
+                if $PokemonSystem.status_effect_messages.zero?
+                    case newStatus
+                    when :SLEEP
+                        @battle.pbDisplay(_INTL("{1} fell asleep! {2}!", pbThis, getSleepExplanation))
+                    when :POISON
+                        @battle.pbDisplay(_INTL("{1} was poisoned! {2}!", pbThis, getPoisonExplanation))
+                    when :BURN
+                        @battle.pbDisplay(_INTL("{1} was burned! {2}!", pbThis, getBurnExplanation))
+                    when :NUMB
+                        @battle.pbDisplay(_INTL("{1} is numbed! {2}!", pbThis, getNumbExplanation))
+                    when :FROSTBITE
+                        @battle.pbDisplay(_INTL("{1} was frostbitten! {2}!", pbThis, getFrostbiteExplanation))
+                    when :DIZZY
+                        @battle.pbDisplay(_INTL("{1} is dizzy! {2}!", pbThis, getDizzyExplanation))
+                    when :LEECHED
+                        @battle.pbDisplay(_INTL("{1} became leeched! {2}!", pbThis, getLeechExplanation))
+                    end
+                else # Skip full status explanation if setting was turned off
+                    case newStatus
+                    when :SLEEP
+                        @battle.pbDisplay(_INTL("{1} fell asleep!", pbThis))
+                    when :POISON
+                        @battle.pbDisplay(_INTL("{1} was poisoned!", pbThis))
+                    when :BURN
+                        @battle.pbDisplay(_INTL("{1} was burned!", pbThis))
+                    when :NUMB
+                        @battle.pbDisplay(_INTL("{1} is numbed!", pbThis))
+                    when :FROSTBITE
+                        @battle.pbDisplay(_INTL("{1} was frostbitten!", pbThis))
+                    when :DIZZY
+                        @battle.pbDisplay(_INTL("{1} is dizzy!", pbThis))
+                    when :LEECHED
+                        @battle.pbDisplay(_INTL("{1} became leeched!", pbThis))
+                    end
                 end
             end
         end
