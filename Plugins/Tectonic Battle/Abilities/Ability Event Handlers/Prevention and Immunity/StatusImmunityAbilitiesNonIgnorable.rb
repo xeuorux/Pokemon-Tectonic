@@ -3,3 +3,5 @@ BattleHandlers::StatusImmunityAbilityNonIgnorable.add(:SHIELDSDOWN,
         next true if battler.isSpecies?(:MINIOR) && battler.form < 7
     }
 )
+
+BattleHandlers::StatusImmunityAbilityNonIgnorable.copy(:SHIELDSDOWN,:DEBRISFIELD)
