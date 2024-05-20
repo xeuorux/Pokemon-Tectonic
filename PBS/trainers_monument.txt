@@ -1961,7 +1961,7 @@ Pokemon = FLORGES,70
 [SWIMMER_M4,Lars]
 Policies = RAIN_TEAM
 Pokemon = KLEFKI,70
-    Moves = RAIN,SPELLBIND,FOULPLAY,DEFOG
+    Moves = RAIN,SPELLBIND,SUGARBALL,DEFOG
     AbilityIndex = 0 # Prankster
     Item = DAMPROCK
     # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
