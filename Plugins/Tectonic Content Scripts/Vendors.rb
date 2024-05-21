@@ -783,6 +783,21 @@ def herbVendor
 	)
 end
 
+def typeBoostingVendor
+	herbStock = %i[
+		AGILITYHERB STRENGTHHERB INTELLECTHERB
+		WHITEHERB BLACKHERB
+		POWERHERB ENERGYHERB
+		SKILLHERB LUCKHERB
+		MIRRORHERB PARADOXHERB
+		MENTALHERB
+	]
+	pbPokemonMart(
+		herbStock,
+		_INTL("Name's Herbert. Care for any herbs?"),
+		!CAN_SELL_IN_VENDORS
+	)
+end
 
 ######################################################
 # Minor food vendors
