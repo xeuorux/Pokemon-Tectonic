@@ -62,16 +62,6 @@ BattleHandlers::TargetAbilityAfterMoveUse.add(:MOONLIGHTER,
 # Every-hit punishers
 #############################################################
 
-BattleHandlers::TargetAbilityAfterMoveUse.add(:EXOADAPTION,
-  proc { |ability, target, user, move, _switched, _battle|
-      next unless move.damagingMove?
-      next unless user.activatesTargetAbilities?
-      next unless move.specialMove?
-      healingMessage = _INTL("{1} heals itself with energy from {2}'s attack!", target.pbThis, user.pbThis(true))
-      target.applyFractionalHealing(1.0 / 4.0, ability: ability, customMessage: healingMessage)
-  }
-)
-
 BattleHandlers::TargetAbilityAfterMoveUse.add(:PLASMAGLOBE,
   proc { |ability, target, user, move, _switched, battle|
       next unless move.damagingMove?

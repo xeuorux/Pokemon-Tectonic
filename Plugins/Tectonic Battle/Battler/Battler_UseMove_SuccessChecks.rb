@@ -204,7 +204,7 @@ GameData::Move.get(@effects[:GorillaTactics]).name)
         return true if skipAccuracyCheck
 
         # Check status problems and continue their effects/cure them
-        if pbHasStatus?(:SLEEP)
+        if asleep?
             if aiCheck
                 if willStayAsleepAI? && !move.usableWhenAsleep?
                     echoln("\t\t[AI FAILURE CHECK] #{pbThis} rejects the move #{move.id} due to it being predicted to stay asleep this turn")
@@ -519,8 +519,8 @@ target.pbThis(true)))
         end
     end
 
-    def onMoveFailed(move)
-        @lastMoveFailed = true
+    def onMoveFailed(move, affectsTrackers = true)
+        @lastMoveFailed = true if affectsTrackers
         # Slap stick
         eachOpposing do |b|
             next unless b.hasActiveAbility?(:SLAPSTICK)
