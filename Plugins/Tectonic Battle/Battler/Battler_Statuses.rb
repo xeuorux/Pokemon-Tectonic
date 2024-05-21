@@ -138,7 +138,7 @@ class PokeBattle_Battler
             return false
         end
         # Trying to give too many statuses
-        if !hasSpotsForStatus && !ignoreStatus && !selfInflicted
+        if !hasSpotsForStatus && !ignoreStatus
             @battle.pbDisplay(_INTL("{1} cannot have any more status problems...", pbThis(false))) if showMessages
             return false
         end
