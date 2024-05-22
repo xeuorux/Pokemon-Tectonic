@@ -20,3 +20,7 @@ ItemHandlers::ConfirmUseInField.add(:TAROTAMULET,proc { |item|
 ItemHandlers::UseInField.add(:TAROTAMULET,proc { |item|
 	next useTarotAmulet
 })
+
+def tarotAmuletActive?
+	return $PokemonGlobal.tarot_amulet_active || false
+end
