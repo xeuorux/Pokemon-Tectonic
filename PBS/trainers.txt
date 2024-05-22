@@ -434,11 +434,11 @@ Pokemon = MEOWTH,21
     AbilityIndex = 1 # All That Glitters
     Item = NORMALGEM,GROUNDGEM
 Pokemon = AMEOWTH,22
-    Moves = PRANK,SHATTERSHOT,PLANTDOUBT,PAYDAY
+    Moves = DAZZLE,CRYSTALGLEAM,PLANTDOUBT,PAYDAY
     AbilityIndex = 0 # Fur Coat
     Item = DARKGEM
 Pokemon = GMEOWTH,22
-    Moves = POWERUPPUNCH,METALCLAW,PAYDAY,FAKEOUT
+    Moves = SHARPEN,METALCLAW,PAYDAY,FAKEOUT
     AbilityIndex = 1 # Steely Spirit
     Item = STEELGEM
 #-------------------------------
@@ -3123,7 +3123,7 @@ Pokemon = GRAPPLOCT,70
     # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
     EV = 20,0,15,0,0,15
 Pokemon = FLOATZEL,70
-    Moves = EXTREMESPEED,FAKEOUT,HYPERJET,PROTECT
+    Moves = MEGAPUNCH,FAKEOUT,HYPERJET,PROTECT
     AbilityIndex = 0 # Moxie
     Item = MIRRORHERB
     # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
