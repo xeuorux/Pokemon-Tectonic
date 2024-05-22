@@ -42,6 +42,11 @@ class PokeBattle_Battle
             return
         end
 
+        # Curses effects here
+        @curses.each do |curse_policy|
+            triggerEndOfTurnCurseEffect(curse_policy, self)
+        end
+
         # Reset the echoed voice counter unless anyone used echoed voice this turn
         @sides.each do |side|
             side.disableEffect(:EchoedVoiceCounter) unless side.effectActive?(:EchoedVoiceUsed)

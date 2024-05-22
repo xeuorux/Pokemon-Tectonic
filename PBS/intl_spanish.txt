@@ -51948,8 +51948,10 @@ Every Beat Betrays the Beast's Burden
 Cada Impacto Traiciona la Carga de la Bestia
 Gored Upon the Horns of the Dilemma - Boredom or the Path of Thorns?
 Acorneado por los Cuernos del Dilema - ¿Aburrimiento o un Camino de Espinas?
-One layer of spikes will be placed on your side each turn!
-¡Se colocará una capa de púas a tu lado en cada turno!
+Your side gains spikes each turn, except if removed that turn.
+Tu lado gana púas en cada turno, excepto si se eliminan ese turno.
+You were spared from spikes this turn!
+¡Te salvaste de las púas este turno!
 Pyres raised<<n>>Here we meet<<n>>Spirits razed<<n>>Reduced to meat
 Llamas crecen<<n>>Aquí nos encontramos<<n>>Espíritus arrasados<<n>>Reducidos a ceniza
 Shall Our Truth Lay Asunder Thy Masque and Thee?
