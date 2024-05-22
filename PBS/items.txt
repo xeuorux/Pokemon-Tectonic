@@ -1168,7 +1168,7 @@ Description = A shady-looking pair of glasses that boosts the holder's Dark-type
 Name = Metal Coat
 NamePlural = Metal Coats
 Pocket = 5
-Price = 2000
+Price = 1000
 Description = A special metallic film that boosts the holder's Steel-type moves by 20%.
 #-------------------------------
 [SILKSCARF]

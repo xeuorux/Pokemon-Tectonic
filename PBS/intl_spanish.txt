@@ -1058,6 +1058,10 @@ Líder: Rafael
 ...
 It seems like the Gym Leader was supposed to write a title here, but the space has been left blank.
 Parece que el Líder de Gimnasio debía escribir un título aquí, pero el espacio fue dejado vacío.
+Got some rare things on sale, stranger!
+Tengo algunas cosas raras a la venta!
+Come back anytime.
+Vuelve cuando quieras.
 [Map9]
 STAY AWAY FROM MY PLANTS!
 ¡ALÉJATE DE MIS PLANTAS!
@@ -50186,6 +50190,10 @@ Take a look, it's all delicious!
 ¡Míralas, todas son deliciosas!
 Grab a Tulumba, a Makyan specialty!
 ¡Compra un Tulumba, una especialidad de Makya!
+What can I get you?
+¿Qué puedo conseguirte?
+Farm food, fresh for feastin'.
+Comida de granja, fresca para festejar.
 It's a vending machine.
 Es una máquina expendedora.
 Fresh Water - $#{freshWaterCost}
@@ -50898,6 +50906,8 @@ I've got the lion's share of powerful items. Buy now!
 Tengo una buena cantidad de objetos poderosos. ¡Compra ahora!
 Name's Herbert. Care for any herbs?
 Mi nombre es Herbert. ¿Quieres alguna hierba?
+What're ya buyin'?
+¿Qué estás comprando?
 A mystical Avatar Totem. It pulses with ancient vital energy.
 Un Tótem Avatar místico. Late con energía vital antigua.
 A mystical Avatar Totem. It pulses with an unusual frequency.
