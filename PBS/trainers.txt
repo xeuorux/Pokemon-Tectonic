@@ -3842,16 +3842,24 @@ Pokemon = SEAKING,55
 #-------------------------------
 [LEADER_Victoire,Victoire,1]
 ExtendsVersion = 0
-Policies = CURSE_VENGEANT
+Policies = CURSE_EXTRA_ITEMS
+Pokemon = BLASTOISE,55
+    ExtraItems = FOCUSSASH
+Pokemon = MISMAGIUS,55
+    ExtraItems = UTILITYUMBRELLA
 Pokemon = DECEAT,55
     Moves = METEORMASH,HUMBLE,SUCKERPUNCH,SWORDSDANCE
+    ExtraItems = LIFEORB
 Pokemon = HYMNUS,55
     Moves = DRACOMETEOR,PLAYROUGH,RAIN,FIREBLAST
     Item = WHITEHERB
+    ExtraItems = DAMPROCK
 Pokemon = BRONZONG,55
     Item = HIVISJACKET
+    ExtraItems = ROCKYHELMET
 Pokemon = SEAKING,55
     Item = STRIKEVEST
+    ExtraItems = KEBIABERRY
 #-------------------------------
 [TRAINER_Sang,Sang]
 Policies = EQ_PROTECT

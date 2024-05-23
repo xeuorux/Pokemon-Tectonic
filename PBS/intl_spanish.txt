@@ -47418,6 +47418,8 @@ Your Pokemon don't get extra damage on their same-type attacks.
 Tus Pokémon no obtienen daño extra en sus ataques del mismo tipo. 
 Enemy Pokemon all have an extra type.
 Los Pokémon Rivales tienen un tipo extra.
+Enemy Pokemon all have an extra item.
+Los Pokémon Rivales tienen un objeto extra.
 Yezera won't leave the battle early. This is a true fight!
 Yezera no dejará el combate temprano. ¡Esta es un verdadera batalla!
 Bence and Zoé are using 5 battlers each. This is a big battle!
