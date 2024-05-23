@@ -247,9 +247,15 @@ end
 
 # Replace placeholder overworld follower sprites
 Events.onMapChange += proc { |_sender,*args|
+	followerEventGraphicSwap
+}
+
+def followerEventGraphicSwap(reset = false)
 	for event in $game_map.events.values
 		match = event.name.match(/follower\(:([a-zA-Z0-9_]+),"(.+)"(?:,([0-9]+))?(?:,([0-9]+))?\)/)
 		next unless match
+
+		cursed = event.name.match(/cursedfollower/)
 
 		# Parse the event name
 		trainerClass = match[1].to_sym
@@ -257,14 +263,23 @@ Events.onMapChange += proc { |_sender,*args|
 		trainerVersion = match[3].to_i || 0
 		partyIndex = match[4].to_i || 0
 
+		# Don't use the cursed version if it doesnt actually exist
+		if cursed && tarotAmuletActive? && GameData::Trainer.try_get(trainerClass, trainerName, trainerVersion + 1)
+			trainerVersion += 1
+		end
+
 		# Find the pokemon that the event represents
-		pokemon = pbLoadTrainer(trainerClass,trainerName,trainerVersion).displayPokemonAtIndex(partyIndex)
+		pokemon = pbLoadTrainer(trainerClass, trainerName, trainerVersion).displayPokemonAtIndex(partyIndex)
 
 		newPages = {}
 
 		# Find all the pages that need to be replaced
 		event.event.pages.each_with_index do |page,pageIndex|
-			next unless page.graphic.character_name == "00Overworld Placeholder"
+			if reset
+				next if page.graphic.character_name.empty?
+			else
+				next unless page.graphic.character_name == "00Overworld Placeholder"
+			end
 			newPages[pageIndex] = createPokemonInteractionEventPage(pokemon,page)
 		end
 
@@ -277,7 +292,7 @@ Events.onMapChange += proc { |_sender,*args|
 		
 		event.refresh
     end
-}
+end
 
 def createPokemonInteractionEventPage(pokemon,originalPage = nil)
 	# Create the page where the cry happens

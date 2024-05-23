@@ -5,6 +5,7 @@ def useTarotAmulet()
 	else
 		pbMessage(_INTL("You turn the Tarot Amulet to its back face. It is now disabled."))
 	end
+	followerEventGraphicSwap(true)
 	return true
 end
 
