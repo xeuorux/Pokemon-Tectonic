@@ -6,13 +6,15 @@ ItemHandlers::UseFromBag.add(:STINKBOMB,proc { |item|
     next 2
 })
 
+STINK_BOMB_RANGE = 3
+
 def getStinkBombables
     stinkBombables = []
     for event in $game_map.events.values
 		next unless event.name.downcase.include?("stinkable")
 		xDif = (event.x - $game_player.x).abs
 		yDif = (event.y - $game_player.y).abs
-		next unless xDif <= 3 && yDif <= 3 # Must be nearby
+		next unless xDif <= STINK_BOMB_RANGE && yDif <= STINK_BOMB_RANGE # Must be nearby
         next if pbGetSelfSwitch(event.id,'D') # Must not already be fled
 		stinkBombables.push(event)
     end
@@ -22,7 +24,20 @@ end
 ItemHandlers::UseInField.add(:STINKBOMB,proc { |item|
     eventsToRemove = getStinkBombables
     next 0 if eventsToRemove.empty?
+    next 0 unless pbConfirmMessageSerious(_INTL("#{eventsToRemove.count} trainers are in range. Deploy?"))
     pbUseItemMessage(:STINKBOMB)
+
+    # Play sound effects and spawn particle effect
+    pbSEPlay("Stink bomb",80,80)
+    pbSEPlay("Anim/PRSFX- Poison Gas",80,80)
+    if $scene.spriteset.particle_engine
+        $scene.spriteset.particle_engine.add_effect($game_player,"stinkbomb")
+        pbWait(72)
+        $scene.spriteset.particle_engine.remove_effect($game_player)
+    else
+        pbWait(24)
+    end
+
     if eventsToRemove.count > 1
         pbMessage(_INTL("#{eventsToRemove.count} trainers fled from the stench!"))
     else

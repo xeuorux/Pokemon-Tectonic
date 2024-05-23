@@ -1,8 +1,9 @@
 class Spriteset_Map
-    attr_reader :map
+    attr_reader   :map
     attr_accessor :tilemap
-    attr_reader :weather
+    attr_reader   :weather
     attr_accessor :shadows
+    attr_reader   :particle_engine
     
     @@viewport0 = Viewport.new(0, 0, Settings::SCREEN_WIDTH, Settings::SCREEN_HEIGHT)   # Panorama
     @@viewport0.z = -100
@@ -102,6 +103,13 @@ class Spriteset_Map
         end
       end
       @usersprites.push(sprite)
+    end
+
+    def addParticleEngine(sprite)
+      raise _INTL("Sprite set already has a particle engine, cannot add another!") if @particle_engine
+
+      addUserSprite(sprite)
+      @particle_engine = sprite
     end
   
     def update

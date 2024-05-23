@@ -401,8 +401,6 @@ Events.onSpritesetCreate += proc { |_sender,e|
       spriteset.addUserSprite(LightEffect_TVGlow.new(event,viewport,map))
     end
   end
-  spriteset.addUserSprite(Particle_Engine.new(viewport,map)) if $PokemonSystem.particle_effects == 0
-
   $PokemonGlobal.dragonFlamesCount.times do
     createDragonFlameGraphic(spriteset)
   end
