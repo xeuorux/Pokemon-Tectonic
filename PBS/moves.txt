@@ -4616,7 +4616,7 @@ TotalPP = 10
 Target = NearOther
 FunctionCode = PowerDependsOnUserStockpile
 Flags = CanProtect
-Description = The power stored using the move Stockpile is released all at once in an attack.
+Description = The power stored using the move Stockpile is released all at once in an attack. 150 base power per Stockpile charge.
 #-------------------------------
 [SUPERFANG]
 Name = Super Fang
@@ -5272,7 +5272,7 @@ TotalPP = 10
 Target = User
 FunctionCode = HealUserDependingOnUserStockpile
 Flags = CanSnatch
-Description = The power stored using the move Stockpile is absorbed by the user to heal its HP.
+Description = The power stored using the move Stockpile is absorbed by the user to heal its HP. 50% max HP heal per Stockpile charge.
 #-------------------------------
 [SWORDSDANCE]
 Name = Swords Dance

@@ -36529,8 +36529,8 @@ The user throws an exploding package at enemies, or one filled with healing trea
 El usuario lanza un paquete explosivo a un rival, o uno curativo a sus aliados.
 The user shouts with force at the target. This move always hits first.
 El usuario grita con fuerza al objetivo. Este movimiento va primero.
-The power stored using the move Stockpile is released all at once in an attack.
-La energía que haya sido guardada con Reserva es liberada de golpe con un fuerte ataque.
+The power stored using the move Stockpile is released all at once in an attack. 150 base power per Stockpile charge.
+La energía que haya sido guardada con Reserva es liberada de golpe con un fuerte ataque. 150 de potencia base por carga de Reserva.
 The user chomps hard on the target with its sharp front fangs. It cuts the target's HP to half.
 El usuario mastica con fuerza al rival usando sus dientes frontales. Le quita la mitad de los PS al objetivo.
 Has 40 more base power for each PP missing.
@@ -36651,8 +36651,8 @@ The user spends 25% HP to create a doll to protect it from move damage, addition
 El usuario pierde un 25% de sus PS para crear un muñeco que lo protege de ataques, efectos secundarios y movimientos de estado.
 The user generates odd sound waves from its body. The target becomes dizzy.
 El usuario genera una onda de sonida extraña de su cuerpo, mareando al objetivo.
-The power stored using the move Stockpile is absorbed by the user to heal its HP.
-La energía que se haya guardado con Reserva es absorbida por el usuario para recuperar sus PS.
+The power stored using the move Stockpile is absorbed by the user to heal its HP. 50% max HP heal per Stockpile charge.
+La energía que se haya guardado con Reserva es absorbida por el usuario para recuperar sus PS. 50% de máxima de HP por carga de Reserva.
 A frenetic dance to uplift the fighting spirit. It raises the user's Attack stat by four steps.
 Una danza frénetica que levanta el ánimo de combate. Aumenta el Ataque del usuario cuatro grados.
 The user gets teary eyed. This lowers the target's Attack and Sp. Atk stats.
