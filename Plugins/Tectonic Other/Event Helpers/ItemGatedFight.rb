@@ -9,6 +9,7 @@ def itemGatedFight(itemID,regularBattleIntroText,itemGateIntroText,requestItemTe
         if pbHasItem?(itemID)
             if pbConfirmMessage(requestItemText)
                 pbDeleteItem(itemID)
+                pbMessage(_INTL("You hand over the {1}.",getItemName(itemID)))
                 pbMessage(confirmGiveText)
                 setMySwitch("B")
             else
