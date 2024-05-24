@@ -1815,7 +1815,7 @@ Pokemon = GSLOWKING,35
     AbilityIndex = 0 # Curious Medicine
     Item = SALACBERRY
 Pokemon = TANGROWTH,35
-    Moves = CRUSHGRIP,VINEBIND,SMACKDOWN,ROOTWRACK
+    Moves = KNOCKOFF,VINEBIND,SMACKDOWN,ROOTWRACK
     AbilityIndex = 1 # Tangling Hair
 #-------------------------------
 [PICNICKER,Magdalena]

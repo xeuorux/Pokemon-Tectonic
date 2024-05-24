@@ -2248,3 +2248,27 @@ Target = NearFoe
 FunctionCode = Invalid
 Description = Summons eclipse for eight turns. The target becomes obsessed with the sky, trapping it.
 Animation = MIRACLEEYE
+#-------------------------------
+[WRINGOUT]
+Name = Wring Out
+Type = NORMAL
+Category = Special
+Power = 1
+Accuracy = 100
+TotalPP = 5
+Target = NearOther
+FunctionCode = Invalid
+Flags = CanProtect,CanMirrorMove
+Description = The user powerfully wrings the foe. The more HP the foe has, the greater this attack's power.
+#-------------------------------
+[CRUSHGRIP]
+Name = Crush Grip
+Type = NORMAL
+Category = Physical
+Power = 1
+Accuracy = 100
+TotalPP = 5
+Target = NearOther
+FunctionCode = Invalid
+Flags = CanProtect,CanMirrorMove
+Description = The target is crushed with great force. The attack is more powerful the more HP the target has left.

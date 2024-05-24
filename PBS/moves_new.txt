@@ -6663,3 +6663,27 @@ Target = NearOther
 FunctionCode = DamageBoost50PercentTargetHitUser
 Flags = CanProtect,CanMirrorMove
 Description = Attacks with pressurized water. Deals 50% more damage if the user has been hurt by the foe in the same turn.
+#-------------------------------
+[CLOUDBREAK]
+Name = Cloudbreak
+Type = NORMAL
+Category = Physical
+Power = 90
+Accuracy = 100
+TotalPP = 10
+Target = NearOther
+FunctionCode = RemoveWeatherIncidental
+Flags = CanProtect,CanMirrorMove
+Description = A tremendous strike that clears any active weather.
+#-------------------------------
+[DISSIPATION]
+Name = Dissipation
+Type = NORMAL
+Category = Special
+Power = 90
+Accuracy = 100
+TotalPP = 10
+Target = NearOther
+FunctionCode = RemoveRoomsIncidental
+Flags = CanProtect,CanMirrorMove
+Description = An unusual shockwave that breaks down all active Rooms.

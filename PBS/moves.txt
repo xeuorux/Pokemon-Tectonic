@@ -4557,18 +4557,6 @@ FunctionCode = MultiTurnAttackBideThenReturnDoubleDamage
 Flags = CanProtect,CantForce
 Description = The user endures attacks for two turns, then strikes back to cause double the damage taken.
 #-------------------------------
-[CRUSHGRIP]
-Name = Crush Grip
-Type = NORMAL
-Category = Physical
-Power = 1
-Accuracy = 100
-TotalPP = 5
-Target = NearOther
-FunctionCode = ScalesWithTargetHP
-Flags = CanProtect,CanMirrorMove
-Description = The target is crushed with great force. The attack is more powerful the more HP the target has left.
-#-------------------------------
 [ENDEAVOR]
 Name = Endeavor
 Type = NORMAL
@@ -4653,18 +4641,6 @@ Target = NearOther
 FunctionCode = ScalesWithLostPP
 Flags = CanProtect,CanMirrorMove
 Description = Has 40 more base power for each PP missing.
-#-------------------------------
-[WRINGOUT]
-Name = Wring Out
-Type = NORMAL
-Category = Special
-Power = 1
-Accuracy = 100
-TotalPP = 5
-Target = NearOther
-FunctionCode = ScalesWithTargetHP
-Flags = CanProtect,CanMirrorMove
-Description = The user powerfully wrings the foe. The more HP the foe has, the greater this attack's power.
 #-------------------------------
 [AFTERYOU]
 Name = After You
