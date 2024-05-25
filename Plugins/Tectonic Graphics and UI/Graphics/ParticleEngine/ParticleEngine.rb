@@ -34,6 +34,7 @@ class Particle_Engine
            "steamy2"        => Particle_Engine::Steamy2,
            "timeteleporter" => Particle_Engine::TimeTeleporter,
            "latentsoil"     => Particle_Engine::LatentSoil,
+           "stinkbomb"      => Particle_Engine::StinkBomb,
         }
     end
 
@@ -52,8 +53,14 @@ class Particle_Engine
         return @disposed
       end
     
-      def add_effect(event)
-        @effect[event.id] = pbParticleEffect(event)
+      def add_effect(event,type=nil)
+        if type
+          cls = @effects[type]
+          return if cls.nil?
+          @effect[event.id] = cls.new(event,@viewport)
+        else
+          @effect[event.id] = pbParticleEffect(event)
+        end
       end
     
       def remove_effect(event)
@@ -96,7 +103,7 @@ class Particle_Engine
         for i in 0...@effect.length
           particle = @effect[i]
           next if particle.nil?
-          if particle.event.pe_refresh
+          if particle.event.is_a?(Game_Event) && particle.event.pe_refresh
             event = particle.event
             event.pe_refresh = false
             particle = realloc_effect(event,particle)
@@ -106,3 +113,12 @@ class Particle_Engine
         end
       end
 end
+
+Events.onSpritesetCreate += proc { |_sender,e|
+  spriteset = e[0]      # Spriteset being created
+  viewport  = e[1]      # Viewport used for tilemap and characters
+  map = spriteset.map   # Map associated with the spriteset (not necessarily the current map)
+  if $PokemonSystem.particle_effects == 0
+    spriteset.addParticleEngine(Particle_Engine.new(viewport,map))
+  end
+}

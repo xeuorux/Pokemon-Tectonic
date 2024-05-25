@@ -18,12 +18,12 @@ GameData::BattleEffect.register_effect(:Position, {
         # Target is the user
         next if moveUser && moveUser.index == battler.index
         # User isn't in battle, get it from the party
-        if moveUser.nil?
+        if moveUser.nil? || moveUser.fainted?
             party = battle.pbParty(userIndex)
             pkmn = party[partyIndex]
             if pkmn
                 moveUser = PokeBattle_Battler.new(battle, userIndex)
-                moveUser.pbInitDummyPokemon(pkmn, partyIndex)
+                moveUser.pbInitDummyPokemon(pkmn, partyIndex, true)
             end
         end
         next if moveUser.nil?

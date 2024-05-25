@@ -1058,6 +1058,10 @@ Líder: Rafael
 ...
 It seems like the Gym Leader was supposed to write a title here, but the space has been left blank.
 Parece que el Líder de Gimnasio debía escribir un título aquí, pero el espacio fue dejado vacío.
+Got some rare things on sale, stranger!
+Tengo algunas cosas raras a la venta!
+Come back anytime.
+Vuelve cuando quieras.
 [Map9]
 STAY AWAY FROM MY PLANTS!
 ¡ALÉJATE DE MIS PLANTAS!
@@ -35685,7 +35689,7 @@ Artillería
 Snap
 Mordisqueo
 Polarized Room
-Zona Eficaz
+Zona Polarizada
 Mistletoe
 Patada Muérdago
 Root Driver
@@ -36525,8 +36529,8 @@ The user throws an exploding package at enemies, or one filled with healing trea
 El usuario lanza un paquete explosivo a un rival, o uno curativo a sus aliados.
 The user shouts with force at the target. This move always hits first.
 El usuario grita con fuerza al objetivo. Este movimiento va primero.
-The power stored using the move Stockpile is released all at once in an attack.
-La energía que haya sido guardada con Reserva es liberada de golpe con un fuerte ataque.
+The power stored using the move Stockpile is released all at once in an attack. 150 base power per Stockpile charge.
+La energía que haya sido guardada con Reserva es liberada de golpe con un fuerte ataque. 150 de potencia base por carga de Reserva.
 The user chomps hard on the target with its sharp front fangs. It cuts the target's HP to half.
 El usuario mastica con fuerza al rival usando sus dientes frontales. Le quita la mitad de los PS al objetivo.
 Has 40 more base power for each PP missing.
@@ -36647,8 +36651,8 @@ The user spends 25% HP to create a doll to protect it from move damage, addition
 El usuario pierde un 25% de sus PS para crear un muñeco que lo protege de ataques, efectos secundarios y movimientos de estado.
 The user generates odd sound waves from its body. The target becomes dizzy.
 El usuario genera una onda de sonida extraña de su cuerpo, mareando al objetivo.
-The power stored using the move Stockpile is absorbed by the user to heal its HP.
-La energía que se haya guardado con Reserva es absorbida por el usuario para recuperar sus PS.
+The power stored using the move Stockpile is absorbed by the user to heal its HP. 50% max HP heal per Stockpile charge.
+La energía que se haya guardado con Reserva es absorbida por el usuario para recuperar sus PS. 50% de máxima de HP por carga de Reserva.
 A frenetic dance to uplift the fighting spirit. It raises the user's Attack stat by four steps.
 Una danza frénetica que levanta el ánimo de combate. Aumenta el Ataque del usuario cuatro grados.
 The user gets teary eyed. This lowers the target's Attack and Sp. Atk stats.
@@ -43488,8 +43492,8 @@ Can't be numbed, leeched, trapped, or have its Speed reduced by foes.
 No puede ser aturdido, infectado, atrapado, o tener su Velocidad reducida por los rivales.
 Boosts the power of kicking moves by 30%.
 Aumenta un 30% la potencia de los movimientos de patada.
-Upon entry, creates a Quality Room for five turns, exaggerating type matchups.
-Al entrar, crea una Zona Eficaz durante cinco turnos, exagerando las efectividades de tipo.
+Upon entry, creates a Polarized Room for five turns, exaggerating type matchups.
+Al entrar, crea una Zona Polarizada durante cinco turnos, exagerando las efectividades de tipo.
 Upon entry, creates an Insight Room for five turns, giving everyone a fifth move.
 Al entrar, crea una Zona Esclarecedora durante cinco turnos, dando a todos un quinto movimiento.
 Upon entry, creates an Emotion Room for five turns, switching Abilities every turn.
@@ -48118,6 +48122,8 @@ It'll last the whole battle!
 ¡{1} maximizó su {2}!
 {1}'s negative stat changes were eliminated!
 ¡Los cambios de estadísticos negativos de {1} fueron eliminados!
+It'll skip its next two moves
+Se saltará sus próximos dos movimientos
 Its physical damage is reduced by a third
 Su daño físico es reducido por un tercio
 The poison will worsen over time
@@ -48176,8 +48182,8 @@ No afecta a {1} porque es un tipo {2}...
 ¡El equipo de {1} es protegido por Velo Sagrado!
 {1} refuses to gain a status condition!
 ¡{1} rechaza obtener un problema de estado!
-{1} fell asleep!
-¡{1} cae dormido!
+{1} fell asleep! {2}!
+¡{1} cae dormido! ¡{2}!
 {1} was poisoned! {2}!
 ¡{1} fue envenenado! ¡{2}!
 {1} was burned! {2}!
@@ -48190,6 +48196,20 @@ No afecta a {1} porque es un tipo {2}...
 ¡{1} fue mareado! ¡{2}!
 {1} became leeched! {2}!
 ¡{1} fue infectado! ¡{2}!
+{1} fell asleep!
+¡{1} cae dormido!
+{1} was poisoned!
+¡{1} fue envenenado!
+{1} was burned!
+¡{1} fue quemado!
+{1} is numbed!
+¡{1} fue aturdido!
+{1} was frostbitten!
+¡{1} fue helado!
+{1} is dizzy!
+¡{1} fue mareado!
+{1} became leeched!
+¡{1} fue infectado!
 {1} is fast asleep.
 {1} está dormido como un tronco.
 {1} was hurt by poison!
@@ -50172,6 +50192,10 @@ Take a look, it's all delicious!
 ¡Míralas, todas son deliciosas!
 Grab a Tulumba, a Makyan specialty!
 ¡Compra un Tulumba, una especialidad de Makya!
+What can I get you?
+¿Qué puedo conseguirte?
+Farm food, fresh for feastin'.
+Comida de granja, fresca para festejar.
 It's a vending machine.
 Es una máquina expendedora.
 Fresh Water - $#{freshWaterCost}
@@ -50884,6 +50908,8 @@ I've got the lion's share of powerful items. Buy now!
 Tengo una buena cantidad de objetos poderosos. ¡Compra ahora!
 Name's Herbert. Care for any herbs?
 Mi nombre es Herbert. ¿Quieres alguna hierba?
+What're ya buyin'?
+¿Qué estás comprando?
 A mystical Avatar Totem. It pulses with ancient vital energy.
 Un Tótem Avatar místico. Late con energía vital antigua.
 A mystical Avatar Totem. It pulses with an unusual frequency.
@@ -54861,7 +54887,7 @@ Zona Enigmática
 Odd Room
 Zona Anómala
 Polarized Room
-Zona Eficaz
+Zona Polarizada
 Insight Room
 Zona Esclarecedora
 Emotion Room

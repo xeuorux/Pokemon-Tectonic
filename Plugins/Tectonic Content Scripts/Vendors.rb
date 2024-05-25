@@ -783,6 +783,33 @@ def herbVendor
 	)
 end
 
+def typeBoostingVendor
+	herbStock = %i[
+		SILKSCARF
+		BLACKBELT
+		SHARPBEAK
+		POISONBARB
+		SOFTSAND
+		HARDSTONE
+		SILVERPOWDER
+		SPELLTAG
+		METALCOAT
+		CHARCOAL
+		MYSTICWATER
+		MIRACLESEED
+		MAGNET
+		TWISTEDSPOON
+		NEVERMELTICE
+		DRAGONFANG
+		BLACKGLASSES
+		FAIRYFEATHER
+	]
+	pbPokemonMart(
+		herbStock,
+		_INTL("What're ya buyin'?"),
+		!CAN_SELL_IN_VENDORS
+	)
+end
 
 ######################################################
 # Minor food vendors
@@ -801,7 +828,7 @@ def pubVendor
 		EEVEETICKET
 		SWEETHEART
 	]
-	pbPokemonMart(pubStock,"What can I get you?",true)
+	pbPokemonMart(pubStock,_INTL("What can I get you?"),true)
 end
 
 def farmVendor
@@ -811,7 +838,7 @@ def farmVendor
 		MOOMOOMILK
 	]
 	setPrice(:MOOMOOMILK,800)
-	pbPokemonMart(pubStock,"Farm food, fresh for feastin'.",true)
+	pbPokemonMart(pubStock,_INTL("Farm food, fresh for feastin'."),true)
 end
 
 def arenaVendor()

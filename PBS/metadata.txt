@@ -1692,6 +1692,7 @@ Outdoor = false
 ShowArea = false
 Bicycle = false
 HealingSpot = 187,55,37
+MapPosition = 0,15,4
 #-------------------------------
 [236]
 # Your House

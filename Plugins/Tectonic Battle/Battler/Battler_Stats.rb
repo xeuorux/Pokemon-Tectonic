@@ -159,7 +159,7 @@ class PokeBattle_Battler
     AI_CHEATS_FOR_STAT_ABILITIES = true
 
     def pbAttack(aiCheck = false, step = nil)
-        return 1 if fainted?
+        return 1 if fainted? && !dummy?
         attack = statAfterStep(:ATTACK, step)
         attackMult = 1.0
 
@@ -186,7 +186,7 @@ class PokeBattle_Battler
     end
 
     def pbSpAtk(aiCheck = false, step = nil)
-        return 1 if fainted?
+        return 1 if fainted? && !dummy?
         special_attack = statAfterStep(:SPECIAL_ATTACK, step)
         spAtkMult = 1.0
 
@@ -210,7 +210,7 @@ class PokeBattle_Battler
     end
 
     def pbDefense(aiCheck = false, step = nil)
-        return 1 if fainted?
+        return 1 if fainted? && !dummy?
         defense = statAfterStep(:DEFENSE, step)
         defenseMult = 1.0
 
@@ -244,7 +244,7 @@ class PokeBattle_Battler
     end
 
     def pbSpDef(aiCheck = false, step = nil)
-        return 1 if fainted?
+        return 1 if fainted? && !dummy?
         special_defense = statAfterStep(:SPECIAL_DEFENSE, step)
         spDefMult = 1.0
 
@@ -277,7 +277,7 @@ class PokeBattle_Battler
     end
 
     def pbSpeed(aiCheck = false, step = nil, afterSwitching: false, move: nil)
-        return 1 if fainted?
+        return 1 if fainted? && !dummy?
         speed = statAfterStep(:SPEED, step)
         speedMult = 1.0
 

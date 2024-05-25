@@ -30,6 +30,22 @@ class PokeBattle_Move_RemoveRooms < PokeBattle_Move
 end
 
 #===============================================================================
+# Removes all Rooms.
+#===============================================================================
+class PokeBattle_Move_RemoveRoomsIncidental < PokeBattle_Move
+    def pbEffectGeneral(user)
+        @battle.field.eachEffect(true) do |effect, _value, effectData|
+            next unless effectData.is_room?
+            @battle.field.disableEffect(effect)
+        end
+    end
+
+    def getEffectScore(user, _target)
+        return 80
+    end
+end
+
+#===============================================================================
 # Removes all Weather. Fails if there is no Weather (Sky Fall)
 #===============================================================================
 class PokeBattle_Move_RemoveWeather < PokeBattle_Move
@@ -41,6 +57,19 @@ class PokeBattle_Move_RemoveWeather < PokeBattle_Move
         return false
     end
 
+    def pbEffectGeneral(user)
+       @battle.endWeather
+    end
+
+    def getEffectScore(user, _target)
+        return getWeatherResetEffectScore(user)
+    end
+end
+
+#===============================================================================
+# Removes all Weather.
+#===============================================================================
+class PokeBattle_Move_RemoveWeatherIncidental < PokeBattle_Move
     def pbEffectGeneral(user)
        @battle.endWeather
     end

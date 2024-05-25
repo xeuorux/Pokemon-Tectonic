@@ -859,6 +859,14 @@ def pbConfirmMessageSerious(message, &block)
     return (pbMessage(message, [_INTL("No"), _INTL("Yes")], 1, &block) == 1)
 end
 
+def pbConfirmMessageGated(message, &block)
+	loop do
+		result = pbMessage(message, [_INTL("Not sure"), _INTL("No"), _INTL("Yes")], 1, &block)
+		next if result == 0
+		return result == 2
+	end
+end
+
 def pbMessageChooseNumber(message, params, &block)
     msgwindow = pbCreateMessageWindow(nil, params.messageSkin)
     ret = pbMessageDisplay(msgwindow, message, true,

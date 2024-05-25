@@ -148,12 +148,13 @@ class PokeBattle_Battle
     # moveIDOrIndex is either the index of the move on the user's move list (Integer)
     # or it's the ID of the move to be used (Symbol)
     def forceUseMove(forcedMoveUser, moveIDOrIndex, target = -1, specialUsage = true, usageMessage = nil, moveUsageEffect = nil, ability: nil, aiCheck: false)
+        if moveIDOrIndex.is_a?(Symbol)
+            fakeMove = PokeBattle_Move.from_pokemon_move(self, Pokemon::Move.new(moveIDOrIndex))
+        else
+            fakeMove = forcedMoveUser.moves[moveIDOrIndex]
+        end
+        
         if aiCheck
-            if moveIDOrIndex.is_a?(Symbol)
-                fakeMove = PokeBattle_Move.from_pokemon_move(self, Pokemon::Move.new(moveIDOrIndex))
-            else
-                fakeMove = forcedMoveUser.moves[moveIDOrIndex]
-            end
             moveScore = 0
             if target >= 0
                 moveScore = @battleAI.pbGetMoveScore(fakeMove, forcedMoveUser, @battlers[target], forcedMoveUser.ownersPolicies)
@@ -166,6 +167,7 @@ class PokeBattle_Battle
                 end
             end
         end
+
         oldLastRoundMoved = forcedMoveUser.lastRoundMoved
         if specialUsage
             @specialUsage = true
@@ -176,16 +178,32 @@ class PokeBattle_Battle
             oldOutrageTurns = forcedMoveUser.effects[:Outrage]
             forcedMoveUser.effects[:Outrage] += 1 if forcedMoveUser.effectActive?(:Outrage)
         end
+
+        # Show explanatory information
         pbShowAbilitySplash(forcedMoveUser, ability, true) if ability
         pbDisplay(usageMessage) unless usageMessage.nil?
         pbHideAbilitySplash(forcedMoveUser) if ability
+
         moveID = moveIDOrIndex.is_a?(Symbol) ? moveIDOrIndex : nil
         moveIndex = moveIDOrIndex.is_a?(Integer) ? moveIDOrIndex : -1
-        PBDebug.logonerr do
-            forcedMoveUser.effects[moveUsageEffect] = true unless moveUsageEffect.nil?
-            forcedMoveUser.pbUseMoveSimple(moveID, target, moveIndex, specialUsage)
-            forcedMoveUser.effects[moveUsageEffect] = false unless moveUsageEffect.nil?
+
+        cantForceMove = false
+        if forcedMoveUser.asleep?
+            forcedMoveUser.pbContinueStatus(:SLEEP)
+            unless fakeMove.usableWhenAsleep? # Snore/Sleep Talk
+                forcedMoveUser.onMoveFailed(move,false)
+                cantForceMove = true
+            end
         end
+
+        unless cantForceMove
+            PBDebug.logonerr do
+                forcedMoveUser.effects[moveUsageEffect] = true unless moveUsageEffect.nil?
+                forcedMoveUser.pbUseMoveSimple(moveID, target, moveIndex, specialUsage)
+                forcedMoveUser.effects[moveUsageEffect] = false unless moveUsageEffect.nil?
+            end
+        end
+
         forcedMoveUser.lastRoundMoved = oldLastRoundMoved
         if specialUsage
             forcedMoveUser.effects[:Outrage] = oldOutrageTurns

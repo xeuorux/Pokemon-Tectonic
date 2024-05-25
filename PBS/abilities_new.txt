@@ -1340,7 +1340,7 @@ Description = Special attacks against the Pokémon have a 30% chance to poison t
 #-------------------------------
 [POLARIZING]
 Name = Polarizing
-Description = Upon entry, creates a Quality Room for five turns, exaggerating type matchups.
+Description = Upon entry, creates a Polarized Room for five turns, exaggerating type matchups.
 #-------------------------------
 [POORCONDUCT]
 Name = Poor Conduct
