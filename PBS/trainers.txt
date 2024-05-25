@@ -1693,7 +1693,7 @@ Pokemon = MANDIBUZZ,35
 #-------------------------------
 [BATTLEGIRL3,Kryska]
 Pokemon = GOGOAT,35
-    Moves = SCYTHEKICK,AERIALACE,RAZORLEAF,MILKDRINK
+    Moves = SCYTHEKICK,AERIALACE,ROOTDRIVER,MILKDRINK
     AbilityIndex = 0 # Bully
     Item = LEFTOVERS
 Pokemon = MINIOR,35
@@ -2081,7 +2081,7 @@ Pokemon = REUNICLUS,42
     AbilityIndex = 1 # Magic Guard
     Item = LIFEORB
 Pokemon = GOGOAT,42
-    Moves = LEAFBLADE,AURASPHERE,GIGADRAIN,SCYTHEKICK
+    Moves = WHIPKICK,AURASPHERE,GIGADRAIN,SCYTHEKICK
     AbilityIndex = 0 # Bully
     Item = LEFTOVERS
 #-------------------------------
