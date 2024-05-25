@@ -56,14 +56,9 @@ def renameMoveInSave(prename,rename)
   renameAllSavedMovesInBatch(save_data)
 end
 
-def downgradeSaveTo20()
+def downgradeSave(saveVersion)
   save_data = SaveData.get_data_from_file(SaveData::FILE_PATH)
-  save_data[:game_version] = "2.0.0"
+  save_data[:game_version] = saveVersion
   File.open(SaveData::FILE_PATH, 'wb') { |file| Marshal.dump(save_data, file) }
-end
-
-def downgradeSaveTo30()
-  save_data = SaveData.get_data_from_file(SaveData::FILE_PATH)
-  save_data[:game_version] = "3.0.0"
-  File.open(SaveData::FILE_PATH, 'wb') { |file| Marshal.dump(save_data, file) }
+  pbMessage("Save downgraded to version #{saveVersion}")
 end
