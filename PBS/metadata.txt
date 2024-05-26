@@ -1843,8 +1843,10 @@ MapPosition = 0,5,3
 [259]
 # Casey's House
 Outdoor = false
-ShowArea = false
+ShowArea = true
 Bicycle = false
+HealingSpot = 211,31,12
+MapPosition = 0,17,3
 #-------------------------------
 [260]
 # Underpeak Tunnels B1

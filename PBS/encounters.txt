@@ -917,7 +917,7 @@ LandSparse,20
 #-------------------------------
 [321] # Crater Station Backroom
 Special
-    1,KANGASKHAN,15
+    1,MCARNIVINE,15
 #-------------------------------
 [323] # HQ Station Backroom
 Special

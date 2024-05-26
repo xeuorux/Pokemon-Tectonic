@@ -5681,7 +5681,7 @@ Pokemon = HAWLUCHA,70
     # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
     EV = 0,20,10,20,20,0
 Pokemon = PALMANTRA,70
-    Moves = ADRENALASH,ENERGYBALL,PSYCHIC,SIGNALBEAM
+    Moves = ADRENALASH,ENERGYBALL,PSYCHIC,SIGNALOVERLOAD
     AbilityIndex = 1 # Stability
     # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
     EV = 10,20,0,20,20,0
@@ -5999,7 +5999,7 @@ Pokemon = CRUSTLE,70
 NameForHashing = Skyler
 Flags = NoPerfect
 Pokemon = PALMANTRA,70
-    Moves = OMNISCIENTBLOW,DRAINPUNCH,FAKEOUT,POISONJAB
+    Moves = OMNISCIENTBLOW,SECRETTECHNIQUE,FAKEOUT,SHADOWBALL
     AbilityIndex = 0 # Middle Way
 Pokemon = SIGILYPH,70
     Moves = PSYCHOSHIFT,CALMMIND,ROOST,COLDFRONT
@@ -6226,7 +6226,7 @@ Pokemon = CRUSTLE,70
 NameForHashing = Skyler
 Flags = NoPerfect
 Pokemon = PALMANTRA,70
-    Moves = OMNISCIENTBLOW,DRAINPUNCH,FAKEOUT,POISONJAB
+    Moves = OMNISCIENTBLOW,SECRETTECHNIQUE,FAKEOUT,SHADOWBALL
     AbilityIndex = 0 # Middle Way
 Pokemon = SIGILYPH,70
     Moves = PSYCHOSHIFT,CALMMIND,ROOST,COLDFRONT

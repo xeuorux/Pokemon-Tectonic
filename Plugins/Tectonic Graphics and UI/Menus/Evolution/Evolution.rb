@@ -91,8 +91,28 @@ class PokemonEvolutionScene
         @bgviewport.rect.height += halfResizeDiff*2
       end
     end
+
+    def flashToFinalState(canceled = false,oldstate=nil,oldstate2=nil)
+      flashInOut {
+        if canceled
+          pbRestoreSpriteState(@sprites["rsprite1"],oldstate)
+          pbRestoreSpriteState(@sprites["rsprite2"],oldstate2)
+          @sprites["rsprite1"].zoom_x      = 1.0
+          @sprites["rsprite1"].zoom_y      = 1.0
+          @sprites["rsprite1"].color.alpha = 0
+          @sprites["rsprite1"].visible     = true
+          @sprites["rsprite2"].visible     = false
+        else
+          @sprites["rsprite1"].visible     = false
+          @sprites["rsprite2"].visible     = true
+          @sprites["rsprite2"].zoom_x      = 1.0
+          @sprites["rsprite2"].zoom_y      = 1.0
+          @sprites["rsprite2"].color.alpha = 0
+        end
+      }
+    end
   
-    def pbFlashInOut(canceled,oldstate,oldstate2)
+    def flashInOut(&block)
       tone = 0
       toneDiff = 20*20/Graphics.frame_rate
       loop do
@@ -106,21 +126,9 @@ class PokemonEvolutionScene
       @bgviewport.rect.y      = 0
       @bgviewport.rect.height = Graphics.height
       @sprites["background"].oy = 0
-      if canceled
-        pbRestoreSpriteState(@sprites["rsprite1"],oldstate)
-        pbRestoreSpriteState(@sprites["rsprite2"],oldstate2)
-        @sprites["rsprite1"].zoom_x      = 1.0
-        @sprites["rsprite1"].zoom_y      = 1.0
-        @sprites["rsprite1"].color.alpha = 0
-        @sprites["rsprite1"].visible     = true
-        @sprites["rsprite2"].visible     = false
-      else
-        @sprites["rsprite1"].visible     = false
-        @sprites["rsprite2"].visible     = true
-        @sprites["rsprite2"].zoom_x      = 1.0
-        @sprites["rsprite2"].zoom_y      = 1.0
-        @sprites["rsprite2"].color.alpha = 0
-      end
+      
+      block&.call
+
       (Graphics.frame_rate/4).times do
         Graphics.update
         pbUpdate(true)
@@ -148,17 +156,20 @@ class PokemonEvolutionScene
       @msgviewport.z = 99999
       addBackgroundOrColoredPlane(@sprites,"background","evolutionbg",
          Color.new(248,248,248),@bgviewport)
+
       rsprite1 = PokemonSprite.new(@viewport)
       rsprite1.setOffset(PictureOrigin::Center)
       rsprite1.setPokemonBitmap(@pokemon,false)
       rsprite1.x = Graphics.width/2
       rsprite1.y = (Graphics.height-64)/2
+
       rsprite2 = PokemonSprite.new(@viewport)
       rsprite2.setOffset(PictureOrigin::Center)
       rsprite2.setPokemonBitmapSpecies(@pokemon,@newspecies,false)
       rsprite2.x       = rsprite1.x
       rsprite2.y       = rsprite1.y
       rsprite2.opacity = 0
+      
       @sprites["rsprite1"] = rsprite1
       @sprites["rsprite2"] = rsprite2
       pbGenerateMetafiles(rsprite1.ox,rsprite1.oy,rsprite2.ox,rsprite2.oy)
@@ -167,47 +178,61 @@ class PokemonEvolutionScene
     end
 
     def pbEndScreen
-        pbDisposeMessageWindow(@sprites["msgwindow"])
-        pbFadeOutAndHide(@sprites) { pbUpdate }
-        pbDisposeSpriteHash(@sprites)
-        @viewport.dispose
-        @bgviewport.dispose
-        @msgviewport.dispose
-        $PokemonTemp.dependentEvents.refresh_sprite(false)
+      pbDisposeMessageWindow(@sprites["msgwindow"])
+      pbFadeOutAndHide(@sprites) { pbUpdate }
+      pbDisposeSpriteHash(@sprites)
+      @viewport.dispose
+      @bgviewport.dispose
+      @msgviewport.dispose
+      $PokemonTemp.dependentEvents.refresh_sprite(false)
     end
 
     # Opens the evolution screen
     def pbEvolution(cancancel = true)
-        metaplayer1 = SpriteMetafilePlayer.new(@metafile1, @sprites["rsprite1"])
-        metaplayer2 = SpriteMetafilePlayer.new(@metafile2, @sprites["rsprite2"])
-        metaplayer1.play
-        metaplayer2.play
-        pbBGMStop
-        @pokemon.play_cry
-        pbMessageDisplay(@sprites["msgwindow"],
-           _INTL("\\se[]What? {1} is evolving!\\^", @pokemon.name)) { pbUpdate }
-        pbMessageWaitForInput(@sprites["msgwindow"], 50, true) { pbUpdate }
-        pbPlayDecisionSE
-        oldstate  = pbSaveSpriteState(@sprites["rsprite1"])
-        oldstate2 = pbSaveSpriteState(@sprites["rsprite2"])
-        pbMEPlay("Evolution start")
-        pbBGMPlay("Evolution")
-        canceled = false
-        begin
-            pbUpdateNarrowScreen
-            metaplayer1.update
-            metaplayer2.update
-            Graphics.update
-            Input.update
-            pbUpdate(true)
-            if Input.trigger?(Input::BACK) && cancancel
-                pbBGMStop
-                pbPlayCancelSE
-                canceled = true
-                break
-            end
-        end while metaplayer1.playing? && metaplayer2.playing?
-        pbFlashInOut(canceled, oldstate, oldstate2)
+        if $PokemonSystem.quick_evolution == 0
+          pbBGMStop
+          @pokemon.play_cry
+          pbMessageDisplay(@sprites["msgwindow"],
+          _INTL("\\se[]What? {1} is evolving!\\^", @pokemon.name)) { pbUpdate }
+          pbMessageWaitForInput(@sprites["msgwindow"], 20, true) { pbUpdate }
+          pbPlayDecisionSE
+          pbMEPlay("Evolution start")
+          flashInOut {
+            @sprites["rsprite1"].opacity = 0
+            @sprites["rsprite2"].opacity = 255
+          }
+        else
+          metaplayer1 = SpriteMetafilePlayer.new(@metafile1, @sprites["rsprite1"])
+          metaplayer2 = SpriteMetafilePlayer.new(@metafile2, @sprites["rsprite2"])
+          metaplayer1.play
+          metaplayer2.play
+          pbBGMStop
+          @pokemon.play_cry
+          pbMessageDisplay(@sprites["msgwindow"],
+            _INTL("\\se[]What? {1} is evolving!\\^", @pokemon.name)) { pbUpdate }
+          pbMessageWaitForInput(@sprites["msgwindow"], 50, true) { pbUpdate }
+          pbPlayDecisionSE
+          oldstate  = pbSaveSpriteState(@sprites["rsprite1"])
+          oldstate2 = pbSaveSpriteState(@sprites["rsprite2"])
+          pbMEPlay("Evolution start")
+          pbBGMPlay("Evolution")
+          canceled = false
+          begin
+              pbUpdateNarrowScreen
+              metaplayer1.update
+              metaplayer2.update
+              Graphics.update
+              Input.update
+              pbUpdate(true)
+              if Input.trigger?(Input::BACK) && cancancel
+                  pbBGMStop
+                  pbPlayCancelSE
+                  canceled = true
+                  break
+              end
+          end while metaplayer1.playing? && metaplayer2.playing?
+          flashToFinalState(canceled, oldstate, oldstate2)
+        end
         if canceled
             pbMessageDisplay(@sprites["msgwindow"],
                _INTL("Huh? {1} stopped evolving!", @pokemon.name)) { pbUpdate }

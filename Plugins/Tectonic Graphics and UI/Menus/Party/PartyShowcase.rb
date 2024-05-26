@@ -49,8 +49,10 @@ class PokemonPartyShowcase_Scene
         drawFormattedTextEx(@overlay, 4, bottomBarY, Graphics.width, fullDescription, base, shadow)
 
         # Show player name
-        playerName = "<ar>#{trainer.name}</ar>"
-        drawFormattedTextEx(@overlay, Graphics.width - 164, bottomBarY, 160, playerName, base, shadow)
+        unless $PokemonSystem.name_on_showcases == 1
+            playerName = "<ar>#{trainer.name}</ar>"
+            drawFormattedTextEx(@overlay, Graphics.width - 164, bottomBarY, 160, playerName, base, shadow)
+        end
 
         # Show game version
         settingsLabel = "v#{Settings::GAME_VERSION}"

@@ -37,6 +37,8 @@ class PokemonSystem
     attr_accessor :forced_time_tint
     attr_accessor :aid_kit_animation
     attr_accessor :brief_team_building_npcs
+    attr_accessor :quick_evolution
+    attr_accessor :name_on_showcases
 
     def bgmvolume
         return @bgmvolume / VOLUME_FAKERY_MULT
@@ -103,6 +105,8 @@ class PokemonSystem
         @bag_sorting              = 0 # (0=none,1=alphabetical,2=ID)
         @aid_kit_animation        = 0 # (0=true, 1=false)
         @brief_team_building_npcs = 1 # (0=true, 1=false)
+        @quick_evolution          = 1 # (0=true, 1=false)
+        @name_on_showcases        = 0 # (0=true, 1=false)
     end
 
     def frame=(value)
@@ -543,9 +547,9 @@ end
 #===============================================================================
 # User Interface options scene
 #===============================================================================
-class PokemonOption_Scene_UserInterface < PokemonOption_Scene_Base
+class PokemonOption_Scene_Speed < PokemonOption_Scene_Base
     def optionsName
-        return _INTL("User Interface Options")
+        return _INTL("User Interface Speed Options")
     end
 
 	def pbAddOnOptions(options)
@@ -560,6 +564,68 @@ class PokemonOption_Scene_UserInterface < PokemonOption_Scene_Base
 					MessageConfig.pbSetTextSpeed(MessageConfig.pbSettingToTextSpeed(value))
 				}
 			),
+			EnumOption.new(_INTL("Nicknaming Prompt"), [_INTL("On"), _INTL("Off")],
+				proc { $PokemonSystem.nicknaming_prompt },
+				proc { |value|
+					$PokemonSystem.nicknaming_prompt = value
+				}
+			),
+            EnumOption.new(_INTL("Dex Register Popup"), [_INTL("On"), _INTL("Off")],
+				proc { $PokemonSystem.dex_shown_register },
+				proc { |value|
+					$PokemonSystem.dex_shown_register = value
+				}
+			),
+			EnumOption.new(_INTL("Item Desc Popups"), [_INTL("On"), _INTL("Off")],
+				proc { $PokemonSystem.show_item_descriptions },
+				proc { |value|
+					$PokemonSystem.show_item_descriptions = value
+				}
+			),
+			EnumOption.new(_INTL("Trait Unlock Popups"), [_INTL("On"), _INTL("Off")],
+				proc { $PokemonSystem.show_trait_unlocks },
+				proc { |value|
+					$PokemonSystem.show_trait_unlocks = value
+				}
+			),
+			EnumOption.new(_INTL("Team Snapshots"), [_INTL("On"), _INTL("Off")],
+				proc { $PokemonSystem.party_snapshots },
+				proc { |value|
+					$PokemonSystem.party_snapshots = value
+				}
+			),
+            EnumOption.new(_INTL("Prompt Level Moves"), [_INTL("On"), _INTL("Off")],
+				proc { $PokemonSystem.prompt_level_moves },
+				proc { |value|
+					$PokemonSystem.prompt_level_moves = value
+				}
+			),
+            EnumOption.new(_INTL("Aid Kit Animation"), [_INTL("On"), _INTL("Off")],
+				proc { $PokemonSystem.aid_kit_animation },
+				proc { |value| $PokemonSystem.aid_kit_animation = value }
+			),
+            EnumOption.new(_INTL("Brief Team NPCs"), [_INTL("On"), _INTL("Off")],
+				proc { $PokemonSystem.brief_team_building_npcs },
+				proc { |value| $PokemonSystem.brief_team_building_npcs = value }
+			),
+            EnumOption.new(_INTL("Quick Evolution"), [_INTL("On"), _INTL("Off")],
+				proc { $PokemonSystem.quick_evolution },
+				proc { |value| $PokemonSystem.quick_evolution = value }
+			),
+		])
+	end
+end
+
+#===============================================================================
+# User Interface options scene
+#===============================================================================
+class PokemonOption_Scene_UserInterface < PokemonOption_Scene_Base
+    def optionsName
+        return _INTL("User Interface Options")
+    end
+
+	def pbAddOnOptions(options)
+		options.concat([
             EnumOption.new(_INTL("Screen Size"),[_INTL("S"),_INTL("M"),_INTL("L"),_INTL("XL"),_INTL("Full")],
                 proc { [$PokemonSystem.screensize, 4].min },
                 proc { |value|
@@ -606,49 +672,11 @@ class PokemonOption_Scene_UserInterface < PokemonOption_Scene_Base
 					$PokemonBag.sortItems
 				}
 			),
-			EnumOption.new(_INTL("Nicknaming Prompt"), [_INTL("On"), _INTL("Off")],
-				proc { $PokemonSystem.nicknaming_prompt },
+            EnumOption.new(_INTL("Name on Showcase"), [_INTL("On"), _INTL("Off")],
+				proc { $PokemonSystem.name_on_showcases },
 				proc { |value|
-					$PokemonSystem.nicknaming_prompt = value
+					$PokemonSystem.name_on_showcases = value
 				}
-			),
-            EnumOption.new(_INTL("Dex Register Popup"), [_INTL("On"), _INTL("Off")],
-				proc { $PokemonSystem.dex_shown_register },
-				proc { |value|
-					$PokemonSystem.dex_shown_register = value
-				}
-			),
-			EnumOption.new(_INTL("Item Desc Popups"), [_INTL("On"), _INTL("Off")],
-				proc { $PokemonSystem.show_item_descriptions },
-				proc { |value|
-					$PokemonSystem.show_item_descriptions = value
-				}
-			),
-			EnumOption.new(_INTL("Trait Unlock Popups"), [_INTL("On"), _INTL("Off")],
-				proc { $PokemonSystem.show_trait_unlocks },
-				proc { |value|
-					$PokemonSystem.show_trait_unlocks = value
-				}
-			),
-			EnumOption.new(_INTL("Team Snapshots"), [_INTL("On"), _INTL("Off")],
-				proc { $PokemonSystem.party_snapshots },
-				proc { |value|
-					$PokemonSystem.party_snapshots = value
-				}
-			),
-            EnumOption.new(_INTL("Prompt Level Moves"), [_INTL("On"), _INTL("Off")],
-				proc { $PokemonSystem.prompt_level_moves },
-				proc { |value|
-					$PokemonSystem.prompt_level_moves = value
-				}
-			),
-            EnumOption.new(_INTL("Aid Kit Animation"), [_INTL("On"), _INTL("Off")],
-				proc { $PokemonSystem.aid_kit_animation },
-				proc { |value| $PokemonSystem.aid_kit_animation = value }
-			),
-            EnumOption.new(_INTL("Brief Team NPCs"), [_INTL("On"), _INTL("Off")],
-				proc { $PokemonSystem.brief_team_building_npcs },
-				proc { |value| $PokemonSystem.brief_team_building_npcs = value }
 			),
             EnumOption.new(_INTL("Advanced Tutorials"), [_INTL("On"), _INTL("Off")],
 				proc { $PokemonSystem.tutorial_popups },
@@ -870,7 +898,7 @@ class PokemonOptionMenu < PokemonPauseMenu
 		@scene.pbStartScene
 		endscene = true
 		cmdAudioOptions  = -1
-		cmdUIOoptions = -1
+		cmdUIOptions = -1
         cmdBattleOptions = -1
         cmdOverworldOptions = -1
         cmdAdvancedGraphicsOptions = -1
@@ -878,10 +906,11 @@ class PokemonOptionMenu < PokemonPauseMenu
         cmdLanguageSelect = -1
         cmdCancel    = -1
 		optionsCommands = []
-		optionsCommands[cmdAudioOptions = optionsCommands.length] = _INTL("Audio Options")
-		optionsCommands[cmdUIOoptions = optionsCommands.length] = _INTL("UI Options")
+        optionsCommands[cmdUISpeedOptions = optionsCommands.length] = _INTL("Speed Options")
 		optionsCommands[cmdBattleOptions = optionsCommands.length] = _INTL("Battle Options")
+        optionsCommands[cmdUIOptions = optionsCommands.length] = _INTL("UI Options")
 		optionsCommands[cmdOverworldOptions = optionsCommands.length] = _INTL("Overworld Options")
+        optionsCommands[cmdAudioOptions = optionsCommands.length] = _INTL("Audio Options")
         optionsCommands[cmdAdvancedGraphicsOptions = optionsCommands.length] = _INTL("Adv. Graphics Options")
         optionsCommands[cmdControlsMapping = optionsCommands.length] = _INTL("Controls")
         optionsCommands[cmdLanguageSelect = optionsCommands.length] = _INTL("Language")
@@ -897,7 +926,7 @@ class PokemonOptionMenu < PokemonPauseMenu
                 else
                     loadLanguage
                     languageName = Settings::LANGUAGES[$PokemonSystem.language][0]
-                    pbMessage(_INTL("Game language changed to #{languageName}!"))
+                    pbMessage(_INTL("Game language changed to {1}!",languageName))
                 end
                 next
             elsif cmdControlsMapping > 0 && infoCommand == cmdControlsMapping
@@ -905,10 +934,11 @@ class PokemonOptionMenu < PokemonPauseMenu
                 break
             end
             optionsScene = [
-                PokemonOption_Scene_Audio,
-                PokemonOption_Scene_UserInterface,
+                PokemonOption_Scene_Speed,
                 PokemonOption_Scene_Battle,
+                PokemonOption_Scene_UserInterface,
                 PokemonOption_Scene_Overworld,
+                PokemonOption_Scene_Audio,
                 PokemonOption_Scene_AdvancedGraphics,
             ][infoCommand]
             pbPlayDecisionSE
