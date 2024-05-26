@@ -530,13 +530,13 @@ class PokEstate
 		return unless isInEstate?()
 		
 		if $Trainer.able_pokemon_count == 1 && !pokemon.fainted?
-			pbMessage("Can't set down your last able Pokemon!")
+			pbMessage(_INTL("Can't set down your last able Pokemon!"))
 			return false
 		end
 	
 		box = $PokemonStorage[@estate_box]
 		if box.full?
-			pbMessage("Can't set #{pokemon.name} down into the current Estate plot because it is full.")
+			pbMessage(_INTL("Can't set #{pokemon.name} down into the current Estate plot because it is full."))
 			return false
 		end
 		
@@ -555,7 +555,7 @@ class PokEstate
 		end
 		
 		if !$game_map.passableStrict?(x,y,dir)
-			pbMessage("Can't set #{pokemon.name} down, the spot in front of you is blocked.")
+			pbMessage(_INTL("Can't set #{pokemon.name} down, the spot in front of you is blocked."))
 			return false
 		end
 		

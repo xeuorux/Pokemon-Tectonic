@@ -94,6 +94,11 @@ def showCondensedLightHint
     possibleHints = []
     CONDENSED_LIGHT_LOCATIONS.each do |key, value|
         next if pbGetSelfSwitch(key[0],key[1],key[2])
+        # Don't show the hint for the event thats giving the light
+        if $game_map.map_id == key[2] && @event_id == key[0]
+            echoln("Skipping this event for the condensed light hint!")
+            next
+        end
         possibleHints.concat(value)
     end
     hint = _INTL(possibleHints.sample)
