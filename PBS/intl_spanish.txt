@@ -50698,6 +50698,10 @@ UI Options
 Opciones de UI
 User Interface Options
 Opciones de Interfaz de Usuario
+Speed Options
+Opciones de Velocidad
+User Interface Speed Options
+Opciones de Vel. de UI
 Screen Size
 Tamaño de Pantalla
 Dark Mode
@@ -50708,6 +50712,8 @@ Aid Kit Animation
 Anim. por Botiquín
 Brief Team NPCs
 Breve PNJ del equipo
+Quick Evolution
+Evolución Rápida
 Advanced Tutorials
 Tutoriales Avanzados
 Battle Options
