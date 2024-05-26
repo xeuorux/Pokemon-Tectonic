@@ -38,6 +38,7 @@ class PokemonSystem
     attr_accessor :aid_kit_animation
     attr_accessor :brief_team_building_npcs
     attr_accessor :quick_evolution
+    attr_accessor :name_on_showcases
 
     def bgmvolume
         return @bgmvolume / VOLUME_FAKERY_MULT
@@ -104,7 +105,8 @@ class PokemonSystem
         @bag_sorting              = 0 # (0=none,1=alphabetical,2=ID)
         @aid_kit_animation        = 0 # (0=true, 1=false)
         @brief_team_building_npcs = 1 # (0=true, 1=false)
-        @skip_evolution_cutscene  = 1 # (0=true, 1=false)
+        @quick_evolution          = 1 # (0=true, 1=false)
+        @name_on_showcases        = 0 # (0=true, 1=false)
     end
 
     def frame=(value)
@@ -668,6 +670,12 @@ class PokemonOption_Scene_UserInterface < PokemonOption_Scene_Base
 				proc { |value|
 					$PokemonSystem.bag_sorting = value
 					$PokemonBag.sortItems
+				}
+			),
+            EnumOption.new(_INTL("Name on Showcase"), [_INTL("On"), _INTL("Off")],
+				proc { $PokemonSystem.name_on_showcases },
+				proc { |value|
+					$PokemonSystem.name_on_showcases = value
 				}
 			),
             EnumOption.new(_INTL("Advanced Tutorials"), [_INTL("On"), _INTL("Off")],
