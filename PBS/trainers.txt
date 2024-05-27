@@ -1991,7 +1991,7 @@ Pokemon = DELIBIRD,42
     AbilityIndex = 1 # Holiday Cheer
     Item = LIGHTCLAY
 Pokemon = GOURGEIST,41
-    Moves = MYSTERYSEED,SHADOWBALL,GRASSKNOT,FIREPULSE
+    Moves = MYSTERYSEED,DEATHKNELL,PETALTEMPEST,MYSTICALFIRE
     AbilityIndex = 0 # Flourishing
     Item = GHOSTGEM
 #-------------------------------
@@ -2933,7 +2933,7 @@ Pokemon = BRONZONG,45
 #-------------------------------
 [ARTIST3,Frida]
 Pokemon = MPOLTEAGEIST,45
-    Moves = SHADOWBALL,FROSTBREATH,MAGICALLEAF,HEX
+    Moves = GHOULISHGALE,FRIGIDFLURRY,PETALTEMPEST,HEX
     AbilityIndex = 1 # Chill Out
     Item = FOCUSSASH
 Pokemon = DEWGONG,45
