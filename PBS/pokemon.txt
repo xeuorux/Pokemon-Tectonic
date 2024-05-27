@@ -4013,7 +4013,7 @@ BattlerEnemyX = -9
 BattlerEnemyY = 12
 BattlerShadowX = 0
 BattlerShadowSize = 3
-Evolutions = SCIZOR,Level,29,KLEAVOR,Originize,41
+Evolutions = KLEAVOR,Originize,41,SCIZOR,Level,29
 #-------------------------------
 [124]
 Name = Jynx
@@ -5082,7 +5082,7 @@ BattlerEnemyX = 0
 BattlerEnemyY = 20
 BattlerShadowX = 0
 BattlerShadowSize = 2
-Evolutions = TYPHLOSION,Level,36,HTYPHLOSION,Originize,36
+Evolutions = HTYPHLOSION,Originize,36,TYPHLOSION,Level,36
 #-------------------------------
 [157]
 Name = Typhlosion
@@ -16377,7 +16377,7 @@ BattlerEnemyX = 4
 BattlerEnemyY = 23
 BattlerShadowX = 0
 BattlerShadowSize = 2
-Evolutions = SAMUROTT,Level,36,HSAMUROTT,Originize,36
+Evolutions = HSAMUROTT,Originize,36,SAMUROTT,Level,36
 #-------------------------------
 [503]
 Name = Samurott
@@ -17871,7 +17871,7 @@ BattlerEnemyX = 0
 BattlerEnemyY = 30
 BattlerShadowX = 0
 BattlerShadowSize = 2
-Evolutions = LILLIGANT,Level,36,HLILLIGANT,Originize,36
+Evolutions = HLILLIGANT,Originize,36,LILLIGANT,Level,36
 #-------------------------------
 [549]
 Name = Lilligant
@@ -20462,7 +20462,7 @@ BattlerEnemyX = 0
 BattlerEnemyY = 28
 BattlerShadowX = 0
 BattlerShadowSize = 2
-Evolutions = BRAVIARY,Level,31,HBRAVIARY,Originize,31
+Evolutions = HBRAVIARY,Originize,31,BRAVIARY,Level,31
 #-------------------------------
 [628]
 Name = Braviary
@@ -22985,7 +22985,7 @@ BattlerEnemyX = 0
 BattlerEnemyY = 35
 BattlerShadowX = 0
 BattlerShadowSize = 2
-Evolutions = SLIGGOO,Level,23,HSLIGGOO,Originize,23
+Evolutions = HSLIGGOO,Originize,23,SLIGGOO,Level,23
 #-------------------------------
 [705]
 Name = Sliggoo
@@ -23252,7 +23252,7 @@ BattlerEnemyX = 0
 BattlerEnemyY = 31
 BattlerShadowX = 0
 BattlerShadowSize = 2
-Evolutions = AVALUGG,Level,34,HAVALUGG,Originize,34
+Evolutions = HAVALUGG,Originize,34,AVALUGG,Level,34
 #-------------------------------
 [713]
 Name = Avalugg
@@ -23612,7 +23612,7 @@ BattlerEnemyX = 0
 BattlerEnemyY = 26
 BattlerShadowX = 0
 BattlerShadowSize = 2
-Evolutions = DECIDUEYE,Level,36,HDECIDUEYE,Originize,36
+Evolutions = HDECIDUEYE,Originize,36,DECIDUEYE,Level,36
 #-------------------------------
 [724]
 Name = Decidueye

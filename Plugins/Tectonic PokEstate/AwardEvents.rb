@@ -21,10 +21,10 @@ PokEstate::LoadDataDependentAwards += proc {
 }
 
 ##############################################
-# TRIBE REWARDS (66 of them)
+# TRIBE REWARDS (44 of them)
 ##############################################
-tribeThreshold = [10,20,40]
-tribeRewards = [[:EXPCANDYM,6],[:EXPCANDYL,3],[:EXPCANDYL,6]]
+tribeThreshold = [15,30]
+tribeRewards = [[:EXPCANDYM,6],[:EXPCANDYL,3]]
 
 PokEstate::LoadDataDependentAwards += proc {
     # For every type, create three award event subscribers at different thresholds
@@ -41,9 +41,33 @@ PokEstate::LoadDataDependentAwards += proc {
 }
 
 ##############################################
-# ROUTE REWARDS (23 of them)
+# ROUTE REWARDS (45  of them)
 ##############################################
-SMALL_ROUTES =
+SMALL_ROUTES = [
+    56, # Novo Town
+    25, # Grouz
+    36, # Grouz Mine
+    326, # Carnation Graves
+    6, # LuxTech Campus
+    122, # LuxTech Sewers
+    40, # Gigalith's Guts
+    120, # Hollowed Layer
+    214, # Team Chasm HQ
+    121, # Kilna Ascent
+    37, # Svait
+    117, # Ice Cave
+    129, # Barren Crater
+    223, # Battle Plaza Underground
+    220, # Ancient Sewers
+    155, # Prizca West
+    34, # Battle Plaza
+    187, # Prizca East
+    217, # Sweetrock Harbor
+    316, # Sandstone Estuary
+]
+ 
+# 18
+MEDIUM_ROUTES =
 [
     136, # Casaba Villa
     138, # Scenic Trail
@@ -51,14 +75,14 @@ SMALL_ROUTES =
     51, # Foreclosed Tunnel
     26, # Bluepoint Grotto
 
-    59, # Mainland Dock
+    59, # Feebas' Fin
     60, # Shipping Lane
     130, # Canal Desert
 
     3, # The Shift
-    55, # Floral Rest
+    55, # Lingering Delta
     11, # Eleig River Crossing
-    7, # Wet Walkways
+    7, # Repora Forest
 
     186, # Frostflow Farms
     216, # Highland Lake
@@ -70,6 +94,7 @@ SMALL_ROUTES =
     218, # Abyssal Cavern
 ]
 
+# 5
 BIG_ROUTES = 
 [
     38, # Bluepoint Beach
@@ -79,14 +104,27 @@ BIG_ROUTES =
     211, # Split Peaks
 ]
 
-PokEstate::LoadDataDependentAwards += proc {   
+PokEstate::LoadDataDependentAwards += proc {
     SMALL_ROUTES.each do |routeID|
         routeName = pbGetMapNameFromId(routeID)
         id = ("ROUTE" + routeName + "AWARD").to_sym
         PokEstate::GrantAwards.add(id,
             proc { |pokedex|
                 if pokedex.allOwnedFromRoute?(routeID)
-                    next [[:EXPCANDYM,8],_INTL("all species on #{routeName}")]
+                    next [[:EXPCANDYM,4],_INTL("all species on {1}",routeName)]
+                end
+                next
+            }
+        )
+    end
+
+    MEDIUM_ROUTES.each do |routeID|
+        routeName = pbGetMapNameFromId(routeID)
+        id = ("ROUTE" + routeName + "AWARD").to_sym
+        PokEstate::GrantAwards.add(id,
+            proc { |pokedex|
+                if pokedex.allOwnedFromRoute?(routeID)
+                    next [[:EXPCANDYM,8],_INTL("all species on {1}",routeName)]
                 end
                 next
             }
@@ -99,10 +137,28 @@ PokEstate::LoadDataDependentAwards += proc {
         PokEstate::GrantAwards.add(id,
             proc { |pokedex|
                 if pokedex.allOwnedFromRoute?(routeID)
-                    next [[:EXPCANDYL,3],_INTL("all species on #{routeName}")]
+                    next [[:EXPCANDYM,12],_INTL("all species on {1}",routeName)]
                 end
                 next
             }
         )
     end
+
+    PokEstate::GrantAwards.add("MENAGERIEREWARD",
+        proc { |pokedex|
+            if pokedex.allOwnedFromRoute?(213)
+                next [[:EXPCANDYXL,4],_INTL("all species in the Velenz Menagerie")]
+            end
+            next
+        }
+    )
+
+    PokEstate::GrantAwards.add("OCEANFISHINGREWARD",
+        proc { |pokedex|
+            if pokedex.allOwnedFromRoute?(213)
+                next [[:EXPCANDYXL,4],_INTL("all species in the Ocean Fishing Contest")]
+            end
+            next
+        }
+    )
 }
