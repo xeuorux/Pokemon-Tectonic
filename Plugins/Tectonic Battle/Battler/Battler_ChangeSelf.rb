@@ -620,7 +620,8 @@ class PokeBattle_Battler
     def pbHyperMode; end
 
     def getSubLife
-        subLife = @totalhp / 4
+        subLife = @totalhp / 4.0
+        subLife /= BOSS_HP_BASED_EFFECT_RESISTANCE
         subLife = 1 if subLife < 1
         return subLife.floor
     end
