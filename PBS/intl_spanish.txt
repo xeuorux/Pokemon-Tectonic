@@ -46090,6 +46090,10 @@ You got away safely!
 ¡{1} se está preparando para luchar!
 Can't use that while on a bicycle.
 No puedes usar eso mientras estás en la bicicleta.
+No proper map position is known for totem ID {1}. Please inform a programmer about this.
+No se conoce la posición adecuada en el mapa para el ID del tótem {1}. Por favor informe a un programador sobre esto.
+ACTION/Z to toggle Totems
+ACTION/Z para alternar Tótems
 {1} forgot {2}...
 {1} olvidó {2}...
 1,\wt<<[>>16<<]>> 2, and\wt<<[>>16<<]>>...\wt<<[>>16<<]>> ...\wt<<[>>16<<]>> ... Ta-da!\se<<[>>Battle ball drop<<]>><<1>>
