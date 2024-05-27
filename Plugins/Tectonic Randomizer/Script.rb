@@ -263,12 +263,11 @@ module Randomizer
     #-----------------------------------------------------------------------------
     def self.randomizerSelection
         # list of all possible rules
-        modifiers = %i[TRAINERS ENCOUNTERS ITEMS SIMILAR_BST]
+        modifiers = %i[TRAINERS ENCOUNTERS SIMILAR_BST]
         # list of rule descriptions
         desc = [
             _INTL("Randomize Trainer Parties"),
             _INTL("Randomize Wild Encounters"),
-            _INTL("Randomize Items"),
             _INTL("Keep Similar Stat Totals"),
         ]
         # default

@@ -429,7 +429,7 @@ class PokEstate
 		commands[cmdSummary = commands.length] = _INTL("View Summary")
 		commands[cmdRename = commands.length] = _INTL("Rename") unless donationBox
 		commands[cmdUseItem = commands.length] = _INTL("Use Item") unless donationBox
-		newspecies = pokemon.check_evolution_on_level_up
+		newspecies = pokemon.check_evolution_on_level_up(false)
 		commands[cmdEvolve = commands.length]       = _INTL("Evolve") if newspecies
 		commands[cmdStyle = commands.length]  = _INTL("Set Style") if pbHasItem?(:STYLINGKIT)
 		commands[cmdCancel = commands.length] = _INTL("Cancel")
@@ -501,6 +501,8 @@ class PokEstate
 					break
 				end
 			elsif cmdEvolve > -1 && command == cmdEvolve
+				newspecies = pokemon.check_evolution_on_level_up(true)
+				break if newspecies.nil?
 				pbFadeOutInWithMusic do
 					evo = PokemonEvolutionScene.new
 					evo.pbStartScreen(pokemon, newspecies)

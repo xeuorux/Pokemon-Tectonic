@@ -4302,7 +4302,7 @@ Target = NearOther
 Priority = -1
 FunctionCode = SwitchOutUserDamagingMove
 Flags = CanProtect,CanMirrorMove
-Description = The user swaps out using a cruel illusion. This move always goes last.
+Description = The user switches out using a cruel illusion. Always goes last.
 Animation = PURSUIT
 #-------------------------------
 [HAIRCURL]
@@ -4652,7 +4652,7 @@ Target = NearOther
 Priority = -1
 FunctionCode = SwitchOutTargetDamagingMoveNonRandom
 Flags = CanProtect,CanMirrorMove
-Description = The user dismisses the target, forcing it to switch out.
+Description = The user dismisses the target, forcing it to switch out. Always goes last.
 Animation = ROAR
 #-------------------------------
 [CHECKMATE]
@@ -5402,7 +5402,7 @@ Target = NearOther
 Priority = -1
 FunctionCode = SwitchOutTargetDamagingMoveNonRandom
 Flags = CanProtect,CanMirrorMove,Sound
-Description = The user makes a scary sound by shaking, forcing the target to switch out.
+Description = The user makes a scary sound by shaking, forcing the target to switch out. Always goes last.
 Animation = UPROAR
 #-------------------------------
 [CROSSEXAMINE]
@@ -6126,7 +6126,7 @@ Target = NearOther
 Priority = -6
 FunctionCode = SwitchOutTargetDamagingMove
 Flags = CanProtect,CanMirrorMove
-Description = The user forces the target to switch out, to be replaced at random. In the wild, the battle ends.
+Description = The user forces the target to switch out, to be replaced at random. Always goes last. Ends wild battles.
 Animation = ROAR
 #-------------------------------
 [DRAFT]

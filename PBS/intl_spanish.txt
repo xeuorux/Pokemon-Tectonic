@@ -46090,6 +46090,10 @@ You got away safely!
 ¡{1} se está preparando para luchar!
 Can't use that while on a bicycle.
 No puedes usar eso mientras estás en la bicicleta.
+No proper map position is known for totem ID {1}. Please inform a programmer about this.
+No se conoce la posición adecuada en el mapa para el ID del tótem {1}. Por favor informe a un programador sobre esto.
+ACTION/Z to toggle Totems
+ACTION/Z para alternar Tótems
 {1} forgot {2}...
 {1} olvidó {2}...
 1,\wt<<[>>16<<]>> 2, and\wt<<[>>16<<]>>...\wt<<[>>16<<]>> ...\wt<<[>>16<<]>> ... Ta-da!\se<<[>>Battle ball drop<<]>><<1>>
@@ -47084,12 +47088,16 @@ Story here!
 ¡Historia aquí!
 PokÉstate #{$PokEstate.estate_box + 1}
 Terreno #{$PokEstate.estate_box +  1}
-all species on #{routeName}
-todas las especies en #{routeName}
-#{threshold} species from Generation #{generation}
-#{threshold} especies de Generación #{generation}
-#{threshold} #{typeName}-type species
-#{threshold} especies tipo #{typeName}
+all species on {1}
+todas las especies en {1}
+all species in the Velenz Menagerie
+todas las especies en la Muestra de Velenz
+all species in the Ocean Fishing Contest
+todas las especies en el Concurso de Pesca Océanica
+{1} species from Generation {2}
+{1} especies de Generación {2}
+{1} {2}-type species
+{1} especies tipo {2}
 The previous save file has been backed up.\wtnp[30]
 El archivo de guardado anterior fue respaldado.\wtnp[30]
 Tribes:
@@ -51978,8 +51986,8 @@ Controls
 Controles
 when a {1} is used on it
 cuando {1} es usada en él
-when a {1} is used on it at level {2}
-cuando {1} es usada al nivel {2}
+at level {1} if you spend an {2}
+al nivel {1} si pasas un {2}
 at level {1}
 al nivel {1}
 at level {1} if it has the first of its possible abilities
@@ -52702,6 +52710,10 @@ Unlike moves such as Roar or Whirlwind, however, the trainer has enough time to 
 Sin embargo, a diferencia de Rugido o Remolino, el entrenador tiene suficiente tiempo para elegir el reemplazo que desee.
 You put down the book.
 Dejas el libro en la mesa.
+A piece of <imp>Origin Ore</imp> inside your bag is glowing with power!
+¡Un trozo de <imp>Mineral Primario</imp> dentro de tu bolso brilla con poder!
+Apply the Origin Ore to {1}?
+¿Aplicar el Mineral Primario a {1}?
 [26]
 [27]
 [27]
