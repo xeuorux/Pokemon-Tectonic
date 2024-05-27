@@ -47088,12 +47088,16 @@ Story here!
 ¡Historia aquí!
 PokÉstate #{$PokEstate.estate_box + 1}
 Terreno #{$PokEstate.estate_box +  1}
-all species on #{routeName}
-todas las especies en #{routeName}
-#{threshold} species from Generation #{generation}
-#{threshold} especies de Generación #{generation}
-#{threshold} #{typeName}-type species
-#{threshold} especies tipo #{typeName}
+all species on {1}
+todas las especies en {1}
+all species in the Velenz Menagerie
+todas las especies en la Muestra de Velenz
+all species in the Ocean Fishing Contest
+todas las especies en el Concurso de Pesca Océanica
+{1} species from Generation {2}
+{1} especies de Generación {2}
+{1} {2}-type species
+{1} especies tipo {2}
 The previous save file has been backed up.\wtnp[30]
 El archivo de guardado anterior fue respaldado.\wtnp[30]
 Tribes:
