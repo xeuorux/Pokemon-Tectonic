@@ -50410,10 +50410,10 @@ But it failed, since #{user.pbThis(true)} has the item it would recycle!
 ¡Pero falló, ya que #{user.pbThis(true)} tiene el objeto que reciclaría!
 Bicycle Music
 Música de la Bicicleta
-Your foe was ambushed! You get a free turn!
-¡Tu rival fue emboscado! ¡Obtienes un turno libre!
-You were ambushed! The foe gets a free turn!
-¡Fuiste emboscado! ¡El rival obtiene un turno libre!
+\\wm\\ssYour foe was <imp>ambushed</imp>! You get a free turn!
+\\wm\\ss¡Tu rival fue <imp>emboscado</imp>! ¡Obtienes un turno libre!
+\\wm\\ssYou were <imp>ambushed</imp>! The foe gets a free turn!
+\\wm\\ss¡Fuiste <imp>emboscado</imp>! ¡El rival obtiene un turno libre!
 Wild Pokemon don't give experience in Pokemon Tectonic.
 Los Pokémon salvajes no dan experiencia en Pokémon Tectonic.
 Don't worry, there's an abundance of experience to gain in other ways.
