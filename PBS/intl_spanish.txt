@@ -51980,8 +51980,8 @@ Controls
 Controles
 when a {1} is used on it
 cuando {1} es usada en él
-when a {1} is used on it at level {2}
-cuando {1} es usada al nivel {2}
+at level {1} if you spend an {2}
+al nivel {1} si pasas un {2}
 at level {1}
 al nivel {1}
 at level {1} if it has the first of its possible abilities
@@ -52704,6 +52704,10 @@ Unlike moves such as Roar or Whirlwind, however, the trainer has enough time to 
 Sin embargo, a diferencia de Rugido o Remolino, el entrenador tiene suficiente tiempo para elegir el reemplazo que desee.
 You put down the book.
 Dejas el libro en la mesa.
+A piece of <imp>Origin Ore</imp> inside your bag is glowing with power!
+¡Un trozo de <imp>Mineral Primario</imp> dentro de tu bolso brilla con poder!
+Apply the Origin Ore to {1}?
+¿Aplicar el Mineral Primario a {1}?
 [26]
 [27]
 [27]

@@ -85,7 +85,7 @@ end
 def evolutionButtonCheck(pkmn)
     return if $PokemonGlobal.evolutionButtonTutorialized
     return unless pkmn.level == getLevelCap
-    return unless pkmn.check_evolution_on_level_up
+    return unless pkmn.check_evolution_on_level_up(false)
     playEvolutionButtonTutorial
 end
 

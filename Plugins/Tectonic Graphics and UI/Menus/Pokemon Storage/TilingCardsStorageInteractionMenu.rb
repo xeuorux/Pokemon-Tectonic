@@ -263,7 +263,7 @@ class TilingCardsStorageInteractionMenu_Scene < TilingCardsMenu_Scene
 			commands[cmdOmnitutor = commands.length]	= _INTL("OmniTutor")
 		end
 		commands[cmdRename = commands.length]       = _INTL("Rename")
-		newspecies = @pkmn.check_evolution_on_level_up
+		newspecies = @pkmn.check_evolution_on_level_up(false)
 		commands[cmdEvolve = commands.length]       = _INTL("Evolve") if newspecies
 		commands[commands.length]                   = _INTL("Cancel")
 		modifyCommand = pbShowCommands(_INTL("Do what with {1}?",@pkmn.name),commands)
@@ -276,6 +276,8 @@ class TilingCardsStorageInteractionMenu_Scene < TilingCardsMenu_Scene
 				@pkmn.name = pbGet(5)
 			end
 		elsif cmdEvolve >= 0 && modifyCommand == cmdEvolve
+			newspecies = @pkmn.check_evolution_on_level_up(true)
+			return false if newspecies.nil?
 			pbFadeOutInWithMusic do
 				evo = PokemonEvolutionScene.new
 				evo.pbStartScreen(@pkmn, newspecies)

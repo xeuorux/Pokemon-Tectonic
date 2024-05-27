@@ -1271,9 +1271,9 @@ class Pokemon
     #=============================================================================
     # Checks whether this Pokemon can evolve because of levelling up.
     # @return [Symbol, nil] the ID of the species to evolve into
-    def check_evolution_on_level_up
+    def check_evolution_on_level_up(finalCheck = true)
       return check_evolution_internal { |pkmn, new_species, method, parameter|
-        success = GameData::Evolution.get(method).call_level_up(pkmn, parameter)
+        success = GameData::Evolution.get(method).call_level_up(pkmn, parameter, finalCheck)
         next (success) ? new_species : nil
       }
     end

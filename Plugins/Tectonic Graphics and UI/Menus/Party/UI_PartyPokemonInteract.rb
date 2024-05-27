@@ -229,7 +229,7 @@ class TilingCardsPokemonMenu_Scene < TilingCardsMenu_Scene
 		# Build the commands
 		commands[cmdRename = commands.length]       = _INTL("Rename")
 		commands[cmdStyle = commands.length]        = _INTL("Set Style") if pbHasItem?(:STYLINGKIT)
-		newspecies = @pkmn.check_evolution_on_level_up
+		newspecies = @pkmn.check_evolution_on_level_up(false)
 		commands[cmdEvolve = commands.length]       = _INTL("Evolve") if newspecies
 		commands[commands.length]                   = _INTL("Cancel")
 		
@@ -243,6 +243,8 @@ class TilingCardsPokemonMenu_Scene < TilingCardsMenu_Scene
 				@pkmn.name = pbGet(5)
 			end
 		elsif cmdEvolve >= 0 && modifyCommand == cmdEvolve
+			newspecies = @pkmn.check_evolution_on_level_up(true)
+			return false if newspecies.nil?
 			pbFadeOutInWithMusic do
 				evo = PokemonEvolutionScene.new
 				evo.pbStartScreen(@pkmn, newspecies)
