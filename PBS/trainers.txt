@@ -1552,7 +1552,7 @@ Pokemon = BELLOSSOM,30
     EV = 20,20,6,0,20,4
 Pokemon = MNINETALES,30
     Position = 1
-    Moves = DREAMDANCE,SOULEATER,SHINESHOT,DUSTDEVIL
+    Moves = DREAMDANCE,SPITEFULCHANT,SHINESHOT,DUSTDEVIL
     AbilityIndex = 0 # Gild
     # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
     EV = 10,20,0,20,20,0
