@@ -507,7 +507,7 @@ Flags = Empowered
 Description = The user summons an allied Abra, raises the Sp. Atk stat of itself and its allies, and becomes Psychic-type.
 #-------------------------------
 [PRIMEVALSTANDTOGETHER]
-Name = Primeval Howl
+Name = Primeval Stand Together
 Type = FIGHTING
 Category = Status
 Accuracy = 0
