@@ -194,6 +194,11 @@ class PokeBattle_Scene
         end
       end
       @lastMove[idxBattler] = cw.index
+
+      # Clear the move outcome predictor displays
+      battler.eachOpposing do |opposingBattler|
+        opposingBattler.moveOutcomePredictor.clear
+      end
     end
   
     #=============================================================================
