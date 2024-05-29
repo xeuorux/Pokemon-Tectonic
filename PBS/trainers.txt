@@ -2013,7 +2013,7 @@ Pokemon = RAPIDASH,41
 #-------------------------------
 [DOCTOR,Peio]
 Pokemon = HATTERENE,41
-    Moves = PSYCHOSCISSION,HUMBLE,BRUTALSWING,FLOWSTATE
+    Moves = PSYCHOSCISSION,SPIRITBREAK,SUCKERPUNCH,FLOWSTATE
     AbilityIndex = 0 # Killjoy
     Item = CADOBERRY
 Pokemon = BLASTOISE,40
@@ -4012,13 +4012,13 @@ Pokemon = HEATMOR,55
     Item = AIRBALLOON
 Pokemon = BLASFEMMIE,55
     Moves = MOONGLOW,ENCHANTINGSONG,DARKALLURE,SWEETSELENE
-    AbilityIndex = 0 # Tantalizing
+    AbilityIndex = 1 # Hubris
     Item = LEFTOVERS
 Pokemon = DONSTER,55
     Moves = TRASHTREASURE,MIASMA,SLAG,EXPLOSION
     AbilityIndex = 1 # Vengeance
 Pokemon = HATTERENE,55
-    Moves = SUCKERPUNCH,PSYCHOSCISSION,HUMBLE,FLOWSTATE
+    Moves = SUCKERPUNCH,PSYCHOSCISSION,MORNINGSTAR,HONECLAWS
     AbilityIndex = 0 # Killjoy
 #-------------------------------
 [WORKER6,Paul]
