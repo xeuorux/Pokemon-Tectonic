@@ -189,7 +189,7 @@ TotalPP = 1
 Target = AllNearFoes
 FunctionCode = EmpoweredTorment
 Flags = CanProtect,CanMirrorMove,Empowered
-Description = The user torments and enrages the foe, making it incapable of using the same move twice in a row.
+Description = The user torments all near foes, preventing them from repeating moves. The user becomes Dark-type.
 Animation = TORMENT
 #-------------------------------
 [PRIMEVALLASERFOCUS]
@@ -614,7 +614,7 @@ Target = NearOther
 FunctionCode = EmpoweredAncientPower
 Flags = CanProtect,CanMirrorMove,Empowered
 EffectChance = 100
-Description = The user attacks with a prehistoric power which raises all its stats
+Description = The user attacks with a prehistoric power which raises all its stats.
 Animation = ANCIENTPOWER
 #-------------------------------
 [EMPOWEREDTHUNDERBOLT]
@@ -752,19 +752,6 @@ FunctionCode = EmpoweredFutureSight
 Flags = Empowered
 Description = Two turns after this move is used, a hunk of psychic energy attacks the target.
 Animation = FUTURESIGHT
-#-------------------------------
-[EMPOWEREDDRAGONDARTS]
-Name = Empowered Dragon Darts
-Type = DRAGON
-Category = Physical
-Power = 150
-Accuracy = 100
-TotalPP = 1
-Target = AllNearFoes
-FunctionCode = EmpoweredDragonDarts
-Flags = CanProtect,CanMirrorMove,Empowered
-Description = The user attacks twice using Dreepy, spreading the hits.
-Animation = DRAGONDARTS
 #-------------------------------
 [EMPOWEREDGIGADRAIN]
 Name = Empowered Giga Drain
