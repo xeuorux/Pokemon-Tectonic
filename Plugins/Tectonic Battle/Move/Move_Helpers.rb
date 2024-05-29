@@ -1,7 +1,7 @@
 class PokeBattle_Move
     def shouldHighlight?(user, target)
         if damagingMove?(true)
-            bpAgainstTarget = pbBaseDamageAI(@baseDamage, user, target)
+            bpAgainstTarget = predictedBasePower(user, target)
             if @baseDamage == 1
                 return bpAgainstTarget >= 100
             else
@@ -9,6 +9,10 @@ class PokeBattle_Move
             end
         end
         return false
+    end
+
+    def predictedBasePower(user, target)
+        return pbBaseDamageAI(@baseDamage, user, target)
     end
 
     def shouldShade?(user, target)

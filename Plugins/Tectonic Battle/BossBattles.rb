@@ -456,6 +456,7 @@ class PokeBattle_Battle
             next unless @battlers[idxBattler].nil?
             pbCreateBattler(idxBattler)
             scene.pbCreatePokemonSprite(idxBattler)
+            scene.createMoveOutcomePredictor(@battlers[idxBattler],idxBattler) if idxBattler % 2 == 1
         end
 
         remakeDataBoxes

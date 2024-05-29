@@ -5565,7 +5565,7 @@ Name = Ghoulish Gale
 Type = GHOST
 Category = Special
 Power = 85
-Accuracy = 100
+Accuracy = 0
 TotalPP = 12
 Target = NearOther
 FunctionCode = AlwaysHits
@@ -6503,7 +6503,7 @@ Accuracy = 100
 TotalPP = 10
 Target = NearFoe
 FunctionCode = StartSandstorm8
-Flags = CanProtect,CanMirrorMove
+Flags = CanProtect,CanMirrorMove,Wind
 Description = Hits the target with a sandy wind, then summons sandstorm for eight turns.
 Animation = SANDSTORM
 #-------------------------------

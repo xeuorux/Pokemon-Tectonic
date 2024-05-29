@@ -2017,7 +2017,7 @@ Pokemon = DELIBIRD,42
     AbilityIndex = 1 # Holiday Cheer
     Item = LIGHTCLAY
 Pokemon = GOURGEIST,41
-    Moves = MYSTERYSEED,SHADOWBALL,GRASSKNOT,FIREPULSE
+    Moves = MYSTERYSEED,DEATHKNELL,PETALTEMPEST,MYSTICALFIRE
     AbilityIndex = 0 # Flourishing
     Item = GHOSTGEM
 #-------------------------------
@@ -2039,7 +2039,7 @@ Pokemon = RAPIDASH,41
 #-------------------------------
 [DOCTOR,Peio]
 Pokemon = HATTERENE,41
-    Moves = PSYCHOSCISSION,HUMBLE,BRUTALSWING,FLOWSTATE
+    Moves = PSYCHOSCISSION,SPIRITBREAK,SUCKERPUNCH,FLOWSTATE
     AbilityIndex = 0 # Killjoy
     Item = CADOBERRY
 Pokemon = BLASTOISE,40
@@ -2931,7 +2931,7 @@ Pokemon = BRONZONG,45
 #-------------------------------
 [ARTIST3,Frida]
 Pokemon = MPOLTEAGEIST,45
-    Moves = SHADOWBALL,FROSTBREATH,MAGICALLEAF,HEX
+    Moves = GHOULISHGALE,FRIGIDFLURRY,PETALTEMPEST,HEX
     AbilityIndex = 1 # Chill Out
     Item = FOCUSSASH
 Pokemon = DEWGONG,45
@@ -4005,13 +4005,13 @@ Pokemon = HEATMOR,55
     Item = AIRBALLOON
 Pokemon = BLASFEMMIE,55
     Moves = MOONGLOW,ENCHANTINGSONG,DARKALLURE,SWEETSELENE
-    AbilityIndex = 0 # Tantalizing
+    AbilityIndex = 1 # Hubris
     Item = LEFTOVERS
 Pokemon = DONSTER,55
     Moves = TRASHTREASURE,MIASMA,SLAG,EXPLOSION
     AbilityIndex = 1 # Vengeance
 Pokemon = HATTERENE,55
-    Moves = SUCKERPUNCH,PSYCHOSCISSION,HUMBLE,FLOWSTATE
+    Moves = SUCKERPUNCH,PSYCHOSCISSION,MORNINGSTAR,HONECLAWS
     AbilityIndex = 0 # Killjoy
 #-------------------------------
 [WORKER6,Paul]

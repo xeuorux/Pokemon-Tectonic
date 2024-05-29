@@ -16493,8 +16493,6 @@ After a short rest, you're ready to go!
 Luego de un corto descanso, ¡Estás listo para continuar!
 
 [Map236]
-You stuff your Aid Kit full from your large stack of supplies!
-¡Llenas tu Botiquín con tu gran cantidad de suministros!
 You take some swings at the punching bag.
 Das algunos golpes al saco de boxeo.
 You're pumped up! Experience gain from battles is boosted until the next time you heal.
@@ -50254,8 +50252,8 @@ You have nowhere to teleport to!
 ¡No puedes teletransportarte a ningún lado!
 Want to teleport from here and return to {1}?
 ¿Quieres teletransportarte y regresar a {1}?
-Your Aid Kit was refreshed to #{$PokemonGlobal.teamHealerCurrentUses} charges.
-Tu Botiquín fue restaurado a #{$PokemonGlobal.teamHealerCurrentUses} cargas.
+\i[AIDKIT]Your Aid Kit was refreshed to {1} charges.
+\i[AIDKIT]Tu Botiquín fue restaurado a {1} cargas.
 You are out of charges.
 No te queda ninguna carga.
 Your entire team is already fully healed!
@@ -50412,10 +50410,10 @@ But it failed, since #{user.pbThis(true)} has the item it would recycle!
 ¡Pero falló, ya que #{user.pbThis(true)} tiene el objeto que reciclaría!
 Bicycle Music
 Música de la Bicicleta
-Your foe was ambushed! You get a free turn!
-¡Tu rival fue emboscado! ¡Obtienes un turno libre!
-You were ambushed! The foe gets a free turn!
-¡Fuiste emboscado! ¡El rival obtiene un turno libre!
+\\wm\\ssYour foe was <imp>ambushed</imp>! You get a free turn!
+\\wm\\ss¡Tu rival fue <imp>emboscado</imp>! ¡Obtienes un turno libre!
+\\wm\\ssYou were <imp>ambushed</imp>! The foe gets a free turn!
+\\wm\\ss¡Fuiste <imp>emboscado</imp>! ¡El rival obtiene un turno libre!
 Wild Pokemon don't give experience in Pokemon Tectonic.
 Los Pokémon salvajes no dan experiencia en Pokémon Tectonic.
 Don't worry, there's an abundance of experience to gain in other ways.
@@ -52714,6 +52712,20 @@ A piece of <imp>Origin Ore</imp> inside your bag is glowing with power!
 ¡Un trozo de <imp>Mineral Primario</imp> dentro de tu bolso brilla con poder!
 Apply the Origin Ore to {1}?
 ¿Aplicar el Mineral Primario a {1}?
+I'll take your Pokémon for a few seconds.
+Tomaré tus Pokémon por unos cuantos segundos.
+First, you should restore your Pokémon to full health.
+Primero, deberías curar a tus Pokémon por completo.
+We hope you excel!
+¡Te deseamos suerte!
+Here, let me heal your Pokémon.
+Ven, deja que cure a tus Pokémon.
+Best of luck to you!
+¡Te deseo la mejor de las suertes!
+Let's get your Pokémon patched up.
+Vamos a reparar tu Pokémon.
+You stuff your Aid Kit full from your large stack of supplies!
+¡Llenas tu Botiquín con tu gran cantidad de suministros!
 [26]
 [27]
 [27]
