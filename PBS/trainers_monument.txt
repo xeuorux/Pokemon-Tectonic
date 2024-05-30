@@ -172,7 +172,7 @@ Pokemon = MISMAGIUS,70
     # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
     EV = 10,20,0,20,20,0
 Pokemon = LILLIGANT,70
-    Moves = PETALTEMPEST,MISTBURST,HYPERBEAM,ENCHANTINGSONG
+    Moves = PETALBLIZZARD,MISTBURST,HYPERBEAM,ENCHANTINGSONG
     AbilityIndex = 1 # Herbalist
     Item = ENERGYHERB,INTELLECTHERB
     # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
@@ -2488,7 +2488,7 @@ Pokemon = HEATMOR,70
     # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
     EV = 0,20,10,10,20,10
 Pokemon = GOURGEIST,70
-    Moves = BLOSSOM,PETALTEMPEST,SHADOWBALL,FLAMETHROWER
+    Moves = BLOSSOM,PETALBLIZZARD,SHADOWBALL,FLAMETHROWER
     AbilityIndex = 1 # Unafraid
     Item = ENERGYLOCK
     # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
