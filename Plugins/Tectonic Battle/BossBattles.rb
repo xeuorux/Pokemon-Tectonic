@@ -463,6 +463,7 @@ class PokeBattle_Battle
 
         # Create a dummy sprite for the avatar
         scene.pbCreatePokemonSprite(battlerIndexNew)
+        scene.createMoveOutcomePredictor(newBattler,battlerIndexNew)
 
         # Recreate all the battle sprites on that side of the field
         remakeBattleSpritesOnSide(sideIndex)
