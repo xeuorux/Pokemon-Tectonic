@@ -3873,6 +3873,19 @@ FunctionCode = TrashTreasure
 Flags = CanProtect,CanMagicCoat,CanMirrorMove
 Description = The target is given a Black Sludge, replacing their item if any. Their Sp. Def is lowered.
 #-------------------------------
+[PETALTEMPEST]
+Name = Petal Tempest
+Type = GRASS
+Category = Special
+Power = 95
+Accuracy = 100
+TotalPP = 12
+Target = AllNearOthers
+FunctionCode = Basic
+Flags = CanProtect,CanMirrorMove,Wind
+Description = The user stirs up a violent petal tempest and attacks everything around it.
+Animation = PETALBLIZZARD
+#-------------------------------
 [HEARTRHYTHM]
 Name = Heart Rhythm
 Type = FAIRY

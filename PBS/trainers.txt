@@ -1991,7 +1991,7 @@ Pokemon = DELIBIRD,42
     AbilityIndex = 1 # Holiday Cheer
     Item = LIGHTCLAY
 Pokemon = GOURGEIST,41
-    Moves = MYSTERYSEED,DEATHKNELL,PETALBLIZZARD,MYSTICALFIRE
+    Moves = MYSTERYSEED,DEATHKNELL,PETALTEMPEST,MYSTICALFIRE
     AbilityIndex = 0 # Flourishing
     Item = GHOSTGEM
 #-------------------------------
@@ -2933,7 +2933,7 @@ Pokemon = BRONZONG,45
 #-------------------------------
 [ARTIST3,Frida]
 Pokemon = MPOLTEAGEIST,45
-    Moves = GHOULISHGALE,FRIGIDFLURRY,PETALBLIZZARD,HEX
+    Moves = GHOULISHGALE,FRIGIDFLURRY,PETALTEMPEST,HEX
     AbilityIndex = 1 # Chill Out
     Item = FOCUSSASH
 Pokemon = DEWGONG,45
@@ -3694,7 +3694,7 @@ Pokemon = CINDERACE,54
     Item = WIDELENS
 Pokemon = FLORGES,53
     Form = 4 # White Flower Form
-    Moves = WISH,PETALBLIZZARD,MOONBLAST,BLOSSOM
+    Moves = WISH,PETALTEMPEST,MOONBLAST,BLOSSOM
     AbilityIndex = 1 # Sentry
 #-------------------------------
 [CYCLIST_F2,Lukka]
@@ -6650,7 +6650,7 @@ Pokemon = HEATRAN,70
 [TRAINER_Skyler,Skyler]
 Flags = NoPerfect
 Pokemon = FLORGES,70
-    Moves = SYNTHESIS,MOONBLAST,PETALBLIZZARD,PSYCHIC
+    Moves = SYNTHESIS,MOONBLAST,PETALTEMPEST,PSYCHIC
     AbilityIndex = 0 # Clover Song
 Pokemon = JIRACHI,70
     Moves = LIFEDEW,METEORMASH,LIGHTSCREEN,REFLECT
