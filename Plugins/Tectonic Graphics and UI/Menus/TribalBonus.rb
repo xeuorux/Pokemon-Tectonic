@@ -120,6 +120,8 @@ class TribalBonusScene
         overlay = @sprites["overlay"].bitmap
         overlay.clear
 
+        pbDrawImagePositions(overlay,[["Graphics/Pictures/icon_tribal_bonus",20,6]])
+
         drawFormattedTextEx(overlay, 50, 4, Graphics.width, _INTL("<outln2>Tribal Bonus Info</outln2>"), @titlebase, @titleshadow, 18)
 
         @sprites["scroll_arrow_up"].visible = @offset > 0

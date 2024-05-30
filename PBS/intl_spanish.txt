@@ -50540,8 +50540,8 @@ What do you want to do?
 ¿Qué quieres hacer?
 Avatar Mechanics Msgs
 Msj Mecánicas de Avatar
-Tribal Bonus Info
-Info Extra de Clanes
+<outln2>Tribal Bonus Info</outln2>
+<outln2>Info Extra de Clanes</outln2>
 Base Stats
 Stats Base
 HP

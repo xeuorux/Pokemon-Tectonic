@@ -29,12 +29,14 @@ class PokemonPartyShowcase_Scene
         bottomBarY = Graphics.height - 20
 
         # Draw tribal bonus info at the bottom
+        pbDrawImagePositions(@overlay,[["Graphics/Pictures/icon_tribal_bonus",4,bottomBarY-4]])
+
         trainer.tribalBonus.updateTribeCount
         bonusesList = trainer.tribalBonus.getActiveBonusesList(false)
         tribesTotal = GameData::Tribe::DATA.keys.count
         fullDescription = ""
         if bonusesList.empty?
-            fullDescription = _INTL("No Tribes")
+            fullDescription = _INTL("None")
         elsif bonusesList.length == tribesTotal
             fullDescription = _INTL("All")
         elsif bonusesList.length <= 2
@@ -43,10 +45,10 @@ class PokemonPartyShowcase_Scene
                 fullDescription += label
             end
         else
-            fullDescription = _INTL("{1} Tribes",bonusesList.length.to_s)
+            fullDescription = bonusesList.length.to_s
         end
 
-        drawFormattedTextEx(@overlay, 4, bottomBarY, Graphics.width, fullDescription, base, shadow)
+        drawFormattedTextEx(@overlay, 32, bottomBarY, Graphics.width, fullDescription, base, shadow)
 
         # Show player name
         unless $PokemonSystem.name_on_showcases == 1
