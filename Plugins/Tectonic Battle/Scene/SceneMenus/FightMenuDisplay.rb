@@ -316,7 +316,7 @@ class FightMenuDisplay < BattleMenuBase
           end
         else
           @battler.eachOpposing do |opposingBattler|
-            opposingBattler.moveOutcomePredictor.clear
+            opposingBattler.moveOutcomePredictor&.clear
           end
         end
         
