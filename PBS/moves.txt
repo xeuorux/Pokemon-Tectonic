@@ -3036,18 +3036,6 @@ FunctionCode = Basic
 Flags = CanProtect,CanMirrorMove,HighCriticalHitRate,Blade
 Description = The user handles a sharp leaf like a sword and attacks by slashing. Critical hits twice as often.
 #-------------------------------
-[PETALBLIZZARD]
-Name = Petal Blizzard
-Type = GRASS
-Category = Special
-Power = 90
-Accuracy = 100
-TotalPP = 12
-Target = AllNearOthers
-FunctionCode = Basic
-Flags = CanProtect,CanMirrorMove,Wind
-Description = The user stirs up a violent petal blizzard and attacks everything around it.
-#-------------------------------
 [GRASSPLEDGE]
 Name = Grass Pledge
 Type = GRASS
