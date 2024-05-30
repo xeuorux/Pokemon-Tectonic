@@ -28735,6 +28735,9 @@ Amorodio
 2747
 Harvest
 Cosecha
+2748
+Mellow
+Meloso
 [3]
 1
 Bulbasaur can be seen napping in bright sunlight. There is a seed on its back. By soaking up the sun's rays, the seed grows progressively larger.
@@ -32474,6 +32477,9 @@ De acuerdo a la leyenda, el amor de este Pokémon dió vida fresca a través de 
 2747
 It uses both white and black magic. It harvests the flowers that grow on witches who regularly walk between life and death.
 Usa tanto magia blanca como negra. Cosecha las flores que crecen en brujas que regularmente caminan entre la vida y la muerte.
+2748
+It differs from other Basculin in several respects, including demeanor. It is much gentler than other color variants.
+Se diferencia de otros Basculin en varios aspectos, incluido el comportamiento. Es mucho más suave que otras variantes de color.
 [4]
 201
 A
@@ -32482,8 +32488,8 @@ A
 Normal
 Normal
 386
-Normal Forme
-Forma Normal 
+Normal
+Normal 
 412
 Plant Cloak
 Tronco Planta
@@ -32491,7 +32497,7 @@ Tronco Planta
 Plant Cloak
 Tronco Planta
 421
-Overcast Form
+Overcast
 Forma Encapotada
 422
 West Sea
@@ -32503,17 +32509,17 @@ Mar Oeste
 Rotom
 Rotom
 487
-Altered Forme
-Forma Modificada
+Altered
+Modificada
 492
-Land Forme
-Forma Tierra
+Land
+Tierra
 493
 Arceus
 Arceus
 550
-Red-Striped Form
-Forma Raya Roja
+Red-Striped
+Raya Roja
 555
 Standard Mode
 Modo Estándar
@@ -32524,23 +32530,23 @@ Primavera
 Spring
 Primavera
 641
-Incarnate Forme
-Forma Avatar
+Incarnate
+Avatar
 642
-Incarnate Forme
-Forma Avatar
+Incarnate
+Avatar
 645
-Incarnate Forme
-Forma Avatar
+Incarnate
+Avatar
 646
 Kyurem
 Kyurem
 647
-Ordinary Form
-Forma Habitual
+Ordinary
+Habitual
 648
-Aria Forme
-Forma Lírica
+Aria
+Lírica
 649
 Genesect
 Genesect
@@ -32557,14 +32563,14 @@ Flor Roja
 Red Flower
 Flor Roja
 676
-Natural Form
-Forma Natural
+Natural
+Natural
 678
 Male
 Macho
 681
-Shield Forme
-Forma Escudo
+Shield
+Escudo
 710
 Average Size
 Tamaño Normal
@@ -32575,8 +32581,8 @@ Tamaño Normal
 Neutral Mode
 Forma Relajada
 718
-Zygarde 50% Forme
-Zygarde Forma 50% 
+50%
+50% 
 720
 Hoopa Confined
 Hoopa Contenido
@@ -32584,26 +32590,20 @@ Hoopa Contenido
 Baile Style
 Estilo Apasionado
 745
-Midday Form
-Forma Diurna
+Midday
+Diurna
 746
-Solo Form
-Forma Individual
+Solo
+Individual
 773
 Type: Normal
 Tipo: Normal
 774
-Meteor Form
-Forma Meteorito
+Meteor
+Meteorito
 778
-Disguised Form
-Forma Encubierta
-849
-Amped Form
-Forma Aguda
-854
-Phony Form
-Forma Falsificada
+Disguised
+Encubierta
 875
 Ice Face
 Cara de Hielo
@@ -32611,8 +32611,8 @@ Cara de Hielo
 Male
 Macho
 877
-Full Belly Mode
-Forma Saciada
+Full Belly
+Saciada
 888
 Hero of Many Battles
 Guerrero Avezado
@@ -32626,11 +32626,8 @@ Estilo Brusco
 Standard Mode
 Modo Estándar
 2060
-Incarnate Forme
-Forma Avatar
-2508
-Phony Form
-Forma Falsificada
+Incarnate
+Avatar
 2533
 Cosplay
 Coqueta
@@ -33175,8 +33172,8 @@ Añil
 Violet
 Violeta
 2717
-Busted Form
-Forma Descubierta
+Busted
+Descubierta
 2718
 Dusk Mane
 Melena Crepuscular
@@ -33267,6 +33264,9 @@ Tótem
 2748
 Harvest
 Cosecha
+2749
+White-Striped
+Raya Blanca
 [5]
 Soul Eater
 Devora Almas
@@ -50132,8 +50132,8 @@ Thank you for shopping here at the Starters Store!
 ¡Gracias por comprar en la Tienda Inicial!
 My apologies, I don't know what to do with this type of fossil.
 Disculpas, no sé qué hacer con este tipo de fósil. 
-\PN hands over the #{item_data.name} and $3000.
-\PN paga los #{item_data.name} y $3000.
+\PN hands over the {1} and $3000.
+\PN paga los {1} y $3000.
 The procedure has started, now just to wait...
 El procedimiento ya empezó, ahora sólo espera…
 It's done! Here is your newly revived Pokemon!
@@ -50148,8 +50148,8 @@ What style would you like me to give it?
 ¡#{pkmn.name} cambió a #{possibleFormNames[choice]}!
 Ah, I was looking forward to flexing my skills today.
 Ah, estaba esperando presumir de mis habilidades ahora mismo.
-\PN hands over the #{item_data.name}.
-\PN entrega el #{item_data.name}.
+\PN hands over the {1}.
+\PN entrega el {1}.
 Now just to work my magicks...
 Ahora, toca hacer mi magia…  
 Poof! And so the impossible has been made possible!

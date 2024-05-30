@@ -465,7 +465,10 @@ def pbMessageDisplay(msgwindow, message, letterbyletter = true, commandProc = ni
 	text.gsub!(/…/i, "...")
 	text.gsub!(/–/i, "-")
 	text.gsub!(/\\pn/i, $Trainer.name) if $Trainer
-	text.gsub!(/\\pfp/i, $Trainer.party[0].name) if $Trainer && $Trainer.party[0]
+	begin
+		text.gsub!(/\\pfp/i, $Trainer.party[0].name) if $Trainer && $Trainer.party[0]
+	rescue
+	end
 	text.gsub!(/\\pm/i, _INTL("${1}", $Trainer.money.to_s_formatted)) if $Trainer
 	text.gsub!(/\\n/i, "\n")
 	text.gsub!(/\\\[([0-9a-f]{8,8})\]/i) { "<c2=" + Regexp.last_match(1) + ">" }
