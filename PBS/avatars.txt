@@ -30,6 +30,12 @@ Moves1 = BRINE
 Turns = 1
 HPMult = 2.0
 #-------------------------------
+[POOCHYENA]
+Ability = NIGHTSTALKER
+Moves1 = BITE
+Turns = 1
+HPMult = 2.0
+#-------------------------------
 [ABRA]
 Ability = WARPINGEFFECT
 Moves1 = MINDWAVES
@@ -262,28 +268,16 @@ Moves1 = TRAMPLE,ROCKAPULT,PRIMEVALIGNITE
 Moves2 = FIREBLAST,STONEEDGE
 Item = LAGGINGTAIL
 #-------------------------------
-[WAILORD]
-Ability = GARGANTUAN
-Moves1 = BODYSLAM,SURF,PRIMEVALENDURE
-Moves2 = SELFDESTRUCT
-Turns = 1
-HPMult = 10.0
-#-------------------------------
-[POOCHYENA]
-Ability = INTIMIDATE
-Moves1 = BITE,TAKEDOWN,PRIMEVALPUZZLEROOM
-Moves2 = DISARMINGVOICE,SHOUT
+[NIDORINO]
+Ability = POISONPOINT
+Moves1 = TREADON,POISONFANG,PRIMEVALAMNESIA
+Moves2 = BLINDSIDE,BULLDOZE
 #-------------------------------
 [MARSHTOMP]
 Ability = BOULDERNEST
 Moves1 = SPATTERINGRAM,RUMBLE,PRIMEVALWHIRLWIND
 Moves2 = DRAGONTAIL,AERIALACE
 HPMult = 4.0
-#-------------------------------
-[PIKACHU]
-Ability = EXTREMEVOLTAGE
-Moves1 = JOKEJOLT,SHOCKWAVE,EMPOWEREDTHUNDERBOLT,PRIMEVALLEECHSEED
-Moves2 = MEGADRAIN,DISCHARGE,EMPOWEREDTHUNDERBOLT
 #-------------------------------
 [BOLDORE]
 Ability = SOLARCELL
