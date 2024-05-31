@@ -48602,8 +48602,8 @@ Its stats can't be lowered!
 ¡Sus stats no pueden ser disminuidas!
 The next Ground-type attack against {1} will deal double damage!
 ¡El siguiente ataque tipo Tierra contra {1} causará el doble de daño!
-{1} is now immune to #{value}-type!
-¡{1} ahora es inmune al tipo #{value}!
+{1} is now immune to {1}-type!
+¡{1} ahora es inmune al tipo {1}!
 {1} is exhausted. They must Rest next turn.
 {1} está exhausto. Tendrá que descansar el siguiente turno.
 {1} was hurt!

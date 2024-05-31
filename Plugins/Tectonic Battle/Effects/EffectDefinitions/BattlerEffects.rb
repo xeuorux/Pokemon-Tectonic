@@ -1782,7 +1782,8 @@ GameData::BattleEffect.register_effect(:Battler, {
     :real_name => "Indestructible",
     :type => :Type,
     :apply_proc => proc do |battle, battler, value|
-        battle.pbDisplay(_INTL("{1} is now immune to #{value}-type!", battler.pbThis(true)))
+        typeName = GameData::Type.get(value).name
+        battle.pbDisplay(_INTL("{1} is now immune to {2}-type!", battler.pbThis, typeName))
     end,
 })
 
