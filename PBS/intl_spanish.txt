@@ -48224,6 +48224,8 @@ No afecta a {1} porque es un tipo {2}...
 ¡{1} fue extremadamente dañado por el veneno!
 {1} was brought to its knees entirely by poison!
 ¡{1} fue doblegado enteramente por el veneno!
+{1}'s poison worsened!!
+¡El veneno empeoró!
 The poison worsened! Its damage will be doubled until {1} leaves the field.
 ¡El veneno empeoró! El daño será duplicado hasta que {1} deje el campo.
 The poison doubled yet again!
