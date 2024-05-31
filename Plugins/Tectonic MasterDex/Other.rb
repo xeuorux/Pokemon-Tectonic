@@ -1,13 +1,17 @@
 def openSingleDexScreen(pokemon)
 	if pokemon.respond_to?('species')
 		$Trainer.pokedex.register_last_seen(pokemon)
-		pokemon = pokemon.species
+		species = pokemon.species
+	else
+		speciesData = GameData::Species.get(pokemon)
+		species = speciesData.species
+		$Trainer.pokedex.set_last_form_seen(speciesData.species, 0, speciesData.form)
 	end
 	ret = nil
 	pbFadeOutIn {
 		scene = PokemonPokedexInfo_Scene.new
 		screen = PokemonPokedexInfoScreen.new(scene)
-		ret = screen.pbStartSceneSingle(pokemon)
+		ret = screen.pbStartSceneSingle(species)
 	}
 	if ret.is_a?(Symbol)
 		echoln("Opening single dex screen from hyperlink to: #{ret}")

@@ -980,6 +980,7 @@ LandSparse,20
 #-------------------------------
 [358] # Dr. Hekata's House
 Special,1
+    20,BASCULIN_2,10
     20,HGROWLITHE,10
     20,HQWILFISH,10
     20,HSNEASEL,10

@@ -1084,7 +1084,7 @@ BattlerEnemyX = 0
 BattlerEnemyY = 26
 #-------------------------------
 [MIMIKYU,1]
-FormName = Busted Form
+FormName = Busted
 Pokedex = Sad that its true identity may be exposed, Mimikyu will mercilessly seek revenge on any opponent that breaks its neck.
 BattlerEnemyX = 4
 #-------------------------------
@@ -1351,3 +1351,9 @@ BattlerEnemyY = 17
 FormName = Harvest
 BaseStats = 120,130,81,68,130,81
 Abilities = AUTUMNAL
+#-------------------------------
+[BASCULIN,2]
+FormName = White-Striped
+Kind = Mellow
+Pokedex = It differs from other Basculin in several respects, including demeanor. It is much gentler than other color variants.
+BattlerEnemyY = 37

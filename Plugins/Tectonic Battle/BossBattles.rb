@@ -456,14 +456,14 @@ class PokeBattle_Battle
             next unless @battlers[idxBattler].nil?
             pbCreateBattler(idxBattler)
             scene.pbCreatePokemonSprite(idxBattler)
-            scene.createMoveOutcomePredictor(@battlers[idxBattler],idxBattler) if idxBattler % 2 == 1
+            scene.createMoveOutcomePredictor(@battlers[idxBattler],idxBattler) if idxBattler.odd?
         end
 
         remakeDataBoxes
 
         # Create a dummy sprite for the avatar
         scene.pbCreatePokemonSprite(battlerIndexNew)
-        scene.createMoveOutcomePredictor(newBattler,battlerIndexNew)
+        scene.createMoveOutcomePredictor(newBattler,battlerIndexNew) if battlerIndexNew.odd?
 
         # Recreate all the battle sprites on that side of the field
         remakeBattleSpritesOnSide(sideIndex)

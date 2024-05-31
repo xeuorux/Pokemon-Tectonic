@@ -56,7 +56,7 @@ def purchaseStarters(type,price=0)
 	end
 	
 	while true
-		result = pbShowCommands(nil,starterArray)
+		result = pbShowCommands(nil,starterArray,0)
 
 		if result == 0
 			pbMessage(_INTL("Understood, please come back if there's a {1}-type starter Pokemon you'd like to purchase!",typeName))
@@ -119,7 +119,7 @@ def reviveFossil(fossil)
 	end
 	item_data = GameData::Item.get(fossil)
 	
-	pbMessage(_INTL("\\PN hands over the #{item_data.name} and $3000."))
+	pbMessage(_INTL("\\PN hands over the {1} and $3000.",item_data.name))
 	
 	pbMessage(_INTL("The procedure has started, now just to wait..."))
 	
@@ -216,16 +216,16 @@ def styleFurfrou
 end
 
 def createHisuian
-	actualSpecies = [:HGROWLITHE,:HVOLTORB,:HQWILFISH,:HSNEASEL,:HZORUA]
+	actualSpecies = [:HGROWLITHE,:HVOLTORB,:HQWILFISH,:HSNEASEL,:HZORUA,:BASCULIN_2]
 	speciesArray = []
 	actualSpecies.each do |speciesID|
-		speciesArray.push(GameData::Species.get(speciesID).name)
+		speciesArray.push(GameData::Species.get(speciesID).full_name)
 	end
 	actualSpecies.unshift(nil)
 	speciesArray.unshift(_INTL("None"))
 	
 	while true
-		result = pbShowCommands(nil,speciesArray)
+		result = pbShowCommands(nil,speciesArray,0)
 
 		if result == 0
 			pbMessage(_INTL("Ah, I was looking forward to flexing my skills today."))
@@ -238,7 +238,7 @@ def createHisuian
 			case secondResult
 			when 1
 				item_data = GameData::Item.get(:ORIGINORE)
-				pbMessage(_INTL("\\PN hands over the #{item_data.name}."))
+				pbMessage(_INTL("\\PN hands over the {1}.",item_data.name))
 				pbMessage(_INTL("Now just to work my magicks..."))
 				blackFadeOutIn(30) {
 					$PokemonBag.pbDeleteItem(:ORIGINORE)
@@ -303,7 +303,7 @@ def cloneMinorLegend
 	speciesArray.unshift(_INTL("None"))
 	
 	while true
-		result = pbShowCommands(nil,speciesArray)
+		result = pbShowCommands(nil,speciesArray,0)
 
 		if result == 0
 			pbMessage(_INTL("Ah, lacking in miraculous materials, are we?"))

@@ -629,10 +629,14 @@ immuneTypeRealName))
                     increaseStatusCount(:POISON)
                     newPoisonCount = getStatusCount(:POISON)
                     if newPoisonCount % POISON_DOUBLING_TURNS == 0
-                        if newPoisonCount == POISON_DOUBLING_TURNS
-                            @battle.pbDisplaySlower(_INTL("The poison worsened! Its damage will be doubled until {1} leaves the field.", pbThis(true)))
+                        if showMessages
+                            if newPoisonCount == POISON_DOUBLING_TURNS
+                                @battle.pbDisplaySlower(_INTL("The poison worsened! Its damage will be doubled until {1} leaves the field.", pbThis(true)))
+                            else
+                                @battle.pbDisplaySlower(_INTL("The poison doubled yet again!", pbThis))
+                            end
                         else
-                            @battle.pbDisplaySlower(_INTL("The poison doubled yet again!", pbThis))
+                            @battle.pbDisplay(_INTL("{1}'s poison worsened!", pbThis))
                         end
                     end
                 end

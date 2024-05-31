@@ -197,7 +197,7 @@ class PokeBattle_Scene
 
       # Clear the move outcome predictor displays
       battler.eachOpposing do |opposingBattler|
-        opposingBattler.moveOutcomePredictor.clear
+        opposingBattler.moveOutcomePredictor&.clear
       end
     end
   

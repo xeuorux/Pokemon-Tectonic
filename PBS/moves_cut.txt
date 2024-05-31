@@ -2273,15 +2273,14 @@ FunctionCode = Invalid
 Flags = CanProtect,CanMirrorMove
 Description = The target is crushed with great force. The attack is more powerful the more HP the target has left.
 #-------------------------------
-[PETALTEMPEST]
-Name = Petal Tempest
+[PETALBLIZZARD]
+Name = Petal Blizzard
 Type = GRASS
 Category = Special
-Power = 95
+Power = 90
 Accuracy = 100
 TotalPP = 12
 Target = AllNearOthers
 FunctionCode = Invalid
 Flags = CanProtect,CanMirrorMove,Wind
-Description = The user stirs up a violent petal tempest and attacks everything around it.
-Animation = PETALBLIZZARD
+Description = The user stirs up a violent petal blizzard and attacks everything around it.

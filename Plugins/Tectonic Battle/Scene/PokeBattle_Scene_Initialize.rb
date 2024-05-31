@@ -80,8 +80,8 @@ class PokeBattle_Scene
       @battle.battlers.each_with_index do |b,i|
         next if b.nil?
         pbCreatePokemonSprite(i)
-        createAvatarTargetReticle(b,i) if i % 2 == 0 # Only trainer pokemon
-        createMoveOutcomePredictor(b,i) if i % 2 == 1 # Only enemy pokemon
+        createAvatarTargetReticle(b,i) if i.even? # Only trainer pokemon
+        createMoveOutcomePredictor(b,i) if i.odd? # Only enemy pokemon
       end
 
       # Wild battle, so set up the Pokémon sprite(s) accordingly
