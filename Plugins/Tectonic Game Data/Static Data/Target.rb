@@ -28,15 +28,16 @@ module GameData
 
       def initialize(hash)
           @id                 = hash[:id]
-          @real_name          = hash[:name]             || "Unnamed"
-          @num_targets        = hash[:num_targets]      || 0
-          @targets_foe        = hash[:targets_foe]      || false
-          @targets_user       = hash[:targets_user]     || false
-          @targets_ally       = hash[:targets_ally]     || false
-          @targets_all        = hash[:targets_all]      || false
-          @affects_foe_side   = hash[:affects_foe_side] || false
-          @affects_user_side  = hash[:affects_user_side] || false
-          @long_range         = hash[:long_range]       || false
+          @real_name          = hash[:name]               || "Unnamed"
+          @num_targets        = hash[:num_targets]        || 0
+          @targets_foe        = hash[:targets_foe]        || false
+          @targets_user       = hash[:targets_user]       || false
+          @targets_ally       = hash[:targets_ally]       || false
+          @targets_all        = hash[:targets_all]        || false
+          @affects_foe_side   = hash[:affects_foe_side]   || false
+          @affects_user_side  = hash[:affects_user_side]  || false
+          @long_range         = hash[:long_range]         || false
+          @targeting_label    = hash[:targeting_label]
       end
 
       # @return [String] the translated name of this target
@@ -68,19 +69,15 @@ module GameData
       end
 
       def get_targeting_label
-          targetingLabel = ""
+          return _INTL(@targeting_label) if @targeting_label
           if targets_all
-              targetingLabel = "All"
-          elsif @id == :UserAndAllies
-              targetingLabel = "Us"
-          elsif @id == :RandomNearFoe
-              targetingLabel = "Random"
+            return _INTL("All")
           elsif @num_targets > 1
-              targetingLabel = "Each"
+            return _INTL("Each")
           elsif @num_targets == 1
-              targetingLabel = "One"
+            return _INTL("One")
           end
-          return targetingLabel
+          return _INTL("Error")
       end
   end
 end
@@ -129,6 +126,7 @@ GameData::Target.register({
   :long_range       => true,
   :targets_user     => true,
   :targets_ally     => true,
+  :targeting_label  => "Us",
 })
 
 # Me First
@@ -147,6 +145,16 @@ GameData::Target.register({
   :name             => _INTL("Random Near Foe"),
   :num_targets      => 1,
   :targets_foe      => true,
+  :targeting_label  => "Random",
+})
+
+GameData::Target.register({
+  :id               => :ClosestNearFoe,
+  :id_number        => 2,
+  :name             => _INTL("Closest Near Foe"),
+  :num_targets      => 1,
+  :targets_foe      => true,
+  :targeting_label  => "Closer",
 })
 
 GameData::Target.register({

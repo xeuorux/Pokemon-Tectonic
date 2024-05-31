@@ -45866,6 +45866,8 @@ Near Foe
 Oponente Cercano
 Random Near Foe
 Opon. Cer. Alea.
+Closest Near Foe
+Opon. Más Cer.
 All Near Foes
 Tod. Oponentes Cercanos
 Foe
@@ -45892,6 +45894,12 @@ One
 Uno
 Each
 Varios
+Random
+Aleat.
+Us
+Nos.
+Closer
+Cerca
 Category
 Categoría
 Power
