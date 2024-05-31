@@ -1081,7 +1081,6 @@ class PokemonPokedex_Scene
     def sortByOther
         cmdSortByType = -1
         cmdSortByGenderRate = -1
-        cmdSortByGrowthRate = -1
         cmdSortByHeight = -1
         cmdSortByWeight = -1
         cmdSortByCatchDifficulty = -1
@@ -1093,7 +1092,6 @@ class PokemonPokedex_Scene
         selections = []
         selections[cmdSortByType = selections.length] = _INTL("Type")
         selections[cmdSortByGenderRate = selections.length] = _INTL("Gender Rate")
-        selections[cmdSortByGrowthRate = selections.length] = _INTL("Growth Rate")
         selections[cmdSortByHeight = selections.length] = _INTL("Height")
         selections[cmdSortByWeight = selections.length] = _INTL("Weight")
         selections[cmdSortByCatchDifficulty = selections.length] = _INTL("Catch Difficulty")
@@ -1139,8 +1137,6 @@ class PokemonPokedex_Scene
                 next -speciesData.height
             elsif cmdSortByWeight > -1 && selection == cmdSortByWeight
                 next -speciesData.weight
-            elsif cmdSortByGrowthRate > -1 && selection == cmdSortByGrowthRate
-                next GameData::GrowthRate.get(speciesData.growth_rate).id.to_s
             elsif cmdSortByCatchDifficulty > -1 && selection == cmdSortByCatchDifficulty
                 next -speciesData.catch_rate
             elsif cmdSortByExperienceGrant > -1 && selection == cmdSortByExperienceGrant
