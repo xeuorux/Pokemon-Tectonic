@@ -213,6 +213,12 @@ class PokemonGlobalMetadata
         return @evolutionButtonTutorialized
     end
 
+    attr_writer :mentorMovesTutorialized
+    def mentorMovesTutorialized
+        @mentorMovesTutorialized = false if @mentorMovesTutorialized.nil?
+        return @mentorMovesTutorialized
+    end
+
     ####################################################
     # Who knows?
     ####################################################
