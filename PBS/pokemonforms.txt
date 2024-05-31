@@ -1357,3 +1357,4 @@ FormName = White-Striped
 Kind = Mellow
 Pokedex = It differs from other Basculin in several respects, including demeanor. It is much gentler than other color variants.
 BattlerEnemyY = 37
+Evolutions = BASCULEGION,Level,42

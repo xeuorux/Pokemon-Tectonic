@@ -121,6 +121,12 @@ class PokeBattle_Battle
 
             evolutionButtonCheck(pkmn)
         end
+
+        # Mentor moves tutorial
+        if !@caughtPokemon.empty? && $Trainer.pokedex.owned_count >= 4 && !$PokemonGlobal.mentorMovesTutorialized
+            playMentorshipTutorial
+        end
+
         @caughtPokemon.clear
     end
 
