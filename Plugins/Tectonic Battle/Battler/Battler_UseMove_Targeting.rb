@@ -228,7 +228,7 @@ move, false, true)
 
         opposingIndices = @battle.pbGetOpposingIndicesInOrder(user.index)
         choices.sort_by! do |choice|
-            next -opposingIndices.find_index(choice.index) * 100 + choice.index
+            next opposingIndices.find_index(choice.index) * 100 - choice.index
         end
         pbAddTarget(targets, user, choices[0], nearOnly)
     end
