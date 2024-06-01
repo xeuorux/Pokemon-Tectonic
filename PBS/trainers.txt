@@ -505,8 +505,8 @@ Pokemon = CHINGLING,24
 #-------------------------------
 [BAKER,Rose]
 Pokemon = QUILAVA,24
-    Moves = SHOUT,SHREDSHOT,BURNINGJEALOUSY
-    AbilityIndex = 0 # Burn Skill
+    Moves = SHOUT,OMINOUSWIND,BURNINGJEALOUSY
+    AbilityIndex = 0 # Brisk
     Item = AIRBALLOON
 Pokemon = SEEL,24
     Moves = LIGHTSHOW,BRINE,FRIGIDJEALOUSY
@@ -1005,7 +1005,7 @@ Pokemon = DUCKLETT,20
     AbilityIndex = 0 # Intimidate
     Item = EJECTBUTTON
 Pokemon = ELECTRIKE,20
-    AbilityIndex = 0 # Nerve Number
+    AbilityIndex = 0 # Inner Focus
 Pokemon = STUFFUL,20
     AbilityIndex = 0 # Intimidate
 Pokemon = FERROSEED,20
@@ -1087,7 +1087,7 @@ Pokemon = AZUMARILL,50
     AbilityIndex = 1 # Pure Force
     Item = CHOICESCARF
 Pokemon = MANERGETIC,50
-    AbilityIndex = 0 # Nerve Number
+    AbilityIndex = 0 # Inner Focus
     Item = ELECTRICGEM
 Pokemon = KROOKODILE,50
     AbilityIndex = 1 # Regenerator
@@ -1483,7 +1483,7 @@ Pokemon = AERODACTYL,30
     Item = FLYINGGEM
 Pokemon = MANECTRIC,30
     Moves = FIREPULSE,SHOCKWAVE,SHOUT,NUMB
-    AbilityIndex = 0 # Nerve Number
+    AbilityIndex = 0 # Inner Focus
 Pokemon = DURALUDON,30
     Moves = TAKESHELTER,DRAGONBREATH,SHINESHOT,LOOMOVER
     AbilityIndex = 0 # Stubborn
@@ -1797,7 +1797,7 @@ Pokemon = BEAUTIFLY,35
     AbilityIndex = 0 # Gorging
 Pokemon = NIDOKING,35
     Moves = VOLATILETOXIN,BULKUP,POISONGAS,BULLDOZE
-    AbilityIndex = 1 # Poison Point
+    AbilityIndex = 1 # Stressful
 #-------------------------------
 [TWINS2,Bella and Meghan]
 Pokemon = EXCADRILL,35
@@ -2260,7 +2260,7 @@ Pokemon = SCRAFTY,70
 Pokemon = PRIMARINA,70
     AbilityIndex = 0 # Maestro
 Pokemon = NIDOKING,70
-    AbilityIndex = 1 # Poison Point
+    AbilityIndex = 1 # Stressful
 #-------------------------------
 [DEVGAMBLER,IgnitedxSoul]
 Pokemon = AEGISLASH,70
@@ -2510,7 +2510,7 @@ Pokemon = HATTERENE,70
 Pokemon = MPOLTEAGEIST,70
     AbilityIndex = 1 # Chill Out
 Pokemon = TYPHLOSION,70
-    AbilityIndex = 0 # Burn Skill
+    AbilityIndex = 0 # Brisk
 #-------------------------------
 [LEADER_Bence,Bence]
 Policies = BENCE
@@ -3039,7 +3039,7 @@ Pokemon = SALAMENCE,55
     AbilityIndex = 0 # Intimidate
     Item = PERSIMBERRY
 Pokemon = TYPHLOSION,55
-    AbilityIndex = 0 # Burn Skill
+    AbilityIndex = 0 # Brisk
     Item = UTILITYUMBRELLA
 #-------------------------------
 [BATTLEGIRL3,Amelia]
@@ -3791,7 +3791,7 @@ Pokemon = MACHAMP,55
     AbilityIndex = 0 # Feel the Burn
     Item = RAWSTBERRY
 Pokemon = STUNFISK,55
-    AbilityIndex = 0 # Static
+    AbilityIndex = 0 # Double Check
 Pokemon = TEAMUJIN,55
     AbilityIndex = 1 # Parental Bond
 #-------------------------------
@@ -4744,7 +4744,7 @@ Pokemon = GDARMANITAN,55
     AbilityIndex = 1 # Gorilla Tactics
 Pokemon = AMUK,55
     Moves = RECOVER,POISONGAS,VENOMDRENCH,KNOCKOFF
-    AbilityIndex = 1 # Gluttony
+    AbilityIndex = 1 # Poison Punish
     Item = CADOBERRY
 Pokemon = AGOLEM,55
     Moves = ROCKSLIDE,DOUBLEEDGE,EXPLOSION,SUPERPOWER
@@ -4973,7 +4973,7 @@ Pokemon = GDARMANITAN,65
     AbilityIndex = 1 # Gorilla Tactics
 Pokemon = AMUK,65
     Moves = RECOVER,POISONGAS,VENOMDRENCH,KNOCKOFF
-    AbilityIndex = 1 # Gluttony
+    AbilityIndex = 1 # Poison Punish
     Item = CADOBERRY
 Pokemon = AGOLEM,65
     Moves = ROCKSLIDE,DOUBLEEDGE,EXPLOSION,SUPERPOWER
@@ -6056,7 +6056,7 @@ Pokemon = GDARMANITAN,70
     AbilityIndex = 1 # Gorilla Tactics
 Pokemon = AMUK,70
     Moves = RECOVER,POISONGAS,VENOMDRENCH,GRIMEGRAPPLE
-    AbilityIndex = 1 # Gluttony
+    AbilityIndex = 1 # Poison Punish
     Item = CADOBERRY
 Pokemon = AGOLEM,70
     Moves = ROCKSLIDE,DOUBLEEDGE,AUTOTOMIZE,SUPERPOWER
@@ -6283,7 +6283,7 @@ Pokemon = GDARMANITAN,70
     AbilityIndex = 1 # Gorilla Tactics
 Pokemon = AMUK,70
     Moves = RECOVER,POISONGAS,VENOMDRENCH,GRIMEGRAPPLE
-    AbilityIndex = 1 # Gluttony
+    AbilityIndex = 1 # Poison Punish
     Item = CADOBERRY
 Pokemon = AGOLEM,70
     Moves = ROCKSLIDE,DOUBLEEDGE,AUTOTOMIZE,SUPERPOWER
@@ -6806,7 +6806,7 @@ Pokemon = DRACOZOLT,60
 [LOST_RANGER_PURPLE,Farid]
 Flags = NoPerfect
 Pokemon = NIDOKING,60
-    AbilityIndex = 1 # Poison Point
+    AbilityIndex = 1 # Stressful
 Pokemon = GRANBULL,60
     AbilityIndex = 0 # Intimidate
     Item = SKILLHERB
@@ -7261,7 +7261,7 @@ Pokemon = RIOJIN,70
 Pokemon = MCARNIVINE,70
     AbilityIndex = 1 # Pestilent
 Pokemon = MANERGETIC,70
-    AbilityIndex = 0 # Nerve Number
+    AbilityIndex = 0 # Inner Focus
 #-------------------------------
 [POKEMONMASTER_Vanya,Vanya,4]
 Flags = NoPerfect
@@ -7322,7 +7322,7 @@ Pokemon = FURFROU,70
 Pokemon = SHEDINJA,70
     AbilityIndex = 0 # Wonder Guard
 Pokemon = NIDOKING,70
-    AbilityIndex = 1 # Poison Point
+    AbilityIndex = 1 # Stressful
 #-------------------------------
 [WILDPARTY_KOKO,of Conflict]
 Flags = NoPerfect
