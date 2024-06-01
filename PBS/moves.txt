@@ -4622,13 +4622,13 @@ Description = The user chomps hard on the target with its sharp front fangs. It 
 Name = Trump Card
 Type = NORMAL
 Category = Special
-Power = 40
+Power = 160
 Accuracy = 0
-TotalPP = 5
+TotalPP = 1
 Target = NearOther
-FunctionCode = ScalesWithLostPP
-Flags = CanProtect,CanMirrorMove
-Description = Has 40 more base power for each PP missing.
+FunctionCode = AlwaysHitsUsesBetterAttackingStat
+Flags = CanMirrorMove
+Description = The user unleashes its ultimate move. Can't miss and skips protections. Only one use per battle.
 #-------------------------------
 [AFTERYOU]
 Name = After You

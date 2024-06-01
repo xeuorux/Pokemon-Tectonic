@@ -72,7 +72,7 @@ class PokeBattle_Move_ScalesTargetsPositiveStatSteps < PokeBattle_Move
 end
 
 #===============================================================================
-# Power increases the less PP this move has. (Trump Card)
+# Power increases the less PP this move has.
 #===============================================================================
 class PokeBattle_Move_ScalesWithLostPP < PokeBattle_Move
     def pbBaseDamage(_baseDmg, _user, _target)

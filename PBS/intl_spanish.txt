@@ -36531,8 +36531,8 @@ The power stored using the move Stockpile is released all at once in an attack. 
 La energía que haya sido guardada con Reserva es liberada de golpe con un fuerte ataque. 150 de potencia base por carga de Reserva.
 The user chomps hard on the target with its sharp front fangs. It cuts the target's HP to half.
 El usuario mastica con fuerza al rival usando sus dientes frontales. Le quita la mitad de los PS al objetivo.
-Has 40 more base power for each PP missing.
-Tiene 40 más de potencia por cada PP que le falte.
+The user unleashes its ultimate move. Can't miss and skips protections. Only one use per battle.
+The user unleashes its ultimate move. Can't miss and skips protections. Only one use per battle.
 The user powerfully wrings the foe. The more HP the foe has, the greater this attack's power.
 El usuario estruja con fuerza al objetivo. Cuantos más PS tenga el objetivo, más fuerte es el movimiento.
 The user helps the target and makes it use its move right after the user.
@@ -37531,8 +37531,8 @@ The user frostbites the target, then welcomes in hail for four turns.
 El usuario hela al objetivo, luego invita al granizo durante cuatro turnos.
 A punch that inflicts double the damage if the user has been hurt by the foe in the same turn.
 Un golpe que duplica su potencia si el usuario fue lastimado por un rival en el mismo turno.
-Restores a fainted party member to 1 HP.
-Revive a un aliado debilitado con sólo un PS.
+Restores a fainted party member to 1 HP. Only one use per battle.
+Revive a un aliado debilitado con sólo un PS. Sólo puede ser usado una vez por combate.
 The user fires a dimensional mote, lowering the target's Sp. Defense.
 El usuario dispara un risco dimensional, disminuyendo la Defensa Especial del objetivo.
 The user thrums ominously, lowering the target's Attack and Sp. Atk.

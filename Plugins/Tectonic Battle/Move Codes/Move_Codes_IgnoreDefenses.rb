@@ -279,3 +279,14 @@ end
 class PokeBattle_Move_CannotBeRedirected < PokeBattle_Move
     def cannotRedirect?; return true; end
 end
+#===============================================================================
+# Always hits. Changes category based on your better attacking stat.
+# (Trump Card)
+#===============================================================================
+class PokeBattle_Move_AlwaysHitsUsesBetterAttackingStat < PokeBattle_Move
+    def pbAccuracyCheck(_user, _target); return true; end
+
+    def calculateCategory(user, _targets)
+        return selectBestCategory(user)
+    end
+end
