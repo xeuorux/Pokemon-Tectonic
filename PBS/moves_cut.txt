@@ -2284,3 +2284,15 @@ Target = AllNearOthers
 FunctionCode = Invalid
 Flags = CanProtect,CanMirrorMove,Wind
 Description = The user stirs up a violent petal blizzard and attacks everything around it.
+#-------------------------------
+[EGGBOMB]
+Name = Egg Bomb
+Type = NORMAL
+Category = Physical
+Power = 100
+Accuracy = 75
+TotalPP = 10
+Target = NearOther
+FunctionCode = Invalid
+Flags = CanProtect,CanMirrorMove
+Description = A large egg is hurled at the target with maximum force to inflict damage.

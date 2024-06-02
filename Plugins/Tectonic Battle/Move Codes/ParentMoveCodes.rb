@@ -84,7 +84,7 @@ class PokeBattle_Struggle < PokeBattle_Move
         @function   = "Struggle"
         @baseDamage = 50
         @type       = nil
-        @category   = 0
+        @category   = 3
         @accuracy   = 0
         @pp         = -1
         @target     = 0
@@ -94,11 +94,6 @@ class PokeBattle_Struggle < PokeBattle_Move
         @calcType   = nil
         @powerBoost = false
         @snatched   = false
-        @calculated_category = 0
-    end
-
-    def calculateCategory(user, _targets)
-        return selectBestCategory(user)
     end
 
     def pbEffectAfterAllHits(user, target)

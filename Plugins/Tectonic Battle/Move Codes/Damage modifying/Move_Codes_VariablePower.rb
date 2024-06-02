@@ -39,19 +39,9 @@ end
 
 #===============================================================================
 # Power increases with the user's positive stat changes (ignores negative ones). (Rising Power)
-# This move is physical if user's Attack is higher than its Special Attack
 # (after applying stat steps)
 #===============================================================================
 class PokeBattle_Move_ScalesUsersPositiveStatSteps < PokeBattle_Move
-    def initialize(battle, move)
-        super
-        @calculated_category = 1
-    end
-
-    def calculateCategory(user, _targets)
-        return selectBestCategory(user)
-    end
-
     def pbBaseDamage(baseDmg, user, _target)
         mult = 0
         GameData::Stat.each_battle { |s| mult += user.steps[s.id] if user.steps[s.id] > 0 }

@@ -111,6 +111,17 @@ def playMentorshipTutorial
     playTutorial(tutorialMessages)
 end
 
+def playAdaptiveMovesTutorial
+    $PokemonGlobal.adaptiveMovesTutorialized = true
+    tutorialMessages = 
+    [
+        _INTL("Some moves are both Physical and Special! These are \"Adaptive\" moves."),
+        _INTL("They change based on the user's stats!"),
+        _INTL("Physical if Attack is higher, and Special if Sp. Atk is higher."),
+    ]
+    playTutorial(tutorialMessages)
+end
+
 def tutorialIntro
     pbBGMFade(1.0)
     pbWait(Graphics.frame_rate)

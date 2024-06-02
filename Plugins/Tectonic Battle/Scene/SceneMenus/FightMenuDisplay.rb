@@ -182,7 +182,9 @@ class FightMenuDisplay < BattleMenuBase
         @extraInfoToggled = !@extraInfoToggled
         @sprites["moveInfoDisplay"].visible = @extraInfoToggled && @visible if @sprites["moveInfoDisplay"]
         @sprites["extraInfoOverlay"].visible = @extraInfoToggled && @visible if @sprites["moveInfoDisplay"]
-        #@sprites["extraReminder"].visible = !@extraInfoToggled && @visible if @sprites["extraReminder"]
+        if extraInfoToggled && @battler&.getMoves[@index]&.adaptiveMove? && !$PokemonGlobal.adaptiveMovesTutorialized
+          playAdaptiveMovesTutorial
+        end
     end
   
     def refreshButtonNames
@@ -210,7 +212,7 @@ class FightMenuDisplay < BattleMenuBase
           if move.type
             # NOTE: This takes a colour from a particular pixel in the button
             #       graphic and makes the move name's base colour that same colour.
-            #       The pixel is at coordinates 10,34 in the button box. If you
+           move #       The pixel is at coordinates 10,34 in the button box. If you
             #       change the graphic, you may want to change/remove the below line
             #       of code to ensure the font is an appropriate colour.
             moveNameBase = button.bitmap.get_pixel(10,button.src_rect.y+34)
@@ -322,7 +324,7 @@ class FightMenuDisplay < BattleMenuBase
         
         # Extra move info display
         @extraInfoOverlay.bitmap.clear
-        writeMoveInfoToInfoOverlay3x3(@extraInfoOverlay.bitmap,move)
+        writeMoveInfoToInfoOverlay3x3(@extraInfoOverlay.bitmap,move,true)
     end
 
     def setMoveOutcomePredictor(move,opposingBattler)

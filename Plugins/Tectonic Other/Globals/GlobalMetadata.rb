@@ -219,6 +219,12 @@ class PokemonGlobalMetadata
         return @mentorMovesTutorialized
     end
 
+    attr_writer :adaptiveMovesTutorialized
+    def adaptiveMovesTutorialized
+        @adaptiveMovesTutorialized = false if @adaptiveMovesTutorialized.nil?
+        return @adaptiveMovesTutorialized
+    end
+
     ####################################################
     # Who knows?
     ####################################################
