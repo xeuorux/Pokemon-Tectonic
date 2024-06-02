@@ -269,7 +269,7 @@ Moves2 = FIREBLAST,STONEEDGE
 Item = LAGGINGTAIL
 #-------------------------------
 [NIDORINO]
-Ability = POISONPOINT
+Ability = STRESSFUL
 Moves1 = TREADON,POISONFANG,PRIMEVALAMNESIA
 Moves2 = BLINDSIDE,BULLDOZE
 #-------------------------------

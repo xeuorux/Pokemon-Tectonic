@@ -651,7 +651,7 @@ Pokemon = HAVALUGG,70
 #-------------------------------
 [NINJABOY,Drakus]
 Pokemon = TYPHLOSION,70
-    Moves = ERUPTION,FLASHCANNON,SHIMMERINGHEAT,DARKPULSE
+    Moves = ERUPTION,FLASHCANNON,SHIMMERINGHEAT,ADRENALASH
     AbilityIndex = 1 # Hubris
     Item = CHOICESCARF
     # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
@@ -1154,7 +1154,7 @@ Pokemon = PINCURCHIN,70
     # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
     EV = 20,20,10,0,20,0
 Pokemon = SERPERIOR,70
-    Moves = DRACOMETEOR,LEAFSTORM,HARDFEELINGS,THUNDERBOLT
+    Moves = DRACOMETEOR,LEAFSTORM,FACADE,THUNDERBOLT
     AbilityIndex = 1 # Eccentric
     Item = STRIKEVEST
     # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
@@ -1211,7 +1211,7 @@ Pokemon = INFERNAPE,70
     EV = 0,20,10,20,20,0
 Pokemon = NIDOKING,70
     Moves = VOLATILETOXIN,EARTHSPLITTER,BEDROCKBREAKER,BRICKBREAK
-    AbilityIndex = 1 # Poison Point
+    AbilityIndex = 1 # Stressful
     Item = STRIKEVEST
     # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
     EV = 10,20,20,0,20,0
@@ -2095,7 +2095,7 @@ Pokemon = MIMIKYU,70
     EV = 10,20,0,20,20,0
 Pokemon = AMUK,70
     Moves = PURSUIT,KNOCKOFF,POISONJAB,EXPLOSION
-    AbilityIndex = 1 # Gluttony
+    AbilityIndex = 1 # Poison Punish
     Item = CUSTAPBERRY
     # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
     EV = 10,20,20,0,20,0

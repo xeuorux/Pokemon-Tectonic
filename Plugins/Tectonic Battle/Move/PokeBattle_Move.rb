@@ -96,6 +96,10 @@ class PokeBattle_Move
       return calculatedCategory == 1
     end
 
+    def adaptiveMove?
+      return @category == 3
+    end
+
     def calculatedCategory
       return @calculated_category if @calculated_category != -1
       return @category

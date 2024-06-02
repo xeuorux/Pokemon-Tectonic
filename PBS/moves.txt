@@ -3906,7 +3906,7 @@ Description = The user attacks everything around it with the destructive power o
 [LASTRESORT]
 Name = Last Resort
 Type = NORMAL
-Category = Physical
+Category = Adaptive
 Power = 140
 Accuracy = 100
 TotalPP = 5
@@ -3974,18 +3974,6 @@ Target = ClosestNearFoe
 FunctionCode = Rampage
 Flags = CanProtect,CanMirrorMove
 Description = The user rampages and attacks for three turns.
-#-------------------------------
-[EGGBOMB]
-Name = Egg Bomb
-Type = NORMAL
-Category = Physical
-Power = 100
-Accuracy = 75
-TotalPP = 10
-Target = NearOther
-FunctionCode = Basic
-Flags = CanProtect,CanMirrorMove
-Description = A large egg is hurled at the target with maximum force to inflict damage.
 #-------------------------------
 [JUDGMENT]
 Name = Judgment
@@ -4177,14 +4165,14 @@ Description = The target is hit with rhythmically launched punches that have a 2
 [FACADE]
 Name = Facade
 Type = NORMAL
-Category = Physical
+Category = Adaptive
 Power = 70
 Accuracy = 100
 TotalPP = 15
 Target = NearOther
 FunctionCode = DoubleDamageUserStatused
 Flags = CanProtect,CanMirrorMove
-Description = Doubles its power if the user has a status condition. Ignores burn Attack reduction.
+Description = Doubles its power if the user has a status condition. Ignores damage reduction from Burn or Frostbite.
 #-------------------------------
 [HEADBUTT]
 Name = Headbutt
@@ -4202,7 +4190,7 @@ Description = The user sticks out its head and attacks by charging into the foe.
 [RETALIATE]
 Name = Retaliate
 Type = NORMAL
-Category = Physical
+Category = Adaptive
 Power = 70
 Accuracy = 100
 TotalPP = 5
@@ -4214,7 +4202,7 @@ Description = Gets revenge for a fainted ally. If an ally fainted in the last tu
 [SECRETPOWER]
 Name = Secret Power
 Type = NORMAL
-Category = Physical
+Category = Adaptive
 Power = 70
 Accuracy = 100
 TotalPP = 15
@@ -4276,7 +4264,7 @@ Description = The target is stomped with a big foot. It has a 30% chance to make
 [COVET]
 Name = Covet
 Type = NORMAL
-Category = Physical
+Category = Adaptive
 Power = 60
 Accuracy = 100
 TotalPP = 20
@@ -4325,7 +4313,7 @@ Description = An attack that can be used only if the user is asleep. It has a 50
 [STRUGGLE]
 Name = Struggle
 Type = NORMAL
-Category = Physical
+Category = Adaptive
 Power = 50
 Accuracy = 0
 TotalPP = 1
@@ -4360,22 +4348,10 @@ Flags = CanProtect,CanMirrorMove
 EffectChance = 100
 Description = An attack that hits first and makes the target flinch. It only works the first turn the user is in battle.
 #-------------------------------
-[FALSESWIPE]
-Name = False Swipe
-Type = NORMAL
-Category = Physical
-Power = 40
-Accuracy = 100
-TotalPP = 30
-Target = NearOther
-FunctionCode = CannotMakeTargetFaint
-Flags = CanProtect,CanMirrorMove
-Description = A restrained attack that prevents the target from fainting. The target is left with at least 1 HP.
-#-------------------------------
 [HOLDBACK]
 Name = Hold Back
 Type = NORMAL
-Category = Special
+Category = Adaptive
 Power = 40
 Accuracy = 100
 TotalPP = 30
@@ -4387,7 +4363,7 @@ Description = The user holds back when it attacks, and the target is left with a
 [PAYDAY]
 Name = Pay Day
 Type = NORMAL
-Category = Physical
+Category = Adaptive
 Power = 50
 Accuracy = 100
 TotalPP = 15
@@ -4572,7 +4548,7 @@ Description = The user flails about aimlessly to attack. It becomes more powerfu
 [NATURALGIFT]
 Name = Natural Gift
 Type = NORMAL
-Category = Physical
+Category = Adaptive
 Power = 120
 Accuracy = 100
 TotalPP = 12
@@ -4621,14 +4597,14 @@ Description = The user chomps hard on the target with its sharp front fangs. It 
 [TRUMPCARD]
 Name = Trump Card
 Type = NORMAL
-Category = Special
-Power = 40
+Category = Adaptive
+Power = 160
 Accuracy = 0
-TotalPP = 5
+TotalPP = 1
 Target = NearOther
-FunctionCode = ScalesWithLostPP
-Flags = CanProtect,CanMirrorMove
-Description = Has 40 more base power for each PP missing.
+FunctionCode = AlwaysHits
+Flags = CanMirrorMove
+Description = The user unleashes its ultimate move. Can't miss and skips protections. Only one use per battle.
 #-------------------------------
 [AFTERYOU]
 Name = After You
@@ -5694,14 +5670,14 @@ Description = Heals the user for 50% of the damage caused. Power doubles if the 
 [PHOTONGEYSER]
 Name = Photon Geyser
 Type = PSYCHIC
-Category = Special
+Category = Adaptive
 Power = 100
 Accuracy = 100
 TotalPP = 5
 Target = NearOther
-FunctionCode = CategoryDependsOnHigherDamageIgnoreTargetAbility
+FunctionCode = IgnoreTargetAbility
 Flags = CanProtect,CanMirrorMove
-Description = The user attacks with a pillar of light. Uses the higher of the user's Attack or Sp. Atk stat.
+Description = The user attacks with a pillar of light. This ignores their ability.
 #-------------------------------
 [PSYCHIC]
 Name = Psychic

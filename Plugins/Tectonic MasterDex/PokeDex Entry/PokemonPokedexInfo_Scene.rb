@@ -432,8 +432,8 @@ sp.form) && !Settings::DEX_SHOWS_ALL_FORMS
                 otherStats.push(_ISPRINTF("{1:d}'{2:02d}\"", inches / 12, inches % 12))
                 otherStats.push(_ISPRINTF("{1:4.1f} lbs.", pounds / 10.0))
             else
-                otherStats.push(_ISPRINTF("{1:.1f} m"))
-                otherStats.push(_ISPRINTF("{1:.1f} kg"))
+                otherStats.push(_ISPRINTF("{1:.1f} m", height / 10.0))
+                otherStats.push(_ISPRINTF("{1:.1f} kg", weight / 10.0))
             end
 
             genderRate = fSpecies.gender_ratio
@@ -785,12 +785,12 @@ sp.form) && !Settings::DEX_SHOWS_ALL_FORMS
             compatibleMoves.compact!
             compatiblePhysMoves = compatibleMoves.select do |move|
                 movaData = GameData::Move.get(move)
-                next movaData.category == 0
+                next movaData.category == 0 || movaData.category == 3
             end
             compatiblePhysMoves.sort_by!{|moveID| GameData::Move.get(moveID).name}
             compatibleSpecMoves = compatibleMoves.select do |move|
                 movaData = GameData::Move.get(move)
-                next movaData.category == 1
+                next movaData.category == 1 || movaData.category == 3
             end
             compatibleSpecMoves.sort_by!{|moveID| GameData::Move.get(moveID).name}
             compatibleStatusMoves = compatibleMoves.select do |move|

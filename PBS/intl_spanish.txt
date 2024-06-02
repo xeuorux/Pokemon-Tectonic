@@ -36459,8 +36459,8 @@ Seeking an opening, the user strikes continually. Ignores the target's stat step
 Viendo una oportunidad, el usuario golpea sin descanso. Ignora los cambios de stats del objetivo.
 The target is hit with rhythmically launched punches that have a 20% chance to dizzy.
 El objetivo golpea al rival repetidamente de varias direcciones. Tiene un 20% de probabilidad de marear al objetivo.
-Doubles its power if the user has a status condition. Ignores burn Attack reduction.
-Duplica su poder si el usuario tiene un problema de estado. Ignora la reducción del Ataque de la quemadura.
+Doubles its power if the user has a status condition. Ignores damage reduction from Burn or Frostbite.
+Duplica su poder si el usuario tiene un problema de estado. Ignora la reducción del daño si está Quemado o Helado.
 The user sticks out its head and attacks by charging into the foe. It has a 20% chance to numb.
 El usuario arremete con su cabeza al oponente. Tiene un 20% de probabilidad de aturdir al objetivo.
 Gets revenge for a fainted ally. If an ally fainted in the last turn, this attack's damage increases.
@@ -36531,8 +36531,8 @@ The power stored using the move Stockpile is released all at once in an attack. 
 La energía que haya sido guardada con Reserva es liberada de golpe con un fuerte ataque. 150 de potencia base por carga de Reserva.
 The user chomps hard on the target with its sharp front fangs. It cuts the target's HP to half.
 El usuario mastica con fuerza al rival usando sus dientes frontales. Le quita la mitad de los PS al objetivo.
-Has 40 more base power for each PP missing.
-Tiene 40 más de potencia por cada PP que le falte.
+The user unleashes its ultimate move. Can't miss and skips protections. Only one use per battle.
+The user unleashes its ultimate move. Can't miss and skips protections. Only one use per battle.
 The user powerfully wrings the foe. The more HP the foe has, the greater this attack's power.
 El usuario estruja con fuerza al objetivo. Cuantos más PS tenga el objetivo, más fuerte es el movimiento.
 The user helps the target and makes it use its move right after the user.
@@ -36721,8 +36721,8 @@ Using an odd shock wave, the user damages any Pokémon of the same type as the u
 Usando una extraña onda de energía, el usuario ataca a cualquier Pokémon con el que comparta tipo.
 Heals the user for 50% of the damage caused. Power doubles if the foe is asleep.
 El usuario recupera la mitad de los PS que le quite al objetivo. Duplica su potencia si el objetivo está dormido.
-The user attacks with a pillar of light. Uses the higher of the user's Attack or Sp. Atk stat.
-El usuario ataca con un pilar de luz. Usa la stat ofensiva más alta del usuario.
+The user attacks with a pillar of light. This ignores their ability.
+El usuario ataca con un pilar de luz. Esto ignora su Habilidad.
 The target is hit by a strong telekinetic force. It has a 20% chance to lower Sp. Def.
 El usuario ataca con una poderosa fuerza telekinética. Tiene un 20% de probabilidad de disminuir la Defensa Especial del objetivo.
 The user bites the target using psychic capabilities. Also breaks anys Screens protecting the target's side.
@@ -37531,8 +37531,8 @@ The user frostbites the target, then welcomes in hail for four turns.
 El usuario hela al objetivo, luego invita al granizo durante cuatro turnos.
 A punch that inflicts double the damage if the user has been hurt by the foe in the same turn.
 Un golpe que duplica su potencia si el usuario fue lastimado por un rival en el mismo turno.
-Restores a fainted party member to 1 HP.
-Revive a un aliado debilitado con sólo un PS.
+Restores a fainted party member to 1 HP. Only one use per battle.
+Revive a un aliado debilitado con sólo un PS. Sólo puede ser usado una vez por combate.
 The user fires a dimensional mote, lowering the target's Sp. Defense.
 El usuario dispara un risco dimensional, disminuyendo la Defensa Especial del objetivo.
 The user thrums ominously, lowering the target's Attack and Sp. Atk.
@@ -37587,8 +37587,8 @@ The target is taunted by a deceptive look. It can't use status moves this or nex
 El objetivo mofa al objetivo usando una mirada engañosa, haciendo que no pueda usar movimientos de estado durante dos turnos. Siempre va primero.
 The user partially dissolves, raising its Sp. Def stat by five steps.
 El usuario se disuelve parcialmente, aumentando su Defensa Especial cinco grdos.
-Inflicts physical or special damage based on the user's stats. However, it's likely to miss.
-Es físico o especial dependiendo de las stats del usuario. Sin embargo, suele fallar.
+The user makes a foolhardy, roundabout attack. It misses much of the time.
+El usuario realiza un ataque imprudente y indirecto. Se pierde gran parte del tiempo.
 The target is dried out and loses Water-type. Then, it bursts into flame from the heat.
 El objetivo es secado y pierde el tipo Agua. Luego, arde en llamas debido al calor.
 Protects the user from attacks. Also frostbites any attacker who physically attacks the user.
@@ -37713,8 +37713,8 @@ The user dismisses the target, forcing it to switch out.
 El usuario ruge con ferocidad, forzando a cambiar al objetivo.
 If the target is the last able member of their party, this attack's power is doubled.
 Si el objetivo es el último miembro en su equipo, su potencia es duplicada.
-Type based on weather. Inflicts physical or special damage based on the user's stats.
-Cambia de tipo según el clima. Es físico o especial dependiendo del ataque más alto del usuario.
+The user causes the air around the target to explode. It's type is changed based on the active weather.
+El usuario hace que el aire alrededor del objetivo explote. Su tipo cambia según el clima activo.
 The user looses a flash of energy from its polished body. It has a 30% chance to lower Sp. Def.
 El usuario ataca con un destello desde su cuerpo pulido. Tiene un 30% de probabilidad de disminuir la Defensa Especial del objetivo.
 The user imparts knowledge on its ally Pokémon, raising their Sp. Atk and Sp. Def stats by two steps.
@@ -38089,8 +38089,8 @@ The user crashes into the target on a ripping current. This raises the user's Sp
 El usuario choca contra el objetivo en una corriente desgarradora. Esto aumenta la Velocidad del usuario dos grados.
 The user hops high up to land on the target's head. It has a 10% chance to dizzy.
 El usuario salta muy alto para aterrizar en la cabeza del objetivo. Tiene un 10% de probabilidad de marear.
-Has 10 more base power for each raised stat step. Inflicts physical or special damage based on the user's stats.
-Tiene 10 más de potencia base por cada grado de estadística aumentado. Inflige daño físico o especial según las stats del usuario.
+The user attacks the target with stored power. Has 10 more base power for each raised stat step.
+El usuario ataca al objetivo con poder almacenado. Tiene 10 más de potencia base por cada grado de estadística aumentado.
 The user and the target each share their highest stat step with the other.
 El usuario y el objetivo comparten su grado de stats más alto con el otro.
 The user shoots the target with a small bolt of fire. This move always goes first.
@@ -50484,6 +50484,12 @@ Mentoring let's you copy moves between your Pokémon!
 La mentoría te permite copiar movimientos entre tus Pokémon!
 Just talk to the Mentor Coordinator in any PokéCenter.
 Simplemente habla con la Coordinadora Mentora en cualquier PokéCenter.
+Some moves are both Physical and Special! These are "Adaptive" moves.
+¡Algunos movimientos son tanto físicos como especiales! Estos son movimientos "Adaptativos".
+They change based on the user's stats!
+¡Cambian según las estadísticas del usuario!
+Physical if Attack is higher, and Special if Sp. Atk is higher.
+Físico si el Ataque es mayor y Especial si el Ataque Especial es mayor.
 Advanced Tutorials
 Tutorials Avanzados
 Avatar Mechanics Msgs

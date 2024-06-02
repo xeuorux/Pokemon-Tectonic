@@ -1133,18 +1133,6 @@ EffectChance = 20
 Description = The user brings down a ruinous power on the target. This has a 20% chance of lowering all the target's stats.
 Animation = JUDGMENT
 #-------------------------------
-[HARDFEELINGS]
-Name = Hard Feelings
-Type = NORMAL
-Category = Special
-Power = 70
-Accuracy = 100
-TotalPP = 12
-Target = NearOther
-FunctionCode = DoubleDamageUserStatused
-Flags = CanProtect,CanMirrorMove
-Description = Doubles its power if the user has a status condition. Ignores frostbite Sp. Atk reduction.
-#-------------------------------
 [SOULEATER]
 Name = Soul Eater
 Type = GHOST
@@ -2193,8 +2181,8 @@ Animation = BULLETPUNCH
 [EVERNALIZE]
 Name = Evernalize
 Type = NORMAL
-Category = Special
-Power = 140
+Category = Adaptive
+Power = 150
 Accuracy = 100
 TotalPP = 12
 Target = NearOther
@@ -2378,14 +2366,14 @@ Animation = JUMPKICK
 [MULTISTRIKE]
 Name = Multi-strike
 Type = NORMAL
-Category = Physical
+Category = Adaptive
 Power = 14
 Accuracy = 100
 TotalPP = 30
 Target = NearOther
-FunctionCode = HitTwoToFiveTimesUsesBetterAttackingStat
+FunctionCode = HitTwoToFiveTimes
 Flags = CanProtect,CanMirrorMove
-Description = The target is hit two to five times in a row. Inflicts physical or special damage based on the user's stats.
+Description = The target is hit two to five times in a row.
 #-------------------------------
 [PLANETCRACKER]
 Name = Planetcracker
@@ -2473,18 +2461,6 @@ FunctionCode = AttacksWithTargetsStats
 Flags = CanProtect,CanMirrorMove
 Description = Turns the foe's power against it, dealing damage using the target's Sp. Attack stat.
 Animation = VENOSHOCK
-#-------------------------------
-[RANSACK]
-Name = Ransack
-Type = NORMAL
-Category = Special
-Power = 60
-Accuracy = 100
-TotalPP = 20
-Target = NearOther
-FunctionCode = StealsItem
-Flags = CanProtect,CanMirrorMove
-Description = The user skillfully blasts the target, then steals their item. Items stolen from wild Pokémon are stored.
 #-------------------------------
 [TRAPJAW]
 Name = Trap Jaw
@@ -3656,7 +3632,7 @@ Accuracy = 0
 TotalPP = 1
 Target = None
 FunctionCode = RevivePartyMemberTo1HP
-Description = Restores a fainted party member to 1 HP.
+Description = Restores a fainted party member to 1 HP. Only one use per battle.
 Animation = ELECTRICTERRAIN
 #-------------------------------
 [ABERRANTMOTE]
@@ -4000,14 +3976,14 @@ Description = The user partially dissolves, raising its Sp. Def stat by five ste
 [LONGSHOT]
 Name = Long Shot
 Type = NORMAL
-Category = Physical
+Category = Adaptive
 Power = 110
 Accuracy = 70
 TotalPP = 25
 Target = NearOther
-FunctionCode = UsesBetterAttackingStat
+FunctionCode = Basic
 Flags = CanProtect,CanMirrorMove
-Description = Inflicts physical or special damage based on the user's stats. However, it's likely to miss.
+Description = The user makes a foolhardy, roundabout attack. It misses much of the time.
 #-------------------------------
 [DRYHEAT]
 Name = Dry Heat
@@ -4392,7 +4368,7 @@ Power = 90
 Accuracy = 100
 TotalPP = 15
 Target = NearOther
-FunctionCode = UsesBetterAttackingStatRaisesUserOtherAttackingStat
+FunctionCode = CategoryDependsOnHigherDamageRaisesUserOtherAttackingStat
 Flags = CanProtect,CanMirrorMove,Punch
 EffectChance = 100
 Description = Inflicts physical or special damage, whichever deals more. Then, raises the attacking stat which wasn't used.
@@ -4671,14 +4647,14 @@ Animation = NIGHTSLASH
 [WEATHERBURST]
 Name = Weather Burst
 Type = NORMAL
-Category = Physical
+Category = Adaptive
 Power = 100
 Accuracy = 100
 TotalPP = 10
 Target = NearOther
-FunctionCode = TypeDependsOnWeatherUsesBetterAttackingStat
+FunctionCode = TypeDependsOnWeather
 Flags = CanProtect,CanMirrorMove
-Description = Type based on weather. Inflicts physical or special damage based on the user's stats.
+Description = The user causes the air around the target to explode. It's type is changed based on the active weather.
 Animation = WEATHERBALL
 #-------------------------------
 [SHINESHOT]
@@ -6065,7 +6041,7 @@ Animation = BULLETPUNCH
 [PRISMATICPOWER]
 Name = Prismatic Power
 Type = NORMAL
-Category = Special
+Category = Adaptive
 Power = 100
 Accuracy = 100
 TotalPP = 10
@@ -6211,14 +6187,14 @@ Animation = BOUNCE
 [RISINGPOWER]
 Name = Rising Power
 Type = NORMAL
-Category = Physical
+Category = Adaptive
 Power = 30
 Accuracy = 100
 TotalPP = 10
 Target = NearOther
 FunctionCode = ScalesUsersPositiveStatSteps
 Flags = CanProtect,CanMirrorMove
-Description = Has 10 more base power for each raised stat step. Inflicts physical or special damage based on the user's stats.
+Description = The user attacks the target with stored power. Has 10 more base power for each raised stat step.
 Animation = STOREDPOWER
 #-------------------------------
 [SHARINGSMILES]

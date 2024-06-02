@@ -1,19 +1,4 @@
 #===============================================================================
-# This move is physical if user's Attack is higher than its Special Attack (Long Shot)
-# (after applying stat steps)
-#===============================================================================
-class PokeBattle_Move_UsesBetterAttackingStat < PokeBattle_Move
-    def initialize(battle, move)
-        super
-        @calculated_category = 1
-    end
-
-    def calculateCategory(user, _targets)
-        return selectBestCategory(user)
-    end
-end
-
-#===============================================================================
 # User's Defense is used instead of user's Attack for this move's calculations.
 # (Body Press)
 #===============================================================================
