@@ -785,12 +785,12 @@ sp.form) && !Settings::DEX_SHOWS_ALL_FORMS
             compatibleMoves.compact!
             compatiblePhysMoves = compatibleMoves.select do |move|
                 movaData = GameData::Move.get(move)
-                next movaData.category == 0
+                next movaData.category == 0 || movaData.category == 3
             end
             compatiblePhysMoves.sort_by!{|moveID| GameData::Move.get(moveID).name}
             compatibleSpecMoves = compatibleMoves.select do |move|
                 movaData = GameData::Move.get(move)
-                next movaData.category == 1
+                next movaData.category == 1 || movaData.category == 3
             end
             compatibleSpecMoves.sort_by!{|moveID| GameData::Move.get(moveID).name}
             compatibleStatusMoves = compatibleMoves.select do |move|

@@ -3906,7 +3906,7 @@ Description = The user attacks everything around it with the destructive power o
 [LASTRESORT]
 Name = Last Resort
 Type = NORMAL
-Category = Physical
+Category = Adaptive
 Power = 140
 Accuracy = 100
 TotalPP = 5
@@ -3974,18 +3974,6 @@ Target = ClosestNearFoe
 FunctionCode = Rampage
 Flags = CanProtect,CanMirrorMove
 Description = The user rampages and attacks for three turns.
-#-------------------------------
-[EGGBOMB]
-Name = Egg Bomb
-Type = NORMAL
-Category = Physical
-Power = 100
-Accuracy = 75
-TotalPP = 10
-Target = NearOther
-FunctionCode = Basic
-Flags = CanProtect,CanMirrorMove
-Description = A large egg is hurled at the target with maximum force to inflict damage.
 #-------------------------------
 [JUDGMENT]
 Name = Judgment
@@ -4325,7 +4313,7 @@ Description = An attack that can be used only if the user is asleep. It has a 50
 [STRUGGLE]
 Name = Struggle
 Type = NORMAL
-Category = Physical
+Category = Adaptive
 Power = 50
 Accuracy = 0
 TotalPP = 1
@@ -4621,12 +4609,12 @@ Description = The user chomps hard on the target with its sharp front fangs. It 
 [TRUMPCARD]
 Name = Trump Card
 Type = NORMAL
-Category = Special
+Category = Adaptive
 Power = 160
 Accuracy = 0
 TotalPP = 1
 Target = NearOther
-FunctionCode = AlwaysHitsUsesBetterAttackingStat
+FunctionCode = AlwaysHits
 Flags = CanMirrorMove
 Description = The user unleashes its ultimate move. Can't miss and skips protections. Only one use per battle.
 #-------------------------------
@@ -5694,14 +5682,14 @@ Description = Heals the user for 50% of the damage caused. Power doubles if the 
 [PHOTONGEYSER]
 Name = Photon Geyser
 Type = PSYCHIC
-Category = Special
+Category = Adaptive
 Power = 100
 Accuracy = 100
 TotalPP = 5
 Target = NearOther
-FunctionCode = CategoryDependsOnHigherDamageIgnoreTargetAbility
+FunctionCode = IgnoreTargetAbility
 Flags = CanProtect,CanMirrorMove
-Description = The user attacks with a pillar of light. Uses the higher of the user's Attack or Sp. Atk stat.
+Description = The user attacks with a pillar of light. This ignores their ability.
 #-------------------------------
 [PSYCHIC]
 Name = Psychic
