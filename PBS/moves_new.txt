@@ -1133,18 +1133,6 @@ EffectChance = 20
 Description = The user brings down a ruinous power on the target. This has a 20% chance of lowering all the target's stats.
 Animation = JUDGMENT
 #-------------------------------
-[HARDFEELINGS]
-Name = Hard Feelings
-Type = NORMAL
-Category = Special
-Power = 70
-Accuracy = 100
-TotalPP = 12
-Target = NearOther
-FunctionCode = DoubleDamageUserStatused
-Flags = CanProtect,CanMirrorMove
-Description = Doubles its power if the user has a status condition. Ignores frostbite Sp. Atk reduction.
-#-------------------------------
 [SOULEATER]
 Name = Soul Eater
 Type = GHOST
@@ -2193,8 +2181,8 @@ Animation = BULLETPUNCH
 [EVERNALIZE]
 Name = Evernalize
 Type = NORMAL
-Category = Special
-Power = 140
+Category = Adaptive
+Power = 150
 Accuracy = 100
 TotalPP = 12
 Target = NearOther
@@ -2473,18 +2461,6 @@ FunctionCode = AttacksWithTargetsStats
 Flags = CanProtect,CanMirrorMove
 Description = Turns the foe's power against it, dealing damage using the target's Sp. Attack stat.
 Animation = VENOSHOCK
-#-------------------------------
-[RANSACK]
-Name = Ransack
-Type = NORMAL
-Category = Special
-Power = 60
-Accuracy = 100
-TotalPP = 20
-Target = NearOther
-FunctionCode = StealsItem
-Flags = CanProtect,CanMirrorMove
-Description = The user skillfully blasts the target, then steals their item. Items stolen from wild Pokémon are stored.
 #-------------------------------
 [TRAPJAW]
 Name = Trap Jaw
@@ -6065,7 +6041,7 @@ Animation = BULLETPUNCH
 [PRISMATICPOWER]
 Name = Prismatic Power
 Type = NORMAL
-Category = Special
+Category = Adaptive
 Power = 100
 Accuracy = 100
 TotalPP = 10

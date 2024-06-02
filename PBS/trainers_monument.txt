@@ -1154,7 +1154,7 @@ Pokemon = PINCURCHIN,70
     # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
     EV = 20,20,10,0,20,0
 Pokemon = SERPERIOR,70
-    Moves = DRACOMETEOR,LEAFSTORM,HARDFEELINGS,THUNDERBOLT
+    Moves = DRACOMETEOR,LEAFSTORM,FACADE,THUNDERBOLT
     AbilityIndex = 1 # Eccentric
     Item = STRIKEVEST
     # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def

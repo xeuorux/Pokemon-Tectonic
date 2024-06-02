@@ -36459,8 +36459,8 @@ Seeking an opening, the user strikes continually. Ignores the target's stat step
 Viendo una oportunidad, el usuario golpea sin descanso. Ignora los cambios de stats del objetivo.
 The target is hit with rhythmically launched punches that have a 20% chance to dizzy.
 El objetivo golpea al rival repetidamente de varias direcciones. Tiene un 20% de probabilidad de marear al objetivo.
-Doubles its power if the user has a status condition. Ignores burn Attack reduction.
-Duplica su poder si el usuario tiene un problema de estado. Ignora la reducción del Ataque de la quemadura.
+Doubles its power if the user has a status condition. Ignores damage reduction from Burn or Frostbite.
+Duplica su poder si el usuario tiene un problema de estado. Ignora la reducción del daño si está Quemado o Helado.
 The user sticks out its head and attacks by charging into the foe. It has a 20% chance to numb.
 El usuario arremete con su cabeza al oponente. Tiene un 20% de probabilidad de aturdir al objetivo.
 Gets revenge for a fainted ally. If an ally fainted in the last turn, this attack's damage increases.
