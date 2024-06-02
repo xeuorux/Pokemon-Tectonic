@@ -32,7 +32,7 @@ class PokeBattle_Battler
             # Trackers
             if target.opposes?(user)
                 target.tookPhysicalHit = true if move.physicalMove?
-                target.tookSpecialHit = true if move.physicalMove?
+                target.tookSpecialHit = true if move.specialMove?
             end
 
             # Learn the target's damage affecting abilities
