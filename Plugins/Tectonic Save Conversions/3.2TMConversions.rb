@@ -148,8 +148,48 @@ SaveData.register_conversion(:misc_fixes_v2) do
 end
   
 def fixTMs
-    TM_CONVERSION_HASH.each do |oldTMID, newTMID|
-        replaceAllCodeInstances("(#{oldTMID.to_s},", "(#{newTMID.to_s},")
+    mapData = Compiler::MapData.new
+    for id in mapData.mapinfos.keys.sort
+        map = mapData.getMap(id)
+        next if !map || !mapData.mapinfos[id]
+        mapName = mapData.mapinfos[id].name
+        changed = false
+        for key in map.events.keys
+            event = map.events[key]
+            event.pages.each do |page|
+                page.list.each do |eventCommand|
+                    eventCommand.parameters.map! { |parameter|
+                        next parameter unless parameter.is_a?(String)
+
+                        mappedParam = nil
+                        TM_CONVERSION_HASH.each do |oldTMID, newTMID|
+                            [" ",",",")"].each do |nextchar|
+                                regex = "\(:#{oldTMID.to_s}#{nextchar}"
+                                newText = "\(:#{newTMID.to_s}#{nextchar}"
+
+                                oldParam = parameter.clone
+                                newParam = parameter.gsub!(regex,newText)
+                                if newParam
+                                    eventName = event.name.gsub(",","")
+
+                                    echoln "Map #{mapName} (#{id}), event #{eventName} (#{event.id}):\r\n"
+                                    echoln("\tParameter #{oldParam} changed to #{newParam}")
+
+                                    changed = true
+                                    
+                                    mappedParam = newParam
+                                    break
+                                end
+                            end
+                            break if mappedParam
+                        end
+
+                        next mappedParam.nil? ? parameter : mappedParam
+                    }
+                end
+            end
+        end
+        mapData.saveMap(id) if changed
     end
 
     TM_CUT_LIST.each do |entry|

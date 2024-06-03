@@ -472,17 +472,17 @@ end
 
 def hackedTMShop
 	tmsStock = %i[
-		TM04
-		TM05
-		TM06
-		TM11
-		TM13
-		TM22
-		TM23
-		TM27
-		TM85
-		TM114
-		TM176
+		TMFRENZYPLANT
+		TMBLASTBURN
+		TMHYDROCANNON
+		TMROCKWRECKER
+		TMMETEORASSAULT
+		TMEXPLOSION
+		TMMEMENTO
+		TMRAPIDSPIN
+		TMFINALGAMBIT
+		TMAIMTRUE
+		TMSTEALTHROCK
 	]
 
 	pbPokemonMart(
@@ -494,27 +494,15 @@ end
 
 def switchOutTMShop
 	tmsStock = %i[
-		TM88
-		TM89
-		TM90
-		TM91
+		TMVOLTSWITCH
+		TMUTURN
+		TMFLIPTURN
+		TMPARTINGSHOT
 	]
 
 	pbPokemonMart(
 		tmsStock,
 		_INTL("I'm sure you'll appreciate one of these."),
-		!CAN_SELL_IN_VENDORS
-	)
-end
-
-def rechargeTMShop
-	tmsStock = %i[
-
-	]
-
-	pbPokemonMart(
-		tmsStock,
-		_INTL("Don't delay. Buy now!"),
 		!CAN_SELL_IN_VENDORS
 	)
 end
