@@ -52750,6 +52750,18 @@ Let's get your Pokémon patched up.
 Vamos a reparar tu Pokémon.
 You stuff your Aid Kit full from your large stack of supplies!
 ¡Llenas tu Botiquín con tu gran cantidad de suministros!
+TM {1}
+MT {1}
+{1} TMs
+MsTs {1}
+TR {1}
+DT {1}
+{1} TRs
+DsTs {1}
+HM {1}
+MO {1}
+{1} HMs
+MsOs {1}
 [26]
 [27]
 [27]

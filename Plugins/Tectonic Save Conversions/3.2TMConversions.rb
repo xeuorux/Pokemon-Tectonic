@@ -107,13 +107,45 @@ TM_CONVERSION_HASH = {
     :TM13 => :TMMETEORASSAULT,
 }
 
-# SaveData.register_conversion(:misc_fixes_v2) do
-#     game_version '3.2.0'
-#     display_title 'Swapping TMs over to their new ID representation'
-#     to_all do |save_data|
-#         TM_CONVERSION_HASH.each do |key,value|
-#             save_data[:bag].pbChangeItem(:key,:value)
-#         end
-#     end
-# end
+TM_CUT_LIST = [
+    :TM164,
+    :TM02,
+    :TM40,
+    :TM135,
+    :TM84,
+]
+
+SaveData.register_conversion(:misc_fixes_v2) do
+    game_version '3.2.0'
+    display_title 'Swapping TMs over to their new ID representation'
+    to_all do |save_data|
+        echoln("")
+        TM_CONVERSION_HASH.each do |key,value|
+            echoln("Switching #{key} for #{value}: #{save_data[:bag].pbQuantity(key)}")
+            save_data[:bag].pbChangeItem(key,value)
+        end
+
+        TM_CUT_LIST.each do |entry|
+            echoln("Removing #{entry}: #{save_data[:bag].pbQuantity(entry)}")
+            save_data[:bag].pbDeleteItem(entry,9999999)
+        end
+    end
+end
   
+def fixTMs
+    TM_CONVERSION_HASH.each do |oldTMID, newTMID|
+        replaceAllCodeInstances(oldTMID.to_s, oldTMID.to_s)
+    end
+
+    TM_CUT_LIST.each do |entry|
+        writeAllCodeInstances(entry.to_s,"Analysis/tm_location_#{entry.to_s}.txt")
+    end
+end
+
+def giveOldTMs
+    GameData::Item.each do |itemData|
+        next unless itemData.is_TM?
+        next unless itemData.cut
+        pbSilentItem(itemData.id)
+    end
+end

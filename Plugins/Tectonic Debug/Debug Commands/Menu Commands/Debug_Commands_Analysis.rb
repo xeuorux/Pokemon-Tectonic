@@ -270,10 +270,6 @@ def replaceAllCodeInstances(regex, newText)
     end
 end
 
-def change
-    replaceAllCodeInstances("pbGet\(1\)\.nil\?","!boxPokemonChosen?")
-end
-
 def replaceCodeInstances(map_id,map_name,event,regex,newText)
     return [] if !event || event.pages.length==0
     changed = false

@@ -22,6 +22,9 @@ module GameData
 
       FLAG_INDEX = {}
       FLAGS_INDEX_DATA_FILENAME = "items_indexed_by_flag.dat"
+      
+      MACHINE_ORDER = {}
+      MACHINE_ORDER_DATA_FILENAME = "machine_order.dat"
 
       SCHEMA = {
         "Name"        => [:name,        "s"],
@@ -125,12 +128,29 @@ module GameData
   
       # @return [String] the translated name of this item
       def name
-        return pbGetMessageFromHash(MessageTypes::Items, @real_name)
+        return @id.to_s
+        # if is_TM?
+        #   return _INTL("TM {1}",GameData::Move.get(@move).name)
+        # elsif is_TR?
+        #   return _INTL("TR {1}",GameData::Move.get(@move).name)
+        # elsif is_HM?
+        #   return _INTL("HM {1}",GameData::Move.get(@move).name)
+        # else
+        #   return pbGetMessageFromHash(MessageTypes::Items, @real_name)
+        # end
       end
   
       # @return [String] the translated plural version of the name of this item
       def name_plural
-        return pbGetMessageFromHash(MessageTypes::ItemPlurals, @real_name_plural)
+        if is_machine?
+          return _INTL("{1} TMs",GameData::Move.get(@move).name_plural)
+        elsif is_TR?
+          return _INTL("{1} TRs",GameData::Move.get(@move).name_plural)
+        elsif is_HM?
+          return _INTL("{1} HMs",GameData::Move.get(@move).name_plural)
+        else
+          return pbGetMessageFromHash(MessageTypes::ItemPlurals, @real_name_plural)
+        end
       end
   
       # @return [String] the translated description of this item
@@ -299,14 +319,23 @@ module GameData
         end
       end
 
+      def self.getMachineIndex(machineItemID)
+        unless self.get(machineItemID)&.is_machine?
+          raise _INTL("Cannot get machine index of item {1} ID. It either doesn't exist or isn't a machine!", machineItemID)
+        end
+        return MACHINE_ORDER[machineItemID] || -1
+      end
+
       def self.load
         super
         const_set(:FLAG_INDEX, load_data("Data/#{self::FLAGS_INDEX_DATA_FILENAME}"))
+        const_set(:MACHINE_ORDER, load_data("Data/#{self::MACHINE_ORDER_DATA_FILENAME}"))
       end
 
       def self.save
         super
         save_data(self::FLAG_INDEX, "Data/#{self::FLAGS_INDEX_DATA_FILENAME}")
+        save_data(self::MACHINE_ORDER, "Data/#{self::MACHINE_ORDER_DATA_FILENAME}")
       end
     end
 end
@@ -325,7 +354,7 @@ module Compiler
     item_descriptions = []
     item_hash         = nil
     idx = 0
-    ["PBS/items.txt","PBS/items_super.txt","PBS/items_cut.txt"].each do |path|
+    ["PBS/items.txt","PBS/items_super.txt","PBS/items_machine.txt","PBS/items_cut.txt"].each do |path|
       # Read each line of items.txt at a time and compile it into an item
       pbCompilerEachPreppedLine(path) { |line, line_no|
         idx += 1
@@ -374,6 +403,15 @@ module Compiler
     MessageTypes.setMessagesAsHash(MessageTypes::ItemPlurals, item_names_plural)
     MessageTypes.setMessagesAsHash(MessageTypes::ItemDescriptions, item_descriptions)
     Graphics.update
+
+    compile_machine_order
+  end
+
+  def compile_machine_order
+    GameData::Item::MACHINE_ORDER.clear
+    pbCompilerEachPreppedLine("PBS/items_machine_order.txt") { |line, line_no|
+    GameData::Item::MACHINE_ORDER[line.to_sym] = line_no
+    }
   end
 
   #=============================================================================
@@ -383,7 +421,7 @@ module Compiler
     File.open("PBS/items.txt", "wb") { |f|
       add_PBS_header_to_file(f)
       GameData::Item.each do |i|
-        break if i.cut || i.super
+        next if i.cut || i.super || i.is_machine?
         write_item(f,i)
       end
     }
@@ -401,7 +439,25 @@ module Compiler
         write_item(f,i)
       end
     }
+    File.open("PBS/items_machine.txt", "wb") { |f|
+      add_PBS_header_to_file(f)
+      GameData::Item.each do |i|
+        next if i.cut || i.super
+        next unless i.is_machine?
+        write_item(f,i)
+      end
+    }
     Graphics.update
+
+    write_machine_order
+  end
+
+  def write_machine_order
+    File.open("PBS/items_machine_order.txt", "wb") { |f|
+      GameData::Item::MACHINE_ORDER.each do |machine_id, index|
+        f.write(sprintf("%s\r\n",machine_id))
+      end
+    }
   end
 
   def write_item(f,item)
