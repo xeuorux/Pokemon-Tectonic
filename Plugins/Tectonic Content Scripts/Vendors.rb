@@ -364,7 +364,7 @@ def spikesTMSell()
 	]
 	pbPokemonMart(
 		spikeTMStock,
-		_INTL("Care to buy some?"),
+		_INTL("You see their value, don't you?"),
 		!CAN_SELL_IN_VENDORS
 	)
 end
@@ -795,6 +795,22 @@ def typeBoostingVendor
 	pbPokemonMart(
 		herbStock,
 		_INTL("What're ya buyin'?"),
+		!CAN_SELL_IN_VENDORS
+	)
+end
+
+def statusTMVendor()
+	spikeTMStock = %i[
+		TMPOISONGAS
+		TMIGNITE
+		TMCHILL
+		TMNUMB
+		TMLEECHSEED
+		TMCONFUSERAY
+	]
+	pbPokemonMart(
+		spikeTMStock,
+		_INTL("Any interest in buying?"),
 		!CAN_SELL_IN_VENDORS
 	)
 end

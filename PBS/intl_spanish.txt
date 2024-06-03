@@ -6230,6 +6230,10 @@ When the group disbanded, most of them got renovated into these impromptu rest s
 Cuando el grupo se disolvió, la mayoría fueron renovados en estas posadas improvisadas.
 The Makyan Rangers primarily fund and staff these places nowadays.
 Son principalmente los Rangers de Makya quienes financian y proveen estos lugares a día de hoy.
+Hello. I'm an expert in the field of Pokemon ailments.
+Hola. Soy un experto en el campo de las dolencias de Pokémon.
+I have a selection of Technical Machines that will allow your Pokemon to employ them.
+Tengo una selección de Máquinas Técnicas que permitirán a tus Pokémon emplearlas.
 
 [Map85]
 
@@ -50804,6 +50808,10 @@ What do you want to do?
 ¿Qué quieres hacer?
 Care to buy some?
 ¿Quieres comprar algo?
+You see their value, don't you?
+Ves su valor, ¿no?
+Any interest in buying?
+¿Algún interés en comprar?
 Do you like anything you see?
 ¿Te gustaría algo más?.
 Quit
