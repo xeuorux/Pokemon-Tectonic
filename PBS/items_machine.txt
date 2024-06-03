@@ -24,6 +24,30 @@ Price = 4000
 FieldUse = TM
 Move = SUBSTITUTE
 #-------------------------------
+[TMPOISONGAS]
+Name = Unnamed
+NamePlural = Unnamed
+Pocket = 4
+Price = 4000
+FieldUse = TM
+Move = POISONGAS
+#-------------------------------
+[TMIGNITE]
+Name = Unnamed
+NamePlural = Unnamed
+Pocket = 4
+Price = 4000
+FieldUse = TM
+Move = IGNITE
+#-------------------------------
+[TMCHILL]
+Name = Unnamed
+NamePlural = Unnamed
+Pocket = 4
+Price = 4000
+FieldUse = TM
+Move = CHILL
+#-------------------------------
 [TMNUMB]
 Name = Unnamed
 NamePlural = Unnamed
@@ -31,6 +55,22 @@ Pocket = 4
 Price = 4000
 FieldUse = TM
 Move = NUMB
+#-------------------------------
+[TMCONFUSERAY]
+Name = Unnamed
+NamePlural = Unnamed
+Pocket = 4
+Price = 4000
+FieldUse = TM
+Move = CONFUSERAY
+#-------------------------------
+[TMLEECHSEED]
+Name = Unnamed
+NamePlural = Unnamed
+Pocket = 4
+Price = 4000
+FieldUse = TM
+Move = LEECHSEED
 #-------------------------------
 [TMENCORE]
 Name = Unnamed
@@ -71,6 +111,14 @@ Pocket = 4
 Price = 4000
 FieldUse = TM
 Move = SCREECH
+#-------------------------------
+[TMFAKETEARS]
+Name = Unnamed
+NamePlural = Unnamed
+Pocket = 4
+Price = 4000
+FieldUse = TM
+Move = FAKETEARS
 #-------------------------------
 [TMCHARM]
 Name = Unnamed
@@ -240,6 +288,46 @@ Price = 4000
 FieldUse = TM
 Move = STEALTHROCK
 #-------------------------------
+[TMSPIKES]
+Name = Unnamed
+NamePlural = Unnamed
+Pocket = 4
+Price = 4000
+FieldUse = TM
+Move = SPIKES
+#-------------------------------
+[TMPOISONSPIKES]
+Name = Unnamed
+NamePlural = Unnamed
+Pocket = 4
+Price = 4000
+FieldUse = TM
+Move = POISONSPIKES
+#-------------------------------
+[TMFLAMESPIKES]
+Name = Unnamed
+NamePlural = Unnamed
+Pocket = 4
+Price = 4000
+FieldUse = TM
+Move = FLAMESPIKES
+#-------------------------------
+[TMFROSTSPIKES]
+Name = Unnamed
+NamePlural = Unnamed
+Pocket = 4
+Price = 4000
+FieldUse = TM
+Move = FROSTSPIKES
+#-------------------------------
+[TMDEFOG]
+Name = Unnamed
+NamePlural = Unnamed
+Pocket = 4
+Price = 4000
+FieldUse = TM
+Move = DEFOG
+#-------------------------------
 [TMREFLECT]
 Name = Unnamed
 NamePlural = Unnamed
@@ -303,6 +391,54 @@ Pocket = 4
 Price = 4000
 FieldUse = TM
 Move = TAILWIND
+#-------------------------------
+[TMSUNSHINE]
+Name = Unnamed
+NamePlural = Unnamed
+Pocket = 4
+Price = 4000
+FieldUse = TM
+Move = SUNSHINE
+#-------------------------------
+[TMRAIN]
+Name = Unnamed
+NamePlural = Unnamed
+Pocket = 4
+Price = 4000
+FieldUse = TM
+Move = RAIN
+#-------------------------------
+[TMSANDSTORM]
+Name = Unnamed
+NamePlural = Unnamed
+Pocket = 4
+Price = 4000
+FieldUse = TM
+Move = SANDSTORM
+#-------------------------------
+[TMHAIL]
+Name = Unnamed
+NamePlural = Unnamed
+Pocket = 4
+Price = 4000
+FieldUse = TM
+Move = HAIL
+#-------------------------------
+[TMMOONGLOW]
+Name = Unnamed
+NamePlural = Unnamed
+Pocket = 4
+Price = 4000
+FieldUse = TM
+Move = MOONGLOW
+#-------------------------------
+[TMECLIPSE]
+Name = Unnamed
+NamePlural = Unnamed
+Pocket = 4
+Price = 4000
+FieldUse = TM
+Move = ECLIPSE
 #-------------------------------
 [TMFOLLOWME]
 Name = Unnamed
@@ -720,6 +856,22 @@ Price = 4000
 FieldUse = TM
 Move = MOONBLAST
 #-------------------------------
+[TMSTAMPDOWN]
+Name = Unnamed
+NamePlural = Unnamed
+Pocket = 4
+Price = 4000
+FieldUse = TM
+Move = STAMPDOWN
+#-------------------------------
+[TMCLEARSMOG]
+Name = Unnamed
+NamePlural = Unnamed
+Pocket = 4
+Price = 4000
+FieldUse = TM
+Move = CLEARSMOG
+#-------------------------------
 [TMCRUELTY]
 Name = Unnamed
 NamePlural = Unnamed
@@ -847,75 +999,3 @@ Pocket = 4
 Price = 4000
 FieldUse = TM
 Move = METEORASSAULT
-#-------------------------------
-[TMPOISONGAS]
-Name = Unnamed
-NamePlural = Unnamed
-Pocket = 4
-Price = 4000
-FieldUse = TM
-Move = POISONGAS
-#-------------------------------
-[TMIGNITE]
-Name = Unnamed
-NamePlural = Unnamed
-Pocket = 4
-Price = 4000
-FieldUse = TM
-Move = IGNITE
-#-------------------------------
-[TMCHILL]
-Name = Unnamed
-NamePlural = Unnamed
-Pocket = 4
-Price = 4000
-FieldUse = TM
-Move = CHILL
-#-------------------------------
-[TMCONFUSERAY]
-Name = Unnamed
-NamePlural = Unnamed
-Pocket = 4
-Price = 4000
-FieldUse = TM
-Move = CONFUSERAY
-#-------------------------------
-[TMLEECHSEED]
-Name = Unnamed
-NamePlural = Unnamed
-Pocket = 4
-Price = 4000
-FieldUse = TM
-Move = LEECHSEED
-#-------------------------------
-[TMFAKETEARS]
-Name = Unnamed
-NamePlural = Unnamed
-Pocket = 4
-Price = 4000
-FieldUse = TM
-Move = FAKETEARS
-#-------------------------------
-[TMDEFOG]
-Name = Unnamed
-NamePlural = Unnamed
-Pocket = 4
-Price = 4000
-FieldUse = TM
-Move = DEFOG
-#-------------------------------
-[TMSTAMPDOWN]
-Name = Unnamed
-NamePlural = Unnamed
-Pocket = 4
-Price = 4000
-FieldUse = TM
-Move = STAMPDOWN
-#-------------------------------
-[TMCLEARSMOG]
-Name = Unnamed
-NamePlural = Unnamed
-Pocket = 4
-Price = 4000
-FieldUse = TM
-Move = CLEARSMOG

@@ -29,6 +29,10 @@ TM_CONVERSION_HASH = {
     :TM21 => :TMREST,
     :TM127 => :TMSLEEPTALK,
     :TM176 => :TMSTEALTHROCK,
+    :TM123 => :TMSPIKES,
+    :TM154 => :TMPOISONSPIKES,
+    :TM151 => :TMFLAMESPIKES,
+    :TM134 => :TMFROSTSPIKES,
     :TM18 => :TMREFLECT,
     :TM17 => :TMLIGHTSCREEN,
     :TM19 => :TMSAFEGUARD,
@@ -37,6 +41,12 @@ TM_CONVERSION_HASH = {
     :TM145 => :TMODDROOM,
     :TM70 => :TMPOLARIZEDROOM,
     :TM103 => :TMTAILWIND,
+    :TM34 => :TMSUNSHINE,
+    :TM33 => :TMRAIN,
+    :TM32 => :TMSANDSTORM,
+    :TM35 => :TMHAIL,
+    :TM196 => :TMMOONGLOW,
+    :TM197 => :TMECLIPSE,
     :TM12 => :TMFOLLOWME,
     :TM183 => :TMALLYSWITCH,
     :TM129 => :TMBATONPASS,
@@ -105,6 +115,11 @@ TM_CONVERSION_HASH = {
     :TM06 => :TMHYDROCANNON,
     :TM11 => :TMROCKWRECKER,
     :TM13 => :TMMETEORASSAULT,
+
+    # Indirect
+    :TM02 => :TMDEFOG,
+    :TM40 => :TMFAKETEARS,
+
 }
 
 TM_CUT_LIST = [
@@ -134,7 +149,7 @@ end
   
 def fixTMs
     TM_CONVERSION_HASH.each do |oldTMID, newTMID|
-        replaceAllCodeInstances(oldTMID.to_s, oldTMID.to_s)
+        replaceAllCodeInstances("(#{oldTMID.to_s},", "(#{newTMID.to_s},")
     end
 
     TM_CUT_LIST.each do |entry|

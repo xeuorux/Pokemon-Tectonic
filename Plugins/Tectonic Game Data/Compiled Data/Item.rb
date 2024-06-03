@@ -128,16 +128,15 @@ module GameData
   
       # @return [String] the translated name of this item
       def name
-        return @id.to_s
-        # if is_TM?
-        #   return _INTL("TM {1}",GameData::Move.get(@move).name)
-        # elsif is_TR?
-        #   return _INTL("TR {1}",GameData::Move.get(@move).name)
-        # elsif is_HM?
-        #   return _INTL("HM {1}",GameData::Move.get(@move).name)
-        # else
-        #   return pbGetMessageFromHash(MessageTypes::Items, @real_name)
-        # end
+        if is_TM?
+          return _INTL("TM {1}",GameData::Move.get(@move).name)
+        elsif is_TR?
+          return _INTL("TR {1}",GameData::Move.get(@move).name)
+        elsif is_HM?
+          return _INTL("HM {1}",GameData::Move.get(@move).name)
+        else
+          return pbGetMessageFromHash(MessageTypes::Items, @real_name)
+        end
       end
   
       # @return [String] the translated plural version of the name of this item
