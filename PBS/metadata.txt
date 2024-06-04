@@ -2904,6 +2904,7 @@ BattleBack = forest_night
 Outdoor = true
 ShowArea = true
 Bicycle = true
+BattleBack = forest_night
 #-------------------------------
 [415]
 # Frigid Overlook

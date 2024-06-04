@@ -268,6 +268,7 @@ class PokEstate
 		commands[commandReceiveUpdate = commands.length] = _INTL("Hear Story") if STORIES_FEATURE_AVAILABLE
 		commands[commandCancel = commands.length] = _INTL("Cancel")
 		
+		setSpeaker(CARETAKER)
 		command = pbMessage(_INTL("What would you like to do?"),commands,commandCancel+1)
 		
 		if commandLandscape > -1 && command == commandLandscape

@@ -1505,6 +1505,7 @@ Description = Upon entry, traps each opponent in a sand tomb for two turns.
 [SATURNALSKY]
 Name = Saturnal Sky
 Description = Changes the weather to Ring Eclipse, which heralds the Total Ring Eclipse. Lingers for 3 turns after leaving.
+Flags = EclipseSynergy
 #-------------------------------
 [SCALDINGSMOKE]
 Name = Scalding Smoke
@@ -1759,6 +1760,7 @@ Flags = MoldBreaking
 [STYGIANNIGHT]
 Name = Stygian Night
 Description = Changes the weather to Blood Moon, which heralds the Full Blood Moon. Lingers for 3 turns after leaving.
+Flags = MoonglowSynergy
 #-------------------------------
 [STYLISH]
 Name = Stylish

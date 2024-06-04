@@ -80,6 +80,8 @@ module MoveInfoDisplay
         # Accuracy
         if moveData.accuracy == 0
           textpos.push(["---", moveInfoColumn2ValueX, 0, 2, faded_base, shadow])
+        elsif
+          textpos.push(["#{moveData.accuracy}%", moveInfoColumn2ValueX, 0, 2, faded_base, shadow])
         else
           textpos.push(["#{moveData.accuracy}%", moveInfoColumn2ValueX, 0, 2, base, shadow])
         end
@@ -222,6 +224,7 @@ module MoveInfoDisplay
       else
           textpos.push(["#{moveData.accuracy}%", column1ValueX, row2ValueY, 2, base, shadow])
       end
+
       # Priority
       textpos.push([moveData.priorityLabel,column2ValueX, row2ValueY, 2, moveData.priority != 0 ? base : faded_base, shadow])
 

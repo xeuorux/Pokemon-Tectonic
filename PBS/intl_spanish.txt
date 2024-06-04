@@ -17562,8 +17562,8 @@ Y no quiero ni pensar en el lío en el piso de arriba.
 
 So, uh, yeah. Welcome to the Beacon.
 Así que, eh, sí. Te doy la bienvenida al Faro.
-Is this your first time up here? I can give you a quick rundown about the place you want.
-¿Es tu primera vez aquí? Puedo darte una breve explicación del lugar que quieras.
+Is this your first time up here? I can give you a quick rundown about the place if you want.
+¿Es tu primera vez aquí? Puedo darte una breve explicación del lugar si quieras.
 Ah, great, then I'll spare myself the time.
 Ah, genial, entonces me ahorraré el tiempo.
 Alright, so when Sweetrock switched over to conveyor belts, a ton of teleporting Clefable suddenly had no role to fill.
@@ -20454,7 +20454,7 @@ Just you wait! Minccino and I are gunning for your spot!
 ¡Sólo espera! ¡Minccino y yo vamos a apuntar por tu puesto!
 Can't let my team get cold, even for just a second!
 ¡No puedo dejar que mi equipo entre en frío, ni siquiera por un segundo!
-The battles that all the Trainers here use are so complex.
+The battle strategies that all the Trainers here use are so complex.
 Los combates que todos los Entrenadores tienen aquí son demasiado complicados.
 Swap in! Swap out! Chip damage! Baiting moves!
 ¡Cambiar Pokémon! ¡Daño residual! ¡Movimientos como cebo!
@@ -21430,7 +21430,7 @@ I respect that a lot. Well done, today.
 Respeto eso. Hoy lo hiciste bien.
 Hello there young competitor!
 ¡Muy buenas joven competidor!
-It hope everything has been running smoothly for you.
+I hope everything has been running smoothly for you.
 Espero que todo te haya ido estupendamente.
 This event is the pride of the city!
 ¡Este evento fue el orgullo de la ciudad!
@@ -21516,7 +21516,7 @@ I'm sorry to say but I didn't see that coming at all.
 Siento decir esto pero no lo vi venir en absoluto.
 The player area is down the western hallway.
 El área de los competidores está en el corredor al oeste.
-Feel free to use our provides trainer services on the way!
+Feel free to use our provided trainer services on the way!
 ¡Siéntete libre de usar nuestros servicios para entrenadores en el camino!
 I'm just here to look like you have security. Talk to the other guy.
 Sólo estoy aquí para que parezca que tienes seguridad. Habla con el otro tipo.
@@ -24509,8 +24509,8 @@ You decide to decline the Cresselia's request for now.
 Decides rechazar el pedido de Cresselia por ahora. 
 You grab a Pokeball from your bag. Something seems strange about it.
 Tomas una Poké Ball de tu mochila. Algo parece extraño al respecto.
-Cresselia gives you a curt know before entering its ball.
-Cresselia hace una seca reverencia antes de entrar a su ball.
+Cresselia gives you a curt nod before entering its ball.
+Cresselia te asiente brevemente antes de entrar en su ball.
 ...
 ...
 Hmph.
@@ -47598,6 +47598,8 @@ All allies' stat changes were eliminated!
 ¡{1} ansía por destrucción!
 {1} is honorable! Status moves lose priority!
 ¡{1} es honorable! ¡Los movimientos de estado pierden prioridad!
+{1} is a killjoy! No one is allowed to dance or make sound!
+¡{1} es un aguafiestas! ¡Nadie puede bailar ni hacer sonidos!
 {1} arrived on a breaking wave!
 ¡{1} llegó sobre una ola!
 {1} is burdened!
