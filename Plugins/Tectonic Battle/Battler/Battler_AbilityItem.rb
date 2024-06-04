@@ -296,9 +296,9 @@ class PokeBattle_Battler
         @battle.triggerBattlerConsumedItemDialogue(self, item)
         if recoverable
             setRecycleItem(item)
-            if itemData.is_berry?
+            if itemData.is_berry? && hasActiveAbility?(:CUDCHEW)
                 applyEffect(:CudChew, 2)
-                applyEffect(:CudChewItem, item) if hasActiveAbility?(:CUDCHEW)
+                applyEffect(:CudChewItem, item)
             end
         end
         setBelched if belch && itemData.is_berry?
