@@ -5,17 +5,19 @@ class PokemonBoxSprite < SpriteWrapper
     attr_accessor :refreshBox
     attr_accessor :refreshSprites
 
-    def initialize(storage, boxnumber, viewport = nil)
+    def initialize(storage, boxnumber, viewport, fadeProc = nil)
         super(viewport)
         @storage = storage
         @boxnumber = boxnumber
         @refreshBox = true
         @refreshSprites = true
         @pokemonsprites = []
+        @fadeProc = fadeProc
         for i in 0...PokemonBox::BOX_SIZE
             @pokemonsprites[i] = nil
             pokemon = @storage[boxnumber, i]
             @pokemonsprites[i] = PokemonBoxIcon.new(pokemon, viewport)
+            @pokemonsprites[i].faded = true if pokemon && @fadeProc && !@fadeProc.call(pokemon)
         end
         @contents = BitmapWrapper.new(324, 296)
         self.bitmap = @contents
@@ -90,6 +92,8 @@ class PokemonBoxSprite < SpriteWrapper
     end
 
     def setPokemon(index, sprite)
+        sprite.faded = true if @fadeProc&.call(sprite.pokemon)
+
         @pokemonsprites[index] = sprite
         @pokemonsprites[index].refresh
         refresh

@@ -105,7 +105,10 @@ class PokemonSpeciesIconSprite < SpriteWrapper
         @animBitmap = AnimatedBitmap.new(bitmapFileName)
         self.bitmap = @animBitmap.bitmap
         if @silhouette
-            self.bitmap = @animBitmap.bitmap.clone
+            newBitmap = @animBitmap.bitmap.clone
+            self.bitmap.dispose
+            self.bitmap = newBitmap
+
             for x in 0..bitmap.width
                 for y in 0..bitmap.height
                   bitmap.set_pixel(x,y,Color.new(200,200,200,255)) if bitmap.get_pixel(x,y).alpha > 0

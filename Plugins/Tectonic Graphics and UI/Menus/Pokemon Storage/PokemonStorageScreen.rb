@@ -15,7 +15,7 @@ class PokemonStorageScreen
     def pbStartScreen(command,ableProc = nil)
         @heldpkmn = nil
         if command == 0 || command == 4 # Organise or Select
-            @scene.pbStartBox(self, command)
+            @scene.pbStartBox(self, command, ableProc)
             loop do
                 selected = @scene.pbSelectBox(@storage.party)
                 if selected.nil?

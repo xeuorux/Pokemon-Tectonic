@@ -3,17 +3,21 @@
 # Party pop-up panel
 #===============================================================================
 class PokemonBoxPartySprite < SpriteWrapper
-    def initialize(party, viewport = nil)
+    def initialize(party, viewport, fadeProc = nil)
         super(viewport)
         @party = party
         party_path = "Graphics/Pictures/Storage/overlay_party"
         party_path += "_dark" if darkMode?
         @boxbitmap = AnimatedBitmap.new(party_path)
         @pokemonsprites = []
+        @fadeProc = fadeProc
         for i in 0...Settings::MAX_PARTY_SIZE
             @pokemonsprites[i] = nil
             pokemon = @party[i]
-            @pokemonsprites[i] = PokemonBoxIcon.new(pokemon, viewport) if pokemon
+            if pokemon
+                @pokemonsprites[i] = PokemonBoxIcon.new(pokemon, viewport)
+                @pokemonsprites[i].faded = true if @fadeProc && !@fadeProc.call(pokemon)
+            end
         end
         @contents = BitmapWrapper.new(172, 352)
         self.bitmap = @contents
@@ -63,6 +67,8 @@ class PokemonBoxPartySprite < SpriteWrapper
     end
 
     def setPokemon(index, sprite)
+        sprite.faded = true if @fadeProc&.call(sprite.pokemon)
+
         @pokemonsprites[index] = sprite
         @pokemonsprites.compact!
         refresh
