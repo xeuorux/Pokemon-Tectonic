@@ -225,7 +225,7 @@ BattleHandlers::AbilityOnSwitchIn.add(:KILLJOY,
   proc { |ability, battler, battle, aiCheck|
       next 0 if aiCheck
       battle.pbShowAbilitySplash(battler, ability)
-      battle.pbDisplay(_INTL("{1} is a killjoy! No one is allowed to dance!", battler.pbThis))
+      battle.pbDisplay(_INTL("{1} is a killjoy! No one is allowed to dance or make sound!", battler.pbThis))
       battle.pbHideAbilitySplash(battler)
   }
 )

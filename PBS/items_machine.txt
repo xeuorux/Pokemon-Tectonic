@@ -1,690 +1,1001 @@
+﻿# See the documentation on the wiki to learn how to edit this file.
+#-------------------------------
 [TMPROTECT]
+Name = Unnamed
+NamePlural = Unnamed
 Pocket = 4
-Price = 5000
+Price = 4000
 FieldUse = TM
 Move = PROTECT
 #-------------------------------
 [TMENDURE]
+Name = Unnamed
+NamePlural = Unnamed
 Pocket = 4
-Price = 5000
+Price = 4000
 FieldUse = TM
 Move = ENDURE
 #-------------------------------
 [TMSUBSTITUTE]
+Name = Unnamed
+NamePlural = Unnamed
 Pocket = 4
-Price = 5000
+Price = 4000
 FieldUse = TM
 Move = SUBSTITUTE
 #-------------------------------
-[TMNUMB]
-Pocket = 4
-Price = 5000
-FieldUse = TM
-Move = NUMB
-#-------------------------------
-[TMENCORE]
-Pocket = 4
-Price = 5000
-FieldUse = TM
-Move = ENCORE
-#-------------------------------
-[TMTAUNT]
-Pocket = 4
-Price = 5000
-FieldUse = TM
-Move = TAUNT
-#-------------------------------
-[TMBAR]
-Pocket = 4
-Price = 5000
-FieldUse = TM
-Move = BAR
-#-------------------------------
-[TMSCARYFACE]
-Pocket = 4
-Price = 5000
-FieldUse = TM
-Move = SCARYFACE
-#-------------------------------
-[TMSCREECH]
-Pocket = 4
-Price = 5000
-FieldUse = TM
-Move = SCREECH
-#-------------------------------
-[TMCHARM]
-Pocket = 4
-Price = 5000
-FieldUse = TM
-Move = CHARM
-#-------------------------------
-[TMEERIEIMPULSE]
-Pocket = 4
-Price = 5000
-FieldUse = TM
-Move = EERIEIMPULSE
-#-------------------------------
-[TMPARTINGSHOT]
-Pocket = 4
-Price = 5000
-FieldUse = TM
-Move = PARTINGSHOT
-#-------------------------------
-[TMAGILITY]
-Pocket = 4
-Price = 5000
-FieldUse = TM
-Move = AGILITY
-#-------------------------------
-[TMIRONDEFENSE]
-Pocket = 4
-Price = 5000
-FieldUse = TM
-Move = IRONDEFENSE
-#-------------------------------
-[TMAMNESIA]
-Pocket = 4
-Price = 5000
-FieldUse = TM
-Move = AMNESIA
-#-------------------------------
-[TMCOSMICPOWER]
-Pocket = 4
-Price = 5000
-FieldUse = TM
-Move = COSMICPOWER
-#-------------------------------
-[TMWORKUP]
-Pocket = 4
-Price = 5000
-FieldUse = TM
-Move = WORKUP
-#-------------------------------
-[TMBULKUP]
-Pocket = 4
-Price = 5000
-FieldUse = TM
-Move = BULKUP
-#-------------------------------
-[TMCALMMIND]
-Pocket = 4
-Price = 5000
-FieldUse = TM
-Move = CALMMIND
-#-------------------------------
-[TMFLOWSTATE]
-Pocket = 4
-Price = 5000
-FieldUse = TM
-Move = FLOWSTATE
-#-------------------------------
-[TMVANGUARD]
-Pocket = 4
-Price = 5000
-FieldUse = TM
-Move = VANGUARD
-#-------------------------------
-[TMAIMTRUE]
-Pocket = 4
-Price = 5000
-FieldUse = TM
-Move = AIMTRUE
-#-------------------------------
-[TMHONECLAWS]
-Pocket = 4
-Price = 5000
-FieldUse = TM
-Move = HONECLAWS
-#-------------------------------
-[TMHONESIGHT]
-Pocket = 4
-Price = 5000
-FieldUse = TM
-Move = HONESIGHT
-#-------------------------------
-[TMFOCUSENERGY]
-Pocket = 4
-Price = 5000
-FieldUse = TM
-Move = FOCUSENERGY
-#-------------------------------
-[TMHEARTSWAP]
-Pocket = 4
-Price = 5000
-FieldUse = TM
-Move = HEARTSWAP
-#-------------------------------
-[TMTRICK]
-Pocket = 4
-Price = 5000
-FieldUse = TM
-Move = TRICK
-#-------------------------------
-[TMREST]
-Pocket = 4
-Price = 5000
-FieldUse = TM
-Move = REST
-#-------------------------------
-[TMSLEEPTALK]
-Pocket = 4
-Price = 5000
-FieldUse = TM
-Move = SLEEPTALK
-#-------------------------------
-[TMSTEALTHROCK]
-Pocket = 4
-Price = 5000
-FieldUse = TM
-Move = STEALTHROCK
-#-------------------------------
-[TMREFLECT]
-Pocket = 4
-Price = 5000
-FieldUse = TM
-Move = REFLECT
-#-------------------------------
-[TMLIGHTSCREEN]
-Pocket = 4
-Price = 5000
-FieldUse = TM
-Move = LIGHTSCREEN
-#-------------------------------
-[TMSAFEGUARD]
-Pocket = 4
-Price = 5000
-FieldUse = TM
-Move = SAFEGUARD
-#-------------------------------
-[TMGREYMIST]
-Pocket = 4
-Price = 5000
-FieldUse = TM
-Move = GREYMIST
-#-------------------------------
-[TMPUZZLEROOM]
-Pocket = 4
-Price = 5000
-FieldUse = TM
-Move = PUZZLEROOM
-#-------------------------------
-[TMODDROOM]
-Pocket = 4
-Price = 5000
-FieldUse = TM
-Move = ODDROOM
-#-------------------------------
-[TMPOLARIZEDROOM]
-Pocket = 4
-Price = 5000
-FieldUse = TM
-Move = POLARIZEDROOM
-#-------------------------------
-[TMTAILWIND]
-Pocket = 4
-Price = 5000
-FieldUse = TM
-Move = TAILWIND
-#-------------------------------
-[TMFOLLOWME]
-Pocket = 4
-Price = 5000
-FieldUse = TM
-Move = FOLLOWME
-#-------------------------------
-[TMALLYSWITCH]
-Pocket = 4
-Price = 5000
-FieldUse = TM
-Move = ALLYSWITCH
-#-------------------------------
-[TMBATONPASS]
-Pocket = 4
-Price = 5000
-FieldUse = TM
-Move = BATONPASS
-#-------------------------------
-[TMMEMENTO]
-Pocket = 4
-Price = 5000
-FieldUse = TM
-Move = MEMENTO
-#-------------------------------
-[TMSELFDESTRUCT]
-Pocket = 4
-Price = 5000
-FieldUse = TM
-Move = SELFDESTRUCT
-#-------------------------------
-[TMEXPLOSION]
-Pocket = 4
-Price = 5000
-FieldUse = TM
-Move = EXPLOSION
-#-------------------------------
-[TMFINALGAMBIT]
-Pocket = 4
-Price = 5000
-FieldUse = TM
-Move = FINALGAMBIT
-#-------------------------------
-[TMWEATHERBURST]
-Pocket = 4
-Price = 5000
-FieldUse = TM
-Move = WEATHERBURST
-#-------------------------------
-[TMCOVET]
-Pocket = 4
-Price = 5000
-FieldUse = TM
-Move = COVET
-#-------------------------------
-[TMRANSACK]
-Pocket = 4
-Price = 5000
-FieldUse = TM
-Move = RANSACK
-#-------------------------------
-[TMTRIATTACK]
-Pocket = 4
-Price = 5000
-FieldUse = TM
-Move = TRIATTACK
-#-------------------------------
-[TMCHAOSWHEEL]
-Pocket = 4
-Price = 5000
-FieldUse = TM
-Move = CHAOSWHEEL
-#-------------------------------
-[TMSNORE]
-Pocket = 4
-Price = 5000
-FieldUse = TM
-Move = SNORE
-#-------------------------------
-[TMRAPIDSPIN]
-Pocket = 4
-Price = 5000
-FieldUse = TM
-Move = RAPIDSPIN
-#-------------------------------
-[TMBODYSLAM]
-Pocket = 4
-Price = 5000
-FieldUse = TM
-Move = BODYSLAM
-#-------------------------------
-[TMNULLPULSE]
-Pocket = 4
-Price = 5000
-FieldUse = TM
-Move = NULLPULSE
-#-------------------------------
-[TMMEGAPUNCH]
-Pocket = 4
-Price = 5000
-FieldUse = TM
-Move = MEGAPUNCH
-#-------------------------------
-[TMHYPERVOICE]
-Pocket = 4
-Price = 5000
-FieldUse = TM
-Move = HYPERVOICE
-#-------------------------------
-[TMINFERNOIMPACT]
-Pocket = 4
-Price = 5000
-FieldUse = TM
-Move = INFERNOIMPACT
-#-------------------------------
-[TMFLAMETHROWER]
-Pocket = 4
-Price = 5000
-FieldUse = TM
-Move = FLAMETHROWER
-#-------------------------------
-[TMLIQUIDATION]
-Pocket = 4
-Price = 5000
-FieldUse = TM
-Move = LIQUIDATION
-#-------------------------------
-[TMBUBBLEBLASTER]
-Pocket = 4
-Price = 5000
-FieldUse = TM
-Move = BUBBLEBLASTER
-#-------------------------------
-[TMLEAFBLADE]
-Pocket = 4
-Price = 5000
-FieldUse = TM
-Move = LEAFBLADE
-#-------------------------------
-[TMENERGYBALL]
-Pocket = 4
-Price = 5000
-FieldUse = TM
-Move = ENERGYBALL
-#-------------------------------
-[TMELECTROSLASH]
-Pocket = 4
-Price = 5000
-FieldUse = TM
-Move = ELECTROSLASH
-#-------------------------------
-[TMTHUNDERBOLT]
-Pocket = 4
-Price = 5000
-FieldUse = TM
-Move = THUNDERBOLT
-#-------------------------------
-[TMGLACIALRAM]
-Pocket = 4
-Price = 5000
-FieldUse = TM
-Move = GLACIALRAM
-#-------------------------------
-[TMICEBEAM]
-Pocket = 4
-Price = 5000
-FieldUse = TM
-Move = ICEBEAM
-#-------------------------------
-[TMBRICKBREAK]
-Pocket = 4
-Price = 5000
-FieldUse = TM
-Move = BRICKBREAK
-#-------------------------------
-[TMAURASPHERE]
-Pocket = 4
-Price = 5000
-FieldUse = TM
-Move = AURASPHERE
-#-------------------------------
-[TMPOISONJAB]
-Pocket = 4
-Price = 5000
-FieldUse = TM
-Move = POISONJAB
-#-------------------------------
-[TMMIASMA]
-Pocket = 4
-Price = 5000
-FieldUse = TM
-Move = MIASMA
-#-------------------------------
-[TMTRAMPLE]
-Pocket = 4
-Price = 5000
-FieldUse = TM
-Move = TRAMPLE
-#-------------------------------
-[TMEARTHPOWER]
-Pocket = 4
-Price = 5000
-FieldUse = TM
-Move = EARTHPOWER
-#-------------------------------
-[TMSTRAFE]
-Pocket = 4
-Price = 5000
-FieldUse = TM
-Move = STRAFE
-#-------------------------------
-[TMCOLDFRONT]
-Pocket = 4
-Price = 5000
-FieldUse = TM
-Move = COLDFRONT
-#-------------------------------
-[TMSEERSTRIKE]
-Pocket = 4
-Price = 5000
-FieldUse = TM
-Move = SEERSTRIKE
-#-------------------------------
-[TMPSYCHIC]
-Pocket = 4
-Price = 5000
-FieldUse = TM
-Move = PSYCHIC
-#-------------------------------
-[TMXSCISSOR]
-Pocket = 4
-Price = 5000
-FieldUse = TM
-Move = XSCISSOR
-#-------------------------------
-[TMBUGBUZZ]
-Pocket = 4
-Price = 5000
-FieldUse = TM
-Move = BUGBUZZ
-#-------------------------------
-[TMADAMANTINEPRESS]
-Pocket = 4
-Price = 5000
-FieldUse = TM
-Move = ADAMANTINEPRESS
-#-------------------------------
-[TMPOWERGEM]
-Pocket = 4
-Price = 5000
-FieldUse = TM
-Move = POWERGEM
-#-------------------------------
-[TMWAILINGBLOW]
-Pocket = 4
-Price = 5000
-FieldUse = TM
-Move = WAILINGBLOW
-#-------------------------------
-[TMSHADOWBALL]
-Pocket = 4
-Price = 5000
-FieldUse = TM
-Move = SHADOWBALL
-#-------------------------------
-[TMREND]
-Pocket = 4
-Price = 5000
-FieldUse = TM
-Move = REND
-#-------------------------------
-[TMDRAGONPULSE]
-Pocket = 4
-Price = 5000
-FieldUse = TM
-Move = DRAGONPULSE
-#-------------------------------
-[TMCRUNCH]
-Pocket = 4
-Price = 5000
-FieldUse = TM
-Move = CRUNCH
-#-------------------------------
-[TMDARKALLURE]
-Pocket = 4
-Price = 5000
-FieldUse = TM
-Move = DARKALLURE
-#-------------------------------
-[TMBULLETTRAIN]
-Pocket = 4
-Price = 5000
-FieldUse = TM
-Move = BULLETTRAIN
-#-------------------------------
-[TMFLASHCANNON]
-Pocket = 4
-Price = 5000
-FieldUse = TM
-Move = FLASHCANNON
-#-------------------------------
-[TMPLAYROUGH]
-Pocket = 4
-Price = 5000
-FieldUse = TM
-Move = PLAYROUGH
-#-------------------------------
-[TMMOONBLAST]
-Pocket = 4
-Price = 5000
-FieldUse = TM
-Move = MOONBLAST
-#-------------------------------
-[TMCRUELTY]
-Pocket = 4
-Price = 5000
-FieldUse = TM
-Move = CRUELTY
-#-------------------------------
-[TMHEX]
-Pocket = 4
-Price = 5000
-FieldUse = TM
-Move = HEX
-#-------------------------------
-[TMBODYPRESS]
-Pocket = 4
-Price = 5000
-FieldUse = TM
-Move = BODYPRESS
-#-------------------------------
-[TMWARDPRESS]
-Pocket = 4
-Price = 5000
-FieldUse = TM
-Move = WARDPRESS
-#-------------------------------
-[TMFOULPLAY]
-Pocket = 4
-Price = 5000
-FieldUse = TM
-Move = FOULPLAY
-#-------------------------------
-[TMTRICKYTOXINS]
-Pocket = 4
-Price = 5000
-FieldUse = TM
-Move = TRICKYTOXINS
-#-------------------------------
-[TMVOLTSWITCH]
-Pocket = 4
-Price = 5000
-FieldUse = TM
-Move = VOLTSWITCH
-#-------------------------------
-[TMUTURN]
-Pocket = 4
-Price = 5000
-FieldUse = TM
-Move = UTURN
-#-------------------------------
-[TMFLIPTURN]
-Pocket = 4
-Price = 5000
-FieldUse = TM
-Move = FLIPTURN
-#-------------------------------
-[TMHYPERBEAM]
-Pocket = 4
-Price = 5000
-FieldUse = TM
-Move = HYPERBEAM
-#-------------------------------
-[TMGIGAIMPACT]
-Pocket = 4
-Price = 5000
-FieldUse = TM
-Move = GIGAIMPACT
-#-------------------------------
-[TMFRENZYPLANT]
-Pocket = 4
-Price = 5000
-FieldUse = TM
-Move = FRENZYPLANT
-#-------------------------------
-[TMBLASTBURN]
-Pocket = 4
-Price = 5000
-FieldUse = TM
-Move = BLASTBURN
-#-------------------------------
-[TMHYDROCANNON]
-Pocket = 4
-Price = 5000
-FieldUse = TM
-Move = HYDROCANNON
-#-------------------------------
-[TMROCKWRECKER]
-Pocket = 4
-Price = 5000
-FieldUse = TM
-Move = ROCKWRECKER
-#-------------------------------
-[TMMETEORASSAULT]
-Pocket = 4
-Price = 5000
-FieldUse = TM
-Move = METEORASSAULT
-#-------------------------------
 [TMPOISONGAS]
+Name = Unnamed
+NamePlural = Unnamed
 Pocket = 4
-Price = 5000
+Price = 4000
 FieldUse = TM
 Move = POISONGAS
 #-------------------------------
 [TMIGNITE]
+Name = Unnamed
+NamePlural = Unnamed
 Pocket = 4
-Price = 5000
+Price = 4000
 FieldUse = TM
 Move = IGNITE
 #-------------------------------
 [TMCHILL]
+Name = Unnamed
+NamePlural = Unnamed
 Pocket = 4
-Price = 5000
+Price = 4000
 FieldUse = TM
 Move = CHILL
 #-------------------------------
-[TMCONFUSERAY]
+[TMNUMB]
+Name = Unnamed
+NamePlural = Unnamed
 Pocket = 4
-Price = 5000
+Price = 4000
+FieldUse = TM
+Move = NUMB
+#-------------------------------
+[TMCONFUSERAY]
+Name = Unnamed
+NamePlural = Unnamed
+Pocket = 4
+Price = 4000
 FieldUse = TM
 Move = CONFUSERAY
 #-------------------------------
 [TMLEECHSEED]
+Name = Unnamed
+NamePlural = Unnamed
 Pocket = 4
-Price = 5000
+Price = 4000
 FieldUse = TM
 Move = LEECHSEED
 #-------------------------------
-[TMFAKETEARS]
+[TMENCORE]
+Name = Unnamed
+NamePlural = Unnamed
 Pocket = 4
-Price = 5000
+Price = 4000
+FieldUse = TM
+Move = ENCORE
+#-------------------------------
+[TMTAUNT]
+Name = Unnamed
+NamePlural = Unnamed
+Pocket = 4
+Price = 4000
+FieldUse = TM
+Move = TAUNT
+#-------------------------------
+[TMBAR]
+Name = Unnamed
+NamePlural = Unnamed
+Pocket = 4
+Price = 4000
+FieldUse = TM
+Move = BAR
+#-------------------------------
+[TMSCARYFACE]
+Name = Unnamed
+NamePlural = Unnamed
+Pocket = 4
+Price = 4000
+FieldUse = TM
+Move = SCARYFACE
+#-------------------------------
+[TMSCREECH]
+Name = Unnamed
+NamePlural = Unnamed
+Pocket = 4
+Price = 4000
+FieldUse = TM
+Move = SCREECH
+#-------------------------------
+[TMFAKETEARS]
+Name = Unnamed
+NamePlural = Unnamed
+Pocket = 4
+Price = 4000
 FieldUse = TM
 Move = FAKETEARS
 #-------------------------------
-[TMDEFOG]
+[TMCHARM]
+Name = Unnamed
+NamePlural = Unnamed
 Pocket = 4
-Price = 5000
+Price = 4000
+FieldUse = TM
+Move = CHARM
+#-------------------------------
+[TMEERIEIMPULSE]
+Name = Unnamed
+NamePlural = Unnamed
+Pocket = 4
+Price = 4000
+FieldUse = TM
+Move = EERIEIMPULSE
+#-------------------------------
+[TMPARTINGSHOT]
+Name = Unnamed
+NamePlural = Unnamed
+Pocket = 4
+Price = 4000
+FieldUse = TM
+Move = PARTINGSHOT
+#-------------------------------
+[TMAGILITY]
+Name = Unnamed
+NamePlural = Unnamed
+Pocket = 4
+Price = 4000
+FieldUse = TM
+Move = AGILITY
+#-------------------------------
+[TMIRONDEFENSE]
+Name = Unnamed
+NamePlural = Unnamed
+Pocket = 4
+Price = 4000
+FieldUse = TM
+Move = IRONDEFENSE
+#-------------------------------
+[TMAMNESIA]
+Name = Unnamed
+NamePlural = Unnamed
+Pocket = 4
+Price = 4000
+FieldUse = TM
+Move = AMNESIA
+#-------------------------------
+[TMCOSMICPOWER]
+Name = Unnamed
+NamePlural = Unnamed
+Pocket = 4
+Price = 4000
+FieldUse = TM
+Move = COSMICPOWER
+#-------------------------------
+[TMWORKUP]
+Name = Unnamed
+NamePlural = Unnamed
+Pocket = 4
+Price = 4000
+FieldUse = TM
+Move = WORKUP
+#-------------------------------
+[TMBULKUP]
+Name = Unnamed
+NamePlural = Unnamed
+Pocket = 4
+Price = 4000
+FieldUse = TM
+Move = BULKUP
+#-------------------------------
+[TMCALMMIND]
+Name = Unnamed
+NamePlural = Unnamed
+Pocket = 4
+Price = 4000
+FieldUse = TM
+Move = CALMMIND
+#-------------------------------
+[TMFLOWSTATE]
+Name = Unnamed
+NamePlural = Unnamed
+Pocket = 4
+Price = 4000
+FieldUse = TM
+Move = FLOWSTATE
+#-------------------------------
+[TMVANGUARD]
+Name = Unnamed
+NamePlural = Unnamed
+Pocket = 4
+Price = 4000
+FieldUse = TM
+Move = VANGUARD
+#-------------------------------
+[TMAIMTRUE]
+Name = Unnamed
+NamePlural = Unnamed
+Pocket = 4
+Price = 4000
+FieldUse = TM
+Move = AIMTRUE
+#-------------------------------
+[TMHONECLAWS]
+Name = Unnamed
+NamePlural = Unnamed
+Pocket = 4
+Price = 4000
+FieldUse = TM
+Move = HONECLAWS
+#-------------------------------
+[TMHONESIGHT]
+Name = Unnamed
+NamePlural = Unnamed
+Pocket = 4
+Price = 4000
+FieldUse = TM
+Move = HONESIGHT
+#-------------------------------
+[TMFOCUSENERGY]
+Name = Unnamed
+NamePlural = Unnamed
+Pocket = 4
+Price = 4000
+FieldUse = TM
+Move = FOCUSENERGY
+#-------------------------------
+[TMHEARTSWAP]
+Name = Unnamed
+NamePlural = Unnamed
+Pocket = 4
+Price = 4000
+FieldUse = TM
+Move = HEARTSWAP
+#-------------------------------
+[TMTRICK]
+Name = Unnamed
+NamePlural = Unnamed
+Pocket = 4
+Price = 4000
+FieldUse = TM
+Move = TRICK
+#-------------------------------
+[TMREST]
+Name = Unnamed
+NamePlural = Unnamed
+Pocket = 4
+Price = 4000
+FieldUse = TM
+Move = REST
+#-------------------------------
+[TMSLEEPTALK]
+Name = Unnamed
+NamePlural = Unnamed
+Pocket = 4
+Price = 4000
+FieldUse = TM
+Move = SLEEPTALK
+#-------------------------------
+[TMSTEALTHROCK]
+Name = Unnamed
+NamePlural = Unnamed
+Pocket = 4
+Price = 4000
+FieldUse = TM
+Move = STEALTHROCK
+#-------------------------------
+[TMSPIKES]
+Name = Unnamed
+NamePlural = Unnamed
+Pocket = 4
+Price = 4000
+FieldUse = TM
+Move = SPIKES
+#-------------------------------
+[TMPOISONSPIKES]
+Name = Unnamed
+NamePlural = Unnamed
+Pocket = 4
+Price = 4000
+FieldUse = TM
+Move = POISONSPIKES
+#-------------------------------
+[TMFLAMESPIKES]
+Name = Unnamed
+NamePlural = Unnamed
+Pocket = 4
+Price = 4000
+FieldUse = TM
+Move = FLAMESPIKES
+#-------------------------------
+[TMFROSTSPIKES]
+Name = Unnamed
+NamePlural = Unnamed
+Pocket = 4
+Price = 4000
+FieldUse = TM
+Move = FROSTSPIKES
+#-------------------------------
+[TMDEFOG]
+Name = Unnamed
+NamePlural = Unnamed
+Pocket = 4
+Price = 4000
 FieldUse = TM
 Move = DEFOG
 #-------------------------------
-[TMSTAMPDOWN]
+[TMREFLECT]
+Name = Unnamed
+NamePlural = Unnamed
 Pocket = 4
-Price = 5000
+Price = 4000
+FieldUse = TM
+Move = REFLECT
+#-------------------------------
+[TMLIGHTSCREEN]
+Name = Unnamed
+NamePlural = Unnamed
+Pocket = 4
+Price = 4000
+FieldUse = TM
+Move = LIGHTSCREEN
+#-------------------------------
+[TMSAFEGUARD]
+Name = Unnamed
+NamePlural = Unnamed
+Pocket = 4
+Price = 4000
+FieldUse = TM
+Move = SAFEGUARD
+#-------------------------------
+[TMGREYMIST]
+Name = Unnamed
+NamePlural = Unnamed
+Pocket = 4
+Price = 4000
+FieldUse = TM
+Move = GREYMIST
+#-------------------------------
+[TMPUZZLEROOM]
+Name = Unnamed
+NamePlural = Unnamed
+Pocket = 4
+Price = 4000
+FieldUse = TM
+Move = PUZZLEROOM
+#-------------------------------
+[TMODDROOM]
+Name = Unnamed
+NamePlural = Unnamed
+Pocket = 4
+Price = 4000
+FieldUse = TM
+Move = ODDROOM
+#-------------------------------
+[TMPOLARIZEDROOM]
+Name = Unnamed
+NamePlural = Unnamed
+Pocket = 4
+Price = 4000
+FieldUse = TM
+Move = POLARIZEDROOM
+#-------------------------------
+[TMTAILWIND]
+Name = Unnamed
+NamePlural = Unnamed
+Pocket = 4
+Price = 4000
+FieldUse = TM
+Move = TAILWIND
+#-------------------------------
+[TMSUNSHINE]
+Name = Unnamed
+NamePlural = Unnamed
+Pocket = 4
+Price = 4000
+FieldUse = TM
+Move = SUNSHINE
+#-------------------------------
+[TMRAIN]
+Name = Unnamed
+NamePlural = Unnamed
+Pocket = 4
+Price = 4000
+FieldUse = TM
+Move = RAIN
+#-------------------------------
+[TMSANDSTORM]
+Name = Unnamed
+NamePlural = Unnamed
+Pocket = 4
+Price = 4000
+FieldUse = TM
+Move = SANDSTORM
+#-------------------------------
+[TMHAIL]
+Name = Unnamed
+NamePlural = Unnamed
+Pocket = 4
+Price = 4000
+FieldUse = TM
+Move = HAIL
+#-------------------------------
+[TMMOONGLOW]
+Name = Unnamed
+NamePlural = Unnamed
+Pocket = 4
+Price = 4000
+FieldUse = TM
+Move = MOONGLOW
+#-------------------------------
+[TMECLIPSE]
+Name = Unnamed
+NamePlural = Unnamed
+Pocket = 4
+Price = 4000
+FieldUse = TM
+Move = ECLIPSE
+#-------------------------------
+[TMFOLLOWME]
+Name = Unnamed
+NamePlural = Unnamed
+Pocket = 4
+Price = 4000
+FieldUse = TM
+Move = FOLLOWME
+#-------------------------------
+[TMALLYSWITCH]
+Name = Unnamed
+NamePlural = Unnamed
+Pocket = 4
+Price = 4000
+FieldUse = TM
+Move = ALLYSWITCH
+#-------------------------------
+[TMBATONPASS]
+Name = Unnamed
+NamePlural = Unnamed
+Pocket = 4
+Price = 4000
+FieldUse = TM
+Move = BATONPASS
+#-------------------------------
+[TMMEMENTO]
+Name = Unnamed
+NamePlural = Unnamed
+Pocket = 4
+Price = 4000
+FieldUse = TM
+Move = MEMENTO
+#-------------------------------
+[TMSELFDESTRUCT]
+Name = Unnamed
+NamePlural = Unnamed
+Pocket = 4
+Price = 4000
+FieldUse = TM
+Move = SELFDESTRUCT
+#-------------------------------
+[TMEXPLOSION]
+Name = Unnamed
+NamePlural = Unnamed
+Pocket = 4
+Price = 4000
+FieldUse = TM
+Move = EXPLOSION
+#-------------------------------
+[TMFINALGAMBIT]
+Name = Unnamed
+NamePlural = Unnamed
+Pocket = 4
+Price = 4000
+FieldUse = TM
+Move = FINALGAMBIT
+#-------------------------------
+[TMWEATHERBURST]
+Name = Unnamed
+NamePlural = Unnamed
+Pocket = 4
+Price = 4000
+FieldUse = TM
+Move = WEATHERBURST
+#-------------------------------
+[TMCOVET]
+Name = Unnamed
+NamePlural = Unnamed
+Pocket = 4
+Price = 4000
+FieldUse = TM
+Move = COVET
+#-------------------------------
+[TMRANSACK]
+Name = Unnamed
+NamePlural = Unnamed
+Pocket = 4
+Price = 4000
+FieldUse = TM
+Move = RANSACK
+#-------------------------------
+[TMTRIATTACK]
+Name = Unnamed
+NamePlural = Unnamed
+Pocket = 4
+Price = 4000
+FieldUse = TM
+Move = TRIATTACK
+#-------------------------------
+[TMCHAOSWHEEL]
+Name = Unnamed
+NamePlural = Unnamed
+Pocket = 4
+Price = 4000
+FieldUse = TM
+Move = CHAOSWHEEL
+#-------------------------------
+[TMSNORE]
+Name = Unnamed
+NamePlural = Unnamed
+Pocket = 4
+Price = 4000
+FieldUse = TM
+Move = SNORE
+#-------------------------------
+[TMRAPIDSPIN]
+Name = Unnamed
+NamePlural = Unnamed
+Pocket = 4
+Price = 4000
+FieldUse = TM
+Move = RAPIDSPIN
+#-------------------------------
+[TMBODYSLAM]
+Name = Unnamed
+NamePlural = Unnamed
+Pocket = 4
+Price = 4000
+FieldUse = TM
+Move = BODYSLAM
+#-------------------------------
+[TMNULLPULSE]
+Name = Unnamed
+NamePlural = Unnamed
+Pocket = 4
+Price = 4000
+FieldUse = TM
+Move = NULLPULSE
+#-------------------------------
+[TMMEGAPUNCH]
+Name = Unnamed
+NamePlural = Unnamed
+Pocket = 4
+Price = 4000
+FieldUse = TM
+Move = MEGAPUNCH
+#-------------------------------
+[TMHYPERVOICE]
+Name = Unnamed
+NamePlural = Unnamed
+Pocket = 4
+Price = 4000
+FieldUse = TM
+Move = HYPERVOICE
+#-------------------------------
+[TMINFERNOIMPACT]
+Name = Unnamed
+NamePlural = Unnamed
+Pocket = 4
+Price = 4000
+FieldUse = TM
+Move = INFERNOIMPACT
+#-------------------------------
+[TMFLAMETHROWER]
+Name = Unnamed
+NamePlural = Unnamed
+Pocket = 4
+Price = 4000
+FieldUse = TM
+Move = FLAMETHROWER
+#-------------------------------
+[TMLIQUIDATION]
+Name = Unnamed
+NamePlural = Unnamed
+Pocket = 4
+Price = 4000
+FieldUse = TM
+Move = LIQUIDATION
+#-------------------------------
+[TMBUBBLEBLASTER]
+Name = Unnamed
+NamePlural = Unnamed
+Pocket = 4
+Price = 4000
+FieldUse = TM
+Move = BUBBLEBLASTER
+#-------------------------------
+[TMLEAFBLADE]
+Name = Unnamed
+NamePlural = Unnamed
+Pocket = 4
+Price = 4000
+FieldUse = TM
+Move = LEAFBLADE
+#-------------------------------
+[TMENERGYBALL]
+Name = Unnamed
+NamePlural = Unnamed
+Pocket = 4
+Price = 4000
+FieldUse = TM
+Move = ENERGYBALL
+#-------------------------------
+[TMELECTROSLASH]
+Name = Unnamed
+NamePlural = Unnamed
+Pocket = 4
+Price = 4000
+FieldUse = TM
+Move = ELECTROSLASH
+#-------------------------------
+[TMTHUNDERBOLT]
+Name = Unnamed
+NamePlural = Unnamed
+Pocket = 4
+Price = 4000
+FieldUse = TM
+Move = THUNDERBOLT
+#-------------------------------
+[TMGLACIALRAM]
+Name = Unnamed
+NamePlural = Unnamed
+Pocket = 4
+Price = 4000
+FieldUse = TM
+Move = GLACIALRAM
+#-------------------------------
+[TMICEBEAM]
+Name = Unnamed
+NamePlural = Unnamed
+Pocket = 4
+Price = 4000
+FieldUse = TM
+Move = ICEBEAM
+#-------------------------------
+[TMBRICKBREAK]
+Name = Unnamed
+NamePlural = Unnamed
+Pocket = 4
+Price = 4000
+FieldUse = TM
+Move = BRICKBREAK
+#-------------------------------
+[TMAURASPHERE]
+Name = Unnamed
+NamePlural = Unnamed
+Pocket = 4
+Price = 4000
+FieldUse = TM
+Move = AURASPHERE
+#-------------------------------
+[TMPOISONJAB]
+Name = Unnamed
+NamePlural = Unnamed
+Pocket = 4
+Price = 4000
+FieldUse = TM
+Move = POISONJAB
+#-------------------------------
+[TMMIASMA]
+Name = Unnamed
+NamePlural = Unnamed
+Pocket = 4
+Price = 4000
+FieldUse = TM
+Move = MIASMA
+#-------------------------------
+[TMTRAMPLE]
+Name = Unnamed
+NamePlural = Unnamed
+Pocket = 4
+Price = 4000
+FieldUse = TM
+Move = TRAMPLE
+#-------------------------------
+[TMEARTHPOWER]
+Name = Unnamed
+NamePlural = Unnamed
+Pocket = 4
+Price = 4000
+FieldUse = TM
+Move = EARTHPOWER
+#-------------------------------
+[TMSTRAFE]
+Name = Unnamed
+NamePlural = Unnamed
+Pocket = 4
+Price = 4000
+FieldUse = TM
+Move = STRAFE
+#-------------------------------
+[TMCOLDFRONT]
+Name = Unnamed
+NamePlural = Unnamed
+Pocket = 4
+Price = 4000
+FieldUse = TM
+Move = COLDFRONT
+#-------------------------------
+[TMSEERSTRIKE]
+Name = Unnamed
+NamePlural = Unnamed
+Pocket = 4
+Price = 4000
+FieldUse = TM
+Move = SEERSTRIKE
+#-------------------------------
+[TMPSYCHIC]
+Name = Unnamed
+NamePlural = Unnamed
+Pocket = 4
+Price = 4000
+FieldUse = TM
+Move = PSYCHIC
+#-------------------------------
+[TMXSCISSOR]
+Name = Unnamed
+NamePlural = Unnamed
+Pocket = 4
+Price = 4000
+FieldUse = TM
+Move = XSCISSOR
+#-------------------------------
+[TMBUGBUZZ]
+Name = Unnamed
+NamePlural = Unnamed
+Pocket = 4
+Price = 4000
+FieldUse = TM
+Move = BUGBUZZ
+#-------------------------------
+[TMADAMANTINEPRESS]
+Name = Unnamed
+NamePlural = Unnamed
+Pocket = 4
+Price = 4000
+FieldUse = TM
+Move = ADAMANTINEPRESS
+#-------------------------------
+[TMPOWERGEM]
+Name = Unnamed
+NamePlural = Unnamed
+Pocket = 4
+Price = 4000
+FieldUse = TM
+Move = POWERGEM
+#-------------------------------
+[TMWAILINGBLOW]
+Name = Unnamed
+NamePlural = Unnamed
+Pocket = 4
+Price = 4000
+FieldUse = TM
+Move = WAILINGBLOW
+#-------------------------------
+[TMSHADOWBALL]
+Name = Unnamed
+NamePlural = Unnamed
+Pocket = 4
+Price = 4000
+FieldUse = TM
+Move = SHADOWBALL
+#-------------------------------
+[TMREND]
+Name = Unnamed
+NamePlural = Unnamed
+Pocket = 4
+Price = 4000
+FieldUse = TM
+Move = REND
+#-------------------------------
+[TMDRAGONPULSE]
+Name = Unnamed
+NamePlural = Unnamed
+Pocket = 4
+Price = 4000
+FieldUse = TM
+Move = DRAGONPULSE
+#-------------------------------
+[TMCRUNCH]
+Name = Unnamed
+NamePlural = Unnamed
+Pocket = 4
+Price = 4000
+FieldUse = TM
+Move = CRUNCH
+#-------------------------------
+[TMDARKALLURE]
+Name = Unnamed
+NamePlural = Unnamed
+Pocket = 4
+Price = 4000
+FieldUse = TM
+Move = DARKALLURE
+#-------------------------------
+[TMBULLETTRAIN]
+Name = Unnamed
+NamePlural = Unnamed
+Pocket = 4
+Price = 4000
+FieldUse = TM
+Move = BULLETTRAIN
+#-------------------------------
+[TMFLASHCANNON]
+Name = Unnamed
+NamePlural = Unnamed
+Pocket = 4
+Price = 4000
+FieldUse = TM
+Move = FLASHCANNON
+#-------------------------------
+[TMPLAYROUGH]
+Name = Unnamed
+NamePlural = Unnamed
+Pocket = 4
+Price = 4000
+FieldUse = TM
+Move = PLAYROUGH
+#-------------------------------
+[TMMOONBLAST]
+Name = Unnamed
+NamePlural = Unnamed
+Pocket = 4
+Price = 4000
+FieldUse = TM
+Move = MOONBLAST
+#-------------------------------
+[TMSTAMPDOWN]
+Name = Unnamed
+NamePlural = Unnamed
+Pocket = 4
+Price = 4000
 FieldUse = TM
 Move = STAMPDOWN
 #-------------------------------
 [TMCLEARSMOG]
+Name = Unnamed
+NamePlural = Unnamed
 Pocket = 4
-Price = 5000
+Price = 4000
 FieldUse = TM
 Move = CLEARSMOG
 #-------------------------------
+[TMCRUELTY]
+Name = Unnamed
+NamePlural = Unnamed
+Pocket = 4
+Price = 4000
+FieldUse = TM
+Move = CRUELTY
+#-------------------------------
+[TMHEX]
+Name = Unnamed
+NamePlural = Unnamed
+Pocket = 4
+Price = 4000
+FieldUse = TM
+Move = HEX
+#-------------------------------
+[TMBODYPRESS]
+Name = Unnamed
+NamePlural = Unnamed
+Pocket = 4
+Price = 4000
+FieldUse = TM
+Move = BODYPRESS
+#-------------------------------
+[TMWARDPRESS]
+Name = Unnamed
+NamePlural = Unnamed
+Pocket = 4
+Price = 4000
+FieldUse = TM
+Move = WARDPRESS
+#-------------------------------
+[TMFOULPLAY]
+Name = Unnamed
+NamePlural = Unnamed
+Pocket = 4
+Price = 4000
+FieldUse = TM
+Move = FOULPLAY
+#-------------------------------
+[TMTRICKYTOXINS]
+Name = Unnamed
+NamePlural = Unnamed
+Pocket = 4
+Price = 4000
+FieldUse = TM
+Move = TRICKYTOXINS
+#-------------------------------
+[TMVOLTSWITCH]
+Name = Unnamed
+NamePlural = Unnamed
+Pocket = 4
+Price = 4000
+FieldUse = TM
+Move = VOLTSWITCH
+#-------------------------------
+[TMUTURN]
+Name = Unnamed
+NamePlural = Unnamed
+Pocket = 4
+Price = 4000
+FieldUse = TM
+Move = UTURN
+#-------------------------------
+[TMFLIPTURN]
+Name = Unnamed
+NamePlural = Unnamed
+Pocket = 4
+Price = 4000
+FieldUse = TM
+Move = FLIPTURN
+#-------------------------------
+[TMHYPERBEAM]
+Name = Unnamed
+NamePlural = Unnamed
+Pocket = 4
+Price = 4000
+FieldUse = TM
+Move = HYPERBEAM
+#-------------------------------
+[TMGIGAIMPACT]
+Name = Unnamed
+NamePlural = Unnamed
+Pocket = 4
+Price = 4000
+FieldUse = TM
+Move = GIGAIMPACT
+#-------------------------------
+[TMFRENZYPLANT]
+Name = Unnamed
+NamePlural = Unnamed
+Pocket = 4
+Price = 4000
+FieldUse = TM
+Move = FRENZYPLANT
+#-------------------------------
+[TMBLASTBURN]
+Name = Unnamed
+NamePlural = Unnamed
+Pocket = 4
+Price = 4000
+FieldUse = TM
+Move = BLASTBURN
+#-------------------------------
+[TMHYDROCANNON]
+Name = Unnamed
+NamePlural = Unnamed
+Pocket = 4
+Price = 4000
+FieldUse = TM
+Move = HYDROCANNON
+#-------------------------------
+[TMROCKWRECKER]
+Name = Unnamed
+NamePlural = Unnamed
+Pocket = 4
+Price = 4000
+FieldUse = TM
+Move = ROCKWRECKER
+#-------------------------------
+[TMMETEORASSAULT]
+Name = Unnamed
+NamePlural = Unnamed
+Pocket = 4
+Price = 4000
+FieldUse = TM
+Move = METEORASSAULT

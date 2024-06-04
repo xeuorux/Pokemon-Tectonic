@@ -341,12 +341,12 @@ CAN_SELL_IN_VENDORS = true
 
 def weatherTMSell()
 	weatherTMStock = %i[
-		TM32
-		TM33
-		TM34
-		TM35
-		TM196
-		TM197
+		TMSUNSHINE
+		TMRAIN
+		TMSANDSTORM
+		TMHAIL
+		TMMOONGLOW
+		TMECLIPSE
 	]
 	pbPokemonMart(
 		weatherTMStock,
@@ -357,14 +357,14 @@ end
 
 def spikesTMSell()
 	spikeTMStock = %i[
-		TM123
-		TM134
-		TM151
-		TM154
+		TMSPIKES
+		TMFLAMESPIKES
+		TMFROSTSPIKES
+		TMPOISONSPIKES
 	]
 	pbPokemonMart(
 		spikeTMStock,
-		_INTL("Care to buy some?"),
+		_INTL("You see their value, don't you?"),
 		!CAN_SELL_IN_VENDORS
 	)
 end
@@ -438,29 +438,29 @@ def tmShop
 	# Play Rough, Moon Blast
 
 	tmsStock = %i[
-		TM49 TM142
-		TM141 TM102
-		TM198 TM96
+		TMMEGAPUNCH TMHYPERVOICE
+		TMINFERNOIMPACT TMFLAMETHROWER
+		TMLIQUIDATION TMBUBBLEBLASTER
 
-		TM150 TM28
-		TM186 TM108
-		TM51 TM105
+		TMLEAFBLADE TMENERGYBALL
+		TMELECTROSLASH TMTHUNDERBOLT
+		TMGLACIALRAM TMICEBEAM
 
-		TM43 TM156
-		TM157 TM178
-		TM187 TM167
+		TMBRICKBREAK TMAURASPHERE
+		TMPOISONJAB TMMIASMA
+		TMTRAMPLE TMEARTHPOWER
 
-		TM48 TM95
-		TM169 TM111
-		TM160 TM161
+		TMSTRAFE TMCOLDFRONT
+		TMSEERSTRIKE TMPSYCHIC
+		TMXSCISSOR TMBUGBUZZ
 
-		TM175 TM163
-		TM54 TM133
-		TM147 TM162
+		TMADAMANTINEPRESS TMPOWERGEM
+		TMWAILINGBLOW TMSHADOWBALL
+		TMREND TMDRAGONPULSE
 
-		TM132 TM158
-		TM174 TM170
-		TM190 TM192
+		TMCRUNCH TMDARKALLURE
+		TMBULLETTRAIN TMFLASHCANNON
+		TMPLAYROUGH TMMOONBLAST
 	]
 
 	pbPokemonMart(
@@ -472,17 +472,17 @@ end
 
 def hackedTMShop
 	tmsStock = %i[
-		TM04
-		TM05
-		TM06
-		TM11
-		TM13
-		TM22
-		TM23
-		TM27
-		TM85
-		TM114
-		TM176
+		TMFRENZYPLANT
+		TMBLASTBURN
+		TMHYDROCANNON
+		TMROCKWRECKER
+		TMMETEORASSAULT
+		TMEXPLOSION
+		TMMEMENTO
+		TMRAPIDSPIN
+		TMFINALGAMBIT
+		TMAIMTRUE
+		TMSTEALTHROCK
 	]
 
 	pbPokemonMart(
@@ -494,27 +494,15 @@ end
 
 def switchOutTMShop
 	tmsStock = %i[
-		TM88
-		TM89
-		TM90
-		TM91
+		TMVOLTSWITCH
+		TMUTURN
+		TMFLIPTURN
+		TMPARTINGSHOT
 	]
 
 	pbPokemonMart(
 		tmsStock,
 		_INTL("I'm sure you'll appreciate one of these."),
-		!CAN_SELL_IN_VENDORS
-	)
-end
-
-def rechargeTMShop
-	tmsStock = %i[
-
-	]
-
-	pbPokemonMart(
-		tmsStock,
-		_INTL("Don't delay. Buy now!"),
 		!CAN_SELL_IN_VENDORS
 	)
 end
@@ -807,6 +795,22 @@ def typeBoostingVendor
 	pbPokemonMart(
 		herbStock,
 		_INTL("What're ya buyin'?"),
+		!CAN_SELL_IN_VENDORS
+	)
+end
+
+def statusTMVendor()
+	spikeTMStock = %i[
+		TMPOISONGAS
+		TMIGNITE
+		TMCHILL
+		TMNUMB
+		TMLEECHSEED
+		TMCONFUSERAY
+	]
+	pbPokemonMart(
+		spikeTMStock,
+		_INTL("Any interest in buying?"),
 		!CAN_SELL_IN_VENDORS
 	)
 end
