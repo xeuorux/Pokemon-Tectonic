@@ -155,7 +155,6 @@ class PokemonRegionMap_Scene
             newWaypointSprite.viewport = @viewport
             newWaypointSprite.x        = -SQUAREWIDTH / 2 + (xPos * SQUAREWIDTH) + (Graphics.width - @sprites["map"].bitmap.width) / 2
             newWaypointSprite.y        = -SQUAREHEIGHT / 2 + (yPos * SQUAREHEIGHT) + (Graphics.height - @sprites["map"].bitmap.height) / 2
-            newWaypointSprite.play
             newWaypointSprite.visible = false
             @sprites["point#{index}"] = newWaypointSprite
 
@@ -262,7 +261,16 @@ class PokemonRegionMap_Scene
         newY = 0
         @sprites["cursor"].x = -SQUAREWIDTH / 2 + (@mapX * SQUAREWIDTH) + (Graphics.width - @sprites["map"].bitmap.width) / 2
         @sprites["cursor"].y = -SQUAREHEIGHT / 2 + (@mapY * SQUAREHEIGHT) + (Graphics.height - @sprites["map"].bitmap.height) / 2
-        waypointsShowing = mode == 2
+       
+        $PokemonGlobal.town_map_waypoints_showing = false if $PokemonGlobal.town_map_waypoints_showing.nil?
+        waypointsShowing = mode == 2 || $PokemonGlobal.town_map_waypoints_showing
+        if waypointsShowing
+            @waypoints.each do |waypointSprite|
+                waypointSprite.visible = true
+                waypointSprite.play
+            end
+        end
+
 		loop do
             Graphics.update
             Input.update
@@ -283,13 +291,15 @@ class PokemonRegionMap_Scene
                 @sprites["cursor"].y = newY - yOffset
                 next
             end
-			@waypoints.each do |waypointSprite|
-                waypointSprite.visible = waypointsShowing
-            end
-			if waypointsShowing
-            	@sprites["mapbottom"].waypointName = _INTL($waypoints_tracker.getWaypointAtMapPosition(@mapX, @mapY)) || ""
-			elsif mode == 0 && !waypointsShowing
-				@sprites["mapbottom"].waypointName = _INTL("ACTION/Z to toggle Totems")
+            currentWaypoint = $waypoints_tracker.getWaypointAtMapPosition(@mapX, @mapY)
+            if mode == 0 && !waypointsShowing || currentWaypoint.nil?
+                if waypointsShowing
+                    @sprites["mapbottom"].waypointName = _INTL("ACTION/Z to hide Totems")
+                else
+                    @sprites["mapbottom"].waypointName = _INTL("ACTION/Z to view Totems")
+                end
+			elsif waypointsShowing
+            	@sprites["mapbottom"].waypointName = _INTL(currentWaypoint)
 			end
             @sprites["mapbottom"].maplocation = pbGetMapLocation(@mapX, @mapY)
             @sprites["mapbottom"].mapdetails  = pbGetMapDetails(@mapX, @mapY)
@@ -341,8 +351,19 @@ class PokemonRegionMap_Scene
             elsif Input.trigger?(Input::USE) && @editor   # Intentionally after other USE input check
                 pbChangeMapLocation(@mapX, @mapY)
 			elsif Input.trigger?(Input::ACTION) && mode == 0
-				waypointsShowing = !waypointsShowing
-
+                waypointsShowing = !waypointsShowing
+                $PokemonGlobal.town_map_waypoints_showing = waypointsShowing
+                if waypointsShowing
+                    @waypoints.each do |waypointSprite|
+                        waypointSprite.visible = true
+                        waypointSprite.play
+                    end
+                else
+                    @waypoints.each do |waypointSprite|
+                        waypointSprite.visible = false
+                        waypointSprite.stop
+                    end
+                end
             end
         end
         pbPlayCloseMenuSE

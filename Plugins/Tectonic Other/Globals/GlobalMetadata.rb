@@ -72,6 +72,8 @@ class PokemonGlobalMetadata
     attr_accessor :noise_machine_state # 0 = off, 1 = stopping encounters, 2 = increasing encounter rate
     # Punching bag in player house
     attr_accessor :exp_multiplier
+    # Town map
+    attr_accessor :town_map_waypoints_showing
 	
 	def initialize
         # Movement
@@ -136,6 +138,7 @@ class PokemonGlobalMetadata
         @omnitutor_active     = false
         @noise_machine_state  = 0
         @exp_multiplier       = 1.0
+        @town_map_waypoints_showing = false
     end
 
     ####################################################
