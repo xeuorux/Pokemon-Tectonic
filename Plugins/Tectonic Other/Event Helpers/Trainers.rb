@@ -327,8 +327,20 @@ def createPokemonInteractionEventPage(pokemon,originalPage = nil)
 	newPage.trigger = 0 # Action button
 	newPage.list = []
 	push_script(newPage.list,sprintf("Pokemon.play_cry(:%s, %d)",pokemon.species,pokemon.form))
-	cryOutMessage = _INTL("#{pokemon.name} cries out!")
+	cryOutMessage = _INTL("{1} cries out!",pokemon.name)
 	push_script(newPage.list,sprintf("pbMessage(\"#{cryOutMessage}\")"))
+
+	if pokemon.itemCount == 2
+		itemName1 = getItemName(pokemon.items[0])
+		itemName2 = getItemName(pokemon.items[1])
+		itemMessage = _INTL("It's holding a {1} and a {2}!", itemName1, itemName2)
+		push_script(newPage.list,sprintf("pbMessage(\"#{itemMessage}\")"))
+	elsif pokemon.itemCount == 1
+		itemName = pokemon.firstItemData.name
+		itemMessage = _INTL("It's holding a {1}!", itemName)
+		push_script(newPage.list,sprintf("pbMessage(\"#{itemMessage}\")"))
+	end
+	
 	push_end(newPage.list)
 
 	return newPage

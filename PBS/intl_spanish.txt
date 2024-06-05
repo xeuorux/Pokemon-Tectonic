@@ -23864,6 +23864,7 @@ I head the deodorant sales division at Miss Dreavus cosmetics.
 Dirijo la división de ventas de desodorantes en Miss Dreavus Cosmetics.
 My team just clinched a cross-promotional deal with LuxTech!
 ¡Mi equipo acaba de cerrar un acuerdo de promoción cruzada con LuxTech!
+We already have samples. Please, take one!
 Ya tenemos muestras. ¡Por favor, tome uno!
 Achieve haunting cleanliness with Miss Dreavus.
 Logra una limpieza inquietante con Miss Dreavus.
@@ -52313,8 +52314,12 @@ Dónde diriges poder
 ¡{1} pilota al combate!
 {1} absorbs the damage from the poison.
 {1} absorbe el daño del veneno.
-#{pokemon.name} cries out!
-¡#{pokemon.name} chilla!
+{1} cries out!
+¡{1} chilla!
+It's holding a {1}!
+¡Tiene un {1}!
+It's holding a {1} and a {2}!
+¡Tiene un {1} y un {2}!
 \me[Earn battle points]\ptYou've earned #{battlePointsAdded} battle points.\wtnp[70]
 \me[Earn battle points]\ptHas ganado #{battlePointsAdded} puntos de batalla.\wtnp[70]
 Battle Monument
