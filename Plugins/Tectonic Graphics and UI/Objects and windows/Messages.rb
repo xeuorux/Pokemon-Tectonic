@@ -49,7 +49,7 @@ def pbEventCommentInput(*args)
 		finish = start + elements
 		for id in start...finish
 			next unless list[id]
-		parameters.push(list[id].parameters[0])
+			parameters.push(list[id].parameters[0])
 		end
 		return parameters
 	end

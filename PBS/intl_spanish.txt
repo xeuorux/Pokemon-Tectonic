@@ -23860,6 +23860,16 @@ Luxtech has been so successful for the region that new housing being developed.
 Luxtech ha sido tan exitosa para la región que nuevo alojamiento está siendo desarrollado.
 Helena herself has taken residence in the freshly manicured County Park.
 La propia Helena ha empezado a vivir en el recientemente fundado Parque del Condado.
+I head the deodorant sales division at Miss Dreavus cosmetics.
+Dirijo la división de ventas de desodorantes en Miss Dreavus Cosmetics.
+My team just clinched a cross-promotional deal with LuxTech!
+¡Mi equipo acaba de cerrar un acuerdo de promoción cruzada con LuxTech!
+We already have samples. Please, take one!
+Ya tenemos muestras. ¡Por favor, tome uno!
+Achieve haunting cleanliness with Miss Dreavus.
+Logra una limpieza inquietante con Miss Dreavus.
+Never leave home without your Clear Smog. It's like magic!
+Nunca salgas de casa sin tu Clear Smog. ¡Es como magia!
 
 [Map395]
 
@@ -46102,8 +46112,10 @@ Can't use that while on a bicycle.
 No puedes usar eso mientras estás en la bicicleta.
 No proper map position is known for totem ID {1}. Please inform a programmer about this.
 No se conoce la posición adecuada en el mapa para el ID del tótem {1}. Por favor informe a un programador sobre esto.
-ACTION/Z to toggle Totems
-ACTION/Z para alternar Tótems
+ACTION/Z to view Totems
+ACCIÓN/Z para ver Tótems
+ACTION/Z to hide Totems
+ACCIÓN/Z para ocultar Tótems
 {1} forgot {2}...
 {1} olvidó {2}...
 1,\wt<<[>>16<<]>> 2, and\wt<<[>>16<<]>>...\wt<<[>>16<<]>> ...\wt<<[>>16<<]>> ... Ta-da!\se<<[>>Battle ball drop<<]>><<1>>
@@ -52304,8 +52316,12 @@ Dónde diriges poder
 ¡{1} pilota al combate!
 {1} absorbs the damage from the poison.
 {1} absorbe el daño del veneno.
-#{pokemon.name} cries out!
-¡#{pokemon.name} chilla!
+{1} cries out!
+¡{1} chilla!
+It's holding a {1}!
+¡Tiene un {1}!
+It's holding a {1} and a {2}!
+¡Tiene un {1} y un {2}!
 \me[Earn battle points]\ptYou've earned #{battlePointsAdded} battle points.\wtnp[70]
 \me[Earn battle points]\ptHas ganado #{battlePointsAdded} puntos de batalla.\wtnp[70]
 Battle Monument
