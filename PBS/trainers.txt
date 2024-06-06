@@ -540,15 +540,20 @@ Pokemon = PIKACHU,24
     Item = ELECTRICGEM
 #-------------------------------
 [POKEKID,Braden]
-Pokemon = CACNEA,21
-    AbilityIndex = 1 # Schadenfreude
-Pokemon = TRUBBISH,22
-    AbilityIndex = 1 # Vengeance
-    Item = SITRUSBERRY
 Pokemon = MONFERNO,22
+    Moves = MACHPUNCH,KNOCKOFF,FIREPUNCH,TAUNT
     AbilityIndex = 0 # Mystic Fist
-Pokemon = VENIPEDE,23
-    AbilityIndex = 1 # Stamina
+Pokemon = CACNEA,21
+    Moves = LEECHSEED,NEEDLEARM,FEINTATTACK,CAUSTICPUNCH
+    AbilityIndex = 0 # Heartless
+    Item = SITRUSBERRY
+Pokemon = KROKOROK,22
+    Moves = BRUTALSWING,BULLDOZE,TORMENT,SNARL
+    AbilityIndex = 1 # Regenerator
+    Item = GROUNDGEM
+Pokemon = VOLTORB,22
+    Moves = SELFDESTRUCT
+    AbilityIndex = 0 # Bunker Down
 #-------------------------------
 [RICHBOY2,Theodore]
 Pokemon = MAWILE,18
@@ -1915,18 +1920,23 @@ Pokemon = CRUSTLE,37
 #-------------------------------
 [GENTLEMAN3,Oliver]
 Flags = NoPerfect
-Pokemon = GRAPIDASH,39
+Pokemon = GRAPIDASH,40
+    Moves = PLAYROUGH,PSYCHOSCISSION,FLOWSTATE
     AbilityIndex = 1 # Heart of Justice
-Pokemon = GWEEZING,39
+Pokemon = GWEEZING,40
+    Moves = STRANGESTEAM,MIASMA,GREYMIST,POISONGAS
     AbilityIndex = 1 # Industrialize
 Pokemon = OBSTAGOON,40
+    Moves = OBSTRUCT,THROATCHOP,CHAOSWHEEL,SLACKOFF
     AbilityIndex = 1 # Frustrate
-    Item = SHELLBELL
+    Item = LEFTOVERS
 Pokemon = SIRFETCHD,40
+    Moves = ARTOFWAR,SACREDSWORD,LEAFBLADE,DRILLPECK
     AbilityIndex = 1 # Super Luck
 Pokemon = GSLOWKING,40
+    Moves = MINDWARP,SLUDGEWAVE,ENVENOM,VENOSHOCK
     AbilityIndex = 1 # Exorcist
-    Item = SITRUSBERRY
+    Item = HIVISJACKET
 #-------------------------------
 [CLERK_M2,Alejandro]
 Pokemon = CLOYSTER,38
@@ -3194,13 +3204,20 @@ Pokemon = GLIGAR,27
 #-------------------------------
 [ROUGHNECK2,Robert]
 Flags = NoPerfect
-Pokemon = GRIMER,28
+Pokemon = GRIMER,30
+    Moves = POISONGAS,SLUDGE,FIREPULSE,DISSOLUTION
     AbilityIndex = 0 # Toxin Tax
-Pokemon = DOTTLER,30
-    AbilityIndex = 1 # Master Plan
-Pokemon = KIRLIA,29
-    AbilityIndex = 0 # Synchronize
-    Item = SITRUSBERRY
+    Item = EVIOLITE
+Pokemon = MIGHTYENA,30
+    Moves = ASSURANCE,FAIRPLAY,PLANTDOUBT,MIDNIGHTHUNT
+    AbilityIndex = 0 # Intimidate
+Pokemon = ALTARIA,30
+    Moves = ICYWIND,DRAGONCLAW,DAZZLINGGLEAM,BOREALWIND
+    AbilityIndex = 0 # Levitate
+    Item = LEFTOVERS
+Pokemon = KANGASKHAN,30
+    Moves = PUMMEL,SUCKERPUNCH,FLAMECHARGE,STOMP
+    AbilityIndex = 0 # Inner Focus
 #-------------------------------
 [TRAINER_Candy,Candy]
 Flags = NoPerfect
@@ -3406,7 +3423,6 @@ Flags = NoPerfect
 Pokemon = VESPIQUEN,40
     Moves = FELLSTINGER,AERIALACE,DEFOG,HEALORDER
     AbilityIndex = 1 # Stressful
-    Item = CADOBERRY
 Pokemon = LANTURN,40
     Moves = DISCHARGE,BUBBLEBEAM,DAZZLINGGLEAM,NUMB
     AbilityIndex = 0 # Volt Absorb
@@ -3422,7 +3438,6 @@ Pokemon = TALONFLAME,40
 Pokemon = TORTERRA,40
     Moves = EARTHQUAKE,SNAPTRAP,BRUTALSWING,POLARIZEDROOM
     AbilityIndex = 1 # Living Armor
-    Item = SITRUSBERRY
 #-------------------------------
 [BOARDER,Lev]
 Pokemon = JYNX,30
