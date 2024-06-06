@@ -252,7 +252,7 @@ end
 
 # Replace placeholder overworld follower sprites
 Events.onMapChange += proc { |_sender,*args|
-	followerEventInteractionSwap
+	followerEventGraphicSwap
 }
 
 def followerEventGraphicSwap(reset = false)
