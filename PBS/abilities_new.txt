@@ -1061,7 +1061,7 @@ Flags = MoonglowSynergy
 #-------------------------------
 [MAESTRO]
 Name = Maestro
-Description The user's Speed is doubled while using Sound-based moves.
+Description = The user's Speed is doubled while using Sound-based moves.
 #-------------------------------
 [MAGICSHIELD]
 Name = Magic Shield
