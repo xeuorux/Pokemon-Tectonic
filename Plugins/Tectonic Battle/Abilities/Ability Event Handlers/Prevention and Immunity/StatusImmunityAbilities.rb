@@ -113,3 +113,9 @@ BattleHandlers::StatusImmunityAbility.add(:RUNNINGFREE,
       next true if %i[NUMB LEECHED].include?(status)
   }
 )
+
+BattleHandlers::StatusImmunityAbility.add(:PLOTARMOR,
+  proc { |ability, battler, status|
+      next true if battler.battle.eclipsed?
+  }
+)
