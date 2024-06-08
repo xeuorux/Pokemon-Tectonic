@@ -26,7 +26,7 @@ def openDoorTransfer(map_id, x, y, &block)
 end
 
 def ajarDoorTransfer(map_id, x, y, &block)
-    ajarDoorMoveRoute
+    ajarDoor
     blackFadeOutIn {
         block.call if block_given?
         $game_player.transparent = false
@@ -40,6 +40,10 @@ end
 
 def swingingDoor
     doorMoveRoute('Door enter')
+end
+
+def ajarDoor
+    ajarDoorMoveRoute('Door enter')
 end
 
 def doorMoveRoute(soundEffectName)
