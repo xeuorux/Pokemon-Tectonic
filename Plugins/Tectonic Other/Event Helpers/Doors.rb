@@ -77,7 +77,7 @@ def fixDoors
         changed = false
         for key in map.events.keys
             event = map.events[key]
-            next unless ["Lab door", "Research Center door", "Poké Center door", "door"].include?(event.name)
+            next unless ["Lab door", "Research Center door", "Poké Center door", "Poké Mart door", "door"].include?(event.name)
             begin
                 pagesMaintained = []
                 event.pages.each do |page|
@@ -92,13 +92,25 @@ def fixDoors
 
                         raise _INTL("Map #{mapName} (#{id}), event #{event.id}: Page has more or less commands than expected: #{mainPage.list.length}") unless mainPage.list.length == 31
 
-                        transferParameters = mainPage.list[29].parameters
+                        transferParameters = mainPage.list[28].parameters
                         new_map_id    = transferParameters[1]
                         new_x         = transferParameters[2]
                         new_y         = transferParameters[3]
                         new_direction = transferParameters[4]
 
-                        echoln("Map #{mapName} (#{id}), event #{event.id} transfer params: #{new_map_id},#{new_x},#{new_y},#{new_direction}")
+                        slidingDoor = page.list[0].parameters[1].list[0].parameters[0].name == 'Door enter sliding'
+
+                        echoln("Map #{mapName} (#{id}), event #{event.id} params: #{new_map_id},#{new_x},#{new_y},#{new_direction}, #{slidingDoor}")
+
+                        mainPage.list = []
+                        if slidingDoor
+                            push_script(mainPage.list,"slidingDoorTransfer(#{new_map_id},#{new_x},#{new_y})")
+                        else
+                            push_script(mainPage.list,"swingingDoorTransfer(#{new_map_id},#{new_x},#{new_y})")
+                        end
+                        push_end(mainPage.list)
+
+                        event.name = "door to #{mapData.mapinfos[new_map_id].name}"
                     else
                         pagesMaintained.push(page)
                     end
@@ -106,18 +118,16 @@ def fixDoors
                 
                 event.pages = pagesMaintained
                 
-                customDoor = event.pages.length == 2
+                customDoor = event.pages.length != 1
                 if customDoor
                     echoln "CUSTOM: Map #{mapName} (#{id}), event #{event.id}\r\n"
                 else
                     echoln "modified: Map #{mapName} (#{id}), event #{event.id}\r\n"
                 end
-
-                event.name = customDoor ? "door" : "customdoor"
             rescue Exception
                 p $!.message, $!.backtrace
             end
         end
-        #mapData.saveMap(id) if changed
+        mapData.saveMap(id) if changed
     end
 end
