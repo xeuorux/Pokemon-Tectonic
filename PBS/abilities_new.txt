@@ -1061,7 +1061,7 @@ Flags = MoonglowSynergy
 #-------------------------------
 [MAESTRO]
 Name = Maestro
-Description = Doubles the speed of Sound-based moves.
+Description = The user's Speed is doubled while using Sound-based moves.
 #-------------------------------
 [MAGICSHIELD]
 Name = Magic Shield
@@ -1818,7 +1818,7 @@ Flags = SunSynergy
 #-------------------------------
 [SWIFTSTOMPS]
 Name = Swift Stomps
-Description = Doubles the Speed of kicking moves.
+Description = The user's Speed is doubled while using kicking moves.
 #-------------------------------
 [SWORDPLAY]
 Name = Swordplay
@@ -1906,7 +1906,7 @@ Description = Foes whose stats are lowered by the Pokémon keep those lowered st
 #-------------------------------
 [TRENCHCARVER]
 Name = Trench Carver
-Description = Doubles the speed of recoil moves.
+Description = The user's Speed is doubled while using recoil moves.
 #-------------------------------
 [TUNNELMAKER]
 Name = Tunnel Maker

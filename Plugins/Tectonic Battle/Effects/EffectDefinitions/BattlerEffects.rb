@@ -1185,7 +1185,7 @@ GameData::BattleEffect.register_effect(:Battler, {
         when :FIRESPIN, :CRIMSONSTORM       then battle.pbCommonAnimation("FireSpin", battler)
         when :MAGMASTORM                    then battle.pbCommonAnimation("MagmaStorm", battler)
         when :SANDTOMB, :SANDVORTEX         then battle.pbCommonAnimation("SandTomb", battler)
-        when :INFESTATION                   then battle.pbCommonAnimation("Infestation", battler)
+        when :INFESTATION, :TERRORSWARM     then battle.pbCommonAnimation("Infestation", battler)
         when :SNAPTRAP                      then battle.pbCommonAnimation("SnapTrap", battler)
         when :THUNDERCAGE                   then battle.pbCommonAnimation("ThunderCage", battler)
         when :WHIRLPOOL, :MAELSTROM         then battle.pbCommonAnimation("Whirlpool", battler)

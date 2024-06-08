@@ -2028,8 +2028,8 @@ Flags = KeyItem
 Description = A folding Bicycle that enables much faster movement than the Running Shoes.
 #-------------------------------
 [TOWNMAP]
-Name = Town Map
-NamePlural = Town Maps
+Name = Region Map
+NamePlural = Region Maps
 Pocket = 8
 Price = 0
 FieldUse = Direct

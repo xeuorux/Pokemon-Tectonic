@@ -15731,38 +15731,6 @@ How bad?
 ¿Qué tan malo?
 
 [Map223]
-Sorry if the prices are high for these TMs, the mons down here have been gettin' real bitey.
-Lo siento si los precios son altos por estas MTs, los mons aquí abajo se han estado poniendo bastante inquietos.
-Ever since that Cobalion showed up, they're like LuxTech narcs...
-Desde que ese Cobalion apareció, son como los soplones de LuxTech...
-I swear they've got patrols running and everything. Can't take my normal routes anymore.
-Juro que tienen patrullas por ahí y todo. Ya ni puedo tomar mis rutas normales.
-Prizca Black Market
-Mercado Negro Prizca
-You want power enlargement pills?
-¿Quieres pastillas de aumento de poder?
-There has to be a batter way to run this business...
-Debe haber una mejor forma de llevar este negocio… 
-Not interested in my pills?
-¿No te interesan mis pastillas?
-Business has been rough lately.
-El negocio ha sido duro últimamente.
-Maybe it's the clown outfit...
-Quizás es el traje de payaso…
-Hey! You there! Where's your ID?
-¡Hey! ¡Tú! ¿Dónde está tu ID?
-Haha, just bustin' your chops. You don't need an ID to be down here.
-Jaja, sólo te tomo el pelo. No necesitas un ID para estar aquí abajo.
-In fact, I stole this whole outfit. I don't even work here!
-De hecho, robé este traje. ¡Ni siquiera trabajo aquí!
-Alright, you can pass through. But I got my eyes on you.
-Muy bien, puedes pasar. Pero te estoy mirando.
-Make sure you report your activity to HR.
-Asegúrate de reportar tu actividad a Recursos Humanos.
-The stuff I picked up here is gonna give me a crazy edge in battle.
-Las cosas que tomé aquí van a darme una gran ventaja en combate.
-Gems are freakin' crazy, your mons will do some serious damage with 'em.
-Las gemas con una locura, tus mons van a hacer gran daño con ellas.
 It's a vending machine.\n Which drink would you like?\G
 Es una máquina expendedora.\n ¿Qué bebida quieres?\G
 \GA Fresh Water dropped down!
@@ -15807,22 +15775,6 @@ Just going to uh...
 Así que sólo voy a… 
 Patrol. And not much else.
 Patrullar. Y no mucho más.
-It might not look like it, but the sewers here are ancient.
-Podrá no parecerlo, pero las alcantarillas aquí son antiguas.
-It's been modernized sure, but this place is still thousands of years old.
-A ver, fue modernizada, pero este lugar sigue teniendo mil años.
-This space here is exhilarating.
-Este lugar aquí es estimulante.
-It also smells really bad.
-También huele muy mal.
-A photoshoot in the sewers, so avant-garde!
-Una sesión de fotos en la alcantarilla, ¡Tan vanguardista!
-Strange photoshoots will get me fame. The smell on the other hand...
-Sesiones de fotos extrañas me conseguirán fama. El olor por otro lado…
-How did I get even get here?
-¿Cómo llegué aquí siquiera?
-If you see my camera man, tell him where I am.
-Si ves a mi camarógrafo, dile dónde estoy.
 Fresh Water - $200
 Agua Fresca  - $200
 Soda Pop - $300
@@ -15845,74 +15797,12 @@ Opening the fridge, you find stocks of water bottles, bananas, and carrots.
 Al abrir la nevera, encuentras montones de botellas de agua, bananas y zanahorias.
 There's also a brown bag of fast-food leftovers with the name "Zoé" scribbled on the side in black marker.
 También hay una bolsa marrón con restos de comida rápida con el nombre "Zoé" escrito a un costado con marcador negro.
-This dynamite was meant to clear rubble in Velenz.
-Esta dinamita se suponía que era para limpiar escombros en Velenz.
-With all the chaos, I knew they wouldn't notice if a couple sticks went missing.
-Con todo el caos, sé que no van a notar si un poco de ella no está.
-$12k for 3 sticks, that's my first and only offer.
-$12k por 3 dinamitas, es mi primer y única oferta.
-Jeeze, it's like people don't respect graft anymore.
-Vamos, es como si la gente ya no respetara los chanchullos.
-My side-gig really is boomin'!
-¡Mi trabajo secundario sí que está siendo productivo!
-You hand over $12,000 in exchange.
-Pagas los $12.000.
-Alright, gotta return to my shift watchin' that stupid ghost town.
-Muy bien, hora de volver a mi turno en ese estúpido pueblo fantasma.
-Not like anything's gonna happen.
-Tampoco es como si algo fuera a pasar.
-I don't see the cash on ya. No tricks, now!
-No veo que tengas el efectivo. ¡No juegues conmigo!
-Silver Ninjask. Hacker.
-Silver Ninjask. Hacker.
-LuxTech still thinks I'm a myth, but I'm real alright.
-LuxTech todavía piensa que soy un mito, pero soy bien real.
-Real enough to sell you these TMs, none of which have been brought to market.
-Lo suficiente para venderte estas MTs, las cuales ninguna está en el mercado.
-You're looking at the person who performed the world's first chemical synthesis of Gleam Powder!
-¡Estás en frente de la persona que realizó la primera síntesis química de Polvo Brillante del mundo!
-In order to fund further research, I want to find a buyer for this extremely rare substance.
-Para financiar investigaciones futuras, quiero encontrar un comprador para esa sustancia extremadamente rara.
-You seem like the kind of person that'd like shiny Pokemon.
-Pareces ser el tipo de persona que le gustaría un Pokémon variocolor.
-Interested in purchasing this vial of Gleam Powder? Estimated costs total at 250,000.
-¿Te interesa comprar este vial de Polvo Brillante? Los costos estimados suman a 250.000.
-I've had sponsors with that kind of money.
-He tenido patrocinadores con esa cantidad de dinero.
-I'm not surprised that you don't.
-No me sorprende que tú no lo hagas.
-Research pays, if you take the necessary risks.
-La investigación paga, si tomas los riesgos necesarios.
-Science, and the profits therein, call me away.
-La ciencia, y los beneficios de ella, me llaman.
-Good bye.
-Adiós.
-I estimated the probability that you were lieing at 93%.
-Estimé que la probabilidad de que mintieras era un 93%.
-It appears that you don't have the funds.
-Parece que no tienes los fondos.
-Hey, bub, back off.
-Hey, tío, no te acerques demasiado.
-Don't be like that little girl I had to shove into the sewage the other day.
-No seas como esa niña que tuve que hundir en las aguas residuales el otro día.
-A "heart for justice" doesn't make you invincible, it turns out.
-Resulta que un "corazón justiciero" no te hace invencible.
 I'm learning so much more than I ever did in school.
 Estoy aprendiendo mucho más aquí que en toda la escuela.
-No funny business, no refunds.
-No hagas nada raro, y no hay reembolsos.
-You got a problem, take it up with the boss. He probably ain't gonna listen though, heh.
-Tienes un problema, habla con el jefe. Pero él probablemente no va a escuchar, je.
 Like how to make a pipe bomb!
 ¡Por ejemplo, cómo hacer una bomba casera!
 The stuff about "collective action" or "mutual aid" or whatever is nice too.
 Todo eso de "acción colectiva" y "ayuda mutua" o lo que sea también está bien.
-I got a tip off about a first edition "The Adventures of Mighty Morpeko" being sold here in the Black Market.
-Me chivaron que la primera edición de "Las Aventuras del Gran Morpeko" se estaba vendiendo aquí en el Mercado Negro.
-When it turns out to be a forgery, I'm so going to expose them to my internet friends.
-Cuando resulte ser una imitación, definitivamente voy a exponerlos a mis amigos de internet.
-ROFL.
-ROFL.
 You look like you've been on a long journey.
 Parece que ya has atravesado demasiado.
 Here, you'll never know when you'll need some plain old water.
@@ -15939,20 +15829,6 @@ No
 No
 Yes
 Sí
-This place's got some sick stuff.
-Este lugar tiene un montón de cosas geniales.
-Sometimes, the hacker lady gives me rips of old games.
-A veces, la señorita hacker me da copias de juegos viejos.
-The publisher isn't gonna like that, heh.
-Al publisher no le va a gustar eso, je.
-I'm just here for business kid.
-Sólo estoy aquí por negocios niño.
-Doing a run for a few friends.
-Haciendo los mandados para un par de amigos.
-Getting these berries into Makya is no joke.
-Entrar estas bayas a Makya no es ninguna broma.
-Thankfully I've got my cute charms and a stolen idol outfit!
-¡Por suerte tengo mis encantos y un outfit de cantante robado!
 I see that spark of rebellion in your eye.
 Veo esa chispa de rebeldía en tus ojos.
 I gotta special offer. The iconic vessel of mayhem, a Stink Bomb.
@@ -23869,7 +23745,7 @@ Ya tenemos muestras. ¡Por favor, tome uno!
 Achieve haunting cleanliness with Miss Dreavus.
 Logra una limpieza inquietante con Miss Dreavus.
 Never leave home without your Clear Smog. It's like magic!
-Nunca salgas de casa sin tu Clear Smog. ¡Es como magia!
+Nunca salgas de casa sin tu Niebla Clara. ¡Es como magia!
 
 [Map395]
 
@@ -24742,6 +24618,135 @@ Yeah.
 Seh.
 Not really.
 No realmente.
+[Map426]
+Prizca Black Market
+Mercado Negro Prizca
+Getting these berries into Makya is no joke.
+Entrar estas bayas a Makya no es ninguna broma.
+Thankfully I've got my cute charms and a stolen idol outfit!
+¡Por suerte tengo mis encantos y un outfit de cantante robado!
+No funny business, no refunds.
+No hagas nada raro, y no hay reembolsos.
+You got a problem, take it up with the boss. He probably ain't gonna listen though, heh.
+Tienes un problema, habla con el jefe. Pero él probablemente no va a escuchar, je.
+This dynamite was meant to clear rubble in Velenz.
+Esta dinamita se suponía que era para limpiar escombros en Velenz.
+With all the chaos, I knew they wouldn't notice if a couple sticks went missing.
+Con todo el caos, sé que no van a notar si un poco de ella no está.
+$12k for 3 sticks, that's my first and only offer.
+$12k por 3 dinamitas, es mi primer y única oferta.
+Jeeze, it's like people don't respect graft anymore.
+Vamos, es como si la gente ya no respetara los chanchullos.
+My side-gig really is boomin'!
+¡Mi trabajo secundario sí que está siendo productivo!
+You hand over $12,000 in exchange.
+Pagas los $12.000.
+Alright, gotta return to my shift watchin' that stupid ghost town.
+Muy bien, hora de volver a mi turno en ese estúpido pueblo fantasma.
+Not like anything's gonna happen.
+Tampoco es como si algo fuera a pasar.
+I don't see the cash on ya. No tricks, now!
+No veo que tengas el efectivo. ¡No juegues conmigo!
+It might not look like it, but the sewers here are ancient.
+Podrá no parecerlo, pero las alcantarillas aquí son antiguas.
+It's been modernized sure, but this place is still thousands of years old.
+A ver, fue modernizada, pero este lugar sigue teniendo mil años.
+This space here is exhilarating.
+Este lugar aquí es estimulante.
+It also smells really bad.
+También huele muy mal.
+Hey, bub, back off.
+Hey, tío, no te acerques demasiado.
+Don't be like that little girl I had to shove into the sewage the other day.
+No seas como esa niña que tuve que hundir en las aguas residuales el otro día.
+A "heart for justice" doesn't make you invincible, it turns out.
+Resulta que un "corazón justiciero" no te hace invencible.
+I got a tip off about a first edition "The Adventures of Mighty Morpeko" being sold here in the Black Market.
+Me chivaron que la primera edición de "Las Aventuras del Gran Morpeko" se estaba vendiendo aquí en el Mercado Negro.
+When it turns out to be a forgery, I'm so going to expose them to my internet friends.
+Cuando resulte ser una imitación, definitivamente voy a exponerlos a mis amigos de internet.
+ROFL.
+XD.
+Silver Ninjask. Hacker.
+Silver Ninjask. Hacker.
+LuxTech still thinks I'm a myth, but I'm real alright.
+LuxTech todavía piensa que soy un mito, pero soy bien real.
+Real enough to sell you these TMs, none of which have been brought to market.
+Lo suficiente para venderte estas MTs, las cuales ninguna está en el mercado.
+I'm just here for business kid.
+Sólo estoy aquí por negocios niño.
+Doing a run for a few friends.
+Haciendo los mandados para un par de amigos.
+You want power enlargement pills?
+¿Quieres pastillas de aumento de poder?
+There has to be a batter way to run this business...
+Debe haber una mejor forma de llevar este negocio… 
+Not interested in my pills?
+¿No te interesan mis pastillas?
+Business has been rough lately.
+El negocio ha sido duro últimamente.
+Maybe it's the clown outfit...
+Quizás es el traje de payaso...
+Sorry if the prices are high for these TMs, the mons down here have been gettin' real bitey.
+Lo siento si los precios son altos por estas MTs, los mons aquí abajo se han estado poniendo bastante inquietos.
+Ever since that Cobalion showed up, they're like LuxTech narcs...
+Desde que ese Cobalion apareció, son como los soplones de LuxTech...
+I swear they've got patrols running and everything. Can't take my normal routes anymore.
+Juraría que tienen patrullas por ahí y todo. Ya no puedo tomar mis rutas normales.
+You're looking at the person who performed the world's first chemical synthesis of Gleam Powder!
+¡Estás en frente de la persona que realizó la primera síntesis química de Polvo Brillante del mundo!
+In order to fund further research, I want to find a buyer for this extremely rare substance.
+Para financiar investigaciones futuras, quiero encontrar un comprador para esa sustancia extremadamente rara.
+You seem like the kind of person that'd like shiny Pokemon.
+Pareces ser el tipo de persona que le gustaría un Pokémon variocolor.
+Interested in purchasing this vial of Gleam Powder? Estimated costs total at 250,000.
+¿Te interesa comprar este vial de Polvo Brillante? Los costos estimados suman a 250.000.
+I've had sponsors with that kind of money.
+He tenido patrocinadores con esa cantidad de dinero.
+I'm not surprised that you don't.
+No me sorprende que tú no lo hagas.
+Research pays, if you take the necessary risks.
+La investigación paga, si tomas los riesgos necesarios.
+Science, and the profits therein, call me away.
+La ciencia, y los beneficios de ella, me llaman.
+Good bye.
+Adiós.
+I estimated the probability that you were lieing at 93%.
+Estimé que la probabilidad de que mintieras era un 93%.
+It appears that you don't have the funds.
+Parece que no tienes los fondos.
+A photoshoot in the sewers, so avant-garde!
+Una sesión de fotos en la alcantarilla, ¡Tan vanguardista!
+Strange photoshoots will get me fame. The smell on the other hand...
+Sesiones de fotos extrañas me conseguirán fama. El olor por otro lado…
+How did I get even get here?
+¿Cómo llegué aquí siquiera?
+If you see my camera man, tell him where I am.
+Si ves a mi camarógrafo, dile dónde estoy.
+This place's got some sick stuff.
+Este lugar tiene un montón de cosas geniales.
+Sometimes, the hacker lady gives me rips of old games.
+A veces, la señorita hacker me da copias de juegos viejos.
+The publisher isn't gonna like that, heh.
+Al publisher no le va a gustar eso, je.
+The stuff I picked up here is gonna give me a crazy edge in battle.
+Las cosas que tomé aquí van a darme una gran ventaja en combate.
+Gems are freakin' crazy, your mons will do some serious damage with 'em.
+Las gemas con una locura, tus mons van a hacer gran daño con ellas.
+Hey! You there! Where's your ID?
+¡Hey! ¡Tú! ¿Dónde está tu ID?
+Haha, just bustin' your chops. You don't need an ID to be down here.
+Jaja, sólo te tomo el pelo. No necesitas un ID para estar aquí abajo.
+In fact, I stole this whole outfit. I don't even work here!
+De hecho, robé este traje. ¡Ni siquiera trabajo aquí!
+Alright, you can pass through. But I got my eyes on you.
+Muy bien, puedes pasar. Pero te estoy mirando.
+Make sure you report your activity to HR.
+Asegúrate de reportar tu actividad a Recursos Humanos.
+No
+No
+Yes
+Sí
 [1]
 29
 Nidoran-F
@@ -35255,7 +35260,7 @@ Híper Helada
 Everhone
 Siempre Afilado
 Metaform
-Acción Óptima
+Metaforma
 Archmyth
 Archimito
 Capoeira
@@ -35526,8 +35531,8 @@ Primeval Howl
 Aullido Primitivo
 Primeval Mind Link
 Conexión Mental Primitiva
-Primeval Howl
-Aullido Primitivo
+Primeval Stand Together
+Estar Unidos Primitivo
 Primeval Symbiosis
 Simbiosis Primitiva
 Primeval Yawn
@@ -35587,7 +35592,7 @@ Puño Bala Empoderado
 Empowered Mystical Fire
 Fuego Sagrado Empoderado
 Stratosphere Scream
-Aullido a la Estratósfera
+Grito Estratosférico
 Seven Seas Edict
 Decreto de los Siete Mares
 Warping Core
@@ -35909,8 +35914,8 @@ The user slashes the target with huge, sharp claws.
 El usuario acuchilla al objetivo con grandes garras afiladas.
 The user exhales a mighty gust that inflicts damage. It has a 30% chance to numb.
 El usuario exhala un fuerte aliento dañino. Tiene un 30% de probabilidad de aturdir.
-The user forces the target to switch out, to be replaced at random. In the wild, the battle ends.
-El usuario fuerza al objetivo a cambiar por un compañero aleatorio. Contra un Pokémon salvaje, el combate termina.
+The user forces the target to switch out, to be replaced at random. Always goes last. Ends wild battles.
+El usuario fuerza al objetivo a cambiar por un compañero aleatorio. Siempre va última. Termina combates salvajes.
 The user attacks its target by hitting it with brutal strikes. The target is hit twice in a row.
 El usuario ataca al objetivo brutalmente dos veces seguidas.
 A small tornado hits the opposing team. It has a 30% chance to make targets flinch.
@@ -36809,8 +36814,8 @@ The user mimics the target completely, copying the target's natural Ability.
 El usuario imita al objetivo completamente, copiando su Habilidad.
 The user employs its psychic power to exchange Abilities with the target.
 El usuario usa su poder psíquico para intercambiar de Habilidades con su objetivo.
-Use it to flee from any wild Pokémon, or switch out of other battles.
-El usuario escapa de cualquier Pokémon salvaje, o regresa a su Poké Ball en combates contra entrenadores.
+The user switches out to a party Pokémon in waiting. Always goes last. Ends wild battles.
+El usuario cambia por un Pokémon en su equipo. Siempre va último. Termina combates salvajes.
 The user catches the target off guard and swaps its held item with its own.
 El usuario agarra al objetivo por sorpresa, intercambiando su objeto equipado con él.
 The user creates a bizarre area in which slower Pokémon get to move first for five turns.
@@ -37669,7 +37674,7 @@ Protects itself from damage. It also lowers the Sp. Atk of special attackers by 
 El usuario se protege de cualquier ataque. También reduce el Ataque Especial dos grados si lo atacan con un movimiento especial.
 Exlodes, dealing an extra 50 base power to all foes for each layer of spikes underneath them. The user faints.
 Explota. Tiene un 50 más de potencia por cada capa de púas debajo del lado rival. El usuario es debilitado.
-The user swaps out using a cruel illusion. This move always goes last.
+The user switches out using a cruel illusion. Always goes last.
 El usuario cambia usando una ilusión cruel. Siempre va último.
 The user curls its metal hair around the target, trapping and damaging it for three turns.
 El usuario envuelve al objetivo con su cabello metálico, atrapándolo y dañándolo durante tres turnos.
@@ -37723,8 +37728,8 @@ The user doubles its critical strike chance and raises its Sp. Atk and Sp. Def.
 El usuario duplica su índice de golpe crítico y aumenta su Ataque Especial y Defensa Especial.
 Changes type based on machine haunted. 30% chance of extra effect based on machine haunted.
 Cambia de tipo según la máquina poseída. Tiene un 30% de probabilidad de un efecto extra dependiendo de la forma.
-The user dismisses the target, forcing it to switch out.
-El usuario ruge con ferocidad, forzando a cambiar al objetivo.
+The user dismisses the target, forcing it to switch out. Always goes last.
+El usuario desterra al objetivo, forzándolo a cambiar. Siempre va último.
 If the target is the last able member of their party, this attack's power is doubled.
 Si el objetivo es el último miembro en su equipo, su potencia es duplicada.
 The user causes the air around the target to explode. It's type is changed based on the active weather.
@@ -37841,8 +37846,8 @@ The user strikes while inviting the power of seasons. The user changes form to t
 El usuario ataca con el poder de las estaciones. El usuario cambia de forma a la siguiente estación.
 The target is plastered with irritating scales, damaging it and changing its type to Bug.
 El usuario ataca con escamas irritantes, atacando y cambiando el tipo del objetivo a Bicho.
-The user makes a scary sound by shaking, forcing the target to switch out.
-El usuario vibra para crear un sonido aterrador, forzando al objetivo fuera del combate.
+The user makes a scary sound by shaking, forcing the target to switch out. Always goes last.
+El usuario vibra para crear un sonido aterrador, forzando al objetivo fuera del combate. Siempre va último.
 The user chooses between the three most recent moves used by the opposing team, and uses that move themselves.
 El usuario elige entre los tres últimos movimientos usados por el lado contrario, y usa ese mismo movimiento.
 The user psychically modifies its own genes, transforming into either Overmatter or Overmind form.
@@ -38126,7 +38131,7 @@ El usuario muerde como un pez al objetivo. Tiene un 40% de probabilidad de amedr
 The user jumps out of the water to attack. Has a 20% chance to reduce Defense.
 El usuario salta fuera del agua para atacar. Tiene un 20% de probabilidad de reducir la Defensa del objetivo.
 The user creates a high quality area in which super-effective deals 25% more, and not very effective deals 25% less.
-El usuario crea una zona muy eficaz en la que movimientos súper efectivos dañan un 25% más, y los poco efectivos, un 25% menos.
+El usuario crea una zona polarizada en la que movimientos súper efectivos dañan un 25% más, y los poco efectivos, un 25% menos.
 The user uses their feet to pierce the foe. This has a 10% chance of leeching the target.
 El usuario utiliza los pies para atravesar al enemigo. Esto tiene una probabilidad del 10% de infectar al objetivo.
 The user kicks into the target like roots into earth. This has a 30% chance of leeching.
@@ -39104,7 +39109,7 @@ Maranga Berry
 Baya Maranga
 Bicycle
 Bicicleta
-Town Map
+Region Map
 Mapa
 Gracidea
 Gracídea
@@ -39931,8 +39936,8 @@ Maranga Berries
 Bayas Maranga
 Bicycle
 Bicicleta
-Town Map
-Mapa
+Region Maps
+Mapas
 Gracidea
 Gracídea
 Aurora Ticket
@@ -40883,6 +40888,10 @@ Un dispositivo de alta tecnología que crea un Reporte de Combate al analizar lo
 Disables the opponent's most recently-used move for three turns upon hitting it.
 Anula el último movimiendo usado por el oponente durante tres turnos al ser usada.
 [10]
+Shell Armor
+Caparazón
+Hybrid Fighter
+Luchador Híbrido
 Cud Chew
 Rumia
 Survivalist
@@ -42156,7 +42165,7 @@ Cielo Saturnal
 Stygian Night
 Noche de Estigio
 Firefighter
-Combustión
+Conversión Térmica
 Slumbering Drake
 Dragón Durmiente
 No Hope
@@ -42184,7 +42193,7 @@ Errante
 Talón Férreo
 Gemelos Fornidos
 Polarizing
-Eficacia
+Polarizado
 Insight Aura
 Aura Esclarecedora
 Emotion Aura
@@ -42398,8 +42407,8 @@ Heals ally's status conditions at the end of turn.
 Cura los problemas de estado de sus aliados al final de cada turno.
 Reduces damage done to allies by 25%.
 Reduce el daño que reciben sus aliados un 25%.
-Physical attacks against the Pokémon raise its speed by two steps but lower its Defense.
-Cuando es alcanzado por un movimiento físico aumenta su velocidad dos grados pero aumenta su Defensa.
+Physical attacks against the Pokémon raise its Speed by two steps but lower its Defense.
+Cuando es alcanzado por un movimiento físico aumenta su Velocidad dos grados pero aumenta su Defensa.
 Doubles the Pokémon's weight.
 Duplica el peso del Pokémon.
 Reduces move damage taken by 50% when HP is full.
@@ -42454,8 +42463,8 @@ Boosts the power of biting moves by 50%.
 Potencia movimientos de mordida un 50%.
 Changes between Blade and Shield Forme with attacks and King's Shield.
 Cambia entre su Forma Filo y Escudo usando ataques y Escudo Real, respectivamente.
-Doubles the speed of Flying-type moves.
-Duplica la Velocidad al usar movimientos de tipo Volador.
+The user's Speed is doubled while using Flying-type moves.
+La Velocidad del usuario es duplicada mientras usa movimientos de tipo Volador.
 Boosts the power of pulse moves by 50%.
 Potencia los movimientos de pulso un 50%.
 Increases Attack by 30%.
@@ -42656,8 +42665,8 @@ Flying-type attacks have a 40% chance to burn.
 Ataques de tipo Volador tienen un 40% de probabilidad de quemar.
 Releases a layer of Spikes when hit by an attack.
 Pone una capa de Púas al ser alcanzado por un ataque.
-Doubles the speed of Sound-based moves.
-Duplica la Velocidad al usar movimientos de Sonido.
+The user's Speed is doubled while using Sound-based moves.
+La Velocidad del usuario es duplicada mientras usa movimientos de Sonido.
 Special attacks against the Pokémon have a 30% chance to poison the attacker.
 Cuando el Pokémon es atacado por un movimiento especial, tiene un 30% de probabilidad de envenenar al atacante.
 Takes half damage from Dragon- and Fairy-type attacks.
@@ -42916,8 +42925,8 @@ Gets 50% more healing from all sources.
 Se cura un 50% más mediante cualquier método curativo.
 Restores 1/8 HP in sunshine, 1/4 when hit by Fire-type moves. Loses 1/8 in rain, takes 25% more from Water-type moves.
 Restaura 1/8 de sus PS bajo sol, 1/4 al recibir un movimiento Fuego. Pierde 1/8 bajo lluvia, recibe 25% más daño por Fuego.
-Doubles the speed of recoil moves.
-Duplica la velocidad de movimientos de retroceso.
+The user's Speed is doubled while using recoil moves.
+La Velocidad del usuario es duplicada mientras usa movimientos de retroceso.
 Increases Sp. Atk by 30%.
 Aumenta su Ataque Especial un 30%.
 Repeats another Pokémon's sound moves immediately at 75% power.
@@ -43490,8 +43499,8 @@ It changes form to match the move it selected.
 Cambia de forma para adaptarse al movimiento que ha seleccionado.
 Upon entry, creates a Trick Room for five turns, inverting the effect of Speed.
 Al entrar, crea una Zona Rara durante cinco turnos, invirtiendo el efecto de la Velocidad.
-Doubles the Speed of kicking moves.
-Duplica la Velocidad de los movimientos de patada.
+The user's Speed is doubled while using kicking moves.
+La Velocidad del usuario es duplicada mientras usa movimientos de patada.
 The Pokémon is also Ghost-type.
 El Pokémon también es de tipo Fantasma.
 Upon entry, the Pokémon heals itself for 1/4th max HP. This can overheal.
@@ -44437,6 +44446,8 @@ Grouz Mine
 Mina Grouz 
 LuxTech Main
 LuxTech Principal
+Sweetrock Lighthouse
+Faro Sweetrock
 [21]
 1
 Intro - Alpha
@@ -52225,11 +52236,11 @@ Recibiste un #{speciesDat.name} (#{speciesDat.form_name})
 {1} was overwhelmed with emotion!
 ¡{1} fue saturado con emoción!
 A polarized area appeared! Type effectiveness is exaggerated!
-¡Una zona muy eficaz apareció! ¡La efectividad de los tipos es exagerada!
+¡Una zona polarizada apareció! ¡La efectividad de los tipos es exagerada!
 The polarized area was dispelled!
-¡La zona muy eficaz fue desvanecida!
+¡La zona polarizada fue desvanecida!
 The polarized area fell away.
-La zona muy eficaz se disipó.
+La zona polarizada se disipó.
 An insightful area appeared! Everyone gets a 5th move!
 ¡Una zona esclarecedora apareció! ¡Todos consiguen un quinto movimiento!
 The insightful area was dispelled!
