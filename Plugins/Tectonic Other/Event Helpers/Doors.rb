@@ -16,18 +16,26 @@ def swingingDoorTransfer(map_id, x, y, &block)
     }
 end
 
+def openDoorTransfer(map_id, x, y, &block)
+    playerEntersDoorMoveRoute
+    blackFadeOutIn {
+        block.call if block_given?
+        $game_player.transparent = false
+        teleportPlayer(map_id,x,y,true)
+    }
+end
+
 def slidingDoor
     doorMoveRoute('Door enter sliding')
 end
 
 def swingingDoor
-    doorMoveRoute
+    doorMoveRoute('Door enter')
 end
 
-def doorMoveRoute(soundEffectName = 'Door enter')
+def doorMoveRoute(soundEffectName)
+    pbSEPlay(soundEffectName) if soundEffectName
     pbMoveRoute(get_self,  [
-        PBMoveRoute::PlaySE,
-        soundEffectName,
         PBMoveRoute::Wait,2,
         PBMoveRoute::TurnLeft,
         PBMoveRoute::Wait,2,
@@ -37,13 +45,7 @@ def doorMoveRoute(soundEffectName = 'Door enter')
         PBMoveRoute::Wait,2,
     ])
     pbWait(16)
-    pbMoveRoute(get_player, [
-        PBMoveRoute::ThroughOn,
-        PBMoveRoute::Up,
-        PBMoveRoute::ThroughOff,
-    ])
-    pbWait(12)
-    $game_player.transparent = true
+    playerEntersDoorMoveRoute
     pbMoveRoute(get_self,  [
         PBMoveRoute::Wait,2,
         PBMoveRoute::TurnRight,
@@ -56,6 +58,16 @@ def doorMoveRoute(soundEffectName = 'Door enter')
     pbWait(16)
 end
 
+def playerEntersDoorMoveRoute
+    pbMoveRoute(get_player, [
+        PBMoveRoute::ThroughOn,
+        PBMoveRoute::Up,
+        PBMoveRoute::ThroughOff,
+    ])
+    pbWait(12)
+    $game_player.transparent = true
+end
+
 def fixDoors
     mapData = Compiler::MapData.new
     for id in mapData.mapinfos.keys.sort
@@ -65,9 +77,47 @@ def fixDoors
         changed = false
         for key in map.events.keys
             event = map.events[key]
-            next unless event.name == "Lab door" || event.name == "Poké Center door" || event.name == "door"
-            echoln "Map #{mapName} (#{id}), event #{event.name} (#{event.id})\r\n"
+            next unless ["Lab door", "Research Center door", "Poké Center door", "door"].include?(event.name)
+            begin
+                pagesMaintained = []
+                event.pages.each do |page|
+                    # just dispose of the tsOff? page
+                    next if page.condition.switch1_id == 22
+
+                    # Main door page
+                    if !page.list.empty? && page.list[0].code == 209
+                        mainPage = page.clone
+                        pagesMaintained.push(mainPage)
+                        changed = true
+
+                        raise _INTL("Map #{mapName} (#{id}), event #{event.id}: Page has more or less commands than expected: #{mainPage.list.length}") unless mainPage.list.length == 31
+
+                        transferParameters = mainPage.list[29].parameters
+                        new_map_id    = transferParameters[1]
+                        new_x         = transferParameters[2]
+                        new_y         = transferParameters[3]
+                        new_direction = transferParameters[4]
+
+                        echoln("Map #{mapName} (#{id}), event #{event.id} transfer params: #{new_map_id},#{new_x},#{new_y},#{new_direction}")
+                    else
+                        pagesMaintained.push(page)
+                    end
+                end
+                
+                event.pages = pagesMaintained
+                
+                customDoor = event.pages.length == 2
+                if customDoor
+                    echoln "CUSTOM: Map #{mapName} (#{id}), event #{event.id}\r\n"
+                else
+                    echoln "modified: Map #{mapName} (#{id}), event #{event.id}\r\n"
+                end
+
+                event.name = customDoor ? "door" : "customdoor"
+            rescue Exception
+                p $!.message, $!.backtrace
+            end
         end
-        mapData.saveMap(id) if changed
+        #mapData.saveMap(id) if changed
     end
 end
