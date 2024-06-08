@@ -39109,7 +39109,7 @@ Maranga Berry
 Baya Maranga
 Bicycle
 Bicicleta
-Town Map
+Region Map
 Mapa
 Gracidea
 Gracídea
@@ -39936,8 +39936,8 @@ Maranga Berries
 Bayas Maranga
 Bicycle
 Bicicleta
-Town Map
-Mapa
+Region Maps
+Mapas
 Gracidea
 Gracídea
 Aurora Ticket
@@ -44446,6 +44446,8 @@ Grouz Mine
 Mina Grouz 
 LuxTech Main
 LuxTech Principal
+Sweetrock Lighthouse
+Faro Sweetrock
 [21]
 1
 Intro - Alpha
