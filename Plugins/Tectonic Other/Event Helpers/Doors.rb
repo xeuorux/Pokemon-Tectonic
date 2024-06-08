@@ -25,6 +25,15 @@ def openDoorTransfer(map_id, x, y, &block)
     }
 end
 
+def ajarDoorTransfer(map_id, x, y, &block)
+    ajarDoorMoveRoute
+    blackFadeOutIn {
+        block.call if block_given?
+        $game_player.transparent = false
+        teleportPlayer(map_id,x,y,true)
+    }
+end
+
 def slidingDoor
     doorMoveRoute('Door enter sliding')
 end
@@ -58,6 +67,21 @@ def doorMoveRoute(soundEffectName)
     pbWait(16)
 end
 
+def ajarDoorMoveRoute(soundEffectName)
+    pbSEPlay(soundEffectName) if soundEffectName
+    pbMoveRoute(get_self,  [
+        PBMoveRoute::TurnUp,
+        PBMoveRoute::Wait,2,
+    ])
+    pbWait(6)
+    playerEntersDoorMoveRoute
+    pbMoveRoute(get_self,  [
+        PBMoveRoute::Wait,2,
+        PBMoveRoute::TurnRight,
+    ])
+    pbWait(6)
+end
+
 def playerEntersDoorMoveRoute
     pbMoveRoute(get_player, [
         PBMoveRoute::ThroughOn,
@@ -77,7 +101,7 @@ def fixDoors
         changed = false
         for key in map.events.keys
             event = map.events[key]
-            next unless ["Lab door", "Research Center door", "Poké Center door", "Poké Mart door", "door"].include?(event.name)
+            next unless ["Lab door", "Research Center door", "Poké Center door", "Poké Mart door", "Mart door", "door"].include?(event.name)
             begin
                 pagesMaintained = []
                 event.pages.each do |page|
