@@ -8232,6 +8232,12 @@ It reeks down here, but the Pokemon in this place are pretty friendly.
 Apesta aquí abajo, pero los Pokémon aquí son bastante amistosos.
 They're more used to human contact than most, given how these are sewers and all.
 Están más acostumbrados al contacto humano que la mayoría, teniendo en cuenta que estás son alcantarillas y demás.
+North: Sewer Junction
+Norte: Cruce de Alcantarillas
+North-East: Exit to Eleig Stretch Sewer Maintenance
+Noreste: Salida a Edificio de Mantenimiento de las Alcantarillas en el Estrecho Eleig
+South: Exit to LuxTech Rec Center
+Sur: Salida a Centro Recreativo LuxTech
 [Map123]
 
 I brought some family heirlooms with me from Galar.
@@ -13416,6 +13422,8 @@ Un combate inspirador, ¡Perfecto para mostrarlo en mi siguiente escultura!
 
 You notice a book that looks out of place.
 Notas que un libro está fuera de lugar.
+Pull on the book?
+¿Tirar del libro?
 You try to pull out the book, but it stops partway with a click.
 Intentas tirar de un libro, pero para a medio camino con un click.
 You leave the suspicious book alone.
@@ -13440,8 +13448,18 @@ No
 No
 [Map198]
 
-The door resists your attempts to open it with a mystic force.
-La puerta resiste tus intentos de abrirla con una fuerza mística.
+The way is blocked by a wooden panel.
+El camino está bloqueado por un panel de madera.
+You see a switch to the side.
+Ves un interruptor a un lado.
+Pull the switch?
+¿Apretar el interruptor?
+You decide to leave the switch alone.
+Decides dejar el interruptor en paz.
+You pull the switch.
+Tiras del interruptor.
+The panel moved, revealing a large hole in the wall!
+¡El panel se movió, revelando un gran agujero en la pared!
 
 [Map200]
 
@@ -15660,6 +15678,12 @@ No leads huh? That's fine!
 ¿Nada, eh? ¡Está bien!
 I'll find one somewhere around here.
 Voy a ver si encuentro a alguién más por acá.
+North-West: Exit to Catacombs
+Noroeste: Salida a las Catacumbas
+South: Sewer Junction
+Sur: Cruce de Alcantarillas
+The final direction entry has been expertly erased.
+El apunte de dirección final ha sido borrada por expertos.
 [Map222]
 The Pokemon looks forward with steadfast attention.
 El Pokémon mira adelante con atención impasible.
@@ -15729,6 +15753,14 @@ I'm doing my part.
 Hago mi parte.
 How bad?
 ¿Qué tan malo?
+North: Ancient Sewers
+Norte: Alcantarillas Antiguas
+West: Battle Plaza Underground
+Oesta: Plaza Batalla Subterránea
+South: LuxTech Sewers
+Sur: Alcantarillas LuxTech
+The door resists your attempts to open it with a mystic force.
+La puerta resiste tus intentos de abrirla con una fuerza mística.
 
 [Map223]
 It's a vending machine.\n Which drink would you like?\G
@@ -15821,8 +15853,10 @@ I might be out of Pokemon, but if you try anything funny, you'll regret it.
 Podré haberme quedado sin Pokgmon, pero si te pasas de listo, te arrepentirás.
 I might be out of pokemon, but if you try anything funny, you'll regret it.
 Podré haberme quedado sin Pokgmon, pero si te pasas de listo, te arrepentirás.
-Why's the weird-ass clown down there botherin' people?
-¿Qué pasa con ese payaso raro que no deja de molestar a la gente?
+You see that weird-ass clown near the black market?
+¿Ves ese payaso raro cerca del mercado negro?
+Why he gotta bother people?
+¿Por qué tiene que molestar a la gente?
 We're literally just vibing.
 Literalmente sólo estamos relajándonos.
 No
@@ -15857,6 +15891,12 @@ I don't have any right now.
 No tengo una ahora mismo.
 Yeah, I've got one for you.
 Seh, tengo una para ti.
+North-West: Prizca Black Market
+Noroeste: Mercado Negro de Prizca
+East: Exit to the Battle Plaza
+Este: Salida a la Plaza Batalla
+South-East: Sewer Junction
+Sureste: Cruce de Alcantarillas
 [Map224]
 
 Well hey! I saw you on Lapras Shore!
@@ -24747,6 +24787,14 @@ No
 No
 Yes
 Sí
+North-West: Exit to Aegis Insurance
+Noroeste: Salida a Aseguradora Aegis
+North-East: Exit to Full Blast Records
+Noreste: Salida a Récords A Tope
+East: Battle Plaza Underground
+Este: Plaza Batalla Subterránea
+South-East: Exit to Eleig River Crossing
+Sureste: Salida a Cruce del Río Eleig
 [1]
 29
 Nidoran-F
@@ -44414,7 +44462,7 @@ Picos Partidos
 Prizca East
 Prizca Oriental 
 Battle Plaza
-Plaza de Batalla
+Plaza Batalla
 Tournament Grounds
 Tierras de Campeonato
 Prizca West
@@ -45113,11 +45161,11 @@ Alcantarillas Antiguas
 Prizca Sewers
 Alcantarillas Prizca
 222
-Sewers Junction
+Sewer Junction
 Cruce de Alcantarillas
 223
 Battle Plaza Underground
-Plaza de Batalla Subterránea
+Plaza Batalla Subterránea
 224
 Farmer's House
 Casa del Granjero

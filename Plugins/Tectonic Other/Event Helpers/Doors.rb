@@ -17,6 +17,7 @@ def swingingDoorTransfer(map_id, x, y, &block)
 end
 
 def openDoorTransfer(map_id, x, y, &block)
+    pbSEPlay('Door exit')
     playerEntersDoorMoveRoute
     blackFadeOutIn {
         block.call if block_given?
@@ -89,7 +90,7 @@ end
 def playerEntersDoorMoveRoute
     pbMoveRoute(get_player, [
         PBMoveRoute::ThroughOn,
-        PBMoveRoute::Up,
+        PBMoveRoute::Forward,
         PBMoveRoute::ThroughOff,
     ])
     pbWait(12)
