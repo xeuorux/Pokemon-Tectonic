@@ -1,5 +1,6 @@
 class Game_Player < Game_Character
     @@bobFrameSpeed = 1.0/15
+    attr_accessor :opacity
   
     def fullPattern
       case self.direction
