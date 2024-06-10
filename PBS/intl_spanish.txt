@@ -3250,14 +3250,14 @@ Wait, paper trail? Hmm...
 Espera, ¿Camino de papeles? Hmm...
 All of this could have been avoided with better planning...
 Todo esto podría haber sido evitado con mejor planeación...
-South: Kilna Turf
-Sur: Campo Kilna
+South-East: Kilna Turf
+Sureste: Campo Kilna
 North: County Park
 Norte: Parque del Municipio
-Down: Team Chasm HQ
-Debajo: Guarida Chasm
-Up: Kilna Ascent
-Arriba: Subida Kilna
+Center: Exit to Team Chasm HQ
+Centro: Salida a Guarida Chasm
+South-West: Exit to Kilna Ascent
+Suroeste: Salida a Subida Kilna
 Hey, can I ask a favor?
 Hey, ¿Puedo pedirte un favor?
 I’m really really sorry, but you got some medicine you can spare?
