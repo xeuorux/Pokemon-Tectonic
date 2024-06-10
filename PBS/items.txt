@@ -2197,9 +2197,9 @@ Name = Zygarde Cube
 NamePlural = Zygarde Cubes
 Pocket = 8
 Price = 0
-FieldUse = Direct
+FieldUse = OnPokemon
 Flags = KeyItem
-Description = An item to store Zygarde Cores and Cells. You can also use it to teach Zygarde moves.
+Description = An item holding Zygarde's Cores and Cells. You can use it to change Zygarde's ability.
 #-------------------------------
 [EXPCANDYXS]
 Name = Exp. Candy XS
