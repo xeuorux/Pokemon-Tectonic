@@ -294,7 +294,20 @@ def shinifyPokemonVendor
 end
 
 def cloneMinorLegend
-	actualSpecies = [:PHIONE,:TYPENULL,:COSMOG,:MELTAN,:KUBFU]
+	possibleSpecies = [:PHIONE,:TYPENULL,:COSMOG,:MELTAN,:KUBFU]
+	actualSpecies = []
+
+	possibleSpecies.each do |possible|
+		next unless $game_player.owned?(possible)
+		actualSpecies.push(possible)
+	end
+
+	if actualSpecies.empty?
+		pbMessage(_INTL("Unfortunately, you lack familiarity with any suitable legendary Pokemon."))
+		pbMessage(_INTL("Return to me if you encounter any in your travels."))
+		return
+	end
+
 	speciesArray = []
 	actualSpecies.each do |speciesID|
 		speciesArray.push(GameData::Species.get(speciesID).name)
