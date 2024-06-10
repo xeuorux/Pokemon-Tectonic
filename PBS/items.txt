@@ -1179,6 +1179,13 @@ Price = 1000
 Flags = Clothing
 Description = A sumptuous scarf that boosts the holder's Normal-type moves by 20%.
 #-------------------------------
+[FAIRYFEATHER]
+Name = Fairy Feather
+NamePlural = Fairy Feathers
+Pocket = 5
+Price = 1000
+Description = A gleaming feather that boosts the holder's Fairy-type moves by 20%.
+#-------------------------------
 [FIREGEM]
 Name = Fire Gem
 NamePlural = Fire Gems
@@ -2539,6 +2546,14 @@ FieldUse = Direct
 Flags = KeyItem
 Description = A small, versatile machine that can be used to repel wild Pokémon, or draw them near.
 #-------------------------------
+[CELLBOOSTER]
+Name = Cell Booster
+NamePlural = Cell Boosters
+Pocket = 7
+Price = 0
+Flags = KeyItem
+Description = Condensed essence of life. Holding it allows you to run, bike, and surf faster.
+#-------------------------------
 [HOUSEDEED1]
 Name = House Deed
 NamePlural = House Deeds
@@ -2852,10 +2867,3 @@ FieldUse = Direct
 Consumable = true
 Flags = KeyItem
 Description = A thin, nearly invisible strand of unusual metal.
-#-------------------------------
-[FAIRYFEATHER]
-Name = Fairy Feather
-NamePlural = Fairy Feathers
-Pocket = 5
-Price = 1000
-Description = A gleaming feather that boosts the holder's Fairy-type moves by 20%.
