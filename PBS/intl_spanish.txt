@@ -1784,8 +1784,6 @@ Y gracias.
 
 [Map22]
 
-The door resists your attempts to open it with a mystic force.
-La puerta resiste tus intentos de abrirla con una fuerza mística.
 
 [Map23]
 
@@ -7208,8 +7206,6 @@ When the tournament is on, it's the only time of the year I can take a break fro
 Cuando el torneo empiece, es el único momento del año donde puedo tomar un descanso de lidiar con entrenadores locos todo el día.
 I'm gonna make the most of it, by relaxing...
 Voy a disfrutarlo al máximo, relajandome… 
-The door resists your attempts to open it with a mystic force.
-La puerta resiste tus intentos de abrirla con una fuerza mística.
 
 [Map107]
 
@@ -7828,8 +7824,6 @@ Make sure that Pokemon gets hurt a lot. It'll have fun doing it, and it keeps ou
 Asegúrate de que el Pokémon se lastime bastante. Se divertirá haciéndolo, y mantiene a nuestros Centros financiados.
 Peace.
 Adiós.
-The door resists your attempts to open it with a mystic force.
-La puerta resiste tus intentos de abrirla con una fuerza mística.
 Are you also here to dance at the top of a mountain?
 ¿También estás aquí para bailar en la cima de la montaña?
 I regret coming up here dressed like this...
@@ -11071,8 +11065,6 @@ Sí
 
 [Map175]
 
-The door resists your attempts to open it with a mystic force.
-La puerta resiste tus intentos de abrirle con una fuerza mística.
 I don’t know what’s inside.
 No sé qué está dentro.
 I don’t know why the door’s there.
@@ -14478,8 +14470,6 @@ Leader: Samorn
 Líder: Samorn
 History and motion.
 Historia y moción.
-The door resists your attempts to open it with a mystic force.
-La puerta resiste tus intentos de abrirla con una fuerza mística.
 Hey, kiddo. Knew you’d show up sooner or later. You took to training like a Wooper to water, didn’t you?
 Hey, chico. Sabía que aparecerías tarde o temprano. Tomaste tu entrenamiento como Wooper en el agua, ¿No?
 Had to work myself to the bone to get here before you and, guess what? Gym leader’s out again.
@@ -15759,8 +15749,6 @@ West: Battle Plaza Underground
 Oesta: Plaza Batalla Subterránea
 South: LuxTech Sewers
 Sur: Alcantarillas LuxTech
-The door resists your attempts to open it with a mystic force.
-La puerta resiste tus intentos de abrirla con una fuerza mística.
 
 [Map223]
 It's a vending machine.\n Which drink would you like?\G
@@ -18284,8 +18272,6 @@ I hope my next peice will impress the Prizcan Artists Guild.
 Espero que mi siguiente pieza impresionará al Gremio de Artistas de Prizca.
 [Map292]
 
-The door resists your attempts to open it with a mystic force.
-La puerta resiste tus intentos de abrirla con una fuerza mística.
 
 [Map293]
 
@@ -52847,6 +52833,8 @@ HM {1}
 MO {1}
 {1} HMs
 MsOs {1}
+The door resists your attempts to open it with a mystic force.
+La puerta resiste tus intentos de abrirla con una fuerza mística.
 [26]
 [27]
 [27]

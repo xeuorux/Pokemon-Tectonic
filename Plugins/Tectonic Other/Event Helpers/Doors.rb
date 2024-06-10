@@ -35,6 +35,26 @@ def ajarDoorTransfer(map_id, x, y, &block)
     }
 end
 
+def avatarChamberDoor(itemID, map_id, x, y, &block)
+    if pbHasItem?(itemID)
+        stoneDoorTransfer(map_id, x, y) {
+            block.call if block_given?
+        }
+    else
+        pbMessage(_INTL("The door resists your attempts to open it with a mystic force."))
+    end
+end
+
+def stoneDoorTransfer(map_id, x, y, &block)
+    stoneDoor
+    blackFadeOutIn {
+        block.call if block_given?
+        $game_player.transparent = false
+        pbCaveEntrance
+        teleportPlayer(map_id,x,y,true)
+    }
+end
+
 def slidingDoor
     doorMoveRoute('Door enter sliding')
 end
@@ -47,8 +67,12 @@ def ajarDoor
     ajarDoorMoveRoute('Door enter')
 end
 
-def doorMoveRoute(soundEffectName)
-    pbSEPlay(soundEffectName) if soundEffectName
+def stoneDoor
+    doorMoveRoute('Anim/PRSFX- Splintered Stormshards1',100,70)
+end
+
+def doorMoveRoute(soundEffectName, volume = nil, pitch = nil)
+    pbSEPlay(soundEffectName, volume, pitch) if soundEffectName
     pbMoveRoute(get_self,  [
         PBMoveRoute::Wait,2,
         PBMoveRoute::TurnLeft,
