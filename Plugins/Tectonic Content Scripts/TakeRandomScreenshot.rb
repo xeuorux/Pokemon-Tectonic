@@ -1,4 +1,4 @@
-def mapGuessingGame
+def mapGuessingGame(screenshotCount = 9)
     locationNames = []
     loop do
         begin
@@ -7,7 +7,7 @@ def mapGuessingGame
             echoln $!.message
             echoln $!.backtrace
         end
-        break if locationNames.length >= 9
+        break if locationNames.length >= screenshotCount
     end
     echoln("Answers:")
     locationNames.each do |locationName|
