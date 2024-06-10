@@ -39469,6 +39469,8 @@ Tart Apple
 Manzana Ácida
 Noise Machine
 Máquina de Ruido
+Cell Booster
+Refuerzo de Células
 [8]
 Repels
 Repelentes
@@ -40182,6 +40184,10 @@ Sweet Apples
 Manzanas Dulces
 Tart Apples
 Manzanas Ácidas
+Noise Machines
+Máquinas de Ruido
+Cell Boosters
+Refuerzos de Células
 [9]
 An item that prevents wild Pokémon from appearing for 100 steps after its use.
 Un objeto que impide que Pokémon salvajes aparezcan por 100 pasos.
@@ -40725,8 +40731,8 @@ A machine to fuse Necrozma, which needs light, and Solgaleo.
 Una máquina hecha para fusionar a Necrozma, qué necesita luz, y Solgaleo.
 A machine to fuse Necrozma, which needs light, and Lunala.
 Una máquina hecha para fusionar a Necrozma, qué necesita luz, y Lunala.
-An item to store Zygarde Cores and Cells. You can also use it to teach Zygarde moves.
-Un objeto que almacena los Núcleos y Células de Zygarde. También puedes usarlo para enseñarle movimientos a Zygarde.
+An item holding Zygarde's Cores and Cells. You can use it to change Zygarde's ability.
+Un objeto que contiene los Núcleos y las Células de Zygarde. Puedes usarlo para cambiar la habilidad de Zygarde.
 Raises Speed sharply when a Pokémon misses with a move because of accuracy.
 Aumenta la Velocidad cuatro grados cuando un Pokémon falla un movimiento debido a su precisión. 
 An item to be held by a Pokémon. When the holder's stats are lowered, it will be switched out of battle.
