@@ -312,7 +312,7 @@ def cloneMinorLegend
 
 	pbChooseBoxPokemon(1,3,
 		proc { |poke|
-			possibleSpecies.include?(poke.species)
+			possibleSpecies.include?(GameData::Species.get(poke.species).get_line_start.id)
 		})
 
 	unless boxPokemonChosen?
@@ -331,7 +331,7 @@ def cloneMinorLegend
 		$PokemonBag.pbDeleteItem(:ORIGINORE)
 	}
 	pbMessage(_INTL("Poof! And so the impossible has been made possible!"))
-	chosenSpecies = pbGet(1).species
+	chosenSpecies = GameData::Species.get(pbGet(1).species).get_line_start.id
 	pbAddPokemon(chosenSpecies,10)
 	setSpeaker(HISUIAN_WITCH)
 	pbMessage(_INTL("My hopes go with you. Live the legend!"))
