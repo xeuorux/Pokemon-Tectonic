@@ -7710,77 +7710,104 @@ Pokemon = TANGROWTH,70
 Pokemon = MJELLICENT,70
     AbilityIndex = 0 # Ruinous
 #-------------------------------
-[BUTLER,Sagan]
-Pokemon = MMUSHARNA,70
-    AbilityIndex = 0 # Slumbering Drake
-    Item = DRAGONGEM
-Pokemon = BOLTUND,70
-    AbilityIndex = 0 # Strong Jaw
-Pokemon = PASSIMIAN,70
-    AbilityIndex = 0 # Long Receiver
-Pokemon = MUDSDALE,70
-    AbilityIndex = 1 # Stamina
-    Item = LEFTOVERS
+[RICHCOUPLE,Diana and Edward]
+Pokemon = MEOWSTIC,70
+    Moves = PSYCHICFANGS,HELPINGHAND,REFLECT,LIGHTSCREEN
+    AbilityIndex = 0 # Prankster
+    Item = LIGHTCLAY
+Pokemon = BEWEAR,70
+    Moves = BEARHUG,MEGAPUNCH,WIDEGUARD,MACHPUNCH
+    AbilityIndex = 0 # Intimidate
+Pokemon = NIBELONG,70
+    Moves = FAKEOUT,EARTHQUAKE,RETALIATE,DRAGONHAMMER
+    AbilityIndex = 1 # Fascinate
+    Item = LUMBERAXE
+Pokemon = AROMATISSE,70
+    Moves = MISTBURST,SLUDGEWAVE
+    AbilityIndex = 0 # Fashionable
+    Item = CHOICESPECS,FAIRYGEM
 #-------------------------------
 [MAID,Wendy]
 Pokemon = FLAREON,70
+    Moves = IGNITE,BULKUP,PROPELLANT,FLAREUP
     AbilityIndex = 1 # Ignition Cycle
-Pokemon = MILTANK,70
-    AbilityIndex = 0 # Thick Fat
-    Item = ROCKYHELMET
-Pokemon = VANILLUXE,70
-    AbilityIndex = 0 # Extra Scoop
+    Item = LEFTOVERS
+Pokemon = GASTRODON,70
+    Moves = SILTSURGE,EARTHPOWER,RECOVER,DISSOLUTION
+    AbilityIndex = 1 # Water Absorb
+Pokemon = POLIWRATH,70
+    Moves = CROSSCHOP,LIQUIDATION,NERVEBLOCK,ENCORE
+    AbilityIndex = 0 # Counter Flow
 Pokemon = DRIFBLIM,70
+    Moves = HEATWAVE,COLDFRONT,GHOULISHGALE,SMOLDERRAVE
     AbilityIndex = 0 # Unburden
     Item = SITRUSBERRY
 #-------------------------------
-[RICHCOUPLE,Diana and Edward]
-Pokemon = KLEAVOR,70
-    AbilityIndex = 0 # Swordplay
-Pokemon = LIEPARD,70
-    AbilityIndex = 0 # Dauntless
-    Item = LIGHTCLAY
-Pokemon = ORANGURU,70
-    AbilityIndex = 1 # Telepathy
-Pokemon = AROMATISSE,70
-    AbilityIndex = 0 # Fashionable
-    Item = CHOICESPECS,SHELLBELL
-#-------------------------------
-[SUSPICIOUSMAN,Tommaso]
-Pokemon = NIDOQUEEN,70
-    AbilityIndex = 0 # Rugged Scales
-    Item = PASSHOBERRY
-Pokemon = MACHAMP,70
-    AbilityIndex = 1 # No Guard
-Pokemon = HYPNO,70
-    AbilityIndex = 1 # Knuckleduster
-Pokemon = DEDENNE,70
-    AbilityIndex = 0 # Cheek Pouch
-    Item = SITRUSBERRY
+[BUTLER,Sagan]
+Pokemon = MMUSHARNA,70
+    Moves = MINDWARP,DRAGONPULSE,DIAMONDFORCE
+    AbilityIndex = 1 # Fatigued
+    Item = CHESTOBERRY
+Pokemon = PORYGONZ,70
+    Moves = TRIATTACK,DISCHARGE,HEX,NUMB
+    AbilityIndex = 1 # Shaky Code
+Pokemon = INCINEROAR,70
+    Moves = SUBMISSION,KNOCKOFF,BLAZEKICK,BULKUP
+    AbilityIndex = 0 # Intimidate
+Pokemon = MUDSDALE,70
+    Moves = STABILIZE,EARTHQUAKE,SUPERPOWER,HEAVYSLAM
+    AbilityIndex = 1 # Stamina
+    Item = LEFTOVERS
 #-------------------------------
 [BURGLAR,Martino]
 Pokemon = NINETALES,70
+    Moves = FLEURCANNON,WARDPRESS,CRIMSONSTORM,FIREBLAST
     AbilityIndex = 0 # Cursed Tail
     Item = ASSAULTVEST
 Pokemon = METAGROSS,70
-    AbilityIndex = 0 # Brute Force
+    Moves = HEAVYSLAM,ELECTROSLASH,BULLETPUNCH,OMNISCIENTBLOW
+    AbilityIndex = 1 # Optimized Alloy
 Pokemon = WEEZING,70
-    AbilityIndex = 1 # Fumigate
+    Moves = EXPLOSION,MIASMA,COLDFRONT,POISONGAS
+    AbilityIndex = 0 # Neutralizing Gas
     Item = LEFTOVERS
-Pokemon = RELICANTH,70
-    AbilityIndex = 0 # Trench Carver
+Pokemon = KINGDRA,70
+    Moves = MURKYFOG,DREAMDANCE,SCALD,GALLINGSPIT
+    AbilityIndex = 0 # Serene Grace
 #-------------------------------
 [CRIMINALTEAM,Gianna and Rocco]
+Policies = EQ_PROTECT
 Pokemon = HZOROARK,70
-    AbilityIndex = 1 # Mental Block
+    Moves = MALEFACTION,PHANTOMGATE,AURASPHERE,DETACHMENT
+    AbilityIndex = 0 # Illusion
+    Item = ENERGYLOCK
 Pokemon = CROBAT,70
+    Moves = PROTECT,VENOMORTAR,EXSANGUINATE,ACROBATICS
     AbilityIndex = 0 # Inner Focus
-    Item = CHOICEBAND
+    Item = SKILLHERB
 Pokemon = ELECTIVIRE,70
+    Moves = DISCHARGE,DRAINPUNCH,NUMB,BAR
     AbilityIndex = 1 # Adrenaline Rush
-    Item = LIECHIBERRY
-Pokemon = MRMIME,70
-    AbilityIndex = 0 # Barrier Maker
+    Item = ENERGYLOCK
+Pokemon = AGGRON,70
+    Moves = IRONHEAD,BEDROCKBREAKER
+    AbilityIndex = 1 # Motor Drive
+#-------------------------------
+[SUSPICIOUSMAN,Tommaso]
+Pokemon = NIDOQUEEN,70
+    Moves = POISONSPIKES,VENOSHOCK,EARTHPOWER,POISONGAS
+    AbilityIndex = 0 # Rugged Scales
+    Item = SITRUSBERRY
+Pokemon = TOXAPEX,70
+    Moves = VENOMGUARD,DRAGBENEATH,TRICKYTOXINS,POISONSPIKES
+    AbilityIndex = 0 # Noxious
+    Item = LEFTOVERS
+Pokemon = HYPNO,70
+    Moves = OMNISCIENTBLOW,DRAINPUNCH,ICEPUNCH,THUNDERPUNCH
+    AbilityIndex = 1 # Knuckleduster
+Pokemon = MANDIBUZZ,70
+    Moves = FOULPLAY,DIVEBOMB,TRICKYTOXINS,CULL
+    AbilityIndex = 0 # Impervious
 #-------------------------------
 [SPIRITGUARDIAN2,Sonya]
 Pokemon = CLAYDOL,70
