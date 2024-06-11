@@ -91,7 +91,7 @@ class Game_Player < Game_Character
       @move_speed = val
       # @move_speed_real is the number of quarter-pixels to move each frame. There
       # are 128 quarter-pixels per tile.
-      if pbHasItem?(:CELLBOOSTER)
+      if $PokemonBag && pbHasItem?(:CELLBOOSTER)
         self.move_speed_real = [3.2, 6.4, 12.8, 25.6, 44, 64][val - 1] * 1.5
       else
         self.move_speed_real = [3.2, 6.4, 12.8, 25.6, 44, 64][val - 1]
