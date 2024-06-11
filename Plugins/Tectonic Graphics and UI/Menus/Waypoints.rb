@@ -148,6 +148,9 @@ class WaypointsTracker
 					return
 				end
 				transferPlayerToEvent(waypointInfo,Up,mapID,[0,1])
+				if pbGetSelfSwitch(waypointInfo, 'A', mapID) && getGlobalVariable(37) == 0 # Legend cloning quest
+					setGlobalSwitch(226) # Dr. Hekata phonecall
+				end
 			end
 			$scene.transfer_player
 			$game_map.autoplay
