@@ -1823,36 +1823,6 @@ Pokemon = TANGROWTH,35
     Moves = KNOCKOFF,VINEBIND,SMACKDOWN,ROOTWRACK
     AbilityIndex = 1 # Tangling Hair
 #-------------------------------
-[PICNICKER,Magdalena]
-Pokemon = SYLVEON,40
-    AbilityIndex = 1 # Dragon Slayer
-Pokemon = PYUKUMUKU,40
-    AbilityIndex = 1 # Realist
-    Item = ROCKYHELMET
-Pokemon = ARIADOS,40
-    AbilityIndex = 0 # Merciless
-Pokemon = DIGGERSBY,40
-    AbilityIndex = 0 # Excavator
-    Item = CHOICEBAND
-Pokemon = DEWGONG,40
-    AbilityIndex = 0 # Bitter
-    Item = SHELLBELL
-#-------------------------------
-[PSYCHIC_F,Hannele]
-Pokemon = GIGALITH,40
-    AbilityIndex = 1 # Unburden
-Pokemon = ALAKAZAM,40
-    AbilityIndex = 0 # Warping Effect
-    Item = CHOICESPECS
-Pokemon = SEVIPER,40
-    AbilityIndex = 0 # Shed Skin
-Pokemon = DUBWOOL,40
-    AbilityIndex = 0 # Fluffy
-    Item = LEFTOVERS
-Pokemon = CHATOT,40
-    AbilityIndex = 0 # Loud
-    Item = SITRUSBERRY
-#-------------------------------
 [SWIMMER_M,Stannis]
 Policies = MOONGLOW_TEAM
 Pokemon = ALOMOMOLA,35
