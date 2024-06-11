@@ -120,7 +120,7 @@ class PokemonPokedexInfo_Scene
     end
 
     def pbUpdateDummyPokemon
-        @species = @dexlist[@index][0]
+        @species = @dexlist[@index][:species]
         @gender, @form = $Trainer.pokedex.last_form_seen(@species)
         species_data = GameData::Species.get_species_form(@species, @form)
         @title = species_data.form_name ? "#{species_data.name} (#{species_data.form_name})" : species_data.name
@@ -241,9 +241,9 @@ sp.form) && !Settings::DEX_SHOWS_ALL_FORMS
         species_data = GameData::Species.get_species_form(@species, @form)
         # Write various bits of text
         indexText = "???"
-        if @dexlist[@index][4] > 0
-            indexNumber = @dexlist[@index][4]
-            indexNumber -= 1 if @dexlist[@index][5]
+        if @dexlist[@index][:index] > 0
+            indexNumber = @dexlist[@index][:index]
+            indexNumber -= 1 if @dexlist[@index][:shift]
             indexText = format("%03d", indexNumber)
         end
         textpos = [
@@ -1086,7 +1086,7 @@ sp.form) && !Settings::DEX_SHOWS_ALL_FORMS
         newindex = @index
         while newindex > 0
             newindex -= 1
-            if !isLegendary(@dexlist[newindex][0]) || $Trainer.seen?(@dexlist[newindex][0])
+            if !isLegendary(@dexlist[newindex][:species]) || $Trainer.seen?(@dexlist[newindex][:species])
                 @index = newindex
                 break
             end
@@ -1097,7 +1097,7 @@ sp.form) && !Settings::DEX_SHOWS_ALL_FORMS
         newindex = @index
         while newindex < @dexlist.length - 1
             newindex += 1
-            if !isLegendary(@dexlist[newindex][0]) || $Trainer.seen?(@dexlist[newindex][0])
+            if !isLegendary(@dexlist[newindex][:species]) || $Trainer.seen?(@dexlist[newindex][:species])
                 @index = newindex
                 break
             end
@@ -1256,8 +1256,8 @@ sp.form) && !Settings::DEX_SHOWS_ALL_FORMS
             coordinateY += 34
 
             # Use count
-            drawTextEx(overlay, xLeft, coordinateY, 450, 1, _INTL("Use count: #{@dexlist[@index][16]}, #{@dexlist[@index][17]}"), base,
-    shadow)
+            useCount = @speciesUseData[entry[:species]]
+            drawTextEx(overlay, xLeft, coordinateY, 450, 1, _INTL("Use count: #{useCount[0]}, #{useCount[1]}"), base, shadow)
             coordinateY += 32
 
             # Earliest level accessible
