@@ -298,7 +298,7 @@ class PokeBattle_Battler
         return increment
     end
 
-    def pbLowerStatStep(stat, increment, user = nil, showAnim = true, ignoreContrary = false, ignoreMirrorArmor = false)
+    def pbLowerStatStep(stat, increment, user = nil, showAnim = true, ignoreContrary = false, ignoreMirrorArmor = false, ignoreStubborn = false)
         # Mirror Armor, only if not self inflicted
         if !ignoreMirrorArmor && hasActiveAbility?(:MIRRORARMOR) && (!user || user.index != @index) &&
            !@battle.moldBreaker && pbCanLowerStatStep?(stat)
@@ -332,7 +332,7 @@ class PokeBattle_Battler
         # Total Focus
         return false if effectActive?(:EmpoweredFlowState)
         # Stubborn
-        if hasActiveAbility?(:STUBBORN) && !@battle.moldBreaker && increment > 1
+        if hasActiveAbility?(:STUBBORN) && !ignoreStubborn && !@battle.moldBreaker && increment > 1
             showMyAbilitySplash(:STUBBORN)
             @battle.pbDisplay(_INTL("{1} resists the large stat drop!", pbThis))
             hideMyAbilitySplash
@@ -387,7 +387,7 @@ class PokeBattle_Battler
         return true
     end
 
-    def pbLowerStatStepByCause(stat, increment, user, cause, showAnim = true, ignoreContrary = false, ignoreMirrorArmor = false)
+    def pbLowerStatStepByCause(stat, increment, user, cause, showAnim = true, ignoreContrary = false, ignoreMirrorArmor = false, ignoreStubborn = false)
         # Mirror Armor
         if !ignoreMirrorArmor && hasActiveAbility?(:MIRRORARMOR) && (!user || user.index != @index) &&
                 !@battle.moldBreaker && pbCanLowerStatStep?(stat)
@@ -567,7 +567,7 @@ class PokeBattle_Battler
     end
 
     # Fails silently
-    def tryLowerStat(stat, user, move: nil, increment: 1, showFailMsg: false, showAnim: true, ability: nil, cause: nil, item: nil, ignoreContrary: false)
+    def tryLowerStat(stat, user, move: nil, increment: 1, showFailMsg: false, showAnim: true, ability: nil, cause: nil, item: nil, ignoreContrary: false, ignoreStubborn: false)
         return false if increment <= 0
         lowered = false
         if pbCanLowerStatStep?(stat, user, move, showFailMsg, ignoreContrary)
@@ -575,10 +575,10 @@ class PokeBattle_Battler
             if item
                 cause = GameData::Item.get(item).name
                 @battle.pbCommonAnimation("UseItem", user)
-                lowered = true if pbLowerStatStepByCause(stat, increment, user, cause, showAnim, ignoreContrary)
+                lowered = true if pbLowerStatStepByCause(stat, increment, user, cause, showAnim, ignoreContrary, false, ignoreStubborn)
             elsif cause
-                lowered = true if pbLowerStatStepByCause(stat, increment, user, cause, showAnim, ignoreContrary)
-            elsif pbLowerStatStep(stat, increment, user, showAnim, ignoreContrary)
+                lowered = true if pbLowerStatStepByCause(stat, increment, user, cause, showAnim, ignoreContrary, false, ignoreStubborn)
+            elsif pbLowerStatStep(stat, increment, user, showAnim, ignoreContrary, false, ignoreStubborn)
                 lowered = true
             end
         end
@@ -637,13 +637,36 @@ showAnim: showAnim, ability: nil, cause: cause)
             cause = GameData::Item.get(item).name
         end
 
+        anyLargeDrops = false
+        for i in 0...statArray.length / 2
+            stat = statArray[i * 2]
+            increment = statArray[i * 2 + 1]
+            anyLargeDrops = true if increment > 1
+        end
+
+        # Stubborn
+        if hasActiveAbility?(:STUBBORN) && !@battle.moldBreaker && anyLargeDrops
+            showMyAbilitySplash(:STUBBORN)
+            @battle.pbDisplay(_INTL("{1} resists the large stat drop!", pbThis))
+            hideMyAbilitySplash
+
+            newStatArray = []
+            for i in 0...statArray.length / 2
+                stat = statArray[i * 2]
+                increment = statArray[i * 2 + 1]
+                newStatArray.push(stat)
+                newStatArray.push([increment,1].min)
+            end
+            statArray = newStatArray
+        end
+
         loweredAnySteps = false
         for i in 0...statArray.length / 2
             stat = statArray[i * 2]
             increment = statArray[i * 2 + 1]
             next if increment <= 0
             loweredAnySteps = true if tryLowerStat(stat, user, move: move, increment: increment, showFailMsg: showFailMsg,
-showAnim: showAnim, ability: nil, cause: cause)
+showAnim: showAnim, ability: nil, cause: cause, ignoreStubborn: true)
             showAnim = false if loweredAnySteps
         end
         @battle.pbHideAbilitySplash(user) if ability
