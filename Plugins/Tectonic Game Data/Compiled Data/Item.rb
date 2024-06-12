@@ -404,6 +404,8 @@ module Compiler
     Graphics.update
 
     compile_machine_order
+
+    BattleHandlers::LoadDataDependentItemHandlers.trigger
   end
 
   def compile_machine_order

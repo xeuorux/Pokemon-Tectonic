@@ -107,16 +107,18 @@ BattleHandlers::AbilityOnSwitchIn.add(:SCOUREDSILHOUETTE,
 # Ability warnings on entry
 #######################################################
 
-GameData::Ability.getByFlag("MoldBreaking").each do |abilityID|
-    BattleHandlers::AbilityOnSwitchIn.add(abilityID,
-        proc { |ability, battler, battle, aiCheck|
-            next 0 if aiCheck
-            battle.pbShowAbilitySplash(battler, ability)
-            battle.pbDisplay(_INTL("{1} breaks the mold!", battler.pbThis))
-            battle.pbHideAbilitySplash(battler)
-        }
-    )
-end
+BattleHandlers::LoadDataDependentAbilityHandlers += proc {
+  GameData::Ability.getByFlag("MoldBreaking").each do |abilityID|
+      BattleHandlers::AbilityOnSwitchIn.add(abilityID,
+          proc { |ability, battler, battle, aiCheck|
+              next 0 if aiCheck
+              battle.pbShowAbilitySplash(battler, ability)
+              battle.pbDisplay(_INTL("{1} breaks the mold!", battler.pbThis))
+              battle.pbHideAbilitySplash(battler)
+          }
+      )
+  end
+}
 
 BattleHandlers::AbilityOnSwitchIn.add(:PRESSURE,
 proc { |ability, battler, battle, aiCheck|
