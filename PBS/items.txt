@@ -2554,6 +2554,15 @@ Price = 0
 Flags = KeyItem
 Description = Condensed essence of life. Holding it allows you to run, bike, and surf faster.
 #-------------------------------
+[RUSTEDCOMPASS]
+Name = Rusted Compass
+NamePlural = Rusted Compass
+Pocket = 8
+Price = 0
+FieldUse = Direct
+Flags = KeyItem
+Description = A small compass, a relic of a heroic age. It can be used to find items lootable nearby.
+#-------------------------------
 [HOUSEDEED1]
 Name = House Deed
 NamePlural = House Deeds
