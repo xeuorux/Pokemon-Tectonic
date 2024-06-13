@@ -89,6 +89,10 @@ Megs/Gigantamax Overworld Sprites
 Kidkatt<s>Larryturbo
 Princess-Phoenix<s>Sagedeoxys
 
+Other Overworld Sprites
+Larryturbo<s>Kyle Dove
+Azria<s>Twitch
+
 Reborn Icons
 smeargletail<s>ARandomTalkingBush
 
