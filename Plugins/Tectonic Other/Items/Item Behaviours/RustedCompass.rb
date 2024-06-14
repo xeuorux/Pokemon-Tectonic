@@ -52,7 +52,10 @@ end
 
 ItemHandlers::UseInField.add(:RUSTEDCOMPASS,proc { |item|
     nearItemBalls = getNearItemBalls
-    next if nearItemBalls.empty?
+    if nearItemBalls.empty?
+        pbMessage(_INTL("You shake the Rusted Compass, but it remains stagnant."))
+        next 0
+    end
 
     nearItemBalls.each do |itemBall|
         echoln(itemBall)
@@ -66,18 +69,35 @@ ItemHandlers::UseInField.add(:RUSTEDCOMPASS,proc { |item|
     
     #echoln("Closest loot is a #{itemID} located #{squareDistance ** 0.5} distance away")
 
-    if squareDistance > 2048
-        pbMessage(_INTL("Loot is very far away!"))
-    elsif squareDistance > 512
-        pbMessage(_INTL("Loot is far away!"))
-    elsif squareDistance > 128
-        pbMessage(_INTL("Loot is at a medium distance!"))
-    elsif squareDistance > 32
-        pbMessage(_INTL("Loot is close by!"))
-    elsif squareDistance > 8
-        pbMessage(_INTL("Loot is very close by!"))
+    if hidden
+        pbMessage(_INTL("You get a sense of a piece of loot hidden nearby..."))
     else
-        pbMessage(_INTL("Loot is EXTREMELY close! You're nearly on top of it!"))
+        pbMessage(_INTL("You receive a vision of a piece of nearby loot ..."))
     end
+
+    itemData = GameData::Item.get(itemID)
+
+    lootDescriptor = ""
+    if hidden
+        lootDescriptor =  _INTL("The hidden loot")
+    else
+        lootDescriptor = itemData.name_with_article(false)
+    end
+
+    if squareDistance > 2048
+        lootMessage = _INTL("{1} is very far away!",lootDescriptor)
+    elsif squareDistance > 512
+        lootMessage = _INTL("{1} is far away!",lootDescriptor)
+    elsif squareDistance > 128
+        lootMessage = _INTL("{1} is at a medium distance!",lootDescriptor)
+    elsif squareDistance > 32
+        lootMessage = _INTL("{1} is close by!",lootDescriptor)
+    elsif squareDistance > 8
+        lootMessage = _INTL("{1} is very close by!",lootDescriptor)
+    else
+        lootMessage = _INTL("{1} is EXTREMELY close! You're nearly on top of it!",lootDescriptor)
+    end
+    lootMessage = _INTL("\\i[{1}]{2}",itemID,lootMessage) unless hidden
+    pbMessage(lootMessage)
     next 1
 })
