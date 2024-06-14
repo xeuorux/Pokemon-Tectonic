@@ -86,7 +86,7 @@ Mademoiselle<s>PizzaSun
 izzyvicious<s>Wolfgang62
 Somersault
 
-Megs/Gigantamax Overworld Sprites
+Megas/Gigantamax Overworld Sprites
 Kidkatt<s>Larryturbo
 Princess-Phoenix<s>Sagedeoxys
 
