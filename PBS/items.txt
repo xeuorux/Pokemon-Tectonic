@@ -2561,7 +2561,7 @@ Pocket = 8
 Price = 0
 FieldUse = Direct
 Flags = KeyItem
-Description = A small compass, a relic of a heroic age. It can be used to find items lootable nearby.
+Description = A small compass. Relic of a heroic age. It can be used to find lootable items nearby.
 #-------------------------------
 [HOUSEDEED1]
 Name = House Deed

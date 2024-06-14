@@ -72,7 +72,7 @@ ItemHandlers::UseInField.add(:RUSTEDCOMPASS,proc { |item|
     if hidden
         pbMessage(_INTL("You get a sense of a piece of loot hidden nearby..."))
     else
-        pbMessage(_INTL("You receive a vision of a piece of nearby loot ..."))
+        pbMessage(_INTL("You receive a vision of a piece of nearby loot..."))
     end
 
     itemData = GameData::Item.get(itemID)
