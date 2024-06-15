@@ -44,6 +44,7 @@ class PokemonBag
       for i in 0..PokemonBag.numPockets
           @pockets[i].each do |item_element|
               itemID = item_element[0]
+              next unless GameData::Item.try_get(itemID)
               itemCount = item_element[1]
               if hashOfAllItems.has_key?(itemID)
                   hashOfAllItems[itemID] += itemCount
