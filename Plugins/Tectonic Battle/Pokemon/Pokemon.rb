@@ -78,6 +78,7 @@ class Pokemon
     attr_accessor :dmgResist
     attr_accessor :battlingStreak
     attr_accessor :extraMovesPerTurn
+    attr_accessor :bossVersion
     attr_accessor :bossType
     attr_writer   :itemTypeChosen
     attr_accessor :shiny_variant
@@ -1497,6 +1498,7 @@ class Pokemon
       @extraMovesPerTurn = 0
       @battlingStreak = 0
       @bossType = nil
+      @bossVersion = 0
       calc_stats
       if @form == 0 && recheck_form
           f = MultipleForms.call("getFormOnCreation", self)

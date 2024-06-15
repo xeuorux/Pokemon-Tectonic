@@ -80,7 +80,11 @@ class PokeBattle_AI_Boss
     def self.from_boss_battler(battler)
         validate battler => PokeBattle_Battler
         avatarData = GameData::Avatar.get_from_pokemon(battler.pokemon)
-        id = avatarData.id.to_s
+        if avatarData.version > 0
+            id = "#{avatarData.species.to_s}_#{avatarData.version}"
+        else
+            id = avatarData.species.to_s
+        end
         className = "PokeBattle_AI_#{id}"
         return Object.const_get(className).new(battler, battler.battle) if Object.const_defined?(className)
         echoln("[BOSS AI] Unable to find AI class for avatar with id #{id}")

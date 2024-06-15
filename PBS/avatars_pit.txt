@@ -1,0 +1,7 @@
+﻿# See the documentation on the wiki to learn how to edit this file.
+#-------------------------------
+[RHYPERIOR,1]
+Ability = FORTIFIED
+Moves1 = ROCKAPULT,DISCHARGE,LUNGE,PRIMEVALSTRINGSHOT
+Moves2 = MEGAHORN,GLIMMERPULSE,FOCUSBLAST,DRILLRUN
+Item = BUGGEM

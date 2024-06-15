@@ -235,7 +235,7 @@ module Compiler
   #=============================================================================
   def convert_avatars(event)
     return nil if !event || event.pages.length==0
-    match = event.name.match(/.*PHA\(([_a-zA-Z0-9]+),([0-9]+)(?:,([_a-zA-Z]+))?(?:,([_a-zA-Z0-9]+))?(?:,([0-9]+))?\).*/)
+    match = event.name.match(/.*PHA\(([_a-zA-Z0-9]+),([0-9]+)(?:,([0-9]+))?(?:,([_a-zA-Z]+))?(?:,([_a-zA-Z0-9]+))?(?:,([0-9]+))?\).*/)
     return nil if !match
     ret = RPG::Event.new(event.x,event.y)
     ret.id   = event.id
@@ -245,9 +245,10 @@ module Compiler
     legendary = isLegendary(avatarSpecies)
     return nil if !avatarSpecies || avatarSpecies == ""
     level = match[2]
-    directionText = match[3]
-    item = match[4] || nil
-    itemCount = match[5].to_i || 0
+    version = match[3] || 0
+    directionText = match[4]
+    item = match[5] || nil
+    itemCount = match[6].to_i || 0
     
     direction = Down
     if !directionText.nil?
@@ -275,7 +276,8 @@ module Compiler
     firstPage.list = []
     push_script(firstPage.list,"pbNoticePlayer(get_self)")
     push_script(firstPage.list,"introduceAvatar(:#{avatarSpecies})")
-    push_branch(firstPage.list,"pb#{legendary ? "Big" : "Small"}AvatarBattle([:#{avatarSpecies},#{level}])")
+    avatarEntry = "[:#{avatarSpecies},#{level},#{version}]"
+    push_branch(firstPage.list,"pb#{legendary ? "Big" : "Small"}AvatarBattle(#{avatarEntry})")
     if item.nil?
       push_script(firstPage.list,"defeatBoss",1)
     else
