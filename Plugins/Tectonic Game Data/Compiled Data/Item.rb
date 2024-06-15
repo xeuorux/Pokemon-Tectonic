@@ -125,6 +125,14 @@ module GameData
           end
         end
       end
+
+      def name_with_article(lowerCase = true)
+        if name.starts_with_vowel?
+          return lowerCase ? _INTL("an {1}",name) : _INTL("An {1}",name)
+        else
+          return lowerCase ? _INTL("a {1}",name) : _INTL("A {1}",name)
+        end
+      end
   
       # @return [String] the translated name of this item
       def name
@@ -165,6 +173,9 @@ module GameData
       def is_HM?;                   return @field_use == 4; end
       def is_TR?;                   return @field_use == 6; end
       def is_machine?;              return is_TM? || is_HM? || is_TR?; end
+      def machine_index
+        return GameData::Item.getMachineIndex(@id)
+      end
 
       def is_poke_ball?
         return @flags.include?("PokeBall")
@@ -396,6 +407,9 @@ module Compiler
     end
     # Add last item's data to records
     GameData::Item.register(item_hash) if item_hash
+
+    compile_machine_order
+
     # Save all data
     GameData::Item.save
     MessageTypes.setMessagesAsHash(MessageTypes::Items, item_names)
@@ -403,13 +417,13 @@ module Compiler
     MessageTypes.setMessagesAsHash(MessageTypes::ItemDescriptions, item_descriptions)
     Graphics.update
 
-    compile_machine_order
+    BattleHandlers::LoadDataDependentItemHandlers.trigger
   end
 
   def compile_machine_order
     GameData::Item::MACHINE_ORDER.clear
     pbCompilerEachPreppedLine("PBS/items_machine_order.txt") { |line, line_no|
-    GameData::Item::MACHINE_ORDER[line.to_sym] = line_no
+      GameData::Item::MACHINE_ORDER[line.to_sym] = line_no
     }
   end
 

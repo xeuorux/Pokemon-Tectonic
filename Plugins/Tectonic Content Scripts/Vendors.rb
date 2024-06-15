@@ -216,6 +216,11 @@ def styleFurfrou
 end
 
 def createHisuian
+	unless pbHasItem?(:ORIGINORE)
+		setSpeaker(HISUIAN_WITCH)
+		pbMessage(_INTL("I do not spy any Origin Ore among your possessions."))
+	end
+
 	actualSpecies = [:HGROWLITHE,:HVOLTORB,:HQWILFISH,:HSNEASEL,:HZORUA,:BASCULIN_2]
 	speciesArray = []
 	actualSpecies.each do |speciesID|
@@ -228,6 +233,7 @@ def createHisuian
 		result = pbShowCommands(nil,speciesArray,0)
 
 		if result == 0
+			setSpeaker(HISUIAN_WITCH)
 			pbMessage(_INTL("Ah, I was looking forward to flexing my skills today."))
 			break
 		else
@@ -238,13 +244,16 @@ def createHisuian
 			case secondResult
 			when 1
 				item_data = GameData::Item.get(:ORIGINORE)
+				removeSpeaker
 				pbMessage(_INTL("\\PN hands over the {1}.",item_data.name))
+				setSpeaker(HISUIAN_WITCH)
 				pbMessage(_INTL("Now just to work my magicks..."))
 				blackFadeOutIn(30) {
 					$PokemonBag.pbDeleteItem(:ORIGINORE)
 				}
 				pbMessage(_INTL("Poof! And so the impossible has been made possible!"))
 				pbAddPokemon(chosenSpecies,10)
+				setSpeaker(HISUIAN_WITCH)
 				pbMessage(_INTL("My hopes go with you. Be respectful of this relic which you now posess."))
 				break
 			when 0
@@ -294,43 +303,38 @@ def shinifyPokemonVendor
 end
 
 def cloneMinorLegend
-	actualSpecies = [:PHIONE,:TYPENULL,:COSMOG,:MELTAN,:KUBFU]
-	speciesArray = []
-	actualSpecies.each do |speciesID|
-		speciesArray.push(GameData::Species.get(speciesID).name)
+	unless pbHasItem?(:ORIGINORE)
+		setSpeaker(HISUIAN_WITCH)
+		pbMessage(_INTL("I do not spy any Origin Ore among your possessions."))
 	end
-	actualSpecies.unshift(nil)
-	speciesArray.unshift(_INTL("None"))
+
+	possibleSpecies = [:PHIONE,:TYPENULL,:COSMOG,:MELTAN,:KUBFU]
+
+	pbChooseBoxPokemon(1,3,
+		proc { |poke|
+			possibleSpecies.include?(GameData::Species.get(poke.species).get_line_start.id)
+		})
+
+	unless boxPokemonChosen?
+		setSpeaker(HISUIAN_WITCH)
+		pbMessage(_INTL("Ah, no suitable Pokemon exists within your collection?"))
+		pbMessage(_INTL("Return to me if you encounter any in your travels."))
+		return
+	end
 	
-	while true
-		result = pbShowCommands(nil,speciesArray,0)
-
-		if result == 0
-			pbMessage(_INTL("Ah, lacking in miraculous materials, are we?"))
-			break
-		else
-			chosenSpecies = actualSpecies[result]
-
-			choicesArray = [_INTL("View MasterDex"), _INTL("Clone Pokemon"), _INTL("Cancel")]
-			secondResult = pbShowCommands(nil,choicesArray,3)
-			case secondResult
-			when 1
-				item_data = GameData::Item.get(:ORIGINORE)
-				pbMessage(_INTL("\\PN hands over the #{item_data.name}."))
-				pbMessage(_INTL("Now just to work my magicks..."))
-				blackFadeOutIn(30) {
-					$PokemonBag.pbDeleteItem(:ORIGINORE)
-				}
-				pbMessage(_INTL("Poof! And so the impossible has been made possible!"))
-				pbAddPokemon(chosenSpecies,10)
-				pbMessage(_INTL("My hopes go with you. Live the legend!"))
-				break
-			when 0
-				openSingleDexScreen(chosenSpecies)
-			end
-			next
-		end
-	end
+	item_data = GameData::Item.get(:ORIGINORE)
+	removeSpeaker
+	pbMessage(_INTL("\\PN hands over the #{item_data.name}."))
+	setSpeaker(HISUIAN_WITCH)
+	pbMessage(_INTL("Now just to work my magicks..."))
+	blackFadeOutIn(30) {
+		$PokemonBag.pbDeleteItem(:ORIGINORE)
+	}
+	pbMessage(_INTL("Poof! And so the impossible has been made possible!"))
+	chosenSpecies = GameData::Species.get(pbGet(1).species).get_line_start.id
+	pbAddPokemon(chosenSpecies,10)
+	setSpeaker(HISUIAN_WITCH)
+	pbMessage(_INTL("My hopes go with you. Live the legend!"))
 end
 
 ######################################################

@@ -361,6 +361,16 @@ They must really want to talk with you.
 Realmente quiere hablar contigo.
 A couple seconds later, you receive a text message with the coordinates to the Battle Monument.
 Un par de segundos después, recibes un mensaje de texto con las coordinadas del Monumento Batalla.
+Hello to you, young one.
+Saludos, jove.
+It is I, Dr. Hekata.
+Soy yo, la Dr. Hekata.
+Do not worry about how I learned of your cellphone number. I simply divined it.
+No te preocupes respecto a cómo aprendí tu número de teléfono. Simplemente lo adiviné.
+I have a topic to discuss of some importance.
+Tengo un tópico que discutir de suma importancia.
+I beseech you—<imp>visit my abode in Grouz</imp>. There we shall discuss.
+Te ruego que—<imp>visites mi morada en Grouz</imp>.  Allí discutiremos.
 [Map1]
 Do you need information about the game controls?
 ¿Necesitas información sobre los controles?
@@ -1784,8 +1794,6 @@ Y gracias.
 
 [Map22]
 
-The door resists your attempts to open it with a mystic force.
-La puerta resiste tus intentos de abrirla con una fuerza mística.
 
 [Map23]
 
@@ -3250,14 +3258,14 @@ Wait, paper trail? Hmm...
 Espera, ¿Camino de papeles? Hmm...
 All of this could have been avoided with better planning...
 Todo esto podría haber sido evitado con mejor planeación...
-South: Kilna Turf
-Sur: Campo Kilna
+South-East: Kilna Turf
+Sureste: Campo Kilna
 North: County Park
 Norte: Parque del Municipio
-Down: Team Chasm HQ
-Debajo: Guarida Chasm
-Up: Kilna Ascent
-Arriba: Subida Kilna
+Center: Exit to Team Chasm HQ
+Centro: Salida a Guarida Chasm
+South-West: Exit to Kilna Ascent
+Suroeste: Salida a Subida Kilna
 Hey, can I ask a favor?
 Hey, ¿Puedo pedirte un favor?
 I’m really really sorry, but you got some medicine you can spare?
@@ -7208,8 +7216,6 @@ When the tournament is on, it's the only time of the year I can take a break fro
 Cuando el torneo empiece, es el único momento del año donde puedo tomar un descanso de lidiar con entrenadores locos todo el día.
 I'm gonna make the most of it, by relaxing...
 Voy a disfrutarlo al máximo, relajandome… 
-The door resists your attempts to open it with a mystic force.
-La puerta resiste tus intentos de abrirla con una fuerza mística.
 
 [Map107]
 
@@ -7828,8 +7834,6 @@ Make sure that Pokemon gets hurt a lot. It'll have fun doing it, and it keeps ou
 Asegúrate de que el Pokémon se lastime bastante. Se divertirá haciéndolo, y mantiene a nuestros Centros financiados.
 Peace.
 Adiós.
-The door resists your attempts to open it with a mystic force.
-La puerta resiste tus intentos de abrirla con una fuerza mística.
 Are you also here to dance at the top of a mountain?
 ¿También estás aquí para bailar en la cima de la montaña?
 I regret coming up here dressed like this...
@@ -8232,6 +8236,12 @@ It reeks down here, but the Pokemon in this place are pretty friendly.
 Apesta aquí abajo, pero los Pokémon aquí son bastante amistosos.
 They're more used to human contact than most, given how these are sewers and all.
 Están más acostumbrados al contacto humano que la mayoría, teniendo en cuenta que estás son alcantarillas y demás.
+North: Sewer Junction
+Norte: Cruce de Alcantarillas
+North-East: Exit to Eleig Stretch Sewer Maintenance
+Noreste: Salida a Edificio de Mantenimiento de las Alcantarillas en el Estrecho Eleig
+South: Exit to LuxTech Rec Center
+Sur: Salida a Centro Recreativo LuxTech
 [Map123]
 
 I brought some family heirlooms with me from Galar.
@@ -11065,8 +11075,6 @@ Sí
 
 [Map175]
 
-The door resists your attempts to open it with a mystic force.
-La puerta resiste tus intentos de abrirle con una fuerza mística.
 I don’t know what’s inside.
 No sé qué está dentro.
 I don’t know why the door’s there.
@@ -13416,6 +13424,8 @@ Un combate inspirador, ¡Perfecto para mostrarlo en mi siguiente escultura!
 
 You notice a book that looks out of place.
 Notas que un libro está fuera de lugar.
+Pull on the book?
+¿Tirar del libro?
 You try to pull out the book, but it stops partway with a click.
 Intentas tirar de un libro, pero para a medio camino con un click.
 You leave the suspicious book alone.
@@ -13440,8 +13450,18 @@ No
 No
 [Map198]
 
-The door resists your attempts to open it with a mystic force.
-La puerta resiste tus intentos de abrirla con una fuerza mística.
+The way is blocked by a wooden panel.
+El camino está bloqueado por un panel de madera.
+You see a switch to the side.
+Ves un interruptor a un lado.
+Pull the switch?
+¿Apretar el interruptor?
+You decide to leave the switch alone.
+Decides dejar el interruptor en paz.
+You pull the switch.
+Tiras del interruptor.
+The panel moved, revealing a large hole in the wall!
+¡El panel se movió, revelando un gran agujero en la pared!
 
 [Map200]
 
@@ -14460,8 +14480,6 @@ Leader: Samorn
 Líder: Samorn
 History and motion.
 Historia y moción.
-The door resists your attempts to open it with a mystic force.
-La puerta resiste tus intentos de abrirla con una fuerza mística.
 Hey, kiddo. Knew you’d show up sooner or later. You took to training like a Wooper to water, didn’t you?
 Hey, chico. Sabía que aparecerías tarde o temprano. Tomaste tu entrenamiento como Wooper en el agua, ¿No?
 Had to work myself to the bone to get here before you and, guess what? Gym leader’s out again.
@@ -15660,6 +15678,12 @@ No leads huh? That's fine!
 ¿Nada, eh? ¡Está bien!
 I'll find one somewhere around here.
 Voy a ver si encuentro a alguién más por acá.
+North-West: Exit to Catacombs
+Noroeste: Salida a las Catacumbas
+South: Sewer Junction
+Sur: Cruce de Alcantarillas
+The final direction entry has been expertly erased.
+El apunte de dirección final ha sido borrada por expertos.
 [Map222]
 The Pokemon looks forward with steadfast attention.
 El Pokémon mira adelante con atención impasible.
@@ -15729,6 +15753,12 @@ I'm doing my part.
 Hago mi parte.
 How bad?
 ¿Qué tan malo?
+North: Ancient Sewers
+Norte: Alcantarillas Antiguas
+West: Battle Plaza Underground
+Oesta: Plaza Batalla Subterránea
+South: LuxTech Sewers
+Sur: Alcantarillas LuxTech
 
 [Map223]
 It's a vending machine.\n Which drink would you like?\G
@@ -15821,8 +15851,10 @@ I might be out of Pokemon, but if you try anything funny, you'll regret it.
 Podré haberme quedado sin Pokgmon, pero si te pasas de listo, te arrepentirás.
 I might be out of pokemon, but if you try anything funny, you'll regret it.
 Podré haberme quedado sin Pokgmon, pero si te pasas de listo, te arrepentirás.
-Why's the weird-ass clown down there botherin' people?
-¿Qué pasa con ese payaso raro que no deja de molestar a la gente?
+You see that weird-ass clown near the black market?
+¿Ves ese payaso raro cerca del mercado negro?
+Why he gotta bother people?
+¿Por qué tiene que molestar a la gente?
 We're literally just vibing.
 Literalmente sólo estamos relajándonos.
 No
@@ -15857,6 +15889,12 @@ I don't have any right now.
 No tengo una ahora mismo.
 Yeah, I've got one for you.
 Seh, tengo una para ti.
+North-West: Prizca Black Market
+Noroeste: Mercado Negro de Prizca
+East: Exit to the Battle Plaza
+Este: Salida a la Plaza Batalla
+South-East: Sewer Junction
+Sureste: Cruce de Alcantarillas
 [Map224]
 
 Well hey! I saw you on Lapras Shore!
@@ -18244,8 +18282,6 @@ I hope my next peice will impress the Prizcan Artists Guild.
 Espero que mi siguiente pieza impresionará al Gremio de Artistas de Prizca.
 [Map292]
 
-The door resists your attempts to open it with a mystic force.
-La puerta resiste tus intentos de abrirla con una fuerza mística.
 
 [Map293]
 
@@ -22817,7 +22853,104 @@ No
 No
 Yes
 Sí
-
+I am glad that you answered my summons.
+Me complace que hayas respondido a mi convocatoria.
+I suppose now is the time for proper introductions.
+Supongo que es el momento para una presentación debida.
+By long study of yellowed scrolls in the archives of Sinnoh I came to understand Origin Ore, and my purpose along with it.
+Luego de un largo estudio de antiguos escritos en los archivos de Sinnoh finalmente llegué a comprender el propósito del Mineral Primario, y junto a él, el mío.
+After the more urgent matter is finished, return to me and I will gladly perform my spell for you.
+Luego de finalizar con el temá más urgente, regresa a mí y con gusto prepararé mi hechizo para tí.
+Without further ado, let us begin discussing the topic I mentioned in our phone call.
+Sin más dilación, discutamos el tema que mencioné en nuestra llamada telefónica.
+For some time now I have been keen to a gathering of magical energy within Mt. Kilna.
+Por ya un tiempo he querido en recolectar una energía mágica dentro del Monte Kilna.
+I believe the earthquake that shook this region after your championship victory was linked to this.
+Me inclino a creer que el terremoto que atacó la región luego de tu victoria en el campeonato está conectado a esto.
+However, before I could study the phenomenon in earnest, it dissipated almost entirely.
+Sin embargo, antes de que pudiera estudiar el fenómeno en su totalidad, se disipó casi enteramente.
+I've heard through my connections that you may have had something to do with that.
+He escuchado a través de mis conexiones que puede que tú hayas tenido algo que ver con eso.
+Although, details are scarce.
+Eso sí, los detalles son escasos.
+I ask you now. Would you let an old witch in on the secret?
+Ahora te lo pregunto. ¿Le contarías el secreto a una vieja bruja?
+Zounds! What a wondrous story.
+¡Caracoles! Qué historia más asombrosa.
+You've witnessed some very ancient magicks indeed.
+Ciertamente has atestiguado varias magias antiguas.
+...Regigigas, the demiurge, the lord golem of legend.
+...Regigigas, el demiurgo, el señor golem de leyendas.
+It is no surprise that the very earth would quake in its presence...
+No es ninguna sorpresa que la tierra misma temblaría en su presencia...
+Allow me to ponder the situation.
+Permíteme meditar la situación.
+In my envisioning, primal energy yet lingers in the place you confronted Yezera.
+En mi visión, energía primitiva aún perdura en el lugar en el que enfrentaste a Yezera.
+If you should return to that spot, you should find some <imp>artifact</imp> of her ritual.
+Si regresas a ese lugar, deberías encontrar algún <imp>artefacto</imp> resultado de ritual.
+To allow such an object to roam free in this world... t'would be an act of mighty hubris.
+Permitir que tal objeto deambule en este mundo... sería un acto de alta soberbia. 
+I beseech you, delve once again <imp>underneath Mt. Kilna</imp>, and find it.
+Te lo ruego, adéntrate una vez más <imp>debajo el Monte Kilna</imp>, y encuéntralo.
+Then, return to me so that I can examine it for you.
+Entonces, regresa a mí para que pueda examinarlo para ti.
+I suppose I will merely have to respect your choice in this matter.
+Supongo que meramente tendré que respetar tu decisión en este asunto.
+Secrets and I are well acquainted, after all.
+Ya soy bastante familiar con los secretos, después de todo.
+If the winds of change do blow upon your spirit in this matter, do speak to me again.
+Si los vientos del cambio soplan a tu espíritu respecto a este asunto, habla conmigo de nuevo.
+Do you seek me for my spellcraft? Or is it time to satiate my curiosity on the matter of Mt. Kilna?
+¿Me buscas por mi hechizo? ¿O es hora de satisfacer mi curiosidad sobre el asunto del Monte Kilna?
+Very well, let me turn my thoughts to Hisui.
+Muy bien, déjame llevar mis pensamientos a Hisui.
+Have you collected the remnant of Regigigas' magicks?
+¿Has recolectado el remanente de la magia de Regigigas?
+Delightful! My thanks upon you.
+¡Maravilloso! Te agradezco profundamente.
+Hand it to me, posthaste.
+Dámelo, cuanto antes.
+You hand the Primal Clay over to Dr. Hekata.
+Le das la Arcilla Primitiva a la Dr. Hekata.
+Yes! Exactly as expected. This is a most powerful catalyst for ancient magicks.
+¡Sí! Justo como esperado. Este es un poderoso catalizador de magias antigus.
+The very legends of yore should be now at your fingertips.
+Incluso los legendarios de antaño deberían estar al alcance de tus manos.
+You will only need to find echoes of their power to which to attune it.
+Sólo tendrás que encontrar ecos de su poder para armonizarlo.
+That task I leave to you, as my body is not suited to the travel that will surely be required.
+Esa tarea te la dejo a ti, ya que mi cuerpo no es adecuado para el viaje que seguramente será requerido.
+Dr. Hekata hands back the Primal Clay.
+Dr. Hekata te regresa la Arcilla Primitiva.
+As for myself, I should still be able to make use of the Primal Clay's catalytic power.
+En cuanto a mí, todavía debería ser capaz de usar el poder catalizador de la Arcilla Primitiva.
+Through my various implements, I can craft a mimicry of the essences of a few <imp>lesser Pokemon of legend</imp>.
+A través de mis varios instrumentos, puedo crear una imitación de las esencias de unos cuantos <imp>Pokémon de leyendas inferiores</imp>.
+What I shall need from you is more Origin Ore, of course.
+Lo que necesitaré de tí es más Minerales Primarios, por supuesto.
+I shall also need a living creature to study.
+También necesita una criatura viva que estudiar.
+With those requirements, one might even dub this process "cloning."
+Con esos requisitos, algunos incluso podrían llamar este proceso "clonación."
+Hahaha, what a thought!
+¡Jajaja, vaya pensamiento!
+Ahem, regardless...
+Ejem, de todos modos...
+It would be my honor to perform this grand new spell for you.
+Sería un honor realizar este gran nuevo hechizo para tí.
+Please return to me when you have the neccessary components.
+Por favor regresa cuando tengas los componentes necesarios.
+You need only provide me a chunk of Origin Ore, and I can prepare either of my spells right away.
+Sólo tendrás que proveerme un pedazo de Mineral Primario, y puedo preparar cualquiera de mis hechizos en el momento.
+Which of my spells would you like me to perform for you?
+¿Cuál de mis hechizos quieres que realice para ti?
+Neither
+Ninguno
+Create a Hisuian Pokemon
+Crea un Pokémon de Hisui
+Clone a minor legendary
+Clona un legendario menor
 [Map359]
 A message from the developers of Pokemon Tectonic.
 Un mensaje de los desarrolladores de Pokémon Tectonic.
@@ -24747,6 +24880,14 @@ No
 No
 Yes
 Sí
+North-West: Exit to Aegis Insurance
+Noroeste: Salida a Aseguradora Aegis
+North-East: Exit to Full Blast Records
+Noreste: Salida a Récords A Tope
+East: Battle Plaza Underground
+Este: Plaza Batalla Subterránea
+South-East: Exit to Eleig River Crossing
+Sureste: Salida a Cruce del Río Eleig
 [1]
 29
 Nidoran-F
@@ -39435,6 +39576,8 @@ Tart Apple
 Manzana Ácida
 Noise Machine
 Máquina de Ruido
+Cell Booster
+Refuerzo de Células
 [8]
 Repels
 Repelentes
@@ -40148,6 +40291,10 @@ Sweet Apples
 Manzanas Dulces
 Tart Apples
 Manzanas Ácidas
+Noise Machines
+Máquinas de Ruido
+Cell Boosters
+Refuerzos de Células
 [9]
 An item that prevents wild Pokémon from appearing for 100 steps after its use.
 Un objeto que impide que Pokémon salvajes aparezcan por 100 pasos.
@@ -40691,8 +40838,8 @@ A machine to fuse Necrozma, which needs light, and Solgaleo.
 Una máquina hecha para fusionar a Necrozma, qué necesita luz, y Solgaleo.
 A machine to fuse Necrozma, which needs light, and Lunala.
 Una máquina hecha para fusionar a Necrozma, qué necesita luz, y Lunala.
-An item to store Zygarde Cores and Cells. You can also use it to teach Zygarde moves.
-Un objeto que almacena los Núcleos y Células de Zygarde. También puedes usarlo para enseñarle movimientos a Zygarde.
+An item holding Zygarde's Cores and Cells. You can use it to change Zygarde's ability.
+Un objeto que contiene los Núcleos y las Células de Zygarde. Puedes usarlo para cambiar la habilidad de Zygarde.
 Raises Speed sharply when a Pokémon misses with a move because of accuracy.
 Aumenta la Velocidad cuatro grados cuando un Pokémon falla un movimiento debido a su precisión. 
 An item to be held by a Pokémon. When the holder's stats are lowered, it will be switched out of battle.
@@ -44414,7 +44561,7 @@ Picos Partidos
 Prizca East
 Prizca Oriental 
 Battle Plaza
-Plaza de Batalla
+Plaza Batalla
 Tournament Grounds
 Tierras de Campeonato
 Prizca West
@@ -45113,11 +45260,11 @@ Alcantarillas Antiguas
 Prizca Sewers
 Alcantarillas Prizca
 222
-Sewers Junction
+Sewer Junction
 Cruce de Alcantarillas
 223
 Battle Plaza Underground
-Plaza de Batalla Subterránea
+Plaza Batalla Subterránea
 224
 Farmer's House
 Casa del Granjero
@@ -52801,6 +52948,42 @@ HM {1}
 MO {1}
 {1} HMs
 MsOs {1}
+The door resists your attempts to open it with a mystic force.
+La puerta resiste tus intentos de abrirla con una fuerza mística.
+I do not spy any Origin Ore among your possessions.
+No encuentro ningún Mineral Primario entre tus posesiones.
+Ah, no suitable Pokemon exists within your collection?
+Ah, ¿no existe ningún Pokémon adecuado en tu colección?
+Return to me if you encounter any in your travels.
+Regresa a mí si encuentras alguno en tus viajes.
+Critical Hits
+Golpes Críticos
+What are critical hits and when do they happen?
+¿Qué son los golpes críticos y cuándo ocurren?
+What are Critical Hits?
+¿Qué son los Golpes Críticos?
+A critical hit deals 50% more damage than a regular hit. These naturally happen at random times on any damaging move.
+Un golpe crítico es un 50% más fuerte que un golpe regular. Estos ocurren naturalmente al azar en cualquier movimiento ofensivo.
+How common are Critical Hits?
+¿Qué tan común son los Golpes Críticos?
+The base critical hit chance is 1 in 16. This chance can be raised by abilities, items, or special effects.
+La probabilidad base de los golpes críticos es de 1 en 16. Esta puede ser aumentada por habilidades, objetos o efectos especiales.
+Other Effects
+Otros Efectos
+Critical hits ignore stat steps (on the user or the target) that would lower their damage. They also ignore protective screens like Reflect and Light Screen.
+Los golpes críticos ignoran cambios en grados de stats  (en el usuario u objetivo) que reducirían su daño. También ignoran pantallas como Reflejo y Pantalla de Luz.
+Preventing Criticals
+Protegerse de Críticos
+Certain abilities prevent critical hits against that Pokemon. The Lucky Chant effect and the Strategist tribe bonus also protect their side from critical hits.
+Ciertas habilidades bloquean golpes críticos en contra de un Pokémon. El efecto Conjuro y el bonus de clan Estratega también protegen a su lado de los golpes críticos.
+Guaranteed Criticals
+Críticos Garantizados
+Some moves or abilities are not random, but guarantee a critical hit under certain conditions. Otherwise, these act the same as random critical hits.
+Algunos movimientos o habilidades garantizan golpes críticos bajo ciertas condiciones. De otro modo, estos actúan igual que los golpes críticos aleatorios. 
+Avatars cannot perform random critical hits. However, they can perform guaranteed critical hits from moves or abilities.
+Los avatares no pueden realizar golpes críticos aleatorios. Sin embargo, pueden realizar golpes críticos garantizados con sus movimientos o habilidades.
+{1} overpowers type immunities!
+¡{1} ignora inmunidades por tipos!
 [26]
 [27]
 [27]

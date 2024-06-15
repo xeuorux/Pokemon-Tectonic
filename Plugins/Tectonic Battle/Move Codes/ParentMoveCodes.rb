@@ -1481,7 +1481,7 @@ module EmpoweredMove
         if @battle.pbSideSize(user.index) < 3
             summonMessage ||= _INTL("#{user.pbThis} summons another Avatar!")
             @battle.pbDisplay(summonMessage)
-            @battle.summonAvatarBattler(species, user.level, user.index % 2)
+            @battle.summonAvatarBattler(species, user.level, 0, user.index % 2)
         end
     end
 end

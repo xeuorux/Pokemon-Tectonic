@@ -54,11 +54,14 @@ module Compiler
             # Add last ability's data to records
             GameData::Ability.register(ability_hash) if ability_hash
         end
+
         # Save all data
         GameData::Ability.save
         MessageTypes.setMessagesAsHash(MessageTypes::Abilities, ability_names)
         MessageTypes.setMessagesAsHash(MessageTypes::AbilityDescs, ability_descriptions)
         Graphics.update
+
+        BattleHandlers::LoadDataDependentAbilityHandlers.trigger
     end
 
     #=============================================================================

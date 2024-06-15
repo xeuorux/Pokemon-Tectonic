@@ -53,6 +53,10 @@ class PokemonBox
     def each
       @pokemon.each { |item| yield item }
     end
+
+    def sample
+      return @pokemon.clone.compact.sample
+    end
   
     def clear
       @pokemon = []

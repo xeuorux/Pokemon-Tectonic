@@ -77,6 +77,11 @@ module GameData
         filename = self.egg_sprite_filename(species, form)
         return (filename) ? AnimatedBitmap.new(filename) : nil
       end
+
+      def self.ow_sprite_bitmap(species, form = 0, gender = 0, shiny = false, shadow = false)
+        filename = self.ow_sprite_filename(species, form, gender, shiny, shadow)
+        return (filename) ? AnimatedBitmap.new(filename) : nil
+      end
   
       def self.sprite_bitmap(species, form = 0, gender = 0, shiny = false, shadow = false, back = false, egg = false)
         return self.egg_sprite_bitmap(species, form) if egg
@@ -88,24 +93,18 @@ module GameData
         species = pkmn.species if !species
         species = GameData::Species.get(species).species   # Just to be sure it's a symbol
         return self.egg_sprite_bitmap(species, pkmn.form) if pkmn.egg?
-        if back
-          ret = self.back_sprite_bitmap(species, pkmn.form, pkmn.gender, pkmn.shiny?, false)
-        else
-          ret = self.front_sprite_bitmap(species, pkmn.form, pkmn.gender, pkmn.shiny?, false)
-        end
         
-        if ret && pkmn.boss?
-          filename = 'Graphics/Pokemon/Avatars/' + species.to_s
-          filename += '_' + pkmn.form.to_s if pkmn.form != 0
-          filename += '_' + pkmn.bossType.to_s.downcase if pkmn.bossType
-          filename += '_back' if back
-          ret = AnimatedBitmap.new(filename)
-        elsif !pkmn.egg?
-          if pkmn.shiny? && pkmn.shiny_variant
-            ret = shiftSpeciesBitmapHue(ret,species)
-          elsif $PokemonSystem.color_shifts == 0
-            ret = shiftPokemonBitmapHue(ret,pkmn)
-            ret = shiftPokemonBitmapShade(ret,pkmn)
+        if pkmn.boss?
+          if back
+            ret = GameData::Avatar.back_sprite_bitmap(species, pkmn.bossVersion, pkmn.form, pkmn.bossType)
+          else
+            ret = GameData::Avatar.front_sprite_bitmap(species, pkmn.bossVersion, pkmn.form, pkmn.bossType)
+          end
+        else
+          if back
+            ret = self.back_sprite_bitmap(species, pkmn.form, pkmn.gender, pkmn.shiny?, false)
+          else
+            ret = self.front_sprite_bitmap(species, pkmn.form, pkmn.gender, pkmn.shiny?, false)
           end
         end
         
@@ -116,6 +115,12 @@ module GameData
           new_ret.each { |bitmap| alter_bitmap_function.call(pkmn, bitmap) }
           ret = new_ret
         end
+
+        if $PokemonSystem.color_shifts == 0 && !pkmn.boss? && !pkmn.egg?
+          ret = shiftPokemonBitmapHue(ret,pkmn)
+          ret = shiftPokemonBitmapShade(ret,pkmn)
+        end
+
         return ret
       end
   

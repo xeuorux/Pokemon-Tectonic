@@ -2177,7 +2177,7 @@ Pokemon = APERSIAN,70
     # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
     EV = 20,10,20,0,10,0
 Pokemon = MINIOR,70
-    Moves = POWERGEM,COLDFRONT,METEORBEAM,PSYCHIC
+    Moves = POWERGEM,COLDFRONT,METEORBEAM,EARTHPOWER
     AbilityIndex = 0 # Shields Down
     Item = POWERHERB
     # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def

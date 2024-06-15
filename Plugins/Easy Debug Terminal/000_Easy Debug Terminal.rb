@@ -38,7 +38,10 @@ module Input
     if triggerex?(TERMINAL_KEYBIND) && $DEBUG && !$InCommandLine && TERMINAL_ENABLED
       $InCommandLine = true
       script = pbFreeTextNoWindow("",false,256,Graphics.width)
-      $game_temp.lastcommand = script unless nil_or_empty?(script)
+      unless nil_or_empty?(script)
+        $game_temp.debug_commands_history.unshift(script)
+        $game_temp.debug_commands_index = -1
+      end
       begin
         pbMapInterpreter.execute_script(script) unless nil_or_empty?(script)
       rescue Exception
@@ -68,6 +71,7 @@ def pbFreeTextNoWindow(currenttext, passwordbox, maxlength, width = 240)
       break
     elsif Input.triggerex?(:RETURN)
       ret = window.text
+      pbPlayDecisionSE
       break
     end
     window.update
@@ -80,6 +84,10 @@ def pbFreeTextNoWindow(currenttext, passwordbox, maxlength, width = 240)
 end
 
 class Window_TextEntry_Keyboard_Terminal < Window_TextEntry
+  def mainText
+    return self.text.scan(/./m)
+  end
+
   def update
     @frame += 1
     @frame %= 20
@@ -94,19 +102,51 @@ class Window_TextEntry_Keyboard_Terminal < Window_TextEntry
       end
       return
     elsif Input.triggerex?(:RIGHT) || Input.repeatex?(:RIGHT)
-      if @helper.cursor < self.text.scan(/./m).length
+      if @helper.cursor < mainText.length
         @helper.cursor += 1
         @frame = 0
         self.refresh
       end
       return
+    elsif Input.triggerex?(:HOME)
+      # Move cursor to beginning
+      @helper.cursor = 0
+      @frame = 0
+      self.refresh
+      return
+    elsif Input.triggerex?(:END)
+      # Move cursor to end
+      @helper.cursor = mainText.length
+      @frame = 0
+      self.refresh
+      return
     elsif Input.triggerex?(:BACKSPACE) || Input.repeatex?(:BACKSPACE)
       self.delete if @helper.cursor > 0
       return
-    elsif Input.triggerex?(:UP) && $InCommandLine && !$game_temp.lastcommand.empty?
-      self.text = $game_temp.lastcommand
-      @helper.cursor = self.text.scan(/./m).length
-      return
+    elsif Input.triggerex?(:UP) && $InCommandLine
+      if $game_temp.debug_commands_history.length > $game_temp.debug_commands_index + 1
+        $game_temp.debug_commands_index += 1
+        self.text = $game_temp.debug_commands_history[$game_temp.debug_commands_index]
+        @helper.cursor = mainText.length
+        pbPlayCursorSE
+        return
+      else
+        pbPlayBuzzerSE
+      end
+    elsif Input.triggerex?(:DOWN) && $InCommandLine
+      if $game_temp.debug_commands_index > -1
+        $game_temp.debug_commands_index -= 1
+        if $game_temp.debug_commands_index < 0
+          self.text = ""
+        else
+          self.text = $game_temp.debug_commands_history[$game_temp.debug_commands_index]
+        end
+        @helper.cursor = mainText.length
+        pbPlayCursorSE
+        return
+      else
+        pbPlayBuzzerSE
+      end
     elsif Input.triggerex?(:RETURN) || Input.triggerex?(:ESCAPE)
       return
     end

@@ -1,20 +1,29 @@
-def battleGuideMainHash
+def battleGuideMainDirectory
     return {
-        _INTL("Basic Strategy")    => _INTL("How do I win battles?"),
-        _INTL("Acquiring Pokémon") => _INTL("How do I get more Pokémon?"),
-        _INTL("Moves")             => _INTL("What are moves and what are the differences between them?"),
-        _INTL("Type Matchups")     => _INTL("When and how are types better or worse against one another?"),
-        _INTL("Type Chart")        => _INTL("How were type matchups changes compared to canon?"),
-        _INTL("Stats")             => _INTL("What are stats, and how do they affect battles?"),
-        _INTL("Abilities")         => _INTL("How do abilities work?"),
-        _INTL("Held Items")        => _INTL("What are held items and how to use them?"),
-        _INTL("Status Conditions") => _INTL("What are the Conditions a Pokémon can be afflicted with?"),
-        _INTL("Trainers")          => _INTL("How do enemy Trainers work?"),
-        _INTL("Avatars")           => _INTL("What are avatars and what do they do?"),
-        _INTL("MasterDex")         => _INTL("What does the MasterDex do and how should I use it?"),
-        _INTL("Weathers")          => _INTL("What are weathers, and what does each do?"),
-        _INTL("Tribes")            => _INTL("What are Tribes and what do they do?"),
-    }
+        _INTL("Basic Strategy")    => [_INTL("How do I win battles?"),:battleGuideBasicsHash],
+        _INTL("Acquiring Pokémon") => [_INTL("How do I get more Pokémon?"),:battleGuideAquiringPokemonHash],
+        _INTL("Moves")             => [_INTL("What are moves and what are the differences between them?"),:battleGuideMovesHash],
+        _INTL("Type Matchups")     => [_INTL("When and how are types better or worse against one another?"),:battleGuideTypeMatchupsHash],
+        _INTL("Type Chart")        => [_INTL("How were type matchups changes compared to canon?"),:battleGuideTypeChartHash],
+        _INTL("Stats")             => [_INTL("What are stats, and how do they affect battles?"),:battleGuideStatsHash],
+        _INTL("Abilities")         => [_INTL("How do abilities work?"),:battleGuideAbilitiesHash],
+        _INTL("Held Items")        => [_INTL("What are held items and how to use them?"),:battleGuideHeldItemsHash],
+        _INTL("Status Conditions") => [_INTL("What are the Conditions a Pokémon can be afflicted with?"),:battleGuideStatusConditionsHash],
+        _INTL("Critical Hits")     => [_INTL("What are critical hits and when do they happen?"),:battleGuideCriticalHitsHash],
+        _INTL("Trainers")          => [_INTL("How do enemy Trainers work?"),:battleGuideTrainersHash],
+        _INTL("Avatars")           => [_INTL("What are avatars and what do they do?"),:battleGuideAvatarsHash],
+        _INTL("MasterDex")         => [_INTL("What does the MasterDex do and how should I use it?"),:battleGuideMasterdexHash],
+        _INTL("Weathers")          => [_INTL("What are weathers, and what does each do?"),:battleGuideWeathersHash],
+        _INTL("Tribes")            => [_INTL("What are Tribes and what do they do?"),:battleGuideTribesHash],
+}
+end
+
+def battleGuideMainHash
+    mainHash = {}
+    battleGuideMainDirectory.each do |key, value|
+        mainHash[key] = value[0]
+    end
+    return mainHash
 end
 
 def battleGuideBasicsHash
@@ -134,6 +143,17 @@ def battleGuideStatusConditionsHash
         _INTL("Dizzy") => _INTL("When dizzied, a Pokémon takes 25% more attack damage, and its ability doesn't function. Psychic- and Fairy-types do the most dizzying."),
         _INTL("Leeched") => _INTL("When leeched, a Pokémon loses 1/10th HP every turn, and its opponent(s) split that health. Bug- and Dark-types do the most leeching. Grass is immune."),
         _INTL("Sleep") => _INTL("A rarer status that causes a Pokémon to be unable to do anything for 2 turns. Psychic- and Grass-types put Pokémon to sleep the most often."),
+    }
+end
+
+def battleGuideCriticalHitsHash
+    return {
+        _INTL("What are Critical Hits?") => _INTL("A critical hit deals 50% more damage than a regular hit. These naturally happen at random times on any damaging move."),
+        _INTL("How common are Critical Hits?") => _INTL("The base critical hit chance is 1 in 16. This chance can be raised by abilities, items, or special effects."),
+        _INTL("Other Effects") => _INTL("Critical hits ignore stat steps (on the user or the target) that would lower their damage. They also ignore protective screens like Reflect and Light Screen."),
+        _INTL("Preventing Criticals") => _INTL("Certain abilities prevent critical hits against that Pokemon. The Lucky Chant effect and the Strategist tribe bonus also protect their side from critical hits."),
+        _INTL("Guaranteed Criticals") => _INTL("Some moves or abilities are not random, but guarantee a critical hit under certain conditions. Otherwise, these act the same as random critical hits."),
+        _INTL("Avatars") => _INTL("Avatars cannot perform random critical hits. However, they can perform guaranteed critical hits from moves or abilities."),
     }
 end
 

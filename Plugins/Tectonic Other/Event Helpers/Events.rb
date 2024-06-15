@@ -84,6 +84,8 @@ def pbSetGlobalSwitch(switchID, value = true)
 	$game_system.map_interpreter.setGlobalSwitch(switchID, value)
 end
 
+alias setGlobalSwitch pbSetGlobalSwitch
+
 def getGlobalSwitch(switchID)
 	return $game_switches[switchID]
 end

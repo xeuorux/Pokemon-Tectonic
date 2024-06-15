@@ -665,7 +665,7 @@ class PokemonOption_Scene_UserInterface < PokemonOption_Scene_Base
 				proc { $PokemonSystem.textinput },
 				proc { |value| $PokemonSystem.textinput = value }
 			),
-			EnumOption.new(_INTL("Bag Sorting"), [_INTL("Off"), _INTL("Name"), _INTL("Amount")],
+			EnumOption.new(_INTL("Bag Sorting"), [_INTL("Off"), _INTL("Name"), _INTL("Type")],
 				proc { $PokemonSystem.bag_sorting },
 				proc { |value|
 					$PokemonSystem.bag_sorting = value

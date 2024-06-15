@@ -14,6 +14,9 @@ class MoveHandlerHash < HandlerHash2
 end
 
 module BattleHandlers
+    LoadDataDependentAbilityHandlers    = Event.new
+    LoadDataDependentItemHandlers    = Event.new
+
     # Battler's type calculation
     TypeCalcAbility                     = AbilityHandlerHash.new
     # Battler's speed calculation

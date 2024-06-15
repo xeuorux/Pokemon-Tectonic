@@ -26,7 +26,9 @@ class Game_Temp
     attr_accessor :fadestate                # for sprite hashes
     attr_accessor :background_bitmap
     attr_accessor :mart_prices
-    attr_writer   :lastcommand
+    # Debug command line
+    attr_accessor :debug_commands_history
+    attr_accessor :debug_commands_index
 
     #-----------------------------------------------------------------------------
     # * Object Initialization
@@ -54,14 +56,11 @@ class Game_Temp
       @message_window_showing = false
       @transition_processing  = false
       @mart_prices            = {}
+      @debug_commands_history = []
+      @debug_commands_index   = -1
     end
   
     def clear_mart_prices
       @mart_prices = {}
-    end
-
-    def lastcommand
-      @lastcommand = "" if !@lastcommand
-      return @lastcommand
     end
 end

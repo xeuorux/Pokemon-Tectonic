@@ -861,13 +861,7 @@ BattlerEnemyX = 6
 BattlerEnemyY = 7
 #-------------------------------
 [ZYGARDE,3]
-BaseStats = 216,100,121,85,91,95
 Abilities = POWERCONSTRUCT
-Height = 4.5
-Weight = 610.0
-Color = Black
-Shape = BipedalTail
-BattlerPlayerY = 1
 #-------------------------------
 [HOOPA,1]
 FormName = Unbound

@@ -40,3 +40,15 @@ def getFormSelectionChoices(species,currentForm=0)
 	possibleFormNames.push(_INTL("Cancel"))
 	return possibleForms, possibleFormNames
 end
+
+ItemHandlers::UseOnPokemon.add(:ZYGARDECUBE,proc { |item,pkmn,scene|
+	if pkmn.species == :ZYGARDE
+		pkmn.form = pkmn.form == 0 ? 3 : 0
+		scene&.pbRefresh
+		pbSceneDefaultDisplay(_INTL("{1}'s Ability changed to {2}!",pkmn.name,GameData::Ability.get(pkmn.ability).name),scene)
+		next true
+	else
+		pbSceneDefaultDisplay(_INTL("Cannot use this item on that Pokemon."),scene)
+		next false
+	end
+})

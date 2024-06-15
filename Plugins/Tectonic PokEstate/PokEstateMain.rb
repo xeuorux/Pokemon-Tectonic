@@ -607,7 +607,7 @@ class PokEstate
 	end
  
 	def tryHearStory()
-		if currentEstateBox().empty?
+		if currentEstateBox.empty?
 			pbMessage(_INTL("There are no Pokemon in this plot to share stories about."))
 		elsif @stories_count[@estate_box] <= 0
 			pbMessage(_INTL("I regret to say that I have no stories to share about this plot. Please come back later."))
@@ -618,10 +618,33 @@ class PokEstate
 	end
 
 	def shareStory()
-		if currentEstateBox().empty?
+		if currentEstateBox.empty?
 			return
 		end
-		pbMessage(_INTL("Story here!"))
+
+		if currentEstateBox.nitems == 1
+			shareSingleStory(currentEstateBox.sample)
+		elsif currentEstateBox.nitems > 1
+			if rand(100) < 70
+				shareSingleStory(currentEstateBox.sample)
+			else
+				randomPokemon1 = currentEstateBox.sample
+				randomPokemon2 = nil
+				loop do
+					randomPokemon2 = currentEstateBox.sample
+					break if randomPokemon2 != randomPokemon1
+				end
+				shareDuoStory(randomPokemon1, randomPokemon2)
+			end
+		end
+	end
+
+	def shareSingleStory(pokemon)
+		pbMessage(_INTL("Story here involving {1}!",pokemon.name))
+	end
+
+	def shareDuoStory(pokemon1, pokemon2)
+		pbMessage(_INTL("Story here involving {1} and {2}!", pokemon1.name, pokemon2.name))
 	end
 end
 
