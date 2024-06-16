@@ -42,7 +42,7 @@ NYX = _INTL("Nyx")
 NERO = _INTL("Nero")
 
 # Other
-CARETAKER = _INTL("Valentina")
+CARETAKER = _INTL("Alondra")
 TECH_NERD = _INTL("Jovan")
 GRIND_RIVAL = _INTL("Vanya")
 SANG = _INTL("Sang")
