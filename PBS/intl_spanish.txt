@@ -11111,35 +11111,39 @@ No le digas a mi profesor, pero sí o sí voy a faltar a classes para ir a la Fe
 
 [Map178]
 
-You're about to battle IgnitedxSoul, a design and spriting contributor.
-Estás a punto de enfrentar a IgnitedxSoul, un diseñador y contribuidor de sprites.
-From Chasm Dev, thank you for playing our game!
-De parte del Equipo Chasm, ¡Gracias por jugar nuestro juego!
+Thank you for playing our game!
+¡Gracias por jugar nuestro juego!
+You're about to battle IgnitedxSoul, a design contributor and community manager.
+Estás a punto de enfrentar a IgnitedxSoul, un diseñador y administrador de la comunidad.
 You're about to battle Brickbat, the Project Lead.
 Estás a punto de enfrentar a Brickbat, el Líder del proyecto.
-You're about to battle Zufaix, a composer contributor.
-Estás a punto de enfrentar a Zufaix, un compositor.
-You're about to battle Lichenprincess, a spriter and character designer.
-Estás a punto de enfrentar a Lichenprincess, un spriter y diseñadora de personajes.
 You're about to battle Divock, a designer, audio engineer and video producer.
 Estás a punto de enfrentar a Divock, un diseñador, ingeniero de sonido y productor de video.
-
-[Map179]
-
-You're about to battle Ali760, a spriting contributor.
-Estás a punto de enfrentar a Ali760, a un contribuidor de spriting.
-From Chasm Dev, thank you for playing our game!
-De parte del Equipo Chasm, ¡Gracias por jugar nuestro juego!
 You're about to battle Zeu, Lead Designer and Lead Programmer.
 Estás a punto de enfrentar a Zeu, Diseñador Líder y Programador Líder.
 You're about to battle Agentbla, the Lead Mapper and tileset arranger.
 Estás a punto de enfrentar a Agentbla, Mapeador Líder y organizador del tileset.
-You're about to battle Papper, a spriter and character designer.
-Estás a punto de enfrentar a Papper, un spriter y diseñador de personajes.
+
+[Map179]
+
+Thank you for playing our game!
+¡Gracias por jugar nuestro juego!
+You're about to battle D, designer of the Regi Dungeons.
+Estás a punto de enfrentar a D, diseñador de las mazmorras de Regi.
+You're about to battle Valrex, our Spanish translator.
+Estás a punto de enfrentar a Valrex, nuestro traductor de español.
+You're about to battle Steeb, battle designer and kit designer.
+Estás a punto de enfrentar a Steeb, diseñador de batallas y de movimientos.
+You're about to battle Splitmoon, principal playtester.
+Estás a punto de enfrentar a Splitmoon, probador de juego principal.
+You're about to battle Tikishades, a designer.
+Estás a punto de enfrentar a Tikishades, un diseñador.
+You're about to battle Darlvon, a battle designer and AI programmer.
+Estás a punto de enfrentar a Darlvon, un diseñador de batallas y programador de inteligencia artificial.
 You're about to battle Drawingbox, Lead Artist.
 Estás a punto de enfrentar a Drawingbox, Artista Líder.
-You're about to battle Maddie, a contributing artist and spriter!
-Estás a punto de enfrentar a Maddie, a contributing artist and spriter!
+You're about to battle Jaggedthorn, a spriting contributor.
+Estás a punto de enfrentar a Jaggedthorn, un contribuidor de sprites!
 
 [Map180]
 
@@ -24751,6 +24755,25 @@ Yeah.
 Seh.
 Not really.
 No realmente.
+[Map424]
+
+Thank you for playing our game!
+¡Gracias por jugar nuestro juego!
+You're about to battle Jbsundown, an assistant coder!
+Estás a punto de enfrentar a Jbsundown, un codificador asistente!
+You're about to battle Papper, a spriter and character designer.
+Estás a punto de enfrentar a Papper, un spriter y diseñador de personajes.
+You're about to battle Lichenprincess, a spriter and character designer.
+Estás a punto de enfrentar a Lichenprincess, un spriter y diseñadora de personajes.
+You're about to battle LunaFlare, whose mods we've integrated into our game.
+Estás a punto de enfrentar a LunaFlare, cuyas modificaciones hemos integrado en nuestro juego.
+You're about to battle Minty, a spriting contributor.
+Estás a punto de enfrentar a Minty, un contribuidor de sprites.
+You're about to battle Zufaix, a composer contributor.
+Estás a punto de enfrentar a Zufaix, un compositor.
+You're about to battle Ali760, a spriting contributor.
+Estás a punto de enfrentar a Ali760, a un contribuidor de spriting.
+
 [Map426]
 Prizca Black Market
 Mercado Negro Prizca
