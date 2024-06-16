@@ -1218,9 +1218,9 @@ class Pokemon
       when "groom"
         gain = 8 * closenessModifier
       when "sweetheart"
-        gain = 1
+        gain = 5
       when "interaction"
-        gain = 1 * closenessModifier
+        gain = 3 * closenessModifier
       end
 
       if gain > 0
