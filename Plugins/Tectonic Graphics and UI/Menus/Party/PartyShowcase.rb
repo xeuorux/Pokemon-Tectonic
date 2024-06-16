@@ -58,6 +58,7 @@ class PokemonPartyShowcase_Scene
 
         # Show game version
         settingsLabel = "v#{Settings::GAME_VERSION}"
+        settingsLabel += "-dev" if Settings::DEV_VERSION
         drawFormattedTextEx(@overlay, Graphics.width / 2 + 60, bottomBarY, 160, settingsLabel, base, shadow)
 
         numIcons = 0
