@@ -2103,6 +2103,15 @@ Price = 0
 Flags = KeyItem
 Description = A charm in the shape of a tooth. It increases the EXP gained from EXP Candy by 15%.
 #-------------------------------
+[SOOTHECHARM]
+Name = Soothe Charm
+NamePlural = Soothe Charms
+Pocket = 7
+Price = 0
+Consumable = true
+Flags = KeyItem
+Description = A comforting charm which doubles the happiness your Pokémon gain from being close to you.
+#-------------------------------
 [REDORB]
 Name = Red Orb
 NamePlural = Red Orbs
