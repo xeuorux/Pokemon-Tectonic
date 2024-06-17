@@ -50253,8 +50253,8 @@ You clambor into the den!
 ¡Te metes dentro del nido!
 You clambor out of the den!
 ¡Sales del nido!
-\db[{1}]\me[Badge get]You've earned the {2} Badge!\wtnp[120]
-\db[{1}]\me[Badge get]Obtienes la Medalla {2}.\wtnp[120]
+\db[Pictures/Trainer Card/DISPLAY_BADGE_{1}]\me[Badge get]You've earned the {2} Badge!\wtnp[120]
+\db[Pictures/Trainer Card/DISPLAY_BADGE_{1}]\me[Badge get]Obtienes la Medalla {2}.\wtnp[120]
 Badge #{badgeNum} Team
 Equipo de la Medalla #{badgeNum} 
 \wmTaking team snapshot.
@@ -50507,10 +50507,10 @@ Take which item?
 ¿Qué objetos tomas?
 The Bag is full. The Pokémon's {1} could not be removed.
 Tu Mochila está llena. {1} del Pokémon no pudieron ser removidos.
-You turn the Tarot Amulet to its front face. It is now active.
-Giras el Amuleto Tarot a su cara frontal. Ahora está activo.
-You turn the Tarot Amulet to its back face. It is now disabled.
-Giras el Amuleto Tarot a su cara trasera. Ahora está desactivado.
+\db[Items/TAROTAMULET_active]You turn the Tarot Amulet to its front face. It is now active.\wtnp[60]
+\db[Items/TAROTAMULET_active]Giras el Amuleto Tarot a su cara frontal. Ahora está activo.\wtnp[60]
+\db[Items/TAROTAMULET]You turn the Tarot Amulet to its back face. It is now disabled.\wtnp[60]
+\db[Items/TAROTAMULET]Giras el Amuleto Tarot a su cara trasera. Ahora está desactivado.\wtnp[60]
 {1} survived the burn.\<<n>>The burn faded away!<<1>>
 {1} sobrevivió la quemadura.\<<n>>¡La quemadura se desvaneció!<<1>>
 {1} fainted...
