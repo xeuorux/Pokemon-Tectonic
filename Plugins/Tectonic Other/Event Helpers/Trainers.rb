@@ -15,7 +15,7 @@ def perfectAncientTrainer
 		setMySwitch('D',true)
 		setFollowerGone
 	}
-	pbMessage("The fleeing trainer dropped some food!")
+	pbMessage(_INTL("The fleeing trainer dropped some food!"))
 	pbReceiveItem(:VANILLATULUMBA)
 end
 
@@ -71,15 +71,15 @@ def pbTrainerDropsItem(maxTrainerLevel = 15,multiplier=1,plural=false)
 	end
 	if total == 1
 		if plural
-			pbMessage("One of the fleeing trainers dropped a candy!")
+			pbMessage(_INTL("One of the fleeing trainers dropped a candy!"))
 		else
-			pbMessage("The fleeing trainer dropped a candy!")
+			pbMessage(_INTL("The fleeing trainer dropped a candy!"))
 		end
 	else
 		if plural
-			pbMessage("The fleeing trainers dropped some candies!")
+			pbMessage(_INTL("The fleeing trainers dropped some candies!"))
 		else
-			pbMessage("The fleeing trainer dropped some candies!")
+			pbMessage(_INTL("The fleeing trainer dropped some candies!"))
 		end
 	end
 	
