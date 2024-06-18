@@ -2228,7 +2228,7 @@ Pokemon = SWAMPERT,70
     Gender = male
     AbilityIndex = 1 # Boulder Nest
 #-------------------------------
-[DEVDRAGONTAMER2,Divock]
+[DEVLADY4,Divock]
 Pokemon = DRAGONITE,70
     AbilityIndex = 0 # Inner Focus
 Pokemon = KLAWSAR,70

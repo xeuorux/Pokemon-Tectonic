@@ -62,6 +62,7 @@ class PokemonGlobalMetadata
     attr_accessor :tarot_amulet_active
     # MasterDex
     attr_accessor :stored_search
+    attr_accessor :dex_forms_shows_shinies
     # Randomizer
     attr_accessor :randomizedData
     attr_accessor :isRandomizer
@@ -134,7 +135,9 @@ class PokemonGlobalMetadata
         @teamHealerMaxUses	  = 1
         @teamHealerCurrentUses= 1
         @tarot_amulet_active  = false
+        # Masterdex
         @stored_search		  = nil
+        @dex_forms_shows_shinies = false
         @omnitutor_active     = false
         @noise_machine_state  = 0
         @exp_multiplier       = 1.0

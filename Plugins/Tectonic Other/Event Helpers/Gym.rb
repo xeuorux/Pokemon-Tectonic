@@ -35,7 +35,7 @@ def earnBadge(badgeNum)
 	end
 
 	name = BADGE_NAMES[badgeNum-1]
-	pbMessage(_INTL("\\db[{1}]\\me[Badge get]You've earned the {2} Badge!\\wtnp[120]",badgeNum,name))
+	pbMessage(_INTL("\\db[Pictures/Trainer Card/DISPLAY_BADGE_{1}]\\me[Badge get]You've earned the {2} Badge!\\wtnp[120]",badgeNum,name))
 	$Trainer.badges[badgeNum-1] = true
 	$game_switches[3+badgeNum] = true # "Defeated Gym X" switch
 	

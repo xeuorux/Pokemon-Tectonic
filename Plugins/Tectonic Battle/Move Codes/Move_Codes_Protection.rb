@@ -1,5 +1,5 @@
 #===============================================================================
-# User is protected against moves with the "B" flag this round. (Detect, Protect)
+# User is protected against moves with the "CanProtect" flag this round. (Detect, Protect)
 #===============================================================================
 class PokeBattle_Move_ProtectUser < PokeBattle_ProtectMove
     def initialize(battle, move)
@@ -296,7 +296,7 @@ class PokeBattle_Move_ProtectUserHurtPhysAttackerForEightOfTotalHP < PokeBattle_
 end
 
 #===============================================================================
-# User is protected against moves with the "B" flag this round. If a Pokémon
+# User is protected against moves with the "CanProtect" flag this round. If a Pokémon
 # attacks with the user with a special attack while this effect applies, that Pokémon
 # takes 1/8th chip damage. (Mirror Shield)
 #===============================================================================
@@ -317,7 +317,7 @@ class PokeBattle_Move_ProtectUserHurtSpecAttackerForEightOfTotalHP < PokeBattle_
 end
 
 #===============================================================================
-# User is protected against moves with the "B" flag this round. If a Pokémon
+# User is protected against moves with the "CanProtect" flag this round. If a Pokémon
 # attacks with the user with a special attack while this effect applies, that Pokémon is
 # burned. (Red-Hot Retreat)
 #===============================================================================
@@ -338,7 +338,7 @@ class PokeBattle_Move_ProtectUserBurnSpecAttacker < PokeBattle_ProtectMove
 end
 
 #===============================================================================
-# User is protected against moves with the "B" flag this round. If a Pokémon
+# User is protected against moves with the "CanProtect" flag this round. If a Pokémon
 # attacks with the user with a physical attack while this effect applies, that Pokémon is
 # frostbitten. (Icicle Armor)
 #===============================================================================
