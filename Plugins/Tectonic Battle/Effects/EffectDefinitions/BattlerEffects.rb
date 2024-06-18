@@ -401,6 +401,27 @@ GameData::BattleEffect.register_effect(:Battler, {
 })
 
 GameData::BattleEffect.register_effect(:Battler, {
+    :id => :MirrorHerbConsumed,
+    :real_name => "Mirror Herb Consumed",
+    :type => :Position,
+    :resets_battlers_eot => true,
+    :sub_effects => [:MirrorHerbCopiedStats]
+})
+
+GameData::BattleEffect.register_effect(:Battler, {
+    :id => :MirrorHerbCopiedStats,
+    :real_name => "Mirror Herb Copied Stats",
+    :type => :Hash,
+})
+
+GameData::BattleEffect.register_effect(:Battler, {
+    :id => :ParadoxHerbConsumed,
+    :type => :Position,
+    :real_name => "Paradox Herb Consumed",
+    :resets_battlers_eot => true,
+})
+
+GameData::BattleEffect.register_effect(:Battler, {
     :id => :Grudge,
     :real_name => "Grudge",
     :resets_battlers_sot => true,

@@ -777,7 +777,7 @@ NamePlural = Mirror Herbs
 Pocket = 5
 Price = 4000
 Flags = Herb
-Description = A held item. When a foe raises one of their stats, the herb is consumed to copy that increase.
+Description = A held item. When a foe raises their stats, the herb is consumed to copy the increase.
 #-------------------------------
 [PARADOXHERB]
 Name = Paradox Herb
@@ -785,7 +785,7 @@ NamePlural = Paradox Herbs
 Pocket = 5
 Price = 4000
 Flags = Herb
-Description = A held item. When a foe raises one of their stats, the herb is consumed to reset that stat.
+Description = A held item. When a foe raises their stats, the herb is consumed to reset their stats.
 #-------------------------------
 [LUCKHERB]
 Name = Luck Herb

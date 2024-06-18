@@ -21,9 +21,9 @@ Pokemon = SLAKING,70
     AbilityIndex = 1 # Truant
 #-------------------------------
 [YOUNGSTER,Joey]
-Pokemon = MACHOP,10
-    Moves = PROTECT
-    AbilityIndex = 0 # Feel the Burn
+Pokemon = LILLIGANT,50
+    AbilityIndex = 1 # Herbalist
+    Item = PARADOXHERB,MIRRORHERB
 #-------------------------------
 [HIKER,Conroy]
 Pokemon = MACHOP,10

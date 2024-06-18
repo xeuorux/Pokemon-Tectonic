@@ -40511,10 +40511,10 @@ A single-use item to be held by a Pokémon. It allows the immediate use of a mov
 Un objeto equipable de un solo uso. Permite usar inmediatamente un movimiento que debe recargarse.
 A single-use item to be held by a Pokémon. It allows user to skip the recharging turn of an exhausting move.
 Un objeto equipable de un solo uso. Permite al usuario saltarse el turno de recarga de un movimiento exhaustivo.
-A held item. When a foe raises one of their stats, the herb is consumed to copy that increase.
+A held item. When a foe raises their stats, the herb is consumed to copy the increase.
 Un objeto equipable. Cuando un rival aumente sus stats, la hierba es consumida para copiar ese incremento. 
-A held item. When a foe raises one of their stats, the herb is consumed to reset that stat.
-Un objeto equipable. Cuando un rival aumente sus stats, la hierba es consumida para reiniciar esa stat.
+A held item. When a foe raises their stats, the herb is consumed to reset their stats.
+Un objeto equipable. Cuando un rival aumente sus stats, la hierba es consumida para reiniciar sus stats.
 An item to be held by a Pokémon. Ensures a random additional affect activates once per battle.
 Un objeto equipable. Asegura que el efecto adicional aleatorio del primer movimiento usado siempre sea activado.
 An item to be held by a Pokémon. Ensures a less than full accuracy move lands once per battle.
@@ -49085,8 +49085,8 @@ How many {1} do you want to use?
 ¡{2} de {1} explotó!
 {1}'s {2} was transferred to {3}!
 ¡{2} de {1} fue transferido a {3}!
-{1} copies {2}'s {3} with its {4}!
-¡{1} copia {3} de {2} con su {4}!
+{1} copies {2}'s stat increases with its {3}!
+¡{1} copia los aumentos de stats de {2} con su {3}!
 {1} resets {2}'s {3} with its {4}!
 ¡{1} reinicia {3} de {2} con su {4}!
 {1}'s {2} let it move first!
