@@ -1987,7 +1987,7 @@ Pokemon = SCRAFTY,42
     Moves = LOWKICK,SUCKERPUNCH,BULLY,SCHEME
     AbilityIndex = 1 # Moxie
 Pokemon = RAPIDASH,41
-    Moves = TRAMPLE,BLAZEKICK,SMARTHORN,DESTRIERSWHIM
+    Moves = TRAMPLE,BLAZEKICK,BOUNCE,DESTRIERSWHIM
     AbilityIndex = 1 # Iron Heel
     Item = FIREGEM
 #-------------------------------
@@ -2708,7 +2708,7 @@ Pokemon = WHIMSICOTT,48
     Moves = PLAYROUGH,LEAFBLADE,DEFOG,BULKUP
     AbilityIndex = 1 # Pure Force
 Pokemon = RAPIDASH,47
-    Moves = BLAZEKICK,TRAMPLE,DESTRIERSWHIM,METEORMASH
+    Moves = BLAZEKICK,TRAMPLE,DESTRIERSWHIM,BOUNCE
     AbilityIndex = 1 # Iron Heel
     Item = GROUNDGEM
 #-------------------------------
