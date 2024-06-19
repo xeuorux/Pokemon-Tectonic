@@ -226,6 +226,7 @@ module GameData
         end
 
         # Create each Pokémon owned by the trainer
+        index = 0
         @pokemon.each do |pkmn_data|
             species = GameData::Species.get(pkmn_data[:species]).species
             level = pkmn_data[:level]
@@ -257,7 +258,7 @@ module GameData
             # Set Pokémon's properties if defined
             pkmn.name = nickname if !nickname.nil?
 
-            pkmn.assignedPosition = pkmn_data[:assigned_position] || Settings::MAX_PARTY_SIZE
+            pkmn.assignedPosition = pkmn_data[:assigned_position] || index
 
             if !pkmn_data[:form].nil?
                 pkmn.forced_form = pkmn_data[:form] if MultipleForms.hasFunction?(species, "getForm")
@@ -335,6 +336,8 @@ module GameData
             pkmn.poke_ball = pkmn_data[:poke_ball] if !pkmn_data[:poke_ball].nil?
 
             pkmn.calc_stats
+
+            index += 1
         end
 
         if parentTrainer && trainer.party.length > Settings::MAX_PARTY_SIZE
@@ -345,11 +348,8 @@ module GameData
             end
         end
 
-        trainer.party.sort! { |memberA,memberB|
-            if memberA.assignedPosition == memberB.assignedPosition
-                next 1
-            end
-            next memberA.assignedPosition <=> memberB.assignedPosition
+        trainer.party.sort_by! { |member|
+            member.assignedPosition
         }
 
         return trainer
