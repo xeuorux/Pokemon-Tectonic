@@ -57,9 +57,6 @@ def pbReceiveItem(item, quantity = 1)
     meName = item.is_key_item? ? "Key item get" : "Item get"
     if item.id == :LEFTOVERS
         pbMessage(_INTL("\\me[{1}]You obtained some \\c[1]{2}\\c[0]!\\wtnp[30]", meName, itemname))
-    elsif item.is_machine? # TM or HM
-        pbMessage(_INTL("\\me[{1}]You obtained \\c[1]{2} {3}\\c[0]!\\wtnp[30]", meName, itemname,
-  GameData::Move.get(move).name))
     elsif quantity > 1
         pbMessage(_INTL("\\me[{1}]You obtained {2} \\c[1]{3}\\c[0]!\\wtnp[30]", meName, quantity, itemname))
     elsif itemname.starts_with_vowel?
