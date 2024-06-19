@@ -1,9 +1,9 @@
 def useTarotAmulet()
 	$PokemonGlobal.tarot_amulet_active = !$PokemonGlobal.tarot_amulet_active
 	if $PokemonGlobal.tarot_amulet_active
-		pbMessage(_INTL("You turn the Tarot Amulet to its front face. It is now active."))
+		pbMessage(_INTL("\\db[Items/TAROTAMULET_active]You turn the Tarot Amulet to its front face. It is now active.\\wtnp[60]"))
 	else
-		pbMessage(_INTL("You turn the Tarot Amulet to its back face. It is now disabled."))
+		pbMessage(_INTL("\\db[Items/TAROTAMULET]You turn the Tarot Amulet to its back face. It is now disabled.\\wtnp[60]"))
 	end
 	followerEventGraphicSwap(true)
 	return true

@@ -9,6 +9,8 @@ SaveData.register_conversion(:misc_fixes_3_2_0) do
       itemBag = save_data[:bag]
   
       itemBag.pbChangeItem(:ZYGARDECUBE,:CELLBOOSTER)
+      itemBag.pbStoreItem(:RUSTEDCOMPASS) if globalSwitches[130]
+      itemBag.pbStoreItem(:SOOTHECHARM) if selfSwitches[[7,39,'A']]
     end
   end
   

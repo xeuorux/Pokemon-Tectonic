@@ -777,7 +777,7 @@ NamePlural = Mirror Herbs
 Pocket = 5
 Price = 4000
 Flags = Herb
-Description = A held item. When a foe raises one of their stats, the herb is consumed to copy that increase.
+Description = A held item. When a foe raises their stats, the herb is consumed to copy the increase.
 #-------------------------------
 [PARADOXHERB]
 Name = Paradox Herb
@@ -785,7 +785,7 @@ NamePlural = Paradox Herbs
 Pocket = 5
 Price = 4000
 Flags = Herb
-Description = A held item. When a foe raises one of their stats, the herb is consumed to reset that stat.
+Description = A held item. When a foe raises their stats, the herb is consumed to reset their stats.
 #-------------------------------
 [LUCKHERB]
 Name = Luck Herb
@@ -2102,6 +2102,15 @@ Pocket = 8
 Price = 0
 Flags = KeyItem
 Description = A charm in the shape of a tooth. It increases the EXP gained from EXP Candy by 15%.
+#-------------------------------
+[SOOTHECHARM]
+Name = Soothe Charm
+NamePlural = Soothe Charms
+Pocket = 7
+Price = 0
+Consumable = true
+Flags = KeyItem
+Description = A comforting charm which doubles the happiness your Pokémon gain from being close to you.
 #-------------------------------
 [REDORB]
 Name = Red Orb

@@ -11111,35 +11111,43 @@ No le digas a mi profesor, pero sí o sí voy a faltar a classes para ir a la Fe
 
 [Map178]
 
-You're about to battle IgnitedxSoul, a design and spriting contributor.
-Estás a punto de enfrentar a IgnitedxSoul, un diseñador y contribuidor de sprites.
-From Chasm Dev, thank you for playing our game!
-De parte del Equipo Chasm, ¡Gracias por jugar nuestro juego!
-You're about to battle Brickbat, the Project Lead.
-Estás a punto de enfrentar a Brickbat, el Líder del proyecto.
-You're about to battle Zufaix, a composer contributor.
-Estás a punto de enfrentar a Zufaix, un compositor.
-You're about to battle Lichenprincess, a spriter and character designer.
-Estás a punto de enfrentar a Lichenprincess, un spriter y diseñadora de personajes.
-You're about to battle Divock, a designer, audio engineer and video producer.
-Estás a punto de enfrentar a Divock, un diseñador, ingeniero de sonido y productor de video.
+Do you wish to battle?
+¿Quieres luchar?
+Thank you for playing our game!
+¡Gracias por jugar nuestro juego!
+You've found IgnitedxSoul, a design contributor and community manager.
+Has encontrado a IgnitedxSoul, un diseñador y administrador de la comunidad.
+You've found Brickbat, the Project Lead.
+Has encontrado a Brickbat, el Líder del proyecto.
+You've found Divock, a designer, audio engineer and video producer.
+Has encontrado a Divock, un diseñadora, ingeniera de sonido y productora de video.
+You've found Zeu, Lead Designer and Lead Programmer.
+Has encontrado a Zeu, Diseñadora Líder y Programadora Líder.
+You've found Agentbla, Lead Mapper and tileset arranger.
+Has encontrado a Agentbla, Mapeador Líder y organizador del tileset.
 
 [Map179]
 
-You're about to battle Ali760, a spriting contributor.
-Estás a punto de enfrentar a Ali760, a un contribuidor de spriting.
-From Chasm Dev, thank you for playing our game!
-De parte del Equipo Chasm, ¡Gracias por jugar nuestro juego!
-You're about to battle Zeu, Lead Designer and Lead Programmer.
-Estás a punto de enfrentar a Zeu, Diseñador Líder y Programador Líder.
-You're about to battle Agentbla, the Lead Mapper and tileset arranger.
-Estás a punto de enfrentar a Agentbla, Mapeador Líder y organizador del tileset.
-You're about to battle Papper, a spriter and character designer.
-Estás a punto de enfrentar a Papper, un spriter y diseñador de personajes.
-You're about to battle Drawingbox, Lead Artist.
-Estás a punto de enfrentar a Drawingbox, Artista Líder.
-You're about to battle Maddie, a contributing artist and spriter!
-Estás a punto de enfrentar a Maddie, a contributing artist and spriter!
+Do you wish to battle?
+¿Quieres luchar?
+Thank you for playing our game!
+¡Gracias por jugar nuestro juego!
+You've found D, puzzle and dungeon designer.
+Has encontrado a D, diseñador de rompecabezas y mazmorras.
+You've found Valrex, Spanish translator.
+Has encontrado a Valrex, traductor de español.
+You've found Steeb, battle designer and kit designer.
+Has encontrado a Steeb, diseñador de batallas y de movimientos.
+You've found Darlvon, a battle designer and AI programmer.
+Has encontrado a Darlvon, un diseñador de batallas y programador de inteligencia artificial.
+You've found Tikishades, a designer and playtester.
+Has encontrado a Tikishades, un diseñador y probador de juego.
+You've found Splitmoon, principal playtester.
+Has encontrado a Splitmoon, probador de juego principal.
+You've found Drawingbox, Lead Artist.
+Has encontrado a Drawingbox, Artista Líder.
+You've found Jaggedthorn, a spriting contributor.
+Has encontrado a Jaggedthorn, un contribuidor de sprites!
 
 [Map180]
 
@@ -24751,6 +24759,27 @@ Yeah.
 Seh.
 Not really.
 No realmente.
+[Map424]
+
+Do you wish to battle?
+¿Quieres luchar?
+Thank you for playing our game!
+¡Gracias por jugar nuestro juego!
+You've found Jbsundown, an assistant coder!
+Has encontrado a Jbsundown, un codificador asistente!
+You've found Papper, spriter and character designer.
+Has encontrado a Papper, spriter y diseñador de personajes.
+You've found Lichenprincess, a spriter and character designer.
+Has encontrado a Lichenprincess, un spriter y diseñadora de personajes.
+You've found LunaFlare, whose mods we've integrated into our game.
+Has encontrado a LunaFlare, cuyas modificaciones hemos integrado en nuestro juego.
+You've found Minty, a spriting contributor.
+Has encontrado a Minty, un contribuidor de sprites.
+You've found Zufaix, a composer contributor.
+Has encontrado a Zufaix, un compositor.
+You've found Dada, a spriting contributor.
+Has encontrado a Dada, a un contribuidor de spriting.
+
 [Map426]
 Prizca Black Market
 Mercado Negro Prizca
@@ -40482,10 +40511,10 @@ A single-use item to be held by a Pokémon. It allows the immediate use of a mov
 Un objeto equipable de un solo uso. Permite usar inmediatamente un movimiento que debe recargarse.
 A single-use item to be held by a Pokémon. It allows user to skip the recharging turn of an exhausting move.
 Un objeto equipable de un solo uso. Permite al usuario saltarse el turno de recarga de un movimiento exhaustivo.
-A held item. When a foe raises one of their stats, the herb is consumed to copy that increase.
+A held item. When a foe raises their stats, the herb is consumed to copy the increase.
 Un objeto equipable. Cuando un rival aumente sus stats, la hierba es consumida para copiar ese incremento. 
-A held item. When a foe raises one of their stats, the herb is consumed to reset that stat.
-Un objeto equipable. Cuando un rival aumente sus stats, la hierba es consumida para reiniciar esa stat.
+A held item. When a foe raises their stats, the herb is consumed to reset their stats.
+Un objeto equipable. Cuando un rival aumente sus stats, la hierba es consumida para reiniciar sus stats.
 An item to be held by a Pokémon. Ensures a random additional affect activates once per battle.
 Un objeto equipable. Asegura que el efecto adicional aleatorio del primer movimiento usado siempre sea activado.
 An item to be held by a Pokémon. Ensures a less than full accuracy move lands once per battle.
@@ -49058,8 +49087,8 @@ How many {1} do you want to use?
 ¡{2} de {1} explotó!
 {1}'s {2} was transferred to {3}!
 ¡{2} de {1} fue transferido a {3}!
-{1} copies {2}'s {3} with its {4}!
-¡{1} copia {3} de {2} con su {4}!
+{1} copies {2}'s stat increases with its {3}!
+¡{1} copia los aumentos de stats de {2} con su {3}!
 {1} resets {2}'s {3} with its {4}!
 ¡{1} reinicia {3} de {2} con su {4}!
 {1}'s {2} let it move first!
@@ -50232,8 +50261,8 @@ You clambor into the den!
 ¡Te metes dentro del nido!
 You clambor out of the den!
 ¡Sales del nido!
-\db[{1}]\me[Badge get]You've earned the {2} Badge!\wtnp[120]
-\db[{1}]\me[Badge get]Obtienes la Medalla {2}.\wtnp[120]
+\db[Pictures/Trainer Card/DISPLAY_BADGE_{1}]\me[Badge get]You've earned the {2} Badge!\wtnp[120]
+\db[Pictures/Trainer Card/DISPLAY_BADGE_{1}]\me[Badge get]Obtienes la Medalla {2}.\wtnp[120]
 Badge #{badgeNum} Team
 Equipo de la Medalla #{badgeNum} 
 \wmTaking team snapshot.
@@ -50486,10 +50515,10 @@ Take which item?
 ¿Qué objetos tomas?
 The Bag is full. The Pokémon's {1} could not be removed.
 Tu Mochila está llena. {1} del Pokémon no pudieron ser removidos.
-You turn the Tarot Amulet to its front face. It is now active.
-Giras el Amuleto Tarot a su cara frontal. Ahora está activo.
-You turn the Tarot Amulet to its back face. It is now disabled.
-Giras el Amuleto Tarot a su cara trasera. Ahora está desactivado.
+\db[Items/TAROTAMULET_active]You turn the Tarot Amulet to its front face. It is now active.\wtnp[60]
+\db[Items/TAROTAMULET_active]Giras el Amuleto Tarot a su cara frontal. Ahora está activo.\wtnp[60]
+\db[Items/TAROTAMULET]You turn the Tarot Amulet to its back face. It is now disabled.\wtnp[60]
+\db[Items/TAROTAMULET]Giras el Amuleto Tarot a su cara trasera. Ahora está desactivado.\wtnp[60]
 {1} survived the burn.\<<n>>The burn faded away!<<1>>
 {1} sobrevivió la quemadura.\<<n>>¡La quemadura se desvaneció!<<1>>
 {1} fainted...
@@ -52984,6 +53013,8 @@ Avatars cannot perform random critical hits. However, they can perform guarantee
 Los avatares no pueden realizar golpes críticos aleatorios. Sin embargo, pueden realizar golpes críticos garantizados con sus movimientos o habilidades.
 {1} overpowers type immunities!
 ¡{1} ignora inmunidades por tipos!
+Do you wish to battle?
+¿Quieres luchar?
 [26]
 [27]
 [27]

@@ -1203,22 +1203,24 @@ class Pokemon
     def changeHappiness(method)
       @happiness = @happiness.clamp(0, MAX_HAPPINESS)
 
+      closenessModifier = 1 + pbQuantity(:SOOTHECHARM)
+
       gain = 0
       case method
       when "walking"
-        gain = 1
+        gain = 1 * closenessModifier
       when "candylevelup"
         gain = 2
       when "levelup"
-        gain = 4
+        gain = 4 * closenessModifier
       when "evolution"
         gain = 15
       when "groom"
-        gain = 8
+        gain = 8 * closenessModifier
       when "sweetheart"
-        gain = 1
+        gain = 5
       when "interaction"
-        gain = 1
+        gain = 3 * closenessModifier
       end
 
       if gain > 0

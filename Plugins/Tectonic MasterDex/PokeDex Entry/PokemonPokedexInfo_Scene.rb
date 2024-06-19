@@ -98,6 +98,7 @@ class PokemonPokedexInfo_Scene
 
         @scroll = -1
         @horizontalScroll = 0
+        @showShinyForms = $PokemonGlobal.dex_forms_shows_shinies || false
         @title = "Undefined"
         pbSetSystemFont(@sprites["overlay"].bitmap)
         pbUpdateDummyPokemon
@@ -125,18 +126,13 @@ class PokemonPokedexInfo_Scene
         species_data = GameData::Species.get_species_form(@species, @form)
         @title = species_data.form_name ? "#{species_data.name} (#{species_data.form_name})" : species_data.name
         @sprites["infosprite"].setSpeciesBitmap(@species, @gender, @form)
-        forceShiny = debugControl
-        @sprites["formfront"].setSpeciesBitmap(@species, @gender, @form, forceShiny) if @sprites["formfront"]
+        @sprites["formfront"].setSpeciesBitmap(@species, @gender, @form, @showShinyForms) if @sprites["formfront"]
         if @sprites["formback"]
-            if forceShiny
-                @sprites["formback"].setSpeciesBitmapHueShifted(@species, @gender, @form, forceShiny)
-            else
-                @sprites["formback"].setSpeciesBitmap(@species, @gender, @form, false, false, true)
-                @sprites["formback"].y = 256
-                @sprites["formback"].y += species_data.back_sprite_y * 2
-            end
+            @sprites["formback"].setSpeciesBitmap(@species, @gender, @form, @showShinyForms, false, true)
+            @sprites["formback"].y = 256
+            @sprites["formback"].y += species_data.back_sprite_y * 2
         end
-        @sprites["formicon"].pbSetParams(@species, @gender, @form) if @sprites["formicon"]
+        @sprites["formicon"].pbSetParams(@species, @gender, @form, @showShinyForms) if @sprites["formicon"]
     end
 
     def pbGetAvailableForms
@@ -205,8 +201,7 @@ sp.form) && !Settings::DEX_SHOWS_ALL_FORMS
         xPos = 240
         # shift x position so that double digit page number does not overlap with the right facing arrow
         xPos -= 14 if @page >= 10
-        drawFormattedTextEx(overlay, xPos, 2, Graphics.width, "<outln2>[#{page}/#{pageTitles.length - 1}]</outln2>", base,
-  shadow, 18)
+        drawFormattedTextEx(overlay, xPos, 2, Graphics.width, "<outln2>[#{page}/#{pageTitles.length - 1}]</outln2>", base, shadow, 18)
         # Draw species name on top right	
         speciesName = GameData::Species.get(@species).name
 		speciesName = "#{speciesName} #{@form + 1}" if @multiple_forms
@@ -1074,10 +1069,18 @@ sp.form) && !Settings::DEX_SHOWS_ALL_FORMS
                 break
             end
         end
+        shinyFormTextLeftOffset = 160
         textpos = [
-            [GameData::Species.get(@species).name, Graphics.width / 2, Graphics.height - 94, 2, base, shadow],
-            [formname, Graphics.width / 2, Graphics.height - 62, 2, base, shadow],
+            [GameData::Species.get(@species).name, Graphics.width / 2 - 68, Graphics.height - 94, 2, base, shadow],
+            [formname, Graphics.width / 2 - 68, Graphics.height - 62, 2, base, shadow],
         ]
+        if @showShinyForms
+            textpos.push([_INTL("SPECIAL/D to"), Graphics.width - shinyFormTextLeftOffset, Graphics.height - 94, 0, base, shadow])
+            textpos.push([_INTL("hide shinies"), Graphics.width - shinyFormTextLeftOffset, Graphics.height - 62, 0, base, shadow])
+        else
+            textpos.push([_INTL("SPECIAL/D to"), Graphics.width - shinyFormTextLeftOffset, Graphics.height - 94, 0, base, shadow])
+            textpos.push([_INTL("show shinies"), Graphics.width - shinyFormTextLeftOffset, Graphics.height - 62, 0, base, shadow])
+        end
         # Draw all text
         pbDrawTextPositions(overlay, textpos)
     end
@@ -1261,8 +1264,7 @@ sp.form) && !Settings::DEX_SHOWS_ALL_FORMS
             coordinateY += 32
 
             # Earliest level accessible
-            drawTextEx(overlay, xLeft, coordinateY, 450, 1, _INTL("Earliest level: #{fSpecies.earliest_available}"), base,
-              shadow)
+            drawTextEx(overlay, xLeft, coordinateY, 450, 1, _INTL("Earliest level: #{fSpecies.earliest_available}"), base, shadow)
             coordinateY += 32
 
             # Speed tier
@@ -1387,7 +1389,7 @@ sp.form) && !Settings::DEX_SHOWS_ALL_FORMS
                     else
                         pbPlayBuzzerSE
                     end
-                elsif @page == 10
+                elsif @page == 10 # Forms
                     if @available.length > 1
                         pbPlayDecisionSE
                         pbChooseForm
@@ -1484,6 +1486,14 @@ sp.form) && !Settings::DEX_SHOWS_ALL_FORMS
                 dorefresh = true if moveToPage(9)
             elsif Input.pressex?(:NUMBER_0)
                 dorefresh = true if moveToPage(10)
+            elsif Input.trigger?(Input::SPECIAL)
+                if @page == 10
+                    pbPlayDecisionSE
+                    @showShinyForms = !@showShinyForms
+                    $PokemonGlobal.dex_forms_shows_shinies = @showShinyForms
+                    pbUpdateDummyPokemon
+                    dorefresh = true
+                end
             elsif Input.press?(Input::ACTION) && debugControl
                 @scroll = -1
                 pbPlayCursorSE

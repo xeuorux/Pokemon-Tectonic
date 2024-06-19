@@ -615,6 +615,33 @@ end
     }
   })
 
+  DebugMenuCommands.register("listprimevalmoves", {
+    "parent"      => "analysis",
+    "name"        => _INTL("List primeval moves"),
+    "description" => _INTL("List all primeval moves."),
+    "effect"      => proc { |sprites, viewport|
+      
+      moveDataSorted = []
+      GameData::Move.each do |moveData|
+          next unless moveData.primeval
+          moveDataSorted.push(moveData)
+      end
+  
+      moveDataSorted.sort_by! { |data|
+          GameData::Type.get(data.type).id_number * 10_000 + data.category * 1000 + data.base_damage
+      }
+  
+      File.open("Analysis/primeval_moves.txt","wb") { |file|
+          moveDataSorted.each do |moveData|
+              moveLine = describeMove(moveData.id)
+              moveLine += "\r\n"
+              file.write(moveLine)
+          end
+      }
+      pbMessage(_INTL("Primeval moves information written to Analysis/primeval_moves.txt"))
+    }
+  })
+
   DebugMenuCommands.register("listhelditems", {
     "parent"      => "analysis",
     "name"        => _INTL("List held items"),

@@ -1,20 +1,20 @@
 BattleHandlers::ItemOnEnemyStatGain.add(:MIRRORHERB,
   proc { |item, battler, stat, increment, user, battle, benefactor|
-    battle.pbDisplay(_INTL("{1} copies {2}'s {3} with its {4}!", battler.pbThis,
-        benefactor.pbThis(false), GameData::Stat.get(stat).name, getItemName(item)))
-    battler.consumeItem(item)
-    GameData::Stat.each_battle { |s|
-      battler.steps[s.id] = benefactor.steps[s.id] if benefactor.steps[s.id] > 0
-    }
-    battler.steps[stat] = benefactor.steps[stat]
+    next if battler.effectActive?(:ParadoxHerbConsumed) && !battler.pointsAt?(:ParadoxHerbConsumed,benefactor)
+    next unless battler.pbCanRaiseStatStep?(stat, battler)
+    battler.pointAt(:MirrorHerbConsumed,benefactor)
+    battler.effects[:MirrorHerbCopiedStats] = {} unless battler.effectActive?(:MirrorHerbCopiedStats)
+    statsHash = battler.effects[:MirrorHerbCopiedStats]
+    if statsHash.key?(stat)
+      statsHash[stat] += increment
+    else
+      statsHash[stat] = increment
+    end
   }
 )
 
 BattleHandlers::ItemOnEnemyStatGain.add(:PARADOXHERB,
   proc { |item, battler, stat, increment, user, battle, benefactor|
-    battle.pbDisplay(_INTL("{1} resets {2}'s {3} with its {4}!", battler.pbThis,
-        benefactor.pbThis(false), GameData::Stat.get(stat).name, getItemName(item)))
-    battler.consumeItem(item)
-    benefactor.steps[stat] = 0
+    battler.pointAt(:ParadoxHerbConsumed,benefactor)
   }
 )

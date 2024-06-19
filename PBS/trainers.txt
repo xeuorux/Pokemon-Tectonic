@@ -21,9 +21,9 @@ Pokemon = SLAKING,70
     AbilityIndex = 1 # Truant
 #-------------------------------
 [YOUNGSTER,Joey]
-Pokemon = MACHOP,10
-    Moves = PROTECT
-    AbilityIndex = 0 # Feel the Burn
+Pokemon = LILLIGANT,50
+    AbilityIndex = 1 # Herbalist
+    Item = PARADOXHERB,MIRRORHERB
 #-------------------------------
 [HIKER,Conroy]
 Pokemon = MACHOP,10
@@ -2013,7 +2013,7 @@ Pokemon = SCRAFTY,42
     Moves = LOWKICK,SUCKERPUNCH,BULLY,SCHEME
     AbilityIndex = 1 # Moxie
 Pokemon = RAPIDASH,41
-    Moves = TRAMPLE,BLAZEKICK,SMARTHORN,DESTRIERSWHIM
+    Moves = TRAMPLE,BLAZEKICK,BOUNCE,DESTRIERSWHIM
     AbilityIndex = 1 # Iron Heel
     Item = FIREGEM
 #-------------------------------
@@ -2254,7 +2254,7 @@ Pokemon = SWAMPERT,70
     Gender = male
     AbilityIndex = 1 # Boulder Nest
 #-------------------------------
-[DEVDRAGONTAMER2,Divock]
+[DEVLADY4,Divock]
 Pokemon = DRAGONITE,70
     AbilityIndex = 0 # Inner Focus
 Pokemon = KLAWSAR,70
@@ -2706,7 +2706,7 @@ Pokemon = WHIMSICOTT,48
     Moves = PLAYROUGH,LEAFBLADE,DEFOG,BULKUP
     AbilityIndex = 1 # Pure Force
 Pokemon = RAPIDASH,47
-    Moves = BLAZEKICK,TRAMPLE,DESTRIERSWHIM,METEORMASH
+    Moves = BLAZEKICK,TRAMPLE,DESTRIERSWHIM,BOUNCE
     AbilityIndex = 1 # Iron Heel
     Item = GROUNDGEM
 #-------------------------------

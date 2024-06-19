@@ -85,9 +85,15 @@ class SpriteWrapper
       @sprite.color      = color
       @sprite.tone       = tone
     end
+
+    def get_display_width
+      return @sprite.bitmap.width * @sprite.zoom_x
+    end
+
+    def get_display_height
+      return @sprite.bitmap.height * @sprite.zoom_y
+    end
   end
-  
-  
   
   #===============================================================================
   # Sprite class that maintains a bitmap of its own.
