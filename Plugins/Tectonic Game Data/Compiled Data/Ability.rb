@@ -32,10 +32,11 @@ module Compiler
                     end
                     # Construct ability hash
                     ability_hash = {
-                        :id             => ability_id,
-                        :cut            => cutAbility,
-                        :tectonic_new   => newAbility,
-                        :primeval       => primevalAbility,
+                        :id                     => ability_id,
+                        :cut                    => cutAbility,
+                        :tectonic_new           => newAbility,
+                        :primeval               => primevalAbility,
+                        :defined_in_extension   => !baseFile,
                     }
                 elsif line[/^\s*(\w+)\s*=\s*(.*)\s*$/]   # XXX=YYY lines
                     if !ability_hash
@@ -75,28 +76,28 @@ module Compiler
     def write_abilities
         File.open("PBS/abilities.txt", "wb") do |f|
             add_PBS_header_to_file(f)
-            GameData::Ability.each do |a|
+            GameData::Ability.each_base do |a|
                 next if a.cut || a.primeval || a.tectonic_new
                 write_ability(f, a)
             end
         end
         File.open("PBS/abilities_new.txt", "wb") do |f|
             add_PBS_header_to_file(f)
-            GameData::Ability.each do |a|
+            GameData::Ability.each_base do |a|
                 next unless a.tectonic_new && !a.primeval
                 write_ability(f, a)
             end
         end
         File.open("PBS/abilities_cut.txt", "wb") do |f|
             add_PBS_header_to_file(f)
-            GameData::Ability.each do |a|
+            GameData::Ability.each_base do |a|
                 next unless a.cut
                 write_ability(f, a)
             end
         end
         File.open("PBS/abilities_primeval.txt", "wb") do |f|
             add_PBS_header_to_file(f)
-            GameData::Ability.each do |a|
+            GameData::Ability.each_base do |a|
                 next unless a.primeval
                 write_ability(f, a)
             end
@@ -138,14 +139,15 @@ module GameData
         }
         
         def initialize(hash)
-            @id               = hash[:id]
-            @id_number        = hash[:id_number]    || -1
-            @real_name        = hash[:name]         || "Unnamed"
-            @real_description = hash[:description]  || "???"
-            @flags            = hash[:flags]       || []
-            @cut              = hash[:cut]          || false
-            @primeval         = hash[:primeval]     || false
-            @tectonic_new     = hash[:tectonic_new] || false
+            @id                     = hash[:id]
+            @id_number              = hash[:id_number]    || -1
+            @real_name              = hash[:name]         || "Unnamed"
+            @real_description       = hash[:description]  || "???"
+            @flags                  = hash[:flags]       || []
+            @cut                    = hash[:cut]          || false
+            @primeval               = hash[:primeval]     || false
+            @tectonic_new           = hash[:tectonic_new] || false
+            @defined_in_extension   = hash[:defined_in_extension] || false
 
             @flags.each do |flag|
                 if FLAG_INDEX.key?(flag)

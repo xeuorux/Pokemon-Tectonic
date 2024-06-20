@@ -62,6 +62,7 @@ module Compiler
           current_family = nil
           list.each do |species|
             next if !species
+            next if GameData::Species.get(species).defined_in_extension
             if current_family && current_family.include?(species)
               f.write(",") if comma
             else
