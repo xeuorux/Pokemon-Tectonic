@@ -16,8 +16,6 @@ class FightMenuDisplay < BattleMenuBase
     #     displayed.
     USE_GRAPHICS     = true
     TYPE_ICON_HEIGHT = 28
-    
-    EFFECTIVENESS_SHADOW_COLOR = Color.new(160, 160, 168)
   
     def initialize(viewport,z)
         super(viewport)
@@ -144,8 +142,7 @@ class FightMenuDisplay < BattleMenuBase
         @typeBitmap.dispose if @typeBitmap
         @megaEvoBitmap.dispose if @megaEvoBitmap
         @shiftBitmap.dispose if @shiftBitmap
-          #@extraReminderBitmap if @extraReminderBitmap
-          @moveInfoDisplayBitmap.dispose if @moveInfoDisplayBitmap
+        @moveInfoDisplayBitmap.dispose if @moveInfoDisplayBitmap
         @ppUsageUpBitmap.dispose if @ppUsageUpBitmap
     end
   
@@ -165,9 +162,8 @@ class FightMenuDisplay < BattleMenuBase
 
     def visible=(value)
         super(value)
-          @sprites["moveInfoDisplay"].visible = @extraInfoToggled && @visible if @sprites["moveInfoDisplay"]
-          @sprites["extraInfoOverlay"].visible = @extraInfoToggled && @visible if @sprites["moveInfoDisplay"]
-          #@sprites["extraReminder"].visible = !@extraInfoToggled && @visible if @sprites["extraReminder"]
+        @sprites["moveInfoDisplay"].visible = @extraInfoToggled && @visible if @sprites["moveInfoDisplay"]
+        @sprites["extraInfoOverlay"].visible = @extraInfoToggled && @visible if @sprites["moveInfoDisplay"]
     end
   
     def battler=(value)
@@ -186,7 +182,9 @@ class FightMenuDisplay < BattleMenuBase
         @extraInfoToggled = !@extraInfoToggled
         @sprites["moveInfoDisplay"].visible = @extraInfoToggled && @visible if @sprites["moveInfoDisplay"]
         @sprites["extraInfoOverlay"].visible = @extraInfoToggled && @visible if @sprites["moveInfoDisplay"]
-        #@sprites["extraReminder"].visible = !@extraInfoToggled && @visible if @sprites["extraReminder"]
+        if extraInfoToggled && @battler&.getMoves[@index]&.adaptiveMove? && !$PokemonGlobal.adaptiveMovesTutorialized
+          playAdaptiveMovesTutorial
+        end
     end
   
     def refreshButtonNames
@@ -214,7 +212,7 @@ class FightMenuDisplay < BattleMenuBase
           if move.type
             # NOTE: This takes a colour from a particular pixel in the button
             #       graphic and makes the move name's base colour that same colour.
-            #       The pixel is at coordinates 10,34 in the button box. If you
+           move #       The pixel is at coordinates 10,34 in the button box. If you
             #       change the graphic, you may want to change/remove the below line
             #       of code to ensure the font is an appropriate colour.
             moveNameBase = button.bitmap.get_pixel(10,button.src_rect.y+34)
@@ -303,59 +301,62 @@ class FightMenuDisplay < BattleMenuBase
         shadow = Color.new(104,104,104)
 
         pbSetNarrowFont(@infoOverlay.bitmap)
+        moveInfoToggleReminderBase = PokeBattle_SceneConstants::MESSAGE_BASE_COLOR
+        moveInfoToggleReminderShadow = PokeBattle_SceneConstants::MESSAGE_SHADOW_COLOR
         moveInfoToggleReminderText = []
-        moveInfoToggleReminderText.push([_INTL("Toggle Info:"),448,6,2,faded_base,TEXT_SHADOW_COLOR])
-        moveInfoToggleReminderText.push([_INTL("ACTION/Z"),448,26,2,faded_base,TEXT_SHADOW_COLOR])
+        moveInfoToggleReminderText.push([_INTL("Toggle Info:"),448,14,2,moveInfoToggleReminderBase,moveInfoToggleReminderShadow])
+        moveInfoToggleReminderText.push([_INTL("ACTION/Z"),448,42,2,moveInfoToggleReminderBase,moveInfoToggleReminderShadow])
         pbDrawTextPositions(@infoOverlay.bitmap,moveInfoToggleReminderText)
         pbSetSystemFont(@infoOverlay.bitmap)
         
-        effectivenessTextPos = nil
-        effectivenessTextX = 448
-        effectivenessTextY = 48
+        # Send info to the move outcome predictor displays
         if move.damagingMove?(true)
-          begin
-            if move.is_a?(PokeBattle_FixedDamageMove)
-              effectivenessDescription = _INTL("Neutral")
-              effectivenessColor = EFFECTIVENESS_COLORS[3]
-            else
-              typeOfMove = move.pbCalcType(@battler)
-              targetingData = move.pbTarget(@battler)
-              maxEffectiveness = 0
-              @battler.eachOpposing do |opposingBattler|
-                  next if !@battler.battle.pbMoveCanTarget?(@battler.index,opposingBattler.index,targetingData)
-                  effectiveness = move.pbCalcTypeMod(typeOfMove,@battler,opposingBattler,true)
-                  maxEffectiveness = effectiveness if effectiveness > maxEffectiveness
-              end
-
-              ration = maxEffectiveness/Effectiveness::NORMAL_EFFECTIVE.to_f
-              case ration
-              when 0              then effectivenessCategory = 0
-              when 0.00001..0.25  then effectivenessCategory = 1
-              when 0.5 	          then effectivenessCategory = 2
-              when 1 		    	    then effectivenessCategory = 3
-              when 2 			        then effectivenessCategory = 4
-              when 4.. 			      then effectivenessCategory = 5
-              end
-
-              effectivenessDescription = [_INTL("No Effect"),_INTL("Barely"),_INTL("Not Very"),_INTL("Neutral"),_INTL("Super"),_INTL("Hyper"),_INTL("Hyper")][effectivenessCategory]
-              effectivenessColor = EFFECTIVENESS_COLORS[effectivenessCategory]
-            end
-            
-            effectivenessTextPos = [effectivenessDescription,effectivenessTextX,effectivenessTextY,2,
-            effectivenessColor,EFFECTIVENESS_SHADOW_COLOR]
-          rescue
-            effectivenessTextPos = [_INTL("ERROR"),effectivenessTextX,effectivenessTextY,2,TEXT_BASE_COLOR,TEXT_SHADOW_COLOR]
+          targetingData = move.pbTarget(@battler)
+          @battler.eachOpposing do |opposingBattler|
+            next unless @battler.battle.pbMoveCanTarget?(@battler.index,opposingBattler.index,targetingData)
+            setMoveOutcomePredictor(move,opposingBattler)
           end
-        # Apply a highlight to moves that are in an extra useful state
         else
-          effectivenessTextPos = [_INTL("Status"),effectivenessTextX,effectivenessTextY,2,TEXT_BASE_COLOR,TEXT_SHADOW_COLOR]
+          @battler.eachOpposing do |opposingBattler|
+            opposingBattler.moveOutcomePredictor&.clear
+          end
         end
-
-        pbDrawTextPositions(@infoOverlay.bitmap,[effectivenessTextPos]) if !effectivenessTextPos.nil?
         
         # Extra move info display
         @extraInfoOverlay.bitmap.clear
-        writeMoveInfoToInfoOverlay3x3(@extraInfoOverlay.bitmap,move)
+        writeMoveInfoToInfoOverlay3x3(@extraInfoOverlay.bitmap,move,true)
+    end
+
+    def setMoveOutcomePredictor(move,opposingBattler)
+      begin
+        if move.is_a?(PokeBattle_FixedDamageMove)
+          effectivenessCategory = 3
+        else
+          typeOfMove = move.pbCalcType(@battler)
+          effectiveness = move.pbCalcTypeMod(typeOfMove,@battler,opposingBattler,true)
+          ration = effectiveness/Effectiveness::NORMAL_EFFECTIVE.to_f
+          case ration
+            when 0              then effectivenessCategory = 0
+            when 0.00001..0.25  then effectivenessCategory = 1
+            when 0.5 	          then effectivenessCategory = 2
+            when 1 		    	    then effectivenessCategory = 3
+            when 2 			        then effectivenessCategory = 4
+            when 4.. 			      then effectivenessCategory = 5
+          end
+        end
+
+        moveOutcomeText = [_INTL("No Effect"),_INTL("Barely"),_INTL("Not Very"),_INTL("Neutral"),_INTL("Super"),_INTL("Hyper"),_INTL("Hyper")][effectivenessCategory]
+        effectivenessColor = EFFECTIVENESS_COLORS[effectivenessCategory]
+      rescue
+        moveOutcomeText = _INTL("ERROR")
+      end
+
+      opposingBattler.moveOutcomePredictor.setEffectiveness(moveOutcomeText,effectivenessColor)
+      if move.baseDamage == 1
+        opposingBattler.moveOutcomePredictor.basePower = move.predictedBasePower(@battler, opposingBattler).to_s
+      else
+        opposingBattler.moveOutcomePredictor.basePower = nil
+      end
     end
   
     def refreshShiftButton

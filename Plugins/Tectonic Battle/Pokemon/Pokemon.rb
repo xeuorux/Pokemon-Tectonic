@@ -78,6 +78,7 @@ class Pokemon
     attr_accessor :dmgResist
     attr_accessor :battlingStreak
     attr_accessor :extraMovesPerTurn
+    attr_accessor :bossVersion
     attr_accessor :bossType
     attr_writer   :itemTypeChosen
     attr_accessor :shiny_variant
@@ -1202,22 +1203,24 @@ class Pokemon
     def changeHappiness(method)
       @happiness = @happiness.clamp(0, MAX_HAPPINESS)
 
+      closenessModifier = 1 + pbQuantity(:SOOTHECHARM)
+
       gain = 0
       case method
       when "walking"
-        gain = 1
+        gain = 1 * closenessModifier
       when "candylevelup"
         gain = 2
       when "levelup"
-        gain = 4
+        gain = 4 * closenessModifier
       when "evolution"
         gain = 15
       when "groom"
-        gain = 8
+        gain = 8 * closenessModifier
       when "sweetheart"
-        gain = 1
+        gain = 5
       when "interaction"
-        gain = 1
+        gain = 3 * closenessModifier
       end
 
       if gain > 0
@@ -1271,9 +1274,9 @@ class Pokemon
     #=============================================================================
     # Checks whether this Pokemon can evolve because of levelling up.
     # @return [Symbol, nil] the ID of the species to evolve into
-    def check_evolution_on_level_up
+    def check_evolution_on_level_up(finalCheck = true)
       return check_evolution_internal { |pkmn, new_species, method, parameter|
-        success = GameData::Evolution.get(method).call_level_up(pkmn, parameter)
+        success = GameData::Evolution.get(method).call_level_up(pkmn, parameter, finalCheck)
         next (success) ? new_species : nil
       }
     end
@@ -1497,6 +1500,7 @@ class Pokemon
       @extraMovesPerTurn = 0
       @battlingStreak = 0
       @bossType = nil
+      @bossVersion = 0
       calc_stats
       if @form == 0 && recheck_form
           f = MultipleForms.call("getFormOnCreation", self)

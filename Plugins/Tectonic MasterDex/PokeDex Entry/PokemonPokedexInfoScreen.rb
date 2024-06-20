@@ -44,7 +44,14 @@ class PokemonPokedexInfoScreen
     allSpecies.each do |sp|
       dexnum = pbGetRegionalNumber(region,sp)
       dexnumshift = Settings::DEXES_WITH_OFFSETS.include?(region)
-      dexlist.push([sp,GameData::Species.get(sp).name,0,0,dexnum,dexnumshift])
+      dexListEntry =
+			{
+				:species => sp,
+				:data => GameData::Species.get(sp),
+				:index => dexnum,
+				:shift => dexnumshift,
+			}
+      dexlist.push(dexListEntry)
     end
 
     # Start the scene

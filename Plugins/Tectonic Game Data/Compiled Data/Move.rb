@@ -27,7 +27,7 @@ module GameData
       SCHEMA = {
       "Name"         => [:name,           "s"],
       "Type"         => [:type,           "e", :Type],
-      "Category"     => [:category,       "e", ["Physical", "Special", "Status"]],
+      "Category"     => [:category,       "e", ["Physical", "Special", "Status", "Adaptive"]],
       "Power"        => [:base_damage,    "u"],
       "Accuracy"     => [:accuracy,       "u"],
       "TotalPP"      => [:total_pp,       "u"],
@@ -87,6 +87,11 @@ module GameData
         return false if @base_damage == 0
         return @category == 1
       end
+
+      def adaptive?
+        return false if @base_damage == 0
+        return @category == 2
+      end
   
       def hidden_move?
         GameData::Item.each do |i|
@@ -96,7 +101,7 @@ module GameData
       end
 
       def damaging?
-        return physical? || special?
+        return physical? || special? || adaptive?
       end
 
       def status?
@@ -119,6 +124,7 @@ module GameData
       def categoryLabel
         return _INTL("Physical") if physical?
         return _INTL("Special") if special?
+        return _INTL("Adaptive") if adaptive?
         return _INTL("Status")
       end
 
@@ -223,7 +229,7 @@ module Compiler
               raise _INTL("Move {1} is defined as a Status move with a non-zero base damage.\r\n{2}",
                           move_hash[:name], FileLineData.linereport)
             elsif (move_hash[:category] || 2) != 2 && (move_hash[:base_damage] || 0) == 0
-              print _INTL("Warning: Move {1} was defined as Physical or Special but had a base damage of 0. Changing it to a Status move.\r\n{2}",
+              print _INTL("Warning: Move {1} was defined as a Damaging move but had a base damage of 0. Changing it to a Status move.\r\n{2}",
                           move_hash[:name], FileLineData.linereport)
               move_hash[:category] = 2
             end
@@ -277,7 +283,7 @@ module Compiler
       if (move_hash[:category] || 2) == 2 && (move_hash[:base_damage] || 0) != 0
         raise _INTL("Move {1} is defined as a Status move with a non-zero base damage.\r\n{2}", line[2], FileLineData.linereport)
       elsif (move_hash[:category] || 2) != 2 && (move_hash[:base_damage] || 0) == 0
-        print _INTL("Warning: Move {1} was defined as Physical or Special but had a base damage of 0. Changing it to a Status move.\r\n{2}", line[2], FileLineData.linereport)
+        print _INTL("Warning: Move {1} was defined as a Damaging move but had a base damage of 0. Changing it to a Status move.\r\n{2}", line[2], FileLineData.linereport)
         move_hash[:category] = 2
       end
       GameData::Move.register(move_hash)
@@ -343,7 +349,7 @@ module Compiler
     f.write("[#{move.id}]\r\n")
     f.write("Name = #{move.real_name}\r\n")
     f.write("Type = #{move.type.to_s}\r\n")
-    category = ["Physical", "Special", "Status"][move.category]
+    category = ["Physical", "Special", "Status", "Adaptive"][move.category]
     f.write("Category = #{category}\r\n")
     f.write("Power = #{move.base_damage}\r\n") if move.base_damage > 0
     f.write("Accuracy = #{move.accuracy}\r\n")

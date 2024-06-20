@@ -5,9 +5,9 @@ class PokemonPokedex_Scene
             reversed = nameInput[0] == "-"
             nameInput = nameInput[1..-1] if reversed
             dexlist = searchStartingList
-            dexlist = dexlist.find_all do |item|
-                next false if autoDisqualifyFromSearch(item[0])
-                searchPokeName = item[1]
+            dexlist = dexlist.find_all do |dex_item|
+                next false if autoDisqualifyFromSearch(dex_item[:species])
+                searchPokeName = dex_item[:data].name
                 value = searchPokeName.downcase.include?(nameInput.downcase) ^ reversed # Boolean XOR
                 next value
             end
@@ -41,9 +41,9 @@ class PokemonPokedex_Scene
                     end
 
                     dexlist = searchStartingList
-                    dexlist = dexlist.find_all do |item|
-                        next false if autoDisqualifyFromSearch(item[0])
-                        searchPokeAbilities = item[10]
+                    dexlist = dexlist.find_all do |dex_item|
+                        next false if autoDisqualifyFromSearch(dex_item[:species])
+                        searchPokeAbilities = dex_item[:data].abilities
                         value = false
                         value = true if searchPokeAbilities.include?(actualAbility)
                         value = value ^ reversed # Boolean XOR
@@ -61,9 +61,9 @@ class PokemonPokedex_Scene
                 abilityDescriptionInput = abilityDescriptionInput[1..-1] if reversed
 
                 dexlist = searchStartingList
-                dexlist = dexlist.find_all do |item|
-                    next false if autoDisqualifyFromSearch(item[0])
-                    searchPokeAbilities = item[10]
+                dexlist = dexlist.find_all do |dex_item|
+                    next false if autoDisqualifyFromSearch(dex_item[:species])
+                    searchPokeAbilities = dex_item[:data].abilities
                     value = false
                     if searchPokeAbilities[0] && GameData::Ability.get(searchPokeAbilities[0]).description.downcase.include?(abilityDescriptionInput.downcase)
                         value = true
@@ -125,10 +125,10 @@ class PokemonPokedex_Scene
                 end
 
                 dexlist = searchStartingList
-                dexlist = dexlist.find_all do |item|
-                    next false if autoDisqualifyFromSearch(item[0])
+                dexlist = dexlist.find_all do |dex_item|
+                    next false if autoDisqualifyFromSearch(dex_item[:species])
 
-                    speciesData = GameData::Species.get(item[0])
+                    speciesData = dex_item[:data]
                     contains = false
                     speciesData.learnable_moves.each do |moveID|
                         moveData = GameData::Move.get(moveID)
@@ -165,14 +165,15 @@ class PokemonPokedex_Scene
                 end
 
                 dexlist = searchStartingList
-                dexlist = dexlist.find_all do |item|
-                    next false if autoDisqualifyFromSearch(item[0])
+                dexlist = dexlist.find_all do |dex_item|
+                    next false if autoDisqualifyFromSearch(dex_item[:species])
                     contains = false
+
+                    species_data = dex_item[:data]
 
                     # By level up
                     if [0, 1].include?(learningMethodSelection)
-                        lvlmoves = item[11]
-                        lvlmoves.each do |learnset_entry|
+                        species_data.moves.each do |learnset_entry|
                             if learnset_entry[1] == actualMove
                                 contains = true
                                 break
@@ -182,8 +183,7 @@ class PokemonPokedex_Scene
 
                     # By specific level
                     if learningMethodSelection == 2
-                        lvlmoves = item[11]
-                        lvlmoves.each do |learnset_entry|
+                        species_data.moves.each do |learnset_entry|
                             break if learnset_entry[0] > levelIntAttempt
                             if learnset_entry[1] == actualMove
                                 contains = true
@@ -192,17 +192,9 @@ class PokemonPokedex_Scene
                         end
                     end
 
+                    # Learns it by tutor or anything
                     if [0, 3].include?(learningMethodSelection)
-                        eggmoves = item[13]
-                        eggmoves.each do |move|
-                            if move == actualMove
-                                contains = true
-                                break
-                            end
-                        end
-
-                        tutormoves = item[12]
-                        tutormoves.each do |move|
+                        species_data.learnable_moves.each do |move|
                             if move == actualMove
                                 contains = true
                                 break
@@ -258,11 +250,11 @@ class PokemonPokedex_Scene
                 typesInputArray = [typesInputArray[0], typesInputArray[0]] if typesInputArray.length == 1
 
                 dexlist = searchStartingList
-                dexlist = dexlist.find_all do |item|
-                    next false if autoDisqualifyFromSearch(item[0])
-                    searchPokeType1 = item[6]
+                dexlist = dexlist.find_all do |dex_item|
+                    next false if autoDisqualifyFromSearch(dex_item[:species])
+                    searchPokeType1 = dex_item[:data].type1
                     searchPokeType1Name = GameData::Type.get(searchPokeType1).name.downcase if searchPokeType1
-                    searchPokeType2 = item[7]
+                    searchPokeType2 = dex_item[:data].type2 || dex_item[:data].type1
                     searchPokeType2Name = GameData::Type.get(searchPokeType2).name.downcase if searchPokeType2
 
                     pokeTypeNames = [searchPokeType1Name, searchPokeType2Name]
@@ -291,11 +283,11 @@ class PokemonPokedex_Scene
             reversed = evoMethodTextInput[0] == "-"
             evoMethodTextInput = evoMethodTextInput[1..-1] if reversed
             dexlist = searchStartingList
-            dexlist = dexlist.find_all do |item|
-                next false if autoDisqualifyFromSearch(item[0])
+            dexlist = dexlist.find_all do |dex_item|
+                next false if autoDisqualifyFromSearch(dex_item[:species])
                 anyContain = false
 
-                entries = relationSelection == 0 ? item[14] : item[15]
+                entries = relationSelection == 0 ? dex_item[:data].get_evolutions : dex_item[:data].get_prevolutions
 
                 # Evolutions
                 entries.each do |evomethod|
@@ -323,9 +315,9 @@ class PokemonPokedex_Scene
             levelCheck = roundUpToRelevantCap(levelIntAttempt)
 
             dexlist = searchStartingList
-            dexlist = dexlist.find_all do |item|
-                next false if autoDisqualifyFromSearch(item[0])
-                available = GameData::Species.get(item[0]).available_by?(levelCheck)
+            dexlist = dexlist.find_all do |dex_item|
+                next false if autoDisqualifyFromSearch(dex_item[:species])
+                available = dex_item[:data].available_by?(levelCheck)
                 next available ^ reversed # Boolean XOR
             end
             return dexlist
@@ -338,8 +330,8 @@ class PokemonPokedex_Scene
         if selection != 4
             dexlist = searchStartingList
 
-            dexlist = dexlist.find_all do |item|
-                species = item[0]
+            dexlist = dexlist.find_all do |dex_item|
+                species = dex_item[:species]
                 next false if autoDisqualifyFromSearch(species)
 
                 case selection
@@ -386,22 +378,18 @@ class PokemonPokedex_Scene
         comparitorA = stats[statSelection]
 
         dexlist = searchStartingList
-        dexlist = dexlist.find_all do |item|
-            next false if autoDisqualifyFromSearch(item[0])
+        dexlist = dexlist.find_all do |dex_item|
+            next false if autoDisqualifyFromSearch(dex_item[:species])
 
-            species_data = GameData::Species.get(item[0])
+            species_data = dex_item[:data]
 
             statToCompareA = 0
             case statSelection
             when 0..5
                 statToCompareA = species_data.base_stats[comparitorA]
             when 6
-                species_data.base_stats.each do |s|
-                    statToCompareA += s[1]
-                end
-            when 7
                 statToCompareA = species_data.physical_ehp
-            when 8
+            when 7
                 statToCompareA = species_data.special_ehp
             end
 
@@ -514,9 +502,9 @@ class PokemonPokedex_Scene
         end
 
         dexlist = dexlist.find_all do |dex_item|
-            next false if autoDisqualifyFromSearch(dex_item[0])
+            next false if autoDisqualifyFromSearch(dex_item[:species])
 
-            next hasMultipleForms[dex_item[0]]
+            next hasMultipleForms[dex_item[:species]]
         end
         return dexlist
     end
@@ -537,9 +525,8 @@ class PokemonPokedex_Scene
         chosenTribe = tribes[command]
 
         dexlist = dexlist.find_all do |dex_item|
-            next false if autoDisqualifyFromSearch(dex_item[0])
-            fSpecies = GameData::Species.get(dex_item[0])
-            next fSpecies.tribes.include?(chosenTribe)
+            next false if autoDisqualifyFromSearch(dex_item[:species])
+            next dex_item[:data].tribes.include?(chosenTribe)
         end
         return dexlist
     end
@@ -568,10 +555,9 @@ class PokemonPokedex_Scene
             dexlist = searchStartingList
 
             dexlist = dexlist.find_all do |dex_item|
-                next false if autoDisqualifyFromSearch(dex_item[0])
+                next false if autoDisqualifyFromSearch(dex_item[:species])
 
-                fSpecies = GameData::Species.get(dex_item[0])
-                typesOfCoverage = get_bnb_coverage(fSpecies)
+                typesOfCoverage = get_bnb_coverage(dex_item[:data])
 
                 next typesOfCoverage.include?(realTypeSymbol) ^ reversed # Boolean XOR
             end
@@ -583,11 +569,9 @@ class PokemonPokedex_Scene
         dexlist = searchStartingList
 
         dexlist = dexlist.find_all do |dex_item|
-            next false if autoDisqualifyFromSearch(dex_item[0])
+            next false if autoDisqualifyFromSearch(dex_item[:species])
 
-            fSpecies = GameData::Species.get(dex_item[0])
-
-            next fSpecies.abilities.length == 1
+            next dex_item[:data].abilities.length == 1
         end
         return dexlist
     end
@@ -600,12 +584,12 @@ class PokemonPokedex_Scene
             dexlist = searchStartingList
 
             dexlist = dexlist.find_all do |dex_item|
-                next false if autoDisqualifyFromSearch(dex_item[0])
+                next false if autoDisqualifyFromSearch(dex_item[:species])
 
                 hasSignatureMove = false
-
+                autoDisqualifyFromSearch(dex_item[:species])
                 # By level up
-                dex_item[11].each do |learnset_entry|
+                dex_item[:data].moves.each do |learnset_entry|
                     if GameData::Move.get(learnset_entry[1]).is_signature?
                         hasSignatureMove = true
                         break
@@ -615,17 +599,7 @@ class PokemonPokedex_Scene
                 next true if hasSignatureMove && !reversed
 
                 # Egg moves
-                dex_item[13].each do |move|
-                    if GameData::Move.get(move).is_signature?
-                        hasSignatureMove = true
-                        break
-                    end
-                end
-
-                next true if hasSignatureMove && !reversed
-
-                # Tutor moves
-                dex_item[12].each do |move|
+                dex_item[:data].learnable_moves.each do |move|
                     if GameData::Move.get(move).is_signature?
                         hasSignatureMove = true
                         break
@@ -644,10 +618,10 @@ class PokemonPokedex_Scene
             dexlist = searchStartingList
 
             dexlist = dexlist.find_all do |dex_item|
-                next false if autoDisqualifyFromSearch(dex_item[0])
+                next false if autoDisqualifyFromSearch(dex_item[:species])
 
                 hasSignatureAbility = false
-                dex_item[10].each do |ability|
+                dex_item[:data].abilities.each do |ability|
                     hasSignatureAbility = true if GameData::Ability.get(ability).is_signature?
                 end
                 
@@ -665,11 +639,8 @@ class PokemonPokedex_Scene
         dexlist = searchStartingList
 
         dexlist = dexlist.find_all do |dex_item|
-            next false if autoDisqualifyFromSearch(dex_item[0])
-
-            fSpecies = GameData::Species.get(dex_item[0])
-
-            next GameData::Avatar.exists?(fSpecies.species)
+            next false if autoDisqualifyFromSearch(dex_item[:species])
+            next GameData::Avatar.exists?(dex_item[:data].species)
         end
         return dexlist
     end
@@ -680,14 +651,12 @@ class PokemonPokedex_Scene
             dexlist = searchStartingList
 
             dexlist = dexlist.find_all do |dex_item|
-                next false if autoDisqualifyFromSearch(dex_item[0])
-
-                fSpecies = GameData::Species.get(dex_item[0])
+                next false if autoDisqualifyFromSearch(dex_item[:species])
 
                 if selection == 0
-                    next @signatureMoves.has_value?(fSpecies.id) || @signatureAbilities.has_value?(fSpecies.id)
+                    next @signatureMoves.has_value?(dex_item[:data].id) || @signatureAbilities.has_value?(dex_item[:data].id)
                 else
-                    next !@signatureMoves.has_value?(fSpecies.id) && !@signatureAbilities.has_value?(fSpecies.id)
+                    next !@signatureMoves.has_value?(dex_item[:data].id) && !@signatureAbilities.has_value?(dex_item[:data].id)
                 end
             end
             return dexlist
@@ -704,13 +673,12 @@ class PokemonPokedex_Scene
         wildItemNameTextInput = wildItemNameTextInput[1..-1] if reversed
 
         dexlist = dexlist.find_all do |dex_item|
-            next false if autoDisqualifyFromSearch(dex_item[0])
+            next false if autoDisqualifyFromSearch(dex_item[:species])
 
-            fSpecies = GameData::Species.get(dex_item[0])
             items = []
-            items.push(fSpecies.wild_item_common) if fSpecies.wild_item_common
-            items.push(fSpecies.wild_item_uncommon) if fSpecies.wild_item_uncommon
-            items.push(fSpecies.wild_item_rare) if fSpecies.wild_item_rare
+            items.push(dex_item[:data].wild_item_common) if dex_item[:data].wild_item_common
+            items.push(dex_item[:data].wild_item_uncommon) if dex_item[:data].wild_item_uncommon
+            items.push(dex_item[:data].wild_item_rare) if dex_item[:data].wild_item_rare
             items.uniq!
             items.compact!
 
@@ -745,10 +713,10 @@ class PokemonPokedex_Scene
             end
         end
 
-        dexlist = dexlist.find_all do |item|
-            next false if autoDisqualifyFromSearch(item[0])
+        dexlist = dexlist.find_all do |dex_item|
+            next false if autoDisqualifyFromSearch(dex_item[:species])
 
-            next speciesPresent.include?(item[0]) ^ reversed # Boolean XOR
+            next speciesPresent.include?(dex_item[:species]) ^ reversed # Boolean XOR
         end
         return dexlist
     end
@@ -758,11 +726,11 @@ class PokemonPokedex_Scene
         if selection != 2
             dexlist = searchStartingList
 
-            dexlist = dexlist.find_all do |item|
+            dexlist = dexlist.find_all do |dex_item|
                 if selection == 1
-                    next !isQuarantined?(item[0])
+                    next !isQuarantined?(dex_item[:species])
                 else
-                    next isQuarantined?(item[0])
+                    next isQuarantined?(dex_item[:species])
                 end
             end
             return dexlist
@@ -805,9 +773,9 @@ class PokemonPokedex_Scene
                 end
             end
 
-            dexlist = dexlist.find_all do |item|
-                lvlmoves = item[11]
-                types = [item[6], item[7]]
+            dexlist = dexlist.find_all do |dex_item|
+                lvlmoves = dex_item[:data].moves
+                types = [dex_item[:data].type1, dex_item[:data].type2 || dex_item[:data].type1]
                 types.uniq!
                 types.compact!
                 typeCount = types.length
@@ -881,8 +849,8 @@ class PokemonPokedex_Scene
 
     def searchByNoMonumentUses
         dexlist = searchStartingList
-        dexlist = dexlist.find_all do |item|
-            monumentTrainerUseCount = item[17]
+        dexlist = dexlist.find_all do |dex_item|
+            monumentTrainerUseCount = @speciesUseData[entry[:species]][1]
             next monumentTrainerUseCount == 0
         end
         return dexlist
@@ -893,11 +861,11 @@ class PokemonPokedex_Scene
         if selection != 2
             dexlist = searchStartingList
 
-            dexlist = dexlist.find_all do |item|
+            dexlist = dexlist.find_all do |dex_item|
                 if selection == 1
-                    next !isLegendary?(item[0])
+                    next !isLegendary?(dex_item[:species])
                 else
-                    next isLegendary?(item[0])
+                    next isLegendary?(dex_item[:species])
                 end
             end
             return dexlist
@@ -926,9 +894,9 @@ class PokemonPokedex_Scene
         generationFirstNumber = GENERATION_END_IDS[generationNumber - 1]
         generationLastNumber = GENERATION_END_IDS[generationNumber]
 
-        dexlist = dexlist.find_all do |item|
-            next false if autoDisqualifyFromSearch(item[0])
-            id = GameData::Species.get(item[0]).id_number
+        dexlist = dexlist.find_all do |dex_item|
+            next false if autoDisqualifyFromSearch(dex_item[:species])
+            id = dex_item[:data].id_number
 
             isInChosenGeneration = id > generationFirstNumber &&
                                    id <= generationLastNumber
@@ -940,9 +908,9 @@ class PokemonPokedex_Scene
 
     def invertSearchList
         dexlist = pbGetDexList
-        dexlist = dexlist.find_all do |item|
-            next false if autoDisqualifyFromSearch(item[0])
-            next !@dexlist.any? { |current_item| current_item[0] == item[0] }
+        dexlist = dexlist.find_all do |dex_item|
+            next false if autoDisqualifyFromSearch(dex_item[:species])
+            next !@dexlist.any? { |current_item| current_item[:species] == dex_item[:species] }
         end
         return dexlist
     end
@@ -955,14 +923,14 @@ class PokemonPokedex_Scene
             return searchByTypeEffectiveness(sectionSelection)
         else
             dexlist = searchStartingList
-            dexlist = dexlist.find_all do |item|
-                next false if autoDisqualifyFromSearch(item[0])
+            dexlist = dexlist.find_all do |dex_item|
+                next false if autoDisqualifyFromSearch(dex_item[:species])
 
                 hasThingOfInterest = false
                 GameData::Type.each do |type|
                     next if type.pseudo_type
 
-                    effectiveness = Effectiveness.calculate(type.id, item[6], item[7])
+                    effectiveness = Effectiveness.calculate(type.id, dex_item[:data].type1, dex_item[:data].type2 || dex_item[:data].type1)
 
                     if sectionSelection == 4 && Effectiveness.ineffective?(effectiveness)
                         hasThingOfInterest = true
@@ -1012,12 +980,12 @@ class PokemonPokedex_Scene
                 next if invalid
 
                 dexlist = searchStartingList
-                dexlist = dexlist.find_all do |item|
-                    next false if autoDisqualifyFromSearch(item[0])
+                dexlist = dexlist.find_all do |dex_item|
+                    next false if autoDisqualifyFromSearch(dex_item[:species])
 
                     survivesSearch = true
                     typesSearchInfo.each do |type, reversed|
-                        effect = Effectiveness.calculate(type, item[6], item[7])
+                        effect = Effectiveness.calculate(type, dex_item[:data].type1, dex_item[:data].type2 || dex_item[:data].type1)
 
                         case effectivenessSelection
                         when 0
@@ -1045,30 +1013,29 @@ class PokemonPokedex_Scene
         sortDirection = pbMessage(_INTL("Which direction?"), [_INTL("Descending"), _INTL("Ascending"), _INTL("Cancel")], 3)
         return if sortDirection == 2
         dexlist = @dexlist
-        dexlist.sort_by! do |entry|
-            speciesData = GameData::Species.get(entry[0])
+        dexlist.sort_by! do |dex_item|
             value = 0
             case statSelection
             when 0
-                value = speciesData.base_stats[:HP]
+                value = dex_item[:data].base_stats[:HP]
             when 1
-                value = speciesData.base_stats[:ATTACK]
+                value = dex_item[:data].base_stats[:ATTACK]
             when 2
-                value = speciesData.base_stats[:DEFENSE]
+                value = dex_item[:data].base_stats[:DEFENSE]
             when 3
-                value = speciesData.base_stats[:SPECIAL_ATTACK]
+                value = dex_item[:data].base_stats[:SPECIAL_ATTACK]
             when 4
-                value = speciesData.base_stats[:SPECIAL_DEFENSE]
+                value = dex_item[:data].base_stats[:SPECIAL_DEFENSE]
             when 5
-                value = speciesData.base_stats[:SPEED]
+                value = dex_item[:data].base_stats[:SPEED]
             when 6
-                speciesData.base_stats.each do |s|
+                dex_item[:data].base_stats.each do |s|
                     value += s[1]
                 end
             when 7
-                value = speciesData.physical_ehp
+                value = dex_item[:data].physical_ehp
             when 8
-                value = speciesData.special_ehp
+                value = dex_item[:data].special_ehp
             end
 
             value *= -1 if sortDirection == 0
@@ -1081,7 +1048,6 @@ class PokemonPokedex_Scene
     def sortByOther
         cmdSortByType = -1
         cmdSortByGenderRate = -1
-        cmdSortByGrowthRate = -1
         cmdSortByHeight = -1
         cmdSortByWeight = -1
         cmdSortByCatchDifficulty = -1
@@ -1093,7 +1059,6 @@ class PokemonPokedex_Scene
         selections = []
         selections[cmdSortByType = selections.length] = _INTL("Type")
         selections[cmdSortByGenderRate = selections.length] = _INTL("Gender Rate")
-        selections[cmdSortByGrowthRate = selections.length] = _INTL("Growth Rate")
         selections[cmdSortByHeight = selections.length] = _INTL("Height")
         selections[cmdSortByWeight = selections.length] = _INTL("Weight")
         selections[cmdSortByCatchDifficulty = selections.length] = _INTL("Catch Difficulty")
@@ -1110,8 +1075,8 @@ class PokemonPokedex_Scene
         typesCount = 0
         GameData::Type.each { |t| typesCount += 1 if !t.pseudo_type }
 
-        dexlist.sort_by! do |entry|
-            speciesData = GameData::Species.get(entry[0])
+        dexlist.sort_by! do |dex_item|
+            speciesData = dex_item[:data]
 
             if cmdSortByType > -1 && selection == cmdSortByType
                 types = [speciesData.type1, speciesData.type2]
@@ -1139,20 +1104,18 @@ class PokemonPokedex_Scene
                 next -speciesData.height
             elsif cmdSortByWeight > -1 && selection == cmdSortByWeight
                 next -speciesData.weight
-            elsif cmdSortByGrowthRate > -1 && selection == cmdSortByGrowthRate
-                next GameData::GrowthRate.get(speciesData.growth_rate).id.to_s
             elsif cmdSortByCatchDifficulty > -1 && selection == cmdSortByCatchDifficulty
                 next -speciesData.catch_rate
             elsif cmdSortByExperienceGrant > -1 && selection == cmdSortByExperienceGrant
                 next speciesData.base_exp
             elsif cmdSortByTrainerCount > -1 && selection == cmdSortByTrainerCount
-                useCounts = @speciesUseData[entry[0]]
+                useCounts = @speciesUseData[dex_item[:species]]
                 next (useCounts[0] + useCounts[1]) || 0
             elsif cmdSortByNormalTrainerCount > -1 && selection == cmdSortByNormalTrainerCount
-                useCounts = @speciesUseData[entry[0]]
+                useCounts = @speciesUseData[dex_item[:species]]
                 next useCounts[0]
             elsif cmdSortByMonumentTrainerCount > -1 && selection == cmdSortByMonumentTrainerCount
-                useCounts = @speciesUseData[entry[0]]
+                useCounts = @speciesUseData[dex_item[:species]]
                 next useCounts[1]
             elsif cmdSortByCoverageTypesCount > -1 && selection == cmdSortByCoverageTypesCount
                 next get_bnb_coverage(speciesData).size

@@ -56,7 +56,7 @@ def purchaseStarters(type,price=0)
 	end
 	
 	while true
-		result = pbShowCommands(nil,starterArray)
+		result = pbShowCommands(nil,starterArray,0)
 
 		if result == 0
 			pbMessage(_INTL("Understood, please come back if there's a {1}-type starter Pokemon you'd like to purchase!",typeName))
@@ -119,7 +119,7 @@ def reviveFossil(fossil)
 	end
 	item_data = GameData::Item.get(fossil)
 	
-	pbMessage(_INTL("\\PN hands over the #{item_data.name} and $3000."))
+	pbMessage(_INTL("\\PN hands over the {1} and $3000.",item_data.name))
 	
 	pbMessage(_INTL("The procedure has started, now just to wait..."))
 	
@@ -216,18 +216,24 @@ def styleFurfrou
 end
 
 def createHisuian
-	actualSpecies = [:HGROWLITHE,:HVOLTORB,:HQWILFISH,:HSNEASEL,:HZORUA]
+	unless pbHasItem?(:ORIGINORE)
+		setSpeaker(HISUIAN_WITCH)
+		pbMessage(_INTL("I do not spy any Origin Ore among your possessions."))
+	end
+
+	actualSpecies = [:HGROWLITHE,:HVOLTORB,:HQWILFISH,:HSNEASEL,:HZORUA,:BASCULIN_2]
 	speciesArray = []
 	actualSpecies.each do |speciesID|
-		speciesArray.push(GameData::Species.get(speciesID).name)
+		speciesArray.push(GameData::Species.get(speciesID).full_name)
 	end
 	actualSpecies.unshift(nil)
 	speciesArray.unshift(_INTL("None"))
 	
 	while true
-		result = pbShowCommands(nil,speciesArray)
+		result = pbShowCommands(nil,speciesArray,0)
 
 		if result == 0
+			setSpeaker(HISUIAN_WITCH)
 			pbMessage(_INTL("Ah, I was looking forward to flexing my skills today."))
 			break
 		else
@@ -238,13 +244,16 @@ def createHisuian
 			case secondResult
 			when 1
 				item_data = GameData::Item.get(:ORIGINORE)
-				pbMessage(_INTL("\\PN hands over the #{item_data.name}."))
+				removeSpeaker
+				pbMessage(_INTL("\\PN hands over the {1}.",item_data.name))
+				setSpeaker(HISUIAN_WITCH)
 				pbMessage(_INTL("Now just to work my magicks..."))
 				blackFadeOutIn(30) {
 					$PokemonBag.pbDeleteItem(:ORIGINORE)
 				}
 				pbMessage(_INTL("Poof! And so the impossible has been made possible!"))
 				pbAddPokemon(chosenSpecies,10)
+				setSpeaker(HISUIAN_WITCH)
 				pbMessage(_INTL("My hopes go with you. Be respectful of this relic which you now posess."))
 				break
 			when 0
@@ -294,43 +303,38 @@ def shinifyPokemonVendor
 end
 
 def cloneMinorLegend
-	actualSpecies = [:PHIONE,:TYPENULL,:COSMOG,:MELTAN,:KUBFU]
-	speciesArray = []
-	actualSpecies.each do |speciesID|
-		speciesArray.push(GameData::Species.get(speciesID).name)
+	unless pbHasItem?(:ORIGINORE)
+		setSpeaker(HISUIAN_WITCH)
+		pbMessage(_INTL("I do not spy any Origin Ore among your possessions."))
 	end
-	actualSpecies.unshift(nil)
-	speciesArray.unshift(_INTL("None"))
+
+	possibleSpecies = [:PHIONE,:TYPENULL,:COSMOG,:MELTAN,:KUBFU]
+
+	pbChooseBoxPokemon(1,3,
+		proc { |poke|
+			possibleSpecies.include?(GameData::Species.get(poke.species).get_line_start.id)
+		})
+
+	unless boxPokemonChosen?
+		setSpeaker(HISUIAN_WITCH)
+		pbMessage(_INTL("Ah, no suitable Pokemon exists within your collection?"))
+		pbMessage(_INTL("Return to me if you encounter any in your travels."))
+		return
+	end
 	
-	while true
-		result = pbShowCommands(nil,speciesArray)
-
-		if result == 0
-			pbMessage(_INTL("Ah, lacking in miraculous materials, are we?"))
-			break
-		else
-			chosenSpecies = actualSpecies[result]
-
-			choicesArray = [_INTL("View MasterDex"), _INTL("Clone Pokemon"), _INTL("Cancel")]
-			secondResult = pbShowCommands(nil,choicesArray,3)
-			case secondResult
-			when 1
-				item_data = GameData::Item.get(:ORIGINORE)
-				pbMessage(_INTL("\\PN hands over the #{item_data.name}."))
-				pbMessage(_INTL("Now just to work my magicks..."))
-				blackFadeOutIn(30) {
-					$PokemonBag.pbDeleteItem(:ORIGINORE)
-				}
-				pbMessage(_INTL("Poof! And so the impossible has been made possible!"))
-				pbAddPokemon(chosenSpecies,10)
-				pbMessage(_INTL("My hopes go with you. Live the legend!"))
-				break
-			when 0
-				openSingleDexScreen(chosenSpecies)
-			end
-			next
-		end
-	end
+	item_data = GameData::Item.get(:ORIGINORE)
+	removeSpeaker
+	pbMessage(_INTL("\\PN hands over the #{item_data.name}."))
+	setSpeaker(HISUIAN_WITCH)
+	pbMessage(_INTL("Now just to work my magicks..."))
+	blackFadeOutIn(30) {
+		$PokemonBag.pbDeleteItem(:ORIGINORE)
+	}
+	pbMessage(_INTL("Poof! And so the impossible has been made possible!"))
+	chosenSpecies = GameData::Species.get(pbGet(1).species).get_line_start.id
+	pbAddPokemon(chosenSpecies,10)
+	setSpeaker(HISUIAN_WITCH)
+	pbMessage(_INTL("My hopes go with you. Live the legend!"))
 end
 
 ######################################################
@@ -341,12 +345,12 @@ CAN_SELL_IN_VENDORS = true
 
 def weatherTMSell()
 	weatherTMStock = %i[
-		TM32
-		TM33
-		TM34
-		TM35
-		TM196
-		TM197
+		TMSUNSHINE
+		TMRAIN
+		TMSANDSTORM
+		TMHAIL
+		TMMOONGLOW
+		TMECLIPSE
 	]
 	pbPokemonMart(
 		weatherTMStock,
@@ -357,14 +361,14 @@ end
 
 def spikesTMSell()
 	spikeTMStock = %i[
-		TM123
-		TM134
-		TM151
-		TM154
+		TMSPIKES
+		TMFLAMESPIKES
+		TMFROSTSPIKES
+		TMPOISONSPIKES
 	]
 	pbPokemonMart(
 		spikeTMStock,
-		_INTL("Care to buy some?"),
+		_INTL("You see their value, don't you?"),
 		!CAN_SELL_IN_VENDORS
 	)
 end
@@ -438,29 +442,29 @@ def tmShop
 	# Play Rough, Moon Blast
 
 	tmsStock = %i[
-		TM49 TM142
-		TM141 TM102
-		TM198 TM96
+		TMMEGAPUNCH TMHYPERVOICE
+		TMINFERNOIMPACT TMFLAMETHROWER
+		TMLIQUIDATION TMBUBBLEBLASTER
 
-		TM150 TM28
-		TM186 TM108
-		TM51 TM105
+		TMLEAFBLADE TMENERGYBALL
+		TMELECTROSLASH TMTHUNDERBOLT
+		TMGLACIALRAM TMICEBEAM
 
-		TM43 TM156
-		TM157 TM178
-		TM187 TM167
+		TMBRICKBREAK TMAURASPHERE
+		TMPOISONJAB TMMIASMA
+		TMTRAMPLE TMEARTHPOWER
 
-		TM48 TM95
-		TM169 TM111
-		TM160 TM161
+		TMSTRAFE TMCOLDFRONT
+		TMSEERSTRIKE TMPSYCHIC
+		TMXSCISSOR TMBUGBUZZ
 
-		TM175 TM163
-		TM54 TM133
-		TM147 TM162
+		TMADAMANTINEPRESS TMPOWERGEM
+		TMWAILINGBLOW TMSHADOWBALL
+		TMREND TMDRAGONPULSE
 
-		TM132 TM158
-		TM174 TM170
-		TM190 TM192
+		TMCRUNCH TMDARKALLURE
+		TMBULLETTRAIN TMFLASHCANNON
+		TMPLAYROUGH TMMOONBLAST
 	]
 
 	pbPokemonMart(
@@ -472,17 +476,17 @@ end
 
 def hackedTMShop
 	tmsStock = %i[
-		TM04
-		TM05
-		TM06
-		TM11
-		TM13
-		TM22
-		TM23
-		TM27
-		TM85
-		TM114
-		TM176
+		TMFRENZYPLANT
+		TMBLASTBURN
+		TMHYDROCANNON
+		TMROCKWRECKER
+		TMMETEORASSAULT
+		TMEXPLOSION
+		TMMEMENTO
+		TMRAPIDSPIN
+		TMFINALGAMBIT
+		TMAIMTRUE
+		TMSTEALTHROCK
 	]
 
 	pbPokemonMart(
@@ -494,27 +498,15 @@ end
 
 def switchOutTMShop
 	tmsStock = %i[
-		TM88
-		TM89
-		TM90
-		TM91
+		TMVOLTSWITCH
+		TMUTURN
+		TMFLIPTURN
+		TMPARTINGSHOT
 	]
 
 	pbPokemonMart(
 		tmsStock,
 		_INTL("I'm sure you'll appreciate one of these."),
-		!CAN_SELL_IN_VENDORS
-	)
-end
-
-def rechargeTMShop
-	tmsStock = %i[
-
-	]
-
-	pbPokemonMart(
-		tmsStock,
-		_INTL("Don't delay. Buy now!"),
 		!CAN_SELL_IN_VENDORS
 	)
 end
@@ -783,6 +775,49 @@ def herbVendor
 	)
 end
 
+def typeBoostingVendor
+	herbStock = %i[
+		SILKSCARF
+		BLACKBELT
+		SHARPBEAK
+		POISONBARB
+		SOFTSAND
+		HARDSTONE
+		SILVERPOWDER
+		SPELLTAG
+		METALCOAT
+		CHARCOAL
+		MYSTICWATER
+		MIRACLESEED
+		MAGNET
+		TWISTEDSPOON
+		NEVERMELTICE
+		DRAGONFANG
+		BLACKGLASSES
+		FAIRYFEATHER
+	]
+	pbPokemonMart(
+		herbStock,
+		_INTL("What're ya buyin'?"),
+		!CAN_SELL_IN_VENDORS
+	)
+end
+
+def statusTMVendor()
+	spikeTMStock = %i[
+		TMPOISONGAS
+		TMIGNITE
+		TMCHILL
+		TMNUMB
+		TMLEECHSEED
+		TMCONFUSERAY
+	]
+	pbPokemonMart(
+		spikeTMStock,
+		_INTL("Any interest in buying?"),
+		!CAN_SELL_IN_VENDORS
+	)
+end
 
 ######################################################
 # Minor food vendors
@@ -801,7 +836,7 @@ def pubVendor
 		EEVEETICKET
 		SWEETHEART
 	]
-	pbPokemonMart(pubStock,"What can I get you?",true)
+	pbPokemonMart(pubStock,_INTL("What can I get you?"),true)
 end
 
 def farmVendor
@@ -811,7 +846,7 @@ def farmVendor
 		MOOMOOMILK
 	]
 	setPrice(:MOOMOOMILK,800)
-	pbPokemonMart(pubStock,"Farm food, fresh for feastin'.",true)
+	pbPokemonMart(pubStock,_INTL("Farm food, fresh for feastin'."),true)
 end
 
 def arenaVendor()

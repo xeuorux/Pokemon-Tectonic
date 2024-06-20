@@ -55,7 +55,7 @@ module GameData
   GameData::Evolution.register({
     :id            => :Level,
     :parameter     => Integer,
-    :level_up_proc => proc { |pkmn, parameter|
+    :level_up_proc => proc { |pkmn, parameter, finalCheck|
       next pkmn.level >= parameter
     }
   })
@@ -63,7 +63,7 @@ module GameData
   GameData::Evolution.register({
     :id            => :LevelMale,
     :parameter     => Integer,
-    :level_up_proc => proc { |pkmn, parameter|
+    :level_up_proc => proc { |pkmn, parameter, finalCheck|
       next pkmn.level >= parameter && pkmn.male?
     }
   })
@@ -71,7 +71,7 @@ module GameData
   GameData::Evolution.register({
     :id            => :LevelFemale,
     :parameter     => Integer,
-    :level_up_proc => proc { |pkmn, parameter|
+    :level_up_proc => proc { |pkmn, parameter, finalCheck|
       next pkmn.level >= parameter && pkmn.female?
     }
   })
@@ -79,7 +79,7 @@ module GameData
   GameData::Evolution.register({
     :id            => :LevelDay,
     :parameter     => Integer,
-    :level_up_proc => proc { |pkmn, parameter|
+    :level_up_proc => proc { |pkmn, parameter, finalCheck|
       next pkmn.level >= parameter && PBDayNight.isDay?
     }
   })
@@ -87,7 +87,7 @@ module GameData
   GameData::Evolution.register({
     :id            => :LevelNight,
     :parameter     => Integer,
-    :level_up_proc => proc { |pkmn, parameter|
+    :level_up_proc => proc { |pkmn, parameter, finalCheck|
       next pkmn.level >= parameter && PBDayNight.isNight?
     }
   })
@@ -95,7 +95,7 @@ module GameData
   GameData::Evolution.register({
     :id            => :LevelMorning,
     :parameter     => Integer,
-    :level_up_proc => proc { |pkmn, parameter|
+    :level_up_proc => proc { |pkmn, parameter, finalCheck|
       next pkmn.level >= parameter && PBDayNight.isMorning?
     }
   })
@@ -103,7 +103,7 @@ module GameData
   GameData::Evolution.register({
     :id            => :LevelAfternoon,
     :parameter     => Integer,
-    :level_up_proc => proc { |pkmn, parameter|
+    :level_up_proc => proc { |pkmn, parameter, finalCheck|
       next pkmn.level >= parameter && PBDayNight.isAfternoon?
     }
   })
@@ -111,7 +111,7 @@ module GameData
   GameData::Evolution.register({
     :id            => :LevelEvening,
     :parameter     => Integer,
-    :level_up_proc => proc { |pkmn, parameter|
+    :level_up_proc => proc { |pkmn, parameter, finalCheck|
       next pkmn.level >= parameter && PBDayNight.isEvening?
     }
   })
@@ -119,7 +119,7 @@ module GameData
   GameData::Evolution.register({
     :id            => :LevelNoWeather,
     :parameter     => Integer,
-    :level_up_proc => proc { |pkmn, parameter|
+    :level_up_proc => proc { |pkmn, parameter, finalCheck|
       next pkmn.level >= parameter && $game_screen && $game_screen.weather_type == :None
     }
   })
@@ -127,7 +127,7 @@ module GameData
   GameData::Evolution.register({
     :id            => :LevelSun,
     :parameter     => Integer,
-    :level_up_proc => proc { |pkmn, parameter|
+    :level_up_proc => proc { |pkmn, parameter, finalCheck|
       next pkmn.level >= parameter && $game_screen &&
            GameData::Weather.get($game_screen.weather_type).category == :Sun
     }
@@ -136,7 +136,7 @@ module GameData
   GameData::Evolution.register({
     :id            => :LevelRain,
     :parameter     => Integer,
-    :level_up_proc => proc { |pkmn, parameter|
+    :level_up_proc => proc { |pkmn, parameter, finalCheck|
       next pkmn.level >= parameter && $game_screen &&
            [:Rain, :Fog].include?(GameData::Weather.get($game_screen.weather_type).category)
     }
@@ -145,7 +145,7 @@ module GameData
   GameData::Evolution.register({
     :id            => :LevelSnow,
     :parameter     => Integer,
-    :level_up_proc => proc { |pkmn, parameter|
+    :level_up_proc => proc { |pkmn, parameter, finalCheck|
       next pkmn.level >= parameter && $game_screen &&
            GameData::Weather.get($game_screen.weather_type).category == :Hail
     }
@@ -154,7 +154,7 @@ module GameData
   GameData::Evolution.register({
     :id            => :LevelSandstorm,
     :parameter     => Integer,
-    :level_up_proc => proc { |pkmn, parameter|
+    :level_up_proc => proc { |pkmn, parameter, finalCheck|
       next pkmn.level >= parameter && $game_screen &&
            GameData::Weather.get($game_screen.weather_type).category == :Sandstorm
     }
@@ -163,7 +163,7 @@ module GameData
   GameData::Evolution.register({
     :id            => :LevelCycling,
     :parameter     => Integer,
-    :level_up_proc => proc { |pkmn, parameter|
+    :level_up_proc => proc { |pkmn, parameter, finalCheck|
       next pkmn.level >= parameter && $PokemonGlobal && $PokemonGlobal.bicycle
     }
   })
@@ -171,7 +171,7 @@ module GameData
   GameData::Evolution.register({
     :id            => :LevelSurfing,
     :parameter     => Integer,
-    :level_up_proc => proc { |pkmn, parameter|
+    :level_up_proc => proc { |pkmn, parameter, finalCheck|
       next pkmn.level >= parameter && $PokemonGlobal && $PokemonGlobal.surfing
     }
   })
@@ -179,7 +179,7 @@ module GameData
   GameData::Evolution.register({
     :id            => :LevelDiving,
     :parameter     => Integer,
-    :level_up_proc => proc { |pkmn, parameter|
+    :level_up_proc => proc { |pkmn, parameter, finalCheck|
       next pkmn.level >= parameter && $PokemonGlobal && $PokemonGlobal.diving
     }
   })
@@ -187,7 +187,7 @@ module GameData
   GameData::Evolution.register({
     :id            => :LevelDarkness,
     :parameter     => Integer,
-    :level_up_proc => proc { |pkmn, parameter|
+    :level_up_proc => proc { |pkmn, parameter, finalCheck|
       map_metadata = GameData::MapMetadata.try_get($game_map.map_id)
       next pkmn.level >= parameter && map_metadata && map_metadata.dark_map
     }
@@ -196,7 +196,7 @@ module GameData
   GameData::Evolution.register({
     :id            => :LevelDarkInParty,
     :parameter     => Integer,
-    :level_up_proc => proc { |pkmn, parameter|
+    :level_up_proc => proc { |pkmn, parameter, finalCheck|
       next pkmn.level >= parameter && $Trainer.has_pokemon_of_type?(:DARK)
     }
   })
@@ -204,7 +204,7 @@ module GameData
   GameData::Evolution.register({
     :id            => :AttackGreater,   # Hitmonlee
     :parameter     => Integer,
-    :level_up_proc => proc { |pkmn, parameter|
+    :level_up_proc => proc { |pkmn, parameter, finalCheck|
       next pkmn.level >= parameter && pkmn.attack > pkmn.defense
     }
   })
@@ -212,7 +212,7 @@ module GameData
   GameData::Evolution.register({
     :id            => :AtkDefEqual,   # Hitmontop
     :parameter     => Integer,
-    :level_up_proc => proc { |pkmn, parameter|
+    :level_up_proc => proc { |pkmn, parameter, finalCheck|
       next pkmn.level >= parameter && pkmn.attack == pkmn.defense
     }
   })
@@ -220,7 +220,7 @@ module GameData
   GameData::Evolution.register({
     :id            => :DefenseGreater,   # Hitmonchan
     :parameter     => Integer,
-    :level_up_proc => proc { |pkmn, parameter|
+    :level_up_proc => proc { |pkmn, parameter, finalCheck|
       next pkmn.level >= parameter && pkmn.attack < pkmn.defense
     }
   })
@@ -228,7 +228,7 @@ module GameData
   GameData::Evolution.register({
     :id            => :Silcoon,
     :parameter     => Integer,
-    :level_up_proc => proc { |pkmn, parameter|
+    :level_up_proc => proc { |pkmn, parameter, finalCheck|
       next pkmn.level >= parameter && (((pkmn.personalID >> 16) & 0xFFFF) % 10) < 5
     }
   })
@@ -236,7 +236,7 @@ module GameData
   GameData::Evolution.register({
     :id            => :Cascoon,
     :parameter     => Integer,
-    :level_up_proc => proc { |pkmn, parameter|
+    :level_up_proc => proc { |pkmn, parameter, finalCheck|
       next pkmn.level >= parameter && (((pkmn.personalID >> 16) & 0xFFFF) % 10) >= 5
     }
   })
@@ -244,7 +244,7 @@ module GameData
   GameData::Evolution.register({
     :id            => :Ninjask,
     :parameter     => Integer,
-    :level_up_proc => proc { |pkmn, parameter|
+    :level_up_proc => proc { |pkmn, parameter, finalCheck|
       next pkmn.level >= parameter
     }
   })
@@ -267,7 +267,7 @@ module GameData
   GameData::Evolution.register({
     :id            => :Happiness,
     :minimum_level => 1,   # Needs any level up
-    :level_up_proc => proc { |pkmn, parameter|
+    :level_up_proc => proc { |pkmn, parameter, finalCheck|
       next pkmn.happiness >= 220
     }
   })
@@ -275,7 +275,7 @@ module GameData
   GameData::Evolution.register({
     :id            => :HappinessMale,
     :minimum_level => 1,   # Needs any level up
-    :level_up_proc => proc { |pkmn, parameter|
+    :level_up_proc => proc { |pkmn, parameter, finalCheck|
       next pkmn.happiness >= 220 && pkmn.male?
     }
   })
@@ -283,7 +283,7 @@ module GameData
   GameData::Evolution.register({
     :id            => :HappinessFemale,
     :minimum_level => 1,   # Needs any level up
-    :level_up_proc => proc { |pkmn, parameter|
+    :level_up_proc => proc { |pkmn, parameter, finalCheck|
       next pkmn.happiness >= 220 && pkmn.female?
     }
   })
@@ -291,7 +291,7 @@ module GameData
   GameData::Evolution.register({
     :id            => :HappinessDay,
     :minimum_level => 1,   # Needs any level up
-    :level_up_proc => proc { |pkmn, parameter|
+    :level_up_proc => proc { |pkmn, parameter, finalCheck|
       next pkmn.happiness >= 220 && PBDayNight.isDay?
     }
   })
@@ -299,7 +299,7 @@ module GameData
   GameData::Evolution.register({
     :id            => :HappinessNight,
     :minimum_level => 1,   # Needs any level up
-    :level_up_proc => proc { |pkmn, parameter|
+    :level_up_proc => proc { |pkmn, parameter, finalCheck|
       next pkmn.happiness >= 220 && PBDayNight.isNight?
     }
   })
@@ -308,7 +308,7 @@ module GameData
     :id            => :HappinessMove,
     :parameter     => :Move,
     :minimum_level => 1,   # Needs any level up
-    :level_up_proc => proc { |pkmn, parameter|
+    :level_up_proc => proc { |pkmn, parameter, finalCheck|
       if pkmn.happiness >= 220
         next pkmn.moves.any? { |m| m && m.id == parameter }
       end
@@ -319,7 +319,7 @@ module GameData
     :id            => :HappinessMoveType,
     :parameter     => :Type,
     :minimum_level => 1,   # Needs any level up
-    :level_up_proc => proc { |pkmn, parameter|
+    :level_up_proc => proc { |pkmn, parameter, finalCheck|
       if pkmn.happiness >= 220
         next pkmn.moves.any? { |m| m && m.id > 0 && m.type == parameter }
       end
@@ -343,7 +343,7 @@ module GameData
   GameData::Evolution.register({
     :id            => :MaxHappiness,
     :minimum_level => 1,   # Needs any level up
-    :level_up_proc => proc { |pkmn, parameter|
+    :level_up_proc => proc { |pkmn, parameter, finalCheck|
       next pkmn.happiness == 255
     }
   })
@@ -352,7 +352,7 @@ module GameData
     :id            => :Beauty,   # Feebas
     :parameter     => Integer,
     :minimum_level => 1,   # Needs any level up
-    :level_up_proc => proc { |pkmn, parameter|
+    :level_up_proc => proc { |pkmn, parameter, finalCheck|
       next pkmn.beauty >= parameter
     }
   })
@@ -445,7 +445,7 @@ module GameData
     :id            => :HasMove,
     :parameter     => :Move,
     :minimum_level => 1,   # Needs any level up
-    :level_up_proc => proc { |pkmn, parameter|
+    :level_up_proc => proc { |pkmn, parameter, finalCheck|
       next pkmn.moves.any? { |m| m && m.id == parameter }
     }
   })
@@ -454,7 +454,7 @@ module GameData
     :id            => :HasMoveType,
     :parameter     => :Type,
     :minimum_level => 1,   # Needs any level up
-    :level_up_proc => proc { |pkmn, parameter|
+    :level_up_proc => proc { |pkmn, parameter, finalCheck|
       next pkmn.moves.any? { |m| m && m.type == parameter }
     }
   })
@@ -463,7 +463,7 @@ module GameData
     :id            => :HasInParty,
     :parameter     => :Species,
     :minimum_level => 1,   # Needs any level up
-    :level_up_proc => proc { |pkmn, parameter|
+    :level_up_proc => proc { |pkmn, parameter, finalCheck|
       next $Trainer.has_species?(parameter)
     }
   })
@@ -472,7 +472,7 @@ module GameData
     :id            => :Location,
     :parameter     => Integer,
     :minimum_level => 1,   # Needs any level up
-    :level_up_proc => proc { |pkmn, parameter|
+    :level_up_proc => proc { |pkmn, parameter, finalCheck|
       next $game_map.map_id == parameter
     }
   })
@@ -481,7 +481,7 @@ module GameData
     :id            => :Region,
     :parameter     => Integer,
     :minimum_level => 1,   # Needs any level up
-    :level_up_proc => proc { |pkmn, parameter|
+    :level_up_proc => proc { |pkmn, parameter, finalCheck|
       map_metadata = GameData::MapMetadata.try_get($game_map.map_id)
       next map_metadata && map_metadata.town_map_position &&
            map_metadata.town_map_position[0] == parameter
@@ -597,19 +597,30 @@ module GameData
       next pkmn.species == parameter && !other_pkmn.hasItem?(:EVERSTONE) && !other_pkmn.hasItem?(:EVIOLITE)
     }
   })
-  
+
   GameData::Evolution.register({
     :id            => :Originize,
     :parameter     => Integer,
-    :use_item_proc => proc { |pkmn, parameter, item|
-      next item == :ORIGINORE && pkmn.level >= parameter
+    :level_up_proc => proc { |pkmn, parameter, finalCheck|
+      next false if pkmn.level < parameter
+      next false unless pbHasItem?(:ORIGINORE)
+      if finalCheck
+        pbMessage(_INTL("A piece of <imp>Origin Ore</imp> inside your bag is glowing with power!"))
+        next pbConfirmMessageSerious(_INTL("Apply the Origin Ore to {1}?",pkmn.name))
+      else
+        next true
+      end
+    },
+    :after_evolution_proc => proc { |pkmn, new_species, parameter, evo_species|
+      $PokemonBag.pbDeleteItem(:ORIGINORE)
+      next true
     },
   })
-  
+
   GameData::Evolution.register({
     :id            => :Ability0,
     :parameter     => Integer,
-    :level_up_proc => proc { |pkmn, parameter|
+    :level_up_proc => proc { |pkmn, parameter, finalCheck|
       next pkmn.level >= parameter && pkmn.ability_index == 0
     },
   })
@@ -617,7 +628,7 @@ module GameData
   GameData::Evolution.register({
     :id            => :Ability1,
     :parameter     => Integer,
-    :level_up_proc => proc { |pkmn, parameter|
+    :level_up_proc => proc { |pkmn, parameter, finalCheck|
       next pkmn.level >= parameter && pkmn.ability_index == 1
     },
   })

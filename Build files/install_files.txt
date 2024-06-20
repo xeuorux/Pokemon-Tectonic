@@ -1,10 +1,10 @@
-/Audio
-/Data
-/Fonts
-/Graphics
-/lib64
-/PBS
-/Plugins
+Audio
+Data
+Fonts
+Graphics
+lib64
+PBS
+Plugins
 zlib1.dll
 x64-msvcrt-ruby310.dll
 townmapgen.html
@@ -25,3 +25,7 @@ extendtext.exe
 Essentials Docs Wiki.URL
 animaker.exe
 Game Linux.x86_64
+Debug Game.bat
+Debug Game With Compile.bat
+Tectonic Updater.jar
+release_version.txt

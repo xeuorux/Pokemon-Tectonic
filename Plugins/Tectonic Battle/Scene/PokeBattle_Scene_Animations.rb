@@ -570,9 +570,14 @@ class PokeBattle_Scene
   
     def pbAnimationCore(animation,user,target,oppMove=false,speedMult=1)
       return if !animation
+
+      # Pretend user or target aren't there under some circumstances
+      user = nil if user&.dummy?
+      target = nil if target&.dummy?
+
       @briefMessage = false
-      userSprite   = (user) ? @sprites["pokemon_#{user.index}"] : nil
-      targetSprite = (target) ? @sprites["pokemon_#{target.index}"] : nil
+      userSprite   = user ? @sprites["pokemon_#{user.index}"] : nil
+      targetSprite = target ? @sprites["pokemon_#{target.index}"] : nil
       # Remember the original positions of Pokémon sprites
       oldUserX = (userSprite) ? userSprite.x : 0
       oldUserY = (userSprite) ? userSprite.y : 0

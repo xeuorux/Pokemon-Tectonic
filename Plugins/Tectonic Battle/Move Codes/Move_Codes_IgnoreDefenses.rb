@@ -258,22 +258,6 @@ class PokeBattle_Move_IgnoreTargetDefSpDefEvaStatStagesAndTargetAbility < PokeBa
 end
 
 #===============================================================================
-# Ignores all abilities that alter this move's success or damage. This move is
-# physical if user's Attack is higher than its Special Attack (after applying
-# stat steps), and special otherwise. (Photon Geyser)
-#===============================================================================
-class PokeBattle_Move_CategoryDependsOnHigherDamageIgnoreTargetAbility < PokeBattle_Move_IgnoreTargetAbility
-    def initialize(battle, move)
-        super
-        @calculated_category = 1
-    end
-
-    def calculateCategory(user, _targets)
-        return selectBestCategory(user)
-    end
-end
-
-#===============================================================================
 # Ignores move redirection from abilities and moves. (Snipe Shot)
 #===============================================================================
 class PokeBattle_Move_CannotBeRedirected < PokeBattle_Move

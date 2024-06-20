@@ -268,6 +268,7 @@ class PokEstate
 		commands[commandReceiveUpdate = commands.length] = _INTL("Hear Story") if STORIES_FEATURE_AVAILABLE
 		commands[commandCancel = commands.length] = _INTL("Cancel")
 		
+		setSpeaker(CARETAKER)
 		command = pbMessage(_INTL("What would you like to do?"),commands,commandCancel+1)
 		
 		if commandLandscape > -1 && command == commandLandscape
@@ -429,7 +430,7 @@ class PokEstate
 		commands[cmdSummary = commands.length] = _INTL("View Summary")
 		commands[cmdRename = commands.length] = _INTL("Rename") unless donationBox
 		commands[cmdUseItem = commands.length] = _INTL("Use Item") unless donationBox
-		newspecies = pokemon.check_evolution_on_level_up
+		newspecies = pokemon.check_evolution_on_level_up(false)
 		commands[cmdEvolve = commands.length]       = _INTL("Evolve") if newspecies
 		commands[cmdStyle = commands.length]  = _INTL("Set Style") if pbHasItem?(:STYLINGKIT)
 		commands[cmdCancel = commands.length] = _INTL("Cancel")
@@ -501,6 +502,8 @@ class PokEstate
 					break
 				end
 			elsif cmdEvolve > -1 && command == cmdEvolve
+				newspecies = pokemon.check_evolution_on_level_up(true)
+				break if newspecies.nil?
 				pbFadeOutInWithMusic do
 					evo = PokemonEvolutionScene.new
 					evo.pbStartScreen(pokemon, newspecies)
@@ -530,13 +533,13 @@ class PokEstate
 		return unless isInEstate?()
 		
 		if $Trainer.able_pokemon_count == 1 && !pokemon.fainted?
-			pbMessage("Can't set down your last able Pokemon!")
+			pbMessage(_INTL("Can't set down your last able Pokemon!"))
 			return false
 		end
 	
 		box = $PokemonStorage[@estate_box]
 		if box.full?
-			pbMessage("Can't set #{pokemon.name} down into the current Estate plot because it is full.")
+			pbMessage(_INTL("Can't set #{pokemon.name} down into the current Estate plot because it is full."))
 			return false
 		end
 		
@@ -555,7 +558,7 @@ class PokEstate
 		end
 		
 		if !$game_map.passableStrict?(x,y,dir)
-			pbMessage("Can't set #{pokemon.name} down, the spot in front of you is blocked.")
+			pbMessage(_INTL("Can't set #{pokemon.name} down, the spot in front of you is blocked."))
 			return false
 		end
 		
@@ -604,7 +607,7 @@ class PokEstate
 	end
  
 	def tryHearStory()
-		if currentEstateBox().empty?
+		if currentEstateBox.empty?
 			pbMessage(_INTL("There are no Pokemon in this plot to share stories about."))
 		elsif @stories_count[@estate_box] <= 0
 			pbMessage(_INTL("I regret to say that I have no stories to share about this plot. Please come back later."))
@@ -615,10 +618,33 @@ class PokEstate
 	end
 
 	def shareStory()
-		if currentEstateBox().empty?
+		if currentEstateBox.empty?
 			return
 		end
-		pbMessage(_INTL("Story here!"))
+
+		if currentEstateBox.nitems == 1
+			shareSingleStory(currentEstateBox.sample)
+		elsif currentEstateBox.nitems > 1
+			if rand(100) < 70
+				shareSingleStory(currentEstateBox.sample)
+			else
+				randomPokemon1 = currentEstateBox.sample
+				randomPokemon2 = nil
+				loop do
+					randomPokemon2 = currentEstateBox.sample
+					break if randomPokemon2 != randomPokemon1
+				end
+				shareDuoStory(randomPokemon1, randomPokemon2)
+			end
+		end
+	end
+
+	def shareSingleStory(pokemon)
+		pbMessage(_INTL("Story here involving {1}!",pokemon.name))
+	end
+
+	def shareDuoStory(pokemon1, pokemon2)
+		pbMessage(_INTL("Story here involving {1} and {2}!", pokemon1.name, pokemon2.name))
 	end
 end
 

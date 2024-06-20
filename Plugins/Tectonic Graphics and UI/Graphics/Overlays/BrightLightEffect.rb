@@ -312,9 +312,7 @@ class LightEffect_Condensed < LightEffect
       @light.opacity = 0
       return
     end
-    completionPercent = $PokemonBag.pbQuantity(:CONDENSEDLIGHT) / CONDENSED_LIGHT_COUNT.to_f
-    completionPercent = 1 if completionPercent > 1
-    @baseOpacity = 40 + 100 * completionPercent
+    @baseOpacity = 120
     @opacityCounter += 1
     @light.opacity = (@baseOpacity + (@baseOpacity / 6.0) * Math.sin(@opacityCounter.to_f / 12.0)).floor
     if (Object.const_defined?(:ScreenPosHelper) rescue false)
@@ -403,8 +401,6 @@ Events.onSpritesetCreate += proc { |_sender,e|
       spriteset.addUserSprite(LightEffect_TVGlow.new(event,viewport,map))
     end
   end
-  spriteset.addUserSprite(Particle_Engine.new(viewport,map)) if $PokemonSystem.particle_effects == 0
-
   $PokemonGlobal.dragonFlamesCount.times do
     createDragonFlameGraphic(spriteset)
   end

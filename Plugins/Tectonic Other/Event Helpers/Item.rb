@@ -12,9 +12,6 @@ def pbItemBall(item, quantity = 1)
         meName = item.is_key_item? ? "Key item get" : "Item get"
         if item == :LEFTOVERS
             pbMessage(_INTL("\\me[{1}]You found some \\c[1]{2}\\c[0]!\\wtnp[30]", meName, itemname))
-        elsif item.is_machine? # TM or HM
-            pbMessage(_INTL("\\me[{1}]You found \\c[1]{2} {3}\\c[0]!\\wtnp[30]", meName, itemname,
-    GameData::Move.get(move).name))
         elsif quantity > 1
             pbMessage(_INTL("\\me[{1}]You found {2} \\c[1]{3}\\c[0]!\\wtnp[30]", meName, quantity, itemname))
         elsif itemname.starts_with_vowel?
@@ -23,15 +20,12 @@ def pbItemBall(item, quantity = 1)
             pbMessage(_INTL("\\me[{1}]You found a \\c[1]{2}\\c[0]!\\wtnp[30]", meName, itemname))
         end
         showItemDescription(item.id)
-        pbMessage(_INTL("You put the {1} away\\nin the <icon=bagPocket{2}>\\c[1]{3} Pocket\\c[0].",
-           itemname, pocket, PokemonBag.pocketNames[pocket]))
+        pocketAlert(item)
         return true
     end
     # Can't add the item
     if item == :LEFTOVERS
         pbMessage(_INTL("You found some \\c[1]{1}\\c[0]!\\wtnp[30]", itemname))
-    elsif item.is_machine? # TM or HM
-        pbMessage(_INTL("You found \\c[1]{1} {2}\\c[0]!\\wtnp[30]", itemname, GameData::Move.get(move).name))
     elsif quantity > 1
         pbMessage(_INTL("You found {1} \\c[1]{2}\\c[0]!\\wtnp[30]", quantity, itemname))
     elsif itemname.starts_with_vowel?
@@ -63,9 +57,6 @@ def pbReceiveItem(item, quantity = 1)
     meName = item.is_key_item? ? "Key item get" : "Item get"
     if item.id == :LEFTOVERS
         pbMessage(_INTL("\\me[{1}]You obtained some \\c[1]{2}\\c[0]!\\wtnp[30]", meName, itemname))
-    elsif item.is_machine? # TM or HM
-        pbMessage(_INTL("\\me[{1}]You obtained \\c[1]{2} {3}\\c[0]!\\wtnp[30]", meName, itemname,
-  GameData::Move.get(move).name))
     elsif quantity > 1
         pbMessage(_INTL("\\me[{1}]You obtained {2} \\c[1]{3}\\c[0]!\\wtnp[30]", meName, quantity, itemname))
     elsif itemname.starts_with_vowel?
@@ -75,8 +66,7 @@ def pbReceiveItem(item, quantity = 1)
     end
     showItemDescription(item.id)
     if $PokemonBag.pbStoreItem(item, quantity) # If item can be added
-        pbMessage(_INTL("You put the {1} away\\nin the <icon=bagPocket{2}>\\c[1]{3} Pocket\\c[0].",
-                itemname, pocket, PokemonBag.pocketNames[pocket]))
+        pocketAlert(item)
         return true
     end
     return false # Can't add the item

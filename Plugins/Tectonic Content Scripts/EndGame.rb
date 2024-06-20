@@ -1,6 +1,6 @@
 def startTournamentIfValid
     if      hasAllEightBadges? &&
-            $game_switches[69] && # Defeated yezera 5
+            $game_switches[176] && # Defeated yezera 5
             !$game_switches[12] # Won Championship
         $game_switches[64] = true # Tournament Running
     end

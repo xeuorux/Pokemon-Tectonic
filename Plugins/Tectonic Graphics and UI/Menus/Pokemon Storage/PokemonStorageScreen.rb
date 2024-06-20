@@ -15,7 +15,7 @@ class PokemonStorageScreen
     def pbStartScreen(command,ableProc = nil)
         @heldpkmn = nil
         if command == 0 || command == 4 # Organise or Select
-            @scene.pbStartBox(self, command)
+            @scene.pbStartBox(self, command, ableProc)
             loop do
                 selected = @scene.pbSelectBox(@storage.party)
                 if selected.nil?
@@ -43,7 +43,12 @@ class PokemonStorageScreen
                 else
                     pokemon = @storage[selected[0], selected[1]]
                     if pokemon && command == 4
-                        if ableProc.nil? || ableProc.call(pokemon)
+                        selectedBox = selected[0]
+                        if selectedBox > -1 && @storage[selectedBox].isDonationBox?
+                            pbPlayBuzzerSE
+                            pbDisplay(_INTL("You cannot select a donated Pokémon!"))
+                            next
+                        elsif ableProc.nil? || ableProc.call(pokemon)
                             @scene.pbCloseBox
                             return pokemon,selected[0],selected[1]
                         else

@@ -429,11 +429,6 @@ Name = Developer
 Gender = Male
 BaseMoney = 80
 #-------------------------------
-[DEVDRAGONTAMER2]
-Name = Developer
-Gender = Male
-BaseMoney = 80
-#-------------------------------
 [DEVGAMBLER]
 Name = Developer
 Gender = Male
@@ -467,6 +462,11 @@ BaseMoney = 80
 [DEVJUGGLER]
 Name = Developer
 Gender = Male
+BaseMoney = 80
+#-------------------------------
+[DEVLADY4]
+Name = Developer
+Gender = Female
 BaseMoney = 80
 #-------------------------------
 [DEVMAID2]
@@ -505,6 +505,11 @@ Gender = Female
 BaseMoney = 80
 #-------------------------------
 [DEVSUPERNERD]
+Name = Developer
+Gender = Male
+BaseMoney = 80
+#-------------------------------
+[DEVWORKER5]
 Name = Developer
 Gender = Male
 BaseMoney = 80

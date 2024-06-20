@@ -78,6 +78,8 @@ Land,20
     25,PAWNIARD,18,20
     25,RUFFLET,18,20
     25,TYROGUE,18,20
+Special,20
+    1,TENTACOOL,10
 #-------------------------------
 [026] # Bluepoint Grotto
 DarkCave,20
@@ -645,11 +647,9 @@ FloweryGrass,20
 DarkCave,21
     20,ADIGLETT,25,27
     20,AGEODUDE,25,27
+    20,BURMY,25,27
     20,GMEOWTH,25,27
     20,ROGGENROLA,25,27
-    7,BURMY,25,27
-    7,BURMY_1,25,27
-    6,BURMY_2,25,27
 Mud,20
     20,CARNIVINE,34,36
     20,CRAMORANT,34,36
@@ -742,14 +742,14 @@ DarkCave,20
     10,NIDORANfE,25,27
     10,NIDORANmA,25,27
 #-------------------------------
-[220] # Prizca Sewers East
+[220] # Ancient Sewers
 LandSparse,20
     25,DRUDDIGON,41,43
     25,MIMIKYU,41,43
     25,SPIRITOMB,41,43
     25,YAMASK,41,43
 #-------------------------------
-[223] # Prizca Sewers West
+[223] # Battle Plaza Underground
 LandSparse,20
     25,ELGYEM,35,37
     25,GOLETT,35,37
@@ -917,7 +917,7 @@ LandSparse,20
 #-------------------------------
 [321] # Crater Station Backroom
 Special
-    1,KANGASKHAN,15
+    1,MCARNIVINE,15
 #-------------------------------
 [323] # HQ Station Backroom
 Special
@@ -980,6 +980,7 @@ LandSparse,20
 #-------------------------------
 [358] # Dr. Hekata's House
 Special,1
+    20,BASCULIN_2,10
     20,HGROWLITHE,10
     20,HQWILFISH,10
     20,HSNEASEL,10

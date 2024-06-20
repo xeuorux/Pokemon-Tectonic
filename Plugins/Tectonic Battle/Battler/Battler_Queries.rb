@@ -894,4 +894,7 @@ class PokeBattle_Battler
         return false
     end
 
+    def moveOutcomePredictor
+        return @battle.scene.sprites["move_outcome_#{@index}"]
+    end
 end

@@ -198,7 +198,7 @@ Description = Doubles the Pokémon's Defense.
 #-------------------------------
 [GALEWINGS]
 Name = Gale Wings
-Description = Doubles the speed of Flying-type moves.
+Description = The user's Speed is doubled while using Flying-type moves.
 #-------------------------------
 [GALVANIZE]
 Name = Galvanize

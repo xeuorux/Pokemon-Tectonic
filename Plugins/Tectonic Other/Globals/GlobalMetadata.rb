@@ -62,6 +62,7 @@ class PokemonGlobalMetadata
     attr_accessor :tarot_amulet_active
     # MasterDex
     attr_accessor :stored_search
+    attr_accessor :dex_forms_shows_shinies
     # Randomizer
     attr_accessor :randomizedData
     attr_accessor :isRandomizer
@@ -72,6 +73,8 @@ class PokemonGlobalMetadata
     attr_accessor :noise_machine_state # 0 = off, 1 = stopping encounters, 2 = increasing encounter rate
     # Punching bag in player house
     attr_accessor :exp_multiplier
+    # Town map
+    attr_accessor :town_map_waypoints_showing
 	
 	def initialize
         # Movement
@@ -132,10 +135,13 @@ class PokemonGlobalMetadata
         @teamHealerMaxUses	  = 1
         @teamHealerCurrentUses= 1
         @tarot_amulet_active  = false
+        # Masterdex
         @stored_search		  = nil
+        @dex_forms_shows_shinies = false
         @omnitutor_active     = false
         @noise_machine_state  = 0
         @exp_multiplier       = 1.0
+        @town_map_waypoints_showing = false
     end
 
     ####################################################
@@ -211,6 +217,18 @@ class PokemonGlobalMetadata
     def evolutionButtonTutorialized
         @evolutionButtonTutorialized = false if @evolutionButtonTutorialized.nil?
         return @evolutionButtonTutorialized
+    end
+
+    attr_writer :mentorMovesTutorialized
+    def mentorMovesTutorialized
+        @mentorMovesTutorialized = false if @mentorMovesTutorialized.nil?
+        return @mentorMovesTutorialized
+    end
+
+    attr_writer :adaptiveMovesTutorialized
+    def adaptiveMovesTutorialized
+        @adaptiveMovesTutorialized = false if @adaptiveMovesTutorialized.nil?
+        return @adaptiveMovesTutorialized
     end
 
     ####################################################

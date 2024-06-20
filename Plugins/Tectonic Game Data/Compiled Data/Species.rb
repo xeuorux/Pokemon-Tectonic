@@ -1093,6 +1093,15 @@ module GameData
       return pbGetMessage(MessageTypes::FormNames, @id_number)
     end
 
+    # Adds the form if not form 0
+    def full_name
+      if form == 0
+        return name
+      else
+        return _INTL("{1} ({2})",name,form_name)
+      end
+    end
+
     # @return [String] the translated Pokédex category of this species
     def category
       return pbGetMessage(MessageTypes::Kinds, @id_number)

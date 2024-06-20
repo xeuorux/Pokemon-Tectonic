@@ -604,7 +604,8 @@ class PokeBattle_Battler
         pbChangeTypes(newSpecies)
         refreshDataBox
         @battle.pbDisplay(_INTL("{1} transformed into a {2}!", pbThis, newSpeciesData.name))
-        newAbility = newSpeciesData.legalAbilities[@pokemon.ability_index]
+        legalAbilities = newSpeciesData.legalAbilities
+        newAbility = legalAbilities[@pokemon.ability_index] || legalAbilities[0]
         replaceAbility(newAbility) unless hasAbility?(newAbility)
 
         newStats = @pokemon.getCalculatedStats(newSpecies)
@@ -619,7 +620,8 @@ class PokeBattle_Battler
     def pbHyperMode; end
 
     def getSubLife
-        subLife = @totalhp / 4
+        subLife = @totalhp / 4.0
+        subLife /= BOSS_HP_BASED_EFFECT_RESISTANCE
         subLife = 1 if subLife < 1
         return subLife.floor
     end

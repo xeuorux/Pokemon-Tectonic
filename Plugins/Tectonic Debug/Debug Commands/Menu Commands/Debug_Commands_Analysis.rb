@@ -270,10 +270,6 @@ def replaceAllCodeInstances(regex, newText)
     end
 end
 
-def change
-    replaceAllCodeInstances("pbGet\(1\)\.nil\?","!boxPokemonChosen?")
-end
-
 def replaceCodeInstances(map_id,map_name,event,regex,newText)
     return [] if !event || event.pages.length==0
     changed = false
@@ -618,6 +614,97 @@ end
       pbMessage(_INTL("Cut moves information written to Analysis/cut_moves.txt"))
     }
   })
+
+  DebugMenuCommands.register("listprimevalmoves", {
+    "parent"      => "analysis",
+    "name"        => _INTL("List primeval moves"),
+    "description" => _INTL("List all primeval moves."),
+    "effect"      => proc { |sprites, viewport|
+      
+      moveDataSorted = []
+      GameData::Move.each do |moveData|
+          next unless moveData.primeval
+          moveDataSorted.push(moveData)
+      end
+  
+      moveDataSorted.sort_by! { |data|
+          GameData::Type.get(data.type).id_number * 10_000 + data.category * 1000 + data.base_damage
+      }
+  
+      File.open("Analysis/primeval_moves.txt","wb") { |file|
+          moveDataSorted.each do |moveData|
+              moveLine = describeMove(moveData.id)
+              moveLine += "\r\n"
+              file.write(moveLine)
+          end
+      }
+      pbMessage(_INTL("Primeval moves information written to Analysis/primeval_moves.txt"))
+    }
+  })
+
+  DebugMenuCommands.register("listhelditems", {
+    "parent"      => "analysis",
+    "name"        => _INTL("List held items"),
+    "description" => _INTL("List all items that the player's Pokemon can hold for use in battle."),
+    "effect"      => proc { |sprites, viewport|
+      
+      itemDataSorted = []
+      GameData::Item.each do |itemData|
+          next if itemData.super
+          next if itemData.cut
+          next unless itemData.pocket == 5
+          itemDataSorted.push(itemData)
+      end
+  
+      itemDataSorted.sort_by! { |data|
+          data.real_name
+      }
+  
+      File.open("Analysis/held_items.txt","wb") { |file|
+        itemDataSorted.each do |itemData|
+              itemLine = describeItem(itemData.id)
+              itemLine += "\r\n"
+              file.write(itemLine)
+          end
+      }
+      pbMessage(_INTL("Held item information written to Analysis/held_items.txt"))
+    }
+  })
+
+  DebugMenuCommands.register("listsuperitems", {
+    "parent"      => "analysis",
+    "name"        => _INTL("List super items"),
+    "description" => _INTL("List all super items used in curses."),
+    "effect"      => proc { |sprites, viewport|
+      
+        itemDataSorted = []
+        GameData::Item.each do |itemData|
+            next unless itemData.super
+            next if itemData.cut
+            next unless itemData.pocket == 5
+            itemDataSorted.push(itemData)
+        end
+
+        itemDataSorted.sort_by! { |data|
+            data.real_name
+        }
+
+        File.open("Analysis/held_items_super.txt","wb") { |file|
+            itemDataSorted.each do |itemData|
+                itemLine = describeItem(itemData.id)
+                itemLine += "\r\n"
+                file.write(itemLine)
+            end
+        }
+        pbMessage(_INTL("Held item information written to Analysis/held_items_super.txt"))
+    }
+  })
+  
+  def describeItem(itemID)
+      itemData = GameData::Item.get(itemID)
+      itemLine = "#{itemData.real_name},\"#{itemData.description}\""
+      return itemLine
+  end
 
   DebugMenuCommands.register("counttribes", {
     "parent"      => "analysis",

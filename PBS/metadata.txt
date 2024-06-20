@@ -1582,7 +1582,7 @@ Bicycle = true
 BattleBack = cave2
 #-------------------------------
 [220]
-# Prizca Sewers East
+# Ancient Sewers
 Outdoor = false
 ShowArea = true
 Bicycle = true
@@ -1608,7 +1608,7 @@ BattleBack = indoor3
 Environment = StillWater
 #-------------------------------
 [223]
-# Prizca Sewers West
+# Battle Plaza Underground
 Outdoor = false
 ShowArea = true
 Bicycle = true
@@ -1692,6 +1692,7 @@ Outdoor = false
 ShowArea = false
 Bicycle = false
 HealingSpot = 187,55,37
+MapPosition = 0,15,4
 #-------------------------------
 [236]
 # Your House
@@ -1842,8 +1843,10 @@ MapPosition = 0,5,3
 [259]
 # Casey's House
 Outdoor = false
-ShowArea = false
+ShowArea = true
 Bicycle = false
+HealingSpot = 211,31,12
+MapPosition = 0,17,3
 #-------------------------------
 [260]
 # Underpeak Tunnels B1
@@ -2901,6 +2904,7 @@ BattleBack = forest_night
 Outdoor = true
 ShowArea = true
 Bicycle = true
+BattleBack = forest_night
 #-------------------------------
 [415]
 # Frigid Overlook

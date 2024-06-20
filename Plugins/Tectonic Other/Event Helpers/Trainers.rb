@@ -15,7 +15,7 @@ def perfectAncientTrainer
 		setMySwitch('D',true)
 		setFollowerGone
 	}
-	pbMessage("The fleeing trainer dropped some food!")
+	pbMessage(_INTL("The fleeing trainer dropped some food!"))
 	pbReceiveItem(:VANILLATULUMBA)
 end
 
@@ -71,15 +71,15 @@ def pbTrainerDropsItem(maxTrainerLevel = 15,multiplier=1,plural=false)
 	end
 	if total == 1
 		if plural
-			pbMessage("One of the fleeing trainers dropped a candy!")
+			pbMessage(_INTL("One of the fleeing trainers dropped a candy!"))
 		else
-			pbMessage("The fleeing trainer dropped a candy!")
+			pbMessage(_INTL("The fleeing trainer dropped a candy!"))
 		end
 	else
 		if plural
-			pbMessage("The fleeing trainers dropped some candies!")
+			pbMessage(_INTL("The fleeing trainers dropped some candies!"))
 		else
-			pbMessage("The fleeing trainer dropped some candies!")
+			pbMessage(_INTL("The fleeing trainer dropped some candies!"))
 		end
 	end
 	
@@ -164,7 +164,12 @@ def forcePlayerBackwards
 	@move_route_waiting = true if !$game_temp.in_battle # Wait for move route completion
 end
 
-def setFollowerInactive(eventId=0)
+def sendOutPokemon(eventID, switch_id = "A")
+	showPokeballExit(eventID)
+	pbSetSelfSwitch(eventID,switch_id,true)
+end
+
+def setFollowerInactive(eventId=0,switch='A')
 	followers = getFollowerPokemon(eventId)
 	if followers.nil? || followers.length == 0
 		pbMessage("ERROR: Could not find follower Pokemon!") if $DEBUG
@@ -173,7 +178,7 @@ def setFollowerInactive(eventId=0)
 	followers.each do |follower|
 		showBallReturn(follower.x,follower.y)
 		pbWait(Graphics.frame_rate/10)
-		pbSetSelfSwitch(follower.id,'A',true)
+		pbSetSelfSwitch(follower.id,switch,true)
 	end
 end
 
@@ -247,6 +252,7 @@ end
 
 # Replace placeholder overworld follower sprites
 Events.onMapChange += proc { |_sender,*args|
+	# Followers where the trainer info is in the name
 	for event in $game_map.events.values
 		match = event.name.match(/follower\(:([a-zA-Z0-9_]+),"(.+)"(?:,([0-9]+))?(?:,([0-9]+))?\)/)
 		next unless match
@@ -277,6 +283,37 @@ Events.onMapChange += proc { |_sender,*args|
 		
 		event.refresh
     end
+
+	# Followers where the trainer info is a comment on one or more of the pages
+	for event in $game_map.events.values
+		match = event.name.match(/pagedfollower/)
+		next unless match
+
+		newPages = {}
+		
+		# Go through each page
+		event.event.pages.each_with_index do |page,pageIndex|
+			next unless page.graphic.character_name == "00Overworld Placeholder"
+
+			trainerInfo = pbEventCommentInput(page, 1, "Trainer")[0]
+
+			# Parse the comment
+			trainerInfoMatch = trainerInfo.match(/:([a-zA-Z0-9_]+),"(.+)"(?:,([0-9]+))?(?:,([0-9]+))?/)
+			trainerClass = trainerInfoMatch[1].to_sym
+			trainerName = trainerInfoMatch[2]
+			trainerVersion = trainerInfoMatch[3].to_i || 0
+			partyIndex = trainerInfoMatch[4].to_i || 0
+
+			pokemon = pbLoadTrainer(trainerClass,trainerName,trainerVersion).displayPokemonAtIndex(partyIndex)
+			newPages[pageIndex] = createPokemonInteractionEventPage(pokemon,page)
+		end
+
+		newPages.each do |pageIndex,newPage|
+			event.event.pages[pageIndex] = newPage
+		end
+
+		event.refresh
+    end
 }
 
 def createPokemonInteractionEventPage(pokemon,originalPage = nil)
@@ -290,8 +327,20 @@ def createPokemonInteractionEventPage(pokemon,originalPage = nil)
 	newPage.trigger = 0 # Action button
 	newPage.list = []
 	push_script(newPage.list,sprintf("Pokemon.play_cry(:%s, %d)",pokemon.species,pokemon.form))
-	cryOutMessage = _INTL("#{pokemon.name} cries out!")
+	cryOutMessage = _INTL("{1} cries out!",pokemon.name)
 	push_script(newPage.list,sprintf("pbMessage(\"#{cryOutMessage}\")"))
+
+	if pokemon.itemCount == 2
+		itemName1 = getItemName(pokemon.items[0])
+		itemName2 = getItemName(pokemon.items[1])
+		itemMessage = _INTL("It's holding a {1} and a {2}!", itemName1, itemName2)
+		push_script(newPage.list,sprintf("pbMessage(\"#{itemMessage}\")"))
+	elsif pokemon.itemCount == 1
+		itemName = pokemon.firstItemData.name
+		itemMessage = _INTL("It's holding a {1}!", itemName)
+		push_script(newPage.list,sprintf("pbMessage(\"#{itemMessage}\")"))
+	end
+	
 	push_end(newPage.list)
 
 	return newPage

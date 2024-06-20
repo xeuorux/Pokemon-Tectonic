@@ -33,6 +33,7 @@ class PokeBattle_Move
 
     def calculateCategory(user, targets)
         return selectBestCategory(user, targets[0]) if punchingMove? && user.hasActiveAbility?(:MYSTICFIST)
+        return selectBestCategory(user) if adaptiveMove?
         return -1
     end
 

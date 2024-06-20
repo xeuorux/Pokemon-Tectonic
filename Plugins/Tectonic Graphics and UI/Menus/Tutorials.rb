@@ -85,7 +85,7 @@ end
 def evolutionButtonCheck(pkmn)
     return if $PokemonGlobal.evolutionButtonTutorialized
     return unless pkmn.level == getLevelCap
-    return unless pkmn.check_evolution_on_level_up
+    return unless pkmn.check_evolution_on_level_up(false)
     playEvolutionButtonTutorial
 end
 
@@ -93,9 +93,31 @@ def playEvolutionButtonTutorial
     $PokemonGlobal.evolutionButtonTutorialized = true
     tutorialMessages = 
     [
-        _INTL("Sometimes you will receive Pokemon who are at your level cap."),
-        _INTL("Does this mean you can't evolve them by level up? No!"),
+        _INTL("Sometimes you will receive evolvable Pokémon at your level cap."),
+        _INTL("Does this mean you can't evolve them until later? No!"),
         _INTL("Just press the Evolve button in your party screen.")
+    ]
+    playTutorial(tutorialMessages)
+end
+
+def playMentorshipTutorial
+    $PokemonGlobal.mentorMovesTutorialized = true
+    tutorialMessages = 
+    [
+        _INTL("Catching and raising lots of Pokémon is useful for Mentoring."),
+        _INTL("Mentoring let's you copy moves between your Pokémon!"),
+        _INTL("Just talk to the Mentor Coordinator in any PokéCenter."),
+    ]
+    playTutorial(tutorialMessages)
+end
+
+def playAdaptiveMovesTutorial
+    $PokemonGlobal.adaptiveMovesTutorialized = true
+    tutorialMessages = 
+    [
+        _INTL("Some moves are both Physical and Special! These are \"Adaptive\" moves."),
+        _INTL("They change based on the user's stats!"),
+        _INTL("Physical if Attack is higher, and Special if Sp. Atk is higher."),
     ]
     playTutorial(tutorialMessages)
 end

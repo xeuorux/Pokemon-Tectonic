@@ -21,9 +21,9 @@ Pokemon = SLAKING,70
     AbilityIndex = 1 # Truant
 #-------------------------------
 [YOUNGSTER,Joey]
-Pokemon = MACHOP,10
-    Moves = PROTECT
-    AbilityIndex = 0 # Feel the Burn
+Pokemon = LILLIGANT,50
+    AbilityIndex = 1 # Herbalist
+    Item = PARADOXHERB,MIRRORHERB
 #-------------------------------
 [HIKER,Conroy]
 Pokemon = MACHOP,10
@@ -388,15 +388,15 @@ Pokemon = FLAAFFY,21
 #-------------------------------
 [SCHOOLKID_F,Arya]
 Pokemon = TRANQUILL,21
-    Moves = PILFER,PLUCK,INCISION,SCRATCH
+    Moves = FOCUSENERGY,PLUCK,INCISION,SCRATCH
     AbilityIndex = 0 # Deterrent
 Pokemon = GOLDEEN,20
     Moves = FAIRPLAY,AQUAJET,TEETERDANCE,LEER
     AbilityIndex = 1 # Volt Absorb
     Item = WATERGEM
 Pokemon = PRINPLUP,21
-    Moves = MENDINGSPRING,SHINESHOT,FURYPECKS,AQUAJET
-    AbilityIndex = 0 # Imperious
+    Moves = WATERPULSE,SHINESHOT,SUPERSONIC,AQUAJET
+    AbilityIndex = 1 # Self-Sufficient
 #-------------------------------
 [RUINMANIAC,Spencer]
 Pokemon = BALTOY,21
@@ -434,11 +434,11 @@ Pokemon = MEOWTH,21
     AbilityIndex = 1 # All That Glitters
     Item = NORMALGEM,GROUNDGEM
 Pokemon = AMEOWTH,22
-    Moves = PRANK,SHATTERSHOT,PLANTDOUBT,PAYDAY
+    Moves = DAZZLE,CRYSTALGLEAM,PLANTDOUBT,PAYDAY
     AbilityIndex = 0 # Fur Coat
     Item = DARKGEM
 Pokemon = GMEOWTH,22
-    Moves = POWERUPPUNCH,METALCLAW,PAYDAY,FAKEOUT
+    Moves = SHARPEN,METALCLAW,PAYDAY,FAKEOUT
     AbilityIndex = 1 # Steely Spirit
     Item = STEELGEM
 #-------------------------------
@@ -505,8 +505,8 @@ Pokemon = CHINGLING,24
 #-------------------------------
 [BAKER,Rose]
 Pokemon = QUILAVA,24
-    Moves = SHOUT,SHREDSHOT,BURNINGJEALOUSY
-    AbilityIndex = 0 # Burn Skill
+    Moves = SHOUT,OMINOUSWIND,BURNINGJEALOUSY
+    AbilityIndex = 0 # Brisk
     Item = AIRBALLOON
 Pokemon = SEEL,24
     Moves = LIGHTSHOW,BRINE,FRIGIDJEALOUSY
@@ -540,15 +540,20 @@ Pokemon = PIKACHU,24
     Item = ELECTRICGEM
 #-------------------------------
 [POKEKID,Braden]
-Pokemon = CACNEA,21
-    AbilityIndex = 1 # Schadenfreude
-Pokemon = TRUBBISH,22
-    AbilityIndex = 1 # Vengeance
-    Item = SITRUSBERRY
 Pokemon = MONFERNO,22
+    Moves = MACHPUNCH,KNOCKOFF,FIREPUNCH,TAUNT
     AbilityIndex = 0 # Mystic Fist
-Pokemon = VENIPEDE,23
-    AbilityIndex = 1 # Stamina
+Pokemon = CACNEA,21
+    Moves = LEECHSEED,NEEDLEARM,FEINTATTACK,CAUSTICPUNCH
+    AbilityIndex = 0 # Heartless
+    Item = SITRUSBERRY
+Pokemon = KROKOROK,22
+    Moves = BRUTALSWING,BULLDOZE,TORMENT,SNARL
+    AbilityIndex = 1 # Regenerator
+    Item = GROUNDGEM
+Pokemon = VOLTORB,22
+    Moves = SELFDESTRUCT
+    AbilityIndex = 0 # Bunker Down
 #-------------------------------
 [RICHBOY2,Theodore]
 Pokemon = MAWILE,18
@@ -592,7 +597,7 @@ Pokemon = WAILMER,25
     # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
     EV = 0,20,15,0,20,15
 Pokemon = PRINPLUP,25
-    Moves = FLIPTURN,AERIALACE,SHINESHOT,BUBBLEBEAM
+    Moves = FLIPTURN,AERIALACE,SHINESHOT,WATERPULSE
     AbilityIndex = 0 # Imperious
     Item = ASSAULTVEST
     # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
@@ -803,7 +808,7 @@ Pokemon = ILLUMISE,45
     # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
     EV = 20,0,15,0,0,15
 Pokemon = EMPOLEON,45
-    Moves = MENDINGSPRING,CHILL,PROTECT,STEALTHROCK
+    Moves = SURF,YAWN,PROTECT,STEALTHROCK
     AbilityIndex = 1 # Self-Sufficient
     Item = LEFTOVERS
     # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
@@ -1005,7 +1010,7 @@ Pokemon = DUCKLETT,20
     AbilityIndex = 0 # Intimidate
     Item = EJECTBUTTON
 Pokemon = ELECTRIKE,20
-    AbilityIndex = 0 # Nerve Number
+    AbilityIndex = 0 # Inner Focus
 Pokemon = STUFFUL,20
     AbilityIndex = 0 # Intimidate
 Pokemon = FERROSEED,20
@@ -1087,7 +1092,7 @@ Pokemon = AZUMARILL,50
     AbilityIndex = 1 # Pure Force
     Item = CHOICESCARF
 Pokemon = MANERGETIC,50
-    AbilityIndex = 0 # Nerve Number
+    AbilityIndex = 0 # Inner Focus
     Item = ELECTRICGEM
 Pokemon = KROOKODILE,50
     AbilityIndex = 1 # Regenerator
@@ -1383,7 +1388,7 @@ Pokemon = ROSELIA,29
     AbilityIndex = 1 # Merciless
     Item = POISONGEM
 Pokemon = WATCHOG,28
-    Moves = DAZZLINGGLEAM,GLARE,PARTICLEPULSE,CONFUSERAY
+    Moves = DAZZLINGGLEAM,PACIFY,TRIATTACK,CONFUSERAY
     AbilityIndex = 0 # Recon
 Pokemon = SHEDINJA,28
     Moves = UTURN,TREMOR,SHADOWSNEAK,SHADOWCLAW
@@ -1458,7 +1463,7 @@ Pokemon = HAKAMOO,28
     Moves = SHOUT,DRAGONCLAW,CAPOEIRA,NOBLEROAR
     AbilityIndex = 0 # Sound Barrier
 Pokemon = SNEASEL,27
-    Moves = FROSTBARB,SNARL,ICYWIND,RANSACK
+    Moves = FROSTBARB,SNARL,ICYWIND,COVET
     AbilityIndex = 0 # Inner Focus
 Pokemon = LAMPENT,28
     Moves = OMINOUSWIND,SHADOWCLAW,COVET,FLAMECHARGE
@@ -1483,7 +1488,7 @@ Pokemon = AERODACTYL,30
     Item = FLYINGGEM
 Pokemon = MANECTRIC,30
     Moves = FIREPULSE,SHOCKWAVE,SHOUT,NUMB
-    AbilityIndex = 0 # Nerve Number
+    AbilityIndex = 0 # Inner Focus
 Pokemon = DURALUDON,30
     Moves = TAKESHELTER,DRAGONBREATH,SHINESHOT,LOOMOVER
     AbilityIndex = 0 # Stubborn
@@ -1551,29 +1556,29 @@ Policies = CURSE_SELF_DEBUFFING
 #-------------------------------
 [ARCHFRIEND_Lainie,Lainie]
 Policies = LAINIE
-Pokemon = SLURPUFF,60
+Pokemon = SLURPUFF,70
     Name = Lik
     Gender = male
     Moves = BELLYDRUM,PLAYROUGH,INFINITEFORCE,DRAINPUNCH
     AbilityIndex = 0 # Candy Veil
     Item = SITRUSBERRY
-Pokemon = BLISSEY,60
+Pokemon = BLISSEY,70
     Moves = FOLLOWME,ANGELSKISS,LIGHTSCREEN,LIFEDEW
     AbilityIndex = 0 # Serene Grace
     Item = ROCKYHELMET
-Pokemon = GASTRODON,60
+Pokemon = GASTRODON,70
     Moves = SCALD,EARTHPOWER,YAWN,TRICKYTOXINS
     AbilityIndex = 0 # Fascinate
     Item = RINDOBERRY
-Pokemon = HOUNDOMINUS,60
+Pokemon = HOUNDOMINUS,70
     Moves = HEATWAVE,DARKPULSE,MASSDESTRUCTION,SLUDGEBOMB
     AbilityIndex = 1 # Berserk
     Item = FOCUSSASH
-Pokemon = SCARAPACE,60
+Pokemon = SCARAPACE,70
     Moves = DIVEBOMB,XSCISSOR,CLOSECOMBAT,TRAMPLE
     AbilityIndex = 0 # Victory Molt
     Item = STRIKEVEST
-Pokemon = MZANGOOSE,60
+Pokemon = MZANGOOSE,70
     Moves = SIXFEETUNDER,CLOSECOMBAT,MACHPUNCH,SHADOWSNEAK
     AbilityIndex = 0 # Served Cold
     Item = ASSAULTVEST
@@ -1667,11 +1672,11 @@ Pokemon = MANDIBUZZ,35
 #-------------------------------
 [BATTLEGIRL3,Kryska]
 Pokemon = GOGOAT,35
-    Moves = SCYTHEKICK,AERIALACE,RAZORLEAF,MILKDRINK
+    Moves = SCYTHEKICK,AERIALACE,ROOTDRIVER,MILKDRINK
     AbilityIndex = 0 # Bully
     Item = LEFTOVERS
 Pokemon = MINIOR,35
-    Moves = COLDFRONT,POWERGEM,CONFUSERAY,STEALTHROCK
+    Moves = COLDFRONT,DIAMONDFORCE,CONFUSERAY,COSMICPOWER
     AbilityIndex = 0 # Shields Down
     Item = ROCKGEM
 Pokemon = SALAZZLE,35
@@ -1797,7 +1802,7 @@ Pokemon = BEAUTIFLY,35
     AbilityIndex = 0 # Gorging
 Pokemon = NIDOKING,35
     Moves = VOLATILETOXIN,BULKUP,POISONGAS,BULLDOZE
-    AbilityIndex = 1 # Poison Point
+    AbilityIndex = 1 # Stressful
 #-------------------------------
 [TWINS2,Bella and Meghan]
 Pokemon = EXCADRILL,35
@@ -1815,38 +1820,8 @@ Pokemon = GSLOWKING,35
     AbilityIndex = 0 # Curious Medicine
     Item = SALACBERRY
 Pokemon = TANGROWTH,35
-    Moves = CRUSHGRIP,VINEBIND,SMACKDOWN,ROOTWRACK
+    Moves = KNOCKOFF,VINEBIND,SMACKDOWN,ROOTWRACK
     AbilityIndex = 1 # Tangling Hair
-#-------------------------------
-[PICNICKER,Magdalena]
-Pokemon = SYLVEON,40
-    AbilityIndex = 1 # Dragon Slayer
-Pokemon = PYUKUMUKU,40
-    AbilityIndex = 1 # Realist
-    Item = ROCKYHELMET
-Pokemon = ARIADOS,40
-    AbilityIndex = 0 # Fascinate
-Pokemon = DIGGERSBY,40
-    AbilityIndex = 0 # Excavator
-    Item = CHOICEBAND
-Pokemon = DEWGONG,40
-    AbilityIndex = 0 # Bitter
-    Item = SHELLBELL
-#-------------------------------
-[PSYCHIC_F,Hannele]
-Pokemon = GIGALITH,40
-    AbilityIndex = 1 # Unburden
-Pokemon = ALAKAZAM,40
-    AbilityIndex = 0 # Warping Effect
-    Item = CHOICESPECS
-Pokemon = SEVIPER,40
-    AbilityIndex = 0 # Shed Skin
-Pokemon = DUBWOOL,40
-    AbilityIndex = 0 # Fluffy
-    Item = LEFTOVERS
-Pokemon = CHATOT,40
-    AbilityIndex = 0 # Loud
-    Item = SITRUSBERRY
 #-------------------------------
 [SWIMMER_M,Stannis]
 Policies = MOONGLOW_TEAM
@@ -1915,18 +1890,23 @@ Pokemon = CRUSTLE,37
 #-------------------------------
 [GENTLEMAN3,Oliver]
 Flags = NoPerfect
-Pokemon = GRAPIDASH,39
+Pokemon = GRAPIDASH,40
+    Moves = PLAYROUGH,PSYCHOSCISSION,FLOWSTATE
     AbilityIndex = 1 # Heart of Justice
-Pokemon = GWEEZING,39
+Pokemon = GWEEZING,40
+    Moves = STRANGESTEAM,MIASMA,GREYMIST,POISONGAS
     AbilityIndex = 1 # Industrialize
 Pokemon = OBSTAGOON,40
+    Moves = OBSTRUCT,THROATCHOP,CHAOSWHEEL,SLACKOFF
     AbilityIndex = 1 # Frustrate
-    Item = SHELLBELL
+    Item = LEFTOVERS
 Pokemon = SIRFETCHD,40
-    AbilityIndex = 0 # Break Through
+    Moves = ARTOFWAR,SACREDSWORD,LEAFBLADE,DRILLPECK
+    AbilityIndex = 1 # Super Luck
 Pokemon = GSLOWKING,40
+    Moves = MINDWARP,SLUDGEWAVE,ENVENOM,VENOSHOCK
     AbilityIndex = 1 # Exorcist
-    Item = SITRUSBERRY
+    Item = HIVISJACKET
 #-------------------------------
 [CLERK_M2,Alejandro]
 Pokemon = CLOYSTER,38
@@ -1984,14 +1964,14 @@ Pokemon = INFERNAPE,42
     Moves = MACHPUNCH,FIREPUNCH,KNOCKOFF,DRAINPUNCH
     AbilityIndex = 0 # Mystic Fist
 Pokemon = PURUGLY,41
-    Moves = RUIN,HARDFEELINGS,SNARL,STAREDOWN
+    Moves = RUIN,FACADE,SNARL,STAREDOWN
     AbilityIndex = 1 # Competitive
 Pokemon = DELIBIRD,42
     Moves = PACKAGE,REFLECT,LIGHTSCREEN,COLDFRONT
     AbilityIndex = 1 # Holiday Cheer
     Item = LIGHTCLAY
 Pokemon = GOURGEIST,41
-    Moves = MYSTERYSEED,SHADOWBALL,GRASSKNOT,FIREPULSE
+    Moves = MYSTERYSEED,DEATHKNELL,PETALTEMPEST,MYSTICALFIRE
     AbilityIndex = 0 # Flourishing
     Item = GHOSTGEM
 #-------------------------------
@@ -2007,13 +1987,13 @@ Pokemon = SCRAFTY,42
     Moves = LOWKICK,SUCKERPUNCH,BULLY,SCHEME
     AbilityIndex = 1 # Moxie
 Pokemon = RAPIDASH,41
-    Moves = TRAMPLE,BLAZEKICK,SMARTHORN,DESTRIERSWHIM
+    Moves = TRAMPLE,BLAZEKICK,BOUNCE,DESTRIERSWHIM
     AbilityIndex = 1 # Iron Heel
     Item = FIREGEM
 #-------------------------------
 [DOCTOR,Peio]
 Pokemon = HATTERENE,41
-    Moves = PSYCHOSCISSION,HUMBLE,BRUTALSWING,FLOWSTATE
+    Moves = PSYCHOSCISSION,SPIRITBREAK,SUCKERPUNCH,FLOWSTATE
     AbilityIndex = 0 # Killjoy
     Item = CADOBERRY
 Pokemon = BLASTOISE,40
@@ -2055,7 +2035,7 @@ Pokemon = REUNICLUS,42
     AbilityIndex = 1 # Magic Guard
     Item = LIFEORB
 Pokemon = GOGOAT,42
-    Moves = LEAFBLADE,AURASPHERE,GIGADRAIN,SCYTHEKICK
+    Moves = WHIPKICK,AURASPHERE,GIGADRAIN,SCYTHEKICK
     AbilityIndex = 0 # Bully
     Item = LEFTOVERS
 #-------------------------------
@@ -2087,7 +2067,7 @@ Pokemon = FEAROW,40
     Item = HIVISJACKET
 Pokemon = LYCANROC,40
     Form = 2 # Dusk Form
-    Moves = ADAMANTINEPRESS,SEVER,HUMBLE,ROCKTOMB
+    Moves = ADAMANTINEPRESS,CRUNCH,HUMBLE,ROCKTOMB
     AbilityIndex = 0 # Tough Claws
     Item = ROCKGEM
 Pokemon = SWELLOW,40
@@ -2103,7 +2083,7 @@ Pokemon = PIDGEOT,40
     AbilityIndex = 1 # Aeroshell
     Item = SITRUSBERRY
 Pokemon = MINIOR,40
-    Moves = COLDFRONT,POWERGEM,STEALTHROCK,CONFUSERAY
+    Moves = COLDFRONT,DIAMONDFORCE,STEALTHROCK,CONFUSERAY
     AbilityIndex = 0 # Shields Down
 Pokemon = WAILORD,40
     Moves = MAELSTROM,COLDFRONT,WHALESONG,CHILL
@@ -2222,20 +2202,33 @@ Pokemon = CHIMECHO,70
     AbilityIndex = 1 # Toll the Bells
 #-------------------------------
 [DEVSUPERNERD,Agentbla]
-Pokemon = BEARTIC,70
-    AbilityIndex = 1 # Chronic Cold
-Pokemon = NINETALES,70
-    AbilityIndex = 1 # Feedback
-Pokemon = KRICKETUNE,70
-    AbilityIndex = 0 # Fascinate
-Pokemon = WHISCASH,70
-    AbilityIndex = 0 # Mental Block
-Pokemon = MFURRET,70
-    AbilityIndex = 0 # Filter
-Pokemon = DIGNIPHITE,70
-    AbilityIndex = 1 # Fascinate
+Pokemon = WHIMSICOTT,70
+    Name = Joe
+    Gender = male
+    Shiny = yes
+    AbilityIndex = 0 # Cotton Decoy
+Pokemon = HARCANINE,70
+    Name = Jun
+    Gender = male
+    AbilityIndex = 1 # Rock Head
+Pokemon = MANIKLAW,70
+    Name = Jumble
+    Gender = female
+    AbilityIndex = 0 # Malice
+Pokemon = ESPEON,70
+    Name = June
+    Gender = female
+    AbilityIndex = 0 # Overthinking
+Pokemon = CORVIKNIGHT,70
+    Name = Joan
+    Gender = female
+    AbilityIndex = 0 # Mirror Armor
+Pokemon = SWAMPERT,70
+    Name = John
+    Gender = male
+    AbilityIndex = 1 # Boulder Nest
 #-------------------------------
-[DEVDRAGONTAMER2,Divock]
+[DEVLADY4,Divock]
 Pokemon = DRAGONITE,70
     AbilityIndex = 0 # Inner Focus
 Pokemon = KLAWSAR,70
@@ -2247,7 +2240,7 @@ Pokemon = SCRAFTY,70
 Pokemon = PRIMARINA,70
     AbilityIndex = 0 # Maestro
 Pokemon = NIDOKING,70
-    AbilityIndex = 1 # Poison Point
+    AbilityIndex = 1 # Stressful
 #-------------------------------
 [DEVGAMBLER,IgnitedxSoul]
 Pokemon = AEGISLASH,70
@@ -2379,8 +2372,10 @@ Pokemon = CORVIKNIGHT,70
 #-------------------------------
 [DEVJANITOR,Steeb]
 Pokemon = BEWEAR,70
+    Name = Nene
+    Gender = female
     Shiny = yes
-    AbilityIndex = 1 # Lunatic
+    AbilityIndex = 0 # Intimidate
 Pokemon = OCTILLERY,70
     AbilityIndex = 0 # Juggernaut
 Pokemon = MAROWAK,70
@@ -2460,8 +2455,8 @@ Pokemon = PRIMARINA,70
     AbilityIndex = 0 # Maestro
 Pokemon = VOLCARONA,70
     AbilityIndex = 1 # Dawnfall
-Pokemon = NOCTOWL,70
-    AbilityIndex = 1 # Fascinate
+Pokemon = MNOCTOWL,70
+    AbilityIndex = 0 # Sentry
 Pokemon = DECIDUEYE,70
     AbilityIndex = 1 # Siphon Sniper
 #-------------------------------
@@ -2482,6 +2477,20 @@ Pokemon = MMUSHARNA,70
     AbilityIndex = 0 # Slumbering Drake
 Pokemon = HLILLIGANT,70
     AbilityIndex = 0 # Fascinate
+#-------------------------------
+[DEVWORKER5,Jbsundown]
+Pokemon = SUDOWOODO,70
+    AbilityIndex = 1 # Prankster
+Pokemon = DRAGONITE,70
+    AbilityIndex = 1 # Multiscale
+Pokemon = NIDOKING,70
+    AbilityIndex = 0 # Sheer Force
+Pokemon = HATTERENE,70
+    AbilityIndex = 0 # Killjoy
+Pokemon = MPOLTEAGEIST,70
+    AbilityIndex = 1 # Chill Out
+Pokemon = TYPHLOSION,70
+    AbilityIndex = 0 # Brisk
 #-------------------------------
 [LEADER_Bence,Bence]
 Policies = BENCE
@@ -2633,8 +2642,8 @@ Policies = CURSE_SUBSTITUTED
 Pokemon = LIEPARD,45
     Item = DARKGEM
 Pokemon = EMPOLEON,45
-    Moves = SLAY,SWORDSDANCE,LIQUIDATION,AQUAJET
-    AbilityIndex = 0 # Imperious
+    Moves = BULLETTRAIN,SWORDSDANCE,HARBORBREAKER,SUBMISSION
+    AbilityIndex = 1 # Self-Sufficient
     Item = SALACBERRY
     # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
     EV = 0,20,10,20,20,0
@@ -2699,7 +2708,7 @@ Pokemon = WHIMSICOTT,48
     Moves = PLAYROUGH,LEAFBLADE,DEFOG,BULKUP
     AbilityIndex = 1 # Pure Force
 Pokemon = RAPIDASH,47
-    Moves = BLAZEKICK,TRAMPLE,DESTRIERSWHIM,METEORMASH
+    Moves = BLAZEKICK,TRAMPLE,DESTRIERSWHIM,BOUNCE
     AbilityIndex = 1 # Iron Heel
     Item = GROUNDGEM
 #-------------------------------
@@ -2736,29 +2745,23 @@ Pokemon = EELEKTROSS,47
     Item = BLACKSLUDGE
 #-------------------------------
 [CAMPER,Liam]
-Pokemon = HITMONCHAN,36
+Pokemon = HITMONCHAN,35
     Moves = MACHPUNCH,FIREPUNCH,THUNDERPUNCH,ICEPUNCH
     AbilityIndex = 1 # Shifting Fist
     Item = LUCKHERB
-Pokemon = ELECTIVIRE,36
+Pokemon = ELECTIVIRE,35
     Moves = FLOWSTATE,ELECTROSLASH,DRAINPUNCH
     AbilityIndex = 1 # Adrenaline Rush
     Item = LIECHIBERRY
 Pokemon = CACTURNE,36
     Moves = SUCKERPUNCH,NEEDLEARM,PAYBACK,LEECHSEED
     AbilityIndex = 0 # Heartless
-Pokemon = GRUMPIG,36
-    Moves = ZENHEADBUTT,SHADOWPUNCH,KICKSTART,TEETERDANCE
-    AbilityIndex = 0 # Thick Fat
 #-------------------------------
 [POKEMONRANGER_M2,Martel]
-Pokemon = APPLETUN,36
+Pokemon = APPLETUN,35
     Moves = DRAGONPULSE,GIGADRAIN,LEECHSEED,CONFIDE
     AbilityIndex = 0 # Ripen
     Item = SITRUSBERRY
-Pokemon = DUBWOOL,37
-    Moves = BUTTINGHEADS,SCYTHEKICK,BATONPASS,TAKEDOWN
-    AbilityIndex = 1 # Cold Reception
 Pokemon = MNINETALES,36
     Moves = SOULEATER,FLASHCANNON,DEADEND,IRONDEFENSE
     AbilityIndex = 0 # Gild
@@ -2768,25 +2771,23 @@ Pokemon = MCARNIVINE,37
     AbilityIndex = 1 # Pestilent
 #-------------------------------
 [POKEMANIAC,Paris]
-Pokemon = QWILFISH,37
+Pokemon = QWILFISH,36
     Moves = FUGUFRENZY,AQUAJET,POISONTAIL
     AbilityIndex = 1 # Quarrelsome
     Item = FOCUSSASH
-Pokemon = LINOONE,38
+Pokemon = LINOONE,37
     Moves = EXTREMESPEED,COVET,THROATCHOP
     AbilityIndex = 0 # Dire Diversion
-    Item = HIVISJACKET
 #-------------------------------
 [POKEFAN_F3,Margaret]
 Pokemon = GRIMMSNARL,38
     Moves = FALSESURRENDER,FAKEOUT,PLAYROUGH,SUCKERPUNCH
     AbilityIndex = 1 # Ruinous
     Item = EJECTBUTTON
-Pokemon = MJELLICENT,37
+Pokemon = MJELLICENT,36
     Gender = female
     Moves = BADENDING,BLIGHT,THUNDERCLAP,SHADOWCLAW
     AbilityIndex = 0 # Ruinous
-    Item = ELECTRICGEM
 #-------------------------------
 [GARDENER,Jacek]
 Pokemon = BIBAREL,37
@@ -2912,7 +2913,7 @@ Pokemon = BRONZONG,45
 #-------------------------------
 [ARTIST3,Frida]
 Pokemon = MPOLTEAGEIST,45
-    Moves = SHADOWBALL,FROSTBREATH,MAGICALLEAF,HEX
+    Moves = GHOULISHGALE,FRIGIDFLURRY,PETALTEMPEST,HEX
     AbilityIndex = 1 # Chill Out
     Item = FOCUSSASH
 Pokemon = DEWGONG,45
@@ -3018,7 +3019,7 @@ Pokemon = SALAMENCE,55
     AbilityIndex = 0 # Intimidate
     Item = PERSIMBERRY
 Pokemon = TYPHLOSION,55
-    AbilityIndex = 0 # Burn Skill
+    AbilityIndex = 0 # Brisk
     Item = UTILITYUMBRELLA
 #-------------------------------
 [BATTLEGIRL3,Amelia]
@@ -3102,7 +3103,7 @@ Pokemon = GRAPPLOCT,70
     # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
     EV = 20,0,15,0,0,15
 Pokemon = FLOATZEL,70
-    Moves = EXTREMESPEED,FAKEOUT,HYPERJET,PROTECT
+    Moves = MEGAPUNCH,FAKEOUT,HYPERJET,PROTECT
     AbilityIndex = 0 # Moxie
     Item = MIRRORHERB
     # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
@@ -3173,13 +3174,20 @@ Pokemon = GLIGAR,27
 #-------------------------------
 [ROUGHNECK2,Robert]
 Flags = NoPerfect
-Pokemon = GRIMER,28
+Pokemon = GRIMER,30
+    Moves = POISONGAS,SLUDGE,FIREPULSE,DISSOLUTION
     AbilityIndex = 0 # Toxin Tax
-Pokemon = DOTTLER,30
-    AbilityIndex = 1 # Master Plan
-Pokemon = KIRLIA,29
-    AbilityIndex = 0 # Synchronize
-    Item = SITRUSBERRY
+    Item = EVIOLITE
+Pokemon = MIGHTYENA,30
+    Moves = ASSURANCE,FAIRPLAY,PLANTDOUBT,MIDNIGHTHUNT
+    AbilityIndex = 0 # Intimidate
+Pokemon = ALTARIA,30
+    Moves = ICYWIND,DRAGONCLAW,DAZZLINGGLEAM,BOREALWIND
+    AbilityIndex = 0 # Levitate
+    Item = LEFTOVERS
+Pokemon = KANGASKHAN,30
+    Moves = PUMMEL,SUCKERPUNCH,FLAMECHARGE,STOMP
+    AbilityIndex = 0 # Inner Focus
 #-------------------------------
 [TRAINER_Candy,Candy]
 Flags = NoPerfect
@@ -3302,106 +3310,104 @@ Pokemon = ALTARIA,46
 Pokemon = PIDGEOT,36
     Moves = DUSTMACHPULSE,AIRSLASH,GALLINGSPIT,SHOUT
     AbilityIndex = 1 # Aeroshell
-Pokemon = WHISCASH,36
+Pokemon = WHISCASH,37
     Moves = TREMOR,WATERFALL,DRAGONTAIL,REST
     AbilityIndex = 0 # Mental Block
     Item = CHESTOBERRY
-Pokemon = CRYOGONAL,36
+Pokemon = CRYOGONAL,37
     Moves = CHILL,OMINOUSWIND,FLASHCANNON,AURORABEAM
     AbilityIndex = 1 # Magic Bounce
-Pokemon = RAICHU,35
+Pokemon = RAICHU,37
     Moves = JOKEJOLT,THUNDERBOLT,SHOUT,SWIFT
     AbilityIndex = 1 # Break Through
     Item = CHOICESPECS
 #-------------------------------
 [PSYCHIC_M2,Rohan]
-Pokemon = VENOMOTH,35
+Pokemon = VENOMOTH,36
     Moves = PSYBEAM,CREEPOUT,SIGNALBEAM
     AbilityIndex = 0 # Fluffy
-Pokemon = POLIWRATH,36
+Pokemon = POLIWRATH,37
     Moves = CROSSCHOP,LIQUIDATION,NERVEBLOCK,ENCORE
     AbilityIndex = 0 # Counter Flow
     Item = LEFTOVERS
-Pokemon = LUXRAY,36
+Pokemon = LUXRAY,37
     Moves = PHOTONEDGE,CRUNCH,ROAR,FLOWSTATE
     AbilityIndex = 1 # Intimidate
-Pokemon = MTANGROWTH,36
+Pokemon = MTANGROWTH,37
     Moves = PETRIFY,SLUDGE,POWERGEM,GLARE
     AbilityIndex = 0 # Petrifying
     Item = ROCKGEM
 #-------------------------------
 [SWIMMER_M2,Finn]
-Pokemon = RELICANTH,36
+Pokemon = RELICANTH,38
     Moves = GRANITEHEAD,PETRIFY,WATERFALL,SURF
     AbilityIndex = 1 # Reawakened Power
     Item = CUSTAPBERRY
-Pokemon = FERROTHORN,36
+Pokemon = FERROTHORN,38
     Moves = IMPALINGSPIKE,ROOTWRACK,GYROBALL
     AbilityIndex = 0 # Iron Barbs
     Item = LEFTOVERS
-Pokemon = GLISCOR,36
+Pokemon = GLISCOR,38
     Moves = FLY,KNOCKOFF,TREMOR,FEINTATTACK
     AbilityIndex = 0 # Grotesque Vitals
-Pokemon = HEATMOR,36
+Pokemon = HEATMOR,39
     Moves = IGNITE,GREYMIST,SLAG,CRIMSONSTORM
     AbilityIndex = 1 # Pure Energy
 #-------------------------------
 [COWGIRL,Sasha]
-Pokemon = VIVILLON,36
+Pokemon = VIVILLON,39
     Form = 16 # Sun Pattern Form
     Moves = BUGBUZZ,BOREALWIND,AURORABEAM,POISONIVY
     AbilityIndex = 0 # Multiscale
-Pokemon = SHELGON,36
+Pokemon = SHELGON,40
     Moves = REND,CRUELTY,AERIALACE,PURSUIT
     AbilityIndex = 0 # Intimidate
     Item = CHOICEBAND
-Pokemon = GENGAR,36
+Pokemon = GENGAR,40
     Gender = male
     Moves = MIASMA,HEX,SPECTRALTONGUE,ICYWIND
     AbilityIndex = 1 # Break Through
     Item = POISONGEM
-Pokemon = BLAZIKEN,36
+Pokemon = BLAZIKEN,40
     Moves = BLAZEKICK,AURASPHERE,CRIMSONSTORM,STRAFE
     AbilityIndex = 1 # Pecking Order
 #-------------------------------
 [LASS2,Faye]
-Pokemon = WIGGLYTUFF,36
+Pokemon = WIGGLYTUFF,39
     Moves = ENCHANTINGSONG,HYPERVOICE,SHOUT,UPROAR
     AbilityIndex = 1 # Maestro
     Item = THROATSPRAY
-Pokemon = SWALOT,36
+Pokemon = SWALOT,40
     Moves = POISONGAS,ACIDSPRAY,STELLARATE
     AbilityIndex = 1 # Corrosion
-Pokemon = HELIOLISK,36
+Pokemon = HELIOLISK,40
     Moves = LIGHTNINGSPEAR,WEATHERBURST,VOLTSWITCH,BURNINGJEALOUSY
     AbilityIndex = 1 # Water Absorb
-Pokemon = MOTHIM,36
+Pokemon = MOTHIM,40
     Moves = LEECHLIFE,EARTHQUAKE,GIGADRAIN,BULLETTRAIN
     AbilityIndex = 0 # Spare Scales
     Item = LEFTOVERS
 #-------------------------------
 [SCIENTIST_F,Zofia]
 Flags = NoPerfect
-Pokemon = VESPIQUEN,35
+Pokemon = VESPIQUEN,40
     Moves = FELLSTINGER,AERIALACE,DEFOG,HEALORDER
     AbilityIndex = 1 # Stressful
-    Item = CADOBERRY
-Pokemon = LANTURN,36
+Pokemon = LANTURN,40
     Moves = DISCHARGE,BUBBLEBEAM,DAZZLINGGLEAM,NUMB
     AbilityIndex = 0 # Volt Absorb
     Item = ELECTRICGEM
-Pokemon = BEEDRILL,36
+Pokemon = BEEDRILL,40
     Moves = PINMISSILE,POISONJAB,FURYPECKS,STINGINGJEALOUSY
     AbilityIndex = 0 # Deep Sting
     Item = LOADEDDICE
-Pokemon = TALONFLAME,37
+Pokemon = TALONFLAME,40
     Moves = BRAVEBIRD,STEELWING,FLAREUP,TAILWIND
     AbilityIndex = 1 # Gale Wings
     Item = LIFEORB
-Pokemon = TORTERRA,38
+Pokemon = TORTERRA,40
     Moves = EARTHQUAKE,SNAPTRAP,BRUTALSWING,POLARIZEDROOM
     AbilityIndex = 1 # Living Armor
-    Item = SITRUSBERRY
 #-------------------------------
 [BOARDER,Lev]
 Pokemon = JYNX,30
@@ -3502,17 +3508,14 @@ Pokemon = QUAGSIRE,48
     Item = LEFTOVERS
 #-------------------------------
 [CLOWN,Dimesmart]
-Pokemon = MIMIKYU,43
+Pokemon = MIMIKYU,42
     Moves = PLAYROUGH,VIMRIPPER,HONECLAWS,SHADOWSNEAK
     AbilityIndex = 0 # Disguise
-Pokemon = GIGACHU,43
+    Item = LIFEORB
+Pokemon = GIGACHU,42
     Moves = THUNDERBELLY,THUNDERBOLT,NUZZLE,BODYSLAM
     AbilityIndex = 0 # Arc Conductor
-Pokemon = BASTIODON,44
-    Moves = BODYPRESS,GRINDSTONE,FARADAYCAGE,STEALTHROCK
-    AbilityIndex = 1 # Battle-Hardened
-    Item = LEFTOVERS
-Pokemon = FLYGON,43
+Pokemon = FLYGON,42
     Moves = DEVOURINGDUST,SCOUR,BUGBUZZ,BUGBITE
     AbilityIndex = 0 # Desert Spirit
     Item = GROUNDGEM
@@ -3540,7 +3543,7 @@ Pokemon = VIKAVOLT,43
 [PUNKM,Vlad]
 Pokemon = GSLOWBRO,43
     Moves = SHELLSIDEARM,VENOSHOCK,SLACKOFF,SEERSTRIKE
-    AbilityIndex = 1 # Merciless
+    AbilityIndex = 1 # Break Through
     Item = LUCKHERB
 Pokemon = DRAPION,42
     Moves = HONORLESSSTING,VENOMGUARD,XSCISSOR,SEVER
@@ -3773,7 +3776,7 @@ Pokemon = MACHAMP,55
     AbilityIndex = 0 # Feel the Burn
     Item = RAWSTBERRY
 Pokemon = STUNFISK,55
-    AbilityIndex = 0 # Static
+    AbilityIndex = 0 # Double Check
 Pokemon = TEAMUJIN,55
     AbilityIndex = 1 # Parental Bond
 #-------------------------------
@@ -3994,13 +3997,13 @@ Pokemon = HEATMOR,55
     Item = AIRBALLOON
 Pokemon = BLASFEMMIE,55
     Moves = MOONGLOW,ENCHANTINGSONG,DARKALLURE,SWEETSELENE
-    AbilityIndex = 0 # Tantalizing
+    AbilityIndex = 1 # Hubris
     Item = LEFTOVERS
 Pokemon = DONSTER,55
     Moves = TRASHTREASURE,MIASMA,SLAG,EXPLOSION
     AbilityIndex = 1 # Vengeance
 Pokemon = HATTERENE,55
-    Moves = SUCKERPUNCH,PSYCHOSCISSION,HUMBLE,FLOWSTATE
+    Moves = SUCKERPUNCH,PSYCHOSCISSION,MORNINGSTAR,HONECLAWS
     AbilityIndex = 0 # Killjoy
 #-------------------------------
 [WORKER6,Paul]
@@ -4063,7 +4066,7 @@ Pokemon = GASTRODON,48
     Moves = SILTSURGE,EARTHPOWER,SPELLBIND,RECOVER
     AbilityIndex = 1 # Water Absorb
 Pokemon = MINIOR,48
-    Moves = POWERGEM,COLDFRONT,CONFUSERAY,PULSAR
+    Moves = DIAMONDFORCE,COLDFRONT,STEALTHROCK,COSMICPOWER
     AbilityIndex = 0 # Shields Down
 Pokemon = GARDEVOIR,48
     Moves = PSYCHIC,CALMMIND,NERVEBLOCK,MOONBLAST
@@ -4158,7 +4161,7 @@ Pokemon = KINGAMBIT,70
     # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
     EV = 0,20,0,20,20,10
 Pokemon = RIOJIN,70
-    Moves = SECRETTECHNIQUE,EARTHPOWER,STEELBEAM,SHADOWBALL
+    Moves = SECRETTECHNIQUE,EARTHPOWER,STEELBEAM,DARKALLURE
     AbilityIndex = 1 # Inner Focus
     Item = WISEGLASSES
     # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
@@ -4438,7 +4441,7 @@ Pokemon = ARMALDO,63
     Moves = ADAMANTINEPRESS,XSCISSOR,SWORDSDANCE,LIQUIDATION
     AbilityIndex = 0 # Selective Scutes
 Pokemon = PYROAR,63
-    Moves = OVERHEAT,SHOUT,HYPERVOICE,HARDFEELINGS
+    Moves = OVERHEAT,SHOUT,HYPERVOICE,FACADE
     AbilityIndex = 0 # Stubborn
     Item = LUMBERAXE
 #-------------------------------
@@ -4479,7 +4482,7 @@ Pokemon = ABSOLUS,57
     Moves = INFINITEFORCE,DARKALLURE,ENCHANTINGSONG,ICEBEAM
     AbilityIndex = 1 # Vengeance
 Pokemon = EMPOLEON,58
-    Moves = HARBORBREAKER,FLASHCANNON,DRILLPECK,AQUAJET
+    Moves = HARBORBREAKER,FLASHCANNON,BRAVEBIRD,AQUAJET
     AbilityIndex = 1 # Self-Sufficient
 Pokemon = DRAGONITE,57
     Moves = TEMPEST,COLDFRONT,DRAGONPULSE,SURF
@@ -4526,7 +4529,7 @@ Pokemon = OVERQWIL,60
     Item = LEFTOVERS
 Pokemon = GSLOWBRO,60
     Moves = ENVENOM,PSYCHOBOOST,VENOSHOCK,SHELLSIDEARM
-    AbilityIndex = 1 # Merciless
+    AbilityIndex = 1 # Break Through
     Item = SITRUSBERRY
 Pokemon = HYMNUS,59
     Moves = CRUELTY,WARDPRESS,DRAGONPULSE,STRAFE
@@ -4543,7 +4546,7 @@ Pokemon = DRAPION,60
 Policies = METAGAMES_STAT_ITEMS
 Flags = NoPerfect
 Pokemon = REGIDRAGO,65
-    Moves = DRAGONENERGY,HARDFEELINGS,HAMMERARM,CRUNCH
+    Moves = DRAGONENERGY,FACADE,HAMMERARM,CRUNCH
     AbilityIndex = 1 # Dragon's Blood
     # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
     EV = 0,10,20,0,10,20
@@ -4726,7 +4729,7 @@ Pokemon = GDARMANITAN,55
     AbilityIndex = 1 # Gorilla Tactics
 Pokemon = AMUK,55
     Moves = RECOVER,POISONGAS,VENOMDRENCH,KNOCKOFF
-    AbilityIndex = 1 # Gluttony
+    AbilityIndex = 1 # Poison Punish
     Item = CADOBERRY
 Pokemon = AGOLEM,55
     Moves = ROCKSLIDE,DOUBLEEDGE,EXPLOSION,SUPERPOWER
@@ -4878,7 +4881,7 @@ Pokemon = RATTATA,10
     # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
     EV = 0,20,15,0,20,15
 Pokemon = PORYGONZ,65
-    Moves = HARDFEELINGS,CRITICALERROR,PHANTOMGATE,ICEBEAM
+    Moves = FACADE,CRITICALERROR,PHANTOMGATE,ICEBEAM
     AbilityIndex = 0 # Realist
 Pokemon = HAXORUS,65
     Moves = CRUELTY,DRAGONDANCE,POISONJAB,XSCISSOR
@@ -4955,7 +4958,7 @@ Pokemon = GDARMANITAN,65
     AbilityIndex = 1 # Gorilla Tactics
 Pokemon = AMUK,65
     Moves = RECOVER,POISONGAS,VENOMDRENCH,KNOCKOFF
-    AbilityIndex = 1 # Gluttony
+    AbilityIndex = 1 # Poison Punish
     Item = CADOBERRY
 Pokemon = AGOLEM,65
     Moves = ROCKSLIDE,DOUBLEEDGE,EXPLOSION,SUPERPOWER
@@ -5669,7 +5672,7 @@ Pokemon = HAWLUCHA,70
     # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
     EV = 0,20,10,20,20,0
 Pokemon = PALMANTRA,70
-    Moves = ADRENALASH,ENERGYBALL,PSYCHIC,SIGNALBEAM
+    Moves = ADRENALASH,ENERGYBALL,PSYCHIC,SIGNALOVERLOAD
     AbilityIndex = 1 # Stability
     # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
     EV = 10,20,0,20,20,0
@@ -5723,7 +5726,7 @@ Pokemon = SERPERIOR,70
     # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
     EV = 10,10,10,20,10,0
 Pokemon = EMPOLEON,70
-    Moves = DRILLPECK,HARBORBREAKER,EBBFLOW,SLAY
+    Moves = COLDFRONT,HARBORBREAKER,FLASHCANNON,KNOCKOFF
     AbilityIndex = 0 # Imperious
     Item = STRIKEVEST
     # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
@@ -5954,7 +5957,7 @@ Pokemon = FORRETRESS,70
     AbilityIndex = 1 # Weathered
     Item = HIVISJACKET
 Pokemon = PORYGONZ,70
-    Moves = HARDFEELINGS,CRITICALERROR,RECOVER,ICEBEAM
+    Moves = FACADE,CRITICALERROR,RECOVER,ICEBEAM
     AbilityIndex = 0 # Realist
     Item = CADOBERRY
 Pokemon = HAXORUS,70
@@ -5987,7 +5990,7 @@ Pokemon = CRUSTLE,70
 NameForHashing = Skyler
 Flags = NoPerfect
 Pokemon = PALMANTRA,70
-    Moves = OMNISCIENTBLOW,DRAINPUNCH,FAKEOUT,POISONJAB
+    Moves = OMNISCIENTBLOW,SECRETTECHNIQUE,FAKEOUT,SHADOWBALL
     AbilityIndex = 0 # Middle Way
 Pokemon = SIGILYPH,70
     Moves = PSYCHOSHIFT,CALMMIND,ROOST,COLDFRONT
@@ -6038,7 +6041,7 @@ Pokemon = GDARMANITAN,70
     AbilityIndex = 1 # Gorilla Tactics
 Pokemon = AMUK,70
     Moves = RECOVER,POISONGAS,VENOMDRENCH,GRIMEGRAPPLE
-    AbilityIndex = 1 # Gluttony
+    AbilityIndex = 1 # Poison Punish
     Item = CADOBERRY
 Pokemon = AGOLEM,70
     Moves = ROCKSLIDE,DOUBLEEDGE,AUTOTOMIZE,SUPERPOWER
@@ -6181,7 +6184,7 @@ Pokemon = FORRETRESS,70
     AbilityIndex = 1 # Weathered
     Item = HIVISJACKET
 Pokemon = PORYGONZ,70
-    Moves = HARDFEELINGS,CRITICALERROR,RECOVER,ICEBEAM
+    Moves = FACADE,CRITICALERROR,RECOVER,ICEBEAM
     AbilityIndex = 0 # Realist
     Item = CADOBERRY
 Pokemon = HAXORUS,70
@@ -6214,7 +6217,7 @@ Pokemon = CRUSTLE,70
 NameForHashing = Skyler
 Flags = NoPerfect
 Pokemon = PALMANTRA,70
-    Moves = OMNISCIENTBLOW,DRAINPUNCH,FAKEOUT,POISONJAB
+    Moves = OMNISCIENTBLOW,SECRETTECHNIQUE,FAKEOUT,SHADOWBALL
     AbilityIndex = 0 # Middle Way
 Pokemon = SIGILYPH,70
     Moves = PSYCHOSHIFT,CALMMIND,ROOST,COLDFRONT
@@ -6265,7 +6268,7 @@ Pokemon = GDARMANITAN,70
     AbilityIndex = 1 # Gorilla Tactics
 Pokemon = AMUK,70
     Moves = RECOVER,POISONGAS,VENOMDRENCH,GRIMEGRAPPLE
-    AbilityIndex = 1 # Gluttony
+    AbilityIndex = 1 # Poison Punish
     Item = CADOBERRY
 Pokemon = AGOLEM,70
     Moves = ROCKSLIDE,DOUBLEEDGE,AUTOTOMIZE,SUPERPOWER
@@ -6488,7 +6491,7 @@ Pokemon = CELESTEELA,70
     AbilityIndex = 0 # Auto-Pilot
     Item = LEFTOVERS
 Pokemon = BEHEEYEM,70
-    Moves = DREAMDANCE,OCCULTATION,SUBSTITUTE,SIGNALBEAM
+    Moves = DREAMDANCE,MINDWARP,SUBSTITUTE,THUNDERBOLT
     AbilityIndex = 0 # Cold Calculation
     Item = SITRUSBERRY
 Pokemon = BLACEPHALON,70
@@ -6589,7 +6592,7 @@ Pokemon = RATTATA,10
     # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
     EV = 0,20,15,0,20,15
 Pokemon = PORYGONZ,55
-    Moves = HARDFEELINGS,CRITICALERROR,PHANTOMGATE,ICEBEAM
+    Moves = FACADE,CRITICALERROR,PHANTOMGATE,ICEBEAM
     AbilityIndex = 0 # Realist
 Pokemon = HAXORUS,55
     Moves = CRUELTY,DRAGONDANCE,POISONJAB,XSCISSOR
@@ -6788,7 +6791,7 @@ Pokemon = DRACOZOLT,60
 [LOST_RANGER_PURPLE,Farid]
 Flags = NoPerfect
 Pokemon = NIDOKING,60
-    AbilityIndex = 1 # Poison Point
+    AbilityIndex = 1 # Stressful
 Pokemon = GRANBULL,60
     AbilityIndex = 0 # Intimidate
     Item = SKILLHERB
@@ -7243,7 +7246,7 @@ Pokemon = RIOJIN,70
 Pokemon = MCARNIVINE,70
     AbilityIndex = 1 # Pestilent
 Pokemon = MANERGETIC,70
-    AbilityIndex = 0 # Nerve Number
+    AbilityIndex = 0 # Inner Focus
 #-------------------------------
 [POKEMONMASTER_Vanya,Vanya,4]
 Flags = NoPerfect
@@ -7304,7 +7307,7 @@ Pokemon = FURFROU,70
 Pokemon = SHEDINJA,70
     AbilityIndex = 0 # Wonder Guard
 Pokemon = NIDOKING,70
-    AbilityIndex = 1 # Poison Point
+    AbilityIndex = 1 # Stressful
 #-------------------------------
 [WILDPARTY_KOKO,of Conflict]
 Flags = NoPerfect
@@ -7707,77 +7710,104 @@ Pokemon = TANGROWTH,70
 Pokemon = MJELLICENT,70
     AbilityIndex = 0 # Ruinous
 #-------------------------------
-[BUTLER,Sagan]
-Pokemon = MMUSHARNA,70
-    AbilityIndex = 0 # Slumbering Drake
-    Item = DRAGONGEM
-Pokemon = BOLTUND,70
-    AbilityIndex = 0 # Strong Jaw
-Pokemon = PASSIMIAN,70
-    AbilityIndex = 0 # Long Receiver
-Pokemon = MUDSDALE,70
-    AbilityIndex = 1 # Stamina
-    Item = LEFTOVERS
+[RICHCOUPLE,Diana and Edward]
+Pokemon = MEOWSTIC,70
+    Moves = PSYCHICFANGS,HELPINGHAND,REFLECT,LIGHTSCREEN
+    AbilityIndex = 0 # Prankster
+    Item = LIGHTCLAY
+Pokemon = BEWEAR,70
+    Moves = BEARHUG,MEGAPUNCH,WIDEGUARD,MACHPUNCH
+    AbilityIndex = 0 # Intimidate
+Pokemon = NIBELONG,70
+    Moves = FAKEOUT,EARTHQUAKE,RETALIATE,DRAGONHAMMER
+    AbilityIndex = 1 # Fascinate
+    Item = LUMBERAXE
+Pokemon = AROMATISSE,70
+    Moves = MISTBURST,SLUDGEWAVE
+    AbilityIndex = 0 # Fashionable
+    Item = CHOICESPECS,FAIRYGEM
 #-------------------------------
 [MAID,Wendy]
 Pokemon = FLAREON,70
+    Moves = IGNITE,BULKUP,PROPELLANT,FLAREUP
     AbilityIndex = 1 # Ignition Cycle
-Pokemon = MILTANK,70
-    AbilityIndex = 0 # Thick Fat
-    Item = ROCKYHELMET
-Pokemon = VANILLUXE,70
-    AbilityIndex = 0 # Extra Scoop
+    Item = LEFTOVERS
+Pokemon = GASTRODON,70
+    Moves = SILTSURGE,EARTHPOWER,RECOVER,DISSOLUTION
+    AbilityIndex = 1 # Water Absorb
+Pokemon = POLIWRATH,70
+    Moves = CROSSCHOP,LIQUIDATION,NERVEBLOCK,ENCORE
+    AbilityIndex = 0 # Counter Flow
 Pokemon = DRIFBLIM,70
+    Moves = HEATWAVE,COLDFRONT,GHOULISHGALE,SMOLDERRAVE
     AbilityIndex = 0 # Unburden
     Item = SITRUSBERRY
 #-------------------------------
-[RICHCOUPLE,Diana and Edward]
-Pokemon = KLEAVOR,70
-    AbilityIndex = 0 # Swordplay
-Pokemon = LIEPARD,70
-    AbilityIndex = 0 # Dauntless
-    Item = LIGHTCLAY
-Pokemon = ORANGURU,70
-    AbilityIndex = 1 # Telepathy
-Pokemon = AROMATISSE,70
-    AbilityIndex = 0 # Fashionable
-    Item = CHOICESPECS,SHELLBELL
-#-------------------------------
-[SUSPICIOUSMAN,Tommaso]
-Pokemon = NIDOQUEEN,70
-    AbilityIndex = 0 # Rugged Scales
-    Item = PASSHOBERRY
-Pokemon = MACHAMP,70
-    AbilityIndex = 1 # No Guard
-Pokemon = HYPNO,70
-    AbilityIndex = 1 # Knuckleduster
-Pokemon = DEDENNE,70
-    AbilityIndex = 0 # Cheek Pouch
-    Item = SITRUSBERRY
+[BUTLER,Sagan]
+Pokemon = MMUSHARNA,70
+    Moves = MINDWARP,DRAGONPULSE,DIAMONDFORCE
+    AbilityIndex = 1 # Fatigued
+    Item = CHESTOBERRY
+Pokemon = PORYGONZ,70
+    Moves = TRIATTACK,DISCHARGE,HEX,NUMB
+    AbilityIndex = 1 # Shaky Code
+Pokemon = INCINEROAR,70
+    Moves = SUBMISSION,KNOCKOFF,BLAZEKICK,BULKUP
+    AbilityIndex = 0 # Intimidate
+Pokemon = MUDSDALE,70
+    Moves = STABILIZE,EARTHQUAKE,SUPERPOWER,HEAVYSLAM
+    AbilityIndex = 1 # Stamina
+    Item = LEFTOVERS
 #-------------------------------
 [BURGLAR,Martino]
 Pokemon = NINETALES,70
+    Moves = FLEURCANNON,WARDPRESS,CRIMSONSTORM,FIREBLAST
     AbilityIndex = 0 # Cursed Tail
     Item = ASSAULTVEST
 Pokemon = METAGROSS,70
-    AbilityIndex = 0 # Brute Force
+    Moves = HEAVYSLAM,ELECTROSLASH,BULLETPUNCH,OMNISCIENTBLOW
+    AbilityIndex = 1 # Optimized Alloy
 Pokemon = WEEZING,70
-    AbilityIndex = 1 # Fumigate
+    Moves = EXPLOSION,MIASMA,COLDFRONT,POISONGAS
+    AbilityIndex = 0 # Neutralizing Gas
     Item = LEFTOVERS
-Pokemon = RELICANTH,70
-    AbilityIndex = 0 # Trench Carver
+Pokemon = KINGDRA,70
+    Moves = MURKYFOG,DREAMDANCE,SCALD,GALLINGSPIT
+    AbilityIndex = 0 # Serene Grace
 #-------------------------------
 [CRIMINALTEAM,Gianna and Rocco]
+Policies = EQ_PROTECT
 Pokemon = HZOROARK,70
-    AbilityIndex = 1 # Mental Block
+    Moves = MALEFACTION,PHANTOMGATE,AURASPHERE,DETACHMENT
+    AbilityIndex = 0 # Illusion
+    Item = ENERGYLOCK
 Pokemon = CROBAT,70
+    Moves = PROTECT,VENOMORTAR,EXSANGUINATE,ACROBATICS
     AbilityIndex = 0 # Inner Focus
-    Item = CHOICEBAND
+    Item = SKILLHERB
 Pokemon = ELECTIVIRE,70
+    Moves = DISCHARGE,DRAINPUNCH,NUMB,BAR
     AbilityIndex = 1 # Adrenaline Rush
-    Item = LIECHIBERRY
-Pokemon = MRMIME,70
-    AbilityIndex = 0 # Barrier Maker
+    Item = ENERGYLOCK
+Pokemon = AGGRON,70
+    Moves = IRONHEAD,BEDROCKBREAKER
+    AbilityIndex = 1 # Motor Drive
+#-------------------------------
+[SUSPICIOUSMAN,Tommaso]
+Pokemon = NIDOQUEEN,70
+    Moves = POISONSPIKES,VENOSHOCK,EARTHPOWER,POISONGAS
+    AbilityIndex = 0 # Rugged Scales
+    Item = SITRUSBERRY
+Pokemon = TOXAPEX,70
+    Moves = VENOMGUARD,DRAGBENEATH,TRICKYTOXINS,POISONSPIKES
+    AbilityIndex = 0 # Noxious
+    Item = LEFTOVERS
+Pokemon = HYPNO,70
+    Moves = OMNISCIENTBLOW,DRAINPUNCH,ICEPUNCH,THUNDERPUNCH
+    AbilityIndex = 1 # Knuckleduster
+Pokemon = MANDIBUZZ,70
+    Moves = FOULPLAY,DIVEBOMB,TRICKYTOXINS,CULL
+    AbilityIndex = 0 # Impervious
 #-------------------------------
 [SPIRITGUARDIAN2,Sonya]
 Pokemon = CLAYDOL,70

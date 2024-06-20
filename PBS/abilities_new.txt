@@ -1061,7 +1061,7 @@ Flags = MoonglowSynergy
 #-------------------------------
 [MAESTRO]
 Name = Maestro
-Description = Doubles the speed of Sound-based moves.
+Description = The user's Speed is doubled while using Sound-based moves.
 #-------------------------------
 [MAGICSHIELD]
 Name = Magic Shield
@@ -1340,7 +1340,7 @@ Description = Special attacks against the Pokémon have a 30% chance to poison t
 #-------------------------------
 [POLARIZING]
 Name = Polarizing
-Description = Upon entry, creates a Quality Room for five turns, exaggerating type matchups.
+Description = Upon entry, creates a Polarized Room for five turns, exaggerating type matchups.
 #-------------------------------
 [POORCONDUCT]
 Name = Poor Conduct
@@ -1505,6 +1505,7 @@ Description = Upon entry, traps each opponent in a sand tomb for two turns.
 [SATURNALSKY]
 Name = Saturnal Sky
 Description = Changes the weather to Ring Eclipse, which heralds the Total Ring Eclipse. Lingers for 3 turns after leaving.
+Flags = EclipseSynergy
 #-------------------------------
 [SCALDINGSMOKE]
 Name = Scalding Smoke
@@ -1759,6 +1760,7 @@ Flags = MoldBreaking
 [STYGIANNIGHT]
 Name = Stygian Night
 Description = Changes the weather to Blood Moon, which heralds the Full Blood Moon. Lingers for 3 turns after leaving.
+Flags = MoonglowSynergy
 #-------------------------------
 [STYLISH]
 Name = Stylish
@@ -1816,7 +1818,7 @@ Flags = SunSynergy
 #-------------------------------
 [SWIFTSTOMPS]
 Name = Swift Stomps
-Description = Doubles the Speed of kicking moves.
+Description = The user's Speed is doubled while using kicking moves.
 #-------------------------------
 [SWORDPLAY]
 Name = Swordplay
@@ -1904,7 +1906,7 @@ Description = Foes whose stats are lowered by the Pokémon keep those lowered st
 #-------------------------------
 [TRENCHCARVER]
 Name = Trench Carver
-Description = Doubles the speed of recoil moves.
+Description = The user's Speed is doubled while using recoil moves.
 #-------------------------------
 [TUNNELMAKER]
 Name = Tunnel Maker

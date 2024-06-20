@@ -29,12 +29,10 @@ class PokeBattle_Move_UserFaintsExplosive < PokeBattle_Move
     def pbSelfKO(user)
         return if user.fainted?
 
-        if user.hasActiveAbility?(:SPINESPLODE)
-            if spikesCount > 0
-                @battle.pbShowAbilitySplash(user, :SPINESPLODE)
-                user.pbOpposingSide.incrementEffect(:Spikes, 2)
-                @battle.pbHideAbilitySplash(user)
-            end
+        if user.hasActiveAbility?(:SPINESPLODE) && !user.pbOpposingSide.effectAtMax?(:Spikes)
+            @battle.pbShowAbilitySplash(user, :SPINESPLODE)
+            user.pbOpposingSide.incrementEffect(:Spikes, 2)
+            @battle.pbHideAbilitySplash(user)
         end
 
         if user.bunkeringDown?

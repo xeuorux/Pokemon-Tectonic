@@ -46,12 +46,11 @@ def pbAvatarBattleCore(*args)
     respawnFollower = false
     for arg in args
         next unless arg.is_a?(Array)
-        for i in 0...arg.length / 2
-            species = arg[i * 2]
-            level = arg[i * 2 + 1]
-            avatarPokemon = generateAvatarPokemon(species, level)
-            foeParty.push(avatarPokemon)
-        end
+        species = arg[0]
+        level = arg[1]
+        version = arg[2] || 0
+        avatarPokemon = generateAvatarPokemon(species, level, version)
+        foeParty.push(avatarPokemon)
     end
     # Calculate who the trainers and their party are
     playerTrainers    = [$Trainer]
@@ -100,9 +99,10 @@ end
 SUMMON_MIN_HEALTH_LEVEL = 15
 SUMMON_MAX_HEALTH_LEVEL = 50
 
-def generateAvatarPokemon(species, level, summon = false)
+def generateAvatarPokemon(species, level, version = 0, summon = false)
     newPokemon = pbGenerateWildPokemon(species, level, true, true)
     newPokemon.boss = true
+    newPokemon.bossVersion = version
     setAvatarProperties(newPokemon)
 
     # Add the form name to the end of their name
@@ -185,53 +185,74 @@ def pbGetAvatarBattleBGM(_wildParty) # wildParty is an array of Pokémon objects
     return ret
 end
 
+def CBSASP(overwriteExisting = true)
+    createBossSpritesAllSpeciesForms(overwriteExisting)
+end
+
 def createBossSpritesAllSpeciesForms(overwriteExisting = true)
     # Find all genders/forms of all species that have an avatar
-    avatarSpeciesIDs = []
-    GameData::Avatar.each do |avatar_data|
-        avatarSpeciesIDs.push(avatar_data.species)
-    end
-    GameData::Species.each do |sp|
-        createBossGraphics(sp.id.to_s, 1.5, 1.5, overwriteExisting) if avatarSpeciesIDs.include?(sp.species)
+    GameData::Avatar.each do |avatarData|
+        createBossGraphics(avatarData, overwriteExisting: overwriteExisting)
     end
 end
 
-def createBossGraphics(speciesForm, overworldMult = 1.5, battleMult = 1.5, overwriteExisting = true)
-    overworldPath = "Graphics/Characters/zAvatar_"
-    battlePath = "Graphics/Pokemon/Avatars/"
+def createBossGraphics(avatarData, overworldMult = 1.5, battleMult = 1.5, overwriteExisting: true)
+    avatarData = GameData::Avatar.get(avatarData) if avatarData.is_a?(Symbol)
 
-    # Create the overworld sprite
+    # Create the overworld sprite for the base form
     PBDebug.logonerr do
-        filePath = overworldPath + speciesForm.to_s + ".png"
-        existingFile = pbResolveBitmap(filePath)
+        bossOWFilePath = GameData::Avatar.ow_sprite_filename(avatarData.species, avatarData.version, avatarData.form)
+        existingFile = pbResolveBitmap(bossOWFilePath)
 
-        if existingFile.nil? || overwriteExisting
-            overworldBitmap = AnimatedBitmap.new("Graphics/Characters/Followers/" + speciesForm.to_s)
-            copiedOverworldBitmap = overworldBitmap.copy
+        if overwriteExisting || existingFile.nil?
+            echoln("Creating overworld sprite")
+            speciesOverworldBitmap = GameData::Species.ow_sprite_bitmap(avatarData.species, avatarData.form)
+            copiedOverworldBitmap = speciesOverworldBitmap.copy
             bossifiedOverworld = bossify(copiedOverworldBitmap.bitmap, overworldMult)
-            bossifiedOverworld.to_file(filePath)
+            bossifiedOverworld.to_file(bossOWFilePath)
+        else
+            echoln("Overworld sprite already exists")
         end
     end
 
-    # Create the in battle sprites
-    PBDebug.logonerr do
-        {
-            "Graphics/Pokemon/Front/" => ".png",
-            "Graphics/Pokemon/Back/" => "_back.png",
-        }.each do |folder, suffix|
-            avatarData = GameData::Avatar.get_from_species_form(speciesForm.to_sym)
+    # Create all in-battle sprites
+    for form in 0..99
+        dataKey = form > 0 ? sprintf("%s_%d", avatarData.species.to_s, form).to_sym : avatarData.species
+        break unless GameData::Species::DATA.key?(dataKey)
 
+        echoln("Checking the boss graphics for species #{avatarData.species} (#{form})")
+
+        # Create the in battle sprites
+        PBDebug.logonerr do
+            baseSpeciesFrontFilePath = GameData::Species.front_sprite_filename(avatarData.species, form)
+            baseSpeciesBackFilePath = GameData::Species.back_sprite_filename(avatarData.species, form)
+            
             avatarData.getListOfPhaseTypes.each_with_index do |type, index|
-                filePath = battlePath + speciesForm.to_s
-                filePath += "_" + type.to_s.downcase if type
-                filePath += suffix
-                existingFile = pbResolveBitmap(filePath)
+                # Front sprites
+                bossFrontFilePath = GameData::Avatar.front_sprite_filename(avatarData.species, avatarData.version, form, type)
 
-                next unless existingFile.nil? || overwriteExisting
-                battlebitmap = AnimatedBitmap.new(folder + speciesForm.to_s)
-                copiedBattleBitmap = battlebitmap.copy
-                bossifiedBattle = bossify(copiedBattleBitmap.bitmap, battleMult, type, index)
-                bossifiedBattle.to_file(filePath)
+                if overwriteExisting || !pbResolveBitmap(bossFrontFilePath)
+                    echoln("Creating front sprite")
+                    battlebitmap = AnimatedBitmap.new(baseSpeciesFrontFilePath)
+                    copiedBattleBitmap = battlebitmap.copy
+                    bossifiedBattle = bossify(copiedBattleBitmap.bitmap, battleMult, type, index)
+                    bossifiedBattle.to_file(bossFrontFilePath)
+                else
+                    echoln("Front sprite already exists")
+                end
+
+                # Back sprites
+                bossBackFilePath = GameData::Avatar.back_sprite_filename(avatarData.species, avatarData.version, form, type)
+
+                if overwriteExisting || !pbResolveBitmap(bossBackFilePath)
+                    echoln("Creating back sprite")
+                    battlebitmap = AnimatedBitmap.new(baseSpeciesBackFilePath)
+                    copiedBattleBitmap = battlebitmap.copy
+                    bossifiedBattle = bossify(copiedBattleBitmap.bitmap, battleMult, type, index)
+                    bossifiedBattle.to_file(bossBackFilePath)
+                else
+                    echoln("Back sprite already exists")
+                end
             end
         end
     end
@@ -456,12 +477,14 @@ class PokeBattle_Battle
             next unless @battlers[idxBattler].nil?
             pbCreateBattler(idxBattler)
             scene.pbCreatePokemonSprite(idxBattler)
+            scene.createMoveOutcomePredictor(@battlers[idxBattler],idxBattler) if idxBattler.odd?
         end
 
         remakeDataBoxes
 
         # Create a dummy sprite for the avatar
         scene.pbCreatePokemonSprite(battlerIndexNew)
+        scene.createMoveOutcomePredictor(newBattler,battlerIndexNew) if battlerIndexNew.odd?
 
         # Recreate all the battle sprites on that side of the field
         remakeBattleSpritesOnSide(sideIndex)
@@ -480,14 +503,14 @@ class PokeBattle_Battle
         pbCalculatePriority
     end
 
-    def summonAvatarBattler(species, level, sideIndex = 1)
+    def summonAvatarBattler(species, level, version = 0, sideIndex = 1)
         unless roomToSummon?(sideIndex)
             echoln("Cannot create new avatar battler on side #{sideIndex} since the side is already full!")
             return false
         end
 
         # Create the new pokemon
-        newPokemon = generateAvatarPokemon(species, level, true)
+        newPokemon = generateAvatarPokemon(species, level, version, true)
 
         # Put the pokemon into the party
         partyIndex = pbParty(sideIndex).length

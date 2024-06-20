@@ -84,23 +84,6 @@ class PokeBattle_Move_HitTwoToFiveTimes < PokeBattle_Move
 end
 
 #===============================================================================
-# This move is physical if user's Attack is higher than its Special Attack (Multi-Strike)
-# It hits between 2-5 times in a row.
-#===============================================================================
-class PokeBattle_Move_HitTwoToFiveTimesUsesBetterAttackingStat < PokeBattle_Move
-    include RandomHitable
-
-    def initialize(battle, move)
-        super
-        @calculated_category = 1
-    end
-
-    def calculateCategory(user, _targets)
-        return selectBestCategory(user)
-    end
-end
-
-#===============================================================================
 # Attacks two to five times. Gains money for each hit. (Sacred Lots)
 #===============================================================================
 class PokeBattle_Move_HitTwoToFiveTimesAddMoneyGainedFromBattleEachHit < PokeBattle_Move_HitTwoToFiveTimes

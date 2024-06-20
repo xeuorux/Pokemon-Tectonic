@@ -98,6 +98,7 @@ class PokemonPokedexInfo_Scene
 
         @scroll = -1
         @horizontalScroll = 0
+        @showShinyForms = $PokemonGlobal.dex_forms_shows_shinies || false
         @title = "Undefined"
         pbSetSystemFont(@sprites["overlay"].bitmap)
         pbUpdateDummyPokemon
@@ -120,23 +121,18 @@ class PokemonPokedexInfo_Scene
     end
 
     def pbUpdateDummyPokemon
-        @species = @dexlist[@index][0]
+        @species = @dexlist[@index][:species]
         @gender, @form = $Trainer.pokedex.last_form_seen(@species)
         species_data = GameData::Species.get_species_form(@species, @form)
         @title = species_data.form_name ? "#{species_data.name} (#{species_data.form_name})" : species_data.name
         @sprites["infosprite"].setSpeciesBitmap(@species, @gender, @form)
-        forceShiny = debugControl
-        @sprites["formfront"].setSpeciesBitmap(@species, @gender, @form, forceShiny) if @sprites["formfront"]
+        @sprites["formfront"].setSpeciesBitmap(@species, @gender, @form, @showShinyForms) if @sprites["formfront"]
         if @sprites["formback"]
-            if forceShiny
-                @sprites["formback"].setSpeciesBitmapHueShifted(@species, @gender, @form, forceShiny)
-            else
-                @sprites["formback"].setSpeciesBitmap(@species, @gender, @form, false, false, true)
-                @sprites["formback"].y = 256
-                @sprites["formback"].y += species_data.back_sprite_y * 2
-            end
+            @sprites["formback"].setSpeciesBitmap(@species, @gender, @form, @showShinyForms, false, true)
+            @sprites["formback"].y = 256
+            @sprites["formback"].y += species_data.back_sprite_y * 2
         end
-        @sprites["formicon"].pbSetParams(@species, @gender, @form) if @sprites["formicon"]
+        @sprites["formicon"].pbSetParams(@species, @gender, @form, @showShinyForms) if @sprites["formicon"]
     end
 
     def pbGetAvailableForms
@@ -205,8 +201,7 @@ sp.form) && !Settings::DEX_SHOWS_ALL_FORMS
         xPos = 240
         # shift x position so that double digit page number does not overlap with the right facing arrow
         xPos -= 14 if @page >= 10
-        drawFormattedTextEx(overlay, xPos, 2, Graphics.width, "<outln2>[#{page}/#{pageTitles.length - 1}]</outln2>", base,
-  shadow, 18)
+        drawFormattedTextEx(overlay, xPos, 2, Graphics.width, "<outln2>[#{page}/#{pageTitles.length - 1}]</outln2>", base, shadow, 18)
         # Draw species name on top right	
         speciesName = GameData::Species.get(@species).name
 		speciesName = "#{speciesName} #{@form + 1}" if @multiple_forms
@@ -241,16 +236,14 @@ sp.form) && !Settings::DEX_SHOWS_ALL_FORMS
         species_data = GameData::Species.get_species_form(@species, @form)
         # Write various bits of text
         indexText = "???"
-        if @dexlist[@index][4] > 0
-            indexNumber = @dexlist[@index][4]
-            indexNumber -= 1 if @dexlist[@index][5]
+        if @dexlist[@index][:index] > 0
+            indexNumber = @dexlist[@index][:index]
+            indexNumber -= 1 if @dexlist[@index][:shift]
             indexText = format("%03d", indexNumber)
         end
         textpos = [
             [_INTL("{1}{2} {3}", indexText, " ", species_data.name),
              246, 36, 0, Color.new(248, 248, 248), Color.new(0, 0, 0),],
-            [_INTL("Height"), 314, 152, 0, base, shadow],
-            [_INTL("Weight"), 314, 184, 0, base, shadow],
         ]
         if $Trainer.owned?(@species)
             # Show the owned icon
@@ -258,28 +251,9 @@ sp.form) && !Settings::DEX_SHOWS_ALL_FORMS
         end
         # Write the category
         textpos.push([_INTL("{1} Pokémon", species_data.category), 246, 68, 0, base, shadow])
-        # Write the height and weight
-        height = species_data.height
-        weight = species_data.weight
-        if System.user_language[3..4] == "US" # If the user is in the United States
-            inches = (height / 0.254).round
-            pounds = (weight / 0.45359).round
-            textpos.push([_ISPRINTF("{1:d}'{2:02d}\"", inches / 12, inches % 12), 460, 152, 1, base, shadow])
-            textpos.push([_ISPRINTF("{1:4.1f} lbs.", pounds / 10.0), 494, 184, 1, base, shadow])
-        else
-            textpos.push([_ISPRINTF("{1:.1f} m", height / 10.0), 470, 152, 1, base, shadow])
-            textpos.push([_ISPRINTF("{1:.1f} kg", weight / 10.0), 482, 184, 1, base, shadow])
-        end
         # Draw the Pokédex entry text
         drawTextEx(overlay, 40, 244, Graphics.width - (40 * 2), 4, # overlay, x, y, width, num lines
                  species_data.pokedex_entry, base, shadow)
-        # Draw the footprint
-        footprintfile = GameData::Species.footprint_filename(@species, @form)
-        if footprintfile
-            footprint = RPG::Cache.load_bitmap("", footprintfile)
-            overlay.blt(226, 138, footprint, footprint.rect)
-            footprint.dispose
-        end
         # Draw the type icon(s)
         type1 = species_data.type1
         type2 = species_data.type2
@@ -287,8 +261,19 @@ sp.form) && !Settings::DEX_SHOWS_ALL_FORMS
         type2_number = GameData::Type.get(type2).id_number
         type1rect = Rect.new(0, type1_number * 32, 96, 32)
         type2rect = Rect.new(0, type2_number * 32, 96, 32)
-        overlay.blt(296, 120, @typebitmap.bitmap, type1rect)
-        overlay.blt(396, 120, @typebitmap.bitmap, type2rect) if type1 != type2
+        overlay.blt(232, 120, @typebitmap.bitmap, type1rect)
+        overlay.blt(332, 120, @typebitmap.bitmap, type2rect) if type1 != type2
+        # Write the tribes
+        if species_data.tribes.length == 0
+            tribesDescription = _INTL("None")
+        else
+            tribes = []
+            species_data.tribes.each do |tribe|
+                tribes.push(getTribeName(tribe))
+            end
+            tribesDescription = tribes.join(", ")
+        end
+        drawTextEx(overlay, 266, 166, 224, 2, tribesDescription, base, shadow)
         # Draw all text
         pbDrawTextPositions(overlay, textpos)
         # Draw all images
@@ -382,9 +367,10 @@ sp.form) && !Settings::DEX_SHOWS_ALL_FORMS
         overlay = @sprites["overlay"].bitmap
         formname = ""
         base   = MessageConfig.pbDefaultTextMainColor
+        faded  = MessageConfig.pbDefaultFadedTextColor
         shadow = MessageConfig.pbDefaultTextShadowColor
-        baseStatNames = [_INTL("HP"), _INTL("Attack"), _INTL("Defense"), _INTL("Sp. Atk"), _INTL("Sp. Def"), _INTL("Speed")]
-        otherStatNames = [_INTL("Gender Rate"), _INTL("Growth Rate"), _INTL("Catch Dif."), _INTL("Exp. Grant"), _INTL("PEHP / SEHP")]
+        baseStatNames = [_INTL("HP"), _INTL("Attack"), _INTL("Defense"),  _INTL("PEHP"), _INTL("Sp. Atk"), _INTL("Sp. Def"), _INTL("SEHP"), _INTL("Speed")]
+        otherStatNames = [_INTL("Height"), _INTL("Weight"), _INTL("Gender Rate"), _INTL("Catch Dif."), _INTL("Exp. Grant")]
 
         # Everything else
 
@@ -395,63 +381,63 @@ sp.form) && !Settings::DEX_SHOWS_ALL_FORMS
             available = @available
         end
 
-        tribes = []
-        for i in available
-            next unless i[2] == @form
-            speciesFormData = GameData::Species.get_species_form(@species, @form)
-            speciesFormData.tribes.each do |tribe|
-                tribes.push(getTribeName(tribe))
-            end
-        end
-        tribesDescription = tribes.join(", ")
-
         for i in @available
             next unless i[2] == @form
             formname = i[0]
             fSpecies = GameData::Species.get_species_form(@species, i[2])
 
-            yBase = 96
+            yBase = 62
 
             # Base stats
-            drawTextEx(overlay, 30, yBase - 40, 450, 1, _INTL("Base Stats"), base, shadow)
-            baseStats = fSpecies.base_stats
+            baseStatHash = fSpecies.base_stats
+            baseStats = []
             total = 0
-            baseStats.each_with_index do |stat, index|
+
+            baseStatHash.each_with_index do |stat, index|
                 next unless stat
                 statValue = stat[1]
                 total += statValue
-                # Draw stat line
-                drawTextEx(overlay, 30, yBase + 32 * index, 450, 1, baseStatNames[index], base, shadow)
-                statString = statValue.to_s
-                prevos = fSpecies.get_prevolutions
-                if $DEBUG && prevos.length == 1
-                    prevoSpeciesData = GameData::Species.get(prevos[0][0])
-                    statSym = prevoSpeciesData.base_stats.keys[index]
-                    prevoSpeciesStatValue = prevoSpeciesData.base_stats[statSym]
-                    statUpgradePercentage = (((statValue.to_f / prevoSpeciesStatValue.to_f) - 1) * 100).floor
-                    statString += " (#{statUpgradePercentage})" if Input.press?(Input::CTRL)
-                end
-                drawTextEx(overlay, 136, yBase + 32 * index, 450, 1, statString, base, shadow)
+                baseStats.push(statValue)
             end
-            drawTextEx(overlay, 30, yBase + 32 * 6 + 14, 450, 1, _INTL("Total"), base, shadow)
-            drawTextEx(overlay, 136, yBase + 32 * 6 + 14, 450, 1, total.to_s, base, shadow)
+
+            baseStats.insert(3, fSpecies.physical_ehp)
+            baseStats.insert(6, fSpecies.special_ehp)
+
+            baseStats.each_with_index do |statValue, index|
+                color = base
+                color = faded if [3, 6].include?(index)
+
+                # Draw stat line
+                statNameX = 30
+                statNameX += 24 if [3, 6].include?(index)
+                drawTextEx(overlay, statNameX, yBase + 32 * index, 450, 1, baseStatNames[index], color, shadow)
+                drawTextEx(overlay, 136, yBase + 32 * index, 450, 1, statValue.to_s, color, shadow)
+            end
+            drawTextEx(overlay, 30, yBase + 32 * 8 + 16, 450, 1, _INTL("Total"), base, shadow)
+            drawTextEx(overlay, 136, yBase + 32 * 8 + 16, 450, 1, total.to_s, base, shadow)
+
             # Other stats
-            drawTextEx(overlay, 250, yBase - 40, 450, 1, _INTL("Other Stats"), base, shadow)
             otherStats = []
+
+            height = fSpecies.height
+            weight = fSpecies.weight
+            if System.user_language[3..4] == "US" # If the user is in the United States
+                inches = (height / 0.254).round
+                pounds = (weight / 0.45359).round
+                otherStats.push(_ISPRINTF("{1:d}'{2:02d}\"", inches / 12, inches % 12))
+                otherStats.push(_ISPRINTF("{1:4.1f} lbs.", pounds / 10.0))
+            else
+                otherStats.push(_ISPRINTF("{1:.1f} m", height / 10.0))
+                otherStats.push(_ISPRINTF("{1:.1f} kg", weight / 10.0))
+            end
+
             genderRate = fSpecies.gender_ratio
             genderRateString = genderRateToString(genderRate)
             otherStats.push(genderRateString)
-            growthRate = fSpecies.growth_rate
-            growthRateString = growthRateToString(growthRate)
-            otherStats.push(growthRateString)
 
             otherStats.push(catchDifficultyFromRareness(fSpecies.catch_rate))
 
             otherStats.push(fSpecies.base_exp)
-
-            physEHP = fSpecies.physical_ehp
-            specEHP = fSpecies.special_ehp
-            otherStats.push(physEHP.to_s + " / " + specEHP.to_s)
 
             otherStats.each_with_index do |stat, index|
                 next unless stat
@@ -459,27 +445,42 @@ sp.form) && !Settings::DEX_SHOWS_ALL_FORMS
                 drawTextEx(overlay, 230, yBase + 32 * index, 450, 1, otherStatNames[index], base, shadow)
                 drawTextEx(overlay, 378, yBase + 32 * index, 450, 1, stat.to_s, base, shadow)
             end
-            items = []
-            items.push(fSpecies.wild_item_common) if fSpecies.wild_item_common
-            items.push(fSpecies.wild_item_uncommon) if fSpecies.wild_item_uncommon
-            items.push(fSpecies.wild_item_rare) if fSpecies.wild_item_rare
-            items.uniq!
-            items.compact!
-            itemsString = ""
-            if items.length > 0
-                items.each_with_index do |item, index|
+            
+            # Calculate wild item rarities
+            itemsAndRarities = {}
+            if fSpecies.wild_item_common
+                itemsAndRarities[fSpecies.wild_item_common] = WILD_ITEM_CHANCE_COMMON
+            end
+
+            if fSpecies.wild_item_uncommon
+                if itemsAndRarities.key?(fSpecies.wild_item_uncommon)
+                    itemsAndRarities[fSpecies.wild_item_uncommon] += WILD_ITEM_CHANCE_UNCOMMON
+                else
+                    itemsAndRarities[fSpecies.wild_item_uncommon] = WILD_ITEM_CHANCE_UNCOMMON
+                end
+            end
+
+            if fSpecies.wild_item_rare
+                if itemsAndRarities.key?(fSpecies.wild_item_rare)
+                    itemsAndRarities[fSpecies.wild_item_rare] += WILD_ITEM_CHANCE_RARE
+                else
+                    itemsAndRarities[fSpecies.wild_item_rare] = WILD_ITEM_CHANCE_RARE
+                end
+            end
+            
+            if itemsAndRarities.length > 0
+                itemsString = ""
+                itemsAndRarities.each_with_index do |(item, chance), index|
                     name = GameData::Item.get(item).name
-                    itemsString += name
-                    itemsString += ", " if index < items.length - 1
+                    itemsString += _INTL("{1}: {2}%\n",name, chance)
+                    # itemsString += ", " if index < itemsAndRarities.keys.length - 1
                 end
             else
                 itemsString = _INTL("None")
             end
-            drawTextEx(overlay, 230, yBase + 174, 450, 1, _INTL("Wild Items"), base, shadow)
-            drawTextEx(overlay, 230, yBase + 203, 450, 1, itemsString, base, shadow)
-
-            drawTextEx(overlay, 30, yBase + 244, 450, 1, _INTL("Tribes:"), base, shadow)
-            drawTextEx(overlay, 120, yBase + 244, 800, 1, tribesDescription, base, shadow)
+            wildItemsY = yBase + 142 + 32
+            drawTextEx(overlay, 230, wildItemsY, 250, 1, _INTL("Wild Items"), base, shadow)
+            drawTextEx(overlay, 230, wildItemsY + 36, 250, 3, itemsString, base, shadow)
         end
     end
 
@@ -779,12 +780,12 @@ sp.form) && !Settings::DEX_SHOWS_ALL_FORMS
             compatibleMoves.compact!
             compatiblePhysMoves = compatibleMoves.select do |move|
                 movaData = GameData::Move.get(move)
-                next movaData.category == 0
+                next movaData.category == 0 || movaData.category == 3
             end
             compatiblePhysMoves.sort_by!{|moveID| GameData::Move.get(moveID).name}
             compatibleSpecMoves = compatibleMoves.select do |move|
                 movaData = GameData::Move.get(move)
-                next movaData.category == 1
+                next movaData.category == 1 || movaData.category == 3
             end
             compatibleSpecMoves.sort_by!{|moveID| GameData::Move.get(moveID).name}
             compatibleStatusMoves = compatibleMoves.select do |move|
@@ -1068,10 +1069,18 @@ sp.form) && !Settings::DEX_SHOWS_ALL_FORMS
                 break
             end
         end
+        shinyFormTextLeftOffset = 160
         textpos = [
-            [GameData::Species.get(@species).name, Graphics.width / 2, Graphics.height - 94, 2, base, shadow],
-            [formname, Graphics.width / 2, Graphics.height - 62, 2, base, shadow],
+            [GameData::Species.get(@species).name, Graphics.width / 2 - 68, Graphics.height - 94, 2, base, shadow],
+            [formname, Graphics.width / 2 - 68, Graphics.height - 62, 2, base, shadow],
         ]
+        if @showShinyForms
+            textpos.push([_INTL("SPECIAL/D to"), Graphics.width - shinyFormTextLeftOffset, Graphics.height - 94, 0, base, shadow])
+            textpos.push([_INTL("hide shinies"), Graphics.width - shinyFormTextLeftOffset, Graphics.height - 62, 0, base, shadow])
+        else
+            textpos.push([_INTL("SPECIAL/D to"), Graphics.width - shinyFormTextLeftOffset, Graphics.height - 94, 0, base, shadow])
+            textpos.push([_INTL("show shinies"), Graphics.width - shinyFormTextLeftOffset, Graphics.height - 62, 0, base, shadow])
+        end
         # Draw all text
         pbDrawTextPositions(overlay, textpos)
     end
@@ -1080,7 +1089,7 @@ sp.form) && !Settings::DEX_SHOWS_ALL_FORMS
         newindex = @index
         while newindex > 0
             newindex -= 1
-            if !isLegendary(@dexlist[newindex][0]) || $Trainer.seen?(@dexlist[newindex][0])
+            if !isLegendary(@dexlist[newindex][:species]) || $Trainer.seen?(@dexlist[newindex][:species])
                 @index = newindex
                 break
             end
@@ -1091,7 +1100,7 @@ sp.form) && !Settings::DEX_SHOWS_ALL_FORMS
         newindex = @index
         while newindex < @dexlist.length - 1
             newindex += 1
-            if !isLegendary(@dexlist[newindex][0]) || $Trainer.seen?(@dexlist[newindex][0])
+            if !isLegendary(@dexlist[newindex][:species]) || $Trainer.seen?(@dexlist[newindex][:species])
                 @index = newindex
                 break
             end
@@ -1250,13 +1259,12 @@ sp.form) && !Settings::DEX_SHOWS_ALL_FORMS
             coordinateY += 34
 
             # Use count
-            drawTextEx(overlay, xLeft, coordinateY, 450, 1, _INTL("Use count: #{@dexlist[@index][16]}, #{@dexlist[@index][17]}"), base,
-    shadow)
+            useCount = @speciesUseData[entry[:species]]
+            drawTextEx(overlay, xLeft, coordinateY, 450, 1, _INTL("Use count: #{useCount[0]}, #{useCount[1]}"), base, shadow)
             coordinateY += 32
 
             # Earliest level accessible
-            drawTextEx(overlay, xLeft, coordinateY, 450, 1, _INTL("Earliest level: #{fSpecies.earliest_available}"), base,
-              shadow)
+            drawTextEx(overlay, xLeft, coordinateY, 450, 1, _INTL("Earliest level: #{fSpecies.earliest_available}"), base, shadow)
             coordinateY += 32
 
             # Speed tier
@@ -1381,7 +1389,7 @@ sp.form) && !Settings::DEX_SHOWS_ALL_FORMS
                     else
                         pbPlayBuzzerSE
                     end
-                elsif @page == 10
+                elsif @page == 10 # Forms
                     if @available.length > 1
                         pbPlayDecisionSE
                         pbChooseForm
@@ -1478,6 +1486,14 @@ sp.form) && !Settings::DEX_SHOWS_ALL_FORMS
                 dorefresh = true if moveToPage(9)
             elsif Input.pressex?(:NUMBER_0)
                 dorefresh = true if moveToPage(10)
+            elsif Input.trigger?(Input::SPECIAL)
+                if @page == 10
+                    pbPlayDecisionSE
+                    @showShinyForms = !@showShinyForms
+                    $PokemonGlobal.dex_forms_shows_shinies = @showShinyForms
+                    pbUpdateDummyPokemon
+                    dorefresh = true
+                end
             elsif Input.press?(Input::ACTION) && debugControl
                 @scroll = -1
                 pbPlayCursorSE

@@ -401,6 +401,27 @@ GameData::BattleEffect.register_effect(:Battler, {
 })
 
 GameData::BattleEffect.register_effect(:Battler, {
+    :id => :MirrorHerbConsumed,
+    :real_name => "Mirror Herb Consumed",
+    :type => :Position,
+    :resets_battlers_eot => true,
+    :sub_effects => [:MirrorHerbCopiedStats]
+})
+
+GameData::BattleEffect.register_effect(:Battler, {
+    :id => :MirrorHerbCopiedStats,
+    :real_name => "Mirror Herb Copied Stats",
+    :type => :Hash,
+})
+
+GameData::BattleEffect.register_effect(:Battler, {
+    :id => :ParadoxHerbConsumed,
+    :type => :Position,
+    :real_name => "Paradox Herb Consumed",
+    :resets_battlers_eot => true,
+})
+
+GameData::BattleEffect.register_effect(:Battler, {
     :id => :Grudge,
     :real_name => "Grudge",
     :resets_battlers_sot => true,
@@ -1185,7 +1206,7 @@ GameData::BattleEffect.register_effect(:Battler, {
         when :FIRESPIN, :CRIMSONSTORM       then battle.pbCommonAnimation("FireSpin", battler)
         when :MAGMASTORM                    then battle.pbCommonAnimation("MagmaStorm", battler)
         when :SANDTOMB, :SANDVORTEX         then battle.pbCommonAnimation("SandTomb", battler)
-        when :INFESTATION                   then battle.pbCommonAnimation("Infestation", battler)
+        when :INFESTATION, :TERRORSWARM     then battle.pbCommonAnimation("Infestation", battler)
         when :SNAPTRAP                      then battle.pbCommonAnimation("SnapTrap", battler)
         when :THUNDERCAGE                   then battle.pbCommonAnimation("ThunderCage", battler)
         when :WHIRLPOOL, :MAELSTROM         then battle.pbCommonAnimation("Whirlpool", battler)
@@ -1782,7 +1803,8 @@ GameData::BattleEffect.register_effect(:Battler, {
     :real_name => "Indestructible",
     :type => :Type,
     :apply_proc => proc do |battle, battler, value|
-        battle.pbDisplay(_INTL("{1} is now immune to #{value}-type!", battler.pbThis(true)))
+        typeName = GameData::Type.get(value).name
+        battle.pbDisplay(_INTL("{1} is now immune to {2}-type!", battler.pbThis, typeName))
     end,
 })
 

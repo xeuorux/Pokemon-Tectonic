@@ -34,12 +34,7 @@ class PokemonMartAdapter
     end
   
     def getDisplayName(item)
-      item_name = getName(item)
-      if GameData::Item.get(item).is_machine?
-        machine = GameData::Item.get(item).move
-        item_name = _INTL("{1} {2}", item_name, GameData::Move.get(machine).name)
-      end
-      return item_name
+      return getName(item)
     end
   
     def getDescription(item)

@@ -1,13 +1,17 @@
 def openSingleDexScreen(pokemon)
 	if pokemon.respond_to?('species')
 		$Trainer.pokedex.register_last_seen(pokemon)
-		pokemon = pokemon.species
+		species = pokemon.species
+	else
+		speciesData = GameData::Species.get(pokemon)
+		species = speciesData.species
+		$Trainer.pokedex.set_last_form_seen(speciesData.species, 0, speciesData.form)
 	end
 	ret = nil
 	pbFadeOutIn {
 		scene = PokemonPokedexInfo_Scene.new
 		screen = PokemonPokedexInfoScreen.new(scene)
-		ret = screen.pbStartSceneSingle(pokemon)
+		ret = screen.pbStartSceneSingle(species)
 	}
 	if ret.is_a?(Symbol)
 		echoln("Opening single dex screen from hyperlink to: #{ret}")
@@ -52,7 +56,7 @@ def describeEvolutionMethod(method,parameter=0)
     when :TradeItem; return _INTL("when traded holding an {1}", GameData::Item.get(parameter).name)
 	when :HasInParty; return _INTL("when leveled up while a {1} is also in the party", GameData::Species.get(parameter).name)
 	when :Shedinja; return _INTL("also if you have an empty pokeball and party slot")
-    when :Originize; return _INTL("when a {1} is used on it at level {2}", GameData::Item.get(:ORIGINORE).name, parameter)
+    when :Originize; return _INTL("at level {1} if you spend an {2}", parameter, GameData::Item.get(:ORIGINORE).name)
 	end
     return _INTL("via a method the programmer was too lazy to describe")
 end

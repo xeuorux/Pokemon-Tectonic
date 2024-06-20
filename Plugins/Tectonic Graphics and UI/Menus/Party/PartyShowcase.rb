@@ -3,7 +3,7 @@ class PokemonPartyShowcase_Scene
     base   = Color.new(80, 80, 88)
     shadow = Color.new(160, 160, 168)
 
-    def initialize(trainer,snapshot = false,snapShotName=nil,fastSnapshot=false)
+    def initialize(trainer,snapshot: false,snapShotName: nil,fastSnapshot: false, flags: [])
         base = MessageConfig::DARK_TEXT_MAIN_COLOR
         shadow = MessageConfig::DARK_TEXT_SHADOW_COLOR
 
@@ -26,40 +26,64 @@ class PokemonPartyShowcase_Scene
             renderShowcaseInfo(i,@party[i])
         end
 
+        bottomBarY = Graphics.height - 20
+
         # Draw tribal bonus info at the bottom
+        pbDrawImagePositions(@overlay,[["Graphics/Pictures/icon_tribal_bonus",4,bottomBarY-4]])
+
         trainer.tribalBonus.updateTribeCount
         bonusesList = trainer.tribalBonus.getActiveBonusesList(false)
         tribesTotal = GameData::Tribe::DATA.keys.count
         fullDescription = ""
-        if bonusesList.length <= 3
+        if bonusesList.empty?
+            fullDescription = _INTL("None")
+        elsif bonusesList.length == tribesTotal
+            fullDescription = _INTL("All")
+        elsif bonusesList.length <= 2
             bonusesList.each_with_index do |label,index|
                 fullDescription += "," unless index == 0
                 fullDescription += label
             end
-        elsif bonusesList.length == tribesTotal
-            fullDescription = _INTL("All")
         else
-            fullDescription = _INTL("#{bonusesList.length.to_s} bonuses")
+            fullDescription = bonusesList.length.to_s
         end
-        if fullDescription.blank?
-            fullDescription = _INTL("No Tribal Bonuses")
-        else
-            fullDescription = _INTL("Tribes: #{fullDescription}") 
-        end
-        bottomBarY = Graphics.height - 20
-        drawFormattedTextEx(@overlay, 8, bottomBarY, Graphics.width, fullDescription, base, shadow)
+
+        drawFormattedTextEx(@overlay, 32, bottomBarY, Graphics.width, fullDescription, base, shadow)
 
         # Show player name
-        playerName = "<ar>#{trainer.name}</ar>"
-        drawFormattedTextEx(@overlay, Graphics.width - 168, bottomBarY, 160, playerName, base, shadow)
+        unless $PokemonSystem.name_on_showcases == 1
+            playerName = "<ar>#{trainer.name}</ar>"
+            drawFormattedTextEx(@overlay, Graphics.width - 164, bottomBarY, 160, playerName, base, shadow)
+        end
 
         # Show game version
         settingsLabel = "v#{Settings::GAME_VERSION}"
-        drawFormattedTextEx(@overlay, Graphics.width / 2 + 64, bottomBarY, 160, settingsLabel, base, shadow)
+        settingsLabel += "-dev" if Settings::DEV_VERSION
+        drawFormattedTextEx(@overlay, Graphics.width / 2 + 60, bottomBarY, 160, settingsLabel, base, shadow)
+
+        numIcons = 0
+        numIcons += 1 if Randomizer.on?
+        numIcons += 1 if flags.include?("cursed")
+        numIcons += 1 if flags.include?("cursed")
 
         # Show randomizer icon
+        distanceBetweenIcons = 28
+        bottomIconX = Graphics.width / 2 - (numIcons * distanceBetweenIcons) / 2
         if Randomizer.on?
-            pbDrawImagePositions(@overlay,[["Graphics/Pictures/Party/icon_randomizer",Graphics.width / 2 + 120,bottomBarY-4,0,0,32,32]])
+            pbDrawImagePositions(@overlay,[["Graphics/Pictures/Party/icon_randomizer",bottomIconX,bottomBarY-4]])
+            bottomIconX += distanceBetweenIcons
+        end
+
+        # Show cursed icon
+        if flags.include?("cursed")
+            pbDrawImagePositions(@overlay,[["Graphics/Pictures/Party/icon_cursed",bottomIconX+2,bottomBarY-4]])
+            bottomIconX += distanceBetweenIcons
+        end
+
+        # Show perfect icon
+        if flags.include?("perfect")
+            pbDrawImagePositions(@overlay,[["Graphics/Pictures/Party/icon_perfect",bottomIconX,bottomBarY-4]])
+            bottomIconX += distanceBetweenIcons
         end
 
         pbFadeInAndShow(@sprites) { pbUpdate }
@@ -203,6 +227,6 @@ def createVisualTrainerDocumentation
         screenshotName = "#{trainerData.trainer_type} #{trainerData.name}"
         screenshotName += " (#{trainerData.version})" if trainerData.version > 0
         screenshotName += " "
-        PokemonPartyShowcase_Scene.new(trainer,true,screenshotName,true)
+        PokemonPartyShowcase_Scene.new(trainer,snapshot: true,snapShotName: screenshotName,fastSnapshot: true)
     end
 end

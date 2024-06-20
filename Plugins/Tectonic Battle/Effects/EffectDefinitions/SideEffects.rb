@@ -322,10 +322,18 @@ GameData::BattleEffect.register_effect(:Side, {
 teamName))
         end
     end,
-    :disable_proc => proc do |battle, _side, teamName|
+    :disable_proc => proc do |battle, side, teamName|
         teamName[0] = teamName[0].downcase
         battle.pbDisplay(_INTL("The Spikes around {1}'s feet were swept aside!", teamName))
+        side.applyEffect(:SpikesRemovedThisTurn)
     end,
+})
+
+GameData::BattleEffect.register_effect(:Side, {
+    :id => :SpikesRemovedThisTurn,
+    :real_name => "Spikes Removed",
+    :info_displayed => false,
+    :resets_eor => true,
 })
 
 GameData::BattleEffect.register_effect(:Side, {

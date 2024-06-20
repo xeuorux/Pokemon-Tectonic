@@ -175,6 +175,12 @@ class PokeBattle_Move_TransformTargetPreEvolution < PokeBattle_Move
             end
             return true
         end
+        if target.boss?
+            if show_message
+                @battle.pbDisplay(_INTL("But it failed, since #{target.pbThis(true)} is an avatar!"))
+            end
+            return true
+        end
         unless target.species_data
             if show_message
                 @battle.pbDisplay(_INTL("But it failed, since #{target.pbThis(true)} doesn't have a defined species somehow!"))
@@ -695,8 +701,8 @@ class PokeBattle_Move_KyogreSummonAvatarLuvdiscRemoraid < PokeBattle_Move
 
     def pbEffectGeneral(user)
         @battle.pbDisplay(_INTL("Fish are drawn to the field!", user.pbThis))
-        @battle.summonAvatarBattler(:LUVDISC, user.level, user.index % 2)
-        @battle.summonAvatarBattler(:REMORAID, user.level, user.index % 2)
+        @battle.summonAvatarBattler(:LUVDISC, user.level, 0, user.index % 2)
+        @battle.summonAvatarBattler(:REMORAID, user.level, 0, user.index % 2)
         @battle.pbSwapBattlers(user.index, user.index + 2)
     end
 end

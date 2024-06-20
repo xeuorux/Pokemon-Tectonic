@@ -8,14 +8,14 @@ class PokemonBag_Scene
       pbUpdateSpriteHash(@sprites)
     end
   
-    def pbStartScene(bag,choosing=false,filterproc=nil,resetpocket=true)
+    def pbStartScene(bag,choosing=false,filterproc=nil,resetpocket=true,startingPocket=nil)
       @viewport = Viewport.new(0,0,Graphics.width,Graphics.height)
       @viewport.z = 99999
       @bag        = bag
       @choosing   = choosing
       @filterproc = filterproc
       pbRefreshFilter
-      lastpocket = @bag.lastpocket
+      lastpocket = startingPocket || @bag.lastpocket
       numfilledpockets = @bag.pockets.length-1
       if @choosing
         numfilledpockets = 0
@@ -28,7 +28,7 @@ class PokemonBag_Scene
             numfilledpockets += 1 if @bag.pockets[i].length>0
           end
         end
-        lastpocket = (resetpocket) ? 1 : @bag.lastpocket
+        lastpocket = (resetpocket) ? 1 : (startingPocket || @bag.lastpocket)
         if (@filterlist && @filterlist[lastpocket].length==0) ||
            (!@filterlist && @bag.pockets[lastpocket].length==0)
           for i in 1...@bag.pockets.length
@@ -282,7 +282,7 @@ class PokemonBag_Scene
                 end
               elsif Input.trigger?(Input::ACTION)   # Start switching the selected item
                 if !@choosing
-                  if thispocket.length>1 && itemwindow.index<thispocket.length &&
+                  if thispocket.length>1 && itemwindow.index < thispocket.length &&
                       $PokemonSystem.bag_sorting == 0
                     itemwindow.sorting = true
                     swapinitialpos = itemwindow.index

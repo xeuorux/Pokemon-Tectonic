@@ -421,7 +421,7 @@ end
 # Changes Category based on which will deal more damage. (Everhone)
 # Raises the stat that wasn't selected to be used.
 #===============================================================================
-class PokeBattle_Move_UsesBetterAttackingStatRaisesUserOtherAttackingStat < PokeBattle_Move
+class PokeBattle_Move_CategoryDependsOnHigherDamageRaisesUserOtherAttackingStat < PokeBattle_Move
     def initialize(battle, move)
         super
         @calculated_category = 1

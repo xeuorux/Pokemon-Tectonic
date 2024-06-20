@@ -31,6 +31,8 @@ class PokeBattle_Move_FailsIfTargetActed < PokeBattle_Move
     def getEffectScore(user, target)
         return -10
     end
+
+    def shouldShade?(user, target); return false; end
 end
 
 #===============================================================================

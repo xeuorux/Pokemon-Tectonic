@@ -61,7 +61,7 @@ ItemHandlers::UseOnPokemon.add(:REVEALGLASS,proc { |item,pkmn,scene|
     end
     # Fusing
     if pkmn.fused.nil?
-      chosen = scene.pbChoosePokemon(_INTL("Fuse with which Pokémon?"),scene)
+      chosen = scene.pbChoosePokemon(_INTL("Fuse with which Pokémon?"))
       next false if chosen<0
       poke2 = $Trainer.party[chosen]
       if pkmn==poke2
@@ -114,7 +114,7 @@ ItemHandlers::UseOnPokemon.add(:REVEALGLASS,proc { |item,pkmn,scene|
     end
     # Fusing
     if pkmn.fused.nil?
-      chosen = scene.pbChoosePokemon(_INTL("Fuse with which Pokémon?"),scene)
+      chosen = scene.pbChoosePokemon(_INTL("Fuse with which Pokémon?"))
       next false if chosen<0
       poke2 = $Trainer.party[chosen]
       if pkmn==poke2
@@ -163,7 +163,7 @@ ItemHandlers::UseOnPokemon.add(:REVEALGLASS,proc { |item,pkmn,scene|
     end
     # Fusing
     if pkmn.fused.nil?
-      chosen = scene.pbChoosePokemon(_INTL("Fuse with which Pokémon?"),scene)
+      chosen = scene.pbChoosePokemon(_INTL("Fuse with which Pokémon?"))
       next false if chosen<0
       poke2 = $Trainer.party[chosen]
       if pkmn==poke2

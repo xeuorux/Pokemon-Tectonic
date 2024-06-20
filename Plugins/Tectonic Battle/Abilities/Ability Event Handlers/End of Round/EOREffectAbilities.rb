@@ -230,6 +230,12 @@ NOXIOUS_DAMAGE_FRACTION = 1.0/12.0
 
 BattleHandlers::EOREffectAbility.add(:NOXIOUS,
   proc { |ability, battler, battle|
+    anyPresent = false
+    battler.eachOther do |b|
+      anyPresent = true
+      break
+    end
+    next unless anyPresent
     battler.showMyAbilitySplash(ability)
     battler.eachOther do |b|
       if b.takesIndirectDamage?(true)

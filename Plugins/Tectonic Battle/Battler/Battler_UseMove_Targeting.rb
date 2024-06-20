@@ -62,6 +62,8 @@ move, false, true)
             end
         when :RandomNearFoe
             pbAddTargetRandomFoe(targets, user, move)
+        when :ClosestNearFoe
+            pbAddTargetClosestFoe(targets, user, move)
         when :AllNearFoes
             @battle.eachOtherSideBattler(user.index) { |b| pbAddTarget(targets, user, b, move) }
         when :Foe, :Other
@@ -214,5 +216,20 @@ move, false, true)
             pbAddTarget(choices, user, b, nearOnly)
         end
         pbAddTarget(targets, user, choices[@battle.pbRandom(choices.length)], nearOnly) if choices.length > 0
+    end
+
+    def pbAddTargetClosestFoe(targets, user, _move, nearOnly = true)
+        choices = []
+        user.eachOpposing do |b|
+            next if nearOnly && !user.near?(b)
+            pbAddTarget(choices, user, b, nearOnly)
+        end
+        return if choices.empty?
+
+        opposingIndices = @battle.pbGetOpposingIndicesInOrder(user.index)
+        choices.sort_by! do |choice|
+            next opposingIndices.find_index(choice.index) * 100 - choice.index
+        end
+        pbAddTarget(targets, user, choices[0], nearOnly)
     end
 end

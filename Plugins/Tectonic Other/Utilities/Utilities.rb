@@ -542,12 +542,11 @@ DIR_SCREENSHOTS = "Screenshots"
 
 def pbScreenCapture(label = nil, show_message = false)
 	t = Time.now
-  	filestart = t.strftime("[%Y-%m-%d] %H_%M_%S.%L")
-	filestart = label + filestart if label
+    fileName = label || t.strftime("[%Y-%m-%d] %H_%M_%S.%L")
   	Dir.mkdir(DIR_SCREENSHOTS) if !safeExists?(DIR_SCREENSHOTS)
-  	capturefile = sprintf("%s/%s.png", DIR_SCREENSHOTS, filestart)
+  	capturefile = sprintf("%s/%s.png", DIR_SCREENSHOTS, fileName)
   	Graphics.screenshot(capturefile)
   	pbSEPlay("Pkmn exp full") if FileTest.audio_exist?("Audio/SE/Pkmn exp full")
 
-	pbMessage(_INTL("Screenshot saved to folder #{DIR_SCREENSHOTS}\1")) if show_message
+	pbMessage(_INTL("Screenshot saved to folder {1}\1",DIR_SCREENSHOTS)) if show_message
 end

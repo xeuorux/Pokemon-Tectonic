@@ -24,7 +24,8 @@ Destinygreatness<s>Gary Oak
 ali760<s>papper
 lichenprincess<s>Enigma
 princessroxie<s>Joaquín Arellano
-M1ntyFr3shD4n
+M1ntyFr3shD4n<s>pechapanda
+zombygoast
 
 {INSERTS_PLUGIN_CREDITS_DO_NOT_REMOVE}
 
@@ -85,9 +86,13 @@ Mademoiselle<s>PizzaSun
 izzyvicious<s>Wolfgang62
 Somersault
 
-Megs/Gigantamax Overworld Sprites
+Megas/Gigantamax Overworld Sprites
 Kidkatt<s>Larryturbo
 Princess-Phoenix<s>Sagedeoxys
+
+Other Overworld Sprites
+Larryturbo<s>Kyle Dove
+Azria<s>Twitch
 
 Reborn Icons
 smeargletail<s>ARandomTalkingBush

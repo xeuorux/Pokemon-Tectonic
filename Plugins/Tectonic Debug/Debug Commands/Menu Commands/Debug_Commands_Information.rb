@@ -311,8 +311,8 @@ DebugMenuCommands.register("setmetadata", {
     "name"        => _INTL("Create bossified graphics"),
     "description" => _INTL("Create bossified graphics for a given species"),
     "effect"      => proc { |sprites, viewport|
-    speciesGraphicName = pbEnterText(_INTL("Enter internal name."),0,20)
-    createBossGraphics(speciesGraphicName.to_sym)
+      speciesGraphicName = pbEnterText(_INTL("Enter internal name."),0,20)
+      createBossGraphics(speciesGraphicName.to_sym)
     }
   })
   

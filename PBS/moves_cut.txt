@@ -2248,3 +2248,87 @@ Target = NearFoe
 FunctionCode = Invalid
 Description = Summons eclipse for eight turns. The target becomes obsessed with the sky, trapping it.
 Animation = MIRACLEEYE
+#-------------------------------
+[WRINGOUT]
+Name = Wring Out
+Type = NORMAL
+Category = Special
+Power = 1
+Accuracy = 100
+TotalPP = 5
+Target = NearOther
+FunctionCode = Invalid
+Flags = CanProtect,CanMirrorMove
+Description = The user powerfully wrings the foe. The more HP the foe has, the greater this attack's power.
+#-------------------------------
+[CRUSHGRIP]
+Name = Crush Grip
+Type = NORMAL
+Category = Physical
+Power = 1
+Accuracy = 100
+TotalPP = 5
+Target = NearOther
+FunctionCode = Invalid
+Flags = CanProtect,CanMirrorMove
+Description = The target is crushed with great force. The attack is more powerful the more HP the target has left.
+#-------------------------------
+[PETALBLIZZARD]
+Name = Petal Blizzard
+Type = GRASS
+Category = Special
+Power = 90
+Accuracy = 100
+TotalPP = 12
+Target = AllNearOthers
+FunctionCode = Invalid
+Flags = CanProtect,CanMirrorMove,Wind
+Description = The user stirs up a violent petal blizzard and attacks everything around it.
+#-------------------------------
+[EGGBOMB]
+Name = Egg Bomb
+Type = NORMAL
+Category = Physical
+Power = 100
+Accuracy = 75
+TotalPP = 10
+Target = NearOther
+FunctionCode = Invalid
+Flags = CanProtect,CanMirrorMove
+Description = A large egg is hurled at the target with maximum force to inflict damage.
+#-------------------------------
+[FALSESWIPE]
+Name = False Swipe
+Type = NORMAL
+Category = Physical
+Power = 40
+Accuracy = 100
+TotalPP = 30
+Target = NearOther
+FunctionCode = Invalid
+Flags = CanProtect,CanMirrorMove
+Description = A restrained attack that prevents the target from fainting. The target is left with at least 1 HP.
+#-------------------------------
+[HARDFEELINGS]
+Name = Hard Feelings
+Type = NORMAL
+Category = Special
+Power = 70
+Accuracy = 100
+TotalPP = 12
+Target = NearOther
+FunctionCode = Invalid
+Flags = CanProtect,CanMirrorMove
+Description = Doubles its power if the user has a status condition. Ignores frostbite Sp. Atk reduction.
+#-------------------------------
+[RANSACK]
+Name = Ransack
+Type = NORMAL
+Category = Special
+Power = 60
+Accuracy = 100
+TotalPP = 20
+Target = NearOther
+FunctionCode = Invalid
+Flags = CanProtect,CanMirrorMove
+Description = The user skillfully blasts the target, then steals their item. Items stolen from wild Pokémon are stored.

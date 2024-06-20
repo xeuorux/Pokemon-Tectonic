@@ -13,7 +13,7 @@ module MoveInfoDisplay
       Color.new(248,248,248),Color.new(104,104,104) # White, more than 1/2 of total PP
    ]
 
-    def writeMoveInfoToInfoOverlay3x3(overlay,move)
+    def writeMoveInfoToInfoOverlay3x3(overlay,move,skipTutorial = false)
         moveData = GameData::Move.get(move.id)
 
         base   = darkMode? ? Color.new(248, 248, 248) : MessageConfig::DARK_TEXT_MAIN_COLOR
@@ -80,6 +80,8 @@ module MoveInfoDisplay
         # Accuracy
         if moveData.accuracy == 0
           textpos.push(["---", moveInfoColumn2ValueX, 0, 2, faded_base, shadow])
+        elsif
+          textpos.push(["#{moveData.accuracy}%", moveInfoColumn2ValueX, 0, 2, faded_base, shadow])
         else
           textpos.push(["#{moveData.accuracy}%", moveInfoColumn2ValueX, 0, 2, base, shadow])
         end
@@ -136,6 +138,8 @@ module MoveInfoDisplay
       
         # Draw selected move's description
         drawTextEx(overlay,8,96 + 12,500,4,moveData.description,base,shadow)
+
+        playAdaptiveMovesTutorial if moveData.category == 3 && !$PokemonGlobal.adaptiveMovesTutorialized && !skipTutorial
     end
 
     def writeMoveInfoToInfoOverlayBackwardsL(overlay,move,drawName=true)
@@ -215,9 +219,12 @@ module MoveInfoDisplay
       # Accuracy
       if moveData.accuracy == 0
           textpos.push(["---", column1ValueX, row2ValueY, 2, faded_base, shadow])
+      elsif moveData.accuracy == 100
+          textpos.push(["#{moveData.accuracy}%", column1ValueX, row2ValueY, 2, faded_base, shadow])
       else
           textpos.push(["#{moveData.accuracy}%", column1ValueX, row2ValueY, 2, base, shadow])
       end
+
       # Priority
       textpos.push([moveData.priorityLabel,column2ValueX, row2ValueY, 2, moveData.priority != 0 ? base : faded_base, shadow])
 
@@ -227,6 +234,7 @@ module MoveInfoDisplay
       # Row 3
       moveCategoryLabel = moveData.tagLabel || "---"
       textpos.push([moveCategoryLabel, column1ValueX, row3ValueY, 2, moveData.tagLabel ? base : faded_base, shadow])
+      
       # Targeting
       targetingData = GameData::Target.get(moveData.target)
       textpos.push([targetingData.get_targeting_label,column2LabelX + 4, row3ValueY, 0, base, shadow])
@@ -265,5 +273,7 @@ module MoveInfoDisplay
 
       # Draw selected move's description
       drawTextEx(overlay, descriptionX, descriptionY, 496, 3, moveData.description, base, shadow)
+
+      playAdaptiveMovesTutorial if moveData.category == 3 && !$PokemonGlobal.adaptiveMovesTutorialized
     end
 end

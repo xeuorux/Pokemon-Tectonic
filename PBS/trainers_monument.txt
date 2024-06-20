@@ -651,7 +651,7 @@ Pokemon = HAVALUGG,70
 #-------------------------------
 [NINJABOY,Drakus]
 Pokemon = TYPHLOSION,70
-    Moves = ERUPTION,FLASHCANNON,SHIMMERINGHEAT,DARKPULSE
+    Moves = ERUPTION,FLASHCANNON,SHIMMERINGHEAT,ADRENALASH
     AbilityIndex = 1 # Hubris
     Item = CHOICESCARF
     # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
@@ -1154,7 +1154,7 @@ Pokemon = PINCURCHIN,70
     # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
     EV = 20,20,10,0,20,0
 Pokemon = SERPERIOR,70
-    Moves = DRACOMETEOR,LEAFSTORM,HARDFEELINGS,THUNDERBOLT
+    Moves = DRACOMETEOR,LEAFSTORM,FACADE,THUNDERBOLT
     AbilityIndex = 1 # Eccentric
     Item = STRIKEVEST
     # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
@@ -1172,7 +1172,7 @@ Pokemon = HONCHKROW,70
     # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
     EV = 0,20,0,20,20,10
 Pokemon = FLOATZEL,70
-    Moves = GIGAIMPACT,EXTREMESPEED,HYPERJET,FACADE
+    Moves = GIGAIMPACT,SCYTHEKICK,HYPERJET,FACADE
     AbilityIndex = 0 # Moxie
     Item = ENERGYHERB
     # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
@@ -1211,7 +1211,7 @@ Pokemon = INFERNAPE,70
     EV = 0,20,10,20,20,0
 Pokemon = NIDOKING,70
     Moves = VOLATILETOXIN,EARTHSPLITTER,BEDROCKBREAKER,BRICKBREAK
-    AbilityIndex = 1 # Poison Point
+    AbilityIndex = 1 # Stressful
     Item = STRIKEVEST
     # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
     EV = 10,20,20,0,20,0
@@ -1325,7 +1325,7 @@ Pokemon = AEGISLASH,70
     # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
     EV = 20,20,10,0,20,0
 Pokemon = LINOONE,70
-    Moves = EXTREMESPEED,THROATCHOP,STOMPINGTANTRUM,BELLYDRUM
+    Moves = EXTREMESPEED,THROATCHOP,LEAFBLADE,BELLYDRUM
     AbilityIndex = 0 # Dire Diversion
     Item = POWERLOCK
     # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
@@ -1961,7 +1961,7 @@ Pokemon = FLORGES,70
 [SWIMMER_M4,Lars]
 Policies = RAIN_TEAM
 Pokemon = KLEFKI,70
-    Moves = RAIN,SPELLBIND,FOULPLAY,DEFOG
+    Moves = RAIN,SPELLBIND,SUGARBALL,DEFOG
     AbilityIndex = 0 # Prankster
     Item = DAMPROCK
     # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
@@ -2095,7 +2095,7 @@ Pokemon = MIMIKYU,70
     EV = 10,20,0,20,20,0
 Pokemon = AMUK,70
     Moves = PURSUIT,KNOCKOFF,POISONJAB,EXPLOSION
-    AbilityIndex = 1 # Gluttony
+    AbilityIndex = 1 # Poison Punish
     Item = CUSTAPBERRY
     # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
     EV = 10,20,20,0,20,0
@@ -2106,7 +2106,7 @@ Pokemon = TROPIUS,70
     # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
     EV = 10,20,10,0,20,10
 Pokemon = URSALUNA,70
-    Moves = TRAMPLE,GIGAIMPACT,CRUNCH,ADAMANTINEPRESS
+    Moves = EARTHQUAKE,GIGAIMPACT,CRUNCH,ADAMANTINEPRESS
     AbilityIndex = 1 # Tough
     Item = ENERGYHERB
     # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
@@ -2177,7 +2177,7 @@ Pokemon = APERSIAN,70
     # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
     EV = 20,10,20,0,10,0
 Pokemon = MINIOR,70
-    Moves = POWERGEM,COLDFRONT,METEORBEAM,PSYCHIC
+    Moves = POWERGEM,COLDFRONT,METEORBEAM,EARTHPOWER
     AbilityIndex = 0 # Shields Down
     Item = POWERHERB
     # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
@@ -2335,7 +2335,7 @@ Pokemon = WEAVILE,70
     # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
     EV = 10,20,0,20,20,0
 Pokemon = EMPOLEON,70
-    Moves = DEFOG,FLIPTURN,SLAY,ICEBEAM
+    Moves = DEFOG,FLIPTURN,BULLETTRAIN,ICEBEAM
     AbilityIndex = 1 # Self-Sufficient
     Item = LEFTOVERS
     # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
@@ -2488,7 +2488,7 @@ Pokemon = HEATMOR,70
     # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
     EV = 0,20,10,10,20,10
 Pokemon = GOURGEIST,70
-    Moves = CHARGEBEAM,PETALTEMPEST,SHADOWBALL,FLAMETHROWER
+    Moves = BLOSSOM,PETALTEMPEST,SHADOWBALL,FLAMETHROWER
     AbilityIndex = 1 # Unafraid
     Item = ENERGYLOCK
     # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def

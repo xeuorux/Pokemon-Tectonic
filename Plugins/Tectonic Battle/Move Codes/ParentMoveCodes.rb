@@ -84,7 +84,7 @@ class PokeBattle_Struggle < PokeBattle_Move
         @function   = "Struggle"
         @baseDamage = 50
         @type       = nil
-        @category   = 0
+        @category   = 3
         @accuracy   = 0
         @pp         = -1
         @target     = 0
@@ -94,11 +94,6 @@ class PokeBattle_Struggle < PokeBattle_Move
         @calcType   = nil
         @powerBoost = false
         @snatched   = false
-        @calculated_category = 0
-    end
-
-    def calculateCategory(user, _targets)
-        return selectBestCategory(user)
     end
 
     def pbEffectAfterAllHits(user, target)
@@ -1374,7 +1369,7 @@ class PokeBattle_HelpingMove < PokeBattle_Move
             return true
         end
         if target.effectActive?(@helpingEffect)
-            @battle.pbDisplay(_INTL("But it failed, since #{arget.pbThis(true)} is already being helped!")) if show_message
+            @battle.pbDisplay(_INTL("But it failed, since #{target.pbThis(true)} is already being helped!")) if show_message
             return true
         end
         return true if pbMoveFailedTargetAlreadyMoved?(target, show_message)
@@ -1486,7 +1481,7 @@ module EmpoweredMove
         if @battle.pbSideSize(user.index) < 3
             summonMessage ||= _INTL("#{user.pbThis} summons another Avatar!")
             @battle.pbDisplay(summonMessage)
-            @battle.summonAvatarBattler(species, user.level, user.index % 2)
+            @battle.summonAvatarBattler(species, user.level, 0, user.index % 2)
         end
     end
 end

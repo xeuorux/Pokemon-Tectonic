@@ -78,9 +78,10 @@ class PokeBattle_Scene
       createDataBoxes()
 
       @battle.battlers.each_with_index do |b,i|
-      next if !b
+        next if b.nil?
         pbCreatePokemonSprite(i)
-        createAvatarTargetReticle(b,i)
+        createAvatarTargetReticle(b,i) if i.even? # Only trainer pokemon
+        createMoveOutcomePredictor(b,i) if i.odd? # Only enemy pokemon
       end
 
       # Wild battle, so set up the Pokémon sprite(s) accordingly
@@ -271,10 +272,16 @@ class PokeBattle_Scene
       @sprites["shadow_#{idxBattler}"] = shaSprite
     end
 
+    def createMoveOutcomePredictor(battler,index)
+      predictor = MoveOutcomePredictor.new(battler,@battle.pbSideSize(index),@viewport)
+      predictor.visible = true
+      @sprites["move_outcome_#{index}"] = predictor
+    end
+
     def createAvatarTargetReticle(battler,index)
       cursor = AvatarTargetReticle.new(battler,@battle.pbSideSize(index),@viewport)
-      @sprites["aggro_cursor_#{index}"] = cursor
       cursor.visible = false
+      @sprites["aggro_cursor_#{index}"] = cursor
     end
 end
   
