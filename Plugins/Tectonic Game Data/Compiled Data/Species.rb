@@ -1376,6 +1376,7 @@ module GameData
         end
 
         def generationNumber
+            return @generation unless @generation == 0
             [0, 151, 251, 386, 493, 649, 721, 809, 898].each_with_index do |generationEndID, index|
                 return index if @id_number <= generationEndID
             end
