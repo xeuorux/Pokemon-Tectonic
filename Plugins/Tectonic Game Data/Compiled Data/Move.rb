@@ -64,6 +64,7 @@ module GameData
         @zmove              = hash[:zmove] || false
         @cut                = hash[:cut] || false
         @tectonic_new       = hash[:tectonic_new] || false
+        @defined_in_extension  = hash[:defined_in_extension]  || false
 
         @function_code = "Invalid" if @cut
       end
@@ -207,11 +208,17 @@ module Compiler
     move_descriptions = []
     move_hash         = nil
     idx = 0
-    ["PBS/moves.txt","PBS/moves_new.txt","PBS/moves_primeval.txt","PBS/moves_z.txt","PBS/moves_cut.txt"].each do |path|
+    baseFiles = ["PBS/moves.txt","PBS/moves_new.txt","PBS/moves_primeval.txt","PBS/moves_z.txt","PBS/moves_cut.txt"]
+    moveTextFiles = []
+    moveTextFiles.concat(baseFiles)
+    moveExtensions = Compiler.get_extensions("moves")
+    moveTextFiles.concat(moveExtensions)
+    moveTextFiles.each do |path|
       primeval = path == "PBS/moves_primeval.txt"
       cut = path == "PBS/moves_cut.txt"
-      tectonic_new = path == "PBS/moves_new.txt"
+      tectonic_new = (path == "PBS/moves_new.txt") || moveExtensions.include?(path)
       zmove = path == "PBS/moves_z.txt"
+      baseFile = baseFiles.include?(path)
 
       pbCompilerEachPreppedLine(path) { |line, line_no|
         idx += 1
@@ -236,12 +243,13 @@ module Compiler
           end
           # Construct move hash
           move_hash = {
-            :id_number        => idx,
-            :id               => move_id,
-            :primeval         => primeval,
-            :cut              => cut,
-            :tectonic_new     => tectonic_new,
-            :zmove            => zmove,
+            :id_number            => idx,
+            :id                   => move_id,
+            :primeval             => primeval,
+            :cut                  => cut,
+            :tectonic_new         => tectonic_new,
+            :zmove                => zmove,
+            :defined_in_extension => !baseFile,
           }
         elsif line[/^\s*(\w+)\s*=\s*(.*)\s*$/]   # XXX=YYY lines
           if !move_hash
@@ -302,35 +310,35 @@ module Compiler
   def write_moves
     File.open("PBS/moves_new.txt", "wb") { |f|
       add_PBS_header_to_file(f)
-      GameData::Move.each do |m|
+      GameData::Move.each_base do |m|
         next unless m.tectonic_new
         write_move(f,m)
       end
     }
     File.open("PBS/moves_cut.txt", "wb") { |f|
       add_PBS_header_to_file(f)
-      GameData::Move.each do |m|
+      GameData::Move.each_base do |m|
         next unless m.cut
         write_move(f,m)
       end
     }
     File.open("PBS/moves_z.txt", "wb") { |f|
       add_PBS_header_to_file(f)
-      GameData::Move.each do |m|
+      GameData::Move.each_base do |m|
         next unless m.zmove
         write_move(f,m)
       end
     }
     File.open("PBS/moves_primeval.txt", "wb") { |f|
       add_PBS_header_to_file(f)
-      GameData::Move.each do |m|
+      GameData::Move.each_base do |m|
         next unless m.primeval
         write_move(f,m)
       end
     }
     File.open("PBS/moves.txt", "wb") { |f|
       add_PBS_header_to_file(f)
-      GameData::Move.each do |m|
+      GameData::Move.each_base do |m|
         next unless m.canon_move?
         write_move(f,m)
       end

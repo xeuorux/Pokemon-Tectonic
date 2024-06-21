@@ -4,36 +4,43 @@ module Compiler
     #=============================================================================
     # Compile Regional Dexes
     #=============================================================================
-    def compile_regional_dexes(path = "PBS/regionaldexes.txt")
+    def compile_regional_dexes
         dex_lists = []
         section = nil
-        pbCompilerEachPreppedLine(path) { |line, line_no|
-        Graphics.update if line_no % 200 == 0
-        if line[/^\s*\[\s*(\d+)\s*\]\s*$/]
-            section = $~[1].to_i
-            if dex_lists[section]
-            raise _INTL("Dex list number {1} is defined at least twice.\r\n{2}", section, FileLineData.linereport)
+        baseFiles = ["PBS/regionaldexes.txt"]
+        regionalDexTextFiles = []
+        regionalDexTextFiles.concat(baseFiles)
+        regionalDexExtensions = Compiler.get_extensions("regionaldexes")
+        regionalDexTextFiles.concat(regionalDexExtensions)
+        regionalDexTextFiles.each do |path|
+          pbCompilerEachPreppedLine(path) { |line, line_no|
+            Graphics.update if line_no % 200 == 0
+            if line[/^\s*\[\s*(\d+)\s*\]\s*$/]
+                section = $~[1].to_i
+                if dex_lists[section]
+                  raise _INTL("Dex list number {1} is defined at least twice.\r\n{2}", section, FileLineData.linereport)
+                end
+                dex_lists[section] = []
+                pbSetWindowText(_INTL("Processing {1} section [{2}]", FileLineData.file, section))
+            else
+                raise _INTL("Expected a section at the beginning of the file.\r\n{1}", FileLineData.linereport) if !section
+                species_list = line.split(",")
+                for species in species_list
+                  next if !species || species.empty?
+                  s = parseSpecies(species)
+                  dex_lists[section].push(s)
+                end
             end
-            dex_lists[section] = []
-            pbSetWindowText(_INTL("Processing {1} section [{2}]", FileLineData.file, section))
-        else
-            raise _INTL("Expected a section at the beginning of the file.\r\n{1}", FileLineData.linereport) if !section
-            species_list = line.split(",")
-            for species in species_list
-            next if !species || species.empty?
-            s = parseSpecies(species)
-            dex_lists[section].push(s)
-            end
+          }
         end
-        }
         # Check for duplicate species in a Regional Dex
         dex_lists.each_with_index do |list, index|
-        unique_list = list.uniq
-        next if list == unique_list
-        list.each_with_index do |s, i|
-            next if unique_list[i] == s
-            raise _INTL("Dex list number {1} has species {2} listed twice.\r\n{3}", index, s, FileLineData.linereport)
-        end
+          unique_list = list.uniq
+          next if list == unique_list
+          list.each_with_index do |s, i|
+              next if unique_list[i] == s
+              raise _INTL("Dex list number {1} has species {2} listed twice.\r\n{3}", index, s, FileLineData.linereport)
+          end
         end
         # Save all data
         save_data(dex_lists, "Data/regional_dexes.dat")
@@ -55,6 +62,7 @@ module Compiler
           current_family = nil
           list.each do |species|
             next if !species
+            next if GameData::Species.get(species).defined_in_extension
             if current_family && current_family.include?(species)
               f.write(",") if comma
             else

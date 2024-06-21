@@ -9,11 +9,16 @@ module Compiler
         schema = GameData::Ability::SCHEMA
         ability_names        = []
         ability_descriptions = []
-        ["PBS/abilities.txt", "PBS/abilities_new.txt", "PBS/abilities_primeval.txt",
-         "PBS/abilities_cut.txt",].each do |path|
+        baseFiles = ["PBS/abilities.txt", "PBS/abilities_new.txt", "PBS/abilities_primeval.txt", "PBS/abilities_cut.txt"]
+        abilityTextFiles = []
+        abilityTextFiles.concat(baseFiles)
+        abilityExtensions = Compiler.get_extensions("abilities")
+        abilityTextFiles.concat(abilityExtensions)
+        abilityTextFiles.each do |path|
             cutAbility = path == "PBS/abilities_cut.txt"
             primevalAbility = path == "PBS/abilities_primeval.txt"
-            newAbility = ["PBS/abilities_new.txt", "PBS/abilities_primeval.txt"].include?(path)
+            newAbility = ["PBS/abilities_new.txt", "PBS/abilities_primeval.txt"].include?(path) || abilityExtensions.include?(path)
+            baseFile = baseFiles.include?(path)
             
             ability_hash         = nil
             pbCompilerEachPreppedLine(path) { |line, line_no|
@@ -27,10 +32,11 @@ module Compiler
                     end
                     # Construct ability hash
                     ability_hash = {
-                        :id             => ability_id,
-                        :cut            => cutAbility,
-                        :tectonic_new   => newAbility,
-                        :primeval       => primevalAbility,
+                        :id                     => ability_id,
+                        :cut                    => cutAbility,
+                        :tectonic_new           => newAbility,
+                        :primeval               => primevalAbility,
+                        :defined_in_extension   => !baseFile,
                     }
                 elsif line[/^\s*(\w+)\s*=\s*(.*)\s*$/]   # XXX=YYY lines
                     if !ability_hash
@@ -70,28 +76,28 @@ module Compiler
     def write_abilities
         File.open("PBS/abilities.txt", "wb") do |f|
             add_PBS_header_to_file(f)
-            GameData::Ability.each do |a|
+            GameData::Ability.each_base do |a|
                 next if a.cut || a.primeval || a.tectonic_new
                 write_ability(f, a)
             end
         end
         File.open("PBS/abilities_new.txt", "wb") do |f|
             add_PBS_header_to_file(f)
-            GameData::Ability.each do |a|
+            GameData::Ability.each_base do |a|
                 next unless a.tectonic_new && !a.primeval
                 write_ability(f, a)
             end
         end
         File.open("PBS/abilities_cut.txt", "wb") do |f|
             add_PBS_header_to_file(f)
-            GameData::Ability.each do |a|
+            GameData::Ability.each_base do |a|
                 next unless a.cut
                 write_ability(f, a)
             end
         end
         File.open("PBS/abilities_primeval.txt", "wb") do |f|
             add_PBS_header_to_file(f)
-            GameData::Ability.each do |a|
+            GameData::Ability.each_base do |a|
                 next unless a.primeval
                 write_ability(f, a)
             end
@@ -133,14 +139,15 @@ module GameData
         }
         
         def initialize(hash)
-            @id               = hash[:id]
-            @id_number        = hash[:id_number]    || -1
-            @real_name        = hash[:name]         || "Unnamed"
-            @real_description = hash[:description]  || "???"
-            @flags            = hash[:flags]       || []
-            @cut              = hash[:cut]          || false
-            @primeval         = hash[:primeval]     || false
-            @tectonic_new     = hash[:tectonic_new] || false
+            @id                     = hash[:id]
+            @id_number              = hash[:id_number]    || -1
+            @real_name              = hash[:name]         || "Unnamed"
+            @real_description       = hash[:description]  || "???"
+            @flags                  = hash[:flags]       || []
+            @cut                    = hash[:cut]          || false
+            @primeval               = hash[:primeval]     || false
+            @tectonic_new           = hash[:tectonic_new] || false
+            @defined_in_extension   = hash[:defined_in_extension] || false
 
             @flags.each do |flag|
                 if FLAG_INDEX.key?(flag)
