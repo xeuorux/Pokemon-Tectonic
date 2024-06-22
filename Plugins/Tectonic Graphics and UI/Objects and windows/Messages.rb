@@ -800,7 +800,6 @@ def pbMessageDisplay(msgwindow, message, letterbyletter = true, commandProc = ni
             pbUpdateSceneMap
             msgwindow.update
             facewindow.update
-			iconwindow.update
         end
     end
     facewindow.dispose if facewindow
