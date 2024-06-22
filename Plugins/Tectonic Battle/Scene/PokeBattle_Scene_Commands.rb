@@ -529,6 +529,16 @@ class PokeBattle_Scene
           next if b.index==idxBattler || !@battle.nearBattlers?(b,idxBattler)
           return b.index
         end
+      when :Ally
+        @battle.eachSameSideBattler(idxBattler) do |b|
+          next if b.index==idxBattler
+          next if b.fainted?
+          return b.index
+        end
+        @battle.eachSameSideBattler(idxBattler) do |b|
+          next if b.index==idxBattler
+          return b.index
+        end
       when :NearFoe, :NearOther
         indices = @battle.pbGetOpposingIndicesInOrder(idxBattler)
         indices.each { |i| return i if @battle.nearBattlers?(i,idxBattler) && !@battle.battlers[i].fainted? }

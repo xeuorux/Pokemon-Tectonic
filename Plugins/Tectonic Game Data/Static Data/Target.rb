@@ -258,6 +258,14 @@ GameData::Target.register({
 
 })
 
+GameData::Target.register({
+  :id               => :Ally,
+  :id_number        => 22,
+  :name             => _INTL("Ally"),
+  :num_targets      => 1,
+  :targets_ally     => true,
+})
+
 # Create the targeting category used for the Info button
 GameData::Target.register({
   :id               => :UserOrOther,

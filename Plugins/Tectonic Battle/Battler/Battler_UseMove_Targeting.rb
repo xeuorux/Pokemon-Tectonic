@@ -40,6 +40,9 @@ class PokeBattle_Battler
         when :NearAlly
             targetBattler = (preTarget >= 0) ? @battle.battlers[preTarget] : nil
             pbAddTargetRandomAlly(targets, user, move) unless pbAddTarget(targets, user, targetBattler, move)
+        when :Ally
+            targetBattler = (preTarget >= 0) ? @battle.battlers[preTarget] : nil
+            pbAddTargetRandomAlly(targets, user, move, false) unless pbAddTarget(targets, user, targetBattler, move)
         when :UserOrNearAlly
             targetBattler = (preTarget >= 0) ? @battle.battlers[preTarget] : nil
             pbAddTarget(targets, user, user, move, true, true) unless pbAddTarget(targets, user, targetBattler,

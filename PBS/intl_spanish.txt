@@ -46059,6 +46059,8 @@ User
 Usuario
 Near Ally
 Aliado Cercano
+Ally
+Aliado
 User or Near Ally
 Usuario o Aliado Cercano
 User and Allies
