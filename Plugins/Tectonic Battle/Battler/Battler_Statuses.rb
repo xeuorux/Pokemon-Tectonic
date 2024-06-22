@@ -240,7 +240,7 @@ immuneTypeRealName))
         return true
     end
 
-    def pbCanSynchronizeStatus?(newStatus, target)
+    def pbCanSynchronizeStatus?(newStatus, applicator)
         return false if fainted?
         # Trying to replace a status problem with another one
         return false unless hasSpotsForStatus
@@ -264,7 +264,7 @@ immuneTypeRealName))
             end
         end
         # Safeguard immunity
-        return false if pbOwnSide.effectActive?(:Safeguard) && !(target && target.hasActiveAbility?(:INFILTRATOR))
+        return false if pbOwnSide.effectActive?(:Safeguard) && !(applicator && applicator.hasActiveAbility?(:INFILTRATOR))
         return true
     end
 
