@@ -127,7 +127,7 @@ move, false, true)
         newTarget = nil
         strength = 100 # Lower strength takes priority
         priority.each do |b|
-            next if b.fainted? || b.effectActive?(:SkyDrop)
+            next if b.fainted?
             next if b.effects[:Spotlight] == 0 || b.effects[:Spotlight] >= strength
             next unless b.opposes?(user)
             next if nearOnly && !b.near?(user)
@@ -144,7 +144,7 @@ move, false, true)
         newTarget = nil
         strength = 100 # Lower strength takes priority
         priority.each do |b|
-            next if b.fainted? || b.effectActive?(:SkyDrop)
+            next if b.fainted?
             next if b.effects[:FollowMe] == 0 || b.effects[:FollowMe] >= strength
             next unless b.opposes?(user)
             next if nearOnly && !b.near?(user)

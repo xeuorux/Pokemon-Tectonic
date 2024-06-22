@@ -1039,6 +1039,7 @@ GameData::BattleEffect.register_effect(:Battler, {
     :id => :Spotlight,
     :real_name => "Spotlight",
     :type => :Integer,
+    :resets_eor	=> true,
     :apply_proc => proc do |battle, battler, _value|
         battle.pbDisplay(_INTL("{1} became the center of attention!", battler.pbThis))
     end,
@@ -1849,8 +1850,8 @@ GameData::BattleEffect.register_effect(:Battler, {
     :real_name => "King's Shield",
     :resets_eor	=> true,
     :protection_info => {
-        :hit_proc => proc do |user, _target, move, _battle|
-            user.tryLowerStat(:ATTACK, user, increment: 2) if move.physicalMove?
+        :hit_proc => proc do |user, target, move, _battle|
+            user.tryLowerStat(:ATTACK, target, increment: 2) if move.physicalMove?
         end,
         :does_negate_proc => proc do |_user, _target, move, _battle|
             move.damagingMove?
@@ -1863,8 +1864,8 @@ GameData::BattleEffect.register_effect(:Battler, {
     :real_name => "Shining Shell",
     :resets_eor	=> true,
     :protection_info => {
-        :hit_proc => proc do |user, _target, move, _battle|
-            user.tryLowerStat(:SPECIAL_ATTACK, user, increment: 2) if move.specialMove?
+        :hit_proc => proc do |user, target, move, _battle|
+            user.tryLowerStat(:SPECIAL_ATTACK, target, increment: 2) if move.specialMove?
         end,
         :does_negate_proc => proc do |_user, _target, move, _battle|
             move.damagingMove?
@@ -1877,8 +1878,8 @@ GameData::BattleEffect.register_effect(:Battler, {
     :real_name => "Obstruct",
     :resets_eor	=> true,
     :protection_info => {
-        :hit_proc => proc do |user, _target, move, _battle|
-            user.tryLowerStat(:DEFENSE, user, increment: 4) if move.physicalMove?
+        :hit_proc => proc do |user, target, move, _battle|
+            user.tryLowerStat(:DEFENSE, target, increment: 4) if move.physicalMove?
         end,
         :does_negate_proc => proc do |_user, _target, move, _battle|
             move.damagingMove?
@@ -1891,8 +1892,8 @@ GameData::BattleEffect.register_effect(:Battler, {
     :real_name => "Reverb Ward",
     :resets_eor	=> true,
     :protection_info => {
-        :hit_proc => proc do |user, _target, move, _battle|
-            user.tryLowerStat(:SPECIAL_DEFENSE, user, increment: 4) if move.specialMove?
+        :hit_proc => proc do |user, target, move, _battle|
+            user.tryLowerStat(:SPECIAL_DEFENSE, target, increment: 4) if move.specialMove?
         end,
         :does_negate_proc => proc do |_user, _target, move, _battle|
             move.damagingMove?
