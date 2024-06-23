@@ -2558,7 +2558,7 @@ Description = A small, versatile machine that can be used to repel wild Pokémon
 [CELLBOOSTER]
 Name = Cell Booster
 NamePlural = Cell Boosters
-Pocket = 7
+Pocket = 8
 Price = 0
 Flags = KeyItem
 Description = Condensed essence of life. Holding it allows you to run, bike, and surf faster.
