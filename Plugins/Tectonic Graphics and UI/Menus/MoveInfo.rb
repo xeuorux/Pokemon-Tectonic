@@ -80,7 +80,7 @@ module MoveInfoDisplay
         # Accuracy
         if moveData.accuracy == 0
           textpos.push(["---", moveInfoColumn2ValueX, 0, 2, faded_base, shadow])
-        elsif
+        elsif moveData.accuracy == 100
           textpos.push(["#{moveData.accuracy}%", moveInfoColumn2ValueX, 0, 2, faded_base, shadow])
         else
           textpos.push(["#{moveData.accuracy}%", moveInfoColumn2ValueX, 0, 2, base, shadow])
