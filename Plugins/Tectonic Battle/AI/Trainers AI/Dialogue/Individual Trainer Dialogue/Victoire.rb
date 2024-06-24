@@ -19,9 +19,6 @@ PokeBattle_AI::TrainerSendsOutPokemonDialogue.add(:VICTOIRE,
       if battler.battle.pbAbleCount(battler.index) == battler.battle.sideSizes[1] && !trainer_speaking.policyStates[:LastPokemonComment]
           dialogue_array.push("The night seems to be drawing to a close. One last dance?")
           trainer_speaking.policyStates[:LastPokemonComment] = true
-      elsif battler.species == :BLASTOISE && !trainer_speaking.policyStates[:BlastoiseComment]
-          dialogue_array.push("Were you expecting something else? By now you should know that deception is the foundation of all strategy.")
-          trainer_speaking.policyStates[:BlastoiseComment] = true
       end
       next dialogue_array
   }

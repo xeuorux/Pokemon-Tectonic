@@ -5,6 +5,7 @@ def useTarotAmulet()
 	else
 		pbMessage(_INTL("\\db[Items/TAROTAMULET]You turn the Tarot Amulet to its back face. It is now disabled.\\wtnp[60]"))
 	end
+	followerEventGraphicSwap(true)
 	return true
 end
 
@@ -20,3 +21,7 @@ ItemHandlers::ConfirmUseInField.add(:TAROTAMULET,proc { |item|
 ItemHandlers::UseInField.add(:TAROTAMULET,proc { |item|
 	next useTarotAmulet
 })
+
+def tarotAmuletActive?
+	return $PokemonGlobal.tarot_amulet_active || false
+end

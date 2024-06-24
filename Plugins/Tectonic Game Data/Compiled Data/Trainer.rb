@@ -36,6 +36,7 @@ module GameData
         "ExtraAbilities" 	=> [:extra_abilities,   "*s"],
         "Item"         		=> [:item,              "*e",   :Item],
         "ItemType"        => [:item_type,         "e",    :Type],
+        "ExtraItems" 	    => [:extra_items,   "*s"],
         "Gender"       		=> [:gender,            "e", { "M" => 0, "m" => 0, "Male" => 0, "male" => 0, "0" => 0,
                                                       "F" => 1, "f" => 1, "Female" => 1, "female" => 1, "1" => 1 }],
         "Nature"       		=> [:nature,            "e",    :Nature],
@@ -294,6 +295,12 @@ module GameData
                 end
               else
                 pkmn.setItems([itemInfo])
+              end
+            end
+
+            if pkmn_data[:extra_items]
+              pkmn_data[:extra_items].each do |extraItemID|
+                pkmn.giveItem(extraItemID)
               end
             end
 
@@ -669,6 +676,9 @@ module Compiler
         f.write(sprintf("    Item = %s\r\n", pkmn[:item])) 
       end
     end
+    if pkmn[:extra_items] && pkmn[:extra_items].length > 0 && (inheritingPkmn.nil? || pkmn[:extra_items] != inheritingPkmn[:extra_items])
+      f.write(sprintf("    ExtraItems = %s\r\n", pkmn[:extra_items].join(",")))
+    end 
     if pkmn[:item_type] && (inheritingPkmn.nil? || pkmn[:item_type] != inheritingPkmn[:item_type])
       f.write(sprintf("    ItemType = %s\r\n", pkmn[:item_type]))
     end

@@ -141,7 +141,7 @@ def showGymChoicesBenceZoe(notSureLabel="NotSure",basicTeamLabel="BasicTeam",dou
 end
 
 def doubleBattleBenceZoe()
-	return pbDoubleTrainerBattleCursed([[:LEADER_Zoe_2,"Zoé",0],[:LEADER_Bence_2,"Bence",0]],[[:LEADER_Zoe_2,"Zoé",1],[:LEADER_Bence_2,"Bence",1]])
+	return pbDoubleTrainerBattleCursed([[:LEADER_Zoe,"Zoé",0],[:LEADER_Bence,"Bence",0]],[[:LEADER_Zoe,"Zoé",1],[:LEADER_Bence,"Bence",1]])
 end
 
 def receivedGymRewardYet?(index)
