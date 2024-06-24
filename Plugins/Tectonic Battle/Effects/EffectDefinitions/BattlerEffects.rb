@@ -1351,12 +1351,6 @@ GameData::BattleEffect.register_effect(:Battler, {
 })
 
 GameData::BattleEffect.register_effect(:Battler, {
-    :id => :BallFetch,
-    :real_name => "BallFetch",
-    :type => :Item,
-})
-
-GameData::BattleEffect.register_effect(:Battler, {
     :id => :StatsDropped,
     :real_name => "Stats Dropped",
     :resets_eor	=> true,

@@ -9,8 +9,9 @@ SaveData.register_conversion(:misc_fixes_3_2_0) do
       itemBag = save_data[:bag]
   
       itemBag.pbChangeItem(:ZYGARDECUBE,:CELLBOOSTER)
-      itemBag.pbStoreItem(:RUSTEDCOMPASS) if globalSwitches[130]
+      itemBag.pbStoreItem(:RUSTEDCOMPASS) if globalSwitches[130] # Defeated Avatars of Zacian and Zamazenta
       itemBag.pbStoreItem(:SOOTHECHARM) if selfSwitches[[7,39,'A']]
+      itemBag.pbStoreItem(:RUSTEDCOMPASS) if globalSwitches[126] # Defeated Avatar of Zeraora
     end
   end
   

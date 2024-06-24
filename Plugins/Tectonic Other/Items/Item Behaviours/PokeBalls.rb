@@ -33,6 +33,6 @@ ItemHandlers::CanUseInBattle.addIf(proc { |item| GameData::Item.get(item).is_pok
 
 ItemHandlers::UseInBattle.addIf(proc { |item| GameData::Item.get(item).is_poke_ball? },   # Poké Balls
   proc { |item,battler,battle|
-    battle.pbThrowPokeBall(battler.index,item)
+    next battle.pbThrowPokeBall(battler.index,item)
   }
 )

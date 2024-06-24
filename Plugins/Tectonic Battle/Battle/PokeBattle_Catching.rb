@@ -217,6 +217,14 @@ class PokeBattle_Battle
             # Save the Pokémon for storage at the end of battle
             @caughtPokemon.push(pkmn)
         end
+        
+        if numShakes < 4 && !launching && pbHasItem?(:MAGNETICGAUNTLET) && @magneticGauntletBallsRecovered == 0
+            pbDisplayWithFormatting(_INTL("\\i[MAGNETICGAUNTLET]You recovered the lost {1} with the {2}!", getItemName(ball), getItemName(:MAGNETICGAUNTLET)))
+            @magneticGauntletBallsRecovered += 1
+            return false
+        else
+            return true
+        end
     end
 
     #=============================================================================

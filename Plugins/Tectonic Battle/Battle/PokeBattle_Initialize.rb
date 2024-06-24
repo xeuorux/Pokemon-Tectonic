@@ -63,6 +63,7 @@ class PokeBattle_Battle
     attr_accessor :playerAmbushing
     attr_accessor :foeAmbushing
     attr_reader   :statItemsAreMetagameRevealed
+    attr_reader   :magneticGauntletBallsRecovered
 
     #=============================================================================
     # Creating the battle class
@@ -154,6 +155,7 @@ class PokeBattle_Battle
         @turnsToSurvive = -1
         @playerAmbushing = false
         @foeAmbushing = false
+        @magneticGauntletBallsRecovered = 0
         if GameData::Move.exists?(:STRUGGLE)
             @struggle = PokeBattle_Move.from_pokemon_move(self, Pokemon::Move.new(:STRUGGLE))
         else

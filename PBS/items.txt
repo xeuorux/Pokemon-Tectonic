@@ -2572,6 +2572,14 @@ FieldUse = Direct
 Flags = KeyItem
 Description = A small compass. Relic of a heroic age. It can be used to find lootable items nearby.
 #-------------------------------
+[MAGNETICGAUNTLET]
+Name = Magnetic Gauntlet
+NamePlural = Magnetic Gauntlets
+Pocket = 8
+Price = 0
+Flags = KeyItem
+Description = An electrified glove with a claw-like shape. Allows you to recover the first failed Poké Ball thrown in a wild battle.
+#-------------------------------
 [HOUSEDEED1]
 Name = House Deed
 NamePlural = House Deeds

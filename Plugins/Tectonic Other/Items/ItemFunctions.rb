@@ -85,8 +85,10 @@ module ItemHandlers
     return CanUseInBattle.trigger(item,pkmn,battler,move,firstAction,battle,scene,showMessages)
   end
 
+  # Returns whether item was used
   def self.triggerUseInBattle(item,battler,battle)
-    UseInBattle.trigger(item,battler,battle)
+    return false if !UseInBattle[item]
+    return UseInBattle.trigger(item,battler,battle)
   end
 
   # Returns whether item was used

@@ -65,21 +65,6 @@ BattleHandlers::EOREffectAbility.add(:SPINTENSITY,
   }
 )
 
-BattleHandlers::EOREffectAbility.add(:BALLFETCH,
-  proc { |ability, battler, battle|
-      if battler.effectActive?(:BallFetch) && battler.item <= 0
-          ball = battler.effects[:BallFetch]
-          battler.item = ball
-          battler.setInitialItem(battler.item)
-
-          battle.pbShowAbilitySplash(battler, ability)
-          battle.pbDisplay(_INTL("{1} found a {2}!", battler.pbThis, PBItems.getName(ball)))
-          battler.disableEffect(:BallFetch)
-          battle.pbHideAbilitySplash(battler)
-      end
-  }
-)
-
 BattleHandlers::EOREffectAbility.add(:HUNGERSWITCH,
   proc { |ability, battler, battle|
       if battler.species == :MORPEKO
