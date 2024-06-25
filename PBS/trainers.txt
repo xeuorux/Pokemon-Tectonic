@@ -7671,38 +7671,52 @@ ExtendsVersion = 0
 Policies = CURSE_SELF_DEBUFFING
 #-------------------------------
 [BIRDKEEPER_M2,Vlasta]
-Pokemon = HAWLUCHA,70
-    AbilityIndex = 1 # Unburden
+Pokemon = SWELLOW,70
+    Moves = DIVEBOMB,FACADE,DOUBLEEDGE
+    AbilityIndex = 1 # Steep Flying
+    Item = CHOICEBAND
 Pokemon = VILEPLUME,70
-    AbilityIndex = 1 # Adapted
-Pokemon = BOUFFALANT,70
-    AbilityIndex = 0 # Reckless
+    Moves = SLUDGEWAVE,GIGADRAIN,SYNTHESIS,POISONIVY
+    AbilityIndex = 0 # Sickening
+Pokemon = BARBARACLE,70
+    Moves = LIQUIDATION,CROSSCHOP,ADAMANTINEPRESS
+    AbilityIndex = 1 # Steel Absorb
+    Item = STRIKEVEST
 Pokemon = EISCUE,70
-    AbilityIndex = 1 # Ice Block
+    Moves = SHIVERSQUIRM,HYPOTHERMIATE,GHOULISHGALE,BODYSLAM
+    AbilityIndex = 0 # Ice Block
 #-------------------------------
 [BIRDKEEPER_F,Danika]
 Pokemon = MMANDIBUZZ,70
+    Moves = WILLOWISP,SHIVER,GUNKSHOT,SIXFEETUNDER
     AbilityIndex = 1 # Toil and Trouble
-Pokemon = PYUKUMUKU,70
-    AbilityIndex = 0 # Innards Out
-    Item = BLACKHERB
+Pokemon = HSAMUROTT,70
+    Moves = CEASELESSEDGE,SWORDSDANCE,RAZORSHELL,SEVER
+    AbilityIndex = 1 # Swordplay
 Pokemon = EMBOAR,70
+    Moves = INFERNOIMPACT,VOLTTACKLE,SUBMISSION,NERVEBLOCK
     AbilityIndex = 0 # Roast
     Item = SITRUSBERRY
 Pokemon = DELIBIRD,70
+    Moves = PACKAGE,COLDFRONT,BAR,FRIGIDJEALOUSY
     AbilityIndex = 0 # Larder
+    Item = SITRUSBERRY
 #-------------------------------
 [COOLTRAINERSQUAD_2,Shouta and Kaede]
 Pokemon = TITANIX,70
+    Moves = WIDEGUARD,PULVERIZERCHORD,ZAPCANNON,SLAG
     AbilityIndex = 1 # Gravitas
-    Item = CUSTAPBERRY
-Pokemon = TOXICROAK,70
-    AbilityIndex = 0 # Prankster
-Pokemon = TANGROWTH,70
-    AbilityIndex = 1 # Tangling Hair
-    Item = LEFTOVERS
-Pokemon = MJELLICENT,70
-    AbilityIndex = 0 # Ruinous
+Pokemon = SHIFTRY,70
+    Moves = PROFANE,TEMPEST,TERADRAIN,FAKEOUT
+    AbilityIndex = 1 # Gale Force
+    Item = FOCUSSASH
+Pokemon = GYARADOS,70
+    Moves = RIPTIDE,REND,CRUNCH,AQUAJET
+    AbilityIndex = 0 # Intimidate
+    Item = SITRUSBERRY
+Pokemon = GENGAR,70
+    Moves = THUNDER,BLIZZARD,SMOGSTORM,SHADOWBALL
+    AbilityIndex = 1 # Break Through
 #-------------------------------
 [RICHCOUPLE,Diana and Edward]
 Pokemon = MEOWSTIC,70
