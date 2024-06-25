@@ -38112,10 +38112,10 @@ The enemy side is prevented from using items for the rest of the battle, and the
 El usuario no permite que el lado contrario use objetos por el resto del combate, y se vuelve tipo Siniestro.
 The user inflicts frostbite on all nearby foes. User becomes an Ice-type.
 El usuario hela al lado contrario, y se vuelve tipo Hielo.
-Attackers against the user suffer recoil for the rest of the battle. User becomes a Ghost-type.
+Attackers against the user suffer recoil for the rest of the battle. User becomes Ghost-type.
 Cualquier atacante sufrirá daño de retroceso por el resto del combate. El usuario se vuelve tipo Fantasma .
-The user restores 1/8th of its HP, TODO, and becomes Ground-type.
-El usuario recupera 1/8 de sus PS, TODO, y se vuelve tipo Tierra.
+The user restores 1/8th of its HP, but begins eroding. At the end of each turn, its defensive stats are lowered and its attacking stats are raised. User becomes Ground-type.
+El usuario recupera 1/8 de su HP, pero comienza a erosionarse. Al final de cada turno, sus stats defensivas disminuyen y sus stats de ataque aumentan. El usuario se vuelve tipo Tierra.
 The user harshly lowers each near foes best stat, and becomes Dragon-type.
 El usuario disminuye la mejor stats ofensiva del lado contrario, y se vuelve tipo Dragón.
 The user takes 50% less attack damage for 3 turns, and becomes Fighting-type.

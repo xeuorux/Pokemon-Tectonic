@@ -396,7 +396,7 @@ TotalPP = 1
 Target = User
 FunctionCode = EmpoweredDestinyBond
 Flags = Empowered
-Description = Attackers against the user suffer recoil for the rest of the battle. User becomes a Ghost-type.
+Description = Attackers against the user suffer recoil for the rest of the battle. User becomes Ghost-type.
 Animation = DESTINYBOND
 #-------------------------------
 [PRIMEVALSHOREUP]
@@ -408,7 +408,7 @@ TotalPP = 1
 Target = User
 FunctionCode = EmpoweredShoreUp
 Flags = Empowered
-Description = The user restores 1/8th of its HP, TODO, and becomes Ground-type.
+Description = The user restores 1/8th of its HP, but begins eroding. At the end of each turn, its defensive stats are lowered and its attacking stats are raised. User becomes Ground-type.
 Animation = SHOREUP
 #-------------------------------
 [PRIMEVALLOOMOVER]
