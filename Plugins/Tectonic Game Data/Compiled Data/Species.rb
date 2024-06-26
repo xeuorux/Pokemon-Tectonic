@@ -1391,5 +1391,29 @@ module GameData
             legalAbilities.compact!
             return legalAbilities
         end
+
+        def wildHeldItemsWithRarities
+            itemsAndRarities = {}
+            if @wild_item_common
+                itemsAndRarities[@wild_item_common] = WILD_ITEM_CHANCE_COMMON
+            end
+
+            if @abilities
+                if itemsAndRarities.key?(@wild_item_uncommon)
+                    itemsAndRarities[@wild_item_uncommon] += WILD_ITEM_CHANCE_UNCOMMON
+                else
+                    itemsAndRarities[@wild_item_uncommon] = WILD_ITEM_CHANCE_UNCOMMON
+                end
+            end
+
+            if @wild_item_rare
+                if itemsAndRarities.key?(@wild_item_rare)
+                    itemsAndRarities[@wild_item_rare] += WILD_ITEM_CHANCE_RARE
+                else
+                    itemsAndRarities[@wild_item_rare] = WILD_ITEM_CHANCE_RARE
+                end
+            end
+            return itemsAndRarities
+        end
     end
 end

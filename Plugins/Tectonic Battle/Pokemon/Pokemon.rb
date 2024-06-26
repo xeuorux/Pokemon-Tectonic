@@ -723,6 +723,10 @@ class Pokemon
       sp_data = species_data
       return [sp_data.wild_item_common, sp_data.wild_item_uncommon, sp_data.wild_item_rare]
     end
+
+    def wildHeldItemsWithRarities
+      return species_data.wildHeldItemsWithRarities
+    end
     
     # The type chosen for items like Memory Set or Prismatic Plate which can be
     # customized depending on the pokemon

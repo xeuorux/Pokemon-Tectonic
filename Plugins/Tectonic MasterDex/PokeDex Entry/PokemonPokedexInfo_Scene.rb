@@ -447,26 +447,7 @@ sp.form) && !Settings::DEX_SHOWS_ALL_FORMS
             end
             
             # Calculate wild item rarities
-            itemsAndRarities = {}
-            if fSpecies.wild_item_common
-                itemsAndRarities[fSpecies.wild_item_common] = WILD_ITEM_CHANCE_COMMON
-            end
-
-            if fSpecies.wild_item_uncommon
-                if itemsAndRarities.key?(fSpecies.wild_item_uncommon)
-                    itemsAndRarities[fSpecies.wild_item_uncommon] += WILD_ITEM_CHANCE_UNCOMMON
-                else
-                    itemsAndRarities[fSpecies.wild_item_uncommon] = WILD_ITEM_CHANCE_UNCOMMON
-                end
-            end
-
-            if fSpecies.wild_item_rare
-                if itemsAndRarities.key?(fSpecies.wild_item_rare)
-                    itemsAndRarities[fSpecies.wild_item_rare] += WILD_ITEM_CHANCE_RARE
-                else
-                    itemsAndRarities[fSpecies.wild_item_rare] = WILD_ITEM_CHANCE_RARE
-                end
-            end
+            itemsAndRarities = fSpecies.wildHeldItemsWithRarities
             
             if itemsAndRarities.length > 0
                 itemsString = ""
