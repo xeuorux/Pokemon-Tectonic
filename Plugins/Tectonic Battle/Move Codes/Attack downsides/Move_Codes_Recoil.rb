@@ -143,7 +143,7 @@ class PokeBattle_Move_UserLosesHalfOfCurrentHP < PokeBattle_Move
 end
 
 #===============================================================================
-# User loses one third of their current hp in recoil. (Shred Shot, Shards)
+# User loses one third of their current hp in recoil.
 #===============================================================================
 class PokeBattle_Move_UserLosesThirdOfCurrentHP < PokeBattle_Move
     def pbEffectAfterAllHits(user, target)
@@ -155,6 +155,22 @@ class PokeBattle_Move_UserLosesThirdOfCurrentHP < PokeBattle_Move
 
     def getEffectScore(user, _target)
         return -((user.hp.to_f / user.totalhp.to_f) * 30).floor
+    end
+end
+
+#===============================================================================
+# User loses one tenth of their total hp in recoil. (Shred Shot, Shards)
+#===============================================================================
+class PokeBattle_Move_UserLosesTenthOfTotalHP < PokeBattle_Move
+    def pbEffectAfterAllHits(user, target)
+        return if target.damageState.unaffected
+        return unless user.takesIndirectDamage?
+        @battle.pbDisplay(_INTL("{1} lost some of its HP!", user.pbThis))
+        user.applyFractionalDamage(1.0 / 10.0, true)
+    end
+
+    def getEffectScore(user, _target)
+        return getHPLossEffectScore(user, 0.1)
     end
 end
 

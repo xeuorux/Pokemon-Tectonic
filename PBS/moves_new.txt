@@ -732,24 +732,38 @@ Power = 55
 Accuracy = 100
 TotalPP = 30
 Target = NearOther
-FunctionCode = UserLosesThirdOfCurrentHP
+FunctionCode = UserLosesTenthOfTotalHP
 Flags = CanProtect,CanMirrorMove
 EffectChance = 100
-Description = The user shreads off bits of its own body to launch at the target. The user loses 30% of their current health.
+Description = The user shreds off bits of its own body to launch at the target. The user loses a tenth of its max HP.
 Animation = SPIKECANNON
 #-------------------------------
 [SHRAPNEL]
 Name = Shrapnel
 Type = STEEL
 Category = Special
-Power = 90
+Power = 85
 Accuracy = 100
 TotalPP = 10
 Target = NearOther
-FunctionCode = UserLosesThirdOfCurrentHP
+FunctionCode = UserLosesTenthOfTotalHP
 Flags = CanProtect,CanMirrorMove
 EffectChance = 100
-Description = The user shoots shards of its own body at the target. The user loses 30% of their current health.
+Description = The user shoots shards of its own body at the target. The user loses a tenth of its max HP.
+Animation = SPIKECANNON
+#-------------------------------
+[FRAGMENTATION]
+Name = Fragmentation
+Type = STEEL
+Category = Special
+Power = 115
+Accuracy = 100
+TotalPP = 10
+Target = NearOther
+FunctionCode = UserLosesTenthOfTotalHP
+Flags = CanProtect,CanMirrorMove
+EffectChance = 100
+Description = The user uses explosive force to shoot shards of its own body at the target. The user loses a tenth of its max HP.
 Animation = SPIKECANNON
 #-------------------------------
 [SPITEFULCHANT]

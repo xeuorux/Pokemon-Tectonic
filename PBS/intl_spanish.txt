@@ -37256,10 +37256,12 @@ Chaotic winds push the target around, dizzying it.
 El usuario levanta un viento caótico para empujar al objetivo, mareándolo.
 The user fires a stormy gust at the target. This also raises the user's Sp. Atk by two steps.
 El usuario levanta un tornado tormentoso al objetivo. También aumenta el Ataque Especial del usuario dos grados.
-The user shreads off bits of its own body to launch at the target. The user loses 30% of their current health.
-El usuario usa partes de su propio cuerpo para lanzarlas al objetivo. El usuario pierde un 30% de sus PS actuales.
-The user shoots shards of its own body at the target. The user loses 30% of their current health.
-El usuario lanza pedazos de su propio cuerpo al objetivo. El usuario pierde un 30% de sus PS actuales.
+The user shreds off bits of its own body to launch at the target. The user loses a tenth of its max HP.
+El usuario destroza pedazos de su propio cuerpo para lanzarlos al objetivo. El usuario pierde una décima parte de su PS máximo.
+The user shoots shards of its own body at the target. The user loses a tenth of its max HP.
+El usuario dispara fragmentos de su propio cuerpo al objetivo. El usuario pierde una décima parte de su PS máximo.
+The user uses explosive force to shoot shards of its own body at the target. The user loses a tenth of its max HP.
+El usuario usa fuerza explosiva para disparar fragmentos de su propio cuerpo al objetivo. El usuario pierde una décima parte de su PS máximo.
 The user unleashes its grudge, damaging the target and cutting 4 PP from the move last used by it.
 El usuario desata su rabia, dañando al objetivo y quitándole 4 PP al último movimiento usado por el objetivo.
 The user is protected from random added effects of moves until their next attack.
