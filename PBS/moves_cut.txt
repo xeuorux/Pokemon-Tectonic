@@ -2332,3 +2332,15 @@ Target = NearOther
 FunctionCode = Invalid
 Flags = CanProtect,CanMirrorMove
 Description = The user skillfully blasts the target, then steals their item. Items stolen from wild Pokémon are stored.
+#-------------------------------
+[SUMMERDAZE]
+Name = Summer Daze
+Type = GRASS
+Category = Status
+Accuracy = 100
+TotalPP = 8
+Target = NearOther
+FunctionCode = Invalid
+Flags = CanProtect,CanMagicCoat,CanMirrorMove,Sound
+Description = The user plays a melody, making the target drowsy. In Sunlight, lowers the target's Attack and Sp. Atk by two steps.
+Animation = GRASSWHISTLE

@@ -1344,18 +1344,6 @@ FunctionCode = LowerTargetHighestStat4
 Flags = CanMagicCoat,CanMirrorMove
 Description = The user looms over the target with awful menace, lowering their highest stat by four steps.
 #-------------------------------
-[SUMMERDAZE]
-Name = Summer Daze
-Type = GRASS
-Category = Status
-Accuracy = 100
-TotalPP = 8
-Target = NearOther
-FunctionCode = SleepTargetNextTurnLowerTargetAtkSpAtk2IfInSun
-Flags = CanProtect,CanMagicCoat,CanMirrorMove,Sound
-Description = The user plays a melody, making the target drowsy. In Sunlight, lowers the target's Attack and Sp. Atk by two steps.
-Animation = GRASSWHISTLE
-#-------------------------------
 [PACIFY]
 Name = Pacify
 Type = PSYCHIC
