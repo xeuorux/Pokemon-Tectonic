@@ -59,7 +59,7 @@ class PokeBattle_Battle
     end
 
     def pbReturnUnusedItemToBag(item, idxBattler)
-        return if item!
+        return if item.nil?
         itemData = GameData::Item.get(item)
         return if itemData.battle_use == 0 || !itemData.consumed_after_use?
         if pbOwnedByPlayer?(idxBattler)
