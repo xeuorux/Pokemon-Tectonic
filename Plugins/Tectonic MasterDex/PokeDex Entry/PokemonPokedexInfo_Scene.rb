@@ -449,7 +449,8 @@ sp.form) && !Settings::DEX_SHOWS_ALL_FORMS
             # Calculate wild item rarities
             itemsAndRarities = fSpecies.wildHeldItemsWithRarities
             
-            if itemsAndRarities.length > 0
+            unless itemsAndRarities.empty?
+                echoln(itemsAndRarities)
                 itemsString = ""
                 itemsAndRarities.each_with_index do |(item, chance), index|
                     name = GameData::Item.get(item).name

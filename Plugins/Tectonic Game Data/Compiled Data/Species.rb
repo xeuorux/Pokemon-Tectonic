@@ -1398,7 +1398,7 @@ module GameData
                 itemsAndRarities[@wild_item_common] = WILD_ITEM_CHANCE_COMMON
             end
 
-            if @abilities
+            if @wild_item_uncommon
                 if itemsAndRarities.key?(@wild_item_uncommon)
                     itemsAndRarities[@wild_item_uncommon] += WILD_ITEM_CHANCE_UNCOMMON
                 else
