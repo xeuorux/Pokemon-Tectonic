@@ -142,6 +142,9 @@ module GameData
           return _INTL("TR {1}",GameData::Move.get(@move).name)
         elsif is_HM?
           return _INTL("HM {1}",GameData::Move.get(@move).name)
+        elsif @id == :AIDKIT && $PokemonGlobal&.teamHealerUpgrades > 0
+          upgradeCount = $PokemonGlobal.teamHealerUpgrades || 0
+          return _INTL("{1} +{2}",pbGetMessageFromHash(MessageTypes::Items, @real_name),upgradeCount)
         else
           return pbGetMessageFromHash(MessageTypes::Items, @real_name)
         end
