@@ -803,31 +803,43 @@ module PokemonDebugMenuCommands
     }
   })
   
-  PokemonDebugMenuCommands.register("setnickname", {
+  PokemonDebugMenuCommands.register("sethueshift", {
     "parent"      => "cosmetic",
-    "name"        => _INTL("Set nickname"),
+    "name"        => _INTL("Set hue shift"),
     "always_show" => true,
     "effect"      => proc { |pkmn, pkmnid, heldpoke, settingUpBattle, screen|
-      cmd = 0
-      loop do
-        speciesname = pkmn.speciesName
-        msg = [_INTL("{1} has the nickname {2}.", speciesname, pkmn.name),
-               _INTL("{1} has no nickname.", speciesname)][pkmn.nicknamed? ? 0 : 1]
-        cmd = screen.pbShowCommands(msg, [
-             _INTL("Rename"),
-             _INTL("Erase name")], cmd)
-        break if cmd < 0
-        case cmd
-        when 0   # Rename
-          oldname = (pkmn.nicknamed?) ? pkmn.name : ""
-          newname = pbEnterPokemonName(_INTL("{1}'s nickname?", speciesname),
-                                       0, Pokemon::MAX_NAME_SIZE, oldname, pkmn)
-          pkmn.name = newname
-          screen.pbRefreshSingle(pkmnid)
-        when 1   # Erase name
-          pkmn.name = nil
-          screen.pbRefreshSingle(pkmnid)
-        end
+      if pkmn.egg?
+        screen.pbDisplay(_INTL("{1} is an egg.", pkmn.name))
+      else
+        params = ChooseNumberParams.new
+        params.setNegativesAllowed(true)
+        params.setRange(-90, 90)
+        params.setDefaultValue(0)
+        newhueshift = pbMessageChooseNumber(
+          _INTL("Set {1}'s Hue Shift (Gameplay range is {2} to {3}).", pkmn.name, -(Pokemon::HUE_SHIFT_RANGE/2), Pokemon::HUE_SHIFT_RANGE/2), params) { screen.pbUpdate }
+        pkmn.manual_hue_shift = newhueshift
+        screen.pbRefreshSingle(pkmnid)
+      end
+      next false
+    }
+  })
+
+  PokemonDebugMenuCommands.register("setshadeshift", {
+    "parent"      => "cosmetic",
+    "name"        => _INTL("Set shade shift"),
+    "always_show" => true,
+    "effect"      => proc { |pkmn, pkmnid, heldpoke, settingUpBattle, screen|
+      if pkmn.egg?
+        screen.pbDisplay(_INTL("{1} is an egg.", pkmn.name))
+      else
+        params = ChooseNumberParams.new
+        params.setNegativesAllowed(true)
+        params.setRange(-160, 160)
+        params.setDefaultValue(0)
+        newshadeshift = pbMessageChooseNumber(
+          _INTL("Set {1}'s Shade Shift (Gameplay range is {2} to {3}).", pkmn.name, -(Pokemon::SHADE_SHIFT_RANGE/2), Pokemon::SHADE_SHIFT_RANGE/2), params) { screen.pbUpdate }
+        pkmn.manual_shade_shift = newshadeshift
+        screen.pbRefreshSingle(pkmnid)
       end
       next false
     }
