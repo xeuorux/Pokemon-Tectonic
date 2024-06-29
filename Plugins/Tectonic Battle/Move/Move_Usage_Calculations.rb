@@ -380,12 +380,11 @@ class PokeBattle_Move
     end
 
     def pbAdditionalEffectChance(user,target,type,effectChance=0,aiCheck = false)
+        return 100 if @battle.pbCheckGlobalAbility(:WISHMAKER)
         # Abilities ensure effect chance
         user.eachAbilityShouldApply(aiCheck) do |ability|
             return 100 if BattleHandlers.triggerCertainAddedEffectUserAbility(ability, @battle, user, target, self)
         end
-
-        return 100 if target.hasActiveAbility?(:WISHMAKER)
         return 100 if !user.pbOwnedByPlayer? && @battle.curseActive?(:CURSE_PERFECT_LUCK)
         ret = effectChance > 0 ? effectChance : @effectChance
         return 100 if ret >= 100 || debugControl

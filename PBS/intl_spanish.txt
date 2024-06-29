@@ -43587,8 +43587,8 @@ Deals 30% more damage when it's slower than the target.
 Sus movimientos son un 30% más fuertos cuando es más lento que el objetivo.
 Powers up Fighting-type moves by 50%.
 Potencia movimientos tipo Lucha un 50%.
-The random added effects of its own moves, and of moves against it, always activate.
-Los efectos secundarios aleatorios de sus propios movimientos, y de los movimientos que reciba, siempre son activados.
+The random added effects of moves by all battlers always activate.
+Los efectos secundarios aleatorios de movimientos de todos los combatientes siempre son activados.
 Right before the Pokémon is attacked, the attacker's stat changes are reset.
 Justo antes de ser atacado, reinicia los cambios de stats del atacante.
 Boosts one defending stat by two steps according to the foe's attacking stats.

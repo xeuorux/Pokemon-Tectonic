@@ -2030,7 +2030,7 @@ Description = After knocking out any Pokémon, raises its Sp. Atk and Sp. Def.
 #-------------------------------
 [WISHMAKER]
 Name = Wish Maker
-Description = The random added effects of its own moves, and of moves against it, always activate.
+Description = The random added effects of moves by all battlers always activate.
 #-------------------------------
 [WORLDQUAKE]
 Name = Worldquake

@@ -3,9 +3,3 @@ BattleHandlers::CertainAddedEffectUserAbility.add(:STARSALIGN,
         next battle.eclipsed?
     }
 )
-
-BattleHandlers::CertainAddedEffectUserAbility.add(:WISHMAKER,
-    proc { |ability, battle, user, target, move|
-        next true
-    }
-)
