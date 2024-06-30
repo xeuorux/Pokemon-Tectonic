@@ -11,14 +11,14 @@ BattleHandlers::TargetAbilityOnHit.add(:SANDBURST,
 
 BattleHandlers::TargetAbilityOnHit.add(:INNERLIGHT,
     proc { |ability, user, target, move, battle, aiCheck, aiNumHits|
-        score = pbBattleWeatherAbility(ability, :Sun, target, battle, false, true, aiCheck)
+        score = pbBattleWeatherAbility(ability, :Sunshine, target, battle, false, true, aiCheck)
         next score * -1 if aiCheck
     }
 )
 
 BattleHandlers::TargetAbilityOnHit.add(:STORMBRINGER,
     proc { |ability, user, target, move, battle, aiCheck, aiNumHits|
-        score = pbBattleWeatherAbility(ability, :Rain, target, battle, false, true, aiCheck)
+        score = pbBattleWeatherAbility(ability, :Rainstorm, target, battle, false, true, aiCheck)
         next score * -1 if aiCheck
     }
 )

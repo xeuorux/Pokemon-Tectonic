@@ -51,3 +51,9 @@ BattleHandlers::TargetAbilityKnockedBelowHalf.add(:DREAMYHAZE,
         battle.pbHideAbilitySplash(target)
     }
 )
+
+BattleHandlers::TargetAbilityKnockedBelowHalf.add(:AROMATIC,
+    proc { |ability, target, user, move, _switched, battle|
+        battle.forceUseMove(target, :AROMATHERAPY, user.index, ability: ability)
+    }
+)

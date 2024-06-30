@@ -14,9 +14,9 @@ class PokeBattle_Move_TypeDependsOnWeather < PokeBattle_Move
     def pbBaseType(_user)
         ret = :NORMAL
         case @battle.pbWeather
-        when :Sun, :HarshSun
+        when :Sunshine, :HarshSun
             ret = :FIRE if GameData::Type.exists?(:FIRE)
-        when :Rain, :HeavyRain
+        when :Rainstorm, :HeavyRain
             ret = :WATER if GameData::Type.exists?(:WATER)
         when :Sandstorm
             ret = :ROCK if GameData::Type.exists?(:ROCK)

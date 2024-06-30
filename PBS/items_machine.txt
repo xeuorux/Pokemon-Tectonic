@@ -400,13 +400,13 @@ Price = 4000
 FieldUse = TM
 Move = SUNSHINE
 #-------------------------------
-[TMRAIN]
+[TMRAINSTORM]
 Name = Unnamed
 NamePlural = Unnamed
 Pocket = 4
 Price = 4000
 FieldUse = TM
-Move = RAIN
+Move = RAINSTORM
 #-------------------------------
 [TMSANDSTORM]
 Name = Unnamed

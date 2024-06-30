@@ -1517,7 +1517,7 @@ Pokemon = OMASTAR,70
     # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
     EV = 10,20,0,20,20,0
 Pokemon = PELIPPER,70
-    Moves = RAIN,DEFOG,COLDFRONT,MENDINGSPRING
+    Moves = RAINSTORM,DEFOG,COLDFRONT,MENDINGSPRING
     AbilityIndex = 1 # Dreary Clouds
     Item = LEFTOVERS
     # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
@@ -1764,7 +1764,7 @@ Pokemon = EELEKTROSS,70
 [BURGLAR,Miladin]
 Policies = MOONGLOW_TEAM
 Pokemon = ALOMOMOLA,70
-    Moves = FLIPTURN,WISH,INFINITEFORCE,TOPSYTURVY
+    Moves = HARBORBREAKER,WISH,INFINITEFORCE,TOPSYTURVY
     AbilityIndex = 1 # Moon Gaze
     Item = MIRROREDROCK
     # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
@@ -1961,7 +1961,7 @@ Pokemon = FLORGES,70
 [SWIMMER_M4,Lars]
 Policies = RAIN_TEAM
 Pokemon = KLEFKI,70
-    Moves = RAIN,SPELLBIND,SUGARBALL,DEFOG
+    Moves = RAINSTORM,SPELLBIND,SUGARBALL,DEFOG
     AbilityIndex = 0 # Prankster
     Item = DAMPROCK
     # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
@@ -1991,7 +1991,7 @@ Pokemon = LUDICOLO,70
     # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
     EV = 20,10,0,0,10,20
 Pokemon = GOODRA,70
-    Moves = SLIMEBALL,DRAGONTAIL,REST,RAIN
+    Moves = SLIMEBALL,DRAGONTAIL,REST,RAINSTORM
     AbilityIndex = 1 # Hydration
     Item = ROCKYHELMET
     # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def

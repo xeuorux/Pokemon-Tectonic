@@ -362,7 +362,7 @@ Realmente quiere hablar contigo.
 A couple seconds later, you receive a text message with the coordinates to the Battle Monument.
 Un par de segundos después, recibes un mensaje de texto con las coordinadas del Monumento Batalla.
 Hello to you, young one.
-Saludos, jove.
+Saludos, joven.
 It is I, Dr. Hekata.
 Soy yo, la Dr. Hekata.
 Do not worry about how I learned of your cellphone number. I simply divined it.
@@ -32944,8 +32944,8 @@ Z
 Sun
 Sol
 2575
-Rain
-Lluvia
+Rainstorm
+Tormenta de Lluvia
 2576
 Hail
 Granizo
@@ -35623,8 +35623,8 @@ Primeval Dazzle
 Encandilar Primitivo
 Primeval Sunshine
 Luz Solar Primitiva
-Primeval Rain
-Lluvia Primitiva
+Primeval Rainstorm
+Tormenta de Lluvia Primitiva
 Primeval Leech Seed
 Drenadoras Primitivas
 Primeval Lightning Dance
@@ -36112,8 +36112,8 @@ The user charges at the foe while electrified. The user also takes 33% recoil. T
 El usuario carga hacia el enemigo cargado en electricidad. El usuario recibe un 33% de daño de retroceso. Tiene un 10% de probabilidad de aturdir.
 The user fires an electric blast like a cannon to inflict damage and cause numbing.
 El usuario dispara un estallido eléctrico para causar daño y aturdir al rival.
-Can't miss in rain. It has a 30% chance to numb. Can hit targets flying high up.
-No puede fallar bajo lluvia. Tiene un 30% de probabilidad de aturdir. Puede golpear a objetivos en el aire.
+Can't miss in rainstorm. It has a 30% chance to numb. Can hit targets flying high up.
+No puede fallar bajo tormenta de lluvia. Tiene un 30% de probabilidad de aturdir. Puede golpear a objetivos en el aire.
 The user throws down a giant thunderbolt. It does more damage if influenced by an enormous flame.
 El usuario dispara un rayo gigante. Hace más daño si es influenciado por una llama enorme.
 The user attacks with electrically charged fists. Normal-type moves become Electric-type.
@@ -37124,8 +37124,8 @@ The user swirls the target in a whirlpool, trapping and damaging it for three tu
 El usuario atrapa al oponente dentro de un remolino, atrapandolo y dañándolo durante tres turnos.
 The user hits the target with throwing stars 2-5 times in a row. This move always goes first.
 El usuario ataca al oponente lanzando estrellas entre dos a cinco veces seguidas. Siempre va primero.
-Summons rain for eight turns, boosting Water-type attacks and hindering most others.
-Invoca lluvia durante ocho turnos, potenciando ataques tipo Agua y mermando ataques de la mayoría de otros tipos.
+Summons rainstorm for eight turns, boosting Water-type attacks and hindering most others.
+Invoca tormenta de lluvia durante ocho turnos, potenciando ataques tipo Agua y mermando ataques de la mayoría de otros tipos.
 The user shoots a torrent of water at the target and changes the target's type to Water.
 El usuario empapa al oponente con una corriente de agua, cambiando su tipo al Agua.
 Ignores all attempts at redirection, allowing this move to hit the chosen target. Critical hits twice as often.
@@ -37642,8 +37642,8 @@ The user roars with the force of a volcano, raising the Attack of itself and all
 El usuario ruge con la fuerza de un volcán, aumentando su Ataque y el de sus aliados.
 The user charges the target at blazing-fast speed. This attack always goes before any other move.
 El usuario embiste con la velocidad de un rayo. Siempre va primero.
-Summons rain for five turns on the first turn, then overwhelms the foe with water on the second.
-Invoca lluvia durante cinco turnos en el primer turno, luego abruma al objetivo con agua en el segundo.
+Summons rainstorm for five turns on the first turn, then overwhelms the foe with water on the second.
+Invoca tormenta de lluvia durante cinco turnos en el primer turno, luego abruma al objetivo con agua en el segundo.
 The user attacks with heat, creating an obscuring wall of haze. The user takes 33% less damage this turn.
 El usuario ataca usando calor, creando un muro de humo negro. El usuario recibe un 33% menos de daño en el mismo turno.
 Restores a fainted Grass-type party member to full HP. Only one use per battle.
@@ -37716,8 +37716,8 @@ The user burns the target, then welcomes in sunshine for four turns.
 El usuario quema al objetivo, luego invita a la luz solar durante cuatro turnos.
 The user dizzies the target, then summons sandstorm for four turns.
 El usuario marea al objetivo, luego invoca una tormenta de arena durante cuatro turnos.
-The user numbs the target, then welcomes in rain for four turns.
-El usuario aturde al objetivo, luego invita a la lluvia durante cuatro turnos.
+The user numbs the target, then welcomes in rainstorm for four turns.
+El usuario aturde al objetivo, luego invita a la tormenta de lluvia durante cuatro turnos.
 The user frostbites the target, then welcomes in hail for four turns.
 El usuario hela al objetivo, luego invita al granizo durante cuatro turnos.
 A punch that inflicts double the damage if the user has been hurt by the foe in the same turn.
@@ -37748,8 +37748,8 @@ A kick that can also eliminate trapping and hazard moves. Also raises user's Spe
 Una patada que elimina movimientos que atrapan o trampas. También aumenta la Velocidad del usuario.
 Halves attack damage taken this turn. Leeches any attackers. Fails if used successively.
 Divide a la mitad el daño recibido por un turno. Infecta a cualquier atacante. Falla si se usa consecutivamente.
-The user assaults its foe's dreams. It absorbs half the damage dealt, and doubles in power if the foe is asleep.
-El usuario asalta a los sueños del objetivo. Absorbe la mitad del daño que cause, y duplica su potencia si el objetivo está dormido.
+Doubles in power if the foe is asleep. User heals for half of damage dealt. This can overheal.
+Duplica su potencia si el objetivo está dormido. Recupera la mitad del daño causado. Esto puede sobrecurar.
 Leeches the target by kissing them with its thin mouth.
 Infecta al objetivo besándolo con sus finos labios.
 The user throws a royal fit for three turns. Raises Speed if a target is knocked out by this move.
@@ -38002,8 +38002,8 @@ The user charges, then attacks on the second turn. Charges instantly in Rain.
 El usuario carga en el primer turno, luego ataca en el segundo. Carga instantáneamente bajo lluvia.
 The foe is stabbed once by each of the user's stingers.
 El usuario ataca una vez con cada uno de sus aguijones.
-Strikes the target with harbor waters, then summons rain for eight turns.
-El usuario ataca al objetivo con aguas turbulentas, luego invoca lluvia durante ocho turnos.
+Strikes the target with harbor waters, then summons rainstorm for eight turns.
+El usuario ataca al objetivo con aguas turbulentas, luego invoca tormenta de lluvia durante ocho turnos.
 The user steals blood, lowering the target's Attack. If so, raises the user's Attack.
 El usuario chupa la sangre del objetivo, disminuyendo su Ataque. En este caso, aumenta su Ataque.
 The user indulges its love of battle by striking a foe. Both of the user's attacking stats are raised.
@@ -38058,8 +38058,8 @@ The user gleams with light, lowering each foe's Sp. Atk by two steps and raising
 El usuario brilla con intensidad, disminuyendo el Ataque especial del lado contrario dos grados y aumentando el propio dos.
 The user summons sunshine for 5 turns, boosts its Atk. and Sp. Atk, and becomes Fire-type.
 El usuario invoca la luz solar durante cinco gurnos, potenciando ambos de sus Ataques, y se vuelve tipo Fuego.
-The user summons rain for 5 turns, surrounds itself with healing water, and becomes Water-type.
-El usuario invoca lluvia durante 5 turnos, es rodeado por agua curativa,  y se vuelve tipo Agua.
+The user summons rainstorm for 5 turns, surrounds itself with healing water, and becomes Water-type.
+El usuario invoca tormenta de lluvia durante 5 turnos, es rodeado por agua curativa,  y se vuelve tipo Agua.
 Plants seeds on all near foes, draining HP each turn. User becomes Grass-type.
 El usuario planta semillas en el lado contrario, drenando PS cada turno, y se vuelve tipo Planta.
 The user raises its Sp. Atk and Speed by two steps, and becomes Electric-type.
@@ -39608,7 +39608,13 @@ Manzana Ácida
 Noise Machine
 Máquina de Ruido
 Cell Booster
-Refuerzo de Células
+Acelerador Celular
+Rusted Compass
+Brújula Oxidada
+Soothe Charm 
+Amuleto Alivio
+Magnetic Gauntlet
+Guante Magnético
 [8]
 Repels
 Repelentes
@@ -41065,6 +41071,14 @@ A hi-tech recording device which creates a Battle Report by analyzing the result
 Un dispositivo de alta tecnología que crea un Reporte de Combate al analizar los resultados de ciertos Combates.
 Disables the opponent's most recently-used move for three turns upon hitting it.
 Anula el último movimiendo usado por el oponente durante tres turnos al ser usada.
+Condensed essence of life. Holding it allows you to run, bike, and surf faster.
+Esencia de vida condensada. Sostenerla te permite correr, ir en bici, y surfear más rápido.
+A small compass. Relic of a heroic age. It can be used to find lootable items nearby.
+Una pequeña brújula. Reliquia de una era heróica. Puede ser usada para encontrar objetos a tu alrededor.
+An electrified glove with a claw-like shape. Allows you to recover the first failed Poké Ball thrown in a wild battle.
+Un guante electrificado con forma de garra. Te permite recuperar la primer Poké Ball fallada lanzada en un combate salvaje.
+A comforting charm which doubles the happiness your Pokémon gain from being close to you.
+Un amuleto reconfortarte que duplica la felicidad que tus Pokémon ganan al estar cerca a ti.
 [10]
 Shell Armor
 Caparazón
@@ -42431,8 +42445,8 @@ When the Pokémon eats a Berry, it will regurgitate that Berry at the end of the
 Cuando el Pokémon come una Baya, regurgita esa Baya al final del siguiente turno y la come una vez más.
 Attacks have a 50% chance to cause the target to flinch.
 Los ataques tienen un 50% de probabilidad de amedrentar al objetivo
-Summons rain for 4 turns when it enters battle.
-Invoca lluvia por 4 turnos cuando entra a la batalla.
+Summons rainstorm for 4 turns when it enters battle.
+Invoca tormenta de lluvia por 4 turnos cuando entra a la batalla.
 Speed is raised by two steps at the end of each of its turns.
 La Velocidad es aumentada por dos grados al final de cada uno de sus turnos.
 It can't be knocked out with one hit.
@@ -42919,8 +42933,8 @@ Sets a Lucky Chant upon entering the battle, protecting from critical hits for 1
 Invoca un Conjuro al entrar al campo, protegiendo a su equipo de los golpes críticos durante 10 turnos.
 Summons sunshine for four turns when hit by an attack.
 Invoca la luz solar durante cuatro turnos al ser atacado.
-Summons rain for four turns when hit by an attack.
-Invoca lluvia durante cuatro turnos al ser atacado.
+Summons rainstorm for four turns when hit by an attack.
+Invoca tormenta de lluvia durante cuatro turnos al ser atacado.
 Inflicts 1/6th max HP damage to the foe when damaged during rain.
 Daña al rival por 1/6 de sus PS totales al ser atacado durante la lluvia.
 Lowers priority of status moves used by any Pokémon.
@@ -43023,8 +43037,8 @@ Sets a Tailwind for four turns upon entering the battle, increasing Speed.
 Levanta un Viento Afín durante cuatro turnos al entrar al campo, aumentando la Velocidad de tu equipo.
 Becomes charged when hit by an attack, doubling the power of its next Electric-type attack.
 Al ser alcanzado por un ataque, el usuario obtiene un carga, que duplica la potencia de su siguiente movimiento de tipo Eléctrico.
-Immune to Fairy-type moves and restores HP if hit by one.
-Inmune a movimientos tipo Hada y recupera PS cuando es alcanzado por uno. 
+Immune to Fairy-type moves and restores HP if hit by one. This can overheal.
+Inmune a movimientos tipo Hada y recupera PS cuando es alcanzado por uno. Esto puede sobrecurar.
 Immune to Ice-type moves, and raises both attacking stats if hit by one.
 Inmune a movimientos tipo Hielo y aumenta ambas stats ofensivas cuando es alcanzado por uno. 
 Its attacks are critical against frostbitten targets.
@@ -43073,8 +43087,8 @@ Pokémon that swap in for this have their status effects healed.
 Cura los problemas del estado de los Pokémon que salgan después del usuario 
 Move damage that's decreased by sunshine is decreased twice as much.
 Duplica la reducción del daño causado por el sol.
-Move damage that's decreased by rain is decreased twice as much.
-Duplica la reducción del daño causada por la lluvia.
+Move damage that's decreased by rainstorm is decreased twice as much.
+Duplica la reducción del daño causada por la tormenta de lluvia.
 Powers up Fairy-type moves by 50% in rain.
 Potencia movimientos tipo Hada un 50% bajo lluvia.
 Restores HP based on damage from hail.
@@ -47203,8 +47217,8 @@ Weathers last a certain number of turns. The length differs depending on what mo
 Los climas duran una cierta cantidad de turnos. La longitud difiere dependiendo en qué movimiento o habilidad. La duración puede ser extendida por distintos objetos.
 Sunshine
 Luz Solar
-Rain
-Lluvia
+Rainstorm
+Tormenta de Lluvia
 Sandstorm
 Tormenta de Arena
 Hail
@@ -47625,16 +47639,16 @@ Boss using struggle!
 ¡#{user.pbThis} está preparando un gran ataque!
 An Avatar has been inserted into Yezera's party!
 ¡Un Avatar fue insertado en el equipo de Yezera!
-The battle begins with Sunshine. The effects of Sunshine are doubled.
-El combate empieza con Luz Solar. Los efectos del Sol son duplicados.
-The battle begins with Rain. The effects of Rain are doubled.
-El combate empieza con Lluvia. Los efectos de la Lluvia son duplicados.
-The battle begins with Hail. The effects of Hail are doubled.
-El combate empieza con Granizo. Los efectos del Granizo son duplicados.
-The battle begins with Sandstorm. The effects of Sandstorm are doubled.
-El combate empieza con Tormenta de Arena. Los efectos de la Tormenta de Arena son duplicados.
-The battle begins with Sandstorm. The foe has extra Sandstorm abilities!
-El combate empieza con Tormenta de Arena. ¡El enemigo tiene habilidades adicionales de Tormenta de Arena!
+The battle begins with sunshine. The effects of sunshine are doubled.
+El combate empieza con luz solar. Los efectos del sol son duplicados.
+The battle begins with rain. The effects of rainstorm are doubled.
+El combate empieza con tormenta de lluvia. Los efectos de la tormenta de lluvia son duplicados.
+The battle begins with hail. The effects of hail are doubled.
+El combate empieza con granizo. Los efectos del granizo son duplicados.
+The battle begins with sandstorm. The effects of sandstorm are doubled.
+El combate empieza con tormenta de arena. Los efectos de la tormenta de arena son duplicados.
+The battle begins with sandstorm. The foe has extra sandstorm abilities!
+El combate empieza con tormenta de arena. ¡El enemigo tiene habilidades adicionales de tormenta de arena!
 Your Pokemon lose 10 levels for this fight. EXP goes to the Dispenser.
 Tus Pokémon pierden 10 niveles por esta pelea. La EXP va al Dispensador.
 Enemy Pokemon have all of their legal abilities!
@@ -47891,8 +47905,8 @@ Go! {1}, {2} and {3}!
 \me[Battle perfected]¡Perfeccionaste el combate!
 The sunlight is strong.
 El sol pega fuerte.
-It is raining.
-Está lloviendo.
+It is storming.
+Es una tormenta.
 A sandstorm is raging.
 La tormenta de arena arrecia.
 Hail is falling.
@@ -47999,8 +48013,8 @@ It'll last for {1} more turns!
 ¡Durará por {1} turnos más!
 The sunshine continues!
 ¡El fuerte sol continúa!
-The rain shows no sign of stopping!
-¡La lluvia no parece que vaya a parar!
+The rainstorm shows no sign of stopping!
+¡La tormenta de lluvia no parece que vaya a parar!
 The sandstorm returns to full strength!
 ¡La tormenta de arena regresa con todo!
 The hail keeps coming!
@@ -48013,8 +48027,8 @@ The bright moon doesn't wane!
 ¡El brillo lunar no mengúa!
 The sun is shining in the sky!
 ¡El sol brilla en el cielo!
-It started to rain!
-¡Empezó a llover!
+A rainstorm covers the sky!
+¡Una tormenta de lluvia cubre el cielo!
 A sandstorm brewed!
 ¡Una tormenta de arena apareció!
 It started to hail!
@@ -48031,8 +48045,8 @@ The light of the moon shines down!
 ¡La luz de la luna brilla por lo alto!
 The sunshine faded.
 El sol dejó de brillar.
-The rain stopped.
-La lluvia paró.
+The rainstorm stopped.
+La tormenta de lluvia paró.
 The sandstorm subsided.
 La tormenta de arena amainó.
 The hail stopped.
@@ -48949,24 +48963,24 @@ The kicked up mat will block attacks against #{teamName} this turn!
 ¡El escudo tatami protegerá ataques contra #{teamName} este turno!
 A rainbow appeared in the sky above {1}!
 ¡Un arcoíris apareció en el cielo arriba de {1}!
-The Rainbow on {1}'s side was sent away!
+The rainbow on {1}'s side was sent away!
 ¡El arcoíris del lado de {1} fue removido!
-The Rainbow on {1}'s side dissapeared.
+The rainbow on {1}'s side dissapeared.
 El arcoíris del lado de {1} desapareció.
 {1} is hurt by the sea of fire!
 ¡{1} es lastimado por el mar de fuego!
 A sea of fire enveloped {1}!
 ¡Un mar de fuego cubrió a {1}!
-The Sea of Fire on {1}'s side was sent away!
-¡El Mar de Fuego del lado de {1} fue removido!
-The Sea of Fire on {1}'s side dissapeared.
-El Mar de Fuego del lado de {1} desapareció.
+The sea of fire on {1}'s side was sent away!
+¡El mar de fuego del lado de {1} fue removido!
+The sea of fire on {1}'s side dissapeared.
+El mar de fuego del lado de {1} desapareció.
 A swamp enveloped {1}!
 ¡Un pantano cubrió a {1}!
-The Swamp on {1}'s side was sent away!
-¡El Pantano del lado de {1} fue removido!
-The Swamp on {1}'s side dissapeared.
-El Pantano del lado de {1} desapareció.
+The swamp on {1}'s side was sent away!
+¡El pantano del lado de {1} fue removido!
+The swamp on {1}'s side dissapeared.
+El pantano del lado de {1} desapareció.
 Spikes were scattered all around {1}'s feet!
 ¡El equipo de {1} fue rodeado de Púas!
 {1} layers of Spikes were scattered all around {2}'s feet!
@@ -50743,8 +50757,8 @@ The top of Avatars health bars starts Shielded. Shielded bars take 75% less dama
 La barra superior de vida de los Avatares empieza Escudada. Barras Escudadas reciben un 75% menos de daño. Un escudo es removido cuando usa un Movimiento Primitivo.
 Sunshine lowers attack damage by 15% and prevents crits. Fire and Grass-type moves/Pokémon are immune to this. Fire-type attacks are boosted by 30%.
 El sol baja el daño un 15% y previene críticos. Los Pokémon y movimientos tipo Planta y Fuego son inmunes a esto. Movimientos tipo Fuego son potenciados un 30%. 
-Rain lowers attack damage by 15% and makes added effects half as likely. Water and Electric-type moves/Pokémon are immune to this. Water-type attacks are boosted by 30%.
-La lluvia baja el daño un 15% y reduce a la mitad la probabilidad de efectos secundarios. Los Pokémon y Movimientos tipo Agua y Eléctrico son inmunes a esto. Los movimientos tipo Agua son potenciados un 30%.
+Rainstorm lowers attack damage by 15% and makes added effects half as likely. Water and Electric-type moves/Pokémon are immune to this. Water-type attacks are boosted by 30%.
+La tormenta de lluvia baja el daño un 15% y reduce a la mitad la probabilidad de efectos secundarios. Los Pokémon y Movimientos tipo Agua y Eléctrico son inmunes a esto. Los movimientos tipo Agua son potenciados un 30%.
 Sandstorm deals damage to all Pokémon at the end of each turn. Rock and Ground-types are immune to this. Additionally, Rock-types get +50% Special Defense.
 La tormenta de arena daña a todos los Pokémon al final de cada turno. Los tipos Roca y Tierra son inmunes a esto. Los tipo Roca incrementan su Defensa Especial un 50%.
 Hail deals damage to all Pokémon at the end of each turn. Ice and Ghost-types are immune to this. Additionally, Ice-types get +50% Defense.

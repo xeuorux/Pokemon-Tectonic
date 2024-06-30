@@ -248,11 +248,11 @@ GameData::BattleEffect.register_effect(:Side, {
     end,
     :disable_proc => proc do |battle, _side, teamName|
         teamName[0] = teamName[0].downcase
-        battle.pbDisplay(_INTL("The Rainbow on {1}'s side was sent away!", teamName))
+        battle.pbDisplay(_INTL("The rainbow on {1}'s side was sent away!", teamName))
     end,
     :expire_proc => proc do |battle, _side, teamName|
         teamName[0] = teamName[0].downcase
-        battle.pbDisplay(_INTL("The Rainbow on {1}'s side dissapeared.", teamName))
+        battle.pbDisplay(_INTL("The rainbow on {1}'s side dissapeared.", teamName))
     end,
 })
 
@@ -277,11 +277,11 @@ GameData::BattleEffect.register_effect(:Side, {
     end,
     :disable_proc => proc do |battle, _side, teamName|
         teamName[0] = teamName[0].downcase
-        battle.pbDisplay(_INTL("The Sea of Fire on {1}'s side was sent away!", teamName))
+        battle.pbDisplay(_INTL("The sea of fire on {1}'s side was sent away!", teamName))
     end,
     :expire_proc => proc do |battle, _side, teamName|
         teamName[0] = teamName[0].downcase
-        battle.pbDisplay(_INTL("The Sea of Fire on {1}'s side dissapeared.", teamName))
+        battle.pbDisplay(_INTL("The sea of fire on {1}'s side dissapeared.", teamName))
     end,
 })
 
@@ -296,11 +296,11 @@ GameData::BattleEffect.register_effect(:Side, {
     end,
     :disable_proc => proc do |battle, _side, teamName|
         teamName[0] = teamName[0].downcase
-        battle.pbDisplay(_INTL("The Swamp on {1}'s side was sent away!", teamName))
+        battle.pbDisplay(_INTL("The swamp on {1}'s side was sent away!", teamName))
     end,
     :expire_proc => proc do |battle, _side, teamName|
         teamName[0] = teamName[0].downcase
-        battle.pbDisplay(_INTL("The Swamp on {1}'s side dissapeared.", teamName))
+        battle.pbDisplay(_INTL("The swamp on {1}'s side dissapeared.", teamName))
     end,
 })
 

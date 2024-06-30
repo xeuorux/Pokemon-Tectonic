@@ -1,10 +1,10 @@
 # For abilities that grant immunity to moves of a particular type, and heals the
 # ability's bearer by 1/4 of its total HP instead.
-def pbBattleMoveImmunityHealAbility(ability, user, target, move, moveType, immuneType, battle, showMessages, aiCheck = false)
+def pbBattleMoveImmunityHealAbility(ability, user, target, move, moveType, immuneType, battle, showMessages, aiCheck = false, canOverheal: false)
     return false if user.index == target.index
     return false if moveType != immuneType
     return true if aiCheck
-    if target.applyFractionalHealing(1.0 / 4.0, ability: ability) <= 0 && showMessages
+    if target.applyFractionalHealing(1.0 / 4.0, ability: ability, canOverheal: canOverheal) <= 0 && showMessages
         battle.pbShowAbilitySplash(target, ability)
         battle.pbDisplay(_INTL("{1}'s {2} made {3} ineffective!", target.pbThis, getAbilityName(ability),
 move.name))

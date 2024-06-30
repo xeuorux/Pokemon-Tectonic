@@ -3132,9 +3132,9 @@ Power = 120
 Accuracy = 100
 TotalPP = 5
 Target = NearOther
-FunctionCode = TwoTurnAttackChargeStartRain5
+FunctionCode = TwoTurnAttackChargeStartRainstorm5
 Flags = CanProtect,CanMirrorMove
-Description = Summons rain for five turns on the first turn, then overwhelms the foe with water on the second.
+Description = Summons rainstorm for five turns on the first turn, then overwhelms the foe with water on the second.
 Animation = SURF
 #-------------------------------
 [SHIMMERINGHEAT]
@@ -3589,16 +3589,16 @@ Description = The user dizzies the target, then summons sandstorm for four turns
 Animation = SANDSTORM
 #-------------------------------
 [INVITERAIN]
-Name = Invite Rain
+Name = Invite Rainstorm
 Type = WATER
 Category = Status
 Accuracy = 0
 TotalPP = 10
 Target = NearOther
-FunctionCode = NumbTargetStartRain4
+FunctionCode = NumbTargetStartRainstorm4
 Flags = CanProtect,CanMagicCoat,CanMirrorMove
-Description = The user numbs the target, then welcomes in rain for four turns.
-Animation = RAIN
+Description = The user numbs the target, then welcomes in rainstorm for four turns.
+Animation = RAINSTORM
 #-------------------------------
 [INVITEHAIL]
 Name = Invite Hail
@@ -3798,9 +3798,9 @@ Power = 60
 Accuracy = 100
 TotalPP = 12
 Target = NearOther
-FunctionCode = HealUserByHalfOfDamageDoneDoubleDamageIfTargetAsleep
+FunctionCode = HealUserByHalfOfDamageDoneDoubleDamageIfTargetAsleepCanOverheal
 Flags = CanProtect,CanMirrorMove
-Description = The user assaults its foe's dreams. It absorbs half the damage dealt, and doubles in power if the foe is asleep.
+Description = Doubles in power if the foe is asleep. User heals for half of damage dealt. This can overheal.
 #-------------------------------
 [CRUELKISS]
 Name = Cruel Kiss
@@ -4619,20 +4619,6 @@ EffectChance = 30
 Description = Changes type based on machine haunted. 30% chance of extra effect based on machine haunted.
 Animation = SHADOWBALL
 #-------------------------------
-[BANISH]
-Name = Banish
-Type = DRAGON
-Category = Special
-Power = 75
-Accuracy = 100
-TotalPP = 10
-Target = NearOther
-Priority = -1
-FunctionCode = SwitchOutTargetDamagingMoveNonRandom
-Flags = CanProtect,CanMirrorMove
-Description = The user dismisses the target, forcing it to switch out. Always goes last.
-Animation = ROAR
-#-------------------------------
 [CHECKMATE]
 Name = Checkmate
 Type = DARK
@@ -5246,9 +5232,9 @@ Power = 120
 Accuracy = 100
 TotalPP = 10
 Target = NearOther
-FunctionCode = TwoTurnAttackOneTurnInRain
+FunctionCode = TwoTurnAttackOneTurnInRainstorm
 Flags = CanProtect,CanMirrorMove
-Description = The user charges, then attacks on the second turn. Charges instantly in Rain.
+Description = The user charges, then attacks on the second turn. Charges instantly in rainstorm.
 Animation = WILDCHARGE
 #-------------------------------
 [MANYNEEDLE]
@@ -5273,9 +5259,9 @@ Power = 50
 Accuracy = 0
 TotalPP = 10
 Target = NearFoe
-FunctionCode = StartRain8
+FunctionCode = StartRainstorm8
 Flags = CanProtect,CanMirrorMove
-Description = Strikes the target with harbor waters, then summons rain for eight turns.
+Description = Strikes the target with harbor waters, then summons rainstorm for eight turns.
 Animation = SURF
 #-------------------------------
 [EXSANGUINATE]
@@ -5317,18 +5303,6 @@ FunctionCode = DoubleDamageFirstTurn
 Flags = CanProtect,CanMirrorMove,Biting
 Description = The user bites with playful abandon. This deals double damage on the user's first turn out.
 Animation = CRUNCH
-#-------------------------------
-[DESTRIERSWHIM]
-Name = Destrier's Whim
-Type = FIRE
-Category = Status
-Accuracy = 100
-TotalPP = 12
-Target = NearOther
-FunctionCode = RaiseAllySpd4OrBurnFoe
-Flags = CanProtect,CanMagicCoat,CanMirrorMove
-Description = The user burns the target if they're a foe, or raises their Speed by four steps if they're an ally.
-Animation = EMBER
 #-------------------------------
 [JOUST]
 Name = Joust
@@ -5373,7 +5347,7 @@ Animation = POWDER
 Name = Thorn Rattle
 Type = GRASS
 Category = Special
-Power = 75
+Power = 100
 Accuracy = 100
 TotalPP = 10
 Target = NearOther

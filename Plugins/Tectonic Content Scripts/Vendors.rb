@@ -346,7 +346,7 @@ CAN_SELL_IN_VENDORS = true
 def weatherTMSell()
 	weatherTMStock = %i[
 		TMSUNSHINE
-		TMRAIN
+		TMRAINSTORM
 		TMSANDSTORM
 		TMHAIL
 		TMMOONGLOW

@@ -20,11 +20,28 @@ class PokeBattle_Move_HealUserByThreeQuartersOfDamageDone < PokeBattle_DrainMove
 end
 
 #===============================================================================
-# User gains half the HP it inflicts as damage. Deals double damage if the target is asleep.
+# Deals double damage if the target is asleep.
+# User gains half the HP it inflicts as damage.
 # (Dream Absorb)
 #===============================================================================
 class PokeBattle_Move_HealUserByHalfOfDamageDoneDoubleDamageIfTargetAsleep < PokeBattle_DrainMove
     def drainFactor(_user, _target); return 0.5; end
+
+    def pbBaseDamage(baseDmg, _user, target)
+        baseDmg *= 2 if target.asleep?
+        return baseDmg
+    end
+end
+
+#===============================================================================
+# Deals double damage if the target is asleep.
+# User gains half the HP it inflicts as damage. This can overheal.
+# (Dream Feast)
+#===============================================================================
+class PokeBattle_Move_HealUserByHalfOfDamageDoneDoubleDamageIfTargetAsleepCanOverheal < PokeBattle_DrainMove
+    def drainFactor(_user, _target); return 0.5; end
+
+    def canOverheal?(_user, _target); return true; end
 
     def pbBaseDamage(baseDmg, _user, target)
         baseDmg *= 2 if target.asleep?

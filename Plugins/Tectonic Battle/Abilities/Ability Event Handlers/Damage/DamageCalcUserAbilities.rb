@@ -199,6 +199,8 @@ BattleHandlers::DamageCalcUserAbility.add(:IRONHEEL,
   }
 )
 
+BattleHandlers::DamageCalcUserAbility.copy(:IRONHEEL, :HEAVYDUTYHOOVES)
+
 BattleHandlers::DamageCalcUserAbility.add(:BADOMEN,
   proc { |ability, user, target, move, mults, _baseDmg, type, aiCheck|
     if move.foretoldMove?

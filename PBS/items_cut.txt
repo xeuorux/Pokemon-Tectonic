@@ -3123,7 +3123,7 @@ NamePlural = TM33s
 Pocket = 4
 Price = 5000
 FieldUse = TM
-Move = RAIN
+Move = RAINSTORM
 #-------------------------------
 [TM34]
 Name = TM34

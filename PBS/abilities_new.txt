@@ -65,8 +65,8 @@ Description = Turns to Finale Form when only unfainted on team. Ability becomes 
 #-------------------------------
 [ARCCONDUCTOR]
 Name = Arc Conductor
-Description = Inflicts 1/6th max HP damage to the foe when damaged during rain.
-Flags = RainSynergy
+Description = Inflicts 1/6th max HP damage to the foe when damaged during rainstorm.
+Flags = RainstormSynergy
 #-------------------------------
 [ARCHVILLAIN]
 Name = Archvillain
@@ -79,6 +79,10 @@ Description = Sound-based attacks turn Ice-type and are boosted by 30%.
 [ARMORPIERCING]
 Name = Armor Piercing
 Description = Deals double damage against Pokémon that have raised defenses or that are protected by a screen.
+#-------------------------------
+[AROMATIC]
+Name = Aromatic
+Description = Uses Aromatherapy if an attack lowers its HP to half or below.
 #-------------------------------
 [ASSAULTSPINES]
 Name = Assault Spines
@@ -268,8 +272,8 @@ Description = It changes form to match the move it selected.
 #-------------------------------
 [CLOUDBURST]
 Name = Cloudburst
-Description = Boosts Sp. Atk and Speed by 25% in rain.
-Flags = RainSynergy
+Description = Boosts Sp. Atk and Speed by 25% in rainstorm.
+Flags = RainstormSynergy
 #-------------------------------
 [CLOVERSONG]
 Name = Clover Song
@@ -425,8 +429,8 @@ Description = If an attack lowers its HP to half or less, the attacker becomes d
 #-------------------------------
 [DREARYCLOUDS]
 Name = Dreary Clouds
-Description = Move damage that's decreased by rain is decreased twice as much.
-Flags = RainSynergy
+Description = Move damage that's decreased by rainstorm is decreased twice as much.
+Flags = RainstormSynergy
 #-------------------------------
 [DRIFTINGMIST]
 Name = Drifting Mist
@@ -590,7 +594,7 @@ Description = Immune to Poison-type moves, and boosts both defensive stats when 
 #-------------------------------
 [FINESUGAR]
 Name = Fine Sugar
-Description = Restores 1/8 HP in sunshine, 1/4 when hit by Fire-type moves. Loses 1/8 in rain, takes 25% more from Water-type moves.
+Description = Restores 1/8 HP in sunshine, 1/4 when hit by Fire-type moves. Loses 1/8 in rainstorm, takes 25% more from Water-type moves.
 Flags = SunSynergy
 #-------------------------------
 [FIREFESTIVAL]
@@ -793,7 +797,7 @@ Description = Doubles Sp. Atk, but the Pokemon becomes dizzy after attacking.
 #-------------------------------
 [HEARTLESS]
 Name = Heartless
-Description = Immune to Fairy-type moves and restores HP if hit by one.
+Description = Immune to Fairy-type moves and restores HP if hit by one. This can overheal.
 #-------------------------------
 [HEARTOFJUSTICE]
 Name = Heart of Justice
@@ -813,6 +817,11 @@ Flags = SunSynergy
 Name = Heaven's Crown
 Description = If the Pokémon witnesses a Total Eclipse, it gets to move twice that turn.
 Flags = EclipseSynergy
+#-------------------------------
+[HEAVYDUTYHOOVES]
+Name = Heavy Duty Hooves
+Description = Boosts the power of kicking moves by 30%. Immune to hazards.
+Flags = HazardImmunity
 #-------------------------------
 [HERBALIST]
 Name = Herbalist
@@ -1120,10 +1129,6 @@ Name = Midnight Sun
 Description = Powers up Dark-type moves by 50% in sunshine.
 Flags = SunSynergy
 #-------------------------------
-[MISTCRAFT]
-Name = Mistcraft
-Description = Sets Fairy Terrain for five turns when hit by an attack.
-#-------------------------------
 [MOONBASKING]
 Name = Moon Basking
 Description = Heals 1/8th of its max HP each turn if in moonglow.
@@ -1255,8 +1260,8 @@ Description = Boosts Sp. Atk by 30%, but lowers Sp. Atk after using a special mo
 #-------------------------------
 [OVERWHELM]
 Name = Overwhelm
-Description = Boosts Sp. Atk by 30% in rain.
-Flags = RainSynergy
+Description = Boosts Sp. Atk by 30% in rainstorm.
+Flags = RainstormSynergy
 #-------------------------------
 [OXYGENATION]
 Name = Oxygenation
@@ -1393,8 +1398,8 @@ Description = Increases Sp. Atk by 30%.
 #-------------------------------
 [RAINPRISM]
 Name = Rain Prism
-Description = Powers up Fairy-type moves by 50% in rain.
-Flags = RainSynergy
+Description = Powers up Fairy-type moves by 50% in rainstorm.
+Flags = RainstormSynergy
 #-------------------------------
 [RAMPROW]
 Name = Ram Prow
@@ -1532,10 +1537,6 @@ Description = Moves used on the Pokémon are disabled for three turns.
 [SECRETIONSECRET]
 Name = Secretion Secret
 Description = When targeted by a status move, the offending Pokémon becomes poisoned.
-#-------------------------------
-[SEEDSCATTER]
-Name = Seed Scatter
-Description = Sets Grassy Terrain for five turns when hit by an attack.
 #-------------------------------
 [SEEDSOWING]
 Name = Seed Sowing
@@ -1723,8 +1724,8 @@ Description = If an attack lowers its HP to half or less, leeches the attacker.
 #-------------------------------
 [STORMBRINGER]
 Name = Stormbringer
-Description = Summons rain for four turns when hit by an attack.
-Flags = RainSynergy
+Description = Summons rainstorm for four turns when hit by an attack.
+Flags = RainstormSynergy
 #-------------------------------
 [STORMTOTEM]
 Name = Storm Totem
@@ -1745,8 +1746,8 @@ Description = Makes foes stressed and unable to use their items.
 #-------------------------------
 [STRIKETWICE]
 Name = Strikes Twice
-Description = In rain, each of its hits is followed by an extra hit at 25% power.
-Flags = RainSynergy
+Description = In rainstorm, each of its hits is followed by an extra hit at 25% power.
+Flags = RainstormSynergy
 #-------------------------------
 [STUBBORN]
 Name = Stubborn

@@ -1,12 +1,12 @@
 BattleHandlers::WeatherExtenderItem.add(:DAMPROCK,
     proc { |item, weather, duration, _battler, _battle|
-      next duration * 2 if weather == :Rain
+      next duration * 2 if weather == :Rainstorm
     }
 )
 
 BattleHandlers::WeatherExtenderItem.add(:HEATROCK,
   proc { |item, weather, duration, _battler, _battle|
-      next duration * 2 if weather == :Sun
+      next duration * 2 if weather == :Sunshine
   }
 )
 

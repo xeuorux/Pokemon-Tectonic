@@ -479,6 +479,10 @@ Description = Prevents other Pokémon from lowering its stat steps. Immune to we
 Name = Minus
 Description = Ups Sp. Atk if another Pokémon has Plus or Minus.
 #-------------------------------
+[MISTCRAFT]
+Name = Mistcraft
+Description = Sets Fairy Terrain for five turns when hit by an attack.
+#-------------------------------
 [MISTYSURGE]
 Name = Misty Surge
 Description = Turns the ground into Fairy Terrain for 5 turns when entering battle.
@@ -716,6 +720,10 @@ Description = After knocking out any Pokémon with Waterfall, transforms into it
 [SEASURVIVOR]
 Name = Leviathan
 Description = Protected from critical hits. Can't be burned or frostbitten.
+#-------------------------------
+[SEEDSCATTER]
+Name = Seed Scatter
+Description = Sets Grassy Terrain for five turns when hit by an attack.
 #-------------------------------
 [SELFMENDING]
 Name = Perennial Payload

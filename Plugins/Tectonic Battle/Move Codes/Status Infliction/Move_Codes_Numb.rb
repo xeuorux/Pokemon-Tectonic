@@ -10,10 +10,10 @@ class PokeBattle_Move_EmpoweredThunderbolt < PokeBattle_Move_Numb
 end
 
 #===============================================================================
-# Numbs the target. Accuracy perfect in rain. Hits some
+# Numbs the target. Accuracy perfect in rainstorm. Hits some
 # semi-invulnerable targets. (Thunder)
 #===============================================================================
-class PokeBattle_Move_NumbTargetAlwaysHitsInRainHitsTargetInSky < PokeBattle_NumbMove
+class PokeBattle_Move_NumbTargetAlwaysHitsInRainstormHitsTargetInSky < PokeBattle_NumbMove
     def hitsFlyingTargets?; return true; end
 
     def immuneToRainDebuff?; return false; end

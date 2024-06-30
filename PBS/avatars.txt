@@ -299,7 +299,7 @@ Item = WISEGLASSES
 #-------------------------------
 [LINOONE]
 Ability = GLUTTONY
-Moves1 = HEADBUTT,FAIRPLAY,COVET,PRIMEVALRAIN
+Moves1 = HEADBUTT,FAIRPLAY,COVET,PRIMEVALRAINSTORM
 Moves2 = SPATTERINGRAM,COVET
 HPMult = 4.5
 #-------------------------------
@@ -381,7 +381,7 @@ Moves2 = FIREPULSE,YAWN
 #-------------------------------
 [STUNFISK]
 Ability = DRIZZLE
-Moves1 = MUDSHOT,SHOCKWAVE,PRIMEVALRAIN
+Moves1 = MUDSHOT,SHOCKWAVE,PRIMEVALRAINSTORM
 Moves2 = BRINE,THUNDER
 HPMult = 5.0
 #-------------------------------
@@ -617,7 +617,7 @@ Moves2 = COLDFRONT,PSYCHIC
 #-------------------------------
 [GSTUNFISK]
 Ability = DETERRENT
-Moves1 = FARADAYCAGE,SNAPTRAP,PRIMEVALRAIN
+Moves1 = FARADAYCAGE,SNAPTRAP,PRIMEVALRAINSTORM
 Moves2 = LIQUIDATION,SHELLTER
 #-------------------------------
 [ARIADOS]
