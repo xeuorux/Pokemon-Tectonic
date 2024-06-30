@@ -2344,3 +2344,29 @@ FunctionCode = Invalid
 Flags = CanProtect,CanMagicCoat,CanMirrorMove,Sound
 Description = The user plays a melody, making the target drowsy. In Sunlight, lowers the target's Attack and Sp. Atk by two steps.
 Animation = GRASSWHISTLE
+#-------------------------------
+[BANISH]
+Name = Banish
+Type = DRAGON
+Category = Special
+Power = 75
+Accuracy = 100
+TotalPP = 10
+Target = NearOther
+Priority = -1
+FunctionCode = Invalid
+Flags = CanProtect,CanMirrorMove
+Description = The user dismisses the target, forcing it to switch out. Always goes last.
+Animation = ROAR
+#-------------------------------
+[DESTRIERSWHIM]
+Name = Destrier's Whim
+Type = FIRE
+Category = Status
+Accuracy = 100
+TotalPP = 12
+Target = NearOther
+FunctionCode = Invalid
+Flags = CanProtect,CanMagicCoat,CanMirrorMove
+Description = The user burns the target if they're a foe, or raises their Speed by four steps if they're an ally.
+Animation = EMBER

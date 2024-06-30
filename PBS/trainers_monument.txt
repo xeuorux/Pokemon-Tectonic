@@ -1764,7 +1764,7 @@ Pokemon = EELEKTROSS,70
 [BURGLAR,Miladin]
 Policies = MOONGLOW_TEAM
 Pokemon = ALOMOMOLA,70
-    Moves = FLIPTURN,WISH,INFINITEFORCE,TOPSYTURVY
+    Moves = HARBORBREAKER,WISH,INFINITEFORCE,TOPSYTURVY
     AbilityIndex = 1 # Moon Gaze
     Item = MIRROREDROCK
     # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def

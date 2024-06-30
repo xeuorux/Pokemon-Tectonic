@@ -52,7 +52,7 @@ Pokemon = PICHU,8
     AbilityIndex = 0 # Extreme Voltage
 Pokemon = PONYTA,8
     Moves = KINDLE,TREADON
-    AbilityIndex = 1 # Iron Heel
+    AbilityIndex = 1 # Heavy Duty Hooves
 #-------------------------------
 [HIKER,Dave]
 Pokemon = GEODUDE,8
@@ -846,7 +846,7 @@ Pokemon = MIGHTYENA,45
 [COOLTRAINER_F7,Nyx]
 Policies = MOONGLOW_TEAM
 Pokemon = ALOMOMOLA,55
-    Moves = FLIPTURN,WISH,INFINITEFORCE,HEALBELL
+    Moves = HARBORBREAKER,WISH,INFINITEFORCE,HEALBELL
     AbilityIndex = 1 # Moon Gaze
     Item = MIRROREDROCK
     # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
@@ -1732,7 +1732,7 @@ Pokemon = WHISCASH,35
 [DRAGONTAMER,Georgius]
 Pokemon = DRUDDIGON,25
     Moves = STANDTOGETHER,DIAMETRICBREATH
-    AbilityIndex = 1 # Tough
+    AbilityIndex = 1 # Well Suited
 Pokemon = NOIBAT,25
     Moves = MEGADRAIN,BOREALWIND
     AbilityIndex = 1 # Fell Omen
@@ -1768,7 +1768,7 @@ Pokemon = MARSHADOW,55
     AbilityIndex = 1 # Impressionable
 Pokemon = DRUDDIGON,55
     Moves = STANDTOGETHER,FLAMETHROWER,CRUELTY
-    AbilityIndex = 1 # Tough
+    AbilityIndex = 1 # Well Suited
 Pokemon = NOIVERN,55
     Moves = GIGADRAIN,AIRSLASH,SCOUR
     AbilityIndex = 0 # Terrorize
@@ -1852,7 +1852,7 @@ Pokemon = TANGROWTH,35
 [SWIMMER_M,Stannis]
 Policies = MOONGLOW_TEAM
 Pokemon = ALOMOMOLA,35
-    Moves = FLIPTURN,SPIRITBREAK,WISH
+    Moves = HARBORBREAKER,SPIRITBREAK,WISH
     AbilityIndex = 1 # Moon Gaze
 Pokemon = PANGORO,35
     Moves = HATEFULHAYMAKER,DRAINPUNCH,THROATCHOP,PARTINGSHOT
@@ -2013,8 +2013,8 @@ Pokemon = SCRAFTY,42
     Moves = LOWKICK,SUCKERPUNCH,BULLY,SCHEME
     AbilityIndex = 1 # Moxie
 Pokemon = RAPIDASH,41
-    Moves = TRAMPLE,BLAZEKICK,BOUNCE,DESTRIERSWHIM
-    AbilityIndex = 1 # Iron Heel
+    Moves = TRAMPLE,BLAZEKICK,BOUNCE,IGNITE
+    AbilityIndex = 1 # Heavy Duty Hooves
     Item = FIREGEM
 #-------------------------------
 [DOCTOR,Peio]
@@ -2706,8 +2706,8 @@ Pokemon = WHIMSICOTT,48
     Moves = PLAYROUGH,LEAFBLADE,DEFOG,BULKUP
     AbilityIndex = 1 # Pure Force
 Pokemon = RAPIDASH,47
-    Moves = BLAZEKICK,TRAMPLE,DESTRIERSWHIM,BOUNCE
-    AbilityIndex = 1 # Iron Heel
+    Moves = BLAZEKICK,TRAMPLE,IGNITE,BOUNCE
+    AbilityIndex = 1 # Heavy Duty Hooves
     Item = GROUNDGEM
 #-------------------------------
 [JUGGLER,Mikael]
@@ -3048,7 +3048,7 @@ Pokemon = MAGMORTAR,65
     AbilityIndex = 0 # Mega Launcher
     Item = STRIKEVEST
 Pokemon = RAPIDASH,65
-    AbilityIndex = 1 # Iron Heel
+    AbilityIndex = 1 # Heavy Duty Hooves
     Item = LIECHIBERRY
 #-------------------------------
 [BLACKBELT,Leo]
@@ -3632,7 +3632,7 @@ Pokemon = DUSKNOIR,51
     Moves = FROMBEYOND,STITCHUP,TRICKYTOXINS,WILLOWISP
     AbilityIndex = 0 # Aggravate
     Item = ROCKYHELMET
-Pokemon = DUDUNSPARCE,52
+Pokemon = DUDUDUNSPARCE,52
     Moves = HEAVENSEYES,COLDFRONT,SCORCHINGSANDS,MOONBLAST
     AbilityIndex = 0 # Serene Grace
 Pokemon = VENUSAUR,51
@@ -6892,7 +6892,7 @@ Pokemon = FARIGIRAF,60
 Pokemon = VANILLUXE,60
     AbilityIndex = 0 # Extra Scoop
 Pokemon = RAPIDASH,60
-    AbilityIndex = 1 # Iron Heel
+    AbilityIndex = 1 # Heavy Duty Hooves
 #-------------------------------
 [PILOT,Kurtis]
 Pokemon = SIGILYPH,60
@@ -7576,7 +7576,7 @@ Pokemon = TOGEDEMARU,60
 Policies = ECLIPSE_TEAM
 Flags = NoPerfect
 Pokemon = DRUDDIGON,60
-    Moves = BANISH,LOOMOVER,DIAMETRICBREATH,STEALTHROCK
+    Moves = CRUELTY,LOOMOVER,DIAMETRICBREATH,STEALTHROCK
     AbilityIndex = 0 # Harbinger
     Item = PINPOINTROCK
 Pokemon = CLAYDOL,60

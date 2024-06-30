@@ -80,6 +80,10 @@ Description = Sound-based attacks turn Ice-type and are boosted by 30%.
 Name = Armor Piercing
 Description = Deals double damage against Pokémon that have raised defenses or that are protected by a screen.
 #-------------------------------
+[AROMATIC]
+Name = Aromatic
+Description = Uses Aromatherapy if an attack lowers its HP to half or below.
+#-------------------------------
 [ASSAULTSPINES]
 Name = Assault Spines
 Description = Doubles Sp. Def, but the Pokémon can't use status moves.
@@ -813,6 +817,11 @@ Flags = SunSynergy
 Name = Heaven's Crown
 Description = If the Pokémon witnesses a Total Eclipse, it gets to move twice that turn.
 Flags = EclipseSynergy
+#-------------------------------
+[HEAVYDUTYHOOVES]
+Name = Heavy Duty Hooves
+Description = Boosts the power of kicking moves by 30%. Immune to hazards.
+Flags = HazardImmunity
 #-------------------------------
 [HERBALIST]
 Name = Herbalist
