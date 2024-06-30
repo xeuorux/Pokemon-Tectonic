@@ -3810,7 +3810,7 @@ Pokemon = DECEAT,55
     # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
     EV = 20,20,10,0,20,0
 Pokemon = HYMNUS,55
-    Moves = REND,MOONBLAST,RAIN,FIREBLAST
+    Moves = REND,MOONBLAST,RAINSTORM,FIREBLAST
     AbilityIndex = 1 # Rain Prism
     # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
     EV = 20,20,5,0,20,5
@@ -3836,7 +3836,7 @@ Pokemon = DECEAT,55
     Moves = METEORMASH,HUMBLE,SUCKERPUNCH,SWORDSDANCE
     ExtraItems = LIFEORB
 Pokemon = HYMNUS,55
-    Moves = DRACOMETEOR,PLAYROUGH,RAIN,FIREBLAST
+    Moves = DRACOMETEOR,PLAYROUGH,RAINSTORM,FIREBLAST
     Item = WHITEHERB
     ExtraItems = DAMPROCK
 Pokemon = BRONZONG,55
@@ -5105,7 +5105,7 @@ Pokemon = SWAMPERT,70
     # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
     EV = 20,20,0,10,20,0
 Pokemon = THIEVUL,70
-    Moves = RAIN,FLATTER,SLACKOFF,YAWN
+    Moves = RAINSTORM,FLATTER,SLACKOFF,YAWN
     AbilityIndex = 1 # Sentry
     Item = LEFTOVERS
     # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
@@ -7964,7 +7964,7 @@ Pokemon = SAURENAID,70
     # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
     EV = 20,0,15,0,0,15
 Pokemon = PELIPPER,70
-    Moves = RAIN,EBBFLOW,HYDROPUMP,UTURN
+    Moves = RAINSTORM,EBBFLOW,HYDROPUMP,UTURN
     AbilityIndex = 1 # Dreary Clouds
     Item = DAMPROCK
     # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def

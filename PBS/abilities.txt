@@ -137,8 +137,8 @@ Description = Powers up Dragon-type moves by 50%.
 #-------------------------------
 [DRIZZLE]
 Name = Drizzle
-Description = Summons rain for 4 turns when it enters battle.
-Flags = RainSynergy
+Description = Summons rainstorm for 4 turns when it enters battle.
+Flags = RainstormSynergy
 #-------------------------------
 [DROUGHT]
 Name = Drought
@@ -147,8 +147,8 @@ Flags = SunSynergy
 #-------------------------------
 [DRYSKIN]
 Name = Dry Skin
-Description = Restores 1/8 HP in rain, 1/4 when hit by Water-type moves. Loses 1/8 in sunshine, takes 25% more from Fire-type moves.
-Flags = RainSynergy
+Description = Restores 1/8 HP in rainstorm, 1/4 when hit by Water-type moves. Loses 1/8 in sunshine, takes 25% more from Fire-type moves.
+Flags = RainstormSynergy
 #-------------------------------
 [EMERGENCYEXIT]
 Name = Emergency Exit
@@ -249,8 +249,8 @@ Description = Boosts move damage by 50%, but lowers accuracy by 20%.
 #-------------------------------
 [HYDRATION]
 Name = Hydration
-Description = Heals status problems each turn if it is raining.
-Flags = RainSynergy
+Description = Heals status problems each turn if in rainstorm.
+Flags = RainstormSynergy
 #-------------------------------
 [ICEBODY]
 Name = Ice Body
@@ -426,7 +426,7 @@ Description = The Pokémon raises the foe's PP usage.
 [PRIMORDIALSEA]
 Name = Primordial Sea
 Description = Changes the weather to Heavy Rain, which nullifies Fire-type moves. Lingers for 3 turns after leaving.
-Flags = RainSynergy
+Flags = RainstormSynergy
 #-------------------------------
 [PRISMARMOR]
 Name = Prism Armor
@@ -442,8 +442,8 @@ Description = Raises the Pokémon's Attack by 50%, including Style Values and ot
 #-------------------------------
 [RAINDISH]
 Name = Rain Dish
-Description = Heals 1/8th of its max HP each turn if in rain.
-Flags = RainSynergy
+Description = Heals 1/8th of its max HP each turn if in rainstorm.
+Flags = RainstormSynergy
 #-------------------------------
 [RECKLESS]
 Name = Reckless
@@ -626,8 +626,8 @@ Description = Four times more likely for moves to be critical.
 #-------------------------------
 [SWIFTSWIM]
 Name = Swift Swim
-Description = Doubles the Pokémon's Speed in rain.
-Flags = RainSynergy
+Description = Doubles the Pokémon's Speed in rainstorm.
+Flags = RainstormSynergy
 #-------------------------------
 [SYNCHRONIZE]
 Name = Synchronize

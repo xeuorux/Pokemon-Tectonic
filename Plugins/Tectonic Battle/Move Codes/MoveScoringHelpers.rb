@@ -607,11 +607,11 @@ def getWeatherSettingEffectScore(weatherType, user, battle, finalDuration = 4, c
     hasSynergyAbility = false
     hasSynergisticType = false
     case weatherType
-    when :Sun
+    when :Sunshine
         weatherMatchesPolicy = true if user.ownersPolicies.include?(:SUN_TEAM)
         hasSynergyAbility = true if user.hasActiveAbilityAI?(GameData::Ability.getByFlag("SunSynergy"))
         hasSynergisticType = true if user.pbHasAttackingType?(:FIRE)
-    when :Rain
+    when :Rainstorm
         weatherMatchesPolicy = true if user.ownersPolicies.include?(:RAIN_TEAM)
         hasSynergyAbility = true if user.hasActiveAbilityAI?(GameData::Ability.getByFlag("RainSynergy"))
         hasSynergisticType = true if user.pbHasAttackingType?(:WATER)

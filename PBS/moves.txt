@@ -1023,10 +1023,10 @@ Power = 110
 Accuracy = 70
 TotalPP = 10
 Target = NearOther
-FunctionCode = NumbTargetAlwaysHitsInRainHitsTargetInSky
+FunctionCode = NumbTargetAlwaysHitsInRainstormHitsTargetInSky
 Flags = CanProtect,CanMirrorMove
 EffectChance = 30
-Description = Can't miss in rain. It has a 30% chance to numb. Can hit targets flying high up.
+Description = Can't miss in rainstorm. It has a 30% chance to numb. Can hit targets flying high up.
 #-------------------------------
 [FUSIONBOLT]
 Name = Fusion Bolt
@@ -6943,15 +6943,15 @@ FunctionCode = HitTwoToFiveTimes
 Flags = CanProtect,CanMirrorMove
 Description = The user hits the target with throwing stars 2-5 times in a row. This move always goes first.
 #-------------------------------
-[RAIN]
-Name = Rain
+[RAINSTORM]
+Name = Rainstorm
 Type = WATER
 Category = Status
 Accuracy = 0
 TotalPP = 10
 Target = BothSides
-FunctionCode = StartRain8
-Description = Summons rain for eight turns, boosting Water-type attacks and hindering most others.
+FunctionCode = StartRainstorm8
+Description = Summons rainstorm for eight turns, boosting Water-type attacks and hindering most others.
 #-------------------------------
 [SOAK]
 Name = Soak

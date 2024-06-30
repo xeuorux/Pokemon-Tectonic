@@ -73,8 +73,8 @@ class PokeBattle_Battle
 
     def displayResetWeatherMessage
         case @field.weather
-        when :Sun           then pbDisplay(_INTL("The sunshine continues!"))
-        when :Rain          then pbDisplay(_INTL("The rain shows no sign of stopping!"))
+        when :Sunshine           then pbDisplay(_INTL("The sunshine continues!"))
+        when :Rainstorm     then pbDisplay(_INTL("The rainstorm shows no sign of stopping!"))
         when :Sandstorm     then pbDisplay(_INTL("The sandstorm returns to full strength!"))
         when :Hail          then pbDisplay(_INTL("The hail keeps coming!"))
         when :Eclipse       then pbDisplay(_INTL("The eclipse extends unnaturally!"))
@@ -86,8 +86,8 @@ class PokeBattle_Battle
 
     def displayFreshWeatherMessage
         case @field.weather
-        when :Sun           then pbDisplay(_INTL("The sun is shining in the sky!"))
-        when :Rain          then pbDisplay(_INTL("It started to rain!"))
+        when :Sunshine           then pbDisplay(_INTL("The sun is shining in the sky!"))
+        when :Rainstorm     then pbDisplay(_INTL("A rainstorm covers the sky!"))
         when :Sandstorm     then pbDisplay(_INTL("A sandstorm brewed!"))
         when :Hail          then pbDisplay(_INTL("It started to hail!"))
         when :HarshSun      then pbDisplay(_INTL("The sunlight turned extremely harsh!"))
@@ -103,8 +103,8 @@ class PokeBattle_Battle
     def endWeather
         return if @field.weather == :None
         case @field.weather
-        when :Sun           then pbDisplay(_INTL("The sunshine faded."))
-        when :Rain          then pbDisplay(_INTL("The rain stopped."))
+        when :Sunshine           then pbDisplay(_INTL("The sunshine faded."))
+        when :Rainstorm     then pbDisplay(_INTL("The rainstorm stopped."))
         when :Sandstorm     then pbDisplay(_INTL("The sandstorm subsided."))
         when :Hail          then pbDisplay(_INTL("The hail stopped."))
         when :Eclipse       then pbDisplay(_INTL("The eclipse ended."))
@@ -407,7 +407,7 @@ class PokeBattle_Battle
     end
 
     def rainy?
-        return %i[Rain HeavyRain].include?(pbWeather)
+        return %i[Rainstorm HeavyRain].include?(pbWeather)
     end
 
     def sandy?

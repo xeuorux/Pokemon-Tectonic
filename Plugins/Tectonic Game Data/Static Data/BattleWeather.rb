@@ -33,13 +33,13 @@ GameData::BattleWeather.register({
 })
 
 GameData::BattleWeather.register({
-  :id        => :Sun,
+  :id        => :Sunshine,
   :name      => _INTL("Sun"),
-  :animation => "Sun",
+  :animation => "Sunny",
 })
 
 GameData::BattleWeather.register({
-  :id        => :Rain,
+  :id        => :Rainstorm,
   :name      => _INTL("Rain"),
   :animation => "Rain",
 })
@@ -83,7 +83,7 @@ GameData::BattleWeather.register({
 GameData::BattleWeather.register({
   :id        => :Moonglow,
   :name      => _INTL("Moonglow"),
-  :animation => "Moonlight",
+  :animation => "Moonglow",
 })
 
 GameData::BattleWeather.register({

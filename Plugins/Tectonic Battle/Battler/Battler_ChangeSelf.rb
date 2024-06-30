@@ -455,8 +455,8 @@ class PokeBattle_Battler
             if hasActiveAbility?(:FORECAST)
                 newForm = 0
                 case @battle.pbWeather
-                when :Sun, :HarshSun   then newForm = 1
-                when :Rain, :HeavyRain then newForm = 2
+                when :Sunshine, :HarshSun   then newForm = 1
+                when :Rainstorm, :HeavyRain then newForm = 2
                 when :Hail             then newForm = 3
                 when :Sandstorm        then newForm = 4
                 end

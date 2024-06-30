@@ -4,13 +4,13 @@
 
 BattleHandlers::AbilityOnSwitchIn.add(:DRIZZLE,
   proc { |ability, battler, battle, aiCheck|
-      pbBattleWeatherAbility(ability, :Rain, battler, battle, false, true, aiCheck)
+      pbBattleWeatherAbility(ability, :Rainstorm, battler, battle, false, true, aiCheck)
   }
 )
 
 BattleHandlers::AbilityOnSwitchIn.add(:DROUGHT,
   proc { |ability, battler, battle, aiCheck|
-      pbBattleWeatherAbility(ability, :Sun, battler, battle, false, true, aiCheck)
+      pbBattleWeatherAbility(ability, :Sunshine, battler, battle, false, true, aiCheck)
   }
 )
 

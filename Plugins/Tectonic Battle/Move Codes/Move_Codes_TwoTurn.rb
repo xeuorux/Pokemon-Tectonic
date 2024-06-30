@@ -63,7 +63,7 @@ end
 #===============================================================================
 # Two turn attack. Skips first turn, attacks second turn. In rain, takes 1 turn instead. (Storm Drive)
 #===============================================================================
-class PokeBattle_Move_TwoTurnAttackOneTurnInRain < PokeBattle_TwoTurnMove
+class PokeBattle_Move_TwoTurnAttackOneTurnInRainstorm < PokeBattle_TwoTurnMove
     def immuneToRainDebuff?; return true; end
     
     def pbChargingTurnMessage(user, _targets)
@@ -332,12 +332,12 @@ class PokeBattle_Move_TwoTurnAttackChargeStartSunshine5 < PokeBattle_TwoTurnMove
     end
 
     def pbChargingTurnEffect(user, _target)
-        @battle.pbStartWeather(user, :Sun, 5, false)
+        @battle.pbStartWeather(user, :Sunshine, 5, false)
     end
 
     def getEffectScore(user, _target)
         score = super
-        score += getWeatherSettingEffectScore(:Sun, user, battle, 5)
+        score += getWeatherSettingEffectScore(:Sunshine, user, battle, 5)
         return score
     end
 end
@@ -346,13 +346,13 @@ end
 # Two turn attack. Sets rain first turn, attacks second turn.
 # (Archaen Deluge)
 #===============================================================================
-class PokeBattle_Move_TwoTurnAttackChargeStartRain5 < PokeBattle_TwoTurnMove
+class PokeBattle_Move_TwoTurnAttackChargeStartRainstorm5 < PokeBattle_TwoTurnMove
     def pbChargingTurnMessage(user, _targets)
         @battle.pbDisplay(_INTL("{1} begins the flood!", user.pbThis))
     end
 
     def pbChargingTurnEffect(user, _target)
-        @battle.pbStartWeather(user, :Rain, 5, false)
+        @battle.pbStartWeather(user, :Rainstorm, 5, false)
     end
 
     def getEffectScore(user, _target)

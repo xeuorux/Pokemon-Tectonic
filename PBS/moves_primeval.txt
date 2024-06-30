@@ -36,17 +36,17 @@ Flags = Empowered
 Description = The user summons sunshine for 5 turns, boosts its Atk. and Sp. Atk, and becomes Fire-type.
 Animation = SUNSHINE
 #-------------------------------
-[PRIMEVALRAIN]
-Name = Primeval Rain
+[PRIMEVALRAINSTORM]
+Name = Primeval Rainstorm
 Type = WATER
 Category = Status
 Accuracy = 0
 TotalPP = 1
 Target = BothSides
-FunctionCode = EmpoweredRain
+FunctionCode = EmpoweredRainstorm
 Flags = Empowered
-Description = The user summons rain for 5 turns, surrounds itself with healing water, and becomes Water-type.
-Animation = RAIN
+Description = The user summons rainstorm for 5 turns, surrounds itself with healing water, and becomes Water-type.
+Animation = RAINSTORM
 #-------------------------------
 [PRIMEVALLEECHSEED]
 Name = Primeval Leech Seed

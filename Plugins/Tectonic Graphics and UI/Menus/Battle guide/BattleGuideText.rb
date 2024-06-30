@@ -216,7 +216,7 @@ def battleGuideWeathersHash
         _INTL("What are weathers?") => _INTL("Weathers are special states that effect the entire battlefield and help or hinder the Pokémon battling. Only one weather can be active at once."),
         _INTL("Weather Duration") => _INTL("Weathers last a certain number of turns. The length differs depending on what move or ability summoned the weather. The duration can be extended by certain items."),
         _INTL("Sunshine") => _INTL("Sunshine lowers attack damage by 15% and prevents crits. Fire and Grass-type moves/Pokémon are immune to this. Fire-type attacks are boosted by 30%."),
-        _INTL("Rain") => _INTL("Rain lowers attack damage by 15% and makes added effects half as likely. Water and Electric-type moves/Pokémon are immune to this. Water-type attacks are boosted by 30%."),
+        _INTL("Rain") => _INTL("Rainstorm lowers attack damage by 15% and makes added effects half as likely. Water and Electric-type moves/Pokémon are immune to this. Water-type attacks are boosted by 30%."),
         _INTL("Sandstorm") => _INTL("Sandstorm deals damage to all Pokémon at the end of each turn. Rock and Ground-types are immune to this. Additionally, Rock-types get +50% Special Defense."),
         _INTL("Hail") => _INTL("Hail deals damage to all Pokémon at the end of each turn. Ice and Ghost-types are immune to this. Additionally, Ice-types get +50% Defense."),
         _INTL("Eclipse") => _INTL("Eclipse lowers all stats of all Pokémon every 4 turns (by 2 steps). Psychic and Dragon-types are immune to this. Additionally, Psychic-type attacks are boosted by 30%."),

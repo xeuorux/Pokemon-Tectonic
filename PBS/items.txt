@@ -594,7 +594,7 @@ Name = Damp Rock
 NamePlural = Damp Rocks
 Pocket = 5
 Price = 4000
-Description = A Pokémon held item. When the holder summons rain, it lasts twice as long.
+Description = A Pokémon held item. When the holder summons rainstorm, it lasts twice as long.
 #-------------------------------
 [SMOOTHROCK]
 Name = Smooth Rock
