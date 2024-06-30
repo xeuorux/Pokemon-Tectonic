@@ -87,7 +87,7 @@ BattleHandlers::MoveImmunityTargetAbility.add(:FIREFIGHTER,
 
 BattleHandlers::MoveImmunityTargetAbility.add(:HEARTLESS,
   proc { |ability, user, target, move, type, battle, showMessages, aiCheck|
-      next pbBattleMoveImmunityHealAbility(ability, user, target, move, type, :FAIRY, battle, showMessages, aiCheck)
+      next pbBattleMoveImmunityHealAbility(ability, user, target, move, type, :FAIRY, battle, showMessages, aiCheck, canOverheal: true)
   }
 )
 

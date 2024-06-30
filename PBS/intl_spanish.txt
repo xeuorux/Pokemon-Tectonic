@@ -37748,8 +37748,8 @@ A kick that can also eliminate trapping and hazard moves. Also raises user's Spe
 Una patada que elimina movimientos que atrapan o trampas. También aumenta la Velocidad del usuario.
 Halves attack damage taken this turn. Leeches any attackers. Fails if used successively.
 Divide a la mitad el daño recibido por un turno. Infecta a cualquier atacante. Falla si se usa consecutivamente.
-The user assaults its foe's dreams. It absorbs half the damage dealt, and doubles in power if the foe is asleep.
-El usuario asalta a los sueños del objetivo. Absorbe la mitad del daño que cause, y duplica su potencia si el objetivo está dormido.
+Doubles in power if the foe is asleep. User heals for half of damage dealt. This can overheal.
+Duplica su potencia si el objetivo está dormido. Recupera la mitad del daño causado. Esto puede sobrecurar.
 Leeches the target by kissing them with its thin mouth.
 Infecta al objetivo besándolo con sus finos labios.
 The user throws a royal fit for three turns. Raises Speed if a target is knocked out by this move.
@@ -43037,8 +43037,8 @@ Sets a Tailwind for four turns upon entering the battle, increasing Speed.
 Levanta un Viento Afín durante cuatro turnos al entrar al campo, aumentando la Velocidad de tu equipo.
 Becomes charged when hit by an attack, doubling the power of its next Electric-type attack.
 Al ser alcanzado por un ataque, el usuario obtiene un carga, que duplica la potencia de su siguiente movimiento de tipo Eléctrico.
-Immune to Fairy-type moves and restores HP if hit by one.
-Inmune a movimientos tipo Hada y recupera PS cuando es alcanzado por uno. 
+Immune to Fairy-type moves and restores HP if hit by one. This can overheal.
+Inmune a movimientos tipo Hada y recupera PS cuando es alcanzado por uno. Esto puede sobrecurar.
 Immune to Ice-type moves, and raises both attacking stats if hit by one.
 Inmune a movimientos tipo Hielo y aumenta ambas stats ofensivas cuando es alcanzado por uno. 
 Its attacks are critical against frostbitten targets.

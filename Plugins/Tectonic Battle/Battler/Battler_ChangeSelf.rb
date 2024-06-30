@@ -171,7 +171,7 @@ class PokeBattle_Battler
         return amt
     end
 
-    def pbRecoverHPFromDrain(drainAmount, target)
+    def pbRecoverHPFromDrain(drainAmount, target, canOverheal: false)
         if target.hasActiveAbility?(:LIQUIDOOZE)
             @battle.pbShowAbilitySplash(target, :LIQUIDOOZE)
             oldHP = @hp
@@ -181,13 +181,13 @@ class PokeBattle_Battler
             pbItemHPHealCheck
             pbAbilitiesOnDamageTaken(oldHP)
             pbFaint if fainted?
-        elsif canHeal?(hasActiveAbility?(:GORGING))
+        elsif canHeal?(canOverheal || hasActiveAbility?(:GORGING))
             if hasActiveItem?(:BIGROOT)
                 drainAmount = (drainAmount * 1.3).floor
                 aiLearnsItem(:BIGROOT)
             end
-            pbRecoverHP(drainAmount, true, true, false, canOverheal: hasActiveAbility?(:GORGING))
-            if overhealed?
+            pbRecoverHP(drainAmount, true, true, false, canOverheal: canOverheal || hasActiveAbility?(:GORGING))
+            if overhealed? && hasActiveAbility?(:GORGING) && !canOverheal
                 showMyAbilitySplash(:GORGING)
                 @battle.pbDisplay(_INTL("{1} is loaded up with fluids!", pbThis))
                 hideMyAbilitySplash

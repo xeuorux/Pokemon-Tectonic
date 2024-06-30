@@ -1015,10 +1015,13 @@ class PokeBattle_DrainMove < PokeBattle_Move
 
     def shouldDrain?(_user, _target); return true; end
 
+    def canOverheal?(_user, _target); return false; end
+
     def pbEffectAgainstTarget(user, target)
         return if target.damageState.hpLost <= 0 || !shouldDrain?(user, target)
         hpGain = (target.damageState.hpLost * drainFactor(user, target)).round
-        user.pbRecoverHPFromDrain(hpGain, target)
+        canOverheal = canOverheal?(user, target)
+        user.pbRecoverHPFromDrain(hpGain, target, canOverheal: canOverheal)
     end
 
     def getDamageBasedEffectScore(user,target,damage)

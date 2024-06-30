@@ -3798,9 +3798,9 @@ Power = 60
 Accuracy = 100
 TotalPP = 12
 Target = NearOther
-FunctionCode = HealUserByHalfOfDamageDoneDoubleDamageIfTargetAsleep
+FunctionCode = HealUserByHalfOfDamageDoneDoubleDamageIfTargetAsleepCanOverheal
 Flags = CanProtect,CanMirrorMove
-Description = The user assaults its foe's dreams. It absorbs half the damage dealt, and doubles in power if the foe is asleep.
+Description = Doubles in power if the foe is asleep. User heals for half of damage dealt. This can overheal.
 #-------------------------------
 [CRUELKISS]
 Name = Cruel Kiss

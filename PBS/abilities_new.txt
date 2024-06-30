@@ -793,7 +793,7 @@ Description = Doubles Sp. Atk, but the Pokemon becomes dizzy after attacking.
 #-------------------------------
 [HEARTLESS]
 Name = Heartless
-Description = Immune to Fairy-type moves and restores HP if hit by one.
+Description = Immune to Fairy-type moves and restores HP if hit by one. This can overheal.
 #-------------------------------
 [HEARTOFJUSTICE]
 Name = Heart of Justice
