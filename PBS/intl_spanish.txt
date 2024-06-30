@@ -362,7 +362,7 @@ Realmente quiere hablar contigo.
 A couple seconds later, you receive a text message with the coordinates to the Battle Monument.
 Un par de segundos después, recibes un mensaje de texto con las coordinadas del Monumento Batalla.
 Hello to you, young one.
-Saludos, jove.
+Saludos, joven.
 It is I, Dr. Hekata.
 Soy yo, la Dr. Hekata.
 Do not worry about how I learned of your cellphone number. I simply divined it.
@@ -39608,7 +39608,13 @@ Manzana Ácida
 Noise Machine
 Máquina de Ruido
 Cell Booster
-Refuerzo de Células
+Acelerador Celular
+Rusted Compass
+Brújula Oxidada
+Soothe Charm 
+Amuleto Alivio
+Magnetic Gauntlet
+Guante Magnético
 [8]
 Repels
 Repelentes
@@ -41065,6 +41071,14 @@ A hi-tech recording device which creates a Battle Report by analyzing the result
 Un dispositivo de alta tecnología que crea un Reporte de Combate al analizar los resultados de ciertos Combates.
 Disables the opponent's most recently-used move for three turns upon hitting it.
 Anula el último movimiendo usado por el oponente durante tres turnos al ser usada.
+Condensed essence of life. Holding it allows you to run, bike, and surf faster.
+Esencia de vida condensada. Sostenerla te permite correr, ir en bici, y surfear más rápido.
+A small compass. Relic of a heroic age. It can be used to find lootable items nearby.
+Una pequeña brújula. Reliquia de una era heróica. Puede ser usada para encontrar objetos a tu alrededor.
+An electrified glove with a claw-like shape. Allows you to recover the first failed Poké Ball thrown in a wild battle.
+Un guante electrificado con forma de garra. Te permite recuperar la primer Poké Ball fallada lanzada en un combate salvaje.
+A comforting charm which doubles the happiness your Pokémon gain from being close to you.
+Un amuleto reconfortarte que duplica la felicidad que tus Pokémon ganan al estar cerca a ti.
 [10]
 Shell Armor
 Caparazón
