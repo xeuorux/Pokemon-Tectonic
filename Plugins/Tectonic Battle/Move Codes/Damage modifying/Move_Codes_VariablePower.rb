@@ -152,7 +152,10 @@ class PokeBattle_Move_HardPlace < PokeBattle_Move
             real_defense = ally_battler.pbDefense
             highestDefense = real_defense if real_defense > highestDefense
         end
-        return [highestDefense, 40].max
+        highestDefense = (highestDefense/5)*5 # Round to nearest 5
+        highestDefense = 40 if highestDefense < 40
+        highestDefense = 200 if highestDefense > 200
+        return highestDefense
     end
 end
 
