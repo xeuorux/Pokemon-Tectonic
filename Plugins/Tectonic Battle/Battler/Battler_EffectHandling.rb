@@ -37,6 +37,7 @@ class PokeBattle_Battler
             eachActiveAbility do |ability|
                 BattleHandlers.triggerCertainSwitchingUserAbility(ability, self, @battle, true)
             end
+            refreshDataBox
         end
     end
 

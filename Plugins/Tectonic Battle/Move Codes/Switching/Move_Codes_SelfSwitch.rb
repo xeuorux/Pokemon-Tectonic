@@ -202,3 +202,34 @@ class PokeBattle_Move_SwitchOutUserSetSpikes < PokeBattle_Move_SwitchOutUserDama
         return getHazardSettingEffectScore(user, target) unless user.pbOpposingSide.effectAtMax?(:Spikes)
     end
 end
+
+#===============================================================================
+# If the move misses, user switches out. (Cavalry Charge)
+#===============================================================================
+class PokeBattle_Move_SwitchOutUserIfMissesDamagingMove < PokeBattle_Move
+    def switchOutMove?; return true; end
+
+    def initialize(battle, move)
+        super
+        @switchThisTurn = false
+    end
+
+    def pbAllMissed(user, targets)
+        @battle.pbDisplay(_INTL("{1} charges away!",user.pbThis))
+        @switchThisTurn = true
+    end
+
+    def pbEndOfMoveUsageEffect(user, targets, numHits, switchedBattlers)
+        return if user.fainted?
+        return unless @switchThisTurn
+        switchOutUser(user,switchedBattlers)
+    end
+
+    def getEffectScore(user, target)
+        return getSwitchOutEffectScore(user) * 0.5
+    end
+
+    def resetMoveUsageState
+        @switchThisTurn = false
+    end
+end

@@ -101,7 +101,7 @@ end
 #===============================================================================
 # In wild battles, makes target flee. Fails if target is a higher level than the
 # user.
-# In trainer battles, target switches out, to be replaced manually. (Dragon's Roar)
+# In trainer battles, target switches out, to be replaced manually. (Thornrattle)
 #===============================================================================
 class PokeBattle_Move_SwitchOutTargetDamagingMoveNonRandom < PokeBattle_Move
     def forceSwitchMove?; return true; end

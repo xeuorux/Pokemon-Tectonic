@@ -1062,3 +1062,16 @@ BattleHandlers::AbilityOnSwitchIn.add(:EXTRASCOOP,
     next battler.applyFractionalHealing(1.0/4.0, ability: ability, canOverheal: true, aiCheck: aiCheck)
   }
 )
+
+BattleHandlers::AbilityOnSwitchIn.add(:LASTGASP,
+  proc { |ability, battler, battle, aiCheck|
+    battler.showMyAbilitySplash(ability)
+    battler.applyEffect(:LastGasp)
+    if battler.boss?
+      battler.applyEffect(:PerishSong, 12)
+    else
+      battler.applyEffect(:PerishSong, 3)
+    end
+    battler.hideMyAbilitySplash
+  }
+)

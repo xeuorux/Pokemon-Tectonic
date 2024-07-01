@@ -997,6 +997,11 @@ Description = Boosts the power of punching moves by 50%.
 Name = Larder
 Description = At end of turn, regenerates its previously-used berry.
 #-------------------------------
+[LASTGASP]
+Name = Last Gasp
+Description = Cannot take damage or be switched out. Hears Perish Song upon entering, ensuring its demise.
+Flags = Immutable
+#-------------------------------
 [LATEBLOOMER]
 Name = Late Bloomer
 Description = Deals 30% more damage when it's slower than the target.

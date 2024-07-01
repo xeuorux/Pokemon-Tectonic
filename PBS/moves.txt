@@ -1478,17 +1478,6 @@ FunctionCode = TrapAllBattlersForOneTurn
 Flags = CanMirrorMove
 Description = By locking down the battlefield, the user keeps all Pokémon from fleeing during the next turn.
 #-------------------------------
-[FLORALHEALING]
-Name = Floral Healing
-Type = FAIRY
-Category = Status
-Accuracy = 0
-TotalPP = 5
-Target = NearAlly
-FunctionCode = HealTargetDependingOnMoonglow
-Flags = CanProtect,CanMagicCoat
-Description = The user restores the target's HP by 50% of its max hp, or 2/3rds in moonglow.
-#-------------------------------
 [GEOMANCY]
 Name = Geomancy
 Type = FAIRY

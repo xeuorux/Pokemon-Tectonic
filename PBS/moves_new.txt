@@ -4308,20 +4308,6 @@ Flags = CanMagicCoat
 Description = The user calls all rocks to join it, summoning sandstorm for five turns and laying a trap of levitating stones around the target.
 Animation = STEALTHROCK
 #-------------------------------
-[CONTRADICT]
-Name = Contradict
-Type = PSYCHIC
-Category = Special
-Power = 60
-Accuracy = 100
-TotalPP = 12
-Target = NearOther
-FunctionCode = Dizzy
-Flags = CanProtect,CanMirrorMove
-EffectChance = 100
-Description = The user questions the existence of the target, dealing psychic damage and dizzying them.
-Animation = AMNESIA
-#-------------------------------
 [MOUTHFUL]
 Name = Mouthful
 Type = DARK
@@ -5304,19 +5290,6 @@ Flags = CanProtect,CanMirrorMove,Biting
 Description = The user bites with playful abandon. This deals double damage on the user's first turn out.
 Animation = CRUNCH
 #-------------------------------
-[JOUST]
-Name = Joust
-Type = STEEL
-Category = Physical
-Power = 130
-Accuracy = 50
-TotalPP = 12
-Target = NearOther
-FunctionCode = RaiseUserAccSpd1IfMisses
-Flags = CanProtect,CanMirrorMove
-Description = The user charges at the target to strike it squarely. If it misses, the user's accuracy and Speed is raised.
-Animation = SMARTSTRIKE
-#-------------------------------
 [SEASONSEND]
 Name = Season's End
 Type = NORMAL
@@ -5626,19 +5599,6 @@ Priority = 4
 FunctionCode = UserEnduresFaintingThisTurnRaiseUserAtk2IfActivates
 Description = The user endures attacks with 1 HP. If so, raises its Attack by two steps. Fails if used in succession.
 Animation = ENDURE
-#-------------------------------
-[TIDALKINESIS]
-Name = Tidalkinesis
-Type = WATER
-Category = Physical
-Power = 100
-Accuracy = 100
-TotalPP = 10
-Target = NearOther
-FunctionCode = NumbTargetIfInEclipse
-Flags = CanProtect,CanMirrorMove,Biting
-EffectChance = 100
-Description = The user bites with added telekinetic force. During eclipse, the target also becomes numbed.
 #-------------------------------
 [MUTATE]
 Name = Mutate
@@ -6639,3 +6599,40 @@ Target = NearOther
 FunctionCode = RemoveRoomsIncidental
 Flags = CanProtect,CanMirrorMove
 Description = An unusual shockwave that breaks down all active Rooms.
+#-------------------------------
+[CAVALRYCHARGE]
+Name = Cavalry Charge
+Type = STEEL
+Category = Physical
+Power = 70
+Accuracy = 50
+TotalPP = 10
+Target = NearOther
+Priority = 1
+FunctionCode = SwitchOutUserIfMissesDamagingMove
+Flags = CanProtect,CanMirrorMove
+Description = A reckless charge that forces the user to switch out if it misses. Always goes first.
+Animation = SMARTSTRIKE
+#-------------------------------
+[SELECTIVEMEMORY]
+Name = Selective Memory
+Type = PSYCHIC
+Category = Status
+Accuracy = 100
+TotalPP = 15
+Target = User
+FunctionCode = UseChoiceOf3RandomNonSignatureNonPsychicDamagingMoves
+Flags = CanSnatch
+Description = The user peruses it's kingly stores of knowledge, selecting three random non-Psychic attacks. You choose which one it uses.
+Animation = METRONOME
+#-------------------------------
+[ELEMENTALFANG]
+Name = Elemental Fang
+Type = NORMAL
+Category = Status
+Accuracy = 100
+TotalPP = 20
+Target = NearOther
+FunctionCode = UseChoiceOf3ElementalFangs
+Flags = CanSnatch
+Description = The user peruses it's kingly stores of knowledge, selecting three random non-Psychic attacks. You choose which one it uses.

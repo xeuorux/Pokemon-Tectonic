@@ -2370,3 +2370,54 @@ FunctionCode = Invalid
 Flags = CanProtect,CanMagicCoat,CanMirrorMove
 Description = The user burns the target if they're a foe, or raises their Speed by four steps if they're an ally.
 Animation = EMBER
+#-------------------------------
+[JOUST]
+Name = Joust
+Type = STEEL
+Category = Physical
+Power = 130
+Accuracy = 50
+TotalPP = 12
+Target = NearOther
+FunctionCode = Invalid
+Flags = CanProtect,CanMirrorMove
+Description = The user charges at the target to strike it squarely. If it misses, the user's accuracy and Speed is raised.
+Animation = SMARTSTRIKE
+#-------------------------------
+[FLORALHEALING]
+Name = Floral Healing
+Type = FAIRY
+Category = Status
+Accuracy = 0
+TotalPP = 5
+Target = NearAlly
+FunctionCode = Invalid
+Flags = CanProtect,CanMagicCoat
+Description = The user restores the target's HP by 50% of its max hp, or 2/3rds in moonglow.
+#-------------------------------
+[CONTRADICT]
+Name = Contradict
+Type = PSYCHIC
+Category = Special
+Power = 60
+Accuracy = 100
+TotalPP = 12
+Target = NearOther
+FunctionCode = Invalid
+Flags = CanProtect,CanMirrorMove
+EffectChance = 100
+Description = The user questions the existence of the target, dealing psychic damage and dizzying them.
+Animation = AMNESIA
+#-------------------------------
+[TIDALKINESIS]
+Name = Tidalkinesis
+Type = WATER
+Category = Physical
+Power = 100
+Accuracy = 100
+TotalPP = 10
+Target = NearOther
+FunctionCode = Invalid
+Flags = CanProtect,CanMirrorMove,Biting
+EffectChance = 100
+Description = The user bites with added telekinetic force. During eclipse, the target also becomes numbed.

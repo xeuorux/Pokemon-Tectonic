@@ -1397,7 +1397,7 @@ Pokemon = WATCHOG,28
     AbilityIndex = 0 # Recon
 Pokemon = SHEDINJA,28
     Moves = UTURN,TREMOR,SHADOWSNEAK,SHADOWCLAW
-    AbilityIndex = 1 # Wonder Guard
+    AbilityIndex = 1 # Last Gasp
 #-------------------------------
 [POKEMONRANGER_M,Ivan]
 Pokemon = MTANGELA,27
@@ -2966,7 +2966,7 @@ Pokemon = CRABOMINABLE,45
     # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
     EV = 10,20,0,0,20,20
 Pokemon = BRUXISH,45
-    Moves = CRUNCH,PSYCHICFANGS,TIDALKINESIS,FIREFANG
+    Moves = CRUNCH,PSYCHICFANGS,THUNDERFANG,FIREFANG
     AbilityIndex = 1 # Strong Jaw
     Item = FIREGEM
     # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def

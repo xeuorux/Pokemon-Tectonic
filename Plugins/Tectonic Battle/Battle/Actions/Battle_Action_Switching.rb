@@ -71,6 +71,11 @@ class PokeBattle_Battle
     def pbIsTrapped?(idxBattler, partyScene = nil)
         battler = @battlers[idxBattler]
         
+        if battler.effectActive?(:LastGasp)
+            partyScene.pbDisplay(_INTL("{1} can't be switched out!", battler.pbThis)) if partyScene
+            return true
+        end
+        
         # Ability effects that allow switching no matter what
         battler.eachActiveAbility do |ability|
             return false if BattleHandlers.triggerCertainSwitchingUserAbility(ability, battler, self, false)

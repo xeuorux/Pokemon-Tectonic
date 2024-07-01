@@ -969,6 +969,12 @@ GameData::BattleEffect.register_effect(:Battler, {
     :id => :Roost,
     :real_name => "Roosting",
     :resets_eor	=> true,
+    :apply_proc => proc do |_battle, battler, _value|
+        battler.refreshDataBox
+    end,
+    :disable_proc => proc do |battle, battler|
+        battler.refreshDataBox
+    end,
 })
 
 GameData::BattleEffect.register_effect(:Battler, {
@@ -2062,4 +2068,16 @@ GameData::BattleEffect.register_effect(:Battler, {
     :id => :AutoPilot,
     :real_name => "Auto-Pilot",
     :resets_eor => true,
+})
+
+GameData::BattleEffect.register_effect(:Battler, {
+    :id => :LastGasp,
+    :real_name => "Last Gasp",
+    :trapping => true,
+    :apply_proc => proc do |battle, battler, _value|
+        battle.pbDisplay(_INTL("{1} can't take damage or switch out!", battler.pbThis))
+    end,
+    :disable_proc => proc do |battle, battler|
+        raise _INTL("Last Gasp was disabled somehow.")
+    end,
 })
