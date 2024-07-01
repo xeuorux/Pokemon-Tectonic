@@ -48843,6 +48843,8 @@ The next Ground-type attack against {1} will deal double damage!
 ¡{1} fue dañado!
 Gravity intensified!
 ¡La gravedad se intensificó!
+Everyone is twice as accurate!
+¡Todos son el doble de precisos!
 {1} couldn't stay airborne because of gravity!
 ¡{1} no puede mantenerse en el aire por la gravedad!
 Gravity was forced back to normal!
