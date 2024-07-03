@@ -76,6 +76,8 @@ module GameData
             return _INTL("Each")
           elsif @num_targets == 1
             return _INTL("One")
+          elsif @targets_user
+            return _INTL("User")
           end
           return _INTL("Error")
       end

@@ -409,13 +409,14 @@ class PokeBattle_Battler
 
     def takesIndirectDamage?(showMsg = false, aiCheck = false)
         return false if fainted?
-        if shouldAbilityApply?(:MAGICGUARD, aiCheck)
+        %i[MAGICGUARD LASTGASP].each do |indirectDamageBlockingAbility|
+            next unless shouldAbilityApply?(indirectDamageBlockingAbility, aiCheck)
             if showMsg
-                showMyAbilitySplash(:MAGICGUARD)
+                showMyAbilitySplash(indirectDamageBlockingAbility)
                 @battle.pbDisplay(_INTL("{1} is unaffected!", pbThis))
                 hideMyAbilitySplash
             end
-            aiLearnsAbility(:MAGICGUARD) unless aiCheck
+            aiLearnsAbility(indirectDamageBlockingAbility) unless aiCheck
             return false
         end
         return true
