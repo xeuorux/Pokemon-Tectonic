@@ -2154,7 +2154,7 @@ Description = The Alola region's specialty--fried bread. It can be used once to 
 Name = Ability Capsule
 NamePlural = Ability Capsule
 Pocket = 2
-Price = 1500
+Price = 1000
 FieldUse = OnPokemon
 Description = A capsule that allows a Pokémon with two Abilities to switch between these Abilities when it is used.
 #-------------------------------
