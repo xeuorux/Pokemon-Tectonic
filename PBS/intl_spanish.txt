@@ -45223,8 +45223,8 @@ Tienda Prizca Oriental
 Volcanic Shore
 Costa Volcánica
 194
-Makyan Capital Building
-Edificios Makya Capital
+Makyan Capitol Building
+Edificio del Capitolio de Makya
 195
 Prizca East Gym
 Gimnasio Prizca Oriental
@@ -45915,6 +45915,9 @@ Hierbas Herbert
 426
 Prizca Black Market
 Mercado Negro Prizca
+427
+Capitol Library
+Biblioteca del Capitolio
 [22]
 How are your Pokémon doing?\mMy \TP's really energetic. It's a handful!\mOh yeah, I managed to beat a tough \TE.\mI need to make my party stronger.
 How are your Pokémon doing?\mMy \TP's really energetic.  It's a handful!\mOh yeah, I managed to beat a tough \TE.\mI need to make my party stronger.
