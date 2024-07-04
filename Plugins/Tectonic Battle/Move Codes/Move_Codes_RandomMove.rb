@@ -249,7 +249,8 @@ class PokeBattle_Move_UseChoiceOf3RandomNonSignatureStatusMoves < PokeBattle_Mov
     end
 
     def getEffectScore(_user, _target)
-        return 80
+        echoln("The AI will never use Discovered Power")
+        return -1000
     end
 end
 
@@ -356,6 +357,7 @@ class PokeBattle_Move_UseChoiceOf3RandomNonSignatureNonPsychicDamagingMoves < Po
     end
 
     def getEffectScore(_user, _target)
-        return 80
+        echoln("The AI will never use Selective Memory")
+        return -1000
     end
 end
