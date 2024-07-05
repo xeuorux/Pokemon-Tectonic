@@ -1397,7 +1397,7 @@ MapSize = 2,11
 Environment = Sand
 #-------------------------------
 [194]
-# Makyan Capital Building
+# Makyan Capitol Building
 Outdoor = false
 ShowArea = true
 Bicycle = false
@@ -2970,3 +2970,37 @@ Bicycle = false
 Outdoor = false
 ShowArea = false
 Bicycle = false
+#-------------------------------
+[424]
+# Tectonic Development F3
+Outdoor = false
+ShowArea = false
+Bicycle = false
+BattleBack = indoor2
+Environment = None
+#-------------------------------
+[425]
+# Sandstone Switchbox Draft
+Outdoor = false
+ShowArea = true
+Bicycle = true
+#-------------------------------
+[426]
+# Prizca Black Market
+ShowArea = true
+Bicycle = true
+MapPosition = 0,10,4
+BattleBack = indoor3
+Environment = StillWater
+#-------------------------------
+[427]
+# Capitol Library
+Outdoor = false
+ShowArea = false
+Bicycle = false
+#-------------------------------
+[428]
+# Steamy Valley
+Outdoor = true
+ShowArea = false
+Bicycle = true

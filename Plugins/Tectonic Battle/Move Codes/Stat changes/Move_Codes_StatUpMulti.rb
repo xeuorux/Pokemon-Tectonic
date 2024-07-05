@@ -634,3 +634,8 @@ class PokeBattle_Move_RaiseUserSpd4CriticalHitRate2 < PokeBattle_StatUpMove
         return score
     end
 end
+
+# Empowered Deep Breathing
+class PokeBattle_Move_EmpoweredDeepBreathing < PokeBattle_Move_RaiseUserSpd4CriticalHitRate2
+    include EmpoweredMove
+end

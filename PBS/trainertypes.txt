@@ -1000,6 +1000,16 @@ Name = Nursery Aide
 Gender = Female
 BaseMoney = 48
 #-------------------------------
+[OFFICEWORKER_F]
+Name = Office Worker
+Gender = Female
+BaseMoney = 40
+#-------------------------------
+[OFFICEWORKER_M]
+Name = Office Worker
+Gender = Male
+BaseMoney = 40
+#-------------------------------
 [PARASOLLADY]
 Name = Parasol Lady
 Gender = Female
@@ -1703,10 +1713,25 @@ Name = Veteran
 Gender = Male
 BaseMoney = 80
 #-------------------------------
+[VETERANM_3]
+Name = Veteran
+Gender = Male
+BaseMoney = 80
+#-------------------------------
+[VETERANM_4]
+Name = Veteran
+Gender = Male
+BaseMoney = 80
+#-------------------------------
 [VETERAN_F]
 Name = Veteran
 Gender = Female
 BaseMoney = 80
+#-------------------------------
+[VOLCANION]
+Name = Wild
+Gender = wild
+BaseMoney = 100
 #-------------------------------
 [WAITER]
 Name = Waiter

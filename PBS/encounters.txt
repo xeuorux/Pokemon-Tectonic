@@ -1039,7 +1039,7 @@ LandSparse,20
     20,GENGAR,60,62
     20,MUSHARNA,60,62
     20,NOCTOWL,60,62
-    20,URSARING,60,62
+    20,URSALUNA,60,62
 #-------------------------------
 [414] # Eventide Peak
 LandSparse,20
@@ -1047,7 +1047,7 @@ LandSparse,20
     20,GENGAR,60,62
     20,MUSHARNA,60,62
     20,NOCTOWL,60,62
-    20,URSARING,60,62
+    20,URSALUNA,60,62
 #-------------------------------
 [415] # Frigid Overlook
 Land,20
@@ -1072,3 +1072,11 @@ Cloud,20
     20,EMOLGA,62,64
     20,MAGNEZONE,62,64
     20,MANERGETIC,62,64
+#-------------------------------
+[428] # Steamy Valley
+FloweryGrass,20
+    20,DRAGONITE,60,62
+    20,HYMNUS,60,62
+    20,MISMAGIUS,60,62
+    20,PILOSWINE,60,62
+    20,POLITOED,60,62

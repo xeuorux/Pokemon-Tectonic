@@ -8051,3 +8051,96 @@ Pokemon = TOUCANNON,70
 Pokemon = MILTANK,70
     AbilityIndex = 0 # Thick Fat
     Item = LEFTOVERS
+#-------------------------------
+[OFFICEWORKER_M,JOSH]
+Pokemon = MEOWSTIC,70
+    Moves = REFLECT,HELPINGHAND,HEALBELL,LIGHTSCREEN
+    AbilityIndex = 1 # Liminal
+    Item = LIGHTCLAY
+    # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
+    EV = 10,0,20,0,0,20
+Pokemon = LUXRAY,70
+    Moves = PHOTONEDGE,REST,FIREFANG,HOWL
+    AbilityIndex = 2 # Night Vision
+    Item = LUMBERAXE
+    # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
+    EV = 10,20,5,0,20,15
+Pokemon = TORKOAL,70
+    Moves = BURNINGJEALOUSY,IGNITE,EARTHPOWER,CLEARSMOG
+    AbilityIndex = 1 # Drought
+    Item = HIVISJACKET
+    # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
+    EV = 10,10,15,0,10,15
+#-------------------------------
+[VETERANM_3,PEARCE]
+Pokemon = ROSERADE,70
+    Moves = SLAY,SYNTHESIS,LEAFBLADE,ENVENOM
+    AbilityIndex = 1 # Merciless
+    Item = WHETSTONE
+    # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
+    EV = 10,20,7,6,20,7
+Pokemon = GLISCOR,70
+    Moves = LEECHLIFE,ADAMANTINEPRESS,UNDERMINE,INFINITEWING
+    AbilityIndex = 1 # Sand Shroud
+    Item = STRIKEVEST
+    # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
+    EV = 12,8,15,0,8,15
+Pokemon = EMPOLEON,70
+    Moves = RUPTURESPRING,ADRENALASH,FARADAYCAGE,SCALD
+    AbilityIndex = 2 # Imperious
+    Item = WATERBALLOON
+    # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
+    EV = 10,20,11,0,20,9
+#-------------------------------
+[DELINQUENT,NORA]
+Pokemon = COALOSSAL,70
+    Name = Certainty
+    Moves = ROLLINGBOULDER,FLAREUP,RAPIDSPIN,FLAMESPIKES
+    AbilityIndex = 1 # Fuel Hungry
+    Item = LEFTOVERS
+    # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
+    EV = 10,20,20,0,20,0
+Pokemon = HZOROARK,70
+    Name = Curiosity
+    Moves = MALEFACTION,LIGHTSCREEN,RECOVER,RUIN
+    AbilityIndex = 1 # Mental Block
+    Item = LIGHTCLAY
+    # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
+    EV = 17,20,0,13,20,0
+Pokemon = SKUNTANK,70
+    Name = Ferocity
+    Moves = FLOWSTATE,BULLETTRAIN,GUNKSHOT,SUCKERPUNCH
+    AbilityIndex = 1 # Pure Energy
+    Item = LUMBERAXE
+    # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
+    EV = 10,20,0,20,20,0
+Pokemon = JUMPLUFF,70
+    Name = Velocity
+    Moves = MOONBLAST,SYNTHESIS,ENERGYBALL,AIRSLASH
+    AbilityIndex = 1 # Seed Sowing
+    Item = ROCKYHELMET
+    # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
+    EV = 10,20,0,20,20,0
+#-------------------------------
+[DELINQUENT,NORA,1]
+ExtendsVersion = 0
+Pokemon = HARIYAMA,70
+    Name = Tenacity
+    Moves = PROTECT,BELLYDRUM,STORMTHROW,LIQUIDATION
+    AbilityIndex = 2 # Thick Fat
+    # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
+    EV = 11,20,15,0,20,4
+Pokemon = AMPHAROS,70
+    Name = Visibility
+    Moves = VOLTSWITCH,RECOVER,TRANSCENDENTENERGY,DRAGONPULSE
+    AbilityIndex = 1 # Stubborn
+    Item = POWERHERB
+    # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
+    EV = 10,20,20,0,20,0
+#-------------------------------
+[VOLCANION,Volcanion]
+Pokemon = VOLCANION,70
+    Moves = STEAMERUPTION,GREYMIST,SCORCHINGSANDS,FLAMETHROWER
+    AbilityIndex = 0 # Water Absorb
+    # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
+    EV = 20,0,15,0,0,15

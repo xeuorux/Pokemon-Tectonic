@@ -561,6 +561,19 @@ FunctionCode = EmpoweredSwordsDance
 Flags = Dance,Empowered
 Description = The user raises their Attack by four steps and becomes Steel-type.
 #-------------------------------
+[PRIMEVALDEEPBREATHING]
+Name = Primeval Deep Breathing
+Type = FIGHTING
+Category = Status
+Accuracy = 0
+TotalPP = 1
+Target = User
+Priority = 4
+FunctionCode = EmpoweredDeepBreathing
+Flags = Empowered
+Description = The user raises their Speed by 4 steps, quadruples their critical hit chance, and becomes Fighting-type.
+Animation = DEEPBREATHING
+#-------------------------------
 [EMPOWEREDMETEORMASH]
 Name = Empowered Meteor Mash
 Type = STEEL
