@@ -333,7 +333,7 @@ Land,20
 DarkCave,20
     20,BALTOY,18,20
     20,BRONZOR,18,20
-    20,LARVITAR,18,20
+    20,DUNSPARCE,18,20
     20,TYNAMO,18,20
     1,UNOWN,18,20
     1,UNOWN_1,18,20
@@ -401,9 +401,9 @@ Special,20
 #-------------------------------
 [126] # Vibrant Cave
 LandSparse,20
-    34,DUNSPARCE,24,26
-    33,JOLTIK,24,26
+    34,JOLTIK,24,26
     33,LARVESTA,24,26
+    33,LARVITAR,24,26
 #-------------------------------
 [129] # Barren Crater
 Land,20
