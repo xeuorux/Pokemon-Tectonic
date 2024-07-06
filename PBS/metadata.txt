@@ -3004,3 +3004,4 @@ Bicycle = false
 Outdoor = true
 ShowArea = false
 Bicycle = true
+Weather = Fog,100
