@@ -523,7 +523,7 @@ Pokemon = HQWILFISH,24
     Item = POISONGEM
 Pokemon = APPLIN,24
     Moves = DRAGONBREATH,MAGICALLEAF,ACIDSPRAY
-    AbilityIndex = 1 # Shed Skin
+    AbilityIndex = 1 # Tinted Lens
     Item = POISONGEM
 #-------------------------------
 [GUITARIST3,Mai]
