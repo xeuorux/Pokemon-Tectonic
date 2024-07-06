@@ -6635,4 +6635,4 @@ TotalPP = 20
 Target = NearOther
 FunctionCode = UseChoiceOf3ElementalFangs
 Flags = CanSnatch
-Description = The user peruses it's kingly stores of knowledge, selecting three random non-Psychic attacks. You choose which one it uses.
+Description = The user chooses between Fire Fang, Thunder Fang, or Ice Fang to use this turn.
