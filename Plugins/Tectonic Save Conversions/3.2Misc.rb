@@ -12,6 +12,7 @@ SaveData.register_conversion(:misc_fixes_3_2_0) do
       itemBag.pbStoreItem(:RUSTEDCOMPASS) if globalSwitches[130] # Defeated Avatars of Zacian and Zamazenta
       itemBag.pbStoreItem(:SOOTHECHARM) if selfSwitches[[7,39,'A']]
       itemBag.pbStoreItem(:MAGNETICGAUNTLET) if globalSwitches[126] # Defeated Avatar of Zeraora
+      globalSwitches[251] = true if selfSwitches[[7,39,'A']]
 
       # Rename Rain to Rainstorm
       renameHash = {}
