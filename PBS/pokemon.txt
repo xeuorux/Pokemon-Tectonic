@@ -33476,6 +33476,39 @@ BattlerShadowSize = 3
 Evolutions = DUDUDUNSPARCE,Level,41
 #-------------------------------
 [2064]
+Name = Dududunsparce
+InternalName = DUDUDUNSPARCE
+Type1 = FAIRY
+Type2 = GROUND
+# HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
+BaseStats = 120,70,75,60,105,90
+# Total = 520
+GenderRate = Female50Percent
+GrowthRate = Medium
+BaseEXP = 182
+EffortPoints = 1,0,0,0,0,0
+Rareness = 100
+Happiness = 70
+Abilities = SERENEGRACE,ADAPTED
+Moves = 1,FAIRYWIND,1,CURLUP,4,SANDTOSS,8,DRAFT,12,GLARE,16,DUSTDEVIL,20,BALEFULBOP,24,PETRIFY,28,BOREALWIND,32,ENCHANTINGSONG,36,HEAVENSEYES,40,SCORCHINGSANDS,44,COLDFRONT,48,RUIN,52,ROOST,56,PULVERIZERCHORD,60,FLEURCANNON
+Compatibility = Field
+Tribes = SERENE,FORTUNE
+StepsToHatch = 5355
+Height = 3.6
+Weight = 39.2
+Color = Yellow
+Shape = Head
+Kind = Land Snake
+Pokedex = The gentle Dududunsparce will put Pokémon that wander into its nest onto its back and carry them to the entrance.
+Generation = 9
+BattlerPlayerX = -2
+BattlerPlayerY = 31
+BattlerEnemyX = -1
+BattlerEnemyY = 39
+BattlerShadowX = 0
+BattlerShadowSize = 3
+#-------------------------------
+[2065]
 Name = Kingambit
 InternalName = KINGAMBIT
 Type1 = DARK
@@ -34604,38 +34637,5 @@ BattlerPlayerX = 0
 BattlerPlayerY = 7
 BattlerEnemyX = -2
 BattlerEnemyY = 10
-BattlerShadowX = 0
-BattlerShadowSize = 3
-#-------------------------------
-[2533]
-Name = Dududunsparce
-InternalName = DUDUDUNSPARCE
-Type1 = FAIRY
-Type2 = GROUND
-# HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
-BaseStats = 120,70,75,60,105,90
-# Total = 520
-GenderRate = Female50Percent
-GrowthRate = Medium
-BaseEXP = 182
-EffortPoints = 1,0,0,0,0,0
-Rareness = 100
-Happiness = 70
-Abilities = SERENEGRACE,ADAPTED
-Moves = 1,FAIRYWIND,1,CURLUP,4,SANDTOSS,8,DRAFT,12,GLARE,16,DUSTDEVIL,20,BALEFULBOP,24,PETRIFY,28,BOREALWIND,32,ENCHANTINGSONG,36,HEAVENSEYES,40,SCORCHINGSANDS,44,COLDFRONT,48,RUIN,52,ROOST,56,PULVERIZERCHORD,60,FLEURCANNON
-Compatibility = Field
-Tribes = SERENE,FORTUNE
-StepsToHatch = 5355
-Height = 3.6
-Weight = 39.2
-Color = Yellow
-Shape = Head
-Kind = Land Snake
-Pokedex = The gentle Dududunsparce will put Pokémon that wander into its nest onto its back and carry them to the entrance.
-Generation = 9
-BattlerPlayerX = -2
-BattlerPlayerY = 31
-BattlerEnemyX = -1
-BattlerEnemyY = 39
 BattlerShadowX = 0
 BattlerShadowSize = 3
