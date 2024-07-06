@@ -31,7 +31,7 @@ class PokeBattle_Move_EmpoweredBulkUp < PokeBattle_Move_RaiseUserAtkDef2
 end
 
 #===============================================================================
-# User's Attack and Defense are raised by one step each, and (Built Different)
+# User's Attack and Defense are raised by two steps each, and (Built Different)
 # changes user's type to Rock.
 #===============================================================================
 class PokeBattle_Move_RaiseUserAtkDef2SetUserTypesToRock < PokeBattle_Move_RaiseUserAtkDef2

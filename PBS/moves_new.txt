@@ -3368,7 +3368,7 @@ TotalPP = 15
 Target = User
 FunctionCode = RaiseUserSpd4GainFlyingType
 Flags = CanSnatch
-Description = The user takes off at sonic speeds, raising its Speed by two steps and gaining the Flying type.
+Description = The user takes off at sonic speeds, raising its Speed by four steps and gaining the Flying type.
 Animation = AGILITY
 #-------------------------------
 [CALTROPARTS]
@@ -3422,7 +3422,7 @@ Target = NearOther
 FunctionCode = LowerTargetDef3
 Flags = CanProtect,CanMirrorMove
 EffectChance = 100
-Description = The user spews alkaline bubbles that melt the target, drastically lowering their Defense.
+Description = The user spews alkaline bubbles that melt the target, lowering their Defense by three steps.
 Animation = BUBBLEBEAM
 #-------------------------------
 [COCODROP]
@@ -3524,7 +3524,7 @@ TotalPP = 15
 Target = User
 FunctionCode = RaiseUserAtkDef2SetUserTypesToRock
 Flags = CanSnatch
-Description = The user flexes its rocky skin, raising its Attack and Defense and gaining the Rock type.
+Description = The user flexes its rocky skin, raising its Attack and Defense by two steps each and gaining the Rock type.
 Animation = BULKUP
 #-------------------------------
 [DEATHMARK]
