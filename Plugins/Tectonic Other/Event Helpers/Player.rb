@@ -68,12 +68,12 @@ def transferPlayerToEvent(event,direction=-1,map_id = -1,offset=[0,0])
 	return true
 end
 
-def teleportPlayer(map_id,x,y,instant=false)
+def teleportPlayer(map_id,x,y,instant=false,dir = nil)
 	$game_temp.player_transferring = true
 	$game_temp.player_new_map_id    = map_id || $game_map.map_id
 	$game_temp.player_new_x         = x
 	$game_temp.player_new_y         = y
-	$game_temp.player_new_direction = $game_player.direction
+	$game_temp.player_new_direction = dir || $game_player.direction
 	
 	Graphics.freeze
 	$game_temp.transition_processing = true

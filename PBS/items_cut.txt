@@ -4452,3 +4452,11 @@ Pocket = 4
 Price = 5000
 FieldUse = TM
 Move = BODYPRESS
+#-------------------------------
+[LIGHTHOUSEKEYCARD]
+Name = Lighthouse Keycard
+NamePlural = Lighthouse Keycards
+Pocket = 7
+Price = 0
+Flags = KeyItem
+Description = A colorful keycard. It grants access to elevator at the Sweetrock Harbor Lighthouse.

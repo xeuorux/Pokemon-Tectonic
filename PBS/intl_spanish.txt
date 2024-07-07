@@ -17450,8 +17450,8 @@ You're just as Scilla said. A certified skilled Trainer.
 Eres exactamente como Scilla dijo. Un Entrenador ciertamente habilidoso.
 You might be able to take a shot at a little problem of mine.
 Puede que tengas una oportunidad de solucionar un pequeño problema mío.
-If you're interested, meet me at the Lighthouse. I've got something to show you.
-Si te interesa, encuéntrame en el Faro. Tengo algo que mostrarte.
+If you're interested, meet me at the top of the Lighthouse. I've got something to show you.
+Si te interesa, encuéntrame en la cima del Faro. Tengo algo que mostrarte.
 Take this, it's what gets you access to the elevator.
 Toma esto, es lo que te da acceso al ascensor.
 Not right now.
@@ -18266,8 +18266,8 @@ Content past here will be available in a future update.
 Contenido luego de aquí será disponible en una actualización futura.
 Welcome to the Sweetrock Harbor Lighthouse.
 Bienvenido al Faro del Puerto Sweetrock.
-The elevator is down for maintenance. Come back later to see the top.
-El ascensor está en mantenimiento. Vuelve luego para ver la cima.
+You can visit the lantern room by taking the elevator behind me!
+¡Puedes visitar la sala de la linterna tomando el ascensor detrás de mí!
 The source of light at the top of the lighthouse comes from a large fragment of the meteorite whose impact created our large harbor.
 La fuente de luz del faro viene de un gran fragmento de un meteorito cuyo impacto creó nuestro gran puerto.
 Clefables are drawn to the shard, so we let them gather around it.

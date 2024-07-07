@@ -1,41 +1,41 @@
-def slidingDoorTransfer(map_id, x, y)
+def slidingDoorTransfer(map_id, x, y, dir = nil)
     slidingDoor
     blackFadeOutIn {
         block.call if block_given?
         $game_player.transparent = false
-        teleportPlayer(map_id,x,y,true)
+        teleportPlayer(map_id,x,y,true,dir)
     }
 end
 
-def swingingDoorTransfer(map_id, x, y, &block)
+def swingingDoorTransfer(map_id, x, y, dir = nil, &block)
     swingingDoor
     blackFadeOutIn {
         block.call if block_given?
         $game_player.transparent = false
-        teleportPlayer(map_id,x,y,true)
+        teleportPlayer(map_id,x,y,true,dir)
     }
 end
 
-def openDoorTransfer(map_id, x, y, &block)
+def openDoorTransfer(map_id, x, y, dir = nil, &block)
     pbSEPlay('Door exit')
     playerEntersDoorMoveRoute
     blackFadeOutIn {
         block.call if block_given?
         $game_player.transparent = false
-        teleportPlayer(map_id,x,y,true)
+        teleportPlayer(map_id,x,y,true,dir)
     }
 end
 
-def ajarDoorTransfer(map_id, x, y, &block)
+def ajarDoorTransfer(map_id, x, y, dir = nil, &block)
     ajarDoor
     blackFadeOutIn {
         block.call if block_given?
         $game_player.transparent = false
-        teleportPlayer(map_id,x,y,true)
+        teleportPlayer(map_id,x,y,true,dir)
     }
 end
 
-def avatarChamberDoor(itemID, map_id, x, y, &block)
+def avatarChamberDoor(itemID, map_id, x, y, dir = nil, &block)
     if pbHasItem?(itemID)
         stoneDoorTransfer(map_id, x, y) {
             block.call if block_given?
@@ -45,13 +45,13 @@ def avatarChamberDoor(itemID, map_id, x, y, &block)
     end
 end
 
-def stoneDoorTransfer(map_id, x, y, &block)
+def stoneDoorTransfer(map_id, x, y, dir = nil, &block)
     stoneDoor
     blackFadeOutIn {
         block.call if block_given?
         $game_player.transparent = false
         pbCaveEntrance
-        teleportPlayer(map_id,x,y,true)
+        teleportPlayer(map_id,x,y,true,dir)
     }
 end
 

@@ -1,15 +1,21 @@
 BIRD_LOCATIONS = {
-    :CARNATION_TOWER => {
-        :map_name => "Carnation Tower",
-        :map_id => 186,
-        :event_id => 60,
-        :unlock_switch => 278,
-    },
     :NOVO_APARTMENTS => {
         :map_name => "Novo Apartments",
         :map_id => 56,
         :event_id => 89,
         :unlock_switch => 276,
+    },
+    :LUXTECH_MAIN => {
+        :map_name => "LuxTech Main",
+        :map_id => 6,
+        :event_id => 43,
+        :unlock_switch => 277,
+    },
+    :CARNATION_TOWER => {
+        :map_name => "Carnation Tower",
+        :map_id => 186,
+        :event_id => 60,
+        :unlock_switch => 278,
     },
     :TECTONIC_DEV => {
         :map_name => "Tectonic Development",

@@ -2839,14 +2839,6 @@ FieldUse = OnPokemon
 Flags = KeyItem
 Description = A pass that grants you access through the locked door in Victoire's factory.
 #-------------------------------
-[LIGHTHOUSEKEYCARD]
-Name = Lighthouse Keycard
-NamePlural = Lighthouse Keycards
-Pocket = 7
-Price = 0
-Flags = KeyItem
-Description = A colorful keycard. It grants access to elevator at the Sweetrock Harbor Lighthouse.
-#-------------------------------
 [RUINEDTOWERKEY]
 Name = Ruined Tower Key
 NamePlural = Ruined Tower Keys
