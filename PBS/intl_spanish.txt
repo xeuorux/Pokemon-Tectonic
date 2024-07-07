@@ -50272,6 +50272,10 @@ Where would you like to go?
 ¿A dónde te gustaría ir?
 You can now travel to <imp>{1}</imp> on your boat!
 ¡Ahora puedes viajar a <imp>{1}</imp> en tu barco!
+There are no other places you can travel to.
+No hay otros lugares a los que puedas viajar.
+You can now travel to <imp>{1}</imp> on the Corviknight Network!
+¡Ahora puedes viajar a <imp>{1}</imp> en el Red de Corviknight!
 The flame refuses to budge!
 ¡La llama no cede!
 You are already holding a dragon flame!

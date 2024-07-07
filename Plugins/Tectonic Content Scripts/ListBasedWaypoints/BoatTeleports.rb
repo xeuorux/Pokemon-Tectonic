@@ -94,6 +94,11 @@ def boatTravel(currentDock = nil)
         validDockIDs.push(dockID)
     end
 
+    if commands.empty?
+        pbMessage("There are no other places you can travel to.")
+        return
+    end
+
     commands.push(_INTL("Cancel"))
 
     choiceNumber = pbMessage(_INTL("Where would you like to go?"),commands,commands.length)
