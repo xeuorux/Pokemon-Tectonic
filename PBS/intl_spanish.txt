@@ -17526,6 +17526,8 @@ I'm ready.
 Estoy listo.
 Not yet.
 Aú no.
+The Clefable is focusing on the meteorite fragment!
+¡El Clefable se centra en el fragmento de meteorito!
 [Map270]
 
 Great, another Trainer, just what I needed.
@@ -44737,8 +44739,8 @@ Largo Sendero
 Path to Paradise
 Camino al Paraíso
 32
-Novo Apartments
-Apartamentos Novo 
+Novo Apartments F1
+Apartamentos Novo P1
 33
 Full Blast Sewer Access
 Acceso Alcantarilla A Tope

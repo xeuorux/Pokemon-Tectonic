@@ -11,6 +11,24 @@ BIRD_LOCATIONS = {
         :event_id => 89,
         :unlock_switch => 276,
     },
+    :TECTONIC_DEV => {
+        :map_name => "Tectonic Development",
+        :map_id => 155,
+        :event_id => 26,
+        :unlock_switch => 279,
+    },
+    :SWEETROCK_LIGHTHOUSE => {
+        :map_name => "Sweetrock Lighthouse",
+        :map_id => 269,
+        :event_id => 13,
+        :unlock_switch => 280,
+    },
+    :RUINED_TOWER => {
+        :map_name => "Ruined Tower",
+        :map_id => 316,
+        :event_id => 36,
+        :unlock_switch => 281,
+    },
 }
 
 def unlockBirdSpot(birdID,ignoreAlreadyActive=false)

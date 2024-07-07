@@ -115,7 +115,7 @@ LandTall,20
 Special,20
     1,PIDOVE,15
 #-------------------------------
-[032] # Novo Apartments
+[032] # Novo Apartments F1
 Special
     1,MVULPIX,15
 #-------------------------------
@@ -1075,8 +1075,8 @@ Cloud,20
 #-------------------------------
 [428] # Steamy Valley
 FloweryGrass,20
-    20,TORKOAL,60,62
     20,GOLDUCK,60,62
     20,HYMNUS,60,62
     20,MISMAGIUS,60,62
     20,POLITOED,60,62
+    20,TORKOAL,60,62

@@ -253,7 +253,7 @@ Bicycle = true
 BattleBack = wcave
 #-------------------------------
 [032]
-# Novo Apartments
+# Novo Apartments F1
 Outdoor = false
 ShowArea = false
 Bicycle = false
@@ -524,7 +524,7 @@ ShowArea = false
 Bicycle = false
 #-------------------------------
 [069]
-# Apartment Rooms
+# Novo Apartments
 Outdoor = false
 ShowArea = false
 Bicycle = false
