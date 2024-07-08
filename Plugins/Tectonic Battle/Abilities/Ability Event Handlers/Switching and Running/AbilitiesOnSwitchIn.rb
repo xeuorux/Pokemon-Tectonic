@@ -724,7 +724,7 @@ BattleHandlers::AbilityOnSwitchIn.add(:PRIMEVALIMPOSTER,
       battler.boss = false
       battle.bossBattle = false
 
-      trainerClone = NPCTrainer.cloneFromPlayer($Trainer)
+      trainerClone = NPCTrainer.cloneFromPlayer($Trainer,true)
       battle.opponent = [trainerClone]
 
       party = battle.pbParty(battler.index)
@@ -1065,6 +1065,7 @@ BattleHandlers::AbilityOnSwitchIn.add(:EXTRASCOOP,
 
 BattleHandlers::AbilityOnSwitchIn.add(:LASTGASP,
   proc { |ability, battler, battle, aiCheck|
+    next 0 if aiCheck
     battler.showMyAbilitySplash(ability)
     battler.applyEffect(:LastGasp)
     if battler.boss?

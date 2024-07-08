@@ -226,14 +226,36 @@ class Trainer
       return @flags.include?("HideIdentity")
     end
 
-    def self.cloneFromPlayer(playerObject)
+    def self.cloneFromPlayer(playerObject,deepClone)
       trainerClone = NPCTrainer.new("Clone of " + playerObject.name, playerObject.trainer_type)
       trainerClone.id = playerObject.id
 
       playerObject.party.each do |partyMember|
-          trainerClone.party.push(partyMember.clone)
+          trainerClone.party.push(partyMember.deep_clone)
       end
 
       return trainerClone
     end
+end
+
+class Object
+  def deep_clone
+    return @deep_cloning_obj if @deep_cloning
+    @deep_cloning_obj = clone
+    @deep_cloning_obj.instance_variables.each do |var|
+      val = @deep_cloning_obj.instance_variable_get(var)
+      begin
+        @deep_cloning = true
+        val = val.deep_clone
+      rescue TypeError,RuntimeError
+        next
+      ensure
+        @deep_cloning = false
+      end
+      @deep_cloning_obj.instance_variable_set(var, val)
+    end
+    deep_cloning_obj = @deep_cloning_obj
+    @deep_cloning_obj = nil
+    deep_cloning_obj
+  end
 end
