@@ -53010,6 +53010,14 @@ MO {1}
 MsOs {1}
 The door resists your attempts to open it with a mystic force.
 La puerta resiste tus intentos de abrirla con una fuerza mística.
+...oh?
+...oh?
+\\i[TAROTAMULET]The Tarot Amulet begins vibrating inside of your bag.
+\\i[TAROTAMULET]El Amuleto Tarot comienza a vibrar dentro de tu bolso.
+Not a moment later, it stops vibrating, just as suddenly as it started.
+Un momento después, deja de vibrar, tan repentinamente como empezó.
+How strange.
+Que extraño.
 I do not spy any Origin Ore among your possessions.
 No encuentro ningún Mineral Primario entre tus posesiones.
 Ah, no suitable Pokemon exists within your collection?

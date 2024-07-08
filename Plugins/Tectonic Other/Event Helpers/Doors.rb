@@ -42,6 +42,14 @@ def avatarChamberDoor(itemID, map_id, x, y, dir = nil, &block)
         }
     else
         pbMessage(_INTL("The door resists your attempts to open it with a mystic force."))
+        if pbHasItem?(:TAROTAMULET)
+            pbWait(20)
+            pbMessage(_INTL("...oh?"))
+            pbWait(20)
+            pbMessage(_INTL("\\i[TAROTAMULET]The Tarot Amulet begins vibrating inside of your bag."))
+            pbMessage(_INTL("Not a moment later, it stops vibrating, just as suddenly as it started."))
+            pbMessage(_INTL("How strange."))
+        end
     end
 end
 
