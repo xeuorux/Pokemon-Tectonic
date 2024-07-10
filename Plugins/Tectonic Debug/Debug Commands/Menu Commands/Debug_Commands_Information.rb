@@ -87,65 +87,65 @@ DebugMenuCommands.register("setmetadata", {
     }
   })
   
-  DebugMenuCommands.register("setencounters", {
-    "parent"      => "editorsmenu",
-    "name"        => _INTL("Edit Wild Encounters"),
-    "description" => _INTL("Edit the wild Pokémon that can be found on maps, and how they are encountered."),
-    "always_show" => true,
-    "effect"      => proc {
-      pbFadeOutIn { pbEncountersEditor }
-    }
-  })
+  # DebugMenuCommands.register("setencounters", {
+  #   "parent"      => "editorsmenu",
+  #   "name"        => _INTL("Edit Wild Encounters"),
+  #   "description" => _INTL("Edit the wild Pokémon that can be found on maps, and how they are encountered."),
+  #   "always_show" => true,
+  #   "effect"      => proc {
+  #     pbFadeOutIn { pbEncountersEditor }
+  #   }
+  # })
   
-  DebugMenuCommands.register("trainertypes", {
-    "parent"      => "editorsmenu",
-    "name"        => _INTL("Edit Trainer Types"),
-    "description" => _INTL("Edit the properties of trainer types."),
-    "always_show" => true,
-    "effect"      => proc {
-      pbFadeOutIn { pbTrainerTypeEditor }
-    }
-  })
+  # DebugMenuCommands.register("trainertypes", {
+  #   "parent"      => "editorsmenu",
+  #   "name"        => _INTL("Edit Trainer Types"),
+  #   "description" => _INTL("Edit the properties of trainer types."),
+  #   "always_show" => true,
+  #   "effect"      => proc {
+  #     pbFadeOutIn { pbTrainerTypeEditor }
+  #   }
+  # })
   
-  DebugMenuCommands.register("edittrainers", {
-    "parent"      => "editorsmenu",
-    "name"        => _INTL("Edit Individual Trainers"),
-    "description" => _INTL("Edit individual trainers, their Pokémon and items."),
-    "always_show" => true,
-    "effect"      => proc {
-      pbFadeOutIn { pbTrainerBattleEditor }
-    }
-  })
+  # DebugMenuCommands.register("edittrainers", {
+  #   "parent"      => "editorsmenu",
+  #   "name"        => _INTL("Edit Individual Trainers"),
+  #   "description" => _INTL("Edit individual trainers, their Pokémon and items."),
+  #   "always_show" => true,
+  #   "effect"      => proc {
+  #     pbFadeOutIn { pbTrainerBattleEditor }
+  #   }
+  # })
   
-  DebugMenuCommands.register("edititems", {
-    "parent"      => "editorsmenu",
-    "name"        => _INTL("Edit Items"),
-    "description" => _INTL("Edit item data."),
-    "always_show" => true,
-    "effect"      => proc {
-      pbFadeOutIn { pbItemEditor }
-    }
-  })
+  # DebugMenuCommands.register("edititems", {
+  #   "parent"      => "editorsmenu",
+  #   "name"        => _INTL("Edit Items"),
+  #   "description" => _INTL("Edit item data."),
+  #   "always_show" => true,
+  #   "effect"      => proc {
+  #     pbFadeOutIn { pbItemEditor }
+  #   }
+  # })
   
-  DebugMenuCommands.register("editpokemon", {
-    "parent"      => "editorsmenu",
-    "name"        => _INTL("Edit Pokémon"),
-    "description" => _INTL("Edit Pokémon species data."),
-    "always_show" => true,
-    "effect"      => proc {
-      pbFadeOutIn { pbPokemonEditor }
-    }
-  })
+  # DebugMenuCommands.register("editpokemon", {
+  #   "parent"      => "editorsmenu",
+  #   "name"        => _INTL("Edit Pokémon"),
+  #   "description" => _INTL("Edit Pokémon species data."),
+  #   "always_show" => true,
+  #   "effect"      => proc {
+  #     pbFadeOutIn { pbPokemonEditor }
+  #   }
+  # })
   
-  DebugMenuCommands.register("editdexes", {
-    "parent"      => "editorsmenu",
-    "name"        => _INTL("Edit Regional Dexes"),
-    "description" => _INTL("Create, rearrange and delete Regional Pokédex lists."),
-    "always_show" => true,
-    "effect"      => proc {
-      pbFadeOutIn { pbRegionalDexEditorMain }
-    }
-  })
+  # DebugMenuCommands.register("editdexes", {
+  #   "parent"      => "editorsmenu",
+  #   "name"        => _INTL("Edit Regional Dexes"),
+  #   "description" => _INTL("Create, rearrange and delete Regional Pokédex lists."),
+  #   "always_show" => true,
+  #   "effect"      => proc {
+  #     pbFadeOutIn { pbRegionalDexEditorMain }
+  #   }
+  # })
   
   DebugMenuCommands.register("positionsprites", {
     "parent"      => "editorsmenu",
@@ -172,41 +172,6 @@ DebugMenuCommands.register("setmetadata", {
         pbMessageDisplay(msgwindow, _INTL("Repositioning all sprites. Please wait."), false)
         Graphics.update
         pbAutoPositionAll
-        pbDisposeMessageWindow(msgwindow)
-      end
-    }
-  })
-  
-  DebugMenuCommands.register("autopositionbacksprites", {
-    "parent"      => "editorsmenu",
-    "name"        => _INTL("Auto-Position Back Sprites"),
-    "description" => _INTL("Automatically reposition all Pokémon back sprites. Don't use lightly."),
-    "always_show" => true,
-    "effect"      => proc {
-      if pbConfirmMessage(_INTL("Are you sure you want to reposition all back sprites?"))
-        msgwindow = pbCreateMessageWindow
-        pbMessageDisplay(msgwindow, _INTL("Repositioning all back sprites. Please wait."), false)
-        Graphics.update
-        
-        GameData::Species.each do |sp|
-          Graphics.update if sp.id_number % 50 == 0
-          bitmap1 = GameData::Species.sprite_bitmap(sp.species, sp.form, nil, nil, nil, true)
-          if bitmap1 && bitmap1.bitmap   # Player's y
-            sp.back_sprite_x = 0
-            sp.back_sprite_y = (bitmap1.height - (findBottom(bitmap1.bitmap) + 1)) / 2
-            data = GameData::Species.get(sp)
-            if data.abilities.include?(:LEVITATE) || data.abilities.include?(:DESERTSPIRIT)
-              sp.back_sprite_y -= 4
-            elsif data.egg_groups.include?(:Water2)
-              sp.back_sprite_y -= 2
-            end
-          end
-          bitmap1.dispose if bitmap1
-        end
-        GameData::Species.save
-        Compiler.write_pokemon
-        Compiler.write_pokemon_forms
-        
         pbDisposeMessageWindow(msgwindow)
       end
     }

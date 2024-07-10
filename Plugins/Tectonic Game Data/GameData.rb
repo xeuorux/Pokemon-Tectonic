@@ -239,6 +239,7 @@ module GameData
         Item.load
         Species.load
         SpeciesOld.load
+        SpeciesMetrics.load
         Ribbon.load
         Encounter.load
         TrainerType.load
