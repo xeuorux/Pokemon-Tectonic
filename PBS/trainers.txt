@@ -2742,6 +2742,22 @@ Pokemon = EELEKTROSS,47
     AbilityIndex = 0 # Levitate
     Item = BLACKSLUDGE
 #-------------------------------
+[BATTLEGIRL2,Yumei]
+Pokemon = CHESNAUGHT,43
+    Moves = BULKUP,SYNTHESIS,LEAFBLADE,SACREDSWORD
+    AbilityIndex = 0 # Intimidate
+    Item = LEFTOVERS
+Pokemon = NOCTOWL,44
+    Moves = CALMMIND,PSYCHIC,COLDFRONT,ROOST
+    AbilityIndex = 1 # Fascinate
+    Item = LEFTOVERS
+Pokemon = EISCUE,43
+    Moves = SHIVERDANCE,ICECALIBUR,CLOUDBREAK,SUBSTITUTE
+    AbilityIndex = 0 # Ice Block
+Pokemon = LUMINEON,44
+    Moves = QUIVERDANCE,BUBBLEBARRAGE,SEANCE,RAPIDHERTZ
+    AbilityIndex = 0 # Skill Link
+#-------------------------------
 [CAMPER,Liam]
 Pokemon = HITMONCHAN,35
     Moves = MACHPUNCH,FIREPUNCH,THUNDERPUNCH,ICEPUNCH
