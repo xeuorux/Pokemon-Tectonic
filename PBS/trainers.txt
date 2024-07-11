@@ -2662,6 +2662,25 @@ Pokemon = ANNIHILAPE,42
     Moves = CROSSCHOP,WAILINGBLOW,FIREFANG,BULKUP
     AbilityIndex = 0 # Defiant
 #-------------------------------
+[BATTLEGIRL2,Yumei]
+Policies = SUN_TEAM
+Pokemon = SUDOWOODO,42
+    Moves = SUNSHINE,ADRENALASH,POWERGEM,ENCORE
+    AbilityIndex = 1 # Prankster
+    Item = HEATROCK
+Pokemon = HELIOLISK,43
+    Moves = LIGHTNINGSPEAR,WEATHERBURST,DISSIPATION,BURNINGJEALOUSY
+    AbilityIndex = 0 # Solar Power
+    Item = AIRBALLOON
+Pokemon = EXEGGUTOR,42
+    Moves = PSYCHIC,HEADTHROW,DIAMETRICBREATH,WEATHERBURST
+    AbilityIndex = 1 # Chlorophyll
+    Item = LIFEORB
+Pokemon = RAPIDASH,43
+    Moves = BLAZEKICK,TRAMPLE,STAMPDOWN,SOLARGLIDE
+    AbilityIndex = 0 # Sun Chaser
+    Item = ASSAULTVEST
+#-------------------------------
 [SWIMMER_F3,Bree]
 Pokemon = SCARODON,46
     Moves = SCARRINGSWING,TOXICTASTE,WATERFALL,AQUAJET
@@ -2741,22 +2760,6 @@ Pokemon = EELEKTROSS,47
     Moves = COIL,CRUNCH,ELECTROSLASH,POISONJAB
     AbilityIndex = 0 # Levitate
     Item = BLACKSLUDGE
-#-------------------------------
-[BATTLEGIRL2,Yumei]
-Pokemon = CHESNAUGHT,43
-    Moves = BULKUP,SYNTHESIS,LEAFBLADE,SACREDSWORD
-    AbilityIndex = 0 # Intimidate
-    Item = LEFTOVERS
-Pokemon = NOCTOWL,44
-    Moves = CALMMIND,PSYCHIC,COLDFRONT,ROOST
-    AbilityIndex = 1 # Fascinate
-    Item = LEFTOVERS
-Pokemon = EISCUE,43
-    Moves = SHIVERDANCE,ICECALIBUR,CLOUDBREAK,SUBSTITUTE
-    AbilityIndex = 0 # Ice Block
-Pokemon = LUMINEON,44
-    Moves = QUIVERDANCE,BUBBLEBARRAGE,SEANCE,RAPIDHERTZ
-    AbilityIndex = 0 # Skill Link
 #-------------------------------
 [CAMPER,Liam]
 Pokemon = HITMONCHAN,35
@@ -4498,6 +4501,22 @@ Pokemon = DRAGONITE,57
     Moves = TEMPEST,COLDFRONT,DRAGONPULSE,SURF
     AbilityIndex = 1 # Multiscale
     Item = SKILLHERB
+#-------------------------------
+[WILDPACK,ReplaceMe2]
+Pokemon = AVALUGG,56
+    Moves = FROSTSPIKES,CRUNCH,CALAMITOUSSLASH,AVALANCHE
+    AbilityIndex = 0 # Chilled Body
+    Item = LEFTOVERS
+Pokemon = MARACTUS,57
+    Moves = THORNRATTLE,SPIKES,SCORCHINGSANDS,SHOREUP
+    AbilityIndex = 0 # Grit
+Pokemon = COALOSSAL,58
+    Moves = ROLLINGBOULDER,STEALTHROCK,DIAMONDFORCE,FLAREBLITZ
+    AbilityIndex = 0 # Steam Power
+Pokemon = AEGISLASH,57
+    Moves = SHADOWSNEAK,SHADOWBALL,SLAG,SACREDSWORD
+    AbilityIndex = 0 # Stance Change
+    Item = REDCARD
 #-------------------------------
 [SWIMMER_F6,Kiana]
 Pokemon = JELLICENT,58
