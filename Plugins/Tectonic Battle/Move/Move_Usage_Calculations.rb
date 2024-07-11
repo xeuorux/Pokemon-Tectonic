@@ -3,52 +3,49 @@ class PokeBattle_Move
     # Move's type calculation
     #=============================================================================
     def pbBaseType(user)
-      ret = @type
-      if ret
-        user.eachActiveAbility do |ability|
-            ret = BattleHandlers.triggerMoveBaseTypeModifierAbility(ability,user,self,ret)
+        ret = @type
+        if ret
+            user.eachActiveAbility do |ability|
+                ret = BattleHandlers.triggerMoveBaseTypeModifierAbility(ability, user, self, ret)
+            end
         end
-      end
-      return ret
+        return ret
     end
-  
+
     def pbCalcType(user)
-      @powerBoost = false
-      ret = pbBaseType(user)
-      if ret && GameData::Type.exists?(:ELECTRIC)
-        if @battle.field.effectActive?(:IonDeluge) && ret == :NORMAL
-          ret = :ELECTRIC
-          @powerBoost = false
+        @powerBoost = false
+        ret = pbBaseType(user)
+        if ret && GameData::Type.exists?(:ELECTRIC)
+            if @battle.field.effectActive?(:IonDeluge) && ret == :NORMAL
+                ret = :ELECTRIC
+                @powerBoost = false
+            end
+            if user.effectActive?(:Electrify)
+                ret = :ELECTRIC
+                @powerBoost = false
+            end
         end
-        if user.effectActive?(:Electrify)
-          ret = :ELECTRIC
-          @powerBoost = false
-        end
-      end
-      return ret
+        return ret
     end
-  
+
     #=============================================================================
     # Type effectiveness calculation
     #=============================================================================
-    def pbCalcTypeModSingle(moveType,defType,user,target)
+    def pbCalcTypeModSingle(moveType, defType, user, target)
         ret = Effectiveness.calculate_one(moveType, defType)
         # Ring Target
-        if target.hasActiveItem?(:RINGTARGET)
-            ret = Effectiveness::NORMAL_EFFECTIVE_ONE if Effectiveness.ineffective_type?(moveType, defType)
+        if target.hasActiveItem?(:RINGTARGET) && Effectiveness.ineffective_type?(moveType, defType)
+            ret = Effectiveness::NORMAL_EFFECTIVE_ONE
         end
         # Delta Stream's weather
-        if @battle.pbWeather == :StrongWinds
-            ret = Effectiveness::NORMAL_EFFECTIVE_ONE if defType == :FLYING && Effectiveness.super_effective_type?(moveType, defType)
+        if @battle.pbWeather == :StrongWinds && (defType == :FLYING && Effectiveness.super_effective_type?(
+            moveType, defType))
+            ret = Effectiveness::NORMAL_EFFECTIVE_ONE
         end
         # Grounded Flying-type Pokémon become susceptible to Ground moves
-        if !target.airborne?
-            ret = Effectiveness::NORMAL_EFFECTIVE_ONE if defType == :FLYING && moveType == :GROUND
-        end
+        ret = Effectiveness::NORMAL_EFFECTIVE_ONE if !target.airborne? && (defType == :FLYING && moveType == :GROUND)
         # Inured
-        if target.effectActive?(:Inured)
-            ret /= 2 if Effectiveness.super_effective_type?(moveType, defType)
-        end
+        ret /= 2 if target.effectActive?(:Inured) && Effectiveness.super_effective_type?(moveType, defType)
         # Break Through
         if user.hasActiveAbility?(:BREAKTHROUGH) && Effectiveness.ineffective_type?(moveType, defType)
             ret = Effectiveness::NORMAL_EFFECTIVE_ONE
@@ -56,33 +53,35 @@ class PokeBattle_Move
         return ret
     end
 
-    def pbCalcTypeMod(moveType,user,target,uiOnlyCheck=false)
-        return Effectiveness::NORMAL_EFFECTIVE if !moveType
-        return Effectiveness::NORMAL_EFFECTIVE if moveType == :GROUND && target.pbHasType?(:FLYING) && target.hasActiveItem?(:IRONBALL)
-        
+    def pbCalcTypeMod(moveType, user, target, uiOnlyCheck = false)
+        return Effectiveness::NORMAL_EFFECTIVE unless moveType
+        if moveType == :GROUND && target.pbHasType?(:FLYING) && target.hasActiveItem?(:IRONBALL)
+            return Effectiveness::NORMAL_EFFECTIVE
+        end
+
         # Determine types
-        tTypes = target.pbTypes(true,uiOnlyCheck)
+        tTypes = target.pbTypes(true, uiOnlyCheck)
 
         immunityPierced = false
 
         # Get effectivenesses
-        typeMods = [Effectiveness::NORMAL_EFFECTIVE_ONE] * 3   # 3 types max
-        tTypes.each_with_index do |type,i|
-            newTypeMod = pbCalcTypeModSingle(moveType,type,user,target)
+        typeMods = [Effectiveness::NORMAL_EFFECTIVE_ONE] * 3 # 3 types max
+        tTypes.each_with_index do |type, i|
+            newTypeMod = pbCalcTypeModSingle(moveType, type, user, target)
             typeMods[i] = newTypeMod
         end
 
         # Multiply all effectivenesses together
         ret = 1
         typeMods.each { |m| ret *= m }
-        
+
         # Partially pierce immunities
-        if inherentImmunitiesPierced?(user,target)
+        if inherentImmunitiesPierced?(user, target)
             # This is done here because its skipped in pbSuccessCheckAgainstTarget
-            if !uiOnlyCheck && user.targetInherentlyImmune?(user,target,self)
+            if !uiOnlyCheck && user.targetInherentlyImmune?(user, target, self)
                 immunityPierced = true
                 ret /= 2
-            elsif user.targetTypeModImmune?(user,target,self,ret,!uiOnlyCheck)
+            elsif user.targetTypeModImmune?(user, target, self, ret, !uiOnlyCheck)
                 ret = 4.0 # Weird effectiveness stuff present here
                 immunityPierced = true
             end
@@ -108,32 +107,32 @@ class PokeBattle_Move
 
         # Type effectiveness changing curses
         @battle.curses.each do |curse|
-            ret = @battle.triggerEffectivenessChangeCurseEffect(curse,moveType,user,target,ret)
+            ret = @battle.triggerEffectivenessChangeCurseEffect(curse, moveType, user, target, ret)
         end
-        
+
         return ret
     end
-  
+
     #=============================================================================
     # Accuracy check
     #=============================================================================
-    def pbBaseAccuracy(user,target); return @accuracy; end
-  
+    def pbBaseAccuracy(_user, _target); return @accuracy; end
+
     # Accuracy calculations for one-hit KO moves and "always hit" moves are
     # handled elsewhere.
-    def pbAccuracyCheck(user,target)
+    def pbAccuracyCheck(user, target)
         # "Always hit" effects and "always hit" accuracy
         return true if target.effectActive?(:Telekinesis)
-        baseAcc = pbBaseAccuracy(user,target)
+        baseAcc = pbBaseAccuracy(user, target)
         return true if baseAcc == 0
         # Calculate all multiplier effects
         modifiers = {}
-        modifiers[:base_accuracy]  = baseAcc
+        modifiers[:base_accuracy] = baseAcc
         modifiers[:accuracy_step] = user.steps[:ACCURACY]
         modifiers[:evasion_step]  = target.steps[:EVASION]
         modifiers[:accuracy_multiplier] = 1.0
         modifiers[:evasion_multiplier]  = 1.0
-        pbCalcAccuracyModifiers(user,target,modifiers)
+        pbCalcAccuracyModifiers(user, target, modifiers)
         # Check if move can't miss
         return true if modifiers[:base_accuracy] == 0
         # Calculation
@@ -151,29 +150,29 @@ class PokeBattle_Move
         calc = accuracy.to_f / evasion.to_f
         return @battle.pbRandom(100) < modifiers[:base_accuracy] * calc
     end
-  
-    def pbCalcAccuracyModifiers(user,target,modifiers,aiCheck=false,aiType=nil)
+
+    def pbCalcAccuracyModifiers(user, target, modifiers, aiCheck = false, aiType = nil)
         typeToUse = aiCheck ? aiType : @calcType
         # Ability effects that alter accuracy calculation
         user.eachAbilityShouldApply(aiCheck) do |ability|
-            BattleHandlers.triggerAccuracyCalcUserAbility(ability,modifiers,user,target,self,typeToUse)
+            BattleHandlers.triggerAccuracyCalcUserAbility(ability, modifiers, user, target, self, typeToUse)
         end
         user.eachAlly do |b|
             b.eachAbilityShouldApply(aiCheck) do |ability|
-                BattleHandlers.triggerAccuracyCalcUserAllyAbility(ability,modifiers,user,target,self,typeToUse)
+                BattleHandlers.triggerAccuracyCalcUserAllyAbility(ability, modifiers, user, target, self, typeToUse)
             end
         end
         unless @battle.moldBreaker
             target.eachAbilityShouldApply(aiCheck) do |ability|
-                BattleHandlers.triggerAccuracyCalcTargetAbility(ability,modifiers,user,target,self,typeToUse)
+                BattleHandlers.triggerAccuracyCalcTargetAbility(ability, modifiers, user, target, self, typeToUse)
             end
         end
         # Item effects that alter accuracy calculation
         user.eachActiveItem do |item|
-            BattleHandlers.triggerAccuracyCalcUserItem(item,modifiers,user,target,self,typeToUse,aiCheck)
+            BattleHandlers.triggerAccuracyCalcUserItem(item, modifiers, user, target, self, typeToUse, aiCheck)
         end
         target.eachActiveItem do |item|
-            BattleHandlers.triggerAccuracyCalcTargetItem(item,modifiers,user,target,self,typeToUse)
+            BattleHandlers.triggerAccuracyCalcTargetItem(item, modifiers, user, target, self, typeToUse)
         end
         # Other effects, inc. ones that set accuracy_multiplier or evasion_step to
         # specific values
@@ -182,11 +181,13 @@ class PokeBattle_Move
 
         if aiCheck
             modifiers[:evasion_step] = 0 if @function == "IgnoreTargetDefSpDefEvaStatStages" # Chip Away
-            modifiers[:base_accuracy] = 0 if ["AlwaysHits", "RemoveProtectionsBypassSubstituteAlwaysHits", "HyperspaceFury"].include?(@name) # "Always hit"
+            if %w[AlwaysHits RemoveProtectionsBypassSubstituteAlwaysHits HyperspaceFury].include?(@name)
+                modifiers[:base_accuracy] = 0
+            end # "Always hit"
             modifiers[:base_accuracy] = 0 if user.effectActive?(:LockOn) && user.pointsAt?(:LockOnPos, target)
         end
     end
-  
+
     #=============================================================================
     # Critical hit check
     #=============================================================================
@@ -194,28 +195,28 @@ class PokeBattle_Move
     #   -1: Never a critical hit.
     #    0: Calculate normally.
     #    1: Always a critical hit.
-    def pbCriticalOverride(user,target); return 0; end
+    def pbCriticalOverride(_user, _target); return 0; end
 
     # Returns whether the attack is critical, and whether it was forced to be so
-    def pbIsCritical?(user,target,checkingForAI=false)
-        if !critsPossible?(user,target)
+    def pbIsCritical?(user, target, checkingForAI = false)
+        unless critsPossible?(user, target)
             if checkingForAI
                 return 0
             else
-                return [false,false] 
+                return [false, false]
             end
         end
 
         crit = false
         forced = false
-        rate = criticalHitRate(user,target)
-        
-        if guaranteedCrit?(user,target)
+        rate = criticalHitRate(user, target)
+
+        if guaranteedCrit?(user, target)
             crit = true
             forced = true
         end
 
-        if !crit && isRandomCrit?(user,target,rate)
+        if !crit && isRandomCrit?(user, target, rate)
             crit = true
             forced = false
         end
@@ -224,9 +225,9 @@ class PokeBattle_Move
         if crit
             unless @battle.moldBreaker
                 target.eachActiveAbility do |ability|
-                    next unless BattleHandlers.triggerCriticalPreventTargetAbility(ability,user,target,@battle)
+                    next unless BattleHandlers.triggerCriticalPreventTargetAbility(ability, user, target, @battle)
                     unless checkingForAI
-                        battle.pbShowAbilitySplash(target,ability)
+                        battle.pbShowAbilitySplash(target, ability)
                         battle.pbDisplay(_INTL("#{target.pbThis} prevents the hit from being critical!"))
                         battle.pbHideAbilitySplash(target)
                     end
@@ -239,7 +240,7 @@ class PokeBattle_Move
             # Tactician tribe prevents random crits
             if target.hasTribeBonus?(:TACTICIAN)
                 unless checkingForAI
-                    battle.pbShowTribeSplash(target,:TACTICIAN)
+                    battle.pbShowTribeSplash(target, :TACTICIAN)
                     battle.pbDisplay(_INTL("#{target.pbThis} prevents the hit from being critical!"))
                     battle.pbHideTribeSplash(target)
                 end
@@ -255,36 +256,36 @@ class PokeBattle_Move
                 return rate
             end
         else
-            return crit,forced
+            return crit, forced
         end
     end
 
-    def isRandomCrit?(user,target,rate)
+    def isRandomCrit?(user, _target, rate)
         return false if user.boss?
 
         # Calculation
-        ratios = [16,8,4,2,1]
+        ratios = [16, 8, 4, 2, 1]
         rate = ratios.length - 1 if rate >= ratios.length
         return @battle.pbRandom(ratios[rate]) == 0
     end
 
-    def criticalHitRate(user,target)
+    def criticalHitRate(user, target)
         c = 0
         # Ability effects that alter critical hit rate
         user.eachActiveAbility do |ability|
-            c = BattleHandlers.triggerCriticalCalcUserAbility(ability,user,target,self,c)
+            c = BattleHandlers.triggerCriticalCalcUserAbility(ability, user, target, self, c)
         end
         unless @battle.moldBreaker
             target.eachActiveAbility do |ability|
-                c = BattleHandlers.triggerCriticalCalcTargetAbility(ability,user,target,c)
+                c = BattleHandlers.triggerCriticalCalcTargetAbility(ability, user, target, c)
             end
         end
         # Item effects that alter critical hit rate
         user.eachActiveItem do |item|
-            c = BattleHandlers.triggerCriticalCalcUserItem(item,user,target,c)
+            c = BattleHandlers.triggerCriticalCalcUserItem(item, user, target, c)
         end
         target.eachActiveItem do |item|
-            c = BattleHandlers.triggerCriticalCalcTargetItem(item,user,target,c)
+            c = BattleHandlers.triggerCriticalCalcTargetItem(item, user, target, c)
         end
 
         if veryHighCriticalRate?
@@ -292,27 +293,27 @@ class PokeBattle_Move
         elsif highCriticalRate?
             c += 1
         end
-		c += user.effects[:FocusEnergy]
-		c += 1 if user.effectActive?(:LuckyStar)
+        c += user.effects[:FocusEnergy]
+        c += 1 if user.effectActive?(:LuckyStar)
         c += 1 if user.inHyperMode? && @calcType == :SHADOW
 
         return c
     end
 
-    def critsPossible?(user,target)
+    def critsPossible?(user, target)
         return false if target.pbOwnSide.effectActive?(:LuckyChant)
         return false if target.pbOwnSide.effectActive?(:DiamondField) && !(user && user.hasActiveAbility?(:INFILTRATOR))
-        return false if applySunDebuff?(user,@calcType)
-        return false if pbCriticalOverride(user,target) < 0
+        return false if applySunDebuff?(user, @calcType)
+        return false if pbCriticalOverride(user, target) < 0
         return true
     end
-  
-	def guaranteedCrit?(user,target)
+
+    def guaranteedCrit?(user, target)
         return true if user.effectActive?(:LaserFocus) || user.effectActive?(:EmpoweredLaserFocus)
         return true if user.effectActive?(:LuckyCheer)
-        return true if pbCriticalOverride(user,target) > 0
+        return true if pbCriticalOverride(user, target) > 0
         user.eachActiveAbility do |ability|
-            return true if BattleHandlers.triggerGuaranteedCriticalUserAbility(ability,user,target,@battle)
+            return true if BattleHandlers.triggerGuaranteedCriticalUserAbility(ability, user, target, @battle)
         end
         return false
     end
@@ -320,56 +321,53 @@ class PokeBattle_Move
     #=============================================================================
     # Antecedents for damage calculation
     #=============================================================================
-    def pbBaseDamage(baseDmg,user,target);              return baseDmg;    end
+    def pbBaseDamage(baseDmg, _user, _target);              return baseDmg;    end
 
     # For when the damage boost must be applied after the move usage has progressed
     # Or the damage mult is ugly and will result in weird display BP
-    def pbModifyDamage(damageMult,user,target);         return damageMult; end
+    def pbModifyDamage(damageMult, _user, _target);         return damageMult; end
 
-    def ignoresDefensiveStepBoosts?(user,target);           return false;       end
-  
-    def forcedSpecial?(user,target,checkingForAI=false)
-        return true if user.shouldAbilityApply?([:TIMEINTERLOPER,:SPACEINTERLOPER],checkingForAI)
+    def ignoresDefensiveStepBoosts?(_user, _target); return false; end
+
+    def forcedSpecial?(user, _target, checkingForAI = false)
+        return true if user.shouldAbilityApply?(%i[TIMEINTERLOPER SPACEINTERLOPER], checkingForAI)
         return false
     end
 
-    def forcedPhysical?(user,target,checkingForAI=false)
-        return true if user.shouldAbilityApply?([:BRUTEFORCE],checkingForAI)
+    def forcedPhysical?(user, _target, checkingForAI = false)
+        return true if user.shouldAbilityApply?([:BRUTEFORCE], checkingForAI)
         return false
     end
 
-    def specialAfterForcing?(user,target,checkingForAI=false)
+    def specialAfterForcing?(user, target, checkingForAI = false)
         isSpecial = specialMove?
-        isSpecial = true if forcedSpecial?(user,target,checkingForAI)
-        isSpecial = false if forcedPhysical?(user,target,checkingForAI)
+        isSpecial = true if forcedSpecial?(user, target, checkingForAI)
+        isSpecial = false if forcedPhysical?(user, target, checkingForAI)
         return isSpecial
     end
 
-    def pbAttackingStat(user,target,checkingForAI=false)
-        if specialAfterForcing?(user,target,checkingForAI)
-          return user, :SPECIAL_ATTACK
-        end
+    def pbAttackingStat(user, target, checkingForAI = false)
+        return user, :SPECIAL_ATTACK if specialAfterForcing?(user, target, checkingForAI)
         return user, :ATTACK
     end
-    
-    def pbDefendingStat(user,target,checkingForAI=false)
-        if specialAfterForcing?(user,target,checkingForAI)
-            return target, :SPECIAL_DEFENSE
-        end
+
+    def pbDefendingStat(user, target, checkingForAI = false)
+        return target, :SPECIAL_DEFENSE if specialAfterForcing?(user, target, checkingForAI)
         return target, :DEFENSE
     end
-  
+
     #=============================================================================
     # Additional effect chance
     #=============================================================================
-    def canApplyRandomAddedEffects?(user,target,showMessages=false,aiCheck=false)
+    def canApplyRandomAddedEffects?(user, target, showMessages = false, aiCheck = false)
         unless @battle.moldBreaker
             target.eachAbilityShouldApply(aiCheck) do |ability|
-                next unless BattleHandlers.triggerPreventAddedEffectTargetAbility(ability, @battle, user, target, self, showMessages)
+                next unless BattleHandlers.triggerPreventAddedEffectTargetAbility(ability, @battle, user, target, self,
+showMessages)
                 return false
             end
         end
-        if target.shouldAbilityApply?(:COVERTCLOAK,aiCheck) && user.opposes?(target)
+        if target.shouldItemApply?(:COVERTCLOAK, aiCheck) && user.opposes?(target)
             if showMessages
                 battle.pbDisplay(_INTL("#{target.pbThis}'s #{getItemName(:COVERTCLOAK)} protects it from a random added effect!"))
                 target.aiLearnsItem(:COVERTCLOAK)
@@ -379,7 +377,7 @@ class PokeBattle_Move
         return true
     end
 
-    def pbAdditionalEffectChance(user,target,type,effectChance=0,aiCheck = false)
+    def pbAdditionalEffectChance(user, target, type, effectChance = 0, aiCheck = false)
         return 100 if @battle.pbCheckGlobalAbility(:WISHMAKER)
         # Abilities ensure effect chance
         user.eachAbilityShouldApply(aiCheck) do |ability|
@@ -403,26 +401,23 @@ class PokeBattle_Move
         end
 
         ret *= 2 if user.pbOwnSide.effectActive?(:Rainbow)
-        ret /= 2 if applyRainDebuff?(user,type)
+        ret /= 2 if applyRainDebuff?(user, type)
         ret /= 2 if target.hasTribeBonus?(:SERENE)
-        if ret < 100 && user.shouldItemApply?(:LUCKHERB,aiCheck)
+        if ret < 100 && user.shouldItemApply?(:LUCKHERB, aiCheck)
             ret = 100
             user.applyEffect(:LuckHerbConsumed) unless aiCheck
         end
         return ret
     end
-  
+
     # NOTE: Flinching caused by a move's effect is applied in that move's code,
     #       not here.
-    def pbFlinchChance(user,target)
+    def pbFlinchChance(user, _target)
         return 0 if flinchingMove?
         ret = 0
-        if user.hasActiveAbility?(:STENCH,true)
-            ret = 50
-        end
+        ret = 50 if user.hasActiveAbility?(:STENCH, true)
         ret *= 2 if user.hasActiveAbility?(:SERENEGRACE) ||
                     user.pbOwnSide.effectActive?(:Rainbow)
         return ret
     end
 end
-  

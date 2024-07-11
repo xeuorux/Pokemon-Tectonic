@@ -423,18 +423,18 @@ def getDexNavEncounterDataForMap(mapid = -1)
     return nil if encounters == nil
     encounter_tables = Marshal.load(Marshal.dump(encounters.types))
 	
-	allEncounters = []
-	encounters.types.keys.each do |encounter_type|
-		next if encounter_type == :Special
-		encounterList = encounter_tables[encounter_type]
-		next if !encounterList
-		encounterList.each do |encounter|
-			speciesSym = encounter[1]
-			species_data = GameData::Species.get(speciesSym)
-			next if isLegendary(speciesSym)
-			allEncounters.push([encounter_type,species_data])
+		allEncounters = []
+		encounters.types.keys.each do |encounter_type|
+			next if encounter_type == :Special
+			encounterList = encounter_tables[encounter_type]
+			next if !encounterList
+			encounterList.each do |encounter|
+				speciesSym = encounter[1]
+				species_data = GameData::Species.get(speciesSym)
+				next if isLegendary(speciesSym)
+				allEncounters.push([encounter_type,species_data])
+			end
 		end
-	end
 	  
     allEncounters.uniq!
     allEncounters.compact!
