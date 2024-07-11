@@ -955,7 +955,7 @@ Name = Crystal Veil
 NamePlural = Crystal Veils
 Pocket = 5
 Price = 6000
-Flags = Clothing
+Flags = TypeSetting,Clothing
 Description = A held item. It changes the holder's type in battle. You can change which type between battles.
 #-------------------------------
 [MEMORYSET]
@@ -963,6 +963,7 @@ Name = Memory Set
 NamePlural = Memory Sets
 Pocket = 5
 Price = 0
+Flags = TypeSetting
 Description = A set of memory discs, one for each type. If held by a Silvally, you can change its type between battles.
 #-------------------------------
 [PRISMATICPLATE]
@@ -970,6 +971,7 @@ Name = Prismatic Plate
 NamePlural = Prismatic Plates
 Pocket = 5
 Price = 0
+Flags = TypeSetting
 Description = A tablet that boosts same-type attacks by 20%. If held by Arceus, you can change its type between battles.
 #-------------------------------
 [WILDCARD]

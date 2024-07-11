@@ -740,11 +740,10 @@ class Pokemon
     end
 
     def hasTypeSetterItem?
-        typeSetterItems = %i[MEMORYSET PRISMATICPLATE CRYSTALVEIL]
-        typeSetterItems.each do |itemID|
-            return itemID if hasItem?(itemID)
+        items.each do |itemID|
+            return itemID if GameData::Item.get(itemID).is_type_setting?
         end
-        return false
+        return nil
     end
 
     def canHaveMultipleItems?(inBattle = false)

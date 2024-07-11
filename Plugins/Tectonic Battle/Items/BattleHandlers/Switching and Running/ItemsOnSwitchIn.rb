@@ -60,9 +60,3 @@ BattleHandlers::ItemOnSwitchIn.add(:PRISMATICPLATE,
         battler.aiLearnsItem(item) if battler.isSpecies?(:ARCEUS)
     }
 )
-
-BattleHandlers::ItemOnSwitchIn.add(:CRYSTALVEIL,
-    proc { |item, battler, battle|
-        battler.aiLearnsItem(item)
-    }
-)
