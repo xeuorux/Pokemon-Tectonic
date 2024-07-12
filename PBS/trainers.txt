@@ -2822,18 +2822,17 @@ Pokemon = EMBOAR,37
     AbilityIndex = 0 # Roast
     Item = SITRUSBERRY
 #-------------------------------
-[HIKER2,Rhys]
-Pokemon = BELLOSSOM,52
-    AbilityIndex = 1 # Choreography
-    Item = FOCUSSASH
-Pokemon = SALAZZLE,51
-    AbilityIndex = 0 # Expertise
-    Item = EXPERTBELT
-Pokemon = POLTEAGEIST,52
-    AbilityIndex = 1 # Burn Skill
-Pokemon = BIBAREL,53
-    Moves = YAWN,SWORDSDANCE,HYPERFANG,WATERFALL
-    AbilityIndex = 0 # Simple
+[SWIMMER_F2,Astrid]
+Pokemon = TENTACRUEL,50
+    AbilityIndex = 0 # Sap Sipper
+Pokemon = VOLBEAT,51
+    AbilityIndex = 1 # Competitive
+    Item = LIFEORB
+Pokemon = PALOSSAND,50
+    AbilityIndex = 0 # Grit
+    Item = GANLONBERRY
+Pokemon = REUNICLUS,51
+    AbilityIndex = 1 # Magic Guard
 #-------------------------------
 [SWIMMER_F5,Shreya]
 Pokemon = OVERQWIL,51
@@ -2847,17 +2846,22 @@ Pokemon = MIENSHAO,51
 Pokemon = PLUSLE,52
     AbilityIndex = 1 # Radiate
 #-------------------------------
-[SWIMMER_F2,Astrid]
-Pokemon = TENTACRUEL,50
-    AbilityIndex = 0 # Sap Sipper
-Pokemon = VOLBEAT,51
-    AbilityIndex = 1 # Competitive
-    Item = LIFEORB
-Pokemon = PALOSSAND,50
-    AbilityIndex = 0 # Grit
-    Item = GANLONBERRY
-Pokemon = REUNICLUS,51
-    AbilityIndex = 1 # Magic Guard
+[HIKER2,Rhys]
+Pokemon = BELLOSSOM,52
+    AbilityIndex = 1 # Choreography
+    Item = FOCUSSASH
+Pokemon = SALAZZLE,51
+    AbilityIndex = 0 # Expertise
+    Item = EXPERTBELT
+Pokemon = POLTEAGEIST,52
+    AbilityIndex = 1 # Burn Skill
+Pokemon = BIBAREL,53
+    Moves = YAWN,SWORDSDANCE,HYPERFANG,WATERFALL
+    AbilityIndex = 0 # Simple
+#-------------------------------
+[CLERK_M,Scott]
+Pokemon = BULBASAUR,55
+    AbilityIndex = 0 # Poison Absorb
 #-------------------------------
 [JUGGLER,Youcef]
 Flags = NoPerfect
@@ -4358,6 +4362,10 @@ Pokemon = RHYPERIOR,53
 Pokemon = NINJASK,52
     AbilityIndex = 0 # Speed Boost
     Item = LIFEORB
+#-------------------------------
+[BLACKBELT,Kai]
+Pokemon = BULBASAUR,55
+    AbilityIndex = 0 # Poison Absorb
 #-------------------------------
 [TRAINER_Sang,Sang,2]
 Policies = EQ_PROTECT
