@@ -559,11 +559,14 @@ Pokemon = VOLTORB,22
 #-------------------------------
 [RICHBOY2,Theodore]
 Pokemon = MAWILE,18
+    Moves = METALCLAW,BITE,SHOTPUT,BABYDOLLEYES
     AbilityIndex = 1 # Intimidate
     Item = STEELGEM
 Pokemon = HSNEASEL,19
+    Moves = KARATECHOP,HONECLAWS,FURYCUTTER,CAUSTICPUNCH
     AbilityIndex = 1 # Frustrate
 Pokemon = SHELLOS,19
+    Moves = MUDSHOT,SPELLBIND,WATERGUN,HARDEN
     AbilityIndex = 0 # Fascinate
 #-------------------------------
 [LEADER_Helena,Helena]
@@ -1936,8 +1939,11 @@ Pokemon = GSLOWKING,40
 #-------------------------------
 [CLERK_M2,Alejandro]
 Pokemon = CLOYSTER,38
+    Moves = SPIKECANNON,FURYPECKS,ICICLESPEAR,CLAMP
     AbilityIndex = 0 # Tough
+    Item = LOADEDDICE
 Pokemon = ZEBSTRIKA,39
+    Moves = INERTIASHOCK,DROPKICK,FLAMECHARGE,NUMB
     AbilityIndex = 0 # Sap Sipper
 #-------------------------------
 [CLERK_M2,Marton]
@@ -1950,7 +1956,6 @@ Pokemon = CENTISKORCH,39
 [CLERK_M2,Zoltan]
 Pokemon = TROPIUS,38
     AbilityIndex = 0 # Mental Block
-    Item = CADOBERRY
 Pokemon = SWALOT,39
     AbilityIndex = 1 # Corrosion
 #-------------------------------
@@ -2897,7 +2902,7 @@ Pokemon = MAMOSWINE,45
 Pokemon = MEOWSTIC,45
     Gender = female
     Moves = PATTERNRELEASE,PSYCHICFANGS,SUCKERPUNCH,FAKEOUT
-    AbilityIndex = 0 # Prankster
+    AbilityIndex = 1 # Liminal
     Item = LOADEDDICE
 #-------------------------------
 [ARTIST,Arnold]
@@ -4510,7 +4515,7 @@ Pokemon = DRAGONITE,57
     AbilityIndex = 1 # Multiscale
     Item = SKILLHERB
 #-------------------------------
-[WILDPACK,ReplaceMe2]
+[TUBER_F2,Hana]
 Pokemon = AVALUGG,56
     Moves = FROSTSPIKES,CRUNCH,CALAMITOUSSLASH,AVALANCHE
     AbilityIndex = 0 # Chilled Body
@@ -4558,26 +4563,6 @@ Pokemon = GSTUNFISK,58
     Moves = EARTHQUAKE,FARADAYCAGE,SHOREUP,STEALTHROCK
     AbilityIndex = 1 # Deterrent
     Item = HIVISJACKET
-#-------------------------------
-[TUBER_F2,Hana]
-Pokemon = OVERQWIL,60
-    Moves = POISONSPIKES,TRICKYTOXINS,CRUNCH,ENVENOM
-    AbilityIndex = 1 # Venom Gorger
-    Item = LEFTOVERS
-Pokemon = GSLOWBRO,60
-    Moves = ENVENOM,PSYCHOBOOST,VENOSHOCK,SHELLSIDEARM
-    AbilityIndex = 1 # Break Through
-    Item = SITRUSBERRY
-Pokemon = HYMNUS,59
-    Moves = CRUELTY,WARDPRESS,DRAGONPULSE,STRAFE
-    AbilityIndex = 0 # Levitate
-Pokemon = ROSERADE,59
-    Moves = CRUELWHIPBLADE,LEAFBLADE,POISONJAB,PALEBLADE
-    AbilityIndex = 1 # Merciless
-    Item = FOCUSSASH
-Pokemon = DRAPION,60
-    Moves = HONORLESSSTING,KNOCKOFF,XSCISSOR,POISONSPIKES
-    AbilityIndex = 1 # Merciless
 #-------------------------------
 [POKEMONTRAINER_Yezera,Yezera,8]
 Policies = METAGAMES_STAT_ITEMS
