@@ -3624,6 +3624,10 @@ Pokemon = DECIDUEYE,43
     Moves = SPIRITSHACKLE,SNAPTRAP,SHADOWSNEAK,ACROBATICS
     AbilityIndex = 1 # Siphon Sniper
 #-------------------------------
+[SUPERNERD,John]
+Pokemon = BULBASAUR,43
+    AbilityIndex = 1 # Aromatic
+#-------------------------------
 [SCIENTIST_M3,Gunter]
 Pokemon = CRUSTLE,55
     AbilityIndex = 0 # Stratagem
