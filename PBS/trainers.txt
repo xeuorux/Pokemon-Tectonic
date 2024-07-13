@@ -2828,45 +2828,74 @@ Pokemon = EMBOAR,37
     Item = SITRUSBERRY
 #-------------------------------
 [SWIMMER_F2,Astrid]
-Pokemon = TENTACRUEL,50
-    AbilityIndex = 0 # Sap Sipper
-Pokemon = VOLBEAT,51
-    AbilityIndex = 1 # Competitive
-    Item = LIFEORB
-Pokemon = PALOSSAND,50
-    AbilityIndex = 0 # Grit
-    Item = GANLONBERRY
-Pokemon = REUNICLUS,51
-    AbilityIndex = 1 # Magic Guard
+Pokemon = OVERQWIL,51
+    Moves = POISONSPIKES,TRICKYTOXINS,CRUNCH,ENVENOM
+    AbilityIndex = 1 # Venom Gorger
+    Item = BLACKSLUDGE
+Pokemon = GSLOWBRO,52
+    Moves = ENVENOM,PSYCHOBOOST,VENOSHOCK,SHELLSIDEARM
+    AbilityIndex = 1 # Break Through
+    Item = SITRUSBERRY
+Pokemon = HYMNUS,51
+    Moves = CRUELTY,WARDPRESS,DRAGONPULSE,STRAFE
+    AbilityIndex = 0 # Levitate
+Pokemon = ROSERADE,52
+    Moves = CRUELWHIPBLADE,LEAFBLADE,POISONJAB,PALEBLADE
+    AbilityIndex = 1 # Merciless
+    Item = FOCUSSASH
+Pokemon = DRAPION,51
+    Moves = HONORLESSSTING,KNOCKOFF,XSCISSOR,POISONSPIKES
+    AbilityIndex = 1 # Merciless
 #-------------------------------
 [SWIMMER_F5,Shreya]
-Pokemon = OVERQWIL,51
-    AbilityIndex = 0 # Poison Point
-Pokemon = MIGHTYENA,52
+Pokemon = FERALIGATR,51
+    Moves = RIPTURN,CRUNCH,AQUAJET,CHIPAWAY
+    AbilityIndex = 0 # Ferocious
+    Item = SITRUSBERRY
+Pokemon = ARMALDO,52
+    Moves = UTURN,ADAMANTINEPRESS,CRUSHCLAW,SPATTERINGRAM
+    AbilityIndex = 0 # Selective Scutes
+Pokemon = JOLTEON,51
+    Moves = NUMB,VOLTSWITCH,SHOUT,STELLARATE
+    AbilityIndex = 1 # Needle Fur
+Pokemon = SWANNA,52
+    Moves = FLIPTURN,PLAYROUGH,STRAFE
     AbilityIndex = 0 # Intimidate
-    Item = EJECTBUTTON
-Pokemon = MIENSHAO,51
-    AbilityIndex = 0 # Nerve Number
-    Item = SHELLBELL
-Pokemon = PLUSLE,52
-    AbilityIndex = 1 # Radiate
+    Item = STRIKEVEST
 #-------------------------------
 [HIKER2,Rhys]
-Pokemon = BELLOSSOM,52
-    AbilityIndex = 1 # Choreography
-    Item = FOCUSSASH
-Pokemon = SALAZZLE,51
-    AbilityIndex = 0 # Expertise
-    Item = EXPERTBELT
-Pokemon = POLTEAGEIST,52
-    AbilityIndex = 1 # Burn Skill
-Pokemon = BIBAREL,53
-    Moves = YAWN,SWORDSDANCE,HYPERFANG,WATERFALL
-    AbilityIndex = 0 # Simple
+Pokemon = CHESNAUGHT,52
+    Moves = BULKUP,SYNTHESIS,LEAFBLADE,SACREDSWORD
+    AbilityIndex = 0 # Intimidate
+    Item = LEFTOVERS
+Pokemon = NOCTOWL,52
+    Moves = CALMMIND,PSYCHIC,COLDFRONT,ROOST
+    AbilityIndex = 1 # Fascinate
+    Item = LEFTOVERS
+Pokemon = EISCUE,52
+    Moves = SHIVERDANCE,ICECALIBUR,CLOUDBREAK,SUBSTITUTE
+    AbilityIndex = 0 # Ice Block
+Pokemon = LUMINEON,52
+    Moves = QUIVERDANCE,BUBBLEBARRAGE,SEANCE,RAPIDHERTZ
+    AbilityIndex = 0 # Skill Link
 #-------------------------------
 [CLERK_M,Scott]
-Pokemon = BULBASAUR,55
-    AbilityIndex = 0 # Poison Absorb
+Pokemon = DRAGAPULT,53
+    Moves = UTURN,SIXFEETUNDER,DRAGONDARTS,DRAGONDANCE
+    AbilityIndex = 0 # Clear Body
+Pokemon = KLEFKI,54
+    Moves = SPELLBIND,SPIKES,GYROBALL,SUGARBALL
+    AbilityIndex = 0 # Prankster
+    Item = LEFTOVERS
+    # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
+    EV = 20,10,10,0,10,10
+Pokemon = MANDIBUZZ,53
+    Moves = FOULPLAY,PLANTDOUBT,DRILLPECK,CULL
+    AbilityIndex = 0 # Impervious
+    Item = LEFTOVERS
+Pokemon = MANERGETIC,54
+    Moves = THUNDERBOLT,FLAMETHROWER,IGNITE,SHOUT
+    AbilityIndex = 1 # Fascinate
 #-------------------------------
 [JUGGLER,Youcef]
 Flags = NoPerfect
@@ -4469,7 +4498,7 @@ Pokemon = ARMALDO,63
 Pokemon = PYROAR,63
     Moves = OVERHEAT,SHOUT,HYPERVOICE,FACADE
     AbilityIndex = 0 # Stubborn
-    Item = LUMBERAXE
+    Item = LIFEORB
 #-------------------------------
 [ABSOL,Absol]
 Pokemon = ABSOL,20
