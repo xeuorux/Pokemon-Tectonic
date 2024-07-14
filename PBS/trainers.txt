@@ -4366,44 +4366,68 @@ Pokemon = REAVOR,60
     Item = LIFEORB
 #-------------------------------
 [FIREBREATHER,Bradley]
-Pokemon = COMFEY,49
-    AbilityIndex = 0 # Garland Guardian
+Pokemon = TURTONATOR,52
+    Moves = MIASMA,DRAGONPULSE,SHELLTRAP,IGNITE
+    AbilityIndex = 1 # Harsh
 Pokemon = TALONFLAME,50
-    AbilityIndex = 1 # Gale Wings
-    Item = SHELLBELL
-Pokemon = GIGALITH,51
-    AbilityIndex = 1 # Unburden
-    Item = ROCKGEM
-Pokemon = WYRDEER,50
-    AbilityIndex = 0 # Intimidate
+    Moves = IGNITE,IRONHEAD,INFERNOIMPACT,STRAFE
+    AbilityIndex = 0 # Harsh
+    Item = FLYINGGEM
+Pokemon = PALOSSAND,50
+    Moves = SCORCHINGSANDS,HEX,SHOREUP,WILLOWISP
+    AbilityIndex = 0 # Grit
+    Item = SITRUSBERRY
+Pokemon = CRADILY,50
+    Moves = SYNTHESIS,POWERGEM,GIGADRAIN,SURF
+    AbilityIndex = 1 # Water Absorb
 #-------------------------------
 [SWIMMER_M3,Diego]
-Pokemon = PELIPPER,50
-    AbilityIndex = 0 # Cheek Pouch
-    Item = WACANBERRY
-Pokemon = EISCUE,51
-    AbilityIndex = 0 # Ice Block
-    Item = LEFTOVERS
-Pokemon = MORPEKO,52
-    AbilityIndex = 0 # Hunger Switch
-Pokemon = ATLACROSS,51
-    AbilityIndex = 0 # Skill Link
+Pokemon = FLOATZEL,51
+    Moves = FAKEOUT,HYPERJET,STORMTHROW,DOUBLEDOWN
+    AbilityIndex = 1 # Technician
+    Item = EJECTBUTTON
+Pokemon = CACTURNE,51
+    Moves = SUCKERPUNCH,SINISTERSPINES,PAYBACK,LEECHSEED
+    AbilityIndex = 0 # Heartless
+Pokemon = MGIGALITH,52
+    Moves = EXTRASENSORY,SINGINGSTONE,STRUGGLEBUG,NULLPULSE
+    AbilityIndex = 0 # Time Interloper
+    Item = LIFEORB
+Pokemon = GOLISOPOD,51
+    Moves = FIRSTIMPRESSION,WATERFALL,CROSSCHOP,LATCHON
+    AbilityIndex = 0 # Emergency Exit
 #-------------------------------
 [RUINMANIAC2,Nabil]
-Pokemon = VICTREEBEL,51
-    AbilityIndex = 1 # Flytrap
-Pokemon = ILLUMISE,52
-    AbilityIndex = 0 # Prankster
-    Item = FAIRYGEM
-Pokemon = RHYPERIOR,53
-    AbilityIndex = 0 # Reckless
-Pokemon = NINJASK,52
-    AbilityIndex = 0 # Speed Boost
-    Item = LIFEORB
+Pokemon = NIDOQUEEN,53
+    Moves = STEALTHROCK,POISONGAS,SCORCHINGSANDS,MIASMA
+    AbilityIndex = 0 # Rugged Scales
+Pokemon = SKARMORY,53
+    Moves = FEATHERWARD,TAKESHELTER,SLAG,DRILLPECK
+    AbilityIndex = 0 # Mental Block
+    Item = ROCKYHELMET
+Pokemon = DRUDDIGON,54
+    Moves = DRACOMETEOR,CROSSCHOP,DREAD,DRAGONTAIL
+    AbilityIndex = 1 # Well Suited
+Pokemon = FROSMOTH,54
+    Moves = THERMALDRAIN,RECOVER,GREYMIST,TERRORSWARM
+    AbilityIndex = 0 # Ice Scales
+    Item = HIVISJACKET
 #-------------------------------
 [BLACKBELT,Kai]
-Pokemon = BULBASAUR,55
-    AbilityIndex = 0 # Poison Absorb
+Pokemon = PALMANTRA,55
+    Moves = SECRETTECHNIQUE,DRAINPUNCH,KICKSTART,PSYCHIC
+    AbilityIndex = 0 # Middle Way
+    Item = ASSAULTVEST
+Pokemon = ARBOK,55
+    Moves = GLARE,MIASMA,CRUNCH,GALLINGSPIT
+    AbilityIndex = 0 # Intimidate
+Pokemon = EMPOLEON,55
+    Moves = FRAGMENTATION,AQUAJET,BRAVEBIRD,HARBORBREAKER
+    AbilityIndex = 1 # Self-Sufficient
+    Item = SITRUSBERRY
+Pokemon = CONIFEAR,55
+    Moves = HOLLYCHARM,GLACIALRAM,CHILL,WOODHAMMER
+    AbilityIndex = 1 # Frustrate
 #-------------------------------
 [TRAINER_Sang,Sang,2]
 Policies = EQ_PROTECT
