@@ -64,7 +64,11 @@ def pbStorePokemonInPC(pkmn)
   curboxname = $PokemonStorage[oldcurbox].name
   boxname = $PokemonStorage[storedbox].name
   if storedbox != oldcurbox
-      pbMessage(_INTL("Box \"{1}\" on the Pokémon Storage PC was full.\1", curboxname))
+      if $PokemonStorage[oldcurbox].isDonationBox?
+        pbMessage(_INTL("Box \"{1}\" on the Pokémon Storage PC is a donation box.\1", curboxname))
+      else
+        pbMessage(_INTL("Box \"{1}\" on the Pokémon Storage PC was full.\1", curboxname))
+      end
       pbMessage(_INTL("{1} was transferred to box \"{2}.\"", pkmn.name, boxname))
   else
       pbMessage(_INTL("{1} was transferred to the Pokémon Storage PC.\1", pkmn.name))

@@ -277,12 +277,24 @@ class PokemonBox
           end
         end
       end
-      for j in 0...self.maxBoxes
-        next if self[j].isDonationBox?
-        for i in 0...maxPokemon(j)
-          if self[j,i]==nil
-            self[j,i] = pkmn
-            @currentBox = j
+      # Check for backup boxes beyond the current box
+      for potentialBox in (@currentBox + 1)...self.maxBoxes
+        next if self[potentialBox].isDonationBox?
+        for i in 0...maxPokemon(potentialBox)
+          if self[potentialBox,i]==nil
+            self[potentialBox,i] = pkmn
+            @currentBox = potentialBox
+            return @currentBox
+          end
+        end
+      end
+      # Check for backup before the current box
+      for potentialBox in 0...@currentBox
+        next if self[potentialBox].isDonationBox?
+        for i in 0...maxPokemon(potentialBox)
+          if self[potentialBox,i]==nil
+            self[potentialBox,i] = pkmn
+            @currentBox = potentialBox
             return @currentBox
           end
         end

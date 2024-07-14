@@ -46650,8 +46650,10 @@ There's no more room for Pokémon!<<1>>
 ¡Ya no hay espacio para Pokémon!<<1>>
 The Pokémon Boxes are full and can't accept any more!
 ¡Tus Cajas están llenas!
-Box "{1}" on {2}'s PC was full.<<1>>
-Caja "{1}" en el PC de {2} estaba llenal.<<1>>
+Box "{1}" on the Pokémon Storage PC is a donation box.
+Caja "{1}" en el PC es una caja de donaciones.<<1>>
+Box "{1}" on the Pokémon Storage PC was full.<<1>>
+Caja "{1}" en el PC está llena.<<1>>
 {1} was transferred to box "{2}."
 {1} fue transferido a la caja "{2}."
 {1} was transferred to {2}'s PC.<<1>>
