@@ -16,20 +16,8 @@ def pbGenerateWildPokemon(species,level,ignoreCap = false,skipAlterations = fals
   # Give the wild Pokémon a held item
   item = generateWildHeldItem(genwildpoke,herdingActive?)
   genwildpoke.giveItem(item) if item
-  # Shiny Charm makes shiny Pokémon more likely to generate
-  genwildpoke.shinyRerolls = 1
-  $PokemonBag.pbQuantity(:SHINYCHARM).times do
-    genwildpoke.shinyRerolls *= 2
-  end
   # Trigger events that may alter the generated Pokémon further
   Events.onWildPokemonCreate.trigger(nil,genwildpoke) unless skipAlterations
-  # Give it however many chances to be shiny
-  (genwildpoke.shinyRerolls - 1).times do
-    break if genwildpoke.shiny?
-    genwildpoke.regeneratePersonalID
-    genwildpoke.shiny = nil
-  end
-  #genwildpoke.shiny_variant = true if genwildpoke.shiny? && rand(4) < 1
   return genwildpoke
 end
 
@@ -81,10 +69,6 @@ end
 
 def RIGT(pokemon,increasedChance=false,testCount = 1000)
   runItemGenerationTest(pokemon,increasedChance,testCount)
-end
-
-class Pokemon
-	attr_accessor :shinyRerolls
 end
 
 def herdingActive?

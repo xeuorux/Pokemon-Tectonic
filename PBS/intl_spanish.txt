@@ -47978,6 +47978,10 @@ You check {1}, and discover that its ability is <imp>{2}</imp>!
 ¡Compruebas a {1}, y descubres que su habilidad es <imp>{2}</imp>!
 The {1} is holding an {2}!
 ¡El {1} está sosteniendo un {2}!
+Wow, the {1} is a different color from normal.
+Vaya, el {1} ​​es de un color diferente al normal.
+It's a <imp>shiny</imp> Pokémon!
+¡Es un Pokémon <imp>variocolor</imp>!
 But it mysteriously crumbled to ash...
 Pero se desintegró misteriosamente…
 You register {1} as caught in the Pokédex.

@@ -96,6 +96,11 @@ def pbNicknameAndStore(pkmn,nickname = true)
 end
 
 def discoverPokemon(pkmn)
+  if pkmn.shiny?
+    pbMessage(_INTL("Wow, the {1} is a different color from normal.", pkmn.name))
+    pbMessage(_INTL("It's a <imp>shiny</imp> Pokémon!", pkmn.name))
+  end
+
   pbMessage(_INTL("You check {1}, and discover that its ability is <imp>{2}</imp>!", pkmn.name, pkmn.ability.name))
 
   pkmn.items.each do |item|
