@@ -216,14 +216,21 @@ DebugMenuCommands.register("renamemovefromfile", {
 
   DebugMenuCommands.register("saveoldinator", {
     "parent"      => "othermenu",
-    "name"        => _INTL("Set save to 3.0.0"),
-    "description" => _INTL("Set this save to 3.0.0, for conversion testing."),
+    "name"        => _INTL("Set save to older version"),
+    "description" => _INTL("Set this save to an older version, for conversion testing."),
     "always_show" => true,
     "effect"      => proc {
-      downgradeSaveTo30
-      pbMessage("Save has been converted to 3.0.0, please close your game.")
+        versionNumber = pbEnterText(_INTL("Enter game version."),0,20)
+        setSaveVersion(versionNumber)
+        pbMessage(_INTL("Save has been converted to {1}, please close your game.",versionNumber))
     }
   })
+
+  def setSaveVersion(versionNumber)
+    save_data = SaveData.get_data_from_file(SaveData::FILE_PATH)
+    save_data[:game_version] = versionNumber
+    File.open(SaveData::FILE_PATH, 'wb') { |file| Marshal.dump(save_data, file) }
+  end
 
 def getRenamedMovesBatch(version = -1)
   renamingHash = {}
