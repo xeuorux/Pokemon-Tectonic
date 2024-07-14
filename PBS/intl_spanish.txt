@@ -51276,6 +51276,10 @@ Collect Helena's Package
 Recoge el Paquete de Helena
 Now that the avatar of Linoone has been defeated, you can collect the LuxTech Shipment which it stole.
 Ahora que el avatar de Linoone ha sido derrotado, puedes recolectar el Cargamento LuxTech que ha robado.
+Return LuxTech Package
+Regresa el Paquete de LuxTech
+You've found a shipment bound for LuxTech. Go to LuxTech and find whoever the intended recipient was, so that you may return it to them.
+Ha encontrado un envío con destino a LuxTech. Vaya a LuxTech y busque quién era el destinatario previsto para poder devolvérselo.
 Return Helena's Package
 Regresa el Paquete de Helena
 You've found and collected Helena's missing shipment. Return to LuxTech and hand her the package so that she will challenge you as a Gym Leader.
