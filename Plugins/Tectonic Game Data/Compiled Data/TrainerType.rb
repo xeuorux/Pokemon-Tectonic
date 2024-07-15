@@ -150,7 +150,7 @@ module Compiler
             # Record XXX=YYY setting
             tr_type_hash[line_schema[0]] = property_value
             tr_type_names.push(tr_type_hash[:name]) if property_name == "Name"
-          end   # Old format
+          end
         }
         # Add last trainer type's data to records
         GameData::TrainerType.register(tr_type_hash) if tr_type_hash
@@ -175,7 +175,7 @@ module Compiler
             f.write(sprintf("BaseMoney = %d\r\n", t.base_money))
             f.write(sprintf("SkillLevel = %d\r\n", t.skill_level)) if t.skill_level != t.base_money
             f.write(sprintf("Policies = %s\r\n", t.policies.join(","))) if t.policies.length > 0
-            f.write(sprintf("IntroME = %s\r\n", t.intro_ME)) if !nil_or_empty?(t.intro_ME)
+            f.write(sprintf("IntroBGM = %s\r\n", t.intro_ME)) if !nil_or_empty?(t.intro_ME)
             f.write(sprintf("BattleBGM = %s\r\n", t.battle_BGM)) if !nil_or_empty?(t.battle_BGM)
             f.write(sprintf("VictoryME = %s\r\n", t.victory_ME)) if !nil_or_empty?(t.victory_ME)
           end

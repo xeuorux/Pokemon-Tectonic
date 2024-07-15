@@ -2348,12 +2348,6 @@ Outdoor = false
 ShowArea = false
 Bicycle = false
 #-------------------------------
-[333]
-# Gym Puzzles Testing
-Outdoor = false
-ShowArea = false
-Bicycle = false
-#-------------------------------
 [334]
 # The Present
 Outdoor = false

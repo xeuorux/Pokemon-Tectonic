@@ -9,6 +9,7 @@ BaseMoney = 100
 Name = Ancient Priest
 Gender = Unknown
 BaseMoney = 0
+IntroBGM = MONK
 #-------------------------------
 [ANOTHERPOSSIBLEALESSA]
 Name = Another Possible
@@ -38,221 +39,265 @@ BattleBGM = Battle lainie
 Name = Aroma Lady
 Gender = Female
 BaseMoney = 32
+IntroBGM = AROMALADY
 #-------------------------------
 [AROMALADY2]
 Name = Aroma Lady
 Gender = Female
 BaseMoney = 32
+IntroBGM = AROMALADY
 #-------------------------------
 [AROMALADY3]
 Name = Aroma Lady
 Gender = Female
 BaseMoney = 32
+IntroBGM = AROMALADY
 #-------------------------------
 [ARTIST]
 Name = Artist
 Gender = Male
 BaseMoney = 48
+IntroBGM = ARTIST
 #-------------------------------
 [ARTIST2]
 Name = Artist
 Gender = Male
 BaseMoney = 48
+IntroBGM = ARTIST
 #-------------------------------
 [ARTIST3]
 Name = Artist
 Gender = Female
 BaseMoney = 32
+IntroBGM = ARTIST
 #-------------------------------
 [ARTIST4]
 Name = Artist
 Gender = Male
 BaseMoney = 32
+IntroBGM = ARTIST
 #-------------------------------
 [BACKERS_F]
 Name = Backers
 Gender = Unknown
 BaseMoney = 128
+IntroBGM = BLACKBELT
 #-------------------------------
 [BACKERS_M]
 Name = Backers
 Gender = Unknown
 BaseMoney = 128
+IntroBGM = BLACKBELT
 #-------------------------------
 [BACKPACKER_F]
 Name = Backpacker
 Gender = Female
 BaseMoney = 32
+IntroBGM = BACKPACKER
 #-------------------------------
 [BACKPACKER_M]
 Name = Backpacker
 Gender = Male
 BaseMoney = 32
+IntroBGM = BACKPACKER
 #-------------------------------
 [BAKER]
 Name = Baker
 Gender = Female
 BaseMoney = 32
+IntroBGM = AROMALADY
 #-------------------------------
 [BATTLEGIRL]
 Name = Battle Girl
 Gender = Female
 BaseMoney = 16
+IntroBGM = BLACKBELT
 #-------------------------------
 [BATTLEGIRL2]
 Name = Battle Girl
 Gender = Female
 BaseMoney = 16
+IntroBGM = BLACKBELT
 #-------------------------------
 [BATTLEGIRL3]
 Name = Battle Girl
 Gender = Female
 BaseMoney = 16
+IntroBGM = BLACKBELT
 #-------------------------------
 [BATTLEGIRL4]
 Name = Battle Girl
 Gender = Female
 BaseMoney = 16
+IntroBGM = BLACKBELT
 #-------------------------------
 [BEAUTY]
 Name = Beauty
 Gender = Female
 BaseMoney = 56
+IntroBGM = LASS
 #-------------------------------
 [BEAUTY2]
 Name = Beauty
 Gender = Female
 BaseMoney = 56
+IntroBGM = LASS
 #-------------------------------
 [BEAUTY3]
 Name = Beauty
 Gender = Female
 BaseMoney = 56
+IntroBGM = LASS
 #-------------------------------
 [BEAUTY4]
 Name = Beauty
 Gender = Female
 BaseMoney = 56
+IntroBGM = LASS
 #-------------------------------
 [BEAUTY5]
 Name = Beauty
 Gender = Female
 BaseMoney = 56
+IntroBGM = LASS
 #-------------------------------
 [BEAUTY6]
 Name = Beauty
 Gender = Female
 BaseMoney = 56
+IntroBGM = LASS
 #-------------------------------
 [BELLEANDPA]
 Name = Belle & Pa
 Gender = Unknown
 BaseMoney = 64
+IntroBGM = BACKPACKER
 #-------------------------------
 [BIKER]
 Name = Biker
 Gender = Male
 BaseMoney = 16
+IntroBGM = BLACKBELT
 #-------------------------------
 [BIKER2]
 Name = Biker
 Gender = Male
 BaseMoney = 16
+IntroBGM = BLACKBELT
 #-------------------------------
 [BIRDKEEPER_F]
 Name = Bird Keeper
 Gender = Female
 BaseMoney = 32
+IntroBGM = BACKPACKER
 #-------------------------------
 [BIRDKEEPER_M]
 Name = Bird Keeper
 Gender = Male
 BaseMoney = 32
+IntroBGM = BACKPACKER
 #-------------------------------
 [BIRDKEEPER_M2]
 Name = Bird Keeper
 Gender = Male
 BaseMoney = 32
+IntroBGM = BACKPACKER
 #-------------------------------
 [BLACKBELT]
 Name = Black Belt
 Gender = Male
 BaseMoney = 24
+IntroBGM = BLACKBELT
 #-------------------------------
 [BLACKBELT2]
 Name = Black Belt
 Gender = Male
 BaseMoney = 24
+IntroBGM = BLACKBELT
 #-------------------------------
 [BLACKBELT3]
 Name = Black Belt
 Gender = Male
 BaseMoney = 24
+IntroBGM = BLACKBELT
 #-------------------------------
 [BLACKBELT4]
 Name = Black Belt
 Gender = Male
 BaseMoney = 24
+IntroBGM = BLACKBELT
 #-------------------------------
 [BOARDER]
 Name = Boarder
 Gender = Male
 BaseMoney = 32
+IntroBGM = BLACKBELT
 #-------------------------------
 [BUGCATCHER]
 Name = Bug Catcher
 Gender = Male
 BaseMoney = 16
+IntroBGM = YOUNGSTER
 #-------------------------------
 [BUGCATCHER2]
 Name = Bug Catcher
 Gender = Male
 BaseMoney = 16
+IntroBGM = YOUNGSTER
 #-------------------------------
 [BUGCATCHER_F]
 Name = Bug Catcher
 Gender = Female
 BaseMoney = 16
+IntroBGM = YOUNGSTER
 #-------------------------------
 [BURGLAR]
 Name = Burglar
 Gender = Male
 BaseMoney = 16
+IntroBGM = POKEFAN
 #-------------------------------
 [BUTLER]
 Name = Butler
 Gender = Male
 BaseMoney = 40
+IntroBGM = ARTIST
 #-------------------------------
 [CAMERAMAN]
 Name = Cameraman
 Gender = Male
 BaseMoney = 32
+IntroBGM = ELITETRAINER
 #-------------------------------
 [CAMERAMAN2]
 Name = Cameraman
 Gender = Male
 BaseMoney = 32
+IntroBGM = ELITETRAINER
 #-------------------------------
 [CAMPER]
 Name = Camper
 Gender = Male
 BaseMoney = 16
+IntroBGM = YOUNGSTER
 #-------------------------------
 [CAMPER_F]
 Name = Camper
 Gender = Female
 BaseMoney = 16
+IntroBGM = YOUNGSTER
 #-------------------------------
 [CAMPER_M]
 Name = Camper
 Gender = Male
 BaseMoney = 16
+IntroBGM = YOUNGSTER
 #-------------------------------
 [CEO]
 Name = CEO
 Gender = Female
 BaseMoney = 100
+IntroBGM = ROUGHNECK
 #-------------------------------
 [CHALLENGER_Vanya]
 Name = Challenger
@@ -274,332 +319,397 @@ BaseMoney = 60
 Name = Chef
 Gender = Male
 BaseMoney = 32
+IntroBGM = AROMALADY
 #-------------------------------
 [CLERK_F]
 Name = Clerk
 Gender = Female
 BaseMoney = 24
+IntroBGM = BUSINESSMAN
 #-------------------------------
 [CLERK_M]
 Name = Clerk
 Gender = Male
 BaseMoney = 24
+IntroBGM = BUSINESSMAN
 #-------------------------------
 [CLERK_M2]
 Name = Clerk
 Gender = Male
 BaseMoney = 24
+IntroBGM = BUSINESSMAN
 #-------------------------------
 [CLOWN]
 Name = Clown
 Gender = Male
 BaseMoney = 24
+IntroBGM = POKEFAN
 #-------------------------------
 [COLLECTOR]
 Name = Collector
 Gender = Male
 BaseMoney = 64
+IntroBGM = POKEFAN
 #-------------------------------
 [COOLTRAINERSQUAD_2]
 Name = Cool Squad
 Gender = Unknown
 BaseMoney = 100
+IntroBGM = ACETRAINER
 #-------------------------------
 [COOLTRAINER_F]
 Name = Cooltrainer
 Gender = Female
 BaseMoney = 60
+IntroBGM = ELITETRAINER
 #-------------------------------
 [COOLTRAINER_F2]
 Name = Cooltrainer
 Gender = Female
 BaseMoney = 60
+IntroBGM = ELITETRAINER
 #-------------------------------
 [COOLTRAINER_F3]
 Name = Cooltrainer
 Gender = Female
 BaseMoney = 60
+IntroBGM = ACETRAINER
 #-------------------------------
 [COOLTRAINER_F4]
 Name = Cooltrainer
 Gender = Female
 BaseMoney = 60
+IntroBGM = ACETRAINER
 #-------------------------------
 [COOLTRAINER_F7]
 Name = Pro Trainer
 Gender = Female
 BaseMoney = 60
 Policies = PROACTIVE_MATCHUP_SWAPPER
+IntroBGM = ELITETRAINER
 BattleBGM = Battle pro
 #-------------------------------
 [COOLTRAINER_M]
 Name = Cooltrainer
 Gender = Male
 BaseMoney = 60
+IntroBGM = ELITETRAINER
 #-------------------------------
 [COOLTRAINER_M2]
 Name = Cooltrainer
 Gender = Male
 BaseMoney = 60
+IntroBGM = ACETRAINER
 #-------------------------------
 [COOLTRAINER_M3]
 Name = Cooltrainer
 Gender = Male
 BaseMoney = 60
+IntroBGM = ELITETRAINER
 #-------------------------------
 [COOLTRAINER_M4]
 Name = Cooltrainer
 Gender = Male
 BaseMoney = 60
+IntroBGM = ACETRAINER
 #-------------------------------
 [COOLTRAINER_M7]
 Name = Pro Trainer
 Gender = Male
 BaseMoney = 60
 Policies = PROACTIVE_MATCHUP_SWAPPER
+IntroBGM = ELITETRAINER
 BattleBGM = Battle pro
 #-------------------------------
 [COWGIRL]
 Name = Cowgirl
 Gender = Female
 BaseMoney = 30
+IntroBGM = BACKPACKER
 #-------------------------------
 [CRIMINALTEAM]
 Name = Criminal Team
 Gender = Unknown
 BaseMoney = 64
+IntroBGM = ROUGHNECK
 #-------------------------------
 [CYCLIST_F]
 Name = Cyclist
 Gender = Female
 BaseMoney = 32
+IntroBGM = CYCLING
 #-------------------------------
 [CYCLIST_F2]
 Name = Cyclist
 Gender = Female
 BaseMoney = 32
+IntroBGM = CYCLING
 #-------------------------------
 [CYCLIST_M]
 Name = Cyclist
 Gender = Male
 BaseMoney = 32
+IntroBGM = CYCLING
 #-------------------------------
 [CYCLIST_M2]
 Name = Cyclist
 Gender = Male
 BaseMoney = 32
+IntroBGM = CYCLING
 #-------------------------------
 [DANCER]
 Name = Dancer
 Gender = Male
 BaseMoney = 24
+IntroBGM = ROUGHNECK
 #-------------------------------
 [DANDY]
 Name = Dandy
 Gender = Male
 BaseMoney = 160
+IntroBGM = PARASOL
 #-------------------------------
 [DELINQUENT]
 Name = Delinquent
 Gender = Male
 BaseMoney = 32
+IntroBGM = GAMBLER
 #-------------------------------
 [DEPOTAGENT]
 Name = Depot Agent
 Gender = Male
 BaseMoney = 32
+IntroBGM = BUSINESSMAN
 #-------------------------------
 [DEVARTIST3]
 Name = Developer
 Gender = Female
 BaseMoney = 80
+IntroBGM = GAMBLER
 #-------------------------------
 [DEVCLERK_M2]
 Name = Developer
 Gender = Male
 BaseMoney = 80
+IntroBGM = BUSINESSMAN
 #-------------------------------
 [DEVCOOLTRAINER_F]
 Name = Developer
 Gender = Male
 BaseMoney = 80
+IntroBGM = COOLTRAINER
 #-------------------------------
 [DEVCOOLTRAINER_M3]
 Name = Developer
 Gender = Male
 BaseMoney = 80
+IntroBGM = ELITETRAINER
 #-------------------------------
 [DEVGAMBLER]
 Name = Developer
 Gender = Male
 BaseMoney = 80
+IntroBGM = ACETRAINER
 #-------------------------------
 [DEVGENTLEMAN3]
 Name = Developer
 Gender = Male
 BaseMoney = 80
+IntroBGM = GAMBLER
 #-------------------------------
 [DEVHARLEQUIN]
 Name = Developer
 Gender = Male
 BaseMoney = 80
+IntroBGM = POKEFAN
 #-------------------------------
 [DEVHEXMANIAC]
 Name = Developer
 Gender = Female
 BaseMoney = 80
+IntroBGM = PSYCHIC
 #-------------------------------
 [DEVHIKER]
 Name = Developer
 Gender = Male
 BaseMoney = 80
+IntroBGM = HIKER
 #-------------------------------
 [DEVJANITOR]
 Name = Developer
 Gender = Male
 BaseMoney = 80
+IntroBGM = BUSINESSMAN
 #-------------------------------
 [DEVJUGGLER]
 Name = Developer
 Gender = Male
 BaseMoney = 80
+IntroBGM = POKEFAN
 #-------------------------------
 [DEVLADY4]
 Name = Developer
 Gender = Female
 BaseMoney = 80
+IntroBGM = LASS2
 #-------------------------------
 [DEVMAID2]
 Name = Developer
 Gender = Female
 BaseMoney = 80
+IntroBGM = ARTIST
 #-------------------------------
 [DEVPOKEMONRANGER_M]
 Name = Developer
 Gender = Male
 BaseMoney = 80
+IntroBGM = ACETRAINER
 #-------------------------------
 [DEVPSYCHIC_M]
 Name = Developer
 Gender = Male
 BaseMoney = 80
+IntroBGM = PSYCHIC
 #-------------------------------
 [DEVRICHBOY]
 Name = Developer
 Gender = Male
 BaseMoney = 80
+IntroBGM = YOUNGSTER2
 #-------------------------------
 [DEVRICHBOY4]
 Name = Developer
 Gender = Male
 BaseMoney = 80
+IntroBGM = YOUNGSTER2
 #-------------------------------
 [DEVROUGHNECK2]
 Name = Developer
 Gender = Male
 BaseMoney = 80
+IntroBGM = ROUGHNECK
 #-------------------------------
 [DEVSCIENTIST_F]
 Name = Developer
 Gender = Female
 BaseMoney = 80
+IntroBGM = SCIENTIST
 #-------------------------------
 [DEVSUPERNERD]
 Name = Developer
 Gender = Male
 BaseMoney = 80
+IntroBGM = POKEFAN
 #-------------------------------
 [DEVWORKER5]
 Name = Developer
 Gender = Male
 BaseMoney = 80
+IntroBGM = BUSINESSMAN
 #-------------------------------
 [DITTO_AROMALADY]
 Name = Aroma Lady
 Gender = Female
 BaseMoney = 32
+IntroBGM = DITTO_AROMALADY
 #-------------------------------
 [DITTO_CAMPER]
 Name = Camper
 Gender = Male
 BaseMoney = 16
+IntroBGM = DITTO_YOUNGSTER
 #-------------------------------
 [DITTO_HIKER]
 Name = Hiker
 Gender = Male
 BaseMoney = 32
+IntroBGM = DITTO_BACKPACKER
 #-------------------------------
 [DITTO_PROTRAINER]
 Name = Pro Trainer
 Gender = Female
 BaseMoney = 32
 Policies = PROACTIVE_MATCHUP_SWAPPER
+IntroBGM = DITTO_ELITETRAINER
 BattleBGM = Battle pro
 #-------------------------------
 [DITTO_RANGER]
 Name = Pokémon Ranger
 Gender = Female
 BaseMoney = 60
+IntroBGM = DITTO_ACETRAINER
 #-------------------------------
 [DOCTOR]
 Name = Doctor
 Gender = Male
 BaseMoney = 60
+IntroBGM = ARTIST
 #-------------------------------
 [DOUBLETEAM]
 Name = Double Team
 Gender = Unknown
 BaseMoney = 128
+IntroBGM = ELITETRAINER
 #-------------------------------
 [DOUBLETEAM2]
 Name = Double Team
 Gender = Unknown
 BaseMoney = 128
+IntroBGM = ELITETRAINER
 #-------------------------------
 [DRAGONTAMER]
 Name = Dragon Tamer
 Gender = Male
 BaseMoney = 32
+IntroBGM = ACETRAINER
 #-------------------------------
 [DRAGONTAMER2]
 Name = Dragon Tamer
 Gender = Male
 BaseMoney = 32
+IntroBGM = ACETRAINER
 #-------------------------------
 [ELDER]
 Name = Elder
 Gender = Male
 BaseMoney = 120
+IntroBGM = MONK
 #-------------------------------
 [EXPERTF]
 Name = Expert
 Gender = Female
 BaseMoney = 80
+IntroBGM = MONK
 #-------------------------------
 [EXPERTM]
 Name = Expert
 Gender = Male
 BaseMoney = 80
+IntroBGM = MONK
 #-------------------------------
 [FAIRYTALEGIRL]
 Name = Fairy Tale Girl
 Gender = Female
 BaseMoney = 8
+IntroBGM = TWINS
 #-------------------------------
 [FIREBREATHER]
 Name = Firebreather
 Gender = Male
 BaseMoney = 32
+IntroBGM = BLACKBELT
 #-------------------------------
 [FISHERMAN]
 Name = Fisherman
 Gender = Male
 BaseMoney = 32
+IntroBGM = SAILOR
 #-------------------------------
 [FISHERMAN2]
 Name = Fisherman
 Gender = Male
 BaseMoney = 32
+IntroBGM = SAILOR
 #-------------------------------
 [FORMERCHAMP_Ansel]
 Name = Former Champion
@@ -647,161 +757,193 @@ BattleBGM = Battle champion iris
 Name = Gambler
 Gender = Male
 BaseMoney = 120
+IntroBGM = GAMBLER
 #-------------------------------
 [GARDENER]
 Name = Gardener
 Gender = Male
 BaseMoney = 32
+IntroBGM = GAMBLER
 #-------------------------------
 [GENTLEMAN]
 Name = Gentleman
 Gender = Male
 BaseMoney = 200
+IntroBGM = GAMBLER
 #-------------------------------
 [GENTLEMAN2]
 Name = Gentleman
 Gender = Male
 BaseMoney = 200
+IntroBGM = GAMBLER
 #-------------------------------
 [GENTLEMAN3]
 Name = Gentleman
 Gender = Male
 BaseMoney = 200
+IntroBGM = GAMBLER
 #-------------------------------
 [GUITARIST]
 Name = Guitarist
 Gender = Male
 BaseMoney = 24
+IntroBGM = BLACKBELT
 #-------------------------------
 [GUITARIST2]
 Name = Guitarist
 Gender = Male
 BaseMoney = 24
+IntroBGM = BLACKBELT
 #-------------------------------
 [GUITARIST3]
 Name = Guitarist
 Gender = Female
 BaseMoney = 24
+IntroBGM = BLACKBELT
 #-------------------------------
 [HARLEQUIN]
 Name = Harlequin
 Gender = Male
 BaseMoney = 32
+IntroBGM = POKEFAN
 #-------------------------------
 [HEXMANIAC]
 Name = Hex Maniac
 Gender = Female
 BaseMoney = 32
+IntroBGM = PSYCHIC
 #-------------------------------
 [HIKER]
 Name = Hiker
 Gender = Male
 BaseMoney = 32
+IntroBGM = BACKPACKER
 #-------------------------------
 [HIKER2]
 Name = Hiker
 Gender = Male
 BaseMoney = 32
+IntroBGM = BACKPACKER
 #-------------------------------
 [HIKER3]
 Name = Hiker
 Gender = Male
 BaseMoney = 32
+IntroBGM = BACKPACKER
 #-------------------------------
 [HOOLIGANS]
 Name = Hooligans
 Gender = Unknown
 BaseMoney = 128
+IntroBGM = GAMBLER
 #-------------------------------
 [HOOPSTER]
 Name = Hoopster
 Gender = Male
 BaseMoney = 32
+IntroBGM = CYCLING2
 #-------------------------------
 [IDOL]
 Name = Idol
 Gender = Female
 BaseMoney = 72
+IntroBGM = POKEFAN
 #-------------------------------
 [INFIELDER]
 Name = Infielder
 Gender = Male
 BaseMoney = 32
+IntroBGM = CYCLING2
 #-------------------------------
 [INTERVIEWERS]
 Name = Interviewers
 Gender = Unknown
 BaseMoney = 128
+IntroBGM = BUSINESSMAN
 #-------------------------------
 [IRISCOSPLAYER]
 Name = Cosplayer
 Gender = Female
 BaseMoney = 128
+IntroBGM = BUSINESSMAN
 #-------------------------------
 [JANITOR]
 Name = Janitor
 Gender = Male
 BaseMoney = 24
+IntroBGM = BUSINESSMAN
 #-------------------------------
 [JOGGER]
 Name = Jogger
 Gender = Male
 BaseMoney = 32
+IntroBGM = CYCLING2
 #-------------------------------
 [JUGGLER]
 Name = Juggler
 Gender = Male
 BaseMoney = 32
+IntroBGM = POKEFAN
 #-------------------------------
 [KIMONOGIRL]
 Name = Kimono Girl
 Gender = Female
 BaseMoney = 120
+IntroBGM = MONK
 #-------------------------------
 [LADY]
 Name = Lady
 Gender = Female
 BaseMoney = 160
+IntroBGM = LASS2
 #-------------------------------
 [LADY2]
 Name = Lady
 Gender = Female
 BaseMoney = 160
+IntroBGM = LASS2
 #-------------------------------
 [LADY3]
 Name = Lady
 Gender = Female
 BaseMoney = 160
+IntroBGM = LASS2
 #-------------------------------
 [LASS]
 Name = Lass
 Gender = Female
 BaseMoney = 16
+IntroBGM = LASS
 #-------------------------------
 [LASS2]
 Name = Lass
 Gender = Female
 BaseMoney = 16
+IntroBGM = LASS
 #-------------------------------
 [LASS3]
 Name = Lass
 Gender = Female
 BaseMoney = 16
+IntroBGM = LASS
 #-------------------------------
 [LASS4]
 Name = Lass
 Gender = Female
 BaseMoney = 16
+IntroBGM = LASS
 #-------------------------------
 [LASS5]
 Name = Lass
 Gender = Female
 BaseMoney = 16
+IntroBGM = LASS
 #-------------------------------
 [LASS6]
 Name = Lass
 Gender = Female
 BaseMoney = 16
+IntroBGM = LASS
 #-------------------------------
 [LEADER_Bence]
 Name = Gym Leader
@@ -915,31 +1057,37 @@ BattleBGM = Battle Gym Leader 2
 Name = Linebacker
 Gender = Male
 BaseMoney = 32
+IntroBGM = CYCLING2
 #-------------------------------
 [LOST_RANGER_BLUE]
 Name = Pokémon Ranger
 Gender = Male
 BaseMoney = 60
+IntroBGM = PSYCHIC
 #-------------------------------
 [LOST_RANGER_GREEN]
 Name = Pokémon Ranger
 Gender = Male
 BaseMoney = 60
+IntroBGM = PSYCHIC
 #-------------------------------
 [LOST_RANGER_PURPLE]
 Name = Pokémon Ranger
 Gender = Male
 BaseMoney = 60
+IntroBGM = PSYCHIC
 #-------------------------------
 [MAID]
 Name = Maid
 Gender = Female
 BaseMoney = 40
+IntroBGM = ARTIST
 #-------------------------------
 [MAID2]
 Name = Maid
 Gender = Female
 BaseMoney = 40
+IntroBGM = ARTIST
 #-------------------------------
 [MASKEDVILLAIN]
 Name = Masked Villain
@@ -969,36 +1117,43 @@ BattleBGM = Battle villain
 Name = Medium
 Gender = Female
 BaseMoney = 48
+IntroBGM = MONK
 #-------------------------------
 [NECKBEARD]
 Name = Neckbeard
 Gender = Male
 BaseMoney = 40
+IntroBGM = POKEFAN
 #-------------------------------
 [NIGHTMAREQUEEN_Elise]
 Name = Nightmare Queen
 Gender = Female
 BaseMoney = 32
+IntroBGM = ACETRAINER
 #-------------------------------
 [NIGHTMARE_TRAINER]
 Name = Nightmare of
 Gender = Male
 BaseMoney = 32
+IntroBGM = ACETRAINER
 #-------------------------------
 [NINJABOY]
 Name = Ninja Boy
 Gender = Male
 BaseMoney = 8
+IntroBGM = TWINS
 #-------------------------------
 [NURSE]
 Name = Nurse
 Gender = Female
 BaseMoney = 60
+IntroBGM = ARTIST
 #-------------------------------
 [NURSERYAIDE]
 Name = Nursery Aide
 Gender = Female
 BaseMoney = 48
+IntroBGM = PARASOL
 #-------------------------------
 [OFFICEWORKER_F]
 Name = Office Worker
@@ -1014,142 +1169,170 @@ BaseMoney = 40
 Name = Parasol Lady
 Gender = Female
 BaseMoney = 32
+IntroBGM = PARASOL
 #-------------------------------
 [PARASOLLADY2]
 Name = Parasol Lady
 Gender = Female
 BaseMoney = 32
+IntroBGM = PARASOL
 #-------------------------------
 [PICNICKER]
 Name = Picnicker
 Gender = Female
 BaseMoney = 16
+IntroBGM = LASS
 #-------------------------------
 [PILOT]
 Name = Pilot
 Gender = Male
 BaseMoney = 40
+IntroBGM = CYCLING
 #-------------------------------
 [POKEFAN_F]
 Name = Poké Fan
 Gender = Female
 BaseMoney = 64
+IntroBGM = POKEFAN
 #-------------------------------
 [POKEFAN_F2]
 Name = Poké Fan
 Gender = Female
 BaseMoney = 64
+IntroBGM = POKEFAN
 #-------------------------------
 [POKEFAN_F3]
 Name = Poké Fan
 Gender = Female
 BaseMoney = 64
+IntroBGM = POKEFAN
 #-------------------------------
 [POKEFAN_M]
 Name = Poké Fan
 Gender = Male
 BaseMoney = 64
+IntroBGM = POKEFAN
 #-------------------------------
 [POKEFAN_M2]
 Name = Poké Fan
 Gender = Male
 BaseMoney = 64
+IntroBGM = POKEFAN
 #-------------------------------
 [POKEKID]
 Name = Poké Kid
 Gender = Female
 BaseMoney = 8
+IntroBGM = TWINS
 #-------------------------------
 [POKEMANIAC]
 Name = Poké Maniac
 Gender = Male
 BaseMoney = 64
+IntroBGM = POKEFAN
 #-------------------------------
 [POKEMONBREEDER_F]
 Name = Pokémon Breeder
 Gender = Female
 BaseMoney = 16
+IntroBGM = PARASOL
 #-------------------------------
 [POKEMONBREEDER_F2]
 Name = Pokémon Breeder
 Gender = Female
 BaseMoney = 16
+IntroBGM = AROMALADY
 #-------------------------------
 [POKEMONBREEDER_F3]
 Name = Pokémon Breeder
 Gender = Female
 BaseMoney = 16
+IntroBGM = PARASOL
 #-------------------------------
 [POKEMONBREEDER_F4]
 Name = Pokémon Breeder
 Gender = Female
 BaseMoney = 16
+IntroBGM = AROMALADY
 #-------------------------------
 [POKEMONBREEDER_M]
 Name = Pokémon Breeder
 Gender = Male
 BaseMoney = 16
+IntroBGM = PARASOL
 #-------------------------------
 [POKEMONBREEDER_M2]
 Name = Pokémon Breeder
 Gender = Male
 BaseMoney = 16
+IntroBGM = AROMALADY
 #-------------------------------
 [POKEMONBREEDER_M3]
 Name = Pokémon Breeder
 Gender = Male
 BaseMoney = 16
+IntroBGM = PARASOL
 #-------------------------------
 [POKEMONBREEDER_M4]
 Name = Pokémon Breeder
 Gender = Male
 BaseMoney = 16
+IntroBGM = AROMALADY
 #-------------------------------
 [POKEMONMASTER_Vanya]
 Name = Pokémon Master
 Gender = Unknown
 BaseMoney = 200
+IntroBGM = TWINS2
 BattleBGM = Battle vanya final
 #-------------------------------
 [POKEMONRANGER_F]
 Name = Pokémon Ranger
 Gender = Female
 BaseMoney = 60
+IntroBGM = ACETRAINER
 #-------------------------------
 [POKEMONRANGER_F2]
 Name = Pokémon Ranger
 Gender = Female
 BaseMoney = 60
+IntroBGM = ELITETRAINER
 #-------------------------------
 [POKEMONRANGER_F3]
 Name = Pokémon Ranger
 Gender = Female
 BaseMoney = 60
+IntroBGM = ACETRAINER
 #-------------------------------
 [POKEMONRANGER_F4]
 Name = Pokémon Ranger
 Gender = Female
 BaseMoney = 60
+IntroBGM = ACETRAINER
 #-------------------------------
 [POKEMONRANGER_M]
 Name = Pokémon Ranger
 Gender = Male
 BaseMoney = 60
+IntroBGM = ACETRAINER
 #-------------------------------
 [POKEMONRANGER_M2]
 Name = Pokémon Ranger
 Gender = Male
 BaseMoney = 60
+IntroBGM = ELITETRAINER
 #-------------------------------
 [POKEMONRANGER_M3]
 Name = Pokémon Ranger
 Gender = Male
 BaseMoney = 60
+IntroBGM = ELITETRAINER
 #-------------------------------
 [POKEMONRANGER_M4]
 Name = Pokémon Ranger
 Gender = Male
 BaseMoney = 60
+IntroBGM = ELITETRAINER
 #-------------------------------
 [POKEMONTRAINER_Androgynous]
 Name = Pokémon Trainer
@@ -1186,21 +1369,25 @@ Policies = PREDICTS_PLAYER
 Name = Policeman
 Gender = Male
 BaseMoney = 40
+IntroBGM = BUSINESSMAN
 #-------------------------------
 [POLICEMAN2]
 Name = Policeman
 Gender = Male
 BaseMoney = 40
+IntroBGM = BUSINESSMAN
 #-------------------------------
 [PRESCHOOLER_F]
 Name = Preschooler
 Gender = Female
 BaseMoney = 20
+IntroBGM = TWINS2
 #-------------------------------
 [PRESCHOOLER_M]
 Name = Preschooler
 Gender = Male
 BaseMoney = 20
+IntroBGM = TWINS2
 #-------------------------------
 [PROFESSOR_Tamarind]
 Name = Professor
@@ -1212,211 +1399,253 @@ BattleBGM = Battle tamarind
 Name = Psychic
 Gender = Male
 BaseMoney = 32
+IntroBGM = PSYCHIC
 #-------------------------------
 [PSYCHIC_F]
 Name = Psychic
 Gender = Female
 BaseMoney = 32
+IntroBGM = PSYCHIC
 #-------------------------------
 [PSYCHIC_F2]
 Name = Psychic
 Gender = Female
 BaseMoney = 32
+IntroBGM = PSYCHIC
 #-------------------------------
 [PSYCHIC_F3]
 Name = Psychic
 Gender = Female
 BaseMoney = 32
+IntroBGM = PSYCHIC
 #-------------------------------
 [PSYCHIC_M]
 Name = Psychic
 Gender = Male
 BaseMoney = 32
+IntroBGM = PSYCHIC
 #-------------------------------
 [PSYCHIC_M2]
 Name = Psychic
 Gender = Male
 BaseMoney = 32
+IntroBGM = PSYCHIC
 #-------------------------------
 [PSYCHIC_M3]
 Name = Psychic
 Gender = Male
 BaseMoney = 32
+IntroBGM = PSYCHIC
 #-------------------------------
 [PUNKF]
 Name = Punk
 Gender = Female
 BaseMoney = 20
+IntroBGM = ROUGHNECK
 #-------------------------------
 [PUNKM]
 Name = Punk
 Gender = Male
 BaseMoney = 20
+IntroBGM = ROUGHNECK
 #-------------------------------
 [RANCHER]
 Name = Rancher
 Gender = Male
 BaseMoney = 40
+IntroBGM = BACKPACKER
 #-------------------------------
 [REPORTER]
 Name = Reporter
 Gender = Female
 BaseMoney = 40
+IntroBGM = ELITETRAINER
 #-------------------------------
 [REPORTER2]
 Name = Reporter
 Gender = Female
 BaseMoney = 40
+IntroBGM = ELITETRAINER
 #-------------------------------
 [RICHBOY]
 Name = Rich Boy
 Gender = Male
 BaseMoney = 160
+IntroBGM = YOUNGSTER2
 #-------------------------------
 [RICHBOY2]
 Name = Rich Boy
 Gender = Male
 BaseMoney = 160
+IntroBGM = YOUNGSTER2
 #-------------------------------
 [RICHBOY3]
 Name = Rich Boy
 Gender = Male
 BaseMoney = 160
+IntroBGM = YOUNGSTER2
 #-------------------------------
 [RICHBOY4]
 Name = Rich Boy
 Gender = Male
 BaseMoney = 160
+IntroBGM = YOUNGSTER2
 #-------------------------------
 [RICHCOUPLE]
 Name = Rich Couple
 Gender = Unknown
 BaseMoney = 100
+IntroBGM = PARASOL
 #-------------------------------
 [RISINGSTAR_F]
 Name = Rising Star
 Gender = Female
 BaseMoney = 60
+IntroBGM = ELITETRAINER
 #-------------------------------
 [RISINGSTAR_F2]
 Name = Rising Star
 Gender = Female
 BaseMoney = 60
+IntroBGM = ELITETRAINER
 #-------------------------------
 [RISINGSTAR_M]
 Name = Rising Star
 Gender = Male
 BaseMoney = 60
+IntroBGM = ELITETRAINER
 #-------------------------------
 [RISINGSTAR_M2]
 Name = Rising Star
 Gender = Male
 BaseMoney = 60
+IntroBGM = ELITETRAINER
 #-------------------------------
 [ROUGHNECK]
 Name = Roughneck
 Gender = Male
 BaseMoney = 24
+IntroBGM = ROUGHNECK
 #-------------------------------
 [ROUGHNECK2]
 Name = Roughneck
 Gender = Male
 BaseMoney = 24
+IntroBGM = ROUGHNECK
 #-------------------------------
 [RUINMANIAC]
 Name = Ruin Maniac
 Gender = Male
 BaseMoney = 48
+IntroBGM = BACKPACKER
 #-------------------------------
 [RUINMANIAC2]
 Name = Ruin Maniac
 Gender = Male
 BaseMoney = 48
+IntroBGM = BACKPACKER
 #-------------------------------
 [SAGE]
 Name = Sage
 Gender = Male
 BaseMoney = 48
+IntroBGM = MONK
 #-------------------------------
 [SAILOR]
 Name = Sailor
 Gender = Male
 BaseMoney = 32
+IntroBGM = SAILOR
 #-------------------------------
 [SAILOR2]
 Name = Sailor
 Gender = Male
 BaseMoney = 32
+IntroBGM = SAILOR
 #-------------------------------
 [SCHOOLKID_F]
 Name = School Kid
 Gender = Female
 BaseMoney = 20
+IntroBGM = LASS2
 #-------------------------------
 [SCHOOLKID_F2]
 Name = School Kid
 Gender = Female
 BaseMoney = 20
+IntroBGM = LASS2
 #-------------------------------
 [SCHOOLKID_F3]
 Name = School Kid
 Gender = Female
 BaseMoney = 20
+IntroBGM = LASS2
 #-------------------------------
 [SCHOOLKID_F4]
 Name = School Kid
 Gender = Female
 BaseMoney = 20
+IntroBGM = LASS2
 #-------------------------------
 [SCHOOLKID_M]
 Name = School Kid
 Gender = Male
 BaseMoney = 20
+IntroBGM = YOUNGSTER2
 #-------------------------------
 [SCHOOLKID_M2]
 Name = School Kid
 Gender = Male
 BaseMoney = 20
+IntroBGM = YOUNGSTER2
 #-------------------------------
 [SCHOOLKID_M3]
 Name = School Kid
 Gender = Male
 BaseMoney = 20
+IntroBGM = YOUNGSTER2
 #-------------------------------
 [SCIENTIST_F]
 Name = Scientist
 Gender = Female
 BaseMoney = 32
+IntroBGM = SCIENTIST
 #-------------------------------
 [SCIENTIST_F3]
 Name = Scientist
 Gender = Female
 BaseMoney = 32
+IntroBGM = SCIENTIST
 #-------------------------------
 [SCIENTIST_M]
 Name = Scientist
 Gender = Male
 BaseMoney = 32
+IntroBGM = SCIENTIST
 #-------------------------------
 [SCIENTIST_M2]
 Name = Scientist
 Gender = Male
 BaseMoney = 32
+IntroBGM = SCIENTIST
 #-------------------------------
 [SCIENTIST_M3]
 Name = Scientist
 Gender = Male
 BaseMoney = 32
+IntroBGM = SCIENTIST
 #-------------------------------
 [SCIENTIST_M4]
 Name = Scientist
 Gender = Male
 BaseMoney = 32
+IntroBGM = SCIENTIST
 #-------------------------------
 [SCIENTIST_M5]
 Name = Scientist
 Gender = Male
 BaseMoney = 32
+IntroBGM = SCIENTIST
 #-------------------------------
 [SHADOWMAVIS]
 Name = Shadow
@@ -1427,131 +1656,157 @@ BaseMoney = 80
 Name = Sis and Bro
 Gender = Unknown
 BaseMoney = 64
+IntroBGM = TWINS
 #-------------------------------
 [SKIER_F]
 Name = Skier
 Gender = Female
 BaseMoney = 32
+IntroBGM = BLACKBELT
 #-------------------------------
 [SKIER_F2]
 Name = Skier
 Gender = Female
 BaseMoney = 32
+IntroBGM = BLACKBELT
 #-------------------------------
 [SKIER_M]
 Name = Skier
 Gender = Male
 BaseMoney = 32
+IntroBGM = BLACKBELT
 #-------------------------------
 [SMASHER]
 Name = Smasher
 Gender = Female
 BaseMoney = 32
+IntroBGM = CYCLING2
 #-------------------------------
 [SOCIALITE]
 Name = Socialite
 Gender = Female
 BaseMoney = 200
+IntroBGM = GAMBLER
 #-------------------------------
 [SOCIALITE2]
 Name = Socialite
 Gender = Female
 BaseMoney = 200
+IntroBGM = GAMBLER
 #-------------------------------
 [SPIRITGUARDIAN]
 Name = Spirit Guardian
 Gender = Female
 BaseMoney = 60
+IntroBGM = ELITETRAINER
 #-------------------------------
 [SPIRITGUARDIAN2]
 Name = Spirit Guardian
 Gender = Female
 BaseMoney = 60
+IntroBGM = ELITETRAINER
 #-------------------------------
 [SPIRITGUARDIAN3]
 Name = Spirit Guardian
 Gender = Female
 BaseMoney = 60
+IntroBGM = ELITETRAINER
 #-------------------------------
 [SPIRITGUARDIAN4]
 Name = Spirit Guardian
 Gender = Female
 BaseMoney = 60
+IntroBGM = ELITETRAINER
 #-------------------------------
 [STRIKER]
 Name = Striker
 Gender = Male
 BaseMoney = 32
+IntroBGM = CYCLING2
 #-------------------------------
 [SUPERNERD]
 Name = Super Nerd
 Gender = Male
 BaseMoney = 24
+IntroBGM = POKEFAN
 #-------------------------------
 [SUSPICIOUSMAN]
 Name = Suspicious Man
 Gender = Male
 BaseMoney = 40
+IntroBGM = SAILOR
 #-------------------------------
 [SWIMMER_F]
 Name = Swimmer
 Gender = Female
 BaseMoney = 16
+IntroBGM = CYCLING
 #-------------------------------
 [SWIMMER_F2]
 Name = Swimmer
 Gender = Female
 BaseMoney = 16
+IntroBGM = CYCLING2
 #-------------------------------
 [SWIMMER_F3]
 Name = Swimmer
 Gender = Female
 BaseMoney = 16
+IntroBGM = CYCLING
 #-------------------------------
 [SWIMMER_F4]
 Name = Swimmer
 Gender = Female
 BaseMoney = 16
+IntroBGM = CYCLING2
 #-------------------------------
 [SWIMMER_F5]
 Name = Swimmer
 Gender = Female
 BaseMoney = 16
+IntroBGM = CYCLING
 #-------------------------------
 [SWIMMER_F6]
 Name = Swimmer
 Gender = Female
 BaseMoney = 16
+IntroBGM = CYCLING2
 #-------------------------------
 [SWIMMER_F7]
 Name = Swimmer
 Gender = Female
 BaseMoney = 16
+IntroBGM = CYCLING
 #-------------------------------
 [SWIMMER_M]
 Name = Swimmer
 Gender = Male
 BaseMoney = 16
+IntroBGM = CYCLING2
 #-------------------------------
 [SWIMMER_M2]
 Name = Swimmer
 Gender = Male
 BaseMoney = 16
+IntroBGM = CYCLING
 #-------------------------------
 [SWIMMER_M3]
 Name = Swimmer
 Gender = Male
 BaseMoney = 16
+IntroBGM = CYCLING2
 #-------------------------------
 [SWIMMER_M4]
 Name = Swimmer
 Gender = Male
 BaseMoney = 16
+IntroBGM = CYCLING2
 #-------------------------------
 [SWIMMER_M5]
 Name = Swimmer
 Gender = Male
 BaseMoney = 16
+IntroBGM = CYCLING
 #-------------------------------
 [TAPU_BULU]
 Name = Guardian Deity
@@ -1577,26 +1832,31 @@ BaseMoney = 0
 Name = Teacher
 Gender = Female
 BaseMoney = 48
+IntroBGM = ARTIST
 #-------------------------------
 [TEENAGERF]
 Name = Teenager
 Gender = Female
 BaseMoney = 20
+IntroBGM = ROUGHNECK
 #-------------------------------
 [TEENAGERM]
 Name = Teenager
 Gender = Male
 BaseMoney = 20
+IntroBGM = ROUGHNECK
 #-------------------------------
 [TOURISTF]
 Name = Tourist
 Gender = Male
 BaseMoney = 16
+IntroBGM = BUSINESSMAN
 #-------------------------------
 [TOURISTM]
 Name = Tourist
 Gender = Male
 BaseMoney = 16
+IntroBGM = BUSINESSMAN
 #-------------------------------
 [TRAINER_Alessa]
 Name = Pokémon Trainer
@@ -1666,36 +1926,43 @@ BattleBGM = Battle zain
 Name = Tuber
 Gender = Female
 BaseMoney = 4
+IntroBGM = TWINS
 #-------------------------------
 [TUBER_F2]
 Name = Tuber
 Gender = Female
 BaseMoney = 4
+IntroBGM = TWINS
 #-------------------------------
 [TUBER_M]
 Name = Tuber
 Gender = Male
 BaseMoney = 4
+IntroBGM = TWINS
 #-------------------------------
 [TUBER_M2]
 Name = Tuber
 Gender = Male
 BaseMoney = 4
+IntroBGM = TWINS
 #-------------------------------
 [TWINS]
 Name = Twins
 Gender = Unknown
 BaseMoney = 32
+IntroBGM = TWINS2
 #-------------------------------
 [TWINS2]
 Name = Twins
 Gender = Unknown
 BaseMoney = 32
+IntroBGM = TWINS
 #-------------------------------
 [TWINS3]
 Name = Twins
 Gender = Unknown
 BaseMoney = 32
+IntroBGM = TWINS2
 #-------------------------------
 [ULTRALAINIE]
 Name = Ultra
@@ -1707,26 +1974,31 @@ BattleBGM = Battle lainie ultra
 Name = Veteran
 Gender = Male
 BaseMoney = 80
+IntroBGM = GAMBLER
 #-------------------------------
 [VETERANM_2]
 Name = Veteran
 Gender = Male
 BaseMoney = 80
+IntroBGM = GAMBLER
 #-------------------------------
 [VETERANM_3]
 Name = Veteran
 Gender = Male
 BaseMoney = 80
+IntroBGM = GAMBLER
 #-------------------------------
 [VETERANM_4]
 Name = Veteran
 Gender = Male
 BaseMoney = 80
+IntroBGM = GAMBLER
 #-------------------------------
 [VETERAN_F]
 Name = Veteran
 Gender = Female
 BaseMoney = 80
+IntroBGM = GAMBLER
 #-------------------------------
 [VOLCANION]
 Name = Wild
@@ -1737,31 +2009,37 @@ BaseMoney = 100
 Name = Waiter
 Gender = Male
 BaseMoney = 32
+IntroBGM = AROMALADY
 #-------------------------------
 [WAITER2]
 Name = Waiter
 Gender = Male
 BaseMoney = 32
+IntroBGM = AROMALADY
 #-------------------------------
 [WAITER3]
 Name = Waiter
 Gender = Male
 BaseMoney = 32
+IntroBGM = AROMALADY
 #-------------------------------
 [WAITRESS]
 Name = Waitress
 Gender = Female
 BaseMoney = 32
+IntroBGM = AROMALADY
 #-------------------------------
 [WAITRESS2]
 Name = Waitress
 Gender = Female
 BaseMoney = 32
+IntroBGM = AROMALADY
 #-------------------------------
 [WAITRESS3]
 Name = Waitress
 Gender = Female
 BaseMoney = 32
+IntroBGM = AROMALADY
 #-------------------------------
 [WILDPACK]
 Name = Wild Pack
@@ -1792,53 +2070,64 @@ BaseMoney = 0
 Name = Worker
 Gender = Male
 BaseMoney = 40
+IntroBGM = BUSINESSMAN
 #-------------------------------
 [WORKER2]
 Name = Worker
 Gender = Male
 BaseMoney = 40
+IntroBGM = BUSINESSMAN
 #-------------------------------
 [WORKER3]
 Name = Worker
 Gender = Male
 BaseMoney = 40
+IntroBGM = BUSINESSMAN
 #-------------------------------
 [WORKER4]
 Name = Worker
 Gender = Male
 BaseMoney = 40
+IntroBGM = BUSINESSMAN
 #-------------------------------
 [WORKER5]
 Name = Worker
 Gender = Male
 BaseMoney = 40
+IntroBGM = BUSINESSMAN
 #-------------------------------
 [WORKER6]
 Name = Worker
 Gender = Male
 BaseMoney = 40
+IntroBGM = BUSINESSMAN
 #-------------------------------
 [YOUNGCOUPLE]
 Name = Young Couple
 Gender = Unknown
 BaseMoney = 128
+IntroBGM = AROMALADY
 #-------------------------------
 [YOUNGCOUPLE2]
 Name = Young Couple
 Gender = Unknown
 BaseMoney = 128
+IntroBGM = AROMALADY
 #-------------------------------
 [YOUNGSTER]
 Name = Youngster
 Gender = Male
 BaseMoney = 16
+IntroBGM = YOUNGSTER
 #-------------------------------
 [YOUNGSTER2]
 Name = Youngster
 Gender = Male
 BaseMoney = 16
+IntroBGM = YOUNGSTER
 #-------------------------------
 [YOUNGSTER3]
 Name = Youngster
 Gender = Male
 BaseMoney = 16
+IntroBGM = YOUNGSTER
