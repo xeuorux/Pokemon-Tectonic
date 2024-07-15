@@ -2477,6 +2477,14 @@ Price = 0
 Flags = KeyItem
 Description = A set of climbing gear, allowing you to climb on white rocks.
 #-------------------------------
+[FLORASCEPTRE]
+Name = Flora Sceptre
+NamePlural = Flora Sceptres
+Pocket = 8
+Price = 0
+Flags = KeyItem
+Description = An ancient kingly rod. You can use it to make certain plants grow.
+#-------------------------------
 [ABRAPORTER]
 Name = Abraporter
 NamePlural = Abraporters
