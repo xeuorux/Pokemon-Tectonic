@@ -931,7 +931,7 @@ DarkCave,20
     25,SABLEYE,20,22
 #-------------------------------
 [333] # Floral Maze
-LandTall,20
+FloweryGrass2,20
     20,APPLETUN,62,64
     20,CROBAT,62,64
     20,GRIMMSNARL,62,64
