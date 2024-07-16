@@ -3,152 +3,154 @@
 #===============================================================================
 class ItemIconSprite < SpriteWrapper
     attr_reader :item
+
     ANIM_ICON_SIZE   = 48
     FRAMES_PER_CYCLE = Graphics.frame_rate
-  
-    def initialize(x,y,item,viewport=nil)
-      super(viewport)
-      @animbitmap = nil
-      @animframe = 0
-      @numframes = 1
-      @frame = 0
-      self.x = x
-      self.y = y
-      @blankzero = false
-      @forceitemchange = true
-      self.item = item
-      @forceitemchange = false
+
+    def initialize(x, y, item, viewport = nil)
+        super(viewport)
+        @animbitmap = nil
+        @animframe = 0
+        @numframes = 1
+        @frame = 0
+        self.x = x
+        self.y = y
+        @blankzero = false
+        @forceitemchange = true
+        self.item = item
+        @forceitemchange = false
     end
-  
+
     def dispose
-      @animbitmap.dispose if @animbitmap
-      super
+        @animbitmap.dispose if @animbitmap
+        super
     end
-  
+
     def width
-      return 0 if !self.bitmap || self.bitmap.disposed?
-      return (@numframes==1) ? self.bitmap.width : ANIM_ICON_SIZE
+        return 0 if !bitmap || bitmap.disposed?
+        return (@numframes == 1) ? bitmap.width : ANIM_ICON_SIZE
     end
-  
+
     def height
-      return (self.bitmap && !self.bitmap.disposed?) ? self.bitmap.height : 0
+        return (bitmap && !bitmap.disposed?) ? bitmap.height : 0
     end
-  
+
     def blankzero=(val)
-      @blankzero = val
-      @forceitemchange = true
-      self.item = @item
-      @forceitemchange = false
+        @blankzero = val
+        @forceitemchange = true
+        self.item = @item
+        @forceitemchange = false
     end
-  
-    def setOffset(offset=PictureOrigin::Center)
-      @offset = offset
-      changeOrigin
+
+    def setOffset(offset = PictureOrigin::Center)
+        @offset = offset
+        changeOrigin
     end
-  
+
     def changeOrigin
-      @offset = PictureOrigin::Center if !@offset
-      case @offset
-      when PictureOrigin::TopLeft, PictureOrigin::Top, PictureOrigin::TopRight
-        self.oy = 0
-      when PictureOrigin::Left, PictureOrigin::Center, PictureOrigin::Right
-        self.oy = self.height/2
-      when PictureOrigin::BottomLeft, PictureOrigin::Bottom, PictureOrigin::BottomRight
-        self.oy = self.height
-      end
-      case @offset
-      when PictureOrigin::TopLeft, PictureOrigin::Left, PictureOrigin::BottomLeft
-        self.ox = 0
-      when PictureOrigin::Top, PictureOrigin::Center, PictureOrigin::Bottom
-        self.ox = self.width/2
-      when PictureOrigin::TopRight, PictureOrigin::Right, PictureOrigin::BottomRight
-        self.ox = self.width
-      end
-    end
-  
-    def item=(value)
-      return if @item==value && !@forceitemchange && !%i[TAROTAMULET AIDKIT].include?(value)
-      @item = value
-      @animbitmap.dispose if @animbitmap
-      @animbitmap = nil
-      if @item || !@blankzero
-        @animbitmap = AnimatedBitmap.new(GameData::Item.icon_filename(@item))
-        self.bitmap = @animbitmap.bitmap
-        pbSetSystemFont(self.bitmap)
-        if item == :AIDKIT
-        base = Color.new(235,235,235)
-        shadow = Color.new(50,50,50)
-        pbDrawTextPositions(self.bitmap,[[$PokemonGlobal.teamHealerCurrentUses.to_s,36,14,1,base,shadow,true]])
+        @offset ||= PictureOrigin::Center
+        case @offset
+        when PictureOrigin::TopLeft, PictureOrigin::Top, PictureOrigin::TopRight
+            self.oy = 0
+        when PictureOrigin::Left, PictureOrigin::Center, PictureOrigin::Right
+            self.oy = height / 2
+        when PictureOrigin::BottomLeft, PictureOrigin::Bottom, PictureOrigin::BottomRight
+            self.oy = height
         end
-        establishNewBitmap
-      else
-        self.bitmap = nil
-      end
-      changeOrigin
+        case @offset
+        when PictureOrigin::TopLeft, PictureOrigin::Left, PictureOrigin::BottomLeft
+            self.ox = 0
+        when PictureOrigin::Top, PictureOrigin::Center, PictureOrigin::Bottom
+            self.ox = width / 2
+        when PictureOrigin::TopRight, PictureOrigin::Right, PictureOrigin::BottomRight
+            self.ox = width
+        end
+    end
+
+    def item=(value)
+        return if @item == value && !@forceitemchange && !%i[TAROTAMULET AIDKIT].include?(value)
+        @item = value
+        @animbitmap.dispose if @animbitmap
+        @animbitmap = nil
+        if @item || !@blankzero
+            @animbitmap = AnimatedBitmap.new(GameData::Item.icon_filename(@item))
+            self.bitmap = @animbitmap.bitmap
+            pbSetSystemFont(bitmap)
+            if item == :AIDKIT
+                base = Color.new(235, 235, 235)
+                shadow = Color.new(50, 50, 50)
+                pbDrawTextPositions(bitmap,
+[[$PokemonGlobal.teamHealerCurrentUses.to_s, 36, 14, 1, base, shadow, true]])
+            end
+            establishNewBitmap
+        else
+            self.bitmap = nil
+        end
+        changeOrigin
     end
 
     # For Prismatic Plate / Memory Set
-	def type=(value)
-		return if @item.nil?
-		return unless %i[PRISMATICPLATE MEMORYSET CRYSTALVEIL].include?(GameData::Item.get(@item).id)
+    def type=(value)
+        return if @item.nil?
+        return unless GameData::Item.get(@item).is_type_setting?
 
-		# Dispose current graphic
-		@animbitmap.dispose if @animbitmap
-		@animbitmap = nil
-		self.bitmap = nil
+        # Dispose current graphic
+        @animbitmap.dispose if @animbitmap
+        @animbitmap = nil
+        self.bitmap = nil
 
-		# Find the proper pseudo bitmap
-		pretendItem = nil
-		typeData = GameData::Type.get(value)
-		typeID = typeData.id_number
+        # Find the proper pseudo bitmap
+        pretendItem = nil
+        typeData = GameData::Type.get(value)
+        typeID = typeData.id_number
 
-		if @item == :PRISMATICPLATE
-			pretendItem = PLATES_BY_TYPE_ID[typeID]
-		elsif @item == :MEMORYSET
-			pretendItem = MEMORIES_BY_TYPE_ID[typeID]
-		elsif @item == :CRYSTALVEIL
-			pretendItem = ("CRYSTALVEIL" + typeData.real_name.upcase).to_sym
-		end
+        if @item == :PRISMATICPLATE
+            pretendItem = PLATES_BY_TYPE_ID[typeID]
+        elsif @item == :MEMORYSET
+            pretendItem = MEMORIES_BY_TYPE_ID[typeID]
+        else
+            pretendItem = (@item.to_s + typeData.real_name.upcase).to_sym
+        end
 
-		if pretendItem.nil?
-			echoln("ERROR: Unable to find a proper pseudo item file for an item icon showing a #{@item}")
-			return
-		end
-		@animbitmap = AnimatedBitmap.new(GameData::Item.icon_filename(pretendItem))
-		self.bitmap = @animbitmap.bitmap
-		establishNewBitmap
-		changeOrigin
-	end
+        if pretendItem.nil?
+            echoln("ERROR: Unable to find a proper pseudo item file for an item icon showing a #{@item}")
+            return
+        end
+        @animbitmap = AnimatedBitmap.new(GameData::Item.icon_filename(pretendItem))
+        self.bitmap = @animbitmap.bitmap
+        establishNewBitmap
+        changeOrigin
+    end
 
     def establishNewBitmap
-      if self.bitmap.height==ANIM_ICON_SIZE
-        @numframes = [(self.bitmap.width/ANIM_ICON_SIZE).floor,1].max
-        self.src_rect = Rect.new(0,0,ANIM_ICON_SIZE,ANIM_ICON_SIZE)
-      else
-      @numframes = 1
-      self.src_rect = Rect.new(0,0,self.bitmap.width,self.bitmap.height)
-      end
-      @animframe = 0
-      @frame = 0
-    end
-  
-    def update
-      @updating = true
-      super
-      if @animbitmap
-        @animbitmap.update
-        self.bitmap = @animbitmap.bitmap
-        if @numframes>1
-          frameskip = (FRAMES_PER_CYCLE/@numframes).floor
-          @frame = (@frame+1)%FRAMES_PER_CYCLE
-          if @frame>=frameskip
-            @animframe = (@animframe+1)%@numframes
-            self.src_rect.x = @animframe*ANIM_ICON_SIZE
-            @frame = 0
-          end
+        if bitmap.height == ANIM_ICON_SIZE
+            @numframes = [(bitmap.width / ANIM_ICON_SIZE).floor, 1].max
+            self.src_rect = Rect.new(0, 0, ANIM_ICON_SIZE, ANIM_ICON_SIZE)
+        else
+            @numframes = 1
+            self.src_rect = Rect.new(0, 0, bitmap.width, bitmap.height)
         end
-      end
-      @updating = false
+        @animframe = 0
+        @frame = 0
+    end
+
+    def update
+        @updating = true
+        super
+        if @animbitmap
+            @animbitmap.update
+            self.bitmap = @animbitmap.bitmap
+            if @numframes > 1
+                frameskip = (FRAMES_PER_CYCLE / @numframes).floor
+                @frame = (@frame + 1) % FRAMES_PER_CYCLE
+                if @frame >= frameskip
+                    @animframe = (@animframe + 1) % @numframes
+                    src_rect.x = @animframe * ANIM_ICON_SIZE
+                    @frame = 0
+                end
+            end
+        end
+        @updating = false
     end
 end
 

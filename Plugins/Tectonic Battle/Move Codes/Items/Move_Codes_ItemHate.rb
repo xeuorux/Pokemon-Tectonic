@@ -67,7 +67,7 @@ class PokeBattle_Move_RemovesTargetItemDamageBoost50Percent < PokeBattle_Move
             case itemID
             when :EVIOLITE
                 score += 50
-            when :CRYSTALVEIL
+            when :CRYSTALVEIL,:MEMORYSET,:PRISMATICPLATE
                 score += 20
             when :POWERLOCK,:ENERGYLOCK
                 score += 20

@@ -64,7 +64,11 @@ def pbStorePokemonInPC(pkmn)
   curboxname = $PokemonStorage[oldcurbox].name
   boxname = $PokemonStorage[storedbox].name
   if storedbox != oldcurbox
-      pbMessage(_INTL("Box \"{1}\" on the Pokémon Storage PC was full.\1", curboxname))
+      if $PokemonStorage[oldcurbox].isDonationBox?
+        pbMessage(_INTL("Box \"{1}\" on the Pokémon Storage PC is a donation box.\1", curboxname))
+      else
+        pbMessage(_INTL("Box \"{1}\" on the Pokémon Storage PC was full.\1", curboxname))
+      end
       pbMessage(_INTL("{1} was transferred to box \"{2}.\"", pkmn.name, boxname))
   else
       pbMessage(_INTL("{1} was transferred to the Pokémon Storage PC.\1", pkmn.name))
@@ -96,6 +100,11 @@ def pbNicknameAndStore(pkmn,nickname = true)
 end
 
 def discoverPokemon(pkmn)
+  if pkmn.shiny?
+    pbMessage(_INTL("Wow, the {1} is a different color from normal.", pkmn.name))
+    pbMessage(_INTL("It's a <imp>shiny</imp> Pokémon!", pkmn.name))
+  end
+
   pbMessage(_INTL("You check {1}, and discover that its ability is <imp>{2}</imp>!", pkmn.name, pkmn.ability.name))
 
   pkmn.items.each do |item|

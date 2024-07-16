@@ -26,7 +26,7 @@ class Particle_Engine
            "splash"       => Particle_Engine::Splash,
            # By Peter O.
            "starteleport" => Particle_Engine::StarTeleport,
-           
+
            # By Zeu
            "starfield"      => Particle_Engine::CircleStarField,
            "wormhole"       => Particle_Engine::Wormhole,
@@ -35,90 +35,89 @@ class Particle_Engine
            "timeteleporter" => Particle_Engine::TimeTeleporter,
            "latentsoil"     => Particle_Engine::LatentSoil,
            "stinkbomb"      => Particle_Engine::StinkBomb,
+           "shinyobject"    => Particle_Engine::ShinyObject,
         }
     end
 
     def dispose
         return if disposed?
         for particle in @effect
-          next if particle.nil?
-          particle.dispose
+            next if particle.nil?
+            particle.dispose
         end
         @effect.clear
         @map = nil
         @disposed = true
-      end
-    
-      def disposed?
+    end
+
+    def disposed?
         return @disposed
-      end
-    
-      def add_effect(event,type=nil)
+    end
+
+    def add_effect(event, type = nil)
         if type
-          cls = @effects[type]
-          return if cls.nil?
-          @effect[event.id] = cls.new(event,@viewport)
+            cls = @effects[type]
+            return if cls.nil?
+            @effect[event.id] = cls.new(event, @viewport)
         else
-          @effect[event.id] = pbParticleEffect(event)
+            @effect[event.id] = pbParticleEffect(event)
         end
-      end
-    
-      def remove_effect(event)
+    end
+
+    def remove_effect(event)
         return if @effect[event.id].nil?
         @effect[event.id].dispose
         @effect.delete_at(event.id)
-      end
-    
-      def realloc_effect(event,particle)
+    end
+
+    def realloc_effect(event, particle)
         type = pbEventCommentInput(event, 1, "Particle Engine Type")
         if type.nil?
-          particle.dispose if particle
-          return nil
+            particle.dispose if particle
+            return nil
         end
         type = type[0].downcase
         cls = @effects[type]
         if cls.nil?
-          particle.dispose if particle
-          return nil
+            particle.dispose if particle
+            return nil
         end
         if !particle || !particle.is_a?(cls)
-          particle.dispose if particle
-          particle = cls.new(event,@viewport)
+            particle.dispose if particle
+            particle = cls.new(event, @viewport)
         end
         return particle
-      end
-    
-      def pbParticleEffect(event)
-        return realloc_effect(event,nil)
-      end
-    
-      def update
+    end
+
+    def pbParticleEffect(event)
+        return realloc_effect(event, nil)
+    end
+
+    def update
         if @firsttime
-          @firsttime = false
-          for event in @map.events.values
-            remove_effect(event)
-            add_effect(event)
-          end
+            @firsttime = false
+            for event in @map.events.values
+                remove_effect(event)
+                add_effect(event)
+            end
         end
         for i in 0...@effect.length
-          particle = @effect[i]
-          next if particle.nil?
-          if particle.event.is_a?(Game_Event) && particle.event.pe_refresh
-            event = particle.event
-            event.pe_refresh = false
-            particle = realloc_effect(event,particle)
-            @effect[i] = particle
-          end
-          particle.update if particle
+            particle = @effect[i]
+            next if particle.nil?
+            if particle.event.is_a?(Game_Event) && particle.event.pe_refresh
+                event = particle.event
+                event.pe_refresh = false
+                particle = realloc_effect(event, particle)
+                @effect[i] = particle
+            end
+            particle.update if particle
         end
-      end
+    end
 end
 
-Events.onSpritesetCreate += proc { |_sender,e|
-  spriteset = e[0]      # Spriteset being created
-  viewport  = e[1]      # Viewport used for tilemap and characters
-  map = spriteset.map   # Map associated with the spriteset (not necessarily the current map)
-  if $PokemonSystem.particle_effects == 0
-    spriteset.addParticleEngine(Particle_Engine.new(viewport,map))
-  end
+Events.onSpritesetCreate += proc { |_sender, e|
+    spriteset = e[0] # Spriteset being created
+    viewport = e[1] # Viewport used for tilemap and characters
+    map = spriteset.map   # Map associated with the spriteset (not necessarily the current map)
+    spriteset.addParticleEngine(Particle_Engine.new(viewport, map)) if $PokemonSystem.particle_effects == 0
 }

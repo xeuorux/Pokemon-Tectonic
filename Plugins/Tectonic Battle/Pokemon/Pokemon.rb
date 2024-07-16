@@ -83,6 +83,8 @@ class Pokemon
 
     attr_writer   :itemTypeChosen
 
+    attr_accessor :shinyRolls
+
     attr_accessor :shiny_variant
     attr_accessor :manual_hue_shift
     attr_accessor :manual_shade_shift
@@ -111,12 +113,6 @@ class Pokemon
 
     def play_cry(volume = 90, pitch = nil)
         GameData::Species.play_cry_from_pokemon(self, volume, pitch)
-    end
-
-    def inspect
-        str = super.chop
-        str << format(" %s Lv.%s>", @species, @level.to_s || "???")
-        return str
     end
 
     def species_data
@@ -740,11 +736,10 @@ class Pokemon
     end
 
     def hasTypeSetterItem?
-        typeSetterItems = %i[MEMORYSET PRISMATICPLATE CRYSTALVEIL]
-        typeSetterItems.each do |itemID|
-            return itemID if hasItem?(itemID)
+        items.each do |itemID|
+            return itemID if GameData::Item.get(itemID).is_type_setting?
         end
-        return false
+        return nil
     end
 
     def canHaveMultipleItems?(inBattle = false)
@@ -1512,6 +1507,19 @@ class Pokemon
 
         @manual_hue_shift = nil
         @manual_shade_shift = nil
+
+        # Set the number of shiny rolls
+        @shinyRolls = 1
+        $PokemonBag.pbQuantity(:SHINYCHARM).times do
+            @shinyRolls *= 2
+        end
+
+        # Give it however many chances to be shiny
+        (@shinyRolls - 1).times do
+            break if shiny?
+            regeneratePersonalID
+            @shiny = nil
+        end
     end
 
     def aestheticsID

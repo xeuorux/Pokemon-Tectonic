@@ -5422,7 +5422,7 @@ TotalPP = 15
 Target = NearOther
 FunctionCode = Poison
 Flags = CanProtect,CanMirrorMove,HighCriticalHitRate,Blade
-EffectChance = 10
+EffectChance = 20
 Description = A slashing attack with a poisonous blade that has a 20% chance to poison. Critical hits twice as often.
 #-------------------------------
 [SLUDGE]
@@ -6698,7 +6698,7 @@ Name = Steam Eruption
 Type = WATER
 Category = Special
 Power = 110
-Accuracy = 95
+Accuracy = 100
 TotalPP = 5
 Target = NearOther
 FunctionCode = Burn

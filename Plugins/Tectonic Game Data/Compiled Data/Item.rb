@@ -271,6 +271,10 @@ module GameData
       def is_mulch?
         return @flags.include?("Mulch")
       end
+
+      def is_type_setting?
+        return @flags.include?("TypeSetting")
+      end
   
       def is_important?
         return true if is_key_item? || is_HM? || is_TM?

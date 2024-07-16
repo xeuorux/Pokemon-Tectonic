@@ -216,14 +216,21 @@ DebugMenuCommands.register("renamemovefromfile", {
 
   DebugMenuCommands.register("saveoldinator", {
     "parent"      => "othermenu",
-    "name"        => _INTL("Set save to 3.0.0"),
-    "description" => _INTL("Set this save to 3.0.0, for conversion testing."),
+    "name"        => _INTL("Set save to older version"),
+    "description" => _INTL("Set this save to an older version, for conversion testing."),
     "always_show" => true,
     "effect"      => proc {
-      downgradeSaveTo30
-      pbMessage("Save has been converted to 3.0.0, please close your game.")
+        versionNumber = pbEnterText(_INTL("Enter game version."),0,20)
+        setSaveVersion(versionNumber)
+        pbMessage(_INTL("Save has been converted to {1}, please close your game.",versionNumber))
     }
   })
+
+  def setSaveVersion(versionNumber)
+    save_data = SaveData.get_data_from_file(SaveData::FILE_PATH)
+    save_data[:game_version] = versionNumber
+    File.open(SaveData::FILE_PATH, 'wb') { |file| Marshal.dump(save_data, file) }
+  end
 
 def getRenamedMovesBatch(version = -1)
   renamingHash = {}
@@ -377,13 +384,6 @@ def renameMoves(renamingHash)
         :shape                 => species_data.shape,
         :habitat               => species_data.habitat,
         :generation            => species_data.generation,
-        :back_sprite_x         => species_data.back_sprite_x,
-        :back_sprite_y         => species_data.back_sprite_y,
-        :front_sprite_x        => species_data.front_sprite_x,
-        :front_sprite_y        => species_data.front_sprite_y,
-        :front_sprite_altitude => species_data.front_sprite_altitude,
-        :shadow_x              => species_data.shadow_x,
-        :shadow_size           => species_data.shadow_size,
         :notes                 => species_data.notes,
         :tribes                => species_data.tribes(true),
       }
@@ -425,13 +425,6 @@ def renameMoves(renamingHash)
         :shape                 => species_data.shape || base_data.shape,
         :habitat               => species_data.habitat || base_data.habitat,
         :generation            => species_data.generation || base_data.generation,
-        :back_sprite_x         => species_data.back_sprite_x || base_data.back_sprite_x,
-        :back_sprite_y         => species_data.back_sprite_y || base_data.back_sprite_y,
-        :front_sprite_x        => species_data.front_sprite_x || base_data.front_sprite_x,
-        :front_sprite_y        => species_data.front_sprite_y || base_data.front_sprite_y,
-        :front_sprite_altitude => species_data.front_sprite_altitude || base_data.front_sprite_altitude,
-        :shadow_x              => species_data.shadow_x || base_data.shadow_x,
-        :shadow_size           => species_data.shadow_size || base_data.shadow_size,
         :mega_stone            => species_data.mega_stone,
         :mega_move             => species_data.mega_move,
         :unmega_form           => species_data.unmega_form,

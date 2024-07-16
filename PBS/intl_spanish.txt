@@ -46334,8 +46334,8 @@ ACCIÓN/Z para ocultar Tótems
 1,\wt<<[>>16<<]>> 2, y\wt<<[>>16<<]>>...\wt<<[>>16<<]>> ...\wt<<[>>16<<]>> ... ¡Ta-da!\se<<[>>Battle ball drop<<]>><<1>>
 Box {1}
 Caja {1}
-Box {1} (D)
-Caja {1} (D)
+Donation Box {1}
+Caja de Donaciones {1}
 Can't withdraw from a donation box.
 No se puede retirar de una caja de donaciones.
 Permanently store this Pokémon in exchange for Candies?
@@ -46650,8 +46650,10 @@ There's no more room for Pokémon!<<1>>
 ¡Ya no hay espacio para Pokémon!<<1>>
 The Pokémon Boxes are full and can't accept any more!
 ¡Tus Cajas están llenas!
-Box "{1}" on {2}'s PC was full.<<1>>
-Caja "{1}" en el PC de {2} estaba llenal.<<1>>
+Box "{1}" on the Pokémon Storage PC is a donation box.
+Caja "{1}" en el PC es una caja de donaciones.<<1>>
+Box "{1}" on the Pokémon Storage PC was full.<<1>>
+Caja "{1}" en el PC está llena.<<1>>
 {1} was transferred to box "{2}."
 {1} fue transferido a la caja "{2}."
 {1} was transferred to {2}'s PC.<<1>>
@@ -47978,6 +47980,10 @@ You check {1}, and discover that its ability is <imp>{2}</imp>!
 ¡Compruebas a {1}, y descubres que su habilidad es <imp>{2}</imp>!
 The {1} is holding an {2}!
 ¡El {1} está sosteniendo un {2}!
+Wow, the {1} is a different color from normal.
+Vaya, el {1} ​​es de un color diferente al normal.
+It's a <imp>shiny</imp> Pokémon!
+¡Es un Pokémon <imp>variocolor</imp>!
 But it mysteriously crumbled to ash...
 Pero se desintegró misteriosamente…
 You register {1} as caught in the Pokédex.
@@ -51272,6 +51278,10 @@ Collect Helena's Package
 Recoge el Paquete de Helena
 Now that the avatar of Linoone has been defeated, you can collect the LuxTech Shipment which it stole.
 Ahora que el avatar de Linoone ha sido derrotado, puedes recolectar el Cargamento LuxTech que ha robado.
+Return LuxTech Package
+Regresa el Paquete de LuxTech
+You've found a shipment bound for LuxTech. Go to LuxTech and find whoever the intended recipient was, so that you may return it to them.
+Ha encontrado un envío con destino a LuxTech. Vaya a LuxTech y busque quién era el destinatario previsto para poder devolvérselo.
 Return Helena's Package
 Regresa el Paquete de Helena
 You've found and collected Helena's missing shipment. Return to LuxTech and hand her the package so that she will challenge you as a Gym Leader.

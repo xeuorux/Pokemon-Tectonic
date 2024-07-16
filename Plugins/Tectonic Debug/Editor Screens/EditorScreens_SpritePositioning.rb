@@ -12,28 +12,32 @@ def findBottom(bitmap)
   end
   
   def pbAutoPositionAll
+    t = Time.now.to_i
     GameData::Species.each do |sp|
-      Graphics.update if sp.id_number % 50 == 0
+      if Time.now.to_i - t >= 5
+        t = Time.now.to_i
+        Graphics.update
+      end
+      metrics = GameData::SpeciesMetrics.get_species_form(sp.species, sp.form)
       bitmap1 = GameData::Species.sprite_bitmap(sp.species, sp.form, nil, nil, nil, true)
       bitmap2 = GameData::Species.sprite_bitmap(sp.species, sp.form)
-      if bitmap1 && bitmap1.bitmap   # Player's y
-        sp.back_sprite_x = 0
-        sp.back_sprite_y = (bitmap1.height - (findBottom(bitmap1.bitmap) + 1)) / 2
+      if bitmap1&.bitmap   # Player's y
+        metrics.back_sprite[0] = 0
+        metrics.back_sprite[1] = (bitmap1.height - (findBottom(bitmap1.bitmap) + 1)) / 2
       end
-      if bitmap2 && bitmap2.bitmap   # Foe's y
-        sp.front_sprite_x = 0
-        sp.front_sprite_y = (bitmap2.height - (findBottom(bitmap2.bitmap) + 1)) / 2
-        sp.front_sprite_y += 4   # Just because
+      if bitmap2&.bitmap   # Foe's y
+        metrics.front_sprite[0] = 0
+        metrics.front_sprite[1] = (bitmap2.height - (findBottom(bitmap2.bitmap) + 1)) / 2
+        metrics.front_sprite[1] += 4   # Just because
       end
-      sp.front_sprite_altitude = 0   # Shouldn't be used
-      sp.shadow_x              = 0
-      sp.shadow_size           = 2
-      bitmap1.dispose if bitmap1
-      bitmap2.dispose if bitmap2
+      metrics.front_sprite_altitude = 0   # Shouldn't be used
+      metrics.shadow_x              = 0
+      metrics.shadow_size           = 2
+      bitmap1&.dispose
+      bitmap2&.dispose
     end
-    GameData::Species.save
-    Compiler.write_pokemon
-    Compiler.write_pokemon_forms
+    GameData::SpeciesMetrics.save
+    Compiler.write_pokemon_metrics
   end
   
   #===============================================================================
@@ -225,19 +229,19 @@ def findBottom(bitmap)
         pbAutoPosition
         return false
       end
-      species_data = GameData::Species.get(@species)
+      metrics_data = GameData::SpeciesMetrics.get_species_form(@species, @form)
       case param
       when 0
         sprite = @sprites["pokemon_0"]
-        xpos = species_data.back_sprite_x
-        ypos = species_data.back_sprite_y
+        xpos = metrics_data.back_sprite[0]
+        ypos = metrics_data.back_sprite[1]
       when 1
         sprite = @sprites["pokemon_1"]
-        xpos = species_data.front_sprite_x
-        ypos = species_data.front_sprite_y
+        xpos = metrics_data.front_sprite[0]
+        ypos = metrics_data.front_sprite[1]
       when 3
         sprite = @sprites["shadow_1"]
-        xpos = species_data.shadow_x
+        xpos = metrics_data.shadow_x
         ypos = 0
       end
       oldxpos = xpos
@@ -257,17 +261,17 @@ def findBottom(bitmap)
         if (Input.repeat?(Input::UP) || Input.repeat?(Input::DOWN)) && param != 3
           ypos += (Input.repeat?(Input::DOWN)) ? 1 : -1
           case param
-          when 0 then species_data.back_sprite_y  = ypos
-          when 1 then species_data.front_sprite_y = ypos
+          when 0 then metrics_data.back_sprite[1]  = ypos
+          when 1 then metrics_data.front_sprite[1] = ypos
           end
           refresh
         end
         if Input.repeat?(Input::LEFT) || Input.repeat?(Input::RIGHT)
           xpos += (Input.repeat?(Input::RIGHT)) ? 1 : -1
           case param
-          when 0 then species_data.back_sprite_x  = xpos
-          when 1 then species_data.front_sprite_x = xpos
-          when 3 then species_data.shadow_x       = xpos
+          when 0 then metrics_data.back_sprite[0]  = xpos
+          when 1 then metrics_data.front_sprite[0] = xpos
+          when 3 then metrics_data.shadow_x        = xpos
           end
           refresh
         end
@@ -279,13 +283,13 @@ def findBottom(bitmap)
         elsif Input.repeat?(Input::BACK)
           case param
           when 0
-            species_data.back_sprite_x = oldxpos
-            species_data.back_sprite_y = oldypos
+            metrics_data.back_sprite[0] = oldxpos
+            metrics_data.back_sprite[1] = oldypos
           when 1
-            species_data.front_sprite_x = oldxpos
-            species_data.front_sprite_y = oldypos
+            metrics_data.front_sprite[0] = oldxpos
+            metrics_data.front_sprite[1] = oldypos
           when 3
-            species_data.shadow_x = oldxpos
+            metrics_data.shadow_x = oldxpos
           end
           pbPlayCancelSE
           refresh

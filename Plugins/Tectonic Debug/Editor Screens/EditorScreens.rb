@@ -1062,13 +1062,6 @@ def pbEncountersEditor
               spec.shape,
               spec.habitat,
               spec.generation,
-              spec.back_sprite_x,
-              spec.back_sprite_y,
-              spec.front_sprite_x,
-              spec.front_sprite_y,
-              spec.front_sprite_altitude,
-              spec.shadow_x,
-              spec.shadow_size
             ]
             # Edit the properties
             if pbPropertyList(spec.id.to_s, data, species_properties, true)
@@ -1114,13 +1107,6 @@ def pbEncountersEditor
                 :shape                 => data[34],
                 :habitat               => data[35],
                 :generation            => data[36],
-                :back_sprite_x         => data[37],
-                :back_sprite_y         => data[38],
-                :front_sprite_x        => data[39],
-                :front_sprite_y        => data[40],
-                :front_sprite_altitude => data[41],
-                :shadow_x              => data[42],
-                :shadow_size           => data[43]
               }
               # Add species' data to records
               GameData::Species.register(species_hash)
