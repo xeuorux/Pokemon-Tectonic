@@ -930,6 +930,14 @@ DarkCave,20
     25,MAWILE,20,22
     25,SABLEYE,20,22
 #-------------------------------
+[333] # Floral Maze
+LandTall,20
+    20,APPLETUN,62,64
+    20,CROBAT,62,64
+    20,GRIMMSNARL,62,64
+    20,INDEEDEE,62,64
+    20,LURANTIS,62,64
+#-------------------------------
 [335] # Svait Sauna Underground
 Land,20
     20,DARUMAKA,23,25
@@ -1080,3 +1088,11 @@ FloweryGrass,20
     20,MISMAGIUS,60,62
     20,POLITOED,60,62
     20,TORKOAL,60,62
+#-------------------------------
+[430] # Hilly Map Sketch
+LandTall,20
+    20,DUBWOOL,62,64
+    20,ELDEGOSS,62,64
+    20,FLAPPLE,62,64
+    20,SAHARICANE,62,64
+    20,STONJOURNER,62,64
