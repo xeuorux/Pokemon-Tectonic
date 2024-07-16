@@ -290,7 +290,7 @@ class PokeBattle_Battle
         end
 
         # Track information for perfecting
-        $game_switches[94] = false
+        trackPerfectBattle(false)
         ableBeforeFight = $Trainer.able_pokemon_count # Record the number of able party members, for perfecting
         skipPerfecting = false
         @opponent&.each do |opp|
@@ -322,7 +322,7 @@ class PokeBattle_Battle
         unless @autoTesting
             # Record if the fight was perfected
             if $Trainer.able_pokemon_count >= ableBeforeFight
-                $game_switches[94] = true
+                trackPerfectBattle(true)
                 if trainerBattle? && @decision == 1 && !skipPerfecting
                     pbMessage(_INTL("\\me[Battle perfected]You perfected the fight!"))
                 end

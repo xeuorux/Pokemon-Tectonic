@@ -9,10 +9,10 @@ def pbTrainerBattleCore(*args)
     if $Trainer.able_pokemon_count == 0 || debugControl
         if $DEBUG
             if pbConfirmMessageSerious(_INTL("Perfect battle?"))
-                $game_switches[94] = true
+                trackPerfectBattle(true)
                 pbMessage(_INTL("SKIPPING BATTLE PERFECT..."))
             else
-                $game_switches[94] = false
+                trackPerfectBattle(false)
                 pbMessage(_INTL("SKIPPING BATTLE..."))
             end
             pbMessage(_INTL("AFTER WINNING...")) if $Trainer.able_pokemon_count > 0
@@ -222,4 +222,8 @@ end
 
 def pbTrainerBattleRandom(trainerID, trainerName, partyID = 0)
     pbTrainerBattle(trainerID, trainerName, nil, false, partyID, false, 1, true)
+end
+
+def trackPerfectBattle(perfectingState)
+    setGlobalSwitch(94,perfectingState)
 end

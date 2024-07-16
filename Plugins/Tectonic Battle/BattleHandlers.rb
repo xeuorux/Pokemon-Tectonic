@@ -1,9 +1,3 @@
-class HandlerHash2 # overwriting, TODO: merge this in
-    def eachKey
-        @hash.each { |key, value| yield key }
-    end
-end
-
 class AbilityHandlerHash < HandlerHash2
 end
 
@@ -22,7 +16,7 @@ module BattleHandlers
     # Battler's speed calculation
     SpeedCalcAbility                    = AbilityHandlerHash.new
     SpeedCalcItem                       = ItemHandlerHash.new
-    MoveSpeedModifierAbility     = AbilityHandlerHash.new
+    MoveSpeedModifierAbility            = AbilityHandlerHash.new
     # Battler's weight calculation
     WeightCalcAbility                   = AbilityHandlerHash.new
     WeightCalcItem                      = ItemHandlerHash.new # Float Stone

@@ -2,7 +2,7 @@
 # Location signpost
 #===============================================================================
 class LocationWindow
-    def initialize(name)
+    def initialize(name, duration = nil)
       @window = Window_AdvancedTextPokemon.new(name)
       @window.resizeToFit(name,Graphics.width)
       @window.x        = 0
@@ -11,6 +11,7 @@ class LocationWindow
       @window.viewport.z = 99999
       @currentmap = $game_map.map_id
       @frames = 0
+      @duration = duration || Graphics.frame_rate * 2
     end
   
     def disposed?
@@ -28,7 +29,7 @@ class LocationWindow
         @window.dispose
         return
       end
-      if @frames > Graphics.frame_rate * 2
+      if @frames > @duration
         @window.y -= 4
         @window.dispose if @window.y+@window.height<0
       else
