@@ -6,7 +6,7 @@ Description = Perfect Lambert, the first gym leader, at level cap 15 or below wi
 Page = 1
 #-------------------------------
 [PERFECT_GYM_2]
-Name = No Pain
+Name = No Pain No Gain
 Description = Perfect Eko, the second gym leader, at level cap 20 or below with the Tarot Amulet activated.
 Page = 1
 #-------------------------------
@@ -45,3 +45,18 @@ Name = I'm Not Trapped Here With You
 Description = Perfectly defeat Yezera in the Catacombs with the Tarot Amulet activated.
 Page = 2
 Hidden = true
+#-------------------------------
+[FULLY_UPGRADE_AID_KIT]
+Name = Field Medic
+Description = Fully upgrade your Aid Kit.
+Page = 5
+#-------------------------------
+[FROSTFLOW_CENTER_BEFORE_SURF]
+Name = Sequence Break
+Description = Reach Frostflow Farms Center without aquiring the Surf Board.
+Page = 5
+#-------------------------------
+[PRIZCA_WEST_BEFORE_TERRAKION]
+Name = Detour
+Description = Reach Prizca West without defeating the Avatar of Terrakion.
+Page = 5

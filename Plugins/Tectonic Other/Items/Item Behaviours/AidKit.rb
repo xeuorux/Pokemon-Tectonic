@@ -24,6 +24,7 @@ def refillAidKit(boostAmount = 0)
 		pbMessage(_INTL("\\i[AIDKIT]Your Aid Kit was refreshed to {1} charges.",$PokemonGlobal.teamHealerCurrentUses))
 	end
 	resetEXPBonus
+    checkForAidKitAchievement
 end
 
 def getAidKitHealingAmount
@@ -96,6 +97,8 @@ ItemHandlers::UseFromBag.add(:KITEXPANSION,proc { |item|
 		pbMessage(_INTL("Your Aid Kit has been increased to #{charges+1} charges."))
 		$PokemonGlobal.teamHealerMaxUses	 	+= 1
 		$PokemonGlobal.teamHealerCurrentUses 	+= 1
+
+        checkForAidKitAchievement
 	end
 	next 3
 })
@@ -111,6 +114,7 @@ ItemHandlers::UseFromBag.add(:MEDICALUPGRADE,proc { |item|
 	else
 		pbMessage(_INTL("Your Aid Kit now heals an additional #{HEALING_UPGRADE_AMOUNT} HP per charge."))
 		$PokemonGlobal.teamHealerUpgrades	 	+= 1
+        checkForAidKitAchievement
 	end
 	next 3
 })
@@ -121,4 +125,10 @@ end
 
 def setAidKitCharges(num)
 	$PokemonGlobal.teamHealerCurrentUses = num
+end
+
+def checkForAidKitAchievement
+    return unless $PokemonGlobal.teamHealerMaxUses >= AID_KIT_BASE_CHARGES + MAX_AID_KIT_CHARGES
+    return unless $PokemonGlobal.teamHealerUpgrades >= MAX_AID_KIT_UPGRADES
+    unlockAchievement(:FULLY_UPGRADE_AID_KIT)
 end
