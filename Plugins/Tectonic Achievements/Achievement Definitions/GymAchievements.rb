@@ -1,17 +1,18 @@
-# # Defeated gym 1
-# AchievementHandlers.registerGlobalSwitchAchievement(
-#     :DEFEAT_GYM_1,
-#     4,
-# 	proc { |achievementID,switchID, value|
-# 		next value
-# 	}
-# )
+GYM_LEVEL_CAPS = [
+    15,
+    20,
+    25,
+    30,
+    40,
+    45,
+    55,
+    60,
+]
 
-# # Achieved 8 badges
-# AchievementHandlers.registerGlobalVariableAchievement(
-#     :DEFEAT_ALL_GYMS,
-#     27,
-# 	proc { |achievementID,variableID, value|
-# 		next value >= 8
-# 	}
-# )
+def checkCursedGymPerfectAchievement(gymNumber)
+    return unless battlePerfected?
+    return unless tarotAmuletActive?
+    return unless getLevelCap <= GYM_LEVEL_CAPS[gymNumber-1]
+    achievementID = ("PERFECT_CURSED_GYM_" + gymNumber).to_sym
+    unlockAchievement(achievementID)
+end

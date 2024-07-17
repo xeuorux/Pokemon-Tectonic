@@ -168,10 +168,11 @@ def receiveGymReward(badgeNum)
 end
 
 def healAndGiveRewardIfNotYetGiven(badgeNum)
+    checkCursedGymPerfectAchievement(badgeNum)
 	index = badgeNum-1
 	leaderDialogue =
-		["I'll heal up your Pokémon and get out of your way.",
-		"Let me tend to your Pokémon while you bask in your victory."][index] || ""
+		[_INTL("I'll heal up your Pokémon and get out of your way."),
+		_INTL("Let me tend to your Pokémon while you bask in your victory.")][index] || ""
 	pbMessage(leaderDialogue) if !leaderDialogue.blank?
 	healPartyWithDelay()
 end

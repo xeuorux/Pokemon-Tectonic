@@ -53064,6 +53064,8 @@ Los avatares no pueden realizar golpes críticos aleatorios. Sin embargo, pueden
 ¡{1} ignora inmunidades por tipos!
 Do you wish to battle?
 ¿Quieres luchar?
+Achievement Unlocked:\r\n\\c[2]{1}
+Logro Desbloqueado:\r\n\\c[2]{1}
 [26]
 [27]
 [27]
@@ -55376,3 +55378,7 @@ Perennial Payload
 Munición Perenne
 Traumatized
 Traumatizado
+[33]
+# Achievement names
+[34]
+# Achievement descriptions

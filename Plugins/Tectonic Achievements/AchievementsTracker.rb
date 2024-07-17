@@ -11,21 +11,29 @@ class AchievementsTracker
         return @achievementsEarned.include?(achievementID)
     end
 
-    def unlockAchievement(achievementID)
+    def unlockAchievement(achievementID,ignoreAlreadyUnlocked = false)
+        pbMessage(_INTL("Invalid Achievement #{achievement_id}.")) unless GameData::Achievement.try_get(achievementID)
+
+        if isAchievementUnlocked?(achievementID) && !ignoreAlreadyUnlocked
+            echoln(_INTL("Achievement {1} is already unlocked! Cannot unlock again.",achievementID))
+            return
+        end
         @achievementsEarned.push(achievementID)
         storeAchievements
-        showAchievement(achievementID)
+        echoln(_INTL("Unlocking achievement {1}.",achievementID))
+        notifyAchievement(achievementID)
     end
 
-    def showAchievement(achievementID)
-        name = achievementID.to_s
-        name.gsub!(":","")
-        name.gsub!("_"," ")
-        name.gsub(/\w+/) do |word|
-            word.capitalize
-        end
-        label = _INTL("Achievement Unlocked:\r\n{1}",name)
-        $scene.spriteset.addUserSprite(LocationWindow.new(label,Graphics.frame_rate * 4))
+    def notifyAchievement(achievementID)
+        pbMessage(_INTL("Invalid Achievement #{achievement_id}.")) unless GameData::Achievement.try_get(achievementID)
+        showAchievementPopup(GameData::Achievement.get(achievementID).name)
+    end
+
+    def showAchievementPopup(name)
+        label = _INTL("Achievement Unlocked:\\n\\c[2]{1}",name)
+
+        pbWait(10)
+        pbMessage(_INTL("\\cl\\l[2]\\op\\wu<ac>{1}</ac>\\wtnp[{2}]", label, achievementsPopupDuration))
     end
 
     def storeAchievements
@@ -43,18 +51,38 @@ class AchievementsTracker
             end
         end
     end
+
+    def clearAchievements
+        @achievementsEarned.clear
+        storeAchievements
+        pbMessage(_INTL("Achievements cleared."))
+    end
+end
+
+def achievementsPopupDuration
+	dur = 80
+	dur -= 5 * $PokemonSystem.textspeed
+	return dur
 end
 
 def isAchievementUnlocked?(achievementID)
     return $AchievementsTracker.isAchievementUnlocked?(achievementID)
 end
 
-def unlockAchievement(achievementID)
-    $AchievementsTracker.unlockAchievement(achievementID)
+def unlockAchievement(achievementID,ignoreAlreadyUnlocked = false)
+    $AchievementsTracker.unlockAchievement(achievementID,ignoreAlreadyUnlocked)
 end
 
 def dumpAchievements
     $AchievementsTracker.dumpAchievements
+end
+
+def clearAchievements
+    $AchievementsTracker.clearAchievements
+end
+
+def SAP(text)
+    $AchievementsTracker.showAchievementPopup(text)
 end
 
 # Run on game start

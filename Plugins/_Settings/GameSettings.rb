@@ -355,6 +355,8 @@ module Settings
       "choice28"
     ]
 
+    #=============================================================================
+
     # Whether the Exp gained from beating a Pokémon should be scaled depending on
     # the gainer's level.
     SCALED_EXP_FORMULA        = false
@@ -378,4 +380,21 @@ module Settings
     CHECK_EVOLUTION_AFTER_ALL_BATTLES   = true
     # Whether fainted Pokémon can try to evolve after a battle.
     CHECK_EVOLUTION_FOR_FAINTED_POKEMON = true
+
+    #=============================================================================
+
+     # The names of each pocket of the Bag. Ignore the first entry ("").
+     def self.achievement_page_names
+        return ["",
+            _INTL("Main Story"),
+            _INTL("Gym Leaders"),
+            _INTL("Avatars"),
+            _INTL("Collection"),
+            _INTL("Exploration"),
+            _INTL("Sidequests"),
+            _INTL("Former Champs"),
+            _INTL("Battle Monument"),
+            _INTL("Other"),
+        ]
+      end
 end

@@ -267,11 +267,10 @@ class NewDexNav
 
 	lineHeight = 94 + visualHeightOffset
 	@pkmnsprites.each_with_index do |groupSpriteArray,groupIndex|
-		checkBoxFileName = "Graphics/Pictures/Pokedex/checkbox"
 		if @encounterTypesCompletion.values[groupIndex]
-			checkBoxFileName = "Graphics/Pictures/Pokedex/checkbox_active"
+			checkBoxFileName = "Graphics/Pictures/checkbox_active"
 		else
-			checkBoxFileName = "Graphics/Pictures/Pokedex/checkbox_inactive"
+			checkBoxFileName = "Graphics/Pictures/checkbox_inactive"
 		end
         checkboxY = lineHeight + 20
 		if checkboxY > 60 && checkboxY < 300 # dunno why these numbers

@@ -790,16 +790,16 @@ def pbMessageDisplay(msgwindow, message, letterbyletter = true, commandProc = ni
         for i in 0..signWaitTime
             if atTop
                 msgwindow.y = -msgwindow.height * i / signWaitTime
-                facewindow.y = -facewindow.height * i / signWaitTime
+                facewindow.y = -facewindow.height * i / signWaitTime if facewindow
             else
                 msgwindow.y = Graphics.height - msgwindow.height * (signWaitTime - i) / signWaitTime
-                facewindow.y = Graphics.height - facewindow.height * (signWaitTime - i) / signWaitTime
+                facewindow.y = Graphics.height - facewindow.height * (signWaitTime - i) / signWaitTime if facewindow
             end
             Graphics.update
             Input.update
             pbUpdateSceneMap
             msgwindow.update
-            facewindow.update
+            facewindow.update if facewindow
         end
     end
     facewindow.dispose if facewindow

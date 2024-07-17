@@ -252,6 +252,7 @@ module GameData
         Trait.load
         Like.load
         Dislike.load
+        Achievement.load
     end
 end
 
