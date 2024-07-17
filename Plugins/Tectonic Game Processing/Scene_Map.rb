@@ -81,6 +81,7 @@ class Scene_Map
     end
 
     def transfer_player(cancelVehicles = true)
+        $game_temp.transfer_loaded_in = false
         $game_temp.player_transferring = false
         pbCancelVehicles($game_temp.player_new_map_id) if cancelVehicles
         autofade($game_temp.player_new_map_id)
@@ -240,6 +241,11 @@ class Scene_Map
         end
         return if $game_temp.message_window_showing
         unless pbMapInterpreterRunning?
+            unless $game_temp.transfer_loaded_in
+                $game_temp.transfer_loaded_in = true
+                Events.onMapLoadIn.trigger
+            end
+
             if Input.trigger?(Input::USE)
                 $PokemonTemp.hiddenMoveEventCalling = true
             elsif Input.trigger?(Input::BACK)

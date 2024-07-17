@@ -16,6 +16,7 @@ class Game_Temp
     attr_accessor :debug_calling            # debug calling flag
     attr_accessor :save_calling             # save calling flag
     attr_accessor :player_transferring      # player place movement flag
+    attr_accessor :transfer_loaded_in
     attr_accessor :player_new_map_id        # player destination: map ID
     attr_accessor :player_new_x             # player destination: x-coordinate
     attr_accessor :player_new_y             # player destination: y-coordinate
@@ -44,6 +45,7 @@ class Game_Temp
       @menu_calling           = false
       @debug_calling          = false
       @player_transferring    = false
+      @transfer_loaded_in     = false
       @player_new_map_id      = 0
       @player_new_x           = 0
       @player_new_y           = 0

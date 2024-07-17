@@ -9,6 +9,7 @@ module Events
     @@OnMapChange                 = Event.new
     @@OnMapChanging               = Event.new
     @@OnMapSceneChange            = Event.new
+    @@OnMapLoadIn                 = Event.new
     @@OnSpritesetCreate           = Event.new
     @@OnAction                    = Event.new
     @@OnStepTaken                 = Event.new
@@ -42,6 +43,10 @@ module Events
     # map ID or 0 if none. Also fires when the first map of the game is loaded
     def self.onMapChange;     @@OnMapChange;     end
     def self.onMapChange=(v); @@OnMapChange = v; end
+
+    # Fires when the player regains control after moving to a new map.
+    def self.onMapLoadIn;     @@OnMapLoadIn;     end
+    def self.onMapLoadIn=(v); @@OnMapLoadIn = v; end
   
     # Fires whenever the map scene is regenerated and soon after the player moves
     # to a new map.
