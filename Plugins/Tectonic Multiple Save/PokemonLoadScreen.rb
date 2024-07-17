@@ -88,23 +88,24 @@ class PokemonLoadScreen
 
     def pbStartLoadScreen
         commands = []
-        cmd_continue = -1
-        cmd_load_game = -1
-        cmd_new_game     = -1
-        cmd_debug        = -1
-        cmd_website = -1
-        cmd_survey = -1
-        cmd_quit = -1
+        cmd_continue        = -1
+        cmd_load_game       = -1
+        cmd_new_game        = -1
+        cmd_achievements    = -1
+        cmd_debug           = -1
+        cmd_website         = -1
+        cmd_survey          = -1
+        cmd_quit            = -1
         lastModifiedSaveName = FileSave.lastModifiedSaveName
         if FileSave.count > 0
-            commands[cmd_continue = commands.length] = _INTL("Continue") unless lastModifiedSaveName.nil?
-            commands[cmd_load_game = commands.length] = _INTL("Load Game")
+            commands[cmd_continue = commands.length]    = _INTL("Continue") unless lastModifiedSaveName.nil?
+            commands[cmd_load_game = commands.length]   = _INTL("Load Game")
         end
-        commands[cmd_new_game = commands.length]  = _INTL("New Game")
-        commands[cmd_website = commands.length]   = _INTL("Website")
-        commands[cmd_survey = commands.length]    = _INTL("Playtest Survey")
-        commands[cmd_debug = commands.length]     = _INTL("Debug") if $DEBUG
-        commands[cmd_quit = commands.length]      = _INTL("Quit Game")
+        commands[cmd_new_game = commands.length]        = _INTL("New Game")
+        commands[cmd_achievements = commands.length]    = _INTL("Achievements")
+        commands[cmd_website = commands.length]         = _INTL("Website")
+        commands[cmd_survey = commands.length]          = _INTL("Playtest Survey")
+        commands[cmd_quit = commands.length]            = _INTL("Quit Game")
         @scene.pbStartScene(commands, false, nil, 0, 0)
         @scene.pbStartScene2
         loop do
@@ -129,12 +130,16 @@ class PokemonLoadScreen
                 @scene.pbEndScene
                 Game.start_new
                 return
+            when cmd_achievements
+                pbFadeOutIn do
+                    achievementsListScene = AchievementsListScene.new
+                    screen = AchievementsListScreen.new(achievementsListScene)
+                    screen.pbStartScreen
+                end
             when cmd_survey
                 System.launch("https://forms.gle/49kb3i38AxMnD8RC7")
             when cmd_website
                 System.launch("https://www.tectonic-game.com/")
-            when cmd_debug
-                pbFadeOutIn { pbDebugMenu(false) }
             when cmd_quit
                 pbPlayCloseMenuSE
                 @scene.pbEndScene
