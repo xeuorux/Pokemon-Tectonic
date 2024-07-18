@@ -20,8 +20,8 @@ def fadeIn(length=10)
 	pbWait(adjustedDuration)
 end
 
-def timedCameraPreview(centerX,centerY,seconds = 5)
-	$game_map.timedCameraPreview(centerX,centerY,seconds)
+def timedCameraPreview(centerX,centerY,seconds = 5,interuptable = false)
+	$game_map.timedCameraPreview(centerX,centerY,seconds, interuptable)
 end
 
 def centerCameraOnPlayer()

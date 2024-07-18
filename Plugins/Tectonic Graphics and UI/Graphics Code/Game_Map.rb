@@ -644,18 +644,26 @@ class Game_Map
         end
     end
 
-    def timedCameraPreview(centerX, centerY, seconds = 5)
+    def timedCameraPreview(centerX, centerY, seconds = 5, interuptable = false)
         prevCameraX = self.display_x
         prevCameraY = self.display_y
         blackFadeOutIn do
             self.display_x = (centerX - 7) * 128
             self.display_y = (centerY - 7) * 128
+            $scene.updateSpritesets
         end
-        Graphics.update
-        pbWait(Graphics.frame_rate * seconds)
+        frame = 0
+        until frame >= Graphics.frame_rate * seconds
+            Graphics.update
+            Input.update
+            pbUpdateSceneMap
+            break if Input.trigger?(Input::BACK) && interuptable
+            frame += 1
+        end
         blackFadeOutIn do
             self.display_x = prevCameraX
             self.display_y = prevCameraY
+            $scene.updateSpritesets
         end
     end
 
