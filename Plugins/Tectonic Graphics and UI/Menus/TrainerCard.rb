@@ -39,15 +39,13 @@ class PokemonTrainerCard_Scene
     overlay.clear
     baseColor   = Color.new(72,72,72)
     shadowColor = Color.new(160,160,160)
-    totalsec = Graphics.frame_count / Graphics.frame_rate
-    hour = totalsec / 60 / 60
-    min = totalsec / 60 % 60
-    time = (hour>0) ? _INTL("{1}h {2}m",hour,min) : _INTL("{1}m",min)
+    
     $PokemonGlobal.startTime = Time.now if !$PokemonGlobal.startTime
     starttime = _INTL("{1} {2}, {3}",
        pbGetAbbrevMonthName($PokemonGlobal.startTime.mon),
        $PokemonGlobal.startTime.day,
        $PokemonGlobal.startTime.year)
+    time = getSaveDurationLabel
     textPositions = [
        [_INTL("Name"),34,58,0,baseColor,shadowColor],
        [$Trainer.name,302,58,1,baseColor,shadowColor],
@@ -93,6 +91,19 @@ class PokemonTrainerCard_Scene
     pbDisposeSpriteHash(@sprites)
     @viewport.dispose
   end
+end
+
+def getSaveDurationInHours
+    totalsec = Graphics.frame_count / Graphics.frame_rate
+    return totalsec / 3600.0
+end
+
+def getSaveDurationLabel
+    totalsec = Graphics.frame_count / Graphics.frame_rate
+    hour = totalsec / 60 / 60
+    min = totalsec / 60 % 60
+    time = (hour>0) ? _INTL("{1}h {2}m",hour,min) : _INTL("{1}m",min)
+    return time
 end
 
 #===============================================================================

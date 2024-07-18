@@ -45,8 +45,10 @@ class PokeBattle_Move
     def pbDisplayUseMessage(user, _targets = [])
         if empoweredMove?
             unless @battle.autoTesting
-                @battle.pbDisplayWithFormatting(_INTL("\\ss{1} used <c2=06644bd2>{2}</c2>!", user.pbThis,
-@name))
+                @battle.pbDisplayWithFormatting(_INTL("\\ss{1} used <c2=06644bd2>{2}</c2>!", user.pbThis, @name))
+                if user.pbOwnedByPlayer?
+                    unlockAchievement(:USE_PRIMEVAL_MOVE)
+                end
             end
         else
             @battle.pbDisplayBrief(_INTL("{1} used {2}!", user.pbThis, @name))

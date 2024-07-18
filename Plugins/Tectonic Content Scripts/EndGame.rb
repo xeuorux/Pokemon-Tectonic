@@ -7,6 +7,7 @@ def startTournamentIfValid
 end
 
 def rollCredits
+    checkCreditsAchievements
     properlySave
     pbWait(20)
     oldScene = $scene

@@ -126,5 +126,18 @@ module GameData
         def description
             return pbGetMessageFromHash(MessageTypes::AchievementDescs, @real_description)
         end
+
+        def self.each
+            keys = self::DATA.keys.sort { |a, b|
+                dataA = self::DATA[a]
+                dataB = self::DATA[b]
+                if dataA.page == dataB.page
+                    next dataA.id <=> dataB.id
+                else
+                    next dataA.page <=> dataB.page
+                end
+            }
+            keys.each { |key| yield self::DATA[key] }
+        end
     end
 end

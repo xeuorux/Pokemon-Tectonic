@@ -40,20 +40,46 @@ Name = Dread Not
 Description = Perfect Samorn, the eighth gym leader, at level cap 55 or below with the Tarot Amulet activated.
 Page = 1
 #-------------------------------
+[BECOME_CHAMPION]
+Name = Crowning Achievement
+Description = Be officially crowned Champion of Makya.
+Page = 2
+#-------------------------------
+[CREDITS_BELOW_10_HOURS]
+Name = Pace Setter
+Description = Reach the credits with 10 or fewer hours on your save file.
+Page = 2
+#-------------------------------
 [PERFECT_CURSED_CATACOMBS_YEZERA]
 Name = I'm Not Trapped Here With You
 Description = Perfectly defeat Yezera in the Catacombs with the Tarot Amulet activated.
 Page = 2
 Hidden = true
 #-------------------------------
-[FULLY_UPGRADE_AID_KIT]
-Name = Field Medic
-Description = Fully upgrade your Aid Kit.
-Page = 5
+[DEFEAT_AVATAR_RAYQUAZA]
+Name = Ozone Depletion
+Description = Destroy the Avatar of Rayquaza in the Tempest Realm.
+Page = 3
+Hidden = true
+#-------------------------------
+[USE_PRIMEVAL_MOVE]
+Name = Primirror
+Description = Use a Primeval Move.
+Page = 3
+#-------------------------------
+[FILL_ENTIRE_POKESTATE_PLOT]
+Name = Full House
+Description = Visit a PokEstate plot that has 30 pokemon in it.
+Page = 4
 #-------------------------------
 [FROSTFLOW_CENTER_BEFORE_SURF]
 Name = Sequence Break
 Description = Reach Frostflow Farms Center without aquiring the Surf Board.
+Page = 5
+#-------------------------------
+[FULLY_UPGRADE_AID_KIT]
+Name = Field Medic
+Description = Fully upgrade your Aid Kit.
 Page = 5
 #-------------------------------
 [PRIZCA_WEST_BEFORE_TERRAKION]
