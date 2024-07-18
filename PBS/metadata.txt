@@ -121,7 +121,7 @@ WildBattleBGM = Tectonic_Epitaph_of_the_Demiurge.ogg
 Outdoor = false
 ShowArea = false
 Bicycle = false
-HealingSpot = 37,35,11
+HealingSpot = 37,43,16
 #-------------------------------
 [014]
 # LuxTech Buildings
@@ -2347,6 +2347,12 @@ HealingSpot = 186,34,15
 Outdoor = false
 ShowArea = false
 Bicycle = false
+#-------------------------------
+[333]
+# Floral Maze
+Outdoor = true
+ShowArea = true
+Bicycle = true
 #-------------------------------
 [334]
 # The Present
