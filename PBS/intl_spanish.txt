@@ -827,10 +827,18 @@ The Growlithe seems to be cowering from everything.
 Este Growlithe parece acobardarse por todo.
 It seems to have a collar on its neck. Who does it belong to?
 Parece tener un collar en su cuello. ¿A quién le pertenece?
+Oh! It's the lost Growlithe you were told about.
+¡Oh! Es el Growlithe perdido del que te hablaron.
+Remembering the instructions you were given, you pull a Milk Bone Treat from your bag.
+Recordando las instrucciones que te dieron, saca un Premio de Leche de tu bolso.
 You hand the treat to the Growlithe. After a quick sniff, it eats the treat.
 Le alcanzas el premio al Growlithe. Luego de una breve olida, se come el premio.
 You use this opportunity to put Growlithe back into its ball.
 Usas esta oportunidad para regresar a Growlithe a su ball.
+You should return the Growlithe to its owner.
+Debes devolver el Growlithe a su dueño.
+According to the tag on its collar, the owner lives in Novo Apartments.
+Según la etiqueta que lleva en el cuello, el propietario vive en los Apartamentos Novo.
 I'm an old hand at this. Beaten a fair few challengers in my time. So, don't'cha expect this to be a cakewalk.
 Soy un/a experto/a en esto. Vencí una buena cantidad de retadores en su tiempo. Así que, no espera que esto sea pan comido.
 Damn, even my new team couldn't keep up. I'm outta here... Lainie would be so embarassed.
@@ -44561,6 +44569,8 @@ Volcanic Shore
 Costa Volcánica
 Underground River
 Río Subterráneo
+Tempest Realm
+Reino de la Tempestad
 The Shelf
 La Plataforma
 Repora Forest
@@ -44633,6 +44643,8 @@ Tri Island
 Isla Elemental
 Battle Monument
 Monumento Batalla
+Spirit Atoll
+Atolón Espíritu
 [20]
 Novo College
 Facultad Novo
