@@ -77,7 +77,7 @@ class AchievementsListScene
             checkboxY = @displayText.size * 32 + 56
 		    @checkboxesHeights.push([checkBoxFileName,checkboxY])
 
-            if achievementData.hidden && !unlocked
+            if achievementData.hidden && !unlocked && !isAchievementUnlocked?(:BECOME_CHAMPION)
                 @displayText << _INTL("<u>???</u>")
                 @displayText << _INTL("Achievement hidden.")
             else

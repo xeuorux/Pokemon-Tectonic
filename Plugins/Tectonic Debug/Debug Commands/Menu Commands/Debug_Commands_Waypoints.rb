@@ -1,58 +1,38 @@
-  DebugMenuCommands.register("unlockallwaypoints", {
+DebugMenuCommands.register("unlockallwaypoints", {
     "parent"      => "waypoints",
     "name"        => _INTL("Unlock all waypoints."),
     "description" => _INTL("Unlock all waypoints."),
-    "effect"      => proc { |sprites, viewport|
-      mapData = Compiler::MapData.new
-      for id in mapData.mapinfos.keys.sort
-          map = mapData.getMap(id)
-          next if !map || !mapData.mapinfos[id]
-          mapName = mapData.mapinfos[id].name
-          for key in map.events.keys
-              event = map.events[key]
-              next if !event || event.pages.length==0
-              next if event.name != "AvatarTotem"
-              event.pages.each do |page|
-                  page.list.each do |eventCommand|
-                      eventCommand.parameters.each do |parameter|
-                          next unless parameter.is_a?(String)
-                          match = parameter.match(/accessWaypoint\("([a-zA-Z0-9 ']+)"/)
-                          if match
-                              waypointName = match[1]
-                              begin
-                                  echoln("Unlocking: #{waypointName}")
-                                  $waypoints_tracker.addWaypoint(waypointName,[id,event.id])
-                              rescue => exception
-                                  pbMessage(_INTL("Unable to unlock waypoint: #{waypointName}"))
-                              end
-                          else
-                              echoln("No match: #{parameter}")
-                          end
-                      end
-                  end
-              end
-          end
-      end
-      pbMessage(_INTL("All waypoints unlocked!"))
-  
-    }}
-  )
-  
-  DebugMenuCommands.register("warptowaypoint", {
-    "parent"      => "waypoints",
-    "name"        => _INTL("Warp to waypoint."),
-    "description" => _INTL("Choose a waypoint to warp to."),
-    "effect"      => proc { |sprites, viewport|
-      $waypoints_tracker.warpByWaypoints()
-    }}
-  )
+    "effect"      => proc { |_sprites, _viewport|
+        $waypoints_tracker.eachWaypoint do |event, mapID, waypointName|
+            begin
+                echoln("Unlocking: #{waypointName}")
+                $waypoints_tracker.addWaypoint(waypointName, [mapID, event.id])
+            rescue StandardError => exception
+                pbMessage(_INTL("Unable to unlock waypoint: #{waypointName}"))
+            end
+        end
+        pbMessage(_INTL("All waypoints unlocked!"))
+    },
+}
+)
 
-  DebugMenuCommands.register("wipeallwaypoints", {
-    "parent"      => "waypoints",
-    "name"        => _INTL("Wipe all waypoints."),
-    "description" => _INTL("Unregister all waypoints."),
-    "effect"      => proc { |sprites, viewport|
+DebugMenuCommands.register("warptowaypoint", {
+  "parent"      => "waypoints",
+  "name"        => _INTL("Warp to waypoint."),
+  "description" => _INTL("Choose a waypoint to warp to."),
+  "effect"      => proc { |_sprites, _viewport|
+      $waypoints_tracker.warpByWaypoints
+  },
+}
+)
+
+DebugMenuCommands.register("wipeallwaypoints", {
+  "parent"      => "waypoints",
+  "name"        => _INTL("Wipe all waypoints."),
+  "description" => _INTL("Unregister all waypoints."),
+  "effect"      => proc { |_sprites, _viewport|
       $waypoints_tracker.deleteAllWaypoints
       pbMessage(_INTL("All waypoints deregistered."))
-    }}
-  )
+  },
+}
+)

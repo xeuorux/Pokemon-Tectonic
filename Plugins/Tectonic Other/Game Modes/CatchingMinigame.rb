@@ -114,6 +114,7 @@ class CatchingMinigame
         when 71..999
             item = :ULTRABALL
             itemCount = 6
+            unlockAchievement(:WIN_FISHING_CONTEST)
         end
         if !item.nil?
             pbMessage(_INTL("You've earned a reward!"))

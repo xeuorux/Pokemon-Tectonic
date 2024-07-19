@@ -12,7 +12,7 @@ class AchievementsTracker
     end
 
     def unlockAchievement(achievementID,ignoreAlreadyUnlocked = false)
-        pbMessage(_INTL("Invalid Achievement #{achievement_id}.")) unless GameData::Achievement.try_get(achievementID)
+        pbMessage(_INTL("Invalid Achievement #{achievementID}.")) unless GameData::Achievement.try_get(achievementID)
 
         if isAchievementUnlocked?(achievementID) && !ignoreAlreadyUnlocked
             echoln(_INTL("Achievement {1} is already unlocked! Cannot unlock again.",achievementID))

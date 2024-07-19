@@ -87,6 +87,8 @@ class WaypointsTracker
 		unless @activeWayPoints.has_key?(waypointName)
 			pbMessage(_INTL("#{waypointRegisterMessage}"))
 			addWaypoint(waypointName,waypointEvent)
+
+            checkForWaypointsAchievement
 		end
 		
 		if @activeWayPoints.length <= 1
@@ -159,6 +161,45 @@ class WaypointsTracker
 			$game_map.refresh
 		end
 	end
+
+    def checkForWaypointsAchievement
+        unlockedAll = true
+        $waypoints_tracker.eachWaypoint do |event, mapID, waypointName|
+            next if @activeWayPoints.has_key?(waypointName)
+            unlockedAll = false
+            break
+        end
+        return unless unlockedAll
+        unlockAchievement(:UNLOCK_ALL_WAYPOINTS)
+    end
+
+    def eachWaypoint
+        mapData = Compiler::MapData.new
+        for map_id in mapData.mapinfos.keys.sort
+            map = mapData.getMap(map_id)
+            next if !map || !mapData.mapinfos[map_id]
+            mapName = mapData.mapinfos[map_id].name
+            for key in map.events.keys
+                event = map.events[key]
+                next if !event || event.pages.length == 0
+                next if event.name != "AvatarTotem"
+                event.pages.each do |page|
+                    page.list.each do |eventCommand|
+                        eventCommand.parameters.each do |parameter|
+                            next unless parameter.is_a?(String)
+                            match = parameter.match(/accessWaypoint\("([a-zA-Z0-9 ']+)"/)
+                            if match
+                                waypointName = match[1]
+                                yield event, map_id, waypointName
+                            else
+                                echoln("No match: #{parameter}")
+                            end
+                        end
+                    end
+                end
+            end
+        end
+    end
 end
 
 # Should only be called by the waypoint events themselves

@@ -50,10 +50,22 @@ Name = Pace Setter
 Description = Reach the credits with 10 or fewer hours on your save file.
 Page = 2
 #-------------------------------
+[DECLINE_MAVIS_PHONE_CALL]
+Name = Please Leave a Message at the Tone
+Description = Decline Mavis’ phone call at the end of the game.
+Page = 2
+Hidden = true
+#-------------------------------
 [PERFECT_CURSED_CATACOMBS_YEZERA]
 Name = I'm Not Trapped Here With You
 Description = Perfectly defeat Yezera in the Catacombs with the Tarot Amulet activated.
 Page = 2
+Hidden = true
+#-------------------------------
+[DEFEAT_ALL_CHAMBER_AVATARS]
+Name = Clay Army
+Description = Defeat all 8 Team Chasm-created avatars within the locked chambers.
+Page = 3
 Hidden = true
 #-------------------------------
 [DEFEAT_AVATAR_RAYQUAZA]
@@ -86,3 +98,23 @@ Page = 5
 Name = Detour
 Description = Reach Prizca West without defeating the Avatar of Terrakion.
 Page = 5
+#-------------------------------
+[UNLOCK_ALL_WAYPOINTS]
+Name = Totemly Obsessed
+Description = Connect all Avatar Totems.
+Page = 5
+#-------------------------------
+[WIN_BATTLE_MONUMENT]
+Name = Monumental
+Description = Complete a full attempt of the Battle Monument (5 battles won).
+Page = 8
+#-------------------------------
+[DEAL_1000_DAMAGE]
+Name = Isn't That Grand
+Description = Deal 1,000 or more damage in one hit.
+Page = 9
+#-------------------------------
+[WIN_FISHING_CONTEST]
+Name = Hook Line and Sinker
+Description = Achieve the top prize at Aquatopia Menagerie's Ocean Fishing Contest.
+Page = 9

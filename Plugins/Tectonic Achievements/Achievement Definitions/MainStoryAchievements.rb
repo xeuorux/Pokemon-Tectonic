@@ -6,4 +6,5 @@ end
 
 def checkCreditsAchievements
     unlockAchievement(:CREDITS_BELOW_10_HOURS) if getSaveDurationInHours < 10
+    #unlockAchievement(:CREDITS_BELOW_5_HOURS) if getSaveDurationInHours < 5
 end

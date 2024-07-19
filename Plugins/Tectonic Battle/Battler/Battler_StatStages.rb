@@ -586,6 +586,10 @@ class PokeBattle_Battler
         return lowered
     end
 
+    def lowerOneOfMultipleStats(stat, user, increment: 1)
+        return false if increment <= 0
+    end
+
     def pbCanRaiseAnyOfStats?(statArray, user, move: nil, showFailMsg: false)
         for i in 0...statArray.length / 2
             return true if pbCanRaiseStatStep?(statArray[i * 2], user, move, showFailMsg)
