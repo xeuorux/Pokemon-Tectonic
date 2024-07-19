@@ -114,8 +114,11 @@ def dexCompletionPercent
     ownedCount = nonLegendarySpeciesCount(true)
     totalCount = nonLegendarySpeciesCount
 	ratio = 100.0 * ownedCount.to_f / totalCount.to_f
-    echoln("Non-legendary dex Completion: #{ownedCount} / #{totalCount} is #{ratio} percent")
 	return ratio.floor
+end
+
+def readOutDexCompletionPercent
+    pbMessage(_INTL("You've currently completed {1} percent of the Dex.",dexCompletionPercent))
 end
 
 def lockPlayerInput
