@@ -41,31 +41,31 @@ end
 def candyBatchCost(level)
     case level
     when 0..15
-        return 300
+        return 250
     when 16..20
-        return 550
+        return 450
     when 21..25
-        return 1000
+        return 750
     when 26..30
-        return 1500
+        return 1150
     when 31..35
-        return 2000
+        return 1500
     when 36..40
-        return 3000
+        return 2150
     when 41..45
-        return 4000
+        return 2750
     when 46..50
-        return 5000
+        return 3500
     when 51..55
-        return 6000
+        return 4000
     when 56..60
-        return 7000
+        return 4750
     when 61..65
-        return 8000
+        return 5250
     when 65..70
-        return 10_000
+        return 6500
     when 71..100
-        return 16_000
+        return 10_000
     else
         pbMessage("Unassigned level passed to candyBatchCost: #{level}") if $DEBUG
 	    return 250
