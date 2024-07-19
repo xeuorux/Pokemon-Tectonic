@@ -1,9 +1,10 @@
 PRESENT_TONE = Tone.new(0,0,0,0)
 PAST_TONE = Tone.new(40,30,10,130)
 FUTURE_TONE = Tone.new(-9,18,18,9)
+TIME_TRAVEL_SWITCH = 36
 
 def getTimeTone
-    if $game_switches[78] # Time Traveling
+    if inPast? # Time Traveling
         return PAST_TONE
     else
         return PRESENT_TONE
@@ -11,19 +12,19 @@ def getTimeTone
 end
 
 def inPast?
-    return $game_switches[78]
+    return $game_switches[TIME_TRAVEL_SWITCH]
 end
 
 def toggleTimeTravel
-    $game_switches[78] = !$game_switches[78]
+    $game_switches[TIME_TRAVEL_SWITCH] = !$game_switches[TIME_TRAVEL_SWITCH]
 end
 
 def processTimeTravel
     if timeTravelMap?
-        modifyTimeLinkedEvents unless $game_switches[78] # If now in the present
-    elsif $game_switches[78]
+        modifyTimeLinkedEvents unless $game_switches[TIME_TRAVEL_SWITCH] # If now in the present
+    elsif inPast?
         echoln("Disabling time travel since this is not a time travel map")
-        $game_switches[78] = false
+        $game_switches[TIME_TRAVEL_SWITCH] = false
         applyTimeTone
     end
 end
@@ -42,7 +43,7 @@ end
 
 def timeTravelToEvent(eventID)
     timeTravelTransition {
-        bouldersTimeTravel($game_switches[78])
+        bouldersTimeTravel($game_switches[TIME_TRAVEL_SWITCH])
         toggleTimeTravel
         transferPlayerToEvent(eventID)
         applyTimeTone(20)

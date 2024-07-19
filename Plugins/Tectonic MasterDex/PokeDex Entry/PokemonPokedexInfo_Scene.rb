@@ -37,10 +37,10 @@ class PokemonPokedexInfo_Scene
             @region = mappos ? mappos[0] : 0 # Region 0 default
         end
         @sprites["areamap"] = IconSprite.new(0, 0, @viewport)
-        @sprites["areamap"].setBitmap("Graphics/Pictures/#{@mapdata[@region][1]}")
+        @sprites["areamap"].setBitmap("Graphics/Pictures/Town Map/Region Maps/#{@mapdata[@region][1]}")
         @sprites["areamap"].x += (Graphics.width - @sprites["areamap"].bitmap.width) / 2
         @sprites["areamap"].y += (Graphics.height + 32 - @sprites["areamap"].bitmap.height) / 2
-        for hidden in Settings::REGION_MAP_EXTRAS
+        for hidden in Settings.getRegionMapExtras
             next unless hidden[0] == @region && hidden[1] > 0 && $game_switches[hidden[1]]
             pbDrawImagePositions(@sprites["areamap"].bitmap, [
                                      ["Graphics/Pictures/Town Map/Map Extras/#{hidden[4]}",
@@ -451,7 +451,6 @@ sp.form) && !Settings::DEX_SHOWS_ALL_FORMS
             itemsAndRarities = fSpecies.wildHeldItemsWithRarities
             
             unless itemsAndRarities.empty?
-                echoln(itemsAndRarities)
                 itemsString = ""
                 itemsAndRarities.each_with_index do |(item, chance), index|
                     name = GameData::Item.get(item).name

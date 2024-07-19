@@ -88,7 +88,7 @@ class Scene_Map
         pbBridgeOff
         @spritesetGlobal.playersprite.clearShadows if @spritesetGlobal
         if $game_map.map_id != $game_temp.player_new_map_id
-            $game_switches[82] = false # Enable Auto Clouds, if it was disabled
+            $game_switches[35] = false # Enable Auto Clouds, if it was disabled
             $MapFactory.setup($game_temp.player_new_map_id) 
         end
         $game_player.moveto($game_temp.player_new_x, $game_temp.player_new_y)

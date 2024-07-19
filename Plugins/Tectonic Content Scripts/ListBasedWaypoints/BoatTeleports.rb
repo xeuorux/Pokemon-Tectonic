@@ -13,54 +13,48 @@ DOCK_LOCATIONS = {
         :map_name => "Eleig Boating Dock",
         :map_id => 185,
         :event_id => 5,
-        :unlock_switch => 70,
+        :unlock_switch => 301,
     },
     :SWEETROCK_DOCK => {
         :map_name => "Sweetrock Harbor",
         :map_id => 217,
         :event_id => 57,
-        :unlock_switch => 71,
+        :unlock_switch => 302,
     },
     :TAPU_ISLAND => {
         :map_name => "Guardian Island",
         :map_id => 377,
         :event_id => 93,
-        :visit_switch => 55,
-        :unlock_switch => 81,
+        :unlock_switch => 303,
     },
     :EVENTIDE_ISLE => {
         :map_name =>  "Eventide Isle",
         :map_id => 413,
         :event_id => 13,
-        :visit_switch => 85,
-        :unlock_switch => 84,
+        :unlock_switch => 304,
     },
     :DRAGON_ISLAND => {
         :map_name => "Isle of Dragons",
         :map_id => 356,
         :event_id => 38,
-        :visit_switch => 87,
         :unlock_switch => 86,
     },
     :TRI_ISLAND => {
         :map_name => "Tri Island",
         :map_id => 411,
         :event_id => 23,
-        :visit_switch => 98,
         :unlock_switch => 97,
     },
     :MONUMENT_ISLAND => {
         :map_name => "Battle Monument",
         :map_id => 357,
         :event_id => 4,
-        :visit_switch => 100,
         :unlock_switch => 99,
     },
     :SPIRIT_ATOLL => {
         :map_name => "Spirit Atoll",
         :map_id => 182,
         :event_id => 19,
-        :visit_switch => 152,
         :unlock_switch => 151,
     },
 }
@@ -112,8 +106,6 @@ end
 
 def warpToBoatWaypoint(dockID)
     dockInfo = DOCK_LOCATIONS[dockID]
-    pbSetGlobalSwitch(dockInfo[:visit_switch]) if dockInfo[:visit_switch]
-
     direction = dockInfo[:direction] || Up
     transferPlayerToEvent(dockInfo[:event_id],direction,dockInfo[:map_id])
 end

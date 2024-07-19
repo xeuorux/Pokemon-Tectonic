@@ -153,7 +153,7 @@ class WaypointsTracker
 				if pbGetSelfSwitch(waypointInfo, 'A', mapID) &&
 						getGlobalVariable(37) == 0 && # Legend cloning quest
 						getGlobalSwitch(68) # Yezera defeated
-					setGlobalSwitch(226) # Dr. Hekata phonecall
+					setGlobalSwitch(DR_HEKATA_PHONECALL_GLOBAL)
 				end
 			end
 			$scene.transfer_player

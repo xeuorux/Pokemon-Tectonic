@@ -101,9 +101,9 @@ class PokEstate
 			pbMessage("ERROR: Cannot find location to teleport you back to.")
 			pbMessage("Bringing you to the fallback return position.")
 			$game_temp.player_transferring = true
-			$game_temp.player_new_map_id    =  FALLBACK_RETURN_POSION[0]
-			$game_temp.player_new_x         =	FALLBACK_RETURN_POSION[1]
-			$game_temp.player_new_y         = 	FALLBACK_RETURN_POSION[2]
+			$game_temp.player_new_map_id    =  FALLBACK_RETURN_POSITION[0]
+			$game_temp.player_new_x         =	FALLBACK_RETURN_POSITION[1]
+			$game_temp.player_new_y         = 	FALLBACK_RETURN_POSITION[2]
 			$game_temp.player_new_direction = 	Up
 		else
 			tele = @estate_teleport

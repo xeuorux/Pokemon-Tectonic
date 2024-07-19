@@ -70,8 +70,8 @@ class PokemonRegionMap_Scene
         @sprites["map"].x += (Graphics.width - @sprites["map"].bitmap.width) / 2
         @sprites["map"].y += (Graphics.height - @sprites["map"].bitmap.height) / 2
 
-        # Add hidden/unlockable ;ocation graphics
-        for hidden in Settings::REGION_MAP_EXTRAS
+        # Add hidden/unlockable location graphics
+        for hidden in Settings.getRegionMapExtras
             next unless hidden[0] == mapindex && ((@wallmap && hidden[5]) ||
                (!@wallmap && hidden[1] > 0 && $game_switches[hidden[1]]))
             unless @sprites["map2"]

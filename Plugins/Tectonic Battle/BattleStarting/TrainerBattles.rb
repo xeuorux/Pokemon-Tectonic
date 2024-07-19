@@ -102,6 +102,7 @@ def pbTrainerBattleCore(*args)
     pbSet(outcomeVar, decision)
     $PokemonGlobal.respawnPoint = nil
     refreshSpeakerWindow
+    $game_switches[TIME_OUT_SWITCH] = decision == 6 # Mark if the battle was a time-out victory
     return decision
 end
 
@@ -181,7 +182,6 @@ def pbTrainerBattle(trainerID, trainerName, endSpeech = nil,
         pbMapInterpreter.pbSetSelfSwitch($PokemonTemp.waitingTrainer[1], "A", true)
     end
     $PokemonTemp.waitingTrainer = nil
-    $game_switches[77] = decision == 6 # Mark if the battle was a time-out victory
     # Return true if the player won the battle, and false if any other result
     return [1, 6].include?(decision)
 end
@@ -224,6 +224,16 @@ def pbTrainerBattleRandom(trainerID, trainerName, partyID = 0)
     pbTrainerBattle(trainerID, trainerName, nil, false, partyID, false, 1, true)
 end
 
+PERFECTED_SWITCH = 38
 def trackPerfectBattle(perfectingState)
-    setGlobalSwitch(94,perfectingState)
+    $game_switches[PERFECTED_SWITCH] = perfectingState
+end
+
+def battlePerfected?
+	return $game_switches[PERFECTED_SWITCH]
+end
+
+TIME_OUT_SWITCH = 37
+def battleTimedOut?
+    return $game_switches[TIME_OUT_SWITCH]
 end

@@ -1,3 +1,11 @@
+ZAIN_2_BADGES_PHONECALL_GLOBAL = 230
+ZAIN_3_BADGES_PHONECALL_GLOBAL = 231
+GROUZ_AVATAR_PHONECALL_GLOBAL = 226
+CATACOMBS_PHONECALL_GLOBAL = 227
+WHITEBLOOM_PHONECALL_GLOBAL = 228
+BATTLE_MONUMENT_PHONECALL_GLOBAL = 229
+DR_HEKATA_PHONECALL_GLOBAL = 232
+
 Events.onBadgeEarned += proc { |_sender,_e|
     totalBadges = _e[1]
 	if totalBadges == 2
@@ -40,7 +48,7 @@ Events.onMapChange += proc { |_sender, _e|
 	if 		gameWon? &&
 			!$game_switches[99] && # Battle monument not yet unlocked
 			$game_map.map_id == 188 # In Prizca Castle
-		$game_switches[153] = true # Trigger the phonecall from Vanya
+		$game_switches[BATTLE_MONUMENT_PHONECALL_GLOBAL] = true # Trigger the phonecall from Vanya
 	end
 }
 

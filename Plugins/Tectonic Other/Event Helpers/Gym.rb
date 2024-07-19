@@ -10,12 +10,6 @@ BADGE_NAMES = [
 	]
 TOTAL_BADGES = 8
 BADGE_COUNT_VARIABLE = 27
-ZAIN_2_BADGES_PHONECALL_GLOBAL = 66
-ZAIN_3_BADGES_PHONECALL_GLOBAL = 67
-GROUZ_AVATAR_PHONECALL_GLOBAL = 61
-CATACOMBS_PHONECALL_GLOBAL = 62
-SURFBOARD_PHONECALL_GLOBAL = 54
-WHITEBLOOM_PHONECALL_GLOBAL = 54
 
 # Trigger params are badgeEarned, badgeCount, newLevelCap
 module Events
@@ -142,29 +136,6 @@ end
 
 def doubleBattleBenceZoe()
 	return pbDoubleTrainerBattleCursed([[:LEADER_Zoe,"Zoé",0],[:LEADER_Bence,"Bence",0]],[[:LEADER_Zoe,"Zoé",1],[:LEADER_Bence,"Bence",1]])
-end
-
-def receivedGymRewardYet?(index)
-	if $game_variables[78] == 0
-		$game_variables[78] = [false] * 8
-	end
-	
-	return $game_variables[78][index]
-end
-
-def receiveGymReward(badgeNum)
-	index = badgeNum-1
-	case index
-	when 0,1
-		pbReceiveItem(:FULLRESTORE)
-		pbReceiveItem(:MAXREPEL)
-		pbReceiveItem(:ULTRABALL)
-		pbReceiveItem(:MAXREVIVE)
-	else
-		echoln("Gym item #{index} not yet defined!\n")
-	end
-	
-	$game_variables[78][index] = true # Mark the item as having been received
 end
 
 def healAndGiveRewardIfNotYetGiven(badgeNum)

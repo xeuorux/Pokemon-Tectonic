@@ -133,11 +133,11 @@ end
 
 def disableAutoWeather
 	weather(:None,0,60)
-	$game_switches[82] = true
+	$game_switches[35] = true
 end
 
 def enableAutoWeather
-	$game_switches[82] = false
+	$game_switches[35] = false
 	applyOutdoorEffects
 end
 

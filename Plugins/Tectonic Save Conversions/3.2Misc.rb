@@ -32,5 +32,4 @@ SaveData.register_conversion(:misc_fixes_3_2_0) do
             index += 1
         end
     end
-  end
-  
+end

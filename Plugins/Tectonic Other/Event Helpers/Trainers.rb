@@ -1,7 +1,3 @@
-def battlePerfected?
-	return $game_switches[94]
-end
-
 def perfectTrainer(maxTrainerLevel=15,giveDrop=true)
 	blackFadeOutIn() {
 		setMySwitch('D',true)
