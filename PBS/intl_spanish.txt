@@ -9931,8 +9931,8 @@ Oh. \PN.
 Oh. \PN.
 Seeking truth, as ever.
 Buscando la verdad, como siempre.
-I cannot tolerate introspection, so extrospection will have to suffice. Specifically: the river.
-No puedo tolerar la introspección, así que la extrospección tendra que ser suficiente. Específicamente: el río.
+I cannot tolerate introspection, so extrospection will have to suffice.
+No puedo tolerar la introspección, así que la extrospección tendra que ser suficiente.
 The real one! The one that snaps at you if you say something so uncouth.
 ¡La verdadera! La que se enoja contigo si dices algo minimamente burdo. 
 The fake Imogene tries to ingratiate herself through saccharine kindness. Such as that amulet.
@@ -10115,14 +10115,6 @@ I’m literally being hunted! I’ve committed felonies!
 ¡Literalmente me están cazando! ¡He cometido delitos!
 Fine – I, like, don’t have all day here, y’know! I’m out!
 Bien – yo, como, no tengo todo el día aquí, ¡Sabes! ¡Me voy!
-A few months ago someone tried to bring their yacht through this river.
-Hace un par de meses alguien intentó traer su yate a través de este río.
-His boat hit some rocks and sunk. Right here.
-Su bote chocó con algunas rocas y se hundió. Justo aquí.
-It took the city service three weeks to clear everything.
-Le tomó al servicio de la ciudad tres semanas para limpiar todo.
-It was completely stupid, but you have to respect his drive a little.
-Fue completamente estúpido, pero tienes que respetar su manejo un poco.
 Pokemon Tectonic Development Team
 Equipo de Desarrollo de Pokémon Tectonic
 Pssst....
@@ -10135,14 +10127,14 @@ I need someone who can bust in and grab the evidence I need.
 Necesito alguien que pueda entrar y agarrar la evidencia que necesito.
 I'd do it myself, but they know my face.
 Lo haría yo mismo, pero conocen mi cara.
-Tell ya what, I left a forged ID card under a tree to the west of their building. By the river.
-Sabes qué, dejé un ID falsificado bajo un árbol hacia el oeste de su edificio. Cerca del río.
+Tell ya what, I left a forged ID card under a tree to the west of their building. By the Mart.
+Sabes qué, dejé un ID falsificado bajo un árbol hacia el oeste de su edificio. Cerca la Tienda.
 It'll let you get in. Be ready for a real tough fight, they probably got a team of minions ready to battle.
 Te dejará entrar. Prepárate para un combate muy duro, probablemente tienen un equipo de secuaces listos para combatir.
 If you get the evidence, I'll make sure you're rewarded.
 Si consigues la evidencia, me aseguraré de recompensarte.
-Any luck? Did you get the ID card under the tree? It's by the river, near the Mart.
-¿Tuviste suerte? ¿Conseguiste la tarjeta ID bajo el árbol? Está por el río, cerca de la Tienda.
+Any luck? Did you get the ID card under the tree? It's near the Mart.
+¿Tuviste suerte? ¿Conseguiste la tarjeta ID bajo el árbol? Está cerca de la Tienda.
 Once you've got it, you should be able to go upstairs in the Aegis Insurance building.
 Una vez la consigas, deberías poder ir al piso de arriba en el edificio de Aseguradora Aegis.
 They'll probably have the good stuff up there, behind a group of minions no doubt.
@@ -10339,10 +10331,6 @@ It's weird seeing the streets here so empty.
 Es raro ver las calles aquí tan vacías.
 It's a combination of the road closure, and the Battle Fair happening right nearby.
 Es una combinación de la clausura del camino, y la Feria Batalla ocurriendo aquí cerca.
-Jogging next to the Prizca West canal is so nice.
-Correr al lado del canal de Prizca Occidental es demasiado bueno.
-It's beautiful scenery, and I can pace my run based on the perfect spacing of the trees!
-Su hermoso paisaje, ¡Y puedo correr con ritmo basado en el espacio perfecto de los árboles!
 What are you doing here?
 ¿Qué estás haciendo aquí?
 Which one are you?
@@ -12345,6 +12333,14 @@ WEIGHTS IN THE LIBRARY! BOOKS IN THE GYM! WITH MY POWERS I HAVE SCULPTED THE LAN
 
 [Map187]
 
+A few months ago someone tried to bring their yacht through this river.
+Hace un par de meses alguien intentó traer su yate a través de este río.
+His boat hit some rocks and sunk. Right here.
+Su bote chocó con algunas rocas y se hundió. Justo aquí.
+It took the city service three weeks to clear everything.
+Le tomó al servicio de la ciudad tres semanas para limpiar todo.
+It was completely stupid, but you have to respect his drive a little.
+Fue completamente estúpido, pero tienes que respetar su manejo un poco.
 Bicycles are the only correct way to get around a dense town like this one.
 Las Bicicletas son la única manera correcta de moverse por un pueblo denso como este.
 I'm not just doing errands, right now, though.
