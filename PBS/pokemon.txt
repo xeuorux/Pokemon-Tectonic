@@ -2712,8 +2712,8 @@ Name = Kingler
 InternalName = KINGLER
 Type1 = WATER
 # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
-BaseStats = 70,105,85,65,55,50
-# Total = 430
+BaseStats = 70,105,85,65,50,50
+# Total = 425
 GenderRate = Female50Percent
 GrowthRate = Medium
 BaseEXP = 166
@@ -21050,8 +21050,8 @@ Name = Bounsweet
 InternalName = BOUNSWEET
 Type1 = GRASS
 # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
-BaseStats = 52,62,50,42,47,70
-# Total = 323
+BaseStats = 51,65,51,42,45,71
+# Total = 325
 GenderRate = Female50Percent
 GrowthRate = Medium
 BaseEXP = 42
@@ -21105,8 +21105,8 @@ InternalName = TSAREENA
 Type1 = GRASS
 Type2 = DARK
 # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
-BaseStats = 72,120,88,62,70,118
-# Total = 530
+BaseStats = 72,120,88,62,70,123
+# Total = 535
 GenderRate = Female50Percent
 GrowthRate = Medium
 BaseEXP = 230

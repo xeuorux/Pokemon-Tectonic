@@ -1092,7 +1092,7 @@ FloweryGrass,20
 [430] # Amber Hills
 LandSparse,20
     20,DUBWOOL,62,64
-    20,GOGOAT,62,64
     20,FLAPPLE,62,64
+    20,GOGOAT,62,64
     20,GOLEM,62,64
     20,SAHARICANE,62,64
