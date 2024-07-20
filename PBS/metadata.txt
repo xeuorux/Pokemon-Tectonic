@@ -2353,6 +2353,7 @@ Bicycle = false
 Outdoor = true
 ShowArea = true
 Bicycle = true
+BattleBack = forest
 #-------------------------------
 [334]
 # The Present
@@ -3006,3 +3007,10 @@ ShowArea = true
 Bicycle = true
 Weather = Fog,100
 BattleBack = field
+#-------------------------------
+[430]
+# Amber Hills
+Outdoor = true
+ShowArea = true
+Bicycle = true
+BattleBack = forest

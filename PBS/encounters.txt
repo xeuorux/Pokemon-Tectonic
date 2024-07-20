@@ -1089,10 +1089,10 @@ FloweryGrass,20
     20,POLITOED,60,62
     20,TORKOAL,60,62
 #-------------------------------
-[430] # Hilly Map Sketch
-LandTall,20
+[430] # Amber Hills
+LandSparse,20
     20,DUBWOOL,62,64
-    20,ELDEGOSS,62,64
+    20,GOGOAT,62,64
     20,FLAPPLE,62,64
+    20,GOLEM,62,64
     20,SAHARICANE,62,64
-    20,STONJOURNER,62,64
