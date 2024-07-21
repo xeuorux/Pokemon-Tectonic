@@ -1917,6 +1917,10 @@ Pokemon = CRUSTLE,37
     Moves = XSCISSOR,TREMOR,STEALTHROCK,ROCKSLIDE
     AbilityIndex = 0 # Stratagem
 #-------------------------------
+[TOURISTM,Calvin]
+Pokemon = BULBASAUR,38
+    AbilityIndex = 1 # Aromatic
+#-------------------------------
 [GENTLEMAN3,Oliver]
 Flags = NoPerfect
 Pokemon = GRAPIDASH,40

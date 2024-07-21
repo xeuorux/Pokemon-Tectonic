@@ -10127,14 +10127,14 @@ I need someone who can bust in and grab the evidence I need.
 Necesito alguien que pueda entrar y agarrar la evidencia que necesito.
 I'd do it myself, but they know my face.
 Lo haría yo mismo, pero conocen mi cara.
-Tell ya what, I left a forged ID card under a tree to the west of their building. By the Mart.
-Sabes qué, dejé un ID falsificado bajo un árbol hacia el oeste de su edificio. Cerca la Tienda.
+I left a forged ID card in the patch of grass near the eastern gatehouse. Just root around for a bit and you should find it.
+Dejé una tarjeta de ID falsificada en el césped cerca de la portería al este. Simplemente hurga un poco y deberías encontrarlo.
 It'll let you get in. Be ready for a real tough fight, they probably got a team of minions ready to battle.
 Te dejará entrar. Prepárate para un combate muy duro, probablemente tienen un equipo de secuaces listos para combatir.
 If you get the evidence, I'll make sure you're rewarded.
 Si consigues la evidencia, me aseguraré de recompensarte.
-Any luck? Did you get the ID card under the tree? It's near the Mart.
-¿Tuviste suerte? ¿Conseguiste la tarjeta ID bajo el árbol? Está cerca de la Tienda.
+Any luck? Did you get the ID card in the grass? It's near the eastern gatehouse.
+¿Tuviste suerte? ¿Conseguiste la tarjeta ID en el césped? Está cerca de la portería al este.
 Once you've got it, you should be able to go upstairs in the Aegis Insurance building.
 Una vez la consigas, deberías poder ir al piso de arriba en el edificio de Aseguradora Aegis.
 They'll probably have the good stuff up there, behind a group of minions no doubt.
@@ -10277,8 +10277,15 @@ Well, go on. See how far that attitude gets you.
 Bueno, sigue a ello. Vas a ver que tan lejos te lleva esa actitud.
 I’m leaving.
 Me voy.
-"Prizca, where the future is built with the past."
-“Prizca, donde el futuro está construido con el pasado.”
+"Prizca, where the future is made concrete."
+“Prizca, donde el futuro se concreta.”
+Business Sector
+Sector Empresarial
+Gym Sector
+Sector Gimnasio
+Tourism Sector
+Sector Turístico
+La Casa de Bence
 Hello! Would you be interested in signing a petition to demolish the road?
 ¡Hola! ¿Te interesaría firmar una petición para demoler el camino? 
 This road currently has no financial benefit to the city ever since the bridge to the south was destroyed.
@@ -10311,8 +10318,8 @@ You can use it on your Pokemon to change their forms.
 Puedes usarlo en tu Pokémon para cambiar su forma.
 It works on a lot of species, including Lycanroc, Rotom, and Darmanitan!
 Funcionar en varias especies, ¡Incluyendo Lycanroc, Rotom, y Darmanitan!
-Well, now that you have that, I've got nothing better to do but wait around at the Battle Fair.
-Bueno, ahora que tienes eso, no tengo nada mejor que hacer que esperar cerca de la Feria Batalla.
+Well, now that you have that, I've got nothing better to do but wait around at the Battle Festival.
+Bueno, ahora que tienes eso, no tengo nada mejor que hacer que esperar cerca de la Festival Batalla.
 Oh, that's to the East. It's a pretty big event!
 Oh, eso es hacia el Este. ¡Es un evento muy grande!
 You might see me around there.
@@ -10446,8 +10453,8 @@ Las compré en la Tienda Evolutiva.
 In case you're wondering -- it's a building in the very north of the Battle Plaza.
 En caso de que te lo preguntes -- es un edificio en la parte más al norte de la Plaza Batalla.
 Right next to the entrance to the Tournament Grounds.
-Justo al lado de la entrada a las Tierras de Campeonato
-PokeBall Depot
+Justo al lado de la entrada a las Tierras de Campeonato.
+Poké Ball Depot
 Depósito de las Poké Ball
 Alright. OK. Sure, of course.
 Muy bien. Ok. Seguro, por supuesto.
@@ -10463,6 +10470,12 @@ Full Blast Records
 Récords A Tope
 Prizca Traffic Control
 Control de Tráfico Prizca
+Bogdan Concrete Company
+Empresa de Hormigón Bogdan
+The door is securely locked.
+La puerta está fuermente bloqueada.
+The door is boarded up.
+La puerta está cerrada.
 [Map157]
 
 The destruction of the bridge over at the Eleig River Crossing has really put a hamper on things.

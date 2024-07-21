@@ -234,6 +234,8 @@ def chooseDirection(directions,width,height)
 		new_route.list.push(RPG::MoveCommand.new(PBMoveRoute::Script,
 			["self.moveto(0,#{rand(height).floor})"]))
 	end
+
+    new_route.list.push(RPG::MoveCommand.new(PBMoveRoute::Wait,rand(10..20)))
 	
 	for i in 0..length
 		new_route.list.push(RPG::MoveCommand.new(PBMoveRoute::Forward))
