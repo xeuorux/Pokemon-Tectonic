@@ -3578,32 +3578,32 @@ Pokemon = QUAGSIRE,48
     Item = LEFTOVERS
 #-------------------------------
 [CLOWN,Dimesmart]
-Pokemon = MIMIKYU,42
+Pokemon = MIMIKYU,39
     Moves = PLAYROUGH,VIMRIPPER,HONECLAWS,SHADOWSNEAK
     AbilityIndex = 0 # Disguise
     Item = LIFEORB
-Pokemon = GIGACHU,42
+Pokemon = GIGACHU,40
     Moves = THUNDERBELLY,THUNDERBOLT,NUZZLE,BODYSLAM
     AbilityIndex = 0 # Arc Conductor
-Pokemon = FLYGON,42
-    Moves = DEVOURINGDUST,SCOUR,BUGBUZZ,BUGBITE
-    AbilityIndex = 0 # Desert Spirit
-    Item = GROUNDGEM
+Pokemon = MASQUERAIN,40
+    Moves = BUBBLEBLASTER,BUGBUZZ,BLUSTER
+    AbilityIndex = 0 # Hyper Speed
+    Item = WATERGEM
 #-------------------------------
 [WORKER2,Hugo]
 Pokemon = MACHAMP,44
     Moves = DYNAMICPUNCH,KNOCKOFF,FIRELASH
     AbilityIndex = 1 # No Guard
-Pokemon = ASANDSLASH,42
+Pokemon = ASANDSLASH,44
     Moves = METEORMASH,ICECALIBUR,RAPIDSPIN
     AbilityIndex = 1 # Assault Spines
-Pokemon = TYRANTRUM,43
+Pokemon = TYRANTRUM,44
     Moves = CRUNCH,CALAMITOUSSLASH,BEDROCKBREAKER,BULLDOZE
     AbilityIndex = 0 # Wrath Instinct
     Item = SHUCABERRY
     # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
     EV = 10,10,10,20,10,0
-Pokemon = VIKAVOLT,43
+Pokemon = VIKAVOLT,44
     Moves = DISCHARGE,BUGBUZZ,INFESTATION
     AbilityIndex = 0 # Emergency Power
     Item = OCCABERRY
@@ -3615,26 +3615,26 @@ Pokemon = GSLOWBRO,43
     Moves = SHELLSIDEARM,VENOSHOCK,SLACKOFF,SEERSTRIKE
     AbilityIndex = 1 # Break Through
     Item = LUCKHERB
-Pokemon = DRAPION,42
+Pokemon = DRAPION,43
     Moves = HONORLESSSTING,VENOMGUARD,XSCISSOR,SEVER
     AbilityIndex = 1 # Merciless
 Pokemon = VILEPLUME,43
     Moves = POISONIVY,GIGADRAIN,SLUDGEWAVE,ALLERGY
     AbilityIndex = 0 # Sickening
-Pokemon = RHYPERIOR,43
+Pokemon = RHYPERIOR,44
     Moves = DRILLRUN,ADAMANTINEPRESS,ACCELEROCK,POISONJAB
     AbilityIndex = 1 # Fortified
     Item = LUCKHERB
 #-------------------------------
 [BEAUTY3,Ester]
-Pokemon = AMPHAROS,43
+Pokemon = AMPHAROS,41
     Moves = RECOVER,SIGNALBEAM,DRAGONPULSE,THUNDERCAGE
     AbilityIndex = 0 # Static
     Item = SITRUSBERRY
-Pokemon = HSAMUROTT,44
+Pokemon = HSAMUROTT,43
     Moves = FLIPTURN,SEVER,CEASELESSEDGE,LOWSWEEP
     AbilityIndex = 0 # Poor Conduct
-Pokemon = BRONZONG,43
+Pokemon = BRONZONG,42
     Moves = KINETICGRIP,HEALBELL,FLASHCANNON,FARADAYCAGE
     AbilityIndex = 0 # Levitate
     Item = BINDINGBAND
@@ -3643,7 +3643,7 @@ Pokemon = DECIDUEYE,43
     AbilityIndex = 1 # Siphon Sniper
 #-------------------------------
 [SUPERNERD,John]
-Pokemon = BULBASAUR,43
+Pokemon = BULBASAUR,42
     AbilityIndex = 1 # Aromatic
 #-------------------------------
 [SCIENTIST_M3,Gunter]
