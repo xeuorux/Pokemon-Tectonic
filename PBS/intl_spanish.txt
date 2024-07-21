@@ -24787,6 +24787,8 @@ You've found Zufaix, a composer contributor.
 Has encontrado a Zufaix, un compositor.
 You've found Dada, a spriting contributor.
 Has encontrado a Dada, a un contribuidor de spriting.
+You've found ZombyGoast, a spriter and design contributor.
+Has encontrado a ZombyGoast, un spriter y un diseñador.
 
 [Map426]
 Prizca Black Market

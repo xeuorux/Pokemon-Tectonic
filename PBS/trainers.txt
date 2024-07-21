@@ -2523,6 +2523,20 @@ Pokemon = MPOLTEAGEIST,70
 Pokemon = TYPHLOSION,70
     AbilityIndex = 0 # Brisk
 #-------------------------------
+[DEVPOKEMONBREEDER_F,ZombyGoast]
+Pokemon = DECEAT,70
+    AbilityIndex = 1 # Intimidate
+Pokemon = SYLVEON,70
+    AbilityIndex = 0 # Beguiling
+Pokemon = ANINETALES,70
+    AbilityIndex = 1 # Sudden Chill
+Pokemon = MIMIKYU,70
+    AbilityIndex = 0 # Disguise
+Pokemon = YANMEGA,70
+    AbilityIndex = 1 # Tinted Lens
+Pokemon = MPOLTEAGEIST,70
+    AbilityIndex = 1 # Chill Out
+#-------------------------------
 [LEADER_Bence,Bence]
 Policies = BENCE
 Flags = NoPerfect

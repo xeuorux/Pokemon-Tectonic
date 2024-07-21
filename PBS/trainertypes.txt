@@ -559,6 +559,12 @@ Gender = Female
 BaseMoney = 80
 IntroBGM = ARTIST
 #-------------------------------
+[DEVPOKEMONBREEDER_F]
+Name = Developer
+Gender = Female
+BaseMoney = 80
+IntroBGM = PARASOL
+#-------------------------------
 [DEVPOKEMONRANGER_M]
 Name = Developer
 Gender = Male
