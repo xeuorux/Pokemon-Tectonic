@@ -644,20 +644,20 @@ class Game_Map
         end
     end
 
-    def timedCameraPreview(centerX, centerY, seconds = 5, interuptable = false)
+    def timedCameraPreview(centerX, centerY, seconds = 5)
         prevCameraX = self.display_x
         prevCameraY = self.display_y
         blackFadeOutIn do
-            self.display_x = (centerX - 7) * 128
-            self.display_y = (centerY - 7) * 128
+            centerCameraOnSpot(centerX, centerY)
             $scene.updateSpritesets
         end
         frame = 0
+        currentCenterX = centerX
+        currentCenterY = centerY
         until frame >= Graphics.frame_rate * seconds
             Graphics.update
             Input.update
             pbUpdateSceneMap
-            break if Input.trigger?(Input::BACK) && interuptable
             frame += 1
         end
         blackFadeOutIn do
@@ -665,6 +665,77 @@ class Game_Map
             self.display_y = prevCameraY
             $scene.updateSpritesets
         end
+    end
+
+    def controlledCameraPreview(centerX, centerY, maxXOffset = 6, maxYOffset = 3, cameraSpeed = 0.15)
+        prevCameraX = self.display_x
+        prevCameraY = self.display_y
+        blackFadeOutIn do
+            centerCameraOnSpot(centerX, centerY)
+            $scene.updateSpritesets
+        end
+        currentCenterX = centerX
+        currentCenterY = centerY
+        loop do
+            Graphics.update
+            Input.update
+            pbUpdateSceneMap
+            recenter = false
+            if Input.trigger?(Input::BACK)
+                break
+            end
+            
+            xDir = 0
+            yDir = 0
+
+            if Input.press?(Input::LEFT)
+                if currentCenterX > centerX - maxXOffset
+                    xDir = -1
+                elsif Input.trigger?(Input::LEFT)
+                    pbSEPlay("Player bump")
+                end
+            elsif Input.press?(Input::RIGHT)
+                if currentCenterX < centerX + maxXOffset
+                    xDir = 1
+                elsif Input.trigger?(Input::RIGHT)
+                    pbSEPlay("Player bump")
+                end
+            end
+
+            if Input.press?(Input::UP)
+                if currentCenterY > centerY - maxYOffset
+                    yDir = -1
+                elsif Input.trigger?(Input::UP)
+                    pbSEPlay("Player bump")
+                end
+            elsif Input.press?(Input::DOWN)
+                if currentCenterY < centerY + maxYOffset
+                    yDir = 1
+                elsif Input.trigger?(Input::DOWN)
+                    pbSEPlay("Player bump")
+                end
+            end
+
+            if xDir != 0 && yDir != 0
+                xDir *= 0.7
+                yDir *= 0.7
+            end
+
+            currentCenterX += cameraSpeed * xDir
+            currentCenterY += cameraSpeed * yDir
+
+            centerCameraOnSpot(currentCenterX, currentCenterY)
+        end
+        blackFadeOutIn do
+            self.display_x = prevCameraX
+            self.display_y = prevCameraY
+            $scene.updateSpritesets
+        end
+    end
+
+    def centerCameraOnSpot(centerX, centerY)
+        self.display_x = (centerX - 7) * 128
+        self.display_y = (centerY - 7) * 128
     end
 
     def centerCameraOnPlayer
