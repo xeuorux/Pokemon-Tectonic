@@ -10287,6 +10287,7 @@ Gym Sector
 Sector Gimnasio
 Tourism Sector
 Sector Turístico
+Bence's House
 La Casa de Bence
 Hello! Would you be interested in signing a petition to demolish the road?
 ¡Hola! ¿Te interesaría firmar una petición para demoler el camino? 
@@ -16523,6 +16524,11 @@ To think, that they would try and pull the wool over our eyes with that scam.
 Y pensar que intentarían engañarnos con esa estafa.
 Clearly they have no respect for treasure hunters!
 ¡Claramente no tienen respeto para los cazadores de tesoros!
+[Map239]
+
+Would you like to end the Ocean Fishing Contest now?
+¿Te gustaría terminar ahora el Concurso de Pesca Océanica?
+
 [Map243]
 
 Most of the Makyan Rangers were former Team Chasm grunts.
@@ -50249,28 +50255,32 @@ Oh! A #{highlightedSpeciesData.real_name} was found nearby!
 #{caughtCount} atrapado
 #{receivedCount} received
 #{receivedCount} recibido
-Catch the best Pokemon you can in #{turnsGiven} turns of battle!
-Atrapa los mejores Pokémon que puedas en #{turnsGiven} turnos!
-Your #{pokemon.name} is rated at #{score}.
-Tu #{pokemon.name} vale #{score} puntos.
+Catch the best Pokemon you can in {1} turns of battle!
+Atrapa los mejores Pokémon que puedas en {1} turnos!
+Your {1} is rated at {2}.
+Tu {1} vale {2} puntos.
 That's a new high score!
 ¡Ese es un nuevo récord!
 You caught no Pokemon worth any points.
 No atrapaste ningún Pokémon que valga puntos.
-Your best catch was a level #{@currentMaxScorePokemon.level}
-Tu mejor captura fue un nivel #{@currentMaxScorePokemon.level} 
-Returning to #{mapName}.
-Regresando a #{mapName}.
+Your best catch was a level {1} {2}, which gives you a score of {3}.
+Tu mejor captura fue un {2} a nivel {1}, que te da una puntuación de {3}.
+Returning to {1}.
+Regresando a {2}.
 You've earned a reward!
 ¡Ganaste una recompensa!
 Unfortunately, that's not enough to earn a reward.
 Desafortunadamente, eso no es suficiente para ganar una recompensa.
 You've ran out of turns!
 ¡Te quedaste sin turnos!
-It was a #{$catching_minigame.highScorePokemonSpeciesName}, right? At level #{$catching_minigame.highScorePokemonLevel}?
-Fue un #{$catching_minigame.highScorePokemonSpeciesName}, ¿Cierto? ¿A nivel #{$catching_minigame.highScorePokemonLevel}?
-That one earned you #{score > 60 ?
-¿Con ese ganaste #{score > 60 ? 
+It was a {1}, right? At level {2}?
+Fue un {1}, ¿Cierto? ¿A nivel {2}?
+That one earned you a whoppin' {1} points.
+Obtuviste un impresionante {1} puntos por eso.
+That one earned you {1} points.
+Ganaste {1} por eso.
+It was a {1}, right? At level {2}?
+Fue un {1}, ¿Cierto? ¿A nivel {2}?
 ...
 ...
 What?! You reeled in the legendary king of the ocean?!

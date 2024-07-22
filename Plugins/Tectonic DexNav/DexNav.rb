@@ -473,14 +473,14 @@ Events.onWildPokemonCreate += proc {|sender,e|
 		end
 		if encounterable
 			echoln("Overwriting the discovered wild pokemon with a #{species}!")
-			
+			overwriteWildPokemonSpecies(pokemon,species)
 			pokemon.ability_index = $PokemonTemp.currentDexSearch[2]
 			pokemon.form = species_data.form
 			pokemon.reset_moves
 			pokemon.learn_move($PokemonTemp.currentDexSearch[1]) if $PokemonTemp.currentDexSearch[1]
 			pokemon.setItems($PokemonTemp.currentDexSearch[3]) if $PokemonTemp.currentDexSearch[3]
 			# There is a higher chance for shininess
-			pokemon.shinyRerolls *= 2
+			pokemon.shinyRolls *= 2
 			$PokemonTemp.currentDexSearch = nil
 			$search_overlay.dispose if $search_overlay
 		else
