@@ -473,10 +473,7 @@ Events.onWildPokemonCreate += proc {|sender,e|
 		end
 		if encounterable
 			echoln("Overwriting the discovered wild pokemon with a #{species}!")
-			level = pokemon.level
-			pokemon.species = species
-			pokemon.level = level # Level is reset on species change
-			pokemon.name = GameData::Species.get(pokemon.species).name
+			
 			pokemon.ability_index = $PokemonTemp.currentDexSearch[2]
 			pokemon.form = species_data.form
 			pokemon.reset_moves
@@ -491,6 +488,13 @@ Events.onWildPokemonCreate += proc {|sender,e|
 		end
     end
 }
+
+def overwriteWildPokemonSpecies(pokemon,species)
+    level = pokemon.level
+    pokemon.species = species
+    pokemon.level = level # Level is reset on species change
+    pokemon.name = GameData::Species.get(pokemon.species).name
+end
 
 # Gets a random ID of a legal egg move of the given species and returns it as a move object.
 def getRandomMentorMove(species)
