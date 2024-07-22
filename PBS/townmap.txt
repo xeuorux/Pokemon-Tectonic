@@ -115,3 +115,4 @@ Point = 22,11,Tri Island,,,,,332
 Point = 15,16,Battle Monument,,,,,333
 Point = 1,14,Spirit Atoll,,,,,334
 Point = 6,13,The Shelf,,,,,
+Point = 16,13,Amber Hills,,,,,

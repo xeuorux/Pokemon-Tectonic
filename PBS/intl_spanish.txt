@@ -1994,6 +1994,8 @@ North: East Tunnel
 Norte: Túnel Oriental
 East: Grouz Mine
 Este: Mina Grouz
+South-East: Amber Hills
+Sureste: Colinas de Ámbar
 Grouz Mine
 Mina Grouz
 The door is boarded up.
@@ -45943,6 +45945,12 @@ Mercado Negro Prizca
 427
 Capitol Library
 Biblioteca del Capitolio
+428
+Steamy Valley
+Valle Humeante
+429
+Amber Hills
+Colinas de Ámbar
 [22]
 How are your Pokémon doing?\mMy \TP's really energetic. It's a handful!\mOh yeah, I managed to beat a tough \TE.\mI need to make my party stronger.
 How are your Pokémon doing?\mMy \TP's really energetic.  It's a handful!\mOh yeah, I managed to beat a tough \TE.\mI need to make my party stronger.

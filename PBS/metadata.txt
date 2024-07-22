@@ -3007,6 +3007,7 @@ ShowArea = true
 Bicycle = true
 Weather = Fog,100
 BattleBack = field
+MapPosition = 0,6,8
 #-------------------------------
 [430]
 # Amber Hills
@@ -3014,3 +3015,5 @@ Outdoor = true
 ShowArea = true
 Bicycle = true
 BattleBack = forest
+MapPosition = 0,15,13
+BattleBack = rocky
