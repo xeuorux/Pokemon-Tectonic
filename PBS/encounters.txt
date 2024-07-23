@@ -1133,3 +1133,11 @@ LandSparse,20
     20,GOGOAT,62,64
     20,GOLEM,62,64
     20,SAHARICANE,62,64
+#-------------------------------
+[431] # Ship Graveyard
+LandSparse,20
+    20,KINGDRA,62,64
+	20,ZEBSTRIKA,62,64
+	20,PELIPPER,62,64
+	20,DEWGONG,62,64
+	20,JELLICENT,62,64
