@@ -18,7 +18,7 @@ HOT_MAPS = [
     316, # Sandstone Estuary
     136, # Casaba Villa
     38, # Bluepoint Beach
-    53, # Jungle Path
+    53, # The Shelf
     377, # Guardian Island
     7, # Repora Forest
 ]
@@ -31,6 +31,7 @@ COLD_MAPS = [
     186, # Frostflow Farms
     211, # Split Peaks
     121, # Skyward Ascent
+    431, # Ship Graveyard
 ]
 
 STABLE_TEMP_MAPS = [
@@ -45,7 +46,7 @@ STABLE_TEMP_MAPS = [
 ###########################
 # Don't put a map in both wet and dry
 WET_MAPS = [
-    59, # Mainland Dock
+    59, # Feebas' Fin
     136, # Casaba Villa
     38, # Bluepoint Beach
     217, # Sweetrock Harbor
@@ -54,6 +55,7 @@ WET_MAPS = [
     53, # The Shelf
     377, # Guardian Island
     55, # Lingering Delta
+    431, # Ship Graveyard
 ]
 
 DRY_MAPS = [

@@ -3016,3 +3016,9 @@ ShowArea = true
 Bicycle = true
 MapPosition = 0,15,13
 BattleBack = rocky
+#-------------------------------
+[431]
+# Ship Graveyard
+Outdoor = true
+ShowArea = true
+Bicycle = true
