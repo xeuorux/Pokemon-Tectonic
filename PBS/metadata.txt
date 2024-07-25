@@ -3022,3 +3022,27 @@ BattleBack = rocky
 Outdoor = true
 ShowArea = true
 Bicycle = true
+#-------------------------------
+[433]
+# Icy Ship Steerage
+Outdoor = false
+ShowArea = false
+Bicycle = true
+#-------------------------------
+[434]
+# Icy Ship Middle Deck
+Outdoor = false
+ShowArea = false
+Bicycle = true
+#-------------------------------
+[435]
+# Haunted Ship Steerage
+Outdoor = false
+ShowArea = false
+Bicycle = true
+#-------------------------------
+[436]
+# Haunted Ship Middle Deck
+Outdoor = false
+ShowArea = false
+Bicycle = true

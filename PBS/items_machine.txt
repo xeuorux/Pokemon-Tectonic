@@ -999,3 +999,19 @@ Pocket = 4
 Price = 4000
 FieldUse = TM
 Move = METEORASSAULT
+#-------------------------------
+[TMCLOUDBREAK]
+Name = Unnamed
+NamePlural = Unnamed
+Pocket = 4
+Price = 4000
+FieldUse = TM
+Move = CLOUDBREAK
+#-------------------------------
+[TMDISSIPATION]
+Name = Unnamed
+NamePlural = Unnamed
+Pocket = 4
+Price = 4000
+FieldUse = TM
+Move = DISSIPATION
