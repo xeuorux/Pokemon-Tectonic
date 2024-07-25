@@ -1,82 +1,12 @@
 Events.onMapChange += proc { |_sender,*args|
-    applyOutdoorEffects()
+    applyOutdoorEffects
 }
 
 WEATHER_TRANSITION_DELAY = 80
 
-SKIPPED_MAPS = [
-    23, # Testing Map
-    215, # Tempest Realm
-]
-
-###########################
-# Tempurature Settings
-###########################
-# Don't put a map in both hot and cold
-HOT_MAPS = [
-    130, # Canal Desert
-    316, # Sandstone Estuary
-    136, # Casaba Villa
-    38, # Bluepoint Beach
-    53, # The Shelf
-    377, # Guardian Island
-    7, # Repora Forest
-]
-
-COLD_MAPS = [
-    217, # Sweetrock Harbor
-    266, # Berry GreenHouse
-    258, # Whitebloom Town
-    37, # Svait
-    186, # Frostflow Farms
-    211, # Split Peaks
-    121, # Skyward Ascent
-    431, # Ship Graveyard
-]
-
-STABLE_TEMP_MAPS = [
-    59, # Mainland Dock
-    216, # Highland Lake
-    55, # Lingering Delta
-    356, # Isle of Dragons
-]
-
-###########################
-# Humidity Settings
-###########################
-# Don't put a map in both wet and dry
-WET_MAPS = [
-    59, # Feebas' Fin
-    136, # Casaba Villa
-    38, # Bluepoint Beach
-    217, # Sweetrock Harbor
-    266, # Berry GreenHouse
-    258, # Whitebloom Town
-    53, # The Shelf
-    377, # Guardian Island
-    55, # Lingering Delta
-    431, # Ship Graveyard
-]
-
-DRY_MAPS = [
-    130, # Canal Desert
-    37, # Svait
-    211, # Split Peaks
-    121, # Skyward Ascent
-    129, # Barren Crater
-    25, # Grouz
-    7, # Repora Forest
-]
-
-FOG_MAPS = [
-    8, # Velenz
-    413, # Eventide Isle
-    414, # Eventide Peak
-]
-
-DARK_MAPS = [
-    8, # Velenz
-]
+# Tectonic takes place during the summer
+BASE_HOTNESS_OFFSET = 0.1
+BASE_HUMIDITY_OFFSET = -0.1
 
 GLASS_CEILING_MAPS = [
     266, # Berry Greenhouse
@@ -90,9 +20,10 @@ def getWeatherForTimeAndMap(time,map_id)
 
     # Both of these go from -3 to +3
     hotnessThisHour = (3 * Math.sin(hours / 31.0) * Math.sin(hours / 87.0))
-    hotnessThisHour += 0.2 # The game takes place in summer
+    hotnessThisHour += BASE_HOTNESS_OFFSET
 
     wetnessThisHour = (3 * Math.cos(hours / 31.0) * Math.cos(hours / 87.0))
+    wetnessThisHour += BASE_HUMIDITY_OFFSET
 
     # Hotter near noon, colder near midnight
     # Up to + 1 and down to -1
@@ -104,50 +35,54 @@ def getWeatherForTimeAndMap(time,map_id)
     wetness = wetnessThisHour
     wetness += (1 - 2 * [(clockHour - 5).abs / 6,(clockHour - 17).abs / 6].min)
 
-    if HOT_MAPS.include?(map_id)
+    metaData = GameData::MapMetadata.get(map_id)
+
+    case metaData.temperature
+    when 0 # Hot
         hotness += 1
-    elsif COLD_MAPS.include?(map_id)
+    when 1 # Cold
         hotness -= 1
-    elsif STABLE_TEMP_MAPS.include?(map_id)
-        hotness *= 0.75
+    when 2 # Stable
+        hotness *= 0.7
     end
 
-    if WET_MAPS.include?(map_id)
+    case metaData.humidity
+    when 0 # Wet
         wetness += 1
-    elsif DRY_MAPS.include?(map_id)
+    when 1 # Dry
         wetness -= 1
+    when 2 # Stable
+        wetness *= 0.7
     end
 
     weatherSym = :None
 
     # Within this section, strength is treated as between 1-5
     strength = 1
-    if FOG_MAPS.include?(map_id)
-        weatherSym = :Fog
-    else
-        hotWetness = hotness + wetness
-        hotDryness = hotness - wetness
-        coldWetness = -hotness + wetness
-        coldDryness = -hotness - wetness
-        
-        if hotness > 0 && wetness > 0 && hotWetness >= 4
-            weatherSym, strength = getHotWetWeather(hotWetness - 3)
-        elsif hotness > 0 && wetness < 0 && hotDryness >= 4
-            weatherSym, strength = getHotDryWeather(hotDryness - 3)
-        elsif hotness < 0 && wetness > 0 && coldWetness >= 4
-            weatherSym, strength = getColdWetWeather(coldWetness - 3)
-        elsif hotness < 0 && wetness < 0 && coldDryness >= 4
-            weatherSym, strength = getColdDryWeather(coldDryness - 3)
-        elsif hotness >= 2
-            weatherSym, strength = getHotWeather(hotness - 1)
-        elsif hotness <= -2
-            weatherSym, strength = getColdWeather(-hotness - 1)
-        elsif wetness >= 2
-            weatherSym, strength = getWetWeather(wetness - 1)
-        elsif wetness <= -2
-            weatherSym, strength = getDryWeather(-wetness - 1)
-        end
+
+    hotWetness = hotness + wetness
+    hotDryness = hotness - wetness
+    coldWetness = -hotness + wetness
+    coldDryness = -hotness - wetness
+    
+    if hotness > 0 && wetness > 0 && hotWetness >= 4
+        weatherSym, strength = getHotWetWeather(hotWetness - 3)
+    elsif hotness > 0 && wetness < 0 && hotDryness >= 4
+        weatherSym, strength = getHotDryWeather(hotDryness - 3)
+    elsif hotness < 0 && wetness > 0 && coldWetness >= 4
+        weatherSym, strength = getColdWetWeather(coldWetness - 3)
+    elsif hotness < 0 && wetness < 0 && coldDryness >= 4
+        weatherSym, strength = getColdDryWeather(coldDryness - 3)
+    elsif hotness >= 2
+        weatherSym, strength = getHotWeather(hotness - 1)
+    elsif hotness <= -2
+        weatherSym, strength = getColdWeather(-hotness - 1)
+    elsif wetness >= 2
+        weatherSym, strength = getWetWeather(wetness - 1)
+    elsif wetness <= -2
+        weatherSym, strength = getDryWeather(-wetness - 1)
     end
+
     strength = strength.round
     return weatherSym, strength
 end
@@ -163,7 +98,7 @@ def applyOutdoorEffects(delay = -1)
     map_id = $game_map.map_id
     weather_metadata = GameData::MapMetadata.try_get(map_id).weather
 
-    if weather_metadata.nil? && !SKIPPED_MAPS.include?(map_id)
+    if weather_metadata.nil?
         weatherSym,strength = getWeatherForTimeAndMap(pbGetTimeNow,map_id)
         if speedingUpTime? && Input.press?(Input::ACTION)
             if weatherSym != $game_screen.weather_type
