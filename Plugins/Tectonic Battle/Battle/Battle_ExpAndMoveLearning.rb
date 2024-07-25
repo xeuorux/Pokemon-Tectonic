@@ -139,9 +139,10 @@ class PokeBattle_Battle
         if pkmn.onHotStreak? && HOT_STREAKS_ACTIVE
             exp = (exp * 1.3).floor
         end
-        exp  = (exp * 1.1).floor if playerTribalBonus.hasTribeBonus?(:LOYAL)
-        exp  = (exp * 1.5).floor if @field.effectActive?(:Bliss)
-        exp  = (exp * $PokemonGlobal.exp_multiplier).floor if $PokemonGlobal.exp_multiplier
+        exp = (exp * 1.1).floor if playerTribalBonus.hasTribeBonus?(:LOYAL)
+        exp = (exp * 1.5).floor if @field.effectActive?(:Bliss)
+        exp = (exp * (1 + 0.1 * pbQuantity(:EXPCHARM))).floor # Extra 10 percent per EXP charm
+        exp = (exp * $PokemonGlobal.exp_multiplier).floor if $PokemonGlobal.exp_multiplier
         modifiedEXP = exp
         pkmn.items.each do |item|
             modifiedEXP = BattleHandlers.triggerExpGainModifierItem(item, pkmn, modifiedEXP)

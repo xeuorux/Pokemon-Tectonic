@@ -40944,8 +40944,8 @@ It is said that a hero used this sword to halt a terrible disaster in ancient ti
 Cuenta una leyenda que un héroe blandió esta espada para hacer frente a un cataclismo, pero ahora está oxidada y en un estado lamentable.
 Reins that people presented to the king. They enable Calyrex to connect and communicate with its beloved steed.
 Riendas que se entregaron como ofrenda al rey. Permiten el entendimiento mutuo entre aquellos que están unidos y separan a Calyrex de su amado corcel.
-A charm that increases the Exp. Points that Pokémon can get. A machine-like object is inside the charm.
-Amuleto que aumenta los Puntos de Experiencia que reciben los Pokémon. Su interior contiene una especie de mecanismo.
+A charm that increases the Exp. Points that Pokémon can get by 10%. A machine-like object is inside the charm.
+Amuleto que aumenta los Puntos de Experiencia que reciben los Pokémon un 10%. Su interior contiene una especie de mecanismo.
 A charm that doubles the chance of getting a critical catch.
 Amuleto que duplica las posibilidades de conseguir una captura crítica.
 A long, durable rope. Use it to escape instantly from a cave or a dungeon.
@@ -41110,6 +41110,8 @@ An electrified glove with a claw-like shape. Allows you to recover the first fai
 Un guante electrificado con forma de garra. Te permite recuperar la primer Poké Ball fallada lanzada en un combate salvaje.
 A comforting charm which doubles the happiness your Pokémon gain from being close to you.
 Un amuleto reconfortarte que duplica la felicidad que tus Pokémon ganan al estar cerca a ti.
+A wisp of ideas with infinite potential. Use it on a Pokemon to teach any one of their legal moves.
+Un puñado de ideas con un potencial infinito. Úselo en un Pokémon para enseñarle cualquiera de sus movimientos legales.
 [10]
 Shell Armor
 Caparazón

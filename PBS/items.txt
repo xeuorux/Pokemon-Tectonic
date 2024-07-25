@@ -2313,7 +2313,7 @@ NamePlural = EXP Charms
 Pocket = 7
 Price = 0
 Flags = KeyItem
-Description = A charm that increases the Exp. Points that Pokémon can get. A machine-like object is inside the charm.
+Description = A charm that increases the Exp. Points that Pokémon can get by 10%. A machine-like object is inside the charm.
 #-------------------------------
 [CATCHINGCHARM]
 Name = Catching Charm
@@ -2452,6 +2452,14 @@ FieldUse = Direct
 Consumable = true
 Flags = KeyItem
 Description = A stick of dynamite, perfectly suited to destroying small bits of rock.
+#-------------------------------
+[FIGMENT]
+Name = Figment
+NamePlural = Figments
+Pocket = 2
+Price = 8000
+FieldUse = OnPokemon
+Description = A wisp of ideas with infinite potential. Use it on a Pokemon to teach any one of their legal moves.
 #-------------------------------
 [SURFBOARD]
 Name = Surf Board
