@@ -85,7 +85,7 @@ class PokemonPokedex_Scene
 
         GameData::Trainer.each do |trainerData|
             next if trainerData.getParentTrainer # Ignore sub-trainers
-            next if trainerData.nameForHashing
+            next if trainerData.name_for_hashing
             trainerData.pokemon.each do |partyEntry|
                 species = partyEntry[:species]
                 speciesUsed[species]&.push(trainerData)

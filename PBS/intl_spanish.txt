@@ -44404,30 +44404,6 @@ Former Champion
 Antiguo Campeón
 Former Champion
 Antiguo Campeón
-Developer
-Desarrollador
-Developer
-Desarrollador
-Developer
-Desarrollador
-Developer
-Desarrollador
-Developer
-Desarrollador
-Developer
-Desarrollador
-Developer
-Desarrolladora
-Developer
-Desarrollador
-Developer
-Desarrollador
-Developer
-Desarrolladora
-Developer
-Desarrolladora
-Developer
-Desarrollador
 Wild
 Salvaje
 Another Possible
@@ -44550,6 +44526,8 @@ Tourist
 Turista
 Tourist
 Turista
+Developer
+Desarrollador
 [14]
 of Conflict
 del Conflicto

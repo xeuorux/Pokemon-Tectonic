@@ -2194,7 +2194,8 @@ Pokemon = RUNERIGUS,40
     AbilityIndex = 0 # Wandering Spirit
     Item = LEFTOVERS
 #-------------------------------
-[DEVJUGGLER,Brickbat]
+[JUGGLER,Brickbat]
+TrainerTypeLabel = DEVELOPER
 Pokemon = WIGGLYTUFF,70
     AbilityIndex = 1 # Maestro
 Pokemon = HAEROBIC,70
@@ -2208,7 +2209,8 @@ Pokemon = CINCCINO,70
 Pokemon = DELCATTY,70
     AbilityIndex = 0 # Above It All
 #-------------------------------
-[DEVCOOLTRAINER_F,Zeu]
+[COOLTRAINER_F,Zeu]
+TrainerTypeLabel = DEVELOPER
 Pokemon = GALVANTULA,70
     AbilityIndex = 0 # Ocular
 Pokemon = FERALIGATR,70
@@ -2222,21 +2224,8 @@ Pokemon = SWALOT,70
 Pokemon = HYDREIGON,70
     AbilityIndex = 0 # Levitate
 #-------------------------------
-[DEVPSYCHIC_M,Waka]
-Pokemon = GLALIE,70
-    AbilityIndex = 0 # Flash Freeze
-Pokemon = DHELMISE,70
-    AbilityIndex = 1 # Kelp Link
-Pokemon = CRYOGONAL,70
-    AbilityIndex = 0 # Levitate
-Pokemon = GIRAFARIG,70
-    AbilityIndex = 0 # Cud Chew
-Pokemon = MUSHARNA,70
-    AbilityIndex = 0 # Dream Weaver
-Pokemon = CHIMECHO,70
-    AbilityIndex = 1 # Toll the Bells
-#-------------------------------
-[DEVSUPERNERD,Agentbla]
+[SUPERNERD,Agentbla]
+TrainerTypeLabel = DEVELOPER
 Pokemon = WHIMSICOTT,70
     Name = Joe
     Gender = male
@@ -2263,7 +2252,8 @@ Pokemon = SWAMPERT,70
     Gender = male
     AbilityIndex = 1 # Boulder Nest
 #-------------------------------
-[DEVLADY4,Divock]
+[LADY4,Divock]
+TrainerTypeLabel = DEVELOPER
 Pokemon = DRAGONITE,70
     AbilityIndex = 0 # Inner Focus
 Pokemon = KLAWSAR,70
@@ -2277,7 +2267,8 @@ Pokemon = PRIMARINA,70
 Pokemon = NIDOKING,70
     AbilityIndex = 1 # Stressful
 #-------------------------------
-[DEVGAMBLER,IgnitedxSoul]
+[GAMBLER,IgnitedxSoul]
+TrainerTypeLabel = DEVELOPER
 Pokemon = AEGISLASH,70
     AbilityIndex = 1 # Stance Change
 Pokemon = INFERNAPE,70
@@ -2285,31 +2276,33 @@ Pokemon = INFERNAPE,70
 Pokemon = VIKAVOLT,70
     AbilityIndex = 1 # Levitate
 Pokemon = GARCHOMP,70
-    AbilityIndex = 1 # Sands Macabre
+    AbilityIndex = 0 # Rough Skin
 Pokemon = TOXAPEX,70
     AbilityIndex = 1 # Regenerator
 Pokemon = RILLABOOM,70
     AbilityIndex = 0 # Verdant
 #-------------------------------
-[DEVARTIST3,Drawingbox]
+[ARTIST3,Drawingbox]
+TrainerTypeLabel = DEVELOPER
 Pokemon = ESPEON,70
     AbilityIndex = 0 # Overthinking
 Pokemon = GOTHITELLE,70
-    AbilityIndex = 0 # Moon Basking
+    AbilityIndex = 1 # Clingy
 Pokemon = BEHEEYEM,70
     AbilityIndex = 0 # Cold Calculation
 Pokemon = ORBEETLE,70
-    AbilityIndex = 1 # Master Plan
+    AbilityIndex = 0 # Brain Scramble
 Pokemon = HATTERENE,70
     AbilityIndex = 0 # Killjoy
 Pokemon = MALAMAR,70
     AbilityIndex = 0 # Contrary
 #-------------------------------
-[DEVCOOLTRAINER_M3,Dada]
+[COOLTRAINER_M3,Dada]
+TrainerTypeLabel = DEVELOPER
 Pokemon = FLAREON,70
     AbilityIndex = 1 # Ignition Cycle
 Pokemon = HOUNDOMINUS,70
-    AbilityIndex = 0 # Midnight Sun
+    AbilityIndex = 1 # Berserk
 Pokemon = MAGMORTAR,70
     AbilityIndex = 0 # Mega Launcher
 Pokemon = DARMANITAN,70
@@ -2319,21 +2312,23 @@ Pokemon = CHANDELURE,70
 Pokemon = TALONFLAME,70
     AbilityIndex = 1 # Gale Wings
 #-------------------------------
-[DEVPOKEMONRANGER_M,Zufaix]
+[POKEMONRANGER_M,Zufaix]
+TrainerTypeLabel = DEVELOPER
 Pokemon = ANINETALES,70
     AbilityIndex = 0 # Summit Spirit
 Pokemon = MISMAGIUS,70
     AbilityIndex = 0 # Snow Warning
 Pokemon = FROSLASS,70
-    AbilityIndex = 0 # Sealing Body
+    AbilityIndex = 1 # Eternal Winter
 Pokemon = SAURENAID,70
     AbilityIndex = 0 # Arctic Ariette
 Pokemon = ASANDSLASH,70
     AbilityIndex = 1 # Assault Spines
 Pokemon = CONIFEAR,70
-    AbilityIndex = 1 # Frustrate
+    AbilityIndex = 0 # Frost Scatter
 #-------------------------------
-[DEVHEXMANIAC,Lichenprincess]
+[HEXMANIAC,Lichenprincess]
+TrainerTypeLabel = DEVELOPER
 Pokemon = GALVANTULA,70
     AbilityIndex = 0 # Ocular
 Pokemon = TOXAPEX,70
@@ -2347,7 +2342,8 @@ Pokemon = VOLCARONA,70
 Pokemon = ARCLAMOR,70
     AbilityIndex = 1 # Thunderstruck
 #-------------------------------
-[DEVMAID2,Maddie]
+[MAID2,Maddie]
+TrainerTypeLabel = DEVELOPER
 Pokemon = BUNEARY,70
     AbilityIndex = 1 # Stubborn
 Pokemon = WOOLOO,70
@@ -2362,7 +2358,8 @@ Pokemon = BUNEARY,70
 Pokemon = BRIONNE,70
     AbilityIndex = 0 # Maestro
 #-------------------------------
-[DEVCLERK_M2,Papper]
+[CLERK_M2,Papper]
+TrainerTypeLabel = DEVELOPER
 Pokemon = FERALIGATR,70
     AbilityIndex = 1 # Strong Jaw
 Pokemon = PACHIRISU,70
@@ -2372,11 +2369,12 @@ Pokemon = TORTERRA,70
 Pokemon = HONCHKROW,70
     AbilityIndex = 0 # Rattle 'Em
 Pokemon = BRONZONG,70
-    AbilityIndex = 1 # Toll Danger
+    AbilityIndex = 0 # Levitate
 Pokemon = DRAPION,70
-    AbilityIndex = 0 # Darkened Skies
+    AbilityIndex = 1 # Merciless
 #-------------------------------
-[DEVGAMBLER,Tiki]
+[GAMBLER,Tiki]
+TrainerTypeLabel = DEVELOPER
 Pokemon = FARFETCHD,70
     AbilityIndex = 1 # Fat Chance
 Pokemon = KINGAMBIT,70
@@ -2391,13 +2389,14 @@ Pokemon = NIBELONG,70
 Pokemon = GOLURK,70
     AbilityIndex = 0 # Iron Fist
 #-------------------------------
-[DEVRICHBOY,Splitmoon]
+[RICHBOY,Splitmoon]
+TrainerTypeLabel = DEVELOPER
 Pokemon = REAVOR,70
     AbilityIndex = 1 # Inner Focus
 Pokemon = NIDOKING,70
     AbilityIndex = 0 # Sheer Force
 Pokemon = TYRANITAR,70
-    AbilityIndex = 0 # Sand Burst
+    AbilityIndex = 1 # Stressful
 Pokemon = CHARIZARD,70
     AbilityIndex = 0 # Levitate
 Pokemon = VIKAVOLT,70
@@ -2405,7 +2404,8 @@ Pokemon = VIKAVOLT,70
 Pokemon = CORVIKNIGHT,70
     AbilityIndex = 0 # Mirror Armor
 #-------------------------------
-[DEVJANITOR,Steeb]
+[JANITOR,Steeb]
+TrainerTypeLabel = DEVELOPER
 Pokemon = BEWEAR,70
     Name = Nene
     Gender = female
@@ -2416,13 +2416,14 @@ Pokemon = OCTILLERY,70
 Pokemon = MAROWAK,70
     AbilityIndex = 0 # Rock Head
 Pokemon = LILLIGANT,70
-    AbilityIndex = 0 # Chlorophyll
+    AbilityIndex = 1 # Herbalist
 Pokemon = DHELMISE,70
     AbilityIndex = 1 # Kelp Link
 Pokemon = DECEAT,70
     AbilityIndex = 0 # Pure Force
 #-------------------------------
-[DEVGENTLEMAN3,D]
+[GENTLEMAN3,D]
+TrainerTypeLabel = DEVELOPER
 Pokemon = SHUPPET,7
     AbilityIndex = 1 # Razor's Edge
 Pokemon = MIMIKYU,5
@@ -2437,7 +2438,8 @@ Pokemon = ZORUA,70
 Pokemon = SHEDINJA,70
     AbilityIndex = 0 # Wonder Guard
 #-------------------------------
-[DEVROUGHNECK2,Jaggedthorn]
+[ROUGHNECK2,Jaggedthorn]
+TrainerTypeLabel = DEVELOPER
 Pokemon = KLINKLANG,70
     AbilityIndex = 1 # Dynamo
 Pokemon = FALINKS,70
@@ -2451,7 +2453,8 @@ Pokemon = YANMEGA,70
 Pokemon = DHELMISE,70
     AbilityIndex = 0 # Rust & Wrack
 #-------------------------------
-[DEVRICHBOY4,Darlvon]
+[RICHBOY4,Darlvon]
+TrainerTypeLabel = DEVELOPER
 Pokemon = PURUGLY,70
     AbilityIndex = 1 # Competitive
 Pokemon = METAGROSS,70
@@ -2466,7 +2469,8 @@ Pokemon = AGGRON,70
 Pokemon = GOLISOPOD,70
     AbilityIndex = 0 # Emergency Exit
 #-------------------------------
-[DEVHARLEQUIN,Minty]
+[HARLEQUIN,Minty]
+TrainerTypeLabel = DEVELOPER
 Pokemon = ZEBSTRIKA,70
     AbilityIndex = 1 # Reckless
 Pokemon = SIGILYPH,70
@@ -2481,7 +2485,8 @@ Pokemon = HARCANINE,70
 Pokemon = REAVOR,70
     AbilityIndex = 0 # Technician
 #-------------------------------
-[DEVSCIENTIST_F,LunaFlare]
+[SCIENTIST_F,LunaFlare]
+TrainerTypeLabel = DEVELOPER
 Pokemon = ESPEON,70
     AbilityIndex = 0 # Overthinking
 Pokemon = SNEASLER,70
@@ -2495,7 +2500,8 @@ Pokemon = MNOCTOWL,70
 Pokemon = DECIDUEYE,70
     AbilityIndex = 1 # Siphon Sniper
 #-------------------------------
-[DEVHIKER,Valrex]
+[HIKER,Valrex]
+TrainerTypeLabel = DEVELOPER
 Pokemon = MFURRET,70
     Name = Pauline
     Gender = female
@@ -2513,7 +2519,8 @@ Pokemon = MMUSHARNA,70
 Pokemon = HLILLIGANT,70
     AbilityIndex = 0 # Fascinate
 #-------------------------------
-[DEVWORKER5,Jbsundown]
+[WORKER5,Jbsundown]
+TrainerTypeLabel = DEVELOPER
 Pokemon = SUDOWOODO,70
     AbilityIndex = 1 # Prankster
 Pokemon = DRAGONITE,70
@@ -2527,7 +2534,8 @@ Pokemon = MPOLTEAGEIST,70
 Pokemon = TYPHLOSION,70
     AbilityIndex = 0 # Brisk
 #-------------------------------
-[DEVPOKEMONBREEDER_F,ZombyGoast]
+[POKEMONBREEDER_F,ZombyGoast]
+TrainerTypeLabel = DEVELOPER
 Pokemon = DECEAT,70
     AbilityIndex = 1 # Intimidate
 Pokemon = SYLVEON,70

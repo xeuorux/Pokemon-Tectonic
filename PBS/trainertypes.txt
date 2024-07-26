@@ -481,137 +481,10 @@ Gender = Male
 BaseMoney = 32
 IntroBGM = BUSINESSMAN
 #-------------------------------
-[DEVARTIST3]
+[DEVELOPER]
 Name = Developer
-Gender = Female
-BaseMoney = 80
-IntroBGM = GAMBLER
-#-------------------------------
-[DEVCLERK_M2]
-Name = Developer
-Gender = Male
-BaseMoney = 80
-IntroBGM = BUSINESSMAN
-#-------------------------------
-[DEVCOOLTRAINER_F]
-Name = Developer
-Gender = Male
-BaseMoney = 80
-IntroBGM = COOLTRAINER
-#-------------------------------
-[DEVCOOLTRAINER_M3]
-Name = Developer
-Gender = Male
-BaseMoney = 80
-IntroBGM = ELITETRAINER
-#-------------------------------
-[DEVGAMBLER]
-Name = Developer
-Gender = Male
-BaseMoney = 80
-IntroBGM = ACETRAINER
-#-------------------------------
-[DEVGENTLEMAN3]
-Name = Developer
-Gender = Male
-BaseMoney = 80
-IntroBGM = GAMBLER
-#-------------------------------
-[DEVHARLEQUIN]
-Name = Developer
-Gender = Male
-BaseMoney = 80
-IntroBGM = POKEFAN
-#-------------------------------
-[DEVHEXMANIAC]
-Name = Developer
-Gender = Female
-BaseMoney = 80
-IntroBGM = PSYCHIC
-#-------------------------------
-[DEVHIKER]
-Name = Developer
-Gender = Male
-BaseMoney = 80
-IntroBGM = HIKER
-#-------------------------------
-[DEVJANITOR]
-Name = Developer
-Gender = Male
-BaseMoney = 80
-IntroBGM = BUSINESSMAN
-#-------------------------------
-[DEVJUGGLER]
-Name = Developer
-Gender = Male
-BaseMoney = 80
-IntroBGM = POKEFAN
-#-------------------------------
-[DEVLADY4]
-Name = Developer
-Gender = Female
-BaseMoney = 80
-IntroBGM = LASS2
-#-------------------------------
-[DEVMAID2]
-Name = Developer
-Gender = Female
-BaseMoney = 80
-IntroBGM = ARTIST
-#-------------------------------
-[DEVPOKEMONBREEDER_F]
-Name = Developer
-Gender = Female
-BaseMoney = 80
-IntroBGM = PARASOL
-#-------------------------------
-[DEVPOKEMONRANGER_M]
-Name = Developer
-Gender = Male
-BaseMoney = 80
-IntroBGM = ACETRAINER
-#-------------------------------
-[DEVPSYCHIC_M]
-Name = Developer
-Gender = Male
-BaseMoney = 80
-IntroBGM = PSYCHIC
-#-------------------------------
-[DEVRICHBOY]
-Name = Developer
-Gender = Male
-BaseMoney = 80
-IntroBGM = YOUNGSTER2
-#-------------------------------
-[DEVRICHBOY4]
-Name = Developer
-Gender = Male
-BaseMoney = 80
-IntroBGM = YOUNGSTER2
-#-------------------------------
-[DEVROUGHNECK2]
-Name = Developer
-Gender = Male
-BaseMoney = 80
-IntroBGM = ROUGHNECK
-#-------------------------------
-[DEVSCIENTIST_F]
-Name = Developer
-Gender = Female
-BaseMoney = 80
-IntroBGM = SCIENTIST
-#-------------------------------
-[DEVSUPERNERD]
-Name = Developer
-Gender = Male
-BaseMoney = 80
-IntroBGM = POKEFAN
-#-------------------------------
-[DEVWORKER5]
-Name = Developer
-Gender = Male
-BaseMoney = 80
-IntroBGM = BUSINESSMAN
+Gender = Unknown
+BaseMoney = 60
 #-------------------------------
 [DITTO_AROMALADY]
 Name = Aroma Lady
@@ -910,6 +783,12 @@ BaseMoney = 160
 IntroBGM = LASS2
 #-------------------------------
 [LADY3]
+Name = Lady
+Gender = Female
+BaseMoney = 160
+IntroBGM = LASS2
+#-------------------------------
+[LADY4]
 Name = Lady
 Gender = Female
 BaseMoney = 160

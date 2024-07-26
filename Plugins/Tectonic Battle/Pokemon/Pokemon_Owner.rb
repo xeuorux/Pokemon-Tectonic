@@ -33,7 +33,7 @@ class Pokemon
       # @return [Owner] new Owner object
       def self.new_from_trainer(trainer)
         validate trainer => [Player, NPCTrainer]
-        return new(trainer.id, trainer.nameForHashing || trainer.name, trainer.gender, trainer.language)
+        return new(trainer.id, trainer.name_for_hashing || trainer.name, trainer.gender, trainer.language)
       end
   
       # Returns an Owner object with a foreign ID.

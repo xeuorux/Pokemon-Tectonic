@@ -3,6 +3,7 @@ module GameData
       attr_reader :id
       attr_reader :id_number
       attr_reader :trainer_type
+      attr_reader :trainer_type_label
       attr_reader :real_name
       attr_reader :version
       attr_reader :items
@@ -14,7 +15,7 @@ module GameData
       attr_reader :extendsName
       attr_reader :extendsVersion
       attr_reader :removedPokemon
-      attr_reader :nameForHashing
+      attr_reader :name_for_hashing
       attr_reader :monumentTrainer
   
       DATA = {}
@@ -23,32 +24,33 @@ module GameData
       SCHEMA = {
         "Items"        		=> [:items,             "*e",   :Item],
         "LoseText"     		=> [:lose_text,         "s"],
-        "Policies"	 		  => [:policies,		      "*e",   :Policy],
-        "Flags"           => [:flags,             "*s"],
+        "Policies"	 		=> [:policies,		    "*e",   :Policy],
+        "Flags"             => [:flags,             "*s"],
         "Pokemon"      		=> [:pokemon,           "ev",   :Species],   # Species, level
         "RemovePokemon"		=> [:removed_pokemon,   "ev",   :Species],   # Species, level
         "Form"         		=> [:form,              "u"],
         "Name"         		=> [:name,              "s"],
-        "NameForHashing"  => [:name_for_hashing,   "s"],
+        "NameForHashing"    => [:name_for_hashing,  "s"],
+        "TrainerTypeLabel"  => [:trainer_type_label,"e",    :TrainerType],
         "Moves"        		=> [:moves,             "*e",   :Move],
         "Ability"      		=> [:ability,           "s"],
         "AbilityIndex" 		=> [:ability_index,     "u"],
         "ExtraAbilities" 	=> [:extra_abilities,   "*s"],
         "Item"         		=> [:item,              "*e",   :Item],
-        "ItemType"        => [:item_type,         "e",    :Type],
-        "ExtraItems" 	    => [:extra_items,   "*s"],
+        "ItemType"          => [:item_type,         "e",    :Type],
+        "ExtraItems" 	    => [:extra_items,       "*s"],
         "Gender"       		=> [:gender,            "e", { "M" => 0, "m" => 0, "Male" => 0, "male" => 0, "0" => 0,
                                                       "F" => 1, "f" => 1, "Female" => 1, "female" => 1, "1" => 1 }],
         "Nature"       		=> [:nature,            "e",    :Nature],
-        "EV"           		=> [:ev,               "uUUUUU"],
+        "EV"           		=> [:ev,                "uUUUUU"],
         "Happiness"   		=> [:happiness,         "u"],
         "Shiny"        		=> [:shininess,         "b"],
         "Shadow"       		=> [:shadowness,        "b"],
         "Ball"         		=> [:poke_ball,         "s"],
         "ExtendsVersion" 	=> [:extends_version,   "u"],
-        "Extends"		 		  => [:extends,		        "esu",  :TrainerType],
-        "Position"	 		  => [:assigned_position, "u"],
-        "ExtraTypes"      => [:extra_types,       "*e",   :Type]
+        "Extends"		    => [:extends,		    "esu",  :TrainerType],
+        "Position"	 		=> [:assigned_position, "u"],
+        "ExtraTypes"        => [:extra_types,       "*e",   :Type]
       }
   
       extend ClassMethods
@@ -105,27 +107,28 @@ module GameData
       end
 
       def initialize(hash)
-        @id             = hash[:id]
-        @id_number      = hash[:id_number]
-        @trainer_type   = hash[:trainer_type]
-        @real_name      = hash[:name]         || "Unnamed"
-        @nameForHashing = hash[:name_for_hashing]
-        @version        = hash[:version]      || 0
-        @items          = hash[:items]        || []
-        @real_lose_text = hash[:lose_text]    || "..."
-        @pokemon        = hash[:pokemon]      || []
+        @id                     = hash[:id]
+        @id_number              = hash[:id_number]
+        @trainer_type           = hash[:trainer_type]
+        @real_name              = hash[:name]               || "Unnamed"
+        @name_for_hashing       = hash[:name_for_hashing]
+        @trainer_type_label     = hash[:trainer_type_label]
+        @version                = hash[:version]            || 0
+        @items                  = hash[:items]              || []
+        @real_lose_text         = hash[:lose_text]          || "..."
+        @pokemon                = hash[:pokemon]            || []
         @pokemon.each do |pkmn|
             GameData::Stat.each_main do |s|
               pkmn[:ev][s.id] ||= 0 if pkmn[:ev]
             end
         end
-        @removedPokemon 	= hash[:removed_pokemon]  || []
-        @policies		  	  = hash[:policies]		      || []
-        @flags		  	    = hash[:flags]		        || []
-        @extendsClass	  	= hash[:extends_class]
-        @extendsName	  	= hash[:extends_name]
-        @extendsVersion 	= hash[:extends_version] || -1
-        @monumentTrainer  = hash[:monument_trainer] || false
+        @removedPokemon 	    = hash[:removed_pokemon]    || []
+        @policies		  	    = hash[:policies]		    || []
+        @flags		  	        = hash[:flags]		        || []
+        @extendsClass	  	    = hash[:extends_class]
+        @extendsName	  	    = hash[:extends_name]
+        @extendsVersion 	    = hash[:extends_version]    || -1
+        @monumentTrainer        = hash[:monument_trainer]   || false
 
         @@monumentTrainers.push(self) if @monumentTrainer
 
@@ -184,13 +187,14 @@ module GameData
         end
         
         # Create trainer object
-        trainer = NPCTrainer.new(tr_name, @trainer_type, @nameForHashing)
-        trainer.id         = $Trainer.make_foreign_ID
-        trainer.items      = @items.clone
-        trainer.lose_text  = @lose_text
-        trainer.policies   = @policies.clone
+        trainer = NPCTrainer.new(tr_name, @trainer_type, @name_for_hashing)
+        trainer.id                  = $Trainer.make_foreign_ID
+        trainer.items               = @items.clone
+        trainer.lose_text           = @lose_text
+        trainer.policies            = @policies.clone
         trainer.policies.concat(GameData::TrainerType.get(@trainer_type).policies)
-        trainer.flags      = @flags.clone
+        trainer.flags               = @flags.clone
+        trainer.trainer_type_label  = @trainer_type_label
 
         parentTrainer = getParentTrainer
         if parentTrainer
@@ -390,16 +394,16 @@ module Compiler
           line_data = pbGetCsvRecord($~[1], line_no, [0, "esU", :TrainerType])
           # Construct trainer hash
           trainer_hash = {
-            :id_number        => trainer_id,
-            :trainer_type     => line_data[0],
-            :name             => line_data[1],
-            :version          => line_data[2] || 0,
-            :pokemon          => [],
-            :policies		      => [],
+            :id_number          => trainer_id,
+            :trainer_type       => line_data[0],
+            :name               => line_data[1],
+            :version            => line_data[2] || 0,
+            :pokemon            => [],
+            :policies		    => [],
             :flags		        => [],
-            :extends          => -1,
-            :removed_pokemon  => [],
-            :monument_trainer => isMonument,
+            :extends            => -1,
+            :removed_pokemon    => [],
+            :monument_trainer   => isMonument,
           }
           isExtending = false
           current_pkmn = nil
@@ -474,7 +478,7 @@ module Compiler
           end
           # Record XXX=YYY setting
           case property_name
-          when "Items", "LoseText","Policies","NameForHashing","Flags"
+          when "Items", "LoseText","Policies","NameForHashing","Flags","TrainerTypeLabel"
             trainer_hash[line_schema[0]] = property_value
             trainer_lose_texts[trainer_id] = property_value if property_name == "LoseText"
           when "Extends"
@@ -596,8 +600,11 @@ module Compiler
         f.write(sprintf("ExtendsVersion = %s\r\n", trainer.extendsVersion.to_s))
       end
     end
-    if !trainer.nameForHashing.nil?
-      f.write(sprintf("NameForHashing = %s\r\n", trainer.nameForHashing.to_s))
+    if !trainer.name_for_hashing.nil?
+      f.write(sprintf("NameForHashing = %s\r\n", trainer.name_for_hashing.to_s))
+    end
+    if !trainer.trainer_type_label.nil?
+        f.write(sprintf("TrainerTypeLabel = %s\r\n", trainer.trainer_type_label.to_s))
     end
     if trainer.policies && trainer.policies.length > 0
       uniquePolicies = trainer.policies

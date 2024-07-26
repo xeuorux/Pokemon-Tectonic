@@ -3,13 +3,14 @@
 #===============================================================================
 class Trainer
     attr_accessor :trainer_type
+    attr_accessor :trainer_type_label
     attr_accessor :name
     attr_accessor :id
     attr_accessor :language
     attr_accessor :party
-    attr_reader   :nameForHashing
+    attr_reader   :name_for_hashing
     attr_accessor :policies
-    attr_accessor	:tribalBonus
+    attr_accessor :tribalBonus
   
     def inspect
       str = super.chop
@@ -45,7 +46,10 @@ class Trainer
   
     #=============================================================================
   
-    def trainer_type_name; return GameData::TrainerType.get(@trainer_type).name;        end
+    def trainer_type_name
+        return GameData::TrainerType.get(@trainer_type_label).name if @trainer_type_label
+        return GameData::TrainerType.get(@trainer_type).name
+    end
     def base_money;        return GameData::TrainerType.get(@trainer_type).base_money;  end
     def gender;            return GameData::TrainerType.get(@trainer_type).gender;      end
     def male?;             return GameData::TrainerType.get(@trainer_type).male?;       end
@@ -203,13 +207,14 @@ class Trainer
     attr_accessor :lose_text
     attr_accessor :policyStates
     attr_accessor :flags
+    attr_reader   :name_for_hashing
   
-    def initialize(name, trainer_type, nameForHashing = nil)
+    def initialize(name, trainer_type, name_for_hashing = nil)
       super(name, trainer_type)
       @items     = []
       @lose_text = nil
       @policyStates = {}
-      @nameForHashing = nameForHashing || name
+      @name_for_hashing = name_for_hashing || name
       @flags     = []
     end
 
