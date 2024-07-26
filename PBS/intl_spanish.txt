@@ -14490,8 +14490,8 @@ Samorn's House
 Casa de Samorn
 The railway here used to be pretty nice, but it got destroyed when that girl took Team Chasm down.
 La vía férrea aquí solía estar bastante bien, pero fue destruida cuando esa chica tumbó al Team Chasm.
-No one's ever really gotten to repairing it, too much hassle for too little gain.
-Nadie realmente se ha puesto a repararla, demasiado esfuerzo por muy poca ganancia.
+No one's ever really gotten to repairing the whole thing, too much hassle for too little gain.
+Nadie realmente se ha puesto a repararla por completo, demasiado esfuerzo por muy poca ganancia.
 Most of the dirt and heavy equipment are already where they need to be.
 La mayoría de la tierra y equipamiento pesado ya están donde deberían.
 "Attention: All Team Chasm Grunts"
@@ -14726,6 +14726,14 @@ Nah.
 Nah.
 Where?
 ¿Dónde?
+I took some classes in the gym here.
+Tomé algunas clases en el gimnasio aquí.
+I was a bit scared cause I heard how tough Samorn is.
+Tenía un poco de miedo porque escuché lo duro que es Samorn.
+She's the strongest gym leader in the whole region!
+¡Ella es la líder de gimnasio más fuerte de toda la región!
+But she's really nice. I had a great time.
+Pero ella es muy simpática. Me lo he pasado genial.
 [Map216]
 Phione! \PN! What just happened here?
 ¡Phione! ¡\PN! ¿Qué acaba de pasar?
