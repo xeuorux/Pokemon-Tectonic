@@ -8069,7 +8069,7 @@ Pokemon = LEAVANNY,70
     # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
     EV = 10,20,0,20,20,0
 Pokemon = SAURENAID,70
-    Moves = HYPERVOICE,LOOMOVER,REST,WHIRLPOOL
+    Moves = HYPERVOICE,LOOMOVER,REST,MAELSTROM
     AbilityIndex = 0 # Arctic Ariette
     Item = CHESTOBERRY
     # HP, Attack, Defense, Speed, Sp. Atk, Sp. Def
