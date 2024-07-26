@@ -53095,6 +53095,14 @@ Do you wish to battle?
 ¿Quieres luchar?
 Achievement Unlocked:\r\n\\c[2]{1}
 Logro Desbloqueado:\r\n\\c[2]{1}
+\wmThe words of a poem appear in your mind.
+\wmLas palabras de un poema aparecen en tu mente.
+\ss\wm"Watchful eye, a towering sight."
+\ss\wm"Ojo vigilante, una vista imponente."
+\ss\wm"Budding hope, with 3-fold might."
+\ss\wm"Esperanza floreciente, con triple poder."
+\ss\wm"We await you, o slayer..."
+\ss\wm"Te esperamos, cazador..."
 [26]
 [27]
 [27]
