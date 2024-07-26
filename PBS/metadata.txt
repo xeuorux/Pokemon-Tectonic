@@ -1322,7 +1322,10 @@ Bicycle = false
 Outdoor = true
 ShowArea = true
 Bicycle = true
+Temperature = Stable
+Humidity = Wet
 MapPosition = 0,1,14
+BattleBack = field
 #-------------------------------
 [183]
 # Circuit Cave

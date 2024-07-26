@@ -514,6 +514,11 @@ Special
     1,GFARFETCHD,40
 #-------------------------------
 [182] # Spirit Atoll
+FloweryGrass,20
+    25,CHERRIM,56,58
+    25,SNORLAX,56,58
+    25,STARAPTOR,56,58
+    25,VESPIQUEN,56,58
 FloweryGrass2,20
     25,CHIMECHO,56,58
     25,GOLDUCK,56,58
